@@ -1,4 +1,5 @@
 #pragma once
+//#include "BladeII.h"
 #include "BladeIIDamageType.h"
 #include <type_traits>
 

@@ -1,10 +1,10 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BladeII.h"
+#include "B2UIRaidResultSlot.h"
 #include "B2UIDocHelper.h"
 #include "B2UIDocRaid.h"
 #include "B2ItemInfo.h"
-#include "B2UIRaidResultSlot.h"
+
 #include "B2UIRewardEventSet.h"
 
 

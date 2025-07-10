@@ -1,4 +1,3 @@
-#include "BladeII.h"
 #include "B2UIMsgPopupTooltipSkillOption.h"
 #include "B2UISkillOptionText.h"
 #include "B2UIManager.h"

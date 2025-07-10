@@ -1,11 +1,11 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-
-#include "BladeII.h"
+#include "B2DynItemIcon_ItemForgeResult.h" 
+//#include "BladeII.h"
 #include "BladeIIUtil.h"
 #include "UI/DJLegacy/B2DynItemIcon_ItemForge.h" 
 #include "BladeIIGameImpl.h"
 #include "B2UIItemForge.h"
-#include "B2DynItemIcon_ItemForgeResult.h" 
+
 
 
 void UB2DynItemIcon_ItemForgeResult::CacheAssets()

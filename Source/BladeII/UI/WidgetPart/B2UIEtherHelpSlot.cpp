@@ -1,6 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BladeII.h"
 #include "B2UIEtherHelpSlot.h"
 #include "B2EtherSetOptionInfo.h"
 #include "B2EtherInfo.h"

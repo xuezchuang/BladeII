@@ -1,5 +1,6 @@
-#include "BladeII.h"
+
 #include "B2CombatStatEvaluator.h"
+//#include "BladeII.h"
 #include "B2LobbyInventory.h"
 #include "B2Airport.h"
 //#include "Algo/Copy.h"

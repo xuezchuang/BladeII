@@ -1,4 +1,4 @@
-#include "BladeII.h"
+
 #include "B2ControlGameMode.h"
 
 #include "BehaviorTree/BehaviorTree.h"

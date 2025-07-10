@@ -1,6 +1,6 @@
-#include "BladeII.h"
-#include "B2BTService_SelectTaskSequence2.h"
 
+#include "B2BTService_SelectTaskSequence2.h"
+//#include "BladeII.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "B2AI.h"
 #include "BladeIIGameMode.h"

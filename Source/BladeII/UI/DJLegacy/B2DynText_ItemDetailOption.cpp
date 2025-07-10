@@ -1,8 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-
-#include "BladeII.h"
-#include "B2Inventory.h"
 #include "B2DynText_ItemDetailOption.h"
+#include "B2Inventory.h"
+
+
 
 UB2DynText_ItemDetailOption::UB2DynText_ItemDetailOption(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)

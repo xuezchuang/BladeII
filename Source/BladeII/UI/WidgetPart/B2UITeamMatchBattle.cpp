@@ -1,4 +1,3 @@
-#include "BladeII.h"
 #include "B2UITeamMatchBattle.h"
 #include "B2UITeamMatchBattleNickName.h"
 #include "B2UITeamMatchBattleSlot.h"

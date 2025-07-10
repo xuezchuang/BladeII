@@ -1,6 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-
-#include "BladeII.h"
+#include "BladeIIMercenaryPlayer.h"
+//#include "BladeII.h"
 #include "B2GuildDataStore.h"
 #include "B2ClientDataStore.h"
 #include "B2CombatStatEvaluator.h"
@@ -11,7 +11,7 @@
 //#include "B2GuildNPCAIController.h"
 #include "B2SomeInfo.h"
 #include "B2PassiveSkillFactory.h"
-#include "BladeIIMercenaryPlayer.h"
+
 
 bool FMercenarySkillData::IsRemainCooltime()
 {

@@ -1,6 +1,7 @@
-#include "BladeII.h"
-#include "Animation/AnimInstance.h"
 #include "B2LobbySkeletalMeshActorBase.h"
+//#include "BladeII.h"
+#include "Animation/AnimInstance.h"
+
 #include "BladeIIUtil.h"
 
 /************************************************************************/

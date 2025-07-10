@@ -1,4 +1,4 @@
-#include "BladeII.h"
+
 #include "ChannelManager.h"
 
 #include "Channel.h"

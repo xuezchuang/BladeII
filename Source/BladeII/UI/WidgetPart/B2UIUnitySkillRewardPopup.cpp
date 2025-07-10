@@ -1,10 +1,10 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-#include "BladeII.h"
+#include "B2UIUnitySkillRewardPopup.h"
 #include "B2UIManager.h"
 #include "B2UIMailRewardPopUp.h"
 #include "B2PCClassInfoBox.h"
 #include "B2SkillInfo.h"
-#include "B2UIUnitySkillRewardPopup.h"
+
 
 
 #include "BladeIIGameImpl.h"

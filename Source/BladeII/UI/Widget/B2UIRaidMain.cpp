@@ -1,5 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-#include "BladeII.h"
+#include "B2UIRaidMain.h"
 
 #include "B2UIHeader.h"
 #include "B2UIManager.h"
@@ -22,7 +22,7 @@
 #include "B2UICounterAttackSelectCharacterSlot.h"
 #include "B2UIRaidJoin.h"
 
-#include "B2UIRaidMain.h"
+
 
 void UB2UIRaidMain::CacheAssets()
 {

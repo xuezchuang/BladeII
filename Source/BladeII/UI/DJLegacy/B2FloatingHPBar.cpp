@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-
-#include "BladeII.h"
 #include "B2FloatingHPBar.h"
+//#include "BladeII.h"
+
 #include "BladeIICharacter.h"
 
 UB2FloatingHPBar::UB2FloatingHPBar(const FObjectInitializer& ObjectInitializer)

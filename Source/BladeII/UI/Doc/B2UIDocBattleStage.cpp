@@ -1,4 +1,4 @@
-#include "BladeII.h"
+
 #include "B2UIDocBattleStage.h"
 
 UB2UIDocBattleStage::UB2UIDocBattleStage(const FObjectInitializer& ObjectInitializer)

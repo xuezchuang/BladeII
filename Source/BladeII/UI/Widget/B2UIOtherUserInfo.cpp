@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-#include "BladeII.h"
-#include "B2UIManager.h"
 #include "B2UIOtherUserInfo.h"
+#include "B2UIManager.h"
+
 #include "B2CombatStatEvaluator.h"
 #include "B2DynItemIcon_LobbyEquip.h"
 #include "B2LobbyUI_ItemDetail.h"

@@ -1,7 +1,7 @@
-#include "BladeII.h"
+#include "B2UITeamEntrySelectSlot.h"
 #include "B2UIDocHelper.h"
 #include "B2UIManager.h"
-#include "B2UITeamEntrySelectSlot.h"
+
 #include "B2TMGameMode.h"
 
 

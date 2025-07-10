@@ -1,4 +1,3 @@
-#include "BladeII.h"
 #include "B2UIGeneralLotteryPopup.h"
 
 void UB2UIGeneralLotteryPopup::Init()

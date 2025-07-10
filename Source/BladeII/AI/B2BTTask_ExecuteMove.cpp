@@ -1,6 +1,6 @@
-#include "BladeII.h"
-#include "B2BTTask_ExecuteMove.h"
 
+#include "B2BTTask_ExecuteMove.h"
+//#include "BladeII.h"
 UB2BTTask_ExecuteMove::UB2BTTask_ExecuteMove(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {

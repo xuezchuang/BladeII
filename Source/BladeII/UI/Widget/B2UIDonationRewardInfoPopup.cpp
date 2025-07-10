@@ -1,6 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BladeII.h"
 #include "B2UIDonationRewardInfoPopup.h"
 #include "BladeIIUtil.h"
 #include "B2UIDonationRewardSlot.h"

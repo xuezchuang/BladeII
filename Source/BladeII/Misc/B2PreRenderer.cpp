@@ -1,4 +1,4 @@
-#include "BladeII.h"
+
 #include "B2PreRenderer.h"
 #include "BladeIIGameImpl.h"
 #include "Components/SkeletalMeshComponent.h"

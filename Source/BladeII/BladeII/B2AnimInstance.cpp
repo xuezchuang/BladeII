@@ -1,8 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BladeII.h"
-#include "B2AnimInstance.h"
 
+#include "B2AnimInstance.h"
+//#include "BladeII.h"
 #include "Animation/AnimInstance.h"
 #include "Animation/AnimInstanceProxy.h"
 

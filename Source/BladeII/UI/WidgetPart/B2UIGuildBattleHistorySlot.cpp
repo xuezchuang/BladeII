@@ -1,8 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-#include "BladeII.h"
+#include "B2UIGuildBattleHistorySlot.h"
 #include "B2UIManager.h"
 #include "B2UIGuildMark.h"
-#include "B2UIGuildBattleHistorySlot.h"
+
 
 
 void UB2UIGuildBattleHistorySlot::CacheAssets()

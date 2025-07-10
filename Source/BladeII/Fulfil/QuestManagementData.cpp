@@ -1,4 +1,4 @@
-#include "BladeII.h"
+
 #include "QuestManagementData.h"
 #include "QuestManager.h"
 

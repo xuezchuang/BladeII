@@ -1,7 +1,7 @@
-#include "BladeII.h"
+#include "B2UIDocRaid.h"
 #include "B2ClientDataStore.h"
 #include "BladeIIGameImpl.h"
-#include "B2UIDocRaid.h"
+
 
 #define MAX_RAID_PLAYER_NUM 4
 

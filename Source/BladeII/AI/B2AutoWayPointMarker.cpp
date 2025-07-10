@@ -1,14 +1,14 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 // Project BladeII, Action Square
-
-#include "BladeII.h"
+#include "B2AutoWayPointMarker.h"
+//#include "BladeII.h"
 #include "Runtime/Engine/Public/EngineUtils.h"
 #include "Components/BillboardComponent.h"
 #include "Components/TextRenderComponent.h"
 #include "Components/ShapeComponent.h"
 #include "BladeIIPlayer.h"
 #include "B2AutoWayPoint.h"
-#include "B2AutoWayPointMarker.h"
+
 #include "B2AutoAIController.h"
 #include "B2MonsterSpawnPool.h"
 #include "B2StageManager.h"

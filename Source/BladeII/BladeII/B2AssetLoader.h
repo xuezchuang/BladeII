@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
-#include "BladeII.h"
+//#include "BladeII.h"
 #include "Engine/StreamableManager.h"
 #include "B2AssetLoader.generated.h"
 
@@ -78,7 +78,7 @@ public:
 			}
 		}
 
-		BII_CHECK(AssetLoader);
+		//BII_CHECK(AssetLoader);
 		return AssetLoader;
 	}
 
@@ -150,7 +150,7 @@ public:
 	FORCEINLINE static FStreamableManager& GetStreamableManager() 
 	{ 
 		auto* Loader = UB2AssetLoader::Get();
-		BII_CHECK(Loader);
+		//BII_CHECK(Loader);
 		
 		return Loader->StreamManager; 
 	}
@@ -173,10 +173,24 @@ private:
 
 	FDelegateHandle					GlobalFlushHandle;
 
-#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
-public:
-	static bool bEnableDevLog; // Including on-screen log..
-#endif
+//#if B2_BUILD_LEVEL == B2_BUILD_LEVEL_LIVE
+//#define BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2 0
+//#else
+//#if UE_BUILD_SHIPPING
+//#define BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2 0
+//#else
+//#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV1
+//#define BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2 1
+//#else
+//#define BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2 0
+//#endif
+//#endif
+//#endif
+
+//#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
+//public:
+//	static bool bEnableDevLog; // Including on-screen log..
+//#endif
 };
 
 

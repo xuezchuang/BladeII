@@ -1,6 +1,6 @@
-#include "BladeII.h"
-#include "BladeIIGameMode.h"
 #include "B2TargetSelector.h"
+#include "BladeIIGameMode.h"
+
 
 
 B2TargetSelector & B2TargetSelector::GetInstance()

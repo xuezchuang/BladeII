@@ -1,4 +1,3 @@
-#include "BladeII.h"
 #include "B2UIDocSome.h"
 #include "Event.h"
 

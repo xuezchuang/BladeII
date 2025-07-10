@@ -1,4 +1,4 @@
-#include "BladeII.h"
+
 #include "B2Chatting.h"
 //#include "B2UIChatting.h"
 //#include "B2ClientDataStore.h"

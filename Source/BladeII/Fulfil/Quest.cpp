@@ -1,4 +1,4 @@
-#include "BladeII.h"
+
 #include "Quest.h"
 
 #include "Stat.h"

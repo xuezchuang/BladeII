@@ -1,8 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-#include "BladeII.h"
+#include "B2UIDailyNoticePopup.h"
 #include "B2UIManager.h"
 #include "B2AndroidBackManager.h"
-#include "B2UIDailyNoticePopup.h"
+
 #include "BladeIIGameImpl.h"
 #include "B2UIDocHelper.h"
 #include "B2UIDailyNoticeSlot.h"

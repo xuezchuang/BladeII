@@ -1,13 +1,13 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BladeII.h"
+#include "B2TutorialGameMode.h"
 #include "Event.h"
 #include "Trigger.h"
 #include "MoviePlayer.h"
 #include "B2UIManager.h"
 #include "B2UIDocHelper.h"
 #include "B2UIManager_InGameCombat.h"
-#include "B2TutorialGameMode.h"
+
 #include "BladeIIPlayerController.h"
 #include "B2PreLoadingScreen.h"
 #include "B2StageManager.h"

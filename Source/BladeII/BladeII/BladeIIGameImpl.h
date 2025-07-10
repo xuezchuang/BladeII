@@ -1,7 +1,7 @@
 
 
 #pragma once
-
+//#include "BladeII.h"
 #ifndef __BLADEIIGAMEIMPL_H__
 #define __BLADEIIGAMEIMPL_H__
 

@@ -1,5 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-#include "BladeII.h"
+#include "B2UICollectBookItemDetail.h"
 #include "B2UIManager.h"
 #include "B2ClientDataStore.h"
 #include "B2Inventory.h"
@@ -9,7 +9,7 @@
 #include "B2DynText_Multiple.h"
 #include "B2DynText_ItemDetailOption.h"
 
-#include "B2UICollectBookItemDetail.h"
+
 
 
 #include "BladeIIGameImpl.h"

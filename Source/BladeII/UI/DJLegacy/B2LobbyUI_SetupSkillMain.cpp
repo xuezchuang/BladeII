@@ -1,6 +1,6 @@
-#include "BladeII.h"
-#include "B2UIPlayerSkillInfo.h"
 #include "B2LobbyUI_SetupSkillMain.h"
+#include "B2UIPlayerSkillInfo.h"
+
 #include "B2UIManager.h"
 #include "B2LobbyUI_HeroMgmtCommon.h"
 #include "B2LobbyGameMode.h"

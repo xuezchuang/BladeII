@@ -1,7 +1,7 @@
 #pragma once
-
+//#include "BladeII.h"
 #include "BladeIICharacter.h"
-#include "BladeII.h"
+//#include "BladeII.h"
 #include "BladeIITestDummyNPC.generated.h"
 
 /**

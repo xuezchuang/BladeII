@@ -1,10 +1,10 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-
-#include "BladeII.h"
+#include "B2LobbyUI_ConvertItemPopup.h"
+//#include "BladeII.h"
 #include "B2LobbyInventory.h"
 #include "B2LobbyGameMode.h"
 #include "B2LobbyUISwitcher.h"
-#include "B2LobbyUI_ConvertItemPopup.h"
+
 #include "B2ClientDataStore.h"
 #include "CharacterDataStore.h"
 #include "B2GameInstance.h"

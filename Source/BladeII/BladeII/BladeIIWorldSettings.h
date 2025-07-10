@@ -2,7 +2,7 @@
 // Project BladeII, ACTION SQUARE
 
 #pragma once
-
+//#include "BladeII.h"
 #include "GameFramework/WorldSettings.h"
 #include "BladeIIWorldSettings.generated.h"
 

@@ -1,5 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-#include "BladeII.h"
+#include "B2LobbyUI_RelicManagement.h"
 #include "B2LobbyGameMode.h"
 #include "B2LobbyUISwitcher.h"
 #include "B2UIManager_Lobby.h"
@@ -16,7 +16,7 @@
 #include "B2UIHeader.h"
 #include "B2UIDocHeroTower.h"
 #include "B2UIDocHelper.h"
-#include "B2LobbyUI_RelicManagement.h"
+
 #include "B2AndroidBackManager.h"
 #include "B2LobbyUI_RelicMain.h"
 

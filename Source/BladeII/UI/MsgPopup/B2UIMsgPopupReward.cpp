@@ -1,10 +1,10 @@
-#include "BladeII.h"
+#include "B2UIMsgPopupReward.h"
 #include "B2UIManager.h"
 #include "B2UIQuestDialog.h"
 #include "B2ClientDataStore.h"
 #include "B2UIRewardEventSet.h"
 
-#include "B2UIMsgPopupReward.h"
+
 
 
 #include "BladeIIGameImpl.h"

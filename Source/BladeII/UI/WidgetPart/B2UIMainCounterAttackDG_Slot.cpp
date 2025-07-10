@@ -1,4 +1,3 @@
-#include "BladeII.h"
 #include "B2UIMainCounterAttackDG_Slot.h"
 #include "B2UIManager.h"
 #include "B2UIHeader.h"

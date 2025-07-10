@@ -1,4 +1,3 @@
-#include "BladeII.h"
 #include "B2UIMailContent.h"
 #include "B2UIItemRaffle.h"
 #include "B2UICostumeRaffle.h"

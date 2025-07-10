@@ -1,9 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-#include "BladeII.h"
+#include "B2UIPackageTypePanel.h"
 #include "B2UIManager.h"
 #include "B2UIStoreItemSlot.h"
 #include "B2UIPackageStore.h"
-#include "B2UIPackageTypePanel.h"
+
 #include "Retailer.h"
 #include "B2UIRewardEventSet.h"
 #include "B2UIDocStore.h"

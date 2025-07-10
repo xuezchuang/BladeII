@@ -1,8 +1,8 @@
-#include "BladeII.h"
+#include "B2PassiveSkillFactory.h"
 #include <type_traits>
 #include "B2SkillTrigger.h"
 #include "B2SkillCommand.h"
-#include "B2PassiveSkillFactory.h"
+
 
 UB2PassiveSkill* PassiveSkillFactory::CreateMasteryPassiveSkill(class ABladeIICharacter* SkillOwner, const FMercenaryMasterySkillInfo & Info, float ServerValue)
 {

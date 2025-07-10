@@ -3,6 +3,7 @@
 #pragma once
 
 #include "BladeIIUserWidget.h"
+////#include "BladeII.h"
 #include "B2FloatingWidget.generated.h"
 
 /**
@@ -38,7 +39,7 @@ public:
 	/** Update its floating screen position to follow owner character. */
 	virtual void UpdatePosition();
 
-	void DestroySelf() override;
+	//void DestroySelf() override;
 
 	virtual void SetCurrentlyRent(bool bInRent, UObject* InRenter) override;
 };

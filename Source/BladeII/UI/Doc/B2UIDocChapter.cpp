@@ -1,4 +1,3 @@
-#include "BladeII.h"
 #include "B2UIDocChapter.h"
 #include "B2ChapterInfo.h"
 

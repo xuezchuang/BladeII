@@ -1,9 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BladeII.h"
+#include "B2UILevelupAutoSelect.h"
 #include "B2UIManager.h"
 #include "Event.h"
-#include "B2UILevelupAutoSelect.h"
+
 #include "B2LobbyInventory.h"
 #include "B2UIAutoSelectedItemParts.h"
 #include "B2LobbyUI_ItemLevelupMain.h"

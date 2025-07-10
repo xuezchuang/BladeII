@@ -1,5 +1,5 @@
 #pragma once
-
+//#include "BladeII.h"
 #include "B2UIEnum.h"
 
 struct FB2UILinkBase

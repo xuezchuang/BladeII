@@ -1,8 +1,8 @@
-#include "BladeII.h"
+#include "B2UIDocUser.h"
 #include "Event.h"
 //#include "BladeIIPointCharger.h"
 //#include "B2LobbyInventory.h"
-#include "B2UIDocUser.h"
+
 
 
 #include "BladeIIGameImpl.h"

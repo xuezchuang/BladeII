@@ -1,5 +1,6 @@
-#include "BladeII.h"
+
 #include "B2Lottery.h"
+//#include "BladeII.h"
 
 Lottery::~Lottery()
 {

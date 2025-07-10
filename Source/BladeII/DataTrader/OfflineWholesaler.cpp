@@ -1,6 +1,6 @@
-#include "BladeII.h"
-#include "B2NetworkBridge.h"
 #include "OfflineWholesaler.h"
+#include "B2NetworkBridge.h"
+
 
 namespace data_trader
 {

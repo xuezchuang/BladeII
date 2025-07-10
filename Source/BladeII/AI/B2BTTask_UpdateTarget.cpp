@@ -1,6 +1,6 @@
-#include "BladeII.h"
-#include "B2BTTask_UpdateTarget.h"
 
+#include "B2BTTask_UpdateTarget.h"
+//#include "BladeII.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "BladeIIPlayerAIController.h"
 

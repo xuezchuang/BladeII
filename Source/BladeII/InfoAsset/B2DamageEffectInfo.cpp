@@ -1,11 +1,11 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 // Project BladeII, Action Square
 
-#include "BladeII.h"
+#include "B2DamageEffectInfo.h"
 #include "BladeIICharacter.h"
 #include "Particles/ParticleSystemComponent.h"
 #include "Kismet/GameplayStatics.h"
-#include "B2DamageEffectInfo.h"
+
 #include "Animation/SkeletalMeshActor.h"
 #include "BladeIIGameMode.h"
 #include "BladeIIUtil.h"

@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 // Project BladeII, Action Square
 
-#include "BladeII.h"
+
 //#include "BehaviorTree/BehaviorTree.h"
 //#include "Animation/AnimBlueprint.h"
 //#include "Animation/AnimBlueprintGeneratedClass.h"

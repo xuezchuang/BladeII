@@ -1,5 +1,5 @@
 #pragma once
-
+//#include "BladeII.h"
 class FMyAssetStore
 {
 	/** Initial amount at stage starting moment. Final gold will reset to this value if player abandon current level. */

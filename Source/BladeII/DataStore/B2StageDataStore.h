@@ -2,7 +2,7 @@
 
 #ifndef __B2_STAGE_DATA_STORE_H__
 #define __B2_STAGE_DATA_STORE_H__
-
+//#include "BladeII.h"
 #include "EngineMinimal.h"
 #include "CommonStruct.h"
 

@@ -1,4 +1,3 @@
-#include "BladeII.h"
 #include "B2UIDocDimension.h"
 #include "CommonStruct.h"
 

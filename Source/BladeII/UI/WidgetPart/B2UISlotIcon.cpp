@@ -1,4 +1,3 @@
-#include "BladeII.h"
 #include "B2UISlotIcon.h"
 #include "B2UIManager.h"
 

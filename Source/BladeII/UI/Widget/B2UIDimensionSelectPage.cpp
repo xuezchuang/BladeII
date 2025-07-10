@@ -1,5 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-#include "BladeII.h"
+#include "B2UIDimensionSelectPage.h"
 #include "B2UIManager.h"
 #include "B2UIFairyLinkButton.h"
 #include "B2UIStartButton.h"
@@ -8,7 +8,7 @@
 #include "B2UIDocHelper.h"
 #include "B2UIRecommandPower.h"
 #include "B2LobbyGameMode.h"
-#include "B2UIDimensionSelectPage.h"
+
 
 #include "BladeIIGameImpl.h"
 #include "BladeIIUtil.h"

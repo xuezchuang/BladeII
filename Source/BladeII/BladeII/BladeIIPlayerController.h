@@ -1,5 +1,6 @@
 // Copyright 1998-2014 Epic Games, Inc. All Rights Reserved.
 #pragma once
+//#include "BladeII.h"
 #include "GameFramework/PlayerController.h"
 ////#include "Matinee/MatineeActor.h"
 #include "BladeIIPlayer.h"

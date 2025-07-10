@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-
-#include "BladeII.h"
 #include "B2WingUIP_MainSymbol.h"
+//#include "BladeII.h"
+
 #include "B2LobbyGameMode.h"
 #include "B2Airport.h"
 #include "B2WingInfo.h"

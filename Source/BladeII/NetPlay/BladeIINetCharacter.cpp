@@ -1,4 +1,4 @@
-#include "BladeII.h"
+
 #include "BladeIINetCharacter.h"
 
 #include "AIController.h"

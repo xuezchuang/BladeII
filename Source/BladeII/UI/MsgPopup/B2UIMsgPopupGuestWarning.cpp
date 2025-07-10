@@ -1,11 +1,11 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-#include "BladeII.h"
+#include "B2UIMsgPopupGuestWarning.h"
 #include "B2UIManager.h"
 #include "B2AndroidBackManager.h"
 #include "EventSubsystem.h"
 #include "Retailer.h"
 #include "B2PlatformAPI.h"
-#include "B2UIMsgPopupGuestWarning.h"
+
 
 #if PLATFORM_ANDROID
 #include "AndroidRuntimeSettings.h"

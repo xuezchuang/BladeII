@@ -2,7 +2,7 @@
 // Project BladeII, ACTION SQUARE
 
 #pragma once
-
+//#include "BladeII.h"
 #include "B2MessageInfo.h"
 #include "B2AuthInfo.h"
 

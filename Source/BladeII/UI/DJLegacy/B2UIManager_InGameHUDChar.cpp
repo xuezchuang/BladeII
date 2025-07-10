@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-
-#include "BladeII.h"
 #include "B2UIManager_InGameHUDChar.h"
+//#include "BladeII.h"
+
 #include "BladeIICharacter.h"
 #include "BladeIIPlayer.h"
 #include "BladeIIPlayerController.h"

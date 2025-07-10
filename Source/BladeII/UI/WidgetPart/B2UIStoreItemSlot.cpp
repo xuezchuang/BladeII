@@ -1,6 +1,6 @@
-#include "BladeII.h"
-#include "Event.h"
 #include "B2UIStoreItemSlot.h"
+#include "Event.h"
+
 #include "BladeIILocText.h"
 #include "B2UIStoreItemSlotIcon.h"
 #include "B2UIDocHelper.h"

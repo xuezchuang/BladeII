@@ -1,6 +1,6 @@
 // Copyright 1998-2014 Epic Games, Inc. All Rights Reserved.
 
-#include "BladeII.h"
+
 #include "B2DLCFrontGameMode.h"
 #include "BladeIIGameMode.h"
 #include "Runtime/Engine/Public/Engine.h"

@@ -1,11 +1,10 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-
-#include "BladeII.h"
+#include "B2UIFilterInventory.h"
 #include "B2LobbyInventory.h"
 #include "B2LobbyGameMode.h"
 #include "Event.h"
 #include "B2UIFilterCheckBox.h"
-#include "B2UIFilterInventory.h"
+
 #include "Global.h"
 
 UB2UIFilterInventory::UB2UIFilterInventory(const FObjectInitializer& ObjectInitializer)

@@ -1,7 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-#include "BladeII.h"
-#include "B2UIManager.h"
+
 #include "B2UIUpgradeRelicBoard.h"
+#include "B2UIManager.h"
+
 #include "RelicManager.h"
 #include "B2LobbyUI_RelicManagement.h"
 //UB2UIUpgradeRelicBoardBar

@@ -7,9 +7,16 @@
 #include "BladeIIPlayer.h"
 #include "CommonStruct.h"
 #include "Engine/StreamableManager.h"
-#include "BladeII.h"
+
 #include "B2InGameHUDInfo_Player.h"
+#include "BladeIICharacter.h"
+#include "BladeII.h"
 #include "B2PCClassInfo.generated.h"
+
+struct FCHSKCompAttachStaticMeshInfo;
+struct FCHSKCompAttachSkeletalMeshInfo;
+struct FCHSKCompAttachParticleSystemInfo;
+struct FCHSKCompAttachParticleSystemInfo;
 
 /** Defines player characters part, where each part is represented by a single mesh asset and being a "part" to combining the whole character mesh.
  * It can be related to EItemEquipPlace, but not like 1:1 mapping. */

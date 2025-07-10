@@ -1,7 +1,7 @@
-#include "BladeII.h"
+#include "B2UIDocTeamMatch.h"
 #include "Event.h"
 //#include "BladeIIPointCharger.h"
-#include "B2UIDocTeamMatch.h"
+
 
 //
 // 진형정보 진형에 들어갈 캐릭터정보 등등(팀매치에 들어가는 정보)

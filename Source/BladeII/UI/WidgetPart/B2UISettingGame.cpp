@@ -1,4 +1,3 @@
-#include "BladeII.h"
 #include "B2UISettingGame.h"
 #include "B2UIManager.h"
 #include "UnrealEngine.h"

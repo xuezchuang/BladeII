@@ -1,5 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-#include "BladeII.h"
+#include "B2UICollectBookWing.h"
 #include "B2UIManager.h"
 #include "B2WingUIP_PropOptionIcon.h"
 #include "B2ClientDataStore.h"
@@ -7,7 +7,7 @@
 #include "B2Airport.h"
 #include "B2WingUIP_EnhLevelProgElem.h"
 #include "B2WingUIP_EvolveGradeStar.h"
-#include "B2UICollectBookWing.h"
+
 #include "B2WingInfo.h"
 #include "B2AndroidBackManager.h"
 

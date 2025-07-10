@@ -1,8 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BladeII.h"
-#include "B2UIGuildSupportCharacterSlot.h"
 #include "B2UIGuildSupportItemPopup.h"
+#include "B2UIGuildSupportCharacterSlot.h"
+
 #include "B2DynItemIcon_GuildSupport.h"
 #include "B2UIGuildSupportRowSlot.h"
 #include "B2Inventory.h"

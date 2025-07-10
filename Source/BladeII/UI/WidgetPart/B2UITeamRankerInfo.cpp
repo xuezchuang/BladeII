@@ -1,4 +1,4 @@
-#include "BladeII.h"
+
 #include "B2UITeamRankerInfo.h"
 #include "B2UIDocHelper.h"
 #include "B2UIDocHero.h"

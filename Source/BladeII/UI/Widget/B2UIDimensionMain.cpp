@@ -1,5 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-#include "BladeII.h"
+#include "B2UIDimensionMain.h"
 #include "B2UIManager.h"
 #include "B2UIChapterStarRewardBox.h"
 #include "B2UIRecommandPower.h"
@@ -11,7 +11,7 @@
 #include "B2UIPVPEntryCharacters.h"
 #include "B2ItemInfo.h"
 #include "B2CombatStatEvaluator.h"
-#include "B2UIDimensionMain.h"
+
 #include "B2LobbyGameMode.h"
 #include "B2UIDimensionWeekRewardInfoPopup.h"
 #include "B2UIDimensionWeekRewardPopup.h"

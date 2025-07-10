@@ -1,6 +1,4 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-
-#include "BladeII.h"
 #include "B2FloatingWidget.h"
 #include "BladeIICharacter.h"
 #include "Blueprint/WidgetLayoutLibrary.h"
@@ -47,11 +45,11 @@ void UB2FloatingWidget::UpdatePosition()
 	//}
 }
 
-void UB2FloatingWidget::DestroySelf()
-{
-	Super::DestroySelf();
-	OwnerCharacter = NULL;
-}
+//void UB2FloatingWidget::DestroySelf()
+//{
+//	Super::DestroySelf();
+//	OwnerCharacter = NULL;
+//}
 
 void UB2FloatingWidget::SetCurrentlyRent(bool bInRent, UObject* InRenter)
 {

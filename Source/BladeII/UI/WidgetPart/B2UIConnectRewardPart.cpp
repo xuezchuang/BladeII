@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-#include "BladeII.h"
-#include "B2UIManager.h"
 #include "B2UIConnectRewardPart.h"
+#include "B2UIManager.h"
+
 #include "BladeIIGameMode.h"
 #include "B2UIGoodsShortcutTooltipPopup.h"
 #include "B2RewardInfo.h"

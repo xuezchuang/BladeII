@@ -1,4 +1,4 @@
-#include "BladeII.h"
+
 #include "Trigger.h"
 
 DEFINITION_EVENT_CLASS(KillMonsterTrigger)

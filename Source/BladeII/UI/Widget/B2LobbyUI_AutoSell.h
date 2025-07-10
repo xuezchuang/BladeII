@@ -1,6 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 #pragma once
-
 #include "B2UIWidget.h"
 #include "B2UIBackWidget.h"
 #include "B2LobbyUI_AutoSell.generated.h"

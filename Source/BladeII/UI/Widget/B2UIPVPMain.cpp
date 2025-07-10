@@ -1,4 +1,3 @@
-#include "BladeII.h"
 #include "B2UIPVPMain.h"
 #include "B2UIDocHelper.h"
 #include "B2UIDocBattle.h"

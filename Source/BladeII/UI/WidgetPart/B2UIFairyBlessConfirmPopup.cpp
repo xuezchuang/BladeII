@@ -1,6 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BladeII.h"
 #include "B2UIFairyBlessConfirmPopup.h"
 #include "BladeIIGameImpl.h"
 #include "B2UIDocHelper.h"

@@ -1,8 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-
-#include "BladeII.h"
-#include "BladeIIGameMode.h"
 #include "B2FloatingLobbyOnHeadDisplay.h"
+//#include "BladeII.h"
+#include "BladeIIGameMode.h"
+
 #include "Animation/SkeletalMeshActor.h"
 #include "B2UIDocHelper.h"
 #include "Event.h"

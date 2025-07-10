@@ -1,6 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
+#include "B2UIItemQualityChange.h"
 
-#include "BladeII.h"
 #include "B2UIManager.h"
 #include "B2LobbyUI_InventoryMain.h"
 #include "B2LobbyInventory.h"
@@ -16,7 +16,7 @@
 #include "B2ItemInfo.h"
 #include "B2LobbyGameMode.h"
 #include "B2UIManager_Lobby.h"
-#include "B2UIItemQualityChange.h"
+
 #include "B2UIShortagePopupManager.h"
 #include "B2LobbyUI_ItemAfterOption.h"
 #include "UB2UIQualityHammerSelectPopup.h"

@@ -1,6 +1,6 @@
-#include "BladeII.h"
-#include "B2BTService_StopStupidAttack.h"
 
+#include "B2BTService_StopStupidAttack.h"
+//#include "BladeII.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "BehaviorTree/BehaviorTreeTypes.h"
 #include "BladeIIPlayer.h"

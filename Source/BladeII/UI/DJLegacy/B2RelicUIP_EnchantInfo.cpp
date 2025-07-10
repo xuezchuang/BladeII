@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-
-#include "BladeII.h"
 #include "B2RelicUIP_EnchantInfo.h"
+//#include "BladeII.h"
+
 #include "Retailer.h"
 #include "B2LobbyUI_RelicMain.h"
 #include "B2UIManager.h"

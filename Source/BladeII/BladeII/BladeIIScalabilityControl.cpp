@@ -1,6 +1,6 @@
-#include "BladeII.h"
-#include "Global.h"
 #include "BladeIIScalabilityControl.h"
+#include "Global.h"
+
 #include "BladeIIGameMode.h"
 #include "B2LobbyGameMode.h"
 #include "B2StageGameModeBase.h"

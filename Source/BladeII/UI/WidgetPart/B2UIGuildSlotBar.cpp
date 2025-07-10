@@ -1,4 +1,3 @@
-#include "BladeII.h"
 #include "B2UIGuildSlotBar.h"
 #include "B2UIGuildInfoPart.h"
 #include "Retailer.h"

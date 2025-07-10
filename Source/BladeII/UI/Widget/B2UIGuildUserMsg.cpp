@@ -1,8 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-#include "BladeII.h"
+#include "B2UIGuildUserMsg.h"
 #include "B2UIManager.h"
 #include "B2UIGuildMemberSlot.h"
-#include "B2UIGuildUserMsg.h"
+
 
 
 void UB2UIGuildUserMsg::CacheAssets()

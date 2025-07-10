@@ -1,6 +1,8 @@
-#include "BladeII.h"
 #include "B2AIUtil.h"
+
+
 #include "BladeIIUtil.h"
+#include "../BladeII/BladeIICharacter.h"
 
 
 FVector B2AIUtil::GetFleeLocation(ABladeIICharacter* CurrentCharacter, TArray<ABladeIICharacter*>& FleeToChracters, int32 TestNumLocation, float Radius)

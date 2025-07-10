@@ -1,11 +1,11 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BladeII.h"
+#include "B2StageGameMode.h"
 #include "Runtime/Engine/Public/Engine.h"
 #if WITH_EDITOR
 #include "Editor.h"
 #endif
-#include "B2StageGameMode.h"
+
 #include "B2StageManager.h"
 #include "B2StageInfo.h"
 //#include "B2MonsterSpawnPool.h"

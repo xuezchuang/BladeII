@@ -1,11 +1,10 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-
-#include "BladeII.h"
+#include "B2UIFilterItemForge.h"
 #include "B2LobbyInventory.h"
 #include "B2LobbyGameMode.h"
 #include "Event.h"
 #include "B2UIFilterCheckBox.h"
-#include "B2UIFilterItemForge.h"
+
 #include "Global.h"
 
 

@@ -1,6 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BladeII.h"
+
 #include "B2LobbyUI_TotemEquipSlot.h"
 
 #include "B2UI_TotemInfoPopup.h"

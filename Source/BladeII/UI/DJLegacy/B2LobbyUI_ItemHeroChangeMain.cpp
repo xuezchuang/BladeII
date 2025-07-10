@@ -1,4 +1,3 @@
-#include "BladeII.h"
 
 #include "B2LobbyUI_ItemHeroChangeMain.h"
 #include "B2LobbyGameMode.h"

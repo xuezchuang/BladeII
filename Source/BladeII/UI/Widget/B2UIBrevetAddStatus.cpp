@@ -1,8 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BladeII.h"
-#include "B2UIManager.h"
 #include "B2UIBrevetAddStatus.h"
+#include "B2UIManager.h"
+
 
 void UB2UIBrevetAddStatus::InitBrevetAddStatus(UB2LobbyUI_BrevetMain* pOwnerUI, const FBrevetNodeInfo* BrevetNodeInfo, UMaterialInterface* pGaugeBackMI, UMaterialInterface* pGaugeMI, UMaterialInterface* pIconMI, EPCClass OwnerClass)
 {

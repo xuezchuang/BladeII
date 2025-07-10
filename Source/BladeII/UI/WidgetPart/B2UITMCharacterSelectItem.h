@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
-
+//#include "BladeII.h"
 #include "UI/WidgetPart/B2UICharacterSelectItem.h"
 #include "B2UIDocTeamMatch.h"
 #include "B2UITMCharacterSelectItem.generated.h"

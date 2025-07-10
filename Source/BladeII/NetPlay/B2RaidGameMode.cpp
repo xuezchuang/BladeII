@@ -1,4 +1,4 @@
-#include "BladeII.h"
+
 #include "B2RaidGameMode.h"
 //#include "BehaviorTree/BehaviorTree.h"
 #include "B2NPCClassInfoBox.h"

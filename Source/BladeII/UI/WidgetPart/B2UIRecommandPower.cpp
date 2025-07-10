@@ -1,8 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BladeII.h"
-#include "BladeIIUtil.h"
 #include "B2UIRecommandPower.h"
+#include "BladeIIUtil.h"
+
 #include "B2UIManager.h"
 
 void UB2UIRecommandPower::SetInfo(const int32 InCurrentAttack, const int32 InCurrentDefense, const int32 InRecommendAttack, const int32 InRecommendDefense)

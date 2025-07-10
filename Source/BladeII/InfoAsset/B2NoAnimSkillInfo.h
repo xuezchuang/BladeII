@@ -2,7 +2,7 @@
 // Project BladeII, Action Square
 
 #pragma once
-
+//#include "BladeII.h"
 #include "UObject/Object.h"
 #include "BladeIIDamageType.h"
 #include "B2NoAnimSkillInfo.generated.h"

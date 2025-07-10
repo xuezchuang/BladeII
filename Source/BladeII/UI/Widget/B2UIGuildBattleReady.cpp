@@ -1,10 +1,10 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-#include "BladeII.h"
+#include "B2UIGuildBattleReady.h"
 #include "B2UIManager.h"
 #include "B2UIGuildFormation.h"
 #include "B2UITMFormationSelectButton.h"
 #include "B2UITMCharacterSelectItem.h"
-#include "B2UIGuildBattleReady.h"
+
 #include "Retailer.h"
 #include "B2UIDocHelper.h"
 #include "B2UIFormationPopup.h"

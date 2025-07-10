@@ -1,6 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BladeII.h"
+
 #include "B2WingInfo.h"
 #include "B2Airport.h"
 
@@ -177,73 +177,73 @@ void UB2WingInfo::EditorLoadAll()
 
 void UB2WingInfo::CheckInfoDataIntegrity()
 {
-	int32 SameIDCount = 0;
-
-#if !PLATFORM_MAC
-	FString WarnMsgDupIDSetting = TEXT("WingInfo 에서 중복된 ID 세팅 발견\n\n");
-	FString RemovedNonAllowedSetupMsg = TEXT("다음 허용되지 않는 셋업을 제거\n\n");
-#endif
-
-	int32 NonAllowedSetupCount = 0;
-	
-	// 캐릭터 별 MainInfoArray 는 중복된 세팅 체크 대신 걍 ID 를 자동으로 맞춰주는 걸로.
-
-	for (int32 PCI = 0; PCI < GetMaxPCClassNum(); ++PCI)
-	{
-		EPCClass ThisPCClassEnum = IntToPCClass(PCI);
-		TArray<FSingleWingInfoData>* TheArrayToCheck = GetMainInfoArrayPtrForChar(IntToPCClass(PCI));
-		if (TheArrayToCheck)
-		{
-			for (int32 WGI = 0; WGI < TheArrayToCheck->Num(); ++WGI)
-			{
-				FSingleWingInfoData& ThisMainInfoData = (*TheArrayToCheck)[WGI];
-				ThisMainInfoData.MyID.PCClassEnum = ThisPCClassEnum;
-				ThisMainInfoData.MyID.EvolutionGrade = WGI + 1;
-
-				if (ThisMainInfoData.MyID.EvolutionGrade < 7 && ThisMainInfoData.AttachEffectInfoArray.Num() > 0)
-				{
-					// 7등급 미만에서는 허용 안함. 실수 방지 차원.
-					ThisMainInfoData.AttachEffectInfoArray.Empty();
-
-					++NonAllowedSetupCount;
-#if !PLATFORM_MAC
-					RemovedNonAllowedSetupMsg += FString::Printf(TEXT("%d. %d 등급에서의 AttachEffectInfo 세팅\n"), NonAllowedSetupCount, ThisMainInfoData.MyID.EvolutionGrade);
-#endif
-				}
-			}
-		}
-	}
-
-	for (int32 IA = 0; IA < PropOptionIconSetup.Num(); ++IA)
-	{
-		const FWingPropOptionIconSetup& CheckDataA = PropOptionIconSetup[IA];
-		for (int32 IB = IA + 1; IB < PropOptionIconSetup.Num(); ++IB)
-		{
-			const FWingPropOptionIconSetup& CheckDataB = PropOptionIconSetup[IB];
-
-			if (CheckDataA.PropOption != EItemOption::EIO_End && CheckDataA.PropOption == CheckDataB.PropOption)
-			{
-				++SameIDCount;
-#if !PLATFORM_MAC
-				WarnMsgDupIDSetting += FString::Printf(TEXT("%d. At PropOptionIconSetup index %d and %d\n"), SameIDCount, IA, IB);
-#endif
-			}
-		}
-	}
-
-	if (SameIDCount > 0)
-	{
-#if !PLATFORM_MAC
-		WarnMsgDupIDSetting += TEXT("\n컴퓨터가 곧 폭발한다.");
-		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(WarnMsgDupIDSetting));
-#endif
-	}
-	if (NonAllowedSetupCount > 0)
-	{
-#if !PLATFORM_MAC
-		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(RemovedNonAllowedSetupMsg));
-#endif
-	}
+//	int32 SameIDCount = 0;
+//
+//#if !PLATFORM_MAC
+//	FString WarnMsgDupIDSetting = TEXT("WingInfo 에서 중복된 ID 세팅 발견\n\n");
+//	FString RemovedNonAllowedSetupMsg = TEXT("다음 허용되지 않는 셋업을 제거\n\n");
+//#endif
+//
+//	int32 NonAllowedSetupCount = 0;
+//	
+//	// 캐릭터 별 MainInfoArray 는 중복된 세팅 체크 대신 걍 ID 를 자동으로 맞춰주는 걸로.
+//
+//	for (int32 PCI = 0; PCI < GetMaxPCClassNum(); ++PCI)
+//	{
+//		EPCClass ThisPCClassEnum = IntToPCClass(PCI);
+//		TArray<FSingleWingInfoData>* TheArrayToCheck = GetMainInfoArrayPtrForChar(IntToPCClass(PCI));
+//		if (TheArrayToCheck)
+//		{
+//			for (int32 WGI = 0; WGI < TheArrayToCheck->Num(); ++WGI)
+//			{
+//				FSingleWingInfoData& ThisMainInfoData = (*TheArrayToCheck)[WGI];
+//				ThisMainInfoData.MyID.PCClassEnum = ThisPCClassEnum;
+//				ThisMainInfoData.MyID.EvolutionGrade = WGI + 1;
+//
+//				if (ThisMainInfoData.MyID.EvolutionGrade < 7 && ThisMainInfoData.AttachEffectInfoArray.Num() > 0)
+//				{
+//					// 7등급 미만에서는 허용 안함. 실수 방지 차원.
+//					ThisMainInfoData.AttachEffectInfoArray.Empty();
+//
+//					++NonAllowedSetupCount;
+//#if !PLATFORM_MAC
+//					RemovedNonAllowedSetupMsg += FString::Printf(TEXT("%d. %d 등급에서의 AttachEffectInfo 세팅\n"), NonAllowedSetupCount, ThisMainInfoData.MyID.EvolutionGrade);
+//#endif
+//				}
+//			}
+//		}
+//	}
+//
+//	for (int32 IA = 0; IA < PropOptionIconSetup.Num(); ++IA)
+//	{
+//		const FWingPropOptionIconSetup& CheckDataA = PropOptionIconSetup[IA];
+//		for (int32 IB = IA + 1; IB < PropOptionIconSetup.Num(); ++IB)
+//		{
+//			const FWingPropOptionIconSetup& CheckDataB = PropOptionIconSetup[IB];
+//
+//			if (CheckDataA.PropOption != EItemOption::EIO_End && CheckDataA.PropOption == CheckDataB.PropOption)
+//			{
+//				++SameIDCount;
+//#if !PLATFORM_MAC
+//				WarnMsgDupIDSetting += FString::Printf(TEXT("%d. At PropOptionIconSetup index %d and %d\n"), SameIDCount, IA, IB);
+//#endif
+//			}
+//		}
+//	}
+//
+//	if (SameIDCount > 0)
+//	{
+//#if !PLATFORM_MAC
+//		WarnMsgDupIDSetting += TEXT("\n컴퓨터가 곧 폭발한다.");
+//		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(WarnMsgDupIDSetting));
+//#endif
+//	}
+//	if (NonAllowedSetupCount > 0)
+//	{
+//#if !PLATFORM_MAC
+//		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(RemovedNonAllowedSetupMsg));
+//#endif
+//	}
 }
 
 void UB2WingInfo::PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent)

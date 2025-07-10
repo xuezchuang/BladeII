@@ -1,6 +1,6 @@
 // Copyright 1998-2014 Epic Games, Inc. All Rights Reserved.
 #pragma once
-#include "BladeII.h"
+//#include "BladeII.h"
 #include "GameFramework/GameMode.h"
 #include "B2PCClassInfo.h"
 #include "BladeIICharacter.h"

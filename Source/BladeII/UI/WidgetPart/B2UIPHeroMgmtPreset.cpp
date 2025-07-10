@@ -1,9 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BladeII.h"
+#include "B2UIPHeroMgmtPreset.h"
 #include "BladeIIGameMode.h"
 #include "BladeIILocText.h"
-#include "B2UIPHeroMgmtPreset.h"
+
 
 
 void UB2UIPHeroMgmtPreset::Init()

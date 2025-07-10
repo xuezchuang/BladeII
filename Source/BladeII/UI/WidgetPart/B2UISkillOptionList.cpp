@@ -1,4 +1,3 @@
-#include "BladeII.h"
 #include "B2UISkillOptionList.h"
 #include "B2UISkillOptionText.h"
 #include "B2PCClassInfoBox.h"

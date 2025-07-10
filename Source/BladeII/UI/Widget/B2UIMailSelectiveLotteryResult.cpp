@@ -1,8 +1,8 @@
-#include "BladeII.h"
+#include "B2UIMailSelectiveLotteryResult.h"
 #include "B2DynItemIcon.h"
 #include "B2DynItemIcon_ItemOpScene.h"
 #include "B2LobbyUI_ItemDetailPostOp.h"
-#include "B2UIMailSelectiveLotteryResult.h"
+
 
 #include "B2UIManager.h"
 #include "B2UIMail.h"

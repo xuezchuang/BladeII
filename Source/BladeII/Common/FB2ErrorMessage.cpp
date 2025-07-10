@@ -1,5 +1,4 @@
 
-#include "BladeII.h"
 
 #include "FB2ErrorMessage.h"
 

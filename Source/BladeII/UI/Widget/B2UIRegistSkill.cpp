@@ -1,4 +1,3 @@
-#include "BladeII.h"
 #include "B2UIRegistSkill.h"
 #include "B2UIManager.h"
 #include "B2PCClassInfoBox.h"

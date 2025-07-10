@@ -1,4 +1,3 @@
-#include "BladeII.h"
 #include "B2UIStoreProductCost.h"
 #include "B2UISummonItemSlotItem.h"
 #include "B2UIDocHelper.h"

@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
-
+//#include "BladeII.h"
 #include "UObject/Object.h"
 #include "Engine/DataTable.h"
 #include "B2TalkInfo.generated.h"

@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-
-#include "BladeII.h"
 #include "B2EtherData.h"
+//#include "BladeII.h"
+
 //#include "B2GameDefine.h"
 //#include "BladeIIGameImpl.h"
 //#include "B2CodeTable.h"

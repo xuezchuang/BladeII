@@ -1,4 +1,3 @@
-#include "BladeII.h"
 #include "B2UISelectiveLotteryConsumeItemResultPopup.h"
 #include "B2UISelectiveLotteryPopUp.h"
 

@@ -1,7 +1,7 @@
 // Copyright 1998-2014 Epic Games, Inc. All Rights Reserved.
 // Author : leejswo(SangwooLee)
 #pragma once
-
+//#include "BladeII.h"
 #include "GameFramework/Character.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "CommonStruct.h"

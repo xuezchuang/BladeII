@@ -1,4 +1,5 @@
 #pragma once
+
 #include "EngineMinimal.h"
 //#if WITH_EDITOR
 //#include "BladeIIEditorUtil.h"
@@ -6,6 +7,7 @@
 #include "BladeIILocText.h"
 #include "B2LogManager.h"
 #include"Components/Image.h"
+#include "BladeII.h"
 #include "Engine/StreamableManager.h"
 
 FText GetPCClassLocalizedText(EPCClass PCClass);

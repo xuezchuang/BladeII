@@ -1,11 +1,11 @@
-#include "BladeII.h"
+#include "B2UIRaidDungeonSlot.h"
 #include "B2UIManager.h"
 #include "B2UIHeader.h"
 #include "B2UIDocHelper.h"
 #include "B2RichTextBlock.h"
 #include "B2ItemInfo.h"
 #include "B2RewardInfo.h"
-#include "B2UIRaidDungeonSlot.h"
+
 
 
 #include "BladeIIUtil.h"

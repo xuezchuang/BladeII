@@ -1,5 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-#include "BladeII.h"
+#include "B2UIModeOpenNoticeSlot.h"
 #include "B2UIManager.h"
 #include "B2UILinkManager.h"
 #include "BladeIIUtil.h"
@@ -8,7 +8,7 @@
 #include "Retailer.h"
 #include "B2UIDocHelper.h"
 #include "B2GameInstance.h"
-#include "B2UIModeOpenNoticeSlot.h"
+
 
 UB2UIModeOpenNotice::UB2UIModeOpenNotice(const FObjectInitializer& ObjectInitializer)
 	:Super(ObjectInitializer)

@@ -1,6 +1,7 @@
-#include "BladeII.h"
-#include "B2PassiveSkill.h"
+
 #include "B2SkillCommand.h"
+#include "B2PassiveSkill.h"
+
 #include "BladeIIAIController.h"
 
 

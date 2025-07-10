@@ -1,4 +1,3 @@
-#include "BladeII.h"
 #include "B2UIModWeeklyReward.h"
 #include "B2UIGradeRankAndStar.h"
 #include "B2UIManager.h"

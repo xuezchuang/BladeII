@@ -1,7 +1,7 @@
-#include "BladeII.h"
+#include "B2UIDocPVP1on1Rival.h"
 //#include "BladeIIPointCharger.h"
 #include "Event.h"
-#include "B2UIDocPVP1on1Rival.h"
+
 
 UB2UIDocPVP1on1Rival::UB2UIDocPVP1on1Rival(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)

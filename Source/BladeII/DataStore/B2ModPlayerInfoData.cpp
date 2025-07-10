@@ -1,4 +1,4 @@
-#include "BladeII.h"
+
 #include "B2ModPlayerInfoData.h"
 #include "B2PCClassInfo.h"
 //#include "B2SkillInfo.h"

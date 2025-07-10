@@ -1,4 +1,4 @@
-#include "BladeII.h"
+#include "B2GeneralBuffs.h"
 #include "Event.h"
 #include "BladeIICharacter.h"
 #include "BladeIIPlayer.h"
@@ -8,7 +8,7 @@
 #include "B2CharacterBuffManager.h"
 #include "B2DamageEffectInfo.h"
 //#include "B2AnimInstance.h"
-#include "B2GeneralBuffs.h"
+
 #include "Engine/DamageEvents.h"
 
 

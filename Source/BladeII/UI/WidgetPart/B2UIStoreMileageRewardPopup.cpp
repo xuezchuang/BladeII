@@ -1,4 +1,3 @@
-#include "BladeII.h"
 #include "B2UIStoreMileageRewardPopup.h"
 #include "BladeIIUtil.h"
 #include "B2UIStoreMileageRewardPopupSlot.h"

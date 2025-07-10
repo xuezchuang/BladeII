@@ -1,5 +1,4 @@
-﻿#include "BladeII.h"
-#include "B2UICounterAttackSelectCharacter.h"
+﻿#include "B2UICounterAttackSelectCharacter.h"
 #include "B2UIManager.h"
 #include "B2UIHeader.h"
 #include "B2UIPVPEntryHero.h"

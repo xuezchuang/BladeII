@@ -1,9 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
+#include "B2UIAdventureDifficultySlot.h"
 
-#include "BladeII.h"
 #include "B2UIDocHelper.h"
 #include "B2UIDocChapter.h"
-#include "B2UIAdventureDifficultySlot.h"
+
 
 void UB2UIAdventureDifficultySlot::CacheAssets()
 {

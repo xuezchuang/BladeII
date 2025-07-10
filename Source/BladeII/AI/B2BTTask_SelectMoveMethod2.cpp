@@ -1,6 +1,6 @@
-#include "BladeII.h"
-#include "B2BTTask_SelectMoveMethod2.h"
 
+#include "B2BTTask_SelectMoveMethod2.h"
+//#include "BladeII.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "BladeIICharacter.h"
 #include "B2ControlModePlayer.h"

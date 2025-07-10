@@ -2,7 +2,7 @@
 
 #pragma once
 
-
+//#include "BladeII.h"
 #include "B2FloatingAbnormalEffect.h"
 #include "CommonStruct.h"
 #include "B2AssetLoader.h"

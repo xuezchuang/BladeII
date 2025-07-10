@@ -1,8 +1,9 @@
 // Copyright 1998-2014 Epic Games, Inc. All Rights Reserved.
 #pragma once
+//#include "BladeII.h"
 #include "GameFramework/GameMode.h"
 #include "CommonStruct.h"
-#include "BladeII.h"
+//#include "BladeII.h"
 #include "B2DLCFrontGameMode.generated.h"
 
 UENUM(BlueprintType)

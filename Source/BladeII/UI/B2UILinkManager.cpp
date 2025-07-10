@@ -1,9 +1,10 @@
-#include "BladeII.h"
+
+#include "B2UILinkManager.h"
 #include "B2UIManager.h"
 #include "B2UIDocHelper.h"
 #include "B2ClientDataStore.h"
 #include "Retailer.h"
-#include "B2UILinkManager.h"
+
 //#include "B2UIStore.h"
 //#include "B2UIMail.h"
 //#include "B2UISummonItem.h"

@@ -1,10 +1,10 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-
-#include "BladeII.h"
+#include "B2LobbyGameMode.h"
+//#include "BladeII.h"
 #include "Engine/SkeletalMesh.h"
 #include "GameFramework/SpectatorPawn.h"
 #include "Animation/SkeletalMeshActor.h"
-#include "B2LobbyGameMode.h"
+
 #include "BladeIIGameMode.h"
 #include "B2UIManager_Lobby.h"
 #include "B2UIManager.h"

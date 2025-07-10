@@ -1,4 +1,4 @@
-#include "BladeII.h"
+
 #include "B2RedDotManager.h"
 //#include "B2UIManager.h"
 #include "Event.h"

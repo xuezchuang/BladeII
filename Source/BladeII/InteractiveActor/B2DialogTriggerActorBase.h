@@ -1,5 +1,5 @@
 #pragma once
-
+//#include "BladeII.h"
 #include "BladeIIInteractiveActor.h"
 #include "CommonStruct.h"
 #include "B2DialogTriggerActorBase.generated.h"

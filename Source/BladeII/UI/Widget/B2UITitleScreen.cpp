@@ -1,4 +1,3 @@
-#include "bladeII.h"
 #include "B2UITitleScreen.h"
 #include "B2UIEnum.h"
 #include "Event.h"

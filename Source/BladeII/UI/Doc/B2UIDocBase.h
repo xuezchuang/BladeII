@@ -2,7 +2,9 @@
 // Project BladeII, Action Square
 
 #pragma once
+////#include "BladeII.h"
 //#include "UObject/Object.h"
+#include "../Common/CommonStruct.h"
 #include "B2UIEnum.h"
 #include "B2UIDocBase.generated.h"
 

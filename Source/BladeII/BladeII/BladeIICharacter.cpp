@@ -1,6 +1,6 @@
 // Copyright 1998-2014 Epic Games, Inc. All Rights Reserved.
 
-#include "BladeII.h"
+
 #include "BladeIICharacter.h"
 #include "BladeIIGameMode.h"
 #include "B2StageGameMode.h"

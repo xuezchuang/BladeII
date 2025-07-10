@@ -1,11 +1,11 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BladeII.h"
+#include "B2LobbyUI_ItemDetailSetEffect.h"
 #include "B2LobbyInventory.h"
 #include "B2DynText_Multiple.h"
 #include "B2UIRepeatableElements.h"
 
-#include "B2LobbyUI_ItemDetailSetEffect.h"
+
 
 #include "B2UIStarGradePart.h"
 #include "BladeIIGameImpl.h"

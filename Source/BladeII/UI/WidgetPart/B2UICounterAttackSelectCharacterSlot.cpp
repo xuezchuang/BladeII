@@ -1,4 +1,3 @@
-#include "BladeII.h"
 #include "B2UICounterAttackSelectCharacterSlot.h"
 #include "B2UIDocHelper.h"
 #include "BladeIILocText.h"

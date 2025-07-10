@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 // Project BladeII, Action Square
 
-#include "BladeII.h"
+
 #include "B2InGameHUDInfo_Player.h"
 #include "B2LobbyGameMode.h"
 //#include "B2PVPGameMode.h"

@@ -1,6 +1,6 @@
-#include "BladeII.h"
-#include "B2BTService_UpdateKnowledge.h"
 
+#include "B2BTService_UpdateKnowledge.h"
+//#include "BladeII.h"
 #include "Engine/World.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "BladeIIPlayer.h"

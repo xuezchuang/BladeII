@@ -1,12 +1,12 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BladeII.h"
+#include "B2UIMsgPopupBuyHotTime.h"
 #include "HotTimeBuffManager.h"
 #include "BladeIIUtil.h"
 #include "B2UIManager.h"
 #include "CommonStruct.h"
 #include "B2ItemInfo.h"
-#include "B2UIMsgPopupBuyHotTime.h"
+
 
 UB2UIMsgPopupBuyHotTime::UB2UIMsgPopupBuyHotTime(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)

@@ -1,4 +1,3 @@
-#include "BladeII.h"
 #include "B2UIRepeatBattleInGameInfo.h"
 #include "B2UIRepeatBattleCountDown.h"
 #include "B2UIManager.h"

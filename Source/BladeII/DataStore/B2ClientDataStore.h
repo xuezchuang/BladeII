@@ -1,6 +1,6 @@
 #ifndef __B2_CLIENT_DATA_STORE_H__
 #define __B2_CLIENT_DATA_STORE_H__
-
+//#include "BladeII.h"
 #include "EngineMinimal.h"
 #include "B2ModPlayerInfoData.h"
 #include "B2RedDotManager.h"

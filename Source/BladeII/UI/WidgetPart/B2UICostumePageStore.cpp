@@ -1,10 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-
-#include "BladeII.h"
+#include "B2UICostumePageStore.h"
 #include "B2UICostumeStoreItemSlot.h"
 #include "B2ScrollBox.h"
 #include "B2UIDocHelper.h"
-#include "B2UICostumePageStore.h"
+
 #include "BladeIIGameImpl.h"
 #include "B2UIStore.h"
 #include "B2LobbyGameMode.h"

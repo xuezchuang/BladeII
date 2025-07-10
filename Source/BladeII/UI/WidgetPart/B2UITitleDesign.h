@@ -1,5 +1,5 @@
 #pragma once
-
+#include "bladeII.h"
 #include "B2UnitedWidgetBase.h"
 #include "CommonStruct.h"
 #include "B2UITitleDesign.generated.h"

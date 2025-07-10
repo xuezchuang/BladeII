@@ -1,6 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BladeII.h"
 #include "B2UIPEtherSetToolTip.h"
 #include "BladeIIUtil.h"
 #include "BladeIILocText.h"

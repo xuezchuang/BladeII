@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-
-#include "BladeII.h"
 #include "B2LogManager.h"
+//#include "BladeII.h"
+
 #include "algorithm"
 
 #if defined(PLATFORM_WINDOWS)

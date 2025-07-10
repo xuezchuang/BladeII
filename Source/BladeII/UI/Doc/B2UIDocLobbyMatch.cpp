@@ -1,6 +1,6 @@
-#include "BladeII.h"
-#include "Event.h"
 #include "B2UIDocLobbyMatch.h"
+#include "Event.h"
+
 
 UB2UIDocLobbyMatch::UB2UIDocLobbyMatch(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)

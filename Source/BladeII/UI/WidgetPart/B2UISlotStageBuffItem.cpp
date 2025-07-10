@@ -1,4 +1,3 @@
-#include "BladeII.h"
 #include "B2UISlotStageBuffItem.h"
 #include "B2UIRepeatableElements.h"
 #include "B2UIManager.h"

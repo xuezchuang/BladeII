@@ -1,8 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BladeII.h"
-#include "Event.h"
 #include "B2UIDocFriend.h"
+#include "Event.h"
+
 #include "B2PlatformAPI.h"
 #include "Json.h"
 #include "Retailer.h"

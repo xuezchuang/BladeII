@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-
-#include "BladeII.h"
 #include "B2UIBackWidgetBase.h"
+//#include "BladeII.h"
+
 #include "B2AndroidBackManager.h"
 
 void UB2UIBackWidgetBase::OpenPopup()

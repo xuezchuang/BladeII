@@ -1,6 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BladeII.h"
+
 #include "Patcher.h"
 #include "B2UIPatch.h"
 #include "IPlatformFilePak.h"

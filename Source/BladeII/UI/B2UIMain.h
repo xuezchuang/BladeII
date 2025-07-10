@@ -2,6 +2,7 @@
 // Project BladeII, Action Square
 
 #pragma once
+//#include "BladeII.h"
 #include "B2UIWidgetBase.h"
 //#include "B2UINetworkLoading.h"
 //#include "B2UIChatSinglePopup.h"

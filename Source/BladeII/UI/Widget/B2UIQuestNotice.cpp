@@ -1,4 +1,4 @@
-#include "BladeII.h"
+#include "B2UIQuestNotice.h"
 
 #include "B2UIManager.h"
 #include "B2UIQuestSlot.h"
@@ -7,7 +7,7 @@
 #include "QuestDataTable.h"
 #include "B2UIQuestNoticeSlot.h"
 
-#include "B2UIQuestNotice.h"
+
 
 void UB2UIQuestNotice::Init()
 {

@@ -1,7 +1,8 @@
-#include "BladeII.h"
+#include "B2LobbyNPCSkeletalMeshActor.h"
+//#include "BladeII.h"
 #include "Event.h"
 #include "Animation/AnimInstance.h"
-#include "B2LobbyNPCSkeletalMeshActor.h"
+
 #include "BladeIIUtil.h"
 #include "Animation/AnimSequence.h"
 #include "B2LobbyGameMode.h"

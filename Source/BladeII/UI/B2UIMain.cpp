@@ -1,4 +1,4 @@
-#include "BladeII.h"
+
 #include "B2UIMain.h"
 #include "B2UIManager.h"
 #include "B2UIDocHelper.h"

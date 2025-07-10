@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 // Project BladeII, Action Square
+#include "B2MonsterSpawnPool.h"
 
-#include "BladeII.h"
 #include "Engine.h"
 #if WITH_EDITOR
 #include "FileHelpers.h"
@@ -13,7 +13,7 @@
 #include "B2StageGameMode.h"
 #include "B2RaidGameMode.h"
 #include "B2TutorialGameMode.h"
-#include "B2MonsterSpawnPool.h"
+
 #include "B2StageManager.h"
 #include "BladeIIPlayer.h"
 #include "B2AutoWayPoint.h"

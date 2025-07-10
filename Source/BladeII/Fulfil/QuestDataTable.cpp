@@ -1,7 +1,7 @@
-#include "BladeII.h"
-#include "QuestManager.h"
-#include "QuestDataTable.h"
 
+
+#include "QuestDataTable.h"
+#include "QuestManager.h"
 
 #include "FB2ErrorMessage.h"
 #include "BladeIIUtil.h"

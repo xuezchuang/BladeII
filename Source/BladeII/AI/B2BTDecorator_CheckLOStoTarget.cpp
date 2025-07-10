@@ -1,6 +1,6 @@
-#include "BladeII.h"
-#include "B2BTDecorator_CheckLOStoTarget.h"
 
+#include "B2BTDecorator_CheckLOStoTarget.h"
+//#include "BladeII.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "BehaviorTree/Blackboard/BlackboardKeyAllTypes.h"
 #include "BladeIIPlayerAIController.h"

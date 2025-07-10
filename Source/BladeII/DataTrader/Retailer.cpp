@@ -1,4 +1,4 @@
-#include "BladeII.h"
+
 #include "Retailer.h"
 #include "B2PCClassInfo.h"
 #include "Event.h"

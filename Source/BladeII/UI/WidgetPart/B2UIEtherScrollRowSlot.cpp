@@ -1,6 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BladeII.h"
 #include "B2UIEtherScrollRowSlot.h"
 #include "B2UIEtherScrollSlot.h"
 #include "B2UIEther.h"

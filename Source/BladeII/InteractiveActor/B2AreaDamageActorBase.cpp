@@ -1,5 +1,6 @@
-#include "BladeII.h"
+
 #include "B2AreaDamageActorBase.h"
+//#include "BladeII.h"
 #include "Particles/ParticleSystem.h"
 #include "Particles/ParticleSystemComponent.h"
 #include "EngineGlobals.h"

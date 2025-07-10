@@ -1,7 +1,7 @@
-#include "BladeII.h"
+#include "B2UIFriendRow.h"
 #include "Retailer.h"
 #include "B2UIFriend.h"
-#include "B2UIFriendRow.h"
+
 #include "B2UIManager.h"
 #include "BladeIIGameMode.h"
 #include "B2PCClassInfoBox.h"

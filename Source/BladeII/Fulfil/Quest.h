@@ -1,5 +1,5 @@
 #pragma once
-
+//#include "BladeII.h"
 #include <memory>
 
 class IStat;

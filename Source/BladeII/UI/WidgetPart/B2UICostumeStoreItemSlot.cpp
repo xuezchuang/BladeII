@@ -1,6 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BladeII.h"
+#include "B2UICostumeStoreItemSlot.h"
 #include "B2UIStoreProductCost.h"
 #include "B2UIStoreEventLabel.h"
 #include "B2UIDocHelper.h"
@@ -8,7 +8,7 @@
 #include "B2GameInstance.h"
 #include "B2ItemInfo.h"
 #include "BladeIIGameImpl.h"
-#include "B2UICostumeStoreItemSlot.h"
+
 
 
 void UB2UICostumeStoreItemSlot::Init()

@@ -1,4 +1,3 @@
-#include "BladeII.h"
 #include "B2UIDocScenarioDialog.h"
 #include "B2PCClassInfoBox.h"
 #include "B2PCClassInfo.h"

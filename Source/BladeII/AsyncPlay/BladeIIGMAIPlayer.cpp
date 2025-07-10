@@ -1,5 +1,6 @@
-#include "BladeII.h"
 #include "BladeIIGMAIPlayer.h"
+//#include "BladeII.h"
+
 
 #include "BladeIIPlayerAIController.h"
 #include "B2SkillRTManager.h"

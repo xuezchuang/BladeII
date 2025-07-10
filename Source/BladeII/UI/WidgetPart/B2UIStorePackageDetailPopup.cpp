@@ -1,4 +1,4 @@
-#include "BladeII.h"
+#include "B2UIStorePackageDetailPopup.h"
 #include "B2AndroidBackManager.h"
 #include "B2UIHeader.h"
 #include "B2UIManager.h"
@@ -9,7 +9,7 @@
 #include "BladeIIGameImpl.h"
 #include "B2PlatformAPI.h"
 //#include "B2IAPGenericPlatform.h"
-#include "B2UIStorePackageDetailPopup.h"
+
 
 //Slot
 void UB2UIStorePackageDetailPopupSlot::Init()

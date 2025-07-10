@@ -1,7 +1,7 @@
 // 최초 개발자가 원래 i, j, k로 for문을 돌고 있다는걸 파악하는데, 코드 리뷰로 해당 문구를 사용하지 말라는 지적을 받아서 개발자 조차 이해 못하는 변수명으로 바뀜
 // 만일 원래 i, j, k로 봐야 한다면 퍼포스의 89041 버젼이 마지막 i,j,k였음.
 
-#include "BladeII.h"
+
 #include "B2UIItemForge.h"
 #include "B2UIManager.h"
 #include "UI/Widget/B2UICommonTab.h"

@@ -1,6 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
+#include "B2LobbyUI_BrevetMain.h"
 
-#include "BladeII.h"
 #include "B2LobbyUI_HeroMgmtCommon.h"
 #include "B2LobbyGameMode.h"
 #include "Retailer.h"
@@ -12,7 +12,7 @@
 #include "B2ItemInfo.h"
 #include "B2UIDocHelper.h"
 #include "B2UIDocUser.h"
-#include "B2LobbyUI_BrevetMain.h"
+
 #include "B2UIShortagePopupManager.h"
 #include "B2UIUpgradeStatNotify.h"
 #include "B2AndroidBackManager.h"

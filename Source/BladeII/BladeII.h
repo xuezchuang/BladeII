@@ -1,7 +1,8 @@
 // Copyright 1998-2014 Epic Games, Inc. All Rights Reserved.
 
-#ifndef __BLADEII_H__
-#define __BLADEII_H__
+#pragma once
+
+#include "CoreMinimal.h"
 
 #include "EngineMinimal.h"
 //#include "ModuleManager.h"
@@ -87,7 +88,15 @@ DECLARE_LOG_CATEGORY_EXTERN(LogBladeII, Log, All);
 #if B2_BUILD_LEVEL == B2_BUILD_LEVEL_LIVE
 	#define BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2 0
 #else
-	#define BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2 (!UE_BUILD_SHIPPING || (1 && BII_SHIPPING_ALLOWED_DEV_FEATURE_LV1))
+	#if UE_BUILD_SHIPPING
+		#define BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2 0
+	#else
+		#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV1
+			#define BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2 1
+		#else
+			#define BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2 0
+		#endif
+	#endif
 #endif
 
 /**  
@@ -153,4 +162,3 @@ typedef void(*SetB2ContentLoadingProgressSplashFnPtr)(float);
 
 extern bool GMinimalDLCFrontMode;
 
-#endif

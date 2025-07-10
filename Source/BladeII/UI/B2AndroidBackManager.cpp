@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-
-#include "BladeII.h"
 #include "B2AndroidBackManager.h"
+//#include "BladeII.h"
+
 #include "B2StageGameMode.h"
 #include "B2UIManager.h"
 #include "B2UIHeader.h"

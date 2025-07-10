@@ -1,7 +1,8 @@
-#include "BladeII.h"
-#include "BladeIIGameMode.h"
-#include "B2UIManager.h"
 #include "B2BGMManager.h"
+#include "BladeIIGameMode.h"
+//#include "BladeII.h"
+#include "B2UIManager.h"
+
 
 
 ChangeBGMRule_InInventory::ChangeBGMRule_InInventory()

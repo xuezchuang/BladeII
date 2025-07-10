@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 // Project BladeII, Action Square
+#include "B2StageEventDirector.h"
 
-#include "BladeII.h"
 #include "Camera/CameraComponent.h"
 //#include "Matinee/InterpData.h"
 //#include "Matinee/InterpGroup.h"
@@ -21,7 +21,7 @@
 #include "FileHelpers.h"
 #include "Components/TextRenderComponent.h"
 #endif
-#include "B2StageEventDirector.h"
+
 #include "B2StageManager.h"
 //#include "B2MonsterSpawnPool.h"
 #include "BladeIIGameMode.h"
@@ -393,10 +393,10 @@ void AB2StageEventDirector::EssentialBeginHandlingCommon()
 		CurrentStageDifficulty = CachedStageManager->GetStageDifficultyLevel();
 	}
 
-#if ENABLE_LOCAL_CUTSCENE_SAVED_STATE
-	// 인스턴스 및 스테이지 별 save state 읽어들임. 읽어들인 변수와 사용자 설정에 따라 skip 을 사용하게 될 수 있다.
-	GConfig->GetBool(*GetPlayedAtLeastOnceSectionString(), *GetPlayedAtLeastOnceKeyString(CurrentStageId), bPlayedAtLeastOnce, GB2LocalCutSceneSavedStateIni);
-#endif
+//#if ENABLE_LOCAL_CUTSCENE_SAVED_STATE
+//	// 인스턴스 및 스테이지 별 save state 읽어들임. 읽어들인 변수와 사용자 설정에 따라 skip 을 사용하게 될 수 있다.
+//	GConfig->GetBool(*GetPlayedAtLeastOnceSectionString(), *GetPlayedAtLeastOnceKeyString(CurrentStageId), bPlayedAtLeastOnce, GB2LocalCutSceneSavedStateIni);
+//#endif
 }
 
 int32 AB2StageEventDirector::GetAllowedMatineeTrackPointLightNum() const

@@ -1,6 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BladeII.h"
 #include "B2UIHeroTowerReady.h"
 #include "B2StageManager.h"
 #include "B2UIHeader.h"

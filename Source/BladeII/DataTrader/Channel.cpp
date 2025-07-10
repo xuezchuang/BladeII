@@ -1,4 +1,4 @@
-#include "BladeII.h"
+
 #include "Channel.h"
 
 namespace data_trader

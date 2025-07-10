@@ -1,9 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
+#include "B2UIItemForgeListButton.h"
 
-#include "BladeII.h"
 #include "B2UIManager.h"
 #include "B2UIItemForge.h"
-#include "B2UIItemForgeListButton.h"
+
 
 void UB2UIItemForgeListButton::CacheAssets()
 {

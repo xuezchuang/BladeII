@@ -1,4 +1,3 @@
-#include "BladeII.h"
 #include "B2UIMsgPopupSimple.h"
 #include "B2UIManager.h"
 

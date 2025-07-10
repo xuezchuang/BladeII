@@ -1,11 +1,11 @@
 // Fill out your copyright notice in the Description page of Project Settings.
+#include "UB2UIQualityHammerSelectPopup.h"
 
-#include "BladeII.h"
 #include "Event.h"
 #include "B2LobbyGameMode.h"
 #include "B2LobbyInventory.h"
 #include "B2DynItemIcon_LobbyInven.h"
-#include "UB2UIQualityHammerSelectPopup.h"
+
 #include "BladeIIGameImpl.h"
 
 AB2LobbyGameMode* UB2UIQualityHammerSelectPopup::HammerCachedLobbyGM = NULL;

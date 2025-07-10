@@ -1,4 +1,4 @@
-#include "BladeII.h"
+
 #include "B2SkillParameter.h"
 
 FB2SkillParameter::FB2SkillParameter()

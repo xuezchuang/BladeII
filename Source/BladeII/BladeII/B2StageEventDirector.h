@@ -2,7 +2,7 @@
 // Project BladeII, Action Square
 
 #pragma once
-
+//#include "BladeII.h"
 #include "GameFramework/Actor.h"
 #include "Camera/PlayerCameraManager.h"
 #include "Navigation/PathFollowingComponent.h"
@@ -11,7 +11,7 @@
 #include "BladeIICharacter.h"
 #include "B2UIEnum.h"
 #include "B2StageInfo.h"
-#include "BladeII.h"
+//#include "BladeII.h"
 #include "B2StageEventDirector.generated.h"
 
 /** Overall behavior of stage event director actor, regarding not just camera. */
@@ -274,7 +274,7 @@ struct FPlayActorShowSettings
 		PlayActorIndex = 0;
 		//ExportedEventScene = NULL;
 		PlayActorPlacement = EPlayActorPlacement::EPAP_NoAdjust;
-		StageEventStateOverride = EStageEventShowState::ESES_None;
+		//StageEventStateOverride = EStageEventShowState::ESES_None;
 		PlayActorStateMode = EPlayActorStateMode::EPASM_Directed;
 		EndActionPlayActorAdjustType = EEndActionPlayActorAdjustType::EAPAAT_AdjustToPuppet;
 		ActorScaleOverride = 0.0f;
@@ -329,8 +329,8 @@ struct FPlayActorShowSettings
 
 	/** Basically, the StageEventState will be set to hard-coded value set according to the context (GetDefaultDesiredPlayActorSESState).
 	 * You can set this to other than ESES_None to override the StageEventState for this show, to play any other wanted animation. */
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "StageEvent", meta = (EditCondition = "bOverallMode_ExportedOrManualCamera"))
-	EStageEventShowState StageEventStateOverride;
+	//UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "StageEvent", meta = (EditCondition = "bOverallMode_ExportedOrManualCamera"))
+	//EStageEventShowState StageEventStateOverride;
 
 	/** For controlled matinee, the interp group name for the play actor of this setting.
 	 * It could be just the expected group name, or the common name excluding certain postfix. */
@@ -827,13 +827,13 @@ private:
 	
 	uint32 bCurrentlyPlaying : 1;
 
-#if ENABLE_LOCAL_CUTSCENE_SAVED_STATE
-	/** Cached flag at local config file, per-stage basis. It could be used for some purpose like preventing play it more than twice depend on user setting. */
-	bool bPlayedAtLeastOnce;
-	/** Requires to be in different package file name, to be uniquely identified. */
-	FORCEINLINE FString GetPlayedAtLeastOnceSectionString() { return FString::Printf(TEXT("/Script/BladeII.%s"), *GetFullName()); }
-	FORCEINLINE FString GetPlayedAtLeastOnceKeyString(int32 PlayStageNum) { return FString::Printf(TEXT("PlayedAtLeastOnce_%d"), PlayStageNum); }
-#endif
+//#if ENABLE_LOCAL_CUTSCENE_SAVED_STATE
+//	/** Cached flag at local config file, per-stage basis. It could be used for some purpose like preventing play it more than twice depend on user setting. */
+//	bool bPlayedAtLeastOnce;
+//	/** Requires to be in different package file name, to be uniquely identified. */
+//	FORCEINLINE FString GetPlayedAtLeastOnceSectionString() { return FString::Printf(TEXT("/Script/BladeII.%s"), *GetFullName()); }
+//	FORCEINLINE FString GetPlayedAtLeastOnceKeyString(int32 PlayStageNum) { return FString::Printf(TEXT("PlayedAtLeastOnce_%d"), PlayStageNum); }
+//#endif
 	/** A little bit different from bPlayedAtLeastOnce. To prevent re-entrance once it is played through for this stage. Gotta be loaded once more.. */
 	uint32 bPlayedOnceForThisStage : 1;
 
@@ -1144,7 +1144,7 @@ private:
 
 	/** Get EStageEventShowState enum value used for animation play state handling, relevant to the stage event and play actor type. 
 	 * StageEventStateOverride of ShowSetting can override the result value from here. */
-	EStageEventShowState GetDefaultDesiredPlayActorSESState(EStageEvent InEvent, EStageEventPlayActor InPlayActorType);
+	//EStageEventShowState GetDefaultDesiredPlayActorSESState(EStageEvent InEvent, EStageEventPlayActor InPlayActorType);
 
 	void SyncDataToUIDoc(ABladeIICharacter* InEventTriggeringMob); // Call this probably at beginning phase. Not for realtime use.
 public:

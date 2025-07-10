@@ -1,6 +1,6 @@
-#include "BladeII.h"
-#include "B2UIStore.h"
 #include "B2UIStoreItemSlotIcon.h"
+#include "B2UIStore.h"
+
 
 void UB2UIStoreItemSlotIcon::Init()
 {

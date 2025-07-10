@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-#include "BladeII.h"
-#include "B2UIManager.h"
 #include "B2UIGuildSkillSlot.h"
+#include "B2UIManager.h"
+
 #include "B2GuildBuffInfo.h"
 #include "B2UIDocHelper.h"
 

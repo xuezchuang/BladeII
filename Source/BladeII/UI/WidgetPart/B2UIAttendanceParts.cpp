@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-#include "BladeII.h"
-#include "B2UIManager.h"
 #include "B2UIAttendanceParts.h"
+#include "B2UIManager.h"
+
 #include "B2UIAttendanceMain.h"
 #include "B2UIMsgPopupReward.h"
 #include "B2UIMailRewardPopUp.h"

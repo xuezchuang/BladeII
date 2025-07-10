@@ -1,10 +1,11 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-#include "BladeII.h"
+#include "B2UIActClear.h"
+
 #include "B2UIManager.h"
 #include "QuestManager.h"
 #include "B2UIQuestDialog.h"
 #include "B2UIDocHelper.h"
-#include "B2UIActClear.h"
+
 #include "TutorialManager.h"
 
 

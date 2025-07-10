@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BladeII.h"
 #include "B2UIGuildSupportRowSlot.h"
+//#include "BladeII.h"
 #include "B2DynItemIcon_GuildSupport.h"
 
 void UB2UIGuildSupportRowSlot::CacheAssets()

@@ -1,4 +1,4 @@
-#include "BladeII.h"
+
 #include "B2DebugTextWidget.h"
 #include "BladeIIUtil.h"
 

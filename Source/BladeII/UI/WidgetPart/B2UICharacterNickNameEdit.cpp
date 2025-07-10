@@ -1,4 +1,3 @@
-#include "BladeII.h"
 #include "B2UICharacterNickNameEdit.h"
 #include "B2UIManager.h"
 #include "BladeIIGameMode.h"

@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BladeII.h"
 #include "B2BTService_GetHomePointLocation.h"
+//#include "BladeII.h"
 #include "BladeIIGameMode.h"
 #include "B2HomePoint.h"
 #include "BehaviorTree/Blackboard/BlackboardKeyType_Vector.h"

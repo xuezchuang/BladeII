@@ -1,6 +1,6 @@
-#include "BladeII.h"
-#include "B2BTService_UpdateCondition.h"
 
+#include "B2BTService_UpdateCondition.h"
+//#include "BladeII.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "BladeIIPlayerAIController.h"
 

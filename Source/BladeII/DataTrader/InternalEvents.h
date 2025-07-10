@@ -1,5 +1,5 @@
 #pragma once
-
+//#include "BladeII.h"
 #include "EventSubsystem.h"
 #include "B2MessageInfoCommonStruct.h"
 #include "B2MessageInfo.h"

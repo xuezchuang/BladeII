@@ -1,13 +1,13 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BladeII.h"
+#include "B2UIItemForgePopup.h"
 #include "B2DynItemIcon_ItemForge.h"
 #include "B2UIItemForgeIngredientList.h"
 #include "Event.h"
 #include "BladeIIGameImpl.h"
 #include "B2ClientDataStore.h"
 #include "B2LobbyInventory.h"
-#include "B2UIItemForgePopup.h"
+
 #include "B2LobbyGameMode.h"
 #include "B2LobbySceneManager.h"
 

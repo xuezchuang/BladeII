@@ -1,5 +1,6 @@
-#include "BladeII.h"
 #include "B2BTService_CheckAggroByTaunt.h"
+#include "BladeII.h"
+
 
 #include "AIController.h"
 #include "BladeIICharacter.h"

@@ -1,11 +1,11 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BladeII.h"
+#include "TEST_ControlGameMode.h"
 #include "Engine.h"
 #include "GameFramework/SpectatorPawn.h"
 #include "Camera/CameraActor.h"
 #include "Particles/Emitter.h"
-#include "TEST_ControlGameMode.h"
+
 #include "B2UIManager.h"
 #include "Event.h"
 #include "FB2ErrorMessage.h"

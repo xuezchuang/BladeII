@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
+//#include "BladeII.h"
 #include "B2PassiveSkill.h"
 #include "B2SkillParameter.h"
 #include "B2GuildNPCInfo.h"

@@ -1,10 +1,11 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-
-#include "BladeII.h"
-#include "CommonStruct.h"
-#include "Runtime/Engine/Public/Engine.h"
 #include "B2PreRenderGameMode.h"
 #include "B2PreRenderer.h"
+
+#include "CommonStruct.h"
+#include "Runtime/Engine/Public/Engine.h"
+
+
 #include "Event.h"
 //#include "B2PreLoadingScreen.h"
 #include "B2GameLoadingProgress.h"

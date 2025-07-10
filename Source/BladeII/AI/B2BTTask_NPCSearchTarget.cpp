@@ -1,5 +1,6 @@
-#include "BladeII.h"
+
 #include "B2BTTask_NPCSearchTarget.h"
+//#include "BladeII.h"
 #include "B2GuildNPCAIController.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "BehaviorTree/Blackboard/BlackboardKeyType_Object.h"

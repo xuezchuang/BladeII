@@ -1,6 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-
-#include "BladeII.h"
+#include "B2DynItemIcon_SealBoxPreview.h"
+//#include "BladeII.h"
 #include "B2Button.h"
 #include "B2UIWidgetBase.h"
 #include "B2UIStarGradePart.h"
@@ -12,7 +12,7 @@
 #include "B2LobbyGameMode.h"
 #include "BladeIIGameMode.h"
 #include "Event.h"
-#include "B2DynItemIcon_SealBoxPreview.h"
+
 #include "B2UISealBoxResultSimple.h"
 #include "CharacterDataStore.h"
 #include "CommonStruct.h"

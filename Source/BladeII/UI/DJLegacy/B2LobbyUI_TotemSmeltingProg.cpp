@@ -1,6 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BladeII.h"
 #include "B2LobbyUI_TotemSmeltingProg.h"
 #include "B2DynItemIcon_ItemOpScene.h"
 #include "Particles/ParticleSystemComponent.h"

@@ -1,8 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BladeII.h"
-#include "B2UIDocHelper.h"
 #include "B2UIFormationPopup.h"
+#include "B2UIDocHelper.h"
+
 #include "B2ItemInfo.h"
 #include "B2UISlotItem.h"
 #include "Retailer.h"

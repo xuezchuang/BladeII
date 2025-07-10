@@ -1,4 +1,4 @@
-#include "BladeII.h"
+//#include "BladeII.h"
 #include "B2AsyncGameMode.h"
 
 namespace AsyncMatchState

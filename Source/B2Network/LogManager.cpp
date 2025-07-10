@@ -1,7 +1,7 @@
 //#include "B2NetworkPlugin.h"
-
-#include "Config.h"
 #include "LogManager.h"
+#include "Config.h"
+
 
 #define ENABLE_B2NETWORK_LOGGING 1
 

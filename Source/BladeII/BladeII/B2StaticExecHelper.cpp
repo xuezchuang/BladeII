@@ -1,6 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BladeII.h"
+
 #include "B2StaticExecHelper.h"
 #if WITH_EDITOR || !UE_BUILD_SHIPPING
 #include "Engine.h"

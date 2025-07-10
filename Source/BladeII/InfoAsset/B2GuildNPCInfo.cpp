@@ -1,4 +1,4 @@
-#include "BladeII.h"
+
 #include "B2GuildNPCInfo.h"
 #include "Materials/Material.h"
 

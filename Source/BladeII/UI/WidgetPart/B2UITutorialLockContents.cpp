@@ -1,7 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-#include "BladeII.h"
-#include "B2UIManager.h"
 #include "B2UITutorialLockContents.h"
+
+#include "B2UIManager.h"
+
 #include "TutorialManager.h"
 
 UB2UITutorialLockContents::UB2UITutorialLockContents(const FObjectInitializer& ObjectInitializer)

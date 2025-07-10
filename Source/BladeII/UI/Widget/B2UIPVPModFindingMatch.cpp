@@ -1,4 +1,3 @@
-#include "BladeII.h"
 #include "B2UIPVPModFindingMatch.h"
 #include "B2UIPVP1on1MatchInfo.h"
 #include "B2Button.h"

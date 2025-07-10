@@ -1,6 +1,6 @@
-#include "BladeII.h"
-#include "BladeIIUtil.h"
 #include "B2UIBattleSkillUnity.h"
+#include "BladeIIUtil.h"
+
 
 UB2UIBattleSkillUnity::UB2UIBattleSkillUnity(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)

@@ -1,12 +1,12 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BladeII.h"
+#include "B2UIMission.h"
 #include "Retailer.h"
 #include "B2UIManager.h"
 #include "MissionManager.h"
 #include "B2UIDocHelper.h"
 #include "B2UIDocSome.h"
-#include "B2UIMission.h"
+
 #include "B2UIPMIssionCompleteProgress.h"
 #include "B2UIMissionList.h"
 #include "B2UIPMainQuest.h"

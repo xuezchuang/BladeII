@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
-
+//#include "BladeII.h"
 #include "EventSubsystem.h"
 
 const int32 MAX_ETHER_GRADE = 6;

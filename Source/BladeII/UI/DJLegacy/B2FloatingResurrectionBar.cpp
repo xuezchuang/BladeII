@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-
-#include "BladeII.h"
 #include "B2FloatingResurrectionBar.h"
+//#include "BladeII.h"
+
 #include "BladeIINetPlayer.h"
 
 UB2FloatingResurrectionBar::UB2FloatingResurrectionBar(const FObjectInitializer& ObjectInitializer)

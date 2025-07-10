@@ -1,4 +1,3 @@
-#include "BladeII.h"
 #include "B2UIQuestDialog.h"
 #include "B2RichTextBlock.h"
 #include "QuestDataTable.h"

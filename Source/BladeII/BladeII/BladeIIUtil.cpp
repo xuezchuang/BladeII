@@ -1,9 +1,10 @@
-#include "BladeII.h"
+#include "BladeIIUtil.h"
+
 #include "Components/SkeletalMeshComponent.h"
 #include "Internationalization/Internationalization.h"
 #include "Internationalization/Culture.h"
 #include "B2StageInfo.h"
-#include "BladeIIUtil.h"
+
 #include "B2ChapterInfo.h"
 #include "BladeIIGameMode.h"
 #include "B2NPCClassInfoBox.h"

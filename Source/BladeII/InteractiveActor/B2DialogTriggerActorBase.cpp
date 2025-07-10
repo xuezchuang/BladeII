@@ -1,4 +1,4 @@
-#include "BladeII.h"
+
 #include "B2DialogTriggerActorBase.h"
 #include "B2StageManager.h"
 #include "B2StageGameMode.h"

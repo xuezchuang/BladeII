@@ -1,12 +1,12 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-#include "BladeII.h"
+#include "B2UIMiniStorePopup.h"
 #include "B2UIManager.h"
 #include "BladeIIGameImpl.h"
 #include "B2UIStoreItemSlot.h"
 //#include "B2IAPGenericPlatform.h"
 #include "B2UIBackWidgetBase.h"
 #include "B2GameInstance.h"
-#include "B2UIMiniStorePopup.h"
+
 
 
 void UB2UIMiniStorePopup::CacheAssets()

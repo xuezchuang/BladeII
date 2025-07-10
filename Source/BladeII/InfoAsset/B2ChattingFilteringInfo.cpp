@@ -1,7 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BladeII.h"
+
 #include "B2ChattingFilteringInfo.h"
+#include "BladeII.h"
 
 void UB2ChattingFilteringInfo::SetDataTable(UDataTable* InDataTable)
 {

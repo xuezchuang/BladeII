@@ -172,7 +172,7 @@ protected:
 	int32 AttackDir;
 
 	UPROPERTY(BlueprintReadWrite, Category = "AnimState")
-	ABladeIIPlayer* OwnerPlayer;
+	class ABladeIIPlayer* OwnerPlayer;
 
 	UPROPERTY(BlueprintReadWrite, Category = "CustomAnim")
 		bool bStartCustomAnim;

@@ -1,4 +1,3 @@
-#include "BladeII.h"
 #include "B2UIStoreBanner.h"
 #include "B2UIDocHelper.h"
 

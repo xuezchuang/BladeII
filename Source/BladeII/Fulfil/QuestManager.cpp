@@ -1,4 +1,4 @@
-#include "BladeII.h"
+
 #include "QuestManager.h"
 #include "Event.h"
 #include "InternalEvents.h"

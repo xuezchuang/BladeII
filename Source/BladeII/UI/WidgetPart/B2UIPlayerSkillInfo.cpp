@@ -1,4 +1,3 @@
-#include "BladeII.h"
 #include "B2UIPlayerSkillInfo.h"
 #include "B2SkillInfo.h"
 #include "B2PCClassInfoBox.h"

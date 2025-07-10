@@ -1,6 +1,6 @@
-#include "BladeII.h"
-#include "B2CounterAttackGameMode.h"
 
+#include "B2CounterAttackGameMode.h"
+//#include "BladeII.h"
 //#include "B2UIManager.h"
 //#include "B2UIBattleMain.h"
 //#include "B2UIBattleSkill.h"

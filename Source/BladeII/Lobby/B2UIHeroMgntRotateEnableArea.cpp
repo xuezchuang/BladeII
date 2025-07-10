@@ -1,5 +1,6 @@
-#include "BladeII.h"
+
 #include "B2UIHeroMgntRotateEnableArea.h"
+//#include "BladeII.h"
 #include "B2LobbyGameMode.h"
 
 FReply UB2UIHeroMgntRotateEnableArea::NativeOnMouseButtonDown(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent)

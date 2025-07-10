@@ -1,8 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BladeII.h"
-#include "BladeIILocText.h"
 #include "B2UIGuildTeam.h"
+#include "BladeIILocText.h"
+
 
 UB2UIGuildTeam::UB2UIGuildTeam(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)

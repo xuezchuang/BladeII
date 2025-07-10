@@ -1,12 +1,12 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-#include "BladeII.h"
+#include "B2UIDimensionResult.h"
 #include "B2UIManager.h"
 #include "B2UIRewardEventSet.h"
 #include "B2DimensionGameMode.h"
 #include "B2UIDocDimension.h"
 #include "B2UIDocHelper.h"
 #include "Retailer.h"
-#include "B2UIDimensionResult.h"
+
 
 
 void UB2UIDimensionResult::CacheAssets()

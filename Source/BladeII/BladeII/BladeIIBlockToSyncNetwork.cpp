@@ -1,4 +1,4 @@
-#include "BladeII.h"
+
 #include "BladeIIBlockToSyncNetwork.h"
 #include "B2UIManager.h"
 #include "B2UIMsgPopupCenter.h"

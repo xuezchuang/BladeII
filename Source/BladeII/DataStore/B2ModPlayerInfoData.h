@@ -1,5 +1,5 @@
 #pragma once
-
+//#include "BladeII.h"
 #include "CharacterDataStore.h"
 
 struct FB2ModCharInfo

@@ -1,5 +1,5 @@
-#include "B2NetworkPlugin.h"
 #include "B2MessageInfoConverter.h"
+#include "B2NetworkPlugin.h"
 //#include "ProtobufCodec.h"
 //#include "ProtobufFactory.h"
 

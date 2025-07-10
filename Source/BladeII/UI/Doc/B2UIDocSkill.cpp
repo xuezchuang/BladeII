@@ -1,4 +1,3 @@
-#include "BladeII.h"
 #include "B2UIDocSkill.h"
 #include "B2SkillInfo.h"
 //#include "B2SkillRTManager.h"

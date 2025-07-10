@@ -1,8 +1,8 @@
-#include "BladeII.h"
+#include "B2UIRestPointMain.h"
 #include "B2UIWidget.h"
 #include "B2UIHeader.h"
 #include "B2UIManager.h"
-#include "B2UIRestPointMain.h"
+
 #include "B2UIMsgPopupUseResources.h"
 #include "B2UIRewardEventSet.h"
 #include "B2UIMailRewardPopUp.h"

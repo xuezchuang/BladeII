@@ -1,6 +1,6 @@
-#include "BladeII.h"
-#include "Event.h"
 #include "B2SkillTrigger.h"
+#include "Event.h"
+
 #include "B2PassiveSkill.h"
 
 void UB2SkillTrigger::UnRegistEvent()

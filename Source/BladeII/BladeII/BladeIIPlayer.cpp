@@ -1,6 +1,6 @@
 // Copyright 1998-2014 Epic Games, Inc. All Rights Reserved.
 
-#include "BladeII.h"
+
 #include "BladeIIPlayer.h"
 #include "BladeIIPlayerController.h"
 //#include "BladeIIProjectile.h"

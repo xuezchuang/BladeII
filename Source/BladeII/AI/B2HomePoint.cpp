@@ -1,5 +1,6 @@
-#include "BladeII.h"
+
 #include "B2HomePoint.h"
+//#include "BladeII.h"
 #include "BladeIIUtil.h"
 #include "Runtime/Engine/Public/EngineUtils.h"
 #include "Components/BillboardComponent.h"

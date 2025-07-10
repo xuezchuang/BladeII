@@ -1,9 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
-
+//#include "BladeII.h"
 //#include "UObject/Object.h"
-#include "BladeII.h"
+//#include "BladeII.h"
 #include "UObject/ObjectSaveContext.h"
 #include "Engine/StreamableManager.h"
 #include "CommonStruct.h"

@@ -1,9 +1,11 @@
 // Copyright 1998-2014 Epic Games, Inc. All Rights Reserved.
 // Author : leejswo(SangwooLee)
 #pragma once
+
 #include "BladeIICharacter.h"
 #include "CommonStruct.h"
 #include "UObject/ObjectSaveContext.h"
+//#include "BladeII.h"
 #include "BladeIIPlayer.generated.h"
 
 static const float EVADE_COOL_TIME = 3.0f;

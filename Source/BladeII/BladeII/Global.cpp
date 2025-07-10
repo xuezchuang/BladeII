@@ -1,5 +1,5 @@
 
-#include "BladeII.h"
+
 #include "Global.h"
 #include "B2NetworkBridge.h"
 #include "BladeIIGameImpl.h"

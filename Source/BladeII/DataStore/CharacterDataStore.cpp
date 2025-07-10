@@ -1,4 +1,4 @@
-#include "BladeII.h"
+
 #include "CharacterDataStore.h"
 #include "B2PCClassInfo.h"
 #include "B2PCClassInfoBox.h"

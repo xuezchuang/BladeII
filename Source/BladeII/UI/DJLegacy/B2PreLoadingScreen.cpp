@@ -1,5 +1,6 @@
-#include "BladeII.h"
 #include "B2PreLoadingScreen.h"
+//#include "BladeII.h"
+
 #include "B2LoadingImageInfo.h"
 #include "B2GameInstance.h"
 

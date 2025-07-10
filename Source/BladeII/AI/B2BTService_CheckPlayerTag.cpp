@@ -1,6 +1,5 @@
-#include "BladeII.h"
-#include "B2BTService_CheckPlayerTag.h"
 
+#include "B2BTService_CheckPlayerTag.h"
 #include "BladeIIPlayer.h"
 #include "B2SkillRTManager.h"
 #include "B2UIDocHelper.h"

@@ -1,4 +1,4 @@
-#include "BladeII.h"
+
 #include "B2UITeamMatchHpBar.h"
 
 UB2UITeamMatchHpBar::UB2UITeamMatchHpBar(const FObjectInitializer& ObjectInitializer)

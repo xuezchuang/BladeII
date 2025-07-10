@@ -1,5 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-#include "BladeII.h"
+#include "B2UICommonInvite.h"
 #include "B2UIManager.h"
 #include "B2NetGameMode.h"
 #include "B2RichTextBlock.h"
@@ -8,7 +8,7 @@
 #include "B2UIDocHelper.h"
 #include "B2UIDocLobbyMatch.h"
 #include "B2UIDocRaid.h"
-#include "B2UICommonInvite.h"
+
 
 
 void UB2UICommonInvite::CacheAssets()

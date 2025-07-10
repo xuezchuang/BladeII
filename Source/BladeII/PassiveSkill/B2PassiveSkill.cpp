@@ -1,9 +1,9 @@
-#include "BladeII.h"
+#include "B2PassiveSkill.h"
 #include "BladeIICharacter.h"
 #include "B2SkillTrigger.h"
 #include "B2SkillCommand.h"
 #include "B2TargetSelector.h"
-#include "B2PassiveSkill.h"
+
 
 void UB2PassiveSkill::BeginDestroy()
 {

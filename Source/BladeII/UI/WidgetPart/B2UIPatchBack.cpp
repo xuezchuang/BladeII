@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-#include "BladeII.h"
-#include "B2UIManager.h"
 #include "B2UIPatchBack.h"
+#include "B2UIManager.h"
+
 
 UB2UIPatchBack::UB2UIPatchBack(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)

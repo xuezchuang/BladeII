@@ -1,6 +1,6 @@
-#include "BladeII.h"
-#include "Event.h"
 #include "B2UIDocGuild.h"
+#include "Event.h"
+
 #include "B2GuildGameMode.h"
 //#include "B2GameInstance.h"
 

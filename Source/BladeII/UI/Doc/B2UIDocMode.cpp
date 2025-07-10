@@ -1,6 +1,6 @@
-#include "BladeII.h"
-#include "Event.h"
 #include "B2UIDocMode.h"
+#include "Event.h"
+
 
 UB2UIDocMode::UB2UIDocMode(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)

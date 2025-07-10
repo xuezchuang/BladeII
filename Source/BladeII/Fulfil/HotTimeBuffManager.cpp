@@ -1,8 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-
-#include "BladeII.h"
-#include "Event.h"
 #include "HotTimeBuffManager.h"
+
+#include "Event.h"
+
 #include "BladeIIGameImpl.h"
 #include "BladeIIUtil.h"
 #include "B2GameInstance.h"

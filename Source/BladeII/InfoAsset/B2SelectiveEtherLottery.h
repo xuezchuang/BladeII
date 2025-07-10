@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
-
+//#include "BladeII.h"
 #include "Engine/DataTable.h"
 #include "B2SelectiveEtherLottery.generated.h"
 

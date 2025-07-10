@@ -1,5 +1,6 @@
-#include "BladeII.h"
+
 #include "B2GuildCastleActor.h"
+//#include "BladeII.h"
 //#include "B2UIManager.h"
 //#include "B2UIGuildMapMain.h"
 #include "B2LobbyGameMode.h"

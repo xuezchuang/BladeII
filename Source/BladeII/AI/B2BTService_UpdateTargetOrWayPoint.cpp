@@ -1,6 +1,6 @@
-#include "BladeII.h"
-#include "B2BTService_UpdateTargetOrWayPoint.h"
 
+#include "B2BTService_UpdateTargetOrWayPoint.h"
+//#include "BladeII.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "B2AutoAIController.h"
 #include "B2AutoWayPoint.h"

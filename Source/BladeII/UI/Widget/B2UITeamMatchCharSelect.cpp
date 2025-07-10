@@ -1,4 +1,3 @@
-#include "BladeII.h"
 #include "B2UITeamMatchCharSelect.h"
 #include "B2UITeamEntrySelectSlot.h"
 #include "B2UIWidget.h"

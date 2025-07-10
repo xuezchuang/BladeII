@@ -1,13 +1,13 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 // Project BladeII, ACTION SQUARE
+#include "BladeIIWorldSettings.h"
 
-#include "BladeII.h"
 #if WITH_EDITOR
 #include "Engine.h"
 #include "Editor.h"
 #include "EditorBuildUtils.h"
 #endif
-#include "BladeIIWorldSettings.h"
+
 #include "BladeIIPlayerController.h"
 #include "BladeIIPlayer.h"
 #include "B2ActiveCameraActor.h"

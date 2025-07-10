@@ -1,4 +1,5 @@
 #pragma once
+//#include "BladeII.h"
 #include "Components/TextWidgetTypes.h"
 #include "Components/RichTextBlockDecorator.h"
 #include "Widgets/Text/SRichTextBlock.h"

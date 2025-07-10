@@ -4,6 +4,7 @@
 
 #include "B2FloatingWidget.h"
 #include "B2UIEnum.h"
+#include "Engine/StreamableManager.h"
 #include "B2FloatingAbnormalEffect.generated.h"
 
 UENUM(BlueprintType)

@@ -1,4 +1,4 @@
-#include "BladeII.h"
+#include "B2PlatformAPI.h"
 #include "Event.h"
 
 #if PLATFORM_ANDROID
@@ -11,7 +11,7 @@
 #include "IOSAppDelegate.h"
 #endif
 
-#include "B2PlatformAPI.h"
+
 
 #if PLATFORM_ANDROID
 extern bool AndroidThunkCpp_CheckPermission();

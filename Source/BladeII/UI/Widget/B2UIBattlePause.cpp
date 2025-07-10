@@ -1,4 +1,3 @@
-#include "BladeII.h"
 #include "B2UIBattlePause.h"
 #include "EventSubsystem.h"
 #include "B2UIManager.h"

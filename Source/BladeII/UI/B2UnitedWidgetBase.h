@@ -2,7 +2,7 @@
 // Project BladeII, Action Square
 
 #pragma once
-
+////#include "BladeII.h"
 #include "UMG.h"
 #include "Blueprint/UserWidget.h"
 #include "B2Button.h"

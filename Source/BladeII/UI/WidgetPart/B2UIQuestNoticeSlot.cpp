@@ -1,9 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BladeII.h"
+#include "B2UIQuestNoticeSlot.h"
 #include "QuestManager.h"
 #include "B2UIQuestSlot.h"
-#include "B2UIQuestNoticeSlot.h"
+
 
 
 #include "BladeIIUtil.h"

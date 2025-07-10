@@ -1,9 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-#include "BladeII.h"
+#include "B2UIGuildMapMain.h"
 #include "B2UIManager.h"
 #include "B2UIGuildInfoPart.h"
 #include "B2UIGuildMapEntryDirect.h"
-#include "B2UIGuildMapMain.h"
+
 #include "B2UIGuildMapCharPopup.h"
 #include "B2LobbyGameMode.h"
 #include "B2GuildCastleActor.h"

@@ -1,6 +1,6 @@
-#include "BladeII.h"
-#include "B2BTTask_UpdateLocation.h"
 
+#include "B2BTTask_UpdateLocation.h"
+//#include "BladeII.h"
 #include "NavigationSystem.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "BladeIIPlayer.h"

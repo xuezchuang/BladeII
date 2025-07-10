@@ -1,7 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BladeII.h"
+
 #include "B2CodeTable.h"
+//#include "BladeII.h"
 #include "B2PlatformAPI.h"
 #include "Retailer.h"
 #include "BladeIIGameMode.h"

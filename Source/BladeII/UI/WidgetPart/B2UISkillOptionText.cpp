@@ -1,6 +1,6 @@
-#include "BladeII.h"
-#include "B2RichTextBlock.h"
 #include "B2UISkillOptionText.h"
+#include "B2RichTextBlock.h"
+
 
 
 void UB2UISkillOptionText::SetSkillOption(FText InSkillOption)

@@ -1,6 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BladeII.h"
 #include "B2UIKakaoFriendRewardRow.h"
 #include "B2UIFriendKakaoInvite.h"
 #include "BladeIIGameImpl.h"

@@ -1,5 +1,6 @@
-#include "BladeII.h"
+
 #include "B2LobbySceneManager.h"
+//#include "BladeII.h"
 //#include "Engine/World.h"
 //#include "B2LobbyGameMode.h"
 //
@@ -1095,47 +1096,47 @@ void FLobbySceneManager::UpdateLobbyCharCompForParts(EPCClass InPCClass)
 	//	}
 	//}
 }
-#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2 
-void FLobbySceneManager::DevForceUpdateLobbyCharCompForParts(EPCClass InPCClass)
-{
-	/////
-	// 캐릭터 장비 조합 관련 이런 저런 테스트에 요긴하게 사용하기 위해.. 
-	// 상단 UpdateLobbyCharCompForParts 와 거의 비슷하지만 관리를 빡세게 할 필요는 없겠다.
-	/////
-
-	if (InPCClass != EPCClass::EPC_End)
-	{
-		const ELobbyLevelType CurrLobbyLevelType = LevelManager.GetLobbyLevelType(CurrentLobbyScene);
-
-		if (CurrLobbyLevelType == ELobbyLevelType::ELobbyLevelType_A)
-		{
-			FLobbyCharacterInfo* CharInfoA = LobbyCharactersForALobbyType.Find(InPCClass);
-			if (CharInfoA)
-			{
-				//SetupLobbyCharCompForParts(InPCClass, CharInfoA->ActorForMain, true);
-				//SetupLobbyCharCompForParts(InPCClass, CharInfoA->ActorForSub, true);
-			}
-		}
-		else if (CurrLobbyLevelType == ELobbyLevelType::ELobbyLevelType_B)
-		{
-			FLobbyCharacter* CharInfoB = LobbyCharactersForBLobbyType.Find(InPCClass);
-			if (CharInfoB)
-			{
-				//SetupLobbyCharCompForParts(InPCClass, CharInfoB->LevelActor, true);
-			}
-		}
-		else if (CurrLobbyLevelType == ELobbyLevelType::ELobbyLevelType_G)
-		{
-			FLobbyCharacterInfo* CharInfoG = LobbyCharactersForGLobbyType.Find(InPCClass);
-			if (CharInfoG)
-			{
-				//SetupLobbyCharCompForParts(InPCClass, CharInfoG->ActorForMain, true);
-				//SetupLobbyCharCompForParts(InPCClass, CharInfoG->ActorForSub, true);
-			}
-		}
-	}
-}
-#endif
+//#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2 
+//void FLobbySceneManager::DevForceUpdateLobbyCharCompForParts(EPCClass InPCClass)
+//{
+//	/////
+//	// 캐릭터 장비 조합 관련 이런 저런 테스트에 요긴하게 사용하기 위해.. 
+//	// 상단 UpdateLobbyCharCompForParts 와 거의 비슷하지만 관리를 빡세게 할 필요는 없겠다.
+//	/////
+//
+//	if (InPCClass != EPCClass::EPC_End)
+//	{
+//		const ELobbyLevelType CurrLobbyLevelType = LevelManager.GetLobbyLevelType(CurrentLobbyScene);
+//
+//		if (CurrLobbyLevelType == ELobbyLevelType::ELobbyLevelType_A)
+//		{
+//			FLobbyCharacterInfo* CharInfoA = LobbyCharactersForALobbyType.Find(InPCClass);
+//			if (CharInfoA)
+//			{
+//				//SetupLobbyCharCompForParts(InPCClass, CharInfoA->ActorForMain, true);
+//				//SetupLobbyCharCompForParts(InPCClass, CharInfoA->ActorForSub, true);
+//			}
+//		}
+//		else if (CurrLobbyLevelType == ELobbyLevelType::ELobbyLevelType_B)
+//		{
+//			FLobbyCharacter* CharInfoB = LobbyCharactersForBLobbyType.Find(InPCClass);
+//			if (CharInfoB)
+//			{
+//				//SetupLobbyCharCompForParts(InPCClass, CharInfoB->LevelActor, true);
+//			}
+//		}
+//		else if (CurrLobbyLevelType == ELobbyLevelType::ELobbyLevelType_G)
+//		{
+//			FLobbyCharacterInfo* CharInfoG = LobbyCharactersForGLobbyType.Find(InPCClass);
+//			if (CharInfoG)
+//			{
+//				//SetupLobbyCharCompForParts(InPCClass, CharInfoG->ActorForMain, true);
+//				//SetupLobbyCharCompForParts(InPCClass, CharInfoG->ActorForSub, true);
+//			}
+//		}
+//	}
+//}
+//#endif
 
 void FLobbySceneManager::AddSummonItemDisplayMatinee(bool bIsMultiple,bool bIsOpen, bool bIsFriendShip, class AMatineeActor* Matinee)
 {

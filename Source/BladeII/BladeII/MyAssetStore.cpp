@@ -1,4 +1,4 @@
-#include "BladeII.h"
+
 #include "MyAssetStore.h"
 
 #include "B2UIDocHelper.h"

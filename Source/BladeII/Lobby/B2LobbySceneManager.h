@@ -1,5 +1,5 @@
 #pragma once
-#include "BladeII.h"
+//#include "BladeII.h"
 #include "EngineMinimal.h"
 #include "CommonStruct.h"
 #include "BladeIIPlayer.h"
@@ -451,9 +451,9 @@ public:
 	void SetupLobbyCharCompForParts(EPCClass InPCClass, class ASkeletalMeshActor* InSKActorToSet, bool bForceUpdate = false);
 	/** Calls SetupLobbyCharCompForParts for all SkeletalMeshActors representing InPCClass. */
 	void UpdateLobbyCharCompForParts(EPCClass InPCClass);
-#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
-	void DevForceUpdateLobbyCharCompForParts(EPCClass InPCClass);
-#endif
+//#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
+//	void DevForceUpdateLobbyCharCompForParts(EPCClass InPCClass);
+//#endif
 	bool SelectLobbyMainCharacter(EPCClass SelectedClass);
 
 	EPCClass GetHeroMgmtModePCClass();

@@ -1,4 +1,4 @@
-#include "BladeII.h"
+
 #include "MissionManager.h"
 #include "B2MissionInfo.h"
 #include "Event.h"

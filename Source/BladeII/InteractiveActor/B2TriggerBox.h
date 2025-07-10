@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
-
+//#include "BladeII.h"
 #include "Engine/TriggerBox.h"
 #include "CommonStruct.h"
 #include "B2TriggerBox.generated.h"

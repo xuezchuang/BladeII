@@ -1,9 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-
-#include "BladeII.h"
+#include "B2DynText_Multiple.h"
+//#include "BladeII.h"
 #include "B2ItemInfo.h"
 #include "BladeIIUtil.h"
-#include "B2DynText_Multiple.h"
+
 
 
 UB2DynText_Multiple::UB2DynText_Multiple(const FObjectInitializer& ObjectInitializer)

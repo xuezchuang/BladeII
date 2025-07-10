@@ -1,5 +1,5 @@
 #pragma once
-
+//#include "BladeII.h"
 #include "UObject/Object.h"
 #include "B2GuildMarkInfo.generated.h"
 

@@ -1,11 +1,11 @@
 // Fill out your copyright notice in the Description page of Project Settings.
+#include "B2WidgetPool.h"
 
-#include "BladeII.h"
 #include "B2UIManager_InGameCombat.h"
 #include "B2UIManager.h"
 #include "B2UIWidgetBase.h"
 #include "BladeIIUserWidget.h"
-#include "B2WidgetPool.h"
+
 #include "BladeIICharacter.h"
 #include "Event.h"
 #include "B2FloatingDamageNum.h"

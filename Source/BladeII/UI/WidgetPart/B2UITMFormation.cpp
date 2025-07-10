@@ -1,4 +1,4 @@
-#include "BladeII.h"
+
 #include "B2UITMFormation.h"
 #include "B2UIDocHelper.h"
 #include "Animation/WidgetAnimation.h"

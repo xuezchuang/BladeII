@@ -1,6 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BladeII.h"
+
 #include "BladeIITestDummyPlayer.h"
 #include "BladeIITestDummyNPC.h"
 #include "BladeIIGameMode.h"

@@ -1,8 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BladeII.h"
-#include "B2UISelectiveLotteryPopup.h"
 #include "B2UISelectiveLotteryCostumeRow.h"
+#include "B2UISelectiveLotteryPopup.h"
+
 #include "BladeIIGameImpl.h"
 
 void UB2UISelectiveLotteryCostumeRow::Init()

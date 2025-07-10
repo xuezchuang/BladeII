@@ -1,4 +1,3 @@
-#include "BladeII.h"
 #include "B2UIGuildBattleStatistics.h"
 #include "B2UIGuildMark.h"
 #include "B2UITeamEntryCharacter.h"

@@ -1,5 +1,5 @@
 #pragma once
-
+//#include "BladeII.h"
 #include "CommonStruct.h"
 #include "EngineMinimal.h"
 #include "B2UIMsgPopupBase.h"

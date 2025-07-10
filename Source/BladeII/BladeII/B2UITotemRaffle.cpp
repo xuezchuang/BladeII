@@ -1,9 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BladeII.h"
+#include "B2UITotemRaffle.h"
 #include "B2UIManager.h"
 #include "B2LobbyGameMode.h"
-#include "B2UITotemRaffle.h"
+
 #include "B2AndroidBackManager.h"
 #include "B2Inventory.h"
 #include "B2LobbyInventory.h"

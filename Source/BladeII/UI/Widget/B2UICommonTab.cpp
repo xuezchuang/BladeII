@@ -1,8 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-#include "BladeII.h"
+#include "B2UICommonTab.h"
 #include "B2UIManager.h"
 #include "B2UIDocHelper.h"
-#include "B2UICommonTab.h"
+
 #include "B2UIStoreEventLabel.h"
 
 DECLARE_DELEGATE(FTabButtonDelegate)

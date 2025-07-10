@@ -1,13 +1,13 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-
-#include "BladeII.h"
+#include "B2ActiveCameraActor.h"
+//#include "BladeII.h"
 #if WITH_EDITOR
 #include "Editor.h"
 #include "Engine/StaticMesh.h"
 #include "Materials/Material.h"
 #include "Components/TextRenderComponent.h"
 #endif
-#include "B2ActiveCameraActor.h"
+
 #include "BladeIIPlayer.h"
 #include "BladeIIPlayerController.h"
 #include "BladeIIGameMode.h"

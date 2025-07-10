@@ -1,13 +1,13 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BladeII.h"
+#include "B2UICostumeRaffle.h"
 #include "B2UIManager.h"
 #include "B2LobbyGameMode.h"
 #include "B2LobbyUI_ItemDetailSetEffect.h"
 #include "B2UICostumeItemDetailSetEffect.h"
 #include "B2DynText_ItemDetailOption.h"
 #include "B2DynText_Multiple.h"
-#include "B2UICostumeRaffle.h"
+
 #include "B2AndroidBackManager.h"
 
 // UB2UICostumeRaffle ///////////////////////////////////////////////////////////////

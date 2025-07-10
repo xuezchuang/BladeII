@@ -1,4 +1,4 @@
-#include "BladeII.h"
+
 #include "B2RichTextBlock.h"
 #include "UMGStyle.h"
 

@@ -1,4 +1,4 @@
-#include "BladeII.h"
+
 #include "RelicManager.h"
 #include "Event.h"
 #include "InternalEvents.h"

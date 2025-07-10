@@ -1,4 +1,4 @@
-#include "BladeII.h"
+
 #include "B2UIDocBase.h"
 
 UB2UIDocBase::UB2UIDocBase(const FObjectInitializer& ObjectInitializer)

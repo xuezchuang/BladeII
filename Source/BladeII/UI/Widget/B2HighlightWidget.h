@@ -1,8 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
-
+//#include "BladeII.h"
 #include "Components/Widget.h"
+#include "UMG/Public/Components/Image.h"
 #include "B2HighlightWidget.generated.h"
 
 /**

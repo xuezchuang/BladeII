@@ -1,4 +1,3 @@
-#include "BladeII.h"
 #include "B2UITeamMatchMain.h"
 #include "B2UIHeader.h"
 #include "B2UIManager.h"

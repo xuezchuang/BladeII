@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-#include "BladeII.h"
-#include "B2UIManager.h"
 #include "B2UICostumeDecompositionPopup.h"
+#include "B2UIManager.h"
+
 #include "B2ItemInfo.h"
 #include "B2Inventory.h"
 #include "Retailer.h"

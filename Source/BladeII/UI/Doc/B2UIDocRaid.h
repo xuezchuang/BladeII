@@ -1,6 +1,7 @@
 #pragma once
 #include "UObject/Object.h"
 #include "B2UIDocBase.h"
+#include "../Common/CommonStruct.h"
 #include "B2UIDocRaid.generated.h"
 
 /* ERaidJointSlotState */

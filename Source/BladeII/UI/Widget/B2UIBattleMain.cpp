@@ -1,4 +1,3 @@
-#include "BladeII.h"
 #include "B2UIBattleMain.h"
 #include "B2UIBattleSkill.h"
 #include "B2UIBattleCombo.h"

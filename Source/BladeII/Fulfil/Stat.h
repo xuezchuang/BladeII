@@ -1,5 +1,5 @@
 #pragma once
-
+//#include "BladeII.h"
 #include <type_traits>
 
 #include "Trigger.h"

@@ -1,5 +1,6 @@
-#include "BladeII.h"
+
 #include "B2HeroMgntSkeletalMeshActor.h"
+//#include "BladeII.h"
 
 AB2HeroMgntSkeletalMeshActor::AB2HeroMgntSkeletalMeshActor(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)

@@ -1,6 +1,6 @@
-#include "BladeII.h"
-#include "B2Button.h"
 #include "B2UIModSelect.h"
+#include "B2Button.h"
+
 #include "B2UIChallengePopUp.h"
 #include "Event.h"
 #include "B2UIManager.h"

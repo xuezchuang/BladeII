@@ -1,6 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BladeII.h"
+
 #include "B2AssetLoader.h"
 #include "BladeIIUtil.h"
 #include "Event.h"
@@ -235,17 +235,17 @@ void UB2AssetLoader::OnAsyncLoadFlush()
 
 	B2_SCOPED_TRACK_LOG(FString::Printf(TEXT("UB2AssetLoader::AsyncLoad Flush!! (while %d asset requests are ongoing)"), TotalAsyncRequestAssetNum));
 
-#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
-	if (bEnableDevLog)
-	{
-		// Flush 시점에 Async 로딩 중인 게 있으면 화면에 로그 띄움.
-		if (TotalAsyncRequestAssetNum > 0)
-		{
-			BII_SCREEN_LOG(FString::Printf(TEXT("[B2AssetLoader] FlushAsyncLoading while %d asset requests are not completed."), TotalAsyncRequestAssetNum),
-				FLinearColor(0.0, 1.0f, 0.0f, 1.0f), 16, 8.0f);
-		}
-	}
-#endif
+//#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
+//	if (bEnableDevLog)
+//	{
+//		// Flush 시점에 Async 로딩 중인 게 있으면 화면에 로그 띄움.
+//		if (TotalAsyncRequestAssetNum > 0)
+//		{
+//			BII_SCREEN_LOG(FString::Printf(TEXT("[B2AssetLoader] FlushAsyncLoading while %d asset requests are not completed."), TotalAsyncRequestAssetNum),
+//				FLinearColor(0.0, 1.0f, 0.0f, 1.0f), 16, 8.0f);
+//		}
+//	}
+//#endif
 }
 
 const FB2AsyncRequest* UB2AssetLoader::GetAsyncRequest(const FString& RequestName)
@@ -284,9 +284,9 @@ bool UB2AssetLoader::WaitUntilLoadComplete(const FString& RequestName)
 	return false;
 }
 
-#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
-bool UB2AssetLoader::bEnableDevLog = false;
-#endif
+//#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
+//bool UB2AssetLoader::bEnableDevLog = false;
+//#endif
 
 
 // ---------------------------- Load Interface ---------------------------- //

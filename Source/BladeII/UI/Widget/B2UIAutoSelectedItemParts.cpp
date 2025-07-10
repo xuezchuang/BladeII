@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-#include "BladeII.h"
-#include "B2UIManager.h"
 #include "B2UIAutoSelectedItemParts.h"
+#include "B2UIManager.h"
+
 #include "B2UILevelupAutoSelect.h"
 #include "B2UIEtherInfoNotify.h"
 

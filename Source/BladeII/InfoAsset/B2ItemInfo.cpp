@@ -1,11 +1,11 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BladeII.h"
+#include "B2ItemInfo.h"
 #include "Particles/ParticleSystemComponent.h"
 #include "Components/AudioComponent.h"
 #include "Sound/SoundCue.h"
 #include "Materials/Material.h"
-#include "B2ItemInfo.h"
+
 #include "B2DropItem.h"
 #include "BladeIIGameMode.h"
 #include "B2Inventory.h"

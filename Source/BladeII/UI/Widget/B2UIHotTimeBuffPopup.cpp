@@ -1,10 +1,10 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BladeII.h"
+#include "B2UIHotTimeBuffPopup.h"
 #include "HotTimeBuffManager.h"
 #include "BladeIIUtil.h"
 #include "B2UIHotTimeBuffPart.h"
-#include "B2UIHotTimeBuffPopup.h"
+
 #include "B2GameInstance.h"
 #include "B2PlatformAPI.h"
 

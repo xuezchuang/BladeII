@@ -4,6 +4,7 @@
 #pragma once
 
 #include "B2UnitedWidgetBase.h"
+#include "BladeII.h"
 #include "B2DebugTextWidget.generated.h"
 
 /** Info struct for queueing new debug text draw */

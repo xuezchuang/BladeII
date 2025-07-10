@@ -1,7 +1,8 @@
-#include "BladeII.h"
+#include "B2GuildDataStore.h"
+//#include "BladeII.h"
 #include "B2StageDataStore.h"
 #include "B2ClientDataStore.h"
-#include "B2GuildDataStore.h"
+
 #include "B2StageManager.h"
 #include "Event.h"
 //#include "B2UIManager.h"

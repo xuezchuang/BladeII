@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 // Project BladeII, ACTION SQUARE
 
-#include "BladeII.h"
+
 #include "B2NetworkBridge.h"
 #include "Event.h"
 //#include "InternalEvents.h"

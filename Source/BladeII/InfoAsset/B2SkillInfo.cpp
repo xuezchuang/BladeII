@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 // Project BladeII, Action Square
 
-#include "BladeII.h"
+
 #include "B2SkillInfo.h"
 #include "Materials/Material.h"
 #include "Animation/AnimSequenceBase.h"

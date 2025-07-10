@@ -2,7 +2,7 @@
 // Project BladeII, Action Square
 
 #pragma once
-
+////#include "BladeII.h"
 #include "UMG.h"
 #include "B2UnitedWidgetBase.h"
 #include "B2UIEnum.h"

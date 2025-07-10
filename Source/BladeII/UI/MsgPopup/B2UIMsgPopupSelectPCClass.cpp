@@ -1,4 +1,3 @@
-#include "BladeII.h"
 #include "B2UIMsgPopupSelectPCClass.h"
 #include "B2UICharacterSelectPage.h"
 #include "B2UIDocHelper.h"

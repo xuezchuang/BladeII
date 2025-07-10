@@ -2,7 +2,7 @@
 // Project BladeII, Action Square
 
 #pragma once
-
+//#include "BladeII.h"
 #include "Animation/SkeletalMeshActor.h"
 #include "CommonStruct.h"
 #include "BladeIICharacter.h"

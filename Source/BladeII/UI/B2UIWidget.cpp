@@ -1,4 +1,4 @@
-#include "BladeII.h"
+
 #include "B2UIWidget.h"
 #include "MovieScene.h"
 #include "Animation/WidgetAnimation.h"

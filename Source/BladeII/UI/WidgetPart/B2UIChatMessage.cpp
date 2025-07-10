@@ -1,4 +1,3 @@
-#include "BladeII.h"
 #include "B2UIChatMessage.h"
 #include "B2UIManager.h"
 #include "B2Chatting.h"
