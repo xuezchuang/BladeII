@@ -1636,7 +1636,7 @@ protected:
 	virtual void TriggerKillMonster();
 
 	/** notification when killed, for both the server and client. */
-	//virtual void OnDeath(float KillingDamage, struct FDamageEvent const& DamageEvent, class APawn* InstigatingPawn, class AActor* DamageCauser);
+	virtual void OnDeath(float KillingDamage, struct FDamageEvent const& DamageEvent, class APawn* InstigatingPawn, class AActor* DamageCauser);
 
 	void ReportMyDeathToBirthplace(); // Part of OnDeath, for mob spawned from SpawnPool. Sometimes need this to be called manually.
 

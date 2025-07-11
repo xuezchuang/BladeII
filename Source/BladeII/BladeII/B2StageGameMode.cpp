@@ -1,6 +1,6 @@
 //// Fill out your copyright notice in the Description page of Project Settings.
 //
-#include "B2StageGameMode.h"
+//#include "B2StageGameMode.h"
 //#include "Runtime/Engine/Public/Engine.h"
 //#if WITH_EDITOR
 //#include "Editor.h"

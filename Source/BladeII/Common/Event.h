@@ -1,36 +1,38 @@
-//#pragma once
-////#include "BladeII.h"
-////
-//#include "EventSubsystem.h"
-////#include "Animation/SkeletalMeshActor.h"
-//#include "BladeIIPlayer.h"
-////#include "B2LobbyUISwitcher.h"
-//#include "B2StageEventDirector.h"
-//#include "B2UIEnum.h"
-////#include "B2LobbySceneManager.h"
-////#include "B2UIManager_Lobby.h"
-//#include "CommonStruct.h"
-//#include "Engine/Channel.h"
-//#include "B2Chatting.h"
-//#include "B2GameLoadingScreen.h"
-////#include "../UI/DJLegacy/B2FloatingAbnormalEffect.h"
+#pragma once
+//#include "BladeII.h"
 //
-//class ABladeIICharacter;
-//class ABladeIIPlayer;
-//class AB2MonsterSpawnPool;
-//class AB2StageEventDirector;
-//class ASkeletalMeshActor;
-//class Quest;
-//enum class EStateAfterGradeUp : uint32;
-//enum class EMissionType : uint8;
-//
+#include "EventSubsystem.h"
+//#include "Animation/SkeletalMeshActor.h"
+#include "BladeIIPlayer.h"
+//#include "B2LobbyUISwitcher.h"
+#include "B2StageEventDirector.h"
+#include "B2UIEnum.h"
+//#include "B2LobbySceneManager.h"
+//#include "B2UIManager_Lobby.h"
+#include "CommonStruct.h"
+#include "Engine/Channel.h"
+#include "B2Chatting.h"
+#include "B2GameLoadingScreen.h"
+#include "UMG/Public/Components/Button.h"
+#include "../UI/Widget/B2Button.h"
+//#include "../UI/DJLegacy/B2FloatingAbnormalEffect.h"
+
+class ABladeIICharacter;
+class ABladeIIPlayer;
+class AB2MonsterSpawnPool;
+class AB2StageEventDirector;
+class ASkeletalMeshActor;
+class Quest;
+enum class EStateAfterGradeUp : uint32;
+enum class EMissionType : uint8;
+
 //
 //DECLARE_EVENT_CLASS(StageBegin)
 //DECLARE_EVENT_CLASS(CharacterBeginPlay, ABladeIICharacter*)
 //DECLARE_EVENT_CLASS(CancelCastAreaDamage, ABladeIICharacter*)
 //DECLARE_EVENT_CLASS(TargetDamaged, ABladeIICharacter*, int32, float)
 //DECLARE_EVENT_CLASS(CharacterTakeDamage, ABladeIICharacter*, float, bool)
-//DECLARE_EVENT_CLASS(CharacterAbnormalEffect, ABladeIICharacter*, const FLoadedFloatingAbnormalEffectSetupInfo&)
+////DECLARE_EVENT_CLASS(CharacterAbnormalEffect, ABladeIICharacter*, const FLoadedFloatingAbnormalEffectSetupInfo&)
 //DECLARE_EVENT_CLASS(PlayerTagged, ABladeIIPlayer*, ABladeIIPlayer*)
 //DECLARE_EVENT_CLASS(CharacterDeath, ABladeIICharacter*)
 //DECLARE_EVENT_CLASS(PlayerSuckedGold, int32)
@@ -78,9 +80,9 @@
 //DECLARE_EVENT_CLASS(StartVisibleChatPopup, EB2GameMode)
 //DECLARE_EVENT_CLASS(StopVisibleChatPopup)
 //
-//DECLARE_EVENT_CLASS(DJLegacy_ChangeLobbyUIPage, ELobbyUIPages)
-//DECLARE_EVENT_CLASS(DJLegacy_OpenLobbySubPopup, ELobbySubPopups, FDJLegacySubpopupAddPanelInfo)
-//DECLARE_EVENT_CLASS(DJLegacy_CloseLobbySubPopup, ELobbySubPopups)
+////DECLARE_EVENT_CLASS(DJLegacy_ChangeLobbyUIPage, ELobbyUIPages)
+////DECLARE_EVENT_CLASS(DJLegacy_OpenLobbySubPopup, ELobbySubPopups, FDJLegacySubpopupAddPanelInfo)
+////DECLARE_EVENT_CLASS(DJLegacy_CloseLobbySubPopup, ELobbySubPopups)
 //DECLARE_EVENT_CLASS(ChangeInvenItemOpMode, ELobbyInvenItemOpMode)
 //DECLARE_EVENT_CLASS(LobbyPCSelectionChanged, EPCClass)
 //DECLARE_EVENT_CLASS(StartGameStageFromLobby, int32, EStageDifficulty, const TArray<EStageBuffType>&, bool)
@@ -173,7 +175,7 @@
 //DECLARE_EVENT_CLASS(ChangeTeamMatchPointChargeTime)
 //DECLARE_EVENT_CLASS(LobbyInvenSetItemOpModeGuideText, const FText&)
 //DECLARE_EVENT_CLASS(LobbyInvenHideItemOpModeGuideText)
-//DECLARE_EVENT_CLASS(LobbyChangeScene, ELobbyScene)
+////DECLARE_EVENT_CLASS(LobbyChangeScene, ELobbyScene)
 //DECLARE_EVENT_CLASS(LobbyChangeSceneByUIScene, EUIScene)
 //DECLARE_EVENT_CLASS(LobbyChangeToChapterSceneByUIScene, int32)
 //DECLARE_EVENT_CLASS(LobbyUpdateCharacterPart, EPCClass)
@@ -328,7 +330,7 @@
 //DECLARE_EVENT_CLASS(LobbyMainCameraMove, float)
 //DECLARE_EVENT_CLASS(LobbyCharZoom, const FVector2D&, float)
 //
-//DECLARE_EVENT_CLASS(CreateLobbyCharOnHeadDisplay, EPCClass, ASkeletalMeshActor*, ELobbyOnHeadDisplayType)
+////DECLARE_EVENT_CLASS(CreateLobbyCharOnHeadDisplay, EPCClass, ASkeletalMeshActor*, ELobbyOnHeadDisplayType)
 //DECLARE_EVENT_CLASS(DestroyAllLobbyCharOnHeadDisplay)
 //DECLARE_EVENT_CLASS(UpdateLobbyCharOnHeadDisplay)
 //DECLARE_EVENT_CLASS(LobbyCharObservePopupNickEdit, EPCClass)
@@ -566,7 +568,7 @@
 //DECLARE_EVENT_CLASS(DeliveryReceiveRenewalMagicShopError, FB2ResponseRenewalMagicShopPtr)
 //DECLARE_EVENT_CLASS(DeliveryReceivePurchaseMagicShopError, FB2ResponsePurchaseMagicShopPtr)
 //
-////DECLARE_EVENT_CLASS(HandleServerErrorGoodsShortage,		const uint32, const EGoodsButtonType)
+//DECLARE_EVENT_CLASS(HandleServerErrorGoodsShortage,		const uint32, const EGoodsButtonType)
 //DECLARE_EVENT_CLASS(HandleServerError4018)
 //
 //
@@ -599,8 +601,8 @@
 //DECLARE_EVENT_CLASS(ReceivedRotation,					uint32, FRotator)
 //DECLARE_EVENT_CLASS(ReceivedAttack,						uint32, FVector,FRotator)
 //DECLARE_EVENT_CLASS(ReceivedStopAttack,					uint32, FVector,FRotator)
-////DECLARE_EVENT_CLASS(ReceivedGuard,						uint32, FVector,FRotator,uint32,uint32,uint8,uint8)
-////DECLARE_EVENT_CLASS(ReceivedStopGuard,					uint32, FVector,FRotator)
+//DECLARE_EVENT_CLASS(ReceivedGuard,						uint32, FVector,FRotator,uint32,uint32,uint8,uint8)
+//DECLARE_EVENT_CLASS(ReceivedStopGuard,					uint32, FVector,FRotator)
 //DECLARE_EVENT_CLASS(ReceivedSkillAttack,				uint32, uint8,uint8,FVector,FRotator)
 //DECLARE_EVENT_CLASS(ReceivedTagPlayer,					uint32, uint8,uint8,FVector,FRotator)
 //DECLARE_EVENT_CLASS(ReceivedComboEnd,					uint32, uint8, bool)
@@ -608,7 +610,7 @@
 //DECLARE_EVENT_CLASS(ReceivedRequestDamage,				uint32, uint32, float, uint32)
 //DECLARE_EVENT_CLASS(ReceivedHealth,						uint32, float, uint32)
 //DECLARE_EVENT_CLASS(ReceivedUpdateTarget,				uint32, uint32, float)
-////DECLARE_EVENT_CLASS(ReceivedCounterAttack,				uint32, FVector, FRotator)
+//DECLARE_EVENT_CLASS(ReceivedCounterAttack,				uint32, FVector, FRotator)
 //DECLARE_EVENT_CLASS(ReceivedMobAttack,					uint32, FVector, FRotator, bool, uint32)
 //DECLARE_EVENT_CLASS(ReceivedResurrect,					uint32, FVector, FRotator, TMap<EResurrectBuffType, uint8>)
 //DECLARE_EVENT_CLASS(ReceivedRaidNotifyResult,			bool, uint32, TArray<TPair<int32, int32>> const &)
@@ -655,7 +657,7 @@
 //DECLARE_EVENT_CLASS(ReceivedConquestAreaState,			uint8, float, float)
 //DECLARE_EVENT_CLASS(ReceivedControlState,				uint8, float, float, bool)
 //DECLARE_EVENT_CLASS(ReceivedControlKillCount,			TMap<uint32, int32>*)
-////DECLARE_EVENT_CLASS(ReceivedControlResult,				ETeamType)
+//DECLARE_EVENT_CLASS(ReceivedControlResult,				ETeamType)
 //DECLARE_EVENT_CLASS(ReceivedControlTimer,				uint8, float)
 //DECLARE_EVENT_CLASS(ReceivedControlEnemyLeaveAll)
 //
@@ -992,9 +994,9 @@
 //DECLARE_EVENT_CLASS(DeliveryAddTotemToInventory, FB2AddTotemToInventoryPtr)
 //DECLARE_EVENT_CLASS(SuccesGetAccountTotem)
 //DECLARE_EVENT_CLASS(LobbyReqToggleTotemLock, int64, bool)
-//DECLARE_EVENT_CLASS(UpdateTotemInfoPopupControl, FB2Totem)
-//DECLARE_EVENT_CLASS(UpdateTotemSmeltingResult, bool, FB2Totem)
-//DECLARE_EVENT_CLASS(LobbyReqSmeltingCompleteTotem)
+////DECLARE_EVENT_CLASS(UpdateTotemInfoPopupControl, FB2Totem)
+////DECLARE_EVENT_CLASS(UpdateTotemSmeltingResult, bool, FB2Totem)
+////DECLARE_EVENT_CLASS(LobbyReqSmeltingCompleteTotem)
 //
 ////ItemForge
 //DECLARE_EVENT_CLASS(DeliveryGetItemForgeList, FB2ResponseGetItemForgeListPtr)

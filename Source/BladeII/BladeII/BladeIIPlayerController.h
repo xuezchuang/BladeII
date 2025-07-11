@@ -1,18 +1,18 @@
-////// Copyright 1998-2014 Epic Games, Inc. All Rights Reserved.
-////#pragma once
-//////#include "BladeII.h"
-////#include "GameFramework/PlayerController.h"
-////////#include "Matinee/MatineeActor.h"
-////#include "BladeIIPlayer.h"
-////#include "Navigation/GridPathFollowingComponent.h"
-//////#include "MyAssetStore.h"
-////#include "BladeIIPlayerController.generated.h"
-////
-////UCLASS()
-////class ABladeIIPlayerController : public APlayerController
-////{
-////	GENERATED_BODY()
-////
+// Copyright 1998-2014 Epic Games, Inc. All Rights Reserved.
+#pragma once
+//#include "BladeII.h"
+#include "GameFramework/PlayerController.h"
+////#include "Matinee/MatineeActor.h"
+#include "BladeIIPlayer.h"
+//#include "Navigation/GridPathFollowingComponent.h"
+//#include "MyAssetStore.h"
+#include "BladeIIPlayerController.generated.h"
+
+UCLASS()
+class ABladeIIPlayerController : public APlayerController
+{
+	GENERATED_BODY()
+
 ////public:
 ////	ABladeIIPlayerController(const FObjectInitializer& ObjectInitializer);
 ////
@@ -262,7 +262,7 @@
 ////	//{
 ////	//	return MyAssetStore;
 ////	//}
-////};
+};
 ////
 ////FORCEINLINE bool ABladeIIPlayerController::IsInCinematicMode() const
 ////{

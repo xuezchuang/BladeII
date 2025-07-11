@@ -1,7 +1,7 @@
-//// Copyright 1998-2014 Epic Games, Inc. All Rights Reserved.
-//
-//
-//#include "BladeIIPlayerController.h"
+// Copyright 1998-2014 Epic Games, Inc. All Rights Reserved.
+
+
+#include "BladeIIPlayerController.h"
 //#include "BladeIIPlayer.h"
 ////#include "BladeIINetPlayer.h"
 ////#include "B2AutoAIController.h"

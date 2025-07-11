@@ -1080,81 +1080,81 @@ void ResetAllScalabilitySettings()
 /************************************************************************
 게임 모드 별 Scalability 설정 인터페이스 구현을 관리하기 좋게 여기에 몰아넣음.
 ************************************************************************/
-//
-//void ABladeIIGameMode::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
-//{
-//	
-//	// 여긴 Override 를 하지 않았을 때의 기본 구현으로 가장 기본값으로 돌아갈 수 있도록 한다. 
-//	//
-//
-//	// ApplyGameModeSpecificScalabilitySetting 을 따로 Override 하지 않으면 AdjustScalabilityBySelectedLevel 를 그대로 사용한 것과 마찬가지가 되도록.
-//
-//	//EB2GraphicsLevel UsedGraphicsLevel = InSelectedGraphicsLevel;
-//	//if (UsedGraphicsLevel == EB2GraphicsLevel::GraphicsLevel_End) // 지정하지 않은 경우 UI 설정에 따라 ini 저장된 값 사용.
-//	//{
-//	//	int32 SavedGraphicsLevel = B2GraphicsLevelToInt(EB2GraphicsLevel::GraphicsLevel_HIGH);
-//	//	bool bSettingLoaded = LoadGameSetting_Graphics_OrByDefault(SavedGraphicsLevel);
-//	//	// 이 이전에 GameSetting 값 초기화가 안 되어 있다고 해도 여기선 기본 scalability 로 돌려놓으니 문제는 없겠지만 그래도 바람직한 상황은 아니지.
-//	//	check(bSettingLoaded);
-//	//	UsedGraphicsLevel = IntToB2GraphicsLevel(SavedGraphicsLevel);
-//	//}
-//
-//	//{
-//	//	const int32 DesiredScalabilityLevel = B2Scalability::GetScalabilityLevelOfGraphicsLevel(UsedGraphicsLevel);
-//	//	if (Scalability::GetQualityLevels_Shadow() != DesiredScalabilityLevel) {
-//	//		Scalability::SetQualityLevels_Shadow(DesiredScalabilityLevel);
-//	//	}
-//	//}
-//	//{
-//	//	const int32 DesiredScalabilityLevel = B2Scalability::GetScalabilityLevelOfGraphicsLevel(UsedGraphicsLevel);
-//	//	if (Scalability::GetQualityLevels_Effects() != DesiredScalabilityLevel) {
-//	//		Scalability::SetQualityLevels_Effects(DesiredScalabilityLevel);
-//	//	}
-//	//}
-//	//{
-//	//	const int32 DesiredScalabilityLevel = B2Scalability::GetScalabilityLevelOfGraphicsLevel(UsedGraphicsLevel);
-//	//	if (Scalability::GetQualityLevels_PostProcess() != DesiredScalabilityLevel) {
-//	//		Scalability::SetQualityLevels_PostProcess(DesiredScalabilityLevel);
-//	//	}
-//	//}
-//	//{
-//	//	const int32 DesiredScalabilityLevel = B2Scalability::GetScalabilityLevelOfGraphicsLevel(UsedGraphicsLevel);
-//	//	if (Scalability::GetQualityLevels_PostProcessExtra() != DesiredScalabilityLevel) {
-//	//		Scalability::SetQualityLevels_PostProcessExtra(DesiredScalabilityLevel);
-//	//	}
-//	//}
-//	//{
-//	//	const int32 DesiredScalabilityLevel = B2Scalability::GetTextureLevelOfGraphicsLevel(UsedGraphicsLevel);
-//	//	if (Scalability::GetQualityLevels_Texture() != DesiredScalabilityLevel) {
-//	//		Scalability::SetQualityLevels_Texture(DesiredScalabilityLevel);
-//	//	}
-//	//}
-//	//{
-//	//	float DesiredScalabilityLevel = B2Scalability::GetResolutionScaleOfGraphicsLevel(UsedGraphicsLevel);
-//	//	// 모드별 override 가 아니더라도 RQType 에 따른 추가 조절은 필요.
-//	//	B2Scalability::AdjustResolutionQualityByRQType(B2Scalability::GetSafeMappedRQTypeOfResolutionLevel(InSelectedResLevel), DesiredScalabilityLevel);
-//	//	if (Scalability::GetQualityLevels_Resolution() != DesiredScalabilityLevel) {
-//	//		Scalability::SetQualityLevels_Resolution(DesiredScalabilityLevel);
-//	//	}
-//	//}
-//	//{
-//	//	const int32 DesiredScalabilityLevel = B2Scalability::GetGameplayOnlyLODQualityOfGraphicsLevel(UsedGraphicsLevel);
-//	//	if (Scalability::GetQualityLevels_GameplayOnlyLOD() != DesiredScalabilityLevel) {
-//	//		Scalability::SetQualityLevels_GameplayOnlyLOD(DesiredScalabilityLevel);
-//	//	}
-//	//}
-//	//{
-//	//	const int32 DesiredScalabilityLevel = B2Scalability::GetScalabilityLevelOfGraphicsLevel(UsedGraphicsLevel);
-//	//	if (Scalability::GetQualityLevels_ViewDistance() != DesiredScalabilityLevel) {
-//	//		Scalability::SetQualityLevels_ViewDistance(DesiredScalabilityLevel);
-//	//	}
-//	//}
-//}
-//FString ABladeIIGameMode::GetGameModeScalabilitySettingSectionPostfix() const
-//{
-//	return FString(TEXT("ABladeIIGameMode")); // 게임모드 이름 그대로 리턴하는데 Class GetName 하니까 결국 Blueprint 클래스 이름이 나와서 이렇게.. ㅡㅡ
-//}
-//
+
+void ABladeIIGameMode::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
+{
+	
+	// 여긴 Override 를 하지 않았을 때의 기본 구현으로 가장 기본값으로 돌아갈 수 있도록 한다. 
+	//
+
+	// ApplyGameModeSpecificScalabilitySetting 을 따로 Override 하지 않으면 AdjustScalabilityBySelectedLevel 를 그대로 사용한 것과 마찬가지가 되도록.
+
+	//EB2GraphicsLevel UsedGraphicsLevel = InSelectedGraphicsLevel;
+	//if (UsedGraphicsLevel == EB2GraphicsLevel::GraphicsLevel_End) // 지정하지 않은 경우 UI 설정에 따라 ini 저장된 값 사용.
+	//{
+	//	int32 SavedGraphicsLevel = B2GraphicsLevelToInt(EB2GraphicsLevel::GraphicsLevel_HIGH);
+	//	bool bSettingLoaded = LoadGameSetting_Graphics_OrByDefault(SavedGraphicsLevel);
+	//	// 이 이전에 GameSetting 값 초기화가 안 되어 있다고 해도 여기선 기본 scalability 로 돌려놓으니 문제는 없겠지만 그래도 바람직한 상황은 아니지.
+	//	check(bSettingLoaded);
+	//	UsedGraphicsLevel = IntToB2GraphicsLevel(SavedGraphicsLevel);
+	//}
+
+	//{
+	//	const int32 DesiredScalabilityLevel = B2Scalability::GetScalabilityLevelOfGraphicsLevel(UsedGraphicsLevel);
+	//	if (Scalability::GetQualityLevels_Shadow() != DesiredScalabilityLevel) {
+	//		Scalability::SetQualityLevels_Shadow(DesiredScalabilityLevel);
+	//	}
+	//}
+	//{
+	//	const int32 DesiredScalabilityLevel = B2Scalability::GetScalabilityLevelOfGraphicsLevel(UsedGraphicsLevel);
+	//	if (Scalability::GetQualityLevels_Effects() != DesiredScalabilityLevel) {
+	//		Scalability::SetQualityLevels_Effects(DesiredScalabilityLevel);
+	//	}
+	//}
+	//{
+	//	const int32 DesiredScalabilityLevel = B2Scalability::GetScalabilityLevelOfGraphicsLevel(UsedGraphicsLevel);
+	//	if (Scalability::GetQualityLevels_PostProcess() != DesiredScalabilityLevel) {
+	//		Scalability::SetQualityLevels_PostProcess(DesiredScalabilityLevel);
+	//	}
+	//}
+	//{
+	//	const int32 DesiredScalabilityLevel = B2Scalability::GetScalabilityLevelOfGraphicsLevel(UsedGraphicsLevel);
+	//	if (Scalability::GetQualityLevels_PostProcessExtra() != DesiredScalabilityLevel) {
+	//		Scalability::SetQualityLevels_PostProcessExtra(DesiredScalabilityLevel);
+	//	}
+	//}
+	//{
+	//	const int32 DesiredScalabilityLevel = B2Scalability::GetTextureLevelOfGraphicsLevel(UsedGraphicsLevel);
+	//	if (Scalability::GetQualityLevels_Texture() != DesiredScalabilityLevel) {
+	//		Scalability::SetQualityLevels_Texture(DesiredScalabilityLevel);
+	//	}
+	//}
+	//{
+	//	float DesiredScalabilityLevel = B2Scalability::GetResolutionScaleOfGraphicsLevel(UsedGraphicsLevel);
+	//	// 모드별 override 가 아니더라도 RQType 에 따른 추가 조절은 필요.
+	//	B2Scalability::AdjustResolutionQualityByRQType(B2Scalability::GetSafeMappedRQTypeOfResolutionLevel(InSelectedResLevel), DesiredScalabilityLevel);
+	//	if (Scalability::GetQualityLevels_Resolution() != DesiredScalabilityLevel) {
+	//		Scalability::SetQualityLevels_Resolution(DesiredScalabilityLevel);
+	//	}
+	//}
+	//{
+	//	const int32 DesiredScalabilityLevel = B2Scalability::GetGameplayOnlyLODQualityOfGraphicsLevel(UsedGraphicsLevel);
+	//	if (Scalability::GetQualityLevels_GameplayOnlyLOD() != DesiredScalabilityLevel) {
+	//		Scalability::SetQualityLevels_GameplayOnlyLOD(DesiredScalabilityLevel);
+	//	}
+	//}
+	//{
+	//	const int32 DesiredScalabilityLevel = B2Scalability::GetScalabilityLevelOfGraphicsLevel(UsedGraphicsLevel);
+	//	if (Scalability::GetQualityLevels_ViewDistance() != DesiredScalabilityLevel) {
+	//		Scalability::SetQualityLevels_ViewDistance(DesiredScalabilityLevel);
+	//	}
+	//}
+}
+FString ABladeIIGameMode::GetGameModeScalabilitySettingSectionPostfix() const
+{
+	return FString(TEXT("ABladeIIGameMode")); // 게임모드 이름 그대로 리턴하는데 Class GetName 하니까 결국 Blueprint 클래스 이름이 나와서 이렇게.. ㅡㅡ
+}
+
 //void AB2LobbyGameMode::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
 //{
 //	B2Scalability::ApplyGameModeSpecificScalabilitySetting_OverrideCommon(this, InSelectedGraphicsLevel, InSelectedResLevel);

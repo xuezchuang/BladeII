@@ -578,91 +578,91 @@ void ABladeIICharacter::TriggerKillMonster()
 	//KillSpecificMonsterTriggerClass<ABladeIICharacter*>::GetInstance().Signal(this);
 }
 
-//void ABladeIICharacter::OnDeath(float KillingDamage, struct FDamageEvent const& DamageEvent, class APawn* PawnInstigator, class AActor* DamageCauser)
-//{
-////	//BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_OnDeath);
-////#if !UE_BUILD_SHIPPING
-////	// 여긴 좀 더 정보를 줘서 트랙킹.
-////	FString ScopedTrackString = FString::Printf(TEXT("ABladeIICharacter::OnDeath %s by %s"), *GetName(), PawnInstigator ? *PawnInstigator->GetName() : TEXT("Unknown"));
-////	B2_SCOPED_TRACK_LOG(ScopedTrackString);
-////#endif
-////
-////	if (bIsDying)
-////	{
-////		return;
-////	}
+void ABladeIICharacter::OnDeath(float KillingDamage, struct FDamageEvent const& DamageEvent, class APawn* PawnInstigator, class AActor* DamageCauser)
+{
+//	//BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_OnDeath);
+//#if !UE_BUILD_SHIPPING
+//	// 여긴 좀 더 정보를 줘서 트랙킹.
+//	FString ScopedTrackString = FString::Printf(TEXT("ABladeIICharacter::OnDeath %s by %s"), *GetName(), PawnInstigator ? *PawnInstigator->GetName() : TEXT("Unknown"));
+//	B2_SCOPED_TRACK_LOG(ScopedTrackString);
+//#endif
 //
-//	//bReplicateMovement = false;
-//	//bTearOff = true;
-//	//bIsDying = true; // Animation Blueprint 로 보내는 신호. 스테이지 진행이나 연출 트리거 차원에서의 처리는 네이티브서 하지만 몬스터의 전투 모션을 중단하고 dead 모션을 취하는 건 이걸 통해 들어감.
-//	//bCanBeDamaged = false;
-//	SetQTEEnabled(false);
-//	//bAbleToMove = false;
-//
-//	if (QTEType != EQTEType::EQT_Mount)
-//		SetQTEStateFlag(false);
-//
-//	GetMesh()->SetCollisionResponseToChannel(ECC_GameTraceChannel1, ECR_Ignore);
-//	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_GameTraceChannel1, ECR_Ignore);
-//	GetMesh()->SetCollisionResponseToChannel(ECC_Pawn, ECR_Ignore);
-//	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_Pawn, ECR_Ignore);
-//	GetMesh()->SetCollisionResponseToChannel(ECC_Vehicle, ECR_Ignore);
-//	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_Vehicle, ECR_Ignore);
-//
-//	if (DamageCauser)
+//	if (bIsDying)
 //	{
-//		FVector Diff = DamageCauser->GetActorLocation() - GetActorLocation();
-//		FRotator TargetRotation(0.f, FRotator::ClampAxis(FMath::Atan2(Diff.Y, Diff.X) * 180.f / PI), 0.f);
-//		SetActorRotation(TargetRotation);
+//		return;
 //	}
-//
-//	DropItem();
-//
-//	ABladeIIGameMode* B2GM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(this));
-//
-//	// For PC, we might not want destroy InGameHUDWidget at this moment
-//	// 이 시점에서 바로 DestroyUIManager 를 하지 않는다. 왜냐하면 DamageNum 같은 애들이 일정 기간은 남아있어야 하기 때문. 
-//	// 적당히 1초 후에 불리도록 타이머를 설치하는데 그 전에 파괴가 되면 Destroyed 에서 처리가 될 거고, 1초가 짧다면.. 음.. 그건 얘기가 들어오면 생각.
-//	//bool ResurrectionGameModeType = B2GM && B2GM->GetUIManager_InGameCombat() && B2GM->GetUIManager_InGameCombat()->CanResurrectionGameModeType();
-//
-//	//if (ResurrectionGameModeType == false)
-//	//{
-//	//	GetWorldTimerManager().SetTimer(DelayedDestroyUIManagerTH, this, &ABladeIICharacter::DelayedDestroyUIManagerCB, 1.0f, false);
-//	//	HideFloatingHPBar(true); // 대신 HPBar 는 바로 안 보이게
-//	//}
-//
-//
-//	ResetFlash();
-//
-//	//if (Role == ROLE_Authority)
-//	//{
-//	//	ReplicateHit(KillingDamage, DamageEvent, PawnInstigator, DamageCauser, true);
-//	//}
-//
-//	GetWorldTimerManager().ClearTimer(SetHitFlashTimerHandle);
-//	GetWorldTimerManager().ClearTimer(SetRegenerateHPHandle);
-//	GetWorldTimerManager().ClearTimer(SetDeadSinkHandle);
-//	GetWorldTimerManager().ClearTimer(OnQTEEnableEndTH);
-//
-//	ConditionalReportMyDeathToBirthplace(); // 뭔가 재진입을 하는 케이스가 있다.. ㅡㅡ
-//
-//	//CancelCastAreaDamageClass<ABladeIICharacter*>::GetInstance().Signal(this);
-//
-//	//for (auto Key : EventCancelCastAreaDamageSubscribeKeys)
-//	//	CancelCastAreaDamageClass<ABladeIICharacter*>::GetInstance().Unsubscribe(Key);
-//
-//	// 본인이 죽었다고 게임모드에 알림(피니쉬 공격 연출용도로 작성)
-//	// ReportMyDeathToBirthplace 에서 보내는 통지와 중복되는 면이 있는데 현재로선 역할이 조금씩 다름.
-//	if (B2GM)
-//		//B2GM->NotifyCharacterDead(this, PawnInstigator, DamageCauser);
-//
-//	TriggerKillMonster();
-//
-//	//CharacterDeathClass<ABladeIICharacter*>::GetInstance().Signal(this);
-//
-//	// 버프제거
-//	//BuffManager->ClearAllBuffs();
-//}
+
+	//bReplicateMovement = false;
+	//bTearOff = true;
+	//bIsDying = true; // Animation Blueprint 로 보내는 신호. 스테이지 진행이나 연출 트리거 차원에서의 처리는 네이티브서 하지만 몬스터의 전투 모션을 중단하고 dead 모션을 취하는 건 이걸 통해 들어감.
+	//bCanBeDamaged = false;
+	SetQTEEnabled(false);
+	//bAbleToMove = false;
+
+	if (QTEType != EQTEType::EQT_Mount)
+		SetQTEStateFlag(false);
+
+	GetMesh()->SetCollisionResponseToChannel(ECC_GameTraceChannel1, ECR_Ignore);
+	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_GameTraceChannel1, ECR_Ignore);
+	GetMesh()->SetCollisionResponseToChannel(ECC_Pawn, ECR_Ignore);
+	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_Pawn, ECR_Ignore);
+	GetMesh()->SetCollisionResponseToChannel(ECC_Vehicle, ECR_Ignore);
+	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_Vehicle, ECR_Ignore);
+
+	if (DamageCauser)
+	{
+		FVector Diff = DamageCauser->GetActorLocation() - GetActorLocation();
+		FRotator TargetRotation(0.f, FRotator::ClampAxis(FMath::Atan2(Diff.Y, Diff.X) * 180.f / PI), 0.f);
+		SetActorRotation(TargetRotation);
+	}
+
+	DropItem();
+
+	ABladeIIGameMode* B2GM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(this));
+
+	// For PC, we might not want destroy InGameHUDWidget at this moment
+	// 이 시점에서 바로 DestroyUIManager 를 하지 않는다. 왜냐하면 DamageNum 같은 애들이 일정 기간은 남아있어야 하기 때문. 
+	// 적당히 1초 후에 불리도록 타이머를 설치하는데 그 전에 파괴가 되면 Destroyed 에서 처리가 될 거고, 1초가 짧다면.. 음.. 그건 얘기가 들어오면 생각.
+	//bool ResurrectionGameModeType = B2GM && B2GM->GetUIManager_InGameCombat() && B2GM->GetUIManager_InGameCombat()->CanResurrectionGameModeType();
+
+	//if (ResurrectionGameModeType == false)
+	//{
+	//	GetWorldTimerManager().SetTimer(DelayedDestroyUIManagerTH, this, &ABladeIICharacter::DelayedDestroyUIManagerCB, 1.0f, false);
+	//	HideFloatingHPBar(true); // 대신 HPBar 는 바로 안 보이게
+	//}
+
+
+	ResetFlash();
+
+	//if (Role == ROLE_Authority)
+	//{
+	//	ReplicateHit(KillingDamage, DamageEvent, PawnInstigator, DamageCauser, true);
+	//}
+
+	GetWorldTimerManager().ClearTimer(SetHitFlashTimerHandle);
+	GetWorldTimerManager().ClearTimer(SetRegenerateHPHandle);
+	GetWorldTimerManager().ClearTimer(SetDeadSinkHandle);
+	GetWorldTimerManager().ClearTimer(OnQTEEnableEndTH);
+
+	ConditionalReportMyDeathToBirthplace(); // 뭔가 재진입을 하는 케이스가 있다.. ㅡㅡ
+
+	//CancelCastAreaDamageClass<ABladeIICharacter*>::GetInstance().Signal(this);
+
+	//for (auto Key : EventCancelCastAreaDamageSubscribeKeys)
+	//	CancelCastAreaDamageClass<ABladeIICharacter*>::GetInstance().Unsubscribe(Key);
+
+	// 본인이 죽었다고 게임모드에 알림(피니쉬 공격 연출용도로 작성)
+	// ReportMyDeathToBirthplace 에서 보내는 통지와 중복되는 면이 있는데 현재로선 역할이 조금씩 다름.
+	if (B2GM)
+		//B2GM->NotifyCharacterDead(this, PawnInstigator, DamageCauser);
+
+	TriggerKillMonster();
+
+	//CharacterDeathClass<ABladeIICharacter*>::GetInstance().Signal(this);
+
+	// 버프제거
+	//BuffManager->ClearAllBuffs();
+}
 
 void ABladeIICharacter::DieForQTE()
 {
@@ -3274,7 +3274,7 @@ void ABladeIICharacter::SetQTEStateFlag(bool bInState)
 
 void ABladeIICharacter::SetAttackState(EAttackState InAttackState)
 {
-	//BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_SetAttackState);
+	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_SetAttackState);
 	AttackState = InAttackState;
 }
 
