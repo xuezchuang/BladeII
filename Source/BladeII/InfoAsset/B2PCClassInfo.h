@@ -108,6 +108,7 @@ protected:
 	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TSubclassOf<class ABladeIIPlayer> BaseBPClass;
+
 public:
 	TSubclassOf<class ABladeIIPlayer> GetBaseBPClass(UObject* WorldContextObject);
 
@@ -232,20 +233,20 @@ public:
 	float DamageNumZOffsetOverride;
 	
 	/** Information array to create additional attached static mesh components */
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TArray<FCHSKCompAttachStaticMeshInfo> AttachStaticMeshes;
+	//UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	//TArray<FCHSKCompAttachStaticMeshInfo> AttachStaticMeshes;
 
 	/** Information array to create additional attached skeletal mesh components */
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TArray<FCHSKCompAttachSkeletalMeshInfo> AttachSkeletalMeshes;
+	//UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	//TArray<FCHSKCompAttachSkeletalMeshInfo> AttachSkeletalMeshes;
 
 	/** Information array to create additional attached particle system components */
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TArray<FCHSKCompAttachParticleSystemInfo> AttachParticleSystems;
+	//UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	//TArray<FCHSKCompAttachParticleSystemInfo> AttachParticleSystems;
 
 	/** Selected properties of CharacterMovementComponent */
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	FB2CharMovementEssentialSetupInfo CharMovementEssentialSettings;
+	//UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	//FB2CharMovementEssentialSetupInfo CharMovementEssentialSettings;
 	
 	/** Selected properties that will affect character's combat abilities. */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
@@ -270,9 +271,9 @@ public:
 	UPROPERTY()
 	uint32 bOverride_TargetingMode : 1;
 
-	/** Will be overridden if it's other than ETM_End. */
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (EditCondition = "bOverride_TargetingMode"))
-	ETargetingMode TargetingModeOverride;
+	///** Will be overridden if it's other than ETM_End. */
+	//UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (EditCondition = "bOverride_TargetingMode"))
+	//ETargetingMode TargetingModeOverride;
 
 	//
 	// A lot to be added...

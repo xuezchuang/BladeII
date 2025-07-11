@@ -4,6 +4,7 @@
 #include "B2GoodsShortcutInfo.h"
 
 
+
 UB2GoodsShortcutInfo::UB2GoodsShortcutInfo(const FObjectInitializer& ObjectInitializer)
 	:Super(ObjectInitializer)
 {

@@ -4,6 +4,7 @@
 //#include "BladeII.h"
 #include "UObject/NoExportTypes.h"
 #include "Engine/DataTable.h"
+#include "memory"
 #include "B2ChattingFilteringInfo.generated.h"
 
 

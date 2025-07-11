@@ -2,7 +2,7 @@
 
 
 #include "B2ChapterInfo.h"
-#include "B2StageInfo.h"
+//#include "B2StageInfo.h"
 
 
 #include "FB2ErrorMessage.h"
@@ -38,10 +38,10 @@ FSingleChapterInfoData* UB2ChapterInfo::GetInfoData(int32 ChapterNum)
 
 FSingleChapterInfoData* UB2ChapterInfo::GetChapterInfoOfStage(int32 InClientStageId)
 {
-	UB2StageInfo* StageInfoTable = StaticFindStageInfo();
-	// InClientStageId 에 해당하는 StageInfoData 에서 Chapter 번호를 가져와서 사용.
-	FSingleStageInfoData* StageInfoData = StageInfoTable ? StageInfoTable->GetInfoData(InClientStageId) : NULL;
-	return StageInfoData ? GetInfoData(StageInfoData->ChapterNum) : NULL;
+	//UB2StageInfo* StageInfoTable = StaticFindStageInfo();
+	//// InClientStageId 에 해당하는 StageInfoData 에서 Chapter 번호를 가져와서 사용.
+	//FSingleStageInfoData* StageInfoData = StageInfoTable ? StageInfoTable->GetInfoData(InClientStageId) : NULL;
+	return /*StageInfoData ? GetInfoData(StageInfoData->ChapterNum) :*/ NULL;
 }
 
 int32 UB2ChapterInfo::GetAllChapterNum()
@@ -54,13 +54,13 @@ int32 UB2ChapterInfo::GetAllChapterNum()
 
 int32 UB2ChapterInfo::GetStagesNumInChapter(int32 ChapterNum)
 {
-	UB2StageInfo* StageInfoTable = StaticFindStageInfo();
-	if (StageInfoTable)
-	{
-		TArray<FSingleStageInfoData*> AllFoundStageInfo;
-		StageInfoTable->GetAllInfoDataOfChapter(AllFoundStageInfo, ChapterNum);
-		return AllFoundStageInfo.Num();
-	}
+	//UB2StageInfo* StageInfoTable = StaticFindStageInfo();
+	//if (StageInfoTable)
+	//{
+	//	TArray<FSingleStageInfoData*> AllFoundStageInfo;
+	//	StageInfoTable->GetAllInfoDataOfChapter(AllFoundStageInfo, ChapterNum);
+	//	return AllFoundStageInfo.Num();
+	//}
 	return 0;
 }
 

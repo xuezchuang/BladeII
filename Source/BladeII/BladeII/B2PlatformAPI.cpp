@@ -172,15 +172,15 @@ void B2P_KakaoAccountLink()
 #endif
 }
 
-EPlatformIDPCode B2P_GetKakaoIDPCode()
-{
-#if PLATFORM_ANDROID
-	return (EPlatformIDPCode)AndroidThunkCpp_GetKakaoIDPCode();
-#elif PLATFORM_IOS
-	return static_cast<EPlatformIDPCode>(KakaotalkAPI::GetKakaoIDPCode());
-#endif
-	return EPlatformIDPCode::Guest;
-}
+//EPlatformIDPCode B2P_GetKakaoIDPCode()
+//{
+//#if PLATFORM_ANDROID
+//	return (EPlatformIDPCode)AndroidThunkCpp_GetKakaoIDPCode();
+//#elif PLATFORM_IOS
+//	return static_cast<EPlatformIDPCode>(KakaotalkAPI::GetKakaoIDPCode());
+//#endif
+//	return EPlatformIDPCode::Guest;
+//}
 
 void B2P_KakaoCommunityView()
 {
@@ -636,30 +636,30 @@ bool B2P_IsViewPromotion()
 	return false;	
 }
 
-FString B2P_GetKakaoCustomData(FString sKey)
-{
-	FString KeyDebugString = FString(TEXT(""));
-
-#if PLATFORM_ANDROID
-	KeyDebugString = AndroidThunkCpp_GetKakaoCustomData(sKey);
-#elif PLATFORM_IOS
-	// IOS 贸府 鞘夸
-	KeyDebugString = KakaotalkAPI::GetCustomData(sKey);
-#else	
-	KeyDebugString = TEXT("https://cs.kakao.com/helps?category=356&device=1081&locale=ko&service=4&articleId=1073191067&page=1");
-#endif
-
-	if (KeyDebugString.IsEmpty())
-	{
-		ErrorOpenWebEmptyURLClass<>::GetInstance().Signal();
-	}
-
-#if FORCE_LOGGING_IN_ANDROID
-	FPlatformMisc::LowLevelOutputDebugStringf(TEXT("@@@@@ YJTestLOG @@@@@ B2P_GetKakaoCustomData @@@@@ KeyString : %s\n"), *KeyDebugString);
-#endif
-
-	return KeyDebugString;
-}
+//FString B2P_GetKakaoCustomData(FString sKey)
+//{
+//	FString KeyDebugString = FString(TEXT(""));
+//
+//#if PLATFORM_ANDROID
+//	KeyDebugString = AndroidThunkCpp_GetKakaoCustomData(sKey);
+//#elif PLATFORM_IOS
+//	// IOS 贸府 鞘夸
+//	KeyDebugString = KakaotalkAPI::GetCustomData(sKey);
+//#else	
+//	KeyDebugString = TEXT("https://cs.kakao.com/helps?category=356&device=1081&locale=ko&service=4&articleId=1073191067&page=1");
+//#endif
+//
+//	if (KeyDebugString.IsEmpty())
+//	{
+//		ErrorOpenWebEmptyURLClass<>::GetInstance().Signal();
+//	}
+//
+//#if FORCE_LOGGING_IN_ANDROID
+//	FPlatformMisc::LowLevelOutputDebugStringf(TEXT("@@@@@ YJTestLOG @@@@@ B2P_GetKakaoCustomData @@@@@ KeyString : %s\n"), *KeyDebugString);
+//#endif
+//
+//	return KeyDebugString;
+//}
 
 void B2P_ShowEndingPromotion()
 {

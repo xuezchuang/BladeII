@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Engine/GameInstance.h"
-#include "LocalPushManager.h"
+//#include "LocalPushManager.h"
 #include "B2PlatformAPI.h"
 #include "CommonStruct.h"
 #if PLATFORM_ANDROID
@@ -19,6 +19,7 @@ UCLASS(config = Game)
 class BLADEII_API UB2GameInstance : public UGameInstance
 {
 	GENERATED_UCLASS_BODY()
+
 private:
 	class FB2Time
 	{
@@ -125,7 +126,7 @@ private:
 
 	FDelegateHandle TickDelegateHandle;
 
-	LocalPushManager* PushManagerClass;
+	//LocalPushManager* PushManagerClass;
 	FDateTime m_ResumeTime;
 	FDateTime m_PauseTime;
 
@@ -141,10 +142,10 @@ private:
 
 
 protected:
-	////////////////////////////////////////////////////////////////////////////////
-	// Info Asset references. Other info assets based on DataTable are at BladeIIGameImpl
-	//UPROPERTY()
-	//class UB2NPCClassInfoBox* CachedMobClassInfoBox;
+	//////////////////////////////////////////////////////////////////////////////
+	 //Info Asset references. Other info assets based on DataTable are at BladeIIGameImpl
+	UPROPERTY()
+	class UB2NPCClassInfoBox* CachedMobClassInfoBox;
 	UPROPERTY()
 	class UB2PCClassInfoBox* CachedPCClassInfoBox;
 	UPROPERTY()

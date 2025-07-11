@@ -2,8 +2,8 @@
 
 #pragma once
 //#include "BladeII.h"
-#include "InfoAsset/B2StageInfo.h"
 #include "Engine/DataTable.h"
+#include "../Common/CommonStruct.h"
 #include "B2ChapterInfo.generated.h"
 
 /**

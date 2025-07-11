@@ -5,6 +5,7 @@
 //#include "BladeII.h"
 #include "UObject/Object.h"
 #include "BladeIICharacter.h"
+#include "../BladeII/BladeIIDamageType.h"
 #include "B2NPCClassInfo.generated.h"
 
 /** UI related settings of FNPCSingleClassInfo struct. */
@@ -58,21 +59,21 @@ public:
 	/** It will be overridden anyway.
 	 * Even with this setting, the finally considered character type from monster spawn pool can be different by MonsterClassTypeMap,
 	 * and will be overridden by that info if spawned through monster spawn pool with MonsterClassTypeMap */
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	ECharacterType DefaultCharacterType;
+	//UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	//ECharacterType DefaultCharacterType;
 
 	/** It is automatically suggested when empty (None), based on class enum and variation to access NPCSensitiveInfo data.
 	 * You may edit it in any name you want, just ensure NPCSensitiveInfo has matching row entry. */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FName SensitiveDataRowKey;
 
-protected:
-	/**
-	 * The actual Blueprint class which is used for spawn and overridden by properties here.
-	 * Leave it as NULL if to use the default one. We provide a default base BP class, but any other special class can be used.
-	 */
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TSubclassOf<class ABladeIICharacter> BaseBPClass;
+//protected:
+//	/**
+//	 * The actual Blueprint class which is used for spawn and overridden by properties here.
+//	 * Leave it as NULL if to use the default one. We provide a default base BP class, but any other special class can be used.
+//	 */
+//	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+//	TSubclassOf<class ABladeIICharacter> BaseBPClass;
 public:
 	TSubclassOf<class ABladeIICharacter> GetBaseBPClass(UObject* WorldContextObject);
 
@@ -186,11 +187,11 @@ public:
 	float RegenerateHPPercentagePerSecondOverride;
 
 	/** It is added to the default rather than replace, but guess there is nothing at BaseBP anyway? */
-	//UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	//TArray<TSubclassOf<class ABladeIIProjectile>> AdditionalProjectileClasses;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TArray<TSubclassOf<class ABladeIIProjectile>> AdditionalProjectileClasses;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TArray<TSubclassOf<class AB2AreaDamageActorBase>> AdditionalAreaDamageClasses;
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	//TArray<TSubclassOf<class AB2AreaDamageActorBase>> AdditionalAreaDamageClasses;
 
 	/** Like AdditionalProjectileClasses, added to the default AIAttackDataArray */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
@@ -237,8 +238,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "UseBloodStone")
 	bool bBloodStoneAura;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "UseBloodStone")
-	EBloodStoneType BloodStoneType;
+	//UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "UseBloodStone")
+	//EBloodStoneType BloodStoneType;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "UseBloodStone")
 	float BloodStoneAmount;

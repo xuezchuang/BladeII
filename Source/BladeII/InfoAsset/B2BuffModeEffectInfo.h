@@ -8,8 +8,9 @@
 #include "BladeIIDamageType.h"
 #include "BladeIICharacter.h"
 #include "BladeIIPlayer.h"
-#include "B2FloatingAbnormalEffect.h"
+//#include "B2FloatingAbnormalEffect.h"
 #include "Engine/StreamableManager.h"
+#include "../BladeII.h"
 #include "B2BuffModeEffectInfo.generated.h"
 
 USTRUCT(BlueprintType)

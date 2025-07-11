@@ -2,10 +2,10 @@
 #include "B2GameInstance.h"
 //#include "BladeII.h"
 #include "Event.h"
-#include "B2NetGameMode.h"
+//#include "B2NetGameMode.h"
 //#include "B2StageGameMode.h"
 
-#include "Retailer.h"
+//#include "Retailer.h"
 
 #include "B2PlatformAPI.h"
 #if PLATFORM_ANDROID
@@ -22,19 +22,20 @@
 #include "BladeIIBlockToSyncNetwork.h"
 
 #include "BladeIIUtil.h"
-#include "B2PCClassInfoBox.h"
+#include "../InfoAsset/B2PCClassInfoBox.h"
+//#include "B2PCClassInfoBox.h"
 //#include "B2NPCClassInfoBox.h"
 //#include "B2CommonSoundInfo.h"
 //#include "B2ScenarioDialogInfo.h"
 //#include "B2CharacterTagDialogueInfo.h"
-#include "B2WingInfo.h"
-#include "B2SomeInfo.h"
-#include "B2LoadingImageInfo.h"
-#include "B2DamageEffectInfo.h"
-#include "B2BuffModeEffectInfo.h"
-#include "B2SkillInfo.h"
-#include "B2GuildMarkInfo.h"
-#include "B2InfluenceSkillInfo.h"
+//#include "B2WingInfo.h"
+//#include "B2SomeInfo.h"
+//#include "B2LoadingImageInfo.h"
+//#include "B2DamageEffectInfo.h"
+//#include "B2BuffModeEffectInfo.h"
+//#include "B2SkillInfo.h"
+//#include "B2GuildMarkInfo.h"
+//#include "B2InfluenceSkillInfo.h"
 //#include "B2GuildNPCInfo.h"
 //#include "B2CombatConstantInfo.h"
 //#include "B2InGameHUDInfo_Player.h"
@@ -267,8 +268,8 @@ int32 UB2GameInstance::FB2Time::GetTimeZone(ETimeZone InTimeZone)
 }
 
 UB2GameInstance::UB2GameInstance(const FObjectInitializer& ObjectInitializer)
-	: Super(ObjectInitializer),
-	PushManagerClass(nullptr)
+	: Super(ObjectInitializer)
+	//,PushManagerClass(nullptr)
 {
 	UE_LOG(LogBladeII, Log, TEXT("UB2GameInstance::UB2GameInstance()"));
 
@@ -359,16 +360,16 @@ void UB2GameInstance::Shutdown()
 
 bool UB2GameInstance::Tick(float DeltaTime)
 {
-	if (m_MessageBoxCalled)
-	{
-		m_MessageBoxCalled.AtomicSet(false);
-		GetWorld()->GetTimerManager().ClearTimer(SendMessageInboxTimer);
-		GetWorld()->GetTimerManager().SetTimer(SendMessageInboxTimer, this, &UB2GameInstance::OnSendMessageInboxTimerCB, 60.0f, false);
-		m_bSendOK = false;
+	//if (m_MessageBoxCalled)
+	//{
+	//	m_MessageBoxCalled.AtomicSet(false);
+	//	GetWorld()->GetTimerManager().ClearTimer(SendMessageInboxTimer);
+	//	GetWorld()->GetTimerManager().SetTimer(SendMessageInboxTimer, this, &UB2GameInstance::OnSendMessageInboxTimerCB, 60.0f, false);
+	//	m_bSendOK = false;
 
-		UE_LOG(LogLoad, Log, TEXT("Platform!! RequestKakaoMessageProcessing!!!!!!!!!!!!!!!! ~~~~~~~"));
-		data_trader::Retailer::GetInstance().RequestKakaoMessageProcessing("inbox");
-	}
+	//	UE_LOG(LogLoad, Log, TEXT("Platform!! RequestKakaoMessageProcessing!!!!!!!!!!!!!!!! ~~~~~~~"));
+	//	data_trader::Retailer::GetInstance().RequestKakaoMessageProcessing("inbox");
+	//}
 	return true;
 }
 
@@ -438,40 +439,40 @@ void UB2GameInstance::SendPlayTimeToServer()
 */
 void UB2GameInstance::RequestUpdateDailyPlayTime(bool IsForce)
 {
-	CONSTEXPR auto RequestInterval = 300.0;
-	const auto UTCNow = GetUTCNow();
-	const auto CurrentRequestInterval = (UTCNow - m_LastRequestPlayTime).GetTotalSeconds();
+	//CONSTEXPR auto RequestInterval = 300.0;
+	//const auto UTCNow = GetUTCNow();
+	//const auto CurrentRequestInterval = (UTCNow - m_LastRequestPlayTime).GetTotalSeconds();
 
-	if (m_TimeToServer.IsInitializeServerInfo() // 네트워크 시간동기화를 한 상태인가? 
-		&& (IsForce || CurrentRequestInterval > RequestInterval || m_TimeToServer.GetRequestUpdateDailyPlayStep() == ERequestUpdateDailyPlayStep::NotRequest)) // 강제가 아니라면 Interval이 지났거나 한번도 없데이트 한적 없는가
-	{
-		// 현재시간 - 최근 Request를 보낸 시간 = PendingTime
-		int64 PendingTime = (UTCNow - GamePlayTimeInfo.GamePlayTimeAfterRequest).GetTicks() / 10000000;
-		m_LastRequestPlayTime = UTCNow; // Interval 초기화
+	//if (m_TimeToServer.IsInitializeServerInfo() // 네트워크 시간동기화를 한 상태인가? 
+	//	&& (IsForce || CurrentRequestInterval > RequestInterval || m_TimeToServer.GetRequestUpdateDailyPlayStep() == ERequestUpdateDailyPlayStep::NotRequest)) // 강제가 아니라면 Interval이 지났거나 한번도 없데이트 한적 없는가
+	//{
+	//	// 현재시간 - 최근 Request를 보낸 시간 = PendingTime
+	//	int64 PendingTime = (UTCNow - GamePlayTimeInfo.GamePlayTimeAfterRequest).GetTicks() / 10000000;
+	//	m_LastRequestPlayTime = UTCNow; // Interval 초기화
 
-		// 음수거나, 10분보다 클 때 잘못된 값으로 간주하고 초기화
-		if (PendingTime < 0 || PendingTime > 600)
-		{
-			GamePlayTimeInfo.GamePlayTimeAfterRequest = UTCNow;
-			return;
-		}
-		else
-		{
-			// 가장 첫번째 업데이트 요청의 경우 PendingTime 이 0초일 경우도 있다.
-			// 이 경우 1 이상 값을 보내기 위해 보정을 거치는데 보정된 PendingTime 을 담아 보내도 서버에서는 이 값을 사용하는게 아니라 직접 계산한 시간을 사용하기에 문제 없다.
-			if (m_TimeToServer.GetRequestUpdateDailyPlayStep() == ERequestUpdateDailyPlayStep::NotRequest)
-			{
-				m_TimeToServer.SetRequestUpdateDailyPlayStep(ERequestUpdateDailyPlayStep::RequestUpdateDailyTime);
-				PendingTime = FMath::Max<int64>(1, PendingTime);
-			}
+	//	// 음수거나, 10분보다 클 때 잘못된 값으로 간주하고 초기화
+	//	if (PendingTime < 0 || PendingTime > 600)
+	//	{
+	//		GamePlayTimeInfo.GamePlayTimeAfterRequest = UTCNow;
+	//		return;
+	//	}
+	//	else
+	//	{
+	//		// 가장 첫번째 업데이트 요청의 경우 PendingTime 이 0초일 경우도 있다.
+	//		// 이 경우 1 이상 값을 보내기 위해 보정을 거치는데 보정된 PendingTime 을 담아 보내도 서버에서는 이 값을 사용하는게 아니라 직접 계산한 시간을 사용하기에 문제 없다.
+	//		if (m_TimeToServer.GetRequestUpdateDailyPlayStep() == ERequestUpdateDailyPlayStep::NotRequest)
+	//		{
+	//			m_TimeToServer.SetRequestUpdateDailyPlayStep(ERequestUpdateDailyPlayStep::RequestUpdateDailyTime);
+	//			PendingTime = FMath::Max<int64>(1, PendingTime);
+	//		}
 
-			// 1 >= 인 값을 보내달라고해서.
-			if (PendingTime >= 1)
-			{
-				data_trader::Retailer::GetInstance().Retailer::RequestUpdateDailyPlayTime(static_cast<int32>(PendingTime));
-			}
-		}
-	}
+	//		// 1 >= 인 값을 보내달라고해서.
+	//		if (PendingTime >= 1)
+	//		{
+	//			data_trader::Retailer::GetInstance().Retailer::RequestUpdateDailyPlayTime(static_cast<int32>(PendingTime));
+	//		}
+	//	}
+	//}
 }
 
 #if PLATFORM_ANDROID

@@ -5,7 +5,8 @@
 #include "UObject/Object.h"
 #include "Sound/SoundCue.h"
 #include "Engine/StreamableManager.h"
-//#include "BladeII.h"
+#include "../UI/B2UIEnum.h"
+#include "BladeII.h"
 #include "B2CommonSoundInfo.generated.h"
 
 UENUM()

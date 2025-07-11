@@ -1,6 +1,6 @@
 #pragma once
 //#include "BladeII.h"
-#include "B2GameEnum.h"
+//#include "B2GameEnum.h"
 #include "EngineMinimal.h"
 
 
@@ -34,7 +34,7 @@ FString B2P_GetKakaoUserID();
 void B2P_ShowKakaoCoupon();
 void B2P_KakaoLoadMessage(FString sBoxID);
 
-EPlatformIDPCode B2P_GetKakaoIDPCode();
+//EPlatformIDPCode B2P_GetKakaoIDPCode();
 void B2P_SetClipboardString(FString sUserID);
 
 

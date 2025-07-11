@@ -7,7 +7,7 @@
 
 #include "B2MessageInfo.h"
 #include "CommonStruct.h"
-#include "B2ClientDataStore.h"
+//#include "B2ClientDataStore.h"
 #include "B2Inventory.generated.h"
 
 

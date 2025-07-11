@@ -73,7 +73,7 @@ FText UB2RewardInfo::GetNameText(int32 RewardIndex)
 
 	if (FoundDataRow)
 	{
-		return BladeIIGetLOCText(FoundDataRow->TextCategory, FoundDataRow->RewardNameForTextTable);
+		//return BladeIIGetLOCText(FoundDataRow->TextCategory, FoundDataRow->RewardNameForTextTable);
 	}
 
 	return FText::FromString(TEXT("Not Found"));

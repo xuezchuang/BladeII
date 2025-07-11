@@ -2,6 +2,7 @@
 
 #include "DF.h"
 #include "Modules/ModuleManager.h"
+#include "BladeII.h"
 
 IMPLEMENT_PRIMARY_GAME_MODULE( FDefaultGameModuleImpl, DF, "DF" );
 

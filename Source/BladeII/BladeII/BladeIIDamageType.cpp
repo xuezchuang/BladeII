@@ -53,32 +53,32 @@ FDamageInfo::FDamageInfo()
 
 void FDamageInfo::SetDamageInfo(const FDamageInfo* DamageInfo, const ABladeIICharacter* B2Char)
 {
-	if (B2Char == NULL)
-	{
-		return;
-	}
-
-	if (B2Char->IsControlledByQTEPlayer())
-	{
-		B2Char = B2Char->FindQteOwnerPlayer();
-
-		if (B2Char == NULL)
-		{
-			return;
-		}
-	}
-
-	if (DamageInfo != NULL && DamageInfo != this)
-	{
-		*this = *DamageInfo;
-	}
-
-	//auto* GameMode = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(B2Char));
-
-	//if (!GameMode)
+	//if (B2Char == NULL)
+	//{
 	//	return;
+	//}
 
-	//GameMode->OverrideDamageInfo(*this, B2Char);
+	//if (B2Char->IsControlledByQTEPlayer())
+	//{
+	//	B2Char = B2Char->FindQteOwnerPlayer();
+
+	//	if (B2Char == NULL)
+	//	{
+	//		return;
+	//	}
+	//}
+
+	//if (DamageInfo != NULL && DamageInfo != this)
+	//{
+	//	*this = *DamageInfo;
+	//}
+
+	////auto* GameMode = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(B2Char));
+
+	////if (!GameMode)
+	////	return;
+
+	////GameMode->OverrideDamageInfo(*this, B2Char);
 }
 
 uint32 FDamageInfo::CalculateDamageHash(UObject* Object) const

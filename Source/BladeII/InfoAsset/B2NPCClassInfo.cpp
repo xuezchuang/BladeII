@@ -415,53 +415,53 @@ UB2NPCSingleClassInfo::UB2NPCSingleClassInfo(const FObjectInitializer& ObjectIni
 	NPCClassEnum = ENPCClass::ENC_End;
 	ClassVariation = ENPCClassVariation::ENCV_Normal;
 
-	DefaultCharacterType = ECharacterType::ECT_MeleeMob;
-	SensitiveDataRowKey = NAME_None;
-	BaseBPClass = NULL; // Use default one at SomeInfo if NULL.
+	//DefaultCharacterType = ECharacterType::ECT_MeleeMob;
+	//SensitiveDataRowKey = NAME_None;
+	//BaseBPClass = NULL; // Use default one at SomeInfo if NULL.
 
-	MeshAssetOverride = NULL;
-	MeshRelativeOffset = FVector(0.0f, 0.0f, 0.0f);
-	AnimBPOverride = NULL;
-	BehaviorTreeOverride = NULL;
-	bIgnoreRotateByDamage = false;
-	bFixInAir = false;
+	//MeshAssetOverride = NULL;
+	//MeshRelativeOffset = FVector(0.0f, 0.0f, 0.0f);
+	//AnimBPOverride = NULL;
+	//BehaviorTreeOverride = NULL;
+	//bIgnoreRotateByDamage = false;
+	//bFixInAir = false;
 
-	MeshScaleOverride = 0.0f;
-	CapsuleHalfHeightOverride = 0.0f;
-	CapsuleRadiusOverride = 0.0f;
-	CapsuleCollisionObjectTypeOverride = ECC_Pawn;
-	ShadowSizeOverride = 0.f;
-	DamageNumZOffsetOverride = 0.0f;
+	//MeshScaleOverride = 0.0f;
+	//CapsuleHalfHeightOverride = 0.0f;
+	//CapsuleRadiusOverride = 0.0f;
+	//CapsuleCollisionObjectTypeOverride = ECC_Pawn;
+	//ShadowSizeOverride = 0.f;
+	//DamageNumZOffsetOverride = 0.0f;
 
-	bUsePreSpawnState = false;
-	QTEType = EQTEType::EQT_End;
-	QTEInvokeHPPercent = 0.0f;
-	QTEMountTime = 20.f;
-	QTEEnableTime = 5.f;
-	DetectDistanceOverride = 0.0f;
+	//bUsePreSpawnState = false;
+	//QTEType = EQTEType::EQT_End;
+	//QTEInvokeHPPercent = 0.0f;
+	//QTEMountTime = 20.f;
+	//QTEEnableTime = 5.f;
+	//DetectDistanceOverride = 0.0f;
 
-	DropItemInfo.GoldSpawnDelay = 0.0f;
-	DropItemInfo.RewardSpawnDelay = 0.0f;
+	//DropItemInfo.GoldSpawnDelay = 0.0f;
+	//DropItemInfo.RewardSpawnDelay = 0.0f;
 
-	bForceReceivdAbsoluteDamage = false;
-	bForceReceivdAttackCountDamage = false;
-	FullAttactCountSize = 0;
+	//bForceReceivdAbsoluteDamage = false;
+	//bForceReceivdAttackCountDamage = false;
+	//FullAttactCountSize = 0;
 
-	InfluenceType = EInfluenceType::EIT_End;
-	InfluenceAmount = 0.f;
-	InfluenceDuration = 0.f;
-	InfluenceStateDuration = 0.f;
-	InitialInfluenceStateTriggerRate = 1.0f;
+	//InfluenceType = EInfluenceType::EIT_End;
+	//InfluenceAmount = 0.f;
+	//InfluenceDuration = 0.f;
+	//InfluenceStateDuration = 0.f;
+	//InitialInfluenceStateTriggerRate = 1.0f;
 
-	bBloodStoneAura = false;
-	BloodStoneType = EBloodStoneType::EBST_UnBeatable;
-	BloodStoneAmount = -1.f;
-	BloodStoneBuffLogicType = EDamageLogicType::ELT_Normal;
-	
-	bAllowRecoilAnimation = true;
+	//bBloodStoneAura = false;
+	//BloodStoneType = EBloodStoneType::EBST_UnBeatable;
+	//BloodStoneAmount = -1.f;
+	//BloodStoneBuffLogicType = EDamageLogicType::ELT_Normal;
+	//
+	//bAllowRecoilAnimation = true;
 
-	SpawnNotifyMsgString = TEXT("");
-	SpawnNotifyMsgTime = -1.f;
+	//SpawnNotifyMsgString = TEXT("");
+	//SpawnNotifyMsgTime = -1.f;
 }
 
 FText UB2NPCSingleClassInfo::GetLocalizedName()

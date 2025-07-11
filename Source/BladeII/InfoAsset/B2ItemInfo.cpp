@@ -8,12 +8,15 @@
 
 #include "B2DropItem.h"
 #include "BladeIIGameMode.h"
-#include "B2Inventory.h"
-#include "B2LobbyInventory.h"
-#include "B2SomeInfo.h"
+//#include "B2Inventory.h"
+//#include "B2LobbyInventory.h"
+//#include "B2SomeInfo.h"
+#include "BladeIIUtil.h"
 #include "B2GameInstance.h"
 
 #include "FB2ErrorMessage.h"
+#include "../BladeII/BladeIILocText.h"
+#include "Materials/MaterialInterface.h"
 
 TSubclassOf<class AB2DropItem> FSingleItemInfoData::GetBaseBPClass(UObject* WorldContextObject)
 {
@@ -108,11 +111,11 @@ FText FSingleItemInfoData::GetLocalizedName(bool bAttachQualityPrefix, int32 Ite
 	// 처음에 아이템 이름에 품질 접두사를 붙이는 식이었는데 품질 접두사는 따로 표시하게 됨. 혹시 어떤 식으로 부활할지 모르니 매개변수랑 코드는 남겨둠.
 	FText NameWithoutQuality = BladeIIGetLOCText(B2LOC_CAT_ITEMNAME, LocalizedNameKey.ToString());
 
-	if (bAttachQualityPrefix && ItemQuality > 0 && ItemQuality <= MAX_ITEM_QUALITY)
-	{
-		return FText::Format(ItemNameFormatWithPrefix, GetLOCTextOfItemQuality(ItemQuality), NameWithoutQuality);
-	}
-	else
+	//if (bAttachQualityPrefix && ItemQuality > 0 && ItemQuality <= MAX_ITEM_QUALITY)
+	//{
+	//	return FText::Format(ItemNameFormatWithPrefix, GetLOCTextOfItemQuality(ItemQuality), NameWithoutQuality);
+	//}
+	//else
 	{
 		return NameWithoutQuality;
 	}
@@ -672,71 +675,71 @@ bool FItemInfoEquipPartsAsyncReqCombinedID::IsEqualByRefIDs(const FItemInfoEquip
 UB2ItemInfo::UB2ItemInfo(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
-	EquipPartsAsyncLoadReqCounter = 0;
-
-	if (HasAnyFlags(RF_ClassDefaultObject) == false)
-	{
-		// 정해진 하나를 로딩
-		FString ItemDataTablePath;
-		GConfig->GetString(TEXT("/Script/BladeII.B2Item"), TEXT("ItemInfoDataTable"), ItemDataTablePath, GGameIni);
-
-		TheData = LoadObject<UDataTable>(NULL, *ItemDataTablePath);
-
-
-		// Set Info Table
-		FString ItemSetDataTablePath;
-		GConfig->GetString(TEXT("/Script/BladeII.B2Item"), TEXT("ItemSetInfoDataTable"), ItemSetDataTablePath, GGameIni);
-
-		SetInfoData = LoadObject<UDataTable>(NULL, *ItemSetDataTablePath);
-		GenerateSetKeyList();
-
-#if WITH_EDITOR && !PLATFORM_MAC
-		if (TheData == NULL)
-		{
-			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-				FString::Printf(TEXT("[Warning] ItemInfo 데이터 테이블을 찾지 못함. 컴퓨터가 곧 폭발한다."))
-				));
-		}
-
-		if (SetInfoData == NULL)
-		{
-			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-				FString::Printf(TEXT("[Warning] ItemSetInfo 데이터 테이블을 찾지 못함. 컴퓨터가 곧 폭발한다."))
-				));
-		}
-
-#endif
-	}
+//	EquipPartsAsyncLoadReqCounter = 0;
+//
+//	if (HasAnyFlags(RF_ClassDefaultObject) == false)
+//	{
+//		// 정해진 하나를 로딩
+//		FString ItemDataTablePath;
+//		GConfig->GetString(TEXT("/Script/BladeII.B2Item"), TEXT("ItemInfoDataTable"), ItemDataTablePath, GGameIni);
+//
+//		TheData = LoadObject<UDataTable>(NULL, *ItemDataTablePath);
+//
+//
+//		// Set Info Table
+//		FString ItemSetDataTablePath;
+//		GConfig->GetString(TEXT("/Script/BladeII.B2Item"), TEXT("ItemSetInfoDataTable"), ItemSetDataTablePath, GGameIni);
+//
+//		SetInfoData = LoadObject<UDataTable>(NULL, *ItemSetDataTablePath);
+//		GenerateSetKeyList();
+//
+//#if WITH_EDITOR && !PLATFORM_MAC
+//		if (TheData == NULL)
+//		{
+//			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
+//				FString::Printf(TEXT("[Warning] ItemInfo 데이터 테이블을 찾지 못함. 컴퓨터가 곧 폭발한다."))
+//				));
+//		}
+//
+//		if (SetInfoData == NULL)
+//		{
+//			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
+//				FString::Printf(TEXT("[Warning] ItemSetInfo 데이터 테이블을 찾지 못함. 컴퓨터가 곧 폭발한다."))
+//				));
+//		}
+//
+//#endif
+//	}
 }
 
-FSingleItemInfoData* UB2ItemInfo::GetInfoData(int32 ItemRefID, bool bFullyLoad)
-{
-	// ItemRefID 를 key 로 사용.
-	FSingleItemInfoData* FoundDataRow = TheData ? TheData->FindRow<FSingleItemInfoData>(FName(*FString::FromInt(ItemRefID)), TEXT("")) : NULL;
-	if (FoundDataRow == NULL)
-	{
-#if WITH_EDITOR && !PLATFORM_MAC
-		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-			FString::Printf(TEXT("ItemInfo 테이블에서 RefID %d 의 항목을 찾지 못함. 컴퓨터가 곧 폭발한다."), ItemRefID)
-			));
-#endif
-		return NULL;
-	}
-
-	FoundDataRow->CachedMyRefID = ItemRefID; // RefID 캐싱해 놓으면 SingleInfo 의 개별 데이터 로딩 시 사용하게 될 거.
-
-	if (bFullyLoad
-#if WITH_EDITOR
-		|| GIsEditor
-#endif
-		)
-	{
-		// 굳이 LoadAllTAssets 를 하지 않더라도 실제 사용할 때에는 개별 레퍼런스들을 로딩하게 될 것. LoadAllTAssets 으로는 쓸데없는 메모리 소모의 소지가 있다.
-		FoundDataRow->LoadAllTAssets(InfoLoadManager, ItemRefID, LoadedPtrMap);
-	}
-
-	return FoundDataRow;
-}
+//FSingleItemInfoData* UB2ItemInfo::GetInfoData(int32 ItemRefID, bool bFullyLoad)
+//{
+//	// ItemRefID 를 key 로 사용.
+//	FSingleItemInfoData* FoundDataRow = TheData ? TheData->FindRow<FSingleItemInfoData>(FName(*FString::FromInt(ItemRefID)), TEXT("")) : NULL;
+//	if (FoundDataRow == NULL)
+//	{
+//#if WITH_EDITOR && !PLATFORM_MAC
+//		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
+//			FString::Printf(TEXT("ItemInfo 테이블에서 RefID %d 의 항목을 찾지 못함. 컴퓨터가 곧 폭발한다."), ItemRefID)
+//			));
+//#endif
+//		return NULL;
+//	}
+//
+//	FoundDataRow->CachedMyRefID = ItemRefID; // RefID 캐싱해 놓으면 SingleInfo 의 개별 데이터 로딩 시 사용하게 될 거.
+//
+//	if (bFullyLoad
+//#if WITH_EDITOR
+//		|| GIsEditor
+//#endif
+//		)
+//	{
+//		// 굳이 LoadAllTAssets 를 하지 않더라도 실제 사용할 때에는 개별 레퍼런스들을 로딩하게 될 것. LoadAllTAssets 으로는 쓸데없는 메모리 소모의 소지가 있다.
+//		FoundDataRow->LoadAllTAssets(InfoLoadManager, ItemRefID, LoadedPtrMap);
+//	}
+//
+//	return FoundDataRow;
+//}
 
 int32 UB2ItemInfo::GetRandomItemRefID()
 {
@@ -764,51 +767,51 @@ int32 UB2ItemInfo::GetRandomItemRefID()
 	*/
 }
 
-FItemSetInfoData* UB2ItemInfo::GetSetInfoData(int32 SetUniqueKey)
-{
-	const FName* DataTableKey = SetUniqueKeyMap.Find(SetUniqueKey);
-	if (SetInfoData && DataTableKey)
-	{
-		return SetInfoData->FindRow<FItemSetInfoData>(*DataTableKey, TEXT(""));
-	}
-
-	return nullptr;
-}
-
-FItemSetInfoData* UB2ItemInfo::GetSetInfoData(int32 GroupID, EPCClass PCClass, int32 Grade)
-{
-	const int32 SetUniqueKey = GetSetItemUniqueKey(GroupID, PCClass, Grade);
-	return GetSetInfoData(SetUniqueKey);
-}
-
-void UB2ItemInfo::GenerateSetKeyList()
-{
-	if (SetInfoData)
-	{
-		const TArray<FName>& RowKeys = SetInfoData->GetRowNames();
-		for (const FName& RowKey : RowKeys)
-		{
-			FItemSetInfoData* FoundDataRow = SetInfoData ? SetInfoData->FindRow<FItemSetInfoData>(RowKey, TEXT("")) : nullptr;
-			if (FoundDataRow)
-			{
-				const int32 SetUniqueKey = GetSetItemUniqueKey(FoundDataRow->GroupID, FoundDataRow->CharacterClass, FoundDataRow->Grade);
-				SetUniqueKeyMap.Add(SetUniqueKey, RowKey);
-			}
-		}
-	}
-}
+//FItemSetInfoData* UB2ItemInfo::GetSetInfoData(int32 SetUniqueKey)
+//{
+//	const FName* DataTableKey = SetUniqueKeyMap.Find(SetUniqueKey);
+//	if (SetInfoData && DataTableKey)
+//	{
+//		return SetInfoData->FindRow<FItemSetInfoData>(*DataTableKey, TEXT(""));
+//	}
+//
+//	return nullptr;
+//}
+//
+//FItemSetInfoData* UB2ItemInfo::GetSetInfoData(int32 GroupID, EPCClass PCClass, int32 Grade)
+//{
+//	const int32 SetUniqueKey = GetSetItemUniqueKey(GroupID, PCClass, Grade);
+//	return GetSetInfoData(SetUniqueKey);
+//}
+//
+//void UB2ItemInfo::GenerateSetKeyList()
+//{
+//	if (SetInfoData)
+//	{
+//		const TArray<FName>& RowKeys = SetInfoData->GetRowNames();
+//		for (const FName& RowKey : RowKeys)
+//		{
+//			FItemSetInfoData* FoundDataRow = SetInfoData ? SetInfoData->FindRow<FItemSetInfoData>(RowKey, TEXT("")) : nullptr;
+//			if (FoundDataRow)
+//			{
+//				const int32 SetUniqueKey = GetSetItemUniqueKey(FoundDataRow->GroupID, FoundDataRow->CharacterClass, FoundDataRow->Grade);
+//				SetUniqueKeyMap.Add(SetUniqueKey, RowKey);
+//			}
+//		}
+//	}
+//}
 
 void UB2ItemInfo::PreloadClassAssets(const TArray<int32>& InRefIDList)
 {
-	for (int32 RI = 0; RI < InRefIDList.Num(); ++RI)
-	{
-		GetInfoData(InRefIDList[RI], true); // FullyLoad 를 true 로 주고 부르면 다 로드됨. 이걸 대략 몇가지 범주별로 나눠서 Preload 하는 방식이 필요할 수도.
-	}
-#if !UE_BUILD_SHIPPING
-	if (InRefIDList.Num() > 0){
-		UE_LOG(LogBladeII, Log, TEXT("ItemInfo pre-load for %d assets"), InRefIDList.Num());
-	}
-#endif	
+//	for (int32 RI = 0; RI < InRefIDList.Num(); ++RI)
+//	{
+//		GetInfoData(InRefIDList[RI], true); // FullyLoad 를 true 로 주고 부르면 다 로드됨. 이걸 대략 몇가지 범주별로 나눠서 Preload 하는 방식이 필요할 수도.
+//	}
+//#if !UE_BUILD_SHIPPING
+//	if (InRefIDList.Num() > 0){
+//		UE_LOG(LogBladeII, Log, TEXT("ItemInfo pre-load for %d assets"), InRefIDList.Num());
+//	}
+//#endif	
 }
 
 void UB2ItemInfo::UnloadAll()
@@ -838,69 +841,69 @@ void UB2ItemInfo::UnloadAllExceptCurrentLocalEquipPartData()
 {
 	B2_SCOPED_TRACK_LOG(TEXT("UB2ItemInfo::UnloadAllExceptCurrentLocalEquipPartData"));
 
-	// 특정 부분에서 현재 로컬 캐릭터들의 장착 장비 파트랑 관련된 일부에 필요한 데이터 이외에 모든 것을 날리기 위함.
-	// 예를 들어 도감이나 인벤토리 나갈 시 사용.
-	// .. 그리고 결국은 일반적인 UnloadAll 상황을 이걸로 대체해야 할 듯.. 로컬 캐릭터 장착 파트들을 남겨두는 게 좀 중요해져서.
-
-#if WITH_EDITOR
-	if (GIsEditor) {
-		return;
-	}
-#endif
-
-	TMap<int32, bool> AllEquippedRefIDs; // Value 는 의미없고 걍 Key 검색만 할 거.
-
-	for (int32 PCI = 0; PCI < GetMaxPCClassNum(); ++PCI)
-	{
-		EPCClass CastedPCClass = IntToPCClass(PCI);
-
-		TArray<FB2Item> ThisEquippedList;
-		UB2LobbyInventory::GetAllEquippedItem(ThisEquippedList, CastedPCClass);
-
-		for (FB2Item& ThisEquipped : ThisEquippedList)
-		{
-			AllEquippedRefIDs.Add(ThisEquipped.ItemRefID, true); // Key 값만 있음 됨.
-		}
-	}
-	
-	if (TheData)
-	{
-		// RefID 간에 중복해서 사용되는 파트들이 있어서 루트셋 처리에 주의가 필요하다..
-		// 이 정도면 리소스 로딩에 필적하는 상당한 수준인데.. ㅡㅡ
-
-		// 1차 패스에서 모두 RootSet 에서 제거
-		TArray<FSingleItemInfoData*> AllRows;
-		TheData->GetAllRows<FSingleItemInfoData>(TEXT(""), AllRows);
-		for (int32 RI = 0; RI < AllRows.Num(); ++RI)
-		{
-			FSingleItemInfoData* FoundDataRow = AllRows[RI];
-			if (FoundDataRow)
-			{
-				FoundDataRow->MarkLoadedEquipPartAtRooSet(false);
-			}
-		}
-		// 2차 패스에서 현재 장착인 것만 RootSet 에 추가
-		for (TMap<int32, bool>::TIterator RefIDIt(AllEquippedRefIDs); RefIDIt; ++RefIDIt)
-		{
-			int32 ThisRefID = RefIDIt.Key();
-			FSingleItemInfoData* FoundDataRow = GetInfoData(ThisRefID, false);
-			if (FoundDataRow) {
-				FoundDataRow->MarkLoadedEquipPartAtRooSet(true);
-			}
-		}
-		// 마지막으로 RootSet 인 거 제외한 Unload
-		TArray<FName> RowKeys = TheData->GetRowNames();
-		for (int32 RI = 0; RI < RowKeys.Num(); ++RI)
-		{
-			FName& ThisRowKey = RowKeys[RI];
-			FSingleItemInfoData* FoundDataRow = TheData->FindRow<FSingleItemInfoData>(ThisRowKey, TEXT(""));
-			if (FoundDataRow)
-			{ // GetAllRows 로 한거랑 순서가 안 맞으려나...
-				const int32 ThisRowNumber = FCString::Atoi(*ThisRowKey.ToString());
-				FoundDataRow->UnloadAllTAssets(InfoLoadManager, ThisRowNumber, LoadedPtrMap, false);
-			}
-		}
-	}
+//	// 특정 부분에서 현재 로컬 캐릭터들의 장착 장비 파트랑 관련된 일부에 필요한 데이터 이외에 모든 것을 날리기 위함.
+//	// 예를 들어 도감이나 인벤토리 나갈 시 사용.
+//	// .. 그리고 결국은 일반적인 UnloadAll 상황을 이걸로 대체해야 할 듯.. 로컬 캐릭터 장착 파트들을 남겨두는 게 좀 중요해져서.
+//
+//#if WITH_EDITOR
+//	if (GIsEditor) {
+//		return;
+//	}
+//#endif
+//
+//	TMap<int32, bool> AllEquippedRefIDs; // Value 는 의미없고 걍 Key 검색만 할 거.
+//
+//	for (int32 PCI = 0; PCI < GetMaxPCClassNum(); ++PCI)
+//	{
+//		EPCClass CastedPCClass = IntToPCClass(PCI);
+//
+//		TArray<FB2Item> ThisEquippedList;
+//		UB2LobbyInventory::GetAllEquippedItem(ThisEquippedList, CastedPCClass);
+//
+//		for (FB2Item& ThisEquipped : ThisEquippedList)
+//		{
+//			AllEquippedRefIDs.Add(ThisEquipped.ItemRefID, true); // Key 값만 있음 됨.
+//		}
+//	}
+//	
+//	if (TheData)
+//	{
+//		// RefID 간에 중복해서 사용되는 파트들이 있어서 루트셋 처리에 주의가 필요하다..
+//		// 이 정도면 리소스 로딩에 필적하는 상당한 수준인데.. ㅡㅡ
+//
+//		// 1차 패스에서 모두 RootSet 에서 제거
+//		TArray<FSingleItemInfoData*> AllRows;
+//		TheData->GetAllRows<FSingleItemInfoData>(TEXT(""), AllRows);
+//		for (int32 RI = 0; RI < AllRows.Num(); ++RI)
+//		{
+//			FSingleItemInfoData* FoundDataRow = AllRows[RI];
+//			if (FoundDataRow)
+//			{
+//				FoundDataRow->MarkLoadedEquipPartAtRooSet(false);
+//			}
+//		}
+//		// 2차 패스에서 현재 장착인 것만 RootSet 에 추가
+//		for (TMap<int32, bool>::TIterator RefIDIt(AllEquippedRefIDs); RefIDIt; ++RefIDIt)
+//		{
+//			int32 ThisRefID = RefIDIt.Key();
+//			FSingleItemInfoData* FoundDataRow = GetInfoData(ThisRefID, false);
+//			if (FoundDataRow) {
+//				FoundDataRow->MarkLoadedEquipPartAtRooSet(true);
+//			}
+//		}
+//		// 마지막으로 RootSet 인 거 제외한 Unload
+//		TArray<FName> RowKeys = TheData->GetRowNames();
+//		for (int32 RI = 0; RI < RowKeys.Num(); ++RI)
+//		{
+//			FName& ThisRowKey = RowKeys[RI];
+//			FSingleItemInfoData* FoundDataRow = TheData->FindRow<FSingleItemInfoData>(ThisRowKey, TEXT(""));
+//			if (FoundDataRow)
+//			{ // GetAllRows 로 한거랑 순서가 안 맞으려나...
+//				const int32 ThisRowNumber = FCString::Atoi(*ThisRowKey.ToString());
+//				FoundDataRow->UnloadAllTAssets(InfoLoadManager, ThisRowNumber, LoadedPtrMap, false);
+//			}
+//		}
+//	}
 }
 
 FSingleItemInfoLoadedPtrData* UB2ItemInfo::GetLoadedPtrForID(int32 InItemID)
@@ -974,45 +977,45 @@ AB2DropItem* UB2ItemInfo::SpawnSingleDropItem(class UWorld* SpawnWorld, int32 It
 #if WITH_EDITOR
 void UB2ItemInfo::EditorLoadAll(SetB2ContentLoadingProgressSplashFnPtr InSplashProgFnPtr, float InStartProgress, float InEndProgress)
 {
-	if (TheData == NULL)
-	{
-		return;
-	}
+	//if (TheData == NULL)
+	//{
+	//	return;
+	//}
 
-	// DataTable 의 모든 row 를 iterate 하는 방법인듯.
-	TArray<FName> RowKeys = TheData->GetRowNames();
-	
-	const float TotalProgRange = FMath::Max(0.0f, InEndProgress - InStartProgress);
-	// InfoAsset 에 등록되는 애들이 얼마나 되는지에 따라 적절히 정하는 거. 몇번마다 한번씩 업데이트 할 지.
-	const int32 ProgUpdateInterval = 10;
-	const int32 TotalProgUpdateCount = RowKeys.Num() / ProgUpdateInterval;
-	const float SingleProgIncAmount = TotalProgRange / (float)TotalProgUpdateCount;
+	//// DataTable 의 모든 row 를 iterate 하는 방법인듯.
+	//TArray<FName> RowKeys = TheData->GetRowNames();
+	//
+	//const float TotalProgRange = FMath::Max(0.0f, InEndProgress - InStartProgress);
+	//// InfoAsset 에 등록되는 애들이 얼마나 되는지에 따라 적절히 정하는 거. 몇번마다 한번씩 업데이트 할 지.
+	//const int32 ProgUpdateInterval = 10;
+	//const int32 TotalProgUpdateCount = RowKeys.Num() / ProgUpdateInterval;
+	//const float SingleProgIncAmount = TotalProgRange / (float)TotalProgUpdateCount;
 
-	float CurrProg = InStartProgress;
-	
-	for (int32 RI = 0; RI < RowKeys.Num(); ++RI)
-	{
-		GetInfoData(FCString::Atoi(*RowKeys[RI].ToString()), true); // 안에서 다시 FName 이 되니 낭비인데 어차피 에디터 기능이니..
+	//float CurrProg = InStartProgress;
+	//
+	//for (int32 RI = 0; RI < RowKeys.Num(); ++RI)
+	//{
+	//	GetInfoData(FCString::Atoi(*RowKeys[RI].ToString()), true); // 안에서 다시 FName 이 되니 낭비인데 어차피 에디터 기능이니..
 
-		// Splash progress 업데이트. 아래 SetInfoData 는 얼마 안될 걸로 치고..
-		if (InSplashProgFnPtr && (RI % ProgUpdateInterval == ProgUpdateInterval - 1))
-		{
-			CurrProg = FMath::Min(InEndProgress, CurrProg + SingleProgIncAmount);
-			InSplashProgFnPtr(CurrProg);
-		}
-	}
+	//	// Splash progress 업데이트. 아래 SetInfoData 는 얼마 안될 걸로 치고..
+	//	if (InSplashProgFnPtr && (RI % ProgUpdateInterval == ProgUpdateInterval - 1))
+	//	{
+	//		CurrProg = FMath::Min(InEndProgress, CurrProg + SingleProgIncAmount);
+	//		InSplashProgFnPtr(CurrProg);
+	//	}
+	//}
 
-	if (SetInfoData)
-	{
-		TArray<FName> SetRowKeys = SetInfoData->GetRowNames();
-		for (int32 RI = 0; RI < SetRowKeys.Num(); ++RI)
-		{
-			GetSetInfoData(FCString::Atoi(*SetRowKeys[RI].ToString())); // 안에서 다시 FName 이 되니 낭비인데 어차피 에디터 기능이니..
-		}
-	}
+	//if (SetInfoData)
+	//{
+	//	TArray<FName> SetRowKeys = SetInfoData->GetRowNames();
+	//	for (int32 RI = 0; RI < SetRowKeys.Num(); ++RI)
+	//	{
+	//		GetSetInfoData(FCString::Atoi(*SetRowKeys[RI].ToString())); // 안에서 다시 FName 이 되니 낭비인데 어차피 에디터 기능이니..
+	//	}
+	//}
 
 
-	// 이걸 사용하려면 BladeIIGameImpl::StartupModule 에서 하게 될 텐데 그러면 이것의 인스턴스 위치가 바뀌게 될 것..
+	//// 이걸 사용하려면 BladeIIGameImpl::StartupModule 에서 하게 될 텐데 그러면 이것의 인스턴스 위치가 바뀌게 될 것..
 }
 
 void UB2ItemInfo::PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent)
@@ -1042,136 +1045,136 @@ void UB2ItemInfo::PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedE
 
 UMaterialInterface* UB2ItemInfo::GetItemIcon(int32 ItemRefId)
 {
-	auto* ItemData = GetInfoData(ItemRefId);
-	if (ItemData == nullptr)
+	//auto* ItemData = GetInfoData(ItemRefId);
+	//if (ItemData == nullptr)
 		return nullptr;
 
-	return ItemData->GetIconMaterial(this);
+	//return ItemData->GetIconMaterial(this);
 }
 
 class UMaterialInterface* UB2ItemInfo::GetSetItemIcon(int32 SetUniqueKey)
 {
-	FItemSetInfoData* SetInfo = GetSetInfoData(SetUniqueKey);
-	if (SetInfo == nullptr)
+	//FItemSetInfoData* SetInfo = GetSetInfoData(SetUniqueKey);
+	//if (SetInfo == nullptr)
 		return nullptr;
 
-	return SetInfo->IconMaterial.LoadSynchronous();
+	//return SetInfo->IconMaterial.LoadSynchronous();
 }
 
 FText UB2ItemInfo::GetItemName(int32 ItemRefId, bool bAttachQualityPrefix, int32 ItemQuality)
 {
-	auto* ItemData = GetInfoData(ItemRefId);
-	if (ItemData == nullptr)
+	//auto* ItemData = GetInfoData(ItemRefId);
+	//if (ItemData == nullptr)
 		return FText::FromString(TEXT("Unknown Item"));
 
-	return ItemData->GetLocalizedName(bAttachQualityPrefix, ItemQuality);
+	//return ItemData->GetLocalizedName(bAttachQualityPrefix, ItemQuality);
 }
 
-FText UB2ItemInfo::GetSetItemName(int32 SetUniqueKey)
-{
-	const int32 SetGroupID = GetSetGroupIDFromUniqueKey(SetUniqueKey);
-	return GetLOCTextOfSetItemName(SetGroupID);
-}
+//FText UB2ItemInfo::GetSetItemName(int32 SetUniqueKey)
+//{
+//	const int32 SetGroupID = GetSetGroupIDFromUniqueKey(SetUniqueKey);
+//	return GetLOCTextOfSetItemName(SetGroupID);
+//}
 
 void UB2ItemInfo::GetItemIconAndName(int32 ItemRefId, class UMaterialInstance*& ItemIcon, FText& ItemName)
 {
-	ItemIcon = nullptr;
+	//ItemIcon = nullptr;
 
-	UB2ItemInfo* AllItemInfo = StaticFindItemInfo();
+	//UB2ItemInfo* AllItemInfo = StaticFindItemInfo();
 
-	if (AllItemInfo)
-	{
-		ItemIcon = Cast<UMaterialInstance>(AllItemInfo->GetItemIcon(ItemRefId));
-		ItemName = AllItemInfo->GetItemName(ItemRefId);
-	}
+	//if (AllItemInfo)
+	//{
+	//	ItemIcon = Cast<UMaterialInstance>(AllItemInfo->GetItemIcon(ItemRefId));
+	//	ItemName = AllItemInfo->GetItemName(ItemRefId);
+	//}
 }
 
 void UB2ItemInfo::OnAsyncLoadComplete(const FString& CompleteRequest, const TArray<FB2AsyncRequestInfo>& CompleteRequestList)
 {
-	TArray<int32> JustLoadedRefIDs;
-
-	// PendingEquipPartsAsyncLoadReqList 에서 완료된 엔트리를 식별하고 리스트에서 제거.
-	bool bFoundMatchingCombinedID = false;
-	for (int32 RI = 0; RI < PendingEquipPartsAsyncLoadReqList.Num(); ++RI)
-	{
-		FItemInfoEquipPartsAsyncReqCombinedID& ThisID = PendingEquipPartsAsyncLoadReqList[RI];
-		if (ThisID.MyAsyncRequestName == CompleteRequest)
-		{
-			JustLoadedRefIDs = ThisID.GetRefIDs();
-			PendingEquipPartsAsyncLoadReqList.RemoveAt(RI);
-			bFoundMatchingCombinedID = true;
-			break;
-		}
-	}
-
-	// 로딩된 에셋들을 캐싱
-	for (int32 LoadedRefID : JustLoadedRefIDs)
-	{
-		// 여기서 FullyLoad 를 주면 캐싱이 알아서 되긴 하지만
-		// 이 Async 로딩은 단일 Info 에 등록된 모든 걸 로딩하려는 게 아니므로 역시나 FullyLoad 없이 그냥.
-		// 게다가 거기서 FullyLoad 하는 건 async flush 요소가 있어서 async 로딩과 연관해서 쓰기 적절치 않다.
-		FSingleItemInfoData* ThisLoadedInfo = GetInfoData(LoadedRefID, false); 
-		if (ThisLoadedInfo)
-		{
-			ThisLoadedInfo->CacheOnEquipPartsAsyncLoadComplete(LoadedRefID, LoadedPtrMap);
-		}
-	}
-
-	// 완료된 Request 이름을 담아서 이벤트 날림.
-	if (OnEquipPartsAyncLoadComplete.IsBound())
-	{
-		OnEquipPartsAyncLoadComplete.Broadcast(CompleteRequest);
-	}
-
-#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
-	if (!bFoundMatchingCombinedID)
-	{
-		// 이런 일이 있을 수도? 똑같은 RefID 조합으로 연달아 로딩 요청을 보낼 경우 둘 다에 대해 각각 콜백이 온다면 이런 일이 발생할 텐데 실제로 그런 경우에는 한번만 온다.
-		FString AssetKeyString;
-		for (const FB2AsyncRequestInfo& ThisReqInfo : CompleteRequestList)
-		{
-			AssetKeyString += FString::Printf(TEXT("%d,"), ThisReqInfo.AssetKey);
-		}
-		BII_SCREEN_LOG(FString::Printf(TEXT("[UB2ItemInfo] No matching CombinedID OnAsyncLoadComplete.. ReqName %s, AssetKeys: %s"), *CompleteRequest, *AssetKeyString),
-			FLinearColor(0.0, 1.0f, 0.0f, 1.0f), 12, 5.0f);
-	}
-#endif
+//	TArray<int32> JustLoadedRefIDs;
+//
+//	// PendingEquipPartsAsyncLoadReqList 에서 완료된 엔트리를 식별하고 리스트에서 제거.
+//	bool bFoundMatchingCombinedID = false;
+//	for (int32 RI = 0; RI < PendingEquipPartsAsyncLoadReqList.Num(); ++RI)
+//	{
+//		FItemInfoEquipPartsAsyncReqCombinedID& ThisID = PendingEquipPartsAsyncLoadReqList[RI];
+//		if (ThisID.MyAsyncRequestName == CompleteRequest)
+//		{
+//			JustLoadedRefIDs = ThisID.GetRefIDs();
+//			PendingEquipPartsAsyncLoadReqList.RemoveAt(RI);
+//			bFoundMatchingCombinedID = true;
+//			break;
+//		}
+//	}
+//
+//	// 로딩된 에셋들을 캐싱
+//	for (int32 LoadedRefID : JustLoadedRefIDs)
+//	{
+//		// 여기서 FullyLoad 를 주면 캐싱이 알아서 되긴 하지만
+//		// 이 Async 로딩은 단일 Info 에 등록된 모든 걸 로딩하려는 게 아니므로 역시나 FullyLoad 없이 그냥.
+//		// 게다가 거기서 FullyLoad 하는 건 async flush 요소가 있어서 async 로딩과 연관해서 쓰기 적절치 않다.
+//		FSingleItemInfoData* ThisLoadedInfo = GetInfoData(LoadedRefID, false); 
+//		if (ThisLoadedInfo)
+//		{
+//			ThisLoadedInfo->CacheOnEquipPartsAsyncLoadComplete(LoadedRefID, LoadedPtrMap);
+//		}
+//	}
+//
+//	// 완료된 Request 이름을 담아서 이벤트 날림.
+//	if (OnEquipPartsAyncLoadComplete.IsBound())
+//	{
+//		OnEquipPartsAyncLoadComplete.Broadcast(CompleteRequest);
+//	}
+//
+//#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
+//	if (!bFoundMatchingCombinedID)
+//	{
+//		// 이런 일이 있을 수도? 똑같은 RefID 조합으로 연달아 로딩 요청을 보낼 경우 둘 다에 대해 각각 콜백이 온다면 이런 일이 발생할 텐데 실제로 그런 경우에는 한번만 온다.
+//		FString AssetKeyString;
+//		for (const FB2AsyncRequestInfo& ThisReqInfo : CompleteRequestList)
+//		{
+//			AssetKeyString += FString::Printf(TEXT("%d,"), ThisReqInfo.AssetKey);
+//		}
+//		BII_SCREEN_LOG(FString::Printf(TEXT("[UB2ItemInfo] No matching CombinedID OnAsyncLoadComplete.. ReqName %s, AssetKeys: %s"), *CompleteRequest, *AssetKeyString),
+//			FLinearColor(0.0, 1.0f, 0.0f, 1.0f), 12, 5.0f);
+//	}
+//#endif
 }
 
 bool UB2ItemInfo::TryAsyncLoadOfEquipParts(const TArray<int32>& InRefIDList, FString& OutRequestedName, bool bShowBlockingUI)
 {
-	TArray<FB2AsyncRequestInfo> TotalReqInfo;
+	//TArray<FB2AsyncRequestInfo> TotalReqInfo;
 
-	for (int32 ThisRefID : InRefIDList)
-	{ // 로딩 없이 그냥 InfoData 껍데기만
-		FSingleItemInfoData* ThisInfoData = GetInfoData(ThisRefID, false);
-		if (ThisInfoData)
-		{
-			ThisInfoData->GetEquipPartsAsyncLoadReqInfo(TotalReqInfo); // 각 InfoData 에서 긁어온 거 누적시킴. 다 모음
-		}
-	}
+	//for (int32 ThisRefID : InRefIDList)
+	//{ // 로딩 없이 그냥 InfoData 껍데기만
+	//	FSingleItemInfoData* ThisInfoData = GetInfoData(ThisRefID, false);
+	//	if (ThisInfoData)
+	//	{
+	//		ThisInfoData->GetEquipPartsAsyncLoadReqInfo(TotalReqInfo); // 각 InfoData 에서 긁어온 거 누적시킴. 다 모음
+	//	}
+	//}
 
 
-	//
-	// GetAsyncReqCombinedIDofPartsList 를 먼저 체크해 보고 이미 pending 이면 return false 해 볼까?
-	// 연달아 들어온 중복 요청 무시 차원..
-	//FItemInfoEquipPartsAsyncReqCombinedID AsyncReqCombinedID; 
-	//if (GetAsyncReqCombinedIDofPartsList(InRefIDList, AsyncReqCombinedID, false))
+	////
+	//// GetAsyncReqCombinedIDofPartsList 를 먼저 체크해 보고 이미 pending 이면 return false 해 볼까?
+	//// 연달아 들어온 중복 요청 무시 차원..
+	////FItemInfoEquipPartsAsyncReqCombinedID AsyncReqCombinedID; 
+	////if (GetAsyncReqCombinedIDofPartsList(InRefIDList, AsyncReqCombinedID, false))
+	////{
+	////	return false;
+	////}
+	////
+
+
+	//FItemInfoEquipPartsAsyncReqCombinedID AsyncReqCombinedID; // Async 로딩 요청이랑 완료 이후 식별에 필요한 정보.
+	//if (GetAsyncReqCombinedIDofPartsList(InRefIDList, AsyncReqCombinedID, true)) // 여기가 유일하게 기존에 없으면 새로 만들어야 할 곳이 될 듯.
 	//{
-	//	return false;
+	//	check(AsyncReqCombinedID.IsValid());
+	//	TryAsyncLoad(AsyncReqCombinedID.MyAsyncRequestName, TotalReqInfo, bShowBlockingUI);
+	//	OutRequestedName = AsyncReqCombinedID.MyAsyncRequestName; // 받은 쪽에서 필요하면 이걸 가지고 완료 이벤트가 왔을 때 식별 가능.
+	//	return true;
 	//}
 	//
-
-
-	FItemInfoEquipPartsAsyncReqCombinedID AsyncReqCombinedID; // Async 로딩 요청이랑 완료 이후 식별에 필요한 정보.
-	if (GetAsyncReqCombinedIDofPartsList(InRefIDList, AsyncReqCombinedID, true)) // 여기가 유일하게 기존에 없으면 새로 만들어야 할 곳이 될 듯.
-	{
-		check(AsyncReqCombinedID.IsValid());
-		TryAsyncLoad(AsyncReqCombinedID.MyAsyncRequestName, TotalReqInfo, bShowBlockingUI);
-		OutRequestedName = AsyncReqCombinedID.MyAsyncRequestName; // 받은 쪽에서 필요하면 이걸 가지고 완료 이벤트가 왔을 때 식별 가능.
-		return true;
-	}
-	
 	return false;
 }
 
@@ -1614,75 +1617,75 @@ void UB2ItemMiscInfo::AddOrUpdateMtrlRefHolderCache(int32 EntryIndex, UMaterialI
 
 void UB2ItemMiscInfo::UnloadAll()
 {
-	AllLoadedRefHolder.ClearAll();
+	//AllLoadedRefHolder.ClearAll();
 
-	for (int32 GI = 1; GI <= FItemGradeInfo::MAX_NORMAL_ITEM_STAR_GRADE; ++GI)
-	{
-		UnloadItemIconBGMtrl(GI, true);
-		UnloadItemIconBGMtrl(GI, false);
-		UnloadEquipIconBGMtrl(GI);
-		UnloadCostumeIconBGMtrl(GI);
-	}
-	for (int32 QI = 1; QI <= MAX_ITEM_QUALITY; ++QI)
-	{
-		UnloadItemQualityBGMtrl(QI);
-	}
-	UnloadItemStarGradeImage(true);
-	UnloadItemStarGradeImage(false);
+	//for (int32 GI = 1; GI <= FItemGradeInfo::MAX_NORMAL_ITEM_STAR_GRADE; ++GI)
+	//{
+	//	UnloadItemIconBGMtrl(GI, true);
+	//	UnloadItemIconBGMtrl(GI, false);
+	//	UnloadEquipIconBGMtrl(GI);
+	//	UnloadCostumeIconBGMtrl(GI);
+	//}
+	//for (int32 QI = 1; QI <= MAX_ITEM_QUALITY; ++QI)
+	//{
+	//	UnloadItemQualityBGMtrl(QI);
+	//}
+	//UnloadItemStarGradeImage(true);
+	//UnloadItemStarGradeImage(false);
 
-	UnloadTotemIconNotSmelted();
+	//UnloadTotemIconNotSmelted();
 
-	for (int32 i = 1; i <= MAX_TOTEM_SUB_OPTION; ++i)
-	{
-		UnloadTotemOptionIndexIcon(i);
-	}
+	//for (int32 i = 1; i <= MAX_TOTEM_SUB_OPTION; ++i)
+	//{
+	//	UnloadTotemOptionIndexIcon(i);
+	//}
 
-	for (int32 i = 1; i < (int32)EEquipCategoryType::End; ++i)
-		UnloadEquipCategoryIcon((EEquipCategoryType)i);
+	//for (int32 i = 1; i < (int32)EEquipCategoryType::End; ++i)
+	//	UnloadEquipCategoryIcon((EEquipCategoryType)i);
 
-	for (TPair<int32, TSoftObjectPtr<UMaterialInterface>>& Elem : EtherPosBGMtrl)
-	{
-		UnloadEtherPosBGMtrl(Elem.Key);
-	}
+	//for (TPair<int32, TSoftObjectPtr<UMaterialInterface>>& Elem : EtherPosBGMtrl)
+	//{
+	//	UnloadEtherPosBGMtrl(Elem.Key);
+	//}
 
-	for (TPair<int32, TSoftObjectPtr<UMaterialInterface>>& Elem : EtherTierBGMtrl)
-	{
-		UnloadEtherTierBGMtrl(Elem.Key);
-	}
+	//for (TPair<int32, TSoftObjectPtr<UMaterialInterface>>& Elem : EtherTierBGMtrl)
+	//{
+	//	UnloadEtherTierBGMtrl(Elem.Key);
+	//}
 
-	for (TPair<int32, TSoftObjectPtr<UMaterialInterface>>& Elem : EtherTierNameBGMtrl)
-	{
-		UnloadEtherTierNameBGMtrl(Elem.Key);
-	}
+	//for (TPair<int32, TSoftObjectPtr<UMaterialInterface>>& Elem : EtherTierNameBGMtrl)
+	//{
+	//	UnloadEtherTierNameBGMtrl(Elem.Key);
+	//}
 }
 
 #if WITH_EDITOR
-void UB2ItemMiscInfo::EditorLoadAll()
-{
-	for (int32 GI = 1; GI <= FItemGradeInfo::MAX_NORMAL_ITEM_STAR_GRADE; ++GI)
-	{
-		GetItemIconBGMtrl(GI, true, false);
-		GetItemIconBGMtrl(GI, false, false);
-		GetEquipIconBGMtrl(GI);
-		GetCostumeIconBGMtrl(GI);
-	}
-	for (int32 QI = 1; QI <= MAX_ITEM_QUALITY; ++QI)
-	{
-		GetItemQualityBGMtrl(QI);
-	}
-	GetItemStarGradeImage(true);
-	GetItemStarGradeImage(false);
-
-	GetTotemIconNotSmelted();
-
-	for (int32 i = 1; i <= MAX_TOTEM_SUB_OPTION; ++i)
-	{
-		GetTotemOptionIndexIcon(i);
-	}
-
-	for (int32 i = 1; i < (int32)EEquipCategoryType::End; ++i)
-		GetEquipCategoryIcon((EEquipCategoryType)i);
-}
+//void UB2ItemMiscInfo::EditorLoadAll()
+//{
+//	for (int32 GI = 1; GI <= FItemGradeInfo::MAX_NORMAL_ITEM_STAR_GRADE; ++GI)
+//	{
+//		GetItemIconBGMtrl(GI, true, false);
+//		GetItemIconBGMtrl(GI, false, false);
+//		GetEquipIconBGMtrl(GI);
+//		GetCostumeIconBGMtrl(GI);
+//	}
+//	for (int32 QI = 1; QI <= MAX_ITEM_QUALITY; ++QI)
+//	{
+//		GetItemQualityBGMtrl(QI);
+//	}
+//	GetItemStarGradeImage(true);
+//	GetItemStarGradeImage(false);
+//
+//	GetTotemIconNotSmelted();
+//
+//	for (int32 i = 1; i <= MAX_TOTEM_SUB_OPTION; ++i)
+//	{
+//		GetTotemOptionIndexIcon(i);
+//	}
+//
+//	for (int32 i = 1; i < (int32)EEquipCategoryType::End; ++i)
+//		GetEquipCategoryIcon((EEquipCategoryType)i);
+//}
 #endif
 
 #if TEMP_LAZYLOADING_MISHANDLING_CLEANUP

@@ -2,15 +2,17 @@
 // Project BladeII, Action Square
 
 #pragma once
-////#include "BladeII.h"
+//#include "BladeII.h"
 #include "UMG.h"
 #include "Blueprint/UserWidget.h"
-#include "B2Button.h"
-#include "B2ButtonGoodInfoToolTip.h"
-#include "B2ButtonGoodsShortcutToolTip.h"
-#include "B2Image.h"
-#include "B2ScrollBox.h"
-#include "B2RichTextBlock.h"
+#include "UMG/Public/Components/Button.h"
+#include "UMG/Public/Components/CanvasPanelSlot.h"
+////#include "B2Button.h"
+////#include "B2ButtonGoodInfoToolTip.h"
+////#include "B2ButtonGoodsShortcutToolTip.h"
+////#include "B2Image.h"
+////#include "B2ScrollBox.h"
+////#include "B2RichTextBlock.h"
 #include "B2UnitedWidgetBase.generated.h"
 
 #if WITH_EDITOR
@@ -185,10 +187,10 @@ class BLADEII_API UB2UnitedWidgetBase : public UUserWidget
 	uint32 bButtonsStunnedThisTick : 1;
 	uint32 bHasStunnedButtons : 1;
 	
-	UPROPERTY(Transient)
-	TArray<UB2Button*> AllB2Buttons;
-	UPROPERTY(Transient)
-	TArray<UB2Button*> TickableButtons; // Subset of AllB2Buttons.
+	//UPROPERTY(Transient)
+	//TArray<UB2Button*> AllB2Buttons;
+	//UPROPERTY(Transient)
+	//TArray<UB2Button*> TickableButtons; // Subset of AllB2Buttons.
 
 	/** It is created as a intermediate size or scale box panel, 
 	 * when this user widget is dynamically created in a placed panel widget (by UB2UnitedWidgetBase::DynCreate** series).
@@ -222,24 +224,24 @@ protected:
 	//TWeakObjectPtr<UB2ScrollBox> MyManualScrollBox;
 
 
-	///// Settings for Receiver
+	//Settings for Receiver
 
-	/** It will receive its input handling for its own scroll-box from other sender. */
-	uint32 bManualScrollBoxHandling_Receiver : 1;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
-	float ManualScrollBoxSensitivity;
-
-	//================================================================================
-	//[@AKI, 170330] 바로가기 툴팁 관련하여 ENum값으로 어떤 행동을 할지 결정하기 위해 만듬.
-	//원래는 B2ButtonGoodInfoToolTip에 있었으나 그 ENum값을 가져오는데 너무 Depth가 있어 이 위치로 바꿈
-	//추후 더 좋은 곳이 있다면 그곳으로 보낼 것 임 또는 보내주세요.
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BladeII Popup Type")
-	EGoodsInfoPopupType GoodsPopupType;
+//	/** It will receive its input handling for its own scroll-box from other sender. */
+//	uint32 bManualScrollBoxHandling_Receiver : 1;
+//
+//	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
+//	float ManualScrollBoxSensitivity;
+//
+//	//================================================================================
+//	//[@AKI, 170330] 바로가기 툴팁 관련하여 ENum값으로 어떤 행동을 할지 결정하기 위해 만듬.
+//	//원래는 B2ButtonGoodInfoToolTip에 있었으나 그 ENum값을 가져오는데 너무 Depth가 있어 이 위치로 바꿈
+//	//추후 더 좋은 곳이 있다면 그곳으로 보낼 것 임 또는 보내주세요.
+//	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BladeII Popup Type")
+//	//EGoodsInfoPopupType GoodsPopupType;
 
 	// Pre Load Asset
 	TMap<FName, UWidget*> CachedWidgets;
-
+//
 #if WITH_EDITOR
 	TMap<FString, UClass*> m_CheckValid;
 #endif //WITH_EDITOR
@@ -249,7 +251,7 @@ private:
 	/** Flags being marked when it is used with WidgetPool. */
 	uint32 bIsPooledObject : 1;
 	uint32 bCurrentlyRentAsPooledObject : 1;
-
+//
 public:
 	UB2UnitedWidgetBase(const FObjectInitializer& ObjectInitializer);
 
@@ -293,7 +295,7 @@ public:
 	UWidgetAnimation*				 GetAnimation(const FName& animName);
 
 	//[@AKI, 170411] 버튼에서 사용하기 위해 만든 메소드
-	EGoodsInfoPopupType GetGoodsPopupType() const { return GoodsPopupType; };
+	//EGoodsInfoPopupType GetGoodsPopupType() const { return GoodsPopupType; };
 
 	UFUNCTION(BlueprintCallable, Category = "BladeIIGame", DisplayName = "GetTimeTextFromSecond")
 	static FText GetTimeTextFromSecond(int32 nSecond);
@@ -307,13 +309,13 @@ protected:
 
 	virtual void RegisterUIMarkForRedDot() {}
 	virtual void UnRegisterUIMarkForRedDot();
-
+//
 public:	
 	virtual void DoMarkRedDot();
 	void ForceMarkRedDot(bool bShow);
 	
 	/** Intended to disable all other buttons when a button is pressed */
-	void SetButtonsStunForDuration(UB2Button* InJustPressedButton);
+	//void SetButtonsStunForDuration(UB2Button* InJustPressedButton);
 	void RestoreButtonsFromStun();
 
 	/**
@@ -403,11 +405,11 @@ public:
 	// Manual Scroll-Box handling. 
 public:
 	/** To be called on sender, by receiver. */
-	void SetupManualScrollBoxSender_byReceiver(UB2UnitedWidgetBase* InReceiver, UB2ScrollBox* HandlingScrollBox);
+	//void SetupManualScrollBoxSender_byReceiver(UB2UnitedWidgetBase* InReceiver, UB2ScrollBox* HandlingScrollBox);
 protected:
 	///// For Sender
 
-	virtual void OnSetupManualScrollBoxSender(UB2UnitedWidgetBase* InReceiver, UB2ScrollBox* HandlingScrollBox) {} // Override if post setup handling is necessary.
+	//virtual void OnSetupManualScrollBoxSender(UB2UnitedWidgetBase* InReceiver, UB2ScrollBox* HandlingScrollBox) {} // Override if post setup handling is necessary.
 
 	double TimeSenderBtnAreaPressStarted;
 	uint32 bSenderBtnAreaPressed : 1;
@@ -473,33 +475,33 @@ protected:
 	UFUNCTION(BlueprintImplementableEvent, Category = "BladeII")
 	void OnPooledObjectTurnInBP();
 };
-
-#if UE_BUILD_DEBUG
-void DebugCheckOnLoadSynchronousUse(UObject* WorldContextObject);
-#endif
-/**  
- * A little extension on UB2UnitedWidgetBase::DynCreateInCanvasPanelFull
- */
-template<class WidgetClassT>
-WidgetClassT* DynLoadAndCreateInCanvasPanelFull(TSoftClassPtr<WidgetClassT> InClass, UB2UnitedWidgetBase* OwnerUserWidget, class UCanvasPanel* ParentPanel)
-{
-	// Different from UB2UnitedWidgetBase::DynCreateInCanvasPanelFull in that InClass is TSoftClassPtr, which might not be loaded yet.
-	if (!InClass.ToString().IsEmpty())
-	{
-		// Simple LoadSynchronous of TSoftObjectPtr and/or TSoftClassPtr can cause FlushAsyncLoading, so better not use it if async loading can be going on at using moment.
-		// In that case, you better use LoadSynchronous interface provided by FStreamableManager.
-		// For now,, let it being used at lobby..
-#if UE_BUILD_DEBUG
-		DebugCheckOnLoadSynchronousUse(OwnerUserWidget);
-#endif
-		// Do NOT presume that LoadSynchronous of TSoftClassPtr is always fine and suggested.
-		// It can be used only when there are no possible use of async loading, or it will cause FlushAsyncLoading.
-		TSubclassOf<WidgetClassT> LoadedClass = InClass.LoadSynchronous();
-		return Cast<WidgetClassT>(UB2UnitedWidgetBase::DynCreateInCanvasPanelFull(LoadedClass, OwnerUserWidget, ParentPanel));
-	}
-	return nullptr;
-}
-
+//
+//#if UE_BUILD_DEBUG
+//void DebugCheckOnLoadSynchronousUse(UObject* WorldContextObject);
+//#endif
+///**  
+// * A little extension on UB2UnitedWidgetBase::DynCreateInCanvasPanelFull
+// */
+//template<class WidgetClassT>
+//WidgetClassT* DynLoadAndCreateInCanvasPanelFull(TSoftClassPtr<WidgetClassT> InClass, UB2UnitedWidgetBase* OwnerUserWidget, class UCanvasPanel* ParentPanel)
+//{
+//	// Different from UB2UnitedWidgetBase::DynCreateInCanvasPanelFull in that InClass is TSoftClassPtr, which might not be loaded yet.
+//	if (!InClass.ToString().IsEmpty())
+//	{
+//		// Simple LoadSynchronous of TSoftObjectPtr and/or TSoftClassPtr can cause FlushAsyncLoading, so better not use it if async loading can be going on at using moment.
+//		// In that case, you better use LoadSynchronous interface provided by FStreamableManager.
+//		// For now,, let it being used at lobby..
+//#if UE_BUILD_DEBUG
+//		DebugCheckOnLoadSynchronousUse(OwnerUserWidget);
+//#endif
+//		// Do NOT presume that LoadSynchronous of TSoftClassPtr is always fine and suggested.
+//		// It can be used only when there are no possible use of async loading, or it will cause FlushAsyncLoading.
+//		TSubclassOf<WidgetClassT> LoadedClass = InClass.LoadSynchronous();
+//		return Cast<WidgetClassT>(UB2UnitedWidgetBase::DynCreateInCanvasPanelFull(LoadedClass, OwnerUserWidget, ParentPanel));
+//	}
+//	return nullptr;
+//}
+//
 
 DECLARE_MULTICAST_DELEGATE_OneParam(FOnProgLevelChanged, int32);
 DECLARE_MULTICAST_DELEGATE_OneParam(FOnProgPercentChanged, float);
@@ -552,7 +554,7 @@ private:
 	float CurrentAnimatedPercent; // The result progress percent value, 0.0 ~ 1.0.
 
 	float CurrentSpeed;
-	
+//	
 public:
 	FProgressAnimateUtil()
 	{
@@ -665,184 +667,184 @@ public:
 	FString GetCurrentString() const;
 };
 
-#if WITH_EDITOR && !PLATFORM_MAC
-/**
- * An utility to replace all sub-widgets of ClassTobeRemoved to ClassToReplace in BasePage WidgetBlueprint.
- */
-void ReplaceSubWidgetClass(class UWidgetBlueprint* BasePage, TSubclassOf<UPanelWidget> ClassTobeRemoved, TSubclassOf<UPanelWidget> ClassToReplace, bool bSilent = false);
-void ForceSetButtonClickSoundIndex(class UWidgetBlueprint* BasePage, int32 InSoundIndex, bool bSilent = false);
-
-/** Implemented for special purpose. Intended to find a resource object having name partly the same to InOldAsset, but partly replaced (a different path) */
-template<class TAssetClass>
-TAssetClass* LoadAssetWithReplacedName(TAssetClass* InOldAsset, const FString& InOldPath, const FString& InNewPath)
-{
-	if (!InOldAsset) {
-		return NULL;
-	}
-	FString AssetPath = InOldAsset->GetPathName();
-	if (AssetPath.Contains(InOldPath)) {
-		FString NewPath = AssetPath.Replace(*InOldPath, *InNewPath);
-		return LoadObject<TAssetClass>(NULL, *NewPath);
-	}
-	return NULL;
-}
-// Repeated function of ReplaceSubWidgetResources
-template<class TAssetClass>
-bool SetBrushWithReplacedAsset(FSlateBrush& InBrushToChange, const FString& InOldPath, const FString& InNewPath)
-{
-	TAssetClass* CurrentAsset = Cast<TAssetClass>(InBrushToChange.GetResourceObject());
-	TAssetClass* AssetAtNewPath = LoadAssetWithReplacedName<TAssetClass>(CurrentAsset, InOldPath, InNewPath);
-	if (CurrentAsset && AssetAtNewPath)
-	{
-		InBrushToChange.SetResourceObject(AssetAtNewPath);
-		return true;
-	}
-	return false;
-}
-// Repeated function of ReplaceSubWidgetResources
-template<class TAssetClass>
-bool SetFontWithReplacedAsset(FSlateFontInfo& InFontToChange, const FString& InOldPath, const FString& InNewPath)
-{
-	TAssetClass* CurrentAsset = Cast<TAssetClass>(InFontToChange.FontMaterial);
-	TAssetClass* AssetAtNewPath = LoadAssetWithReplacedName<TAssetClass>(CurrentAsset, InOldPath, InNewPath);
-	if (CurrentAsset && AssetAtNewPath)
-	{
-		InFontToChange.FontMaterial = AssetAtNewPath;
-		return true;
-	}
-	return false;
-}
-// For very special purpose.. replaces resources of some type of widgets. having partly the same and partly different naming.
-template<class TAssetClass>
-int32 ReplaceSubWidgetResources(class UWidgetBlueprint* BasePage, const FString& InOldPath, const FString& InNewPath)
-{
-	if (!BasePage || !BasePage->WidgetTree || InOldPath.Len() == 0 || InNewPath.Len() == 0) {
-		return 0;
-	}
-
-	int32 ChangedCount = 0; // Will count how many widgets are actually changed by this function.
-
-	BasePage->WidgetTree->ForEachWidget([&](UWidget* CurrWidget) {
-		
-		// Hard to check for all type, but include as many as we can
-		UImage* CastedImage = Cast<UImage>(CurrWidget);
-		UButton* CastedBtn = Cast<UButton>(CurrWidget);
-		UProgressBar* CastedPB = Cast<UProgressBar>(CurrWidget);
-		UScrollBar* CastedSB = Cast<UScrollBar>(CurrWidget);
-
-		UTextBlock* CastedTB = Cast<UTextBlock>(CurrWidget);
-		UB2RichTextBlock* CastedRTB = Cast<UB2RichTextBlock>(CurrWidget);
-		UEditableText* CastedET = Cast<UEditableText>(CurrWidget);
-
-		if (CastedImage)
-		{			
-			if (SetBrushWithReplacedAsset<TAssetClass>(CastedImage->Brush, InOldPath, InNewPath)){
-				++ChangedCount;
-			}
-		}
-		else if (CastedBtn)
-		{
-			bool bIsChangedOne = false;
-			if (SetBrushWithReplacedAsset<TAssetClass>(CastedBtn->WidgetStyle.Normal, InOldPath, InNewPath)){
-				bIsChangedOne = true;
-			}
-			if (SetBrushWithReplacedAsset<TAssetClass>(CastedBtn->WidgetStyle.Hovered, InOldPath, InNewPath)){
-				bIsChangedOne = true;
-			}
-			if (SetBrushWithReplacedAsset<TAssetClass>(CastedBtn->WidgetStyle.Pressed, InOldPath, InNewPath)){
-				bIsChangedOne = true;
-			}
-			if (SetBrushWithReplacedAsset<TAssetClass>(CastedBtn->WidgetStyle.Disabled, InOldPath, InNewPath)){
-				bIsChangedOne = true;
-			}
-			if (bIsChangedOne){
-				++ChangedCount;
-			}
-		}
-		else if (CastedPB)
-		{
-			bool bIsChangedOne = false;
-			if (SetBrushWithReplacedAsset<TAssetClass>(CastedPB->WidgetStyle.BackgroundImage, InOldPath, InNewPath)){
-				bIsChangedOne = true;
-			}
-			if (SetBrushWithReplacedAsset<TAssetClass>(CastedPB->WidgetStyle.FillImage, InOldPath, InNewPath)) {
-				bIsChangedOne = true;
-			}
-			if (SetBrushWithReplacedAsset<TAssetClass>(CastedPB->WidgetStyle.MarqueeImage, InOldPath, InNewPath)) {
-				bIsChangedOne = true;
-			}
-			if (bIsChangedOne) {
-				++ChangedCount;
-			}
-		}
-		else if (CastedSB)
-		{
-			bool bIsChangedOne = false;
-			if (SetBrushWithReplacedAsset<TAssetClass>(CastedSB->WidgetStyle.HorizontalBackgroundImage, InOldPath, InNewPath)) {
-				bIsChangedOne = true;
-			}
-			if (SetBrushWithReplacedAsset<TAssetClass>(CastedSB->WidgetStyle.VerticalBackgroundImage, InOldPath, InNewPath)) {
-				bIsChangedOne = true;
-			}
-			if (SetBrushWithReplacedAsset<TAssetClass>(CastedSB->WidgetStyle.VerticalTopSlotImage, InOldPath, InNewPath)) {
-				bIsChangedOne = true;
-			}
-			if (SetBrushWithReplacedAsset<TAssetClass>(CastedSB->WidgetStyle.HorizontalTopSlotImage, InOldPath, InNewPath)) {
-				bIsChangedOne = true;
-			}
-			if (SetBrushWithReplacedAsset<TAssetClass>(CastedSB->WidgetStyle.VerticalBottomSlotImage, InOldPath, InNewPath)) {
-				bIsChangedOne = true;
-			}
-			if (SetBrushWithReplacedAsset<TAssetClass>(CastedSB->WidgetStyle.HorizontalBottomSlotImage, InOldPath, InNewPath)) {
-				bIsChangedOne = true;
-			}
-			if (SetBrushWithReplacedAsset<TAssetClass>(CastedSB->WidgetStyle.NormalThumbImage, InOldPath, InNewPath)) {
-				bIsChangedOne = true;
-			}
-			if (SetBrushWithReplacedAsset<TAssetClass>(CastedSB->WidgetStyle.HoveredThumbImage, InOldPath, InNewPath)) {
-				bIsChangedOne = true;
-			}
-			if (SetBrushWithReplacedAsset<TAssetClass>(CastedSB->WidgetStyle.DraggedThumbImage, InOldPath, InNewPath)) {
-				bIsChangedOne = true;
-			}
-			if (bIsChangedOne) {
-				++ChangedCount;
-			}
-		}
-		else if (CastedTB)
-		{
-			if (SetFontWithReplacedAsset<TAssetClass>(CastedTB->Font, InOldPath, InNewPath)) {
-				++ChangedCount;
-			}
-		}
-		else if (CastedRTB)
-		{
-			// Font is protected here..
-			//if (SetFontWithReplacedAsset<TAssetClass>(CastedRTB->Font, InOldPath, InNewPath)) {
-			//	++ChangedCount;
-			//}
-		}
-		else if (CastedET)
-		{
-			bool bIsChangedOne = false;
-			if (SetFontWithReplacedAsset<TAssetClass>(CastedET->WidgetStyle.Font, InOldPath, InNewPath)) {
-				++ChangedCount;
-			}
-			if (SetBrushWithReplacedAsset<TAssetClass>(CastedET->WidgetStyle.BackgroundImageSelected, InOldPath, InNewPath)) {
-				bIsChangedOne = true;
-			}
-			if (SetBrushWithReplacedAsset<TAssetClass>(CastedET->WidgetStyle.BackgroundImageComposing, InOldPath, InNewPath)) {
-				bIsChangedOne = true;
-			}
-			if (SetBrushWithReplacedAsset<TAssetClass>(CastedET->WidgetStyle.CaretImage, InOldPath, InNewPath)) {
-				bIsChangedOne = true;
-			}
-			if (bIsChangedOne) {
-				++ChangedCount;
-			}
-		}
-	});
-
-	return ChangedCount;
-}
-#endif
+//#if WITH_EDITOR && !PLATFORM_MAC
+///**
+// * An utility to replace all sub-widgets of ClassTobeRemoved to ClassToReplace in BasePage WidgetBlueprint.
+// */
+//void ReplaceSubWidgetClass(class UWidgetBlueprint* BasePage, TSubclassOf<UPanelWidget> ClassTobeRemoved, TSubclassOf<UPanelWidget> ClassToReplace, bool bSilent = false);
+//void ForceSetButtonClickSoundIndex(class UWidgetBlueprint* BasePage, int32 InSoundIndex, bool bSilent = false);
+//
+///** Implemented for special purpose. Intended to find a resource object having name partly the same to InOldAsset, but partly replaced (a different path) */
+//template<class TAssetClass>
+//TAssetClass* LoadAssetWithReplacedName(TAssetClass* InOldAsset, const FString& InOldPath, const FString& InNewPath)
+//{
+//	if (!InOldAsset) {
+//		return NULL;
+//	}
+//	FString AssetPath = InOldAsset->GetPathName();
+//	if (AssetPath.Contains(InOldPath)) {
+//		FString NewPath = AssetPath.Replace(*InOldPath, *InNewPath);
+//		return LoadObject<TAssetClass>(NULL, *NewPath);
+//	}
+//	return NULL;
+//}
+//// Repeated function of ReplaceSubWidgetResources
+//template<class TAssetClass>
+//bool SetBrushWithReplacedAsset(FSlateBrush& InBrushToChange, const FString& InOldPath, const FString& InNewPath)
+//{
+//	TAssetClass* CurrentAsset = Cast<TAssetClass>(InBrushToChange.GetResourceObject());
+//	TAssetClass* AssetAtNewPath = LoadAssetWithReplacedName<TAssetClass>(CurrentAsset, InOldPath, InNewPath);
+//	if (CurrentAsset && AssetAtNewPath)
+//	{
+//		InBrushToChange.SetResourceObject(AssetAtNewPath);
+//		return true;
+//	}
+//	return false;
+//}
+//// Repeated function of ReplaceSubWidgetResources
+//template<class TAssetClass>
+//bool SetFontWithReplacedAsset(FSlateFontInfo& InFontToChange, const FString& InOldPath, const FString& InNewPath)
+//{
+//	TAssetClass* CurrentAsset = Cast<TAssetClass>(InFontToChange.FontMaterial);
+//	TAssetClass* AssetAtNewPath = LoadAssetWithReplacedName<TAssetClass>(CurrentAsset, InOldPath, InNewPath);
+//	if (CurrentAsset && AssetAtNewPath)
+//	{
+//		InFontToChange.FontMaterial = AssetAtNewPath;
+//		return true;
+//	}
+//	return false;
+//}
+//// For very special purpose.. replaces resources of some type of widgets. having partly the same and partly different naming.
+//template<class TAssetClass>
+//int32 ReplaceSubWidgetResources(class UWidgetBlueprint* BasePage, const FString& InOldPath, const FString& InNewPath)
+//{
+//	if (!BasePage || !BasePage->WidgetTree || InOldPath.Len() == 0 || InNewPath.Len() == 0) {
+//		return 0;
+//	}
+//
+//	int32 ChangedCount = 0; // Will count how many widgets are actually changed by this function.
+//
+//	BasePage->WidgetTree->ForEachWidget([&](UWidget* CurrWidget) {
+//		
+//		// Hard to check for all type, but include as many as we can
+//		UImage* CastedImage = Cast<UImage>(CurrWidget);
+//		UButton* CastedBtn = Cast<UButton>(CurrWidget);
+//		UProgressBar* CastedPB = Cast<UProgressBar>(CurrWidget);
+//		UScrollBar* CastedSB = Cast<UScrollBar>(CurrWidget);
+//
+//		UTextBlock* CastedTB = Cast<UTextBlock>(CurrWidget);
+//		UB2RichTextBlock* CastedRTB = Cast<UB2RichTextBlock>(CurrWidget);
+//		UEditableText* CastedET = Cast<UEditableText>(CurrWidget);
+//
+//		if (CastedImage)
+//		{			
+//			if (SetBrushWithReplacedAsset<TAssetClass>(CastedImage->Brush, InOldPath, InNewPath)){
+//				++ChangedCount;
+//			}
+//		}
+//		else if (CastedBtn)
+//		{
+//			bool bIsChangedOne = false;
+//			if (SetBrushWithReplacedAsset<TAssetClass>(CastedBtn->WidgetStyle.Normal, InOldPath, InNewPath)){
+//				bIsChangedOne = true;
+//			}
+//			if (SetBrushWithReplacedAsset<TAssetClass>(CastedBtn->WidgetStyle.Hovered, InOldPath, InNewPath)){
+//				bIsChangedOne = true;
+//			}
+//			if (SetBrushWithReplacedAsset<TAssetClass>(CastedBtn->WidgetStyle.Pressed, InOldPath, InNewPath)){
+//				bIsChangedOne = true;
+//			}
+//			if (SetBrushWithReplacedAsset<TAssetClass>(CastedBtn->WidgetStyle.Disabled, InOldPath, InNewPath)){
+//				bIsChangedOne = true;
+//			}
+//			if (bIsChangedOne){
+//				++ChangedCount;
+//			}
+//		}
+//		else if (CastedPB)
+//		{
+//			bool bIsChangedOne = false;
+//			if (SetBrushWithReplacedAsset<TAssetClass>(CastedPB->WidgetStyle.BackgroundImage, InOldPath, InNewPath)){
+//				bIsChangedOne = true;
+//			}
+//			if (SetBrushWithReplacedAsset<TAssetClass>(CastedPB->WidgetStyle.FillImage, InOldPath, InNewPath)) {
+//				bIsChangedOne = true;
+//			}
+//			if (SetBrushWithReplacedAsset<TAssetClass>(CastedPB->WidgetStyle.MarqueeImage, InOldPath, InNewPath)) {
+//				bIsChangedOne = true;
+//			}
+//			if (bIsChangedOne) {
+//				++ChangedCount;
+//			}
+//		}
+//		else if (CastedSB)
+//		{
+//			bool bIsChangedOne = false;
+//			if (SetBrushWithReplacedAsset<TAssetClass>(CastedSB->WidgetStyle.HorizontalBackgroundImage, InOldPath, InNewPath)) {
+//				bIsChangedOne = true;
+//			}
+//			if (SetBrushWithReplacedAsset<TAssetClass>(CastedSB->WidgetStyle.VerticalBackgroundImage, InOldPath, InNewPath)) {
+//				bIsChangedOne = true;
+//			}
+//			if (SetBrushWithReplacedAsset<TAssetClass>(CastedSB->WidgetStyle.VerticalTopSlotImage, InOldPath, InNewPath)) {
+//				bIsChangedOne = true;
+//			}
+//			if (SetBrushWithReplacedAsset<TAssetClass>(CastedSB->WidgetStyle.HorizontalTopSlotImage, InOldPath, InNewPath)) {
+//				bIsChangedOne = true;
+//			}
+//			if (SetBrushWithReplacedAsset<TAssetClass>(CastedSB->WidgetStyle.VerticalBottomSlotImage, InOldPath, InNewPath)) {
+//				bIsChangedOne = true;
+//			}
+//			if (SetBrushWithReplacedAsset<TAssetClass>(CastedSB->WidgetStyle.HorizontalBottomSlotImage, InOldPath, InNewPath)) {
+//				bIsChangedOne = true;
+//			}
+//			if (SetBrushWithReplacedAsset<TAssetClass>(CastedSB->WidgetStyle.NormalThumbImage, InOldPath, InNewPath)) {
+//				bIsChangedOne = true;
+//			}
+//			if (SetBrushWithReplacedAsset<TAssetClass>(CastedSB->WidgetStyle.HoveredThumbImage, InOldPath, InNewPath)) {
+//				bIsChangedOne = true;
+//			}
+//			if (SetBrushWithReplacedAsset<TAssetClass>(CastedSB->WidgetStyle.DraggedThumbImage, InOldPath, InNewPath)) {
+//				bIsChangedOne = true;
+//			}
+//			if (bIsChangedOne) {
+//				++ChangedCount;
+//			}
+//		}
+//		else if (CastedTB)
+//		{
+//			if (SetFontWithReplacedAsset<TAssetClass>(CastedTB->Font, InOldPath, InNewPath)) {
+//				++ChangedCount;
+//			}
+//		}
+//		else if (CastedRTB)
+//		{
+//			// Font is protected here..
+//			//if (SetFontWithReplacedAsset<TAssetClass>(CastedRTB->Font, InOldPath, InNewPath)) {
+//			//	++ChangedCount;
+//			//}
+//		}
+//		else if (CastedET)
+//		{
+//			bool bIsChangedOne = false;
+//			if (SetFontWithReplacedAsset<TAssetClass>(CastedET->WidgetStyle.Font, InOldPath, InNewPath)) {
+//				++ChangedCount;
+//			}
+//			if (SetBrushWithReplacedAsset<TAssetClass>(CastedET->WidgetStyle.BackgroundImageSelected, InOldPath, InNewPath)) {
+//				bIsChangedOne = true;
+//			}
+//			if (SetBrushWithReplacedAsset<TAssetClass>(CastedET->WidgetStyle.BackgroundImageComposing, InOldPath, InNewPath)) {
+//				bIsChangedOne = true;
+//			}
+//			if (SetBrushWithReplacedAsset<TAssetClass>(CastedET->WidgetStyle.CaretImage, InOldPath, InNewPath)) {
+//				bIsChangedOne = true;
+//			}
+//			if (bIsChangedOne) {
+//				++ChangedCount;
+//			}
+//		}
+//	});
+//
+//	return ChangedCount;
+//}
+//#endif

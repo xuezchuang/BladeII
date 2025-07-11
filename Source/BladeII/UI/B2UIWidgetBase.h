@@ -2,11 +2,11 @@
 // Project BladeII, Action Square
 
 #pragma once
-////#include "BladeII.h"
-#include "UMG.h"
+#include "BladeII.h"
+//#include "UMG.h"
 #include "B2UnitedWidgetBase.h"
-#include "B2UIEnum.h"
-#include "Event.h"
+//#include "B2UIEnum.h"
+//#include "Event.h"
 #include "B2UIWidgetBase.generated.h"
 
 /** Information struct to define any custom timing of a user widget */
@@ -15,7 +15,7 @@ struct FB2UIWidgetCustomTimedCallbackInfo
 {
 	GENERATED_USTRUCT_BODY()
 
-		FB2UIWidgetCustomTimedCallbackInfo()
+	FB2UIWidgetCustomTimedCallbackInfo()
 	{
 		InvokeTime = 0.0f;
 
@@ -24,7 +24,7 @@ struct FB2UIWidgetCustomTimedCallbackInfo
 
 	/** Time (in second) to call the callback after the construction of owning user widget. */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-		float InvokeTime;
+	float InvokeTime;
 
 	FTimerHandle TimerHandle;
 
@@ -39,7 +39,7 @@ struct FB2UIWidgetCustomTimedHideInfo
 {
 	GENERATED_USTRUCT_BODY()
 
-		FB2UIWidgetCustomTimedHideInfo()
+	FB2UIWidgetCustomTimedHideInfo()
 	{
 		HideStartTime = 0.0f;
 		HideStopTime = 0.0f;
@@ -52,16 +52,16 @@ struct FB2UIWidgetCustomTimedHideInfo
 
 	/** Time (in second) to start hide after the construction of owning user widget. */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-		float HideStartTime;
+	float HideStartTime;
 
 	/** Time (in second) to make it visible after the construction of owning user widget.
 	* The exact visibility state is what was originally set before hidden (usually what you set at UMG) */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-		float HideStopTime;
+	float HideStopTime;
 
 	/** Name of the widget that can be seen in the UMG. */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-		FName WidgetNameToHide;
+	FName WidgetNameToHide;
 
 	/** Cached before hide, to restore it back. */
 	ESlateVisibility OriginalVisibility;
@@ -87,11 +87,11 @@ class BLADEII_API UB2UIWidgetBase : public UB2UnitedWidgetBase
 public:
 	/** Define any custom time to call CustomTimeCallback using this. */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BladeII")
-		TArray<FB2UIWidgetCustomTimedCallbackInfo> CustomTimedCallBackInfo;
+	TArray<FB2UIWidgetCustomTimedCallbackInfo> CustomTimedCallBackInfo;
 
 	/** Define custom time to temporarily hide any child widgets. */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BladeII")
-		TArray<FB2UIWidgetCustomTimedHideInfo> CustomTimedHideInfo;
+	TArray<FB2UIWidgetCustomTimedHideInfo> CustomTimedHideInfo;
 
 public:
 	UB2UIWidgetBase(const FObjectInitializer& ObjectInitializer);
@@ -100,7 +100,7 @@ public:
 	virtual void Init();
 
 	virtual void NativeConstruct() override;
-	
+
 	/** Before you use DestroySelf directly, consider CloseUI or UIManager first. */
 	virtual void DestroySelf(class UB2UIManager* InUIManager);
 
@@ -112,7 +112,7 @@ public:
 public:
 	/** It gives the opportunity to set the text Localized in BP. */
 	UFUNCTION(BlueprintImplementableEvent, Category = BladeII)
-		void UpdateStaticText_BP();
+	void UpdateStaticText_BP();
 
 protected:
 
@@ -131,7 +131,7 @@ protected:
 
 	/** Blueprint callback to be invoked by CustomTimedCallBackInfo */
 	UFUNCTION(BlueprintImplementableEvent, Category = BladeII)
-		void CustomTimeCallback(int32 InfoIndex);
+	void CustomTimeCallback(int32 InfoIndex);
 
 	/** Setup for CustomTimedHideInfo. Override if the widget is used under paused circumstance. */
 	virtual void SetupWidgetCustomHideTimer();
@@ -139,15 +139,15 @@ protected:
 	/** Main callback to be invoked by CustomTimedHideInfo */
 	void CustomTimeHideStartCallback(int32 InfoIndex);
 	void CustomTimeHideStopCallback(int32 InfoIndex);
-	
+
 	/*Where the handling in order to use the asset on the BP in NativeCode.*/
-	virtual void CacheAssets(){}
+	virtual void CacheAssets() {}
 
 	/*Allows setting the content of the text does not change here.*/
-	virtual void UpdateStaticText(){}
+	virtual void UpdateStaticText() {}
 
 	/* Where to bind a DelegateFunction to cached assets. */
-	virtual void BindDelegates(){};
+	virtual void BindDelegates() {};
 
 	virtual bool OnBackButtonProc() { return false; }
 };

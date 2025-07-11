@@ -59,7 +59,7 @@ void UB2RaidInfoTable::CheckInfoDataIntegrity()
 #if !PLATFORM_MAC
 			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
 				FString::Printf(TEXT("[경고] RaidInfoTable 데이터의 줄번호에 치명적인 문제가 있음. 컴퓨터가 곧 폭발한다."))
-				));
+			));
 #endif
 		}
 	}

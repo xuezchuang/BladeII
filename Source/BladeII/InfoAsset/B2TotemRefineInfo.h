@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Engine/DataTable.h"
 #include "UObject/NoExportTypes.h"
+#include "../Common/CommonStruct.h"
 #include "B2TotemRefineInfo.generated.h"
 
 

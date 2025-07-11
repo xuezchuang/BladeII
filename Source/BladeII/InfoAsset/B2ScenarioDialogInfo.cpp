@@ -90,7 +90,8 @@ static EPCClass LocalGetPlayerCharClass(UObject* WorldContextObject, bool bForMa
 	//}
 	// 현재 플레이하고 있는 LocalPlayerCharacter 가 들고 있는 값과 다를 수 있으므로 처음부터 LocalCharacterData 에 있는 걸 쓰지 않는다.
 	// LocalPlayerCharacter 를 얻어올 수 없는 상황에서만.. 그런 상황이 있긴 함.
-	return bForMain ? BladeIIGameImpl::GetLocalCharacterData().GetMainPlayerClass() : BladeIIGameImpl::GetLocalCharacterData().GetSubPlayerClass();
+	//return bForMain ? BladeIIGameImpl::GetLocalCharacterData().GetMainPlayerClass() : BladeIIGameImpl::GetLocalCharacterData().GetSubPlayerClass();
+	return EPCClass::EPC_End;
 }
 
 int32 UB2DialogCharacterInfoSet::GetInfoArrayIndexOfCharCode(FName CharacterCodeName, UObject* WorldContextObject)

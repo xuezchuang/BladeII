@@ -9,8 +9,8 @@
 //#include "B2RaidGameMode.h"
 //#include "B2ControlGameMode.h"
 //#include "B2HeroTowerGameMode.h"
-#include "B2GuildGameMode.h"
-#include "B2UIDocHelper.h"
+//#include "B2GuildGameMode.h"
+//#include "B2UIDocHelper.h"
 //#include "B2DLCFrontGameMode.h"
 
 UB2LoadingImageInfo::UB2LoadingImageInfo(const FObjectInitializer& ObjectInitializer)

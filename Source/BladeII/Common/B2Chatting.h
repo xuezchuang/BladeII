@@ -2,7 +2,7 @@
 //#include "BladeII.h"
 #include "EngineMinimal.h"
 #include "CommonStruct.h"
-#include "B2UIEnum.h"
+//#include "B2UIEnum.h"
 
 UENUM(BlueprintType)
 enum class EB2ChatType : uint8

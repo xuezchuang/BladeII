@@ -5,7 +5,8 @@
 
 #include "GameFramework/Actor.h"
 #include "GameFramework/ProjectileMovementComponent.h"
-#include "B2Inventory.h"
+#include "../Common/CommonStruct.h"
+//#include "B2Inventory.h"
 #include "B2ItemInfo.h"
 #include "B2DropItem.generated.h"
 

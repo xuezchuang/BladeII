@@ -7,6 +7,7 @@
 #include "UMG.h"
 #include "BladeIIPlayer.h"
 #include "B2AssetLoader.h"
+#include "../BladeII/BladeIICharacter.h"
 #include "B2SkillInfo.generated.h"
 
 UENUM()
@@ -66,8 +67,8 @@ struct FSingleSkillInfo
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "SkillInfo")
 	float CoolTime;
 	
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "SkillInfo")
-	EAttackState AttackAnimState;
+	//UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "SkillInfo")
+	//EAttackState AttackAnimState;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "SkillInfo")
 	ESkillType SkillType;
@@ -75,8 +76,8 @@ struct FSingleSkillInfo
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "SkillInfo")
 	EPassiveType PassiveType;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "SkillInfo")
-	EWeaponSkillType WeaponSkillType;
+	//UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "SkillInfo")
+	//EWeaponSkillType WeaponSkillType;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "SkillInfo")
 	int32 EnableWeaponSkillPoint;
@@ -150,7 +151,7 @@ public:
 	/** Original cooltime, unscaled by any other modification.. */
 	float GetOriginalCoolTime(int32 SkillInfoID) const;
 
-	static int32 GetEnablePlayerLevel(int32 SkillInfoID);
+	//static int32 GetEnablePlayerLevel(int32 SkillInfoID);
 
 	FButtonStyle GetButtonIconStyle(int32 SkillInfoID);
 

@@ -5,6 +5,8 @@
 //#include "B2UnitedWidgetBase.h"
 #include "BladeIIGameMode.h"
 #include "Event.h"
+#include "B2UnitedWidgetBase.h"
+#include "Materials/MaterialInstanceDynamic.h"
 //#include "B2CommonSoundInfo.h"
 //#include "TutorialManager.h"
 //#include "B2GameInstance.h"

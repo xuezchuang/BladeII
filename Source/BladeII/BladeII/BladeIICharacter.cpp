@@ -2,54 +2,57 @@
 
 
 #include "BladeIICharacter.h"
+#include "BladeIIUtil.h"
 #include "BladeIIGameMode.h"
-#include "B2StageGameMode.h"
-#include "B2DimensionGameMode.h"
-#include "B2StageInfo.h"
-#include "B2StageManager.h"
-#include "Components/ArrowComponent.h"
-#include "BehaviorTree/BehaviorTree.h"
-#include "Runtime/AIModule/Classes/AIController.h"
-#include "Runtime/UMG/Public/UMG.h"
-#include "Runtime/UMG/Public/Blueprint/UserWidget.h"
-#include "B2FloatingHPBar.h"
-#include "B2FloatingDamageNum.h"
-#include "B2FloatingAbnormalEffect.h"
-#include "B2UIManager_InGameCombat.h"
-#include "B2MonsterSpawnPool.h"
-#include "B2StageEventDirector.h"
-#include "Animation/SkeletalMeshActor.h"
-#include "Engine/SkeletalMesh.h"
-#include "Particles/ParticleSystem.h"
-#include "B2DamageEffectInfo.h"
-#include "B2BuffModeEffectInfo.h"
-#include "BladeIIProjectile.h"
-#include "Components/StaticMeshComponent.h"
-#include "Components/DecalComponent.h"
-#include "Event.h"
-#include "NavigationSystem.h"
-#include "B2AreaDamageActorBase.h"
-#include "B2UIDocHelper.h"
-#include "B2CombatStatEvaluator.h"
-#include "BladeIIAIController.h"
-#include "Trigger.h"
-#include "B2CounterAttackGameMode.h"
-#include "B2PCClassInfoBox.h"
-#include "B2NoAnimSkillInfo.h"
-#include "B2CharacterBuffManager.h"
-#include "B2GeneralBuffs.h"
-#include "B2NPCClassInfo.h"
-#include "BladeIIPlayerController.h"
-#include "B2AutoAIController.h"
-#include "B2AnimInstance.h"
+#include "../InfoAsset/B2NPCClassInfoBox.h"
+////#include "BladeIIGameMode.h"
+////#include "B2StageGameMode.h"
+////#include "B2DimensionGameMode.h"
+//////#include "B2StageInfo.h"
+////#include "B2StageManager.h"
+////#include "Components/ArrowComponent.h"
+////#include "BehaviorTree/BehaviorTree.h"
+////#include "Runtime/AIModule/Classes/AIController.h"
+////#include "Runtime/UMG/Public/UMG.h"
+////#include "Runtime/UMG/Public/Blueprint/UserWidget.h"
+////#include "B2FloatingHPBar.h"
+////#include "B2FloatingDamageNum.h"
+////#include "B2FloatingAbnormalEffect.h"
+////#include "B2UIManager_InGameCombat.h"
+////#include "B2MonsterSpawnPool.h"
+////#include "B2StageEventDirector.h"
+////#include "Animation/SkeletalMeshActor.h"
+////#include "Engine/SkeletalMesh.h"
+////#include "Particles/ParticleSystem.h"
+////#include "B2DamageEffectInfo.h"
+////#include "B2BuffModeEffectInfo.h"
+////#include "BladeIIProjectile.h"
+////#include "Components/StaticMeshComponent.h"
+////#include "Components/DecalComponent.h"
+////#include "Event.h"
+////#include "NavigationSystem.h"
+////#include "B2AreaDamageActorBase.h"
+////#include "B2UIDocHelper.h"
+////#include "B2CombatStatEvaluator.h"
+////#include "BladeIIAIController.h"
+////#include "Trigger.h"
+////#include "B2CounterAttackGameMode.h"
+////#include "B2PCClassInfoBox.h"
+////#include "B2NoAnimSkillInfo.h"
+////#include "B2CharacterBuffManager.h"
+////#include "B2GeneralBuffs.h"
+//////#include "B2NPCClassInfo.h"
+////#include "BladeIIPlayerController.h"
+//////#include "B2AutoAIController.h"
+////#include "B2AnimInstance.h"
 #include "B2GameInstance.h"
-#include "B2AIUtil.h"
-#include "Components/DecalComponent.h"
-
-#ifdef BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
-#include "BladeIITestDummyNPC.h"
-#endif
-#include "B2CharacterBuffManager.h"
+//#include "B2AIUtil.h"
+//#include "Components/DecalComponent.h"
+//
+//#ifdef BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
+//#include "BladeIITestDummyNPC.h"
+//#endif
+////#include "B2CharacterBuffManager.h"
 
 DEFINE_LOG_CATEGORY_STATIC(LogB2Character, Log, All);
 
@@ -62,44 +65,44 @@ UParticleSystem* FCHSKCompAttachParticleSystemInfo::GetParticleSystemAsset()
 	}
 	return ParticleSystemAsset.Get();
 }
-
-UParticleSystemComponent* FCHSKCompAttachParticleSystemInfo::CreatePSCHelper(AActor* InCompOwner, USkeletalMeshComponent* InParentComp)
-{
-	//BLADE2_SCOPE_CYCLE_COUNTER(FCHSKCompAttachParticleSystemInfo_CreatePSCHelper);
-	// 여기 Info 셋업 사용해서 PSC 생성 및 attach 하는 기본 절차.
-	if (InCompOwner && InParentComp)
-	{
-		// InParentComp 는 InCompOwner 에 포함된 걸로 가정을..
-		checkSlow(InParentComp->IsAttachedTo(InCompOwner->GetRootComponent()) || InParentComp == InCompOwner->GetRootComponent());
-
-		UParticleSystem* LoadedPS = GetParticleSystemAsset();
-		if (LoadedPS)
-		{
-			UParticleSystemComponent* CreatedComp = NewObject<UParticleSystemComponent>(InCompOwner, FName(*GetCompCreateName(InCompOwner)), RF_Transient);
-			if (CreatedComp)
-			{
-				CreatedComp->bReceivesDecals = false;
-				//CreatedComp->bIgnoreBoneRotation = bIgnoreBoneRotation;
-				CreatedComp->SetTemplate(LoadedPS);
-				CreatedComp->SetRelativeScale3D(AttachScale3D);
-				CreatedComp->SetRelativeLocation(LocationOffset);
-				CreatedComp->SetRelativeRotation(RotationOffset);
-				CreatedComp->AttachToComponent(InParentComp, FAttachmentTransformRules(EAttachmentRule::KeepRelative, true), AttachSocketName);
-				CreatedComp->RegisterComponent();
-				CreatedComp->Activate(true);
-				return CreatedComp;
-			}
-		}
-	}
-	return NULL;
-}
-
-#if WITH_EDITOR
-void FCHSKCompAttachParticleSystemInfo::EditorClearPSAsset()
-{ // 이거 세팅하지 말아야 할 곳에서 세팅하면 PostEdit 에서 제거하려는 거.
-	ParticleSystemAsset.Reset();
-}
-#endif
+//
+//UParticleSystemComponent* FCHSKCompAttachParticleSystemInfo::CreatePSCHelper(AActor* InCompOwner, USkeletalMeshComponent* InParentComp)
+//{
+//	////BLADE2_SCOPE_CYCLE_COUNTER(FCHSKCompAttachParticleSystemInfo_CreatePSCHelper);
+//	//// 여기 Info 셋업 사용해서 PSC 생성 및 attach 하는 기본 절차.
+//	//if (InCompOwner && InParentComp)
+//	//{
+//	//	// InParentComp 는 InCompOwner 에 포함된 걸로 가정을..
+//	//	checkSlow(InParentComp->IsAttachedTo(InCompOwner->GetRootComponent()) || InParentComp == InCompOwner->GetRootComponent());
+//
+//	//	UParticleSystem* LoadedPS = GetParticleSystemAsset();
+//	//	if (LoadedPS)
+//	//	{
+//	//		UParticleSystemComponent* CreatedComp = NewObject<UParticleSystemComponent>(InCompOwner, FName(*GetCompCreateName(InCompOwner)), RF_Transient);
+//	//		if (CreatedComp)
+//	//		{
+//	//			CreatedComp->bReceivesDecals = false;
+//	//			//CreatedComp->bIgnoreBoneRotation = bIgnoreBoneRotation;
+//	//			CreatedComp->SetTemplate(LoadedPS);
+//	//			CreatedComp->SetRelativeScale3D(AttachScale3D);
+//	//			CreatedComp->SetRelativeLocation(LocationOffset);
+//	//			CreatedComp->SetRelativeRotation(RotationOffset);
+//	//			CreatedComp->AttachToComponent(InParentComp, FAttachmentTransformRules(EAttachmentRule::KeepRelative, true), AttachSocketName);
+//	//			CreatedComp->RegisterComponent();
+//	//			CreatedComp->Activate(true);
+//	//			return CreatedComp;
+//	//		}
+//	//	}
+//	//}
+//	return NULL;
+//}
+//
+//#if WITH_EDITOR
+//void FCHSKCompAttachParticleSystemInfo::EditorClearPSAsset()
+//{ // 이거 세팅하지 말아야 할 곳에서 세팅하면 PostEdit 에서 제거하려는 거.
+//	ParticleSystemAsset.Reset();
+//}
+//#endif
 
 bool ABladeIICharacter::CanTakeEtherEffect(AActor* EffectCauser)
 {
@@ -139,210 +142,210 @@ bool ABladeIICharacter::CanTakeEtherEffect(AActor* EffectCauser)
 
 float ABladeIICharacter::FreezeTimeDilation = 0.0f;
 float ABladeIICharacter::MinTimeDilation = 0.05f;
-
-TArray<FName> ABladeIICharacter::BaseBPCopyExcludeProperties;
+//
+//TArray<FName> ABladeIICharacter::BaseBPCopyExcludeProperties;
 
 ABladeIICharacter::ABladeIICharacter(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
-	NPCClassEnum = ENPCClass::ENC_End;
-	NPCClassVariation = ENPCClassVariation::ENCV_Normal;
-	// TODO : Init Data for Character Type
-	CharacterType = ECharacterType::ECT_MeleeMob;
-	// Need to set other data
-	AttackState = EAttackState::ECS_None;
-	bSignalAttack = false;
-	Health = 100.f;
-	MaxHealth = 100.f;
-	Armor = 0.f;
-	MaxArmor = 0.f;
-	DamagedNum = 0;
-	LastDamageType = EAttackType::EAT_Default;
-	LastStateDamageType = EStateAttackType::EDT_Normal;
-	QTEPCClassEnum = EPCClass::EPC_End;
-	CurrentOverridenMatType = ECharacterMaterialOverrideType::ECMO_None;
-	bAbleToMove = true;
-	bMovementPreventByStageEvent = false;
-	CachedTimeDilation = 1.f;
-	B2TimeDilationForAnimNS = 1.f;
-	B2CachedDilationForAnimNS = 1.f;
-
-	FinalADScale = 1.0f;
-	FinalHPScale = 1.0f;
-
-	StageEventShowState = EStageEventShowState::ESES_None;
-	bPlayingDirectedStageEvent = false;
-
-	DetectDistance = 800.f;
-
-	CameraTargetBoomRotOffset = FRotator(0.0f, 0.0f, 0.0f);
-
-	AIAttackIndex = 0;
-
-	CharacterLevel = 1;
-	CharacterDamageRate = 100;
-
-	bNeedSpawnCheck = false; // 초기 spawn state 를 사용하는 경우 true 로 켜주고, AI 에 의해 false 로 리셋되면 움직이기 시작.
-
-	bForceSpawAnim = false;
-
-	DamageMultiplier = 1.f;
-	BaseDamageRate = 1.f;
-	ReflectDamageAmount = 1.f;
-	HealHPByAttackRate = 0.f;
-	StateAttackType = EStateAttackType::EDT_End;
-	StateAttackDuration = 0.f;
-	StateAttackAmount = 0.f;
-
-	ShadowMaterial = NULL;
-	ShadowSizeCenter = 120.f;
-	ShadowMaxDistance = 50.f;
-
-	DamageNumZOffset = 0.0f;
-
-	CenterShadow = ObjectInitializer.CreateDefaultSubobject<UDecalComponent>(this, TEXT("CenterShadowComponent"));
-	//CenterShadow->bAbsoluteLocation = true;
-	CenterShadow->SetUsingAbsoluteRotation(true);
-	CenterShadow->SetRelativeLocation_Direct(FVector::ZeroVector);
-	CenterShadow->SetRelativeScale3D_Direct(FVector(200.f + ShadowMaxDistance, ShadowSizeCenter, ShadowSizeCenter));
-	CenterShadow->SetRelativeRotation_Direct(FRotator(-90.f, 0.f, 0.f));
-	CenterShadow->DecalSize = FVector(1.f, 1.f, 1.f); // for 4.11
-	//CenterShadow->bHiddenInGame = true;
-	CenterShadow->AttachToComponent(RootComponent, FAttachmentTransformRules(EAttachmentRule::KeepRelative, false));
-	CenterShadow->Deactivate();
-
-	// Set size for player capsule
-	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
-
-	// Rotate character to camera direction for AIPlayerController
-	bUseControllerRotationPitch = false;
-	bUseControllerRotationYaw = true;
-	bUseControllerRotationRoll = false;
-
-	// Configure character movement
-	GetCharacterMovement()->bOrientRotationToMovement = true; // Rotate character to moving direction
-	GetCharacterMovement()->RotationRate = FRotator(0.f, 640.f, 0.f);
-	GetCharacterMovement()->bConstrainToPlane = true;
-	GetCharacterMovement()->bSnapToPlaneAtStart = true;
-//	//GetCharacterMovement()->bForceMaxAccel = true;
-//	GetCharacterMovement()->BrakingDecelerationWalking = 0.f;
-//	GetCharacterMovement()->bIgnoreForceDuringRootmotion = false;
+//	NPCClassEnum = ENPCClass::ENC_End;
+//	NPCClassVariation = ENPCClassVariation::ENCV_Normal;
+//	// TODO : Init Data for Character Type
+//	CharacterType = ECharacterType::ECT_MeleeMob;
+//	// Need to set other data
+//	AttackState = EAttackState::ECS_None;
+//	bSignalAttack = false;
+//	Health = 100.f;
+//	MaxHealth = 100.f;
+//	Armor = 0.f;
+//	MaxArmor = 0.f;
+//	DamagedNum = 0;
+//	LastDamageType = EAttackType::EAT_Default;
+//	LastStateDamageType = EStateAttackType::EDT_Normal;
+//	QTEPCClassEnum = EPCClass::EPC_End;
+//	CurrentOverridenMatType = ECharacterMaterialOverrideType::ECMO_None;
+//	bAbleToMove = true;
+//	bMovementPreventByStageEvent = false;
+//	CachedTimeDilation = 1.f;
+//	B2TimeDilationForAnimNS = 1.f;
+//	B2CachedDilationForAnimNS = 1.f;
 //
-//	if (!GMinimalDLCFrontMode)
-//	{ // DLC Front 모드 리소스로딩 최대한 제거
+//	FinalADScale = 1.0f;
+//	FinalHPScale = 1.0f;
 //
-//////////////////////////////////////////////////////////////////////////////////
-////>>> Widget classes specification begin
+//	StageEventShowState = EStageEventShowState::ESES_None;
+//	bPlayingDirectedStageEvent = false;
 //
-//		FString DefaultFloatingHPBarWidgetClassPath;
-//		GConfig->GetString(TEXT("/Script/BladeII.BladeIICharacter"), TEXT("DefaultFloatingHPBarWidgetClass"), DefaultFloatingHPBarWidgetClassPath, GGameIni);
-//		static ConstructorHelpers::FClassFinder<UB2FloatingHPBar> DefaultFloatingHPBarWidgetClass(*DefaultFloatingHPBarWidgetClassPath);
-//		if (DefaultFloatingHPBarWidgetClass.Class != NULL)
-//		{
-//			FloatingHPBarWidgetClass = DefaultFloatingHPBarWidgetClass.Class;
-//			BaseBPCopyExcludeProperties.AddUnique(FName(TEXT("FloatingHPBarWidgetClass"))); // MinimalDLCFrontMode 로 인해 비어있을 BaseBP 쪽 값을 가져오지 않기 위해 이름 추가
-//		}
-//	}
+//	DetectDistance = 800.f;
 //
-//	DamageSocketName = FName(TEXT("S_hit01"));
+//	CameraTargetBoomRotOffset = FRotator(0.0f, 0.0f, 0.0f);
 //
-//	bNeedOscillation = false;
-//	DeferredImpulse = FVector::ZeroVector;
+//	AIAttackIndex = 0;
 //
-//	// Disable receive decal
-//	GetMesh()->bReceivesDecals = false;
-//	GetMesh()->bPerBoneMotionBlur = false;
-//	GetMesh()->bEnablePhysicsOnDedicatedServer = false;
-//	GetMesh()->CanCharacterStepUpOn = ECB_No;
+//	CharacterLevel = 1;
+//	CharacterDamageRate = 100;
 //
-//	// Per Mesh AnimNotify State Data
-//	B2CharEmissiveRemainTime = 0.f;
-//	ChainBitField = 0;
+//	bNeedSpawnCheck = false; // 초기 spawn state 를 사용하는 경우 true 로 켜주고, AI 에 의해 false 로 리셋되면 움직이기 시작.
 //
-//	SpawnCollisionHandlingMethod = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
+//	bForceSpawAnim = false;
 //
-//	TemporaryMeshCompUpdateFlagBackUp = EMeshComponentUpdateFlag::AlwaysTickPoseAndRefreshBones; // 이게 아마도 가장 안전한 값일 듯. 물론 이게 그대로 적용되는 건 아님.
-//	bTemporarilySetMeshCompUpdateFlag = false;
+//	DamageMultiplier = 1.f;
+//	BaseDamageRate = 1.f;
+//	ReflectDamageAmount = 1.f;
+//	HealHPByAttackRate = 0.f;
+//	StateAttackType = EStateAttackType::EDT_End;
+//	StateAttackDuration = 0.f;
+//	StateAttackAmount = 0.f;
 //
-//	RegenerateHPPercentagePerSecond = 0.f;
-//	RegenerateHPAmountPerSecond = 0.0f;
-//	bRegenerateHPByPercent = true;
+//	ShadowMaterial = NULL;
+//	ShadowSizeCenter = 120.f;
+//	ShadowMaxDistance = 50.f;
 //
-//	for (int32 i = static_cast<int32>(EDamageElement::EDE_None); i < static_cast<int32>(EDamageElement::EDE_End); ++i)
-//	{
-//		CachedStateMaterials.Add(NULL);
-//	}
+//	DamageNumZOffset = 0.0f;
 //
-//	CachedBaseMaxWalkSpeed = 1000.f;
+//	CenterShadow = ObjectInitializer.CreateDefaultSubobject<UDecalComponent>(this, TEXT("CenterShadowComponent"));
+//	//CenterShadow->bAbsoluteLocation = true;
+//	CenterShadow->SetUsingAbsoluteRotation(true);
+//	CenterShadow->SetRelativeLocation_Direct(FVector::ZeroVector);
+//	CenterShadow->SetRelativeScale3D_Direct(FVector(200.f + ShadowMaxDistance, ShadowSizeCenter, ShadowSizeCenter));
+//	CenterShadow->SetRelativeRotation_Direct(FRotator(-90.f, 0.f, 0.f));
+//	CenterShadow->DecalSize = FVector(1.f, 1.f, 1.f); // for 4.11
+//	//CenterShadow->bHiddenInGame = true;
+//	CenterShadow->AttachToComponent(RootComponent, FAttachmentTransformRules(EAttachmentRule::KeepRelative, false));
+//	CenterShadow->Deactivate();
 //
-//	CachedStateDamageStates.AddZeroed(GetStateAttackTypeArrayNum());
+//	// Set size for player capsule
+//	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
 //
-//	RandDamageAnimType = EAttackType::EAT_Default;
+//	// Rotate character to camera direction for AIPlayerController
+//	bUseControllerRotationPitch = false;
+//	bUseControllerRotationYaw = true;
+//	bUseControllerRotationRoll = false;
 //
-//	QTEType = EQTEType::EQT_End;
-//	QTEInvokeHPPercent = 0.0f;
-//	QTEMountTime = 20.f;
-//	QTEEnableTime = 5.f;
-//	QTELimitEnable = false;
-//
-//	TeamNum = -1;
-//
-//	QTEEnableTeam = ETeamType::ETT_End;
-//
-//	bCommittedSuicideAtDeadEnd = false;
-//	bIsDeadSinking = false;
-//	DeadSinkZOffsetPerSecond = 0.f;
-//	DeadSinkLeftTime = 0.f;
-//
-//	bSpawningNoDamageGuard = false; // 모든 경우에 처음부터 true 였다가 spawn 처리 후 false 로 두는 게 아니라 일부의 경우만 잠시간 true 로 사용.
-//
-//	bForceReceivdAbsoluteDamage = false;
-//	bForceReceivdAttackCountDamage = false;
-//	FullAttactCountSize = 0;
-//
-//	InitialInfluence = EInfluenceType::EIT_End;
-//	InitialInfluenceAmount = 0.f;
-//	InitialInfluenceDuration = 0.f;
-//	InitialInfluenceStateDuration = 0.f;
-//	InitialInfluenceStateTriggerRate = 0.f;
-//
-//	InjectedGameRule = nullptr;
-//
-//	nCanBeDamagedFalseCount = 0;
-//
-//	bInvincible = false;
-//	m_bIsUndead = false;
-//
-//	DamageReservationInfos.Empty();
-//
-//	BuffManager = nullptr;
-//
-//	OverridenMatTypeList.Empty();
-//
-//	HPBarSocket = nullptr;
-//	bHPBarAttachedToSocket = false;
-//
-//	SummonOwner = nullptr;
-//
-//	bHideFromEventDirector = false;
-//
-//	bIgnoreRotateByDamage = false;
-//	bEmissiveActiveByBuff = false;
-//
-//	bAllowRecoilAnimation = true;
-//
-//	bBloodStoneAura = false;
-//	BloodStoneType = EBloodStoneType::EBST_UnBeatable;
-//	BloodStoneAmount = -1.f;
-//	BloodStoneBuffLogicType = EDamageLogicType::ELT_Normal;
-//
-//	SpawnNotifyMsgString = TEXT("");
-//	SpawnNotifyMsgTime = -1.f;
+//	// Configure character movement
+//	GetCharacterMovement()->bOrientRotationToMovement = true; // Rotate character to moving direction
+//	GetCharacterMovement()->RotationRate = FRotator(0.f, 640.f, 0.f);
+//	GetCharacterMovement()->bConstrainToPlane = true;
+//	GetCharacterMovement()->bSnapToPlaneAtStart = true;
+////	//GetCharacterMovement()->bForceMaxAccel = true;
+////	GetCharacterMovement()->BrakingDecelerationWalking = 0.f;
+////	GetCharacterMovement()->bIgnoreForceDuringRootmotion = false;
+////
+////	if (!GMinimalDLCFrontMode)
+////	{ // DLC Front 모드 리소스로딩 최대한 제거
+////
+////////////////////////////////////////////////////////////////////////////////////
+//////>>> Widget classes specification begin
+////
+////		FString DefaultFloatingHPBarWidgetClassPath;
+////		GConfig->GetString(TEXT("/Script/BladeII.BladeIICharacter"), TEXT("DefaultFloatingHPBarWidgetClass"), DefaultFloatingHPBarWidgetClassPath, GGameIni);
+////		static ConstructorHelpers::FClassFinder<UB2FloatingHPBar> DefaultFloatingHPBarWidgetClass(*DefaultFloatingHPBarWidgetClassPath);
+////		if (DefaultFloatingHPBarWidgetClass.Class != NULL)
+////		{
+////			FloatingHPBarWidgetClass = DefaultFloatingHPBarWidgetClass.Class;
+////			BaseBPCopyExcludeProperties.AddUnique(FName(TEXT("FloatingHPBarWidgetClass"))); // MinimalDLCFrontMode 로 인해 비어있을 BaseBP 쪽 값을 가져오지 않기 위해 이름 추가
+////		}
+////	}
+////
+////	DamageSocketName = FName(TEXT("S_hit01"));
+////
+////	bNeedOscillation = false;
+////	DeferredImpulse = FVector::ZeroVector;
+////
+////	// Disable receive decal
+////	GetMesh()->bReceivesDecals = false;
+////	GetMesh()->bPerBoneMotionBlur = false;
+////	GetMesh()->bEnablePhysicsOnDedicatedServer = false;
+////	GetMesh()->CanCharacterStepUpOn = ECB_No;
+////
+////	// Per Mesh AnimNotify State Data
+////	B2CharEmissiveRemainTime = 0.f;
+////	ChainBitField = 0;
+////
+////	SpawnCollisionHandlingMethod = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
+////
+////	TemporaryMeshCompUpdateFlagBackUp = EMeshComponentUpdateFlag::AlwaysTickPoseAndRefreshBones; // 이게 아마도 가장 안전한 값일 듯. 물론 이게 그대로 적용되는 건 아님.
+////	bTemporarilySetMeshCompUpdateFlag = false;
+////
+////	RegenerateHPPercentagePerSecond = 0.f;
+////	RegenerateHPAmountPerSecond = 0.0f;
+////	bRegenerateHPByPercent = true;
+////
+////	for (int32 i = static_cast<int32>(EDamageElement::EDE_None); i < static_cast<int32>(EDamageElement::EDE_End); ++i)
+////	{
+////		CachedStateMaterials.Add(NULL);
+////	}
+////
+////	CachedBaseMaxWalkSpeed = 1000.f;
+////
+////	CachedStateDamageStates.AddZeroed(GetStateAttackTypeArrayNum());
+////
+////	RandDamageAnimType = EAttackType::EAT_Default;
+////
+////	QTEType = EQTEType::EQT_End;
+////	QTEInvokeHPPercent = 0.0f;
+////	QTEMountTime = 20.f;
+////	QTEEnableTime = 5.f;
+////	QTELimitEnable = false;
+////
+////	TeamNum = -1;
+////
+////	QTEEnableTeam = ETeamType::ETT_End;
+////
+////	bCommittedSuicideAtDeadEnd = false;
+////	bIsDeadSinking = false;
+////	DeadSinkZOffsetPerSecond = 0.f;
+////	DeadSinkLeftTime = 0.f;
+////
+////	bSpawningNoDamageGuard = false; // 모든 경우에 처음부터 true 였다가 spawn 처리 후 false 로 두는 게 아니라 일부의 경우만 잠시간 true 로 사용.
+////
+////	bForceReceivdAbsoluteDamage = false;
+////	bForceReceivdAttackCountDamage = false;
+////	FullAttactCountSize = 0;
+////
+////	InitialInfluence = EInfluenceType::EIT_End;
+////	InitialInfluenceAmount = 0.f;
+////	InitialInfluenceDuration = 0.f;
+////	InitialInfluenceStateDuration = 0.f;
+////	InitialInfluenceStateTriggerRate = 0.f;
+////
+////	InjectedGameRule = nullptr;
+////
+////	nCanBeDamagedFalseCount = 0;
+////
+////	bInvincible = false;
+////	m_bIsUndead = false;
+////
+////	DamageReservationInfos.Empty();
+////
+////	BuffManager = nullptr;
+////
+////	OverridenMatTypeList.Empty();
+////
+////	HPBarSocket = nullptr;
+////	bHPBarAttachedToSocket = false;
+////
+////	SummonOwner = nullptr;
+////
+////	bHideFromEventDirector = false;
+////
+////	bIgnoreRotateByDamage = false;
+////	bEmissiveActiveByBuff = false;
+////
+////	bAllowRecoilAnimation = true;
+////
+////	bBloodStoneAura = false;
+////	BloodStoneType = EBloodStoneType::EBST_UnBeatable;
+////	BloodStoneAmount = -1.f;
+////	BloodStoneBuffLogicType = EDamageLogicType::ELT_Normal;
+////
+////	SpawnNotifyMsgString = TEXT("");
+////	SpawnNotifyMsgTime = -1.f;
 }
 
 float ABladeIICharacter::GetMaxHealth() const
 {
-	//BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_GetMaxHealth);
+	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_GetMaxHealth);
 	return MaxHealth;
 }
 
@@ -370,21 +373,21 @@ void ABladeIICharacter::PreventMovement()
 
 void ABladeIICharacter::AllowMovementByStageEvent()
 {
-	//BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_AllowMovementByStageEvent);
+	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_AllowMovementByStageEvent);
 	bMovementPreventByStageEvent = false;
 	bAbleToMove = true; // 실제로는 이걸 세팅해 주어야 함.
 }
 
 void ABladeIICharacter::PreventMovementByStageEvent()
 {
-	//BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_PreventMovementByStageEvent);
+	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_PreventMovementByStageEvent);
 	bMovementPreventByStageEvent = true;
 	bAbleToMove = false; // 실제로는 이걸 세팅해 주어야 함.
 }
 
 bool ABladeIICharacter::ConsumeForceCancelAttackMotion()
 {
-	//BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_ConsumeForceCancelAttackMotion);
+	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_ConsumeForceCancelAttackMotion);
 	bool RtnValue = bForceCancelAttackTriggered;
 	bForceCancelAttackTriggered = false;
 
@@ -427,7 +430,7 @@ void ABladeIICharacter::SetMinDrawDistance(float _distance)
 
 void ABladeIICharacter::HealingHPByPercent(float Percentage, bool bUseEffect, bool bUseTextEffect)
 {
-	//BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_HealingHPByPercent);
+	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_HealingHPByPercent);
 	// 들어오는 값은 % 로 표시되는 단위로 가정. 0.01 스케일링은 여기서 함.
 	float HealAmount = FMath::Min<float>(GetMaxHealth() * Percentage * 0.01f, GetMaxHealth() - GetHealth());
 	HealingHPByAmount(HealAmount, bUseEffect, bUseTextEffect);
@@ -435,35 +438,35 @@ void ABladeIICharacter::HealingHPByPercent(float Percentage, bool bUseEffect, bo
 
 void ABladeIICharacter::HealingHPByAmount(float InHealAmount, bool bUseEffect, bool bUseTextEffect)
 {
-	//BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_HealingHPByAmount);
-	if (InHealAmount > 0.f && Health < MaxHealth)
-	{
-		float ActualHealAmount = FMath::Min(InHealAmount, MaxHealth - Health);
+	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_HealingHPByAmount);
+	//if (InHealAmount > 0.f && Health < MaxHealth)
+	//{
+	//	float ActualHealAmount = FMath::Min(InHealAmount, MaxHealth - Health);
 
-		SetHealth(FMath::Min(Health + ActualHealAmount, MaxHealth));
+	//	SetHealth(FMath::Min(Health + ActualHealAmount, MaxHealth));
 
-		// 체력회복UI(데미지표기 이벤트에 어마운트 -값을주면 회복표기인듯)
-		// 플레이어만 적용
+	//	// 체력회복UI(데미지표기 이벤트에 어마운트 -값을주면 회복표기인듯)
+	//	// 플레이어만 적용
 
-		bool bIgnoreHealEffect = false;
-		if (auto* LocalChar = GetLocalCharacter())
-			bIgnoreHealEffect = IsEnemy(LocalChar->GetTeamNum());
+	//	bool bIgnoreHealEffect = false;
+	//	if (auto* LocalChar = GetLocalCharacter())
+	//		bIgnoreHealEffect = IsEnemy(LocalChar->GetTeamNum());
 
-		if (IsApplyDamageNotifyUI(nullptr) && IsPlayerCharacter() && bIgnoreHealEffect == false)
-		{
-			//CharacterTakeDamageClass<ABladeIICharacter*, float, bool>::GetInstance().Signal(this, -ActualHealAmount, false);
-		}
+	//	if (IsApplyDamageNotifyUI(nullptr) && IsPlayerCharacter() && bIgnoreHealEffect == false)
+	//	{
+	//		//CharacterTakeDamageClass<ABladeIICharacter*, float, bool>::GetInstance().Signal(this, -ActualHealAmount, false);
+	//	}
 
-		if (bUseEffect || bUseTextEffect)
-		{
-	/*		UB2BuffModeEffectInfo* BuffModeEffectInfo = GetBuffModeEffectInfo();
-			if (BuffModeEffectInfo)
-			{
-				if (bUseEffect) BuffModeEffectInfo->CharacterBuffEffect(EBuffType::Buff_SkillHealHP, this);
-				if (bUseTextEffect) BuffModeEffectInfo->SpawnCharacterBuffTextEffect(EBuffType::Buff_HealHPByAttack, this);
-			}*/
-		}
-	}
+	//	if (bUseEffect || bUseTextEffect)
+	//	{
+	///*		UB2BuffModeEffectInfo* BuffModeEffectInfo = GetBuffModeEffectInfo();
+	//		if (BuffModeEffectInfo)
+	//		{
+	//			if (bUseEffect) BuffModeEffectInfo->CharacterBuffEffect(EBuffType::Buff_SkillHealHP, this);
+	//			if (bUseTextEffect) BuffModeEffectInfo->SpawnCharacterBuffTextEffect(EBuffType::Buff_HealHPByAttack, this);
+	//		}*/
+	//	}
+	//}
 }
 
 bool ABladeIICharacter::CanDie(float KillingDamage, FDamageEvent const& DamageEvent, AController* Killer, AActor* DamageCauser) const
@@ -575,91 +578,91 @@ void ABladeIICharacter::TriggerKillMonster()
 	//KillSpecificMonsterTriggerClass<ABladeIICharacter*>::GetInstance().Signal(this);
 }
 
-void ABladeIICharacter::OnDeath(float KillingDamage, struct FDamageEvent const& DamageEvent, class APawn* PawnInstigator, class AActor* DamageCauser)
-{
-//	//BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_OnDeath);
-//#if !UE_BUILD_SHIPPING
-//	// 여긴 좀 더 정보를 줘서 트랙킹.
-//	FString ScopedTrackString = FString::Printf(TEXT("ABladeIICharacter::OnDeath %s by %s"), *GetName(), PawnInstigator ? *PawnInstigator->GetName() : TEXT("Unknown"));
-//	B2_SCOPED_TRACK_LOG(ScopedTrackString);
-//#endif
+//void ABladeIICharacter::OnDeath(float KillingDamage, struct FDamageEvent const& DamageEvent, class APawn* PawnInstigator, class AActor* DamageCauser)
+//{
+////	//BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_OnDeath);
+////#if !UE_BUILD_SHIPPING
+////	// 여긴 좀 더 정보를 줘서 트랙킹.
+////	FString ScopedTrackString = FString::Printf(TEXT("ABladeIICharacter::OnDeath %s by %s"), *GetName(), PawnInstigator ? *PawnInstigator->GetName() : TEXT("Unknown"));
+////	B2_SCOPED_TRACK_LOG(ScopedTrackString);
+////#endif
+////
+////	if (bIsDying)
+////	{
+////		return;
+////	}
 //
-//	if (bIsDying)
+//	//bReplicateMovement = false;
+//	//bTearOff = true;
+//	//bIsDying = true; // Animation Blueprint 로 보내는 신호. 스테이지 진행이나 연출 트리거 차원에서의 처리는 네이티브서 하지만 몬스터의 전투 모션을 중단하고 dead 모션을 취하는 건 이걸 통해 들어감.
+//	//bCanBeDamaged = false;
+//	SetQTEEnabled(false);
+//	//bAbleToMove = false;
+//
+//	if (QTEType != EQTEType::EQT_Mount)
+//		SetQTEStateFlag(false);
+//
+//	GetMesh()->SetCollisionResponseToChannel(ECC_GameTraceChannel1, ECR_Ignore);
+//	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_GameTraceChannel1, ECR_Ignore);
+//	GetMesh()->SetCollisionResponseToChannel(ECC_Pawn, ECR_Ignore);
+//	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_Pawn, ECR_Ignore);
+//	GetMesh()->SetCollisionResponseToChannel(ECC_Vehicle, ECR_Ignore);
+//	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_Vehicle, ECR_Ignore);
+//
+//	if (DamageCauser)
 //	{
-//		return;
+//		FVector Diff = DamageCauser->GetActorLocation() - GetActorLocation();
+//		FRotator TargetRotation(0.f, FRotator::ClampAxis(FMath::Atan2(Diff.Y, Diff.X) * 180.f / PI), 0.f);
+//		SetActorRotation(TargetRotation);
 //	}
-
-	//bReplicateMovement = false;
-	//bTearOff = true;
-	//bIsDying = true; // Animation Blueprint 로 보내는 신호. 스테이지 진행이나 연출 트리거 차원에서의 처리는 네이티브서 하지만 몬스터의 전투 모션을 중단하고 dead 모션을 취하는 건 이걸 통해 들어감.
-	//bCanBeDamaged = false;
-	SetQTEEnabled(false);
-	//bAbleToMove = false;
-
-	if (QTEType != EQTEType::EQT_Mount)
-		SetQTEStateFlag(false);
-
-	GetMesh()->SetCollisionResponseToChannel(ECC_GameTraceChannel1, ECR_Ignore);
-	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_GameTraceChannel1, ECR_Ignore);
-	GetMesh()->SetCollisionResponseToChannel(ECC_Pawn, ECR_Ignore);
-	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_Pawn, ECR_Ignore);
-	GetMesh()->SetCollisionResponseToChannel(ECC_Vehicle, ECR_Ignore);
-	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_Vehicle, ECR_Ignore);
-
-	if (DamageCauser)
-	{
-		FVector Diff = DamageCauser->GetActorLocation() - GetActorLocation();
-		FRotator TargetRotation(0.f, FRotator::ClampAxis(FMath::Atan2(Diff.Y, Diff.X) * 180.f / PI), 0.f);
-		SetActorRotation(TargetRotation);
-	}
-
-	DropItem();
-
-	ABladeIIGameMode* B2GM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(this));
-
-	// For PC, we might not want destroy InGameHUDWidget at this moment
-	// 이 시점에서 바로 DestroyUIManager 를 하지 않는다. 왜냐하면 DamageNum 같은 애들이 일정 기간은 남아있어야 하기 때문. 
-	// 적당히 1초 후에 불리도록 타이머를 설치하는데 그 전에 파괴가 되면 Destroyed 에서 처리가 될 거고, 1초가 짧다면.. 음.. 그건 얘기가 들어오면 생각.
-	//bool ResurrectionGameModeType = B2GM && B2GM->GetUIManager_InGameCombat() && B2GM->GetUIManager_InGameCombat()->CanResurrectionGameModeType();
-
-	//if (ResurrectionGameModeType == false)
-	//{
-	//	GetWorldTimerManager().SetTimer(DelayedDestroyUIManagerTH, this, &ABladeIICharacter::DelayedDestroyUIManagerCB, 1.0f, false);
-	//	HideFloatingHPBar(true); // 대신 HPBar 는 바로 안 보이게
-	//}
-
-
-	ResetFlash();
-
-	//if (Role == ROLE_Authority)
-	//{
-	//	ReplicateHit(KillingDamage, DamageEvent, PawnInstigator, DamageCauser, true);
-	//}
-
-	GetWorldTimerManager().ClearTimer(SetHitFlashTimerHandle);
-	GetWorldTimerManager().ClearTimer(SetRegenerateHPHandle);
-	GetWorldTimerManager().ClearTimer(SetDeadSinkHandle);
-	GetWorldTimerManager().ClearTimer(OnQTEEnableEndTH);
-
-	ConditionalReportMyDeathToBirthplace(); // 뭔가 재진입을 하는 케이스가 있다.. ㅡㅡ
-
-	//CancelCastAreaDamageClass<ABladeIICharacter*>::GetInstance().Signal(this);
-
-	//for (auto Key : EventCancelCastAreaDamageSubscribeKeys)
-	//	CancelCastAreaDamageClass<ABladeIICharacter*>::GetInstance().Unsubscribe(Key);
-
-	// 본인이 죽었다고 게임모드에 알림(피니쉬 공격 연출용도로 작성)
-	// ReportMyDeathToBirthplace 에서 보내는 통지와 중복되는 면이 있는데 현재로선 역할이 조금씩 다름.
-	if (B2GM)
-		//B2GM->NotifyCharacterDead(this, PawnInstigator, DamageCauser);
-
-	TriggerKillMonster();
-
-	//CharacterDeathClass<ABladeIICharacter*>::GetInstance().Signal(this);
-
-	// 버프제거
-	//BuffManager->ClearAllBuffs();
-}
+//
+//	DropItem();
+//
+//	ABladeIIGameMode* B2GM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(this));
+//
+//	// For PC, we might not want destroy InGameHUDWidget at this moment
+//	// 이 시점에서 바로 DestroyUIManager 를 하지 않는다. 왜냐하면 DamageNum 같은 애들이 일정 기간은 남아있어야 하기 때문. 
+//	// 적당히 1초 후에 불리도록 타이머를 설치하는데 그 전에 파괴가 되면 Destroyed 에서 처리가 될 거고, 1초가 짧다면.. 음.. 그건 얘기가 들어오면 생각.
+//	//bool ResurrectionGameModeType = B2GM && B2GM->GetUIManager_InGameCombat() && B2GM->GetUIManager_InGameCombat()->CanResurrectionGameModeType();
+//
+//	//if (ResurrectionGameModeType == false)
+//	//{
+//	//	GetWorldTimerManager().SetTimer(DelayedDestroyUIManagerTH, this, &ABladeIICharacter::DelayedDestroyUIManagerCB, 1.0f, false);
+//	//	HideFloatingHPBar(true); // 대신 HPBar 는 바로 안 보이게
+//	//}
+//
+//
+//	ResetFlash();
+//
+//	//if (Role == ROLE_Authority)
+//	//{
+//	//	ReplicateHit(KillingDamage, DamageEvent, PawnInstigator, DamageCauser, true);
+//	//}
+//
+//	GetWorldTimerManager().ClearTimer(SetHitFlashTimerHandle);
+//	GetWorldTimerManager().ClearTimer(SetRegenerateHPHandle);
+//	GetWorldTimerManager().ClearTimer(SetDeadSinkHandle);
+//	GetWorldTimerManager().ClearTimer(OnQTEEnableEndTH);
+//
+//	ConditionalReportMyDeathToBirthplace(); // 뭔가 재진입을 하는 케이스가 있다.. ㅡㅡ
+//
+//	//CancelCastAreaDamageClass<ABladeIICharacter*>::GetInstance().Signal(this);
+//
+//	//for (auto Key : EventCancelCastAreaDamageSubscribeKeys)
+//	//	CancelCastAreaDamageClass<ABladeIICharacter*>::GetInstance().Unsubscribe(Key);
+//
+//	// 본인이 죽었다고 게임모드에 알림(피니쉬 공격 연출용도로 작성)
+//	// ReportMyDeathToBirthplace 에서 보내는 통지와 중복되는 면이 있는데 현재로선 역할이 조금씩 다름.
+//	if (B2GM)
+//		//B2GM->NotifyCharacterDead(this, PawnInstigator, DamageCauser);
+//
+//	TriggerKillMonster();
+//
+//	//CharacterDeathClass<ABladeIICharacter*>::GetInstance().Signal(this);
+//
+//	// 버프제거
+//	//BuffManager->ClearAllBuffs();
+//}
 
 void ABladeIICharacter::DieForQTE()
 {
@@ -739,10 +742,10 @@ float ABladeIICharacter::GetScaledCapsuleRadius()
 
 float ABladeIICharacter::GetScaledCapsuleHalfHeight()
 {
-	if (GetCapsuleComponent())
-	{
-		return GetCapsuleComponent()->GetScaledCapsuleHalfHeight();
-	}
+	//if (GetCapsuleComponent())
+	//{
+	//	return GetCapsuleComponent()->GetScaledCapsuleHalfHeight();
+	//}
 
 	return 0.0f;
 }
@@ -983,7 +986,7 @@ void ABladeIICharacter::LifeSpanExpired()
 
 bool ABladeIICharacter::IsBuffActive(EBuffType BuffType) const
 {
-	//BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_IsBuffActive);
+	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_IsBuffActive);
 
 	//if (auto* BuffObj = GetBuff(BuffType))
 	//	return BuffObj->IsActive();
@@ -991,15 +994,15 @@ bool ABladeIICharacter::IsBuffActive(EBuffType BuffType) const
 	return false;
 }
 
-class UB2Buff_Base* ABladeIICharacter::GetBuff(EBuffType BuffType) const
-{
-	//BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_GetBuff);
-
-	//if (auto* BuffManagerObj = GetBuffManager())
-	//	return BuffManagerObj->FindBuff(BuffType);
-
-	return nullptr;
-}
+//class UB2Buff_Base* ABladeIICharacter::GetBuff(EBuffType BuffType) const
+//{
+//	//BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_GetBuff);
+//
+//	//if (auto* BuffManagerObj = GetBuffManager())
+//	//	return BuffManagerObj->FindBuff(BuffType);
+//
+//	return nullptr;
+//}
 
 bool ABladeIICharacter::ProcessEtherSetEffect(EEtherSetType EtherSetType, ABladeIICharacter* EtherCauser, const FDamageInfo& CauserDamageInfo, float ActualDamage)
 {
@@ -1218,7 +1221,7 @@ bool ABladeIICharacter::IsEnemy(int32 TargetTeamNum)
 
 void ABladeIICharacter::CheckReservationDamage()
 {
-	//BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_CheckReservationDamage);
+	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_CheckReservationDamage);
 	//if (DamageReservationInfos.Num() == 0)
 	//	return;
 
@@ -1262,28 +1265,28 @@ void ABladeIICharacter::CheckReservationDamage()
 
 bool ABladeIICharacter::CanTakeDamage(class AActor* DamageCauser, struct FDamageEvent const& DamageEvent, const FDamageInfo* DamageType)
 {
-	//BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_CanTakeDamage);
+	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_CanTakeDamage);
 	if (Health <= 0.f)
 		return false;
 
-	if (DamageType == nullptr)
-		return false;
+	//if (DamageType == nullptr)
+	//	return false;
 
-	if (IsControlledByQTEPlayer())
-		return false;
+	//if (IsControlledByQTEPlayer())
+	//	return false;
 
-	if (bSpawningNoDamageGuard) // 대체로 SpawnPool 에서 Spawn 시키면서 등록하기 전.
-		return false;
+	//if (bSpawningNoDamageGuard) // 대체로 SpawnPool 에서 Spawn 시키면서 등록하기 전.
+	//	return false;
 
-	if (!IsEnemy(DamageCauser))
-		return false;
+	//if (!IsEnemy(DamageCauser))
+	//	return false;
 
-	if (IsBuffActive(EBuffType::Buff_Hide) || IsBuffActive(EBuffType::Buff_Unbeatable))
-		return false;
+	//if (IsBuffActive(EBuffType::Buff_Hide) || IsBuffActive(EBuffType::Buff_Unbeatable))
+	//	return false;
 
 	// bApplyNPC
-	if (GetTeamNum() == INDEX_NONE && DamageType->bApplyToNPC)
-		return true;
+	//if (GetTeamNum() == INDEX_NONE && DamageType->bApplyToNPC)
+	//	return true;
 
 	// 액터에있는 플래그도 체크
 	//if (!bCanBeDamaged)
@@ -1296,12 +1299,12 @@ void ABladeIICharacter::SetInvincible(bool bNewInvincible)
 {
 	//BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_SetInvincible);
 
-	bInvincible = bNewInvincible;
+	//bInvincible = bNewInvincible;
 }
 
 const void* ABladeIICharacter::GetCustomDamageInfo()
 {
-	//BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_GetCustomDamageInfo);
+	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_GetCustomDamageInfo);
 	return &CurrentDamageInfo;
 }
 
@@ -1773,7 +1776,7 @@ void ABladeIICharacter::AffectToAttackerAfterVictimDie(ABladeIICharacter* Victim
 
 bool ABladeIICharacter::IsLocalCharacter() const
 {
-	//BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_IsLocalCharacter);
+	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_IsLocalCharacter);
 	ABladeIICharacter* LocalCharacter = GetLocalCharacter();
 	return (LocalCharacter && LocalCharacter == this);
 }
@@ -1789,7 +1792,7 @@ bool ABladeIICharacter::IsQTEActor(const ABladeIICharacter* OwnerCharacter) cons
 
 ABladeIICharacter* ABladeIICharacter::GetLocalCharacter() const
 {
-	//BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_GetLocalCharacter);
+	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_GetLocalCharacter);
 
 	//APlayerController* LocalController = UGameplayStatics::GetLocalPlayerController(this);
 	//return LocalController ? Cast<ABladeIICharacter>(LocalController->GetPawn()) : nullptr;
@@ -2060,8 +2063,8 @@ float ABladeIICharacter::GetDamageRate(ABladeIICharacter* Attacker, const FDamag
 
 float ABladeIICharacter::GetAdditionalDamage(ABladeIICharacter* Attacker)
 {
-	//BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_GetAdditionalDamage);
-	//BII_CHECK(Attacker);
+	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_GetAdditionalDamage);
+	BII_CHECK(Attacker);
 
 	ABladeIIGameMode* B2GameMode = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(GetWorld()));
 	float ModeDamageRate = 1.0f;
@@ -2457,18 +2460,19 @@ FVector ABladeIICharacter::GetTargetLocationVectorFromPlayer(AActor* pTargetActo
 UB2DamageEffectInfo* ABladeIICharacter::GetDamageEffectInfo()
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_GetDamageEffectInfo);
-	UB2GameInstance* B2GI = Cast<UB2GameInstance>(UGameplayStatics::GetGameInstance(this));
-	return B2GI ? B2GI->GetDamageEffectInfo() : nullptr;
+	//UB2GameInstance* B2GI = Cast<UB2GameInstance>(UGameplayStatics::GetGameInstance(this));
+	//return B2GI ? B2GI->GetDamageEffectInfo() : nullptr;
+	return nullptr;
 }
 
-class UB2Buff_Base* ABladeIICharacter::AddBuff(EBuffType BuffType, float fDuration, float Amount, AActor* BuffCauser, bool bUseEffect/* = true*/, bool bUseTextEffect/* = true*/, TArray<float>* PtrAdditionalParams/* = nullptr*/)
-{
-	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_AddBuff);
-	if (!IsAllowBuff(BuffType))
-		return nullptr;
-
-	return BuffManager->AddBuff(BuffType, fDuration, Amount, BuffCauser, bUseEffect, bUseTextEffect, PtrAdditionalParams);
-}
+//class UB2Buff_Base* ABladeIICharacter::AddBuff(EBuffType BuffType, float fDuration, float Amount, AActor* BuffCauser, bool bUseEffect/* = true*/, bool bUseTextEffect/* = true*/, TArray<float>* PtrAdditionalParams/* = nullptr*/)
+//{
+//	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_AddBuff);
+//	if (!IsAllowBuff(BuffType))
+//		return nullptr;
+//
+//	return BuffManager->AddBuff(BuffType, fDuration, Amount, BuffCauser, bUseEffect, bUseTextEffect, PtrAdditionalParams);
+//}
 
 void ABladeIICharacter::AddBuffEnemy(EBuffType BuffType, float fDistance, float fDuration, float Amount, bool bUseEffect/* = true*/, bool bUseTextEffect/* = true*/)
 {
@@ -2596,8 +2600,9 @@ void ABladeIICharacter::GetEnemiesInRadius(const float Radius, TArray<ABladeIICh
 UB2BuffModeEffectInfo* ABladeIICharacter::GetBuffModeEffectInfo()
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_GetBuffModeEffectInfo);
-	UB2GameInstance* B2GI = Cast<UB2GameInstance>(UGameplayStatics::GetGameInstance(this));
-	return B2GI ? B2GI->GetBuffModeEffectInfo() : nullptr;
+	//UB2GameInstance* B2GI = Cast<UB2GameInstance>(UGameplayStatics::GetGameInstance(this));
+	//return B2GI ? B2GI->GetBuffModeEffectInfo() : nullptr;
+	return nullptr;
 }
 
 void ABladeIICharacter::PauseForDuration(float Duration)
@@ -2678,7 +2683,7 @@ void ABladeIICharacter::SetCustomTimeDilation(float NewDilation)
 
 void ABladeIICharacter::ResetFlash()
 {
-	//BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_ResetFlash);
+	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_ResetFlash);
 	for (int32 i = 0; i < GetMesh()->GetNumMaterials(); ++i)
 	{
 		UMaterialInterface* MaterialInterface = GetMesh()->GetMaterial(i);
@@ -3192,14 +3197,14 @@ void ABladeIICharacter::SetHideFromEventDirector(bool bHide)
 
 void ABladeIICharacter::ResetEmissive()
 {
-	::EmissiveNotifyEnd(GetMesh(), ChainBitField, GetChainMaterial(), true);
+	//::EmissiveNotifyEnd(GetMesh(), ChainBitField, GetChainMaterial(), true);
 
 	//GetMesh()->bB2EmissiveEnabled = false;
 }
 
 void ABladeIICharacter::SetQTEEnabled(bool bInEnable)
 {
-	//BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_SetQTEEnabled);
+	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_SetQTEEnabled);
 	bQTEEnabled = bInEnable;
 }
 
@@ -3215,7 +3220,7 @@ bool ABladeIICharacter::GetQTELimitEnabled()
 
 void ABladeIICharacter::RecoverQTEBreakPoint()
 {
-	//BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_RecoverQTEBreakPoint);
+	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_RecoverQTEBreakPoint);
 	if (IsQTEBreakable() && IsInQTEBreakState())
 	{
 		CurrentQTEBreakPoint = GetMaxQTEBreakPoint();
@@ -4179,7 +4184,7 @@ ABladeIICharacter* ABladeIICharacter::GetNearestEnemyCharacter()
 
 void ABladeIICharacter::GetNearestFriendCharacters(TArray<class ABladeIICharacter*>& Friends, float Range, int32 MaxNum)
 {
-	//BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_GetNearestFriendCharacters);
+	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_GetNearestFriendCharacters);
 	//if (MaxNum <= 0 || Range < GetCapsuleComponent()->GetScaledCapsuleRadius())
 	//	return;
 
@@ -4246,7 +4251,7 @@ void ABladeIICharacter::NotifyActorCustomEvent(FName EventName, UObject* Optiona
 
 int32 ABladeIICharacter::GetCurrentPhaseNum()
 {
-	//BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_GetCurrentPhaseNum);
+	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_GetCurrentPhaseNum);
 	//ABladeIIAIController* B2AICon = Cast<ABladeIIAIController>(GetController());
 	//return B2AICon ? B2AICon->GetCurrentPhaseNum() : 0;
 	return  0;
@@ -4448,21 +4453,21 @@ void ABladeIICharacter::IncreaseArmor(float Amount, bool bUseEffect, bool bUseTe
 
 bool ABladeIICharacter::IsAttacking() const
 {
-	//BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_IsAttacking);
+	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_IsAttacking);
 	// Need to watch for new EAttackState entry..
 	return (IsComboAttacking() || IsSkillAttacking() || IsCounterAttacking());
 }
 
 bool ABladeIICharacter::IsComboAttacking() const
 {
-	//BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_IsComboAttacking);
+	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_IsComboAttacking);
 	// Including dash 
 	return (IsOneOfComboAttackState(AttackState) || AttackState == EAttackState::ECS_Dash);
 }
 
 bool ABladeIICharacter::IsSkillAttacking() const
 {
-	//BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_IsSkillAttacking);
+	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_IsSkillAttacking);
 	return IsOneOfSkillAttackState(AttackState);
 }
 
@@ -4474,14 +4479,14 @@ bool ABladeIICharacter::IsCounterAttacking() const
 
 bool ABladeIICharacter::IsApplyGuarding()
 {
-	//BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_IsApplyGuarding);
+	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_IsApplyGuarding);
 	//return !BuffManager->IsBuffActive(EBuffType::Debuff_Freezing) && IsGuarding();
 	return false;
 }
 
 bool ABladeIICharacter::IsGuarding()
 {
-	//BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_IsGuarding);
+	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_IsGuarding);
 	return IsGuardingState(AttackState);
 }
 
@@ -4492,7 +4497,7 @@ bool ABladeIICharacter::HasSkillAttackSignal() const
 
 bool ABladeIICharacter::HadHugeDamaged()
 {
-	//BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_HadHugeDamaged);
+	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_HadHugeDamaged);
 	return (DamagedNum > 0 && (LastDamageType == EAttackType::EAT_BigBounce || LastDamageType == EAttackType::EAT_KnockBack));
 }
 
@@ -4571,7 +4576,7 @@ bool ABladeIICharacter::IsFrozen() const
 
 //void ABladeIICharacter::TemporarySetMeshComponentUpdateFlag(TEnumAsByte<EMeshComponentUpdateFlag::Type> InNewFlag)
 //{
-//	//BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_TemporarySetMeshComponentUpdateFlag);
+//	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_TemporarySetMeshComponentUpdateFlag);
 //	//// 연달아서 이걸 사용하는 일이 없도록. 아님 최소한 그런 일이 있더라도 어차피 잠깐 세팅하려는 값은 똑같은 거라 (AlwaysTickPoseAndRefreshBones 겠지 머) 무시해도 아무 탈 없는.
 //	//checkSlow(!bTemporarilySetMeshCompUpdateFlag || (GetBaseMesh() && GetBaseMesh()->MeshComponentUpdateFlag == InNewFlag));
 //
@@ -4585,7 +4590,7 @@ bool ABladeIICharacter::IsFrozen() const
 
 void ABladeIICharacter::RestoreTemporaryMeshComponentUpdateFlag()
 {
-	//BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_RestoreTemporaryMeshComponentUpdateFlag);
+	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_RestoreTemporaryMeshComponentUpdateFlag);
 	//if (GetBaseMesh() && bTemporarilySetMeshCompUpdateFlag)
 	//{
 	//	GetBaseMesh()->MeshComponentUpdateFlag = TemporaryMeshCompUpdateFlagBackUp;
@@ -4616,7 +4621,7 @@ FVector ABladeIICharacter::GetFleeLocation(int32 TestNumLocation, float Radius)
 
 void ABladeIICharacter::OverrideMaterial(class UMaterialInterface* NewMaterial, ECharacterMaterialOverrideType MatType)
 {
-	//BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_OverrideMaterial);
+	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_OverrideMaterial);
 	//B2_SCOPED_TRACK_LOG(TEXT("ABladeIICharacter::OverrideMaterial"));
 
 	//BII_CHECK(MatType != ECharacterMaterialOverrideType::ECMO_None && MatType != ECharacterMaterialOverrideType::EDE_End);
@@ -4742,26 +4747,26 @@ void ABladeIICharacter::SetupLODInfoAsNPC()
 
 void ABladeIICharacter::ClearEffectInAbnormalState()
 {
-	// 어태치된 이펙트 제거(루핑, 임모탈은 빼구)
-	if (auto* CharMesh = GetMesh())
-	{
-		TArray<USceneComponent*> ArMeshChildren;
-		ArMeshChildren.Empty();
+	//// 어태치된 이펙트 제거(루핑, 임모탈은 빼구)
+	//if (auto* CharMesh = GetMesh())
+	//{
+	//	TArray<USceneComponent*> ArMeshChildren;
+	//	ArMeshChildren.Empty();
 
-		CharMesh->GetChildrenComponents(false, ArMeshChildren);
+	//	CharMesh->GetChildrenComponents(false, ArMeshChildren);
 
-		for (USceneComponent* pComp : ArMeshChildren)
-		{
-			UParticleSystemComponent* pPSC = Cast<UParticleSystemComponent>(pComp);
-			if (pPSC && pPSC->Template && !pPSC->Template->IsImmortal() && !pPSC->Template->IsLooping())
-			{
-				pPSC->Deactivate();
-				pPSC->DetachFromComponent(FDetachmentTransformRules::KeepRelativeTransform);
-				pPSC->UnregisterComponent();
-				pPSC->DestroyComponent();
-			}
-		}
-	}
+	//	for (USceneComponent* pComp : ArMeshChildren)
+	//	{
+	//		UParticleSystemComponent* pPSC = Cast<UParticleSystemComponent>(pComp);
+	//		if (pPSC && pPSC->Template && !pPSC->Template->IsImmortal() && !pPSC->Template->IsLooping())
+	//		{
+	//			pPSC->Deactivate();
+	//			pPSC->DetachFromComponent(FDetachmentTransformRules::KeepRelativeTransform);
+	//			pPSC->UnregisterComponent();
+	//			pPSC->DestroyComponent();
+	//		}
+	//	}
+	//}
 }
 
 bool ABladeIICharacter::GetAbleToControl()
@@ -4791,10 +4796,10 @@ void ABladeIICharacter::SafeSetAnimBPClass(class UAnimBlueprintGeneratedClass* I
 	//	//SetActorHiddenInGame(true);
 	//}
 
-	if (GetMesh())
-	{
-		GetMesh()->SetAnimInstanceClass(InAnimBPClass);
-	}
+	//if (GetMesh())
+	//{
+	//	GetMesh()->SetAnimInstanceClass(InAnimBPClass);
+	//}
 
 	//if (!bWasHidden)
 	//{
@@ -4828,26 +4833,26 @@ void ABladeIICharacter::SetupDecalCompForCenterShadowCommon(class UDecalComponen
 
 	// 원래 BladeIICharacter 자신이라면 InDecalCompToUse 는 CenterShadow 일 것임. SetupControlledMatineePuppet 기능을 위해 매개변수로 받는다. 
 	// 여기서 컴포넌트 register 까지 하지는 않는다.
-	if (InDecalCompToUse && AttachParent)
-	{
-		//InDecalCompToUse->SetHiddenInGame(false);
-		InDecalCompToUse->SetRelativeScale3D(FVector(200.f + ShadowMaxDistance, ShadowSizeCenter, ShadowSizeCenter));
+	//if (InDecalCompToUse && AttachParent)
+	//{
+	//	//InDecalCompToUse->SetHiddenInGame(false);
+	//	InDecalCompToUse->SetRelativeScale3D(FVector(200.f + ShadowMaxDistance, ShadowSizeCenter, ShadowSizeCenter));
 
-		InDecalCompToUse->DetachFromComponent(FDetachmentTransformRules(EDetachmentRule::KeepRelative, true));
-		InDecalCompToUse->AttachToComponent(AttachParent, FAttachmentTransformRules(EAttachmentRule::KeepRelative, false));
-	}
+	//	InDecalCompToUse->DetachFromComponent(FDetachmentTransformRules(EDetachmentRule::KeepRelative, true));
+	//	InDecalCompToUse->AttachToComponent(AttachParent, FAttachmentTransformRules(EAttachmentRule::KeepRelative, false));
+	//}
 }
 
-//UB2NPCSingleClassInfo* ABladeIICharacter::GetMyNPCClassInfo()
-//{ // 플레이어 캐릭터, 혹은 NPCClassEnum 이 세팅되지 않은 경우 소용 없을 것.
-//	UB2GameInstance* B2GI = Cast<UB2GameInstance>(UGameplayStatics::GetGameInstance(this));
-//	UB2NPCClassInfoBox* NPCInfoBox = B2GI ? B2GI->GetMobClassInfoBox() : StaticFindMobClassInfoBox(this);
-//	if (NPCInfoBox)
-//	{
-//		return NPCInfoBox->GetNPCSingleClassInfo(NPCClassEnum, NPCClassVariation);
-//	}
-//	return nullptr;
-//}
+UB2NPCSingleClassInfo* ABladeIICharacter::GetMyNPCClassInfo()
+{ // 플레이어 캐릭터, 혹은 NPCClassEnum 이 세팅되지 않은 경우 소용 없을 것.
+	UB2GameInstance* B2GI = Cast<UB2GameInstance>(UGameplayStatics::GetGameInstance(this));
+	UB2NPCClassInfoBox* NPCInfoBox = B2GI ? B2GI->GetMobClassInfoBox() : StaticFindMobClassInfoBox(this);
+	if (NPCInfoBox)
+	{
+		return NPCInfoBox->GetNPCSingleClassInfo(NPCClassEnum, NPCClassVariation);
+	}
+	return nullptr;
+}
 
 #if !UE_BUILD_SHIPPING // Detailed feature On/Off for performance test
 

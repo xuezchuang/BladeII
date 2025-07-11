@@ -2,12 +2,12 @@
 // Project BladeII, Action Square
 
 #pragma once
-//#include "BladeII.h"
 #include "UObject/Object.h"
 #include "BladeIIDamageType.h"
 #include "BladeIICharacter.h"
 #include "Engine/StreamableManager.h"
-//#include "BladeII.h"
+#include "BladeII.h"
+#include "../Common/CommonStruct.h"
 #include "B2DamageEffectInfo.generated.h"
 
 /** Overall behavior of stage event director actor, regarding not just camera. */

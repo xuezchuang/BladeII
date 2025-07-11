@@ -1,7 +1,6 @@
 
-#ifndef __GLOBAL_H__
-#define __GLOBAL_H__
-//#include "BladeII.h"
+#pragma once
+#include "BladeII.h"
 //GLOBAL VAR
 extern FString GB2NetworkIni;
 #if ENABLE_LOCAL_CUTSCENE_SAVED_STATE
@@ -45,4 +44,3 @@ FORCEINLINE bool CanLoadInfoAssetWhileStartupModule()
 #endif
 }
 
-#endif

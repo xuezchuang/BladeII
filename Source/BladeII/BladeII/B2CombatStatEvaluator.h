@@ -2,9 +2,10 @@
 
 #include "EngineMinimal.h"
 #include "CommonStruct.h"
-#include "FairyManager.h"
-#include "BladeIIPlayer.h"
-#include "CharacterDataStore.h"
+#include "../Common/CommonStructCombatOption.h"
+//#include "FairyManager.h"
+//#include "BladeIIPlayer.h"
+//#include "CharacterDataStore.h"
 
 namespace CombatStatEval
 {
@@ -55,18 +56,18 @@ namespace CombatStatEval
 	//For local player character's current stat, you just specifies InPCClass and leave other parameters as default.
 	//For remote player character's current stat, you specifies InPCClass and CharacterData and leave other parameters as default.
 	//SpecifiedLevel and SpecifiedEquipData are required for custom stat calculation (e.g. preview purpose)
-	float GetPCAttack(EPCClass InPCClass, ICharacterDataStore* CharacterData = NULL, int32 SpecifiedLevel = -1, TArray<FB2Item>* SpecifiedEquipData = NULL, bool IsGuildBattle = false);
-	float GetPCDefense(EPCClass InPCClass, ICharacterDataStore* CharacterData = NULL, int32 SpecifiedLevel = -1, TArray<FB2Item>* SpecifiedEquipData = NULL, bool IsGuildBattle = false);
-	float GetPCHealth(EPCClass InPCClass, ICharacterDataStore* CharacterData = NULL, int32 SpecifiedLevel = -1, TArray<FB2Item>* SpecifiedEquipData = NULL, bool IsGuildBattle = false);
-	float GetPCCombatPower(EPCClass InPCClass, ICharacterDataStore* CharacterData = NULL, int32 SpecifiedLevel = -1, TArray<FB2Item>* SpecifiedEquipData = NULL);
-	//////////////////////////////////////////////////////////////////////////
-	// 모드별로 들어가는 공격, 방어, 헬스(ex 고대유물)
-	float GetPCAttackByMod(	EPCClass InPCClass, EB2GameMode ModeType, ICharacterDataStore* CharacterData = NULL, int32 SpecifiedLevel = -1, TArray<FB2Item>* SpecifiedEquipData = NULL);
-	float GetPCDefenseByMod(EPCClass InPCClass, EB2GameMode ModeType, ICharacterDataStore* CharacterData = NULL, int32 SpecifiedLevel = -1, TArray<FB2Item>* SpecifiedEquipData = NULL);
-	float GetPCHealthByMod(	EPCClass InPCClass, EB2GameMode ModeType, ICharacterDataStore* CharacterData = NULL, int32 SpecifiedLevel = -1, TArray<FB2Item>* SpecifiedEquipData = NULL);
+	//float GetPCAttack(EPCClass InPCClass, ICharacterDataStore* CharacterData = NULL, int32 SpecifiedLevel = -1, TArray<FB2Item>* SpecifiedEquipData = NULL, bool IsGuildBattle = false);
+	//float GetPCDefense(EPCClass InPCClass, ICharacterDataStore* CharacterData = NULL, int32 SpecifiedLevel = -1, TArray<FB2Item>* SpecifiedEquipData = NULL, bool IsGuildBattle = false);
+	//float GetPCHealth(EPCClass InPCClass, ICharacterDataStore* CharacterData = NULL, int32 SpecifiedLevel = -1, TArray<FB2Item>* SpecifiedEquipData = NULL, bool IsGuildBattle = false);
+	//float GetPCCombatPower(EPCClass InPCClass, ICharacterDataStore* CharacterData = NULL, int32 SpecifiedLevel = -1, TArray<FB2Item>* SpecifiedEquipData = NULL);
+	////////////////////////////////////////////////////////////////////////////
+	//// 모드별로 들어가는 공격, 방어, 헬스(ex 고대유물)
+	//float GetPCAttackByMod(	EPCClass InPCClass, EB2GameMode ModeType, ICharacterDataStore* CharacterData = NULL, int32 SpecifiedLevel = -1, TArray<FB2Item>* SpecifiedEquipData = NULL);
+	//float GetPCDefenseByMod(EPCClass InPCClass, EB2GameMode ModeType, ICharacterDataStore* CharacterData = NULL, int32 SpecifiedLevel = -1, TArray<FB2Item>* SpecifiedEquipData = NULL);
+	//float GetPCHealthByMod(	EPCClass InPCClass, EB2GameMode ModeType, ICharacterDataStore* CharacterData = NULL, int32 SpecifiedLevel = -1, TArray<FB2Item>* SpecifiedEquipData = NULL);
 	//////////////////////////////////////////////////////////////////////////
 
-	float GetReuqestPCCombatPower(EPCClass InPCClass, TArray<b2network::B2CharacterPowerSpecificPtr>& OutCharacterPowerPtr);
+	//float GetReuqestPCCombatPower(EPCClass InPCClass, TArray<b2network::B2CharacterPowerSpecificPtr>& OutCharacterPowerPtr);
 
 	float GetDefaultCombatCoefficient();
 	float GetDefaultPVEProportionalConstant();
@@ -74,26 +75,26 @@ namespace CombatStatEval
 	float GetDefaultPVPDamageScale();
 
 
-	bool GetOptionStatusRawValues(EPCClass InPCClass, EItemOption OptionType, const TArray<FB2Item>& AllEquipped, const FPCWingContainer& InWingContainer, int32 BrevetRank, int32 BrevetNodeNum, const FAncientRelicArray& RelicInfos, const TMap<int64, FB2Ether>& Ethers, CombatStatInfoRawDatas& OutRawValues, const TArray<FB2FairyStatusInfo>& FairyStatus, const TMap<int64, FB2Totem>& Totems);
-	bool GetOptionStatusRawValues(EPCClass InPCClass, EItemOption OptionType, CombatStatInfoRawDatas& OutRawValues, ICharacterDataStore* InCharacterData = NULL);
-	bool GetSkillOptionStatusRawValues(EPCClass InPCClass, ESkillOption InOptionType, CombatStatInfoRawDatas& OutRawValues, ICharacterDataStore* InCharacterData = NULL);
-	bool GetUnitedOptionStatusRawValues(EPCClass InPCClass, EUnitedCombatOptions InOptionType, CombatStatInfoRawDatas& OutRawValues, ICharacterDataStore* InCharacterData = NULL);
-	//모드 별로 들어 가는 것을 계산 하기 위한 함수. 현재는 고대유물만 구현되어 있음
-	float GetOptionStatusValueByMod(EPCClass InPCClass, EB2GameMode ModeType, EItemOption OptionType, const TArray<FB2Item>& AllEquipped, const FPCWingContainer& InWingContainer, int32 BrevetRank, int32 BrevetNodeNum, const FAncientRelicArray& RelicInfos, const TMap<int64, FB2Totem>& Totems);
-	bool GetOptionStatusRawValuesByMod(EPCClass InPCClass, EB2GameMode ModeType, EItemOption OptionType, const TArray<FB2Item>& AllEquipped, const FPCWingContainer& InWingContainer, int32 BrevetRank, int32 BrevetNodeNum, const FAncientRelicArray& RelicInfos, const TMap<int64, FB2Totem>& Totems, CombatStatInfoRawDatas& OutRawValues);
+	//bool GetOptionStatusRawValues(EPCClass InPCClass, EItemOption OptionType, const TArray<FB2Item>& AllEquipped, const FPCWingContainer& InWingContainer, int32 BrevetRank, int32 BrevetNodeNum, const FAncientRelicArray& RelicInfos, const TMap<int64, FB2Ether>& Ethers, CombatStatInfoRawDatas& OutRawValues, const TArray<FB2FairyStatusInfo>& FairyStatus, const TMap<int64, FB2Totem>& Totems);
+	//bool GetOptionStatusRawValues(EPCClass InPCClass, EItemOption OptionType, CombatStatInfoRawDatas& OutRawValues, ICharacterDataStore* InCharacterData = NULL);
+	//bool GetSkillOptionStatusRawValues(EPCClass InPCClass, ESkillOption InOptionType, CombatStatInfoRawDatas& OutRawValues, ICharacterDataStore* InCharacterData = NULL);
+	//bool GetUnitedOptionStatusRawValues(EPCClass InPCClass, EUnitedCombatOptions InOptionType, CombatStatInfoRawDatas& OutRawValues, ICharacterDataStore* InCharacterData = NULL);
+	////모드 별로 들어 가는 것을 계산 하기 위한 함수. 현재는 고대유물만 구현되어 있음
+	//float GetOptionStatusValueByMod(EPCClass InPCClass, EB2GameMode ModeType, EItemOption OptionType, const TArray<FB2Item>& AllEquipped, const FPCWingContainer& InWingContainer, int32 BrevetRank, int32 BrevetNodeNum, const FAncientRelicArray& RelicInfos, const TMap<int64, FB2Totem>& Totems);
+	//bool GetOptionStatusRawValuesByMod(EPCClass InPCClass, EB2GameMode ModeType, EItemOption OptionType, const TArray<FB2Item>& AllEquipped, const FPCWingContainer& InWingContainer, int32 BrevetRank, int32 BrevetNodeNum, const FAncientRelicArray& RelicInfos, const TMap<int64, FB2Totem>& Totems, CombatStatInfoRawDatas& OutRawValues);
 
 	//길드 버프
-	bool IsActiveGuildBuff(ICharacterDataStore* InCharacterDataStore, EItemOption InItemOption);
-	float GetPCGuildBuffValue(ICharacterDataStore* InCharacterDataStore, bool IsGuildBattle, EItemOption InItemOption);
-	float GetPCAttackGuildBuffValue(ICharacterDataStore* InCharacterDataStore, bool IsGuildBattle = false);
-	float GetPCDefendseGuildBuffValue(ICharacterDataStore* InCharacterDataStore, bool IsGuildBattle = false);
-	float GetPCHalthGuildBuffValue(ICharacterDataStore* InCharacterDataStore, bool IsGuildBattle = false);
+	//bool IsActiveGuildBuff(ICharacterDataStore* InCharacterDataStore, EItemOption InItemOption);
+	//float GetPCGuildBuffValue(ICharacterDataStore* InCharacterDataStore, bool IsGuildBattle, EItemOption InItemOption);
+	//float GetPCAttackGuildBuffValue(ICharacterDataStore* InCharacterDataStore, bool IsGuildBattle = false);
+	//float GetPCDefendseGuildBuffValue(ICharacterDataStore* InCharacterDataStore, bool IsGuildBattle = false);
+	//float GetPCHalthGuildBuffValue(ICharacterDataStore* InCharacterDataStore, bool IsGuildBattle = false);
 
 	/** Get applied option value of all character data that can be identified by EItemOption. Data here (Item, Wing, Relic,..) can be acquired from CharacterDataStore. */
-	float GetOptionStatusValue(EPCClass InPCClass, EItemOption OptionType, const TArray<FB2Item>& AllEquipped, const FPCWingContainer& InWingContainer, int32 BrevetRank, int32 BrevetNodeNum, const FAncientRelicArray& RelicInfos, const TMap<int64, FB2Ether>& Ethers, const TArray<FB2FairyStatusInfo>& FairyStatus, const TMap<int64, FB2Totem>& Totems);
-	float GetCombatStatusValue(EPCClass InPCClass, const TArray<FB2Item>& InEquipmentItem, const TArray<FB2Item>& InEquipmentCostume, const FPCWingContainer& InWingContainer, int32 BrevetRank, int32 BrevetNodeNum, const FAncientRelicArray& RelicInfos, const FUnitySkillMissionArray& UnityInfos, const TMap<int64, FB2Ether>& Ethers, const TArray<FB2FairyStatusInfo>& FairyStatus, const TMap<int64, FB2Totem>& Totems);
-	
-	float GetRequestCombatStatusValue(EPCClass InPCClass, const TArray<FB2Item>& InEquipmentItem, const TArray<FB2Item>& InEquipmentCostume, const FPCWingContainer& InWingContainer, int32 BrevetRank, int32 BrevetNodeNum, const FAncientRelicArray& RelicInfos, const FUnitySkillMissionArray& UnityInfos, const TMap<int64, FB2Ether>& Ethers, const TArray<FB2FairyStatusInfo>& FairyStatus, const TMap<int64, FB2Totem>& Totems, TArray<b2network::B2CharacterPowerSpecificPtr>& OutCharacterPowerPtr);
+	//float GetOptionStatusValue(EPCClass InPCClass, EItemOption OptionType, const TArray<FB2Item>& AllEquipped, const FPCWingContainer& InWingContainer, int32 BrevetRank, int32 BrevetNodeNum, const FAncientRelicArray& RelicInfos, const TMap<int64, FB2Ether>& Ethers, const TArray<FB2FairyStatusInfo>& FairyStatus, const TMap<int64, FB2Totem>& Totems);
+	//float GetCombatStatusValue(EPCClass InPCClass, const TArray<FB2Item>& InEquipmentItem, const TArray<FB2Item>& InEquipmentCostume, const FPCWingContainer& InWingContainer, int32 BrevetRank, int32 BrevetNodeNum, const FAncientRelicArray& RelicInfos, const FUnitySkillMissionArray& UnityInfos, const TMap<int64, FB2Ether>& Ethers, const TArray<FB2FairyStatusInfo>& FairyStatus, const TMap<int64, FB2Totem>& Totems);
+	//
+	//float GetRequestCombatStatusValue(EPCClass InPCClass, const TArray<FB2Item>& InEquipmentItem, const TArray<FB2Item>& InEquipmentCostume, const FPCWingContainer& InWingContainer, int32 BrevetRank, int32 BrevetNodeNum, const FAncientRelicArray& RelicInfos, const FUnitySkillMissionArray& UnityInfos, const TMap<int64, FB2Ether>& Ethers, const TArray<FB2FairyStatusInfo>& FairyStatus, const TMap<int64, FB2Totem>& Totems, TArray<b2network::B2CharacterPowerSpecificPtr>& OutCharacterPowerPtr);
 
 	/** Simply replaces data source arguments of GetOptionStatusValue above to CharacterDataStore */
 	static float GetOptionStatusValue(EPCClass InPCClass, EItemOption OptionType, ICharacterDataStore* InCharacterData = NULL);
@@ -123,10 +124,10 @@ namespace CombatStatEval
 	void GetCostumesSetItemValue(const TArray<FB2Item>& AllEquipped, TMap<int32, int32>& OutSetItemDatas);	// OutSetItemDatas : Key (SetItemId) / Value (Count)
 	void GetSetItemValueByInvenType(const TArray<FB2Item>& AllEquipped, EItemInvenType CheckInventoryType, TMap<int32, TArray<int32>>& OutGroupIDDatas);	
 
-	void ApplySetItemValueByInvenType(FClientDataStore& ClientDataStore, TMap<int32, int32> ItemSetMap, EItemOption OptionType,
-		CombatStatInfoRawDatas& OutCombatStatInfo, TMap<int32, TArray<int32>> GroupIDDatas);
-	void ApplyCostumeSetItemValue(FClientDataStore& ClientDataStore, TMap<int32, int32> SetItemDatas, EItemOption OptionType,
-		CombatStatInfoRawDatas& OutCombatStatInfo);
+	//void ApplySetItemValueByInvenType(FClientDataStore& ClientDataStore, TMap<int32, int32> ItemSetMap, EItemOption OptionType,
+	//	CombatStatInfoRawDatas& OutCombatStatInfo, TMap<int32, TArray<int32>> GroupIDDatas);
+	//void ApplyCostumeSetItemValue(FClientDataStore& ClientDataStore, TMap<int32, int32> SetItemDatas, EItemOption OptionType,
+	//	CombatStatInfoRawDatas& OutCombatStatInfo);
 
 	// Enhance Set Item
 	int32 GetEnhanceSetEffectLevel(const TArray<FB2Item>& AllEquipped);

@@ -5,6 +5,7 @@
 //#include "BladeII.h"
 #include "UObject/Object.h"
 #include "BladeIIPlayer.h"
+#include "../BladeII/BladeIIDamageType.h"
 #include "B2InfluenceSkillInfo.generated.h"
 
 USTRUCT(BlueprintType)

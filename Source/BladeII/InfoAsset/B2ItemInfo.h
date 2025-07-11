@@ -8,6 +8,9 @@
 #include "B2Inventory.h"
 #include "BladeIiPlayer.h"
 #include "B2AssetLoader.h"
+#include "../Common/CommonStruct.h"
+#include "../UI/B2UIEnum.h"
+#include "UObject/ObjectSaveContext.h"
 #include "B2ItemInfo.generated.h"
 
 // Some socket name define for special effect to be attached to upgraded item.
@@ -428,9 +431,9 @@ public:
 
 	/** Get single info data by ItemRefID, NULL if not found. 
 	 * For Editor or bFullyLoad true, it loads all lazyloaded TSoftObjectPtr. Otherwise, TAsset refs are still not valid. */
-	FSingleItemInfoData*	GetInfoData(int32 ItemRefID, bool bFullyLoad = false);
-	FItemSetInfoData*		GetSetInfoData(int32 SetUniqueKey);
-	FItemSetInfoData*		GetSetInfoData(int32 GroupID, EPCClass PCClass, int32 Grade);
+	//FSingleItemInfoData*	GetInfoData(int32 ItemRefID, bool bFullyLoad = false);
+	//FItemSetInfoData*		GetSetInfoData(int32 SetUniqueKey);
+	//FItemSetInfoData*		GetSetInfoData(int32 GroupID, EPCClass PCClass, int32 Grade);
 
 	void GenerateSetKeyList();
 
@@ -473,7 +476,7 @@ public:
 
 	/** You may optionally attach certain prefix by ItemQuality. ItemQuality should be in range 1 ~ MAX_ITEM_QUALITY in that case. */
 	FText GetItemName(int32 ItemRefId, bool bAttachQualityPrefix = false, int32 ItemQuality = 0);
-	FText GetSetItemName(int32 SetUniqueKey);
+	//FText GetSetItemName(int32 SetUniqueKey);
 
 	UFUNCTION(BlueprintPure, Category = "BladeII")
 	static void GetItemIconAndName(int32 ItemRefId, class UMaterialInstance*& ItemIcon, FText& ItemName);
@@ -713,7 +716,7 @@ public:
 	void UnloadAll();
 	
 #if WITH_EDITOR
-	void EditorLoadAll();
+	//void EditorLoadAll();
 #endif
 	
 #if TEMP_LAZYLOADING_MISHANDLING_CLEANUP

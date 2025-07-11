@@ -24,8 +24,8 @@ void FGuildMercenarySkill::EditorOnPostLoad()
 
 FMercenaryMasterySkillInfo::FMercenaryMasterySkillInfo()
 {
-	TargetingType = 0;
-	RestrictExcuteCount = -1;
+	//TargetingType = 0;
+	//RestrictExcuteCount = -1;
 }
 
 UB2GuildNPCInfo::UB2GuildNPCInfo(const FObjectInitializer& ObjectInitializer)

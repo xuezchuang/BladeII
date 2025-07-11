@@ -2,22 +2,23 @@
 #include "Global.h"
 
 #include "BladeIIGameMode.h"
-#include "B2LobbyGameMode.h"
-#include "B2StageGameModeBase.h"
-#include "B2TutorialGameMode.h"
-#include "B2CounterAttackGameMode.h"
-#include "B2PVPGameMode.h"
-#include "B2RaidGameMode.h"
-#include "B2ControlGameMode.h"
-#include "B2TMGameMode.h"
-#include "B2GuildGameMode.h"
-#include "B2PreRenderGameMode.h"
-#include "B2DLCFrontGameMode.h"
-#include "BladeIIPlayer.h"
-#include "B2LobbySkeletalMeshActorBase.h"
+//#include "B2LobbyGameMode.h"
+//#include "B2StageGameModeBase.h"
+//#include "B2TutorialGameMode.h"
+//#include "B2CounterAttackGameMode.h"
+//#include "B2PVPGameMode.h"
+//#include "B2RaidGameMode.h"
+//#include "B2ControlGameMode.h"
+//#include "B2TMGameMode.h"
+//#include "B2GuildGameMode.h"
+//#include "B2PreRenderGameMode.h"
+//#include "B2DLCFrontGameMode.h"
+//#include "BladeIIPlayer.h"
+//#include "B2LobbySkeletalMeshActorBase.h"
 #include "DeviceProfiles/DeviceProfileManager.h"
+#include "EngineUtils.h"
 
-#include "B2GuildGameMode.h"
+//#include "B2GuildGameMode.h"
 
 /************************************************************************/
 /* 
@@ -221,26 +222,26 @@ void AndroidMCSFUpdateHack(bool bForceInvalidateResCache )
 }
 #endif
 
-void OnGameModeStartPlay(ABladeIIGameMode* StartingGM)
-{
-	if (HasScalabilityResetChance())
-	{
-		UE_LOG(LogBladeII, Log, TEXT("User saved scalability settings are being reset.."));
-
-		ResetAllScalabilitySettings();
-		MarkScalabilityResetChanceUse();
-		GConfig->Flush(false, GB2GeneralSavedStateIni);
-	}
-
-	if (StartingGM)
-	{
-		// 현재 기록된 옵션 선택값에 기반하여 게임모드 자체적으로 특수한 추가 옵션 설정..
-		StartingGM->ApplyGameModeSpecificScalabilitySetting();
-	}
-#if PLATFORM_ANDROID
-	//AndroidMCSFUpdateHack(); 여긴 이제 안 해도 될 것 같고..
-#endif
-}
+//void OnGameModeStartPlay(ABladeIIGameMode* StartingGM)
+//{
+//	if (HasScalabilityResetChance())
+//	{
+//		UE_LOG(LogBladeII, Log, TEXT("User saved scalability settings are being reset.."));
+//
+//		ResetAllScalabilitySettings();
+//		MarkScalabilityResetChanceUse();
+//		GConfig->Flush(false, GB2GeneralSavedStateIni);
+//	}
+//
+//	if (StartingGM)
+//	{
+//		// 현재 기록된 옵션 선택값에 기반하여 게임모드 자체적으로 특수한 추가 옵션 설정..
+//		StartingGM->ApplyGameModeSpecificScalabilitySetting();
+//	}
+//#if PLATFORM_ANDROID
+//	//AndroidMCSFUpdateHack(); 여긴 이제 안 해도 될 것 같고..
+//#endif
+//}
 void OnGameModeLoadingScreenEnd()
 {
 #if PLATFORM_ANDROID
@@ -345,29 +346,29 @@ EB2GraphicsLevel GetGraphicsLevelByExpectedScalability()
 /** GameplayOnlyLODQuality 변경 직후 바로 적용되려면 추가 핸들링이 좀 필요해서.
 * 엔진 Scalability 쪽에서 어떻게 해 보려니 어차피 World 가 필요해서 그냥 여길 통해 변경하는 것에 대해서만 직접 콜한다.
 * sg. 콘솔 명령을 통한 변경만 바로 핸들링이 안될 뿐 정식 메뉴를 통한 변경은 바로 핸들링 될 것. */
-void OnGameplayOnlyLODQualityChanged(UWorld* InWorld, int32 InNewValue)
-{
-	if (!InWorld) {
-		return;
-	}
-
-	for (FActorIterator ItPlayer(InWorld); ItPlayer; ++ItPlayer)
-	{
-		ABladeIIPlayer* CastedPlayer = Cast<ABladeIIPlayer>(*ItPlayer);
-		if (CastedPlayer)
-		{ // 혹여나 영상 플레이 도중이라 하더라도.. 연출 도중에는 대부분 BladeIIPlayer 가 아닌 SkeletalMeshActor 가 사용되므로 이것을 호출하는 게 영향을 미치지 않는다. 아닌 경우라 하더라도 연출 도중에 pause 메뉴가 나오지도 않고..
-			CastedPlayer->SetupLODInfoForInGame();
-		}
-		else
-		{
-			AB2LobbySkeletalMeshActorBase* LobbySKActor = Cast<AB2LobbySkeletalMeshActorBase>(*ItPlayer);
-			if (LobbySKActor)
-			{
-				ABladeIIPlayer::SetupLODInfoForLobbyRepresentative(LobbySKActor);
-			}
-		}
-	}
-}
+//void OnGameplayOnlyLODQualityChanged(UWorld* InWorld, int32 InNewValue)
+//{
+//	if (!InWorld) {
+//		return;
+//	}
+//
+//	for (FActorIterator ItPlayer(InWorld); ItPlayer; ++ItPlayer)
+//	{
+//		ABladeIIPlayer* CastedPlayer = Cast<ABladeIIPlayer>(*ItPlayer);
+//		if (CastedPlayer)
+//		{ // 혹여나 영상 플레이 도중이라 하더라도.. 연출 도중에는 대부분 BladeIIPlayer 가 아닌 SkeletalMeshActor 가 사용되므로 이것을 호출하는 게 영향을 미치지 않는다. 아닌 경우라 하더라도 연출 도중에 pause 메뉴가 나오지도 않고..
+//			CastedPlayer->SetupLODInfoForInGame();
+//		}
+//		else
+//		{
+//			AB2LobbySkeletalMeshActorBase* LobbySKActor = Cast<AB2LobbySkeletalMeshActorBase>(*ItPlayer);
+//			if (LobbySKActor)
+//			{
+//				ABladeIIPlayer::SetupLODInfoForLobbyRepresentative(LobbySKActor);
+//			}
+//		}
+//	}
+//}
 
 
 float GetScreenScaleRQTypeScaleValue(EB2GraphicsRQType InRQType)
@@ -724,104 +725,104 @@ void ApplyBladeIIBiasedScalability_GameplayOnlyLOD(EB2GraphicsLevel InBasicUserS
 	//}
 }
 
-/** StageEventDirector 의 BeginShow/FinishShow 혹은 그에 해당하는 이벤트에서.. */
-void ApplyStageEventSpecificScalabilitySetting(UObject* WorldContextObject, bool bIsShowOn)
-{
-	B2_SCOPED_TRACK_LOG(FString::Printf(TEXT("ApplyStageEventSpecificScalabilitySetting %d"), (int32)bIsShowOn));
+///** StageEventDirector 의 BeginShow/FinishShow 혹은 그에 해당하는 이벤트에서.. */
+//void ApplyStageEventSpecificScalabilitySetting(UObject* WorldContextObject, bool bIsShowOn)
+//{
+//	B2_SCOPED_TRACK_LOG(FString::Printf(TEXT("ApplyStageEventSpecificScalabilitySetting %d"), (int32)bIsShowOn));
+////
+////#if !UE_BUILD_SHIPPING
+////	if (!bUseBladeIIScalabilityOverride) { // 테스트 용으로 연출 상황에 따른 override 끌 수 있도록. 대신 LOD 제어는 따로임.
+////		AdjustScalabilityBySavedUserSelection(WorldContextObject);
+////		return;
+////	}
+////#endif
+////
+////	// 여기서 WorldContextObject 는 StageEventDirector 가 될 가능성이 크겠지.. 필요하면 캐스팅해서 써 보든지..?
+////	// 현재 구현으로는 게임모드에 따른 구분이 없어서 사실상 추가적인 PerGMSetting 으로 봐도 될 듯.
+////	// 게임모드 별로 연출용 scalability 세팅 따로 있으면 더 유연하긴 하겠지만 그게 필요할까 싶기도 하고.
+////
+////	if (bIsShowOn)
+////	{
+////		int32 UserSelectedLevelInt = B2GraphicsLevelToInt(EB2GraphicsLevel::GraphicsLevel_HIGH);
+////		LoadGameSetting_Graphics_OrByDefault(UserSelectedLevelInt);
+////		EB2GraphicsLevel UserSelectedLevel = IntToB2GraphicsLevel(UserSelectedLevelInt);
+////
+////		const FString StageEventSettingSection(TEXT("StageEventCinematicsSetting"));
+////		
+////		//
+////		// 여기서 추가로 컨트롤하는 항목들은 당연히 런타임 적용이 가능한 것이어야 한다.
+////		//
+////
+////		// 특히 연출 상황에서는 좀 높이는 걸 고려할 수 있는 ViewDistance 랑 PostProcess..?
+////		// GameMode override 보다 낮게 가지는 않도록 함.
+////		ApplyBladeIIBiasedScalability_ViewDist(UserSelectedLevel, StageEventSettingSection, true);
+////		ApplyBladeIIBiasedScalability_PostProcess(UserSelectedLevel, StageEventSettingSection, true);
+////		ApplyBladeIIBiasedScalability_PostProcessExtra(UserSelectedLevel, StageEventSettingSection, true);
+////
+////		//
+////		// GameplayOnlyLODQuality 는 여기서 추가 override 를 하지 않고 아예 그것 자체가 연출용 세부 항목이 있다.
+////		// LOD 레벨은 게임 구현 구조 상 더 다양한 이벤트를 통해 들어가야 해서.
+////		//
+////	}
+////	else
+////	{ // 유저 선택의 기본 상황으로 되돌림. 만일 이렇게 특별히 scalability 를 조절하는 경우가 또 생기면 이걸로 안 되겠지.
+////		AdjustScalabilityBySavedUserSelection(WorldContextObject);
+////	}
+//}
 //
-//#if !UE_BUILD_SHIPPING
-//	if (!bUseBladeIIScalabilityOverride) { // 테스트 용으로 연출 상황에 따른 override 끌 수 있도록. 대신 LOD 제어는 따로임.
-//		AdjustScalabilityBySavedUserSelection(WorldContextObject);
-//		return;
+//FString GetScalabilitySectionNamePerGM(ABladeIIGameMode* InB2GM)
+//{
+//	if (InB2GM) {
+//		return FString(TEXT("PerGMSetting")) + TEXT("@") + InB2GM->GetGameModeScalabilitySettingSectionPostfix();
 //	}
-//#endif
+//	return TEXT("");
+//}
 //
-//	// 여기서 WorldContextObject 는 StageEventDirector 가 될 가능성이 크겠지.. 필요하면 캐스팅해서 써 보든지..?
-//	// 현재 구현으로는 게임모드에 따른 구분이 없어서 사실상 추가적인 PerGMSetting 으로 봐도 될 듯.
-//	// 게임모드 별로 연출용 scalability 세팅 따로 있으면 더 유연하긴 하겠지만 그게 필요할까 싶기도 하고.
+///** ApplyGameModeSpecificScalabilitySetting 오버라이드 한 함수들은 결국 모두 이걸 콜한다.. ini 에 자신에 해당하는 항목과 함께 */
+//void ApplyGameModeSpecificScalabilitySetting_OverrideCommon(ABladeIIGameMode* InB2GM, EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
+//{
+////#if !UE_BUILD_SHIPPING
+////	if (!B2Scalability::bUseBladeIIScalabilityOverride) { // 테스트 용으로 게임모드에 따른 override 끌 수 있도록
+////		return;
+////	}
+////#endif
+////
+////	if (!InB2GM) {
+////		return;
+////	}
+////
+////	EB2GraphicsLevel UsedGraphicsLevel = InSelectedGraphicsLevel;
+////	if (UsedGraphicsLevel == EB2GraphicsLevel::GraphicsLevel_End) // 지정하지 않은 경우 UI 설정에 따라 ini 저장된 값 사용.
+////	{
+////		int32 SavedGraphicsLevel = B2GraphicsLevelToInt(EB2GraphicsLevel::GraphicsLevel_HIGH);
+////		// 이 이전에 GameSetting 값 초기화가 안 되어 있으면 여기서 override 한 scalability 가 아닌 DeviceProfile 에 의해 정해진 scalability 로 GraphicsLevel 을 세팅하게 될 것.
+////		LoadGameSetting_Graphics_OrByDefault(SavedGraphicsLevel);		
+////		UsedGraphicsLevel = IntToB2GraphicsLevel(SavedGraphicsLevel);
+////	}
+////
+////	EB2ResolutionLevel UsedResLevel = InSelectedResLevel;
+////	if (UsedResLevel == EB2ResolutionLevel::End) // 마찬가지로 지정하지 않은 경우.. ini 저장된 값으로
+////	{
+////		int32 SavedResLevel = B2ResolutionLevelToInt(EB2ResolutionLevel::Mid);
+////		LoadGameSetting_Resolution_OrByDefault(SavedResLevel);
+////		UsedResLevel = IntToB2ResolutionLevel(SavedResLevel);
+////	}
+////	
+////	//
+////	// 여기서 추가로 컨트롤하는 항목들은 당연히 런타임 적용이 가능한 것이어야 한다.
+////	//
+////		
+////	const FString& DesiredSectionName = GetScalabilitySectionNamePerGM(InB2GM);
+////	ApplyBladeIIBiasedScalability_Shadow(UsedGraphicsLevel, DesiredSectionName);
+////	ApplyBladeIIBiasedScalability_Effect(UsedGraphicsLevel, DesiredSectionName);
+////	ApplyBladeIIBiasedScalability_PostProcess(UsedGraphicsLevel, DesiredSectionName);
+////	ApplyBladeIIBiasedScalability_PostProcessExtra(UsedGraphicsLevel, DesiredSectionName);
+////	ApplyBladeIIBiasedScalability_Texture(UsedGraphicsLevel, DesiredSectionName);
+////	ApplyBladeIIBiasedScalability_Resolution(UsedGraphicsLevel, GetSafeMappedRQTypeOfResolutionLevel(UsedResLevel), DesiredSectionName);
+////	ApplyBladeIIBiasedScalability_GameplayOnlyLOD(UsedGraphicsLevel, DesiredSectionName);
+////	ApplyBladeIIBiasedScalability_ViewDist(UsedGraphicsLevel, DesiredSectionName);
 //
-//	if (bIsShowOn)
-//	{
-//		int32 UserSelectedLevelInt = B2GraphicsLevelToInt(EB2GraphicsLevel::GraphicsLevel_HIGH);
-//		LoadGameSetting_Graphics_OrByDefault(UserSelectedLevelInt);
-//		EB2GraphicsLevel UserSelectedLevel = IntToB2GraphicsLevel(UserSelectedLevelInt);
-//
-//		const FString StageEventSettingSection(TEXT("StageEventCinematicsSetting"));
-//		
-//		//
-//		// 여기서 추가로 컨트롤하는 항목들은 당연히 런타임 적용이 가능한 것이어야 한다.
-//		//
-//
-//		// 특히 연출 상황에서는 좀 높이는 걸 고려할 수 있는 ViewDistance 랑 PostProcess..?
-//		// GameMode override 보다 낮게 가지는 않도록 함.
-//		ApplyBladeIIBiasedScalability_ViewDist(UserSelectedLevel, StageEventSettingSection, true);
-//		ApplyBladeIIBiasedScalability_PostProcess(UserSelectedLevel, StageEventSettingSection, true);
-//		ApplyBladeIIBiasedScalability_PostProcessExtra(UserSelectedLevel, StageEventSettingSection, true);
-//
-//		//
-//		// GameplayOnlyLODQuality 는 여기서 추가 override 를 하지 않고 아예 그것 자체가 연출용 세부 항목이 있다.
-//		// LOD 레벨은 게임 구현 구조 상 더 다양한 이벤트를 통해 들어가야 해서.
-//		//
-//	}
-//	else
-//	{ // 유저 선택의 기본 상황으로 되돌림. 만일 이렇게 특별히 scalability 를 조절하는 경우가 또 생기면 이걸로 안 되겠지.
-//		AdjustScalabilityBySavedUserSelection(WorldContextObject);
-//	}
-}
-
-FString GetScalabilitySectionNamePerGM(ABladeIIGameMode* InB2GM)
-{
-	if (InB2GM) {
-		return FString(TEXT("PerGMSetting")) + TEXT("@") + InB2GM->GetGameModeScalabilitySettingSectionPostfix();
-	}
-	return TEXT("");
-}
-
-/** ApplyGameModeSpecificScalabilitySetting 오버라이드 한 함수들은 결국 모두 이걸 콜한다.. ini 에 자신에 해당하는 항목과 함께 */
-void ApplyGameModeSpecificScalabilitySetting_OverrideCommon(ABladeIIGameMode* InB2GM, EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
-{
-//#if !UE_BUILD_SHIPPING
-//	if (!B2Scalability::bUseBladeIIScalabilityOverride) { // 테스트 용으로 게임모드에 따른 override 끌 수 있도록
-//		return;
-//	}
-//#endif
-//
-//	if (!InB2GM) {
-//		return;
-//	}
-//
-//	EB2GraphicsLevel UsedGraphicsLevel = InSelectedGraphicsLevel;
-//	if (UsedGraphicsLevel == EB2GraphicsLevel::GraphicsLevel_End) // 지정하지 않은 경우 UI 설정에 따라 ini 저장된 값 사용.
-//	{
-//		int32 SavedGraphicsLevel = B2GraphicsLevelToInt(EB2GraphicsLevel::GraphicsLevel_HIGH);
-//		// 이 이전에 GameSetting 값 초기화가 안 되어 있으면 여기서 override 한 scalability 가 아닌 DeviceProfile 에 의해 정해진 scalability 로 GraphicsLevel 을 세팅하게 될 것.
-//		LoadGameSetting_Graphics_OrByDefault(SavedGraphicsLevel);		
-//		UsedGraphicsLevel = IntToB2GraphicsLevel(SavedGraphicsLevel);
-//	}
-//
-//	EB2ResolutionLevel UsedResLevel = InSelectedResLevel;
-//	if (UsedResLevel == EB2ResolutionLevel::End) // 마찬가지로 지정하지 않은 경우.. ini 저장된 값으로
-//	{
-//		int32 SavedResLevel = B2ResolutionLevelToInt(EB2ResolutionLevel::Mid);
-//		LoadGameSetting_Resolution_OrByDefault(SavedResLevel);
-//		UsedResLevel = IntToB2ResolutionLevel(SavedResLevel);
-//	}
-//	
-//	//
-//	// 여기서 추가로 컨트롤하는 항목들은 당연히 런타임 적용이 가능한 것이어야 한다.
-//	//
-//		
-//	const FString& DesiredSectionName = GetScalabilitySectionNamePerGM(InB2GM);
-//	ApplyBladeIIBiasedScalability_Shadow(UsedGraphicsLevel, DesiredSectionName);
-//	ApplyBladeIIBiasedScalability_Effect(UsedGraphicsLevel, DesiredSectionName);
-//	ApplyBladeIIBiasedScalability_PostProcess(UsedGraphicsLevel, DesiredSectionName);
-//	ApplyBladeIIBiasedScalability_PostProcessExtra(UsedGraphicsLevel, DesiredSectionName);
-//	ApplyBladeIIBiasedScalability_Texture(UsedGraphicsLevel, DesiredSectionName);
-//	ApplyBladeIIBiasedScalability_Resolution(UsedGraphicsLevel, GetSafeMappedRQTypeOfResolutionLevel(UsedResLevel), DesiredSectionName);
-//	ApplyBladeIIBiasedScalability_GameplayOnlyLOD(UsedGraphicsLevel, DesiredSectionName);
-//	ApplyBladeIIBiasedScalability_ViewDist(UsedGraphicsLevel, DesiredSectionName);
-
-}
+//}
 
 
 /************************************************************************/
@@ -1079,170 +1080,170 @@ void ResetAllScalabilitySettings()
 /************************************************************************
 게임 모드 별 Scalability 설정 인터페이스 구현을 관리하기 좋게 여기에 몰아넣음.
 ************************************************************************/
-
-void ABladeIIGameMode::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
-{
-	
-	// 여긴 Override 를 하지 않았을 때의 기본 구현으로 가장 기본값으로 돌아갈 수 있도록 한다. 
-	//
-
-	// ApplyGameModeSpecificScalabilitySetting 을 따로 Override 하지 않으면 AdjustScalabilityBySelectedLevel 를 그대로 사용한 것과 마찬가지가 되도록.
-
-	//EB2GraphicsLevel UsedGraphicsLevel = InSelectedGraphicsLevel;
-	//if (UsedGraphicsLevel == EB2GraphicsLevel::GraphicsLevel_End) // 지정하지 않은 경우 UI 설정에 따라 ini 저장된 값 사용.
-	//{
-	//	int32 SavedGraphicsLevel = B2GraphicsLevelToInt(EB2GraphicsLevel::GraphicsLevel_HIGH);
-	//	bool bSettingLoaded = LoadGameSetting_Graphics_OrByDefault(SavedGraphicsLevel);
-	//	// 이 이전에 GameSetting 값 초기화가 안 되어 있다고 해도 여기선 기본 scalability 로 돌려놓으니 문제는 없겠지만 그래도 바람직한 상황은 아니지.
-	//	check(bSettingLoaded);
-	//	UsedGraphicsLevel = IntToB2GraphicsLevel(SavedGraphicsLevel);
-	//}
-
-	//{
-	//	const int32 DesiredScalabilityLevel = B2Scalability::GetScalabilityLevelOfGraphicsLevel(UsedGraphicsLevel);
-	//	if (Scalability::GetQualityLevels_Shadow() != DesiredScalabilityLevel) {
-	//		Scalability::SetQualityLevels_Shadow(DesiredScalabilityLevel);
-	//	}
-	//}
-	//{
-	//	const int32 DesiredScalabilityLevel = B2Scalability::GetScalabilityLevelOfGraphicsLevel(UsedGraphicsLevel);
-	//	if (Scalability::GetQualityLevels_Effects() != DesiredScalabilityLevel) {
-	//		Scalability::SetQualityLevels_Effects(DesiredScalabilityLevel);
-	//	}
-	//}
-	//{
-	//	const int32 DesiredScalabilityLevel = B2Scalability::GetScalabilityLevelOfGraphicsLevel(UsedGraphicsLevel);
-	//	if (Scalability::GetQualityLevels_PostProcess() != DesiredScalabilityLevel) {
-	//		Scalability::SetQualityLevels_PostProcess(DesiredScalabilityLevel);
-	//	}
-	//}
-	//{
-	//	const int32 DesiredScalabilityLevel = B2Scalability::GetScalabilityLevelOfGraphicsLevel(UsedGraphicsLevel);
-	//	if (Scalability::GetQualityLevels_PostProcessExtra() != DesiredScalabilityLevel) {
-	//		Scalability::SetQualityLevels_PostProcessExtra(DesiredScalabilityLevel);
-	//	}
-	//}
-	//{
-	//	const int32 DesiredScalabilityLevel = B2Scalability::GetTextureLevelOfGraphicsLevel(UsedGraphicsLevel);
-	//	if (Scalability::GetQualityLevels_Texture() != DesiredScalabilityLevel) {
-	//		Scalability::SetQualityLevels_Texture(DesiredScalabilityLevel);
-	//	}
-	//}
-	//{
-	//	float DesiredScalabilityLevel = B2Scalability::GetResolutionScaleOfGraphicsLevel(UsedGraphicsLevel);
-	//	// 모드별 override 가 아니더라도 RQType 에 따른 추가 조절은 필요.
-	//	B2Scalability::AdjustResolutionQualityByRQType(B2Scalability::GetSafeMappedRQTypeOfResolutionLevel(InSelectedResLevel), DesiredScalabilityLevel);
-	//	if (Scalability::GetQualityLevels_Resolution() != DesiredScalabilityLevel) {
-	//		Scalability::SetQualityLevels_Resolution(DesiredScalabilityLevel);
-	//	}
-	//}
-	//{
-	//	const int32 DesiredScalabilityLevel = B2Scalability::GetGameplayOnlyLODQualityOfGraphicsLevel(UsedGraphicsLevel);
-	//	if (Scalability::GetQualityLevels_GameplayOnlyLOD() != DesiredScalabilityLevel) {
-	//		Scalability::SetQualityLevels_GameplayOnlyLOD(DesiredScalabilityLevel);
-	//	}
-	//}
-	//{
-	//	const int32 DesiredScalabilityLevel = B2Scalability::GetScalabilityLevelOfGraphicsLevel(UsedGraphicsLevel);
-	//	if (Scalability::GetQualityLevels_ViewDistance() != DesiredScalabilityLevel) {
-	//		Scalability::SetQualityLevels_ViewDistance(DesiredScalabilityLevel);
-	//	}
-	//}
-}
-FString ABladeIIGameMode::GetGameModeScalabilitySettingSectionPostfix() const
-{
-	return FString(TEXT("ABladeIIGameMode")); // 게임모드 이름 그대로 리턴하는데 Class GetName 하니까 결국 Blueprint 클래스 이름이 나와서 이렇게.. ㅡㅡ
-}
-
-void AB2LobbyGameMode::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
-{
-	B2Scalability::ApplyGameModeSpecificScalabilitySetting_OverrideCommon(this, InSelectedGraphicsLevel, InSelectedResLevel);
-}
-FString AB2LobbyGameMode::GetGameModeScalabilitySettingSectionPostfix() const
-{
-	return FString(TEXT("AB2LobbyGameMode"));
-}
-
-void AB2StageGameModeBase::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
-{
-	B2Scalability::ApplyGameModeSpecificScalabilitySetting_OverrideCommon(this, InSelectedGraphicsLevel, InSelectedResLevel);
-}
-FString AB2StageGameModeBase::GetGameModeScalabilitySettingSectionPostfix() const
-{
-	return FString(TEXT("AB2StageGameModeBase"));
-}
-
-void AB2TutorialGameMode::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
-{
-	B2Scalability::ApplyGameModeSpecificScalabilitySetting_OverrideCommon(this, InSelectedGraphicsLevel, InSelectedResLevel);
-}
-FString AB2TutorialGameMode::GetGameModeScalabilitySettingSectionPostfix() const
-{
-	return FString(TEXT("AB2TutorialGameMode"));
-}
-
-void AB2CounterAttackGameMode::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
-{
-	B2Scalability::ApplyGameModeSpecificScalabilitySetting_OverrideCommon(this, InSelectedGraphicsLevel, InSelectedResLevel);
-}
-FString AB2CounterAttackGameMode::GetGameModeScalabilitySettingSectionPostfix() const
-{
-	return FString(TEXT("AB2CounterAttackGameMode"));
-}
-
-void AB2PVPGameMode::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
-{
-	B2Scalability::ApplyGameModeSpecificScalabilitySetting_OverrideCommon(this, InSelectedGraphicsLevel, InSelectedResLevel);
-}
-FString AB2PVPGameMode::GetGameModeScalabilitySettingSectionPostfix() const
-{
-	return FString(TEXT("AB2PVPGameMode"));
-}
-
-void AB2RaidGameMode::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
-{
-	B2Scalability::ApplyGameModeSpecificScalabilitySetting_OverrideCommon(this, InSelectedGraphicsLevel, InSelectedResLevel);
-}
-FString AB2RaidGameMode::GetGameModeScalabilitySettingSectionPostfix() const
-{
-	return FString(TEXT("AB2RaidGameMode"));
-}
-
-void AB2ControlGameMode::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
-{
-	B2Scalability::ApplyGameModeSpecificScalabilitySetting_OverrideCommon(this, InSelectedGraphicsLevel, InSelectedResLevel);
-}
-FString AB2ControlGameMode::GetGameModeScalabilitySettingSectionPostfix() const
-{
-	return FString(TEXT("AB2ControlGameMode"));
-}
-
-void AB2TMGameMode::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
-{
-	B2Scalability::ApplyGameModeSpecificScalabilitySetting_OverrideCommon(this, InSelectedGraphicsLevel, InSelectedResLevel);
-}
-FString AB2TMGameMode::GetGameModeScalabilitySettingSectionPostfix() const
-{
-	return FString(TEXT("AB2TMGameMode"));
-}
-
-void AB2GuildGameMode::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
-{
-	B2Scalability::ApplyGameModeSpecificScalabilitySetting_OverrideCommon(this, InSelectedGraphicsLevel, InSelectedResLevel);
-}
-FString AB2GuildGameMode::GetGameModeScalabilitySettingSectionPostfix() const
-{
-	return FString(TEXT("AB2GuildGameMode"));
-}
-
-void AB2PreRenderGameMode::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
-{
-	B2Scalability::ApplyGameModeSpecificScalabilitySetting_OverrideCommon(this, InSelectedGraphicsLevel, InSelectedResLevel);
-}
-FString AB2PreRenderGameMode::GetGameModeScalabilitySettingSectionPostfix() const
-{
-	return FString(TEXT("AB2PreRenderGameMode"));
-}
+//
+//void ABladeIIGameMode::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
+//{
+//	
+//	// 여긴 Override 를 하지 않았을 때의 기본 구현으로 가장 기본값으로 돌아갈 수 있도록 한다. 
+//	//
+//
+//	// ApplyGameModeSpecificScalabilitySetting 을 따로 Override 하지 않으면 AdjustScalabilityBySelectedLevel 를 그대로 사용한 것과 마찬가지가 되도록.
+//
+//	//EB2GraphicsLevel UsedGraphicsLevel = InSelectedGraphicsLevel;
+//	//if (UsedGraphicsLevel == EB2GraphicsLevel::GraphicsLevel_End) // 지정하지 않은 경우 UI 설정에 따라 ini 저장된 값 사용.
+//	//{
+//	//	int32 SavedGraphicsLevel = B2GraphicsLevelToInt(EB2GraphicsLevel::GraphicsLevel_HIGH);
+//	//	bool bSettingLoaded = LoadGameSetting_Graphics_OrByDefault(SavedGraphicsLevel);
+//	//	// 이 이전에 GameSetting 값 초기화가 안 되어 있다고 해도 여기선 기본 scalability 로 돌려놓으니 문제는 없겠지만 그래도 바람직한 상황은 아니지.
+//	//	check(bSettingLoaded);
+//	//	UsedGraphicsLevel = IntToB2GraphicsLevel(SavedGraphicsLevel);
+//	//}
+//
+//	//{
+//	//	const int32 DesiredScalabilityLevel = B2Scalability::GetScalabilityLevelOfGraphicsLevel(UsedGraphicsLevel);
+//	//	if (Scalability::GetQualityLevels_Shadow() != DesiredScalabilityLevel) {
+//	//		Scalability::SetQualityLevels_Shadow(DesiredScalabilityLevel);
+//	//	}
+//	//}
+//	//{
+//	//	const int32 DesiredScalabilityLevel = B2Scalability::GetScalabilityLevelOfGraphicsLevel(UsedGraphicsLevel);
+//	//	if (Scalability::GetQualityLevels_Effects() != DesiredScalabilityLevel) {
+//	//		Scalability::SetQualityLevels_Effects(DesiredScalabilityLevel);
+//	//	}
+//	//}
+//	//{
+//	//	const int32 DesiredScalabilityLevel = B2Scalability::GetScalabilityLevelOfGraphicsLevel(UsedGraphicsLevel);
+//	//	if (Scalability::GetQualityLevels_PostProcess() != DesiredScalabilityLevel) {
+//	//		Scalability::SetQualityLevels_PostProcess(DesiredScalabilityLevel);
+//	//	}
+//	//}
+//	//{
+//	//	const int32 DesiredScalabilityLevel = B2Scalability::GetScalabilityLevelOfGraphicsLevel(UsedGraphicsLevel);
+//	//	if (Scalability::GetQualityLevels_PostProcessExtra() != DesiredScalabilityLevel) {
+//	//		Scalability::SetQualityLevels_PostProcessExtra(DesiredScalabilityLevel);
+//	//	}
+//	//}
+//	//{
+//	//	const int32 DesiredScalabilityLevel = B2Scalability::GetTextureLevelOfGraphicsLevel(UsedGraphicsLevel);
+//	//	if (Scalability::GetQualityLevels_Texture() != DesiredScalabilityLevel) {
+//	//		Scalability::SetQualityLevels_Texture(DesiredScalabilityLevel);
+//	//	}
+//	//}
+//	//{
+//	//	float DesiredScalabilityLevel = B2Scalability::GetResolutionScaleOfGraphicsLevel(UsedGraphicsLevel);
+//	//	// 모드별 override 가 아니더라도 RQType 에 따른 추가 조절은 필요.
+//	//	B2Scalability::AdjustResolutionQualityByRQType(B2Scalability::GetSafeMappedRQTypeOfResolutionLevel(InSelectedResLevel), DesiredScalabilityLevel);
+//	//	if (Scalability::GetQualityLevels_Resolution() != DesiredScalabilityLevel) {
+//	//		Scalability::SetQualityLevels_Resolution(DesiredScalabilityLevel);
+//	//	}
+//	//}
+//	//{
+//	//	const int32 DesiredScalabilityLevel = B2Scalability::GetGameplayOnlyLODQualityOfGraphicsLevel(UsedGraphicsLevel);
+//	//	if (Scalability::GetQualityLevels_GameplayOnlyLOD() != DesiredScalabilityLevel) {
+//	//		Scalability::SetQualityLevels_GameplayOnlyLOD(DesiredScalabilityLevel);
+//	//	}
+//	//}
+//	//{
+//	//	const int32 DesiredScalabilityLevel = B2Scalability::GetScalabilityLevelOfGraphicsLevel(UsedGraphicsLevel);
+//	//	if (Scalability::GetQualityLevels_ViewDistance() != DesiredScalabilityLevel) {
+//	//		Scalability::SetQualityLevels_ViewDistance(DesiredScalabilityLevel);
+//	//	}
+//	//}
+//}
+//FString ABladeIIGameMode::GetGameModeScalabilitySettingSectionPostfix() const
+//{
+//	return FString(TEXT("ABladeIIGameMode")); // 게임모드 이름 그대로 리턴하는데 Class GetName 하니까 결국 Blueprint 클래스 이름이 나와서 이렇게.. ㅡㅡ
+//}
+//
+//void AB2LobbyGameMode::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
+//{
+//	B2Scalability::ApplyGameModeSpecificScalabilitySetting_OverrideCommon(this, InSelectedGraphicsLevel, InSelectedResLevel);
+//}
+//FString AB2LobbyGameMode::GetGameModeScalabilitySettingSectionPostfix() const
+//{
+//	return FString(TEXT("AB2LobbyGameMode"));
+//}
+//
+//void AB2StageGameModeBase::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
+//{
+//	B2Scalability::ApplyGameModeSpecificScalabilitySetting_OverrideCommon(this, InSelectedGraphicsLevel, InSelectedResLevel);
+//}
+//FString AB2StageGameModeBase::GetGameModeScalabilitySettingSectionPostfix() const
+//{
+//	return FString(TEXT("AB2StageGameModeBase"));
+//}
+//
+//void AB2TutorialGameMode::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
+//{
+//	B2Scalability::ApplyGameModeSpecificScalabilitySetting_OverrideCommon(this, InSelectedGraphicsLevel, InSelectedResLevel);
+//}
+//FString AB2TutorialGameMode::GetGameModeScalabilitySettingSectionPostfix() const
+//{
+//	return FString(TEXT("AB2TutorialGameMode"));
+//}
+//
+//void AB2CounterAttackGameMode::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
+//{
+//	B2Scalability::ApplyGameModeSpecificScalabilitySetting_OverrideCommon(this, InSelectedGraphicsLevel, InSelectedResLevel);
+//}
+//FString AB2CounterAttackGameMode::GetGameModeScalabilitySettingSectionPostfix() const
+//{
+//	return FString(TEXT("AB2CounterAttackGameMode"));
+//}
+//
+//void AB2PVPGameMode::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
+//{
+//	B2Scalability::ApplyGameModeSpecificScalabilitySetting_OverrideCommon(this, InSelectedGraphicsLevel, InSelectedResLevel);
+//}
+//FString AB2PVPGameMode::GetGameModeScalabilitySettingSectionPostfix() const
+//{
+//	return FString(TEXT("AB2PVPGameMode"));
+//}
+//
+//void AB2RaidGameMode::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
+//{
+//	B2Scalability::ApplyGameModeSpecificScalabilitySetting_OverrideCommon(this, InSelectedGraphicsLevel, InSelectedResLevel);
+//}
+//FString AB2RaidGameMode::GetGameModeScalabilitySettingSectionPostfix() const
+//{
+//	return FString(TEXT("AB2RaidGameMode"));
+//}
+//
+//void AB2ControlGameMode::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
+//{
+//	B2Scalability::ApplyGameModeSpecificScalabilitySetting_OverrideCommon(this, InSelectedGraphicsLevel, InSelectedResLevel);
+//}
+//FString AB2ControlGameMode::GetGameModeScalabilitySettingSectionPostfix() const
+//{
+//	return FString(TEXT("AB2ControlGameMode"));
+//}
+//
+//void AB2TMGameMode::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
+//{
+//	B2Scalability::ApplyGameModeSpecificScalabilitySetting_OverrideCommon(this, InSelectedGraphicsLevel, InSelectedResLevel);
+//}
+//FString AB2TMGameMode::GetGameModeScalabilitySettingSectionPostfix() const
+//{
+//	return FString(TEXT("AB2TMGameMode"));
+//}
+//
+//void AB2GuildGameMode::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
+//{
+//	B2Scalability::ApplyGameModeSpecificScalabilitySetting_OverrideCommon(this, InSelectedGraphicsLevel, InSelectedResLevel);
+//}
+//FString AB2GuildGameMode::GetGameModeScalabilitySettingSectionPostfix() const
+//{
+//	return FString(TEXT("AB2GuildGameMode"));
+//}
+//
+//void AB2PreRenderGameMode::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
+//{
+//	B2Scalability::ApplyGameModeSpecificScalabilitySetting_OverrideCommon(this, InSelectedGraphicsLevel, InSelectedResLevel);
+//}
+//FString AB2PreRenderGameMode::GetGameModeScalabilitySettingSectionPostfix() const
+//{
+//	return FString(TEXT("AB2PreRenderGameMode"));
+//}
 
 
 /************************************************************************

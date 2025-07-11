@@ -2,7 +2,7 @@
 
 
 #include "B2WingInfo.h"
-#include "B2Airport.h"
+//#include "B2Airport.h"
 
 #include "FB2ErrorMessage.h"
 
@@ -22,20 +22,20 @@ UMaterialInterface* FSingleWingInfoData::GetMtrlOverride()
 #if WITH_EDITOR
 void FSingleWingInfoData::EditorLoadAllTAsset()
 {
-	if (!GIsEditor) {
-		return;
-	}
+	//if (!GIsEditor) {
+	//	return;
+	//}
 
-	// TAsset 을 에디터에서 로딩 안 해 놓을 시 redirector 처리가 잘못될 수 있어서.. DataTable 아니면 괜찮을 거 같지만 자잘한 리소스들은 로딩해준다.
-	// 레퍼런스 캐싱도 없이 쓸모가 있는지 모르겠는데 에디터에선 쓸모 있었던 거 같음. 
+	//// TAsset 을 에디터에서 로딩 안 해 놓을 시 redirector 처리가 잘못될 수 있어서.. DataTable 아니면 괜찮을 거 같지만 자잘한 리소스들은 로딩해준다.
+	//// 레퍼런스 캐싱도 없이 쓸모가 있는지 모르겠는데 에디터에선 쓸모 있었던 거 같음. 
 
-	WingMesh.LoadSynchronous();
-	MtrlOverride.LoadSynchronous();
+	//WingMesh.LoadSynchronous();
+	//MtrlOverride.LoadSynchronous();
 
-	for (FCHSKCompAttachParticleSystemInfo& ThisAttachEffect : AttachEffectInfoArray)
-	{
-		ThisAttachEffect.GetParticleSystemAsset();
-	}
+	//for (FCHSKCompAttachParticleSystemInfo& ThisAttachEffect : AttachEffectInfoArray)
+	//{
+	//	ThisAttachEffect.GetParticleSystemAsset();
+	//}
 }
 #endif
 
@@ -93,27 +93,27 @@ TArray<FSingleWingInfoData>* UB2WingInfo::GetMainInfoArrayPtrForChar(EPCClass In
 
 FSingleWingInfoData* UB2WingInfo::GetInfoData(const FSingleWingInfoID& InID)
 {
-	// 여기서는 MAX_WING_EVOLUTION_GRADE_UNOFFICIAL 까지 허용을 한다. 게임 시스템 상으로는 허용 안되더라도 리소스 차원에서는 세팅 및 확인이 가능해야.
-	if (InID.PCClassEnum != EPCClass::EPC_End && InID.EvolutionGrade >= MIN_WING_EVOLUTION_GRADE && InID.EvolutionGrade <= MAX_WING_EVOLUTION_GRADE_UNOFFICIAL)
-	{
-		TArray<FSingleWingInfoData>* MainInfoDataOfClass = GetMainInfoArrayPtrForChar(InID.PCClassEnum);
-		if (MainInfoDataOfClass && MainInfoDataOfClass->Num() > 0)
-		{ 
-			int32 ArrayIndexOfGrade = InID.EvolutionGrade - 1; // 대략 이렇게 grade 랑 index 맞춰서 세팅을 의도.
-			if (MainInfoDataOfClass->IsValidIndex(ArrayIndexOfGrade))
-			{
-				FSingleWingInfoData& WantedDataSet = (*MainInfoDataOfClass)[ArrayIndexOfGrade];
-				checkSlow(WantedDataSet.MyID == InID); // 처음부터 iteration 하면서 맞는 ID 나올 때 리턴하도록 할 수도 있다.
-				return &WantedDataSet;
-			}
-		}
-	}
-
-#if WITH_EDITOR && !PLATFORM_MAC
-	FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-			FString::Printf(TEXT("WingInfo 에서 ID PC %d Evol %d 의 항목을 찾지 못함. 컴퓨터가 곧 폭발한다."), (int32)InID.PCClassEnum, InID.EvolutionGrade)
-			));
-#endif
+//	// 여기서는 MAX_WING_EVOLUTION_GRADE_UNOFFICIAL 까지 허용을 한다. 게임 시스템 상으로는 허용 안되더라도 리소스 차원에서는 세팅 및 확인이 가능해야.
+//	if (InID.PCClassEnum != EPCClass::EPC_End && InID.EvolutionGrade >= MIN_WING_EVOLUTION_GRADE && InID.EvolutionGrade <= MAX_WING_EVOLUTION_GRADE_UNOFFICIAL)
+//	{
+//		TArray<FSingleWingInfoData>* MainInfoDataOfClass = GetMainInfoArrayPtrForChar(InID.PCClassEnum);
+//		if (MainInfoDataOfClass && MainInfoDataOfClass->Num() > 0)
+//		{ 
+//			int32 ArrayIndexOfGrade = InID.EvolutionGrade - 1; // 대략 이렇게 grade 랑 index 맞춰서 세팅을 의도.
+//			if (MainInfoDataOfClass->IsValidIndex(ArrayIndexOfGrade))
+//			{
+//				FSingleWingInfoData& WantedDataSet = (*MainInfoDataOfClass)[ArrayIndexOfGrade];
+//				checkSlow(WantedDataSet.MyID == InID); // 처음부터 iteration 하면서 맞는 ID 나올 때 리턴하도록 할 수도 있다.
+//				return &WantedDataSet;
+//			}
+//		}
+//	}
+//
+//#if WITH_EDITOR && !PLATFORM_MAC
+//	FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
+//			FString::Printf(TEXT("WingInfo 에서 ID PC %d Evol %d 의 항목을 찾지 못함. 컴퓨터가 곧 폭발한다."), (int32)InID.PCClassEnum, InID.EvolutionGrade)
+//			));
+//#endif
 	return NULL;
 }
 
@@ -248,28 +248,28 @@ void UB2WingInfo::CheckInfoDataIntegrity()
 
 void UB2WingInfo::PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent)
 { 
-	Super::PostEditChangeProperty(PropertyChangedEvent);
+	//Super::PostEditChangeProperty(PropertyChangedEvent);
 
-	FProperty* PropertyThatChanged = PropertyChangedEvent.Property;
-	FName PropertyName = PropertyThatChanged != NULL ? PropertyThatChanged->GetFName() : NAME_None;
+	//FProperty* PropertyThatChanged = PropertyChangedEvent.Property;
+	//FName PropertyName = PropertyThatChanged != NULL ? PropertyThatChanged->GetFName() : NAME_None;
 
-	const FName Name_MainInfoArray_Gladiator = GET_MEMBER_NAME_CHECKED(UB2WingInfo, MainInfoArray_Gladiator);
-	const FName Name_MainInfoArray_Assassin = GET_MEMBER_NAME_CHECKED(UB2WingInfo, MainInfoArray_Assassin);
-	const FName Name_MainInfoArray_Wizard = GET_MEMBER_NAME_CHECKED(UB2WingInfo, MainInfoArray_Wizard);
-	const FName Name_MainInfoArray_Fighter = GET_MEMBER_NAME_CHECKED(UB2WingInfo, MainInfoArray_Fighter);
-	const FName Name_MyID = GET_MEMBER_NAME_CHECKED(FSingleWingInfoData, MyID);
-	const FName Name_EvolutionGrade = GET_MEMBER_NAME_CHECKED(FSingleWingInfoID, EvolutionGrade);
-	const FName Name_ParticleSystemAsset = GET_MEMBER_NAME_CHECKED(FCHSKCompAttachParticleSystemInfo, ParticleSystemAsset);
-	const FName Name_AttachEffectInfoArray = GET_MEMBER_NAME_CHECKED(FSingleWingInfoData, AttachEffectInfoArray);
+	//const FName Name_MainInfoArray_Gladiator = GET_MEMBER_NAME_CHECKED(UB2WingInfo, MainInfoArray_Gladiator);
+	//const FName Name_MainInfoArray_Assassin = GET_MEMBER_NAME_CHECKED(UB2WingInfo, MainInfoArray_Assassin);
+	//const FName Name_MainInfoArray_Wizard = GET_MEMBER_NAME_CHECKED(UB2WingInfo, MainInfoArray_Wizard);
+	//const FName Name_MainInfoArray_Fighter = GET_MEMBER_NAME_CHECKED(UB2WingInfo, MainInfoArray_Fighter);
+	//const FName Name_MyID = GET_MEMBER_NAME_CHECKED(FSingleWingInfoData, MyID);
+	//const FName Name_EvolutionGrade = GET_MEMBER_NAME_CHECKED(FSingleWingInfoID, EvolutionGrade);
+	//const FName Name_ParticleSystemAsset = GET_MEMBER_NAME_CHECKED(FCHSKCompAttachParticleSystemInfo, ParticleSystemAsset);
+	//const FName Name_AttachEffectInfoArray = GET_MEMBER_NAME_CHECKED(FSingleWingInfoData, AttachEffectInfoArray);
 
-	const FName Name_PropOptionIconSetup = GET_MEMBER_NAME_CHECKED(UB2WingInfo, PropOptionIconSetup);
-	const FName Name_PropOption = GET_MEMBER_NAME_CHECKED(FWingPropOptionIconSetup, PropOption);
+	//const FName Name_PropOptionIconSetup = GET_MEMBER_NAME_CHECKED(UB2WingInfo, PropOptionIconSetup);
+	//const FName Name_PropOption = GET_MEMBER_NAME_CHECKED(FWingPropOptionIconSetup, PropOption);
 
-	if (PropertyName == Name_MainInfoArray_Gladiator || PropertyName == Name_MainInfoArray_Assassin || PropertyName == Name_MainInfoArray_Wizard || PropertyName == Name_MainInfoArray_Fighter ||
-		PropertyName == Name_MyID || PropertyName == Name_EvolutionGrade || PropertyName == Name_ParticleSystemAsset || PropertyName == Name_AttachEffectInfoArray ||
-		PropertyName == Name_PropOptionIconSetup || PropertyName == Name_PropOption)
-	{
-		CheckInfoDataIntegrity();
-	}
+	//if (PropertyName == Name_MainInfoArray_Gladiator || PropertyName == Name_MainInfoArray_Assassin || PropertyName == Name_MainInfoArray_Wizard || PropertyName == Name_MainInfoArray_Fighter ||
+	//	PropertyName == Name_MyID || PropertyName == Name_EvolutionGrade || PropertyName == Name_ParticleSystemAsset || PropertyName == Name_AttachEffectInfoArray ||
+	//	PropertyName == Name_PropOptionIconSetup || PropertyName == Name_PropOption)
+	//{
+	//	CheckInfoDataIntegrity();
+	//}
 }
 #endif

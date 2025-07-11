@@ -1,13 +1,14 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ //Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
 #include "CoreMinimal.h"
+#include "../Common/CommonStruct.h"
 
 /**
- * 
+ *
  */
-//[@AKI, 180716] 더 좋은 위치가 있다면 변경해도 됨
+ //[@AKI, 180716] 더 좋은 위치가 있다면 변경해도 됨
 namespace eLogSendToFlag
 {
 	const int32 LOG_SENDTO_NONE = 0;
@@ -46,11 +47,11 @@ public:
 		m_stActionAttr1.Empty();
 	}
 	virtual ~B2ActionLogSender() {};
-	
-	virtual B2ActionLogSender& setCategory(const FString& _stCategory)			{ m_stCategory		= _stCategory;		return Me(); };
-	virtual B2ActionLogSender& setAction(const FString& _stAction)				{ m_stAction		= _stAction;		return Me(); };
-	virtual B2ActionLogSender& setLabel(const FString& _stLabel)				{ m_stLabel			= _stLabel;			return Me(); };
-	virtual B2ActionLogSender& setActionAttr1(const FString& _stActionAttr1)	{ m_stActionAttr1	= _stActionAttr1;	return Me(); };
+
+	virtual B2ActionLogSender& setCategory(const FString& _stCategory) { m_stCategory = _stCategory;		return Me(); };
+	virtual B2ActionLogSender& setAction(const FString& _stAction) { m_stAction = _stAction;		return Me(); };
+	virtual B2ActionLogSender& setLabel(const FString& _stLabel) { m_stLabel = _stLabel;			return Me(); };
+	virtual B2ActionLogSender& setActionAttr1(const FString& _stActionAttr1) { m_stActionAttr1 = _stActionAttr1;	return Me(); };
 
 	virtual void LogSender(const int32 _LogAddresseeType);
 protected:
@@ -71,11 +72,6 @@ protected:
 	FString m_stActionAttr1;
 private:
 };
-
-
-
-
-
 
 
 template <class T>
@@ -118,6 +114,7 @@ private:
 public:
 protected:
 private:
+
 };
 
 template<>
@@ -230,6 +227,7 @@ private:
 public:
 protected:
 private:
+
 };
 
 

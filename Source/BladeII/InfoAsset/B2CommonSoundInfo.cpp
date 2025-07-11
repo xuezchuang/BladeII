@@ -7,6 +7,7 @@
 
 #include "FB2ErrorMessage.h"
 #include "BladeIIUtil.h"
+#include "UObject/ObjectSaveContext.h"
 
 USoundCue* FSingleCommonSoundInfoMap::GetSoundCue(FStreamableManager& InLoadManager, int32 MyArrayIndex, TMap<int32, FSingleCommonSoundInfoLoadedRefHolder>& LoadedPtrMap)
 {
@@ -298,26 +299,26 @@ void UB2CommonSoundInfo::PreloadClassAssets(const TArray<ECommonSoundID>& InIDs)
 
 void UB2CommonSoundInfo::UnloadAll()
 {
-	for (TMap<ECommonSoundID, FSingleCommonSoundInfoMap>::TIterator InfoMapIt(MainInfoMap); InfoMapIt; ++InfoMapIt)
-	{
-		InfoMapIt.Value().Unload(InfoLoadManager, CommonSoundIDToInt(InfoMapIt.Key()), LoadedMainInfoPtrMap);
-	}
-	LoadedMainInfoPtrMap.Empty(); // 확인사살
-	for (int32 CII = 0; CII < InfoArray_StageBGM.Num(); ++CII)
-	{
-		InfoArray_StageBGM[CII].Unload(InfoLoadManager, CII, LoadedStageBGMPtrMap);
-	}
-	LoadedStageBGMPtrMap.Empty(); // 확인사살
+	//for (TMap<ECommonSoundID, FSingleCommonSoundInfoMap>::TIterator InfoMapIt(MainInfoMap); InfoMapIt; ++InfoMapIt)
+	//{
+	//	InfoMapIt.Value().Unload(InfoLoadManager, CommonSoundIDToInt(InfoMapIt.Key()), LoadedMainInfoPtrMap);
+	//}
+	//LoadedMainInfoPtrMap.Empty(); // 확인사살
+	//for (int32 CII = 0; CII < InfoArray_StageBGM.Num(); ++CII)
+	//{
+	//	InfoArray_StageBGM[CII].Unload(InfoLoadManager, CII, LoadedStageBGMPtrMap);
+	//}
+	//LoadedStageBGMPtrMap.Empty(); // 확인사살
 
-	for (TMap<EUIScene, FSingleCommonSoundInfoMap_UIScene>::TIterator InfoMapIt(UISceneMap); InfoMapIt; ++InfoMapIt)
-	{
-		InfoMapIt.Value().Unload(InfoLoadManager, static_cast<int32>(InfoMapIt.Key()), LoadedUISceneBGMPtrMap);
-	}
-	LoadedUISceneBGMPtrMap.Empty();
+	//for (TMap<EUIScene, FSingleCommonSoundInfoMap_UIScene>::TIterator InfoMapIt(UISceneMap); InfoMapIt; ++InfoMapIt)
+	//{
+	//	InfoMapIt.Value().Unload(InfoLoadManager, static_cast<int32>(InfoMapIt.Key()), LoadedUISceneBGMPtrMap);
+	//}
+	//LoadedUISceneBGMPtrMap.Empty();
 
-	StageMiddleBGM.UnloadAll(InfoLoadManager, LoadedMiddleStageBGMPtrMap);
-	LoadedMiddleStageBGMPtrMap.Empty();
-	// ButtonClickDefSoundArray 는 대상 아님.
+	//StageMiddleBGM.UnloadAll(InfoLoadManager, LoadedMiddleStageBGMPtrMap);
+	//LoadedMiddleStageBGMPtrMap.Empty();
+	//// ButtonClickDefSoundArray 는 대상 아님.
 }
 
 #if WITH_EDITOR

@@ -3,7 +3,7 @@
 #pragma once
 //#include "BladeII.h"
 //#include "UObject/Object.h"
-//#include "BladeII.h"
+#include "BladeII.h"
 #include "UObject/ObjectSaveContext.h"
 #include "Engine/StreamableManager.h"
 #include "CommonStruct.h"
@@ -50,14 +50,14 @@ public:
 	class UParticleSystem* GetStageClearBGFxTemplate();
 	void UnloadStageClearBGFxTemplate();
 
-protected:
-	UPROPERTY(EditAnywhere)
-	TSoftClassPtr<class ABladeIIPlayer> DefaultPCClassInfoBaseBPClass; // It might better goes to PCClassInfo..
-	UPROPERTY(Transient)
-	TSubclassOf<class ABladeIIPlayer> LoadedDefaultPCClassInfoBaseBPClass; // Loaded hard ptr for preventing GC.
-public:
-	TSubclassOf<class ABladeIIPlayer> GetDefaultPCClassInfoBaseBPClass();
-	void UnloadDefaultPCClassInfoBaseBPClass();
+//protected:
+//	UPROPERTY(EditAnywhere)
+//	TSoftClassPtr<class ABladeIIPlayer> DefaultPCClassInfoBaseBPClass; // It might better goes to PCClassInfo..
+//	UPROPERTY(Transient)
+//	TSubclassOf<class ABladeIIPlayer> LoadedDefaultPCClassInfoBaseBPClass; // Loaded hard ptr for preventing GC.
+//public:
+//	TSubclassOf<class ABladeIIPlayer> GetDefaultPCClassInfoBaseBPClass();
+//	void UnloadDefaultPCClassInfoBaseBPClass();
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Directing")
@@ -67,13 +67,13 @@ public:
 		return ForceFeedbackSetting;
 	}
 
-protected:
-	UPROPERTY(EditAnywhere)
-	TSoftClassPtr<class ABladeIICharacter> DefaultNPCClassInfoBaseBPClass; // It might better goes to NPCClassInfo..
-	UPROPERTY(Transient)
-	TSubclassOf<class ABladeIICharacter> LoadedDefaultNPCClassInfoBaseBPClass; // Loaded hard ptr for preventing GC.
+//protected:
+//	UPROPERTY(EditAnywhere)
+//	TSoftClassPtr<class ABladeIICharacter> DefaultNPCClassInfoBaseBPClass; // It might better goes to NPCClassInfo..
+//	UPROPERTY(Transient)
+//	TSubclassOf<class ABladeIICharacter> LoadedDefaultNPCClassInfoBaseBPClass; // Loaded hard ptr for preventing GC.
 public:
-	TSubclassOf<class ABladeIICharacter> GetDefaultNPCClassInfoBaseBPClass();
+//	TSubclassOf<class ABladeIICharacter> GetDefaultNPCClassInfoBaseBPClass();
 	void UnloadDefaultNPCClassInfoBaseBPClass();
 
 protected:

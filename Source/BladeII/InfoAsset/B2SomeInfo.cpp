@@ -18,8 +18,8 @@ UB2SomeInfo::UB2SomeInfo(const FObjectInitializer& ObjectInitializer)
 	LoadedStageClearWingFxTemplate = NULL;
 	LoadedStageClearGemFxTemplate = NULL;
 	LoadedStageClearBGFxTemplate = NULL;
-	LoadedDefaultPCClassInfoBaseBPClass = NULL;
-	LoadedDefaultNPCClassInfoBaseBPClass = NULL;
+	//LoadedDefaultPCClassInfoBaseBPClass = NULL;
+	//LoadedDefaultNPCClassInfoBaseBPClass = NULL;
 	DefaultDropItemBaseBPClass = NULL;
 	LoadedDefaultNPCClassInfoMeleeBT = NULL;
 	LoadedDefaultNPCClassInfoSpawnBT = NULL;
@@ -65,14 +65,14 @@ void UB2SomeInfo::UnloadStageClearBGFxTemplate()
 	UnloadSomeLazyLoadedAssetCommon<UParticleSystem>(InfoLoadManager, StageClearBGFxTemplate, &LoadedStageClearBGFxTemplate);
 }
 
-TSubclassOf<ABladeIIPlayer> UB2SomeInfo::GetDefaultPCClassInfoBaseBPClass()
-{
-	return GetSomeLazyLoadedClassAssetCommon<ABladeIIPlayer>(InfoLoadManager, DefaultPCClassInfoBaseBPClass, &LoadedDefaultPCClassInfoBaseBPClass, TEXT("SomeInfo"));
-}
-void UB2SomeInfo::UnloadDefaultPCClassInfoBaseBPClass()
-{
-	UnloadSomeLazyLoadedClassAssetCommon<ABladeIIPlayer>(InfoLoadManager, DefaultPCClassInfoBaseBPClass, &LoadedDefaultPCClassInfoBaseBPClass);
-}
+//TSubclassOf<ABladeIIPlayer> UB2SomeInfo::GetDefaultPCClassInfoBaseBPClass()
+//{
+//	return GetSomeLazyLoadedClassAssetCommon<ABladeIIPlayer>(InfoLoadManager, DefaultPCClassInfoBaseBPClass, &LoadedDefaultPCClassInfoBaseBPClass, TEXT("SomeInfo"));
+//}
+//void UB2SomeInfo::UnloadDefaultPCClassInfoBaseBPClass()
+//{
+//	UnloadSomeLazyLoadedClassAssetCommon<ABladeIIPlayer>(InfoLoadManager, DefaultPCClassInfoBaseBPClass, &LoadedDefaultPCClassInfoBaseBPClass);
+//}
 
 TSubclassOf<AB2DropItem> UB2SomeInfo::GetDefaultDropItemBaseBPClass()
 {
@@ -83,13 +83,13 @@ void UB2SomeInfo::UnloadDefaultDropItemBaseBPClass()
 	UnloadSomeLazyLoadedClassAssetCommon<AB2DropItem>(InfoLoadManager, DefaultDropItemBaseBPClass, &LoadedDefaultDropItemBaseBPClass);
 }
 
-TSubclassOf<ABladeIICharacter> UB2SomeInfo::GetDefaultNPCClassInfoBaseBPClass()
-{
-	return GetSomeLazyLoadedClassAssetCommon<ABladeIICharacter>(InfoLoadManager, DefaultNPCClassInfoBaseBPClass, &LoadedDefaultNPCClassInfoBaseBPClass, TEXT("SomeInfo"));
-}
+//TSubclassOf<ABladeIICharacter> UB2SomeInfo::GetDefaultNPCClassInfoBaseBPClass()
+//{
+//	return GetSomeLazyLoadedClassAssetCommon<ABladeIICharacter>(InfoLoadManager, DefaultNPCClassInfoBaseBPClass, &LoadedDefaultNPCClassInfoBaseBPClass, TEXT("SomeInfo"));
+//}
 void UB2SomeInfo::UnloadDefaultNPCClassInfoBaseBPClass()
 {
-	UnloadSomeLazyLoadedClassAssetCommon<ABladeIICharacter>(InfoLoadManager, DefaultNPCClassInfoBaseBPClass, &LoadedDefaultNPCClassInfoBaseBPClass);
+	//UnloadSomeLazyLoadedClassAssetCommon<ABladeIICharacter>(InfoLoadManager, DefaultNPCClassInfoBaseBPClass, &LoadedDefaultNPCClassInfoBaseBPClass);
 }
 
 UBehaviorTree* UB2SomeInfo::GetDefaultNPCClassInfoMeleeBT()
@@ -328,7 +328,7 @@ void UB2SomeInfo::UnloadAll()
 	UnloadStageClearWingFxTemplate();
 	UnloadStageClearGemFxTemplate();
 	UnloadStageClearBGFxTemplate();
-	UnloadDefaultPCClassInfoBaseBPClass();
+	//UnloadDefaultPCClassInfoBaseBPClass();
 	UnloadDefaultNPCClassInfoBaseBPClass();
 	UnloadDefaultDropItemBaseBPClass();
 	UnloadDefaultNPCClassInfoMeleeBT();
@@ -361,8 +361,8 @@ void UB2SomeInfo::EditorLoadAll()
 	GetStageClearWingFxTemplate();
 	GetStageClearGemFxTemplate();
 	GetStageClearBGFxTemplate();
-	GetDefaultPCClassInfoBaseBPClass();
-	GetDefaultNPCClassInfoBaseBPClass();
+	//GetDefaultPCClassInfoBaseBPClass();
+	//GetDefaultNPCClassInfoBaseBPClass();
 	GetDefaultDropItemBaseBPClass();
 	GetDefaultNPCClassInfoMeleeBT();
 	GetMountAutoBT();
@@ -392,18 +392,18 @@ void UB2SomeInfo::EditorLoadAll()
 #if TEMP_LAZYLOADING_MISHANDLING_CLEANUP
 void UB2SomeInfo::CleanupOnPreSave()
 {
-	LoadedStageClearWingFxTemplate = NULL;
-	LoadedStageClearGemFxTemplate = NULL;
-	LoadedStageClearBGFxTemplate = NULL;
-	LoadedDefaultPCClassInfoBaseBPClass = NULL;
-	LoadedDefaultNPCClassInfoBaseBPClass = NULL;
-	LoadedDefaultDropItemBaseBPClass = NULL;
-	LoadedDefaultNPCClassInfoMeleeBT = NULL;
-	LoadedDefaultNPCClassInfoSpawnBT = NULL;
-	LoadedWeaponExtraEffect_Level20 = NULL;
-	LoadedWeaponExtraEffect_Level30 = NULL;
-	LoadedSurviveSkillRestoreEffect = NULL;
-	LoadedPCIntroFlipbookMtrls.Empty();
+	//LoadedStageClearWingFxTemplate = NULL;
+	//LoadedStageClearGemFxTemplate = NULL;
+	//LoadedStageClearBGFxTemplate = NULL;
+	//LoadedDefaultPCClassInfoBaseBPClass = NULL;
+	//LoadedDefaultNPCClassInfoBaseBPClass = NULL;
+	//LoadedDefaultDropItemBaseBPClass = NULL;
+	//LoadedDefaultNPCClassInfoMeleeBT = NULL;
+	//LoadedDefaultNPCClassInfoSpawnBT = NULL;
+	//LoadedWeaponExtraEffect_Level20 = NULL;
+	//LoadedWeaponExtraEffect_Level30 = NULL;
+	//LoadedSurviveSkillRestoreEffect = NULL;
+	//LoadedPCIntroFlipbookMtrls.Empty();
 }
 void UB2SomeInfo::PreSave(FObjectPreSaveContext SaveContext) 
 {

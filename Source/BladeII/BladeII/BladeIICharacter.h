@@ -1,18 +1,21 @@
 // Copyright 1998-2014 Epic Games, Inc. All Rights Reserved.
 // Author : leejswo(SangwooLee)
 #pragma once
-//#include "BladeII.h"
+////#include "BladeII.h"
 #include "GameFramework/Character.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "CommonStruct.h"
-#include "BladeIIProjectile.h"
 #include "BladeIIDamageType.h"
-#include "B2AreaDamageActorBase.h"
-#include "B2FloatingAbnormalEffect.h"
+#include "Particles/ParticleSystem.h"
+#include "Components/SkinnedMeshComponent.h"
 #include "UObject/ObjectSaveContext.h"
-#include "B2CharacterBuffManager.h"
+//#include "BladeIIProjectile.h"
+////#include "B2AreaDamageActorBase.h"
+//////#include "B2FloatingAbnormalEffect.h"
+//#include "UObject/ObjectSaveContext.h"
+////#include "B2CharacterBuffManager.h"
 #include "BladeIICharacter.generated.h"
-
+//
 /** To categorize characters. */
 UENUM(BlueprintType)
 enum class ECharacterType : uint8
@@ -186,7 +189,7 @@ enum class EQTEType : uint8
 	EQT_Break,
 	EQT_End
 };
-
+//
 /** Variations for each NPC Class. Could be functional variation or just appearance? */
 UENUM(BlueprintType)
 enum class ENPCClassVariation : uint8
@@ -226,13 +229,16 @@ private:
 	ENPCClass NPCClassEnum;
 	ENPCClassVariation NPCVariationEnum;
 public:
-	FORCEINLINE ENPCClass GetNPCClassEnum() const {
+	FORCEINLINE ENPCClass GetNPCClassEnum() const
+	{
 		return NPCClassEnum;
 	}
-	FORCEINLINE ENPCClassVariation GetNPCVariationEnum() const {
+	FORCEINLINE ENPCClassVariation GetNPCVariationEnum() const
+	{
 		return NPCVariationEnum;
 	}
-	FORCEINLINE uint32 GetMyTypeHash() const {
+	FORCEINLINE uint32 GetMyTypeHash() const
+	{
 		return static_cast<uint32>(NPCClassEnum) * 100 + static_cast<uint32>(NPCVariationEnum);
 	}
 };
@@ -705,7 +711,8 @@ public:
 	virtual class UParticleSystem* GetParticleSystemAsset(); // Load (if not loaded yet) and return ParticleSystemAsset
 
 	// It is declared mainly for its subclass use, to be overridden for compositing PC part and its relevant effects.
-	virtual FString GetCompCreateName(AActor* InOwner) const {
+	virtual FString GetCompCreateName(AActor* InOwner) const
+	{
 		return FString::Printf(TEXT("CompFromCHSKCompAttachPSInfo_%s_%s"), (InOwner ? *InOwner->GetName() : TEXT("_")), *AttachSocketName.ToString());
 	}
 
@@ -738,7 +745,7 @@ struct FMobSpawnedBirthplaceInfo
 	//FMobSpawnedBirthplaceInfo(class AB2MonsterSpawnPool* InBirthplace,
 	//	int32 InWaveNum, int32 InWaveObjIndex, bool bInBossMob, bool bInSummoned)
 	//{
-	//	//Birthplace = InBirthplace;
+	//	Birthplace = InBirthplace;
 	//	WaveNumber = InWaveNum;
 	//	WaveObjIndex = InWaveObjIndex;
 	//	bSpawnedAsBossMob = bInBossMob;
@@ -844,7 +851,8 @@ protected:
 public:
 	virtual float TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, class AActor* DamageCauser) override;
 
-	virtual uint32 GetNetId() const {
+	virtual uint32 GetNetId() const
+	{
 		return 0;
 	}
 protected:
@@ -863,7 +871,8 @@ protected:
 
 	virtual void ProcessTakeDamageEffect(const FDamageInfo& DamageInfo, AActor* DamageCauser);
 
-	virtual ABladeIICharacter* GetQTEActor() const {
+	virtual ABladeIICharacter* GetQTEActor() const
+	{
 		return nullptr;
 	}
 	virtual ABladeIICharacter* GetLocalCharacter() const;
@@ -883,13 +892,16 @@ protected:
 
 public:
 
-	virtual bool IsPlayerCharacter() const {
+	virtual bool IsPlayerCharacter() const
+	{
 		return false;
 	}
-	virtual bool IsPlayerControlled() const {
+	virtual bool IsPlayerControlled() const
+	{
 		return false;
 	}
-	virtual bool IsMob() const {
+	virtual bool IsMob() const
+	{
 		return !IsPlayerCharacter();
 	}
 	virtual bool IsLocalCharacter() const;
@@ -900,13 +912,13 @@ public:
 	virtual void AffectToAttackerAfterVictimDie(ABladeIICharacter* Victim, float ActualDamage, const FDamageInfo& DamageInfo);
 	virtual bool RequestDamage(const float Damage, const FDamageInfo* DamageInfo, ABladeIICharacter* DamageCauser, bool NetBroadcast = false);
 
-	FORCEINLINE class UB2CharacterBuffManager* GetBuffManager() const {
-		return BuffManager;
-	}
+	//FORCEINLINE class UB2CharacterBuffManager* GetBuffManager() const {
+	//	return BuffManager;
+	//}
 
 	UFUNCTION(BlueprintCallable, Category = "BladeIIGame")
 	bool IsBuffActive(EBuffType BuffType) const;
-	class UB2Buff_Base* GetBuff(EBuffType  BuffType) const;
+	//class UB2Buff_Base* GetBuff(EBuffType  BuffType) const;
 
 	virtual bool ProcessEtherSetEffect(EEtherSetType EtherSetType, ABladeIICharacter* EtherCauser, const FDamageInfo& CauserDamageInfo, float ActualDamage);
 
@@ -938,7 +950,8 @@ public:
 	/** get max armor */
 	float GetMaxArmor() const;
 
-	virtual float GetShield() const {
+	virtual float GetShield() const
+	{
 		return 0.0f;
 	} // Possibly by buff effect.
 	virtual void SetShield(const float NewShieldAmount) {}
@@ -966,7 +979,8 @@ public:
 	void AllowMovementByStageEvent();
 	void PreventMovementByStageEvent();
 
-	FORCEINLINE void ForceCancelAttackMotion() {
+	FORCEINLINE void ForceCancelAttackMotion()
+	{
 		bForceCancelAttackTriggered = true;
 	}
 
@@ -1002,23 +1016,28 @@ public:
 	FDamageInfo CurrentDamageInfo;
 
 
-	FORCEINLINE bool GetIsUndead() {
+	FORCEINLINE bool GetIsUndead()
+	{
 		return m_bIsUndead;
 	};
-	FORCEINLINE void SetIsUndead(bool _bIsUndead) {
+	FORCEINLINE void SetIsUndead(bool _bIsUndead)
+	{
 		m_bIsUndead = _bIsUndead;
 	};
 
-	virtual void SetSummonOwner(ABladeIICharacter* OwnerCharacter) {
+	virtual void SetSummonOwner(ABladeIICharacter* OwnerCharacter)
+	{
 		SummonOwner = OwnerCharacter;
 	}
-	virtual ABladeIICharacter* GetSummonOwner() const {
+	virtual ABladeIICharacter* GetSummonOwner() const
+	{
 		return SummonOwner;
 	}
 
 	virtual void AddMinion(ABladeIICharacter* SingleMinion);
 	virtual void RemoveMinion(ABladeIICharacter* SingleMinion);
-	virtual const TArray<ABladeIICharacter*>& GetMinions() {
+	virtual const TArray<ABladeIICharacter*>& GetMinions()
+	{
 		return Minions;
 	}
 
@@ -1321,14 +1340,15 @@ protected:
 	bool m_bIsUndead;
 
 	virtual void SetDamagedNum(int32 NewDamagedNum);
-	FORCEINLINE void IncreaseDamageNum() {
+	FORCEINLINE void IncreaseDamageNum()
+	{
 		SetDamagedNum(DamagedNum + 1);
 	}
 
 public:
 	class UB2DamageEffectInfo* GetDamageEffectInfo();
 
-	virtual class UB2Buff_Base* AddBuff(EBuffType BuffType, float fDuration, float Amount = 0.0f, AActor* BuffCauser = nullptr, bool bUseEffect = true, bool bUseTextEffect = true, TArray<float>* PtrAdditionalParams = nullptr);
+	//virtual class UB2Buff_Base* AddBuff(EBuffType BuffType, float fDuration, float Amount = 0.0f, AActor* BuffCauser = nullptr, bool bUseEffect = true, bool bUseTextEffect = true, TArray<float>* PtrAdditionalParams = nullptr);
 	void AddBuffEnemy(EBuffType BuffType, float fDistance, float fDuration, float Amount, bool bUseEffect = true, bool bUseTextEffect = true);
 	void ClearBuff(EBuffType BuffType);
 	void ClearAllBuffs();
@@ -1339,16 +1359,20 @@ public:
 
 	virtual void OnDamageEnd();
 
-	FORCEINLINE int32 GetDamagedNum() const {
+	FORCEINLINE int32 GetDamagedNum() const
+	{
 		return DamagedNum;
 	}
-	FORCEINLINE void SetForceComboEnd() {
+	FORCEINLINE void SetForceComboEnd()
+	{
 		bForceComboEnd = true;
 	}
-	FORCEINLINE void ConsumeComboEnd()	{
+	FORCEINLINE void ConsumeComboEnd()
+	{
 		bForceComboEnd = false;
 	}
-	FORCEINLINE bool IsForceComboEnd()  {
+	FORCEINLINE bool IsForceComboEnd()
+	{
 		return bForceComboEnd;
 	}
 
@@ -1363,8 +1387,8 @@ public:
 
 	class UB2BuffModeEffectInfo* GetBuffModeEffectInfo();
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = BladeIIGame)
-	TArray<TSubclassOf<class AB2AreaDamageActorBase>> AreaDamageClasses;
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = BladeIIGame)
+	//TArray<TSubclassOf<class AB2AreaDamageActorBase>> AreaDamageClasses;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = BladeIIGame)
 	FName DamageSocketName;
@@ -1411,7 +1435,8 @@ public:
 	float DamageNumZOffset;
 
 	// Use this when you actually need to apply DamageNumZOffset
-	FORCEINLINE float GetScaledDamageNumZOffset() const {
+	FORCEINLINE float GetScaledDamageNumZOffset() const
+	{
 		return DamageNumZOffset * GetMesh()->GetComponentTransform().GetScale3D().Z;
 	}
 
@@ -1436,84 +1461,106 @@ public:
 
 	// Character stats
 	virtual float GetDamageIncreaseRate()			const;
-	virtual float GetBossDamageIncreaseRate()		const {
+	virtual float GetBossDamageIncreaseRate()		const
+	{
 		return 0.f;
 	}
 	virtual float GetCriticalRate()					const;
 	virtual float GetCriticalDamageRate()			const;
 	virtual float GetDamageDecreaseRate()			const;
-	virtual float GetMeleeDamageDecreaseRate()		const {
+	virtual float GetMeleeDamageDecreaseRate()		const
+	{
 		return 1.f;
 	}
-	virtual float GetRangeDamageDecreaseRate()		const {
+	virtual float GetRangeDamageDecreaseRate()		const
+	{
 		return 1.f;
 	}
-	virtual float GetBossDamageDecreaseRate()		const {
+	virtual float GetBossDamageDecreaseRate()		const
+	{
 		return 1.f;
 	}
-	virtual float GetResistCriticalRate()			const {
+	virtual float GetResistCriticalRate()			const
+	{
 		return 1.f;
 	}
-	virtual float GetHealHPAmountRateOnKill()		const {
+	virtual float GetHealHPAmountRateOnKill()		const
+	{
 		return 0.f;
 	}
-	virtual float GetAbsorbHPAmountRateOnAttack()	const {
+	virtual float GetAbsorbHPAmountRateOnAttack()	const
+	{
 		return 0.f;
 	}
-	virtual float GetDurationDecreaseRate()			const {
+	virtual float GetDurationDecreaseRate()			const
+	{
 		return 1.f;
 	}
 	virtual float GetExtraTakeDamageRate()			const;
 
-	virtual float GetIncAdditionalDamage()			const {
+	virtual float GetIncAdditionalDamage()			const
+	{
 		return 0.f;
 	}
-	virtual float GetDecAdditionalDamage()			const {
+	virtual float GetDecAdditionalDamage()			const
+	{
 		return 0.f;
 	}
 
 	// Buff
-	virtual float GetBonusBuffDuration() const {
+	virtual float GetBonusBuffDuration() const
+	{
 		return 0.f;
 	}
 
-	virtual float GetBonusBuffDamageDecreaseAmount() const {
+	virtual float GetBonusBuffDamageDecreaseAmount() const
+	{
 		return 0.f;
 	}
-	virtual float GetBuffReflectionDamageRate() const {
+	virtual float GetBuffReflectionDamageRate() const
+	{
 		return 1.f;
 	}
-	virtual float GetBonusBuffHealHPByHit() const {
+	virtual float GetBonusBuffHealHPByHit() const
+	{
 		return 0.f;
 	}
-	virtual float GetBonusBuffHealHP() const {
+	virtual float GetBonusBuffHealHP() const
+	{
 		return 0.f;
 	}
-	virtual float GetBonusBuffIncMoveSpeed() const {
+	virtual float GetBonusBuffIncMoveSpeed() const
+	{
 		return 0.f;
 	}
 
-	virtual float GetBonusBuffReceiveDamageDecreaseRate() const {
+	virtual float GetBonusBuffReceiveDamageDecreaseRate() const
+	{
 		return 1.f;
 	}
-	virtual float GetBonusBuffAttackDamageIncreaseRate() const {
+	virtual float GetBonusBuffAttackDamageIncreaseRate() const
+	{
 		return 0.f;
 	}
 
-	virtual float GetAttackDamageIncreaseRateByClass(EPCClass TargetClass) const {
+	virtual float GetAttackDamageIncreaseRateByClass(EPCClass TargetClass) const
+	{
 		return 0.f;
 	}
-	virtual float GetReceiveDamageDecreaseRateByClass(EPCClass AttackerClass) const {
+	virtual float GetReceiveDamageDecreaseRateByClass(EPCClass AttackerClass) const
+	{
 		return 1.f;
 	}
 
 
 	UFUNCTION(BlueprintCallable, Category = "BladeIIGame")
-	virtual float GetDamageRadiusIncreaseRate() const {
+	virtual float GetDamageRadiusIncreaseRate() const
+	{
 		return 1.f;
 	}
 
-	virtual int32 GetBonusBuffAffectNum() const {
+	virtual int32 GetBonusBuffAffectNum() const
+	{
 		return 0;
 	}
 
@@ -1524,7 +1571,8 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "BladeIIGame")
 	void SetInvincible(bool bNewInvincible);
 
-	virtual float GetStaticOptionAppliedWalkSpeed() const {
+	virtual float GetStaticOptionAppliedWalkSpeed() const
+	{
 		return CachedBaseMaxWalkSpeed;
 	};
 
@@ -1559,17 +1607,20 @@ protected:
 	FStateDamageState CachedInvincibleBuffState; // Not really one of StateDamage, just use the same struct for convenience..
 
 public:
-	FORCEINLINE void SetFinalADScale(float InScale) {
+	FORCEINLINE void SetFinalADScale(float InScale)
+	{
 		FinalADScale = InScale;
 	} // Provide only Setter..
-	FORCEINLINE void SetFinalHPScale(float InScale) {
+	FORCEINLINE void SetFinalHPScale(float InScale)
+	{
 		FinalHPScale = InScale;
 	}
 
 	/** You may set it to regenerate by percent value or absolute amount. Set 0 or less turns off regenerating timer. */
 	UFUNCTION(BlueprintCallable, Category = "BladeIIGame")
 	void SetRegenerateHPRate(float PercentageOrAmount, bool bInRegenByPercent = true);
-	static float GetRegenerateHPPeriod() {
+	static float GetRegenerateHPPeriod()
+	{
 		return 1.0f;
 	} // Fixed value for now.
 
@@ -1585,7 +1636,7 @@ protected:
 	virtual void TriggerKillMonster();
 
 	/** notification when killed, for both the server and client. */
-	virtual void OnDeath(float KillingDamage, struct FDamageEvent const& DamageEvent, class APawn* InstigatingPawn, class AActor* DamageCauser);
+	//virtual void OnDeath(float KillingDamage, struct FDamageEvent const& DamageEvent, class APawn* InstigatingPawn, class AActor* DamageCauser);
 
 	void ReportMyDeathToBirthplace(); // Part of OnDeath, for mob spawned from SpawnPool. Sometimes need this to be called manually.
 
@@ -1616,10 +1667,12 @@ public:
 
 	virtual void LifeSpanExpired() override; // Dying mob's last crying
 
-	virtual int32 GetTeamNum() const {
+	virtual int32 GetTeamNum() const
+	{
 		return TeamNum;
 	}
-	virtual void SetTeamNum(int32 InTeamNum) {
+	virtual void SetTeamNum(int32 InTeamNum)
+	{
 		TeamNum = InTeamNum;
 	}
 
@@ -1672,8 +1725,8 @@ public:
 	/** Setting this enables float HP bar widget, only for common mobs.
 	 * Not for player and boss mob who will have its own UI widget for various stuff including HP bar.
 	 * Other Floating Widget classes are now AB2UIManager_InGameCombat */
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "HUD")
-	TSubclassOf<class UB2FloatingHPBar> FloatingHPBarWidgetClass;
+	//UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "HUD")
+	//TSubclassOf<class UB2FloatingHPBar> FloatingHPBarWidgetClass;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "HUD")
 	FName AttachHPBarSocketName;
@@ -1701,7 +1754,8 @@ private:
 
 public:
 	FVector GetFloatingBarPosition();
-	FORCEINLINE bool IsHPBarAttachedToSocket() {
+	FORCEINLINE bool IsHPBarAttachedToSocket()
+	{
 		return bHPBarAttachedToSocket;
 	}
 
@@ -1718,7 +1772,8 @@ private:
 
 	int32 nCanBeDamagedFalseCount;
 public:
-	FORCEINLINE float GetQTEInvokeHPPercent() const {
+	FORCEINLINE float GetQTEInvokeHPPercent() const
+	{
 		return QTEInvokeHPPercent;
 	}
 
@@ -1749,23 +1804,29 @@ public:
 		return !bInQTEState && bQTEEnabled && (QTEType != EQTEType::EQT_Mount || QTEStateNum == 1) && (QTEType != EQTEType::EQT_Break);
 	};
 
-	FORCEINLINE bool IsInQTEBreakState() const {
+	FORCEINLINE bool IsInQTEBreakState() const
+	{
 		return (QTEType == EQTEType::EQT_Break) && bQTEEnabled;
 	}
-	FORCEINLINE bool IsQTEBreakable() const {
+	FORCEINLINE bool IsQTEBreakable() const
+	{
 		return (QTEType == EQTEType::EQT_Break) && QTEInvokeHPPercent > 0.0f;
 	}
-	FORCEINLINE float GetMaxQTEBreakPoint() const {
+	FORCEINLINE float GetMaxQTEBreakPoint() const
+	{
 		return QTEInvokeHPPercent * 0.01f * MaxHealth;
 	}
-	FORCEINLINE float GetCurrentQTEBreakPoint() const {
+	FORCEINLINE float GetCurrentQTEBreakPoint() const
+	{
 		return CurrentQTEBreakPoint;
 	}
 
-	FORCEINLINE void SetQTEStateNum(int32 nQTEStateNum) {
+	FORCEINLINE void SetQTEStateNum(int32 nQTEStateNum)
+	{
 		QTEStateNum = nQTEStateNum;
 	}
-	FORCEINLINE int32 GetQTEStateNum() const {
+	FORCEINLINE int32 GetQTEStateNum() const
+	{
 		return QTEStateNum;
 	}
 
@@ -1893,8 +1954,8 @@ protected:
 	virtual void CreateUIManager();
 
 	TArray<FDamageReservationInfo> DamageReservationInfos;
-	UPROPERTY(Transient)
-	class UB2CharacterBuffManager* BuffManager;
+	//UPROPERTY(Transient)
+	//class UB2CharacterBuffManager* BuffManager;
 
 public:
 	void HideFloatingHPBar(bool bInHide);
@@ -1907,7 +1968,8 @@ public:
 	void SetHideFromEventDirector(bool bHide);
 
 	UFUNCTION(BlueprintCallable, Category = "BladeIIGame")
-	bool IsHideFromEventDirector() {
+	bool IsHideFromEventDirector()
+	{
 		return bHideFromEventDirector;
 	}
 
@@ -1917,7 +1979,7 @@ public:
 
 protected:
 	void DestroyUIManager();
-	// A timer callback for delayed DestroyUIManager call
+	//// A timer callback for delayed DestroyUIManager call
 	FTimerHandle DelayedDestroyUIManagerTH;
 	void DelayedDestroyUIManagerCB();
 
@@ -1988,7 +2050,8 @@ public:
 	/** Apply NPCClassInfo, as a main part of NPCClassInfo spawn procedure. */
 	void OverrideByNPCClassInfo(ENPCClass InClass, class UB2NPCSingleClassInfo* InClassInfo);
 
-	void SetIgnoreRotateByDamage() {
+	void SetIgnoreRotateByDamage()
+	{
 		bIgnoreRotateByDamage = true;
 	}
 protected:
@@ -2020,7 +2083,8 @@ public:
 
 	bool IsApplyDamageNotifyUI(const ABladeIICharacter* Attacker) const;
 
-	virtual bool IsForceApplyHitAnimation() {
+	virtual bool IsForceApplyHitAnimation()
+	{
 		return false;
 	}
 
@@ -2030,7 +2094,8 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "BladeIIGame")
 	bool IsFrozen() const;
 
-	FORCEINLINE bool IsBossMob() {
+	FORCEINLINE bool IsBossMob()
+	{
 		return CharacterType > ECharacterType::ECT_MobEnd ? true : false;
 	}
 
@@ -2044,38 +2109,47 @@ public:
 	void SafeSetAnimBPClass(class UAnimBlueprintGeneratedClass* InAnimBPClass);
 
 	class AB2MonsterSpawnPool* GetBirthPlace();
-	FORCEINLINE int32 GetSpawnPoolWaveNum() {
+	FORCEINLINE int32 GetSpawnPoolWaveNum()
+	{
 		return CachedBirthplaceInfo.WaveNumber;
 	}
-	FORCEINLINE int32 GetSpawnPoolWaveObjIndex() {
+	FORCEINLINE int32 GetSpawnPoolWaveObjIndex()
+	{
 		return CachedBirthplaceInfo.WaveObjIndex;
 	}
-	FORCEINLINE bool IsSpawnedAsBossMob() {
+	FORCEINLINE bool IsSpawnedAsBossMob()
+	{
 		return CachedBirthplaceInfo.bSpawnedAsBossMob;
 	}
-	FORCEINLINE bool IsSummonedMob() {
+	FORCEINLINE bool IsSummonedMob()
+	{
 		return CachedBirthplaceInfo.bIsSummoned;
 	}
 	bool AmIInterestedBossMob() const;
 
 	// To be used by SpawnPool during spawning.
-	FORCEINLINE void BeginSpawningNoDamageGuard() {
+	FORCEINLINE void BeginSpawningNoDamageGuard()
+	{
 		bSpawningNoDamageGuard = true;
 	}
-	FORCEINLINE void EndSpawningNoDamageGuard() {
+	FORCEINLINE void EndSpawningNoDamageGuard()
+	{
 		bSpawningNoDamageGuard = false;
 	}
 
 	void SetDropItemInfo(FDropItemInfo& InDropItemInfo);
 
-	FORCEINLINE void SetWeightRewardGold(int32 weight) {
+	FORCEINLINE void SetWeightRewardGold(int32 weight)
+	{
 		DropItemInfo.RewardGoldWeight = weight;
 	}
-	FORCEINLINE int32 GetWeightRewardGold() {
+	FORCEINLINE int32 GetWeightRewardGold()
+	{
 		return DropItemInfo.RewardGoldWeight;
 	}
 
-	FORCEINLINE void SetCanDropItem(bool CanDropItem) {
+	FORCEINLINE void SetCanDropItem(bool CanDropItem)
+	{
 		DropItemInfo.bCanDropItem = CanDropItem;
 	}
 
@@ -2095,7 +2169,7 @@ public:
 	void CheckReservationDamage();
 
 	/** Spawn drop items based on DropItemInfo, as one of on-dead operation */
-	void SpawnDropItem();
+	//void SpawnDropItem();
 
 	class UB2NPCSingleClassInfo* GetMyNPCClassInfo(); // Only for Mobs.
 
@@ -2116,7 +2190,8 @@ public:
 	// For B2CustomTimeDilation
 	float B2TimeDilationForAnimNS;
 	float B2CachedDilationForAnimNS;
-	virtual class UMaterialInstanceDynamic* GetChainMaterial() {
+	virtual class UMaterialInstanceDynamic* GetChainMaterial()
+	{
 		return NULL;
 	}
 
@@ -2132,7 +2207,7 @@ public:
 	static bool bHideAllNPCs;
 #endif
 };
-
+//
 //////////////////////////////////////////////////////////////////////////
 // Inlines
 

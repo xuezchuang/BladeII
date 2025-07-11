@@ -2,16 +2,17 @@
 
 #include "B2CombatConstantInfo.h"
 #include "B2CombatStatEvaluator.h"
+#include "../BladeII/BladeIIUtil.h"
 
 
 
 FCombatCoefficientContainer::FCombatCoefficientContainer()
-	:AttackCoefficient(CombatStatEval::GetDefaultCombatCoefficient()),
-	DefenseCoefficient(CombatStatEval::GetDefaultCombatCoefficient()), 
-	HPCoefficient(CombatStatEval::GetDefaultCombatCoefficient()),
-	PVPDamageScale(CombatStatEval::GetDefaultPVPDamageScale()), 
-	PVPMaxDamageRatio(CombatStatEval::GetDefaultPVPMaxDamageRatio()),
-	PVEProportionalConstant(CombatStatEval::GetDefaultPVEProportionalConstant())
+	//:AttackCoefficient(CombatStatEval::GetDefaultCombatCoefficient()),
+	//DefenseCoefficient(CombatStatEval::GetDefaultCombatCoefficient()), 
+	//HPCoefficient(CombatStatEval::GetDefaultCombatCoefficient()),
+	//PVPDamageScale(CombatStatEval::GetDefaultPVPDamageScale()), 
+	//PVPMaxDamageRatio(CombatStatEval::GetDefaultPVPMaxDamageRatio()),
+	//PVEProportionalConstant(CombatStatEval::GetDefaultPVEProportionalConstant())
 { }
 
 

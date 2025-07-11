@@ -9,7 +9,8 @@
 #include "Animation/SkeletalMeshActor.h"
 #include "BladeIIGameMode.h"
 #include "BladeIIUtil.h"
-#include "B2UIDocHelper.h"
+#include "UObject/ObjectSaveContext.h"
+//#include "B2UIDocHelper.h"
 
 /** 여기 에셋 구성에 맞춰서.. FStreamableManager 라도 사용한 로딩코드로 바꾸기 위해 급조함. */
 template<class TAssetClass>
@@ -99,203 +100,203 @@ UParticleSystem* UB2DamageEffectInfo::GetWeaponPSTCommon(TArray<TSoftObjectPtr<U
 }
 bool UB2DamageEffectInfo::IsEffectSpawnable(const ABladeIICharacter* Target) const
 {
-	if (Target == nullptr)
-		return false;
+	//if (Target == nullptr)
+	//	return false;
 
-	if (Target->IsBuffActive(EBuffType::Debuff_Burning))
-	{
-		auto* DocBattle = UB2UIDocHelper::GetDocBattle();
+	//if (Target->IsBuffActive(EBuffType::Debuff_Burning))
+	//{
+	//	auto* DocBattle = UB2UIDocHelper::GetDocBattle();
 
-		if (DocBattle && DocBattle->GetIsCenematicMode())
-			return false;
-	}
+	//	if (DocBattle && DocBattle->GetIsCenematicMode())
+	//		return false;
+	//}
 
 	return true;
 }
 
 void UB2DamageEffectInfo::SpawnDamageEffect(EDamageWeapon WeaponType, EDamageElement ElementType, class ABladeIICharacter* Target, EHitDirection HitDir, float RandomAngle, FRotator HitActorRot)
 {
-	if (!IsEffectSpawnable(Target))
-	{
-		return;
-	}
+	//if (!IsEffectSpawnable(Target))
+	//{
+	//	return;
+	//}
 
-	UParticleSystem* PSTemplate = NULL;
-	ABladeIIPlayer* PC = Cast<ABladeIIPlayer>(Target);
-	FName DamageSocketName = Target->DamageSocketName;
+	//UParticleSystem* PSTemplate = NULL;
+	//ABladeIIPlayer* PC = Cast<ABladeIIPlayer>(Target);
+	//FName DamageSocketName = Target->DamageSocketName;
 
-	if (PC)
-	{
-		if (PC->IsApplyGuarding())
-		{
-			PSTemplate = LoadAndCacheDamageEffectInfoTAssetSingleCommon<UParticleSystem>(InfoLoadManager, GuardPST, LoadedGuardPST);
-			DamageSocketName = GuardDamageSocketName.IsNone() ? Target->DamageSocketName : GuardDamageSocketName;
-		}
-		else if (PC->IsBuffActive(EBuffType::Buff_ReflectDamage))
-		{
-			PSTemplate = LoadAndCacheDamageEffectInfoTAssetSingleCommon<UParticleSystem>(InfoLoadManager, ReflectDamagePST, LoadedReflectDamagePST);
-			DamageSocketName = ReflectDamageSocketName.IsNone() ? Target->DamageSocketName : ReflectDamageSocketName;
-		}
-		else if (PC->IsBuffActive(EBuffType::Buff_Shield))
-		{
-			PSTemplate = LoadAndCacheDamageEffectInfoTAssetSingleCommon<UParticleSystem>(InfoLoadManager, ShieldPST, LoadedShieldPST);
-			DamageSocketName = ShieldDamageSocketName.IsNone() ? Target->DamageSocketName : ShieldDamageSocketName;
-		}
-	}
+	//if (PC)
+	//{
+	//	if (PC->IsApplyGuarding())
+	//	{
+	//		PSTemplate = LoadAndCacheDamageEffectInfoTAssetSingleCommon<UParticleSystem>(InfoLoadManager, GuardPST, LoadedGuardPST);
+	//		DamageSocketName = GuardDamageSocketName.IsNone() ? Target->DamageSocketName : GuardDamageSocketName;
+	//	}
+	//	else if (PC->IsBuffActive(EBuffType::Buff_ReflectDamage))
+	//	{
+	//		PSTemplate = LoadAndCacheDamageEffectInfoTAssetSingleCommon<UParticleSystem>(InfoLoadManager, ReflectDamagePST, LoadedReflectDamagePST);
+	//		DamageSocketName = ReflectDamageSocketName.IsNone() ? Target->DamageSocketName : ReflectDamageSocketName;
+	//	}
+	//	else if (PC->IsBuffActive(EBuffType::Buff_Shield))
+	//	{
+	//		PSTemplate = LoadAndCacheDamageEffectInfoTAssetSingleCommon<UParticleSystem>(InfoLoadManager, ShieldPST, LoadedShieldPST);
+	//		DamageSocketName = ShieldDamageSocketName.IsNone() ? Target->DamageSocketName : ShieldDamageSocketName;
+	//	}
+	//}
 
-	if (PSTemplate == NULL)
-	{
-		switch (WeaponType)
-		{
-		case EDamageWeapon::EDW_Blade:
-		{
-			PSTemplate = GetWeaponPSTCommon((PC != NULL) ? BladeWeaponPSTForPC : BladeWeaponPST, ElementType, 
-				(PC != NULL) ? LoadedBladeWeaponPSTForPC : LoadedBladeWeaponPST);
-		}
-		break;
-		case EDamageWeapon::EDW_Hammer:
-		{
-			PSTemplate = GetWeaponPSTCommon((PC != NULL) ? HammerWeaponPSTForPC : HammerWeaponPST, ElementType,
-				(PC != NULL) ? LoadedHammerWeaponPSTForPC : LoadedHammerWeaponPST);
-		}
-		break;
-		case EDamageWeapon::EDW_Magic:
-		{
-			PSTemplate = GetWeaponPSTCommon((PC != NULL) ? MagicWeaponPSTForPC : MagicWeaponPST, ElementType,
-				(PC != NULL) ? LoadedMagicWeaponPSTForPC : LoadedMagicWeaponPST);
-		}
-		break;
-		case EDamageWeapon::EDW_End:
-			break;
-		default:
-			break;
-		}
-	}
+	//if (PSTemplate == NULL)
+	//{
+	//	switch (WeaponType)
+	//	{
+	//	case EDamageWeapon::EDW_Blade:
+	//	{
+	//		PSTemplate = GetWeaponPSTCommon((PC != NULL) ? BladeWeaponPSTForPC : BladeWeaponPST, ElementType, 
+	//			(PC != NULL) ? LoadedBladeWeaponPSTForPC : LoadedBladeWeaponPST);
+	//	}
+	//	break;
+	//	case EDamageWeapon::EDW_Hammer:
+	//	{
+	//		PSTemplate = GetWeaponPSTCommon((PC != NULL) ? HammerWeaponPSTForPC : HammerWeaponPST, ElementType,
+	//			(PC != NULL) ? LoadedHammerWeaponPSTForPC : LoadedHammerWeaponPST);
+	//	}
+	//	break;
+	//	case EDamageWeapon::EDW_Magic:
+	//	{
+	//		PSTemplate = GetWeaponPSTCommon((PC != NULL) ? MagicWeaponPSTForPC : MagicWeaponPST, ElementType,
+	//			(PC != NULL) ? LoadedMagicWeaponPSTForPC : LoadedMagicWeaponPST);
+	//	}
+	//	break;
+	//	case EDamageWeapon::EDW_End:
+	//		break;
+	//	default:
+	//		break;
+	//	}
+	//}
 
-	SpawnDamageEffectInner(PSTemplate, Target, HitDir, RandomAngle, HitActorRot, DamageSocketName);
+	//SpawnDamageEffectInner(PSTemplate, Target, HitDir, RandomAngle, HitActorRot, DamageSocketName);
 }
 
 void UB2DamageEffectInfo::SpawnDamageEffectInner(UParticleSystem* PSTemplate, class ABladeIICharacter* Target, EHitDirection HitDir, float RandomAngle, FRotator HitActorRot, FName DamageSocketName)
 {
-#if !UE_BUILD_SHIPPING // Detailed feature On/Off for performance test
-	if (bDisableDamageEffectParticle) {
-		return;
-	}
-#endif
-
-	if (Target == NULL || Target->GetMesh() == NULL || PSTemplate == NULL || (MaxDamageEffectNum > 0 && DamageEffectComps.Num() >= MaxDamageEffectNum))
-	{
-		return;
-	}
-
-	FTransform DamageSocketTransform = Target->GetMesh()->GetSocketTransform(DamageSocketName);
-		
-	FVector2D ScreenPos;
-
-	// Optimization to reduce hit effect
-	if (MaxDamageEffectNum > 0)
-	{
-		if (const APlayerController* PC = 0)//Cast<APlayerController*>(Target->GetController()))
-		{
-			ULocalPlayer* const LP = PC ? PC->GetLocalPlayer() : nullptr;
-			if (LP && LP->ViewportClient)
-			{
-				// get the projection data
-				FSceneViewProjectionData ProjectionData;
-				if (LP->GetProjectionData(LP->ViewportClient->Viewport, /*out*/ ProjectionData))
-				{
-					FMatrix const ViewProjectionMatrix = ProjectionData.ComputeViewProjectionMatrix();
-					int32 ViewSizeX = 1280, ViewSizeY = 720;
-					PC->GetViewportSize(ViewSizeX, ViewSizeY);
-					FSceneView::ProjectWorldToScreen(DamageSocketTransform.GetTranslation(), FIntRect(0, 0, ViewSizeX, ViewSizeY)/*ProjectionData.GetConstrainedViewRect()*/, ViewProjectionMatrix, ScreenPos);
-
-					for (int32 i = 0; i < DamageEffectScreenPos.Num(); ++i)
-					{
-						const FVector2D& PrevPos = DamageEffectScreenPos[i];
-						if (FVector2D::DistSquared(PrevPos, ScreenPos) < FMath::Square(DamageEffectRange))
-						{
-							// Kill previous one
-							if (DamageEffectComps[i])
-							{
-								DamageEffectComps[i]->DestroyComponent();
-								OnParticleSystemFinished(DamageEffectComps[i]);
-							}
-							else
-							{
-								DamageEffectComps.RemoveAt(i);
-								DamageEffectScreenPos.RemoveAt(i);
-							}
-							break;
-						}
-					}
-				}
-			}
-			else
-			{
-				// Culling
-				return;
-			}
-		}
-	}
-
-	FRotator DamageRot = HitActorRot;
-	if (HitDir == EHitDirection::EHD_None) // Use Default Value
-	{
-		DamageRot = DamageSocketTransform.Rotator();
-
-		if (bUseRandomRotation)
-		{
-			DamageRot.Yaw += FMath::FRandRange(-RandRange, RandRange);
-		}
-	}
-	else if (HitDir != EHitDirection::EHD_HitActor) // 
-	{
-		switch (HitDir)
-		{
-		case EHitDirection::EHD_NegX:
-			DamageRot.Yaw += 180.f;
-			break;
-		case EHitDirection::EHD_PosY:
-			DamageRot.Yaw += 90.f;
-			break;
-		case EHitDirection::EHD_NegY:
-			DamageRot.Yaw -= 90.f;
-			break;
-		default:
-			break;
-		}
-		if (RandomAngle > 0.f)
-		{
-			DamageRot.Yaw += FMath::FRandRange(-RandomAngle, RandomAngle);
-		}
-	}
-
-	// 180도 돌려줄놈들
-	ABladeIIPlayer* PC = Cast<ABladeIIPlayer>(Target);
-
-	if (PC && (PC->IsApplyGuarding() || PC->IsBuffActive(EBuffType::Buff_ReflectDamage)))
-	{
-		DamageRot.Yaw += 180;
-	}
-
-	UParticleSystemComponent* NewComponent =
-		UGameplayStatics::SpawnEmitterAtLocation(Target, PSTemplate, DamageSocketTransform.GetTranslation(), DamageRot, true);
-
-	if (NewComponent && MaxDamageEffectNum > 0)
-	{
-		NewComponent->OnSystemFinished.AddUniqueDynamic(this, &UB2DamageEffectInfo::OnParticleSystemFinished);
-
-		// Screen Pos data handling
-		int32 Idx = DamageEffectComps.Add(NewComponent);
-		if (Idx != INDEX_NONE)
-		{
-			if (DamageEffectScreenPos.Num() <= Idx)
-			{
-				DamageEffectScreenPos.AddDefaulted(Idx + 1 - DamageEffectScreenPos.Num());
-			}
-			DamageEffectScreenPos[Idx] = ScreenPos;
-		}
-	}
+//#if !UE_BUILD_SHIPPING // Detailed feature On/Off for performance test
+//	if (bDisableDamageEffectParticle) {
+//		return;
+//	}
+//#endif
+//
+//	if (Target == NULL || Target->GetMesh() == NULL || PSTemplate == NULL || (MaxDamageEffectNum > 0 && DamageEffectComps.Num() >= MaxDamageEffectNum))
+//	{
+//		return;
+//	}
+//
+//	FTransform DamageSocketTransform = Target->GetMesh()->GetSocketTransform(DamageSocketName);
+//		
+//	FVector2D ScreenPos;
+//
+//	// Optimization to reduce hit effect
+//	if (MaxDamageEffectNum > 0)
+//	{
+//		if (const APlayerController* PC = 0)//Cast<APlayerController*>(Target->GetController()))
+//		{
+//			ULocalPlayer* const LP = PC ? PC->GetLocalPlayer() : nullptr;
+//			if (LP && LP->ViewportClient)
+//			{
+//				// get the projection data
+//				FSceneViewProjectionData ProjectionData;
+//				if (LP->GetProjectionData(LP->ViewportClient->Viewport, /*out*/ ProjectionData))
+//				{
+//					FMatrix const ViewProjectionMatrix = ProjectionData.ComputeViewProjectionMatrix();
+//					int32 ViewSizeX = 1280, ViewSizeY = 720;
+//					PC->GetViewportSize(ViewSizeX, ViewSizeY);
+//					FSceneView::ProjectWorldToScreen(DamageSocketTransform.GetTranslation(), FIntRect(0, 0, ViewSizeX, ViewSizeY)/*ProjectionData.GetConstrainedViewRect()*/, ViewProjectionMatrix, ScreenPos);
+//
+//					for (int32 i = 0; i < DamageEffectScreenPos.Num(); ++i)
+//					{
+//						const FVector2D& PrevPos = DamageEffectScreenPos[i];
+//						if (FVector2D::DistSquared(PrevPos, ScreenPos) < FMath::Square(DamageEffectRange))
+//						{
+//							// Kill previous one
+//							if (DamageEffectComps[i])
+//							{
+//								DamageEffectComps[i]->DestroyComponent();
+//								OnParticleSystemFinished(DamageEffectComps[i]);
+//							}
+//							else
+//							{
+//								DamageEffectComps.RemoveAt(i);
+//								DamageEffectScreenPos.RemoveAt(i);
+//							}
+//							break;
+//						}
+//					}
+//				}
+//			}
+//			else
+//			{
+//				// Culling
+//				return;
+//			}
+//		}
+//	}
+//
+//	FRotator DamageRot = HitActorRot;
+//	if (HitDir == EHitDirection::EHD_None) // Use Default Value
+//	{
+//		DamageRot = DamageSocketTransform.Rotator();
+//
+//		if (bUseRandomRotation)
+//		{
+//			DamageRot.Yaw += FMath::FRandRange(-RandRange, RandRange);
+//		}
+//	}
+//	else if (HitDir != EHitDirection::EHD_HitActor) // 
+//	{
+//		switch (HitDir)
+//		{
+//		case EHitDirection::EHD_NegX:
+//			DamageRot.Yaw += 180.f;
+//			break;
+//		case EHitDirection::EHD_PosY:
+//			DamageRot.Yaw += 90.f;
+//			break;
+//		case EHitDirection::EHD_NegY:
+//			DamageRot.Yaw -= 90.f;
+//			break;
+//		default:
+//			break;
+//		}
+//		if (RandomAngle > 0.f)
+//		{
+//			DamageRot.Yaw += FMath::FRandRange(-RandomAngle, RandomAngle);
+//		}
+//	}
+//
+//	// 180도 돌려줄놈들
+//	ABladeIIPlayer* PC = Cast<ABladeIIPlayer>(Target);
+//
+//	if (PC && (PC->IsApplyGuarding() || PC->IsBuffActive(EBuffType::Buff_ReflectDamage)))
+//	{
+//		DamageRot.Yaw += 180;
+//	}
+//
+//	UParticleSystemComponent* NewComponent =
+//		UGameplayStatics::SpawnEmitterAtLocation(Target, PSTemplate, DamageSocketTransform.GetTranslation(), DamageRot, true);
+//
+//	if (NewComponent && MaxDamageEffectNum > 0)
+//	{
+//		NewComponent->OnSystemFinished.AddUniqueDynamic(this, &UB2DamageEffectInfo::OnParticleSystemFinished);
+//
+//		// Screen Pos data handling
+//		int32 Idx = DamageEffectComps.Add(NewComponent);
+//		if (Idx != INDEX_NONE)
+//		{
+//			if (DamageEffectScreenPos.Num() <= Idx)
+//			{
+//				DamageEffectScreenPos.AddDefaulted(Idx + 1 - DamageEffectScreenPos.Num());
+//			}
+//			DamageEffectScreenPos[Idx] = ScreenPos;
+//		}
+//	}
 }
 
 void UB2DamageEffectInfo::OnParticleSystemFinished(UParticleSystemComponent* FinishedComponent)
@@ -309,31 +310,31 @@ void UB2DamageEffectInfo::OnParticleSystemFinished(UParticleSystemComponent* Fin
 
 void UB2DamageEffectInfo::PlayHitFlash(class ABladeIICharacter* Target)
 {
-	if (Target && Target->CurrentOverridenMatType == ECharacterMaterialOverrideType::ECMO_None)
-	{
-		if (Target->IsBuffActive(EBuffType::Buff_Shield))
-			return;
+	//if (Target && Target->CurrentOverridenMatType == ECharacterMaterialOverrideType::ECMO_None)
+	//{
+	//	if (Target->IsBuffActive(EBuffType::Buff_Shield))
+	//		return;
 
-		checkSlow(HitFlashColorParamValues.Num() == (int32)EDamageElement::EDE_End && HitFlashColorParamValuesForPC.Num() == (int32)EDamageElement::EDE_End)
-		int32 DamageColorIdx = 0;
-		// Check State for Damage Effect, priority Frozen > Burning > Poison
-		if (Target->IsBuffActive(EBuffType::Debuff_Freezing))
-		{
-			DamageColorIdx = 1;
-		}
-		else if (Target->IsBuffActive(EBuffType::Debuff_Burning))
-		{
-			DamageColorIdx = 2;
-		}
-		else if (Target->IsBuffActive(EBuffType::Debuff_Poison))
-		{
-			DamageColorIdx = 3;
-		}
-		ABladeIIPlayer* PC = Cast<ABladeIIPlayer>(Target);
-		// Hit Flash Effect
-		Target->FlashForDuration(HitFlashColorParamName, (PC != NULL) ? HitFlashColorParamValuesForPC[DamageColorIdx] : HitFlashColorParamValues[DamageColorIdx],
-			HitFlashIntensityParamName, (PC != NULL) ? HitFlashIntensityParamValueForPC : HitFlashIntensityParamValue, (PC != NULL) ? HitFlashDurationForPC : HitFlashDuration);
-	}
+	//	checkSlow(HitFlashColorParamValues.Num() == (int32)EDamageElement::EDE_End && HitFlashColorParamValuesForPC.Num() == (int32)EDamageElement::EDE_End)
+	//	int32 DamageColorIdx = 0;
+	//	// Check State for Damage Effect, priority Frozen > Burning > Poison
+	//	if (Target->IsBuffActive(EBuffType::Debuff_Freezing))
+	//	{
+	//		DamageColorIdx = 1;
+	//	}
+	//	else if (Target->IsBuffActive(EBuffType::Debuff_Burning))
+	//	{
+	//		DamageColorIdx = 2;
+	//	}
+	//	else if (Target->IsBuffActive(EBuffType::Debuff_Poison))
+	//	{
+	//		DamageColorIdx = 3;
+	//	}
+	//	ABladeIIPlayer* PC = Cast<ABladeIIPlayer>(Target);
+	//	// Hit Flash Effect
+	//	Target->FlashForDuration(HitFlashColorParamName, (PC != NULL) ? HitFlashColorParamValuesForPC[DamageColorIdx] : HitFlashColorParamValues[DamageColorIdx],
+	//		HitFlashIntensityParamName, (PC != NULL) ? HitFlashIntensityParamValueForPC : HitFlashIntensityParamValue, (PC != NULL) ? HitFlashDurationForPC : HitFlashDuration);
+	//}
 }
 
 static void SpawnPreRenderParticleComponentsCommon(ASkeletalMeshActor* InOutOwnerSKActor, UParticleSystem* InFxTemplate)
@@ -551,74 +552,74 @@ bool UB2DamageEffectInfo::ShouldUnloadAllAssetOnLevelTransition()
 
 void UB2DamageEffectInfo::OverrideCharacterMaterial(ECharacterMaterialOverrideType MatType, class ABladeIICharacter* Target)
 {
-	const int32 CastedIndex = static_cast<int32>(MatType);
-	if (Target && CharacterMaterialOverrides.Num() > CastedIndex)
-	{
-		// Cache old materials and set to new material
-		Target->OverrideMaterial(
-			LoadAndCacheDamageEffectInfoTAssetArrayCommon<UMaterialInterface>(InfoLoadManager, CharacterMaterialOverrides[CastedIndex], CastedIndex, LoadedCharacterMaterialOverrides),
-			MatType);
-	}
+	//const int32 CastedIndex = static_cast<int32>(MatType);
+	//if (Target && CharacterMaterialOverrides.Num() > CastedIndex)
+	//{
+	//	// Cache old materials and set to new material
+	//	Target->OverrideMaterial(
+	//		LoadAndCacheDamageEffectInfoTAssetArrayCommon<UMaterialInterface>(InfoLoadManager, CharacterMaterialOverrides[CastedIndex], CastedIndex, LoadedCharacterMaterialOverrides),
+	//		MatType);
+	//}
 }
 
 void UB2DamageEffectInfo::PlayHitSound(UObject* WorldContextObject, ECharacterType CharType, FVector Location, bool IsAboradMob /*= false*/)
 {
-#if !UE_BUILD_SHIPPING // Detailed feature On/Off for performance test
-	if (bDisableDamageEffectSound) {
-		return;
-	}
-#endif
-
-	int32 CueIndex = INDEX_NONE;
-	switch (CharType)
-	{
-	case ECharacterType::ECT_Assassin:
-		CueIndex = (int32)EHitSoundCase::EHit_Assassin;
-		break;
-	case ECharacterType::ECT_Gladiator:
-		CueIndex = (int32)EHitSoundCase::EHit_Gladiator;
-		break;
-	case ECharacterType::ECT_Wizard:
-		CueIndex = (int32)EHitSoundCase::EHit_Wizard;
-		break;
-	case ECharacterType::ECT_Fighter:
-		CueIndex = (int32)EHitSoundCase::EHit_Fighter;
-		break;
-	case ECharacterType::ECT_MeleeMob:
-	case ECharacterType::ECT_RangeMob:
-	case ECharacterType::ECT_MiddleMob:
-		{
-			if (IsAboradMob)
-			{
-				CueIndex = (int32)EHitSoundCase::EHit_AboardMob;
-			}
-			else
-			{
-				CueIndex = (int32)EHitSoundCase::EHit_Mob;
-			}
-		}
-		break;
-	case ECharacterType::ECT_BossMob:
-		CueIndex = (int32)EHitSoundCase::EHit_Boss;
-		break;
-	default:
-		break;
-	}
-
-	if (CueIndex >= 0 && HitSoundCues.Num() > CueIndex)
-	{
-		UGameplayStatics::PlaySoundAtLocation(WorldContextObject, HitSoundCues[CueIndex], Location);
-	}
+//#if !UE_BUILD_SHIPPING // Detailed feature On/Off for performance test
+//	if (bDisableDamageEffectSound) {
+//		return;
+//	}
+//#endif
+//
+//	int32 CueIndex = INDEX_NONE;
+//	switch (CharType)
+//	{
+//	case ECharacterType::ECT_Assassin:
+//		CueIndex = (int32)EHitSoundCase::EHit_Assassin;
+//		break;
+//	case ECharacterType::ECT_Gladiator:
+//		CueIndex = (int32)EHitSoundCase::EHit_Gladiator;
+//		break;
+//	case ECharacterType::ECT_Wizard:
+//		CueIndex = (int32)EHitSoundCase::EHit_Wizard;
+//		break;
+//	case ECharacterType::ECT_Fighter:
+//		CueIndex = (int32)EHitSoundCase::EHit_Fighter;
+//		break;
+//	case ECharacterType::ECT_MeleeMob:
+//	case ECharacterType::ECT_RangeMob:
+//	case ECharacterType::ECT_MiddleMob:
+//		{
+//			if (IsAboradMob)
+//			{
+//				CueIndex = (int32)EHitSoundCase::EHit_AboardMob;
+//			}
+//			else
+//			{
+//				CueIndex = (int32)EHitSoundCase::EHit_Mob;
+//			}
+//		}
+//		break;
+//	case ECharacterType::ECT_BossMob:
+//		CueIndex = (int32)EHitSoundCase::EHit_Boss;
+//		break;
+//	default:
+//		break;
+//	}
+//
+//	if (CueIndex >= 0 && HitSoundCues.Num() > CueIndex)
+//	{
+//		UGameplayStatics::PlaySoundAtLocation(WorldContextObject, HitSoundCues[CueIndex], Location);
+	//}
 }
 
 void UB2DamageEffectInfo::PlayGuardHitSound(UObject* WorldContextObject, FVector Location)
 {
-	int32 CueIndex = (int32)EHitSoundCase::EHit_Guard;
-	
-	if (HitSoundCues.IsValidIndex(CueIndex))
-	{
-		UGameplayStatics::PlaySoundAtLocation(WorldContextObject, HitSoundCues[CueIndex], Location);
-	}
+	//int32 CueIndex = (int32)EHitSoundCase::EHit_Guard;
+	//
+	//if (HitSoundCues.IsValidIndex(CueIndex))
+	//{
+	//	UGameplayStatics::PlaySoundAtLocation(WorldContextObject, HitSoundCues[CueIndex], Location);
+	//}
 }
 
 #if !UE_BUILD_SHIPPING // Detailed feature On/Off for performance test

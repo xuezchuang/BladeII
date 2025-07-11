@@ -6,6 +6,7 @@
 #include "UObject/NoExportTypes.h"
 #include "B2AssetLoader.h"
 #include "Sound/SoundCue.h"
+#include "../Common/CommonStruct.h"
 #include "B2CharacterTagDialogueInfo.generated.h"
 
 USTRUCT(BlueprintType)

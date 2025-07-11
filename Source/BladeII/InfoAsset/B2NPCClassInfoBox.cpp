@@ -11,7 +11,7 @@
 #include "Materials/Material.h"
 #include "Components/DecalComponent.h"
 #include "BladeIICharacter.h"
-#include "BladeIINetCharacter.h"
+//#include "BladeIINetCharacter.h"
 #include "B2DropItem.h"
 #include "B2InGameHUDInfo_BossMob.h"
 #include "BladeIIGameMode.h"
@@ -19,11 +19,11 @@
 #include "B2StageInfo.h"
 #include "B2StageManager.h"
 #include "B2NPCSensitiveInfo.h"
-#include "BladeIIControlNetCharacter.h"
-#include "BladeIIRaidNetCharacter.h"
-#include "BladeIIMercenaryPlayer.h"
-#include "BladeIIGameImpl.h"
-#include "B2AssetLoader.h"
+//#include "BladeIIControlNetCharacter.h"
+//#include "BladeIIRaidNetCharacter.h"
+//#include "BladeIIMercenaryPlayer.h"
+//#include "BladeIIGameImpl.h"
+//#include "B2AssetLoader.h"
 #if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
 #include "BladeIITestDummyNPC.h"
 #endif
@@ -32,6 +32,7 @@
 //#endif
 
 #include "FB2ErrorMessage.h"
+#include "../BladeII/BladeIIUtil.h"
 
 bool UB2NPCClassInfoBox::bManagedNPCClassUnload = true;
 TMap<ENPCClass, bool> UB2NPCClassInfoBox::SpawnPoolAsyncBlacklists;
@@ -309,13 +310,15 @@ ABladeIICharacter* UB2NPCClassInfoBox::SpawnNPCClassInfoNetCharacter(
 	FActorSpawnParameters& SpawnParameters)
 {
 	B2_SCOPED_TRACK_LOG(TEXT("UB2NPCClassInfoBox::SpawnNPCClassInfoNetCharacter"));
-	return SpawnCharacter<ABladeIINetCharacter>(this, SpawnWorld, InClass, InVariation, SpawnTransform, SpawnParameters);
+	//return SpawnCharacter<ABladeIINetCharacter>(this, SpawnWorld, InClass, InVariation, SpawnTransform, SpawnParameters);
+	return NULL;
 }
 
 ABladeIICharacter* UB2NPCClassInfoBox::SpawnNPCClassInfoRaidNetCharacter(class UWorld* SpawnWorld, ENPCClass InClass, ENPCClassVariation InVariation, const FTransform& SpawnTransform, FActorSpawnParameters& SpawnParameters)
 {
 	B2_SCOPED_TRACK_LOG(TEXT("UB2NPCClassInfoBox::SpawnNPCClassInfoControlNetCharacter"));
-	return SpawnCharacter<ABladeIIRaidNetCharacter>(this, SpawnWorld, InClass, InVariation, SpawnTransform, SpawnParameters);
+	//return SpawnCharacter<ABladeIIRaidNetCharacter>(this, SpawnWorld, InClass, InVariation, SpawnTransform, SpawnParameters);
+	return NULL;
 }
 
 ABladeIICharacter* UB2NPCClassInfoBox::SpawnNPCClassInfoControlNetCharacter(
@@ -326,13 +329,15 @@ ABladeIICharacter* UB2NPCClassInfoBox::SpawnNPCClassInfoControlNetCharacter(
 	FActorSpawnParameters& SpawnParameters)
 {
 	B2_SCOPED_TRACK_LOG(TEXT("UB2NPCClassInfoBox::SpawnNPCClassInfoControlNetCharacter"));
-	return SpawnCharacter<ABladeIIControlNetCharacter>(this, SpawnWorld, InClass, InVariation, SpawnTransform, SpawnParameters);
+	//return SpawnCharacter<ABladeIIControlNetCharacter>(this, SpawnWorld, InClass, InVariation, SpawnTransform, SpawnParameters);
+	return NULL;
 }
 
 ABladeIICharacter * UB2NPCClassInfoBox::SpawnNPCClassInfoGuildCharacter(UWorld * SpawnWorld, ENPCClass InClass, ENPCClassVariation InVariation, const FTransform & SpawnTransform, FActorSpawnParameters & SpawnParameters)
 {
 	B2_SCOPED_TRACK_LOG(TEXT("UB2NPCClassInfoBox::SpawnNPCClassInfoControlNetCharacter"));
-	return SpawnCharacter<ABladeIIMercenaryPlayer>(this, SpawnWorld, InClass, InVariation, SpawnTransform, SpawnParameters);
+	//return SpawnCharacter<ABladeIIMercenaryPlayer>(this, SpawnWorld, InClass, InVariation, SpawnTransform, SpawnParameters);
+	return NULL;
 }
 
 #if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
@@ -387,7 +392,8 @@ void UB2NPCClassInfoBox::UnloadExcept(const TMap<FCombinedNPCClassID, bool>& InE
 		for (TMap<ENPCClassVariation, TSoftClassPtr<UB2NPCSingleClassInfo>>::TIterator VariationIt(ThisInfoMap.VariationAssets); VariationIt; ++VariationIt)
 		{
 			FCombinedNPCClassID NPCClassID(InfoMapIt.Key(), VariationIt.Key());
-			if (!InExceptIDs.Find(NPCClassID)) {
+			if (!InExceptIDs.Find(NPCClassID))
+			{
 				Unload(NPCClassID);
 			}
 		}
@@ -396,49 +402,49 @@ void UB2NPCClassInfoBox::UnloadExcept(const TMap<FCombinedNPCClassID, bool>& InE
 }
 void UB2NPCClassInfoBox::UnloadExceptCurrentExplicit(ABladeIIGameMode* CurrGameMode)
 { 
-	if (CurrGameMode && CurrGameMode->GetB2GameModeType() == EB2GameMode::Lobby)
-	{
-		// 언젠가 로비에서 NPCClassInfo 를 사용하게 되면 이 가정이 틀리게 되려나.
-		// LoadedPtrMap 에 명시적으로 있는 건 없더라도 이전 레벨서 RootSet 처리를 한 게 있다면 그걸 건드리지는 않는다.
-		check(LoadedPtrMap.Num() == 0); 
-	}
-	else if (ShouldUnloadAllOnLevelTransition())
-	{
-		UnloadAll();
-	}
-	else
-	{
-		// 현재 LoadedPtrMap 에 캐싱된 것들은 RootSet 처리를 하고
-		// 그게 아닌 것들은 RemoveFromRoot 처리를 해서 확실히 내려가게 한다.
+	//if (CurrGameMode && CurrGameMode->GetB2GameModeType() == EB2GameMode::Lobby)
+	//{
+	//	// 언젠가 로비에서 NPCClassInfo 를 사용하게 되면 이 가정이 틀리게 되려나.
+	//	// LoadedPtrMap 에 명시적으로 있는 건 없더라도 이전 레벨서 RootSet 처리를 한 게 있다면 그걸 건드리지는 않는다.
+	//	check(LoadedPtrMap.Num() == 0); 
+	//}
+	//else if (ShouldUnloadAllOnLevelTransition())
+	//{
+	//	UnloadAll();
+	//}
+	//else
+	//{
+	//	// 현재 LoadedPtrMap 에 캐싱된 것들은 RootSet 처리를 하고
+	//	// 그게 아닌 것들은 RemoveFromRoot 처리를 해서 확실히 내려가게 한다.
 
-		// 현재 명시적으로 로딩된 것이 없는 상태는.. 실제로 NPC 가 없는 게임모드거나 (예를 들어 PVP), 아니면 게임모드 떠나기 전 여길 두번 이상 진입할 때.
-		// 어떤 경우든 Unload 를 실행하지 않는다. 마지막으로 RootSet 에 넣어놓은 것들이 있다면 유지될 것.
-		if (LoadedPtrMap.Num() > 0)
-		{
-			EstimatedRootedAssetNum = 0; // 다시 집계..
+	//	// 현재 명시적으로 로딩된 것이 없는 상태는.. 실제로 NPC 가 없는 게임모드거나 (예를 들어 PVP), 아니면 게임모드 떠나기 전 여길 두번 이상 진입할 때.
+	//	// 어떤 경우든 Unload 를 실행하지 않는다. 마지막으로 RootSet 에 넣어놓은 것들이 있다면 유지될 것.
+	//	if (LoadedPtrMap.Num() > 0)
+	//	{
+	//		EstimatedRootedAssetNum = 0; // 다시 집계..
 
-			TMap<FCombinedNPCClassID, bool> AllExceptIDs;
-			// 현재 LoadedPtrMap 에 있다는 건 이번 레벨에서 명시적으로 로딩했다는 걸로 간주하고 루트셋에 남겨두려는 거.
-			// 다음 레벨에서 명시적으로 로딩되지 않더라도 로딩된 상태겠지만 LoadedPtrMap 에 포함되지는 않을 것이다. 그렇게 남아있게 되면 다음 레벨이 내려갈 때 unload 될 것.
-			for (TMap<uint32, UObject*>::TIterator LoadedIt(LoadedPtrMap); LoadedIt; ++LoadedIt)
-			{
-				FCombinedNPCClassID ThisLoadedId;
+	//		TMap<FCombinedNPCClassID, bool> AllExceptIDs;
+	//		// 현재 LoadedPtrMap 에 있다는 건 이번 레벨에서 명시적으로 로딩했다는 걸로 간주하고 루트셋에 남겨두려는 거.
+	//		// 다음 레벨에서 명시적으로 로딩되지 않더라도 로딩된 상태겠지만 LoadedPtrMap 에 포함되지는 않을 것이다. 그렇게 남아있게 되면 다음 레벨이 내려갈 때 unload 될 것.
+	//		for (TMap<uint32, UObject*>::TIterator LoadedIt(LoadedPtrMap); LoadedIt; ++LoadedIt)
+	//		{
+	//			FCombinedNPCClassID ThisLoadedId;
 
-				FromNPCClassKey(LoadedIt.Key(), ThisLoadedId);
-				AllExceptIDs.Add(ThisLoadedId, true); // bool value 는 의미는 없다.
+	//			FromNPCClassKey(LoadedIt.Key(), ThisLoadedId);
+	//			AllExceptIDs.Add(ThisLoadedId, true); // bool value 는 의미는 없다.
 
-				// 루트셋 처리를 여기서 함, 로딩 되었을 때 하려니 한곳이 아니기도 하고 해서..
-				const TSoftClassPtr<UB2NPCSingleClassInfo>& LoadedAssetClass = GetNPCSingleClassAsset(ThisLoadedId);
-				check(LoadedAssetClass.IsValid());
-				if (LoadedAssetClass.IsValid())
-				{
-					LoadedAssetClass->AddToRoot(); // 다음 레벨에서 명시적으로 로딩되지 않는다면 다음번에 여길 거치면서 RootSet 에서 제거되고 언로딩 될 것이다.
-					++EstimatedRootedAssetNum;
-				}
-			}
-			UnloadExcept(AllExceptIDs);
-		}
-	}
+	//			// 루트셋 처리를 여기서 함, 로딩 되었을 때 하려니 한곳이 아니기도 하고 해서..
+	//			const TSoftClassPtr<UB2NPCSingleClassInfo>& LoadedAssetClass = GetNPCSingleClassAsset(ThisLoadedId);
+	//			check(LoadedAssetClass.IsValid());
+	//			if (LoadedAssetClass.IsValid())
+	//			{
+	//				LoadedAssetClass->AddToRoot(); // 다음 레벨에서 명시적으로 로딩되지 않는다면 다음번에 여길 거치면서 RootSet 에서 제거되고 언로딩 될 것이다.
+	//				++EstimatedRootedAssetNum;
+	//			}
+	//		}
+	//		UnloadExcept(AllExceptIDs);
+	//	}
+	//}
 	LoadedPtrMap.Empty(); // 어찌되었건 비우지만 RootSet 에 들어간 것들은 로딩된 상태를 유지할 것.
 }
 
@@ -658,38 +664,38 @@ void UB2NPCClassInfoBox::PostEditChangeProperty(FPropertyChangedEvent& PropertyC
 
 void UB2NPCClassInfoBox::FirstTimeNPCSensitiveInfoConstruction()
 { 
-	// NPCSensitiveInfo 도입 이전까지 NPCClassInfo 에 넣어 두었던 데이터들을 NPCSensitiveInfo 로 자동 이관하기 위한 임시 기능
+	//// NPCSensitiveInfo 도입 이전까지 NPCClassInfo 에 넣어 두었던 데이터들을 NPCSensitiveInfo 로 자동 이관하기 위한 임시 기능
 
-	UB2NPCSensitiveInfo* NPCSensitiveInfo = StaticFindNPCSensitiveInfoTable();
+	//UB2NPCSensitiveInfo* NPCSensitiveInfo = StaticFindNPCSensitiveInfoTable();
 
-	for (TMap<ENPCClass, FNPCClassInfoSearchMap>::TIterator InfoMapIt(NewInfoMap); InfoMapIt; ++InfoMapIt)
-	{
-		FNPCClassInfoSearchMap& ThisInfoMap = InfoMapIt.Value();
-		for (TMap<ENPCClassVariation, TSoftClassPtr<UB2NPCSingleClassInfo>>::TIterator VariationIt(ThisInfoMap.VariationAssets); VariationIt; ++VariationIt)
-		{
-			FCombinedNPCClassID NPCClassID(InfoMapIt.Key(), VariationIt.Key());
+	//for (TMap<ENPCClass, FNPCClassInfoSearchMap>::TIterator InfoMapIt(NewInfoMap); InfoMapIt; ++InfoMapIt)
+	//{
+	//	FNPCClassInfoSearchMap& ThisInfoMap = InfoMapIt.Value();
+	//	for (TMap<ENPCClassVariation, TSoftClassPtr<UB2NPCSingleClassInfo>>::TIterator VariationIt(ThisInfoMap.VariationAssets); VariationIt; ++VariationIt)
+	//	{
+	//		FCombinedNPCClassID NPCClassID(InfoMapIt.Key(), VariationIt.Key());
 
-			if (UB2NPCSingleClassInfo* NPCClassInfo = GetNPCSingleClassInfo(NPCClassID))
-			{
-				FSingleNPCSensitiveData* SensitiveData = new FSingleNPCSensitiveData();
+	//		if (UB2NPCSingleClassInfo* NPCClassInfo = GetNPCSingleClassInfo(NPCClassID))
+	//		{
+	//			FSingleNPCSensitiveData* SensitiveData = new FSingleNPCSensitiveData();
 
-				SensitiveData->MatchingNPCClass = NPCClassInfo->NPCClassEnum;
-				SensitiveData->MatchingNPCClassVari = NPCClassInfo->ClassVariation;
+	//			SensitiveData->MatchingNPCClass = NPCClassInfo->NPCClassEnum;
+	//			SensitiveData->MatchingNPCClassVari = NPCClassInfo->ClassVariation;
 
-				FName SuggestedSensitiveDataKeyName;
-				if (NPCSensitiveInfo->FirstTimeConstruction_EditorAddInfoData(NPCClassInfo->NPCClassEnum, NPCClassInfo->ClassVariation, SensitiveData, SuggestedSensitiveDataKeyName))
-				{
-					// SensitiveDataRowKey 가 그동안 그냥 노출이 되어 있다 보니 값이 엉뚱하게 되어 있다거나 심지어 중복이 되어 있는 것도 있음.
-					// 테이블을 처음 구축하기 위한 기능이니 기본 권장 값으로 세팅해 준다.
-					if (NPCClassInfo->SensitiveDataRowKey != SuggestedSensitiveDataKeyName)
-					{
-						NPCClassInfo->SensitiveDataRowKey = SuggestedSensitiveDataKeyName;
-						NPCClassInfo->MarkPackageDirty();
-					}
-				}
-			}
-		}
-	}
+	//			FName SuggestedSensitiveDataKeyName;
+	//			if (NPCSensitiveInfo->FirstTimeConstruction_EditorAddInfoData(NPCClassInfo->NPCClassEnum, NPCClassInfo->ClassVariation, SensitiveData, SuggestedSensitiveDataKeyName))
+	//			{
+	//				// SensitiveDataRowKey 가 그동안 그냥 노출이 되어 있다 보니 값이 엉뚱하게 되어 있다거나 심지어 중복이 되어 있는 것도 있음.
+	//				// 테이블을 처음 구축하기 위한 기능이니 기본 권장 값으로 세팅해 준다.
+	//				if (NPCClassInfo->SensitiveDataRowKey != SuggestedSensitiveDataKeyName)
+	//				{
+	//					NPCClassInfo->SensitiveDataRowKey = SuggestedSensitiveDataKeyName;
+	//					NPCClassInfo->MarkPackageDirty();
+	//				}
+	//			}
+	//		}
+	//	}
+	//}
 }
 
 bool UB2NPCClassInfoBox::GatherInvalidSetting(TArray<FCombinedNPCClassID>& OutInvalidTypes)

@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
+
 #include "B2AssetLoader.h"
 #include "BladeIIUtil.h"
 #include "Event.h"
@@ -95,7 +96,7 @@ ELoadingState UB2AssetLoader::RequestAsyncLoad(const FString& RequestName, const
 {
 	if (RequestName.Len() == 0) 
 	{
-		UE_LOG(LogBladeII, Error, TEXT("RequestAsyncLoad needs RequestName"));
+		//UE_LOG(LogBladeII, Error, TEXT("RequestAsyncLoad needs RequestName"));
 		return ELoadingState::NotRequested;
 	}
 
@@ -120,11 +121,11 @@ ELoadingState UB2AssetLoader::RequestAsyncLoad(const FString& RequestName, const
 
 	AsyncLoadRequestMap.Add(RequestName, Request);
 
-	if (bBlocking)
-	{ // 입력을 막고 로딩중임을 보여주는 UI. 메인쓰레드 Blocking 의 의미가 아닌 입력 Blocking 의 의미.
-		ShowMiscLoadingIconClass<bool>::GetInstance().Signal(true);
-		BlockingRequestCount++;
-	}
+	//if (bBlocking)
+	//{ // 입력을 막고 로딩중임을 보여주는 UI. 메인쓰레드 Blocking 의 의미가 아닌 입력 Blocking 의 의미.
+	//	ShowMiscLoadingIconClass<bool>::GetInstance().Signal(true);
+	//	BlockingRequestCount++;
+	//}
 
 	return ELoadingState::Requested;
 }
@@ -173,21 +174,21 @@ void UB2AssetLoader::UnloadAsset(const FSoftObjectPath& StringAsset)
 
 void UB2AssetLoader::OnCompleteAsyncLoad()
 {
-	for (TMap<FString, FB2AsyncRequest>::TIterator It(AsyncLoadRequestMap); It; ++It)
-	{
-		FB2AsyncRequest& RequestInfo = It.Value();
-		if (RequestInfo.IsLoadingComplete() && RequestInfo.IsCompleteNotify() == false)
-		{
-			if (RequestInfo.bBlockUI == true)
-			{
-				BlockingRequestCount--;
-				if (BlockingRequestCount == 0)
-					ShowMiscLoadingIconClass<bool>::GetInstance().Signal(false);
-			}
+	//for (TMap<FString, FB2AsyncRequest>::TIterator It(AsyncLoadRequestMap); It; ++It)
+	//{
+	//	FB2AsyncRequest& RequestInfo = It.Value();
+	//	if (RequestInfo.IsLoadingComplete() && RequestInfo.IsCompleteNotify() == false)
+	//	{
+	//		if (RequestInfo.bBlockUI == true)
+	//		{
+	//			BlockingRequestCount--;
+	//			if (BlockingRequestCount == 0)
+	//				ShowMiscLoadingIconClass<bool>::GetInstance().Signal(false);
+	//		}
 
-			RequestInfo.ExecuteCompleteCallback();
-		}
-	}
+	//		RequestInfo.ExecuteCompleteCallback();
+	//	}
+	//}
 }
 
 TSharedPtr<FStreamableHandle> UB2AssetLoader::GetAsyncHandle(const FString& RequestName)
@@ -233,7 +234,7 @@ void UB2AssetLoader::OnAsyncLoadFlush()
 	}
 #endif
 
-	B2_SCOPED_TRACK_LOG(FString::Printf(TEXT("UB2AssetLoader::AsyncLoad Flush!! (while %d asset requests are ongoing)"), TotalAsyncRequestAssetNum));
+	//B2_SCOPED_TRACK_LOG(FString::Printf(TEXT("UB2AssetLoader::AsyncLoad Flush!! (while %d asset requests are ongoing)"), TotalAsyncRequestAssetNum));
 
 //#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
 //	if (bEnableDevLog)
@@ -294,7 +295,7 @@ bool UB2AssetLoader::WaitUntilLoadComplete(const FString& RequestName)
 UObject* IB2LoadInterface::LoadSynchronous(const FSoftObjectPath& StringAsset, float AsyncWaiting /*= -1.f*/)
 {
 	UB2AssetLoader* AssetLoader = GetAssetLoader();
-	BII_CHECK(AssetLoader);
+	//BII_CHECK(AssetLoader);
 
 	return AssetLoader->LoadSynchronous(StringAsset, AsyncWaiting);
 }
@@ -302,7 +303,7 @@ UObject* IB2LoadInterface::LoadSynchronous(const FSoftObjectPath& StringAsset, f
 void IB2LoadInterface::UnloadAsset(const FSoftObjectPath& StringAsset)
 {
 	UB2AssetLoader* AssetLoader = GetAssetLoader();
-	BII_CHECK(AssetLoader);
+	//BII_CHECK(AssetLoader);
 
 	AssetLoader->UnloadAsset(StringAsset);
 }
@@ -332,7 +333,7 @@ void IB2AsyncInterface::TryAsyncLoad(const FString& RequestName, bool bBlocking/
 void IB2AsyncInterface::TryAsyncLoad(const FString& RequestName, const TArray<FB2AsyncRequestInfo>& RequestList, bool bBlocking/* = false*/)
 {
 	UB2AssetLoader* AssetLoader = GetAssetLoader();
-	BII_CHECK(AssetLoader);
+	//BII_CHECK(AssetLoader);
 
 	if(GetAsyncRequest(RequestName) == nullptr && RequestList.Num() > 0)
 	{
@@ -350,7 +351,7 @@ void IB2AsyncInterface::TryAsyncLoad(const FString& RequestName, const TArray<FB
 void IB2AsyncInterface::TryAsyncLoad(const FString& RequestName, const TArray<FSoftObjectPath>& RequestAssets, bool bBlocking/* = false*/)
 {
 	UB2AssetLoader* AssetLoader = GetAssetLoader();
-	BII_CHECK(AssetLoader);
+	//BII_CHECK(AssetLoader);
 
 	if (GetAsyncRequest(RequestName) == nullptr && RequestAssets.Num() > 0)
 	{
@@ -364,7 +365,7 @@ void IB2AsyncInterface::TryAsyncLoad(const FString& RequestName, const TArray<FS
 void IB2AsyncInterface::ReleaseAsyncLoad(const FString& RequestName)
 {
 	UB2AssetLoader* AssetLoader = GetAssetLoader();
-	BII_CHECK(AssetLoader);
+	//BII_CHECK(AssetLoader);
 
 	AssetLoader->ReleaseRequest(RequestName);
 }

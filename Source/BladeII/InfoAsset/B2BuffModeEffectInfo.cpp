@@ -9,6 +9,7 @@
 //#include "B2DamageEffectInfo.h"
 #include "Event.h"
 #include "BladeIIUtil.h"
+#include "GameFramework/PlayerController.h"
 
 #define RESTORE_BUFF_MODE_TEXT_EFFECT_3DFX 0 // 혹 다시 얘기 나올지 모르니 남겨두는 거. 이거 1 로 놓고 헤더쪽에 주석쳐 놓은 것도 복구시킴. 물론 리소스 세팅도.
 
@@ -86,7 +87,7 @@ void UB2BuffModeEffectInfo::EditorLoadAllTAsset()
 void UB2BuffModeEffectInfo::PreloadAndCacheAllTAsset()
 {
 //#if !UE_BUILD_SHIPPING
-//	extern bool gPreloadCombatEffectResources; // 이게 성능에 실제로 얼마나 기여하는지 테스트를 위해
+	//extern bool gPreloadCombatEffectResources; // 이게 성능에 실제로 얼마나 기여하는지 테스트를 위해
 //	if (!gPreloadCombatEffectResources) {
 //		return;
 //	}
@@ -192,22 +193,22 @@ bool UB2BuffModeEffectInfo::ShouldUnloadAllAssetOnLevelTransition()
 
 bool UB2BuffModeEffectInfo::ApplyBuffMaterial(EBuffType BuffType, class ABladeIICharacter* Target)
 {
-	if (Target == NULL || Target->GetMesh() == NULL || !BuffMaterialParams.Contains(BuffType))
-	{
-		return false;
-	}
-	
-	Target->ResetEmissive();
-	EmissiveOverride(Target, BuffMaterialParams[BuffType]);
-	Target->bEmissiveActiveByBuff = true;
+	//if (Target == NULL || Target->GetMesh() == NULL || !BuffMaterialParams.Contains(BuffType))
+	//{
+	//	return false;
+	//}
+	//
+	//Target->ResetEmissive();
+	//EmissiveOverride(Target, BuffMaterialParams[BuffType]);
+	//Target->bEmissiveActiveByBuff = true;
 
 	return true;
 }
 
 void UB2BuffModeEffectInfo::ResetBuffMaterial(class ABladeIICharacter* Target)
 {
-	Target->ResetEmissive();
-	Target->bEmissiveActiveByBuff = false;
+	//Target->ResetEmissive();
+	//Target->bEmissiveActiveByBuff = false;
 }
 
 UParticleSystemComponent* UB2BuffModeEffectInfo::CharacterBuffEffect(EBuffType BuffType, class ABladeIICharacter* Target, bool bEndEffect)
@@ -286,10 +287,10 @@ void UB2BuffModeEffectInfo::SpawnCharacterBuffTextEffect(EBuffType BuffType, cla
 
 void UB2BuffModeEffectInfo::SpawnBreakTextEffect(class ABladeIICharacter* InTarget)
 {
-	// 현재는 별다른 추가 파라미터가 없는데 누구의 Break 인가 등에 따른 추가 파라미터가 생길 수도..
-	if (InTarget == NULL || InTarget->GetMesh() == NULL){
-		return;
-	}	
+	//// 현재는 별다른 추가 파라미터가 없는데 누구의 Break 인가 등에 따른 추가 파라미터가 생길 수도..
+	//if (InTarget == NULL || InTarget->GetMesh() == NULL){
+	//	return;
+	//}	
 	//SpawnTextInner2D(InTarget, BreakTextUIEffectSetup, LoadedBreakTextUIEffectSetup);
 }
 
@@ -308,98 +309,98 @@ void UB2BuffModeEffectInfo::SpawnBreakTextEffect(class ABladeIICharacter* InTarg
 
 void UB2BuffModeEffectInfo::EmissiveOverride(class ABladeIICharacter* Target, const FB2MaterialParamData& Data)
 {
-	if (Target == NULL || Target->GetMesh() == NULL)
-	{
-		return;
-	}
+	//if (Target == NULL || Target->GetMesh() == NULL)
+	//{
+	//	return;
+	//}
 
-	for (int32 i = 0; i < Target->GetMesh()->GetNumMaterials(); ++i)
-	{
-		// Set Dynamic Material data
-		UMaterialInterface* MaterialInterface = Target->GetOriginalMaterial(i);
-		if (MaterialInterface)
-		{
-			UMaterialInstanceDynamic* DynamicMaterial = Cast<UMaterialInstanceDynamic>(MaterialInterface);
-			if (!DynamicMaterial) //Is it already a UMaterialInstanceDynamic
-			{
-				DynamicMaterial = Target->GetMesh()->CreateAndSetMaterialInstanceDynamic(i);
-			}
+	//for (int32 i = 0; i < Target->GetMesh()->GetNumMaterials(); ++i)
+	//{
+	//	// Set Dynamic Material data
+	//	UMaterialInterface* MaterialInterface = Target->GetOriginalMaterial(i);
+	//	if (MaterialInterface)
+	//	{
+	//		UMaterialInstanceDynamic* DynamicMaterial = Cast<UMaterialInstanceDynamic>(MaterialInterface);
+	//		if (!DynamicMaterial) //Is it already a UMaterialInstanceDynamic
+	//		{
+	//			DynamicMaterial = Target->GetMesh()->CreateAndSetMaterialInstanceDynamic(i);
+	//		}
 
-			if (Data.ColorParamName != NAME_None)
-			{
-				DynamicMaterial->SetVectorParameterValue(Data.ColorParamName, Data.ColorParamValue);
-			}
+	//		if (Data.ColorParamName != NAME_None)
+	//		{
+	//			DynamicMaterial->SetVectorParameterValue(Data.ColorParamName, Data.ColorParamValue);
+	//		}
 
-			for (int32 j = 0; j < Data.ScalarMaterialParams.Num(); ++j)
-			{
-				const auto& Param = Data.ScalarMaterialParams[j];
-				DynamicMaterial->SetScalarParameterValue(Param.MaterialParamName, Param.MaterialParamValue);
-			}
-		}
-	}
+	//		for (int32 j = 0; j < Data.ScalarMaterialParams.Num(); ++j)
+	//		{
+	//			const auto& Param = Data.ScalarMaterialParams[j];
+	//			DynamicMaterial->SetScalarParameterValue(Param.MaterialParamName, Param.MaterialParamValue);
+	//		}
+	//	}
+	//}
 }
 
 void UB2BuffModeEffectInfo::SpawnTextInner(class ABladeIICharacter* Target, class UParticleSystem* PST)
 {
-	if (PST == NULL || Target == NULL || Target->GetCapsuleComponent() == NULL)
-	{
-		return;
-	}
+	//if (PST == NULL || Target == NULL || Target->GetCapsuleComponent() == NULL)
+	//{
+	//	return;
+	//}
 
-	// Text effects should be bound to this, because it need to be coordinated with damage effect
-	APlayerController* PC =  Cast<APlayerController>(Target->GetController());
-	ULocalPlayer* const LP = PC ? PC->GetLocalPlayer() : nullptr;
-	if (LP && LP->ViewportClient)
-	{
-		// get the projection data
-		FSceneViewProjectionData ProjectionData;
-		if (LP->GetProjectionData(LP->ViewportClient->Viewport,ProjectionData))
-		{
-			FMatrix const ViewProjectionMatrix = ProjectionData.ComputeViewProjectionMatrix();
-			FMatrix const InvViewProjectionMatrix = ViewProjectionMatrix.InverseFast();
+	//// Text effects should be bound to this, because it need to be coordinated with damage effect
+	//APlayerController* PC =  Cast<APlayerController>(Target->GetController());
+	//ULocalPlayer* const LP = PC ? PC->GetLocalPlayer() : nullptr;
+	//if (LP && LP->ViewportClient)
+	//{
+	//	// get the projection data
+	//	FSceneViewProjectionData ProjectionData;
+	//	if (LP->GetProjectionData(LP->ViewportClient->Viewport,ProjectionData))
+	//	{
+	//		FMatrix const ViewProjectionMatrix = ProjectionData.ComputeViewProjectionMatrix();
+	//		FMatrix const InvViewProjectionMatrix = ViewProjectionMatrix.InverseFast();
 
-			FVector CameraRight = InvViewProjectionMatrix.TransformVector(FVector(Target->bValueForTextEffect ? 1.0f : -1.f, 0.0f, 0.0f)).GetSafeNormal();
+	//		FVector CameraRight = InvViewProjectionMatrix.TransformVector(FVector(Target->bValueForTextEffect ? 1.0f : -1.f, 0.0f, 0.0f)).GetSafeNormal();
 
-			float RandDirX = FMath::FRandRange(-1.0f, 1.0f);
-			float RandDirY = FMath::FRandRange(-1.0f, 1.0f);
-			FVector2D RandDir(RandDirX, RandDirY);
-			RandDir.Normalize();
+	//		float RandDirX = FMath::FRandRange(-1.0f, 1.0f);
+	//		float RandDirY = FMath::FRandRange(-1.0f, 1.0f);
+	//		FVector2D RandDir(RandDirX, RandDirY);
+	//		RandDir.Normalize();
 
-			FVector LocOffsetForText = TextLeftRightOffset * CameraRight + Target->GetActorLocation();
-			LocOffsetForText.X += TextRandomOffset * RandDir.X;
-			LocOffsetForText.Y += TextRandomOffset * RandDir.Y;
+	//		FVector LocOffsetForText = TextLeftRightOffset * CameraRight + Target->GetActorLocation();
+	//		LocOffsetForText.X += TextRandomOffset * RandDir.X;
+	//		LocOffsetForText.Y += TextRandomOffset * RandDir.Y;
 
-			FPlane Result = ViewProjectionMatrix.TransformFVector4(FVector4(LocOffsetForText, 1.f));
-			if (Result.W > 0.0f)
-			{
-				// the result of this will be x and y coords in -1..1 projection space
-				const float RHW = 1.0f / Result.W;
-				FPlane PosInScreenSpace = FPlane(Result.X * RHW, Result.Y * RHW, Result.Z * RHW, Result.W);
+	//		FPlane Result = ViewProjectionMatrix.TransformFVector4(FVector4(LocOffsetForText, 1.f));
+	//		if (Result.W > 0.0f)
+	//		{
+	//			// the result of this will be x and y coords in -1..1 projection space
+	//			const float RHW = 1.0f / Result.W;
+	//			FPlane PosInScreenSpace = FPlane(Result.X * RHW, Result.Y * RHW, Result.Z * RHW, Result.W);
 
-				const FVector4 RayStartProjectionSpace = FVector4(PosInScreenSpace.X, PosInScreenSpace.Y, 1.0f, 1.0f);
-				const FVector4 RayEndProjectionSpace = FVector4(PosInScreenSpace.X, PosInScreenSpace.Y, 0.5f, 1.0f);
+	//			const FVector4 RayStartProjectionSpace = FVector4(PosInScreenSpace.X, PosInScreenSpace.Y, 1.0f, 1.0f);
+	//			const FVector4 RayEndProjectionSpace = FVector4(PosInScreenSpace.X, PosInScreenSpace.Y, 0.5f, 1.0f);
 
-				const FVector4 HGRayStartWorldSpace = InvViewProjectionMatrix.TransformFVector4(RayStartProjectionSpace);
-				const FVector4 HGRayEndWorldSpace = InvViewProjectionMatrix.TransformFVector4(RayEndProjectionSpace);
-				FVector RayStartWorldSpace(HGRayStartWorldSpace.X, HGRayStartWorldSpace.Y, HGRayStartWorldSpace.Z);
-				FVector RayEndWorldSpace(HGRayEndWorldSpace.X, HGRayEndWorldSpace.Y, HGRayEndWorldSpace.Z);
-				// divide vectors by W to undo any projection and get the 3-space coordinate 
-				if (HGRayStartWorldSpace.W != 0.0f)
-				{
-					RayStartWorldSpace /= HGRayStartWorldSpace.W;
-				}
-				if (HGRayEndWorldSpace.W != 0.0f)
-				{
-					RayEndWorldSpace /= HGRayEndWorldSpace.W;
-				}
-				const FVector RayDirWorldSpace = (RayEndWorldSpace - RayStartWorldSpace).GetSafeNormal();
+	//			const FVector4 HGRayStartWorldSpace = InvViewProjectionMatrix.TransformFVector4(RayStartProjectionSpace);
+	//			const FVector4 HGRayEndWorldSpace = InvViewProjectionMatrix.TransformFVector4(RayEndProjectionSpace);
+	//			FVector RayStartWorldSpace(HGRayStartWorldSpace.X, HGRayStartWorldSpace.Y, HGRayStartWorldSpace.Z);
+	//			FVector RayEndWorldSpace(HGRayEndWorldSpace.X, HGRayEndWorldSpace.Y, HGRayEndWorldSpace.Z);
+	//			// divide vectors by W to undo any projection and get the 3-space coordinate 
+	//			if (HGRayStartWorldSpace.W != 0.0f)
+	//			{
+	//				RayStartWorldSpace /= HGRayStartWorldSpace.W;
+	//			}
+	//			if (HGRayEndWorldSpace.W != 0.0f)
+	//			{
+	//				RayEndWorldSpace /= HGRayEndWorldSpace.W;
+	//			}
+	//			const FVector RayDirWorldSpace = (RayEndWorldSpace - RayStartWorldSpace).GetSafeNormal();
 
-				UGameplayStatics::SpawnEmitterAtLocation(Target, PST, LocOffsetForText - Target->GetCapsuleComponent()->GetScaledCapsuleRadius() * RayDirWorldSpace);
-				Target->bValueForTextEffect = !Target->bValueForTextEffect;
-			}
+	//			UGameplayStatics::SpawnEmitterAtLocation(Target, PST, LocOffsetForText - Target->GetCapsuleComponent()->GetScaledCapsuleRadius() * RayDirWorldSpace);
+	//			Target->bValueForTextEffect = !Target->bValueForTextEffect;
+	//		}
 
-		}
-	}
+	//	}
+	//}
 }
 
 //void UB2BuffModeEffectInfo::SpawnTextInner2D(class ABladeIICharacter* Target, FFloatingAbnormalEffectSetupInfo& EffectCreateInfo, FLoadedFloatingAbnormalEffectSetupInfo& LoadedHolderRef)

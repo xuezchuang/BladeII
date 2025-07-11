@@ -3,7 +3,7 @@
 
 
 #include "B2InGameHUDInfo_Player.h"
-#include "B2LobbyGameMode.h"
+//#include "B2LobbyGameMode.h"
 //#include "B2PVPGameMode.h"
 //#include "B2RaidGameMode.h"
 //#include "B2CounterAttackGameMode.h"
@@ -16,11 +16,12 @@ UB2InGameHUDInfo_Player::UB2InGameHUDInfo_Player(const FObjectInitializer& Objec
 
 UMaterialInterface* UB2InGameHUDInfo_Player::GetPlayerPortrait(UObject* WorldContextObject)
 {
-	// 똑같이 생겨먹은 초상화지만 서로 다른 아틀라스에 속해 있어서 로비인지 전투맵인지에 따라 다르게 사용. 특수한 케이스임. 
-	// 걍 초상화 정도는 아틀라스에 안 넣고 별도로 쓰면 이럴 필요 없을 거 같은데..
-	AB2LobbyGameMode* B2LobbyGM = Cast<AB2LobbyGameMode>(UGameplayStatics::GetGameMode(WorldContextObject));
-	TSoftObjectPtr<UMaterialInterface>& TAssetToLoad = B2LobbyGM ? PlayerPortrait_Lobby : PlayerPortrait_InGameBattle;
-	return TAssetToLoad.LoadSynchronous();
+	//// 똑같이 생겨먹은 초상화지만 서로 다른 아틀라스에 속해 있어서 로비인지 전투맵인지에 따라 다르게 사용. 특수한 케이스임. 
+	//// 걍 초상화 정도는 아틀라스에 안 넣고 별도로 쓰면 이럴 필요 없을 거 같은데..
+	//AB2LobbyGameMode* B2LobbyGM = Cast<AB2LobbyGameMode>(UGameplayStatics::GetGameMode(WorldContextObject));
+	//TSoftObjectPtr<UMaterialInterface>& TAssetToLoad = B2LobbyGM ? PlayerPortrait_Lobby : PlayerPortrait_InGameBattle;
+	//return TAssetToLoad.LoadSynchronous();
+	return NULL;
 }
 
 UMaterialInterface* UB2InGameHUDInfo_Player::GetPlayerDeathPortrait(UObject* WorldContextObject)

@@ -1,19 +1,22 @@
 
 #include "B2UnitedWidgetBase.h"
-#include "MovieScene.h"
-//#include "Animation/WidgetAnimation.h"
-#include "B2UIManager.h"
-#include "B2UICommonTab.h"
-#include "Engine/UserInterfaceSettings.h"
-#include "B2HighlightWidget.h"
-#if WITH_EDITOR
-#include "Kismet2/BlueprintEditorUtils.h"
-#include "Editor/UMGEditor/Public/WidgetBlueprint.h"
-#endif
-#include "BladeIIGameMode.h"
-
-#include "FB2ErrorMessage.h"
-
+#include "BladeIIUtil.h"
+#include "Templates/SubclassOf.h"
+#include "../BladeII/BladeIILocText.h"
+//#include "MovieScene.h"
+////#include "Animation/WidgetAnimation.h"
+////#include "B2UIManager.h"
+////#include "B2UICommonTab.h"
+//#include "Engine/UserInterfaceSettings.h"
+////#include "B2HighlightWidget.h"
+//#if WITH_EDITOR
+//#include "Kismet2/BlueprintEditorUtils.h"
+//#include "Editor/UMGEditor/Public/WidgetBlueprint.h"
+//#endif
+//#include "BladeIIGameMode.h"
+//
+////#include "FB2ErrorMessage.h"
+//
 
 const FVector2D UB2UnitedWidgetBase::WrongScreenPosition = FVector2D(FLT_MAX, FLT_MAX);
 
@@ -27,27 +30,27 @@ bool UB2UnitedWidgetBase::bUseButtonStunForDuration = true;
 
 UB2UnitedWidgetBase::UB2UnitedWidgetBase(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
-	, GoodsPopupType(EGoodsInfoPopupType::EGoodsPopup_None)
+//	, GoodsPopupType(EGoodsInfoPopupType::EGoodsPopup_None)
 {
-	bForceHidden = false;
-	VisibilityBeforeForceHidden = ESlateVisibility::Visible;
-	DynCreatedDummyParent = NULL;
-	bButtonsStunnedThisTick = false;
-	bHasStunnedButtons = false;
-	bManualScrollBoxHandling_Sender = false;
-	bManualScrollBoxHandling_Receiver = false;
-	ManualScrollBoxSensitivity = 1.0f;
-	TimeSenderBtnAreaPressStarted = 0.0;
-	bSenderBtnAreaPressed = false;
-//	bIsManualScrollBoxTouching = false;
-	
-	bIsPooledObject = false;
-	bCurrentlyRentAsPooledObject = false;
-
-	if (GConfig)
-	{ // 여러 번 값을 가져오게 될 것.. 그냥 감안하고 여기에 둠.
-		GConfig->GetBool(TEXT("/Script/BladeII"), TEXT("UseButtonStunForDuration"), bUseButtonStunForDuration, GGameIni);
-	}
+//	bForceHidden = false;
+//	VisibilityBeforeForceHidden = ESlateVisibility::Visible;
+//	DynCreatedDummyParent = NULL;
+//	bButtonsStunnedThisTick = false;
+//	bHasStunnedButtons = false;
+//	bManualScrollBoxHandling_Sender = false;
+//	bManualScrollBoxHandling_Receiver = false;
+//	ManualScrollBoxSensitivity = 1.0f;
+//	TimeSenderBtnAreaPressStarted = 0.0;
+//	bSenderBtnAreaPressed = false;
+////	bIsManualScrollBoxTouching = false;
+//	
+//	bIsPooledObject = false;
+//	bCurrentlyRentAsPooledObject = false;
+//
+//	if (GConfig)
+//	{ // 여러 번 값을 가져오게 될 것.. 그냥 감안하고 여기에 둠.
+//		GConfig->GetBool(TEXT("/Script/BladeII"), TEXT("UseButtonStunForDuration"), bUseButtonStunForDuration, GGameIni);
+//	}
 }
 
 void UB2UnitedWidgetBase::NativeConstruct()
@@ -260,7 +263,7 @@ UWidget* UB2UnitedWidgetBase::GetSlotInternal(FName SlotName, UClass* TargetClas
 
 void UB2UnitedWidgetBase::GetSlotInternal(UWidget* CurrentWidget)
 {
-	BLADE2_SCOPE_CYCLE_COUNTER(UB2UnitedWidgetBase_GetSlotInternal);
+	//BLADE2_SCOPE_CYCLE_COUNTER(UB2UnitedWidgetBase_GetSlotInternal);
 	if (CurrentWidget == nullptr)
 		return;
 
@@ -328,60 +331,60 @@ void UB2UnitedWidgetBase::GetSlotInternal(UWidget* CurrentWidget)
 	}
 }
 
-#if 0 // 이 기능 있으면 나쁠 거 없는데.. 혹시 아는 사람 있으면 구현 시도를..
-UWidgetAnimation* UB2UnitedWidgetBase::GetAnimation(FString AnimName, UWidget* BaseWidget)
-{
-	// 현재 이 기능은 제대로 동작하지 않으며 사용하지 말 것.
-	// 아래 WidgetAnim 의 Outer 는 WidgetBlueprint 이지 UserWidget 이 아니다.
-	// 게다가 WidgetBlueprint 가 Editor 용 오브젝트란 건 덤.
-	// 물론 이렇게 ObjectIterator 를 도는 것도 별로 좋아보이지 않음.
-
-	// check 를 걸고 싶지만 빌드 안정성을 위해 지금 당장 릴리즈 크래쉬는 내지 않는다.
-	//checkSlow(0);
-
-	//for (TObjectIterator<UWidgetAnimation> It; It; ++It)
-	//{
-	//	UWidgetAnimation* WidgetAnim = *It;
-
-	//	if (WidgetAnim->MovieScene->GetName() == AnimName && WidgetAnim->GetOuter() == BaseWidget)
-	//	{
-	//		return WidgetAnim;
-	//	}
-	//}
-	return nullptr;
-}
-#endif
-
-void UB2UnitedWidgetBase::DestroySelfCommon()
-{
-	BLADE2_SCOPE_CYCLE_COUNTER(UB2UnitedWidgetBase_DestroySelfCommon);
-	//UnRegisterUIMarkForRedDot();
-	//ClearUITabList();
-
-	//ColorToMIDParamMappedImages.Empty();
-	//AllB2Buttons.Empty();
-	//TickableButtons.Empty();
-
-	//if (WidgetTree)
-	//{
-	//	WidgetTree->ForEachWidget([&](UWidget* Widget) {
-	//		if (UB2Button* CastedB2Button = Cast<UB2Button>(Widget))
-	//		{
-	//			CastedB2Button->UnregisterExtraStuff(this);
-	//		}
-	//	});
-	//}
-
-	//ConditionalClearDynCreatedDummyParent();
-
-	//RemoveFromParent();
-	//RemoveFromViewport();
-	//// A little special case as a slate widget.
-	//MarkPendingKill();
-
-	//UnRegisterUIMarkForRedDot();
-}
-
+//#if 0 // 이 기능 있으면 나쁠 거 없는데.. 혹시 아는 사람 있으면 구현 시도를..
+//UWidgetAnimation* UB2UnitedWidgetBase::GetAnimation(FString AnimName, UWidget* BaseWidget)
+//{
+//	// 현재 이 기능은 제대로 동작하지 않으며 사용하지 말 것.
+//	// 아래 WidgetAnim 의 Outer 는 WidgetBlueprint 이지 UserWidget 이 아니다.
+//	// 게다가 WidgetBlueprint 가 Editor 용 오브젝트란 건 덤.
+//	// 물론 이렇게 ObjectIterator 를 도는 것도 별로 좋아보이지 않음.
+//
+//	// check 를 걸고 싶지만 빌드 안정성을 위해 지금 당장 릴리즈 크래쉬는 내지 않는다.
+//	//checkSlow(0);
+//
+//	//for (TObjectIterator<UWidgetAnimation> It; It; ++It)
+//	//{
+//	//	UWidgetAnimation* WidgetAnim = *It;
+//
+//	//	if (WidgetAnim->MovieScene->GetName() == AnimName && WidgetAnim->GetOuter() == BaseWidget)
+//	//	{
+//	//		return WidgetAnim;
+//	//	}
+//	//}
+//	return nullptr;
+//}
+//#endif
+//
+//void UB2UnitedWidgetBase::DestroySelfCommon()
+//{
+//	BLADE2_SCOPE_CYCLE_COUNTER(UB2UnitedWidgetBase_DestroySelfCommon);
+//	//UnRegisterUIMarkForRedDot();
+//	//ClearUITabList();
+//
+//	//ColorToMIDParamMappedImages.Empty();
+//	//AllB2Buttons.Empty();
+//	//TickableButtons.Empty();
+//
+//	//if (WidgetTree)
+//	//{
+//	//	WidgetTree->ForEachWidget([&](UWidget* Widget) {
+//	//		if (UB2Button* CastedB2Button = Cast<UB2Button>(Widget))
+//	//		{
+//	//			CastedB2Button->UnregisterExtraStuff(this);
+//	//		}
+//	//	});
+//	//}
+//
+//	//ConditionalClearDynCreatedDummyParent();
+//
+//	//RemoveFromParent();
+//	//RemoveFromViewport();
+//	//// A little special case as a slate widget.
+//	//MarkPendingKill();
+//
+//	//UnRegisterUIMarkForRedDot();
+//}
+//
 void UB2UnitedWidgetBase::UnRegisterUIMarkForRedDot()
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2UnitedWidgetBase_UnRegisterUIMarkForRedDot);
@@ -393,149 +396,149 @@ void UB2UnitedWidgetBase::UnRegisterUIMarkForRedDot()
 
 void UB2UnitedWidgetBase::DoMarkRedDot()
 {
-	BLADE2_SCOPE_CYCLE_COUNTER(UB2UnitedWidgetBase_DoMarkRedDot);
-	for (auto& RedDotCondition : RedDotConditionCheckList)
-	{
-		if (RedDotCondition.RedDotWidget)
-		{
-			bool bShowRedDot = false;
-			checkSlow(RedDotCondition.ConditionCheckHandler.IsBound()); // 이전 구현에 바로 RedDotCondition.ConditionCheckHandler.Execute 콜을 했던 걸 볼 때 기본 가정은 Bound 되어야 하는 것인듯..
-			bShowRedDot = RedDotCondition.ConditionCheckHandler.IsBound() ? RedDotCondition.ConditionCheckHandler.Execute() : false;
-			RedDotCondition.RedDotWidget->SetVisibility(bShowRedDot ? ESlateVisibility::SelfHitTestInvisible : ESlateVisibility::Hidden);
-			RedDotCondition.OnRedDotNotify.ExecuteIfBound(bShowRedDot);
-		}
-	}
+//	BLADE2_SCOPE_CYCLE_COUNTER(UB2UnitedWidgetBase_DoMarkRedDot);
+//	for (auto& RedDotCondition : RedDotConditionCheckList)
+//	{
+//		if (RedDotCondition.RedDotWidget)
+//		{
+//			bool bShowRedDot = false;
+//			checkSlow(RedDotCondition.ConditionCheckHandler.IsBound()); // 이전 구현에 바로 RedDotCondition.ConditionCheckHandler.Execute 콜을 했던 걸 볼 때 기본 가정은 Bound 되어야 하는 것인듯..
+//			bShowRedDot = RedDotCondition.ConditionCheckHandler.IsBound() ? RedDotCondition.ConditionCheckHandler.Execute() : false;
+//			RedDotCondition.RedDotWidget->SetVisibility(bShowRedDot ? ESlateVisibility::SelfHitTestInvisible : ESlateVisibility::Hidden);
+//			RedDotCondition.OnRedDotNotify.ExecuteIfBound(bShowRedDot);
+//		}
+//	}
 }
-
-void UB2UnitedWidgetBase::ForceMarkRedDot(bool bShow)
-{
-	BLADE2_SCOPE_CYCLE_COUNTER(UB2UnitedWidgetBase_ForceMarkRedDot);
-	for (auto& RedDotCondition : RedDotConditionCheckList)
-	{
-		if (RedDotCondition.RedDotWidget)
-		{
-			RedDotCondition.RedDotWidget->SetVisibility(bShow ? ESlateVisibility::SelfHitTestInvisible : ESlateVisibility::Hidden);
-			RedDotCondition.OnRedDotNotify.ExecuteIfBound(bShow);
-		}
-	}
-}
-
-void UB2UnitedWidgetBase::SetButtonsStunForDuration(UB2Button* InJustPressedButton)
-{
-	BLADE2_SCOPE_CYCLE_COUNTER(UB2UnitedWidgetBase_RestoreButtonsFromSingleTickDisable);
-	if (bButtonsStunnedThisTick || !bUseButtonStunForDuration) {
-		// Slate 에서 처리하는 것에 따라 한 틱에 이게 여러번 들어올 수 있을지도. 걍 젤 먼저 들어온 것에 대해서만 반응..
-		return; // 근데 실제로 그런 상황이라면 이 코드가 무용지물인 거 아닌가.. 여럿 들어올 수 있다는 거 자체가..
-	}
-
-	for (UB2Button* ThisBtn : AllB2Buttons)
-	{
-		if (ThisBtn 
-			// 이미 Stun 상태인 것을 중복 호출하면 시간 카운트가 리셋되어서 더 긴 시간 stun 이 되는데.. 중복 호출하는 게 맞나 아님 스킵하는 게 나은가..
-			&& !ThisBtn->IsStunned()
-			// 이걸 호출한 당사자가 단일 tick 만 stun 걸리는 버튼이라면 자신은 stun 하지 않고, 일정 시간 stun 이라면 자신도 stun.
-			// 단일 tick stun 은 적어도 자주 눌리고 빠른 반응이 필요할 수 있는 버튼으로 간주하고, 일정 시간 stun 은 그 자체로서 자신도 stun 해야 맞는 것.
-			&& (!InJustPressedButton || !InJustPressedButton->ShouldStunSingleTickOnly() || (ThisBtn != InJustPressedButton))
-			) 
-		{ 
-			// SetIsEnabled 대신 따로 마련한 걸 사용. SetIsEnabled 은 기타 다른 목적으로 사용될 수 있기 때문.
-			ThisBtn->StunForDuration();
-		}
-	}
-	bButtonsStunnedThisTick = true; // 이건 단지 한 틱 유지 후 리셋될 것.
-	bHasStunnedButtons = true; // 이건 모두 해제될 때까지 true
-}
-
-void UB2UnitedWidgetBase::RestoreButtonsFromStun()
-{
-	BLADE2_SCOPE_CYCLE_COUNTER(UB2UnitedWidgetBase_RestoreButtonsFromSingleTickDisable);
-
-	bButtonsStunnedThisTick = false; // 이건 바로 리셋
-	int32 StunnedButtonCount = 0;
-	for (UB2Button* ThisBtn : AllB2Buttons)
-	{
-		if (ThisBtn) 
-		{
-			ThisBtn->TryRestoreFromStun();
-			if (ThisBtn->IsStunned()) {
-				++StunnedButtonCount;
-			}
-		}
-	}
-
-	if (StunnedButtonCount == 0)
-	{
-		bHasStunnedButtons = false; // 이후 다시 SetButtonsStunForDuration 호출시까지 이 루틴을 쉬게 된다.
-	}
-}
-
-void UB2UnitedWidgetBase::ForceHide()
-{
-	BLADE2_SCOPE_CYCLE_COUNTER(UB2UnitedWidgetBase_ForceHide);
-	if (bForceHidden == false)
-	{
-		bForceHidden = true;
-		UWidget* RootWidget = GetRootWidget();
-		if (RootWidget)
-		{
-			VisibilityBeforeForceHidden = RootWidget->GetVisibility();	//루트위젯의 Visibility를 조절하지 않고, 최종컨테이너의 Visibility를 조절하면 Open/Close 단의 숨김처리와 엉킴
-			RootWidget->SetVisibility(ESlateVisibility::Hidden);
-		}
-
-		// ImpulseRing 을 쓰는 애들은 TickableButtons 에 포함되므로 Hide 시 Stop 해 줌. 아마 hide 이후에 Release 신호 못받는 듯.
-		for (UB2Button* CurrBtn : TickableButtons)
-		{
-			if (CurrBtn)
-			{
-				CurrBtn->CustomStopOnTouchImpulseRing();
-			}
-		}
-	}
-}
-
-void UB2UnitedWidgetBase::RestoreFromForceHidden()
-{
-	BLADE2_SCOPE_CYCLE_COUNTER(UB2UnitedWidgetBase_RestoreFromForceHidden);
-	if (bForceHidden == true)
-	{
-		bForceHidden = false;
-		// 마지막 ForceHide 이후에 SetVisibility 를 했다면 무시됨.
-		UWidget* RootWidget = GetRootWidget();
-		if (RootWidget && 
-			!ShouldBeHiddenAsPooledObject() // PooledObject 의 visibility 처리는 또한 필요에 따라 직접 껀바이껀으로도..
-			)
-		{
-			RootWidget->SetVisibility(VisibilityBeforeForceHidden);
-		}
-	}
-}
-
-FVector2D UB2UnitedWidgetBase::GetDesignToCurrentViewScale(class APlayerController* InPlayerController, bool bIgnoreNonScaledSide)
-{
-	BLADE2_SCOPE_CYCLE_COUNTER(UB2UnitedWidgetBase_GetDesignToCurrentViewScale);
-
-	const UUserInterfaceSettings* UISettings = GetDefault<UUserInterfaceSettings>(UUserInterfaceSettings::StaticClass());
-	// LongestSide 나 Horizontal 이면 Y 방향 해상도 변화에 따른 stretch 는 없을 것.
-	const bool bIgnoreY = (UISettings && (UISettings->UIScaleRule == EUIScalingRule::LongestSide || UISettings->UIScaleRule == EUIScalingRule::Horizontal));
-
-	FVector2D RetScale(1.0f, 1.0f);
-	if (InPlayerController && UISettings)
-	{
-		int32 ViewSizeX, ViewSizeY;
-		InPlayerController->GetViewportSize(ViewSizeX, ViewSizeY);
-		// UIScaleRule 에 따라 실제로 stretch 되지 않는 방향으로는 scale 을 무시
-		if (bIgnoreY)
-		{
-			RetScale = FVector2D((float)ViewSizeX / DesignedRefViewSize.X, bIgnoreNonScaledSide ? 1.0f : ((float)ViewSizeY / DesignedRefViewSize.Y));
-		}
-		else
-		{
-			RetScale = FVector2D(bIgnoreNonScaledSide ? 1.0f : ((float)ViewSizeX / DesignedRefViewSize.X), (float)ViewSizeY / DesignedRefViewSize.Y);
-		}
-	}
-	return RetScale;
-}
-
+//
+//void UB2UnitedWidgetBase::ForceMarkRedDot(bool bShow)
+//{
+//	BLADE2_SCOPE_CYCLE_COUNTER(UB2UnitedWidgetBase_ForceMarkRedDot);
+//	for (auto& RedDotCondition : RedDotConditionCheckList)
+//	{
+//		if (RedDotCondition.RedDotWidget)
+//		{
+//			RedDotCondition.RedDotWidget->SetVisibility(bShow ? ESlateVisibility::SelfHitTestInvisible : ESlateVisibility::Hidden);
+//			RedDotCondition.OnRedDotNotify.ExecuteIfBound(bShow);
+//		}
+//	}
+//}
+//
+////void UB2UnitedWidgetBase::SetButtonsStunForDuration(UB2Button* InJustPressedButton)
+////{
+//	//BLADE2_SCOPE_CYCLE_COUNTER(UB2UnitedWidgetBase_RestoreButtonsFromSingleTickDisable);
+//	//if (bButtonsStunnedThisTick || !bUseButtonStunForDuration) {
+//	//	// Slate 에서 처리하는 것에 따라 한 틱에 이게 여러번 들어올 수 있을지도. 걍 젤 먼저 들어온 것에 대해서만 반응..
+//	//	return; // 근데 실제로 그런 상황이라면 이 코드가 무용지물인 거 아닌가.. 여럿 들어올 수 있다는 거 자체가..
+//	//}
+//
+//	//for (UB2Button* ThisBtn : AllB2Buttons)
+//	//{
+//	//	if (ThisBtn 
+//	//		// 이미 Stun 상태인 것을 중복 호출하면 시간 카운트가 리셋되어서 더 긴 시간 stun 이 되는데.. 중복 호출하는 게 맞나 아님 스킵하는 게 나은가..
+//	//		&& !ThisBtn->IsStunned()
+//	//		// 이걸 호출한 당사자가 단일 tick 만 stun 걸리는 버튼이라면 자신은 stun 하지 않고, 일정 시간 stun 이라면 자신도 stun.
+//	//		// 단일 tick stun 은 적어도 자주 눌리고 빠른 반응이 필요할 수 있는 버튼으로 간주하고, 일정 시간 stun 은 그 자체로서 자신도 stun 해야 맞는 것.
+//	//		&& (!InJustPressedButton || !InJustPressedButton->ShouldStunSingleTickOnly() || (ThisBtn != InJustPressedButton))
+//	//		) 
+//	//	{ 
+//	//		// SetIsEnabled 대신 따로 마련한 걸 사용. SetIsEnabled 은 기타 다른 목적으로 사용될 수 있기 때문.
+//	//		ThisBtn->StunForDuration();
+//	//	}
+//	//}
+//	//bButtonsStunnedThisTick = true; // 이건 단지 한 틱 유지 후 리셋될 것.
+//	//bHasStunnedButtons = true; // 이건 모두 해제될 때까지 true
+////}
+//
+//void UB2UnitedWidgetBase::RestoreButtonsFromStun()
+//{
+//	BLADE2_SCOPE_CYCLE_COUNTER(UB2UnitedWidgetBase_RestoreButtonsFromSingleTickDisable);
+//
+//	bButtonsStunnedThisTick = false; // 이건 바로 리셋
+//	int32 StunnedButtonCount = 0;
+//	for (UB2Button* ThisBtn : AllB2Buttons)
+//	{
+//		if (ThisBtn) 
+//		{
+//			ThisBtn->TryRestoreFromStun();
+//			if (ThisBtn->IsStunned()) {
+//				++StunnedButtonCount;
+//			}
+//		}
+//	}
+//
+//	if (StunnedButtonCount == 0)
+//	{
+//		bHasStunnedButtons = false; // 이후 다시 SetButtonsStunForDuration 호출시까지 이 루틴을 쉬게 된다.
+//	}
+//}
+//
+//void UB2UnitedWidgetBase::ForceHide()
+//{
+//	BLADE2_SCOPE_CYCLE_COUNTER(UB2UnitedWidgetBase_ForceHide);
+//	if (bForceHidden == false)
+//	{
+//		bForceHidden = true;
+//		UWidget* RootWidget = GetRootWidget();
+//		if (RootWidget)
+//		{
+//			VisibilityBeforeForceHidden = RootWidget->GetVisibility();	//루트위젯의 Visibility를 조절하지 않고, 최종컨테이너의 Visibility를 조절하면 Open/Close 단의 숨김처리와 엉킴
+//			RootWidget->SetVisibility(ESlateVisibility::Hidden);
+//		}
+//
+//		// ImpulseRing 을 쓰는 애들은 TickableButtons 에 포함되므로 Hide 시 Stop 해 줌. 아마 hide 이후에 Release 신호 못받는 듯.
+//		for (UB2Button* CurrBtn : TickableButtons)
+//		{
+//			if (CurrBtn)
+//			{
+//				CurrBtn->CustomStopOnTouchImpulseRing();
+//			}
+//		}
+//	}
+//}
+//
+//void UB2UnitedWidgetBase::RestoreFromForceHidden()
+//{
+//	BLADE2_SCOPE_CYCLE_COUNTER(UB2UnitedWidgetBase_RestoreFromForceHidden);
+//	if (bForceHidden == true)
+//	{
+//		bForceHidden = false;
+//		// 마지막 ForceHide 이후에 SetVisibility 를 했다면 무시됨.
+//		UWidget* RootWidget = GetRootWidget();
+//		if (RootWidget && 
+//			!ShouldBeHiddenAsPooledObject() // PooledObject 의 visibility 처리는 또한 필요에 따라 직접 껀바이껀으로도..
+//			)
+//		{
+//			RootWidget->SetVisibility(VisibilityBeforeForceHidden);
+//		}
+//	}
+//}
+//
+//FVector2D UB2UnitedWidgetBase::GetDesignToCurrentViewScale(class APlayerController* InPlayerController, bool bIgnoreNonScaledSide)
+//{
+//	BLADE2_SCOPE_CYCLE_COUNTER(UB2UnitedWidgetBase_GetDesignToCurrentViewScale);
+//
+//	const UUserInterfaceSettings* UISettings = GetDefault<UUserInterfaceSettings>(UUserInterfaceSettings::StaticClass());
+//	// LongestSide 나 Horizontal 이면 Y 방향 해상도 변화에 따른 stretch 는 없을 것.
+//	const bool bIgnoreY = (UISettings && (UISettings->UIScaleRule == EUIScalingRule::LongestSide || UISettings->UIScaleRule == EUIScalingRule::Horizontal));
+//
+//	FVector2D RetScale(1.0f, 1.0f);
+//	if (InPlayerController && UISettings)
+//	{
+//		int32 ViewSizeX, ViewSizeY;
+//		InPlayerController->GetViewportSize(ViewSizeX, ViewSizeY);
+//		// UIScaleRule 에 따라 실제로 stretch 되지 않는 방향으로는 scale 을 무시
+//		if (bIgnoreY)
+//		{
+//			RetScale = FVector2D((float)ViewSizeX / DesignedRefViewSize.X, bIgnoreNonScaledSide ? 1.0f : ((float)ViewSizeY / DesignedRefViewSize.Y));
+//		}
+//		else
+//		{
+//			RetScale = FVector2D(bIgnoreNonScaledSide ? 1.0f : ((float)ViewSizeX / DesignedRefViewSize.X), (float)ViewSizeY / DesignedRefViewSize.Y);
+//		}
+//	}
+//	return RetScale;
+//}
+//
 bool UB2UnitedWidgetBase::HACKGetWidgetScreenCoord(UWidget* InWidget, APlayerController* InPC, FVector2D& OutResultCoord, bool bWidgetCenterCoord, bool bIgnoreNonScaledSide)
 {
 #if 1
@@ -808,7 +811,8 @@ UB2UnitedWidgetBase* UB2UnitedWidgetBase::DynCreateInWrapBox(TSubclassOf<UB2Unit
 	}
 
 	UB2UnitedWidgetBase* CreatedWidget = CreateWidget<UB2UnitedWidgetBase>(OwnerUserWidget->GetOwningPlayer(), InClass);
-	if (CreatedWidget == NULL){
+	if (CreatedWidget == NULL)
+	{
 		return NULL;
 	}
 
@@ -899,25 +903,25 @@ void UB2UnitedWidgetBase::AddActiveHighlight(FVector2D fv2Size)
 //================================================================================
 // Manual Scroll-Box handling. 
 
-void UB2UnitedWidgetBase::SetupManualScrollBoxSender_byReceiver(UB2UnitedWidgetBase* InReceiver, UB2ScrollBox* HandlingScrollBox)
-{ // Receiver 쪽에서 불러줌. Sender 는 보통 Receiver 안에 있는 하위 파트일 것이므로.
-	BLADE2_SCOPE_CYCLE_COUNTER(UB2UnitedWidgetBase_SetupManualScrollBoxSender_byReceiver);
-	//if (InReceiver && HandlingScrollBox)
-	//{
-	//	// Sender 쪽 Visibility 세팅은 필요에 따라 적절히..
-	//	this->bManualScrollBoxHandling_Sender = true;
-	//	InReceiver->bManualScrollBoxHandling_Receiver = true;
-
-	//	MyManualScrollBoxHandlingReceiver = InReceiver;
-	//	MyManualScrollBox = HandlingScrollBox;
-
-	//	OnSetupManualScrollBoxSender(InReceiver, HandlingScrollBox);
-	//}
-	//else
-	//{
-	//	this->bManualScrollBoxHandling_Sender = false;
-	//}
-}
+//void UB2UnitedWidgetBase::SetupManualScrollBoxSender_byReceiver(UB2UnitedWidgetBase* InReceiver, UB2ScrollBox* HandlingScrollBox)
+//{ // Receiver 쪽에서 불러줌. Sender 는 보통 Receiver 안에 있는 하위 파트일 것이므로.
+//	BLADE2_SCOPE_CYCLE_COUNTER(UB2UnitedWidgetBase_SetupManualScrollBoxSender_byReceiver);
+//	//if (InReceiver && HandlingScrollBox)
+//	//{
+//	//	// Sender 쪽 Visibility 세팅은 필요에 따라 적절히..
+//	//	this->bManualScrollBoxHandling_Sender = true;
+//	//	InReceiver->bManualScrollBoxHandling_Receiver = true;
+//
+//	//	MyManualScrollBoxHandlingReceiver = InReceiver;
+//	//	MyManualScrollBox = HandlingScrollBox;
+//
+//	//	OnSetupManualScrollBoxSender(InReceiver, HandlingScrollBox);
+//	//}
+//	//else
+//	//{
+//	//	this->bManualScrollBoxHandling_Sender = false;
+//	//}
+//}
 
 //////////
 
@@ -1448,183 +1452,183 @@ FString FProgressiveTextBuilder::GetCurrentString() const
 	return rtnString; 
 }
 
-#if WITH_EDITOR && !PLATFORM_MAC
-void ReplaceSubWidgetClass(UWidgetBlueprint* BasePage, TSubclassOf<UPanelWidget> ClassTobeRemoved, TSubclassOf<UPanelWidget> ClassToReplace, bool bSilent)
-{
-	BLADE2_SCOPE_CYCLE_COUNTER(ReplaceSubWidgetClass);
-	//if (!BasePage || !ClassTobeRemoved || !ClassToReplace || !BasePage->WidgetTree){
-	//	return;
-	//}
-
-	//if (!bSilent && FB2ErrorMessage::Open(EAppMsgType::OkCancel, FText::FromString(
-	//	FString::Printf(TEXT("해당 기능 사용 도중에 컴퓨터가 폭발할 수 있음. 미처 저장하지 못한 작업물이 있다면 지금 취소한 후 다시 시도하시오."))
-	//	)) == EAppReturnType::Cancel)
-	//{
-	//	return;
-	//}
-
-	//int32 AllReplacedNum = 0;
-	//FString ResultMessage;
-
-	//TArray<FString> AllChangedWidgetNames;
-
-	//// FWidgetBlueprintEditorUtils::ReplaceWidgets 참고
-
-	//BasePage->WidgetTree->ForEachWidget([&](UWidget* CurrWidget) {
-
-	//	UPanelWidget* CastedExistingPW = Cast<UPanelWidget>(CurrWidget);
-	//	if (CastedExistingPW && CastedExistingPW->IsA(ClassTobeRemoved) && !CastedExistingPW->IsA(ClassToReplace))
-	//	{
-	//		UPanelWidget* NewReplacement = BasePage->WidgetTree->ConstructWidget<UPanelWidget>(ClassToReplace, NAME_None);
-	//		NewReplacement->OnCreationFromPalette();
-
-	//		if (CastedExistingPW && NewReplacement)
-	//		{
-	//			CastedExistingPW->Modify();
-
-	//			if (UPanelWidget* CurrentParent = CastedExistingPW->GetParent())
-	//			{
-	//				CurrentParent->Modify();
-	//				CurrentParent->ReplaceChild(CastedExistingPW, NewReplacement);
-	//			}
-	//			else
-	//			{
-	//				check(0); // 루트를 갈아치우려는 경우?
-	//			}
-
-	//			while (CastedExistingPW->GetChildrenCount() > 0) // 자식들도 새 엄마에게
-	//			{
-	//				UWidget* Widget = CastedExistingPW->GetChildAt(0);
-	//				Widget->Modify();
-
-	//				UPanelSlot* OldSlot = Widget->Slot;
-	//				UPanelSlot* NewAddedSlot = NewReplacement->AddChild(Widget);
-
-	//				// 바꾸려는 버튼 아래에 오버레이를 까는 경우가 있어서 속성값 좀 전달. 여타 다른 경우도 많겠지만.
-	//				UButtonSlot* NewAddedButtonSlot = Cast<UButtonSlot>(NewAddedSlot);
-	//				UButtonSlot* OldButtonSlot = Cast<UButtonSlot>(OldSlot);
-	//				if (NewAddedButtonSlot && OldButtonSlot)
-	//				{
-	//					NewAddedButtonSlot->SetHorizontalAlignment(OldButtonSlot->HorizontalAlignment);
-	//					NewAddedButtonSlot->SetVerticalAlignment(OldButtonSlot->VerticalAlignment);
-	//					NewAddedButtonSlot->SetPadding(OldButtonSlot->Padding);
-	//				}
-	//			}
-
-	//			// FWidgetBlueprintEditorUtils::ReplaceWidgets 쪽에도 해 놓은 변경들. 몇가지 편의 사항
-
-	//			FString ExistingPanelName = CastedExistingPW->GetName();
-	//			UObject* ExistingPanelOuter = CastedExistingPW->GetOuter();
-
-	//			// Rename the removed widget to the transient package so that it doesn't conflict with future widgets sharing the same name.
-	//			CastedExistingPW->Rename(nullptr, nullptr);
-	//			NewReplacement->Rename(*ExistingPanelName, ExistingPanelOuter);
-
-	//			AllChangedWidgetNames.Add(ExistingPanelName);
-
-	//			// 속성들 되는대로 맞춰주기. 기본 크기, 앵커 등은 Slot 설정이라 할 필요 없음.
-	//			NewReplacement->SetVisibility(CastedExistingPW->GetVisibility());
-	//			NewReplacement->SetIsEnabled(CastedExistingPW->GetIsEnabled());
-	//			NewReplacement->SetRenderTransform(CastedExistingPW->RenderTransform);
-	//			NewReplacement->SetRenderTransformPivot(CastedExistingPW->RenderTransformPivot);
-
-	//			// B2Button 교체 special. For faster UBtton to UB2Button replacement
-	//			UButton* CastedExistingButton = Cast<UButton>(CastedExistingPW);
-	//			UButton* CastedNewButton = Cast<UButton>(NewReplacement);
-	//			if (CastedExistingButton && CastedNewButton)
-	//			{
-	//				CastedNewButton->SetStyle(CastedExistingButton->WidgetStyle);
-	//				CastedNewButton->SetColorAndOpacity(CastedExistingButton->ColorAndOpacity);
-	//				CastedNewButton->SetBackgroundColor(CastedExistingButton->BackgroundColor);
-	//			}
-
-	//			++AllReplacedNum;
-	//		}
-	//	}
-	//});
-
-	//if (AllReplacedNum > 0)
-	//{
-	//	FBlueprintEditorUtils::MarkBlueprintAsStructurallyModified(BasePage);
-
-	//	ResultMessage += FString::Printf(TEXT("%s 에 배치된 %d 개의 %s 들을 %s (으)로 변경\n\n"), *BasePage->GetName(), AllReplacedNum, *ClassTobeRemoved->GetName(), *ClassToReplace->GetName());
-
-	//	for (int32 NI = 0; NI < AllChangedWidgetNames.Num(); ++NI)
-	//	{
-	//		ResultMessage += AllChangedWidgetNames[NI];
-	//		if (NI != AllChangedWidgetNames.Num() - 1){
-	//			ResultMessage += TEXT(", ");
-	//		}
-	//		else{
-	//			ResultMessage += TEXT("\n\n");
-	//		}
-	//	}
-
-	//	ResultMessage += TEXT("모든 설정들이 복사되는 것은 아니므로 바뀐 widget 들의 세부 설정들을 직접 확인해 보시기 바랍니다.");
-	//}
-	//else
-	//{
-	//	ResultMessage = FString::Printf(TEXT("%s 에서 바뀐 widget 이 없습니다."), *BasePage->GetName());
-	//}
-	//if (bSilent)
-	//{
-	//	UE_LOG(LogBladeII, Log, TEXT("%s"), *ResultMessage);
-	//}
-	//else
-	//{
-	//	FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(ResultMessage));
-	//}
-}
-
-void ForceSetButtonClickSoundIndex(class UWidgetBlueprint* BasePage, int32 InSoundIndex, bool bSilent)
-{
-	BLADE2_SCOPE_CYCLE_COUNTER(ForceSetButtonClickSoundIndex);
-	if (!BasePage || !BasePage->WidgetTree){
-		return;
-	}
-
-	int32 AllSetNum = 0;
-	FString ResultMessage;
-	TArray<FString> AllChangedButtonNames;
-
-	BasePage->WidgetTree->ForEachWidget([&](UWidget* CurrWidget) {
-		UB2Button* CastedB2Button = Cast<UB2Button>(CurrWidget);
-		if (CastedB2Button)
-		{
-			CastedB2Button->EditorOnlySetClickSoundIndex(InSoundIndex);
-			AllChangedButtonNames.Add(CastedB2Button->GetName());
-			++AllSetNum;
-		}
-	});
-
-	if (AllSetNum > 0)
-	{
-		FBlueprintEditorUtils::MarkBlueprintAsStructurallyModified(BasePage);
-
-		//ResultMessage += FString::Printf(TEXT("%s 에 배치된 %d 개의 B2Button 들의 DefaultOnClickSoundIndex 값을 %d (으)로 변경\n\n"), *BasePage->GetName(), AllSetNum, InSoundIndex);
-
-		for (int32 NI = 0; NI < AllChangedButtonNames.Num(); ++NI)
-		{
-			ResultMessage += AllChangedButtonNames[NI];
-			if (NI != AllChangedButtonNames.Num() - 1){
-				ResultMessage += TEXT(", ");
-			}
-		}
-	}
-	else
-	{
-		ResultMessage = FString::Printf(TEXT("%s 에서 바뀐 widget 이 없습니다."), *BasePage->GetName());
-	}
-	if (bSilent)
-	{
-		UE_LOG(LogBladeII, Log, TEXT("%s"), *ResultMessage);
-	}
-	else
-	{
-		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(ResultMessage));
-	}
-}
-#endif
+//#if WITH_EDITOR && !PLATFORM_MAC
+//void ReplaceSubWidgetClass(UWidgetBlueprint* BasePage, TSubclassOf<UPanelWidget> ClassTobeRemoved, TSubclassOf<UPanelWidget> ClassToReplace, bool bSilent)
+//{
+//	BLADE2_SCOPE_CYCLE_COUNTER(ReplaceSubWidgetClass);
+//	//if (!BasePage || !ClassTobeRemoved || !ClassToReplace || !BasePage->WidgetTree){
+//	//	return;
+//	//}
+//
+//	//if (!bSilent && FB2ErrorMessage::Open(EAppMsgType::OkCancel, FText::FromString(
+//	//	FString::Printf(TEXT("해당 기능 사용 도중에 컴퓨터가 폭발할 수 있음. 미처 저장하지 못한 작업물이 있다면 지금 취소한 후 다시 시도하시오."))
+//	//	)) == EAppReturnType::Cancel)
+//	//{
+//	//	return;
+//	//}
+//
+//	//int32 AllReplacedNum = 0;
+//	//FString ResultMessage;
+//
+//	//TArray<FString> AllChangedWidgetNames;
+//
+//	//// FWidgetBlueprintEditorUtils::ReplaceWidgets 참고
+//
+//	//BasePage->WidgetTree->ForEachWidget([&](UWidget* CurrWidget) {
+//
+//	//	UPanelWidget* CastedExistingPW = Cast<UPanelWidget>(CurrWidget);
+//	//	if (CastedExistingPW && CastedExistingPW->IsA(ClassTobeRemoved) && !CastedExistingPW->IsA(ClassToReplace))
+//	//	{
+//	//		UPanelWidget* NewReplacement = BasePage->WidgetTree->ConstructWidget<UPanelWidget>(ClassToReplace, NAME_None);
+//	//		NewReplacement->OnCreationFromPalette();
+//
+//	//		if (CastedExistingPW && NewReplacement)
+//	//		{
+//	//			CastedExistingPW->Modify();
+//
+//	//			if (UPanelWidget* CurrentParent = CastedExistingPW->GetParent())
+//	//			{
+//	//				CurrentParent->Modify();
+//	//				CurrentParent->ReplaceChild(CastedExistingPW, NewReplacement);
+//	//			}
+//	//			else
+//	//			{
+//	//				check(0); // 루트를 갈아치우려는 경우?
+//	//			}
+//
+//	//			while (CastedExistingPW->GetChildrenCount() > 0) // 자식들도 새 엄마에게
+//	//			{
+//	//				UWidget* Widget = CastedExistingPW->GetChildAt(0);
+//	//				Widget->Modify();
+//
+//	//				UPanelSlot* OldSlot = Widget->Slot;
+//	//				UPanelSlot* NewAddedSlot = NewReplacement->AddChild(Widget);
+//
+//	//				// 바꾸려는 버튼 아래에 오버레이를 까는 경우가 있어서 속성값 좀 전달. 여타 다른 경우도 많겠지만.
+//	//				UButtonSlot* NewAddedButtonSlot = Cast<UButtonSlot>(NewAddedSlot);
+//	//				UButtonSlot* OldButtonSlot = Cast<UButtonSlot>(OldSlot);
+//	//				if (NewAddedButtonSlot && OldButtonSlot)
+//	//				{
+//	//					NewAddedButtonSlot->SetHorizontalAlignment(OldButtonSlot->HorizontalAlignment);
+//	//					NewAddedButtonSlot->SetVerticalAlignment(OldButtonSlot->VerticalAlignment);
+//	//					NewAddedButtonSlot->SetPadding(OldButtonSlot->Padding);
+//	//				}
+//	//			}
+//
+//	//			// FWidgetBlueprintEditorUtils::ReplaceWidgets 쪽에도 해 놓은 변경들. 몇가지 편의 사항
+//
+//	//			FString ExistingPanelName = CastedExistingPW->GetName();
+//	//			UObject* ExistingPanelOuter = CastedExistingPW->GetOuter();
+//
+//	//			// Rename the removed widget to the transient package so that it doesn't conflict with future widgets sharing the same name.
+//	//			CastedExistingPW->Rename(nullptr, nullptr);
+//	//			NewReplacement->Rename(*ExistingPanelName, ExistingPanelOuter);
+//
+//	//			AllChangedWidgetNames.Add(ExistingPanelName);
+//
+//	//			// 속성들 되는대로 맞춰주기. 기본 크기, 앵커 등은 Slot 설정이라 할 필요 없음.
+//	//			NewReplacement->SetVisibility(CastedExistingPW->GetVisibility());
+//	//			NewReplacement->SetIsEnabled(CastedExistingPW->GetIsEnabled());
+//	//			NewReplacement->SetRenderTransform(CastedExistingPW->RenderTransform);
+//	//			NewReplacement->SetRenderTransformPivot(CastedExistingPW->RenderTransformPivot);
+//
+//	//			// B2Button 교체 special. For faster UBtton to UB2Button replacement
+//	//			UButton* CastedExistingButton = Cast<UButton>(CastedExistingPW);
+//	//			UButton* CastedNewButton = Cast<UButton>(NewReplacement);
+//	//			if (CastedExistingButton && CastedNewButton)
+//	//			{
+//	//				CastedNewButton->SetStyle(CastedExistingButton->WidgetStyle);
+//	//				CastedNewButton->SetColorAndOpacity(CastedExistingButton->ColorAndOpacity);
+//	//				CastedNewButton->SetBackgroundColor(CastedExistingButton->BackgroundColor);
+//	//			}
+//
+//	//			++AllReplacedNum;
+//	//		}
+//	//	}
+//	//});
+//
+//	//if (AllReplacedNum > 0)
+//	//{
+//	//	FBlueprintEditorUtils::MarkBlueprintAsStructurallyModified(BasePage);
+//
+//	//	ResultMessage += FString::Printf(TEXT("%s 에 배치된 %d 개의 %s 들을 %s (으)로 변경\n\n"), *BasePage->GetName(), AllReplacedNum, *ClassTobeRemoved->GetName(), *ClassToReplace->GetName());
+//
+//	//	for (int32 NI = 0; NI < AllChangedWidgetNames.Num(); ++NI)
+//	//	{
+//	//		ResultMessage += AllChangedWidgetNames[NI];
+//	//		if (NI != AllChangedWidgetNames.Num() - 1){
+//	//			ResultMessage += TEXT(", ");
+//	//		}
+//	//		else{
+//	//			ResultMessage += TEXT("\n\n");
+//	//		}
+//	//	}
+//
+//	//	ResultMessage += TEXT("모든 설정들이 복사되는 것은 아니므로 바뀐 widget 들의 세부 설정들을 직접 확인해 보시기 바랍니다.");
+//	//}
+//	//else
+//	//{
+//	//	ResultMessage = FString::Printf(TEXT("%s 에서 바뀐 widget 이 없습니다."), *BasePage->GetName());
+//	//}
+//	//if (bSilent)
+//	//{
+//	//	UE_LOG(LogBladeII, Log, TEXT("%s"), *ResultMessage);
+//	//}
+//	//else
+//	//{
+//	//	FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(ResultMessage));
+//	//}
+//}
+//
+//void ForceSetButtonClickSoundIndex(class UWidgetBlueprint* BasePage, int32 InSoundIndex, bool bSilent)
+//{
+//	//BLADE2_SCOPE_CYCLE_COUNTER(ForceSetButtonClickSoundIndex);
+//	//if (!BasePage || !BasePage->WidgetTree){
+//	//	return;
+//	//}
+//
+//	//int32 AllSetNum = 0;
+//	//FString ResultMessage;
+//	//TArray<FString> AllChangedButtonNames;
+//
+//	//BasePage->WidgetTree->ForEachWidget([&](UWidget* CurrWidget) {
+//	//	UB2Button* CastedB2Button = Cast<UB2Button>(CurrWidget);
+//	//	if (CastedB2Button)
+//	//	{
+//	//		CastedB2Button->EditorOnlySetClickSoundIndex(InSoundIndex);
+//	//		AllChangedButtonNames.Add(CastedB2Button->GetName());
+//	//		++AllSetNum;
+//	//	}
+//	//});
+//
+//	//if (AllSetNum > 0)
+//	//{
+//	//	FBlueprintEditorUtils::MarkBlueprintAsStructurallyModified(BasePage);
+//
+//	//	//ResultMessage += FString::Printf(TEXT("%s 에 배치된 %d 개의 B2Button 들의 DefaultOnClickSoundIndex 값을 %d (으)로 변경\n\n"), *BasePage->GetName(), AllSetNum, InSoundIndex);
+//
+//	//	for (int32 NI = 0; NI < AllChangedButtonNames.Num(); ++NI)
+//	//	{
+//	//		ResultMessage += AllChangedButtonNames[NI];
+//	//		if (NI != AllChangedButtonNames.Num() - 1){
+//	//			ResultMessage += TEXT(", ");
+//	//		}
+//	//	}
+//	//}
+//	//else
+//	//{
+//	//	ResultMessage = FString::Printf(TEXT("%s 에서 바뀐 widget 이 없습니다."), *BasePage->GetName());
+//	//}
+//	//if (bSilent)
+//	//{
+//	//	UE_LOG(LogBladeII, Log, TEXT("%s"), *ResultMessage);
+//	//}
+//	//else
+//	//{
+//	//	FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(ResultMessage));
+//	//}
+//}
+//#endif
 
 //SWidget의 위치 정보는 FGeomety에 담겨져있음.
 //Widget의 Left-Top의 Screen 위치를 가지고 오며,

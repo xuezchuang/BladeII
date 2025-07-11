@@ -3,6 +3,7 @@
 
 #include "B2ChattingFilteringInfo.h"
 #include "BladeII.h"
+#include "memory"
 
 void UB2ChattingFilteringInfo::SetDataTable(UDataTable* InDataTable)
 {

@@ -6,7 +6,7 @@
 //#include "B2ItemInfo.h"
 //#include "B2LobbyGameMode.h"
 //#include "B2CombatStatEvaluator.h"
-#include "B2PCClassInfo.h"
+//#include "B2PCClassInfo.h"
 
 #include "FB2ErrorMessage.h"
 //#include "BladeIIGameImpl.h"

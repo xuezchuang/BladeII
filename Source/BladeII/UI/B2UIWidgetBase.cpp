@@ -1,9 +1,9 @@
 
 #include "B2UIWidgetBase.h"
-#include "MovieScene.h"
-#include "Animation/WidgetAnimation.h"
-#include "B2UIManager.h"
-
+//#include "MovieScene.h"
+//#include "Animation/WidgetAnimation.h"
+////#include "B2UIManager.h"
+//
 UB2UIWidgetBase::UB2UIWidgetBase(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {

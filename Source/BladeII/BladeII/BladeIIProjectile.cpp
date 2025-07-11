@@ -50,7 +50,7 @@ void ABladeIIProjectile::PostInitProperties()
 
 void ABladeIIProjectile::InitProjectile(const FVector& ShootDirection, float Damage, AActor* Target, float ShootSpeed, float MaxLifeTime, bool bPenetrate, const FDamageInfo* InDamageInfo, float InFreezeDuration)
 {
-	BII_CHECK(MovementComp && CollisionComp);
+	//BII_CHECK(MovementComp && CollisionComp);
 
 	//if (ShootSpeed > 0.f)
 	//{

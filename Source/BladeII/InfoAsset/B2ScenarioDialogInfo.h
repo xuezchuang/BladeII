@@ -1,9 +1,11 @@
 #pragma once
-//#include "BladeII.h"
+#include "BladeII.h"
 #include "UObject/Object.h"
 #include "Engine/DataTable.h"
 #include "Sound/SoundCue.h"
 #include "BladeIIPlayer.h"
+#include "Engine/StreamableManager.h"
+#include "UObject/ObjectSaveContext.h"
 #include "B2ScenarioDialogInfo.generated.h"
 
 UENUM(BlueprintType)

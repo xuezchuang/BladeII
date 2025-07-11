@@ -11,12 +11,13 @@
 #if WITH_EDITOR
 #include "FB2ErrorMessage.h"
 #endif
+#include "B2CommonSoundInfo.h"
 
 FSingleSkillInfo::FSingleSkillInfo()
 {
 	SkillID						= SKILL_INVALID_ID;
 	CoolTime					= 0.0f;	
-	WeaponSkillType				= EWeaponSkillType::EWS_None;
+	//WeaponSkillType				= EWeaponSkillType::EWS_None;
 	EnableWeaponSkillPoint		= 8;
 	SkillShootingRangeForAI		= 1000000.0f;
 }
@@ -150,34 +151,35 @@ float UB2SkillInfo::GetOriginalSkillShootingRangeForAI(int32 SkillInfoID) const
 	return SingleInfo ? SingleInfo->SkillShootingRangeForAI : 0.0f;
 }
 
-int32 UB2SkillInfo::GetEnablePlayerLevel(int32 SkillInfoID)
-{
-	return BladeIIGameImpl::GetClientDataStore().GetSkillLearnLevel(SkillInfoID);
-}
+//int32 UB2SkillInfo::GetEnablePlayerLevel(int32 SkillInfoID)
+//{
+//	return BladeIIGameImpl::GetClientDataStore().GetSkillLearnLevel(SkillInfoID);
+//}
 
 FButtonStyle UB2SkillInfo::GetButtonIconStyle(int32 SkillInfoID)
 {
-	// LoadSynchronous 콜해야 해서 const 제거.. ㅡㅡ
-	FSingleSkillInfo* SingleInfo = const_cast<FSingleSkillInfo*>(GetSingleInfoOfID(SkillInfoID));
-	const bool bIsWeaponSkill = (SingleInfo && SingleInfo->WeaponSkillType != EWeaponSkillType::EWS_None);
-	// 기본적인 Style 설정은 일괄적으로 들어가고 SingleSkillInfo 에 따라서는 아이콘만.
-	FButtonStyle RetStyle = bIsWeaponSkill ? CommonButtonStyle_WeaponSkill : CommonButtonStyle_Regular;
+	//// LoadSynchronous 콜해야 해서 const 제거.. ㅡㅡ
+	//FSingleSkillInfo* SingleInfo = const_cast<FSingleSkillInfo*>(GetSingleInfoOfID(SkillInfoID));
+	//const bool bIsWeaponSkill = (SingleInfo && SingleInfo->WeaponSkillType != EWeaponSkillType::EWS_None);
+	//// 기본적인 Style 설정은 일괄적으로 들어가고 SingleSkillInfo 에 따라서는 아이콘만.
+	//FButtonStyle RetStyle = bIsWeaponSkill ? CommonButtonStyle_WeaponSkill : CommonButtonStyle_Regular;
 
-	if (SingleInfo)
-	{
-		RetStyle.Normal.SetResourceObject(SingleInfo->ButtonIcon_Normal.LoadSynchronous());
-		RetStyle.Hovered.SetResourceObject(SingleInfo->ButtonIcon_Hovered.LoadSynchronous());
-		RetStyle.Pressed.SetResourceObject(SingleInfo->ButtonIcon_Pressed.LoadSynchronous());
-		RetStyle.Disabled.SetResourceObject(SingleInfo->ButtonIcon_Disabled.LoadSynchronous());
-	}
+	//if (SingleInfo)
+	//{
+	//	RetStyle.Normal.SetResourceObject(SingleInfo->ButtonIcon_Normal.LoadSynchronous());
+	//	RetStyle.Hovered.SetResourceObject(SingleInfo->ButtonIcon_Hovered.LoadSynchronous());
+	//	RetStyle.Pressed.SetResourceObject(SingleInfo->ButtonIcon_Pressed.LoadSynchronous());
+	//	RetStyle.Disabled.SetResourceObject(SingleInfo->ButtonIcon_Disabled.LoadSynchronous());
+	//}
 
-	return RetStyle;
+	//return RetStyle;
+	return  CommonButtonStyle_WeaponSkill;
 }
 
 EAttackState UB2SkillInfo::GetAttackState(int32 SkillInfoID) const
 {
 	const FSingleSkillInfo* SingleInfo = GetSingleInfoOfID(SkillInfoID);
-	return SingleInfo ? SingleInfo->AttackAnimState : EAttackState::ECS_None;
+	return /*SingleInfo ? SingleInfo->AttackAnimState :*/ EAttackState::ECS_None;
 }
 
 bool UB2SkillInfo::IsTagSkill(int32 SkillInfoID) const
@@ -189,7 +191,7 @@ bool UB2SkillInfo::IsTagSkill(int32 SkillInfoID) const
 float UB2SkillInfo::GetEnableWeaponSkillPoint(int32 SkillInfoID) const
 {
 	const FSingleSkillInfo* SingleInfo = GetSingleInfoOfID(SkillInfoID);
-	return SingleInfo && SingleInfo->WeaponSkillType != EWeaponSkillType::EWS_None ? float(SingleInfo->EnableWeaponSkillPoint) : 0.0f;
+	return /*SingleInfo && SingleInfo->WeaponSkillType != EWeaponSkillType::EWS_None ? float(SingleInfo->EnableWeaponSkillPoint) :*/ 0.0f;
 }
 
 #if WITH_EDITOR
@@ -281,47 +283,47 @@ UAnimSequenceBase* UB2SkillAnimInfo::GetSingleSkillAnim(EPCClass InPCClass, ESki
 
 UAnimSequenceBase* UB2SkillAnimInfo::GetSingleSkillAnim(const FCombinedPCSkillAnimID& InCombinedID)
 {
-	const uint32 AssetKey = GetTypeHash(InCombinedID);
+	//const uint32 AssetKey = GetTypeHash(InCombinedID);
 
-	if (auto* LoadedAnimObj = FindSingleSkillAnim(InCombinedID))
-		return LoadedAnimObj;
+	//if (auto* LoadedAnimObj = FindSingleSkillAnim(InCombinedID))
+	//	return LoadedAnimObj;
 
-	else if (FSkillAnimPerPCInfoSet* FoundPerPCInfoSet = InfoData.Find(InCombinedID.GetPCClassEnum()))
-	{
-		const auto& Asset = GetAnimationAsset(InCombinedID);
+	//else if (FSkillAnimPerPCInfoSet* FoundPerPCInfoSet = InfoData.Find(InCombinedID.GetPCClassEnum()))
+	//{
+	//	const auto& Asset = GetAnimationAsset(InCombinedID);
 
-		// Animation은 AsyncWaiting을 하지 않고 바로 Load하는것이 현명한 판단이라 사료됨
-		auto* AnimSequenceAsset = LoadSynchronous<UAnimSequenceBase>(Asset);
+	//	// Animation은 AsyncWaiting을 하지 않고 바로 Load하는것이 현명한 판단이라 사료됨
+	//	auto* AnimSequenceAsset = LoadSynchronous<UAnimSequenceBase>(Asset);
 
-		if (AnimSequenceAsset != nullptr)
-			LoadedPtrMap.Add(AssetKey, AnimSequenceAsset);
-		
-		return AnimSequenceAsset;
-	}
+	//	if (AnimSequenceAsset != nullptr)
+	//		LoadedPtrMap.Add(AssetKey, AnimSequenceAsset);
+	//	
+	//	return AnimSequenceAsset;
+	//}
 	
 	return nullptr;
 }
 
 class UAnimSequenceBase* UB2SkillAnimInfo::FindSingleSkillAnim(const FCombinedPCSkillAnimID& InCombinedID)
 {
-	const uint32 AssetKey = GetTypeHash(InCombinedID);
+	//const uint32 AssetKey = GetTypeHash(InCombinedID);
 
-	if (UObject** LoadedAnimObj = LoadedPtrMap.Find(AssetKey))
-		return Cast<UAnimSequenceBase>(*LoadedAnimObj);
+	//if (UObject** LoadedAnimObj = LoadedPtrMap.Find(AssetKey))
+	//	return Cast<UAnimSequenceBase>(*LoadedAnimObj);
 
 	return nullptr;
 }
 
 TSoftObjectPtr<UAnimSequenceBase> UB2SkillAnimInfo::GetAnimationAsset(const FCombinedPCSkillAnimID& CombineID)
 {
-	if (const FSkillAnimPerPCInfoSet* SkillAnimInfo = InfoData.Find(CombineID.GetPCClassEnum()))
-	{
-		const auto& AnimSet = SkillAnimInfo->SkillAnims;
-		if (const TSoftObjectPtr<UAnimSequenceBase>* AnimAssetPtr = AnimSet.Find(CombineID.GetSkillAnimType()))
-		{
-			return *AnimAssetPtr;
-		}
-	}
+	//if (const FSkillAnimPerPCInfoSet* SkillAnimInfo = InfoData.Find(CombineID.GetPCClassEnum()))
+	//{
+	//	const auto& AnimSet = SkillAnimInfo->SkillAnims;
+	//	if (const TSoftObjectPtr<UAnimSequenceBase>* AnimAssetPtr = AnimSet.Find(CombineID.GetSkillAnimType()))
+	//	{
+	//		return *AnimAssetPtr;
+	//	}
+	//}
 
 	return nullptr;
 }
@@ -352,11 +354,11 @@ void UB2SkillAnimInfo::UnloadAll()
 
 void UB2SkillAnimInfo::UnloadAnimAsset(const FCombinedPCSkillAnimID& CombineID)
 {
-	if (auto* AnimObj = FindSingleSkillAnim(CombineID))
-	{
-		AnimObj->RemoveFromRoot(); // 기본적으로 로딩하면서 루트셋 처리를 하기 때문에 RemoveFromRoot 해야 함.
-		LoadedPtrMap.Remove(GetTypeHash(CombineID));
-	}
+	//if (auto* AnimObj = FindSingleSkillAnim(CombineID))
+	//{
+	//	AnimObj->RemoveFromRoot(); // 기본적으로 로딩하면서 루트셋 처리를 하기 때문에 RemoveFromRoot 해야 함.
+	//	LoadedPtrMap.Remove(GetTypeHash(CombineID));
+	//}
 
 	//auto AssetPtr = GetAnimationAsset(CombineID);
 	//if (AssetPtr.IsValid())
@@ -365,18 +367,18 @@ void UB2SkillAnimInfo::UnloadAnimAsset(const FCombinedPCSkillAnimID& CombineID)
 
 void UB2SkillAnimInfo::UnloadExcept(const TArray<FCombinedPCSkillAnimID>& InExceptIDs)
 {
-	// ManagedSkillAnimUnload 에서 사용을 위함. 몇개는 언로드 안하고 남겨두려는..
-	for (TMap<EPCClass, FSkillAnimPerPCInfoSet>::TIterator InfoDataIt(InfoData); InfoDataIt; ++InfoDataIt)
-	{
-		FSkillAnimPerPCInfoSet& InfoSet = InfoDataIt.Value();
-		for (TMap<ESkillAnimType, TSoftObjectPtr<class UAnimSequenceBase>>::TIterator AnimIt(InfoSet.SkillAnims); AnimIt; ++AnimIt)
-		{
-			FCombinedPCSkillAnimID CombineID(InfoDataIt.Key(), AnimIt.Key());
+	//// ManagedSkillAnimUnload 에서 사용을 위함. 몇개는 언로드 안하고 남겨두려는..
+	//for (TMap<EPCClass, FSkillAnimPerPCInfoSet>::TIterator InfoDataIt(InfoData); InfoDataIt; ++InfoDataIt)
+	//{
+	//	FSkillAnimPerPCInfoSet& InfoSet = InfoDataIt.Value();
+	//	for (TMap<ESkillAnimType, TSoftObjectPtr<class UAnimSequenceBase>>::TIterator AnimIt(InfoSet.SkillAnims); AnimIt; ++AnimIt)
+	//	{
+	//		FCombinedPCSkillAnimID CombineID(InfoDataIt.Key(), AnimIt.Key());
 
-			if(InExceptIDs.Contains(CombineID) == false)
-				UnloadAnimAsset(CombineID);
-		}
-	}
+	//		if(InExceptIDs.Contains(CombineID) == false)
+	//			UnloadAnimAsset(CombineID);
+	//	}
+	//}
 
 	// 적어도 남겨두려는 클래스보다 많이 로딩된 상태면 안되겠지.
 	check(LoadedPtrMap.Num() <= InExceptIDs.Num());

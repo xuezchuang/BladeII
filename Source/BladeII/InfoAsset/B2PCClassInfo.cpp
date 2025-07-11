@@ -23,12 +23,14 @@
 //#include "SkeletalMeshMerge.h"
 //#include "Animation/SkeletalMeshActor.h"
 #include "B2WingInfo.h"
-#include "B2Airport.h"
+//#include "B2Airport.h"
 #include "B2SomeInfo.h"
-#include "B2ClientDataStore.h"
-#include "BladeIIGameImpl.h"
+//#include "B2ClientDataStore.h"
+//#include "BladeIIGameImpl.h"
 //#include "B2CompositeMeshCache.h"
 #include "FB2ErrorMessage.h"
+#include "../BladeII/BladeIILocText.h"
+#include "../BladeII/BladeIIUtil.h"
 //#include "B2AssetLoader.h"
 //#include "B2UIDocHelper.h"
 //#include "B2GameInstance.h"
@@ -301,27 +303,27 @@ void ABladeIIPlayer::OverrideByPCClassInfo(class ABladeIIGameMode* InGameMode, U
 
 void ABladeIIPlayer::SetUseSectionMergedMesh(bool bUseSectionMerged)
 {
-	// AnimNotify 를 통해 이게 발동이 되는 루트가 있으면 check 에 걸릴 것. 그럴 땐 DeferredSetUseSectionMergedMesh 를 사용.
+	//// AnimNotify 를 통해 이게 발동이 되는 루트가 있으면 check 에 걸릴 것. 그럴 땐 DeferredSetUseSectionMergedMesh 를 사용.
 
-	// 이전에 빌드해 놓은 게 있다면 그걸 가져와서 쓸 것이고 아니면 새로 빌드
-	SetupComponentsForParts(bUseSectionMerged); 
+	//// 이전에 빌드해 놓은 게 있다면 그걸 가져와서 쓸 것이고 아니면 새로 빌드
+	//SetupComponentsForParts(bUseSectionMerged); 
 
-	// 추가 상태 변수가 아직 없는데 아직 딱히 필요도 없지만 확실히 상태 트랙킹을 할 수 있을지 모르겠기도 해서
+	//// 추가 상태 변수가 아직 없는데 아직 딱히 필요도 없지만 확실히 상태 트랙킹을 할 수 있을지 모르겠기도 해서
 
-	GetWorldTimerManager().ClearTimer(DeferredSetUseSectionMergedMeshTH); // Deferred 로 호출했을 수 있다.
+	//GetWorldTimerManager().ClearTimer(DeferredSetUseSectionMergedMeshTH); // Deferred 로 호출했을 수 있다.
 }
 void ABladeIIPlayer::DeferredSetUseSectionMergedMesh(bool bUseSectionMerged)
 {
-	FTimerManager& TheTM = GetWorldTimerManager();
-	TheTM.ClearTimer(DeferredSetUseSectionMergedMeshTH);
-	// 시간은 여기선 적당히 준다. 만일 즉각 적용되어야 된다거나 최소한 바로 다음 틱에 적용되어야 하는 경우라면 다른 방법을 찾아보도록.
-	TheTM.SetTimer(DeferredSetUseSectionMergedMeshTH, FTimerDelegate::CreateUObject(this, &ABladeIIPlayer::SetUseSectionMergedMesh, bUseSectionMerged), 0.1f, false);
+	//FTimerManager& TheTM = GetWorldTimerManager();
+	//TheTM.ClearTimer(DeferredSetUseSectionMergedMeshTH);
+	//// 시간은 여기선 적당히 준다. 만일 즉각 적용되어야 된다거나 최소한 바로 다음 틱에 적용되어야 하는 경우라면 다른 방법을 찾아보도록.
+	//TheTM.SetTimer(DeferredSetUseSectionMergedMeshTH, FTimerDelegate::CreateUObject(this, &ABladeIIPlayer::SetUseSectionMergedMesh, bUseSectionMerged), 0.1f, false);
 }
 
 USkeletalMesh* ABladeIIPlayer::GetMergedMesh(bool bUseSectionMerged)
 {
 	USkeletalMesh* ResultMesh = nullptr;
-	SetupComponentsForParts(bUseSectionMerged, &ResultMesh); // Component 세팅 없이 결과물만 쓱 빼온다.
+	//SetupComponentsForParts(bUseSectionMerged, &ResultMesh); // Component 세팅 없이 결과물만 쓱 빼온다.
 	return ResultMesh;
 }
 
@@ -393,24 +395,24 @@ void ABladeIIPlayer::SetupComponentsForParts(bool bMergeSections, USkeletalMesh*
 	//SetupComponentsForPartsCommon(CachedEquippedItem, GetWingDataPtrIfValid(), bMergeSections, false, OutGetBuiltResultOnly);
 }
 
-void ABladeIIPlayer::SetupComponentsForPartsCustomDataStore(ICharacterDataStore* InCustomDataStore, bool bMergeSections)
-{ // 일반적으로는 GetCharacterDataStore 를 통해 얻어진 DataStore 를 사용.. 이건 특수한 경우를 위함.
-	//if (InCustomDataStore)
-	//{
-	//	EPCClass PCClassEnum = GetCurrentPlayerClass(); // 기본 클래스만은 정체성을 잃지 않고..
-	//	TArray<FB2Item> FoundEquipment;
-	//	InCustomDataStore->GetEquippedItems(PCClassEnum, FoundEquipment);
-	//	InCustomDataStore->GetEquippedCostumeItems(PCClassEnum, FoundEquipment);
-	//	FB2Wing FoundWingData;
-	//	bool bLocalHasWing = InCustomDataStore->GetCharacterWing(PCClassEnum, FoundWingData);
-	//	ICharacterDataStore::GetRenderItem(InCustomDataStore, PCClassEnum, FoundEquipment);
-
-	//	// 이걸 사용하는 시점에서 GameEntryID 가 의도와는 다를 수 있으므로 캐싱해 놓은 거 사용하지 말고 ForceUpdate 해서 사용.
-	//	// 단 composite mesh 캐싱이 장비 조합까지 체크는 하므로 꼬인 결과물이 나오지는 않을 꺼고 성능에만 안 좋은 영향을 미치는 거.
-	//	// 여기 결과도 캐싱하려면 이쪽으로 현재 조합 대상의 GameEntryID 를 넘겨줄 수 있어야 함.
-	//	SetupComponentsForPartsCommon(FoundEquipment, bLocalHasWing ? &FoundWingData : NULL, bMergeSections, true);
-	//}
-}
+//void ABladeIIPlayer::SetupComponentsForPartsCustomDataStore(ICharacterDataStore* InCustomDataStore, bool bMergeSections)
+//{ // 일반적으로는 GetCharacterDataStore 를 통해 얻어진 DataStore 를 사용.. 이건 특수한 경우를 위함.
+//	//if (InCustomDataStore)
+//	//{
+//	//	EPCClass PCClassEnum = GetCurrentPlayerClass(); // 기본 클래스만은 정체성을 잃지 않고..
+//	//	TArray<FB2Item> FoundEquipment;
+//	//	InCustomDataStore->GetEquippedItems(PCClassEnum, FoundEquipment);
+//	//	InCustomDataStore->GetEquippedCostumeItems(PCClassEnum, FoundEquipment);
+//	//	FB2Wing FoundWingData;
+//	//	bool bLocalHasWing = InCustomDataStore->GetCharacterWing(PCClassEnum, FoundWingData);
+//	//	ICharacterDataStore::GetRenderItem(InCustomDataStore, PCClassEnum, FoundEquipment);
+//
+//	//	// 이걸 사용하는 시점에서 GameEntryID 가 의도와는 다를 수 있으므로 캐싱해 놓은 거 사용하지 말고 ForceUpdate 해서 사용.
+//	//	// 단 composite mesh 캐싱이 장비 조합까지 체크는 하므로 꼬인 결과물이 나오지는 않을 꺼고 성능에만 안 좋은 영향을 미치는 거.
+//	//	// 여기 결과도 캐싱하려면 이쪽으로 현재 조합 대상의 GameEntryID 를 넘겨줄 수 있어야 함.
+//	//	SetupComponentsForPartsCommon(FoundEquipment, bLocalHasWing ? &FoundWingData : NULL, bMergeSections, true);
+//	//}
+//}
 
 void ABladeIIPlayer::SetupComponentsForPartsCommon(const TArray<FB2Item>& EquippedItems, const FB2Wing* InWingData, bool bMergeSections, bool bForceUpdate, class USkeletalMesh** OutGetBuiltResultOnly)
 {
@@ -1637,7 +1639,7 @@ UB2PCClassInfo::UB2PCClassInfo(const FObjectInitializer& ObjectInitializer)
 	DetectDistanceOverride = 0.0f;
 
 	bOverride_TargetingMode = false;
-	TargetingModeOverride = ETargetingMode::ETM_Normal;
+	//TargetingModeOverride = ETargetingMode::ETM_Normal;
 }
 
 UB2InGameOnlyPCClassInfo* UB2PCClassInfo::GetInGameOnlyInfo(UObject* WorldContextObject)

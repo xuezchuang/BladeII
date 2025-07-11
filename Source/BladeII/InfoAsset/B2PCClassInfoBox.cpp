@@ -5,8 +5,8 @@
 
 #include "BladeIIPlayer.h"
 #include "Engine/SkeletalMesh.h"
-#include "CharacterDataStore.h"
-#include "BladeIIGameImpl.h"
+//#include "CharacterDataStore.h"
+//#include "BladeIIGameImpl.h"
 #include "FB2ErrorMessage.h"
 #include "BladeIIUtil.h"
 
@@ -180,8 +180,8 @@ void UB2PCClassInfoBox::UnloadAllOrExceptSelected()
 		TArray<EPCClass> UnloadExceptClasses;
 		// 현재 선택되어 있는 메인, 태그 두 종류를 남겨두는 걸로. 계속 똑같은 걸로 플레이 하면 로딩 시간이 줄어든 채로 가겠지..
 		// 적어도 로비에서는 현재 선택이 다음 스테이지 캐릭터 그대로이기도 하고.
-		UnloadExceptClasses.Add(BladeIIGameImpl::GetLocalCharacterData().GetMainPlayerClass());
-		UnloadExceptClasses.Add(BladeIIGameImpl::GetLocalCharacterData().GetSubPlayerClass());
+		//UnloadExceptClasses.Add(BladeIIGameImpl::GetLocalCharacterData().GetMainPlayerClass());
+		//UnloadExceptClasses.Add(BladeIIGameImpl::GetLocalCharacterData().GetSubPlayerClass());
 		UnloadExcept(UnloadExceptClasses);
 
 		// 그러나 아직 이게 의도대로 동작하지는 않아서.. 아래 UnloadAllOrExceptSelectedIfAllowed 을 따로 제공하게 됨.
@@ -258,30 +258,30 @@ bool UB2PCClassInfoBox::IsClassDataAtRootSet(EPCClass InClass, bool bCheckForInG
 #if WITH_EDITOR
 USkeletalMesh* UB2PCClassInfoBox::GetBaseSkeletalMeshFromClass(EPCClass InClass)
 {
-	UB2PCClassInfo* PCInfo = GetSingleClassInfo(InClass);
-	if (PCInfo == NULL)
-	{
-		return NULL;
-	}
+	//UB2PCClassInfo* PCInfo = GetSingleClassInfo(InClass);
+	//if (PCInfo == NULL)
+	//{
+	//	return NULL;
+	//}
 
-	if (PCInfo->BaseMeshAsset)
-	{
-		return PCInfo->BaseMeshAsset;
-	}
-	// GetBaseBPClass 에 null 을 넘겨준다고 해서 당장 작동 안하는 건 아니고 asyn 로딩 flush 가 일어나는 걸 경계하는 건데 에디터에서 그러는 거야 문제될 거 없고.
-	TSubclassOf<class ABladeIIPlayer> PCInfoBaseBPClass = PCInfo->GetBaseBPClass(nullptr);
-	if (PCInfoBaseBPClass)
-	{
-		ABladeIIPlayer* DefaultPlayerObj = Cast<ABladeIIPlayer>(PCInfoBaseBPClass->GetDefaultObject());
-		USkeletalMeshComponent* SkeletalMeshComponent = DefaultPlayerObj->GetMesh();
+	//if (PCInfo->BaseMeshAsset)
+	//{
+	//	return PCInfo->BaseMeshAsset;
+	//}
+	//// GetBaseBPClass 에 null 을 넘겨준다고 해서 당장 작동 안하는 건 아니고 asyn 로딩 flush 가 일어나는 걸 경계하는 건데 에디터에서 그러는 거야 문제될 거 없고.
+	//TSubclassOf<class ABladeIIPlayer> PCInfoBaseBPClass = PCInfo->GetBaseBPClass(nullptr);
+	//if (PCInfoBaseBPClass)
+	//{
+	//	ABladeIIPlayer* DefaultPlayerObj = Cast<ABladeIIPlayer>(PCInfoBaseBPClass->GetDefaultObject());
+	//	USkeletalMeshComponent* SkeletalMeshComponent = DefaultPlayerObj->GetMesh();
 
-		// 닒莉숭櫓삿혤USkeletalMesh
-		USkeletalMesh* SkeletalMesh = nullptr;
-		if (SkeletalMeshComponent)
-		{
-			SkeletalMesh = SkeletalMeshComponent->GetSkeletalMeshAsset();// SkeletalMesh;
-		}
-	}
+	//	// 닒莉숭櫓삿혤USkeletalMesh
+	//	USkeletalMesh* SkeletalMesh = nullptr;
+	//	if (SkeletalMeshComponent)
+	//	{
+	//		SkeletalMesh = SkeletalMeshComponent->GetSkeletalMeshAsset();// SkeletalMesh;
+	//	}
+	//}
 
 	return NULL;
 }

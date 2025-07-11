@@ -65,8 +65,8 @@ public:
 	class USkeletalMesh* GetWingMesh();
 	class UMaterialInterface* GetMtrlOverride();
 
-	UPROPERTY(EditAnywhere)
-	TArray<FCHSKCompAttachParticleSystemInfo> AttachEffectInfoArray;
+	//UPROPERTY(EditAnywhere)
+	//TArray<FCHSKCompAttachParticleSystemInfo> AttachEffectInfoArray;
 
 #if WITH_EDITOR
 	void EditorLoadAllTAsset(); // Provided for safe editing work
