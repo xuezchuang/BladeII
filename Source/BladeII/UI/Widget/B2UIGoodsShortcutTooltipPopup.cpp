@@ -84,10 +84,10 @@ void UB2UIGoodsShortcutTooltipPopup::Init()
 {
 	Super::Init();
 
-	ForcedCloseToolTipPopupClass<>::GetInstance().Subscribe([this]()
-	{
-		this->OnForcedCloseToolTipPopup();
-	});
+	//ForcedCloseToolTipPopupClass<>::GetInstance().Subscribe([this]()
+	//{
+	//	this->OnForcedCloseToolTipPopup();
+	//});
 }
 
 void UB2UIGoodsShortcutTooltipPopup::PreSave(FObjectPreSaveContext SaveContext)
@@ -103,126 +103,126 @@ void UB2UIGoodsShortcutTooltipPopup::PreSave(FObjectPreSaveContext SaveContext)
 
 void UB2UIGoodsShortcutTooltipPopup::SetItemInfo(uint32 _IteminfoIdx, const EGoodsButtonType& _type)
 {
-#if UE_BUILD_SHIPPING
-	//_IteminfoIdx가 0이하가 들어오면 팝업에 띄워주는 정보가 하나도 없으므로 자동 파괴
-	//단 디버그일때는 디버그를 위해 정보가 없는 상태로 남김
-	if (_IteminfoIdx < 1)
-	{
-		OnClickBtnClose();
-		return;
-	}
-#endif
-	ToolTipOpenClass<>::GetInstance().Signal();
-	m_IteminfoIdx = _IteminfoIdx;
-
-	FSingleItemInfoData* const singleData = StaticFindItemInfo() ? StaticFindItemInfo()->GetInfoData(m_IteminfoIdx) : nullptr;
-	
-	AllTextBoxHide();
-	if (singleData == nullptr) 
-	{
-		OnClickBtnClose();
-		return; //데이터가 없으면 Close 버튼만 보여줌
-	}
-		
-	const FSingleGoodsTypeInfoData* const goodsTypeInfo(GetGoodsTypeFromGoodsTypeInfoObject(singleData->FGoodsType));
-	
-	m_type = _type;
-	SetGoodsIcon(m_IteminfoIdx);
-	switch (_type)
-	{
-		case EGoodsButtonType::EGoodsButtonType_NONE:
-		default:
-			break;
-		case EGoodsButtonType::EGoodsButtonType_Info:
-			if (O_InfoTooltip.IsValid())
-				O_InfoTooltip->SetVisibility(ESlateVisibility::Visible);
-			SetGoodsNameText(m_IteminfoIdx);
-			SetGoodsInfoText(goodsTypeInfo->GoodsInfoStringID);
-			break;
-		case EGoodsButtonType::EGoodsButtonType_InfoShortcut:
-			if (BTN_Close.IsValid())
-				BTN_Close->SetVisibility(ESlateVisibility::Visible);
-			if (O_ShortcutTooltip.IsValid())
-				O_ShortcutTooltip->SetVisibility(ESlateVisibility::Visible);
-			SetGoodsNameText(m_IteminfoIdx);
-			SetGoodsInfoText(goodsTypeInfo->GoodsInfoStringID);
-			addRow(goodsTypeInfo);
-			break;
-		case EGoodsButtonType::EGoodsButtonType_ShortageShortcut:
-			if (BTN_Close.IsValid())
-				BTN_Close->SetVisibility(ESlateVisibility::Visible);
-			if (O_ShortcutTooltip.IsValid())
-				O_ShortcutTooltip->SetVisibility(ESlateVisibility::Visible);
-			SetGoodsNameText(m_IteminfoIdx);
-			//SetGoodsShortageText(goodsTypeInfo->ShortageInfoStringID);
-			SetGoodsInfoText(goodsTypeInfo->ShortageInfoStringID);
-			SetGoodsShortageTextColor(FSlateColor(FLinearColor(0.879623f, 0.03434f, 0.002428, 1.0f)));
-			addRow(goodsTypeInfo);
-			break;
-	}
+//#if UE_BUILD_SHIPPING
+//	//_IteminfoIdx가 0이하가 들어오면 팝업에 띄워주는 정보가 하나도 없으므로 자동 파괴
+//	//단 디버그일때는 디버그를 위해 정보가 없는 상태로 남김
+//	if (_IteminfoIdx < 1)
+//	{
+//		OnClickBtnClose();
+//		return;
+//	}
+//#endif
+//	ToolTipOpenClass<>::GetInstance().Signal();
+//	m_IteminfoIdx = _IteminfoIdx;
+//
+//	FSingleItemInfoData* const singleData = StaticFindItemInfo() ? StaticFindItemInfo()->GetInfoData(m_IteminfoIdx) : nullptr;
+//	
+//	AllTextBoxHide();
+//	if (singleData == nullptr) 
+//	{
+//		OnClickBtnClose();
+//		return; //데이터가 없으면 Close 버튼만 보여줌
+//	}
+//		
+//	const FSingleGoodsTypeInfoData* const goodsTypeInfo(GetGoodsTypeFromGoodsTypeInfoObject(singleData->FGoodsType));
+//	
+//	m_type = _type;
+//	SetGoodsIcon(m_IteminfoIdx);
+//	switch (_type)
+//	{
+//		case EGoodsButtonType::EGoodsButtonType_NONE:
+//		default:
+//			break;
+//		case EGoodsButtonType::EGoodsButtonType_Info:
+//			if (O_InfoTooltip.IsValid())
+//				O_InfoTooltip->SetVisibility(ESlateVisibility::Visible);
+//			SetGoodsNameText(m_IteminfoIdx);
+//			SetGoodsInfoText(goodsTypeInfo->GoodsInfoStringID);
+//			break;
+//		case EGoodsButtonType::EGoodsButtonType_InfoShortcut:
+//			if (BTN_Close.IsValid())
+//				BTN_Close->SetVisibility(ESlateVisibility::Visible);
+//			if (O_ShortcutTooltip.IsValid())
+//				O_ShortcutTooltip->SetVisibility(ESlateVisibility::Visible);
+//			SetGoodsNameText(m_IteminfoIdx);
+//			SetGoodsInfoText(goodsTypeInfo->GoodsInfoStringID);
+//			addRow(goodsTypeInfo);
+//			break;
+//		case EGoodsButtonType::EGoodsButtonType_ShortageShortcut:
+//			if (BTN_Close.IsValid())
+//				BTN_Close->SetVisibility(ESlateVisibility::Visible);
+//			if (O_ShortcutTooltip.IsValid())
+//				O_ShortcutTooltip->SetVisibility(ESlateVisibility::Visible);
+//			SetGoodsNameText(m_IteminfoIdx);
+//			//SetGoodsShortageText(goodsTypeInfo->ShortageInfoStringID);
+//			SetGoodsInfoText(goodsTypeInfo->ShortageInfoStringID);
+//			SetGoodsShortageTextColor(FSlateColor(FLinearColor(0.879623f, 0.03434f, 0.002428, 1.0f)));
+//			addRow(goodsTypeInfo);
+//			break;
+//	}
 }
 
 void UB2UIGoodsShortcutTooltipPopup::SetOpenStageItemInfo(int32 _ItemRefID, TArray<bool> _IsContentsOpened, const EGoodsButtonType& _GoodsButtonType)
 {
-#if UE_BUILD_SHIPPING
-	if (_ItemRefID < 1)
-	{
-		OnClickBtnClose();
-		return;
-	}
-#endif
-	ToolTipOpenClass<>::GetInstance().Signal();
-	AllTextBoxHide();
-
-	FSingleItemInfoData* const singleData = StaticFindItemInfo() ? StaticFindItemInfo()->GetInfoData(_ItemRefID) : nullptr;
-	if (singleData == nullptr)
-	{
-		OnClickBtnClose();
-		return;
-	}
-
-	const FSingleGoodsTypeInfoData* const goodsTypeInfo(GetGoodsTypeFromGoodsTypeInfoObject(singleData->FGoodsType));
-	
-	if (BTN_Close.IsValid())
-		BTN_Close->SetVisibility(ESlateVisibility::Visible);
-	if (O_ShortcutTooltip.IsValid())
-		O_ShortcutTooltip->SetVisibility(ESlateVisibility::Visible);
-	
-	SetGoodsIcon(_ItemRefID);
-	switch (_GoodsButtonType)
-	{
-	case EGoodsButtonType::EGoodsButtonType_Info:
-		if (O_InfoTooltip.IsValid())
-			O_InfoTooltip->SetVisibility(ESlateVisibility::Visible);
-		SetGoodsNameText(_ItemRefID);
-		SetGoodsInfoText(goodsTypeInfo->GoodsInfoStringID);
-		break;
-
-	case EGoodsButtonType::EGoodsButtonType_InfoShortcut:
-		if (BTN_Close.IsValid())
-			BTN_Close->SetVisibility(ESlateVisibility::Visible);
-		if (O_ShortcutTooltip.IsValid())
-			O_ShortcutTooltip->SetVisibility(ESlateVisibility::Visible);
-		SetGoodsNameText(_ItemRefID);
-		SetGoodsInfoText(goodsTypeInfo->GoodsInfoStringID);
-		addRowOpenStage(goodsTypeInfo, _IsContentsOpened);
-		break;
-
-	case EGoodsButtonType::EGoodsButtonType_ShortageShortcut:
-		if (BTN_Close.IsValid())
-			BTN_Close->SetVisibility(ESlateVisibility::Visible);
-		if (O_ShortcutTooltip.IsValid())
-			O_ShortcutTooltip->SetVisibility(ESlateVisibility::Visible);
-		SetGoodsNameText(_ItemRefID);
-		SetGoodsInfoText(goodsTypeInfo->ShortageInfoStringID);
-		SetGoodsShortageTextColor(FSlateColor(FLinearColor(0.879623f, 0.03434f, 0.002428, 1.0f)));
-		addRowOpenStage(goodsTypeInfo, _IsContentsOpened);
-		break;
-
-	case EGoodsButtonType::EGoodsButtonType_NONE:
-	default:
-		break;
-	}
+//#if UE_BUILD_SHIPPING
+//	if (_ItemRefID < 1)
+//	{
+//		OnClickBtnClose();
+//		return;
+//	}
+//#endif
+//	ToolTipOpenClass<>::GetInstance().Signal();
+//	AllTextBoxHide();
+//
+//	FSingleItemInfoData* const singleData = StaticFindItemInfo() ? StaticFindItemInfo()->GetInfoData(_ItemRefID) : nullptr;
+//	if (singleData == nullptr)
+//	{
+//		OnClickBtnClose();
+//		return;
+//	}
+//
+//	const FSingleGoodsTypeInfoData* const goodsTypeInfo(GetGoodsTypeFromGoodsTypeInfoObject(singleData->FGoodsType));
+//	
+//	if (BTN_Close.IsValid())
+//		BTN_Close->SetVisibility(ESlateVisibility::Visible);
+//	if (O_ShortcutTooltip.IsValid())
+//		O_ShortcutTooltip->SetVisibility(ESlateVisibility::Visible);
+//	
+//	SetGoodsIcon(_ItemRefID);
+//	switch (_GoodsButtonType)
+//	{
+//	case EGoodsButtonType::EGoodsButtonType_Info:
+//		if (O_InfoTooltip.IsValid())
+//			O_InfoTooltip->SetVisibility(ESlateVisibility::Visible);
+//		SetGoodsNameText(_ItemRefID);
+//		SetGoodsInfoText(goodsTypeInfo->GoodsInfoStringID);
+//		break;
+//
+//	case EGoodsButtonType::EGoodsButtonType_InfoShortcut:
+//		if (BTN_Close.IsValid())
+//			BTN_Close->SetVisibility(ESlateVisibility::Visible);
+//		if (O_ShortcutTooltip.IsValid())
+//			O_ShortcutTooltip->SetVisibility(ESlateVisibility::Visible);
+//		SetGoodsNameText(_ItemRefID);
+//		SetGoodsInfoText(goodsTypeInfo->GoodsInfoStringID);
+//		addRowOpenStage(goodsTypeInfo, _IsContentsOpened);
+//		break;
+//
+//	case EGoodsButtonType::EGoodsButtonType_ShortageShortcut:
+//		if (BTN_Close.IsValid())
+//			BTN_Close->SetVisibility(ESlateVisibility::Visible);
+//		if (O_ShortcutTooltip.IsValid())
+//			O_ShortcutTooltip->SetVisibility(ESlateVisibility::Visible);
+//		SetGoodsNameText(_ItemRefID);
+//		SetGoodsInfoText(goodsTypeInfo->ShortageInfoStringID);
+//		SetGoodsShortageTextColor(FSlateColor(FLinearColor(0.879623f, 0.03434f, 0.002428, 1.0f)));
+//		addRowOpenStage(goodsTypeInfo, _IsContentsOpened);
+//		break;
+//
+//	case EGoodsButtonType::EGoodsButtonType_NONE:
+//	default:
+//		break;
+//	}
 }
 
 FVector2D UB2UIGoodsShortcutTooltipPopup::GetUISize() const 
@@ -567,9 +567,9 @@ FSingleGoodsTypeInfoData* UB2UIGoodsShortcutTooltipPopup::GetGoodsTypeFromGoodsT
 
 void UB2UIGoodsShortcutTooltipPopup::DestroySelfUsingUIManager()
 {
-	B2AndroidBackManager::GetInstance()->RemoveBackWidget(this);
-	ForcedCloseToolTipPopupClass<>::GetInstance().UnsubscribeAll();
-	DestroySelf(UB2UIManager::GetInstance());
+	//B2AndroidBackManager::GetInstance()->RemoveBackWidget(this);
+	//ForcedCloseToolTipPopupClass<>::GetInstance().UnsubscribeAll();
+	//DestroySelf(UB2UIManager::GetInstance());
 }
 
 
@@ -598,23 +598,23 @@ void UB2UIGoodsShortcutTooltipPopup::BindDelegates()
 
 void UB2UIGoodsShortcutTooltipPopup::OnClickBtnClose()
 {
-	// [반복전투 / 연속전투] 에서 스테이지 진입에 필요한 재화가 부족하면 전투 및 카운트다운을 중단한다
-	if ( m_type == EGoodsButtonType::EGoodsButtonType_ShortageShortcut && AB2StageManager::GetCacheStageKeepEssentialData().GetRepeatBattleState().bIsOn )
-	{
-		CancelOrStopRepeatBattleClass<>::GetInstance().Signal();
-	}
+	//// [반복전투 / 연속전투] 에서 스테이지 진입에 필요한 재화가 부족하면 전투 및 카운트다운을 중단한다
+	//if ( m_type == EGoodsButtonType::EGoodsButtonType_ShortageShortcut && AB2StageManager::GetCacheStageKeepEssentialData().GetRepeatBattleState().bIsOn )
+	//{
+	//	CancelOrStopRepeatBattleClass<>::GetInstance().Signal();
+	//}
 
-	ToolTipCloseClass<>::GetInstance().Signal();
-	DestroySelfUsingUIManager();
+	//ToolTipCloseClass<>::GetInstance().Signal();
+	//DestroySelfUsingUIManager();
 }
 
 void UB2UIGoodsShortcutTooltipPopup::OnClickBtnModal()
 {
-	if(EGoodsButtonType::EGoodsButtonType_Info == m_type)
-	{
-		ToolTipCloseClass<>::GetInstance().Signal();
-		DestroySelfUsingUIManager();
-	}
+	//if(EGoodsButtonType::EGoodsButtonType_Info == m_type)
+	//{
+	//	ToolTipCloseClass<>::GetInstance().Signal();
+	//	DestroySelfUsingUIManager();
+	//}
 }
 
 void UB2UIGoodsShortcutTooltipPopup::OnForcedCloseToolTipPopup()

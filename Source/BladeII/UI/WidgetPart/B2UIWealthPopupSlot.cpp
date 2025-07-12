@@ -30,33 +30,33 @@ void UB2UIWealthPopupSlot::CacheAssets()
 
 void UB2UIWealthPopupSlot::SubscribeEvents()
 {
-	if (IsSubscribe == false)
-	{
-		UnsubscribeEvents();
+	//if (IsSubscribe == false)
+	//{
+	//	UnsubscribeEvents();
 
-		Issues.Add(ChangeStaminaChargeTimeClass<>::GetInstance().Subscribe2(
-			[this]()
-		{
-			this->UpdateWealthPopupSlot();
-		}
-		));
+	//	Issues.Add(ChangeStaminaChargeTimeClass<>::GetInstance().Subscribe2(
+	//		[this]()
+	//	{
+	//		this->UpdateWealthPopupSlot();
+	//	}
+	//	));
 
-		Issues.Add(ChangePvPMatchPointChargeTimeClass<>::GetInstance().Subscribe2(
-			[this]()
-		{
-			this->UpdateWealthPopupSlot();
-		}
-		));
+	//	Issues.Add(ChangePvPMatchPointChargeTimeClass<>::GetInstance().Subscribe2(
+	//		[this]()
+	//	{
+	//		this->UpdateWealthPopupSlot();
+	//	}
+	//	));
 
-		Issues.Add(ChangeTeamMatchPointChargeTimeClass<>::GetInstance().Subscribe2(
-			[this]()
-		{
-			this->UpdateWealthPopupSlot();
-		}
-		));
+	//	Issues.Add(ChangeTeamMatchPointChargeTimeClass<>::GetInstance().Subscribe2(
+	//		[this]()
+	//	{
+	//		this->UpdateWealthPopupSlot();
+	//	}
+	//	));
 
-		IsSubscribe = true;
-	}
+	//	IsSubscribe = true;
+	//}
 }
 
 void UB2UIWealthPopupSlot::UnsubscribeEvents()

@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "UI/WidgetPart/B2UIEventSlot.h"
+#include "../Widget/B2ButtonGoodInfoToolTip.h"
 #include "B2UIEventSlotDice.generated.h"
 
 UCLASS()

@@ -44,14 +44,14 @@ B2AndroidBackManager* B2AndroidBackManager::GetInstance()
 
 void B2AndroidBackManager::SubscribeEvents()
 {
-	UnsubscribeEvents();
+	//UnsubscribeEvents();
 
-	Issues.Add(PlatformPausePressClass<>::GetInstance().Subscribe2(
-		[this]()
-	{
-		this->OnPlatformPausePress();
-	}
-	));
+	//Issues.Add(PlatformPausePressClass<>::GetInstance().Subscribe2(
+	//	[this]()
+	//{
+	//	this->OnPlatformPausePress();
+	//}
+	//));
 }
 
 void B2AndroidBackManager::UnsubscribeEvents()
@@ -61,33 +61,33 @@ void B2AndroidBackManager::UnsubscribeEvents()
 
 void B2AndroidBackManager::OnPlatformPausePress()
 {
-	switch (GetAndroidBackState())
-	{
-	case EAndroidBackState::CLOSEBACKWIDGET:
-	case EAndroidBackState::CLOSEBATTLEMAIN:
-	{
-		if (BattleMainWidget != NULL && BattleMainWidget.IsValid())
-		{
-			// [모험모드] 중 "반복전투" 및 "연속전투" 일 경우 시스템(FJavaWrapper::OnPlatformResumeDelegate) 을 통해 들어온 멈춤메뉴의 경우 처리 하지 않는다
-			if ( AB2StageGameMode* StageGameMode = Cast< AB2StageGameMode >( UGameplayStatics::GetGameMode( GWorld ) ) )
-			{
-				if ( StageGameMode->IsRepeatBattleOn() )
-				{
-					return;
-				}
-			}
+	//switch (GetAndroidBackState())
+	//{
+	//case EAndroidBackState::CLOSEBACKWIDGET:
+	//case EAndroidBackState::CLOSEBATTLEMAIN:
+	//{
+	//	if (BattleMainWidget != NULL && BattleMainWidget.IsValid())
+	//	{
+	//		// [모험모드] 중 "반복전투" 및 "연속전투" 일 경우 시스템(FJavaWrapper::OnPlatformResumeDelegate) 을 통해 들어온 멈춤메뉴의 경우 처리 하지 않는다
+	//		if ( AB2StageGameMode* StageGameMode = Cast< AB2StageGameMode >( UGameplayStatics::GetGameMode( GWorld ) ) )
+	//		{
+	//			if ( StageGameMode->IsRepeatBattleOn() )
+	//			{
+	//				return;
+	//			}
+	//		}
 
-			IB2UIBackWidget* BackWidget = Cast<IB2UIBackWidget>(BattleMainWidget.Get());
-			if (BackWidget)
-			{
-				BackWidget->OpenBattleMainPause();
-			}
-		}
-		break;
-	}
-	default:
-		break;
-	}
+	//		IB2UIBackWidget* BackWidget = Cast<IB2UIBackWidget>(BattleMainWidget.Get());
+	//		if (BackWidget)
+	//		{
+	//			BackWidget->OpenBattleMainPause();
+	//		}
+	//	}
+	//	break;
+	//}
+	//default:
+	//	break;
+	//}
 }
 
 void B2AndroidBackManager::OnClickBackButton()

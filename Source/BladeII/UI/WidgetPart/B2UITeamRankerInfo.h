@@ -1,6 +1,7 @@
 #pragma once
 //#include "BladeII.h"
 #include "B2UIWidgetBase.h"
+#include "../../DataStore/B2ClientDataStore.h"
 #include "B2UITeamRankerInfo.generated.h"
 
 UCLASS(BlueprintType, Blueprintable)

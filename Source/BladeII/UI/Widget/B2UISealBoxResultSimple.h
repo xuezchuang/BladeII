@@ -8,13 +8,13 @@
 #include "B2UISealBoxResultSimple.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class BLADEII_API UB2UISealBoxResultSimple : public UB2UIWidget
 {
 	GENERATED_BODY()
-	
+
 public:
 	virtual void Init() override;
 	virtual void DestroySelf(class UB2UIManager* InUIManager) override;
@@ -24,7 +24,7 @@ public:
 
 	void SetRewardDataManually(const FB2ResponseUnsealBoxPtr& UnsealBoxPtr, int32 pcClass);
 	void ContinueResultShowing();
-	
+
 protected:
 	virtual void CacheAssets() override;
 	virtual void BindDelegates() override;
@@ -32,13 +32,13 @@ protected:
 	virtual void UpdateStaticText() override;
 
 	UFUNCTION()
-		void OnClickedBTNOneMoreTime();
+	void OnClickedBTNOneMoreTime();
 	UFUNCTION()
-		void OnClickedBTNClose();
+	void OnClickedBTNClose();
 
 public:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		TSubclassOf<UB2DynItemIcon_SealBoxPreview>	resultWidget;
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	//TSubclassOf<UB2DynItemIcon_SealBoxPreview>	resultWidget;
 
 private:
 	FB2ResponseUnsealBoxPtr UnsealData;

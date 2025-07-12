@@ -282,65 +282,65 @@ void UB2UIFriendKakaoInvite::BindDelegates()
 
 void UB2UIFriendKakaoInvite::SubscribeEvent()
 {
-	CAPTURE_UOBJECT(UB2UIFriendKakaoInvite);
-
-#if PLATFORM_IOS
-	FKakaoTalkPlugin::OnInviteFriendDelegate.Remove(OnKakaoInviteHandler);
-	OnKakaoInviteHandler = FKakaoTalkPlugin::OnInviteFriendDelegate.AddUObject(this, &UB2UIFriendKakaoInvite::OnKakaoInvitePlatformCallback);
-
-	FKakaoTalkPlugin::OnInvitationFriendInfoListDelegate.Remove(OnInvitionFriendListHandler);
-	OnInvitionFriendListHandler = FKakaoTalkPlugin::OnInvitationFriendInfoListDelegate.AddUObject(this, &UB2UIFriendKakaoInvite::CreateInviteFriendList);
-
-	FKakaoTalkPlugin::OnInvitationEventInfoDelegate.Remove(OnInvitionEventsHandler);
-	OnInvitionEventsHandler = FKakaoTalkPlugin::OnInvitationEventInfoDelegate.AddUObject(this, &UB2UIFriendKakaoInvite::OnUpdateRewardList);
-#endif
-#if PLATFORM_ANDROID 
-	FJavaWrapper::OnKakaoNewInviteCompletedDelegate.Remove(OnKakaoInviteHandler);
-	OnKakaoInviteHandler = FJavaWrapper::OnKakaoNewInviteCompletedDelegate.AddUObject(this, &UB2UIFriendKakaoInvite::OnKakaoInvitePlatformCallback);
-
-	// 여기에 처리 친구 목록
-	FJavaWrapper::OnInviteKakaoFriendInfoCompletedDelegate.Remove(OnKakaoFriendInfoHandler);
-	OnKakaoFriendInfoHandler = FJavaWrapper::OnInviteKakaoFriendInfoCompletedDelegate.AddUObject(this, &UB2UIFriendKakaoInvite::OnInviteFriendInfoCompletedCallback);
-
-	FJavaWrapper::OnKakaoInvitationEventsCompletedDelegate.Remove(OnKakaoInviteEventHandler);
-	OnKakaoInviteEventHandler = FJavaWrapper::OnKakaoInvitationEventsCompletedDelegate.AddUObject(this, &UB2UIFriendKakaoInvite::OnKakaoInvitationEventsCompletedCallback);
-	
-#endif
-
-	UB2UIDocFriend* DocFriend = UB2UIDocHelper::GetDocFriend();
-	if (DocFriend)
-	{
-		DocFriend->OnIsUpdateFriendInviteRewardInfoChanged.AddUObject(this, &UB2UIFriendKakaoInvite::OnChangeInviteRewardInfo);
-	}
-
-	DeliveryFriendInviteRewardTicket = DeliveryFriendInviteRewardClass<FB2ResponseFriendInviteRewardPtr>::GetInstance().Subscribe(
-		USE_CAPTURE_OBJECT_AND_TICKET(DeliveryFriendInviteReward, const FB2ResponseFriendInviteRewardPtr& RewardInfo)
-		Capture->OnDeliveryInviteReward(RewardInfo);
-	END_CAPTURE_OBJECT()
-		);
+//	CAPTURE_UOBJECT(UB2UIFriendKakaoInvite);
+//
+//#if PLATFORM_IOS
+//	FKakaoTalkPlugin::OnInviteFriendDelegate.Remove(OnKakaoInviteHandler);
+//	OnKakaoInviteHandler = FKakaoTalkPlugin::OnInviteFriendDelegate.AddUObject(this, &UB2UIFriendKakaoInvite::OnKakaoInvitePlatformCallback);
+//
+//	FKakaoTalkPlugin::OnInvitationFriendInfoListDelegate.Remove(OnInvitionFriendListHandler);
+//	OnInvitionFriendListHandler = FKakaoTalkPlugin::OnInvitationFriendInfoListDelegate.AddUObject(this, &UB2UIFriendKakaoInvite::CreateInviteFriendList);
+//
+//	FKakaoTalkPlugin::OnInvitationEventInfoDelegate.Remove(OnInvitionEventsHandler);
+//	OnInvitionEventsHandler = FKakaoTalkPlugin::OnInvitationEventInfoDelegate.AddUObject(this, &UB2UIFriendKakaoInvite::OnUpdateRewardList);
+//#endif
+//#if PLATFORM_ANDROID 
+//	FJavaWrapper::OnKakaoNewInviteCompletedDelegate.Remove(OnKakaoInviteHandler);
+//	OnKakaoInviteHandler = FJavaWrapper::OnKakaoNewInviteCompletedDelegate.AddUObject(this, &UB2UIFriendKakaoInvite::OnKakaoInvitePlatformCallback);
+//
+//	// 여기에 처리 친구 목록
+//	FJavaWrapper::OnInviteKakaoFriendInfoCompletedDelegate.Remove(OnKakaoFriendInfoHandler);
+//	OnKakaoFriendInfoHandler = FJavaWrapper::OnInviteKakaoFriendInfoCompletedDelegate.AddUObject(this, &UB2UIFriendKakaoInvite::OnInviteFriendInfoCompletedCallback);
+//
+//	FJavaWrapper::OnKakaoInvitationEventsCompletedDelegate.Remove(OnKakaoInviteEventHandler);
+//	OnKakaoInviteEventHandler = FJavaWrapper::OnKakaoInvitationEventsCompletedDelegate.AddUObject(this, &UB2UIFriendKakaoInvite::OnKakaoInvitationEventsCompletedCallback);
+//	
+//#endif
+//
+//	UB2UIDocFriend* DocFriend = UB2UIDocHelper::GetDocFriend();
+//	if (DocFriend)
+//	{
+//		DocFriend->OnIsUpdateFriendInviteRewardInfoChanged.AddUObject(this, &UB2UIFriendKakaoInvite::OnChangeInviteRewardInfo);
+//	}
+//
+//	DeliveryFriendInviteRewardTicket = DeliveryFriendInviteRewardClass<FB2ResponseFriendInviteRewardPtr>::GetInstance().Subscribe(
+//		USE_CAPTURE_OBJECT_AND_TICKET(DeliveryFriendInviteReward, const FB2ResponseFriendInviteRewardPtr& RewardInfo)
+//		Capture->OnDeliveryInviteReward(RewardInfo);
+//	END_CAPTURE_OBJECT()
+//		);
 }
 
 void UB2UIFriendKakaoInvite::UnsubscribeEvent()
 {
-#if PLATFORM_IOS
-	FKakaoTalkPlugin::OnInvitationFriendInfoListDelegate.Remove(OnInvitionFriendListHandler);
-	FKakaoTalkPlugin::OnInviteFriendDelegate.Remove(OnKakaoInviteHandler);
-	FKakaoTalkPlugin::OnInvitationEventInfoDelegate.Remove(OnInvitionEventsHandler);
-#endif
-#if PLATFORM_ANDROID // 진짜 kakao 로그인 delegate 등록
-	FJavaWrapper::OnKakaoNewInviteCompletedDelegate.Remove(OnKakaoInviteHandler);
-	FJavaWrapper::OnInviteKakaoFriendInfoCompletedDelegate.Remove(OnKakaoFriendInfoHandler);
-	FJavaWrapper::OnKakaoInvitationEventsCompletedDelegate.Remove(OnKakaoInviteEventHandler);
-	
-#endif
-
-	UB2UIDocFriend* DocFriend = UB2UIDocHelper::GetDocFriend();
-	if (DocFriend)
-	{
-		DocFriend->OnIsUpdateFriendInviteRewardInfoChanged.RemoveAll(this);
-	}
-
-	DeliveryFriendInviteRewardClass<FB2ResponseFriendInviteRewardPtr>::GetInstance().Unsubscribe(DeliveryFriendInviteRewardTicket);
+//#if PLATFORM_IOS
+//	FKakaoTalkPlugin::OnInvitationFriendInfoListDelegate.Remove(OnInvitionFriendListHandler);
+//	FKakaoTalkPlugin::OnInviteFriendDelegate.Remove(OnKakaoInviteHandler);
+//	FKakaoTalkPlugin::OnInvitationEventInfoDelegate.Remove(OnInvitionEventsHandler);
+//#endif
+//#if PLATFORM_ANDROID // 진짜 kakao 로그인 delegate 등록
+//	FJavaWrapper::OnKakaoNewInviteCompletedDelegate.Remove(OnKakaoInviteHandler);
+//	FJavaWrapper::OnInviteKakaoFriendInfoCompletedDelegate.Remove(OnKakaoFriendInfoHandler);
+//	FJavaWrapper::OnKakaoInvitationEventsCompletedDelegate.Remove(OnKakaoInviteEventHandler);
+//	
+//#endif
+//
+//	UB2UIDocFriend* DocFriend = UB2UIDocHelper::GetDocFriend();
+//	if (DocFriend)
+//	{
+//		DocFriend->OnIsUpdateFriendInviteRewardInfoChanged.RemoveAll(this);
+//	}
+//
+//	DeliveryFriendInviteRewardClass<FB2ResponseFriendInviteRewardPtr>::GetInstance().Unsubscribe(DeliveryFriendInviteRewardTicket);
 }	
 
 void UB2UIFriendKakaoInvite::OnRefresh()
@@ -670,34 +670,34 @@ void UB2UIFriendKakaoInvite::OnEndScroll()
 
 void UB2UIFriendKakaoInvite::CreateFriendRows(int32 StartIndex, int32 EndIndex)
 {
-	TArray<FB2KakaoFriendInfo> KakaoFriendList;
-	if (auto FriendDoc = UB2UIDocHelper::GetDocFriend())
-	{
-		FriendDoc->GetKakaoFriendList(KakaoFriendList);
-	}
-	for (int32 Index = StartIndex; Index < EndIndex; ++Index)
-	{
-		UB2UIKakaoFriendInviteRow* Row = CreateWidget<UB2UIKakaoFriendInviteRow>(GetWorld(), RowContentClass);
-		if (Row == nullptr)
-			continue;
+	//TArray<FB2KakaoFriendInfo> KakaoFriendList;
+	//if (auto FriendDoc = UB2UIDocHelper::GetDocFriend())
+	//{
+	//	FriendDoc->GetKakaoFriendList(KakaoFriendList);
+	//}
+	//for (int32 Index = StartIndex; Index < EndIndex; ++Index)
+	//{
+	//	UB2UIKakaoFriendInviteRow* Row = CreateWidget<UB2UIKakaoFriendInviteRow>(GetWorld(), RowContentClass);
+	//	if (Row == nullptr)
+	//		continue;
 
-		const FB2KakaoFriendInfo &FriendInfo = KakaoFriendList[Index];
-		Row->Init();
-		Row->SetOwnerUI(this);
-		Row->SetRowIndex(Index);
-		Row->SetUserInfo(FriendInfo);
+	//	const FB2KakaoFriendInfo &FriendInfo = KakaoFriendList[Index];
+	//	Row->Init();
+	//	Row->SetOwnerUI(this);
+	//	Row->SetRowIndex(Index);
+	//	Row->SetUserInfo(FriendInfo);
 
-		UScrollBoxSlot* AddedRowSlot = Cast<UScrollBoxSlot>(SB_FriendList->AddChild(Row));
-		FriendRowList.Add(Row);
-		Row->SetupManualScrollBoxSender_byReceiver(this, SB_FriendList.Get());
+	//	UScrollBoxSlot* AddedRowSlot = Cast<UScrollBoxSlot>(SB_FriendList->AddChild(Row));
+	//	FriendRowList.Add(Row);
+	//	Row->SetupManualScrollBoxSender_byReceiver(this, SB_FriendList.Get());
 
-		// 프로필 이미지 다운로드 정보 셋팅
-		std::shared_ptr<FB2KakaoProfileDownloadInfo> DownloadInfo = std::make_shared<FB2KakaoProfileDownloadInfo>();
-		DownloadInfo->SetIndex(Index);
-		DownloadInfo->SetImageUrl(FriendInfo.sThumbnailImageUrl);
-		DownloadInfo->SetTargetRow(Row);
-		ProfileManagerPtr->PushDownloadInfo(DownloadInfo);
-	}
+	//	// 프로필 이미지 다운로드 정보 셋팅
+	//	std::shared_ptr<FB2KakaoProfileDownloadInfo> DownloadInfo = std::make_shared<FB2KakaoProfileDownloadInfo>();
+	//	DownloadInfo->SetIndex(Index);
+	//	DownloadInfo->SetImageUrl(FriendInfo.sThumbnailImageUrl);
+	//	DownloadInfo->SetTargetRow(Row);
+	//	ProfileManagerPtr->PushDownloadInfo(DownloadInfo);
+	//}
 }
 
 void UB2UIFriendKakaoInvite::SwitchTab(EKakaoRewardTabType TabType)

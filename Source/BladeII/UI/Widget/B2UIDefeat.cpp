@@ -188,25 +188,25 @@ void UB2UIDefeat::SubscribeEvents()
 {
 	UnsubscribeEvents();
 
-	Issues.Add(DeliveryGetHeroTowerClass<FB2ResponseGetHeroTowerPtr>::GetInstance().Subscribe2(
-		[this](const FB2ResponseGetHeroTowerPtr& msgPtr)
-	{
-		UB2UIDocHeroTower* pDoc = UB2UIDocHelper::GetDocHeroTower();
+	//Issues.Add(DeliveryGetHeroTowerClass<FB2ResponseGetHeroTowerPtr>::GetInstance().Subscribe2(
+	//	[this](const FB2ResponseGetHeroTowerPtr& msgPtr)
+	//{
+	//	UB2UIDocHeroTower* pDoc = UB2UIDocHelper::GetDocHeroTower();
 
-		if (pDoc)
-			pDoc->SetGetHeroTowerPtr(msgPtr);
+	//	if (pDoc)
+	//		pDoc->SetGetHeroTowerPtr(msgPtr);
 
-		ReturnToHeroTowerMainMenuClass<>::GetInstance().Signal();
-		UB2UIManager::GetInstance()->CloseUI(UIFName::Defeat);
-	}
-	));
+	//	ReturnToHeroTowerMainMenuClass<>::GetInstance().Signal();
+	//	UB2UIManager::GetInstance()->CloseUI(UIFName::Defeat);
+	//}
+	//));
 
-	Issues.Add(DeliveryGetLotteryShopClass<FB2ResponseGetLotteryShopPtr>::GetInstance().Subscribe2(
-		[this](const FB2ResponseGetLotteryShopPtr& msgPtr)
-	{
-		this->ResponseSetSummonItemUIData(msgPtr);
-	}
-	));
+	//Issues.Add(DeliveryGetLotteryShopClass<FB2ResponseGetLotteryShopPtr>::GetInstance().Subscribe2(
+	//	[this](const FB2ResponseGetLotteryShopPtr& msgPtr)
+	//{
+	//	this->ResponseSetSummonItemUIData(msgPtr);
+	//}
+	//));
 }
 
 void UB2UIDefeat::UnsubscribeEvents()
@@ -474,24 +474,24 @@ void UB2UIDefeat::SetEnableRessurectButton(bool bEnable)
 //====================================================================================
 void UB2UIDefeat::OnClickBtnQuit()
 {
-	if (GetB2GameModeType(this) == EB2GameMode::HeroTower)
-	{
-		data_trader::Retailer::GetInstance().RequestGetHeroTower();
-	}
-	else
-	{
-		GoToVillageDefeatedClass<>::GetInstance().Signal();
-		UB2UIManager::GetInstance()->CloseUI(UIFName::Defeat);
-	}
+	//if (GetB2GameModeType(this) == EB2GameMode::HeroTower)
+	//{
+	//	data_trader::Retailer::GetInstance().RequestGetHeroTower();
+	//}
+	//else
+	//{
+	//	GoToVillageDefeatedClass<>::GetInstance().Signal();
+	//	UB2UIManager::GetInstance()->CloseUI(UIFName::Defeat);
+	//}
 }
 
 void UB2UIDefeat::OnClickBtnResurrect()
 {
-	if (SelectedBuffType != EResurrectBuffType::RBT_None && SelectedBuffType != EResurrectBuffType::RBT_End)
-	{
-		UB2UIManager::GetInstance()->CloseUI(UIFName::Defeat); // Resurrect 응답이 오면 이 메뉴가 파괴될 거긴 함..
-		RequestResurrectClass<EResurrectBuffType>::GetInstance().Signal(SelectedBuffType);
-	}
+	//if (SelectedBuffType != EResurrectBuffType::RBT_None && SelectedBuffType != EResurrectBuffType::RBT_End)
+	//{
+	//	UB2UIManager::GetInstance()->CloseUI(UIFName::Defeat); // Resurrect 응답이 오면 이 메뉴가 파괴될 거긴 함..
+	//	RequestResurrectClass<EResurrectBuffType>::GetInstance().Signal(SelectedBuffType);
+	//}
 }
 
 void UB2UIDefeat::OnClickBtnConfirm()
@@ -530,34 +530,34 @@ void UB2UIDefeat::OnBuffIconPartClicked(EResurrectBuffType ClickedBuffType)
 
 void UB2UIDefeat::OnClickBtnItemEnhance()
 {
-	UB2UIManager::GetInstance()->CloseUI(UIFName::Defeat);
+	//UB2UIManager::GetInstance()->CloseUI(UIFName::Defeat);
 
-	FLobbySceneManager::DeferredRegistChangeLobbyScene([]() {
-		// 전체 씬 전환을 하면 실 로딩 시간이 늘어나므로 원하는 화면 직전까지 UI History 만 만들어준다. 
-		UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
-		if (UIMgrInst) {
-			UIMgrInst->ArtificialAddUIHistory(EUIScene::LobbyMain);
-		}
-		LobbyEnterHeroMgmtModeClass<EHeroMgmtSubMode>::GetInstance().Signal(EHeroMgmtSubMode::EHMSM_Inventory);
-	});
+	//FLobbySceneManager::DeferredRegistChangeLobbyScene([]() {
+	//	// 전체 씬 전환을 하면 실 로딩 시간이 늘어나므로 원하는 화면 직전까지 UI History 만 만들어준다. 
+	//	UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
+	//	if (UIMgrInst) {
+	//		UIMgrInst->ArtificialAddUIHistory(EUIScene::LobbyMain);
+	//	}
+	//	LobbyEnterHeroMgmtModeClass<EHeroMgmtSubMode>::GetInstance().Signal(EHeroMgmtSubMode::EHMSM_Inventory);
+	//});
 
-	OpenBladeIILobbyCommon(Cast<AGameMode>(UGameplayStatics::GetGameMode(this))); // 씬 전환 예약 후 본격 로비 맵 로딩
+	//OpenBladeIILobbyCommon(Cast<AGameMode>(UGameplayStatics::GetGameMode(this))); // 씬 전환 예약 후 본격 로비 맵 로딩
 }
 
 void UB2UIDefeat::OnClickBtnSkillEnhance()
 {
-	UB2UIManager::GetInstance()->CloseUI(UIFName::Defeat);
-	
-	FLobbySceneManager::DeferredRegistChangeLobbyScene([]() {
-		// 전체 씬 전환을 하면 실 로딩 시간이 늘어나므로 원하는 화면 직전까지 UI History 만 만들어준다. 
-		UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
-		if (UIMgrInst) {
-			UIMgrInst->ArtificialAddUIHistory(EUIScene::LobbyMain);
-		}
-		LobbyEnterHeroMgmtModeClass<EHeroMgmtSubMode>::GetInstance().Signal(EHeroMgmtSubMode::EHMSM_Skill);
-	});
+	//UB2UIManager::GetInstance()->CloseUI(UIFName::Defeat);
+	//
+	//FLobbySceneManager::DeferredRegistChangeLobbyScene([]() {
+	//	// 전체 씬 전환을 하면 실 로딩 시간이 늘어나므로 원하는 화면 직전까지 UI History 만 만들어준다. 
+	//	UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
+	//	if (UIMgrInst) {
+	//		UIMgrInst->ArtificialAddUIHistory(EUIScene::LobbyMain);
+	//	}
+	//	LobbyEnterHeroMgmtModeClass<EHeroMgmtSubMode>::GetInstance().Signal(EHeroMgmtSubMode::EHMSM_Skill);
+	//});
 
-	OpenBladeIILobbyCommon(Cast<AGameMode>(UGameplayStatics::GetGameMode(this))); // 씬 전환 예약 후 본격 로비 맵 로딩
+	//OpenBladeIILobbyCommon(Cast<AGameMode>(UGameplayStatics::GetGameMode(this))); // 씬 전환 예약 후 본격 로비 맵 로딩
 }
 
 void UB2UIDefeat::OnClickBtnItemPurchase()
@@ -593,18 +593,18 @@ void UB2UIDefeat::ResponseSetSummonItemUIData(const FB2ResponseGetLotteryShopPtr
 
 void UB2UIDefeat::GotoSummonItemStore()
 {
-	UB2UIManager::GetInstance()->CloseUI(UIFName::Defeat);
+	//UB2UIManager::GetInstance()->CloseUI(UIFName::Defeat);
 
-	FLobbySceneManager::DeferredRegistChangeLobbyScene([]() {
-		// 전체 씬 전환을 하면 실 로딩 시간이 늘어나므로 원하는 화면 직전까지 UI History 만 만들어준다. 
-		UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
-		if (UIMgrInst) {
-			UIMgrInst->ArtificialAddUIHistory(EUIScene::LobbyMain);
-		}
-		LobbyChangeSceneByUISceneClass<EUIScene>::GetInstance().Signal(EUIScene::SummonItemStore);
-	});
+	//FLobbySceneManager::DeferredRegistChangeLobbyScene([]() {
+	//	// 전체 씬 전환을 하면 실 로딩 시간이 늘어나므로 원하는 화면 직전까지 UI History 만 만들어준다. 
+	//	UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
+	//	if (UIMgrInst) {
+	//		UIMgrInst->ArtificialAddUIHistory(EUIScene::LobbyMain);
+	//	}
+	//	LobbyChangeSceneByUISceneClass<EUIScene>::GetInstance().Signal(EUIScene::SummonItemStore);
+	//});
 
-	OpenBladeIILobbyCommon(Cast<AGameMode>(UGameplayStatics::GetGameMode(this))); // 씬 전환 예약 후 본격 로비 맵 로딩
+	//OpenBladeIILobbyCommon(Cast<AGameMode>(UGameplayStatics::GetGameMode(this))); // 씬 전환 예약 후 본격 로비 맵 로딩
 }
 
 void UB2UIDefeat::CloseWidgetDelegate()

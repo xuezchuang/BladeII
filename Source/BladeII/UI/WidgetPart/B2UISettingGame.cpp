@@ -739,15 +739,15 @@ void UB2UISettingGame::LoadSettingGameData()
 
 EB2ResolutionLevel UB2UISettingGame::GetContextDesiredResolutionLevel(bool bIsForUI)
 {
-	// 재시작 후 적용되는 케이스를 위해 대부분의 경우 m_nSafeResolutionLevel 에 그냥 접근하지 말고 이걸 사용해야 함.
-	if (bIsForUI) // UI 단 표시의 경우만 Reserved 를 고려.
-	{		
-		EB2ResolutionLevel ReservedLevel = LoadReservedResolutionLevelOfPrevAppRun();
-		if (ReservedLevel != EB2ResolutionLevel::End)
-		{
-			return ReservedLevel;
-		}
-	}
+	//// 재시작 후 적용되는 케이스를 위해 대부분의 경우 m_nSafeResolutionLevel 에 그냥 접근하지 말고 이걸 사용해야 함.
+	//if (bIsForUI) // UI 단 표시의 경우만 Reserved 를 고려.
+	//{		
+	//	EB2ResolutionLevel ReservedLevel = LoadReservedResolutionLevelOfPrevAppRun();
+	//	if (ReservedLevel != EB2ResolutionLevel::End)
+	//	{
+	//		return ReservedLevel;
+	//	}
+	//}
 	return IntToB2ResolutionLevel(m_nSafeResolutionLevel); // 적어도 내부에 적용되는 건 무조건 이걸 써야 함.
 }
 

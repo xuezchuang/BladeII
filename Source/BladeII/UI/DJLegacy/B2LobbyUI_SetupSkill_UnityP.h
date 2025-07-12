@@ -3,6 +3,7 @@
 #include "B2LobbyUserWidget.h"
 #include "B2SkillInfo.h"
 #include "B2UIWidgetBase.h"
+#include "../B2RichTextBlock.h"
 #include "B2LobbyUI_SetupSkill_UnityP.generated.h"
 
 #define MAX_UNITYSTEP_COUNT 8

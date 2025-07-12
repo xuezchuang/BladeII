@@ -261,17 +261,17 @@ ETotemEquipSlot FTotemDataStore::GetTotemEquipSlot(const int32& InRefID)
 
 FText FTotemDataStore::GetTotemRefineText(const int32& RefineLevel)
 {
-	UB2TotemRefineInfo* TotemRefineInfo = StaticFindTotemRefineInfo();
+	//UB2TotemRefineInfo* TotemRefineInfo = StaticFindTotemRefineInfo();
 
-	if (RefineLevel >= TotemRefineInfo->GetTotemRefineValue(ETotemRefinePrefix::TRP_SACRED))
-		return BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Totem_Prefix_SmeltCount04"));
-	else if (RefineLevel >= TotemRefineInfo->GetTotemRefineValue(ETotemRefinePrefix::TRP_STRONG))
-		return BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Totem_Prefix_SmeltCount03"));
-	else if (RefineLevel >= TotemRefineInfo->GetTotemRefineValue(ETotemRefinePrefix::TRP_SHINING))
-		return BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Totem_Prefix_SmeltCount02"));
-	else if (RefineLevel >= TotemRefineInfo->GetTotemRefineValue(ETotemRefinePrefix::TRP_ECLIPSE))
-		return BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Totem_Prefix_SmeltCount01"));
-	else
+	//if (RefineLevel >= TotemRefineInfo->GetTotemRefineValue(ETotemRefinePrefix::TRP_SACRED))
+	//	return BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Totem_Prefix_SmeltCount04"));
+	//else if (RefineLevel >= TotemRefineInfo->GetTotemRefineValue(ETotemRefinePrefix::TRP_STRONG))
+	//	return BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Totem_Prefix_SmeltCount03"));
+	//else if (RefineLevel >= TotemRefineInfo->GetTotemRefineValue(ETotemRefinePrefix::TRP_SHINING))
+	//	return BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Totem_Prefix_SmeltCount02"));
+	//else if (RefineLevel >= TotemRefineInfo->GetTotemRefineValue(ETotemRefinePrefix::TRP_ECLIPSE))
+	//	return BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Totem_Prefix_SmeltCount01"));
+	//else
 		return FText::FromString(TEXT(""));
 }
 

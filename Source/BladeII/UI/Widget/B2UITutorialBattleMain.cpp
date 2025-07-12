@@ -458,39 +458,39 @@ void UB2UITutorialBattleMain::OnChangedQTEEnableState(class UB2UIDocBase* Sender
 
 void UB2UITutorialBattleMain::HideHUDForQTE(bool bHide)
 {
-	ABladeIIPlayerController* B2PC = Cast<ABladeIIPlayerController>(GetOwningPlayer());
+	//ABladeIIPlayerController* B2PC = Cast<ABladeIIPlayerController>(GetOwningPlayer());
 
-	if (bHide)
-	{
-		this->ForceHide();
+	//if (bHide)
+	//{
+	//	this->ForceHide();
 
-		if (B2PC)
-		{
-			B2PC->SetVirtualJoystickVisibility(false);
-		}
-	}
-	else
-	{
-		if (B2PC && !B2PC->IsInCinematicMode())
-		{
-			this->RestoreFromForceHidden();
-			B2PC->SetVirtualJoystickVisibility(true);
-		}
-	}
+	//	if (B2PC)
+	//	{
+	//		B2PC->SetVirtualJoystickVisibility(false);
+	//	}
+	//}
+	//else
+	//{
+	//	if (B2PC && !B2PC->IsInCinematicMode())
+	//	{
+	//		this->RestoreFromForceHidden();
+	//		B2PC->SetVirtualJoystickVisibility(true);
+	//	}
+	//}
 
-	if (CreatedQTEUIP)
-	{
-		CreatedQTEUIP->SetVisibilityFromTutorialBattleMainUI(ESlateVisibility::Hidden);
-	}
+	//if (CreatedQTEUIP)
+	//{
+	//	CreatedQTEUIP->SetVisibilityFromTutorialBattleMainUI(ESlateVisibility::Hidden);
+	//}
 }
 
 void UB2UITutorialBattleMain::OnClickBtnSkip()
 {
-	AB2TutorialGameMode* B2TGM = Cast<AB2TutorialGameMode>(UGameplayStatics::GetGameMode(GetWorld()));
-	if (B2TGM)
-	{
-		B2TGM->SetFinishTutorial();
-	}
+	//AB2TutorialGameMode* B2TGM = Cast<AB2TutorialGameMode>(UGameplayStatics::GetGameMode(GetWorld()));
+	//if (B2TGM)
+	//{
+	//	B2TGM->SetFinishTutorial();
+	//}
 }
 
 void UB2UITutorialBattleMain::CloseBattleMainUIEvent(bool Value)

@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "UI/B2UIWidgetBase.h"
+#include "../Widget/B2ScrollBox.h"
 #include "B2UIBattleNotice.generated.h"
 
 

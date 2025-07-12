@@ -4,6 +4,8 @@
 
 #include "UI/B2UIWidget.h"
 #include "B2UIBackWidget.h"
+#include "../B2RichTextBlock.h"
+#include "../../Common/CommonStruct.h"
 #include "B2UIEnhanceEther.generated.h"
 
 /**
@@ -15,7 +17,7 @@ class BLADEII_API UB2UIEnhanceEther : public UB2UIWidget, public IB2UIBackWidget
 	GENERATED_BODY()
 
 public:
-	void SetInfo(const FB2Ether* EnhanceEther, EPCClass InSelectPCClass);
+	//void SetInfo(const FB2Ether* EnhanceEther, EPCClass InSelectPCClass);
 	virtual void Init() override;
 	
 	UFUNCTION(BlueprintCallable, Category = BladeII)
@@ -46,7 +48,7 @@ private:
 	UFUNCTION()
 		void EnhanceSuccessAnimationFinished();
 
-	int GetChangeSubOptionIndex(const FB2Ether* EnhanceEther, int32 InSubOptionState) const;
+	//int GetChangeSubOptionIndex(const FB2Ether* EnhanceEther, int32 InSubOptionState) const;
 	void SetEtherCost();
 	void UpdateInfo();
 	void SetIsAutoEnhance(bool Value);

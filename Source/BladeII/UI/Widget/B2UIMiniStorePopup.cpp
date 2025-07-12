@@ -53,12 +53,12 @@ void UB2UIMiniStorePopup::SubscribeEvents()
 {
 	UnsubscribeEvents();
 
-	Issues.Add(SelectItemToBuyClass<int32>::GetInstance().Subscribe2(
-		[this](int32 ProductId)
-	{
-		this->OpenPopupConfirmToBuyItem(ProductId);
-	}
-	));
+	//Issues.Add(SelectItemToBuyClass<int32>::GetInstance().Subscribe2(
+	//	[this](int32 ProductId)
+	//{
+	//	this->OpenPopupConfirmToBuyItem(ProductId);
+	//}
+	//));
 }
 
 void UB2UIMiniStorePopup::UnsubscribeEvents()
@@ -284,16 +284,16 @@ void UB2UIMiniStorePopup::CompletedPurchaseBuyGem(bool success, const FB2Respons
 
 void UB2UIMiniStorePopup::SubmitConfirmToBuyGem()
 {
-	CloseConfirmToBuyPopupGemPopup();
+	//CloseConfirmToBuyPopupGemPopup();
 
-	if (B2P_GetKakaoIDPCode() == EPlatformIDPCode::Guest)
-	{
-		OpenGuestWarningPopup();
-	}
-	else
-	{
-		ConfirmToBuyGem();
-	}
+	//if (B2P_GetKakaoIDPCode() == EPlatformIDPCode::Guest)
+	//{
+	//	OpenGuestWarningPopup();
+	//}
+	//else
+	//{
+	//	ConfirmToBuyGem();
+	//}
 }
 
 void UB2UIMiniStorePopup::CloseConfirmToBuyPopupGemPopup()
@@ -322,17 +322,17 @@ void UB2UIMiniStorePopup::ConfirmToBuyGem()
 
 void UB2UIMiniStorePopup::ConditionalCreateGuestWarningPopup()
 {
-	if (!Created_UIP_GuestWarningPopup && X_CP_GuestWarningPopup_Panel.IsValid())
-	{
-		Created_UIP_GuestWarningPopup = DynLoadAndCreateInCanvasPanelFull<UB2UIMsgPopupGuestWarning>(UIP_GuestWarningPopup_Class, this, X_CP_GuestWarningPopup_Panel.Get());
-		if (Created_UIP_GuestWarningPopup)
-		{
-			Created_UIP_GuestWarningPopup->Init();
+	//if (!Created_UIP_GuestWarningPopup && X_CP_GuestWarningPopup_Panel.IsValid())
+	//{
+	//	Created_UIP_GuestWarningPopup = DynLoadAndCreateInCanvasPanelFull<UB2UIMsgPopupGuestWarning>(UIP_GuestWarningPopup_Class, this, X_CP_GuestWarningPopup_Panel.Get());
+	//	if (Created_UIP_GuestWarningPopup)
+	//	{
+	//		Created_UIP_GuestWarningPopup->Init();
 
-			BIND_RELEASE_FUNC_TO_BTN(TWeakObjectPtr<UB2Button>(Created_UIP_GuestWarningPopup->GetSlot<UB2Button>(TEXT("BTN_Cancel"))), &UB2UIMiniStorePopup::CloseGuestWarningPopup);
-			BIND_RELEASE_FUNC_TO_BTN(TWeakObjectPtr<UB2Button>(Created_UIP_GuestWarningPopup->GetSlot<UB2Button>(TEXT("BTN_Buy"))), &UB2UIMiniStorePopup::BuyGuestWarningPopup);
-		}
-	}
+	//		BIND_RELEASE_FUNC_TO_BTN(TWeakObjectPtr<UB2Button>(Created_UIP_GuestWarningPopup->GetSlot<UB2Button>(TEXT("BTN_Cancel"))), &UB2UIMiniStorePopup::CloseGuestWarningPopup);
+	//		BIND_RELEASE_FUNC_TO_BTN(TWeakObjectPtr<UB2Button>(Created_UIP_GuestWarningPopup->GetSlot<UB2Button>(TEXT("BTN_Buy"))), &UB2UIMiniStorePopup::BuyGuestWarningPopup);
+	//	}
+	//}
 }
 
 void UB2UIMiniStorePopup::OpenGuestWarningPopup()

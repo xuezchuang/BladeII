@@ -6,6 +6,8 @@
 #include "UI/B2UIWidget.h"
 #include "UI/DJLegacy/B2LobbyUserWidget.h"
 #include "B2UIBackWidget.h"
+#include "../B2RichTextBlock.h"
+#include "../../BladeII/BladeIIGameMode.h"
 #include "B2UILobby_CostumeMain.generated.h"
 
 /**

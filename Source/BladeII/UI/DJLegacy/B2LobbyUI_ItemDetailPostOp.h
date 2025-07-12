@@ -6,6 +6,7 @@
 #include "B2Inventory.h"
 #include "B2LobbyInventory.h"
 #include "B2UIBackWidget.h"
+#include "../B2RichTextBlock.h"
 #include "B2LobbyUI_ItemDetailPostOp.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnConfirmButtonClicked);

@@ -7,6 +7,7 @@
 #include "B2UIBackWidget.h"
 #include "B2UIFilterInventory.h"
 #include "B2UIUtil.h"
+#include "../Widget/B2Image.h"
 #include "B2LobbyUI_AutoItemLevelup.generated.h"
 
 

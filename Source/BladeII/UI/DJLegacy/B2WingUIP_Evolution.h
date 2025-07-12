@@ -5,6 +5,8 @@
 #include "BladeIIUserWidget.h"
 #include "B2Airport.h"
 #include "B2WingUIP_EvolveGradeStar.h"
+#include "../Widget/B2ButtonGoodInfoToolTip.h"
+#include "../B2RichTextBlock.h"
 #include "B2WingUIP_Evolution.generated.h"
 
 /**

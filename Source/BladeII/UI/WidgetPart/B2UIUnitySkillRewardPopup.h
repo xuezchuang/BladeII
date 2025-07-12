@@ -3,6 +3,7 @@
 //#include "BladeII.h"
 #include "UI/B2UIWidget.h"
 #include "B2UIBackWidget.h"
+#include "../Widget/B2Image.h"
 #include "B2UIUnitySkillRewardPopup.generated.h"
 
 

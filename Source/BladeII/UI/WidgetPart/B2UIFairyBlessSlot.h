@@ -4,6 +4,7 @@
 
 #include "FairyManager.h"
 #include "UI/B2UIWidgetBase.h"
+#include "../B2RichTextBlock.h"
 #include "B2UIFairyBlessSlot.generated.h"
 
 DECLARE_DELEGATE_OneParam(FFairyBlessSlotOnClick, int32)

@@ -183,7 +183,7 @@ void UB2UITeamMatchBattle::SetSlotDeath(bool bSet, bool bLeft, int32 SlotIdx)
 
 void UB2UITeamMatchBattle::OnSlotChangedOnClickCharacter(bool bMyTeam, int32 SlotIdx)
 {
-	TeamMatchChangeCharacterCamClass<bool, int32>::GetInstance().Signal(bMyTeam, SlotIdx);
+	//TeamMatchChangeCharacterCamClass<bool, int32>::GetInstance().Signal(bMyTeam, SlotIdx);
 }
 
 void UB2UITeamMatchBattle::OnSlotChangedHealthAndShieldCommon(bool bMyTeam, int32 SlotIdx)
@@ -323,9 +323,9 @@ void UB2UITeamMatchBattle::CloseWidgetDelegate()
 
 void UB2UITeamMatchBattle::OnClickPauseButton()
 {
-	StartPauseMenuClass<EB2GameMode>::GetInstance().Signal(GetB2GameModeType(this));
+	//StartPauseMenuClass<EB2GameMode>::GetInstance().Signal(GetB2GameModeType(this));
 
-	SetPendingPause();
+	//SetPendingPause();
 }
 
 void UB2UITeamMatchBattle::SetDamagePercent(bool IsMyTeam, const TArray<float>& TotalDamages)
@@ -398,6 +398,6 @@ void UB2UITeamMatchBattle::ShowResultImage(const ENetMatchResult& result)
 
 void UB2UITeamMatchBattle::OnPressedSkillBtn(UB2UIBattleSkill* ClickedSkill)
 {
-	int32 SkillIndex = ClickedSkill->GetIndex();
-	PlayerStartWeaponSkillByIndexClass<int32>::GetInstance().Signal(SkillIndex);
+	//int32 SkillIndex = ClickedSkill->GetIndex();
+	//PlayerStartWeaponSkillByIndexClass<int32>::GetInstance().Signal(SkillIndex);
 }

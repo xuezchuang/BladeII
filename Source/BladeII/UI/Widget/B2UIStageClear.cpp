@@ -172,12 +172,12 @@ void UB2UIStageClear::BeginRewardItemFx()
 
 void UB2UIStageClear::Show3DWingEffect()
 {
-	ShowStageClearWingEffectClass<>::GetInstance().Signal();
+	//ShowStageClearWingEffectClass<>::GetInstance().Signal();
 }
 
 void UB2UIStageClear::Show3DGemEffect()
 {
-	ShowStageClearGemEffectClass<>::GetInstance().Signal();
+	//ShowStageClearGemEffectClass<>::GetInstance().Signal();
 }
 
 void UB2UIStageClear::StartCountDownIfRepeatBattleIsOn()
@@ -370,12 +370,12 @@ void UB2UIStageClear::UpdateWidgetCustomTimer()
 
 void UB2UIStageClear::StartRepeatBattleCountdown()
 {
-	if (UIP_RepeatBattleCountDownP.IsValid())
-	{
-		UIP_RepeatBattleCountDownP->StartCountdown(FRepeatBattleCountDownCB::CreateLambda([this](){
-			BeginStageClearScene_Phase2Class<>::GetInstance().Signal(); // 카운트다운 다 되면 결과 화면으로 넘어간다. (StageClear Phase 2)
-		}));
-	}
+	//if (UIP_RepeatBattleCountDownP.IsValid())
+	//{
+	//	UIP_RepeatBattleCountDownP->StartCountdown(FRepeatBattleCountDownCB::CreateLambda([this](){
+	//		BeginStageClearScene_Phase2Class<>::GetInstance().Signal(); // 카운트다운 다 되면 결과 화면으로 넘어간다. (StageClear Phase 2)
+	//	}));
+	//}
 }
 void UB2UIStageClear::StopRepeatBattleCountdown()
 {
@@ -444,14 +444,14 @@ void UB2UIStageClear::OnClickBtnGoStageResult()
 {
 	//UB2UIManager::GetInstance()->ChangeUIScene(EUIScene::StageResult);
 
-	if (IsRepeatBattleOn())
-	{
-		PopUpRepeatBattleStopMsg(GetOwningPlayer()); // 반복 전투 상태에서는 중단 버튼의 역할이 됨.
-	}
-	else
-	{	// StageEventDirector 의 승리포즈 연출과 함께 StageResult UIScene 이 시작될 것이다. (StageClear Phase 2)
-		BeginStageClearScene_Phase2Class<>::GetInstance().Signal();
-	}
+	//if (IsRepeatBattleOn())
+	//{
+	//	PopUpRepeatBattleStopMsg(GetOwningPlayer()); // 반복 전투 상태에서는 중단 버튼의 역할이 됨.
+	//}
+	//else
+	//{	// StageEventDirector 의 승리포즈 연출과 함께 StageResult UIScene 이 시작될 것이다. (StageClear Phase 2)
+	//	BeginStageClearScene_Phase2Class<>::GetInstance().Signal();
+	//}
 }
 
 //====================================================================================

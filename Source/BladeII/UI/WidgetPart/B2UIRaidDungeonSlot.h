@@ -2,6 +2,7 @@
 
 #include "B2UIWidget.h"
 #include "B2UIDocBindable.h"
+#include "../B2RichTextBlock.h"
 #include "B2UIRaidDungeonSlot.generated.h"
 
 DECLARE_DELEGATE_OneParam(FUB2UIRaidDungeonSlot_OnClickBtnSelect, int32)

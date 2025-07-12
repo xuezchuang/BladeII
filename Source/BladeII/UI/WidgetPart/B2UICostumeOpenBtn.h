@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "UI/B2UIWidget.h"
+#include "../../BladeII/BladeIIGameMode.h"
+#include "../B2RichTextBlock.h"
 #include "B2UICostumeOpenBtn.generated.h"
 
 /**

@@ -8,31 +8,31 @@
 
 void UB2UIPSubQuest::Init()
 {
-	Super::Init();
-	UpdateSubQuestScollClass<>::GetInstance().Subscribe([this]()
-	{
-		this->UpdateScroll(this->TabType);
-	});
+	//Super::Init();
+	//UpdateSubQuestScollClass<>::GetInstance().Subscribe([this]()
+	//{
+	//	this->UpdateScroll(this->TabType);
+	//});
 }
 
 void UB2UIPSubQuest::DestroySelf(class UB2UIManager* InUIManager)
 {
-	UpdateSubQuestScollClass<>::GetInstance().UnsubscribeAll();
+	//UpdateSubQuestScollClass<>::GetInstance().UnsubscribeAll();
 
-	for (TPair<int32, TWeakObjectPtr<UB2UIPSubQuestTab>>& Tab : Tabs)
-	{
-		if (Tab.Value.IsValid())
-		{
-			Tab.Value->DestroySelf(InUIManager);
-		}
-	}
+	//for (TPair<int32, TWeakObjectPtr<UB2UIPSubQuestTab>>& Tab : Tabs)
+	//{
+	//	if (Tab.Value.IsValid())
+	//	{
+	//		Tab.Value->DestroySelf(InUIManager);
+	//	}
+	//}
 
-	if(UIP_QuestList.IsValid())
-	{
-		UIP_QuestList->DestroySelf(InUIManager);
-	}
+	//if(UIP_QuestList.IsValid())
+	//{
+	//	UIP_QuestList->DestroySelf(InUIManager);
+	//}
 
-	Super::DestroySelf(InUIManager);
+	//Super::DestroySelf(InUIManager);
 }
 
 void UB2UIPSubQuest::CurrentTabUpdateScroll()

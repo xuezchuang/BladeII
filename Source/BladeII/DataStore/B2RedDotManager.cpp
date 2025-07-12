@@ -142,30 +142,30 @@ void FB2RedDotManager::SubscribeEvents()
 {
 	UnsubscribeEvents();
 
-	Issues.Add(DeliveryCheckRedDotClass<FB2MessageInfoResponseCheckRedDotPtr>::GetInstance().Subscribe2(
-		[this](FB2MessageInfoResponseCheckRedDotPtr LobbyRedDotInfo)
-	{
-		this->ResponseLobbyCheckRedDot(LobbyRedDotInfo);
-	}
-	));
-	Issues.Add(UpdateMarkRedDotClass<const FName&>::GetInstance().Subscribe2(
-		[this](const FName& UIName)
-	{
-		this->UpdateMarkRedDot(UIName);
-	}
-	));
-	Issues.Add(DeliveryCheckModeOpenClass<FB2ResponseCheckModeOpenPtr>::GetInstance().Subscribe2(
-		[this](const FB2ResponseCheckModeOpenPtr& CheckModeOpen)
-	{
-		this->UpdateCheckModeOpen();
-	}
-	));
-	Issues.Add(ChangeLastClearStageClass<EStageDifficulty, int32, int32>::GetInstance().Subscribe2(
-		[this](EStageDifficulty Difficulty, int32 PrevStageID, int32 CurrentStageID)
-	{
-		this->SetChangeStageClear(Difficulty, PrevStageID, CurrentStageID);
-	}
-	));
+	//Issues.Add(DeliveryCheckRedDotClass<FB2MessageInfoResponseCheckRedDotPtr>::GetInstance().Subscribe2(
+	//	[this](FB2MessageInfoResponseCheckRedDotPtr LobbyRedDotInfo)
+	//{
+	//	this->ResponseLobbyCheckRedDot(LobbyRedDotInfo);
+	//}
+	//));
+	//Issues.Add(UpdateMarkRedDotClass<const FName&>::GetInstance().Subscribe2(
+	//	[this](const FName& UIName)
+	//{
+	//	this->UpdateMarkRedDot(UIName);
+	//}
+	//));
+	//Issues.Add(DeliveryCheckModeOpenClass<FB2ResponseCheckModeOpenPtr>::GetInstance().Subscribe2(
+	//	[this](const FB2ResponseCheckModeOpenPtr& CheckModeOpen)
+	//{
+	//	this->UpdateCheckModeOpen();
+	//}
+	//));
+	//Issues.Add(ChangeLastClearStageClass<EStageDifficulty, int32, int32>::GetInstance().Subscribe2(
+	//	[this](EStageDifficulty Difficulty, int32 PrevStageID, int32 CurrentStageID)
+	//{
+	//	this->SetChangeStageClear(Difficulty, PrevStageID, CurrentStageID);
+	//}
+	//));
 }
 
 void FB2RedDotManager::UnsubscribeEvents()
@@ -289,9 +289,10 @@ bool FB2RedDotManager::IsLevelupableSkill(int32 SkillID)
 
 bool FB2RedDotManager::HasLevelUpSkillGold(int32 SkillId)
 {
-	int32 LevelUpCost = BladeIIGameImpl::GetLocalCharacterData().GetCharacterSkillLevelupGold(SkillId);
-	int32 GoldAmount = BladeIIGameImpl::GetClientDataStore().GetGoldAmount();
-	return LevelUpCost <= GoldAmount;
+	//int32 LevelUpCost = BladeIIGameImpl::GetLocalCharacterData().GetCharacterSkillLevelupGold(SkillId);
+	//int32 GoldAmount = BladeIIGameImpl::GetClientDataStore().GetGoldAmount();
+	//return LevelUpCost <= GoldAmount;
+	return false;
 }
 
 bool FB2RedDotManager::HasLevelUpSkillPoint(int32 SkillID, int32 SkillLevel)
@@ -367,8 +368,8 @@ void FB2RedDotManager::UpdateRedDotState(FB2MessageInfoResponseCheckRedDotPtr Ne
 		CurrentRedDotState->has_blade_point_mail = NewRedDotInfo->has_blade_point_mail;
 		CurrentRedDotState->has_social_point_mail = NewRedDotInfo->has_social_point_mail;
 		CurrentRedDotState->has_lottery_mail = NewRedDotInfo->has_lottery_mail;
-		UpdateMarkRedDotClass<const FName&>::GetInstance().Signal(UIFName::Header);
-		UpdateMarkRedDotClass<const FName&>::GetInstance().Signal(UIFName::Mail);
+		//UpdateMarkRedDotClass<const FName&>::GetInstance().Signal(UIFName::Header);
+		//UpdateMarkRedDotClass<const FName&>::GetInstance().Signal(UIFName::Mail);
 	}
 	if (NewRedDotInfo->is_valid_event)
 	{
@@ -383,8 +384,8 @@ void FB2RedDotManager::UpdateRedDotState(FB2MessageInfoResponseCheckRedDotPtr Ne
 		CurrentRedDotState->has_event_ten_lottery_savings_reward = NewRedDotInfo->has_event_ten_lottery_savings_reward;
 		CurrentRedDotState->has_event_dice_reward = NewRedDotInfo->has_event_dice_reward;
 
-		UpdateMarkRedDotClass<const FName&>::GetInstance().Signal(UIFName::EventMain);
-		UpdateMarkRedDotClass<const FName&>::GetInstance().Signal(UIFName::SeasonEvent);
+		//UpdateMarkRedDotClass<const FName&>::GetInstance().Signal(UIFName::EventMain);
+		//UpdateMarkRedDotClass<const FName&>::GetInstance().Signal(UIFName::SeasonEvent);
 	}
 	if (NewRedDotInfo->is_valid_etc)
 	{
@@ -421,7 +422,7 @@ void FB2RedDotManager::UpdateRedDotState(FB2MessageInfoResponseCheckRedDotPtr Ne
 
 void FB2RedDotManager::UpdateCheckModeOpen()
 {
-	UpdateMarkRedDotClass<const FName&>::GetInstance().Signal(UIFName::LobbyMain);
+	//UpdateMarkRedDotClass<const FName&>::GetInstance().Signal(UIFName::LobbyMain);
 }
 
 void FB2RedDotManager::SetChangeStageClear(EStageDifficulty Difficulty, int32 CurrentStageID, int32 NextStageID)
@@ -509,38 +510,38 @@ bool FB2RedDotManager::HasLobbyRedDot_HeroMgmt_PointSkill(EPCClass PCClass)
 
 bool FB2RedDotManager::HasLobbyRedDot_HeroMgmt_PointSkill(EPCClass PCClass, bool bActiveSkill)
 {
-	const int32 LeftSkillPoint = BladeIIGameImpl::GetLocalCharacterData().GetCharacterLeftSkillPoint(PCClass);
+	//const int32 LeftSkillPoint = BladeIIGameImpl::GetLocalCharacterData().GetCharacterLeftSkillPoint(PCClass);
 
-	if (LeftSkillPoint <= 0)
-		return false;
+	//if (LeftSkillPoint <= 0)
+	//	return false;
 
-	if (PCClass != EPCClass::EPC_End)
-	{
-		//if (!cacheB2SkillInfo.IsValid())
-		//{
-		//	auto* ClassInfoBox = StaticFindPCClassInfoBox();
-		//	cacheB2SkillInfo = ClassInfoBox ? ClassInfoBox->GetAllSkillInfo() : nullptr;
-		//}
+	//if (PCClass != EPCClass::EPC_End)
+	//{
+	//	//if (!cacheB2SkillInfo.IsValid())
+	//	//{
+	//	//	auto* ClassInfoBox = StaticFindPCClassInfoBox();
+	//	//	cacheB2SkillInfo = ClassInfoBox ? ClassInfoBox->GetAllSkillInfo() : nullptr;
+	//	//}
 
-		if (cacheB2SkillInfo.IsValid())
-		{
-			TArray<FB2SkillInfo> CharacterSkills;
-			BladeIIGameImpl::GetLocalCharacterData().GetCharacterSkills(PCClass, CharacterSkills);
+	//	if (cacheB2SkillInfo.IsValid())
+	//	{
+	//		TArray<FB2SkillInfo> CharacterSkills;
+	//		BladeIIGameImpl::GetLocalCharacterData().GetCharacterSkills(PCClass, CharacterSkills);
 
-			for (auto& SkillInfo : CharacterSkills)
-			{
-				//const FSingleSkillInfo* SingleSkillInfo = cacheB2SkillInfo->GetSingleInfoOfID(SkillInfo.skill_id);
-				//if (SingleSkillInfo != nullptr)
-				//{
-				//	bool bTargetSkill = (bActiveSkill && SingleSkillInfo->PassiveType == EPassiveType::EPassiveType_None) ||
-				//		(!bActiveSkill && SingleSkillInfo->PassiveType != EPassiveType::EPassiveType_None);
+	//		for (auto& SkillInfo : CharacterSkills)
+	//		{
+	//			//const FSingleSkillInfo* SingleSkillInfo = cacheB2SkillInfo->GetSingleInfoOfID(SkillInfo.skill_id);
+	//			//if (SingleSkillInfo != nullptr)
+	//			//{
+	//			//	bool bTargetSkill = (bActiveSkill && SingleSkillInfo->PassiveType == EPassiveType::EPassiveType_None) ||
+	//			//		(!bActiveSkill && SingleSkillInfo->PassiveType != EPassiveType::EPassiveType_None);
 
-				//	if (bTargetSkill && IsLevelupableSkill(SkillInfo.skill_id))
-				//		return true;
-				//}
-			}
-		}
-	}
+	//			//	if (bTargetSkill && IsLevelupableSkill(SkillInfo.skill_id))
+	//			//		return true;
+	//			//}
+	//		}
+	//	}
+	//}
 
 	return false;
 }
@@ -568,13 +569,13 @@ bool FB2RedDotManager::HasLobbyReddot_HeroMgmt_UnitySkill(EPCClass PCClass, EPCC
 bool FB2RedDotManager::HasLobbyReddot_HeroMgmt_UnitySkillAwakenAble(EPCClass PCClass)
 {
 	// 각성 가능
-	FLocalCharacterData& CharData = BladeIIGameImpl::GetLocalCharacterData();
-	if (CharData.GetIsUnityAwaken(PCClass))
-		return false;
+	//FLocalCharacterData& CharData = BladeIIGameImpl::GetLocalCharacterData();
+	//if (CharData.GetIsUnityAwaken(PCClass))
+	//	return false;
 
-	FUnitySkillState* UnityState = BladeIIGameImpl::GetLocalCharacterData().GetUnitySkillState(PCClass);
-	if (UnityState && UnityState->AllAwakenComplete)
-		return true;
+	//FUnitySkillState* UnityState = BladeIIGameImpl::GetLocalCharacterData().GetUnitySkillState(PCClass);
+	//if (UnityState && UnityState->AllAwakenComplete)
+	//	return true;
 
 	return false;
 }
@@ -583,11 +584,11 @@ bool FB2RedDotManager::HasLobbyReddot_HeroMgmt_UnitySkillAwakenMission(EPCClass 
 {
 	// 각성 미션 가능
 	bool Result = false;
-	FLocalCharacterData& CharData = BladeIIGameImpl::GetLocalCharacterData();
-	if (CharData.GetIsUnityAwaken(PCClass))
-		return false;
+	//FLocalCharacterData& CharData = BladeIIGameImpl::GetLocalCharacterData();
+	//if (CharData.GetIsUnityAwaken(PCClass))
+	//	return false;
 
-	FUnitySkillState* UnityState = BladeIIGameImpl::GetLocalCharacterData().GetUnitySkillState(PCClass);
+	//FUnitySkillState* UnityState = BladeIIGameImpl::GetLocalCharacterData().GetUnitySkillState(PCClass);
 	//if (UnityState && !UnityState->AllMissionComplete)
 	//	return false;
 
@@ -640,11 +641,11 @@ bool FB2RedDotManager::HasLobbyRedDot_HeroMgmt_Brevet()
 
 bool FB2RedDotManager::HasLobbyRedDot_HeroMgmt_Brevet(EPCClass PCClass)
 {
-	FLocalCharacterData& CharData = BladeIIGameImpl::GetLocalCharacterData();
-	FClientDataStore& ClientDataStore = BladeIIGameImpl::GetClientDataStore();
-	
-	const int32 BrevetRank = CharData.GetCharBrevetRank(PCClass);
-	const int32 BrevetNodeIndex = CharData.GetCharBrevetNodeIndex(PCClass);
+	//FLocalCharacterData& CharData = BladeIIGameImpl::GetLocalCharacterData();
+	//FClientDataStore& ClientDataStore = BladeIIGameImpl::GetClientDataStore();
+	//
+	//const int32 BrevetRank = CharData.GetCharBrevetRank(PCClass);
+	//const int32 BrevetNodeIndex = CharData.GetCharBrevetNodeIndex(PCClass);
 
 	//if (const FBrevetNodeInfo* BrevetInfo = ClientDataStore.GetBrevetNodeInfo(BrevetRank, BrevetNodeIndex))
 	//{
@@ -893,14 +894,14 @@ bool FB2RedDotManager::HasLobbyRedDot_Battle_Control()
 	bool HasMvpReward = false;
 	bool OpenAssault = false;
 
-	if (CurrentRedDotState.get() != nullptr)
-	{
-		HasAssaultReward = CurrentRedDotState->has_team_assault_reward;
+	//if (CurrentRedDotState.get() != nullptr)
+	//{
+	//	HasAssaultReward = CurrentRedDotState->has_team_assault_reward;
 
-		int32 MVPPoint = CurrentRedDotState->team_assault_mvp_point;
-		int32 MaxPoint = BladeIIGameImpl::GetClientDataStore().GetAssaultMVPMaxCount();
-		HasMvpReward = MVPPoint >= MaxPoint;
-	}
+	//	int32 MVPPoint = CurrentRedDotState->team_assault_mvp_point;
+	//	int32 MaxPoint = BladeIIGameImpl::GetClientDataStore().GetAssaultMVPMaxCount();
+	//	HasMvpReward = MVPPoint >= MaxPoint;
+	//}
 
 	//auto DocSome = UB2UIDocHelper::GetDocSome();
 	//if (DocSome)
@@ -1130,7 +1131,8 @@ bool FB2RedDotManager::HasLobbyRedDot_Event_Dice()
 
 bool FB2RedDotManager::HasLobbyRedDot_RestPoint()
 {
-	return BladeIIGameImpl::GetClientDataStore().GetRestPoint() > 0;
+	//return BladeIIGameImpl::GetClientDataStore().GetRestPoint() > 0;
+	return false;
 }
 
 bool FB2RedDotManager::HasLobbyRedDot_Package_FlatRate()
@@ -1262,13 +1264,13 @@ bool FB2RedDotManager::TutorialLockRedDotVisibleCheck(int32 iLockTutorialID)
 
 bool FB2RedDotManager::IsAvailableCounterDungeonReward(int32 ClearCount, int32 RewardReceived)
 {
-	const TArray<FCounterDungeunWeekReward>& ClientRewardData = BladeIIGameImpl::GetClientDataStore().GetCounterDeungeonRewardData();
+	//const TArray<FCounterDungeunWeekReward>& ClientRewardData = BladeIIGameImpl::GetClientDataStore().GetCounterDeungeonRewardData();
 	int32 AvailReceiveRewardIndex = INDEX_NONE;
-	for (int32 index = 0; index < ClientRewardData.Num(); index++)
-	{
-		if (ClearCount >= ClientRewardData[index].RequireCount && index > AvailReceiveRewardIndex)
-			AvailReceiveRewardIndex = index;
-	}
+	//for (int32 index = 0; index < ClientRewardData.Num(); index++)
+	//{
+	//	if (ClearCount >= ClientRewardData[index].RequireCount && index > AvailReceiveRewardIndex)
+	//		AvailReceiveRewardIndex = index;
+	//}
 
 	return AvailReceiveRewardIndex >= RewardReceived;
 }

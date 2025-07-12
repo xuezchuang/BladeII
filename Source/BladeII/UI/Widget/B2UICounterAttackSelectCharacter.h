@@ -2,6 +2,8 @@
 
 #include "B2UIWidget.h"
 #include "B2UIDocBindable.h"
+#include "../../DataStore/B2ClientDataStore.h"
+#include "../B2RichTextBlock.h"
 #include "B2UICounterAttackSelectCharacter.generated.h"
 
 UCLASS(BlueprintType, Blueprintable)
@@ -14,7 +16,7 @@ public:
 
 	virtual void Init() override;
 	virtual void DestroySelf(class UB2UIManager* InUIManager) override;
-	virtual void OnSceneOpen(EUIScene InOpenedScene) override;
+	//virtual void OnSceneOpen(EUIScene InOpenedScene) override;
 	virtual void CacheAssets() override;
 	virtual void UpdateStaticText() override;
 	virtual void BindDelegates() override;

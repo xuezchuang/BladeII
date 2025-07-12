@@ -4,6 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "UI/B2UIWidget.h"
+#include "B2Image.h"
+#include <memory>
+#include "../../Common/EventSubsystem.h"
 #include "B2UIAutoClearResult.generated.h"
 
 /**

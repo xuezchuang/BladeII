@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "UI/B2UIWidget.h"
+#include "../B2RichTextBlock.h"
+#include "../../BladeII/BladeIIGameMode.h"
 #include "B2UIEventMain.generated.h"
 
 //b2network::B2EventCategory

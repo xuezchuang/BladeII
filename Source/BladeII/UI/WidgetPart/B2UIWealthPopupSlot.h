@@ -4,6 +4,7 @@
 //#include "BladeII.h"
 #include "CoreMinimal.h"
 #include "UI/B2UIWidget.h"
+#include "../../BladeII/BladeIIGameMode.h"
 #include "B2UIWealthPopupSlot.generated.h"
 
 UCLASS()

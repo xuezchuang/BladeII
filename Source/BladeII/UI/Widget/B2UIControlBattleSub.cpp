@@ -17,11 +17,11 @@
 UB2UIControlBattleSub::UB2UIControlBattleSub(const FObjectInitializer& ObjectInitializer)
 	:Super(ObjectInitializer)
 {
-	ControlChatCoolTime = 5.0f;
-	ControlChatSendTimeSec = -1.0f;
-	ControlSerialKillTextureInfos.Empty();
-	vComboUIPos = FVector2D(0.0f, 70.0f);
-	m_arTeamPlayerInfoUI.Empty();
+	//ControlChatCoolTime = 5.0f;
+	//ControlChatSendTimeSec = -1.0f;
+	//ControlSerialKillTextureInfos.Empty();
+	//vComboUIPos = FVector2D(0.0f, 70.0f);
+	//m_arTeamPlayerInfoUI.Empty();
 }
 
 void UB2UIControlBattleSub::Init()
@@ -449,19 +449,19 @@ void UB2UIControlBattleSub::UpdateControlChatCoolTime()
 
 void UB2UIControlBattleSub::SubscribeEvent()
 {
-	CAPTURE_UOBJECT(UB2UIControlBattleSub);
+	//CAPTURE_UOBJECT(UB2UIControlBattleSub);
 
-	NotifyInputTouchBeganInViewPortTicket = NotifyInputTouchBeganInViewPortClass<>::GetInstance().Subscribe(
-		USE_CAPTURE_OBJECT_AND_TICKET(NotifyInputTouchBeganInViewPort)
-		Capture->CloseChatPanel();
-	END_CAPTURE_OBJECT()
-		);
+	//NotifyInputTouchBeganInViewPortTicket = NotifyInputTouchBeganInViewPortClass<>::GetInstance().Subscribe(
+	//	USE_CAPTURE_OBJECT_AND_TICKET(NotifyInputTouchBeganInViewPort)
+	//	Capture->CloseChatPanel();
+	//END_CAPTURE_OBJECT()
+	//	);
 
 }
 
 void UB2UIControlBattleSub::UnsubscribeEvent()
 {
-	NotifyInputTouchBeganInViewPortClass<>::GetInstance().Unsubscribe(NotifyInputTouchBeganInViewPortTicket);
+	//NotifyInputTouchBeganInViewPortClass<>::GetInstance().Unsubscribe(NotifyInputTouchBeganInViewPortTicket);
 }
 
 void UB2UIControlBattleSub::OnClickBtnChat()

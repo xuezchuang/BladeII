@@ -4,6 +4,7 @@
 #pragma once
 ////#include "BladeII.h"
 #include "B2UIWidgetBase.h"
+#include "B2UIEnum.h"
 #include "B2UIWidget.generated.h"
 
 /*

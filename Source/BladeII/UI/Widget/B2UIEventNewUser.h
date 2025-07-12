@@ -2,6 +2,7 @@
 #pragma once
 
 #include "B2UIWidget.h"
+#include "../../BladeII/BladeIIGameMode.h"
 #include "B2UIEventNewUser.generated.h"
 
 

@@ -18,30 +18,30 @@
 
 void UB2UIMainCounterAttackDG::Init()
 {
-	Super::Init();
+	//Super::Init();
 
-	SetLobbyUIHeaderTitleByGeneralTextTableKey(TEXT("CounterAttack_Title"));
+	//SetLobbyUIHeaderTitleByGeneralTextTableKey(TEXT("CounterAttack_Title"));
 
-	CAPTURE_UOBJECT(UB2UIMainCounterAttackDG);
-	DeliveryCounterDungeonWeeklyRewardTicket = DeliveryCounterDungeonWeeklyRewardClass<FB2CounterDungeonWeeklyReward>::GetInstance().Subscribe(
-		USE_CAPTURE_OBJECT_AND_TICKET(DeliveryCounterDungeonWeeklyReward, const FB2CounterDungeonWeeklyReward& WeeklyReward)
-		Capture->ResponseWeeklyReward(WeeklyReward);
-	END_CAPTURE_OBJECT()
-		);
+	//CAPTURE_UOBJECT(UB2UIMainCounterAttackDG);
+	//DeliveryCounterDungeonWeeklyRewardTicket = DeliveryCounterDungeonWeeklyRewardClass<FB2CounterDungeonWeeklyReward>::GetInstance().Subscribe(
+	//	USE_CAPTURE_OBJECT_AND_TICKET(DeliveryCounterDungeonWeeklyReward, const FB2CounterDungeonWeeklyReward& WeeklyReward)
+	//	Capture->ResponseWeeklyReward(WeeklyReward);
+	//END_CAPTURE_OBJECT()
+	//	);
 
-	DeliveryGetCounterTicket = DeliveryGetCounterDundeonClass<FB2GetCounterDungeon>::GetInstance().Subscribe(
-		USE_CAPTURE_OBJECT_AND_TICKET(DeliveryGetCounter, const FB2GetCounterDungeon& msg)
-		Capture->ResponseGetCounter(msg);
-	END_CAPTURE_OBJECT()
-		);
+	//DeliveryGetCounterTicket = DeliveryGetCounterDundeonClass<FB2GetCounterDungeon>::GetInstance().Subscribe(
+	//	USE_CAPTURE_OBJECT_AND_TICKET(DeliveryGetCounter, const FB2GetCounterDungeon& msg)
+	//	Capture->ResponseGetCounter(msg);
+	//END_CAPTURE_OBJECT()
+	//	);
 
-	data_trader::Retailer::GetInstance().RequestGetCounterDungeon();
+	//data_trader::Retailer::GetInstance().RequestGetCounterDungeon();
 }
 
 void UB2UIMainCounterAttackDG::OnCloseComplete()
 {
-	DeliveryCounterDungeonWeeklyRewardClass<FB2CounterDungeonWeeklyReward>::GetInstance().Unsubscribe(DeliveryCounterDungeonWeeklyRewardTicket);
-	DeliveryGetCounterDundeonClass<FB2GetCounterDungeon>::GetInstance().Unsubscribe(DeliveryGetCounterTicket);
+	//DeliveryCounterDungeonWeeklyRewardClass<FB2CounterDungeonWeeklyReward>::GetInstance().Unsubscribe(DeliveryCounterDungeonWeeklyRewardTicket);
+	//DeliveryGetCounterDundeonClass<FB2GetCounterDungeon>::GetInstance().Unsubscribe(DeliveryGetCounterTicket);
 
 	Super::OnCloseComplete();
 }

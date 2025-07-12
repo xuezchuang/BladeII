@@ -431,9 +431,9 @@ public:
 
 	/** Get single info data by ItemRefID, NULL if not found. 
 	 * For Editor or bFullyLoad true, it loads all lazyloaded TSoftObjectPtr. Otherwise, TAsset refs are still not valid. */
-	//FSingleItemInfoData*	GetInfoData(int32 ItemRefID, bool bFullyLoad = false);
-	//FItemSetInfoData*		GetSetInfoData(int32 SetUniqueKey);
-	//FItemSetInfoData*		GetSetInfoData(int32 GroupID, EPCClass PCClass, int32 Grade);
+	FSingleItemInfoData* GetInfoData(int32 ItemRefID, bool bFullyLoad = false);
+	FItemSetInfoData* GetSetInfoData(int32 SetUniqueKey);
+	FItemSetInfoData* GetSetInfoData(int32 GroupID, EPCClass PCClass, int32 Grade);
 
 	void GenerateSetKeyList();
 

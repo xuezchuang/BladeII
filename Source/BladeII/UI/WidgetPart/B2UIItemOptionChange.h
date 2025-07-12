@@ -3,6 +3,8 @@
 
 #include "B2UIWidget.h"
 #include "B2UIBackWidget.h"
+#include "../Widget/B2ButtonGoodsShortcutToolTip.h"
+#include "../B2RichTextBlock.h"
 #include "B2UIItemOptionChange.generated.h"
 
 

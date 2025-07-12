@@ -17,30 +17,30 @@ EBTNodeResult::Type UB2BTTask_NPCSearchTarget::ExecuteTask(UBehaviorTreeComponen
 
 EBTNodeResult::Type UB2BTTask_NPCSearchTarget::PerformSearchTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
-	AB2GuildNPCAIController* MyController = Cast<AB2GuildNPCAIController>(OwnerComp.GetAIOwner());
-	ABladeIICharacter* ControlledCharacter = MyController ? Cast<ABladeIICharacter>(MyController->GetPawn()) : nullptr;
+	//AB2GuildNPCAIController* MyController = Cast<AB2GuildNPCAIController>(OwnerComp.GetAIOwner());
+	//ABladeIICharacter* ControlledCharacter = MyController ? Cast<ABladeIICharacter>(MyController->GetPawn()) : nullptr;
 
-	if (ControlledCharacter == nullptr)
-		return EBTNodeResult::Failed;
-	
-	ABladeIICharacter* TargetCharacter = MyController->GetCurrentTarget();
+	//if (ControlledCharacter == nullptr)
+	//	return EBTNodeResult::Failed;
+	//
+	//ABladeIICharacter* TargetCharacter = MyController->GetCurrentTarget();
 
-	bool bValidTarget = TargetCharacter && TargetCharacter->IsAlive();
+	//bool bValidTarget = TargetCharacter && TargetCharacter->IsAlive();
 
-	if (bValidTarget && ControlledCharacter->GetAttackState() != EAttackState::ECS_None || !ControlledCharacter->GetAbleToControl())
-		return EBTNodeResult::Succeeded;
+	//if (bValidTarget && ControlledCharacter->GetAttackState() != EAttackState::ECS_None || !ControlledCharacter->GetAbleToControl())
+	//	return EBTNodeResult::Succeeded;
 
-	MyController->UpdateTarget();
-	TargetCharacter = MyController->GetCurrentTarget();
+	//MyController->UpdateTarget();
+	//TargetCharacter = MyController->GetCurrentTarget();
 
-	if (TargetCharacter == nullptr)
-		return EBTNodeResult::Failed;
-	
-	//거리 업데이트
-	float TargetDistance = (TargetCharacter->GetActorLocation() - ControlledCharacter->GetActorLocation()).Size();
-	ControlledCharacter->UpdateAIAttackIndex(TargetDistance, true);
+	//if (TargetCharacter == nullptr)
+	//	return EBTNodeResult::Failed;
+	//
+	////거리 업데이트
+	//float TargetDistance = (TargetCharacter->GetActorLocation() - ControlledCharacter->GetActorLocation()).Size();
+	//ControlledCharacter->UpdateAIAttackIndex(TargetDistance, true);
 
-	OwnerComp.GetBlackboardComponent()->SetValue<UBlackboardKeyType_Object>(BlackboardKey.SelectedKeyName, TargetCharacter);
+	//OwnerComp.GetBlackboardComponent()->SetValue<UBlackboardKeyType_Object>(BlackboardKey.SelectedKeyName, TargetCharacter);
 
 	return EBTNodeResult::Succeeded;
 }

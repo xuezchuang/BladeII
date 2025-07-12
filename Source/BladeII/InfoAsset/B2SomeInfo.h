@@ -50,14 +50,14 @@ public:
 	class UParticleSystem* GetStageClearBGFxTemplate();
 	void UnloadStageClearBGFxTemplate();
 
-//protected:
-//	UPROPERTY(EditAnywhere)
-//	TSoftClassPtr<class ABladeIIPlayer> DefaultPCClassInfoBaseBPClass; // It might better goes to PCClassInfo..
-//	UPROPERTY(Transient)
-//	TSubclassOf<class ABladeIIPlayer> LoadedDefaultPCClassInfoBaseBPClass; // Loaded hard ptr for preventing GC.
-//public:
-//	TSubclassOf<class ABladeIIPlayer> GetDefaultPCClassInfoBaseBPClass();
-//	void UnloadDefaultPCClassInfoBaseBPClass();
+protected:
+	UPROPERTY(EditAnywhere)
+	TSoftClassPtr<class ABladeIIPlayer> DefaultPCClassInfoBaseBPClass; // It might better goes to PCClassInfo..
+	UPROPERTY(Transient)
+	TSubclassOf<class ABladeIIPlayer> LoadedDefaultPCClassInfoBaseBPClass; // Loaded hard ptr for preventing GC.
+public:
+	TSubclassOf<class ABladeIIPlayer> GetDefaultPCClassInfoBaseBPClass();
+	void UnloadDefaultPCClassInfoBaseBPClass();
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Directing")

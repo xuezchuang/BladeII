@@ -2,6 +2,7 @@
 #pragma once
 
 #include "B2UIWidget.h"
+#include "../../Common/EventSubsystem.h"
 #include "B2UIMagicStore.generated.h"
 
 

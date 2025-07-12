@@ -5,6 +5,8 @@
 #include "BladeIIUserWidget.h"
 #include "B2Airport.h"
 #include "B2WingUIP_EnhLevelProgElem.h"
+#include "../B2RichTextBlock.h"
+#include "../Widget/B2ButtonGoodInfoToolTip.h"
 #include "B2WingUIP_Enhancement.generated.h"
 
 /**

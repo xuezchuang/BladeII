@@ -67,7 +67,7 @@ bool FB2GMPreRenderDummyInfo::UpdateDummy(bool bForceContinue /*= false*/)
 	//{
 	//	bNotFinishedCondition = true;
 	//}
-		
+
 	return !bNotFinishedCondition;
 }
 
@@ -129,10 +129,10 @@ bool FPreRenderCompleteState::IsWorldLevelPreRendered(class UWorld* InWorld) con
 	return false;
 }
 
-/** 
+/**
  * ==================================================================
  * Pre-render 의 결과물인 셰이더 캐쉬가 r.UseProgramBinaryCache 에 의해 폰에 저장된다면
- * Pre-render 상태를 로컬에 저장 및 로드함으로서 다음번 실행시에도 한번 pre-render 를 거친 것을 반복하지 않도록 한다. 
+ * Pre-render 상태를 로컬에 저장 및 로드함으로서 다음번 실행시에도 한번 pre-render 를 거친 것을 반복하지 않도록 한다.
  * ==================================================================
  */
 
@@ -417,24 +417,25 @@ bool UB2PreRenderer::SetupPreRenderObjects(class ABladeIIGameMode* InGM) // 셰이
 
 	OwnerGameMode = InGM;
 	check(OwnerGameMode);
-	if (!OwnerGameMode) {
+	if (!OwnerGameMode)
+	{
 		return false;
 	}
 
 	// 원칙적으로 이 Material 단위 Pre-render 상태 트랙킹은 월드를 지나서도 유지가 될 수 있는 것이지만
 	// 아직은 동일한 material 이더라도 다른 조명 조건 하에서의 셰이더 컴파일 처리가 확실하지 않아 매 레벨마다 리셋하는 걸로 함.
-	MaterialBasedCompleteState.ClearState(); 
+	MaterialBasedCompleteState.ClearState();
 
 	AllPreRenderDummy.Empty();
 	UWorld* TheWorld = OwnerGameMode->GetWorld();
-		
+
 	if (GetB2GameModeType(OwnerGameMode) == EB2GameMode::Lobby)
 	{
 		// 로비는 특수성으로 인해 거의 별도 처리함. 사실상 게임 실행하고 맨 처음 한 번 처리하는 게 될 것.
 		SetupPreRenderObjects_FirstLobby();
 	}
 	else
-	{ 
+	{
 #if PLATFORM_IOS
 		if (ShouldDoPreRenderForIOS_Basic())
 #endif
@@ -450,7 +451,8 @@ bool UB2PreRenderer::SetupPreRenderObjects(class ABladeIIGameMode* InGM) // 셰이
 				// PreloadAnyNecessaryInfo 할 때 긁어온 NPCClass 들로 prerender 더미 생성
 				TArray<FCombinedNPCClassID> AllExpectedNPCs;
 				AB2MonsterSpawnPool* ActiveSP = OwnerGameMode->GetActiveSpawnPool();
-				if (ActiveSP) {
+				if (ActiveSP)
+				{
 					ActiveSP->GetAllExpectedNPCIDs(AllExpectedNPCs);
 				}
 				for (FCombinedNPCClassID ThisMobId : AllExpectedNPCs)
@@ -501,7 +503,7 @@ bool UB2PreRenderer::SetupPreRenderObjects(class ABladeIIGameMode* InGM) // 셰이
 	if (AllPreRenderDummy.Num() > 0 || (bPreRenderAllPrimitives && !IsCurrentWorldLevelPreRendered()) || bPendingForPreRenderGM)
 	{
 		bHadDoneAnyPreRender = true; // 아직 실제로 한 건 아니지만 이 플래그 목적 상 이쯤에서 true 마크해도 좋겠다.
-				
+
 		if (!bPendingForPreRenderGM)
 		{ // Pre-render 되는 동안 화면 가림막 세팅
 			SetupDefaultPreRenderScreen();
@@ -515,7 +517,7 @@ bool UB2PreRenderer::SetupPreRenderObjects(class ABladeIIGameMode* InGM) // 셰이
 
 void UB2PreRenderer::ConditionalSetupPreRenderObjectForPCClass(EPCClass InClass, bool bForceSetup)
 {
-	if ( (!TotalCompleteState.IsPCClassPreRendered(InClass) || bForceSetup)
+	if ((!TotalCompleteState.IsPCClassPreRendered(InClass) || bForceSetup)
 		&& OwnerGameMode)
 	{
 		UWorld* TheWorld = OwnerGameMode->GetWorld();
@@ -549,7 +551,7 @@ void UB2PreRenderer::ConditionalSetupPreRenderObjectForPCClass(EPCClass InClass,
 }
 void UB2PreRenderer::ConditionalSetupPreRenderObjectForNPCClass(const FCombinedNPCClassID InClassID, bool bForceSetup)
 {
-	if ( (!TotalCompleteState.IsNPCClassPreRendered(InClassID) || bForceSetup)
+	if ((!TotalCompleteState.IsNPCClassPreRendered(InClassID) || bForceSetup)
 		&& OwnerGameMode)
 	{
 		UWorld* TheWorld = OwnerGameMode->GetWorld();
@@ -574,7 +576,8 @@ void UB2PreRenderer::ConditionalSetupPreRenderObjectForPCSkillAnims(const TArray
 	// 사용 편의 상 스킬애니메이션 하나씩이 아니고 여러개를 받도록 함.
 
 	UB2SkillAnimInfo* SkillAnimInfo = StaticFindSkillAnimInfo(OwnerGameMode);
-	if (!SkillAnimInfo) {
+	if (!SkillAnimInfo)
+	{
 		return;
 	}
 
@@ -612,7 +615,7 @@ void UB2PreRenderer::ConditionalSetupPreRenderObjectForPCSkillAnims(const TArray
 void UB2PreRenderer::ConditionalSetupPreRenderObjectForDamageEffectInfo(bool bForceSetup)
 {
 	UB2DamageEffectInfo* DmgFxInfo = StaticFindDamageEffectInfo(OwnerGameMode);
-	if ( (!TotalCompleteState.IsDamageEffectInfoPreRendered() || bForceSetup)
+	if ((!TotalCompleteState.IsDamageEffectInfoPreRendered() || bForceSetup)
 		&& DmgFxInfo)
 	{
 		TArray<ASkeletalMeshActor*> DummiesForMtrlOverride; // MaterialOverride 는 각각 별개 SKActor 가 필요..
@@ -672,25 +675,26 @@ void UB2PreRenderer::SetupPreRenderObjects_FirstLobby()
 	}
 
 	// 로비맵 자체의 상태도 있음.
-	if (IsCurrentWorldLevelPreRendered()) {
+	if (IsCurrentWorldLevelPreRendered())
+	{
 		return;
 	}
 
 	B2_SCOPED_TRACK_LOG(TEXT("UB2PreRenderer::SetupPreRenderObjects_FirstLobby"));
 
-	if(!bPendingForPreRenderGM && !IsPreRenderLevelGoneThrough()
+	if (!bPendingForPreRenderGM && !IsPreRenderLevelGoneThrough()
 #if PLATFORM_IOS
 		// 이것도 사실상 PreRenderGM 과 비슷한 의미라면 ShouldDoPreRenderForIOS_PreRenderGM 으로 아싸리 윗단에서 넘어가도록 하는 게 더 말이 될수도 있다.
-		&& ShouldDoPreRenderForIOS_Basic() 
+		&& ShouldDoPreRenderForIOS_Basic()
 #endif
-		) 
+		)
 	{
 		// Pre-render 전체를 다 하는 Android 의 경우 실질적으로 이 루트로 들어오는 일은 없어야 할 듯. 지금은 안전장치로서의 의미 뿐인가..
 
 		// 준비가 안되었거나 맵을 찾지 못했거나.. 어떤 경우든 로비에서 직접 실행한다.
 		// 이 때에는 Extra 만 실행하는 거. 로비에서 쓰는 것들이 등록된 건 Extra 뿐이니.
 		SetupPreRenderObjects_ExtraNPCClass(); // ExtraNPCClass 는 여기서 안 해도 맵 로딩 하면서 하게 되지만 그냥 미리 해 두지..
-		SetupPreRenderObjects_ExtraFx();		
+		SetupPreRenderObjects_ExtraFx();
 		SetupPreRenderObjects_ExtraOthers();
 	}
 
@@ -706,7 +710,8 @@ void UB2PreRenderer::SetupPreRenderObjects_ExtraFx()
 	UB2SomeInfo* SomeInfo = StaticFindSomeInfo(OwnerGameMode);
 
 	ASkeletalMeshActor* ExtraDummySKActor = GetExtraPrerenderDummySKActor();
-	if (!ExtraDummySKActor) {
+	if (!ExtraDummySKActor)
+	{
 		return;
 	}
 
@@ -729,9 +734,9 @@ void UB2PreRenderer::SetupPreRenderObjects_ExtraNPCClass()
 	// 특정 스테이지 처음 플레이 시 처음 등장하는 NPCClass 에 대해서 pre-render 가 실행되는데 여기서 하는 건 그거랑 마찬가지이다. 
 	// 단, 이렇게 SomeInfo 에 등록해 놓고 pre-render 를 따로 수행할 수 있도록 한건 이런 걸 PreReder 레벨에서 미리 해 놓고 처음 전투맵 로딩할 때 pre-render 로 인한 페널티를 좀 줄이고자 하기 위함.
 	// 모든 NPCClass 들이 다 이걸 통해 처리되지는 못한다. 적절히 골라서..
-	
+
 	UB2SomeInfo* SomeInfo = StaticFindSomeInfo(OwnerGameMode);
-	
+
 	if (CachedExtraPreRenderNPCClassInfo.Num() == 0) // SomeInfo 에서 여기에 사용할 리스트는 LoadAnd"Consume" 을 하는데 이쪽에서는 PreRenderGameMode 에서 다중으로 돌릴 수 있으므로 따로 캐싱해 놓음.
 	{
 		if (SomeInfo)
@@ -763,7 +768,7 @@ void UB2PreRenderer::SetupPreRenderObjects_ExtraOthers()
 			SomeInfo->LoadAndConsumeUniquePreRenderSKMesh(CachedExtraPreRenderSKMesh);
 		}
 	}
-	for (USkeletalMesh* ThisMesh: CachedExtraPreRenderSKMesh)
+	for (USkeletalMesh* ThisMesh : CachedExtraPreRenderSKMesh)
 	{
 		FB2GMPreRenderDummyInfo NewExtraDummyInfo;
 		NewExtraDummyInfo.PreRenderDummy = SpawnPreRenderMeshCommon(OwnerGameMode ? OwnerGameMode->GetWorld() : GetWorld());
@@ -949,10 +954,12 @@ void UB2PreRenderer::ConditionalSetupPreRenderLightEnvForDirL(EComponentMobility
 				if (bSetupForCSM && LightMobility != EComponentMobility::Static)
 				{ // 별도의 셰이더 컴파일이 필요한 CascadedShadowMap 용 셋업
 					DLComp->bCastModulatedShadows = false;
-					if (LightMobility == EComponentMobility::Stationary) {
+					if (LightMobility == EComponentMobility::Stationary)
+					{
 						DLComp->DynamicShadowDistanceStationaryLight = 20000.0f;
 					}
-					else if (LightMobility == EComponentMobility::Movable) {
+					else if (LightMobility == EComponentMobility::Movable)
+					{
 						DLComp->DynamicShadowDistanceMovableLight = 20000.0f;
 					}
 					DLComp->bUseInsetShadowsForMovableObjects = false;
@@ -962,7 +969,7 @@ void UB2PreRenderer::ConditionalSetupPreRenderLightEnvForDirL(EComponentMobility
 					DLComp->bCastModulatedShadows = true;
 					DLComp->DynamicShadowDistanceStationaryLight = 0.0f;
 					DLComp->DynamicShadowDistanceMovableLight = 0.0f;
-				}				
+				}
 				DLComp->UnregisterComponent(); // 사용 환경에 따라 한 차례 unregister 를 한 담에 register 를 해야 Scene 에 제대로 add 되는 경우가 있음. 그래서 바보 짓.
 
 				DLComp->Activate();
@@ -989,7 +996,7 @@ void UB2PreRenderer::ConditionalRestoreFromPreRenderLightEnvForDirL()
 			PreRenderDirLight->GetLightComponent()->UnregisterComponent();
 			PreRenderDirLight->GetLightComponent()->Deactivate();
 			PreRenderDirLight->GetLightComponent()->MarkRenderStateDirty();
-			
+
 			PreRenderDirLight = nullptr;
 		}
 
@@ -1059,7 +1066,8 @@ FVector UB2PreRenderer::GetPreRenderDummyDesiredLocation(UObject* WorldContextOb
 
 UParticleSystemComponent* UB2PreRenderer::SpawnDummyPSCForPreRender(UParticleSystem* InPS, USceneComponent* InRootComp)
 {
-	if (!InPS || !InRootComp) {
+	if (!InPS || !InRootComp)
+	{
 		return NULL;
 	}
 
@@ -1148,14 +1156,16 @@ void UB2PreRenderer::SetupDummyParticleSystemsForPreRender(ASkeletalMeshActor* I
 
 void UB2PreRenderer::SetupDummyMobForPreRender(ENPCClass InNPCClass, ENPCClassVariation InVari, ABladeIICharacter* InOwnerChar, ASkeletalMeshActor* InDummySKActorForRender)
 {
-	if (InNPCClass == ENPCClass::ENC_End || !InDummySKActorForRender || !InDummySKActorForRender->GetSkeletalMeshComponent()) {
+	if (InNPCClass == ENPCClass::ENC_End || !InDummySKActorForRender || !InDummySKActorForRender->GetSkeletalMeshComponent())
+	{
 		return;
 	}
 
 	UB2NPCClassInfoBox* MobInfoBox = StaticFindMobClassInfoBox(OwnerGameMode);
 	// MobClassInfo 의 Async 로딩을 백그라운드로 사용하고 싶은 상황이라면 이것이 무효화 될 듯. 그냥 Async 로딩의 멀티코어 활용만 사용하겠다면 모르겠지만.
 	UB2NPCSingleClassInfo* ThisClassInfo = MobInfoBox ? MobInfoBox->GetNPCSingleClassInfo(InNPCClass, InVari) : nullptr;
-	if (!ThisClassInfo) {
+	if (!ThisClassInfo)
+	{
 		return;
 	}
 
@@ -1170,7 +1180,8 @@ void UB2PreRenderer::SetupDummyMobForPreRender(ENPCClass InNPCClass, ENPCClassVa
 
 void UB2PreRenderer::SetupDummyPCMeshForPreRender(EPCClass InCharClass, ABladeIIPlayer* InOwnerPlayer, ASkeletalMeshActor* InDummySKActorForRender, const TArray<FB2Item>& InEquippedItems, const FB2Wing* InWingData)
 {
-	if (InCharClass == EPCClass::EPC_End || !InDummySKActorForRender || !InDummySKActorForRender->GetSkeletalMeshComponent()) {
+	if (InCharClass == EPCClass::EPC_End || !InDummySKActorForRender || !InDummySKActorForRender->GetSkeletalMeshComponent())
+	{
 		return;
 	}
 
@@ -1202,98 +1213,98 @@ void UB2PreRenderer::SetupDummyPCMeshForPreRender(EPCClass InCharClass, ABladeII
 void UB2PreRenderer::UpdateForPreRenderObjects(bool bForceContinue /*= false*/) // Pre-render 진행 도중 Tick 에 해당
 {
 	checkSlow(OwnerGameMode && OwnerGameMode->IsInPreRenderPhase());
-//
-//	if (bPendingForPreRenderGM)
-//	{
-//		if (StartBladeIIPreRenderGame(OwnerGameMode)) // 로비에서 직접 pre-render 하는 대신 전용 레벨 로딩하는 경우
-//		{
-//			bPendingForPreRenderGM = false;
-//			return;
-//		}
-//	}
-//
-//	if (bCanDoOverallCount)
-//	{
-//		++OverallTickCount;
-//	}
-//	// 이게 true 면 설령 렌더링 되지 않은 게 있더라도 제거. 모두 다 렌더링이 된다는 보장이 없으니.. 
-//	const bool bOverallCountDone = (OverallTickCount >= OverallPreRenderLimit);
-//
-//	// 아무 조건 없이 셋업 이후로 특정 틱 지나면 Pre-render 를 강제 종료. 이건 최후의 safety 를 위해.
-//	++TickCountFromSetup;
-//	// 실제로 여기에 걸리는 건 바람직한 상황은 아니다.
-//	const bool bHardLimitReached = (TickCountFromSetup >= PreRenderHardLimit);
-//
-//	const bool bShouldFinishDummiesBySomeLimit = (bOverallCountDone || bHardLimitReached) && !bForceContinue;
-//
-//	const FVector DummyDesiredLocation = GetPreRenderDummyDesiredLocation(OwnerGameMode); // 현재 view 에서 가져오게 한다면 매번 바뀔 것임.
-//
-//#if !UE_BUILD_SHIPPING
-//	int32 FinishBySomeLimitCount = 0;
-//	FString FinishBySomeLimitMsg = TEXT("");
-//#endif
-//
-//	// PreRender 된 거 틱 돌면서 꺼 줌.
-//	for (int32 PRDI = 0; PRDI < AllPreRenderDummy.Num(); ++PRDI)
-//	{
-//		FB2GMPreRenderDummyInfo& ThisDummyInfo = AllPreRenderDummy[PRDI];
-//		// 대체로 이 SkeletalMeshComponent 기준으로 보긴 할껀데 이것 뿐만이 아니라 여기에 이펙트들이 잔뜩 붙어 있을 수 있다.
-//		USkeletalMeshComponent* ThisDummySKComp = ThisDummyInfo.PreRenderDummy->GetSkeletalMeshComponent();
-//
-//		// 일정 카운트 이상 렌더링 되면 끈다.. 
-//		if (ThisDummyInfo.PreRenderDummy && !ThisDummyInfo.PreRenderDummy->bHidden)
-//		{
-//			if (ThisDummySKComp->LastRenderTime > 0.0f)
-//			{
-//				bCanDoOverallCount = true; // OverallCount 는 적어도 하나라도 렌더링 된 이후에 시작한다. 
-//			}
-//
-//			const bool bThisDummyDoneForNormalCondition = ThisDummyInfo.UpdateDummy(bForceContinue);
-//
-//			if ((bThisDummyDoneForNormalCondition || bShouldFinishDummiesBySomeLimit) && !bForceContinue)
-//			{
-//#if !UE_BUILD_SHIPPING // 실제 렌더링 신호는 안 왔는데 그냥 제한이 차서 끝내는 건 로깅을 함
-//				if (!bThisDummyDoneForNormalCondition)
-//				{
-//					++FinishBySomeLimitCount;
-//					// PC 용으로 조합한 건 딱히 의미있는 이름은 안 나오겠지만..
-//					FinishBySomeLimitMsg += FString::Printf(TEXT("%d. Root SkeletalMesh : %s\r\n"), FinishBySomeLimitCount, ThisDummySKComp->SkeletalMesh ? (*ThisDummySKComp->SkeletalMesh->GetName()) : TEXT("NULL"));
-//				}
-//#endif
-//
-//				ThisDummyInfo.PreRenderDummy->SetActorHiddenInGame(true);
-//				ThisDummySKComp->MeshComponentUpdateFlag = EMeshComponentUpdateFlag::OnlyTickPoseWhenRendered;
-//				// 파티클 시스템도 붙은 이상 파괴해 주는 게 좋겠다. 배열도 비우고.. 그래야 다 돌아갔는지 확인하기도 좋고.
-//				ThisDummyInfo.PreRenderDummy->Destroy();
-//				ThisDummyInfo.PreRenderDummy = NULL;
-//				AllPreRenderDummy.RemoveAt(PRDI);
-//				--PRDI;
-//			}
-//			else
-//			{ // 아직 렌더링이 완전히 안되었거나 강제로 계속하거나.. 카메라 위치가 급격히 바뀌고 할 수 있으니 다시금 location 셋업.
-//				ThisDummyInfo.PreRenderDummy->SetActorLocation(DummyDesiredLocation);
-//			}
-//		}
-//	}
-//
-//	if (OwnerGameMode->GetPreRenderPhase() == EPreRenderPhase::EPRP_Selected && ProgressStepCountForSelectedPhase < MaxPreRenderCount)
-//	{ // 일반 PreRender Selected phase 의 진행도 증가.
-//		// 기본 Tick 제한만큼만 여기서 카운트 한다. 정확하지는 않지만 그렇게 정확할 필요까지도 없음.
-//		StepPreRenderScreenProgress();
-//		++ProgressStepCountForSelectedPhase;
-//	}
-//
-//	FlushRenderingCommands(); // 도움이 될지도.
-//
-//	if (bShouldFinishDummiesBySomeLimit)
-//	{
-//		AllPreRenderDummy.Empty(); // 확인사살
-//
-//#if !UE_BUILD_SHIPPING
-//		FinishBySomeLimitMsg = FString::Printf(TEXT("[PreRender] %d Pre-render info are done by some limitation while not all rendered.\r\n"), FinishBySomeLimitCount) + FinishBySomeLimitMsg;
-//		UE_LOG(LogBladeII, Display, TEXT("%s"), *FinishBySomeLimitMsg);
-//#endif
-//	}
+	//
+	//	if (bPendingForPreRenderGM)
+	//	{
+	//		if (StartBladeIIPreRenderGame(OwnerGameMode)) // 로비에서 직접 pre-render 하는 대신 전용 레벨 로딩하는 경우
+	//		{
+	//			bPendingForPreRenderGM = false;
+	//			return;
+	//		}
+	//	}
+	//
+	//	if (bCanDoOverallCount)
+	//	{
+	//		++OverallTickCount;
+	//	}
+	//	// 이게 true 면 설령 렌더링 되지 않은 게 있더라도 제거. 모두 다 렌더링이 된다는 보장이 없으니.. 
+	//	const bool bOverallCountDone = (OverallTickCount >= OverallPreRenderLimit);
+	//
+	//	// 아무 조건 없이 셋업 이후로 특정 틱 지나면 Pre-render 를 강제 종료. 이건 최후의 safety 를 위해.
+	//	++TickCountFromSetup;
+	//	// 실제로 여기에 걸리는 건 바람직한 상황은 아니다.
+	//	const bool bHardLimitReached = (TickCountFromSetup >= PreRenderHardLimit);
+	//
+	//	const bool bShouldFinishDummiesBySomeLimit = (bOverallCountDone || bHardLimitReached) && !bForceContinue;
+	//
+	//	const FVector DummyDesiredLocation = GetPreRenderDummyDesiredLocation(OwnerGameMode); // 현재 view 에서 가져오게 한다면 매번 바뀔 것임.
+	//
+	//#if !UE_BUILD_SHIPPING
+	//	int32 FinishBySomeLimitCount = 0;
+	//	FString FinishBySomeLimitMsg = TEXT("");
+	//#endif
+	//
+	//	// PreRender 된 거 틱 돌면서 꺼 줌.
+	//	for (int32 PRDI = 0; PRDI < AllPreRenderDummy.Num(); ++PRDI)
+	//	{
+	//		FB2GMPreRenderDummyInfo& ThisDummyInfo = AllPreRenderDummy[PRDI];
+	//		// 대체로 이 SkeletalMeshComponent 기준으로 보긴 할껀데 이것 뿐만이 아니라 여기에 이펙트들이 잔뜩 붙어 있을 수 있다.
+	//		USkeletalMeshComponent* ThisDummySKComp = ThisDummyInfo.PreRenderDummy->GetSkeletalMeshComponent();
+	//
+	//		// 일정 카운트 이상 렌더링 되면 끈다.. 
+	//		if (ThisDummyInfo.PreRenderDummy && !ThisDummyInfo.PreRenderDummy->bHidden)
+	//		{
+	//			if (ThisDummySKComp->LastRenderTime > 0.0f)
+	//			{
+	//				bCanDoOverallCount = true; // OverallCount 는 적어도 하나라도 렌더링 된 이후에 시작한다. 
+	//			}
+	//
+	//			const bool bThisDummyDoneForNormalCondition = ThisDummyInfo.UpdateDummy(bForceContinue);
+	//
+	//			if ((bThisDummyDoneForNormalCondition || bShouldFinishDummiesBySomeLimit) && !bForceContinue)
+	//			{
+	//#if !UE_BUILD_SHIPPING // 실제 렌더링 신호는 안 왔는데 그냥 제한이 차서 끝내는 건 로깅을 함
+	//				if (!bThisDummyDoneForNormalCondition)
+	//				{
+	//					++FinishBySomeLimitCount;
+	//					// PC 용으로 조합한 건 딱히 의미있는 이름은 안 나오겠지만..
+	//					FinishBySomeLimitMsg += FString::Printf(TEXT("%d. Root SkeletalMesh : %s\r\n"), FinishBySomeLimitCount, ThisDummySKComp->SkeletalMesh ? (*ThisDummySKComp->SkeletalMesh->GetName()) : TEXT("NULL"));
+	//				}
+	//#endif
+	//
+	//				ThisDummyInfo.PreRenderDummy->SetActorHiddenInGame(true);
+	//				ThisDummySKComp->MeshComponentUpdateFlag = EMeshComponentUpdateFlag::OnlyTickPoseWhenRendered;
+	//				// 파티클 시스템도 붙은 이상 파괴해 주는 게 좋겠다. 배열도 비우고.. 그래야 다 돌아갔는지 확인하기도 좋고.
+	//				ThisDummyInfo.PreRenderDummy->Destroy();
+	//				ThisDummyInfo.PreRenderDummy = NULL;
+	//				AllPreRenderDummy.RemoveAt(PRDI);
+	//				--PRDI;
+	//			}
+	//			else
+	//			{ // 아직 렌더링이 완전히 안되었거나 강제로 계속하거나.. 카메라 위치가 급격히 바뀌고 할 수 있으니 다시금 location 셋업.
+	//				ThisDummyInfo.PreRenderDummy->SetActorLocation(DummyDesiredLocation);
+	//			}
+	//		}
+	//	}
+	//
+	//	if (OwnerGameMode->GetPreRenderPhase() == EPreRenderPhase::EPRP_Selected && ProgressStepCountForSelectedPhase < MaxPreRenderCount)
+	//	{ // 일반 PreRender Selected phase 의 진행도 증가.
+	//		// 기본 Tick 제한만큼만 여기서 카운트 한다. 정확하지는 않지만 그렇게 정확할 필요까지도 없음.
+	//		StepPreRenderScreenProgress();
+	//		++ProgressStepCountForSelectedPhase;
+	//	}
+	//
+	//	FlushRenderingCommands(); // 도움이 될지도.
+	//
+	//	if (bShouldFinishDummiesBySomeLimit)
+	//	{
+	//		AllPreRenderDummy.Empty(); // 확인사살
+	//
+	//#if !UE_BUILD_SHIPPING
+	//		FinishBySomeLimitMsg = FString::Printf(TEXT("[PreRender] %d Pre-render info are done by some limitation while not all rendered.\r\n"), FinishBySomeLimitCount) + FinishBySomeLimitMsg;
+	//		UE_LOG(LogBladeII, Display, TEXT("%s"), *FinishBySomeLimitMsg);
+	//#endif
+	//	}
 }
 
 void UB2PreRenderer::SetupDefaultPreRenderScreen()
@@ -1576,16 +1587,16 @@ void UB2PreRenderer::OnPreRenderComplete()
 
 void UB2PreRenderer::EnsureSaveCaches()
 {
-//#if PLATFORM_ANDROID // Vulkan 의 경우인데.. 이게 기본적으로는 앱 종료시에만 업데이트 되도록 해 놓아서 혹여나 크래쉬라도 겪으면 PreRender 상태는 저장되지만 셰이더 캐쉬는 무용지물이 됨. 이런 안습한 사태를 방지하고자 이쯤서도 셰이더 캐쉬 업데이트.
-//	if (FAndroidMisc::ShouldUseVulkan())
-//	{
-//		const auto& OnSavePipelineCacheCallback = FAndroidMisc::GetOnSavePipelineCache();
-//		if (OnSavePipelineCacheCallback)
-//		{
-//			OnSavePipelineCacheCallback();
-//		}
-//	}
-//#endif
+	//#if PLATFORM_ANDROID // Vulkan 의 경우인데.. 이게 기본적으로는 앱 종료시에만 업데이트 되도록 해 놓아서 혹여나 크래쉬라도 겪으면 PreRender 상태는 저장되지만 셰이더 캐쉬는 무용지물이 됨. 이런 안습한 사태를 방지하고자 이쯤서도 셰이더 캐쉬 업데이트.
+	//	if (FAndroidMisc::ShouldUseVulkan())
+	//	{
+	//		const auto& OnSavePipelineCacheCallback = FAndroidMisc::GetOnSavePipelineCache();
+	//		if (OnSavePipelineCacheCallback)
+	//		{
+	//			OnSavePipelineCacheCallback();
+	//		}
+	//	}
+	//#endif
 }
 
 void UB2PreRenderer::MarkCurrentWorldLevelPreRendered()
@@ -1632,28 +1643,30 @@ void UB2PreRenderer::SetupForPreRenderGM_PCClassPass(EPCClass InPCClass, bool bI
 
 	if (bIncludeSkillAnims)
 	{
-		// 명시한 클래스의 SkillAnim 들. 각 PCClass 별 AnimBP 에 들어가 있는 전투 애니메이션들과 근본적으로 다를 것 없음. 단지 로딩되는 데이터 절감 면에서 따로 떼서 관리하는 거.
-		const TArray<FCombinedPCSkillAnimID> SkillAnimsToPreLoad = ABladeIIGameMode::GetAllPCSkillAnimsOfClass(InPCClass);
-		ConditionalSetupPreRenderObjectForPCSkillAnims(SkillAnimsToPreLoad, true);
+		//// 명시한 클래스의 SkillAnim 들. 각 PCClass 별 AnimBP 에 들어가 있는 전투 애니메이션들과 근본적으로 다를 것 없음. 단지 로딩되는 데이터 절감 면에서 따로 떼서 관리하는 거.
+		//const TArray<FCombinedPCSkillAnimID> SkillAnimsToPreLoad = ABladeIIGameMode::GetAllPCSkillAnimsOfClass(InPCClass);
+		//ConditionalSetupPreRenderObjectForPCSkillAnims(SkillAnimsToPreLoad, true);
 	}
 
 	PostPreRenderSeupProcess();
-	if (AllPreRenderDummy.Num() > 0){
+	if (AllPreRenderDummy.Num() > 0)
+	{
 		bHadDoneAnyPreRender = true; // 아직 실제로 한 건 아니지만 이 플래그 목적 상 이쯤서 true 마크
 	}
 }
 
 void UB2PreRenderer::SetupForPreRenderGM_PCSkillAnimPass(EPCClass InPCClass)
 {
-	checkSlow(AllPreRenderDummy.Num() == 0); // 각 패스 간에 PreRenderDummy 를 재활용해서 사용하는 식이 된다면 이 check 가 맞지 않겠지..
+	//checkSlow(AllPreRenderDummy.Num() == 0); // 각 패스 간에 PreRenderDummy 를 재활용해서 사용하는 식이 된다면 이 check 가 맞지 않겠지..
 
-	const TArray<FCombinedPCSkillAnimID> SkillAnimsToPreLoad = ABladeIIGameMode::GetAllPCSkillAnimsOfClass(InPCClass);
-	ConditionalSetupPreRenderObjectForPCSkillAnims(SkillAnimsToPreLoad, true); // 여기도 ForceSetup
+	//const TArray<FCombinedPCSkillAnimID> SkillAnimsToPreLoad = ABladeIIGameMode::GetAllPCSkillAnimsOfClass(InPCClass);
+	//ConditionalSetupPreRenderObjectForPCSkillAnims(SkillAnimsToPreLoad, true); // 여기도 ForceSetup
 
-	PostPreRenderSeupProcess();
-	if (AllPreRenderDummy.Num() > 0){
-		bHadDoneAnyPreRender = true; // 아직 실제로 한 건 아니지만 이 플래그 목적 상 이쯤서 true 마크
-	}
+	//PostPreRenderSeupProcess();
+	//if (AllPreRenderDummy.Num() > 0)
+	//{
+	//	bHadDoneAnyPreRender = true; // 아직 실제로 한 건 아니지만 이 플래그 목적 상 이쯤서 true 마크
+	//}
 }
 
 void UB2PreRenderer::SetupForPreRenderGM_DamageEffectInfo()
@@ -1661,9 +1674,10 @@ void UB2PreRenderer::SetupForPreRenderGM_DamageEffectInfo()
 	checkSlow(AllPreRenderDummy.Num() == 0); // 각 패스 간에 PreRenderDummy 를 재활용해서 사용하는 식이 된다면 이 check 가 맞지 않겠지..
 
 	ConditionalSetupPreRenderObjectForDamageEffectInfo(true);
-	
+
 	PostPreRenderSeupProcess();
-	if (AllPreRenderDummy.Num() > 0) {
+	if (AllPreRenderDummy.Num() > 0)
+	{
 		bHadDoneAnyPreRender = true; // 아직 실제로 한 건 아니지만 이 플래그 목적 상 이쯤서 true 마크
 	}
 }
@@ -1672,18 +1686,22 @@ void UB2PreRenderer::SetupForPreRenderGM_Extra(bool bForNPCClass, bool bForFx, b
 	//checkSlow(AllPreRenderDummy.Num() == 0); 이거 바로 앞에 다른 PreRender 를 세팅하는 사용 사례가 있어서 걸림. 딱히 중요한 check 는 아님.
 
 	// ExtraNPCClass 와 Other 를 Fx 보다 먼저 하는데 Fx 패스 셋업할 때의 더미가 생겨서 굳이 일부러 하나 생성할 필요가 없어지게 되기 때문.
-	if (bForNPCClass) {
+	if (bForNPCClass)
+	{
 		SetupPreRenderObjects_ExtraNPCClass();
 	}
-	if (bForOther) {
+	if (bForOther)
+	{
 		SetupPreRenderObjects_ExtraOthers();
 	}
-	if (bForFx) {
+	if (bForFx)
+	{
 		SetupPreRenderObjects_ExtraFx();
 	}
 
 	PostPreRenderSeupProcess();
-	if (AllPreRenderDummy.Num() > 0) {
+	if (AllPreRenderDummy.Num() > 0)
+	{
 		bHadDoneAnyPreRender = true; // 아직 실제로 한 건 아니지만 이 플래그 목적 상 이쯤서 true 마크
 	}
 }
@@ -1703,7 +1721,7 @@ bool UB2PreRenderer::ShouldDoPreRenderForIOS_Basic()
 {
 	// 이름은 Basic 이지만 ShouldDoPreRenderForIOS_PreRenderGM 이 false 이고 이게 true 이면 더욱더 큰 부담으로 똑같은 걸 처리하게 될 수 있다.
 	// 사실상 명목상으로 있는 거고 다른 sub-condition 이 true 일 수는 있어도 이걸 true 로 하기는 어려울 것이다.
-	return false; 
+	return false;
 }
 bool UB2PreRenderer::ShouldDoPreRenderForIOS_AllPrim()
 {

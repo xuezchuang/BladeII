@@ -222,12 +222,12 @@ void UB2UIEtherOption::DestroySelf(class UB2UIManager* InUIManager)
 	UIP_EtherOptionSlots.Empty(); 
 	EtherOptions.Empty();
 
-	DeliverySelectEtherDefenseOptionClass<FB2SelectEtherDefenseOptionPtr>::GetInstance().Unsubscribe(SelectEtherDefenseOptionEventID);
+	//DeliverySelectEtherDefenseOptionClass<FB2SelectEtherDefenseOptionPtr>::GetInstance().Unsubscribe(SelectEtherDefenseOptionEventID);
 }
 
 void UB2UIEtherOption::BindDelegates()
 {
-	BIND_CLICK_FUNC_TO_BTN(EtherOptions[0].BTN_Select, &UB2UIEtherOption::OnClickFirstDefInfo);
+	/*BIND_CLICK_FUNC_TO_BTN(EtherOptions[0].BTN_Select, &UB2UIEtherOption::OnClickFirstDefInfo);
 	BIND_CLICK_FUNC_TO_BTN(EtherOptions[1].BTN_Select, &UB2UIEtherOption::OnClickSecondDefInfo);
 	BIND_CLICK_FUNC_TO_BTN(EtherOptions[2].BTN_Select, &UB2UIEtherOption::OnClickThirdDefInfo);
 
@@ -250,7 +250,7 @@ void UB2UIEtherOption::BindDelegates()
 				B2EtherManager::GetInstance().GetEtherSetOptionText(EtherPtr->selected_defense_set_option_id),
 				BladeIIGetLOCText(FString(B2LOC_CAT_ETHER), FString(TEXT("Ether_SetOption_Activation_Notice")))));
 		}
-	});
+	});*/
 }
 
 void UB2UIEtherOption::SetEnableCheckText(const FEtherOption& InEtherOption)
@@ -293,22 +293,22 @@ void UB2UIEtherOption::OnClickThirdDefInfo()
 
 void UB2UIEtherOption::OnClickAttSetInfo()
 {
-	OpenEtherSetToolTipClass<int32, EPCClass>::GetInstance().Signal(OffenseID, PCClass);
+	//OpenEtherSetToolTipClass<int32, EPCClass>::GetInstance().Signal(OffenseID, PCClass);
 }
 
 void UB2UIEtherOption::OnClickFirstDefSetInfo()
 {
-	OpenEtherSetToolTipClass<int32, EPCClass>::GetInstance().Signal(EtherOptions[0].EtherSetID, EtherOptions[0].PCClass);
+	//OpenEtherSetToolTipClass<int32, EPCClass>::GetInstance().Signal(EtherOptions[0].EtherSetID, EtherOptions[0].PCClass);
 }
 
 void UB2UIEtherOption::OnClickSecondDefSetInfo()
 {
-	OpenEtherSetToolTipClass<int32, EPCClass>::GetInstance().Signal(EtherOptions[1].EtherSetID, EtherOptions[1].PCClass);
+	//OpenEtherSetToolTipClass<int32, EPCClass>::GetInstance().Signal(EtherOptions[1].EtherSetID, EtherOptions[1].PCClass);
 }
 
 void UB2UIEtherOption::OnClickThirdDefSetInfo()
 {
-	OpenEtherSetToolTipClass<int32, EPCClass>::GetInstance().Signal(EtherOptions[2].EtherSetID, EtherOptions[2].PCClass);
+	//OpenEtherSetToolTipClass<int32, EPCClass>::GetInstance().Signal(EtherOptions[2].EtherSetID, EtherOptions[2].PCClass);
 }
 
 void UB2UIEtherOption::OnClickHelp()

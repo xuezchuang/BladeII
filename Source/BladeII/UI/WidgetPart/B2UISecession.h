@@ -2,6 +2,7 @@
 #pragma once
 
 #include "B2UIWidget.h"
+#include "../Widget/B2Image.h"
 #include "B2UISecession.generated.h"
 
 

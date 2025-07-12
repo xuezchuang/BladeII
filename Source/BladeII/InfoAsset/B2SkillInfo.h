@@ -151,7 +151,7 @@ public:
 	/** Original cooltime, unscaled by any other modification.. */
 	float GetOriginalCoolTime(int32 SkillInfoID) const;
 
-	//static int32 GetEnablePlayerLevel(int32 SkillInfoID);
+	static int32 GetEnablePlayerLevel(int32 SkillInfoID);
 
 	FButtonStyle GetButtonIconStyle(int32 SkillInfoID);
 

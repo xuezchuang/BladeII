@@ -5,6 +5,7 @@
 #include "UObject/Object.h"
 #include "Engine/StreamableManager.h"
 #include "B2AssetLoader.h"
+#include "../../Common/CommonStruct.h"
 #include "B2LobbyUISwitcher.generated.h"
 
 /** UserWidgets considered as one of main pages or shown without any other base page. */

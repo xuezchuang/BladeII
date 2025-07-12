@@ -7,6 +7,7 @@
 #include "B2UIBackWidget.h"
 #include "B2UIUtil.h"
 #include "B2UIFilterInventory.h"
+#include "../Widget/B2Image.h"
 #include "B2LobbyUI_DecompositionAllItems.generated.h"
 
 #define DECOMPOSITION_ALLITEMS_STARGRADE_NUM 7
@@ -41,7 +42,7 @@ protected:
 	TWeakObjectPtr<UB2UIFilterInventory> UIP_InventoryFilter;
 
 	UPROPERTY(EditAnywhere)
-		TArray<FB2ClassPortraitImage> ClassPortraitImage;
+	TArray<FB2ClassPortraitImage> ClassPortraitImage;
 
 public:
 	UB2LobbyUI_DecompositionAllItems(const FObjectInitializer& ObjectInitializer);
@@ -49,10 +50,10 @@ public:
 	virtual void StartFromLobby(class UB2UIManager_Lobby* InUIManager, class AB2LobbyGameMode* InGM) override;
 
 	UFUNCTION(BlueprintCallable, Category = "BladeII")
-		void OnCloseButtonClicked();
+	void OnCloseButtonClicked();
 
 	UFUNCTION(BlueprintCallable, Category = "BladeII")
-		void OnDecompositionButtonClicked();
+	void OnDecompositionButtonClicked();
 
 protected:
 	virtual void CloseWidgetDelegate() override;
@@ -61,10 +62,10 @@ protected:
 
 private:
 	UFUNCTION()
-		void OnAnyItemFilterCBChanged(bool InCheck);
+	void OnAnyItemFilterCBChanged(bool InCheck);
 
 	UFUNCTION()
-		void OnReset();
+	void OnReset();
 
 private:
 	void UpdateSubWidgets();
@@ -77,5 +78,5 @@ private:
 
 	void CloseMe();
 
-	bool GetAllTargetItems(TArray<FB2Item> &OutList);
+	bool GetAllTargetItems(TArray<FB2Item>& OutList);
 };

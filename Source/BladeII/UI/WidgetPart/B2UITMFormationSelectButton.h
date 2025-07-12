@@ -2,6 +2,7 @@
 #pragma once
 //#include "BladeII.h"
 #include "UI/B2UIWidgetBase.h"
+#include "../B2RichTextBlock.h"
 #include "B2UITMFormationSelectButton.generated.h"
 
 DECLARE_DELEGATE_OneParam(FFormationAnimationDelegate, ETMFormation);

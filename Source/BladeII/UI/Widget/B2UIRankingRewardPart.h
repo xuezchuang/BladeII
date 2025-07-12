@@ -2,6 +2,7 @@
 #pragma once
 
 #include "B2UIWidget.h"
+#include "B2ButtonGoodInfoToolTip.h"
 #include "B2UIRankingRewardPart.generated.h"
 
 

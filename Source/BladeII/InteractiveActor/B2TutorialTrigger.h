@@ -11,8 +11,8 @@ UCLASS(BlueprintType, Blueprintable)
 class BLADEII_API AB2TutorialTrigger : public ABladeIIInteractiveActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	AB2TutorialTrigger(const FObjectInitializer& ObjectInitializer);
 
 	virtual void InteractAction() override;
@@ -26,7 +26,7 @@ public:
 
 #if WITH_EDITORONLY_DATA
 
-private :
+private:
 
 	UPROPERTY()
 	class UTextRenderComponent* EditorTextComponent;
@@ -34,7 +34,7 @@ private :
 #endif
 
 protected:
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Trigger")
-		ETutorialNumber TutorialNumber;
+	//UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Trigger")
+	//ETutorialNumber TutorialNumber;
 
 };

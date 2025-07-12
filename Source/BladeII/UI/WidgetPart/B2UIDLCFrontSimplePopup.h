@@ -3,10 +3,12 @@
 #pragma once
 
 #include "B2UIDLCFrontBase.h"
+#include "../B2RichTextBlock.h"
+#include "../B2UIEnum.h"
 #include "B2UIDLCFrontSimplePopup.generated.h"
 
 /**
- * 
+ *
  */
 DECLARE_DELEGATE(FDLCMsgPopupOnClick)
 
@@ -39,9 +41,9 @@ protected:
 	virtual void BindDelegates() override;
 
 	UFUNCTION(BlueprintCallable, Category = "DLCFront")
-		void OnClickBtnPositive();
+	void OnClickBtnPositive();
 	UFUNCTION(BlueprintCallable, Category = "DLCFront")
-		void OnClickBtnNegative();
+	void OnClickBtnNegative();
 private:
 	TWeakObjectPtr<UTextBlock> TB_Title;
 	TWeakObjectPtr<UB2RichTextBlock>	TB_SubContent;

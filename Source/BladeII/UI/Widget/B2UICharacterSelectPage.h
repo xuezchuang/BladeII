@@ -3,6 +3,9 @@
 
 #include "B2UIWidget.h"
 #include "EventSubsystem.h"
+#include "B2Image.h"
+#include "B2ButtonGoodInfoToolTip.h"
+#include "../B2RichTextBlock.h"
 #include "B2UICharacterSelectPage.generated.h"
 
 DECLARE_DELEGATE_OneParam(FCharacterSlot, EPCClass)

@@ -7,6 +7,8 @@
 #include "B2UIBackWidget.h"
 #include "B2DynItemIcon_SealBoxPreview.h"
 #include "B2UIStoreProductCost.h"
+#include "../../DataStore/B2ClientDataStore.h"
+#include "../B2RichTextBlock.h"
 #include "B2LobbyUI_ItemDetail.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnCloseButtonClicked);
@@ -85,8 +87,8 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "ItemStat")
 	FSlateColor ItemStatDecColor;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TSubclassOf<UB2DynItemIcon_SealBoxPreview>	SealBoxContainListBP;
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	//TSubclassOf<UB2DynItemIcon_SealBoxPreview>	SealBoxContainListBP;
 
 	//////////////////////////////////////////////////
 	// Native references for various item stat texts

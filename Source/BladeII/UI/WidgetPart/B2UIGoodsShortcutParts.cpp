@@ -81,20 +81,20 @@ void UB2UIGoodsShortcutParts::SetVisibleButton(bool IsVisible)
 
 void UB2UIGoodsShortcutParts::OnClickBtnMove()
 {
-	FB2UILinkManager::LinkUIScene(m_LinkScene, m_Optional1, m_Optional2);
+	//FB2UILinkManager::LinkUIScene(m_LinkScene, m_Optional1, m_Optional2);
 
-	//새로운 메인 UI쪽 관련 작업에 대한 숙달도가 낮아서 앞으로 바로가기 씬을 추가할때 이 부분에도 추가해야 한다.
-	if (m_LinkScene == EUIScene::ItemForge)
-	{
-		LobbyChangeSceneByUISceneClass<EUIScene>::GetInstance().Signal(EUIScene::ItemForge);
+	////새로운 메인 UI쪽 관련 작업에 대한 숙달도가 낮아서 앞으로 바로가기 씬을 추가할때 이 부분에도 추가해야 한다.
+	//if (m_LinkScene == EUIScene::ItemForge)
+	//{
+	//	LobbyChangeSceneByUISceneClass<EUIScene>::GetInstance().Signal(EUIScene::ItemForge);
 
-		UB2UIItemForge* ItemForgeUI = UB2UIManager::GetInstance()->GetUI<UB2UIItemForge>(UIFName::ItemForge);
-		if (ItemForgeUI)
-		{
-			ItemForgeUI->ForgeInit();
-		}
-	}
+	//	UB2UIItemForge* ItemForgeUI = UB2UIManager::GetInstance()->GetUI<UB2UIItemForge>(UIFName::ItemForge);
+	//	if (ItemForgeUI)
+	//	{
+	//		ItemForgeUI->ForgeInit();
+	//	}
+	//}
 
-	ToolTipMoveClass<>::GetInstance().Signal();
-	m_ParentUI->DestroySelfUsingUIManager();
+	//ToolTipMoveClass<>::GetInstance().Signal();
+	//m_ParentUI->DestroySelfUsingUIManager();
 }

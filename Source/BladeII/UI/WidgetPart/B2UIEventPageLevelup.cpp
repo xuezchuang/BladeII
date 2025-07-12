@@ -16,19 +16,19 @@ void UB2UIEventPageLevelup::CacheAssets()
 
 void UB2UIEventPageLevelup::SubscribeEvents_EventPage()
 {
-	UnsubscribeEvents_EventPage();
+	//UnsubscribeEvents_EventPage();
 
-	CAPTURE_UOBJECT(UB2UIEventPageLevelup);
+	//CAPTURE_UOBJECT(UB2UIEventPageLevelup);
 
-	Issues_EventPage.Add(DeliveryLevelUpEventRewardClass<FB2ResponseReceiveLevelUpEventRewardPtr>::GetInstance().Subscribe2(
-		[Capture](FB2ResponseReceiveLevelUpEventRewardPtr ReceiveLevelUpEventReward)
-	{
-		if (Capture.IsValid())
-		{
-			Capture->ResponseLevelupEventReward(ReceiveLevelUpEventReward);
-		}
-	}
-	));
+	//Issues_EventPage.Add(DeliveryLevelUpEventRewardClass<FB2ResponseReceiveLevelUpEventRewardPtr>::GetInstance().Subscribe2(
+	//	[Capture](FB2ResponseReceiveLevelUpEventRewardPtr ReceiveLevelUpEventReward)
+	//{
+	//	if (Capture.IsValid())
+	//	{
+	//		Capture->ResponseLevelupEventReward(ReceiveLevelUpEventReward);
+	//	}
+	//}
+	//));
 }
 
 void UB2UIEventPageLevelup::InitEventPageMasterData()

@@ -3,6 +3,7 @@
 #pragma once
 //#include "BladeII.h"
 #include "InteractiveActor/BladeIIInteractiveActor.h"
+#include "../BladeII/B2StageEventDirector.h"
 #include "B2JumpEventZone.generated.h"
 
 /**
@@ -10,7 +11,7 @@
  */
 
 
-enum class EStageEvent : uint8;
+//enum class EStageEvent : uint8;
 
 
 UCLASS()

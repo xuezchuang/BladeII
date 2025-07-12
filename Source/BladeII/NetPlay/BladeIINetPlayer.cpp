@@ -1563,15 +1563,15 @@ float ABladeIINetPlayer::GetResurrectionTimerRate()
 
 void ABladeIINetPlayer::NotifyTagSpawn(class ABladeIIPlayer* OldRetiringPlayer)
 {
-	auto  Asset = GetInjectedGameRule()->GetBehaviorTreeAsset();
-	if (!Asset.IsEmpty())
-	{
-		BehaviorTree = LoadObject<UBehaviorTree>(NULL, *Asset);
-	}	
+	//auto  Asset = GetInjectedGameRule()->GetBehaviorTreeAsset();
+	//if (!Asset.IsEmpty())
+	//{
+	//	BehaviorTree = LoadObject<UBehaviorTree>(NULL, *Asset);
+	//}	
 
-	bTemporarilyNetOff = true;
+	//bTemporarilyNetOff = true;
 
-	Super::NotifyTagSpawn(OldRetiringPlayer);
+	//Super::NotifyTagSpawn(OldRetiringPlayer);
 }
 
 void ABladeIINetPlayer::OnSpawnEnd()

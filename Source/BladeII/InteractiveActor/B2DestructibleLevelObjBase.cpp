@@ -7,6 +7,7 @@
 #include "BladeIIGameMode.h"
 #include "Engine/DamageEvents.h"
 #include "BladeIIUtil.h"
+#include "../BladeII/BladeIIProjectile.h"
 
 FDestructParam::FDestructParam()
 {

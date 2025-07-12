@@ -856,28 +856,28 @@ void UB2LobbyUI_SetupSkillMain::SetUnityTabPartOpen(bool bInOpen)
 
 void UB2LobbyUI_SetupSkillMain::ConditionalCreateUnityTabPart()
 {
-	if (CreatedUnityP == nullptr && X_CP_UnitySkill.IsValid())
-	{
-		const FString& RequestName = GetUnityPartRequestName();
-		auto LoadingState = UB2AssetLoader::Get()->GetLoadingState(RequestName);
+	//if (CreatedUnityP == nullptr && X_CP_UnitySkill.IsValid())
+	//{
+	//	const FString& RequestName = GetUnityPartRequestName();
+	//	auto LoadingState = UB2AssetLoader::Get()->GetLoadingState(RequestName);
 
-		bool bLoadComplete = LoadingState == ELoadingState::Complete ? true : false;
-		if (LoadingState == ELoadingState::InLoading)
-		{
-			if (UB2AssetLoader::Get()->WaitUntilLoadComplete(RequestName))
-				bLoadComplete = true;
-		}
+	//	bool bLoadComplete = LoadingState == ELoadingState::Complete ? true : false;
+	//	if (LoadingState == ELoadingState::InLoading)
+	//	{
+	//		if (UB2AssetLoader::Get()->WaitUntilLoadComplete(RequestName))
+	//			bLoadComplete = true;
+	//	}
 
-		if (bLoadComplete && UnityPartClass.IsValid())
-		{
-			CreatedUnityP = DynLoadAndCreateInCanvasPanelFull<UB2LobbyUI_SetupSkill_UnityP>(UnityPartClass, this, X_CP_UnitySkill.Get());
-			if (CreatedUnityP)
-			{
-				CreatedUnityP->StartFromLobby(OwnerUIManager, CachedLobbyGM);
-				CreatedUnityP->InitFromOwnerSkillMain(this, UIP_HeroMgmtBase.Get());
-			}
-		}
-	}
+	//	if (bLoadComplete && UnityPartClass.IsValid())
+	//	{
+	//		CreatedUnityP = DynLoadAndCreateInCanvasPanelFull<UB2LobbyUI_SetupSkill_UnityP>(UnityPartClass, this, X_CP_UnitySkill.Get());
+	//		if (CreatedUnityP)
+	//		{
+	//			CreatedUnityP->StartFromLobby(OwnerUIManager, CachedLobbyGM);
+	//			CreatedUnityP->InitFromOwnerSkillMain(this, UIP_HeroMgmtBase.Get());
+	//		}
+	//	}
+	//}
 }
 
 void UB2LobbyUI_SetupSkillMain::DestroyUnityTabPart()

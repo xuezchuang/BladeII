@@ -7,6 +7,7 @@
 #include "B2DynItemIcon_SealBoxPreview.h"
 #include "BladeIIGameImpl.h"
 #include "B2LobbyGameMode.h"
+#include "../../Lobby/B2LobbyInventory.h"
 
 void UB2UISealBoxResultSimple::CacheAssets()
 {
@@ -100,45 +101,45 @@ void UB2UISealBoxResultSimple::SetRewardDataManually(const FB2ResponseUnsealBoxP
 	savedClass = pcClass;
 	currentArrayIndex = 0;
 
-	if (UnsealData->left_amount > 0)
-	{
-		if (BTN_OneMoreTime.IsValid())
-			BTN_OneMoreTime->SetVisibility(ESlateVisibility::Visible);
+	//if (UnsealData->left_amount > 0)
+	//{
+	//	if (BTN_OneMoreTime.IsValid())
+	//		BTN_OneMoreTime->SetVisibility(ESlateVisibility::Visible);
 
-		if (TB_OneMoreTime.IsValid())
-			TB_OneMoreTime->SetText(FText::Format(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SealBox_NextUnseal")), FText::AsNumber(UnsealData->left_amount)));
-	}
-	else
-	{
-		if (BTN_OneMoreTime.IsValid())
-			BTN_OneMoreTime->SetVisibility(ESlateVisibility::Collapsed);
-	}
+	//	if (TB_OneMoreTime.IsValid())
+	//		TB_OneMoreTime->SetText(FText::Format(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SealBox_NextUnseal")), FText::AsNumber(UnsealData->left_amount)));
+	//}
+	//else
+	//{
+	//	if (BTN_OneMoreTime.IsValid())
+	//		BTN_OneMoreTime->SetVisibility(ESlateVisibility::Collapsed);
+	//}
 
-	
-	for (int32 i = 0; i < UnsealData->rewards.Num(); i++)
-	{		
-		if (UnsealData->rewards[i]->reward_type == b2network::B2RewardType::ITEM)
-		{
-			FB2Item tempItem;
-			tempItem = UnsealData->rewards[i]->item;
+	//
+	//for (int32 i = 0; i < UnsealData->rewards.Num(); i++)
+	//{		
+	//	if (UnsealData->rewards[i]->reward_type == b2network::B2RewardType::ITEM)
+	//	{
+	//		FB2Item tempItem;
+	//		tempItem = UnsealData->rewards[i]->item;
 
-			UB2DynItemIcon_SealBoxPreview* SealBoxIconWidget = CreateWidget<UB2DynItemIcon_SealBoxPreview>(GetOwningPlayer(), resultWidget);
-			SealBoxIconWidget->CacheAssets();
-			SealBoxIconWidget->SetItem(tempItem.ItemRefID, false);
-			SealBoxIconWidget->SetResultPannel(this);
-			SealBoxIconWidget->UpdateItemData(tempItem);;
-			SB_ResultScroll->AddChild(SealBoxIconWidget);
-		}
-		else
-		{
-			UB2DynItemIcon_SealBoxPreview* SealBoxIconWidget = CreateWidget<UB2DynItemIcon_SealBoxPreview>(GetOwningPlayer(), resultWidget);
-			SealBoxIconWidget->CacheAssets();
-			SealBoxIconWidget->SetItem(BladeIIGameImpl::GetClientDataStore().GetRewardItemId(UnsealData->rewards[i]->reward_type), UnsealData->rewards[i]->amount);
-			SealBoxIconWidget->SetResultPannel(this);
-			SB_ResultScroll->AddChild(SealBoxIconWidget);
-		}
-	}
-	
+	//		UB2DynItemIcon_SealBoxPreview* SealBoxIconWidget = CreateWidget<UB2DynItemIcon_SealBoxPreview>(GetOwningPlayer(), resultWidget);
+	//		SealBoxIconWidget->CacheAssets();
+	//		SealBoxIconWidget->SetItem(tempItem.ItemRefID, false);
+	//		SealBoxIconWidget->SetResultPannel(this);
+	//		SealBoxIconWidget->UpdateItemData(tempItem);;
+	//		SB_ResultScroll->AddChild(SealBoxIconWidget);
+	//	}
+	//	else
+	//	{
+	//		UB2DynItemIcon_SealBoxPreview* SealBoxIconWidget = CreateWidget<UB2DynItemIcon_SealBoxPreview>(GetOwningPlayer(), resultWidget);
+	//		SealBoxIconWidget->CacheAssets();
+	//		SealBoxIconWidget->SetItem(BladeIIGameImpl::GetClientDataStore().GetRewardItemId(UnsealData->rewards[i]->reward_type), UnsealData->rewards[i]->amount);
+	//		SealBoxIconWidget->SetResultPannel(this);
+	//		SB_ResultScroll->AddChild(SealBoxIconWidget);
+	//	}
+	//}
+	//
 	/*
 	if (UnsealData->rewards[currentArrayIndex]->reward_type == b2network::B2RewardType::ITEM)
 	{
@@ -167,36 +168,36 @@ void UB2UISealBoxResultSimple::SetRewardDataManually(const FB2ResponseUnsealBoxP
 
 void UB2UISealBoxResultSimple::ContinueResultShowing()
 {
-	// 제작소 처럼 애니메이션 끝났을 때 그 다음꺼 진행하도록
+	//// 제작소 처럼 애니메이션 끝났을 때 그 다음꺼 진행하도록
 
-	if (currentArrayIndex >= UnsealData->rewards.Num())
-	{
-		//everything ends here.
-		return;
-	}
-	else
-	{
-		if (UnsealData->rewards[currentArrayIndex]->reward_type == b2network::B2RewardType::ITEM)
-		{
-			FB2Item tempItem;
-			tempItem = UnsealData->rewards[currentArrayIndex]->item;
+	//if (currentArrayIndex >= UnsealData->rewards.Num())
+	//{
+	//	//everything ends here.
+	//	return;
+	//}
+	//else
+	//{
+	//	if (UnsealData->rewards[currentArrayIndex]->reward_type == b2network::B2RewardType::ITEM)
+	//	{
+	//		FB2Item tempItem;
+	//		tempItem = UnsealData->rewards[currentArrayIndex]->item;
 
-			UB2DynItemIcon_SealBoxPreview* SealBoxIconWidget = CreateWidget<UB2DynItemIcon_SealBoxPreview>(GetOwningPlayer(), resultWidget);
-			SealBoxIconWidget->CacheAssets();
-			SealBoxIconWidget->SetItem(tempItem.ItemRefID, false);
-			SealBoxIconWidget->SetResultPannel(this);
-			SealBoxIconWidget->UpdateItemData(tempItem);;
-			SB_ResultScroll->AddChild(SealBoxIconWidget);
-		}
-		else
-		{
-			UB2DynItemIcon_SealBoxPreview* SealBoxIconWidget = CreateWidget<UB2DynItemIcon_SealBoxPreview>(GetOwningPlayer(), resultWidget);
-			SealBoxIconWidget->CacheAssets();
-			SealBoxIconWidget->SetItem(BladeIIGameImpl::GetClientDataStore().GetRewardItemId(UnsealData->rewards[currentArrayIndex]->reward_type), UnsealData->rewards[currentArrayIndex]->amount);
-			SealBoxIconWidget->SetResultPannel(this);
-			SB_ResultScroll->AddChild(SealBoxIconWidget);
-		}
+	//		UB2DynItemIcon_SealBoxPreview* SealBoxIconWidget = CreateWidget<UB2DynItemIcon_SealBoxPreview>(GetOwningPlayer(), resultWidget);
+	//		SealBoxIconWidget->CacheAssets();
+	//		SealBoxIconWidget->SetItem(tempItem.ItemRefID, false);
+	//		SealBoxIconWidget->SetResultPannel(this);
+	//		SealBoxIconWidget->UpdateItemData(tempItem);;
+	//		SB_ResultScroll->AddChild(SealBoxIconWidget);
+	//	}
+	//	else
+	//	{
+	//		UB2DynItemIcon_SealBoxPreview* SealBoxIconWidget = CreateWidget<UB2DynItemIcon_SealBoxPreview>(GetOwningPlayer(), resultWidget);
+	//		SealBoxIconWidget->CacheAssets();
+	//		SealBoxIconWidget->SetItem(BladeIIGameImpl::GetClientDataStore().GetRewardItemId(UnsealData->rewards[currentArrayIndex]->reward_type), UnsealData->rewards[currentArrayIndex]->amount);
+	//		SealBoxIconWidget->SetResultPannel(this);
+	//		SB_ResultScroll->AddChild(SealBoxIconWidget);
+	//	}
 
-		currentArrayIndex++;
-	}
+	//	currentArrayIndex++;
+	//}
 }

@@ -4,6 +4,7 @@
 
 #include "UI/B2UIWidget.h"
 #include "B2UIBackWidget.h"
+#include "../B2RichTextBlock.h"
 #include "B2UIFairyBlessPopup.generated.h"
 
 

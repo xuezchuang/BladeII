@@ -5,6 +5,9 @@
 #include "B2SkillInfo.h"
 #include "B2UIWidgetBase.h"
 #include "B2UIBackWidget.h"
+#include "../Widget/B2ButtonGoodInfoToolTip.h"
+#include "../Widget/B2Image.h"
+#include "../../Common/EventSubsystem.h"
 #include "B2LobbyUI_UnitySkillWakePopup.generated.h"
 
 DECLARE_DELEGATE(FClickSelectButtonDelegate)

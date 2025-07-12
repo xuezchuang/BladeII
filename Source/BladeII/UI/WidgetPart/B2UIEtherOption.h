@@ -3,6 +3,8 @@
 #pragma once
 
 #include "UI/B2UIWidgetBase.h"
+#include "../B2RichTextBlock.h"
+#include "../Widget/B2Button.h"
 #include "B2UIEtherOption.generated.h"
 
 /**

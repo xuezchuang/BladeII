@@ -65,46 +65,46 @@ void UB2UIEventAttendacnePart::DestroySelf(UB2UIManager* InUIManager)
 
 void UB2UIEventAttendacnePart::UpdateRewardState(EEventRewardState eRewardState, b2network::B2RewardPtr Reward)
 {
-	RewardEventItem = Reward;
+	//RewardEventItem = Reward;
 
-	auto Func = [this](const ESlateVisibility& Receive, const ESlateVisibility& Effect, const ESlateVisibility& ReceivePanel, const bool VisibleButton)
-	{
-		if (BTN_Receive.IsValid())
-			BTN_Receive->SetIsEnabled(VisibleButton);
-		if (P_Complete.IsValid())
-			P_Complete->SetVisibility(Receive);
-		if (IMG_ButtonEffect.IsValid())
-			IMG_ButtonEffect->SetVisibility(Effect);
-		if (P_ReceiveButton.IsValid())
-			P_ReceiveButton->SetVisibility(ReceivePanel);
-	};
+	//auto Func = [this](const ESlateVisibility& Receive, const ESlateVisibility& Effect, const ESlateVisibility& ReceivePanel, const bool VisibleButton)
+	//{
+	//	if (BTN_Receive.IsValid())
+	//		BTN_Receive->SetIsEnabled(VisibleButton);
+	//	if (P_Complete.IsValid())
+	//		P_Complete->SetVisibility(Receive);
+	//	if (IMG_ButtonEffect.IsValid())
+	//		IMG_ButtonEffect->SetVisibility(Effect);
+	//	if (P_ReceiveButton.IsValid())
+	//		P_ReceiveButton->SetVisibility(ReceivePanel);
+	//};
 
-	switch (eRewardState)
-	{
-	case EEventRewardState::REWARD_WAIT:
-	{
-		Func(ESlateVisibility::Hidden, ESlateVisibility::Hidden, ESlateVisibility::SelfHitTestInvisible, false);
-	}
-	break;
-	case EEventRewardState::REWARD_ENABLE:
-	{
-		Func(ESlateVisibility::Hidden, ESlateVisibility::HitTestInvisible, ESlateVisibility::SelfHitTestInvisible, true);
-	}
-	break;
-	case EEventRewardState::REWARD_COMPLETE:
-	{
-		Func(ESlateVisibility::SelfHitTestInvisible, ESlateVisibility::Hidden, ESlateVisibility::Hidden, false);
+	//switch (eRewardState)
+	//{
+	//case EEventRewardState::REWARD_WAIT:
+	//{
+	//	Func(ESlateVisibility::Hidden, ESlateVisibility::Hidden, ESlateVisibility::SelfHitTestInvisible, false);
+	//}
+	//break;
+	//case EEventRewardState::REWARD_ENABLE:
+	//{
+	//	Func(ESlateVisibility::Hidden, ESlateVisibility::HitTestInvisible, ESlateVisibility::SelfHitTestInvisible, true);
+	//}
+	//break;
+	//case EEventRewardState::REWARD_COMPLETE:
+	//{
+	//	Func(ESlateVisibility::SelfHitTestInvisible, ESlateVisibility::Hidden, ESlateVisibility::Hidden, false);
 
-		if(Reward && Anim_Recieve.IsValid())
-			PlayAnimation(Anim_Recieve.Get());
-		if(Reward)
-			OnStartRewardAnimation_BP();
-		ReceiveAttendanceExitEnableClass<bool>::GetInstance().Signal(false);
-	}
-	break;
-	default:
-		break;
-	}
+	//	if(Reward && Anim_Recieve.IsValid())
+	//		PlayAnimation(Anim_Recieve.Get());
+	//	if(Reward)
+	//		OnStartRewardAnimation_BP();
+	//	ReceiveAttendanceExitEnableClass<bool>::GetInstance().Signal(false);
+	//}
+	//break;
+	//default:
+	//	break;
+	//}
 }
 
 void UB2UIEventAttendacnePart::InitRewardSlotInfo(const FEventAttendanceReward& RewardInfo)
@@ -194,22 +194,22 @@ void UB2UIEventAttendacnePart::UpdateGetRewardBtnText(const bool& IsPossibleDoub
 
 void UB2UIEventAttendacnePart::FinishRecieveAnimation()
 {
-	if (RewardEventItem)
-	{
-		if (!UB2UIManager::GetInstance()->OpenRewardMailPopUp(RewardEventItem))
-		{
-			if (auto* PopUp = UB2UIManager::GetInstance()->OpenMsgPopup<UB2UIMsgPopupReward>(EUIMsgPopup::ItemReward, FText::GetEmpty(), FText::GetEmpty()))
-			{
-				TArray<b2network::B2RewardPtr> Items;
-				Items.Add(RewardEventItem);
-				PopUp->AddRewardItems(Items, true);
-			}
-		}
+	//if (RewardEventItem)
+	//{
+	//	if (!UB2UIManager::GetInstance()->OpenRewardMailPopUp(RewardEventItem))
+	//	{
+	//		if (auto* PopUp = UB2UIManager::GetInstance()->OpenMsgPopup<UB2UIMsgPopupReward>(EUIMsgPopup::ItemReward, FText::GetEmpty(), FText::GetEmpty()))
+	//		{
+	//			TArray<b2network::B2RewardPtr> Items;
+	//			Items.Add(RewardEventItem);
+	//			PopUp->AddRewardItems(Items, true);
+	//		}
+	//	}
 
-		ReceiveAttendanceExitEnableClass<bool>::GetInstance().Signal(true);
+	//	ReceiveAttendanceExitEnableClass<bool>::GetInstance().Signal(true);
 
-		RewardEventItem = nullptr;
-	}
+	//	RewardEventItem = nullptr;
+	//}
 }
 
 void UB2UIEventAttendacnePart::OnClickAttendanceEvent()
@@ -288,10 +288,10 @@ void UB2UIEventAttendacnePart::OpenPopupBuyPackageOrRequestReward()
 
 void UB2UIEventAttendacnePart::EnterPackageShop()
 {
-	if (auto* DocStore = UB2UIDocHelper::GetDocStore())
-	{
-		const int32 FlatratePackageTabIndex = 7;
-		DocStore->SetPackageTabToOpen(FlatratePackageTabIndex);
-		EnterShopClass<int32>::GetInstance().Signal(static_cast<int32>(EStorePageWhere::PackageStore));
-	}
+	//if (auto* DocStore = UB2UIDocHelper::GetDocStore())
+	//{
+	//	const int32 FlatratePackageTabIndex = 7;
+	//	DocStore->SetPackageTabToOpen(FlatratePackageTabIndex);
+	//	EnterShopClass<int32>::GetInstance().Signal(static_cast<int32>(EStorePageWhere::PackageStore));
+	//}
 }

@@ -36,7 +36,7 @@ UB2DynItemIcon_LobbyInven::UB2DynItemIcon_LobbyInven(const FObjectInitializer& O
 	ItemLockedImageNRef_Detail = NULL;
 	
 
-	CachedCharacterStore = &BladeIIGameImpl::GetClientDataStore().GetLocalCharacterData();
+	//CachedCharacterStore = &BladeIIGameImpl::GetClientDataStore().GetLocalCharacterData();
 }
 
 void UB2DynItemIcon_LobbyInven::CacheAssets()
@@ -408,82 +408,82 @@ bool UB2DynItemIcon_LobbyInven::OnClickBTNForLevelup(UB2LobbyInventory* LobbyInv
 {
 	bool bHandledClickSoundPlay = false;
 
-	// 선택 상태 변경해 주고 아이콘 업데이트도 바로 한다.
-	if (NativeItemData.bSelectedAsIngred)
-	{
-		UnSelectForItemLevelupIngredClass<int64>::GetInstance().Signal(NativeItemData.InstanceUID);
-	}
-	else
-	{
-		if (NativeItemData.bIsLocked)
-		{
-			AskForUnlockItemPopupCommon(ELobbyInvenItemOpMode::EIVIOP_Levelup);
-		}
-		else if (LobbyInven->IsIngredsFull())
-		{ // 선택이 안되고 메시지 뿌림
-			ABladeIIGameMode::SetHUDCenterMessage(
-				FText::Format(BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("LobbyInvenText_AlreadySelectedMaxEnhanceIngred"))), FText::AsNumber(LobbyInven->GetItemLevelupIngredLimit())),
-				3.0f // 이런 자질구레한 것까지 설정하게 할 건 아닌 거 같고 임의로 적당히 시간을 준다.
-			);
-		}
-		else if (LobbyInven->IsMaxItemLevelUpExpectedByCurrentSelection())
-		{ // 선택이 안되고 메시지 뿌림
-			ABladeIIGameMode::SetHUDCenterMessage(
-				BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("LobbyInvenText_AlreadyExpectedMaxEnhanceLevel"))),
-				3.0f // 이런 자질구레한 것까지 설정하게 할 건 아닌 거 같고 임의로 적당히 시간을 준다.
-			);
-		}
-		else if (NativeItemData.EnhanceLevel > 0)
-		{
-			UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
-				BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("SensitiveNoti_Notification"))),
-				BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("LobbyInven_AskLevelUpAlreadyEnhanceItem"))),
-				0.f,
-				true,
-				true,
-				EUIMsgPopupButtonGroup::YesOrNo,
-				FMsgPopupOnClick::CreateLambda([this]() {
-				SelectForItemLevelupIngredClass<int64>::GetInstance().Signal(NativeItemData.InstanceUID);
-				PlayLevelupIngredSelectedSound();
-			})
-			);
-			bHandledClickSoundPlay = true;
-		}
-		else if (IsContainsPreset)
-		{
-			AskForUnEquipItemPopupCommon();
+	//// 선택 상태 변경해 주고 아이콘 업데이트도 바로 한다.
+	//if (NativeItemData.bSelectedAsIngred)
+	//{
+	//	UnSelectForItemLevelupIngredClass<int64>::GetInstance().Signal(NativeItemData.InstanceUID);
+	//}
+	//else
+	//{
+	//	if (NativeItemData.bIsLocked)
+	//	{
+	//		AskForUnlockItemPopupCommon(ELobbyInvenItemOpMode::EIVIOP_Levelup);
+	//	}
+	//	else if (LobbyInven->IsIngredsFull())
+	//	{ // 선택이 안되고 메시지 뿌림
+	//		ABladeIIGameMode::SetHUDCenterMessage(
+	//			FText::Format(BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("LobbyInvenText_AlreadySelectedMaxEnhanceIngred"))), FText::AsNumber(LobbyInven->GetItemLevelupIngredLimit())),
+	//			3.0f // 이런 자질구레한 것까지 설정하게 할 건 아닌 거 같고 임의로 적당히 시간을 준다.
+	//		);
+	//	}
+	//	else if (LobbyInven->IsMaxItemLevelUpExpectedByCurrentSelection())
+	//	{ // 선택이 안되고 메시지 뿌림
+	//		ABladeIIGameMode::SetHUDCenterMessage(
+	//			BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("LobbyInvenText_AlreadyExpectedMaxEnhanceLevel"))),
+	//			3.0f // 이런 자질구레한 것까지 설정하게 할 건 아닌 거 같고 임의로 적당히 시간을 준다.
+	//		);
+	//	}
+	//	else if (NativeItemData.EnhanceLevel > 0)
+	//	{
+	//		UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
+	//			BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("SensitiveNoti_Notification"))),
+	//			BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("LobbyInven_AskLevelUpAlreadyEnhanceItem"))),
+	//			0.f,
+	//			true,
+	//			true,
+	//			EUIMsgPopupButtonGroup::YesOrNo,
+	//			FMsgPopupOnClick::CreateLambda([this]() {
+	//			SelectForItemLevelupIngredClass<int64>::GetInstance().Signal(NativeItemData.InstanceUID);
+	//			PlayLevelupIngredSelectedSound();
+	//		})
+	//		);
+	//		bHandledClickSoundPlay = true;
+	//	}
+	//	else if (IsContainsPreset)
+	//	{
+	//		AskForUnEquipItemPopupCommon();
 
-			bHandledClickSoundPlay = true;
-		}
-		else if (LobbyInven->IsHigherGradeThanEnhanceTarget(NativeItemData))
-		{
-			// 바로 선택하지 않고 경고 메시지를 띄움.
-			UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
-				BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("SensitiveNoti_Notification"))),
-				BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("LobbyInven_HigherGradeThanEnhanceTarget"))),
-				0.f,
-				true,
-				true,
-				EUIMsgPopupButtonGroup::YesOrNo,
-				FMsgPopupOnClick::CreateLambda([this]() {
-				SelectForItemLevelupIngredClass<int64>::GetInstance().Signal(NativeItemData.InstanceUID);
-				PlayLevelupIngredSelectedSound();
-			})
-			);
-			bHandledClickSoundPlay = true;
-		}
-		else
-		{ // SelectForItemLevelupIngredClass 이벤트 처리하는 곳에서도 현재 타겟과 같은 아이템인지, 동종인지 등의 처리를 함. 이걸 보냈다고 해서 바로 선택되는 건 아님.
-			SelectForItemLevelupIngredClass<int64>::GetInstance().Signal(NativeItemData.InstanceUID);
-			PlayLevelupIngredSelectedSound();
-			bHandledClickSoundPlay = true;
-			//모든 버튼류는 눌릴때 한번 튜토리얼 시그널을 체크해야되서 팝업창이 떳을때 강제 호출																			
-			if (BTN_Area.IsValid())
-			{
-				BTN_Area->TutorialButtonSignal();
-			}
-		}
-	}
+	//		bHandledClickSoundPlay = true;
+	//	}
+	//	else if (LobbyInven->IsHigherGradeThanEnhanceTarget(NativeItemData))
+	//	{
+	//		//// 바로 선택하지 않고 경고 메시지를 띄움.
+	//		//UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
+	//		//	BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("SensitiveNoti_Notification"))),
+	//		//	BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("LobbyInven_HigherGradeThanEnhanceTarget"))),
+	//		//	0.f,
+	//		//	true,
+	//		//	true,
+	//		//	EUIMsgPopupButtonGroup::YesOrNo,
+	//		//	FMsgPopupOnClick::CreateLambda([this]() {
+	//		//	SelectForItemLevelupIngredClass<int64>::GetInstance().Signal(NativeItemData.InstanceUID);
+	//		//	PlayLevelupIngredSelectedSound();
+	//		//})
+	//		//);
+	//		//bHandledClickSoundPlay = true;
+	//	}
+	//	else
+	//	{ // SelectForItemLevelupIngredClass 이벤트 처리하는 곳에서도 현재 타겟과 같은 아이템인지, 동종인지 등의 처리를 함. 이걸 보냈다고 해서 바로 선택되는 건 아님.
+	//		//SelectForItemLevelupIngredClass<int64>::GetInstance().Signal(NativeItemData.InstanceUID);
+	//		//PlayLevelupIngredSelectedSound();
+	//		//bHandledClickSoundPlay = true;
+	//		////모든 버튼류는 눌릴때 한번 튜토리얼 시그널을 체크해야되서 팝업창이 떳을때 강제 호출																			
+	//		//if (BTN_Area.IsValid())
+	//		//{
+	//		//	BTN_Area->TutorialButtonSignal();
+	//		//}
+	//	}
+	//}
 	
 	return bHandledClickSoundPlay;
 }
@@ -492,23 +492,23 @@ bool UB2DynItemIcon_LobbyInven::OnClickBTNForHammer(UB2LobbyInventory* LobbyInve
 {
 	bool bHandledClickSoundPlay = false;
 
-	// 선택 상태 변경해 주고 아이콘 업데이트도 바로 한다.
-	if (NativeItemData.bSelectedAsIngred)
-	{
-		UnSelectForItemHammerClass<int64>::GetInstance().Signal(NativeItemData.InstanceUID);
-	}
-	else
-	{
-		SelectForItemHammerClass<int64>::GetInstance().Signal(NativeItemData.InstanceUID);
-		PlayLevelupIngredSelectedSound();
-		bHandledClickSoundPlay = true;
-		//모든 버튼류는 눌릴때 한번 튜토리얼 시그널을 체크해야되서 팝업창이 떳을때 강제 호출																			
-		if (BTN_Area.IsValid())
-		{
-			BTN_Area->TutorialButtonSignal();
-		}
+	//// 선택 상태 변경해 주고 아이콘 업데이트도 바로 한다.
+	//if (NativeItemData.bSelectedAsIngred)
+	//{
+	//	UnSelectForItemHammerClass<int64>::GetInstance().Signal(NativeItemData.InstanceUID);
+	//}
+	//else
+	//{
+	//	SelectForItemHammerClass<int64>::GetInstance().Signal(NativeItemData.InstanceUID);
+	//	PlayLevelupIngredSelectedSound();
+	//	bHandledClickSoundPlay = true;
+	//	//모든 버튼류는 눌릴때 한번 튜토리얼 시그널을 체크해야되서 팝업창이 떳을때 강제 호출																			
+	//	if (BTN_Area.IsValid())
+	//	{
+	//		BTN_Area->TutorialButtonSignal();
+	//	}
 
-	}
+	//}
 
 	return bHandledClickSoundPlay;
 }

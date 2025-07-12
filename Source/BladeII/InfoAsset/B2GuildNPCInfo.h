@@ -4,6 +4,7 @@
 #include "UMG.h"
 #include "BladeIIPlayer.h"
 #include "B2SkillInfo.h"
+#include "../PassiveSkill/B2SkillParameter.h"
 //#include "B2SkillParameter.h"
 #include "B2GuildNPCInfo.generated.h"
 
@@ -90,20 +91,20 @@ struct FMercenaryMasterySkillInfo
 	FMercenaryMasterySkillInfo();
 	~FMercenaryMasterySkillInfo() {}
 
-	//UPROPERTY(EditAnywhere)
-	//TSubclassOf<class UB2SkillTrigger> SkillTriggerType;
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<class UB2SkillTrigger> SkillTriggerType;
 
-	//UPROPERTY(EditAnywhere, meta = (Bitmask, BitmaskEnum = ETargetSelectType))
-	//uint8 TargetingType;
+	UPROPERTY(EditAnywhere, meta = (Bitmask, BitmaskEnum = ETargetSelectType))
+	uint8 TargetingType;
 
-	//UPROPERTY(EditAnywhere)
-	//int32 RestrictExcuteCount;
+	UPROPERTY(EditAnywhere)
+	int32 RestrictExcuteCount;
 
-	//UPROPERTY(EditAnywhere)
-	//TSubclassOf<class UB2SkillCommand> SkillCommandType;
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<class UB2SkillCommand> SkillCommandType;
 
-	//UPROPERTY(EditAnywhere)
-	//FB2SkillParameterContainer SkillParamters;
+	UPROPERTY(EditAnywhere)
+	FB2SkillParameterContainer SkillParamters;
 };
 
 

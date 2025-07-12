@@ -2,6 +2,7 @@
 
 #include "B2UIWidget.h"
 #include "B2UIDocBindable.h"
+#include "../../BladeII.h"
 #include "B2UIMainCounterAttackDG.generated.h"
 
 

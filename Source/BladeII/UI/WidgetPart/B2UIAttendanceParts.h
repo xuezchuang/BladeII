@@ -2,6 +2,9 @@
 #pragma once
 
 #include "B2UIWidget.h"
+#include "../../DataStore/B2ClientDataStore.h"
+#include "Components/TextBlock.h"
+#include "../B2RichTextBlock.h"
 #include "B2UIAttendanceParts.generated.h"
 
 
@@ -13,16 +16,16 @@ class BLADEII_API UB2UIAttendanceParts : public UB2UIWidget
 
 public:
 	virtual void Init() override;
-	
+
 	void SetAttendanceInfo(FAttendanceDayData InAttendanceDayData);
 	void ReceiveReward(b2network::B2RewardPtr RewardItem);
 	void StartRewardAnimation();
 
 	UFUNCTION(BlueprintCallable, Category = Animations)
-		void FinishRecieveAnimation();
+	void FinishRecieveAnimation();
 
 	UFUNCTION(BlueprintImplementableEvent)
-		void OnStartRewardAnimation_BP();
+	void OnStartRewardAnimation_BP();
 
 protected:
 	virtual void CacheAssets() override;
@@ -38,5 +41,5 @@ private:
 	TWeakObjectPtr<UWidgetAnimation> Anim_Check;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
-		bool IsSpecialDay = false;
+	bool IsSpecialDay = false;
 };

@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "UI/B2UIWidget.h"
+#include "../../Common/CommonStruct.h"
+#include "../../BladeII/BladeIIGameMode.h"
 #include "B2UICostumePageInven.generated.h"
 
 /**

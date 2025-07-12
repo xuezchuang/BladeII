@@ -51,17 +51,17 @@ void UB2UICostumeOpenBtn::SubscribeEvents()
 {
 	UnSubscribeEvents();
 
-	TWeakObjectPtr<UB2UICostumeOpenBtn>	Capture(this);
+	//TWeakObjectPtr<UB2UICostumeOpenBtn>	Capture(this);
 
-	Issues.Add(OpenCostumeClass<bool>::GetInstance().Subscribe2(
-	[Capture](bool IsOpen)
-	{
-		if (Capture.IsValid())
-		{
-			Capture->UpdateVisibility(IsOpen);
-		}
-	}
-	));
+	//Issues.Add(OpenCostumeClass<bool>::GetInstance().Subscribe2(
+	//[Capture](bool IsOpen)
+	//{
+	//	if (Capture.IsValid())
+	//	{
+	//		Capture->UpdateVisibility(IsOpen);
+	//	}
+	//}
+	//));
 }
 
 void UB2UICostumeOpenBtn::UnSubscribeEvents()
@@ -83,7 +83,7 @@ void UB2UICostumeOpenBtn::UpdateVisibility(const bool& bIsOpen)
 
 void UB2UICostumeOpenBtn::OnClickBTN_CostumeOpen()
 {
-	EnterCostumePageClass<ECostumePage>::GetInstance().Signal(ECostumePage::Inven);
+	//EnterCostumePageClass<ECostumePage>::GetInstance().Signal(ECostumePage::Inven);
 }
 
 bool UB2UICostumeOpenBtn::HasRedDot_CostumeOpenBtn()

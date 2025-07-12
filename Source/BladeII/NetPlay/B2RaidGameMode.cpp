@@ -603,24 +603,24 @@ void AB2RaidGameMode::NotifyTargetDamaged(class ABladeIICharacter* InNotifyOwner
 void AB2RaidGameMode::NotifyStageEventDirector_FinishShow(int32 EventType)
 {
 	B2_SCOPED_TRACK_LOG(TEXT("AB2RaidGameMode::NotifyStageEventDirector_FinishShow"));
-	UE_LOG(LogRaidGameMode, Log, TEXT("\t [B2RaidGameMode] NotifyStageEventDirector_FinishShow Start"));
+	//UE_LOG(LogRaidGameMode, Log, TEXT("\t [B2RaidGameMode] NotifyStageEventDirector_FinishShow Start"));
 
-	switch ((EStageEvent)EventType)
-	{
-	case EStageEvent::ESEV_MobDying:
-		{
-			// If PeerType isn't PEER_RESTRICTED, Handling Raid to succeed...
-			if (GetPeerType() != PEER_RESTRICTED)
-				SetStartResultState(true);
-		}
-		break;
-	case EStageEvent::ESEV_MobAppear:
-		{
-			// 최초는 HandleMatchHasStarted에서 해주고 여긴 2페이즈부터
-			CheckPromoteNetStatus();
-		}
-		break;
-	}
+	//switch ((EStageEvent)EventType)
+	//{
+	//case EStageEvent::ESEV_MobDying:
+	//	{
+	//		// If PeerType isn't PEER_RESTRICTED, Handling Raid to succeed...
+	//		if (GetPeerType() != PEER_RESTRICTED)
+	//			SetStartResultState(true);
+	//	}
+	//	break;
+	//case EStageEvent::ESEV_MobAppear:
+	//	{
+	//		// 최초는 HandleMatchHasStarted에서 해주고 여긴 2페이즈부터
+	//		CheckPromoteNetStatus();
+	//	}
+	//	break;
+	//}
 }
 
 void AB2RaidGameMode::NotifyPlayerDeadEnd(class ABladeIIPlayer* DeadGuy)
@@ -1818,9 +1818,9 @@ void AB2RaidGameMode::PrepareHostPlayer()
 	// 사용되는 레벨과 카메라 뷰가 확실히 하나로 고정되어 있지 않다면 ActiveCameraActor 등 맵 설정을 통해 들어가는 것이 좋음.
 	//MyPawn->TopDownCameraComponent->SetAspectRatioAdaptiveFOV(true);
 
-	auto  Asset = GetGameRule()->GetBehaviorTreeAsset();
-	if (!Asset.IsEmpty())
-		MyPawn->BehaviorTree = LoadObject<UBehaviorTree>(NULL, *Asset);
+	//auto  Asset = GetGameRule()->GetBehaviorTreeAsset();
+	//if (!Asset.IsEmpty())
+	//	MyPawn->BehaviorTree = LoadObject<UBehaviorTree>(NULL, *Asset);
 }
 
 void AB2RaidGameMode::PrepareRemotePlayer(uint32 NetId)

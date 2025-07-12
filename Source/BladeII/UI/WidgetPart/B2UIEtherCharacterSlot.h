@@ -3,10 +3,11 @@
 #pragma once
 
 #include "UI/B2UIWidgetBase.h"
+#include "../B2RichTextBlock.h"
 #include "B2UIEtherCharacterSlot.generated.h"
 
 /**
- * 
+ *
  */
 
 DECLARE_DELEGATE_OneParam(FOnEtherTouchDelegate, const int64);
@@ -40,30 +41,30 @@ UCLASS(BlueprintType, Blueprintable)
 class BLADEII_API UB2UIEtherCharacterSlot : public UB2UIWidgetBase
 {
 	GENERATED_BODY()
-	
+
 public:
 	UFUNCTION(BlueprintImplementableEvent)
-		void PlayEquipAnimONE_BP();
+	void PlayEquipAnimONE_BP();
 	UFUNCTION(BlueprintImplementableEvent)
-		void PlayEquipAnimTWO_BP();
+	void PlayEquipAnimTWO_BP();
 	UFUNCTION(BlueprintImplementableEvent)
-		void PlayEquipAnimTHREE_BP();
+	void PlayEquipAnimTHREE_BP();
 	UFUNCTION(BlueprintImplementableEvent)
-		void PlayEquipAnimFOUR_BP();
+	void PlayEquipAnimFOUR_BP();
 	UFUNCTION(BlueprintImplementableEvent)
-		void PlayEquipAnimFIVE_BP();
+	void PlayEquipAnimFIVE_BP();
 	UFUNCTION(BlueprintImplementableEvent)
-		void PlayEquipAnimSIX_BP();
+	void PlayEquipAnimSIX_BP();
 	UFUNCTION(BlueprintImplementableEvent)
-		void PlayActiveOffense_BP();
+	void PlayActiveOffense_BP();
 	UFUNCTION(BlueprintImplementableEvent)
-		void PlayKeepOffense_BP();
+	void PlayKeepOffense_BP();
 	UFUNCTION(BlueprintImplementableEvent)
-		void PlayActiveDefense_BP();
+	void PlayActiveDefense_BP();
 	UFUNCTION(BlueprintImplementableEvent)
-		void PlayKeepDefense_BP();
+	void PlayKeepDefense_BP();
 	UFUNCTION(BlueprintCallable, Category = BladeII)
-		void EndCombineAnim_BP();
+	void EndCombineAnim_BP();
 
 	UFUNCTION(BlueprintCallable, Category = "BladeII B2UITutorial")
 	void EquipAnimOneEnd_BP();
@@ -73,11 +74,11 @@ public:
 	void SetInfo(class UB2UIEther* InReceiver, EPCClass InPCClass, bool IsEquip);
 
 	UPROPERTY(EditAnywhere)
-		TMap<int32, float> ConvertComBineMap;
+	TMap<int32, float> ConvertComBineMap;
 	UPROPERTY(EditAnywhere)
-		TMap<int32, float> ConvertOffenseMap;
+	TMap<int32, float> ConvertOffenseMap;
 	UPROPERTY(EditAnywhere)
-		TMap<int32, float> ConvertDefenseMap;
+	TMap<int32, float> ConvertDefenseMap;
 
 protected:
 	virtual void CacheAssets() override;
@@ -85,18 +86,18 @@ protected:
 
 private:
 	UFUNCTION()
-		void OnClickOneSlot();
+	void OnClickOneSlot();
 	UFUNCTION()
-		void OnClickTwoSlot();
+	void OnClickTwoSlot();
 	UFUNCTION()
-		void OnClickThreeSlot();
+	void OnClickThreeSlot();
 	UFUNCTION()
-		void OnClickFourSlot();
+	void OnClickFourSlot();
 	UFUNCTION()
-		void OnClickFiveSlot();
+	void OnClickFiveSlot();
 	UFUNCTION()
-		void OnClickSixSlot();
-	
+	void OnClickSixSlot();
+
 	void SetEtherSetEffect(bool IsEquip);
 	void SetEtherSetEffect(EPCClass InPCClass, int32 InDefenceSetID, int32 InOffenseSetID, bool IsEquip);
 	void EquipEtherAnimation(int32 InPart);

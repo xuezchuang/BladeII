@@ -69,24 +69,24 @@ void UB2UIFairyBlessPopup::OnClickBTN_BlessIcon()
 
 void UB2UIFairyBlessPopup::SetPreviewStats(TArray<FB2FairyBlessRowInfo> InfoList)
 {
-	if (ScrollBox.IsValid() == false)
-		return;
+	//if (ScrollBox.IsValid() == false)
+	//	return;
 
-	ScrollBox->ClearChildren();
+	//ScrollBox->ClearChildren();
 
-	for (FB2FairyBlessRowInfo &Each : InfoList)
-	{
-		UB2UIFairyLevelUpStatRow* ThisRow = CreateWidget<UB2UIFairyLevelUpStatRow>(GetOwningPlayer(), PartClass_StatRow);
-		if (ThisRow) 
-		{
-			ThisRow->Init();
-			ThisRow->SetupManualScrollBoxSender_byReceiver(this, ScrollBox.Get());
+	//for (FB2FairyBlessRowInfo &Each : InfoList)
+	//{
+	//	UB2UIFairyLevelUpStatRow* ThisRow = CreateWidget<UB2UIFairyLevelUpStatRow>(GetOwningPlayer(), PartClass_StatRow);
+	//	if (ThisRow) 
+	//	{
+	//		ThisRow->Init();
+	//		ThisRow->SetupManualScrollBoxSender_byReceiver(this, ScrollBox.Get());
 
-			ThisRow->SetContent(Each.ConditionLevel, Each.PreviewStat, Each.PreviewStatValue);
+	//		ThisRow->SetContent(Each.ConditionLevel, Each.PreviewStat, Each.PreviewStatValue);
 
-			UScrollBoxSlot* AddedRowSlot = Cast<UScrollBoxSlot>(ScrollBox->AddChild(ThisRow));
-		}
-	}
+	//		UScrollBoxSlot* AddedRowSlot = Cast<UScrollBoxSlot>(ScrollBox->AddChild(ThisRow));
+	//	}
+	//}
 }
 
 void UB2UIFairyBlessPopup::SetActivatedBlessInfo(EFairyType FairyType, int32 OptionId)

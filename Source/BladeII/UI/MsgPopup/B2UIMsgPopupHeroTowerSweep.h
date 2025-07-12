@@ -4,6 +4,8 @@
 #pragma once
 
 #include "B2UIMsgPopupSimple.h"
+#include "../Widget/B2ButtonGoodInfoToolTip.h"
+#include "../../DataStore/B2ClientDataStore.h"
 #include "B2UIMsgPopupHeroTowerSweep.generated.h"
 
 
@@ -18,7 +20,7 @@ protected:
 public:
 	virtual void SetAddComment(const FText& comment);
 	void SetAddComment2(const FText& comment);
-	void SetAddCommentForHeroTower(const TMap<int, FRewardItem>& Rewards);
+	//void SetAddCommentForHeroTower(const TMap<int, FRewardItem>& Rewards);
 	void SetTipText(const FText& comment);
 	void SetCounterDungeonTip(const FText& comment);
 

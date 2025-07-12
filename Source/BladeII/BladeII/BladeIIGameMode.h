@@ -13,11 +13,20 @@
 ////#include "Quest.h"
 //#include "BladeIIUtil.h"
 ////#include "B2PreRenderer.h"
-//#include "B2AssetLoader.h"
+//#include "B2AssetLoader.h"AddAutoWayPoint
 #include "../Common/CommonStruct.h"
 #include "memory"
 #include "../UI/B2UIEnum.h"
 #include "B2GameLoadingScreen.h"
+#include "../DataStore/CharacterDataStore.h"
+#include "BladeIIPlayer.h"
+#include "../Misc/B2PreRenderer.h"
+#include "../NetPlay/BladeIINetPlayer.h"
+#include "../DataStore/B2ClientDataStore.h"
+#include "B2StageEventDirector.h"
+#include "../AI/B2AutoWayPoint.h"
+#include "../InteractiveActor/B2TreasureChestBase.h"
+#include "../InteractiveActor/B2DestructibleLevelObjBase.h"
 //#include "../InteractiveActor/B2JumpEventZone.h"
 #include "BladeIIGameMode.generated.h"
 
@@ -199,10 +208,10 @@ protected:
 	uint32 bLoadingImageUnloadedAndClear : 1;// For some hacky workaround.. safer unload..
 	FTimerHandle LoadingImageUnloadTH;	
 
-	//EPreRenderPhase PreRenderPhase;
-	/////** Pre-render manager, must be working only at level startup. */
-	//UPROPERTY(Transient)
-	//class UB2PreRenderer* PreRenderer;
+	EPreRenderPhase PreRenderPhase;
+	///** Pre-render manager, must be working only at level startup. */
+	UPROPERTY(Transient)
+	class UB2PreRenderer* PreRenderer;
 
 	// Cached when request resurrection
 	EResurrectBuffType LastRequestedStageBuffType;
@@ -232,13 +241,13 @@ public:
 	virtual TArray<EPCClass> GetPCClassesToPreLoad();
 	virtual TArray<EPCClass> GetPCClassesToMatineePreLoad();
 	/** Returns skill animation identifiers to pre-load. Skill anim data has big potion within whole PCClassInfo. */
-	//virtual TArray<FCombinedPCSkillAnimID> GetPCSkillAnimsToPreLoad();
+	virtual TArray<FCombinedPCSkillAnimID> GetPCSkillAnimsToPreLoad();
 	//static TArray<FCombinedPCSkillAnimID> GetAllPCSkillAnimsOfClass(EPCClass InCharClass);
 
 	//void TryAsyncLoadSkillAnims(ICharacterDataStore* TargetDataStore);
 	//TArray<FCombinedPCSkillAnimID> GetEquippedSkillAnimIDs(EPCClass PlayerClass, ICharacterDataStore* DataStore);
 
-	//virtual void GatherEquippedSkillAnimIDs(ICharacterDataStore* TargetDataStore, TArray<FCombinedPCSkillAnimID>& OutEquippedSkills);
+	virtual void GatherEquippedSkillAnimIDs(ICharacterDataStore* TargetDataStore, TArray<FCombinedPCSkillAnimID>& OutEquippedSkills);
 
 	/** Load any info assets, to be lazy loaded (TSoftObjectPtr stuff) and required by this game mode.
 	 * It is expected to be slow and cause much memory increase. 
@@ -272,8 +281,8 @@ protected:
 	virtual void SetupPreRenderObjects();
 
 public:
-	//virtual bool IsInPreRenderPhase() const { return (PreRenderPhase == EPreRenderPhase::EPRP_Selected || PreRenderPhase == EPreRenderPhase::EPRP_AllPrim); }
-	//FORCEINLINE EPreRenderPhase GetPreRenderPhase() const { return PreRenderPhase; }
+	virtual bool IsInPreRenderPhase() const { return (PreRenderPhase == EPreRenderPhase::EPRP_Selected || PreRenderPhase == EPreRenderPhase::EPRP_AllPrim); }
+	FORCEINLINE EPreRenderPhase GetPreRenderPhase() const { return PreRenderPhase; }
 	virtual void UpdateForPreRenderObjects();	
 private:
 	void OnPreRenderComplete();
@@ -308,25 +317,25 @@ protected:
 	//TArray<class AB2MonsterSpawnPool*> SpawnPools;
 
 	///** All stage event directors loaded in this stage are registered here. */
-	//UPROPERTY(Transient)
-	//TArray<class AB2StageEventDirector*> EventDirectors;
+	UPROPERTY(Transient)
+	TArray<class AB2StageEventDirector*> EventDirectors;
 
 	/** All ActiveCameraActors loaded in this stage are registered here. */
 	UPROPERTY(Transient)
 	TArray<class AB2ActiveCameraActor*> ActiveCameraActors;
 
-	////UPROPERTY(Transient)
-	////TArray<class AB2AutoWayPoint*>	AutoWayPoints;
+	UPROPERTY(Transient)
+	TArray<class AB2AutoWayPoint*>	AutoWayPoints;
 
-	///** All TreasureChests loaded in this stage are registered here. */
-	//UPROPERTY(Transient)
-	//TArray<class AB2TreasureChestBase*> TreasureChests;
+	/** All TreasureChests loaded in this stage are registered here. */
+	UPROPERTY(Transient)
+	TArray<class AB2TreasureChestBase*> TreasureChests;
 
-	//UPROPERTY(Transient)
-	//TArray<class AB2DestructibleLevelObjBase*> DestructibleObjects;
+	UPROPERTY(Transient)
+	TArray<class AB2DestructibleLevelObjBase*> DestructibleObjects;
 
-	//UPROPERTY(Transient)
-	//TArray<class AB2HomePoint*> HomePoints;
+	UPROPERTY(Transient)
+	TArray<class AB2HomePoint*> HomePoints;
 
 	//UPROPERTY(Transient)
 	//TArray<class AB2DialogTriggerActorBase*> DialogTriggers;
@@ -363,8 +372,8 @@ protected:
 	//
 	///** Only one active spawn pool for currently loaded level among SpawnPools array here.
 	// * It is supposed to be consistent along a single level. (not like CurrentActiveActiveCameraActor) */
-	//UPROPERTY(Transient)
-	//class AB2MonsterSpawnPool* TheActiveSpawnPool;
+	UPROPERTY(Transient)
+	class AB2MonsterSpawnPool* TheActiveSpawnPool;
 
 	//////////////////////////////////////////////////
 	// GlobalSceneBlur, mainly for WorldBackgroundBlur of BladeIIUserWidget.
@@ -655,7 +664,7 @@ protected:
 //	void StopAllStageEventDirector(class AB2StageEventDirector* skipDirector);
 //
 protected:
-	//virtual void NotifyStageEventSceneBegin(class AB2StageEventDirector* BegunDirector, EStageEvent EventType);
+	virtual void NotifyStageEventSceneBegin(class AB2StageEventDirector* BegunDirector, EStageEvent EventType);
 	/** Stage event scene end notification does not necessarily mean that all the show is played to the end. It can be stop at middle, and this notify must be still valid. */
 	virtual void NotifyStageEventSceneEnd(class AB2StageEventDirector* EndedDirector);
 
@@ -672,17 +681,17 @@ public:
 	virtual void AddSpawnPool(class AB2MonsterSpawnPool* InNewSpawnPool);
 	virtual void AddStageEventDirector(class AB2StageEventDirector* InNewEventDirector);
 	virtual void AddActiveCameraActor(class AB2ActiveCameraActor* InNewActiveCameraActor);
-	//class AB2ActiveCameraActor* FindActiveCameraActorByTag(FName ACATagName);
-	//virtual void AddAutoWayPoint(AB2AutoWayPoint* InNewWayPoint);
-	//const TArray<AB2AutoWayPoint*>& GetWayPointList() const { return AutoWayPoints; }
-	//virtual void AddTreasureChest(class AB2TreasureChestBase* InNewTreasureChest);
-	//virtual void RemoveTreasureChest(class AB2TreasureChestBase* InRemoveTreasureChest);
+	class AB2ActiveCameraActor* FindActiveCameraActorByTag(FName ACATagName);
+	virtual void AddAutoWayPoint(AB2AutoWayPoint* InNewWayPoint);
+	const TArray<AB2AutoWayPoint*>& GetWayPointList() const { return AutoWayPoints; }
+	virtual void AddTreasureChest(class AB2TreasureChestBase* InNewTreasureChest);
+	virtual void RemoveTreasureChest(class AB2TreasureChestBase* InRemoveTreasureChest);
 	virtual void AddDestructibleObject(class AB2DestructibleLevelObjBase* InNewDestructibleObject);
 	virtual void RemoveDestructibleObject(class AB2DestructibleLevelObjBase* InRemoveDestructibleObject);
-	//const TArray<AB2DestructibleLevelObjBase*>& GetDestructibleList() const { return DestructibleObjects; }
+	const TArray<AB2DestructibleLevelObjBase*>& GetDestructibleList() const { return DestructibleObjects; }
 
-	//virtual void AddHomePoint(class AB2HomePoint*);
-	//class AB2HomePoint* GetHomePoint() const;
+	virtual void AddHomePoint(class AB2HomePoint*);
+	class AB2HomePoint* GetHomePoint() const;
 	
 	virtual void AddDialogTriggerActor(class AB2DialogTriggerActorBase* InDlgTriggerActor);
 
@@ -718,9 +727,10 @@ public:
 	{
 		return ActiveCameraActors;
 	}
-	//FORCEINLINE const TArray<class AB2StageEventDirector*>& GetEventDirectorArray() {
-	//	return EventDirectors;
-	//}
+	FORCEINLINE const TArray<class AB2StageEventDirector*>& GetEventDirectorArray()
+	{
+		return EventDirectors;
+	}
 	//FORCEINLINE const TArray<class AB2MonsterSpawnPool*>& GetSpawnPoolArray() {
 	//	return SpawnPools;
 	//}
@@ -857,11 +867,11 @@ public:
 	virtual ACharacter* GetNearestPlayerCharacter(class ACharacter*, bool = false);
 
 	virtual void SetResurrectPlayerPosition(ABladeIIPlayer* pBladePlayer = NULL);
-	//virtual EResurrectGameModeType GetResurrectGameModeType() { return EResurrectGameModeType::EResurrectType_Stage; }
-	//virtual void SetPlayerCollisionType(ABladeIINetPlayer* pPlayer) {};
+	virtual EResurrectGameModeType GetResurrectGameModeType() { return EResurrectGameModeType::EResurrectType_Stage; }
+	virtual void SetPlayerCollisionType(ABladeIINetPlayer* pPlayer) {};
 
 	/** The active spawn pool consistent for this loaded level, considering stage number and difficulty. */
-	//class AB2MonsterSpawnPool* GetActiveSpawnPool() { return TheActiveSpawnPool; }
+	class AB2MonsterSpawnPool* GetActiveSpawnPool() { return TheActiveSpawnPool; }
 
 	virtual void ShowCachedCompleteQuestNotify();
 	virtual void OnQuestCompleteNotify(int32 QuestSlot);

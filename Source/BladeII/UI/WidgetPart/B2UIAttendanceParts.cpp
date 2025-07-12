@@ -88,13 +88,13 @@ void UB2UIAttendanceParts::SetAttendanceInfo(FAttendanceDayData InAttendanceDayD
 
 void UB2UIAttendanceParts::ReceiveReward(b2network::B2RewardPtr RewardItem)
 {
-	if (auto* PopUpReward = UB2UIManager::GetInstance()->OpenUI<UB2UIAttendanceMsgPopup>(UIFName::AttendanceMsgPopup))
-	{
-		ReceiveAttendanceExitEnableClass<bool>::GetInstance().Signal(false);
-		ReceiveAttendanceExitVisibilityClass<bool>::GetInstance().Signal(false);
+	//if (auto* PopUpReward = UB2UIManager::GetInstance()->OpenUI<UB2UIAttendanceMsgPopup>(UIFName::AttendanceMsgPopup))
+	//{
+	//	ReceiveAttendanceExitEnableClass<bool>::GetInstance().Signal(false);
+	//	ReceiveAttendanceExitVisibilityClass<bool>::GetInstance().Signal(false);
 
-		PopUpReward->SetConfirmCallback(FMsgPopupOnClick::CreateLambda([this]() { this->StartRewardAnimation(); }));
-	}
+	//	PopUpReward->SetConfirmCallback(FMsgPopupOnClick::CreateLambda([this]() { this->StartRewardAnimation(); }));
+	//}
 }
 
 void UB2UIAttendanceParts::StartRewardAnimation()
@@ -115,20 +115,20 @@ void UB2UIAttendanceParts::StartRewardAnimation()
 
 void UB2UIAttendanceParts::FinishRecieveAnimation()
 {
-	if (auto* AttendanceMain = UB2UIManager::GetInstance()->GetUI<UB2UIAttendanceMain>(UIFName::AttendanceMain))
-	{
-		if(AttendanceMain->RedDotCondition_EventNewUser())
-		{
-			AttendanceMain->SetDelayOpenEventTap(EAttendanceTab::EventNewUser);
-		}
-		else if (AttendanceMain->RedDotCondition_EventAttendance())
-		{
-			AttendanceMain->SetDelayOpenEventTap(EAttendanceTab::EventAttendance);
-		}
-		else
-		{
-			ReceiveAttendanceExitEnableClass<bool>::GetInstance().Signal(true);
-			ReceiveAttendanceExitVisibilityClass<bool>::GetInstance().Signal(true);
-		}
-	}
+	//if (auto* AttendanceMain = UB2UIManager::GetInstance()->GetUI<UB2UIAttendanceMain>(UIFName::AttendanceMain))
+	//{
+	//	if(AttendanceMain->RedDotCondition_EventNewUser())
+	//	{
+	//		AttendanceMain->SetDelayOpenEventTap(EAttendanceTab::EventNewUser);
+	//	}
+	//	else if (AttendanceMain->RedDotCondition_EventAttendance())
+	//	{
+	//		AttendanceMain->SetDelayOpenEventTap(EAttendanceTab::EventAttendance);
+	//	}
+	//	else
+	//	{
+	//		ReceiveAttendanceExitEnableClass<bool>::GetInstance().Signal(true);
+	//		ReceiveAttendanceExitVisibilityClass<bool>::GetInstance().Signal(true);
+	//	}
+	//}
 }

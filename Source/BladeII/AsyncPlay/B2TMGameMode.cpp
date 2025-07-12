@@ -359,15 +359,15 @@ void AB2TMGameMode::NotifyStageEventDirector_FinishShow(int32 EventType)
 {
 	B2_SCOPED_TRACK_LOG(TEXT("AB2TMGameMode::NotifyStageEventDirector_FinishShow"));
 
-	EStageEvent eStageEvent = (EStageEvent)EventType;
+	//EStageEvent eStageEvent = (EStageEvent)EventType;
 
-	switch (eStageEvent)
-	{
-	case EStageEvent::ESEV_FinishAttack:
-		{
-			SetMatchState(AsyncMatchState::FinishBattle);
-		}break;
-	}
+	//switch (eStageEvent)
+	//{
+	//case EStageEvent::ESEV_FinishAttack:
+	//	{
+	//		SetMatchState(AsyncMatchState::FinishBattle);
+	//	}break;
+	//}
 }
 
 FTeamInfo& AB2TMGameMode::GetTeamInfo(int32 InTeamNum)

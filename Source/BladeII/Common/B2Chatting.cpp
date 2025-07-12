@@ -518,7 +518,7 @@ void FB2ChatStore::OnServerChatMessageNotify(b2network::FB2MessageInfoChatNotify
 
 	AddChatMessage(CliChatMsgInfo.MessageType, CliChatMsgInfo);
 
-	UpdateChatUIClass<bool>::GetInstance().Signal(IsShowingChatCategory(CliChatMsgInfo.MessageType)); // UI 가 열려 있다면 업데이트
+	//UpdateChatUIClass<bool>::GetInstance().Signal(IsShowingChatCategory(CliChatMsgInfo.MessageType)); // UI 가 열려 있다면 업데이트
 	// 채팅 UI 가 열려있지 않은 경우를 위해 한줄 채팅 시그널도
 
 	// 싱글채팅팝업은 브로드캐스트 메세지일경우만 이벤트 날려줌
@@ -611,9 +611,9 @@ void FB2ChatStore::SetProcessGuildChatMessages(b2network::FB2MessageInfoGuildCha
 
 	bIsAutoScrollEnd = bIsAutoScrollEnd ? IsShowingChatCategory(EB2ChatType::Guild) : bIsAutoScrollEnd;
 
-	UpdateChatUIClass<bool>::GetInstance().Signal(bIsAutoScrollEnd); // UI 가 열려 있다면 업데이트
+	//UpdateChatUIClass<bool>::GetInstance().Signal(bIsAutoScrollEnd); // UI 가 열려 있다면 업데이트
 
-	UpdateMarkRedDotClass<const FName&>::GetInstance().Signal(UIFName::BattleMain);
+	//UpdateMarkRedDotClass<const FName&>::GetInstance().Signal(UIFName::BattleMain);
 }
 
 bool FB2ChatStore::IsSpecialGuildNotify(EB2ChatNoticeType InNoticeType)
@@ -900,7 +900,7 @@ void FB2ChatStore::ResponseChangeChannel()
 	TArray<FString> Args;
 	Args.Add(FString::FromInt(LastRequestedChannelNum));
 	CreateSystemNotice(EB2ChatType::Channel, EB2ChatNoticeType::ChangeChannel, Args);
-	UpdateChatUIClass<bool>::GetInstance().Signal(IsShowingChatCategory(EB2ChatType::Channel)); // UI 가 열려 있다면 업데이트
+	//UpdateChatUIClass<bool>::GetInstance().Signal(IsShowingChatCategory(EB2ChatType::Channel)); // UI 가 열려 있다면 업데이트
 
 	LastRequestedChannelNum = -1;
 }
@@ -934,8 +934,8 @@ void FB2ChatStore::ResponseGuildSupport(const FB2ResponseGuildSupportPtr& InResp
 {
 	//BladeIIGameImpl::GetLocalCharacterData().GetUserAllItems().RemoveItems(InResponse->deleted_item_ids);
 
-	UpdateChatUIClass<bool>::GetInstance().Signal(false); // UI 가 열려 있다면 업데이트
-	UpdateMarkRedDotClass<const FName&>::GetInstance().Signal(UIFName::BattleMain);
+	//UpdateChatUIClass<bool>::GetInstance().Signal(false); // UI 가 열려 있다면 업데이트
+	//UpdateMarkRedDotClass<const FName&>::GetInstance().Signal(UIFName::BattleMain);
 }
 
 void FB2ChatStore::ResponseGetGuildChat(const FB2ResponseGetGuildChatPtr& InResponse)
@@ -975,19 +975,19 @@ void FB2ChatStore::ResponseGetGuildChat(const FB2ResponseGetGuildChatPtr& InResp
 		AddChatMessage(CliChatMsgInfo.MessageType, CliChatMsgInfo);
 	}
 
-	UpdateChatUIClass<bool>::GetInstance().Signal(IsShowingChatCategory(EB2ChatType::Guild));
-	UpdateMarkRedDotClass<const FName&>::GetInstance().Signal(UIFName::BattleMain);
+	//UpdateChatUIClass<bool>::GetInstance().Signal(IsShowingChatCategory(EB2ChatType::Guild));
+	//UpdateMarkRedDotClass<const FName&>::GetInstance().Signal(UIFName::BattleMain);
 }
 
 void FB2ChatStore::ResponseAdminMessage(const FString& InMessage, const int32 DisplayTime)
 {
-	UpdateAdminMessageClass<const FString&, const int32>::GetInstance().Signal(InMessage, DisplayTime);
+	//UpdateAdminMessageClass<const FString&, const int32>::GetInstance().Signal(InMessage, DisplayTime);
 
 	// 시스템 알림에 추가
 	TArray<FString> Args;
 	Args.Add(InMessage);
 	CreateSystemNotice(EB2ChatType::Notice, EB2ChatNoticeType::AdminMessage, Args);
-	UpdateChatUIClass<bool>::GetInstance().Signal(IsShowingChatCategory(EB2ChatType::Notice));
+	//UpdateChatUIClass<bool>::GetInstance().Signal(IsShowingChatCategory(EB2ChatType::Notice));
 }
 
 void FB2ChatStore::GuildOutStateSetting(const FString& SendName, int64 InUpdateTime)

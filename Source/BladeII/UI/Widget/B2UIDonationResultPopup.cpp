@@ -132,21 +132,21 @@ void UB2UIDonationResultPopup::BindDelegates()
 {
 	Super::BindDelegates();
 
-	Issues.Add(UpdateDonationResultPopupClass<>::GetInstance().Subscribe2(
-		[this]()
-	{
-		this->UpdateUIInfo();
-	}
-	));
+	//Issues.Add(UpdateDonationResultPopupClass<>::GetInstance().Subscribe2(
+	//	[this]()
+	//{
+	//	this->UpdateUIInfo();
+	//}
+	//));
 
-	BIND_CLICK_FUNC_TO_BTN(BTN_Confirm, &UB2UIDonationResultPopup::OnClickConfirm);
-	BIND_CLICK_FUNC_TO_BTN(BTN_OneMore, &UB2UIDonationResultPopup::OnClickOneMore);
+	//BIND_CLICK_FUNC_TO_BTN(BTN_Confirm, &UB2UIDonationResultPopup::OnClickConfirm);
+	//BIND_CLICK_FUNC_TO_BTN(BTN_OneMore, &UB2UIDonationResultPopup::OnClickOneMore);
 
-	if (UIP_ItemDetailPopup.IsValid())
-	{
-		UIP_ItemDetailPopup->OnConfirmButtonClickedDelegate.RemoveAll(this);
-		UIP_ItemDetailPopup->OnConfirmButtonClickedDelegate.AddDynamic(this, &UB2UIDonationResultPopup::CloseItemDetailPopup);
-	}
+	//if (UIP_ItemDetailPopup.IsValid())
+	//{
+	//	UIP_ItemDetailPopup->OnConfirmButtonClickedDelegate.RemoveAll(this);
+	//	UIP_ItemDetailPopup->OnConfirmButtonClickedDelegate.AddDynamic(this, &UB2UIDonationResultPopup::CloseItemDetailPopup);
+	//}
 }
 
 void UB2UIDonationResultPopup::UpdateStaticText()

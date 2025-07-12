@@ -3,6 +3,8 @@
 #pragma once
 
 #include "UI/B2UIWidget.h"
+#include "../../BladeII/BladeIICharacter.h"
+#include "../B2RichTextBlock.h"
 #include "B2UIControlBattleSub.generated.h"
 
 /**

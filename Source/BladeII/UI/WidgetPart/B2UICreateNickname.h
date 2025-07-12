@@ -3,6 +3,7 @@
 
 #include "B2UIWidget.h"
 #include "B2UIBackWidget.h"
+#include "../B2RichTextBlock.h"
 #include "B2UICreateNickname.generated.h"
 
 enum class ECreateState : uint8

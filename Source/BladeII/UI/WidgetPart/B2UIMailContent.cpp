@@ -993,185 +993,185 @@ bool UB2UIMailContent::IsCostumeByEquipCategory(int32 InEquipCategory)
 #include "B2LobbySceneManager.h"
 void UB2UIMailContent::OpenedMail(const FB2ResponseOpenMailPtr& MailInfo)
 {
-	FB2MailLotteryItemInfoPtr& MailItemInfo = MailInfo->mail_item_info;
+	//FB2MailLotteryItemInfoPtr& MailItemInfo = MailInfo->mail_item_info;
 
-	
+	//
 
-	//Todo
-	// ~을 받았습니다. 팝업UI
-	BII_CHECK(MailBox);
-	if (MailBox)
-	{
-		switch (ToReceiveGift)
-		{
-		case MailGiftType::Gold:						// 1
-		case MailGiftType::Gem:							// 2
-		case MailGiftType::BladePoint:					// 4
-		case MailGiftType::SocialPoint:					// 5
-		case MailGiftType::Dark_Crystal:				// 11
-		case MailGiftType::Fame_Point:				// 11
-			return MailBox->OpenPopupReceiveOneMail(ToReceiveGift, ToReceiveGiftNum);
-		
-		case MailGiftType::Stage_Boost_Ticket:			// 13
-		case MailGiftType::Hot_Time_Gold_Buff_Ticket:	// 14
-		case MailGiftType::Hot_Time_Exp_Buff_Ticket:	// 15
-		case MailGiftType::Shop_Ten_Lottery_Ticket:		// 16
-		case MailGiftType::Stage_Auto_Clear_Ticket:		// 20
-			return MailBox->OpenPopupReceiveOneMail(ToReceiveItemRefId, ToReceiveGiftNum);
+	////Todo
+	//// ~을 받았습니다. 팝업UI
+	//BII_CHECK(MailBox);
+	//if (MailBox)
+	//{
+	//	switch (ToReceiveGift)
+	//	{
+	//	case MailGiftType::Gold:						// 1
+	//	case MailGiftType::Gem:							// 2
+	//	case MailGiftType::BladePoint:					// 4
+	//	case MailGiftType::SocialPoint:					// 5
+	//	case MailGiftType::Dark_Crystal:				// 11
+	//	case MailGiftType::Fame_Point:				// 11
+	//		return MailBox->OpenPopupReceiveOneMail(ToReceiveGift, ToReceiveGiftNum);
+	//	
+	//	case MailGiftType::Stage_Boost_Ticket:			// 13
+	//	case MailGiftType::Hot_Time_Gold_Buff_Ticket:	// 14
+	//	case MailGiftType::Hot_Time_Exp_Buff_Ticket:	// 15
+	//	case MailGiftType::Shop_Ten_Lottery_Ticket:		// 16
+	//	case MailGiftType::Stage_Auto_Clear_Ticket:		// 20
+	//		return MailBox->OpenPopupReceiveOneMail(ToReceiveItemRefId, ToReceiveGiftNum);
 
-		case MailGiftType::Item:						// 3
-		case MailGiftType::Hero_Piece:					// 8
-		case MailGiftType::Rank_Promotion_Point:		// 10
-		{
-			BII_CHECK(MailItemInfo->item.get());
-			if (MailItemInfo->item_amount > 0 && MailItemInfo->item.get())
-			{
-				FB2Item AddItem;
-				AddItem = MailItemInfo->item;
-				MailBox->ClientDataStoreAddNewAcquiredItem(AddItem);
-				MailBox->OpenPopupReceiveOneMail(ToReceiveItemRefId, ToReceiveGiftNum);
-			}
-			return;
-		}
+	//	case MailGiftType::Item:						// 3
+	//	case MailGiftType::Hero_Piece:					// 8
+	//	case MailGiftType::Rank_Promotion_Point:		// 10
+	//	{
+	//		BII_CHECK(MailItemInfo->item.get());
+	//		if (MailItemInfo->item_amount > 0 && MailItemInfo->item.get())
+	//		{
+	//			FB2Item AddItem;
+	//			AddItem = MailItemInfo->item;
+	//			MailBox->ClientDataStoreAddNewAcquiredItem(AddItem);
+	//			MailBox->OpenPopupReceiveOneMail(ToReceiveItemRefId, ToReceiveGiftNum);
+	//		}
+	//		return;
+	//	}
 
-		case MailGiftType::LotteryTicket:				// 6	
-		{
-			BII_CHECK(MailItemInfo->item.get());
-			if (MailItemInfo->item_amount > 0 && MailItemInfo->item.get())
-			{
-				FB2Item SummonedItem;
-				SummonedItem = MailItemInfo->item;
+	//	case MailGiftType::LotteryTicket:				// 6	
+	//	{
+	//		BII_CHECK(MailItemInfo->item.get());
+	//		if (MailItemInfo->item_amount > 0 && MailItemInfo->item.get())
+	//		{
+	//			FB2Item SummonedItem;
+	//			SummonedItem = MailItemInfo->item;
 
-				ESummonItemDifficulty SummonItemDifficulty = ESummonItemDifficulty::Normal;
-				FB2LotteryTicketInfo* Info = BladeIIGameImpl::GetClientDataStore().GetGeneralLotteryInfo(ToReceiveItemRefId);
-				if (Info)
-				{
-					switch (Info->LotteryGrade)
-					{
-					case b2network::B2LotteryGrade::NORMAL:
-					case b2network::B2LotteryGrade::SPECIAL:
-						SummonItemDifficulty = ESummonItemDifficulty::Normal;
-						break;
-					case b2network::B2LotteryGrade::PREMIUM:
-						SummonItemDifficulty = ESummonItemDifficulty::Hard;
-						break;
-					case b2network::B2LotteryGrade::SIGNATURE:
-						SummonItemDifficulty = ESummonItemDifficulty::VeryHard;
-					}
-				}
+	//			ESummonItemDifficulty SummonItemDifficulty = ESummonItemDifficulty::Normal;
+	//			FB2LotteryTicketInfo* Info = BladeIIGameImpl::GetClientDataStore().GetGeneralLotteryInfo(ToReceiveItemRefId);
+	//			if (Info)
+	//			{
+	//				switch (Info->LotteryGrade)
+	//				{
+	//				case b2network::B2LotteryGrade::NORMAL:
+	//				case b2network::B2LotteryGrade::SPECIAL:
+	//					SummonItemDifficulty = ESummonItemDifficulty::Normal;
+	//					break;
+	//				case b2network::B2LotteryGrade::PREMIUM:
+	//					SummonItemDifficulty = ESummonItemDifficulty::Hard;
+	//					break;
+	//				case b2network::B2LotteryGrade::SIGNATURE:
+	//					SummonItemDifficulty = ESummonItemDifficulty::VeryHard;
+	//				}
+	//			}
 
-				if (auto* UIItemRaffle = UB2UIManager::GetInstance()->OpenUI<UB2UIItemRaffle>(UIFName::ItemRaffle, true))
-				{
-					UIItemRaffle->StartFromRaffle(SummonedItem);
-				}
-			}
-			return;
-		}
+	//			if (auto* UIItemRaffle = UB2UIManager::GetInstance()->OpenUI<UB2UIItemRaffle>(UIFName::ItemRaffle, true))
+	//			{
+	//				UIItemRaffle->StartFromRaffle(SummonedItem);
+	//			}
+	//		}
+	//		return;
+	//	}
 
-		case MailGiftType::Selective_Lottery:			// 7
-		{
-			BII_CHECK(MailItemInfo->item.get());
-			if (MailItemInfo->item_amount > 0 && MailItemInfo->item.get() && MailBox)
-			{
-				FB2Item SelectedItem;
-				SelectedItem = MailItemInfo->item;
+	//	case MailGiftType::Selective_Lottery:			// 7
+	//	{
+	//		BII_CHECK(MailItemInfo->item.get());
+	//		if (MailItemInfo->item_amount > 0 && MailItemInfo->item.get() && MailBox)
+	//		{
+	//			FB2Item SelectedItem;
+	//			SelectedItem = MailItemInfo->item;
 
-				if (auto* UIItemRaffle = UB2UIManager::GetInstance()->OpenUI<UB2UIItemRaffle>(UIFName::ItemRaffle, true))
-				{
-					UIItemRaffle->StartFromRaffle(SelectedItem);
-				}
-			}
-			return;
-		}
-		
-		case MailGiftType::Selective_Item_Lottery:		// 8
-		{
-			BII_CHECK(MailItemInfo->item_amount > 0);
-			if (MailItemInfo->item_amount > 0 && MailBox)
-			{
-				FB2Item AddItem;
-				AddItem = MailItemInfo->item;
-				MailBox->ClientDataStoreAddNewAcquiredItem(AddItem);
-				MailBox->OpenPopupReceiveSelectiveLotteryConsumeItemResult(MailItemInfo->item_template_id, MailItemInfo->item_amount);
-			}
-			return;
-		}
+	//			if (auto* UIItemRaffle = UB2UIManager::GetInstance()->OpenUI<UB2UIItemRaffle>(UIFName::ItemRaffle, true))
+	//			{
+	//				UIItemRaffle->StartFromRaffle(SelectedItem);
+	//			}
+	//		}
+	//		return;
+	//	}
+	//	
+	//	case MailGiftType::Selective_Item_Lottery:		// 8
+	//	{
+	//		BII_CHECK(MailItemInfo->item_amount > 0);
+	//		if (MailItemInfo->item_amount > 0 && MailBox)
+	//		{
+	//			FB2Item AddItem;
+	//			AddItem = MailItemInfo->item;
+	//			MailBox->ClientDataStoreAddNewAcquiredItem(AddItem);
+	//			MailBox->OpenPopupReceiveSelectiveLotteryConsumeItemResult(MailItemInfo->item_template_id, MailItemInfo->item_amount);
+	//		}
+	//		return;
+	//	}
 
-		case MailGiftType::Fixed_Grade_Lottey:		// 12
-		{
-			if (MailItemInfo->item_amount > 0 && MailItemInfo->item.get())
-			{
-				FB2Item SummonedItem;
-				SummonedItem = MailItemInfo->item;
+	//	case MailGiftType::Fixed_Grade_Lottey:		// 12
+	//	{
+	//		if (MailItemInfo->item_amount > 0 && MailItemInfo->item.get())
+	//		{
+	//			FB2Item SummonedItem;
+	//			SummonedItem = MailItemInfo->item;
 
-				ESummonItemDifficulty SummonItemDifficulty = ESummonItemDifficulty::Normal;
-				FB2LotteryTicketInfo* Info = BladeIIGameImpl::GetClientDataStore().GetFixedLotteryInfo(ToReceiveItemRefId);
+	//			ESummonItemDifficulty SummonItemDifficulty = ESummonItemDifficulty::Normal;
+	//			FB2LotteryTicketInfo* Info = BladeIIGameImpl::GetClientDataStore().GetFixedLotteryInfo(ToReceiveItemRefId);
 
-				if (auto* UIItemRaffle = UB2UIManager::GetInstance()->OpenUI<UB2UIItemRaffle>(UIFName::ItemRaffle, true))
-				{
-					UIItemRaffle->StartFromRaffle(SummonedItem);
-				}
-			}
-			return;
-		}
-		case MailGiftType::Selective_Ether_Lottery:
-		{
-		}
-		case MailGiftType::Prefix_Selective_Lottery:		// 19
-		{
-			BII_CHECK(MailItemInfo->item.get());
-			BII_CHECK(MailItemInfo->costume.get());
+	//			if (auto* UIItemRaffle = UB2UIManager::GetInstance()->OpenUI<UB2UIItemRaffle>(UIFName::ItemRaffle, true))
+	//			{
+	//				UIItemRaffle->StartFromRaffle(SummonedItem);
+	//			}
+	//		}
+	//		return;
+	//	}
+	//	case MailGiftType::Selective_Ether_Lottery:
+	//	{
+	//	}
+	//	case MailGiftType::Prefix_Selective_Lottery:		// 19
+	//	{
+	//		BII_CHECK(MailItemInfo->item.get());
+	//		BII_CHECK(MailItemInfo->costume.get());
 
-			if (MailItemInfo->item_amount <= 0 && MailBox)
-				return;
+	//		if (MailItemInfo->item_amount <= 0 && MailBox)
+	//			return;
 
-			FB2Item SelectedItem;
+	//		FB2Item SelectedItem;
 
-			if (MailItemInfo->item.get())
-			{
-				if (MailItemInfo->item->amount > 0)
-				{
-					SelectedItem = MailItemInfo->item;
+	//		if (MailItemInfo->item.get())
+	//		{
+	//			if (MailItemInfo->item->amount > 0)
+	//			{
+	//				SelectedItem = MailItemInfo->item;
 
-					if (auto* UIItemRaffle = UB2UIManager::GetInstance()->OpenUI<UB2UIItemRaffle>(UIFName::ItemRaffle, true))
-					{
-						UIItemRaffle->StartFromRaffle(SelectedItem);
-					}
-					return;
-				}
-			}
+	//				if (auto* UIItemRaffle = UB2UIManager::GetInstance()->OpenUI<UB2UIItemRaffle>(UIFName::ItemRaffle, true))
+	//				{
+	//					UIItemRaffle->StartFromRaffle(SelectedItem);
+	//				}
+	//				return;
+	//			}
+	//		}
 
-			if (MailItemInfo->costume.get())
-			{
-				if (MailItemInfo->costume->amount > 0)
-				{
-					SelectedItem = *MailItemInfo->costume;
+	//		if (MailItemInfo->costume.get())
+	//		{
+	//			if (MailItemInfo->costume->amount > 0)
+	//			{
+	//				SelectedItem = *MailItemInfo->costume;
 
-					if (auto* UICostumeRaffle = UB2UIManager::GetInstance()->OpenUI<UB2UICostumeRaffle>(UIFName::CostumeRaffle, true))
-					{
-						UICostumeRaffle->StartFromRaffle(SelectedItem);
-					}
-					return;
-				}
-			}
-			return;
-		}
-		case MailGiftType::Prefix_Totem_Lottery:
-			if (MailItemInfo->totem.get())
-			{
-				UB2UITotemRaffle* UIItemRaffle = UB2UIManager::GetInstance()->OpenUI<UB2UITotemRaffle>(UIFName::TotemRaffle, true);
+	//				if (auto* UICostumeRaffle = UB2UIManager::GetInstance()->OpenUI<UB2UICostumeRaffle>(UIFName::CostumeRaffle, true))
+	//				{
+	//					UICostumeRaffle->StartFromRaffle(SelectedItem);
+	//				}
+	//				return;
+	//			}
+	//		}
+	//		return;
+	//	}
+	//	case MailGiftType::Prefix_Totem_Lottery:
+	//		if (MailItemInfo->totem.get())
+	//		{
+	//			UB2UITotemRaffle* UIItemRaffle = UB2UIManager::GetInstance()->OpenUI<UB2UITotemRaffle>(UIFName::TotemRaffle, true);
 
-				FB2Totem SelectedItem = MailInfo->totem;
+	//			FB2Totem SelectedItem = MailInfo->totem;
 
-				if (UIItemRaffle)
-				{
-					UIItemRaffle->StartFromRaffle(SelectedItem);
-				}
+	//			if (UIItemRaffle)
+	//			{
+	//				UIItemRaffle->StartFromRaffle(SelectedItem);
+	//			}
 
-			}
-			return;
-		}
-	}
+	//		}
+	//		return;
+	//	}
+	//}
 }
 
 TArray<int32> UB2UIMailContent::GetSelectItemRefIDs()

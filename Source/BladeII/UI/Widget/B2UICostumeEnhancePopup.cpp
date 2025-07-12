@@ -90,12 +90,12 @@ void UB2UICostumeEnhancePopup::SubscribeEvent()
 {
 	UnsubscribeEvent();
 
-	Issues.Add(DeliveryEnhanceCostumesFailClass<>::GetInstance().Subscribe2(
-		[this]()
-	{
-		this->OnFailEnhance();
-	}
-	));
+	//Issues.Add(DeliveryEnhanceCostumesFailClass<>::GetInstance().Subscribe2(
+	//	[this]()
+	//{
+	//	this->OnFailEnhance();
+	//}
+	//));
 }
 
 void UB2UICostumeEnhancePopup::UnsubscribeEvent()
@@ -105,12 +105,12 @@ void UB2UICostumeEnhancePopup::UnsubscribeEvent()
 
 void UB2UICostumeEnhancePopup::OnClickBTN_Close()
 {
-	if (GetRootWidget())
-		GetRootWidget()->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
+	//if (GetRootWidget())
+	//	GetRootWidget()->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
 
-	ForcedClickCostumeMaterialClass<bool>::GetInstance().Signal(false);
+	//ForcedClickCostumeMaterialClass<bool>::GetInstance().Signal(false);
 
-	this->DestroySelf(UB2UIManager::GetInstance());
+	//this->DestroySelf(UB2UIManager::GetInstance());
 }
 
 void UB2UICostumeEnhancePopup::OnClickBTN_EnhanceCommit()
@@ -231,10 +231,10 @@ void UB2UICostumeEnhancePopup::OnFailEnhance()
 
 void UB2UICostumeEnhancePopup::OnEndAnimation_BP()
 {
-	EnterItemCostumeEnhanceModeClass<int64>::GetInstance().Signal(CurrentItemID);
-	data_trader::Retailer::GetInstance().RequestEnhanceCostume(CurrentItemID);
-	// response 는 void UB2LobbyInventory::CostumeEnhanceItem(const FB2ResponseEnhanceCostumePtr& msg) 요기임
-	OnClickBTN_Close();
+	//EnterItemCostumeEnhanceModeClass<int64>::GetInstance().Signal(CurrentItemID);
+	//data_trader::Retailer::GetInstance().RequestEnhanceCostume(CurrentItemID);
+	//// response 는 void UB2LobbyInventory::CostumeEnhanceItem(const FB2ResponseEnhanceCostumePtr& msg) 요기임
+	//OnClickBTN_Close();
 }
 
 void UB2UICostumeEnhancePopup::InitCostumeItemInfoPopup(const FVector2D& v2PopupPosition, const float& fPopupSizeX)

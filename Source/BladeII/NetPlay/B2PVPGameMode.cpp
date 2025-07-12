@@ -35,6 +35,7 @@
 #include "BladeIIGameImpl.h"
 //#include "B2AutoAIController.h"
 #include "Engine/DamageEvents.h"
+#include "../BladeII/BladeIIUtil.h"
 
 DEFINE_LOG_CATEGORY_STATIC(LogPVPGameMode, Log, All);
 
@@ -902,14 +903,14 @@ ENetMatchResult AB2PVPGameMode::GetMatchResult() const
 
 void AB2PVPGameMode::NotifyStageEventSceneEnd(class AB2StageEventDirector* EndedDirector)
 {
-	if (EndedDirector && EndedDirector->GetDirectingEvent() == EStageEvent::ESEV_Begin && EndedDirector->GetMyRelevantUIName() == UIFName::PVPBegin)
-	{
-		if (GetLocalPlayer())
-		{
-			UE_LOG(LogTemp, Log, TEXT("AB2PVPGameMode::NotifyStageEventSceneEnd"));
-			GetLocalPlayer()->ForceSendAnimStateIndex();
-		}
-	}
+	//if (EndedDirector && EndedDirector->GetDirectingEvent() == EStageEvent::ESEV_Begin && EndedDirector->GetMyRelevantUIName() == UIFName::PVPBegin)
+	//{
+	//	if (GetLocalPlayer())
+	//	{
+	//		UE_LOG(LogTemp, Log, TEXT("AB2PVPGameMode::NotifyStageEventSceneEnd"));
+	//		GetLocalPlayer()->ForceSendAnimStateIndex();
+	//	}
+	//}
 }
 
 void AB2PVPGameMode::SettingResultInfo()
@@ -2873,15 +2874,15 @@ void AB2PVPGameMode::NotifyStageEventDirector_FinishShow(int32 EventType)
 {
 	B2_SCOPED_TRACK_LOG(TEXT("AB2PVPGameMode::NotifyStageEventDirector_FinishShow"));
 
-	EStageEvent eStageEvent = (EStageEvent)EventType;
+	//EStageEvent eStageEvent = (EStageEvent)EventType;
 
-	switch (eStageEvent)
-	{
-	case EStageEvent::ESEV_FinishAttack:
-		{
-			EndMatchByDie();
-		}break;
-	}
+	//switch (eStageEvent)
+	//{
+	//case EStageEvent::ESEV_FinishAttack:
+	//	{
+	//		EndMatchByDie();
+	//	}break;
+	//}
 }
 
 bool AB2PVPGameMode::IsValidFriendshipGame()

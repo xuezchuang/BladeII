@@ -42,7 +42,7 @@ void UB2UIEventTabPointShopLimited::BindDelegates()
 
 void UB2UIEventTabPointShopLimited::OnClickBTN_EventTap()
 {
-	SelectEventTabShopLimitedClass<int32>::GetInstance().Signal(CachedTapGroupID);
+	//SelectEventTabShopLimitedClass<int32>::GetInstance().Signal(CachedTapGroupID);
 }
 
 void UB2UIEventTabPointShopLimited::InitEventTab(const int32 iTapGroupID, const int32 iTapGroupRewarID)

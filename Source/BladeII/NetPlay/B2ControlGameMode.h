@@ -1,6 +1,9 @@
 #pragma once
 //#include "BladeII.h"
+#include "CoreMinimal.h"
+#include "UMG.h"
 #include "B2NetGameMode.h"
+#include "../DataStore/B2ClientDataStore.h"
 #include "B2ControlGameMode.generated.h"
 
 UENUM()
@@ -229,7 +232,7 @@ public:
 
 	virtual bool IsAllowCameraWorking() override;
 
-	virtual EResurrectGameModeType GetResurrectGameModeType() override { return EResurrectGameModeType::EResurrectType_OnlyClientMode; }
+	//virtual EResurrectGameModeType GetResurrectGameModeType() override { return EResurrectGameModeType::EResurrectType_OnlyClientMode; }
 
 	virtual void ForceResurrectLocalPlayer();
 

@@ -618,118 +618,118 @@ void UB2UISummonItem::OpenRewardPopup(EUIStoreMileageGrade BoxGrade)
 
 void UB2UISummonItem::ConditionalCreateCharSelectPopup()
 {
-	if (!CreatedUIP_CharSelectPopup && X_CP_UIP_CharSelectPopupPanel.IsValid())
-	{
-		CreatedUIP_CharSelectPopup = DynLoadAndCreateInCanvasPanelFull<UB2UIBackWidgetBase>(UIP_CharSelectPopupClass, this, X_CP_UIP_CharSelectPopupPanel.Get());
+	//if (!CreatedUIP_CharSelectPopup && X_CP_UIP_CharSelectPopupPanel.IsValid())
+	//{
+	//	CreatedUIP_CharSelectPopup = DynLoadAndCreateInCanvasPanelFull<UB2UIBackWidgetBase>(UIP_CharSelectPopupClass, this, X_CP_UIP_CharSelectPopupPanel.Get());
 
-		if (CreatedUIP_CharSelectPopup)
-		{
-			CreatedUIP_CharSelectPopup->Init();
-			CreatedUIP_CharSelectPopup->SetVisibility(ESlateVisibility::Collapsed);
+	//	if (CreatedUIP_CharSelectPopup)
+	//	{
+	//		CreatedUIP_CharSelectPopup->Init();
+	//		CreatedUIP_CharSelectPopup->SetVisibility(ESlateVisibility::Collapsed);
 
-			// 이 정도면 별도의 Widget part 클래스가 되어야 할 것 같은데 완전 블루프린트로 코딩이 되어 있음.
-			// 파트에서 가져오는게 상당히 많다.. ㅡㅡ
+	//		// 이 정도면 별도의 Widget part 클래스가 되어야 할 것 같은데 완전 블루프린트로 코딩이 되어 있음.
+	//		// 파트에서 가져오는게 상당히 많다.. ㅡㅡ
 
-			TB_CharSelectTitle = CreatedUIP_CharSelectPopup->GetSlot<UTextBlock>(FName(TEXT("TB_CharSelectTitle")));
+	//		TB_CharSelectTitle = CreatedUIP_CharSelectPopup->GetSlot<UTextBlock>(FName(TEXT("TB_CharSelectTitle")));
 
-			BTN_CharSelectPopupClose = CreatedUIP_CharSelectPopup->GetSlot<UB2Button>(FName(TEXT("BTN_Close")));
+	//		BTN_CharSelectPopupClose = CreatedUIP_CharSelectPopup->GetSlot<UB2Button>(FName(TEXT("BTN_Close")));
 
-			BTN_CharSelectPopupGladiator = CreatedUIP_CharSelectPopup->GetSlot<UB2Button>(FName(TEXT("BTN_Gladiator")));
-			BTN_CharSelectPopupAssassin = CreatedUIP_CharSelectPopup->GetSlot<UB2Button>(FName(TEXT("BTN_Assassin")));
-			BTN_CharSelectPopupWizard = CreatedUIP_CharSelectPopup->GetSlot<UB2Button>(FName(TEXT("BTN_Wizard")));
-			BTN_CharSelectPopupFighter = CreatedUIP_CharSelectPopup->GetSlot<UB2Button>(FName(TEXT("BTN_Fighter")));
+	//		BTN_CharSelectPopupGladiator = CreatedUIP_CharSelectPopup->GetSlot<UB2Button>(FName(TEXT("BTN_Gladiator")));
+	//		BTN_CharSelectPopupAssassin = CreatedUIP_CharSelectPopup->GetSlot<UB2Button>(FName(TEXT("BTN_Assassin")));
+	//		BTN_CharSelectPopupWizard = CreatedUIP_CharSelectPopup->GetSlot<UB2Button>(FName(TEXT("BTN_Wizard")));
+	//		BTN_CharSelectPopupFighter = CreatedUIP_CharSelectPopup->GetSlot<UB2Button>(FName(TEXT("BTN_Fighter")));
 
-			if (CharacterButtonOnArr.Num() == static_cast<int32>(EPCClass::EPC_End))
-			{
-				CharacterButtonOnArr[static_cast<int32>(EPCClass::EPC_Gladiator)] = CreatedUIP_CharSelectPopup->GetSlot<UOverlay>(FName(TEXT("O_GladiatorOn")));
-				CharacterButtonOnArr[static_cast<int32>(EPCClass::EPC_Assassin)] = CreatedUIP_CharSelectPopup->GetSlot<UOverlay>(FName(TEXT("O_AssassinOn")));
-				CharacterButtonOnArr[static_cast<int32>(EPCClass::EPC_Wizard)] = CreatedUIP_CharSelectPopup->GetSlot<UOverlay>(FName(TEXT("O_WizardOn")));
-				CharacterButtonOnArr[static_cast<int32>(EPCClass::EPC_Fighter)] = CreatedUIP_CharSelectPopup->GetSlot<UOverlay>(FName(TEXT("O_FighterOn")));
-			}
+	//		if (CharacterButtonOnArr.Num() == static_cast<int32>(EPCClass::EPC_End))
+	//		{
+	//			CharacterButtonOnArr[static_cast<int32>(EPCClass::EPC_Gladiator)] = CreatedUIP_CharSelectPopup->GetSlot<UOverlay>(FName(TEXT("O_GladiatorOn")));
+	//			CharacterButtonOnArr[static_cast<int32>(EPCClass::EPC_Assassin)] = CreatedUIP_CharSelectPopup->GetSlot<UOverlay>(FName(TEXT("O_AssassinOn")));
+	//			CharacterButtonOnArr[static_cast<int32>(EPCClass::EPC_Wizard)] = CreatedUIP_CharSelectPopup->GetSlot<UOverlay>(FName(TEXT("O_WizardOn")));
+	//			CharacterButtonOnArr[static_cast<int32>(EPCClass::EPC_Fighter)] = CreatedUIP_CharSelectPopup->GetSlot<UOverlay>(FName(TEXT("O_FighterOn")));
+	//		}
 
-			if (CharacterButtonOffArr.Num() == static_cast<int32>(EPCClass::EPC_End))
-			{
-				CharacterButtonOffArr[static_cast<int32>(EPCClass::EPC_Gladiator)] = CreatedUIP_CharSelectPopup->GetSlot<UOverlay>(FName(TEXT("O_GladiatorOff")));
-				CharacterButtonOffArr[static_cast<int32>(EPCClass::EPC_Assassin)] = CreatedUIP_CharSelectPopup->GetSlot<UOverlay>(FName(TEXT("O_AssassinOff")));
-				CharacterButtonOffArr[static_cast<int32>(EPCClass::EPC_Wizard)] = CreatedUIP_CharSelectPopup->GetSlot<UOverlay>(FName(TEXT("O_WizardOff")));
-				CharacterButtonOffArr[static_cast<int32>(EPCClass::EPC_Fighter)] = CreatedUIP_CharSelectPopup->GetSlot<UOverlay>(FName(TEXT("O_FighterOff")));
-			}
+	//		if (CharacterButtonOffArr.Num() == static_cast<int32>(EPCClass::EPC_End))
+	//		{
+	//			CharacterButtonOffArr[static_cast<int32>(EPCClass::EPC_Gladiator)] = CreatedUIP_CharSelectPopup->GetSlot<UOverlay>(FName(TEXT("O_GladiatorOff")));
+	//			CharacterButtonOffArr[static_cast<int32>(EPCClass::EPC_Assassin)] = CreatedUIP_CharSelectPopup->GetSlot<UOverlay>(FName(TEXT("O_AssassinOff")));
+	//			CharacterButtonOffArr[static_cast<int32>(EPCClass::EPC_Wizard)] = CreatedUIP_CharSelectPopup->GetSlot<UOverlay>(FName(TEXT("O_WizardOff")));
+	//			CharacterButtonOffArr[static_cast<int32>(EPCClass::EPC_Fighter)] = CreatedUIP_CharSelectPopup->GetSlot<UOverlay>(FName(TEXT("O_FighterOff")));
+	//		}
 
-			SetButtonLineVisible(EPCClass::EPC_End);
+	//		SetButtonLineVisible(EPCClass::EPC_End);
 
-			BTN_CharSelectConfirm = CreatedUIP_CharSelectPopup->GetSlot<UB2Button>(FName(TEXT("BTN_Confirm")));
+	//		BTN_CharSelectConfirm = CreatedUIP_CharSelectPopup->GetSlot<UB2Button>(FName(TEXT("BTN_Confirm")));
 
-			BIND_CLICK_FUNC_TO_BTN(BTN_CharSelectPopupClose, &UB2UISummonItem::CloseSelectCharacterPopupWindow);
-			BIND_CLICK_FUNC_TO_BTN(BTN_CharSelectPopupGladiator, &UB2UISummonItem::SelectedGladiator);
-			BIND_CLICK_FUNC_TO_BTN(BTN_CharSelectPopupAssassin, &UB2UISummonItem::SelectedAssassin);
-			BIND_CLICK_FUNC_TO_BTN(BTN_CharSelectPopupWizard, &UB2UISummonItem::SelectedWizard);
-			BIND_CLICK_FUNC_TO_BTN(BTN_CharSelectPopupFighter, &UB2UISummonItem::SelectedFighter);
-			BIND_CLICK_FUNC_TO_BTN(BTN_CharSelectConfirm, &UB2UISummonItem::OnClickSelectConfirm);
+	//		BIND_CLICK_FUNC_TO_BTN(BTN_CharSelectPopupClose, &UB2UISummonItem::CloseSelectCharacterPopupWindow);
+	//		BIND_CLICK_FUNC_TO_BTN(BTN_CharSelectPopupGladiator, &UB2UISummonItem::SelectedGladiator);
+	//		BIND_CLICK_FUNC_TO_BTN(BTN_CharSelectPopupAssassin, &UB2UISummonItem::SelectedAssassin);
+	//		BIND_CLICK_FUNC_TO_BTN(BTN_CharSelectPopupWizard, &UB2UISummonItem::SelectedWizard);
+	//		BIND_CLICK_FUNC_TO_BTN(BTN_CharSelectPopupFighter, &UB2UISummonItem::SelectedFighter);
+	//		BIND_CLICK_FUNC_TO_BTN(BTN_CharSelectConfirm, &UB2UISummonItem::OnClickSelectConfirm);
 
-			UIP_CharSelectPopupCosts.Empty();
+	//		UIP_CharSelectPopupCosts.Empty();
 
-			// 캐릭터 enum 순서와 일치..?
-			TWeakObjectPtr<UB2UIStoreProductCost> UIP_CharSelectPopupCost1 = CreatedUIP_CharSelectPopup->GetSlot<UB2UIStoreProductCost>(FName(TEXT("UIP_Cost1")));
-			if (UIP_CharSelectPopupCost1.IsValid())
-			{
-				UIP_CharSelectPopupCost1->Init();
-				UIP_CharSelectPopupCosts.Add(UIP_CharSelectPopupCost1);
-			}
-			TWeakObjectPtr<UB2UIStoreProductCost> UIP_CharSelectPopupCost2 = CreatedUIP_CharSelectPopup->GetSlot<UB2UIStoreProductCost>(FName(TEXT("UIP_Cost2")));
-			if (UIP_CharSelectPopupCost2.IsValid())
-			{
-				UIP_CharSelectPopupCost2->Init();
-				UIP_CharSelectPopupCosts.Add(UIP_CharSelectPopupCost2);
-			}
-			TWeakObjectPtr<UB2UIStoreProductCost> UIP_CharSelectPopupCost3 = CreatedUIP_CharSelectPopup->GetSlot<UB2UIStoreProductCost>(FName(TEXT("UIP_Cost3")));
-			if (UIP_CharSelectPopupCost3.IsValid())
-			{
-				UIP_CharSelectPopupCost3->Init();
-				UIP_CharSelectPopupCosts.Add(UIP_CharSelectPopupCost3);
-			}
-			TWeakObjectPtr<UB2UIStoreProductCost> UIP_CharSelectPopupCost4 = CreatedUIP_CharSelectPopup->GetSlot<UB2UIStoreProductCost>(FName(TEXT("UIP_Cost4")));
-			if (UIP_CharSelectPopupCost4.IsValid())
-			{
-				UIP_CharSelectPopupCost4->Init();
-				UIP_CharSelectPopupCosts.Add(UIP_CharSelectPopupCost4);
-			}
-		}
-	}
+	//		// 캐릭터 enum 순서와 일치..?
+	//		TWeakObjectPtr<UB2UIStoreProductCost> UIP_CharSelectPopupCost1 = CreatedUIP_CharSelectPopup->GetSlot<UB2UIStoreProductCost>(FName(TEXT("UIP_Cost1")));
+	//		if (UIP_CharSelectPopupCost1.IsValid())
+	//		{
+	//			UIP_CharSelectPopupCost1->Init();
+	//			UIP_CharSelectPopupCosts.Add(UIP_CharSelectPopupCost1);
+	//		}
+	//		TWeakObjectPtr<UB2UIStoreProductCost> UIP_CharSelectPopupCost2 = CreatedUIP_CharSelectPopup->GetSlot<UB2UIStoreProductCost>(FName(TEXT("UIP_Cost2")));
+	//		if (UIP_CharSelectPopupCost2.IsValid())
+	//		{
+	//			UIP_CharSelectPopupCost2->Init();
+	//			UIP_CharSelectPopupCosts.Add(UIP_CharSelectPopupCost2);
+	//		}
+	//		TWeakObjectPtr<UB2UIStoreProductCost> UIP_CharSelectPopupCost3 = CreatedUIP_CharSelectPopup->GetSlot<UB2UIStoreProductCost>(FName(TEXT("UIP_Cost3")));
+	//		if (UIP_CharSelectPopupCost3.IsValid())
+	//		{
+	//			UIP_CharSelectPopupCost3->Init();
+	//			UIP_CharSelectPopupCosts.Add(UIP_CharSelectPopupCost3);
+	//		}
+	//		TWeakObjectPtr<UB2UIStoreProductCost> UIP_CharSelectPopupCost4 = CreatedUIP_CharSelectPopup->GetSlot<UB2UIStoreProductCost>(FName(TEXT("UIP_Cost4")));
+	//		if (UIP_CharSelectPopupCost4.IsValid())
+	//		{
+	//			UIP_CharSelectPopupCost4->Init();
+	//			UIP_CharSelectPopupCosts.Add(UIP_CharSelectPopupCost4);
+	//		}
+	//	}
+	//}
 }
 
 void UB2UISummonItem::ConditionalCreateMileageRewardPopup()
 {
-	if (!CreatedUIP_MileageRewardPopup && X_CP_UIP_MileageRewardPopupPanel.IsValid())
-	{
-		CreatedUIP_MileageRewardPopup = DynLoadAndCreateInCanvasPanelFull<UB2UIStoreMileageRewardPopup>(UIP_MileageRewardPopupClass, this, X_CP_UIP_MileageRewardPopupPanel.Get());
+	//if (!CreatedUIP_MileageRewardPopup && X_CP_UIP_MileageRewardPopupPanel.IsValid())
+	//{
+	//	CreatedUIP_MileageRewardPopup = DynLoadAndCreateInCanvasPanelFull<UB2UIStoreMileageRewardPopup>(UIP_MileageRewardPopupClass, this, X_CP_UIP_MileageRewardPopupPanel.Get());
 
-		if (CreatedUIP_MileageRewardPopup)
-		{
-			if (MRP_RewardIconTemplate)
-			{ // 여기 별도 세팅이 필요한 건데 이것까진 동적 로딩이 아니고..
-				CreatedUIP_MileageRewardPopup->SetRewardTemplateClass(MRP_RewardIconTemplate);
-			}
+	//	if (CreatedUIP_MileageRewardPopup)
+	//	{
+	//		if (MRP_RewardIconTemplate)
+	//		{ // 여기 별도 세팅이 필요한 건데 이것까진 동적 로딩이 아니고..
+	//			CreatedUIP_MileageRewardPopup->SetRewardTemplateClass(MRP_RewardIconTemplate);
+	//		}
 
-			CreatedUIP_MileageRewardPopup->Init();
+	//		CreatedUIP_MileageRewardPopup->Init();
 
-			// 나머지는 OpenRewardPopup 시 조건에 따라 그때그때 세팅됨
-		}
-	}
+	//		// 나머지는 OpenRewardPopup 시 조건에 따라 그때그때 세팅됨
+	//	}
+	//}
 }
 
 void UB2UISummonItem::ConditionalCreateMileageGuidePopup()
 {
-	if (!CreatedUIP_MileageGuidePopup && X_CP_UIP_MileageGuidePopupPanel.IsValid())
-	{
-		CreatedUIP_MileageGuidePopup = DynLoadAndCreateInCanvasPanelFull<UB2UIBackWidgetBase>(UIP_MileageGuidePopupClass, this, X_CP_UIP_MileageGuidePopupPanel.Get());
-		if (CreatedUIP_MileageGuidePopup)
-		{
-			CreatedUIP_MileageGuidePopup->Init();
-			BTN_MileageGuidePopupClose = CreatedUIP_MileageGuidePopup->GetSlot<UB2Button>(FName(TEXT("BTN_Confirm")));
-			BIND_CLICK_FUNC_TO_BTN(BTN_MileageGuidePopupClose, &UB2UISummonItem::CloseMileageGuidePopup);
-			CreatedUIP_MileageGuidePopup->SetVisibility(ESlateVisibility::Collapsed);
-		}
-	}
+	//if (!CreatedUIP_MileageGuidePopup && X_CP_UIP_MileageGuidePopupPanel.IsValid())
+	//{
+	//	CreatedUIP_MileageGuidePopup = DynLoadAndCreateInCanvasPanelFull<UB2UIBackWidgetBase>(UIP_MileageGuidePopupClass, this, X_CP_UIP_MileageGuidePopupPanel.Get());
+	//	if (CreatedUIP_MileageGuidePopup)
+	//	{
+	//		CreatedUIP_MileageGuidePopup->Init();
+	//		BTN_MileageGuidePopupClose = CreatedUIP_MileageGuidePopup->GetSlot<UB2Button>(FName(TEXT("BTN_Confirm")));
+	//		BIND_CLICK_FUNC_TO_BTN(BTN_MileageGuidePopupClose, &UB2UISummonItem::CloseMileageGuidePopup);
+	//		CreatedUIP_MileageGuidePopup->SetVisibility(ESlateVisibility::Collapsed);
+	//	}
+	//}
 }
 
 void UB2UISummonItem::DestroyCharSelectPopup()

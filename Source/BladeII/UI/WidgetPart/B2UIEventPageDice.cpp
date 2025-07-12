@@ -106,59 +106,59 @@ void UB2UIEventPageDice::UpdateStaticText()
 
 void UB2UIEventPageDice::SubscribeEvents_EventPage()
 {
-	UnsubscribeEvents_EventPage();
+	//UnsubscribeEvents_EventPage();
 
-	CAPTURE_UOBJECT(UB2UIEventPageDice);
+	//CAPTURE_UOBJECT(UB2UIEventPageDice);
 
-	Issues_EventPage.Add(DeliveryRollDiceEventClass<FB2ResponseRollDiceEventPtr>::GetInstance().Subscribe2(
-	[Capture](FB2ResponseRollDiceEventPtr ReciveEventReward)
-	{
-		if (Capture.IsValid())
-		{
-			Capture->ResponseRollDiceEvent(ReciveEventReward);
-		}
-	}
-	));
+	//Issues_EventPage.Add(DeliveryRollDiceEventClass<FB2ResponseRollDiceEventPtr>::GetInstance().Subscribe2(
+	//[Capture](FB2ResponseRollDiceEventPtr ReciveEventReward)
+	//{
+	//	if (Capture.IsValid())
+	//	{
+	//		Capture->ResponseRollDiceEvent(ReciveEventReward);
+	//	}
+	//}
+	//));
 
-	Issues_EventPage.Add(DeliveryBuyDiceEventPointClass<FB2ResponseBuyDiceEventPointPtr>::GetInstance().Subscribe2(
-		[Capture](FB2ResponseBuyDiceEventPointPtr ReciveDiceEventPoint)
-	{
-		if (Capture.IsValid())
-		{
-			Capture->ResponseBuyDiceEventPoint(ReciveDiceEventPoint);
-		}
-	}
-	));
+	//Issues_EventPage.Add(DeliveryBuyDiceEventPointClass<FB2ResponseBuyDiceEventPointPtr>::GetInstance().Subscribe2(
+	//	[Capture](FB2ResponseBuyDiceEventPointPtr ReciveDiceEventPoint)
+	//{
+	//	if (Capture.IsValid())
+	//	{
+	//		Capture->ResponseBuyDiceEventPoint(ReciveDiceEventPoint);
+	//	}
+	//}
+	//));
 
-	Issues_EventPage.Add(DeliveryRewardDiceEventMileageClass<FB2ResponseRewardDiceEventMileagePtr>::GetInstance().Subscribe2(
-		[Capture](FB2ResponseRewardDiceEventMileagePtr ReciveDiceEventMileage)
-	{
-		if (Capture.IsValid())
-		{
-			Capture->ResponseRewardDiceEventMileage(ReciveDiceEventMileage);
-		}
-	}
-	));
+	//Issues_EventPage.Add(DeliveryRewardDiceEventMileageClass<FB2ResponseRewardDiceEventMileagePtr>::GetInstance().Subscribe2(
+	//	[Capture](FB2ResponseRewardDiceEventMileagePtr ReciveDiceEventMileage)
+	//{
+	//	if (Capture.IsValid())
+	//	{
+	//		Capture->ResponseRewardDiceEventMileage(ReciveDiceEventMileage);
+	//	}
+	//}
+	//));
 
-	Issues_EventPage.Add(DiceCellFinishAnimationClass<int32>::GetInstance().Subscribe2(
-		[Capture](int32 iCellNumber)
-	{
-		if (Capture.IsValid())
-		{
-			Capture->UpdateDiceMovePositionAnim(iCellNumber);
-		}
-	}
-	));
+	//Issues_EventPage.Add(DiceCellFinishAnimationClass<int32>::GetInstance().Subscribe2(
+	//	[Capture](int32 iCellNumber)
+	//{
+	//	if (Capture.IsValid())
+	//	{
+	//		Capture->UpdateDiceMovePositionAnim(iCellNumber);
+	//	}
+	//}
+	//));
 
-	Issues_EventPage.Add(DiceCellFinishArriveAnimationClass<int32>::GetInstance().Subscribe2(
-		[Capture](int32 iCellNumber)
-	{
-		if (Capture.IsValid())
-		{
-			Capture->UpdateFromFinishArriveAnim(iCellNumber);
-		}
-	}
-	));
+	//Issues_EventPage.Add(DiceCellFinishArriveAnimationClass<int32>::GetInstance().Subscribe2(
+	//	[Capture](int32 iCellNumber)
+	//{
+	//	if (Capture.IsValid())
+	//	{
+	//		Capture->UpdateFromFinishArriveAnim(iCellNumber);
+	//	}
+	//}
+	//));
 }
 
 void UB2UIEventPageDice::InitEventPageMasterData()

@@ -309,31 +309,31 @@ void UB2UIHeroTowerReady::ResponseBuyHeroTowerTicket(const FB2ResponseBuyHeroTow
 
 void UB2UIHeroTowerReady::OnClickBtnStartSweep()
 {
-	// 점검 정산 체크
-	if (TutorialManager::GetInstance().IsFinishTutorial(TutorialID_HeroTower) && CheckContentsModeState(b2network::B2ContentsMode::HERO_TOWER))
-		return;
+	//// 점검 정산 체크
+	//if (TutorialManager::GetInstance().IsFinishTutorial(TutorialID_HeroTower) && CheckContentsModeState(b2network::B2ContentsMode::HERO_TOWER))
+	//	return;
 
-	if (!OnCheckAbleToSweep()) return;
+	//if (!OnCheckAbleToSweep()) return;
 
-	UB2UIMsgPopupHeroTowerSweep* pSweepPopup = UB2UIManager::GetInstance()->OpenUI<UB2UIMsgPopupHeroTowerSweep>(UIFName::HeroTowerSweepPopup);
+	//UB2UIMsgPopupHeroTowerSweep* pSweepPopup = UB2UIManager::GetInstance()->OpenUI<UB2UIMsgPopupHeroTowerSweep>(UIFName::HeroTowerSweepPopup);
 
-	if (!pSweepPopup)
-		return;
+	//if (!pSweepPopup)
+	//	return;
 
-	//코멘트랑 셋팅
-	int32 nClearFloor = UB2UIDocHelper::GetDocHeroTower()->GetMaxClearFloor();
-	bIsSweep = true;
+	////코멘트랑 셋팅
+	//int32 nClearFloor = UB2UIDocHelper::GetDocHeroTower()->GetMaxClearFloor();
+	//bIsSweep = true;
 
-	// GetSweepItems() 가 서버로 부터 받는 아이템과 총합을 구해줌 2개 이상의 보상일경우 아래 SetAddComment를 추가로 구현
-	pSweepPopup->SetAddCommentForHeroTower(GetSweepItems());
+	//// GetSweepItems() 가 서버로 부터 받는 아이템과 총합을 구해줌 2개 이상의 보상일경우 아래 SetAddComment를 추가로 구현
+	//pSweepPopup->SetAddCommentForHeroTower(GetSweepItems());
 
-	pSweepPopup->SetTitle(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("General_Sweep")));
-	pSweepPopup->SetContent(FText::Format(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("HeroTowerDoYouSweepNFloor?")), FText::AsNumber(nClearFloor)));
-	pSweepPopup->SetTipText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("HeroTower_AutoClearDescription")));
-	pSweepPopup->SetButtonText(EUIMsgPopupButton::Positive, BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("HeroTower_AutoClear"))));
+	//pSweepPopup->SetTitle(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("General_Sweep")));
+	//pSweepPopup->SetContent(FText::Format(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("HeroTowerDoYouSweepNFloor?")), FText::AsNumber(nClearFloor)));
+	//pSweepPopup->SetTipText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("HeroTower_AutoClearDescription")));
+	//pSweepPopup->SetButtonText(EUIMsgPopupButton::Positive, BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("HeroTower_AutoClear"))));
 
-	pSweepPopup->AddHandler(EUIMsgPopupButton::Positive, FMsgPopupOnClick::CreateLambda([this]() { this->OnHeroTowerSweep(); UB2UIManager::GetInstance()->CloseUI(UIFName::HeroTowerSweepPopup); }));
-	pSweepPopup->AddHandler(EUIMsgPopupButton::Negative, FMsgPopupOnClick::CreateLambda([this]() { bIsSweep = false;  UB2UIManager::GetInstance()->CloseUI(UIFName::HeroTowerSweepPopup); this->BTN_StartSweep->SetIsEnabled(true);  }));
+	//pSweepPopup->AddHandler(EUIMsgPopupButton::Positive, FMsgPopupOnClick::CreateLambda([this]() { this->OnHeroTowerSweep(); UB2UIManager::GetInstance()->CloseUI(UIFName::HeroTowerSweepPopup); }));
+	//pSweepPopup->AddHandler(EUIMsgPopupButton::Negative, FMsgPopupOnClick::CreateLambda([this]() { bIsSweep = false;  UB2UIManager::GetInstance()->CloseUI(UIFName::HeroTowerSweepPopup); this->BTN_StartSweep->SetIsEnabled(true);  }));
 }
 
 bool UB2UIHeroTowerReady::OnCheckAbleToSweep()
@@ -852,14 +852,14 @@ void UB2UIHeroTowerReady::CheckAndOpenLevelUpPart()
 
 void UB2UIHeroTowerReady::ConditionalCreateLevelUpPart()
 {
-	if (!CreatedUIP_LevelUp && X_CP_LevelUpPanel.IsValid())
-	{
-		CreatedUIP_LevelUp = DynLoadAndCreateInCanvasPanelFull<UB2UIStageResultLevelUp>(UIP_LevelUpClass, this, X_CP_LevelUpPanel.Get());
-		if (CreatedUIP_LevelUp)
-		{
-			CreatedUIP_LevelUp->Init();
-		}
-	}
+	//if (!CreatedUIP_LevelUp && X_CP_LevelUpPanel.IsValid())
+	//{
+	//	CreatedUIP_LevelUp = DynLoadAndCreateInCanvasPanelFull<UB2UIStageResultLevelUp>(UIP_LevelUpClass, this, X_CP_LevelUpPanel.Get());
+	//	if (CreatedUIP_LevelUp)
+	//	{
+	//		CreatedUIP_LevelUp->Init();
+	//	}
+	//}
 }
 void UB2UIHeroTowerReady::DestroyLevelUpPart()
 {

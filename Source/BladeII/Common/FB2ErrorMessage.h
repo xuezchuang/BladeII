@@ -11,11 +11,7 @@ struct FB2ErrorMessage
 	* @param Message Text of message to show
 	* @param OptTitle Optional title to use (defaults to "Message")
 	*/
-	static EAppReturnType::Type Open(EAppMsgType::Type MessageType, const FText& Message, const FText* OptTitle = nullptr)
-	{
-
-		return EAppReturnType::No;
-	}
+	static EAppReturnType::Type Open(EAppMsgType::Type MessageType, const FText& Message, const FText* OptTitle = nullptr);
 };
 
 #define FErrorMessage FB2ErrorMessage

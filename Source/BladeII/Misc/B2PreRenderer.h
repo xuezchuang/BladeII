@@ -3,6 +3,7 @@
 #include "UObject/Object.h"
 #include "CommonStruct.h"
 #include "BladeIICharacter.h"
+#include "../BladeII/BladeIIPlayer.h"
 #include "B2PreRenderer.generated.h"
 
 /** Info struct to pre-rendering character and their relevant effects stuff for mobile shader compile */

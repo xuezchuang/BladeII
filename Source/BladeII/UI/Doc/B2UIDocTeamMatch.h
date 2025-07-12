@@ -4,6 +4,7 @@
 #pragma once
 #include "UObject/Object.h"
 #include "B2UIDocBase.h"
+#include "../../DataStore/B2ClientDataStore.h"
 #include "B2UIDocTeamMatch.generated.h"
 
 

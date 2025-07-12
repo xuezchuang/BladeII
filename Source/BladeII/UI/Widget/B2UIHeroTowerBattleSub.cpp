@@ -20,13 +20,13 @@ void UB2UIHeroTowerBattleSub::NativeConstruct()
 
 	if(TB_Floor.IsValid())
 	{
-		AB2HeroTowerGameMode* pGM = Cast<AB2HeroTowerGameMode>(UGameplayStatics::GetGameMode(this));
+/*		AB2HeroTowerGameMode* pGM = Cast<AB2HeroTowerGameMode>(UGameplayStatics::GetGameMode(this));
 
 		if (pGM)
 		{
 			nFloor = pGM->GetHeroTowerFloor();
 			TB_Floor->SetText(FText::Format(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("HeroTower_NFloor")), FText::AsNumber(nFloor)));
-		}		
+		}	*/	
 	}
 
 	if (HB_Rewards.IsValid())
@@ -61,14 +61,14 @@ void UB2UIHeroTowerBattleSub::NativeTick(const FGeometry& MyGeometry, float InDe
 
 	if (TB_ElapsedTime.IsValid())
 	{	
-		AB2HeroTowerGameMode* pGM = Cast<AB2HeroTowerGameMode>(UGameplayStatics::GetGameMode(this));
+		//AB2HeroTowerGameMode* pGM = Cast<AB2HeroTowerGameMode>(UGameplayStatics::GetGameMode(this));
 
-		if (pGM)
-		{
-			FTimespan timeElapsed = pGM->GetElapsedTime();
+		//if (pGM)
+		//{
+		//	FTimespan timeElapsed = pGM->GetElapsedTime();
 
-			TB_ElapsedTime->SetText(FText::FromString(timeElapsed.ToString(TEXT("%m:%s.%f"))));
-		}
+		//	TB_ElapsedTime->SetText(FText::FromString(timeElapsed.ToString(TEXT("%m:%s.%f"))));
+		//}
 	}
 }
 

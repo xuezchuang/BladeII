@@ -7,6 +7,7 @@
 //#include "B2UINetworkLoading.h"
 //#include "B2UIChatSinglePopup.h"
 #include "B2Chatting.h"
+#include "B2UIEnum.h"
 #include "B2UIMain.generated.h"
 
 

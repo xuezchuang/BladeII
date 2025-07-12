@@ -7,6 +7,7 @@
 #include "B2UIUserInfoActionPopup.h"
 #include "B2UIBackWidget.h"
 #include "CommonStruct.h"
+#include "B2ScrollBox.h"
 #include "B2UIChatting.generated.h"
 
 enum class EB2UIChatCategory // Would be similar to EB2ChatType, but not probably be the same..

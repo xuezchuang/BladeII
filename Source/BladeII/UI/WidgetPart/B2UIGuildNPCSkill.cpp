@@ -172,18 +172,18 @@ void UB2UIGuildNPCSkill::SetButtonStyle(const FGuildMercenarySkill* InSkillData)
 	if (!InSkillData)
 		return;
 
-	if (BTN_Area.IsValid())
-	{
-		FButtonStyle* RetStyle = &BTN_Area->WidgetStyle;
+	//if (BTN_Area.IsValid())
+	//{
+	//	FButtonStyle* RetStyle = &BTN_Area->WidgetStyle;
 
-		if (RetStyle)
-		{
-			RetStyle->Normal.SetResourceObject(InSkillData->SkillImageNormal.LoadSynchronous());
-			RetStyle->Hovered.SetResourceObject(InSkillData->SkillImageHover.LoadSynchronous());
-			RetStyle->Pressed.SetResourceObject(InSkillData->SkillImagePress.LoadSynchronous());
-			RetStyle->Disabled.SetResourceObject(InSkillData->SkillImageDisabled.LoadSynchronous());
-		}
-	}
+	//	if (RetStyle)
+	//	{
+	//		RetStyle->Normal.SetResourceObject(InSkillData->SkillImageNormal.LoadSynchronous());
+	//		RetStyle->Hovered.SetResourceObject(InSkillData->SkillImageHover.LoadSynchronous());
+	//		RetStyle->Pressed.SetResourceObject(InSkillData->SkillImagePress.LoadSynchronous());
+	//		RetStyle->Disabled.SetResourceObject(InSkillData->SkillImageDisabled.LoadSynchronous());
+	//	}
+	//}
 }
 
 void UB2UIGuildNPCSkill::SetLock(bool bLock)

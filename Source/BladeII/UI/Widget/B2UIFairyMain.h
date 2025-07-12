@@ -3,6 +3,7 @@
 
 #include "B2UIWidget.h"
 #include "FairyManager.h"
+#include "../B2RichTextBlock.h"
 #include "B2UIFairyMain.generated.h"
 
 UCLASS(BlueprintType, Blueprintable)

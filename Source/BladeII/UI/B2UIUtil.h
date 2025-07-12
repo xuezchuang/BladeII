@@ -3,6 +3,7 @@
 #include "CommonStruct.h"
 #include "EngineMinimal.h"
 #include "B2UIMsgPopupBase.h"
+#include "../DataStore/B2ClientDataStore.h"
 
 #include "B2UIUtil.generated.h"
 

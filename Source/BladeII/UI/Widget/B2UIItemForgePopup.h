@@ -6,6 +6,7 @@
 #include "UI/B2UIWidget.h"
 #include "CommonStruct.h"
 #include "B2UIEnum.h"
+#include <memory>
 #include "B2UIItemForgePopup.generated.h"
 
 /**
@@ -90,7 +91,7 @@ private:
 	int32										Itemforge_SelectTicket;	// SelectedItem 세팅을 위한 Event System
 
 	bool										bSubscribed;			// Event System 세팅 여부
-	TArray<std::shared_ptr<issue>>				Issues;					// Event System 함수 펑터
+	//TArray<std::shared_ptr<issue>>				Issues;					// Event System 함수 펑터
 
 	class UB2UIItemForgeIngredientList* ItemForgeIngredientUI;			// 상위 UI 클래스
 

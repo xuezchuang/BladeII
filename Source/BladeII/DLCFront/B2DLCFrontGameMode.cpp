@@ -18,6 +18,7 @@
 //#include "B2UIDummyDLCFront.h"
 #endif
 #include "BladeIIScalabilityControl.h"
+#include "../BladeII/BladeIIUtil.h"
 
 //#include "B2UIDLCFrontSimplePopup.h"
 

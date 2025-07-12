@@ -3,6 +3,7 @@
 #pragma once
 
 #include "B2UIChatMessageBase.h"
+#include "../B2RichTextBlock.h"
 #include "B2UIChatMssageNotice.generated.h"
 
 /**

@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "UI/B2UIWidget.h"
 #include "B2UIBackWidget.h"
+#include "../../BladeII/BladeIIGameMode.h"
 #include "B2UIDonationResultPopup.generated.h"
 
 /**

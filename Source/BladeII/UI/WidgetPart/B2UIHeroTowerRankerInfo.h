@@ -3,6 +3,7 @@
 #pragma once
 
 #include "UI/B2UIWidget.h"
+#include "../../DataStore/B2ClientDataStore.h"
 #include "B2UIHeroTowerRankerInfo.generated.h"
 
 /**

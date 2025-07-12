@@ -6,6 +6,7 @@
 #include "UObject/NoExportTypes.h"
 #include "CommonStruct.h"
 #include "B2EtherSetEffect.h"
+#include "../UI/Doc/B2UIDocBattle.h"
 #include "B2EtherContainer.generated.h"
 
 

@@ -210,27 +210,29 @@ USkeletalMesh* UB2CompositeMeshCache::GetCachedCompositeMesh(EPCClass InPCClass,
 
 bool UB2CompositeMeshCache::ShouldSearchForLocalPCCache(class ABladeIIPlayer* InPlayerCharacter) const
 {
-	if (!InPlayerCharacter) 
-	{
-		// 없으면 기본 로컬 플레이어 용인 걸로 간주하기 위함. 로비 같은 경우. 또 있나?
-		
-		// !!!!!!!!!!
-		// 로비에서 도감이나 타 계정 캐릭터 보기 등 임시적으로 메쉬 조합을 보여주는 경우는 보다 윗단에서 CompositeMeshCache 를 안 쓰게 해야 한다.
-		// 이는 매우 중요한 사항으로서 이것이 지켜지지 않으면 애써 이런 시스템을 도입해서 로딩 시간 최적화를 하는 의미가 없어지게 된다.
-		// !!!!!!!!!!
+	//if (!InPlayerCharacter)
+	//{
+	//	// 없으면 기본 로컬 플레이어 용인 걸로 간주하기 위함. 로비 같은 경우. 또 있나?
 
-		return true; 
-	}
+	//	// !!!!!!!!!!
+	//	// 로비에서 도감이나 타 계정 캐릭터 보기 등 임시적으로 메쉬 조합을 보여주는 경우는 보다 윗단에서 CompositeMeshCache 를 안 쓰게 해야 한다.
+	//	// 이는 매우 중요한 사항으로서 이것이 지켜지지 않으면 애써 이런 시스템을 도입해서 로딩 시간 최적화를 하는 의미가 없어지게 된다.
+	//	// !!!!!!!!!!
 
-	if (Cast<ABladeIITutorialPlayer>(InPlayerCharacter) || Cast<ABladeIITutorialFallbackPuppetPlayer>(InPlayerCharacter)) {
-		// FTutorialCharacterData 의 IsLocalCharacterData 가 false 라.. 그쪽을 바꿔도 되긴 하겠지만..
-		return true;
-	}
+	//	return true;
+	//}
 
-	ICharacterDataStore* CDS = InPlayerCharacter->GetCharacterDataStore();
-	if (CDS){
-		return CDS->IsLocalCharacterData(); // 일반적인 인게임 전투용 캐릭터들은 대부분 여기서 걸러져야할 듯.
-	}
+	//if (Cast<ABladeIITutorialPlayer>(InPlayerCharacter) || Cast<ABladeIITutorialFallbackPuppetPlayer>(InPlayerCharacter))
+	//{
+	//	// FTutorialCharacterData 의 IsLocalCharacterData 가 false 라.. 그쪽을 바꿔도 되긴 하겠지만..
+	//	return true;
+	//}
+
+	//ICharacterDataStore* CDS = InPlayerCharacter->GetCharacterDataStore();
+	//if (CDS)
+	//{
+	//	return CDS->IsLocalCharacterData(); // 일반적인 인게임 전투용 캐릭터들은 대부분 여기서 걸러져야할 듯.
+	//}
 
 	return InPlayerCharacter->IsLocalPlayer(); // 이것만으로 판별할 수 없는게 팀대전 캐릭터 같은 경우 우리편이어도 이게 false 일 꺼라..
 }
@@ -357,7 +359,8 @@ bool UB2CompositeMeshCache::IsLocalPCMeshRootSetAllowed() const
 
 UB2CompositeMeshCache* StaticFindCompositeMeshCacher()
 {
-	BladeIIGameImpl* B2GameModule = FModuleManager::GetModulePtr<BladeIIGameImpl>(BladeIIGameImpl::GetModuleName());
-	BII_CHECK(B2GameModule && B2GameModule->GetCompositeMeshCacher());
-	return B2GameModule ? B2GameModule->GetCompositeMeshCacher() : NULL;
+	//BladeIIGameImpl* B2GameModule = FModuleManager::GetModulePtr<BladeIIGameImpl>(BladeIIGameImpl::GetModuleName());
+	//BII_CHECK(B2GameModule && B2GameModule->GetCompositeMeshCacher());
+	//return B2GameModule ? B2GameModule->GetCompositeMeshCacher() : NULL;
+	return NULL;
 }

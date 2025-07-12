@@ -2,6 +2,7 @@
 #pragma once
 
 #include "B2UIWidget.h"
+#include "../B2RichTextBlock.h"
 #include "B2UIAttendance.generated.h"
 
 UCLASS()

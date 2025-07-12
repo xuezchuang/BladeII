@@ -267,7 +267,7 @@ UB2UIStore::UB2UIStore(const FObjectInitializer& ObjectInitializer)
 
 void UB2UIStore::Init()
 {
-	CAPTURE_UOBJECT(UB2UIStore);
+	/*CAPTURE_UOBJECT(UB2UIStore);
 
 	SelectItemToBuyTicket = SelectItemToBuyClass<int32>::GetInstance().Subscribe(
 		USE_CAPTURE_OBJECT_AND_TICKET(SelectItemToBuy, int32 ProductId)
@@ -300,38 +300,38 @@ void UB2UIStore::Init()
 		MileageChangedHandler.Reset();
 
 		MileageChangedHandler = DocStore->OnMileageChanged.AddUObject(this, &UB2UIStore::OnMileageChanged);
-	}
+	}*/
 }
 
 void UB2UIStore::DestroySelf(class UB2UIManager* InUIManager)
 {
-	SelectItemToBuyClass<int32>::GetInstance().Unsubscribe(SelectItemToBuyTicket);
-	DeliveryRewardShopMileageClass<FB2ResponseRewardShopMileagePtr>::GetInstance().Unsubscribe(DeliveryRewardShopMileageClassTicket);
+	//SelectItemToBuyClass<int32>::GetInstance().Unsubscribe(SelectItemToBuyTicket);
+	//DeliveryRewardShopMileageClass<FB2ResponseRewardShopMileagePtr>::GetInstance().Unsubscribe(DeliveryRewardShopMileageClassTicket);
 
-	auto* DocStore = UB2UIDocHelper::GetDocStore();
-	if (DocStore)
-	{
-		if (MileageChangedHandler.IsValid())
-		{
-			DocStore->OnMileageChanged.Remove(MileageChangedHandler);
-		}
-		MileageChangedHandler.Reset();
+	//auto* DocStore = UB2UIDocHelper::GetDocStore();
+	//if (DocStore)
+	//{
+	//	if (MileageChangedHandler.IsValid())
+	//	{
+	//		DocStore->OnMileageChanged.Remove(MileageChangedHandler);
+	//	}
+	//	MileageChangedHandler.Reset();
 
-		DocStore->OnMileageChanged.Remove(MileageChangedHandler);
-	}
+	//	DocStore->OnMileageChanged.Remove(MileageChangedHandler);
+	//}
 
-	CloseMileageGuidePopup();
-	CloseConfirmToBuyPopupGemPopup();
-	CloseConfirmToBuyPopupNormalPopup();
-	CloseGuestWarningPopup();
+	//CloseMileageGuidePopup();
+	//CloseConfirmToBuyPopupGemPopup();
+	//CloseConfirmToBuyPopupNormalPopup();
+	//CloseGuestWarningPopup();
 
-	DestroyMileageRewardPopup();
-	DestroyConfirmToBuyPopup_Gem();
-	DestroyConfirmToBuyPopup_Normal();
-	DestroyMileageGuidePopup();
-	DestroyGuestWarningPopup();
+	//DestroyMileageRewardPopup();
+	//DestroyConfirmToBuyPopup_Gem();
+	//DestroyConfirmToBuyPopup_Normal();
+	//DestroyMileageGuidePopup();
+	//DestroyGuestWarningPopup();
 
-	Super::DestroySelf(InUIManager);
+	//Super::DestroySelf(InUIManager);
 }
 
 void UB2UIStore::CacheAssets()
@@ -420,19 +420,19 @@ void UB2UIStore::BindDelegates()
 
 void UB2UIStore::OnOpen(bool RightNow /*= false*/)
 {
-	Super::OnOpen(RightNow);
+	//Super::OnOpen(RightNow);
 
-	DeliveryBuyShopProductTicket = DeliveryBuyShopProductClass<FB2ResponseBuyShopProductPtr>::GetInstance().Subscribe(
-		[this](const FB2ResponseBuyShopProductPtr& BuyShopResult) {
-		this->SetTab();
-	});
+	//DeliveryBuyShopProductTicket = DeliveryBuyShopProductClass<FB2ResponseBuyShopProductPtr>::GetInstance().Subscribe(
+	//	[this](const FB2ResponseBuyShopProductPtr& BuyShopResult) {
+	//	this->SetTab();
+	//});
 }
 
 void UB2UIStore::OnClose(bool RightNow /*= false*/)
 {
 	Super::OnClose(RightNow);
 
-	DeliveryBuyShopProductClass<FB2ResponseBuyShopProductPtr>::GetInstance().Unsubscribe(DeliveryBuyShopProductTicket);
+	//DeliveryBuyShopProductClass<FB2ResponseBuyShopProductPtr>::GetInstance().Unsubscribe(DeliveryBuyShopProductTicket);
 }
 
 void UB2UIStore::RegisterUIMarkForRedDot()
@@ -1145,16 +1145,16 @@ void UB2UIStore::SubmitConfirmToBuyItem()
 
 void UB2UIStore::SubmitConfirmToBuyGem()
 {
-	CloseConfirmToBuyPopupGemPopup();
+	//CloseConfirmToBuyPopupGemPopup();
 
-	if (B2P_GetKakaoIDPCode() == EPlatformIDPCode::Guest)
-	{
-		OpenGuestWarningPopup();
-	}
-	else
-	{
-		ConfirmToBuyGem();
-	}
+	//if (B2P_GetKakaoIDPCode() == EPlatformIDPCode::Guest)
+	//{
+	//	OpenGuestWarningPopup();
+	//}
+	//else
+	//{
+	//	ConfirmToBuyGem();
+	//}
 }
 
 void UB2UIStore::DetailConfirmToBuyItem()
@@ -1264,17 +1264,17 @@ bool UB2UIStore::RedDotCondition_Package()
 
 void UB2UIStore::ConditionalCreateMileageRewardPopup()
 {
-	if (!Created_UIP_MileageRewardPopup && X_CP_MileageRewardPopup_Panel.IsValid())
-	{
-		Created_UIP_MileageRewardPopup = DynLoadAndCreateInCanvasPanelFull<UB2UIStoreMileageRewardPopup>(UIP_MileageRewardPopup_Class, this, X_CP_MileageRewardPopup_Panel.Get());
-		if (Created_UIP_MileageRewardPopup)
-		{
-			if (RewardIconTemplate) {
-				Created_UIP_MileageRewardPopup->SetRewardTemplateClass(RewardIconTemplate); // RewardIconTemplate 까지는 동적 로딩은 아니다. 
-			}
-			Created_UIP_MileageRewardPopup->Init();
-		}
-	}
+	//if (!Created_UIP_MileageRewardPopup && X_CP_MileageRewardPopup_Panel.IsValid())
+	//{
+	//	Created_UIP_MileageRewardPopup = DynLoadAndCreateInCanvasPanelFull<UB2UIStoreMileageRewardPopup>(UIP_MileageRewardPopup_Class, this, X_CP_MileageRewardPopup_Panel.Get());
+	//	if (Created_UIP_MileageRewardPopup)
+	//	{
+	//		if (RewardIconTemplate) {
+	//			Created_UIP_MileageRewardPopup->SetRewardTemplateClass(RewardIconTemplate); // RewardIconTemplate 까지는 동적 로딩은 아니다. 
+	//		}
+	//		Created_UIP_MileageRewardPopup->Init();
+	//	}
+	//}
 }
 void UB2UIStore::ConditionalCreateConfirmToBuyPopup_Gem()
 {
@@ -1303,51 +1303,51 @@ void UB2UIStore::ConditionalCreateConfirmToBuyPopup_Gem()
 }
 void UB2UIStore::ConditionalCreateConfirmToBuyPopup_Normal()
 {
-	if (!Created_UIP_ConfirmToBuyPopup_Normal && X_CP_ConfirmToBuyPopup_Normal_Panel.IsValid())
-	{
-		Created_UIP_ConfirmToBuyPopup_Normal = DynLoadAndCreateInCanvasPanelFull<UB2UIBackWidgetBase>(UIP_ConfirmToBuyPopup_Normal_Class, this, X_CP_ConfirmToBuyPopup_Normal_Panel.Get());
-		if (Created_UIP_ConfirmToBuyPopup_Normal)
-		{
-			Created_UIP_ConfirmToBuyPopup_Normal->Init();
-			// BindDelegate 도 여기서
-			BIND_RELEASE_FUNC_TO_BTN(TWeakObjectPtr<UB2Button>(Created_UIP_ConfirmToBuyPopup_Normal->GetSlot<UB2Button>(TEXT("BTN_Negative"))), &UB2UIStore::CloseConfirmToBuyPopupNormalPopup);
-			BIND_RELEASE_FUNC_TO_BTN(TWeakObjectPtr<UB2Button>(Created_UIP_ConfirmToBuyPopup_Normal->GetSlot<UB2Button>(TEXT("BTN_Positive"))), &UB2UIStore::SubmitConfirmToBuyItem);
+	//if (!Created_UIP_ConfirmToBuyPopup_Normal && X_CP_ConfirmToBuyPopup_Normal_Panel.IsValid())
+	//{
+	//	Created_UIP_ConfirmToBuyPopup_Normal = DynLoadAndCreateInCanvasPanelFull<UB2UIBackWidgetBase>(UIP_ConfirmToBuyPopup_Normal_Class, this, X_CP_ConfirmToBuyPopup_Normal_Panel.Get());
+	//	if (Created_UIP_ConfirmToBuyPopup_Normal)
+	//	{
+	//		Created_UIP_ConfirmToBuyPopup_Normal->Init();
+	//		// BindDelegate 도 여기서
+	//		BIND_RELEASE_FUNC_TO_BTN(TWeakObjectPtr<UB2Button>(Created_UIP_ConfirmToBuyPopup_Normal->GetSlot<UB2Button>(TEXT("BTN_Negative"))), &UB2UIStore::CloseConfirmToBuyPopupNormalPopup);
+	//		BIND_RELEASE_FUNC_TO_BTN(TWeakObjectPtr<UB2Button>(Created_UIP_ConfirmToBuyPopup_Normal->GetSlot<UB2Button>(TEXT("BTN_Positive"))), &UB2UIStore::SubmitConfirmToBuyItem);
 
-			TWeakObjectPtr<UB2UIStoreProductCost> Cost = GetCostToBuyUIP(Created_UIP_ConfirmToBuyPopup_Normal);
-			if (Cost.IsValid())
-				Cost->Init();
-		}
-	}
+	//		TWeakObjectPtr<UB2UIStoreProductCost> Cost = GetCostToBuyUIP(Created_UIP_ConfirmToBuyPopup_Normal);
+	//		if (Cost.IsValid())
+	//			Cost->Init();
+	//	}
+	//}
 }
 
 void UB2UIStore::ConditionalCreateMileageGuidePopup()
 {
-	if (!Created_UIP_MileageGuidePopup && X_CP_MileageGuidePopup_Panel.IsValid())
-	{
-		Created_UIP_MileageGuidePopup = DynLoadAndCreateInCanvasPanelFull<UB2UIBackWidgetBase>(UIP_MileageGuidePopup_Class, this, X_CP_MileageGuidePopup_Panel.Get());
-		if (Created_UIP_MileageGuidePopup)
-		{
-			Created_UIP_MileageGuidePopup->Init();
-			Created_UIP_MileageGuidePopup->SetVisibility(ESlateVisibility::Collapsed);
-			BTN_MileageGuidePopupClose = Created_UIP_MileageGuidePopup->GetSlot<UB2Button>(FName(TEXT("BTN_Confirm")));
-			BIND_RELEASE_FUNC_TO_BTN(BTN_MileageGuidePopupClose, &UB2UIStore::CloseMileageGuidePopup);
-		}
-	}
+	//if (!Created_UIP_MileageGuidePopup && X_CP_MileageGuidePopup_Panel.IsValid())
+	//{
+	//	Created_UIP_MileageGuidePopup = DynLoadAndCreateInCanvasPanelFull<UB2UIBackWidgetBase>(UIP_MileageGuidePopup_Class, this, X_CP_MileageGuidePopup_Panel.Get());
+	//	if (Created_UIP_MileageGuidePopup)
+	//	{
+	//		Created_UIP_MileageGuidePopup->Init();
+	//		Created_UIP_MileageGuidePopup->SetVisibility(ESlateVisibility::Collapsed);
+	//		BTN_MileageGuidePopupClose = Created_UIP_MileageGuidePopup->GetSlot<UB2Button>(FName(TEXT("BTN_Confirm")));
+	//		BIND_RELEASE_FUNC_TO_BTN(BTN_MileageGuidePopupClose, &UB2UIStore::CloseMileageGuidePopup);
+	//	}
+	//}
 }
 
 void UB2UIStore::ConditionalCreateGuestWarningPopup()
 {
-	if (!Created_UIP_GuestWarningPopup && X_CP_GuestWarningPopup_Panel.IsValid())
-	{
-		Created_UIP_GuestWarningPopup = DynLoadAndCreateInCanvasPanelFull<UB2UIMsgPopupGuestWarning>(UIP_GuestWarningPopup_Class, this, X_CP_GuestWarningPopup_Panel.Get());
-		if (Created_UIP_GuestWarningPopup)
-		{
-			Created_UIP_GuestWarningPopup->Init();
+	//if (!Created_UIP_GuestWarningPopup && X_CP_GuestWarningPopup_Panel.IsValid())
+	//{
+	//	Created_UIP_GuestWarningPopup = DynLoadAndCreateInCanvasPanelFull<UB2UIMsgPopupGuestWarning>(UIP_GuestWarningPopup_Class, this, X_CP_GuestWarningPopup_Panel.Get());
+	//	if (Created_UIP_GuestWarningPopup)
+	//	{
+	//		Created_UIP_GuestWarningPopup->Init();
 
-			BIND_RELEASE_FUNC_TO_BTN(TWeakObjectPtr<UB2Button>(Created_UIP_GuestWarningPopup->GetSlot<UB2Button>(TEXT("BTN_Cancel"))), &UB2UIStore::CloseGuestWarningPopup);
-			BIND_RELEASE_FUNC_TO_BTN(TWeakObjectPtr<UB2Button>(Created_UIP_GuestWarningPopup->GetSlot<UB2Button>(TEXT("BTN_Buy"))), &UB2UIStore::BuyGuestWarningPopup);
-		}
-	}
+	//		BIND_RELEASE_FUNC_TO_BTN(TWeakObjectPtr<UB2Button>(Created_UIP_GuestWarningPopup->GetSlot<UB2Button>(TEXT("BTN_Cancel"))), &UB2UIStore::CloseGuestWarningPopup);
+	//		BIND_RELEASE_FUNC_TO_BTN(TWeakObjectPtr<UB2Button>(Created_UIP_GuestWarningPopup->GetSlot<UB2Button>(TEXT("BTN_Buy"))), &UB2UIStore::BuyGuestWarningPopup);
+	//	}
+	//}
 }
 
 void UB2UIStore::DestroyMileageRewardPopup()

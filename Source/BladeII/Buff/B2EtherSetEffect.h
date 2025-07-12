@@ -6,10 +6,11 @@
 #include "B2FloatingAbnormalEffect.h"
 #include "CommonStruct.h"
 #include "B2AssetLoader.h"
+#include "../BladeII/BladeIIDamageType.h"
 #include "B2EtherSetEffect.generated.h"
 
 /**
- * 
+ *
  */
 
 UCLASS()
@@ -18,9 +19,10 @@ class UB2EtherSetEffect : public UObject, public IB2AsyncInterface//, public FTi
 public:
 	GENERATED_BODY()
 
-	UB2EtherSetEffect() 
+	UB2EtherSetEffect()
 		//: EtherSetType(EEtherSetType::None), EtherSetID(INDEX_NONE), TriggerRate(0.f)/*, EtherEffectAsset(nullptr)*/, Radius(0.0f), FanAngle(180.0f) 
-	{}
+	{
+	}
 	UB2EtherSetEffect(EEtherSetType SetType, int32 SetID)
 		//: EtherSetType(SetType)
 		//, EtherSetID(SetID)
@@ -28,7 +30,8 @@ public:
 		////, EtherEffectAsset(nullptr)
 		//, Radius(0.0f)
 		//, FanAngle(180.0f)
-	{}
+	{
+	}
 	virtual ~UB2EtherSetEffect();
 
 	UB2EtherSetEffect(const FObjectInitializer& ObjectInitializer);
@@ -38,14 +41,14 @@ public:
 	virtual void BeginDestroy() override;
 	virtual uint32 GetHashValue();
 
-// Ether Logic Interface
+	// Ether Logic Interface
 
 	virtual void Initialize(class ABladeIIPlayer* Owner, float EtherTriggerRate, float EtherCoolDown);
 	virtual void SetEtherCondition(float EtherCoolTime) { CurrentCool = EtherCoolTime; }
 	virtual void ActivateEther(ABladeIICharacter* EtherCauser);
 
 	virtual bool IsActivatable(ABladeIICharacter* EtherCauser, const FDamageInfo& CauserDamageInfo, float ActualDamage) { return false; }
-	
+
 	virtual void ApplyEtherToOwner(class ABladeIIPlayer* Owner) {}
 	virtual void ApplyEtherToCauser(ABladeIICharacter* EtherCauser) {}
 	virtual void ApplyEtherToOther(ABladeIICharacter* Other) {}	// Influenced by Cuaser or Owner
@@ -61,23 +64,23 @@ public:
 	void SpawnTextFx(ABladeIICharacter* ApplyCharacter);
 	virtual void ProcessEffect(ABladeIICharacter* ApplyCharacter) {}
 
-// Get Interface
+	// Get Interface
 
 	class ABladeIIPlayer* GetOwner()		const { return OwnerPlayer; }
 
 	const EEtherSetType GetEtherSetType()	const { return EtherSetType; }
 	const int32			GetEtherSetID()		const { return EtherSetID; }
 
-	const FDamageInfo*	GetDamageInfo()		const { return &DamageInfo; }
+	const FDamageInfo* GetDamageInfo()		const { return &DamageInfo; }
 
 	const float			GetCurrentCoolTime() const { return CurrentCool; }
-	const float			GetMaxCoolTime() const { return CoolDown;  }
-	bool				GetEnableCoolTime() const { return EnableCoolDown;  }
+	const float			GetMaxCoolTime() const { return CoolDown; }
+	bool				GetEnableCoolTime() const { return EnableCoolDown; }
 
 	virtual bool GetInfluencedCharacters(ABladeIICharacter* EtherCauser, TArray<ABladeIICharacter*>& OutInfluenced) { return false; }
 
 protected:
-	
+
 	// AsyncLoading Interface
 
 	virtual bool GatherAsyncLoadAssets(const FString& RequestName, TArray<FSoftObjectPath>& OutGatheredAssets);
@@ -90,7 +93,7 @@ protected:
 
 
 
-	class ABladeIIPlayer*	OwnerPlayer;
+	class ABladeIIPlayer* OwnerPlayer;
 	float					TriggerRate;
 	bool					EnableCoolDown;
 	float					CoolDown;
@@ -118,13 +121,13 @@ protected:
 	UParticleSystem* EtherEffectObj;
 
 	UPROPERTY(Transient)
-	UTexture2D*		TextTextureObj;
+	UTexture2D* TextTextureObj;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Ether")
-		float Radius;
+	float Radius;
 	// 0 ~ 180
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Ether", meta = (ClampMin = "0.0", ClampMax = "180.0", UIMin = "0.0", UIMax = "180.0"))
-		float FanAngle; 
+	float FanAngle;
 
 private:	// Do not change
 
@@ -198,7 +201,7 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Ether")
 	float ThunderDamageRate;
-	
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Ether")
 	float ThunderDamageRateToBoss;
 
@@ -215,7 +218,7 @@ class UB2Ether_Immobilize : public UB2EtherSetOffense
 {
 public:
 	GENERATED_BODY()
-		UB2Ether_Immobilize();
+	UB2Ether_Immobilize();
 
 	virtual void ApplyEtherToCauser(ABladeIICharacter* EtherCauser);
 
@@ -232,7 +235,7 @@ class UB2Ether_Shield : public UB2EtherSetDefense
 {
 public:
 	GENERATED_BODY()
-		UB2Ether_Shield();
+	UB2Ether_Shield();
 
 	virtual void ApplyEtherToOwner(class ABladeIIPlayer* EtherOwner);
 
@@ -254,13 +257,13 @@ class UB2Ether_FireRange : public UB2EtherSetDefense
 {
 public:
 	GENERATED_BODY()
-		UB2Ether_FireRange();
+	UB2Ether_FireRange();
 
 	virtual void ApplyEtherToCauser(ABladeIICharacter* EtherCauser);
 	virtual void ApplyEtherToOther(ABladeIICharacter* Other);	// Influenced by Cuaser or Owner
 
 	virtual bool GetInfluencedCharacters(ABladeIICharacter* EtherCauser, TArray<ABladeIICharacter*>& OutInfluenced);
-	
+
 	float GetDuration();
 };
 
@@ -329,7 +332,7 @@ class UB2Ether_Stun : public UB2EtherSetOffense
 {
 public:
 	GENERATED_BODY()
-		UB2Ether_Stun();
+	UB2Ether_Stun();
 
 	virtual void ApplyEtherToCauser(class ABladeIICharacter* EtherOwner);
 	float GetDuration();
@@ -365,7 +368,7 @@ class UB2Ether_Reflect : public UB2EtherSetDefense
 {
 public:
 	GENERATED_BODY()
-		UB2Ether_Reflect();
+	UB2Ether_Reflect();
 
 	virtual void ApplyEtherToCauser(ABladeIICharacter* EtherCauser);
 
@@ -374,7 +377,7 @@ public:
 protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Ether")
-		float ReflectAmount;
+	float ReflectAmount;
 };
 
 /* ----- 망각(공격) - N초간 방어/반격/구르기/태그 불능 상태 [B2AetherSetOptionType::PROHIBIT_BEHAVIOR = 1011] ----- */
@@ -383,8 +386,8 @@ class UB2Ether_NotTagDefence : public UB2EtherSetOffense
 {
 public:
 	GENERATED_BODY()
-		UB2Ether_NotTagDefence();
-	
+	UB2Ether_NotTagDefence();
+
 	virtual void ApplyEtherToCauser(ABladeIICharacter* EtherCauser) override;
 
 	float GetDuration();
@@ -392,7 +395,7 @@ public:
 protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Ether")
-		float Duration;
+	float Duration;
 };
 
 /* ----- 혹한(방어) - 빙결 디버프 [B2AetherSetOptionType::FREEZE_RANGE = 1012] ----- */
@@ -401,7 +404,7 @@ class UB2Ether_FreezeRange : public UB2EtherSetDefense
 {
 public:
 	GENERATED_BODY()
-		UB2Ether_FreezeRange();
+	UB2Ether_FreezeRange();
 
 	virtual void ApplyEtherToCauser(ABladeIICharacter* EtherCauser) override;
 	virtual void ApplyEtherToOther(ABladeIICharacter* Other) override;	// Influenced by Cuaser or Owner
@@ -412,5 +415,5 @@ public:
 protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Ether")
-		float Duration;
+	float Duration;
 };

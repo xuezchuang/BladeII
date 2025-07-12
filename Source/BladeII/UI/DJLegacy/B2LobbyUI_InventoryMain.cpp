@@ -483,60 +483,60 @@ void UB2LobbyUI_InventoryMain::UpdateAllItemIconsForCurrentSelection()
 void UB2LobbyUI_InventoryMain::UpdateStoredItemIconsForCurrentSelection()
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2LobbyUI_InventoryMain_UpdateStoredItemIconsForCurrentSelection);
-	DestroyAllItemRows(); // 기존에 만들었던 거 제거부터
-	if (ItemIconRowWidgetClass == NULL || ItemDisplayPanelNativeRef == NULL) {
-		return;
-	}
+	//DestroyAllItemRows(); // 기존에 만들었던 거 제거부터
+	//if (ItemIconRowWidgetClass == NULL || ItemDisplayPanelNativeRef == NULL) {
+	//	return;
+	//}
 
-	TArray<FB2Item> CurrPCItemList;
-	// 결국 static 인 GetStoredItemList 는 사용하지 못하겠군.
-	//check(CachedInventory); 체크걸지 않는다. 영웅관리 UI 바뀌면서 미처 준비되지 않은 상황에서 여기 들어오게 될 수 있음.
-	if (CachedInventory)
-	{
-		CachedInventory->GetStoredItemList_ItemOpModeFilter(CurrPCItemList, CurSelectedItemInvenTab, EPCClass::EPC_End, true);
-	}
+	//TArray<FB2Item> CurrPCItemList;
+	//// 결국 static 인 GetStoredItemList 는 사용하지 못하겠군.
+	////check(CachedInventory); 체크걸지 않는다. 영웅관리 UI 바뀌면서 미처 준비되지 않은 상황에서 여기 들어오게 될 수 있음.
+	//if (CachedInventory)
+	//{
+	//	CachedInventory->GetStoredItemList_ItemOpModeFilter(CurrPCItemList, CurSelectedItemInvenTab, EPCClass::EPC_End, true);
+	//}
 
-	CachedLevelupItemIngredsCount = CurrPCItemList.Num();
-	if (CurrPCItemList.Num() == 0)
-	{
-		return;
-	}
+	//CachedLevelupItemIngredsCount = CurrPCItemList.Num();
+	//if (CurrPCItemList.Num() == 0)
+	//{
+	//	return;
+	//}
 
-	const int32 InventoryRowMaxCount = DynItemIconRowMaxCount::DefaultInven;
-	const int32 RequiredRowNum = (FMath::Max(0, CurrPCItemList.Num() - 1) / InventoryRowMaxCount) + 1;
-	for (int RI = 0; RI < RequiredRowNum; ++RI)
-	{
-		UB2DynItemIconRow_LobbyInven* NewItemRow = CreateWidget<UB2DynItemIconRow_LobbyInven>(GetOwningPlayer(), ItemIconRowWidgetClass);
-		if (NewItemRow == NULL)
-		{
-			continue;
-		}
+	//const int32 InventoryRowMaxCount = DynItemIconRowMaxCount::DefaultInven;
+	//const int32 RequiredRowNum = (FMath::Max(0, CurrPCItemList.Num() - 1) / InventoryRowMaxCount) + 1;
+	//for (int RI = 0; RI < RequiredRowNum; ++RI)
+	//{
+	//	UB2DynItemIconRow_LobbyInven* NewItemRow = CreateWidget<UB2DynItemIconRow_LobbyInven>(GetOwningPlayer(), ItemIconRowWidgetClass);
+	//	if (NewItemRow == NULL)
+	//	{
+	//		continue;
+	//	}
 
-		UScrollBoxSlot* AddedRowSlot = Cast<UScrollBoxSlot>(ItemDisplayPanelNativeRef->AddChild(NewItemRow));
+	//	UScrollBoxSlot* AddedRowSlot = Cast<UScrollBoxSlot>(ItemDisplayPanelNativeRef->AddChild(NewItemRow));
 
-		// 요 PanelSlot 이 있어야 위치 등의 세팅이 되는데.. ScrollBoxSlot 이면 필요한 게 딱히 없을듯..?
-		if (AddedRowSlot)
-		{
-		}
+	//	// 요 PanelSlot 이 있어야 위치 등의 세팅이 되는데.. ScrollBoxSlot 이면 필요한 게 딱히 없을듯..?
+	//	if (AddedRowSlot)
+	//	{
+	//	}
 
-		// NewItemRow 는 여전히 CanvasPanel 수준이고 여기에 실제 아이템 아이콘들을 쳐넣는다.
-		NewItemRow->UpdateItemIcons(CurrPCItemList, RI * InventoryRowMaxCount, this);
+	//	// NewItemRow 는 여전히 CanvasPanel 수준이고 여기에 실제 아이템 아이콘들을 쳐넣는다.
+	//	NewItemRow->UpdateItemIcons(CurrPCItemList, RI * InventoryRowMaxCount, this);
 
-		// 이쪽 ScrollBox 핸들링을 위한 Sender/Receiver 등록
-		TArray<UB2DynItemIcon_LobbyInven*> AllCreatedICons;
-		NewItemRow->GetAllCreatedIcons(AllCreatedICons);
-		for (UB2DynItemIcon_LobbyInven* ThisIcon : AllCreatedICons)
-		{
-			if (ThisIcon)
-			{
-				ThisIcon->SetupManualScrollBoxSender_byReceiver(this, ItemDisplayPanelNativeRef);
-			}
-		}
-		CreatedItemRows.Add(NewItemRow);
-	}
+	//	// 이쪽 ScrollBox 핸들링을 위한 Sender/Receiver 등록
+	//	TArray<UB2DynItemIcon_LobbyInven*> AllCreatedICons;
+	//	NewItemRow->GetAllCreatedIcons(AllCreatedICons);
+	//	for (UB2DynItemIcon_LobbyInven* ThisIcon : AllCreatedICons)
+	//	{
+	//		if (ThisIcon)
+	//		{
+	//			ThisIcon->SetupManualScrollBoxSender_byReceiver(this, ItemDisplayPanelNativeRef);
+	//		}
+	//	}
+	//	CreatedItemRows.Add(NewItemRow);
+	//}
 
-	TUTORIAL // Tutorial Hardcoding
-	TutorialHighlightCheck();
+	//TUTORIAL // Tutorial Hardcoding
+	//TutorialHighlightCheck();
 }
 
 void UB2LobbyUI_InventoryMain::UpdateEquipItemIconsForCurrentSelection()

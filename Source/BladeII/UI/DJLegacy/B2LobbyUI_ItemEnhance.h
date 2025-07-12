@@ -5,6 +5,7 @@
 #include "B2LobbyUserWidget.h"
 #include "B2Inventory.h"
 #include "B2UIBackWidget.h"
+#include "../B2RichTextBlock.h"
 #include "B2LobbyUI_ItemEnhance.generated.h"
 
 const int32 ITEM_ENHANCE_MENU_INGREDIENT_ICON_PER_ROW = 2;

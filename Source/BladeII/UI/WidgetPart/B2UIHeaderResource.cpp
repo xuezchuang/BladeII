@@ -113,69 +113,69 @@ void UB2UIHeaderResource::SetBladePointAmountText(const int32 NewValueAmount, co
 
 void UB2UIHeaderResource::OnPlusBtnClick()
 {
-	auto* DocStore = UB2UIDocHelper::GetDocStore();
-	bool bGDC = ShouldShowGDCVersionContent(); // [GDC] Feb 2017
-	bool bCBT = ShouldShowCBTVersionContent();
-		
-	switch (ResourceUIType)
-	{
-	case EUIHeaderResourceType::None:
-		break;
+	//auto* DocStore = UB2UIDocHelper::GetDocStore();
+	//bool bGDC = ShouldShowGDCVersionContent(); // [GDC] Feb 2017
+	//bool bCBT = ShouldShowCBTVersionContent();
+	//	
+	//switch (ResourceUIType)
+	//{
+	//case EUIHeaderResourceType::None:
+	//	break;
 
-	case EUIHeaderResourceType::DarkCrystal:
-		if (DocStore)
-		{
-			DocStore->SetStoreTabToOpen(EStoreCategory::Goods);
-			DocStore->SetStoreGoodsTabToOpen(EGoodsCategory::GEM);
-		}
-		EnterShopClass<int32>::GetInstance().Signal(static_cast<int32>(EStorePageWhere::Store));
-		break;
+	//case EUIHeaderResourceType::DarkCrystal:
+	//	if (DocStore)
+	//	{
+	//		DocStore->SetStoreTabToOpen(EStoreCategory::Goods);
+	//		DocStore->SetStoreGoodsTabToOpen(EGoodsCategory::GEM);
+	//	}
+	//	EnterShopClass<int32>::GetInstance().Signal(static_cast<int32>(EStorePageWhere::Store));
+	//	break;
 
-	case EUIHeaderResourceType::BladePoint:
-		if (DocStore)
-		{
-			DocStore->SetStoreTabToOpen(EStoreCategory::Goods);
-			DocStore->SetStoreGoodsTabToOpen(EGoodsCategory::BLADE_POINT);
-		}
-		EnterShopClass<int32>::GetInstance().Signal(static_cast<int32>(EStorePageWhere::Store));
-		break;
+	//case EUIHeaderResourceType::BladePoint:
+	//	if (DocStore)
+	//	{
+	//		DocStore->SetStoreTabToOpen(EStoreCategory::Goods);
+	//		DocStore->SetStoreGoodsTabToOpen(EGoodsCategory::BLADE_POINT);
+	//	}
+	//	EnterShopClass<int32>::GetInstance().Signal(static_cast<int32>(EStorePageWhere::Store));
+	//	break;
 
-	case EUIHeaderResourceType::Gem:
-		if (DocStore)
-		{
-			DocStore->SetStoreTabToOpen(EStoreCategory::Goods);
-			DocStore->SetStoreGoodsTabToOpen(EGoodsCategory::GEM);
-		}	
-		EnterShopClass<int32>::GetInstance().Signal(static_cast<int32>(EStorePageWhere::Store));
-		break;
+	//case EUIHeaderResourceType::Gem:
+	//	if (DocStore)
+	//	{
+	//		DocStore->SetStoreTabToOpen(EStoreCategory::Goods);
+	//		DocStore->SetStoreGoodsTabToOpen(EGoodsCategory::GEM);
+	//	}	
+	//	EnterShopClass<int32>::GetInstance().Signal(static_cast<int32>(EStorePageWhere::Store));
+	//	break;
 
-	case EUIHeaderResourceType::Gold:
-		if (DocStore)
-		{
-			DocStore->SetStoreTabToOpen(EStoreCategory::Goods);
-			DocStore->SetStoreGoodsTabToOpen(EGoodsCategory::GOLD);
-		}
-		EnterShopClass<int32>::GetInstance().Signal(static_cast<int32>(EStorePageWhere::Store));
-		break;
+	//case EUIHeaderResourceType::Gold:
+	//	if (DocStore)
+	//	{
+	//		DocStore->SetStoreTabToOpen(EStoreCategory::Goods);
+	//		DocStore->SetStoreGoodsTabToOpen(EGoodsCategory::GOLD);
+	//	}
+	//	EnterShopClass<int32>::GetInstance().Signal(static_cast<int32>(EStorePageWhere::Store));
+	//	break;
 
-	case EUIHeaderResourceType::SocialPoint:
-		break;
+	//case EUIHeaderResourceType::SocialPoint:
+	//	break;
 
-	case EUIHeaderResourceType::HeroTowerTicket:
-		break;
+	//case EUIHeaderResourceType::HeroTowerTicket:
+	//	break;
 
-	case EUIHeaderResourceType::HeroPiece:
-		break;
+	//case EUIHeaderResourceType::HeroPiece:
+	//	break;
 
-	case EUIHeaderResourceType::DimensionPiece:
-		break;
+	//case EUIHeaderResourceType::DimensionPiece:
+	//	break;
 
-	case EUIHeaderResourceType::Max:
-		break;
+	//case EUIHeaderResourceType::Max:
+	//	break;
 
-	default:
-		break;
-	}
+	//default:
+	//	break;
+	//}
 }
 
 void UB2UIHeaderResource::OnToolTipBtnClick()

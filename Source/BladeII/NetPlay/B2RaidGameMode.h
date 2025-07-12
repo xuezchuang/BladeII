@@ -1,6 +1,7 @@
 #pragma once
 //#include "BladeII.h"
 #include "B2NetGameMode.h"
+#include "../DataStore/B2ClientDataStore.h"
 #include "B2RaidGameMode.generated.h"
 
 class UB2NPCClassInfoBox;

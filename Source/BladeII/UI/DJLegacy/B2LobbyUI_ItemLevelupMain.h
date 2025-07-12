@@ -5,6 +5,8 @@
 #include "B2LobbyUserWidget.h"
 #include "B2Inventory.h"
 #include "B2UIBackWidget.h"
+#include "../../BladeII.h"
+#include "../Widget/B2ScrollBox.h"
 #include "B2LobbyUI_ItemLevelupMain.generated.h"
 
 const int32 LOBBY_EQUIPMENT_LEVELUP_MENU_INGREDIENT_ICON_PER_ROW = 5;

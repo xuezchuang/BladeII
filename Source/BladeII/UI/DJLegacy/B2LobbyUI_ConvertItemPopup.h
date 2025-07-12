@@ -8,6 +8,7 @@
 #include "CommonStruct.h"
 #include "B2UIBackWidget.h"
 #include "EventSubsystem.h"
+#include "../Widget/B2ButtonGoodInfoToolTip.h"
 #include "B2LobbyUI_ConvertItemPopup.generated.h"
 
 DECLARE_DELEGATE(FConvertItemPopupOnClick)

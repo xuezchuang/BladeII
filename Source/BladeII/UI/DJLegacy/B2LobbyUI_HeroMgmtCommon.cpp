@@ -572,32 +572,32 @@ void UB2LobbyUI_HeroMgmtCommon::SetCharacterTextColor(EPCClass eclass)
 
 void UB2LobbyUI_HeroMgmtCommon::GetDetailPopupWidgetInfo(EHeroMgmtSubMode InHeroMgmtSubMode, UB2LobbyUserWidget** OutLobbyUserWIdget, UPanelWidget** OutPopupWidget)
 {
-	if (CachedLobbyGM != nullptr)
-	{
-		switch (CurrentHeroMgmtSubMode)
-		{
-		case EHeroMgmtSubMode::EHMSM_Inventory:
-		{
-			UB2LobbyUI_InventoryMain* OwnerAsInvenUI = Cast<UB2LobbyUI_InventoryMain>(CachedLobbyGM->DJLegacy_GetCurrLobbyUIPage());
-			*OutLobbyUserWIdget = OwnerAsInvenUI;
-			*OutPopupWidget = OwnerAsInvenUI ? OwnerAsInvenUI->GetItemDetailPopupParentPanel(true) : nullptr;
-			break;
-		}
-		case EHeroMgmtSubMode::EHMSM_Totem:
-		{
-			UB2LobbyUI_TotemInventoryMain* OwnerAsTotemUI = Cast<UB2LobbyUI_TotemInventoryMain>(CachedLobbyGM->DJLegacy_GetCurrLobbyUIPage());
-			*OutLobbyUserWIdget = OwnerAsTotemUI;
-			*OutPopupWidget = OwnerAsTotemUI ? OwnerAsTotemUI->GetItemDetailPopupParentPanel(true) : nullptr;
-			break;
-		}
-		}
-	}
+	//if (CachedLobbyGM != nullptr)
+	//{
+	//	switch (CurrentHeroMgmtSubMode)
+	//	{
+	//	case EHeroMgmtSubMode::EHMSM_Inventory:
+	//	{
+	//		UB2LobbyUI_InventoryMain* OwnerAsInvenUI = Cast<UB2LobbyUI_InventoryMain>(CachedLobbyGM->DJLegacy_GetCurrLobbyUIPage());
+	//		*OutLobbyUserWIdget = OwnerAsInvenUI;
+	//		*OutPopupWidget = OwnerAsInvenUI ? OwnerAsInvenUI->GetItemDetailPopupParentPanel(true) : nullptr;
+	//		break;
+	//	}
+	//	case EHeroMgmtSubMode::EHMSM_Totem:
+	//	{
+	//		UB2LobbyUI_TotemInventoryMain* OwnerAsTotemUI = Cast<UB2LobbyUI_TotemInventoryMain>(CachedLobbyGM->DJLegacy_GetCurrLobbyUIPage());
+	//		*OutLobbyUserWIdget = OwnerAsTotemUI;
+	//		*OutPopupWidget = OwnerAsTotemUI ? OwnerAsTotemUI->GetItemDetailPopupParentPanel(true) : nullptr;
+	//		break;
+	//	}
+	//	}
+	//}
 
-	if (*OutLobbyUserWIdget != nullptr && *OutPopupWidget != nullptr)
-		return;
+	//if (*OutLobbyUserWIdget != nullptr && *OutPopupWidget != nullptr)
+	//	return;
 
-	*OutLobbyUserWIdget = this;
-	*OutPopupWidget = GetInfoPopupParentPanel(true);
+	//*OutLobbyUserWIdget = this;
+	//*OutPopupWidget = GetInfoPopupParentPanel(true);
 }
 
 void UB2LobbyUI_HeroMgmtCommon::SetHidePresetControls()

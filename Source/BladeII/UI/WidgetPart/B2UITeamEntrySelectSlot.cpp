@@ -89,30 +89,30 @@ void UB2UITeamEntrySelectSlot::SetEnterTeamMatchCheck(EPCClass CharacterClass)
 
 void UB2UITeamEntrySelectSlot::OnClickSelect()
 {
-	UB2UIDocTeamMatch* TeamDoc = UB2UIDocHelper::GetDocTeamMatch();
+	//UB2UIDocTeamMatch* TeamDoc = UB2UIDocHelper::GetDocTeamMatch();
 
-	if (!TeamDoc)
-		return;
+	//if (!TeamDoc)
+	//	return;
 
-	for (int32 idx = 0; idx < /*AB2TMGameMode::GetNumCharactersOfTeam()*/3; ++idx)//임시
-	{
-		if (TeamDoc->GetCharacterClass(true, idx) == ChacacterClassEnum)
-		{
-			TeamDoc->SetCharacterClass(true, idx, EPCClass::EPC_End);
-			CP_CharacterCheck->SetVisibility(ESlateVisibility::Hidden);
-			break;
-		}
-		else if (TeamDoc->GetCharacterClass(true, idx) == EPCClass::EPC_End)
-		{
-			if (CP_CharacterCheck->GetVisibility() == ESlateVisibility::Hidden)
-			{
-				TeamDoc->SetCharacterClass(true, idx, ChacacterClassEnum);
-				CP_CharacterCheck->SetVisibility(ESlateVisibility::Visible);
-				break;
-			}
-		}
-	}
+	//for (int32 idx = 0; idx < /*AB2TMGameMode::GetNumCharactersOfTeam()*/3; ++idx)//임시
+	//{
+	//	if (TeamDoc->GetCharacterClass(true, idx) == ChacacterClassEnum)
+	//	{
+	//		TeamDoc->SetCharacterClass(true, idx, EPCClass::EPC_End);
+	//		CP_CharacterCheck->SetVisibility(ESlateVisibility::Hidden);
+	//		break;
+	//	}
+	//	else if (TeamDoc->GetCharacterClass(true, idx) == EPCClass::EPC_End)
+	//	{
+	//		if (CP_CharacterCheck->GetVisibility() == ESlateVisibility::Hidden)
+	//		{
+	//			TeamDoc->SetCharacterClass(true, idx, ChacacterClassEnum);
+	//			CP_CharacterCheck->SetVisibility(ESlateVisibility::Visible);
+	//			break;
+	//		}
+	//	}
+	//}
 
-	if (FormationSlotUpdateDelegate.IsBound())
-		FormationSlotUpdateDelegate.ExecuteIfBound();
+	//if (FormationSlotUpdateDelegate.IsBound())
+	//	FormationSlotUpdateDelegate.ExecuteIfBound();
 }

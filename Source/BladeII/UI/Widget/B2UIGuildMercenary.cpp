@@ -397,26 +397,26 @@ void UB2UIGuildMercenary::NativeTick(const FGeometry& MyGeometry, float InDeltaT
 
 void UB2UIGuildMercenary::SubscribeEvent()
 {
-		DeliveryuildDonationTiket = DeliveryuildDonationClass<FB2ResponseGuildDonationPtr>::GetInstance().Subscribe(
-		[this](FB2ResponseGuildDonationPtr InGuildDonatio)
-	{
-			DeliveryuildDonation(InGuildDonatio);
-			
-		}
-	);
+	//	DeliveryuildDonationTiket = DeliveryuildDonationClass<FB2ResponseGuildDonationPtr>::GetInstance().Subscribe(
+	//	[this](FB2ResponseGuildDonationPtr InGuildDonatio)
+	//{
+	//		DeliveryuildDonation(InGuildDonatio);
+	//		
+	//	}
+	//);
 
-		DeliveryuildDonatioErrorTiket = DeliveryuildDonatioErrorClass<>::GetInstance().Subscribe(
-			[this]()
-		{
-			DonatioButtonEnbled();
-		}
-		);
+	//	DeliveryuildDonatioErrorTiket = DeliveryuildDonatioErrorClass<>::GetInstance().Subscribe(
+	//		[this]()
+	//	{
+	//		DonatioButtonEnbled();
+	//	}
+	//	);
 }
 
 void UB2UIGuildMercenary::UnSubscribeEvent()
 {
-	DeliveryuildDonationClass<FB2ResponseGuildDonationPtr>::GetInstance().UnsubscribeAll();
-	DeliveryuildDonatioErrorClass<>::GetInstance().UnsubscribeAll();
+	//DeliveryuildDonationClass<FB2ResponseGuildDonationPtr>::GetInstance().UnsubscribeAll();
+	//DeliveryuildDonatioErrorClass<>::GetInstance().UnsubscribeAll();
 }
 
 void UB2UIGuildMercenary::SetMercenary()

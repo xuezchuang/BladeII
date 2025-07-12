@@ -136,33 +136,33 @@ void UB2UIEventAttendance::InitEventInfo()
 
 void UB2UIEventAttendance::UpdateEventAttendanceParts()
 {
-	TArray<FEventAttendanceReward> AttendanceRewards;
-	const auto& RewardStatus = BladeIIGameImpl::GetClientDataStore().GetEventAttendanceStatus();
-	const auto& RewardData = BladeIIGameImpl::GetClientDataStore().GetEventAttendanceRewardData(AttendanceRewards, RewardStatus.event_id);
+	//TArray<FEventAttendanceReward> AttendanceRewards;
+	//const auto& RewardStatus = BladeIIGameImpl::GetClientDataStore().GetEventAttendanceStatus();
+	//const auto& RewardData = BladeIIGameImpl::GetClientDataStore().GetEventAttendanceRewardData(AttendanceRewards, RewardStatus.event_id);
 
-	if (AttendanceRewards.Max() <= 0)
-		return;
+	//if (AttendanceRewards.Max() <= 0)
+	//	return;
 
-	if (RewardStatus.next_attendance_time == -1)
-	{
-		data_trader::Retailer::GetInstance().RequestEventAttendance(CachedEventInfo.event_id);
-		return;
-	}
+	//if (RewardStatus.next_attendance_time == -1)
+	//{
+	//	data_trader::Retailer::GetInstance().RequestEventAttendance(CachedEventInfo.event_id);
+	//	return;
+	//}
 
-	for (int32 i = 0; i < CachedEventInfo.total_attendance_days; ++i)
-	{
-		int32 iPartsIndex = i;
+	//for (int32 i = 0; i < CachedEventInfo.total_attendance_days; ++i)
+	//{
+	//	int32 iPartsIndex = i;
 
-		if (i == CachedEventInfo.total_attendance_days - 1)	//4일 이벤트일 경우 UIP_EventAttendancePart6가 4일째 보상으로 세팅이 되어야 하므로
-			iPartsIndex = EventAttendanceParts.Num() - 1;
+	//	if (i == CachedEventInfo.total_attendance_days - 1)	//4일 이벤트일 경우 UIP_EventAttendancePart6가 4일째 보상으로 세팅이 되어야 하므로
+	//		iPartsIndex = EventAttendanceParts.Num() - 1;
 
-		SetEventAttendanceParts(iPartsIndex, i, RewardStatus.attendance_day, AttendanceRewards);
-	}
+	//	SetEventAttendanceParts(iPartsIndex, i, RewardStatus.attendance_day, AttendanceRewards);
+	//}
 
-	if (TB_GotoURL.IsValid())
-		TB_GotoURL->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("EventAttendanceGotoURL")));
+	//if (TB_GotoURL.IsValid())
+	//	TB_GotoURL->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("EventAttendanceGotoURL")));
 
-	ReceiveAttendanceExitEnableClass<bool>::GetInstance().Signal(true);
+	//ReceiveAttendanceExitEnableClass<bool>::GetInstance().Signal(true);
 }
 
 void UB2UIEventAttendance::UpdateEventAttendancePackageState()
@@ -255,7 +255,7 @@ void UB2UIEventAttendance::SetVisibility(ESlateVisibility InVisibility)
 
 void UB2UIEventAttendance::SubscribeEvents()
 {
-	UnsubscribeEvents();
+	/*UnsubscribeEvents();
 
 	CAPTURE_UOBJECT(UB2UIEventAttendance);
 
@@ -287,7 +287,7 @@ void UB2UIEventAttendance::SubscribeEvents()
 			Capture->ResponseGetPeriodPackageState(ReciveGetPeriodPackageState);
 		}
 	}
-	));
+	));*/
 }
 
 void UB2UIEventAttendance::UnsubscribeEvents()
@@ -320,23 +320,23 @@ bool UB2UIEventAttendance::IsEntirePeriod() const
 
 void UB2UIEventAttendance::ReceiveEventAttendance(int32 EventId, int32 ReciveRewardDay, b2network::B2RewardPtr Reward)
 {
-	const int32 MaxPartIndex = EventAttendanceParts.Num();
-	for (int32 i = 0; i < MaxPartIndex; ++i)
-	{
-		if (EventAttendanceParts.IsValidIndex(i) == false)
-		{
-			continue;
-		}
+	//const int32 MaxPartIndex = EventAttendanceParts.Num();
+	//for (int32 i = 0; i < MaxPartIndex; ++i)
+	//{
+	//	if (EventAttendanceParts.IsValidIndex(i) == false)
+	//	{
+	//		continue;
+	//	}
 
-		if (EventAttendanceParts[i]->GetRewardDay() == ReciveRewardDay)
-		{
-			EventAttendanceParts[i]->UpdateRewardState(EEventRewardState::REWARD_COMPLETE, Reward);
-			break;
-		}
-	}
+	//	if (EventAttendanceParts[i]->GetRewardDay() == ReciveRewardDay)
+	//	{
+	//		EventAttendanceParts[i]->UpdateRewardState(EEventRewardState::REWARD_COMPLETE, Reward);
+	//		break;
+	//	}
+	//}
 
-	DoMarkCombineRedDotClass<>::GetInstance().Signal();
-	UpdateMarkRedDotClass<const FName&>::GetInstance().Signal(UIFName::AttendanceMain);
+	//DoMarkCombineRedDotClass<>::GetInstance().Signal();
+	//UpdateMarkRedDotClass<const FName&>::GetInstance().Signal(UIFName::AttendanceMain);
 }
 
 void UB2UIEventAttendance::SetEventSpecialDay()

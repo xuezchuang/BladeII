@@ -1,6 +1,7 @@
 #pragma once
 
 #include "B2UIRepeatableElements.h"
+#include "../../Common/Event.h"
 #include "B2UIGradeRankAndStar.generated.h"
 
 UCLASS(BlueprintType, Blueprintable)

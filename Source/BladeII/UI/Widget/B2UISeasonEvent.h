@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "UI/B2UIWidget.h"
+#include "B2Image.h"
+#include "../../BladeII/BladeIIGameMode.h"
 #include "B2UISeasonEvent.generated.h"
 
 struct tSeasonEventDayInfo

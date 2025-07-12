@@ -9,6 +9,8 @@
 #include "B2UIRepeatBattleInGameInfo.h"
 #include "B2UIStageClearRewardFx.h"
 #include "B2UIBackWidget.h"
+#include "../../BladeII.h"
+#include "UObject/ObjectSaveContext.h"
 #include "B2UIStageClear.generated.h"
 
 const int32 MAX_REWARD_FX_PART_NUM = 5; // Max reward number itself might be different.

@@ -10,6 +10,7 @@
 #include "BladeIIUtil.h"
 #include "B2UIMission.h"
 #include "Retailer.h"
+#include "Event.h"
 
 
 UB2UIPMissionSlot::UB2UIPMissionSlot(const FObjectInitializer& ObjectInitializer)

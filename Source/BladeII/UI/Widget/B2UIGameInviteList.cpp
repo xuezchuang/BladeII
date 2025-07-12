@@ -143,32 +143,32 @@ void UB2UIGameInviteList::SubscribeEvent()
 {
 	CAPTURE_UOBJECT(UB2UIGameInviteList);
 
-	DeliveryGetFriendListTicket = DeliveryGetFriendListClass<FB2FriendList>::GetInstance().Subscribe(
-		USE_CAPTURE_OBJECT_AND_TICKET(DeliveryGetFriendList, const FB2FriendList& FriendList)
-		Capture->OnDeliveryGetFriendList(FriendList);
-		END_CAPTURE_OBJECT()
-		);
+	//DeliveryGetFriendListTicket = DeliveryGetFriendListClass<FB2FriendList>::GetInstance().Subscribe(
+	//	USE_CAPTURE_OBJECT_AND_TICKET(DeliveryGetFriendList, const FB2FriendList& FriendList)
+	//	Capture->OnDeliveryGetFriendList(FriendList);
+	//	END_CAPTURE_OBJECT()
+	//	);
 
-	DeliveryGetGuildMemberTicket = DeliveryGetGuildMemberClass<FB2ResponseGuildMemberPtr>::GetInstance().Subscribe(
-		USE_CAPTURE_OBJECT_AND_TICKET(DeliveryGetGuildMember, const FB2ResponseGuildMemberPtr& GuildMemberList)
-		Capture->OnDeliveryGetGuildMemberList(GuildMemberList);
-	END_CAPTURE_OBJECT()
-		);
+	//DeliveryGetGuildMemberTicket = DeliveryGetGuildMemberClass<FB2ResponseGuildMemberPtr>::GetInstance().Subscribe(
+	//	USE_CAPTURE_OBJECT_AND_TICKET(DeliveryGetGuildMember, const FB2ResponseGuildMemberPtr& GuildMemberList)
+	//	Capture->OnDeliveryGetGuildMemberList(GuildMemberList);
+	//END_CAPTURE_OBJECT()
+	//	);
 
 
-	DeliveryFindUserTicket = DeliveryFindUserClass<FB2FindUser>::GetInstance().Subscribe(
-		USE_CAPTURE_OBJECT_AND_TICKET(DeliveryFindUser, const FB2FindUser& FindUser)
-		Capture->OnDeliveryFindUser(FindUser);
-	END_CAPTURE_OBJECT()
-		);
+	//DeliveryFindUserTicket = DeliveryFindUserClass<FB2FindUser>::GetInstance().Subscribe(
+	//	USE_CAPTURE_OBJECT_AND_TICKET(DeliveryFindUser, const FB2FindUser& FindUser)
+	//	Capture->OnDeliveryFindUser(FindUser);
+	//END_CAPTURE_OBJECT()
+	//	);
 
 }
 
 void UB2UIGameInviteList::UnSubscribeEvent()
 {
-	DeliveryGetFriendListClass<FB2FriendList>::GetInstance().Unsubscribe(DeliveryGetFriendListTicket);
-	DeliveryGetGuildMemberClass<FB2ResponseGuildMemberPtr>::GetInstance().Unsubscribe(DeliveryGetGuildMemberTicket);
-	DeliveryFindUserClass<FB2FindUser>::GetInstance().Unsubscribe(DeliveryFindUserTicket);
+	//DeliveryGetFriendListClass<FB2FriendList>::GetInstance().Unsubscribe(DeliveryGetFriendListTicket);
+	//DeliveryGetGuildMemberClass<FB2ResponseGuildMemberPtr>::GetInstance().Unsubscribe(DeliveryGetGuildMemberTicket);
+	//DeliveryFindUserClass<FB2FindUser>::GetInstance().Unsubscribe(DeliveryFindUserTicket);
 }
 
 void UB2UIGameInviteList::StartRefreshTimer(EGameInviteTab InviteTap)

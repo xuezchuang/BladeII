@@ -822,15 +822,15 @@ void UB2UIMail::OpenPopupReceiveSelectiveLotteryResult(const FB2Item& ResultItem
 template<class WidgetClassT>
 static WidgetClassT* CreateDynamicPopupMailUIPCommon(TSoftClassPtr<WidgetClassT>& InCreateWidgetClass, UB2UIMail* InOwnerUserWidget, UCanvasPanel* CreateParentPanel)
 {
-	if (CreateParentPanel)
-	{
-		WidgetClassT* NewCreated = DynLoadAndCreateInCanvasPanelFull<WidgetClassT>(InCreateWidgetClass, InOwnerUserWidget, CreateParentPanel);
-		if (NewCreated)
-		{
-			NewCreated->Init();
-			return NewCreated;
-		}
-	}
+	//if (CreateParentPanel)
+	//{
+	//	WidgetClassT* NewCreated = DynLoadAndCreateInCanvasPanelFull<WidgetClassT>(InCreateWidgetClass, InOwnerUserWidget, CreateParentPanel);
+	//	if (NewCreated)
+	//	{
+	//		NewCreated->Init();
+	//		return NewCreated;
+	//	}
+	//}
 	return nullptr;
 }
 void UB2UIMail::ConditionalCreateGeneralLotteryPopup()

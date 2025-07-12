@@ -1,6 +1,8 @@
 
 
 #include "FB2ErrorMessage.h"
+#include "UObject/NoExportTypes.h"
+#include "Logging/MessageLog.h"
 
 namespace
 {

@@ -141,7 +141,7 @@ void FCostumeDataStore::SetLocalVisibleMode(EPCClass ChangeClass)
 	ClearPreview();
 	ChangeVisibleMode(false, ChangeClass);
 
-	LobbyUpdateCharacterPartClass<EPCClass>::GetInstance().Signal(ChangeClass);
+	//LobbyUpdateCharacterPartClass<EPCClass>::GetInstance().Signal(ChangeClass);
 }
 
 void FCostumeDataStore::SetCostumeVisible(EPCClass InPCClass, ECostumeEquipPlace InCostumeEquip, bool bVisible)
@@ -163,35 +163,35 @@ void FCostumeDataStore::SubscribeEvents()
 {
 	UnSubscribeEvents();
 
-	Issues.Add(OpenCostumeClass<bool>::GetInstance().Subscribe2(
-	[this](bool IsOpen)
-	{
-		this->SetIsOpenCostume(IsOpen);
-	}
-	));
+	//Issues.Add(OpenCostumeClass<bool>::GetInstance().Subscribe2(
+	//[this](bool IsOpen)
+	//{
+	//	this->SetIsOpenCostume(IsOpen);
+	//}
+	//));
 
-	Issues.Add(SelectCostumePackageClass<int32>::GetInstance().Subscribe2(
-		[this](int32 ProductID)
-	{
-		//PreviewMode
-		this->SetPreviewMode(ProductID);
-	}
-	));
+	//Issues.Add(SelectCostumePackageClass<int32>::GetInstance().Subscribe2(
+	//	[this](int32 ProductID)
+	//{
+	//	//PreviewMode
+	//	this->SetPreviewMode(ProductID);
+	//}
+	//));
 
-	Issues.Add(CostumeEquipSlotVisibleClass<bool>::GetInstance().Subscribe2(
-		[this](bool bInven)
-	{
-		if (bInven)
-			this->SetLocalVisibleMode();
-	}
-	));
-	
-	Issues.Add(LobbySetHeroMgmtModePCSelectionClass<EPCClass>::GetInstance().Subscribe2(
-		[this](EPCClass SelectedPCClass)
-	{
-		this->SetLocalVisibleMode(SelectedPCClass);
-	}
-	));
+	//Issues.Add(CostumeEquipSlotVisibleClass<bool>::GetInstance().Subscribe2(
+	//	[this](bool bInven)
+	//{
+	//	if (bInven)
+	//		this->SetLocalVisibleMode();
+	//}
+	//));
+	//
+	//Issues.Add(LobbySetHeroMgmtModePCSelectionClass<EPCClass>::GetInstance().Subscribe2(
+	//	[this](EPCClass SelectedPCClass)
+	//{
+	//	this->SetLocalVisibleMode(SelectedPCClass);
+	//}
+	//));
 }
 
 void FCostumeDataStore::UnSubscribeEvents()

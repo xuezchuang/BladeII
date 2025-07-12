@@ -66,28 +66,28 @@ void UB2UIActClear::OnPlayClearAnimFinish()
 
 void UB2UIActClear::SetTextData(int32 nChapterNum)
 {
-	FString sTemp = FString::Printf(TEXT("ActClear_Title_%d"), nChapterNum);
-	FString sTempDoc = FString::Printf(TEXT("ActClear_Desc_%d"), nChapterNum);
+	//FString sTemp = FString::Printf(TEXT("ActClear_Title_%d"), nChapterNum);
+	//FString sTempDoc = FString::Printf(TEXT("ActClear_Desc_%d"), nChapterNum);
 
-	// Note : GDC임시 코드 (GDC지나면 지워주자~~~ by spivy)
-	{
-		if (ShouldShowGDCVersionContent())
-		{
-			if (UB2StageInfo* StageInfoTable = StaticFindStageInfo())
-			{
-				if (nChapterNum == StageInfoTable->GetChapterNumByClientStageId(StageInfoTable->GetFinalClientStageId()))
-				{
-					sTemp = FString(TEXT("ActClear_Title_GDC"));
-					sTempDoc = FString(TEXT("ActClear_Desc_GDC"));
-				}
-			}
-		}
-	}
+	//// Note : GDC임시 코드 (GDC지나면 지워주자~~~ by spivy)
+	//{
+	//	if (ShouldShowGDCVersionContent())
+	//	{
+	//		if (UB2StageInfo* StageInfoTable = StaticFindStageInfo())
+	//		{
+	//			if (nChapterNum == StageInfoTable->GetChapterNumByClientStageId(StageInfoTable->GetFinalClientStageId()))
+	//			{
+	//				sTemp = FString(TEXT("ActClear_Title_GDC"));
+	//				sTempDoc = FString(TEXT("ActClear_Desc_GDC"));
+	//			}
+	//		}
+	//	}
+	//}
 
-	UE_LOG(LogStreaming, Warning, TEXT("ActClear_Title_ ====== '%s' "), *sTemp);
-	UE_LOG(LogStreaming, Warning, TEXT("ActClear_Desc_ ====== '%s' "), *sTempDoc);
-	TXT_Clear->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, sTemp));
-	TXT_ClearDoc->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, sTempDoc));
+	//UE_LOG(LogStreaming, Warning, TEXT("ActClear_Title_ ====== '%s' "), *sTemp);
+	//UE_LOG(LogStreaming, Warning, TEXT("ActClear_Desc_ ====== '%s' "), *sTempDoc);
+	//TXT_Clear->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, sTemp));
+	//TXT_ClearDoc->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, sTempDoc));
 	
 }
 

@@ -10,6 +10,8 @@
 #include "B2LobbySceneManager.h"
 #include "BladeIIPlayer.h"
 #include "CommonStruct.h"
+#include "../UI/DJLegacy/B2LobbyUISwitcher.h"
+#include "../UI/DJLegacy/B2UIManager_Lobby.h"
 #include "B2LobbyGameMode.generated.h"
 
 /** For Lobby level blueprint custom event. */

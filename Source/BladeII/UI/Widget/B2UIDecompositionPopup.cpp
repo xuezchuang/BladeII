@@ -10,39 +10,39 @@
 
 void UB2UIDecompositionPopup::SetEtherInfo(const int32 InCount, const FOnClickPositive& InPositiveCallBack)
 {
-	PositiveCallBack = InPositiveCallBack;
+	//PositiveCallBack = InPositiveCallBack;
 
-	if (X_TB_Title.IsValid())
-	{
-		X_TB_Title->SetText(BladeIIGetLOCText(FString(B2LOC_CAT_ETHER), FString(TEXT("Ether_Decomposition_Title"))));
-	}
-	if (X_TB_Description.IsValid())
-	{
-		X_TB_Description->SetText(BladeIIGetLOCText(FString(B2LOC_CAT_ETHER), FString(TEXT("Ether_Decomposition_Note_1"))));
-	}
+	//if (X_TB_Title.IsValid())
+	//{
+	//	X_TB_Title->SetText(BladeIIGetLOCText(FString(B2LOC_CAT_ETHER), FString(TEXT("Ether_Decomposition_Title"))));
+	//}
+	//if (X_TB_Description.IsValid())
+	//{
+	//	X_TB_Description->SetText(BladeIIGetLOCText(FString(B2LOC_CAT_ETHER), FString(TEXT("Ether_Decomposition_Note_1"))));
+	//}
 
-	for (int i = 0; i < MAX_DECOMPOSITION_COUNT; ++i)
-	{
-		if (X_VB_Decomposition[i].IsValid())
-		{
-			X_VB_Decomposition[i]->SetVisibility(i == 0 ? ESlateVisibility::SelfHitTestInvisible : ESlateVisibility::Collapsed);
-		}
-	}
+	//for (int i = 0; i < MAX_DECOMPOSITION_COUNT; ++i)
+	//{
+	//	if (X_VB_Decomposition[i].IsValid())
+	//	{
+	//		X_VB_Decomposition[i]->SetVisibility(i == 0 ? ESlateVisibility::SelfHitTestInvisible : ESlateVisibility::Collapsed);
+	//	}
+	//}
 
-	if (UB2ItemInfo* ItemInfoTable = StaticFindItemInfo())
-	{
-		FSingleItemInfoData* const SingleItemInfoData = StaticFindItemInfo()->GetInfoData(FItemRefIDHelper::ITEM_REF_ID_ETHER_PIECE);
-		if (SingleItemInfoData)
-		{
-			if (X_IMG_Decomposition[0].IsValid())
-				X_IMG_Decomposition[0]->SetBrushFromMaterial(SingleItemInfoData->GetIconMaterial(ItemInfoTable));
-		}
-	}
+	//if (UB2ItemInfo* ItemInfoTable = StaticFindItemInfo())
+	//{
+	//	FSingleItemInfoData* const SingleItemInfoData = StaticFindItemInfo()->GetInfoData(FItemRefIDHelper::ITEM_REF_ID_ETHER_PIECE);
+	//	if (SingleItemInfoData)
+	//	{
+	//		if (X_IMG_Decomposition[0].IsValid())
+	//			X_IMG_Decomposition[0]->SetBrushFromMaterial(SingleItemInfoData->GetIconMaterial(ItemInfoTable));
+	//	}
+	//}
 
-	if (X_TB_Count[0].IsValid())
-	{
-		X_TB_Count[0]->SetText(FText::AsNumber(InCount));
-	}
+	//if (X_TB_Count[0].IsValid())
+	//{
+	//	X_TB_Count[0]->SetText(FText::AsNumber(InCount));
+	//}
 }
 
 void UB2UIDecompositionPopup::SetEquipItemInfo(TArray<int32> ItemType, TArray<int32> ItemCount, const FOnClickPositive& InPositiveCallBack)
@@ -207,26 +207,26 @@ void UB2UIDecompositionPopup::SubscribeEvents()
 {
 	UnsubscribeEvents();
 
-	Issues.Add(DeliveryDecompositionEtherClass<FB2DecompositionEtherPtr>::GetInstance().Subscribe2(
-		[this](FB2DecompositionEtherPtr EtherPtr)
-	{
-		this->OnClickNegative();
+	//Issues.Add(DeliveryDecompositionEtherClass<FB2DecompositionEtherPtr>::GetInstance().Subscribe2(
+	//	[this](FB2DecompositionEtherPtr EtherPtr)
+	//{
+	//	this->OnClickNegative();
 
-		RefreshScrollUIClass<>::GetInstance().Signal();
+	//	RefreshScrollUIClass<>::GetInstance().Signal();
 
-		UB2UIDecompositionObtainPopup* Popup = UB2UIManager::GetInstance()->OpenUI<UB2UIDecompositionObtainPopup>(UIFName::DecompositionObtainPopup);
-		Popup->SetEtherPieceInfo(EtherPtr->obtain_aether_piece_count);
-	}
-	));
+	//	UB2UIDecompositionObtainPopup* Popup = UB2UIManager::GetInstance()->OpenUI<UB2UIDecompositionObtainPopup>(UIFName::DecompositionObtainPopup);
+	//	Popup->SetEtherPieceInfo(EtherPtr->obtain_aether_piece_count);
+	//}
+	//));
 
-	Issues.Add(DeliveryDismantleItemsClass<FB2DismantleItems>::GetInstance().Subscribe2(
-		[this](FB2DismantleItems DismanttleItemsPtr)
-	{
-		this->OnClickNegative();
+	//Issues.Add(DeliveryDismantleItemsClass<FB2DismantleItems>::GetInstance().Subscribe2(
+	//	[this](FB2DismantleItems DismanttleItemsPtr)
+	//{
+	//	this->OnClickNegative();
 
-		RefreshScrollUIClass<>::GetInstance().Signal();
-	}
-	));
+	//	RefreshScrollUIClass<>::GetInstance().Signal();
+	//}
+	//));
 }
 
 void UB2UIDecompositionPopup::UnsubscribeEvents()

@@ -8,7 +8,7 @@
 
 
 /**
- * 
+ *
  */
 
 UCLASS(BlueprintType, Blueprintable)
@@ -22,8 +22,8 @@ public:
 	void SetSlotInfo(bool IsIcon);
 	void DestroySelf(class UB2UIManager* InUIManager);
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Ether")
-		TSubclassOf<class UB2UIEtherFilteringRow> FilteringRowSlotClass;
+	//UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Ether")
+	//TSubclassOf<class UB2UIEtherFilteringRow> FilteringRowSlotClass;
 
 protected:
 	virtual void CacheAssets() override;
@@ -32,13 +32,13 @@ protected:
 
 private:
 	UFUNCTION()
-		void OnClickClose();
+	void OnClickClose();
 
 	TWeakObjectPtr<UTextBlock>													X_TB_Title;
 	TWeakObjectPtr<UB2Button>													X_BTN_Close;
 	TWeakObjectPtr<UB2ScrollBox>												X_SB_Scroll;
-	TArray<TWeakObjectPtr<class UB2UIEtherFilteringRow>>						UIP_FilteringSlots;
-	
+	//TArray<TWeakObjectPtr<class UB2UIEtherFilteringRow>>						UIP_FilteringSlots;
+
 	struct SlotInfo
 	{
 		int TypeID;

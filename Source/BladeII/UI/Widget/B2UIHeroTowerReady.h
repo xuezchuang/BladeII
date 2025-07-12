@@ -4,6 +4,7 @@
 
 #include "UI/B2UIWidget.h"
 #include "B2UIDocBindable.h"
+#include "../../DataStore/B2ClientDataStore.h"
 #include "B2UIHeroTowerReady.generated.h"
 
 

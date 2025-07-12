@@ -4,6 +4,7 @@
 
 #include "UObject/Object.h"
 #include "UMG.h"
+#include "B2FloatingAbnormalEffect.h"
 #include "B2UIManager_InGameHUDChar.generated.h"
 
 /** Declared as a struct to manage the runtime dynamic creation/destruction of certain FloatingWidgets */

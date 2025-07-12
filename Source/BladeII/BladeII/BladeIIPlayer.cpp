@@ -3402,31 +3402,31 @@ void ABladeIIPlayer::DestroyPlayerUIManager()
 	//}
 }
 
-//UB2SkillRTManager* ABladeIIPlayer::GetSkillRTManager()
-//{
-//	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_GetSkillRTManager);
-//	if (CachedSkillRTManager == NULL)
-//	{
-//		// Controller 에 의해 Possess 되어야 가능
-//		auto* B2PC = Cast<ABladeIIPlayerController>(GetController());
-//		CachedSkillRTManager = B2PC ? B2PC->GetPlayerSkillRTManager() : NULL;
-//
-//		if (CachedSkillRTManager)
-//			CachedSkillRTManager->InitSkillRTManager(this);
-//	}
-//	BII_CHECK(!Cast<ABladeIIPlayerController>(Controller) || CachedSkillRTManager); // Controller 가 없는 상황이 ABladeIIPlayer::SpawnOtherAsPuppet 에서 나올 수 있음.
-//	return CachedSkillRTManager;
-//}
-//
-//ICharacterDataStore* ABladeIIPlayer::GetCharacterDataStore()
-//{
-//	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_GetCharacterDataStore);
-//	//여기로 오는 것은 Local용 Player character로 가정한다.
-//	if (CharacterDataStore == nullptr)
-//		CharacterDataStore = &BladeIIGameImpl::GetLocalCharacterData();
-//
-//	return CharacterDataStore;
-//}
+UB2SkillRTManager* ABladeIIPlayer::GetSkillRTManager()
+{
+	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_GetSkillRTManager);
+	//if (CachedSkillRTManager == NULL)
+	//{
+	//	// Controller 에 의해 Possess 되어야 가능
+	//	auto* B2PC = Cast<ABladeIIPlayerController>(GetController());
+	//	CachedSkillRTManager = B2PC ? B2PC->GetPlayerSkillRTManager() : NULL;
+
+	//	if (CachedSkillRTManager)
+	//		CachedSkillRTManager->InitSkillRTManager(this);
+	//}
+	//BII_CHECK(!Cast<ABladeIIPlayerController>(Controller) || CachedSkillRTManager); // Controller 가 없는 상황이 ABladeIIPlayer::SpawnOtherAsPuppet 에서 나올 수 있음.
+	return CachedSkillRTManager;
+}
+
+ICharacterDataStore* ABladeIIPlayer::GetCharacterDataStore()
+{
+	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_GetCharacterDataStore);
+	//여기로 오는 것은 Local용 Player character로 가정한다.
+	if (CharacterDataStore == nullptr)
+		CharacterDataStore = &BladeIIGameImpl::GetLocalCharacterData();
+
+	return CharacterDataStore;
+}
 
 //UB2InGameHUDInfo* ABladeIIPlayer::GetHUDInfoObject()
 //{

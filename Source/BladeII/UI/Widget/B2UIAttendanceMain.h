@@ -4,6 +4,7 @@
 #include "B2UIWidget.h"
 #include "B2UIBackWidget.h"
 #include "B2UIAttendance.h"
+#include "../B2RichTextBlock.h"
 #include "B2UIAttendanceMain.generated.h"
 
 UCLASS()

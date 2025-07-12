@@ -2,16 +2,20 @@
 
 #include "FairyManager.h"
 #include "Event.h"
-//#include "Retailer.h"
-//#include "OnlineWholesaler.h"
-//#include "B2StageDataStore.h"
-//#include "B2StageManager.h"
-//#include "B2UIManager.h"
-//#include "B2UIDocHelper.h"
+#include "Retailer.h"
+#include "OnlineWholesaler.h"
+#include "B2StageDataStore.h"
+#include "B2StageManager.h"
+#include "B2UIManager.h"
+#include "B2UIDocHelper.h"
 
 #include "BladeIIUtil.h"
 #include "BladeIIGameImpl.h"
 #include "FB2ErrorMessage.h"
+#include "../InfoAsset/B2StageInfo.h"
+//#include "../InfoAsset/B2StageInfo.h"
+//#include "../Lobby/B2Inventory.h"
+//#include "../Common/CommonStruct.h"
 
 UTexture2D* FFairyBelssInfo::GetFairySkillIconTexture() const
 {

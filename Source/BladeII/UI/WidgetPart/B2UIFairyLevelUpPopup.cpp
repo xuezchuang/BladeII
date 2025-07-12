@@ -128,31 +128,31 @@ void UB2UIFairyLevelUpPopup::OnClose(bool RightNow)
 
 void UB2UIFairyLevelUpPopup::SubscribeEvent()
 {
-	if (bSubscribed == false)
-	{
-		UnSubscribeEvent();
+	//if (bSubscribed == false)
+	//{
+	//	UnSubscribeEvent();
 
-		Issues.Add(UpdateFairyLevelUpClass<EFairyType, bool>::GetInstance().Subscribe2(
-			[this](EFairyType FairyType, bool IsLevelUp)
-		{
-			OnLevelUpFairy(FairyType, IsLevelUp);
-		}
-		));
-		
-		Issues.Add(UpdateFairyLevelUpErrorClass<int32>::GetInstance().Subscribe2(
-			[this](int32 ErrorCode)
-		{
-			OnErrorLevelUpFairy(ErrorCode);
-		}
-		)); 
+	//	Issues.Add(UpdateFairyLevelUpClass<EFairyType, bool>::GetInstance().Subscribe2(
+	//		[this](EFairyType FairyType, bool IsLevelUp)
+	//	{
+	//		OnLevelUpFairy(FairyType, IsLevelUp);
+	//	}
+	//	));
+	//	
+	//	Issues.Add(UpdateFairyLevelUpErrorClass<int32>::GetInstance().Subscribe2(
+	//		[this](int32 ErrorCode)
+	//	{
+	//		OnErrorLevelUpFairy(ErrorCode);
+	//	}
+	//	)); 
 
-		bSubscribed = true;
-	}
+	//	bSubscribed = true;
+	//}
 }
 
 void UB2UIFairyLevelUpPopup::UnSubscribeEvent()
 {
-	Issues.Empty();
+	//Issues.Empty();
 
 	bSubscribed = false;
 }

@@ -3,6 +3,7 @@
 #pragma once
 //#include "BladeII.h"
 #include "UI/B2UIWidget.h"
+#include "../B2RichTextBlock.h"
 #include "B2UIToolTipTextBox.generated.h"
 
 /**

@@ -1036,12 +1036,12 @@ void UB2UIManager::UpdateUIDataCacheHistoryOnOpen(FB2UIWidgetData* InJustOpenedU
 
 void UB2UIManager::StartWorldBackgroundBlur(float WorldBackgroundBlurScale)
 {
-	BeginGlobalSceneBlurClass<float>::GetInstance().Signal(WorldBackgroundBlurScale);
+	//BeginGlobalSceneBlurClass<float>::GetInstance().Signal(WorldBackgroundBlurScale);
 }
 
 void UB2UIManager::StopWorldBackgroundBlur()
 {
-	EndGlobalSceneBlurClass<>::GetInstance().Signal();
+	//EndGlobalSceneBlurClass<>::GetInstance().Signal();
 }
 
 void UB2UIManager::HideBattleRelatedWidgets(bool bHide)
@@ -1742,8 +1742,9 @@ UB2UIMailRewardPopUp* UB2UIManager::OpenRewardMailPopUp(const TArray<b2network::
 
 bool UB2UIManager::CheckRewardPushType(int32 PushType, int32 RewardId)
 {
-	BLADE2_SCOPE_CYCLE_COUNTER(UB2UIManager_CheckRewardPushType);
-	return BladeIIGameImpl::GetClientDataStore().GetRewardPushType(RewardId) == PushType;
+	//BLADE2_SCOPE_CYCLE_COUNTER(UB2UIManager_CheckRewardPushType);
+	//return BladeIIGameImpl::GetClientDataStore().GetRewardPushType(RewardId) == PushType;
+	return false;
 }
 
 UB2UIMailRewardPopUp * UB2UIManager::OpenRewardMailPopUp(const int32 RewardId, bool CheckMailReward)

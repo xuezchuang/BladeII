@@ -3,6 +3,8 @@
 
 #include "B2UIWidget.h"
 #include "B2LobbyUISwitcher.h"
+#include "../../DataStore/B2ModPlayerInfoData.h"
+#include "../../Common/EventSubsystem.h"
 #include "B2UIOtherUserInfo.generated.h"
 
 

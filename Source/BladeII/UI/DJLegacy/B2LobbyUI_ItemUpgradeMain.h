@@ -5,6 +5,7 @@
 #include "B2LobbyUserWidget.h"
 #include "B2Inventory.h"
 #include "B2UIBackWidget.h"
+#include "../Widget/B2ButtonGoodInfoToolTip.h"
 #include "B2LobbyUI_ItemUpgradeMain.generated.h"
 
 const int32 LOBBY_ITEM_Upgrade_MENU_INGREDIENT_ICON_PER_ROW = 5;

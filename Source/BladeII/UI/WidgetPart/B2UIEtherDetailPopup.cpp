@@ -313,19 +313,19 @@ void UB2UIEtherDetailPopup::CloseWidgetDelegate()
 
 void UB2UIEtherDetailPopup::OnClickClose()
 {
-	if (CompareIsLock != IsLock && PopupType == DetailPopupType::Scroll)
-	{
-		BladeIIGameImpl::GetLocalCharacterData().GetAllEthers().SortStoredEthers();
-		RefreshScrollUIClass<>::GetInstance().Signal();
-	}
+	//if (CompareIsLock != IsLock && PopupType == DetailPopupType::Scroll)
+	//{
+	//	BladeIIGameImpl::GetLocalCharacterData().GetAllEthers().SortStoredEthers();
+	//	RefreshScrollUIClass<>::GetInstance().Signal();
+	//}
 
-	this->SetVisibility(ESlateVisibility::Collapsed);
-	B2AndroidBackManager::GetInstance()->RemoveBackWidget(this);
+	//this->SetVisibility(ESlateVisibility::Collapsed);
+	//B2AndroidBackManager::GetInstance()->RemoveBackWidget(this);
 
-	if (DecompositionEtherEventID != 0)
-	{
-		DeliveryDecompositionEtherClass<FB2DecompositionEtherPtr>::GetInstance().Unsubscribe(DecompositionEtherEventID);
-	}
+	//if (DecompositionEtherEventID != 0)
+	//{
+	//	DeliveryDecompositionEtherClass<FB2DecompositionEtherPtr>::GetInstance().Unsubscribe(DecompositionEtherEventID);
+	//}
 }
 
 void UB2UIEtherDetailPopup::Init()
@@ -341,65 +341,65 @@ void UB2UIEtherDetailPopup::Init()
 
 void UB2UIEtherDetailPopup::OnClickSell()
 {
-	if (IsLock == false)
-	{
-		const FB2Ether* Ether = BladeIIGameImpl::GetLocalCharacterData().GetAllEthers().GetEther(EtherID);
-		if (Ether)
-		{
-			SellEtherItemClass<int64, int32>::GetInstance().Signal(EtherID, B2EtherManager::GetInstance().GetEtherSellPrice(Ether->Star, Ether->EnhanceLevel));
-		}
-	}
-	else
-	{
-		AskForUnlockItemPopupCommon(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("LobbyInven_UnlockAskingItemAct_Sell")));
-	}
+	//if (IsLock == false)
+	//{
+	//	const FB2Ether* Ether = BladeIIGameImpl::GetLocalCharacterData().GetAllEthers().GetEther(EtherID);
+	//	if (Ether)
+	//	{
+	//		SellEtherItemClass<int64, int32>::GetInstance().Signal(EtherID, B2EtherManager::GetInstance().GetEtherSellPrice(Ether->Star, Ether->EnhanceLevel));
+	//	}
+	//}
+	//else
+	//{
+	//	AskForUnlockItemPopupCommon(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("LobbyInven_UnlockAskingItemAct_Sell")));
+	//}
 }
 
 void UB2UIEtherDetailPopup::OnClickDecomposition()
 {
-	if (IsLock == false)
-	{
-		const FB2Ether* Ether = BladeIIGameImpl::GetLocalCharacterData().GetAllEthers().GetEther(EtherID);
-		UB2UIDecompositionPopup* Popup = UB2UIManager::GetInstance()->OpenUI<UB2UIDecompositionPopup>(UIFName::DecompositionPopup);
-		if (Popup && Ether)
-		{
-			Popup->SetEtherInfo(B2EtherManager::GetInstance().GetEtherPiece(Ether->Star, Ether->EnhanceLevel),
-				FOnClickPositive::CreateLambda([this]() {
-				this->Decomposition();
-			}));
-		}
-	}
-	else
-	{
-		UB2UIManager::GetInstance()->OpenMsgPopup(
-			EUIMsgPopup::Simple,
-			BladeIIGetLOCText(B2LOC_CAT_CONFIGURATION, TEXT("Configuration_NoticeTab")),
-			BladeIIGetLOCText(B2LOC_CAT_ETHER, TEXT("Ether_Decomposition_Lock")),
-			0.f,
-			true,
-			true,
-			EUIMsgPopupButtonGroup::YesOrNo,
-			FMsgPopupOnClick::CreateLambda([this]() {
-			
-			this->UnlockEtherEventID = DeliveryUnlockEtherClass<FB2UnlockEtherPtr>::GetInstance().Subscribe([this](const FB2UnlockEtherPtr EtherPtr)
-			{
-				UnLockEther(EtherPtr);
-			});
+	//if (IsLock == false)
+	//{
+	//	const FB2Ether* Ether = BladeIIGameImpl::GetLocalCharacterData().GetAllEthers().GetEther(EtherID);
+	//	UB2UIDecompositionPopup* Popup = UB2UIManager::GetInstance()->OpenUI<UB2UIDecompositionPopup>(UIFName::DecompositionPopup);
+	//	if (Popup && Ether)
+	//	{
+	//		Popup->SetEtherInfo(B2EtherManager::GetInstance().GetEtherPiece(Ether->Star, Ether->EnhanceLevel),
+	//			FOnClickPositive::CreateLambda([this]() {
+	//			this->Decomposition();
+	//		}));
+	//	}
+	//}
+	//else
+	//{
+	//	UB2UIManager::GetInstance()->OpenMsgPopup(
+	//		EUIMsgPopup::Simple,
+	//		BladeIIGetLOCText(B2LOC_CAT_CONFIGURATION, TEXT("Configuration_NoticeTab")),
+	//		BladeIIGetLOCText(B2LOC_CAT_ETHER, TEXT("Ether_Decomposition_Lock")),
+	//		0.f,
+	//		true,
+	//		true,
+	//		EUIMsgPopupButtonGroup::YesOrNo,
+	//		FMsgPopupOnClick::CreateLambda([this]() {
+	//		
+	//		this->UnlockEtherEventID = DeliveryUnlockEtherClass<FB2UnlockEtherPtr>::GetInstance().Subscribe([this](const FB2UnlockEtherPtr EtherPtr)
+	//		{
+	//			UnLockEther(EtherPtr);
+	//		});
 
-			TArray<int64> EtherIDs;
-			EtherIDs.Add(EtherID);
-			data_trader::Retailer::GetInstance().RequestUnlockAethers(EtherIDs);
-			EtherIDs.Empty();
-		})
-		);
-	}
+	//		TArray<int64> EtherIDs;
+	//		EtherIDs.Add(EtherID);
+	//		data_trader::Retailer::GetInstance().RequestUnlockAethers(EtherIDs);
+	//		EtherIDs.Empty();
+	//	})
+	//	);
+	//}
 }
 
 void UB2UIEtherDetailPopup::OnClickEnhance()
 {
-	UB2UIEnhanceEther* Popup = UB2UIManager::GetInstance()->OpenUI<UB2UIEnhanceEther>(UIFName::EnhanceEther);
-	Popup->SetInfo(BladeIIGameImpl::GetLocalCharacterData().GetAllEthers().GetEther(EtherID), PCClass);
-	OnClickClose();
+	//UB2UIEnhanceEther* Popup = UB2UIManager::GetInstance()->OpenUI<UB2UIEnhanceEther>(UIFName::EnhanceEther);
+	//Popup->SetInfo(BladeIIGameImpl::GetLocalCharacterData().GetAllEthers().GetEther(EtherID), PCClass);
+	//OnClickClose();
 }
 
 void UB2UIEtherDetailPopup::OnClickEquip()
@@ -420,75 +420,75 @@ void UB2UIEtherDetailPopup::OnClickTakeOff()
 
 void UB2UIEtherDetailPopup::OnClickLock()
 {
-	TArray<int64> EtherIDs;
-	EtherIDs.Add(EtherID);
-	if (IsLock == true)
-	{
-		UnlockEtherEventID = DeliveryUnlockEtherClass<FB2UnlockEtherPtr>::GetInstance().Subscribe([this](const FB2UnlockEtherPtr EtherPtr)
-		{
-			UnLockEther(EtherPtr);
-		});
+	//TArray<int64> EtherIDs;
+	//EtherIDs.Add(EtherID);
+	//if (IsLock == true)
+	//{
+	//	UnlockEtherEventID = DeliveryUnlockEtherClass<FB2UnlockEtherPtr>::GetInstance().Subscribe([this](const FB2UnlockEtherPtr EtherPtr)
+	//	{
+	//		UnLockEther(EtherPtr);
+	//	});
 
-		data_trader::Retailer::GetInstance().RequestUnlockAethers(EtherIDs);
-	}
-	else
-	{
-		LockEtherEventID = DeliveryLockEtherClass<FB2LockEtherPtr>::GetInstance().Subscribe([this](const FB2LockEtherPtr EtherPtr)
-		{
-			if (EtherPtr->locked_aethers.Num() > 0)
-			{
-				BladeIIGameImpl::GetLocalCharacterData().GetAllEthers().SetLock(EtherPtr->locked_aethers[0]->id, EtherPtr->locked_aethers[0]->locked);
-			}
-			if (X_UIP_EtherSlot.IsValid())
-			{
-				X_UIP_EtherSlot->UpdateLock(true);
-			}
-			this->SetLockImage(true);
-		});
+	//	data_trader::Retailer::GetInstance().RequestUnlockAethers(EtherIDs);
+	//}
+	//else
+	//{
+	//	LockEtherEventID = DeliveryLockEtherClass<FB2LockEtherPtr>::GetInstance().Subscribe([this](const FB2LockEtherPtr EtherPtr)
+	//	{
+	//		if (EtherPtr->locked_aethers.Num() > 0)
+	//		{
+	//			BladeIIGameImpl::GetLocalCharacterData().GetAllEthers().SetLock(EtherPtr->locked_aethers[0]->id, EtherPtr->locked_aethers[0]->locked);
+	//		}
+	//		if (X_UIP_EtherSlot.IsValid())
+	//		{
+	//			X_UIP_EtherSlot->UpdateLock(true);
+	//		}
+	//		this->SetLockImage(true);
+	//	});
 
-		data_trader::Retailer::GetInstance().RequestLockAethers(EtherIDs);
-	}
-	EtherIDs.Empty();
+	//	data_trader::Retailer::GetInstance().RequestLockAethers(EtherIDs);
+	//}
+	//EtherIDs.Empty();
 }
 
 void UB2UIEtherDetailPopup::SetLockImage(bool InIsLock)
 {
-	IsLock = InIsLock;
-	if (IsLock == true)
-	{
-		X_IMG_Lock->SetVisibility(ESlateVisibility::HitTestInvisible);
-		X_IMG_Unlock->SetVisibility(ESlateVisibility::Collapsed);
+	//IsLock = InIsLock;
+	//if (IsLock == true)
+	//{
+	//	X_IMG_Lock->SetVisibility(ESlateVisibility::HitTestInvisible);
+	//	X_IMG_Unlock->SetVisibility(ESlateVisibility::Collapsed);
 
-		if (LockEtherEventID != 0)
-		{
-			DeliveryLockEtherClass<FB2LockEtherPtr>::GetInstance().Unsubscribe(LockEtherEventID);
-			LockEtherEventID = 0;
-		}
-	}
-	else
-	{
-		X_IMG_Lock->SetVisibility(ESlateVisibility::Collapsed);
-		X_IMG_Unlock->SetVisibility(ESlateVisibility::HitTestInvisible);
+	//	if (LockEtherEventID != 0)
+	//	{
+	//		DeliveryLockEtherClass<FB2LockEtherPtr>::GetInstance().Unsubscribe(LockEtherEventID);
+	//		LockEtherEventID = 0;
+	//	}
+	//}
+	//else
+	//{
+	//	X_IMG_Lock->SetVisibility(ESlateVisibility::Collapsed);
+	//	X_IMG_Unlock->SetVisibility(ESlateVisibility::HitTestInvisible);
 
-		if (UnlockEtherEventID != 0)
-		{
-			DeliveryUnlockEtherClass<FB2UnlockEtherPtr>::GetInstance().Unsubscribe(UnlockEtherEventID);
-			UnlockEtherEventID = 0;
-		}
-	}
+	//	if (UnlockEtherEventID != 0)
+	//	{
+	//		DeliveryUnlockEtherClass<FB2UnlockEtherPtr>::GetInstance().Unsubscribe(UnlockEtherEventID);
+	//		UnlockEtherEventID = 0;
+	//	}
+	//}
 }
 
 void UB2UIEtherDetailPopup::Decomposition()
 {
-	this->DecompositionEtherEventID = DeliveryDecompositionEtherClass<FB2DecompositionEtherPtr>::GetInstance().Subscribe([this](const FB2DecompositionEtherPtr EtherPtr)
-	{
-		this->OnClickClose();
-	}
-	);
-	TArray<int64> EtherIDs;
-	EtherIDs.Add(EtherID);
-	data_trader::Retailer::GetInstance().RequestDismantleAethers(EtherIDs);
-	EtherIDs.Empty();
+	//this->DecompositionEtherEventID = DeliveryDecompositionEtherClass<FB2DecompositionEtherPtr>::GetInstance().Subscribe([this](const FB2DecompositionEtherPtr EtherPtr)
+	//{
+	//	this->OnClickClose();
+	//}
+	//);
+	//TArray<int64> EtherIDs;
+	//EtherIDs.Add(EtherID);
+	//data_trader::Retailer::GetInstance().RequestDismantleAethers(EtherIDs);
+	//EtherIDs.Empty();
 }
 
 void UB2UIEtherDetailPopup::UnLockEther(const FB2UnlockEtherPtr EtherPtr)
@@ -506,27 +506,27 @@ void UB2UIEtherDetailPopup::UnLockEther(const FB2UnlockEtherPtr EtherPtr)
 
 void UB2UIEtherDetailPopup::AskForUnlockItemPopupCommon(const FText& InAskingItemActText)
 {
-	UB2UIManager::GetInstance()->OpenMsgPopup(
-		EUIMsgPopup::Simple,
-		BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_Notification")),
-		FText::Format(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("LobbyInven_AskForUnlockForSomeItemAct")), InAskingItemActText),
-		0.f,
-		true,
-		true,
-		EUIMsgPopupButtonGroup::YesOrNo,
-		FMsgPopupOnClick::CreateLambda([this]() {
+	//UB2UIManager::GetInstance()->OpenMsgPopup(
+	//	EUIMsgPopup::Simple,
+	//	BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_Notification")),
+	//	FText::Format(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("LobbyInven_AskForUnlockForSomeItemAct")), InAskingItemActText),
+	//	0.f,
+	//	true,
+	//	true,
+	//	EUIMsgPopupButtonGroup::YesOrNo,
+	//	FMsgPopupOnClick::CreateLambda([this]() {
 
-		this->UnlockEtherEventID = DeliveryUnlockEtherClass<FB2UnlockEtherPtr>::GetInstance().Subscribe([this](const FB2UnlockEtherPtr EtherPtr)
-		{
-			UnLockEther(EtherPtr);
-		});
+	//	this->UnlockEtherEventID = DeliveryUnlockEtherClass<FB2UnlockEtherPtr>::GetInstance().Subscribe([this](const FB2UnlockEtherPtr EtherPtr)
+	//	{
+	//		UnLockEther(EtherPtr);
+	//	});
 
-		TArray<int64> EtherIDs;
-		EtherIDs.Add(EtherID);
-		data_trader::Retailer::GetInstance().RequestUnlockAethers(EtherIDs);
-		EtherIDs.Empty();
-	})
-	);
+	//	TArray<int64> EtherIDs;
+	//	EtherIDs.Add(EtherID);
+	//	data_trader::Retailer::GetInstance().RequestUnlockAethers(EtherIDs);
+	//	EtherIDs.Empty();
+	//})
+	//);
 }
 
 

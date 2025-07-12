@@ -3,6 +3,7 @@
 #pragma once
 
 #include "B2UIWidgetBase.h"
+#include "../Widget/B2ScrollBox.h"
 #include "B2UIEtherLotteryRow.generated.h"
 
 /**

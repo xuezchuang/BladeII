@@ -41,6 +41,7 @@
 #include "B2GameDefine.h"
 #include "BladeIINetPlayer.h"
 #include "Engine/PawnIterator.h"
+#include "../BladeII/BladeIIUtil.h"
 
 DEFINE_LOG_CATEGORY_STATIC(LogControlGameMode, Log, All);
 
@@ -134,7 +135,7 @@ void AB2ControlGameMode::Tick(float delta)
 
 	//SceneManager.CheckIngameStateTime();
 
-	//UpdateTimerUI();
+	UpdateTimerUI();
 
 	//UpdateConquestEffect();
 

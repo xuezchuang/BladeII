@@ -4,6 +4,8 @@
 
 #include "UI/B2UIWidget.h"
 #include "B2UIBackWidget.h"
+#include "../B2RichTextBlock.h"
+#include <memory>
 #include "B2UIFairyLevelUpPopup.generated.h"
 
 /**
@@ -62,7 +64,7 @@ protected:
 	void SubscribeEvent();
 	void UnSubscribeEvent();
 	bool bSubscribed;
-	TArray<std::shared_ptr<issue>> Issues;
+	//TArray<std::shared_ptr<issue>> Issues;
 
 private:
 	UFUNCTION()

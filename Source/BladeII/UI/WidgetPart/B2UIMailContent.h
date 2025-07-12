@@ -1,6 +1,8 @@
 #pragma once
 
 #include "B2UIWidgetBase.h"
+#include "../Widget/B2ButtonGoodInfoToolTip.h"
+#include "../B2RichTextBlock.h"
 #include "B2UIMailContent.generated.h"
 
 USTRUCT()

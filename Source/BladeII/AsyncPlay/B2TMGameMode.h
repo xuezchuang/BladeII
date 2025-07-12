@@ -2,6 +2,7 @@
 
 #include "B2AsyncGameMode.h"
 #include "B2UIDocTeamMatch.h"
+#include "../DataStore/B2ModPlayerInfoData.h"
 #include "B2TMGameMode.generated.h"
 
 enum class ETeamMatchState : uint8

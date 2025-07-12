@@ -4,6 +4,7 @@
 #include "B2UIWidgetBase.h"
 #include "B2UIBackWidget.h"
 #include "B2UISettingMsgPopup.h"
+#include "../B2RichTextBlock.h"
 #include "B2UIMsgPopupGuestWarning.generated.h"
 
 

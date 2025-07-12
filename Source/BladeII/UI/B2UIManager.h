@@ -16,6 +16,7 @@
 #include "B2AssetLoader.h"
 #include "B2UIEnum.h"
 #include "Framework/Application/IInputProcessor.h"
+#include <memory>
 #include "B2UIManager.generated.h"
 
 #define ShortageMGR UB2UIManager::GetInstance()->GetShortagePopupMGR()

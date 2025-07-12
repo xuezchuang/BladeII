@@ -596,13 +596,13 @@ void UB2UIGuildInviteSlot::SetGuildState(int32 Stats, int64 CharAccountId)
 
 void UB2UIGuildInviteSlot::OnClickSurch()
 {
-	DeliveryInviteGuildTicket = DeliveryInviteGuildClass<>::GetInstance().Subscribe([this](){
+	//DeliveryInviteGuildTicket = DeliveryInviteGuildClass<>::GetInstance().Subscribe([this](){
 
-		this->TB_Invite->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Guild_Invited")));
-		this->BTN_Invite->SetIsEnabled(false);
-		DeliveryInviteGuildClass<>::GetInstance().Unsubscribe(DeliveryInviteGuildTicket);
+	//	this->TB_Invite->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Guild_Invited")));
+	//	this->BTN_Invite->SetIsEnabled(false);
+	//	DeliveryInviteGuildClass<>::GetInstance().Unsubscribe(DeliveryInviteGuildTicket);
 
-	});
+	//});
 
 
 	data_trader::Retailer::GetInstance().RequestInviteGuild(AccountId);

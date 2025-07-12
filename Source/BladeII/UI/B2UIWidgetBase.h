@@ -2,11 +2,14 @@
 // Project BladeII, Action Square
 
 #pragma once
-#include "BladeII.h"
-//#include "UMG.h"
+//#include "BladeII.h"
+#include "UMG.h"
+#include "B2Image.h"
 #include "B2UnitedWidgetBase.h"
 //#include "B2UIEnum.h"
 //#include "Event.h"
+#include "B2Button.h"
+#include "CommonStruct.h"
 #include "B2UIWidgetBase.generated.h"
 
 /** Information struct to define any custom timing of a user widget */

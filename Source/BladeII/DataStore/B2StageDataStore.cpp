@@ -269,43 +269,43 @@ void FStageDataStore::ResponseGetActInfo(FB2OriginGetActInfoPtr ActInfo)
 void FStageDataStore::RequestGetStageInfo(FServerStageID ServerStageId, bool bInForceReqToServer)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(FStageDataStore_RequestGetStageInfo);
-	// Note :	챕터(Act)데이터가 없으면 챕터를 먼저 가져오도록 하자.
-	//			Act를 먼저 가져와야하는 이유는 액트 쪽에서 미리 셋팅되는 정보가 있기 때문 (반복던전 등등)
-	int32 ActId = GetActIdByClientStageId(GetClientStageId(ServerStageId));
-	EStageDifficulty Difficulty = GetStageDifficulty(ServerStageId);
-		
-	if (bInForceReqToServer && IsCachedActData(ActId, Difficulty) == false)
-	{
-		// 여기 응답에서 다시 RequestGetStageInfo 가 호출될 것임..
-		// 대체 왜 이렇게 위험한 순환식 호출 구조가 된 건지 모르겠다.. 주의가 필요.. ㅠㅠ
-		RequestGetActInfoAndChangeChapter(ActId, Difficulty, true, ServerStageId);
-		return;
-	}
+	//// Note :	챕터(Act)데이터가 없으면 챕터를 먼저 가져오도록 하자.
+	////			Act를 먼저 가져와야하는 이유는 액트 쪽에서 미리 셋팅되는 정보가 있기 때문 (반복던전 등등)
+	//int32 ActId = GetActIdByClientStageId(GetClientStageId(ServerStageId));
+	//EStageDifficulty Difficulty = GetStageDifficulty(ServerStageId);
+	//	
+	//if (bInForceReqToServer && IsCachedActData(ActId, Difficulty) == false)
+	//{
+	//	// 여기 응답에서 다시 RequestGetStageInfo 가 호출될 것임..
+	//	// 대체 왜 이렇게 위험한 순환식 호출 구조가 된 건지 모르겠다.. 주의가 필요.. ㅠㅠ
+	//	RequestGetActInfoAndChangeChapter(ActId, Difficulty, true, ServerStageId);
+	//	return;
+	//}
 
-	RequestedServerStageId = ServerStageId;
+	//RequestedServerStageId = ServerStageId;
 
-	// 이전에 FB2MessageInfoResponseGetStageInfo 가 static 데이터들로만 되어 있을 때에는 한번 받고 나면 캐싱한 걸 꺼내서 쓰기만 했으나 
-	// 이제는 실행 도중 변경될 수 있는 데이터가 들어가서 다시 요청할 수 있도록 한다.
-	if (!IsCachedStageData(ServerStageId) || bInForceReqToServer) {
-		data_trader::Retailer::GetInstance().RequestGetStageInfo(ServerStageId);
-	}
-	else {
-		// 여기서 반복전투 관련 처리는 하지 않는다.
+	//// 이전에 FB2MessageInfoResponseGetStageInfo 가 static 데이터들로만 되어 있을 때에는 한번 받고 나면 캐싱한 걸 꺼내서 쓰기만 했으나 
+	//// 이제는 실행 도중 변경될 수 있는 데이터가 들어가서 다시 요청할 수 있도록 한다.
+	//if (!IsCachedStageData(ServerStageId) || bInForceReqToServer) {
+	//	data_trader::Retailer::GetInstance().RequestGetStageInfo(ServerStageId);
+	//}
+	//else {
+	//	// 여기서 반복전투 관련 처리는 하지 않는다.
 
-		UB2UIDocBattleStage* DocBS = UB2UIDocHelper::GetDocBattleStage();
-		if (DocBS)
-		{
-			FRepeatBattleStateSet RepeatBattleRequestState;
-			RepeatBattleRequestState.bIsOn = DocBS->GetRepeatBattleCurrentOn();
-			RepeatBattleRequestState.CurrentRepeatCount = DocBS->GetRepeatBattleCurrentCount();
-			RepeatBattleRequestState.bRepeatOne = DocBS->GetRepeatBattleLoopOne();
-			RepeatBattleRequestState.bRepeatAll = DocBS->GetRepeatBattleLoopAll();
-			RepeatBattleRequestState.bBoostOn = DocBS->GetRepeatBattleBoostOn();
-			RepeatBattleRequestState.RemainingBoostCount = DocBS->GetRepeatBattleBoostRemainCount();
+	//	UB2UIDocBattleStage* DocBS = UB2UIDocHelper::GetDocBattleStage();
+	//	if (DocBS)
+	//	{
+	//		FRepeatBattleStateSet RepeatBattleRequestState;
+	//		RepeatBattleRequestState.bIsOn = DocBS->GetRepeatBattleCurrentOn();
+	//		RepeatBattleRequestState.CurrentRepeatCount = DocBS->GetRepeatBattleCurrentCount();
+	//		RepeatBattleRequestState.bRepeatOne = DocBS->GetRepeatBattleLoopOne();
+	//		RepeatBattleRequestState.bRepeatAll = DocBS->GetRepeatBattleLoopAll();
+	//		RepeatBattleRequestState.bBoostOn = DocBS->GetRepeatBattleBoostOn();
+	//		RepeatBattleRequestState.RemainingBoostCount = DocBS->GetRepeatBattleBoostRemainCount();
 
-			GoGameStageInfoFromLobbyClass<FServerStageID, FRepeatBattleStateSet>::GetInstance().Signal(ServerStageId, FRepeatBattleStateSet());
-		}
-	}
+	//		GoGameStageInfoFromLobbyClass<FServerStageID, FRepeatBattleStateSet>::GetInstance().Signal(ServerStageId, FRepeatBattleStateSet());
+	//	}
+	//}
 }
 
 void FStageDataStore::ResponseGetStageInfo(FB2OriginGetStageInfoPtr StageInfo)
@@ -314,33 +314,33 @@ void FStageDataStore::ResponseGetStageInfo(FB2OriginGetStageInfoPtr StageInfo)
 	CacheStageData(RequestedServerStageId, StageInfo);
 
 	UB2UIDocBattleStage* DocBS = UB2UIDocHelper::GetDocBattleStage();
-	if (DocBS)
-	{
-		FRepeatBattleStateSet RepeatBattleRequestState;
-		RepeatBattleRequestState.bIsOn = DocBS->GetRepeatBattleCurrentOn();
-		RepeatBattleRequestState.CurrentRepeatCount = DocBS->GetRepeatBattleCurrentCount();
-		RepeatBattleRequestState.bRepeatOne = DocBS->GetRepeatBattleLoopOne();
-		RepeatBattleRequestState.bRepeatAll = DocBS->GetRepeatBattleLoopAll();
-		RepeatBattleRequestState.bBoostOn = DocBS->GetRepeatBattleBoostOn();
-		// colosseum comment : 3배 모험 이용권
-		// TODO : 기존은 누적 카운트를 리턴 했다면 현재는 보유중인 이용권 카운트를 리턴한다.
-		RepeatBattleRequestState.RemainingBoostCount = StageInfo->stage_boost_ticket;
-		BladeIIGameImpl::GetClientDataStore().ReplaceUserDataWithDoc(EDocUserDataType::StageBoostTicket, StageInfo->stage_boost_ticket);
+	//if (DocBS)
+	//{
+	//	FRepeatBattleStateSet RepeatBattleRequestState;
+	//	RepeatBattleRequestState.bIsOn = DocBS->GetRepeatBattleCurrentOn();
+	//	RepeatBattleRequestState.CurrentRepeatCount = DocBS->GetRepeatBattleCurrentCount();
+	//	RepeatBattleRequestState.bRepeatOne = DocBS->GetRepeatBattleLoopOne();
+	//	RepeatBattleRequestState.bRepeatAll = DocBS->GetRepeatBattleLoopAll();
+	//	RepeatBattleRequestState.bBoostOn = DocBS->GetRepeatBattleBoostOn();
+	//	// colosseum comment : 3배 모험 이용권
+	//	// TODO : 기존은 누적 카운트를 리턴 했다면 현재는 보유중인 이용권 카운트를 리턴한다.
+	//	RepeatBattleRequestState.RemainingBoostCount = StageInfo->stage_boost_ticket;
+	//	BladeIIGameImpl::GetClientDataStore().ReplaceUserDataWithDoc(EDocUserDataType::StageBoostTicket, StageInfo->stage_boost_ticket);
 
-		const auto MaxCondition = static_cast<int32>(EStageClearCondition::MaxCondition);
-		const auto ConstMask = static_cast<int32>(1);
-		TArray<bool> StageClearConditions;
+	//	const auto MaxCondition = static_cast<int32>(EStageClearCondition::MaxCondition);
+	//	const auto ConstMask = static_cast<int32>(1);
+	//	TArray<bool> StageClearConditions;
 
-		for (int32 i = 0; i < MaxCondition; ++i)
-		{
-			const auto ClearCondition = (StageInfo->best_clear_mask & (static_cast<int32>(1) << i));
-			StageClearConditions.Add(ClearCondition == 0 ? false : true);
-		}
-		DocBS->SetStageClearConditions(StageClearConditions);
+	//	for (int32 i = 0; i < MaxCondition; ++i)
+	//	{
+	//		const auto ClearCondition = (StageInfo->best_clear_mask & (static_cast<int32>(1) << i));
+	//		StageClearConditions.Add(ClearCondition == 0 ? false : true);
+	//	}
+	//	DocBS->SetStageClearConditions(StageClearConditions);
 
-		// 여기서 반복전투 관련 처리는 하지 않는다.
-		GoGameStageInfoFromLobbyClass<FServerStageID, FRepeatBattleStateSet>::GetInstance().Signal(RequestedServerStageId, RepeatBattleRequestState);
-	}
+	//	// 여기서 반복전투 관련 처리는 하지 않는다.
+	//	GoGameStageInfoFromLobbyClass<FServerStageID, FRepeatBattleStateSet>::GetInstance().Signal(RequestedServerStageId, RepeatBattleRequestState);
+	//}
 }
 
 
@@ -454,11 +454,11 @@ void FStageDataStore::CacheStageData(FServerStageID ServerStageId, FB2OriginGetS
 int32 FStageDataStore::GetActIdByClientStageId(int32 ClientStageId)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(FStageDataStore_GetActIdByClientStageId);
-	UB2StageInfo* Info = StaticFindStageInfo();
-	if (Info)
-	{
-		return Info->GetChapterNumByClientStageId(ClientStageId);
-	}
+	//UB2StageInfo* Info = StaticFindStageInfo();
+	//if (Info)
+	//{
+	//	return Info->GetChapterNumByClientStageId(ClientStageId);
+	//}
 
 	return 0;
 }
@@ -471,11 +471,11 @@ int32 FStageDataStore::GetActIdByServerStageId(FServerStageID InServerStageId)
 int32 FStageDataStore::GetClientStageIdOfChapterNums(int32 ChapterNum, int32 SubChapterNum)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(FStageDataStore_GetClientStageIdOfChapterNums);
-	UB2StageInfo* Info = StaticFindStageInfo();
-	if (Info)
-	{
-		return Info->GetClientStageIdOfChapterNums(ChapterNum, SubChapterNum);
-	}
+	//UB2StageInfo* Info = StaticFindStageInfo();
+	//if (Info)
+	//{
+	//	return Info->GetClientStageIdOfChapterNums(ChapterNum, SubChapterNum);
+	//}
 
 	return 0;
 }
@@ -483,11 +483,11 @@ int32 FStageDataStore::GetClientStageIdOfChapterNums(int32 ChapterNum, int32 Sub
 int32 FStageDataStore::GetSubChapterNumByClientStageId(int32 ClientStageId)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(FStageDataStore_GetSubChapterNumByClientStageId);
-	UB2StageInfo* Info = StaticFindStageInfo();
-	if (Info)
-	{
-		return Info->GetSubChapterNumByClientStageId(ClientStageId);
-	}
+	//UB2StageInfo* Info = StaticFindStageInfo();
+	//if (Info)
+	//{
+	//	return Info->GetSubChapterNumByClientStageId(ClientStageId);
+	//}
 
 	return 0;
 }
@@ -966,27 +966,27 @@ float FStageDataStore::GetStageDifficultyScale(int32 ClientStageId, EStageDiffic
 #include "B2CombatStatEvaluator.h"
 EUIBattleDifficulty FStageDataStore::GetRelativeStageDifficulty(FServerStageID ServerStageId, EPCClass MainClass, EPCClass TagClass)
 {
-	BLADE2_SCOPE_CYCLE_COUNTER(FStageDataStore_GetRelativeStageDifficulty);
-	float SuggestedAttack = 0.0f;
-	float SuggestedDefense = 0.0f;
+	//BLADE2_SCOPE_CYCLE_COUNTER(FStageDataStore_GetRelativeStageDifficulty);
+	//float SuggestedAttack = 0.0f;
+	//float SuggestedDefense = 0.0f;
 
-	GetStageSuggestedCombatStats(ServerStageId, SuggestedAttack, SuggestedDefense);
+	//GetStageSuggestedCombatStats(ServerStageId, SuggestedAttack, SuggestedDefense);
 
-	// 메인 태그 연합 스탯
-	const float MyUnitedAttack = (MainClass == EPCClass::EPC_End ? 0 : CombatStatEval::GetPCAttack(MainClass))
-		+ (TagClass == EPCClass::EPC_End ? 0 : CombatStatEval::GetPCAttack(TagClass));
-	const float MyUnitedDefense = (MainClass == EPCClass::EPC_End ? 0 : CombatStatEval::GetPCDefense(MainClass))
-		+ (TagClass == EPCClass::EPC_End ? 0 : CombatStatEval::GetPCDefense(TagClass));
-	// 공격 방어 합동 스탯
-	const float SuggestedJointStat = SuggestedAttack + SuggestedDefense;
-	const float MyJointCombatStat = MyUnitedAttack + MyUnitedDefense;
+	//// 메인 태그 연합 스탯
+	//const float MyUnitedAttack = (MainClass == EPCClass::EPC_End ? 0 : CombatStatEval::GetPCAttack(MainClass))
+	//	+ (TagClass == EPCClass::EPC_End ? 0 : CombatStatEval::GetPCAttack(TagClass));
+	//const float MyUnitedDefense = (MainClass == EPCClass::EPC_End ? 0 : CombatStatEval::GetPCDefense(MainClass))
+	//	+ (TagClass == EPCClass::EPC_End ? 0 : CombatStatEval::GetPCDefense(TagClass));
+	//// 공격 방어 합동 스탯
+	//const float SuggestedJointStat = SuggestedAttack + SuggestedDefense;
+	//const float MyJointCombatStat = MyUnitedAttack + MyUnitedDefense;
 
-	if (MyJointCombatStat >= 0.9f * SuggestedJointStat) {
-		return EUIBattleDifficulty::Easy;
-	}
-	else if (MyJointCombatStat < 0.8f * SuggestedJointStat) {
-		return EUIBattleDifficulty::Hard;
-	}
+	//if (MyJointCombatStat >= 0.9f * SuggestedJointStat) {
+	//	return EUIBattleDifficulty::Easy;
+	//}
+	//else if (MyJointCombatStat < 0.8f * SuggestedJointStat) {
+	//	return EUIBattleDifficulty::Hard;
+	//}
 	return EUIBattleDifficulty::Normal;
 }
 
@@ -1056,23 +1056,23 @@ bool FStageDataStore::IsPossibleToDoRepeatBattle(FServerStageID ServerStageId)
 bool FStageDataStore::IsEnoughGoldToRepeatBattle(FServerStageID ServerStageId)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(FStageDataStore_IsEnoughGoldToRepeatBattle);
-	FB2StageData* StageInfo = CachedStageDatas.Find(ServerStageId);
-	if (StageInfo && StageInfo->ServerData)
-	{
-		FB2OriginGetStageInfoPtr CachedStage = StageInfo->ServerData;
+	//FB2StageData* StageInfo = CachedStageDatas.Find(ServerStageId);
+	//if (StageInfo && StageInfo->ServerData)
+	//{
+	//	FB2OriginGetStageInfoPtr CachedStage = StageInfo->ServerData;
 
-		// 나중에 서버에서 전달받은 Valid Buff의 가격
-		TArray<EStageBuffType> CurrentBuffs;
-		UB2UIDocBattleStage* DocBS = UB2UIDocHelper::GetDocBattleStage();
-		if (DocBS != nullptr) // DocBattleStage 내부의 Buff는 항상 최신으로 유지해야한다. [ 서버 Response 이후 바로 동기화 ]
-		{
-			CurrentBuffs = DocBS->GetSelectedStageBuffs();
-		}
+	//	// 나중에 서버에서 전달받은 Valid Buff의 가격
+	//	TArray<EStageBuffType> CurrentBuffs;
+	//	UB2UIDocBattleStage* DocBS = UB2UIDocHelper::GetDocBattleStage();
+	//	if (DocBS != nullptr) // DocBattleStage 내부의 Buff는 항상 최신으로 유지해야한다. [ 서버 Response 이후 바로 동기화 ]
+	//	{
+	//		CurrentBuffs = DocBS->GetSelectedStageBuffs();
+	//	}
 
-		int32 BuffCost = GetStageBuffGoldCost(ServerStageId, CurrentBuffs, true);
-		if (CachedStage->auto_repeat_battle_cost + BuffCost <= BladeIIGameImpl::GetClientDataStore().GetGoldAmount())
-			return true;
-	}
+	//	int32 BuffCost = GetStageBuffGoldCost(ServerStageId, CurrentBuffs, true);
+	//	if (CachedStage->auto_repeat_battle_cost + BuffCost <= BladeIIGameImpl::GetClientDataStore().GetGoldAmount())
+	//		return true;
+	//}
 
 	return false;
 }
@@ -1151,43 +1151,43 @@ void FStageDataStore::CheckChangeLastClearStage(const FB2OriginAccountInfoPtr Cu
 	if (Current == nullptr || Next == nullptr)
 		return;
 
-	int32 CurrentClientStageID = 0;
-	int32 NextClientStageID = 0;
-	EStageDifficulty StageDifficulty = EStageDifficulty::ESD_None;
+	//int32 CurrentClientStageID = 0;
+	//int32 NextClientStageID = 0;
+	//EStageDifficulty StageDifficulty = EStageDifficulty::ESD_None;
 
-	auto CheckFunc = [this](int32 CurrentServerStageID, int32 NextServerStageID, int32* pCurrentClientStageID, int32* pNextClientStageID, EStageDifficulty* pDifficulty) 
-	{
-		*pCurrentClientStageID = this->GetClientStageId(FServerStageID(CurrentServerStageID));
-		*pNextClientStageID = this->GetClientStageId(FServerStageID(NextServerStageID));
-		*pDifficulty = this->GetStageDifficulty(FServerStageID(CurrentServerStageID));
-		return *pCurrentClientStageID != *pNextClientStageID;
-	};
+	//auto CheckFunc = [this](int32 CurrentServerStageID, int32 NextServerStageID, int32* pCurrentClientStageID, int32* pNextClientStageID, EStageDifficulty* pDifficulty) 
+	//{
+	//	*pCurrentClientStageID = this->GetClientStageId(FServerStageID(CurrentServerStageID));
+	//	*pNextClientStageID = this->GetClientStageId(FServerStageID(NextServerStageID));
+	//	*pDifficulty = this->GetStageDifficulty(FServerStageID(CurrentServerStageID));
+	//	return *pCurrentClientStageID != *pNextClientStageID;
+	//};
 
-	if(CheckFunc(Current->last_clear_stage_id_normal, Next->last_clear_stage_id_normal, &CurrentClientStageID, &NextClientStageID, &StageDifficulty))
-		ChangeLastClearStageClass<EStageDifficulty, int32, int32>::GetInstance().Signal(StageDifficulty, CurrentClientStageID, NextClientStageID);
+	//if(CheckFunc(Current->last_clear_stage_id_normal, Next->last_clear_stage_id_normal, &CurrentClientStageID, &NextClientStageID, &StageDifficulty))
+	//	ChangeLastClearStageClass<EStageDifficulty, int32, int32>::GetInstance().Signal(StageDifficulty, CurrentClientStageID, NextClientStageID);
 
-	if (CheckFunc(Current->last_clear_stage_id_hard, Next->last_clear_stage_id_hard, &CurrentClientStageID, &NextClientStageID, &StageDifficulty))
-		ChangeLastClearStageClass<EStageDifficulty, int32, int32>::GetInstance().Signal(StageDifficulty, CurrentClientStageID, NextClientStageID);
+	//if (CheckFunc(Current->last_clear_stage_id_hard, Next->last_clear_stage_id_hard, &CurrentClientStageID, &NextClientStageID, &StageDifficulty))
+	//	ChangeLastClearStageClass<EStageDifficulty, int32, int32>::GetInstance().Signal(StageDifficulty, CurrentClientStageID, NextClientStageID);
 
-	if (CheckFunc(Current->last_clear_stage_id_very_hard, Next->last_clear_stage_id_very_hard, &CurrentClientStageID, &NextClientStageID, &StageDifficulty))
-		ChangeLastClearStageClass<EStageDifficulty, int32, int32>::GetInstance().Signal(StageDifficulty, CurrentClientStageID, NextClientStageID);
+	//if (CheckFunc(Current->last_clear_stage_id_very_hard, Next->last_clear_stage_id_very_hard, &CurrentClientStageID, &NextClientStageID, &StageDifficulty))
+	//	ChangeLastClearStageClass<EStageDifficulty, int32, int32>::GetInstance().Signal(StageDifficulty, CurrentClientStageID, NextClientStageID);
 
-	if (CheckFunc(Current->last_clear_stage_id_hell, Next->last_clear_stage_id_hell, &CurrentClientStageID, &NextClientStageID, &StageDifficulty))
-		ChangeLastClearStageClass<EStageDifficulty, int32, int32>::GetInstance().Signal(StageDifficulty, CurrentClientStageID, NextClientStageID);
+	//if (CheckFunc(Current->last_clear_stage_id_hell, Next->last_clear_stage_id_hell, &CurrentClientStageID, &NextClientStageID, &StageDifficulty))
+	//	ChangeLastClearStageClass<EStageDifficulty, int32, int32>::GetInstance().Signal(StageDifficulty, CurrentClientStageID, NextClientStageID);
 }
 
 int32 FStageDataStore::GetLastPlayedActId()
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(FStageDataStore_GetLastPlayedActId);
-	FB2OriginAccountInfoPtr AccountInfo = BladeIIGameImpl::GetClientDataStore().GetAccountInfo();
-	if (AccountInfo == nullptr)
+	//FB2OriginAccountInfoPtr AccountInfo = BladeIIGameImpl::GetClientDataStore().GetAccountInfo();
+	//if (AccountInfo == nullptr)
+	//	return 0;
+
+	//if (StageGameplayDatas.Num() == 0)
 		return 0;
 
-	if (StageGameplayDatas.Num() == 0)
-		return 0;
-
-	int32 lastClientStageId = GetClientStageId(GetLastPlayedServerStageId());
-	return lastClientStageId > 0 ? GetActIdByClientStageId(lastClientStageId) : 1;
+	//int32 lastClientStageId = GetClientStageId(GetLastPlayedServerStageId());
+	//return lastClientStageId > 0 ? GetActIdByClientStageId(lastClientStageId) : 1;
 }
 
 int32 FStageDataStore::GetLastPlayedClientStageId()
@@ -1376,19 +1376,19 @@ int32 FStageDataStore::GetMaxReachedActNumber(EStageDifficulty InDifficulty)
 	int32 ActNum = 1;
 	FServerStageID CheckServerStageId = GetNextClearServerStageId(InDifficulty) ;
 
-	if (UB2StageInfo* StageInfoTable = StaticFindStageInfo())
-	{
-		if (IsClearedFinalClientStageId(InDifficulty))
-		{
-			if (auto DocChapter = Cast<UB2UIDocChapter>(UB2UIDocHelper::GetDocChapter()))
-				ActNum = DocChapter->GetCurChapterNum();
-		}
-		else
-		{
-			if (FStageInfoGameplayData* GamePlayData = StageGameplayDatas.Find(CheckServerStageId))
-				ActNum = GetActIdByClientStageId(GamePlayData->ClientStageId);
-		}
-	}
+	//if (UB2StageInfo* StageInfoTable = StaticFindStageInfo())
+	//{
+	//	if (IsClearedFinalClientStageId(InDifficulty))
+	//	{
+	//		if (auto DocChapter = Cast<UB2UIDocChapter>(UB2UIDocHelper::GetDocChapter()))
+	//			ActNum = DocChapter->GetCurChapterNum();
+	//	}
+	//	else
+	//	{
+	//		if (FStageInfoGameplayData* GamePlayData = StageGameplayDatas.Find(CheckServerStageId))
+	//			ActNum = GetActIdByClientStageId(GamePlayData->ClientStageId);
+	//	}
+	//}
 
 	return ActNum;
 }

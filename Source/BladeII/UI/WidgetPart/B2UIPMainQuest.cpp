@@ -11,58 +11,58 @@
 
 void UB2UIPMainQuest::Init()
 {
-	Super::Init();
+	//Super::Init();
 
-	UpdateMainQuestScrollByIndexClass<const int32>::GetInstance().Subscribe([this](const int32 InTabType)
-	{
-		this->UpdateScroll(InTabType);
-	});
+	//UpdateMainQuestScrollByIndexClass<const int32>::GetInstance().Subscribe([this](const int32 InTabType)
+	//{
+	//	this->UpdateScroll(InTabType);
+	//});
 
-	UB2StageInfo* StageInfoTable = StaticFindStageInfo();
-	int32 MaxCount = 0;
-	if (StageInfoTable)
-	{
-		MaxCount = StageInfoTable->GetEndAdventureModeChapterNum();
-	}
+	//UB2StageInfo* StageInfoTable = StaticFindStageInfo();
+	//int32 MaxCount = 0;
+	//if (StageInfoTable)
+	//{
+	//	MaxCount = StageInfoTable->GetEndAdventureModeChapterNum();
+	//}
 
-	int32 CurrentActID = GetCurrentActID();
+	//int32 CurrentActID = GetCurrentActID();
 
-	for (int32 ActID = 1; ActID <= MaxCount; ActID++) // act는 1부터 시작
-	{
-		UB2UIPMainQuestTab* NewItem;
-		NewItem = CreateWidget<UB2UIPMainQuestTab>(GetWorld(), QuestTabClass);
-		NewItem->SetVisibility(ESlateVisibility::Visible);
-		NewItem->Init();
-		NewItem->Update(ActID, ActID > CurrentActID ? true : false, GetQuestID());
-		NewItem->SetSelected(false);
-		//NewItem->Padding = FMargin(0, 0, 10, 0);
-		QuestTabs.Add(ActID, NewItem);
-		
-		if (SB_TabList.IsValid())
-		{
-			SB_TabList->AddChild(NewItem);
-		}
-	}
+	//for (int32 ActID = 1; ActID <= MaxCount; ActID++) // act는 1부터 시작
+	//{
+	//	UB2UIPMainQuestTab* NewItem;
+	//	NewItem = CreateWidget<UB2UIPMainQuestTab>(GetWorld(), QuestTabClass);
+	//	NewItem->SetVisibility(ESlateVisibility::Visible);
+	//	NewItem->Init();
+	//	NewItem->Update(ActID, ActID > CurrentActID ? true : false, GetQuestID());
+	//	NewItem->SetSelected(false);
+	//	//NewItem->Padding = FMargin(0, 0, 10, 0);
+	//	QuestTabs.Add(ActID, NewItem);
+	//	
+	//	if (SB_TabList.IsValid())
+	//	{
+	//		SB_TabList->AddChild(NewItem);
+	//	}
+	//}
 }
 
 void UB2UIPMainQuest::DestroySelf(class UB2UIManager* InUIManager)
 {
-	for (TPair<int32, TWeakObjectPtr<UB2UIPMainQuestTab>>& Tab : QuestTabs)
-	{
-		if (Tab.Value.IsValid())
-		{
-			Tab.Value->DestroySelf(InUIManager);
-		}
-	}
+	//for (TPair<int32, TWeakObjectPtr<UB2UIPMainQuestTab>>& Tab : QuestTabs)
+	//{
+	//	if (Tab.Value.IsValid())
+	//	{
+	//		Tab.Value->DestroySelf(InUIManager);
+	//	}
+	//}
 
-	if (UIP_QuestList.IsValid())
-	{
-		UIP_QuestList->DestroySelf(InUIManager);
-	}
+	//if (UIP_QuestList.IsValid())
+	//{
+	//	UIP_QuestList->DestroySelf(InUIManager);
+	//}
 
-	UpdateMainQuestScrollByIndexClass<const int32>::GetInstance().UnsubscribeAll();
+	//UpdateMainQuestScrollByIndexClass<const int32>::GetInstance().UnsubscribeAll();
 
-	Super::DestroySelf(InUIManager);
+	//Super::DestroySelf(InUIManager);
 }
 
 void UB2UIPMainQuest::CurrentTabUpdateScroll()

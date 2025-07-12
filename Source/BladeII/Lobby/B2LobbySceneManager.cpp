@@ -65,9 +65,10 @@
 //#include "B2UIItemForge.h"
 //#include "B2UISealBoxResult.h"
 #include "BladeIIUtil.h"
-#include "FairyManager.h"
+//#include "FairyManager.h"
 #include "DF.h"
 #include "StereoRendering.h"
+#include "../Fulfil/FairyManager.h"
 
 #define SWIPE_NEXTSTAGE_POS 1.7
 #define SWIPE_PREVSTAGE_POS 0.3
@@ -1771,7 +1772,7 @@ void FLobbyCharacterIntroScene::OpenScene()
 {
 	FLobbySceneBase::OpenScene();
 
-	SelectCharacterIntro(BladeIIGameImpl::GetLocalCharacterData().GetMainPlayerClass());
+	//SelectCharacterIntro(BladeIIGameImpl::GetLocalCharacterData().GetMainPlayerClass());
 }
 
 void FLobbyCharacterIntroScene::CloseScene()
@@ -1960,16 +1961,16 @@ void FLobbyMainScene::CloseScene()
 
 void FLobbyMainScene::SubscribeEvents_OnConstruct()
 {
-	LobbyMainCameraMoveTicket = LobbyMainCameraMoveClass<float>::GetInstance().Subscribe(
-		[this](float Value)
-	{
-		ElapsedTimeNoInput = 0.0f;
-		this->SwipeScene(Value);
-	});
+	//LobbyMainCameraMoveTicket = LobbyMainCameraMoveClass<float>::GetInstance().Subscribe(
+	//	[this](float Value)
+	//{
+	//	ElapsedTimeNoInput = 0.0f;
+	//	this->SwipeScene(Value);
+	//});
 }
 void FLobbyMainScene::UnsubscribeEvents_OnDestruct()
 {
-	LobbyMainCameraMoveClass<float>::GetInstance().Unsubscribe(LobbyMainCameraMoveTicket);
+	//LobbyMainCameraMoveClass<float>::GetInstance().Unsubscribe(LobbyMainCameraMoveTicket);
 }
 
 void FLobbyMainScene::Tick(float DeltaSeconds)
@@ -2863,7 +2864,7 @@ void FLobbyCharObserveScene::FLobbyCharacterObserveCamera::SetData(EPCClass Sele
 //=================================================================================================
 FLobbyHeroMgmtScene::FLobbyHeroMgmtScene(class FLobbySceneManager* OwnerSceneManager) : FLobbySceneBase(OwnerSceneManager)
 {
-	CurrentPCClass = BladeIIGameImpl::GetLocalCharacterData().GetMainPlayerClass();
+	//CurrentPCClass = BladeIIGameImpl::GetLocalCharacterData().GetMainPlayerClass();
 	bCurrentlyWingEvolutionScene = false;
 	WingEvolutionScenePCClass = EPCClass::EPC_End;
 
@@ -3196,7 +3197,7 @@ void FLobbyStageInfoScene::OpenScene()
 {
 	FLobbySceneBase::OpenScene();
 
-	SelectCharacterStageInfo(BladeIIGameImpl::GetLocalCharacterData().GetMainPlayerClass(), BladeIIGameImpl::GetLocalCharacterData().GetSubPlayerClass());
+	//SelectCharacterStageInfo(BladeIIGameImpl::GetLocalCharacterData().GetMainPlayerClass(), BladeIIGameImpl::GetLocalCharacterData().GetSubPlayerClass());
 
 	//if (GEngine->ActiveMatinee.IsValid() && GEngine->ActiveMatinee.Get()->GetWorld())//마티네가 꼬이고있습니다... 돌고있는 마티네 무조건 멈춰주고 돌려줍시다.
 	//	GEngine->ActiveMatinee.Get()->Stop();
@@ -3226,11 +3227,11 @@ void FLobbyStageInfoScene::CloseScene()
 
 void FLobbyStageInfoScene::SubscribeEvents_OnConstruct()
 {
-	LobbyStageInfoSelectTicket = LobbyStageInfoSelectClass<EPCClass, EPCClass>::GetInstance().Subscribe([this](EPCClass SelectedMain, EPCClass SelectedSub) { this->SelectCharacterStageInfo(SelectedMain, SelectedSub); });
+	//LobbyStageInfoSelectTicket = LobbyStageInfoSelectClass<EPCClass, EPCClass>::GetInstance().Subscribe([this](EPCClass SelectedMain, EPCClass SelectedSub) { this->SelectCharacterStageInfo(SelectedMain, SelectedSub); });
 }
 void FLobbyStageInfoScene::UnsubscribeEvents_OnDestruct()
 {
-	LobbyStageInfoSelectClass<EPCClass, EPCClass>::GetInstance().Unsubscribe(LobbyStageInfoSelectTicket);
+	//LobbyStageInfoSelectClass<EPCClass, EPCClass>::GetInstance().Unsubscribe(LobbyStageInfoSelectTicket);
 }
 
 void FLobbyStageInfoScene::SelectCharacterStageInfo(EPCClass MainClass, EPCClass SubClass)
@@ -3386,17 +3387,17 @@ void FLobbyBattleSelectSceneBase::CloseScene()
 
 void FLobbyBattleSelectSceneBase::SubscribeEvents_OnConstruct()
 {
-	LobbyChapterCameraMoveTicket = LobbyChapterCameraMoveClass<float>::GetInstance().Subscribe(
-		[this](float Value)
-	{
-		ElapsedLastInput = 0.f;
-		this->MoveCameraDirect(Value);
-	}
-	);
+	//LobbyChapterCameraMoveTicket = LobbyChapterCameraMoveClass<float>::GetInstance().Subscribe(
+	//	[this](float Value)
+	//{
+	//	ElapsedLastInput = 0.f;
+	//	this->MoveCameraDirect(Value);
+	//}
+	//);
 }
 void FLobbyBattleSelectSceneBase::UnsubscribeEvents_OnDestruct()
 {
-	LobbyChapterCameraMoveClass<float>::GetInstance().Unsubscribe(LobbyChapterCameraMoveTicket);
+	//LobbyChapterCameraMoveClass<float>::GetInstance().Unsubscribe(LobbyChapterCameraMoveTicket);
 }
 
 void FLobbyBattleSelectSceneBase::Tick(float DeltaSeconds)
@@ -3982,43 +3983,43 @@ FLobbyTeamMatchScene::~FLobbyTeamMatchScene()
 
 void FLobbyTeamMatchScene::SubscribeEvents_OnConstruct()
 {
-	DeliveryGetTeamBattleStatusTicket = DeliveryGetTeamBattleStatusClass<FB2TeamBattleStatus>::GetInstance().Subscribe([this](const FB2TeamBattleStatus& TeamBattleStatus)
-	{
-		this->SetMyAllFormationData(TeamBattleStatus);
-	});
+	//DeliveryGetTeamBattleStatusTicket = DeliveryGetTeamBattleStatusClass<FB2TeamBattleStatus>::GetInstance().Subscribe([this](const FB2TeamBattleStatus& TeamBattleStatus)
+	//{
+	//	this->SetMyAllFormationData(TeamBattleStatus);
+	//});
 
-	DeliveryUpdateTeamBattleEntryTicket = DeliveryUpdateTeamBattleEntryClass<FB2TeamBattleEntryPtr>::GetInstance().Subscribe([this](FB2TeamBattleEntryPtr Entry)
-	{
-		this->SetMyCurrentFormationEntry(Entry);
-	});
+	//DeliveryUpdateTeamBattleEntryTicket = DeliveryUpdateTeamBattleEntryClass<FB2TeamBattleEntryPtr>::GetInstance().Subscribe([this](FB2TeamBattleEntryPtr Entry)
+	//{
+	//	this->SetMyCurrentFormationEntry(Entry);
+	//});
 
-	DeliveryEnhanceTeamFormationTicket = DeliveryEnhanceTeamFormationClass<FB2EnhanceTeamFormation>::GetInstance().Subscribe([](const FB2EnhanceTeamFormation& EnhanceResult)
-	{
-		//auto* TeamMatchDoc = UB2UIDocHelper::GetDocTeamMatch();
-		//if (TeamMatchDoc)
-		//{
-		//	auto Formation = GET_TUPLE_DATA(FB2ResponseEnhanceTeamFormation::formation_index, EnhanceResult);
+	//DeliveryEnhanceTeamFormationTicket = DeliveryEnhanceTeamFormationClass<FB2EnhanceTeamFormation>::GetInstance().Subscribe([](const FB2EnhanceTeamFormation& EnhanceResult)
+	//{
+	//	//auto* TeamMatchDoc = UB2UIDocHelper::GetDocTeamMatch();
+	//	//if (TeamMatchDoc)
+	//	//{
+	//	//	auto Formation = GET_TUPLE_DATA(FB2ResponseEnhanceTeamFormation::formation_index, EnhanceResult);
 
-		//	switch (SvrToCliFormationType(Formation->formation_type))
-		//	{
-		//	case ETMFormation::ETM_Normal:
-		//		TeamMatchDoc->SetFormationNormalLevel(Formation->formation_level);
-		//		break;
-		//	case ETMFormation::ETM_Attack:
-		//		TeamMatchDoc->SetFormationAttLevel(Formation->formation_level);
-		//		break;
-		//	case ETMFormation::ETM_Defense:
-		//		TeamMatchDoc->SetFormationDefLevel(Formation->formation_level);
-		//		break;
-		//	}
-		//}
-	});
+	//	//	switch (SvrToCliFormationType(Formation->formation_type))
+	//	//	{
+	//	//	case ETMFormation::ETM_Normal:
+	//	//		TeamMatchDoc->SetFormationNormalLevel(Formation->formation_level);
+	//	//		break;
+	//	//	case ETMFormation::ETM_Attack:
+	//	//		TeamMatchDoc->SetFormationAttLevel(Formation->formation_level);
+	//	//		break;
+	//	//	case ETMFormation::ETM_Defense:
+	//	//		TeamMatchDoc->SetFormationDefLevel(Formation->formation_level);
+	//	//		break;
+	//	//	}
+	//	//}
+	//});
 }
 void FLobbyTeamMatchScene::UnsubscribeEvents_OnDestruct()
 {
-	DeliveryGetTeamBattleStatusClass<FB2TeamBattleStatus>::GetInstance().Unsubscribe(DeliveryGetTeamBattleStatusTicket);
-	DeliveryUpdateTeamBattleEntryClass<FB2TeamBattleEntryPtr>::GetInstance().Unsubscribe(DeliveryUpdateTeamBattleEntryTicket);
-	DeliveryEnhanceTeamFormationClass<FB2EnhanceTeamFormation>::GetInstance().Unsubscribe(DeliveryEnhanceTeamFormationTicket);
+	//DeliveryGetTeamBattleStatusClass<FB2TeamBattleStatus>::GetInstance().Unsubscribe(DeliveryGetTeamBattleStatusTicket);
+	//DeliveryUpdateTeamBattleEntryClass<FB2TeamBattleEntryPtr>::GetInstance().Unsubscribe(DeliveryUpdateTeamBattleEntryTicket);
+	//DeliveryEnhanceTeamFormationClass<FB2EnhanceTeamFormation>::GetInstance().Unsubscribe(DeliveryEnhanceTeamFormationTicket);
 }
 
 void FLobbyTeamMatchScene::SetMyAllFormationData(const FB2TeamBattleStatus& TeamBattleStatus)
@@ -4155,14 +4156,14 @@ FLobbyTagMatchScene::~FLobbyTagMatchScene()
 
 void FLobbyTagMatchScene::SubscribeEvents_OnConstruct()
 {
-	DeliveryGetMatchStatusTicket = DeliveryGetMatchStatusClass<FB2TagMatchStatus>::GetInstance().Subscribe([this](const FB2TagMatchStatus& TagMatchStatus)
-	{
-		SetUIData(TagMatchStatus);
-	});
+	//DeliveryGetMatchStatusTicket = DeliveryGetMatchStatusClass<FB2TagMatchStatus>::GetInstance().Subscribe([this](const FB2TagMatchStatus& TagMatchStatus)
+	//{
+	//	SetUIData(TagMatchStatus);
+	//});
 }
 void FLobbyTagMatchScene::UnsubscribeEvents_OnDestruct()
 {
-	DeliveryGetMatchStatusClass<FB2TagMatchStatus>::GetInstance().Unsubscribe(DeliveryGetMatchStatusTicket);
+	//DeliveryGetMatchStatusClass<FB2TagMatchStatus>::GetInstance().Unsubscribe(DeliveryGetMatchStatusTicket);
 }
 
 void FLobbyTagMatchScene::SetUIData(const FB2TagMatchStatus& TagMatchStatus)
@@ -4369,18 +4370,18 @@ void FLobbyMailScene::CloseScene()
 
 void FLobbyMailScene::SubscribeEvents_OnConstruct()
 {
-	DeliveryGetMailListTicket = DeliveryGetMailListClass<FB2MailList>::GetInstance().Subscribe([this](const FB2MailList& MailList)
-	{
-		//todo UI열기
-		//UB2UIManager::GetInstance()->ChangeUIScene(EUIScene::Mail);
+	//DeliveryGetMailListTicket = DeliveryGetMailListClass<FB2MailList>::GetInstance().Subscribe([this](const FB2MailList& MailList)
+	//{
+	//	//todo UI열기
+	//	//UB2UIManager::GetInstance()->ChangeUIScene(EUIScene::Mail);
 
-		//todo Category별
-		SetUIData(MailList);
-	});
+	//	//todo Category별
+	//	SetUIData(MailList);
+	//});
 }
 void FLobbyMailScene::UnsubscribeEvents_OnDestruct()
 {
-	DeliveryGetMailListClass<FB2MailList>::GetInstance().Unsubscribe(DeliveryGetMailListTicket);
+	//DeliveryGetMailListClass<FB2MailList>::GetInstance().Unsubscribe(DeliveryGetMailListTicket);
 }
 
 //#include "B2UIMail.h"
@@ -4411,14 +4412,14 @@ FLobbyCounterAttackScene::~FLobbyCounterAttackScene()
 
 void FLobbyCounterAttackScene::SubscribeEvents_OnConstruct()
 {
-	DeliveryGetCounterDundeonTicket = DeliveryGetCounterDundeonClass<FB2GetCounterDungeon>::GetInstance().Subscribe([this](const FB2GetCounterDungeon& msg)
-	{
-		this->SetGetCounterDungeonInfo(msg);
-	});
+	//DeliveryGetCounterDundeonTicket = DeliveryGetCounterDundeonClass<FB2GetCounterDungeon>::GetInstance().Subscribe([this](const FB2GetCounterDungeon& msg)
+	//{
+	//	this->SetGetCounterDungeonInfo(msg);
+	//});
 }
 void FLobbyCounterAttackScene::UnsubscribeEvents_OnDestruct()
 {
-	DeliveryGetCounterDundeonClass<FB2GetCounterDungeon>::GetInstance().Unsubscribe(DeliveryGetCounterDundeonTicket);
+	//DeliveryGetCounterDundeonClass<FB2GetCounterDungeon>::GetInstance().Unsubscribe(DeliveryGetCounterDundeonTicket);
 }
 
 void FLobbyCounterAttackScene::SetGetCounterDungeonInfo(const FB2GetCounterDungeon& DungeonInfo)
@@ -4523,7 +4524,7 @@ void FLobbyHeroTowerReadyScene::SubscribeEvents_OnConstruct()
 }
 void FLobbyHeroTowerReadyScene::UnsubscribeEvents_OnDestruct()
 {
-	DeliveryGetHeroTowerClass<FB2ResponseGetHeroTowerPtr>::GetInstance().Unsubscribe(DeliveryGetHeroTowerTicket);
+	//DeliveryGetHeroTowerClass<FB2ResponseGetHeroTowerPtr>::GetInstance().Unsubscribe(DeliveryGetHeroTowerTicket);
 }
 
 void FLobbyHeroTowerReadyScene::SetUIData(const FB2ResponseGetHeroTowerPtr& MsgPtr)
@@ -4953,17 +4954,17 @@ void FLobbyCollectBookMain::CloseScene()
 
 void FLobbyCollectBookMain::SubscribeEvents_OnConstruct()
 {
-	LobbyCharRotateCharacterTicket = LobbyCharRotateCharacterClass<float>::GetInstance().Subscribe([this](float Value) { this->RotateCharacterYaw(Value); });
-	LobbyCharEquippedItemTicket = LobbyCharEquippedItemClass<EPCClass, EItemEquipPlace>::GetInstance().Subscribe([this](EPCClass CharClass, EItemEquipPlace EquippedPlace) { this->OnCollectItemEquip(CharClass, EquippedPlace); });
-	LobbyCharCollectBookSelectTicket = LobbyCharCollectBookSelectClass<EPCClass>::GetInstance().Subscribe([this](EPCClass CharClass) { this->SelectCollectBookCharacter(CharClass); });
-	LobbyCharZoomTicket = LobbyCharZoomClass<const FVector2D&, float>::GetInstance().Subscribe([this](const FVector2D& Pinpoint, float Delta) { this->ZoomModule.Zoom(Pinpoint, Delta); });
+	//LobbyCharRotateCharacterTicket = LobbyCharRotateCharacterClass<float>::GetInstance().Subscribe([this](float Value) { this->RotateCharacterYaw(Value); });
+	//LobbyCharEquippedItemTicket = LobbyCharEquippedItemClass<EPCClass, EItemEquipPlace>::GetInstance().Subscribe([this](EPCClass CharClass, EItemEquipPlace EquippedPlace) { this->OnCollectItemEquip(CharClass, EquippedPlace); });
+	//LobbyCharCollectBookSelectTicket = LobbyCharCollectBookSelectClass<EPCClass>::GetInstance().Subscribe([this](EPCClass CharClass) { this->SelectCollectBookCharacter(CharClass); });
+	//LobbyCharZoomTicket = LobbyCharZoomClass<const FVector2D&, float>::GetInstance().Subscribe([this](const FVector2D& Pinpoint, float Delta) { this->ZoomModule.Zoom(Pinpoint, Delta); });
 }
 void FLobbyCollectBookMain::UnsubscribeEvents_OnDestruct()
 {
-	LobbyCharRotateCharacterClass<float>::GetInstance().Unsubscribe(LobbyCharRotateCharacterTicket);
-	LobbyCharEquippedItemClass<EPCClass, EItemEquipPlace>::GetInstance().Unsubscribe(LobbyCharEquippedItemTicket);
-	LobbyCharCollectBookSelectClass<EPCClass>::GetInstance().Unsubscribe(LobbyCharCollectBookSelectTicket);
-	LobbyCharZoomClass<const FVector2D&, float>::GetInstance().Unsubscribe(LobbyCharZoomTicket);
+	//LobbyCharRotateCharacterClass<float>::GetInstance().Unsubscribe(LobbyCharRotateCharacterTicket);
+	//LobbyCharEquippedItemClass<EPCClass, EItemEquipPlace>::GetInstance().Unsubscribe(LobbyCharEquippedItemTicket);
+	//LobbyCharCollectBookSelectClass<EPCClass>::GetInstance().Unsubscribe(LobbyCharCollectBookSelectTicket);
+	//LobbyCharZoomClass<const FVector2D&, float>::GetInstance().Unsubscribe(LobbyCharZoomTicket);
 }
 
 void FLobbyCollectBookMain::OnCollectItemEquip(EPCClass CharClass, EItemEquipPlace EquippedPlace)
@@ -5084,8 +5085,8 @@ void FLobbySummonItemScene::SubscribeEvents_OnConstruct()
 
 void FLobbySummonItemScene::UnsubscribeEvents_OnDestruct()
 {
-	DeliveryGetLotteryShopClass<FB2ResponseGetLotteryShopPtr>::GetInstance().Unsubscribe(DeliveryGetLotteryShopTicket);
-	HandleServerError7237Class<>::GetInstance().Unsubscribe(HandleServerError7237Ticket);
+	//DeliveryGetLotteryShopClass<FB2ResponseGetLotteryShopPtr>::GetInstance().Unsubscribe(DeliveryGetLotteryShopTicket);
+	//HandleServerError7237Class<>::GetInstance().Unsubscribe(HandleServerError7237Ticket);
 }
 
 void FLobbySummonItemScene::OpenScene()
@@ -5427,14 +5428,14 @@ FLobbyGeneralLotteryDisplayScene::~FLobbyGeneralLotteryDisplayScene()
 
 void FLobbyGeneralLotteryDisplayScene::SubscribeEvents_OnConstruct()
 {
-	DeliveryGeneralLotteryItemResultTicket = DeliveryGeneralLotteryItemResultClass<FB2Item, ESummonItemDifficulty>::GetInstance().Subscribe([this](const FB2Item& SummonItem, ESummonItemDifficulty Difficulty)
-	{
-		this->SetGeneralLotteryItemResult(SummonItem, Difficulty);
-	});
+	//DeliveryGeneralLotteryItemResultTicket = DeliveryGeneralLotteryItemResultClass<FB2Item, ESummonItemDifficulty>::GetInstance().Subscribe([this](const FB2Item& SummonItem, ESummonItemDifficulty Difficulty)
+	//{
+	//	this->SetGeneralLotteryItemResult(SummonItem, Difficulty);
+	//});
 }
 void FLobbyGeneralLotteryDisplayScene::UnsubscribeEvents_OnDestruct()
 {
-	DeliveryGeneralLotteryItemResultClass<FB2Item, ESummonItemDifficulty>::GetInstance().Unsubscribe(DeliveryGeneralLotteryItemResultTicket);
+	//DeliveryGeneralLotteryItemResultClass<FB2Item, ESummonItemDifficulty>::GetInstance().Unsubscribe(DeliveryGeneralLotteryItemResultTicket);
 }
 
 void FLobbyGeneralLotteryDisplayScene::SetGeneralLotteryItemResult(const FB2Item& SummonItemUsingLottery, ESummonItemDifficulty InSummonItemDifficulty)
@@ -5731,20 +5732,20 @@ void FLobbyRaidMainScene::CloseScene()
 
 void FLobbyRaidMainScene::SubscribeEvents_OnConstruct()
 {
-	DeliveryRaidMatchmakingTicket = DeliveryRaidMatchmakingClass<FB2ResponseRaidMatchmakingPtr>::GetInstance().Subscribe([this](const FB2ResponseRaidMatchmakingPtr& Message) 
-	{ 
-		this->OnDeliveryRaidMatchmaking(Message); 
-	});
+	//DeliveryRaidMatchmakingTicket = DeliveryRaidMatchmakingClass<FB2ResponseRaidMatchmakingPtr>::GetInstance().Subscribe([this](const FB2ResponseRaidMatchmakingPtr& Message) 
+	//{ 
+	//	this->OnDeliveryRaidMatchmaking(Message); 
+	//});
 
-	DeliveryGetRaidTicket = DeliveryGetRaidClass<FB2ResponseGetRaidPtr>::GetInstance().Subscribe([this](const FB2ResponseGetRaidPtr& msgPtr)
-	{
-		this->SetUIData(msgPtr);
-	});
+	//DeliveryGetRaidTicket = DeliveryGetRaidClass<FB2ResponseGetRaidPtr>::GetInstance().Subscribe([this](const FB2ResponseGetRaidPtr& msgPtr)
+	//{
+	//	this->SetUIData(msgPtr);
+	//});
 }
 void FLobbyRaidMainScene::UnsubscribeEvents_OnDestruct()
 {
-	DeliveryRaidMatchmakingClass<FB2ResponseRaidMatchmakingPtr>::GetInstance().Unsubscribe(DeliveryRaidMatchmakingTicket);
-	DeliveryGetRaidClass<FB2ResponseGetRaidPtr>::GetInstance().Unsubscribe(DeliveryGetRaidTicket);
+	//DeliveryRaidMatchmakingClass<FB2ResponseRaidMatchmakingPtr>::GetInstance().Unsubscribe(DeliveryRaidMatchmakingTicket);
+	//DeliveryGetRaidClass<FB2ResponseGetRaidPtr>::GetInstance().Unsubscribe(DeliveryGetRaidTicket);
 }
 
 void FLobbyRaidMainScene::OnHostChanged(int32 RoomType, int32 NewHostId)

@@ -11,7 +11,7 @@
 //#include "Algo/Copy.h"
 //#include "Algo/Count.h"
 #include "B2MessageInfoCommonStruct.h"
-#include "FairyManager.h"
+//#include "FairyManager.h"
 
 #include "Global.h"
 #include "BladeIIGameImpl.h"

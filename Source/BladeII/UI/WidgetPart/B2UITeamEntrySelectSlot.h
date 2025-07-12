@@ -1,6 +1,7 @@
 #pragma once
 
 #include "B2UIWidgetBase.h"
+#include "../../Common/CommonStruct.h"
 #include "B2UITeamEntrySelectSlot.generated.h"
 
 DECLARE_DELEGATE(FTeamMatchSelectCharacter);
@@ -20,17 +21,17 @@ protected:
 public:
 	void SetCharacterSlot(EPCClass CharacterClass);
 	void SetEnterTeamMatchCheck(EPCClass CharacterClass);
-	FTeamMatchSelectCharacter GetFormationSlotUpdateDelegate() { return FormationSlotUpdateDelegate;}
+	//FTeamMatchSelectCharacter GetFormationSlotUpdateDelegate() { return FormationSlotUpdateDelegate;}
 
 public:
 	UFUNCTION()
 	void OnClickSelect();
 
 public:
-	FTeamMatchSelectCharacter FormationSlotUpdateDelegate;
+	//FTeamMatchSelectCharacter FormationSlotUpdateDelegate;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = BladeII)
-		TArray<UMaterialInterface*>		CharacterTexture;
+	TArray<UMaterialInterface*>		CharacterTexture;
 
 private:
 	TWeakObjectPtr<UImage>		IMG_Character;

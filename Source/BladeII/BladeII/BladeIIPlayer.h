@@ -690,8 +690,8 @@ public:
 	virtual void AffectToAttackerAfterVictimDie(ABladeIICharacter* Victim, float ActualDamage, const FDamageInfo& DamageInfo)override;
 protected:
 	/** Cached from PlayerState. */
-	//UPROPERTY(Transient)
-	//class UB2SkillRTManager* CachedSkillRTManager;
+	UPROPERTY(Transient)
+	class UB2SkillRTManager* CachedSkillRTManager;
 
 	TArray<FB2Item> CachedEquippedItem;
 	FB2Wing CachedWingData; // This is valid only when bHasWing is true. Use GetWingDataPtrIfValid for safe access.
@@ -1058,7 +1058,7 @@ protected:
 public:
 
 	/** Must get the same one to the GetSkillRTManager of BladeIIPlayerController */
-	//virtual class UB2SkillRTManager* GetSkillRTManager();	
+	virtual class UB2SkillRTManager* GetSkillRTManager();	
 
 	//UFUNCTION(BlueprintCallable, Category = BladeIIGame)
 	//class UB2InGameHUDInfo* GetHUDInfoObject();
@@ -1167,9 +1167,9 @@ private:
 	void OnSomeMobTermination(ABladeIICharacter* InMobAboutToDestroy);
 
 protected:
-	//class ICharacterDataStore* CharacterDataStore;
+	class ICharacterDataStore* CharacterDataStore;
 public:
-	//virtual class ICharacterDataStore* GetCharacterDataStore();
+	virtual class ICharacterDataStore* GetCharacterDataStore();
 
 public:
 

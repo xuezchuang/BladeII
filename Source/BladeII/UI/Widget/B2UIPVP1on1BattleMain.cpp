@@ -80,75 +80,75 @@ void UB2UIPVP1on1BattleMain::NativeTick(const FGeometry& MyGeometry, float InDel
 
 void UB2UIPVP1on1BattleMain::CacheAssets()
 {
-		//¹èÆ²ÄÞº¸
-	GET_SLOT(UB2UIBattleCombo, UIP_BattleCombo);
+	//	//¹èÆ²ÄÞº¸
+	//GET_SLOT(UB2UIBattleCombo, UIP_BattleCombo);
 
-		//ºñ³ØÆ®
-	GET_SLOT(UB2UIBattleVignette, UIP_BattleVignette);
+	//	//ºñ³ØÆ®
+	//GET_SLOT(UB2UIBattleVignette, UIP_BattleVignette);
 
-		//¹öÆ°µé
-	GET_SLOT(UButton, BTN_Pause);
-	GET_SLOT(UButton, BTN_Attack);
-	GET_SLOT(UButton, BTN_Guard);
+	//	//¹öÆ°µé
+	//GET_SLOT(UButton, BTN_Pause);
+	//GET_SLOT(UButton, BTN_Attack);
+	//GET_SLOT(UButton, BTN_Guard);
 
-	GET_SLOT(UPanelWidget, CP_GuardEnable);
-	GET_SLOT(UPanelWidget, CP_GuardDisable);
-	GET_SLOT(UTextBlock, TB_GuradCoolTime);
+	//GET_SLOT(UPanelWidget, CP_GuardEnable);
+	//GET_SLOT(UPanelWidget, CP_GuardDisable);
+	//GET_SLOT(UTextBlock, TB_GuradCoolTime);
 
-	GET_SLOTS_PVP_CHARACTER(LeftCharAssets, Left);
-	GET_SLOTS_PVP_CHARACTER(RightCharAssets, Right);
+	//GET_SLOTS_PVP_CHARACTER(LeftCharAssets, Left);
+	//GET_SLOTS_PVP_CHARACTER(RightCharAssets, Right);
 
-	GET_SLOT(UTextBlock, TB_LeftTime);
-	GET_SLOT(UTextBlock, TB_Fight);
+	//GET_SLOT(UTextBlock, TB_LeftTime);
+	//GET_SLOT(UTextBlock, TB_Fight);
 
-	GET_SLOT(UTextBlock, TB_TagAnim_Gladiator);
-	GET_SLOT(UTextBlock, TB_TagAnim_Assassin);
-	GET_SLOT(UTextBlock, TB_TagAnim_Wizard);
-	GET_SLOT(UTextBlock, TB_TagAnim_Fighter);
+	//GET_SLOT(UTextBlock, TB_TagAnim_Gladiator);
+	//GET_SLOT(UTextBlock, TB_TagAnim_Assassin);
+	//GET_SLOT(UTextBlock, TB_TagAnim_Wizard);
+	//GET_SLOT(UTextBlock, TB_TagAnim_Fighter);
 
-	GET_SLOT(UTextBlock, TB_LeaveEnemy);
+	//GET_SLOT(UTextBlock, TB_LeaveEnemy);
 
-	GET_SLOT(UImage, IMG_FocusTimer);
-	GET_SLOT(UImage, IMG_Victory);
-	GET_SLOT(UImage, IMG_Lose);
-	GET_SLOT(UImage, IMG_Draw);
+	//GET_SLOT(UImage, IMG_FocusTimer);
+	//GET_SLOT(UImage, IMG_Victory);
+	//GET_SLOT(UImage, IMG_Lose);
+	//GET_SLOT(UImage, IMG_Draw);
 
-	GET_SLOT(UB2Button, BTN_Tag);
-	GET_SLOT(UB2UIPAutoBattleIcon, UIP_AutoBattleIcon)
-	GET_SLOT(UPanelWidget, P_SkillSet);
-	GET_SLOT(UWidgetAnimation, ANIM_TimeFocus);
+	//GET_SLOT(UB2Button, BTN_Tag);
+	//GET_SLOT(UB2UIPAutoBattleIcon, UIP_AutoBattleIcon)
+	//GET_SLOT(UPanelWidget, P_SkillSet);
+	//GET_SLOT(UWidgetAnimation, ANIM_TimeFocus);
 
-	if (UIP_BattleCombo.IsValid())
-	{
-		UIP_BattleCombo->Init();
-		UIP_BattleCombo->SetVisibility(ESlateVisibility::Collapsed);
-	}
+	//if (UIP_BattleCombo.IsValid())
+	//{
+	//	UIP_BattleCombo->Init();
+	//	UIP_BattleCombo->SetVisibility(ESlateVisibility::Collapsed);
+	//}
 
-	if (UIP_BattleVignette.IsValid())
-	{
-		UIP_BattleVignette->Init();
-		UIP_BattleVignette->SetVisibility(ESlateVisibility::Collapsed);
-	}
+	//if (UIP_BattleVignette.IsValid())
+	//{
+	//	UIP_BattleVignette->Init();
+	//	UIP_BattleVignette->SetVisibility(ESlateVisibility::Collapsed);
+	//}
 
-	if (IMG_FocusTimer.IsValid())
-	{
-		IMG_FocusTimer->SetVisibility(ESlateVisibility::Collapsed);
-	}
+	//if (IMG_FocusTimer.IsValid())
+	//{
+	//	IMG_FocusTimer->SetVisibility(ESlateVisibility::Collapsed);
+	//}
 
-	GET_SLOT(UB2UIEtherSetSkillIcon, UIP_OffenseEtherIcon);
-	if (UIP_OffenseEtherIcon.IsValid())
-		UIP_OffenseEtherIcon->Init();
-	GET_SLOT(UB2UIEtherSetSkillIcon, UIP_DefenseEtherIcon);
-	if (UIP_DefenseEtherIcon.IsValid())
-		UIP_DefenseEtherIcon->Init();
+	//GET_SLOT(UB2UIEtherSetSkillIcon, UIP_OffenseEtherIcon);
+	//if (UIP_OffenseEtherIcon.IsValid())
+	//	UIP_OffenseEtherIcon->Init();
+	//GET_SLOT(UB2UIEtherSetSkillIcon, UIP_DefenseEtherIcon);
+	//if (UIP_DefenseEtherIcon.IsValid())
+	//	UIP_DefenseEtherIcon->Init();
 
-	GET_SLOT(UImage, IMG_EvadeSkillCooltime);
+	//GET_SLOT(UImage, IMG_EvadeSkillCooltime);
 
-	GET_SLOT(UB2UIBattleNotice, UIP_BattleNotice);
-	if (UIP_BattleNotice.IsValid())
-	{
-		UIP_BattleNotice->Init();
-	}
+	//GET_SLOT(UB2UIBattleNotice, UIP_BattleNotice);
+	//if (UIP_BattleNotice.IsValid())
+	//{
+	//	UIP_BattleNotice->Init();
+	//}
 }
 
 void UB2UIPVP1on1BattleMain::Init()
@@ -799,7 +799,7 @@ void UB2UIPVP1on1BattleMain::DestroyAllMyBuffIcons_Guild()
 
 void UB2UIPVP1on1BattleMain::OnChangedIsDefenseEther(class UB2UIDocBase* Sender, bool IsDefenseEther, bool PrevIsDefenseEther)
 {
-	if (UIP_DefenseEtherIcon.IsValid())
+	/*if (UIP_DefenseEtherIcon.IsValid())
 	{
 		if (IsDefenseEther)
 		{
@@ -812,24 +812,24 @@ void UB2UIPVP1on1BattleMain::OnChangedIsDefenseEther(class UB2UIDocBase* Sender,
 			if(UIP_DefenseEtherIcon->GetVisibility() == ESlateVisibility::SelfHitTestInvisible)
 				UIP_DefenseEtherIcon->SetVisibility(ESlateVisibility::Collapsed);
 		}
-	}
+	}*/
 }
 void UB2UIPVP1on1BattleMain::OnChangedIsOffenseEther(class UB2UIDocBase* Sender, bool IsOffenseEther, bool PrevIsOffenseEther)
 {
-	if (UIP_OffenseEtherIcon.IsValid())
-	{
-		if (IsOffenseEther)
-		{ 
-			if(UIP_OffenseEtherIcon->GetVisibility() == ESlateVisibility::Collapsed)
-				UIP_OffenseEtherIcon->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
-			UIP_OffenseEtherIcon->Init();
-		}
-		else if (!IsOffenseEther)
-		{
-			if(UIP_OffenseEtherIcon->GetVisibility() == ESlateVisibility::SelfHitTestInvisible)
-				UIP_OffenseEtherIcon->SetVisibility(ESlateVisibility::Collapsed);
-		}
-	}
+	//if (UIP_OffenseEtherIcon.IsValid())
+	//{
+	//	if (IsOffenseEther)
+	//	{ 
+	//		if(UIP_OffenseEtherIcon->GetVisibility() == ESlateVisibility::Collapsed)
+	//			UIP_OffenseEtherIcon->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
+	//		UIP_OffenseEtherIcon->Init();
+	//	}
+	//	else if (!IsOffenseEther)
+	//	{
+	//		if(UIP_OffenseEtherIcon->GetVisibility() == ESlateVisibility::SelfHitTestInvisible)
+	//			UIP_OffenseEtherIcon->SetVisibility(ESlateVisibility::Collapsed);
+	//	}
+	//}
 }
 
 void UB2UIPVP1on1BattleMain::OnAbnormalStateChanged(class UB2UIDocBase* Sender, bool NewValue, bool PrevValue)
@@ -850,24 +850,24 @@ void UB2UIPVP1on1BattleMain::OnAbnormalStateChanged(class UB2UIDocBase* Sender, 
 
 void UB2UIPVP1on1BattleMain::OnChangedOffenseEtherCoolTime(class UB2UIDocBase* Sender, float InRemainingCooltime, float InPrevRemainingCooltime)
 {
-	if (UIP_OffenseEtherIcon.IsValid())
-	{
-		if (UB2UIDocBattle* DocBattle = Cast<UB2UIDocBattle>(GetDoc()))
-		{
-			UIP_OffenseEtherIcon->UpdateCoolTime(DocBattle->GetOffenseEtherMaxCoolTime(), InRemainingCooltime, DocBattle->GetEnableOffenseEther());
-		}
-	}
+	//if (UIP_OffenseEtherIcon.IsValid())
+	//{
+	//	if (UB2UIDocBattle* DocBattle = Cast<UB2UIDocBattle>(GetDoc()))
+	//	{
+	//		UIP_OffenseEtherIcon->UpdateCoolTime(DocBattle->GetOffenseEtherMaxCoolTime(), InRemainingCooltime, DocBattle->GetEnableOffenseEther());
+	//	}
+	//}
 }
 
 void UB2UIPVP1on1BattleMain::OnChangedDefenseEtherCoolTime(class UB2UIDocBase* Sender, float InRemainingCooltime, float InPrevRemainingCooltime)
 {
-	if (UIP_DefenseEtherIcon.IsValid())
-	{
-		if (UB2UIDocBattle* DocBattle = Cast<UB2UIDocBattle>(GetDoc()))
-		{
-			UIP_DefenseEtherIcon->UpdateCoolTime(DocBattle->GetDefenseEtherMaxCoolTime(), InRemainingCooltime, DocBattle->GetEnableDefenseEther());
-		}
-	}
+	//if (UIP_DefenseEtherIcon.IsValid())
+	//{
+	//	if (UB2UIDocBattle* DocBattle = Cast<UB2UIDocBattle>(GetDoc()))
+	//	{
+	//		UIP_DefenseEtherIcon->UpdateCoolTime(DocBattle->GetDefenseEtherMaxCoolTime(), InRemainingCooltime, DocBattle->GetEnableDefenseEther());
+	//	}
+	//}
 }
 
 //====================================================================================

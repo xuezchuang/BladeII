@@ -68,20 +68,20 @@ void UB2UIEventPageTenLotterySaving::UpdateStaticText()
 
 void UB2UIEventPageTenLotterySaving::SubscribeEvents_EventPage()
 {
-	UnsubscribeEvents_EventPage();
+	//UnsubscribeEvents_EventPage();
 
-	CAPTURE_UOBJECT(UB2UIEventPageTenLotterySaving);
+	//CAPTURE_UOBJECT(UB2UIEventPageTenLotterySaving);
 
-	Issues_EventPage.Add(
-		DeliveryRewardTenLotterySavingsEventClass <FB2ResponseRewardTenLotterySavingsEventPtr>::GetInstance().Subscribe2(
-		[Capture](FB2ResponseRewardTenLotterySavingsEventPtr ReciveEventReward)
-		{
-			if (Capture.IsValid())
-			{
-				Capture->ResponseRewardTenLotterySavingsEvent(ReciveEventReward);
-			}
-		}
-	));
+	//Issues_EventPage.Add(
+	//	DeliveryRewardTenLotterySavingsEventClass <FB2ResponseRewardTenLotterySavingsEventPtr>::GetInstance().Subscribe2(
+	//	[Capture](FB2ResponseRewardTenLotterySavingsEventPtr ReciveEventReward)
+	//	{
+	//		if (Capture.IsValid())
+	//		{
+	//			Capture->ResponseRewardTenLotterySavingsEvent(ReciveEventReward);
+	//		}
+	//	}
+	//));
 }
 
 void UB2UIEventPageTenLotterySaving::InitEventPageMasterData()
@@ -187,7 +187,7 @@ void UB2UIEventPageTenLotterySaving::OnClickBTN_GetReward()
 
 void UB2UIEventPageTenLotterySaving::OnClickBTN_GotoEquipShop()
 {
-	EnterShopClass<int32>::GetInstance().Signal(static_cast<int32>(EStorePageWhere::EquipStore));
+	//EnterShopClass<int32>::GetInstance().Signal(static_cast<int32>(EStorePageWhere::EquipStore));
 }
 
 void UB2UIEventPageTenLotterySaving::ResponseRewardTenLotterySavingsEvent(FB2ResponseRewardTenLotterySavingsEventPtr ReciveEventReward)

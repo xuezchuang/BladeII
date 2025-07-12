@@ -71,8 +71,8 @@ void UB2UIEtherLotterySlot::CacheAssets()
 
 void UB2UIEtherLotterySlot::OnClickedSenderBTNArea()
 {
-	SelectEtherLotterySlotClass<int32>::GetInstance().Signal(TypeID);
-	TouchEtherLotterySlotPlaySound();
+	//SelectEtherLotterySlotClass<int32>::GetInstance().Signal(TypeID);
+	//TouchEtherLotterySlotPlaySound();
 }
 
 void UB2UIEtherLotterySlot::SetEtherInfo(int32 InTypeID, int32 InTier)

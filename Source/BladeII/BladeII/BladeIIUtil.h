@@ -8,68 +8,69 @@
 //#include "B2LogManager.h"
 #include"Components/Image.h"
 #include "BladeII.h"
-//#include "Engine/StreamableManager.h"
-//
-////FText GetPCClassLocalizedText(EPCClass PCClass);
-//
-//extern bool OpenBladeIIDLCFrontCommon(class AGameMode* InCurrentGameMode);
-//bool OpenBladeIILobbyCommon(class AGameMode* InCurrentGameMode);
-//
-///** Start the main map of specified StageNum.
-//* OpenURLOption is the option string goes to Open command. In normal circumstances, most options might be set by StageInfo. */
-////bool StartBladeIIGameStage(class AGameMode* InCurrentGameMode, int32 InClientStageId, FString OpenURLOption = FString(TEXT("")), EB2GameMode ChangeGameMode = EB2GameMode::Scenario);
-//
-///** Client side entry point of PVP game mode. */
-//bool StartBladeIIPVPGame(class AGameMode* InCurrentGameMode, FString OpenURLOption = FString(TEXT("")));
-//bool StartBladeIITeamMatchGame(class AGameMode* InCurrentGameMode, FString OpenURLOption = FString(TEXT("")));
-//bool StartBladeIICounterDungeon(class AGameMode* InCurrentGameMode, int32 CounterStageNum);
-//bool StartBladeIIHerotowerGame(class AGameMode* InCurrentGameMode, int32 HeroTowerNum);
-//
-//bool StartBladeIIRaidGame(class AGameMode* InCurrentGameMode, int32 RaidClientStageID, FString OpenURLOption = FString(TEXT("")));
-//bool StartBladeIIControlGame(class AGameMode* InCurrentGameMode, FString OpenURLOption = FString(TEXT("")));
-//bool StartBladeIIGuildMatchGame(class AGameMode* InCurrentGameMode, FString OpenURLOption = FString(TEXT("")));
-//
-//bool StartBladeIIGameTutorial(class AGameMode* InCurrentGameMode, FString OpenURLOption = FString(TEXT("")));
-//
-////bool StartBladeIIPVPReplay(class AGameMode* InCurrentGameMode, FModReplayInfo ReplayInfo, FString OpenURLOption = FString(TEXT("")));
-//
-//bool StartBladeIIDimension(class AGameMode* InCurrentGameMode, int32 MapLoadID, FString OpenURLOption = FString(TEXT("")));
-//
-///** Find (or create if not) the stage Info table asset from current BladeIIGameMode object. */
-//class UB2StageInfo* StaticFindStageInfo();
-///** Find (or create if not) the chapter Info table asset from current BladeIIGameMode object. */
-//class UB2ChapterInfo* StaticFindChapterInfo();
-///** Find (or create if not) the item Info table asset from current BladeIIGameMode object. */
-//class UB2ItemInfo* StaticFindItemInfo();
-///** Find (or create if not) the dialog Info table asset from current BladeIIGameMode object. */
-//class UB2ScenarioDialogInfo* StaticFindDialogInfoTable();
-///** Find (or create if not) the dialog sound Info table asset from current BladeIIGameMode object. */
-//class UB2DialogSoundInfoSet* StaticFindDialogSoundInfoTable();
-///** Find (or create if not) the Mob's sensitive Info table asset (which was a part of but now separated from NPCClassInfo) from current BladeIIGameMode object. */
-//class UB2NPCSensitiveInfo* StaticFindNPCSensitiveInfoTable();
-///** Find (or create if not) the Brevet Info table asset from current BladeIIGameMode object. */
-//class UB2BrevetInfo* StaticFindBrevetInfo();
-//class UB2ErrorCodeInfo* StaticFindErrorCodeInfo();
-///** Find (or create if not) the Quest Info table asset from current BladeIIGameMode object. */
-//class UB2QuestInfoTable* StaticFindQuestTable();
-//class UB2QuestNPCSoundInfo* StaticFindQuestNPCSoundTable();
-//class UB2MissionInfo* StaticFindMissionInfo();
-//class UB2RewardInfo* StaticFindRewardInfo();
-//class UB2GoodsTypeInfo* StaticFindGoodsTypeInfoTable();
-//class UB2GoodsShortcutInfo* StaticFindGoodsShortcutInfo();
-//class UB2RaidInfoTable* StaticFindRaidInfo();
-//class UB2TalkInfo* StaticFindTalkInfo();
-//class UB2DialogSoundInfoSet* StaticFindTalkSoundInfoTable();
-//class UB2ChattingFilteringInfo* StaticFindChattingFilteringInfo();
-//class UB2EtherInfo* StaticFindEtherInfoTable();
-//class UB2SelectiveEtherLottery* StaticFindSelectiveEtherLotteryTable();
-//class UB2EtherSetOptionInfo* StaticFindEtherSetOptionInfoTable();
-//class UB2EtherSetInfoTable*	StaticFindEtherSetEffectInfo();
-//class UB2TotemRefineInfo*	StaticFindTotemRefineInfo();
-//class UB2ItemSortInfo* StaticFindItemSortInfo();
-//class UB2CharacterTagDialogueInfo* StaticFindCharacterTagDialogueInfo();
-//class UB2SeasonEventInfo* StaticFindSeasonEventInfo();
-//class UB2FairyInfo* StaticFindFairyInfo();
+#include "Engine/StreamableManager.h"
+#include "../Common/CommonStruct.h"
+
+FText GetPCClassLocalizedText(EPCClass PCClass);
+
+extern bool OpenBladeIIDLCFrontCommon(class AGameMode* InCurrentGameMode);
+bool OpenBladeIILobbyCommon(class AGameMode* InCurrentGameMode);
+
+/** Start the main map of specified StageNum.
+* OpenURLOption is the option string goes to Open command. In normal circumstances, most options might be set by StageInfo. */
+//bool StartBladeIIGameStage(class AGameMode* InCurrentGameMode, int32 InClientStageId, FString OpenURLOption = FString(TEXT("")), EB2GameMode ChangeGameMode = EB2GameMode::Scenario);
+
+/** Client side entry point of PVP game mode. */
+bool StartBladeIIPVPGame(class AGameMode* InCurrentGameMode, FString OpenURLOption = FString(TEXT("")));
+bool StartBladeIITeamMatchGame(class AGameMode* InCurrentGameMode, FString OpenURLOption = FString(TEXT("")));
+bool StartBladeIICounterDungeon(class AGameMode* InCurrentGameMode, int32 CounterStageNum);
+bool StartBladeIIHerotowerGame(class AGameMode* InCurrentGameMode, int32 HeroTowerNum);
+
+bool StartBladeIIRaidGame(class AGameMode* InCurrentGameMode, int32 RaidClientStageID, FString OpenURLOption = FString(TEXT("")));
+bool StartBladeIIControlGame(class AGameMode* InCurrentGameMode, FString OpenURLOption = FString(TEXT("")));
+bool StartBladeIIGuildMatchGame(class AGameMode* InCurrentGameMode, FString OpenURLOption = FString(TEXT("")));
+
+bool StartBladeIIGameTutorial(class AGameMode* InCurrentGameMode, FString OpenURLOption = FString(TEXT("")));
+
+//bool StartBladeIIPVPReplay(class AGameMode* InCurrentGameMode, FModReplayInfo ReplayInfo, FString OpenURLOption = FString(TEXT("")));
+
+bool StartBladeIIDimension(class AGameMode* InCurrentGameMode, int32 MapLoadID, FString OpenURLOption = FString(TEXT("")));
+
+/** Find (or create if not) the stage Info table asset from current BladeIIGameMode object. */
+class UB2StageInfo* StaticFindStageInfo();
+/** Find (or create if not) the chapter Info table asset from current BladeIIGameMode object. */
+class UB2ChapterInfo* StaticFindChapterInfo();
+/** Find (or create if not) the item Info table asset from current BladeIIGameMode object. */
+class UB2ItemInfo* StaticFindItemInfo();
+/** Find (or create if not) the dialog Info table asset from current BladeIIGameMode object. */
+class UB2ScenarioDialogInfo* StaticFindDialogInfoTable();
+/** Find (or create if not) the dialog sound Info table asset from current BladeIIGameMode object. */
+class UB2DialogSoundInfoSet* StaticFindDialogSoundInfoTable();
+/** Find (or create if not) the Mob's sensitive Info table asset (which was a part of but now separated from NPCClassInfo) from current BladeIIGameMode object. */
+class UB2NPCSensitiveInfo* StaticFindNPCSensitiveInfoTable();
+/** Find (or create if not) the Brevet Info table asset from current BladeIIGameMode object. */
+class UB2BrevetInfo* StaticFindBrevetInfo();
+class UB2ErrorCodeInfo* StaticFindErrorCodeInfo();
+/** Find (or create if not) the Quest Info table asset from current BladeIIGameMode object. */
+class UB2QuestInfoTable* StaticFindQuestTable();
+class UB2QuestNPCSoundInfo* StaticFindQuestNPCSoundTable();
+class UB2MissionInfo* StaticFindMissionInfo();
+class UB2RewardInfo* StaticFindRewardInfo();
+class UB2GoodsTypeInfo* StaticFindGoodsTypeInfoTable();
+class UB2GoodsShortcutInfo* StaticFindGoodsShortcutInfo();
+class UB2RaidInfoTable* StaticFindRaidInfo();
+class UB2TalkInfo* StaticFindTalkInfo();
+class UB2DialogSoundInfoSet* StaticFindTalkSoundInfoTable();
+class UB2ChattingFilteringInfo* StaticFindChattingFilteringInfo();
+class UB2EtherInfo* StaticFindEtherInfoTable();
+class UB2SelectiveEtherLottery* StaticFindSelectiveEtherLotteryTable();
+class UB2EtherSetOptionInfo* StaticFindEtherSetOptionInfoTable();
+class UB2EtherSetInfoTable*	StaticFindEtherSetEffectInfo();
+class UB2TotemRefineInfo*	StaticFindTotemRefineInfo();
+class UB2ItemSortInfo* StaticFindItemSortInfo();
+class UB2CharacterTagDialogueInfo* StaticFindCharacterTagDialogueInfo();
+class UB2SeasonEventInfo* StaticFindSeasonEventInfo();
+class UB2FairyInfo* StaticFindFairyInfo();
 //
 ////////////////////////////////////////////////////////////////////////////////////////////
 //// For StaticFind stuff below, Pass down WorldContextObject whenever possible. for using cached reference.
@@ -241,12 +242,12 @@ void DevShowNotReadyYetPopup();
 extern bool isLocalConnectIniFileExist();
 
 /** Guess this can be used somewhat often? */
-//void PopupGoToShopForGemMessage();
-//void PopupGoToShopForGoldMessage();
-//void PopupGoToCounterDungeonForUpgradeStone(int32 _StoneType);
-//void PopupGoToHeroTowerMessage();
-//void PopupGoToControlGameModeMessage(int32 _ScrollType);
-//void PopupGotoShopForDarkCrystalMessage();
+void PopupGoToShopForGemMessage();
+void PopupGoToShopForGoldMessage();
+void PopupGoToCounterDungeonForUpgradeStone(int32 _StoneType);
+void PopupGoToHeroTowerMessage();
+void PopupGoToControlGameModeMessage(int32 _ScrollType);
+void PopupGotoShopForDarkCrystalMessage();
 
 /** when you modify this, please note that this information can be saved with instances
 * also DefaultEngine.ini [/Script/Engine.CollisionProfile] should match with this list **/
@@ -607,7 +608,7 @@ FORCEINLINE int32 ExtractNthDigitR_Dynamic(int32 InNumber, int32 NFromRear) // T
 	return (InNumber % UpperValue) / LowerValue;
 }
 
-//EB2GameMode GetB2GameModeType(class UObject* WorldContextObject);
+EB2GameMode GetB2GameModeType(class UObject* WorldContextObject);
 
 class ABladeIIGameMode* GetBladeIIGameMode(UObject* WorldContextObect);
 

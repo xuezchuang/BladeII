@@ -151,10 +151,10 @@ float UB2SkillInfo::GetOriginalSkillShootingRangeForAI(int32 SkillInfoID) const
 	return SingleInfo ? SingleInfo->SkillShootingRangeForAI : 0.0f;
 }
 
-//int32 UB2SkillInfo::GetEnablePlayerLevel(int32 SkillInfoID)
-//{
-//	return BladeIIGameImpl::GetClientDataStore().GetSkillLearnLevel(SkillInfoID);
-//}
+int32 UB2SkillInfo::GetEnablePlayerLevel(int32 SkillInfoID)
+{
+	return BladeIIGameImpl::GetClientDataStore().GetSkillLearnLevel(SkillInfoID);
+}
 
 FButtonStyle UB2SkillInfo::GetButtonIconStyle(int32 SkillInfoID)
 {

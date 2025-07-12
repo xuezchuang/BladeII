@@ -4,6 +4,8 @@
 #pragma once
 
 #include "B2UIWidgetBase.h"
+#include "../Widget/B2ButtonGoodInfoToolTip.h"
+#include "Components/TextBlock.h"
 #include "B2UIRewardEventSet.generated.h"
 
 DECLARE_DELEGATE(FRepeatBattleCountDownCB)

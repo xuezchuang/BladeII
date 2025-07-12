@@ -2,6 +2,8 @@
 #pragma once
 
 #include "B2UIWidget.h"
+#include "../../Lobby/B2LobbySceneManager.h"
+#include "../B2RichTextBlock.h"
 #include "B2UIHallOfFame.generated.h"
 
 UCLASS()

@@ -5,19 +5,20 @@
 #include "B2PlatformAPI.h"
 #include "B2UIDLCFrontPopup.h"
 #include "CommonStruct.h"
+#include "../B2GameEnum.h"
 #include "B2UISettingAccount.generated.h"
 
 UCLASS(BlueprintType, Blueprintable)
 class BLADEII_API UB2UISettingAccount : public UB2UIWidget
 {
 	GENERATED_BODY()
-		friend class UB2UISetting;
+	friend class UB2UISetting;
 protected:
 	virtual void CacheAssets() override;
 	virtual void BindDelegates() override;
 public:
 	virtual void Init() override;
-	virtual void DestroySelf(class UB2UIManager* InUIManager) override;	
+	virtual void DestroySelf(class UB2UIManager* InUIManager) override;
 	virtual void NativeTick(const FGeometry& MyGeometry, float InDeltaTime) override;
 	/* Events that occur when finished completely close. */
 	virtual void OnCloseComplete() override;
@@ -37,13 +38,13 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "BladeII_Setting")
 	EPlatformIDPCode GetIDPCode();
 	UFUNCTION(BlueprintCallable, Category = "BladeII_Setting")
-		void SetClipBoard();
+	void SetClipBoard();
 	UFUNCTION(BlueprintCallable, Category = "BladeII_Setting")
-		void OpenKakaoPopup();
+	void OpenKakaoPopup();
 	UFUNCTION(BlueprintCallable, Category = "BladeII_Setting")
-		void OnShowCSView();
+	void OnShowCSView();
 
-		
+
 protected:
 	UFUNCTION()
 	void OnClickB2Button_358();
@@ -55,7 +56,7 @@ protected:
 	void OnClickBTN_Logout();
 	UFUNCTION()
 	void OnClickBTN_DeleteAccount();
-	
+
 
 private:
 	TWeakObjectPtr<UB2Button> B2Button_358;
@@ -81,7 +82,7 @@ private:
 	bool bSubscribed;
 #if PLATFORM_ANDROID
 	FDelegateHandle OnKakaoLinkHandler;
-	void KakaoLinkDelegate(JNIEnv *env, jobject thiz);
+	void KakaoLinkDelegate(JNIEnv* env, jobject thiz);
 #elif PLATFORM_IOS
 	FDelegateHandle OnKakaoLinkHandler;
 	void KakaoLinkDelegate(bool bIsSuccess);

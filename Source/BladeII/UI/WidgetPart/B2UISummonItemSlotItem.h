@@ -3,6 +3,8 @@
 
 #include "B2UIWidgetBase.h"
 #include "B2UIStoreProductCost.h"
+#include "../../Common/CommonStruct.h"
+#include "../B2RichTextBlock.h"
 #include "B2UISummonItemSlotItem.generated.h"
 
 namespace ESummonItemSlotIndex

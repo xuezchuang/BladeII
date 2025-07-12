@@ -117,39 +117,39 @@ void UB2UIMagicStore::SubscribeEvents()
 {
 	UnsubscribeEvents();
 
-	Issues.Add(DeliveryRenewalMagicShopClass<FB2ResponseRenewalMagicShopPtr>::GetInstance().Subscribe2(
-		[this](const FB2ResponseRenewalMagicShopPtr MagicShopPtr)
-	{
-		this->ResponseMagicShopData(MagicShopPtr);
-		this->ResponseReplaceCurrentGem(MagicShopPtr);
-		this->SetItemList();
-	}
-	));
+	//Issues.Add(DeliveryRenewalMagicShopClass<FB2ResponseRenewalMagicShopPtr>::GetInstance().Subscribe2(
+	//	[this](const FB2ResponseRenewalMagicShopPtr MagicShopPtr)
+	//{
+	//	this->ResponseMagicShopData(MagicShopPtr);
+	//	this->ResponseReplaceCurrentGem(MagicShopPtr);
+	//	this->SetItemList();
+	//}
+	//));
 
-	Issues.Add(DeliveryPurchaseMagicShopClass<FB2ResponsePurchaseMagicShopPtr>::GetInstance().Subscribe2(
-		[this](const FB2ResponsePurchaseMagicShopPtr MagicShopPtr)
-	{
-		this->ResponseMagicShopData(MagicShopPtr);
-		this->ResponseBuyMagicShopProduct(MagicShopPtr);
-		this->SetItemList(false);
-	}
-	));
+	//Issues.Add(DeliveryPurchaseMagicShopClass<FB2ResponsePurchaseMagicShopPtr>::GetInstance().Subscribe2(
+	//	[this](const FB2ResponsePurchaseMagicShopPtr MagicShopPtr)
+	//{
+	//	this->ResponseMagicShopData(MagicShopPtr);
+	//	this->ResponseBuyMagicShopProduct(MagicShopPtr);
+	//	this->SetItemList(false);
+	//}
+	//));
 
-	Issues.Add(DeliveryReceiveRenewalMagicShopErrorClass<FB2ResponseRenewalMagicShopPtr>::GetInstance().Subscribe2(
-		[this](const FB2ResponseRenewalMagicShopPtr MagicShopPtr)
-	{
-		this->ResponseMagicShopData(MagicShopPtr);
-		this->ResponseRenewalMagicShopErrorPopup();
-	}
-	));
+	//Issues.Add(DeliveryReceiveRenewalMagicShopErrorClass<FB2ResponseRenewalMagicShopPtr>::GetInstance().Subscribe2(
+	//	[this](const FB2ResponseRenewalMagicShopPtr MagicShopPtr)
+	//{
+	//	this->ResponseMagicShopData(MagicShopPtr);
+	//	this->ResponseRenewalMagicShopErrorPopup();
+	//}
+	//));
 
-	Issues.Add(DeliveryReceivePurchaseMagicShopErrorClass<FB2ResponsePurchaseMagicShopPtr>::GetInstance().Subscribe2(
-		[this](const FB2ResponsePurchaseMagicShopPtr MagicShopPtr)
-	{
-		this->ResponseMagicShopData(MagicShopPtr);
-		this->ResponsePurchaseMagicShopErrorPopup();
-	}
-	));
+	//Issues.Add(DeliveryReceivePurchaseMagicShopErrorClass<FB2ResponsePurchaseMagicShopPtr>::GetInstance().Subscribe2(
+	//	[this](const FB2ResponsePurchaseMagicShopPtr MagicShopPtr)
+	//{
+	//	this->ResponseMagicShopData(MagicShopPtr);
+	//	this->ResponsePurchaseMagicShopErrorPopup();
+	//}
+	//));
 }
 
 void UB2UIMagicStore::UnsubscribeEvents()
@@ -327,17 +327,17 @@ void UB2UIMagicStore::ResponsePurchaseMagicShopErrorPopup()
 /* Refresh Popup */
 void UB2UIMagicStore::ConditionalCreateMagicStoreRefreshPopup()
 {
-	if (!Created_UIP_MagicStoreRefresh && X_CP_MagicStoreRefresh_Panel.IsValid())
-	{
-		Created_UIP_MagicStoreRefresh = DynLoadAndCreateInCanvasPanelFull<UB2UIMsgPopupMagicStoreRefresh>(UIP_MagicStoreRefresh_Class, this, X_CP_MagicStoreRefresh_Panel.Get());
-		if (Created_UIP_MagicStoreRefresh)
-		{
-			Created_UIP_MagicStoreRefresh->Init();
+	//if (!Created_UIP_MagicStoreRefresh && X_CP_MagicStoreRefresh_Panel.IsValid())
+	//{
+	//	Created_UIP_MagicStoreRefresh = DynLoadAndCreateInCanvasPanelFull<UB2UIMsgPopupMagicStoreRefresh>(UIP_MagicStoreRefresh_Class, this, X_CP_MagicStoreRefresh_Panel.Get());
+	//	if (Created_UIP_MagicStoreRefresh)
+	//	{
+	//		Created_UIP_MagicStoreRefresh->Init();
 
-			BIND_RELEASE_FUNC_TO_BTN(TWeakObjectPtr<UB2Button>(Created_UIP_MagicStoreRefresh->GetSlot<UB2Button>(TEXT("BTN_Close"))), &UB2UIMagicStore::CloseMagicStoreRefreshPopup);
-			BIND_RELEASE_FUNC_TO_BTN(TWeakObjectPtr<UB2Button>(Created_UIP_MagicStoreRefresh->GetSlot<UB2Button>(TEXT("BTN_Refresh"))), &UB2UIMagicStore::BuyMagicStoreRefreshPopup);
-		}
-	}
+	//		BIND_RELEASE_FUNC_TO_BTN(TWeakObjectPtr<UB2Button>(Created_UIP_MagicStoreRefresh->GetSlot<UB2Button>(TEXT("BTN_Close"))), &UB2UIMagicStore::CloseMagicStoreRefreshPopup);
+	//		BIND_RELEASE_FUNC_TO_BTN(TWeakObjectPtr<UB2Button>(Created_UIP_MagicStoreRefresh->GetSlot<UB2Button>(TEXT("BTN_Refresh"))), &UB2UIMagicStore::BuyMagicStoreRefreshPopup);
+	//	}
+	//}
 }
 
 void UB2UIMagicStore::OpenMagicStoreRefreshPopup()
@@ -393,17 +393,17 @@ void UB2UIMagicStore::DestroyMagicStoreRefreshPopup()
 /* Buy Confirm Popup */
 void UB2UIMagicStore::ConditionalCreateMagicStoreBuyConfirmPopup()
 {
-	if (!Created_UIP_MagicStoreBuyConfirm && X_CP_MagicStoreBuyConfirm_Panel.IsValid())
-	{
-		Created_UIP_MagicStoreBuyConfirm = DynLoadAndCreateInCanvasPanelFull<UB2UIMsgPopupMagicStoreBuyConfirm>(UIP_MagicStoreBuyConfirm_Class, this, X_CP_MagicStoreBuyConfirm_Panel.Get());
-		if (Created_UIP_MagicStoreBuyConfirm)
-		{
-			Created_UIP_MagicStoreBuyConfirm->Init();
+	//if (!Created_UIP_MagicStoreBuyConfirm && X_CP_MagicStoreBuyConfirm_Panel.IsValid())
+	//{
+	//	Created_UIP_MagicStoreBuyConfirm = DynLoadAndCreateInCanvasPanelFull<UB2UIMsgPopupMagicStoreBuyConfirm>(UIP_MagicStoreBuyConfirm_Class, this, X_CP_MagicStoreBuyConfirm_Panel.Get());
+	//	if (Created_UIP_MagicStoreBuyConfirm)
+	//	{
+	//		Created_UIP_MagicStoreBuyConfirm->Init();
 
-			BIND_RELEASE_FUNC_TO_BTN(TWeakObjectPtr<UB2Button>(Created_UIP_MagicStoreBuyConfirm->GetSlot<UB2Button>(TEXT("BTN_Close"))), &UB2UIMagicStore::CloseMagicStoreBuyConfirmPopup);
-			BIND_RELEASE_FUNC_TO_BTN(TWeakObjectPtr<UB2Button>(Created_UIP_MagicStoreBuyConfirm->GetSlot<UB2Button>(TEXT("BTN_Buy"))), &UB2UIMagicStore::BuyMagicStoreBuyConfirmPopup);
-		}
-	}
+	//		BIND_RELEASE_FUNC_TO_BTN(TWeakObjectPtr<UB2Button>(Created_UIP_MagicStoreBuyConfirm->GetSlot<UB2Button>(TEXT("BTN_Close"))), &UB2UIMagicStore::CloseMagicStoreBuyConfirmPopup);
+	//		BIND_RELEASE_FUNC_TO_BTN(TWeakObjectPtr<UB2Button>(Created_UIP_MagicStoreBuyConfirm->GetSlot<UB2Button>(TEXT("BTN_Buy"))), &UB2UIMagicStore::BuyMagicStoreBuyConfirmPopup);
+	//	}
+	//}
 }
 
 void UB2UIMagicStore::OpenMagicStoreBuyConfirmPopup()

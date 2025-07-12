@@ -183,31 +183,31 @@ void UB2UIDonationEvent::BindDelegates()
 {
 	Super::BindDelegates();
 
-	Issues.Add(UpdateDonationEventClass<>::GetInstance().Subscribe2(
-		[this]()
-	{
-		this->UpdateUIInfo();
-	}
-	));
+	//Issues.Add(UpdateDonationEventClass<>::GetInstance().Subscribe2(
+	//	[this]()
+	//{
+	//	this->UpdateUIInfo();
+	//}
+	//));
 
-	Issues.Add(OpenDonationPointStepRewardInfoPopupClass<int32>::GetInstance().Subscribe2(
-		[this](int32 InStep)
-	{
-		this->OpenPopup(InStep);
-	}
-	));
+	//Issues.Add(OpenDonationPointStepRewardInfoPopupClass<int32>::GetInstance().Subscribe2(
+	//	[this](int32 InStep)
+	//{
+	//	this->OpenPopup(InStep);
+	//}
+	//));
 
-	Issues.Add(UpdateDonationPointRewardUIClass<>::GetInstance().Subscribe2(
-		[this]()
-	{
-		this->UpdateBottomUIInfo();
-	}
-	));
+	//Issues.Add(UpdateDonationPointRewardUIClass<>::GetInstance().Subscribe2(
+	//	[this]()
+	//{
+	//	this->UpdateBottomUIInfo();
+	//}
+	//));
 
-	BIND_CLICK_FUNC_TO_BTN(BTN_TenSummon, &UB2UIDonationEvent::OnClickTenSummon);
-	BIND_CLICK_FUNC_TO_BTN(BTN_OneSummon, &UB2UIDonationEvent::OnClickOneSummon);
-	BIND_CLICK_FUNC_TO_BTN(BTN_Refresh, &UB2UIDonationEvent::OnClickRefresh);
-	BIND_CLICK_FUNC_TO_BTN(BTN_RewardList, &UB2UIDonationEvent::OnClickRewardList);
+	//BIND_CLICK_FUNC_TO_BTN(BTN_TenSummon, &UB2UIDonationEvent::OnClickTenSummon);
+	//BIND_CLICK_FUNC_TO_BTN(BTN_OneSummon, &UB2UIDonationEvent::OnClickOneSummon);
+	//BIND_CLICK_FUNC_TO_BTN(BTN_Refresh, &UB2UIDonationEvent::OnClickRefresh);
+	//BIND_CLICK_FUNC_TO_BTN(BTN_RewardList, &UB2UIDonationEvent::OnClickRewardList);
 }
 
 void UB2UIDonationEvent::SetRemainingTime()

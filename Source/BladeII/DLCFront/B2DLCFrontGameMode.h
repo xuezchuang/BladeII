@@ -3,6 +3,7 @@
 //#include "BladeII.h"
 #include "GameFramework/GameMode.h"
 #include "CommonStruct.h"
+#include "../BladeII.h"
 //#include "BladeII.h"
 #include "B2DLCFrontGameMode.generated.h"
 

@@ -543,23 +543,23 @@ void UB2LobbyUI_WingMain::SetOpenEvolutionPart(bool bInOpen)
 template<class WidgetClassT>
 static WidgetClassT* CreateDynamicWingUIPartCommon(TSoftClassPtr<WidgetClassT>& InCreateWidgetClass, UB2LobbyUI_WingMain* InOwnerUserWidget, UCanvasPanel* CreateParentPanel)
 {
-	if (CreateParentPanel && InOwnerUserWidget)
-	{
-		WidgetClassT* NewCreated = DynLoadAndCreateInCanvasPanelFull<WidgetClassT>(InCreateWidgetClass, InOwnerUserWidget, CreateParentPanel);
-		if (NewCreated)
-		{
-			// SetAutoSize (Size to Content) 하는 건 이쪽의 특수한 사정임. 여기서 생성하려는 UIP 의 이전 배치 상황과 똑같이 맞추려다 보니.
-			// 정 안되면 CreateParentPanel 위에 SizeBox 같은 걸 덧댈 수도 있겠지만.
-			UCanvasPanelSlot* CPSlot = Cast<UCanvasPanelSlot>(NewCreated->Slot);
-			if (CPSlot)
-			{
-				CPSlot->SetAutoSize(true);
-			}
+	//if (CreateParentPanel && InOwnerUserWidget)
+	//{
+	//	WidgetClassT* NewCreated = DynLoadAndCreateInCanvasPanelFull<WidgetClassT>(InCreateWidgetClass, InOwnerUserWidget, CreateParentPanel);
+	//	if (NewCreated)
+	//	{
+	//		// SetAutoSize (Size to Content) 하는 건 이쪽의 특수한 사정임. 여기서 생성하려는 UIP 의 이전 배치 상황과 똑같이 맞추려다 보니.
+	//		// 정 안되면 CreateParentPanel 위에 SizeBox 같은 걸 덧댈 수도 있겠지만.
+	//		UCanvasPanelSlot* CPSlot = Cast<UCanvasPanelSlot>(NewCreated->Slot);
+	//		if (CPSlot)
+	//		{
+	//			CPSlot->SetAutoSize(true);
+	//		}
 
-			NewCreated->InitFromWingMain();
-			return NewCreated;
-		}
-	}
+	//		NewCreated->InitFromWingMain();
+	//		return NewCreated;
+	//	}
+	//}
 	return nullptr;
 }
 

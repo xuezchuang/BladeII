@@ -36,38 +36,38 @@ void UB2UIGuildMain::OnSceneOpen(EUIScene InOpenedScene)
 
 void UB2UIGuildMain::OnOpen(bool RightNow /*= false*/)
 {
-	Super::OnOpen(RightNow);
-	DeliveryInviteTicket = DeliveryGetGuildMemberCandidatesClass<FB2ResponseGetGuildMemberCandidatesPtr>::GetInstance().Subscribe([](const FB2ResponseGetGuildMemberCandidatesPtr& Invite){
-		auto* GuildInviteUI = UB2UIManager::GetInstance()->OpenUI<UB2UIGuildInvitePopup>(UIFName::GuildInvite);
-		GuildInviteUI->SetInviteList(Invite);
-	});
+	//Super::OnOpen(RightNow);
+	//DeliveryInviteTicket = DeliveryGetGuildMemberCandidatesClass<FB2ResponseGetGuildMemberCandidatesPtr>::GetInstance().Subscribe([](const FB2ResponseGetGuildMemberCandidatesPtr& Invite){
+	//	auto* GuildInviteUI = UB2UIManager::GetInstance()->OpenUI<UB2UIGuildInvitePopup>(UIFName::GuildInvite);
+	//	GuildInviteUI->SetInviteList(Invite);
+	//});
 
-	DeliveryGuildNoticeTicket = DeliveryUpdateGuildNoticeClass<FB2ResponseUpdateGuildNoticePtr>::GetInstance().Subscribe([this](const FB2ResponseUpdateGuildNoticePtr& Notice){
-		BladeIIGameImpl::GetClientDataStore().GetMyGuildInfo().GuildInfo->notice = Notice->notice;
-		this->WriteNoticeState();
-	});
+	//DeliveryGuildNoticeTicket = DeliveryUpdateGuildNoticeClass<FB2ResponseUpdateGuildNoticePtr>::GetInstance().Subscribe([this](const FB2ResponseUpdateGuildNoticePtr& Notice){
+	//	BladeIIGameImpl::GetClientDataStore().GetMyGuildInfo().GuildInfo->notice = Notice->notice;
+	//	this->WriteNoticeState();
+	//});
 
-	DeliveryUpdateGuildTicket = DeliveryUpdateGuildClass<FB2ResponseUpdateGuildPtr>::GetInstance().Subscribe([this](const FB2ResponseUpdateGuildPtr& GuildInfo){
-		ReceivedGuildUpdate(GuildInfo);
-	});
+	//DeliveryUpdateGuildTicket = DeliveryUpdateGuildClass<FB2ResponseUpdateGuildPtr>::GetInstance().Subscribe([this](const FB2ResponseUpdateGuildPtr& GuildInfo){
+	//	ReceivedGuildUpdate(GuildInfo);
+	//});
 
-	DeliveryGuildBattleTurnRewardTicket = DeliveryGuildBattleTurnRewardClass<FB2ResponseGuildBattleTurnRewardPtr>::GetInstance().Subscribe([this](const FB2ResponseGuildBattleTurnRewardPtr& HistoryData)
-	{
-		auto* RewardPopup = UB2UIManager::GetInstance()->OpenUI<UB2UIMailRewardPopUp>(UIFName::RewardMailPopup);
-
-
-		auto GuildDoc = UB2UIDocHelper::GetDocGuild();
-
-		if (!GuildDoc)
-			return;
-
-		GuildDoc->SetTurnReward(false);
-		this->SetRewardComplete(true);
-	});
+	//DeliveryGuildBattleTurnRewardTicket = DeliveryGuildBattleTurnRewardClass<FB2ResponseGuildBattleTurnRewardPtr>::GetInstance().Subscribe([this](const FB2ResponseGuildBattleTurnRewardPtr& HistoryData)
+	//{
+	//	auto* RewardPopup = UB2UIManager::GetInstance()->OpenUI<UB2UIMailRewardPopUp>(UIFName::RewardMailPopup);
 
 
+	//	auto GuildDoc = UB2UIDocHelper::GetDocGuild();
 
-	WriteNoticeState();
+	//	if (!GuildDoc)
+	//		return;
+
+	//	GuildDoc->SetTurnReward(false);
+	//	this->SetRewardComplete(true);
+	//});
+
+
+
+	//WriteNoticeState();
 }
 
 void UB2UIGuildMain::OnHistoryOpen(bool IsHistory)
@@ -80,10 +80,10 @@ void UB2UIGuildMain::OnClose(bool RightNow /*= false*/)
 	Super::OnClose(RightNow);
 
 
-	DeliveryGetGuildMemberCandidatesClass<FB2ResponseGetGuildMemberCandidatesPtr>::GetInstance().Unsubscribe(DeliveryInviteTicket);
-	DeliveryUpdateGuildNoticeClass<FB2ResponseUpdateGuildNoticePtr>::GetInstance().Unsubscribe(DeliveryGuildNoticeTicket);
-	DeliveryUpdateGuildClass<FB2ResponseUpdateGuildPtr>::GetInstance().Unsubscribe(DeliveryUpdateGuildTicket);
-	DeliveryGuildBattleTurnRewardClass<FB2ResponseGuildBattleTurnRewardPtr>::GetInstance().Unsubscribe(DeliveryGuildBattleTurnRewardTicket);
+	//DeliveryGetGuildMemberCandidatesClass<FB2ResponseGetGuildMemberCandidatesPtr>::GetInstance().Unsubscribe(DeliveryInviteTicket);
+	//DeliveryUpdateGuildNoticeClass<FB2ResponseUpdateGuildNoticePtr>::GetInstance().Unsubscribe(DeliveryGuildNoticeTicket);
+	//DeliveryUpdateGuildClass<FB2ResponseUpdateGuildPtr>::GetInstance().Unsubscribe(DeliveryUpdateGuildTicket);
+	//DeliveryGuildBattleTurnRewardClass<FB2ResponseGuildBattleTurnRewardPtr>::GetInstance().Unsubscribe(DeliveryGuildBattleTurnRewardTicket);
 
 }
 
@@ -479,7 +479,7 @@ void UB2UIGuildMain::OnClickGuildWarReady()
 		return;			//레디아니면 안되게
 	}
 
-	LobbyChangeSceneByUISceneClass<EUIScene>::GetInstance().Signal(EUIScene::GuildBattleReady);
+	//LobbyChangeSceneByUISceneClass<EUIScene>::GetInstance().Signal(EUIScene::GuildBattleReady);
 }
 
 void UB2UIGuildMain::OnClickGuildWar()
@@ -680,7 +680,7 @@ void UB2UIGuildMain::OnClickBTN_GuildBattleProgess()
 
 void UB2UIGuildMain::OnClickBTN_Mercenary()
 {
-	LobbyChangeSceneByUISceneClass<EUIScene>::GetInstance().Signal(EUIScene::GuildMercenary);
+	//LobbyChangeSceneByUISceneClass<EUIScene>::GetInstance().Signal(EUIScene::GuildMercenary);
 }
 
 void UB2UIGuildMain::SetHideAni(UWidgetAnimation* Ani)

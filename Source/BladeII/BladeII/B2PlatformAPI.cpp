@@ -636,9 +636,9 @@ bool B2P_IsViewPromotion()
 	return false;	
 }
 
-//FString B2P_GetKakaoCustomData(FString sKey)
-//{
-//	FString KeyDebugString = FString(TEXT(""));
+FString B2P_GetKakaoCustomData(FString sKey)
+{
+	FString KeyDebugString = FString(TEXT(""));
 //
 //#if PLATFORM_ANDROID
 //	KeyDebugString = AndroidThunkCpp_GetKakaoCustomData(sKey);
@@ -657,17 +657,17 @@ bool B2P_IsViewPromotion()
 //#if FORCE_LOGGING_IN_ANDROID
 //	FPlatformMisc::LowLevelOutputDebugStringf(TEXT("@@@@@ YJTestLOG @@@@@ B2P_GetKakaoCustomData @@@@@ KeyString : %s\n"), *KeyDebugString);
 //#endif
-//
-//	return KeyDebugString;
-//}
+
+	return KeyDebugString;
+}
 
 void B2P_ShowEndingPromotion()
 {
-#if PLATFORM_ANDROID
-	AndroidThunkCpp_ShowEndingPormotion();
-#elif PLATFORM_IOS
-	// IOS 처리 필요 없음
-#endif		
+//#if PLATFORM_ANDROID
+//	AndroidThunkCpp_ShowEndingPormotion();
+//#elif PLATFORM_IOS
+//	// IOS 처리 필요 없음
+//#endif		
 }
 
 #if PLATFORM_IOS

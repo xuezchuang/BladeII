@@ -47,21 +47,21 @@ void AB2AutoAIController::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// Do not reset variables here, flow can come here after BeginAutoPlay, 
-	// when the Auto state transferred from main map -> extra map. Refer to AB2StageManager::RetrieveDataForExtraMap
-	CAPTURE_UOBJECT(AB2AutoAIController);
-	if (!bAlreadySubscribeEvent)
-	{
-		StageCompleteTicket = StageCompleteClass<>::GetInstance().Subscribe(
-			USE_CAPTURE_OBJECT_AND_TICKET(StageComplete)
-				Capture->FinishAutoPlay();
-			END_CAPTURE_OBJECT()
-		);
+	//// Do not reset variables here, flow can come here after BeginAutoPlay, 
+	//// when the Auto state transferred from main map -> extra map. Refer to AB2StageManager::RetrieveDataForExtraMap
+	//CAPTURE_UOBJECT(AB2AutoAIController);
+	//if (!bAlreadySubscribeEvent)
+	//{
+	//	StageCompleteTicket = StageCompleteClass<>::GetInstance().Subscribe(
+	//		USE_CAPTURE_OBJECT_AND_TICKET(StageComplete)
+	//			Capture->FinishAutoPlay();
+	//		END_CAPTURE_OBJECT()
+	//	);
 
-		bAlreadySubscribeEvent = true;
-	}
+	//	bAlreadySubscribeEvent = true;
+	//}
 
-	StageCompleted = false;
+	//StageCompleted = false;
 }
 
 void AB2AutoAIController::BeginDestroy()
@@ -101,10 +101,10 @@ FPathFollowingRequestResult AB2AutoAIController::MoveTo(const FAIMoveRequest& Mo
 
 void AB2AutoAIController::UnsubscribeEvents()
 {
-	if (bAlreadySubscribeEvent)
-	{
-		StageCompleteClass<>::GetInstance().Unsubscribe(StageCompleteTicket);
-	}
+//	if (bAlreadySubscribeEvent)
+//	{
+//		StageCompleteClass<>::GetInstance().Unsubscribe(StageCompleteTicket);
+//	}
 }
 
 void AB2AutoAIController::Tick(float DeltaTime)
@@ -176,49 +176,49 @@ void AB2AutoAIController::ResetAutoPlay()
 void AB2AutoAIController::TargetToNextWayPoint()
 {
 	// Supposed to be called when autoplay has just begun or the player just passed current WP.
-	auto* B2GM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(GetWorld()));
-	if (!B2GM)
-		return;
+	//auto* B2GM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(GetWorld()));
+	//if (!B2GM)
+	//	return;
 
-	TArray<AB2AutoWayPoint*> WorldWP = B2GM->GetWayPointList();
+	//TArray<AB2AutoWayPoint*> WorldWP = B2GM->GetWayPointList();
 
-	bool bFoundTarget = false;
+	//bool bFoundTarget = false;
 
-	// WorldWP should be sorted by PassOrder.
-	for (auto* waypoint : WorldWP)
-	{
-		if (!waypoint->HasValidPassOrder())
-			continue;
+	//// WorldWP should be sorted by PassOrder.
+	//for (auto* waypoint : WorldWP)
+	//{
+	//	if (!waypoint->HasValidPassOrder())
+	//		continue;
 
-		if (CurrentTargetWP == NULL && !waypoint->IsPassed())
-		{
-			// If CurrentTargetWP is NULL (just started), pick up the earliest not-passed one as the current one.
-			// WPs can be marked as passed in player controlled mode too.
-			CurrentTargetWP = waypoint;
-			CurrentTargetMK = AB2AutoWayPointMarker::GetInstance(GetWorld());
-			bFoundTarget = true;
-			break;
-		}
-		
-		// Get the first one having larger PassOrder. We might miss one if we got duplicated PassOrder.
-		// Editor ensures unique PassOrder, but level streaming can break it... (although we are not likely to use the level streaming.)
-		// Then we might just pick up the earliest non-passed one.
-		if (CurrentTargetWP && !waypoint->IsPassed() && waypoint->PassOrder > CurrentTargetWP->PassOrder)
-		{
-			CurrentTargetWP = waypoint;
-			CurrentTargetMK = AB2AutoWayPointMarker::GetInstance(GetWorld());
-			bFoundTarget = true;
-			break;
-		}
-	}
+	//	if (CurrentTargetWP == NULL && !waypoint->IsPassed())
+	//	{
+	//		// If CurrentTargetWP is NULL (just started), pick up the earliest not-passed one as the current one.
+	//		// WPs can be marked as passed in player controlled mode too.
+	//		CurrentTargetWP = waypoint;
+	//		CurrentTargetMK = AB2AutoWayPointMarker::GetInstance(GetWorld());
+	//		bFoundTarget = true;
+	//		break;
+	//	}
+	//	
+	//	// Get the first one having larger PassOrder. We might miss one if we got duplicated PassOrder.
+	//	// Editor ensures unique PassOrder, but level streaming can break it... (although we are not likely to use the level streaming.)
+	//	// Then we might just pick up the earliest non-passed one.
+	//	if (CurrentTargetWP && !waypoint->IsPassed() && waypoint->PassOrder > CurrentTargetWP->PassOrder)
+	//	{
+	//		CurrentTargetWP = waypoint;
+	//		CurrentTargetMK = AB2AutoWayPointMarker::GetInstance(GetWorld());
+	//		bFoundTarget = true;
+	//		break;
+	//	}
+	//}
 
-	if (bFoundTarget == false)
-	{
-		// Means, there's nothing or we have gone through all.
-		bPassedAllWayPoint = true;
+	//if (bFoundTarget == false)
+	//{
+	//	// Means, there's nothing or we have gone through all.
+	//	bPassedAllWayPoint = true;
 
-		OnPassedAllWayPoint();
-	}
+	//	OnPassedAllWayPoint();
+	//}
 }
 
 bool AB2AutoAIController::UpdateTargetObjectInPriority(float minDistance, float maxDistance)
@@ -341,63 +341,63 @@ ABladeIICharacter* AB2AutoAIController::PickGeneralTargetMob()
 
 ABladeIICharacter* AB2AutoAIController::PickOneInterestedWaveMob()
 {
-	auto* PossessedPlayer	= Cast<ABladeIIPlayer>(GetPawn());
-	auto* B2SGM				= Cast<AB2StageGameMode>(UGameplayStatics::GetGameMode(GetWorld()));
-	auto* StageManager		= B2SGM ? B2SGM->GetStageManager() : NULL;
-	
-	if (!PossessedPlayer)
-		return NULL;
+	//auto* PossessedPlayer	= Cast<ABladeIIPlayer>(GetPawn());
+	//auto* B2SGM				= Cast<AB2StageGameMode>(UGameplayStatics::GetGameMode(GetWorld()));
+	//auto* StageManager		= B2SGM ? B2SGM->GetStageManager() : NULL;
+	//
+	//if (!PossessedPlayer)
+	//	return NULL;
 
-	const FVector PlayerLocation = PossessedPlayer->GetActorLocation();
+	//const FVector PlayerLocation = PossessedPlayer->GetActorLocation();
 
-	TArray<ABladeIICharacter*> LiveEnemys;
-	ABladeIIGameMode* B2GM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(this));
-	BII_CHECK(B2GM);
-	if (B2GM){
-		B2GM->GetAllWorldEnemyList(LiveEnemys);
-	}
+	//TArray<ABladeIICharacter*> LiveEnemys;
+	//ABladeIIGameMode* B2GM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(this));
+	//BII_CHECK(B2GM);
+	//if (B2GM){
+	//	B2GM->GetAllWorldEnemyList(LiveEnemys);
+	//}
 
 	// Could be various conditions, but let's just pick up the closest one.
 	float ClosestDistanceSQ = BIG_NUMBER;
 	ABladeIICharacter* SelectedOne = NULL;
 
-	for (auto* mob : LiveEnemys)
-	{
-		if (!mob->IsAlive() || mob == PossessedPlayer)
-			continue;
+	//for (auto* mob : LiveEnemys)
+	//{
+	//	if (!mob->IsAlive() || mob == PossessedPlayer)
+	//		continue;
 
-		const float CurrDistSQ = (mob->GetActorLocation() - PlayerLocation).SizeSquared();
+	//	const float CurrDistSQ = (mob->GetActorLocation() - PlayerLocation).SizeSquared();
 
-		if (CurrDistSQ < ClosestDistanceSQ)
-		{
-			ClosestDistanceSQ = CurrDistSQ;
-			SelectedOne = mob;
-		}
-	}
+	//	if (CurrDistSQ < ClosestDistanceSQ)
+	//	{
+	//		ClosestDistanceSQ = CurrDistSQ;
+	//		SelectedOne = mob;
+	//	}
+	//}
 
 	return SelectedOne;
 }
 
 class AActor* AB2AutoAIController::PickOneInterestedDestructible()
 {
-	auto* PossessedPlayer = Cast<ABladeIIPlayer>(GetPawn());
-	auto* B2SGM = Cast<AB2StageGameMode>(UGameplayStatics::GetGameMode(GetWorld()));
-	auto* StageManager = B2SGM ? B2SGM->GetStageManager() : NULL;
+	//auto* PossessedPlayer = Cast<ABladeIIPlayer>(GetPawn());
+	//auto* B2SGM = Cast<AB2StageGameMode>(UGameplayStatics::GetGameMode(GetWorld()));
+	//auto* StageManager = B2SGM ? B2SGM->GetStageManager() : NULL;
 
-	if (!PossessedPlayer)
-		return NULL;
+	//if (!PossessedPlayer)
+	//	return NULL;
 
-	const FVector PlayerLocation = PossessedPlayer->GetActorLocation();
+	//const FVector PlayerLocation = PossessedPlayer->GetActorLocation();
 
-	TArray<AB2DestructibleLevelObjBase*> Objects;
-	ABladeIIGameMode* B2GM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(this));
-	BII_CHECK(B2GM);
-	if (B2GM) {
-		Objects = B2GM->GetDestructibleList();
-	}
+	//TArray<AB2DestructibleLevelObjBase*> Objects;
+	//ABladeIIGameMode* B2GM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(this));
+	//BII_CHECK(B2GM);
+	//if (B2GM) {
+	//	Objects = B2GM->GetDestructibleList();
+	//}
 
-	// Could be various conditions, but let's just pick up the closest one.
-	float ClosestDistanceSQ = BIG_NUMBER;
+	//// Could be various conditions, but let's just pick up the closest one.
+	//float ClosestDistanceSQ = BIG_NUMBER;
 	AActor* SelectedOne = NULL;
 
 	//for (auto* mob : Objects)
@@ -442,16 +442,16 @@ bool AB2AutoAIController::HadBattleInput()
 
 bool AB2AutoAIController::ShouldStopAutoDueToCinematicMode()
 {
-	auto* PossessedPlayer = Cast<ABladeIIPlayer>(GetPawn());
-	if (!PossessedPlayer)
+	//auto* PossessedPlayer = Cast<ABladeIIPlayer>(GetPawn());
+	//if (!PossessedPlayer)
 		return false;
 
-	auto* B2PC = Cast<ABladeIIPlayerController>(PossessedPlayer->GetController());
-	if (!B2PC)
-		return false;
+	//auto* B2PC = Cast<ABladeIIPlayerController>(PossessedPlayer->GetController());
+	//if (!B2PC)
+	//	return false;
 
-	// 모든 CinematicMode 보다는 입력이 안 들어오는 경우만. 입력이 먹힌다는 얘기는 게임 플레이가 유지될 것이란 얘기이므로.
-	return B2PC->IsInputDisabledCinematicMode();
+	//// 모든 CinematicMode 보다는 입력이 안 들어오는 경우만. 입력이 먹힌다는 얘기는 게임 플레이가 유지될 것이란 얘기이므로.
+	//return B2PC->IsInputDisabledCinematicMode();
 }
 
 //void AB2AutoAIController::Possess(APawn* InPawn)

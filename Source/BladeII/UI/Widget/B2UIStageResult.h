@@ -8,6 +8,7 @@
 #include "B2UIRepeatBattleCountDown.h"
 #include "B2UIRepeatBattleInGameInfo.h"
 #include "B2UIBackWidget.h"
+#include "../B2RichTextBlock.h"
 #include "B2UIStageResult.generated.h"
 
 /** Variables needed for managing exp progress bar progress value per player */

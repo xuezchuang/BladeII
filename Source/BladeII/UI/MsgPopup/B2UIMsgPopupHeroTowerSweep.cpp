@@ -65,43 +65,43 @@ void UB2UIMsgPopupHeroTowerSweep::SetAddComment2(const FText& comment)
 }
 
 
-void UB2UIMsgPopupHeroTowerSweep::SetAddCommentForHeroTower(const TMap<int, FRewardItem>& Rewards)
-{
-	int Index = 0;
-	for (auto& SweepItemReward : Rewards)
-	{
-		int32 itemid = BladeIIGameImpl::GetClientDataStore().GetRewardItemId(SweepItemReward.Key);
-
-		if (P_RewardItem.IsValidIndex(Index) && P_RewardItem[Index].IsValid())
-		{
-			P_RewardItem[Index]->SetVisibility(ESlateVisibility::Visible);
-		}
-		if (TB_AddItems.IsValidIndex(Index) && TB_AddItems[Index].IsValid())
-		{
-			if (SweepItemReward.Value.MaxCount == 0
-				|| SweepItemReward.Value.Count == SweepItemReward.Value.MaxCount)
-			{
-				TB_AddItems[Index]->SetText(FText::AsNumber(SweepItemReward.Value.Count));
-			}
-			else
-			{
-				FText IconText;
-				IconText = FText::FromString(FString::Printf(TEXT("%d ~ %d"), SweepItemReward.Value.Count, SweepItemReward.Value.MaxCount));
-				TB_AddItems[Index]->SetText(IconText);
-			}
-
-		}
-		if (BTN_Goods.IsValidIndex(Index) && BTN_Goods[Index].IsValid())
-		{
-			BTN_Goods[Index]->SetItemInfo(itemid);
-		}
-		if (IMG_Items.IsValidIndex(Index) && IMG_Items[Index].IsValid())
-		{
-			IMG_Items[Index]->SetBrushFromMaterial(BladeIIGameImpl::GetClientDataStore().GetRewardIconMaterial(SweepItemReward.Key));
-		}
-		++Index;
-	}
-}
+//void UB2UIMsgPopupHeroTowerSweep::SetAddCommentForHeroTower(const TMap<int, FRewardItem>& Rewards)
+//{
+//	int Index = 0;
+//	for (auto& SweepItemReward : Rewards)
+//	{
+//		int32 itemid = BladeIIGameImpl::GetClientDataStore().GetRewardItemId(SweepItemReward.Key);
+//
+//		if (P_RewardItem.IsValidIndex(Index) && P_RewardItem[Index].IsValid())
+//		{
+//			P_RewardItem[Index]->SetVisibility(ESlateVisibility::Visible);
+//		}
+//		if (TB_AddItems.IsValidIndex(Index) && TB_AddItems[Index].IsValid())
+//		{
+//			if (SweepItemReward.Value.MaxCount == 0
+//				|| SweepItemReward.Value.Count == SweepItemReward.Value.MaxCount)
+//			{
+//				TB_AddItems[Index]->SetText(FText::AsNumber(SweepItemReward.Value.Count));
+//			}
+//			else
+//			{
+//				FText IconText;
+//				IconText = FText::FromString(FString::Printf(TEXT("%d ~ %d"), SweepItemReward.Value.Count, SweepItemReward.Value.MaxCount));
+//				TB_AddItems[Index]->SetText(IconText);
+//			}
+//
+//		}
+//		if (BTN_Goods.IsValidIndex(Index) && BTN_Goods[Index].IsValid())
+//		{
+//			BTN_Goods[Index]->SetItemInfo(itemid);
+//		}
+//		if (IMG_Items.IsValidIndex(Index) && IMG_Items[Index].IsValid())
+//		{
+//			IMG_Items[Index]->SetBrushFromMaterial(BladeIIGameImpl::GetClientDataStore().GetRewardIconMaterial(SweepItemReward.Key));
+//		}
+//		++Index;
+//	}
+//}
 
 void UB2UIMsgPopupHeroTowerSweep::SetTipText(const FText& comment)
 {

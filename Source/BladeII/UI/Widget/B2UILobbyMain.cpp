@@ -366,7 +366,7 @@ void UB2UILobbyMain::UnbindDoc()
 
 void UB2UILobbyMain::OnOpenComplete()
 {
-	Super::OnOpenComplete();
+	/*Super::OnOpenComplete();
 
 	ElapsedTimeNoInput = 0.f;
 
@@ -389,7 +389,7 @@ void UB2UILobbyMain::OnOpenComplete()
 
 	UpdateCombineMenuVisible(GetCombineMenuIsVisible());
 
-	BladeIIGameImpl::GetChatStore().RequestBlockUserList();
+	BladeIIGameImpl::GetChatStore().RequestBlockUserList();*/
 }
 
 void UB2UILobbyMain::OnCloseComplete()
@@ -1190,11 +1190,11 @@ void UB2UILobbyMain::OnClickBtnItemForge()
 {
 	LobbyChangeSceneByUISceneClass<EUIScene>::GetInstance().Signal(EUIScene::ItemForge);
 
-	UB2UIItemForge* ItemForgeUI = UB2UIManager::GetInstance()->GetUI<UB2UIItemForge>(UIFName::ItemForge);
-	if (ItemForgeUI)
-	{
-		ItemForgeUI->ForgeInit();
-	}
+	//UB2UIItemForge* ItemForgeUI = UB2UIManager::GetInstance()->GetUI<UB2UIItemForge>(UIFName::ItemForge);
+	//if (ItemForgeUI)
+	//{
+	//	ItemForgeUI->ForgeInit();
+	//}
 }
 
 void UB2UILobbyMain::OnClickBtnHiddenableMenu()
@@ -1358,27 +1358,27 @@ void UB2UILobbyMain::DoMarkCombineRedDot(bool CheckVisible)
 
 	DoMarkRedDot();
 }
-void UB2UILobbyMain::CheckConnectRewardRedDot(const AB2LobbyGameMode* LobbyGameMode)
-{
-	static int IndexAfterCallRedDot = -1; // 무한 갱신 방지
-
-	const auto& PlayTimeStatus = BladeIIGameImpl::GetClientDataStore().GetPlayTimeStatus();
-	const auto& RewardInfo = BladeIIGameImpl::GetClientDataStore().GetPlayTimeRewardData();
-
-	if (IndexAfterCallRedDot != PlayTimeStatus.daily_play_time_reward_index // 최근에 호출한 인덱스와 같으면 연산 x
-		&& PlayTimeStatus.daily_play_time_reward_index > 0 // 받을게 있고
-		&& RewardInfo.Num() > PlayTimeStatus.daily_play_time_reward_index // 다 받지 않았고
-		&& RewardInfo.IsValidIndex(PlayTimeStatus.daily_play_time_reward_index))
-	{
-		bool IsNewConnectReward = RewardInfo[PlayTimeStatus.daily_play_time_reward_index].play_time_inmin * 60 < UB2GameInstance::GetPlayTime();
-
-		if (IsNewConnectReward)
-		{
-			DoMarkCombineRedDot();
-			IndexAfterCallRedDot = PlayTimeStatus.daily_play_time_reward_index;
-		}
-	}
-}
+//void UB2UILobbyMain::CheckConnectRewardRedDot(const AB2LobbyGameMode* LobbyGameMode)
+//{
+//	static int IndexAfterCallRedDot = -1; // 무한 갱신 방지
+//
+//	const auto& PlayTimeStatus = BladeIIGameImpl::GetClientDataStore().GetPlayTimeStatus();
+//	const auto& RewardInfo = BladeIIGameImpl::GetClientDataStore().GetPlayTimeRewardData();
+//
+//	if (IndexAfterCallRedDot != PlayTimeStatus.daily_play_time_reward_index // 최근에 호출한 인덱스와 같으면 연산 x
+//		&& PlayTimeStatus.daily_play_time_reward_index > 0 // 받을게 있고
+//		&& RewardInfo.Num() > PlayTimeStatus.daily_play_time_reward_index // 다 받지 않았고
+//		&& RewardInfo.IsValidIndex(PlayTimeStatus.daily_play_time_reward_index))
+//	{
+//		bool IsNewConnectReward = RewardInfo[PlayTimeStatus.daily_play_time_reward_index].play_time_inmin * 60 < UB2GameInstance::GetPlayTime();
+//
+//		if (IsNewConnectReward)
+//		{
+//			DoMarkCombineRedDot();
+//			IndexAfterCallRedDot = PlayTimeStatus.daily_play_time_reward_index;
+//		}
+//	}
+//}
 
 void UB2UILobbyMain::UpdateCombineMenuVisible(bool bVisible)
 {
@@ -1686,17 +1686,17 @@ void UB2UILobbyMain::OnKakaoDeepLink(FString DeepLink)
 
 void UB2UILobbyMain::ConditionalCreateGuestWarningPopup()
 {
-	if (!Created_UIP_GuestWarningPopup && X_CP_GuestWarningPopup_Panel.IsValid())
-	{
-		Created_UIP_GuestWarningPopup = DynLoadAndCreateInCanvasPanelFull<UB2UIMsgPopupGuestWarning>(UIP_GuestWarningPopup_Class, this, X_CP_GuestWarningPopup_Panel.Get());
-		if (Created_UIP_GuestWarningPopup)
-		{
-			Created_UIP_GuestWarningPopup->Init();
+	//if (!Created_UIP_GuestWarningPopup && X_CP_GuestWarningPopup_Panel.IsValid())
+	//{
+	//	Created_UIP_GuestWarningPopup = DynLoadAndCreateInCanvasPanelFull<UB2UIMsgPopupGuestWarning>(UIP_GuestWarningPopup_Class, this, X_CP_GuestWarningPopup_Panel.Get());
+	//	if (Created_UIP_GuestWarningPopup)
+	//	{
+	//		Created_UIP_GuestWarningPopup->Init();
 
-			BIND_RELEASE_FUNC_TO_BTN(TWeakObjectPtr<UB2Button>(Created_UIP_GuestWarningPopup->GetSlot<UB2Button>(TEXT("BTN_Cancel"))), &UB2UILobbyMain::CloseGuestWarningPopup);
-			BIND_RELEASE_FUNC_TO_BTN(TWeakObjectPtr<UB2Button>(Created_UIP_GuestWarningPopup->GetSlot<UB2Button>(TEXT("BTN_Buy"))), &UB2UILobbyMain::BuyGuestWarningPopup);
-		}
-	}
+	//		BIND_RELEASE_FUNC_TO_BTN(TWeakObjectPtr<UB2Button>(Created_UIP_GuestWarningPopup->GetSlot<UB2Button>(TEXT("BTN_Cancel"))), &UB2UILobbyMain::CloseGuestWarningPopup);
+	//		BIND_RELEASE_FUNC_TO_BTN(TWeakObjectPtr<UB2Button>(Created_UIP_GuestWarningPopup->GetSlot<UB2Button>(TEXT("BTN_Buy"))), &UB2UILobbyMain::BuyGuestWarningPopup);
+	//	}
+	//}
 }
 
 void UB2UILobbyMain::DestroyGuestWarningPopup()

@@ -10,8 +10,8 @@ class BLADEII_API ABladeIIPlayerAIController : public AAIController
 	GENERATED_BODY()
 
 	/** Total skill management. Normal skill, resurrection, tag, etc.. */
-	UPROPERTY(Transient)
-	class UB2SkillRTManager* SkillRTManager;
+	//UPROPERTY(Transient)
+	//class UB2SkillRTManager* SkillRTManager;
 
 public:
 	// My properties...

@@ -133,19 +133,19 @@ void UB2LobbyUI_TotemEquipSlot::SubscribeEvents()
 {
 	UnsubscribeEvents();
 
-	Issues.Add(LobbySetHeroMgmtModePCSelectionClass<EPCClass>::GetInstance().Subscribe2(
-		[this](EPCClass SelectionPCClass)
-	{
-		this->UpdateFromSelectionPCClass(SelectionPCClass);
-	}
-	));
+	//Issues.Add(LobbySetHeroMgmtModePCSelectionClass<EPCClass>::GetInstance().Subscribe2(
+	//	[this](EPCClass SelectionPCClass)
+	//{
+	//	this->UpdateFromSelectionPCClass(SelectionPCClass);
+	//}
+	//));
 
-	Issues.Add(UpdateLobbyInventoryControlClass<>::GetInstance().Subscribe2(
-		[this]()
-	{
-		this->UpdateFromCurrentPCClass();
-	}
-	));
+	//Issues.Add(UpdateLobbyInventoryControlClass<>::GetInstance().Subscribe2(
+	//	[this]()
+	//{
+	//	this->UpdateFromCurrentPCClass();
+	//}
+	//));
 }
 
 void UB2LobbyUI_TotemEquipSlot::UnsubscribeEvents()

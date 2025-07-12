@@ -2,6 +2,9 @@
 #pragma once
 
 #include "B2UIWidget.h"
+#include "../B2RichTextBlock.h"
+#include "../../../B2Network/Public/B2MessageInfoCommonStruct.h"
+#include "../../DataStore/B2ClientDataStore.h"
 #include "B2UIEventAttendacnePart.generated.h"
 
 enum class EEventRewardState : uint32

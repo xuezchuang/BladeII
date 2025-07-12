@@ -501,32 +501,32 @@ void UB2UICharacterSelectPage::OnSceneOpen(EUIScene InOpenedScene)
 {
 	Super::OnSceneOpen(InOpenedScene);
 
-	auto DocBattleStage = UB2UIDocHelper::GetDocBattleStage();
-	ClientStageId = DocBattleStage->GetClientStageId();
-	StageDifficulty = DocBattleStage->GetStageDifficulty();
-	ServerStageId = DocBattleStage->GetServerStageId();
+	//auto DocBattleStage = UB2UIDocHelper::GetDocBattleStage();
+	//ClientStageId = DocBattleStage->GetClientStageId();
+	//StageDifficulty = DocBattleStage->GetStageDifficulty();
+	//ServerStageId = DocBattleStage->GetServerStageId();
 
-	//Cache StageInfoData
-	UB2StageInfo* StageInfoTable = StaticFindStageInfo();
-	int32 ChapterNum = StageInfoTable ? StageInfoTable->GetChapterNumByClientStageId(ClientStageId) : 0;
-	int32 StageNum = StageInfoTable ? StageInfoTable->GetSubChapterNumByClientStageId(ClientStageId) : 0;
+	////Cache StageInfoData
+	//UB2StageInfo* StageInfoTable = StaticFindStageInfo();
+	//int32 ChapterNum = StageInfoTable ? StageInfoTable->GetChapterNumByClientStageId(ClientStageId) : 0;
+	//int32 StageNum = StageInfoTable ? StageInfoTable->GetSubChapterNumByClientStageId(ClientStageId) : 0;
 
-	FSingleStageInfoData* CachedCurrentStageInfoData = StageInfoTable ? StageInfoTable->GetInfoData(ClientStageId, StageDifficulty) : NULL;
+	//FSingleStageInfoData* CachedCurrentStageInfoData = StageInfoTable ? StageInfoTable->GetInfoData(ClientStageId, StageDifficulty) : NULL;
 
-	if (IsSingleSelect) //true면 점령전
-	{
-		SetLobbyUIHeaderTitle(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("ChallengeMod_ControlMatch")));
-	}
-	else if (CachedCurrentStageInfoData && DocBattleStage && (!IsSingleSelect)) // CachedCurrentStageInfoData 얻어온 시점 이후여야
-	{
-		FText StageDiffText = FText::FromString(FString::Printf(TEXT("Chapter_DiffColor_%d"), (int32)StageDifficulty));
-		FText StageText = FText::Format(BladeIIGetLOCText(B2LOC_CAT_WORLDNAME, StageDiffText.ToString()),
-			CachedCurrentStageInfoData->GetLocalizedStageName());
+	//if (IsSingleSelect) //true면 점령전
+	//{
+	//	SetLobbyUIHeaderTitle(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("ChallengeMod_ControlMatch")));
+	//}
+	//else if (CachedCurrentStageInfoData && DocBattleStage && (!IsSingleSelect)) // CachedCurrentStageInfoData 얻어온 시점 이후여야
+	//{
+	//	FText StageDiffText = FText::FromString(FString::Printf(TEXT("Chapter_DiffColor_%d"), (int32)StageDifficulty));
+	//	FText StageText = FText::Format(BladeIIGetLOCText(B2LOC_CAT_WORLDNAME, StageDiffText.ToString()),
+	//		CachedCurrentStageInfoData->GetLocalizedStageName());
 
-		SetLobbyUIHeaderTitle(StageText);
-	}
+	//	SetLobbyUIHeaderTitle(StageText);
+	//}
 
-	SetAutoSellBtnState();
+	//SetAutoSellBtnState();
 }
 
 void UB2UICharacterSelectPage::UpdateStaticText()

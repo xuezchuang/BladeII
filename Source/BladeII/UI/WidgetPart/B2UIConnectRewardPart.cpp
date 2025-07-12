@@ -8,6 +8,7 @@
 #include "B2GameInstance.h"
 
 #include "BladeIIGameImpl.h"
+#include "../../Common/Event.h"
 
 void UB2UIConnectRewardPart::CacheAssets()
 {
@@ -127,15 +128,15 @@ void UB2UIConnectRewardPart::SetRewardState(int32 InItemIndex, int32 InRewardTim
 
 void UB2UIConnectRewardPart::FinishRecieveAnimation()
 {
-	if (P_ReceiveComplete.IsValid())
-		P_ReceiveComplete->SetVisibility(ESlateVisibility::Visible);
-	if (IMG_ActiveInner.IsValid())
-		IMG_ActiveInner->SetVisibility(ESlateVisibility::Collapsed);
-	if (IMG_ActiveOuter.IsValid())
-		IMG_ActiveOuter->SetVisibility(ESlateVisibility::Collapsed);
+	//if (P_ReceiveComplete.IsValid())
+	//	P_ReceiveComplete->SetVisibility(ESlateVisibility::Visible);
+	//if (IMG_ActiveInner.IsValid())
+	//	IMG_ActiveInner->SetVisibility(ESlateVisibility::Collapsed);
+	//if (IMG_ActiveOuter.IsValid())
+	//	IMG_ActiveOuter->SetVisibility(ESlateVisibility::Collapsed);
 
-	//ReceiveAttendanceExitEnableClass<bool>::GetInstance().Signal(true);
-	FinishConnectRewardClass<>::GetInstance().Signal();
+	////ReceiveAttendanceExitEnableClass<bool>::GetInstance().Signal(true);
+	//FinishConnectRewardClass<>::GetInstance().Signal();
 }
 
 void UB2UIConnectRewardPart::SetReward(const bool _Reward)

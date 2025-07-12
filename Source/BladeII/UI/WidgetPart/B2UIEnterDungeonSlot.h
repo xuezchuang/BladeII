@@ -2,6 +2,8 @@
 #pragma once
 
 #include "B2UIWidget.h"
+#include "../B2RichTextBlock.h"
+#include "../../Lobby/B2LobbySceneManager.h"
 #include "B2UIEnterDungeonSlot.generated.h"
 
 DECLARE_DELEGATE_OneParam(FClickDungeonSlot, ELobbyModSceneElem)

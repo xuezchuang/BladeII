@@ -2,6 +2,7 @@
 #pragma once
 
 #include "B2UIWidgetBase.h"
+#include "../B2RichTextBlock.h"
 #include "B2UIGuildMapEntryDirect.generated.h"
 
 

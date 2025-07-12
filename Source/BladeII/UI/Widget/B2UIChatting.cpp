@@ -237,54 +237,54 @@ void UB2UIChatting::UnbindDoc()
 
 void UB2UIChatting::OnOpen(bool RightNow)
 {
-	Super::OnOpen(RightNow);
+	//Super::OnOpen(RightNow);
 
-	if (X_GuildBadge.IsValid())
-		X_GuildBadge->SetVisibility(ESlateVisibility::Hidden);
+	//if (X_GuildBadge.IsValid())
+	//	X_GuildBadge->SetVisibility(ESlateVisibility::Hidden);
 
-	SetChatCategoryTab(EB2UIChatCategory::UICHTY_All); // 이전에 채팅 창을 열었을 때의 탭 선택 상태 캐싱이 필요할 수 있음..
-	UpdateGuildBadge();
+	//SetChatCategoryTab(EB2UIChatCategory::UICHTY_All); // 이전에 채팅 창을 열었을 때의 탭 선택 상태 캐싱이 필요할 수 있음..
+	//UpdateGuildBadge();
 
-	UGameplayStatics::GetGameMode(this)->GetWorldTimerManager().ClearTimer(TimeToMessageUpdate);
-	UGameplayStatics::GetGameMode(this)->GetWorldTimerManager().SetTimer(
-		TimeToMessageUpdate
-		, FTimerDelegate::CreateUObject(this, &UB2UIChatting::OnUpdateMessageTime)
-		, 5.0f
-		, true);
+	//UGameplayStatics::GetGameMode(this)->GetWorldTimerManager().ClearTimer(TimeToMessageUpdate);
+	//UGameplayStatics::GetGameMode(this)->GetWorldTimerManager().SetTimer(
+	//	TimeToMessageUpdate
+	//	, FTimerDelegate::CreateUObject(this, &UB2UIChatting::OnUpdateMessageTime)
+	//	, 5.0f
+	//	, true);
 
-	StartVisibleChatPopupClass<EB2GameMode>::GetInstance().Signal(GetB2GameModeType(this));
+	//StartVisibleChatPopupClass<EB2GameMode>::GetInstance().Signal(GetB2GameModeType(this));
 }
 
 void UB2UIChatting::OnClose(bool RightNow /*= false*/)
 {
-	Super::OnClose(RightNow);
-	UGameplayStatics::GetGameMode(this)->GetWorldTimerManager().ClearTimer(TimeToMessageUpdate);
-	StopVisibleChatPopupClass<>::GetInstance().Signal();
+	//Super::OnClose(RightNow);
+	//UGameplayStatics::GetGameMode(this)->GetWorldTimerManager().ClearTimer(TimeToMessageUpdate);
+	//StopVisibleChatPopupClass<>::GetInstance().Signal();
 }
 
 void UB2UIChatting::SubscribeEvent()
 {
-	DeliveryGetGuildInfoTicket = DeliveryReceiveGuildDetailInfoClass<FB2ReceiveGuildInfo>::GetInstance().Subscribe([this](const FB2ReceiveGuildInfo& GuildInfoData)
-	{
-		ReceiveGuildDetailInfo(GuildInfoData);
-	});
+	//DeliveryGetGuildInfoTicket = DeliveryReceiveGuildDetailInfoClass<FB2ReceiveGuildInfo>::GetInstance().Subscribe([this](const FB2ReceiveGuildInfo& GuildInfoData)
+	//{
+	//	ReceiveGuildDetailInfo(GuildInfoData);
+	//});
 
-	UpdateChatUITicket = UpdateChatUIClass<bool>::GetInstance().Subscribe(
-		[this](const bool IsScrollEnd)
-	{
-		UpdateChatMessage(IsScrollEnd);
-	});
+	//UpdateChatUITicket = UpdateChatUIClass<bool>::GetInstance().Subscribe(
+	//	[this](const bool IsScrollEnd)
+	//{
+	//	UpdateChatMessage(IsScrollEnd);
+	//});
 
-	if (BladeIIGameImpl::GetClientDataStore().GetUserGuildID() > 0)
-	{
-		data_trader::Retailer::GetInstance().RequestGuildDetailInfo(/*BladeIIGameImpl::GetClientDataStore().GetUserGuildID()*/0);
-	}
+	//if (BladeIIGameImpl::GetClientDataStore().GetUserGuildID() > 0)
+	//{
+	//	data_trader::Retailer::GetInstance().RequestGuildDetailInfo(/*BladeIIGameImpl::GetClientDataStore().GetUserGuildID()*/0);
+	//}
 }
 
 void UB2UIChatting::UnsubscribeEvent()
 {
-	UpdateChatUIClass<bool>::GetInstance().Unsubscribe(UpdateChatUITicket);
-	DeliveryReceiveGuildDetailInfoClass<FB2ReceiveGuildInfo>::GetInstance().Unsubscribe(DeliveryGetGuildInfoTicket);
+	//UpdateChatUIClass<bool>::GetInstance().Unsubscribe(UpdateChatUITicket);
+	//DeliveryReceiveGuildDetailInfoClass<FB2ReceiveGuildInfo>::GetInstance().Unsubscribe(DeliveryGetGuildInfoTicket);
 }
 
 void UB2UIChatting::ReceiveGuildDetailInfo(const FB2ReceiveGuildInfo& GuildInfoData)
@@ -702,38 +702,38 @@ EB2ChatType UB2UIChatting::GetMessageInputType(EB2UIChatCategory InUIChatCategor
 
 class UB2UIChatMessageBase* UB2UIChatting::GetUIMessageSlot(const FB2ChatMessage& InMessageInfo)
 {
-	int32 SlotType = GetUIMessageSlotType(InMessageInfo);
-		
-	if (CreatedMessages.Num() > 100)
-	{
-		const int32 DistCount = CreatedMessages.Num() - 100;
-		UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
-		for (int32 Index = DistCount; Index > -1; --Index)
-		{
-			if (CreatedMessages[Index] != nullptr)
-			{
-				if (CreatedMessages[Index]->GetSlotType() == SlotType)
-				{
-					CreatedMessages[Index]->RemoveFromParent();
-					CreatedMessages[Index]->DestroySelf(UIMgrInst);
-				}
-			}
+	//int32 SlotType = GetUIMessageSlotType(InMessageInfo);
+	//	
+	//if (CreatedMessages.Num() > 100)
+	//{
+	//	const int32 DistCount = CreatedMessages.Num() - 100;
+	//	UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
+	//	for (int32 Index = DistCount; Index > -1; --Index)
+	//	{
+	//		if (CreatedMessages[Index] != nullptr)
+	//		{
+	//			if (CreatedMessages[Index]->GetSlotType() == SlotType)
+	//			{
+	//				CreatedMessages[Index]->RemoveFromParent();
+	//				CreatedMessages[Index]->DestroySelf(UIMgrInst);
+	//			}
+	//		}
 
-			CreatedMessages.RemoveAt(Index);
-		}
-	}
-	
-	TSubclassOf<UB2UIChatMessageBase> ThisCreateClass = GetProperUIMessageClass(SlotType);
-	UB2UIChatMessageBase* ThisChatMsg = CreateWidget<UB2UIChatMessageBase>(GetOwningPlayer(), ThisCreateClass);
-	if (ThisChatMsg) {
-		ThisChatMsg->Init();
-		ThisChatMsg->SetSlotType(SlotType);
+	//		CreatedMessages.RemoveAt(Index);
+	//	}
+	//}
+	//
+	//TSubclassOf<UB2UIChatMessageBase> ThisCreateClass = GetProperUIMessageClass(SlotType);
+	//UB2UIChatMessageBase* ThisChatMsg = CreateWidget<UB2UIChatMessageBase>(GetOwningPlayer(), ThisCreateClass);
+	//if (ThisChatMsg) {
+	//	ThisChatMsg->Init();
+	//	ThisChatMsg->SetSlotType(SlotType);
 
-		// SB_MessagePanel 의 스크롤 핸들링을 위한 등록. ThisChatMsg 의 버튼이 입력을 가로채지 않고 넘겨주어서 직접 핸들링 하도록.
-		ThisChatMsg->SetupManualScrollBoxSender_byReceiver(this, SB_MessagePanel.Get());
+	//	// SB_MessagePanel 의 스크롤 핸들링을 위한 등록. ThisChatMsg 의 버튼이 입력을 가로채지 않고 넘겨주어서 직접 핸들링 하도록.
+	//	ThisChatMsg->SetupManualScrollBoxSender_byReceiver(this, SB_MessagePanel.Get());
 
-		return ThisChatMsg;
-	}
+	//	return ThisChatMsg;
+	//}
 
 	return nullptr;
 }
@@ -995,7 +995,7 @@ void UB2UIChatting::OnClickBtnClose()
 
 void UB2UIChatting::OnCloseCallback()
 {
-	if (UB2UIManager* UIMgrInst = UB2UIManager::GetInstance())
+	/*if (UB2UIManager* UIMgrInst = UB2UIManager::GetInstance())
 	{
 		const EUIScene CurScene = UIMgrInst->GetCurrUIScene();
 
@@ -1010,7 +1010,7 @@ void UB2UIChatting::OnCloseCallback()
 		{
 			ShowMissionDialogClass<>::GetInstance().Signal();
 		}
-	}
+	}*/
 }
 
 void UB2UIChatting::OnChangedCurrentChannel(class UB2UIDocBase* Sender, const int32 CurrentChannelNum, const int32 PrevChannelNum)

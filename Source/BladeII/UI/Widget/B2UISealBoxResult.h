@@ -11,6 +11,7 @@
 #include "B2UIDocBindable.h"
 #include "B2SealCardFx.h"
 #include "CommonStruct.h"
+#include "../../BladeII.h"
 #include "B2UISealBoxResult.generated.h"
 
 

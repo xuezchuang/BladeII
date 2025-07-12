@@ -103,47 +103,47 @@ void AB2AutoWayPoint::PostRegisterAllComponents()
 void AB2AutoWayPoint::BeginPlay()
 {
 	Super::BeginPlay();
-#if !WITH_EDITOR
-	TArray<UActorComponent*> AllComps = GetComponentsByTag(USphereComponent::StaticClass(), TEXT("PathObject"));
-	for (int TI = 0; TI < AllComps.Num(); ++TI)
-	{
-		USphereComponent* Delete = static_cast<USphereComponent*>(AllComps[TI]);
-		Delete->DetachFromComponent(FDetachmentTransformRules(EDetachmentRule::KeepRelative, true));
-		Delete->UnregisterComponent();
-		Delete->ConditionalBeginDestroy();
-	}
-#endif
-
-	bPassed = false;
-
-	FActorSpawnParameters SpawnInfo;
-	FTransform trm = GetTransform();
-
-#if WITH_EDITOR
-	if (!this->HasValidPassOrder())
-		return;
-
-	// Check if we got any "unexpected" duplicated order.
-	// If we encounter the warning here, it's probably due to the level streaming..
-
-	ABladeIIGameMode* B2GM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(this));
-	BII_CHECK(B2GM);
-	if (B2GM)
-	{
-		for (auto* waypoint : B2GM->GetWayPointList())
-		{
-			if (!(waypoint != this && waypoint->HasValidPassOrder() && waypoint->PassOrder == this->PassOrder))
-				continue;
-
-#if !PLATFORM_MAC
-			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-				FString::Printf(TEXT("[AB2AutoWayPoint][WARNING!] Duplicated Waypoint PassOrder!:\n\nObject Name: %s, PassOrder: %d"), *this->GetName(), this->PassOrder)
-				));
-#endif
-			break;
-		}
-	}
-#endif
+//#if !WITH_EDITOR
+//	TArray<UActorComponent*> AllComps = GetComponentsByTag(USphereComponent::StaticClass(), TEXT("PathObject"));
+//	for (int TI = 0; TI < AllComps.Num(); ++TI)
+//	{
+//		USphereComponent* Delete = static_cast<USphereComponent*>(AllComps[TI]);
+//		Delete->DetachFromComponent(FDetachmentTransformRules(EDetachmentRule::KeepRelative, true));
+//		Delete->UnregisterComponent();
+//		Delete->ConditionalBeginDestroy();
+//	}
+//#endif
+//
+//	bPassed = false;
+//
+//	FActorSpawnParameters SpawnInfo;
+//	FTransform trm = GetTransform();
+//
+//#if WITH_EDITOR
+//	if (!this->HasValidPassOrder())
+//		return;
+//
+//	// Check if we got any "unexpected" duplicated order.
+//	// If we encounter the warning here, it's probably due to the level streaming..
+//
+//	ABladeIIGameMode* B2GM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(this));
+//	BII_CHECK(B2GM);
+//	if (B2GM)
+//	{
+//		for (auto* waypoint : B2GM->GetWayPointList())
+//		{
+//			if (!(waypoint != this && waypoint->HasValidPassOrder() && waypoint->PassOrder == this->PassOrder))
+//				continue;
+//
+//#if !PLATFORM_MAC
+//			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
+//				FString::Printf(TEXT("[AB2AutoWayPoint][WARNING!] Duplicated Waypoint PassOrder!:\n\nObject Name: %s, PassOrder: %d"), *this->GetName(), this->PassOrder)
+//				));
+//#endif
+//			break;
+//		}
+//	}
+//#endif
 }
 
 void AB2AutoWayPoint::MarkPassed(bool bMarkPrevious, bool bInAutoPlay, class AB2AutoAIController* AutoController)

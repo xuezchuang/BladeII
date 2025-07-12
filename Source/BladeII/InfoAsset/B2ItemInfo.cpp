@@ -712,34 +712,34 @@ UB2ItemInfo::UB2ItemInfo(const FObjectInitializer& ObjectInitializer)
 //	}
 }
 
-//FSingleItemInfoData* UB2ItemInfo::GetInfoData(int32 ItemRefID, bool bFullyLoad)
-//{
-//	// ItemRefID 를 key 로 사용.
-//	FSingleItemInfoData* FoundDataRow = TheData ? TheData->FindRow<FSingleItemInfoData>(FName(*FString::FromInt(ItemRefID)), TEXT("")) : NULL;
-//	if (FoundDataRow == NULL)
-//	{
-//#if WITH_EDITOR && !PLATFORM_MAC
-//		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-//			FString::Printf(TEXT("ItemInfo 테이블에서 RefID %d 의 항목을 찾지 못함. 컴퓨터가 곧 폭발한다."), ItemRefID)
-//			));
-//#endif
-//		return NULL;
-//	}
-//
-//	FoundDataRow->CachedMyRefID = ItemRefID; // RefID 캐싱해 놓으면 SingleInfo 의 개별 데이터 로딩 시 사용하게 될 거.
-//
-//	if (bFullyLoad
-//#if WITH_EDITOR
-//		|| GIsEditor
-//#endif
-//		)
-//	{
-//		// 굳이 LoadAllTAssets 를 하지 않더라도 실제 사용할 때에는 개별 레퍼런스들을 로딩하게 될 것. LoadAllTAssets 으로는 쓸데없는 메모리 소모의 소지가 있다.
-//		FoundDataRow->LoadAllTAssets(InfoLoadManager, ItemRefID, LoadedPtrMap);
-//	}
-//
-//	return FoundDataRow;
-//}
+FSingleItemInfoData* UB2ItemInfo::GetInfoData(int32 ItemRefID, bool bFullyLoad)
+{
+	// ItemRefID 를 key 로 사용.
+	FSingleItemInfoData* FoundDataRow = TheData ? TheData->FindRow<FSingleItemInfoData>(FName(*FString::FromInt(ItemRefID)), TEXT("")) : NULL;
+	if (FoundDataRow == NULL)
+	{
+#if WITH_EDITOR && !PLATFORM_MAC
+		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
+			FString::Printf(TEXT("ItemInfo 테이블에서 RefID %d 의 항목을 찾지 못함. 컴퓨터가 곧 폭발한다."), ItemRefID)
+			));
+#endif
+		return NULL;
+	}
+
+	FoundDataRow->CachedMyRefID = ItemRefID; // RefID 캐싱해 놓으면 SingleInfo 의 개별 데이터 로딩 시 사용하게 될 거.
+
+	if (bFullyLoad
+#if WITH_EDITOR
+		|| GIsEditor
+#endif
+		)
+	{
+		// 굳이 LoadAllTAssets 를 하지 않더라도 실제 사용할 때에는 개별 레퍼런스들을 로딩하게 될 것. LoadAllTAssets 으로는 쓸데없는 메모리 소모의 소지가 있다.
+		FoundDataRow->LoadAllTAssets(InfoLoadManager, ItemRefID, LoadedPtrMap);
+	}
+
+	return FoundDataRow;
+}
 
 int32 UB2ItemInfo::GetRandomItemRefID()
 {
@@ -767,23 +767,23 @@ int32 UB2ItemInfo::GetRandomItemRefID()
 	*/
 }
 
-//FItemSetInfoData* UB2ItemInfo::GetSetInfoData(int32 SetUniqueKey)
-//{
-//	const FName* DataTableKey = SetUniqueKeyMap.Find(SetUniqueKey);
-//	if (SetInfoData && DataTableKey)
-//	{
-//		return SetInfoData->FindRow<FItemSetInfoData>(*DataTableKey, TEXT(""));
-//	}
-//
-//	return nullptr;
-//}
-//
-//FItemSetInfoData* UB2ItemInfo::GetSetInfoData(int32 GroupID, EPCClass PCClass, int32 Grade)
-//{
-//	const int32 SetUniqueKey = GetSetItemUniqueKey(GroupID, PCClass, Grade);
-//	return GetSetInfoData(SetUniqueKey);
-//}
-//
+FItemSetInfoData* UB2ItemInfo::GetSetInfoData(int32 SetUniqueKey)
+{
+	const FName* DataTableKey = SetUniqueKeyMap.Find(SetUniqueKey);
+	if (SetInfoData && DataTableKey)
+	{
+		return SetInfoData->FindRow<FItemSetInfoData>(*DataTableKey, TEXT(""));
+	}
+
+	return nullptr;
+}
+
+FItemSetInfoData* UB2ItemInfo::GetSetInfoData(int32 GroupID, EPCClass PCClass, int32 Grade)
+{
+	const int32 SetUniqueKey = GetSetItemUniqueKey(GroupID, PCClass, Grade);
+	return GetSetInfoData(SetUniqueKey);
+}
+
 //void UB2ItemInfo::GenerateSetKeyList()
 //{
 //	if (SetInfoData)

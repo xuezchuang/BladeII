@@ -287,7 +287,7 @@ void UB2UISetting::ShowCredit()
 
 void UB2UISetting::RestartTutorial()
 {
-	GoToTutorialClass<bool>::GetInstance().Signal(true);
+	//GoToTutorialClass<bool>::GetInstance().Signal(true);
 }
 
 void UB2UISetting::ShowGachaView()
@@ -366,52 +366,52 @@ void UB2UISetting::ConditionalCreateSubUIP(EUISettingSubMenu InSubMenu)
 }
 void UB2UISetting::ConditionalCreateUIPSettingGame()
 {
-	if (!Created_UIP_Setting_Game && X_CP_UIP_Setting_Game.IsValid())
-	{
-		Created_UIP_Setting_Game = DynLoadAndCreateInCanvasPanelFull<UB2UISettingGame>(UIP_Setting_Game_Class, this, X_CP_UIP_Setting_Game.Get());
-		if (Created_UIP_Setting_Game)
-		{
-			Created_UIP_Setting_Game->Init();
-			AddNewCreatedSubMenuUIPtoArray(EUISettingSubMenu::subMenu_game, Created_UIP_Setting_Game);
-		}
-	}
+	//if (!Created_UIP_Setting_Game && X_CP_UIP_Setting_Game.IsValid())
+	//{
+	//	Created_UIP_Setting_Game = DynLoadAndCreateInCanvasPanelFull<UB2UISettingGame>(UIP_Setting_Game_Class, this, X_CP_UIP_Setting_Game.Get());
+	//	if (Created_UIP_Setting_Game)
+	//	{
+	//		Created_UIP_Setting_Game->Init();
+	//		AddNewCreatedSubMenuUIPtoArray(EUISettingSubMenu::subMenu_game, Created_UIP_Setting_Game);
+	//	}
+	//}
 }
 void UB2UISetting::ConditionalCreateUIPSettingAddOns()
 {
-	if (!Created_UIP_Setting_AddOns && X_CP_UIP_Setting_AddOns.IsValid())
-	{
-		Created_UIP_Setting_AddOns = DynLoadAndCreateInCanvasPanelFull<UB2UISettingAddOns>(UIP_Setting_AddOns_Class, this, X_CP_UIP_Setting_AddOns.Get());
-		if (Created_UIP_Setting_AddOns)
-		{
-			Created_UIP_Setting_AddOns->Init();
-			AddNewCreatedSubMenuUIPtoArray(EUISettingSubMenu::subMenu_addons, Created_UIP_Setting_AddOns);
-		}
-	}
+	//if (!Created_UIP_Setting_AddOns && X_CP_UIP_Setting_AddOns.IsValid())
+	//{
+	//	Created_UIP_Setting_AddOns = DynLoadAndCreateInCanvasPanelFull<UB2UISettingAddOns>(UIP_Setting_AddOns_Class, this, X_CP_UIP_Setting_AddOns.Get());
+	//	if (Created_UIP_Setting_AddOns)
+	//	{
+	//		Created_UIP_Setting_AddOns->Init();
+	//		AddNewCreatedSubMenuUIPtoArray(EUISettingSubMenu::subMenu_addons, Created_UIP_Setting_AddOns);
+	//	}
+	//}
 }
 void UB2UISetting::ConditionalCreateUIPSettingAccount()
 {
-	if (!Created_UIP_Setting_Account && X_CP_UIP_Setting_Account.IsValid())
-	{
-		Created_UIP_Setting_Account = DynLoadAndCreateInCanvasPanelFull<UB2UISettingAccount>(UIP_Setting_Account_Class, this, X_CP_UIP_Setting_Account.Get());
-		if (Created_UIP_Setting_Account)
-		{
-			Created_UIP_Setting_Account->Init();
-			Created_UIP_Setting_Account->SetOwnerUI(this);
-			AddNewCreatedSubMenuUIPtoArray(EUISettingSubMenu::subMenu_account, Created_UIP_Setting_Account);
-		}
-	}
+	//if (!Created_UIP_Setting_Account && X_CP_UIP_Setting_Account.IsValid())
+	//{
+	//	Created_UIP_Setting_Account = DynLoadAndCreateInCanvasPanelFull<UB2UISettingAccount>(UIP_Setting_Account_Class, this, X_CP_UIP_Setting_Account.Get());
+	//	if (Created_UIP_Setting_Account)
+	//	{
+	//		Created_UIP_Setting_Account->Init();
+	//		Created_UIP_Setting_Account->SetOwnerUI(this);
+	//		AddNewCreatedSubMenuUIPtoArray(EUISettingSubMenu::subMenu_account, Created_UIP_Setting_Account);
+	//	}
+	//}
 }
 void UB2UISetting::ConditionalCreateUIPSettingInfo()
 {
-	if (!Created_UIP_Setting_Info && X_CP_UIP_Setting_Info.IsValid())
-	{
-		Created_UIP_Setting_Info = DynLoadAndCreateInCanvasPanelFull<UB2UIWidget>(UIP_Setting_Info_Class, this, X_CP_UIP_Setting_Info.Get());
-		if (Created_UIP_Setting_Info)
-		{
-			Created_UIP_Setting_Info->Init();
-			AddNewCreatedSubMenuUIPtoArray(EUISettingSubMenu::subMenu_info, Created_UIP_Setting_Info);
-		}
-	}
+	//if (!Created_UIP_Setting_Info && X_CP_UIP_Setting_Info.IsValid())
+	//{
+	//	Created_UIP_Setting_Info = DynLoadAndCreateInCanvasPanelFull<UB2UIWidget>(UIP_Setting_Info_Class, this, X_CP_UIP_Setting_Info.Get());
+	//	if (Created_UIP_Setting_Info)
+	//	{
+	//		Created_UIP_Setting_Info->Init();
+	//		AddNewCreatedSubMenuUIPtoArray(EUISettingSubMenu::subMenu_info, Created_UIP_Setting_Info);
+	//	}
+	//}
 }
 void UB2UISetting::AddNewCreatedSubMenuUIPtoArray(EUISettingSubMenu InSubMenu, class UB2UIWidget* NewCreatedWidget)
 {

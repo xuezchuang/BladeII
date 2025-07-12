@@ -2420,29 +2420,29 @@ inline EStageDifficulty SvrToCliStageDifficulty(int32 difficulty)
 	return EStageDifficulty::ESD_Normal;
 }
 
-inline EB2GameMode SvrDuelModeToCliGameMode(int32 InDuelMode)
-{
-	// Not exactly one to one mapping. b2network::B2DuelMode is not for all kind of GameMode type..
-	switch (InDuelMode)
-	{
-	case b2network::B2DuelMode::DUEL_MODE_PVP: return EB2GameMode::PVP_Tag;
-	case b2network::B2DuelMode::DUEL_MODE_TEAM: return EB2GameMode::PVP_Team;
-	case b2network::B2DuelMode::DUEL_MODE_ASSAULT: return EB2GameMode::Control;
-	}
-	return  EB2GameMode::Unknown;
-}
-
-inline int32 CliGameModeToSvrDuelMode(EB2GameMode InGameMode)
-{
-	// Not exactly one to one mapping. b2network::B2DuelMode is not for all kind of GameMode type..
-	switch (InGameMode)
-	{
-	case EB2GameMode::PVP_Tag: return b2network::B2DuelMode::DUEL_MODE_PVP;
-	case EB2GameMode::PVP_Team: return b2network::B2DuelMode::DUEL_MODE_TEAM;
-	case EB2GameMode::Control: return b2network::B2DuelMode::DUEL_MODE_ASSAULT;
-	}
-	return b2network::B2DuelMode::DUEL_MODE_NONE;
-}
+//inline EB2GameMode SvrDuelModeToCliGameMode(int32 InDuelMode)
+//{
+//	// Not exactly one to one mapping. b2network::B2DuelMode is not for all kind of GameMode type..
+//	switch (InDuelMode)
+//	{
+//	case b2network::B2DuelMode::DUEL_MODE_PVP: return EB2GameMode::PVP_Tag;
+//	case b2network::B2DuelMode::DUEL_MODE_TEAM: return EB2GameMode::PVP_Team;
+//	case b2network::B2DuelMode::DUEL_MODE_ASSAULT: return EB2GameMode::Control;
+//	}
+//	return  EB2GameMode::Unknown;
+//}
+//
+//inline int32 CliGameModeToSvrDuelMode(EB2GameMode InGameMode)
+//{
+//	// Not exactly one to one mapping. b2network::B2DuelMode is not for all kind of GameMode type..
+//	switch (InGameMode)
+//	{
+//	case EB2GameMode::PVP_Tag: return b2network::B2DuelMode::DUEL_MODE_PVP;
+//	case EB2GameMode::PVP_Team: return b2network::B2DuelMode::DUEL_MODE_TEAM;
+//	case EB2GameMode::Control: return b2network::B2DuelMode::DUEL_MODE_ASSAULT;
+//	}
+//	return b2network::B2DuelMode::DUEL_MODE_NONE;
+//}
 
 using FB2ResponseReciveCreateGuild = b2network::FB2MessageInfoResponseCreateGuild;
 using FB2ResponseReciveCreateGuildPtr = b2network::FB2MessageInfoResponseCreateGuildPtr;

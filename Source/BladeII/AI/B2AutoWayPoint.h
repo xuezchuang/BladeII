@@ -44,8 +44,8 @@ private :
 
 #endif
 
-	UPROPERTY(Transient)
-	class AB2StageManager* CachedStageManager;
+	//UPROPERTY(Transient)
+	//class AB2StageManager* CachedStageManager;
 	
 
 public:
@@ -111,7 +111,7 @@ public:
 
 	inline bool HasValidPassOrder() { return (PassOrder >= 0); }
 
-	FORCEINLINE void SetStageManager(class AB2StageManager* InManager) { CachedStageManager = InManager; }
+	//FORCEINLINE void SetStageManager(class AB2StageManager* InManager) { CachedStageManager = InManager; }
 
 #if WITH_EDITOR
 

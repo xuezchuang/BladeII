@@ -53,8 +53,8 @@ public class BladeII : ModuleRules
 			{
 				"BladeII",
                 "BladeII/TemplateUtility",
-				//"BladeII/Fulfil",
-				"BladeII/Common",
+                "BladeII/Fulfil",
+                "BladeII/Common",
                 "BladeII/UI",
                 "BladeII/UI/Doc",
                 "BladeII/UI/Widget",
@@ -67,20 +67,20 @@ public class BladeII : ModuleRules
                 "BladeII/InfoAsset",
                 "BladeII/DataStore",
                 "BladeII/Lobby",
-                "BladeIINetwork",
+                //"BladeIINetwork",
                 "BladeII/DataTrader",
                 "BladeII/NetPlay",
                 "BladeII/Packet",
                 "B2Network",
                 "B2Network/11",
-				//"BladeII/Log",
-				"BladeII/Buff",
-				//"BladeII/AsyncPlay",
-				//"BladeII/AI",
-				//"BladeII/PassiveSkill",
-				//"BladeII/Misc",
-				//"BladeII/DLCFront",
-			});
+                "BladeII/Log",
+                "BladeII/Buff",
+                "BladeII/AsyncPlay",
+                "BladeII/AI",
+                "BladeII/PassiveSkill",
+                "BladeII/Misc",
+                "BladeII/DLCFront",
+            });
 		// Uncomment if you are using Slate UI
 		// PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });
 

@@ -783,48 +783,48 @@ void UB2UIManager_Lobby::TryPopupCreateAccountMenu()
 
 void UB2UIManager_Lobby::TryUpdateItemOPMainMenu()
 {
-	// 모드별로 열려 있는 창이 다를 것.
-	auto* LevelupPopup = Cast<UB2LobbyUI_ItemLevelupMain>(DJLegacy_FindLobbySubPopup(ELobbySubPopups::ELSPU_ItemLevelUpMain));
-	if (LevelupPopup)
-	{
-		LevelupPopup->UpdateOnLevelupStateChange();
-	}
+	//// 모드별로 열려 있는 창이 다를 것.
+	//auto* LevelupPopup = Cast<UB2LobbyUI_ItemLevelupMain>(DJLegacy_FindLobbySubPopup(ELobbySubPopups::ELSPU_ItemLevelUpMain));
+	//if (LevelupPopup)
+	//{
+	//	LevelupPopup->UpdateOnLevelupStateChange();
+	//}
 
-	auto* UpgradePopup = Cast<UB2LobbyUI_ItemUpgradeMain>(DJLegacy_FindLobbySubPopup(ELobbySubPopups::ELSPU_ItemUpgradeMain));
-	if (UpgradePopup)
-	{
-		UpgradePopup->UpdateOnUpgradeStateChange();
-	}
+	//auto* UpgradePopup = Cast<UB2LobbyUI_ItemUpgradeMain>(DJLegacy_FindLobbySubPopup(ELobbySubPopups::ELSPU_ItemUpgradeMain));
+	//if (UpgradePopup)
+	//{
+	//	UpgradePopup->UpdateOnUpgradeStateChange();
+	//}
 
-	auto* ComposePopup = Cast<UB2LobbyUI_ItemComposeMain>(DJLegacy_FindLobbySubPopup(ELobbySubPopups::ELSPU_ItemComposeMain));
-	if (ComposePopup)
-	{
-		ComposePopup->UpdateOnComposeStateChange();
-	}
+	//auto* ComposePopup = Cast<UB2LobbyUI_ItemComposeMain>(DJLegacy_FindLobbySubPopup(ELobbySubPopups::ELSPU_ItemComposeMain));
+	//if (ComposePopup)
+	//{
+	//	ComposePopup->UpdateOnComposeStateChange();
+	//}
 
-	auto* SurpassPopup = Cast<UB2LobbyUI_ItemSurpassMain>(DJLegacy_FindLobbySubPopup(ELobbySubPopups::ELSPU_ItemSurpassMain));
-	if (SurpassPopup)
-	{
-		SurpassPopup->UpdateOnSurpassStateChange();
-	}
+	//auto* SurpassPopup = Cast<UB2LobbyUI_ItemSurpassMain>(DJLegacy_FindLobbySubPopup(ELobbySubPopups::ELSPU_ItemSurpassMain));
+	//if (SurpassPopup)
+	//{
+	//	SurpassPopup->UpdateOnSurpassStateChange();
+	//}
 
-	auto* EnhancePopup = Cast<UB2LobbyUI_ItemEnhance>(DJLegacy_FindLobbySubPopup(ELobbySubPopups::ELSPU_ItemEnhanceMain));
-	if (EnhancePopup)
-	{
-		EnhancePopup->UpdateOnEnhanceStateChange();
-	}
+	//auto* EnhancePopup = Cast<UB2LobbyUI_ItemEnhance>(DJLegacy_FindLobbySubPopup(ELobbySubPopups::ELSPU_ItemEnhanceMain));
+	//if (EnhancePopup)
+	//{
+	//	EnhancePopup->UpdateOnEnhanceStateChange();
+	//}
 
-	auto* EnhanceChangePopup = Cast<UB2LobbyUI_ItemEnhanceChangeMain>(DJLegacy_FindLobbySubPopup(ELobbySubPopups::ELSPU_ItemEnhanceChangeMain));
-	if (EnhanceChangePopup)
-	{
-		EnhanceChangePopup->UpdateStateChange();
-	}
+	//auto* EnhanceChangePopup = Cast<UB2LobbyUI_ItemEnhanceChangeMain>(DJLegacy_FindLobbySubPopup(ELobbySubPopups::ELSPU_ItemEnhanceChangeMain));
+	//if (EnhanceChangePopup)
+	//{
+	//	EnhanceChangePopup->UpdateStateChange();
+	//}
 
-	UB2LobbyUI_ItemAfterOption* AfterOptionPopup = Cast<UB2LobbyUI_ItemAfterOption>(DJLegacy_FindLobbySubPopup(ELobbySubPopups::ELSPU_ItemAfterOpiton));
-	if (AfterOptionPopup)
-	{
-		AfterOptionPopup->UpdateOnInfoStateChange();
-	}
+	//UB2LobbyUI_ItemAfterOption* AfterOptionPopup = Cast<UB2LobbyUI_ItemAfterOption>(DJLegacy_FindLobbySubPopup(ELobbySubPopups::ELSPU_ItemAfterOpiton));
+	//if (AfterOptionPopup)
+	//{
+	//	AfterOptionPopup->UpdateOnInfoStateChange();
+	//}
 }
 
 void UB2UIManager_Lobby::SetInventoryItemOpModeGuideText(const FText& InText)

@@ -1284,16 +1284,16 @@ void UB2UICollectBookMain::HideDetailView()
 
 void UB2UICollectBookMain::InitCharacterButtons()
 {
-	for (int32 Index = 0; Index < CharacterChangeButtons.Num(); Index++)
-	{
-		auto& CharBtn = CharacterChangeButtons[Index];
-		EPCClass ClassType = IntToPCClass(Index);
-		
-		if (CharBtn.TB_ClassName.IsValid())
-			CharBtn.TB_ClassName->SetText(GetPCClassLocalizedText(ClassType));
+	//for (int32 Index = 0; Index < CharacterChangeButtons.Num(); Index++)
+	//{
+	//	auto& CharBtn = CharacterChangeButtons[Index];
+	//	EPCClass ClassType = IntToPCClass(Index);
+	//	
+	//	if (CharBtn.TB_ClassName.IsValid())
+	//		CharBtn.TB_ClassName->SetText(GetPCClassLocalizedText(ClassType));
 
-		UpdateCharacterButton(ClassType);
-	}
+	//	UpdateCharacterButton(ClassType);
+	//}
 }
 
 void UB2UICollectBookMain::UpdateCharacterButton(EPCClass InCharacterClass)
@@ -1488,31 +1488,31 @@ void UB2UICollectBookMain::OnReceiveRewardCollectionSetItem(FB2RewardCollectionS
 
 void UB2UICollectBookMain::ConditionalCreateItemDetailViewUIP()
 {
-	if (!CreatedUIP_ItemDetailView && X_CP_ItemDetailViewPanel.IsValid())
-	{
-		CreatedUIP_ItemDetailView = DynLoadAndCreateInCanvasPanelFull<UB2UICollectBookItemDetail>(UIP_ItemDetailViewClass, this, X_CP_ItemDetailViewPanel.Get());
-		if (CreatedUIP_ItemDetailView)
-		{
-			CreatedUIP_ItemDetailView->Init();
-			FOnClickDetailClose DetailCloseDelegate;
-			DetailCloseDelegate.BindUObject(this, &UB2UICollectBookMain::HideDetailView);
-			CreatedUIP_ItemDetailView->SetDetailViewCloseDelegate(DetailCloseDelegate);
-		}
-	}
+	//if (!CreatedUIP_ItemDetailView && X_CP_ItemDetailViewPanel.IsValid())
+	//{
+	//	CreatedUIP_ItemDetailView = DynLoadAndCreateInCanvasPanelFull<UB2UICollectBookItemDetail>(UIP_ItemDetailViewClass, this, X_CP_ItemDetailViewPanel.Get());
+	//	if (CreatedUIP_ItemDetailView)
+	//	{
+	//		CreatedUIP_ItemDetailView->Init();
+	//		FOnClickDetailClose DetailCloseDelegate;
+	//		DetailCloseDelegate.BindUObject(this, &UB2UICollectBookMain::HideDetailView);
+	//		CreatedUIP_ItemDetailView->SetDetailViewCloseDelegate(DetailCloseDelegate);
+	//	}
+	//}
 }
 void UB2UICollectBookMain::ConditionalCreateWingPageUIP()
 {
-	if (!CreatedUIP_WingPage && X_CP_WingPagePanel.IsValid())
-	{
-		CreatedUIP_WingPage = DynLoadAndCreateInCanvasPanelFull<UB2UICollectBookWing>(UIP_WingPageClass, this, X_CP_WingPagePanel.Get());
-		if (CreatedUIP_WingPage)
-		{
-			CreatedUIP_WingPage->Init();
-			FOnClickedCollectionWingGrade WingGradeDelegate;
-			WingGradeDelegate.BindUObject(this, &UB2UICollectBookMain::OnClickedWingGradeButton);
-			CreatedUIP_WingPage->SetClickWingGradeDelegate(WingGradeDelegate);
-		}
-	}
+	//if (!CreatedUIP_WingPage && X_CP_WingPagePanel.IsValid())
+	//{
+	//	CreatedUIP_WingPage = DynLoadAndCreateInCanvasPanelFull<UB2UICollectBookWing>(UIP_WingPageClass, this, X_CP_WingPagePanel.Get());
+	//	if (CreatedUIP_WingPage)
+	//	{
+	//		CreatedUIP_WingPage->Init();
+	//		FOnClickedCollectionWingGrade WingGradeDelegate;
+	//		WingGradeDelegate.BindUObject(this, &UB2UICollectBookMain::OnClickedWingGradeButton);
+	//		CreatedUIP_WingPage->SetClickWingGradeDelegate(WingGradeDelegate);
+	//	}
+	//}
 }
 void UB2UICollectBookMain::DestroyItemDetailViewUIP()
 {

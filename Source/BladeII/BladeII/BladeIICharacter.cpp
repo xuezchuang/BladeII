@@ -2465,14 +2465,14 @@ UB2DamageEffectInfo* ABladeIICharacter::GetDamageEffectInfo()
 	return nullptr;
 }
 
-//class UB2Buff_Base* ABladeIICharacter::AddBuff(EBuffType BuffType, float fDuration, float Amount, AActor* BuffCauser, bool bUseEffect/* = true*/, bool bUseTextEffect/* = true*/, TArray<float>* PtrAdditionalParams/* = nullptr*/)
-//{
-//	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_AddBuff);
-//	if (!IsAllowBuff(BuffType))
-//		return nullptr;
-//
-//	return BuffManager->AddBuff(BuffType, fDuration, Amount, BuffCauser, bUseEffect, bUseTextEffect, PtrAdditionalParams);
-//}
+class UB2Buff_Base* ABladeIICharacter::AddBuff(EBuffType BuffType, float fDuration, float Amount, AActor* BuffCauser, bool bUseEffect/* = true*/, bool bUseTextEffect/* = true*/, TArray<float>* PtrAdditionalParams/* = nullptr*/)
+{
+	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_AddBuff);
+	//if (!IsAllowBuff(BuffType))
+		return nullptr;
+
+	//return BuffManager->AddBuff(BuffType, fDuration, Amount, BuffCauser, bUseEffect, bUseTextEffect, PtrAdditionalParams);
+}
 
 void ABladeIICharacter::AddBuffEnemy(EBuffType BuffType, float fDistance, float fDuration, float Amount, bool bUseEffect/* = true*/, bool bUseTextEffect/* = true*/)
 {

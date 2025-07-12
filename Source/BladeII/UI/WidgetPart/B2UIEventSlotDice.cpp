@@ -105,17 +105,17 @@ void UB2UIEventSlotDice::UpdateVisibleState()
 
 void UB2UIEventSlotDice::EndAnimMovePosition_BP()
 {
-	int32 NextCellNumber = CachedDiceEventCellMD.cell_number + 1;
-	DiceCellFinishAnimationClass<int32>::GetInstance().Signal(NextCellNumber);
+	//int32 NextCellNumber = CachedDiceEventCellMD.cell_number + 1;
+	//DiceCellFinishAnimationClass<int32>::GetInstance().Signal(NextCellNumber);
 
-	SetArriveState(false);
+	//SetArriveState(false);
 }
 
 void UB2UIEventSlotDice::EndAnimArrive_BP()
 {
-	DiceCellFinishArriveAnimationClass<int32>::GetInstance().Signal(CachedDiceEventCellMD.cell_number);
+	//DiceCellFinishArriveAnimationClass<int32>::GetInstance().Signal(CachedDiceEventCellMD.cell_number);
 
-	SetArriveState(true);
+	//SetArriveState(true);
 }
 
 void UB2UIEventSlotDice::UpdateIMG_RewardIcon()

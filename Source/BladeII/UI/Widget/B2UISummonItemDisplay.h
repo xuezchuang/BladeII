@@ -5,6 +5,7 @@
 #include "B2DynItemIcon_LobbyInven.h"
 #include "B2LobbyUI_ItemDetailPostOp.h"
 #include "B2UIBackWidget.h"
+#include "../../BladeII.h"
 #include "B2UISummonItemDisplay.generated.h"
 
 DECLARE_DELEGATE(FOnFlipped)

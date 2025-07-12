@@ -2,6 +2,7 @@
 
 #include "B2UIWidget.h"
 #include "B2UIDocBindable.h"
+#include "../../DataStore/B2ClientDataStore.h"
 #include "B2UIGuildMain.generated.h"
 
 UENUM(BlueprintType)

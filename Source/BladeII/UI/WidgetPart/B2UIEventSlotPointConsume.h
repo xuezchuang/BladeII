@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "UI/WidgetPart/B2UIEventSlot.h"
+#include "../B2RichTextBlock.h"
 #include "B2UIEventSlotPointConsume.generated.h"
 
 /**

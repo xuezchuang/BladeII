@@ -80,48 +80,48 @@ bool UB2UIManager_InGameHUDChar::InitUIManager(class ABladeIICharacter* InOwner,
 
 void UB2UIManager_InGameHUDChar::UpdateManual(float DeltaSeconds)
 {
-	// For FloatingHPBarWidget and HiddenMobPointerWidget, I would like to handle their update in their NativeTick,
-	// but have no idea why it's not working.. possibly because their position is dynamic?
-	if (FloatingHPBarWidget)
-		FloatingHPBarWidget->UpdatePosition();
-
-	for (int32 DWI = 0; DWI < DamageNumWidgetSetArray.Num(); ++DWI)
-	{
-		UB2FloatingWidget* DamageNumWidget = DamageNumWidgetSetArray[DWI].FloatingWidget;
-		if (DamageNumWidget)
-		{
-			DamageNumWidget->UpdatePosition();
-		}
-	}
-	for (int32 AWI = 0; AWI < AbnormalEffectWidgetSetArray.Num(); ++AWI)
-	{
-		UB2FloatingWidget* ThisWidget = AbnormalEffectWidgetSetArray[AWI].FloatingWidget;
-		if (ThisWidget)
-		{
-			ThisWidget->UpdatePosition();
-		}
-	}
-	// ½Ã³×¸¶Æ½¿¡¼­ UI ²ô±â.
-	if (bCachedHUDHidingCinematicMode != CachedPlayerController->IsHUDHidingCinematicMode())
-	{
-		bCachedHUDHidingCinematicMode = CachedPlayerController->IsHUDHidingCinematicMode();
-
-		if (bCachedHUDHidingCinematicMode)
-		{
-			HideAll();
-		}
-		else
-		{
-			RestoreVisibilityAll();
-#if !UE_BUILD_SHIPPING // InGameUI Ä¡Æ®¸¦ ½è´Ù¸é ´Ù½Ã ¼û±ä´Ù ¤»
-			extern bool gbHACKInGameUIHiddenByDevCommand;
-			if (gbHACKInGameUIHiddenByDevCommand)
-			{
-				HideAll();
-			}
-#endif
-		}
-	}
+//	// For FloatingHPBarWidget and HiddenMobPointerWidget, I would like to handle their update in their NativeTick,
+//	// but have no idea why it's not working.. possibly because their position is dynamic?
+//	if (FloatingHPBarWidget)
+//		FloatingHPBarWidget->UpdatePosition();
+//
+//	for (int32 DWI = 0; DWI < DamageNumWidgetSetArray.Num(); ++DWI)
+//	{
+//		UB2FloatingWidget* DamageNumWidget = DamageNumWidgetSetArray[DWI].FloatingWidget;
+//		if (DamageNumWidget)
+//		{
+//			DamageNumWidget->UpdatePosition();
+//		}
+//	}
+//	for (int32 AWI = 0; AWI < AbnormalEffectWidgetSetArray.Num(); ++AWI)
+//	{
+//		UB2FloatingWidget* ThisWidget = AbnormalEffectWidgetSetArray[AWI].FloatingWidget;
+//		if (ThisWidget)
+//		{
+//			ThisWidget->UpdatePosition();
+//		}
+//	}
+//	// ½Ã³×¸¶Æ½¿¡¼­ UI ²ô±â.
+//	if (bCachedHUDHidingCinematicMode != CachedPlayerController->IsHUDHidingCinematicMode())
+//	{
+//		bCachedHUDHidingCinematicMode = CachedPlayerController->IsHUDHidingCinematicMode();
+//
+//		if (bCachedHUDHidingCinematicMode)
+//		{
+//			HideAll();
+//		}
+//		else
+//		{
+//			RestoreVisibilityAll();
+//#if !UE_BUILD_SHIPPING // InGameUI Ä¡Æ®¸¦ ½è´Ù¸é ´Ù½Ã ¼û±ä´Ù ¤»
+//			extern bool gbHACKInGameUIHiddenByDevCommand;
+//			if (gbHACKInGameUIHiddenByDevCommand)
+//			{
+//				HideAll();
+//			}
+//#endif
+//		}
+//	}
 }
 
 void UB2UIManager_InGameHUDChar::NotifyCharacterDeath(class ABladeIICharacter* InNotifyOwner)

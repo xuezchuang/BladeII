@@ -2,6 +2,7 @@
 #include "B2UIWidget.h"
 #include "B2UIPackageStore.h"
 #include "B2UIBackWidget.h"
+#include "../../DataStore/B2ClientDataStore.h"
 #include "B2UIStorePackageDetailPopup.generated.h"
 
 

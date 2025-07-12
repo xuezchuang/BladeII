@@ -3,6 +3,7 @@
 #pragma once
 
 #include "UI/B2UIWidgetBase.h"
+#include "../B2RichTextBlock.h"
 #include "B2UIEtherScrollSlot.generated.h"
 
 DECLARE_DELEGATE_OneParam(FOnEtherSlotTouchDelegate, const int64);	

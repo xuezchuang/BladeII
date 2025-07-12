@@ -7,6 +7,7 @@
 #include "Blueprint/UserWidget.h"
 #include "UMG/Public/Components/Button.h"
 #include "UMG/Public/Components/CanvasPanelSlot.h"
+#include "Widget/B2ScrollBox.h"
 ////#include "B2Button.h"
 ////#include "B2ButtonGoodInfoToolTip.h"
 ////#include "B2ButtonGoodsShortcutToolTip.h"
@@ -226,18 +227,18 @@ protected:
 
 	//Settings for Receiver
 
-//	/** It will receive its input handling for its own scroll-box from other sender. */
-//	uint32 bManualScrollBoxHandling_Receiver : 1;
-//
-//	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
-//	float ManualScrollBoxSensitivity;
-//
-//	//================================================================================
-//	//[@AKI, 170330] 바로가기 툴팁 관련하여 ENum값으로 어떤 행동을 할지 결정하기 위해 만듬.
-//	//원래는 B2ButtonGoodInfoToolTip에 있었으나 그 ENum값을 가져오는데 너무 Depth가 있어 이 위치로 바꿈
-//	//추후 더 좋은 곳이 있다면 그곳으로 보낼 것 임 또는 보내주세요.
-//	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BladeII Popup Type")
-//	//EGoodsInfoPopupType GoodsPopupType;
+	/** It will receive its input handling for its own scroll-box from other sender. */
+	uint32 bManualScrollBoxHandling_Receiver : 1;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
+	float ManualScrollBoxSensitivity;
+
+	//================================================================================
+	//[@AKI, 170330] 바로가기 툴팁 관련하여 ENum값으로 어떤 행동을 할지 결정하기 위해 만듬.
+	//원래는 B2ButtonGoodInfoToolTip에 있었으나 그 ENum값을 가져오는데 너무 Depth가 있어 이 위치로 바꿈
+	//추후 더 좋은 곳이 있다면 그곳으로 보낼 것 임 또는 보내주세요.
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BladeII Popup Type")
+	//EGoodsInfoPopupType GoodsPopupType;
 
 	// Pre Load Asset
 	TMap<FName, UWidget*> CachedWidgets;
@@ -279,14 +280,14 @@ public:
 	template<typename T>
 	T* GetCachedWidget(FName WidgetName)
 	{
-		if(UWidgetAnimation::StaticClass() == T::StaticClass())
-		{
-			return Cast<T>(GetAnimation(WidgetName));
-		}
-		if (CachedWidgets.Contains(WidgetName))
-		{
-			return Cast<T>(CachedWidgets[WidgetName]);
-		}
+		//if(UWidgetAnimation::StaticClass() == T::StaticClass())
+		//{
+		//	return Cast<T>(GetAnimation(WidgetName));
+		//}
+		//if (CachedWidgets.Contains(WidgetName))
+		//{
+		//	return Cast<T>(CachedWidgets[WidgetName]);
+		//}
 		return nullptr;
 	}
 
@@ -405,11 +406,11 @@ public:
 	// Manual Scroll-Box handling. 
 public:
 	/** To be called on sender, by receiver. */
-	//void SetupManualScrollBoxSender_byReceiver(UB2UnitedWidgetBase* InReceiver, UB2ScrollBox* HandlingScrollBox);
+	void SetupManualScrollBoxSender_byReceiver(UB2UnitedWidgetBase* InReceiver, UB2ScrollBox* HandlingScrollBox);
 protected:
-	///// For Sender
+	/// For Sender
 
-	//virtual void OnSetupManualScrollBoxSender(UB2UnitedWidgetBase* InReceiver, UB2ScrollBox* HandlingScrollBox) {} // Override if post setup handling is necessary.
+	virtual void OnSetupManualScrollBoxSender(UB2UnitedWidgetBase* InReceiver, UB2ScrollBox* HandlingScrollBox) {} // Override if post setup handling is necessary.
 
 	double TimeSenderBtnAreaPressStarted;
 	uint32 bSenderBtnAreaPressed : 1;
@@ -435,16 +436,16 @@ protected:
 	void ForceSetVisibleRedDot(UWidget* ParentWidget, bool bVisible);
 	void ForceSetVisibleRedDot(const FString& ParentWidgetName, bool bVisible);
 
-	///// For Receiver. Guess they don't need to be overridden, but make them virtual if necessary.
+	/// For Receiver. Guess they don't need to be overridden, but make them virtual if necessary.
 
-	//uint32 bIsManualScrollBoxTouching : 1;
-	//FReply OnSBMouseButtonDownFromSender(UB2ScrollBox* InScrollBox, const FGeometry& InGeometry, const FPointerEvent& InMouseEvent);
-	//FReply OnSBMouseButtonUpFromSender(UB2ScrollBox* InScrollBox, const FGeometry& InGeometry, const FPointerEvent& InMouseEvent);
-	//FReply OnSBMouseMoveFromSender(UB2ScrollBox* InScrollBox, const FGeometry& InGeometry, const FPointerEvent& InMouseEvent);
-	//void OnSBMouseLeaveFromSender(UB2ScrollBox* InScrollBox, const FPointerEvent& InMouseEvent);
-	//FReply OnSBTouchStartedFromSender(UB2ScrollBox* InScrollBox, const FGeometry& InGeometry, const FPointerEvent& InGestureEvent);
-	//FReply OnSBTouchMovedFromSender(UB2ScrollBox* InScrollBox, const FGeometry& InGeometry, const FPointerEvent& InGestureEvent);
-	//FReply OnSBTouchEndedFromSender(UB2ScrollBox* InScrollBox, const FGeometry& InGeometry, const FPointerEvent& InGestureEvent);
+	uint32 bIsManualScrollBoxTouching : 1;
+	FReply OnSBMouseButtonDownFromSender(UB2ScrollBox* InScrollBox, const FGeometry& InGeometry, const FPointerEvent& InMouseEvent);
+	FReply OnSBMouseButtonUpFromSender(UB2ScrollBox* InScrollBox, const FGeometry& InGeometry, const FPointerEvent& InMouseEvent);
+	FReply OnSBMouseMoveFromSender(UB2ScrollBox* InScrollBox, const FGeometry& InGeometry, const FPointerEvent& InMouseEvent);
+	void OnSBMouseLeaveFromSender(UB2ScrollBox* InScrollBox, const FPointerEvent& InMouseEvent);
+	FReply OnSBTouchStartedFromSender(UB2ScrollBox* InScrollBox, const FGeometry& InGeometry, const FPointerEvent& InGestureEvent);
+	FReply OnSBTouchMovedFromSender(UB2ScrollBox* InScrollBox, const FGeometry& InGeometry, const FPointerEvent& InGestureEvent);
+	FReply OnSBTouchEndedFromSender(UB2ScrollBox* InScrollBox, const FGeometry& InGeometry, const FPointerEvent& InGestureEvent);
 
 	//================================================================================
 

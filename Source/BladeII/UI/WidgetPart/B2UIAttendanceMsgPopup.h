@@ -3,6 +3,8 @@
 
 #include "B2UIWidget.h"
 #include "B2UIBackWidget.h"
+#include "../Widget/B2Image.h"
+#include "Components/TextBlock.h"
 #include "B2UIAttendanceMsgPopup.generated.h"
 
 DECLARE_DELEGATE(FMsgPopupOnClick)
@@ -44,5 +46,5 @@ private:
 	TWeakObjectPtr<UTextBlock> TXT_Notice;
 	TWeakObjectPtr<UTextBlock> TXT_Ok;
 
-	FMsgPopupOnClick				 ConfirmDelegate;
+	//FMsgPopupOnClick				 ConfirmDelegate;
 };

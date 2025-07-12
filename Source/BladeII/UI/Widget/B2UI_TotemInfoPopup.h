@@ -6,6 +6,10 @@
 #include "UI/B2UIWidget.h"
 #include "B2UIBackWidget.h"
 #include "B2UIManager_Lobby.h"
+#include "../../DataStore/B2TotemData.h"
+#include "../../BladeII/BladeIIGameMode.h"
+#include "Engine/TimerHandle.h"
+#include "../B2RichTextBlock.h"
 #include "B2UI_TotemInfoPopup.generated.h"
 
 /**

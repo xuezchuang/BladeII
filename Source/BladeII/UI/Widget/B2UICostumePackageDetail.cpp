@@ -82,7 +82,7 @@ void UB2UICostumePackageDetail::OnClickClose()
 
 void UB2UICostumePackageDetail::OnClickBuyToItem()
 {
-	SelectItemToBuyClass<int32>::GetInstance().Signal(StoreProductID);
+	//SelectItemToBuyClass<int32>::GetInstance().Signal(StoreProductID);
 
 }
 

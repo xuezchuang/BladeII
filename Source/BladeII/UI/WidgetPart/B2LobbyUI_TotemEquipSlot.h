@@ -4,6 +4,9 @@
 //#include "BladeII.h"
 #include "CoreMinimal.h"
 #include "UI/B2UIWidget.h"
+#include "../../DataStore/B2TotemData.h"
+#include "../Widget/B2Image.h"
+#include "../../DataTrader/ChannelManager.h"
 #include "B2LobbyUI_TotemEquipSlot.generated.h"
 
 /**

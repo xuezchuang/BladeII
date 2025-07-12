@@ -66,22 +66,22 @@ void UB2ButtonGoodsShortcutToolTip::AddGoodsAmountMap(uint32 _type, int32 _amoun
 
 bool UB2ButtonGoodsShortcutToolTip::IsGoodsShorcutCondition(FName& InFGoodsType) const
 {	
-	for (auto& shortcutinfo : m_ShortcutInfoDocID)
-	{
-		//예외처리를 너무 많이 하는거 같지만....일단 안정성을 위해
-		FSingleItemInfoData* const singleData = StaticFindItemInfo() ? StaticFindItemInfo()->GetInfoData(shortcutinfo) : nullptr;
-		if (!singleData)
-			continue;
+	//for (auto& shortcutinfo : m_ShortcutInfoDocID)
+	//{
+	//	//예외처리를 너무 많이 하는거 같지만....일단 안정성을 위해
+	//	FSingleItemInfoData* const singleData = StaticFindItemInfo() ? StaticFindItemInfo()->GetInfoData(shortcutinfo) : nullptr;
+	//	if (!singleData)
+	//		continue;
 
-		const int32 userNeedAmount(m_GoodsAmountMap[shortcutinfo]);
-		const int32 userHaveAmount( GetHaveAmount(singleData->FGoodsType) );
-		//[@AKI, 170331] 12개의 재화(Good)가 있으니 conditiontype을 만들어서 컨디션에 따라 Doc에서 가져와서 검사 하자.
-		if (userNeedAmount > userHaveAmount)
-		{
-			InFGoodsType = singleData->FGoodsType;
-			return true;
-		}
-	}
+	//	const int32 userNeedAmount(m_GoodsAmountMap[shortcutinfo]);
+	//	const int32 userHaveAmount( GetHaveAmount(singleData->FGoodsType) );
+	//	//[@AKI, 170331] 12개의 재화(Good)가 있으니 conditiontype을 만들어서 컨디션에 따라 Doc에서 가져와서 검사 하자.
+	//	if (userNeedAmount > userHaveAmount)
+	//	{
+	//		InFGoodsType = singleData->FGoodsType;
+	//		return true;
+	//	}
+	//}
 
 	return false;
 }
@@ -243,47 +243,47 @@ void UB2ButtonGoodsShortcutToolTip::ExtraOnPress()
 
 void UB2ButtonGoodsShortcutToolTip::ExtraOnClick()
 {
-	Super::ExtraOnClick();
+	//Super::ExtraOnClick();
 
-	if (m_DelayClick)
-	{
-		RegisterDelayClickEvent();
-		return;
-	}
+	//if (m_DelayClick)
+	//{
+	//	RegisterDelayClickEvent();
+	//	return;
+	//}
 
-	FName InFGoodsType = GoodsTypeFName::None;
-	if (IsGoodsShorcutCondition(InFGoodsType))
-	{
-		uint32 isShowShorcutIteminfoIdx = 0;
-		for (auto& shortcutinfo : m_ShortcutInfoDocID)
-		{
-			//예외처리를 너무 많이 하는거 같지만....일단 안정성을 위해
-			FSingleItemInfoData* const singleData = StaticFindItemInfo() ? StaticFindItemInfo()->GetInfoData(shortcutinfo) : nullptr;
-			if (!singleData)
-				continue;
+	//FName InFGoodsType = GoodsTypeFName::None;
+	//if (IsGoodsShorcutCondition(InFGoodsType))
+	//{
+	//	uint32 isShowShorcutIteminfoIdx = 0;
+	//	for (auto& shortcutinfo : m_ShortcutInfoDocID)
+	//	{
+	//		//예외처리를 너무 많이 하는거 같지만....일단 안정성을 위해
+	//		FSingleItemInfoData* const singleData = StaticFindItemInfo() ? StaticFindItemInfo()->GetInfoData(shortcutinfo) : nullptr;
+	//		if (!singleData)
+	//			continue;
 
-			if (InFGoodsType.Compare(singleData->FGoodsType) == 0)
-			{
-				isShowShorcutIteminfoIdx = shortcutinfo;
-				break;
-			}
-		}
-		//*
-		UB2UIManager* const UIMgrInst = UB2UIManager::GetInstance();
-		if (UIMgrInst)
-		{
-			auto* pUI = UIMgrInst->OpenUI<UB2UIGoodsShortcutTooltipPopup>(UIFName::GoodsShortcutTooltipPopup);
-			pUI->SetItemInfo(isShowShorcutIteminfoIdx, EGoodsButtonType::EGoodsButtonType_ShortageShortcut);
-			m_isEnough = false;
-		}
-		StopButtonPressed();
-		StopButtonClicked();
+	//		if (InFGoodsType.Compare(singleData->FGoodsType) == 0)
+	//		{
+	//			isShowShorcutIteminfoIdx = shortcutinfo;
+	//			break;
+	//		}
+	//	}
+	//	//*
+	//	UB2UIManager* const UIMgrInst = UB2UIManager::GetInstance();
+	//	if (UIMgrInst)
+	//	{
+	//		auto* pUI = UIMgrInst->OpenUI<UB2UIGoodsShortcutTooltipPopup>(UIFName::GoodsShortcutTooltipPopup);
+	//		pUI->SetItemInfo(isShowShorcutIteminfoIdx, EGoodsButtonType::EGoodsButtonType_ShortageShortcut);
+	//		m_isEnough = false;
+	//	}
+	//	StopButtonPressed();
+	//	StopButtonClicked();
 
-		UnregisterExtraStuff(m_InOwnerUnitedWidget);
-		RegisterExtraStuff(m_InOwnerUnitedWidget);
-	}
+	//	UnregisterExtraStuff(m_InOwnerUnitedWidget);
+	//	RegisterExtraStuff(m_InOwnerUnitedWidget);
+	//}
 
-	//그냥 놔두면 원래 하려는거 함
+	////그냥 놔두면 원래 하려는거 함
 }
 
 void UB2ButtonGoodsShortcutToolTip::ExtraOnHovered()

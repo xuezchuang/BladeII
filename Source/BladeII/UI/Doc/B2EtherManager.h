@@ -3,6 +3,7 @@
 #pragma once
 //#include "BladeII.h"
 #include "EventSubsystem.h"
+#include "../../DataStore/B2EtherData.h"
 
 const int32 MAX_ETHER_GRADE = 6;
 

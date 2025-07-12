@@ -65,14 +65,14 @@ void UB2SomeInfo::UnloadStageClearBGFxTemplate()
 	UnloadSomeLazyLoadedAssetCommon<UParticleSystem>(InfoLoadManager, StageClearBGFxTemplate, &LoadedStageClearBGFxTemplate);
 }
 
-//TSubclassOf<ABladeIIPlayer> UB2SomeInfo::GetDefaultPCClassInfoBaseBPClass()
-//{
-//	return GetSomeLazyLoadedClassAssetCommon<ABladeIIPlayer>(InfoLoadManager, DefaultPCClassInfoBaseBPClass, &LoadedDefaultPCClassInfoBaseBPClass, TEXT("SomeInfo"));
-//}
-//void UB2SomeInfo::UnloadDefaultPCClassInfoBaseBPClass()
-//{
-//	UnloadSomeLazyLoadedClassAssetCommon<ABladeIIPlayer>(InfoLoadManager, DefaultPCClassInfoBaseBPClass, &LoadedDefaultPCClassInfoBaseBPClass);
-//}
+TSubclassOf<ABladeIIPlayer> UB2SomeInfo::GetDefaultPCClassInfoBaseBPClass()
+{
+	return GetSomeLazyLoadedClassAssetCommon<ABladeIIPlayer>(InfoLoadManager, DefaultPCClassInfoBaseBPClass, &LoadedDefaultPCClassInfoBaseBPClass, TEXT("SomeInfo"));
+}
+void UB2SomeInfo::UnloadDefaultPCClassInfoBaseBPClass()
+{
+	UnloadSomeLazyLoadedClassAssetCommon<ABladeIIPlayer>(InfoLoadManager, DefaultPCClassInfoBaseBPClass, &LoadedDefaultPCClassInfoBaseBPClass);
+}
 
 TSubclassOf<AB2DropItem> UB2SomeInfo::GetDefaultDropItemBaseBPClass()
 {

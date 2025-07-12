@@ -140,19 +140,19 @@ void UB2UIEventNewUser::SetEventNewParts()
 
 void UB2UIEventNewUser::SubscribeEvents()
 {
-	UnsubscribeEvents();
+	//UnsubscribeEvents();
 
-	CAPTURE_UOBJECT(UB2UIEventNewUser);
+	//CAPTURE_UOBJECT(UB2UIEventNewUser);
 
-	Issues.Add(DeliveryBeginnerAttendanceClass<FB2ResponseBeginnerAttendancePtr>::GetInstance().Subscribe2(
-		[Capture](FB2ResponseBeginnerAttendancePtr InNewUserPtr)
-	{
-		if (Capture.IsValid())
-		{
-			Capture->ReceiveEventNewUserAttendance(InNewUserPtr);
-		}
-	}
-	));
+	//Issues.Add(DeliveryBeginnerAttendanceClass<FB2ResponseBeginnerAttendancePtr>::GetInstance().Subscribe2(
+	//	[Capture](FB2ResponseBeginnerAttendancePtr InNewUserPtr)
+	//{
+	//	if (Capture.IsValid())
+	//	{
+	//		Capture->ReceiveEventNewUserAttendance(InNewUserPtr);
+	//	}
+	//}
+	//));
 }
 
 void UB2UIEventNewUser::UnsubscribeEvents()

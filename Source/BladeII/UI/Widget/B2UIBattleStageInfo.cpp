@@ -299,107 +299,107 @@ void UB2UIBattleStageInfo::OnSceneOpen(EUIScene InOpenedScene)
 
 void UB2UIBattleStageInfo::AddBossPieceRewardItem(const FStageFixedDropsInfo* _BossPieceData)
 {
-	//보스 조각이 나오지 않는 Stage에서는 nullptr로 해주고 있어서 return함
-	if (!_BossPieceData) return;
+	////보스 조각이 나오지 않는 Stage에서는 nullptr로 해주고 있어서 return함
+	//if (!_BossPieceData) return;
 
-	UB2UISlotItem* NewRewardItem = CreateRewardItem();
-	if (NewRewardItem)
-	{
-		BattleRewardItems.Add(NewRewardItem);
-		NewRewardItem->Init();
-		FB2Item b2item;
-		b2item.ItemRefID = _BossPieceData->Iteminfo_idx;
-		b2item.ItemClass = EItemClass::EIC_BossPiece;
-		NewRewardItem->BindDoc(b2item);
-		NewRewardItem->SetVisibleStar(ESlateVisibility::Collapsed);
-		NewRewardItem->SetVisibleStageInfoItemIcon(ESlateVisibility::HitTestInvisible, true);
-		NewRewardItem->SetStageInfoStarGrade(_BossPieceData->Min_Gain, _BossPieceData->Max_Gain);
+	//UB2UISlotItem* NewRewardItem = CreateRewardItem();
+	//if (NewRewardItem)
+	//{
+	//	BattleRewardItems.Add(NewRewardItem);
+	//	NewRewardItem->Init();
+	//	FB2Item b2item;
+	//	b2item.ItemRefID = _BossPieceData->Iteminfo_idx;
+	//	b2item.ItemClass = EItemClass::EIC_BossPiece;
+	//	NewRewardItem->BindDoc(b2item);
+	//	NewRewardItem->SetVisibleStar(ESlateVisibility::Collapsed);
+	//	NewRewardItem->SetVisibleStageInfoItemIcon(ESlateVisibility::HitTestInvisible, true);
+	//	NewRewardItem->SetStageInfoStarGrade(_BossPieceData->Min_Gain, _BossPieceData->Max_Gain);
 
-		// 스테이지 보상 아이템 추가 정보를 넣어줌
-		FB2UISlotItemStageRewardInfo ExtraStageRewardInfo;
-		ExtraStageRewardInfo.PrimPointMaxValue = _BossPieceData->Max_Gain;
-		ExtraStageRewardInfo.PrimPointMinValue = _BossPieceData->Min_Gain;
-		int convert_itemidx = FItemRefIDHelper::GetRelicIDFromBossPieceRefID(_BossPieceData->Iteminfo_idx);
-		ExtraStageRewardInfo.RandomOptionCount = convert_itemidx;//여기는 스트링 들어갈 자리. 자리를 억지로 만든 느낌이 있긴 하다...
-		NewRewardItem->SetExtraStageRewardInfo(ExtraStageRewardInfo);
+	//	// 스테이지 보상 아이템 추가 정보를 넣어줌
+	//	FB2UISlotItemStageRewardInfo ExtraStageRewardInfo;
+	//	ExtraStageRewardInfo.PrimPointMaxValue = _BossPieceData->Max_Gain;
+	//	ExtraStageRewardInfo.PrimPointMinValue = _BossPieceData->Min_Gain;
+	//	int convert_itemidx = FItemRefIDHelper::GetRelicIDFromBossPieceRefID(_BossPieceData->Iteminfo_idx);
+	//	ExtraStageRewardInfo.RandomOptionCount = convert_itemidx;//여기는 스트링 들어갈 자리. 자리를 억지로 만든 느낌이 있긴 하다...
+	//	NewRewardItem->SetExtraStageRewardInfo(ExtraStageRewardInfo);
 
-		NewRewardItem->ShowCount(false);
-		NewRewardItem->OnSlotItemClickDelgate.BindDynamic(this, &UB2UIBattleStageInfo::OnClickBtnBossPieceItem);
+	//	NewRewardItem->ShowCount(false);
+	//	NewRewardItem->OnSlotItemClickDelgate.BindDynamic(this, &UB2UIBattleStageInfo::OnClickBtnBossPieceItem);
 
-		// 이 SlotItem 들을 들고 있는 ScrollBox 에 입력을 보내기 위한 셋업
-		NewRewardItem->SetupManualScrollBoxSender_byReceiver(this, SB_RewardItems.Get());
-	}
+	//	// 이 SlotItem 들을 들고 있는 ScrollBox 에 입력을 보내기 위한 셋업
+	//	NewRewardItem->SetupManualScrollBoxSender_byReceiver(this, SB_RewardItems.Get());
+	//}
 }
 
 void UB2UIBattleStageInfo::AddRewardItem(const FB2RewardItemPreviewInfo& InItemData)
 {
-	UB2UISlotItem* NewRewardItem = CreateRewardItem();
-	if (NewRewardItem)
-	{
-		BattleRewardItems.Add(NewRewardItem);
-		NewRewardItem->Init();
-		NewRewardItem->BindDoc(InItemData);
-		NewRewardItem->SetVisibleStar(ESlateVisibility::Collapsed);
-		NewRewardItem->SetVisibleStageInfoItemIcon(ESlateVisibility::HitTestInvisible, false);
+	//UB2UISlotItem* NewRewardItem = CreateRewardItem();
+	//if (NewRewardItem)
+	//{
+	//	BattleRewardItems.Add(NewRewardItem);
+	//	NewRewardItem->Init();
+	//	NewRewardItem->BindDoc(InItemData);
+	//	NewRewardItem->SetVisibleStar(ESlateVisibility::Collapsed);
+	//	NewRewardItem->SetVisibleStageInfoItemIcon(ESlateVisibility::HitTestInvisible, false);
 
-		// 스테이지 보상 아이템 추가 정보를 넣어줌
-		FB2UISlotItemStageRewardInfo ExtraStageRewardInfo;
-		ExtraStageRewardInfo.PrimPointMaxValue = InItemData.PrimPointMaxValue;
-		ExtraStageRewardInfo.PrimPointMinValue = InItemData.PrimPointMinValue;
-		ExtraStageRewardInfo.RandomOptionCount = InItemData.RandomOptionCount;
-		NewRewardItem->SetExtraStageRewardInfo(ExtraStageRewardInfo);
+	//	// 스테이지 보상 아이템 추가 정보를 넣어줌
+	//	FB2UISlotItemStageRewardInfo ExtraStageRewardInfo;
+	//	ExtraStageRewardInfo.PrimPointMaxValue = InItemData.PrimPointMaxValue;
+	//	ExtraStageRewardInfo.PrimPointMinValue = InItemData.PrimPointMinValue;
+	//	ExtraStageRewardInfo.RandomOptionCount = InItemData.RandomOptionCount;
+	//	NewRewardItem->SetExtraStageRewardInfo(ExtraStageRewardInfo);
 
-		NewRewardItem->ShowCount(false);
-		NewRewardItem->OnSlotItemClickDelgate.BindDynamic(this, &UB2UIBattleStageInfo::OnClickBtnRewardItem);
+	//	NewRewardItem->ShowCount(false);
+	//	NewRewardItem->OnSlotItemClickDelgate.BindDynamic(this, &UB2UIBattleStageInfo::OnClickBtnRewardItem);
 
-		// 이 SlotItem 들을 들고 있는 ScrollBox 에 입력을 보내기 위한 셋업
-		NewRewardItem->SetupManualScrollBoxSender_byReceiver(this, SB_RewardItems.Get());
-	}
+	//	// 이 SlotItem 들을 들고 있는 ScrollBox 에 입력을 보내기 위한 셋업
+	//	NewRewardItem->SetupManualScrollBoxSender_byReceiver(this, SB_RewardItems.Get());
+	//}
 }
 
 void UB2UIBattleStageInfo::AddAetherItem(const FB2AetherItemPreviewInfo& InItemData)
 {
-	UB2UISlotItem* NewRewardItem = CreateRewardItem();
-	if (NewRewardItem)
-	{
-		BattleRewardItems.Add(NewRewardItem);
-		NewRewardItem->Init();
-		NewRewardItem->BindEther(InItemData);
-		NewRewardItem->SetVisibleStar(ESlateVisibility::Collapsed);
-		NewRewardItem->SetVisibleStageInfoItemIcon(ESlateVisibility::HitTestInvisible, false);
+	//UB2UISlotItem* NewRewardItem = CreateRewardItem();
+	//if (NewRewardItem)
+	//{
+	//	BattleRewardItems.Add(NewRewardItem);
+	//	NewRewardItem->Init();
+	//	NewRewardItem->BindEther(InItemData);
+	//	NewRewardItem->SetVisibleStar(ESlateVisibility::Collapsed);
+	//	NewRewardItem->SetVisibleStageInfoItemIcon(ESlateVisibility::HitTestInvisible, false);
 
-		NewRewardItem->ShowCount(false);
-		NewRewardItem->OnSlotItemClickDelgate.BindDynamic(this, &UB2UIBattleStageInfo::OnClickBtnEtherItem);
+	//	NewRewardItem->ShowCount(false);
+	//	NewRewardItem->OnSlotItemClickDelgate.BindDynamic(this, &UB2UIBattleStageInfo::OnClickBtnEtherItem);
 
-		// 이 SlotItem 들을 들고 있는 ScrollBox 에 입력을 보내기 위한 셋업
-		NewRewardItem->SetupManualScrollBoxSender_byReceiver(this, SB_RewardItems.Get());
-	}
+	//	// 이 SlotItem 들을 들고 있는 ScrollBox 에 입력을 보내기 위한 셋업
+	//	NewRewardItem->SetupManualScrollBoxSender_byReceiver(this, SB_RewardItems.Get());
+	//}
 }
 
 void UB2UIBattleStageInfo::AddMaterialItem(const FB2MaterialItemPreviewInfo& InItemData)
 {
-	UB2UISlotItem* NewRewardItem = CreateRewardItem();
-	if (NewRewardItem)
-	{
-		BattleRewardItems.Add(NewRewardItem);
-		NewRewardItem->Init();
-		
-		FB2Item ItemData;
-		ItemData.ItemRefID = InItemData.ItemRefID;
-		ItemData.ConsumingAmount = InItemData.ItemDropCount;
-		ItemData.InventoryType = EItemInvenType::EIIVT_Consumables;
-		ItemData.ItemClass = EItemClass::EIC_End;
+	//UB2UISlotItem* NewRewardItem = CreateRewardItem();
+	//if (NewRewardItem)
+	//{
+	//	BattleRewardItems.Add(NewRewardItem);
+	//	NewRewardItem->Init();
+	//	
+	//	FB2Item ItemData;
+	//	ItemData.ItemRefID = InItemData.ItemRefID;
+	//	ItemData.ConsumingAmount = InItemData.ItemDropCount;
+	//	ItemData.InventoryType = EItemInvenType::EIIVT_Consumables;
+	//	ItemData.ItemClass = EItemClass::EIC_End;
 
-		NewRewardItem->BindDoc(ItemData);
-		NewRewardItem->SetVisibleStar(ESlateVisibility::Collapsed);
-		NewRewardItem->SetVisibleStageInfoItemIcon(ESlateVisibility::Collapsed, false);
+	//	NewRewardItem->BindDoc(ItemData);
+	//	NewRewardItem->SetVisibleStar(ESlateVisibility::Collapsed);
+	//	NewRewardItem->SetVisibleStageInfoItemIcon(ESlateVisibility::Collapsed, false);
 
-		NewRewardItem->ShowCount(false);
-		NewRewardItem->OnSlotItemClickDelgate.BindDynamic(this, &UB2UIBattleStageInfo::OnClickBtnMaterialItem);
+	//	NewRewardItem->ShowCount(false);
+	//	NewRewardItem->OnSlotItemClickDelgate.BindDynamic(this, &UB2UIBattleStageInfo::OnClickBtnMaterialItem);
 
-		// 이 SlotItem 들을 들고 있는 ScrollBox 에 입력을 보내기 위한 셋업
-		NewRewardItem->SetupManualScrollBoxSender_byReceiver(this, SB_RewardItems.Get());
-	}
+	//	// 이 SlotItem 들을 들고 있는 ScrollBox 에 입력을 보내기 위한 셋업
+	//	NewRewardItem->SetupManualScrollBoxSender_byReceiver(this, SB_RewardItems.Get());
+	//}
 }
 
 void UB2UIBattleStageInfo::ClearRewardItems()

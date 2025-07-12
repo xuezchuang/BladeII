@@ -130,17 +130,17 @@ void UB2UIAdventureModSelect::SetScenarioComplete(bool IsComplete)
 
 void UB2UIAdventureModSelect::UpdateAdventureChapterInfo()
 {
-	// 모험난이도 오픈가능한 스테이지 안내문 설정
-	UB2ChapterInfo* ChapterInfoTable = StaticFindChapterInfo();
-	UB2StageInfo* StageInfoTable = StaticFindStageInfo();
-	if (ChapterInfoTable && StageInfoTable)
-	{
-		int32 MaxChapterNum = StageInfoTable->GetStartAdventureModeChapterNum();
-		int32 MaxSubChapterNum = ChapterInfoTable->GetStagesNumInChapter(MaxChapterNum);
+	//// 모험난이도 오픈가능한 스테이지 안내문 설정
+	//UB2ChapterInfo* ChapterInfoTable = StaticFindChapterInfo();
+	//UB2StageInfo* StageInfoTable = StaticFindStageInfo();
+	//if (ChapterInfoTable && StageInfoTable)
+	//{
+	//	int32 MaxChapterNum = StageInfoTable->GetStartAdventureModeChapterNum();
+	//	int32 MaxSubChapterNum = ChapterInfoTable->GetStagesNumInChapter(MaxChapterNum);
 
-		if (CurAdventureSlotMap.Contains(EAdventureModeType::Adventure) && CurAdventureSlotMap[EAdventureModeType::Adventure].IsValid())
-			CurAdventureSlotMap[EAdventureModeType::Adventure]->SetNoticeText(EAdventureModeType::Adventure, MaxChapterNum, MaxSubChapterNum);
-	}
+	//	if (CurAdventureSlotMap.Contains(EAdventureModeType::Adventure) && CurAdventureSlotMap[EAdventureModeType::Adventure].IsValid())
+	//		CurAdventureSlotMap[EAdventureModeType::Adventure]->SetNoticeText(EAdventureModeType::Adventure, MaxChapterNum, MaxSubChapterNum);
+	//}
 
 }
 

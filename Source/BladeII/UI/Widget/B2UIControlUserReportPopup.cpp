@@ -23,15 +23,15 @@ UB2UIControlUserReportPopup::UB2UIControlUserReportPopup(const FObjectInitialize
 void UB2UIControlUserReportPopup::Init()
 {
 	Super::Init();
-	SetControlUserReportPopup();
+	//SetControlUserReportPopup();
 
-	CAPTURE_UOBJECT(UB2UIControlUserReportPopup);
+	//CAPTURE_UOBJECT(UB2UIControlUserReportPopup);
 
-	UserReportTicket = DeliveryReportUserClass<>::GetInstance().Subscribe(
-		USE_CAPTURE_OBJECT_AND_TICKET(UserReport)
-		Capture->UserReportComplete();
-	END_CAPTURE_OBJECT()
-		);
+	//UserReportTicket = DeliveryReportUserClass<>::GetInstance().Subscribe(
+	//	USE_CAPTURE_OBJECT_AND_TICKET(UserReport)
+	//	Capture->UserReportComplete();
+	//END_CAPTURE_OBJECT()
+	//	);
 
 }
 
@@ -44,7 +44,7 @@ void UB2UIControlUserReportPopup::DestroySelf(class UB2UIManager* InUIManager)
 		ControlDoc->SetUserReportUser(UseRepotUser);
 
 
-	DeliveryReportUserClass<>::GetInstance().Unsubscribe(UserReportTicket);
+	//DeliveryReportUserClass<>::GetInstance().Unsubscribe(UserReportTicket);
 }
 
 void UB2UIControlUserReportPopup::SetControlUserReportPopup()

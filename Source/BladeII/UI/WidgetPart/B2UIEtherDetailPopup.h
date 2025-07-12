@@ -4,6 +4,7 @@
 
 #include "UI/B2UIWidgetBase.h"
 #include "B2UIBackWidget.h"
+#include "../B2RichTextBlock.h"
 #include "B2UIEtherDetailPopup.generated.h"
 
 /**

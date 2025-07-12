@@ -299,46 +299,46 @@ bool UB2UISummonItemSlotItem::IsFreeSummonableSlot(int32 SlotHashKey)
 
 void UB2UISummonItemSlotItem::OnClickBTN_TenSummon()
 {
-	const ESummonButtonType SummonButtonType = ESummonButtonType::SummonButtonType_Ten;
-	int32 HashKey = SummonButtonArray[SummonButtonType].SlotHashKey;
-	bool bUseTenLotteryTicket = (BladeIIGameImpl::GetClientDataStore().GetShopTenLotteryTicket() > 0) && 
-								(SummonBuyInfo[SummonButtonType].StoreItemCost == EStoreItemCost::TenLotteryTicket);
-	
-	if (B2UIUtil::IsLimitedBuySummonSlot(HashKey))
-		return;
+	//const ESummonButtonType SummonButtonType = ESummonButtonType::SummonButtonType_Ten;
+	//int32 HashKey = SummonButtonArray[SummonButtonType].SlotHashKey;
+	//bool bUseTenLotteryTicket = (BladeIIGameImpl::GetClientDataStore().GetShopTenLotteryTicket() > 0) && 
+	//							(SummonBuyInfo[SummonButtonType].StoreItemCost == EStoreItemCost::TenLotteryTicket);
+	//
+	//if (B2UIUtil::IsLimitedBuySummonSlot(HashKey))
+	//	return;
 
-	if (SummonBuyInfo.Contains(SummonButtonType))
-	{
-		if (IsSummonItemBuy(SummonBuyInfo[SummonButtonType]))
-		{
-			SelectCharacterToSummonItemClass<int32, bool>::GetInstance().Signal(HashKey, bUseTenLotteryTicket);
-		}
-		else
-		{
-			OpenErrorPopup(SummonBuyInfo[SummonButtonType].StoreItemCost);
-		}
-	}
+	//if (SummonBuyInfo.Contains(SummonButtonType))
+	//{
+	//	if (IsSummonItemBuy(SummonBuyInfo[SummonButtonType]))
+	//	{
+	//		SelectCharacterToSummonItemClass<int32, bool>::GetInstance().Signal(HashKey, bUseTenLotteryTicket);
+	//	}
+	//	else
+	//	{
+	//		OpenErrorPopup(SummonBuyInfo[SummonButtonType].StoreItemCost);
+	//	}
+	//}
 }
 
 void UB2UISummonItemSlotItem::OnClickBTN_OneSummon()
 {
-	const ESummonButtonType SummonButtonType = ESummonButtonType::SummonButtonType_One;
-	int32 HashKey = SummonButtonArray[SummonButtonType].SlotHashKey;
+	//const ESummonButtonType SummonButtonType = ESummonButtonType::SummonButtonType_One;
+	//int32 HashKey = SummonButtonArray[SummonButtonType].SlotHashKey;
 
-	if (B2UIUtil::IsLimitedBuySummonSlot(HashKey))
-		return;
+	//if (B2UIUtil::IsLimitedBuySummonSlot(HashKey))
+	//	return;
 
-	if (SummonBuyInfo.Contains(SummonButtonType))
-	{
-		if (IsSummonItemBuy(SummonBuyInfo[SummonButtonType]))
-		{
-			SelectCharacterToSummonItemClass<int32, bool>::GetInstance().Signal(HashKey, false);
-		}
-		else
-		{
-			OpenErrorPopup(SummonBuyInfo[SummonButtonType].StoreItemCost);
-		}
-	}
+	//if (SummonBuyInfo.Contains(SummonButtonType))
+	//{
+	//	if (IsSummonItemBuy(SummonBuyInfo[SummonButtonType]))
+	//	{
+	//		SelectCharacterToSummonItemClass<int32, bool>::GetInstance().Signal(HashKey, false);
+	//	}
+	//	else
+	//	{
+	//		OpenErrorPopup(SummonBuyInfo[SummonButtonType].StoreItemCost);
+	//	}
+	//}
 }
 
 void UB2UISummonItemSlotItem::OpenErrorPopup(EStoreItemCost InCostType)

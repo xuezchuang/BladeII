@@ -6,6 +6,7 @@
 #include "B2UIWidgetBase.h"
 #include "B2UIBackWidget.h"
 #include "B2UIDocBindable.h"
+#include "../Widget/B2ButtonGoodInfoToolTip.h"
 #include "B2UIChapterStarRewardPreview.generated.h"
 
 /*

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "BladeIIPlayer.h"
+#include "../BladeII/B2SkillRTManager.h"
 #include "BladeIITMAIPlayer.generated.h"
 
 UCLASS()

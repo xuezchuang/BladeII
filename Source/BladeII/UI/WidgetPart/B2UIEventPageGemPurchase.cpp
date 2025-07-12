@@ -12,44 +12,44 @@ void UB2UIEventPageGemPurchase::CacheAssets()
 {
 	Super::CacheAssets();
 
-	GET_SLOT(UVerticalBox, VB_EventSlotList);
+	//GET_SLOT(UVerticalBox, VB_EventSlotList);
 
-	GET_SLOT(UB2RichTextBlock, RTB_AccrueGemPurchase);
-	GET_SLOT(UB2RichTextBlock, RTB_AccrueGemPoint);
+	//GET_SLOT(UB2RichTextBlock, RTB_AccrueGemPurchase);
+	//GET_SLOT(UB2RichTextBlock, RTB_AccrueGemPoint);
 }
 
 void UB2UIEventPageGemPurchase::UpdateStaticText()
 {
 	Super::UpdateStaticText();
 
-	if (RTB_AccrueGemPurchase.IsValid())
-		RTB_AccrueGemPurchase->SetText(BladeIIGetLOCText(B2LOC_CAT_EVENT, TEXT("BuyGemEvent_GemCount")));
+	//if (RTB_AccrueGemPurchase.IsValid())
+	//	RTB_AccrueGemPurchase->SetText(BladeIIGetLOCText(B2LOC_CAT_EVENT, TEXT("BuyGemEvent_GemCount")));
 
-	//초기화
-	UpdateAccrueGemPointText(0);
+	////초기화
+	//UpdateAccrueGemPointText(0);
 }
 
 void UB2UIEventPageGemPurchase::SubscribeEvents_EventPage()
 {
-	UnsubscribeEvents_EventPage();
+	//UnsubscribeEvents_EventPage();
 
-	CAPTURE_UOBJECT(UB2UIEventPageGemPurchase);
+	//CAPTURE_UOBJECT(UB2UIEventPageGemPurchase);
 
-	Issues_EventPage.Add(DeliveryRewardGemPurchaseEventClass<FB2ResponseReceiveGemPurchaseEventRewardPtr>::GetInstance().Subscribe2(
-		[Capture](FB2ResponseReceiveGemPurchaseEventRewardPtr ReciveEventReward)
-	{
-		if (Capture.IsValid())
-		{
-			Capture->ResponseGemPurchaseEventReward(ReciveEventReward);
-		}
-	}
-	));
+	//Issues_EventPage.Add(DeliveryRewardGemPurchaseEventClass<FB2ResponseReceiveGemPurchaseEventRewardPtr>::GetInstance().Subscribe2(
+	//	[Capture](FB2ResponseReceiveGemPurchaseEventRewardPtr ReciveEventReward)
+	//{
+	//	if (Capture.IsValid())
+	//	{
+	//		Capture->ResponseGemPurchaseEventReward(ReciveEventReward);
+	//	}
+	//}
+	//));
 }
 
 void UB2UIEventPageGemPurchase::UpdateAccrueGemPointText(const int32 iAccrueGemPoint)
 {
-	if (RTB_AccrueGemPoint.IsValid())
-		RTB_AccrueGemPoint->SetText(FText::FromString(FString::Printf(TEXT("%d"), iAccrueGemPoint)));
+	//if (RTB_AccrueGemPoint.IsValid())
+	//	RTB_AccrueGemPoint->SetText(FText::FromString(FString::Printf(TEXT("%d"), iAccrueGemPoint)));
 }
 
 void UB2UIEventPageGemPurchase::InitEventPageMasterData()

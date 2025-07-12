@@ -14,19 +14,19 @@
 
 void UB2UIHeroTowerResult::Init()
 {
-	Super::Init();
+	//Super::Init();
 
-	DeliveryGetHeroTowerTicket = DeliveryGetHeroTowerClass<FB2ResponseGetHeroTowerPtr>::GetInstance().Subscribe([this](const FB2ResponseGetHeroTowerPtr& msgPtr)
-	{
-		UB2UIDocHeroTower* pDoc = UB2UIDocHelper::GetDocHeroTower();
+	//DeliveryGetHeroTowerTicket = DeliveryGetHeroTowerClass<FB2ResponseGetHeroTowerPtr>::GetInstance().Subscribe([this](const FB2ResponseGetHeroTowerPtr& msgPtr)
+	//{
+	//	UB2UIDocHeroTower* pDoc = UB2UIDocHelper::GetDocHeroTower();
 
-		if (pDoc)
-			pDoc->SetGetHeroTowerPtr(msgPtr);
-		
-		ReturnToHeroTowerMainMenuClass<>::GetInstance().Signal();
-	});
+	//	if (pDoc)
+	//		pDoc->SetGetHeroTowerPtr(msgPtr);
+	//	
+	//	ReturnToHeroTowerMainMenuClass<>::GetInstance().Signal();
+	//});
 
-	m_nRemainAutoMoveStageTimeSec = 0;
+	//m_nRemainAutoMoveStageTimeSec = 0;
 }
 
 void UB2UIHeroTowerResult::OnOpenComplete()
@@ -40,7 +40,7 @@ void UB2UIHeroTowerResult::DestroySelf(class UB2UIManager* InUIManager)
 {
 	Super::DestroySelf(InUIManager);
 
-	DeliveryGetHeroTowerClass<FB2ResponseGetHeroTowerPtr>::GetInstance().Unsubscribe(DeliveryGetHeroTowerTicket);
+	//DeliveryGetHeroTowerClass<FB2ResponseGetHeroTowerPtr>::GetInstance().Unsubscribe(DeliveryGetHeroTowerTicket);
 }
 
 void UB2UIHeroTowerResult::BindDocAuto()
@@ -202,36 +202,36 @@ void UB2UIHeroTowerResult::OnClickBtnOK()
 
 void UB2UIHeroTowerResult::OnClickBtnNextFloor()
 {
-	// 타이머 제거
-	UGameplayStatics::GetGameMode(this)->GetWorldTimerManager().ClearTimer(TimeToAutoMoveStage);
+	//// 타이머 제거
+	//UGameplayStatics::GetGameMode(this)->GetWorldTimerManager().ClearTimer(TimeToAutoMoveStage);
 
-	// 점검 정산 체크
-	if (CheckContentsModeState(b2network::B2ContentsMode::HERO_TOWER))
-		return;
+	//// 점검 정산 체크
+	//if (CheckContentsModeState(b2network::B2ContentsMode::HERO_TOWER))
+	//	return;
 
-	// 다음층 가자
-	UB2UIDocHeroTower* pDoc = UB2UIDocHelper::GetDocHeroTower();
+	//// 다음층 가자
+	//UB2UIDocHeroTower* pDoc = UB2UIDocHelper::GetDocHeroTower();
 
-	if (!pDoc)
-		return;
+	//if (!pDoc)
+	//	return;
 
 
 
-	AGameMode* pGameMode = Cast<AGameMode>(UGameplayStatics::GetGameMode(this));
-	
-	FCacheStageEssentialDataToKeep& StageData = AB2StageManager::GetCacheStageKeepEssentialData();
-	FLocalCharacterData& CharDataStore = BladeIIGameImpl::GetLocalCharacterData();
+	//AGameMode* pGameMode = Cast<AGameMode>(UGameplayStatics::GetGameMode(this));
+	//
+	//FCacheStageEssentialDataToKeep& StageData = AB2StageManager::GetCacheStageKeepEssentialData();
+	//FLocalCharacterData& CharDataStore = BladeIIGameImpl::GetLocalCharacterData();
 
-	// 서버에서 받은층 이용
-	int32 nFloor = pDoc->GetNextFloorFromFinishInfo();
+	//// 서버에서 받은층 이용
+	//int32 nFloor = pDoc->GetNextFloorFromFinishInfo();
 
-	StageData.SetHeroTowerFloor(nFloor);
+	//StageData.SetHeroTowerFloor(nFloor);
 
-	// colosseum comment : bUseGem 제거
-	//StageData.RequestStartHeroTower(pGameMode, nFloor, CharDataStore.GetMainPlayerClass(), CharDataStore.GetSubPlayerClass(), false, pDoc->GetPlayTokenFromFinishInfo());
-	StageData.RequestStartHeroTower(pGameMode, nFloor, CharDataStore.GetMainPlayerClass(), CharDataStore.GetSubPlayerClass(), pDoc->GetPlayTokenFromFinishInfo());
+	//// colosseum comment : bUseGem 제거
+	////StageData.RequestStartHeroTower(pGameMode, nFloor, CharDataStore.GetMainPlayerClass(), CharDataStore.GetSubPlayerClass(), false, pDoc->GetPlayTokenFromFinishInfo());
+	//StageData.RequestStartHeroTower(pGameMode, nFloor, CharDataStore.GetMainPlayerClass(), CharDataStore.GetSubPlayerClass(), pDoc->GetPlayTokenFromFinishInfo());
 
-	ForcedCloseToolTipPopupClass<>::GetInstance().Signal(); // 아이템 보상 툴팁 떠있으면 지움
+	//ForcedCloseToolTipPopupClass<>::GetInstance().Signal(); // 아이템 보상 툴팁 떠있으면 지움
 }
 
 void UB2UIHeroTowerResult::UpdateAutoMoveStageTimeSec()
@@ -267,17 +267,17 @@ void UB2UIHeroTowerResult::UpdateAutoMoveStageTimeSec()
 
 void UB2UIHeroTowerResult::OnShowResult()
 {
-	m_nRemainAutoMoveStageTimeSec = AutoMoveStageTimeSec;
-	UpdateAutoMoveStageTimeSec();
-	// 타이머 등록		
-	UGameplayStatics::GetGameMode(this)->GetWorldTimerManager().SetTimer(TimeToAutoMoveStage, this, &UB2UIHeroTowerResult::UpdateAutoMoveStageTimeSec, 1.0f, true);
-	
-	auto* GameMode = Cast<AB2HeroTowerGameMode>(UGameplayStatics::GetGameMode(GetWorld()));
-	if (GameMode)
-	{
-		GameMode->PlayVictoryBGM();
-		PlayAnimationEvent_Anim_Open();
-	}
+	//m_nRemainAutoMoveStageTimeSec = AutoMoveStageTimeSec;
+	//UpdateAutoMoveStageTimeSec();
+	//// 타이머 등록		
+	//UGameplayStatics::GetGameMode(this)->GetWorldTimerManager().SetTimer(TimeToAutoMoveStage, this, &UB2UIHeroTowerResult::UpdateAutoMoveStageTimeSec, 1.0f, true);
+	//
+	//auto* GameMode = Cast<AB2HeroTowerGameMode>(UGameplayStatics::GetGameMode(GetWorld()));
+	//if (GameMode)
+	//{
+	//	GameMode->PlayVictoryBGM();
+	//	PlayAnimationEvent_Anim_Open();
+	//}
 
 }
 
@@ -319,9 +319,9 @@ void UB2UIHeroTowerResult::PlayAnimationEvent_Anim_End()
 void UB2UIHeroTowerResult::OnLevelUpFXFinish()
 {
 	//OnShowResult();
-	auto* GameMode = Cast<AB2HeroTowerGameMode>(UGameplayStatics::GetGameMode(GetWorld()));
-	if (GameMode)
-	{
-		GameMode->StartEventScene_GameClear();
-	}
+	//auto* GameMode = Cast<AB2HeroTowerGameMode>(UGameplayStatics::GetGameMode(GetWorld()));
+	//if (GameMode)
+	//{
+	//	GameMode->StartEventScene_GameClear();
+	//}
 }

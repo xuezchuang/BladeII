@@ -1348,7 +1348,7 @@ protected:
 public:
 	class UB2DamageEffectInfo* GetDamageEffectInfo();
 
-	//virtual class UB2Buff_Base* AddBuff(EBuffType BuffType, float fDuration, float Amount = 0.0f, AActor* BuffCauser = nullptr, bool bUseEffect = true, bool bUseTextEffect = true, TArray<float>* PtrAdditionalParams = nullptr);
+	virtual class UB2Buff_Base* AddBuff(EBuffType BuffType, float fDuration, float Amount = 0.0f, AActor* BuffCauser = nullptr, bool bUseEffect = true, bool bUseTextEffect = true, TArray<float>* PtrAdditionalParams = nullptr);
 	void AddBuffEnemy(EBuffType BuffType, float fDistance, float fDuration, float Amount, bool bUseEffect = true, bool bUseTextEffect = true);
 	void ClearBuff(EBuffType BuffType);
 	void ClearAllBuffs();

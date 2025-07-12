@@ -3,6 +3,7 @@
 
 
 #include "B2UIDLCFrontBase.h"
+#include "../Widget/B2Button.h"
 #include "B2UICheckPermission.generated.h"
 
 

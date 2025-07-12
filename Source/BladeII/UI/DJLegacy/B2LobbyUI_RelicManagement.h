@@ -5,6 +5,7 @@
 #include "B2LobbyUserWidget.h"
 #include "RelicManager.h"
 #include "B2UIBackWidget.h"
+#include "../Widget/B2ButtonGoodInfoToolTip.h"
 #include "B2LobbyUI_RelicManagement.generated.h"
 
 

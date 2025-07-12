@@ -143,25 +143,25 @@ void UB2LobbyUI_UnitySkillWakePopup::DestroySelf()
 
 void UB2LobbyUI_UnitySkillWakePopup::SubscribeEvents()
 {
-	if (bSubscribed == false)
-	{
-		UnsubscribeEvents();
+	//if (bSubscribed == false)
+	//{
+	//	UnsubscribeEvents();
 
-		Issues.Add(DeliveryAwakenUnitySkillMissionClass<FB2ResponseAwakenUnitySkillMissionPtr>::GetInstance().Subscribe2(
-			[this](const FB2ResponseAwakenUnitySkillMissionPtr& data)
-		{
-			OnReceiveAwakeSkillInfo(data);
-		}
-		));
-		Issues.Add(DeliveryUnityAwakeFailClass<>::GetInstance().Subscribe2(
-			[this]()
-		{
-			PageBlock(false);
-		}
-		));
+	//	Issues.Add(DeliveryAwakenUnitySkillMissionClass<FB2ResponseAwakenUnitySkillMissionPtr>::GetInstance().Subscribe2(
+	//		[this](const FB2ResponseAwakenUnitySkillMissionPtr& data)
+	//	{
+	//		OnReceiveAwakeSkillInfo(data);
+	//	}
+	//	));
+	//	Issues.Add(DeliveryUnityAwakeFailClass<>::GetInstance().Subscribe2(
+	//		[this]()
+	//	{
+	//		PageBlock(false);
+	//	}
+	//	));
 
-		bSubscribed = true;
-	}
+	//	bSubscribed = true;
+	//}
 }
 
 void UB2LobbyUI_UnitySkillWakePopup::UnsubscribeEvents()
@@ -217,18 +217,18 @@ void UB2LobbyUI_UnitySkillWakePopup::OnEndGetSoulAnimation_IMP()
 
 void UB2LobbyUI_UnitySkillWakePopup::OnEndGetSoulResultAnimation_IMP()
 {
-	FUnitySkillAwakenMissionArray* Missions = BladeIIGameImpl::GetLocalCharacterData().GetUnitySkillAwakenMission(CurrentPC);
-	bool bAllGetSoul = true;
-	for (auto MissionItem : *Missions)
-	{
-		if (!MissionItem.bCompleted)
-			bAllGetSoul = false;
-	}
+	//FUnitySkillAwakenMissionArray* Missions = BladeIIGameImpl::GetLocalCharacterData().GetUnitySkillAwakenMission(CurrentPC);
+	//bool bAllGetSoul = true;
+	//for (auto MissionItem : *Missions)
+	//{
+	//	if (!MissionItem.bCompleted)
+	//		bAllGetSoul = false;
+	//}
 
-	if(bAllGetSoul)
-		AllClearUnityAwakenMissionClass<>::GetInstance().Signal();
+	//if(bAllGetSoul)
+	//	AllClearUnityAwakenMissionClass<>::GetInstance().Signal();
 
-	PageBlock(false);
+	//PageBlock(false);
 }
 
 void UB2LobbyUI_UnitySkillWakePopup::OnEndGetSoulResultFailAnimation_IMP()
@@ -259,122 +259,122 @@ void UB2LobbyUI_UnitySkillWakePopup::SetAwakeMissionInfo(int32 Step)
 {
 	bool bAbleAwake = false;
 
-	FB2UnitySkillAwakenMissionPtr MissionItem = GLOBALUNITYSKILLMANAGER.GetUnitySkillAwakenMission(CurrentPC, Step + 1);
-	if (MissionItem)
-	{
-		if (StaticFindItemInfo())
-		{
-			if (TB_HaveCount.IsValid() && TB_NeedCount.IsValid() && IMG_NeedStuff.IsValid() && BTN_StuffTip.IsValid())
-			{
-				int32 HaveCount = 0;
-				int32 NeedCount = 0;
+	//FB2UnitySkillAwakenMissionPtr MissionItem = GLOBALUNITYSKILLMANAGER.GetUnitySkillAwakenMission(CurrentPC, Step + 1);
+	//if (MissionItem)
+	//{
+	//	if (StaticFindItemInfo())
+	//	{
+	//		if (TB_HaveCount.IsValid() && TB_NeedCount.IsValid() && IMG_NeedStuff.IsValid() && BTN_StuffTip.IsValid())
+	//		{
+	//			int32 HaveCount = 0;
+	//			int32 NeedCount = 0;
 
-				UMaterialInterface* ItemMat = nullptr;
+	//			UMaterialInterface* ItemMat = nullptr;
 
-				// 필요재화가 골드임
-				if (MissionItem->req_gold > 0)
-				{
-					HaveCount = BladeIIGameImpl::GetClientDataStore().GetGoldAmount();
-					NeedCount = MissionItem->req_gold;
+	//			// 필요재화가 골드임
+	//			if (MissionItem->req_gold > 0)
+	//			{
+	//				HaveCount = BladeIIGameImpl::GetClientDataStore().GetGoldAmount();
+	//				NeedCount = MissionItem->req_gold;
 
-					ItemMat = StaticFindItemInfo()->GetItemIcon(FItemRefIDHelper::GetGoodsID_Gold());
+	//				ItemMat = StaticFindItemInfo()->GetItemIcon(FItemRefIDHelper::GetGoodsID_Gold());
 
-					BTN_StuffTip->SetItemInfo(FItemRefIDHelper::GetGoodsID_Gold());
-				}
-				else
-				{
-					ItemMat = StaticFindItemInfo()->GetItemIcon(MissionItem->req_item_id_1);
+	//				BTN_StuffTip->SetItemInfo(FItemRefIDHelper::GetGoodsID_Gold());
+	//			}
+	//			else
+	//			{
+	//				ItemMat = StaticFindItemInfo()->GetItemIcon(MissionItem->req_item_id_1);
 
-					HaveCount = UB2LobbyInventory::GetSharedConsumableAmountOfType(MissionItem->req_item_id_1);
-					NeedCount = MissionItem->req_item_count_1;
+	//				HaveCount = UB2LobbyInventory::GetSharedConsumableAmountOfType(MissionItem->req_item_id_1);
+	//				NeedCount = MissionItem->req_item_count_1;
 
-					BTN_StuffTip->SetItemInfo(MissionItem->req_item_id_1);
-				}
+	//				BTN_StuffTip->SetItemInfo(MissionItem->req_item_id_1);
+	//			}
 
-				bAbleAwake = (HaveCount >= NeedCount);
+	//			bAbleAwake = (HaveCount >= NeedCount);
 
-				TB_HaveCount->SetText(FText::AsNumber(HaveCount));
-				TB_NeedCount->SetText(FText::AsNumber(NeedCount));
+	//			TB_HaveCount->SetText(FText::AsNumber(HaveCount));
+	//			TB_NeedCount->SetText(FText::AsNumber(NeedCount));
 
-				if (ItemMat)
-					IMG_NeedStuff->SetBrushFromMaterial(ItemMat); 
+	//			if (ItemMat)
+	//				IMG_NeedStuff->SetBrushFromMaterial(ItemMat); 
 
-				TB_HaveCount->SetColorAndOpacity(bAbleAwake ? FLinearColor::White : UB2UIManager::GetInstance()->TextColor_Decrease);
-			}
-		}
+	//			TB_HaveCount->SetColorAndOpacity(bAbleAwake ? FLinearColor::White : UB2UIManager::GetInstance()->TextColor_Decrease);
+	//		}
+	//	}
 
-		if(BTN_GetSoul.IsValid())	
-			BTN_GetSoul->SetIsEnabled(bAbleAwake);
-	}
+	//	if(BTN_GetSoul.IsValid())	
+	//		BTN_GetSoul->SetIsEnabled(bAbleAwake);
+	//}
 }
 
 void UB2LobbyUI_UnitySkillWakePopup::OnReceiveAwakeSkillInfo(const FB2ResponseAwakenUnitySkillMissionPtr& data)
 {
-	if (data == nullptr) return;
+	//if (data == nullptr) return;
 
-	data_trader::Retailer::GetInstance().RequestUnitySkillMissions(CliToSvrPCClassType(CurrentPC));
+	//data_trader::Retailer::GetInstance().RequestUnitySkillMissions(CliToSvrPCClassType(CurrentPC));
 
-	// 골드 갱신
-	if(data->current_money < BladeIIGameImpl::GetClientDataStore().GetGoldAmount())
-		BladeIIGameImpl::GetClientDataStore().ReplaceUserDataWithDoc(EDocUserDataType::Gold, data->current_money);
+	//// 골드 갱신
+	//if(data->current_money < BladeIIGameImpl::GetClientDataStore().GetGoldAmount())
+	//	BladeIIGameImpl::GetClientDataStore().ReplaceUserDataWithDoc(EDocUserDataType::Gold, data->current_money);
 
-	// 아이템 갱신
-	if (data->changed_material_items.Num() > 0)
-	{
-		BladeIIGameImpl::GetClientDataStore().OnResponseConsumableAmountDecrease(data->changed_material_items[0]->template_id, -1, data->changed_material_items, data->deleted_item_ids);
-	}
-	else if (data->deleted_item_ids.Num() > 0)
-	{
-		BladeIIGameImpl::GetClientDataStore().OnResponseConsumableAmountDecrease(data->deleted_item_ids[0], -1, data->changed_material_items, data->deleted_item_ids);
-	}
+	//// 아이템 갱신
+	//if (data->changed_material_items.Num() > 0)
+	//{
+	//	BladeIIGameImpl::GetClientDataStore().OnResponseConsumableAmountDecrease(data->changed_material_items[0]->template_id, -1, data->changed_material_items, data->deleted_item_ids);
+	//}
+	//else if (data->deleted_item_ids.Num() > 0)
+	//{
+	//	BladeIIGameImpl::GetClientDataStore().OnResponseConsumableAmountDecrease(data->deleted_item_ids[0], -1, data->changed_material_items, data->deleted_item_ids);
+	//}
 
-	// 미션갱신 
-	BladeIIGameImpl::GetLocalCharacterData().SetUnitySkillAwakenMission(CurrentPC, data->awaken_mission->mission_id, data->awaken_mission->completed, data->awaken_mission->try_count);
-	
-	// UI 갱신	
-	UpdateAwakeSkillInfo();
+	//// 미션갱신 
+	//BladeIIGameImpl::GetLocalCharacterData().SetUnitySkillAwakenMission(CurrentPC, data->awaken_mission->mission_id, data->awaken_mission->completed, data->awaken_mission->try_count);
+	//
+	//// UI 갱신	
+	//UpdateAwakeSkillInfo();
 
-	// 애니메이션 출력
-	OnStartGetSoulResultAnimation_BP(data->awaken_mission->completed);
+	//// 애니메이션 출력
+	//OnStartGetSoulResultAnimation_BP(data->awaken_mission->completed);
 
-	if (CachedLobbyGM->GetLobbyInventory())
-	{
-		UB2LobbyUI_SetupSkillMain* InventoryUI = CachedLobbyGM ? Cast<UB2LobbyUI_SetupSkillMain>(CachedLobbyGM->DJLegacy_GetCurrLobbyUIPage()) : nullptr;
-		if (InventoryUI)
-			InventoryUI->DoMarkRedDotAll_Unity();
-	}
+	//if (CachedLobbyGM->GetLobbyInventory())
+	//{
+	//	UB2LobbyUI_SetupSkillMain* InventoryUI = CachedLobbyGM ? Cast<UB2LobbyUI_SetupSkillMain>(CachedLobbyGM->DJLegacy_GetCurrLobbyUIPage()) : nullptr;
+	//	if (InventoryUI)
+	//		InventoryUI->DoMarkRedDotAll_Unity();
+	//}
 }
 
 void UB2LobbyUI_UnitySkillWakePopup::UpdateAwakeSkillInfo()
 {
-	FUnitySkillAwakenMissionArray* Missions = BladeIIGameImpl::GetLocalCharacterData().GetUnitySkillAwakenMission(CurrentPC);
-	FB2UnitySkillAwakenMissionPtr CurrentMission = GLOBALUNITYSKILLMANAGER.GetUnitySkillAwakenMission(CurrentPC, CurrentStep + 1);
+	//FUnitySkillAwakenMissionArray* Missions = BladeIIGameImpl::GetLocalCharacterData().GetUnitySkillAwakenMission(CurrentPC);
+	//FB2UnitySkillAwakenMissionPtr CurrentMission = GLOBALUNITYSKILLMANAGER.GetUnitySkillAwakenMission(CurrentPC, CurrentStep + 1);
 
-	for (auto MissionItem : *Missions)
-	{
-		int32 Index = MissionItem.nMissionID - 1;
+	//for (auto MissionItem : *Missions)
+	//{
+	//	int32 Index = MissionItem.nMissionID - 1;
 
-		if (UnityInfinityStones.IsValidIndex(Index))
-		{
-			UnityInfinityStones[Index]->SetIsGet(MissionItem.bCompleted);
-		}
+	//	if (UnityInfinityStones.IsValidIndex(Index))
+	//	{
+	//		UnityInfinityStones[Index]->SetIsGet(MissionItem.bCompleted);
+	//	}
 
-		if (Index == CurrentStep)
-		{
-			if (TB_Percent.IsValid())
-			{
-				int32 Rate = (CurrentMission->success_rate + (MissionItem.ntry_count * CurrentMission->success_rate_add)) / 100;
-				FString RateText = FString::FromInt(Rate) + TEXT("%");
-				TB_Percent->SetText(FText::FromString(RateText));
-			}
+	//	if (Index == CurrentStep)
+	//	{
+	//		if (TB_Percent.IsValid())
+	//		{
+	//			int32 Rate = (CurrentMission->success_rate + (MissionItem.ntry_count * CurrentMission->success_rate_add)) / 100;
+	//			FString RateText = FString::FromInt(Rate) + TEXT("%");
+	//			TB_Percent->SetText(FText::FromString(RateText));
+	//		}
 
-			if (SW_BottomInfo.IsValid())
-			{
-				SW_BottomInfo->SetActiveWidgetIndex(MissionItem.bCompleted);
-			}
-		}
-	}
-	SetAwakeMissionInfo(CurrentStep);
+	//		if (SW_BottomInfo.IsValid())
+	//		{
+	//			SW_BottomInfo->SetActiveWidgetIndex(MissionItem.bCompleted);
+	//		}
+	//	}
+	//}
+	//SetAwakeMissionInfo(CurrentStep);
 }
 
 void UB2LobbyUI_UnitySkillWakePopup::PageBlock(bool bIsBlock)

@@ -104,15 +104,15 @@ void UB2LobbyUI_TotemInventorySlot::SubscribeEvents()
 {
 	UnsubscribeEvents();
 
-	Issues.Add(ReturnTotemInventoryClass<int64>::GetInstance().Subscribe2(
-		[this](int64 InstanceID)
-	{
-		if (this->CachedB2TotemInfo.ID == InstanceID)
-		{
-			this->OpenTotemInfoPopup(this->CachedB2TotemInfo);
-		}
-	}
-	));
+	//Issues.Add(ReturnTotemInventoryClass<int64>::GetInstance().Subscribe2(
+	//	[this](int64 InstanceID)
+	//{
+	//	if (this->CachedB2TotemInfo.ID == InstanceID)
+	//	{
+	//		this->OpenTotemInfoPopup(this->CachedB2TotemInfo);
+	//	}
+	//}
+	//));
 }
 
 void UB2LobbyUI_TotemInventorySlot::UnsubscribeEvents()
@@ -365,57 +365,57 @@ void UB2LobbyUI_TotemInventorySlot::OnPressedBTNItemRefid()
 
 void UB2LobbyUI_TotemInventorySlot::OpenTotemInfoPopup(const FB2Totem& InTotem, const bool& IsLeftPopup /*= false*/)
 {
-	float fPoupSizeX = 0.f;
+	//float fPoupSizeX = 0.f;
 
-	const float fConvertScale = 1.f / UWidgetLayoutLibrary::GetViewportScale(this);
+	//const float fConvertScale = 1.f / UWidgetLayoutLibrary::GetViewportScale(this);
 
-	FDisplayMetrics Metrics;
-	FSlateApplication::Get().GetDisplayMetrics(Metrics);
-	FVector2D vSafePaddingSize(Metrics.TitleSafePaddingSize);
+	//FDisplayMetrics Metrics;
+	//FSlateApplication::Get().GetDisplayMetrics(Metrics);
+	//FVector2D vSafePaddingSize(Metrics.TitleSafePaddingSize);
 
-	vSafePaddingSize.X *= fConvertScale;
+	//vSafePaddingSize.X *= fConvertScale;
 
-	FVector2D vPopupPostion(vSafePaddingSize.X, 0);
+	//FVector2D vPopupPostion(vSafePaddingSize.X, 0);
 
-	if (UGameViewportClient* ViewportClient = this->GetWorld()->GetGameViewport())
-	{
-		if (FSceneViewport* SceneViewport = ViewportClient->GetGameViewport())
-		{
-			fPoupSizeX = SceneViewport->GetCachedGeometry().GetLocalSize().X * fConvertScale * 0.5;
-			fPoupSizeX -= vSafePaddingSize.X;
-		}
-	}
+	//if (UGameViewportClient* ViewportClient = this->GetWorld()->GetGameViewport())
+	//{
+	//	if (FSceneViewport* SceneViewport = ViewportClient->GetGameViewport())
+	//	{
+	//		fPoupSizeX = SceneViewport->GetCachedGeometry().GetLocalSize().X * fConvertScale * 0.5;
+	//		fPoupSizeX -= vSafePaddingSize.X;
+	//	}
+	//}
 
-	UB2UI_TotemInfoPopup* pTotemInfoPopup = nullptr;
+	//UB2UI_TotemInfoPopup* pTotemInfoPopup = nullptr;
 
-	if (IsLeftPopup)
-	{
-		pTotemInfoPopup = UB2UIManager::GetInstance()->OpenUI<UB2UI_TotemInfoPopup>(UIFName::TotemInfoPopupLeft);
-	}
-	else
-	{
-		vPopupPostion.X += fPoupSizeX;
-		pTotemInfoPopup = UB2UIManager::GetInstance()->OpenUI<UB2UI_TotemInfoPopup>(UIFName::TotemInfoPopup);
-	}
+	//if (IsLeftPopup)
+	//{
+	//	pTotemInfoPopup = UB2UIManager::GetInstance()->OpenUI<UB2UI_TotemInfoPopup>(UIFName::TotemInfoPopupLeft);
+	//}
+	//else
+	//{
+	//	vPopupPostion.X += fPoupSizeX;
+	//	pTotemInfoPopup = UB2UIManager::GetInstance()->OpenUI<UB2UI_TotemInfoPopup>(UIFName::TotemInfoPopup);
+	//}
 
-	AB2LobbyGameMode* LobbyGM = Cast<AB2LobbyGameMode>(UGameplayStatics::GetGameMode(GetOwningPlayer()));
-	// 해당 user widget 생성 신호.
-	// 생성된 Popup widget 을 UIP 처럼 배치해 넣을 패널 정보를 만들어준다.
-	UB2LobbyUI_TotemInventoryMain* InventoryUI = LobbyGM ? Cast<UB2LobbyUI_TotemInventoryMain>(LobbyGM->DJLegacy_GetCurrLobbyUIPage()) : nullptr;
-	UPanelWidget* PopupAddPanel = InventoryUI ? InventoryUI->GetItemDetailPopupParentFullPanel() : nullptr;
+	//AB2LobbyGameMode* LobbyGM = Cast<AB2LobbyGameMode>(UGameplayStatics::GetGameMode(GetOwningPlayer()));
+	//// 해당 user widget 생성 신호.
+	//// 생성된 Popup widget 을 UIP 처럼 배치해 넣을 패널 정보를 만들어준다.
+	//UB2LobbyUI_TotemInventoryMain* InventoryUI = LobbyGM ? Cast<UB2LobbyUI_TotemInventoryMain>(LobbyGM->DJLegacy_GetCurrLobbyUIPage()) : nullptr;
+	//UPanelWidget* PopupAddPanel = InventoryUI ? InventoryUI->GetItemDetailPopupParentFullPanel() : nullptr;
 
-	if (pTotemInfoPopup && PopupAddPanel)
-	{
-		PopupAddPanel->AddChild(pTotemInfoPopup);
+	//if (pTotemInfoPopup && PopupAddPanel)
+	//{
+	//	PopupAddPanel->AddChild(pTotemInfoPopup);
 
-		UOverlaySlot* CastedCPSlot = Cast<UOverlaySlot>(pTotemInfoPopup->Slot);
-		if (CastedCPSlot)
-		{
-			CastedCPSlot->SetPadding(FMargin(0.0f, 0.0f, 0.0f, 0.0f));
-			CastedCPSlot->SetVerticalAlignment(VAlign_Fill);
-			CastedCPSlot->SetHorizontalAlignment(HAlign_Fill);
-		}
-			
-		pTotemInfoPopup->InitTotemInfoPopup(vPopupPostion, fPoupSizeX, InTotem);
-	}
+	//	UOverlaySlot* CastedCPSlot = Cast<UOverlaySlot>(pTotemInfoPopup->Slot);
+	//	if (CastedCPSlot)
+	//	{
+	//		CastedCPSlot->SetPadding(FMargin(0.0f, 0.0f, 0.0f, 0.0f));
+	//		CastedCPSlot->SetVerticalAlignment(VAlign_Fill);
+	//		CastedCPSlot->SetHorizontalAlignment(HAlign_Fill);
+	//	}
+	//		
+	//	pTotemInfoPopup->InitTotemInfoPopup(vPopupPostion, fPoupSizeX, InTotem);
+	//}
 }

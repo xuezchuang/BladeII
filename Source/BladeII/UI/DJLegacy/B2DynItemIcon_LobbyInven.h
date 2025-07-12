@@ -3,6 +3,7 @@
 #pragma once
 
 #include "B2DynItemIcon.h"
+#include "../../Lobby/B2LobbyInventory.h"
 #include "B2DynItemIcon_LobbyInven.generated.h"
 
 /** Differentiate some icon usage types by enum, instead of separate classes. They are almost similar. */

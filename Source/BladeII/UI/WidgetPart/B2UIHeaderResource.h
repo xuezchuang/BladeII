@@ -3,6 +3,8 @@
 #pragma once
 
 #include "UI/B2UIWidgetBase.h"
+#include "../Widget/B2ButtonGoodInfoToolTip.h"
+#include "../B2UIEnum.h"
 #include "B2UIHeaderResource.generated.h"
 
 /**

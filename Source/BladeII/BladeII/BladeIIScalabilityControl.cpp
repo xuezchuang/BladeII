@@ -2,23 +2,22 @@
 #include "Global.h"
 
 #include "BladeIIGameMode.h"
-//#include "B2LobbyGameMode.h"
-//#include "B2StageGameModeBase.h"
-//#include "B2TutorialGameMode.h"
-//#include "B2CounterAttackGameMode.h"
-//#include "B2PVPGameMode.h"
-//#include "B2RaidGameMode.h"
-//#include "B2ControlGameMode.h"
-//#include "B2TMGameMode.h"
-//#include "B2GuildGameMode.h"
-//#include "B2PreRenderGameMode.h"
-//#include "B2DLCFrontGameMode.h"
-//#include "BladeIIPlayer.h"
-//#include "B2LobbySkeletalMeshActorBase.h"
+#include "B2LobbyGameMode.h"
+#include "B2StageGameModeBase.h"
+#include "B2TutorialGameMode.h"
+#include "B2CounterAttackGameMode.h"
+#include "B2PVPGameMode.h"
+#include "B2RaidGameMode.h"
+#include "B2ControlGameMode.h"
+#include "B2TMGameMode.h"
+#include "B2GuildGameMode.h"
+#include "B2PreRenderGameMode.h"
+#include "B2DLCFrontGameMode.h"
+#include "BladeIIPlayer.h"
+#include "B2LobbySkeletalMeshActorBase.h"
 #include "DeviceProfiles/DeviceProfileManager.h"
 #include "EngineUtils.h"
 
-//#include "B2GuildGameMode.h"
 
 /************************************************************************/
 /* 
@@ -778,51 +777,51 @@ void ApplyBladeIIBiasedScalability_GameplayOnlyLOD(EB2GraphicsLevel InBasicUserS
 //	return TEXT("");
 //}
 //
-///** ApplyGameModeSpecificScalabilitySetting 오버라이드 한 함수들은 결국 모두 이걸 콜한다.. ini 에 자신에 해당하는 항목과 함께 */
-//void ApplyGameModeSpecificScalabilitySetting_OverrideCommon(ABladeIIGameMode* InB2GM, EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
-//{
-////#if !UE_BUILD_SHIPPING
-////	if (!B2Scalability::bUseBladeIIScalabilityOverride) { // 테스트 용으로 게임모드에 따른 override 끌 수 있도록
-////		return;
-////	}
-////#endif
-////
-////	if (!InB2GM) {
-////		return;
-////	}
-////
-////	EB2GraphicsLevel UsedGraphicsLevel = InSelectedGraphicsLevel;
-////	if (UsedGraphicsLevel == EB2GraphicsLevel::GraphicsLevel_End) // 지정하지 않은 경우 UI 설정에 따라 ini 저장된 값 사용.
-////	{
-////		int32 SavedGraphicsLevel = B2GraphicsLevelToInt(EB2GraphicsLevel::GraphicsLevel_HIGH);
-////		// 이 이전에 GameSetting 값 초기화가 안 되어 있으면 여기서 override 한 scalability 가 아닌 DeviceProfile 에 의해 정해진 scalability 로 GraphicsLevel 을 세팅하게 될 것.
-////		LoadGameSetting_Graphics_OrByDefault(SavedGraphicsLevel);		
-////		UsedGraphicsLevel = IntToB2GraphicsLevel(SavedGraphicsLevel);
-////	}
-////
-////	EB2ResolutionLevel UsedResLevel = InSelectedResLevel;
-////	if (UsedResLevel == EB2ResolutionLevel::End) // 마찬가지로 지정하지 않은 경우.. ini 저장된 값으로
-////	{
-////		int32 SavedResLevel = B2ResolutionLevelToInt(EB2ResolutionLevel::Mid);
-////		LoadGameSetting_Resolution_OrByDefault(SavedResLevel);
-////		UsedResLevel = IntToB2ResolutionLevel(SavedResLevel);
-////	}
-////	
-////	//
-////	// 여기서 추가로 컨트롤하는 항목들은 당연히 런타임 적용이 가능한 것이어야 한다.
-////	//
-////		
-////	const FString& DesiredSectionName = GetScalabilitySectionNamePerGM(InB2GM);
-////	ApplyBladeIIBiasedScalability_Shadow(UsedGraphicsLevel, DesiredSectionName);
-////	ApplyBladeIIBiasedScalability_Effect(UsedGraphicsLevel, DesiredSectionName);
-////	ApplyBladeIIBiasedScalability_PostProcess(UsedGraphicsLevel, DesiredSectionName);
-////	ApplyBladeIIBiasedScalability_PostProcessExtra(UsedGraphicsLevel, DesiredSectionName);
-////	ApplyBladeIIBiasedScalability_Texture(UsedGraphicsLevel, DesiredSectionName);
-////	ApplyBladeIIBiasedScalability_Resolution(UsedGraphicsLevel, GetSafeMappedRQTypeOfResolutionLevel(UsedResLevel), DesiredSectionName);
-////	ApplyBladeIIBiasedScalability_GameplayOnlyLOD(UsedGraphicsLevel, DesiredSectionName);
-////	ApplyBladeIIBiasedScalability_ViewDist(UsedGraphicsLevel, DesiredSectionName);
+/** ApplyGameModeSpecificScalabilitySetting 오버라이드 한 함수들은 결국 모두 이걸 콜한다.. ini 에 자신에 해당하는 항목과 함께 */
+void ApplyGameModeSpecificScalabilitySetting_OverrideCommon(ABladeIIGameMode* InB2GM, EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
+{
+//#if !UE_BUILD_SHIPPING
+//	if (!B2Scalability::bUseBladeIIScalabilityOverride) { // 테스트 용으로 게임모드에 따른 override 끌 수 있도록
+//		return;
+//	}
+//#endif
 //
-//}
+//	if (!InB2GM) {
+//		return;
+//	}
+//
+//	EB2GraphicsLevel UsedGraphicsLevel = InSelectedGraphicsLevel;
+//	if (UsedGraphicsLevel == EB2GraphicsLevel::GraphicsLevel_End) // 지정하지 않은 경우 UI 설정에 따라 ini 저장된 값 사용.
+//	{
+//		int32 SavedGraphicsLevel = B2GraphicsLevelToInt(EB2GraphicsLevel::GraphicsLevel_HIGH);
+//		// 이 이전에 GameSetting 값 초기화가 안 되어 있으면 여기서 override 한 scalability 가 아닌 DeviceProfile 에 의해 정해진 scalability 로 GraphicsLevel 을 세팅하게 될 것.
+//		LoadGameSetting_Graphics_OrByDefault(SavedGraphicsLevel);		
+//		UsedGraphicsLevel = IntToB2GraphicsLevel(SavedGraphicsLevel);
+//	}
+//
+//	EB2ResolutionLevel UsedResLevel = InSelectedResLevel;
+//	if (UsedResLevel == EB2ResolutionLevel::End) // 마찬가지로 지정하지 않은 경우.. ini 저장된 값으로
+//	{
+//		int32 SavedResLevel = B2ResolutionLevelToInt(EB2ResolutionLevel::Mid);
+//		LoadGameSetting_Resolution_OrByDefault(SavedResLevel);
+//		UsedResLevel = IntToB2ResolutionLevel(SavedResLevel);
+//	}
+//	
+//	//
+//	// 여기서 추가로 컨트롤하는 항목들은 당연히 런타임 적용이 가능한 것이어야 한다.
+//	//
+//		
+//	const FString& DesiredSectionName = GetScalabilitySectionNamePerGM(InB2GM);
+//	ApplyBladeIIBiasedScalability_Shadow(UsedGraphicsLevel, DesiredSectionName);
+//	ApplyBladeIIBiasedScalability_Effect(UsedGraphicsLevel, DesiredSectionName);
+//	ApplyBladeIIBiasedScalability_PostProcess(UsedGraphicsLevel, DesiredSectionName);
+//	ApplyBladeIIBiasedScalability_PostProcessExtra(UsedGraphicsLevel, DesiredSectionName);
+//	ApplyBladeIIBiasedScalability_Texture(UsedGraphicsLevel, DesiredSectionName);
+//	ApplyBladeIIBiasedScalability_Resolution(UsedGraphicsLevel, GetSafeMappedRQTypeOfResolutionLevel(UsedResLevel), DesiredSectionName);
+//	ApplyBladeIIBiasedScalability_GameplayOnlyLOD(UsedGraphicsLevel, DesiredSectionName);
+//	ApplyBladeIIBiasedScalability_ViewDist(UsedGraphicsLevel, DesiredSectionName);
+
+}
 
 
 /************************************************************************/
@@ -1155,95 +1154,95 @@ FString ABladeIIGameMode::GetGameModeScalabilitySettingSectionPostfix() const
 	return FString(TEXT("ABladeIIGameMode")); // 게임모드 이름 그대로 리턴하는데 Class GetName 하니까 결국 Blueprint 클래스 이름이 나와서 이렇게.. ㅡㅡ
 }
 
-//void AB2LobbyGameMode::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
-//{
-//	B2Scalability::ApplyGameModeSpecificScalabilitySetting_OverrideCommon(this, InSelectedGraphicsLevel, InSelectedResLevel);
-//}
-//FString AB2LobbyGameMode::GetGameModeScalabilitySettingSectionPostfix() const
-//{
-//	return FString(TEXT("AB2LobbyGameMode"));
-//}
-//
-//void AB2StageGameModeBase::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
-//{
-//	B2Scalability::ApplyGameModeSpecificScalabilitySetting_OverrideCommon(this, InSelectedGraphicsLevel, InSelectedResLevel);
-//}
-//FString AB2StageGameModeBase::GetGameModeScalabilitySettingSectionPostfix() const
-//{
-//	return FString(TEXT("AB2StageGameModeBase"));
-//}
-//
-//void AB2TutorialGameMode::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
-//{
-//	B2Scalability::ApplyGameModeSpecificScalabilitySetting_OverrideCommon(this, InSelectedGraphicsLevel, InSelectedResLevel);
-//}
-//FString AB2TutorialGameMode::GetGameModeScalabilitySettingSectionPostfix() const
-//{
-//	return FString(TEXT("AB2TutorialGameMode"));
-//}
-//
-//void AB2CounterAttackGameMode::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
-//{
-//	B2Scalability::ApplyGameModeSpecificScalabilitySetting_OverrideCommon(this, InSelectedGraphicsLevel, InSelectedResLevel);
-//}
-//FString AB2CounterAttackGameMode::GetGameModeScalabilitySettingSectionPostfix() const
-//{
-//	return FString(TEXT("AB2CounterAttackGameMode"));
-//}
-//
-//void AB2PVPGameMode::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
-//{
-//	B2Scalability::ApplyGameModeSpecificScalabilitySetting_OverrideCommon(this, InSelectedGraphicsLevel, InSelectedResLevel);
-//}
-//FString AB2PVPGameMode::GetGameModeScalabilitySettingSectionPostfix() const
-//{
-//	return FString(TEXT("AB2PVPGameMode"));
-//}
-//
-//void AB2RaidGameMode::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
-//{
-//	B2Scalability::ApplyGameModeSpecificScalabilitySetting_OverrideCommon(this, InSelectedGraphicsLevel, InSelectedResLevel);
-//}
-//FString AB2RaidGameMode::GetGameModeScalabilitySettingSectionPostfix() const
-//{
-//	return FString(TEXT("AB2RaidGameMode"));
-//}
-//
-//void AB2ControlGameMode::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
-//{
-//	B2Scalability::ApplyGameModeSpecificScalabilitySetting_OverrideCommon(this, InSelectedGraphicsLevel, InSelectedResLevel);
-//}
-//FString AB2ControlGameMode::GetGameModeScalabilitySettingSectionPostfix() const
-//{
-//	return FString(TEXT("AB2ControlGameMode"));
-//}
-//
-//void AB2TMGameMode::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
-//{
-//	B2Scalability::ApplyGameModeSpecificScalabilitySetting_OverrideCommon(this, InSelectedGraphicsLevel, InSelectedResLevel);
-//}
-//FString AB2TMGameMode::GetGameModeScalabilitySettingSectionPostfix() const
-//{
-//	return FString(TEXT("AB2TMGameMode"));
-//}
-//
-//void AB2GuildGameMode::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
-//{
-//	B2Scalability::ApplyGameModeSpecificScalabilitySetting_OverrideCommon(this, InSelectedGraphicsLevel, InSelectedResLevel);
-//}
-//FString AB2GuildGameMode::GetGameModeScalabilitySettingSectionPostfix() const
-//{
-//	return FString(TEXT("AB2GuildGameMode"));
-//}
-//
-//void AB2PreRenderGameMode::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
-//{
-//	B2Scalability::ApplyGameModeSpecificScalabilitySetting_OverrideCommon(this, InSelectedGraphicsLevel, InSelectedResLevel);
-//}
-//FString AB2PreRenderGameMode::GetGameModeScalabilitySettingSectionPostfix() const
-//{
-//	return FString(TEXT("AB2PreRenderGameMode"));
-//}
+void AB2LobbyGameMode::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
+{
+	B2Scalability::ApplyGameModeSpecificScalabilitySetting_OverrideCommon(this, InSelectedGraphicsLevel, InSelectedResLevel);
+}
+FString AB2LobbyGameMode::GetGameModeScalabilitySettingSectionPostfix() const
+{
+	return FString(TEXT("AB2LobbyGameMode"));
+}
+
+void AB2StageGameModeBase::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
+{
+	B2Scalability::ApplyGameModeSpecificScalabilitySetting_OverrideCommon(this, InSelectedGraphicsLevel, InSelectedResLevel);
+}
+FString AB2StageGameModeBase::GetGameModeScalabilitySettingSectionPostfix() const
+{
+	return FString(TEXT("AB2StageGameModeBase"));
+}
+
+void AB2TutorialGameMode::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
+{
+	B2Scalability::ApplyGameModeSpecificScalabilitySetting_OverrideCommon(this, InSelectedGraphicsLevel, InSelectedResLevel);
+}
+FString AB2TutorialGameMode::GetGameModeScalabilitySettingSectionPostfix() const
+{
+	return FString(TEXT("AB2TutorialGameMode"));
+}
+
+void AB2CounterAttackGameMode::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
+{
+	B2Scalability::ApplyGameModeSpecificScalabilitySetting_OverrideCommon(this, InSelectedGraphicsLevel, InSelectedResLevel);
+}
+FString AB2CounterAttackGameMode::GetGameModeScalabilitySettingSectionPostfix() const
+{
+	return FString(TEXT("AB2CounterAttackGameMode"));
+}
+
+void AB2PVPGameMode::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
+{
+	B2Scalability::ApplyGameModeSpecificScalabilitySetting_OverrideCommon(this, InSelectedGraphicsLevel, InSelectedResLevel);
+}
+FString AB2PVPGameMode::GetGameModeScalabilitySettingSectionPostfix() const
+{
+	return FString(TEXT("AB2PVPGameMode"));
+}
+
+void AB2RaidGameMode::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
+{
+	//B2Scalability::ApplyGameModeSpecificScalabilitySetting_OverrideCommon(this, InSelectedGraphicsLevel, InSelectedResLevel);
+}
+FString AB2RaidGameMode::GetGameModeScalabilitySettingSectionPostfix() const
+{
+	return FString(TEXT("AB2RaidGameMode"));
+}
+
+void AB2ControlGameMode::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
+{
+	B2Scalability::ApplyGameModeSpecificScalabilitySetting_OverrideCommon(this, InSelectedGraphicsLevel, InSelectedResLevel);
+}
+FString AB2ControlGameMode::GetGameModeScalabilitySettingSectionPostfix() const
+{
+	return FString(TEXT("AB2ControlGameMode"));
+}
+
+void AB2TMGameMode::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
+{
+	B2Scalability::ApplyGameModeSpecificScalabilitySetting_OverrideCommon(this, InSelectedGraphicsLevel, InSelectedResLevel);
+}
+FString AB2TMGameMode::GetGameModeScalabilitySettingSectionPostfix() const
+{
+	return FString(TEXT("AB2TMGameMode"));
+}
+
+void AB2GuildGameMode::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
+{
+	B2Scalability::ApplyGameModeSpecificScalabilitySetting_OverrideCommon(this, InSelectedGraphicsLevel, InSelectedResLevel);
+}
+FString AB2GuildGameMode::GetGameModeScalabilitySettingSectionPostfix() const
+{
+	return FString(TEXT("AB2GuildGameMode"));
+}
+
+void AB2PreRenderGameMode::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
+{
+	B2Scalability::ApplyGameModeSpecificScalabilitySetting_OverrideCommon(this, InSelectedGraphicsLevel, InSelectedResLevel);
+}
+FString AB2PreRenderGameMode::GetGameModeScalabilitySettingSectionPostfix() const
+{
+	return FString(TEXT("AB2PreRenderGameMode"));
+}
 
 
 /************************************************************************

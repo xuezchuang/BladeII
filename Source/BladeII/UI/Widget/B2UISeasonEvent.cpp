@@ -119,52 +119,52 @@ void UB2UISeasonEvent::SubscribeEvent()
 {
 	UnSubscribeEvent();
 
-	if (bSubscribed == false)
-	{
-		bSubscribed = true;
+	//if (bSubscribed == false)
+	//{
+	//	bSubscribed = true;
 
-		CAPTURE_UOBJECT(UB2UISeasonEvent);
+	//	CAPTURE_UOBJECT(UB2UISeasonEvent);
 
-		Issues.Add(SelectSeasonEventTabClass<int32>::GetInstance().Subscribe2(
-			[Capture](int32 iSeasonEventDay)
-		{
-			if (Capture.IsValid())
-			{
-				Capture->UpdateSeasonEventState(iSeasonEventDay);
-			}
-		}
-		));
+	//	Issues.Add(SelectSeasonEventTabClass<int32>::GetInstance().Subscribe2(
+	//		[Capture](int32 iSeasonEventDay)
+	//	{
+	//		if (Capture.IsValid())
+	//		{
+	//			Capture->UpdateSeasonEventState(iSeasonEventDay);
+	//		}
+	//	}
+	//	));
 
-		Issues.Add(SeasonEventGotoLinkSceneClass<int32, int32>::GetInstance().Subscribe2(
-			[Capture](int32 iSeasonEventDay, int32 iSeasonEventSlotIndex)
-		{
-			if (Capture.IsValid())
-			{
-				Capture->GoToLinkScene(iSeasonEventDay, iSeasonEventSlotIndex);
-			}
-		}
-		));
+	//	Issues.Add(SeasonEventGotoLinkSceneClass<int32, int32>::GetInstance().Subscribe2(
+	//		[Capture](int32 iSeasonEventDay, int32 iSeasonEventSlotIndex)
+	//	{
+	//		if (Capture.IsValid())
+	//		{
+	//			Capture->GoToLinkScene(iSeasonEventDay, iSeasonEventSlotIndex);
+	//		}
+	//	}
+	//	));
 
-		Issues.Add(DeliveryGetSeasonMissionClass<FB2ResponseGetSeasonMissionPtr>::GetInstance().Subscribe2(
-			[Capture](FB2ResponseGetSeasonMissionPtr GetSeasonMission)
-		{
-			if (Capture.IsValid())
-			{
-				Capture->ResponseGetSeasonMission(GetSeasonMission);
-			}
-		}
-		));
+	//	Issues.Add(DeliveryGetSeasonMissionClass<FB2ResponseGetSeasonMissionPtr>::GetInstance().Subscribe2(
+	//		[Capture](FB2ResponseGetSeasonMissionPtr GetSeasonMission)
+	//	{
+	//		if (Capture.IsValid())
+	//		{
+	//			Capture->ResponseGetSeasonMission(GetSeasonMission);
+	//		}
+	//	}
+	//	));
 
-		Issues.Add(DeliveryRewardSeasonMissionClass<FB2ResponseRewardSeasonMissionPtr>::GetInstance().Subscribe2(
-			[Capture](FB2ResponseRewardSeasonMissionPtr RewardSeasonMission)
-		{
-			if (Capture.IsValid())
-			{
-				Capture->ResponseRewardSeasonMission(RewardSeasonMission);
-			}
-		}
-		));
-	}
+	//	Issues.Add(DeliveryRewardSeasonMissionClass<FB2ResponseRewardSeasonMissionPtr>::GetInstance().Subscribe2(
+	//		[Capture](FB2ResponseRewardSeasonMissionPtr RewardSeasonMission)
+	//	{
+	//		if (Capture.IsValid())
+	//		{
+	//			Capture->ResponseRewardSeasonMission(RewardSeasonMission);
+	//		}
+	//	}
+	//	));
+	//}
 }
 
 void UB2UISeasonEvent::UnSubscribeEvent()
@@ -181,35 +181,35 @@ void UB2UISeasonEvent::InitEventIDSeasonEvent()
 
 void UB2UISeasonEvent::InitSeasonEventMasterData()
 {
-	const TArray<b2network::B2mdSeasonMissionEvent>* pArrayEventRewardInfo = RewardEventManager::GetInstance().GetArrayEventRewardInfo_Season(SeasonEventID);
-	if (pArrayEventRewardInfo)
-	{
-		int32 iSeasonEventSlotInfoMax = pArrayEventRewardInfo->Num();
-		for (int32 i = 0; i < iSeasonEventSlotInfoMax; ++i)
-		{
-			if (pArrayEventRewardInfo->IsValidIndex(i) == false)
-			{
-				continue;
-			}
+	//const TArray<b2network::B2mdSeasonMissionEvent>* pArrayEventRewardInfo = RewardEventManager::GetInstance().GetArrayEventRewardInfo_Season(SeasonEventID);
+	//if (pArrayEventRewardInfo)
+	//{
+	//	int32 iSeasonEventSlotInfoMax = pArrayEventRewardInfo->Num();
+	//	for (int32 i = 0; i < iSeasonEventSlotInfoMax; ++i)
+	//	{
+	//		if (pArrayEventRewardInfo->IsValidIndex(i) == false)
+	//		{
+	//			continue;
+	//		}
 
-			if (i == iSEASONEVENT_MAINSLOT)
-			{
-				FinalSeasonEventSlotInfo.RewardInfo = (*pArrayEventRewardInfo)[i];
-			}
-			else
-			{
-				int32 iSeasonEventDayInfoIndex = (*pArrayEventRewardInfo)[i].day - 1;
+	//		if (i == iSEASONEVENT_MAINSLOT)
+	//		{
+	//			FinalSeasonEventSlotInfo.RewardInfo = (*pArrayEventRewardInfo)[i];
+	//		}
+	//		else
+	//		{
+	//			int32 iSeasonEventDayInfoIndex = (*pArrayEventRewardInfo)[i].day - 1;
 
-				if (!ArrSeasonEventDayInfo.IsValidIndex(iSeasonEventDayInfoIndex))
-					ArrSeasonEventDayInfo.Add(tSeasonEventDayInfo());
+	//			if (!ArrSeasonEventDayInfo.IsValidIndex(iSeasonEventDayInfoIndex))
+	//				ArrSeasonEventDayInfo.Add(tSeasonEventDayInfo());
 
-				FSeasonEventSlotInfo EventSlotInfo;
-				EventSlotInfo.RewardInfo = (*pArrayEventRewardInfo)[i];
+	//			FSeasonEventSlotInfo EventSlotInfo;
+	//			EventSlotInfo.RewardInfo = (*pArrayEventRewardInfo)[i];
 
-				ArrSeasonEventDayInfo[iSeasonEventDayInfoIndex].ArrSeasonEventSlotInfo.Add(EventSlotInfo);
-			}
-		}
-	}
+	//			ArrSeasonEventDayInfo[iSeasonEventDayInfoIndex].ArrSeasonEventSlotInfo.Add(EventSlotInfo);
+	//		}
+	//	}
+	//}
 }
 
 void UB2UISeasonEvent::InitSeasonEventTabs()
@@ -294,13 +294,13 @@ void UB2UISeasonEvent::InitSeasonEventSlots(int32 iSelectedSeasonEventDay)
 
 void UB2UISeasonEvent::OnClickBTN_GetFinalReward()
 {
-	if (FinalSeasonEventSlotInfo.state != iSEASONEVENT_POSSIBLE)
-		return;
+	//if (FinalSeasonEventSlotInfo.state != iSEASONEVENT_POSSIBLE)
+	//	return;
 
-	data_trader::Retailer::GetInstance().RequestRewardSeasonMission(
-		FinalSeasonEventSlotInfo.RewardInfo.event_id, FinalSeasonEventSlotInfo.RewardInfo.day, FinalSeasonEventSlotInfo.RewardInfo.index);
+	//data_trader::Retailer::GetInstance().RequestRewardSeasonMission(
+	//	FinalSeasonEventSlotInfo.RewardInfo.event_id, FinalSeasonEventSlotInfo.RewardInfo.day, FinalSeasonEventSlotInfo.RewardInfo.index);
 
-	FinalSeasonEventSlotInfo.state = iSEASONEVENT_COMPLETE;
+	//FinalSeasonEventSlotInfo.state = iSEASONEVENT_COMPLETE;
 }
 
 bool UB2UISeasonEvent::CheckFinalEventSlot(b2network::B2SeasonMissionInfoPtr SeasonMission)
@@ -397,74 +397,74 @@ void UB2UISeasonEvent::UpdateSeasonEventSlots(int32 iSelectedSeasonEventDay)
 
 void UB2UISeasonEvent::UpdateSeasonEventGetFinalReward()
 {
-	int32 iSeasonEventFinalDay = GetSeasonEventFinalDay();
+	//int32 iSeasonEventFinalDay = GetSeasonEventFinalDay();
 
-	if (TB_ProgressCount.IsValid())
-	{
-		int32 DispalyCurrCount = FMath::Clamp<int32>(FinalSeasonEventSlotInfo.progress_count, 0, iSeasonEventFinalDay);
-		FString ProgressString = FString::Printf(TEXT("(%d / %d)"), DispalyCurrCount, iSeasonEventFinalDay);
-		TB_ProgressCount->SetText(FText::FromString(ProgressString));
-		TB_ProgressCount->SetVisibility(ESlateVisibility::Collapsed);
-	}
+	//if (TB_ProgressCount.IsValid())
+	//{
+	//	int32 DispalyCurrCount = FMath::Clamp<int32>(FinalSeasonEventSlotInfo.progress_count, 0, iSeasonEventFinalDay);
+	//	FString ProgressString = FString::Printf(TEXT("(%d / %d)"), DispalyCurrCount, iSeasonEventFinalDay);
+	//	TB_ProgressCount->SetText(FText::FromString(ProgressString));
+	//	TB_ProgressCount->SetVisibility(ESlateVisibility::Collapsed);
+	//}
 
-	if (PB_Progress.IsValid())
-	{
-		float ProgressRate = static_cast<float>(FinalSeasonEventSlotInfo.progress_count) / static_cast<float>(iSeasonEventFinalDay);
-		PB_Progress->SetPercent(ProgressRate);
-		PB_Progress->SetVisibility(ESlateVisibility::Collapsed);
-	}
+	//if (PB_Progress.IsValid())
+	//{
+	//	float ProgressRate = static_cast<float>(FinalSeasonEventSlotInfo.progress_count) / static_cast<float>(iSeasonEventFinalDay);
+	//	PB_Progress->SetPercent(ProgressRate);
+	//	PB_Progress->SetVisibility(ESlateVisibility::Collapsed);
+	//}
 
-	if (BTN_GetFinalReward.IsValid())
-		BTN_GetFinalReward->SetVisibility(ESlateVisibility::Collapsed);
+	//if (BTN_GetFinalReward.IsValid())
+	//	BTN_GetFinalReward->SetVisibility(ESlateVisibility::Collapsed);
 
-	if (TB_CompleteReward.IsValid())
-		TB_CompleteReward->SetVisibility(ESlateVisibility::Collapsed);
+	//if (TB_CompleteReward.IsValid())
+	//	TB_CompleteReward->SetVisibility(ESlateVisibility::Collapsed);
 
-	switch (FinalSeasonEventSlotInfo.state)
-	{
-		case iSEASONEVENT_POSSIBLE:
-		{
-			if (BTN_GetFinalReward.IsValid())
-				BTN_GetFinalReward->SetVisibility(ESlateVisibility::Visible);
-		}break;
-		case iSEASONEVENT_COMPLETE:
-		{
-			if (TB_CompleteReward.IsValid())
-				TB_CompleteReward->SetVisibility(ESlateVisibility::Visible);
-		}break;
-		default: //progress
-		{
-			TB_ProgressCount->SetVisibility(ESlateVisibility::Visible);
-			PB_Progress->SetVisibility(ESlateVisibility::Visible);
-		}break;
-	}
+	//switch (FinalSeasonEventSlotInfo.state)
+	//{
+	//	case iSEASONEVENT_POSSIBLE:
+	//	{
+	//		if (BTN_GetFinalReward.IsValid())
+	//			BTN_GetFinalReward->SetVisibility(ESlateVisibility::Visible);
+	//	}break;
+	//	case iSEASONEVENT_COMPLETE:
+	//	{
+	//		if (TB_CompleteReward.IsValid())
+	//			TB_CompleteReward->SetVisibility(ESlateVisibility::Visible);
+	//	}break;
+	//	default: //progress
+	//	{
+	//		TB_ProgressCount->SetVisibility(ESlateVisibility::Visible);
+	//		PB_Progress->SetVisibility(ESlateVisibility::Visible);
+	//	}break;
+	//}
 }
 
 void UB2UISeasonEvent::UpdateSeasonEventSlotState(b2network::B2SeasonMissionInfoPtr SeasonMission)
 {
-	if (SeasonMission == nullptr)
-		return;
+	//if (SeasonMission == nullptr)
+	//	return;
 
-	int32 iSeasonEventDayInfoIndex = SeasonMission->day - 1;
-	int32 iSeasonEventSlotInfoIndex = SeasonMission->index - 1;
+	//int32 iSeasonEventDayInfoIndex = SeasonMission->day - 1;
+	//int32 iSeasonEventSlotInfoIndex = SeasonMission->index - 1;
 
-	if (ArrSeasonEventDayInfo.IsValidIndex(iSeasonEventDayInfoIndex) &&
-		ArrSeasonEventDayInfo[iSeasonEventDayInfoIndex].ArrSeasonEventSlotInfo.IsValidIndex(iSeasonEventSlotInfoIndex))
-	{
-		ArrSeasonEventDayInfo[iSeasonEventDayInfoIndex].ArrSeasonEventSlotInfo[iSeasonEventSlotInfoIndex].progress_count = SeasonMission->progress_count;
-		ArrSeasonEventDayInfo[iSeasonEventDayInfoIndex].ArrSeasonEventSlotInfo[iSeasonEventSlotInfoIndex].state = SeasonMission->state;
-	}
+	//if (ArrSeasonEventDayInfo.IsValidIndex(iSeasonEventDayInfoIndex) &&
+	//	ArrSeasonEventDayInfo[iSeasonEventDayInfoIndex].ArrSeasonEventSlotInfo.IsValidIndex(iSeasonEventSlotInfoIndex))
+	//{
+	//	ArrSeasonEventDayInfo[iSeasonEventDayInfoIndex].ArrSeasonEventSlotInfo[iSeasonEventSlotInfoIndex].progress_count = SeasonMission->progress_count;
+	//	ArrSeasonEventDayInfo[iSeasonEventDayInfoIndex].ArrSeasonEventSlotInfo[iSeasonEventSlotInfoIndex].state = SeasonMission->state;
+	//}
 
-	if (CheckFinalEventSlot(SeasonMission))
-	{
-		FinalSeasonEventSlotInfo.state = SeasonMission->state;
-		FinalSeasonEventSlotInfo.progress_count = SeasonMission->progress_count;
-	}
+	//if (CheckFinalEventSlot(SeasonMission))
+	//{
+	//	FinalSeasonEventSlotInfo.state = SeasonMission->state;
+	//	FinalSeasonEventSlotInfo.progress_count = SeasonMission->progress_count;
+	//}
 }
 
 void UB2UISeasonEvent::UpdateTitleAndPeriodText()
 {
-	if (const b2network::B2mdEventInfo* pEventInfo = RewardEventManager::GetInstance().GetEnableEventInfoFromCategory(b2network::B2EventCategory::SEASON_MISSION))
+	/*if (const b2network::B2mdEventInfo* pEventInfo = RewardEventManager::GetInstance().GetEnableEventInfoFromCategory(b2network::B2EventCategory::SEASON_MISSION))
 	{
 		if (TB_EventTitle.IsValid())
 		{
@@ -484,63 +484,63 @@ void UB2UISeasonEvent::UpdateTitleAndPeriodText()
 
 			TB_EventPeriod->SetText(PeriodText);
 		}
-	}
+	}*/
 }
 
 void UB2UISeasonEvent::GoToLinkScene(int32 iSeasonEventDay, int32 iSeasonEventSlotIndex)
 {
-	if (UB2SeasonEventInfo* SeasonEventInfoTable = StaticFindSeasonEventInfo())
-		SeasonEventInfoTable->GotoLinkUIScene(iSeasonEventDay, iSeasonEventSlotIndex);
+	//if (UB2SeasonEventInfo* SeasonEventInfoTable = StaticFindSeasonEventInfo())
+	//	SeasonEventInfoTable->GotoLinkUIScene(iSeasonEventDay, iSeasonEventSlotIndex);
 }
 
 void UB2UISeasonEvent::ResponseGetSeasonMission(FB2ResponseGetSeasonMissionPtr GetSeasonMission)
 {
-	ArrSeasonEventStatus.Empty();
+	//ArrSeasonEventStatus.Empty();
 
-	for (auto EventStatus : GetSeasonMission->event_statuses)
-	{
-		ArrSeasonEventStatus.Add(*EventStatus);
-	}
+	//for (auto EventStatus : GetSeasonMission->event_statuses)
+	//{
+	//	ArrSeasonEventStatus.Add(*EventStatus);
+	//}
 
-	for (auto Mission : GetSeasonMission->missions)
-	{
-		UpdateSeasonEventSlotState(Mission);
-	}
+	//for (auto Mission : GetSeasonMission->missions)
+	//{
+	//	UpdateSeasonEventSlotState(Mission);
+	//}
 
-	int32 iSelectedSeasonEventDay = GetSeasonEventProgressDay();
-	UpdateSeasonEventState(iSelectedSeasonEventDay);
+	//int32 iSelectedSeasonEventDay = GetSeasonEventProgressDay();
+	//UpdateSeasonEventState(iSelectedSeasonEventDay);
 
-	FB2RedDotManager::RequestCheckRedDot({ RedDotHint::RED_DOT_EVENT });
+	//FB2RedDotManager::RequestCheckRedDot({ RedDotHint::RED_DOT_EVENT });
 }
 
 void UB2UISeasonEvent::ResponseRewardSeasonMission(FB2ResponseRewardSeasonMissionPtr RewardSeasonMission)
 {
-	int32 iSelectedSeasonEventDay = 1;
+	//int32 iSelectedSeasonEventDay = 1;
 
-	if (auto& Mission = RewardSeasonMission->reward_mission)
-	{
-		UpdateSeasonEventSlotState(Mission);
-	}
+	//if (auto& Mission = RewardSeasonMission->reward_mission)
+	//{
+	//	UpdateSeasonEventSlotState(Mission);
+	//}
 
-	UpdateSeasonEventState(iChacedLastSelectedSeasonEventDay);
+	//UpdateSeasonEventState(iChacedLastSelectedSeasonEventDay);
 
-	FB2RedDotManager::RequestCheckRedDot({ RedDotHint::RED_DOT_EVENT });
+	//FB2RedDotManager::RequestCheckRedDot({ RedDotHint::RED_DOT_EVENT });
 
-	UB2UIManager::GetInstance()->OpenUI<UB2UIMailRewardPopUp>(UIFName::RewardMailPopup);
+	//UB2UIManager::GetInstance()->OpenUI<UB2UIMailRewardPopUp>(UIFName::RewardMailPopup);
 }
 
 int32 UB2UISeasonEvent::GetSeasonEventFinalDay()
 {
 	int32 iSeasonEventFinalDay = 0;
 
-	const TArray<b2network::B2mdSeasonMissionEvent>* pArrayEventRewardInfo = RewardEventManager::GetInstance().GetArrayEventRewardInfo_Season(SeasonEventID);
-	if (pArrayEventRewardInfo)
-	{
-		int32 iLastSeasonEventSlotInfoIndex = pArrayEventRewardInfo->Num() - 1;
+	//const TArray<b2network::B2mdSeasonMissionEvent>* pArrayEventRewardInfo = RewardEventManager::GetInstance().GetArrayEventRewardInfo_Season(SeasonEventID);
+	//if (pArrayEventRewardInfo)
+	//{
+	//	int32 iLastSeasonEventSlotInfoIndex = pArrayEventRewardInfo->Num() - 1;
 
-		if (pArrayEventRewardInfo->IsValidIndex(iLastSeasonEventSlotInfoIndex))
-			iSeasonEventFinalDay = (*pArrayEventRewardInfo)[iLastSeasonEventSlotInfoIndex].day;
-	}
+	//	if (pArrayEventRewardInfo->IsValidIndex(iLastSeasonEventSlotInfoIndex))
+	//		iSeasonEventFinalDay = (*pArrayEventRewardInfo)[iLastSeasonEventSlotInfoIndex].day;
+	//}
 
 	return iSeasonEventFinalDay;
 }
@@ -549,14 +549,14 @@ int32 UB2UISeasonEvent::GetSeasonEventSlotMaxIndex()
 {
 	int32 iSeasonEventSlotMaxIndex = 0;
 
-	const TArray<b2network::B2mdSeasonMissionEvent>* pArrayEventRewardInfo = RewardEventManager::GetInstance().GetArrayEventRewardInfo_Season(SeasonEventID);
-	if (pArrayEventRewardInfo)
-	{
-		int32 iLastSeasonEventSlotInfoIndex = pArrayEventRewardInfo->Num() - 1;
+	//const TArray<b2network::B2mdSeasonMissionEvent>* pArrayEventRewardInfo = RewardEventManager::GetInstance().GetArrayEventRewardInfo_Season(SeasonEventID);
+	//if (pArrayEventRewardInfo)
+	//{
+	//	int32 iLastSeasonEventSlotInfoIndex = pArrayEventRewardInfo->Num() - 1;
 
-		if (pArrayEventRewardInfo->IsValidIndex(iLastSeasonEventSlotInfoIndex))
-			iSeasonEventSlotMaxIndex = (*pArrayEventRewardInfo)[iLastSeasonEventSlotInfoIndex].index;
-	}
+	//	if (pArrayEventRewardInfo->IsValidIndex(iLastSeasonEventSlotInfoIndex))
+	//		iSeasonEventSlotMaxIndex = (*pArrayEventRewardInfo)[iLastSeasonEventSlotInfoIndex].index;
+	//}
 
 	return iSeasonEventSlotMaxIndex;
 }
@@ -566,24 +566,24 @@ int32 UB2UISeasonEvent::GetSeasonEventProgressDay()
 	int32 iSeasonEventProgressDay = 0;
 	int32 iLastProgressDay = 0;
 
-	//ResponseAttendSeasonMission
-	const TArray<b2network::B2SeasonMissionEventStatus>* pArraySeasonEventStatus = RewardEventManager::GetInstance().GetArrayEventStatusInfo_Season(SeasonEventID);
-	if (pArraySeasonEventStatus)
-	{
-		iLastProgressDay = pArraySeasonEventStatus->Num() - 1;
-		if (pArraySeasonEventStatus->IsValidIndex(iLastProgressDay))
-		{
-			iSeasonEventProgressDay = (*pArraySeasonEventStatus)[iLastProgressDay].attendance_day;
-		}
-	}
+	////ResponseAttendSeasonMission
+	//const TArray<b2network::B2SeasonMissionEventStatus>* pArraySeasonEventStatus = RewardEventManager::GetInstance().GetArrayEventStatusInfo_Season(SeasonEventID);
+	//if (pArraySeasonEventStatus)
+	//{
+	//	iLastProgressDay = pArraySeasonEventStatus->Num() - 1;
+	//	if (pArraySeasonEventStatus->IsValidIndex(iLastProgressDay))
+	//	{
+	//		iSeasonEventProgressDay = (*pArraySeasonEventStatus)[iLastProgressDay].attendance_day;
+	//	}
+	//}
 
-	//ResponseGetMission
-	iLastProgressDay = ArrSeasonEventStatus.Num() - 1;
-	if (ArrSeasonEventStatus.IsValidIndex(iLastProgressDay))
-	{
-		if (ArrSeasonEventStatus[iLastProgressDay].attendance_day > iSeasonEventProgressDay)
-			iSeasonEventProgressDay = ArrSeasonEventStatus[iLastProgressDay].attendance_day;
-	}
+	////ResponseGetMission
+	//iLastProgressDay = ArrSeasonEventStatus.Num() - 1;
+	//if (ArrSeasonEventStatus.IsValidIndex(iLastProgressDay))
+	//{
+	//	if (ArrSeasonEventStatus[iLastProgressDay].attendance_day > iSeasonEventProgressDay)
+	//		iSeasonEventProgressDay = ArrSeasonEventStatus[iLastProgressDay].attendance_day;
+	//}
 
 	int32 iSeasonFinalDay = GetSeasonEventFinalDay();
 

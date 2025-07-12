@@ -178,12 +178,12 @@ void UB2UIGuildBattle::OnClickBTN_ChangeCam()
 	if (!GuildDoc)
 		return;
 
-	GuildGameChangeCameraClass<bool, ABladeIIPlayer*>::GetInstance().Signal(!GuildDoc->GetShortCamera(), nullptr);
+	//GuildGameChangeCameraClass<bool, ABladeIIPlayer*>::GetInstance().Signal(!GuildDoc->GetShortCamera(), nullptr);
 }
 
 void UB2UIGuildBattle::OnClickPauseButton()
 {
-	StartPauseMenuClass<EB2GameMode>::GetInstance().Signal(GetB2GameModeType(this));
+	//StartPauseMenuClass<EB2GameMode>::GetInstance().Signal(GetB2GameModeType(this));
 
 	//SetPendingPause();
 }

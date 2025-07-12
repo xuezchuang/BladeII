@@ -83,9 +83,9 @@ void UB2UIEventMain::CacheAssets()
 {
 	Super::CacheAssets();
 
-	GET_SLOT(UVerticalBox, VB_TabList);
-	GET_SLOT(UCanvasPanel, P_EventPage);
-	GET_SLOT(UB2RichTextBlock, RTB_NoEnableEvent);
+	//GET_SLOT(UVerticalBox, VB_TabList);
+	//GET_SLOT(UCanvasPanel, P_EventPage);
+	//GET_SLOT(UB2RichTextBlock, RTB_NoEnableEvent);
 }
 
 void UB2UIEventMain::BindDelegates()
@@ -114,42 +114,42 @@ void UB2UIEventMain::SubscribeEvents()
 {
 	UnsubscribeEvents();
 
-	if (bSubscribed == false)
-	{
-		CAPTURE_UOBJECT(UB2UIEventMain);
+	//if (bSubscribed == false)
+	//{
+	//	CAPTURE_UOBJECT(UB2UIEventMain);
 
-		Issues.Add(SelectEventPageTabClass<int32>::GetInstance().Subscribe2(
-			[Capture](int32 iEventID)
-		{
-			if (Capture.IsValid())
-			{
-				Capture->OnSelectEventTap(iEventID);
-			}
-		}
-		));
+	//	Issues.Add(SelectEventPageTabClass<int32>::GetInstance().Subscribe2(
+	//		[Capture](int32 iEventID)
+	//	{
+	//		if (Capture.IsValid())
+	//		{
+	//			Capture->OnSelectEventTap(iEventID);
+	//		}
+	//	}
+	//	));
 
-		Issues.Add(GetEventStatusSuccessfulClass<>::GetInstance().Subscribe2(
-			[Capture]()
-		{
-			if (Capture.IsValid())
-			{
-				Capture->UpdateEventMainPage();
-			}
-		}
-		));
+	//	Issues.Add(GetEventStatusSuccessfulClass<>::GetInstance().Subscribe2(
+	//		[Capture]()
+	//	{
+	//		if (Capture.IsValid())
+	//		{
+	//			Capture->UpdateEventMainPage();
+	//		}
+	//	}
+	//	));
 
-		Issues.Add(StratAnimEventMainTransparencyBlockClass<>::GetInstance().Subscribe2(
-			[Capture]()
-		{
-			if (Capture.IsValid())
-			{
-				Capture->StartAnimTransparencyBlock_BP();
-			}
-		}
-		));
+	//	Issues.Add(StratAnimEventMainTransparencyBlockClass<>::GetInstance().Subscribe2(
+	//		[Capture]()
+	//	{
+	//		if (Capture.IsValid())
+	//		{
+	//			Capture->StartAnimTransparencyBlock_BP();
+	//		}
+	//	}
+	//	));
 
-		bSubscribed = true;
-	}
+	//	bSubscribed = true;
+	//}
 }
 
 void UB2UIEventMain::UnsubscribeEvents()
@@ -214,15 +214,15 @@ void UB2UIEventMain::SelectEventTap(int32 iEventID)
 UB2UIEventPage* UB2UIEventMain::CreateDynamicEventPage(const TSoftClassPtr<UB2UIEventPage>* pCreateWidgetClass,
 	UB2UIEventMain* InOwnerUserWidget, UCanvasPanel* CreateParentPanel, int32 iEventID)
 {
-	if (CreateParentPanel && pCreateWidgetClass)
-	{
-		UB2UIEventPage* NewCreatedEventPage = DynLoadAndCreateInCanvasPanelFull<UB2UIEventPage>(*pCreateWidgetClass, InOwnerUserWidget, CreateParentPanel);
-		if (NewCreatedEventPage)
-		{
-			NewCreatedEventPage->InitEventPage(iEventID, RewardEventManager::GetInstance().GetCahcedGetEventStatus());
-			return NewCreatedEventPage;
-		}
-	}
+	//if (CreateParentPanel && pCreateWidgetClass)
+	//{
+	//	UB2UIEventPage* NewCreatedEventPage = DynLoadAndCreateInCanvasPanelFull<UB2UIEventPage>(*pCreateWidgetClass, InOwnerUserWidget, CreateParentPanel);
+	//	if (NewCreatedEventPage)
+	//	{
+	//		NewCreatedEventPage->InitEventPage(iEventID, RewardEventManager::GetInstance().GetCahcedGetEventStatus());
+	//		return NewCreatedEventPage;
+	//	}
+	//}
 	return nullptr;
 }
 

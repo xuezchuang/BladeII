@@ -391,35 +391,35 @@ void UB2UIStageResult::SetClearTime(int32 InValue)
 
 void UB2UIStageResult::SetDropItem(const TArray<FB2Item> DropItemData, int32 MultipleValue)
 {
-	if (DropItemData.Num() < 1) return;
+	//if (DropItemData.Num() < 1) return;
 
-	RewardItemData.Empty();
+	//RewardItemData.Empty();
 
-	for (const FB2Item& Elem : DropItemData)
-	{
-		FB2Item RewardItem = Elem;
-		// 예전엔 같은 장비는 겹쳐서 보여줬지만 이제 분리해서 보여주기때문에
-		// 아이템(장비)는 Multiple Value(= 1 or 3배 모드)로 골드, 보스조각, 재료아이템은 ConsumingAmount로 보여준다
-		bool bIsConsuming = IsGoldItem(RewardItem) || IsBossPieceItem(RewardItem) || IsMaterialItem(RewardItem);
-		RewardItem.ConsumingAmount = bIsConsuming ? FMath::Max(1, RewardItem.ConsumingAmount) : FMath::Max(1, MultipleValue);
-		RewardItemData.Add(RewardItem);
-	}
+	//for (const FB2Item& Elem : DropItemData)
+	//{
+	//	FB2Item RewardItem = Elem;
+	//	// 예전엔 같은 장비는 겹쳐서 보여줬지만 이제 분리해서 보여주기때문에
+	//	// 아이템(장비)는 Multiple Value(= 1 or 3배 모드)로 골드, 보스조각, 재료아이템은 ConsumingAmount로 보여준다
+	//	bool bIsConsuming = IsGoldItem(RewardItem) || IsBossPieceItem(RewardItem) || IsMaterialItem(RewardItem);
+	//	RewardItem.ConsumingAmount = bIsConsuming ? FMath::Max(1, RewardItem.ConsumingAmount) : FMath::Max(1, MultipleValue);
+	//	RewardItemData.Add(RewardItem);
+	//}
 
-	for (int32 RI = 0; RI < RewardItemData.Num(); ++RI)
-	{
-		UB2UISlotItem* NewRewardItem = CreateRewardItem();// = CreateWidget<UB2UISlotItem>(GetOwningPlayer(), SkillOptionListClass);
-		if (NewRewardItem)
-		{
-			BattleRewardItems.Add(NewRewardItem);
-			NewRewardItem->Init();
-			IsEtherItem(RewardItemData[RI]) ? NewRewardItem->BindEther(RewardItemData[RI]) : NewRewardItem->BindDoc(RewardItemData[RI]);
-			bool bInvisibleStar = IsGoldItem(RewardItemData[RI]) || IsBossPieceItem(RewardItemData[RI]) || IsMaterialItem(RewardItemData[RI]);
-			NewRewardItem->SetVisibleStar(bInvisibleStar ? ESlateVisibility::Collapsed : ESlateVisibility::HitTestInvisible);
-			NewRewardItem->SetVisibleStageInfoItemIcon(ESlateVisibility::Collapsed, false);
-			// 이 SlotItem 들을 들고 있는 ScrollBox 에 입력을 보내기 위한 셋업
-			NewRewardItem->SetupManualScrollBoxSender_byReceiver(this, SB_RewardItems.Get());
-		}
-	}
+	//for (int32 RI = 0; RI < RewardItemData.Num(); ++RI)
+	//{
+	//	UB2UISlotItem* NewRewardItem = CreateRewardItem();// = CreateWidget<UB2UISlotItem>(GetOwningPlayer(), SkillOptionListClass);
+	//	if (NewRewardItem)
+	//	{
+	//		BattleRewardItems.Add(NewRewardItem);
+	//		NewRewardItem->Init();
+	//		IsEtherItem(RewardItemData[RI]) ? NewRewardItem->BindEther(RewardItemData[RI]) : NewRewardItem->BindDoc(RewardItemData[RI]);
+	//		bool bInvisibleStar = IsGoldItem(RewardItemData[RI]) || IsBossPieceItem(RewardItemData[RI]) || IsMaterialItem(RewardItemData[RI]);
+	//		NewRewardItem->SetVisibleStar(bInvisibleStar ? ESlateVisibility::Collapsed : ESlateVisibility::HitTestInvisible);
+	//		NewRewardItem->SetVisibleStageInfoItemIcon(ESlateVisibility::Collapsed, false);
+	//		// 이 SlotItem 들을 들고 있는 ScrollBox 에 입력을 보내기 위한 셋업
+	//		NewRewardItem->SetupManualScrollBoxSender_byReceiver(this, SB_RewardItems.Get());
+	//	}
+	//}
 }
 
 void UB2UIStageResult::SetAcquiredGold(int32 InValue)
@@ -526,37 +526,37 @@ void UB2UIStageResult::SetButtonClickable(bool bClickable)
 
 void UB2UIStageResult::CheckFinalStageDisableButton()
 {
-	// 최대 스테이지 도달 시 더 못 가게 막음
-	UB2StageInfo* StageInfoTable = StaticFindStageInfo();
-	int32 FinalStageNum = StageInfoTable ? StageInfoTable->GetFinalClientStageId() : 0;
-	int32 CurrStageID = AB2StageManager::GetCacheStageKeepEssentialData().GetCurrentClientStageId();
-
-	int32 MaxChapterNum = StageInfoTable ? StageInfoTable->GetStartAdventureModeChapterNum() : 0;
-
-
-	if (FinalStageNum == CurrStageID)
-	{
-		
-		if (BTN_NextArea.IsValid())
-			BTN_NextArea->SetIsEnabled(false);
-	}
-	else
-	{
-		if (FinalStageNum < CurrStageID &&
-			CurrStageID % 10 == 0)
-		{
-			if (BTN_NextArea.IsValid())
-				BTN_NextArea->SetIsEnabled(false);
-		}
-
-	}
-
-
-#if FORCE_LOGGING_IN_ANDROID
-	FPlatformMisc::LowLevelOutputDebugStringf(TEXT("=========B2UIStageResultButton========="));
-	FPlatformMisc::LowLevelOutputDebugStringf(TEXT("FinalStageNum %d"), FinalStageNum);
-	FPlatformMisc::LowLevelOutputDebugStringf(TEXT("CurrStageID %d"), CurrStageID);
-#endif
+//	// 최대 스테이지 도달 시 더 못 가게 막음
+//	UB2StageInfo* StageInfoTable = StaticFindStageInfo();
+//	int32 FinalStageNum = StageInfoTable ? StageInfoTable->GetFinalClientStageId() : 0;
+//	int32 CurrStageID = AB2StageManager::GetCacheStageKeepEssentialData().GetCurrentClientStageId();
+//
+//	int32 MaxChapterNum = StageInfoTable ? StageInfoTable->GetStartAdventureModeChapterNum() : 0;
+//
+//
+//	if (FinalStageNum == CurrStageID)
+//	{
+//		
+//		if (BTN_NextArea.IsValid())
+//			BTN_NextArea->SetIsEnabled(false);
+//	}
+//	else
+//	{
+//		if (FinalStageNum < CurrStageID &&
+//			CurrStageID % 10 == 0)
+//		{
+//			if (BTN_NextArea.IsValid())
+//				BTN_NextArea->SetIsEnabled(false);
+//		}
+//
+//	}
+//
+//
+//#if FORCE_LOGGING_IN_ANDROID
+//	FPlatformMisc::LowLevelOutputDebugStringf(TEXT("=========B2UIStageResultButton========="));
+//	FPlatformMisc::LowLevelOutputDebugStringf(TEXT("FinalStageNum %d"), FinalStageNum);
+//	FPlatformMisc::LowLevelOutputDebugStringf(TEXT("CurrStageID %d"), CurrStageID);
+//#endif
 
 }
 
@@ -570,14 +570,14 @@ void UB2UIStageResult::OnCloseComplete()
 
 void UB2UIStageResult::OnLevelUpFXFinish()
 {
-	if (bShowMainQuestReward)
-	{
-		OpenQuestRewardDialog();
-	}
-	else
-	{
-		OnAllProcessEnd();
-	}
+	//if (bShowMainQuestReward)
+	//{
+	//	OpenQuestRewardDialog();
+	//}
+	//else
+	//{
+	//	OnAllProcessEnd();
+	//}
 }
 
 bool UB2UIStageResult::IsShowMainQuestReward()

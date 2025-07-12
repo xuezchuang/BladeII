@@ -4,6 +4,7 @@
 //#include "Array.h"
 //#include "UnrealString.h"
 #include "BladeIIPlayer.h"
+#include "Misc/Base64.h"
 
 #define DEFINITION_SERIALIZER(type)																						\
 	static																												\

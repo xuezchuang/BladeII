@@ -74,13 +74,13 @@ void UB2UIBattleSkill::BindDoc(UB2UIDocSkill* SkillDoc)
 	SetEnabledBtn(!SkillDoc->GetIsDisabledByCooltime());		//Button Enable
 	SetSkillPointStack(SkillDoc->GetSkillStackMaxPoint(), SkillDoc->GetSkillStackPoint());
 
-	CAPTURE_UOBJECT(UB2UIBattleSkill);
+	//CAPTURE_UOBJECT(UB2UIBattleSkill);
 
-	OnEtherActivatedTicket = OnEtherActivatedClass<int32, ABladeIIPlayer*, ABladeIICharacter*>::GetInstance().Subscribe(
-		USE_CAPTURE_OBJECT_AND_TICKET(OnEtherActivated, int32 EtherSetID, ABladeIIPlayer* Owner, ABladeIICharacter* Causer)
-			Capture->OnEtherActivated(EtherSetID, Owner, Causer);
-		END_CAPTURE_OBJECT()
-		);
+	//OnEtherActivatedTicket = OnEtherActivatedClass<int32, ABladeIIPlayer*, ABladeIICharacter*>::GetInstance().Subscribe(
+	//	USE_CAPTURE_OBJECT_AND_TICKET(OnEtherActivated, int32 EtherSetID, ABladeIIPlayer* Owner, ABladeIICharacter* Causer)
+	//		Capture->OnEtherActivated(EtherSetID, Owner, Causer);
+	//	END_CAPTURE_OBJECT()
+	//	);
 }
 
 void UB2UIBattleSkill::UnbindDoc()
@@ -105,7 +105,7 @@ void UB2UIBattleSkill::UnbindDoc()
 	bOwnerHasDebuff = false;
 	bCurrentSuggest = false;
 
-	OnEtherActivatedClass<int32, ABladeIIPlayer*, ABladeIICharacter*>::GetInstance().Unsubscribe(OnEtherActivatedTicket);
+	//OnEtherActivatedClass<int32, ABladeIIPlayer*, ABladeIICharacter*>::GetInstance().Unsubscribe(OnEtherActivatedTicket);
 }
 
 void UB2UIBattleSkill::SetLevel(int32 InValue)
@@ -384,16 +384,16 @@ bool UB2UIBattleSkill::IsSurviveSkill()
 
 bool UB2UIBattleSkill::IsWeaponSkill()
 {
-	auto* PCClassInfoBox = StaticFindPCClassInfoBox(this);
-	UB2SkillInfo* SkillInfoObj = PCClassInfoBox ? PCClassInfoBox->GetAllSkillInfo() : nullptr;
-	auto* SkillDoc = Cast<UB2UIDocSkill>(GetDoc());
+	//auto* PCClassInfoBox = StaticFindPCClassInfoBox(this);
+	//UB2SkillInfo* SkillInfoObj = PCClassInfoBox ? PCClassInfoBox->GetAllSkillInfo() : nullptr;
+	//auto* SkillDoc = Cast<UB2UIDocSkill>(GetDoc());
 
-	if (SkillInfoObj && SkillDoc)
-	{
-		auto* SkillInfo = SkillInfoObj->GetSingleInfoOfID(SkillDoc->GetSkillInfoSkillID());
-		if (SkillInfo && SkillInfo->WeaponSkillType != EWeaponSkillType::EWS_None && SkillInfo->WeaponSkillType != EWeaponSkillType::EWS_End)
-			return true;
-	}
+	//if (SkillInfoObj && SkillDoc)
+	//{
+	//	auto* SkillInfo = SkillInfoObj->GetSingleInfoOfID(SkillDoc->GetSkillInfoSkillID());
+	//	if (SkillInfo && SkillInfo->WeaponSkillType != EWeaponSkillType::EWS_None && SkillInfo->WeaponSkillType != EWeaponSkillType::EWS_End)
+	//		return true;
+	//}
 
 	return false;
 }

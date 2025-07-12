@@ -138,9 +138,9 @@ void UB2UIWidget::CloseSelf()
 
 void UB2UIWidget::OnOpenComplete()
 {
-	OpenState = EUIOpenState::Opened;
-
-	UIWidgetOpenCompleteClass<FName>::GetInstance().Signal(this->GetMyUIFName());
+//	OpenState = EUIOpenState::Opened;
+//
+//	UIWidgetOpenCompleteClass<FName>::GetInstance().Signal(this->GetMyUIFName());
 }
 
 void UB2UIWidget::OnCloseComplete()

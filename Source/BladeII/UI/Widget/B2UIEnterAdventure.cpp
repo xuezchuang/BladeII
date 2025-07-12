@@ -76,7 +76,7 @@ void UB2UIEnterAdventure::OnOpen(bool RightNow /*= false*/)
 
 void UB2UIEnterAdventure::ChangeChaperScene(int32 ChapterNum)
 {
-	LobbyChangeToChapterSceneByUISceneClass<int32>::GetInstance().Signal(ChapterNum);
+	//LobbyChangeToChapterSceneByUISceneClass<int32>::GetInstance().Signal(ChapterNum);
 }
 
 void UB2UIEnterAdventure::UpdateStaticText()

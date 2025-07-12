@@ -64,7 +64,7 @@ void UB2UIBrevetAddStatus::CacheAssets()
 
 void UB2UIBrevetAddStatus::OnFinishAnimationEvent_BrevetAddStatusInitAnimation()
 {
-	m_pOwnerUI->OnFinishAnimationEvent_BrevetAddStatusInitAnimation();
-	ShowBattleScoreNotifyClass<EPCClass>::GetInstance().Signal(CurrentOwnerClass);
-	DestroySelf(UB2UIManager::GetInstance());
+	//m_pOwnerUI->OnFinishAnimationEvent_BrevetAddStatusInitAnimation();
+	//ShowBattleScoreNotifyClass<EPCClass>::GetInstance().Signal(CurrentOwnerClass);
+	//DestroySelf(UB2UIManager::GetInstance());
 }

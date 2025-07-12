@@ -37,20 +37,20 @@ void B2EtherManager::SubscribeEvents()
 {
 	UnsubscribeEvents();
 
-	Issues.Add(DeliveryMasterDataClass<FB2MasterDatas>::GetInstance().Subscribe2(
-		[this](const FB2MasterDatas& data)
-	{
-		this->ReceiveEtherMasterData(data);
-	}
-	));
-	
-	Issues.Add(SetEquippedEtherClass<const int32, const TArray<b2network::B2AetherServerInfoPtr>&>::GetInstance().Subscribe2(
-		[this](const int32 InvenSlotCount, const TArray<b2network::B2AetherServerInfoPtr>& InEquippedEther)
-	{
-		this->InventoryCount = InvenSlotCount;
-		BladeIIGameImpl::GetLocalCharacterData().GetAllEthers().SetEquippedEther(InvenSlotCount, InEquippedEther);
-	}
-	));
+	//Issues.Add(DeliveryMasterDataClass<FB2MasterDatas>::GetInstance().Subscribe2(
+	//	[this](const FB2MasterDatas& data)
+	//{
+	//	this->ReceiveEtherMasterData(data);
+	//}
+	//));
+	//
+	//Issues.Add(SetEquippedEtherClass<const int32, const TArray<b2network::B2AetherServerInfoPtr>&>::GetInstance().Subscribe2(
+	//	[this](const int32 InvenSlotCount, const TArray<b2network::B2AetherServerInfoPtr>& InEquippedEther)
+	//{
+	//	this->InventoryCount = InvenSlotCount;
+	//	BladeIIGameImpl::GetLocalCharacterData().GetAllEthers().SetEquippedEther(InvenSlotCount, InEquippedEther);
+	//}
+	//));
 }
 
 void B2EtherManager::UnsubscribeEvents()
@@ -314,12 +314,12 @@ FText B2EtherManager::GetEtherSetOptionText(int32 EtherSetId, TMap<int64, FB2Eth
 	FText Result = FText::GetEmpty();;
 
 	float Rate = GetEtherSetOptionTriggerRate(EtherSetId, EquippedEthers);
-	Rate *= 100; // %이므로 변환
-	if (StaticFindEtherSetOptionInfoTable() != NULL)
-	{
-		Result = FText::Format(BladeIIGetLOCText(FString(B2LOC_CAT_ETHER), FString(TEXT("Ether_OptionApply"))),
-			StaticFindEtherSetOptionInfoTable()->GetEtherSetOptionName(EtherSetId), FText::AsNumber(Rate));
-	}
+	//Rate *= 100; // %이므로 변환
+	//if (StaticFindEtherSetOptionInfoTable() != NULL)
+	//{
+	//	Result = FText::Format(BladeIIGetLOCText(FString(B2LOC_CAT_ETHER), FString(TEXT("Ether_OptionApply"))),
+	//		StaticFindEtherSetOptionInfoTable()->GetEtherSetOptionName(EtherSetId), FText::AsNumber(Rate));
+	//}
 
 	return Result;
 }
@@ -413,29 +413,29 @@ int32 B2EtherManager::GetEtherPiece(int32 Star, int32 EnhanceLevel)
 
 int32 B2EtherManager::GetEtherPiece(int64 EtherID)
 {
-	const FB2Ether* Ether = BladeIIGameImpl::GetLocalCharacterData().GetAllEthers().GetEther(EtherID);
+	//const FB2Ether* Ether = BladeIIGameImpl::GetLocalCharacterData().GetAllEthers().GetEther(EtherID);
 	int32 Result = 0;
 
-	if (Ether != nullptr)
-	{
-		int Star = Ether->Star;
-		int EnhanceLevel = Ether->EnhanceLevel;
+	//if (Ether != nullptr)
+	//{
+	//	int Star = Ether->Star;
+	//	int EnhanceLevel = Ether->EnhanceLevel;
 
-		if (EnhanceLevel == 0)
-		{
-			EnhanceLevel = 1;
-		}
+	//	if (EnhanceLevel == 0)
+	//	{
+	//		EnhanceLevel = 1;
+	//	}
 
-		for (const b2network::B2mdAetherEnhanceInfoPtr Elem : MdEtherEnhanceInfo)
-		{
-			if (Elem->grade == Star && Elem->enhance_level == EnhanceLevel)
-			{
-				Result += Elem->dismantle_amount;
-				break;
-			}
-		}
-		
-	}
+	//	for (const b2network::B2mdAetherEnhanceInfoPtr Elem : MdEtherEnhanceInfo)
+	//	{
+	//		if (Elem->grade == Star && Elem->enhance_level == EnhanceLevel)
+	//		{
+	//			Result += Elem->dismantle_amount;
+	//			break;
+	//		}
+	//	}
+	//	
+	//}
 	return Result;
 }
 
@@ -490,22 +490,22 @@ int32 B2EtherManager::GetEtherSellPrice(int64 EtherID)
 FText B2EtherManager::GetEtherName(int32 Type)
 {
 	FText Result = FText::GetEmpty();
-	if (StaticFindEtherInfoTable() != NULL)
-	{
-		FString EtherName = StaticFindEtherInfoTable()->GetEtherName(Type);
-		Result = FText::FromString(EtherName);
-	}
+	//if (StaticFindEtherInfoTable() != NULL)
+	//{
+	//	FString EtherName = StaticFindEtherInfoTable()->GetEtherName(Type);
+	//	Result = FText::FromString(EtherName);
+	//}
 	return Result;
 }
 
 FText B2EtherManager::GetEtherName(int32 Type, int32 EnhanceLevel)
 {
 	FText Result = FText::GetEmpty();
-	if (StaticFindEtherInfoTable() != NULL)
-	{
-		FString EtherName = StaticFindEtherInfoTable()->GetEtherName(Type);
-		Result = FText::Format(FText::FromString(TEXT("+{0} {1}")), FText::AsNumber(EnhanceLevel), FText::FromString(EtherName));
-	}
+	//if (StaticFindEtherInfoTable() != NULL)
+	//{
+	//	FString EtherName = StaticFindEtherInfoTable()->GetEtherName(Type);
+	//	Result = FText::Format(FText::FromString(TEXT("+{0} {1}")), FText::AsNumber(EnhanceLevel), FText::FromString(EtherName));
+	//}
 	return Result;
 }
 
@@ -518,89 +518,89 @@ float B2EtherManager::GetEtherSetEffecttDuration(int32 EtherSetId)
 {
 	float Result = 0.0f;
 
-	TSubclassOf<UB2EtherSetEffect> DefaultClass = StaticFindEtherSetEffectInfo()->GetEtherSetEffectClass(EtherSetId);
-	if (UB2EtherSetEffect* DefaultObj = DefaultClass.GetDefaultObject())
-	{
-		switch (EtherSetId)
-		{
-		case b2network::B2AetherSetOptionType::IMMOBILIZE:
-		{
-			UB2Ether_Immobilize* SetEffect = Cast<UB2Ether_Immobilize>(DefaultObj);
-			if (SetEffect)
-			{
-				Result = SetEffect->GetDuration();
-			}
-			break;
-		}
-		case b2network::B2AetherSetOptionType::SHIELD:
-		{
-			UB2Ether_Shield* SetEffect = Cast<UB2Ether_Shield>(DefaultObj);
-			if (SetEffect)
-			{
-				Result = SetEffect->GetDuration();
-			}
-			break;
-		}
-		case b2network::B2AetherSetOptionType::SUPER_ARMOR:
-		{
-			UB2Ether_invincible* SetEffect = Cast<UB2Ether_invincible>(DefaultObj);
-			if (SetEffect)
-			{
-				Result = SetEffect->GetDuration();
-			}
-			break;
-		}
-		case b2network::B2AetherSetOptionType::STUN:
-		{
-			UB2Ether_Stun* SetEffect = Cast<UB2Ether_Stun>(DefaultObj);
-			if (SetEffect)
-			{
-				Result = SetEffect->GetDuration();
-			}
-			break;
-		}
-		case b2network::B2AetherSetOptionType::FIRE_RANGE:
-		{
-			UB2Ether_FireRange* SetEffect = Cast<UB2Ether_FireRange>(DefaultObj);
-			if (SetEffect)
-			{
-				Result = SetEffect->GetDuration();
-			}
-			break;
-		}
-		case b2network::B2AetherSetOptionType::PROHIBIT_BEHAVIOR:
-		{
-			UB2Ether_NotTagDefence* SetEffect = Cast<UB2Ether_NotTagDefence>(DefaultObj);
-			if (SetEffect)
-			{
-				Result = SetEffect->GetDuration();
-			}
-			break;
-		}
-		case b2network::B2AetherSetOptionType::FREEZE_RANGE:
-		{
-			UB2Ether_FreezeRange* SetEffect = Cast<UB2Ether_FreezeRange>(DefaultObj);
-			if (SetEffect)
-			{
-				Result = SetEffect->GetDuration();
-			}
-			break;
-		}
-		default:
-			break;
-		}
-	}
+	//TSubclassOf<UB2EtherSetEffect> DefaultClass = StaticFindEtherSetEffectInfo()->GetEtherSetEffectClass(EtherSetId);
+	//if (UB2EtherSetEffect* DefaultObj = DefaultClass.GetDefaultObject())
+	//{
+	//	switch (EtherSetId)
+	//	{
+	//	case b2network::B2AetherSetOptionType::IMMOBILIZE:
+	//	{
+	//		UB2Ether_Immobilize* SetEffect = Cast<UB2Ether_Immobilize>(DefaultObj);
+	//		if (SetEffect)
+	//		{
+	//			Result = SetEffect->GetDuration();
+	//		}
+	//		break;
+	//	}
+	//	case b2network::B2AetherSetOptionType::SHIELD:
+	//	{
+	//		UB2Ether_Shield* SetEffect = Cast<UB2Ether_Shield>(DefaultObj);
+	//		if (SetEffect)
+	//		{
+	//			Result = SetEffect->GetDuration();
+	//		}
+	//		break;
+	//	}
+	//	case b2network::B2AetherSetOptionType::SUPER_ARMOR:
+	//	{
+	//		UB2Ether_invincible* SetEffect = Cast<UB2Ether_invincible>(DefaultObj);
+	//		if (SetEffect)
+	//		{
+	//			Result = SetEffect->GetDuration();
+	//		}
+	//		break;
+	//	}
+	//	case b2network::B2AetherSetOptionType::STUN:
+	//	{
+	//		UB2Ether_Stun* SetEffect = Cast<UB2Ether_Stun>(DefaultObj);
+	//		if (SetEffect)
+	//		{
+	//			Result = SetEffect->GetDuration();
+	//		}
+	//		break;
+	//	}
+	//	case b2network::B2AetherSetOptionType::FIRE_RANGE:
+	//	{
+	//		UB2Ether_FireRange* SetEffect = Cast<UB2Ether_FireRange>(DefaultObj);
+	//		if (SetEffect)
+	//		{
+	//			Result = SetEffect->GetDuration();
+	//		}
+	//		break;
+	//	}
+	//	case b2network::B2AetherSetOptionType::PROHIBIT_BEHAVIOR:
+	//	{
+	//		UB2Ether_NotTagDefence* SetEffect = Cast<UB2Ether_NotTagDefence>(DefaultObj);
+	//		if (SetEffect)
+	//		{
+	//			Result = SetEffect->GetDuration();
+	//		}
+	//		break;
+	//	}
+	//	case b2network::B2AetherSetOptionType::FREEZE_RANGE:
+	//	{
+	//		UB2Ether_FreezeRange* SetEffect = Cast<UB2Ether_FreezeRange>(DefaultObj);
+	//		if (SetEffect)
+	//		{
+	//			Result = SetEffect->GetDuration();
+	//		}
+	//		break;
+	//	}
+	//	default:
+	//		break;
+	//	}
+	//}
 
 	return Result;
 }
 
 void B2EtherManager::GetEtherLotteryInfo(int32 InRefID, int32& OutEtherStar, int32& OutEtherTier)
 {
-	if (StaticFindSelectiveEtherLotteryTable() != NULL)
-	{
-		OutEtherStar = StaticFindSelectiveEtherLotteryTable()->GetSelectiveEtherLotteryGrade(InRefID);
-		OutEtherTier = StaticFindSelectiveEtherLotteryTable()->GetSelectiveEtherLotteryTier(InRefID);
-	}
+	//if (StaticFindSelectiveEtherLotteryTable() != NULL)
+	//{
+	//	OutEtherStar = StaticFindSelectiveEtherLotteryTable()->GetSelectiveEtherLotteryGrade(InRefID);
+	//	OutEtherTier = StaticFindSelectiveEtherLotteryTable()->GetSelectiveEtherLotteryTier(InRefID);
+	//}
 }
 
 void B2EtherManager::ReceiveEtherMasterData(const FB2MasterDatas& InMasterDatas)

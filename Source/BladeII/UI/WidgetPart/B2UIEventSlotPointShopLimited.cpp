@@ -170,11 +170,11 @@ void UB2UIEventSlotPointShopLimited::UpdateRewardPossibleCountText(const int32 i
 
 void UB2UIEventSlotPointShopLimited::OnClickBTN_GetReward()
 {
-	if (GetEventState() != b2network::B2MissionStateType::COMPLETED)
-		return;
+	//if (GetEventState() != b2network::B2MissionStateType::COMPLETED)
+	//	return;
 
-	StratAnimEventMainTransparencyBlockClass<>::GetInstance().Signal();
+	//StratAnimEventMainTransparencyBlockClass<>::GetInstance().Signal();
 
-	data_trader::Retailer::GetInstance().RequestRewardPointShopEvent(iEventID, iEventIndex);
+	//data_trader::Retailer::GetInstance().RequestRewardPointShopEvent(iEventID, iEventIndex);
 }
 

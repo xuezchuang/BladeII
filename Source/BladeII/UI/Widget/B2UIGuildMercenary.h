@@ -2,6 +2,7 @@
 #pragma once
 
 #include "B2UIWidget.h"
+#include "../B2RichTextBlock.h"
 #include "B2UIGuildMercenary.generated.h"
 
 DECLARE_DELEGATE_OneParam(FNPCSelectSlotDelegate , int32)

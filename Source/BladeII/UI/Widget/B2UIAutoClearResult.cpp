@@ -233,36 +233,36 @@ void UB2UIAutoClearResult::SubscribeEvents()
 {
 	CAPTURE_UOBJECT(UB2UIAutoClearResult);
 
-	Issues.Add(DeliverySweepStageErrorClass<FB2SweepStageInfo, int32>::GetInstance().Subscribe2(
-		[Capture](const FB2SweepStageInfo& InSweepStageinfo, int32 InErrorCode)
-	{
-		if (Capture.IsValid())
-		{
-			Capture->SetRepeat(false);
-		}
-	}
-	));
+	//Issues.Add(DeliverySweepStageErrorClass<FB2SweepStageInfo, int32>::GetInstance().Subscribe2(
+	//	[Capture](const FB2SweepStageInfo& InSweepStageinfo, int32 InErrorCode)
+	//{
+	//	if (Capture.IsValid())
+	//	{
+	//		Capture->SetRepeat(false);
+	//	}
+	//}
+	//));
 
-	//LevelupFinishDelegate 계속 지워서 사용하기 힘듬..
-	Issues.Add(OnResetStartingLevelInfoClass<>::GetInstance().Subscribe2(
-		[Capture]()
-	{
-		if (Capture.IsValid())
-		{
-			Capture->LevelupFinish();
-		}
-	}
-	));
+	////LevelupFinishDelegate 계속 지워서 사용하기 힘듬..
+	//Issues.Add(OnResetStartingLevelInfoClass<>::GetInstance().Subscribe2(
+	//	[Capture]()
+	//{
+	//	if (Capture.IsValid())
+	//	{
+	//		Capture->LevelupFinish();
+	//	}
+	//}
+	//));
 
-	Issues.Add(ToolTipMoveClass<>::GetInstance().Subscribe2(
-		[Capture]()
-	{
-		if (Capture.IsValid())
-		{
-			Capture->OnClickBTNOK();
-		}
-	}
-	));
+	//Issues.Add(ToolTipMoveClass<>::GetInstance().Subscribe2(
+	//	[Capture]()
+	//{
+	//	if (Capture.IsValid())
+	//	{
+	//		Capture->OnClickBTNOK();
+	//	}
+	//}
+	//));
 }
 
 void UB2UIAutoClearResult::UnsubscribeEvents()

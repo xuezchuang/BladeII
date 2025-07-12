@@ -1,6 +1,7 @@
 #pragma once
 
 #include "B2UIWidgetBase.h"
+#include "../../DataStore/B2ClientDataStore.h"
 #include "B2UIRankerInfo.generated.h"
 
 UCLASS(BlueprintType, Blueprintable)

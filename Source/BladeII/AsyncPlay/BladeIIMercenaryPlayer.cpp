@@ -11,6 +11,7 @@
 //#include "B2GuildNPCAIController.h"
 #include "B2SomeInfo.h"
 #include "B2PassiveSkillFactory.h"
+#include "../BladeII/BladeIIUtil.h"
 
 
 bool FMercenarySkillData::IsRemainCooltime()

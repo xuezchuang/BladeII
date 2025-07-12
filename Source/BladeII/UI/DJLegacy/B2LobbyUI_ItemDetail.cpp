@@ -462,773 +462,773 @@ void UB2LobbyUI_ItemDetail::UpdateWidgetForSealBox()
 
 void UB2LobbyUI_ItemDetail::AddSealBoxContents()
 {
-	//봉인함에 들어갈 아이템에 대해 일부는 직접 주는 RefID도 있으나 장비처럼 유추하는 데이터만 받을 수도 있다.
-	//그 유추된 데이터와 현재 클래스(SealBoxClass)에 따라서 RefID 가 달라지므로 그 값에 맞게 추가할 수 있도록 한다.
+	////봉인함에 들어갈 아이템에 대해 일부는 직접 주는 RefID도 있으나 장비처럼 유추하는 데이터만 받을 수도 있다.
+	////그 유추된 데이터와 현재 클래스(SealBoxClass)에 따라서 RefID 가 달라지므로 그 값에 맞게 추가할 수 있도록 한다.
 
-	if (originalSealBox.sealboxRefID < 0)
-		return;
+	//if (originalSealBox.sealboxRefID < 0)
+	//	return;
 
-	TArray<FSealBoxRewardRateInfo> slot1, slot2, slot3, slot4, slot5;
-	CachedDataStore->GetSealBoxRewardRateInfo(originalSealBox.rewardSlot1, slot1);
-	CachedDataStore->GetSealBoxRewardRateInfo(originalSealBox.rewardSlot2, slot2);
-	CachedDataStore->GetSealBoxRewardRateInfo(originalSealBox.rewardSlot3, slot3);
-	CachedDataStore->GetSealBoxRewardRateInfo(originalSealBox.rewardSlot4, slot4);
-	CachedDataStore->GetSealBoxRewardRateInfo(originalSealBox.rewardSlot5, slot5);
+	//TArray<FSealBoxRewardRateInfo> slot1, slot2, slot3, slot4, slot5;
+	//CachedDataStore->GetSealBoxRewardRateInfo(originalSealBox.rewardSlot1, slot1);
+	//CachedDataStore->GetSealBoxRewardRateInfo(originalSealBox.rewardSlot2, slot2);
+	//CachedDataStore->GetSealBoxRewardRateInfo(originalSealBox.rewardSlot3, slot3);
+	//CachedDataStore->GetSealBoxRewardRateInfo(originalSealBox.rewardSlot4, slot4);
+	//CachedDataStore->GetSealBoxRewardRateInfo(originalSealBox.rewardSlot5, slot5);
 
-	TArray<FSealBoxItem> savedItemData;
-	TArray<FSealBoxEquipment> savedEquipmentData;
+	//TArray<FSealBoxItem> savedItemData;
+	//TArray<FSealBoxEquipment> savedEquipmentData;
 
-	for (int32 i = 0; i < slot1.Num(); i++)
-	{
-		if (slot1[i].itemType == b2network::B2RewardType::ITEM)
-		{
-			if (slot1[i].starGrade > 0)
-			{
-				if (savedEquipmentData.Num() == 0)
-				{
-					FSealBoxEquipment newData;
-					newData.starGrade = slot1[i].starGrade;
-					newData.groupID = slot1[i].groupID;
-					newData.equipCategory = slot1[i].equipCategory;
-					newData.equipPosition = slot1[i].equipPlace;
-					newData.quality = slot1[i].quality;
-					newData.enhancedLevel = slot1[i].enhanceLevel;
-					newData.surpassCount = slot1[i].surpassCount;
+	//for (int32 i = 0; i < slot1.Num(); i++)
+	//{
+	//	if (slot1[i].itemType == b2network::B2RewardType::ITEM)
+	//	{
+	//		if (slot1[i].starGrade > 0)
+	//		{
+	//			if (savedEquipmentData.Num() == 0)
+	//			{
+	//				FSealBoxEquipment newData;
+	//				newData.starGrade = slot1[i].starGrade;
+	//				newData.groupID = slot1[i].groupID;
+	//				newData.equipCategory = slot1[i].equipCategory;
+	//				newData.equipPosition = slot1[i].equipPlace;
+	//				newData.quality = slot1[i].quality;
+	//				newData.enhancedLevel = slot1[i].enhanceLevel;
+	//				newData.surpassCount = slot1[i].surpassCount;
 
-					savedEquipmentData.Add(newData);
-				}
-				else
-				{
-					bool sameItem = false;
-					for (int32 j = 0; j < savedEquipmentData.Num(); j++)
-					{
-						if (savedEquipmentData[j].starGrade == slot1[i].starGrade)
-							if (savedEquipmentData[j].groupID == slot1[i].groupID)
-								if (savedEquipmentData[j].equipCategory == slot1[i].equipCategory)
-									if (savedEquipmentData[j].equipPosition == slot1[i].equipPlace)
-										if (savedEquipmentData[j].quality == slot1[i].quality)
-											if (savedEquipmentData[j].enhancedLevel == slot1[i].enhanceLevel)
-												if (savedEquipmentData[j].surpassCount == slot1[i].surpassCount)
-													sameItem = true;
-					}
+	//				savedEquipmentData.Add(newData);
+	//			}
+	//			else
+	//			{
+	//				bool sameItem = false;
+	//				for (int32 j = 0; j < savedEquipmentData.Num(); j++)
+	//				{
+	//					if (savedEquipmentData[j].starGrade == slot1[i].starGrade)
+	//						if (savedEquipmentData[j].groupID == slot1[i].groupID)
+	//							if (savedEquipmentData[j].equipCategory == slot1[i].equipCategory)
+	//								if (savedEquipmentData[j].equipPosition == slot1[i].equipPlace)
+	//									if (savedEquipmentData[j].quality == slot1[i].quality)
+	//										if (savedEquipmentData[j].enhancedLevel == slot1[i].enhanceLevel)
+	//											if (savedEquipmentData[j].surpassCount == slot1[i].surpassCount)
+	//												sameItem = true;
+	//				}
 
-					if (sameItem == false)
-					{
-						FSealBoxEquipment newData;
-						newData.starGrade = slot1[i].starGrade;
-						newData.groupID = slot1[i].groupID;
-						newData.equipCategory = slot1[i].equipCategory;
-						newData.equipPosition = slot1[i].equipPlace;
-						newData.quality = slot1[i].quality;
-						newData.enhancedLevel = slot1[i].enhanceLevel;
-						newData.surpassCount = slot1[i].surpassCount;
+	//				if (sameItem == false)
+	//				{
+	//					FSealBoxEquipment newData;
+	//					newData.starGrade = slot1[i].starGrade;
+	//					newData.groupID = slot1[i].groupID;
+	//					newData.equipCategory = slot1[i].equipCategory;
+	//					newData.equipPosition = slot1[i].equipPlace;
+	//					newData.quality = slot1[i].quality;
+	//					newData.enhancedLevel = slot1[i].enhanceLevel;
+	//					newData.surpassCount = slot1[i].surpassCount;
 
-						savedEquipmentData.Add(newData);
-					}
-				}
-			}
-		}
-		else
-		{
-			if (savedItemData.Num() == 0)
-			{
-				if (slot1[i].itemRefID == 0)
-				{
-					if (CachedDataStore->GetRewardItemId(slot1[i].itemType) > 0)
-					{
-						FSealBoxItem newData;
-						newData.itemRefID = CachedDataStore->GetRewardItemId(slot1[i].itemType);
-						newData.minQuantity = slot1[i].minQuantity;
-						newData.maxQuantity = slot1[i].maxQuantity;
-						savedItemData.Add(newData);
-					}
-					else
-					{
-						continue;
-					}
-				}
-				else
-				{
-					FSealBoxItem newData;
-					newData.itemRefID = slot1[i].itemRefID;
-					newData.minQuantity = slot1[i].minQuantity;
-					newData.maxQuantity = slot1[i].maxQuantity;
-					savedItemData.Add(newData);
-				}
-			}
-			else
-			{
-				bool alreadyHave = false;
-				if (slot1[i].itemRefID == 0)
-				{
-					if (CachedDataStore->GetRewardItemId(slot1[i].itemType) > 0)
-					{
-						for (int32 j = 0; j < savedItemData.Num(); j++)
-						{
-							if (savedItemData[j].itemRefID == CachedDataStore->GetRewardItemId(slot1[i].itemType))
-							{
-								alreadyHave = true;
-								if (savedItemData[j].minQuantity > slot1[i].minQuantity)
-									savedItemData[j].minQuantity = slot1[i].minQuantity;
-								if (savedItemData[j].maxQuantity < slot1[i].maxQuantity)
-									savedItemData[j].maxQuantity = slot1[i].maxQuantity;
-							}
-						}
-					}
-					else
-					{
-						continue;
-					}
-				}
-				else
-				{
-					for (int32 j = 0; j < savedItemData.Num(); j++)
-					{
-						if (savedItemData[j].itemRefID == slot1[i].itemRefID)
-						{
-							alreadyHave = true;
-							if (savedItemData[j].minQuantity > slot1[i].minQuantity)
-								savedItemData[j].minQuantity = slot1[i].minQuantity;
-							if (savedItemData[j].maxQuantity < slot1[i].maxQuantity)
-								savedItemData[j].maxQuantity = slot1[i].maxQuantity;
-						}
-					}
-				}
+	//					savedEquipmentData.Add(newData);
+	//				}
+	//			}
+	//		}
+	//	}
+	//	else
+	//	{
+	//		if (savedItemData.Num() == 0)
+	//		{
+	//			if (slot1[i].itemRefID == 0)
+	//			{
+	//				if (CachedDataStore->GetRewardItemId(slot1[i].itemType) > 0)
+	//				{
+	//					FSealBoxItem newData;
+	//					newData.itemRefID = CachedDataStore->GetRewardItemId(slot1[i].itemType);
+	//					newData.minQuantity = slot1[i].minQuantity;
+	//					newData.maxQuantity = slot1[i].maxQuantity;
+	//					savedItemData.Add(newData);
+	//				}
+	//				else
+	//				{
+	//					continue;
+	//				}
+	//			}
+	//			else
+	//			{
+	//				FSealBoxItem newData;
+	//				newData.itemRefID = slot1[i].itemRefID;
+	//				newData.minQuantity = slot1[i].minQuantity;
+	//				newData.maxQuantity = slot1[i].maxQuantity;
+	//				savedItemData.Add(newData);
+	//			}
+	//		}
+	//		else
+	//		{
+	//			bool alreadyHave = false;
+	//			if (slot1[i].itemRefID == 0)
+	//			{
+	//				if (CachedDataStore->GetRewardItemId(slot1[i].itemType) > 0)
+	//				{
+	//					for (int32 j = 0; j < savedItemData.Num(); j++)
+	//					{
+	//						if (savedItemData[j].itemRefID == CachedDataStore->GetRewardItemId(slot1[i].itemType))
+	//						{
+	//							alreadyHave = true;
+	//							if (savedItemData[j].minQuantity > slot1[i].minQuantity)
+	//								savedItemData[j].minQuantity = slot1[i].minQuantity;
+	//							if (savedItemData[j].maxQuantity < slot1[i].maxQuantity)
+	//								savedItemData[j].maxQuantity = slot1[i].maxQuantity;
+	//						}
+	//					}
+	//				}
+	//				else
+	//				{
+	//					continue;
+	//				}
+	//			}
+	//			else
+	//			{
+	//				for (int32 j = 0; j < savedItemData.Num(); j++)
+	//				{
+	//					if (savedItemData[j].itemRefID == slot1[i].itemRefID)
+	//					{
+	//						alreadyHave = true;
+	//						if (savedItemData[j].minQuantity > slot1[i].minQuantity)
+	//							savedItemData[j].minQuantity = slot1[i].minQuantity;
+	//						if (savedItemData[j].maxQuantity < slot1[i].maxQuantity)
+	//							savedItemData[j].maxQuantity = slot1[i].maxQuantity;
+	//					}
+	//				}
+	//			}
 
-				if (alreadyHave == false)
-				{
-					if (slot1[i].itemRefID == 0)
-					{
-						if (CachedDataStore->GetRewardItemId(slot1[i].itemType) > 0)
-						{
-							FSealBoxItem newData;
-							newData.itemRefID = CachedDataStore->GetRewardItemId(slot1[i].itemType);
-							newData.minQuantity = slot1[i].minQuantity;
-							newData.maxQuantity = slot1[i].maxQuantity;
-							savedItemData.Add(newData);
-						}
-						else
-						{
-							continue;
-						}
-					}
-					else
-					{
-						FSealBoxItem newData;
-						newData.itemRefID = slot1[i].itemRefID;
-						newData.minQuantity = slot1[i].minQuantity;
-						newData.maxQuantity = slot1[i].maxQuantity;
-						savedItemData.Add(newData);
-					}
-				}
-			}
-		}
-	}
-	for (int32 i = 0; i < slot2.Num(); i++)
-	{
-		if (slot2[i].itemType == b2network::B2RewardType::ITEM)
-		{
-			if (slot2[i].starGrade > 0)
-			{
-				if (savedEquipmentData.Num() == 0)
-				{
-					FSealBoxEquipment newData;
-					newData.starGrade = slot2[i].starGrade;
-					newData.groupID = slot2[i].groupID;
-					newData.equipCategory = slot2[i].equipCategory;
-					newData.equipPosition = slot2[i].equipPlace;
-					newData.quality = slot2[i].quality;
-					newData.enhancedLevel = slot2[i].enhanceLevel;
-					newData.surpassCount = slot2[i].surpassCount;
+	//			if (alreadyHave == false)
+	//			{
+	//				if (slot1[i].itemRefID == 0)
+	//				{
+	//					if (CachedDataStore->GetRewardItemId(slot1[i].itemType) > 0)
+	//					{
+	//						FSealBoxItem newData;
+	//						newData.itemRefID = CachedDataStore->GetRewardItemId(slot1[i].itemType);
+	//						newData.minQuantity = slot1[i].minQuantity;
+	//						newData.maxQuantity = slot1[i].maxQuantity;
+	//						savedItemData.Add(newData);
+	//					}
+	//					else
+	//					{
+	//						continue;
+	//					}
+	//				}
+	//				else
+	//				{
+	//					FSealBoxItem newData;
+	//					newData.itemRefID = slot1[i].itemRefID;
+	//					newData.minQuantity = slot1[i].minQuantity;
+	//					newData.maxQuantity = slot1[i].maxQuantity;
+	//					savedItemData.Add(newData);
+	//				}
+	//			}
+	//		}
+	//	}
+	//}
+	//for (int32 i = 0; i < slot2.Num(); i++)
+	//{
+	//	if (slot2[i].itemType == b2network::B2RewardType::ITEM)
+	//	{
+	//		if (slot2[i].starGrade > 0)
+	//		{
+	//			if (savedEquipmentData.Num() == 0)
+	//			{
+	//				FSealBoxEquipment newData;
+	//				newData.starGrade = slot2[i].starGrade;
+	//				newData.groupID = slot2[i].groupID;
+	//				newData.equipCategory = slot2[i].equipCategory;
+	//				newData.equipPosition = slot2[i].equipPlace;
+	//				newData.quality = slot2[i].quality;
+	//				newData.enhancedLevel = slot2[i].enhanceLevel;
+	//				newData.surpassCount = slot2[i].surpassCount;
 
-					savedEquipmentData.Add(newData);
-				}
-				else
-				{
-					bool sameItem = false;
-					for (int32 j = 0; j < savedEquipmentData.Num(); j++)
-					{
-						if (savedEquipmentData[j].starGrade == slot2[i].starGrade)
-							if (savedEquipmentData[j].groupID == slot2[i].groupID)
-								if (savedEquipmentData[j].equipCategory == slot2[i].equipCategory)
-									if (savedEquipmentData[j].equipPosition == slot2[i].equipPlace)
-										if (savedEquipmentData[j].quality == slot2[i].quality)
-											if (savedEquipmentData[j].enhancedLevel == slot2[i].enhanceLevel)
-												if (savedEquipmentData[j].surpassCount == slot2[i].surpassCount)
-													sameItem = true;
-					}
+	//				savedEquipmentData.Add(newData);
+	//			}
+	//			else
+	//			{
+	//				bool sameItem = false;
+	//				for (int32 j = 0; j < savedEquipmentData.Num(); j++)
+	//				{
+	//					if (savedEquipmentData[j].starGrade == slot2[i].starGrade)
+	//						if (savedEquipmentData[j].groupID == slot2[i].groupID)
+	//							if (savedEquipmentData[j].equipCategory == slot2[i].equipCategory)
+	//								if (savedEquipmentData[j].equipPosition == slot2[i].equipPlace)
+	//									if (savedEquipmentData[j].quality == slot2[i].quality)
+	//										if (savedEquipmentData[j].enhancedLevel == slot2[i].enhanceLevel)
+	//											if (savedEquipmentData[j].surpassCount == slot2[i].surpassCount)
+	//												sameItem = true;
+	//				}
 
-					if (sameItem == false)
-					{
-						FSealBoxEquipment newData;
-						newData.starGrade = slot2[i].starGrade;
-						newData.groupID = slot2[i].groupID;
-						newData.equipCategory = slot2[i].equipCategory;
-						newData.equipPosition = slot2[i].equipPlace;
-						newData.quality = slot2[i].quality;
-						newData.enhancedLevel = slot2[i].enhanceLevel;
-						newData.surpassCount = slot2[i].surpassCount;
+	//				if (sameItem == false)
+	//				{
+	//					FSealBoxEquipment newData;
+	//					newData.starGrade = slot2[i].starGrade;
+	//					newData.groupID = slot2[i].groupID;
+	//					newData.equipCategory = slot2[i].equipCategory;
+	//					newData.equipPosition = slot2[i].equipPlace;
+	//					newData.quality = slot2[i].quality;
+	//					newData.enhancedLevel = slot2[i].enhanceLevel;
+	//					newData.surpassCount = slot2[i].surpassCount;
 
-						savedEquipmentData.Add(newData);
-					}
-				}
-			}
-		}
-		else
-		{
-			if (savedItemData.Num() == 0)
-			{
-				if (slot2[i].itemRefID == 0)
-				{
-					if (CachedDataStore->GetRewardItemId(slot2[i].itemType) > 0)
-					{
-						FSealBoxItem newData;
-						newData.itemRefID = CachedDataStore->GetRewardItemId(slot2[i].itemType);
-						newData.minQuantity = slot2[i].minQuantity;
-						newData.maxQuantity = slot2[i].maxQuantity;
-						savedItemData.Add(newData);
-					}
-					else
-					{
-						continue;
-					}
-				}
-				else
-				{
-					FSealBoxItem newData;
-					newData.itemRefID = slot2[i].itemRefID;
-					newData.minQuantity = slot2[i].minQuantity;
-					newData.maxQuantity = slot2[i].maxQuantity;
-					savedItemData.Add(newData);
-				}
-			}
-			else
-			{
-				bool alreadyHave = false;
-				if (slot2[i].itemRefID == 0)
-				{
-					if (CachedDataStore->GetRewardItemId(slot2[i].itemType) > 0)
-					{
-						for (int32 j = 0; j < savedItemData.Num(); j++)
-						{
-							if (savedItemData[j].itemRefID == CachedDataStore->GetRewardItemId(slot2[i].itemType))
-							{
-								alreadyHave = true;
-								if (savedItemData[j].minQuantity > slot2[i].minQuantity)
-									savedItemData[j].minQuantity = slot2[i].minQuantity;
-								if (savedItemData[j].maxQuantity < slot2[i].maxQuantity)
-									savedItemData[j].maxQuantity = slot2[i].maxQuantity;
-							}
-						}
-					}
-					else
-					{
-						continue;
-					}
-				}
-				else
-				{
-					for (int32 j = 0; j < savedItemData.Num(); j++)
-					{
-						if (savedItemData[j].itemRefID == slot2[i].itemRefID)
-						{
-							alreadyHave = true;
-							if (savedItemData[j].minQuantity > slot2[i].minQuantity)
-								savedItemData[j].minQuantity = slot2[i].minQuantity;
-							if (savedItemData[j].maxQuantity < slot2[i].maxQuantity)
-								savedItemData[j].maxQuantity = slot2[i].maxQuantity;
-						}
-					}
-				}
+	//					savedEquipmentData.Add(newData);
+	//				}
+	//			}
+	//		}
+	//	}
+	//	else
+	//	{
+	//		if (savedItemData.Num() == 0)
+	//		{
+	//			if (slot2[i].itemRefID == 0)
+	//			{
+	//				if (CachedDataStore->GetRewardItemId(slot2[i].itemType) > 0)
+	//				{
+	//					FSealBoxItem newData;
+	//					newData.itemRefID = CachedDataStore->GetRewardItemId(slot2[i].itemType);
+	//					newData.minQuantity = slot2[i].minQuantity;
+	//					newData.maxQuantity = slot2[i].maxQuantity;
+	//					savedItemData.Add(newData);
+	//				}
+	//				else
+	//				{
+	//					continue;
+	//				}
+	//			}
+	//			else
+	//			{
+	//				FSealBoxItem newData;
+	//				newData.itemRefID = slot2[i].itemRefID;
+	//				newData.minQuantity = slot2[i].minQuantity;
+	//				newData.maxQuantity = slot2[i].maxQuantity;
+	//				savedItemData.Add(newData);
+	//			}
+	//		}
+	//		else
+	//		{
+	//			bool alreadyHave = false;
+	//			if (slot2[i].itemRefID == 0)
+	//			{
+	//				if (CachedDataStore->GetRewardItemId(slot2[i].itemType) > 0)
+	//				{
+	//					for (int32 j = 0; j < savedItemData.Num(); j++)
+	//					{
+	//						if (savedItemData[j].itemRefID == CachedDataStore->GetRewardItemId(slot2[i].itemType))
+	//						{
+	//							alreadyHave = true;
+	//							if (savedItemData[j].minQuantity > slot2[i].minQuantity)
+	//								savedItemData[j].minQuantity = slot2[i].minQuantity;
+	//							if (savedItemData[j].maxQuantity < slot2[i].maxQuantity)
+	//								savedItemData[j].maxQuantity = slot2[i].maxQuantity;
+	//						}
+	//					}
+	//				}
+	//				else
+	//				{
+	//					continue;
+	//				}
+	//			}
+	//			else
+	//			{
+	//				for (int32 j = 0; j < savedItemData.Num(); j++)
+	//				{
+	//					if (savedItemData[j].itemRefID == slot2[i].itemRefID)
+	//					{
+	//						alreadyHave = true;
+	//						if (savedItemData[j].minQuantity > slot2[i].minQuantity)
+	//							savedItemData[j].minQuantity = slot2[i].minQuantity;
+	//						if (savedItemData[j].maxQuantity < slot2[i].maxQuantity)
+	//							savedItemData[j].maxQuantity = slot2[i].maxQuantity;
+	//					}
+	//				}
+	//			}
 
-				if (alreadyHave == false)
-				{
-					if (slot2[i].itemRefID == 0)
-					{
-						if (CachedDataStore->GetRewardItemId(slot2[i].itemType) > 0)
-						{
-							FSealBoxItem newData;
-							newData.itemRefID = CachedDataStore->GetRewardItemId(slot2[i].itemType);
-							newData.minQuantity = slot2[i].minQuantity;
-							newData.maxQuantity = slot2[i].maxQuantity;
-							savedItemData.Add(newData);
-						}
-						else
-						{
-							continue;
-						}
-					}
-					else
-					{
-						FSealBoxItem newData;
-						newData.itemRefID = slot2[i].itemRefID;
-						newData.minQuantity = slot2[i].minQuantity;
-						newData.maxQuantity = slot2[i].maxQuantity;
-						savedItemData.Add(newData);
-					}
-				}
-			}
-		}
-	}
-	for (int32 i = 0; i < slot3.Num(); i++)
-	{
-		if (slot3[i].itemType == b2network::B2RewardType::ITEM)
-		{
-			if (slot3[i].starGrade > 0)
-			{
-				if (savedEquipmentData.Num() == 0)
-				{
-					FSealBoxEquipment newData;
-					newData.starGrade = slot3[i].starGrade;
-					newData.groupID = slot3[i].groupID;
-					newData.equipCategory = slot3[i].equipCategory;
-					newData.equipPosition = slot3[i].equipPlace;
-					newData.quality = slot3[i].quality;
-					newData.enhancedLevel = slot3[i].enhanceLevel;
-					newData.surpassCount = slot3[i].surpassCount;
+	//			if (alreadyHave == false)
+	//			{
+	//				if (slot2[i].itemRefID == 0)
+	//				{
+	//					if (CachedDataStore->GetRewardItemId(slot2[i].itemType) > 0)
+	//					{
+	//						FSealBoxItem newData;
+	//						newData.itemRefID = CachedDataStore->GetRewardItemId(slot2[i].itemType);
+	//						newData.minQuantity = slot2[i].minQuantity;
+	//						newData.maxQuantity = slot2[i].maxQuantity;
+	//						savedItemData.Add(newData);
+	//					}
+	//					else
+	//					{
+	//						continue;
+	//					}
+	//				}
+	//				else
+	//				{
+	//					FSealBoxItem newData;
+	//					newData.itemRefID = slot2[i].itemRefID;
+	//					newData.minQuantity = slot2[i].minQuantity;
+	//					newData.maxQuantity = slot2[i].maxQuantity;
+	//					savedItemData.Add(newData);
+	//				}
+	//			}
+	//		}
+	//	}
+	//}
+	//for (int32 i = 0; i < slot3.Num(); i++)
+	//{
+	//	if (slot3[i].itemType == b2network::B2RewardType::ITEM)
+	//	{
+	//		if (slot3[i].starGrade > 0)
+	//		{
+	//			if (savedEquipmentData.Num() == 0)
+	//			{
+	//				FSealBoxEquipment newData;
+	//				newData.starGrade = slot3[i].starGrade;
+	//				newData.groupID = slot3[i].groupID;
+	//				newData.equipCategory = slot3[i].equipCategory;
+	//				newData.equipPosition = slot3[i].equipPlace;
+	//				newData.quality = slot3[i].quality;
+	//				newData.enhancedLevel = slot3[i].enhanceLevel;
+	//				newData.surpassCount = slot3[i].surpassCount;
 
-					savedEquipmentData.Add(newData);
-				}
-				else
-				{
-					bool sameItem = false;
-					for (int32 j = 0; j < savedEquipmentData.Num(); j++)
-					{
-						if (savedEquipmentData[j].starGrade == slot3[i].starGrade)
-							if (savedEquipmentData[j].groupID == slot3[i].groupID)
-								if (savedEquipmentData[j].equipCategory == slot3[i].equipCategory)
-									if (savedEquipmentData[j].equipPosition == slot3[i].equipPlace)
-										if (savedEquipmentData[j].quality == slot3[i].quality)
-											if (savedEquipmentData[j].enhancedLevel == slot3[i].enhanceLevel)
-												if (savedEquipmentData[j].surpassCount == slot3[i].surpassCount)
-													sameItem = true;
-					}
+	//				savedEquipmentData.Add(newData);
+	//			}
+	//			else
+	//			{
+	//				bool sameItem = false;
+	//				for (int32 j = 0; j < savedEquipmentData.Num(); j++)
+	//				{
+	//					if (savedEquipmentData[j].starGrade == slot3[i].starGrade)
+	//						if (savedEquipmentData[j].groupID == slot3[i].groupID)
+	//							if (savedEquipmentData[j].equipCategory == slot3[i].equipCategory)
+	//								if (savedEquipmentData[j].equipPosition == slot3[i].equipPlace)
+	//									if (savedEquipmentData[j].quality == slot3[i].quality)
+	//										if (savedEquipmentData[j].enhancedLevel == slot3[i].enhanceLevel)
+	//											if (savedEquipmentData[j].surpassCount == slot3[i].surpassCount)
+	//												sameItem = true;
+	//				}
 
-					if (sameItem == false)
-					{
-						FSealBoxEquipment newData;
-						newData.starGrade = slot3[i].starGrade;
-						newData.groupID = slot3[i].groupID;
-						newData.equipCategory = slot3[i].equipCategory;
-						newData.equipPosition = slot3[i].equipPlace;
-						newData.quality = slot3[i].quality;
-						newData.enhancedLevel = slot3[i].enhanceLevel;
-						newData.surpassCount = slot3[i].surpassCount;
+	//				if (sameItem == false)
+	//				{
+	//					FSealBoxEquipment newData;
+	//					newData.starGrade = slot3[i].starGrade;
+	//					newData.groupID = slot3[i].groupID;
+	//					newData.equipCategory = slot3[i].equipCategory;
+	//					newData.equipPosition = slot3[i].equipPlace;
+	//					newData.quality = slot3[i].quality;
+	//					newData.enhancedLevel = slot3[i].enhanceLevel;
+	//					newData.surpassCount = slot3[i].surpassCount;
 
-						savedEquipmentData.Add(newData);
-					}
-				}
-			}
-		}
-		else
-		{
-			if (savedItemData.Num() == 0)
-			{
-				if (slot3[i].itemRefID == 0)
-				{
-					if (CachedDataStore->GetRewardItemId(slot3[i].itemType) > 0)
-					{
-						FSealBoxItem newData;
-						newData.itemRefID = CachedDataStore->GetRewardItemId(slot3[i].itemType);
-						newData.minQuantity = slot3[i].minQuantity;
-						newData.maxQuantity = slot3[i].maxQuantity;
-						savedItemData.Add(newData);
-					}
-					else
-					{
-						continue;
-					}
-				}
-				else
-				{
-					FSealBoxItem newData;
-					newData.itemRefID = slot3[i].itemRefID;
-					newData.minQuantity = slot3[i].minQuantity;
-					newData.maxQuantity = slot3[i].maxQuantity;
-					savedItemData.Add(newData);
-				}
-			}
-			else
-			{
-				bool alreadyHave = false;
-				if (slot3[i].itemRefID == 0)
-				{
-					if (CachedDataStore->GetRewardItemId(slot3[i].itemType) > 0)
-					{
-						for (int32 j = 0; j < savedItemData.Num(); j++)
-						{
-							if (savedItemData[j].itemRefID == CachedDataStore->GetRewardItemId(slot3[i].itemType))
-							{
-								alreadyHave = true;
-								if (savedItemData[j].minQuantity > slot3[i].minQuantity)
-									savedItemData[j].minQuantity = slot3[i].minQuantity;
-								if (savedItemData[j].maxQuantity < slot3[i].maxQuantity)
-									savedItemData[j].maxQuantity = slot3[i].maxQuantity;
-							}
-						}
-					}
-					else
-					{
-						continue;
-					}
-				}
-				else
-				{
-					for (int32 j = 0; j < savedItemData.Num(); j++)
-					{
-						if (savedItemData[j].itemRefID == slot3[i].itemRefID)
-						{
-							alreadyHave = true;
-							if (savedItemData[j].minQuantity > slot3[i].minQuantity)
-								savedItemData[j].minQuantity = slot3[i].minQuantity;
-							if (savedItemData[j].maxQuantity < slot3[i].maxQuantity)
-								savedItemData[j].maxQuantity = slot3[i].maxQuantity;
-						}
-					}
-				}
+	//					savedEquipmentData.Add(newData);
+	//				}
+	//			}
+	//		}
+	//	}
+	//	else
+	//	{
+	//		if (savedItemData.Num() == 0)
+	//		{
+	//			if (slot3[i].itemRefID == 0)
+	//			{
+	//				if (CachedDataStore->GetRewardItemId(slot3[i].itemType) > 0)
+	//				{
+	//					FSealBoxItem newData;
+	//					newData.itemRefID = CachedDataStore->GetRewardItemId(slot3[i].itemType);
+	//					newData.minQuantity = slot3[i].minQuantity;
+	//					newData.maxQuantity = slot3[i].maxQuantity;
+	//					savedItemData.Add(newData);
+	//				}
+	//				else
+	//				{
+	//					continue;
+	//				}
+	//			}
+	//			else
+	//			{
+	//				FSealBoxItem newData;
+	//				newData.itemRefID = slot3[i].itemRefID;
+	//				newData.minQuantity = slot3[i].minQuantity;
+	//				newData.maxQuantity = slot3[i].maxQuantity;
+	//				savedItemData.Add(newData);
+	//			}
+	//		}
+	//		else
+	//		{
+	//			bool alreadyHave = false;
+	//			if (slot3[i].itemRefID == 0)
+	//			{
+	//				if (CachedDataStore->GetRewardItemId(slot3[i].itemType) > 0)
+	//				{
+	//					for (int32 j = 0; j < savedItemData.Num(); j++)
+	//					{
+	//						if (savedItemData[j].itemRefID == CachedDataStore->GetRewardItemId(slot3[i].itemType))
+	//						{
+	//							alreadyHave = true;
+	//							if (savedItemData[j].minQuantity > slot3[i].minQuantity)
+	//								savedItemData[j].minQuantity = slot3[i].minQuantity;
+	//							if (savedItemData[j].maxQuantity < slot3[i].maxQuantity)
+	//								savedItemData[j].maxQuantity = slot3[i].maxQuantity;
+	//						}
+	//					}
+	//				}
+	//				else
+	//				{
+	//					continue;
+	//				}
+	//			}
+	//			else
+	//			{
+	//				for (int32 j = 0; j < savedItemData.Num(); j++)
+	//				{
+	//					if (savedItemData[j].itemRefID == slot3[i].itemRefID)
+	//					{
+	//						alreadyHave = true;
+	//						if (savedItemData[j].minQuantity > slot3[i].minQuantity)
+	//							savedItemData[j].minQuantity = slot3[i].minQuantity;
+	//						if (savedItemData[j].maxQuantity < slot3[i].maxQuantity)
+	//							savedItemData[j].maxQuantity = slot3[i].maxQuantity;
+	//					}
+	//				}
+	//			}
 
-				if (alreadyHave == false)
-				{
-					if (slot3[i].itemRefID == 0)
-					{
-						if (CachedDataStore->GetRewardItemId(slot3[i].itemType) > 0)
-						{
-							FSealBoxItem newData;
-							newData.itemRefID = CachedDataStore->GetRewardItemId(slot3[i].itemType);
-							newData.minQuantity = slot3[i].minQuantity;
-							newData.maxQuantity = slot3[i].maxQuantity;
-							savedItemData.Add(newData);
-						}
-						else
-						{
-							continue;
-						}
-					}
-					else
-					{
-						FSealBoxItem newData;
-						newData.itemRefID = slot3[i].itemRefID;
-						newData.minQuantity = slot3[i].minQuantity;
-						newData.maxQuantity = slot3[i].maxQuantity;
-						savedItemData.Add(newData);
-					}
-				}
-			}
-		}
-	}
-	for (int32 i = 0; i < slot4.Num(); i++)
-	{
-		if (slot4[i].itemType == b2network::B2RewardType::ITEM)
-		{
-			if (slot4[i].starGrade > 0)
-			{
-				if (savedEquipmentData.Num() == 0)
-				{
-					FSealBoxEquipment newData;
-					newData.starGrade = slot4[i].starGrade;
-					newData.groupID = slot4[i].groupID;
-					newData.equipCategory = slot4[i].equipCategory;
-					newData.equipPosition = slot4[i].equipPlace;
-					newData.quality = slot4[i].quality;
-					newData.enhancedLevel = slot4[i].enhanceLevel;
-					newData.surpassCount = slot4[i].surpassCount;
+	//			if (alreadyHave == false)
+	//			{
+	//				if (slot3[i].itemRefID == 0)
+	//				{
+	//					if (CachedDataStore->GetRewardItemId(slot3[i].itemType) > 0)
+	//					{
+	//						FSealBoxItem newData;
+	//						newData.itemRefID = CachedDataStore->GetRewardItemId(slot3[i].itemType);
+	//						newData.minQuantity = slot3[i].minQuantity;
+	//						newData.maxQuantity = slot3[i].maxQuantity;
+	//						savedItemData.Add(newData);
+	//					}
+	//					else
+	//					{
+	//						continue;
+	//					}
+	//				}
+	//				else
+	//				{
+	//					FSealBoxItem newData;
+	//					newData.itemRefID = slot3[i].itemRefID;
+	//					newData.minQuantity = slot3[i].minQuantity;
+	//					newData.maxQuantity = slot3[i].maxQuantity;
+	//					savedItemData.Add(newData);
+	//				}
+	//			}
+	//		}
+	//	}
+	//}
+	//for (int32 i = 0; i < slot4.Num(); i++)
+	//{
+	//	if (slot4[i].itemType == b2network::B2RewardType::ITEM)
+	//	{
+	//		if (slot4[i].starGrade > 0)
+	//		{
+	//			if (savedEquipmentData.Num() == 0)
+	//			{
+	//				FSealBoxEquipment newData;
+	//				newData.starGrade = slot4[i].starGrade;
+	//				newData.groupID = slot4[i].groupID;
+	//				newData.equipCategory = slot4[i].equipCategory;
+	//				newData.equipPosition = slot4[i].equipPlace;
+	//				newData.quality = slot4[i].quality;
+	//				newData.enhancedLevel = slot4[i].enhanceLevel;
+	//				newData.surpassCount = slot4[i].surpassCount;
 
-					savedEquipmentData.Add(newData);
-				}
-				else
-				{
-					bool sameItem = false;
-					for (int32 j = 0; j < savedEquipmentData.Num(); j++)
-					{
-						if (savedEquipmentData[j].starGrade == slot4[i].starGrade)
-							if (savedEquipmentData[j].groupID == slot4[i].groupID)
-								if (savedEquipmentData[j].equipCategory == slot4[i].equipCategory)
-									if (savedEquipmentData[j].equipPosition == slot4[i].equipPlace)
-										if (savedEquipmentData[j].quality == slot4[i].quality)
-											if (savedEquipmentData[j].enhancedLevel == slot4[i].enhanceLevel)
-												if (savedEquipmentData[j].surpassCount == slot4[i].surpassCount)
-													sameItem = true;
-					}
+	//				savedEquipmentData.Add(newData);
+	//			}
+	//			else
+	//			{
+	//				bool sameItem = false;
+	//				for (int32 j = 0; j < savedEquipmentData.Num(); j++)
+	//				{
+	//					if (savedEquipmentData[j].starGrade == slot4[i].starGrade)
+	//						if (savedEquipmentData[j].groupID == slot4[i].groupID)
+	//							if (savedEquipmentData[j].equipCategory == slot4[i].equipCategory)
+	//								if (savedEquipmentData[j].equipPosition == slot4[i].equipPlace)
+	//									if (savedEquipmentData[j].quality == slot4[i].quality)
+	//										if (savedEquipmentData[j].enhancedLevel == slot4[i].enhanceLevel)
+	//											if (savedEquipmentData[j].surpassCount == slot4[i].surpassCount)
+	//												sameItem = true;
+	//				}
 
-					if (sameItem == false)
-					{
-						FSealBoxEquipment newData;
-						newData.starGrade = slot4[i].starGrade;
-						newData.groupID = slot4[i].groupID;
-						newData.equipCategory = slot4[i].equipCategory;
-						newData.equipPosition = slot4[i].equipPlace;
-						newData.quality = slot4[i].quality;
-						newData.enhancedLevel = slot4[i].enhanceLevel;
-						newData.surpassCount = slot4[i].surpassCount;
+	//				if (sameItem == false)
+	//				{
+	//					FSealBoxEquipment newData;
+	//					newData.starGrade = slot4[i].starGrade;
+	//					newData.groupID = slot4[i].groupID;
+	//					newData.equipCategory = slot4[i].equipCategory;
+	//					newData.equipPosition = slot4[i].equipPlace;
+	//					newData.quality = slot4[i].quality;
+	//					newData.enhancedLevel = slot4[i].enhanceLevel;
+	//					newData.surpassCount = slot4[i].surpassCount;
 
-						savedEquipmentData.Add(newData);
-					}
-				}
-			}
-		}
-		else
-		{
-			if (savedItemData.Num() == 0)
-			{
-				if (slot4[i].itemRefID == 0)
-				{
-					if (CachedDataStore->GetRewardItemId(slot4[i].itemType) > 0)
-					{
-						FSealBoxItem newData;
-						newData.itemRefID = CachedDataStore->GetRewardItemId(slot4[i].itemType);
-						newData.minQuantity = slot4[i].minQuantity;
-						newData.maxQuantity = slot4[i].maxQuantity;
-						savedItemData.Add(newData);
-					}
-					else
-					{
-						continue;
-					}
-				}
-				else
-				{
-					FSealBoxItem newData;
-					newData.itemRefID = slot4[i].itemRefID;
-					newData.minQuantity = slot4[i].minQuantity;
-					newData.maxQuantity = slot4[i].maxQuantity;
-					savedItemData.Add(newData);
-				}
-			}
-			else
-			{
-				bool alreadyHave = false;
-				if (slot4[i].itemRefID == 0)
-				{
-					if (CachedDataStore->GetRewardItemId(slot4[i].itemType) > 0)
-					{
-						for (int32 j = 0; j < savedItemData.Num(); j++)
-						{
-							if (savedItemData[j].itemRefID == CachedDataStore->GetRewardItemId(slot4[i].itemType))
-							{
-								alreadyHave = true;
-								if (savedItemData[j].minQuantity > slot4[i].minQuantity)
-									savedItemData[j].minQuantity = slot4[i].minQuantity;
-								if (savedItemData[j].maxQuantity < slot4[i].maxQuantity)
-									savedItemData[j].maxQuantity = slot4[i].maxQuantity;
-							}
-						}
-					}
-					else
-					{
-						continue;
-					}
-				}
-				else
-				{
-					for (int32 j = 0; j < savedItemData.Num(); j++)
-					{
-						if (savedItemData[j].itemRefID == slot4[i].itemRefID)
-						{
-							alreadyHave = true;
-							if (savedItemData[j].minQuantity > slot4[i].minQuantity)
-								savedItemData[j].minQuantity = slot4[i].minQuantity;
-							if (savedItemData[j].maxQuantity < slot4[i].maxQuantity)
-								savedItemData[j].maxQuantity = slot4[i].maxQuantity;
-						}
-					}
-				}
+	//					savedEquipmentData.Add(newData);
+	//				}
+	//			}
+	//		}
+	//	}
+	//	else
+	//	{
+	//		if (savedItemData.Num() == 0)
+	//		{
+	//			if (slot4[i].itemRefID == 0)
+	//			{
+	//				if (CachedDataStore->GetRewardItemId(slot4[i].itemType) > 0)
+	//				{
+	//					FSealBoxItem newData;
+	//					newData.itemRefID = CachedDataStore->GetRewardItemId(slot4[i].itemType);
+	//					newData.minQuantity = slot4[i].minQuantity;
+	//					newData.maxQuantity = slot4[i].maxQuantity;
+	//					savedItemData.Add(newData);
+	//				}
+	//				else
+	//				{
+	//					continue;
+	//				}
+	//			}
+	//			else
+	//			{
+	//				FSealBoxItem newData;
+	//				newData.itemRefID = slot4[i].itemRefID;
+	//				newData.minQuantity = slot4[i].minQuantity;
+	//				newData.maxQuantity = slot4[i].maxQuantity;
+	//				savedItemData.Add(newData);
+	//			}
+	//		}
+	//		else
+	//		{
+	//			bool alreadyHave = false;
+	//			if (slot4[i].itemRefID == 0)
+	//			{
+	//				if (CachedDataStore->GetRewardItemId(slot4[i].itemType) > 0)
+	//				{
+	//					for (int32 j = 0; j < savedItemData.Num(); j++)
+	//					{
+	//						if (savedItemData[j].itemRefID == CachedDataStore->GetRewardItemId(slot4[i].itemType))
+	//						{
+	//							alreadyHave = true;
+	//							if (savedItemData[j].minQuantity > slot4[i].minQuantity)
+	//								savedItemData[j].minQuantity = slot4[i].minQuantity;
+	//							if (savedItemData[j].maxQuantity < slot4[i].maxQuantity)
+	//								savedItemData[j].maxQuantity = slot4[i].maxQuantity;
+	//						}
+	//					}
+	//				}
+	//				else
+	//				{
+	//					continue;
+	//				}
+	//			}
+	//			else
+	//			{
+	//				for (int32 j = 0; j < savedItemData.Num(); j++)
+	//				{
+	//					if (savedItemData[j].itemRefID == slot4[i].itemRefID)
+	//					{
+	//						alreadyHave = true;
+	//						if (savedItemData[j].minQuantity > slot4[i].minQuantity)
+	//							savedItemData[j].minQuantity = slot4[i].minQuantity;
+	//						if (savedItemData[j].maxQuantity < slot4[i].maxQuantity)
+	//							savedItemData[j].maxQuantity = slot4[i].maxQuantity;
+	//					}
+	//				}
+	//			}
 
-				if (alreadyHave == false)
-				{
-					if (slot4[i].itemRefID == 0)
-					{
-						if (CachedDataStore->GetRewardItemId(slot4[i].itemType) > 0)
-						{
-							FSealBoxItem newData;
-							newData.itemRefID = CachedDataStore->GetRewardItemId(slot4[i].itemType);
-							newData.minQuantity = slot4[i].minQuantity;
-							newData.maxQuantity = slot4[i].maxQuantity;
-							savedItemData.Add(newData);
-						}
-						else
-						{
-							continue;
-						}
-					}
-					else
-					{
-						FSealBoxItem newData;
-						newData.itemRefID = slot4[i].itemRefID;
-						newData.minQuantity = slot4[i].minQuantity;
-						newData.maxQuantity = slot4[i].maxQuantity;
-						savedItemData.Add(newData);
-					}
-				}
-			}
-		}
-	}
-	for (int32 i = 0; i < slot5.Num(); i++)
-	{
-		if (slot5[i].itemType == b2network::B2RewardType::ITEM)
-		{
-			if (slot5[i].starGrade > 0)
-			{
-				if (savedEquipmentData.Num() == 0)
-				{
-					FSealBoxEquipment newData;
-					newData.starGrade = slot5[i].starGrade;
-					newData.groupID = slot5[i].groupID;
-					newData.equipCategory = slot5[i].equipCategory;
-					newData.equipPosition = slot5[i].equipPlace;
-					newData.quality = slot5[i].quality;
-					newData.enhancedLevel = slot5[i].enhanceLevel;
-					newData.surpassCount = slot5[i].surpassCount;
+	//			if (alreadyHave == false)
+	//			{
+	//				if (slot4[i].itemRefID == 0)
+	//				{
+	//					if (CachedDataStore->GetRewardItemId(slot4[i].itemType) > 0)
+	//					{
+	//						FSealBoxItem newData;
+	//						newData.itemRefID = CachedDataStore->GetRewardItemId(slot4[i].itemType);
+	//						newData.minQuantity = slot4[i].minQuantity;
+	//						newData.maxQuantity = slot4[i].maxQuantity;
+	//						savedItemData.Add(newData);
+	//					}
+	//					else
+	//					{
+	//						continue;
+	//					}
+	//				}
+	//				else
+	//				{
+	//					FSealBoxItem newData;
+	//					newData.itemRefID = slot4[i].itemRefID;
+	//					newData.minQuantity = slot4[i].minQuantity;
+	//					newData.maxQuantity = slot4[i].maxQuantity;
+	//					savedItemData.Add(newData);
+	//				}
+	//			}
+	//		}
+	//	}
+	//}
+	//for (int32 i = 0; i < slot5.Num(); i++)
+	//{
+	//	if (slot5[i].itemType == b2network::B2RewardType::ITEM)
+	//	{
+	//		if (slot5[i].starGrade > 0)
+	//		{
+	//			if (savedEquipmentData.Num() == 0)
+	//			{
+	//				FSealBoxEquipment newData;
+	//				newData.starGrade = slot5[i].starGrade;
+	//				newData.groupID = slot5[i].groupID;
+	//				newData.equipCategory = slot5[i].equipCategory;
+	//				newData.equipPosition = slot5[i].equipPlace;
+	//				newData.quality = slot5[i].quality;
+	//				newData.enhancedLevel = slot5[i].enhanceLevel;
+	//				newData.surpassCount = slot5[i].surpassCount;
 
-					savedEquipmentData.Add(newData);
-				}
-				else
-				{
-					bool sameItem = false;
-					for (int32 j = 0; j < savedEquipmentData.Num(); j++)
-					{
-						if (savedEquipmentData[j].starGrade == slot5[i].starGrade)
-							if (savedEquipmentData[j].groupID == slot5[i].groupID)
-								if (savedEquipmentData[j].equipCategory == slot5[i].equipCategory)
-									if (savedEquipmentData[j].equipPosition == slot5[i].equipPlace)
-										if (savedEquipmentData[j].quality == slot5[i].quality)
-											if (savedEquipmentData[j].enhancedLevel == slot5[i].enhanceLevel)
-												if (savedEquipmentData[j].surpassCount == slot5[i].surpassCount)
-													sameItem = true;
-					}
+	//				savedEquipmentData.Add(newData);
+	//			}
+	//			else
+	//			{
+	//				bool sameItem = false;
+	//				for (int32 j = 0; j < savedEquipmentData.Num(); j++)
+	//				{
+	//					if (savedEquipmentData[j].starGrade == slot5[i].starGrade)
+	//						if (savedEquipmentData[j].groupID == slot5[i].groupID)
+	//							if (savedEquipmentData[j].equipCategory == slot5[i].equipCategory)
+	//								if (savedEquipmentData[j].equipPosition == slot5[i].equipPlace)
+	//									if (savedEquipmentData[j].quality == slot5[i].quality)
+	//										if (savedEquipmentData[j].enhancedLevel == slot5[i].enhanceLevel)
+	//											if (savedEquipmentData[j].surpassCount == slot5[i].surpassCount)
+	//												sameItem = true;
+	//				}
 
-					if (sameItem == false)
-					{
-						FSealBoxEquipment newData;
-						newData.starGrade = slot5[i].starGrade;
-						newData.groupID = slot5[i].groupID;
-						newData.equipCategory = slot5[i].equipCategory;
-						newData.equipPosition = slot5[i].equipPlace;
-						newData.quality = slot5[i].quality;
-						newData.enhancedLevel = slot5[i].enhanceLevel;
-						newData.surpassCount = slot5[i].surpassCount;
+	//				if (sameItem == false)
+	//				{
+	//					FSealBoxEquipment newData;
+	//					newData.starGrade = slot5[i].starGrade;
+	//					newData.groupID = slot5[i].groupID;
+	//					newData.equipCategory = slot5[i].equipCategory;
+	//					newData.equipPosition = slot5[i].equipPlace;
+	//					newData.quality = slot5[i].quality;
+	//					newData.enhancedLevel = slot5[i].enhanceLevel;
+	//					newData.surpassCount = slot5[i].surpassCount;
 
-						savedEquipmentData.Add(newData);
-					}
-				}
-			}
-		}
-		else
-		{
-			if (savedItemData.Num() == 0)
-			{
-				if (slot5[i].itemRefID == 0)
-				{
-					if (CachedDataStore->GetRewardItemId(slot5[i].itemType) > 0)
-					{
-						FSealBoxItem newData;
-						newData.itemRefID = CachedDataStore->GetRewardItemId(slot5[i].itemType);
-						newData.minQuantity = slot5[i].minQuantity;
-						newData.maxQuantity = slot5[i].maxQuantity;
-						savedItemData.Add(newData);
-					}
-					else
-					{
-						continue;
-					}
-				}
-				else
-				{
-					FSealBoxItem newData;
-					newData.itemRefID = slot5[i].itemRefID;
-					newData.minQuantity = slot5[i].minQuantity;
-					newData.maxQuantity = slot5[i].maxQuantity;
-					savedItemData.Add(newData);
-				}
-			}
-			else
-			{
-				bool alreadyHave = false;
-				if (slot5[i].itemRefID == 0)
-				{
-					if (CachedDataStore->GetRewardItemId(slot5[i].itemType) > 0)
-					{
-						for (int32 j = 0; j < savedItemData.Num(); j++)
-						{
-							if (savedItemData[j].itemRefID == CachedDataStore->GetRewardItemId(slot5[i].itemType))
-							{
-								alreadyHave = true;
-								if (savedItemData[j].minQuantity > slot5[i].minQuantity)
-									savedItemData[j].minQuantity = slot5[i].minQuantity;
-								if (savedItemData[j].maxQuantity < slot5[i].maxQuantity)
-									savedItemData[j].maxQuantity = slot5[i].maxQuantity;
-							}
-						}
-					}
-					else
-					{
-						continue;
-					}
-				}
-				else
-				{
-					for (int32 j = 0; j < savedItemData.Num(); j++)
-					{
-						if (savedItemData[j].itemRefID == slot5[i].itemRefID)
-						{
-							alreadyHave = true;
-							if (savedItemData[j].minQuantity > slot5[i].minQuantity)
-								savedItemData[j].minQuantity = slot5[i].minQuantity;
-							if (savedItemData[j].maxQuantity < slot5[i].maxQuantity)
-								savedItemData[j].maxQuantity = slot5[i].maxQuantity;
-						}
-					}
-				}
+	//					savedEquipmentData.Add(newData);
+	//				}
+	//			}
+	//		}
+	//	}
+	//	else
+	//	{
+	//		if (savedItemData.Num() == 0)
+	//		{
+	//			if (slot5[i].itemRefID == 0)
+	//			{
+	//				if (CachedDataStore->GetRewardItemId(slot5[i].itemType) > 0)
+	//				{
+	//					FSealBoxItem newData;
+	//					newData.itemRefID = CachedDataStore->GetRewardItemId(slot5[i].itemType);
+	//					newData.minQuantity = slot5[i].minQuantity;
+	//					newData.maxQuantity = slot5[i].maxQuantity;
+	//					savedItemData.Add(newData);
+	//				}
+	//				else
+	//				{
+	//					continue;
+	//				}
+	//			}
+	//			else
+	//			{
+	//				FSealBoxItem newData;
+	//				newData.itemRefID = slot5[i].itemRefID;
+	//				newData.minQuantity = slot5[i].minQuantity;
+	//				newData.maxQuantity = slot5[i].maxQuantity;
+	//				savedItemData.Add(newData);
+	//			}
+	//		}
+	//		else
+	//		{
+	//			bool alreadyHave = false;
+	//			if (slot5[i].itemRefID == 0)
+	//			{
+	//				if (CachedDataStore->GetRewardItemId(slot5[i].itemType) > 0)
+	//				{
+	//					for (int32 j = 0; j < savedItemData.Num(); j++)
+	//					{
+	//						if (savedItemData[j].itemRefID == CachedDataStore->GetRewardItemId(slot5[i].itemType))
+	//						{
+	//							alreadyHave = true;
+	//							if (savedItemData[j].minQuantity > slot5[i].minQuantity)
+	//								savedItemData[j].minQuantity = slot5[i].minQuantity;
+	//							if (savedItemData[j].maxQuantity < slot5[i].maxQuantity)
+	//								savedItemData[j].maxQuantity = slot5[i].maxQuantity;
+	//						}
+	//					}
+	//				}
+	//				else
+	//				{
+	//					continue;
+	//				}
+	//			}
+	//			else
+	//			{
+	//				for (int32 j = 0; j < savedItemData.Num(); j++)
+	//				{
+	//					if (savedItemData[j].itemRefID == slot5[i].itemRefID)
+	//					{
+	//						alreadyHave = true;
+	//						if (savedItemData[j].minQuantity > slot5[i].minQuantity)
+	//							savedItemData[j].minQuantity = slot5[i].minQuantity;
+	//						if (savedItemData[j].maxQuantity < slot5[i].maxQuantity)
+	//							savedItemData[j].maxQuantity = slot5[i].maxQuantity;
+	//					}
+	//				}
+	//			}
 
-				if (alreadyHave == false)
-				{
-					if (slot5[i].itemRefID == 0)
-					{
-						if (CachedDataStore->GetRewardItemId(slot5[i].itemType) > 0)
-						{
-							FSealBoxItem newData;
-							newData.itemRefID = CachedDataStore->GetRewardItemId(slot5[i].itemType);
-							newData.minQuantity = slot5[i].minQuantity;
-							newData.maxQuantity = slot5[i].maxQuantity;
-							savedItemData.Add(newData);
-						}
-						else
-						{
-							continue;
-						}
-					}
-					else
-					{
-						FSealBoxItem newData;
-						newData.itemRefID = slot5[i].itemRefID;
-						newData.minQuantity = slot5[i].minQuantity;
-						newData.maxQuantity = slot5[i].maxQuantity;
-						savedItemData.Add(newData);
-					}
-				}
-			}
-		}
-	}
-	
-	if (SB_SealBox_ContainList.IsValid())
-	{
-		SB_SealBox_ContainList->ClearChildren();
+	//			if (alreadyHave == false)
+	//			{
+	//				if (slot5[i].itemRefID == 0)
+	//				{
+	//					if (CachedDataStore->GetRewardItemId(slot5[i].itemType) > 0)
+	//					{
+	//						FSealBoxItem newData;
+	//						newData.itemRefID = CachedDataStore->GetRewardItemId(slot5[i].itemType);
+	//						newData.minQuantity = slot5[i].minQuantity;
+	//						newData.maxQuantity = slot5[i].maxQuantity;
+	//						savedItemData.Add(newData);
+	//					}
+	//					else
+	//					{
+	//						continue;
+	//					}
+	//				}
+	//				else
+	//				{
+	//					FSealBoxItem newData;
+	//					newData.itemRefID = slot5[i].itemRefID;
+	//					newData.minQuantity = slot5[i].minQuantity;
+	//					newData.maxQuantity = slot5[i].maxQuantity;
+	//					savedItemData.Add(newData);
+	//				}
+	//			}
+	//		}
+	//	}
+	//}
+	//
+	//if (SB_SealBox_ContainList.IsValid())
+	//{
+	//	SB_SealBox_ContainList->ClearChildren();
 
-		for (int32 i = 0; i < savedItemData.Num(); i++)
-		{
-			UB2DynItemIcon_SealBoxPreview* SealBoxIconWidget = CreateWidget<UB2DynItemIcon_SealBoxPreview>(GetOwningPlayer(), SealBoxContainListBP);
-			SealBoxIconWidget->CacheAssets();
-			SealBoxIconWidget->SetItem(savedItemData[i].itemRefID, savedItemData[i].minQuantity, savedItemData[i].maxQuantity);
-			SB_SealBox_ContainList->AddChild(SealBoxIconWidget);
-		}
+	//	for (int32 i = 0; i < savedItemData.Num(); i++)
+	//	{
+	//		UB2DynItemIcon_SealBoxPreview* SealBoxIconWidget = CreateWidget<UB2DynItemIcon_SealBoxPreview>(GetOwningPlayer(), SealBoxContainListBP);
+	//		SealBoxIconWidget->CacheAssets();
+	//		SealBoxIconWidget->SetItem(savedItemData[i].itemRefID, savedItemData[i].minQuantity, savedItemData[i].maxQuantity);
+	//		SB_SealBox_ContainList->AddChild(SealBoxIconWidget);
+	//	}
 
-		for (int32 i = 0; i < savedEquipmentData.Num(); i++)
-		{
-			UB2DynItemIcon_SealBoxPreview* SealBoxIconWidget = CreateWidget<UB2DynItemIcon_SealBoxPreview>(GetOwningPlayer(), SealBoxContainListBP);
-			SealBoxIconWidget->CacheAssets();
-			SealBoxIconWidget->SetItem(savedEquipmentData[i].groupID, SealBoxClass, savedEquipmentData[i].equipCategory, savedEquipmentData[i].equipPosition, savedEquipmentData[i].starGrade, savedEquipmentData[i].quality, savedEquipmentData[i].enhancedLevel, savedEquipmentData[i].surpassCount);
-			SB_SealBox_ContainList->AddChild(SealBoxIconWidget);
-		}
-	}
+	//	for (int32 i = 0; i < savedEquipmentData.Num(); i++)
+	//	{
+	//		UB2DynItemIcon_SealBoxPreview* SealBoxIconWidget = CreateWidget<UB2DynItemIcon_SealBoxPreview>(GetOwningPlayer(), SealBoxContainListBP);
+	//		SealBoxIconWidget->CacheAssets();
+	//		SealBoxIconWidget->SetItem(savedEquipmentData[i].groupID, SealBoxClass, savedEquipmentData[i].equipCategory, savedEquipmentData[i].equipPosition, savedEquipmentData[i].starGrade, savedEquipmentData[i].quality, savedEquipmentData[i].enhancedLevel, savedEquipmentData[i].surpassCount);
+	//		SB_SealBox_ContainList->AddChild(SealBoxIconWidget);
+	//	}
+	//}
 }
 
 bool UB2LobbyUI_ItemDetail::GetConvertableItem()	// 하드코딩 //변환 시스템이 사라지고 제작소로 흡수되서 사용하지 않음

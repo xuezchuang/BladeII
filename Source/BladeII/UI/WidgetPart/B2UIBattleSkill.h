@@ -5,6 +5,7 @@
 
 #include "B2UIWidgetBase.h"
 #include "B2UIDocBindable.h"
+#include "../../BladeII/BladeIIPlayer.h"
 #include "B2UIBattleSkill.generated.h"
 
 /* This is when you click on informing purpose. */

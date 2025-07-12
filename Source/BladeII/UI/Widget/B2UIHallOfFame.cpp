@@ -203,18 +203,18 @@ void UB2UIHallOfFame::SetSettleState()
 {
 	ClearPlayerInfo();
 
-	UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
-		BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_Notification")),
-		BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("HallOfFrame_BlockEnter")),
-		0.f,
-		true,
-		true,
-		EUIMsgPopupButtonGroup::GotoLobby,
-		FMsgPopupOnClick::CreateLambda([]() {GoToVillageClass<>::GetInstance().Signal(); }),
-		0,
-		true,
-		EPopUpPriority::Server_Message_GoToLobby
-	);
+	//UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
+	//	BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_Notification")),
+	//	BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("HallOfFrame_BlockEnter")),
+	//	0.f,
+	//	true,
+	//	true,
+	//	EUIMsgPopupButtonGroup::GotoLobby,
+	//	FMsgPopupOnClick::CreateLambda([]() {GoToVillageClass<>::GetInstance().Signal(); }),
+	//	0,
+	//	true,
+	//	EPopUpPriority::Server_Message_GoToLobby
+	//);
 }
 
 void UB2UIHallOfFame::SetCelebratePopup(EHallOfFameMode InMode, int32 InRanking, TArray<b2network::B2RewardPtr>& InRewardItem)

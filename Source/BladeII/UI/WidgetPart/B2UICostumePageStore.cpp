@@ -222,58 +222,58 @@ void UB2UICostumePageStore::RefreshPackageDetailPopup()
 
 void UB2UICostumePageStore::ProcessPurchase(int32 ProductID)
 {
-	const FStoreProductData* StoreProductData = BladeIIGameImpl::GetClientDataStore().GetStoreProductData(ProductID);
-	if (StoreProductData == nullptr)
-	{
-		ClosePackageDetailPopup();
-		OpenFailBuyPopUp();
-		return;
-	}
-		
-	
-	int32 PackageID = StoreProductData->Product.ProductId;
-	TArray<FPackageProductData> PackageProductDatas;
-	BladeIIGameImpl::GetClientDataStore().GetPackageProductList(PackageID, PackageProductDatas);
-	
-	StoreProductID = INDEX_NONE;
-
-	//코스튬 인벤 개수 제한
-	AB2LobbyGameMode* LobbyGM = Cast<AB2LobbyGameMode>(UGameplayStatics::GetGameMode(GetOwningPlayer()));
-	auto* CachedInventory = LobbyGM ? LobbyGM->GetLobbyInventory() : NULL;
-	if (CachedInventory)
-	{
-		bool bIsFull = CachedInventory->GetStoredCostomeItemNumInUnitedSlot(SelectedPCClass) > BladeIIGameImpl::GetClientDataStore().GetMaxCostumeInventorySlotCount();
-		if (bIsFull)
-		{
-			ClosePackageDetailPopup();
-			OpenFailBuyPopUp(true);
-			return;
-		}
-	}
-
-	EStoreItemCost CurrentCostType = static_cast<EStoreItemCost>(StoreProductData->CostType);
-	
-	if (CurrentCostType == EStoreItemCost::Cash)
-	{
-		if (B2P_GetKakaoIDPCode() == EPlatformIDPCode::Guest)
-		{
-			StoreProductID = ProductID;
-			OpenGuestWarningPopup();
-		}
-		else
-		{
-			RequestCashPurchase(ProductID);
-		}
-	}
-	else
-	{
-		ClosePackageDetailPopup();
-
-		if (B2UIUtil::CheckPayableStoreProduct(StoreProductData))
-			data_trader::Retailer::GetInstance().RequestBuyShopProduct(ProductID);
-		else
-			B2UIUtil::OpenCostTypeErrorPopup(CurrentCostType);
-	}
+//	const FStoreProductData* StoreProductData = BladeIIGameImpl::GetClientDataStore().GetStoreProductData(ProductID);
+//	if (StoreProductData == nullptr)
+//	{
+//		ClosePackageDetailPopup();
+//		OpenFailBuyPopUp();
+//		return;
+//	}
+//		
+//	
+//	int32 PackageID = StoreProductData->Product.ProductId;
+//	TArray<FPackageProductData> PackageProductDatas;
+//	BladeIIGameImpl::GetClientDataStore().GetPackageProductList(PackageID, PackageProductDatas);
+//	
+//	StoreProductID = INDEX_NONE;
+//
+//	//코스튬 인벤 개수 제한
+//	AB2LobbyGameMode* LobbyGM = Cast<AB2LobbyGameMode>(UGameplayStatics::GetGameMode(GetOwningPlayer()));
+//	auto* CachedInventory = LobbyGM ? LobbyGM->GetLobbyInventory() : NULL;
+//	if (CachedInventory)
+//	{
+//		bool bIsFull = CachedInventory->GetStoredCostomeItemNumInUnitedSlot(SelectedPCClass) > BladeIIGameImpl::GetClientDataStore().GetMaxCostumeInventorySlotCount();
+//		if (bIsFull)
+//		{
+//			ClosePackageDetailPopup();
+//			OpenFailBuyPopUp(true);
+//			return;
+//		}
+//	}
+//
+//	EStoreItemCost CurrentCostType = static_cast<EStoreItemCost>(StoreProductData->CostType);
+//	
+//	if (CurrentCostType == EStoreItemCost::Cash)
+//	{
+//		if (B2P_GetKakaoIDPCode() == EPlatformIDPCode::Guest)
+//		{
+//			StoreProductID = ProductID;
+//			OpenGuestWarningPopup();
+//		}
+//		else
+//		{
+//			RequestCashPurchase(ProductID);
+//		}
+//	}
+//	else
+//	{
+//		ClosePackageDetailPopup();
+//
+//		if (B2UIUtil::CheckPayableStoreProduct(StoreProductData))
+//			data_trader::Retailer::GetInstance().RequestBuyShopProduct(ProductID);
+//		else
+//			B2UIUtil::OpenCostTypeErrorPopup(CurrentCostType);
+//	}
 }
 
 bool UB2UICostumePageStore::CheckPackageInClass(EPCClass CurrentClass, const FStoreProductData & StoreProductData)
@@ -291,51 +291,51 @@ bool UB2UICostumePageStore::CheckPackageInClass(EPCClass CurrentClass, const FSt
 
 void UB2UICostumePageStore::FilterAndSortPackageList(EPCClass InCurrentClass, TArray<FStoreProductData>& FilterList)
 {
-	//Filter Class
-	FilterList.RemoveAll([this, InCurrentClass](const FStoreProductData& ProductData)
-	{
-		return (this->CheckPackageInClass(InCurrentClass, ProductData) == false);
-	});
+	//////Filter Class
+	////FilterList.RemoveAll([this, InCurrentClass](const FStoreProductData& ProductData)
+	////{
+	////	return (this->CheckPackageInClass(InCurrentClass, ProductData) == false);
+	////});
 
-	////Filter Market
-	//FilterList.RemoveAll([this](const FStoreProductData& ProductData)
+	//////Filter Market
+	////FilterList.RemoveAll([this](const FStoreProductData& ProductData)
+	////{
+	////	if (ProductData.CostType == static_cast<int32>(EStoreItemCost::Gem))
+	////		return false;
+	////	else
+	////		return (B2InAppPurchase::IB2IAPGenericPlatform::GetInstance()->GetMarketProduct(ProductData.StoreProductId) == nullptr);
+	////});
+
+	////Filter Period
+	//UB2UIDocStore* DocStore = UB2UIDocHelper::GetDocStore();
+	//if (DocStore != nullptr)
 	//{
-	//	if (ProductData.CostType == static_cast<int32>(EStoreItemCost::Gem))
+	//	FilterList.RemoveAll([this, &DocStore](const FStoreProductData& ProductData)
+	//	{
+	//		if (DocStore->IsPeriodicPackage(ProductData.Product.ProductId))
+	//		{
+	//			int64 EndTime = DocStore->GetReceivedPeriodicPackageLeftTime(ProductData.Product.ProductId);
+	//			FTimespan RemainTime = FDateTime::FromUnixTimestamp(EndTime / 1000) - UB2GameInstance::GetUTCNow();
+	//			return RemainTime.GetSeconds() <= 0;
+	//		}
 	//		return false;
-	//	else
-	//		return (B2InAppPurchase::IB2IAPGenericPlatform::GetInstance()->GetMarketProduct(ProductData.StoreProductId) == nullptr);
+	//	});
+	//}
+
+	////Sort
+	//FilterList.Sort([](const FStoreProductData& Data1, const FStoreProductData& Data2)->bool {
+	//	return Data1.GoodsCategoryOrder < Data2.GoodsCategoryOrder;
 	//});
 
-	//Filter Period
-	UB2UIDocStore* DocStore = UB2UIDocHelper::GetDocStore();
-	if (DocStore != nullptr)
-	{
-		FilterList.RemoveAll([this, &DocStore](const FStoreProductData& ProductData)
-		{
-			if (DocStore->IsPeriodicPackage(ProductData.Product.ProductId))
-			{
-				int64 EndTime = DocStore->GetReceivedPeriodicPackageLeftTime(ProductData.Product.ProductId);
-				FTimespan RemainTime = FDateTime::FromUnixTimestamp(EndTime / 1000) - UB2GameInstance::GetUTCNow();
-				return RemainTime.GetSeconds() <= 0;
-			}
-			return false;
-		});
-	}
-
-	//Sort
-	FilterList.Sort([](const FStoreProductData& Data1, const FStoreProductData& Data2)->bool {
-		return Data1.GoodsCategoryOrder < Data2.GoodsCategoryOrder;
-	});
-
-	//limit
-	if (DocStore != nullptr)
-	{
-		FilterList.StableSort([&DocStore](const FStoreProductData& Data1, const FStoreProductData& Data2)->bool {
-			bool LimitData1 = DocStore->IsPeriodicPackage(Data1.Product.ProductId);
-			bool LimitData2 = DocStore->IsPeriodicPackage(Data2.Product.ProductId);
-			return !LimitData1 && LimitData2;
-		});
-	}
+	////limit
+	//if (DocStore != nullptr)
+	//{
+	//	FilterList.StableSort([&DocStore](const FStoreProductData& Data1, const FStoreProductData& Data2)->bool {
+	//		bool LimitData1 = DocStore->IsPeriodicPackage(Data1.Product.ProductId);
+	//		bool LimitData2 = DocStore->IsPeriodicPackage(Data2.Product.ProductId);
+	//		return !LimitData1 && LimitData2;
+	//	});
+	//}
 }
 
 void UB2UICostumePageStore::CompletedPurchaseBuyCash(bool success, const FB2ResponseBuyShopResultInfoPtr GetProduct)
@@ -356,53 +356,53 @@ void UB2UICostumePageStore::CompletedPurchaseBuyCash(bool success, const FB2Resp
 
 void UB2UICostumePageStore::OnOpen(bool RightNow)
 {
-	BindDocAuto();
-	Super::OnOpen(RightNow);
+	//BindDocAuto();
+	//Super::OnOpen(RightNow);
 
-	Issues.Add(LobbySetHeroMgmtModePCSelectionClass<EPCClass>::GetInstance().Subscribe2(
-		[this](EPCClass SelectionPCClass)
-	{
-		ClosePackageDetailPopup();
-		this->RefreshPage();
-	}
-	));
+	//Issues.Add(LobbySetHeroMgmtModePCSelectionClass<EPCClass>::GetInstance().Subscribe2(
+	//	[this](EPCClass SelectionPCClass)
+	//{
+	//	ClosePackageDetailPopup();
+	//	this->RefreshPage();
+	//}
+	//));
 
-	Issues.Add(SelectCostumePackageClass<int32>::GetInstance().Subscribe2(
-		[this](int32 ProductID)
-	{
-		this->OpenPackageDetailPopUp(ProductID);
-	}
-	));
+	//Issues.Add(SelectCostumePackageClass<int32>::GetInstance().Subscribe2(
+	//	[this](int32 ProductID)
+	//{
+	//	this->OpenPackageDetailPopUp(ProductID);
+	//}
+	//));
 
-	Issues.Add(SelectItemToBuyClass<int32>::GetInstance().Subscribe2(
-		[this](int32 ProductID)
-	{
-		this->ProcessPurchase(ProductID);
-	}
-	));
-	
-	Issues.Add(DeliveryBuyShopProductClass<FB2ResponseBuyShopProductPtr>::GetInstance().Subscribe2(
-		[this](const FB2ResponseBuyShopProductPtr& BuyShopResult) 
-	{
-		this->RefreshPage();
-		OpenSuccessBuyPopUp();
-		RefreshPackageDetailPopup();
-		BladeIIGameImpl::GetRedDotManager().RequestCheckRedDot({ RedDotHint::RED_DOT_EQUIP });
-	}
-	));
+	//Issues.Add(SelectItemToBuyClass<int32>::GetInstance().Subscribe2(
+	//	[this](int32 ProductID)
+	//{
+	//	this->ProcessPurchase(ProductID);
+	//}
+	//));
+	//
+	//Issues.Add(DeliveryBuyShopProductClass<FB2ResponseBuyShopProductPtr>::GetInstance().Subscribe2(
+	//	[this](const FB2ResponseBuyShopProductPtr& BuyShopResult) 
+	//{
+	//	this->RefreshPage();
+	//	OpenSuccessBuyPopUp();
+	//	RefreshPackageDetailPopup();
+	//	BladeIIGameImpl::GetRedDotManager().RequestCheckRedDot({ RedDotHint::RED_DOT_EQUIP });
+	//}
+	//));
 
-	//B2InAppPurchase::IB2IAPGenericPlatform::OnPurchaseResultDelegate.BindLambda([this](bool success, b2network::B2BuyShopResultInfoPtr GetProduct) {
-	//	//UE_LOG(LogBladeII, Warning, TEXT("@@@@@@@ OnPurchaseResultDelegate @@@@@@@>> %d"), success);
-	//	CompletedPurchaseBuyCash(success, GetProduct);
-	//});
+	////B2InAppPurchase::IB2IAPGenericPlatform::OnPurchaseResultDelegate.BindLambda([this](bool success, b2network::B2BuyShopResultInfoPtr GetProduct) {
+	////	//UE_LOG(LogBladeII, Warning, TEXT("@@@@@@@ OnPurchaseResultDelegate @@@@@@@>> %d"), success);
+	////	CompletedPurchaseBuyCash(success, GetProduct);
+	////});
 
-	RefreshPage();
+	//RefreshPage();
 }
 
 void UB2UICostumePageStore::OnClose(bool RightNow)
 {
 	UnbindDoc();
-	Issues.Empty();
+	//Issues.Empty();
 
 	OnClose_BP();
 }

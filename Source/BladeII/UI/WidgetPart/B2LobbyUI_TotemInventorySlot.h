@@ -4,6 +4,10 @@
 //#include "BladeII.h"
 #include "CoreMinimal.h"
 #include "UI/B2UIWidget.h"
+#include "../../DataStore/B2TotemData.h"
+#include "../Widget/B2ScrollBox.h"
+#include "../B2UnitedWidgetBase.h"
+#include "../../BladeII/BladeIIGameMode.h"
 #include "B2LobbyUI_TotemInventorySlot.generated.h"
 
 /**

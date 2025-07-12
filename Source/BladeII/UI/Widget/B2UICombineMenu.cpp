@@ -447,11 +447,11 @@ void UB2UICombineMenu::OnClickBTN_ItemForge()
 {
 	LobbyChangeSceneByUISceneClass<EUIScene>::GetInstance().Signal(EUIScene::ItemForge);
 
-	UB2UIItemForge* ItemForgeUI = UB2UIManager::GetInstance()->GetUI<UB2UIItemForge>(UIFName::ItemForge);
-	if (ItemForgeUI)
-	{
-		ItemForgeUI->ForgeInit();
-	}
+	//UB2UIItemForge* ItemForgeUI = UB2UIManager::GetInstance()->GetUI<UB2UIItemForge>(UIFName::ItemForge);
+	//if (ItemForgeUI)
+	//{
+	//	ItemForgeUI->ForgeInit();
+	//}
 }
 
 bool UB2UICombineMenu::HasRedDot_Inventory()

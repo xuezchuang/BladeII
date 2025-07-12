@@ -42,31 +42,31 @@ void UB2UIItemForgePopup::SubscribeEvent()
 {
 	
 
-	if (bSubscribed == false)
-	{
-		UnSubscribeEvent();
+	//if (bSubscribed == false)
+	//{
+	//	UnSubscribeEvent();
 
-	
-		Issues.Add(DeliverySelectItemForgeClass<FB2Item&>::GetInstance().Subscribe2(
-			[this](FB2Item& SelectItem)
-		{
-			this->SelectedItem = SelectItem;
-			//UE_LOG(LogTemp, Log, TEXT("Checking Log : %d"), this->SelectedItem.ItemRefID);
+	//
+	//	Issues.Add(DeliverySelectItemForgeClass<FB2Item&>::GetInstance().Subscribe2(
+	//		[this](FB2Item& SelectItem)
+	//	{
+	//		this->SelectedItem = SelectItem;
+	//		//UE_LOG(LogTemp, Log, TEXT("Checking Log : %d"), this->SelectedItem.ItemRefID);
 
-			for (int i = 0; i < this->SB_Item->GetChildrenCount(); i++)
-			{
-				UB2DynItemIcon_ItemForge* icon =  Cast<UB2DynItemIcon_ItemForge>(this->SB_Item->GetChildAt(i));
-				icon->SetOV_SelectedVisibility(ESlateVisibility::Hidden);
-			}
-			
-			//UE_LOG(LogTemp, Log, TEXT("Event System :: RefID :%d UID : %d"),SelectedItem.ItemRefID,SelectedItem.InstanceUID);
+	//		for (int i = 0; i < this->SB_Item->GetChildrenCount(); i++)
+	//		{
+	//			UB2DynItemIcon_ItemForge* icon =  Cast<UB2DynItemIcon_ItemForge>(this->SB_Item->GetChildAt(i));
+	//			icon->SetOV_SelectedVisibility(ESlateVisibility::Hidden);
+	//		}
+	//		
+	//		//UE_LOG(LogTemp, Log, TEXT("Event System :: RefID :%d UID : %d"),SelectedItem.ItemRefID,SelectedItem.InstanceUID);
 
-			BTN_Select->SetIsEnabled(true);
-		}
-		));
+	//		BTN_Select->SetIsEnabled(true);
+	//	}
+	//	));
 
-		bSubscribed = true;
-	}
+	//	bSubscribed = true;
+	//}
 
 }
 
@@ -426,52 +426,52 @@ void UB2UIItemForgePopup::OnClickBTN_Cancel()
 
 void UB2UIItemForgePopup::OnClickBTNSelect()
 {
-	if (!SelectedItem.IsEmpty())
-	{
-		//UE_LOG(LogTemp, Log, TEXT("select btn clicked"));
-		// 상위 패널 class에 넣어줄 선택한 아이템의 필요 개수를 넣어줘야됨으로 
-		// ItemForgeDataSet에서 TArray 에서 perdicate으로 선택한 id와 refid가 같은 값의 count값을 돌려 주도록 할 것
+	//if (!SelectedItem.IsEmpty())
+	//{
+	//	//UE_LOG(LogTemp, Log, TEXT("select btn clicked"));
+	//	// 상위 패널 class에 넣어줄 선택한 아이템의 필요 개수를 넣어줘야됨으로 
+	//	// ItemForgeDataSet에서 TArray 에서 perdicate으로 선택한 id와 refid가 같은 값의 count값을 돌려 주도록 할 것
 
-		bool CheckEnd = false;
-		int32 Count = -1;
-		for (auto& elem : ItemForgeDataSet.ResourceItem)
-		{
-			if (CheckEnd)
-				break;
+	//	bool CheckEnd = false;
+	//	int32 Count = -1;
+	//	for (auto& elem : ItemForgeDataSet.ResourceItem)
+	//	{
+	//		if (CheckEnd)
+	//			break;
 
-			if (elem.RefID == SelectedItem.ItemRefID)
-			{
-				CheckEnd = true;
-				Count = elem.Count;
-			}
-		}
-
-
-		if (Count < 0)
-		{
-			UE_LOG(LogTemp, Error, TEXT("ItemForge Select Button Count Error"));
-		}
-		else
-		{
-			if (ItemForgeDataSet.MakeCount != 0)
-			{
-				Count /= ItemForgeDataSet.MakeCount;
-			}
-			
-			
-			// UE_LOG(LogTemp, Log, TEXT("UID : %d, Count : %d"),SelectedItem.InstanceUID,Count);
-			// selecteditem과 count 값 event system으로 세팅 해 주기.
-
-			ItemForgeIngredientUI->SetAnotherMaterialItem(SelectedItem, Count);
-		}
+	//		if (elem.RefID == SelectedItem.ItemRefID)
+	//		{
+	//			CheckEnd = true;
+	//			Count = elem.Count;
+	//		}
+	//	}
 
 
+	//	if (Count < 0)
+	//	{
+	//		UE_LOG(LogTemp, Error, TEXT("ItemForge Select Button Count Error"));
+	//	}
+	//	else
+	//	{
+	//		if (ItemForgeDataSet.MakeCount != 0)
+	//		{
+	//			Count /= ItemForgeDataSet.MakeCount;
+	//		}
+	//		
+	//		
+	//		// UE_LOG(LogTemp, Log, TEXT("UID : %d, Count : %d"),SelectedItem.InstanceUID,Count);
+	//		// selecteditem과 count 값 event system으로 세팅 해 주기.
 
-		OnClickBTN_Cancel(); //지우기 위해
-	}
-	else
-	{
-		// 재료를 선택하십시오 팝업 뜨게
-	}
+	//		ItemForgeIngredientUI->SetAnotherMaterialItem(SelectedItem, Count);
+	//	}
+
+
+
+	//	OnClickBTN_Cancel(); //지우기 위해
+	//}
+	//else
+	//{
+	//	// 재료를 선택하십시오 팝업 뜨게
+	//}
 	
 }

@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "UI/B2UIWidget.h"
+#include "../B2RichTextBlock.h"
 #include "B2UIEventPointConsumeCondition.generated.h"
 
 /**

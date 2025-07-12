@@ -142,7 +142,7 @@ void UB2LobbyUI_EnhanceItemSetEffect::UpdateDynamicStaticTexts(EPCClass CurrentP
 
 void UB2LobbyUI_EnhanceItemSetEffect::OnCloseButtonPressed()
 {
-	DJLegacy_CloseLobbySubPopupClass<ELobbySubPopups>::GetInstance().Signal(ELobbySubPopups::ELSPU_EnhanceItemSetEffectPopup);
+	//DJLegacy_CloseLobbySubPopupClass<ELobbySubPopups>::GetInstance().Signal(ELobbySubPopups::ELSPU_EnhanceItemSetEffectPopup);
 }
 
 void UB2LobbyUI_EnhanceItemSetEffect::CloseWidgetDelegate()

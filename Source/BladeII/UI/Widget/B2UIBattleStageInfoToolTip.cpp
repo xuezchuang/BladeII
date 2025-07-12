@@ -75,33 +75,33 @@ void UB2UIBattleStageInfoToolTip::ShowRewardItemInfo(const FB2RewardItemPreviewI
 
 void UB2UIBattleStageInfoToolTip::ShowBossPieceInfo(const FB2RewardItemPreviewInfo& InRewardInfoData)
 {
-	ShowToolTip();
+	//ShowToolTip();
 
-	UB2ItemInfo* ItemInfoTable = StaticFindItemInfo();
-	FSingleItemInfoData* ThisItemInfoData = ItemInfoTable ? ItemInfoTable->GetInfoData(InRewardInfoData.SomeCommonData.ItemRefID) : NULL;
+	//UB2ItemInfo* ItemInfoTable = StaticFindItemInfo();
+	//FSingleItemInfoData* ThisItemInfoData = ItemInfoTable ? ItemInfoTable->GetInfoData(InRewardInfoData.SomeCommonData.ItemRefID) : NULL;
 
-	if (IMG_InfoGoodsIcon.IsValid() && ThisItemInfoData)
-	{
-		IMG_InfoGoodsIcon->SetBrushFromMaterial(ThisItemInfoData->GetIconMaterial(ItemInfoTable));
-	}
+	//if (IMG_InfoGoodsIcon.IsValid() && ThisItemInfoData)
+	//{
+	//	IMG_InfoGoodsIcon->SetBrushFromMaterial(ThisItemInfoData->GetIconMaterial(ItemInfoTable));
+	//}
 
-	if (TB_RewardItemName.IsValid() && ThisItemInfoData)
-	{
-		TB_RewardItemName->SetText(ThisItemInfoData->GetLocalizedName());
-	}
+	//if (TB_RewardItemName.IsValid() && ThisItemInfoData)
+	//{
+	//	TB_RewardItemName->SetText(ThisItemInfoData->GetLocalizedName());
+	//}
 
-	FString descStr(TEXT("Relic_PieceInfo_ACT") + FString::FormatAsNumber(InRewardInfoData.RandomOptionCount));
+	//FString descStr(TEXT("Relic_PieceInfo_ACT") + FString::FormatAsNumber(InRewardInfoData.RandomOptionCount));
 
-	//조각은 설명이 들어감. RewardItemInfo에서 TB_RewardItemOptionInfo에 넣지만 여기서 그위에 다시 덮어 씌움
-	if (TB_RewardItemDesc.IsValid())
-	{
-		TB_RewardItemDesc->SetText(BladeIIGetLOCText(B2LOC_CAT_ANCIENTRELIC, descStr));
-	}
+	////조각은 설명이 들어감. RewardItemInfo에서 TB_RewardItemOptionInfo에 넣지만 여기서 그위에 다시 덮어 씌움
+	//if (TB_RewardItemDesc.IsValid())
+	//{
+	//	TB_RewardItemDesc->SetText(BladeIIGetLOCText(B2LOC_CAT_ANCIENTRELIC, descStr));
+	//}
 
-	if (TB_RewardItemOptionText.IsValid())
-	{
-		TB_RewardItemOptionText->SetVisibility(ESlateVisibility::Collapsed);
-	}
+	//if (TB_RewardItemOptionText.IsValid())
+	//{
+	//	TB_RewardItemOptionText->SetVisibility(ESlateVisibility::Collapsed);
+	//}
 }
 
 void UB2UIBattleStageInfoToolTip::ShowEtherItemInfo(const FB2RewardItemPreviewInfo& InRewardInfoData)

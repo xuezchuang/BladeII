@@ -3,6 +3,8 @@
 #pragma once
 //#include "BladeII.h"
 #include "CoreMinimal.h"
+#include "../Common/CommonStruct.h"
+#include "B2TotemData.h"
 
 /**
  * 

@@ -33,96 +33,96 @@ void UB2UICounterAttackSelectCharacter::Init()
 	SubscribeEvent();
 }
 
-void UB2UICounterAttackSelectCharacter::OnSceneOpen(EUIScene InOpenedScene)
-{
-	Super::OnSceneOpen(InOpenedScene);
-
-	// UIHeader 와 같이 Scene 으로 구성하는 경우 Init 시점에 하면 Scene 에 포함된 header 가 생성이 안된 상황일 수 있음.
-	SetLobbyUIHeaderTitleByGeneralTextTableKey(TEXT("CounterAttack_CharacterSelect"));
-}
+//void UB2UICounterAttackSelectCharacter::OnSceneOpen(EUIScene InOpenedScene)
+//{
+//	Super::OnSceneOpen(InOpenedScene);
+//
+//	// UIHeader 와 같이 Scene 으로 구성하는 경우 Init 시점에 하면 Scene 에 포함된 header 가 생성이 안된 상황일 수 있음.
+//	SetLobbyUIHeaderTitleByGeneralTextTableKey(TEXT("CounterAttack_CharacterSelect"));
+//}
 
 void UB2UICounterAttackSelectCharacter::CacheAssets()
 {
-	UIP_EntryArr.SetNum(4);
+	//UIP_EntryArr.SetNum(4);
 
-	GET_SLOT(UB2UIPVPEntryHero, UIP_Entry);
-	if (UIP_Entry.IsValid())
-		UIP_Entry->Init();
+	//GET_SLOT(UB2UIPVPEntryHero, UIP_Entry);
+	//if (UIP_Entry.IsValid())
+	//	UIP_Entry->Init();
 
-	GET_SLOT_BYNAME(UB2UIPVPEntryHero, UIP_EntryArr[0], UIP_Entry1);
-	GET_SLOT_BYNAME(UB2UIPVPEntryHero, UIP_EntryArr[1], UIP_Entry2);
-	GET_SLOT_BYNAME(UB2UIPVPEntryHero, UIP_EntryArr[2], UIP_Entry3);
-	GET_SLOT_BYNAME(UB2UIPVPEntryHero, UIP_EntryArr[3], UIP_Entry4);
+	//GET_SLOT_BYNAME(UB2UIPVPEntryHero, UIP_EntryArr[0], UIP_Entry1);
+	//GET_SLOT_BYNAME(UB2UIPVPEntryHero, UIP_EntryArr[1], UIP_Entry2);
+	//GET_SLOT_BYNAME(UB2UIPVPEntryHero, UIP_EntryArr[2], UIP_Entry3);
+	//GET_SLOT_BYNAME(UB2UIPVPEntryHero, UIP_EntryArr[3], UIP_Entry4);
 
-	for (int32 i = 0; i < UIP_EntryArr.Num(); ++i)
-	{
-		UIP_EntryArr[i]->Init();
-		UIP_EntryArr[i]->FOnClickBtnSelect.BindUObject(this, &UB2UICounterAttackSelectCharacter::OnClickEntry);
-	}
+	//for (int32 i = 0; i < UIP_EntryArr.Num(); ++i)
+	//{
+	//	UIP_EntryArr[i]->Init();
+	//	UIP_EntryArr[i]->FOnClickBtnSelect.BindUObject(this, &UB2UICounterAttackSelectCharacter::OnClickEntry);
+	//}
 
-	GET_SLOT(UTextBlock, TB_CombatPower);
-	GET_SLOT(UTextBlock, STB_CombatPower);
-	GET_SLOT(UTextBlock, TB_RecommandPower);
-	GET_SLOT(UTextBlock, STB_RecommandPower);
+	//GET_SLOT(UTextBlock, TB_CombatPower);
+	//GET_SLOT(UTextBlock, STB_CombatPower);
+	//GET_SLOT(UTextBlock, TB_RecommandPower);
+	//GET_SLOT(UTextBlock, STB_RecommandPower);
 
-	GET_SLOT(UButton, BTN_GoToHeroMgmt);
+	//GET_SLOT(UButton, BTN_GoToHeroMgmt);
 
 
-	GET_SLOT(UButton, BTN_Sweep);
-	GET_SLOT(UTextBlock, TB_SweepButton);
+	//GET_SLOT(UButton, BTN_Sweep);
+	//GET_SLOT(UTextBlock, TB_SweepButton);
 
-	GET_SLOT(UTextBlock, TB_DailyEnter);
+	//GET_SLOT(UTextBlock, TB_DailyEnter);
 
-	GET_SLOT(UB2UIStartButton, UIP_StartBT);
-	if (UIP_StartBT.IsValid())
-	{
-		UIP_StartBT->Init();
-		UIP_StartBT->StartButtonDelegateBindLambda([this]() {StartBattle(); });
-		UIP_StartBT->SetStartButtonText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("BattleStageInfo_BattleStart")));
-	}
+	//GET_SLOT(UB2UIStartButton, UIP_StartBT);
+	//if (UIP_StartBT.IsValid())
+	//{
+	//	UIP_StartBT->Init();
+	//	UIP_StartBT->StartButtonDelegateBindLambda([this]() {StartBattle(); });
+	//	UIP_StartBT->SetStartButtonText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("BattleStageInfo_BattleStart")));
+	//}
 
-	GET_SLOT(UB2UIDungeonDifficulty, UIP_DungeonLevelofDifficulty);
-	if (UIP_DungeonLevelofDifficulty.IsValid())
-	{
-		CAPTURE_UOBJECT(UB2UICounterAttackSelectCharacter);
-		UIP_DungeonLevelofDifficulty->Init();
-		UIP_DungeonLevelofDifficulty->SetDifficultyDelegate(
-			USE_CAPTURE_OBJECT(int32 InDifficulty)
-			Capture->ChangeDifficulty(InDifficulty);
-		END_CAPTURE_OBJECT()
-			);
-	}
+	//GET_SLOT(UB2UIDungeonDifficulty, UIP_DungeonLevelofDifficulty);
+	//if (UIP_DungeonLevelofDifficulty.IsValid())
+	//{
+	//	CAPTURE_UOBJECT(UB2UICounterAttackSelectCharacter);
+	//	UIP_DungeonLevelofDifficulty->Init();
+	//	UIP_DungeonLevelofDifficulty->SetDifficultyDelegate(
+	//		USE_CAPTURE_OBJECT(int32 InDifficulty)
+	//		Capture->ChangeDifficulty(InDifficulty);
+	//	END_CAPTURE_OBJECT()
+	//		);
+	//}
 
-	//StaticText
-	GET_SLOT(UTextBlock, STB_DungeonLv);
-	GET_SLOT(UTextBlock, STB_EquipManagement);
-	GET_SLOT(UTextBlock, STB_RecommandPower);
-	GET_SLOT(UTextBlock, STB_CombatPower);
-	GET_SLOT(UTextBlock, STB_EntenHero);
-	GET_SLOT(UTextBlock, STB_RewardInfo);
-	GET_SLOT(UTextBlock, STB_DailyEnter);
-	GET_SLOT(UB2RichTextBlock, STB_JoinExplanation);
+	////StaticText
+	//GET_SLOT(UTextBlock, STB_DungeonLv);
+	//GET_SLOT(UTextBlock, STB_EquipManagement);
+	//GET_SLOT(UTextBlock, STB_RecommandPower);
+	//GET_SLOT(UTextBlock, STB_CombatPower);
+	//GET_SLOT(UTextBlock, STB_EntenHero);
+	//GET_SLOT(UTextBlock, STB_RewardInfo);
+	//GET_SLOT(UTextBlock, STB_DailyEnter);
+	//GET_SLOT(UB2RichTextBlock, STB_JoinExplanation);
 
-	GET_SLOT(UHorizontalBox, List_Reward);
+	//GET_SLOT(UHorizontalBox, List_Reward);
 
-	GET_SLOT(UB2UIRecommandPower, UIP_StageRecommendPower);
-	if (UIP_StageRecommendPower.IsValid())
-	{
-		UIP_StageRecommendPower->Init();
-	}
+	//GET_SLOT(UB2UIRecommandPower, UIP_StageRecommendPower);
+	//if (UIP_StageRecommendPower.IsValid())
+	//{
+	//	UIP_StageRecommendPower->Init();
+	//}
 
-	GET_SLOT(UB2UIFairyLinkButton, UIP_FairyLinkButton);
-	if (UIP_FairyLinkButton.IsValid())
-		UIP_FairyLinkButton->Init();
+	//GET_SLOT(UB2UIFairyLinkButton, UIP_FairyLinkButton);
+	//if (UIP_FairyLinkButton.IsValid())
+	//	UIP_FairyLinkButton->Init();
 
-	GET_SLOT(UTextBlock, TB_MonsterName);
-	GET_SLOT(UTextBlock, TB_MonsterDesc);
-	GET_SLOT(UTextBlock, TB_BestScoreDesc);
+	//GET_SLOT(UTextBlock, TB_MonsterName);
+	//GET_SLOT(UTextBlock, TB_MonsterDesc);
+	//GET_SLOT(UTextBlock, TB_BestScoreDesc);
 }
 
 void UB2UICounterAttackSelectCharacter::UpdateStaticText()
 {
-	if (STB_DungeonLv.IsValid())
+	/*if (STB_DungeonLv.IsValid())
 		STB_DungeonLv->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("CounterAttack_DungeonLvChoice")));
 
 	if (STB_EquipManagement.IsValid())
@@ -153,7 +153,7 @@ void UB2UICounterAttackSelectCharacter::UpdateStaticText()
 		TB_MonsterDesc->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("CounterDG_BossExplanation")));
 
 	if (TB_BestScoreDesc.IsValid())
-		TB_BestScoreDesc->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("CounterDG_HighestRecord2")));
+		TB_BestScoreDesc->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("CounterDG_HighestRecord2")));*/
 }
 
 void UB2UICounterAttackSelectCharacter::BindDelegates()
@@ -524,29 +524,29 @@ void UB2UICounterAttackSelectCharacter::OnClickBtnGoToHeroMgmt()
 
 void UB2UICounterAttackSelectCharacter::OnClickSweepBattle()
 {
-	if (TutorialManager::GetInstance().IsFinishTutorial(TutorialID_CounterDungeon) && CheckContentsModeState(b2network::B2ContentsMode::COUNTER))
-		return;
+	//if (TutorialManager::GetInstance().IsFinishTutorial(TutorialID_CounterDungeon) && CheckContentsModeState(b2network::B2ContentsMode::COUNTER))
+	//	return;
 
-	if (!SetArinCheck())
-		return;
+	//if (!SetArinCheck())
+	//	return;
 
-	UB2UIMsgPopupHeroTowerSweep* pSweepPopup = UB2UIManager::GetInstance()->OpenUI<UB2UIMsgPopupHeroTowerSweep>(UIFName::CounterDungeonSweepPopup);
-	if (!pSweepPopup)
-		return;
+	//UB2UIMsgPopupHeroTowerSweep* pSweepPopup = UB2UIManager::GetInstance()->OpenUI<UB2UIMsgPopupHeroTowerSweep>(UIFName::CounterDungeonSweepPopup);
+	//if (!pSweepPopup)
+	//	return;
 
-	int32 nClearFloor = UB2UIDocHelper::GetDocHeroTower()->GetMaxClearFloor();
+	//int32 nClearFloor = UB2UIDocHelper::GetDocHeroTower()->GetMaxClearFloor();
 
-	// GetSweepItems() 가 서버로 부터 받는 아이템과 총합을 구해줌 2개 이상의 보상일경우 아래 SetAddComment를 추가로 구현
-	pSweepPopup->SetAddCommentForHeroTower(GetSweepItems());
+	//// GetSweepItems() 가 서버로 부터 받는 아이템과 총합을 구해줌 2개 이상의 보상일경우 아래 SetAddComment를 추가로 구현
+	//pSweepPopup->SetAddCommentForHeroTower(GetSweepItems());
 
-	pSweepPopup->SetTitle(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("General_Sweep")));
-	pSweepPopup->SetContent(FText::Format(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("HeroTowerDoYouSweepNFloor?")), FText::AsNumber(nClearFloor)));
-	pSweepPopup->SetTipText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("HeroTower_AutoClearDescription")));
-	pSweepPopup->SetCounterDungeonTip(FText::Format(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("CounterDG_Guide_3")), FText::AsNumber(BestLevel)));
-	pSweepPopup->SetButtonText(EUIMsgPopupButton::Positive, BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("HeroTower_AutoClear"))));
+	//pSweepPopup->SetTitle(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("General_Sweep")));
+	//pSweepPopup->SetContent(FText::Format(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("HeroTowerDoYouSweepNFloor?")), FText::AsNumber(nClearFloor)));
+	//pSweepPopup->SetTipText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("HeroTower_AutoClearDescription")));
+	//pSweepPopup->SetCounterDungeonTip(FText::Format(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("CounterDG_Guide_3")), FText::AsNumber(BestLevel)));
+	//pSweepPopup->SetButtonText(EUIMsgPopupButton::Positive, BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("HeroTower_AutoClear"))));
 
-	pSweepPopup->AddHandler(EUIMsgPopupButton::Positive, FMsgPopupOnClick::CreateLambda([this]() { this->OnCounterDungeonSweep(); UB2UIManager::GetInstance()->CloseUI(UIFName::CounterDungeonSweepPopup); }));
-	pSweepPopup->AddHandler(EUIMsgPopupButton::Negative, FMsgPopupOnClick::CreateLambda([this]() { UB2UIManager::GetInstance()->CloseUI(UIFName::CounterDungeonSweepPopup);   }));
+	//pSweepPopup->AddHandler(EUIMsgPopupButton::Positive, FMsgPopupOnClick::CreateLambda([this]() { this->OnCounterDungeonSweep(); UB2UIManager::GetInstance()->CloseUI(UIFName::CounterDungeonSweepPopup); }));
+	//pSweepPopup->AddHandler(EUIMsgPopupButton::Negative, FMsgPopupOnClick::CreateLambda([this]() { UB2UIManager::GetInstance()->CloseUI(UIFName::CounterDungeonSweepPopup);   }));
 }
 
 #include "B2UIArinConsult_PreCombat.h"

@@ -637,7 +637,7 @@ void AB2LobbyFlyingFairyDoumi::BeginPlay()
 	InitLobbySceneType();
 	InitDynamicMaterial();
 
-	SetAttachFX(BladeIIGameImpl::GetClientDataStore().GetPossibleFairyGift());
+	//SetAttachFX(BladeIIGameImpl::GetClientDataStore().GetPossibleFairyGift());
 }
 
 void AB2LobbyFlyingFairyDoumi::EndPlay(const EEndPlayReason::Type EndPlayReason)
@@ -837,5 +837,5 @@ void AB2SealCard::EndPlay(const EEndPlayReason::Type EndPlayReason)
 void AB2SealCard::OnPlayReactionOnTouch()
 {
 //	봉인함 카드 임시 작업
-	SealBoxCardFlipClass<int32, int32>::GetInstance().Signal(1,1);
+	//SealBoxCardFlipClass<int32, int32>::GetInstance().Signal(1,1);
 }

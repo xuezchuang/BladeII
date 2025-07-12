@@ -2,6 +2,7 @@
 
 #include "B2UIWidget.h"
 #include "B2UIDocBindable.h"
+#include "../B2RichTextBlock.h"
 #include "B2UIGuildMemberPart.generated.h"
 
 UENUM(BlueprintType)

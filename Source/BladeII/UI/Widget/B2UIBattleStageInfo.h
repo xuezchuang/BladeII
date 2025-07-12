@@ -7,6 +7,10 @@
 #include "CommonStruct.h"
 #include "B2UIDocBindable.h"
 #include "BladeIICharacter.h"
+#include "B2ScrollBox.h"
+#include "../B2RichTextBlock.h"
+#include "Components/WidgetSwitcher.h"
+#include "../../DataStore/B2ClientDataStore.h"
 #include "B2UIBattleStageInfo.generated.h"
 
 /*
@@ -35,7 +39,7 @@ private:
 
 public:
 	//Get Binded ClientStageId
-	int32 GetClientStageId()	const  { return ClientStageId;}
+	int32 GetClientStageId()	const { return ClientStageId; }
 
 	//BattleReward Info
 	void AddRewardItem(const FB2RewardItemPreviewInfo& InItemData); // Must be scrolled when it exceeds four entry.
@@ -45,13 +49,13 @@ public:
 	void ClearRewardItems();
 	void ArinCheck();
 	FORCEINLINE void CancelStageGameStart() { StageGameStarted = false; }
-	
+
 public:
 	UFUNCTION(BlueprintImplementableEvent, Category = "BladeII BattleStageInfo")
-		class UB2UISlotItem* CreateRewardItem();
+	class UB2UISlotItem* CreateRewardItem();
 	UFUNCTION(BlueprintImplementableEvent, Category = "BladeII BattleStageInfo")
-		void RemoveAllRewardItems();
-	
+	void RemoveAllRewardItems();
+
 protected:
 	virtual void OnOpenComplete() override;
 	virtual void OnCloseComplete() override;
@@ -85,24 +89,24 @@ protected:
 private:
 	//===================================================Click
 	UFUNCTION()
-		void OnClickBtnChangeMainSub();
+	void OnClickBtnChangeMainSub();
 	UFUNCTION()
-		void OnClickBtnBossPieceItem(class UB2UISlotItem* ClickedItem);
+	void OnClickBtnBossPieceItem(class UB2UISlotItem* ClickedItem);
 	UFUNCTION()
-		void OnClickBtnRewardItem(class UB2UISlotItem* ClickedItem);
+	void OnClickBtnRewardItem(class UB2UISlotItem* ClickedItem);
 	UFUNCTION()
-		void OnClickBtnEtherItem(class UB2UISlotItem* ClickedItem);
+	void OnClickBtnEtherItem(class UB2UISlotItem* ClickedItem);
 	UFUNCTION()
-		void OnClickBtnMaterialItem(class UB2UISlotItem* ClickedItem);
+	void OnClickBtnMaterialItem(class UB2UISlotItem* ClickedItem);
 	UFUNCTION()
-		void OnClickBtnHideRewardItemInfoSet();
+	void OnClickBtnHideRewardItemInfoSet();
 	UFUNCTION()
-		void OnClickBattleReady();
+	void OnClickBattleReady();
 	//====================================================Doc Delegate
 	UFUNCTION()
-		void OnChangedCurPCClass(class UB2UIDocBase* Sender, int32 CurPCClass, int32 PrevCurPCClass);
+	void OnChangedCurPCClass(class UB2UIDocBase* Sender, int32 CurPCClass, int32 PrevCurPCClass);
 	UFUNCTION()
-		void OnChangedTagPCClass(class UB2UIDocBase* Sender, int32 TagPCClass, int32 PrevTagPCClass);
+	void OnChangedTagPCClass(class UB2UIDocBase* Sender, int32 TagPCClass, int32 PrevTagPCClass);
 
 protected:
 	TWeakObjectPtr<UB2Button>						BTN_BattleReady;
@@ -127,10 +131,10 @@ private:
 	EStageDifficulty	 StageDifficulty;
 
 	/* The currently active HeroDocument. */
-	class UB2UIDocHero*						MainHeroDoc;
+	class UB2UIDocHero* MainHeroDoc;
 
 	/* This document is a Hero waiting for a tag. */
-	class UB2UIDocHero*						SubHeroDoc;
+	class UB2UIDocHero* SubHeroDoc;
 
 	/* This value use for check to disable buttons for waiting to enter stage game */
 	bool									StageGameStarted;

@@ -1,5 +1,6 @@
 
 #include "B2UIWidgetBase.h"
+#include "../BladeII/BladeIIUtil.h"
 //#include "MovieScene.h"
 //#include "Animation/WidgetAnimation.h"
 ////#include "B2UIManager.h"

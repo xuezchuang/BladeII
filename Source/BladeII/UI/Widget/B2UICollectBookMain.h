@@ -3,6 +3,8 @@
 
 #include "B2UIWidget.h"
 #include "B2UICollectBookItemDetail.h"
+#include "B2ScrollBox.h"
+#include "../B2RichTextBlock.h"
 #include "B2UICollectBookMain.generated.h"
 
 struct FCollectionTab

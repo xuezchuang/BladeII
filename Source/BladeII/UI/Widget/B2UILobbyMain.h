@@ -8,6 +8,8 @@
 #include "CommonStruct.h"
 #include "EventSubsystem.h"
 #include "B2UIMsgPopupGuestWarning.h"
+#include "Components/Image.h"
+#include "../../BladeII.h"
 #include "B2UILobbyMain.generated.h"
 
 struct FContentOpenSlot
@@ -200,7 +202,7 @@ public:
 	bool CheckOtherPopupVisible();
 
 	void DoMarkCombineRedDot(bool CheckVisible = false);
-	void CheckConnectRewardRedDot(const AB2LobbyGameMode* LobbyGameMode);
+	//void CheckConnectRewardRedDot(const AB2LobbyGameMode* LobbyGameMode);
 
 	void UpdateCombineMenuVisible(bool bVisible);
 	class UB2UICombineMenu* GetCombineMenuUI();

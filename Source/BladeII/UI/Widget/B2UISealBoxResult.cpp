@@ -226,12 +226,12 @@ void UB2UISealBoxResult::BeginRewardItemFx()
 
 void UB2UISealBoxResult::Show3DWingEffect()
 {
-	ShowStageClearWingEffectClass<>::GetInstance().Signal();
+	//ShowStageClearWingEffectClass<>::GetInstance().Signal();
 }
 
 void UB2UISealBoxResult::Show3DGemEffect()
 {
-	ShowStageClearGemEffectClass<>::GetInstance().Signal();
+	//ShowStageClearGemEffectClass<>::GetInstance().Signal();
 }
 
 void UB2UISealBoxResult::UnbindDoc()
@@ -439,19 +439,19 @@ UB2SealCardFx* UB2UISealBoxResult::GetRewardPartForRewardNum(int32 InRewardNum)
 //====================================================================================
 void UB2UISealBoxResult::OnClickBtnOpenAgain()
 {
-	if (UnsealData->left_amount > 0)
-	{
-		data_trader::Retailer::GetInstance().RequestUnsealBox(UnsealData->seal_box_id, savedClass + 1, 1);	//한번에 몇개 열라는 내용은 기획에 없어서 한번에 1개씩 열도록 하드코딩 됨
-		SealBoxSelectCharClass<int32>::GetInstance().Signal(savedClass);
-	}
+	//if (UnsealData->left_amount > 0)
+	//{
+	//	data_trader::Retailer::GetInstance().RequestUnsealBox(UnsealData->seal_box_id, savedClass + 1, 1);	//한번에 몇개 열라는 내용은 기획에 없어서 한번에 1개씩 열도록 하드코딩 됨
+	//	SealBoxSelectCharClass<int32>::GetInstance().Signal(savedClass);
+	//}
 
-	OnClickBtnCloseThis();
+	//OnClickBtnCloseThis();
 }
 
 void UB2UISealBoxResult::OnClickBtnCloseThis()
 {
-	UnbindDoc();
-	LobbyEnterHeroMgmtModeClass<EHeroMgmtSubMode>::GetInstance().Signal(EHeroMgmtSubMode::EHMSM_Inventory);
+	//UnbindDoc();
+	//LobbyEnterHeroMgmtModeClass<EHeroMgmtSubMode>::GetInstance().Signal(EHeroMgmtSubMode::EHMSM_Inventory);
 }
 
 //====================================================================================

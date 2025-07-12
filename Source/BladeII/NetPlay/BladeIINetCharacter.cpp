@@ -362,13 +362,13 @@ void ABladeIINetCharacter::UnsubscribeEvents()
 	if (!bEventsSubscribed)
 		return;
 
-	ReceivedMovementClass<uint32, FVector, FVector, FRotator, float>::GetInstance().Unsubscribe(ReceivedMovementTicket);
-	ReceivedRotationClass<uint32, FRotator>::GetInstance().Unsubscribe(ReceivedRotationTicket);
-	ReceivedMobAttackClass<uint32, FVector, FRotator, bool, uint32>::GetInstance().Unsubscribe(ReceivedMobAttackTicket);
-	ReceivedHealthClass<uint32, float, uint32>::GetInstance().Unsubscribe(ReceivedHealthTicket);
-	ReceivedTakeDamageClass<uint32, uint32, float, uint32, int32, int32>::GetInstance().Unsubscribe(ReceivedTakeDamageTicket);
-	ReceivedDieClass<uint32, uint32, int32>::GetInstance().Unsubscribe(ReceivedDieTicket);
-	ReceivedBuffActivatedClass<uint32, uint32, uint8, float, float, bool, bool, TArray<float>*>::GetInstance().Unsubscribe(ReceivedBuffActivatedTicket);
+	//ReceivedMovementClass<uint32, FVector, FVector, FRotator, float>::GetInstance().Unsubscribe(ReceivedMovementTicket);
+	//ReceivedRotationClass<uint32, FRotator>::GetInstance().Unsubscribe(ReceivedRotationTicket);
+	//ReceivedMobAttackClass<uint32, FVector, FRotator, bool, uint32>::GetInstance().Unsubscribe(ReceivedMobAttackTicket);
+	//ReceivedHealthClass<uint32, float, uint32>::GetInstance().Unsubscribe(ReceivedHealthTicket);
+	//ReceivedTakeDamageClass<uint32, uint32, float, uint32, int32, int32>::GetInstance().Unsubscribe(ReceivedTakeDamageTicket);
+	//ReceivedDieClass<uint32, uint32, int32>::GetInstance().Unsubscribe(ReceivedDieTicket);
+	//ReceivedBuffActivatedClass<uint32, uint32, uint8, float, float, bool, bool, TArray<float>*>::GetInstance().Unsubscribe(ReceivedBuffActivatedTicket);
 
 	bEventsSubscribed = false;
 }

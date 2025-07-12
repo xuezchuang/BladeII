@@ -35,17 +35,17 @@ void UB2UIEventPagePointConsume::SubscribeEvents_EventPage()
 {
 	UnsubscribeEvents_EventPage();
 
-	CAPTURE_UOBJECT(UB2UIEventPagePointConsume);
+	//CAPTURE_UOBJECT(UB2UIEventPagePointConsume);
 
-	Issues_EventPage.Add(DeliveryRewardPointShopEventClass<FB2ResponseRewardPointShopEventdPtr>::GetInstance().Subscribe2(
-		[Capture](FB2ResponseRewardPointShopEventdPtr ReciveEventReward)
-	{
-		if (Capture.IsValid())
-		{
-			Capture->ResponsePointConsumeEventReward(ReciveEventReward);
-		}
-	}
-	));
+	//Issues_EventPage.Add(DeliveryRewardPointShopEventClass<FB2ResponseRewardPointShopEventdPtr>::GetInstance().Subscribe2(
+	//	[Capture](FB2ResponseRewardPointShopEventdPtr ReciveEventReward)
+	//{
+	//	if (Capture.IsValid())
+	//	{
+	//		Capture->ResponsePointConsumeEventReward(ReciveEventReward);
+	//	}
+	//}
+	//));
 }
 
 void UB2UIEventPagePointConsume::InitEventPageMasterData()

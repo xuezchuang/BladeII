@@ -8,6 +8,7 @@
 
 //+[TASK][B2CLT-2098]<SameLine> BladeII.h Dependency Remove
 #include "B2UIDocChapter.h"
+#include "B2ClientDataStore.h"
 
 enum class EAdventureActType: uint8
 {

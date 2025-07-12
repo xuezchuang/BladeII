@@ -163,7 +163,7 @@ void UB2ButtonGoodInfoToolTip::RegisterExtraStuff(UB2UnitedWidgetBase* InOwnerUn
 		}
 	}
 	*/
-	GoodsPopupType	= m_InOwnerUnitedWidget->GetGoodsPopupType();
+	//GoodsPopupType	= m_InOwnerUnitedWidget->GetGoodsPopupType();
 }
 
 void UB2ButtonGoodInfoToolTip::UnregisterExtraStuff(UB2UnitedWidgetBase* InOwnerUnitedWidget)

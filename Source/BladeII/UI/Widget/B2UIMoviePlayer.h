@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "UI/B2UIWidget.h"
+#include "../../InfoAsset/B2StageInfo.h"
 #include "B2UIMoviePlayer.generated.h"
 
 /**

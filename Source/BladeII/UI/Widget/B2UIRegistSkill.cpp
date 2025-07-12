@@ -42,7 +42,7 @@ void UB2UIRegistSkill::Init()
 
 void UB2UIRegistSkill::SetPCClass(EPCClass InPCClass)
 {
-	PCClass = InPCClass;
+	/*PCClass = InPCClass;
 
 	SkillSlotMax = BladeIIGameImpl::GetClientDataStore().GetSkillPresetMaxCount();
 
@@ -83,13 +83,13 @@ void UB2UIRegistSkill::SetPCClass(EPCClass InPCClass)
 	}
 
 	EItemPresetSlotType SlotType = BladeIIGameImpl::GetLocalCharacterData().GetPCClassSkillSlotID(PCClass);
-	UpdatePresetState(SlotType);
+	UpdatePresetState(SlotType);*/
 
 }
 
 void UB2UIRegistSkill::OnClickBtnClose()
 {
-	for (int32 SlotID = 0; SlotID < SkillSlotMax; ++SlotID)
+/*	for (int32 SlotID = 0; SlotID < SkillSlotMax; ++SlotID)
 	{
 		if (CachedRegitSkills.Contains(SlotID))
 		{
@@ -114,7 +114,7 @@ void UB2UIRegistSkill::OnClickBtnClose()
 	else
 	{
 		CloseMe();
-	}	
+	}*/	
 }
 
 void UB2UIRegistSkill::OnClickBtnCancel()
@@ -210,34 +210,34 @@ void UB2UIRegistSkill::DestroySelf(class UB2UIManager* InUIManager)
 
 void UB2UIRegistSkill::SubscribeEvents()
 {
-	if (bEventSubscribed)
-		return;
+	//if (bEventSubscribed)
+	//	return;
 
-	CAPTURE_UOBJECT(UB2UIRegistSkill);
+	//CAPTURE_UOBJECT(UB2UIRegistSkill);
 
-	SelectPreviewPresetSlotTicket = SelectPreviewPresetSlotClass<EItemPresetSlotType>::GetInstance().Subscribe(
-		USE_CAPTURE_OBJECT_AND_TICKET(SelectPreviewPresetSlot, const EItemPresetSlotType InPresetSlot)
-		Capture->UpdatePresetState(InPresetSlot);
-		END_CAPTURE_OBJECT()
-	);
-	DeliverySetUsingSkillTicket = DeliverySetUsingSkillClass<FB2SetUsingSkillInfo>::GetInstance().Subscribe(
-		USE_CAPTURE_OBJECT_AND_TICKET(DeliverySetUsingSkill, const FB2SetUsingSkillInfo& SetUsingSkillInfo)
-		Capture->ShowRegistCompletePopup();
-		END_CAPTURE_OBJECT()
-	);
+	//SelectPreviewPresetSlotTicket = SelectPreviewPresetSlotClass<EItemPresetSlotType>::GetInstance().Subscribe(
+	//	USE_CAPTURE_OBJECT_AND_TICKET(SelectPreviewPresetSlot, const EItemPresetSlotType InPresetSlot)
+	//	Capture->UpdatePresetState(InPresetSlot);
+	//	END_CAPTURE_OBJECT()
+	//);
+	//DeliverySetUsingSkillTicket = DeliverySetUsingSkillClass<FB2SetUsingSkillInfo>::GetInstance().Subscribe(
+	//	USE_CAPTURE_OBJECT_AND_TICKET(DeliverySetUsingSkill, const FB2SetUsingSkillInfo& SetUsingSkillInfo)
+	//	Capture->ShowRegistCompletePopup();
+	//	END_CAPTURE_OBJECT()
+	//);
 	
 	bEventSubscribed = true;
 }
 
 void UB2UIRegistSkill::UnsubscribeEvents()
 {
-	if (!bEventSubscribed)
-		return;
+	//if (!bEventSubscribed)
+	//	return;
 
-	SelectPreviewPresetSlotClass<EItemPresetSlotType>::GetInstance().Unsubscribe(SelectPreviewPresetSlotTicket);
-	DeliverySetUsingSkillClass<FB2SetUsingSkillInfo>::GetInstance().Unsubscribe(DeliverySetUsingSkillTicket);
+	//SelectPreviewPresetSlotClass<EItemPresetSlotType>::GetInstance().Unsubscribe(SelectPreviewPresetSlotTicket);
+	//DeliverySetUsingSkillClass<FB2SetUsingSkillInfo>::GetInstance().Unsubscribe(DeliverySetUsingSkillTicket);
 
-	bEventSubscribed = false;
+	//bEventSubscribed = false;
 }
 
 void UB2UIRegistSkill::CloseWidgetDelegate()
@@ -262,65 +262,65 @@ TWeakObjectPtr<UB2UIPlayerSkillInfo> UB2UIRegistSkill::GetSkillSlot(int SkillId)
 	return TWeakObjectPtr<UB2UIPlayerSkillInfo>(nullptr);
 }
 
-void UB2UIRegistSkill::SetSkillInfo(TWeakObjectPtr<UB2UIPlayerSkillInfo> WidgetPart, int32 SkillId, const UB2SkillInfo* AllSkillInfo, const FLocalCharacterData& CharacterData, bool bRegistred)
-{
-	if (WidgetPart.IsValid())
-	{
-		auto* SkillSingleInfo = AllSkillInfo->GetSingleInfoOfID(SkillId);
-
-		if (SkillSingleInfo)
-		{
-			WidgetPart->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
-
-			WidgetPart->SetSkillId(SkillId);
-			// GetButtonIconStyle 에 로딩이 있어서 const 를 빼야 함..
-			UB2SkillInfo* CastedNonConstSkillInfo = const_cast<UB2SkillInfo*>(AllSkillInfo);
-			if (CastedNonConstSkillInfo){
-				WidgetPart->SetButtonStyle(CastedNonConstSkillInfo->GetButtonIconStyle(SkillId));
-			}
-			WidgetPart->SetSkillType(SkillSingleInfo->SkillType);
-			WidgetPart->SetSkillLevel(CharacterData.GetCharacterSkillLevel(SkillId),true);
-						
-			int32* HandleSkillId = bRegistred ? &WaitingToUnregistSkillId : &WaitingToRegistSkillId;
-
-			WidgetPart->SetSkillIconHandler(FSkillInfoOnClick::CreateLambda([this, WidgetPart, HandleSkillId]()
-			{
-				if (WidgetPart.IsValid() && *HandleSkillId != WidgetPart->GetSkillId())
-				{
-					if (*HandleSkillId != SKILL_INVALID_ID)
-					{
-						auto SkillSlot = GetSkillSlot(*HandleSkillId);
-						if (SkillSlot.IsValid())
-							SkillSlot->SetSelected(false);
-					}
-
-					if (false == this->CheckToChangeSkillPosition(*HandleSkillId, WidgetPart->GetSkillId()))
-					{
-						*HandleSkillId = WidgetPart->GetSkillId();
-						WidgetPart->SetSelected(true);
-					}					
-				}	
-				else 
-				{
-					if (WidgetPart.IsValid() && *HandleSkillId == WidgetPart->GetSkillId())
-					{
-						auto SkillSlot = GetSkillSlot(*HandleSkillId);
-						if (SkillSlot.IsValid())
-							SkillSlot->SetSelected(false);
-
-						WaitingToRegistSkillId = WaitingToUnregistSkillId = SKILL_INVALID_ID;
-					}
-				}
-				this->CheckToRegistSkill();
-			}
-			));
-		}
-		else
-		{
-			WidgetPart->SetVisibility(ESlateVisibility::Hidden);
-		}
-	}
-}
+//void UB2UIRegistSkill::SetSkillInfo(TWeakObjectPtr<UB2UIPlayerSkillInfo> WidgetPart, int32 SkillId, const UB2SkillInfo* AllSkillInfo, const FLocalCharacterData& CharacterData, bool bRegistred)
+//{
+//	if (WidgetPart.IsValid())
+//	{
+//		auto* SkillSingleInfo = AllSkillInfo->GetSingleInfoOfID(SkillId);
+//
+//		if (SkillSingleInfo)
+//		{
+//			WidgetPart->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
+//
+//			WidgetPart->SetSkillId(SkillId);
+//			// GetButtonIconStyle 에 로딩이 있어서 const 를 빼야 함..
+//			UB2SkillInfo* CastedNonConstSkillInfo = const_cast<UB2SkillInfo*>(AllSkillInfo);
+//			if (CastedNonConstSkillInfo){
+//				WidgetPart->SetButtonStyle(CastedNonConstSkillInfo->GetButtonIconStyle(SkillId));
+//			}
+//			WidgetPart->SetSkillType(SkillSingleInfo->SkillType);
+//			WidgetPart->SetSkillLevel(CharacterData.GetCharacterSkillLevel(SkillId),true);
+//						
+//			int32* HandleSkillId = bRegistred ? &WaitingToUnregistSkillId : &WaitingToRegistSkillId;
+//
+//			WidgetPart->SetSkillIconHandler(FSkillInfoOnClick::CreateLambda([this, WidgetPart, HandleSkillId]()
+//			{
+//				if (WidgetPart.IsValid() && *HandleSkillId != WidgetPart->GetSkillId())
+//				{
+//					if (*HandleSkillId != SKILL_INVALID_ID)
+//					{
+//						auto SkillSlot = GetSkillSlot(*HandleSkillId);
+//						if (SkillSlot.IsValid())
+//							SkillSlot->SetSelected(false);
+//					}
+//
+//					if (false == this->CheckToChangeSkillPosition(*HandleSkillId, WidgetPart->GetSkillId()))
+//					{
+//						*HandleSkillId = WidgetPart->GetSkillId();
+//						WidgetPart->SetSelected(true);
+//					}					
+//				}	
+//				else 
+//				{
+//					if (WidgetPart.IsValid() && *HandleSkillId == WidgetPart->GetSkillId())
+//					{
+//						auto SkillSlot = GetSkillSlot(*HandleSkillId);
+//						if (SkillSlot.IsValid())
+//							SkillSlot->SetSelected(false);
+//
+//						WaitingToRegistSkillId = WaitingToUnregistSkillId = SKILL_INVALID_ID;
+//					}
+//				}
+//				this->CheckToRegistSkill();
+//			}
+//			));
+//		}
+//		else
+//		{
+//			WidgetPart->SetVisibility(ESlateVisibility::Hidden);
+//		}
+//	}
+//}
 
 #define SUGGEST_SKILL(SkillSlot, bSuggest)								\
 if (SkillSlot.IsValid() && SkillSlot->GetSkillId() != SKILL_INVALID_ID)	\
@@ -340,86 +340,86 @@ if (SkillSlot.IsValid() && SkillSlot->GetSkillId() != SKILL_INVALID_ID)	\
 
 void UB2UIRegistSkill::CheckToRegistSkill()
 {
-	if (WaitingToRegistSkillId != SKILL_INVALID_ID && WaitingToUnregistSkillId != SKILL_INVALID_ID)
-	{
-		auto& CharacterData = BladeIIGameImpl::GetLocalCharacterData();
-		auto* ClassInfoBox = StaticFindPCClassInfoBox();
-		auto* AllSkillInfo = ClassInfoBox ? ClassInfoBox->GetAllSkillInfo() : nullptr;
+	//if (WaitingToRegistSkillId != SKILL_INVALID_ID && WaitingToUnregistSkillId != SKILL_INVALID_ID)
+	//{
+	//	auto& CharacterData = BladeIIGameImpl::GetLocalCharacterData();
+	//	auto* ClassInfoBox = StaticFindPCClassInfoBox();
+	//	auto* AllSkillInfo = ClassInfoBox ? ClassInfoBox->GetAllSkillInfo() : nullptr;
 
-		if (AllSkillInfo == nullptr)
-			return;
+	//	if (AllSkillInfo == nullptr)
+	//		return;
 
-		auto RegistredSkillSlot = GetSkillSlot(this->WaitingToUnregistSkillId);
-		auto UnregistredSkillSlot = GetSkillSlot(this->WaitingToRegistSkillId);
+	//	auto RegistredSkillSlot = GetSkillSlot(this->WaitingToUnregistSkillId);
+	//	auto UnregistredSkillSlot = GetSkillSlot(this->WaitingToRegistSkillId);
 
-		if (RegistredSkillSlot.IsValid())
-		{
-			SetSkillInfo(RegistredSkillSlot, WaitingToRegistSkillId, AllSkillInfo, CharacterData, true);
-			RegistredSkillSlot->SetSelected(false);
-		}		
-		if (UnregistredSkillSlot.IsValid())
-		{
-			SetSkillInfo(UnregistredSkillSlot, WaitingToUnregistSkillId, AllSkillInfo, CharacterData, false);
-			UnregistredSkillSlot->SetSelected(false);
-		}
-		
-		WaitingToUnregistSkillId = WaitingToRegistSkillId = SKILL_INVALID_ID;
+	//	if (RegistredSkillSlot.IsValid())
+	//	{
+	//		SetSkillInfo(RegistredSkillSlot, WaitingToRegistSkillId, AllSkillInfo, CharacterData, true);
+	//		RegistredSkillSlot->SetSelected(false);
+	//	}		
+	//	if (UnregistredSkillSlot.IsValid())
+	//	{
+	//		SetSkillInfo(UnregistredSkillSlot, WaitingToUnregistSkillId, AllSkillInfo, CharacterData, false);
+	//		UnregistredSkillSlot->SetSelected(false);
+	//	}
+	//	
+	//	WaitingToUnregistSkillId = WaitingToRegistSkillId = SKILL_INVALID_ID;
 
-		bChangeSkillSlot = true;
-		SUGGEST_SETTING(false, false);
-	}
-	else if (WaitingToRegistSkillId != SKILL_INVALID_ID)
-	{
-		SUGGEST_SETTING(true, false);
-	}
-	else if (WaitingToUnregistSkillId != SKILL_INVALID_ID)
-	{
-		bChangeSkillSlot = true;
-		SUGGEST_SETTING(UIP_Skill.IsValid() && UIP_Skill->GetSkillId() != WaitingToUnregistSkillId, true);
-	}
-	else
-	{
-		SUGGEST_SETTING(false, false);
-	}
+	//	bChangeSkillSlot = true;
+	//	SUGGEST_SETTING(false, false);
+	//}
+	//else if (WaitingToRegistSkillId != SKILL_INVALID_ID)
+	//{
+	//	SUGGEST_SETTING(true, false);
+	//}
+	//else if (WaitingToUnregistSkillId != SKILL_INVALID_ID)
+	//{
+	//	bChangeSkillSlot = true;
+	//	SUGGEST_SETTING(UIP_Skill.IsValid() && UIP_Skill->GetSkillId() != WaitingToUnregistSkillId, true);
+	//}
+	//else
+	//{
+	//	SUGGEST_SETTING(false, false);
+	//}
 
-	CachedSlotSkillInfos(static_cast<int32>(CurrentSkillSlotID), 
-		UsingSkills[0].IsValid() ? UsingSkills[0]->GetSkillId() : SKILL_INVALID_ID,
-		UsingSkills[1].IsValid() ? UsingSkills[1]->GetSkillId() : SKILL_INVALID_ID,
-		UsingSkills[2].IsValid() ? UsingSkills[2]->GetSkillId() : SKILL_INVALID_ID);
+	//CachedSlotSkillInfos(static_cast<int32>(CurrentSkillSlotID), 
+	//	UsingSkills[0].IsValid() ? UsingSkills[0]->GetSkillId() : SKILL_INVALID_ID,
+	//	UsingSkills[1].IsValid() ? UsingSkills[1]->GetSkillId() : SKILL_INVALID_ID,
+	//	UsingSkills[2].IsValid() ? UsingSkills[2]->GetSkillId() : SKILL_INVALID_ID);
 }
 
 bool UB2UIRegistSkill::CheckToChangeSkillPosition(int32 SrcId, int32 DestId)
 {
-	if (SrcId == SKILL_INVALID_ID || DestId == SKILL_INVALID_ID)
-		return false;
+	//if (SrcId == SKILL_INVALID_ID || DestId == SKILL_INVALID_ID)
+	//	return false;
 
-	if (SrcId != WaitingToUnregistSkillId)
-		return false;
-	
-	TWeakObjectPtr<UB2UIPlayerSkillInfo> SrcSlot, DestSlot;
+	//if (SrcId != WaitingToUnregistSkillId)
+	//	return false;
+	//
+	//TWeakObjectPtr<UB2UIPlayerSkillInfo> SrcSlot, DestSlot;
 
-	for (int32 i = 0; i < UsingSkills.Num(); ++i)
-	{
-		if (UsingSkills[i].IsValid() && UsingSkills[i]->GetSkillId() == SrcId)
-			SrcSlot = UsingSkills[i];		
-		else if (UsingSkills[i].IsValid() && UsingSkills[i]->GetSkillId() == DestId)
-			DestSlot = UsingSkills[i];
-	}
+	//for (int32 i = 0; i < UsingSkills.Num(); ++i)
+	//{
+	//	if (UsingSkills[i].IsValid() && UsingSkills[i]->GetSkillId() == SrcId)
+	//		SrcSlot = UsingSkills[i];		
+	//	else if (UsingSkills[i].IsValid() && UsingSkills[i]->GetSkillId() == DestId)
+	//		DestSlot = UsingSkills[i];
+	//}
 
-	if (!SrcSlot.IsValid() || !DestSlot.IsValid())
-		return false;
+	//if (!SrcSlot.IsValid() || !DestSlot.IsValid())
+	//	return false;
 
-	auto& CharacterData = BladeIIGameImpl::GetLocalCharacterData();
-	auto* ClassInfoBox = StaticFindPCClassInfoBox();
-	auto* AllSkillInfo = ClassInfoBox ? ClassInfoBox->GetAllSkillInfo() : nullptr;
+	//auto& CharacterData = BladeIIGameImpl::GetLocalCharacterData();
+	//auto* ClassInfoBox = StaticFindPCClassInfoBox();
+	//auto* AllSkillInfo = ClassInfoBox ? ClassInfoBox->GetAllSkillInfo() : nullptr;
 
-	if (AllSkillInfo == nullptr)
-		return false;
+	//if (AllSkillInfo == nullptr)
+	//	return false;
 
-	SetSkillInfo(DestSlot, SrcId, AllSkillInfo, CharacterData, true);
-	SetSkillInfo(SrcSlot, DestId, AllSkillInfo, CharacterData, true);
-	
-	WaitingToUnregistSkillId = SKILL_INVALID_ID;
+	//SetSkillInfo(DestSlot, SrcId, AllSkillInfo, CharacterData, true);
+	//SetSkillInfo(SrcSlot, DestId, AllSkillInfo, CharacterData, true);
+	//
+	//WaitingToUnregistSkillId = SKILL_INVALID_ID;
 
 	return true;
 }
@@ -438,52 +438,52 @@ void UB2UIRegistSkill::UpdateSkillSlotText()
 
 void UB2UIRegistSkill::UpdatePresetState(EItemPresetSlotType SelectSlotId)
 {
-	if (WaitingToRegistSkillId != SKILL_INVALID_ID || WaitingToUnregistSkillId != SKILL_INVALID_ID)
-		return;
+	//if (WaitingToRegistSkillId != SKILL_INVALID_ID || WaitingToUnregistSkillId != SKILL_INVALID_ID)
+	//	return;
 
-	const int32 MaxPresetSlot = static_cast<uint8>(EItemPresetSlotType::EIPS_End);
-	const int32 SlotID = (int32)SelectSlotId;
-	CurrentSkillSlotID = SelectSlotId;
+	//const int32 MaxPresetSlot = static_cast<uint8>(EItemPresetSlotType::EIPS_End);
+	//const int32 SlotID = (int32)SelectSlotId;
+	//CurrentSkillSlotID = SelectSlotId;
 
-	for (int i = 0; i < MaxPresetSlot; ++i)
-	{
-		if (SkillSlots[i].IsValid())
-		{
-			SkillSlots[i]->SwitchState(i == SlotID);
-		}
-	}
+	//for (int i = 0; i < MaxPresetSlot; ++i)
+	//{
+	//	if (SkillSlots[i].IsValid())
+	//	{
+	//		SkillSlots[i]->SwitchState(i == SlotID);
+	//	}
+	//}
 
-	auto& ClientDataStore = BladeIIGameImpl::GetLocalCharacterData();
-	
-	auto* ClassInfoBox = StaticFindPCClassInfoBox();
-	auto* AllSkillInfo = ClassInfoBox ? ClassInfoBox->GetAllSkillInfo() : nullptr;
+	//auto& ClientDataStore = BladeIIGameImpl::GetLocalCharacterData();
+	//
+	//auto* ClassInfoBox = StaticFindPCClassInfoBox();
+	//auto* AllSkillInfo = ClassInfoBox ? ClassInfoBox->GetAllSkillInfo() : nullptr;
 
-	TArray<int32> UsingSkillIds;
-	UsingSkillIds.SetNum(SkillSlotMax);
+	//TArray<int32> UsingSkillIds;
+	//UsingSkillIds.SetNum(SkillSlotMax);
 
-	if (CachedRegitSkills.Contains(SlotID))
-	{
-		auto &Each = CachedRegitSkills[SlotID];
-		for (int32 i = 0; i < SkillSlotMax; ++i)
-		{
-			UsingSkillIds[i] = Each->GetSkillID(i);
-		}
-	}
+	//if (CachedRegitSkills.Contains(SlotID))
+	//{
+	//	auto &Each = CachedRegitSkills[SlotID];
+	//	for (int32 i = 0; i < SkillSlotMax; ++i)
+	//	{
+	//		UsingSkillIds[i] = Each->GetSkillID(i);
+	//	}
+	//}
 
-	BII_CHECK(UsingSkillIds.Num() == MAX_CLASS_SKILL_INPUT && UsingSkills.Num() == MAX_CLASS_SKILL_INPUT);
-	for (int32 i = 0; i < UsingSkills.Num(); ++i)
-	{
-		SetSkillInfo(UsingSkills[i], UsingSkillIds[i], AllSkillInfo, ClientDataStore, true);
-	}
+	//BII_CHECK(UsingSkillIds.Num() == MAX_CLASS_SKILL_INPUT && UsingSkills.Num() == MAX_CLASS_SKILL_INPUT);
+	//for (int32 i = 0; i < UsingSkills.Num(); ++i)
+	//{
+	//	SetSkillInfo(UsingSkills[i], UsingSkillIds[i], AllSkillInfo, ClientDataStore, true);
+	//}
 
-	TArray<int32> HavingSkillIds;
-	ClientDataStore.GetUnregistredTargetSlotSkills(PCClass, CurrentSkillSlotID, HavingSkillIds);
-	for (int32 i = 0; i < HavingSkills.Num(); ++i)
-	{
-		SetSkillInfo(HavingSkills[i], HavingSkillIds.Num() > i ? HavingSkillIds[i] : SKILL_INVALID_ID, AllSkillInfo, ClientDataStore, false);
-	}
+	//TArray<int32> HavingSkillIds;
+	//ClientDataStore.GetUnregistredTargetSlotSkills(PCClass, CurrentSkillSlotID, HavingSkillIds);
+	//for (int32 i = 0; i < HavingSkills.Num(); ++i)
+	//{
+	//	SetSkillInfo(HavingSkills[i], HavingSkillIds.Num() > i ? HavingSkillIds[i] : SKILL_INVALID_ID, AllSkillInfo, ClientDataStore, false);
+	//}
 
-	UpdateSkillSlotText();
+	//UpdateSkillSlotText();
 }
 
 void UB2UIRegistSkill::CachedSlotSkillInfos(int32 SlotID, int32 Skill0, int32 Skill1, int32 Skill2)

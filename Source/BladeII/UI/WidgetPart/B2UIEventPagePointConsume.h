@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "UI/WidgetPart/B2UIEventPage.h"
+#include "../B2RichTextBlock.h"
 #include "B2UIEventPagePointConsume.generated.h"
 
 /**

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "B2UIChatMessageBase.h"
+#include "../../Common/B2Chatting.h"
 #include "B2UIChatMessage.generated.h"
 
 /*

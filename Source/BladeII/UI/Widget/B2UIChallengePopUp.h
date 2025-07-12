@@ -3,6 +3,7 @@
 
 #include "B2UIWidget.h"
 #include "B2UIDocBindable.h"
+#include "B2Button.h"
 
 #include "B2UIChallengePopUp.generated.h"
 
@@ -27,16 +28,16 @@ private:
 	void SettingInfo(const FString& Title, const FString& Explan, const FString& Confrim);
 protected:
 	UFUNCTION()
-		void OnClickBTN_Confirm();
+	void OnClickBTN_Confirm();
 	UFUNCTION()
-		void OnClickBTN_Close();
+	void OnClickBTN_Close();
 
 public:
 	UFUNCTION(BlueprintImplementableEvent)
-		void SetPopUpInfo_Bp(ELobbyModSceneElem InModEnum);
+	void SetPopUpInfo_Bp(ELobbyModSceneElem InModEnum);
 
 private:
-				
+
 	TWeakObjectPtr<UB2Button> BTN_Confirm;
 	TWeakObjectPtr<UB2Button> BTN_Close;
 
@@ -49,7 +50,7 @@ private:
 private:
 	ELobbyModSceneElem MyMod;
 	bool bOpenLock;
-	
+
 public:
 	ChallengePopUpOnClick OnClickDelegate;
 };

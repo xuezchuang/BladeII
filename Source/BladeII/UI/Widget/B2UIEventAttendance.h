@@ -2,6 +2,8 @@
 #pragma once
 
 #include "B2UIWidget.h"
+#include "../../DataStore/B2ClientDataStore.h"
+#include "../../BladeII/BladeIIGameMode.h"
 #include "B2UIEventAttendance.generated.h"
 
 

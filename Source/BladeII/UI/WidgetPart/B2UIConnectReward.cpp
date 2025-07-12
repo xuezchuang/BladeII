@@ -16,23 +16,23 @@ void UB2UIConnectReward::CacheAssets()
 {
 	Super::CacheAssets();
 
-	if (ConnectRewardParts.Num() == 0)
-	{
-		ConnectRewardParts.SetNum(6);
-		GET_SLOT_BYNAME(UB2UIConnectRewardPart, ConnectRewardParts[0], UIP_ConnectRewardPart0);
-		GET_SLOT_BYNAME(UB2UIConnectRewardPart, ConnectRewardParts[1], UIP_ConnectRewardPart1);
-		GET_SLOT_BYNAME(UB2UIConnectRewardPart, ConnectRewardParts[2], UIP_ConnectRewardPart2);
-		GET_SLOT_BYNAME(UB2UIConnectRewardPart, ConnectRewardParts[3], UIP_ConnectRewardPart3);
-		GET_SLOT_BYNAME(UB2UIConnectRewardPart, ConnectRewardParts[4], UIP_ConnectRewardPart4);
-		GET_SLOT_BYNAME(UB2UIConnectRewardPart, ConnectRewardParts[5], UIP_ConnectRewardPart5);
+	//if (ConnectRewardParts.Num() == 0)
+	//{
+	//	ConnectRewardParts.SetNum(6);
+	//	GET_SLOT_BYNAME(UB2UIConnectRewardPart, ConnectRewardParts[0], UIP_ConnectRewardPart0);
+	//	GET_SLOT_BYNAME(UB2UIConnectRewardPart, ConnectRewardParts[1], UIP_ConnectRewardPart1);
+	//	GET_SLOT_BYNAME(UB2UIConnectRewardPart, ConnectRewardParts[2], UIP_ConnectRewardPart2);
+	//	GET_SLOT_BYNAME(UB2UIConnectRewardPart, ConnectRewardParts[3], UIP_ConnectRewardPart3);
+	//	GET_SLOT_BYNAME(UB2UIConnectRewardPart, ConnectRewardParts[4], UIP_ConnectRewardPart4);
+	//	GET_SLOT_BYNAME(UB2UIConnectRewardPart, ConnectRewardParts[5], UIP_ConnectRewardPart5);
 
-		GET_SLOT(UB2Button, BTN_Recieve);
-		GET_SLOT(UTextBlock, TB_Receive);
-		GET_SLOT(UImage, IMG_ProgressBar);
-		GET_SLOT(UImage, IMG_ButtonEffect);
-		GET_SLOT(UB2RichTextBlock, TB_TimeMessage);
-		GET_SLOT(UB2RichTextBlock, TB_CumulativeTime);
-	}
+	//	GET_SLOT(UB2Button, BTN_Recieve);
+	//	GET_SLOT(UTextBlock, TB_Receive);
+	//	GET_SLOT(UImage, IMG_ProgressBar);
+	//	GET_SLOT(UImage, IMG_ButtonEffect);
+	//	GET_SLOT(UB2RichTextBlock, TB_TimeMessage);
+	//	GET_SLOT(UB2RichTextBlock, TB_CumulativeTime);
+	//}
 }
 
 void UB2UIConnectReward::BindDelegates()
@@ -49,30 +49,30 @@ void UB2UIConnectReward::UpdateStaticText()
 
 void UB2UIConnectReward::SubscribeEvents()
 {
-	UnsubscribeEvents();
+	//UnsubscribeEvents();
 
-	Issues.Add(ReceivePlayTimeRewardClass<const TArray<b2network::B2RewardPtr>&>::GetInstance().Subscribe2(
-		[this](const TArray<b2network::B2RewardPtr>& Rewards)
-	{
-		this->StartReward(Rewards);
-	}
-	));
+	//Issues.Add(ReceivePlayTimeRewardClass<const TArray<b2network::B2RewardPtr>&>::GetInstance().Subscribe2(
+	//	[this](const TArray<b2network::B2RewardPtr>& Rewards)
+	//{
+	//	this->StartReward(Rewards);
+	//}
+	//));
 
-	Issues.Add(FinishConnectRewardClass<>::GetInstance().Subscribe2(
-		[this]()
-	{
-		this->FinishRewardAnim();
-	}
-	));
+	//Issues.Add(FinishConnectRewardClass<>::GetInstance().Subscribe2(
+	//	[this]()
+	//{
+	//	this->FinishRewardAnim();
+	//}
+	//));
 
-	Issues.Add(FirstRequestUpdateDailyPlayTimeClass<>::GetInstance().Subscribe2(
-		[this]()
-	{
-		this->UpdateRewardState();
-		this->RenderProgressBar(UB2GameInstance::GetPlayTime());
-		UpdateMarkRedDotClass<const FName&>::GetInstance().Signal(UIFName::AttendanceMain);
-	}
-	));
+	//Issues.Add(FirstRequestUpdateDailyPlayTimeClass<>::GetInstance().Subscribe2(
+	//	[this]()
+	//{
+	//	this->UpdateRewardState();
+	//	this->RenderProgressBar(UB2GameInstance::GetPlayTime());
+	//	UpdateMarkRedDotClass<const FName&>::GetInstance().Signal(UIFName::AttendanceMain);
+	//}
+	//));
 }
 
 void UB2UIConnectReward::UnsubscribeEvents()
@@ -195,23 +195,23 @@ bool UB2UIConnectReward::IsNewReward() const
 
 void UB2UIConnectReward::CheckRewardState()
 {
-	if (BTN_Recieve.IsValid() && IsWatingReward == false)
-	{
-		if (BTN_Recieve->GetIsEnabled() && !IsNewReward())
-		{
-			BTN_Recieve->SetIsEnabled(false);
-			if (IMG_ButtonEffect.IsValid())
-				IMG_ButtonEffect->SetVisibility(ESlateVisibility::Collapsed);
-			UpdateMarkRedDotClass<const FName&>::GetInstance().Signal(UIFName::AttendanceMain);
-		}
-		else if (!BTN_Recieve->GetIsEnabled() && IsNewReward())
-		{
-			BTN_Recieve->SetIsEnabled(true);
-			if (IMG_ButtonEffect.IsValid())
-				IMG_ButtonEffect->SetVisibility(ESlateVisibility::HitTestInvisible);
-			UpdateMarkRedDotClass<const FName&>::GetInstance().Signal(UIFName::AttendanceMain);
-		}
-	}
+	//if (BTN_Recieve.IsValid() && IsWatingReward == false)
+	//{
+	//	if (BTN_Recieve->GetIsEnabled() && !IsNewReward())
+	//	{
+	//		BTN_Recieve->SetIsEnabled(false);
+	//		if (IMG_ButtonEffect.IsValid())
+	//			IMG_ButtonEffect->SetVisibility(ESlateVisibility::Collapsed);
+	//		UpdateMarkRedDotClass<const FName&>::GetInstance().Signal(UIFName::AttendanceMain);
+	//	}
+	//	else if (!BTN_Recieve->GetIsEnabled() && IsNewReward())
+	//	{
+	//		BTN_Recieve->SetIsEnabled(true);
+	//		if (IMG_ButtonEffect.IsValid())
+	//			IMG_ButtonEffect->SetVisibility(ESlateVisibility::HitTestInvisible);
+	//		UpdateMarkRedDotClass<const FName&>::GetInstance().Signal(UIFName::AttendanceMain);
+	//	}
+	//}
 }
 
 void UB2UIConnectReward::InitConnectRewardPart()
@@ -244,17 +244,17 @@ void UB2UIConnectReward::UpdateRewardState()
 
 void UB2UIConnectReward::PopUpConnectReward(const TArray<b2network::B2RewardPtr>& Rewards)
 {
-	if (Rewards.Num() > 0)
-	{
-		if (!UB2UIManager::GetInstance()->OpenRewardMailPopUp(Rewards))
-		{
-			if (auto PopUp = UB2UIManager::GetInstance()->OpenMsgPopup<UB2UIMsgPopupReward>(EUIMsgPopup::ItemReward, FText::GetEmpty(), FText::GetEmpty()))
-			{
-				PopUp->AddRewardItems(Rewards, true);
-			}
-		}
-		UpdateMarkRedDotClass<const FName&>::GetInstance().Signal(UIFName::AttendanceMain);
-	}
+	//if (Rewards.Num() > 0)
+	//{
+	//	if (!UB2UIManager::GetInstance()->OpenRewardMailPopUp(Rewards))
+	//	{
+	//		if (auto PopUp = UB2UIManager::GetInstance()->OpenMsgPopup<UB2UIMsgPopupReward>(EUIMsgPopup::ItemReward, FText::GetEmpty(), FText::GetEmpty()))
+	//		{
+	//			PopUp->AddRewardItems(Rewards, true);
+	//		}
+	//	}
+	//	UpdateMarkRedDotClass<const FName&>::GetInstance().Signal(UIFName::AttendanceMain);
+	//}
 }
 
 TWeakObjectPtr<UB2UIConnectRewardPart>* UB2UIConnectReward::FindRewardItem(const b2network::B2RewardPtr& RewardItem)
@@ -279,37 +279,37 @@ void UB2UIConnectReward::FinishRewardAnim()
 
 void UB2UIConnectReward::StartReward(const TArray<b2network::B2RewardPtr>& Rewards)
 {
-	SavedRewards = Rewards;
+	//SavedRewards = Rewards;
 
-	for (int32 i = 0; i < Rewards.Num(); ++i)
-	{
-		if (Rewards[i] == nullptr)
-		{
-			continue;
-		}
+	//for (int32 i = 0; i < Rewards.Num(); ++i)
+	//{
+	//	if (Rewards[i] == nullptr)
+	//	{
+	//		continue;
+	//	}
 
-		if (auto* PartReward = FindRewardItem(Rewards[i]))
-		{
-			(*PartReward)->SetReward(true);
-			BTN_Recieve->SetIsEnabled(false);
-			if (IMG_ButtonEffect.IsValid())
-				IMG_ButtonEffect->SetVisibility(ESlateVisibility::Collapsed);
-			//UpdateMarkRedDotClass<const FName&>::GetInstance().Signal(UIFName::AttendanceMain);
-			return;
-		}
-	}
+	//	if (auto* PartReward = FindRewardItem(Rewards[i]))
+	//	{
+	//		(*PartReward)->SetReward(true);
+	//		BTN_Recieve->SetIsEnabled(false);
+	//		if (IMG_ButtonEffect.IsValid())
+	//			IMG_ButtonEffect->SetVisibility(ESlateVisibility::Collapsed);
+	//		//UpdateMarkRedDotClass<const FName&>::GetInstance().Signal(UIFName::AttendanceMain);
+	//		return;
+	//	}
+	//}
 
-	IsWatingReward = false;;
+	//IsWatingReward = false;;
 
-	if (SavedRewards.Num() > 0)
-	{
-		PopUpConnectReward(SavedRewards);
-		SavedRewards.Empty();
-	}
-	
-	CheckRewardState();
-	ReceiveAttendanceExitEnableClass<bool>::GetInstance().Signal(true);
-	DoMarkCombineRedDotClass<>::GetInstance().Signal();
+	//if (SavedRewards.Num() > 0)
+	//{
+	//	PopUpConnectReward(SavedRewards);
+	//	SavedRewards.Empty();
+	//}
+	//
+	//CheckRewardState();
+	//ReceiveAttendanceExitEnableClass<bool>::GetInstance().Signal(true);
+	//DoMarkCombineRedDotClass<>::GetInstance().Signal();
 }
 
 void UB2UIConnectReward::OnClickBTN_Recieve()

@@ -3,6 +3,7 @@
 //#include "BladeII.h"
 #include "UObject/Object.h"
 #include "CommonStruct.h"
+#include "../BladeII.h"
 #include "B2CompositeMeshCache.generated.h"
 
 /** Data struct checking if cached composite mesh result is the same. */

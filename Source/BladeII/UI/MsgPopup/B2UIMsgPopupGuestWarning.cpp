@@ -101,21 +101,21 @@ void UB2UIMsgPopupGuestWarning::DestroySelf(UB2UIManager* InUIManager)
 
 void UB2UIMsgPopupGuestWarning::SubscribeEvents()
 {
-	UnsubscribeEvents();
+	//UnsubscribeEvents();
 
-	Issues.Add(DeliveryKakaoAccountConversionPrepareClass<FB2ReciveKakaoAccountConversionPrepare>::GetInstance().Subscribe2(
-		[this](FB2ReciveKakaoAccountConversionPrepare KakaoMessageProcessing)
-	{
-		this->OnReceiveKakaoAccountConversionPrepare(KakaoMessageProcessing);
-	}
-	));
+	//Issues.Add(DeliveryKakaoAccountConversionPrepareClass<FB2ReciveKakaoAccountConversionPrepare>::GetInstance().Subscribe2(
+	//	[this](FB2ReciveKakaoAccountConversionPrepare KakaoMessageProcessing)
+	//{
+	//	this->OnReceiveKakaoAccountConversionPrepare(KakaoMessageProcessing);
+	//}
+	//));
 
-	Issues.Add(DeliveryKakaoAccountConversionCompleteClass<FB2ReciveKakaoAccountConversionComplete>::GetInstance().Subscribe2(
-		[this](FB2ReciveKakaoAccountConversionComplete KakaoMessageProcessing)
-	{
-		this->OnReceiveKakaoAccountConversionComplete(KakaoMessageProcessing);
-	}
-	));
+	//Issues.Add(DeliveryKakaoAccountConversionCompleteClass<FB2ReciveKakaoAccountConversionComplete>::GetInstance().Subscribe2(
+	//	[this](FB2ReciveKakaoAccountConversionComplete KakaoMessageProcessing)
+	//{
+	//	this->OnReceiveKakaoAccountConversionComplete(KakaoMessageProcessing);
+	//}
+	//));
 }
 
 void UB2UIMsgPopupGuestWarning::UnsubscribeEvents()

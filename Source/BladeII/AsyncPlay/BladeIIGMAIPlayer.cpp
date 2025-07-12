@@ -6,6 +6,7 @@
 #include "B2SkillRTManager.h"
 #include "B2CombatStatEvaluator.h"
 #include "B2LobbyInventory.h"
+#include "../BladeII/BladeIIUtil.h"
 
 ABladeIIGMAIPlayer::ABladeIIGMAIPlayer(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)

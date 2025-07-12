@@ -53,29 +53,29 @@ void UB2UIEventPagePointLimited::BindDelegates()
 
 void UB2UIEventPagePointLimited::SubscribeEvents_EventPage()
 {
-	UnsubscribeEvents_EventPage();
+	//UnsubscribeEvents_EventPage();
 
-	CAPTURE_UOBJECT(UB2UIEventPagePointLimited);
+	//CAPTURE_UOBJECT(UB2UIEventPagePointLimited);
 
-	Issues_EventPage.Add(DeliveryRewardPointShopEventClass<FB2ResponseRewardPointShopEventdPtr>::GetInstance().Subscribe2(
-		[Capture](FB2ResponseRewardPointShopEventdPtr ReciveEventReward)
-	{
-		if (Capture.IsValid())
-		{
-			Capture->ResponsePointShopLimited(ReciveEventReward);
-		}
-	}
-	));
+	//Issues_EventPage.Add(DeliveryRewardPointShopEventClass<FB2ResponseRewardPointShopEventdPtr>::GetInstance().Subscribe2(
+	//	[Capture](FB2ResponseRewardPointShopEventdPtr ReciveEventReward)
+	//{
+	//	if (Capture.IsValid())
+	//	{
+	//		Capture->ResponsePointShopLimited(ReciveEventReward);
+	//	}
+	//}
+	//));
 
-	Issues_EventPage.Add(SelectEventTabShopLimitedClass<int32>::GetInstance().Subscribe2(
-		[Capture](int32 iTapGroupID)
-	{
-		if (Capture.IsValid())
-		{
-			Capture->UpdateEventPage_FromTapGroupID(iTapGroupID);
-		}
-	}
-	));
+	//Issues_EventPage.Add(SelectEventTabShopLimitedClass<int32>::GetInstance().Subscribe2(
+	//	[Capture](int32 iTapGroupID)
+	//{
+	//	if (Capture.IsValid())
+	//	{
+	//		Capture->UpdateEventPage_FromTapGroupID(iTapGroupID);
+	//	}
+	//}
+	//));
 }
 
 void UB2UIEventPagePointLimited::InitEventPageMasterData()

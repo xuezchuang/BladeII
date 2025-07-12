@@ -17,8 +17,8 @@ void UB2BTService_GetHomePointLocation::TickNode(UBehaviorTreeComponent& OwnerCo
 	auto* GameMode = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(Controller));
 	BII_CHECK(GameMode);
 
-	auto* HomePoint = GameMode->GetHomePoint();
+	//auto* HomePoint = GameMode->GetHomePoint();
 
-	if(HomePoint)
-		OwnerComp.GetBlackboardComponent()->SetValue<UBlackboardKeyType_Vector>(BlackboardKey.SelectedKeyName, HomePoint->GetActorLocation());
+	//if(HomePoint)
+	//	OwnerComp.GetBlackboardComponent()->SetValue<UBlackboardKeyType_Vector>(BlackboardKey.SelectedKeyName, HomePoint->GetActorLocation());
 }

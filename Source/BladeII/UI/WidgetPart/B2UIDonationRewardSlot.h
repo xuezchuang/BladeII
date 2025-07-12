@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "B2UIWidgetBase.h"
+#include "../B2RichTextBlock.h"
 #include "B2UIDonationRewardSlot.generated.h"
 
 /**

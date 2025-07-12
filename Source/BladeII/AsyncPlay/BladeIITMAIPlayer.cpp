@@ -12,6 +12,7 @@
 
 #include "BladeIIGameImpl.h"
 #include "B2ClientDataStore.h"
+#include "../BladeII/BladeIIUtil.h"
 
 ABladeIITMAIPlayer::ABladeIITMAIPlayer(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)

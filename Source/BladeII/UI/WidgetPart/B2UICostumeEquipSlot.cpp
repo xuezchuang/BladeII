@@ -34,17 +34,17 @@ void UB2UICostumeEquipSlotList::SubscribeEvents()
 {
 	UnsubscribeEvents();
 
-	CAPTURE_UOBJECT(UB2UICostumeEquipSlotList);
+	//CAPTURE_UOBJECT(UB2UICostumeEquipSlotList);
 
-	Issues.Add(CostumeEquipSlotVisibleClass<bool>::GetInstance().Subscribe2(
-		[Capture](bool IsVisible)
-	{
-		if (Capture.IsValid())
-		{
-			Capture->UpdateVisibility(IsVisible);
-		}
-	}
-	));
+	//Issues.Add(CostumeEquipSlotVisibleClass<bool>::GetInstance().Subscribe2(
+	//	[Capture](bool IsVisible)
+	//{
+	//	if (Capture.IsValid())
+	//	{
+	//		Capture->UpdateVisibility(IsVisible);
+	//	}
+	//}
+	//));
 }
 
 void UB2UICostumeEquipSlotList::UnsubscribeEvents()
@@ -135,39 +135,39 @@ void UB2UICostumeEquipSlot::InitEquipSlot()
 
 void UB2UICostumeEquipSlot::SubscribeEvents()
 {
-	UnsubscribeEvents();
+	//UnsubscribeEvents();
 
-	CAPTURE_UOBJECT(UB2UICostumeEquipSlot);
+	//CAPTURE_UOBJECT(UB2UICostumeEquipSlot);
 
-	Issues.Add(LobbySetHeroMgmtModePCSelectionClass<EPCClass>::GetInstance().Subscribe2(
-	[Capture](EPCClass SelectionPCClass)
-	{
-		if (Capture.IsValid())
-		{
-			Capture->UpdateFromSelectionPCClass(SelectionPCClass);
-		}
-	}
-	));
+	//Issues.Add(LobbySetHeroMgmtModePCSelectionClass<EPCClass>::GetInstance().Subscribe2(
+	//[Capture](EPCClass SelectionPCClass)
+	//{
+	//	if (Capture.IsValid())
+	//	{
+	//		Capture->UpdateFromSelectionPCClass(SelectionPCClass);
+	//	}
+	//}
+	//));
 
-	Issues.Add(UpdateLobbyInventoryControlClass<>::GetInstance().Subscribe2(
-	[Capture]()
-	{
-		if (Capture.IsValid())
-		{
-			Capture->UpdateFromCurrentPCClass();
-		}
-	}
-	));
+	//Issues.Add(UpdateLobbyInventoryControlClass<>::GetInstance().Subscribe2(
+	//[Capture]()
+	//{
+	//	if (Capture.IsValid())
+	//	{
+	//		Capture->UpdateFromCurrentPCClass();
+	//	}
+	//}
+	//));
 
-	Issues.Add(LobbyHeroFindAccountClass<EPCClass>::GetInstance().Subscribe2(
-	[Capture](EPCClass InPCClass)
-	{
-		if (Capture.IsValid())
-		{
-			Capture->UpdateFromFindAccountClass(InPCClass);
-		}
-	}
-	));
+	//Issues.Add(LobbyHeroFindAccountClass<EPCClass>::GetInstance().Subscribe2(
+	//[Capture](EPCClass InPCClass)
+	//{
+	//	if (Capture.IsValid())
+	//	{
+	//		Capture->UpdateFromFindAccountClass(InPCClass);
+	//	}
+	//}
+	//));
 }
 
 void UB2UICostumeEquipSlot::UnsubscribeEvents()

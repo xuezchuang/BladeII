@@ -5,6 +5,7 @@
 #include "B2LobbyUserWidget.h"
 #include "B2Inventory.h"
 #include "B2UIBackWidget.h"
+#include "../B2RichTextBlock.h"
 #include "B2LobbyUI_EnhanceItemSetEffect.generated.h"
 
 /**

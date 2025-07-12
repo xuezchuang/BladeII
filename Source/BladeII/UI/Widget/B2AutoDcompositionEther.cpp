@@ -203,15 +203,15 @@ void UB2AutoDcompositionEther::BindDelegates()
 
 void UB2AutoDcompositionEther::DestroySelf(class UB2UIManager* InUIManager)
 {
-	if (DecompositionEtherEventID != -1)
-	{
-		DeliveryDecompositionEtherClass<FB2DecompositionEtherPtr>::GetInstance().Unsubscribe(DecompositionEtherEventID);
-	}
+	//if (DecompositionEtherEventID != -1)
+	//{
+	//	DeliveryDecompositionEtherClass<FB2DecompositionEtherPtr>::GetInstance().Unsubscribe(DecompositionEtherEventID);
+	//}
 
-	if (DecompositionEtherErrorEventID != -1)
-	{
-		DeliveryDecompositionEtherErrorClass<>::GetInstance().Unsubscribe(DecompositionEtherErrorEventID);
-	}
+	//if (DecompositionEtherErrorEventID != -1)
+	//{
+	//	DeliveryDecompositionEtherErrorClass<>::GetInstance().Unsubscribe(DecompositionEtherErrorEventID);
+	//}
 }
 
 void UB2AutoDcompositionEther::Init()
@@ -237,56 +237,56 @@ void UB2AutoDcompositionEther::CloseWidgetDelegate()
 
 void UB2AutoDcompositionEther::OnClickDecomposition()
 {
-	EtherPieceAmount = 0;
+	//EtherPieceAmount = 0;
 
-	TArray<int32> StarFilter;
-	TArray<int32> TierFilter;
-	bool IsEnhance;
-	GetFiliterList(StarFilter, TierFilter, IsEnhance);
+	//TArray<int32> StarFilter;
+	//TArray<int32> TierFilter;
+	//bool IsEnhance;
+	//GetFiliterList(StarFilter, TierFilter, IsEnhance);
 
-	FilteredEtherIDs.Empty();
-	BladeIIGameImpl::GetLocalCharacterData().GetAllEthers().GetFilterEtherID(FilteredEtherIDs, StarFilter, TierFilter, IsEnhance);
+	//FilteredEtherIDs.Empty();
+	//BladeIIGameImpl::GetLocalCharacterData().GetAllEthers().GetFilterEtherID(FilteredEtherIDs, StarFilter, TierFilter, IsEnhance);
 
-	SaveFilterInfo();
+	//SaveFilterInfo();
 
-	StartTimerRequestDecompositionEther();
-	UB2UIManager::GetInstance()->OpenUI(UIFName::ClientIndicator);
-	
-	DecompositionEtherEventID = DeliveryDecompositionEtherClass<FB2DecompositionEtherPtr>::GetInstance().Subscribe([this](const FB2DecompositionEtherPtr EtherPtr)
-	{
-		EtherPieceAmount += this->SendEtherPiece;
+	//StartTimerRequestDecompositionEther();
+	//UB2UIManager::GetInstance()->OpenUI(UIFName::ClientIndicator);
+	//
+	//DecompositionEtherEventID = DeliveryDecompositionEtherClass<FB2DecompositionEtherPtr>::GetInstance().Subscribe([this](const FB2DecompositionEtherPtr EtherPtr)
+	//{
+	//	EtherPieceAmount += this->SendEtherPiece;
 
-		if (this->GetSendEther())
-		{
-			if (GetWorld())
-			{
-				ResponseTime = GetWorld()->GetTimeSeconds();
-			}
-			StartTimerRequestDecompositionEther();
-		}
-		else
-		{
-			this->EndLoopRequest();
-		}
-	});   
+	//	if (this->GetSendEther())
+	//	{
+	//		if (GetWorld())
+	//		{
+	//			ResponseTime = GetWorld()->GetTimeSeconds();
+	//		}
+	//		StartTimerRequestDecompositionEther();
+	//	}
+	//	else
+	//	{
+	//		this->EndLoopRequest();
+	//	}
+	//});   
 
-	DecompositionEtherErrorEventID = DeliveryDecompositionEtherErrorClass<>::GetInstance().Subscribe([this]()
-	{
-		this->EndLoopRequest();
+	//DecompositionEtherErrorEventID = DeliveryDecompositionEtherErrorClass<>::GetInstance().Subscribe([this]()
+	//{
+	//	this->EndLoopRequest();
 
-		UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
-		if (UIMgrInst)
-		{
-			UIMgrInst->OpenMsgPopup(EUIMsgPopup::Simple,
-				BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_Notification")),
-				BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Network_Retry")),
-				0.f,
-				true,
-				true,
-				EUIMsgPopupButtonGroup::Confirm
-			);
-		}
-	});
+	//	UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
+	//	if (UIMgrInst)
+	//	{
+	//		UIMgrInst->OpenMsgPopup(EUIMsgPopup::Simple,
+	//			BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_Notification")),
+	//			BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Network_Retry")),
+	//			0.f,
+	//			true,
+	//			true,
+	//			EUIMsgPopupButtonGroup::Confirm
+	//		);
+	//	}
+	//});
 }
 
 void UB2AutoDcompositionEther::OnClickReset()
@@ -380,14 +380,14 @@ void UB2AutoDcompositionEther::GetSendEtherList(TArray<int64>& OutSendIDs)
 
 void UB2AutoDcompositionEther::EndLoopRequest()
 {
-	UB2UIManager::GetInstance()->CloseUI(UIFName::ClientIndicator);
-	
-	RefreshScrollUIClass<>::GetInstance().Signal();
+	//UB2UIManager::GetInstance()->CloseUI(UIFName::ClientIndicator);
+	//
+	//RefreshScrollUIClass<>::GetInstance().Signal();
 
-	UB2UIDecompositionObtainPopup* Popup = UB2UIManager::GetInstance()->OpenUI<UB2UIDecompositionObtainPopup>(UIFName::DecompositionObtainPopup);
-	Popup->SetEtherPieceInfo(EtherPieceAmount);
+	//UB2UIDecompositionObtainPopup* Popup = UB2UIManager::GetInstance()->OpenUI<UB2UIDecompositionObtainPopup>(UIFName::DecompositionObtainPopup);
+	//Popup->SetEtherPieceInfo(EtherPieceAmount);
 
-	OnClickClose();
+	//OnClickClose();
 }
 
 void UB2AutoDcompositionEther::StartTimerRequestDecompositionEther()

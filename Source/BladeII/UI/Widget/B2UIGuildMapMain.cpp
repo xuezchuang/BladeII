@@ -837,34 +837,34 @@ void UB2UIGuildMapMain::EnterMatineePlay(class AMatineeActor* EnterA, class AMat
 
 void UB2UIGuildMapMain::GuildBattleTimeTick()
 {
-	if (GuildBattleEndTime != INDEX_NONE)
-	{
-		FDateTime Time = FDateTime::UtcNow();
+	//if (GuildBattleEndTime != INDEX_NONE)
+	//{
+	//	FDateTime Time = FDateTime::UtcNow();
 
-		int64 RemainTime = GuildBattleEndTime - (Time.ToUnixTimestamp() * 1000);
+	//	int64 RemainTime = GuildBattleEndTime - (Time.ToUnixTimestamp() * 1000);
 
-		FTimespan RemainTime2 = FDateTime::UtcNow() - FDateTime::FromUnixTimestamp(GuildBattleEndTime / 1000);
+	//	FTimespan RemainTime2 = FDateTime::UtcNow() - FDateTime::FromUnixTimestamp(GuildBattleEndTime / 1000);
 
-		int32 RemainDay = RemainTime2.GetDays();
-		int32 RemainHour = RemainTime2.GetHours();
-		int32 RemainMin = RemainTime2.GetMinutes();
+	//	int32 RemainDay = RemainTime2.GetDays();
+	//	int32 RemainHour = RemainTime2.GetHours();
+	//	int32 RemainMin = RemainTime2.GetMinutes();
 
-		if (RemainTime <= 0)
-		{
-			RemainTime = 0;
-			GuildBattleEndTime = INDEX_NONE;
+	//	if (RemainTime <= 0)
+	//	{
+	//		RemainTime = 0;
+	//		GuildBattleEndTime = INDEX_NONE;
 
-			UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
-				BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Chatting_MessageHeader_PublicNoti")), FText::Format(
-					BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Guild_BattleEnd")), FText::FromString(BladeIIGameImpl::GetClientDataStore().GetMyGuildInfo().GuildInfo->guild_name)), 0, true, true, EUIMsgPopupButtonGroup::Confirm
-				, FMsgPopupOnClick::CreateLambda([this]() {
-				LobbyChangeSceneByUISceneClass<EUIScene>::GetInstance().Signal(EUIScene::GuildMain); }
-				));
+	//		UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
+	//			BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Chatting_MessageHeader_PublicNoti")), FText::Format(
+	//				BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Guild_BattleEnd")), FText::FromString(BladeIIGameImpl::GetClientDataStore().GetMyGuildInfo().GuildInfo->guild_name)), 0, true, true, EUIMsgPopupButtonGroup::Confirm
+	//			, FMsgPopupOnClick::CreateLambda([this]() {
+	//			LobbyChangeSceneByUISceneClass<EUIScene>::GetInstance().Signal(EUIScene::GuildMain); }
+	//			));
 
-		}
+	//	}
 
-		TB_Time->SetText(FText::FromString(UB2UIManager::FormatSecondsAsTime(RemainTime / 1000, TEXT("hh:mm:ss"))));
-	}
+	//	TB_Time->SetText(FText::FromString(UB2UIManager::FormatSecondsAsTime(RemainTime / 1000, TEXT("hh:mm:ss"))));
+	//}
 }
 
 void UB2UIGuildMapMain::RefreshInfo()
@@ -969,22 +969,22 @@ void UB2UIGuildMapMain::OnClickBTN_BattleList()
 void UB2UIGuildMapMain::OnClickBTN_OtherGuild()
 {
 
-	UIHidden(true);
+	//UIHidden(true);
 
-	if (BTN_OtherGuild.IsValid())
-		BTN_OtherGuild->SetVisibility(ESlateVisibility::HitTestInvisible);
+	//if (BTN_OtherGuild.IsValid())
+	//	BTN_OtherGuild->SetVisibility(ESlateVisibility::HitTestInvisible);
 
-	if (SB_MapScroll.IsValid())
-		SB_MapScroll->SetVisibility(ESlateVisibility::HitTestInvisible);
-
-
-	GuildStateChangeEventClass<int32>::GetInstance().Signal(NowScrollLv);
-
-	MyGuildInfoState ? MyGuildIndex = NowScrollLv : OtherGuildIndex = NowScrollLv;
+	//if (SB_MapScroll.IsValid())
+	//	SB_MapScroll->SetVisibility(ESlateVisibility::HitTestInvisible);
 
 
-	PlayHiddenAni();
-	SetClose(false);
+	//GuildStateChangeEventClass<int32>::GetInstance().Signal(NowScrollLv);
+
+	//MyGuildInfoState ? MyGuildIndex = NowScrollLv : OtherGuildIndex = NowScrollLv;
+
+
+	//PlayHiddenAni();
+	//SetClose(false);
 }
 
 void UB2UIGuildMapMain::OnClickBTN_Back()

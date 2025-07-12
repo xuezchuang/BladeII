@@ -12,10 +12,10 @@ void UB2UIEventPageGemSpend::CacheAssets()
 {
 	Super::CacheAssets();
 
-	GET_SLOT(UVerticalBox, VB_EventSlotList);
+	//GET_SLOT(UVerticalBox, VB_EventSlotList);
 
-	GET_SLOT(UB2RichTextBlock, RTB_AccrueGemPurchase);
-	GET_SLOT(UB2RichTextBlock, RTB_AccrueGemPoint);
+	//GET_SLOT(UB2RichTextBlock, RTB_AccrueGemPurchase);
+	//GET_SLOT(UB2RichTextBlock, RTB_AccrueGemPoint);
 }
 
 void UB2UIEventPageGemSpend::UpdateStaticText()
@@ -31,19 +31,19 @@ void UB2UIEventPageGemSpend::UpdateStaticText()
 
 void UB2UIEventPageGemSpend::SubscribeEvents_EventPage()
 {
-	UnsubscribeEvents_EventPage();
+	//UnsubscribeEvents_EventPage();
 
-	CAPTURE_UOBJECT(UB2UIEventPageGemSpend);
+	//CAPTURE_UOBJECT(UB2UIEventPageGemSpend);
 
-	Issues_EventPage.Add(DeliveryRewardGemSpendEventClass<FB2ResponseRewardSpendGemEventPtr>::GetInstance().Subscribe2(
-		[Capture](FB2ResponseRewardSpendGemEventPtr ReciveEventReward)
-	{
-		if (Capture.IsValid())
-		{
-			Capture->ResponseGemSpendEventReward(ReciveEventReward);
-		}
-	}
-	));
+	//Issues_EventPage.Add(DeliveryRewardGemSpendEventClass<FB2ResponseRewardSpendGemEventPtr>::GetInstance().Subscribe2(
+	//	[Capture](FB2ResponseRewardSpendGemEventPtr ReciveEventReward)
+	//{
+	//	if (Capture.IsValid())
+	//	{
+	//		Capture->ResponseGemSpendEventReward(ReciveEventReward);
+	//	}
+	//}
+	//));
 }
 
 void UB2UIEventPageGemSpend::UpdateSpendGemPointText(const int32 iSpendGemPoint)

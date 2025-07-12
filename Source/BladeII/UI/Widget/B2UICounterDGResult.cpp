@@ -28,11 +28,11 @@ void UB2UICounterDGResult::Init()
 
 void UB2UICounterDGResult::OnOpenComplete()
 {
-	Super::OnOpenComplete();
+	//Super::OnOpenComplete();
 
-	auto* GameMode = Cast<AB2CounterAttackGameMode>(UGameplayStatics::GetGameMode(GetWorld()));
-	if (GameMode)
-		GameMode->PlayVictoryBGM();
+	//auto* GameMode = Cast<AB2CounterAttackGameMode>(UGameplayStatics::GetGameMode(GetWorld()));
+	//if (GameMode)
+	//	GameMode->PlayVictoryBGM();
 }
 
 void UB2UICounterDGResult::BindDocAuto()
@@ -111,7 +111,7 @@ void UB2UICounterDGResult::BindDelegates()
 
 void UB2UICounterDGResult::OnClickBtnOK()
 {
-	GoToMapClass<>::GetInstance().Signal();
+	//GoToMapClass<>::GetInstance().Signal();
 }
 
 void UB2UICounterDGResult::CheckAndOpenLevelUpPart()

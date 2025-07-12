@@ -69,14 +69,14 @@ void UB2UIDimensionResult::Init()
 
 void UB2UIDimensionResult::DestroySelf(UB2UIManager* InUIManager)
 {
-	DeliveryGetDimensionClass<FB2ResponseGetDimensionPtr>::GetInstance().Unsubscribe(DeliveryGetDimensionTicket);
+	//DeliveryGetDimensionClass<FB2ResponseGetDimensionPtr>::GetInstance().Unsubscribe(DeliveryGetDimensionTicket);
 
-	Super::DestroySelf(InUIManager);
+	//Super::DestroySelf(InUIManager);
 }
 
 void UB2UIDimensionResult::OnClickBTN_Ok()
 {
-	GoToMapClass<>::GetInstance().Signal();
+	//GoToMapClass<>::GetInstance().Signal();
 }
 
 void UB2UIDimensionResult::AnimEnd_End()
@@ -107,14 +107,14 @@ void UB2UIDimensionResult::SetButtonEnable(bool bEnable)
 
 void UB2UIDimensionResult::OnShowResult()
 {
-	SetButtonEnable(false);
+	//SetButtonEnable(false);
 
-	auto* GameMode = Cast<AB2DimensionGameMode>(UGameplayStatics::GetGameMode(GetWorld()));
-	if (GameMode)
-	{
-		GameMode->PlayVictoryBGM();
-		AnimPlay_Open();
-	}
+	//auto* GameMode = Cast<AB2DimensionGameMode>(UGameplayStatics::GetGameMode(GetWorld()));
+	//if (GameMode)
+	//{
+	//	GameMode->PlayVictoryBGM();
+	//	AnimPlay_Open();
+	//}
 }
 
 void UB2UIDimensionResult::CloseWidgetDelegate()

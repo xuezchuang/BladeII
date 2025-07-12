@@ -55,7 +55,7 @@ void UB2UIPackageStore::BindDelegates()
 void UB2UIPackageStore::Init()
 {
 	Super::Init();
-	SetLobbyUIHeaderTitle(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("LobbyMain_Package")));
+	/*SetLobbyUIHeaderTitle(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("LobbyMain_Package")));
 
 	CAPTURE_UOBJECT(UB2UIPackageStore);
 
@@ -74,7 +74,7 @@ void UB2UIPackageStore::Init()
 		USE_CAPTURE_OBJECT_AND_TICKET(DeliveryCheckRedDot, const FB2MessageInfoResponseCheckRedDotPtr& msgPtr)
 		Capture->DoMarkRedDot_Package();
 	END_CAPTURE_OBJECT()
-		);
+		);*/
 
 	//B2InAppPurchase::IB2IAPGenericPlatform::OnPurchaseResultDelegate.BindLambda([this](bool success, b2network::B2BuyShopResultInfoPtr GetProduct) {
 	//	UE_LOG(LogBladeII, Warning, TEXT("@@@@@@@ OnPurchaseResultDelegate @@@@@@@>> %d"), success);
@@ -97,21 +97,21 @@ void UB2UIPackageStore::DoMarkRedDot_Package()
 
 void UB2UIPackageStore::DestroySelf(UB2UIManager* InUIManager)
 {
-	if (UI_Package_Basic.IsValid())
-		UI_Package_Basic->DestroySelf(InUIManager);
-	if (UI_Package_Flatrate.IsValid())
-		UI_Package_Flatrate->DestroySelf(InUIManager);
-	if (UI_Package_LevelUp.IsValid())
-		UI_Package_LevelUp->DestroySelf(InUIManager);
-
-	DestroyPackageDetailPopup();
-	DestroyGuestWarningPopup();
-
-	SelectItemToBuyClass<int32>::GetInstance().Unsubscribe(SelectItemToBuyTicket);
-	DeliveryBuyShopProductClass<FB2ResponseBuyShopProductPtr>::GetInstance().Unsubscribe(DeliveryBuyShopProductTicket);
-	DeliveryCheckRedDotClass<FB2MessageInfoResponseCheckRedDotPtr>::GetInstance().Unsubscribe(DeliveryCheckRedDotTicket);
-
-	Super::DestroySelf(InUIManager);
+//	if (UI_Package_Basic.IsValid())
+//		UI_Package_Basic->DestroySelf(InUIManager);
+//	if (UI_Package_Flatrate.IsValid())
+//		UI_Package_Flatrate->DestroySelf(InUIManager);
+//	if (UI_Package_LevelUp.IsValid())
+//		UI_Package_LevelUp->DestroySelf(InUIManager);
+//
+//	DestroyPackageDetailPopup();
+//	DestroyGuestWarningPopup();
+//
+//	SelectItemToBuyClass<int32>::GetInstance().Unsubscribe(SelectItemToBuyTicket);
+//	DeliveryBuyShopProductClass<FB2ResponseBuyShopProductPtr>::GetInstance().Unsubscribe(DeliveryBuyShopProductTicket);
+//	DeliveryCheckRedDotClass<FB2MessageInfoResponseCheckRedDotPtr>::GetInstance().Unsubscribe(DeliveryCheckRedDotTicket);
+//
+//	Super::DestroySelf(InUIManager);
 }
 
 void UB2UIPackageStore::UpdateStaticText()
@@ -283,17 +283,17 @@ void UB2UIPackageStore::SubmitConfirmToBuyItem(int32 StoreProductID)
 
 void UB2UIPackageStore::SubmitConfirmToBuyGem(int32 StoreProductID)
 {
-	ClosePopupConfirmToBuyItem();
+	//ClosePopupConfirmToBuyItem();
 
-	SelectedProductID = StoreProductID;
-	if (B2P_GetKakaoIDPCode() == EPlatformIDPCode::Guest)
-	{
-		OpenGuestWarningPopup();
-	}
-	else
-	{
-		ConfirmToBuyGem();
-	}
+	//SelectedProductID = StoreProductID;
+	//if (B2P_GetKakaoIDPCode() == EPlatformIDPCode::Guest)
+	//{
+	//	OpenGuestWarningPopup();
+	//}
+	//else
+	//{
+	//	ConfirmToBuyGem();
+	//}
 }
 
 void UB2UIPackageStore::ConfirmToBuyGem()
@@ -411,30 +411,30 @@ void UB2UIPackageStore::ClosePopupConfirmToBuyItem()
 
 void UB2UIPackageStore::ConditionalCreatePackageDetailPopup()
 {
-	if (!Created_UIP_PackageDetailPopup && X_CP_PackageDetailPopup_Panel.IsValid())
-	{
-		Created_UIP_PackageDetailPopup = DynLoadAndCreateInCanvasPanelFull<UB2UIStorePackageDetailPopup>(UIP_PackageDetailPopup_Class, this, X_CP_PackageDetailPopup_Panel.Get());
-		if (Created_UIP_PackageDetailPopup)
-		{
-			Created_UIP_PackageDetailPopup->Init();
-			Created_UIP_PackageDetailPopup->ButtonOneParamDelegate.BindUObject(this, &UB2UIPackageStore::SubmitConfirmToBuy);
-		}
-	}
+	//if (!Created_UIP_PackageDetailPopup && X_CP_PackageDetailPopup_Panel.IsValid())
+	//{
+	//	Created_UIP_PackageDetailPopup = DynLoadAndCreateInCanvasPanelFull<UB2UIStorePackageDetailPopup>(UIP_PackageDetailPopup_Class, this, X_CP_PackageDetailPopup_Panel.Get());
+	//	if (Created_UIP_PackageDetailPopup)
+	//	{
+	//		Created_UIP_PackageDetailPopup->Init();
+	//		Created_UIP_PackageDetailPopup->ButtonOneParamDelegate.BindUObject(this, &UB2UIPackageStore::SubmitConfirmToBuy);
+	//	}
+	//}
 }
 
 void UB2UIPackageStore::ConditionalCreateGuestWarningPopup()
 {
-	if (!Created_UIP_GuestWarningPopup && X_CP_GuestWarningPopup_Panel.IsValid())
-	{
-		Created_UIP_GuestWarningPopup = DynLoadAndCreateInCanvasPanelFull<UB2UIMsgPopupGuestWarning>(UIP_GuestWarningPopup_Class, this, X_CP_GuestWarningPopup_Panel.Get());
-		if (Created_UIP_GuestWarningPopup)
-		{
-			Created_UIP_GuestWarningPopup->Init();
+	//if (!Created_UIP_GuestWarningPopup && X_CP_GuestWarningPopup_Panel.IsValid())
+	//{
+	//	Created_UIP_GuestWarningPopup = DynLoadAndCreateInCanvasPanelFull<UB2UIMsgPopupGuestWarning>(UIP_GuestWarningPopup_Class, this, X_CP_GuestWarningPopup_Panel.Get());
+	//	if (Created_UIP_GuestWarningPopup)
+	//	{
+	//		Created_UIP_GuestWarningPopup->Init();
 
-			BIND_RELEASE_FUNC_TO_BTN(TWeakObjectPtr<UB2Button>(Created_UIP_GuestWarningPopup->GetSlot<UB2Button>(TEXT("BTN_Cancel"))), &UB2UIPackageStore::CloseGuestWarningPopup);
-			BIND_RELEASE_FUNC_TO_BTN(TWeakObjectPtr<UB2Button>(Created_UIP_GuestWarningPopup->GetSlot<UB2Button>(TEXT("BTN_Buy"))), &UB2UIPackageStore::BuyGuestWarningPopup);
-		}
-	}
+	//		BIND_RELEASE_FUNC_TO_BTN(TWeakObjectPtr<UB2Button>(Created_UIP_GuestWarningPopup->GetSlot<UB2Button>(TEXT("BTN_Cancel"))), &UB2UIPackageStore::CloseGuestWarningPopup);
+	//		BIND_RELEASE_FUNC_TO_BTN(TWeakObjectPtr<UB2Button>(Created_UIP_GuestWarningPopup->GetSlot<UB2Button>(TEXT("BTN_Buy"))), &UB2UIPackageStore::BuyGuestWarningPopup);
+	//	}
+	//}
 }
 
 void UB2UIPackageStore::RegisterRedDot(int32 CurrentTabType, UB2UICommonTab* TabWidget)

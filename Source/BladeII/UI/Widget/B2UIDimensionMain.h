@@ -2,6 +2,7 @@
 #pragma once
 
 #include "B2UIWidget.h"
+#include "../../DataStore/B2ClientDataStore.h"
 #include "B2UIDimensionMain.generated.h"
 
 

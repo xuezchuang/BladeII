@@ -143,7 +143,7 @@ void UB2UIPMainQuestTab::SetSelected(bool InValue)
 
 void UB2UIPMainQuestTab::OnClickBTN_Tab()
 {
-	UpdateMainQuestScrollByIndexClass<const int32>::GetInstance().Signal(ActID);
+	//UpdateMainQuestScrollByIndexClass<const int32>::GetInstance().Signal(ActID);
 }
 
 void UB2UIPMainQuestTab::CacheAssets()

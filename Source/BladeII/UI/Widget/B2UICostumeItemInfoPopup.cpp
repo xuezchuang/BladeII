@@ -100,24 +100,24 @@ void UB2UICostumeItemInfoPopup::SubscribeEvent()
 {
 	UnsubscribeEvent();
 
-	Issues.Add(DeliveryLockCostumesClass<FB2ResponseLockCostumesPtr>::GetInstance().Subscribe2(
-		[this](const FB2ResponseLockCostumesPtr& msg)
-	{
-		this->UpdateLockState(true, msg->locked_costumes);
-	}
-	));
-	Issues.Add(DeliveryUnlockCostumesClass<FB2ResponseUnlockCostumesPtr>::GetInstance().Subscribe2(
-		[this](const FB2ResponseUnlockCostumesPtr& msg)
-	{
-		this->UpdateLockState(false, msg->unlocked_costumes);
-	}
-	));
-	Issues.Add(DeliveryDismantleCostumesClass<FB2ResponseDismantleCostumesPtr>::GetInstance().Subscribe2(
-		[this](const FB2ResponseDismantleCostumesPtr& msg)
-	{
-		this->OnClickBTN_Close();
-	}
-	));
+	//Issues.Add(DeliveryLockCostumesClass<FB2ResponseLockCostumesPtr>::GetInstance().Subscribe2(
+	//	[this](const FB2ResponseLockCostumesPtr& msg)
+	//{
+	//	this->UpdateLockState(true, msg->locked_costumes);
+	//}
+	//));
+	//Issues.Add(DeliveryUnlockCostumesClass<FB2ResponseUnlockCostumesPtr>::GetInstance().Subscribe2(
+	//	[this](const FB2ResponseUnlockCostumesPtr& msg)
+	//{
+	//	this->UpdateLockState(false, msg->unlocked_costumes);
+	//}
+	//));
+	//Issues.Add(DeliveryDismantleCostumesClass<FB2ResponseDismantleCostumesPtr>::GetInstance().Subscribe2(
+	//	[this](const FB2ResponseDismantleCostumesPtr& msg)
+	//{
+	//	this->OnClickBTN_Close();
+	//}
+	//));
 }
 
 void UB2UICostumeItemInfoPopup::UnsubscribeEvent()
@@ -153,7 +153,7 @@ void UB2UICostumeItemInfoPopup::OnClickBTN_EquipOrRelease()
 
 void UB2UICostumeItemInfoPopup::OnClickBTN_Enhance()
 {
-	float fPoupSizeX = 0.f;
+	/*float fPoupSizeX = 0.f;
 
 	float fConvertScale = 1.f / UWidgetLayoutLibrary::GetViewportScale(this);
 
@@ -184,7 +184,7 @@ void UB2UICostumeItemInfoPopup::OnClickBTN_Enhance()
 	
 	ForcedClickCostumeMaterialClass<bool>::GetInstance().Signal(true);
 
-	OnClickBTN_Close();
+	OnClickBTN_Close();*/
 }
 
 void UB2UICostumeItemInfoPopup::OnClickBTN_Decomposition()

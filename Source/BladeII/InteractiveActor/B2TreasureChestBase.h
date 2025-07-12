@@ -26,5 +26,5 @@ private:
 	virtual void InteractAction() override;
 
 	UPROPERTY(Transient)
-	AB2StageManager*			CachedStageManager;
+	AB2StageManager* CachedStageManager;
 };

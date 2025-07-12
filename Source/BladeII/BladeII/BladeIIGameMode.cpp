@@ -527,24 +527,24 @@ TArray<EPCClass> ABladeIIGameMode::GetPCClassesToMatineePreLoad()
 {
 	return GetPCClassesToPreLoad(); // 일부 게임모드에서 이게 아닌 경우가 있을 것.
 }
-//TArray<FCombinedPCSkillAnimID> ABladeIIGameMode::GetPCSkillAnimsToPreLoad()
-//{
-//	TArray<FCombinedPCSkillAnimID> RetArray;
-//
-//	TArray<EPCClass> AllPCClassToPreLoad = GetPCClassesToPreLoad();
-//
-//	for (EPCClass ThisPCClass : AllPCClassToPreLoad)
-//	{
-//		// 기본 구현은 매 PCClass 별로 가능한 스킬 애니메이션들을 몽땅 다 넣음. 
-//		// 하위 GameMode 클래스에서는 각 플레이어 캐릭터 별로 장착한 Skill 상태에 따라 필요한 것만 넣을 수 있도록 해야 함.
-//		// 이를 위해서는 CharacterDataStore 가 필요하므로 네트워크 게임이라면 캐릭터 별로 iteration 을 돌아서 장착한 skill 들을 모아와야지, PCClass 로 iteration 하면 안될 것임.
-//		// 그러나 일부 네트워크 기반 모드에서는 실제 매칭이 되기 전에는 CharacterDataStore 가 없을 것이므로 Preload 시점에 불가능할 수도 있다.
-//
-//		TArray<FCombinedPCSkillAnimID> AllAnimIDOfThisClass = GetAllPCSkillAnimsOfClass(ThisPCClass);
-//		RetArray.Append(AllAnimIDOfThisClass);
-//	}
-//	return RetArray;
-//}
+TArray<FCombinedPCSkillAnimID> ABladeIIGameMode::GetPCSkillAnimsToPreLoad()
+{
+	TArray<FCombinedPCSkillAnimID> RetArray;
+
+	//TArray<EPCClass> AllPCClassToPreLoad = GetPCClassesToPreLoad();
+
+	//for (EPCClass ThisPCClass : AllPCClassToPreLoad)
+	//{
+	//	// 기본 구현은 매 PCClass 별로 가능한 스킬 애니메이션들을 몽땅 다 넣음. 
+	//	// 하위 GameMode 클래스에서는 각 플레이어 캐릭터 별로 장착한 Skill 상태에 따라 필요한 것만 넣을 수 있도록 해야 함.
+	//	// 이를 위해서는 CharacterDataStore 가 필요하므로 네트워크 게임이라면 캐릭터 별로 iteration 을 돌아서 장착한 skill 들을 모아와야지, PCClass 로 iteration 하면 안될 것임.
+	//	// 그러나 일부 네트워크 기반 모드에서는 실제 매칭이 되기 전에는 CharacterDataStore 가 없을 것이므로 Preload 시점에 불가능할 수도 있다.
+
+	//	TArray<FCombinedPCSkillAnimID> AllAnimIDOfThisClass = GetAllPCSkillAnimsOfClass(ThisPCClass);
+	//	RetArray.Append(AllAnimIDOfThisClass);
+	//}
+	return RetArray;
+}
 //
 //TArray<FCombinedPCSkillAnimID> ABladeIIGameMode::GetAllPCSkillAnimsOfClass(EPCClass InCharClass)
 //{ // 유틸 수준. 꼭 여기에 있을 필요는 없다.
@@ -580,13 +580,13 @@ TArray<EPCClass> ABladeIIGameMode::GetPCClassesToMatineePreLoad()
 ////	}
 ////}
 ////
-//// GatherEquippedSkillAnimIDs 함수만 재정의 하여 게임 모드별 필요 Class SkillAnim들을 AsyncLoad
-//void ABladeIIGameMode::GatherEquippedSkillAnimIDs(ICharacterDataStore* DataStore, TArray<FCombinedPCSkillAnimID>& OutEquippedSkills)
-//{
-//	//OutEquippedSkills.Append(GetEquippedSkillAnimIDs(DataStore->GetMainPlayerClass(), DataStore));
-//	//OutEquippedSkills.Append(GetEquippedSkillAnimIDs(DataStore->GetSubPlayerClass(), DataStore));
-//}
-//
+// GatherEquippedSkillAnimIDs 함수만 재정의 하여 게임 모드별 필요 Class SkillAnim들을 AsyncLoad
+void ABladeIIGameMode::GatherEquippedSkillAnimIDs(ICharacterDataStore* DataStore, TArray<FCombinedPCSkillAnimID>& OutEquippedSkills)
+{
+	//OutEquippedSkills.Append(GetEquippedSkillAnimIDs(DataStore->GetMainPlayerClass(), DataStore));
+	//OutEquippedSkills.Append(GetEquippedSkillAnimIDs(DataStore->GetSubPlayerClass(), DataStore));
+}
+
 ////TArray<FCombinedPCSkillAnimID> ABladeIIGameMode::GetEquippedSkillAnimIDs(EPCClass PlayerClass, ICharacterDataStore* DataStore)
 ////{
 ////	TArray<ESkillAnimType> SkillAnimTypes;
@@ -2788,10 +2788,10 @@ void ABladeIIGameMode::NotifyForgetACharacter(class ABladeIICharacter* Character
 //		}
 //	}
 //}
-//
-//void ABladeIIGameMode::NotifyStageEventSceneBegin(class AB2StageEventDirector* BegunDirector, EStageEvent EventType)
-//{
-//}
+
+void ABladeIIGameMode::NotifyStageEventSceneBegin(class AB2StageEventDirector* BegunDirector, EStageEvent EventType)
+{
+}
 void ABladeIIGameMode::NotifyStageEventSceneEnd(class AB2StageEventDirector* EndedDirector)
 {
 }
@@ -2837,42 +2837,42 @@ void ABladeIIGameMode::AddActiveCameraActor(class AB2ActiveCameraActor* InNewAct
 	//}
 }
 
-//class AB2ActiveCameraActor* ABladeIIGameMode::FindActiveCameraActorByTag(FName ACATagName)
-//{
-//	for (AB2ActiveCameraActor* pACA : ActiveCameraActors)
-//	{
-//		if (pACA->ActorHasTag(ACATagName))
-//		{
-//			return pACA;
-//		}
-//	}
-//	
-//	return nullptr;
-//}
-//
-//void ABladeIIGameMode::AddAutoWayPoint(AB2AutoWayPoint* InNewWayPoint)
-//{
-//	if (InNewWayPoint)
-//	{
-//		AutoWayPoints.AddUnique(InNewWayPoint);
-//	}
-//}
-//
-//void ABladeIIGameMode::AddTreasureChest(class AB2TreasureChestBase* InNewTreasureChest)
-//{
-//	if (InNewTreasureChest)
-//	{
-//		TreasureChests.AddUnique(InNewTreasureChest);
-//	}
-//}
-//
-//void ABladeIIGameMode::RemoveTreasureChest(class AB2TreasureChestBase* InRemoveTreasureChest)
-//{
-//	if (InRemoveTreasureChest)
-//	{
-//		TreasureChests.Remove(InRemoveTreasureChest);
-//	}
-//}
+class AB2ActiveCameraActor* ABladeIIGameMode::FindActiveCameraActorByTag(FName ACATagName)
+{
+	//for (AB2ActiveCameraActor* pACA : ActiveCameraActors)
+	//{
+	//	if (pACA->ActorHasTag(ACATagName))
+	//	{
+	//		return pACA;
+	//	}
+	//}
+
+	return nullptr;
+}
+
+void ABladeIIGameMode::AddAutoWayPoint(AB2AutoWayPoint* InNewWayPoint)
+{
+	if (InNewWayPoint)
+	{
+		AutoWayPoints.AddUnique(InNewWayPoint);
+	}
+}
+
+void ABladeIIGameMode::AddTreasureChest(class AB2TreasureChestBase* InNewTreasureChest)
+{
+	if (InNewTreasureChest)
+	{
+		TreasureChests.AddUnique(InNewTreasureChest);
+	}
+}
+
+void ABladeIIGameMode::RemoveTreasureChest(class AB2TreasureChestBase* InRemoveTreasureChest)
+{
+	if (InRemoveTreasureChest)
+	{
+		TreasureChests.Remove(InRemoveTreasureChest);
+	}
+}
 
 void ABladeIIGameMode::AddDestructibleObject(AB2DestructibleLevelObjBase* InNewDestructibleObject)
 {
@@ -2882,18 +2882,18 @@ void ABladeIIGameMode::AddDestructibleObject(AB2DestructibleLevelObjBase* InNewD
 	//}
 }
 
-//void ABladeIIGameMode::AddHomePoint(AB2HomePoint* InNewHomePoint)
-//{
-//	HomePoints.AddUnique(InNewHomePoint);
-//}
-//
-//AB2HomePoint* ABladeIIGameMode::GetHomePoint() const
-//{
-//	if (HomePoints.Num() == 0)
-//		return nullptr;
-//
-//	return HomePoints[0];
-//}
+void ABladeIIGameMode::AddHomePoint(AB2HomePoint* InNewHomePoint)
+{
+	HomePoints.AddUnique(InNewHomePoint);
+}
+
+AB2HomePoint* ABladeIIGameMode::GetHomePoint() const
+{
+	if (HomePoints.Num() == 0)
+		return nullptr;
+
+	return HomePoints[0];
+}
 
 void ABladeIIGameMode::RemoveDestructibleObject(class AB2DestructibleLevelObjBase* InRemoveDestructibleObject)
 {

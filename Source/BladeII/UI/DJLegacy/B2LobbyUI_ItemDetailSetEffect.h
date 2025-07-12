@@ -4,6 +4,7 @@
 
 #include "B2LobbyUserWidget.h"
 #include "B2Inventory.h"
+#include "../Widget/B2Image.h"
 #include "B2LobbyUI_ItemDetailSetEffect.generated.h"
 
 USTRUCT(BlueprintType)

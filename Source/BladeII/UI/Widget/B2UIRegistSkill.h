@@ -3,6 +3,7 @@
 #include "B2UIWidget.h"
 #include "B2UIDocBindable.h"
 #include "B2UIBackWidget.h"
+#include "../../InfoAsset/B2SkillInfo.h"
 #include "B2UIRegistSkill.generated.h"
 
 class FCachedResistSkillData
@@ -48,7 +49,7 @@ private:
 	UFUNCTION()
 		void OnClickBtnCancel();
 
-	void SetSkillInfo(TWeakObjectPtr<class UB2UIPlayerSkillInfo> WidgetPart, int32 SkillId, const class UB2SkillInfo* AllSkillInfo, const FLocalCharacterData& CharacterData, bool bRegistred);
+	//void SetSkillInfo(TWeakObjectPtr<class UB2UIPlayerSkillInfo> WidgetPart, int32 SkillId, const class UB2SkillInfo* AllSkillInfo, const FLocalCharacterData& CharacterData, bool bRegistred);
 	void CheckToRegistSkill();
 	bool CheckToChangeSkillPosition(int32, int32);
 

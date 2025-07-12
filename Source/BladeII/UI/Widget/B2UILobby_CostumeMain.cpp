@@ -103,27 +103,27 @@ void UB2UILobby_CostumeMain::SubscribeEvents()
 {
 	UnsubscribeEvents();
 
-	TWeakObjectPtr<UB2UILobby_CostumeMain> Capture(this);
+	//TWeakObjectPtr<UB2UILobby_CostumeMain> Capture(this);
 
 
-	Issues.Add(RefreshCostumeHeroMgmtRedDotClass<>::GetInstance().Subscribe2(
-		[Capture]()
-	{
-		if (Capture.IsValid())
-			Capture->DoMarkRedDot();
-	}
-	));
+	//Issues.Add(RefreshCostumeHeroMgmtRedDotClass<>::GetInstance().Subscribe2(
+	//	[Capture]()
+	//{
+	//	if (Capture.IsValid())
+	//		Capture->DoMarkRedDot();
+	//}
+	//));
 
-	Issues.Add(DeliveryCheckRedDotClass<FB2MessageInfoResponseCheckRedDotPtr>::GetInstance().Subscribe2(
-		[Capture](FB2MessageInfoResponseCheckRedDotPtr RedDotInfo)
-	{
-		if (RedDotInfo.get() == nullptr)
-			return;
+	//Issues.Add(DeliveryCheckRedDotClass<FB2MessageInfoResponseCheckRedDotPtr>::GetInstance().Subscribe2(
+	//	[Capture](FB2MessageInfoResponseCheckRedDotPtr RedDotInfo)
+	//{
+	//	if (RedDotInfo.get() == nullptr)
+	//		return;
 
-		if (RedDotInfo->is_valid_equip && Capture.IsValid())
-			Capture->DoMarkRedDot();
-	}
-	));
+	//	if (RedDotInfo->is_valid_equip && Capture.IsValid())
+	//		Capture->DoMarkRedDot();
+	//}
+	//));
 }
 
 void UB2UILobby_CostumeMain::UnsubscribeEvents()
@@ -181,33 +181,33 @@ void UB2UILobby_CostumeMain::ReleaseCostumeMain()
 
 void UB2UILobby_CostumeMain::UpdateCostumePage(const ECostumePage& eCostumePageType)
 {
-	int32 iCostumePageIndex = static_cast<int32>(eCostumePageType);
+	//int32 iCostumePageIndex = static_cast<int32>(eCostumePageType);
 
-	UpdateCostumePageValidity(iCostumePageIndex);
-	UpdateCostumePagesVisibility(iCostumePageIndex);
+	//UpdateCostumePageValidity(iCostumePageIndex);
+	//UpdateCostumePagesVisibility(iCostumePageIndex);
 
-	switch (eCostumePageType)
-	{
-	case ECostumePage::Inven:
-		{
-			CostumeEquipSlotVisibleClass<bool>::GetInstance().Signal(true);
-		}break;
+	//switch (eCostumePageType)
+	//{
+	//case ECostumePage::Inven:
+	//	{
+	//		CostumeEquipSlotVisibleClass<bool>::GetInstance().Signal(true);
+	//	}break;
 
-	case ECostumePage::Store:
-		{
-			CostumeEquipSlotVisibleClass<bool>::GetInstance().Signal(false);
-			BladeIIGameImpl::GetRedDotManager().RequestCheckRedDot({ RedDotHint::RED_DOT_EQUIP });
-		}break;
-	}
+	//case ECostumePage::Store:
+	//	{
+	//		CostumeEquipSlotVisibleClass<bool>::GetInstance().Signal(false);
+	//		BladeIIGameImpl::GetRedDotManager().RequestCheckRedDot({ RedDotHint::RED_DOT_EQUIP });
+	//	}break;
+	//}
 
-	if (WS_InvenOrStoreOpenBtn.IsValid())
-	{
-		WS_InvenOrStoreOpenBtn->SetActiveWidgetIndex(iCostumePageIndex);
-	}
+	//if (WS_InvenOrStoreOpenBtn.IsValid())
+	//{
+	//	WS_InvenOrStoreOpenBtn->SetActiveWidgetIndex(iCostumePageIndex);
+	//}
 
-	BladeIIGameImpl::GetCostumeDataStore().SetCachedCostumePageType(eCostumePageType);
-	
-	CloseAllStandaloneUIFromUIManager();
+	//BladeIIGameImpl::GetCostumeDataStore().SetCachedCostumePageType(eCostumePageType);
+	//
+	//CloseAllStandaloneUIFromUIManager();
 }
 
 void UB2UILobby_CostumeMain::UpdateCostumePageValidity(const int32& iCostumePageIndex)
@@ -285,16 +285,16 @@ void UB2UILobby_CostumeMain::UpdateCostumePagesVisibility(const int32& iVisibleP
 
 UB2UIWidget* UB2UILobby_CostumeMain::CreateDynamicCostumePage(const TSoftClassPtr<UB2UIWidget>* pCreateWidgetClass)
 {
-	if (CP_CostumePage.IsValid() == false)
-	{
+	//if (CP_CostumePage.IsValid() == false)
+	//{
 		return nullptr;
-	}
+	//}
 
-	UB2UIWidget* CreatedWidget = DynLoadAndCreateInCanvasPanelFull<UB2UIWidget>(*pCreateWidgetClass, this, CP_CostumePage.Get());
-	if (CreatedWidget != nullptr)
-		CreatedWidget->Init();
+	//UB2UIWidget* CreatedWidget = DynLoadAndCreateInCanvasPanelFull<UB2UIWidget>(*pCreateWidgetClass, this, CP_CostumePage.Get());
+	//if (CreatedWidget != nullptr)
+	//	CreatedWidget->Init();
 
-	return CreatedWidget;
+	//return CreatedWidget;
 }
 
 UCanvasPanel* UB2UILobby_CostumeMain::GetDetailPopupParentPanel(bool bOfLeftSide) const

@@ -72,186 +72,186 @@ void UB2UIBattleMain::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
 
 void UB2UIBattleMain::CacheAssets()
 {
-	//////////////////////////////////////////////////////////////////
-	// 
-	// 반격 던전 / 일반 전투 UI 공용 Widget
-	// 
-
-	//버튼들
-	ADD_WIDGET_SLOT(CommonWidgets, UButton, BTN_Tag);
-	ADD_WIDGET_SLOT(CommonWidgets, UButton, BTN_Pause);
-	ADD_WIDGET_SLOT(CommonWidgets, UButton, BTN_Pause2);
-	ADD_WIDGET_SLOT(CommonWidgets, UButton, BTN_Attack);	
-		
-	//메인캐릭
-	ADD_WIDGET_SLOT(CommonWidgets, UImage, IMG_PortraitMain);
-	ADD_WIDGET_SLOT(CommonWidgets, UImage, CRTInfoBGImage_01);
-	ADD_WIDGET_SLOT(CommonWidgets, UTextBlock, TB_MainCharLevel);
-	ADD_WIDGET_SLOT(CommonWidgets, UTextBlock, TB_MainCharName);
-	ADD_WIDGET_SLOT(CommonWidgets, UTextBlock, TB_MainCharLevel);
-	ADD_WIDGET_SLOT(CommonWidgets, UProgressBar, PB_MainCharHP);
-	ADD_WIDGET_SLOT(CommonWidgets, UProgressBar, PB_MainCharShield);
-
-	//서브캐릭
-	ADD_WIDGET_SLOT(CommonWidgets, UImage, IMG_PortraitSub);
-	ADD_WIDGET_SLOT(CommonWidgets, UImage, IMG_PortraitSubDisable);
-	ADD_WIDGET_SLOT(CommonWidgets, UProgressBar, PB_SubCharHP);
-
-	//쿨타임
-	ADD_WIDGET_SLOT(CommonWidgets, UImage, IMG_TagCooltime);
-	ADD_WIDGET_SLOT(CommonWidgets, UImage, IMG_TagCooltimeBottom);
-	ADD_WIDGET_SLOT(CommonWidgets, UTextBlock, TB_TagCooltimeNumBottom);
-	if (IMG_TagCooltime.IsValid())
-		TagCooltimeDisplayMID = IMG_TagCooltime->GetDynamicMaterial();
-
-	if (IMG_TagCooltimeBottom.IsValid())
-		TagCooltimeDisplayMIDBottom = IMG_TagCooltimeBottom->GetDynamicMaterial();
-
-	ADD_WIDGET_SLOT(CommonWidgets, UImage, IMG_FX_TagSuggest);
-	if (IMG_FX_TagSuggest.IsValid())
-	{ // 숨겨놓고 시작.
-		IMG_FX_TagSuggest->SetVisibility(ESlateVisibility::Hidden);
-	}
-	ADD_WIDGET_SLOT(CommonWidgets, UPanelWidget, CP_TagSuggest_TagCharChallenge);
-	if (CP_TagSuggest_TagCharChallenge.IsValid())
-	{
-		CP_TagSuggest_TagCharChallenge->SetVisibility(ESlateVisibility::Hidden);
-	}
-	ADD_WIDGET_SLOT(CommonWidgets, UTextBlock, TB_TagSuggest_TagCharChallenge)
-		ADD_WIDGET_SLOT(CommonWidgets, UPanelWidget, CP_TagAttackSuggestSet)
-	if (CP_TagAttackSuggestSet.IsValid())
-	{
-		CP_TagAttackSuggestSet->SetVisibility(ESlateVisibility::Hidden);
-	}
-	ADD_WIDGET_SLOT(CommonWidgets, UTextBlock, TB_TagAttack);
-
-	ADD_WIDGET_SLOT(CommonWidgets, UTextBlock, TB_TagAnim_Gladiator);
-	ADD_WIDGET_SLOT(CommonWidgets, UTextBlock, TB_TagAnim_Assassin);
-	ADD_WIDGET_SLOT(CommonWidgets, UTextBlock, TB_TagAnim_Wizard);
-	ADD_WIDGET_SLOT(CommonWidgets, UTextBlock, TB_TagAnim_Fighter);
-
-	GET_SLOT(UB2UIEtherSetSkillIcon, UIP_OffenseEtherIcon);
-	if (UIP_OffenseEtherIcon.IsValid())
-		UIP_OffenseEtherIcon->Init();
-	GET_SLOT(UB2UIEtherSetSkillIcon, UIP_DefenseEtherIcon);
-	if (UIP_DefenseEtherIcon.IsValid())
-		UIP_DefenseEtherIcon->Init();
-
-	ADD_WIDGET_SLOT(NormalBattleWidgets, UB2UIPAutoBattleIcon, UIP_AutoBattleIcon);
-
-	//배틀콤보
-	ADD_WIDGET_SLOT(CommonWidgets, UB2UIBattleCombo, UIP_BattleCombo);
-
-	//비넥트
-	ADD_WIDGET_SLOT(CommonWidgets, UB2UIBattleVignette, UIP_BattleVignette);
-	
-	//핫타임 아이콘
-	ADD_WIDGET_SLOT(CommonWidgets, UB2UIHotTimeIcon, UIP_Hottime);
-	
-	ADD_WIDGET_SLOT(CommonWidgets, UPanelWidget, CP_Attack);
-	ADD_WIDGET_SLOT(CommonWidgets, UPanelWidget, CP_PortraitSub);
-	ADD_WIDGET_SLOT(CommonWidgets, UPanelWidget, CP_MainCharacterStatus);
-	ADD_WIDGET_SLOT(CommonWidgets, UScaleBox, SB_TbMainCharName);
-
-	ADD_WIDGET_SLOT(CommonWidgets, UButton, BTN_Guard);
-	ADD_WIDGET_SLOT(CommonWidgets, UImage, IMG_GuardBG);
-	ADD_WIDGET_SLOT(CommonWidgets, UPanelWidget, CP_Guard);
-
-	ADD_WIDGET_SLOT(CommonWidgets, UTextBlock, TB_GuradCoolTime);
-	ADD_WIDGET_SLOT(CommonWidgets, UPanelWidget, CP_GuardEnable);
-	ADD_WIDGET_SLOT(CommonWidgets, UPanelWidget, CP_GuardDisable);
-
-	ADD_WIDGET_SLOT(CommonWidgets, UImage, IMG_QTEBG);
-	//////////////////////////////////////////////////////////////////
-	// 
-	// 일반 전투에만 쓰이는 UI Widget
-	// 
-	ADD_WIDGET_SLOT(NormalBattleWidgets, UButton, BTN_MountAttack);
-	ADD_WIDGET_SLOT(NormalBattleWidgets, UPanelWidget, CP_MountAttack);
-
-	ADD_WIDGET_SLOT(NormalBattleWidgets, UTextBlock, TB_Gold);
-
-	ADD_WIDGET_SLOT(NormalBattleWidgets, UPanelWidget, CP_Gold);
-	ADD_WIDGET_SLOT(NormalBattleWidgets, UPanelWidget, CP_PlayTimeSet);
-	ADD_WIDGET_SLOT(NormalBattleWidgets, UPanelWidget, P_StageNumberSet);
-	ADD_WIDGET_SLOT(NormalBattleWidgets, UPanelWidget, P_Tag);
-
-	ADD_WIDGET_SLOT(NormalBattleWidgets, UTextBlock, TB_StagePlayingTime);	
-	ADD_WIDGET_SLOT(NormalBattleWidgets, UImage, IMG_StageClearGradeStarTwinkle_01);
-	ADD_WIDGET_SLOT(NormalBattleWidgets, UImage, IMG_StageClearGradeStarTwinkle_02);
-	ADD_WIDGET_SLOT(NormalBattleWidgets, UImage, IMG_StageClearGradeStarTwinkle_03);	
-
-	ADD_WIDGET_SLOT(NormalBattleWidgets, UB2Button, BTN_ShowClearGradeCondition);
-	ADD_WIDGET_SLOT(NormalBattleWidgets, UTextBlock, TB_ClearGradeCondition);
-
-	ADD_WIDGET_SLOT(NormalBattleWidgets, UB2UIRepeatBattleInGameInfo, UIP_RepeatBattleInGameInfoP);
-	if (UIP_RepeatBattleInGameInfoP.IsValid())
-	{
-		UIP_RepeatBattleInGameInfoP->Init();
-	}
-
-	ADD_WIDGET_SLOT(NormalBattleWidgets, UHorizontalBox, HB_StageResurrectBuffIconSet);
-	
-	ADD_WIDGET_SLOT(NormalBattleWidgets, UHorizontalBox, HB_Resurrect);
-	ADD_WIDGET_SLOT(NormalBattleWidgets, UHorizontalBox, HB_Guild);
-
-	ADD_WIDGET_SLOT(NormalBattleWidgets, UImage, IMG_SkillSetBG);
-
-	ADD_WIDGET_SLOT(NormalBattleWidgets, UTextBlock, TB_StageNumber);
-	ADD_WIDGET_SLOT(NormalBattleWidgets, UTextBlock, TB_StageDifficulty);
-
-	ADD_WIDGET_SLOT(NormalBattleWidgets, UImage, IMG_EvadeSkillCooltime);
-	//////////////////////////////////////////////////////////////////
-	// 
-	// 반격 던전에만 쓰이는 UI Widget
-	// 
-
-	ADD_WIDGET_SLOT(CounterAttackWidgets, UB2UIBattleSkill, UIP_CounterAttack_Skill);
-	ADD_WIDGET_SLOT(CounterAttackWidgets, UB2UIWidgetBase, UIP_CounterFinishAttack);
-
-	if (UIP_CounterFinishAttack.IsValid())
-	{
-		UIP_CounterFinishAttack->Init();		
-	}
-	ADD_WIDGET_SLOT(CounterAttackWidgets, UImage, FX_IMG_Enable);	
-	ADD_WIDGET_SLOT(CounterAttackWidgets, UImage, IMG_CounterSuggestRing);
-
-	//////////////////////////////////////////////////////////////////
-	// 
-	// Mount 공격 때 숨겨져야하는 위젯들.
-	// 
-
-	WidgetsToHideInMountAttackState.Add(TPairInitializer<TWeakObjectPtr<UObject>, ESlateVisibility>(IMG_SkillSetBG,	ESlateVisibility::SelfHitTestInvisible));	
-	WidgetsToHideInMountAttackState.Add(TPairInitializer<TWeakObjectPtr<UObject>, ESlateVisibility>(BTN_Guard,		ESlateVisibility::Visible));
-	WidgetsToHideInMountAttackState.Add(TPairInitializer<TWeakObjectPtr<UObject>, ESlateVisibility>(IMG_GuardBG,	ESlateVisibility::SelfHitTestInvisible));
-	WidgetsToHideInMountAttackState.Add(TPairInitializer<TWeakObjectPtr<UObject>, ESlateVisibility>(IMG_QTEBG,		ESlateVisibility::SelfHitTestInvisible));
-	WidgetsToHideInMountAttackState.Add(TPairInitializer<TWeakObjectPtr<UObject>, ESlateVisibility>(IMG_EvadeSkillCooltime, ESlateVisibility::HitTestInvisible));
-	
-	GET_SLOT(UB2UIBattleNotice, UIP_BattleNotice);
-	if (UIP_BattleNotice.IsValid())
-	{
-		UIP_BattleNotice->Init();
-	}
-
-	GET_SLOT(UPanelWidget, CP_TagBottomEnabledTrue);
-	GET_SLOT(UPanelWidget, CP_TagBottomEnabledFalse);
-	GET_SLOT(UOverlay, O_Death);
-
-	GET_SLOT(UPanelWidget, CP_MainButton);
-
-	GET_SLOT(UTextBlock, TB_CounterDungeonLv);
-
-	GET_SLOT(UB2Button, BTN_Chat);
-	
-#if !UE_BUILD_SHIPPING // 개발 테스트용
-	GET_SLOT(UPanelWidget, P_DevLODTest);
-	GET_SLOT(UB2Button, BTN_Dev_FxLOD_PC);
-	GET_SLOT(UB2Button, BTN_Dev_FxLOD_Mob);
-	GET_SLOT(UB2Button, BTN_Dev_FxLOD_Boss);
-	GET_SLOT(UTextBlock, TB_Dev_FxLOD_PC);
-	GET_SLOT(UTextBlock, TB_Dev_FxLOD_Mob);
-	GET_SLOT(UTextBlock, TB_Dev_FxLOD_Boss);
-#endif
+//	//////////////////////////////////////////////////////////////////
+//	// 
+//	// 반격 던전 / 일반 전투 UI 공용 Widget
+//	// 
+//
+//	//버튼들
+//	ADD_WIDGET_SLOT(CommonWidgets, UButton, BTN_Tag);
+//	ADD_WIDGET_SLOT(CommonWidgets, UButton, BTN_Pause);
+//	ADD_WIDGET_SLOT(CommonWidgets, UButton, BTN_Pause2);
+//	ADD_WIDGET_SLOT(CommonWidgets, UButton, BTN_Attack);	
+//		
+//	//메인캐릭
+//	ADD_WIDGET_SLOT(CommonWidgets, UImage, IMG_PortraitMain);
+//	ADD_WIDGET_SLOT(CommonWidgets, UImage, CRTInfoBGImage_01);
+//	ADD_WIDGET_SLOT(CommonWidgets, UTextBlock, TB_MainCharLevel);
+//	ADD_WIDGET_SLOT(CommonWidgets, UTextBlock, TB_MainCharName);
+//	ADD_WIDGET_SLOT(CommonWidgets, UTextBlock, TB_MainCharLevel);
+//	ADD_WIDGET_SLOT(CommonWidgets, UProgressBar, PB_MainCharHP);
+//	ADD_WIDGET_SLOT(CommonWidgets, UProgressBar, PB_MainCharShield);
+//
+//	//서브캐릭
+//	ADD_WIDGET_SLOT(CommonWidgets, UImage, IMG_PortraitSub);
+//	ADD_WIDGET_SLOT(CommonWidgets, UImage, IMG_PortraitSubDisable);
+//	ADD_WIDGET_SLOT(CommonWidgets, UProgressBar, PB_SubCharHP);
+//
+//	//쿨타임
+//	ADD_WIDGET_SLOT(CommonWidgets, UImage, IMG_TagCooltime);
+//	ADD_WIDGET_SLOT(CommonWidgets, UImage, IMG_TagCooltimeBottom);
+//	ADD_WIDGET_SLOT(CommonWidgets, UTextBlock, TB_TagCooltimeNumBottom);
+//	if (IMG_TagCooltime.IsValid())
+//		TagCooltimeDisplayMID = IMG_TagCooltime->GetDynamicMaterial();
+//
+//	if (IMG_TagCooltimeBottom.IsValid())
+//		TagCooltimeDisplayMIDBottom = IMG_TagCooltimeBottom->GetDynamicMaterial();
+//
+//	ADD_WIDGET_SLOT(CommonWidgets, UImage, IMG_FX_TagSuggest);
+//	if (IMG_FX_TagSuggest.IsValid())
+//	{ // 숨겨놓고 시작.
+//		IMG_FX_TagSuggest->SetVisibility(ESlateVisibility::Hidden);
+//	}
+//	ADD_WIDGET_SLOT(CommonWidgets, UPanelWidget, CP_TagSuggest_TagCharChallenge);
+//	if (CP_TagSuggest_TagCharChallenge.IsValid())
+//	{
+//		CP_TagSuggest_TagCharChallenge->SetVisibility(ESlateVisibility::Hidden);
+//	}
+//	ADD_WIDGET_SLOT(CommonWidgets, UTextBlock, TB_TagSuggest_TagCharChallenge)
+//		ADD_WIDGET_SLOT(CommonWidgets, UPanelWidget, CP_TagAttackSuggestSet)
+//	if (CP_TagAttackSuggestSet.IsValid())
+//	{
+//		CP_TagAttackSuggestSet->SetVisibility(ESlateVisibility::Hidden);
+//	}
+//	ADD_WIDGET_SLOT(CommonWidgets, UTextBlock, TB_TagAttack);
+//
+//	ADD_WIDGET_SLOT(CommonWidgets, UTextBlock, TB_TagAnim_Gladiator);
+//	ADD_WIDGET_SLOT(CommonWidgets, UTextBlock, TB_TagAnim_Assassin);
+//	ADD_WIDGET_SLOT(CommonWidgets, UTextBlock, TB_TagAnim_Wizard);
+//	ADD_WIDGET_SLOT(CommonWidgets, UTextBlock, TB_TagAnim_Fighter);
+//
+//	GET_SLOT(UB2UIEtherSetSkillIcon, UIP_OffenseEtherIcon);
+//	if (UIP_OffenseEtherIcon.IsValid())
+//		UIP_OffenseEtherIcon->Init();
+//	GET_SLOT(UB2UIEtherSetSkillIcon, UIP_DefenseEtherIcon);
+//	if (UIP_DefenseEtherIcon.IsValid())
+//		UIP_DefenseEtherIcon->Init();
+//
+//	ADD_WIDGET_SLOT(NormalBattleWidgets, UB2UIPAutoBattleIcon, UIP_AutoBattleIcon);
+//
+//	//배틀콤보
+//	ADD_WIDGET_SLOT(CommonWidgets, UB2UIBattleCombo, UIP_BattleCombo);
+//
+//	//비넥트
+//	ADD_WIDGET_SLOT(CommonWidgets, UB2UIBattleVignette, UIP_BattleVignette);
+//	
+//	//핫타임 아이콘
+//	ADD_WIDGET_SLOT(CommonWidgets, UB2UIHotTimeIcon, UIP_Hottime);
+//	
+//	ADD_WIDGET_SLOT(CommonWidgets, UPanelWidget, CP_Attack);
+//	ADD_WIDGET_SLOT(CommonWidgets, UPanelWidget, CP_PortraitSub);
+//	ADD_WIDGET_SLOT(CommonWidgets, UPanelWidget, CP_MainCharacterStatus);
+//	ADD_WIDGET_SLOT(CommonWidgets, UScaleBox, SB_TbMainCharName);
+//
+//	ADD_WIDGET_SLOT(CommonWidgets, UButton, BTN_Guard);
+//	ADD_WIDGET_SLOT(CommonWidgets, UImage, IMG_GuardBG);
+//	ADD_WIDGET_SLOT(CommonWidgets, UPanelWidget, CP_Guard);
+//
+//	ADD_WIDGET_SLOT(CommonWidgets, UTextBlock, TB_GuradCoolTime);
+//	ADD_WIDGET_SLOT(CommonWidgets, UPanelWidget, CP_GuardEnable);
+//	ADD_WIDGET_SLOT(CommonWidgets, UPanelWidget, CP_GuardDisable);
+//
+//	ADD_WIDGET_SLOT(CommonWidgets, UImage, IMG_QTEBG);
+//	//////////////////////////////////////////////////////////////////
+//	// 
+//	// 일반 전투에만 쓰이는 UI Widget
+//	// 
+//	ADD_WIDGET_SLOT(NormalBattleWidgets, UButton, BTN_MountAttack);
+//	ADD_WIDGET_SLOT(NormalBattleWidgets, UPanelWidget, CP_MountAttack);
+//
+//	ADD_WIDGET_SLOT(NormalBattleWidgets, UTextBlock, TB_Gold);
+//
+//	ADD_WIDGET_SLOT(NormalBattleWidgets, UPanelWidget, CP_Gold);
+//	ADD_WIDGET_SLOT(NormalBattleWidgets, UPanelWidget, CP_PlayTimeSet);
+//	ADD_WIDGET_SLOT(NormalBattleWidgets, UPanelWidget, P_StageNumberSet);
+//	ADD_WIDGET_SLOT(NormalBattleWidgets, UPanelWidget, P_Tag);
+//
+//	ADD_WIDGET_SLOT(NormalBattleWidgets, UTextBlock, TB_StagePlayingTime);	
+//	ADD_WIDGET_SLOT(NormalBattleWidgets, UImage, IMG_StageClearGradeStarTwinkle_01);
+//	ADD_WIDGET_SLOT(NormalBattleWidgets, UImage, IMG_StageClearGradeStarTwinkle_02);
+//	ADD_WIDGET_SLOT(NormalBattleWidgets, UImage, IMG_StageClearGradeStarTwinkle_03);	
+//
+//	ADD_WIDGET_SLOT(NormalBattleWidgets, UB2Button, BTN_ShowClearGradeCondition);
+//	ADD_WIDGET_SLOT(NormalBattleWidgets, UTextBlock, TB_ClearGradeCondition);
+//
+//	ADD_WIDGET_SLOT(NormalBattleWidgets, UB2UIRepeatBattleInGameInfo, UIP_RepeatBattleInGameInfoP);
+//	if (UIP_RepeatBattleInGameInfoP.IsValid())
+//	{
+//		UIP_RepeatBattleInGameInfoP->Init();
+//	}
+//
+//	ADD_WIDGET_SLOT(NormalBattleWidgets, UHorizontalBox, HB_StageResurrectBuffIconSet);
+//	
+//	ADD_WIDGET_SLOT(NormalBattleWidgets, UHorizontalBox, HB_Resurrect);
+//	ADD_WIDGET_SLOT(NormalBattleWidgets, UHorizontalBox, HB_Guild);
+//
+//	ADD_WIDGET_SLOT(NormalBattleWidgets, UImage, IMG_SkillSetBG);
+//
+//	ADD_WIDGET_SLOT(NormalBattleWidgets, UTextBlock, TB_StageNumber);
+//	ADD_WIDGET_SLOT(NormalBattleWidgets, UTextBlock, TB_StageDifficulty);
+//
+//	ADD_WIDGET_SLOT(NormalBattleWidgets, UImage, IMG_EvadeSkillCooltime);
+//	//////////////////////////////////////////////////////////////////
+//	// 
+//	// 반격 던전에만 쓰이는 UI Widget
+//	// 
+//
+//	ADD_WIDGET_SLOT(CounterAttackWidgets, UB2UIBattleSkill, UIP_CounterAttack_Skill);
+//	ADD_WIDGET_SLOT(CounterAttackWidgets, UB2UIWidgetBase, UIP_CounterFinishAttack);
+//
+//	if (UIP_CounterFinishAttack.IsValid())
+//	{
+//		UIP_CounterFinishAttack->Init();		
+//	}
+//	ADD_WIDGET_SLOT(CounterAttackWidgets, UImage, FX_IMG_Enable);	
+//	ADD_WIDGET_SLOT(CounterAttackWidgets, UImage, IMG_CounterSuggestRing);
+//
+//	//////////////////////////////////////////////////////////////////
+//	// 
+//	// Mount 공격 때 숨겨져야하는 위젯들.
+//	// 
+//
+//	WidgetsToHideInMountAttackState.Add(TPairInitializer<TWeakObjectPtr<UObject>, ESlateVisibility>(IMG_SkillSetBG,	ESlateVisibility::SelfHitTestInvisible));	
+//	WidgetsToHideInMountAttackState.Add(TPairInitializer<TWeakObjectPtr<UObject>, ESlateVisibility>(BTN_Guard,		ESlateVisibility::Visible));
+//	WidgetsToHideInMountAttackState.Add(TPairInitializer<TWeakObjectPtr<UObject>, ESlateVisibility>(IMG_GuardBG,	ESlateVisibility::SelfHitTestInvisible));
+//	WidgetsToHideInMountAttackState.Add(TPairInitializer<TWeakObjectPtr<UObject>, ESlateVisibility>(IMG_QTEBG,		ESlateVisibility::SelfHitTestInvisible));
+//	WidgetsToHideInMountAttackState.Add(TPairInitializer<TWeakObjectPtr<UObject>, ESlateVisibility>(IMG_EvadeSkillCooltime, ESlateVisibility::HitTestInvisible));
+//	
+//	GET_SLOT(UB2UIBattleNotice, UIP_BattleNotice);
+//	if (UIP_BattleNotice.IsValid())
+//	{
+//		UIP_BattleNotice->Init();
+//	}
+//
+//	GET_SLOT(UPanelWidget, CP_TagBottomEnabledTrue);
+//	GET_SLOT(UPanelWidget, CP_TagBottomEnabledFalse);
+//	GET_SLOT(UOverlay, O_Death);
+//
+//	GET_SLOT(UPanelWidget, CP_MainButton);
+//
+//	GET_SLOT(UTextBlock, TB_CounterDungeonLv);
+//
+//	GET_SLOT(UB2Button, BTN_Chat);
+//	
+//#if !UE_BUILD_SHIPPING // 개발 테스트용
+//	GET_SLOT(UPanelWidget, P_DevLODTest);
+//	GET_SLOT(UB2Button, BTN_Dev_FxLOD_PC);
+//	GET_SLOT(UB2Button, BTN_Dev_FxLOD_Mob);
+//	GET_SLOT(UB2Button, BTN_Dev_FxLOD_Boss);
+//	GET_SLOT(UTextBlock, TB_Dev_FxLOD_PC);
+//	GET_SLOT(UTextBlock, TB_Dev_FxLOD_Mob);
+//	GET_SLOT(UTextBlock, TB_Dev_FxLOD_Boss);
+//#endif
 }
 
 void UB2UIBattleMain::Init()
@@ -469,166 +469,166 @@ void UB2UIBattleMain::BindDelegates()
 
 void UB2UIBattleMain::BindDocAuto()
 {
-	UnbindDoc();
-
-	//스킬
-	for (uint8 Cnt = 0; Cnt < MAX_SKILL_INPUT; Cnt++)
-	{
-		FString SkillAssetName = PrefixSkillAsset + FString::FromInt(Cnt);
-		auto SkillAsset = GetSlot<UB2UIBattleSkill>(FName(*SkillAssetName));
-		if (SkillAsset)
-		{
-			SkillAssets.Add(SkillAsset);
-			SkillAsset->Init();
-			SkillAsset->SetIndex(Cnt);	//SkillRT쪽에서는 1베이스로 작업한 듯
-			SkillAsset->OnBattleSkillClicked.BindDynamic(this, &UB2UIBattleMain::OnPressedSkillBtn);
-		}
-	}
-
-	if (UIP_CounterAttack_Skill.IsValid())
-	{
-		SkillAssets.Add(UIP_CounterAttack_Skill.Get());
-		UIP_CounterAttack_Skill->Init();
-		UIP_CounterAttack_Skill->SetIndex(0);
-		UIP_CounterAttack_Skill->OnBattleSkillClicked.BindDynamic(this, &UB2UIBattleMain::OnPressedSkillBtn);		
-	}
-
-	for (auto* Skill : SkillAssets)
-	{
-//		UB2UIBattleSkill* SkillWidget = Cast<UB2UIBattleSkill>(Skill);
-//		BII_CHECK(SkillWidget);
-
-		WidgetsToHideInMountAttackState.Add(TPairInitializer<TWeakObjectPtr<UObject>,ESlateVisibility>(Skill, Skill->GetVisibility()));
-	}
-
-	auto DocBattle = UB2UIDocHelper::GetDocBattle();
-	SetDoc(DocBattle);
-	if (!DocBattle)return;
-
-	SetGold(0);
-
-	if (UIP_BattleCombo.IsValid())
-		UIP_BattleCombo->BindDoc(DocBattle);
-
-	if (UIP_BattleVignette.IsValid())
-		UIP_BattleVignette->BindDoc(DocBattle);
-
-	if (DocBattle->GetbCurrentlyBossAppeared()) 
-		UB2UIManager::GetInstance()->OpenUI(UIFName::BossStatus);
-	else
-		UB2UIManager::GetInstance()->CloseUI(UIFName::BossStatus);
-
-	//시작 할때, Main과 Sub의 클래스를 세팅하고 CurPCClass나 TagPCClass의 값이 바뀔때 두개를 스왑해준다.
-	BindDocMainChar(UB2UIDocHelper::GetDocHero(DocBattle->GetCurPCClass()));
-	BindDocSubChar(UB2UIDocHelper::GetDocHero(DocBattle->GetTagPCClass()));
-
-	DocBattle->OnCurPCClassChanged.AddUObject(this, &UB2UIBattleMain::OnChangedCurPCClass);
-	DocBattle->OnCurrPCHealthChanged.AddUObject(this, &UB2UIBattleMain::OnChangedCurrPCHealth);
-	DocBattle->OnCurrPCMaxHealthChanged.AddUObject(this, &UB2UIBattleMain::OnChangedCurrPCMaxHealth);
-	DocBattle->OnCurrPCShieldChanged.AddUObject(this, &UB2UIBattleMain::OnChangedCurrPCShield);
-	DocBattle->OnTagPCHealthChanged.AddUObject(this, &UB2UIBattleMain::OnChangedTagPCHealth);
-	DocBattle->OnTagPCMaxHealthChanged.AddUObject(this, &UB2UIBattleMain::OnChangedTagPCMaxHealth);
-	DocBattle->OnIsCountingTagCooltimeChanged.AddUObject(this, &UB2UIBattleMain::OnChangedIsCountingTagCooltime);
-	DocBattle->OnIsTagPossibleChanged.AddUObject(this, &UB2UIBattleMain::OnChangedIsTagPossible);
-	DocBattle->OnIsTagDisabledByCooltimeChanged.AddUObject(this, &UB2UIBattleMain::OnChangedIsTagDisabledByCooltime);
-	DocBattle->OnRemainingTagCooltimeChanged.AddUObject(this, &UB2UIBattleMain::OnChangedRemainingTagCooltime);
-	DocBattle->OnbCurrentlyBossAppearedChanged.AddUObject(this, &UB2UIBattleMain::OnChangedbCurrentlyBossAppeared);
-	DocBattle->OnIsTagSuggestedChanged.AddUObject(this, &UB2UIBattleMain::OnChangedIsTagSuggested);	
-	DocBattle->OnCharacterBuffStateChanged.AddUObject(this, &UB2UIBattleMain::OnChangedCharacterSkillBuffState);
-	DocBattle->OnQTEEnableStateChanged.AddUObject(this, &UB2UIBattleMain::OnChangedQTEEnableState);
-	DocBattle->OnbIsQTEMountedChanged.AddUObject(this, &UB2UIBattleMain::OnChangedQTEMounted);
-	DocBattle->OnbIsQTEMountedAndReadyForAttackChanged.AddUObject(this, &UB2UIBattleMain::OnChangedQTEMountedAndReadyForAttack);
-	DocBattle->OnbIsPlayerInQTEStateChanged.AddUObject(this, &UB2UIBattleMain::OnChangedPlayerInQTEState);
-	DocBattle->OnOffenseEtherCoolTimeChanged.AddUObject(this, &UB2UIBattleMain::OnChangedOffenseEtherCoolTime);
-	DocBattle->OnDefenseEtherCoolTimeChanged.AddUObject(this, &UB2UIBattleMain::OnChangedDefenseEtherCoolTime);
-	DocBattle->OnIsOffenseEtherChanged.AddUObject(this, &UB2UIBattleMain::OnChangedIsOffenseEther);
-	DocBattle->OnIsDefenseEtherChanged.AddUObject(this, &UB2UIBattleMain::OnChangedIsDefenseEther);
-	DocBattle->OnHasAbnormalBuffChanged.AddUObject(this, &UB2UIBattleMain::OnAbnormalStateChanged);
-	DocBattle->OnGuardCoolTimeChanged.AddUObject(this, &UB2UIBattleMain::OnChangedGuradCoolTime);
-	DocBattle->OnHasNotTagDefenceChanged.AddUObject(this, &UB2UIBattleMain::OnChangedHasNotTagDefence);
-
-	UpdateAttackButtonStyleToPCClass(IntToPCClass(DocBattle->GetCurPCClass()));
-	UB2UIDocBattleStage* DocBS = UB2UIDocHelper::GetDocBattleStage();
-
-	DocBattle->SetIsOffenseEther(DocBattle->GetIsOffenseEther());
-	DocBattle->SetIsDefenseEther(DocBattle->GetIsDefenseEther());
-
-	if (DocBS)
-	{
-		DocBS->OnStagePlayTimeChanged.AddUObject(this, &UB2UIBattleMain::OnChangedStagePlayTime);
-
-		//// StageBuff 는 스테이지 진행 도중 바뀌지 않음. 처음에만 생성하면 될 것.
-		//const TArray<EStageBuffType> AllStageBuff = DocBS->GetSelectedStageBuffs();
-		//for (EStageBuffType ThisStageBuff : AllStageBuff)
-		//	CreateOrFindStageBuffIcon(ThisStageBuff);
-
-		int32 ClientStageId = DocBS->GetClientStageId();
-		UB2StageInfo* StageInfoTable = StaticFindStageInfo();
-		int32 ChapterNum = StageInfoTable ? StageInfoTable->GetChapterNumByClientStageId(ClientStageId) : 0;
-		int32 StageNum = StageInfoTable ? StageInfoTable->GetSubChapterNumByClientStageId(ClientStageId) : 0;
-
-		if (TB_StageNumber.IsValid())
-			TB_StageNumber->SetText(FText::FromString(FString::Printf(TEXT("%d - %d"), ChapterNum, StageNum)));
-
-		if (TB_StageDifficulty.IsValid() && StageInfoTable)
-		{
-			FText StageDifficultyText;
-						
-			EStageDifficulty StageDifficulty = AB2StageManager::GetCacheStageKeepEssentialData().GetStageDifficulty();
-			switch (StageDifficulty)
-			{
-			case EStageDifficulty::ESD_Normal:
-				StageDifficultyText = BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("AdventureMod_NormalTitle"));
-				break;
-			case EStageDifficulty::ESD_Hard:
-				StageDifficultyText = BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("AdventureMod_HardTitle"));
-				break;
-			case EStageDifficulty::ESD_VeryHard:
-				StageDifficultyText = BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("AdventureMod_VeryHardTitle"));
-				break;
-			case EStageDifficulty::ESD_Hell:
-				StageDifficultyText = BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("AdventureMod_HellTitle"));
-				break;
-			}	
-						
-			TB_StageDifficulty->SetText(FText::Format(FText::FromString(TEXT("({0})")), StageDifficultyText));
-		}
-
-		if (UIP_Hottime.IsValid())
-		{
-			bool IsActiveHotTime = DocBS->GetStartExpBuffRate() > 0 || DocBS->GetStartGoldBuffRate() > 0;
-			UIP_Hottime->SetVisibility(IsActiveHotTime ? ESlateVisibility::SelfHitTestInvisible : ESlateVisibility::Collapsed);
-			if(IsActiveHotTime)
-				UIP_Hottime->ActiveEffect_BP(IsActiveHotTime);
-		}
-			
-	}
-
-	// 부활버프는 생성만 해 둠. 일단 표시 안 될 것.
-	CreateOrUpdateResurrectBuffIcon(EResurrectBuffType::RBT_None);
-
-	// 태그 쿨타임 초기화
-	SetTagCooltime(0);
-
-	//길드 버프 등록
-	UpdateGuildBuff();
-	
-	SetVisibilityTagWidget(true);
-	//SetVisibilityGoldWidget(true);
-	SetVisibilityPlayTimeWidget(true);
-	SetVisibilityCRTInfoBGImage_01(true);
-	CheckWidgetVisibilityForMode();
-
-	DocBattle->OnMaxCounterAttackPointChanged.AddUObject(this, &UB2UIBattleMain::OnChangedCounterAttackPoint);
-	DocBattle->OnCounterAttackPointChanged.AddUObject(this, &UB2UIBattleMain::OnChangedCounterAttackPoint);
-	
-	// 추후에 추가될 경우 이렇게 분기하지말고, 상속해서 만듭시다요~ 조만간 없애야지.. (참고 RaidBattle.h)
-	if (CurrentGameModeType == EB2GameMode::CounterDungeon)
-		SetWidgetForCounterAttackBattle();
-	else
-		SetWidgetForNormalBattle();
-
-	DocBattle->SetMaxCounterAttackPoint(MAX_COUNTER_ATTACK_POINT);
+//	UnbindDoc();
+//
+//	//스킬
+//	for (uint8 Cnt = 0; Cnt < MAX_SKILL_INPUT; Cnt++)
+//	{
+//		FString SkillAssetName = PrefixSkillAsset + FString::FromInt(Cnt);
+//		auto SkillAsset = GetSlot<UB2UIBattleSkill>(FName(*SkillAssetName));
+//		if (SkillAsset)
+//		{
+//			SkillAssets.Add(SkillAsset);
+//			SkillAsset->Init();
+//			SkillAsset->SetIndex(Cnt);	//SkillRT쪽에서는 1베이스로 작업한 듯
+//			SkillAsset->OnBattleSkillClicked.BindDynamic(this, &UB2UIBattleMain::OnPressedSkillBtn);
+//		}
+//	}
+//
+//	if (UIP_CounterAttack_Skill.IsValid())
+//	{
+//		SkillAssets.Add(UIP_CounterAttack_Skill.Get());
+//		UIP_CounterAttack_Skill->Init();
+//		UIP_CounterAttack_Skill->SetIndex(0);
+//		UIP_CounterAttack_Skill->OnBattleSkillClicked.BindDynamic(this, &UB2UIBattleMain::OnPressedSkillBtn);		
+//	}
+//
+//	for (auto* Skill : SkillAssets)
+//	{
+////		UB2UIBattleSkill* SkillWidget = Cast<UB2UIBattleSkill>(Skill);
+////		BII_CHECK(SkillWidget);
+//
+//		WidgetsToHideInMountAttackState.Add(TPairInitializer<TWeakObjectPtr<UObject>,ESlateVisibility>(Skill, Skill->GetVisibility()));
+//	}
+//
+//	auto DocBattle = UB2UIDocHelper::GetDocBattle();
+//	SetDoc(DocBattle);
+//	if (!DocBattle)return;
+//
+//	SetGold(0);
+//
+//	if (UIP_BattleCombo.IsValid())
+//		UIP_BattleCombo->BindDoc(DocBattle);
+//
+//	if (UIP_BattleVignette.IsValid())
+//		UIP_BattleVignette->BindDoc(DocBattle);
+//
+//	if (DocBattle->GetbCurrentlyBossAppeared()) 
+//		UB2UIManager::GetInstance()->OpenUI(UIFName::BossStatus);
+//	else
+//		UB2UIManager::GetInstance()->CloseUI(UIFName::BossStatus);
+//
+//	//시작 할때, Main과 Sub의 클래스를 세팅하고 CurPCClass나 TagPCClass의 값이 바뀔때 두개를 스왑해준다.
+//	BindDocMainChar(UB2UIDocHelper::GetDocHero(DocBattle->GetCurPCClass()));
+//	BindDocSubChar(UB2UIDocHelper::GetDocHero(DocBattle->GetTagPCClass()));
+//
+//	DocBattle->OnCurPCClassChanged.AddUObject(this, &UB2UIBattleMain::OnChangedCurPCClass);
+//	DocBattle->OnCurrPCHealthChanged.AddUObject(this, &UB2UIBattleMain::OnChangedCurrPCHealth);
+//	DocBattle->OnCurrPCMaxHealthChanged.AddUObject(this, &UB2UIBattleMain::OnChangedCurrPCMaxHealth);
+//	DocBattle->OnCurrPCShieldChanged.AddUObject(this, &UB2UIBattleMain::OnChangedCurrPCShield);
+//	DocBattle->OnTagPCHealthChanged.AddUObject(this, &UB2UIBattleMain::OnChangedTagPCHealth);
+//	DocBattle->OnTagPCMaxHealthChanged.AddUObject(this, &UB2UIBattleMain::OnChangedTagPCMaxHealth);
+//	DocBattle->OnIsCountingTagCooltimeChanged.AddUObject(this, &UB2UIBattleMain::OnChangedIsCountingTagCooltime);
+//	DocBattle->OnIsTagPossibleChanged.AddUObject(this, &UB2UIBattleMain::OnChangedIsTagPossible);
+//	DocBattle->OnIsTagDisabledByCooltimeChanged.AddUObject(this, &UB2UIBattleMain::OnChangedIsTagDisabledByCooltime);
+//	DocBattle->OnRemainingTagCooltimeChanged.AddUObject(this, &UB2UIBattleMain::OnChangedRemainingTagCooltime);
+//	DocBattle->OnbCurrentlyBossAppearedChanged.AddUObject(this, &UB2UIBattleMain::OnChangedbCurrentlyBossAppeared);
+//	DocBattle->OnIsTagSuggestedChanged.AddUObject(this, &UB2UIBattleMain::OnChangedIsTagSuggested);	
+//	DocBattle->OnCharacterBuffStateChanged.AddUObject(this, &UB2UIBattleMain::OnChangedCharacterSkillBuffState);
+//	DocBattle->OnQTEEnableStateChanged.AddUObject(this, &UB2UIBattleMain::OnChangedQTEEnableState);
+//	DocBattle->OnbIsQTEMountedChanged.AddUObject(this, &UB2UIBattleMain::OnChangedQTEMounted);
+//	DocBattle->OnbIsQTEMountedAndReadyForAttackChanged.AddUObject(this, &UB2UIBattleMain::OnChangedQTEMountedAndReadyForAttack);
+//	DocBattle->OnbIsPlayerInQTEStateChanged.AddUObject(this, &UB2UIBattleMain::OnChangedPlayerInQTEState);
+//	DocBattle->OnOffenseEtherCoolTimeChanged.AddUObject(this, &UB2UIBattleMain::OnChangedOffenseEtherCoolTime);
+//	DocBattle->OnDefenseEtherCoolTimeChanged.AddUObject(this, &UB2UIBattleMain::OnChangedDefenseEtherCoolTime);
+//	DocBattle->OnIsOffenseEtherChanged.AddUObject(this, &UB2UIBattleMain::OnChangedIsOffenseEther);
+//	DocBattle->OnIsDefenseEtherChanged.AddUObject(this, &UB2UIBattleMain::OnChangedIsDefenseEther);
+//	DocBattle->OnHasAbnormalBuffChanged.AddUObject(this, &UB2UIBattleMain::OnAbnormalStateChanged);
+//	DocBattle->OnGuardCoolTimeChanged.AddUObject(this, &UB2UIBattleMain::OnChangedGuradCoolTime);
+//	DocBattle->OnHasNotTagDefenceChanged.AddUObject(this, &UB2UIBattleMain::OnChangedHasNotTagDefence);
+//
+//	UpdateAttackButtonStyleToPCClass(IntToPCClass(DocBattle->GetCurPCClass()));
+//	UB2UIDocBattleStage* DocBS = UB2UIDocHelper::GetDocBattleStage();
+//
+//	DocBattle->SetIsOffenseEther(DocBattle->GetIsOffenseEther());
+//	DocBattle->SetIsDefenseEther(DocBattle->GetIsDefenseEther());
+//
+//	if (DocBS)
+//	{
+//		DocBS->OnStagePlayTimeChanged.AddUObject(this, &UB2UIBattleMain::OnChangedStagePlayTime);
+//
+//		//// StageBuff 는 스테이지 진행 도중 바뀌지 않음. 처음에만 생성하면 될 것.
+//		//const TArray<EStageBuffType> AllStageBuff = DocBS->GetSelectedStageBuffs();
+//		//for (EStageBuffType ThisStageBuff : AllStageBuff)
+//		//	CreateOrFindStageBuffIcon(ThisStageBuff);
+//
+//		int32 ClientStageId = DocBS->GetClientStageId();
+//		UB2StageInfo* StageInfoTable = StaticFindStageInfo();
+//		int32 ChapterNum = StageInfoTable ? StageInfoTable->GetChapterNumByClientStageId(ClientStageId) : 0;
+//		int32 StageNum = StageInfoTable ? StageInfoTable->GetSubChapterNumByClientStageId(ClientStageId) : 0;
+//
+//		if (TB_StageNumber.IsValid())
+//			TB_StageNumber->SetText(FText::FromString(FString::Printf(TEXT("%d - %d"), ChapterNum, StageNum)));
+//
+//		if (TB_StageDifficulty.IsValid() && StageInfoTable)
+//		{
+//			FText StageDifficultyText;
+//						
+//			EStageDifficulty StageDifficulty = AB2StageManager::GetCacheStageKeepEssentialData().GetStageDifficulty();
+//			switch (StageDifficulty)
+//			{
+//			case EStageDifficulty::ESD_Normal:
+//				StageDifficultyText = BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("AdventureMod_NormalTitle"));
+//				break;
+//			case EStageDifficulty::ESD_Hard:
+//				StageDifficultyText = BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("AdventureMod_HardTitle"));
+//				break;
+//			case EStageDifficulty::ESD_VeryHard:
+//				StageDifficultyText = BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("AdventureMod_VeryHardTitle"));
+//				break;
+//			case EStageDifficulty::ESD_Hell:
+//				StageDifficultyText = BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("AdventureMod_HellTitle"));
+//				break;
+//			}	
+//						
+//			TB_StageDifficulty->SetText(FText::Format(FText::FromString(TEXT("({0})")), StageDifficultyText));
+//		}
+//
+//		if (UIP_Hottime.IsValid())
+//		{
+//			bool IsActiveHotTime = DocBS->GetStartExpBuffRate() > 0 || DocBS->GetStartGoldBuffRate() > 0;
+//			UIP_Hottime->SetVisibility(IsActiveHotTime ? ESlateVisibility::SelfHitTestInvisible : ESlateVisibility::Collapsed);
+//			if(IsActiveHotTime)
+//				UIP_Hottime->ActiveEffect_BP(IsActiveHotTime);
+//		}
+//			
+//	}
+//
+//	// 부활버프는 생성만 해 둠. 일단 표시 안 될 것.
+//	CreateOrUpdateResurrectBuffIcon(EResurrectBuffType::RBT_None);
+//
+//	// 태그 쿨타임 초기화
+//	SetTagCooltime(0);
+//
+//	//길드 버프 등록
+//	UpdateGuildBuff();
+//	
+//	SetVisibilityTagWidget(true);
+//	//SetVisibilityGoldWidget(true);
+//	SetVisibilityPlayTimeWidget(true);
+//	SetVisibilityCRTInfoBGImage_01(true);
+//	CheckWidgetVisibilityForMode();
+//
+//	DocBattle->OnMaxCounterAttackPointChanged.AddUObject(this, &UB2UIBattleMain::OnChangedCounterAttackPoint);
+//	DocBattle->OnCounterAttackPointChanged.AddUObject(this, &UB2UIBattleMain::OnChangedCounterAttackPoint);
+//	
+//	// 추후에 추가될 경우 이렇게 분기하지말고, 상속해서 만듭시다요~ 조만간 없애야지.. (참고 RaidBattle.h)
+//	if (CurrentGameModeType == EB2GameMode::CounterDungeon)
+//		SetWidgetForCounterAttackBattle();
+//	else
+//		SetWidgetForNormalBattle();
+//
+//	DocBattle->SetMaxCounterAttackPoint(MAX_COUNTER_ATTACK_POINT);
 }
 
 void UB2UIBattleMain::BindDocMainChar(UB2UIDocHero* InDocHero)
@@ -1287,7 +1287,7 @@ void UB2UIBattleMain::OnChangedRemainingTagCooltime(class UB2UIDocBase* Sender, 
 
 void UB2UIBattleMain::OnChangedIsDefenseEther(class UB2UIDocBase* Sender, bool IsDefenseEther, bool PrevIsDefenseEther)
 {
-	if (UIP_DefenseEtherIcon.IsValid())
+	/*if (UIP_DefenseEtherIcon.IsValid())
 	{
 		if (IsDefenseEther)
 		{
@@ -1300,46 +1300,46 @@ void UB2UIBattleMain::OnChangedIsDefenseEther(class UB2UIDocBase* Sender, bool I
 			if(UIP_DefenseEtherIcon->GetVisibility() == ESlateVisibility::SelfHitTestInvisible)
 				UIP_DefenseEtherIcon->SetVisibility(ESlateVisibility::Collapsed);
 		}
-	}
+	}*/
 }
 void UB2UIBattleMain::OnChangedIsOffenseEther(class UB2UIDocBase* Sender, bool IsOffenseEther, bool PrevIsOffenseEther)
 {
-	if (UIP_OffenseEtherIcon.IsValid())
-	{
-		if (IsOffenseEther)
-		{
-			if(UIP_OffenseEtherIcon->GetVisibility() == ESlateVisibility::Collapsed)
-				UIP_OffenseEtherIcon->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
-			UIP_OffenseEtherIcon->Init();
-		}
-		else
-		{
-			if(UIP_OffenseEtherIcon->GetVisibility() == ESlateVisibility::SelfHitTestInvisible)
-				UIP_OffenseEtherIcon->SetVisibility(ESlateVisibility::Collapsed);
-		}
-	}
+	//if (UIP_OffenseEtherIcon.IsValid())
+	//{
+	//	if (IsOffenseEther)
+	//	{
+	//		if(UIP_OffenseEtherIcon->GetVisibility() == ESlateVisibility::Collapsed)
+	//			UIP_OffenseEtherIcon->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
+	//		UIP_OffenseEtherIcon->Init();
+	//	}
+	//	else
+	//	{
+	//		if(UIP_OffenseEtherIcon->GetVisibility() == ESlateVisibility::SelfHitTestInvisible)
+	//			UIP_OffenseEtherIcon->SetVisibility(ESlateVisibility::Collapsed);
+	//	}
+	//}
 }
 
 void UB2UIBattleMain::OnChangedOffenseEtherCoolTime(class UB2UIDocBase* Sender, float InRemainingCooltime, float InPrevRemainingCooltime)
 {
-	if(UIP_OffenseEtherIcon.IsValid())
-	{
-		if (UB2UIDocBattle* DocBattle = Cast<UB2UIDocBattle>(GetDoc()))
-		{
-			UIP_OffenseEtherIcon->UpdateCoolTime(DocBattle->GetOffenseEtherMaxCoolTime(), InRemainingCooltime, DocBattle->GetEnableOffenseEther());
-		}
-	}
+	//if(UIP_OffenseEtherIcon.IsValid())
+	//{
+	//	if (UB2UIDocBattle* DocBattle = Cast<UB2UIDocBattle>(GetDoc()))
+	//	{
+	//		UIP_OffenseEtherIcon->UpdateCoolTime(DocBattle->GetOffenseEtherMaxCoolTime(), InRemainingCooltime, DocBattle->GetEnableOffenseEther());
+	//	}
+	//}
 }
 
 void UB2UIBattleMain::OnChangedDefenseEtherCoolTime(class UB2UIDocBase* Sender, float InRemainingCooltime, float InPrevRemainingCooltime)
 {
-	if (UIP_DefenseEtherIcon.IsValid())
-	{
-		if (UB2UIDocBattle* DocBattle = Cast<UB2UIDocBattle>(GetDoc()))
-		{
-			UIP_DefenseEtherIcon->UpdateCoolTime(DocBattle->GetDefenseEtherMaxCoolTime(), InRemainingCooltime, DocBattle->GetEnableDefenseEther());
-		}
-	}
+	//if (UIP_DefenseEtherIcon.IsValid())
+	//{
+	//	if (UB2UIDocBattle* DocBattle = Cast<UB2UIDocBattle>(GetDoc()))
+	//	{
+	//		UIP_DefenseEtherIcon->UpdateCoolTime(DocBattle->GetDefenseEtherMaxCoolTime(), InRemainingCooltime, DocBattle->GetEnableDefenseEther());
+	//	}
+	//}
 }
 
 void UB2UIBattleMain::OnChangedGold(class UB2UIDocBase* Sender, int32 Gold, int32 PrevGold)
@@ -2052,38 +2052,38 @@ void UB2UIBattleMain::UpdateGuildBuff()
 
 void UB2UIBattleMain::HideHUDForQTE(bool bHide)
 {
-	// PlayerController 의 CinematicMode 를 사용하려니 좀 꼬일 거 같음. 그냥 따로 처리.
-	ABladeIIPlayerController* B2PC = Cast<ABladeIIPlayerController>(GetOwningPlayer());
+	//// PlayerController 의 CinematicMode 를 사용하려니 좀 꼬일 거 같음. 그냥 따로 처리.
+	//ABladeIIPlayerController* B2PC = Cast<ABladeIIPlayerController>(GetOwningPlayer());
 
-	if (bHide)
-	{
-		// 거의 요 BattleMain 만 숨기는 정도..
-		// QTE UIP 는 BattleMain 의 child 가 아닌 독자적인 UI widget 으로 생성되므로 여기에 영향을 받지 않는다. 정말로 숨겨야 할 때가 되어도 나올 꺼란 얘긴데 그게 문제가 되는 상황이 발생하면 따로 처리를 해야 할 듯..
-		// -> 이제 같이 숨긴다.
-		this->ForceHide();
+	//if (bHide)
+	//{
+	//	// 거의 요 BattleMain 만 숨기는 정도..
+	//	// QTE UIP 는 BattleMain 의 child 가 아닌 독자적인 UI widget 으로 생성되므로 여기에 영향을 받지 않는다. 정말로 숨겨야 할 때가 되어도 나올 꺼란 얘긴데 그게 문제가 되는 상황이 발생하면 따로 처리를 해야 할 듯..
+	//	// -> 이제 같이 숨긴다.
+	//	this->ForceHide();
 
-		if (CreatedQTEUIP)
-		{
-			CreatedQTEUIP->SetVisibilityFromBattleMainUI(ESlateVisibility::Hidden);
-		}
+	//	if (CreatedQTEUIP)
+	//	{
+	//		CreatedQTEUIP->SetVisibilityFromBattleMainUI(ESlateVisibility::Hidden);
+	//	}
 
-		if (B2PC)
-		{
-			B2PC->SetVirtualJoystickVisibility(false);
-		}
-	}
-	else
-	{
-		if (B2PC && !B2PC->IsInCinematicMode()) // 여기선 CinematicMode 진입을 하지 않으므로 혹시라도 CinematicMode 라면 다른 곳에서 처리할 테니 놔둠
-		{
-			this->RestoreFromForceHidden();
+	//	if (B2PC)
+	//	{
+	//		B2PC->SetVirtualJoystickVisibility(false);
+	//	}
+	//}
+	//else
+	//{
+	//	if (B2PC && !B2PC->IsInCinematicMode()) // 여기선 CinematicMode 진입을 하지 않으므로 혹시라도 CinematicMode 라면 다른 곳에서 처리할 테니 놔둠
+	//	{
+	//		this->RestoreFromForceHidden();
 
-			if (CreatedQTEUIP)
-				CreatedQTEUIP->SetVisibilityFromBattleMainUI(ESlateVisibility::SelfHitTestInvisible);
+	//		if (CreatedQTEUIP)
+	//			CreatedQTEUIP->SetVisibilityFromBattleMainUI(ESlateVisibility::SelfHitTestInvisible);
 
-			B2PC->SetVirtualJoystickVisibility(true);
-		}
-	}
+	//		B2PC->SetVirtualJoystickVisibility(true);
+	//	}
+	//}
 }
 
 void UB2UIBattleMain::ConditionalCreateQTEUIP()

@@ -7,7 +7,7 @@
 #include "B2AutoDcompositionEther.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS(BlueprintType, Blueprintable)
 class BLADEII_API UB2AutoDcompositionEther : public UB2UIWidget, public IB2UIBackWidget
@@ -28,14 +28,14 @@ protected:
 
 private:
 	UFUNCTION()
-		void OnClickClose();
+	void OnClickClose();
 	UFUNCTION()
-		void OnClickDecomposition();
+	void OnClickDecomposition();
 	UFUNCTION()
-		void OnClickReset();
+	void OnClickReset();
 	UFUNCTION()
-		void OnClickCheckBox(bool bCheck);
-	void GetFiliterList(TArray<int32> &OutStartFilter, TArray<int32> &OutTierFilter, bool& IsEnhance);
+	void OnClickCheckBox(bool bCheck);
+	void GetFiliterList(TArray<int32>& OutStartFilter, TArray<int32>& OutTierFilter, bool& IsEnhance);
 	void GetSendEtherList(TArray<int64>& OutSendIDs);
 	void EndLoopRequest();
 	void StartTimerRequestDecompositionEther();
@@ -53,7 +53,7 @@ private:
 	TMap<int32, TWeakObjectPtr<class UB2UIFilterCheckBox>>		Filter_Grade;
 	TMap<int32, TWeakObjectPtr<class UB2UIFilterCheckBox>>		Filter_Tier;
 	TWeakObjectPtr<class UB2UIFilterCheckBox>					UIP_Enhance;
-	
+
 	TWeakObjectPtr<UB2Button>									X_BTN_Decomposition;
 	TWeakObjectPtr<UTextBlock>									X_TB_Decomposition;
 	TWeakObjectPtr<UTextBlock>									X_TB_Title;
@@ -65,7 +65,7 @@ private:
 	TWeakObjectPtr<UTextBlock>									X_TB_SelectNumber;
 	TWeakObjectPtr<UTextBlock>									X_TB_Select;
 	TWeakObjectPtr<UTextBlock>									X_TB_Tier;
-	
+
 
 	TArray<TWeakObjectPtr<class UB2UIFilterCheckBox>>			AllFilters;
 

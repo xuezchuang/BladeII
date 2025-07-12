@@ -1268,7 +1268,7 @@ void FClientDataStore::InitializeAccountInfo()
 
 	m_ServerVersionInfo = FString("");
 
-	AB2StageManager::GetCacheStageKeepEssentialData().Initialize();
+	//AB2StageManager::GetCacheStageKeepEssentialData().Initialize();
 }
 
 void FClientDataStore::SubscribeEvents()
@@ -2154,9 +2154,9 @@ void FClientDataStore::AddChangeItem(const FB2Item& NewItems)
 	BLADE2_SCOPE_CYCLE_COUNTER(FClientDataStore_AddChangeItem);
 
 	//LocalCharacterData.UserAllItems.RemoveItem(NewItems.InstanceUID);
-	LocalCharacterData.UserAllItems.ChangeItem(NewItems);
-	LobbyAllItemsAddedClass<>::GetInstance().Signal();
-	UpdateLobbyInventoryControlClass<>::GetInstance().Signal();
+	//LocalCharacterData.UserAllItems.ChangeItem(NewItems);
+	//LobbyAllItemsAddedClass<>::GetInstance().Signal();
+	//UpdateLobbyInventoryControlClass<>::GetInstance().Signal();
 }
 
 void FClientDataStore::AddItems(const FB2AddedItems& AddedItems)
@@ -2164,7 +2164,7 @@ void FClientDataStore::AddItems(const FB2AddedItems& AddedItems)
 	BLADE2_SCOPE_CYCLE_COUNTER(FClientDataStore_AddItems);
 	LocalCharacterData.UserAllItems.AddItems(AddedItems.AddedItems);
 	// 여긴 LobbyInventory 를 통하지 않는 곳인데 Inventory 가 떠 있는 상태라면 UI 라도 업데이트 하게 신호를 날린다.
-	LobbyItemsAddedClass<const FB2AddedItems&>::GetInstance().Signal(AddedItems);
+	//LobbyItemsAddedClass<const FB2AddedItems&>::GetInstance().Signal(AddedItems);
 }
 
 void FClientDataStore::AddCostumeItem(const b2network::B2CostumeServerInfo& CostumeInfo)
@@ -2276,8 +2276,8 @@ void FClientDataStore::UseNickNameChangeTicket(const FB2UpdateNicknamePtr& updat
 		LocalCharacterData.UserAllItems.ChangeItem(MainItem);
 	}
 
-	LobbyUpdateAllItemIconsClass<>::GetInstance().Signal();
-	UpdateLobbyInventoryControlClass<>::GetInstance().Signal();
+	//LobbyUpdateAllItemIconsClass<>::GetInstance().Signal();
+	//UpdateLobbyInventoryControlClass<>::GetInstance().Signal();
 }
 
 void FClientDataStore::DecompositionItem(const FB2DismantleItems& DismantleItems)
@@ -3133,9 +3133,10 @@ void FClientDataStore::AddRankPromotionPoint(int32 ToAdd)
 
 	LocalCharacterData.UserAllItems.IncSharedConsumableAmountOfType(FItemRefIDHelper::ITEM_REF_ID_BREVET_STONE, ToAdd);
 
-	if (PrevAmount == 0) { // 바람직한 상황은 아니지만 새로 생기면 아이콘 업데이트 해줘야지 ㅋㅋ
-		LobbyUpdateAllItemIconsClass<>::GetInstance().Signal();
-	}
+	//if (PrevAmount == 0)
+	//{ // 바람직한 상황은 아니지만 새로 생기면 아이콘 업데이트 해줘야지 ㅋㅋ
+	//	LobbyUpdateAllItemIconsClass<>::GetInstance().Signal();
+	//}
 }
 int32 FClientDataStore::GetRankPromotionPoint()
 { // 예전에 진급포인트를 재화 취급하던 시절의 잔재. 단 이건 그대로 써도 무방 
@@ -3150,9 +3151,10 @@ void FClientDataStore::AddAdvancedRankPromotionPoint(int32 ToAdd)
 
 	LocalCharacterData.UserAllItems.IncSharedConsumableAmountOfType(FItemRefIDHelper::ITEM_REF_ID_ADVANCED_BREVET_STONE, ToAdd);
 
-	if (PrevAmount == 0) { // 바람직한 상황은 아니지만 새로 생기면 아이콘 업데이트 해줘야지 ㅋㅋ
-		LobbyUpdateAllItemIconsClass<>::GetInstance().Signal();
-	}
+	//if (PrevAmount == 0)
+	//{ // 바람직한 상황은 아니지만 새로 생기면 아이콘 업데이트 해줘야지 ㅋㅋ
+	//	LobbyUpdateAllItemIconsClass<>::GetInstance().Signal();
+	//}
 }
 int32 FClientDataStore::GetAdvancedRankPromotionPoint()
 { // 예전에 진급포인트를 재화 취급하던 시절의 잔재. 단 이건 그대로 써도 무방 
@@ -3162,44 +3164,44 @@ int32 FClientDataStore::GetAdvancedRankPromotionPoint()
 
 void FClientDataStore::ApplyRewardInfo(b2network::B2RewardPtr RewardPtr)
 {
-	if (RewardPtr)
-	{
-		auto* RewardInfo = RewardInfoData.Find(RewardPtr->raw_reward->id);
-		if (RewardInfo)
-		{
-			// 메일이면 즉시 갱신 안하도록 수정.
-			if (RewardInfo->RewardPushType == b2network::B2RewardPushType::MAIL)
-				return;
+	//if (RewardPtr)
+	//{
+	//	auto* RewardInfo = RewardInfoData.Find(RewardPtr->raw_reward->id);
+	//	if (RewardInfo)
+	//	{
+	//		// 메일이면 즉시 갱신 안하도록 수정.
+	//		if (RewardInfo->RewardPushType == b2network::B2RewardPushType::MAIL)
+	//			return;
 
-			if (RewardPtr->item)
-			{
-				// 소모성 아이템
-				if (RewardPtr->item->inventory_type == b2network::B2InventoryType::Consumables)
-				{
-					OnResponseConsumableAmountIncrease(RewardPtr->item->template_id, RewardPtr->item);
-				}
-				else
-				{
-					// 일반(장비) 아이템들은 보통 따로 인벤토리로 넘겨주는 코드를 사용하고 있음.
-					// ClientDataStore.AddNewAcquiredItems()
-				}
-			}
-			else
-			{
-				// 재화 아이템
-				AddRewardItemByType(RewardInfo->Type, RewardPtr->raw_reward->count);
-			}
-		}
+	//		if (RewardPtr->item)
+	//		{
+	//			// 소모성 아이템
+	//			if (RewardPtr->item->inventory_type == b2network::B2InventoryType::Consumables)
+	//			{
+	//				OnResponseConsumableAmountIncrease(RewardPtr->item->template_id, RewardPtr->item);
+	//			}
+	//			else
+	//			{
+	//				// 일반(장비) 아이템들은 보통 따로 인벤토리로 넘겨주는 코드를 사용하고 있음.
+	//				// ClientDataStore.AddNewAcquiredItems()
+	//			}
+	//		}
+	//		else
+	//		{
+	//			// 재화 아이템
+	//			AddRewardItemByType(RewardInfo->Type, RewardPtr->raw_reward->count);
+	//		}
+	//	}
 
-		// 경험치
-		if (RewardPtr->light_characters.Num() > 0)
-		{
-			for (auto ExpInfo : RewardPtr->light_characters)
-			{
-				BladeIIGameImpl::GetClientDataStore().EndGameIncreaseExp(ExpInfo);
-			}
-		}
-	}
+	//	// 경험치
+	//	if (RewardPtr->light_characters.Num() > 0)
+	//	{
+	//		for (auto ExpInfo : RewardPtr->light_characters)
+	//		{
+	//			BladeIIGameImpl::GetClientDataStore().EndGameIncreaseExp(ExpInfo);
+	//		}
+	//	}
+	//}
 }
 
 void FClientDataStore::ApplyRewardInfo(const FCommonRewardInfo& RewardInfo)
@@ -4098,7 +4100,7 @@ bool FClientDataStore::IsReturnUser() const
 void FClientDataStore::ResponseCheckModeOpen(const FB2ResponseCheckModeOpenPtr& CheckModeOpen)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(FClientDataStore_ResponseCheckModeOpen);
-	if (CheckModeOpen)
+	/*if (CheckModeOpen)
 	{
 		auto SomeDoc = UB2UIDocHelper::GetDocSome();
 		if (SomeDoc)
@@ -4119,7 +4121,7 @@ void FClientDataStore::ResponseCheckModeOpen(const FB2ResponseCheckModeOpenPtr& 
 		UB2UIDocControl* pDocControl = UB2UIDocHelper::GetDocControl();
 		if (pDocControl)
 			pDocControl->SetPeriodInfos(CheckModeOpen->assault_open_period_infos);
-	}
+	}*/
 }
 
 void FClientDataStore::RequestGetServerVersion()
@@ -6378,7 +6380,7 @@ void FClientDataStore::SetMasterDataImpl_DonationPointStepRewardInfo(const FB2Ma
 
 void FClientDataStore::SetMasterDataImpl_ExtendMessage(const FB2MasterDatas& InMasterDatas)
 {
-	BladeIIGameImpl::GetTotemDataStore().SetMasterData(InMasterDatas);
+	//BladeIIGameImpl::GetTotemDataStore().SetMasterData(InMasterDatas);
 }
 
 void FClientDataStore::SetMasterDataImpl_CostumeEnhanceCostInfo(const FB2MasterDatas& InMasterDatas)
@@ -8048,12 +8050,12 @@ void FClientDataStore::RequestGetAccountTotem()
 void FClientDataStore::ResponseSetCharNickName()
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(FClientDataStore_ResponseSetCharNickName);
-	if (RequestedCharNickNameSetClass != EPCClass::EPC_End)
-	{ // 응답은 걍 승인이므로 이전에 요청한 정보로 세팅.
-		BladeIIGameImpl::GetClientDataStore().GetLocalCharacterData().SetCharNickName(RequestedCharNickNameSetClass, RequestedCharNickNameSetNameText);
-		UpdateLobbyCharOnHeadDisplayClass<>::GetInstance().Signal(); // Response 왔을 때 이걸 부르게 해야.
-		LobbyCharObserveCloseNickEditClass<>::GetInstance().Signal(); // 에디트 창도 이 시점에 닫는다.
-	}
+	//if (RequestedCharNickNameSetClass != EPCClass::EPC_End)
+	//{ // 응답은 걍 승인이므로 이전에 요청한 정보로 세팅.
+	//	BladeIIGameImpl::GetClientDataStore().GetLocalCharacterData().SetCharNickName(RequestedCharNickNameSetClass, RequestedCharNickNameSetNameText);
+	//	UpdateLobbyCharOnHeadDisplayClass<>::GetInstance().Signal(); // Response 왔을 때 이걸 부르게 해야.
+	//	LobbyCharObserveCloseNickEditClass<>::GetInstance().Signal(); // 에디트 창도 이 시점에 닫는다.
+	//}
 
 	RequestedCharNickNameSetClass = EPCClass::EPC_End;
 	RequestedCharNickNameSetNameText = FText::FromString(TEXT(""));
@@ -8113,9 +8115,9 @@ void FClientDataStore::ResponseUpdateDailyPlayTimeClass(const FB2ResponseUpdateD
 void FClientDataStore::ResponseDailyPlayTimeRewardClass(const FB2ResponseReceiveDailyPlayTimeRewardPtr& PlayTimeReward)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(FClientDataStore_ResponseDailyPlayTimeRewardClass);
-	PlayTimeStatusData.daily_play_time_in_sec = PlayTimeReward->daily_play_time_in_sec;
-	PlayTimeStatusData.daily_play_time_reward_index = PlayTimeReward->daily_play_time_reward_index;
-	ReceivePlayTimeRewardClass<const TArray<b2network::B2RewardPtr>&>::GetInstance().Signal(PlayTimeReward->rewards);
+	//PlayTimeStatusData.daily_play_time_in_sec = PlayTimeReward->daily_play_time_in_sec;
+	//PlayTimeStatusData.daily_play_time_reward_index = PlayTimeReward->daily_play_time_reward_index;
+	//ReceivePlayTimeRewardClass<const TArray<b2network::B2RewardPtr>&>::GetInstance().Signal(PlayTimeReward->rewards);
 }
 
 void FClientDataStore::ResponseSetHelmetVisible(const FB2SetHelmetVisible & SetHelmetVisible)
@@ -9225,13 +9227,13 @@ void FItemEnhanceEffectInfo::UpdateByServerSync(const b2network::B2mdItemEnhance
 
 void FDuelModeExpMDSingleData::UpdateByServerSync(const b2network::B2mdDuelModeRewardPtr& InDataElem)
 {
-	// 직접 참조용은 아니고 이 element 를 들고 있을 맵의 키값. GameMode 와 MatchResult 두 개를 조합한다. 확인 차 필요하면 사용.
-	KeyGameMode = SvrDuelModeToCliGameMode(InDataElem->duel_mode);
-	checkSlow(KeyGameMode != EB2GameMode::Unknown); // 만일 이게 걸리게되면 클라 GameMode 에 해당하는 새로운 DuelMode 가 정의되었을 듯.. SvrDuelModeToCliGameMode 맵핑 확인.
-													//KeyMatchResult = SvrToCliNetMatchResult(InDataElem->match_result);
+	//// 직접 참조용은 아니고 이 element 를 들고 있을 맵의 키값. GameMode 와 MatchResult 두 개를 조합한다. 확인 차 필요하면 사용.
+	//KeyGameMode = SvrDuelModeToCliGameMode(InDataElem->duel_mode);
+	//checkSlow(KeyGameMode != EB2GameMode::Unknown); // 만일 이게 걸리게되면 클라 GameMode 에 해당하는 새로운 DuelMode 가 정의되었을 듯.. SvrDuelModeToCliGameMode 맵핑 확인.
+	//												//KeyMatchResult = SvrToCliNetMatchResult(InDataElem->match_result);
 
-													//ExpectedExp = InDataElem->exp;
-	ExpectedExp = 0;
+	//												//ExpectedExp = InDataElem->exp;
+	//ExpectedExp = 0;
 }
 
 int32 FDuelModeExpMDSingleData::GetCombinedIntKey(EB2GameMode InGameMode, ENetMatchResult InResult)

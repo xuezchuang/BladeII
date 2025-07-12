@@ -25,104 +25,104 @@
 
 void UB2UISettingAccount::CacheAssets()
 {
-	Super::CacheAssets();
-	GET_SLOT(UB2Button, B2Button_358);
-	GET_SLOT(UB2Image, B2Image_0);
-	GET_SLOT(UB2Button, BTN_Facebook);
-	GET_SLOT(UB2Button, BTN_Google_GameCenter);
-	GET_SLOT(UB2Button, BTN_Logout);
-	GET_SLOT(UB2Button, BTN_DeleteAccount);
-	GET_SLOT(UTextBlock, TXT_UserID);
-	GET_SLOT(UB2Image, IMG_KakaoLogo);
-	GET_SLOT(UB2Button, BTN_KakaoConnect);
-	GET_SLOT(UTextBlock, TXT_Google);
-	GET_SLOT(UTextBlock, TXT_GameVer);
-	GET_SLOT(UTextBlock, TXT_AccLink);
-
-	GET_SLOT(UB2Button, B2Button_Kakaogoogle);
-
-	GET_SLOT(UB2UIDLCFrontPopup, UI_MsgPopupSetting01)
-		if (UI_MsgPopupSetting01.IsValid()) {
-			UI_MsgPopupSetting01->Init();
-			UI_MsgPopupSetting01->SetVisibility(ESlateVisibility::Hidden);
-		}
-
-	if (IMG_KakaoLogo.IsValid() && BTN_KakaoConnect.IsValid())
-	{
-		if (GetIDPCode() == EPlatformIDPCode::Guest)
-		{
-			IMG_KakaoLogo->SetVisibility(ESlateVisibility::Hidden);
-			BTN_KakaoConnect->SetVisibility(ESlateVisibility::Visible);
-			B2Button_Kakaogoogle->SetVisibility(ESlateVisibility::Hidden);
-		}
-		else
-		{
-			IMG_KakaoLogo->SetVisibility(ESlateVisibility::Visible);
-			BTN_KakaoConnect->SetVisibility(ESlateVisibility::Hidden);
-#if !PLATFORM_IOS
-			B2Button_Kakaogoogle->SetVisibility(ESlateVisibility::Visible);
-#endif
-		}
-	}
-
-	if (TXT_Google.IsValid())
-	{
-		if (B2P_IsGoogleLogin())
-		{
-			TXT_Google->SetText(BladeIIGetLOCText(B2LOC_CAT_CONFIGURATION, TEXT("Configuration_GoogleLogOut")));
-		}
-		else
-		{
-			TXT_Google->SetText(BladeIIGetLOCText(B2LOC_CAT_CONFIGURATION, TEXT("Configuration_GoogleLogIn")));
-		}
-	}
-
-	SetVersionInfo();
-
-#if PLATFORM_IOS
-	if (B2Button_Kakaogoogle.IsValid())
-	{
-		B2Button_Kakaogoogle->SetVisibility(ESlateVisibility::Hidden);
-	}
-#endif
+//	Super::CacheAssets();
+//	GET_SLOT(UB2Button, B2Button_358);
+//	GET_SLOT(UB2Image, B2Image_0);
+//	GET_SLOT(UB2Button, BTN_Facebook);
+//	GET_SLOT(UB2Button, BTN_Google_GameCenter);
+//	GET_SLOT(UB2Button, BTN_Logout);
+//	GET_SLOT(UB2Button, BTN_DeleteAccount);
+//	GET_SLOT(UTextBlock, TXT_UserID);
+//	GET_SLOT(UB2Image, IMG_KakaoLogo);
+//	GET_SLOT(UB2Button, BTN_KakaoConnect);
+//	GET_SLOT(UTextBlock, TXT_Google);
+//	GET_SLOT(UTextBlock, TXT_GameVer);
+//	GET_SLOT(UTextBlock, TXT_AccLink);
+//
+//	GET_SLOT(UB2Button, B2Button_Kakaogoogle);
+//
+//	GET_SLOT(UB2UIDLCFrontPopup, UI_MsgPopupSetting01)
+//		if (UI_MsgPopupSetting01.IsValid()) {
+//			UI_MsgPopupSetting01->Init();
+//			UI_MsgPopupSetting01->SetVisibility(ESlateVisibility::Hidden);
+//		}
+//
+//	if (IMG_KakaoLogo.IsValid() && BTN_KakaoConnect.IsValid())
+//	{
+//		if (GetIDPCode() == EPlatformIDPCode::Guest)
+//		{
+//			IMG_KakaoLogo->SetVisibility(ESlateVisibility::Hidden);
+//			BTN_KakaoConnect->SetVisibility(ESlateVisibility::Visible);
+//			B2Button_Kakaogoogle->SetVisibility(ESlateVisibility::Hidden);
+//		}
+//		else
+//		{
+//			IMG_KakaoLogo->SetVisibility(ESlateVisibility::Visible);
+//			BTN_KakaoConnect->SetVisibility(ESlateVisibility::Hidden);
+//#if !PLATFORM_IOS
+//			B2Button_Kakaogoogle->SetVisibility(ESlateVisibility::Visible);
+//#endif
+//		}
+//	}
+//
+//	if (TXT_Google.IsValid())
+//	{
+//		if (B2P_IsGoogleLogin())
+//		{
+//			TXT_Google->SetText(BladeIIGetLOCText(B2LOC_CAT_CONFIGURATION, TEXT("Configuration_GoogleLogOut")));
+//		}
+//		else
+//		{
+//			TXT_Google->SetText(BladeIIGetLOCText(B2LOC_CAT_CONFIGURATION, TEXT("Configuration_GoogleLogIn")));
+//		}
+//	}
+//
+//	SetVersionInfo();
+//
+//#if PLATFORM_IOS
+//	if (B2Button_Kakaogoogle.IsValid())
+//	{
+//		B2Button_Kakaogoogle->SetVisibility(ESlateVisibility::Hidden);
+//	}
+//#endif
 }
 
 void UB2UISettingAccount::ReloadUI()
 {
-	if (IMG_KakaoLogo.IsValid() && BTN_KakaoConnect.IsValid())
-	{
-		if (GetIDPCode() == EPlatformIDPCode::Guest)
-		{
-			IMG_KakaoLogo->SetVisibility(ESlateVisibility::Hidden);
-			BTN_KakaoConnect->SetVisibility(ESlateVisibility::Visible);
-			B2Button_Kakaogoogle->SetVisibility(ESlateVisibility::Hidden);
-		}
-		else
-		{
-			IMG_KakaoLogo->SetVisibility(ESlateVisibility::Visible);
-			BTN_KakaoConnect->SetVisibility(ESlateVisibility::Hidden);
-#if !PLATFORM_IOS
-			B2Button_Kakaogoogle->SetVisibility(ESlateVisibility::Visible);
-#endif
-		}
-	}
-
-	if (TXT_Google.IsValid())
-	{
-		if (B2P_IsGoogleLogin())
-		{
-			TXT_Google->SetText(BladeIIGetLOCText(B2LOC_CAT_CONFIGURATION, TEXT("Configuration_GoogleLogOut")));
-		}
-		else
-		{
-			TXT_Google->SetText(BladeIIGetLOCText(B2LOC_CAT_CONFIGURATION, TEXT("Configuration_GoogleLogIn")));
-		}
-	}
-
-	if (TXT_UserID.IsValid())
-		TXT_UserID->SetText(FText::FromString(B2P_GetKakaoUserID()));
-
-	SetVersionInfo();
+//	if (IMG_KakaoLogo.IsValid() && BTN_KakaoConnect.IsValid())
+//	{
+//		if (GetIDPCode() == EPlatformIDPCode::Guest)
+//		{
+//			IMG_KakaoLogo->SetVisibility(ESlateVisibility::Hidden);
+//			BTN_KakaoConnect->SetVisibility(ESlateVisibility::Visible);
+//			B2Button_Kakaogoogle->SetVisibility(ESlateVisibility::Hidden);
+//		}
+//		else
+//		{
+//			IMG_KakaoLogo->SetVisibility(ESlateVisibility::Visible);
+//			BTN_KakaoConnect->SetVisibility(ESlateVisibility::Hidden);
+//#if !PLATFORM_IOS
+//			B2Button_Kakaogoogle->SetVisibility(ESlateVisibility::Visible);
+//#endif
+//		}
+//	}
+//
+//	if (TXT_Google.IsValid())
+//	{
+//		if (B2P_IsGoogleLogin())
+//		{
+//			TXT_Google->SetText(BladeIIGetLOCText(B2LOC_CAT_CONFIGURATION, TEXT("Configuration_GoogleLogOut")));
+//		}
+//		else
+//		{
+//			TXT_Google->SetText(BladeIIGetLOCText(B2LOC_CAT_CONFIGURATION, TEXT("Configuration_GoogleLogIn")));
+//		}
+//	}
+//
+//	if (TXT_UserID.IsValid())
+//		TXT_UserID->SetText(FText::FromString(B2P_GetKakaoUserID()));
+//
+//	SetVersionInfo();
 }
 void UB2UISettingAccount::SetVersionInfo()
 {
@@ -342,7 +342,8 @@ void UB2UISettingAccount::ShowAchievementsView()
 
 EPlatformIDPCode UB2UISettingAccount::GetIDPCode()
 {
-	return B2P_GetKakaoIDPCode();
+	//return B2P_GetKakaoIDPCode();
+	return EPlatformIDPCode::None;
 }
 
 void UB2UISettingAccount::SetClipBoard()
@@ -382,33 +383,33 @@ void UB2UISettingAccount::NativeTick(const FGeometry& MyGeometry, float InDeltaT
 
 void UB2UISettingAccount::SubscribeEvent()
 {
-	if (bSubscribed == false)
-	{
-		CAPTURE_UOBJECT(UB2UISettingAccount);
+	//if (bSubscribed == false)
+	//{
+	//	CAPTURE_UOBJECT(UB2UISettingAccount);
 
-		DeliveryKakaoAccountConversionPrepareTicket = DeliveryKakaoAccountConversionPrepareClass<FB2ReciveKakaoAccountConversionPrepare>::GetInstance().Subscribe(
-			USE_CAPTURE_OBJECT_AND_TICKET(DeliveryKakaoAccountConversionPrepare, FB2ReciveKakaoAccountConversionPrepare KakaoMessageProcessing)
-			Capture->OnReceiveKakaoAccountConversionPrepare(KakaoMessageProcessing);
-		END_CAPTURE_OBJECT()
-			);
+	//	DeliveryKakaoAccountConversionPrepareTicket = DeliveryKakaoAccountConversionPrepareClass<FB2ReciveKakaoAccountConversionPrepare>::GetInstance().Subscribe(
+	//		USE_CAPTURE_OBJECT_AND_TICKET(DeliveryKakaoAccountConversionPrepare, FB2ReciveKakaoAccountConversionPrepare KakaoMessageProcessing)
+	//		Capture->OnReceiveKakaoAccountConversionPrepare(KakaoMessageProcessing);
+	//	END_CAPTURE_OBJECT()
+	//		);
 
-		DeliveryKakaoAccountConversionCompleteTicket = DeliveryKakaoAccountConversionCompleteClass<FB2ReciveKakaoAccountConversionComplete>::GetInstance().Subscribe(
-			USE_CAPTURE_OBJECT_AND_TICKET(DeliveryKakaoAccountConversionComplete, FB2ReciveKakaoAccountConversionComplete KakaoMessageProcessing)
-			Capture->OnReceiveKakaoAccountConversionComplete(KakaoMessageProcessing);
-		END_CAPTURE_OBJECT()
-			);
+	//	DeliveryKakaoAccountConversionCompleteTicket = DeliveryKakaoAccountConversionCompleteClass<FB2ReciveKakaoAccountConversionComplete>::GetInstance().Subscribe(
+	//		USE_CAPTURE_OBJECT_AND_TICKET(DeliveryKakaoAccountConversionComplete, FB2ReciveKakaoAccountConversionComplete KakaoMessageProcessing)
+	//		Capture->OnReceiveKakaoAccountConversionComplete(KakaoMessageProcessing);
+	//	END_CAPTURE_OBJECT()
+	//		);
 
-		bSubscribed = true;
-	}
+	//	bSubscribed = true;
+	//}
 }
 
 void UB2UISettingAccount::UnSubscribeEvent()
 {
-	DeliveryKakaoAccountConversionPrepareClass<FB2ReciveKakaoAccountConversionPrepare>::GetInstance().Unsubscribe(DeliveryKakaoAccountConversionPrepareTicket);
-	DeliveryKakaoAccountConversionCompleteClass<FB2ReciveKakaoAccountConversionComplete>::GetInstance().Unsubscribe(DeliveryKakaoAccountConversionCompleteTicket);
+	//DeliveryKakaoAccountConversionPrepareClass<FB2ReciveKakaoAccountConversionPrepare>::GetInstance().Unsubscribe(DeliveryKakaoAccountConversionPrepareTicket);
+	//DeliveryKakaoAccountConversionCompleteClass<FB2ReciveKakaoAccountConversionComplete>::GetInstance().Unsubscribe(DeliveryKakaoAccountConversionCompleteTicket);
 
-	DeliveryKakaoAccountConversionPrepareTicket = 0;
-	DeliveryKakaoAccountConversionCompleteTicket = 0;
+	//DeliveryKakaoAccountConversionPrepareTicket = 0;
+	//DeliveryKakaoAccountConversionCompleteTicket = 0;
 }
 
 

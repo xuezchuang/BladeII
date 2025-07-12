@@ -4,6 +4,7 @@
 #include "B2UIWidget.h"
 #include "B2UIDocBindable.h"
 #include "B2UIBackWidget.h"
+#include "B2ScrollBox.h"
 #include "B2UIGameInviteList.generated.h"
 
 DECLARE_DELEGATE_OneParam(FB2UIGameInviteCloseEvent, bool);

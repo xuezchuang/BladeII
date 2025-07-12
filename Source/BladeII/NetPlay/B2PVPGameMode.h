@@ -3,6 +3,7 @@
 #pragma once
 //#include "BladeII.h"
 #include "B2NetGameMode.h"
+#include "../BladeII/BladeIIPlayer.h"
 #include "B2PVPGameMode.generated.h"
 
 enum class EPVPMatchState : uint8

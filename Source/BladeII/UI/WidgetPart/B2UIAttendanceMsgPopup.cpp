@@ -46,10 +46,10 @@ void UB2UIAttendanceMsgPopup::Init()
 
 void UB2UIAttendanceMsgPopup::DestroySelf(UB2UIManager* InUIManager)
 {
-	Super::DestroySelf(InUIManager);
+	//Super::DestroySelf(InUIManager);
 
-	if (ConfirmDelegate.ExecuteIfBound())
-		ConfirmDelegate.Unbind();
+	//if (ConfirmDelegate.ExecuteIfBound())
+	//	ConfirmDelegate.Unbind();
 }
 
 void UB2UIAttendanceMsgPopup::OnClickB2Button_0()
@@ -59,10 +59,10 @@ void UB2UIAttendanceMsgPopup::OnClickB2Button_0()
 
 void UB2UIAttendanceMsgPopup::OnClickB2Button_2()
 {
-	if (ConfirmDelegate.ExecuteIfBound())
-		ConfirmDelegate.Unbind();
+	//if (ConfirmDelegate.ExecuteIfBound())
+	//	ConfirmDelegate.Unbind();
 
-	UB2UIManager::GetInstance()->CloseUI(UIFName::AttendanceMsgPopup);
+	//UB2UIManager::GetInstance()->CloseUI(UIFName::AttendanceMsgPopup);
 }
 
 
@@ -84,5 +84,5 @@ FText UB2UIAttendanceMsgPopup::GetAttendanceItemName(int32 nRewardId, int32 nRew
 
 void UB2UIAttendanceMsgPopup::SetConfirmCallback(const FMsgPopupOnClick& Handler)
 {
-	ConfirmDelegate = Handler;
+	//ConfirmDelegate = Handler;
 }
