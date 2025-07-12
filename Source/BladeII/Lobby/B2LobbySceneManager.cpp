@@ -1,74 +1,75 @@
 
 #include "B2LobbySceneManager.h"
 //#include "BladeII.h"
-//#include "Engine/World.h"
-//#include "B2LobbyGameMode.h"
+#include "Engine/World.h"
+#include "B2LobbyGameMode.h"
 //
-//#include "B2LobbyInventory.h"
+#include "B2LobbyInventory.h"
 #include "B2PCClassInfoBox.h"
 #include "BladeIIPlayer.h"
-//#include "Engine/World.h"
-//#include "B2LobbySkeletalMeshActor.h"
-//#include "B2HeroMgntSkeletalMeshActor.h"
-//#include "B2UIManager.h"
-//#include "B2UIManager_Lobby.h"
+#include "Engine/World.h"
+#include "B2LobbySkeletalMeshActor.h"
+#include "B2HeroMgntSkeletalMeshActor.h"
+#include "B2UIManager.h"
+#include "B2UIManager_Lobby.h"
 ////#include "Matinee/MatineeActor.h"
 //#include "Matinee/InterpGroup.h"
 //#include "Matinee/InterpGroupInst.h"
 //#include "Matinee/InterpTrackMove.h"
 //#include "Matinee/InterpData.h"
-//#include "B2UnitedWidgetBase.h"
-//#include "B2UIModSelect.h"
-//#include "B2UIDocHelper.h"
-//#include "B2UIHeroTowerReady.h"
+#include "B2UnitedWidgetBase.h"
+#include "B2UIModSelect.h"
+#include "B2UIDocHelper.h"
+#include "B2UIHeroTowerReady.h"
 #include "Retailer.h"
-//#include "B2UIMsgPopupGuildPopup.h"
-//#include "B2UICollectBookMain.h"
-//#include "B2UIGuildMain.h"
-//#include "B2UIRaidMain.h"
-//#include "B2UIRaidJoin.h"
-//#include "B2UIGameInviteList.h"
-//#include "B2ModPlayerInfoData.h"
-//#include "B2CombatStatEvaluator.h"
-//#include "B2UILobbyMain.h"
-//#include "B2GuildGameMode.h"
+#include "B2UIMsgPopupGuildPopup.h"
+#include "B2UICollectBookMain.h"
+#include "B2UIGuildMain.h"
+#include "B2UIRaidMain.h"
+#include "B2UIRaidJoin.h"
+#include "B2UIGameInviteList.h"
+#include "B2ModPlayerInfoData.h"
+#include "B2CombatStatEvaluator.h"
+#include "B2UILobbyMain.h"
+#include "B2GuildGameMode.h"
 #include "B2Airport.h"
-//#include "B2UIGuildBattleHistory.h"
-//#include "B2UIGuildMapMain.h"
+#include "B2UIGuildBattleHistory.h"
+#include "B2UIGuildMapMain.h"
 #include "InternalEvents.h"
-//#include "BladeIIPointCharger.h"
-//#include "B2UIFindMatchPopup.h"
-//#include "B2UIOtherUserInfo.h"
-//#include "B2UISummonItem.h"
-//#include "B2UISummonItemDisplay.h"
-//#include "B2UILobbySelectCharacter.h"
-//#include "B2UIMailRewardPopUp.h"
-//#include "B2CompositeMeshCache.h"
-//#include "B2GameLoadingProgress.h"
-//#include "FakeConfigure.h"
+#include "BladeIIPointCharger.h"
+#include "B2UIFindMatchPopup.h"
+#include "B2UIOtherUserInfo.h"
+#include "B2UISummonItem.h"
+#include "B2UISummonItemDisplay.h"
+#include "B2UILobbySelectCharacter.h"
+#include "B2UIMailRewardPopUp.h"
+#include "B2CompositeMeshCache.h"
+#include "B2GameLoadingProgress.h"
+#include "FakeConfigure.h"
 #include "BladeIIGameImpl.h"
-//#include "B2LobbyNPCSkeletalMeshActor.h"
-//#include "B2UIRestPointMain.h"
-//#include "B2UIChatting.h"
-//#include "B2UIPackageStore.h"
-//#include "B2UIMagicStore.h"
-//#include "TutorialManager.h"
-//#include "B2RaidInfo.h"
-//#include "B2UIHallOfFame.h"
-//#include "B2UIHeader.h"
-//#include "B2UILinkManager.h"
-//#include "B2CostumeDataStore.h"
+#include "B2LobbyNPCSkeletalMeshActor.h"
+#include "B2UIRestPointMain.h"
+#include "B2UIChatting.h"
+#include "B2UIPackageStore.h"
+#include "B2UIMagicStore.h"
+#include "TutorialManager.h"
+#include "B2RaidInfo.h"
+#include "B2UIHallOfFame.h"
+#include "B2UIHeader.h"
+#include "B2UILinkManager.h"
+#include "B2CostumeDataStore.h"
 #include "BladeIIGameMode.h"
 #include "B2GameDefine.h"
-//#include "B2UIMsgPopupSelectFairyGift.h"
-//#include "B2UIDocDonation.h"
-//#include "B2UIItemForge.h"
-//#include "B2UISealBoxResult.h"
+#include "B2UIMsgPopupSelectFairyGift.h"
+#include "B2UIDocDonation.h"
+#include "B2UIItemForge.h"
+#include "B2UISealBoxResult.h"
 #include "BladeIIUtil.h"
-//#include "FairyManager.h"
+#include "FairyManager.h"
 #include "DF.h"
 #include "StereoRendering.h"
 #include "../Fulfil/FairyManager.h"
+#include "LevelSequence/Public/LevelSequenceActor.h"
 
 #define SWIPE_NEXTSTAGE_POS 1.7
 #define SWIPE_PREVSTAGE_POS 0.3
@@ -79,50 +80,84 @@
 
 static void CharacterStopSound(ASkeletalMeshActor* Actor)
 {
-	//if (!Actor)
-	//	return;
+	if (!Actor)
+		return;
 
-	//auto* SKMeshComp = Actor->GetSkeletalMeshComponent();
-	//if (SKMeshComp)
-	//{
-	//	for (auto* AttachedComp : SKMeshComp->GetAttachChildren())
-	//	{
-	//		auto* AudioComp = Cast<UAudioComponent>(AttachedComp);
-	//		if (AudioComp)
-	//		{
-	//			AudioComp->Stop();
-	//		}
-	//	}
-	//}
+	TArray<UAudioComponent*> AudioComponents;
+	Actor->GetComponents<UAudioComponent>(AudioComponents);
+
+	for (UAudioComponent* AudioComp : AudioComponents)
+	{
+		if (AudioComp && AudioComp->IsPlaying())
+		{
+			AudioComp->Stop();
+		}
+	}
 }
 
 static void CharacterHiddenAndStopSound(ASkeletalMeshActor* Actor, bool bHidden)
 {
-	//if (!Actor)
-	//	return;
+	if (!Actor)
+		return;
 
-	//Actor->SetActorEnableCollision(!bHidden);
-	//Actor->SetActorHiddenInGame(bHidden);
+	Actor->SetActorEnableCollision(!bHidden);
+	Actor->SetActorHiddenInGame(bHidden);
 
-	//if (bHidden)
-	//{
-	//	CharacterStopSound(Actor);
-	//}
+	if (bHidden)
+	{
+		CharacterStopSound(Actor);
+	}
 }
 
-//void SetMatineeHiddenInGame(ALevelSequenceActor * Matinee, bool bHidden)
-//{
-//	Matinee->SetActorHiddenInGame(bHidden);
-//
-//	for (auto& GroupActorInfo : Matinee->GroupActorInfos)
-//	{
-//		for (auto* Actor : GroupActorInfo.Actors)
-//		{
-//			if (Actor)
-//				Actor->SetActorHiddenInGame(bHidden);
-//		}			
-//	}
-//}
+void SetMatineeHiddenInGame(ALevelSequenceActor* Matinee, bool bHidden)
+{
+	//Matinee->SetActorHiddenInGame(bHidden);
+
+	//for (auto& GroupActorInfo : Matinee->GroupActorInfos)
+	//{
+	//	for (auto* Actor : GroupActorInfo.Actors)
+	//	{
+	//		if (Actor)
+	//			Actor->SetActorHiddenInGame(bHidden);
+	//	}
+	//}
+
+	//if (!LevelSequenceActor)
+	//	return;
+	//
+	//// Òþ²Ø LevelSequenceActor ±¾Éí
+	//LevelSequenceActor->SetActorHiddenInGame(bHidden);
+
+	//// »ñÈ¡°ó¶¨µÄ LevelSequence ×ÊÔ´
+	//ULevelSequence* LevelSequence = Cast<ULevelSequence>(LevelSequenceActor->GetSequence());
+	//if (!LevelSequence)
+	//	return;
+
+	//UMovieScene* MovieScene = LevelSequence->GetMovieScene();
+	//if (!MovieScene)
+	//	return;
+
+	//// »ñÈ¡°ó¶¨ÐÅÏ¢ÁÐ±í
+	//const TArray<FMovieSceneBinding>& Bindings = MovieScene->GetBindings();
+
+	//for (const FMovieSceneBinding& Binding : Bindings)
+	//{
+	//	// ¹¹Ôì°ó¶¨ ID
+	//	FMovieSceneObjectBindingID BindingID(Binding.GetObjectGuid(), MovieSceneSequenceID::Root, EMovieSceneObjectBindingSpace::Local);
+
+	//	// »ñÈ¡°ó¶¨¶ÔÏó
+	//	TArray<UObject*> BoundObjects;
+	//	LevelSequenceActor->GetSequencePlayer()->FindBoundObjects(BindingID, BoundObjects);
+
+	//	for (UObject* BoundObject : BoundObjects)
+	//	{
+	//		if (AActor* BoundActor = Cast<AActor>(BoundObject))
+	//		{
+	//			BoundActor->SetActorHiddenInGame(bHidden);
+	//		}
+	//	}
+	//}
+}
 
 FLobbyLevelVisibleManager::FLobbyLevelVisibleManager(FLobbySceneManager* InSceneManager) : LobbySceneManager(InSceneManager), CurrentLobbyScene(ELobbyScene::ELobbyScene_Title)
 {
@@ -200,7 +235,7 @@ void FLobbyLevelVisibleManager::ChangeVisibility(ELobbyScene ToChangeScene, int3
 	B2_SCOPED_TRACK_LOG(FString::Printf(TEXT("FLobbyLevelVisibleManager::ChangeVisibility, ToChangeScene %d, PrevCN %d, CN %d"), (int32)ToChangeScene, OptionalPrevChapterNum, OptionalChapterNum));
 	BII_CHECK(LobbySceneManager);
 	BII_CHECK(LevelsRequiredScene.Num() > 0);
-	//
+	
 	//auto* GameMode = LobbySceneManager ? LobbySceneManager->GetLobbyGameMode() : NULL;
 	//if (GameMode)
 	//{
@@ -280,20 +315,20 @@ void FLobbyLevelVisibleManager::ChangeVisibility(ELobbyScene ToChangeScene, int3
 
 bool FLobbyLevelVisibleManager::IsStreamingLevelLoaded(ELobbyScene CheckScene, int32 OptionalChapterNum /*OptionalChapterNum Àº Ã©ÅÍ ¾ÀÀÎ °æ¿ì ÇÊ¿ä*/)
 {
-	//TArray<FName> LevelNameList;
-	//LevelsRequiredScene.MultiFind(GetLobbyLevelType(CheckScene, OptionalChapterNum), LevelNameList);
-	//AB2LobbyGameMode* LobbyGM = LobbySceneManager ? LobbySceneManager->GetLobbyGameMode() : NULL;
-	//UWorld* TheWorld = LobbyGM ? LobbyGM->GetWorld() : nullptr;
-	//if (TheWorld)
-	//{
-	//	for (auto& PrefetchLevelName : LevelNameList)
-	//	{
-	//		ULevelStreaming* StreamingLevel = TheWorld->GetLevelStreamingForPackageName(PrefetchLevelName);
-	//		if (!StreamingLevel || !StreamingLevel->IsLevelLoaded()) {
-	//			return false;
-	//		}
-	//	}
-	//}
+	TArray<FName> LevelNameList;
+	LevelsRequiredScene.MultiFind(GetLobbyLevelType(CheckScene, OptionalChapterNum), LevelNameList);
+	AB2LobbyGameMode* LobbyGM = LobbySceneManager ? LobbySceneManager->GetLobbyGameMode() : NULL;
+	UWorld* TheWorld = LobbyGM ? LobbyGM->GetWorld() : nullptr;
+	if (TheWorld)
+	{
+		for (auto& PrefetchLevelName : LevelNameList)
+		{
+			ULevelStreaming* StreamingLevel = TheWorld->GetLevelStreamingForPackageName(PrefetchLevelName);
+			if (!StreamingLevel || !StreamingLevel->IsLevelLoaded()) {
+				return false;
+			}
+		}
+	}
 	return true;
 }
 /* 
@@ -303,21 +338,21 @@ void FLobbyLevelVisibleManager::PrefetchStreamingLevel(ELobbyScene PrefetchScene
 {
 	B2_SCOPED_TRACK_LOG(FString::Printf(TEXT("FLobbyLevelVisibleManager::PrefetchStreamingLevel %d"), (int32)PrefetchScene));
 
-	//// Ã©ÅÍ ¾Àµµ ¹º°¡ ÇØ º¸·Á¸é ¹øÈ£ ¸Ô¿©ÁÖ¸é µÇ´Âµ¥ ÀÚÄ©ÇÏ¸é »ç¿ë ¾È ÇÏ´À´Ï¸¸ ¸øÇÑ ÀÌ·± ¹Î°¨ÇÑ ±â´ÉÀ» ±×·¸°Ô ³Î¸® »ç¿ëÇÒ °¡´É¼ºÀ» ÁÖ´À´Ï ±×³É Á¦°ø ¾ÈÇÏ°í ¸»Áö.
-	//check(PrefetchScene != ELobbyScene::ELobbyScene_Chapter);
+	// Ã©ÅÍ ¾Àµµ ¹º°¡ ÇØ º¸·Á¸é ¹øÈ£ ¸Ô¿©ÁÖ¸é µÇ´Âµ¥ ÀÚÄ©ÇÏ¸é »ç¿ë ¾È ÇÏ´À´Ï¸¸ ¸øÇÑ ÀÌ·± ¹Î°¨ÇÑ ±â´ÉÀ» ±×·¸°Ô ³Î¸® »ç¿ëÇÒ °¡´É¼ºÀ» ÁÖ´À´Ï ±×³É Á¦°ø ¾ÈÇÏ°í ¸»Áö.
+	check(PrefetchScene != ELobbyScene::ELobbyScene_Chapter);
 
-	//TArray<FName> LevelNameList;
-	//LevelsRequiredScene.MultiFind(GetLobbyLevelType(PrefetchScene), LevelNameList);
+	TArray<FName> LevelNameList;
+	LevelsRequiredScene.MultiFind(GetLobbyLevelType(PrefetchScene), LevelNameList);
 
-	//auto* GameMode = LobbySceneManager ? LobbySceneManager->GetLobbyGameMode() : NULL;
-	//UWorld* TheWorld = GameMode ? GameMode->GetWorld() : nullptr;
-	//if (TheWorld)
-	//{
-	//	for (auto& PrefetchLevelName : LevelNameList)
-	//	{// bShouldBlokcOnLoad ¾È ÁÖ°í ·Îµù ÄÝ. ±×³É ÀÌ·¸°Ô ÇØ µÎ°í ³»ºñµÎ´Â °Å.
-	//		UGameplayStatics::LoadStreamLevel(TheWorld, PrefetchLevelName, false, false, FLatentActionInfo());
-	//	}
-	//}
+	auto* GameMode = LobbySceneManager ? LobbySceneManager->GetLobbyGameMode() : NULL;
+	UWorld* TheWorld = GameMode ? GameMode->GetWorld() : nullptr;
+	if (TheWorld)
+	{
+		for (auto& PrefetchLevelName : LevelNameList)
+		{// bShouldBlokcOnLoad ¾È ÁÖ°í ·Îµù ÄÝ. ±×³É ÀÌ·¸°Ô ÇØ µÎ°í ³»ºñµÎ´Â °Å.
+			UGameplayStatics::LoadStreamLevel(TheWorld, PrefetchLevelName, false, false, FLatentActionInfo());
+		}
+	}
 }
 
 bool FLobbyLevelVisibleManager::HasSameStreamingLevelToCurrentScene(ELobbyScene TestScene, int32 OptionalCurrChapterNum, int32 OptionalTestChapterNum)
@@ -2864,7 +2899,7 @@ void FLobbyCharObserveScene::FLobbyCharacterObserveCamera::SetData(EPCClass Sele
 //=================================================================================================
 FLobbyHeroMgmtScene::FLobbyHeroMgmtScene(class FLobbySceneManager* OwnerSceneManager) : FLobbySceneBase(OwnerSceneManager)
 {
-	//CurrentPCClass = BladeIIGameImpl::GetLocalCharacterData().GetMainPlayerClass();
+	CurrentPCClass = BladeIIGameImpl::GetLocalCharacterData().GetMainPlayerClass();
 	bCurrentlyWingEvolutionScene = false;
 	WingEvolutionScenePCClass = EPCClass::EPC_End;
 
@@ -2890,52 +2925,52 @@ void FLobbyHeroMgmtScene::OpenScene()
 	//if (GEngine->ActiveMatinee.IsValid() && GEngine->ActiveMatinee.Get()->GetWorld())//¸¶Æ¼³×°¡ ²¿ÀÌ°íÀÖ½À´Ï´Ù... µ¹°íÀÖ´Â ¸¶Æ¼³× ¹«Á¶°Ç ¸ØÃçÁÖ°í µ¹·ÁÁÝ½Ã´Ù.
 	//	GEngine->ActiveMatinee.Get()->Stop();
 
-	SelectCharacterHeroMgmt(CurrentPCClass);
+	//SelectCharacterHeroMgmt(CurrentPCClass);
 }
 
 void FLobbyHeroMgmtScene::CloseScene()
 {
 	FLobbySceneBase::CloseScene();
-//
-//	auto& AllCharactersOfDesiredType = GetLobbyCharactersForGTypeLevel();
-//
-//	auto* LobbyCharInfo = AllCharactersOfDesiredType.Find(CurrentPCClass);
-//	if (LobbyCharInfo)
-//	{
-//		LobbyCharInfo->MatineeForInven->Stop();
-//		if (LobbyCharInfo->MatineeForWingEventScene){
-//			LobbyCharInfo->MatineeForWingEventScene->Stop();
-//		}
-//		LobbyCharInfo->ActorForMain->SetActorRotation(LobbyCharInfo->InitialRotation);
-//	}
-//
-///*
-//	if (UB2UIDocSome* DocSome = UB2UIDocHelper::GetDocSome())
-//	{
-//		if (!bCurrentlyWingEvolutionScene)
-//			CurrentPCClass = DocSome->GetLobbyCharObserverClass();
-//	}*/
+
+	//auto& AllCharactersOfDesiredType = GetLobbyCharactersForGTypeLevel();
+
+	//auto* LobbyCharInfo = AllCharactersOfDesiredType.Find(CurrentPCClass);
+	//if (LobbyCharInfo)
+	//{
+	//	LobbyCharInfo->MatineeForInven->Stop();
+	//	if (LobbyCharInfo->MatineeForWingEventScene){
+	//		LobbyCharInfo->MatineeForWingEventScene->Stop();
+	//	}
+	//	LobbyCharInfo->ActorForMain->SetActorRotation(LobbyCharInfo->InitialRotation);
+	//}
+
+/*
+	if (UB2UIDocSome* DocSome = UB2UIDocHelper::GetDocSome())
+	{
+		if (!bCurrentlyWingEvolutionScene)
+			CurrentPCClass = DocSome->GetLobbyCharObserverClass();
+	}*/
 
 	ZoomModule.ClearZoomModule();
 }
 
 void FLobbyHeroMgmtScene::SubscribeEvents_OnConstruct()
 {
-	//LobbyHeroMgmtSelectTicket = LobbyHeroMgmtSelectClass<EPCClass>::GetInstance().Subscribe([this](EPCClass SelectedClass) { this->SelectCharacterHeroMgmt(SelectedClass); });
-	//LobbyCharRotateCharacterTicket = LobbyCharRotateCharacterClass<float>::GetInstance().Subscribe([this](float Value) { this->RotateCharacterYaw(Value); });
-	//LobbyCharEquippedItemTicket = LobbyCharEquippedItemClass<EPCClass, EItemEquipPlace>::GetInstance().Subscribe([this](EPCClass CharClass, EItemEquipPlace EquippedPlace) {this->PlayEquippedAnimation(CharClass, EquippedPlace); });
-	//BeginWingEvolutionSceneTicket = BeginWingEvolutionSceneClass<EPCClass>::GetInstance().Subscribe([this](EPCClass EvolvedClass) { this->BeginWingEvolutionScene(EvolvedClass); });
-	//EndWingEvolutionSceneTicket = EndWingEvolutionSceneClass<>::GetInstance().Subscribe([this]() { this->EndWingEvolutionScene(); });
-	//LobbyCharZoomTicket = LobbyCharZoomClass<const FVector2D&, float>::GetInstance().Subscribe([this](const FVector2D& Pinpoint, float Delta) { this->ZoomModule.Zoom(Pinpoint, Delta); });
+	LobbyHeroMgmtSelectTicket = LobbyHeroMgmtSelectClass<EPCClass>::GetInstance().Subscribe([this](EPCClass SelectedClass) { this->SelectCharacterHeroMgmt(SelectedClass); });
+	LobbyCharRotateCharacterTicket = LobbyCharRotateCharacterClass<float>::GetInstance().Subscribe([this](float Value) { this->RotateCharacterYaw(Value); });
+	LobbyCharEquippedItemTicket = LobbyCharEquippedItemClass<EPCClass, EItemEquipPlace>::GetInstance().Subscribe([this](EPCClass CharClass, EItemEquipPlace EquippedPlace) { this->PlayEquippedAnimation(CharClass, EquippedPlace); });
+	BeginWingEvolutionSceneTicket = BeginWingEvolutionSceneClass<EPCClass>::GetInstance().Subscribe([this](EPCClass EvolvedClass) { this->BeginWingEvolutionScene(EvolvedClass); });
+	EndWingEvolutionSceneTicket = EndWingEvolutionSceneClass<>::GetInstance().Subscribe([this]() { this->EndWingEvolutionScene(); });
+	LobbyCharZoomTicket = LobbyCharZoomClass<const FVector2D&, float>::GetInstance().Subscribe([this](const FVector2D& Pinpoint, float Delta) { this->ZoomModule.Zoom(Pinpoint, Delta); });
 }
 void FLobbyHeroMgmtScene::UnsubscribeEvents_OnDestruct()
 {
-	//LobbyHeroMgmtSelectClass<EPCClass>::GetInstance().Unsubscribe(LobbyHeroMgmtSelectTicket);
-	//LobbyCharRotateCharacterClass<float>::GetInstance().Unsubscribe(LobbyCharRotateCharacterTicket);
-	//LobbyCharEquippedItemClass<EPCClass, EItemEquipPlace>::GetInstance().Unsubscribe(LobbyCharEquippedItemTicket);
-	//BeginWingEvolutionSceneClass<EPCClass>::GetInstance().Unsubscribe(BeginWingEvolutionSceneTicket);
-	//EndWingEvolutionSceneClass<>::GetInstance().Unsubscribe(EndWingEvolutionSceneTicket);
-	//LobbyCharZoomClass<const FVector2D&, float>::GetInstance().Unsubscribe(LobbyCharZoomTicket);
+	LobbyHeroMgmtSelectClass<EPCClass>::GetInstance().Unsubscribe(LobbyHeroMgmtSelectTicket);
+	LobbyCharRotateCharacterClass<float>::GetInstance().Unsubscribe(LobbyCharRotateCharacterTicket);
+	LobbyCharEquippedItemClass<EPCClass, EItemEquipPlace>::GetInstance().Unsubscribe(LobbyCharEquippedItemTicket);
+	BeginWingEvolutionSceneClass<EPCClass>::GetInstance().Unsubscribe(BeginWingEvolutionSceneTicket);
+	EndWingEvolutionSceneClass<>::GetInstance().Unsubscribe(EndWingEvolutionSceneTicket);
+	LobbyCharZoomClass<const FVector2D&, float>::GetInstance().Unsubscribe(LobbyCharZoomTicket);
 }
 
 void FLobbyHeroMgmtScene::OnLobbyGMActorCustomEvent(FName OptionalEventName, UObject* OptionalNotifyingObject)
@@ -2961,7 +2996,7 @@ EUIScene FLobbyHeroMgmtScene::GetUIScene()
 	AB2LobbyGameMode* LobbyGM = GetSceneManager() ? GetSceneManager()->GetLobbyGameMode() : NULL;
 	if (LobbyGM)
 	{
-		//return DJLegacyHeroMgmtPageToUIScene(LobbyGM->GetHeroMgmtSubMode());
+		return DJLegacyHeroMgmtPageToUIScene(LobbyGM->GetHeroMgmtSubMode());
 	}
 	return EUIScene::Inventory;
 }

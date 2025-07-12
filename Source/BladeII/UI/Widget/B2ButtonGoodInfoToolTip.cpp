@@ -17,9 +17,9 @@ UB2ButtonGoodInfoToolTip::UB2ButtonGoodInfoToolTip(const FObjectInitializer& Obj
 	, GoodsPopupType(EGoodsInfoPopupType::EGoodsPopup_None)
 	, m_ItemInfoidx(0)
 	, m_InOwnerUnitedWidget(nullptr)
-	//,AuraImg(UWidgetBlueprintLibrary::NoResourceBrush())
-	//,OutLineImg(UWidgetBlueprintLibrary::NoResourceBrush())
-	//,ReflectImg(UWidgetBlueprintLibrary::NoResourceBrush())
+	, AuraImg(UWidgetBlueprintLibrary::NoResourceBrush())
+	, OutLineImg(UWidgetBlueprintLibrary::NoResourceBrush())
+	, ReflectImg(UWidgetBlueprintLibrary::NoResourceBrush())
 {
 	DefaultOnClickSoundIndex = -1;
 	//이게 있어야 스크롤 가능함

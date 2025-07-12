@@ -1796,7 +1796,7 @@ void DrawDebugText(float InStartX, float InStartY, const FString& InText, const 
 	}
 #endif
 }
-#if WITH_BII_ON_SCREEN_DEBUG_TEXT
+//#if WITH_BII_ON_SCREEN_DEBUG_TEXT
 /** 이건 한번만 콜하면 정해진 시간동안 디스플레이 된다. 대신 위치는 정해져 있음 */
 void DrawTimedDebugText(const FString& InText, const FLinearColor& InFontColor, int32 InFontSize, float InDisplayTime, bool bDrawShadow, const FLinearColor& InShadowColor)
 {
@@ -1811,7 +1811,7 @@ void DrawTimedDebugText(const FString& InText, const FLinearColor& InFontColor, 
 	//	ScreenDebugTextWidget->AddTimedDrawText(InText, InFontColor, InFontSize, InDisplayTime, bDrawShadow, InShadowColor);
 	//}
 }
-#endif
+//#endif
 
 bool IsUsingMobileRendering(UWorld* InWorld)
 {

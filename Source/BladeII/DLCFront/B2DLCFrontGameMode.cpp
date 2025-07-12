@@ -15,7 +15,7 @@
 //#include "b2"
 #include "B2LobbySceneManager.h"
 #if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV1
-//#include "B2UIDummyDLCFront.h"
+#include "B2UIDummyDLCFront.h"
 #endif
 #include "BladeIIScalabilityControl.h"
 #include "../BladeII/BladeIIUtil.h"
@@ -60,24 +60,24 @@ void AB2DLCFrontGameMode::PostLoad()
 void AB2DLCFrontGameMode::StartPlay()
 {
 	B2_SCOPED_TRACK_LOG(TEXT("AB2DLCFrontGameMode::StartPlay"));
-//	
-//	if (HasAnyFlags(RF_ClassDefaultObject))
-//	{
-//		return;
-//	}
-//	
-//	// 아래 둘 순서 주의
-//	InitializeAllGameSettingData(this);
-//	B2Scalability::OnGameModeStartPlay(this);
-//
-//	PreBeginPlay(); // ABladeIIGameMode::PreBeginPlay 와 마찬가지 타이밍으로.
-//
-//	Super::StartPlay();
-//
-//#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV1
-//	// 정식으로 DLCFrontMap 을 통과했음을 마크해서 뻘짓 방지. 적어도 모바일 배포에서는 이 게임모드를 통과하는 상황은 실제 DLC 모드일 것이다.
-//	UB2UIDummyDLCFront::bWentThroughRealDLCFront = true;
-//#endif
+	
+	if (HasAnyFlags(RF_ClassDefaultObject))
+	{
+		return;
+	}
+	
+	// 아래 둘 순서 주의
+	InitializeAllGameSettingData(this);
+	B2Scalability::OnGameModeStartPlay(this);
+
+	PreBeginPlay(); // ABladeIIGameMode::PreBeginPlay 와 마찬가지 타이밍으로.
+
+	Super::StartPlay();
+
+#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV1
+	// 정식으로 DLCFrontMap 을 통과했음을 마크해서 뻘짓 방지. 적어도 모바일 배포에서는 이 게임모드를 통과하는 상황은 실제 DLC 모드일 것이다.
+	UB2UIDummyDLCFront::bWentThroughRealDLCFront = true;
+#endif
 }
 
 void AB2DLCFrontGameMode::PreBeginPlay()

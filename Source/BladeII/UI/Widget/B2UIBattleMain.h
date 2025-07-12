@@ -503,7 +503,7 @@ protected:
 	class UB2UIDocHero*						SubHeroDoc;
 
 	/** True for one tick after player pressed pause button and the pause menu is invoked but game is not paused yet. */
-	//uint32 bPendingPause : 1;
+	uint32 bPendingPause : 1;
 
 	EB2GameMode CurrentGameModeType;
 

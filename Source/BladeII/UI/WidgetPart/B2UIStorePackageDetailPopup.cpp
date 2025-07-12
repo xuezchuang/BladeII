@@ -300,19 +300,19 @@ void UB2UIStorePackageDetailPopup::SetMainPackageInfo(int32 PackageID, int32 Cos
 		TB_ItemName->SetText(GetProductName(PackageID));
 	}
 
-	if (UIP_Cost.IsValid())
-	{
-		if (static_cast<EStoreItemCost>(CostType) == EStoreItemCost::Cash)
-		{
-			//B2InAppPurchase::FB2CashProductInfo* ProductInfo = B2InAppPurchase::IB2IAPGenericPlatform::GetInstance()->GetMarketProduct(CurrentStoreID);
-			//if (ProductInfo)
-			//	UIP_Cost->SetCashCost(ProductInfo->Price, ProductInfo->CurrencyCode);
-		}
-		else
-		{
-			UIP_Cost->SetCost(static_cast<EStoreItemCost>(CostType), Cost, CalculatedCost);
-		}
-	}
+	//if (UIP_Cost.IsValid())
+	//{
+	//	if (static_cast<EStoreItemCost>(CostType) == EStoreItemCost::Cash)
+	//	{
+	//		B2InAppPurchase::FB2CashProductInfo* ProductInfo = B2InAppPurchase::IB2IAPGenericPlatform::GetInstance()->GetMarketProduct(CurrentStoreID);
+	//		if (ProductInfo)
+	//			UIP_Cost->SetCashCost(ProductInfo->Price, ProductInfo->CurrencyCode);
+	//	}
+	//	else
+	//	{
+	//		UIP_Cost->SetCost(static_cast<EStoreItemCost>(CostType), Cost, CalculatedCost);
+	//	}
+	//}
 }
 
 void UB2UIStorePackageDetailPopup::SetBasicListInfo(const FStoreProductData* ProductData)
@@ -363,57 +363,57 @@ void UB2UIStorePackageDetailPopup::SetBasicListInfo(const FStoreProductData* Pro
 
 void UB2UIStorePackageDetailPopup::SetBoostListInfo(const FStoreProductData* ProductData)
 {
-	//TArray<FPackageProductData> ProductList;
-	//BladeIIGameImpl::GetClientDataStore().GetPackageProductList(ProductData->Product.ProductId, ProductList);
-	//const FPackageData* PackageData = BladeIIGameImpl::GetClientDataStore().GetPackageData(ProductData->Product.ProductId);
-	//UB2ItemInfo* AllItemInfo = StaticFindItemInfo();
+	TArray<FPackageProductData> ProductList;
+	BladeIIGameImpl::GetClientDataStore().GetPackageProductList(ProductData->Product.ProductId, ProductList);
+	const FPackageData* PackageData = BladeIIGameImpl::GetClientDataStore().GetPackageData(ProductData->Product.ProductId);
+	UB2ItemInfo* AllItemInfo = StaticFindItemInfo();
 
-	//int32 SlotCount = 0;
-	//for (auto ProductItem : ProductList)
-	//{
-	//	int32 ItemID = BladeIIGameImpl::GetClientDataStore().GetItemTemplateIdFromMDProductData(ProductItem.PackageProductId, ProductItem.PackageProductType);
-	//	FSingleItemInfoData* ThisItemInfo = AllItemInfo ? AllItemInfo->GetInfoData(ItemID) : NULL;
+	int32 SlotCount = 0;
+	for (auto ProductItem : ProductList)
+	{
+		int32 ItemID = BladeIIGameImpl::GetClientDataStore().GetItemTemplateIdFromMDProductData(ProductItem.PackageProductId, ProductItem.PackageProductType);
+		FSingleItemInfoData* ThisItemInfo = AllItemInfo ? AllItemInfo->GetInfoData(ItemID) : NULL;
 
-	//	if (ThisItemInfo)
-	//	{
-	//		if (BoostItemWidgets[SlotCount].IsValid())
-	//		{
-	//			BoostItemWidgets[SlotCount]->Init();
-	//			BoostItemWidgets[SlotCount]->SetInfo(ItemID,
-	//				ThisItemInfo->GetIconMaterial(AllItemInfo),
-	//				ProductItem.PackageProductCount,
-	//				ThisItemInfo->GetLocalizedName(),
-	//				ProductData->PayPeriod,
-	//				true);
-	//			SlotCount++;
-	//		}
-	//	}
-	//}
+		if (ThisItemInfo)
+		{
+			if (BoostItemWidgets[SlotCount].IsValid())
+			{
+				BoostItemWidgets[SlotCount]->Init();
+				BoostItemWidgets[SlotCount]->SetInfo(ItemID,
+					ThisItemInfo->GetIconMaterial(AllItemInfo),
+					ProductItem.PackageProductCount,
+					ThisItemInfo->GetLocalizedName(),
+					ProductData->PayPeriod,
+					true);
+				SlotCount++;
+			}
+		}
+	}
 
-	//// [180417_YJ] 부스트에 7일 보너스 보상 개념이 추가되었음.
-	//// 이 경우는 정말 특수한 경우여서 보너스 = 보상의 개념 이라고 함.
-	//// 고로 일반적인 아이템 타입으로 아이템정보를 얻어오는게 아니라.. RewardID 값으로 정보를 세팅해주어야함.
-	//if (SlotCount == 1 && PackageData)
-	//{
-	//	if (PackageData->PackagePeriodBonusID != 0)
-	//	{
-	//		if (BoostItemWidgets[SlotCount].IsValid())
-	//		{
-	//			BoostItemWidgets[SlotCount]->Init();
-	//			BoostItemWidgets[SlotCount]->SetRewardInfo(PackageData->PackagePeriodBonusID, PackageData->PackagePeriod, PackageData->PackagePeriodBonusCount);
-	//		}
-	//	}
-	//}
+	// [180417_YJ] 부스트에 7일 보너스 보상 개념이 추가되었음.
+	// 이 경우는 정말 특수한 경우여서 보너스 = 보상의 개념 이라고 함.
+	// 고로 일반적인 아이템 타입으로 아이템정보를 얻어오는게 아니라.. RewardID 값으로 정보를 세팅해주어야함.
+	if (SlotCount == 1 && PackageData)
+	{
+		if (PackageData->PackagePeriodBonusID != 0)
+		{
+			if (BoostItemWidgets[SlotCount].IsValid())
+			{
+				BoostItemWidgets[SlotCount]->Init();
+				BoostItemWidgets[SlotCount]->SetRewardInfo(PackageData->PackagePeriodBonusID, PackageData->PackagePeriod, PackageData->PackagePeriodBonusCount);
+			}
+		}
+	}
 
-	//if (TB_BoostDesc.IsValid())
-	//{
-	//	FString TempString = TEXT("Store_BoostPackage_Desc") + FString::FormatAsNumber(ProductData->Product.ProductId); // 뒷자리는 패키지 ID
-	//	FText TempText = BladeIIGetLOCText(B2LOC_CAT_STORE, TempString);
+	if (TB_BoostDesc.IsValid())
+	{
+		FString TempString = TEXT("Store_BoostPackage_Desc") + FString::FormatAsNumber(ProductData->Product.ProductId); // 뒷자리는 패키지 ID
+		FText TempText = BladeIIGetLOCText(B2LOC_CAT_STORE, TempString);
 
-	//	TempText = FText::Format(TempText, BoostItemWidgets[0]->GetTotalProductCount(), BoostItemWidgets[1]->GetTotalProductCount());
+		TempText = FText::Format(TempText, BoostItemWidgets[0]->GetTotalProductCount(), BoostItemWidgets[1]->GetTotalProductCount());
 
-	//	TB_BoostDesc->SetText(TempText);
-	//}
+		TB_BoostDesc->SetText(TempText);
+	}
 
 }
 

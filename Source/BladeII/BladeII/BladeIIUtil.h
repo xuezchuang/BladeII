@@ -388,22 +388,22 @@ class UParticleSystem* CheckNotifyEventForParticleSystemUse(FAnimNotifyEvent& In
 /** Display text to screen-sized DebugTextWidget */
 void DrawDebugText(float InStartX, float InStartY, const FString& InText, const FLinearColor& InFontColor, int32 InFontSize = 12, bool bDrawShadow = true, const FLinearColor& InShadowColor = FLinearColor::Black);
 
-//#ifdef WITH_BII_ON_SCREEN_DEBUG_TEXT
-///** Draw text for a duration, you just call it once, and it will be drawn for designated time and disappear.
-// * Use BII_SCREEN_LOG instead of direct use. */
-//void DrawTimedDebugText(const FString& InText, const FLinearColor& InFontColor, int32 InFontSize = 12, float InDisplayTime = 2.0f, bool bDrawShadow = true, const FLinearColor& InShadowColor = FLinearColor::Black);
-//#define BII_SCREEN_LOG(LogText, InFontColor, InFontSize, InDisplayTime) DrawTimedDebugText(LogText, InFontColor, InFontSize, InDisplayTime)
-//#else
+#ifdef WITH_BII_ON_SCREEN_DEBUG_TEXT
+/** Draw text for a duration, you just call it once, and it will be drawn for designated time and disappear.
+ * Use BII_SCREEN_LOG instead of direct use. */
+void DrawTimedDebugText(const FString& InText, const FLinearColor& InFontColor, int32 InFontSize = 12, float InDisplayTime = 2.0f, bool bDrawShadow = true, const FLinearColor& InShadowColor = FLinearColor::Black);
+#define BII_SCREEN_LOG(LogText, InFontColor, InFontSize, InDisplayTime) DrawTimedDebugText(LogText, InFontColor, InFontSize, InDisplayTime)
+#else
 #define BII_SCREEN_LOG(LogText, InFontColor, InFontSize, InDisplayTime)
-//#endif
+#endif
 
-//// Actual mobile device or mobile preview..
-//bool IsUsingMobileRendering(UWorld* InWorld);
-//// For use modulated shadow unless it is WholeScene shadow, in mobile renderer.
-//FORCEINLINE bool ShouldUsePerObjectModulatedShadow(UWorld* InWorld) { return IsUsingMobileRendering(InWorld); }
-//void TurnOffMeshComponentsDyamicShadowForModulated(AActor* InOwnerActor);
-//
-//void ForceSendReallocateRenderTargetsSignal();
+// Actual mobile device or mobile preview..
+bool IsUsingMobileRendering(UWorld* InWorld);
+// For use modulated shadow unless it is WholeScene shadow, in mobile renderer.
+FORCEINLINE bool ShouldUsePerObjectModulatedShadow(UWorld* InWorld) { return IsUsingMobileRendering(InWorld); }
+void TurnOffMeshComponentsDyamicShadowForModulated(AActor* InOwnerActor);
+
+void ForceSendReallocateRenderTargetsSignal();
 
 ////////////////////////////////////////////////////
 

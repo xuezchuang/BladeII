@@ -21,14 +21,14 @@ protected:
 	int32 m_ItemInfoidx;
 
 	UB2UnitedWidgetBase* m_InOwnerUnitedWidget;
-	/*
+	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BladeII Appearance")
 	FSlateBrush AuraImg;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BladeII Appearance")
 	FSlateBrush OutLineImg;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BladeII Appearance")
 	FSlateBrush ReflectImg;
-	*/
+	
 
 public:
 

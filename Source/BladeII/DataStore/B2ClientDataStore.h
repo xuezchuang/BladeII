@@ -150,7 +150,7 @@ struct FTeamMatchFormationLevelInfo
 
 struct FTeamMatchFormationTypeInfo
 {
-	FTeamMatchFormationTypeInfo(int32 Type, int32 InMaxLevel = 0) :MaxLevel(InMaxLevel), FormationType(Type){}
+	FTeamMatchFormationTypeInfo(int32 Type, int32 InMaxLevel = 0) :MaxLevel(InMaxLevel), FormationType(Type) {}
 
 	int32 MaxLevel;
 	int32 FormationType;
@@ -193,9 +193,9 @@ struct FBrevetRankInfo
 
 struct FModReplayInfo
 {
-    FString Url;
-    int32 SizeCompressed;
-    int32 SizeUncompressed;
+	FString Url;
+	int32 SizeCompressed;
+	int32 SizeUncompressed;
 };
 
 struct FModRankerInfo
@@ -211,7 +211,7 @@ struct FModRankerInfo
 	int32 BestFloor;
 	int32 AccountID;
 	float RankingPercentage;
-    FModReplayInfo ReplayInfo;
+	FModReplayInfo ReplayInfo;
 };
 
 struct FModRankerInfoContainer
@@ -290,7 +290,9 @@ struct FModWeeklyReward
 struct FRewardData
 {
 	FRewardData(ERewardType InType, int32 InRewardId, int32 InRewardPushType)
-		:Type(InType), RewardId(InRewardId), RewardPushType(InRewardPushType) {}
+		:Type(InType), RewardId(InRewardId), RewardPushType(InRewardPushType)
+	{
+	}
 
 	ERewardType Type;
 	int32 RewardId;
@@ -415,7 +417,7 @@ struct FWingMD_EvolveSingleElem
 	float SuccessRate; // Evolution success rate, 0.0 ~ 1.0 scale.
 	int32 MaxFailPoint; // Cannot fail more than this time, it automatically evolve after this times of failure.
 
-						// Three prim points expected at this target grade. additionally applied to the values by Enhance table.
+	// Three prim points expected at this target grade. additionally applied to the values by Enhance table.
 	float AttackPoint;
 	float DefensePoint;
 	float HealthPoint;
@@ -558,7 +560,7 @@ struct FMD_ItemSingleElem
 
 struct FMD_SetInfo
 {
-	FMD_SetInfo() : SetUniqueKey(0),SetGroupID(0),  SetGrade(0), TargetClass(EPCClass::EPC_End) {}
+	FMD_SetInfo() : SetUniqueKey(0), SetGroupID(0), SetGrade(0), TargetClass(EPCClass::EPC_End) {}
 
 	int32		SetUniqueKey;
 
@@ -578,11 +580,13 @@ struct FItemSetOptionData
 
 	FItemSetOptionData()
 		:SetItemCount(0), SetItemOption(EItemOption::EIO_End), SetItemOptionValue(0)
-	{}
+	{
+	}
 
 	FItemSetOptionData(int32 InSetItemCount, EItemOption InSetItemOption, float InSetItemOptionValue)
 		:SetItemCount(InSetItemCount), SetItemOption(InSetItemOption), SetItemOptionValue(InSetItemOptionValue)
-	{}
+	{
+	}
 };
 
 struct FMD_ItemSetOptionElem
@@ -650,7 +654,7 @@ struct FItemMasterData
 	TMap<int32, FMD_ItemSingleElem>				NonEquipItems;
 
 	TArray<int32>	UniqueGroupIDList;		/* All Item has their own groupID using as Composition of SetItem */
-	TArray<int32>	CostumeUniqueGroupIDList;		
+	TArray<int32>	CostumeUniqueGroupIDList;
 
 	void InitItemMasterData();
 	void AddItemMasterData(const FMD_ItemSingleElem& ItemInfo);
@@ -766,7 +770,8 @@ struct FMD_FairyInfo
 		, BlessLevel(0)
 		, Level(0)
 		, OptionValue(0.0f)
-	{}
+	{
+	}
 
 	FMD_FairyInfo(const b2network::B2mdFairyInfoPtr ServerStruct);
 	FMD_FairyInfo& operator=(const b2network::B2mdFairyInfoPtr ServerStruct);
@@ -780,7 +785,8 @@ struct FMD_FairyLevelUpCost
 	FMD_FairyLevelUpCost()
 		: Level(0)
 		, MaterialCost(0)
-	{}
+	{
+	}
 
 	FMD_FairyLevelUpCost(const b2network::B2mdFairyLevelupCostPtr ServerStruct);
 	FMD_FairyLevelUpCost& operator=(const b2network::B2mdFairyLevelupCostPtr ServerStruct);
@@ -794,7 +800,8 @@ struct FMD_FairyOpenInfo
 	FMD_FairyOpenInfo()
 		: FairyType(EFairyType::FAIRY_NONE)
 		, StageId(0)
-	{}
+	{
+	}
 	FMD_FairyOpenInfo(const b2network::B2mdFairyOpenInfoPtr ServerStruct);
 	FMD_FairyOpenInfo& operator=(const b2network::B2mdFairyOpenInfoPtr ServerStruct);
 };
@@ -1193,7 +1200,8 @@ struct FB2LotteryTicketInfo
 
 	FB2LotteryTicketInfo(const b2network::B2mdGeneralLotteryPtr& SvrInfoPtr)
 		:FB2LotteryTicketInfo(*SvrInfoPtr.get())
-	{}
+	{
+	}
 
 	FB2LotteryTicketInfo(const b2network::B2mdGeneralLottery& SvrInfo)
 	{
@@ -1207,7 +1215,8 @@ struct FB2LotteryTicketInfo
 
 	FB2LotteryTicketInfo(const b2network::B2mdSelectiveLotteryPtr& SvrInfoPtr)
 		:FB2LotteryTicketInfo(*SvrInfoPtr.get())
-	{}
+	{
+	}
 
 	FB2LotteryTicketInfo(const b2network::B2mdSelectiveLottery& SvrInfo)
 	{
@@ -1221,7 +1230,8 @@ struct FB2LotteryTicketInfo
 
 	FB2LotteryTicketInfo(const b2network::B2mdPrefixSelectiveLotteryPtr& SvrInfoPtr)
 		:FB2LotteryTicketInfo(*SvrInfoPtr.get())
-	{}
+	{
+	}
 
 	FB2LotteryTicketInfo(const b2network::B2mdPrefixSelectiveLottery& SvrInfo)
 	{
@@ -1235,7 +1245,8 @@ struct FB2LotteryTicketInfo
 
 	FB2LotteryTicketInfo(const b2network::B2mdFixedGradeLotteryPtr& SvrInfoPtr)
 		:FB2LotteryTicketInfo(*SvrInfoPtr.get())
-	{}
+	{
+	}
 	FB2LotteryTicketInfo(const b2network::B2mdFixedGradeLottery& SvrInfo)
 	{
 		LotteryGrade = SvrInfo.item_grade;
@@ -1513,7 +1524,7 @@ struct FItemForgeInfo
 
 	EItemForgeListVisibleType visibleType;
 
-	bool previewOnly=false;
+	bool previewOnly = false;
 };
 
 struct FItemForgeMaterialTransInfo
@@ -1565,7 +1576,7 @@ struct FItemForgeResult
 
 struct FSealBoxInfo
 {
-	int32 sealboxRefID=-1;
+	int32 sealboxRefID = -1;
 	int32 rewardSlot1;
 	int32 rewardSlot2;
 	int32 rewardSlot3;
@@ -1621,10 +1632,12 @@ public:
 	void SetMyGuildMemberOut(int64 AccountID);
 	void SetMyGuildSubMaster(bool Type, int64 AccountID);
 	void SetOtherGuildInfo(FGuildInfo GuildInfo);
-	void SetMyGuildBattleInfo(b2network::B2GuildBattleGuildPtr Guild) {
+	void SetMyGuildBattleInfo(b2network::B2GuildBattleGuildPtr Guild)
+	{
 		MyBattleGuildData = Guild;
 	}
-	void SetOtherGuildBattleInfo(b2network::B2GuildBattleGuildPtr Guild) {
+	void SetOtherGuildBattleInfo(b2network::B2GuildBattleGuildPtr Guild)
+	{
 		OtherBattleGuildData = Guild;
 	}
 	int64 GetAccountId();
@@ -1729,166 +1742,215 @@ public:
 	UMaterialInterface* GetRewardIconMaterial(int32 RewardIndex);
 
 public:
-	FORCEINLINE bool GetAttendanceOpenDailyOnce() {
+	FORCEINLINE bool GetAttendanceOpenDailyOnce()
+	{
 		return bAttendanceOpenDailyOnce;
 	}
-	FORCEINLINE void SetAttendanceOpenDailyOnce(bool bOpen) {
+	FORCEINLINE void SetAttendanceOpenDailyOnce(bool bOpen)
+	{
 		bAttendanceOpenDailyOnce = bOpen;
 	}
-	FORCEINLINE FTutorialCharacterData& GetTutorialCharacterData() {
+	FORCEINLINE FTutorialCharacterData& GetTutorialCharacterData()
+	{
 		return TutorialCharacterData;
 	}
 	FORCEINLINE FLocalCharacterData& GetLocalCharacterData() { return LocalCharacterData; }
-	FORCEINLINE FB2RedDotManager& GetRedDotManager() {
+	FORCEINLINE FB2RedDotManager& GetRedDotManager()
+	{
 		return RedDotManager;
 	}
 
-	FORCEINLINE FB2OriginAccountInfoPtr GetAccountInfo() {
+	FORCEINLINE FB2OriginAccountInfoPtr GetAccountInfo()
+	{
 		return AccountInfo;
 	}
-	void SetAccountInfo(const FB2OriginAccountInfoPtr Value) {
+	void SetAccountInfo(const FB2OriginAccountInfoPtr Value)
+	{
 		AccountInfo = Value;
 	}
-	FORCEINLINE int32 GetGoldAmount() {
+	FORCEINLINE int32 GetGoldAmount()
+	{
 		return AccountInfo ? AccountInfo->money : 0;
 	}
-	FORCEINLINE int32 GetGemAmount() {
+	FORCEINLINE int32 GetGemAmount()
+	{
 		return AccountInfo ? AccountInfo->cash : 0;
 	}
-	FORCEINLINE int32 GetBladeCurPoint() {
+	FORCEINLINE int32 GetBladeCurPoint()
+	{
 		return AccountInfo ? AccountInfo->blade_point : 0;
 	};
-	FORCEINLINE int32 GetBladeMaxPoint() {
+	FORCEINLINE int32 GetBladeMaxPoint()
+	{
 		return AccountInfo ? AccountInfo->blade_point_max : 0;
 	};
-	FORCEINLINE int32 GetRestPoint() {
+	FORCEINLINE int32 GetRestPoint()
+	{
 		return AccountInfo ? ((AccountInfo->rest_time / 432) > 100 ? 100 : (AccountInfo->rest_time / 432)) : 0;
 	};
-	FORCEINLINE int32 GetFamePoint() {
+	FORCEINLINE int32 GetFamePoint()
+	{
 		return AccountInfo ? AccountInfo->fame_point : 0;
 	};
-	FORCEINLINE int32 GetShopTenLotteryTicket() {
+	FORCEINLINE int32 GetShopTenLotteryTicket()
+	{
 		return AccountInfo ? AccountInfo->shop_ten_lottery_ticket : 0;
 	};
-	FORCEINLINE int32 GetGoldBuffTicket() {
+	FORCEINLINE int32 GetGoldBuffTicket()
+	{
 		return AccountInfo ? AccountInfo->gold_buff_ticket : 0;
 	};
-	FORCEINLINE int32 GetExpBuffTicket() {
+	FORCEINLINE int32 GetExpBuffTicket()
+	{
 		return AccountInfo ? AccountInfo->exp_buff_ticket : 0;
 	};
-	FORCEINLINE int32 GetStageBoostTicket() {
+	FORCEINLINE int32 GetStageBoostTicket()
+	{
 		return AccountInfo ? AccountInfo->stage_boost_ticket : 0;
 	};
-	FORCEINLINE int32 GetStageAutoClearTicket() {
+	FORCEINLINE int32 GetStageAutoClearTicket()
+	{
 		return AccountInfo ? AccountInfo->stage_auto_clear_ticket : 0;
 	};
 
-	FORCEINLINE void SetGoldAmount(int32 NewAmount) {
+	FORCEINLINE void SetGoldAmount(int32 NewAmount)
+	{
 		if (AccountInfo) AccountInfo->money = NewAmount;
 	}
-	FORCEINLINE void SetGemAmount(int32 NewAmount) {
+	FORCEINLINE void SetGemAmount(int32 NewAmount)
+	{
 		if (AccountInfo) AccountInfo->cash = NewAmount;
 	}
-	FORCEINLINE void SetBladeCurPoint(int32 NewAmount) {
+	FORCEINLINE void SetBladeCurPoint(int32 NewAmount)
+	{
 		if (AccountInfo) AccountInfo->blade_point = NewAmount;
 	};
-	FORCEINLINE void SetBladeMaxPoint(int32 NewAmount) {
+	FORCEINLINE void SetBladeMaxPoint(int32 NewAmount)
+	{
 		if (AccountInfo) AccountInfo->blade_point_max = NewAmount;
 	};
-	FORCEINLINE void SetRestPoint(int32 NewAmount) {
+	FORCEINLINE void SetRestPoint(int32 NewAmount)
+	{
 		if (AccountInfo) AccountInfo->rest_time = NewAmount;
 	};
-	FORCEINLINE void SetFamePoint(int32 NewAmount) {
+	FORCEINLINE void SetFamePoint(int32 NewAmount)
+	{
 		if (AccountInfo) AccountInfo->fame_point = NewAmount;
 	};
 
-	FORCEINLINE void SetShopTenLotteryTicket(int32 NewAmount) {
+	FORCEINLINE void SetShopTenLotteryTicket(int32 NewAmount)
+	{
 		if (AccountInfo) AccountInfo->shop_ten_lottery_ticket = NewAmount;
 	};
-	FORCEINLINE void SetGoldBuffTicket(int32 NewAmount) {
+	FORCEINLINE void SetGoldBuffTicket(int32 NewAmount)
+	{
 		if (AccountInfo) AccountInfo->gold_buff_ticket = NewAmount;
 	};
-	FORCEINLINE void SetExpBuffTicket(int32 NewAmount) {
+	FORCEINLINE void SetExpBuffTicket(int32 NewAmount)
+	{
 		if (AccountInfo) AccountInfo->exp_buff_ticket = NewAmount;
 	};
-	FORCEINLINE void SetStageBoostTicket(int32 NewAmount) {
+	FORCEINLINE void SetStageBoostTicket(int32 NewAmount)
+	{
 		if (AccountInfo) AccountInfo->stage_boost_ticket = NewAmount;
 	};
-	FORCEINLINE void SetStageAutoClearTicket(int32 NewAmount) {
+	FORCEINLINE void SetStageAutoClearTicket(int32 NewAmount)
+	{
 		if (AccountInfo) AccountInfo->stage_auto_clear_ticket = NewAmount;
 	};
 
-	FORCEINLINE void SetGuildSkillInfo(b2network::B2GuildSkillPtr InSkill) {
+	FORCEINLINE void SetGuildSkillInfo(b2network::B2GuildSkillPtr InSkill)
+	{
 		UserGuildInfo.SetGuildSkill(InSkill);
 	};
 
 	void SetAccountKickedGuildID(const FB2OriginAccountInfoPtr Value);
 	void SetUserGuildInfo(FUserGuildInfo GuildInfo);
 
-	FORCEINLINE bool ExistAccountInfo() {
+	FORCEINLINE bool ExistAccountInfo()
+	{
 		return AccountInfo != nullptr;
 	}
 	void AddGold(int32 ToAdd);
-	FORCEINLINE void AddGem(int32 ToAdd) {
+	FORCEINLINE void AddGem(int32 ToAdd)
+	{
 		if (AccountInfo) AccountInfo->cash += ToAdd;
 	}
-	FORCEINLINE void AddBladePoint(int32 ToAdd) {
+	FORCEINLINE void AddBladePoint(int32 ToAdd)
+	{
 		if (AccountInfo) AccountInfo->blade_point += ToAdd;
 	};
-	FORCEINLINE void AddDarkCrystal(int32 ToAdd) {
+	FORCEINLINE void AddDarkCrystal(int32 ToAdd)
+	{
 		if (AccountInfo) AccountInfo->dark_crystal += ToAdd;
 	}
-	FORCEINLINE void AddSocialPoint(int32 ToAdd) {
+	FORCEINLINE void AddSocialPoint(int32 ToAdd)
+	{
 		if (AccountInfo) AccountInfo->social_point += ToAdd;
 	}
-	FORCEINLINE void AddFamePoint(int32 ToAdd) {
+	FORCEINLINE void AddFamePoint(int32 ToAdd)
+	{
 		if (AccountInfo) AccountInfo->fame_point += ToAdd;
 	};
 
-	FORCEINLINE void AddShopTenLotteryTicket(int32 ToAdd) {
+	FORCEINLINE void AddShopTenLotteryTicket(int32 ToAdd)
+	{
 		if (AccountInfo) AccountInfo->shop_ten_lottery_ticket += ToAdd;
 	};
-	FORCEINLINE void AddGoldBuffTicket(int32 ToAdd) {
+	FORCEINLINE void AddGoldBuffTicket(int32 ToAdd)
+	{
 		if (AccountInfo) AccountInfo->gold_buff_ticket += ToAdd;
 	};
-	FORCEINLINE void AddExpBuffTicket(int32 ToAdd) {
+	FORCEINLINE void AddExpBuffTicket(int32 ToAdd)
+	{
 		if (AccountInfo) AccountInfo->exp_buff_ticket += ToAdd;
 	};
-	FORCEINLINE void AddStageBoostTicket(int32 ToAdd) {
+	FORCEINLINE void AddStageBoostTicket(int32 ToAdd)
+	{
 		if (AccountInfo) AccountInfo->stage_boost_ticket += ToAdd;
 	};
-	FORCEINLINE void AddStageAutoClearTicket(int32 ToAdd) {
+	FORCEINLINE void AddStageAutoClearTicket(int32 ToAdd)
+	{
 		if (AccountInfo) AccountInfo->stage_auto_clear_ticket += ToAdd;
 	};
 
-	FORCEINLINE const TArray<FModDailyReward>& GetModDailyRewardList() {
+	FORCEINLINE const TArray<FModDailyReward>& GetModDailyRewardList()
+	{
 		return ModDailyData;
 	}
-	FORCEINLINE const TArray<FModWeeklyReward>& GetPvPWeeklyRewardDataList() {
+	FORCEINLINE const TArray<FModWeeklyReward>& GetPvPWeeklyRewardDataList()
+	{
 		return PvPWeeklyRewardData;
 	}
-	FORCEINLINE const TArray<FModWeeklyReward>& GetTeamMatchWeeklyRewardDataList() {
+	FORCEINLINE const TArray<FModWeeklyReward>& GetTeamMatchWeeklyRewardDataList()
+	{
 		return TeamMatchWeeklyRewardData;
 	}
-	FORCEINLINE const TArray<FModWeeklyReward>& GetControlMatchWeeklyRewardDataList() {
+	FORCEINLINE const TArray<FModWeeklyReward>& GetControlMatchWeeklyRewardDataList()
+	{
 		return ControlWeeklyRewardData;
 	}
 
-	FORCEINLINE const TArray<FCounterDungeon>& GetCounterDungeonData() {
+	FORCEINLINE const TArray<FCounterDungeon>& GetCounterDungeonData()
+	{
 		return CounterDungeonData;
 	}
 	int32									   GetCounterDungeonTypeNumber(int32 InDungeonType);
-	FORCEINLINE const TArray<FCounterDungeunWeekReward>& GetCounterDeungeonRewardData() {
+	FORCEINLINE const TArray<FCounterDungeunWeekReward>& GetCounterDeungeonRewardData()
+	{
 		return CounterDungeonRewardData;
 	}
 
-	FORCEINLINE FString GetUserNickName() {
+	FORCEINLINE FString GetUserNickName()
+	{
 		return AccountInfo ? AccountInfo->name : TEXT("");
 	}
-	FORCEINLINE void SetUserNickName(FString fstr) {
+	FORCEINLINE void SetUserNickName(FString fstr)
+	{
 		if (AccountInfo) AccountInfo->name = fstr;
 	}
-	FORCEINLINE bool HasValidUserNickName() const {
+	FORCEINLINE bool HasValidUserNickName() const
+	{
 		return (AccountInfo && !AccountInfo->name.IsEmpty());
 	}
 
@@ -1904,8 +1966,8 @@ public:
 	FORCEINLINE const b2network::B2mdGuildSkillPtr GetGuildSkillInfo(int32 id, int32 Lv) { return GuildSkillInfoMasterData.Contains(FGuildSkillHashKey::GetHashKey(id, Lv)) ? GuildSkillInfoMasterData[FGuildSkillHashKey::GetHashKey(id, Lv)] : nullptr; }
 	FORCEINLINE const b2network::B2GuildSkillPtr GetGuildCurrentSkillInfo(int32 id) { return UserGuildInfo.GetGuildSkill(id); }
 	FORCEINLINE const TMap<int32, b2network::B2GuildSkillPtr>& GetGuildCurrentSkillInfoArr() { return UserGuildInfo.CurrentGuildSkill; }
-	FORCEINLINE const TMap<int32, b2network::B2mdGuildSkillPtr>&	GetGuildSkillMasterDataArr() { return GuildSkillInfoMasterData; }
-	const TMap<int32, b2network::B2mdGuildBattleResultRewardPtr>&  GetGuildBattleResultRewardArr();
+	FORCEINLINE const TMap<int32, b2network::B2mdGuildSkillPtr>& GetGuildSkillMasterDataArr() { return GuildSkillInfoMasterData; }
+	const TMap<int32, b2network::B2mdGuildBattleResultRewardPtr>& GetGuildBattleResultRewardArr();
 	const b2network::B2mdGuildBattleResultRewardPtr  GetGuildBattleResultReward(int32 medalCount);
 	const b2network::B2mdGuildBattleResultRewardPtr  GetGuildBattleResultRewardGrade(int32 Grade);
 	int32  GetGuildBattleResultRewardMaxGrade();
@@ -2058,16 +2120,20 @@ public:
 			Data->SetBuyCount(Count);
 	}
 
-	b2network::B2GuildBattleGuildPtr	GetMyGuildBattleInfo() {
+	b2network::B2GuildBattleGuildPtr	GetMyGuildBattleInfo()
+	{
 		return MyBattleGuildData;
 	}
-	b2network::B2GuildBattleGuildPtr	GetOtherGuildBattleInfo() {
+	b2network::B2GuildBattleGuildPtr	GetOtherGuildBattleInfo()
+	{
 		return OtherBattleGuildData;
 	}
-	int32								GetGuildExp(int32 Lv) {
+	int32								GetGuildExp(int32 Lv)
+	{
 		return MD_GuildExps.Contains(Lv) ? MD_GuildExps[Lv]->exp_max : 0;
 	}
-	int32								GetGuildMaxLev() {
+	int32								GetGuildMaxLev()
+	{
 		return MD_GuildExps.Num();
 	}
 
@@ -2150,14 +2216,14 @@ public:
 	void SetOtherUserInfo(b2network::B2FindAccountInfoPtr InPlayerInfo);
 	FB2ModPlayerInfo& GetOtherUserInfo();
 
-	bool GetFairyOpenInfoAll(TArray<FMD_FairyOpenInfo> &OutList);
-	bool GetFairyOpenInfo(EFairyType Target, FMD_FairyOpenInfo &OutData);
+	bool GetFairyOpenInfoAll(TArray<FMD_FairyOpenInfo>& OutList);
+	bool GetFairyOpenInfo(EFairyType Target, FMD_FairyOpenInfo& OutData);
 
-	bool GetFairyInfoAll(EFairyType Target, TArray<FMD_FairyInfo> &OutList);
-	bool GetFairyInfo(EFairyType Target, int32 OptionId, int32 BlessLevel, FMD_FairyInfo &OutData);
+	bool GetFairyInfoAll(EFairyType Target, TArray<FMD_FairyInfo>& OutList);
+	bool GetFairyInfo(EFairyType Target, int32 OptionId, int32 BlessLevel, FMD_FairyInfo& OutData);
 
-	bool GetFairyLevelUpCostAll(TArray<FMD_FairyLevelUpCost> &OutList);
-	bool GetFairyLevelUpCost(int32 TargetLevel, FMD_FairyLevelUpCost &OutData);
+	bool GetFairyLevelUpCostAll(TArray<FMD_FairyLevelUpCost>& OutList);
+	bool GetFairyLevelUpCost(int32 TargetLevel, FMD_FairyLevelUpCost& OutData);
 
 	////////////////////////////////////////////////////////////////////////////////
 	// Get wing master data element of some type by appropriate key of each type.
@@ -2171,12 +2237,14 @@ public:
 	const FWingMD_PropOptionSingleElem* GetWingMD_PropOption(const FB2Wing& InWing, int32 InOptionIndex);
 
 	const FWingMD_PropOptionOpenSingleElem* GetWingMD_PropOptionOpenCondition(EPCClass InPCClass, int32 InOptionIndex);
-	FORCEINLINE const FWingMD_PropOptionOpenSingleElem* GetWingMD_PropOptionOpenCondition(const FB2Wing& InWing, int32 InOptionIndex) {
+	FORCEINLINE const FWingMD_PropOptionOpenSingleElem* GetWingMD_PropOptionOpenCondition(const FB2Wing& InWing, int32 InOptionIndex)
+	{
 		return GetWingMD_PropOptionOpenCondition(IntToPCClass(InWing.OwnerPCClass), InOptionIndex);
 	}
 
 	const FWingMD_PropOptionMaxLevelSingleElem* GetWingMD_PropOptionMaxLevel(EPCClass InPCClass, int32 InOptionIndex, int32 InWingGrade);
-	FORCEINLINE const FWingMD_PropOptionMaxLevelSingleElem* GetWingMD_PropOptionMaxLevel(const FB2Wing& InWing, int32 InOptionIndex) {
+	FORCEINLINE const FWingMD_PropOptionMaxLevelSingleElem* GetWingMD_PropOptionMaxLevel(const FB2Wing& InWing, int32 InOptionIndex)
+	{
 		return GetWingMD_PropOptionMaxLevel(IntToPCClass(InWing.OwnerPCClass), InOptionIndex, InWing.EvolutionGrade);
 	}
 
@@ -2205,7 +2273,7 @@ public:
 	int32 GetHeroTowerSweepRewardCountPerFloor();
 
 	int32 GetItemLevelUpCost(const EItemInvenType InItemType, const int32 InGrade, const int32 InLevel);
-	
+
 	const FCostumeEnhanceCostInfo* GetCostumeEnhanceCost(int32 TargetGrade, int32 TargetLevel);
 
 	const bool GetCurrentModeOpenTimes(TArray<b2network::B2MatchOpenPeriodInfoPtr> AllTimeData, TArray<b2network::B2MatchOpenPeriodInfoPtr>& OutTimeData);
@@ -2230,7 +2298,7 @@ public:
 	void OnResponseConsumableAmountDecrease(int32 InConsumableRefID, int32 ConsumedAmount, const TArray<b2network::B2ItemServerInfoPtr>& ChangedConsumableData, const TArray<int64>& DeletedConsumableIDs);
 	void OnResponseConsumableAmountIncrease(int32 InConsumableRefID, const b2network::B2ItemServerInfoPtr& ChangedConsumableData);
 
-	void GetKakaoFriendInviteRewardInfo(const int32 RewardType, TArray<b2network::B2mdKakaoFriendInviteRewardPtr> &OutList);
+	void GetKakaoFriendInviteRewardInfo(const int32 RewardType, TArray<b2network::B2mdKakaoFriendInviteRewardPtr>& OutList);
 
 	FString GetWebURL(FString URLKey);
 	FString GetWebURL(EUIScene CurScene);
@@ -2429,7 +2497,7 @@ public:
 	int32 GetAttendance_day();
 	FORCEINLINE const TArray<FPlayTimeRewrad>& GetPlayTimeRewardData() const { return PlayTimeRewradData; }
 	FORCEINLINE const FPlayTimeState& GetPlayTimeStatus() const { return PlayTimeStatusData; }
-	FORCEINLINE const FEventAttendanceState&  GetEventAttendanceStatus() const { return EventAttendanceStatusData; }
+	FORCEINLINE const FEventAttendanceState& GetEventAttendanceStatus() const { return EventAttendanceStatusData; }
 	FORCEINLINE const FEventNewUserState& GetEventNewUserStatus() const { return EventNewUserStatusData; }
 	FORCEINLINE bool GetConnectRewardButtonPush() { return PushConnectRewardButton; }
 	bool GetEventAttendanceRewardData(TArray<FEventAttendanceReward>& AttendanceRewards, const int32 eventId);
@@ -2585,7 +2653,7 @@ private:
 	TArray<b2network::B2mdGuildBattleSeasonRewardPtr>		GuildSeasonRewardInfo;
 	TMap<int32, b2network::B2mdGuildExpPtr>					MD_GuildExps;
 	TMap<int32, b2network::B2mdGuildSkillPtr>				GuildSkillInfoMasterData;
-	
+
 	TMap<int32, b2network::B2mdGuildBattleResultRewardPtr>	GuildBattleResultRewardMasterData;
 	TArray<b2network::B2mdGuildBattleScheduleInfoPtr>		GuildBattleSchedule;
 
@@ -2637,7 +2705,7 @@ private:
 
 	// Item Dismantle Info
 	TMultiMap<EItemInvenType, FItemDismantleInfo>	MD_ItemDismantleInfo;
-	
+
 	// Costume Enhance Cost Info
 	TMap<int32, FCostumeEnhanceCostInfo>	MD_CustumeEnhanceCostInfo;
 

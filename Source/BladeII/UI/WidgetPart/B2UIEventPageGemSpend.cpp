@@ -7,15 +7,17 @@
 #include "BladeIIGameImpl.h"
 #include "BladeIIUtil.h"
 #include "RewardEventManager.h"
+#include "../../Common/CommonStruct.h"
+#include "Event.h"
 
 void UB2UIEventPageGemSpend::CacheAssets()
 {
 	Super::CacheAssets();
 
-	//GET_SLOT(UVerticalBox, VB_EventSlotList);
+	GET_SLOT(UVerticalBox, VB_EventSlotList);
 
-	//GET_SLOT(UB2RichTextBlock, RTB_AccrueGemPurchase);
-	//GET_SLOT(UB2RichTextBlock, RTB_AccrueGemPoint);
+	GET_SLOT(UB2RichTextBlock, RTB_AccrueGemPurchase);
+	GET_SLOT(UB2RichTextBlock, RTB_AccrueGemPoint);
 }
 
 void UB2UIEventPageGemSpend::UpdateStaticText()
@@ -31,19 +33,19 @@ void UB2UIEventPageGemSpend::UpdateStaticText()
 
 void UB2UIEventPageGemSpend::SubscribeEvents_EventPage()
 {
-	//UnsubscribeEvents_EventPage();
+	UnsubscribeEvents_EventPage();
 
-	//CAPTURE_UOBJECT(UB2UIEventPageGemSpend);
+	CAPTURE_UOBJECT(UB2UIEventPageGemSpend);
 
-	//Issues_EventPage.Add(DeliveryRewardGemSpendEventClass<FB2ResponseRewardSpendGemEventPtr>::GetInstance().Subscribe2(
-	//	[Capture](FB2ResponseRewardSpendGemEventPtr ReciveEventReward)
-	//{
-	//	if (Capture.IsValid())
-	//	{
-	//		Capture->ResponseGemSpendEventReward(ReciveEventReward);
-	//	}
-	//}
-	//));
+	Issues_EventPage.Add(DeliveryRewardGemSpendEventClass<FB2ResponseRewardSpendGemEventPtr>::GetInstance().Subscribe2(
+		[Capture](FB2ResponseRewardSpendGemEventPtr ReciveEventReward)
+		{
+			if (Capture.IsValid())
+			{
+				Capture->ResponseGemSpendEventReward(ReciveEventReward);
+			}
+		}
+	));
 }
 
 void UB2UIEventPageGemSpend::UpdateSpendGemPointText(const int32 iSpendGemPoint)
@@ -162,7 +164,7 @@ void UB2UIEventPageGemSpend::UpdateEventPage(FB2ResponseGetEventPtr ReciveGetEve
 void UB2UIEventPageGemSpend::SortEventSlotList()
 {
 	//주사위 이벤트에서 포인트 구입 때문에 그냥 UpdateEventPage 에서 별도로 정렬하도록 새로 짬.
-	/*
+	
 	if (VB_EventSlotList.IsValid() == false)
 	{
 		return;
@@ -198,7 +200,7 @@ void UB2UIEventPageGemSpend::SortEventSlotList()
 			VB_EventSlotList->AddChild(ArrayEventSlotList[i].Get());
 		}
 	}
-	*/
+	
 }
 
 void UB2UIEventPageGemSpend::ResponseGemSpendEventReward(FB2ResponseRewardSpendGemEventPtr ReciveEventReward)

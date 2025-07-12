@@ -91,13 +91,13 @@ namespace B2Scalability
 	void AndroidMCSFUpdateHack(bool bForceInvalidateResCache = false);
 #endif
 
-//	void OnGameModeStartPlay(class ABladeIIGameMode* StartingGM);
-//	FORCEINLINE void OnGameModeStartPlay(class AB2DLCFrontGameMode* StartingGM)
-//	{ // Suffered from mysterious link error when the implemented body is at the cpp.
-//#if PLATFORM_ANDROID
-//		AndroidMCSFUpdateHack(true);
-//#endif
-//	}
+	void OnGameModeStartPlay(class ABladeIIGameMode* StartingGM);
+	FORCEINLINE void OnGameModeStartPlay(class AB2DLCFrontGameMode* StartingGM)
+	{ // Suffered from mysterious link error when the implemented body is at the cpp.
+#if PLATFORM_ANDROID
+		AndroidMCSFUpdateHack(true);
+#endif
+	}
 	void OnGameModeLoadingScreenEnd();
 
 	/** 

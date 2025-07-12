@@ -9,7 +9,7 @@
 #include "PacketMaker.h"
 #include "B2NetGameMode.h"
 #include "Event.h"
-//#include "AnimNotify_B2Damage.h"
+#include "AnimNotify_B2Damage.h"
 #include "BladeIINetPlayer.h"
 #include "FakeConfigure.h"
 
@@ -164,14 +164,13 @@ float ABladeIINetCharacter::TakeDamage(float Damage, struct FDamageEvent const& 
 	auto*	GameMode = GetNetGameMode();
 
 	const float	ActualDamage	= Super::TakeDamage(Damage, DamageEvent, EventInstigator, DamageCauser);
-	//const int32 FinalHealth		= GetHealth();
+	//const int32 FinalHealth = GetHealth();
 
-	//const FDamageInfo* DamageInfo	= static_cast<const FDamageInfo*>(DamageEvent.DamageInfo);
-	//const uint32 DamageHash			= DamageInfo ? DamageInfo->GetDamageHash() : 0;
-
+	//const FDamageInfo* DamageInfo = static_cast<const FDamageInfo*>(DamageEvent.DamageInfo);
+	//const uint32 DamageHash = DamageInfo ? DamageInfo->GetDamageHash() : 0;
+	//
 	//if (GetNetStatus() != NET_SLAVE && ActualDamage > 0.0f)
 	//{
-
 	//	packet::ByteStream payload;
 
 	//	payload << GetNetId();
@@ -200,30 +199,30 @@ bool ABladeIINetCharacter::CanDie(float KillingDamage, FDamageEvent const& Damag
 
 bool ABladeIINetCharacter::Die(float KillingDamage, FDamageEvent const& DamageEvent, AController* Killer, AActor* DamageCauser)
 {
-	//auto*			GameMode = GetNetGameMode();
-	//const bool		bDie = Super::Die(KillingDamage, DamageEvent, Killer, DamageCauser);
+	auto*			GameMode = GetNetGameMode();
+	const bool		bDie = Super::Die(KillingDamage, DamageEvent, Killer, DamageCauser);
 
-	//if (GotRemoteDyingSignal)
-	//{
-	//	// 여긴 패킷 받고 들어온거다. 호스트도.
-	//	return Super::Die(KillingDamage, DamageEvent, Killer, DamageCauser);
-	//}
+	if (GotRemoteDyingSignal)
+	{
+		// 여긴 패킷 받고 들어온거다. 호스트도.
+		return Super::Die(KillingDamage, DamageEvent, Killer, DamageCauser);
+	}
 
-	//if (CanDie(KillingDamage, DamageEvent, Killer, DamageCauser) && Role == ROLE_Authority)
-	//{
-	//	packet::ByteStream payload;
+	if (CanDie(KillingDamage, DamageEvent, Killer, DamageCauser) && GetLocalRole() == ROLE_Authority)
+	{
+		packet::ByteStream payload;
 
-	//	const uint32 KillerNetId = GameMode->FindNetIdByDamageCauser(Killer, DamageCauser, this);
-	//	const int32 KilledClass = PCClassToInt(EPCClass::EPC_End);
+		const uint32 KillerNetId = GameMode->FindNetIdByDamageCauser(Killer, DamageCauser, this);
+		const int32 KilledClass = PCClassToInt(EPCClass::EPC_End);
 
-	//	payload << GetNetId();
-	//	payload << KillerNetId;
-	//	payload << KilledClass;
+		payload << GetNetId();
+		payload << KillerNetId;
+		payload << KilledClass;
 
-	//	FString encoded_string = packet::FinalizePacket(packet::DIE, GetNetId(), 0, packet::ALL, payload);
-	//	SendMessage(encoded_string);
-	//	UE_LOG(LogBladeII, Log, TEXT("NetCharacter %d - Send [Die] KillerNetId : %d KilledClass : %d"), GetNetId(), KillerNetId, KilledClass);
-	//}
+		FString encoded_string = packet::FinalizePacket(packet::DIE, GetNetId(), 0, packet::ALL, payload);
+		SendMessage(encoded_string);
+		UE_LOG(LogBladeII, Log, TEXT("NetCharacter %d - Send [Die] KillerNetId : %d KilledClass : %d"), GetNetId(), KillerNetId, KilledClass);
+	}
 
 	return false;
 }
@@ -252,7 +251,7 @@ void ABladeIINetCharacter::SetSignalAttack(bool signal)
 	payload << AIAttackIndex;
 
 	FString encoded_string = packet::FinalizePacket(packet::MOB_ATTACK, GetNetId(), 0, packet::ALLBUTME, payload);
-	//SendMessage2(encoded_string);
+	SendMessage(encoded_string);
 }
 
 void ABladeIINetCharacter::HealingHPByAmount(float InHealAmount, bool bUseEffect, bool bUseTextEffect)
@@ -269,7 +268,7 @@ void ABladeIINetCharacter::HealingHPByAmount(float InHealAmount, bool bUseEffect
 		payload << GetNetId();
 
 		FString encoded_string = packet::FinalizePacket(packet::HEALTH, NetId, 0, packet::ALLBUTME, payload);
-		//SendMessage2(encoded_string);
+		SendMessage(encoded_string);
 	}
 
 	if (GetNetStatus() == NET_SLAVE)
@@ -397,16 +396,16 @@ void ABladeIINetCharacter::RemoteAdjustHealth(float health, uint32 DamageCauserN
 
 void ABladeIINetCharacter::RemoteTakeDamage(float DamageAmount, uint32 DamageInfoHash, uint32 DamageCauserNetID, int32 VictimHealth, int32 ReceivedDamageNum)
 {
-	//if (Role == ROLE_SimulatedProxy)
+	//if (GetLocalRole() == ROLE_SimulatedProxy)
 	//{
 	//	APawn* DamageCauser = GetNetGameMode()->FindPawnByNetId(DamageCauserNetID);
 	//	const FDamageInfo* DamageInfo = FDamageInfoContainer::GetDamageInfo(DamageInfoHash);
 	//	if (DamageInfo == nullptr)
 	//		DamageInfo = FDamageInfo::GetDefaultDamagePtr();
-	//	
+
 	//	FDamageEvent DmgEvent;
 	//	DmgEvent.DamageInfo = DamageInfo;
-	//	if(DamageCauser != nullptr)
+	//	if (DamageCauser != nullptr)
 	//		TakeDamage(DamageAmount, DmgEvent, nullptr, DamageCauser);
 	//	RemoteAdjustHealth(VictimHealth, DamageCauserNetID);
 	//}
@@ -478,13 +477,13 @@ void ABladeIINetCharacter::SyncLocationAndRotation(FVector pos, FRotator rot)
 
 void ABladeIINetCharacter::DemoteNetStatus()
 {
-	//Role = ROLE_SimulatedProxy;
-	//NetStatus = NET_SLAVE;
-	//DetachFromControllerPendingDestroy();
+	SetRole(ROLE_SimulatedProxy);
+	NetStatus = NET_SLAVE;
+	DetachFromControllerPendingDestroy();
 
-	//// 강등되었으니 이벤트 다시붙임
-	//// NetStatus먼저 바꿔야 작동한다.
-	////SubscribeEvents();
+	// 강등되었으니 이벤트 다시붙임
+	// NetStatus먼저 바꿔야 작동한다.
+	SubscribeEvents();
 }
 
 void ABladeIINetCharacter::PromoteNetStatus()
@@ -494,21 +493,20 @@ void ABladeIINetCharacter::PromoteNetStatus()
 	// we should unsubscribe events... 
 	// see Unsubscribe function... and then we know how this order is important...
 	UnsubscribeEvents();
-
 	
-	//Role = ROLE_Authority;
-	//NetStatus = NET_MASTER;
-	//SpawnDefaultController();
+	SetRole(ROLE_Authority);
+	NetStatus = NET_MASTER;
+	SpawnDefaultController();
 }
 
 void ABladeIINetCharacter::RemoteAddBuff(uint32 BuffOwnerNetId, uint32 BuffCauserNetId, EBuffType BuffType, float fDuration, float Amount, bool bUseEffect, bool bUseTextEffect, TArray<float>* PtrAdditionalParams)
 {
-	//if (BuffOwnerNetId == GetNetId())
-	//{
-	//	ABladeIICharacter* BuffCauser = Cast<ABladeIICharacter>(GetNetGameMode()->FindPawnByNetId(BuffCauserNetId));
+	if (BuffOwnerNetId == GetNetId())
+	{
+		ABladeIICharacter* BuffCauser = Cast<ABladeIICharacter>(GetNetGameMode()->FindPawnByNetId(BuffCauserNetId));
 
-	//	Super::AddBuff(BuffType, fDuration, Amount, BuffCauser, bUseEffect, bUseTextEffect, PtrAdditionalParams);
-	//}
+		Super::AddBuff(BuffType, fDuration, Amount, BuffCauser, bUseEffect, bUseTextEffect, PtrAdditionalParams);
+	}
 }
 
 void ABladeIINetCharacter::ApplyQTEEnable(ETeamType HitTeam /*= ETeamType::ETT_End*/)

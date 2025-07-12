@@ -398,7 +398,8 @@ struct FDamageInfo //: public FDamageInfoBase
 	float HitRandomAngleOverride;
 
 
-	FORCEINLINE uint32 GetDamageHash() const {
+	FORCEINLINE uint32 GetDamageHash() const
+	{
 		return DamageHash;
 	}
 	uint32 CalculateDamageHash(UObject* Object) const;
