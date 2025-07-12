@@ -229,19 +229,19 @@ public:
 	void AddLobbyFairyFlyingActor(EFairyType InType, class AB2LobbyFlyingFairyDoumi* fairyactor);
 
 	//UFUNCTION(BlueprintCallable, Category = "BladeII")
-	//void AddSummonItemDisplayMatinee(bool bIsMultiple, bool bIsOpen, bool bIsFriendShip,  class AMatineeActor* Matinee);
+	//void AddSummonItemDisplayMatinee(bool bIsMultiple, bool bIsOpen, bool bIsFriendShip,  class ALevelSequenceActor * Matinee);
 
 	//UFUNCTION(BlueprintCallable, Category = "BladeII")
-	//void AddSummonItemDisplayMatineeResult(class AMatineeActor* Matinee);
+	//void AddSummonItemDisplayMatineeResult(class ALevelSequenceActor * Matinee);
 
 	UFUNCTION(BlueprintCallable, Category = "BladeII")
 	void PlaySummonItemDisplayMatineeResult();
 
 	//UFUNCTION(BlueprintCallable, Category = "BladeII")
-	//void OnFinishedHallOfFameDisplayMatinee(class AMatineeActor* Matinee);
+	//void OnFinishedHallOfFameDisplayMatinee(class ALevelSequenceActor * Matinee);
 
 	//UFUNCTION(BlueprintCallable, Category = "BladeII")
-	//void OnFinishedSummonItemDisplayMatinee(class AMatineeActor* Matinee);
+	//void OnFinishedSummonItemDisplayMatinee(class ALevelSequenceActor * Matinee);
 
 	UFUNCTION(BlueprintCallable, Category = "BladeII")
 	void OnFinishedSummonItemOpenState(bool State);
@@ -250,7 +250,7 @@ public:
 	void OnFinishedSummonItemDisplayResultMatinee();
 
 	//UFUNCTION(BlueprintCallable, Category = "BladeII")
-	//void OnChangedToFxSummonItemDisplayMatinee(AMatineeActor* Matinee);
+	//void OnChangedToFxSummonItemDisplayMatinee(ALevelSequenceActor * Matinee);
 
 	UFUNCTION(BlueprintCallable, Category = "BladeII")
 	void NotifyOpenCard(int32 InIndex);
@@ -262,17 +262,17 @@ public:
 	bool SelectLobbyMainCharacter(EPCClass SelectedClass);
 
 	//UFUNCTION(BlueprintCallable, Category = "BladeII")
-	//void SetDefaultCameraMatinee(class AMatineeActor* DefaultMatinee);
+	//void SetDefaultCameraMatinee(class ALevelSequenceActor * DefaultMatinee);
 
 	//UFUNCTION(BlueprintCallable, Category = "BladeII")
-	//void SetChapterViewMatinee(class AMatineeActor* ChapterMatinee);
+	//void SetChapterViewMatinee(class ALevelSequenceActor * ChapterMatinee);
 	void UpdateNativeLobbyMatineeRef(); // It sends signal to level blueprint to set MatineeActor reference to native.
 
 	UFUNCTION(BlueprintCallable, Category = "BladeII")
 	void HideActorHasTag(FName Tag, bool bHide);
 
 	//UFUNCTION(BlueprintCallable, Category = "BladeII")
-	//void SetGuildMapChangeMatinee(class AMatineeActor* Atype, class AMatineeActor* Btype);
+	//void SetGuildMapChangeMatinee(class ALevelSequenceActor * Atype, class ALevelSequenceActor * Btype);
 
 	UFUNCTION(BlueprintCallable, Category = "BladeII")
 	void GuildMapChangeMatineeEnd();

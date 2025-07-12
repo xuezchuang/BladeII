@@ -110,7 +110,7 @@ static void CharacterHiddenAndStopSound(ASkeletalMeshActor* Actor, bool bHidden)
 	//}
 }
 
-//void SetMatineeHiddenInGame(AMatineeActor* Matinee, bool bHidden)
+//void SetMatineeHiddenInGame(ALevelSequenceActor * Matinee, bool bHidden)
 //{
 //	Matinee->SetActorHiddenInGame(bHidden);
 //
@@ -765,7 +765,7 @@ bool FLobbySceneManager::SelectLobbyMainCharacter(EPCClass SelectedClass)
 
 #include "Animation/SkeletalMeshActor.h"
 
-void FLobbySceneManager::SetGuildMapChangeMatinee(class AMatineeActor* Atype, class AMatineeActor* Btype)
+void FLobbySceneManager::SetGuildMapChangeMatinee(class ALevelSequenceActor * Atype, class ALevelSequenceActor * Btype)
 {
 	if (LobbyScenes.IsValidIndex(static_cast<uint8>(CurrentLobbyScene)))
 	{
@@ -1139,21 +1139,21 @@ void FLobbySceneManager::UpdateLobbyCharCompForParts(EPCClass InPCClass)
 //}
 //#endif
 
-void FLobbySceneManager::AddSummonItemDisplayMatinee(bool bIsMultiple,bool bIsOpen, bool bIsFriendShip, class AMatineeActor* Matinee)
+void FLobbySceneManager::AddSummonItemDisplayMatinee(bool bIsMultiple,bool bIsOpen, bool bIsFriendShip, class ALevelSequenceActor * Matinee)
 {
 	B2_SCOPED_TRACK_LOG(TEXT("FLobbySceneManager::AddSummonItemDisplayMatinee"));
 
 	//if (Matinee)
 	//{
 	//	SummonItemDisplayMapKey Key(bIsMultiple, bIsOpen, bIsFriendShip);
-	//	SummonItemMatinees.Emplace(Key, TWeakObjectPtr<AMatineeActor>(Matinee));
+	//	SummonItemMatinees.Emplace(Key, TWeakObjectPtr<ALevelSequenceActor >(Matinee));
 
 	//	Matinee->SetPosition(0.f);
 	//	SetMatineeHiddenInGame(Matinee, true);
 	//}
 }
 
-//void FLobbySceneManager::AddSummonItemDisplayMatineeResult(class AMatineeActor* Matinee)
+//void FLobbySceneManager::AddSummonItemDisplayMatineeResult(class ALevelSequenceActor * Matinee)
 //{
 //	SummonItemMatineesResult = Matinee;
 //}
@@ -1299,7 +1299,7 @@ void FLobbySceneManager::OnFinishedSummonItemDisplayResultMatinee()
 }
 
 
-//void FLobbySceneManager::OnFinishedSummonItemDisplayMatinee(AMatineeActor* Matinee)
+//void FLobbySceneManager::OnFinishedSummonItemDisplayMatinee(ALevelSequenceActor * Matinee)
 //{
 //	check(CurrentLobbyScene == ELobbyScene::ELobbyScene_SummonItemDisplay || CurrentLobbyScene == ELobbyScene::ELobbyScene_GeneralLotteryDisplay)
 //
@@ -1320,7 +1320,7 @@ void FLobbySceneManager::OnFinishedSummonItemDisplayResultMatinee()
 //	}
 //}
 //
-//void FLobbySceneManager::OnChangedToFxSummonItemDisplayMatinee(AMatineeActor* Matinee)
+//void FLobbySceneManager::OnChangedToFxSummonItemDisplayMatinee(ALevelSequenceActor * Matinee)
 //{
 //	check(CurrentLobbyScene == ELobbyScene::ELobbyScene_SummonItemDisplay || CurrentLobbyScene == ELobbyScene::ELobbyScene_GeneralLotteryDisplay);
 //
@@ -1420,7 +1420,7 @@ void FLobbySceneManager::ExecutePendingHallOfFameScene()
 	//}
 }
 
-//void FLobbySceneManager::OnFinishedHallOfFameDisplayMatinee(class AMatineeActor* Matinee)
+//void FLobbySceneManager::OnFinishedHallOfFameDisplayMatinee(class ALevelSequenceActor * Matinee)
 //{
 //	if (CurrentLobbyScene == ELobbyScene::ELobbyScene_HallOfFame)
 //	{
@@ -1450,22 +1450,22 @@ bool FLobbySceneManager::IsHallOfFameData(FB2ResponseGetHallOfFamePtr InHallOfFa
 	return false;
 }
 
-//AMatineeActor* FLobbySceneManager::GetDefaultCameraMatinee()
+//ALevelSequenceActor * FLobbySceneManager::GetDefaultCameraMatinee()
 //{
 //	return DefaultCameraMatinee;
 //}
 
-void FLobbySceneManager::SetDefaultCameraMatinee(class AMatineeActor* DefaultMatinee)
+void FLobbySceneManager::SetDefaultCameraMatinee(class ALevelSequenceActor * DefaultMatinee)
 {
 	DefaultCameraMatinee = DefaultMatinee;
 }
 
-//AMatineeActor* FLobbySceneManager::GetChapterMatinee()
+//ALevelSequenceActor * FLobbySceneManager::GetChapterMatinee()
 //{
 //	return ChapterMatinee;
 //}
 
-void FLobbySceneManager::SetChapterViewMatinee(class AMatineeActor* InChapterMatinee)
+void FLobbySceneManager::SetChapterViewMatinee(class ALevelSequenceActor * InChapterMatinee)
 {
 	ChapterMatinee = InChapterMatinee;
 }
@@ -1707,19 +1707,19 @@ FORCEINLINE TArray<FHallOfFameCharacterInfo>& FLobbySceneBase::GetLobbyCharacter
 //	return SceneManager->GetHallOfAnimation(IsBestCharacter);
 //}
 
-//AMatineeActor* FLobbySceneBase::GetDefaultCameraMatinee()
+//ALevelSequenceActor * FLobbySceneBase::GetDefaultCameraMatinee()
 //{
 //	check(SceneManager);
 //	return SceneManager->GetDefaultCameraMatinee();
 //}
 //
-//AMatineeActor* FLobbySceneBase::GetChapterMatinee()
+//ALevelSequenceActor * FLobbySceneBase::GetChapterMatinee()
 //{
 //	check(SceneManager);
 //	return SceneManager->GetChapterMatinee();
 //}
 
-//void FLobbySceneBase::SetCameraMatineeCam(class AMatineeActor* MatineeActor, float KeyTime)
+//void FLobbySceneBase::SetCameraMatineeCam(class ALevelSequenceActor * MatineeActor, float KeyTime)
 //{
 //	// MatineeActor 에 배치한 마티니 트랙 그룹에서 제일 먼저 찾는 카메라 트랙 그룹의 KeyTime 을 현재 카메라로 설정.
 //	ABladeIIGameMode::SetCameraMatineeCam(MatineeActor, KeyTime);
@@ -2040,7 +2040,7 @@ void FLobbyMainScene::SetHiddenLobbyMainUI(bool bNewHidden)
 
 void FLobbyMainScene::SwipeScene(float Delta)
 {
-	//AMatineeActor* DefaultCameraMatinee = GetDefaultCameraMatinee();
+	//ALevelSequenceActor * DefaultCameraMatinee = GetDefaultCameraMatinee();
 
 	//if (DefaultCameraMatinee && DefaultCameraMatinee->IsValidObj()) // 레벨 스트리밍과 얽혀서 Invalid 한 경우가 있는 거 같다..
 	//{
@@ -2066,7 +2066,7 @@ void FLobbyMainScene::SwipeScene(float Delta)
 float FLobbyMainScene::GetDefaultLobbyMatineeTimeStamp()
 {
 	float EventKeyTime = 0.0f;
-	//AMatineeActor* DefaultCameraMatinee = GetDefaultCameraMatinee();
+	//ALevelSequenceActor * DefaultCameraMatinee = GetDefaultCameraMatinee();
 
 	//if (DefaultCameraMatinee && DefaultCameraMatinee->IsValidObj()) // 레벨 스트리밍과 얽혀서 Invalid 한 경우가 있는 거 같다..
 	//{
@@ -2775,7 +2775,7 @@ void FLobbyCharObserveScene::FLobbyCharacterObserveCamera::SetData(EPCClass Sele
 
 	//BII_CHECK(Scene->GetSceneManager());
 
-	//AMatineeActor* PlayMatinee = IsBegin ? SelectedCharacterInfo.GameBeginingMatinee : SelectedCharacterInfo.SelectingMatinee;
+	//ALevelSequenceActor * PlayMatinee = IsBegin ? SelectedCharacterInfo.GameBeginingMatinee : SelectedCharacterInfo.SelectingMatinee;
 	//PlayCharacterMatinee(PlayMatinee, SelectedCharacterInfo.LevelActor);
 
 	//if (bPromptToClosedUpView)
@@ -2789,7 +2789,7 @@ void FLobbyCharObserveScene::FLobbyCharacterObserveCamera::SetData(EPCClass Sele
 	//Scene->GetSceneManager()->SetPlayingBeginAnim(false);
 }
 
-//void FLobbyCharObserveScene::FLobbyCharacterObserveCamera::PlayCharacterMatinee(AMatineeActor* PlayMatinee,AB2LobbySkeletalMeshActor* LevelActor)
+//void FLobbyCharObserveScene::FLobbyCharacterObserveCamera::PlayCharacterMatinee(ALevelSequenceActor * PlayMatinee,AB2LobbySkeletalMeshActor* LevelActor)
 //{
 //	if (PlayMatinee == nullptr || LevelActor == nullptr)
 //		return;
@@ -2940,7 +2940,7 @@ void FLobbyHeroMgmtScene::UnsubscribeEvents_OnDestruct()
 
 void FLobbyHeroMgmtScene::OnLobbyGMActorCustomEvent(FName OptionalEventName, UObject* OptionalNotifyingObject)
 {
-	//AMatineeActor* CastedNotifyingMatinee = Cast<AMatineeActor>(OptionalNotifyingObject);
+	//ALevelSequenceActor * CastedNotifyingMatinee = Cast<ALevelSequenceActor >(OptionalNotifyingObject);
 
 	//// 날개진화연출에서 MatineeForWingEventScene 의 Stop notification 인 경우 연출 종료 처리.
 	//// MATINEE_DONE_STAY_ACTOR_CUSTOM_EVENT 를 받아야 할 수도 있다..
@@ -3329,7 +3329,7 @@ void FLobbyBattleSelectSceneBase::OpenScene()
 	//	LobbyGameMode->BindTouchInput(true);
 	//}
 
-	//AMatineeActor* MainViewMatinee = GetChapterMatinee();
+	//ALevelSequenceActor * MainViewMatinee = GetChapterMatinee();
 	//
 	//if (MainViewMatinee && MainViewMatinee->IsValidObj()) // 레벨 스트리밍과 얽혀서 Invalid 한 경우가 있는 거 같다..
 	//{
@@ -3347,7 +3347,7 @@ void FLobbyBattleSelectSceneBase::OpenScene()
 	//	SetCameraMatineeCam(MainViewMatinee, MatineePos);
 	//}
 
-	//AMatineeActor* DefaultCameraMatinee = GetDefaultCameraMatinee();
+	//ALevelSequenceActor * DefaultCameraMatinee = GetDefaultCameraMatinee();
 	//if (DefaultCameraMatinee && DefaultCameraMatinee->IsValidObj())
 	//{
 	//	DefaultCameraMatinee->SetPosition(0.f);
@@ -3371,7 +3371,7 @@ void FLobbyBattleSelectSceneBase::CloseScene()
 {
 	FLobbySceneBase::CloseScene();
 
-	//AMatineeActor* DefaultCameraMatinee = GetDefaultCameraMatinee();
+	//ALevelSequenceActor * DefaultCameraMatinee = GetDefaultCameraMatinee();
 	//if (DefaultCameraMatinee && DefaultCameraMatinee->IsValidObj())
 	//{
 	//	DefaultCameraMatinee->SetPosition(0.f);
@@ -3568,12 +3568,12 @@ float FLobbyBattleSelectSceneBase::GetAvgDirectSwipeSpeed(int32 InMaxHistoryNum,
 
 void FLobbyBattleSelectSceneBase::SwipeScene(float Delta)
 {
-//	AMatineeActor* DefaultCameraMatinee = GetDefaultCameraMatinee();
+//	ALevelSequenceActor * DefaultCameraMatinee = GetDefaultCameraMatinee();
 //	if (DefaultCameraMatinee && DefaultCameraMatinee->bIsPlaying){
 //		return;
 //	}
 //
-//	AMatineeActor* MainViewMatinee = GetChapterMatinee();
+//	ALevelSequenceActor * MainViewMatinee = GetChapterMatinee();
 //	if (MainViewMatinee && MainViewMatinee->IsValidObj() && MainViewMatinee->GetWorld()) // 레벨 스트리밍과 얽혀서 Invalid 한 경우가 있는 거 같다..
 //	{
 //		MatineePos = FMath::Clamp<float>(MatineePos + Delta, 0.f, MatineeLength);
@@ -3860,7 +3860,7 @@ void FLobbyModSelectScene::Tick(float DeltaSeconds)
 
 void FLobbyModSelectScene::InitializeUIPositionMarkers()
 {
-	//AMatineeActor* MainViewMatinee = GetChapterMatinee();
+	//ALevelSequenceActor * MainViewMatinee = GetChapterMatinee();
 	//if (!MainViewMatinee || !MainViewMatinee->IsValidObj()){
 	//	return;
 	//}
@@ -4496,7 +4496,7 @@ void FLobbyHeroTowerReadyScene::OpenScene()
 {
 	FLobbySceneBase::OpenScene();
 
-	//AMatineeActor* DefaultCameraMatinee = GetDefaultCameraMatinee();
+	//ALevelSequenceActor * DefaultCameraMatinee = GetDefaultCameraMatinee();
 	//if (DefaultCameraMatinee && DefaultCameraMatinee->IsValidObj())
 	//{
 	//	DefaultCameraMatinee->SetPosition(0.f);
@@ -4999,7 +4999,7 @@ void FLobbyCollectBookMain::SelectCollectBookCharacter(EPCClass SelectedCharacte
 	//	CurrentSelectedCharacter = SelectedCharacter;
 	//	CurrentCharacter = LobbyCharInfo->ActorForMain;
 
-	//	AMatineeActor* CollectBookMatinee = nullptr;
+	//	ALevelSequenceActor * CollectBookMatinee = nullptr;
 	//	float EventKeyTime = 0.f; //도감용 Matinee EventKeyTime 따로 없음
 	//	if (LobbyCharInfo->MatineeForMain)
 	//		CollectBookMatinee = LobbyCharInfo->MatineeForCollectBook;
@@ -5118,7 +5118,7 @@ void FLobbySummonItemScene::OpenScene()
 	//	LobbyGameMode->SetEnableClickEvents(true);
 	//}
 
-	//AMatineeActor* DefaultCameraMatinee = GetDefaultCameraMatinee();
+	//ALevelSequenceActor * DefaultCameraMatinee = GetDefaultCameraMatinee();
 	//if (DefaultCameraMatinee)
 	//{
 	//	CachedItemSceneMatinee = DefaultCameraMatinee;
@@ -5248,7 +5248,7 @@ void FLobbyGachaDisplaySceneBase::PlayOpenSummonItemMatinee(bool InIsMulti)
 //#include "B2UISummonItem.h"
 
 //
-//void FLobbyGachaDisplaySceneBase::OnFinishedSummonItemDisplayMatinee(AMatineeActor* Matinee)
+//void FLobbyGachaDisplaySceneBase::OnFinishedSummonItemDisplayMatinee(ALevelSequenceActor * Matinee)
 //{
 //	UB2UISummonItemDisplay* DisplayUI = UB2UIManager::GetInstance()->GetUI<UB2UISummonItemDisplay>(UIFName::SummonItemResult);
 //	if (DisplayUI)
@@ -5257,7 +5257,7 @@ void FLobbyGachaDisplaySceneBase::PlayOpenSummonItemMatinee(bool InIsMulti)
 //	}
 //}
 //
-//void FLobbyGachaDisplaySceneBase::OnChangedToFxSummonItemDisplayMatinee(AMatineeActor* Matinee)
+//void FLobbyGachaDisplaySceneBase::OnChangedToFxSummonItemDisplayMatinee(ALevelSequenceActor * Matinee)
 //{
 //	UB2UISummonItemDisplay* DisplayUI = UB2UIManager::GetInstance()->GetUI<UB2UISummonItemDisplay>(UIFName::SummonItemResult);
 //	if (DisplayUI)
@@ -5521,7 +5521,7 @@ void FLobbyGuildMapUIScene::SubscribeEvents_OnConstruct()
 
 	//GuildStateChangeEventTicket = GuildStateChangeEventClass<int32>::GetInstance().Subscribe([this](int32 Lv)
 	//{
-	//	AMatineeActor* ChangeMatinee;
+	//	ALevelSequenceActor * ChangeMatinee;
 
 	//	if (Lv % 2)
 	//	{
@@ -5623,7 +5623,7 @@ void FLobbyGuildMapUIScene::OpenGuildBattleTurnResult(const FB2ResponseGuildBatt
 	//}
 }
 
-void FLobbyGuildMapUIScene::SetGuildMapChangeMatinee(class AMatineeActor* Atype, class AMatineeActor* Btype)
+void FLobbyGuildMapUIScene::SetGuildMapChangeMatinee(class ALevelSequenceActor * Atype, class ALevelSequenceActor * Btype)
 {
 	GuildMapChangeA = Atype;
 	GuildMapChangeB = Btype;
@@ -7505,7 +7505,7 @@ void FLobbyRestPointScene::OpenScene()
 	//	LobbyGameMode->SetEnableClickEvents(true);
 	//}
 
-	//AMatineeActor* DefaultCameraMatinee = GetDefaultCameraMatinee();
+	//ALevelSequenceActor * DefaultCameraMatinee = GetDefaultCameraMatinee();
 	//if (DefaultCameraMatinee)
 	//{
 	//	DefaultCameraMatinee->SetPosition(0.f);
@@ -7848,7 +7848,7 @@ void FLobbyHallOfFame::ForceEndMatinee()
 	//}
 }
 
-void FLobbyHallOfFame::OnFinishedHallOfFameDisplayMatinee(class AMatineeActor* Matinee)
+void FLobbyHallOfFame::OnFinishedHallOfFameDisplayMatinee(class ALevelSequenceActor * Matinee)
 {
 	UIVisibility(true);
 	SetHallOfCharactersInfo();
@@ -8690,7 +8690,7 @@ void FLobbyFairyScene::OpenScene()
 	//	LobbyGameMode->SetEnableClickEvents(true);
 	//}
 
-	//AMatineeActor* DefaultCameraMatinee = GetDefaultCameraMatinee();
+	//ALevelSequenceActor * DefaultCameraMatinee = GetDefaultCameraMatinee();
 	//if (DefaultCameraMatinee)
 	//{
 	//	DefaultCameraMatinee->SetPosition(0.f);

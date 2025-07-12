@@ -545,21 +545,21 @@ TArray<FCombinedPCSkillAnimID> ABladeIIGameMode::GetPCSkillAnimsToPreLoad()
 	//}
 	return RetArray;
 }
-//
-//TArray<FCombinedPCSkillAnimID> ABladeIIGameMode::GetAllPCSkillAnimsOfClass(EPCClass InCharClass)
-//{ // 유틸 수준. 꼭 여기에 있을 필요는 없다.
-//	TArray<FCombinedPCSkillAnimID> RetArray;
-//	for (int32 SAI = 0; SAI < static_cast<int32>(ESkillAnimType::ESA_End); ++SAI)
-//	{
-//		ESkillAnimType ThisAnimType = static_cast<ESkillAnimType>(SAI);
-//		if (ThisAnimType != ESkillAnimType::ESA_Weapon_Normal_End) // 이건 중간에 뭐 식별한답시고 넣은 거니 빼고
-//		{
-//			RetArray.Add(FCombinedPCSkillAnimID(InCharClass, ThisAnimType));
-//		}
-//	}
-//	return RetArray;
-//}
-//
+
+TArray<FCombinedPCSkillAnimID> ABladeIIGameMode::GetAllPCSkillAnimsOfClass(EPCClass InCharClass)
+{ // 유틸 수준. 꼭 여기에 있을 필요는 없다.
+	TArray<FCombinedPCSkillAnimID> RetArray;
+	for (int32 SAI = 0; SAI < static_cast<int32>(ESkillAnimType::ESA_End); ++SAI)
+	{
+		ESkillAnimType ThisAnimType = static_cast<ESkillAnimType>(SAI);
+		if (ThisAnimType != ESkillAnimType::ESA_Weapon_Normal_End) // 이건 중간에 뭐 식별한답시고 넣은 거니 빼고
+		{
+			RetArray.Add(FCombinedPCSkillAnimID(InCharClass, ThisAnimType));
+		}
+	}
+	return RetArray;
+}
+
 ////// 기본적으로 Main / Sub 두개를 로드하고 GameMode별로 관리한다. ex ) 팀대전 - 셋, 레이드, 점령전 - 하나
 ////void ABladeIIGameMode::TryAsyncLoadSkillAnims(ICharacterDataStore* DataStore)
 ////{
@@ -3444,37 +3444,37 @@ FString EB2LOC_CAT_ToString(EB2LOC_CAT InB2LOCEnum)
 //#include "Matinee/InterpTrackMove.h"
 //#include "Matinee/InterpTrackFloatProp.h"
 
-//float ABladeIIGameMode::GetMatineePositionByEventName(class AMatineeActor* MatineeActor, FName EventName)
-//{
-////	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIGameMode::GetMatineePositionByEventName"));
-////
-////	if (MatineeActor == NULL || MatineeActor->MatineeData == NULL)
-////		return 0.f;
-////
-////	if (!MatineeActor->MatineeData->IsEventName(EventName))
-////		return 0.f;
-////
-////	for (auto* InterpGroup : MatineeActor->MatineeData->InterpGroups)
-////	{
-////		if (InterpGroup == NULL)
-////			continue;
-////
-////		for (auto* InterpTrack : InterpGroup->InterpTracks)
-////		{
-////			auto* EventTrack = Cast<UInterpTrackEvent>(InterpTrack);
-////			if (EventTrack == NULL)
-////				continue;
-////
-////			for (auto& EventKey : EventTrack->EventTrack)
-////			{
-////				if (EventName == EventKey.EventName)
-////					return EventKey.Time;
-////			}
-////		}
-////	}
+float ABladeIIGameMode::GetMatineePositionByEventName(class ALevelSequenceActor * MatineeActor, FName EventName)
+{
+//	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIGameMode::GetMatineePositionByEventName"));
 //
-//	return 0.f;
-//}
+//	if (MatineeActor == NULL || MatineeActor->MatineeData == NULL)
+//		return 0.f;
+//
+//	if (!MatineeActor->MatineeData->IsEventName(EventName))
+//		return 0.f;
+//
+//	for (auto* InterpGroup : MatineeActor->MatineeData->InterpGroups)
+//	{
+//		if (InterpGroup == NULL)
+//			continue;
+//
+//		for (auto* InterpTrack : InterpGroup->InterpTracks)
+//		{
+//			auto* EventTrack = Cast<UInterpTrackEvent>(InterpTrack);
+//			if (EventTrack == NULL)
+//				continue;
+//
+//			for (auto& EventKey : EventTrack->EventTrack)
+//			{
+//				if (EventName == EventKey.EventName)
+//					return EventKey.Time;
+//			}
+//		}
+//	}
+
+	return 0.f;
+}
 
 void ABladeIIGameMode::B2GM_SetAllowCullDistance(bool bAllow, TArray<UPrimitiveComponent*> Components)
 {
@@ -3498,7 +3498,7 @@ void ABladeIIGameMode::B2GM_SetAllowCullDistance(bool bAllow, TArray<UPrimitiveC
 //	}
 }
 
-void ABladeIIGameMode::SetCameraMatineeCam(class AMatineeActor* MatineeActor, float KeyTime)
+void ABladeIIGameMode::SetCameraMatineeCam(class ALevelSequenceActor * MatineeActor, float KeyTime)
 {
 	//// 아마도 모험맵 자동 스크롤의 영향인지 가만히 있어도 로그가 많이 나와서.. 여긴 제거.
 	////B2_SCOPED_TRACK_LOG(TEXT("ABladeIIGameMode::SetCameraMatineeCam"));

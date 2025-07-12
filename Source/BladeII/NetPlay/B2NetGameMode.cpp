@@ -2,7 +2,7 @@
 
 
 #include "B2NetGameMode.h"
-
+#include "UMG.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "BladeIINetCharacter.h"
 #include "BladeIINetPlayer.h"
@@ -781,24 +781,14 @@ TMap<uint32, FB2ModPlayerInfo>& AB2MatchGameModeBase::GetRemotePlayerInfoDatas()
 	return RemotePlayerInfoData;
 }
 
-//void AB2MatchGameModeBase::SendMessage(FString const& message)
-//{
-//	B2_SCOPED_TRACK_LOG(TEXT("AB2MatchGameModeBase::SendMessage"));
-//
-//	//if (GetPeerType() == PEER_NETSTANDALONE || GetPeerType() == PEER_STANDALONE)
-//		return;
-//
-//	//data_trader::ChannelManager::GetInstance().SendMessage(0, message);
-//}
-
-void AB2MatchGameModeBase::SendMessage2(FString const& message)
+void AB2MatchGameModeBase::SendGameMessage(FString const& message)
 {
 	B2_SCOPED_TRACK_LOG(TEXT("AB2MatchGameModeBase::SendMessage"));
 
 	if (GetPeerType() == PEER_NETSTANDALONE || GetPeerType() == PEER_STANDALONE)
 		return;
 
-	//data_trader::ChannelManager::GetInstance().SendMessage(0, message);
+	data_trader::ChannelManager::GetInstance().SendMessage(0, message);
 }
 
 void AB2MatchGameModeBase::SendMessageToHost(FString const& message)
@@ -808,7 +798,7 @@ void AB2MatchGameModeBase::SendMessageToHost(FString const& message)
 	if (GetPeerType() == PEER_NETSTANDALONE || GetPeerType() == PEER_STANDALONE)
 		return;
 
-	//data_trader::ChannelManager::GetInstance().SendMessage(GetHostId(), message);
+	data_trader::ChannelManager::GetInstance().SendMessage(GetHostId(), message);
 }
 
 
@@ -1838,14 +1828,14 @@ void AB2NetGameMode::HandleHealingHealth(AActor* C)
 
 void AB2NetGameMode::HandleHealth(uint32 OwnerId, float Health, uint32 DamageCauserId)
 {
-/*
-	if(GetPeerType() != PEER_RESTRICTED)
+
+	if (GetPeerType() != PEER_RESTRICTED)
 		return;
 
 	auto* P = FindPawnByNetId(OwnerId);
 
-	ABladeIINetPlayer*		NetPlayer		= Cast<ABladeIINetPlayer>(P);
-	ABladeIINetCharacter*	NetCharacter	= Cast<ABladeIINetCharacter>(P);
+	ABladeIINetPlayer* NetPlayer = Cast<ABladeIINetPlayer>(P);
+	ABladeIINetCharacter* NetCharacter = Cast<ABladeIINetCharacter>(P);
 
 	if (NetPlayer)
 	{
@@ -1855,7 +1845,7 @@ void AB2NetGameMode::HandleHealth(uint32 OwnerId, float Health, uint32 DamageCau
 	{
 		NetCharacter->RemoteAdjustHealth(Health, DamageCauserId);
 	}
-*/
+
 }
 
 bool AB2NetGameMode::CanDie() const

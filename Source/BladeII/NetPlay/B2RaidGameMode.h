@@ -6,7 +6,7 @@
 
 class UB2NPCClassInfoBox;
 class ABladeIINetCharacter;
-class AMatineeActor;
+class ALevelSequenceActor ;
 
 enum class ERaidMatchSceneState : uint8
 {
@@ -244,7 +244,7 @@ public:
 	virtual void SendResurrectHelper(const ABladeIINetPlayer* player) final;
 
 	//UFUNCTION(BlueprintCallable, Category = "BladeII")
-	//void SetMatchLobbyResources(class AMatineeActor* IsSuccessMatinee, class AMatineeActor* InFailMatinee, AActor* ResultActor01, AActor* ResultActor02, AActor* ResultActor03, AActor* ResultActor04);
+	//void SetMatchLobbyResources(class ALevelSequenceActor * IsSuccessMatinee, class ALevelSequenceActor * InFailMatinee, AActor* ResultActor01, AActor* ResultActor02, AActor* ResultActor03, AActor* ResultActor04);
 	UFUNCTION(BlueprintCallable, Category = "BladeII")
 	void OnMatineeEnd_StartEvent();
 
@@ -357,8 +357,8 @@ private:
 
 	uint32	ReceiveQteEnableTicket;
 private:
-	class AMatineeActor* SuccessResultMatinee;
-	class AMatineeActor* FailResultMatinee;
+	class ALevelSequenceActor * SuccessResultMatinee;
+	class ALevelSequenceActor * FailResultMatinee;
 	TArray<AActor*> ResultLocationArray;
 
 private:

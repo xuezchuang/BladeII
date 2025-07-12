@@ -384,8 +384,8 @@ void FB2RedDotManager::UpdateRedDotState(FB2MessageInfoResponseCheckRedDotPtr Ne
 		CurrentRedDotState->has_event_ten_lottery_savings_reward = NewRedDotInfo->has_event_ten_lottery_savings_reward;
 		CurrentRedDotState->has_event_dice_reward = NewRedDotInfo->has_event_dice_reward;
 
-		//UpdateMarkRedDotClass<const FName&>::GetInstance().Signal(UIFName::EventMain);
-		//UpdateMarkRedDotClass<const FName&>::GetInstance().Signal(UIFName::SeasonEvent);
+		UpdateMarkRedDotClass<const FName&>::GetInstance().Signal(UIFName::EventMain);
+		UpdateMarkRedDotClass<const FName&>::GetInstance().Signal(UIFName::SeasonEvent);
 	}
 	if (NewRedDotInfo->is_valid_etc)
 	{

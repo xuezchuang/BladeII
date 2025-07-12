@@ -92,7 +92,7 @@ public:
 protected:
 	FVector GetVelocity() const;
 	FVector GetLocation() const;
-	//void	SendMessage(FString const&);
+	void	SendMessage(FString const&);
 	FVector GetNetAdjustGoalLocation();
 
 private:

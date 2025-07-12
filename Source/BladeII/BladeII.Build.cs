@@ -33,8 +33,9 @@ public class BladeII : ModuleRules
 			"EngineSettings",
 			"B2GameLoadingScreen",
 			"B2Network",
-			"PakFile"
-		});
+			"PakFile",
+            "LevelSequence"
+        });
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
 
@@ -43,7 +44,7 @@ public class BladeII : ModuleRules
 			new string[]
 		{
 			//"CoreUObject/Public/UObject"
-			//"B2Network/Public",
+			"B2Network/Public",
             //"MyProject1/Text",
             //"MyProject1/Test",
         });
@@ -67,7 +68,6 @@ public class BladeII : ModuleRules
                 "BladeII/InfoAsset",
                 "BladeII/DataStore",
                 "BladeII/Lobby",
-                //"BladeIINetwork",
                 "BladeII/DataTrader",
                 "BladeII/NetPlay",
                 "BladeII/Packet",

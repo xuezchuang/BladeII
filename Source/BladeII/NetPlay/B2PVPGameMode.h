@@ -27,7 +27,7 @@ enum class EPVPBGMPlayContext : uint8
 	PVPBGMCTX_End
 };
 
-class AMatineeActor;
+class ALevelSequenceActor ;
 class AB2PVPGameMode;
 
 class FPVPMatchSceneManager
@@ -49,7 +49,7 @@ public:
 	FORCEINLINE void SetMatchLobbyLevelName(FName InName) { FindingMatchLevelPackageName = InName; }
 	FORCEINLINE void SetMatchBattleLevelName(FName InName) { BattleMatchLevelPackageName = InName; }
 	void SetMatchLobbyResources(
-		class AMatineeActor* InMatinee,
+		class ALevelSequenceActor * InMatinee,
 		const FMatchingAnims& Gladiator,
 		const FMatchingAnims& Assassin,
 		const FMatchingAnims& Wizard,
@@ -77,7 +77,7 @@ private:
 	FName								FindingMatchLevelPackageName;
 	FName								BattleMatchLevelPackageName;
 
-	AMatineeActor*						LobbyMatinee;
+	ALevelSequenceActor *				LobbyMatinee;
 	TArray<FMatchingAnims>				AnimArray;
 	TArray<float>						CharacterLocationZ;
 
@@ -247,7 +247,7 @@ public:
 
 	//UFUNCTION(BlueprintCallable, Category = "BladeII")
 	//void SetMatchLobbyResources(
-	//	class AMatineeActor* InMatinee,
+	//	class ALevelSequenceActor * InMatinee,
 	//	const FMatchingAnims& Gladiator,
 	//	const FMatchingAnims& Assassin,
 	//	const FMatchingAnims& Wizard,

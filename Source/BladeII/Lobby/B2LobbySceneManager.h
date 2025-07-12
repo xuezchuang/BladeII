@@ -222,13 +222,13 @@ struct FLobbyCharacterInfo
 	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = LobbyCharacter)
 	//class AB2HeroMgntSkeletalMeshActor* ActorForSub;
 	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = LobbyCharacter)
-	//class AMatineeActor* MatineeForMain;
+	//class ALevelSequenceActor * MatineeForMain;
 	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = LobbyCharacter)
-	//class AMatineeActor* MatineeForInven;
+	//class ALevelSequenceActor * MatineeForInven;
 	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = LobbyCharacter)
-	//class AMatineeActor* MatineeForWingEventScene; // For any kind of special directed event scene
+	//class ALevelSequenceActor * MatineeForWingEventScene; // For any kind of special directed event scene
 	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = LobbyCharacter)
-	//class AMatineeActor* MatineeForCollectBook;
+	//class ALevelSequenceActor * MatineeForCollectBook;
 	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = LobbyCharacter)
 	//class UAnimationAsset* IdleAnimInstance;
 
@@ -245,10 +245,10 @@ struct FLobbyCharacter
 	//class AB2LobbySkeletalMeshActor* LevelActor;
 
 	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = LobbyCharacter)
-	//class AMatineeActor* GameBeginingMatinee;
+	//class ALevelSequenceActor * GameBeginingMatinee;
 
 	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = LobbyCharacter)
-	//class AMatineeActor* SelectingMatinee;
+	//class ALevelSequenceActor * SelectingMatinee;
 };
 
 /** Added later, other FLobbyCharacter is implicitly for PlayerCharacter. */
@@ -317,11 +317,11 @@ protected:
 	TMap<EPCClass, FLobbyCharacterInfo>&	GetLobbyCharactersForGTypeLevel();
 	TArray<FHallOfFameCharacterInfo>&		GetLobbyCharactersForHallOfFame();
 	//TMap<EPCClass, class UAnimationAsset*>& GetHallOfAnimation(bool IsBestCharacter = false);
-	//class AMatineeActor* GetDefaultCameraMatinee();
-	//class AMatineeActor* GetChapterMatinee();
+	//class ALevelSequenceActor * GetDefaultCameraMatinee();
+	//class ALevelSequenceActor * GetChapterMatinee();
 
 	/** Use the designated KeyTiem of the first found camera track group of MatineeActor as current camera */
-	//void SetCameraMatineeCam(class AMatineeActor* MatineeActor, float KeyTime = 0.f);
+	//void SetCameraMatineeCam(class ALevelSequenceActor * MatineeActor, float KeyTime = 0.f);
 
 public:
 	virtual void SubscribeEvents_OnConstruct();
@@ -443,8 +443,8 @@ public:
 	void AddLobbyNPCCharacter(ELobbyNPCType InType, const FLobbyNPCCharacterInfo& InAddInfo);
 	void AddLobbyFairyFlyingActor(EFairyType InType, class AB2LobbyFlyingFairyDoumi* fairyactor);
 	void AddLobbyMainScenePointLights(const FLobbyMainScenePointLightInfo& InAddInfo);
-	void AddSummonItemDisplayMatinee(bool bIsMultiple,  bool bIsOpen,bool bIsFriendShip, class AMatineeActor* Matinee);
-	//void AddSummonItemDisplayMatineeResult(class AMatineeActor* Matinee);
+	void AddSummonItemDisplayMatinee(bool bIsMultiple,  bool bIsOpen,bool bIsFriendShip, class ALevelSequenceActor * Matinee);
+	//void AddSummonItemDisplayMatineeResult(class ALevelSequenceActor * Matinee);
 	void HeroTransientEffectBegin(const int32 Index);
 	/** Dynamically create a SkeletalMesh to represent equipped state of InPCClass and set it to designated SkeletalMeshActor. 
 	 * @param bForceUpdate : If true, it will re-generate necessary stuff even cached object is available. */
@@ -471,15 +471,15 @@ public:
 
 	void SelectCharacterHeroMgmt(EPCClass);
 	void SelectCharacterStageInfo(EPCClass, EPCClass);
-	void SetGuildMapChangeMatinee(class AMatineeActor* Atype, class AMatineeActor* Btype);
+	void SetGuildMapChangeMatinee(class ALevelSequenceActor * Atype, class ALevelSequenceActor * Btype);
 	void GuildMapChangeMatineeEnd();	
 
 	void ForceUpdate();
-	void SetDefaultCameraMatinee(class AMatineeActor*);
-	void SetChapterViewMatinee(class AMatineeActor*);
+	void SetDefaultCameraMatinee(class ALevelSequenceActor *);
+	void SetChapterViewMatinee(class ALevelSequenceActor *);
 
-	//class AMatineeActor* GetDefaultCameraMatinee();
-	//class AMatineeActor* GetChapterMatinee();
+	//class ALevelSequenceActor * GetDefaultCameraMatinee();
+	//class ALevelSequenceActor * GetChapterMatinee();
 
 	void SetItemOpDirectingSceneObjects(class ACameraActor* InCamActor);
 	void EnterItemOpDirectingView(ELobbyInvenItemOpMode InOpMode);
@@ -502,9 +502,9 @@ public:
 	void PlaySummonItemDisplayMatinee(bool bIsMultiple, bool bIsOpen, bool bIsFriendShip);
 	void PlaySummonItemDisplayMatineeResult();
 	void OnFinishedSummonItemDisplayResultMatinee();
-	//void OnFinishedSummonItemDisplayMatinee(class AMatineeActor* Matinee);
-	//void OnChangedToFxSummonItemDisplayMatinee(class AMatineeActor* Matinee);
-	//void OnFinishedHallOfFameDisplayMatinee(class AMatineeActor* Matinee);
+	//void OnFinishedSummonItemDisplayMatinee(class ALevelSequenceActor * Matinee);
+	//void OnChangedToFxSummonItemDisplayMatinee(class ALevelSequenceActor * Matinee);
+	//void OnFinishedHallOfFameDisplayMatinee(class ALevelSequenceActor * Matinee);
 
 	// Hall Of Fame
 	bool IsHallOfFameData(FB2ResponseGetHallOfFamePtr InHallOfFameInfo);
@@ -607,13 +607,13 @@ private:
 			return  Key.bIsMultiple + (Key.bIsOpen << 1) + (Key.bIsFriendShip << 2);
 		}
 	};
-	TMap<SummonItemDisplayMapKey, TWeakObjectPtr<AMatineeActor>>	SummonItemMatinees;
-	TWeakObjectPtr<AMatineeActor>									SummonItemMatineesResult;
-	class AMatineeActor* SummonItemMultipleResultMatinee;
+	TMap<SummonItemDisplayMapKey, TWeakObjectPtr<ALevelSequenceActor >>	SummonItemMatinees;
+	TWeakObjectPtr<ALevelSequenceActor >									SummonItemMatineesResult;
+	class ALevelSequenceActor * SummonItemMultipleResultMatinee;
 
 	bool PlayBeginAnim;
-	class AMatineeActor* DefaultCameraMatinee;
-	class AMatineeActor* ChapterMatinee;
+	class ALevelSequenceActor * DefaultCameraMatinee;
+	class ALevelSequenceActor * ChapterMatinee;
 
 	/** If true, character wing is visible regardless of user wing visibility selection (FB2Wing.bShouldBeVisible)
 	 * For wing evolution scene fow now. Collect book scene could use this but that seems a little different.. */
@@ -789,7 +789,7 @@ private:
 		void Tick(float DeltaSeconds);
 
 		void SetData(EPCClass SelectedClass, bool IsBegin, bool bPromptToClosedUpView = false);
-		void PlayCharacterMatinee(AMatineeActor* PlayMatinee, class AB2LobbySkeletalMeshActor* LevelActor);
+		void PlayCharacterMatinee(ALevelSequenceActor * PlayMatinee, class AB2LobbySkeletalMeshActor* LevelActor);
 		void MoveCamera(const FRotator& RotDelta, float CamDistDelta, bool bForceUpdate = false);
 		void RotateCharacterYaw(bool bLeft);
 		void UpdateViewLoc(const FVector2D& ScreenPos);
@@ -802,7 +802,7 @@ private:
 
 	public:
 		class AB2LobbySkeletalMeshActor* CachedViewTargetActor;
-		class AMatineeActor* CachedEntryMatinee;
+		class ALevelSequenceActor * CachedEntryMatinee;
 
 		bool bActivate;
 
@@ -1403,7 +1403,7 @@ public:
 protected:
 	void SetSummonItemUIData(const FB2ResponseGetLotteryShopPtr&);
 
-	TWeakObjectPtr<AMatineeActor> CachedItemSceneMatinee; // Cached due to some stupid reason.
+	TWeakObjectPtr<ALevelSequenceActor > CachedItemSceneMatinee; // Cached due to some stupid reason.
 
 	uint32 DeliveryGetLotteryShopTicket;
 	uint32 HandleServerError7237Ticket;
@@ -1418,8 +1418,8 @@ public:
 	virtual void OpenScene() override;
 	virtual void CloseScene() override;
 
-	void OnFinishedSummonItemDisplayMatinee(class AMatineeActor* Matinee);
-	void OnChangedToFxSummonItemDisplayMatinee(class AMatineeActor* Matinee);
+	void OnFinishedSummonItemDisplayMatinee(class ALevelSequenceActor * Matinee);
+	void OnChangedToFxSummonItemDisplayMatinee(class ALevelSequenceActor * Matinee);
 
 	void PlaySummonItemMatinee();
 	void PlayOpenSummonItemMatinee(bool InIsMulti);
@@ -1484,7 +1484,7 @@ public:
 	void SetGuildBattleInfo(const FB2ResponseGetGuildBattlePtr& GuildBattleInfo);
 
 	void OpenGuildBattleTurnResult(const FB2ResponseGuildBattleTurnResultPtr& GuildBattleResult);
-	void SetGuildMapChangeMatinee(class AMatineeActor* Atype, class AMatineeActor* Btype);
+	void SetGuildMapChangeMatinee(class ALevelSequenceActor * Atype, class ALevelSequenceActor * Btype);
 
 	void GuildChangeMatineeEnd();
 
@@ -1497,8 +1497,8 @@ private:
 	uint32 GuildStateChangeEventTicket;
 	uint32 DeliveryStartGuildBattleTicket;
 
-	class AMatineeActor* GuildMapChangeA;
-	class AMatineeActor* GuildMapChangeB;
+	class ALevelSequenceActor * GuildMapChangeA;
+	class ALevelSequenceActor * GuildMapChangeB;
 
 	bool ChangeState;
 	bool FirstMatineePlay;
@@ -1896,7 +1896,7 @@ public:
 	void SetPraiseInfo(FB2ResponsePraiseTargetRankerPtr InPraiseInfo);
 
 	void PlayStartMatinee();
-	void OnFinishedHallOfFameDisplayMatinee(class AMatineeActor* Matinee);
+	void OnFinishedHallOfFameDisplayMatinee(class ALevelSequenceActor * Matinee);
 	void ForceEndMatinee();
 	void UIVisibility(bool IsVisible);
 

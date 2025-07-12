@@ -375,8 +375,8 @@ protected:
 
 protected:
 
-	//UPROPERTY()
-	//class UB2UITutorialBattleMain* BattleMainUI;
+	UPROPERTY()
+	class UB2UITutorialBattleMain* BattleMainUI;
 
 	TutorialGameRule* GameRule;
 

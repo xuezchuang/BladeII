@@ -824,7 +824,7 @@ void UB2UIGuildMapMain::UIHidden(bool State)
 		SB_MapScroll->SetVisibility(State ? ESlateVisibility::HitTestInvisible : ESlateVisibility::SelfHitTestInvisible);
 }
 
-void UB2UIGuildMapMain::EnterMatineePlay(class AMatineeActor* EnterA, class AMatineeActor* EnterB)
+void UB2UIGuildMapMain::EnterMatineePlay(class ALevelSequenceActor * EnterA, class ALevelSequenceActor * EnterB)
 {
 	//EnterA->SetPosition(0.f);
 	//EnterA->Play();

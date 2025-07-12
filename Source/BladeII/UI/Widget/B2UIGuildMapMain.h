@@ -51,7 +51,7 @@ public:
 	void	ChangeGuildCastleUI();
 
 	void	UIHidden(bool State);
-	void	EnterMatineePlay(class AMatineeActor* EnterA, class AMatineeActor* EnterB);
+	void	EnterMatineePlay(class ALevelSequenceActor * EnterA, class ALevelSequenceActor * EnterB);
 	void	GuildBattleTimeTick();
 
 	void	RefreshInfo();

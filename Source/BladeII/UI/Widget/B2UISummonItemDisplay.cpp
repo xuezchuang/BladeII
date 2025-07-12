@@ -725,7 +725,7 @@ void UB2UISummonItemDisplay::NativeTick(const FGeometry& MyGeometry, float InDel
 //#include "Matinee/InterpTrackMove.h"
 //#include "Matinee/InterpData.h"
 
-void UB2UISummonItemDisplay::ChangeSummonItemCardMatineeActorToFX(const TArray<FB2Item>& Items, AMatineeActor* Matinee)
+void UB2UISummonItemDisplay::ChangeSummonItemCardMatineeActorToFX(const TArray<FB2Item>& Items, ALevelSequenceActor * Matinee)
 {
 	check(Items.Num() > 0);
 

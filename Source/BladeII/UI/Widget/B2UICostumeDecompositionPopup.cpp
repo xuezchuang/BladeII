@@ -10,6 +10,8 @@
 #include "B2AndroidBackManager.h"
 #include "BladeIIGameImpl.h"
 #include "../B2RichTextBlock.h"
+#include "B2ButtonGoodInfoToolTip.h"
+#include "../../Common/Event.h"
 
 void UB2UICostumeDecompositionPopup::CacheAssets()
 {
@@ -81,18 +83,18 @@ void UB2UICostumeDecompositionPopup::SubscribeEvent()
 {
 	UnsubscribeEvent();
 
-	//Issues.Add(DeliveryDismantleCostumesClass<FB2ResponseDismantleCostumesPtr>::GetInstance().Subscribe2(
-	//	[this](const FB2ResponseDismantleCostumesPtr& msg)
-	//{
-	//	this->UpdateResultPopupInfo(msg);
-	//}
-	//));
-	//Issues.Add(DeliveryDismantleCostumesFailClass<>::GetInstance().Subscribe2(
-	//	[this]()
-	//{
-	//	this->OnClickBTN_NO();
-	//}
-	//));
+	Issues.Add(DeliveryDismantleCostumesClass<FB2ResponseDismantleCostumesPtr>::GetInstance().Subscribe2(
+		[this](const FB2ResponseDismantleCostumesPtr& msg)
+	{
+		this->UpdateResultPopupInfo(msg);
+	}
+	));
+	Issues.Add(DeliveryDismantleCostumesFailClass<>::GetInstance().Subscribe2(
+		[this]()
+	{
+		this->OnClickBTN_NO();
+	}
+	));
 }
 
 void UB2UICostumeDecompositionPopup::UnsubscribeEvent()
@@ -196,37 +198,37 @@ void UB2UICostumeDecompositionPopup::UpdateResultPopupInfo(const FB2ResponseDism
 {
 	// 어차피 아이템 리스트는 똑같으니까 위에서 처리한 그대로 보여주고, 텍스트만 정리.
 
-	//if (WS_Buttons.IsValid())
-	//	WS_Buttons->SetActiveWidgetIndex(1);
+	if (WS_Buttons.IsValid())
+		WS_Buttons->SetActiveWidgetIndex(1);
 
-	//if (RTB_ObtainDesc.IsValid())
-	//	RTB_ObtainDesc->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("LobbyInvenText_DecompostionResultDesc")));
+	if (RTB_ObtainDesc.IsValid())
+		RTB_ObtainDesc->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("LobbyInvenText_DecompostionResultDesc")));
 
-	//if (STB_Title.IsValid())
-	//	STB_Title->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("LobbyInvenText_DecompostionResult")));
+	if (STB_Title.IsValid())
+		STB_Title->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("LobbyInvenText_DecompostionResult")));
 
-	//// 아이템 add 처리
-	//BladeIIGameImpl::GetClientDataStore().DecompositionCostumeItem(msg);
-	//UpdateLobbyInventoryControlClass<>::GetInstance().Signal();
+	// 아이템 add 처리
+	BladeIIGameImpl::GetClientDataStore().DecompositionCostumeItem(msg);
+	UpdateLobbyInventoryControlClass<>::GetInstance().Signal();
 
-	//OnPlayAnimation_IMP();
+	OnPlayAnimation_IMP();
 
-	//if (List_ReturnMaterial.IsValid() && List_MainMaterials.IsValid())
-	//{
-	//	for (int32 i = 0; i < List_MainMaterials->GetChildrenCount(); i++)
-	//	{
-	//		UB2UICostumeDecompositionItem* NewItemRow = Cast<UB2UICostumeDecompositionItem>(List_MainMaterials->GetChildAt(i));
-	//		if(NewItemRow)
-	//			NewItemRow->OnPlayAnimation_IMP();
-	//	}
+	if (List_ReturnMaterial.IsValid() && List_MainMaterials.IsValid())
+	{
+		for (int32 i = 0; i < List_MainMaterials->GetChildrenCount(); i++)
+		{
+			UB2UICostumeDecompositionItem* NewItemRow = Cast<UB2UICostumeDecompositionItem>(List_MainMaterials->GetChildAt(i));
+			if(NewItemRow)
+				NewItemRow->OnPlayAnimation_IMP();
+		}
 
-	//	for (int32 i = 0; i < List_ReturnMaterial->GetChildrenCount(); i++)
-	//	{
-	//		UB2UICostumeDecompositionItem* NewItemRow = Cast<UB2UICostumeDecompositionItem>(List_ReturnMaterial->GetChildAt(i));
-	//		if (NewItemRow)
-	//			NewItemRow->OnPlayAnimation_IMP();
-	//	}
-	//}
+		for (int32 i = 0; i < List_ReturnMaterial->GetChildrenCount(); i++)
+		{
+			UB2UICostumeDecompositionItem* NewItemRow = Cast<UB2UICostumeDecompositionItem>(List_ReturnMaterial->GetChildAt(i));
+			if (NewItemRow)
+				NewItemRow->OnPlayAnimation_IMP();
+		}
+	}
 }
 
 //////////////////////////////////////////////////////
@@ -237,10 +239,10 @@ void UB2UICostumeDecompositionItem::CacheAssets()
 {
 	Super::CacheAssets();
 
-	//GET_SLOT(UImage, IMG_Item);
-	//GET_SLOT(UTextBlock, TB_Count);
-	//GET_SLOT(UTextBlock, TB_NeedCount);
-	//GET_SLOT(UB2ButtonGoodInfoToolTip, BTN_StuffTip);
+	GET_SLOT(UImage, IMG_Item);
+	GET_SLOT(UTextBlock, TB_Count);
+	GET_SLOT(UTextBlock, TB_NeedCount);
+	GET_SLOT(UB2ButtonGoodInfoToolTip, BTN_StuffTip);
 }
 
 void UB2UICostumeDecompositionItem::BindDelegates()
@@ -260,42 +262,42 @@ void UB2UICostumeDecompositionItem::DestroySelf(UB2UIManager* InUIManager)
 
 void UB2UICostumeDecompositionItem::SetInfo(int32 ItemIndex, int32 Amount)
 {
-	//UB2ItemInfo* AllItemInfo = StaticFindItemInfo();
-	//FSingleItemInfoData* ThisItemInfo = AllItemInfo ? AllItemInfo->GetInfoData(ItemIndex) : NULL;
+	UB2ItemInfo* AllItemInfo = StaticFindItemInfo();
+	FSingleItemInfoData* ThisItemInfo = AllItemInfo ? AllItemInfo->GetInfoData(ItemIndex) : NULL;
 
-	//if (IMG_Item.IsValid())
-	//	IMG_Item->SetBrushFromMaterial(ThisItemInfo ? ThisItemInfo->GetIconMaterial(AllItemInfo) : NULL);
+	if (IMG_Item.IsValid())
+		IMG_Item->SetBrushFromMaterial(ThisItemInfo ? ThisItemInfo->GetIconMaterial(AllItemInfo) : NULL);
 
-	//if (TB_Count.IsValid())
-	//	TB_Count->SetText(FText::AsNumber(Amount));
+	if (TB_Count.IsValid())
+		TB_Count->SetText(FText::AsNumber(Amount));
 
-	//if (TB_NeedCount.IsValid())
-	//	TB_NeedCount->SetText(FText::GetEmpty());
+	if (TB_NeedCount.IsValid())
+		TB_NeedCount->SetText(FText::GetEmpty());
 
-	//if (BTN_StuffTip.IsValid())
-	//	BTN_StuffTip->SetItemInfo(ItemIndex);
+	if (BTN_StuffTip.IsValid())
+		BTN_StuffTip->SetItemInfo(ItemIndex);
 }
 
 void UB2UICostumeDecompositionItem::SetInfo(int32 ItemIndex, int32 CurrentCount, int32 NeedCount)
 {
-	//UB2ItemInfo* AllItemInfo = StaticFindItemInfo();
-	//FSingleItemInfoData* ThisItemInfo = AllItemInfo ? AllItemInfo->GetInfoData(ItemIndex) : NULL;
+	UB2ItemInfo* AllItemInfo = StaticFindItemInfo();
+	FSingleItemInfoData* ThisItemInfo = AllItemInfo ? AllItemInfo->GetInfoData(ItemIndex) : NULL;
 
-	//if (IMG_Item.IsValid())
-	//	IMG_Item->SetBrushFromMaterial(ThisItemInfo ? ThisItemInfo->GetIconMaterial(AllItemInfo) : NULL);
+	if (IMG_Item.IsValid())
+		IMG_Item->SetBrushFromMaterial(ThisItemInfo ? ThisItemInfo->GetIconMaterial(AllItemInfo) : NULL);
 
-	//if (TB_Count.IsValid())
-	//{
-	//	bool bNotEnough = (CurrentCount < NeedCount);
-	//	FText Count = (CurrentCount >= 10000) ? FText::FromString(TEXT("9999+")) : FText::FromString(FString::FromInt(CurrentCount));
+	if (TB_Count.IsValid())
+	{
+		bool bNotEnough = (CurrentCount < NeedCount);
+		FText Count = (CurrentCount >= 10000) ? FText::FromString(TEXT("9999+")) : FText::FromString(FString::FromInt(CurrentCount));
 
-	//	TB_Count->SetColorAndOpacity(bNotEnough ? UB2UIManager::GetInstance()->TextColor_NonSatisfy : FLinearColor::White);
-	//	TB_Count->SetText(Count);
-	//}
+		TB_Count->SetColorAndOpacity(bNotEnough ? UB2UIManager::GetInstance()->TextColor_NonSatisfy : FLinearColor::White);
+		TB_Count->SetText(Count);
+	}
 
-	//if (TB_NeedCount.IsValid())
-	//	TB_NeedCount->SetText(FText::FromString(TEXT("/ ")+FString::FromInt(NeedCount)));
+	if (TB_NeedCount.IsValid())
+		TB_NeedCount->SetText(FText::FromString(TEXT("/ ") + FString::FromInt(NeedCount)));
 
-	//if (BTN_StuffTip.IsValid())
-	//	BTN_StuffTip->SetItemInfo(ItemIndex);
+	if (BTN_StuffTip.IsValid())
+		BTN_StuffTip->SetItemInfo(ItemIndex);
 }

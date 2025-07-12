@@ -2615,7 +2615,7 @@ void SetBlendColorForPaperSpriteBoundImage(UImage* InImageWithPaperSprite, const
 * MatineeActor 도 인자로 받는 마당에 연출용으로 보면 된다. 넣어주는 DataStore 에 맞춰서 플레이어 캐릭터의 외관을 한 SkeletalMeshActor spawn.
 * StageEventDirector 쪽에서 하는 일과 비슷한 일을 하는데 그걸 타지 않는 별도의 연출 기능을 사용하게 된 곳이 있어서 이 함수가 따로 만들어짐.
 */
-//class ASkeletalMeshActor* SpawnPuppetActor(FString TrackName, AMatineeActor* MatineeActor, EPCClass CharClass, const class ICharacterDataStore* DataStore, class UAnimationAsset* ToPlayAnimation)
+//class ASkeletalMeshActor* SpawnPuppetActor(FString TrackName, ALevelSequenceActor * MatineeActor, EPCClass CharClass, const class ICharacterDataStore* DataStore, class UAnimationAsset* ToPlayAnimation)
 //{
 ////	if (!DataStore)
 ////		return NULL;

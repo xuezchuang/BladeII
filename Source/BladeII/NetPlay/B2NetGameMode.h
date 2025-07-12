@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
+#include "UMG.h"
 //#include "BladeII.h"
 #include "BladeIIGameMode.h"
 #include "Channel.h"
@@ -130,8 +131,7 @@ public:
 	
 	TMap<uint32, FB2ModPlayerInfo>&	GetRemotePlayerInfoDatas();
 	void	ShutdownChannelIfStillExist();
-	//void	SendMessage(FString const&);
-	void	SendMessage2(FString const&);
+	void	SendGameMessage(FString const&);
 	void	SendMessageToHost(FString const&);
 	void	ChangeRoomPublicAccess();	// 방을 공개방으로 변경해준다.
 

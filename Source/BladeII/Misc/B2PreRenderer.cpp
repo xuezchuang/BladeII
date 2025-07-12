@@ -1643,9 +1643,9 @@ void UB2PreRenderer::SetupForPreRenderGM_PCClassPass(EPCClass InPCClass, bool bI
 
 	if (bIncludeSkillAnims)
 	{
-		//// 명시한 클래스의 SkillAnim 들. 각 PCClass 별 AnimBP 에 들어가 있는 전투 애니메이션들과 근본적으로 다를 것 없음. 단지 로딩되는 데이터 절감 면에서 따로 떼서 관리하는 거.
-		//const TArray<FCombinedPCSkillAnimID> SkillAnimsToPreLoad = ABladeIIGameMode::GetAllPCSkillAnimsOfClass(InPCClass);
-		//ConditionalSetupPreRenderObjectForPCSkillAnims(SkillAnimsToPreLoad, true);
+		// 명시한 클래스의 SkillAnim 들. 각 PCClass 별 AnimBP 에 들어가 있는 전투 애니메이션들과 근본적으로 다를 것 없음. 단지 로딩되는 데이터 절감 면에서 따로 떼서 관리하는 거.
+		const TArray<FCombinedPCSkillAnimID> SkillAnimsToPreLoad = ABladeIIGameMode::GetAllPCSkillAnimsOfClass(InPCClass);
+		ConditionalSetupPreRenderObjectForPCSkillAnims(SkillAnimsToPreLoad, true);
 	}
 
 	PostPreRenderSeupProcess();
@@ -1657,16 +1657,16 @@ void UB2PreRenderer::SetupForPreRenderGM_PCClassPass(EPCClass InPCClass, bool bI
 
 void UB2PreRenderer::SetupForPreRenderGM_PCSkillAnimPass(EPCClass InPCClass)
 {
-	//checkSlow(AllPreRenderDummy.Num() == 0); // 각 패스 간에 PreRenderDummy 를 재활용해서 사용하는 식이 된다면 이 check 가 맞지 않겠지..
+	checkSlow(AllPreRenderDummy.Num() == 0); // 각 패스 간에 PreRenderDummy 를 재활용해서 사용하는 식이 된다면 이 check 가 맞지 않겠지..
 
-	//const TArray<FCombinedPCSkillAnimID> SkillAnimsToPreLoad = ABladeIIGameMode::GetAllPCSkillAnimsOfClass(InPCClass);
-	//ConditionalSetupPreRenderObjectForPCSkillAnims(SkillAnimsToPreLoad, true); // 여기도 ForceSetup
+	const TArray<FCombinedPCSkillAnimID> SkillAnimsToPreLoad = ABladeIIGameMode::GetAllPCSkillAnimsOfClass(InPCClass);
+	ConditionalSetupPreRenderObjectForPCSkillAnims(SkillAnimsToPreLoad, true); // 여기도 ForceSetup
 
-	//PostPreRenderSeupProcess();
-	//if (AllPreRenderDummy.Num() > 0)
-	//{
-	//	bHadDoneAnyPreRender = true; // 아직 실제로 한 건 아니지만 이 플래그 목적 상 이쯤서 true 마크
-	//}
+	PostPreRenderSeupProcess();
+	if (AllPreRenderDummy.Num() > 0)
+	{
+		bHadDoneAnyPreRender = true; // 아직 실제로 한 건 아니지만 이 플래그 목적 상 이쯤서 true 마크
+	}
 }
 
 void UB2PreRenderer::SetupForPreRenderGM_DamageEffectInfo()

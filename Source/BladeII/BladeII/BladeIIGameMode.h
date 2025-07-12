@@ -242,7 +242,7 @@ public:
 	virtual TArray<EPCClass> GetPCClassesToMatineePreLoad();
 	/** Returns skill animation identifiers to pre-load. Skill anim data has big potion within whole PCClassInfo. */
 	virtual TArray<FCombinedPCSkillAnimID> GetPCSkillAnimsToPreLoad();
-	//static TArray<FCombinedPCSkillAnimID> GetAllPCSkillAnimsOfClass(EPCClass InCharClass);
+	static TArray<FCombinedPCSkillAnimID> GetAllPCSkillAnimsOfClass(EPCClass InCharClass);
 
 	//void TryAsyncLoadSkillAnims(ICharacterDataStore* TargetDataStore);
 	//TArray<FCombinedPCSkillAnimID> GetEquippedSkillAnimIDs(EPCClass PlayerClass, ICharacterDataStore* DataStore);
@@ -823,8 +823,8 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "BladeIIGame", DisplayName = "SetPauseAMB")
 	void SetPauseAMB(bool bPause);
 
-	//UFUNCTION(BlueprintCallable, Category = "BladeIIGame", DisplayName = "GetMatineePositionByEventName")
-	//static float GetMatineePositionByEventName(class AMatineeActor* MatineeActor, FName EventName);
+	UFUNCTION(BlueprintCallable, Category = "BladeIIGame", DisplayName = "GetMatineePositionByEventName")
+	static float GetMatineePositionByEventName(class ALevelSequenceActor* MatineeActor, FName EventName);
 
 	UFUNCTION(BlueprintCallable, Category = "BladeIIGame", DisplayName = "SetAllowCullDistance")
 	void B2GM_SetAllowCullDistance(bool bAllow, TArray<UPrimitiveComponent*> Components);
@@ -833,7 +833,7 @@ public:
 	virtual void PlayBGMCustomize(const FName& InName);
 
 	/** Use the designated KeyTiem of the first found camera track group of MatineeActor as current camera */
-	static void SetCameraMatineeCam(class AMatineeActor* MatineeActor, float KeyTime);
+	static void SetCameraMatineeCam(class ALevelSequenceActor * MatineeActor, float KeyTime);
 
 	FORCEINLINE void SetCurrentActiveActiveCameraActor(class AB2ActiveCameraActor* InActiveCam) { CurrentActiveActiveCameraActor = InActiveCam; }
 	FORCEINLINE class AB2ActiveCameraActor* GetCurrentActiveActiveCameraActor() { return CurrentActiveActiveCameraActor; }

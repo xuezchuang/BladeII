@@ -160,7 +160,7 @@ void AB2LobbyGameMode::BeginPlay()
 	//	//UWorld::GetMatineeActors() 이 함수가 있는데, CurrentLevel에 대해서만 찾아와서 아래처럼 코딩
 	//	for (FActorIterator It(World); It; ++It)
 	//	{
-	//		auto* MatineeActor = Cast<AMatineeActor>(*It);
+	//		auto* MatineeActor = Cast<ALevelSequenceActor >(*It);
 	//		if (MatineeActor)
 	//		{
 	//			MatineeActor->bNoCinematicModeControl = true;
@@ -3123,7 +3123,7 @@ void AB2LobbyGameMode::HideActorHasTag(FName Tag, bool bHide)
 	}
 }
 
-//void AB2LobbyGameMode::SetGuildMapChangeMatinee(class AMatineeActor* Atype, class AMatineeActor* Btype)
+//void AB2LobbyGameMode::SetGuildMapChangeMatinee(class ALevelSequenceActor * Atype, class ALevelSequenceActor * Btype)
 //{
 //	if (LobbySceneManager.GetCurrentLobbyScene() == ELobbyScene::ELobbyScene_GuildMapUI
 //		|| LobbySceneManager.GetCurrentLobbyScene() == ELobbyScene::ELobbyScene_Guild)
@@ -3286,12 +3286,12 @@ bool AB2LobbyGameMode::SelectLobbyMainCharacter(EPCClass SelectedClass)
 	return LobbySceneManager.SelectLobbyMainCharacter(SelectedClass);
 }
 //
-//void AB2LobbyGameMode::SetDefaultCameraMatinee(class AMatineeActor* DefaultMatinee)
+//void AB2LobbyGameMode::SetDefaultCameraMatinee(class ALevelSequenceActor * DefaultMatinee)
 //{
 //	LobbySceneManager.SetDefaultCameraMatinee(DefaultMatinee);
 //}
 //
-//void AB2LobbyGameMode::SetChapterViewMatinee(class AMatineeActor* ChapterMatinee)
+//void AB2LobbyGameMode::SetChapterViewMatinee(class ALevelSequenceActor * ChapterMatinee)
 //{
 //	LobbySceneManager.SetChapterViewMatinee(ChapterMatinee);
 //}
@@ -3334,12 +3334,12 @@ void AB2LobbyGameMode::AddLobbyFairyFlyingActor(EFairyType InType, class AB2Lobb
 	LobbySceneManager.AddLobbyFairyFlyingActor(InType, fairyactor);
 }
 
-//void AB2LobbyGameMode::AddSummonItemDisplayMatinee(bool bIsMultiple, bool bIsOpen,bool bIsFriendShip, class AMatineeActor* Matinee)
+//void AB2LobbyGameMode::AddSummonItemDisplayMatinee(bool bIsMultiple, bool bIsOpen,bool bIsFriendShip, class ALevelSequenceActor * Matinee)
 //{
 //	LobbySceneManager.AddSummonItemDisplayMatinee(bIsMultiple, bIsOpen, bIsFriendShip, Matinee);
 //}
 //
-//void AB2LobbyGameMode::AddSummonItemDisplayMatineeResult(class AMatineeActor* Matinee)
+//void AB2LobbyGameMode::AddSummonItemDisplayMatineeResult(class ALevelSequenceActor * Matinee)
 //{
 //	LobbySceneManager.AddSummonItemDisplayMatineeResult(Matinee);
 //}
@@ -3349,12 +3349,12 @@ void AB2LobbyGameMode::PlaySummonItemDisplayMatineeResult()
 	LobbySceneManager.PlaySummonItemDisplayMatineeResult();
 }
 
-//void AB2LobbyGameMode::OnFinishedHallOfFameDisplayMatinee(class AMatineeActor* Matinee)
+//void AB2LobbyGameMode::OnFinishedHallOfFameDisplayMatinee(class ALevelSequenceActor * Matinee)
 //{
 //	LobbySceneManager.OnFinishedHallOfFameDisplayMatinee(Matinee);
 //}
 
-//void AB2LobbyGameMode::OnFinishedSummonItemDisplayMatinee(AMatineeActor* Matinee)
+//void AB2LobbyGameMode::OnFinishedSummonItemDisplayMatinee(ALevelSequenceActor * Matinee)
 //{
 //	LobbySceneManager.OnFinishedSummonItemDisplayMatinee(Matinee);
 //}
@@ -3378,7 +3378,7 @@ void AB2LobbyGameMode::OnFinishedSummonItemDisplayResultMatinee()
 	LobbySceneManager.OnFinishedSummonItemDisplayResultMatinee();
 }
 
-//void AB2LobbyGameMode::OnChangedToFxSummonItemDisplayMatinee(AMatineeActor* Matinee)
+//void AB2LobbyGameMode::OnChangedToFxSummonItemDisplayMatinee(ALevelSequenceActor * Matinee)
 //{
 //	LobbySceneManager.OnChangedToFxSummonItemDisplayMatinee(Matinee);
 //}

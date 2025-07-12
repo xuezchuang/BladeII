@@ -16,6 +16,7 @@
 #include "Blueprint/WidgetLayoutLibrary.h"
 #include "Slate/SceneViewport.h"
 #include "B2UICostumeEnhancePopup.h"
+#include "Event.h"
 
 const int32 iCOSTUME_TAB_WEAPON = 0;
 const int32 iCOSTUME_TAB_ARMORS = 1;
@@ -164,7 +165,7 @@ void UB2UICostumePageInven::OnClickBTN_TabArmors()
 
 void UB2UICostumePageInven::OnClickBTN_TabMaterial()
 {
-	//RequestModifyCostumeNewFlag(LastSelectedPCClass, CurSelectedItemInvenTab);
+	RequestModifyCostumeNewFlag(LastSelectedPCClass, CurSelectedItemInvenTab);
 
 	UpdateTabBtnState(iCOSTUME_TAB_MATERIAL);
 
@@ -210,68 +211,68 @@ void UB2UICostumePageInven::SubscribeEvents()
 {
 	UnsubscribeEvents();
 
-	//CAPTURE_UOBJECT(UB2UICostumePageInven);
+	CAPTURE_UOBJECT(UB2UICostumePageInven);
 
-	//Issues.Add(LobbySetHeroMgmtModePCSelectionClass<EPCClass>::GetInstance().Subscribe2(
-	//	[Capture](EPCClass SelectionPCClass)
-	//{
-	//	if (Capture.IsValid())
-	//	{
-	//		Capture->RequestModifyCostumeNewFlag(Capture->LastSelectedPCClass, Capture->CurSelectedItemInvenTab);
-	//		Capture->UpdateCostumeInvenFromSelectionPCClass(SelectionPCClass);
-	//		Capture->CloseAllStandaloneUIFromUIManager();
-	//	}
-	//}
-	//));
+	Issues.Add(LobbySetHeroMgmtModePCSelectionClass<EPCClass>::GetInstance().Subscribe2(
+		[Capture](EPCClass SelectionPCClass)
+	{
+		if (Capture.IsValid())
+		{
+			Capture->RequestModifyCostumeNewFlag(Capture->LastSelectedPCClass, Capture->CurSelectedItemInvenTab);
+			Capture->UpdateCostumeInvenFromSelectionPCClass(SelectionPCClass);
+			Capture->CloseAllStandaloneUIFromUIManager();
+		}
+	}
+	));
 
-	//Issues.Add(UpdateLobbyInventoryControlClass<>::GetInstance().Subscribe2(
-	//[Capture]()
-	//{
-	//	if (Capture.IsValid())
-	//	{
-	//		Capture->UpdateCostumeInvenFromCurrentPCClass();
-	//	}
-	//}
-	//));
+	Issues.Add(UpdateLobbyInventoryControlClass<>::GetInstance().Subscribe2(
+	[Capture]()
+	{
+		if (Capture.IsValid())
+		{
+			Capture->UpdateCostumeInvenFromCurrentPCClass();
+		}
+	}
+	));
 
-	//Issues.Add(SuccesGetAccountCostumeAllClass<>::GetInstance().Subscribe2(
-	//	[Capture]()
-	//{
-	//	if (Capture.IsValid())
-	//	{
-	//		Capture->UpdateCostumeInvenFromCurrentPCClass();
-	//	}
-	//}
-	//));
+	Issues.Add(SuccesGetAccountCostumeAllClass<>::GetInstance().Subscribe2(
+		[Capture]()
+	{
+		if (Capture.IsValid())
+		{
+			Capture->UpdateCostumeInvenFromCurrentPCClass();
+		}
+	}
+	));
 
-	//Issues.Add(DeliveryModifyCostumeNewFlagClass<>::GetInstance().Subscribe2(
-	//	[Capture]()
-	//{
-	//	if (Capture.IsValid())
-	//	{
-	//		Capture->DeliveryModifyCostumeNewFlag();
-	//	}
-	//}
-	//));
+	Issues.Add(DeliveryModifyCostumeNewFlagClass<>::GetInstance().Subscribe2(
+		[Capture]()
+	{
+		if (Capture.IsValid())
+		{
+			Capture->DeliveryModifyCostumeNewFlag();
+		}
+	}
+	));
 
-	//Issues.Add(ForcedClickCostumeMaterialClass<bool>::GetInstance().Subscribe2(
-	//	[Capture](bool bFreezeTab)
-	//{
-	//	if (Capture.IsValid())
-	//	{
-	//		Capture->ForcedTabClickMaterial(bFreezeTab);
-	//	}
-	//}
-	//));
-	//Issues.Add(OnCallBackEnhanceCostumeInvenPageClass<const FB2Item&>::GetInstance().Subscribe2(
-	//	[Capture](const FB2Item& InItem)
-	//{
-	//	if (Capture.IsValid())
-	//	{
-	//		Capture->OnCallBackEnhance(InItem);
-	//	}
-	//}
-	//));
+	Issues.Add(ForcedClickCostumeMaterialClass<bool>::GetInstance().Subscribe2(
+		[Capture](bool bFreezeTab)
+	{
+		if (Capture.IsValid())
+		{
+			Capture->ForcedTabClickMaterial(bFreezeTab);
+		}
+	}
+	));
+	Issues.Add(OnCallBackEnhanceCostumeInvenPageClass<const FB2Item&>::GetInstance().Subscribe2(
+		[Capture](const FB2Item& InItem)
+	{
+		if (Capture.IsValid())
+		{
+			Capture->OnCallBackEnhance(InItem);
+		}
+	}
+	));
 }
 
 void UB2UICostumePageInven::UnsubscribeEvents()
@@ -355,134 +356,134 @@ void UB2UICostumePageInven::UpdateCostumeInvenFromCurrentPCClass()
 
 void UB2UICostumePageInven::UpdateCostumeInvenFromSelectionPCClass(EPCClass SelectionPCClass)
 {
-	//LastSelectedPCClass = SelectionPCClass;
+	LastSelectedPCClass = SelectionPCClass;
 
-	//if (CurSelectedItemInvenTab == EItemInvenType::EIIVT_Consumables)
-	//{
-	//	return;
-	//}
+	if (CurSelectedItemInvenTab == EItemInvenType::EIIVT_Consumables)
+	{
+		return;
+	}
 
-	//if (UIP_ScrollBoxWithGridPanelBP.IsValid() == false)
-	//{
-	//	return;
-	//}
+	if (UIP_ScrollBoxWithGridPanelBP.IsValid() == false)
+	{
+		return;
+	}
 
-	//InitScrollOffset();
+	InitScrollOffset();
 
-	//TArray<FB2Item> CurrPCItemList;
+	TArray<FB2Item> CurrPCItemList;
 
-	//AB2LobbyGameMode* LobbyGM = Cast<AB2LobbyGameMode>(UGameplayStatics::GetGameMode(GetOwningPlayer()));
-	//UB2LobbyInventory* LobbyInven = LobbyGM ? LobbyGM->GetLobbyInventory() : NULL;
-	//if (LobbyInven)
-	//{
-	//	LobbyInven->GetStoredItemList_ItemOpModeFilter(CurrPCItemList, CurSelectedItemInvenTab, SelectionPCClass, true);
-	//}
-	//
-	//const int32 iItemListArrayMax = CurrPCItemList.Num();
-	//for (int32 i = 0; i < iItemListArrayMax; ++i)
-	//{
-	//	if (CurrPCItemList.IsValidIndex(i) == false)
-	//	{
-	//		continue;
-	//	}
+	AB2LobbyGameMode* LobbyGM = Cast<AB2LobbyGameMode>(UGameplayStatics::GetGameMode(GetOwningPlayer()));
+	UB2LobbyInventory* LobbyInven = LobbyGM ? LobbyGM->GetLobbyInventory() : NULL;
+	if (LobbyInven)
+	{
+		LobbyInven->GetStoredItemList_ItemOpModeFilter(CurrPCItemList, CurSelectedItemInvenTab, SelectionPCClass, true);
+	}
 
-	//	if (ArrayCostumeItemSlot.IsValidIndex(i) == false)
-	//	{
-	//		auto* pCostumeItemSlot = CreateWidget<UB2UICostumeItemSlot>(GetOwningPlayer(), CostumeItemSlotClass);
-	//		pCostumeItemSlot->Init();
+	const int32 iItemListArrayMax = CurrPCItemList.Num();
+	for (int32 i = 0; i < iItemListArrayMax; ++i)
+	{
+		if (CurrPCItemList.IsValidIndex(i) == false)
+		{
+			continue;
+		}
 
-	//		if (auto pGridSlot = Cast<UUniformGridSlot>(UIP_ScrollBoxWithGridPanelBP->UniformGridPanelAddChild(pCostumeItemSlot)))
-	//		{
-	//			pGridSlot->SetRow(i / iHorizontalMax);
-	//			pGridSlot->SetColumn(i % iHorizontalMax);
-	//		}
-	//		
-	//		ArrayCostumeItemSlot.Add(pCostumeItemSlot);
-	//	}
+		if (ArrayCostumeItemSlot.IsValidIndex(i) == false)
+		{
+			auto* pCostumeItemSlot = CreateWidget<UB2UICostumeItemSlot>(GetOwningPlayer(), CostumeItemSlotClass);
+			pCostumeItemSlot->Init();
 
-	//	ArrayCostumeItemSlot[i]->SetupManualScrollBoxSender_byReceiver(this, UIP_ScrollBoxWithGridPanelBP->GetB2ScrollBox());
-	//	ArrayCostumeItemSlot[i]->SetVisibility(ESlateVisibility::Visible);
-	//	ArrayCostumeItemSlot[i]->UpdateCostumeItemSlot_FromFB2Item(CurrPCItemList[i]);
-	//}
+			if (auto pGridSlot = Cast<UUniformGridSlot>(UIP_ScrollBoxWithGridPanelBP->UniformGridPanelAddChild(pCostumeItemSlot)))
+			{
+				pGridSlot->SetRow(i / iHorizontalMax);
+				pGridSlot->SetColumn(i % iHorizontalMax);
+			}
 
-	//const int32 iItemSlotArrayMax = ArrayCostumeItemSlot.Num();
-	//for (int32 i = iItemListArrayMax; i < iItemSlotArrayMax; ++i)
-	//{
-	//	if (ArrayCostumeItemSlot.IsValidIndex(i))
-	//	{
-	//		ArrayCostumeItemSlot[i]->SetVisibility(ESlateVisibility::Collapsed);
-	//	}
-	//}
+			ArrayCostumeItemSlot.Add(pCostumeItemSlot);
+		}
 
-	//RedDotCondition_TapState();
-	//UpdateCostumeInvenItemCounter(true);
+		ArrayCostumeItemSlot[i]->SetupManualScrollBoxSender_byReceiver(this, UIP_ScrollBoxWithGridPanelBP->GetB2ScrollBox());
+		ArrayCostumeItemSlot[i]->SetVisibility(ESlateVisibility::Visible);
+		ArrayCostumeItemSlot[i]->UpdateCostumeItemSlot_FromFB2Item(CurrPCItemList[i]);
+	}
+
+	const int32 iItemSlotArrayMax = ArrayCostumeItemSlot.Num();
+	for (int32 i = iItemListArrayMax; i < iItemSlotArrayMax; ++i)
+	{
+		if (ArrayCostumeItemSlot.IsValidIndex(i))
+		{
+			ArrayCostumeItemSlot[i]->SetVisibility(ESlateVisibility::Collapsed);
+		}
+	}
+
+	RedDotCondition_TapState();
+	UpdateCostumeInvenItemCounter(true);
 }
 
 void UB2UICostumePageInven::UpdateCostumeInvenFromMaterials()
 {
-	//if (UIP_ScrollBoxWithGridPanelBP.IsValid() == false)
-	//{
-	//	return;
-	//}
+	if (UIP_ScrollBoxWithGridPanelBP.IsValid() == false)
+	{
+		return;
+	}
 
-	//InitScrollOffset();
+	InitScrollOffset();
 
-	//TArray<FB2Item> CurrPCItemList;
-	//TArray<FB2Item> TempPCItemList;
+	TArray<FB2Item> CurrPCItemList;
+	TArray<FB2Item> TempPCItemList;
 
-	//AB2LobbyGameMode* LobbyGM = Cast<AB2LobbyGameMode>(UGameplayStatics::GetGameMode(GetOwningPlayer()));
-	//UB2LobbyInventory* LobbyInven = LobbyGM ? LobbyGM->GetLobbyInventory() : NULL;
-	//if (LobbyInven)
-	//{
-	//	LobbyInven->GetStoredItemList_ItemOpModeFilter(TempPCItemList, CurSelectedItemInvenTab, EPCClass::EPC_End, true);
-	//	
-	//	for (auto Item : TempPCItemList)
-	//	{
-	//		if (Item.ItemRefID == FItemRefIDHelper::ITEM_REF_ID_ENHANCE_COSTUMEWEAPON_ITEM ||
-	//			Item.ItemRefID == FItemRefIDHelper::ITEM_REF_ID_ENHANCE_COSTUMEARMOR_ITEM)
-	//		{
-	//			CurrPCItemList.Add(Item);
-	//		}
-	//	}
-	//}
+	AB2LobbyGameMode* LobbyGM = Cast<AB2LobbyGameMode>(UGameplayStatics::GetGameMode(GetOwningPlayer()));
+	UB2LobbyInventory* LobbyInven = LobbyGM ? LobbyGM->GetLobbyInventory() : NULL;
+	if (LobbyInven)
+	{
+		LobbyInven->GetStoredItemList_ItemOpModeFilter(TempPCItemList, CurSelectedItemInvenTab, EPCClass::EPC_End, true);
+		
+		for (auto Item : TempPCItemList)
+		{
+			if (Item.ItemRefID == FItemRefIDHelper::ITEM_REF_ID_ENHANCE_COSTUMEWEAPON_ITEM ||
+				Item.ItemRefID == FItemRefIDHelper::ITEM_REF_ID_ENHANCE_COSTUMEARMOR_ITEM)
+			{
+				CurrPCItemList.Add(Item);
+			}
+		}
+	}
 
-	//const int32 iItemListArrayMax = CurrPCItemList.Num();
-	//for (int32 i = 0; i < iItemListArrayMax; ++i)
-	//{
-	//	if (CurrPCItemList.IsValidIndex(i) == false)
-	//	{
-	//		continue;
-	//	}
+	const int32 iItemListArrayMax = CurrPCItemList.Num();
+	for (int32 i = 0; i < iItemListArrayMax; ++i)
+	{
+		if (CurrPCItemList.IsValidIndex(i) == false)
+		{
+			continue;
+		}
 
-	//	if (ArrayCostumeItemSlot.IsValidIndex(i) == false)
-	//	{
-	//		auto* pCostumeItemSlot = CreateWidget<UB2UICostumeItemSlot>(GetOwningPlayer(), CostumeItemSlotClass);
-	//		pCostumeItemSlot->Init();
+		if (ArrayCostumeItemSlot.IsValidIndex(i) == false)
+		{
+			auto* pCostumeItemSlot = CreateWidget<UB2UICostumeItemSlot>(GetOwningPlayer(), CostumeItemSlotClass);
+			pCostumeItemSlot->Init();
 
-	//		if (auto pGridSlot = Cast<UUniformGridSlot>(UIP_ScrollBoxWithGridPanelBP->UniformGridPanelAddChild(pCostumeItemSlot)))
-	//		{
-	//			pGridSlot->SetRow(i / iHorizontalMax);
-	//			pGridSlot->SetColumn(i % iHorizontalMax);
-	//		}
+			if (auto pGridSlot = Cast<UUniformGridSlot>(UIP_ScrollBoxWithGridPanelBP->UniformGridPanelAddChild(pCostumeItemSlot)))
+			{
+				pGridSlot->SetRow(i / iHorizontalMax);
+				pGridSlot->SetColumn(i % iHorizontalMax);
+			}
 
-	//		ArrayCostumeItemSlot.Add(pCostumeItemSlot);
-	//	}
+			ArrayCostumeItemSlot.Add(pCostumeItemSlot);
+		}
 
-	//	ArrayCostumeItemSlot[i]->SetupManualScrollBoxSender_byReceiver(this, UIP_ScrollBoxWithGridPanelBP->GetB2ScrollBox());
-	//	ArrayCostumeItemSlot[i]->SetVisibility(ESlateVisibility::Visible);
-	//	ArrayCostumeItemSlot[i]->UpdateCostumeItemSlot_FromFB2Item(CurrPCItemList[i]);
-	//}
+		ArrayCostumeItemSlot[i]->SetupManualScrollBoxSender_byReceiver(this, UIP_ScrollBoxWithGridPanelBP->GetB2ScrollBox());
+		ArrayCostumeItemSlot[i]->SetVisibility(ESlateVisibility::Visible);
+		ArrayCostumeItemSlot[i]->UpdateCostumeItemSlot_FromFB2Item(CurrPCItemList[i]);
+	}
 
-	//const int32 iItemSlotArrayMax = ArrayCostumeItemSlot.Num();
-	//for (int32 i = iItemListArrayMax; i < iItemSlotArrayMax; ++i)
-	//{
-	//	if (ArrayCostumeItemSlot.IsValidIndex(i))
-	//	{
-	//		ArrayCostumeItemSlot[i]->SetVisibility(ESlateVisibility::Collapsed);
-	//	}
-	//}
-	//RedDotCondition_TapState();
-	//UpdateCostumeInvenItemCounter(false);
+	const int32 iItemSlotArrayMax = ArrayCostumeItemSlot.Num();
+	for (int32 i = iItemListArrayMax; i < iItemSlotArrayMax; ++i)
+	{
+		if (ArrayCostumeItemSlot.IsValidIndex(i))
+		{
+			ArrayCostumeItemSlot[i]->SetVisibility(ESlateVisibility::Collapsed);
+		}
+	}
+	RedDotCondition_TapState();
+	UpdateCostumeInvenItemCounter(false);
 }
 
 void UB2UICostumePageInven::CloseAllStandaloneUIFromUIManager()
@@ -579,50 +580,50 @@ void UB2UICostumePageInven::ForcedTabClickMaterial(bool bFreezeTab)
 
 void UB2UICostumePageInven::OnCallBackEnhance(const FB2Item& InItem)
 {
-	//bool bIsEnhanceAble = InItem.EnhanceLevel < MAX_ENHANCE_COSTUME_LEVEL;
-	//if (bIsEnhanceAble)
-	//{
-	//	float fPoupSizeX = 0.f;
+	bool bIsEnhanceAble = InItem.EnhanceLevel < MAX_ENHANCE_COSTUME_LEVEL;
+	if (bIsEnhanceAble)
+	{
+		float fPoupSizeX = 0.f;
 
-	//	float fConvertScale = 1.f / UWidgetLayoutLibrary::GetViewportScale(this);
+		float fConvertScale = 1.f / UWidgetLayoutLibrary::GetViewportScale(this);
 
-	//	FDisplayMetrics Metrics;
-	//	FSlateApplication::Get().GetDisplayMetrics(Metrics);
-	//	FVector2D vSafePaddingSize(Metrics.TitleSafePaddingSize);
+		FDisplayMetrics Metrics;
+		FSlateApplication::Get().GetDisplayMetrics(Metrics);
+		FVector2D vSafePaddingSize(Metrics.TitleSafePaddingSize);
 
-	//	vSafePaddingSize.X *= fConvertScale;
+		vSafePaddingSize.X *= fConvertScale;
 
-	//	FVector2D vPopupPostion(vSafePaddingSize.X, 0.0f);
+		FVector2D vPopupPostion(vSafePaddingSize.X, 0.0f);
 
-	//	if (UGameViewportClient* ViewportClient = this->GetWorld()->GetGameViewport())
-	//	{
-	//		if (FSceneViewport* SceneViewport = ViewportClient->GetGameViewport())
-	//		{
-	//			fPoupSizeX = SceneViewport->GetCachedGeometry().GetLocalSize().X * fConvertScale * 0.5;
-	//			fPoupSizeX -= vSafePaddingSize.X;
-	//		}
+		if (UGameViewportClient* ViewportClient = this->GetWorld()->GetGameViewport())
+		{
+			if (FSceneViewport* SceneViewport = ViewportClient->GetGameViewport())
+			{
+				fPoupSizeX = SceneViewport->GetCachedGeometry().GetLocalSize().X * fConvertScale * 0.5;
+				fPoupSizeX -= vSafePaddingSize.X;
+			}
 
-	//	}
+		}
 
-	//	auto* UI = UB2UIManager::GetInstance()->OpenUI<UB2UICostumeEnhancePopup>(UIFName::CostumeEnhancePopup);
-	//	if (UI)
-	//	{
-	//		UI->InitCostumeItemInfoPopup(vPopupPostion, fPoupSizeX);
-	//		UI->UpdatePopupInfo(InItem);
-	//	}
+		auto* UI = UB2UIManager::GetInstance()->OpenUI<UB2UICostumeEnhancePopup>(UIFName::CostumeEnhancePopup);
+		if (UI)
+		{
+			UI->InitCostumeItemInfoPopup(vPopupPostion, fPoupSizeX);
+			UI->UpdatePopupInfo(InItem);
+		}
 
-	//	ForcedClickCostumeMaterialClass<bool>::GetInstance().Signal(true);
-	//}
-	//else
-	//{
-	//	bool bIsWeapon = InItem.InventoryType == EItemInvenType::EIIVT_CostumeWeapon;
-	//	if (bIsWeapon)
-	//	{
-	//		OnClickBTN_TabWeapon();
-	//	}
-	//	else
-	//	{
-	//		OnClickBTN_TabArmors();
-	//	}
-	//}
+		ForcedClickCostumeMaterialClass<bool>::GetInstance().Signal(true);
+	}
+	else
+	{
+		bool bIsWeapon = InItem.InventoryType == EItemInvenType::EIIVT_CostumeWeapon;
+		if (bIsWeapon)
+		{
+			OnClickBTN_TabWeapon();
+		}
+		else
+		{
+			OnClickBTN_TabArmors();
+		}
+	}
 }

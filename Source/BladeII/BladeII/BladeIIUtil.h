@@ -704,7 +704,7 @@ void SetImageBrushFromPaperSprite(UImage* InImageToSetBrush, class UPaperSprite*
 /** Some workaround needed because we can't get MID from Image widget with PaperSprite. */
 void SetBlendColorForPaperSpriteBoundImage(UImage* InImageWithPaperSprite, const FLinearColor InBlendColor);
 
-//class ASkeletalMeshActor* SpawnPuppetActor(FString TrackName, AMatineeActor* MatineeActor, EPCClass CharClass, const class ICharacterDataStore* DataStore, class UAnimationAsset* ToPlayAnimation);
+//class ASkeletalMeshActor* SpawnPuppetActor(FString TrackName, ALevelSequenceActor * MatineeActor, EPCClass CharClass, const class ICharacterDataStore* DataStore, class UAnimationAsset* ToPlayAnimation);
 
 /** Replacing deprecated static UNavigationSystem::GetRandomReachablePointInRadius.. */
 FVector GetRandomReachablePointInRadiusWithCurrNavSys(UWorld* InWorld, const FVector& Origin, float Radius, ANavigationData* NavData = NULL, TSubclassOf<UNavigationQueryFilter> FilterClass = NULL);

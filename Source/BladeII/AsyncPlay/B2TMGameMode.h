@@ -3,6 +3,8 @@
 #include "B2AsyncGameMode.h"
 #include "B2UIDocTeamMatch.h"
 #include "../DataStore/B2ModPlayerInfoData.h"
+#include "../BladeII/BladeIIGameMode.h"
+
 #include "B2TMGameMode.generated.h"
 
 enum class ETeamMatchState : uint8
@@ -58,7 +60,7 @@ public:
 	void SetGameMode(class AB2TMGameMode* InGameMode);
 
 	void SetMatchLobbyResources(
-		class AMatineeActor* InMatinee, 
+		class ALevelSequenceActor* InMatinee,
 		const FMatchingAnims& Gladiator,
 		const FMatchingAnims& Assassin,
 		const FMatchingAnims& Wizard,
@@ -73,7 +75,7 @@ public:
 	void Tick(float DeltaSeconds);
 protected:
 	ETeamMatchState CurrentState;
-	class AMatineeActor* LobbyMatinee;
+	class ALevelSequenceActor * LobbyMatinee;
 	TArray<FMatchingAnims> AnimArray;
 	TArray<float> CharacterLocationZ;
 	TArray<class ASkeletalMeshActor*> SpawnedActors;
@@ -172,14 +174,14 @@ public:
 	virtual void HandleFinishBattle();
 	virtual void Tick(float DeltaSeconds) override;
 
-	//UFUNCTION(BlueprintCallable, Category = "BladeII")
-	//void SetMatchLobbyResources(
-	//	class AMatineeActor* InMatinee, 
-	//	const FMatchingAnims& Gladiator,
-	//	const FMatchingAnims& Assassin,
-	//	const FMatchingAnims& Wizard,
-	//	const FMatchingAnims& Fighter
-	//);
+	UFUNCTION(BlueprintCallable, Category = "BladeII")
+	void SetMatchLobbyResources(
+		class ALevelSequenceActor* InMatinee,
+		const FMatchingAnims& Gladiator,
+		const FMatchingAnims& Assassin,
+		const FMatchingAnims& Wizard,
+		const FMatchingAnims& Fighter
+	);
 	UFUNCTION(BlueprintCallable, Category = "BladeII")
 	void SetMatchLobbyCharacterLocationZ(float GladiatorZ, float AssassinZ, float WizardZ, float FighterZ);
 
@@ -230,7 +232,7 @@ public:
 
 	static int8 MyTeamNum;
 	static int8 OpponentTeamNum;
-	//static int32 NumCharactersOfTeam;
+	static int32 NumCharactersOfTeam;
 	virtual int32 GetNumCharactersOfTeam() const
 	{
 		return 3;

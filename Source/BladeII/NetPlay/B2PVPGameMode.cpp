@@ -2220,7 +2220,7 @@ ABladeIIPlayerAIController* AB2PVPGameMode::SpawnAIController(FVector const& Spa
 
 //
 //void AB2PVPGameMode::SetMatchLobbyResources(
-//	class AMatineeActor* InMatinee,
+//	class ALevelSequenceActor * InMatinee,
 //	const FMatchingAnims& Gladiator,
 //	const FMatchingAnims& Assassin,
 //	const FMatchingAnims& Wizard,
@@ -2312,7 +2312,7 @@ void FPVPMatchSceneManager::SetGameMode(class AB2PVPGameMode* InGameMode)
 }
 
 void FPVPMatchSceneManager::SetMatchLobbyResources(
-	class AMatineeActor* InMatinee,
+	class ALevelSequenceActor * InMatinee,
 	const FMatchingAnims& Gladiator,
 	const FMatchingAnims& Assassin,
 	const FMatchingAnims& Wizard,

@@ -1198,7 +1198,7 @@ int32 AB2RaidGameMode::GetBonusPlayerNetID(uint32 BonusNum)
 
 FVector AB2RaidGameMode::GetActorPositionFromMatineeActor(int32 PlayerIndex, bool IsWin)
 {
-	//AMatineeActor* MatineeActor = IsWin ? SuccessResultMatinee : FailResultMatinee;
+	//ALevelSequenceActor * MatineeActor = IsWin ? SuccessResultMatinee : FailResultMatinee;
 
 	//if (!MatineeActor)
 		return FVector();
@@ -2744,8 +2744,8 @@ void AB2RaidGameMode::ReturnToLobby()
 	//OpenBladeIILobbyCommon(this); // 씬 전환 예약 후 본격 로비 맵 로딩
 }
 
-//void AB2RaidGameMode::SetMatchLobbyResources(class AMatineeActor* IsSuccessMatinee, 
-//	class AMatineeActor* InFailMatinee,
+//void AB2RaidGameMode::SetMatchLobbyResources(class ALevelSequenceActor * IsSuccessMatinee, 
+//	class ALevelSequenceActor * InFailMatinee,
 //	AActor* ResultActor01,
 //	AActor* ResultActor02,
 //	AActor* ResultActor03,

@@ -528,7 +528,7 @@ public:
 	FORCEINLINE float GetTagCooltimeDecbyPassive() const { return GetCachedSkillOption().TagCooltimeDecbyPassive; }
 
 	void SetCurrentOwnerPlayer(ABladeIIPlayer* NewOwner);	
-	//FORCEINLINE class ICharacterDataStore* GetCurrentCharDataStore() const { return CurrentOwnerPlayer ? CurrentOwnerPlayer->GetCharacterDataStore() : nullptr; }
+	FORCEINLINE class ICharacterDataStore* GetCurrentCharDataStore() const { return CurrentOwnerPlayer ? CurrentOwnerPlayer->GetCharacterDataStore() : nullptr; }
 
 	void UpdatePlayerBuffChanged(const TArray<UB2Buff_Base*>& BuffList);
 

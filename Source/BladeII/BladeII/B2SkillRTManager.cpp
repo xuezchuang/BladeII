@@ -36,16 +36,16 @@ DEFINE_LOG_CATEGORY_STATIC(LogB2SkillRTManager, Log, All);
 
 void FInputBoundSkillState_Base::InitSkillState(UB2SkillRTManager* SkillRTManager, int32 InSkillID, EPCClass InPCClass, EAttackState InAttackState, float InMaxCooltime, float InEnableWeaponSkillPoint, bool bWeaponSkill)
 {
-	//BLADE2_SCOPE_CYCLE_COUNTER(FInputBoundSkillState_Base_InitSkillState);
-	//check(SkillRTManager);
+	BLADE2_SCOPE_CYCLE_COUNTER(FInputBoundSkillState_Base_InitSkillState);
+	check(SkillRTManager);
 
-	//SkillID = InSkillID;
-	//UsePCClass = InPCClass;
-	//MappingAttackState = InAttackState;
-	//MaxCooltime = InMaxCooltime;
-	//EnableWeaponSkillPoint = InEnableWeaponSkillPoint;
-	//IncreaseMotion = UB2SkillRTManager::GetCharacterSkillIncMotionValue(UsePCClass, GetB2GameModeType(SkillRTManager), SkillID, SkillRTManager->GetCurrentCharDataStore());
-	//bCurrentSuggest = false;
+	SkillID = InSkillID;
+	UsePCClass = InPCClass;
+	MappingAttackState = InAttackState;
+	MaxCooltime = InMaxCooltime;
+	EnableWeaponSkillPoint = InEnableWeaponSkillPoint;
+	IncreaseMotion = UB2SkillRTManager::GetCharacterSkillIncMotionValue(UsePCClass, GetB2GameModeType(SkillRTManager), SkillID, SkillRTManager->GetCurrentCharDataStore());
+	bCurrentSuggest = false;
 
 	ResetSkillState(SkillRTManager);
 }

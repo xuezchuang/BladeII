@@ -134,7 +134,7 @@ public:
 	virtual void NativeTick(const FGeometry& MyGeometry, float InDeltaTime) override;
 	virtual void UpdateStaticText() override;
 
-	void ChangeSummonItemCardMatineeActorToFX(const TArray<FB2Item>& Items, class AMatineeActor* Matinee);
+	void ChangeSummonItemCardMatineeActorToFX(const TArray<FB2Item>& Items, class ALevelSequenceActor * Matinee);
 	void UpdateLocationSummonItemFXs();
 	void UpdateLocationSummonItemFX(USkeletalMeshComponent* Mesh, int32 Index);
 	void UpdateLocationSummonItemUIs();

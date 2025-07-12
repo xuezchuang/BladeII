@@ -19,6 +19,7 @@
 #include "B2CodeTable.h"
 
 #include "BladeIIGameImpl.h"
+#include "../UI/Widget/B2UITutorialBattleMain.h"
 
 #define REGISTE_PHASECLEAR_CALLBACK(TutorialNum)											 		\
 		{																							\
@@ -33,7 +34,7 @@
 AB2TutorialGameMode::AB2TutorialGameMode(const FObjectInitializer& ObjectInitializer)
 	:Super(ObjectInitializer)
 {
-	//BattleMainUI = nullptr;
+	BattleMainUI = nullptr;
 	GameRule = nullptr;
 
 	bVisibleVirtualJoystick = false;
@@ -232,21 +233,21 @@ void AB2TutorialGameMode::SubscribeEvents()
 
 void AB2TutorialGameMode::SetupUIScene()
 {
-	//// BattleMain 사용 X
-	//UB2UIManager::GetInstance()->ChangeUIScene(EUIScene::TutorialBattleMain);
+	// BattleMain 사용 X
+	UB2UIManager::GetInstance()->ChangeUIScene(EUIScene::TutorialBattleMain);
 
-	//if (BattleMainUI == nullptr)
-	//{
-	//	BattleMainUI = UB2UIManager::GetInstance()->GetUI<UB2UITutorialBattleMain>(UIFName::TutorialBattleMain);
-	//	ensure(BattleMainUI != nullptr);
+	if (BattleMainUI == nullptr)
+	{
+		BattleMainUI = UB2UIManager::GetInstance()->GetUI<UB2UITutorialBattleMain>(UIFName::TutorialBattleMain);
+		ensure(BattleMainUI != nullptr);
 
-	//	BattleMainUI->OnStageBegin();
-	//}
+		BattleMainUI->OnStageBegin();
+	}
 
-	//InitTutorialUI();
+	InitTutorialUI();
 
-	//SetPlayerAutoType(AutoBattleType::NONE);
-	////TogglePlayerAutoStateClass<>::GetInstance().Signal();
+	SetPlayerAutoType(AutoBattleType::NONE);
+	TogglePlayerAutoStateClass<>::GetInstance().Signal();
 }
 
 void AB2TutorialGameMode::BeginDestroy()
@@ -1171,31 +1172,31 @@ void AB2TutorialGameMode::OnMobAttackNotify()
 void AB2TutorialGameMode::OnMobStopAttackNotify()
 {
 	UE_LOG(LogBladeII, Log, TEXT("@@ OnMobStopAttackNotify"));
-//
-//	if (GetCurrentTutorial() == ETutorialNumber::Tutorial_4)
-//	{
-//		if (!bCountAttackSuccess)
-//		{
-//			OnInputGuard();
-//		}
-//	}
+
+	if (GetCurrentTutorial() == ETutorialNumber::Tutorial_4)
+	{
+		if (!bCountAttackSuccess)
+		{
+			OnInputGuard();
+		}
+	}
 }
 
 void AB2TutorialGameMode::OnCharacterDamaged(ABladeIICharacter* VictimCharacter, float Damage)
 {
-	//if (VictimCharacter && GetCurrentTutorialPhase())
-	//{
-	//	if (GetCurrentTutorialPhase()->CompleteConditionType == ETutorialConditionType::WaitingForQTEPreparing &&
-	//		GetCurrentTutorial() == ETutorialNumber::Tutorial_7)
-	//	{
-	//		SetMinoQTEState(VictimCharacter);
-	//	}
-	//}
+	if (VictimCharacter && GetCurrentTutorialPhase())
+	{
+		if (GetCurrentTutorialPhase()->CompleteConditionType == ETutorialConditionType::WaitingForQTEPreparing &&
+			GetCurrentTutorial() == ETutorialNumber::Tutorial_7)
+		{
+			SetMinoQTEState(VictimCharacter);
+		}
+	}
 
-	//if (bMinoAttackVibration)
-	//{
-	//	StartForceFeedback();
-	//}
+	if (bMinoAttackVibration)
+	{
+		StartForceFeedback();
+	}
 }
 
 void AB2TutorialGameMode::SetMinoQTEState(ABladeIICharacter* VictimCharacter)

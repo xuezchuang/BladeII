@@ -436,11 +436,11 @@ void AB2CounterAttackGameMode::MoveCharacters(const FVector& OriginDiffMove, boo
 	//MovedDelta += DiffMove;
 	//
 
-	//for (TActorIterator<AMatineeActor> It(GetWorld()); It; ++It)
+	//for (TActorIterator<ALevelSequenceActor > It(GetWorld()); It; ++It)
 	//{
-	//	//AMatineeActor::ApplyWorldOffset을 부르려했는데,
+	//	//ALevelSequenceActor ::ApplyWorldOffset을 부르려했는데,
 	//	//Attache된 child actor의 경우, movement가 relative라 원하는 그림이 나오지 않음..
-	//	AMatineeActor* Matinee = (*It);
+	//	ALevelSequenceActor * Matinee = (*It);
 	//	if (Matinee && Matinee->MatineeData)
 	//	{
 	//		if (!Matinee->bIsPlaying)

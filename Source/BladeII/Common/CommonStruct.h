@@ -5,6 +5,7 @@
 //#include "TypeList.h"
 
 #include "CommonStructCombatOption.h" // A part of CommonStruct.h
+#include <variant>
 
 UENUM(BlueprintType)
 enum class EPCClass : uint8

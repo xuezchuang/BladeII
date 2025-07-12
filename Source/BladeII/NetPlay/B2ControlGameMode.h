@@ -33,9 +33,9 @@ struct FControlMatchAnims
 	GENERATED_BODY()
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		class UAnimationAsset* Idle;
+	class UAnimationAsset* Idle;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		class UAnimationAsset* Mvp;
+	class UAnimationAsset* Mvp;
 };
 
 UENUM()
@@ -80,7 +80,7 @@ public:
 	EControlMatchSceneState GetState() { return CurrentState; }
 
 	void SetGameMode(class AB2ControlGameMode* InGameMode);
-	void SetMatchLobbyResources(class AMatineeActor* InResultMatinee,
+	void SetMatchLobbyResources(class ALevelSequenceActor * InResultMatinee,
 		class AB2StageEventDirector* InIntroEventDirector,
 		const FControlMatchAnims& Gladiator,
 		const FControlMatchAnims& Assassin,
@@ -105,7 +105,7 @@ public:
 private:
 	EControlMatchSceneState CurrentState;
 
-	class AMatineeActor* ResultMatinee;
+	class ALevelSequenceActor * ResultMatinee;
 	TArray<FControlMatchAnims> AnimArray;
 	TArray<class ASkeletalMeshActor*> SpawnedActors;
 
@@ -232,7 +232,7 @@ public:
 
 	virtual bool IsAllowCameraWorking() override;
 
-	//virtual EResurrectGameModeType GetResurrectGameModeType() override { return EResurrectGameModeType::EResurrectType_OnlyClientMode; }
+	virtual EResurrectGameModeType GetResurrectGameModeType() override { return EResurrectGameModeType::EResurrectType_OnlyClientMode; }
 
 	virtual void ForceResurrectLocalPlayer();
 
@@ -247,14 +247,14 @@ public:
 
 	void SetReady();
 
-	//UFUNCTION(BlueprintCallable, Category = "ControlObject")
-	//void SetControlObject(class ABladeIINetControlObject* InControlObject);
+	UFUNCTION(BlueprintCallable, Category = "ControlObject")
+	void SetControlObject(class ABladeIINetControlObject* InControlObject);
 
 	FVector GetControlObjectLocation();
 	float GetControlObjectViewLimitLength();
 
-	//UFUNCTION(BlueprintCallable, Category = "ControlObject")
-	//void AddSanctuaryControlGame(class AB2SanctuaryControlGame* InSanctuary);
+	UFUNCTION(BlueprintCallable, Category = "ControlObject")
+	void AddSanctuaryControlGame(class AB2SanctuaryControlGame* InSanctuary);
 	
 	void SendChangeControlState(uint8 nNewState, float fControlPointGageRed, float fControlPointGageBlue, bool bResetConquestGage);
 	void AckChangeControlState(uint8 nNewState, float fControlPointGageRed, float fControlPointGageBlue, bool bResetConquestGage);
@@ -300,27 +300,27 @@ public:
 	int32 GetMyTeamNum();
 
 	UFUNCTION(BlueprintCallable, Category = "BladeII")
-		void FinishReadyToStartGame();
+	void FinishReadyToStartGame();
 
-	//UFUNCTION(BlueprintCallable, Category = "BladeII")
-	//	void SetMatchLobbyResources(class AMatineeActor* InResultMatinee,
-	//		class AB2StageEventDirector* InIntroEventDirector,
-	//		const FControlMatchAnims& Gladiator,
-	//		const FControlMatchAnims& Assassin,
-	//		const FControlMatchAnims& Wizard,
-	//		const FControlMatchAnims& Fighter,
-	//		TArray<AEmitter*> EmitterRed,
-	//		TArray<AEmitter*> EmitterBlue,
-	//		AEmitter* WinEmitterRed,
-	//		AEmitter* WinEmitterBlue);
+	UFUNCTION(BlueprintCallable, Category = "BladeII")
+	void SetMatchLobbyResources(class ALevelSequenceActor* InResultMatinee,
+		class AB2StageEventDirector* InIntroEventDirector,
+		const FControlMatchAnims& Gladiator,
+		const FControlMatchAnims& Assassin,
+		const FControlMatchAnims& Wizard,
+		const FControlMatchAnims& Fighter,
+		TArray<AEmitter*> EmitterRed,
+		TArray<AEmitter*> EmitterBlue,
+		AEmitter* WinEmitterRed,
+		AEmitter* WinEmitterBlue);
 
-	//UFUNCTION(BlueprintCallable, Category = "BladeII")
-	//void SetTutorialCamera(class AB2ActiveCameraActor* pCenterCamActor, 
-	//	class AB2ActiveCameraActor* pSanctuaryBottomCamActor, 
-	//	class AB2ActiveCameraActor* pSanctuaryTopCamActor);
+	UFUNCTION(BlueprintCallable, Category = "BladeII")
+	void SetTutorialCamera(class AB2ActiveCameraActor* pCenterCamActor,
+		class AB2ActiveCameraActor* pSanctuaryBottomCamActor,
+		class AB2ActiveCameraActor* pSanctuaryTopCamActor);
 
-	//UFUNCTION(BlueprintCallable, Category = "BladeII")
-	//void SetDeadWatchingCamera(class AB2ActiveCameraActor* pCamActor);
+	UFUNCTION(BlueprintCallable, Category = "BladeII")
+	void SetDeadWatchingCamera(class AB2ActiveCameraActor* pCamActor);
 
 	UFUNCTION(BlueprintCallable, Category = "BladeII")
 	void MatchResultMatineeFinished();
@@ -452,14 +452,14 @@ private:
 	void SubmersionOverTimeWarningState();
 
 public:
-	//UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = ControlMob)
-	//ENPCClass ControlNPCClass;
-	//
-	//UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = ControlMob)
-	//ENPCClassVariation ControlNPCVariation;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = ControlMob)
+	ENPCClass ControlNPCClass;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = ControlMob)
+	ENPCClassVariation ControlNPCVariation;
 
-	//UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = ControlPlayer)
-	//TSubclassOf<class UB2FloatingHPBar> FloatingHPBarWidgetClass;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = ControlPlayer)
+	TSubclassOf<class UB2FloatingHPBar> FloatingHPBarWidgetClass;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Timer)
 	float WaitInProgressTime;
@@ -542,18 +542,18 @@ public:
 	TMap<int32, float> ControlSanctuaryRespawnRemainTimeInfos;
 
 protected:
-	//class ABladeIINetControlObject* m_pControlObject;
-	//TArray<AB2SanctuaryControlGame*> m_arSanctuary;
+	class ABladeIINetControlObject* m_pControlObject;
+	TArray<AB2SanctuaryControlGame*> m_arSanctuary;
 
 private:
-	//UPROPERTY(Transient)
-	//class ABladeIIControlNetCharacter*					ControlNPC;
+	UPROPERTY(Transient)
+	class ABladeIIControlNetCharacter*					ControlNPC;
 
-	//class AB2ActiveCameraActor* DeadWatchingCamera;
+	class AB2ActiveCameraActor* DeadWatchingCamera;
 
-	//class AB2ActiveCameraActor* TutorialCameraCenter;
-	//class AB2ActiveCameraActor* TutorialCameraSanctuaryBottom;
-	//class AB2ActiveCameraActor* TutorialCameraSanctuaryTopCamera;
+	class AB2ActiveCameraActor* TutorialCameraCenter;
+	class AB2ActiveCameraActor* TutorialCameraSanctuaryBottom;
+	class AB2ActiveCameraActor* TutorialCameraSanctuaryTopCamera;
 
 	int32 LastActiveFxIndex;
 	TArray<AEmitter*> ConquestAreaFxEmittersRed;
@@ -569,9 +569,9 @@ private:
 	uint32 ReservedQTEPlayerNetId;
 
 	UPROPERTY(EditAnywhere, Category = Submersion)
-		float KickoutSubmersionTime;
+	float KickoutSubmersionTime;
 	UPROPERTY(EditAnywhere, Category = Submersion)
-		float WarningSubmersionTime;
+	float WarningSubmersionTime;
 
 	float MaxSubmersionTime;
 	float SubmersionTime;

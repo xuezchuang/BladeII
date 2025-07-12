@@ -567,7 +567,7 @@
 //	}	*/
 //}
 //
-////AMatineeActor* ABladeIIPlayerController::GetMatineeActor()
+////ALevelSequenceActor * ABladeIIPlayerController::GetMatineeActor()
 ////{
 ////	return MatineeActor;
 ////}

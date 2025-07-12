@@ -1065,10 +1065,10 @@ void AB2ControlGameMode::AddPeerInfo(uint32 NetId, uint32 StartIndex)
 	AllPeerInfos[NetId].PlayerStartIdx = StartIndex;
 }
 
-//void AB2ControlGameMode::SetControlObject(class ABladeIINetControlObject* InControlObject)
-//{
-//	//m_pControlObject = InControlObject;
-//}
+void AB2ControlGameMode::SetControlObject(class ABladeIINetControlObject* InControlObject)
+{
+	//m_pControlObject = InControlObject;
+}
 
 FVector AB2ControlGameMode::GetControlObjectLocation()
 {
@@ -1086,15 +1086,15 @@ float AB2ControlGameMode::GetControlObjectViewLimitLength()
 	return 0.0f;
 }
 
-//void AB2ControlGameMode::AddSanctuaryControlGame(class AB2SanctuaryControlGame* InSanctuary)
-//{
-//	//if (InSanctuary)
-//	//{
-//	//	m_arSanctuary.Add(InSanctuary);
-//	//	
-//	//	ControlSanctuaryRespawnRemainTimeInfos.Add(InSanctuary->NetIndex, -1.0f);
-//	//}
-//}
+void AB2ControlGameMode::AddSanctuaryControlGame(class AB2SanctuaryControlGame* InSanctuary)
+{
+	//if (InSanctuary)
+	//{
+	//	m_arSanctuary.Add(InSanctuary);
+	//	
+	//	ControlSanctuaryRespawnRemainTimeInfos.Add(InSanctuary->NetIndex, -1.0f);
+	//}
+}
 
 void AB2ControlGameMode::SendChangeControlState(uint8 nNewState, float fControlPointGageRed, float fControlPointGageBlue, bool bResetConquestGage)
 {
@@ -1315,8 +1315,8 @@ void AB2ControlGameMode::NetSendControlKillInfos()
 
 		// 모두에게 알림. 나도 내가보낸걸로 세팅!
 		FString encoded_string = packet::FinalizePacket(packet::CONTROL_KILLCOUNT, GetMyNetId(), 0, packet::ALL, payload);
-		SendMessage2(encoded_string);
-		//UE_LOG(LogBladeII, Log, TEXT("Send [CONTROL_KILLCOUNT]"));
+		SendGameMessage(encoded_string);
+		UE_LOG(LogBladeII, Log, TEXT("Send [CONTROL_KILLCOUNT]"));
 	}
 }
 
@@ -1333,8 +1333,8 @@ void AB2ControlGameMode::NetSendControlTimerInfos()
 	payload << SceneState << CurrentElapseTime;
 
 	FString encoded_string = packet::FinalizePacket(packet::CONTROL_TIMER, GetMyNetId(), 0, packet::ALLBUTME, payload);
-	SendMessage2(encoded_string);
-	//UE_LOG(LogBladeII, Log, TEXT("Send [CONTROL_TIMER]"));
+	SendGameMessage(encoded_string);
+	UE_LOG(LogBladeII, Log, TEXT("Send [CONTROL_TIMER]"));
 }
 
 void AB2ControlGameMode::AckControlTimerInfos(uint8 SceneState, float ElapseTime)
@@ -1350,8 +1350,8 @@ void AB2ControlGameMode::NetSendAskSpawnComplete()
 	packet::ByteStream	payload;
 
 	FString encoded_string = packet::FinalizePacket(packet::ASK_SPAWN_COMPLETE, GetMyNetId(), 0, packet::ALLBUTME, payload);
-	SendMessage2(encoded_string);
-	//UE_LOG(LogBladeII, Log, TEXT("Send [ASK_SPAWN_COMPLETE]"));
+	SendGameMessage(encoded_string);
+	UE_LOG(LogBladeII, Log, TEXT("Send [ASK_SPAWN_COMPLETE]"));
 }
 
 void AB2ControlGameMode::NetReceiveAskSpawnComplete()
@@ -1369,9 +1369,9 @@ void AB2ControlGameMode::NetSendSpawnComplete()
 	payload << false;
 
 	FString encoded_string = packet::FinalizePacket(packet::SPAWN_COMPLETE, GetMyNetId(), 0, packet::ALLBUTME, payload);
-	SendMessage2(encoded_string);
+	SendGameMessage(encoded_string);
 
-	//UE_LOG(LogBladeII, Log, TEXT("Send [SPAWN_COMPLETE]"));
+	UE_LOG(LogBladeII, Log, TEXT("Send [SPAWN_COMPLETE]"));
 
 	// 현재 케릭터 애니메이션 정보도 한번 보내줘야겠다.
 	ABladeIINetPlayer* pPlayer = Cast<ABladeIINetPlayer>(GetLocalController()->GetPawn());
@@ -1422,9 +1422,9 @@ void AB2ControlGameMode::NetSendSpawnCompleteForceAI(uint32 NetId)
 	payload << true;
 
 	FString encoded_string = packet::FinalizePacket(packet::SPAWN_COMPLETE, NetId, 0, packet::ALL, payload);
-	SendMessage2(encoded_string);
+	SendGameMessage(encoded_string);
 
-	//UE_LOG(LogBladeII, Log, TEXT("Send [SPAWN_COMPLETE_AI]"));
+	UE_LOG(LogBladeII, Log, TEXT("Send [SPAWN_COMPLETE_AI]"));
 }
 
 void AB2ControlGameMode::NetReceiveQTEEnable(uint32 NetId, uint8 TeamNum)
@@ -1440,7 +1440,7 @@ void AB2ControlGameMode::NetSendQTEEnableEnd()
 	packet::ByteStream	payload;
 
 	FString encoded_string = packet::FinalizePacket(packet::QTE_ENABLE_END, GetMyNetId(), 0, packet::ALL, payload);
-	SendMessage2(encoded_string);
+	SendGameMessage(encoded_string);
 }
 
 void AB2ControlGameMode::NetReceiveQTEEnableEnd()
@@ -1457,7 +1457,7 @@ void AB2ControlGameMode::NetSendConsumeControlSanctuary(int32 SancIndex)
 	payload << SancIndex;
 
 	FString encoded_string = packet::FinalizePacket(packet::CONSUME_CONTROL_SANCTUARY, 0, 0, packet::ALL, payload);
-	SendMessage2(encoded_string);
+	SendGameMessage(encoded_string);
 }
 
 void AB2ControlGameMode::NetReceiveConsumeControlSanctuary(int32 SancIndex)
@@ -1483,7 +1483,7 @@ void AB2ControlGameMode::NetSendRespawnControlSanctuary(int32 SancIndex)
 	payload << SancIndex;
 
 	FString encoded_string = packet::FinalizePacket(packet::SPAWN_CONTROL_SANCTUARY, 0, 0, packet::ALL, payload);
-	SendMessage2(encoded_string);
+	SendGameMessage(encoded_string);
 }
 
 void AB2ControlGameMode::NetReceiveRespawnControlSanctuary(int32 SancIndex)
@@ -1519,7 +1519,7 @@ void AB2ControlGameMode::NetSendDrinkControlSanctuary(uint32 NetId, int32 SancIn
 	payload << SancIndex;
 
 	FString encoded_string = packet::FinalizePacket(packet::DRINK_CONTROL_SANCTUARY, NetId, 0, packet::ALL, payload);
-	SendMessage2(encoded_string);
+	SendGameMessage(encoded_string);
 }
 
 void AB2ControlGameMode::NetReceiveDrinkControlSanctuary(uint32 NetId, int32 SancIndex)
@@ -1581,37 +1581,37 @@ int32 AB2ControlGameMode::GetMyTeamNum()
 void AB2ControlGameMode::FinishReadyToStartGame()
 {
 }
-//
-//void AB2ControlGameMode::SetMatchLobbyResources(class AMatineeActor* InResultMatinee,
-//	class AB2StageEventDirector* InIntroEventDirector,
-//	const FControlMatchAnims& Gladiator,
-//	const FControlMatchAnims& Assassin,
-//	const FControlMatchAnims& Wizard,
-//	const FControlMatchAnims& Fighter,
-//	TArray<AEmitter*> EmitterRed,
-//	TArray<AEmitter*> EmitterBlue,
-//	AEmitter* WinEmitterRed,
-//	AEmitter* WinEmitterBlue)
-//{
-//	SceneManager.SetMatchLobbyResources(InResultMatinee, InIntroEventDirector, Gladiator, Assassin, Wizard, Fighter);
-//
-//	ConquestAreaFxEmittersRed = EmitterRed;
-//	ConquestAreaFxEmittersBlue = EmitterBlue;
-//	WinFxEmittersRed = WinEmitterRed;
-//	WinFxEmittersBlue = WinEmitterBlue;
-//}
 
-//void AB2ControlGameMode::SetTutorialCamera(class AB2ActiveCameraActor* pCenterCamActor, class AB2ActiveCameraActor* pSanctuaryBottomCamActor, class AB2ActiveCameraActor* pSanctuaryTopCamActor)
-//{
-//	//TutorialCameraCenter = pCenterCamActor;
-//	//TutorialCameraSanctuaryBottom = pSanctuaryBottomCamActor;
-//	//TutorialCameraSanctuaryTopCamera = pSanctuaryTopCamActor;
-//}
+void AB2ControlGameMode::SetMatchLobbyResources(class ALevelSequenceActor* InResultMatinee,
+	class AB2StageEventDirector* InIntroEventDirector,
+	const FControlMatchAnims& Gladiator,
+	const FControlMatchAnims& Assassin,
+	const FControlMatchAnims& Wizard,
+	const FControlMatchAnims& Fighter,
+	TArray<AEmitter*> EmitterRed,
+	TArray<AEmitter*> EmitterBlue,
+	AEmitter* WinEmitterRed,
+	AEmitter* WinEmitterBlue)
+{
+	//SceneManager.SetMatchLobbyResources(InResultMatinee, InIntroEventDirector, Gladiator, Assassin, Wizard, Fighter);
 
-//void AB2ControlGameMode::SetDeadWatchingCamera(class AB2ActiveCameraActor* pCamActor)
-//{
-//	//DeadWatchingCamera = pCamActor;
-//}
+	//ConquestAreaFxEmittersRed = EmitterRed;
+	//ConquestAreaFxEmittersBlue = EmitterBlue;
+	//WinFxEmittersRed = WinEmitterRed;
+	//WinFxEmittersBlue = WinEmitterBlue;
+}
+
+void AB2ControlGameMode::SetTutorialCamera(class AB2ActiveCameraActor* pCenterCamActor, class AB2ActiveCameraActor* pSanctuaryBottomCamActor, class AB2ActiveCameraActor* pSanctuaryTopCamActor)
+{
+	//TutorialCameraCenter = pCenterCamActor;
+	//TutorialCameraSanctuaryBottom = pSanctuaryBottomCamActor;
+	//TutorialCameraSanctuaryTopCamera = pSanctuaryTopCamActor;
+}
+
+void AB2ControlGameMode::SetDeadWatchingCamera(class AB2ActiveCameraActor* pCamActor)
+{
+	//DeadWatchingCamera = pCamActor;
+}
 
 void AB2ControlGameMode::MatchResultMatineeFinished()
 {
@@ -2021,7 +2021,7 @@ void AB2ControlGameMode::NetSendSpawnControlNPC()
 	// 스폰알림 날려준다.
 	packet::ByteStream	payload;
 	FString encoded_string = packet::FinalizePacket(packet::SPAWN_CONTROL_NPC, 0, 0, packet::ALL, payload);
-	SendMessage2(encoded_string);
+	SendGameMessage(encoded_string);
 }
 
 // 타이밍 맞출 목적으로 호스트도 받고실행 
@@ -2668,7 +2668,7 @@ void FControlMatchSceneManager::SetGameMode(class AB2ControlGameMode* InGameMode
 	}
 }
 
-void FControlMatchSceneManager::SetMatchLobbyResources(class AMatineeActor* InResultMatinee,
+void FControlMatchSceneManager::SetMatchLobbyResources(class ALevelSequenceActor * InResultMatinee,
 	class AB2StageEventDirector* InIntroEventDirector,
 	const FControlMatchAnims& Gladiator,
 	const FControlMatchAnims& Assassin,

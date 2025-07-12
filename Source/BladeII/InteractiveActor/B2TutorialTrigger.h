@@ -34,7 +34,7 @@ private:
 #endif
 
 protected:
-	//UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Trigger")
-	//ETutorialNumber TutorialNumber;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Trigger")
+	ETutorialNumber TutorialNumber;
 
 };

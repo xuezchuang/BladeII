@@ -88,13 +88,13 @@ class ABladeIIPlayerController : public APlayerController
 ////	virtual bool IsSkippedByCustomLogic() const /*override*/;
 ////
 ////	//UFUNCTION(BlueprintCallable, Category = "BladeIIGame")
-////	//AMatineeActor* GetMatineeActor();
+////	//ALevelSequenceActor * GetMatineeActor();
 ////
 ////	UFUNCTION(BlueprintCallable, Category = "BladeIIGame")
 ////	void KillAllEnemies();
 ////
 ////	//UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = BladeIIGame)
-////	//AMatineeActor* MatineeActor;
+////	//ALevelSequenceActor * MatineeActor;
 ////
 ////	virtual void SetCinematicMode(bool bInCinematicMode, bool bHidePlayer, bool bAffectsHUD, bool bAffectsMovement, bool bAffectsTurning) override;
 ////

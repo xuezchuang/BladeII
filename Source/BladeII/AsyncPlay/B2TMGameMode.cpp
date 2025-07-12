@@ -12,15 +12,15 @@
 #include "B2ActiveCameraActor.h"
 
 #include "B2UIDocHelper.h"
-//#include "B2UIManager.h"
+#include "B2UIManager.h"
 #include "BladeIIUtil.h"
 #include "B2PCClassInfoBox.h"
 ////#include "Matinee/MatineeActor.h"
 //#include "Matinee/InterpGroup.h"
 //#include "Matinee/InterpGroupInst.h"
 //#include "Matinee/InterpTrackMove.h"
-//#include "B2UIPVPModFindingMatch.h"
-//#include "B2UITeamMatchBattle.h"
+#include "B2UIPVPModFindingMatch.h"
+#include "B2UITeamMatchBattle.h"
 #include "B2CombatStatEvaluator.h"
 #include "B2DamageEffectInfo.h"
 #include "B2BuffModeEffectInfo.h"
@@ -31,11 +31,15 @@
 
 //#include "B2AndroidBackManager.h"
 #include "BladeIIGameImpl.h"
+#include "../Common/CommonStruct.h"
+#include <variant>
+#include "../../B2Network/Public/B2MessageInfo.h"
+//#include "LevelSequence/Public/LevelSequenceActor.h"
 
 int8 AB2TMGameMode::MyTeamNum = 1;
 int8 AB2TMGameMode::OpponentTeamNum = 2;
 
-//int32 AB2TMGameMode::NumCharactersOfTeam = 3;
+int32 AB2TMGameMode::NumCharactersOfTeam = 3;
 int8 AB2TMGameMode::GetMyTeamNum() 
 { 
 	return MyTeamNum; 
@@ -92,119 +96,120 @@ void AB2TMGameMode::SubscribeEvents()
 	if(bEventsSubscribed)
 		return;
 
-	//Super::SubscribeEvents();
+	Super::SubscribeEvents();
 
-	//Issues.Add(ReturnToPVPRematchClass<>::GetInstance().Subscribe2(
-	//	[this]()
-	//	{
-	//		this->RequestRematch();
-	//	}
-	//));
-	//Issues.Add(ReturnToPVPMainMenuClass<bool>::GetInstance().Subscribe2(
-	//	[this](bool bSendMatchResult)
-	//	{
-	//		this->ReturnToTMMainMenu();
-	//	}
-	//));
-	//Issues.Add(TeamMatchChangeCharacterCamClass<bool, int32>::GetInstance().Subscribe2(
-	//	[this](bool bMyTeam, int32 SlotIdx)
-	//	{
-	//		this->ChangeCharacterCamera(bMyTeam, SlotIdx);
-	//	}
-	//));	
-	//Issues.Add(DeliveryTeamMatchMakingClass<FB2TeamMatchMaking>::GetInstance().Subscribe2(
-	//	[this](const FB2TeamMatchMaking& MatchInfo)
-	//	{
-	//		this->PlayToken = GET_TUPLE_DATA(FB2ResponseTeamMatchMaking::match_token_index, MatchInfo);
-	//		this->SetOpponentInfo(GET_TUPLE_DATA(FB2ResponseTeamMatchMaking::opponent_team_index, MatchInfo));
+	Issues.Add(ReturnToPVPRematchClass<>::GetInstance().Subscribe2(
+		[this]()
+		{
+			this->RequestRematch();
+		}
+	));
+	Issues.Add(ReturnToPVPMainMenuClass<bool>::GetInstance().Subscribe2(
+		[this](bool bSendMatchResult)
+		{
+			this->ReturnToTMMainMenu();
+		}
+	));
+	Issues.Add(TeamMatchChangeCharacterCamClass<bool, int32>::GetInstance().Subscribe2(
+		[this](bool bMyTeam, int32 SlotIdx)
+		{
+			this->ChangeCharacterCamera(bMyTeam, SlotIdx);
+		}
+	));
 
-	//		this->SetMatchState(AsyncMatchState::MatchOtherPlayer);
-	//		this->SetTeamMatchPointInfo(MatchInfo);
-	//		GuildBuffSetttingClass<const TArray<b2network::B2GuildSkillPtr>&>::GetInstance().Signal(GET_TUPLE_DATA(FB2ResponseTeamMatchMaking::guild_skills_index, MatchInfo));
-	//	}
-	//));
-	//Issues.Add(DeliveryTeamMatchResultClass<FB2TeamMatchResult>::GetInstance().Subscribe2(
-	//	[this](const FB2TeamMatchResult& ResultInfo)
-	//	{
-	//		this->SetMatchResultInfo(ResultInfo);
-	//	}
-	//));
-	//Issues.Add(HandleServerError901Class<>::GetInstance().Subscribe2(
-	//	[this]()
-	//	{
-	//		bool bUsedAdditionalPoint = false;
-	//		auto* DocTeam = UB2UIDocHelper::GetDocTeamMatch();
-	//		if (DocTeam)	bUsedAdditionalPoint = DocTeam->GetUsedAdditionalPoint();
+	Issues.Add(DeliveryTeamMatchMakingClass<FB2TeamMatchMaking>::GetInstance().Subscribe2(
+		[this](const FB2TeamMatchMaking& MatchInfo)
+		{
+			//this->PlayToken = GET_TUPLE_DATA(FB2ResponseTeamMatchMaking::match_token_index, MatchInfo);
+			//this->SetOpponentInfo(GET_TUPLE_DATA(FB2ResponseTeamMatchMaking::opponent_team_index, MatchInfo));
 
-	//		data_trader::Retailer::GetInstance().RequestTeamMatchmaking(bUsedAdditionalPoint);
-	//	}
-	//));
-	//Issues.Add(HandleServerError6516Class<>::GetInstance().Subscribe2(
-	//	[this]()
-	//	{
-	//		this->OpenPopupGotoTMMainMenu();
-	//	}
-	//));
-	//Issues.Add(MatchGameStartEventSceneEndClass<>::GetInstance().Subscribe2(
-	//	[this]()
-	//	{
-	//		this->MatchGameStartEventSceneEnd();
-	//	}
-	//));
-	//Issues.Add(ReturnToFindAccountClass<>::GetInstance().Subscribe2(
-	//	[this]()
-	//	{
-	//		this->ReturnToFindAccount();
-	//	}
-	//));
-	//Issues.Add(PlayerStartWeaponSkillByIndexClass<int32>::GetInstance().Subscribe2(
-	//	[this](int32 SkillInputindex)
-	//	{
-	//		this->OnPlayerStartWeaponSkillByIndex(SkillInputindex);
-	//	}
-	//));
-	//Issues.Add(StageEventDirectorFinishShowEventClass<int32>::GetInstance().Subscribe2(
-	//	[this](int32 EventType)
-	//{
-	//	this->NotifyStageEventDirector_FinishShow(EventType);
-	//}
-	//));
+			//this->SetMatchState(AsyncMatchState::MatchOtherPlayer);
+			//this->SetTeamMatchPointInfo(MatchInfo);
+			//GuildBuffSetttingClass<const TArray<b2network::B2GuildSkillPtr>&>::GetInstance().Signal(GET_TUPLE_DATA(FB2ResponseTeamMatchMaking::guild_skills_index, MatchInfo));
+		}
+	));
+	Issues.Add(DeliveryTeamMatchResultClass<FB2TeamMatchResult>::GetInstance().Subscribe2(
+		[this](const FB2TeamMatchResult& ResultInfo)
+		{
+			this->SetMatchResultInfo(ResultInfo);
+		}
+	));
+	Issues.Add(HandleServerError901Class<>::GetInstance().Subscribe2(
+		[this]()
+		{
+			bool bUsedAdditionalPoint = false;
+			auto* DocTeam = UB2UIDocHelper::GetDocTeamMatch();
+			if (DocTeam)	bUsedAdditionalPoint = DocTeam->GetUsedAdditionalPoint();
+
+			data_trader::Retailer::GetInstance().RequestTeamMatchmaking(bUsedAdditionalPoint);
+		}
+	));
+	Issues.Add(HandleServerError6516Class<>::GetInstance().Subscribe2(
+		[this]()
+		{
+			this->OpenPopupGotoTMMainMenu();
+		}
+	));
+	Issues.Add(MatchGameStartEventSceneEndClass<>::GetInstance().Subscribe2(
+		[this]()
+		{
+			this->MatchGameStartEventSceneEnd();
+		}
+	));
+	Issues.Add(ReturnToFindAccountClass<>::GetInstance().Subscribe2(
+		[this]()
+		{
+			this->ReturnToFindAccount();
+		}
+	));
+	Issues.Add(PlayerStartWeaponSkillByIndexClass<int32>::GetInstance().Subscribe2(
+		[this](int32 SkillInputindex)
+		{
+			this->OnPlayerStartWeaponSkillByIndex(SkillInputindex);
+		}
+	));
+	Issues.Add(StageEventDirectorFinishShowEventClass<int32>::GetInstance().Subscribe2(
+		[this](int32 EventType)
+		{
+			this->NotifyStageEventDirector_FinishShow(EventType);
+		}
+	));
 
 }
 
 void AB2TMGameMode::RequestRematch()
 {
 	//새롭게 시작하자.
-	//StartBladeIITeamMatchGame(Cast<AGameMode>(GetWorld()->GetAuthGameMode()));
+	StartBladeIITeamMatchGame(Cast<AGameMode>(GetWorld()->GetAuthGameMode()));
 }
 
 void AB2TMGameMode::ReturnToFindAccount()
 {
 	B2_SCOPED_TRACK_LOG(TEXT("AB2TMGameMode::ReturnToFindAccount"));
-	//
-	//if (OpponentTeamCharacterDataStore.GetAccountInfoPtr())
-	//{
-	//	BladeIIGameImpl::GetClientDataStore().SetOtherUserInfo(OpponentTeamCharacterDataStore.GetAccountInfoPtr());
+	
+	if (OpponentTeamCharacterDataStore.GetAccountInfoPtr())
+	{
+		BladeIIGameImpl::GetClientDataStore().SetOtherUserInfo(OpponentTeamCharacterDataStore.GetAccountInfoPtr());
 
-	//	auto DocSome = UB2UIDocHelper::GetDocSome();
+		auto DocSome = UB2UIDocHelper::GetDocSome();
 
-	//	if (DocSome)
-	//		DocSome->SetFindUserAccountID(OpponentTeamCharacterDataStore.GetAccountInfoPtr()->account_id);
+		if (DocSome)
+			DocSome->SetFindUserAccountID(OpponentTeamCharacterDataStore.GetAccountInfoPtr()->account_id);
 
-	//	FLobbySceneManager::DeferredRegistChangeLobbyScene([]() {
-	//		// 전체 씬 전환을 하면 실 로딩 시간이 늘어나므로 원하는 화면 직전까지 UI History 만 만들어준다.
-	//		UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
-	//		if (UIMgrInst) {
-	//			UIMgrInst->ArtificialAddUIHistory(EUIScene::LobbyMain);
-	//			UIMgrInst->ArtificialAddUIHistory(EUIScene::EnterBattleMain);
-	//			UIMgrInst->ArtificialAddUIHistory(EUIScene::TeamMatchUI);
-	//		}
-	//		LobbyChangeSceneClass<ELobbyScene>::GetInstance().Signal(ELobbyScene::ELobbyScene_FindAccount);
-	//		data_trader::Retailer::GetInstance().RequestGetTeamBattleStatus();
-	//	});
+		FLobbySceneManager::DeferredRegistChangeLobbyScene([]() {
+			// 전체 씬 전환을 하면 실 로딩 시간이 늘어나므로 원하는 화면 직전까지 UI History 만 만들어준다.
+			UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
+			if (UIMgrInst) {
+				UIMgrInst->ArtificialAddUIHistory(EUIScene::LobbyMain);
+				UIMgrInst->ArtificialAddUIHistory(EUIScene::EnterBattleMain);
+				UIMgrInst->ArtificialAddUIHistory(EUIScene::TeamMatchUI);
+			}
+			LobbyChangeSceneClass<ELobbyScene>::GetInstance().Signal(ELobbyScene::ELobbyScene_FindAccount);
+			data_trader::Retailer::GetInstance().RequestGetTeamBattleStatus();
+		});
 
-	//	ReturnToTMMainMenu();
-	//}
+		ReturnToTMMainMenu();
+	}
 }
 
 void AB2TMGameMode::ReturnToTMMainMenu()
@@ -213,71 +218,71 @@ void AB2TMGameMode::ReturnToTMMainMenu()
 	{
 		data_trader::Retailer::GetInstance().RequestTeamMatchResult(PlayToken, false, true);
 	}
-	//	
-	//if (FLobbySceneManager::IsExistDeferredRegistChangeLobbyScene() == false)
-	//{
-	//	FLobbySceneManager::DeferredRegistChangeLobbyScene([]() {
-	//		// 전체 씬 전환을 하면 실 로딩 시간이 늘어나므로 원하는 화면 직전까지 UI History 만 만들어준다. 
-	//		UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
-	//		if (UIMgrInst) {
-	//			UIMgrInst->ArtificialAddUIHistory(EUIScene::LobbyMain);
-	//			UIMgrInst->ArtificialAddUIHistory(EUIScene::EnterBattleMain);
-	//		}
-	//		LobbyChangeSceneClass<ELobbyScene>::GetInstance().Signal(ELobbyScene::ElobbyScene_TeamMatchMain);
-	//		data_trader::Retailer::GetInstance().RequestGetTeamBattleStatus();
-	//	});
-	//}	
-	//OpenBladeIILobbyCommon(this); // 씬 전환 예약 후 본격 로비 맵 로딩
+		
+	if (FLobbySceneManager::IsExistDeferredRegistChangeLobbyScene() == false)
+	{
+		FLobbySceneManager::DeferredRegistChangeLobbyScene([]() {
+			// 전체 씬 전환을 하면 실 로딩 시간이 늘어나므로 원하는 화면 직전까지 UI History 만 만들어준다. 
+			UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
+			if (UIMgrInst) {
+				UIMgrInst->ArtificialAddUIHistory(EUIScene::LobbyMain);
+				UIMgrInst->ArtificialAddUIHistory(EUIScene::EnterBattleMain);
+			}
+			LobbyChangeSceneClass<ELobbyScene>::GetInstance().Signal(ELobbyScene::ElobbyScene_TeamMatchMain);
+			data_trader::Retailer::GetInstance().RequestGetTeamBattleStatus();
+		});
+	}	
+	OpenBladeIILobbyCommon(this); // 씬 전환 예약 후 본격 로비 맵 로딩
 }
 
 void AB2TMGameMode::OpenPopupGotoTMMainMenu()
 {
 	FText txtComment = BladeIIGetLOCText(B2LOC_CAT_ERROR_CODE, FString::FromInt(6516));
 
-	//UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
-	//	BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("General_Notification")),
-	//	txtComment,
-	//	0.f,
-	//	true,
-	//	true,
-	//	EUIMsgPopupButtonGroup::Confirm,
-	//	FMsgPopupOnClick::CreateLambda([this]() {
-	//	ReturnToTMMainMenu();
-	//})
-	//);
+	UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
+		BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("General_Notification")),
+		txtComment,
+		0.f,
+		true,
+		true,
+		EUIMsgPopupButtonGroup::Confirm,
+		FMsgPopupOnClick::CreateLambda([this]() {
+		ReturnToTMMainMenu();
+	})
+	);
 }
 
 void AB2TMGameMode::EnterShop(int32 nWhereShop)
 {
 	B2_SCOPED_TRACK_LOG(TEXT("AB2TMGameMode::EnterShop"));
 
-	//FLobbySceneManager::DeferredRegistChangeLobbyScene([]() {
-	//	// 전체 씬 전환을 하면 실 로딩 시간이 늘어나므로 원하는 화면 직전까지 UI History 만 만들어준다.
-	//	UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
-	//	if (UIMgrInst) {
-	//		UIMgrInst->ArtificialAddUIHistory(EUIScene::LobbyMain);
-	//		UIMgrInst->ArtificialAddUIHistory(EUIScene::EnterBattleMain);
-	//		UIMgrInst->ArtificialAddUIHistory(EUIScene::TeamMatchUI);
-	//	}
-	//});
+	FLobbySceneManager::DeferredRegistChangeLobbyScene([]() {
+		// 전체 씬 전환을 하면 실 로딩 시간이 늘어나므로 원하는 화면 직전까지 UI History 만 만들어준다.
+		UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
+		if (UIMgrInst) {
+			UIMgrInst->ArtificialAddUIHistory(EUIScene::LobbyMain);
+			UIMgrInst->ArtificialAddUIHistory(EUIScene::EnterBattleMain);
+			UIMgrInst->ArtificialAddUIHistory(EUIScene::TeamMatchUI);
+		}
+	});
 
-	//switch (static_cast<EStorePageWhere>(nWhereShop))
-	//{
-	//case EStorePageWhere::Store: 
-	//	data_trader::Retailer::GetInstance().RequestGetGeneralShop();
-	//	break;
-	//case EStorePageWhere::EquipStore:
-	//	data_trader::Retailer::GetInstance().RequestGetLotteryShop();
-	//	break;
-	//case EStorePageWhere::PackageStore:
-	//	data_trader::Retailer::GetInstance().RequestGetPackageShop();
-	//	break;
-	//case EStorePageWhere::MagicStore:
-	//	data_trader::Retailer::GetInstance().RequestGetMagicShop();
-	//	break;
-	//}
+	switch (static_cast<EStorePageWhere>(nWhereShop))
+	{
+	case EStorePageWhere::Store: 
+		data_trader::Retailer::GetInstance().RequestGetGeneralShop();
+		break;
+	case EStorePageWhere::EquipStore:
+		data_trader::Retailer::GetInstance().RequestGetLotteryShop();
+		break;
+	case EStorePageWhere::PackageStore:
+		data_trader::Retailer::GetInstance().RequestGetPackageShop();
+		break;
+	case EStorePageWhere::MagicStore:
+		data_trader::Retailer::GetInstance().RequestGetMagicShop();
+		break;
+	}
 
-	//ReturnToTMMainMenu();
+	ReturnToTMMainMenu();
 }
 
 void AB2TMGameMode::OnPlayerStartWeaponSkillByIndex(int32 nInputIndex)
@@ -359,15 +364,15 @@ void AB2TMGameMode::NotifyStageEventDirector_FinishShow(int32 EventType)
 {
 	B2_SCOPED_TRACK_LOG(TEXT("AB2TMGameMode::NotifyStageEventDirector_FinishShow"));
 
-	//EStageEvent eStageEvent = (EStageEvent)EventType;
+	EStageEvent eStageEvent = (EStageEvent)EventType;
 
-	//switch (eStageEvent)
-	//{
-	//case EStageEvent::ESEV_FinishAttack:
-	//	{
-	//		SetMatchState(AsyncMatchState::FinishBattle);
-	//	}break;
-	//}
+	switch (eStageEvent)
+	{
+	case EStageEvent::ESEV_FinishAttack:
+	{
+		SetMatchState(AsyncMatchState::FinishBattle);
+	}break;
+	}
 }
 
 FTeamInfo& AB2TMGameMode::GetTeamInfo(int32 InTeamNum)
@@ -1052,16 +1057,16 @@ void AB2TMGameMode::Tick(float DeltaSeconds)
 //#endif
 }
 
-//void AB2TMGameMode::SetMatchLobbyResources(
-//	class AMatineeActor* InMatinee, 
-//	const FMatchingAnims& Gladiator,
-//	const FMatchingAnims& Assassin,
-//	const FMatchingAnims& Wizard,
-//	const FMatchingAnims& Fighter
-//)
-//{
-//	SceneManager.SetMatchLobbyResources(InMatinee, Gladiator, Assassin, Wizard, Fighter);
-//}
+void AB2TMGameMode::SetMatchLobbyResources(
+	class ALevelSequenceActor* InMatinee,
+	const FMatchingAnims& Gladiator,
+	const FMatchingAnims& Assassin,
+	const FMatchingAnims& Wizard,
+	const FMatchingAnims& Fighter
+)
+{
+	SceneManager.SetMatchLobbyResources(InMatinee, Gladiator, Assassin, Wizard, Fighter);
+}
 
 void AB2TMGameMode::SetMatchLobbyCharacterLocationZ(float GladiatorZ, float AssassinZ, float WizardZ, float FighterZ)
 {
@@ -1386,31 +1391,31 @@ void FTeamMatchSceneMagnager::SetFinding()
 
 void FTeamMatchSceneMagnager::SetReady()
 {
-	//WaitingReadyToMatchTime = 4.5f; //temporary
-	//ElapsedWaitingReadyToMatchTime = 0.f;
+	WaitingReadyToMatchTime = 4.5f; //temporary
+	ElapsedWaitingReadyToMatchTime = 0.f;
 
-	//auto* TeamMatchFindWidget = UB2UIManager::GetInstance()->GetUI<UB2UIPVPModFindingMatch>(UIFName::TeamMatchFindMatch);
-	//if (TeamMatchFindWidget)
-	//{
-	//	TeamMatchFindWidget->SetReady(WaitingReadyToMatchTime);
-	//}
+	auto* TeamMatchFindWidget = UB2UIManager::GetInstance()->GetUI<UB2UIPVPModFindingMatch>(UIFName::TeamMatchFindMatch);
+	if (TeamMatchFindWidget)
+	{
+		TeamMatchFindWidget->SetReady(WaitingReadyToMatchTime);
+	}
 
-	////음.. 따로 빼기는 귀찮은 작업이고 볼륨도 작으니 그냥 하드코드로..
-	//BII_CHECK(SpawnedActors.Num() == 6 && AnimArray.Num() == 4);
-	//if (SpawnedActors.Num() == 6 && AnimArray.Num() == 4)
-	//{
-	//	auto* DocTM = UB2UIDocHelper::GetDocTeamMatch();
-	//	if (DocTM)
-	//	{
-	//		SpawnedActors[0]->GetSkeletalMeshComponent()->PlayAnimation(AnimArray[PCClassToInt(DocTM->GetPCCharacterClass1())].Ready_L, false);
-	//		SpawnedActors[1]->GetSkeletalMeshComponent()->PlayAnimation(AnimArray[PCClassToInt(DocTM->GetPCCharacterClass2())].Ready_L, false);
-	//		SpawnedActors[2]->GetSkeletalMeshComponent()->PlayAnimation(AnimArray[PCClassToInt(DocTM->GetPCCharacterClass3())].Ready_L, false);
+	//음.. 따로 빼기는 귀찮은 작업이고 볼륨도 작으니 그냥 하드코드로..
+	BII_CHECK(SpawnedActors.Num() == 6 && AnimArray.Num() == 4);
+	if (SpawnedActors.Num() == 6 && AnimArray.Num() == 4)
+	{
+		auto* DocTM = UB2UIDocHelper::GetDocTeamMatch();
+		if (DocTM)
+		{
+			SpawnedActors[0]->GetSkeletalMeshComponent()->PlayAnimation(AnimArray[PCClassToInt(DocTM->GetPCCharacterClass1())].Ready_L, false);
+			SpawnedActors[1]->GetSkeletalMeshComponent()->PlayAnimation(AnimArray[PCClassToInt(DocTM->GetPCCharacterClass2())].Ready_L, false);
+			SpawnedActors[2]->GetSkeletalMeshComponent()->PlayAnimation(AnimArray[PCClassToInt(DocTM->GetPCCharacterClass3())].Ready_L, false);
 
-	//		SpawnedActors[3]->GetSkeletalMeshComponent()->PlayAnimation(AnimArray[PCClassToInt(DocTM->GetOpponentCharacterClass1())].Ready_R, false);
-	//		SpawnedActors[4]->GetSkeletalMeshComponent()->PlayAnimation(AnimArray[PCClassToInt(DocTM->GetOpponentCharacterClass2())].Ready_R, false);
-	//		SpawnedActors[5]->GetSkeletalMeshComponent()->PlayAnimation(AnimArray[PCClassToInt(DocTM->GetOpponentCharacterClass3())].Ready_R, false);
-	//	}
-	//}
+			SpawnedActors[3]->GetSkeletalMeshComponent()->PlayAnimation(AnimArray[PCClassToInt(DocTM->GetOpponentCharacterClass1())].Ready_R, false);
+			SpawnedActors[4]->GetSkeletalMeshComponent()->PlayAnimation(AnimArray[PCClassToInt(DocTM->GetOpponentCharacterClass2())].Ready_R, false);
+			SpawnedActors[5]->GetSkeletalMeshComponent()->PlayAnimation(AnimArray[PCClassToInt(DocTM->GetOpponentCharacterClass3())].Ready_R, false);
+		}
+	}
 }
 
 void FTeamMatchSceneMagnager::SetBattle()
@@ -1420,16 +1425,16 @@ void FTeamMatchSceneMagnager::SetBattle()
 	//	LobbyMatinee->Stop();
 	//}
 
-	//for (auto* SpawnedActor : SpawnedActors)
-	//{
-	//	SpawnedActor->Destroy();
-	//}
-	//SpawnedActors.Empty();
+	for (auto* SpawnedActor : SpawnedActors)
+	{
+		SpawnedActor->Destroy();
+	}
+	SpawnedActors.Empty();
 
-	////ChangeScene(true);
+	//ChangeScene(true);
 
-	//UB2UIManager::GetInstance()->ChangeUIScene(EUIScene::TeamMatchBattle);
-	//GameMode->SetMatchState(MatchState::InProgress);
+	UB2UIManager::GetInstance()->ChangeUIScene(EUIScene::TeamMatchBattle);
+	GameMode->SetMatchState(MatchState::InProgress);
 }
 
 void FTeamMatchSceneMagnager::SetEndMatchByTime()
@@ -1447,15 +1452,15 @@ void FTeamMatchSceneMagnager::SetBattleEnd()
 
 void FTeamMatchSceneMagnager::ShowResultUiImage()
 {
-	//if (auto* TeamMatchBattle = UB2UIManager::GetInstance()->GetUI<UB2UITeamMatchBattle>(UIFName::TeamMatchBattle))
-	//{
-	//	ENetMatchResult result(ENetMatchResult::LocalLose);
+	if (auto* TeamMatchBattle = UB2UIManager::GetInstance()->GetUI<UB2UITeamMatchBattle>(UIFName::TeamMatchBattle))
+	{
+		ENetMatchResult result(ENetMatchResult::LocalLose);
 
-	//	if (auto* DocSome = UB2UIDocHelper::GetDocSome())
-	//		result = DocSome->GetLocalPlayerMatchResult();
+		if (auto* DocSome = UB2UIDocHelper::GetDocSome())
+			result = DocSome->GetLocalPlayerMatchResult();
 
-	//	TeamMatchBattle->ShowResultImage(result);
-	//}
+		TeamMatchBattle->ShowResultImage(result);
+	}
 }
 
 void FTeamMatchSceneMagnager::SetGameMode(class AB2TMGameMode* InGameMode)
@@ -1469,7 +1474,7 @@ void FTeamMatchSceneMagnager::SetGameMode(class AB2TMGameMode* InGameMode)
 }
 
 void FTeamMatchSceneMagnager::SetMatchLobbyResources(
-	class AMatineeActor* InMatinee, 
+	class ALevelSequenceActor * InMatinee, 
 	const FMatchingAnims& Gladiator,
 	const FMatchingAnims& Assassin,
 	const FMatchingAnims& Wizard,

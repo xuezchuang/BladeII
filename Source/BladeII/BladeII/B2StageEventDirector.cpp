@@ -1934,7 +1934,7 @@ void AB2StageEventDirector::RuntimeRemoveNonDesiredGroup()
 	//}
 }
 
-void AB2StageEventDirector::RuntimeDisableInterpGroup(class UInterpGroup* GroupToDisable, class AMatineeActor* OwnerMatinee)
+void AB2StageEventDirector::RuntimeDisableInterpGroup(class UInterpGroup* GroupToDisable, class ALevelSequenceActor * OwnerMatinee)
 {
 	B2_SCOPED_TRACK_LOG(TEXT("AB2StageEventDirector::RuntimeRemoveGroupActorFromInterpGroup"));
 
@@ -2003,7 +2003,7 @@ void AB2StageEventDirector::RuntimeDisableInterpGroup(class UInterpGroup* GroupT
 //	}
 }
 
-//UInterpGroup* AB2StageEventDirector::FindParentGroupFolder(UInterpGroup* ChildGroup, class AMatineeActor* OwnerMatinee) const
+//UInterpGroup* AB2StageEventDirector::FindParentGroupFolder(UInterpGroup* ChildGroup, class ALevelSequenceActor * OwnerMatinee) const
 //{ // 실 구현부를 MatineeActor 쪽으로 옮겨놓음.
 //	if (OwnerMatinee)
 //	{
@@ -3181,7 +3181,7 @@ void AB2StageEventDirector::RestorePlayActorForCtrlMatineeEnd(FPlayActorShowSett
 	//}
 
 	//// Matinee 를 위해 맵에 배치된 애들로서 보이지만 않게 둠. 제거는 하지 말고.
-	//// 만일 얘들을 제거하려면 Matinee 쪽에서 최소한 TermInterp 가 처리된 다음이어야 한다. 기본적인 사용에서 AMatineeActor::Stop 에서 이쪽으로의 notify 가 온 후에 TermInterp 가 처리되므로 제거하고 싶더라도 이 시점에서는 안됨
+	//// 만일 얘들을 제거하려면 Matinee 쪽에서 최소한 TermInterp 가 처리된 다음이어야 한다. 기본적인 사용에서 ALevelSequenceActor ::Stop 에서 이쪽으로의 notify 가 온 후에 TermInterp 가 처리되므로 제거하고 싶더라도 이 시점에서는 안됨
 	//// -> MatineePuppet (즉 그룹액터) 들을 재활용 하기 위해 제거하지 않는다. 재활용을 가능하게 하기 위한 처리가 ABladeIICharacter::DoesMatineePuppetSetupFor** 들임.
 	//if (InStateForThis.CtrlMatineePuppet)
 	//{
@@ -3833,7 +3833,7 @@ void AB2StageEventDirector::NotifyStageEventShowOver(class ABladeIICharacter* Pl
 }
 
 static bool CheckAndGetMatineeScenarioDialogEventName(FString& InOutEventString)
-{ // AMatineeActor::NotifyEventTriggered 에서 보낸 ScenarioDialog 이벤트 규약에 맞는지 체크하는 것. 
+{ // ALevelSequenceActor ::NotifyEventTriggered 에서 보낸 ScenarioDialog 이벤트 규약에 맞는지 체크하는 것. 
 	//if (InOutEventString.RemoveFromStart(MATINEE_OPEN_SCENARIO_DIALOG_EVENT_PREFIX))
 	//{
 	//	return true;

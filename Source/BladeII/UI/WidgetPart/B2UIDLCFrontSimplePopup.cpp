@@ -3,6 +3,7 @@
 #include "B2UIDLCFrontSimplePopup.h"
 #include "BladeIIGameImpl.h"
 #include "BladeIIUtil.h"
+#include "../B2UIEnum.h"
 
 UB2UIDLCFrontSimplePopup::UB2UIDLCFrontSimplePopup(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
@@ -40,68 +41,68 @@ void UB2UIDLCFrontSimplePopup::SetButtonText(EDLCPopupButtonType ButtonType, con
 
 void UB2UIDLCFrontSimplePopup::SetButtonGroup(EUIMsgPopupButtonGroup ButtonType)
 {
-//	switch (ButtonType)
-//	{
-//	default:
-//	case EUIMsgPopupButtonGroup::Yes:
-//		SetButtonText(EDLCPopupButtonType::Positive, BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("General_Yes"))));
-//		ShowButton(EDLCPopupButtonType::Negative, false);
-//		break;
-//	case EUIMsgPopupButtonGroup::No:
-//		SetButtonText(EDLCPopupButtonType::Positive, BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("General_No"))));
-//		ShowButton(EDLCPopupButtonType::Negative, false);
-//		break;
-//	case EUIMsgPopupButtonGroup::YesOrNo:
-//		SetButtonText(EDLCPopupButtonType::Positive, BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("General_Yes"))));
-//		SetButtonText(EDLCPopupButtonType::Negative, BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("General_No"))));
-//		break;
-//	case EUIMsgPopupButtonGroup::Confirm:
-//		SetButtonText(EDLCPopupButtonType::Positive, BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("General_Confirm"))));
-//		ShowButton(EDLCPopupButtonType::Negative, false);
-//		break;
-//	case EUIMsgPopupButtonGroup::Cancel:
-//		SetButtonText(EDLCPopupButtonType::Positive, BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("General_Cancel"))));
-//		ShowButton(EDLCPopupButtonType::Negative, false);
-//		break;
-//	case EUIMsgPopupButtonGroup::ConfirmOrCancel:
-//		SetButtonText(EDLCPopupButtonType::Positive, BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("General_Confirm"))));
-//		SetButtonText(EDLCPopupButtonType::Negative, BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("General_Cancel"))));
-//		break;
-//	case EUIMsgPopupButtonGroup::AcceptOrReject:
-//		SetButtonText(EDLCPopupButtonType::Positive, BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("General_Accept"))));
-//		SetButtonText(EDLCPopupButtonType::Negative, BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("General_Reject"))));
-//		break;
-//	case EUIMsgPopupButtonGroup::WatchOrExit:
-//		SetButtonText(EDLCPopupButtonType::Positive, BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("General_Watch"))));
-//		SetButtonText(EDLCPopupButtonType::Negative, BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("General_Quit"))));
-//		break;
-//	case EUIMsgPopupButtonGroup::MatchingContinue:
-//		SetButtonText(EDLCPopupButtonType::Positive, BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("MatchingPopup_Btn_Continue"))));
-//		SetButtonText(EDLCPopupButtonType::Negative, BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("MatchingPopup_Btn_Cancel"))));
-//		break;
-//	case EUIMsgPopupButtonGroup::Reconnect:
-//		SetButtonText(EDLCPopupButtonType::Positive, BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("General_ReconnectButton"))));
-//		SetButtonText(EDLCPopupButtonType::Negative, BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("General_Cancel"))));
-//#if WITH_EDITOR // 취소 버튼이 없으면 서버 끊겼을 때 로비에 아예 들어갈 수가 없다. 이래저래 불편하고 민원 증가도 예상되니 에디터 한정 취소 가능하게..
-//		if (!GIsEditor)
-//#endif
-//		{
-//			ShowButton(EDLCPopupButtonType::Negative, false);
-//		}
-//		break;
-//	case EUIMsgPopupButtonGroup::ReconnectOrGoToTitle:
-//		SetButtonText(EDLCPopupButtonType::Positive, BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("General_GoToTitleButton"))));
-//		ShowButton(EDLCPopupButtonType::Negative, false);
-//		break;
-//	case EUIMsgPopupButtonGroup::GotoLastChapter:
-//		SetButtonText(EDLCPopupButtonType::Positive, BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("Tutorial_ChapterToLastAdventureBtn"))));
-//		ShowButton(EDLCPopupButtonType::Negative, false);
-//		break;
-//	case EUIMsgPopupButtonGroup::None:
-//		ShowButton(EDLCPopupButtonType::Positive, false);
-//		ShowButton(EDLCPopupButtonType::Negative, false);
-//		break;
-//	}
+	switch (ButtonType)
+	{
+	default:
+	case EUIMsgPopupButtonGroup::Yes:
+		SetButtonText(EDLCPopupButtonType::Positive, BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("General_Yes"))));
+		ShowButton(EDLCPopupButtonType::Negative, false);
+		break;
+	case EUIMsgPopupButtonGroup::No:
+		SetButtonText(EDLCPopupButtonType::Positive, BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("General_No"))));
+		ShowButton(EDLCPopupButtonType::Negative, false);
+		break;
+	case EUIMsgPopupButtonGroup::YesOrNo:
+		SetButtonText(EDLCPopupButtonType::Positive, BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("General_Yes"))));
+		SetButtonText(EDLCPopupButtonType::Negative, BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("General_No"))));
+		break;
+	case EUIMsgPopupButtonGroup::Confirm:
+		SetButtonText(EDLCPopupButtonType::Positive, BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("General_Confirm"))));
+		ShowButton(EDLCPopupButtonType::Negative, false);
+		break;
+	case EUIMsgPopupButtonGroup::Cancel:
+		SetButtonText(EDLCPopupButtonType::Positive, BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("General_Cancel"))));
+		ShowButton(EDLCPopupButtonType::Negative, false);
+		break;
+	case EUIMsgPopupButtonGroup::ConfirmOrCancel:
+		SetButtonText(EDLCPopupButtonType::Positive, BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("General_Confirm"))));
+		SetButtonText(EDLCPopupButtonType::Negative, BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("General_Cancel"))));
+		break;
+	case EUIMsgPopupButtonGroup::AcceptOrReject:
+		SetButtonText(EDLCPopupButtonType::Positive, BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("General_Accept"))));
+		SetButtonText(EDLCPopupButtonType::Negative, BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("General_Reject"))));
+		break;
+	case EUIMsgPopupButtonGroup::WatchOrExit:
+		SetButtonText(EDLCPopupButtonType::Positive, BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("General_Watch"))));
+		SetButtonText(EDLCPopupButtonType::Negative, BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("General_Quit"))));
+		break;
+	case EUIMsgPopupButtonGroup::MatchingContinue:
+		SetButtonText(EDLCPopupButtonType::Positive, BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("MatchingPopup_Btn_Continue"))));
+		SetButtonText(EDLCPopupButtonType::Negative, BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("MatchingPopup_Btn_Cancel"))));
+		break;
+	case EUIMsgPopupButtonGroup::Reconnect:
+		SetButtonText(EDLCPopupButtonType::Positive, BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("General_ReconnectButton"))));
+		SetButtonText(EDLCPopupButtonType::Negative, BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("General_Cancel"))));
+#if WITH_EDITOR // 취소 버튼이 없으면 서버 끊겼을 때 로비에 아예 들어갈 수가 없다. 이래저래 불편하고 민원 증가도 예상되니 에디터 한정 취소 가능하게..
+		if (!GIsEditor)
+#endif
+		{
+			ShowButton(EDLCPopupButtonType::Negative, false);
+		}
+		break;
+	case EUIMsgPopupButtonGroup::ReconnectOrGoToTitle:
+		SetButtonText(EDLCPopupButtonType::Positive, BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("General_GoToTitleButton"))));
+		ShowButton(EDLCPopupButtonType::Negative, false);
+		break;
+	case EUIMsgPopupButtonGroup::GotoLastChapter:
+		SetButtonText(EDLCPopupButtonType::Positive, BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("Tutorial_ChapterToLastAdventureBtn"))));
+		ShowButton(EDLCPopupButtonType::Negative, false);
+		break;
+	case EUIMsgPopupButtonGroup::None:
+		ShowButton(EDLCPopupButtonType::Positive, false);
+		ShowButton(EDLCPopupButtonType::Negative, false);
+		break;
+	}
 }
 
 void UB2UIDLCFrontSimplePopup::SetTitle(const FText& InText)

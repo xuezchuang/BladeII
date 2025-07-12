@@ -640,7 +640,7 @@ protected:
 
 	/** For controlled matinee mode, the matinee actor created by Add Matinee menu, or deployed from Matinee Data (InterpData) */
 	//UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "StageEvent", meta = (EditCondition = "bOverallMode_ControlledMatinee"))
-	//class AMatineeActor* MatineeActor;
+	//class ALevelSequenceActor * MatineeActor;
 
 	/** Blending time for final transition to the player camera after the show is over.
 	* Not only for the ManualCamera, but also for CameraAnim */
@@ -1012,7 +1012,7 @@ private:
 	void RuntimeRemoveNonDesiredGroup();
 
 	/** Sub-functionality of RuntimeRemoveNonDesiredGroup. */
-	void RuntimeDisableInterpGroup(class UInterpGroup* GroupToDisable, class AMatineeActor* OwnerMatinee);
+	void RuntimeDisableInterpGroup(class UInterpGroup* GroupToDisable, class ALevelSequenceActor * OwnerMatinee);
 	
 	/**
 	* [poikl2212] copy from Matinee.h
@@ -1023,7 +1023,7 @@ private:
 	*
 	* @return Returns the parent group pointer or NULL if one wasn't found	
 	*/
-	//UInterpGroup* FindParentGroupFolder(UInterpGroup* ChildGroup, class AMatineeActor* OwnerMatinee) const;
+	//UInterpGroup* FindParentGroupFolder(UInterpGroup* ChildGroup, class ALevelSequenceActor * OwnerMatinee) const;
 
 	/** Returns final matinee interp group name to search. Could be the same as RawInterpGroupName or might have some postfix attached. */
 	FString GetFinalMatchingInterpGroupName(class ABladeIICharacter* InPlayActor, FString RawInterpGroupName, bool bForFolderGroup = false);

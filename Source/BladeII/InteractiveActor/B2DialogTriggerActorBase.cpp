@@ -49,27 +49,28 @@ AB2DialogTriggerActorBase::AB2DialogTriggerActorBase(const FObjectInitializer& O
 
 void AB2DialogTriggerActorBase::InteractAction()
 {
-	//OpenDialogClass<FName, bool>::GetInstance().Signal(DialogCodeName, (bool)bMaintainBattleUIs);
+	OpenDialogClass<FName, bool>::GetInstance().Signal(DialogCodeName, (bool)bMaintainBattleUIs);
 
 	Super::InteractAction();
 }
 
 bool AB2DialogTriggerActorBase::IsTriggering(AActor* Other, TEnumAsByte<EInteractiveTriggeringType::Type> InTriggerType)
 {
-	//if (AB2StageEventDirector::CheckSkipForManageMode(this, ManageMode, false) != EStageEventSkipType::SEST_Play){
-	//	return false; // 시나리오 모드, 기타 추가될 수 있는 특수 게임모드 상황 체크
-	//}
+	if (AB2StageEventDirector::CheckSkipForManageMode(this, ManageMode, false) != EStageEventSkipType::SEST_Play)
+	{
+		return false; // 시나리오 모드, 기타 추가될 수 있는 특수 게임모드 상황 체크
+	}
 
-	//AB2StageGameMode* StageGM = Cast<AB2StageGameMode>(UGameplayStatics::GetGameMode(this));
-	//AB2StageManager* StageMgr = StageGM ? StageGM->GetStageManager() : NULL;
-	//if (StageMgr)
-	//{
-	//	// 스테이지랑 난이도 둘다 맞는경우만 발동
-	//	if (IsStageSupported(StageMgr->GetCurrentClientStageId()) && IsDifficultySupported(StageMgr->GetStageDifficultyLevel()))
-	//	{
-	//		return Super::IsTriggering(Other, InTriggerType);
-	//	}
-	//}
+	AB2StageGameMode* StageGM = Cast<AB2StageGameMode>(UGameplayStatics::GetGameMode(this));
+	AB2StageManager* StageMgr = StageGM ? StageGM->GetStageManager() : NULL;
+	if (StageMgr)
+	{
+		// 스테이지랑 난이도 둘다 맞는경우만 발동
+		if (IsStageSupported(StageMgr->GetCurrentClientStageId()) && IsDifficultySupported(StageMgr->GetStageDifficultyLevel()))
+		{
+			return Super::IsTriggering(Other, InTriggerType);
+		}
+	}
 	
 	return false;	
 }
@@ -109,13 +110,13 @@ bool AB2DialogTriggerActorBase::IsDifficultySupported(EStageDifficulty InStageDi
 bool AB2DialogTriggerActorBase::IsExpectedForGameMode(class ABladeIIGameMode* InB2GM) const
 {
 	// 이번 게임모드 세션의 기본 flow 상에서 실제 발동할 걸로 예상되는지.
-	//AB2StageGameModeBase* CastedSGM = Cast<AB2StageGameModeBase>(InB2GM);
-	//AB2StageManager* StageManagerIfAny = CastedSGM ? CastedSGM->GetStageManager() : NULL;
-	//if (StageManagerIfAny)
-	//{
-	//	return IsStageSupported(StageManagerIfAny->GetCurrentClientStageId()) &&
-	//		(AB2StageEventDirector::CheckSkipForManageMode(CastedSGM, ManageMode, false) == EStageEventSkipType::SEST_Play);
-	//}
+	AB2StageGameModeBase* CastedSGM = Cast<AB2StageGameModeBase>(InB2GM);
+	AB2StageManager* StageManagerIfAny = CastedSGM ? CastedSGM->GetStageManager() : NULL;
+	if (StageManagerIfAny)
+	{
+		return IsStageSupported(StageManagerIfAny->GetCurrentClientStageId()) &&
+			(AB2StageEventDirector::CheckSkipForManageMode(CastedSGM, ManageMode, false) == EStageEventSkipType::SEST_Play);
+	}
 	return true; // StageGameMode 가 아닌 경우는 기본 지원되는 걸로 본다. 별도 스테이지 개념이 없이 기본 동작 취급인 것.
 }
 

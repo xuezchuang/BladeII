@@ -2,6 +2,10 @@
 
 #include "B2UIBattleNotice.h"
 #include "BladeIILocText.h"
+#include "../B2RichTextBlock.h"
+#include "../../BladeII/BladeIIPlayer.h"
+#include "../../Common/EventSubsystem.h"
+#include "../../Common/Event.h"
 
 UB2UIBattleNotice::UB2UIBattleNotice(const FObjectInitializer& ObjectInitializer)
 	:Super(ObjectInitializer)
@@ -32,19 +36,19 @@ void UB2UIBattleNotice::CacheAssets()
 
 void UB2UIBattleNotice::Subscribes()
 {
-	//CAPTURE_UOBJECT(UB2UIBattleNotice);
+	CAPTURE_UOBJECT(UB2UIBattleNotice);
 
-	//OnEtherActivatedTicket = OnEtherActivatedClass<int32, ABladeIIPlayer*, ABladeIICharacter*>::GetInstance().Subscribe(
-	//	USE_CAPTURE_OBJECT_AND_TICKET(OnEtherActivated, int32 EtherSetID, ABladeIIPlayer* Owner, ABladeIICharacter* Causer)
-	//	Capture->OnEtherActivated(EtherSetID, Owner, Causer);
-	//	END_CAPTURE_OBJECT()
-	//);
+	OnEtherActivatedTicket = OnEtherActivatedClass<int32, ABladeIIPlayer*, ABladeIICharacter*>::GetInstance().Subscribe(
+		USE_CAPTURE_OBJECT_AND_TICKET(OnEtherActivated, int32 EtherSetID, ABladeIIPlayer * Owner, ABladeIICharacter * Causer)
+		Capture->OnEtherActivated(EtherSetID, Owner, Causer);
+	END_CAPTURE_OBJECT()
+		);
 
 }
 
 void UB2UIBattleNotice::Unsubscribes()
 {
-	//OnEtherActivatedClass<int32, ABladeIIPlayer*, ABladeIICharacter*>::GetInstance().Unsubscribe(OnEtherActivatedTicket);
+	OnEtherActivatedClass<int32, ABladeIIPlayer*, ABladeIICharacter*>::GetInstance().Unsubscribe(OnEtherActivatedTicket);
 }
 
 void UB2UIBattleNotice::Init()
@@ -136,13 +140,13 @@ int32 UB2UIBattleNotice::GetValidSlotCount()
 
 void UB2UIBattleNotice::OnEtherActivated(int32 EtherSetID, ABladeIIPlayer* Owner, ABladeIICharacter* Causer)
 {
-//	if (Owner && Owner->IsLocalPlayer())
-//	{
-//		FText EtherNoticeFormat = BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Ether_ActivateNotice"));
-//		FText EtherName = BladeIIGetLOCText(B2LOC_CAT_ETHER, FString::FromInt(EtherSetID));
-//
-//		UpdateNoticeText(FText::Format(EtherNoticeFormat, EtherName));
-//	}
+	if (Owner && Owner->IsLocalPlayer())
+	{
+		FText EtherNoticeFormat = BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Ether_ActivateNotice"));
+		FText EtherName = BladeIIGetLOCText(B2LOC_CAT_ETHER, FString::FromInt(EtherSetID));
+
+		UpdateNoticeText(FText::Format(EtherNoticeFormat, EtherName));
+	}
 }
 
 
@@ -157,7 +161,7 @@ UB2UIBattleNoticeSlot::UB2UIBattleNoticeSlot(const FObjectInitializer& ObjectIni
 
 void UB2UIBattleNoticeSlot::CacheAssets()
 {
-	//GET_SLOT(UB2RichTextBlock, RTB_BattleText);
+	GET_SLOT(UB2RichTextBlock, RTB_BattleText);
 }
 
 void UB2UIBattleNoticeSlot::AnimateSlot(ESlotAnimation Animation)
@@ -181,8 +185,8 @@ void UB2UIBattleNoticeSlot::Empty()
 
 void UB2UIBattleNoticeSlot::SetText(const FText& SlotText)
 {
-	//if (RTB_BattleText.IsValid())
-	//{
-	//	RTB_BattleText->SetText(SlotText);
-	//}
+	if (RTB_BattleText.IsValid())
+	{
+		RTB_BattleText->SetText(SlotText);
+	}
 }
