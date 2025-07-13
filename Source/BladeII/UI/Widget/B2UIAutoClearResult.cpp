@@ -8,7 +8,7 @@
 #include "B2UIPAutoClearResultRow.h"
 #include "Retailer.h"
 #include "B2UIStageResultLevelUp.h"
-
+#include "Event.h"
 
 void UB2UIAutoClearResult::Init()
 {
@@ -233,36 +233,36 @@ void UB2UIAutoClearResult::SubscribeEvents()
 {
 	CAPTURE_UOBJECT(UB2UIAutoClearResult);
 
-	//Issues.Add(DeliverySweepStageErrorClass<FB2SweepStageInfo, int32>::GetInstance().Subscribe2(
-	//	[Capture](const FB2SweepStageInfo& InSweepStageinfo, int32 InErrorCode)
-	//{
-	//	if (Capture.IsValid())
-	//	{
-	//		Capture->SetRepeat(false);
-	//	}
-	//}
-	//));
+	Issues.Add(DeliverySweepStageErrorClass<FB2SweepStageInfo, int32>::GetInstance().Subscribe2(
+		[Capture](const FB2SweepStageInfo& InSweepStageinfo, int32 InErrorCode)
+	{
+		if (Capture.IsValid())
+		{
+			Capture->SetRepeat(false);
+		}
+	}
+	));
 
-	////LevelupFinishDelegate 계속 지워서 사용하기 힘듬..
-	//Issues.Add(OnResetStartingLevelInfoClass<>::GetInstance().Subscribe2(
-	//	[Capture]()
-	//{
-	//	if (Capture.IsValid())
-	//	{
-	//		Capture->LevelupFinish();
-	//	}
-	//}
-	//));
+	//LevelupFinishDelegate 계속 지워서 사용하기 힘듬..
+	Issues.Add(OnResetStartingLevelInfoClass<>::GetInstance().Subscribe2(
+		[Capture]()
+	{
+		if (Capture.IsValid())
+		{
+			Capture->LevelupFinish();
+		}
+	}
+	));
 
-	//Issues.Add(ToolTipMoveClass<>::GetInstance().Subscribe2(
-	//	[Capture]()
-	//{
-	//	if (Capture.IsValid())
-	//	{
-	//		Capture->OnClickBTNOK();
-	//	}
-	//}
-	//));
+	Issues.Add(ToolTipMoveClass<>::GetInstance().Subscribe2(
+		[Capture]()
+	{
+		if (Capture.IsValid())
+		{
+			Capture->OnClickBTNOK();
+		}
+	}
+	));
 }
 
 void UB2UIAutoClearResult::UnsubscribeEvents()
@@ -384,7 +384,7 @@ void UB2UIAutoClearResult::SetCharacterInfo(const TArray<b2network::B2CharacterS
 
 void UB2UIAutoClearResult::GetResultItemInfo(OUT TArray<FB2Item>& ResultItems, const FB2SweepStageInfo& InSweepStageinfo)
 {
-	// 보상 아이템.. 기본 아이템 목록이랑.. 보상골드(드랍골드 이외의)도 있으면 보상아이템 형태로 추가한다.
+	//// 보상 아이템.. 기본 아이템 목록이랑.. 보상골드(드랍골드 이외의)도 있으면 보상아이템 형태로 추가한다.
 	//GetB2ItemArray(FB2ResponseSweepStage::items_index, InSweepStageinfo);
 
 	//// 보스조각 보상 아이템

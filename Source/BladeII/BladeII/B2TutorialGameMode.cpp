@@ -930,72 +930,72 @@ void AB2TutorialGameMode::StopRepeatingInput()
 /* Input */
 void AB2TutorialGameMode::OnInputMove()
 {
-	//ABladeIITutorialPlayer* TutorialPlayer = Cast<ABladeIITutorialPlayer>(UGameplayStatics::GetLocalPlayerCharacter(this));
-	//if (TutorialPlayer && BattleMainUI)
-	//{
-	//	BattleMainUI->SetMoveWidgetState(ETutorialWidgetState::Enable);
-	//}
+	ABladeIITutorialPlayer* TutorialPlayer = Cast<ABladeIITutorialPlayer>(GetWorld()->GetFirstPlayerController()->GetCharacter());
+	if (TutorialPlayer && BattleMainUI)
+	{
+		BattleMainUI->SetMoveWidgetState(ETutorialWidgetState::Enable);
+	}
 }
 
 void AB2TutorialGameMode::OnInputAttack()
 {
-	//if (CheckTutorialCondition(ETutorialConditionType::InputAttack))
-	//{
-	//	if (GetCurrentTutorial() == ETutorialNumber::Tutorial_2)
-	//	{
-	//		if (BattleMainUI)
-	//		{
-	//			BattleMainUI->SetAttackWidgetState(ETutorialWidgetState::Enable);
-	//			BattleMainUI->SetAttackEnable(true);
-	//		}
-	//	}
-	//	else if (GetCurrentTutorial() == ETutorialNumber::Tutorial_7)
-	//	{
-	//		if (BattleMainUI)
-	//		{
-	//			BattleMainUI->SetMountAttackWidgetState(ETutorialWidgetState::Enable);
-	//		}
-	//	}
+	if (CheckTutorialCondition(ETutorialConditionType::InputAttack))
+	{
+		if (GetCurrentTutorial() == ETutorialNumber::Tutorial_2)
+		{
+			if (BattleMainUI)
+			{
+				BattleMainUI->SetAttackWidgetState(ETutorialWidgetState::Enable);
+				BattleMainUI->SetAttackEnable(true);
+			}
+		}
+		else if (GetCurrentTutorial() == ETutorialNumber::Tutorial_7)
+		{
+			if (BattleMainUI)
+			{
+				BattleMainUI->SetMountAttackWidgetState(ETutorialWidgetState::Enable);
+			}
+		}
 
-	//	ActionNextTutorial();
-	//}
+		ActionNextTutorial();
+	}
 }
 
 void AB2TutorialGameMode::OnInputGuard()
 {
-	//if (CheckTutorialCondition(ETutorialConditionType::InputGuard))
-	//{
-	//	if (GetCurrentTutorial() == ETutorialNumber::Tutorial_4)
-	//	{
-	//		// do something..
-	//		if (!bReadyForCounterAction)
-	//		{
-	//			ABladeIITutorialPlayer* TutorialPlayer = Cast<ABladeIITutorialPlayer>(UGameplayStatics::GetLocalPlayerCharacter(this));
-	//			if (TutorialPlayer)
-	//			{
-	//				TutorialPlayer->ForceCounterAttack();
-	//			}
+	if (CheckTutorialCondition(ETutorialConditionType::InputGuard))
+	{
+		if (GetCurrentTutorial() == ETutorialNumber::Tutorial_4)
+		{
+			// do something..
+			if (!bReadyForCounterAction)
+			{
+				ABladeIITutorialPlayer* TutorialPlayer = Cast<ABladeIITutorialPlayer>(GetWorld()->GetFirstPlayerController()->GetCharacter());
+				if (TutorialPlayer)
+				{
+					TutorialPlayer->ForceCounterAttack();
+				}
 
-	//			if (BattleMainUI)
-	//			{
-	//				BattleMainUI->SetAttackEnable(true);
-	//				BattleMainUI->SetGuardWidgetState(ETutorialWidgetState::Enable);
-	//			}
+				if (BattleMainUI)
+				{
+					BattleMainUI->SetAttackEnable(true);
+					BattleMainUI->SetGuardWidgetState(ETutorialWidgetState::Enable);
+				}
 
-	//			bReadyForCounterAction = true;
+				bReadyForCounterAction = true;
 
-	//			SetTutorialPhaseInputControl(true);
-	//			StopSlowTime();
-	//		}
-	//	}
+				SetTutorialPhaseInputControl(true);
+				StopSlowTime();
+			}
+		}
 
-	//	ActionNextTutorial();
-	//}
+		ActionNextTutorial();
+	}
 }
 
 void AB2TutorialGameMode::OnInputSkill(int32 SkillIndex)
 {
-	/*if (CheckTutorialCondition(ETutorialConditionType::InputSKill))
+	if (CheckTutorialCondition(ETutorialConditionType::InputSKill))
 	{
 		if (GetCurrentTutorial() == ETutorialNumber::Tutorial_6)
 		{
@@ -1013,19 +1013,19 @@ void AB2TutorialGameMode::OnInputSkill(int32 SkillIndex)
 		}
 
 		ActionNextTutorial();
-	}*/
+	}
 }
 
 void AB2TutorialGameMode::OnInputQte()
 {
-	/*if (CheckTutorialCondition(ETutorialConditionType::InputQTE))
+	if (CheckTutorialCondition(ETutorialConditionType::InputQTE))
 	{
 		if (GetCurrentTutorial() == ETutorialNumber::Tutorial_7)
 		{
-			ABladeIITutorialPlayer* TutorialPlayer = Cast<ABladeIITutorialPlayer>(UGameplayStatics::GetLocalPlayerCharacter(this));
+			ABladeIITutorialPlayer* TutorialPlayer = Cast<ABladeIITutorialPlayer>(GetWorld()->GetFirstPlayerController()->GetCharacter());
 			if (TutorialPlayer)
 			{
-				TutorialPlayer->bEnableNormalAttack = true;
+				TutorialPlayer->SetEnableAttack(true);
 			}
 
 			if (BattleMainUI)
@@ -1044,7 +1044,7 @@ void AB2TutorialGameMode::OnInputQte()
 		}
 
 		ActionNextTutorial();
-	}*/
+	}
 }
 
 void AB2TutorialGameMode::OnInputUnitySkill()
@@ -1145,28 +1145,28 @@ void AB2TutorialGameMode::OnMobAttackNotify()
 {
 	UE_LOG(LogBladeII, Log, TEXT("@@ OnMobAttackNotify"));
 
-	//if (bReadyForCounterAction && bTutorial4CounterAction)
-	//{
-	//	ABladeIITutorialPlayer* TutorialPlayer = Cast<ABladeIITutorialPlayer>(UGameplayStatics::GetLocalPlayerCharacter(this));
-	//	if (TutorialPlayer)
-	//	{
-	//		TutorialPlayer->ActiveTutorialCounterGuard();
-	//		TutorialPlayer->StopRepeatingInput();
-	//		TutorialPlayer->SetAttackState(EAttackState::ECS_None);
+	if (bReadyForCounterAction && bTutorial4CounterAction)
+	{
+		ABladeIITutorialPlayer* TutorialPlayer = Cast<ABladeIITutorialPlayer>(GetWorld()->GetFirstPlayerController()->GetCharacter());
+		if (TutorialPlayer)
+		{
+			TutorialPlayer->ActiveTutorialCounterGuard();
+			TutorialPlayer->StopRepeatingInput();
+			TutorialPlayer->SetAttackState(EAttackState::ECS_None);
 
-	//		SetTutorialPhaseInputControl(false); // Input을 풀어야 Guard를 하지
-	//	}
+			SetTutorialPhaseInputControl(false); // Input을 풀어야 Guard를 하지
+		}
 
-	//	if (BattleMainUI)
-	//	{
-	//		BattleMainUI->SetGuardWidgetState(ETutorialWidgetState::Suggest);
-	//	}
+		if (BattleMainUI)
+		{
+			BattleMainUI->SetGuardWidgetState(ETutorialWidgetState::Suggest);
+		}
 
-	//	bReadyForCounterAction = false;
-	//	bTutorial4CounterAction = false;
+		bReadyForCounterAction = false;
+		bTutorial4CounterAction = false;
 
-	//	StartSlowTime(0.01f, 2.0f);
-	//}
+		StartSlowTime(0.01f, 2.0f);
+	}
 }
 
 void AB2TutorialGameMode::OnMobStopAttackNotify()
@@ -1201,49 +1201,49 @@ void AB2TutorialGameMode::OnCharacterDamaged(ABladeIICharacter* VictimCharacter,
 
 void AB2TutorialGameMode::SetMinoQTEState(ABladeIICharacter* VictimCharacter)
 {
-	//if (VictimCharacter)
-	//{
-	//	if (bSetMinoZombie)
-	//	{
-	//		VictimCharacter->Health = FMath::Clamp<float>(VictimCharacter->Health, 1, VictimCharacter->GetMaxHealth());
-	//		VictimCharacter->SetInvincible(true);
-	//	}
+	if (VictimCharacter)
+	{
+		if (bSetMinoZombie)
+		{
+			VictimCharacter->Health = FMath::Clamp<float>(VictimCharacter->Health, 1, VictimCharacter->GetMaxHealth());
+			VictimCharacter->SetInvincible(true);
+		}
 
-	//	// QTE 가능하게 하면서 탈수 있는 시간 무제한
-	//	VictimCharacter->SetQTEEnabled(true);
-	//	VictimCharacter->SetQTELimitEnabled(true);
+		// QTE 가능하게 하면서 탈수 있는 시간 무제한
+		VictimCharacter->SetQTEEnabled(true);
+		VictimCharacter->SetQTELimitEnabled(true);
 
-	//	if (GetCurrentTutorialPhase()->CompleteConditionType == ETutorialConditionType::WaitingForQTEPreparing)
-	//		ActionNextTutorial();
-	//}
+		if (GetCurrentTutorialPhase()->CompleteConditionType == ETutorialConditionType::WaitingForQTEPreparing)
+			ActionNextTutorial();
+	}
 }
 
 void AB2TutorialGameMode::StartAutoMinoRidding()
 {
-	//if (BattleMainUI)
-	//{
-	//	BattleMainUI->SetUIEnable(false);
-	//	BattleMainUI->SetAttackEnable(false);
-	//	BattleMainUI->SetGuardEnable(false);
-	//	BattleMainUI->SetSkillWidgetClickable(false);
-	//}
+	if (BattleMainUI)
+	{
+		BattleMainUI->SetUIEnable(false);
+		BattleMainUI->SetAttackEnable(false);
+		BattleMainUI->SetGuardEnable(false);
+		BattleMainUI->SetSkillWidgetClickable(false);
+	}
 
-	//float DelayTime = 3.0f;
+	float DelayTime = 3.0f;
 
-	//GetWorldTimerManager().SetTimer(AutoMinoRiddingTH, this, &AB2TutorialGameMode::SetAutoMinoRidding, DelayTime, false);
+	GetWorldTimerManager().SetTimer(AutoMinoRiddingTH, this, &AB2TutorialGameMode::SetAutoMinoRidding, DelayTime, false);
 }
 
 void AB2TutorialGameMode::SetAutoMinoRidding()
 {
-	//GetWorldTimerManager().ClearTimer(AutoMinoRiddingTH);
+	GetWorldTimerManager().ClearTimer(AutoMinoRiddingTH);
 
-	//ABladeIITutorialPlayer* TutorialPlayer = Cast<ABladeIITutorialPlayer>(UGameplayStatics::GetLocalPlayerCharacter(this));
-	//if (TutorialPlayer)
-	//{
-	//	TutorialPlayer->StartQTEByKeyPress();
-	//}
+	ABladeIITutorialPlayer* TutorialPlayer = Cast<ABladeIITutorialPlayer>(GetWorld()->GetFirstPlayerController()->GetCharacter());
+	if (TutorialPlayer)
+	{
+		TutorialPlayer->StartQTEByKeyPress();
+	}
 
-	//OnInputQte();
+	OnInputQte();
 }
 
 void AB2TutorialGameMode::StartAutoUnitySkill()
@@ -1320,20 +1320,20 @@ void AB2TutorialGameMode::OnChangedQTEEnableState(class UB2UIDocBase* Sender, EQ
 
 void AB2TutorialGameMode::OnCounterAttackSuccessed()
 {
-	//ABladeIITutorialPlayer* TutorialPlayer = Cast<ABladeIITutorialPlayer>(UGameplayStatics::GetLocalPlayerCharacter(this));
-	//if (TutorialPlayer)
-	//{
-	//	TutorialPlayer->OnTutorialCounterActivated();
+	ABladeIITutorialPlayer* TutorialPlayer = Cast<ABladeIITutorialPlayer>(GetWorld()->GetFirstPlayerController()->GetCharacter());
+	if (TutorialPlayer)
+	{
+		TutorialPlayer->OnTutorialCounterActivated();
 
-	//	if (GetCurrentTutorial() == ETutorialNumber::Tutorial_4)
-	//	{
-	//		float DelayTime = 0.3f;
-	//		GetWorldTimerManager().SetTimer(DealyKillTH, this, &AB2TutorialGameMode::SetForceKillEnemies, DelayTime, false);
+		if (GetCurrentTutorial() == ETutorialNumber::Tutorial_4)
+		{
+			float DelayTime = 0.3f;
+			GetWorldTimerManager().SetTimer(DealyKillTH, this, &AB2TutorialGameMode::SetForceKillEnemies, DelayTime, false);
 
-	//		TutorialPlayer->bComboEnabled = true;
-	//		bCountAttackSuccess = true;
-	//	}
-	//}
+			TutorialPlayer->bComboEnabled = true;
+			bCountAttackSuccess = true;
+		}
+	}
 }
 
 void AB2TutorialGameMode::OnPlayerAttackStateChange(ABladeIITutorialPlayer* TutorialPlayer, EAttackState InAttackState)
@@ -1354,11 +1354,11 @@ void AB2TutorialGameMode::OnPlayerAttackStateChange(ABladeIITutorialPlayer* Tuto
 
 void AB2TutorialGameMode::SpawnWaveEnemies()
 {
-	//if (GetSpawnPoolArray().Num() > 0 && GetSpawnPoolArray()[0]) // SpawnPool 여러개 설치가 가능하지만 난이도 별 튜토리얼이 있는 거 아니면 하나밖에는..
-	//{
-	//	// 임시 구현
-	//	GetSpawnPoolArray()[0]->CustomSpawnWave(MinoSpawnWaveNumber);
-	//}
+	if (GetSpawnPoolArray().Num() > 0 && GetSpawnPoolArray()[0]) // SpawnPool 여러개 설치가 가능하지만 난이도 별 튜토리얼이 있는 거 아니면 하나밖에는..
+	{
+		// 임시 구현
+		GetSpawnPoolArray()[0]->CustomSpawnWave(MinoSpawnWaveNumber);
+	}
 }
 
 void AB2TutorialGameMode::SetMinoRidingMatinee()
@@ -1400,34 +1400,34 @@ const FString AB2TutorialGameMode::GetClosingMovieName()
 
 void AB2TutorialGameMode::ActiveQTESuggest()
 {
-	//GetWorldTimerManager().ClearTimer(QTEPerfectTH);
+	GetWorldTimerManager().ClearTimer(QTEPerfectTH);
 
-	//SetTutorialPhaseInputControl(false);
+	SetTutorialPhaseInputControl(false);
 
-	//// Skill은 막자
-	//if (BattleMainUI)
-	//	BattleMainUI->SetUIEnable(false);
+	// Skill은 막자
+	if (BattleMainUI)
+		BattleMainUI->SetUIEnable(false);
 
 
-	//ABladeIITutorialPlayer* TutorialPlayer = Cast<ABladeIITutorialPlayer>(UGameplayStatics::GetLocalPlayerCharacter(this));
-	//if (TutorialPlayer)
-	//	TutorialPlayer->bEnableNormalAttack = true;
+	ABladeIITutorialPlayer* TutorialPlayer = Cast<ABladeIITutorialPlayer>(GetWorld()->GetFirstPlayerController()->GetCharacter());
+	if (TutorialPlayer)
+		TutorialPlayer->SetEnableAttack(true);
 
-	//BattleMainUI->SetQTEWidgetState(ETutorialWidgetState::Suggest);
+	BattleMainUI->SetQTEWidgetState(ETutorialWidgetState::Suggest);
 
-	//TArray<ABladeIICharacter*> AllMobs;
-	//GetAllWorldMobList(AllMobs);
-	////강제로 모든 몹 QTE상태로 만듬
-	//for (ABladeIICharacter* EnemyCharacter : AllMobs)
-	//	if (EnemyCharacter && EnemyCharacter->IsAlive())
-	//		EnemyCharacter->SetQTEEnabled(true);
+	TArray<ABladeIICharacter*> AllMobs;
+	GetAllWorldMobList(AllMobs);
+	//강제로 모든 몹 QTE상태로 만듬
+	for (ABladeIICharacter* EnemyCharacter : AllMobs)
+		if (EnemyCharacter && EnemyCharacter->IsAlive())
+			EnemyCharacter->SetQTEEnabled(true);
 
-	////	PauseTutorialGame();
-	//bSuggestQTEAction = true;
-	//bReadyForQTEAction = false;
+	//	PauseTutorialGame();
+	bSuggestQTEAction = true;
+	bReadyForQTEAction = false;
 
-	//if (GetCurrentTutorialPhase() && GetCurrentTutorialPhase()->CompleteConditionType == ETutorialConditionType::WaitingForQTESuggest)
-	//	ActionNextTutorial();
+	if (GetCurrentTutorialPhase() && GetCurrentTutorialPhase()->CompleteConditionType == ETutorialConditionType::WaitingForQTESuggest)
+		ActionNextTutorial();
 }
 
 FTutorialPhaseData* AB2TutorialGameMode::GetCurrentTutorialPhase()
@@ -1446,8 +1446,8 @@ FTutorialPhaseData* AB2TutorialGameMode::GetCurrentTutorialPhase()
 
 void AB2TutorialGameMode::SetTutorialPhaseInputControl(bool bLockInput)
 {
-	/*ABladeIIPlayer* LocalPlayerChar = Cast<ABladeIIPlayer>(UGameplayStatics::GetLocalPlayerCharacter(this));
-	ABladeIIPlayerController* LocalPlayerController = Cast<ABladeIIPlayerController>(UGameplayStatics::GetLocalPlayerController(this));
+	ABladeIIPlayer* LocalPlayerChar = Cast<ABladeIIPlayer>(GetWorld()->GetFirstPlayerController()->GetCharacter());
+	ABladeIIPlayerController* LocalPlayerController = Cast<ABladeIIPlayerController>(GetWorld()->GetFirstPlayerController());
 
 	if (LocalPlayerChar && LocalPlayerController)
 	{
@@ -1455,7 +1455,7 @@ void AB2TutorialGameMode::SetTutorialPhaseInputControl(bool bLockInput)
 			LocalPlayerChar->DisableInput(LocalPlayerController);
 		else
 			LocalPlayerChar->EnableInput(LocalPlayerController);
-	}*/
+	}
 }
 
 void AB2TutorialGameMode::PauseTutorialGame()
@@ -1489,13 +1489,12 @@ void AB2TutorialGameMode::SetForceKillEnemies()
 {
 	GetWorldTimerManager().ClearTimer(DealyKillTH);
 
-	//ABladeIIPlayerController* B2PC = Cast<ABladeIIPlayerController>(UGameplayStatics::GetLocalPlayerController(GetWorld()));
-	/*
+	ABladeIIPlayerController* B2PC = Cast<ABladeIIPlayerController>(GetWorld()->GetFirstPlayerController());
 	if (B2PC)
 	{
-	B2PC->KillAllEnemies();
+		B2PC->KillAllEnemies();
 	}
-	*/
+
 }
 
 void AB2TutorialGameMode::SetDirectPlayerTag()
@@ -1503,7 +1502,7 @@ void AB2TutorialGameMode::SetDirectPlayerTag()
 	SetOpenSkillButton(EPCClass::EPC_Gladiator, WEAPON_6STAR_SKILL_INDEX, false);
 	SetOpenSkillButton(EPCClass::EPC_Wizard, WEAPON_6STAR_SKILL_INDEX, false);
 
-	//PlayerStartTagClass<>::GetInstance().Signal();
+	PlayerStartTagClass<>::GetInstance().Signal();
 }
 
 int32 AB2TutorialGameMode::GetClientStageId()
@@ -1566,45 +1565,45 @@ ABladeIIPlayer* AB2TutorialGameMode::GetFallbackPuppetPlayer(EPCClass InCharClas
 
 void AB2TutorialGameMode::PreBuildCharacterMeshes()
 {
-	//TSubclassOf<APawn> DefaultPawnClassBackup = DefaultPawnClass;
-	//// 더미들 spawn 시켜야 해서 잠깐 딴 클래스로 바꿔놓고..
-	//DefaultPawnClass = ABladeIITutorialFallbackPuppetPlayer::StaticClass();
+	TSubclassOf<APawn> DefaultPawnClassBackup = DefaultPawnClass;
+	// 더미들 spawn 시켜야 해서 잠깐 딴 클래스로 바꿔놓고..
+	DefaultPawnClass = ABladeIITutorialFallbackPuppetPlayer::StaticClass();
 
-	//// 모든 캐릭터 mesh 다 빌드해 놓음. 여기는 B2CompositeMeshCache 의 RootSet 처리와 상관없이 
-	//// 장착 장비가 다를 것이므로 게임모드 차원에서 미리 빌드가 필요함.
-	//for (int32 PCI = 0; PCI < GetMaxPCClassNum(); ++PCI)
-	//{
-	//	EPCClass ThisCharClass = IntToPCClass(PCI);
+	// 모든 캐릭터 mesh 다 빌드해 놓음. 여기는 B2CompositeMeshCache 의 RootSet 처리와 상관없이 
+	// 장착 장비가 다를 것이므로 게임모드 차원에서 미리 빌드가 필요함.
+	for (int32 PCI = 0; PCI < GetMaxPCClassNum(); ++PCI)
+	{
+		EPCClass ThisCharClass = IntToPCClass(PCI);
 
-	//	TArray<FB2Item> ThisCharEquipItems;
-	//	FB2Wing ThisCharWing;
-	//	GetPCPartsForTutorialPlay(ThisCharClass, ThisCharEquipItems, ThisCharWing);
+		TArray<FB2Item> ThisCharEquipItems;
+		FB2Wing ThisCharWing;
+		GetPCPartsForTutorialPlay(ThisCharClass, ThisCharEquipItems, ThisCharWing);
 
-	//	// 여기서 InGameOnlyInfo 를 로딩하지는 않는다.
-	//	PrebuildAndCacheCharMesh(ThisCharClass, ThisCharEquipItems, &ThisCharWing,
-	//		false // 일단 기본적으로 섹션 나눠진 일반 모델로.
-	//	);
+		// 여기서 InGameOnlyInfo 를 로딩하지는 않는다.
+		PrebuildAndCacheCharMesh(ThisCharClass, ThisCharEquipItems, &ThisCharWing,
+			false // 일단 기본적으로 섹션 나눠진 일반 모델로.
+		);
 
-	//	// 섹션 병합된 모델을 사용할 가능성을 생각하기는 어렵지만.. 코드는 갖춰두고.
-	//	if (UB2PCMeshSectionMergeInfo::ShouldUseSectionMergeByGameContext(this))
-	//	{
-	//		PrebuildAndCacheCharMesh(ThisCharClass, ThisCharEquipItems, &ThisCharWing, true);
-	//	}
+		// 섹션 병합된 모델을 사용할 가능성을 생각하기는 어렵지만.. 코드는 갖춰두고.
+		if (UB2PCMeshSectionMergeInfo::ShouldUseSectionMergeByGameContext(this))
+		{
+			PrebuildAndCacheCharMesh(ThisCharClass, ThisCharEquipItems, &ThisCharWing, true);
+		}
 
-	//	// 추가로 연출 셋업 시 사용할 더미들도 생성해 놓는다. Async 로딩을 할 AnimBP 로딩이 없도록 하는 게 중요.
-	//	FTransform FallbackPuppetTransform(FVector(100000.0f, 100000.0f, 100.0f * (float)PCI));
-	//	ABladeIITutorialFallbackPuppetPlayer* SpawnedFallbackPuppet = Cast<ABladeIITutorialFallbackPuppetPlayer>(
-	//		ABladeIIGameMode::SpawnPlayerCharAsPuppet(this, ThisCharClass, FallbackPuppetTransform, false));
-	//	if (SpawnedFallbackPuppet)
-	//	{
-	//		FallbackPuppets.Add(ThisCharClass, SpawnedFallbackPuppet);
-	//	}
-	//}
+		// 추가로 연출 셋업 시 사용할 더미들도 생성해 놓는다. Async 로딩을 할 AnimBP 로딩이 없도록 하는 게 중요.
+		FTransform FallbackPuppetTransform(FVector(100000.0f, 100000.0f, 100.0f * (float)PCI));
+		ABladeIITutorialFallbackPuppetPlayer* SpawnedFallbackPuppet = Cast<ABladeIITutorialFallbackPuppetPlayer>(
+			ABladeIIGameMode::SpawnPlayerCharAsPuppet(this, ThisCharClass, FallbackPuppetTransform, false));
+		if (SpawnedFallbackPuppet)
+		{
+			FallbackPuppets.Add(ThisCharClass, SpawnedFallbackPuppet);
+		}
+	}
 
-	//DefaultPawnClass = DefaultPawnClassBackup;
+	DefaultPawnClass = DefaultPawnClassBackup;
 
-	//// GameMode 의 멤버 변수로 처음 Spawn 시킬 PCClass 를 명시하는 좀 바보같은 구조 때문에 이걸 다시 불러주어야 함.
-	//SetDesiredPCClassEnum(); // 왜 이렇게 만들었었는지 잘 기억이 안나는데 구조가 이렇게 복잡해질 줄 몰랐겠지..
+	// GameMode 의 멤버 변수로 처음 Spawn 시킬 PCClass 를 명시하는 좀 바보같은 구조 때문에 이걸 다시 불러주어야 함.
+	SetDesiredPCClassEnum(); // 왜 이렇게 만들었었는지 잘 기억이 안나는데 구조가 이렇게 복잡해질 줄 몰랐겠지..
 }
 
 void AB2TutorialGameMode::PreBuildTagCharMesh()

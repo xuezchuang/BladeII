@@ -1,6 +1,6 @@
 
 #include "B2BTService_StopStupidAttack.h"
-//#include "BladeII.h"
+#include "BladeII.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "BehaviorTree/BehaviorTreeTypes.h"
 #include "BladeIIPlayer.h"
@@ -23,12 +23,12 @@ void UB2BTService_StopStupidAttack::TickNode(UBehaviorTreeComponent& OwnerComp, 
 
 	if (!Avatar)
 	{
-		//Avatar = Cast<ABladeIIPlayer>(UGameplayStatics::GetLocalPlayerCharacter(this));
-		//if (Avatar)
-		//{
-		//	Avatar->StopAttack();
-		//	return;
-		//}
+		Avatar = Cast<ABladeIIPlayer>(GetWorld()->GetFirstPlayerController()->GetCharacter());
+		if (Avatar)
+		{
+			Avatar->StopAttack();
+			return;
+		}
 	}
 
 	BII_CHECK(Owner);

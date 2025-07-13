@@ -99,7 +99,7 @@ protected:
 
 	virtual TArray<EPCClass> GetPCClassesToPreLoad() override;
 	/** Returns skill animation identifiers to pre-load. Skill anim data has big potion within whole PCClassInfo. */
-	//virtual TArray<FCombinedPCSkillAnimID> GetPCSkillAnimsToPreLoad() override;
+	virtual TArray<FCombinedPCSkillAnimID> GetPCSkillAnimsToPreLoad() override;
 	virtual void PreBuildTagCharMesh() override {/* Do nothing here, as CounterAttackGM has no Tag character. */};
 
 	void FinishAttack();

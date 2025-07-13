@@ -9,11 +9,11 @@
 #include "Particles/ParticleSystem.h"
 #include "Components/SkinnedMeshComponent.h"
 #include "UObject/ObjectSaveContext.h"
-//#include "BladeIIProjectile.h"
-////#include "B2AreaDamageActorBase.h"
-//////#include "B2FloatingAbnormalEffect.h"
+#include "BladeIIProjectile.h"
+#include "B2AreaDamageActorBase.h"
+//#include "B2FloatingAbnormalEffect.h"
 //#include "UObject/ObjectSaveContext.h"
-////#include "B2CharacterBuffManager.h"
+#include "B2CharacterBuffManager.h"
 #include "BladeIICharacter.generated.h"
 //
 /** To categorize characters. */
@@ -912,13 +912,14 @@ public:
 	virtual void AffectToAttackerAfterVictimDie(ABladeIICharacter* Victim, float ActualDamage, const FDamageInfo& DamageInfo);
 	virtual bool RequestDamage(const float Damage, const FDamageInfo* DamageInfo, ABladeIICharacter* DamageCauser, bool NetBroadcast = false);
 
-	//FORCEINLINE class UB2CharacterBuffManager* GetBuffManager() const {
-	//	return BuffManager;
-	//}
+	FORCEINLINE class UB2CharacterBuffManager* GetBuffManager() const
+	{
+		return BuffManager;
+	}
 
 	UFUNCTION(BlueprintCallable, Category = "BladeIIGame")
 	bool IsBuffActive(EBuffType BuffType) const;
-	//class UB2Buff_Base* GetBuff(EBuffType  BuffType) const;
+	class UB2Buff_Base* GetBuff(EBuffType  BuffType) const;
 
 	virtual bool ProcessEtherSetEffect(EEtherSetType EtherSetType, ABladeIICharacter* EtherCauser, const FDamageInfo& CauserDamageInfo, float ActualDamage);
 
@@ -1322,8 +1323,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CameraTarget)
 	FRotator CameraTargetBoomRotOffset;
 
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = BladeIIGame)
-	//TArray<TSubclassOf<class ABladeIIProjectile>> ProjectileClasses;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = BladeIIGame)
+	TArray<TSubclassOf<class ABladeIIProjectile>> ProjectileClasses;
 
 protected:
 
@@ -1387,8 +1388,8 @@ public:
 
 	class UB2BuffModeEffectInfo* GetBuffModeEffectInfo();
 
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = BladeIIGame)
-	//TArray<TSubclassOf<class AB2AreaDamageActorBase>> AreaDamageClasses;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = BladeIIGame)
+	TArray<TSubclassOf<class AB2AreaDamageActorBase>> AreaDamageClasses;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = BladeIIGame)
 	FName DamageSocketName;
@@ -1954,8 +1955,8 @@ protected:
 	virtual void CreateUIManager();
 
 	TArray<FDamageReservationInfo> DamageReservationInfos;
-	//UPROPERTY(Transient)
-	//class UB2CharacterBuffManager* BuffManager;
+	UPROPERTY(Transient)
+	class UB2CharacterBuffManager* BuffManager;
 
 public:
 	void HideFloatingHPBar(bool bInHide);

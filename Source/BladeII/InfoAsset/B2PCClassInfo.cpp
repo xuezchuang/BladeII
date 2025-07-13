@@ -11,29 +11,29 @@
 //#include "Components/ChainComponent.h"
 //#include "PhysicsEngine/RadialForceComponent.h"
 
-//#include "B2SkillInfo.h"
-//#include "B2InGameHUDInfo_Player.h"
-//#include "BladeIIProjectile.h"
-//#include "B2AreaDamageActorBase.h"
+#include "B2SkillInfo.h"
+#include "B2InGameHUDInfo_Player.h"
+#include "BladeIIProjectile.h"
+#include "B2AreaDamageActorBase.h"
 #include "BladeIIGameMode.h"
-//#include "B2LobbyGameMode.h"
-//#include "B2LobbyInventory.h"
-//#include "B2ItemInfo.h"
+#include "B2LobbyGameMode.h"
+#include "B2LobbyInventory.h"
+#include "B2ItemInfo.h"
 #include "B2PCClassInfoBox.h"
-//#include "SkeletalMeshMerge.h"
-//#include "Animation/SkeletalMeshActor.h"
+#include "SkeletalMeshMerge.h"
+#include "Animation/SkeletalMeshActor.h"
 #include "B2WingInfo.h"
-//#include "B2Airport.h"
+#include "B2Airport.h"
 #include "B2SomeInfo.h"
-//#include "B2ClientDataStore.h"
-//#include "BladeIIGameImpl.h"
-//#include "B2CompositeMeshCache.h"
+#include "B2ClientDataStore.h"
+#include "BladeIIGameImpl.h"
+#include "B2CompositeMeshCache.h"
 #include "FB2ErrorMessage.h"
 #include "../BladeII/BladeIILocText.h"
 #include "../BladeII/BladeIIUtil.h"
-//#include "B2AssetLoader.h"
-//#include "B2UIDocHelper.h"
-//#include "B2GameInstance.h"
+#include "B2AssetLoader.h"
+#include "B2UIDocHelper.h"
+#include "B2GameInstance.h"
 
 #define EQUIPMENTS_EFFECT
 
@@ -395,24 +395,24 @@ void ABladeIIPlayer::SetupComponentsForParts(bool bMergeSections, USkeletalMesh*
 	//SetupComponentsForPartsCommon(CachedEquippedItem, GetWingDataPtrIfValid(), bMergeSections, false, OutGetBuiltResultOnly);
 }
 
-//void ABladeIIPlayer::SetupComponentsForPartsCustomDataStore(ICharacterDataStore* InCustomDataStore, bool bMergeSections)
-//{ // 일반적으로는 GetCharacterDataStore 를 통해 얻어진 DataStore 를 사용.. 이건 특수한 경우를 위함.
-//	//if (InCustomDataStore)
-//	//{
-//	//	EPCClass PCClassEnum = GetCurrentPlayerClass(); // 기본 클래스만은 정체성을 잃지 않고..
-//	//	TArray<FB2Item> FoundEquipment;
-//	//	InCustomDataStore->GetEquippedItems(PCClassEnum, FoundEquipment);
-//	//	InCustomDataStore->GetEquippedCostumeItems(PCClassEnum, FoundEquipment);
-//	//	FB2Wing FoundWingData;
-//	//	bool bLocalHasWing = InCustomDataStore->GetCharacterWing(PCClassEnum, FoundWingData);
-//	//	ICharacterDataStore::GetRenderItem(InCustomDataStore, PCClassEnum, FoundEquipment);
-//
-//	//	// 이걸 사용하는 시점에서 GameEntryID 가 의도와는 다를 수 있으므로 캐싱해 놓은 거 사용하지 말고 ForceUpdate 해서 사용.
-//	//	// 단 composite mesh 캐싱이 장비 조합까지 체크는 하므로 꼬인 결과물이 나오지는 않을 꺼고 성능에만 안 좋은 영향을 미치는 거.
-//	//	// 여기 결과도 캐싱하려면 이쪽으로 현재 조합 대상의 GameEntryID 를 넘겨줄 수 있어야 함.
-//	//	SetupComponentsForPartsCommon(FoundEquipment, bLocalHasWing ? &FoundWingData : NULL, bMergeSections, true);
-//	//}
-//}
+void ABladeIIPlayer::SetupComponentsForPartsCustomDataStore(ICharacterDataStore* InCustomDataStore, bool bMergeSections)
+{ // 일반적으로는 GetCharacterDataStore 를 통해 얻어진 DataStore 를 사용.. 이건 특수한 경우를 위함.
+	//if (InCustomDataStore)
+	//{
+	//	EPCClass PCClassEnum = GetCurrentPlayerClass(); // 기본 클래스만은 정체성을 잃지 않고..
+	//	TArray<FB2Item> FoundEquipment;
+	//	InCustomDataStore->GetEquippedItems(PCClassEnum, FoundEquipment);
+	//	InCustomDataStore->GetEquippedCostumeItems(PCClassEnum, FoundEquipment);
+	//	FB2Wing FoundWingData;
+	//	bool bLocalHasWing = InCustomDataStore->GetCharacterWing(PCClassEnum, FoundWingData);
+	//	ICharacterDataStore::GetRenderItem(InCustomDataStore, PCClassEnum, FoundEquipment);
+
+	//	// 이걸 사용하는 시점에서 GameEntryID 가 의도와는 다를 수 있으므로 캐싱해 놓은 거 사용하지 말고 ForceUpdate 해서 사용.
+	//	// 단 composite mesh 캐싱이 장비 조합까지 체크는 하므로 꼬인 결과물이 나오지는 않을 꺼고 성능에만 안 좋은 영향을 미치는 거.
+	//	// 여기 결과도 캐싱하려면 이쪽으로 현재 조합 대상의 GameEntryID 를 넘겨줄 수 있어야 함.
+	//	SetupComponentsForPartsCommon(FoundEquipment, bLocalHasWing ? &FoundWingData : NULL, bMergeSections, true);
+	//}
+}
 
 void ABladeIIPlayer::SetupComponentsForPartsCommon(const TArray<FB2Item>& EquippedItems, const FB2Wing* InWingData, bool bMergeSections, bool bForceUpdate, class USkeletalMesh** OutGetBuiltResultOnly)
 {
@@ -832,108 +832,108 @@ bool UB2PCClassInfo::SetupSKCompForParts(EPCClass InPCClass, AActor* SKCompOwner
 {
 	B2_SCOPED_TRACK_LOG(TEXT("UB2PCClassInfo::SetupSKCompForParts"));
 	B2_SCOPED_TIME_LOG(FString::Printf(TEXT("UB2PCClassInfo::SetupSKCompForParts Owner %s, PCClass %d"), SKCompOwner ? *SKCompOwner->GetName() : TEXT("Unknown"), PCClassToInt(InPCClass)));
-//	
-//#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2 // 섹션 병합 테스트 플래그
-//	if (UB2PCMeshSectionMergeInfo::ShouldForceUseSectionMerge()) {
-//		bInMergeSections = true;
-//	}
-//	else if (UB2PCMeshSectionMergeInfo::ShouldForceUnuseSectionMerge()) {
-//		bInMergeSections = false;
-//	}
-//#endif
-//
-//	check(SKCompOwner && SKCompToSetup && InBaseMesh);
-//	ABladeIIPlayer* CastedB2Player = Cast<ABladeIIPlayer>(SKCompOwner);
-//	ASkeletalMeshActor* CastedSKActor = Cast<ASkeletalMeshActor>(SKCompOwner);
-//	check(CastedB2Player || CastedSKActor); // 인게임 캐릭터거나 로비에 박아넣은 액터거나.
-//	// SKCompToSetup 과 SKCompOwner 와의 관계
-//	check((CastedB2Player && CastedB2Player->GetBaseMesh() == SKCompToSetup) || (CastedSKActor && CastedSKActor->GetSkeletalMeshComponent() == SKCompToSetup));
-//
-//	UB2ItemInfo* IteminfoTable = StaticFindItemInfo();
-//	BII_CHECK(IteminfoTable);
-//
-//	UB2GameInstance* B2GI = Cast<UB2GameInstance>(UGameplayStatics::GetGameInstance(SKCompOwner));
-//	UB2SomeInfo* SomeInfo = B2GI ? B2GI->GetSomeInfo() : NULL;
-//	BII_CHECK(SomeInfo);
-//
-//	UB2WingInfo* WingInfoTable = B2GI ? B2GI->GetWingInfo() : StaticFindWingInfo();
-//	FClientDataStore& ClientDataStore = BladeIIGameImpl::GetClientDataStore();
-//
-//	// 이것들은 조합 후에 제거하려고.
-//	TArray<FSingleItemInfoData*> AllLoadedItemInfo;
-//	FSingleWingInfoData* LoadedWingInfo = NULL; // 끝까지 NULL 일 수 있다.
-//
-//	UB2PCClassInfoBox* PCInfoBox = B2GI ? B2GI->GetPCClassInfoBox() : StaticFindPCClassInfoBox(SKCompOwner);
-//	// 특수 모드에서 성능 확보를 위해 section merge 를 실행하는 데에 필요한 정보를 담고 있는 info asset.
-//	UB2PCMeshSectionMergeInfo* SectionMergeInfo = PCInfoBox ? PCInfoBox->GetMeshSectionMergeInfo() : nullptr;
-//	if (bInMergeSections)
-//	{
-//		check(SectionMergeInfo);
-//		if (!SectionMergeInfo) {
-//			return false;
-//		}
-//	}
-//	// SectionMerge 시에 한 섹션 안에서 UV 영역을 다르게 사용하기 위한 정보. Section merge 를 안 할 거면 필요없겠지.
-//	FSkelMeshMergeUVTransforms SectionMergeUVTransform;
-//	
-//	// 이전에 merge 된 메쉬가 주어졌다면 여기서 하는 일은 많지 않아야 한다. 단지 이전에 만들었던 구조 등으로 인해 전 과정을 스킵까지는 못하고.
-//	const bool bPrebuiltMeshProvided = (InOutPrebuiltCompositeMesh != nullptr);
-//
-//#if !UE_BUILD_SHIPPING
-//	extern bool GTest_UseNonCompositedRawPCMesh;
-//	if (GTest_UseNonCompositedRawPCMesh)
-//	{ // 기본 메쉬 사용하는 테스트 모드
-//		SKCompToSetup->SetSkeletalMesh(InBaseMesh);
-//		return false;
-//	}
-//#endif
-//#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
-//	/** 특정 별 성 수의 장비를 일괄 착용할 수 있도록 하는 치트..  
-//	 치트라서 그냥 이 안에 넣는 것인데, 실제 기능에서는 이 안에서 EquippedItems 를 별다른 주의 없이 무작정 override 해서는 안된다. 
-//	 일단 FB2GMPCCompositeMeshCacher 에서 장착 장비에 따라 생성된 mesh 를 캐싱해서 쓰기 때문에 그것부터 어긋날 것임. */
-//	if (gForcedPlayerDummyPartGrade >= 1 && gForcedPlayerDummyPartGrade <= FItemGradeInfo::MAX_NORMAL_ITEM_STAR_GRADE)
-//	{
-//		TArray<FB2Item> NewDummyPart;
-//		GetStandardDummyPCPartItemData(InPCClass, gForcedPlayerDummyPartGrade, NewDummyPart);
-//		TArray<FB2Item>* EquipitemPtrToModify = const_cast<TArray<FB2Item>*>(&InEquippedItems); // 개발 참고용 치트이므로 다소간 과격한 방법으로..
-//		if (EquipitemPtrToModify)
-//		{
-//			EquipitemPtrToModify->Empty();
-//			*EquipitemPtrToModify = NewDummyPart;
-//		}
-//	}
-//
-//	if (gCheatCostumeItem.Num() > 0)
-//	{
-//		TArray<FB2Item>* EquipitemPtrToModify = const_cast<TArray<FB2Item>*>(&InEquippedItems); // 개발 참고용 치트이므로 다소간 과격한 방법으로..
-//		if (EquipitemPtrToModify)
-//			EquipitemPtrToModify->Append(gCheatCostumeItem);
-//	}
-//#endif
-//
-//	TArray<FPCPartsAssetInfo> DefaultPartsCopy = InDefaultParts; // 일부 요소가 도중에 제거될 수도 있어서 복사해서 쓴다.
-//	TArray<FLocalPartMeshMtrlInfo> AllPartAssets; // 기본파트에 현재장착 아이템 고려해서 최종 리소스 정보 모은 것. 여기에 모은 것들이 최종 메쉬 조합 재료로 사용될 것.
-//	TArray<FPCPartExtraAttachFxSet> AllExtraAttachFx; // 추가로 이것도 모으게 될 것.
-//
-//	TMap< EPCPart, const FB2Item* > ReplaceCostumeItems;
-//	bool HaveCombineCostume = false;
-//	
-//	for (const FB2Item& CurrentItem : InEquippedItems)
-//	{
-//		if (CurrentItem.CostumeEquipPlace != ECostumeEquipPlace::ECEP_None)
-//		{
-//			TArray<EPCPart> ReplaceParts;
-//			SectionMergeInfo->GetReplaceCostumeEquipPlace(CurrentItem.CostumeEquipPlace, ReplaceParts);
-//			//코스튬 한개로 여러 부위 합치면 Combine 코스튬 들어가 있다고 간주
-//			if (ReplaceParts.Num() > 1)
-//				HaveCombineCostume = true;
-//
-//			for (EPCPart PCPart : ReplaceParts)
-//				ReplaceCostumeItems.Add(PCPart, &CurrentItem);
-//		}
-//	}
-//
-//	check(((int32)EPCPart::EPCPT_Face == 0) && ((int32)EPCPart::EPCPT_Wing + 1 == (int32)(EPCPart::EPCPT_End))); // Enum 번호가 모르게 바뀌거나 추가 항목 생길 경우 놓치지 않도록.
+	
+#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2 // 섹션 병합 테스트 플래그
+	if (UB2PCMeshSectionMergeInfo::ShouldForceUseSectionMerge()) {
+		bInMergeSections = true;
+	}
+	else if (UB2PCMeshSectionMergeInfo::ShouldForceUnuseSectionMerge()) {
+		bInMergeSections = false;
+	}
+#endif
+
+	check(SKCompOwner && SKCompToSetup && InBaseMesh);
+	ABladeIIPlayer* CastedB2Player = Cast<ABladeIIPlayer>(SKCompOwner);
+	ASkeletalMeshActor* CastedSKActor = Cast<ASkeletalMeshActor>(SKCompOwner);
+	check(CastedB2Player || CastedSKActor); // 인게임 캐릭터거나 로비에 박아넣은 액터거나.
+	// SKCompToSetup 과 SKCompOwner 와의 관계
+	check((CastedB2Player && CastedB2Player->GetBaseMesh() == SKCompToSetup) || (CastedSKActor && CastedSKActor->GetSkeletalMeshComponent() == SKCompToSetup));
+
+	UB2ItemInfo* IteminfoTable = StaticFindItemInfo();
+	BII_CHECK(IteminfoTable);
+
+	UB2GameInstance* B2GI = Cast<UB2GameInstance>(UGameplayStatics::GetGameInstance(SKCompOwner));
+	UB2SomeInfo* SomeInfo = B2GI ? B2GI->GetSomeInfo() : NULL;
+	BII_CHECK(SomeInfo);
+
+	UB2WingInfo* WingInfoTable = B2GI ? B2GI->GetWingInfo() : StaticFindWingInfo();
+	FClientDataStore& ClientDataStore = BladeIIGameImpl::GetClientDataStore();
+
+	// 이것들은 조합 후에 제거하려고.
+	TArray<FSingleItemInfoData*> AllLoadedItemInfo;
+	FSingleWingInfoData* LoadedWingInfo = NULL; // 끝까지 NULL 일 수 있다.
+
+	UB2PCClassInfoBox* PCInfoBox = B2GI ? B2GI->GetPCClassInfoBox() : StaticFindPCClassInfoBox(SKCompOwner);
+	// 특수 모드에서 성능 확보를 위해 section merge 를 실행하는 데에 필요한 정보를 담고 있는 info asset.
+	UB2PCMeshSectionMergeInfo* SectionMergeInfo = PCInfoBox ? PCInfoBox->GetMeshSectionMergeInfo() : nullptr;
+	if (bInMergeSections)
+	{
+		check(SectionMergeInfo);
+		if (!SectionMergeInfo) {
+			return false;
+		}
+	}
+	// SectionMerge 시에 한 섹션 안에서 UV 영역을 다르게 사용하기 위한 정보. Section merge 를 안 할 거면 필요없겠지.
+	FSkelMeshMergeMeshUVTransforms SectionMergeUVTransform;
+	
+	// 이전에 merge 된 메쉬가 주어졌다면 여기서 하는 일은 많지 않아야 한다. 단지 이전에 만들었던 구조 등으로 인해 전 과정을 스킵까지는 못하고.
+	const bool bPrebuiltMeshProvided = (InOutPrebuiltCompositeMesh != nullptr);
+
+#if !UE_BUILD_SHIPPING
+	extern bool GTest_UseNonCompositedRawPCMesh;
+	if (GTest_UseNonCompositedRawPCMesh)
+	{ // 기본 메쉬 사용하는 테스트 모드
+		SKCompToSetup->SetSkeletalMesh(InBaseMesh);
+		return false;
+	}
+#endif
+#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
+	/** 특정 별 성 수의 장비를 일괄 착용할 수 있도록 하는 치트..  
+	 치트라서 그냥 이 안에 넣는 것인데, 실제 기능에서는 이 안에서 EquippedItems 를 별다른 주의 없이 무작정 override 해서는 안된다. 
+	 일단 FB2GMPCCompositeMeshCacher 에서 장착 장비에 따라 생성된 mesh 를 캐싱해서 쓰기 때문에 그것부터 어긋날 것임. */
+	if (gForcedPlayerDummyPartGrade >= 1 && gForcedPlayerDummyPartGrade <= FItemGradeInfo::MAX_NORMAL_ITEM_STAR_GRADE)
+	{
+		TArray<FB2Item> NewDummyPart;
+		GetStandardDummyPCPartItemData(InPCClass, gForcedPlayerDummyPartGrade, NewDummyPart);
+		TArray<FB2Item>* EquipitemPtrToModify = const_cast<TArray<FB2Item>*>(&InEquippedItems); // 개발 참고용 치트이므로 다소간 과격한 방법으로..
+		if (EquipitemPtrToModify)
+		{
+			EquipitemPtrToModify->Empty();
+			*EquipitemPtrToModify = NewDummyPart;
+		}
+	}
+
+	if (gCheatCostumeItem.Num() > 0)
+	{
+		TArray<FB2Item>* EquipitemPtrToModify = const_cast<TArray<FB2Item>*>(&InEquippedItems); // 개발 참고용 치트이므로 다소간 과격한 방법으로..
+		if (EquipitemPtrToModify)
+			EquipitemPtrToModify->Append(gCheatCostumeItem);
+	}
+#endif
+
+	TArray<FPCPartsAssetInfo> DefaultPartsCopy = InDefaultParts; // 일부 요소가 도중에 제거될 수도 있어서 복사해서 쓴다.
+	TArray<FLocalPartMeshMtrlInfo> AllPartAssets; // 기본파트에 현재장착 아이템 고려해서 최종 리소스 정보 모은 것. 여기에 모은 것들이 최종 메쉬 조합 재료로 사용될 것.
+	TArray<FPCPartExtraAttachFxSet> AllExtraAttachFx; // 추가로 이것도 모으게 될 것.
+
+	TMap< EPCPart, const FB2Item* > ReplaceCostumeItems;
+	bool HaveCombineCostume = false;
+	
+	for (const FB2Item& CurrentItem : InEquippedItems)
+	{
+		if (CurrentItem.CostumeEquipPlace != ECostumeEquipPlace::ECEP_None)
+		{
+			TArray<EPCPart> ReplaceParts;
+			SectionMergeInfo->GetReplaceCostumeEquipPlace(CurrentItem.CostumeEquipPlace, ReplaceParts);
+			//코스튬 한개로 여러 부위 합치면 Combine 코스튬 들어가 있다고 간주
+			if (ReplaceParts.Num() > 1)
+				HaveCombineCostume = true;
+
+			for (EPCPart PCPart : ReplaceParts)
+				ReplaceCostumeItems.Add(PCPart, &CurrentItem);
+		}
+	}
+
+	check(((int32)EPCPart::EPCPT_Face == 0) && ((int32)EPCPart::EPCPT_Wing + 1 == (int32)(EPCPart::EPCPT_End))); // Enum 번호가 모르게 바뀌거나 추가 항목 생길 경우 놓치지 않도록.
 //	{
 //		B2_SCOPED_TRACK_LOG_L2(TEXT("UB2PCClassInfo::SetupSKCompForParts -- Part Resource Loading"));
 //		for (int32 PartIdx = 0; PartIdx < (int32)EPCPart::EPCPT_End; ++PartIdx)
@@ -1290,51 +1290,51 @@ bool UB2PCClassInfo::SetupSKCompForParts(EPCClass InPCClass, AActor* SKCompOwner
 //			}
 //		}
 //	}
-//
-//	// 같이 존재하면 안되는 파트들을 걸러냄
-//	TArray<int32> ToRemovePartIndices;
-//	for (int32 PIA = 0; PIA < AllPartAssets.Num(); ++PIA)
-//	{
-//		const EPCPart PartToAdd = AllPartAssets[PIA].PartEnum;
-//
-//		for (int32 PIB = 0; PIB < AllPartAssets.Num(); ++PIB)
-//		{ // 비교 순서가 있어서 PIB 를 PIA+1 부터 시작하지는 못하고 같은 경우만 걸러낸다.
-//			if (PIA == PIB){
-//				continue;
-//			}
-//			const EPCPart PartToRemoveTest = AllPartAssets[PIB].PartEnum;
-//			if (ShouldRemoveOtherPart(InPCClass, PartToAdd, PartToRemoveTest)) // 만에 하나.. ShouldRemove 관계가 먹이사슬처럼 물고물리는 식이 되어선 안되겠다..
-//			{
-//				ToRemovePartIndices.AddUnique(PIB);
-//			}
-//		}
-//	}
-//	if (ToRemovePartIndices.Num() > 0)
-//	{
-//		ToRemovePartIndices.Sort([](const int32& A, const int32& B) { return A > B; });
-//		for (int32 ThisRemoveIdx : ToRemovePartIndices) // 뒤쪽 인덱스부터 해서 제거
-//		{
-//			AllPartAssets.RemoveAt(ThisRemoveIdx);
-//		}
-//	}
-//
-//	//코스튬에서 같이 쓰는 부위 걸러냄
-//	CombineCostumePart(SectionMergeInfo, AllPartAssets);
-//
-//	if (AllPartAssets.Num() == 0){ // 기본파트든 장착아이템이든 아무 세팅 없음. 그대로 진행하면 MeshMerge 에서 실패 로그.
-//		return false;
-//	}
-//
-//	// 본격 MeshMerge 로 넘어가기 전 material 섹션 ID 를 확실히 하기 위해 리스트를 PartEnum 따라 정렬. (GetPCCompositeMtrlID)
-//	struct FLocalPartMeshMtrlInfoSorter
-//	{
-//		bool operator()(const FLocalPartMeshMtrlInfo& A, const FLocalPartMeshMtrlInfo& B) const
-//		{
-//			return (int32)A.PartEnum < (int32)B.PartEnum;
-//		}
-//	};
-//	AllPartAssets.Sort(FLocalPartMeshMtrlInfoSorter());
-//
+
+	// 같이 존재하면 안되는 파트들을 걸러냄
+	TArray<int32> ToRemovePartIndices;
+	for (int32 PIA = 0; PIA < AllPartAssets.Num(); ++PIA)
+	{
+		const EPCPart PartToAdd = AllPartAssets[PIA].PartEnum;
+
+		for (int32 PIB = 0; PIB < AllPartAssets.Num(); ++PIB)
+		{ // 비교 순서가 있어서 PIB 를 PIA+1 부터 시작하지는 못하고 같은 경우만 걸러낸다.
+			if (PIA == PIB){
+				continue;
+			}
+			const EPCPart PartToRemoveTest = AllPartAssets[PIB].PartEnum;
+			if (ShouldRemoveOtherPart(InPCClass, PartToAdd, PartToRemoveTest)) // 만에 하나.. ShouldRemove 관계가 먹이사슬처럼 물고물리는 식이 되어선 안되겠다..
+			{
+				ToRemovePartIndices.AddUnique(PIB);
+			}
+		}
+	}
+	if (ToRemovePartIndices.Num() > 0)
+	{
+		ToRemovePartIndices.Sort([](const int32& A, const int32& B) { return A > B; });
+		for (int32 ThisRemoveIdx : ToRemovePartIndices) // 뒤쪽 인덱스부터 해서 제거
+		{
+			AllPartAssets.RemoveAt(ThisRemoveIdx);
+		}
+	}
+
+	//코스튬에서 같이 쓰는 부위 걸러냄
+	CombineCostumePart(SectionMergeInfo, AllPartAssets);
+
+	if (AllPartAssets.Num() == 0){ // 기본파트든 장착아이템이든 아무 세팅 없음. 그대로 진행하면 MeshMerge 에서 실패 로그.
+		return false;
+	}
+
+	// 본격 MeshMerge 로 넘어가기 전 material 섹션 ID 를 확실히 하기 위해 리스트를 PartEnum 따라 정렬. (GetPCCompositeMtrlID)
+	struct FLocalPartMeshMtrlInfoSorter
+	{
+		bool operator()(const FLocalPartMeshMtrlInfo& A, const FLocalPartMeshMtrlInfo& B) const
+		{
+			return (int32)A.PartEnum < (int32)B.PartEnum;
+		}
+	};
+	AllPartAssets.Sort(FLocalPartMeshMtrlInfoSorter());
+
 //#if WITH_EDITOR && !PLATFORM_MAC
 //	// 파트 당 다중 material 섹션에 대한 경고. MeshMerge 같은 곳에서는 기능적으로 가능하지만 현실적으로 인게임에서 Material ID 를 관리하기 위해서는 어려움.
 //	int32 MultiSectionFoundNum = 0;
@@ -1356,14 +1356,14 @@ bool UB2PCClassInfo::SetupSKCompForParts(EPCClass InPCClass, AActor* SKCompOwner
 //		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(MultiSectionPartWarnMsg));
 //	}
 //#endif
-//
-//	bool bResult = false;
-//
-//	USkeletalMesh* CompositeMesh = InOutPrebuiltCompositeMesh ? InOutPrebuiltCompositeMesh : NewObject<USkeletalMesh>(GetTransientPackage(), NAME_None, RF_Transient);
-//			
-//	// 이건 Section 병합을 하는 경우 원래 머티리얼의 파라미터를 참고하기 위해 모아두는 거
-//	TMap<EPCPart, UMaterialInterface*> NonMergedMaterialsBackup;
-//
+
+	bool bResult = false;
+
+	USkeletalMesh* CompositeMesh = InOutPrebuiltCompositeMesh ? InOutPrebuiltCompositeMesh : NewObject<USkeletalMesh>(GetTransientPackage(), NAME_None, RF_Transient);
+			
+	// 이건 Section 병합을 하는 경우 원래 머티리얼의 파라미터를 참고하기 위해 모아두는 거
+	TMap<EPCPart, UMaterialInterface*> NonMergedMaterialsBackup;
+
 //	if (!bPrebuiltMeshProvided)
 //	{
 //		// 본격 FSkeletalMeshMerge 기능을 사용하기 위한 스텝. 실제 mesh merge 를 하지 않는 상황에선 필요없다. (bPrebuiltMeshProvided)
@@ -1477,95 +1477,95 @@ bool UB2PCClassInfo::SetupSKCompForParts(EPCClass InPCClass, AActor* SKCompOwner
 //			}
 //		}
 //	}
-//
-//	if (CompositeMesh) // 캐싱된 것이 주어졌든, Merge 가 성공했든
-//	{
-//		B2_SCOPED_TRACK_LOG_L2(TEXT("UB2PCClassInfo::SetupSKCompForParts -- Post Merge Setup"));
-//
-//		CompositeMesh->PhysicsAsset = InBaseMesh->PhysicsAsset;
-//		InOutPrebuiltCompositeMesh = CompositeMesh; // 새로 생성이 되었던 경우라면 InOutPrebuiltCompositeMesh 을 통해 결과가 밖으로도 전달될 것.
-//				
-//		// djsong UE4 MERGE 4.14. 4.14 이후부터 발생한 일인데 merge 하기 전의 원본 메쉬 상태에서 MID 가 만들어져 컴포넌트에 override 된 상태로 여기에 오는 경우가 생김.
-//		// 이렇게 클리어를 먼저 해 주던지, 아니면 CompositeMesh->Materials 가지고 똑같이 override 해 주던지.
-//		if (!bBuildAndGetResultMeshOnly)
-//		{
-//			for (int32 MI = 0; MI < SKCompToSetup->GetNumMaterials(); ++MI)
-//			{
-//				SKCompToSetup->SetMaterial(MI, nullptr);
-//			}
-//			SKCompToSetup->B2ScalarMatParameter.Empty(); // 위에서 Material 클리어 하는 거랑 비슷한 이유로 이것도 클리어 함.
-//		}
-//
-//		USkeletalMesh* OldSKMeshBackup = SKCompToSetup->SkeletalMesh;
-//		if (!bBuildAndGetResultMeshOnly) // 컴포넌트에 메쉬 세팅을 하지 않고 결과만 빼오는 인자.
-//		{
-//			SKCompToSetup->SetSkeletalMesh(CompositeMesh);
-//		}
-//
-//		// 그리고 섹션을 병합한 경우는 머티리얼을 다르게 사용하므로 파라미터 셋업을 해야 한다.
-//		if (bInMergeSections && SectionMergeInfo && !bPrebuiltMeshProvided) // 실제 mesh merge 를 한 경우만
-//		{
-//			SectionMergeInfo->SetupMergedSectionMaterialParams(HaveCombineCostume, CompositeMesh, NonMergedMaterialsBackup);
-//		}
-//
-//		UB2CompositeMeshCache* MeshCacheManager = StaticFindCompositeMeshCacher();
-//		// 혹시 모르겠어서 이전에 생성했던 거 확실히 제거. (다른 거라면)
-//		if (OldSKMeshBackup && OldSKMeshBackup != InBaseMesh && OldSKMeshBackup != CompositeMesh 
-//			&& OldSKMeshBackup->HasAnyFlags(RF_Transient) // 생성 시 RF_Transient 를 준다.
-//			&& !(MeshCacheManager && MeshCacheManager->IsOneOfCachedCompositeMesh(OldSKMeshBackup))) // 정식으로 생성해서 캐싱되어 있던 거라면 캐시가 아직 갱신이 안되었을 테니 여길 통과하지 못할 수도 있는데 그래도 로비에서 그렇지 않은 경우도 꽤 된다.
-//		{ 
-//			// 여기서 조합한 메쉬 리소스를 여러 액터가 동시에 렌더링에 사용하면 이렇게 명시적으로 Destroy 하는 건 문제를 일으킬 수 있다.
-//			// 그런 경우가 발생한다면 메쉬 리소스 새로 조합 시에 그걸 사용할 액터들에 모두 업데이트를 해 주는 등 추가적인 처리 또한 필요하다.
-//			
-//			// 만일 문제가 된다면 여기서 ConditionalBeginDestroy 날리는 코드는 제거하는 게 좋을 꺼다. 실제로 사용되지 않는 mesh 오브젝트라면 언리얼 GC 시스템에 의해 알아서 제거될 것임.
-//			//OldSKMeshBackup->ConditionalBeginDestroy(); 아무래도 그닥 좋아 보이지 않음.. 굳이 이럴 필요 없을 것 같고..
-//		}
-//		
-//		// 로비 SkeletalMeshActor 를 위한 것이라면 이건 NULL 이어야.
-//		if (AnimBPForInGameChar && !bBuildAndGetResultMeshOnly)
-//		{
-//			SKCompToSetup->SetAnimInstanceClass(AnimBPForInGameChar);
-//		}
-//
-//		bResult = true;
-//	}
-//
-//	if (!bBuildAndGetResultMeshOnly)
-//	{
-//		// 이제 추가 컴포넌트들을 붙일 건데 새로 붙이기 전에 이전에 붙인 게 있다면 제거. 이것도 SkeletalMesh 만 매번 새로 생성하는 로비에서나 적용될 듯..
-//		DestroyExtraAttachPartComponents(SKCompOwner, SKCompToSetup);
-//
-//		for (FPCPartExtraAttachFxSet ExtraAttachFx : AllExtraAttachFx)
-//		{
-//			UParticleSystemComponent* AttachFx = ExtraAttachFx.CreatePSCHelper(SKCompOwner, SKCompToSetup);
-//
-//			if (AttachFx)
-//			{
-//				// Note : 추가 컴포넌트의 색상값을 변경해줘야한다면 MtrlParamName_Color(TEXT("ColorVariControl")) 이펙트에 태그로 처리할것
-//				//		: SetColorParameter는 사용하지않고 SetVectorParameter를 직접사용한다.  SetColorParameter의 경우 RGB를 (255,255,255,0)까지밖에 지정하지 못하므로 더 큰값을 원할 경우 FLinearColor를 FVector로 변환해서 넣어주어야함.
-//				if (ExtraAttachFx.ChangeColor != FLinearColor::Transparent)
-//					AttachFx->SetVectorParameter(MtrlParamName_Color, FVector(ExtraAttachFx.ChangeColor));
-//			}
-//		}
-//	}
-//
-//	// MeshMerge 를 하게 되면 원본 파트와는 별도의 리소스이므로 원본 파트는 날릴 수 있다. 
-//	// 단, 로컬 캐릭터 장착 파트의 경우 여러 상황에서 또 필요할 수 있어서 언제나 날리지는 않고.. 여기로 넘어오는 인자에 따라. 대체로 일시적 merge 면 ForceUnload 로 넘어올 것.
-//	if (bForceUnloadPartResourceAfterMerge)
-//	{
-//		for (FSingleItemInfoData* ThisLoadedItemInfo : AllLoadedItemInfo)
-//		{
-//			if (ThisLoadedItemInfo) {
-//				// 단, RootSet 으로 지정한 건 여기서는 넘어가도록 한다. (bRemoveFromRoot false)
-//				// 현재 로컬 캐릭터가 장착한 파트일 수 있으므로.
-//				ThisLoadedItemInfo->UnloadOnlyEquipPart(IteminfoTable, false);
-//			}
-//		}
-//	}
-//
-//	/*if (LoadedWingInfo) { 얘도 별도로 Unload 를 불러주는 구조로 갈까...
-//	LoadedWingInfo->UnloadTAssets(WingInfoTable);
-//	}*/
+
+	//if (CompositeMesh) // 캐싱된 것이 주어졌든, Merge 가 성공했든
+	//{
+	//	B2_SCOPED_TRACK_LOG_L2(TEXT("UB2PCClassInfo::SetupSKCompForParts -- Post Merge Setup"));
+
+	//	CompositeMesh->PhysicsAsset = InBaseMesh->PhysicsAsset;
+	//	InOutPrebuiltCompositeMesh = CompositeMesh; // 새로 생성이 되었던 경우라면 InOutPrebuiltCompositeMesh 을 통해 결과가 밖으로도 전달될 것.
+	//			
+	//	// djsong UE4 MERGE 4.14. 4.14 이후부터 발생한 일인데 merge 하기 전의 원본 메쉬 상태에서 MID 가 만들어져 컴포넌트에 override 된 상태로 여기에 오는 경우가 생김.
+	//	// 이렇게 클리어를 먼저 해 주던지, 아니면 CompositeMesh->Materials 가지고 똑같이 override 해 주던지.
+	//	if (!bBuildAndGetResultMeshOnly)
+	//	{
+	//		for (int32 MI = 0; MI < SKCompToSetup->GetNumMaterials(); ++MI)
+	//		{
+	//			SKCompToSetup->SetMaterial(MI, nullptr);
+	//		}
+	//		SKCompToSetup->B2ScalarMatParameter.Empty(); // 위에서 Material 클리어 하는 거랑 비슷한 이유로 이것도 클리어 함.
+	//	}
+
+	//	USkeletalMesh* OldSKMeshBackup = SKCompToSetup->SkeletalMesh;
+	//	if (!bBuildAndGetResultMeshOnly) // 컴포넌트에 메쉬 세팅을 하지 않고 결과만 빼오는 인자.
+	//	{
+	//		SKCompToSetup->SetSkeletalMesh(CompositeMesh);
+	//	}
+
+	//	// 그리고 섹션을 병합한 경우는 머티리얼을 다르게 사용하므로 파라미터 셋업을 해야 한다.
+	//	if (bInMergeSections && SectionMergeInfo && !bPrebuiltMeshProvided) // 실제 mesh merge 를 한 경우만
+	//	{
+	//		SectionMergeInfo->SetupMergedSectionMaterialParams(HaveCombineCostume, CompositeMesh, NonMergedMaterialsBackup);
+	//	}
+
+	//	UB2CompositeMeshCache* MeshCacheManager = StaticFindCompositeMeshCacher();
+	//	// 혹시 모르겠어서 이전에 생성했던 거 확실히 제거. (다른 거라면)
+	//	if (OldSKMeshBackup && OldSKMeshBackup != InBaseMesh && OldSKMeshBackup != CompositeMesh 
+	//		&& OldSKMeshBackup->HasAnyFlags(RF_Transient) // 생성 시 RF_Transient 를 준다.
+	//		&& !(MeshCacheManager && MeshCacheManager->IsOneOfCachedCompositeMesh(OldSKMeshBackup))) // 정식으로 생성해서 캐싱되어 있던 거라면 캐시가 아직 갱신이 안되었을 테니 여길 통과하지 못할 수도 있는데 그래도 로비에서 그렇지 않은 경우도 꽤 된다.
+	//	{ 
+	//		// 여기서 조합한 메쉬 리소스를 여러 액터가 동시에 렌더링에 사용하면 이렇게 명시적으로 Destroy 하는 건 문제를 일으킬 수 있다.
+	//		// 그런 경우가 발생한다면 메쉬 리소스 새로 조합 시에 그걸 사용할 액터들에 모두 업데이트를 해 주는 등 추가적인 처리 또한 필요하다.
+	//		
+	//		// 만일 문제가 된다면 여기서 ConditionalBeginDestroy 날리는 코드는 제거하는 게 좋을 꺼다. 실제로 사용되지 않는 mesh 오브젝트라면 언리얼 GC 시스템에 의해 알아서 제거될 것임.
+	//		//OldSKMeshBackup->ConditionalBeginDestroy(); 아무래도 그닥 좋아 보이지 않음.. 굳이 이럴 필요 없을 것 같고..
+	//	}
+	//	
+	//	// 로비 SkeletalMeshActor 를 위한 것이라면 이건 NULL 이어야.
+	//	if (AnimBPForInGameChar && !bBuildAndGetResultMeshOnly)
+	//	{
+	//		SKCompToSetup->SetAnimInstanceClass(AnimBPForInGameChar);
+	//	}
+
+	//	bResult = true;
+	//}
+
+	if (!bBuildAndGetResultMeshOnly)
+	{
+		// 이제 추가 컴포넌트들을 붙일 건데 새로 붙이기 전에 이전에 붙인 게 있다면 제거. 이것도 SkeletalMesh 만 매번 새로 생성하는 로비에서나 적용될 듯..
+		DestroyExtraAttachPartComponents(SKCompOwner, SKCompToSetup);
+
+		for (FPCPartExtraAttachFxSet ExtraAttachFx : AllExtraAttachFx)
+		{
+			UParticleSystemComponent* AttachFx = ExtraAttachFx.CreatePSCHelper(SKCompOwner, SKCompToSetup);
+
+			if (AttachFx)
+			{
+				// Note : 추가 컴포넌트의 색상값을 변경해줘야한다면 MtrlParamName_Color(TEXT("ColorVariControl")) 이펙트에 태그로 처리할것
+				//		: SetColorParameter는 사용하지않고 SetVectorParameter를 직접사용한다.  SetColorParameter의 경우 RGB를 (255,255,255,0)까지밖에 지정하지 못하므로 더 큰값을 원할 경우 FLinearColor를 FVector로 변환해서 넣어주어야함.
+				if (ExtraAttachFx.ChangeColor != FLinearColor::Transparent)
+					AttachFx->SetVectorParameter(MtrlParamName_Color, FVector(ExtraAttachFx.ChangeColor));
+			}
+		}
+	}
+
+	// MeshMerge 를 하게 되면 원본 파트와는 별도의 리소스이므로 원본 파트는 날릴 수 있다. 
+	// 단, 로컬 캐릭터 장착 파트의 경우 여러 상황에서 또 필요할 수 있어서 언제나 날리지는 않고.. 여기로 넘어오는 인자에 따라. 대체로 일시적 merge 면 ForceUnload 로 넘어올 것.
+	if (bForceUnloadPartResourceAfterMerge)
+	{
+		for (FSingleItemInfoData* ThisLoadedItemInfo : AllLoadedItemInfo)
+		{
+			if (ThisLoadedItemInfo) {
+				// 단, RootSet 으로 지정한 건 여기서는 넘어가도록 한다. (bRemoveFromRoot false)
+				// 현재 로컬 캐릭터가 장착한 파트일 수 있으므로.
+				ThisLoadedItemInfo->UnloadOnlyEquipPart(IteminfoTable, false);
+			}
+		}
+	}
+
+	/*if (LoadedWingInfo) { 얘도 별도로 Unload 를 불러주는 구조로 갈까...
+	LoadedWingInfo->UnloadTAssets(WingInfoTable);
+	}*/
 
 	//return bResult;
 return true;

@@ -98,8 +98,7 @@ AB2TestGuildNPCAIController::AB2TestGuildNPCAIController(const FObjectInitialize
 
 ABladeIICharacter * AB2TestGuildNPCAIController::PickOpponent()
 {
-	//return Cast<ABladeIICharacter>(UGameplayStatics::GetLocalPlayerCharacter(this));
-	return NULL;
+	return Cast<ABladeIICharacter>(GetWorld()->GetFirstPlayerController()->GetCharacter());
 }
 
 void AB2TestGuildNPCAIController::SetTeamNum(int8 InTeamNum)

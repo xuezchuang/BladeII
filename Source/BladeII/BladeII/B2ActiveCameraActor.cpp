@@ -11,7 +11,7 @@
 #include "BladeIIPlayer.h"
 #include "BladeIIPlayerController.h"
 #include "BladeIIGameMode.h"
-//#include "B2TMGameMode.h"
+#include "B2TMGameMode.h"
 #include "BladeIIWorldSettings.h"
 #include "B2MonsterSpawnPool.h"
 #include "GameFramework/SpringArmComponent.h"
@@ -261,78 +261,78 @@ void AB2ActiveCameraActor::NotifyActorBeginOverlap(AActor* OtherActor)
 {
 	Super::NotifyActorBeginOverlap(OtherActor);
 
-	//// 현재 액티브카메라 수동활성화된거면 오버랩 무시
-	//ABladeIIGameMode* pGM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(this));
-	//if (pGM)
-	//{
-	//	AB2ActiveCameraActor* pCurAcriveCamActor = pGM->GetCurrentActiveActiveCameraActor();
+	// 현재 액티브카메라 수동활성화된거면 오버랩 무시
+	ABladeIIGameMode* pGM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(this));
+	if (pGM)
+	{
+		AB2ActiveCameraActor* pCurAcriveCamActor = pGM->GetCurrentActiveActiveCameraActor();
 
-	//	if (pCurAcriveCamActor && pCurAcriveCamActor->GetTriggerMode() == EActiveCameraTriggerMode::EACTRG_ManualActive)
-	//		return;
-	//}
+		if (pCurAcriveCamActor && pCurAcriveCamActor->GetTriggerMode() == EActiveCameraTriggerMode::EACTRG_ManualActive)
+			return;
+	}
 
-	//ABladeIIPlayer* B2Player = Cast<ABladeIIPlayer>(OtherActor);
-	//ABladeIIPlayerController* B2PC = Cast<ABladeIIPlayerController>(UGameplayStatics::GetLocalPlayerController(this));
+	ABladeIIPlayer* B2Player = Cast<ABladeIIPlayer>(OtherActor);
+	ABladeIIPlayerController* B2PC = Cast<ABladeIIPlayerController>(GetWorld()->GetFirstPlayerController());
 
-	//// 플레이어 overlap 에서 발동.
-	//if (TriggerMode == EActiveCameraTriggerMode::EACTRG_ActorArea && B2PC &&
-	//	B2Player && B2Player == UGameplayStatics::GetLocalPlayerCharacter(this))
-	//{
-	//	BeginActiveCamera(B2PC);
-	//}
+	// 플레이어 overlap 에서 발동.
+	if (TriggerMode == EActiveCameraTriggerMode::EACTRG_ActorArea && B2PC &&
+		B2Player && B2Player == GetWorld()->GetFirstPlayerController()->GetCharacter())
+	{
+		BeginActiveCamera(B2PC);
+	}
 }
 
 void AB2ActiveCameraActor::NotifyActorEndOverlap(AActor* OtherActor)
 {
 	Super::NotifyActorEndOverlap(OtherActor);
 
-	//// 현재 액티브카메라 수동활성화된거면 오버랩 무시
-	//ABladeIIGameMode* pGM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(this));
-	//if (pGM)
-	//{
-	//	AB2ActiveCameraActor* pCurAcriveCamActor = pGM->GetCurrentActiveActiveCameraActor();
+	// 현재 액티브카메라 수동활성화된거면 오버랩 무시
+	ABladeIIGameMode* pGM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(this));
+	if (pGM)
+	{
+		AB2ActiveCameraActor* pCurAcriveCamActor = pGM->GetCurrentActiveActiveCameraActor();
 
-	//	if (pCurAcriveCamActor && pCurAcriveCamActor->GetTriggerMode() == EActiveCameraTriggerMode::EACTRG_ManualActive)
-	//		return;
-	//}
+		if (pCurAcriveCamActor && pCurAcriveCamActor->GetTriggerMode() == EActiveCameraTriggerMode::EACTRG_ManualActive)
+			return;
+	}
 
-	//ABladeIIPlayer* B2Player = Cast<ABladeIIPlayer>(OtherActor);
-	//ABladeIIPlayer* B2LocalPlayer = Cast<ABladeIIPlayer>(UGameplayStatics::GetLocalPlayerCharacter(this));
-	//// 플레이어가 떠나면 중단.
-	//if (TriggerMode == EActiveCameraTriggerMode::EACTRG_ActorArea &&
-	//	B2Player && B2LocalPlayer && B2Player == B2LocalPlayer)
-	//{
-	//	EndActiveCamera();
-	//}
+	ABladeIIPlayer* B2Player = Cast<ABladeIIPlayer>(OtherActor);
+	ABladeIIPlayer* B2LocalPlayer = Cast<ABladeIIPlayer>(GetWorld()->GetFirstPlayerController()->GetCharacter());
+	// 플레이어가 떠나면 중단.
+	if (TriggerMode == EActiveCameraTriggerMode::EACTRG_ActorArea &&
+		B2Player && B2LocalPlayer && B2Player == B2LocalPlayer)
+	{
+		EndActiveCamera();
+	}
 }
 
 void AB2ActiveCameraActor::OnComponentBeginOverlapCallback(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	//ABladeIIPlayer* B2Player = Cast<ABladeIIPlayer>(OtherActor);
-	//ABladeIIPlayer* B2LocalPlayer = Cast<ABladeIIPlayer>(UGameplayStatics::GetLocalPlayerCharacter(this));
-	//ABladeIIPlayerController* B2PC = Cast<ABladeIIPlayerController>(UGameplayStatics::GetLocalPlayerController(this));
+	ABladeIIPlayer* B2Player = Cast<ABladeIIPlayer>(OtherActor);
+	ABladeIIPlayer* B2LocalPlayer = Cast<ABladeIIPlayer>(GetWorld()->GetFirstPlayerController()->GetCharacter());
+	ABladeIIPlayerController* B2PC = Cast<ABladeIIPlayerController>(GetWorld()->GetFirstPlayerController());
 
-	//if (TriggerMode == EActiveCameraTriggerMode::EACTRG_ToggleByComponent &&
-	//	B2PC && B2Player && B2LocalPlayer && B2Player == B2LocalPlayer)
-	//{
-	//	// BeginComponent/EndComponent 중 어느 것으로 등록한 것에 overlap 했는지 여부에 따라.
-	//	if (IsCurrentlyActive())
-	//	{
-	//		UShapeComponent* SweepComp = Cast<UShapeComponent>(SweepResult.GetComponent());
-	//		if (IsOneOfEndToggleComp(SweepComp))
-	//		{
-	//			EndActiveCamera();
-	//		}
-	//	}
-	//	else
-	//	{
-	//		UShapeComponent* SweepComp = Cast<UShapeComponent>(SweepResult.GetComponent());
-	//		if (IsOneOfBeginToggleComp(SweepComp))
-	//		{
-	//			BeginActiveCamera(B2PC);
-	//		}
-	//	}
-	//}
+	if (TriggerMode == EActiveCameraTriggerMode::EACTRG_ToggleByComponent &&
+		B2PC && B2Player && B2LocalPlayer && B2Player == B2LocalPlayer)
+	{
+		// BeginComponent/EndComponent 중 어느 것으로 등록한 것에 overlap 했는지 여부에 따라.
+		if (IsCurrentlyActive())
+		{
+			UShapeComponent* SweepComp = Cast<UShapeComponent>(SweepResult.GetComponent());
+			if (IsOneOfEndToggleComp(SweepComp))
+			{
+				EndActiveCamera();
+			}
+		}
+		else
+		{
+			UShapeComponent* SweepComp = Cast<UShapeComponent>(SweepResult.GetComponent());
+			if (IsOneOfBeginToggleComp(SweepComp))
+			{
+				BeginActiveCamera(B2PC);
+			}
+		}
+	}
 }
 
 void AB2ActiveCameraActor::OnComponentEndOverlapCallback(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
@@ -363,44 +363,45 @@ void AB2ActiveCameraActor::RegisterComponentOverlapCallback()
 }
 void AB2ActiveCameraActor::RemoveComponentOverlapCallback()
 {
-	//// ShapeComponent 만
-	//TArray<UActorComponent*> AllComps = GetComponentsByClass(UShapeComponent::StaticClass());
-	//for (int32 CI = 0; CI < AllComps.Num(); ++CI)
-	//{
-	//	UShapeComponent* CurrComp = Cast<UShapeComponent>(AllComps[CI]);
-	//	if (CurrComp)
-	//	{
-	//		CurrComp->OnComponentBeginOverlap.RemoveDynamic(this, &AB2ActiveCameraActor::OnComponentBeginOverlapCallback);
-	//		CurrComp->OnComponentEndOverlap.RemoveDynamic(this, &AB2ActiveCameraActor::OnComponentEndOverlapCallback);
-	//	}
-	//}
+	// ShapeComponent 만
+	TArray<UActorComponent*> AllComps;
+	GetComponents(AllComps);
+	for (int32 CI = 0; CI < AllComps.Num(); ++CI)
+	{
+		UShapeComponent* CurrComp = Cast<UShapeComponent>(AllComps[CI]);
+		if (CurrComp)
+		{
+			CurrComp->OnComponentBeginOverlap.RemoveDynamic(this, &AB2ActiveCameraActor::OnComponentBeginOverlapCallback);
+			CurrComp->OnComponentEndOverlap.RemoveDynamic(this, &AB2ActiveCameraActor::OnComponentEndOverlapCallback);
+		}
+	}
 }
 
 bool AB2ActiveCameraActor::ManualTestBeginActiveCamera(float BlendInTimeOverride /*= -1.0f*/)
 {
-	//ABladeIIPlayer* B2Player = Cast<ABladeIIPlayer>(UGameplayStatics::GetLocalPlayerCharacter(this));
-	//ABladeIIPlayerController* B2PC = Cast<ABladeIIPlayerController>(UGameplayStatics::GetLocalPlayerController(this));
-	//if (TriggerMode == EActiveCameraTriggerMode::EACTRG_ActorArea && B2PC && B2Player && IsOverlappingActor(B2Player))
-	//{
-	//	BeginActiveCamera(B2PC, BlendInTimeOverride);
+	ABladeIIPlayer* B2Player = Cast<ABladeIIPlayer>(GetWorld()->GetFirstPlayerController()->GetCharacter());
+	ABladeIIPlayerController* B2PC = Cast<ABladeIIPlayerController>(GetWorld()->GetFirstPlayerController());
+	if (TriggerMode == EActiveCameraTriggerMode::EACTRG_ActorArea && B2PC && B2Player && IsOverlappingActor(B2Player))
+	{
+		BeginActiveCamera(B2PC, BlendInTimeOverride);
 
-	//	return true;
-	//}
+		return true;
+	}
 
-	//// 기타 조건이 추가될 수 있다. TriggerMode 가 EACTRG_ToggleByComponent 인 경우에 대해? 
-	//// 하지만 그건 지속적인 overlap 이 아닌 순간의 touch 에 의해 toggle 되는 것인데 임의의 시점에 어떻게 판단하지?
+	// 기타 조건이 추가될 수 있다. TriggerMode 가 EACTRG_ToggleByComponent 인 경우에 대해? 
+	// 하지만 그건 지속적인 overlap 이 아닌 순간의 touch 에 의해 toggle 되는 것인데 임의의 시점에 어떻게 판단하지?
 
 	return false;
 }
 
 void AB2ActiveCameraActor::ForceBeginActiveCamera(float BlendInTimeOverride /*= -1.0f*/, AController* InOptionalInteractingController /*= NULL*/, bool bUseConditionalBeginTransitionInputDisable /*= true*/)
 {
-	//// 여타 조건 검사 없이 그냥 시작. 물론 특별한 경우에만 사용해야겠다.
-	//ABladeIIPlayerController* B2LocalPC = Cast<ABladeIIPlayerController>(UGameplayStatics::GetLocalPlayerController(this));
-	//if (B2LocalPC)
-	//{
-	//	BeginActiveCamera(B2LocalPC, BlendInTimeOverride, InOptionalInteractingController, bUseConditionalBeginTransitionInputDisable);
-	//}
+	// 여타 조건 검사 없이 그냥 시작. 물론 특별한 경우에만 사용해야겠다.
+	ABladeIIPlayerController* B2LocalPC = Cast<ABladeIIPlayerController>(GetWorld()->GetFirstPlayerController());
+	if (B2LocalPC)
+	{
+		BeginActiveCamera(B2LocalPC, BlendInTimeOverride, InOptionalInteractingController, bUseConditionalBeginTransitionInputDisable);
+	}
 }
 
 void AB2ActiveCameraActor::CustomEndActiveCamera()
@@ -416,145 +417,145 @@ bool AB2ActiveCameraActor::IsBaseActiveCamera()
 void AB2ActiveCameraActor::BeginActiveCamera(class ABladeIIPlayerController* InLocalPC, float BlendInTimeOverride /*= -1.0f*/, class AController* InOptionalInteractingController /*= NULL*/, bool bUseConditionalBeginTransitionInputDisable /*= true*/)
 {
 	check(ActiveCameraSpringArm && ActiveCameraComp);
-	//check(InLocalPC && InLocalPC->IsValidObj());
-	//	
-	//// 우선, 기존에 활성화 된 것이 있다면 종료. 그래야 카메라 블렌딩이 안 꼬임.
-	//ABladeIIGameMode* B2GM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(this));
+	check(InLocalPC);
+		
+	// 우선, 기존에 활성화 된 것이 있다면 종료. 그래야 카메라 블렌딩이 안 꼬임.
+	ABladeIIGameMode* B2GM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(this));
 
-	//if (B2GM && !B2GM->IsAllowCameraWorking())
-	//	return;
+	if (B2GM && !B2GM->IsAllowCameraWorking())
+		return;
 
-	//if (B2GM && B2GM->GetCurrentActiveActiveCameraActor() && B2GM->GetCurrentActiveActiveCameraActor() != this)
-	//{
-	//	B2GM->GetCurrentActiveActiveCameraActor()->CustomEndActiveCamera();
-	//}
+	if (B2GM && B2GM->GetCurrentActiveActiveCameraActor() && B2GM->GetCurrentActiveActiveCameraActor() != this)
+	{
+		B2GM->GetCurrentActiveActiveCameraActor()->CustomEndActiveCamera();
+	}
 
-	//// 여기 인자를 통해서 BlendInTime 을 override 할 수 있는데 대체로 연출 종료와 같은 경우 외부에서 직접 적용 시도를 할 때에 사용할 의도.
-	//const float FinalBlendTime = BlendInTimeOverride >= 0.0f ? BlendInTimeOverride : BlendInTime;
+	// 여기 인자를 통해서 BlendInTime 을 override 할 수 있는데 대체로 연출 종료와 같은 경우 외부에서 직접 적용 시도를 할 때에 사용할 의도.
+	const float FinalBlendTime = BlendInTimeOverride >= 0.0f ? BlendInTimeOverride : BlendInTime;
 
-	//BeginForNewInteractionCommon(InLocalPC, FinalBlendTime, InOptionalInteractingController);
+	BeginForNewInteractionCommon(InLocalPC, FinalBlendTime, InOptionalInteractingController);
 
-	//if(bUseConditionalBeginTransitionInputDisable)
-	//	ConditionalBeginTransitionInputDisable(true);
+	if(bUseConditionalBeginTransitionInputDisable)
+		ConditionalBeginTransitionInputDisable(true);
 
-	//bIsActivated = true;
+	bIsActivated = true;
 
-	//// GameMode 에 등록
-	//if (B2GM)
-	//{
-	//	B2GM->SetCurrentActiveActiveCameraActor(this);
-	//}
+	// GameMode 에 등록
+	if (B2GM)
+	{
+		B2GM->SetCurrentActiveActiveCameraActor(this);
+	}
 }
 
 void AB2ActiveCameraActor::BeginForNewInteractionCommon(class ABladeIIPlayerController* InLocalPC, float FinalBlendInTime, class AController* InOptionalInteractingController /*= NULL*/)
 {
-	//check(InLocalPC && InLocalPC->IsValidObj());
-	//// InOptionalInteractingController 는 LocalPC 처럼 레벨 로딩된 내내 유지되는 애가 아니라서 invalid 할 가능성이 상당히 존재함.
-	//checkSlow(!InOptionalInteractingController || InOptionalInteractingController->IsValidObj());
+	check(InLocalPC);
+	// InOptionalInteractingController 는 LocalPC 처럼 레벨 로딩된 내내 유지되는 애가 아니라서 invalid 할 가능성이 상당히 존재함.
+	checkSlow(!InOptionalInteractingController);
 
-	//CachedLocalPC = InLocalPC;
-	//CachedInteractingController = InOptionalInteractingController ? InOptionalInteractingController : CachedLocalPC; // Stage 게임 모드에서는 CachedLocalPC 와 CachedInteractingController 가 같을 것..
-	//LastInteractBeginPlayer = Cast<ABladeIIPlayer>(CachedInteractingController->GetPawn()); // 이렇게 캐싱해서 나중에 체크만 하고 실제 사용은 하지 않는다.
-	//
-	//if (bDualCameraBlending && CameraMovementMode == EActiveCameraMovementMode::EACMM_Fixed)
-	//{
-	//	UCameraComponent* CamA = ActiveCameraComp;
-	//	UCameraComponent* CamB = FindExtraCamCompForDualCameraBlending();
-	//	if (CamA && CamB)
-	//	{
-	//		// 그냥 ActiveCameraComp 만 Fixed 로 사용하는 거랑 비슷할 수 있는데 설정 전달하고 하다 보면 다른 하나가 누락되든지 할 수도 있어서 특별한 요청이 아닌 한은 그냥 둠.
-	//		// 이것도 ForceFromLastView를 해야 제대로 먹히네요.
-	//		InLocalPC->SetViewTargetWithBlend(this, FinalBlendInTime, EViewTargetBlendFunction::VTBlend_Cubic, 0, false, true);
-	//		// 기타 Dual Blending 의 핵심 작동은 CalcCamera 에서.
-	//	}
-	//}
-	//else
-	//{
-	//	if (CameraMovementMode == EActiveCameraMovementMode::EACMM_Fixed)
-	//	{
-	//		// CameraTargetingMode 도 Fixed 가 아니라면 rotation 은 바뀔 수 있다.
-	//		ActiveCameraSpringArm->SetWorldTransform(InitialActiveCameraSpringArmTransform);
-	//	}
-	//	if (CameraTargetingMode == EActiveCameraTargetingMode::EACTM_Fixed)
-	//	{
-	//		// FixedCameraTargetPosition 은 relative 로 취급.
-	//		FTransform FixedTargetWorldTransform = FTransform(FixedCameraTargetPosition) * this->GetTransform();
-	//		SetActiveCameraRotationToTarget(FixedTargetWorldTransform.GetTranslation());
-	//	}
+	CachedLocalPC = InLocalPC;
+	CachedInteractingController = InOptionalInteractingController ? InOptionalInteractingController : CachedLocalPC; // Stage 게임 모드에서는 CachedLocalPC 와 CachedInteractingController 가 같을 것..
+	LastInteractBeginPlayer = Cast<ABladeIIPlayer>(CachedInteractingController->GetPawn()); // 이렇게 캐싱해서 나중에 체크만 하고 실제 사용은 하지 않는다.
+	
+	if (bDualCameraBlending && CameraMovementMode == EActiveCameraMovementMode::EACMM_Fixed)
+	{
+		UCameraComponent* CamA = ActiveCameraComp;
+		UCameraComponent* CamB = FindExtraCamCompForDualCameraBlending();
+		if (CamA && CamB)
+		{
+			// 그냥 ActiveCameraComp 만 Fixed 로 사용하는 거랑 비슷할 수 있는데 설정 전달하고 하다 보면 다른 하나가 누락되든지 할 수도 있어서 특별한 요청이 아닌 한은 그냥 둠.
+			// 이것도 ForceFromLastView를 해야 제대로 먹히네요.
+			InLocalPC->SetViewTargetWithBlend(this, FinalBlendInTime, EViewTargetBlendFunction::VTBlend_Cubic, 0, false);
+			// 기타 Dual Blending 의 핵심 작동은 CalcCamera 에서.
+		}
+	}
+	else
+	{
+		if (CameraMovementMode == EActiveCameraMovementMode::EACMM_Fixed)
+		{
+			// CameraTargetingMode 도 Fixed 가 아니라면 rotation 은 바뀔 수 있다.
+			ActiveCameraSpringArm->SetWorldTransform(InitialActiveCameraSpringArmTransform);
+		}
+		if (CameraTargetingMode == EActiveCameraTargetingMode::EACTM_Fixed)
+		{
+			// FixedCameraTargetPosition 은 relative 로 취급.
+			FTransform FixedTargetWorldTransform = FTransform(FixedCameraTargetPosition) * this->GetTransform();
+			SetActiveCameraRotationToTarget(FixedTargetWorldTransform.GetTranslation());
+		}
 
-	//	if (CameraMovementMode == EActiveCameraMovementMode::EACMM_FollowPlayer && CameraTargetingMode == EActiveCameraTargetingMode::EACTM_Player)
-	//	{
-	//		// 기본적인 player top-down 카메라를 설정만 바꿔서 사용하는 모드가 됨. 거의 처음에만 세팅.
-	//		SetupForConsistentPlayerTopDownCamera();
-	//	}
+		if (CameraMovementMode == EActiveCameraMovementMode::EACMM_FollowPlayer && CameraTargetingMode == EActiveCameraTargetingMode::EACTM_Player)
+		{
+			// 기본적인 player top-down 카메라를 설정만 바꿔서 사용하는 모드가 됨. 거의 처음에만 세팅.
+			SetupForConsistentPlayerTopDownCamera();
+		}
 
-	//	UCameraComponent* FinalCameraComponent = NULL;
-	//	if (IsUsingActiveCameraComponent())
-	//	{
-	//		// 뭐가 문젠지 잘 모르겠는데 결국 ForceFromLastView 를 해야 제대로 먹히는군
-	//		CachedLocalPC->SetViewTargetWithBlend(this, FinalBlendInTime, EViewTargetBlendFunction::VTBlend_Cubic, 0, false, true);
-	//		FinalCameraComponent = ActiveCameraComp;
-	//	}
-	//	else
-	//	{
-	//		if (LastInteractBeginPlayer)
-	//		{
-	//			// 아니라면 플레이어 top-down 카메라를 사용한다는 뜻이 되는데 같은 ViewTarget 간의 블렌딩이면 PlayerCameraManager 내에서 특수하게 처리해서 블렌딩 할 것.
-	//			CachedLocalPC->SetViewTargetWithBlend(LastInteractBeginPlayer, FinalBlendInTime, EViewTargetBlendFunction::VTBlend_Cubic);
-	//			
-	//			if (LastInteractBeginPlayer->HasActorBegunPlay())
-	//			{
-	//				FinalCameraComponent = LastInteractBeginPlayer->GetTopDownCameraComponent();
-	//			}
-	//		}
-	//	}
+		UCameraComponent* FinalCameraComponent = NULL;
+		if (IsUsingActiveCameraComponent())
+		{
+			// 뭐가 문젠지 잘 모르겠는데 결국 ForceFromLastView 를 해야 제대로 먹히는군
+			CachedLocalPC->SetViewTargetWithBlend(this, FinalBlendInTime, EViewTargetBlendFunction::VTBlend_Cubic, 0, false);
+			FinalCameraComponent = ActiveCameraComp;
+		}
+		else
+		{
+			if (LastInteractBeginPlayer)
+			{
+				// 아니라면 플레이어 top-down 카메라를 사용한다는 뜻이 되는데 같은 ViewTarget 간의 블렌딩이면 PlayerCameraManager 내에서 특수하게 처리해서 블렌딩 할 것.
+				CachedLocalPC->SetViewTargetWithBlend(LastInteractBeginPlayer, FinalBlendInTime, EViewTargetBlendFunction::VTBlend_Cubic);
+				
+				if (LastInteractBeginPlayer->HasActorBegunPlay())
+				{
+					FinalCameraComponent = LastInteractBeginPlayer->GetTopDownCameraComponent();
+				}
+			}
+		}
 
-	//	if (bOverrideFOVAngle && FinalCameraComponent) // 최종적으로 사용되는 CameraComponent 에다가 FOV 각도 override. EndActiveCamera 에서 돌려놓을 것.
-	//	{
-	//		FinalCameraComponent->FieldOfView = FOV_Override;
-	//	}
+		if (bOverrideFOVAngle && FinalCameraComponent) // 최종적으로 사용되는 CameraComponent 에다가 FOV 각도 override. EndActiveCamera 에서 돌려놓을 것.
+		{
+			FinalCameraComponent->FieldOfView = FOV_Override;
+		}
 
-	//	OverrideSpringArmSettings();
-	//}
+		OverrideSpringArmSettings();
+	}
 }
 
 void AB2ActiveCameraActor::EndActiveCamera()
 {
-	//ABladeIIGameMode* B2GM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(this));
-	//if (B2GM && !B2GM->IsAllowCameraWorking())
-	//	return;
-	//
-	//ABladeIIPlayer* InteractLocalPlayer = GetInteractPlayerCharacter();
-	//if (CachedLocalPC && InteractLocalPlayer) // NULL 이면 이미 End 처리 되었거나 아님 뭔가 잘못되었거나. 두번 불릴 수는 있으므로 중복 처리하지 않도록.
-	//{
-	//	if (bRestoreCamera)
-	//	{
-	//		// 플레이어 기본 카메라로 back
-	//		// Cubic 이외의 옵션이 필요하다면 변수로 노출
-	//		if (bOverrideFOVAngle)
-	//		{
-	//			// Beginplay 때 캐싱해 놓은 값으로 돌아감.
-	//			InteractLocalPlayer->GetTopDownCameraComponent()->FieldOfView = InteractLocalPlayer->GetTopDownCamIntialFOV();
-	//		}
-	//		RestoreSpringArmSettings();
-	//		CachedLocalPC->ApplyWorldDefaultCamera(BlendOutTime, EViewTargetBlendFunction::VTBlend_Cubic);
-	//	}
+	ABladeIIGameMode* B2GM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(this));
+	if (B2GM && !B2GM->IsAllowCameraWorking())
+		return;
+	
+	ABladeIIPlayer* InteractLocalPlayer = GetInteractPlayerCharacter();
+	if (CachedLocalPC && InteractLocalPlayer) // NULL 이면 이미 End 처리 되었거나 아님 뭔가 잘못되었거나. 두번 불릴 수는 있으므로 중복 처리하지 않도록.
+	{
+		if (bRestoreCamera)
+		{
+			// 플레이어 기본 카메라로 back
+			// Cubic 이외의 옵션이 필요하다면 변수로 노출
+			if (bOverrideFOVAngle)
+			{
+				// Beginplay 때 캐싱해 놓은 값으로 돌아감.
+				InteractLocalPlayer->GetTopDownCameraComponent()->FieldOfView = InteractLocalPlayer->GetTopDownCamIntialFOV();
+			}
+			RestoreSpringArmSettings();
+			CachedLocalPC->ApplyWorldDefaultCamera(BlendOutTime, EViewTargetBlendFunction::VTBlend_Cubic);
+		}
 
-	//	// GameMode 등록 해제
-	//	if (B2GM && B2GM->GetCurrentActiveActiveCameraActor() == this)
-	//	{
-	//		B2GM->SetCurrentActiveActiveCameraActor(NULL);
-	//	}
+		// GameMode 등록 해제
+		if (B2GM && B2GM->GetCurrentActiveActiveCameraActor() == this)
+		{
+			B2GM->SetCurrentActiveActiveCameraActor(NULL);
+		}
 
-	//	ConditionalBeginTransitionInputDisable(false);
-	//}
+		ConditionalBeginTransitionInputDisable(false);
+	}
 
-	//CachedLocalPC = NULL;
-	//CachedInteractingController = NULL;
-	//LastInteractBeginPlayer = NULL;
-	//CachedTargetMob = NULL;
-	//
-	//bIsActivated = false;
+	CachedLocalPC = NULL;
+	CachedInteractingController = NULL;
+	LastInteractBeginPlayer = NULL;
+	CachedTargetMob = NULL;
+	
+	bIsActivated = false;
 }
 
 void CopyFromSelectedSettingsToSpringArmComponent(FActiveCameraSpringArmSelectedSettings& FromSettings, USpringArmComponent* ToComponent)
@@ -624,259 +625,259 @@ void AB2ActiveCameraActor::CheckForOutdatedInteraction()
 
 void AB2ActiveCameraActor::UpdateActiveCamera(float DeltaSeconds)
 {
-	//ABladeIIPlayer* InteractLocalPlayer = GetInteractPlayerCharacter();
-	//if (InteractLocalPlayer && CachedLocalPC)
-	//{
-	//	bool bFallbackToWorldDefault = false; // 계산 도중 구리면 이걸 true 로 세팅.
+	ABladeIIPlayer* InteractLocalPlayer = GetInteractPlayerCharacter();
+	if (InteractLocalPlayer && CachedLocalPC)
+	{
+		bool bFallbackToWorldDefault = false; // 계산 도중 구리면 이걸 true 로 세팅.
 
-	//	if (IsUsingActiveCameraComponent())
-	//	{
-	//		float ExpectedPlayerInputHandlingYaw = ActiveCameraSpringArm->GetComponentRotation().Yaw; // 일반적인 ActiveCameraComponent 사용하는 상황에서의 입력 핸들링 기본축 값.
-	//		
-	//		if (bDualCameraBlending)
-	//		{
-	//			ExpectedPlayerInputHandlingYaw = CachedDualCameraBlendedYaw;
-	//			// 기타 딱히 여기서 필요한 건 없을 듯.. 카메라 자체는 걍 고정이라.
-	//		}
-	//		else
-	//		{
-	//			if (CameraMovementMode == EActiveCameraMovementMode::EACMM_ScaledFollowPlayer)
-	//			{
-	//				FVector BasePosToPlayer = InteractLocalPlayer->GetActorLocation() - InitialActiveCameraSpringArmTransform.GetTranslation();
-	//				float PlayerToBaseDistance = BasePosToPlayer.Size();
-	//				BasePosToPlayer.Normalize();
+		if (IsUsingActiveCameraComponent())
+		{
+			float ExpectedPlayerInputHandlingYaw = ActiveCameraSpringArm->GetComponentRotation().Yaw; // 일반적인 ActiveCameraComponent 사용하는 상황에서의 입력 핸들링 기본축 값.
+			
+			if (bDualCameraBlending)
+			{
+				ExpectedPlayerInputHandlingYaw = CachedDualCameraBlendedYaw;
+				// 기타 딱히 여기서 필요한 건 없을 듯.. 카메라 자체는 걍 고정이라.
+			}
+			else
+			{
+				if (CameraMovementMode == EActiveCameraMovementMode::EACMM_ScaledFollowPlayer)
+				{
+					FVector BasePosToPlayer = InteractLocalPlayer->GetActorLocation() - InitialActiveCameraSpringArmTransform.GetTranslation();
+					float PlayerToBaseDistance = BasePosToPlayer.Size();
+					BasePosToPlayer.Normalize();
 
-	//				// CameraPlayerFollowingScale 만큼 스케일해서 플레이어 위치를 따라가도록
-	//				FVector ScaledCameraLocation = InitialActiveCameraSpringArmTransform.GetTranslation() + BasePosToPlayer * CameraPlayerFollowingScale * PlayerToBaseDistance;
-	//				ActiveCameraSpringArm->SetWorldLocation(ScaledCameraLocation);
-	//			}
-	//			// CameraMovementMode 가 FollowPlayer 이거나 Fixed 면 여기서 처리 안 함.
+					// CameraPlayerFollowingScale 만큼 스케일해서 플레이어 위치를 따라가도록
+					FVector ScaledCameraLocation = InitialActiveCameraSpringArmTransform.GetTranslation() + BasePosToPlayer * CameraPlayerFollowingScale * PlayerToBaseDistance;
+					ActiveCameraSpringArm->SetWorldLocation(ScaledCameraLocation);
+				}
+				// CameraMovementMode 가 FollowPlayer 이거나 Fixed 면 여기서 처리 안 함.
 
-	//			if (CameraTargetingMode == EActiveCameraTargetingMode::EACTM_Player)
-	//			{
-	//				SetActiveCameraRotationToTarget(InteractLocalPlayer->GetActorLocation());
-	//			}
-	//			else if (CameraTargetingMode == EActiveCameraTargetingMode::EACTM_Mob)
-	//			{
-	//				if (CachedTargetMob == NULL) // Begin 시점에 없을 수도 있으므로 Update 에서 검사
-	//				{
-	//					CachedTargetMob = GetDesiredCameraTargetWaveMob();
-	//				}
-	//				if (CachedTargetMob && CachedTargetMob->IsPendingKill() == false)
-	//				{
-	//					SetActiveCameraRotationToTarget(CachedTargetMob->GetActorLocation() + TargetMobCameraAdjustSettings.TargetLocationOffset);
-	//				}
-	//				else
-	//				{
-	//					// 몹이 없는 상황이라면 기본 카메라로 폴백.
-	//					bFallbackToWorldDefault = true;
-	//				}
-	//			}
-	//			else if (CameraTargetingMode == EActiveCameraTargetingMode::EACTM_Fixed)
-	//			{
-	//				// FixedCameraTargetPosition 은 relative 로 취급.
-	//				FTransform FixedTargetWorldTransform = FTransform(FixedCameraTargetPosition) * this->GetTransform();
-	//				SetActiveCameraRotationToTarget(FixedTargetWorldTransform.GetTranslation());
-	//			}
-	//		}
+				if (CameraTargetingMode == EActiveCameraTargetingMode::EACTM_Player)
+				{
+					SetActiveCameraRotationToTarget(InteractLocalPlayer->GetActorLocation());
+				}
+				else if (CameraTargetingMode == EActiveCameraTargetingMode::EACTM_Mob)
+				{
+					if (CachedTargetMob == NULL) // Begin 시점에 없을 수도 있으므로 Update 에서 검사
+					{
+						CachedTargetMob = GetDesiredCameraTargetWaveMob();
+					}
+					if (CachedTargetMob && !IsValid(CachedTargetMob))
+					{
+						SetActiveCameraRotationToTarget(CachedTargetMob->GetActorLocation() + TargetMobCameraAdjustSettings.TargetLocationOffset);
+					}
+					else
+					{
+						// 몹이 없는 상황이라면 기본 카메라로 폴백.
+						bFallbackToWorldDefault = true;
+					}
+				}
+				else if (CameraTargetingMode == EActiveCameraTargetingMode::EACTM_Fixed)
+				{
+					// FixedCameraTargetPosition 은 relative 로 취급.
+					FTransform FixedTargetWorldTransform = FTransform(FixedCameraTargetPosition) * this->GetTransform();
+					SetActiveCameraRotationToTarget(FixedTargetWorldTransform.GetTranslation());
+				}
+			}
 
-	//		// 플레이어 movement 입력 처리를 위해 CameraBoom 을 여하간 회전시킨다. ABladeIIPlayer::MoveForward/MoveRight 참고
-	//		// ActiveCameraComp 의 Yaw 를 직빵으로 대입하면 yaw 가 급격하게 변하는 일부 상황에서 문제가 되므로 보간을 좀 하는데 PlayerMoveInputAdjustBoomSyncAlpha 값이 낮을 수록 목표값에서 멀어질 것임.
-	//		// 그리고 가끔은 각도가 사실상 변하지 않는 상황에서 쓸데없이 보간을 하기도 해서.. 가능하면 PlayerMoveInputAdjustBoomSyncAlpha 를 1.0 으로..
-	//		float InterpolatedYaw = 
-	//			bUsePlacedActiveCamYawAsInputBase ? InitialActiveCameraSpringArmTransform.Rotator().Yaw : // 그래서.. yaw 가 급격하게 변하는 상황에 대한 고육지책.
-	//			FMath::Lerp(InteractLocalPlayer->
-	//			GetCameraYaw(), ExpectedPlayerInputHandlingYaw, PlayerMoveInputAdjustBoomSyncAlpha);
-	//		InteractLocalPlayer->UpdateCameraYaw(InterpolatedYaw);
-	//	}
-	//	else
-	//	{
-	//		// 플레이어 top-down 카메라의 CameraBoom 을 조작. BladeIIPlayerController 쪽에 구비해 둔 인터페이스를 통해서.
-	//		// CameraMovementMode 는 어차피 FollowPlayer 일 테고 (즉, 건드릴 필요 없음) CameraTarget 에 따라 CameraBoom 의 rotation 을 조작한다.
-	//		if (CameraTargetingMode == EActiveCameraTargetingMode::EACTM_Player)
-	//		{
-	//			// 이 경우는 거의 기존 top-down 카메라와 차이가 없을 것인데, PlayerTopDownCameraSettings 에 의한 초기 세팅 뿐?
+			// 플레이어 movement 입력 처리를 위해 CameraBoom 을 여하간 회전시킨다. ABladeIIPlayer::MoveForward/MoveRight 참고
+			// ActiveCameraComp 의 Yaw 를 직빵으로 대입하면 yaw 가 급격하게 변하는 일부 상황에서 문제가 되므로 보간을 좀 하는데 PlayerMoveInputAdjustBoomSyncAlpha 값이 낮을 수록 목표값에서 멀어질 것임.
+			// 그리고 가끔은 각도가 사실상 변하지 않는 상황에서 쓸데없이 보간을 하기도 해서.. 가능하면 PlayerMoveInputAdjustBoomSyncAlpha 를 1.0 으로..
+			float InterpolatedYaw = 
+				bUsePlacedActiveCamYawAsInputBase ? InitialActiveCameraSpringArmTransform.Rotator().Yaw : // 그래서.. yaw 가 급격하게 변하는 상황에 대한 고육지책.
+				FMath::Lerp(InteractLocalPlayer->
+				GetCameraYaw(), ExpectedPlayerInputHandlingYaw, PlayerMoveInputAdjustBoomSyncAlpha);
+			InteractLocalPlayer->UpdateCameraYaw(InterpolatedYaw);
+		}
+		else
+		{
+			// 플레이어 top-down 카메라의 CameraBoom 을 조작. BladeIIPlayerController 쪽에 구비해 둔 인터페이스를 통해서.
+			// CameraMovementMode 는 어차피 FollowPlayer 일 테고 (즉, 건드릴 필요 없음) CameraTarget 에 따라 CameraBoom 의 rotation 을 조작한다.
+			if (CameraTargetingMode == EActiveCameraTargetingMode::EACTM_Player)
+			{
+				// 이 경우는 거의 기존 top-down 카메라와 차이가 없을 것인데, PlayerTopDownCameraSettings 에 의한 초기 세팅 뿐?
 
-	//			// 탑다운 카메라 이용한 듀얼블렌딩시
-	//			if (bDualCameraBlending)
-	//			{
-	//				if (CachedLocalPC)
-	//				{
-	//					// PlayerTopDownCameraSettings 의 각 요소별로 override 한 것만 적용
-	//					if (PlayerTopDownCameraSettings.bOverrideCameraBoomPitch)
-	//					{
-	//						float fPitchA = PlayerTopDownCameraSettings.CameraBoomPitch;
-	//						float fPitchB = DCBExtraPlayerTopDownCameraSettings.CameraBoomPitch;
-	//						float fBlendedPitch = fPitchA + ((fPitchB - fPitchA) * GetDualCameraBlendingWeight());
-	//						CachedLocalPC->SetCameraBoomPitch(fBlendedPitch);
-	//					}
+				// 탑다운 카메라 이용한 듀얼블렌딩시
+				if (bDualCameraBlending)
+				{
+					if (CachedLocalPC)
+					{
+						// PlayerTopDownCameraSettings 의 각 요소별로 override 한 것만 적용
+						if (PlayerTopDownCameraSettings.bOverrideCameraBoomPitch)
+						{
+							float fPitchA = PlayerTopDownCameraSettings.CameraBoomPitch;
+							float fPitchB = DCBExtraPlayerTopDownCameraSettings.CameraBoomPitch;
+							float fBlendedPitch = fPitchA + ((fPitchB - fPitchA) * GetDualCameraBlendingWeight());
+							CachedLocalPC->SetCameraBoomPitch(fBlendedPitch);
+						}
 
-	//					if (PlayerTopDownCameraSettings.bOverrideCameraBoomYaw)
-	//					{
-	//						float fYawA = PlayerTopDownCameraSettings.CameraBoomYaw;
-	//						float fYawB = DCBExtraPlayerTopDownCameraSettings.CameraBoomYaw;
-	//						float fBlendedYaw = fYawA + ((fYawB - fYawA) * GetDualCameraBlendingWeight());
-	//						CachedLocalPC->SetCameraBoomYaw(fBlendedYaw);
-	//					}
+						if (PlayerTopDownCameraSettings.bOverrideCameraBoomYaw)
+						{
+							float fYawA = PlayerTopDownCameraSettings.CameraBoomYaw;
+							float fYawB = DCBExtraPlayerTopDownCameraSettings.CameraBoomYaw;
+							float fBlendedYaw = fYawA + ((fYawB - fYawA) * GetDualCameraBlendingWeight());
+							CachedLocalPC->SetCameraBoomYaw(fBlendedYaw);
+						}
 
-	//					if (PlayerTopDownCameraSettings.bOverrideCameraBoomRoll)
-	//					{
-	//						float fRollA = PlayerTopDownCameraSettings.CameraBoomRoll;
-	//						float fRollB = DCBExtraPlayerTopDownCameraSettings.CameraBoomRoll;
-	//						float fBlendedRoll = fRollA + ((fRollB - fRollA) * GetDualCameraBlendingWeight());
-	//						CachedLocalPC->SetCameraBoomRoll(fBlendedRoll);
-	//					}
+						if (PlayerTopDownCameraSettings.bOverrideCameraBoomRoll)
+						{
+							float fRollA = PlayerTopDownCameraSettings.CameraBoomRoll;
+							float fRollB = DCBExtraPlayerTopDownCameraSettings.CameraBoomRoll;
+							float fBlendedRoll = fRollA + ((fRollB - fRollA) * GetDualCameraBlendingWeight());
+							CachedLocalPC->SetCameraBoomRoll(fBlendedRoll);
+						}
 
-	//					if (PlayerTopDownCameraSettings.bOverrideCameraBoomArmLength)
-	//					{
-	//						float fArmLengthA = GetExtraAppliedCameraDistance(PlayerTopDownCameraSettings.CameraBoomArmLength, PlayerTopDownCameraSettings.CameraBoomArmLength_Extra);
-	//						float fArmLengthB = GetExtraAppliedCameraDistance(DCBExtraPlayerTopDownCameraSettings.CameraBoomArmLength, DCBExtraPlayerTopDownCameraSettings.CameraBoomArmLength_Extra);
-	//						float fBlendedArmLength = fArmLengthA + ((fArmLengthB - fArmLengthA) * GetDualCameraBlendingWeight());
-	//						CachedLocalPC->SetCameraBoomArmLength(fBlendedArmLength);
-	//					}
+						if (PlayerTopDownCameraSettings.bOverrideCameraBoomArmLength)
+						{
+							float fArmLengthA = GetExtraAppliedCameraDistance(PlayerTopDownCameraSettings.CameraBoomArmLength, PlayerTopDownCameraSettings.CameraBoomArmLength_Extra);
+							float fArmLengthB = GetExtraAppliedCameraDistance(DCBExtraPlayerTopDownCameraSettings.CameraBoomArmLength, DCBExtraPlayerTopDownCameraSettings.CameraBoomArmLength_Extra);
+							float fBlendedArmLength = fArmLengthA + ((fArmLengthB - fArmLengthA) * GetDualCameraBlendingWeight());
+							CachedLocalPC->SetCameraBoomArmLength(fBlendedArmLength);
+						}
 
-	//					if (PlayerTopDownCameraSettings.bOverrideCameraTargetFocusOffset)
-	//					{
-	//						FVector OffsetA = PlayerTopDownCameraSettings.CameraTargetFocusOffset;
-	//						FVector OffsetB = DCBExtraPlayerTopDownCameraSettings.CameraTargetFocusOffset;
-	//						FVector Offset = OffsetA + ((OffsetB - OffsetA) * GetDualCameraBlendingWeight());
-	//						CachedLocalPC->SetCameraTargetFocusOffset(Offset);
-	//					}
+						if (PlayerTopDownCameraSettings.bOverrideCameraTargetFocusOffset)
+						{
+							FVector OffsetA = PlayerTopDownCameraSettings.CameraTargetFocusOffset;
+							FVector OffsetB = DCBExtraPlayerTopDownCameraSettings.CameraTargetFocusOffset;
+							FVector Offset = OffsetA + ((OffsetB - OffsetA) * GetDualCameraBlendingWeight());
+							CachedLocalPC->SetCameraTargetFocusOffset(Offset);
+						}
 
-	//					if (bOverrideFOVAngle && CachedInteractingController)
-	//					{
-	//						float fFovA = FOV_Override;
-	//						float fFovB = DCBExtraFOV_Override;
-	//						float fBlendedFov = fFovA + ((fFovB - fFovA) * GetDualCameraBlendingWeight());
-	//						ABladeIIPlayer* pPlayer = Cast<ABladeIIPlayer>(CachedInteractingController->GetPawn());
+						if (bOverrideFOVAngle && CachedInteractingController)
+						{
+							float fFovA = FOV_Override;
+							float fFovB = DCBExtraFOV_Override;
+							float fBlendedFov = fFovA + ((fFovB - fFovA) * GetDualCameraBlendingWeight());
+							ABladeIIPlayer* pPlayer = Cast<ABladeIIPlayer>(CachedInteractingController->GetPawn());
 
-	//						if (pPlayer)
-	//							pPlayer->GetTopDownCameraComponent()->FieldOfView = fBlendedFov;
-	//					}
+							if (pPlayer)
+								pPlayer->GetTopDownCameraComponent()->FieldOfView = fBlendedFov;
+						}
 
-	//					// 카메라 로테이션 조작
-	//					FRotator CamRotation = InteractLocalPlayer->TopDownCameraComponent->GetRelativeTransform().GetRotation().Rotator();
+						// 카메라 로테이션 조작
+						FRotator CamRotation = InteractLocalPlayer->TopDownCameraComponent->GetRelativeTransform().GetRotation().Rotator();
 
-	//					if (PlayerTopDownCameraSettings.bOverrideCameraPitch)
-	//					{
-	//						float fPitchA = PlayerTopDownCameraSettings.CameraPitch;
-	//						float fPitchB = DCBExtraPlayerTopDownCameraSettings.CameraPitch;
-	//						float fBlendedPitch = fPitchA + ((fPitchB - fPitchA) * GetDualCameraBlendingWeight());
-	//						CamRotation.Pitch = CamRotation.Pitch + fBlendedPitch;
-	//					}
+						if (PlayerTopDownCameraSettings.bOverrideCameraPitch)
+						{
+							float fPitchA = PlayerTopDownCameraSettings.CameraPitch;
+							float fPitchB = DCBExtraPlayerTopDownCameraSettings.CameraPitch;
+							float fBlendedPitch = fPitchA + ((fPitchB - fPitchA) * GetDualCameraBlendingWeight());
+							CamRotation.Pitch = CamRotation.Pitch + fBlendedPitch;
+						}
 
-	//					if (PlayerTopDownCameraSettings.bOverrideCameraYaw)
-	//					{
-	//						float fYawA = PlayerTopDownCameraSettings.CameraYaw;
-	//						float fYawB = DCBExtraPlayerTopDownCameraSettings.CameraYaw;
-	//						float fBlendedYaw = fYawA + ((fYawB - fYawA) * GetDualCameraBlendingWeight());
-	//						CamRotation.Yaw = CamRotation.Yaw + fBlendedYaw;
-	//					}
+						if (PlayerTopDownCameraSettings.bOverrideCameraYaw)
+						{
+							float fYawA = PlayerTopDownCameraSettings.CameraYaw;
+							float fYawB = DCBExtraPlayerTopDownCameraSettings.CameraYaw;
+							float fBlendedYaw = fYawA + ((fYawB - fYawA) * GetDualCameraBlendingWeight());
+							CamRotation.Yaw = CamRotation.Yaw + fBlendedYaw;
+						}
 
-	//					InteractLocalPlayer->TopDownCameraComponent->SetRelativeRotation(CamRotation);
-	//				}					
-	//			}
-	//		}
-	//		else if (CameraTargetingMode == EActiveCameraTargetingMode::EACTM_Mob)
-	//		{
-	//			if (CachedTargetMob == NULL) // Begin 시점에 없을 수도 있으므로 Update 에서 검사
-	//			{
-	//				CachedTargetMob = GetDesiredCameraTargetWaveMob();
-	//			}
+						InteractLocalPlayer->TopDownCameraComponent->SetRelativeRotation(CamRotation);
+					}					
+				}
+			}
+			else if (CameraTargetingMode == EActiveCameraTargetingMode::EACTM_Mob)
+			{
+				if (CachedTargetMob == NULL) // Begin 시점에 없을 수도 있으므로 Update 에서 검사
+				{
+					CachedTargetMob = GetDesiredCameraTargetWaveMob();
+				}
 
-	//			if (CachedTargetMob && CachedTargetMob->IsPendingKill() == false)
-	//			{
-	//				SetPlayerCameraBoomRotationToTarget(
-	//					CachedTargetMob->GetActorLocation() + TargetMobCameraAdjustSettings.TargetLocationOffset,
-	//					// 여기엔 개별 파라미터에 대한 offset 과 overriding 이 좀 있음.
-	//					TargetMobCameraAdjustSettings.BoomRotOffsetPitch, TargetMobCameraAdjustSettings.BoomRotOffsetYaw,
-	//					(TargetMobCameraAdjustSettings.bOverrideCameraBoomArmLength ? 
-	//						GetExtraAppliedCameraDistance(TargetMobCameraAdjustSettings.CameraBoomArmLength, TargetMobCameraAdjustSettings.CameraBoomArmLength_Extra)
-	//						: 0.0f)
-	//					);
+				if (CachedTargetMob && !IsValid(CachedTargetMob))
+				{
+					SetPlayerCameraBoomRotationToTarget(
+						CachedTargetMob->GetActorLocation() + TargetMobCameraAdjustSettings.TargetLocationOffset,
+						// 여기엔 개별 파라미터에 대한 offset 과 overriding 이 좀 있음.
+						TargetMobCameraAdjustSettings.BoomRotOffsetPitch, TargetMobCameraAdjustSettings.BoomRotOffsetYaw,
+						(TargetMobCameraAdjustSettings.bOverrideCameraBoomArmLength ? 
+							GetExtraAppliedCameraDistance(TargetMobCameraAdjustSettings.CameraBoomArmLength, TargetMobCameraAdjustSettings.CameraBoomArmLength_Extra)
+							: 0.0f)
+						);
 
-	//				// 몹 쳐다보게..
-	//				SetPlayerCameraRotationToTarget(
-	//					CachedTargetMob->GetActorLocation() + TargetMobCameraAdjustSettings.TargetLocationOffset,
-	//					TargetMobCameraAdjustSettings.CamRotOffsetPitch, TargetMobCameraAdjustSettings.CamRotOffsetYaw
-	//					);
-	//				
-	//			}
-	//			else
-	//			{
-	//				// 몹이 없는 상황이라면 기본 카메라로 폴백.
-	//				//bFallbackToWorldDefault = true;
-	//			}
-	//		}
-	//		else if (CameraTargetingMode == EActiveCameraTargetingMode::EACTM_Fixed)
-	//		{
-	//			// FixedCameraTargetPosition 은 relative 로 취급.
-	//			FTransform FixedTargetWorldTransform = FTransform(FixedCameraTargetPosition) * this->GetTransform();
-	//			SetPlayerCameraBoomRotationToTarget(FixedTargetWorldTransform.GetTranslation());
+					// 몹 쳐다보게..
+					SetPlayerCameraRotationToTarget(
+						CachedTargetMob->GetActorLocation() + TargetMobCameraAdjustSettings.TargetLocationOffset,
+						TargetMobCameraAdjustSettings.CamRotOffsetPitch, TargetMobCameraAdjustSettings.CamRotOffsetYaw
+						);
+					
+				}
+				else
+				{
+					// 몹이 없는 상황이라면 기본 카메라로 폴백.
+					//bFallbackToWorldDefault = true;
+				}
+			}
+			else if (CameraTargetingMode == EActiveCameraTargetingMode::EACTM_Fixed)
+			{
+				// FixedCameraTargetPosition 은 relative 로 취급.
+				FTransform FixedTargetWorldTransform = FTransform(FixedCameraTargetPosition) * this->GetTransform();
+				SetPlayerCameraBoomRotationToTarget(FixedTargetWorldTransform.GetTranslation());
 
-	//			// CameraMovementMode 가 FollowPlayer 면서 TargetingMode 가 Fixed 인 경우 FixedCameraTargetPosition 위치에 플레이어가 있을 경우 카메라가 불안정하게 됨.
-	//			// 아예 해당 조합을 사용하지 않는 걸로 할 수도 있지만, FixedCameraTargetPosition 을 잘 세팅해서 사용해 볼 수도.
-	//		}
-	//	}
+				// CameraMovementMode 가 FollowPlayer 면서 TargetingMode 가 Fixed 인 경우 FixedCameraTargetPosition 위치에 플레이어가 있을 경우 카메라가 불안정하게 됨.
+				// 아예 해당 조합을 사용하지 않는 걸로 할 수도 있지만, FixedCameraTargetPosition 을 잘 세팅해서 사용해 볼 수도.
+			}
+		}
 
-	//	if (bFallbackToWorldDefault)
-	//	{
-	//		CachedLocalPC->ApplyWorldDefaultCamera(0.0f);
-	//	}
-	//}
+		if (bFallbackToWorldDefault)
+		{
+			CachedLocalPC->ApplyWorldDefaultCamera(0.0f);
+		}
+	}
 }
 
 void AB2ActiveCameraActor::SetupForConsistentPlayerTopDownCamera()
 {
-	//if (CachedLocalPC)
-	//{
-	//	// PlayerTopDownCameraSettings 의 각 요소별로 override 한 것만 적용
-	//	CachedLocalPC->SetCameraBoomLockedViewTarget(PlayerTopDownCameraSettings.bCameraBoomLockedViewTarget);
+	if (CachedLocalPC)
+	{
+		// PlayerTopDownCameraSettings 의 각 요소별로 override 한 것만 적용
+		CachedLocalPC->SetCameraBoomLockedViewTarget(PlayerTopDownCameraSettings.bCameraBoomLockedViewTarget);
 
-	//	if (PlayerTopDownCameraSettings.bOverrideCameraBoomPitch)
-	//	{
-	//		CachedLocalPC->SetCameraBoomPitch(PlayerTopDownCameraSettings.CameraBoomPitch);
-	//	}
+		if (PlayerTopDownCameraSettings.bOverrideCameraBoomPitch)
+		{
+			CachedLocalPC->SetCameraBoomPitch(PlayerTopDownCameraSettings.CameraBoomPitch);
+		}
 
-	//	if (PlayerTopDownCameraSettings.bOverrideCameraBoomYaw)
-	//	{
-	//		CachedLocalPC->SetCameraBoomYaw(PlayerTopDownCameraSettings.CameraBoomYaw);
-	//	}
+		if (PlayerTopDownCameraSettings.bOverrideCameraBoomYaw)
+		{
+			CachedLocalPC->SetCameraBoomYaw(PlayerTopDownCameraSettings.CameraBoomYaw);
+		}
 
-	//	if (PlayerTopDownCameraSettings.bOverrideCameraBoomRoll)
-	//	{
-	//		CachedLocalPC->SetCameraBoomRoll(PlayerTopDownCameraSettings.CameraBoomRoll);
-	//	}
+		if (PlayerTopDownCameraSettings.bOverrideCameraBoomRoll)
+		{
+			CachedLocalPC->SetCameraBoomRoll(PlayerTopDownCameraSettings.CameraBoomRoll);
+		}
 
-	//	if (PlayerTopDownCameraSettings.bOverrideCameraBoomArmLength)
-	//	{
-	//		CachedLocalPC->SetCameraBoomArmLength(GetExtraAppliedCameraDistance(
-	//			PlayerTopDownCameraSettings.CameraBoomArmLength, PlayerTopDownCameraSettings.CameraBoomArmLength_Extra));
-	//	}
+		if (PlayerTopDownCameraSettings.bOverrideCameraBoomArmLength)
+		{
+			CachedLocalPC->SetCameraBoomArmLength(GetExtraAppliedCameraDistance(
+				PlayerTopDownCameraSettings.CameraBoomArmLength, PlayerTopDownCameraSettings.CameraBoomArmLength_Extra));
+		}
 
-	//	if (PlayerTopDownCameraSettings.bOverrideCameraTargetFocusOffset)
-	//	{
-	//		CachedLocalPC->SetCameraTargetFocusOffset(PlayerTopDownCameraSettings.CameraTargetFocusOffset);
-	//	}
+		if (PlayerTopDownCameraSettings.bOverrideCameraTargetFocusOffset)
+		{
+			CachedLocalPC->SetCameraTargetFocusOffset(PlayerTopDownCameraSettings.CameraTargetFocusOffset);
+		}
 
-	//	
-	//	// 카메라 로테이션 조작
-	//	if (ABladeIIPlayer* InteractLocalPlayer = GetInteractPlayerCharacter())
-	//	{
-	//		FRotator CamRotation = InteractLocalPlayer->TopDownCameraComponent->GetRelativeTransform().GetRotation().Rotator();
+		
+		// 카메라 로테이션 조작
+		if (ABladeIIPlayer* InteractLocalPlayer = GetInteractPlayerCharacter())
+		{
+			FRotator CamRotation = InteractLocalPlayer->TopDownCameraComponent->GetRelativeTransform().GetRotation().Rotator();
 
-	//		if (PlayerTopDownCameraSettings.bOverrideCameraPitch)
-	//			CamRotation.Pitch = CamRotation.Pitch + PlayerTopDownCameraSettings.CameraPitch;
+			if (PlayerTopDownCameraSettings.bOverrideCameraPitch)
+				CamRotation.Pitch = CamRotation.Pitch + PlayerTopDownCameraSettings.CameraPitch;
 
-	//		if (PlayerTopDownCameraSettings.bOverrideCameraYaw)
-	//			CamRotation.Yaw = CamRotation.Yaw + PlayerTopDownCameraSettings.CameraYaw;
+			if (PlayerTopDownCameraSettings.bOverrideCameraYaw)
+				CamRotation.Yaw = CamRotation.Yaw + PlayerTopDownCameraSettings.CameraYaw;
 
-	//		//ActiveCameraSpringArm->SetWorldRotation(CamRotation);
-	//		InteractLocalPlayer->TopDownCameraComponent->SetRelativeRotation(CamRotation);
+			//ActiveCameraSpringArm->SetWorldRotation(CamRotation);
+			InteractLocalPlayer->TopDownCameraComponent->SetRelativeRotation(CamRotation);
 
-	//		// SetViewTargetWithBlend 는 이 이후에 따로 불려야 함.
-	//	}
-	//}
+			// SetViewTargetWithBlend 는 이 이후에 따로 불려야 함.
+		}
+	}
 }
 
 bool AB2ActiveCameraActor::IsUsingActiveCameraComponent()
@@ -943,97 +944,97 @@ void AB2ActiveCameraActor::SetPlayerCameraRotationToTarget(FVector InViewTargetL
 
 ABladeIICharacter* AB2ActiveCameraActor::GetDesiredCameraTargetWaveMob()
 {
-	//ABladeIIGameMode* B2GM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(this));
-	//AB2MonsterSpawnPool* TargetMobSP = B2GM ? B2GM->GetActiveSpawnPool() : NULL; // 레벨 시작 시 정해짐.
+	ABladeIIGameMode* B2GM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(this));
+	AB2MonsterSpawnPool* TargetMobSP = B2GM ? B2GM->GetActiveSpawnPool() : NULL; // 레벨 시작 시 정해짐.
 
-	//if (TargetMobSP)
-	//{
-	//	int32 WaveNum = 0;
-	//	int32 MobIndex = 0;
-	//	ParseForWaveMobSelectKeyword(TargetMobSelectKeyword, WaveNum, MobIndex); // 문자열로 지정한 옵션에서 번호들 빼옴.
+	if (TargetMobSP)
+	{
+		int32 WaveNum = 0;
+		int32 MobIndex = 0;
+		ParseForWaveMobSelectKeyword(TargetMobSelectKeyword, WaveNum, MobIndex); // 문자열로 지정한 옵션에서 번호들 빼옴.
 
-	//	TArray<ABladeIICharacter*> InterestedWaveMobs;
-	//	TargetMobSP->GetWaveMobList(WaveNum, InterestedWaveMobs, false); // 죽어가는 녀석도 포함해서 가져오지만 여기서 호출하는 타이밍에 그게 될까..?
+		TArray<ABladeIICharacter*> InterestedWaveMobs;
+		TargetMobSP->GetWaveMobList(WaveNum, InterestedWaveMobs, false); // 죽어가는 녀석도 포함해서 가져오지만 여기서 호출하는 타이밍에 그게 될까..?
 
-	//	for (int32 WMI = 0; WMI < InterestedWaveMobs.Num(); ++WMI)
-	//	{
-	//		ABladeIICharacter* CurrMob = InterestedWaveMobs[WMI];
-	//		if (CurrMob)
-	//		{
-	//			if (CurrMob->GetSpawnPoolWaveObjIndex() == MobIndex) // 사실상 Wave 가 시작된 상황이 아니면 찾는 인덱스의 mob 이 없을 수도 있다.
-	//			{
-	//				return CurrMob;
-	//			}
-	//		}
-	//	}
-	//}
+		for (int32 WMI = 0; WMI < InterestedWaveMobs.Num(); ++WMI)
+		{
+			ABladeIICharacter* CurrMob = InterestedWaveMobs[WMI];
+			if (CurrMob)
+			{
+				if (CurrMob->GetSpawnPoolWaveObjIndex() == MobIndex) // 사실상 Wave 가 시작된 상황이 아니면 찾는 인덱스의 mob 이 없을 수도 있다.
+				{
+					return CurrMob;
+				}
+			}
+		}
+	}
 	return NULL;
 }
 
 void AB2ActiveCameraActor::ConditionalBeginTransitionInputDisable(bool bTransitIn)
 {
-	//ABladeIIPlayer* InteractLocalPlayer = GetInteractPlayerCharacter();
+	ABladeIIPlayer* InteractLocalPlayer = GetInteractPlayerCharacter();
 
-	//// 카메라 워크 변동에 따라 플레이어 이동 입력에 혼선이 올 수 있으므로 일정 시간 동안 입력을 막는다.
-	//// 플레이어 Top-down 카메라를 사용하는 모드에선 필요없을 듯.. 했는데 movement, target 모두 player 가 아닌 이상은 필요할 듯.
-	//// 듀얼카메라 모드에서는 사용
-	//if ((bDualCameraBlending || CameraMovementMode != EActiveCameraMovementMode::EACMM_FollowPlayer || CameraTargetingMode != EActiveCameraTargetingMode::EACTM_Player) &&
-	//	TransitionInputDisableTime > 0.0f && CachedLocalPC && InteractLocalPlayer)
-	//{
-	//	if (bTransitIn)
-	//	{
-	//		CachedLocalPC->bDisableMoveInputForActiveCameraTransition = true;
-	//		bTransitInInputDisabled = true;
-	//		GetWorldTimerManager().SetTimer(TransitInTimeTimerHandle, this, &AB2ActiveCameraActor::TransitInTimerCB, TransitionInputDisableTime, false);
+	// 카메라 워크 변동에 따라 플레이어 이동 입력에 혼선이 올 수 있으므로 일정 시간 동안 입력을 막는다.
+	// 플레이어 Top-down 카메라를 사용하는 모드에선 필요없을 듯.. 했는데 movement, target 모두 player 가 아닌 이상은 필요할 듯.
+	// 듀얼카메라 모드에서는 사용
+	if ((bDualCameraBlending || CameraMovementMode != EActiveCameraMovementMode::EACMM_FollowPlayer || CameraTargetingMode != EActiveCameraTargetingMode::EACTM_Player) &&
+		TransitionInputDisableTime > 0.0f && CachedLocalPC && InteractLocalPlayer)
+	{
+		if (bTransitIn)
+		{
+			CachedLocalPC->bDisableMoveInputForActiveCameraTransition = true;
+			bTransitInInputDisabled = true;
+			GetWorldTimerManager().SetTimer(TransitInTimeTimerHandle, this, &AB2ActiveCameraActor::TransitInTimerCB, TransitionInputDisableTime, false);
 
-	//		if (TransitionAutoMoveScale > 0.0f)
-	//		{
-	//			// 입력이 비활성화 된 동안 현재 위치에서 약간 앞으로 이동시킨다. 경계에서 좀 멀어지도록 ㅋ
-	//							
-	//			const float MoveDistance = InteractLocalPlayer->GetDefaultHalfHeight() * 2.0f * TransitionAutoMoveScale;
-	//			const FVector MoveTargetLocation = InteractLocalPlayer->GetActorLocation() + (InteractLocalPlayer->GetVelocity().GetSafeNormal() * MoveDistance);
-	//			
-	//			UNavigationSystem::SimpleMoveToLocation(CachedLocalPC, MoveTargetLocation);
-	//		}
-	//	}
-	//	else
-	//	{
-	//		// 혹시라도 TransitIn 도중이라면 중단
-	//		if (bTransitInInputDisabled)
-	//		{
-	//			GetWorldTimerManager().ClearTimer(TransitInTimeTimerHandle);
-	//			bTransitInInputDisabled = false;
-	//		}
+			if (TransitionAutoMoveScale > 0.0f)
+			{
+				// 입력이 비활성화 된 동안 현재 위치에서 약간 앞으로 이동시킨다. 경계에서 좀 멀어지도록 ㅋ
+								
+				const float MoveDistance = InteractLocalPlayer->GetDefaultHalfHeight() * 2.0f * TransitionAutoMoveScale;
+				const FVector MoveTargetLocation = InteractLocalPlayer->GetActorLocation() + (InteractLocalPlayer->GetVelocity().GetSafeNormal() * MoveDistance);
+				
+				//UNavigationSystem::SimpleMoveToLocation(CachedLocalPC, MoveTargetLocation);
+			}
+		}
+		else
+		{
+			// 혹시라도 TransitIn 도중이라면 중단
+			if (bTransitInInputDisabled)
+			{
+				GetWorldTimerManager().ClearTimer(TransitInTimeTimerHandle);
+				bTransitInInputDisabled = false;
+			}
 
-	//		CachedLocalPC->bDisableMoveInputForActiveCameraTransition = true;
-	//		bTransitOutInputDisabled = true;
-	//		GetWorldTimerManager().SetTimer(TransitOutTimeTimerHandle, this, &AB2ActiveCameraActor::TransitOutTimerCB, TransitionInputDisableTime, false);
-	//	}
-	//}
+			CachedLocalPC->bDisableMoveInputForActiveCameraTransition = true;
+			bTransitOutInputDisabled = true;
+			GetWorldTimerManager().SetTimer(TransitOutTimeTimerHandle, this, &AB2ActiveCameraActor::TransitOutTimerCB, TransitionInputDisableTime, false);
+		}
+	}
 }
 
 void AB2ActiveCameraActor::TransitInTimerCB()
 {
-	//GetWorldTimerManager().ClearTimer(TransitInTimeTimerHandle);
-	//// CachedLocalPC 가 없더라도 여하간 bDisableMoveInput 은 처리해야..
-	//ABladeIIPlayerController* B2PC = Cast<ABladeIIPlayerController>(UGameplayStatics::GetLocalPlayerController(this));
-	//if (B2PC)
-	//{
-	//	B2PC->bDisableMoveInputForActiveCameraTransition = false;
-	//}
-	//bTransitInInputDisabled = false;
+	GetWorldTimerManager().ClearTimer(TransitInTimeTimerHandle);
+	// CachedLocalPC 가 없더라도 여하간 bDisableMoveInput 은 처리해야..
+	ABladeIIPlayerController* B2PC = Cast<ABladeIIPlayerController>(GetWorld()->GetFirstPlayerController());
+	if (B2PC)
+	{
+		B2PC->bDisableMoveInputForActiveCameraTransition = false;
+	}
+	bTransitInInputDisabled = false;
 }
 
 void AB2ActiveCameraActor::TransitOutTimerCB()
 {
-	//GetWorldTimerManager().ClearTimer(TransitOutTimeTimerHandle);
-	//// CachedLocalPC 가 없더라도 여하간 bDisableMoveInput 은 처리해야..
-	//ABladeIIPlayerController* B2PC = Cast<ABladeIIPlayerController>(UGameplayStatics::GetLocalPlayerController(this));
-	//if (B2PC)
-	//{
-	//	B2PC->bDisableMoveInputForActiveCameraTransition = false;
-	//}
-	//bTransitOutInputDisabled = false;
+	GetWorldTimerManager().ClearTimer(TransitOutTimeTimerHandle);
+	// CachedLocalPC 가 없더라도 여하간 bDisableMoveInput 은 처리해야..
+	ABladeIIPlayerController* B2PC = Cast<ABladeIIPlayerController>(GetWorld()->GetFirstPlayerController());
+	if (B2PC)
+	{
+		B2PC->bDisableMoveInputForActiveCameraTransition = false;
+	}
+	bTransitOutInputDisabled = false;
 }
 
 bool AB2ActiveCameraActor::IsOneOfBeginToggleComp(class UShapeComponent* InTestComp)
@@ -1104,95 +1105,95 @@ USceneComponent* AB2ActiveCameraActor::FindSceneComponentForDualCameraBlending(F
 
 float AB2ActiveCameraActor::GetDualCameraBlendingWeight()
 {
-	//UCameraComponent* CamA = ActiveCameraComp;
-	//UCameraComponent* CamB = FindExtraCamCompForDualCameraBlending();
-	//ABladeIIPlayer* InteractLocalPlayer = GetInteractPlayerCharacter();
+	UCameraComponent* CamA = ActiveCameraComp;
+	UCameraComponent* CamB = FindExtraCamCompForDualCameraBlending();
+	ABladeIIPlayer* InteractLocalPlayer = GetInteractPlayerCharacter();
 
-	//if (CameraMovementMode == EActiveCameraMovementMode::EACMM_Fixed && (!CamA || !CamB))
-	//	return 0.0f;
+	if (CameraMovementMode == EActiveCameraMovementMode::EACMM_Fixed && (!CamA || !CamB))
+		return 0.0f;
 
-	//if (InteractLocalPlayer && InteractLocalPlayer->IsValidObj())
-	//{
-	//	USceneComponent* FlagA = NULL;
-	//	USceneComponent* FlagB = NULL;
+	if (InteractLocalPlayer && IsValid(InteractLocalPlayer))
+	{
+		USceneComponent* FlagA = NULL;
+		USceneComponent* FlagB = NULL;
 
-	//	if (DCBFlagName != NAME_None)
-	//		FlagA = FindSceneComponentForDualCameraBlending(DCBFlagName);
+		if (DCBFlagName != NAME_None)
+			FlagA = FindSceneComponentForDualCameraBlending(DCBFlagName);
 
-	//	if (DCBExtraFlagName != NAME_None)
-	//		FlagB = FindSceneComponentForDualCameraBlending(DCBExtraFlagName);
-	//	
-	//	//보간 시작 기준점
-	//	FVector vPointA;
-	//	//보간 종료 기준점
-	//	FVector vPointB;
+		if (DCBExtraFlagName != NAME_None)
+			FlagB = FindSceneComponentForDualCameraBlending(DCBExtraFlagName);
+		
+		//보간 시작 기준점
+		FVector vPointA;
+		//보간 종료 기준점
+		FVector vPointB;
 
-	//	// 플래그 설정되었으면 그위치로 하고 아니면 카메라위치 이용함
-	//	if (FlagA)
-	//		vPointA = FlagA->GetComponentLocation();
-	//	else
-	//		vPointA = CamA->GetComponentLocation();
-	//			
-	//	if (FlagB)
-	//		vPointB = FlagB->GetComponentLocation();
-	//	else
-	//		vPointB = CamB->GetComponentLocation();
+		// 플래그 설정되었으면 그위치로 하고 아니면 카메라위치 이용함
+		if (FlagA)
+			vPointA = FlagA->GetComponentLocation();
+		else
+			vPointA = CamA->GetComponentLocation();
+				
+		if (FlagB)
+			vPointB = FlagB->GetComponentLocation();
+		else
+			vPointB = CamB->GetComponentLocation();
 
-	//	// 부자연스러워서 케릭터 위치값을 A, B 두 지점사이로 보정한다(내적 이용).
-	//	FVector vGoalPos = vPointB - vPointA;
-	//	FVector vCurPos = InteractLocalPlayer->GetActorLocation() - vPointA;
+		// 부자연스러워서 케릭터 위치값을 A, B 두 지점사이로 보정한다(내적 이용).
+		FVector vGoalPos = vPointB - vPointA;
+		FVector vCurPos = InteractLocalPlayer->GetActorLocation() - vPointA;
 
-	//	// 보정된 현재위치 벡터 사이즈
-	//	float fCurPosSize = FVector::DotProduct(vGoalPos.GetSafeNormal(KINDA_SMALL_NUMBER), vCurPos);
-	//			
-	//	float fWeight = fCurPosSize / vGoalPos.Size();
+		// 보정된 현재위치 벡터 사이즈
+		float fCurPosSize = FVector::DotProduct(vGoalPos.GetSafeNormal(KINDA_SMALL_NUMBER), vCurPos);
+				
+		float fWeight = fCurPosSize / vGoalPos.Size();
 
-	//	if (fWeight < KINDA_SMALL_NUMBER) // 흔한 설정에서 나타날 수 있는 상황은 아니겠지만..
-	//		return 0.0f;
+		if (fWeight < KINDA_SMALL_NUMBER) // 흔한 설정에서 나타날 수 있는 상황은 아니겠지만..
+			return 0.0f;
 
-	//	if (fWeight >= 1.0f) // 혹시 1넘는게 필요하면 그때 제거
-	//		return 1.0f;
+		if (fWeight >= 1.0f) // 혹시 1넘는게 필요하면 그때 제거
+			return 1.0f;
 
-	//	return fWeight;
-	//}
+		return fWeight;
+	}
 
 	return 0.0f;
 }
 
 void AB2ActiveCameraActor::ChangeCameraOwnerPlayer(ABladeIIPlayer* targetPlayer, float OverrideBlendingTime)
 {	
-	//ABladeIIPlayerController* B2PC = Cast<ABladeIIPlayerController>(UGameplayStatics::GetLocalPlayerController(this));
+	ABladeIIPlayerController* B2PC = Cast<ABladeIIPlayerController>(GetWorld()->GetFirstPlayerController());
 
-	//if (B2PC && targetPlayer && targetPlayer->IsAlive())
-	//{
-	//	ABladeIIWorldSettings* B2WS = GetWorld() ? Cast<ABladeIIWorldSettings>(GetWorld()->GetWorldSettings()) : NULL;
+	if (B2PC && targetPlayer && targetPlayer->IsAlive())
+	{
+		ABladeIIWorldSettings* B2WS = GetWorld() ? Cast<ABladeIIWorldSettings>(GetWorld()->GetWorldSettings()) : NULL;
 
-	//	if (B2WS)
-	//	{
-	//		B2WS->ApplyDefaultPlayerCameraSettingForPlayerPawn(targetPlayer);
+		if (B2WS)
+		{
+			B2WS->ApplyDefaultPlayerCameraSettingForPlayerPawn(targetPlayer);
 
-	//		if (PlayerTopDownCameraSettings.bOverrideCameraBoomPitch)
-	//			targetPlayer->UpdateCameraPitch(PlayerTopDownCameraSettings.CameraBoomPitch);
+			if (PlayerTopDownCameraSettings.bOverrideCameraBoomPitch)
+				targetPlayer->UpdateCameraPitch(PlayerTopDownCameraSettings.CameraBoomPitch);
 
-	//		if (PlayerTopDownCameraSettings.bOverrideCameraBoomYaw)
-	//			targetPlayer->UpdateCameraYaw(PlayerTopDownCameraSettings.CameraBoomYaw);
+			if (PlayerTopDownCameraSettings.bOverrideCameraBoomYaw)
+				targetPlayer->UpdateCameraYaw(PlayerTopDownCameraSettings.CameraBoomYaw);
 
-	//		if (PlayerTopDownCameraSettings.bOverrideCameraBoomRoll)
-	//			targetPlayer->UpdateCameraRoll(PlayerTopDownCameraSettings.CameraBoomRoll);
+			if (PlayerTopDownCameraSettings.bOverrideCameraBoomRoll)
+				targetPlayer->UpdateCameraRoll(PlayerTopDownCameraSettings.CameraBoomRoll);
 
-	//		if (PlayerTopDownCameraSettings.bOverrideCameraBoomArmLength)
-	//			targetPlayer->UpdateCameraDistance(GetExtraAppliedCameraDistance(
-	//				PlayerTopDownCameraSettings.CameraBoomArmLength, PlayerTopDownCameraSettings.CameraBoomArmLength_Extra));
+			if (PlayerTopDownCameraSettings.bOverrideCameraBoomArmLength)
+				targetPlayer->UpdateCameraDistance(GetExtraAppliedCameraDistance(
+					PlayerTopDownCameraSettings.CameraBoomArmLength, PlayerTopDownCameraSettings.CameraBoomArmLength_Extra));
 
-	//		if (PlayerTopDownCameraSettings.bOverrideCameraTargetFocusOffset)
-	//			targetPlayer->UpdateCameraTargetFocusOffset(PlayerTopDownCameraSettings.CameraTargetFocusOffset);
-	//	}
+			if (PlayerTopDownCameraSettings.bOverrideCameraTargetFocusOffset)
+				targetPlayer->UpdateCameraTargetFocusOffset(PlayerTopDownCameraSettings.CameraTargetFocusOffset);
+		}
 
-	//	//활성화 한번 해줌
-	//	ForceBeginActiveCamera();
-	//	float LastBlendingTime = OverrideBlendingTime >= 0.0f ? OverrideBlendingTime : BlendInTime;
-	//	B2PC->SetViewTargetWithBlend(targetPlayer, LastBlendingTime, EViewTargetBlendFunction::VTBlend_Cubic, 0, true, true);
-	//}
+		//활성화 한번 해줌
+		ForceBeginActiveCamera();
+		float LastBlendingTime = OverrideBlendingTime >= 0.0f ? OverrideBlendingTime : BlendInTime;
+		B2PC->SetViewTargetWithBlend(targetPlayer, LastBlendingTime, EViewTargetBlendFunction::VTBlend_Cubic, 0, true);
+	}
 }
 
 #if WITH_EDITOR
@@ -1200,131 +1201,132 @@ void AB2ActiveCameraActor::RefreshEditingComp(bool bRegenerateStaticComp /*= tru
 {
 	DestroyEditingComponents(bRegenerateStaticComp);
 
-	//if(CameraTargetingMode == EActiveCameraTargetingMode::EACTM_Fixed)
-	//{
-	//	UStaticMesh* EditingCompMesh = LoadObject<UStaticMesh>(NULL, TEXT("/Engine/BasicShapes/Cone.Cone"));
-	//	// TEXT("/Engine/BasicShapes/Cone.Cone")
-	//	if(EditingCompMesh)
-	//	{
-	//		UStaticMeshComponent* EditingComp = NULL;
+	if(CameraTargetingMode == EActiveCameraTargetingMode::EACTM_Fixed)
+	{
+		UStaticMesh* EditingCompMesh = LoadObject<UStaticMesh>(NULL, TEXT("/Engine/BasicShapes/Cone.Cone"));
+		// TEXT("/Engine/BasicShapes/Cone.Cone")
+		if(EditingCompMesh)
+		{
+			UStaticMeshComponent* EditingComp = NULL;
 
-	//		// 새로 생성하는 옵션이 아니라면 기존 거 사용
-	//		if(TargetPositionEditingComp.Num() == 0)
-	//		{
-	//			EditingComp = NewObject<UStaticMeshComponent>(this, FName(TEXT("TargetPositionEditingComp")), RF_Transient);
-	//			if(EditingComp)
-	//			{
-	//				TargetPositionEditingComp.Add(EditingComp);
-	//			}
-	//		}
-	//		else
-	//		{
-	//			EditingComp = TargetPositionEditingComp[0];
-	//		}
+			// 새로 생성하는 옵션이 아니라면 기존 거 사용
+			if(TargetPositionEditingComp.Num() == 0)
+			{
+				EditingComp = NewObject<UStaticMeshComponent>(this, FName(TEXT("TargetPositionEditingComp")), RF_Transient);
+				if(EditingComp)
+				{
+					TargetPositionEditingComp.Add(EditingComp);
+				}
+			}
+			else
+			{
+				EditingComp = TargetPositionEditingComp[0];
+			}
 
-	//		if(EditingComp)
-	//		{
-	//			EditingComp->AttachToComponent(GetRootComponent(), FAttachmentTransformRules(EAttachmentRule::KeepRelative, false)); // EditingComp 의 RelativeLocation 을 사용할 것이므로 반드시 root 에 attach
-	//			EditingComp->RegisterComponent();
-	//			EditingComp->SetStaticMesh(EditingCompMesh);
-	//			EditingComp->SetVisibility(true);
-	//			// 어차피 게임에선 생기지도 않을 애들이지만 
-	//			EditingComp->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-	//			EditingComp->SetHiddenInGame(true);
-	//			EditingComp->SetMaterial(0, LoadObject<UMaterial>(nullptr, TEXT("/Engine/BasicShapes/BasicShapeMaterial.BasicShapeMaterial")));
-	//			
-	//			// Movement, Target 모두 Fixed 이면 굳이 따로 CameraTargetPosition 을 줄 거 없이 ActiveCameraComp 의 배치된 위치 및 회전값을 그대로 사용하면 되겠지..
-	//			if(CameraMovementMode == EActiveCameraMovementMode::EACMM_Fixed)
-	//			{					
-	//				EditingComp->SetWorldLocation(ActiveCameraSpringArm->GetComponentTransform().TransformPosition(FVector(300.0f, 0.0f, 0.0f)));
-	//				FixedCameraTargetPosition = EditingComp->RelativeLocation;
-	//			}
-	//			else
-	//			{
-	//				EditingComp->SetRelativeLocation(FixedCameraTargetPosition); // FixedCameraTargetPosition 은 relative 취급
-	//			}
-	//		}
-	//	}
-	//}
+			if(EditingComp)
+			{
+				EditingComp->AttachToComponent(GetRootComponent(), FAttachmentTransformRules(EAttachmentRule::KeepRelative, false)); // EditingComp 의 RelativeLocation 을 사용할 것이므로 반드시 root 에 attach
+				EditingComp->RegisterComponent();
+				EditingComp->SetStaticMesh(EditingCompMesh);
+				EditingComp->SetVisibility(true);
+				// 어차피 게임에선 생기지도 않을 애들이지만 
+				EditingComp->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+				EditingComp->SetHiddenInGame(true);
+				EditingComp->SetMaterial(0, LoadObject<UMaterial>(nullptr, TEXT("/Engine/BasicShapes/BasicShapeMaterial.BasicShapeMaterial")));
+				
+				// Movement, Target 모두 Fixed 이면 굳이 따로 CameraTargetPosition 을 줄 거 없이 ActiveCameraComp 의 배치된 위치 및 회전값을 그대로 사용하면 되겠지..
+				if(CameraMovementMode == EActiveCameraMovementMode::EACMM_Fixed)
+				{					
+					EditingComp->SetWorldLocation(ActiveCameraSpringArm->GetComponentTransform().TransformPosition(FVector(300.0f, 0.0f, 0.0f)));
+					FixedCameraTargetPosition = EditingComp->GetRelativeLocation();
+				}
+				else
+				{
+					EditingComp->SetRelativeLocation(FixedCameraTargetPosition); // FixedCameraTargetPosition 은 relative 취급
+				}
+			}
+		}
+	}
 
-	//// ShapeComponent 들에 대한 안내텍스트들 생성. ToggleMode_BeginComponents, ToggleMode_EndComponents 에 등록한 것들은 특별히 추가 정보..
-	//TArray<UActorComponent*> ShapeComps = GetComponentsByClass(UShapeComponent::StaticClass());
-	//for (int32 SCI = 0; SCI < ShapeComps.Num(); ++SCI)
-	//{
-	//	UShapeComponent* CurrShapeComp = Cast<UShapeComponent>(ShapeComps[SCI]);
-	//	if (CurrShapeComp == NULL)
-	//	{
-	//		continue;
-	//	}
+	// ShapeComponent 들에 대한 안내텍스트들 생성. ToggleMode_BeginComponents, ToggleMode_EndComponents 에 등록한 것들은 특별히 추가 정보..
+	TArray<UActorComponent*> ShapeComps;
+	GetComponents(ShapeComps);
+	for (int32 SCI = 0; SCI < ShapeComps.Num(); ++SCI)
+	{
+		UShapeComponent* CurrShapeComp = Cast<UShapeComponent>(ShapeComps[SCI]);
+		if (CurrShapeComp == NULL)
+		{
+			continue;
+		}
 
-	//	UTextRenderComponent* NewInfoTextComp = NewObject<UTextRenderComponent>(this, *FString::Printf(TEXT("ShapeCompInfoText_%d"), SCI), RF_Transient);
-	//	if (NewInfoTextComp == NULL)
-	//	{
-	//		continue;
-	//	}
+		UTextRenderComponent* NewInfoTextComp = NewObject<UTextRenderComponent>(this, *FString::Printf(TEXT("ShapeCompInfoText_%d"), SCI), RF_Transient);
+		if (NewInfoTextComp == NULL)
+		{
+			continue;
+		}
 
-	//	NewInfoTextComp->AttachToComponent(CurrShapeComp, FAttachmentTransformRules(EAttachmentRule::KeepRelative, false));
-	//	NewInfoTextComp->RegisterComponent();
-	//	NewInfoTextComp->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-	//	NewInfoTextComp->SetVisibility(true);
-	//	NewInfoTextComp->SetHiddenInGame(true);
-	//	NewInfoTextComp->SetHorizontalAlignment(EHTA_Center);
-	//	NewInfoTextComp->SetWorldSize(30.0f);
-	//	NewInfoTextComp->SetWorldScale3D(FVector(1.0f, 1.0f, 1.0f));
-	//	NewInfoTextComp->SetRelativeLocation(FVector(0.0f, 0.0f, 50.0f)); // 위치는 적당히 맞춰준다
-	//	
-	//	const bool bIsOneOfBeginToggleComp = IsOneOfBeginToggleComp(CurrShapeComp);
-	//	const bool bIsOneOfEndToggleComp = IsOneOfEndToggleComp(CurrShapeComp);
+		NewInfoTextComp->AttachToComponent(CurrShapeComp, FAttachmentTransformRules(EAttachmentRule::KeepRelative, false));
+		NewInfoTextComp->RegisterComponent();
+		NewInfoTextComp->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+		NewInfoTextComp->SetVisibility(true);
+		NewInfoTextComp->SetHiddenInGame(true);
+		NewInfoTextComp->SetHorizontalAlignment(EHTA_Center);
+		NewInfoTextComp->SetWorldSize(30.0f);
+		NewInfoTextComp->SetWorldScale3D(FVector(1.0f, 1.0f, 1.0f));
+		NewInfoTextComp->SetRelativeLocation(FVector(0.0f, 0.0f, 50.0f)); // 위치는 적당히 맞춰준다
+		
+		const bool bIsOneOfBeginToggleComp = IsOneOfBeginToggleComp(CurrShapeComp);
+		const bool bIsOneOfEndToggleComp = IsOneOfEndToggleComp(CurrShapeComp);
 
-	//	// Component 용도 따라 다르게 표현할 정보들.
-	//	FColor CompTextColor(255, 0, 0);
-	//	FString CompInfoStr = CurrShapeComp->GetName() + TEXT("\n");
+		// Component 용도 따라 다르게 표현할 정보들.
+		FColor CompTextColor(255, 0, 0);
+		FString CompInfoStr = CurrShapeComp->GetName() + TEXT("\n");
 
-	//	if (TriggerMode == EActiveCameraTriggerMode::EACTRG_ToggleByComponent)
-	//	{
-	//		if (bIsOneOfBeginToggleComp && bIsOneOfEndToggleComp)
-	//		{
-	//			CompInfoStr += TEXT("WRONG Setting!!"); // Begin/End 둘 다 동시에 세팅된 건 잘못임.
-	//			CompTextColor = FColor(255, 0, 127);
-	//		}
-	//		else
-	//		{
-	//			if (bIsOneOfBeginToggleComp)
-	//			{
-	//				CompInfoStr += TEXT("Begin Toggle");
-	//				CompTextColor = FColor(255, 0, 0);
-	//			}
-	//			if (bIsOneOfEndToggleComp)
-	//			{
-	//				CompInfoStr += TEXT("End Toggle");
-	//				CompTextColor = FColor(0, 0, 255);
-	//			}
-	//		}
-	//	}
-	//	else
-	//	{
-	//		CompInfoStr += TEXT("ActiveCamera Area");
-	//		CompTextColor = FColor(0, 255, 127);
-	//	}
-	//			
-	//	
-	//	NewInfoTextComp->SetTextRenderColor(CompTextColor);
-	//	NewInfoTextComp->SetText(FText::FromString(CompInfoStr));
-	//	
-	//	ShapeCompInfoText.Add(NewInfoTextComp);
-	//}
+		if (TriggerMode == EActiveCameraTriggerMode::EACTRG_ToggleByComponent)
+		{
+			if (bIsOneOfBeginToggleComp && bIsOneOfEndToggleComp)
+			{
+				CompInfoStr += TEXT("WRONG Setting!!"); // Begin/End 둘 다 동시에 세팅된 건 잘못임.
+				CompTextColor = FColor(255, 0, 127);
+			}
+			else
+			{
+				if (bIsOneOfBeginToggleComp)
+				{
+					CompInfoStr += TEXT("Begin Toggle");
+					CompTextColor = FColor(255, 0, 0);
+				}
+				if (bIsOneOfEndToggleComp)
+				{
+					CompInfoStr += TEXT("End Toggle");
+					CompTextColor = FColor(0, 0, 255);
+				}
+			}
+		}
+		else
+		{
+			CompInfoStr += TEXT("ActiveCamera Area");
+			CompTextColor = FColor(0, 255, 127);
+		}
+				
+		
+		NewInfoTextComp->SetTextRenderColor(CompTextColor);
+		NewInfoTextComp->SetText(FText::FromString(CompInfoStr));
+		
+		ShapeCompInfoText.Add(NewInfoTextComp);
+	}
 
 }
 
 void AB2ActiveCameraActor::SyncFromEditingCompPlacement()
 {
-	//if(CameraTargetingMode == EActiveCameraTargetingMode::EACTM_Fixed)
-	//{
-	//	if(TargetPositionEditingComp.Num() > 0 && TargetPositionEditingComp[0])
-	//	{
-	//		FixedCameraTargetPosition = TargetPositionEditingComp[0]->RelativeLocation;
-	//	}
-	//}
+	if(CameraTargetingMode == EActiveCameraTargetingMode::EACTM_Fixed)
+	{
+		if(TargetPositionEditingComp.Num() > 0 && TargetPositionEditingComp[0])
+		{
+			FixedCameraTargetPosition = TargetPositionEditingComp[0]->GetRelativeLocation();
+		}
+	}
 }
 
 void AB2ActiveCameraActor::DestroyEditingComponents(bool bDestroyStaticCompToo)
@@ -1356,129 +1358,130 @@ void AB2ActiveCameraActor::DestroyEditingComponents(bool bDestroyStaticCompToo)
 void AB2ActiveCameraActor::PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent)
 {
 	Super::PostEditChangeProperty(PropertyChangedEvent);
-//
-//	const FName Name_ToggleMode_BeginComponents = GET_MEMBER_NAME_CHECKED(AB2ActiveCameraActor, ToggleMode_BeginComponents);
-//	const FName Name_ToggleMode_EndComponents = GET_MEMBER_NAME_CHECKED(AB2ActiveCameraActor, ToggleMode_EndComponents);
-//
-//	FProperty* PropertyThatChanged = PropertyChangedEvent.Property;
-//	FName PropertyName = PropertyThatChanged != NULL ? PropertyThatChanged->GetFName() : NAME_None;
-//
-//	PlayerMoveInputAdjustBoomSyncAlpha = FMath::Clamp(PlayerMoveInputAdjustBoomSyncAlpha, 0.0f, 1.0f);
-//	CameraPlayerFollowingScale = FMath::Clamp(CameraPlayerFollowingScale, 0.0f, 1.0f);
-//
-//	if (PropertyName == Name_ToggleMode_BeginComponents || PropertyName == Name_ToggleMode_EndComponents)
-//	{
-//		// 양다리 금지 ㄷㄷ
-//		bool bCompNameExistForBothBeginAndEnd = false;
-//		for (int32 BCI = 0; BCI < ToggleMode_BeginComponents.Num(); ++BCI)
-//		{
-//			for (int32 ECI = 0; ECI < ToggleMode_EndComponents.Num(); ++ECI)
-//			{
-//				if (ToggleMode_BeginComponents[BCI] == ToggleMode_EndComponents[ECI])
-//				{
-//					bCompNameExistForBothBeginAndEnd = true;
-//					break;
-//				}
-//			}
-//		}
-//
-//
-//		if (bCompNameExistForBothBeginAndEnd)
-//		{
-//#if !PLATFORM_MAC
-//			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-//				FString::Printf(TEXT("[경고] ToggleMode_BeginComponents 와 ToggleMode_EndComponents 에 동시에 등록된 컴포넌트가 있습니다."))
-//				));
-//#endif
-//		}
-//
-//
-//		TArray<UActorComponent*> AllShapeComps = GetComponentsByClass(UShapeComponent::StaticClass());
-//		// 실제로 없는 컴포넌트 이름을 넣었는지 검사.
-//		for (int32 BCI = 0; BCI < ToggleMode_BeginComponents.Num(); ++BCI)
-//		{
-//			if (ToggleMode_BeginComponents[BCI] == NAME_None) // 아직 세팅하지 않은 건 패스.
-//			{
-//				continue;
-//			}
-//
-//			bool bNameNotExist = true;
-//			for (int32 SCI = 0; SCI < AllShapeComps.Num(); ++SCI)
-//			{
-//				if (AllShapeComps[SCI]->GetName() == ToggleMode_BeginComponents[BCI].ToString())
-//				{
-//					bNameNotExist = false;
-//					break;
-//				}
-//			}
-//			if (bNameNotExist == true)
-//			{
-//#if !PLATFORM_MAC
-//				FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-//					FString::Printf(TEXT("[경고] %s (이)라는 이름의 Shape (Collision) Component 가 없습니다."), *(ToggleMode_BeginComponents[BCI].ToString()))
-//					));
-//#endif
-//			}
-//		}
-//
-//		for (int32 BCI = 0; BCI < ToggleMode_EndComponents.Num(); ++BCI)
-//		{
-//			if (ToggleMode_EndComponents[BCI] == NAME_None) // 아직 세팅하지 않은 건 패스.
-//			{
-//				continue;
-//			}
-//
-//			bool bNameNotExist = true;
-//			for (int32 SCI = 0; SCI < AllShapeComps.Num(); ++SCI)
-//			{
-//				if (AllShapeComps[SCI]->GetName() == ToggleMode_EndComponents[BCI].ToString())
-//				{
-//					bNameNotExist = false;
-//					break;
-//				}
-//			}
-//			if (bNameNotExist == true)
-//			{
-//#if !PLATFORM_MAC
-//				FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-//					FString::Printf(TEXT("[경고] %s (이)라는 이름의 Shape (Collision) Component 가 없습니다."), *(ToggleMode_EndComponents[BCI].ToString()))
-//					));
-//#endif
-//			}
-//		}
-//	}
-//
-//	SetEditConditionProperties();
-//
-//	RefreshEditingComp();
+
+	const FName Name_ToggleMode_BeginComponents = GET_MEMBER_NAME_CHECKED(AB2ActiveCameraActor, ToggleMode_BeginComponents);
+	const FName Name_ToggleMode_EndComponents = GET_MEMBER_NAME_CHECKED(AB2ActiveCameraActor, ToggleMode_EndComponents);
+
+	FProperty* PropertyThatChanged = PropertyChangedEvent.Property;
+	FName PropertyName = PropertyThatChanged != NULL ? PropertyThatChanged->GetFName() : NAME_None;
+
+	PlayerMoveInputAdjustBoomSyncAlpha = FMath::Clamp(PlayerMoveInputAdjustBoomSyncAlpha, 0.0f, 1.0f);
+	CameraPlayerFollowingScale = FMath::Clamp(CameraPlayerFollowingScale, 0.0f, 1.0f);
+
+	if (PropertyName == Name_ToggleMode_BeginComponents || PropertyName == Name_ToggleMode_EndComponents)
+	{
+		// 양다리 금지 ㄷㄷ
+		bool bCompNameExistForBothBeginAndEnd = false;
+		for (int32 BCI = 0; BCI < ToggleMode_BeginComponents.Num(); ++BCI)
+		{
+			for (int32 ECI = 0; ECI < ToggleMode_EndComponents.Num(); ++ECI)
+			{
+				if (ToggleMode_BeginComponents[BCI] == ToggleMode_EndComponents[ECI])
+				{
+					bCompNameExistForBothBeginAndEnd = true;
+					break;
+				}
+			}
+		}
+
+
+		if (bCompNameExistForBothBeginAndEnd)
+		{
+#if !PLATFORM_MAC
+			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
+				FString::Printf(TEXT("[경고] ToggleMode_BeginComponents 와 ToggleMode_EndComponents 에 동시에 등록된 컴포넌트가 있습니다."))
+				));
+#endif
+		}
+
+
+		TArray<UActorComponent*> AllShapeComps;
+		GetComponents(AllShapeComps);
+		// 실제로 없는 컴포넌트 이름을 넣었는지 검사.
+		for (int32 BCI = 0; BCI < ToggleMode_BeginComponents.Num(); ++BCI)
+		{
+			if (ToggleMode_BeginComponents[BCI] == NAME_None) // 아직 세팅하지 않은 건 패스.
+			{
+				continue;
+			}
+
+			bool bNameNotExist = true;
+			for (int32 SCI = 0; SCI < AllShapeComps.Num(); ++SCI)
+			{
+				if (AllShapeComps[SCI]->GetName() == ToggleMode_BeginComponents[BCI].ToString())
+				{
+					bNameNotExist = false;
+					break;
+				}
+			}
+			if (bNameNotExist == true)
+			{
+#if !PLATFORM_MAC
+				FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
+					FString::Printf(TEXT("[경고] %s (이)라는 이름의 Shape (Collision) Component 가 없습니다."), *(ToggleMode_BeginComponents[BCI].ToString()))
+					));
+#endif
+			}
+		}
+
+		for (int32 BCI = 0; BCI < ToggleMode_EndComponents.Num(); ++BCI)
+		{
+			if (ToggleMode_EndComponents[BCI] == NAME_None) // 아직 세팅하지 않은 건 패스.
+			{
+				continue;
+			}
+
+			bool bNameNotExist = true;
+			for (int32 SCI = 0; SCI < AllShapeComps.Num(); ++SCI)
+			{
+				if (AllShapeComps[SCI]->GetName() == ToggleMode_EndComponents[BCI].ToString())
+				{
+					bNameNotExist = false;
+					break;
+				}
+			}
+			if (bNameNotExist == true)
+			{
+#if !PLATFORM_MAC
+				FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
+					FString::Printf(TEXT("[경고] %s (이)라는 이름의 Shape (Collision) Component 가 없습니다."), *(ToggleMode_EndComponents[BCI].ToString()))
+					));
+#endif
+			}
+		}
+	}
+
+	SetEditConditionProperties();
+
+	RefreshEditingComp();
 }
 
 void AB2ActiveCameraActor::PostEditMove(bool bFinished)
 {
 	Super::PostEditMove(bFinished);
 
-	//if (bFinished)
-	//{
-	//	// ActiveCameraComp 대신 SpringArm 을 제어해야 함.
-	//	// 그래도 ActiveCameraComp 가 클릭하기에는 좋으니 ActiveCameraComp 에디트가 SpringArm 에디트로 되도록 값을 맞춰주도록 하자.
-	//	if(ActiveCameraComp->RelativeLocation != FVector(0.0f,0.0f,0.0f))
-	//	{
-	//		// 정식으로는 SocketOffset 과 TargetOffset 도 맞춰주어야 하지만 굳이 그렇게까지..
-	//		FTransform SupposedSpringArmTransform = FTransform(FVector(ActiveCameraSpringArm->TargetArmLength, 0.0f, 0.0f)) * ActiveCameraComp->GetComponentTransform();
-	//		ActiveCameraSpringArm->SetWorldLocation(SupposedSpringArmTransform.GetTranslation());
-	//		ActiveCameraComp->SetRelativeLocation(FVector(0.0f, 0.0f, 0.0f));
-	//	}
-	//	if(ActiveCameraComp->RelativeRotation != FRotator(0.0f,0.0f,0.0f))
-	//	{
-	//		ActiveCameraSpringArm->SetWorldRotation(ActiveCameraComp->GetComponentRotation());
-	//		ActiveCameraComp->SetRelativeRotation(FRotator(0.0f, 0.0f, 0.0f));
-	//	}
+	if (bFinished)
+	{
+		// ActiveCameraComp 대신 SpringArm 을 제어해야 함.
+		// 그래도 ActiveCameraComp 가 클릭하기에는 좋으니 ActiveCameraComp 에디트가 SpringArm 에디트로 되도록 값을 맞춰주도록 하자.
+		if(ActiveCameraComp->GetRelativeLocation() != FVector(0.0f,0.0f,0.0f))
+		{
+			// 정식으로는 SocketOffset 과 TargetOffset 도 맞춰주어야 하지만 굳이 그렇게까지..
+			FTransform SupposedSpringArmTransform = FTransform(FVector(ActiveCameraSpringArm->TargetArmLength, 0.0f, 0.0f)) * ActiveCameraComp->GetComponentTransform();
+			ActiveCameraSpringArm->SetWorldLocation(SupposedSpringArmTransform.GetTranslation());
+			ActiveCameraComp->SetRelativeLocation(FVector(0.0f, 0.0f, 0.0f));
+		}
+		if(ActiveCameraComp->GetRelativeRotation() != FRotator(0.0f,0.0f,0.0f))
+		{
+			ActiveCameraSpringArm->SetWorldRotation(ActiveCameraComp->GetComponentRotation());
+			ActiveCameraComp->SetRelativeRotation(FRotator(0.0f, 0.0f, 0.0f));
+		}
 
-	//	// 위치 싱크 후 Refresh
-	//	SyncFromEditingCompPlacement();
-	//	// Regenerate 없이 위치만 싱크하는 옵션으로 call. 성능 때문이 아니라 이렇게 하지 않으면 매 이동마다 선택 포커스를 잃어버려서 존나 불편함.
-	//	RefreshEditingComp(false);
-	//}
+		// 위치 싱크 후 Refresh
+		SyncFromEditingCompPlacement();
+		// Regenerate 없이 위치만 싱크하는 옵션으로 call. 성능 때문이 아니라 이렇게 하지 않으면 매 이동마다 선택 포커스를 잃어버려서 존나 불편함.
+		RefreshEditingComp(false);
+	}
 }
 
 void AB2ActiveCameraActor::SetEditConditionProperties()

@@ -3,6 +3,7 @@
 #include "MovieScene.h"
 #include "Animation/WidgetAnimation.h"
 #include "B2UIManager.h"
+#include "Event.h"
 
 UB2UIWidget::UB2UIWidget(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
@@ -51,15 +52,15 @@ void UB2UIWidget::OnOpen(bool RightNow)
 		OpenState = EUIOpenState::OnOpening;
 
 		// GetAnimation 제대로 작동 안 함.
-		//UWidgetAnimation* OpenCloseAnim = GetAnimation(TEXT("ANIM_OpenClose"), this);
-		//if (OpenCloseAnim)
-		//{
-		//	//여기서 오픈 애님을 재생해준다.
+		UWidgetAnimation* OpenCloseAnim = GetAnimation(TEXT("ANIM_OpenClose"));
+		if (OpenCloseAnim)
+		{
+			//여기서 오픈 애님을 재생해준다.
 
-		//	//현재 오픈 애님 관련 작업 안했으니 열린걸로
-		//	OnOpenComplete();
-		//}
-		//else
+			//현재 오픈 애님 관련 작업 안했으니 열린걸로
+			OnOpenComplete();
+		}
+		else
 			//애님이 없으면 열린걸로
 			OnOpenComplete();
 	}
@@ -79,16 +80,16 @@ void UB2UIWidget::OnClose(bool RightNow)
 	{
 		OpenState = EUIOpenState::OnClosing;
 
-		// GetAnimation 제대로 작동 안 함.
-		//UWidgetAnimation* OpenCloseAnim = GetAnimation(TEXT("ANIM_OpenClose"), this);
-		//if (OpenCloseAnim)
-		//{
-		//	//여기서 클로즈 애님을 재생해준다.
+		 //GetAnimation 제대로 작동 안 함.
+		UWidgetAnimation* OpenCloseAnim = GetAnimation(TEXT("ANIM_OpenClose"));
+		if (OpenCloseAnim)
+		{
+			//여기서 클로즈 애님을 재생해준다.
 
-		//	//현재 클로즈 애님 관련 작업 안했으니 닫힌걸로
-		//	OnCloseComplete();
-		//}
-		//else
+			//현재 클로즈 애님 관련 작업 안했으니 닫힌걸로
+			OnCloseComplete();
+		}
+		else
 			OnCloseComplete();
 	}
 
@@ -124,23 +125,23 @@ void UB2UIWidget::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
 
 void UB2UIWidget::CloseSelf()
 {
-	//UB2UIManager* pUIManager = UB2UIManager::GetInstance();
+	UB2UIManager* pUIManager = UB2UIManager::GetInstance();
 
-	//if (pUIManager)
-	//	pUIManager->CloseUI(MyUIFName);
+	if (pUIManager)
+		pUIManager->CloseUI(MyUIFName);
 
-	//// 매니져 안통하구 그냥 만들어 붙였을수도 있음.
-	//if (MyUIFName == NAME_None)
-	//{
-	//	RemoveFromViewport();
-	//}
+	// 매니져 안통하구 그냥 만들어 붙였을수도 있음.
+	if (MyUIFName == NAME_None)
+	{
+		RemoveFromParent();
+	}
 }
 
 void UB2UIWidget::OnOpenComplete()
 {
-//	OpenState = EUIOpenState::Opened;
-//
-//	UIWidgetOpenCompleteClass<FName>::GetInstance().Signal(this->GetMyUIFName());
+	OpenState = EUIOpenState::Opened;
+
+	UIWidgetOpenCompleteClass<FName>::GetInstance().Signal(this->GetMyUIFName());
 }
 
 void UB2UIWidget::OnCloseComplete()

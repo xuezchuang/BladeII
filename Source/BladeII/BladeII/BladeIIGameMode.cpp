@@ -12,407 +12,407 @@
 //#include "Particles/ParticleSystem.h"
 //#include "Components/AudioComponent.h"
 //#include "BehaviorTree/BehaviorTree.h"
-//#include "BladeIIPlayerController.h"
-//#include "BladeIIPlayer.h"
-////#include "BladeIINetPlayer.h"
+#include "BladeIIPlayerController.h"
+#include "BladeIIPlayer.h"
+//#include "BladeIINetPlayer.h"
 #include "B2NPCClassInfo.h"
 #include "B2NPCClassInfoBox.h"
 #include "B2PCClassInfoBox.h"
-//#include "B2InGameHUDInfo_Player.h"
+#include "B2InGameHUDInfo_Player.h"
 #include "B2ItemInfo.h"
 #include "B2ChapterInfo.h"
 #include "B2StageInfo.h"
 #include "B2CommonSoundInfo.h"
 #include "B2ScenarioDialogInfo.h"
 #include "B2CharacterTagDialogueInfo.h"
-//#include "B2AutoAIController.h"
-//#include "B2SkillRTManager.h"
+#include "B2AutoAIController.h"
+#include "B2SkillRTManager.h"
 //#include "ContentStreaming.h"
 #include "B2MonsterSpawnPool.h"
-//#include "B2StageEventDirector.h"
-//#include "B2TreasureChestBase.h"
-//#include "B2DestructibleLevelObjBase.h"
-//#include "B2AutoWayPoint.h"
-//#include "B2UIManager_InGameCombat.h"
-//#include "B2DropItem.h"
-//#include "B2ItemInfo.h"
-//#include "B2ActiveCameraActor.h"
+#include "B2StageEventDirector.h"
+#include "B2TreasureChestBase.h"
+#include "B2DestructibleLevelObjBase.h"
+#include "B2AutoWayPoint.h"
+#include "B2UIManager_InGameCombat.h"
+#include "B2DropItem.h"
+#include "B2ItemInfo.h"
+#include "B2ActiveCameraActor.h"
 #include "Event.h"
-//#include "B2UIManager.h"
-//#include "B2UIDocManager.h"
-//#include "B2UIDocHelper.h"
-//#include "B2StageManager.h"
+#include "B2UIManager.h"
+#include "B2UIDocManager.h"
+#include "B2UIDocHelper.h"
+#include "B2StageManager.h"
 #include "BladeIIUtil.h"
-//#include "Retailer.h"
-////#include "MyAssetStore.h"
-////#include "MoviePlayer.h"
-//#include "B2PreLoadingScreen.h"
-//#include "B2UIChatting.h"
-//#include "QuestManager.h"
-//#include "B2UIQuestDialog.h"
+#include "Retailer.h"
+//#include "MyAssetStore.h"
+//#include "MoviePlayer.h"
+#include "B2PreLoadingScreen.h"
+#include "B2UIChatting.h"
+#include "QuestManager.h"
+#include "B2UIQuestDialog.h"
 #include "B2WingInfo.h"
 #include "B2SomeInfo.h"
 #include "B2LoadingImageInfo.h"
-//#include "B2UIMain.h"
-//#include "B2UIQuestNotice.h"
-//#include "B2HomePoint.h"
-//#include "B2Airport.h"
-////#include "GameDelegates.h"
-//#include "B2DamageEffectInfo.h"
-//#include "B2BuffModeEffectInfo.h"
+#include "B2UIMain.h"
+#include "B2UIQuestNotice.h"
+#include "B2HomePoint.h"
+#include "B2Airport.h"
+//#include "GameDelegates.h"
+#include "B2DamageEffectInfo.h"
+#include "B2BuffModeEffectInfo.h"
 #include "B2SkillInfo.h"
-//#include "B2UIHeader.h"
-//#include "B2UIBroadcastSystemNotice.h"
-////#include "RHIDefinitions.h"
+#include "B2UIHeader.h"
+#include "B2UIBroadcastSystemNotice.h"
+//#include "RHIDefinitions.h"
 #include "Scalability.h"
 #include "BladeIIScalabilityControl.h"
-//#include "TutorialManager.h"
-//#include "B2CompositeMeshCache.h"
-//#include "B2AssetLoader.h"
-//#include "B2GameLoadingProgress.h"
+#include "TutorialManager.h"
+#include "B2CompositeMeshCache.h"
+#include "B2AssetLoader.h"
+#include "B2GameLoadingProgress.h"
 #include "B2BGMManager.h"
-//#include "B2AndroidBackManager.h"
+#include "B2AndroidBackManager.h"
 #include "Global.h"
 #include "FB2ErrorMessage.h"
-//#include "BladeIIGameImpl.h"
-//#include "B2EtherContainer.h"
-//#include "B2DialogTriggerActorBase.h"
+#include "BladeIIGameImpl.h"
+#include "B2EtherContainer.h"
+#include "B2DialogTriggerActorBase.h"
 #include "B2GuildMarkInfo.h"
 #include "B2InfluenceSkillInfo.h"
 #include "B2GuildNPCInfo.h"
 #include "B2GuildBuffInfo.h"
 #include "B2CombatConstantInfo.h"
 #include "B2CombatStatEvaluator.h"
-//#include "BladeIIBlockToSyncNetwork.h"
-//#if !UE_BUILD_SHIPPING
-//#include "Sound/SoundNodeWavePlayer.h"
-//#endif
-//#if PLATFORM_ANDROID
-//#include "Android/AndroidJNI.h"
-//#include "Android/AndroidMisc.h"
-//extern void AndroidThunkCpp_StageMoviePlay(const FString& MovieName);
-//#endif
-//#include "B2BTTask_PCAutoAttack.h"
-////#include "Matinee/InterpTrack.h"
+#include "BladeIIBlockToSyncNetwork.h"
+#if !UE_BUILD_SHIPPING
+#include "Sound/SoundNodeWavePlayer.h"
+#endif
+#if PLATFORM_ANDROID
+#include "Android/AndroidJNI.h"
+#include "Android/AndroidMisc.h"
+extern void AndroidThunkCpp_StageMoviePlay(const FString& MovieName);
+#endif
+#include "B2BTTask_PCAutoAttack.h"
+//#include "Matinee/InterpTrack.h"
 #include "B2GameInstance.h"
 //
 ////#include "MissionManager.h"
 ////#include "InternalEvents.h"
-//#include "B2UITimerNotice.h"
+#include "B2UITimerNotice.h"
 #include "B2NetworkBridge.h"
-//
-//#include "B2CodeTable.h"
-//#include "B2UIHallOfFame.h"
-//
-//#include "Engine/PawnIterator.h"
-//
-//#if BII_STATS
-//bool FStatisticalPerfStatCollector::bDoStatCollecting = false; // 메인 작동 플래그. 바꾸게 되면 다음 레벨에서 적용.
-//bool FStatisticalPerfStatCollector::bSkipEventCinematics = false; // 일반적인 전투 장면만 측정하고 싶은 경우 true 로. 연출과 전투에서 사용하는 LOD 가 다르기도 하고..
-//bool FStatisticalPerfStatCollector::bIsCurrentlyInEventScene = false;
-//float FStatisticalPerfStatCollector::SkipFrameTimeLimit = 1000.0f; // 특정 한도 이상의 큰 FrameTime 이 감지된 건 뭔가 로딩 시간이 들어갔거나 한 걸로 간주하고 스킵
-//FStatisticalPerfStatCollector::FStatisticalPerfStatCollector()
-//	: bInitialized(false), bDataAvailableForDisplay(false) 
-//	, Result_GameThreadTime_Avg(0.0f), Result_RenderThreadTime_Avg(0.0f), Result_GPUTime_Avg(0.0f), Result_FrameTime_Avg(0.0f), Result_DrawCall_Avg(0), Result_PolyCount_Avg(0)
-//	, Result_GameThreadTime_SD(0.0f), Result_RenderThreadTime_SD(0.0f), Result_GPUTime_SD(0.0f), Result_FrameTime_SD(0.0f), Result_DrawCall_SD(0.0f), Result_PolyCount_SD(0.0f)
-//	, Result_GameThreadTime_Upper10(0.0f), Result_RenderThreadTime_Upper10(0.0f), Result_GPUTime_Upper10(0.0f), Result_FrameTime_Upper10(0.0f), Result_DrawCall_Upper10(0), Result_PolyCount_Upper10(0)
-//	, SkippedFrameNum(0), SkippedFrameTimeAvg(0.0)
-//{
-//}
-//
-//void FStatisticalPerfStatCollector::LoadSettings()
-//{
-//	if (GConfig)
-//	{
-//		GConfig->GetBool(TEXT("StatisticalPerfStatCollector"), TEXT("DoStatCollecting"), bDoStatCollecting, GGameIni);
-//		GConfig->GetBool(TEXT("StatisticalPerfStatCollector"), TEXT("SkipEventCinematics"), bSkipEventCinematics, GGameIni);
-//		GConfig->GetFloat(TEXT("StatisticalPerfStatCollector"), TEXT("SkipFrameTimeLimit"), SkipFrameTimeLimit, GGameIni);
-//	}
-//}
-//
-//void FStatisticalPerfStatCollector::OnBegin(ABladeIIGameMode* InB2GM)
-//{
-//	if (!bDoStatCollecting || !InB2GM) {
-//		return;
-//	}
-//	
-//	GameThreadTimes.Reset();
-//	RenderThreadTimes.Reset();
-//	GPUTimes.Reset();
-//	FrameTimes.Reset();
-//	DrawCalls.Reset();
-//	PolyCounts.Reset();
-//
-//	bInitialized = true;
-//	bDataAvailableForDisplay = false;
-//	SkippedFrameNum = 0;
-//	SkippedFrameTimeAvg = 0.0;
-//}
-//void FStatisticalPerfStatCollector::OnTick(ABladeIIGameMode* InB2GM, float InDeltaTime)
-//{
-//	//if (!bDoStatCollecting || !InB2GM || !bInitialized) {
-//	//	return;
-//	//}
-//
-//	//if (bDataAvailableForDisplay)
-//	//{ // 수집한 값들을 표시
-//	//	DisplayResultStats(InB2GM);
-//	//}
-//	//else
-//	//{ // 아직 데이터 수집 중		
-//	//	if (!bSkipEventCinematics || !bIsCurrentlyInEventScene)
-//	//	{
-//	//		double FrameDiffTime = FApp::GetCurrentTime() - FApp::GetLastTime();
-//	//		double FrameDiffTimeMs = FrameDiffTime * 1000.0;
-//	//		if (FrameDiffTimeMs >= (double)SkipFrameTimeLimit) // 너무 큰 프레임타임은 로딩 직후 첫 프레임일 수 있다..
-//	//		{
-//	//			++SkippedFrameNum;
-//	//			SkippedFrameTimeAvg += FrameDiffTimeMs; // 참고용으로 일단 더해놓고 최후에 평균 냄.
-//	//		}
-//	//		else
-//	//		{
-//	//			// FStatUnitData 에서.. 그쪽서는 기존 수치들에 0.9 가중치로 블렌딩을 해서 즉석 LPF 를 거는데 여기선 일단 모은 후 통계를 낸다.
-//	//			if (GGameThreadTime > 0) {
-//	//				GameThreadTimes.AddValue(FPlatformTime::ToMilliseconds(GGameThreadTime));
-//	//			}
-//	//			if (GRenderThreadTime > 0) {
-//	//				RenderThreadTimes.AddValue(FPlatformTime::ToMilliseconds(GRenderThreadTime));
-//	//			}
-//	//			uint32 GPUFrameCycle = RHIGetGPUFrameCycles();
-//	//			if (GPUFrameCycle > 0) {
-//	//				GPUTimes.AddValue(FPlatformTime::ToMilliseconds(GPUFrameCycle));
-//	//			}
-//	//			if (FrameDiffTime > 0.0) {
-//	//				FrameTimes.AddValue((float)(FrameDiffTimeMs));
-//	//			}
-//	//			if (GCachedLastDrawCalls > 0) {
-//	//				DrawCalls.AddValue(GCachedLastDrawCalls);
-//	//			}
-//	//			if (GCachedLastPrimitivesDrawn > 0) {
-//	//				PolyCounts.AddValue(GCachedLastPrimitivesDrawn);
-//	//			}
-//	//		}
-//	//	}
-//	//}
-//}
-//void FStatisticalPerfStatCollector::OnEnd(ABladeIIGameMode* InB2GM)
-//{
-//	if (!bDoStatCollecting || !InB2GM || !bInitialized || bDataAvailableForDisplay) {
-//		return;
-//	}
-//
-//	// 그냥 평균
-//	//Result_GameThreadTime_Avg = GameThreadTimes.GetTotalAverage();
-//	//Result_RenderThreadTime_Avg = RenderThreadTimes.GetTotalAverage();
-//	//Result_GPUTime_Avg = GPUTimes.GetTotalAverage();
-//	//Result_FrameTime_Avg = FrameTimes.GetTotalAverage();
-//	//Result_DrawCall_Avg = DrawCalls.GetTotalAverage();
-//	//Result_PolyCount_Avg = PolyCounts.GetTotalAverage();
-//
-//	// 표준편차
-//	Result_GameThreadTime_SD = GameThreadTimes.GetStandardDeviation();
-//	Result_RenderThreadTime_SD = RenderThreadTimes.GetStandardDeviation();
-//	Result_GPUTime_SD = GPUTimes.GetStandardDeviation();
-//	Result_FrameTime_SD = FrameTimes.GetStandardDeviation();
-//	Result_DrawCall_SD = DrawCalls.GetStandardDeviation();
-//	Result_PolyCount_SD = PolyCounts.GetStandardDeviation();
-//
-//	// 상위 10% 평균
-//	//Result_GameThreadTime_Upper10 = GameThreadTimes.GetRangedAverage(true, 0.1f);
-//	//Result_RenderThreadTime_Upper10 = RenderThreadTimes.GetRangedAverage(true, 0.1f);
-//	//Result_GPUTime_Upper10 = GPUTimes.GetRangedAverage(true, 0.1f);
-//	//Result_FrameTime_Upper10 = FrameTimes.GetRangedAverage(true, 0.1f);
-//	//Result_DrawCall_Upper10 = DrawCalls.GetRangedAverage(true, 0.1f);
-//	//Result_PolyCount_Upper10 = PolyCounts.GetRangedAverage(true, 0.1f);
-//
-//	if (SkippedFrameNum > 0 && SkippedFrameTimeAvg > 0.0)
-//	{ // 참고용으로 이것도 따로 평균.
-//		SkippedFrameTimeAvg /= (double)SkippedFrameNum;
-//	}
-//
-//	bDataAvailableForDisplay = true;
-//}
-//
-//void FStatisticalPerfStatCollector::DisplayResultStats(ABladeIIGameMode* InB2GM)
-//{
-//#if WITH_BII_ON_SCREEN_DEBUG_TEXT // Shipping 버전에서 PerfStatCollector 를 쓰게 되면 WITH_BII_ON_SCREEN_DEBUG_TEXT 도 같이..
-//	int32 FontSize = 18;
-//	int32 LineDist = 12;
-//
-//	float DrawX = 10.0f;
-//	float DrawY = 10.0f;
-//	
-//	DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("[Avg] Game T. : %.2f ms (%d)"), Result_GameThreadTime_Avg, GameThreadTimes.GetRecordedNum()), FLinearColor::Green, FontSize);
-//	DrawY += (float)(FontSize + LineDist);
-//	DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("[Avg] Render T. : %.2f ms (%d)"), Result_RenderThreadTime_Avg, RenderThreadTimes.GetRecordedNum()), FLinearColor::Green, FontSize);
-//	DrawY += (float)(FontSize + LineDist);
-//	DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("[Avg] GPU T. : %.2f ms (%d)"), Result_GPUTime_Avg, GPUTimes.GetRecordedNum()), FLinearColor::Green, FontSize);
-//	DrawY += (float)(FontSize + LineDist);
-//	DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("[Avg] Frame T. : %.2f ms (%d)"), Result_FrameTime_Avg, FrameTimes.GetRecordedNum()), FLinearColor::Green, FontSize);
-//	DrawY += (float)(FontSize + LineDist);
-//	DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("[Avg] DrawCall : %d (%d)"), Result_DrawCall_Avg, DrawCalls.GetRecordedNum()), FLinearColor::Green, FontSize);
-//	DrawY += (float)(FontSize + LineDist);
-//	DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("[Avg] Polys : %d (%d)"), Result_PolyCount_Avg, PolyCounts.GetRecordedNum()), FLinearColor::Green, FontSize);
-//	
-//	DrawX = 400.0f;
-//	DrawY = 10.0f;
-//	DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("[StdDev] GameThread : %.4f"), Result_GameThreadTime_SD), FLinearColor::Yellow, FontSize);
-//	DrawY += (float)(FontSize + LineDist);
-//	DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("[StdDev] RenderThread : %.4f"), Result_RenderThreadTime_SD), FLinearColor::Yellow, FontSize);
-//	DrawY += (float)(FontSize + LineDist);
-//	DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("[StdDev] GPUTime : %.4f"), Result_GPUTime_SD), FLinearColor::Yellow, FontSize);
-//	DrawY += (float)(FontSize + LineDist);
-//	DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("[StdDev] FrameTime : %.4f"), Result_FrameTime_SD), FLinearColor::Yellow, FontSize);
-//	DrawY += (float)(FontSize + LineDist);
-//	DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("[StdDev] DrawCall : %.4f"), Result_DrawCall_SD), FLinearColor::Yellow, FontSize);
-//	DrawY += (float)(FontSize + LineDist);
-//	DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("[StdDev] Polygons : %.4f"), Result_PolyCount_SD), FLinearColor::Yellow, FontSize);
-//
-//	DrawX = 800.0f;
-//	DrawY = 10.0f;
-//	DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("[10%%] GameThread : %.2f ms"), Result_GameThreadTime_Upper10), FLinearColor::Red, FontSize);
-//	DrawY += (float)(FontSize + LineDist);
-//	DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("[10%%] RenderThread : %.2f ms"), Result_RenderThreadTime_Upper10), FLinearColor::Red, FontSize);
-//	DrawY += (float)(FontSize + LineDist);
-//	DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("[10%%] GPUTime : %.2f ms"), Result_GPUTime_Upper10), FLinearColor::Red, FontSize);
-//	DrawY += (float)(FontSize + LineDist);
-//	DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("[10%%] FrameTime : %.2f ms"), Result_FrameTime_Upper10), FLinearColor::Red, FontSize);
-//	DrawY += (float)(FontSize + LineDist);
-//	DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("[10%%] DrawCall : %d"), Result_DrawCall_Upper10), FLinearColor::Red, FontSize);
-//	DrawY += (float)(FontSize + LineDist);
-//	DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("[10%%] Polygons : %d"), Result_PolyCount_Upper10), FLinearColor::Red, FontSize);
-//
-//	// 그 아래에 기타 추가 참고 정보. 바로 스샷 찍어서 기록하기 좋게
-//	DrawX = 10.0f;
-//
-//	DrawY += (float)((FontSize + LineDist) * 1);
-//	DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("Skipped Frames : %.2f ms (%d)"), SkippedFrameTimeAvg, SkippedFrameNum), FLinearColor::Green, FontSize);
-//
-//	DrawY += (float)( (FontSize + LineDist) * 2 );
-//
-//	UWorld* TheWorld = InB2GM ? InB2GM->GetWorld() : nullptr;
-//	ERHIFeatureLevel::Type RHIFeatureLevel = (TheWorld && TheWorld->Scene) ? TheWorld->Scene->GetFeatureLevel() : ERHIFeatureLevel::Num;
-//	// UEnum 이 아니라서 당장 문자열 변경이 안됨 ㅡㅡ;
-//	EShaderPlatform ShaderPlatform = GetFeatureLevelShaderPlatform(RHIFeatureLevel);
-//	
-//	FString PlatformAPIStr = FString::Printf(TEXT("Unknown.. ShaderPlatform %d"), (int32)ShaderPlatform);
-//#if PLATFORM_WINDOWS
-//	if (RHIFeatureLevel == ERHIFeatureLevel::SM5) {
-//		PlatformAPIStr = TEXT("PC SM5");
-//	}
-//	else if (RHIFeatureLevel == ERHIFeatureLevel::SM4) {
-//		PlatformAPIStr = TEXT("PC SM4");
-//	}
-//	else if (RHIFeatureLevel == ERHIFeatureLevel::ES3_1) {
-//		PlatformAPIStr = TEXT("PC ES31");
-//	}
-//	else if (RHIFeatureLevel == ERHIFeatureLevel::ES2) {
-//		PlatformAPIStr = TEXT("PC ES2");
-//	}
-//	else {
-//		PlatformAPIStr = TEXT("PC");
-//	}
-//#elif PLATFORM_ANDROID
-//	if (FAndroidMisc::ShouldUseVulkan())
-//	{
-//		PlatformAPIStr = TEXT("Android Vulkan");
-//	}
-//	else
-//	{
-//		PlatformAPIStr = FString::Printf(TEXT("Android %s"), (RHIFeatureLevel == ERHIFeatureLevel::ES2) ? TEXT("ES2") : (RHIFeatureLevel == ERHIFeatureLevel::ES3_1 ? TEXT("ES31") : TEXT("Unknown")));
-//	}		
-//#elif PLATFORM_IOS
-//	if (ShaderPlatform == EShaderPlatform::SP_METAL || ShaderPlatform == EShaderPlatform::SP_METAL_MRT){
-//		PlatformAPIStr = TEXT("iOS Metal"); // Metal 구분 이거 맞나 몰라.
-//	}
-//	else{
-//		PlatformAPIStr = TEXT("iOS");
-//	}
-//#endif
-//
-//	// 결과에 영향을 미칠 수 있는 구동 환경 및 설정들을 표시.
-//	{
-//		Scalability::FQualityLevels CurrScalabilityLevel = Scalability::GetQualityLevels();
-//		int32 TotalAdded =
-//			CurrScalabilityLevel.AntiAliasingQuality +
-//			CurrScalabilityLevel.EffectsQuality +
-//			CurrScalabilityLevel.PostProcessQuality +
-//			//InScalabilityLevel.ResolutionQuality + 이건 수치가 좀 다르니 빼야..
-//			CurrScalabilityLevel.TextureQuality +
-//			CurrScalabilityLevel.ShadowQuality +
-//			CurrScalabilityLevel.ViewDistanceQuality +
-//			CurrScalabilityLevel.GameplayOnlyLODQuality;
-//		// 혹여나 추가될 Scalability 항목에 대한 처리가 필요하긴 한데 그렇게 정교하게까지 할 필요는 없을 듯.
-//		float AvergageScalabilityValue = (float)TotalAdded / 7.0f;
-//
-//		UPackage* WorldOuterMost = TheWorld ? TheWorld->GetOutermost() : nullptr;
-//		FString WorldLevelName = WorldOuterMost ? WorldOuterMost->GetName() : TEXT("Unknown");
-//
-//		DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("[Platform] %s,  [AvgScaleLevel] %.2f,  [PlayMap] %s"), *PlatformAPIStr, AvergageScalabilityValue, *WorldLevelName), FLinearColor::Green, FontSize);
-//	}
-//	{
-//		//DrawY += (float)(FontSize + LineDist);
-//		//int32 SelectedResLevel = 0;
-//		//LoadGameSetting_Resolution_OrByDefault(SelectedResLevel);
-//		//const EB2GraphicsRQType CurrRQType = B2Scalability::GetSafeMappedRQTypeOfResolutionLevel(IntToB2ResolutionLevel(SelectedResLevel));
-//		//FString CurrRQTypeStr;
-//		//const UEnum* EnumPtr = FindObject<UEnum>(ANY_PACKAGE, TEXT("EB2GraphicsRQType"), true);
-//		//if (EnumPtr)
-//		//{
-//		//	CurrRQTypeStr = EnumPtr->GetNameStringByValue((int64)CurrRQType);
-//		//}
-//		//DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("[MobileFrameUpperLimit] %.2f,  [RQType] %s"), GEngine->GetCurrentMobileSmoothFrameRange().GetUpperBoundValue(), *CurrRQTypeStr), FLinearColor::Green, FontSize);
-//	}
-//	{
-//		DrawY += (float)(FontSize + LineDist);
-//		IConsoleVariable* CamDistAlphaCVar = IConsoleManager::Get().FindConsoleVariable(TEXT("r.B2CameraDistanceAlpha"));
-//		extern float GDevTestCameraDistanceScale;
-//		DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("[CamDistAlpha] %.2f,  [TestCamDistScale] %.2f"), CamDistAlphaCVar ? CamDistAlphaCVar->GetFloat() : -1.0f, GDevTestCameraDistanceScale), FLinearColor::Green, FontSize);
-//	}
-//	{
-//		DrawY += (float)(FontSize + LineDist);
-//		DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("[SkipEvent] %d,  [AutoComboOnly] %d"), (int32)bSkipEventCinematics, (int32)UB2BTTask_PCAutoAttack::bDevAllowComboAttackOnly), FLinearColor::Green, FontSize);
-//	}
-//
-//	if (InB2GM)
-//	{ // 추가로 하위 게임모드 성격에 따라 표시할 거 있음.
-//		InB2GM->DrawAdditionalPerfStatInfo(DrawX, DrawY + (float)(FontSize + LineDist));
-//	}
-//#endif
-//}
-//#endif
-//
-//#ifdef BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
-//// 로딩 시간 측정 용. 
-//// 로딩 시간이야 그냥 보면 나오는 거 아니냐고 할 수 있지만 이런저런 기능 테스트해 가면서 보려면 1~2 초 단축되는 거 체크할 필요가 있어서 넣음.
-//bool gDisplayLoadingTimeTaken = false;
-//static bool gLoadTimeCheckBeginMark = false;
-//static double gLastLoadStartTime = 0.0;
-//void DevCheckLoadingTimeBegin()
-//{
-//	if (gDisplayLoadingTimeTaken && !gLoadTimeCheckBeginMark)
-//	{
-//		gLoadTimeCheckBeginMark = true;
-//		gLastLoadStartTime = FPlatformTime::Seconds();
-//	}
-//}
-//void DevCheckLoadingTimeEnd()
-//{
-//	if (gDisplayLoadingTimeTaken && gLoadTimeCheckBeginMark)
-//	{
-//		// 게임 코드 상으로는 적절한 위치에서 로딩 시간 체크를 한다고 해도 렌더쓰레드와의 타이밍으로 인해 실제 체감 로딩시간은 다를 수 있다.
-//		//FlushRenderingCommands(); // 근데 이렇게 해도 소용이 없단 건 함정. 결국 이건 참고용으로만 쓰고 실제 로딩 시간 측정은 직접 스톱워치로...
-//		gLoadTimeCheckBeginMark = false;
-//		double LoadingTimeTaken = FPlatformTime::Seconds() - gLastLoadStartTime;
-//		UE_LOG(LogBladeII, Log, TEXT("[DevCheckLoadingTime] LastLoadingTime %f"), LoadingTimeTaken);
-//
-//		// 이걸 렌더링 할 수 있는 시점이려면 UIManager 가 초기화 된 상태여야 함.
-//		BII_SCREEN_LOG(FString::Printf(TEXT("[DevCheckLoadingTime] LastLoadingTime %f"), LoadingTimeTaken),
-//			FLinearColor(0.0, 1.0f, 0.0f, 1.0f), 16, 10.0f);
-//	}
-//}
-//#endif
-//
+
+#include "B2CodeTable.h"
+#include "B2UIHallOfFame.h"
+
+#include "Engine/PawnIterator.h"
+
+#if BII_STATS
+bool FStatisticalPerfStatCollector::bDoStatCollecting = false; // 메인 작동 플래그. 바꾸게 되면 다음 레벨에서 적용.
+bool FStatisticalPerfStatCollector::bSkipEventCinematics = false; // 일반적인 전투 장면만 측정하고 싶은 경우 true 로. 연출과 전투에서 사용하는 LOD 가 다르기도 하고..
+bool FStatisticalPerfStatCollector::bIsCurrentlyInEventScene = false;
+float FStatisticalPerfStatCollector::SkipFrameTimeLimit = 1000.0f; // 특정 한도 이상의 큰 FrameTime 이 감지된 건 뭔가 로딩 시간이 들어갔거나 한 걸로 간주하고 스킵
+FStatisticalPerfStatCollector::FStatisticalPerfStatCollector()
+	: bInitialized(false), bDataAvailableForDisplay(false) 
+	, Result_GameThreadTime_Avg(0.0f), Result_RenderThreadTime_Avg(0.0f), Result_GPUTime_Avg(0.0f), Result_FrameTime_Avg(0.0f), Result_DrawCall_Avg(0), Result_PolyCount_Avg(0)
+	, Result_GameThreadTime_SD(0.0f), Result_RenderThreadTime_SD(0.0f), Result_GPUTime_SD(0.0f), Result_FrameTime_SD(0.0f), Result_DrawCall_SD(0.0f), Result_PolyCount_SD(0.0f)
+	, Result_GameThreadTime_Upper10(0.0f), Result_RenderThreadTime_Upper10(0.0f), Result_GPUTime_Upper10(0.0f), Result_FrameTime_Upper10(0.0f), Result_DrawCall_Upper10(0), Result_PolyCount_Upper10(0)
+	, SkippedFrameNum(0), SkippedFrameTimeAvg(0.0)
+{
+}
+
+void FStatisticalPerfStatCollector::LoadSettings()
+{
+	if (GConfig)
+	{
+		GConfig->GetBool(TEXT("StatisticalPerfStatCollector"), TEXT("DoStatCollecting"), bDoStatCollecting, GGameIni);
+		GConfig->GetBool(TEXT("StatisticalPerfStatCollector"), TEXT("SkipEventCinematics"), bSkipEventCinematics, GGameIni);
+		GConfig->GetFloat(TEXT("StatisticalPerfStatCollector"), TEXT("SkipFrameTimeLimit"), SkipFrameTimeLimit, GGameIni);
+	}
+}
+
+void FStatisticalPerfStatCollector::OnBegin(ABladeIIGameMode* InB2GM)
+{
+	if (!bDoStatCollecting || !InB2GM) {
+		return;
+	}
+	
+	GameThreadTimes.Reset();
+	RenderThreadTimes.Reset();
+	GPUTimes.Reset();
+	FrameTimes.Reset();
+	DrawCalls.Reset();
+	PolyCounts.Reset();
+
+	bInitialized = true;
+	bDataAvailableForDisplay = false;
+	SkippedFrameNum = 0;
+	SkippedFrameTimeAvg = 0.0;
+}
+void FStatisticalPerfStatCollector::OnTick(ABladeIIGameMode* InB2GM, float InDeltaTime)
+{
+	//if (!bDoStatCollecting || !InB2GM || !bInitialized) {
+	//	return;
+	//}
+
+	//if (bDataAvailableForDisplay)
+	//{ // 수집한 값들을 표시
+	//	DisplayResultStats(InB2GM);
+	//}
+	//else
+	//{ // 아직 데이터 수집 중		
+	//	if (!bSkipEventCinematics || !bIsCurrentlyInEventScene)
+	//	{
+	//		double FrameDiffTime = FApp::GetCurrentTime() - FApp::GetLastTime();
+	//		double FrameDiffTimeMs = FrameDiffTime * 1000.0;
+	//		if (FrameDiffTimeMs >= (double)SkipFrameTimeLimit) // 너무 큰 프레임타임은 로딩 직후 첫 프레임일 수 있다..
+	//		{
+	//			++SkippedFrameNum;
+	//			SkippedFrameTimeAvg += FrameDiffTimeMs; // 참고용으로 일단 더해놓고 최후에 평균 냄.
+	//		}
+	//		else
+	//		{
+	//			// FStatUnitData 에서.. 그쪽서는 기존 수치들에 0.9 가중치로 블렌딩을 해서 즉석 LPF 를 거는데 여기선 일단 모은 후 통계를 낸다.
+	//			if (GGameThreadTime > 0) {
+	//				GameThreadTimes.AddValue(FPlatformTime::ToMilliseconds(GGameThreadTime));
+	//			}
+	//			if (GRenderThreadTime > 0) {
+	//				RenderThreadTimes.AddValue(FPlatformTime::ToMilliseconds(GRenderThreadTime));
+	//			}
+	//			uint32 GPUFrameCycle = RHIGetGPUFrameCycles();
+	//			if (GPUFrameCycle > 0) {
+	//				GPUTimes.AddValue(FPlatformTime::ToMilliseconds(GPUFrameCycle));
+	//			}
+	//			if (FrameDiffTime > 0.0) {
+	//				FrameTimes.AddValue((float)(FrameDiffTimeMs));
+	//			}
+	//			if (GCachedLastDrawCalls > 0) {
+	//				DrawCalls.AddValue(GCachedLastDrawCalls);
+	//			}
+	//			if (GCachedLastPrimitivesDrawn > 0) {
+	//				PolyCounts.AddValue(GCachedLastPrimitivesDrawn);
+	//			}
+	//		}
+	//	}
+	//}
+}
+void FStatisticalPerfStatCollector::OnEnd(ABladeIIGameMode* InB2GM)
+{
+	if (!bDoStatCollecting || !InB2GM || !bInitialized || bDataAvailableForDisplay) {
+		return;
+	}
+
+	// 그냥 평균
+	//Result_GameThreadTime_Avg = GameThreadTimes.GetTotalAverage();
+	//Result_RenderThreadTime_Avg = RenderThreadTimes.GetTotalAverage();
+	//Result_GPUTime_Avg = GPUTimes.GetTotalAverage();
+	//Result_FrameTime_Avg = FrameTimes.GetTotalAverage();
+	//Result_DrawCall_Avg = DrawCalls.GetTotalAverage();
+	//Result_PolyCount_Avg = PolyCounts.GetTotalAverage();
+
+	// 표준편차
+	Result_GameThreadTime_SD = GameThreadTimes.GetStandardDeviation();
+	Result_RenderThreadTime_SD = RenderThreadTimes.GetStandardDeviation();
+	Result_GPUTime_SD = GPUTimes.GetStandardDeviation();
+	Result_FrameTime_SD = FrameTimes.GetStandardDeviation();
+	Result_DrawCall_SD = DrawCalls.GetStandardDeviation();
+	Result_PolyCount_SD = PolyCounts.GetStandardDeviation();
+
+	// 상위 10% 평균
+	//Result_GameThreadTime_Upper10 = GameThreadTimes.GetRangedAverage(true, 0.1f);
+	//Result_RenderThreadTime_Upper10 = RenderThreadTimes.GetRangedAverage(true, 0.1f);
+	//Result_GPUTime_Upper10 = GPUTimes.GetRangedAverage(true, 0.1f);
+	//Result_FrameTime_Upper10 = FrameTimes.GetRangedAverage(true, 0.1f);
+	//Result_DrawCall_Upper10 = DrawCalls.GetRangedAverage(true, 0.1f);
+	//Result_PolyCount_Upper10 = PolyCounts.GetRangedAverage(true, 0.1f);
+
+	if (SkippedFrameNum > 0 && SkippedFrameTimeAvg > 0.0)
+	{ // 참고용으로 이것도 따로 평균.
+		SkippedFrameTimeAvg /= (double)SkippedFrameNum;
+	}
+
+	bDataAvailableForDisplay = true;
+}
+
+void FStatisticalPerfStatCollector::DisplayResultStats(ABladeIIGameMode* InB2GM)
+{
+#if WITH_BII_ON_SCREEN_DEBUG_TEXT // Shipping 버전에서 PerfStatCollector 를 쓰게 되면 WITH_BII_ON_SCREEN_DEBUG_TEXT 도 같이..
+	int32 FontSize = 18;
+	int32 LineDist = 12;
+
+	float DrawX = 10.0f;
+	float DrawY = 10.0f;
+	
+	DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("[Avg] Game T. : %.2f ms (%d)"), Result_GameThreadTime_Avg, GameThreadTimes.GetRecordedNum()), FLinearColor::Green, FontSize);
+	DrawY += (float)(FontSize + LineDist);
+	DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("[Avg] Render T. : %.2f ms (%d)"), Result_RenderThreadTime_Avg, RenderThreadTimes.GetRecordedNum()), FLinearColor::Green, FontSize);
+	DrawY += (float)(FontSize + LineDist);
+	DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("[Avg] GPU T. : %.2f ms (%d)"), Result_GPUTime_Avg, GPUTimes.GetRecordedNum()), FLinearColor::Green, FontSize);
+	DrawY += (float)(FontSize + LineDist);
+	DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("[Avg] Frame T. : %.2f ms (%d)"), Result_FrameTime_Avg, FrameTimes.GetRecordedNum()), FLinearColor::Green, FontSize);
+	DrawY += (float)(FontSize + LineDist);
+	DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("[Avg] DrawCall : %d (%d)"), Result_DrawCall_Avg, DrawCalls.GetRecordedNum()), FLinearColor::Green, FontSize);
+	DrawY += (float)(FontSize + LineDist);
+	DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("[Avg] Polys : %d (%d)"), Result_PolyCount_Avg, PolyCounts.GetRecordedNum()), FLinearColor::Green, FontSize);
+	
+	DrawX = 400.0f;
+	DrawY = 10.0f;
+	DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("[StdDev] GameThread : %.4f"), Result_GameThreadTime_SD), FLinearColor::Yellow, FontSize);
+	DrawY += (float)(FontSize + LineDist);
+	DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("[StdDev] RenderThread : %.4f"), Result_RenderThreadTime_SD), FLinearColor::Yellow, FontSize);
+	DrawY += (float)(FontSize + LineDist);
+	DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("[StdDev] GPUTime : %.4f"), Result_GPUTime_SD), FLinearColor::Yellow, FontSize);
+	DrawY += (float)(FontSize + LineDist);
+	DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("[StdDev] FrameTime : %.4f"), Result_FrameTime_SD), FLinearColor::Yellow, FontSize);
+	DrawY += (float)(FontSize + LineDist);
+	DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("[StdDev] DrawCall : %.4f"), Result_DrawCall_SD), FLinearColor::Yellow, FontSize);
+	DrawY += (float)(FontSize + LineDist);
+	DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("[StdDev] Polygons : %.4f"), Result_PolyCount_SD), FLinearColor::Yellow, FontSize);
+
+	DrawX = 800.0f;
+	DrawY = 10.0f;
+	DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("[10%%] GameThread : %.2f ms"), Result_GameThreadTime_Upper10), FLinearColor::Red, FontSize);
+	DrawY += (float)(FontSize + LineDist);
+	DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("[10%%] RenderThread : %.2f ms"), Result_RenderThreadTime_Upper10), FLinearColor::Red, FontSize);
+	DrawY += (float)(FontSize + LineDist);
+	DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("[10%%] GPUTime : %.2f ms"), Result_GPUTime_Upper10), FLinearColor::Red, FontSize);
+	DrawY += (float)(FontSize + LineDist);
+	DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("[10%%] FrameTime : %.2f ms"), Result_FrameTime_Upper10), FLinearColor::Red, FontSize);
+	DrawY += (float)(FontSize + LineDist);
+	DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("[10%%] DrawCall : %d"), Result_DrawCall_Upper10), FLinearColor::Red, FontSize);
+	DrawY += (float)(FontSize + LineDist);
+	DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("[10%%] Polygons : %d"), Result_PolyCount_Upper10), FLinearColor::Red, FontSize);
+
+	// 그 아래에 기타 추가 참고 정보. 바로 스샷 찍어서 기록하기 좋게
+	DrawX = 10.0f;
+
+	DrawY += (float)((FontSize + LineDist) * 1);
+	DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("Skipped Frames : %.2f ms (%d)"), SkippedFrameTimeAvg, SkippedFrameNum), FLinearColor::Green, FontSize);
+
+	DrawY += (float)( (FontSize + LineDist) * 2 );
+
+	UWorld* TheWorld = InB2GM ? InB2GM->GetWorld() : nullptr;
+	ERHIFeatureLevel::Type RHIFeatureLevel = (TheWorld && TheWorld->Scene) ? TheWorld->Scene->GetFeatureLevel() : ERHIFeatureLevel::Num;
+	// UEnum 이 아니라서 당장 문자열 변경이 안됨 ㅡㅡ;
+	EShaderPlatform ShaderPlatform = GetFeatureLevelShaderPlatform(RHIFeatureLevel);
+	
+	FString PlatformAPIStr = FString::Printf(TEXT("Unknown.. ShaderPlatform %d"), (int32)ShaderPlatform);
+#if PLATFORM_WINDOWS
+	if (RHIFeatureLevel == ERHIFeatureLevel::SM5) {
+		PlatformAPIStr = TEXT("PC SM5");
+	}
+	else if (RHIFeatureLevel == ERHIFeatureLevel::SM4) {
+		PlatformAPIStr = TEXT("PC SM4");
+	}
+	else if (RHIFeatureLevel == ERHIFeatureLevel::ES3_1) {
+		PlatformAPIStr = TEXT("PC ES31");
+	}
+	else if (RHIFeatureLevel == ERHIFeatureLevel::ES2) {
+		PlatformAPIStr = TEXT("PC ES2");
+	}
+	else {
+		PlatformAPIStr = TEXT("PC");
+	}
+#elif PLATFORM_ANDROID
+	if (FAndroidMisc::ShouldUseVulkan())
+	{
+		PlatformAPIStr = TEXT("Android Vulkan");
+	}
+	else
+	{
+		PlatformAPIStr = FString::Printf(TEXT("Android %s"), (RHIFeatureLevel == ERHIFeatureLevel::ES2) ? TEXT("ES2") : (RHIFeatureLevel == ERHIFeatureLevel::ES3_1 ? TEXT("ES31") : TEXT("Unknown")));
+	}		
+#elif PLATFORM_IOS
+	if (ShaderPlatform == EShaderPlatform::SP_METAL || ShaderPlatform == EShaderPlatform::SP_METAL_MRT){
+		PlatformAPIStr = TEXT("iOS Metal"); // Metal 구분 이거 맞나 몰라.
+	}
+	else{
+		PlatformAPIStr = TEXT("iOS");
+	}
+#endif
+
+	// 결과에 영향을 미칠 수 있는 구동 환경 및 설정들을 표시.
+	{
+		Scalability::FQualityLevels CurrScalabilityLevel = Scalability::GetQualityLevels();
+		int32 TotalAdded =
+			CurrScalabilityLevel.AntiAliasingQuality +
+			CurrScalabilityLevel.EffectsQuality +
+			CurrScalabilityLevel.PostProcessQuality +
+			//InScalabilityLevel.ResolutionQuality + 이건 수치가 좀 다르니 빼야..
+			CurrScalabilityLevel.TextureQuality +
+			CurrScalabilityLevel.ShadowQuality +
+			CurrScalabilityLevel.ViewDistanceQuality +
+			CurrScalabilityLevel.GameplayOnlyLODQuality;
+		// 혹여나 추가될 Scalability 항목에 대한 처리가 필요하긴 한데 그렇게 정교하게까지 할 필요는 없을 듯.
+		float AvergageScalabilityValue = (float)TotalAdded / 7.0f;
+
+		UPackage* WorldOuterMost = TheWorld ? TheWorld->GetOutermost() : nullptr;
+		FString WorldLevelName = WorldOuterMost ? WorldOuterMost->GetName() : TEXT("Unknown");
+
+		DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("[Platform] %s,  [AvgScaleLevel] %.2f,  [PlayMap] %s"), *PlatformAPIStr, AvergageScalabilityValue, *WorldLevelName), FLinearColor::Green, FontSize);
+	}
+	{
+		//DrawY += (float)(FontSize + LineDist);
+		//int32 SelectedResLevel = 0;
+		//LoadGameSetting_Resolution_OrByDefault(SelectedResLevel);
+		//const EB2GraphicsRQType CurrRQType = B2Scalability::GetSafeMappedRQTypeOfResolutionLevel(IntToB2ResolutionLevel(SelectedResLevel));
+		//FString CurrRQTypeStr;
+		//const UEnum* EnumPtr = FindObject<UEnum>(ANY_PACKAGE, TEXT("EB2GraphicsRQType"), true);
+		//if (EnumPtr)
+		//{
+		//	CurrRQTypeStr = EnumPtr->GetNameStringByValue((int64)CurrRQType);
+		//}
+		//DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("[MobileFrameUpperLimit] %.2f,  [RQType] %s"), GEngine->GetCurrentMobileSmoothFrameRange().GetUpperBoundValue(), *CurrRQTypeStr), FLinearColor::Green, FontSize);
+	}
+	{
+		DrawY += (float)(FontSize + LineDist);
+		IConsoleVariable* CamDistAlphaCVar = IConsoleManager::Get().FindConsoleVariable(TEXT("r.B2CameraDistanceAlpha"));
+		extern float GDevTestCameraDistanceScale;
+		DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("[CamDistAlpha] %.2f,  [TestCamDistScale] %.2f"), CamDistAlphaCVar ? CamDistAlphaCVar->GetFloat() : -1.0f, GDevTestCameraDistanceScale), FLinearColor::Green, FontSize);
+	}
+	{
+		DrawY += (float)(FontSize + LineDist);
+		DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("[SkipEvent] %d,  [AutoComboOnly] %d"), (int32)bSkipEventCinematics, (int32)UB2BTTask_PCAutoAttack::bDevAllowComboAttackOnly), FLinearColor::Green, FontSize);
+	}
+
+	if (InB2GM)
+	{ // 추가로 하위 게임모드 성격에 따라 표시할 거 있음.
+		InB2GM->DrawAdditionalPerfStatInfo(DrawX, DrawY + (float)(FontSize + LineDist));
+	}
+#endif
+}
+#endif
+
+#ifdef BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
+// 로딩 시간 측정 용. 
+// 로딩 시간이야 그냥 보면 나오는 거 아니냐고 할 수 있지만 이런저런 기능 테스트해 가면서 보려면 1~2 초 단축되는 거 체크할 필요가 있어서 넣음.
+bool gDisplayLoadingTimeTaken = false;
+static bool gLoadTimeCheckBeginMark = false;
+static double gLastLoadStartTime = 0.0;
+void DevCheckLoadingTimeBegin()
+{
+	if (gDisplayLoadingTimeTaken && !gLoadTimeCheckBeginMark)
+	{
+		gLoadTimeCheckBeginMark = true;
+		gLastLoadStartTime = FPlatformTime::Seconds();
+	}
+}
+void DevCheckLoadingTimeEnd()
+{
+	if (gDisplayLoadingTimeTaken && gLoadTimeCheckBeginMark)
+	{
+		// 게임 코드 상으로는 적절한 위치에서 로딩 시간 체크를 한다고 해도 렌더쓰레드와의 타이밍으로 인해 실제 체감 로딩시간은 다를 수 있다.
+		//FlushRenderingCommands(); // 근데 이렇게 해도 소용이 없단 건 함정. 결국 이건 참고용으로만 쓰고 실제 로딩 시간 측정은 직접 스톱워치로...
+		gLoadTimeCheckBeginMark = false;
+		double LoadingTimeTaken = FPlatformTime::Seconds() - gLastLoadStartTime;
+		UE_LOG(LogBladeII, Log, TEXT("[DevCheckLoadingTime] LastLoadingTime %f"), LoadingTimeTaken);
+
+		// 이걸 렌더링 할 수 있는 시점이려면 UIManager 가 초기화 된 상태여야 함.
+		BII_SCREEN_LOG(FString::Printf(TEXT("[DevCheckLoadingTime] LastLoadingTime %f"), LoadingTimeTaken),
+			FLinearColor(0.0, 1.0f, 0.0f, 1.0f), 16, 10.0f);
+	}
+}
+#endif
+
 
 ABladeIIGameMode::ABladeIIGameMode(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
@@ -560,48 +560,48 @@ TArray<FCombinedPCSkillAnimID> ABladeIIGameMode::GetAllPCSkillAnimsOfClass(EPCCl
 	return RetArray;
 }
 
-////// 기본적으로 Main / Sub 두개를 로드하고 GameMode별로 관리한다. ex ) 팀대전 - 셋, 레이드, 점령전 - 하나
-////void ABladeIIGameMode::TryAsyncLoadSkillAnims(ICharacterDataStore* DataStore)
-////{
-////	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIGameMode::TryAsyncLoadSkillAnims"));
-////
-////	if (DataStore != nullptr)
-////	{
-////		TArray<FCombinedPCSkillAnimID> SkillAnimIDs;
-////		GatherEquippedSkillAnimIDs(DataStore, SkillAnimIDs);
-////
-////		if (auto* AnimInfo = StaticFindSkillAnimInfo(this))
-////		{
-////			const FString RequestName = FString::Printf(TEXT("%s SkillAnims"), *DataStore->GetUserNickName());
-////			TArray<FB2AsyncRequestInfo> RequestAsyncLoadList = AnimInfo->GetAsyncRequestAssetList(SkillAnimIDs);
-////
-////			AnimInfo->TryAsyncLoad(RequestName, RequestAsyncLoadList);
-////		}
-////	}
-////}
-////
-// GatherEquippedSkillAnimIDs 함수만 재정의 하여 게임 모드별 필요 Class SkillAnim들을 AsyncLoad
+// 기본적으로 Main / Sub 두개를 로드하고 GameMode별로 관리한다. ex ) 팀대전 - 셋, 레이드, 점령전 - 하나
+void ABladeIIGameMode::TryAsyncLoadSkillAnims(ICharacterDataStore* DataStore)
+{
+	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIGameMode::TryAsyncLoadSkillAnims"));
+
+	if (DataStore != nullptr)
+	{
+		TArray<FCombinedPCSkillAnimID> SkillAnimIDs;
+		GatherEquippedSkillAnimIDs(DataStore, SkillAnimIDs);
+
+		if (auto* AnimInfo = StaticFindSkillAnimInfo(this))
+		{
+			const FString RequestName = FString::Printf(TEXT("%s SkillAnims"), *DataStore->GetUserNickName());
+			TArray<FB2AsyncRequestInfo> RequestAsyncLoadList = AnimInfo->GetAsyncRequestAssetList(SkillAnimIDs);
+
+			AnimInfo->TryAsyncLoad(RequestName, RequestAsyncLoadList);
+		}
+	}
+}
+
+ //GatherEquippedSkillAnimIDs 함수만 재정의 하여 게임 모드별 필요 Class SkillAnim들을 AsyncLoad
 void ABladeIIGameMode::GatherEquippedSkillAnimIDs(ICharacterDataStore* DataStore, TArray<FCombinedPCSkillAnimID>& OutEquippedSkills)
 {
 	//OutEquippedSkills.Append(GetEquippedSkillAnimIDs(DataStore->GetMainPlayerClass(), DataStore));
 	//OutEquippedSkills.Append(GetEquippedSkillAnimIDs(DataStore->GetSubPlayerClass(), DataStore));
 }
 
-////TArray<FCombinedPCSkillAnimID> ABladeIIGameMode::GetEquippedSkillAnimIDs(EPCClass PlayerClass, ICharacterDataStore* DataStore)
-////{
-////	TArray<ESkillAnimType> SkillAnimTypes;
-////	UB2SkillRTManager::GetCharacterRegisteredSkillAnimTypes(this, PlayerClass, GetB2GameModeType(), SkillAnimTypes, DataStore);
-////	
-////	TArray<FCombinedPCSkillAnimID> SkillAnimIDs;
-////	for (auto SkillAnimType : SkillAnimTypes)
-////	{
-////		if (SkillAnimType != ESkillAnimType::ESA_End)
-////			SkillAnimIDs.AddUnique(FCombinedPCSkillAnimID(PlayerClass, SkillAnimType));
-////	}
-////
-////	return SkillAnimIDs;
-////}
-////
+TArray<FCombinedPCSkillAnimID> ABladeIIGameMode::GetEquippedSkillAnimIDs(EPCClass PlayerClass, ICharacterDataStore* DataStore)
+{
+	TArray<ESkillAnimType> SkillAnimTypes;
+	UB2SkillRTManager::GetCharacterRegisteredSkillAnimTypes(this, PlayerClass, GetB2GameModeType(), SkillAnimTypes, DataStore);
+
+	TArray<FCombinedPCSkillAnimID> SkillAnimIDs;
+	for (auto SkillAnimType : SkillAnimTypes)
+	{
+		if (SkillAnimType != ESkillAnimType::ESA_End)
+			SkillAnimIDs.AddUnique(FCombinedPCSkillAnimID(PlayerClass, SkillAnimType));
+	}
+
+	return SkillAnimIDs;
+}
+
 void ABladeIIGameMode::PreloadAnyNecessaryInfo(bool bAboutToPlayLoadingMovie)
 {
 	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIGameMode::PreloadAnyNecessaryInfo"));
@@ -627,262 +627,262 @@ void ABladeIIGameMode::PreloadAnyNecessaryInfo(bool bAboutToPlayLoadingMovie)
 	//B2GMLoadingProgCollector::StepCustom(bAboutToPlayLoadingMovie ? 0.4f : 0.1f);
 }
 
-////void ABladeIIGameMode::PreloadInGameInfoAsset_SynchronousOnly(bool bAboutToPlayLoadingMovie)
-////{
-////	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIGameMode::PreloadInGameInfoAsset_SynchronousOnly"));
-////
-////	// 요 Synchronous 로딩이 FlushAsyncLoading 을 유발한다면 다른 async 요청 이전에 해야 하고,
-////	// 그게 아니라면 이걸 오히려 다른 async 요청 이후에 함으로서 다중 쓰레드로 로딩이 돌아가도록 할 수 있.. 을까?
-////		
-////	// TAsset 으로 바꾼 Matinee 레퍼런스 에셋 로딩.. 이건 원래 맵 로딩의 일부였던 것이다. 가능한 처음에 위치시킴.
-////	{
-////		int32 LazyLoadHandledNum = B2GamePreloadMatineeRefAssets();
-////		B2GMLoadingProgCollector::StepCustom((float)LazyLoadHandledNum * (bAboutToPlayLoadingMovie ? 0.02f : 0.01f));
-////	}
-////
-////	{ // DamageEffectInfo 와 BuffModeEffectInfo 로딩에 의한 진행도 산정시 실제 로딩 필요가 있는지에 따라 다르게..
-////		if (!UB2DamageEffectInfo::AssetsAreRooted() && !UB2BuffModeEffectInfo::AssetsAreRooted())
-////		{ // 둘 다 로딩하게 되는 경우
-////			B2GMLoadingProgCollector::SetStepRate(bAboutToPlayLoadingMovie ? 0.4f : 0.1f);
-////		}
-////		else if (UB2DamageEffectInfo::AssetsAreRooted() && UB2BuffModeEffectInfo::AssetsAreRooted())
-////		{
-////			B2GMLoadingProgCollector::SetStepRate(0.0f);
-////		}
-////		else
-////		{ // 둘 중 하나만 로딩하게 되는 경우
-////			B2GMLoadingProgCollector::SetStepRate(bAboutToPlayLoadingMovie ? 0.2f : 0.07f);
-////		}
-////	}
-////	UB2DamageEffectInfo* DFXInfo = StaticFindDamageEffectInfo(this);
-////	if (DFXInfo)
-////	{ // 전투에서 자잘한 spike 요인이 될 수 있음.
-////		DFXInfo->PreloadAndCacheAllTAsset();
-////	}
-////	UB2BuffModeEffectInfo* BuffInfo = StaticFindBuffModeEffectInfo(this);
-////	if (BuffInfo)
-////	{
-////		BuffInfo->PreloadAndCacheAllTAsset();
-////	}
-////	B2GMLoadingProgCollector::Step(); // 앞서 산정한 StepRate 로 진행도 증가.
-////
-////	UB2PCClassInfoBox* PCBox = StaticFindPCClassInfoBox(this);
-////	if (PCBox)
-////	{ // 메인 캐릭터 데이터는 sync 로딩으로 처리함. RootSet 이면 그냥 넘어가게 될 꺼고.
-////		UB2PCClassInfo* ThisLoadedInfo = PCBox->GetSingleClassInfo(BladeIIGameImpl::GetLocalCharacterData().GetMainPlayerClass());
-////		if (ThisLoadedInfo)
-////		{
-////			// 루트셋 처리 여부와 관계없이 이 시점에서 루트셋이 아니면 로딩이 안되어 있어야 함.
-////			// 최악의 경우 다른 PCClass InGameOnly 데이터도 다 로딩하는 경우도 있겠지만.. 여기선 일단 확실한 곳이니 많은 Step 지분 배당.
-////			B2GMLoadingProgCollector::SetStepRate(
-////				ThisLoadedInfo->IsInGameOnlyInfoAtRootSet() ? 0.0f : 
-////				 (bAboutToPlayLoadingMovie ? 0.6f : 0.4f)
-////			);
-////
-////			ThisLoadedInfo->GetInGameOnlyInfo(this);
-////
-////			B2GMLoadingProgCollector::Step();
-////		}
-////	}
-////}
-////
-////void ABladeIIGameMode::PreloadInGameInfoAsset_AsyncAllowed(bool bAboutToPlayLoadingMovie)
-////{
-////	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIGameMode::PreloadInGameInfoAsset_AsyncAllowed"));
-////	B2_SCOPED_TIME_LOG(TEXT("ABladeIIGameMode::PreloadInGameInfoAsset_AsyncAllowed"));
-////
-////	// 로비를 제외한 게임모드들에서는 실질적으로 메모리와 로딩타임을 소모하는 InGameOnlyInfo 를 로딩해 놓을 필요가 있다.
-////	// 게임모드 별 필요 및 구조에 따라 가능한 부분은 비동기 로딩으로 처리를 하도록 한다.
-////	// 여기서 바로 로딩을 하던 Async 요청만 하던 큰 덩어리에 대한 로딩이라 궁극적으로 많은 메모리가 올라감.
-////	// 단, RootSet 처리를 한 거라면 이미 메모리에 올라와 있을 테니 아무 변화 없겠지.
-////
-////	// 여기서 StaticFindPCClassInfoBox 를 콜하는 것이 Async flush 를 일으킨다면 단순히 이전에 한번 콜해 놓으면 된다.
-////	UB2PCClassInfoBox* PCBox = StaticFindPCClassInfoBox(this);
-////	if (PCBox)
-////	{
-////		TArray<EPCClass> ClassesToLoad = GetPCClassesToPreLoad();
-////
-////#if !UE_BUILD_SHIPPING // PC 클래스 로딩의 영향 상세 파악
-////		extern int32 gPCDataPreLoadMaxNum;
-////		if (gPCDataPreLoadMaxNum >= 0)
-////		{
-////			if (gPCDataPreLoadMaxNum == 0)
-////			{
-////				ClassesToLoad.Empty();
-////			}
-////			else if (gPCDataPreLoadMaxNum == 1) // 하나만이면 처음 spawn 할 애만
-////			{
-////				ClassesToLoad.Empty();
-////				ClassesToLoad.Add(CurrentPCClassEnum);
-////			}
-////			else
-////			{
-////				if (ClassesToLoad.Num() > gPCDataPreLoadMaxNum)
-////				{
-////					ClassesToLoad.RemoveAt(gPCDataPreLoadMaxNum, ClassesToLoad.Num() - gPCDataPreLoadMaxNum);
-////					if (!ClassesToLoad.Find(CurrentPCClassEnum)) { // 여하간 처음 spawn 할 클래스는 pre-load 를 해야 테스트가 정확해 질 것.
-////						ClassesToLoad.RemoveAt(ClassesToLoad.Num() - 1);
-////						ClassesToLoad.Add(CurrentPCClassEnum);
-////					}
-////				}
-////			}
-////		}
-////#endif
-////
-////		for (EPCClass ThisClassLoad : ClassesToLoad)
-////		{
-////			// 메인 캐릭터 클래스는 루트셋 혹은 로딩이 되더라도 PreloadInGameInfoAsset_SynchronousOnly 에서 로딩된 상태.. 
-////			// 거나 아니면 이 요청 직후에 Synchronous 로딩을 해서 다중으로 돌아가는 로딩의 이득을 얻을 수 있으면 좋겠지.
-////			UB2PCClassInfo* ThisLoadedInfo = PCBox->GetSingleClassInfo(ThisClassLoad);
-////			if (ThisLoadedInfo)
-////			{
-////				ThisLoadedInfo->ReqAsyncLoad(this);
-////			}
-////		}
-////	}
-////
-////	PreloadLocalSkillAnimation();
-////}
-////
-////void ABladeIIGameMode::PreloadLocalSkillAnimation()
-////{
-////	FLocalCharacterData& LocalCharacterData = BladeIIGameImpl::GetLocalCharacterData();
-////	TryAsyncLoadSkillAnims(&LocalCharacterData);
-////}
-////
-////void ABladeIIGameMode::PreloadMatineeRefAssetsDefault()
-////{
-////	// 의도적으로 비워짐.
-////
-////	// 여기서 원래 하는 GameMode 쪽 기본 기능은 제거하고
-////	// 필요한 정보들이 확실히 채워진 후에 StageEventDirector 단위로 필요한 것들을 걸러내면서 
-////	// AB2StageEventDirector::LoadLazyLoadedMatineeRefAssets 를 사용해서 pre-load 함. (B2GamePreloadMatineeRefAssets)
-////}
-////int32 ABladeIIGameMode::B2GamePreloadMatineeRefAssets()
-////{
-////	int32 LazyLoadedSEDNum = 0;
-////#if _MATINEE_REF_ASSET_LAZYLOAD // 게임 코드 쪽에선 여기에만 위치시키면 관련 기능 컨트롤이 가능.
-////	TArray<FString> StageEventRefLoadExcludeFilters;
-////
-////#if 0 // 일부 트랙을 제외시켜도 나중에 연출 초기화되면서 결국 로딩. 그리고 이걸로 제외되는 양은 그리 많지 않은 듯. 일단 여긴 보류.
-////	TArray<EPCClass> PCClassesToLoad = GetPCClassesToMatineePreLoad();
-////	if (PCClassesToLoad.Num() > 0)
-////	{
-////		// Preload 대상 PCClass 를 Exclude 에서 제외
-////		// 리소스 셋업에도 상당히 의존하는 거라 이게 100% 정확하지 않을 수도 있는데
-////		// 그런 식으로 의도치 않게 걸러져서 여기서 로딩이 안된다고 해도 큰일 나는 건 아니다. 필요할 땐 어차피 로딩이 된다. 
-////		ABladeIIPlayer::GetAllTrimmedNameFromPCClassEnum(StageEventRefLoadExcludeFilters);
-////		for (EPCClass ThisPCClass : PCClassesToLoad)
-////		{
-////			StageEventRefLoadExcludeFilters.Remove(UB2PCClassInfo::GetTrimmedNameOfPCClassEnum(ThisPCClass));
-////		}
-////	}
-////#if !UE_BUILD_SHIPPING
-////	FString LogMsg = TEXT("Matinee ref lazy load exclude filter:");
-////	for (FString& ThisFilter : StageEventRefLoadExcludeFilters)
-////	{
-////		LogMsg += FString::Printf(TEXT(" %s,"), *ThisFilter);
-////	}
-////	UE_LOG(LogBladeII, Log, TEXT("%s"), *LogMsg);
-////#endif
-////#endif
-////
-////	// 게임모드의 레벨 구성에 따라서 이걸 콜하는 기본 시점에 EventDirectors 배열이 안 채워져 있을 수도 있다.
-////	// 그런 경우 그냥 놔둬도 기능 자체는 이상이 없을 것이나 만일 Matinee 참조 에셋이 로딩되면서 눈에 띄는 끊김을 유발하거나 async flush 를 일으킨다면
-////	// 이걸 추가로 콜해야 할 수도.
-////	for (AB2StageEventDirector* CurrSED : EventDirectors)
-////	{
-////		if (CurrSED && CurrSED->IsExpectedForGameMode(this))
-////		{
-////			CurrSED->LoadLazyLoadedMatineeRefAssets(StageEventRefLoadExcludeFilters);
-////			++LazyLoadedSEDNum;
-////		}
-////	}
-////#endif
-////	return LazyLoadedSEDNum; // Lazy-loading 처리가 된 StageEventDirector (거의 Matinee) 개수를 리턴.
-////}
-////
-////void ABladeIIGameMode::GameContextAsyncFlush()
-////{ // 로딩 타임에 Preload 한 거 이외에 게임 플레이 되면서 Async 로딩 할 것들이 flush 될 수 있다거나 
-////	// 내지는 바람직하지 않은 상황이 있다면 이걸 사용해서 그런 것들을 미연에 처리하기 위해 제공
-////	// 이건 로딩 타임에 불려야 한다.
-////	if (TheActiveSpawnPool)
-////	{
-////		TheActiveSpawnPool->TryAsyncLoadReservedMonsters();
-////		FlushAsyncLoading();
-////	}
-////}
-////
-////void ABladeIIGameMode::PrebuildAndCacheCharMesh(EPCClass InCharClass, const TArray<FB2Item>& InEquippedItems, const FB2Wing* InWingData, bool bMergeSections, int32 InOptionalCharEntryID /*= -1*/)
-////{
-////	// Preload 시점에 태그 캐릭터 mesh merge 를 미리 해 놓기 위한 목적인데.. 
-////	// 로컬 캐릭터 mesh 의 RootSet 처리를 하는 B2CompositeMeshCache 의 도입 이후로는 일반 게임모드에서는 사실상 필요 없는 기능이다.
-////	// 장비 장착이 다른 걸로 강제되는 튜토리얼 모드에서는 필요하고.. 
-////	// 내지는 PVP 의 상대방 태그 캐릭터를 미리 merge 해 놓게 되면 거기서 필요할 수도 있긴 한데.. 그럴려면 좀 수정이 필요.
-////
-////	UWorld* TheWorld = GetWorld();
-////	UB2PCClassInfoBox* PCInfoBox = StaticFindPCClassInfoBox(this);
-////	UB2PCClassInfo* ThisCharInfo = PCInfoBox ? PCInfoBox->GetSingleClassInfo(InCharClass) : nullptr;
-////	if (TheWorld && ThisCharInfo)
-////	{
-////		// 일시적으로 owner 역할을 할 dummy 를 spawn 시킨다.
-////		FActorSpawnParameters SpawnInfo;
-////		SpawnInfo.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
-////		SpawnInfo.ObjectFlags |= RF_Transient;
-////		FTransform SpawnTransform(FVector(0.0f, 0.0f, 0.0f));
-////		ASkeletalMeshActor* DummyOwnerSKActor = TheWorld->SpawnActor<ASkeletalMeshActor>(ASkeletalMeshActor::StaticClass(), SpawnTransform, SpawnInfo);
-////		UB2CompositeMeshCache* MeshCacheManager = StaticFindCompositeMeshCacher();
-////		if (DummyOwnerSKActor && MeshCacheManager)
-////		{
-////			// LocalPlayerChar 는 NULL 이어도 문제 없음. 여하간 CompositeMeshCache 쪽서 Local 용으로 처리할 것.
-////			ABladeIIPlayer* LocalPlayerChar = Cast<ABladeIIPlayer>(UGameplayStatics::GetLocalPlayerCharacter(this));
-////			// 의도한 이 함수의 사용에서 BuiltResult 는 NULL 일 것이다. B2CompositeMeshCache 에서 로컬 캐릭터 용 메쉬를 RootSet 처리를 하는 일반 스테이지 모드에선 여기로 와선 안됨.
-////			// 이게 NULL 이 아닐 하나의 가능성은 테스트 중에 튜토리얼 게임모드에서 쓰는 것과 똑같은 장비를 입혀놓고 튜토리얼 게임모드로 들어가는 거.
-////			USkeletalMesh* BuiltResult = MeshCacheManager->GetCachedCompositeMesh(InCharClass, LocalPlayerChar, InEquippedItems, (InWingData && InWingData->bShouldBeVisible), InWingData, bMergeSections);
-////
-////			if (UB2PCClassInfo::SetupSKCompForParts(InCharClass, DummyOwnerSKActor, DummyOwnerSKActor->GetSkeletalMeshComponent(), BuiltResult, ThisCharInfo->BaseMeshAsset, ThisCharInfo->DefaultPartsInfo,
-////				InEquippedItems, InWingData, 
-////				nullptr, // 메쉬만 빌드하는 게 목적이므로 AnimBP 같은 건 전달할 필요 없지
-////				false, // 아직은 빌드한 걸 캐싱하는 목적을 살리려면 원본 파트들도 보존해야 해서..
-////				bMergeSections)) 
-////			{
-////				MeshCacheManager->SetCachedCompositeMesh(InCharClass, LocalPlayerChar, BuiltResult, InEquippedItems, (InWingData && InWingData->bShouldBeVisible), InWingData, bMergeSections);
-////			}
-////			DummyOwnerSKActor->Destroy();
-////		}
-////	}
-////}
-////
-////void ABladeIIGameMode::PrebuildLocalTagCharMesh()
-////{
-////	// 로컬 캐릭터의 태그가 허용되는 모드에서 필요한 기능. 즉 모험모드, 영웅의탑, PVP
-////	// PVP 의 경우는 로컬 캐릭터 뿐 아니라 리모트 캐릭터도 태그를 하므로 그것까지 고려하려면 확장된 기능이 필요하다.
-////
-////	UB2CompositeMeshCache* MeshCacheManager = StaticFindCompositeMeshCacher();
-////	if (MeshCacheManager && MeshCacheManager->IsLocalPCMeshRootSetAllowed()) {
-////		// 로컬 캐릭터 메쉬의 RootSet 처리 이후에는 이건 필요 없을 것임. 
-////		// 테스트를 위해 당분간 남겨둠.
-////		return;
-////	}
-////
-////	FLocalCharacterData& LocalCharData = BladeIIGameImpl::GetLocalCharacterData();
-////	TArray<FB2Item> TagCharEquipItems;
-////	LocalCharData.GetEquippedItems(LocalCharData.GetSubPlayerClass(), TagCharEquipItems);
-////	LocalCharData.GetEquippedCostumeItems(LocalCharData.GetSubPlayerClass(), TagCharEquipItems);
-////	FB2Wing TagCharWing;
-////	bool bHasWing = LocalCharData.GetCharacterWing(LocalCharData.GetSubPlayerClass(), TagCharWing);
-////	ICharacterDataStore::GetRenderItem(&LocalCharData, LocalCharData.GetSubPlayerClass(), TagCharEquipItems);
-////
-////	PrebuildAndCacheCharMesh(LocalCharData.GetSubPlayerClass(), TagCharEquipItems, bHasWing ? &TagCharWing : nullptr,
-////		false // 일단 기본적으로 섹션 나눠진 일반 모델로.
-////	);
-////
-////	// 태그 캐릭터를 사용하는 모드라면 섹션 병합된 모델을 사용할 가능성을 생각하기는 어렵지만.. 코드는 갖춰두고.
-////	if (UB2PCMeshSectionMergeInfo::ShouldUseSectionMergeByGameContext(this))
-////	{
-////		PrebuildAndCacheCharMesh(LocalCharData.GetSubPlayerClass(), TagCharEquipItems, bHasWing ? &TagCharWing : nullptr, true);
-////	}
-////}
+void ABladeIIGameMode::PreloadInGameInfoAsset_SynchronousOnly(bool bAboutToPlayLoadingMovie)
+{
+	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIGameMode::PreloadInGameInfoAsset_SynchronousOnly"));
+
+	// 요 Synchronous 로딩이 FlushAsyncLoading 을 유발한다면 다른 async 요청 이전에 해야 하고,
+	// 그게 아니라면 이걸 오히려 다른 async 요청 이후에 함으로서 다중 쓰레드로 로딩이 돌아가도록 할 수 있.. 을까?
+		
+	// TAsset 으로 바꾼 Matinee 레퍼런스 에셋 로딩.. 이건 원래 맵 로딩의 일부였던 것이다. 가능한 처음에 위치시킴.
+	{
+		int32 LazyLoadHandledNum = B2GamePreloadMatineeRefAssets();
+		B2GMLoadingProgCollector::StepCustom((float)LazyLoadHandledNum * (bAboutToPlayLoadingMovie ? 0.02f : 0.01f));
+	}
+
+	{ // DamageEffectInfo 와 BuffModeEffectInfo 로딩에 의한 진행도 산정시 실제 로딩 필요가 있는지에 따라 다르게..
+		if (!UB2DamageEffectInfo::AssetsAreRooted() && !UB2BuffModeEffectInfo::AssetsAreRooted())
+		{ // 둘 다 로딩하게 되는 경우
+			B2GMLoadingProgCollector::SetStepRate(bAboutToPlayLoadingMovie ? 0.4f : 0.1f);
+		}
+		else if (UB2DamageEffectInfo::AssetsAreRooted() && UB2BuffModeEffectInfo::AssetsAreRooted())
+		{
+			B2GMLoadingProgCollector::SetStepRate(0.0f);
+		}
+		else
+		{ // 둘 중 하나만 로딩하게 되는 경우
+			B2GMLoadingProgCollector::SetStepRate(bAboutToPlayLoadingMovie ? 0.2f : 0.07f);
+		}
+	}
+	UB2DamageEffectInfo* DFXInfo = StaticFindDamageEffectInfo(this);
+	if (DFXInfo)
+	{ // 전투에서 자잘한 spike 요인이 될 수 있음.
+		DFXInfo->PreloadAndCacheAllTAsset();
+	}
+	UB2BuffModeEffectInfo* BuffInfo = StaticFindBuffModeEffectInfo(this);
+	if (BuffInfo)
+	{
+		BuffInfo->PreloadAndCacheAllTAsset();
+	}
+	B2GMLoadingProgCollector::Step(); // 앞서 산정한 StepRate 로 진행도 증가.
+
+	UB2PCClassInfoBox* PCBox = StaticFindPCClassInfoBox(this);
+	if (PCBox)
+	{ // 메인 캐릭터 데이터는 sync 로딩으로 처리함. RootSet 이면 그냥 넘어가게 될 꺼고.
+		UB2PCClassInfo* ThisLoadedInfo = PCBox->GetSingleClassInfo(BladeIIGameImpl::GetLocalCharacterData().GetMainPlayerClass());
+		if (ThisLoadedInfo)
+		{
+			// 루트셋 처리 여부와 관계없이 이 시점에서 루트셋이 아니면 로딩이 안되어 있어야 함.
+			// 최악의 경우 다른 PCClass InGameOnly 데이터도 다 로딩하는 경우도 있겠지만.. 여기선 일단 확실한 곳이니 많은 Step 지분 배당.
+			B2GMLoadingProgCollector::SetStepRate(
+				ThisLoadedInfo->IsInGameOnlyInfoAtRootSet() ? 0.0f : 
+				 (bAboutToPlayLoadingMovie ? 0.6f : 0.4f)
+			);
+
+			ThisLoadedInfo->GetInGameOnlyInfo(this);
+
+			B2GMLoadingProgCollector::Step();
+		}
+	}
+}
+
+void ABladeIIGameMode::PreloadInGameInfoAsset_AsyncAllowed(bool bAboutToPlayLoadingMovie)
+{
+	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIGameMode::PreloadInGameInfoAsset_AsyncAllowed"));
+	B2_SCOPED_TIME_LOG(TEXT("ABladeIIGameMode::PreloadInGameInfoAsset_AsyncAllowed"));
+
+	// 로비를 제외한 게임모드들에서는 실질적으로 메모리와 로딩타임을 소모하는 InGameOnlyInfo 를 로딩해 놓을 필요가 있다.
+	// 게임모드 별 필요 및 구조에 따라 가능한 부분은 비동기 로딩으로 처리를 하도록 한다.
+	// 여기서 바로 로딩을 하던 Async 요청만 하던 큰 덩어리에 대한 로딩이라 궁극적으로 많은 메모리가 올라감.
+	// 단, RootSet 처리를 한 거라면 이미 메모리에 올라와 있을 테니 아무 변화 없겠지.
+
+	// 여기서 StaticFindPCClassInfoBox 를 콜하는 것이 Async flush 를 일으킨다면 단순히 이전에 한번 콜해 놓으면 된다.
+	UB2PCClassInfoBox* PCBox = StaticFindPCClassInfoBox(this);
+	if (PCBox)
+	{
+		TArray<EPCClass> ClassesToLoad = GetPCClassesToPreLoad();
+
+#if !UE_BUILD_SHIPPING // PC 클래스 로딩의 영향 상세 파악
+		extern int32 gPCDataPreLoadMaxNum;
+		if (gPCDataPreLoadMaxNum >= 0)
+		{
+			if (gPCDataPreLoadMaxNum == 0)
+			{
+				ClassesToLoad.Empty();
+			}
+			else if (gPCDataPreLoadMaxNum == 1) // 하나만이면 처음 spawn 할 애만
+			{
+				ClassesToLoad.Empty();
+				ClassesToLoad.Add(CurrentPCClassEnum);
+			}
+			else
+			{
+				if (ClassesToLoad.Num() > gPCDataPreLoadMaxNum)
+				{
+					ClassesToLoad.RemoveAt(gPCDataPreLoadMaxNum, ClassesToLoad.Num() - gPCDataPreLoadMaxNum);
+					if (!ClassesToLoad.Find(CurrentPCClassEnum)) { // 여하간 처음 spawn 할 클래스는 pre-load 를 해야 테스트가 정확해 질 것.
+						ClassesToLoad.RemoveAt(ClassesToLoad.Num() - 1);
+						ClassesToLoad.Add(CurrentPCClassEnum);
+					}
+				}
+			}
+		}
+#endif
+
+		for (EPCClass ThisClassLoad : ClassesToLoad)
+		{
+			// 메인 캐릭터 클래스는 루트셋 혹은 로딩이 되더라도 PreloadInGameInfoAsset_SynchronousOnly 에서 로딩된 상태.. 
+			// 거나 아니면 이 요청 직후에 Synchronous 로딩을 해서 다중으로 돌아가는 로딩의 이득을 얻을 수 있으면 좋겠지.
+			UB2PCClassInfo* ThisLoadedInfo = PCBox->GetSingleClassInfo(ThisClassLoad);
+			if (ThisLoadedInfo)
+			{
+				ThisLoadedInfo->ReqAsyncLoad(this);
+			}
+		}
+	}
+
+	PreloadLocalSkillAnimation();
+}
+
+void ABladeIIGameMode::PreloadLocalSkillAnimation()
+{
+	FLocalCharacterData& LocalCharacterData = BladeIIGameImpl::GetLocalCharacterData();
+	TryAsyncLoadSkillAnims(&LocalCharacterData);
+}
+
+void ABladeIIGameMode::PreloadMatineeRefAssetsDefault()
+{
+	// 의도적으로 비워짐.
+
+	// 여기서 원래 하는 GameMode 쪽 기본 기능은 제거하고
+	// 필요한 정보들이 확실히 채워진 후에 StageEventDirector 단위로 필요한 것들을 걸러내면서 
+	// AB2StageEventDirector::LoadLazyLoadedMatineeRefAssets 를 사용해서 pre-load 함. (B2GamePreloadMatineeRefAssets)
+}
+int32 ABladeIIGameMode::B2GamePreloadMatineeRefAssets()
+{
+	int32 LazyLoadedSEDNum = 0;
+//#if _MATINEE_REF_ASSET_LAZYLOAD // 게임 코드 쪽에선 여기에만 위치시키면 관련 기능 컨트롤이 가능.
+//	TArray<FString> StageEventRefLoadExcludeFilters;
+//
+//#if 0 // 일부 트랙을 제외시켜도 나중에 연출 초기화되면서 결국 로딩. 그리고 이걸로 제외되는 양은 그리 많지 않은 듯. 일단 여긴 보류.
+//	TArray<EPCClass> PCClassesToLoad = GetPCClassesToMatineePreLoad();
+//	if (PCClassesToLoad.Num() > 0)
+//	{
+//		// Preload 대상 PCClass 를 Exclude 에서 제외
+//		// 리소스 셋업에도 상당히 의존하는 거라 이게 100% 정확하지 않을 수도 있는데
+//		// 그런 식으로 의도치 않게 걸러져서 여기서 로딩이 안된다고 해도 큰일 나는 건 아니다. 필요할 땐 어차피 로딩이 된다. 
+//		ABladeIIPlayer::GetAllTrimmedNameFromPCClassEnum(StageEventRefLoadExcludeFilters);
+//		for (EPCClass ThisPCClass : PCClassesToLoad)
+//		{
+//			StageEventRefLoadExcludeFilters.Remove(UB2PCClassInfo::GetTrimmedNameOfPCClassEnum(ThisPCClass));
+//		}
+//	}
+//#if !UE_BUILD_SHIPPING
+//	FString LogMsg = TEXT("Matinee ref lazy load exclude filter:");
+//	for (FString& ThisFilter : StageEventRefLoadExcludeFilters)
+//	{
+//		LogMsg += FString::Printf(TEXT(" %s,"), *ThisFilter);
+//	}
+//	UE_LOG(LogBladeII, Log, TEXT("%s"), *LogMsg);
+//#endif
+//#endif
+//
+//	// 게임모드의 레벨 구성에 따라서 이걸 콜하는 기본 시점에 EventDirectors 배열이 안 채워져 있을 수도 있다.
+//	// 그런 경우 그냥 놔둬도 기능 자체는 이상이 없을 것이나 만일 Matinee 참조 에셋이 로딩되면서 눈에 띄는 끊김을 유발하거나 async flush 를 일으킨다면
+//	// 이걸 추가로 콜해야 할 수도.
+//	for (AB2StageEventDirector* CurrSED : EventDirectors)
+//	{
+//		if (CurrSED && CurrSED->IsExpectedForGameMode(this))
+//		{
+//			CurrSED->LoadLazyLoadedMatineeRefAssets(StageEventRefLoadExcludeFilters);
+//			++LazyLoadedSEDNum;
+//		}
+//	}
+//#endif
+	return LazyLoadedSEDNum; // Lazy-loading 처리가 된 StageEventDirector (거의 Matinee) 개수를 리턴.
+}
+
+void ABladeIIGameMode::GameContextAsyncFlush()
+{ // 로딩 타임에 Preload 한 거 이외에 게임 플레이 되면서 Async 로딩 할 것들이 flush 될 수 있다거나 
+	// 내지는 바람직하지 않은 상황이 있다면 이걸 사용해서 그런 것들을 미연에 처리하기 위해 제공
+	// 이건 로딩 타임에 불려야 한다.
+	if (TheActiveSpawnPool)
+	{
+		TheActiveSpawnPool->TryAsyncLoadReservedMonsters();
+		FlushAsyncLoading();
+	}
+}
+
+void ABladeIIGameMode::PrebuildAndCacheCharMesh(EPCClass InCharClass, const TArray<FB2Item>& InEquippedItems, const FB2Wing* InWingData, bool bMergeSections, int32 InOptionalCharEntryID /*= -1*/)
+{
+	// Preload 시점에 태그 캐릭터 mesh merge 를 미리 해 놓기 위한 목적인데.. 
+	// 로컬 캐릭터 mesh 의 RootSet 처리를 하는 B2CompositeMeshCache 의 도입 이후로는 일반 게임모드에서는 사실상 필요 없는 기능이다.
+	// 장비 장착이 다른 걸로 강제되는 튜토리얼 모드에서는 필요하고.. 
+	// 내지는 PVP 의 상대방 태그 캐릭터를 미리 merge 해 놓게 되면 거기서 필요할 수도 있긴 한데.. 그럴려면 좀 수정이 필요.
+
+	UWorld* TheWorld = GetWorld();
+	UB2PCClassInfoBox* PCInfoBox = StaticFindPCClassInfoBox(this);
+	UB2PCClassInfo* ThisCharInfo = PCInfoBox ? PCInfoBox->GetSingleClassInfo(InCharClass) : nullptr;
+	if (TheWorld && ThisCharInfo)
+	{
+		// 일시적으로 owner 역할을 할 dummy 를 spawn 시킨다.
+		FActorSpawnParameters SpawnInfo;
+		SpawnInfo.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+		SpawnInfo.ObjectFlags |= RF_Transient;
+		FTransform SpawnTransform(FVector(0.0f, 0.0f, 0.0f));
+		ASkeletalMeshActor* DummyOwnerSKActor = TheWorld->SpawnActor<ASkeletalMeshActor>(ASkeletalMeshActor::StaticClass(), SpawnTransform, SpawnInfo);
+		UB2CompositeMeshCache* MeshCacheManager = StaticFindCompositeMeshCacher();
+		if (DummyOwnerSKActor && MeshCacheManager)
+		{
+			// LocalPlayerChar 는 NULL 이어도 문제 없음. 여하간 CompositeMeshCache 쪽서 Local 용으로 처리할 것.
+			ABladeIIPlayer* LocalPlayerChar = Cast<ABladeIIPlayer>(GetWorld()->GetFirstPlayerController()->GetCharacter());
+			// 의도한 이 함수의 사용에서 BuiltResult 는 NULL 일 것이다. B2CompositeMeshCache 에서 로컬 캐릭터 용 메쉬를 RootSet 처리를 하는 일반 스테이지 모드에선 여기로 와선 안됨.
+			// 이게 NULL 이 아닐 하나의 가능성은 테스트 중에 튜토리얼 게임모드에서 쓰는 것과 똑같은 장비를 입혀놓고 튜토리얼 게임모드로 들어가는 거.
+			USkeletalMesh* BuiltResult = MeshCacheManager->GetCachedCompositeMesh(InCharClass, LocalPlayerChar, InEquippedItems, (InWingData && InWingData->bShouldBeVisible), InWingData, bMergeSections);
+
+			if (UB2PCClassInfo::SetupSKCompForParts(InCharClass, DummyOwnerSKActor, DummyOwnerSKActor->GetSkeletalMeshComponent(), BuiltResult, ThisCharInfo->BaseMeshAsset, ThisCharInfo->DefaultPartsInfo,
+				InEquippedItems, InWingData, 
+				nullptr, // 메쉬만 빌드하는 게 목적이므로 AnimBP 같은 건 전달할 필요 없지
+				false, // 아직은 빌드한 걸 캐싱하는 목적을 살리려면 원본 파트들도 보존해야 해서..
+				bMergeSections)) 
+			{
+				MeshCacheManager->SetCachedCompositeMesh(InCharClass, LocalPlayerChar, BuiltResult, InEquippedItems, (InWingData && InWingData->bShouldBeVisible), InWingData, bMergeSections);
+			}
+			DummyOwnerSKActor->Destroy();
+		}
+	}
+}
+
+void ABladeIIGameMode::PrebuildLocalTagCharMesh()
+{
+	// 로컬 캐릭터의 태그가 허용되는 모드에서 필요한 기능. 즉 모험모드, 영웅의탑, PVP
+	// PVP 의 경우는 로컬 캐릭터 뿐 아니라 리모트 캐릭터도 태그를 하므로 그것까지 고려하려면 확장된 기능이 필요하다.
+
+	UB2CompositeMeshCache* MeshCacheManager = StaticFindCompositeMeshCacher();
+	if (MeshCacheManager && MeshCacheManager->IsLocalPCMeshRootSetAllowed()) {
+		// 로컬 캐릭터 메쉬의 RootSet 처리 이후에는 이건 필요 없을 것임. 
+		// 테스트를 위해 당분간 남겨둠.
+		return;
+	}
+
+	FLocalCharacterData& LocalCharData = BladeIIGameImpl::GetLocalCharacterData();
+	TArray<FB2Item> TagCharEquipItems;
+	LocalCharData.GetEquippedItems(LocalCharData.GetSubPlayerClass(), TagCharEquipItems);
+	LocalCharData.GetEquippedCostumeItems(LocalCharData.GetSubPlayerClass(), TagCharEquipItems);
+	FB2Wing TagCharWing;
+	bool bHasWing = LocalCharData.GetCharacterWing(LocalCharData.GetSubPlayerClass(), TagCharWing);
+	ICharacterDataStore::GetRenderItem(&LocalCharData, LocalCharData.GetSubPlayerClass(), TagCharEquipItems);
+
+	PrebuildAndCacheCharMesh(LocalCharData.GetSubPlayerClass(), TagCharEquipItems, bHasWing ? &TagCharWing : nullptr,
+		false // 일단 기본적으로 섹션 나눠진 일반 모델로.
+	);
+
+	// 태그 캐릭터를 사용하는 모드라면 섹션 병합된 모델을 사용할 가능성을 생각하기는 어렵지만.. 코드는 갖춰두고.
+	if (UB2PCMeshSectionMergeInfo::ShouldUseSectionMergeByGameContext(this))
+	{
+		PrebuildAndCacheCharMesh(LocalCharData.GetSubPlayerClass(), TagCharEquipItems, bHasWing ? &TagCharWing : nullptr, true);
+	}
+}
 
 bool ABladeIIGameMode::IsAllowTag()
 {
@@ -981,44 +981,44 @@ void ABladeIIGameMode::UpdateForPreRenderObjects()
 
 void ABladeIIGameMode::OnPreRenderComplete()
 {
-	//check(PreRenderer);
-	//if (PreRenderer) {
-	//	// AllPrim 여부에 상관없이 현재 월드가 기반하고 있는 레벨에서는 Pre-render 가 한번 완료된 것으로 기록.
-	//	PreRenderer->MarkCurrentWorldLevelPreRendered();
-	//	PreRenderer->OnPreRenderComplete();
-	//	PreRenderer->ConditionalBeginDestroy(); // 뭔가 빨리 제거 마크라도 해 주어야 안심이 될 듯한 기분
-	//}
-	//PreRenderer = nullptr;
-	//
-	//PreRenderPhase = EPreRenderPhase::EPRP_Done;
+	check(PreRenderer);
+	if (PreRenderer) {
+		// AllPrim 여부에 상관없이 현재 월드가 기반하고 있는 레벨에서는 Pre-render 가 한번 완료된 것으로 기록.
+		PreRenderer->MarkCurrentWorldLevelPreRendered();
+		PreRenderer->OnPreRenderComplete();
+		PreRenderer->ConditionalBeginDestroy(); // 뭔가 빨리 제거 마크라도 해 주어야 안심이 될 듯한 기분
+	}
+	PreRenderer = nullptr;
+	
+	PreRenderPhase = EPreRenderPhase::EPRP_Done;
 
-	//// Pre-render 걸린 상태에서 시작했던 연출에서 일부 비활성화 시켰던 거 있으면 복구.
-	//for (AB2StageEventDirector* ThisSED : EventDirectors)
-	//{
-	//	if (ThisSED && ThisSED->IsPlayingShow())
-	//	{
-	//		ThisSED->RestoreTracksAfterPreRender();
-	//	}
-	//}
+	// Pre-render 걸린 상태에서 시작했던 연출에서 일부 비활성화 시켰던 거 있으면 복구.
+	for (AB2StageEventDirector* ThisSED : EventDirectors)
+	{
+		if (ThisSED && ThisSED->IsPlayingShow())
+		{
+			ThisSED->RestoreTracksAfterPreRender();
+		}
+	}
 
-//	ClosePreLoadingScreen(EPreLoadingScreenType::PLST_PreRender_Default);
-//	RestoreWholeGameTimeScale(); // 화면 가린 동안 낮췄던 WholeGameTimeScale 복구.
-//	EnsureStageEventTimeDilation(); // EventDirector 쪽도 TimeDilation 안 주었을 테니 이 때 같이 복구를.
-//
-//	// Pre-render 를 한다면 따로 타이머 설치 안했을 꺼고 이 시점에서 로딩 이미지 언로드. Pre-render 시 블록 스크린에 쓰게 될 수도 있고.
-//	UnloadAndClearLoadingImageState();
-//
-//#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
-//	// Pre-render 를 했다면 이 시점에서 로딩 시간 측정 종료
-//	DevCheckLoadingTimeEnd();
-//#endif
+	ClosePreLoadingScreen(EPreLoadingScreenType::PLST_PreRender_Default);
+	RestoreWholeGameTimeScale(); // 화면 가린 동안 낮췄던 WholeGameTimeScale 복구.
+	EnsureStageEventTimeDilation(); // EventDirector 쪽도 TimeDilation 안 주었을 테니 이 때 같이 복구를.
+
+	// Pre-render 를 한다면 따로 타이머 설치 안했을 꺼고 이 시점에서 로딩 이미지 언로드. Pre-render 시 블록 스크린에 쓰게 될 수도 있고.
+	UnloadAndClearLoadingImageState();
+
+#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
+	// Pre-render 를 했다면 이 시점에서 로딩 시간 측정 종료
+	DevCheckLoadingTimeEnd();
+#endif
 }
 
-//#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
-//int32 gDetectedGarbageExcessiveRenderCount = 0;
-//#endif
-//void ABladeIIGameMode::OnPreLoadMap(const FString& InString)
-//{
+#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
+int32 gDetectedGarbageExcessiveRenderCount = 0;
+#endif
+void ABladeIIGameMode::OnPreLoadMap(const FString& InString)
+{
 //	//
 //	// 이름은 PreLoadMap 이라 이번 게임모드 시작 직전으로 오해할 수 있지만 실제로는 자기 자신은 내려갈 준비를 하는 부분.
 //	// 매 맵 전환 직전 아직 World GC 되기 이전 무언가 정리하기 좋은 스팟임.
@@ -1055,7 +1055,8 @@ void ABladeIIGameMode::OnPreRenderComplete()
 //#endif
 //
 //	UB2CompositeMeshCache* MeshCacheManager = StaticFindCompositeMeshCacher();
-//	if (MeshCacheManager){
+//	if (MeshCacheManager)
+//	{
 //		MeshCacheManager->OnPreLoadMap(this);
 //	}
 //	
@@ -1097,70 +1098,71 @@ void ABladeIIGameMode::OnPreRenderComplete()
 //	ExtraOnPreLoadMap();
 //
 //	IStreamingManager::Get().StreamAllResources(5.0f);
-//}
-//
-///** OnPreLoadMap 시점의 이제 로딩이 시작되는 게임모드를 위한 로딩 스크린셋업. */
+}
+
+/** OnPreLoadMap 시점의 이제 로딩이 시작되는 게임모드를 위한 로딩 스크린셋업. */
 void ABladeIIGameMode::SetupNextGameLoadingScreen()
 {
-//	IB2GameLoadingScreenModule* const LoadingScreenModule = GetB2LoadingScreenModulePtr();
-//	if (LoadingScreenModule != nullptr)
-//	{
-//		const FString ClosingMovieName = GetClosingMovieName();
-//		if (ClosingMovieName.Len() > 0) 
-//		{
-//			// 특별히 종료 시 플레이할 동영상을 지정하는 경우.. Subtitle 이나 기타 인자는 필요에 따라 구현 추가되어야 함.
-//			// 일반적인 시나리오 동영상이 아님. 그건 다음 로딩된 게임모드의 StartPlay 에서 셋업
-//			LoadingScreenModule->StartGameLoadingScreen_Movie(*ClosingMovieName,
-//				// 그냥 FitToMin 으로 하면 다양한 동영상 비율에 대한 대처가 가능하나 AppleMovieStreamer 구조와 관련해서 IOS 일부 기기에서 일시적으로 화면 비율이 흐트러지는 문제가 발생할 수 있다.
-//				// DLC 타이틀에서 로비 로딩을 제외한 기타 로딩 동영상이 16:9 로 제작되는 한 여기는 StdHD 로 고정.
-//				ELoadingScreenMovieAlignMode::FitToMin_StdHD,
-//				true	// 튜토리얼 Skip 추가
-//			);
-//		}
-//		else 
-//		{ // 일반적인 이미지 로딩 스크린
-//			SetupLoadingScreenImageCommon(false, true, false);
-//		}
-//	}
+	//IB2GameLoadingScreenModule* const LoadingScreenModule = GetB2LoadingScreenModulePtr();
+	//if (LoadingScreenModule != nullptr)
+	//{
+	//	const FString ClosingMovieName = GetClosingMovieName();
+	//	if (ClosingMovieName.Len() > 0) 
+	//	{
+	//		// 특별히 종료 시 플레이할 동영상을 지정하는 경우.. Subtitle 이나 기타 인자는 필요에 따라 구현 추가되어야 함.
+	//		// 일반적인 시나리오 동영상이 아님. 그건 다음 로딩된 게임모드의 StartPlay 에서 셋업
+	//		LoadingScreenModule->StartGameLoadingScreen_Movie(*ClosingMovieName,
+	//			// 그냥 FitToMin 으로 하면 다양한 동영상 비율에 대한 대처가 가능하나 AppleMovieStreamer 구조와 관련해서 IOS 일부 기기에서 일시적으로 화면 비율이 흐트러지는 문제가 발생할 수 있다.
+	//			// DLC 타이틀에서 로비 로딩을 제외한 기타 로딩 동영상이 16:9 로 제작되는 한 여기는 StdHD 로 고정.
+	//			ELoadingScreenMovieAlignMode::FitToMin_StdHD,
+	//			true	// 튜토리얼 Skip 추가
+	//		);
+	//	}
+	//	else 
+	//	{ // 일반적인 이미지 로딩 스크린
+	//		SetupLoadingScreenImageCommon(false, true, false);
+	//	}
+	//}
 }
-//void ABladeIIGameMode::SetupLoadingScreenImageCommon(
-//	bool bSetImagePersistent, // 사용한 로딩 이미지를 (현 게임모드 도중) 다음번에도 사용하려면 true 로.
-//	bool bInDisplayProgress, bool bInDisplayIndicator,
-//	const TCHAR* InOptionalImageName, /*= nullptr*/
-//	EB2LoadingMessageType InLoadingMessageType /*= EB2LoadingMessageType::ELMT_GameLoading*/)
-//{
-//	IB2GameLoadingScreenModule* const LoadingScreenModule = GetB2LoadingScreenModulePtr();
-//	if (LoadingScreenModule != nullptr)
-//	{
-//		int32 ViewSizeX = 1280, ViewSizeY = 720;
-//		APlayerController* LocalPC = Cast<APlayerController>(UGameplayStatics::GetLocalPlayerController(this));
-//		if (LocalPC)
-//		{
-//			LocalPC->GetViewportSize(ViewSizeX, ViewSizeY);
-//		}
-//
-//		float OptimalAspectRatio = 2.055556f;
-//		GConfig->GetFloat(TEXT("/Script/BladeII"), TEXT("LoadingImageOptimalAspectRatio"), OptimalAspectRatio, GGameIni);
-//
-//		LoadingScreenModule->StartGameLoadingScreen_Image(
-//			InOptionalImageName ? InOptionalImageName : *GetLoadingImageName(bSetImagePersistent), // 일반적인 경우, InOptionalImageName 을 넣지 않고 GameMode 자체적으로 정해진 루틴에 따른 이미지를 사용.
-//			bInDisplayProgress, bInDisplayIndicator,
-//			FVector2D((float)ViewSizeX, (float)ViewSizeY),
-//			false, OptimalAspectRatio, // 특정 화면비율을 최적으로 한 중앙정렬 사용.
-//			InLoadingMessageType
-//		);
-//	}
-//}
-//
-//#if WITH_EDITOR
-//void ABladeIIGameMode::OnEditorEndPlayMap()
-//{
-//	// 에디터 플레이 중단 시에도 작동했으면 하는 OnPreLoadMap 동작들이 있으면 여기에.. UIManager Destroy 는 자체적으로 실행됨.
-//		
-//	SaveLocalSavedAutoType();
-//}
-//#endif
-//
+void ABladeIIGameMode::SetupLoadingScreenImageCommon(
+	bool bSetImagePersistent, // 사용한 로딩 이미지를 (현 게임모드 도중) 다음번에도 사용하려면 true 로.
+	bool bInDisplayProgress, bool bInDisplayIndicator,
+	const TCHAR* InOptionalImageName, /*= nullptr*/
+	EB2LoadingMessageType InLoadingMessageType /*= EB2LoadingMessageType::ELMT_GameLoading*/)
+{
+	IB2GameLoadingScreenModule* const LoadingScreenModule = GetB2LoadingScreenModulePtr();
+	if (LoadingScreenModule != nullptr)
+	{
+		int32 ViewSizeX = 1280, ViewSizeY = 720;
+		APlayerController* LocalPC = GetWorld()->GetFirstPlayerController();
+		//APlayerController* LocalPC = Cast<APlayerController>(UGameplayStatics::GetLocalPlayerController(this));
+		if (LocalPC)
+		{
+			LocalPC->GetViewportSize(ViewSizeX, ViewSizeY);
+		}
+
+		float OptimalAspectRatio = 2.055556f;
+		GConfig->GetFloat(TEXT("/Script/BladeII"), TEXT("LoadingImageOptimalAspectRatio"), OptimalAspectRatio, GGameIni);
+
+		LoadingScreenModule->StartGameLoadingScreen_Image(
+			InOptionalImageName ? InOptionalImageName : *GetLoadingImageName(bSetImagePersistent), // 일반적인 경우, InOptionalImageName 을 넣지 않고 GameMode 자체적으로 정해진 루틴에 따른 이미지를 사용.
+			bInDisplayProgress, bInDisplayIndicator,
+			FVector2D((float)ViewSizeX, (float)ViewSizeY),
+			false, OptimalAspectRatio, // 특정 화면비율을 최적으로 한 중앙정렬 사용.
+			InLoadingMessageType
+		);
+	}
+}
+
+#if WITH_EDITOR
+void ABladeIIGameMode::OnEditorEndPlayMap()
+{
+	// 에디터 플레이 중단 시에도 작동했으면 하는 OnPreLoadMap 동작들이 있으면 여기에.. UIManager Destroy 는 자체적으로 실행됨.
+		
+	SaveLocalSavedAutoType();
+}
+#endif
+
 FString ABladeIIGameMode::LastUsedLoadingImageName(TEXT(""));
 
 const FString ABladeIIGameMode::GetLoadingImageName(bool bPersistent)
@@ -1294,86 +1296,87 @@ void ABladeIIGameMode::OnLoadingScreenFinished()
 	*/ 
 }
 
-//void ABladeIIGameMode::OpenPreLoadingScreen(EPreLoadingScreenType InPreLoadType, EB2GameMode GameMode /*= EB2GameMode::Unknown*/)
-//{
-//	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIGameMode::OpenPreLoadingScreen"));
-//
-//	ClosePreLoadingScreen(InPreLoadType); // 만에 하나 중복해서 콜하게 될 때 이전꺼 처리 안해주면 좀 문제가..
-//	
-//	CachedPreLoadingGameMode = GameMode;
-//
-//	// 원래 이거 목적이 그런 건 아닌데 OnPreLoadMap 에서 B2GameLoadingScreenModule 의 로딩 스크린 띄우기 전 로딩 이미지 로딩을 확실히 하는 역할이 있는 듯 함.
-//
-//	// InPreLoadType 추후 추가되면 필요에 따라 사용
-//	APlayerController* LocalPC = UGameplayStatics::GetLocalPlayerController(this);
-//	TSubclassOf<class UB2PreLoadingScreen>& UsedWidgetClass = IsOneOfPreRenderScreenType(InPreLoadType) ? PreLoadingScreenWidgetClass_PreRender : PreLoadingScreenWidgetClass;
-//	if (UsedWidgetClass && LocalPC)
-//	{
-//		UB2PreLoadingScreen* LocalCreated = CreateWidget<UB2PreLoadingScreen>(LocalPC, UsedWidgetClass);
-//
-//		if (LocalCreated)
-//		{
-//			// PreRenderScreen 은 하더라도 별도로 처리.. 아니면 실제로 여기서 PreRender 가림막에 사용할 이미지를 로딩하게 될 수도 있고.
-//			UTexture2D* LoadedLoadingImage = nullptr;
-//			if (IsOneOfPreRenderScreenType(InPreLoadType))
-//			{
-//				if (InPreLoadType == EPreLoadingScreenType::PLST_PreRender_Default && !LastUsedLoadingImageName.IsEmpty())
-//				{
-//					LoadedLoadingImage = LoadObject<UTexture2D>(nullptr, *LastUsedLoadingImageName);
-//				}
-//				// PLST_PreRender_First 에서는 그냥 NULL.. UB2PreLoadingScreen 안에서 처리.
-//			}
-//			else
-//			{
-//				// 일반적인 맵 로딩 직전 케이스.
-//				LoadedLoadingImage = GetLoadingImageTexture(GameMode, true);
-//			}
-//			
-//			LocalCreated->AddToViewport(BII_WIDGET_ZORDER_PRELOADINGSCREEN);
-//			LocalCreated->SetPreLoadingType(InPreLoadType, LoadedLoadingImage);
-//
-//			if (IsOneOfPreRenderScreenType(InPreLoadType)) {
-//				CreatedPreLoadingScreen_PreRender = LocalCreated; // 얘는 따로..
-//			}
-//			else {
-//				CreatedPreLoadingScreen = LocalCreated;
-//			}
-//		}
-//	}
-//}
-//
-//void ABladeIIGameMode::ClosePreLoadingScreen(EPreLoadingScreenType InPreLoadType)
-//{
-//	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIGameMode::ClosePreLoadingScreen"));
-//
-//	if (IsOneOfPreRenderScreenType(InPreLoadType)) {
-//		if (CreatedPreLoadingScreen_PreRender) // 얘는 따로 관리를..
-//		{
-//			CreatedPreLoadingScreen_PreRender->DestroySelf();
-//			CreatedPreLoadingScreen_PreRender = NULL;
-//		}
-//	}
-//	else {
-//		if (CreatedPreLoadingScreen)
-//		{
-//			CreatedPreLoadingScreen->DestroySelf();
-//			CreatedPreLoadingScreen = NULL;
-//		}
-//	}
-//}
-//
-//void ABladeIIGameMode::ClosePreLoadingScreenAll()
-//{
-//	for (int32 PLST = 0; PLST < static_cast<int32>(EPreLoadingScreenType::PLST_End); ++PLST)
-//	{
-//		ClosePreLoadingScreen(static_cast<EPreLoadingScreenType>(PLST));
-//	}
-//}
-//
-//UB2PreLoadingScreen* ABladeIIGameMode::GetCurrCreatedPreLoadingScreen(EPreLoadingScreenType InType)
-//{
-//	return IsOneOfPreRenderScreenType(InType) ? CreatedPreLoadingScreen_PreRender : CreatedPreLoadingScreen;
-//}
+void ABladeIIGameMode::OpenPreLoadingScreen(EPreLoadingScreenType InPreLoadType, EB2GameMode GameMode /*= EB2GameMode::Unknown*/)
+{
+	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIGameMode::OpenPreLoadingScreen"));
+
+	ClosePreLoadingScreen(InPreLoadType); // 만에 하나 중복해서 콜하게 될 때 이전꺼 처리 안해주면 좀 문제가..
+	
+	CachedPreLoadingGameMode = GameMode;
+
+	// 원래 이거 목적이 그런 건 아닌데 OnPreLoadMap 에서 B2GameLoadingScreenModule 의 로딩 스크린 띄우기 전 로딩 이미지 로딩을 확실히 하는 역할이 있는 듯 함.
+
+	// InPreLoadType 추후 추가되면 필요에 따라 사용
+	//APlayerController* LocalPC = UGameplayStatics::GetLocalPlayerController(this);
+	APlayerController* LocalPC = GetWorld()->GetFirstPlayerController();
+	TSubclassOf<class UB2PreLoadingScreen>& UsedWidgetClass = IsOneOfPreRenderScreenType(InPreLoadType) ? PreLoadingScreenWidgetClass_PreRender : PreLoadingScreenWidgetClass;
+	if (UsedWidgetClass && LocalPC)
+	{
+		UB2PreLoadingScreen* LocalCreated = CreateWidget<UB2PreLoadingScreen>(LocalPC, UsedWidgetClass);
+
+		if (LocalCreated)
+		{
+			// PreRenderScreen 은 하더라도 별도로 처리.. 아니면 실제로 여기서 PreRender 가림막에 사용할 이미지를 로딩하게 될 수도 있고.
+			UTexture2D* LoadedLoadingImage = nullptr;
+			if (IsOneOfPreRenderScreenType(InPreLoadType))
+			{
+				if (InPreLoadType == EPreLoadingScreenType::PLST_PreRender_Default && !LastUsedLoadingImageName.IsEmpty())
+				{
+					LoadedLoadingImage = LoadObject<UTexture2D>(nullptr, *LastUsedLoadingImageName);
+				}
+				// PLST_PreRender_First 에서는 그냥 NULL.. UB2PreLoadingScreen 안에서 처리.
+			}
+			else
+			{
+				// 일반적인 맵 로딩 직전 케이스.
+				LoadedLoadingImage = GetLoadingImageTexture(GameMode, true);
+			}
+			
+			LocalCreated->AddToViewport(BII_WIDGET_ZORDER_PRELOADINGSCREEN);
+			LocalCreated->SetPreLoadingType(InPreLoadType, LoadedLoadingImage);
+
+			if (IsOneOfPreRenderScreenType(InPreLoadType)) {
+				CreatedPreLoadingScreen_PreRender = LocalCreated; // 얘는 따로..
+			}
+			else {
+				CreatedPreLoadingScreen = LocalCreated;
+			}
+		}
+	}
+}
+
+void ABladeIIGameMode::ClosePreLoadingScreen(EPreLoadingScreenType InPreLoadType)
+{
+	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIGameMode::ClosePreLoadingScreen"));
+
+	if (IsOneOfPreRenderScreenType(InPreLoadType)) {
+		if (CreatedPreLoadingScreen_PreRender) // 얘는 따로 관리를..
+		{
+			CreatedPreLoadingScreen_PreRender->DestroySelf();
+			CreatedPreLoadingScreen_PreRender = NULL;
+		}
+	}
+	else {
+		if (CreatedPreLoadingScreen)
+		{
+			CreatedPreLoadingScreen->DestroySelf();
+			CreatedPreLoadingScreen = NULL;
+		}
+	}
+}
+
+void ABladeIIGameMode::ClosePreLoadingScreenAll()
+{
+	for (int32 PLST = 0; PLST < static_cast<int32>(EPreLoadingScreenType::PLST_End); ++PLST)
+	{
+		ClosePreLoadingScreen(static_cast<EPreLoadingScreenType>(PLST));
+	}
+}
+
+UB2PreLoadingScreen* ABladeIIGameMode::GetCurrCreatedPreLoadingScreen(EPreLoadingScreenType InType)
+{
+	return IsOneOfPreRenderScreenType(InType) ? CreatedPreLoadingScreen_PreRender : CreatedPreLoadingScreen;
+}
 
 void ABladeIIGameMode::BeginPlay()
 {
@@ -1708,16 +1711,16 @@ void ABladeIIGameMode::HandleMatchHasStarted()
 //	StartEventScene_GameBegin();
 }
 
-//AB2StageEventDirector* ABladeIIGameMode::GetCurrentPlayingStageEventDirector()
-//{
-//	for (AB2StageEventDirector* CurrSED : EventDirectors)
-//	{
-//		if (CurrSED && CurrSED->IsPlayingShow())
-//			return CurrSED;
-//	}
-//
-//	return NULL;
-//}
+AB2StageEventDirector* ABladeIIGameMode::GetCurrentPlayingStageEventDirector()
+{
+	for (AB2StageEventDirector* CurrSED : EventDirectors)
+	{
+		if (CurrSED && CurrSED->IsPlayingShow())
+			return CurrSED;
+	}
+
+	return NULL;
+}
 
 int32 ABladeIIGameMode::GetLocalSavedAutoType() const
 {

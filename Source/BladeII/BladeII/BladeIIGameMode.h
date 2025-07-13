@@ -244,8 +244,8 @@ public:
 	virtual TArray<FCombinedPCSkillAnimID> GetPCSkillAnimsToPreLoad();
 	static TArray<FCombinedPCSkillAnimID> GetAllPCSkillAnimsOfClass(EPCClass InCharClass);
 
-	//void TryAsyncLoadSkillAnims(ICharacterDataStore* TargetDataStore);
-	//TArray<FCombinedPCSkillAnimID> GetEquippedSkillAnimIDs(EPCClass PlayerClass, ICharacterDataStore* DataStore);
+	void TryAsyncLoadSkillAnims(ICharacterDataStore* TargetDataStore);
+	TArray<FCombinedPCSkillAnimID> GetEquippedSkillAnimIDs(EPCClass PlayerClass, ICharacterDataStore* DataStore);
 
 	virtual void GatherEquippedSkillAnimIDs(ICharacterDataStore* TargetDataStore, TArray<FCombinedPCSkillAnimID>& OutEquippedSkills);
 
@@ -253,23 +253,23 @@ public:
 	 * It is expected to be slow and cause much memory increase. 
 	 * @param bAboutToPlayLoadingMovie : Designate if loading movie is to be played soon. Being used for calculating loading progress. */
 	virtual void PreloadAnyNecessaryInfo(bool bAboutToPlayLoadingMovie);
-//	void PreloadInGameInfoAsset_SynchronousOnly(bool bAboutToPlayLoadingMovie);
-//	void PreloadInGameInfoAsset_AsyncAllowed(bool bAboutToPlayLoadingMovie);
-//
-//	virtual void PreloadLocalSkillAnimation();
-//	
-//	virtual void PreloadMatineeRefAssetsDefault() /*override*/;
-//	int32 B2GamePreloadMatineeRefAssets();
-//
-//	/** It is meant to be called in a circumstance that any async loading request can be possibly messed up.
-//	 *  It does FlushAsyncLoading so itself can be messy, but it is meant to be called in advance.. */
-//	void GameContextAsyncFlush();
-//
-//	/** Meant to be called at preload timing, to do mesh merge in advance, before playing. 
-//	 * InOptionalCharEntryID is required for remote player character. See GetCachedCompositeMeshMapKey */
-//	void PrebuildAndCacheCharMesh(EPCClass InCharClass, const TArray<FB2Item>& InEquippedItems, const FB2Wing* InWingData, bool bMergeSections, int32 InOptionalCharEntryID = -1);
-//protected:
-//	void PrebuildLocalTagCharMesh();
+	void PreloadInGameInfoAsset_SynchronousOnly(bool bAboutToPlayLoadingMovie);
+	void PreloadInGameInfoAsset_AsyncAllowed(bool bAboutToPlayLoadingMovie);
+
+	virtual void PreloadLocalSkillAnimation();
+	
+	virtual void PreloadMatineeRefAssetsDefault() /*override*/;
+	int32 B2GamePreloadMatineeRefAssets();
+
+	/** It is meant to be called in a circumstance that any async loading request can be possibly messed up.
+	 *  It does FlushAsyncLoading so itself can be messy, but it is meant to be called in advance.. */
+	void GameContextAsyncFlush();
+
+	/** Meant to be called at preload timing, to do mesh merge in advance, before playing. 
+	 * InOptionalCharEntryID is required for remote player character. See GetCachedCompositeMeshMapKey */
+	void PrebuildAndCacheCharMesh(EPCClass InCharClass, const TArray<FB2Item>& InEquippedItems, const FB2Wing* InWingData, bool bMergeSections, int32 InOptionalCharEntryID = -1);
+protected:
+	void PrebuildLocalTagCharMesh();
 public:
 	virtual bool IsAllowTag();
 
@@ -313,8 +313,8 @@ protected:
 
 	/** All spawn pools loaded in this stage are registered here.
 	 * -> It is now supposed to be just one! See AddSpawnPool. We maintain them in array yet, for later requirement.. */
-	//UPROPERTY(Transient)
-	//TArray<class AB2MonsterSpawnPool*> SpawnPools;
+	UPROPERTY(Transient)
+	TArray<class AB2MonsterSpawnPool*> SpawnPools;
 
 	///** All stage event directors loaded in this stage are registered here. */
 	UPROPERTY(Transient)
@@ -337,8 +337,8 @@ protected:
 	UPROPERTY(Transient)
 	TArray<class AB2HomePoint*> HomePoints;
 
-	//UPROPERTY(Transient)
-	//TArray<class AB2DialogTriggerActorBase*> DialogTriggers;
+	UPROPERTY(Transient)
+	TArray<class AB2DialogTriggerActorBase*> DialogTriggers;
 
 	UPROPERTY(Transient)
 	TArray<class AActor*> TaggedActors;
@@ -360,8 +360,8 @@ protected:
 	uint32 bDeferAutoBeginAuto : 1;
 
 	/** Containing and managing all spawned character's combat HUD including the player. */
-	//UPROPERTY(Transient)
-	//class AB2UIManager_InGameCombat* UIManager_InGameCombat;
+	UPROPERTY(Transient)
+	class AB2UIManager_InGameCombat* UIManager_InGameCombat;
 	
 protected:
 
@@ -412,27 +412,27 @@ private:
 
 protected:
 	/** Widget class to be visible before some sort of loading movie. */
-	//UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	//TSubclassOf<class UB2PreLoadingScreen> PreLoadingScreenWidgetClass;
-	//UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	//TSubclassOf<class UB2PreLoadingScreen> PreLoadingScreenWidgetClass_PreRender;
-	///** Not being managed by some sort of UIManager. */
-	//UPROPERTY(Transient)
-	//class UB2PreLoadingScreen* CreatedPreLoadingScreen;
-	//UPROPERTY(Transient)
-	//class UB2PreLoadingScreen* CreatedPreLoadingScreen_PreRender;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSubclassOf<class UB2PreLoadingScreen> PreLoadingScreenWidgetClass;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSubclassOf<class UB2PreLoadingScreen> PreLoadingScreenWidgetClass_PreRender;
+	/** Not being managed by some sort of UIManager. */
+	UPROPERTY(Transient)
+	class UB2PreLoadingScreen* CreatedPreLoadingScreen;
+	UPROPERTY(Transient)
+	class UB2PreLoadingScreen* CreatedPreLoadingScreen_PreRender;
 public:
 	ABladeIIGameMode(const FObjectInitializer& ObjectInitializer);
 
-	//void OnPreLoadMap(const FString& InString);
+	void OnPreLoadMap(const FString& InString);
 protected:
 	virtual void ExtraOnPreLoadMap() {}; // For extended class overriding..
 	virtual void SetupNextGameLoadingScreen();
 public:
-	//void SetupLoadingScreenImageCommon(bool bSetImagePersistent, bool bInDisplayProgress, bool bInDisplayIndicator, 
-	//	const TCHAR* InOptionalImageName = nullptr, // Only for a special circumstance. By default, it will pick up an image by GameMode context.
-	//	EB2LoadingMessageType InLoadingMessageType = EB2LoadingMessageType::ELMT_GameLoading
-	//);
+	void SetupLoadingScreenImageCommon(bool bSetImagePersistent, bool bInDisplayProgress, bool bInDisplayIndicator, 
+		const TCHAR* InOptionalImageName = nullptr, // Only for a special circumstance. By default, it will pick up an image by GameMode context.
+		EB2LoadingMessageType InLoadingMessageType = EB2LoadingMessageType::ELMT_GameLoading
+	);
 #if WITH_EDITOR
 	void OnEditorEndPlayMap();
 #endif
@@ -473,8 +473,8 @@ public:
 
 	virtual void HandleMatchHasStarted() override;
 
-	//UFUNCTION(BlueprintCallable, Category = "Game")
-	//AB2StageEventDirector* GetCurrentPlayingStageEventDirector();
+	UFUNCTION(BlueprintCallable, Category = "Game")
+	AB2StageEventDirector* GetCurrentPlayingStageEventDirector();
 
 	FORCEINLINE bool HasAnyStageEventScenePlayed() const { return bAnyStageEventPlayedOnce; }
 	FORCEINLINE void MarkAnyStageEventPlayedOnce() { bAnyStageEventPlayedOnce = true; }
@@ -731,15 +731,18 @@ public:
 	{
 		return EventDirectors;
 	}
-	//FORCEINLINE const TArray<class AB2MonsterSpawnPool*>& GetSpawnPoolArray() {
-	//	return SpawnPools;
-	//}
-	//FORCEINLINE const TArray<class AB2TreasureChestBase*>& GetTreasureChestArray() {
-	//	return TreasureChests;
-	//}
-	//FORCEINLINE const TArray<class AB2DestructibleLevelObjBase*>& GetDestructibleObjectArray() {
-	//	return DestructibleObjects;
-	//}
+	FORCEINLINE const TArray<class AB2MonsterSpawnPool*>& GetSpawnPoolArray()
+	{
+		return SpawnPools;
+	}
+	FORCEINLINE const TArray<class AB2TreasureChestBase*>& GetTreasureChestArray()
+	{
+		return TreasureChests;
+	}
+	FORCEINLINE const TArray<class AB2DestructibleLevelObjBase*>& GetDestructibleObjectArray()
+	{
+		return DestructibleObjects;
+	}
 
 	FORCEINLINE EResurrectBuffType GetLastRequestedStageBuffType() const { return LastRequestedStageBuffType; }
 	//================================================================================

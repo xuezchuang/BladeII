@@ -1223,32 +1223,32 @@ ABladeIIPlayer* AB2TMGameMode::SpawnTeamPlayerAsPuppet(bool bAllyTeam, int32 nPl
 
 ABladeIIPlayer* AB2TMGameMode::SpawnTeamPlayerAsPuppetbyClass(bool bAllyTeam, EPCClass InCharClass, bool bPossessByAIController /*= true*/)
 {
-	//if (InCharClass == EPCClass::EPC_End)
-	//{
+	if (InCharClass == EPCClass::EPC_End)
+	{
 		return nullptr;
-	//}
+	}
 
-	//// 기준이 될 플레이어가 없을 수 있다.. 플레이어 start 라도 쓸까.. 
-	//FTransform NewTransform(
-	//	FRotator(0.0f, 0.0f, 0.0f),
-	//	FVector(0.0f, 0.0f, 0.0f),
-	//	FVector(1.0f, 1.0f, 1.0f)
-	//);
+	// 기준이 될 플레이어가 없을 수 있다.. 플레이어 start 라도 쓸까.. 
+	FTransform NewTransform(
+		FRotator(0.0f, 0.0f, 0.0f),
+		FVector(0.0f, 0.0f, 0.0f),
+		FVector(1.0f, 1.0f, 1.0f)
+	);
 
-	//// 딱히 이전 걸 없앤다든지 할 필요 없이 그대로 리턴. 받은 쪽에서 잘 처리. 
-	//// PlayerController 에 possess 하지는 않으니 GetLocalPlayerCharacter 등이 의도와 달리 여기서 생성한 것을 리턴한다든지 하는 일은 없을 것.
-	//ABladeIIPlayer* SpawnedPuppet = ABladeIIGameMode::SpawnPlayerCharAsPuppet(this, InCharClass, NewTransform, bPossessByAIController, ABladeIIPlayer::StaticClass());
+	// 딱히 이전 걸 없앤다든지 할 필요 없이 그대로 리턴. 받은 쪽에서 잘 처리. 
+	// PlayerController 에 possess 하지는 않으니 GetLocalPlayerCharacter 등이 의도와 달리 여기서 생성한 것을 리턴한다든지 하는 일은 없을 것.
+	ABladeIIPlayer* SpawnedPuppet = ABladeIIGameMode::SpawnPlayerCharAsPuppet(this, InCharClass, NewTransform, bPossessByAIController, ABladeIIPlayer::StaticClass());
 
-	//// 기본적으로는 로컬 플레이어 캐릭터 장비로 맞춰져 있을테니 Ally 가 아니라면 장비 데이터를 직접 세팅해준다. 
-	//if (!bAllyTeam)
-	//{ // 단, 게임모드에 캐싱된 걸 가져와서 사용하려면 NetID 를 넣어주어야 하는데 현재 SetupComponentsForPartsCustomDataStore 구현 자체가 Custom 에 걸맞게 캐싱을 무시하도록 되어있다.
-	//	SpawnedPuppet->SetupComponentsForPartsCustomDataStore(GetRemotePlayerDataStore(GetOpponentTeamNum()), 
-	//		// 이거 거의 연출용 기능이라 SectionMerge 여부에 연출용 판별 함수 리턴값 전달.
-	//		UB2PCMeshSectionMergeInfo::ShouldUseSectionMergeForStageEvent(this)
-	//		);
-	//}
+	// 기본적으로는 로컬 플레이어 캐릭터 장비로 맞춰져 있을테니 Ally 가 아니라면 장비 데이터를 직접 세팅해준다. 
+	if (!bAllyTeam)
+	{ // 단, 게임모드에 캐싱된 걸 가져와서 사용하려면 NetID 를 넣어주어야 하는데 현재 SetupComponentsForPartsCustomDataStore 구현 자체가 Custom 에 걸맞게 캐싱을 무시하도록 되어있다.
+		SpawnedPuppet->SetupComponentsForPartsCustomDataStore(GetRemotePlayerDataStore(GetOpponentTeamNum()), 
+			// 이거 거의 연출용 기능이라 SectionMerge 여부에 연출용 판별 함수 리턴값 전달.
+			UB2PCMeshSectionMergeInfo::ShouldUseSectionMergeForStageEvent(this)
+			);
+	}
 
-	//return SpawnedPuppet;
+	return SpawnedPuppet;
 }
 
 void FTeamInfo::GetCharacterList(TArray<class ABladeIICharacter*>& CharacterList, bool bOnlyLive)

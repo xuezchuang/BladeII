@@ -5,46 +5,46 @@
 #include "BladeIIUtil.h"
 #include "BladeIIGameMode.h"
 #include "../InfoAsset/B2NPCClassInfoBox.h"
-////#include "BladeIIGameMode.h"
-////#include "B2StageGameMode.h"
-////#include "B2DimensionGameMode.h"
-//////#include "B2StageInfo.h"
-////#include "B2StageManager.h"
-////#include "Components/ArrowComponent.h"
-////#include "BehaviorTree/BehaviorTree.h"
-////#include "Runtime/AIModule/Classes/AIController.h"
-////#include "Runtime/UMG/Public/UMG.h"
-////#include "Runtime/UMG/Public/Blueprint/UserWidget.h"
-////#include "B2FloatingHPBar.h"
-////#include "B2FloatingDamageNum.h"
-////#include "B2FloatingAbnormalEffect.h"
-////#include "B2UIManager_InGameCombat.h"
-////#include "B2MonsterSpawnPool.h"
-////#include "B2StageEventDirector.h"
-////#include "Animation/SkeletalMeshActor.h"
-////#include "Engine/SkeletalMesh.h"
-////#include "Particles/ParticleSystem.h"
-////#include "B2DamageEffectInfo.h"
-////#include "B2BuffModeEffectInfo.h"
-////#include "BladeIIProjectile.h"
-////#include "Components/StaticMeshComponent.h"
-////#include "Components/DecalComponent.h"
-////#include "Event.h"
-////#include "NavigationSystem.h"
-////#include "B2AreaDamageActorBase.h"
-////#include "B2UIDocHelper.h"
-////#include "B2CombatStatEvaluator.h"
-////#include "BladeIIAIController.h"
-////#include "Trigger.h"
-////#include "B2CounterAttackGameMode.h"
-////#include "B2PCClassInfoBox.h"
-////#include "B2NoAnimSkillInfo.h"
-////#include "B2CharacterBuffManager.h"
-////#include "B2GeneralBuffs.h"
-//////#include "B2NPCClassInfo.h"
-////#include "BladeIIPlayerController.h"
-//////#include "B2AutoAIController.h"
-////#include "B2AnimInstance.h"
+#include "BladeIIGameMode.h"
+#include "B2StageGameMode.h"
+#include "B2DimensionGameMode.h"
+#include "B2StageInfo.h"
+#include "B2StageManager.h"
+#include "Components/ArrowComponent.h"
+#include "BehaviorTree/BehaviorTree.h"
+#include "Runtime/AIModule/Classes/AIController.h"
+#include "Runtime/UMG/Public/UMG.h"
+#include "Runtime/UMG/Public/Blueprint/UserWidget.h"
+#include "B2FloatingHPBar.h"
+#include "B2FloatingDamageNum.h"
+#include "B2FloatingAbnormalEffect.h"
+#include "B2UIManager_InGameCombat.h"
+#include "B2MonsterSpawnPool.h"
+#include "B2StageEventDirector.h"
+#include "Animation/SkeletalMeshActor.h"
+#include "Engine/SkeletalMesh.h"
+#include "Particles/ParticleSystem.h"
+#include "B2DamageEffectInfo.h"
+#include "B2BuffModeEffectInfo.h"
+#include "BladeIIProjectile.h"
+#include "Components/StaticMeshComponent.h"
+#include "Components/DecalComponent.h"
+#include "Event.h"
+#include "NavigationSystem.h"
+#include "B2AreaDamageActorBase.h"
+#include "B2UIDocHelper.h"
+#include "B2CombatStatEvaluator.h"
+#include "BladeIIAIController.h"
+#include "Trigger.h"
+#include "B2CounterAttackGameMode.h"
+#include "B2PCClassInfoBox.h"
+#include "B2NoAnimSkillInfo.h"
+#include "B2CharacterBuffManager.h"
+#include "B2GeneralBuffs.h"
+//#include "B2NPCClassInfo.h"
+#include "BladeIIPlayerController.h"
+//#include "B2AutoAIController.h"
+#include "B2AnimInstance.h"
 #include "B2GameInstance.h"
 //#include "B2AIUtil.h"
 //#include "Components/DecalComponent.h"
@@ -65,44 +65,44 @@ UParticleSystem* FCHSKCompAttachParticleSystemInfo::GetParticleSystemAsset()
 	}
 	return ParticleSystemAsset.Get();
 }
-//
-//UParticleSystemComponent* FCHSKCompAttachParticleSystemInfo::CreatePSCHelper(AActor* InCompOwner, USkeletalMeshComponent* InParentComp)
-//{
-//	////BLADE2_SCOPE_CYCLE_COUNTER(FCHSKCompAttachParticleSystemInfo_CreatePSCHelper);
-//	//// 여기 Info 셋업 사용해서 PSC 생성 및 attach 하는 기본 절차.
-//	//if (InCompOwner && InParentComp)
-//	//{
-//	//	// InParentComp 는 InCompOwner 에 포함된 걸로 가정을..
-//	//	checkSlow(InParentComp->IsAttachedTo(InCompOwner->GetRootComponent()) || InParentComp == InCompOwner->GetRootComponent());
-//
-//	//	UParticleSystem* LoadedPS = GetParticleSystemAsset();
-//	//	if (LoadedPS)
-//	//	{
-//	//		UParticleSystemComponent* CreatedComp = NewObject<UParticleSystemComponent>(InCompOwner, FName(*GetCompCreateName(InCompOwner)), RF_Transient);
-//	//		if (CreatedComp)
-//	//		{
-//	//			CreatedComp->bReceivesDecals = false;
-//	//			//CreatedComp->bIgnoreBoneRotation = bIgnoreBoneRotation;
-//	//			CreatedComp->SetTemplate(LoadedPS);
-//	//			CreatedComp->SetRelativeScale3D(AttachScale3D);
-//	//			CreatedComp->SetRelativeLocation(LocationOffset);
-//	//			CreatedComp->SetRelativeRotation(RotationOffset);
-//	//			CreatedComp->AttachToComponent(InParentComp, FAttachmentTransformRules(EAttachmentRule::KeepRelative, true), AttachSocketName);
-//	//			CreatedComp->RegisterComponent();
-//	//			CreatedComp->Activate(true);
-//	//			return CreatedComp;
-//	//		}
-//	//	}
-//	//}
-//	return NULL;
-//}
-//
-//#if WITH_EDITOR
-//void FCHSKCompAttachParticleSystemInfo::EditorClearPSAsset()
-//{ // 이거 세팅하지 말아야 할 곳에서 세팅하면 PostEdit 에서 제거하려는 거.
-//	ParticleSystemAsset.Reset();
-//}
-//#endif
+
+UParticleSystemComponent* FCHSKCompAttachParticleSystemInfo::CreatePSCHelper(AActor* InCompOwner, USkeletalMeshComponent* InParentComp)
+{
+	////BLADE2_SCOPE_CYCLE_COUNTER(FCHSKCompAttachParticleSystemInfo_CreatePSCHelper);
+	//// 여기 Info 셋업 사용해서 PSC 생성 및 attach 하는 기본 절차.
+	//if (InCompOwner && InParentComp)
+	//{
+	//	// InParentComp 는 InCompOwner 에 포함된 걸로 가정을..
+	//	checkSlow(InParentComp->IsAttachedTo(InCompOwner->GetRootComponent()) || InParentComp == InCompOwner->GetRootComponent());
+
+	//	UParticleSystem* LoadedPS = GetParticleSystemAsset();
+	//	if (LoadedPS)
+	//	{
+	//		UParticleSystemComponent* CreatedComp = NewObject<UParticleSystemComponent>(InCompOwner, FName(*GetCompCreateName(InCompOwner)), RF_Transient);
+	//		if (CreatedComp)
+	//		{
+	//			CreatedComp->bReceivesDecals = false;
+	//			//CreatedComp->bIgnoreBoneRotation = bIgnoreBoneRotation;
+	//			CreatedComp->SetTemplate(LoadedPS);
+	//			CreatedComp->SetRelativeScale3D(AttachScale3D);
+	//			CreatedComp->SetRelativeLocation(LocationOffset);
+	//			CreatedComp->SetRelativeRotation(RotationOffset);
+	//			CreatedComp->AttachToComponent(InParentComp, FAttachmentTransformRules(EAttachmentRule::KeepRelative, true), AttachSocketName);
+	//			CreatedComp->RegisterComponent();
+	//			CreatedComp->Activate(true);
+	//			return CreatedComp;
+	//		}
+	//	}
+	//}
+	return NULL;
+}
+
+#if WITH_EDITOR
+void FCHSKCompAttachParticleSystemInfo::EditorClearPSAsset()
+{ // 이거 세팅하지 말아야 할 곳에서 세팅하면 PostEdit 에서 제거하려는 거.
+	ParticleSystemAsset.Reset();
+}
+#endif
 
 bool ABladeIICharacter::CanTakeEtherEffect(AActor* EffectCauser)
 {
@@ -988,21 +988,21 @@ bool ABladeIICharacter::IsBuffActive(EBuffType BuffType) const
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_IsBuffActive);
 
-	//if (auto* BuffObj = GetBuff(BuffType))
-	//	return BuffObj->IsActive();
+	if (auto* BuffObj = GetBuff(BuffType))
+		return BuffObj->IsActive();
 
 	return false;
 }
 
-//class UB2Buff_Base* ABladeIICharacter::GetBuff(EBuffType BuffType) const
-//{
-//	//BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_GetBuff);
-//
-//	//if (auto* BuffManagerObj = GetBuffManager())
-//	//	return BuffManagerObj->FindBuff(BuffType);
-//
-//	return nullptr;
-//}
+class UB2Buff_Base* ABladeIICharacter::GetBuff(EBuffType BuffType) const
+{
+	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_GetBuff);
+
+	if (auto* BuffManagerObj = GetBuffManager())
+		return BuffManagerObj->FindBuff(BuffType);
+
+	return nullptr;
+}
 
 bool ABladeIICharacter::ProcessEtherSetEffect(EEtherSetType EtherSetType, ABladeIICharacter* EtherCauser, const FDamageInfo& CauserDamageInfo, float ActualDamage)
 {

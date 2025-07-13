@@ -136,4 +136,4 @@ namespace B2Scalability
 	void ResetAllScalabilitySettings();
 }
 
-//float GetExtraAppliedCameraDistance(float InBaseLength, float InExtraLength);
+float GetExtraAppliedCameraDistance(float InBaseLength, float InExtraLength);

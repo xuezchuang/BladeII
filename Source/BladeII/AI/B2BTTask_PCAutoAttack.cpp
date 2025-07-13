@@ -228,14 +228,14 @@ EBTNodeResult::Type UB2BTTask_PCAutoAttack::PerformAttackTask(UBehaviorTreeCompo
 		}
 		else
 		{
-			//// 폰이 없을경우 로컬플레이어 사용
-			//ABladeIIPlayer* B2LocalPlayer = Cast<ABladeIIPlayer>(UGameplayStatics::GetLocalPlayerCharacter(this));
+			// 폰이 없을경우 로컬플레이어 사용
+			ABladeIIPlayer* B2LocalPlayer = Cast<ABladeIIPlayer>(GetWorld()->GetFirstPlayerController()->GetCharacter());
 
-			//if (B2LocalPlayer->IsQTEMounting())
-			//{
-			//	B2LocalPlayer->StartAttack();
-			//	return EBTNodeResult::Succeeded;
-			//}
+			if (B2LocalPlayer->IsQTEMounting())
+			{
+				B2LocalPlayer->StartAttack();
+				return EBTNodeResult::Succeeded;
+			}
 		}
 	}
 
