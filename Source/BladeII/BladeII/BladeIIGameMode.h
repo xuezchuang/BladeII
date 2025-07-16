@@ -586,8 +586,8 @@ public:
 		return EB2SkillLODType::ESLT_NONE;
 	}
 
-UFUNCTION(BlueprintCallable, Category = "BladeIIGame")
-EPCClass GetCurrentPCClassEnum();
+	UFUNCTION(BlueprintCallable, Category = "BladeIIGame")
+	EPCClass GetCurrentPCClassEnum();
 
 	/** Get PCClassInfo object for CurrentPCClassEnum */
 	UFUNCTION(BlueprintCallable, Category = "BladeIIGame")

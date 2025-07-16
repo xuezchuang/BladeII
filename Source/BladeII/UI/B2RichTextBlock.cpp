@@ -34,9 +34,10 @@ UB2RichTextBlock::UB2RichTextBlock(const FObjectInitializer& ObjectInitializer)
 	//{
 	//	Font = GetDefaultSlateFontInfo();
 	//}
-	//Color = FLinearColor::White;
+	Color = FLinearColor::White;
 
-	//Visibility = ESlateVisibility::HitTestInvisible; // 괜히 아래 가리지 않게 기본값 HitTestInvisible 로.
+	
+	SetVisibility(ESlateVisibility::HitTestInvisible); // 괜히 아래 가리지 않게 기본값 HitTestInvisible 로.
 }
 
 void UB2RichTextBlock::ReleaseSlateResources(bool bReleaseChildren)
@@ -48,50 +49,50 @@ void UB2RichTextBlock::ReleaseSlateResources(bool bReleaseChildren)
 
 TSharedRef<SWidget> UB2RichTextBlock::RebuildWidget()
 {
-//	//+ OnHyperlinkClicked = FSlateHyperlinkRun::FOnClick::CreateStatic(&RichTextHelper::OnBrowserLinkClicked, AsShared());
-//	//+ FHyperlinkDecorator::Create(TEXT("browser"), OnHyperlinkClicked))
-//	//+MakeShareable(new FDefaultRichTextDecorator(Font, Color));
-//
-//	DefaultStyle.SetFont(Font);
-//	DefaultStyle.SetColorAndOpacity(Color);
-//
-//	TArray< TSharedRef< class ITextDecorator > > CreatedDecorators;
-//
-//	for (URichTextBlockDecorator* Decorator : Decorators)
-//	{
-//		if (Decorator)
-//		{
-//			CreatedDecorators.Add(Decorator->CreateDecorator(Font, Color));
-//		}
-//	}
-//
-//	MyRichTextBlock =
-//		SNew(SB2RichTextBlock)
-//		.TextStyle(&DefaultStyle)
-//		.Decorators(CreatedDecorators);
-//#if WITH_EDITOR
-//	MyRichTextBlock->CachedPendingUpdateWidgetBlueprint = nullptr;
-//#endif
+	//+ OnHyperlinkClicked = FSlateHyperlinkRun::FOnClick::CreateStatic(&RichTextHelper::OnBrowserLinkClicked, AsShared());
+	//+ FHyperlinkDecorator::Create(TEXT("browser"), OnHyperlinkClicked))
+	//+MakeShareable(new FDefaultRichTextDecorator(Font, Color));
+
+	DefaultStyle.SetFont(Font);
+	DefaultStyle.SetColorAndOpacity(Color);
+
+	TArray< TSharedRef< class ITextDecorator > > CreatedDecorators;
+
+	//for (URichTextBlockDecorator* Decorator : Decorators)
+	//{
+	//	if (Decorator)
+	//	{
+	//		CreatedDecorators.Add(Decorator->CreateDecorator(Font, Color));
+	//	}
+	//}
+
+	MyRichTextBlock =
+		SNew(SB2RichTextBlock)
+		.TextStyle(&DefaultStyle)
+		.Decorators(CreatedDecorators);
+#if WITH_EDITOR
+	MyRichTextBlock->CachedPendingUpdateWidgetBlueprint = nullptr;
+#endif
 	return MyRichTextBlock.ToSharedRef();
 }
 
 void UB2RichTextBlock::SynchronizeProperties()
 {
 	Super::SynchronizeProperties();
-//
-//	TAttribute<FText> TextBinding = PROPERTY_BINDING(FText, Text);
-//#if WITH_EDITOR
-//	if ((Font != DefaultStyle.Font) || (DefaultStyle.ColorAndOpacity.GetSpecifiedColor() != Color))
-//	{
-//		MyRichTextBlock->CachedPendingUpdateWidgetBlueprint = Cast<UBlueprint>(WidgetGeneratedBy.Get());
-//	}
-//#endif
-//
-//	DefaultStyle.SetFont(Font);
-//	DefaultStyle.SetColorAndOpacity(Color);
-//	MyRichTextBlock->SetText(TextBinding);
-//	
-//	Super::SynchronizeTextLayoutProperties(*MyRichTextBlock);		
+
+	TAttribute<FText> TextBinding = PROPERTY_BINDING(FText, Text);
+#if WITH_EDITOR
+	if ((!Font.IsIdenticalTo(DefaultStyle.Font)) || (DefaultStyle.ColorAndOpacity.GetSpecifiedColor() != Color))
+	{
+		MyRichTextBlock->CachedPendingUpdateWidgetBlueprint = Cast<UBlueprint>(WidgetGeneratedBy.Get());
+	}
+#endif
+
+	DefaultStyle.SetFont(Font);
+	DefaultStyle.SetColorAndOpacity(Color);
+	MyRichTextBlock->SetText(TextBinding);
+
+	Super::SynchronizeTextLayoutProperties(*MyRichTextBlock);
 }
 
 void UB2RichTextBlock::SetText(const FText& ToSetText)
@@ -99,16 +100,16 @@ void UB2RichTextBlock::SetText(const FText& ToSetText)
 
 	Text = ToSetText;
 
-	////Woongbok
+	//Woongbok
 	//if (bIgnoreLineBreak)
 	//{
 	//	RemoveLineBreakFromText(Text);
 	//}
 
-	//if (MyRichTextBlock.IsValid())
-	//{
-	//	MyRichTextBlock->SetText(Text);
-	//}
+	if (MyRichTextBlock.IsValid())
+	{
+		MyRichTextBlock->SetText(Text);
+	}
 }
 
 void UB2RichTextBlock::SetColorAndOpacity(FLinearColor InColor)

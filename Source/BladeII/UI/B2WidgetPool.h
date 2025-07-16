@@ -78,8 +78,8 @@ struct FFloatingWidgetPool : public FWidgetPoolBase
 	FFloatingWidgetPool()
 		: Super()
 	{
-		//WidgetClassType = EFloatingWidgetPoolClassType::EFWPCT_End;
-		//OwnerUIManager = nullptr;
+		WidgetClassType = EFloatingWidgetPoolClassType::EFWPCT_End;
+		OwnerUIManager = nullptr;
 	}
 	virtual ~FFloatingWidgetPool()
 	{
@@ -88,8 +88,8 @@ struct FFloatingWidgetPool : public FWidgetPoolBase
 private:
 	EFloatingWidgetPoolClassType WidgetClassType;
 	/** Casted MyOwner. Feel a little stupid but need this to make life easier. */
-	//UPROPERTY(Transient)
-	//class AB2UIManager_InGameCombat* OwnerUIManager;
+	UPROPERTY(Transient)
+	class AB2UIManager_InGameCombat* OwnerUIManager;
 	
 public:
 	virtual UClass* GetDesiredClass() override;
@@ -134,8 +134,8 @@ private:
 	EInventoryDynItemIconPoolClassType WidgetClassType;
 
 	/** Casted MyOwner. */
-	//UPROPERTY(Transient)
-	//class UB2UIManager_Lobby* OwnerUIManager;
+	UPROPERTY(Transient)
+	class UB2UIManager_Lobby* OwnerUIManager;
 
 public:
 	virtual UClass* GetDesiredClass() override;

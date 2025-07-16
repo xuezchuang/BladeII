@@ -8,7 +8,9 @@
 #include "B2GameInstance.h"
 #include "B2ItemInfo.h"
 #include "BladeIIGameImpl.h"
-
+#include "../../BladeII/BladeIILocText.h"
+#include "../../BladeII/BladeIIUtil.h"
+#include "Event.h"
 
 
 void UB2UICostumeStoreItemSlot::Init()

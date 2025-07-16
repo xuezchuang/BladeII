@@ -240,12 +240,12 @@ protected:
 	//[@AKI, 170330] 바로가기 툴팁 관련하여 ENum값으로 어떤 행동을 할지 결정하기 위해 만듬.
 	//원래는 B2ButtonGoodInfoToolTip에 있었으나 그 ENum값을 가져오는데 너무 Depth가 있어 이 위치로 바꿈
 	//추후 더 좋은 곳이 있다면 그곳으로 보낼 것 임 또는 보내주세요.
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BladeII Popup Type")
-	//EGoodsInfoPopupType GoodsPopupType;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BladeII Popup Type")
+	EGoodsInfoPopupType GoodsPopupType;
 
 	// Pre Load Asset
 	TMap<FName, UWidget*> CachedWidgets;
-//
+
 #if WITH_EDITOR
 	TMap<FString, UClass*> m_CheckValid;
 #endif //WITH_EDITOR
@@ -255,7 +255,7 @@ private:
 	/** Flags being marked when it is used with WidgetPool. */
 	uint32 bIsPooledObject : 1;
 	uint32 bCurrentlyRentAsPooledObject : 1;
-//
+
 public:
 	UB2UnitedWidgetBase(const FObjectInitializer& ObjectInitializer);
 

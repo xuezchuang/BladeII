@@ -4,17 +4,18 @@
 
 #include "CoreMinimal.h"
 #include "B2UIWidgetBase.h"
+#include "../../DataStore/B2ClientDataStore.h"
 
 #include "B2UICostumeStoreItemSlot.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS(Blueprintable)
 class BLADEII_API UB2UICostumeStoreItemSlot : public UB2UIWidgetBase
 {
 	GENERATED_BODY()
-	
+
 public:
 
 	virtual void Init() override;
@@ -25,7 +26,7 @@ public:
 	void SetPackageProductMark(int32 ProductId);
 
 	UFUNCTION()
-		void OnClickedSlotButton();
+	void OnClickedSlotButton();
 
 protected:
 	virtual void CacheAssets() override;
@@ -44,7 +45,7 @@ private:
 	TWeakObjectPtr<UOverlay> OV_SlotWidget;
 	TWeakObjectPtr<UOverlay> O_Limited;
 	TWeakObjectPtr<UOverlay> O_HaveItem;
-	
+
 	TWeakObjectPtr<UImage> IMG_ItemIcon;
 	TWeakObjectPtr<UImage> IMG_ItemGrade;
 	TWeakObjectPtr<UB2Button> BTN_ItemDetail;

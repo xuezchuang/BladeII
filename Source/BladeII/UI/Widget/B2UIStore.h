@@ -77,31 +77,31 @@ struct FB2UIStoreProductIconElement
 
 public:
 	UPROPERTY(EditAnywhere, Category = "BladeII")
-		int32 ProductId;
+	int32 ProductId;
 
 	UPROPERTY(EditAnywhere, Category = "BladeII")
-		ESTORE_SLOT_WIDGET_TYPE SlotWidget;
+	ESTORE_SLOT_WIDGET_TYPE SlotWidget;
 
 	UPROPERTY(EditAnywhere, Category = "BladeII")
-		class UMaterialInstance* ProductIcon;
+	class UMaterialInstance* ProductIcon;
 
 	UPROPERTY(EditAnywhere, Category = "BladeII")
-		EB2LOC_PRODUCTNAME_CAT LocCategory;
+	EB2LOC_PRODUCTNAME_CAT LocCategory;
 
 	UPROPERTY(EditAnywhere, Category = "BladeII")
-		FString ProductNameKey;
+	FString ProductNameKey;
 
 	UPROPERTY(EditAnywhere, Category = "BladeII")
-		FString ProductDescriptionKey;
+	FString ProductDescriptionKey;
 
 	UPROPERTY(EditAnywhere, Category = "BladeII")
-		ESTORE_SLOT_EFFECT_TYPE IconEffect;
+	ESTORE_SLOT_EFFECT_TYPE IconEffect;
 
 	UPROPERTY(EditAnywhere, Category = "BladeII")
-		ESTORE_BUYPOPUP_WIDGET_TYPE PopupType;
+	ESTORE_BUYPOPUP_WIDGET_TYPE PopupType;
 
 	UPROPERTY(EditAnywhere, Category = "BladeII")
-		EPACKAGE_TYPE PackageType;
+	EPACKAGE_TYPE PackageType;
 
 };
 
@@ -112,16 +112,16 @@ struct FB2UIStoreBonusIconElement
 
 public:
 	UPROPERTY(EditAnywhere, Category = "BladeII")
-		EStoreItemType BonusType;
+	EStoreItemType BonusType;
 
 	UPROPERTY(EditAnywhere, Category = "BladeII")
-		class UMaterialInstance* BonusIcon;
+	class UMaterialInstance* BonusIcon;
 
 	UPROPERTY(EditAnywhere, Category = "BladeII")
-		EB2LOC_PRODUCTNAME_CAT LocCategory;
+	EB2LOC_PRODUCTNAME_CAT LocCategory;
 
 	UPROPERTY(EditAnywhere, Category = "BladeII")
-		FString BonusNameKey;
+	FString BonusNameKey;
 };
 
 UCLASS(BlueprintType, Blueprintable)
@@ -131,37 +131,37 @@ class BLADEII_API UB2UIStoreProductIconData : public UObject
 
 public:
 	UPROPERTY(EditAnywhere, Category = "BladeII")
-		TArray<FB2UIStoreProductIconElement> ProductIconDataArray;
+	TArray<FB2UIStoreProductIconElement> ProductIconDataArray;
 
 	UPROPERTY(EditAnywhere, Category = "BladeII")
-		TArray<FB2UIStoreBonusIconElement> BonusIconDataArray;
+	TArray<FB2UIStoreBonusIconElement> BonusIconDataArray;
 
 	UFUNCTION(BlueprintPure, Category = "BladeII")
-		class UMaterialInstance* GetProductIcon(int32 ProductId, int32 OptionalItemId);
+	class UMaterialInstance* GetProductIcon(int32 ProductId, int32 OptionalItemId);
 
 	UFUNCTION(BlueprintPure, Category = "BladeII")
-		ESTORE_SLOT_EFFECT_TYPE	GetProductIconEffect(int32 ProductId);
+	ESTORE_SLOT_EFFECT_TYPE	GetProductIconEffect(int32 ProductId);
 
 	UFUNCTION(BlueprintPure, Category = "BladeII")
-		ESTORE_SLOT_WIDGET_TYPE GetProductWidget(int32 ProductId);
+	ESTORE_SLOT_WIDGET_TYPE GetProductWidget(int32 ProductId);
 
 	UFUNCTION(BlueprintPure, Category = "BladeII")
-		FText GetProductName(int32 ProductId, int32 OptionalItemId);
+	FText GetProductName(int32 ProductId, int32 OptionalItemId);
 
 	UFUNCTION(BlueprintPure, Category = "BladeII")
-		FText GetProductDescription(int32 ProductId);
+	FText GetProductDescription(int32 ProductId);
 
 	UFUNCTION(BlueprintPure, Category = "BladeII")
-		void GetBonusIconAndName(EStoreItemType BonusType, UMaterialInstance*& OutBonusIcon, FText& OutBonusName, int32 OptionalItemTemplateId);
+	void GetBonusIconAndName(EStoreItemType BonusType, UMaterialInstance*& OutBonusIcon, FText& OutBonusName, int32 OptionalItemTemplateId);
 
 	UFUNCTION(BlueprintPure, Category = "BladeII")
-		ESTORE_BUYPOPUP_WIDGET_TYPE GetPopupWidgetType(int32 ProductId);
+	ESTORE_BUYPOPUP_WIDGET_TYPE GetPopupWidgetType(int32 ProductId);
 
 	UFUNCTION(BlueprintPure, Category = "BladeII")
-		EPACKAGE_TYPE GetPackageType(int32 ProductId);
+	EPACKAGE_TYPE GetPackageType(int32 ProductId);
 
 	UFUNCTION(BlueprintPure, Category = "BladeII")
-		int32 GetProductId(EPACKAGE_TYPE PakageType);
+	int32 GetProductId(EPACKAGE_TYPE PakageType);
 
 private:
 	FB2UIStoreProductIconElement* GetProductIconData(int32 ProductId);
@@ -199,22 +199,22 @@ protected:
 	void OnClickTabButtonDelegate(int32 ButtonIndex);
 
 	UFUNCTION()
-		void OnClickTabPackage();
+	void OnClickTabPackage();
 	UFUNCTION()
-		void OnClickTabDarkCrystal();
+	void OnClickTabDarkCrystal();
 	UFUNCTION()
-		void OnClickTabGoods();
+	void OnClickTabGoods();
 	UFUNCTION()
-		void OnClickTabFamePoint();
+	void OnClickTabFamePoint();
 
 	////////////////////////////////////////////////////
 	// Goods Tab
 	UFUNCTION()
-		void OnClickGoodsTabBladePoint();
+	void OnClickGoodsTabBladePoint();
 	UFUNCTION()
-		void OnClickGoodsTabGem();
+	void OnClickGoodsTabGem();
 	UFUNCTION()
-		void OnClickGoodsTabGold();
+	void OnClickGoodsTabGold();
 
 	FText GetStoreCategoryName(int32 StoreCategory);
 	ESTORE_SLOT_WIDGET_TYPE GetProductWidget(int32 ProductId);
@@ -226,13 +226,13 @@ protected:
 public:
 
 	UPROPERTY(EditAnywhere, Category = "BladeII")
-		TSubclassOf<class UB2UICommonTab> DefaultStoreTab;
+	TSubclassOf<class UB2UICommonTab> DefaultStoreTab;
 
 	UPROPERTY(EditAnywhere, Category = "BladeII")
-		TSubclassOf<UB2UIStoreItemSlot> DefaultItemSlot;
+	TSubclassOf<UB2UIStoreItemSlot> DefaultItemSlot;
 
 	UPROPERTY(EditAnywhere, Category = "BladeII")
-		TSubclassOf<UB2UIStoreProductIconData> ProductIconData;
+	TSubclassOf<UB2UIStoreProductIconData> ProductIconData;
 
 	void SetTab();
 
@@ -248,15 +248,15 @@ private:
 protected:
 
 	UFUNCTION()
-		void OpenMileageGuidePopup();
+	void OpenMileageGuidePopup();
 	UFUNCTION()
-		void CloseMileageGuidePopup();
+	void CloseMileageGuidePopup();
 	UFUNCTION()
-		void SetOpenRewardPopupBClass();
+	void SetOpenRewardPopupBClass();
 	UFUNCTION()
-		void SetOpenRewardPopupAClass();
+	void SetOpenRewardPopupAClass();
 	UFUNCTION()
-		void SetOpenRewardPopupSClass();
+	void SetOpenRewardPopupSClass();
 
 	void OpenRewardPopup(EUIStoreMileageGrade MileageGrade);
 	void OpenPopupConfirmToBuyItem(int32 ProductId);
@@ -273,35 +273,35 @@ protected:
 	void CompletedPurchaseBuyGem(bool success, const FB2ResponseBuyShopResultInfoPtr GetProduct);
 
 	UFUNCTION()
-		void ClosePopupConfirmToBuyItem();
+	void ClosePopupConfirmToBuyItem();
 	UFUNCTION()
-		void CloseConfirmToBuyPopupGemPopup();
+	void CloseConfirmToBuyPopupGemPopup();
 	UFUNCTION()
-		void CloseConfirmToBuyPopupNormalPopup();
+	void CloseConfirmToBuyPopupNormalPopup();
 	UFUNCTION()
-		void SubmitConfirmToBuyItem();
+	void SubmitConfirmToBuyItem();
 	UFUNCTION()
-		void SubmitConfirmToBuyGem();
+	void SubmitConfirmToBuyGem();
 	UFUNCTION()
-		void DetailConfirmToBuyItem();
-	
-	UFUNCTION()
-		void OpenGuestWarningPopup();
-	UFUNCTION()
-		void CloseGuestWarningPopup();
-	UFUNCTION()
-		void BuyGuestWarningPopup();
+	void DetailConfirmToBuyItem();
 
 	UFUNCTION()
-		bool RedDotCondition_BladePoint();
+	void OpenGuestWarningPopup();
 	UFUNCTION()
-		bool RedDotCondition_Gem();
+	void CloseGuestWarningPopup();
 	UFUNCTION()
-		bool RedDotCondition_Gold();
+	void BuyGuestWarningPopup();
+
 	UFUNCTION()
-		bool RedDotCondition_DarkCrystal();
+	bool RedDotCondition_BladePoint();
 	UFUNCTION()
-		bool RedDotCondition_Package();
+	bool RedDotCondition_Gem();
+	UFUNCTION()
+	bool RedDotCondition_Gold();
+	UFUNCTION()
+	bool RedDotCondition_DarkCrystal();
+	UFUNCTION()
+	bool RedDotCondition_Package();
 
 private:
 
@@ -339,33 +339,33 @@ private:
 protected:
 
 	UPROPERTY(EditAnywhere)
-		TSoftClassPtr<UB2UIStoreMileageRewardPopup> UIP_MileageRewardPopup_Class;
+	TSoftClassPtr<UB2UIStoreMileageRewardPopup> UIP_MileageRewardPopup_Class;
 	UPROPERTY(EditAnywhere)
-		TSoftClassPtr<class UB2UIBackWidgetBase> UIP_ConfirmToBuyPopup_Gem_Class;
+	TSoftClassPtr<class UB2UIBackWidgetBase> UIP_ConfirmToBuyPopup_Gem_Class;
 	UPROPERTY(EditAnywhere)
-		TSoftClassPtr<class UB2UIBackWidgetBase> UIP_ConfirmToBuyPopup_Normal_Class;
+	TSoftClassPtr<class UB2UIBackWidgetBase> UIP_ConfirmToBuyPopup_Normal_Class;
 	UPROPERTY(EditAnywhere)
-		TSoftClassPtr<class UB2UIBackWidgetBase> UIP_MileageGuidePopup_Class;
+	TSoftClassPtr<class UB2UIBackWidgetBase> UIP_MileageGuidePopup_Class;
 	UPROPERTY(EditAnywhere)
-		TSoftClassPtr<UB2UIMsgPopupGuestWarning> UIP_GuestWarningPopup_Class;
+	TSoftClassPtr<UB2UIMsgPopupGuestWarning> UIP_GuestWarningPopup_Class;
 
 private:
 
 	UPROPERTY(Transient)
-		UB2UIStoreMileageRewardPopup* Created_UIP_MileageRewardPopup;
+	UB2UIStoreMileageRewardPopup* Created_UIP_MileageRewardPopup;
 	UPROPERTY(Transient)
-		class UB2UIBackWidgetBase* Created_UIP_ConfirmToBuyPopup_Gem;
+	class UB2UIBackWidgetBase* Created_UIP_ConfirmToBuyPopup_Gem;
 	UPROPERTY(Transient)
-		class UB2UIBackWidgetBase* Created_UIP_ConfirmToBuyPopup_Normal;
+	class UB2UIBackWidgetBase* Created_UIP_ConfirmToBuyPopup_Normal;
 	UPROPERTY(Transient)
-		class UB2UIBackWidgetBase* Created_UIP_MileageGuidePopup;
+	class UB2UIBackWidgetBase* Created_UIP_MileageGuidePopup;
 	UPROPERTY(Transient)
-		UB2UIMsgPopupGuestWarning* Created_UIP_GuestWarningPopup;
+	UB2UIMsgPopupGuestWarning* Created_UIP_GuestWarningPopup;
 
 protected:
 	// For some dynamically created UIP..
 	UPROPERTY(EditAnywhere)
-		TSubclassOf<class UB2UIRewardIcon> RewardIconTemplate;
+	TSubclassOf<class UB2UIRewardIcon> RewardIconTemplate;
 
 	void ConditionalCreateMileageRewardPopup();
 	void ConditionalCreateConfirmToBuyPopup_Gem();
