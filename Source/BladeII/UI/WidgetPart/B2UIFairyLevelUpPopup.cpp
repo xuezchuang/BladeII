@@ -13,6 +13,7 @@
 #include "B2UIHeader.h"
 #include "Commonstruct.h"
 #include "B2ServerResultCodeTable.h"
+#include "../Common/Event.h"
 
 void UB2UIFairyLevelUpPopup::Init()
 {
@@ -128,31 +129,31 @@ void UB2UIFairyLevelUpPopup::OnClose(bool RightNow)
 
 void UB2UIFairyLevelUpPopup::SubscribeEvent()
 {
-	//if (bSubscribed == false)
-	//{
-	//	UnSubscribeEvent();
+	if (bSubscribed == false)
+	{
+		UnSubscribeEvent();
 
-	//	Issues.Add(UpdateFairyLevelUpClass<EFairyType, bool>::GetInstance().Subscribe2(
-	//		[this](EFairyType FairyType, bool IsLevelUp)
-	//	{
-	//		OnLevelUpFairy(FairyType, IsLevelUp);
-	//	}
-	//	));
-	//	
-	//	Issues.Add(UpdateFairyLevelUpErrorClass<int32>::GetInstance().Subscribe2(
-	//		[this](int32 ErrorCode)
-	//	{
-	//		OnErrorLevelUpFairy(ErrorCode);
-	//	}
-	//	)); 
+		Issues.Add(UpdateFairyLevelUpClass<EFairyType, bool>::GetInstance().Subscribe2(
+			[this](EFairyType FairyType, bool IsLevelUp)
+		{
+			OnLevelUpFairy(FairyType, IsLevelUp);
+		}
+		));
+		
+		Issues.Add(UpdateFairyLevelUpErrorClass<int32>::GetInstance().Subscribe2(
+			[this](int32 ErrorCode)
+		{
+			OnErrorLevelUpFairy(ErrorCode);
+		}
+		)); 
 
-	//	bSubscribed = true;
-	//}
+		bSubscribed = true;
+	}
 }
 
 void UB2UIFairyLevelUpPopup::UnSubscribeEvent()
 {
-	//Issues.Empty();
+	Issues.Empty();
 
 	bSubscribed = false;
 }
@@ -271,27 +272,27 @@ void UB2UIFairyLevelUpPopup::UpdateHeaderState(bool NewState)
 
 void UB2UIFairyLevelUpPopup::OnClickBTN_LevelUp()
 {
-	//if (IsEnoughMaterial() == false)
-	//{
-	//	StopAutoLevelUp();
-	//	HandleServerErrorGoodsShortageClass<const uint32, const EGoodsButtonType>::GetInstance().Signal(FItemRefIDHelper::GetGoodsID_Dismantle(), EGoodsButtonType::EGoodsButtonType_ShortageShortcut);
-	//	UpdateHeaderState(!bLoopReceiveAutoLevelUp);
-	//	UpdateLevelUpButton();
-	//	return;
-	//}
+	if (IsEnoughMaterial() == false)
+	{
+		StopAutoLevelUp();
+		HandleServerErrorGoodsShortageClass<const uint32, const EGoodsButtonType>::GetInstance().Signal(FItemRefIDHelper::GetGoodsID_Dismantle(), EGoodsButtonType::EGoodsButtonType_ShortageShortcut);
+		UpdateHeaderState(!bLoopReceiveAutoLevelUp);
+		UpdateLevelUpButton();
+		return;
+	}
 
-	//if (IsMaxLevel() == false)
-	//{
-	//	StopAutoLevelUp();
-	//	ShowLevelMaxNotice();
-	//	UpdateHeaderState(!bLoopReceiveAutoLevelUp);
-	//	UpdateLevelUpButton();
-	//	return;
-	//}
+	if (IsMaxLevel() == false)
+	{
+		StopAutoLevelUp();
+		ShowLevelMaxNotice();
+		UpdateHeaderState(!bLoopReceiveAutoLevelUp);
+		UpdateLevelUpButton();
+		return;
+	}
 
-	//if (GetWorld())
-	//	RequestTime = GetWorld()->GetTimeSeconds();
-	//FairyManager::GetInstance().RequestLevelUpFairy(CachedFairy); 
+	if (GetWorld())
+		RequestTime = GetWorld()->GetTimeSeconds();
+	FairyManager::GetInstance().RequestLevelUpFairy(CachedFairy); 
 }
 
 bool UB2UIFairyLevelUpPopup::IsMaxLevel()
@@ -366,7 +367,7 @@ void UB2UIFairyLevelUpPopup::OnErrorLevelUpFairy(int32 ErrorCode)
 		{
 		case B2ResultCode::FAILURE_NEED_MORE_ITEM_AMOUNT:
 		case B2ResultCode::FAILURE_ITEM_AMOUNT_UNDERFLOW:
-			//HandleServerErrorGoodsShortageClass<const uint32, const EGoodsButtonType>::GetInstance().Signal(FItemRefIDHelper::GetGoodsID_Dismantle(), EGoodsButtonType::EGoodsButtonType_ShortageShortcut);
+			HandleServerErrorGoodsShortageClass<const uint32, const EGoodsButtonType>::GetInstance().Signal(FItemRefIDHelper::GetGoodsID_Dismantle(), EGoodsButtonType::EGoodsButtonType_ShortageShortcut);
 			break;
 		default:
 			pUIManager->OpenMsgPopupFromErrorCode(ErrorCode);

@@ -4,7 +4,7 @@
 
 #include "UObject/Object.h"
 #include "Engine/DataTable.h"
-//#include "B2UIEnum.h"
+#include "B2UIEnum.h"
 #include "B2ErrorCodeInfo.generated.h"
 
 /**
@@ -17,13 +17,13 @@ struct FSingleErrorCodeInfoData : public FTableRowBase
 
 	FSingleErrorCodeInfoData()
 	{
-		//PopupType = EUIMsgPopup::Simple;
+		PopupType = EUIMsgPopup::Simple;
 		ViewErrorNumber = true;
 		SpecialButtonTextKey = TEXT("");
 	}
 	
-	//UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	//EUIMsgPopup PopupType;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	EUIMsgPopup PopupType;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	bool ViewErrorNumber;

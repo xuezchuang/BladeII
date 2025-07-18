@@ -58,21 +58,21 @@ bool UB2UIEtherScrollRowSlot::UpdateLock(int64 EtherID, bool IsLock)
 
 void UB2UIEtherScrollRowSlot::SetRowInfo(class UB2UIEther* InReceiver, UB2ScrollBox* HandlingScrollBox, int32 StartIndex, int32 EndIndex, int32 SetName)
 {
-	//auto& StoredEthers = BladeIIGameImpl::GetLocalCharacterData().GetAllEthers().GetScrollEther(SetName);
-	//for (int i = 0; i < MAX_ETHER_SLOT; i++)
-	//{
-	//	int CurIDX = StartIndex + i;
-	//	if (Slots[i].IsValid())
-	//	{
-	//		if (CurIDX <= EndIndex)
-	//		{
-	//			Slots[i]->SetupManualScrollBoxSender_byReceiver(InReceiver, HandlingScrollBox);
-	//			Slots[i]->SetRowSlotInfo(InReceiver, StoredEthers[CurIDX]);
-	//		}
-	//		else
-	//		{
-	//			Slots[i]->SetVisibility(ESlateVisibility::Hidden);
-	//		}
-	//	}
-	//}
+	auto& StoredEthers = BladeIIGameImpl::GetLocalCharacterData().GetAllEthers().GetScrollEther(SetName);
+	for (int i = 0; i < MAX_ETHER_SLOT; i++)
+	{
+		int CurIDX = StartIndex + i;
+		if (Slots[i].IsValid())
+		{
+			if (CurIDX <= EndIndex)
+			{
+				Slots[i]->SetupManualScrollBoxSender_byReceiver(InReceiver, HandlingScrollBox);
+				Slots[i]->SetRowSlotInfo(InReceiver, StoredEthers[CurIDX]);
+			}
+			else
+			{
+				Slots[i]->SetVisibility(ESlateVisibility::Hidden);
+			}
+		}
+	}
 }

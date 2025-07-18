@@ -11,14 +11,14 @@ class ABladeIICounterPlayer : public ABladeIIPlayer
 public:
 	// override AActor interfaces...
 	virtual void BeginPlay() override;
-//	virtual float TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, class AActor* DamageCauser) override;
+	virtual float TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, class AActor* DamageCauser) override;
 	
 	// override ABladeIIPlayer interfaces...
 	virtual void StartSkill01() override;
 	virtual void OnCounterStart() override;
 	virtual void SetAttackState(EAttackState) override;
 
-	//virtual void SetReservedSkill(EAttackState InSkillState) override {}
+	virtual void SetReservedSkill(EAttackState InSkillState) override {}
 
 	virtual void PreDamageAnimation(const FDamageInfo& DamageInfo, bool IsArmorBreak) override;
 

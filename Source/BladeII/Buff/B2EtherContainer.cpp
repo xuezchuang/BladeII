@@ -5,7 +5,6 @@
 #include "B2EtherManager.h"
 #include "BladeIIUtil.h"
 #include "B2UIDocHelper.h"
-#include "BladeIIUtil.h"
 #include "B2EtherInfo.h"
 
 TSubclassOf<UB2EtherSetEffect> UB2EtherSetInfoTable::GetEtherSetEffectClass(int32 EtherSetID)
@@ -18,7 +17,7 @@ TSubclassOf<UB2EtherSetEffect> UB2EtherSetInfoTable::GetEtherSetEffectClass(int3
 
 void UB2EtherContainer::InitializeContainer(class ABladeIIPlayer* EtherOwner)
 {
-	/*if (EtherOwner && EtherOwner->IsValidObj())
+	if (IsValid(EtherOwner))
 	{
 		const EPCClass OwnerClass = EtherOwner->GetCurrentPlayerClass();
 		if (OwnerClass != EPCClass::EPC_End)
@@ -47,37 +46,37 @@ void UB2EtherContainer::InitializeContainer(class ABladeIIPlayer* EtherOwner)
 			InitializeDocBattle(UB2UIDocHelper::GetDocBattle());
 
 		SetOwnerPlayer(EtherOwner);
-	}*/
+	}
 }
 
 void UB2EtherContainer::InitializeDocBattle(UB2UIDocBattle* DocBattle)
 {
-	//if (DocBattle && StaticFindEtherInfoTable())
-	//{
-	//	// Offense Ether
-	//	if (auto* OffenseEtherObj = GetOffenseEtherSet())
-	//	{
-	//		DocBattle->SetOffenseSetID(StaticFindEtherInfoTable()->GetTypeID(OffenseEtherObj->GetEtherSetID()));
-	//		DocBattle->SetIsOffenseEther(true);
-	//	}
-	//	else
-	//	{
-	//		DocBattle->SetOffenseSetID(INDEX_NONE);
-	//		DocBattle->SetIsOffenseEther(false);
-	//	}
+	if (DocBattle && StaticFindEtherInfoTable())
+	{
+		// Offense Ether
+		if (auto* OffenseEtherObj = GetOffenseEtherSet())
+		{
+			DocBattle->SetOffenseSetID(StaticFindEtherInfoTable()->GetTypeID(OffenseEtherObj->GetEtherSetID()));
+			DocBattle->SetIsOffenseEther(true);
+		}
+		else
+		{
+			DocBattle->SetOffenseSetID(INDEX_NONE);
+			DocBattle->SetIsOffenseEther(false);
+		}
 
-	//	// Defense Ether
-	//	if (auto* DefenseEtherObj = GetDefenseEtherSet())
-	//	{
-	//		DocBattle->SetDefenseSetID(StaticFindEtherInfoTable()->GetTypeID(DefenseEtherObj->GetEtherSetID()));
-	//		DocBattle->SetIsDefenseEther(true);
-	//	}
-	//	else
-	//	{
-	//		DocBattle->SetDefenseSetID(INDEX_NONE);
-	//		DocBattle->SetIsDefenseEther(false);
-	//	}
-	//}
+		// Defense Ether
+		if (auto* DefenseEtherObj = GetDefenseEtherSet())
+		{
+			DocBattle->SetDefenseSetID(StaticFindEtherInfoTable()->GetTypeID(DefenseEtherObj->GetEtherSetID()));
+			DocBattle->SetIsDefenseEther(true);
+		}
+		else
+		{
+			DocBattle->SetDefenseSetID(INDEX_NONE);
+			DocBattle->SetIsDefenseEther(false);
+		}
+	}
 }
 
 void UB2EtherContainer::SetOwnerPlayer(class ABladeIIPlayer* EtherOwner)
@@ -106,25 +105,25 @@ UB2EtherSetEffect* UB2EtherContainer::GetEtherSetEffect(EEtherSetType EtherSetTy
 
 bool UB2EtherContainer::AddEtherSetEffect(const int32 EtherSetID, float TriggerRate, float CoolTime)
 {
-	//TSubclassOf<UB2EtherSetEffect> DefaultClass = StaticFindEtherSetEffectInfo()->GetEtherSetEffectClass(EtherSetID);
-	//if (UB2EtherSetEffect* DefaultObj = DefaultClass.GetDefaultObject())
-	//{
-	//	EEtherSetType SetType = DefaultObj->GetEtherSetType();
-	//	
-	//	RemoveEtherSetEffect(SetType); // 일단 지우고
+	TSubclassOf<UB2EtherSetEffect> DefaultClass = StaticFindEtherSetEffectInfo()->GetEtherSetEffectClass(EtherSetID);
+	if (UB2EtherSetEffect* DefaultObj = DefaultClass.GetDefaultObject())
+	{
+		EEtherSetType SetType = DefaultObj->GetEtherSetType();
+		
+		RemoveEtherSetEffect(SetType); // 일단 지우고
 
-	//	UB2EtherSetEffect* NewEtherSetObject = CreateEtherSetEffect(SetType, EtherSetID);
-	//	if (NewEtherSetObject)
-	//	{
-	//		NewEtherSetObject->Initialize(OwnerPlayer, TriggerRate, CoolTime);
+		UB2EtherSetEffect* NewEtherSetObject = CreateEtherSetEffect(SetType, EtherSetID);
+		if (NewEtherSetObject)
+		{
+			NewEtherSetObject->Initialize(OwnerPlayer, TriggerRate, CoolTime);
 
-	//		if (SetType == EEtherSetType::Offense)		OffenseEther = NewEtherSetObject;
-	//		else if (SetType == EEtherSetType::Defense)	DefenseEther = NewEtherSetObject;
+			if (SetType == EEtherSetType::Offense)		OffenseEther = NewEtherSetObject;
+			else if (SetType == EEtherSetType::Defense)	DefenseEther = NewEtherSetObject;
 
-	//		
-	//		return true;
-	//	}
-	//}
+			
+			return true;
+		}
+	}
 
 	return false;
 }
@@ -169,14 +168,14 @@ UB2EtherSetEffect* UB2EtherContainer::InitEtherSetEffect(ABladeIIPlayer* EtherOw
 
 UB2EtherSetEffect* UB2EtherContainer::CreateEtherSetEffect(EEtherSetType EtherSetType, int32 EtherID)
 {
-	//TSubclassOf<UB2EtherSetEffect> DefaultClass = StaticFindEtherSetEffectInfo()->GetEtherSetEffectClass(EtherID);
-	//if (DefaultClass.Get() != nullptr)
-	//{
-	//	TSubclassOf<UB2EtherSetEffect> EtherSetClass = *DefaultClass;
-	//	UB2EtherSetEffect* EtherSetObject = NewObject<UB2EtherSetEffect>(this, EtherSetClass);
+	TSubclassOf<UB2EtherSetEffect> DefaultClass = StaticFindEtherSetEffectInfo()->GetEtherSetEffectClass(EtherID);
+	if (DefaultClass.Get() != nullptr)
+	{
+		TSubclassOf<UB2EtherSetEffect> EtherSetClass = *DefaultClass;
+		UB2EtherSetEffect* EtherSetObject = NewObject<UB2EtherSetEffect>(this, EtherSetClass);
 
-	//	return EtherSetObject;
-	//}
+		return EtherSetObject;
+	}
 
 	return nullptr;
 }
@@ -198,9 +197,9 @@ void UB2EtherContainer::RealtimeUpdateUIDoc(UB2UIDocBattle* DocBattle)
 	if (OffenseEther)
 	{
 		DocBattle->SetOffenseEtherCoolTime(OffenseEther->GetCurrentCoolTime());
-		//DocBattle->SetOffenseEtherMaxCoolTime(OffenseEther->GetMaxCoolTime());
-		//DocBattle->SetEnableOffenseEther(OffenseEther->GetEnableCoolTime());
-		//DocBattle->SetIsOffenseEther(true);
+		DocBattle->SetOffenseEtherMaxCoolTime(OffenseEther->GetMaxCoolTime());
+		DocBattle->SetEnableOffenseEther(OffenseEther->GetEnableCoolTime());
+		DocBattle->SetIsOffenseEther(true);
 	}
 	else
 	{
@@ -211,9 +210,9 @@ void UB2EtherContainer::RealtimeUpdateUIDoc(UB2UIDocBattle* DocBattle)
 	if (DefenseEther)
 	{
 		DocBattle->SetDefenseEtherCoolTime(DefenseEther->GetCurrentCoolTime());
-		//DocBattle->SetDefenseEtherMaxCoolTime(DefenseEther->GetMaxCoolTime());
-		//DocBattle->SetEnableDefenseEther(DefenseEther->GetEnableCoolTime());
-		//DocBattle->SetIsDefenseEther(true);
+		DocBattle->SetDefenseEtherMaxCoolTime(DefenseEther->GetMaxCoolTime());
+		DocBattle->SetEnableDefenseEther(DefenseEther->GetEnableCoolTime());
+		DocBattle->SetIsDefenseEther(true);
 	}
 	else 
 	{

@@ -18,6 +18,7 @@
 #include "BladeIIScalabilityControl.h"
 
 #include "FB2ErrorMessage.h"
+#include "Components/BillboardComponent.h"
 
 
 ABladeIIPlayer* AB2ActiveCameraActor::GetInteractPlayerCharacter()
@@ -30,107 +31,107 @@ AB2ActiveCameraActor::AB2ActiveCameraActor(const FObjectInitializer& ObjectIniti
 	: Super(ObjectInitializer)
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-//	PrimaryActorTick.bCanEverTick = true;
-//
-//	bReplicates = false;
-//	NetUpdateFrequency = 10.0f;
-//	bReplicateMovement = false;
-//	bCanBeDamaged = false;
-//
-//	DefaultRootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("DefaultRootComponent"));
-//	SetRootComponent(DefaultRootComponent);
-//
-//#if WITH_EDITOR && WITH_EDITORONLY_DATA
-//	EditorSpriteComponent = CreateEditorOnlyDefaultSubobject<UBillboardComponent>(TEXT("ActiveCameraActorSprite"));
-//	if (!IsRunningCommandlet() && (EditorSpriteComponent != nullptr))
-//	{
-//		// Structure to hold one-time initialization
-//		struct FConstructorStatics
-//		{
-//			ConstructorHelpers::FObjectFinderOptional<UTexture2D> SpriteTexture;
-//			FName ID_B2ActiveCameraActor;
-//			FText NAME_B2ActiveCameraActor;
-//			FConstructorStatics()
-//				: SpriteTexture(TEXT("/Engine/EditorResources/S_SceneCaptureIcon")) // 딱 카메라 모양 아이콘이 있군.
-//				, ID_B2ActiveCameraActor(TEXT("B2ActiveCameraActor"))
-//				, NAME_B2ActiveCameraActor(FText::FromString(TEXT("B2ActiveCameraActorEditorSprite")))
-//			{
-//			}
-//		};
-//		static FConstructorStatics ConstructorStatics;
-//
-//		EditorSpriteComponent->Sprite = ConstructorStatics.SpriteTexture.Get();
-//		EditorSpriteComponent->SpriteInfo.Category = ConstructorStatics.ID_B2ActiveCameraActor;
-//		EditorSpriteComponent->SpriteInfo.DisplayName = ConstructorStatics.NAME_B2ActiveCameraActor;
-//		EditorSpriteComponent->AttachToComponent(DefaultRootComponent, FAttachmentTransformRules(EAttachmentRule::KeepRelative, false));
-//		EditorSpriteComponent->bIsScreenSizeScaled = true;
-//		EditorSpriteComponent->SetRelativeScale3D(FVector(1.0f, 1.0f, 1.0f));
-//	}
-//#endif
-//
-//	CameraMovementMode = EActiveCameraMovementMode::EACMM_FollowPlayer;
-//	CameraTargetingMode = EActiveCameraTargetingMode::EACTM_Player;
-//
-//	// 상단에 CameraMovementMode 랑 CameraTargetingMode 설정 및 SetEditConditionProperties 따라 적절하게
-//	bDualCameraBlending_Inverse = true;
-//	bCameraMovementMode_ScaledFollowingPlayer = false;
-//	bCameraTargetingMode_Mob = false;
-//	bCameraTargetingMode_Mob_with_PlayerCameraBoom = false;
-//	bCameraTargetingMode_Fixed = false;
-//	bCameraMovementTarget_BothPlayer = true;
-//	bUseActiveCameraComponentMode = false;
-//	bTriggerMode_ToggleByComponent = false;
-//
-//	bIsActivated = false;
-//
-//	CameraPlayerFollowingScale = 0.5f;
-//	BlendInTime = 1.0f;
-//	BlendOutTime = 1.0f;
-//	TransitionInputDisableTime = 0.6f;
-//	TransitionAutoMoveScale = 1.0f;
-//	bTransitInInputDisabled = false;
-//	bTransitOutInputDisabled = false;
-//	
-//	bOverrideFOVAngle = false;
-//	FOV_Override = 90.0f;
-//	DCBExtraFOV_Override = 90.0f;
-//
-//	bDualCameraBlending = false;
-//	DCBExtraCamName = NAME_None;
-//	DCBFlagName = NAME_None;
-//	DCBExtraFlagName = NAME_None;
-//	bRestoreCamera = true;
-//	CachedDualCameraBlendedYaw = 0.0f;
-//
-//	bOverrideSpringArmSettings = false;
-//
-//	bUseCameraBoomRotationClamp = false;
-//
-//	TriggerMode = EActiveCameraTriggerMode::EACTRG_ActorArea;
-//
-//	FixedCameraTargetPosition = FVector(0.0f, 0.0f, 0.0f);
-//
-//	PlayerMoveInputAdjustBoomSyncAlpha = 1.0f;
-//
-//	ActiveCameraSpringArm = ObjectInitializer.CreateDefaultSubobject<USpringArmComponent>(this, TEXT("ActiveCameraSpringArm"));
-//	ActiveCameraSpringArm->AttachToComponent(DefaultRootComponent, FAttachmentTransformRules(EAttachmentRule::KeepRelative, false));
-//	ActiveCameraSpringArm->TargetArmLength = 100.0f;
-//	ActiveCameraSpringArm->SetRelativeLocation(FVector(0.0f, 0.0f, 300.0f));
-//	ActiveCameraSpringArm->SetRelativeRotation(FRotator(0.0f, 0.0f, 0.0f));
-//
-//	ActiveCameraComp = ObjectInitializer.CreateDefaultSubobject<UCameraComponent>(this, TEXT("ActiveCameraComp"));
-//	ActiveCameraComp->AttachToComponent(ActiveCameraSpringArm, FAttachmentTransformRules(EAttachmentRule::KeepRelative, false));
-//	ActiveCameraComp->bAutoActivate = true;
-//	ActiveCameraComp->SetRelativeLocation(FVector(0.0f, 0.0f, 0.0f));
-//	ActiveCameraComp->SetRelativeRotation(FRotator(0.0f, 0.0f, 0.0f));
-//
-//	bUsePlacedActiveCamYawAsInputBase = false;
-//	LastInteractBeginPlayer = NULL;
-//	CachedLocalPC = NULL;
-//	CachedInteractingController = NULL;
-//	CachedTargetMob = NULL;
-//
-//	bActivedByAnimation = false;
+	PrimaryActorTick.bCanEverTick = true;
+
+	bReplicates = false;
+	NetUpdateFrequency = 10.0f;
+	SetReplicatingMovement(false);
+	SetCanBeDamaged(false);
+
+	DefaultRootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("DefaultRootComponent"));
+	SetRootComponent(DefaultRootComponent);
+
+#if WITH_EDITOR && WITH_EDITORONLY_DATA
+	EditorSpriteComponent = CreateEditorOnlyDefaultSubobject<UBillboardComponent>(TEXT("ActiveCameraActorSprite"));
+	if (!IsRunningCommandlet() && (EditorSpriteComponent != nullptr))
+	{
+		// Structure to hold one-time initialization
+		struct FConstructorStatics
+		{
+			ConstructorHelpers::FObjectFinderOptional<UTexture2D> SpriteTexture;
+			FName ID_B2ActiveCameraActor;
+			FText NAME_B2ActiveCameraActor;
+			FConstructorStatics()
+				: SpriteTexture(TEXT("/Engine/EditorResources/S_SceneCaptureIcon")) // 딱 카메라 모양 아이콘이 있군.
+				, ID_B2ActiveCameraActor(TEXT("B2ActiveCameraActor"))
+				, NAME_B2ActiveCameraActor(FText::FromString(TEXT("B2ActiveCameraActorEditorSprite")))
+			{
+			}
+		};
+		static FConstructorStatics ConstructorStatics;
+
+		EditorSpriteComponent->Sprite = ConstructorStatics.SpriteTexture.Get();
+		EditorSpriteComponent->SpriteInfo.Category = ConstructorStatics.ID_B2ActiveCameraActor;
+		EditorSpriteComponent->SpriteInfo.DisplayName = ConstructorStatics.NAME_B2ActiveCameraActor;
+		EditorSpriteComponent->AttachToComponent(DefaultRootComponent, FAttachmentTransformRules(EAttachmentRule::KeepRelative, false));
+		EditorSpriteComponent->bIsScreenSizeScaled = true;
+		EditorSpriteComponent->SetRelativeScale3D(FVector(1.0f, 1.0f, 1.0f));
+	}
+#endif
+
+	CameraMovementMode = EActiveCameraMovementMode::EACMM_FollowPlayer;
+	CameraTargetingMode = EActiveCameraTargetingMode::EACTM_Player;
+
+	// 상단에 CameraMovementMode 랑 CameraTargetingMode 설정 및 SetEditConditionProperties 따라 적절하게
+	bDualCameraBlending_Inverse = true;
+	bCameraMovementMode_ScaledFollowingPlayer = false;
+	bCameraTargetingMode_Mob = false;
+	bCameraTargetingMode_Mob_with_PlayerCameraBoom = false;
+	bCameraTargetingMode_Fixed = false;
+	bCameraMovementTarget_BothPlayer = true;
+	bUseActiveCameraComponentMode = false;
+	bTriggerMode_ToggleByComponent = false;
+
+	bIsActivated = false;
+
+	CameraPlayerFollowingScale = 0.5f;
+	BlendInTime = 1.0f;
+	BlendOutTime = 1.0f;
+	TransitionInputDisableTime = 0.6f;
+	TransitionAutoMoveScale = 1.0f;
+	bTransitInInputDisabled = false;
+	bTransitOutInputDisabled = false;
+	
+	bOverrideFOVAngle = false;
+	FOV_Override = 90.0f;
+	DCBExtraFOV_Override = 90.0f;
+
+	bDualCameraBlending = false;
+	DCBExtraCamName = NAME_None;
+	DCBFlagName = NAME_None;
+	DCBExtraFlagName = NAME_None;
+	bRestoreCamera = true;
+	CachedDualCameraBlendedYaw = 0.0f;
+
+	bOverrideSpringArmSettings = false;
+
+	bUseCameraBoomRotationClamp = false;
+
+	TriggerMode = EActiveCameraTriggerMode::EACTRG_ActorArea;
+
+	FixedCameraTargetPosition = FVector(0.0f, 0.0f, 0.0f);
+
+	PlayerMoveInputAdjustBoomSyncAlpha = 1.0f;
+
+	ActiveCameraSpringArm = ObjectInitializer.CreateDefaultSubobject<USpringArmComponent>(this, TEXT("ActiveCameraSpringArm"));
+	ActiveCameraSpringArm->AttachToComponent(DefaultRootComponent, FAttachmentTransformRules(EAttachmentRule::KeepRelative, false));
+	ActiveCameraSpringArm->TargetArmLength = 100.0f;
+	ActiveCameraSpringArm->SetRelativeLocation(FVector(0.0f, 0.0f, 300.0f));
+	ActiveCameraSpringArm->SetRelativeRotation(FRotator(0.0f, 0.0f, 0.0f));
+
+	ActiveCameraComp = ObjectInitializer.CreateDefaultSubobject<UCameraComponent>(this, TEXT("ActiveCameraComp"));
+	ActiveCameraComp->AttachToComponent(ActiveCameraSpringArm, FAttachmentTransformRules(EAttachmentRule::KeepRelative, false));
+	ActiveCameraComp->bAutoActivate = true;
+	ActiveCameraComp->SetRelativeLocation(FVector(0.0f, 0.0f, 0.0f));
+	ActiveCameraComp->SetRelativeRotation(FRotator(0.0f, 0.0f, 0.0f));
+
+	bUsePlacedActiveCamYawAsInputBase = false;
+	LastInteractBeginPlayer = NULL;
+	CachedLocalPC = NULL;
+	CachedInteractingController = NULL;
+	CachedTargetMob = NULL;
+
+	bActivedByAnimation = false;
 }
 
 void AB2ActiveCameraActor::PostLoad()

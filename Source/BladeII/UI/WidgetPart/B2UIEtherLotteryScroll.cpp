@@ -4,6 +4,7 @@
 #include "B2UIEtherLotteryRow.h"
 #include "BladeIIUtil.h"
 #include "B2EtherInfo.h"
+#include "Event.h"
 
 const int32 ETHERLOTTERY_MAX_SLOT = 4;
 
@@ -54,7 +55,7 @@ void UB2UIEtherLotteryScroll::DestroySelf(class UB2UIManager* InUIManager)
 		}
 	}
 
-	//SelectEtherLotterySlotClass<int32>::GetInstance().Unsubscribe(SelectEtherLotterySlotTicket);
+	SelectEtherLotterySlotClass<int32>::GetInstance().Unsubscribe(SelectEtherLotterySlotTicket);
 }
 
 void UB2UIEtherLotteryScroll::CacheAssets()
@@ -64,16 +65,16 @@ void UB2UIEtherLotteryScroll::CacheAssets()
 
 void UB2UIEtherLotteryScroll::BindDelegates()
 {
-	//SelectEtherLotterySlotTicket = SelectEtherLotterySlotClass<int32>::GetInstance().Subscribe([this](int32 InTypeID)
-	//{
-	//	for (TWeakObjectPtr<UB2UIEtherLotteryRow>Elem : UIP_EtherLotteryRowSlots)
-	//	{
-	//		if (Elem.IsValid())
-	//		{
-	//			Elem->SetSelectedVisibility(InTypeID);
-	//		}
-	//	}
-	//});
+	SelectEtherLotterySlotTicket = SelectEtherLotterySlotClass<int32>::GetInstance().Subscribe([this](int32 InTypeID)
+	{
+		for (TWeakObjectPtr<UB2UIEtherLotteryRow>Elem : UIP_EtherLotteryRowSlots)
+		{
+			if (Elem.IsValid())
+			{
+				Elem->SetSelectedVisibility(InTypeID);
+			}
+		}
+	});
 }
 
 int32 UB2UIEtherLotteryScroll::GetMaxRow(int MaxSlot)

@@ -29,6 +29,7 @@
 #include "B2PlatformAPI.h"
 #include "B2UIHallOfFame.h"
 #include "B2StageManager.h"
+#include "../Common/Event.h"
 
 UB2UIManager* UB2UIManager::Instance = nullptr;
 
@@ -1244,219 +1245,219 @@ void UB2UIManager::OpenMsgPopupFromErrorCode(int32 nErrorCode)
 	//////////////////////////////////////////////////////////////////////////////
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2UIManager_OpenMsgPopupFromErrorCode);
 
-	//if (CheckErrorCodeContains(nErrorCode)) // 체크하지 않는 Errorcode는 바로 실행(상점 등)
-	//{
-	//	if (ErrorCodeContains(nErrorCode)) // 담겨 있으면 return
-	//		return;
+	if (CheckErrorCodeContains(nErrorCode)) // 체크하지 않는 Errorcode는 바로 실행(상점 등)
+	{
+		if (ErrorCodeContains(nErrorCode)) // 담겨 있으면 return
+			return;
 
-	//	SetErrorTimeStamp(nErrorCode); // 등록
-	//}
+		SetErrorTimeStamp(nErrorCode); // 등록
+	}
 
-	//FMsgPopupOnClick ErrorMsgPopuoOnClick = nullptr;
+	FMsgPopupOnClick ErrorMsgPopuoOnClick = nullptr;
 
-	//switch (nErrorCode)
-	//{
-	//case B2ResultCode::FAILURE_BLADEPOINT_UNDERFLOW:	//FAILURE_BLADEPOINT_UNDERFLOW		BladePoint is zero.
-	//	HandleServerErrorGoodsShortageClass<const uint32, const EGoodsButtonType>::GetInstance().Signal(FItemRefIDHelper::GetGoodsID_BladePoint(), EGoodsButtonType::EGoodsButtonType_ShortageShortcut);
-	//	return;
-	//case B2ResultCode::FAILURE_NOT_ENOUGH_STAGE_BOOST_TICKET: // Not Enough stage boost ticket
-	//	HandleServerError4018Class<>::GetInstance().Signal();
-	//	break;
-	//case B2ResultCode::FAILURE_SOCIALPOINT_UNDERFLOW:	//FAILURE_SOCIALPOINT_UNDERFLOW		SocialPoint is zero.//상점에서 우정포인트 부족할때 샀을 경우
-	//{
-	//	UB2UIManager::GetInstance()->GetShortagePopupMGR()->PopupGotoFriendForFriendShip();
-	//	return;
-	//}
-	//case B2ResultCode::FAILURE_CASH_UNDERFLOW:	//FAILURE_CASH_UNDERFLOW							Cash is zero.
-	//	HandleServerError910Class<>::GetInstance().Signal();
-	//	return;
-	//case B2ResultCode::FAILURE_MONEY_UNDERFLOW:	//FAILURE_MONEY_UNDERFLOW						Money is zero.
-	//	HandleServerError911Class<>::GetInstance().Signal();
-	//	return;
-	//case B2ResultCode::FAILURE_DARK_CRYSTAL_UNDERFLOW:	//FAILURE_DARK_CRYSTAL_UNDERFLOW				Not enough dark crystal
-	//	HandleServerError919Class<>::GetInstance().Signal();
-	//	return;
-	//case B2ResultCode::FAILURE_FAME_POINT_UNDERFLOW:
-	//	HandleServerError932Class<>::GetInstance().Signal();
-	//	return;
-	//case B2ResultCode::FAILURE_DUPLICATED_NICKNAME:	//FAILURE_DUPLICATED_NICKNAME					Account Nickname already exists.
-	//	HandleServerError101Class<>::GetInstance().Signal();
-	//	return;
-	//case B2ResultCode::FAILURE_INTERNAL_ERROR:	//FAILURE_INTERNAL_ERROR						Server internal error
-	//case B2ResultCode::FAILURE_INTERNAL_DATABASE_ERROR:	//FAILURE_INTERNAL_DATABASE_ERROR				Server internal database error.
-	//case B2ResultCode::FAILURE_MASTER_DATA_ERROR:	//FAILURE_MASTER_DATA_ERROR						Master data not found
-	//case B2ResultCode::FAILURE_NO_ACCOUNT_NICKNAME:	//FAILURE_NO_ACCOUNT_NICKNAME					Account nickname is empty
-	//	GoToTitlePopup(nErrorCode);
-	//	return;
-	//case B2ResultCode::FAILURE_NOT_READY_TO_REWARD_QUEST:
-	//	CloseUI(UIFName::QuestNotice);
-	//	CloseUI(UIFName::QuestDialog);
-	//	GoToLobbyPopup(nErrorCode);
-	//	return;
-	//case B2ResultCode::FAILURE_NICKNAME_LENGTH_NOT_AVAILABLE:	//FAILURE_NICKNAME_LENGTH_NOT_AVAILABLE			Nickname length is not available
-	//	HandleServerError113Class<>::GetInstance().Signal();
-	//	return;
-	//case B2ResultCode::FAILURE_NOT_EXIST_MD_MARKET_PRODUCT:
-	//	HandleServerInAppPurchaseErrorClass<int32>::GetInstance().Signal(B2ResultCode::FAILURE_NOT_EXIST_MD_MARKET_PRODUCT);
-	//	return;
-	//case B2ResultCode::FAILURE_HERO_TOWER_HERO_PIECE_UNDERFLOW:	//FAILURE_HERO_TOWER_HERO_PIECE_UNDERFLOW		Hero piece count is underflow.
-	//	HandleServerError4207Class<>::GetInstance().Signal();
-	//	return;
-	//case B2ResultCode::FAILURE_NOT_ENOUGH_STAGE_SWEEP_TICKET:
-	//	HandleServerError4032Class<>::GetInstance().Signal();
-	//	return;
-	//case B2ResultCode::FAILURE_OVERFLOW_TARGET_FRIEND_COUNT:
-	//	HandleServerError5513Class<>::GetInstance().Signal();
-	//	return;
+	switch (nErrorCode)
+	{
+	case B2ResultCode::FAILURE_BLADEPOINT_UNDERFLOW:	//FAILURE_BLADEPOINT_UNDERFLOW		BladePoint is zero.
+		HandleServerErrorGoodsShortageClass<const uint32, const EGoodsButtonType>::GetInstance().Signal(FItemRefIDHelper::GetGoodsID_BladePoint(), EGoodsButtonType::EGoodsButtonType_ShortageShortcut);
+		return;
+	case B2ResultCode::FAILURE_NOT_ENOUGH_STAGE_BOOST_TICKET: // Not Enough stage boost ticket
+		HandleServerError4018Class<>::GetInstance().Signal();
+		break;
+	case B2ResultCode::FAILURE_SOCIALPOINT_UNDERFLOW:	//FAILURE_SOCIALPOINT_UNDERFLOW		SocialPoint is zero.//상점에서 우정포인트 부족할때 샀을 경우
+	{
+		UB2UIManager::GetInstance()->GetShortagePopupMGR()->PopupGotoFriendForFriendShip();
+		return;
+	}
+	case B2ResultCode::FAILURE_CASH_UNDERFLOW:	//FAILURE_CASH_UNDERFLOW							Cash is zero.
+		HandleServerError910Class<>::GetInstance().Signal();
+		return;
+	case B2ResultCode::FAILURE_MONEY_UNDERFLOW:	//FAILURE_MONEY_UNDERFLOW						Money is zero.
+		HandleServerError911Class<>::GetInstance().Signal();
+		return;
+	case B2ResultCode::FAILURE_DARK_CRYSTAL_UNDERFLOW:	//FAILURE_DARK_CRYSTAL_UNDERFLOW				Not enough dark crystal
+		HandleServerError919Class<>::GetInstance().Signal();
+		return;
+	case B2ResultCode::FAILURE_FAME_POINT_UNDERFLOW:
+		HandleServerError932Class<>::GetInstance().Signal();
+		return;
+	case B2ResultCode::FAILURE_DUPLICATED_NICKNAME:	//FAILURE_DUPLICATED_NICKNAME					Account Nickname already exists.
+		HandleServerError101Class<>::GetInstance().Signal();
+		return;
+	case B2ResultCode::FAILURE_INTERNAL_ERROR:	//FAILURE_INTERNAL_ERROR						Server internal error
+	case B2ResultCode::FAILURE_INTERNAL_DATABASE_ERROR:	//FAILURE_INTERNAL_DATABASE_ERROR				Server internal database error.
+	case B2ResultCode::FAILURE_MASTER_DATA_ERROR:	//FAILURE_MASTER_DATA_ERROR						Master data not found
+	case B2ResultCode::FAILURE_NO_ACCOUNT_NICKNAME:	//FAILURE_NO_ACCOUNT_NICKNAME					Account nickname is empty
+		GoToTitlePopup(nErrorCode);
+		return;
+	case B2ResultCode::FAILURE_NOT_READY_TO_REWARD_QUEST:
+		CloseUI(UIFName::QuestNotice);
+		CloseUI(UIFName::QuestDialog);
+		GoToLobbyPopup(nErrorCode);
+		return;
+	case B2ResultCode::FAILURE_NICKNAME_LENGTH_NOT_AVAILABLE:	//FAILURE_NICKNAME_LENGTH_NOT_AVAILABLE			Nickname length is not available
+		HandleServerError113Class<>::GetInstance().Signal();
+		return;
+	case B2ResultCode::FAILURE_NOT_EXIST_MD_MARKET_PRODUCT:
+		HandleServerInAppPurchaseErrorClass<int32>::GetInstance().Signal(B2ResultCode::FAILURE_NOT_EXIST_MD_MARKET_PRODUCT);
+		return;
+	case B2ResultCode::FAILURE_HERO_TOWER_HERO_PIECE_UNDERFLOW:	//FAILURE_HERO_TOWER_HERO_PIECE_UNDERFLOW		Hero piece count is underflow.
+		HandleServerError4207Class<>::GetInstance().Signal();
+		return;
+	case B2ResultCode::FAILURE_NOT_ENOUGH_STAGE_SWEEP_TICKET:
+		HandleServerError4032Class<>::GetInstance().Signal();
+		return;
+	case B2ResultCode::FAILURE_OVERFLOW_TARGET_FRIEND_COUNT:
+		HandleServerError5513Class<>::GetInstance().Signal();
+		return;
 
-	//case B2ResultCode::FAILURE_INVALID_COUNT_TO_USE_ADDITIONAL_MATCH:	//FAILURE_INVALID_COUNT_TO_USE_ADDITIONAL_MATCH	Invalid count to use additional match
-	//	HandleServerError6516Class<>::GetInstance().Signal();
-	//	return;
+	case B2ResultCode::FAILURE_INVALID_COUNT_TO_USE_ADDITIONAL_MATCH:	//FAILURE_INVALID_COUNT_TO_USE_ADDITIONAL_MATCH	Invalid count to use additional match
+		HandleServerError6516Class<>::GetInstance().Signal();
+		return;
 
-	//case B2ResultCode::ERROR_MATCHMAKING_CANCELED:	//ERROR_MATCHMAKING_CANCLED						Matchmaking cancled
-	//	DeliveryCancelMatchmakingClass<>::GetInstance().Signal();
-	//	return;
-	//case B2ResultCode::FAILURE_MATCHING_RAID_PENALTY_TIME:	//FAILURE_MATCHING_RAID_PENALTY_TIME			Fail matching raid penalty time
-	//	HandleServerError7413Class<>::GetInstance().Signal();
-	//	return;
-	//case B2ResultCode::FAILURE_KAKAO_MESSAGE_EMPTY_MESSAGEBOX:	//FAILURE_KAKAO_MESSAGE_EMPTY_MESSAGEBOX		kakako message box is empty
-	//case B2ResultCode::FAILURE_KAKAO_MESSAGE_ALREADY_PROCESSING:	//FAILURE_KAKAO_MESSAGE_ALREADY_PROCESSING		kakako message is already processing state
-	//	return;
+	case B2ResultCode::ERROR_MATCHMAKING_CANCELED:	//ERROR_MATCHMAKING_CANCLED						Matchmaking cancled
+		DeliveryCancelMatchmakingClass<>::GetInstance().Signal();
+		return;
+	case B2ResultCode::FAILURE_MATCHING_RAID_PENALTY_TIME:	//FAILURE_MATCHING_RAID_PENALTY_TIME			Fail matching raid penalty time
+		HandleServerError7413Class<>::GetInstance().Signal();
+		return;
+	case B2ResultCode::FAILURE_KAKAO_MESSAGE_EMPTY_MESSAGEBOX:	//FAILURE_KAKAO_MESSAGE_EMPTY_MESSAGEBOX		kakako message box is empty
+	case B2ResultCode::FAILURE_KAKAO_MESSAGE_ALREADY_PROCESSING:	//FAILURE_KAKAO_MESSAGE_ALREADY_PROCESSING		kakako message is already processing state
+		return;
 
-	//case B2ResultCode::FAILURE_EXPIRED_MAIL:	//FAILURE_EXPIRED_MAIL							Expired Mail 
-	//case B2ResultCode::FAILURE_NOT_EXIST_TO_OPEN_MAIL:	//FAILURE_NOT_EXIST_TO_OPEN_MAIL				fail not exist to open mail 
-	//	ErrorMsgPopuoOnClick = FMsgPopupOnClick::CreateLambda([]() { RequestCurrentTabMailListClass<>::GetInstance().Signal(); });
-	//	break;
+	case B2ResultCode::FAILURE_EXPIRED_MAIL:	//FAILURE_EXPIRED_MAIL							Expired Mail 
+	case B2ResultCode::FAILURE_NOT_EXIST_TO_OPEN_MAIL:	//FAILURE_NOT_EXIST_TO_OPEN_MAIL				fail not exist to open mail 
+		ErrorMsgPopuoOnClick = FMsgPopupOnClick::CreateLambda([]() { RequestCurrentTabMailListClass<>::GetInstance().Signal(); });
+		break;
 
-	//case B2ResultCode::FAILURE_NOT_PASSED_ATTENDANCE_TIME:	//FAILURE_NOT_PASSED_ATTENDANCE_TIME			not passed attendance time
-	//	ErrorMsgPopuoOnClick = FMsgPopupOnClick::CreateLambda([]() { UpdateEventAttendancePartsClass<>::GetInstance().Signal(); });
-	//	break;
+	case B2ResultCode::FAILURE_NOT_PASSED_ATTENDANCE_TIME:	//FAILURE_NOT_PASSED_ATTENDANCE_TIME			not passed attendance time
+		ErrorMsgPopuoOnClick = FMsgPopupOnClick::CreateLambda([]() { UpdateEventAttendancePartsClass<>::GetInstance().Signal(); });
+		break;
 
-	//case B2ResultCode::FAILURE_NOT_FREE_LOTTERY_STATE:		//FAILURE_NOT_FREE_LOTTERY_STATE			fail not free lottery state
-	//	ErrorMsgPopuoOnClick = FMsgPopupOnClick::CreateLambda([]() { HandleServerError7237Class<>::GetInstance().Signal(); });
-	//	break;
+	case B2ResultCode::FAILURE_NOT_FREE_LOTTERY_STATE:		//FAILURE_NOT_FREE_LOTTERY_STATE			fail not free lottery state
+		ErrorMsgPopuoOnClick = FMsgPopupOnClick::CreateLambda([]() { HandleServerError7237Class<>::GetInstance().Signal(); });
+		break;
 
-	//case B2ResultCode::ERROR_CHANNEL_SERVER_UNAVAILABLE:	//ERROR_CHANNEL_SERVER_UNAVAILABLE				channel server unavailable
-	//case 8404:	//B2ResultCode::ERROR_NOT_FOUND								not found
-	//case B2ResultCode::ERROR_BAD_REQUEST:	//ERROR_BAD_REQUEST								bad request
-	//case B2ResultCode::FAILURE_TRY_AGAIN_ERROR:	//FAILURE_TRY_AGAIN_ERROR						Try again later
-	//case B2ResultCode::FAILURE_GUILD_BATTLE_TIME_LIMIT_OVER:	//FAILURE_GUILD_BATTLE_TIME_LIMIT_OVER	GuildBattle TimeOver
-	//	ErrorMsgPopuoOnClick = FMsgPopupOnClick::CreateLambda([]() {GoToVillageClass<>::GetInstance().Signal(); });
-	//	break;
+	case B2ResultCode::ERROR_CHANNEL_SERVER_UNAVAILABLE:	//ERROR_CHANNEL_SERVER_UNAVAILABLE				channel server unavailable
+	case 8404:	//B2ResultCode::ERROR_NOT_FOUND								not found
+	case B2ResultCode::ERROR_BAD_REQUEST:	//ERROR_BAD_REQUEST								bad request
+	case B2ResultCode::FAILURE_TRY_AGAIN_ERROR:	//FAILURE_TRY_AGAIN_ERROR						Try again later
+	case B2ResultCode::FAILURE_GUILD_BATTLE_TIME_LIMIT_OVER:	//FAILURE_GUILD_BATTLE_TIME_LIMIT_OVER	GuildBattle TimeOver
+		ErrorMsgPopuoOnClick = FMsgPopupOnClick::CreateLambda([]() {GoToVillageClass<>::GetInstance().Signal(); });
+		break;
 
-	//case B2ResultCode::ERROR_CHANNEL_SERVER_ROOM_CLOSED:	// Room has already begin game
-	//	ErrorMsgPopuoOnClick = FMsgPopupOnClick::CreateLambda([]() {HandleServerError8005Class<>::GetInstance().Signal(); });
-	//	break;
+	case B2ResultCode::ERROR_CHANNEL_SERVER_ROOM_CLOSED:	// Room has already begin game
+		ErrorMsgPopuoOnClick = FMsgPopupOnClick::CreateLambda([]() {HandleServerError8005Class<>::GetInstance().Signal(); });
+		break;
 
-	//case B2ResultCode::FAILURE_CONTENTS_SYSTEM_CHECK_STATE:
-	//case B2ResultCode::FAILURE_CONTENTS_BLOCK_ENTER_STATE:
-	//	SettlePopup(nErrorCode);
-	//	return;
+	case B2ResultCode::FAILURE_CONTENTS_SYSTEM_CHECK_STATE:
+	case B2ResultCode::FAILURE_CONTENTS_BLOCK_ENTER_STATE:
+		SettlePopup(nErrorCode);
+		return;
 
-	//case B2ResultCode::FAILURE_CONTENTS_MODE_FINISH_STATE:	//FAILURE_CONTENTS_MODE_FINISH_STATE			contents is mode finish state
-	//	if (GetCurrUIScene() == EUIScene::HallOfFame)
-	//	{
-	//		SettlePopup(nErrorCode);
-	//	}
-	//	else
-	//	{
-	//		ErrorMsgPopuoOnClick = FMsgPopupOnClick::CreateLambda([]() {GoToVillageClass<>::GetInstance().Signal(); });
-	//	}
-	//	break;
+	case B2ResultCode::FAILURE_CONTENTS_MODE_FINISH_STATE:	//FAILURE_CONTENTS_MODE_FINISH_STATE			contents is mode finish state
+		if (GetCurrUIScene() == EUIScene::HallOfFame)
+		{
+			SettlePopup(nErrorCode);
+		}
+		else
+		{
+			ErrorMsgPopuoOnClick = FMsgPopupOnClick::CreateLambda([]() {GoToVillageClass<>::GetInstance().Signal(); });
+		}
+		break;
 
-	//case B2ResultCode::ERROR_SERVICE_UNAVAILABLE:	//ERROR_SERVICE_UNAVAILABLE						service unavailable
-	//case B2ResultCode::ERROR_API_SERVER_UNAVAILABLE:	//ERROR_API_SERVER_UNAVAILABLE					api server unavailable
-	//case B2ResultCode::ERROR_SESSION_SERVER_UNAVAILABLE:	//ERROR_SESSION_SERVER_UNAVAILABLE				session server unavailable
-	//case B2ResultCode::ERROR_VERSION_MISMATCH:	//ERROR_VERSION_MISMATCH						version mismatch
-	//case B2ResultCode::ERROR_PROTOCOL_MISMATCH:	//ERROR_PROTOCOL_MISMATCH						protocol mismatch
-	//case B2ResultCode::ERROR_PROTOCOL_CORRUPTED:	//ERROR_PROTOCOL_CORRUPTED						protocol corrupted
-	//case B2ResultCode::ERROR_UNAUTHENTICATED:	//ERROR_UNAUTHENTICATED							unauthenticated
-	//case B2ResultCode::ERROR_INVALID_REQUEST:	//ERROR_INVALID_REQUEST							invalid request
-	//case B2ResultCode::ERROR_ALREADY_AUTHENTICATED:	//ERROR_ALREADY_AUTHENTICATED					already authenticated
-	//case B2ResultCode::ERROR_UNAUTHORIZED:	//ERROR_UNAUTHORIZED							unauthorized
-	//case B2ResultCode::ERROR_INSECURE_SESSION:	//ERROR_INSECURE_SESSION						insecure session
-	//	ErrorMsgPopuoOnClick = FMsgPopupOnClick::CreateLambda([]() {GoToTitleClass<>::GetInstance().Signal(); });
-	//	break;
+	case B2ResultCode::ERROR_SERVICE_UNAVAILABLE:	//ERROR_SERVICE_UNAVAILABLE						service unavailable
+	case B2ResultCode::ERROR_API_SERVER_UNAVAILABLE:	//ERROR_API_SERVER_UNAVAILABLE					api server unavailable
+	case B2ResultCode::ERROR_SESSION_SERVER_UNAVAILABLE:	//ERROR_SESSION_SERVER_UNAVAILABLE				session server unavailable
+	case B2ResultCode::ERROR_VERSION_MISMATCH:	//ERROR_VERSION_MISMATCH						version mismatch
+	case B2ResultCode::ERROR_PROTOCOL_MISMATCH:	//ERROR_PROTOCOL_MISMATCH						protocol mismatch
+	case B2ResultCode::ERROR_PROTOCOL_CORRUPTED:	//ERROR_PROTOCOL_CORRUPTED						protocol corrupted
+	case B2ResultCode::ERROR_UNAUTHENTICATED:	//ERROR_UNAUTHENTICATED							unauthenticated
+	case B2ResultCode::ERROR_INVALID_REQUEST:	//ERROR_INVALID_REQUEST							invalid request
+	case B2ResultCode::ERROR_ALREADY_AUTHENTICATED:	//ERROR_ALREADY_AUTHENTICATED					already authenticated
+	case B2ResultCode::ERROR_UNAUTHORIZED:	//ERROR_UNAUTHORIZED							unauthorized
+	case B2ResultCode::ERROR_INSECURE_SESSION:	//ERROR_INSECURE_SESSION						insecure session
+		ErrorMsgPopuoOnClick = FMsgPopupOnClick::CreateLambda([]() {GoToTitleClass<>::GetInstance().Signal(); });
+		break;
 
-	//case B2ResultCode::FAILURE_NOT_START_STATE_MATCH_INFO:
-	//	if (GetCurrUIScene() == EUIScene::PVPOneOnOneFindMatch)
-	//	{
-	//		ErrorMsgPopuoOnClick = FMsgPopupOnClick::CreateLambda([]() {UB2UIManager::GetInstance()->ChangeUIScene(EUIScene::PVPOneOnOne); });
-	//	}
-	//	break;
+	case B2ResultCode::FAILURE_NOT_START_STATE_MATCH_INFO:
+		if (GetCurrUIScene() == EUIScene::PVPOneOnOneFindMatch)
+		{
+			ErrorMsgPopuoOnClick = FMsgPopupOnClick::CreateLambda([]() {UB2UIManager::GetInstance()->ChangeUIScene(EUIScene::PVPOneOnOne); });
+		}
+		break;
 
-	//case B2ResultCode::FAILURE_THIS_DONATION_EVENT_ALREADY_ENDED:
-	//case B2ResultCode::FAILURE_NOT_EXIST_DONATION_STATUS:
-	//case B2ResultCode::FAILURE_INVALID_DONATION_ID:
-	//case B2ResultCode::FAILURE_ALREADY_REWARDED_DONATION_POINT_REWARD:
-	//case B2ResultCode::FAILURE_UPDATE_DONATION_POINT_REWARD_STATE:
-	//case B2ResultCode::FAILURE_DUPLICATE_DONATION_EVENT_IN_PROGRESS:
-	//case B2ResultCode::FAILURE_NOT_ENOUGH_POINT_RECEIVE_REWARD:
-	//case B2ResultCode::FAILURE_YET_REMAIN_FREE_DONATION_COUNT:
-	//	UpdateDonationEventClass<>::GetInstance().Signal();
-	//	break;
-	//}
+	case B2ResultCode::FAILURE_THIS_DONATION_EVENT_ALREADY_ENDED:
+	case B2ResultCode::FAILURE_NOT_EXIST_DONATION_STATUS:
+	case B2ResultCode::FAILURE_INVALID_DONATION_ID:
+	case B2ResultCode::FAILURE_ALREADY_REWARDED_DONATION_POINT_REWARD:
+	case B2ResultCode::FAILURE_UPDATE_DONATION_POINT_REWARD_STATE:
+	case B2ResultCode::FAILURE_DUPLICATE_DONATION_EVENT_IN_PROGRESS:
+	case B2ResultCode::FAILURE_NOT_ENOUGH_POINT_RECEIVE_REWARD:
+	case B2ResultCode::FAILURE_YET_REMAIN_FREE_DONATION_COUNT:
+		UpdateDonationEventClass<>::GetInstance().Signal();
+		break;
+	}
 
-	//UB2UIManager* UIMgr = UB2UIManager::GetInstance();
-	//if (UIMgr && UIMgr->GetCurrUIScene() == EUIScene::SummonItemResult)
-	//{
-	//	ErrorMsgPopuoOnClick = FMsgPopupOnClick::CreateLambda([]() { LobbyChangeSceneByUISceneClass<EUIScene>::GetInstance().Signal(EUIScene::SummonItemStore); });
-	//}
+	UB2UIManager* UIMgr = UB2UIManager::GetInstance();
+	if (UIMgr && UIMgr->GetCurrUIScene() == EUIScene::SummonItemResult)
+	{
+		ErrorMsgPopuoOnClick = FMsgPopupOnClick::CreateLambda([]() { LobbyChangeSceneByUISceneClass<EUIScene>::GetInstance().Signal(EUIScene::SummonItemStore); });
+	}
 
-	//EUIMsgPopup PopupType = EUIMsgPopup::Simple;
+	EUIMsgPopup PopupType = EUIMsgPopup::Simple;
 
-	//UB2ErrorCodeInfo* pErrorCodeInfo = StaticFindErrorCodeInfo();
-	//if (pErrorCodeInfo)
-	//{
-	//	FSingleErrorCodeInfoData* pErrorCodeData = pErrorCodeInfo->GetInfoData(nErrorCode);
+	UB2ErrorCodeInfo* pErrorCodeInfo = StaticFindErrorCodeInfo();
+	if (pErrorCodeInfo)
+	{
+		FSingleErrorCodeInfoData* pErrorCodeData = pErrorCodeInfo->GetInfoData(nErrorCode);
 
-	//	if (pErrorCodeData)
-	//	{
-	//		PopupType = pErrorCodeData->PopupType;
-	//	}
-	//}
+		if (pErrorCodeData)
+		{
+			PopupType = pErrorCodeData->PopupType;
+		}
+	}
 
-	//FText txtComment = BladeIIGetLOCText(B2LOC_CAT_ERROR_CODE, FString::FromInt(nErrorCode));
+	FText txtComment = BladeIIGetLOCText(B2LOC_CAT_ERROR_CODE, FString::FromInt(nErrorCode));
 
-	//if (PopupType == EUIMsgPopup::Center)
-	//{
-	//	UB2UIManager::GetInstance()->OpenMsgPopup(PopupType,
-	//		txtComment,
-	//		FText::FromString(TEXT("")),
-	//		1.5f,
-	//		true,
-	//		true,
-	//		EUIMsgPopupButtonGroup::Yes,
-	//		ErrorMsgPopuoOnClick
-	//	);
-	//}
-	//else
-	//{
-	//	// EUIMsgPopup::Simple 이용할땐 에러코드번호도 보여줌
+	if (PopupType == EUIMsgPopup::Center)
+	{
+		UB2UIManager::GetInstance()->OpenMsgPopup(PopupType,
+			txtComment,
+			FText::FromString(TEXT("")),
+			1.5f,
+			true,
+			true,
+			EUIMsgPopupButtonGroup::Yes,
+			ErrorMsgPopuoOnClick
+		);
+	}
+	else
+	{
+		// EUIMsgPopup::Simple 이용할땐 에러코드번호도 보여줌
 
-	//	FSingleErrorCodeInfoData* pErrorCodeData = pErrorCodeInfo->GetInfoData(nErrorCode);
+		FSingleErrorCodeInfoData* pErrorCodeData = pErrorCodeInfo->GetInfoData(nErrorCode);
 
-	//	if (!pErrorCodeData || pErrorCodeData->ViewErrorNumber)
-	//	{
-	//		FString strErrorCode = FString::Printf(TEXT("\n(%d)"), nErrorCode);
-	//		txtComment = FText::Format(FText::FromString(TEXT("{0}{1}")), txtComment, FText::FromString(strErrorCode));
-	//	}
+		if (!pErrorCodeData || pErrorCodeData->ViewErrorNumber)
+		{
+			FString strErrorCode = FString::Printf(TEXT("\n(%d)"), nErrorCode);
+			txtComment = FText::Format(FText::FromString(TEXT("{0}{1}")), txtComment, FText::FromString(strErrorCode));
+		}
 
-	//	UB2UIMsgPopupSimple* pPopupUI = UB2UIManager::GetInstance()->OpenMsgPopup<UB2UIMsgPopupSimple>(EUIMsgPopup::Simple,
-	//		BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("General_Notification")),
-	//		txtComment,
-	//		0.f,
-	//		true,
-	//		true,
-	//		EUIMsgPopupButtonGroup::Confirm,
-	//		ErrorMsgPopuoOnClick
-	//		);
+		UB2UIMsgPopupSimple* pPopupUI = UB2UIManager::GetInstance()->OpenMsgPopup<UB2UIMsgPopupSimple>(EUIMsgPopup::Simple,
+			BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("General_Notification")),
+			txtComment,
+			0.f,
+			true,
+			true,
+			EUIMsgPopupButtonGroup::Confirm,
+			ErrorMsgPopuoOnClick
+			);
 
-	//	if (pPopupUI && pErrorCodeData && pErrorCodeData->SpecialButtonTextKey.Len() > 0)
-	//	{
-	//		pPopupUI->SetButtonText(EUIMsgPopupButton::Positive, BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), pErrorCodeData->SpecialButtonTextKey));
-	//	}
-	//}
+		if (pPopupUI && pErrorCodeData && pErrorCodeData->SpecialButtonTextKey.Len() > 0)
+		{
+			pPopupUI->SetButtonText(EUIMsgPopupButton::Positive, BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), pErrorCodeData->SpecialButtonTextKey));
+		}
+	}
 }
 
 void UB2UIManager::CloseMsgPopup(int32 MsgPopupId, bool bRightNow)

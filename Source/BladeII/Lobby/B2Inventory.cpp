@@ -3,15 +3,16 @@
 
 #include "B2Inventory.h"
 //#include "BladeII.h"
-//#include "B2ItemInfo.h"
-//#include "B2LobbyGameMode.h"
-//#include "B2CombatStatEvaluator.h"
-//#include "B2PCClassInfo.h"
+#include "B2ItemInfo.h"
+#include "B2LobbyGameMode.h"
+#include "B2CombatStatEvaluator.h"
+#include "B2PCClassInfo.h"
 
 #include "FB2ErrorMessage.h"
-//#include "BladeIIGameImpl.h"
+#include "BladeIIGameImpl.h"
 
 #include "BladeIIUtil.h"
+#include "Math/UnrealMathUtility.h"
 
 float FB2Item::GetPrimaryPoint(bool bCountRelevantOption) const
 {
@@ -21,13 +22,13 @@ float FB2Item::GetPrimaryPoint(bool bCountRelevantOption) const
 	// 실질적으로 여러 상황에서 옵션까지 고려한다고 해도 완벽하게 하기는 어려울 것. 그냥 단순하게 PrimaryPoint 만 체크하는 선에서 끊는게 나을 수 있다.
 	if (bCountRelevantOption)
 	{
-		//const EItemOption RelevantOption = CombatStatEval::GetPrimPointIncOption(PrimaryPointType);
-		//if (RelevantOption != EItemOption::EIO_End)
-		//{
-		//	const float OrgValue = FMath::Max(GetEffectiveItemOptionValue(RelevantOption, *this), 0.0f);
-		//	const float FixedValue = FMath::FloorToFloat(OrgValue);
-		//	RetPoint += FixedValue;
-		//}
+		const EItemOption RelevantOption = CombatStatEval::GetPrimPointIncOption(PrimaryPointType);
+		if (RelevantOption != EItemOption::EIO_End)
+		{
+			const float OrgValue = FMath::Max(GetEffectiveItemOptionValue(RelevantOption, *this), 0.0f);
+			const float FixedValue = FMath::FloorToFloat(OrgValue);
+			RetPoint += FixedValue;
+		}
 	}
 
 	return RetPoint;
@@ -43,78 +44,78 @@ void FB2Item::UpdatePreviewItemPrimaryPoint()
 
 void FB2Item::UpdatePreviewItemPower()
 {
-	//float fPreviewCombatValue = FMath::FloorToFloat(PrimaryPoint * 100);
-	//float fPreviewOptionCombatValue = 0.f;
+	float fPreviewCombatValue = FMath::FloorToFloat(PrimaryPoint * 100);
+	float fPreviewOptionCombatValue = 0.f;
 
-	//FClientDataStore& CliDataStore = BladeIIGameImpl::GetClientDataStore();
-	//if (const FMD_ItemSingleElem* ItemInfo = CliDataStore.GetItemMasterDetailInfo(ItemRefID))
-	//{
-	//	for (auto& ItemOpt : ItemInfo->UniqueOptions)
-	//	{
-	//		fPreviewOptionCombatValue += ItemOpt.RawOptionAmount * CliDataStore.GetOptionWeight(ItemOpt.OptionType);
-	//	}
-	//}
+	FClientDataStore& CliDataStore = BladeIIGameImpl::GetClientDataStore();
+	if (const FMD_ItemSingleElem* ItemInfo = CliDataStore.GetItemMasterDetailInfo(ItemRefID))
+	{
+		for (auto& ItemOpt : ItemInfo->UniqueOptions)
+		{
+			fPreviewOptionCombatValue += ItemOpt.RawOptionAmount * CliDataStore.GetOptionWeight(ItemOpt.OptionType);
+		}
+	}
 
-	//this->Power = fPreviewOptionCombatValue + (CliDataStore.GetOptionWeight(ItemPrimaryPointTypeToEItemOptionType(PrimaryPointType)) * (fPreviewCombatValue / 100));
+	this->Power = fPreviewOptionCombatValue + (CliDataStore.GetOptionWeight(ItemPrimaryPointTypeToEItemOptionType(PrimaryPointType)) * (fPreviewCombatValue / 100));
 }
 
 FB2Item& FB2Item::operator=(const b2network::B2ItemServerInfoPtr rhs)
 {
-	// 서버에서 받은 값으로 멤버 변수에 세팅
-	//InstanceUID = rhs->id;
-	//ItemRefID = rhs->template_id;
-	//
-	//StarGrade = rhs->grade;
-	//Quality = rhs->quality;
-	//ConsumingAmount = rhs->amount;
+	 //서버에서 받은 값으로 멤버 변수에 세팅
+	InstanceUID = rhs->id;
+	ItemRefID = rhs->template_id;
+	
+	StarGrade = rhs->grade;
+	Quality = rhs->quality;
+	ConsumingAmount = rhs->amount;
 
-	//AllowedPCClass = (int32)SvrToCliPCClassType(rhs->character_type);
+	AllowedPCClass = (int32)SvrToCliPCClassType(rhs->character_type);
 
-	//InventoryType = SvrToCliItemInvenType(rhs->inventory_type);
-	//EquipPlace = SvrToCliItemEquipPlace(rhs->equip_position); // MasterData 통해 다시 세팅하는데.. 이전엔 서버 equip_position 이 장착된 아이템만 값이 세팅되어 있던 것도 같고 여튼..
+	InventoryType = SvrToCliItemInvenType(rhs->inventory_type);
+	EquipPlace = SvrToCliItemEquipPlace(rhs->equip_position); // MasterData 통해 다시 세팅하는데.. 이전엔 서버 equip_position 이 장착된 아이템만 값이 세팅되어 있던 것도 같고 여튼..
 
-	//// 요건 현재 장착되어 있는지 여부. 서버와 표시 방법이 다름.
-	//// TODO 프리셋 정보 참조
-	//FClientDataStore& CliDataStore = BladeIIGameImpl::GetClientDataStore();
-	//bCurrentlyEquipped = CliDataStore.GetLocalCharacterData().GetUserAllItems().IsInCurrentItemPreset(IntToPCClass(AllowedPCClass), InstanceUID);
+	// 요건 현재 장착되어 있는지 여부. 서버와 표시 방법이 다름.
+	// TODO 프리셋 정보 참조
+	FClientDataStore& CliDataStore = BladeIIGameImpl::GetClientDataStore();
+	bCurrentlyEquipped = CliDataStore.GetLocalCharacterData().GetUserAllItems().IsInCurrentItemPreset(IntToPCClass(AllowedPCClass), InstanceUID);
 
-	//Level = rhs->level;
-	//Exp = rhs->exp;
-	//SurpassCount = rhs->surpass_count;
-	//EnhanceLevel = rhs->enhance_level;
-	//PrimaryPoint = rhs->md_main_attribute_value;
+	Level = rhs->level;
+	Exp = rhs->exp;
+	SurpassCount = rhs->surpass_count;
+	EnhanceLevel = rhs->enhance_level;
+	PrimaryPoint = rhs->md_main_attribute_value;
 
-	//RandomOptions.Empty();
-	//EItemOption ThisOptionType = SvrToCliOptionType(rhs->random_option_id1);
-	//if (ThisOptionType != EItemOption::EIO_End)
-	//{
-	//	RandomOptions.Add(FItemOption(ThisOptionType, rhs->random_option_value1));
-	//}
-	//ThisOptionType = SvrToCliOptionType(rhs->random_option_id2);
-	//if (ThisOptionType != EItemOption::EIO_End)
-	//{
-	//	RandomOptions.Add(FItemOption(ThisOptionType, rhs->random_option_value2));
-	//}
-	//ThisOptionType = SvrToCliOptionType(rhs->random_option_id3);
-	//if (ThisOptionType != EItemOption::EIO_End)
-	//{
-	//	RandomOptions.Add(FItemOption(ThisOptionType, rhs->random_option_value3));
-	//}
+	RandomOptions.Empty();
+	EItemOption ThisOptionType = SvrToCliOptionType(rhs->random_option_id1);
+	if (ThisOptionType != EItemOption::EIO_End)
+	{
+		RandomOptions.Add(FItemOption(ThisOptionType, rhs->random_option_value1));
+	}
+	ThisOptionType = SvrToCliOptionType(rhs->random_option_id2);
+	if (ThisOptionType != EItemOption::EIO_End)
+	{
+		RandomOptions.Add(FItemOption(ThisOptionType, rhs->random_option_value2));
+	}
+	ThisOptionType = SvrToCliOptionType(rhs->random_option_id3);
+	if (ThisOptionType != EItemOption::EIO_End)
+	{
+		RandomOptions.Add(FItemOption(ThisOptionType, rhs->random_option_value3));
+	}
 
-	//SealOptions.Empty();
-	//for (auto SealOptionInfo : rhs->seal_slot_states)
-	//{
-	//	SealOptions.Add(FSealOption(SealOptionInfo->seal_slot, SealOptionInfo->opened, SvrToCliOptionType(SealOptionInfo->option_id), SealOptionInfo->option_value));
-	//}
+	SealOptions.Empty();
+	for (auto SealOptionInfo : rhs->seal_slot_states)
+	{
+		SealOptions.Add(FSealOption(SealOptionInfo->seal_slot, SealOptionInfo->opened, SvrToCliOptionType(SealOptionInfo->option_id), SealOptionInfo->option_value));
+	}
 
-	//OpenSealSlotCount = rhs->open_seal_slot_count;
-	//
-	//bIsLocked = rhs->locked;
-	//Power = rhs->power;
+	OpenSealSlotCount = rhs->open_seal_slot_count;
+	
+	bIsLocked = rhs->locked;
+	Power = rhs->power;
 
-	//IsNew = rhs->is_new;
-	//// 마스터 데이터의 값으로 업데이트
-	//UpdateItemMasterDataOnMD();
+	IsNew = rhs->is_new;
+	// 마스터 데이터의 값으로 업데이트
+	UpdateItemMasterDataOnMD();
 	return *this;
 }
 
@@ -143,8 +144,8 @@ FB2Item::FB2Item(const b2network::B2AetherServerInfoPtr Ether)
 	InventoryType = EItemInvenType::EIIVT_End;
 	EquipPlace = EItemEquipPlace::EIEP_End; // MasterData 통해 다시 세팅하는데.. 이전엔 서버 equip_position 이 장착된 아이템만 값이 세팅되어 있던 것도 같고 여튼..
 
-											//FClientDataStore& CliDataStore = BladeIIGameImpl::GetClientDataStore();
-											//bCurrentlyEquipped = CliDataStore.GetLocalCharacterData().GetUserAllItems().IsInCurrentItemPreset(IntToPCClass(AllowedPCClass), InstanceUID);
+	//FClientDataStore& CliDataStore = BladeIIGameImpl::GetClientDataStore();
+	//bCurrentlyEquipped = CliDataStore.GetLocalCharacterData().GetUserAllItems().IsInCurrentItemPreset(IntToPCClass(AllowedPCClass), InstanceUID);
 
 	Level = Ether->tier;
 	//Exp = rhs->exp;
@@ -220,47 +221,47 @@ FB2Item::FB2Item(const b2network::B2CostumeServerInfo& CostumeItemInfo)
 
 void FB2Item::UpdateItemMasterDataOnMD()
 {
-//	FClientDataStore& CliDataStore = BladeIIGameImpl::GetClientDataStore();
-//	const FMD_ItemSingleElem* ItemMDElem = CliDataStore.GetItemMasterDetailInfo(ItemRefID);
-//	if (ItemMDElem)
-//	{
-//		UpdateByItemMasterData(ItemMDElem);
-//
-//		// RefID 자리수에 따른 규약을 이젠 정식으로 사용하게 되므로 혹시라도 예상과 다르지 않은지 체크한다.
-//#if WITH_EDITOR // 음.. 에디터에서만 하자.. 아직은 빌드 버전에서 혹시라도 쭁날까봐 걱정되는군
-//		check(CheckForItemPropertyRule(*this));
-//#endif
-//	}
+	FClientDataStore& CliDataStore = BladeIIGameImpl::GetClientDataStore();
+	const FMD_ItemSingleElem* ItemMDElem = CliDataStore.GetItemMasterDetailInfo(ItemRefID);
+	if (ItemMDElem)
+	{
+		UpdateByItemMasterData(ItemMDElem);
+
+		// RefID 자리수에 따른 규약을 이젠 정식으로 사용하게 되므로 혹시라도 예상과 다르지 않은지 체크한다.
+#if WITH_EDITOR // 음.. 에디터에서만 하자.. 아직은 빌드 버전에서 혹시라도 쭁날까봐 걱정되는군
+		check(CheckForItemPropertyRule(*this));
+#endif
+	}
 }
 
 void FB2Item::UpdateByItemMasterData(const FMD_ItemSingleElem* InMasterData)
 {
-	//if (InMasterData)
-	//{
-	//	SetID = InMasterData->SetOptionID;
-	//	MaxStarGrade = InMasterData->MaxGrade;
-	//	ItemClass = InMasterData->ItemClass;
-	//	InventoryType = InMasterData->ItemInvenType;
-	//	EquipPlace = InMasterData->ItemEquipPlace; // 이미 세팅이 되어 있나..
-	//	MaxLevel = InMasterData->MaxLevel + ((SurpassCount > 0) ? SurpassCount : 0); // 초월로 인한 MaxLevel 확장은 MasterData 엔 없으니 따로 반영.
-	//	ItemFactorLevel = InMasterData->ItemFactorLevel;
-	//	PrimaryPointType = InMasterData->PrimaryType;
+	if (InMasterData)
+	{
+		SetID = InMasterData->SetOptionID;
+		MaxStarGrade = InMasterData->MaxGrade;
+		ItemClass = InMasterData->ItemClass;
+		InventoryType = InMasterData->ItemInvenType;
+		EquipPlace = InMasterData->ItemEquipPlace; // 이미 세팅이 되어 있나..
+		MaxLevel = InMasterData->MaxLevel + ((SurpassCount > 0) ? SurpassCount : 0); // 초월로 인한 MaxLevel 확장은 MasterData 엔 없으니 따로 반영.
+		ItemFactorLevel = InMasterData->ItemFactorLevel;
+		PrimaryPointType = InMasterData->PrimaryType;
 
-	//	IntrinsicOptions.Empty();
-	//	for (auto option : InMasterData->UniqueOptions) {
-	//		IntrinsicOptions.Add(option);
-	//	}
+		IntrinsicOptions.Empty();
+		for (auto option : InMasterData->UniqueOptions) {
+			IntrinsicOptions.Add(option);
+		}
 
-	//	BuyingPrice = InMasterData->BuyPrice;
-	//	SellingPrice = InMasterData->SellPrice;
+		BuyingPrice = InMasterData->BuyPrice;
+		SellingPrice = InMasterData->SellPrice;
 
-	//	ItemRefID = InMasterData->ItemTemplateID;
-	//	StarGrade = InMasterData->ItemGrade;
+		ItemRefID = InMasterData->ItemTemplateID;
+		StarGrade = InMasterData->ItemGrade;
 
-	//	AllowedPCClass = PCClassToInt(InMasterData->ItemEquipClass);
+		AllowedPCClass = PCClassToInt(InMasterData->ItemEquipClass);
 
-	//	CostumeEquipPlace = InMasterData->CostumeEquipPlace;
-	//}
+		CostumeEquipPlace = InMasterData->CostumeEquipPlace;
+	}
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -277,27 +278,27 @@ bool FItemRefIDHelper::IsGoodsRefID(int32 InID)
 int32 FItemRefIDHelper::GetUpgradeStoneIDForUpgradeTarget(const FB2Item& InUpgradeTarget, const EUpgradeded EUpgraded)
 {
 	// 이미 업그레이드 된 경우 -1을 해서 기존 아이템이 사용한 승급석이 어떤건질 확인해야 되기 때문.
-	//uint16 StarOffset = (EUpgraded == EUpgradeded::UPGRADE_AFTER ? 1 : 0);
-	//bool CheckAdvanced = (InUpgradeTarget.StarGrade - StarOffset >= FItemGradeInfo::MINIMUM_ADVANCED_UPGRADE_STAR_GRADE);
+	uint16 StarOffset = (EUpgraded == EUpgradeded::UPGRADE_AFTER ? 1 : 0);
+	bool CheckAdvanced = (InUpgradeTarget.StarGrade - StarOffset >= FItemGradeInfo::MINIMUM_ADVANCED_UPGRADE_STAR_GRADE);
 
-	//switch (InUpgradeTarget.InventoryType)
-	//{
-	//case EItemInvenType::EIIVT_Weapon:
-	//{
-	//	if (CheckAdvanced)	return ITEM_REF_ID_ADVANCED_UPGRADE_STONE_WEAPON;
-	//	else				return ITEM_REF_ID_UPGRADE_STONE_WEAPON;
-	//}
-	//case EItemInvenType::EIIVT_Protection:
-	//{
-	//	if (CheckAdvanced)	return ITEM_REF_ID_ADVANCED_UPGRADE_STONE_ARMOR;
-	//	else				return ITEM_REF_ID_UPGRADE_STONE_PROTECTION;
-	//}
-	//case EItemInvenType::EIIVT_Accessory:
-	//{
-	//	if (CheckAdvanced)	return ITEM_REF_ID_ADVANCED_UPGRADE_STONE_ACCESSORY;
-	//	else				return ITEM_REF_ID_UPGRADE_STONE_ACCESSORY;
-	//}
-	//}
+	switch (InUpgradeTarget.InventoryType)
+	{
+	case EItemInvenType::EIIVT_Weapon:
+	{
+		if (CheckAdvanced)	return ITEM_REF_ID_ADVANCED_UPGRADE_STONE_WEAPON;
+		else				return ITEM_REF_ID_UPGRADE_STONE_WEAPON;
+	}
+	case EItemInvenType::EIIVT_Protection:
+	{
+		if (CheckAdvanced)	return ITEM_REF_ID_ADVANCED_UPGRADE_STONE_ARMOR;
+		else				return ITEM_REF_ID_UPGRADE_STONE_PROTECTION;
+	}
+	case EItemInvenType::EIIVT_Accessory:
+	{
+		if (CheckAdvanced)	return ITEM_REF_ID_ADVANCED_UPGRADE_STONE_ACCESSORY;
+		else				return ITEM_REF_ID_UPGRADE_STONE_ACCESSORY;
+	}
+	}
 	return 0;
 }
 int32 FItemRefIDHelper::GetEnhanceScrollRefId(const FB2Item& InTargetItem)
@@ -435,166 +436,166 @@ int32 FItemRefIDHelper::GetWingResourceRefIDByAcqElemType(EWingIngredAcqElemType
 ================================================================================*/
 EItemClass FItemRefIDHelper::ExtractItemClassFromRefID(int32 InItemRefID)
 {
-	//if (InItemRefID == FItemRefIDHelper::GetGoodsID_Gold()) // 특수한 경우.. 근데 재화나 재료 등 장착 아이템 외 기타 모든 것들을 여기에 넣어 주어야 하는 건 아니다.
-	//{
-	//	return EItemClass::EIC_Gold;
-	//}
+	if (InItemRefID == FItemRefIDHelper::GetGoodsID_Gold()) // 특수한 경우.. 근데 재화나 재료 등 장착 아이템 외 기타 모든 것들을 여기에 넣어 주어야 하는 건 아니다.
+	{
+		return EItemClass::EIC_Gold;
+	}
 
-	//const int32 TheBiggestCategoryDigit = ExtractNthDigitR<7>(InItemRefID);
-	//if (TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_EQUIPMENT)	// 장착 아이템만 아래 규칙이 맞음
-	//{
-	//	// 4번째 자리
-	//	int32 FourthDigit = ExtractNthDigitR<4>(InItemRefID);
-	//	switch (FourthDigit)
-	//	{
-	//	case 0: return EItemClass::EIC_Weapon;
-	//	case 1: return EItemClass::EIC_Helmet;
-	//	case 2: return EItemClass::EIC_BodyArmor;
-	//	case 3: return EItemClass::EIC_Glove;
-	//	case 4: return EItemClass::EIC_Shoes;
-	//	case 5: return EItemClass::EIC_Belt;
-	//	case 6: return EItemClass::EIC_Necklace;
-	//	case 7: return EItemClass::EIC_Ring;
-	//	case 8: return EItemClass::EIC_Wing;
-	//	}
-	//}
-	//else if (TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_ESSENCE)
-	//{
-	//	int32 FourthDigit = ExtractNthDigitR<4>(InItemRefID);
-	//	switch (FourthDigit)
-	//	{
-	//	case 0: return EItemClass::EIC_WeaponEssence;
-	//	case 1: return EItemClass::EIC_ProtectionEssence;
-	//	case 2: return EItemClass::EIC_AccessoryEssence;
-	//	}
-	//}
-	//else if (TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_COSTUME)
-	//{
-	//	int32 FourthDigit = ExtractNthDigitR<4>(InItemRefID);
-	//	switch (FourthDigit)
-	//	{
-	//	case 0: return EItemClass::EIC_CostumeWeapon;
-	//	case 1: return EItemClass::EIC_CostumeHat;
-	//	case 2: return EItemClass::EIC_CostumeArmor;
-	//	}
-	//}
-	//else if (TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_SURPASSANVIL)
-	//{
-	//	int32 FourthDigit = ExtractNthDigitR<4>(InItemRefID);
-	//	switch (FourthDigit)
-	//	{
-	//	case 0: return EItemClass::EIC_WeaponSurpassAnvil;
-	//	case 1: return EItemClass::EIC_ArmorSurpassAnvil;
-	//	case 2: return EItemClass::EIC_AccessorySurpassAnvil;
-	//	}
-	//}
+	const int32 TheBiggestCategoryDigit = ExtractNthDigitR<7>(InItemRefID);
+	if (TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_EQUIPMENT)	// 장착 아이템만 아래 규칙이 맞음
+	{
+		// 4번째 자리
+		int32 FourthDigit = ExtractNthDigitR<4>(InItemRefID);
+		switch (FourthDigit)
+		{
+		case 0: return EItemClass::EIC_Weapon;
+		case 1: return EItemClass::EIC_Helmet;
+		case 2: return EItemClass::EIC_BodyArmor;
+		case 3: return EItemClass::EIC_Glove;
+		case 4: return EItemClass::EIC_Shoes;
+		case 5: return EItemClass::EIC_Belt;
+		case 6: return EItemClass::EIC_Necklace;
+		case 7: return EItemClass::EIC_Ring;
+		case 8: return EItemClass::EIC_Wing;
+		}
+	}
+	else if (TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_ESSENCE)
+	{
+		int32 FourthDigit = ExtractNthDigitR<4>(InItemRefID);
+		switch (FourthDigit)
+		{
+		case 0: return EItemClass::EIC_WeaponEssence;
+		case 1: return EItemClass::EIC_ProtectionEssence;
+		case 2: return EItemClass::EIC_AccessoryEssence;
+		}
+	}
+	else if (TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_COSTUME)
+	{
+		int32 FourthDigit = ExtractNthDigitR<4>(InItemRefID);
+		switch (FourthDigit)
+		{
+		case 0: return EItemClass::EIC_CostumeWeapon;
+		case 1: return EItemClass::EIC_CostumeHat;
+		case 2: return EItemClass::EIC_CostumeArmor;
+		}
+	}
+	else if (TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_SURPASSANVIL)
+	{
+		int32 FourthDigit = ExtractNthDigitR<4>(InItemRefID);
+		switch (FourthDigit)
+		{
+		case 0: return EItemClass::EIC_WeaponSurpassAnvil;
+		case 1: return EItemClass::EIC_ArmorSurpassAnvil;
+		case 2: return EItemClass::EIC_AccessorySurpassAnvil;
+		}
+	}
 
 	return EItemClass::EIC_End;
 }
 EItemClass FItemRefIDHelper::ExtractItemClassFromRefIDForItemForge(int32 InItemRefID)
 {
-	//if (InItemRefID == FItemRefIDHelper::GetGoodsID_Gold()) // 특수한 경우.. 근데 재화나 재료 등 장착 아이템 외 기타 모든 것들을 여기에 넣어 주어야 하는 건 아니다.
-	//{
-	//	return EItemClass::EIC_Gold;
-	//}
+	if (InItemRefID == FItemRefIDHelper::GetGoodsID_Gold()) // 특수한 경우.. 근데 재화나 재료 등 장착 아이템 외 기타 모든 것들을 여기에 넣어 주어야 하는 건 아니다.
+	{
+		return EItemClass::EIC_Gold;
+	}
 
-	//const int32 TheBiggestCategoryDigit = ExtractNthDigitR<7>(InItemRefID);
-	//if (TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_EQUIPMENT)	// 장착 아이템만 아래 규칙이 맞음
-	//{
-	//	// 4번째 자리
-	//	int32 FourthDigit = ExtractNthDigitR<4>(InItemRefID);
-	//	switch (FourthDigit)
-	//	{
-	//	case 0: return EItemClass::EIC_Weapon;
-	//	case 1: return EItemClass::EIC_Helmet;
-	//	case 2: return EItemClass::EIC_BodyArmor;
-	//	case 3: return EItemClass::EIC_Glove;
-	//	case 4: return EItemClass::EIC_Shoes;
-	//	case 5: return EItemClass::EIC_Belt;
-	//	case 6: return EItemClass::EIC_Necklace;
-	//	case 7: return EItemClass::EIC_Ring;
-	//	case 8: return EItemClass::EIC_Wing;
-	//	}
-	//}
-	//else if (TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_ESSENCE)
-	//{
-	//	int32 FourthDigit = ExtractNthDigitR<4>(InItemRefID);
-	//	switch (FourthDigit)
-	//	{
-	//	case 0: return EItemClass::EIC_WeaponEssence;
-	//	case 1: return EItemClass::EIC_ProtectionEssence;
-	//	case 2: return EItemClass::EIC_AccessoryEssence;
-	//	}
-	//}
-	//else if (TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_COSTUME)
-	//{
-	//	int32 FourthDigit = ExtractNthDigitR<4>(InItemRefID);
-	//	switch (FourthDigit)
-	//	{
-	//	case 0: return EItemClass::EIC_CostumeWeapon;
-	//	case 1: return EItemClass::EIC_CostumeHat;
-	//	case 2: return EItemClass::EIC_CostumeArmor;
-	//	}
-	//}
-	//else if (TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_SURPASSANVIL)
-	//{
-	//	int32 FourthDigit = ExtractNthDigitR<4>(InItemRefID);
-	//	switch (FourthDigit)
-	//	{
-	//	case 0: return EItemClass::EIC_WeaponSurpassAnvil;
-	//	case 1: return EItemClass::EIC_ArmorSurpassAnvil;
-	//	case 2: return EItemClass::EIC_AccessorySurpassAnvil;
-	//	}
-	//}
-	//else if (TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_Consumable)
-	//{
-	//	// 더미 맨 앞자리가 8일 경우 소모품으로 출력 필요하기 때문에 임의 승급석을 출력 함.
-	//	return EItemClass::EIC_UpgradeStone;
-	//}
+	const int32 TheBiggestCategoryDigit = ExtractNthDigitR<7>(InItemRefID);
+	if (TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_EQUIPMENT)	// 장착 아이템만 아래 규칙이 맞음
+	{
+		// 4번째 자리
+		int32 FourthDigit = ExtractNthDigitR<4>(InItemRefID);
+		switch (FourthDigit)
+		{
+		case 0: return EItemClass::EIC_Weapon;
+		case 1: return EItemClass::EIC_Helmet;
+		case 2: return EItemClass::EIC_BodyArmor;
+		case 3: return EItemClass::EIC_Glove;
+		case 4: return EItemClass::EIC_Shoes;
+		case 5: return EItemClass::EIC_Belt;
+		case 6: return EItemClass::EIC_Necklace;
+		case 7: return EItemClass::EIC_Ring;
+		case 8: return EItemClass::EIC_Wing;
+		}
+	}
+	else if (TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_ESSENCE)
+	{
+		int32 FourthDigit = ExtractNthDigitR<4>(InItemRefID);
+		switch (FourthDigit)
+		{
+		case 0: return EItemClass::EIC_WeaponEssence;
+		case 1: return EItemClass::EIC_ProtectionEssence;
+		case 2: return EItemClass::EIC_AccessoryEssence;
+		}
+	}
+	else if (TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_COSTUME)
+	{
+		int32 FourthDigit = ExtractNthDigitR<4>(InItemRefID);
+		switch (FourthDigit)
+		{
+		case 0: return EItemClass::EIC_CostumeWeapon;
+		case 1: return EItemClass::EIC_CostumeHat;
+		case 2: return EItemClass::EIC_CostumeArmor;
+		}
+	}
+	else if (TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_SURPASSANVIL)
+	{
+		int32 FourthDigit = ExtractNthDigitR<4>(InItemRefID);
+		switch (FourthDigit)
+		{
+		case 0: return EItemClass::EIC_WeaponSurpassAnvil;
+		case 1: return EItemClass::EIC_ArmorSurpassAnvil;
+		case 2: return EItemClass::EIC_AccessorySurpassAnvil;
+		}
+	}
+	else if (TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_Consumable)
+	{
+		// 더미 맨 앞자리가 8일 경우 소모품으로 출력 필요하기 때문에 임의 승급석을 출력 함.
+		return EItemClass::EIC_UpgradeStone;
+	}
 
 	return EItemClass::EIC_End;
 }
 
 EPCClass FItemRefIDHelper::ExtractItemAllowedPCClassFromRefID(int32 InItemRefID)
 {
-	//const int32 TheBiggestCategoryDigit = ExtractNthDigitR<7>(InItemRefID);
-	//// 장착 아이템, 정수(Essence), 코스튬 아이템만 아래 규칙이 맞음
-	//if (TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_EQUIPMENT || 
-	//	TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_ESSENCE || 
-	//	TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_COSTUME ||
-	//	TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_SURPASSANVIL
-	//	)
-	//{
-	//	// 뒤에서 6번째 자리
-	//	int32 SixthDigit = ExtractNthDigitR<6>(InItemRefID);
-	//	return ItemAllowedPCClassEnum(SixthDigit);
-	//}
-	//else
-	//{
+	const int32 TheBiggestCategoryDigit = ExtractNthDigitR<7>(InItemRefID);
+	// 장착 아이템, 정수(Essence), 코스튬 아이템만 아래 규칙이 맞음
+	if (TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_EQUIPMENT || 
+		TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_ESSENCE || 
+		TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_COSTUME ||
+		TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_SURPASSANVIL
+		)
+	{
+		// 뒤에서 6번째 자리
+		int32 SixthDigit = ExtractNthDigitR<6>(InItemRefID);
+		return ItemAllowedPCClassEnum(SixthDigit);
+	}
+	else
+	{
 		return EPCClass::EPC_End;
-	//}
+	}
 }
 
 int32 FItemRefIDHelper::ExtractItemStarGradeFromRefID(int32 InItemRefID)
 {
-	//const int32 TheBiggestCategoryDigit = ExtractNthDigitR<7>(InItemRefID);
-	//// 장착 아이템, 정수(Essence), 코스튬 아이템만 아래 규칙이 맞음
-	//if (TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_EQUIPMENT ||
-	//	TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_ESSENCE ||
-	//	TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_COSTUME ||
-	//	TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_SURPASSANVIL
-	//	)
-	//{
-	//	// 뒤에서 5번째 자리 십의자리 등급
-	//	int32 Grade = 0;
-	//	Grade = (ExtractNthDigitR<ITEM_REF_ID_STAR_TENGRAD_DIGIT_NUMBER>(InItemRefID)) * 10;
+	const int32 TheBiggestCategoryDigit = ExtractNthDigitR<7>(InItemRefID);
+	// 장착 아이템, 정수(Essence), 코스튬 아이템만 아래 규칙이 맞음
+	if (TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_EQUIPMENT ||
+		TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_ESSENCE ||
+		TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_COSTUME ||
+		TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_SURPASSANVIL
+		)
+	{
+		// 뒤에서 5번째 자리 십의자리 등급
+		int32 Grade = 0;
+		Grade = (ExtractNthDigitR<ITEM_REF_ID_STAR_TENGRAD_DIGIT_NUMBER>(InItemRefID)) * 10;
 
-	//	// 뒤에서 3번째 자리 일의자리 등급
-	//	Grade += ExtractNthDigitR<ITEM_REF_ID_STAR_GRAD_DIGIT_NUMBER>(InItemRefID);
+		// 뒤에서 3번째 자리 일의자리 등급
+		Grade += ExtractNthDigitR<ITEM_REF_ID_STAR_GRAD_DIGIT_NUMBER>(InItemRefID);
 
-	//	return Grade;
-	//}
-	//else
+		return Grade;
+	}
+	else
 	{
 		return 0;
 	}
@@ -616,10 +617,10 @@ TArray<int32> FItemRefIDHelper::GetAllGradeItemRefIDs(int32 InItemRefID)
 	int32 BaseItemID = InItemRefID - Digit_3 * 100;
 
 	TArray<int32> AllGradeItemIDs;
-	//for (int32 Grade = 1; Grade <= FItemGradeInfo::MAX_NORMAL_ITEM_STAR_GRADE; Grade++)
-	//{
-	//	AllGradeItemIDs.Add(BaseItemID + (Grade * 100));
-	//}
+	for (int32 Grade = 1; Grade <= FItemGradeInfo::MAX_NORMAL_ITEM_STAR_GRADE; Grade++)
+	{
+		AllGradeItemIDs.Add(BaseItemID + (Grade * 100));
+	}
 
 	return AllGradeItemIDs;
 }
@@ -716,53 +717,57 @@ ERewardType FItemRefIDHelper::GetRewardTypeByRefID(int32 InRefID)
 
 FText GetLOCTextOfPrimPointType(EItemPrimaryPointType InPointType)
 {
-//	if (InPointType == EItemPrimaryPointType::EIPP_End)
-//	{
-//		return FText::FromString(TEXT("")); // 아무것도 표시 안하는 수단으로 사용하기 위해 빈 문장 리턴.
-//	}
-//
-//	const UEnum* EnumPtr = FindObject<UEnum>(ANY_PACKAGE, TEXT("EItemPrimaryPointType"), true);
-//	if (!EnumPtr)
-//	{		
-//#if WITH_EDITOR && !PLATFORM_MAC
-//		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(TEXT("EItemPrimaryPointType Enum 패키지를 찾을 수 없다. 컴퓨터가 곧 폭발한다.")));
-//#endif
-//		return FText::FromString(TEXT("Error"));
-//	}
-//
-//	// Enum name 을 텍스트 테이블의 키로 사용
-//	FString EnumName = EnumPtr->GetNameStringByIndex(EnumPtr->GetIndexByValue((int32)InPointType));
-//	return BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), TEXT("ENUM_") + EnumName);
-	return FText::GetEmpty();
+	if (InPointType == EItemPrimaryPointType::EIPP_End)
+	{
+		return FText::FromString(TEXT("")); // 아무것도 표시 안하는 수단으로 사용하기 위해 빈 문장 리턴.
+	}
+
+	//const UEnum* EnumPtr = FindObject<UEnum>(ANY_PACKAGE, TEXT("EItemPrimaryPointType"), true);
+	const UEnum* EnumPtr = FindObject<UEnum>(nullptr, TEXT("/Script/BladeII.EItemPrimaryPointType"));
+
+	if (!EnumPtr)
+	{		
+#if WITH_EDITOR && !PLATFORM_MAC
+		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(TEXT("EItemPrimaryPointType Enum 패키지를 찾을 수 없다. 컴퓨터가 곧 폭발한다.")));
+#endif
+		return FText::FromString(TEXT("Error"));
+	}
+
+	// Enum name 을 텍스트 테이블의 키로 사용
+	FString EnumName = EnumPtr->GetNameStringByIndex(EnumPtr->GetIndexByValue((int32)InPointType));
+	return BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), TEXT("ENUM_") + EnumName);
+	//return FText::GetEmpty();
 }
 
 FText GetLOCTextOfItemOption(EItemOption InOption, EPCClass InPCClass)
 {
-//	if (InOption == EItemOption::EIO_End)
-//	{
-//		return FText::FromString(TEXT("")); // 아무것도 표시 안하는 수단으로 사용하기 위해 빈 문장 리턴.
-//	}
-//
-//	const UEnum* EnumPtr = FindObject<UEnum>(ANY_PACKAGE, TEXT("EItemOption"), true);
-//	if (!EnumPtr)
-//	{
-//#if WITH_EDITOR && !PLATFORM_MAC
-//		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(TEXT("EItemOption Enum 패키지를 찾을 수 없다. 컴퓨터가 곧 폭발한다.")));
-//#endif
-//		return FText::FromString(TEXT("Error"));
-//	}
-//
-//	// Enum name 을 텍스트 테이블의 키로 사용..
-//	FString TextKeyName = EnumPtr->GetNameStringByIndex(EnumPtr->GetIndexByValue((int32)InOption));
-//	// ..하는데 캐릭터 별로 가는 일부 옵션들은 캐릭터 이름을 따로 붙여줌.
-//	if (IsItemOptionPerPCClass(InOption))
-//	{
-//		//TextKeyName += TEXT("_") + UB2PCClassInfo::GetTrimmedNameOfPCClassEnum(InPCClass);
-//	}
-//
-//	TextKeyName = TEXT("ENUM_") + TextKeyName; // 마지막으로 접두어를 좀 붙여준다. ㅋ
-//	return BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), TextKeyName);
-	return FText::GetEmpty();
+	if (InOption == EItemOption::EIO_End)
+	{
+		return FText::FromString(TEXT("")); // 아무것도 표시 안하는 수단으로 사용하기 위해 빈 문장 리턴.
+	}
+
+	//const UEnum* EnumPtr = FindObject<UEnum>(ANY_PACKAGE, TEXT("EItemOption"), true);
+	const UEnum* EnumPtr = FindObject<UEnum>(nullptr, TEXT("/Script/BladeII.EItemOption"));
+
+	if (!EnumPtr)
+	{
+#if WITH_EDITOR && !PLATFORM_MAC
+		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(TEXT("EItemOption Enum 패키지를 찾을 수 없다. 컴퓨터가 곧 폭발한다.")));
+#endif
+		return FText::FromString(TEXT("Error"));
+	}
+
+	// Enum name 을 텍스트 테이블의 키로 사용..
+	FString TextKeyName = EnumPtr->GetNameStringByIndex(EnumPtr->GetIndexByValue((int32)InOption));
+	// ..하는데 캐릭터 별로 가는 일부 옵션들은 캐릭터 이름을 따로 붙여줌.
+	if (IsItemOptionPerPCClass(InOption))
+	{
+		//TextKeyName += TEXT("_") + UB2PCClassInfo::GetTrimmedNameOfPCClassEnum(InPCClass);
+	}
+
+	TextKeyName = TEXT("ENUM_") + TextKeyName; // 마지막으로 접두어를 좀 붙여준다. ㅋ
+	return BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), TextKeyName);
+	//return FText::GetEmpty();
 }
 
 FText GetLOCTextOfItemQuality(int32 ItemQuality)
@@ -795,48 +800,51 @@ FText GetLOCTextOfStageBuffItem(EStageBuffType InStageBuffType)
 
 FText GetLOCTextOfPrimaryPointApplyType(ECharStatApplyType InPrimaryPointApplyType, EItemPrimaryPointType InCheckPointType)
 {
-//	if (InPrimaryPointApplyType == ECharStatApplyType::ECSA_End)
-//	{
-//		return FText::FromString(TEXT("")); // 아무것도 표시 안하는 수단으로 사용하기 위해 빈 문장 리턴.
-//	}
-//
-//	const UEnum* EnumPtr = FindObject<UEnum>(ANY_PACKAGE, TEXT("ECharStatApplyType"), true);
-//	if (!EnumPtr)
-//	{
-//#if WITH_EDITOR && !PLATFORM_MAC
-//		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(TEXT("ECharStatApplyType Enum 패키지를 찾을 수 없다. 컴퓨터가 곧 폭발한다.")));
-//#endif
-//		return FText::FromString(TEXT("Error"));
-//	}
-//
-//	// Enum name 을 텍스트 테이블의 키로 사용
-//	FString EnumKey = EnumPtr->GetNameStringByIndex(EnumPtr->GetIndexByValue((int32)InPrimaryPointApplyType));
-//	FText EnumString =  FText::Format(BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), (TEXT("ENUM_") + EnumKey)), GetLOCTextOfPrimPointType(InCheckPointType));
-//	return (EnumString.IsEmpty() == false) ? EnumString : FText::FromString(EnumKey);
-	return FText::FromString(TEXT("Error"));
+	if (InPrimaryPointApplyType == ECharStatApplyType::ECSA_End)
+	{
+		return FText::FromString(TEXT("")); // 아무것도 표시 안하는 수단으로 사용하기 위해 빈 문장 리턴.
+	}
+
+	//const UEnum* EnumPtr = FindObject<UEnum>(ANY_PACKAGE, TEXT("ECharStatApplyType"), true);
+	const UEnum* EnumPtr = FindObject<UEnum>(nullptr, TEXT("/Script/BladeII.ECharStatApplyType"));
+
+	if (!EnumPtr)
+	{
+#if WITH_EDITOR && !PLATFORM_MAC
+		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(TEXT("ECharStatApplyType Enum 패키지를 찾을 수 없다. 컴퓨터가 곧 폭발한다.")));
+#endif
+		return FText::FromString(TEXT("Error"));
+	}
+
+	// Enum name 을 텍스트 테이블의 키로 사용
+	FString EnumKey = EnumPtr->GetNameStringByIndex(EnumPtr->GetIndexByValue((int32)InPrimaryPointApplyType));
+	FText EnumString =  FText::Format(BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), (TEXT("ENUM_") + EnumKey)), GetLOCTextOfPrimPointType(InCheckPointType));
+	return (EnumString.IsEmpty() == false) ? EnumString : FText::FromString(EnumKey);
+	//return FText::FromString(TEXT("Error"));
 }
 
 FText GetLOCTextOfPrimaryPointApplyType(ECharStatApplyType InPrimaryPointApplyType, EItemOption InOption, EPCClass InPCClass)
 {
-//	if (InPrimaryPointApplyType == ECharStatApplyType::ECSA_End || InOption == EItemOption::EIO_End || InPCClass == EPCClass::EPC_End)
-//	{
-//		return FText::FromString(TEXT("")); // 아무것도 표시 안하는 수단으로 사용하기 위해 빈 문장 리턴.
-//	}
-//
-//	const UEnum* EnumPtr = FindObject<UEnum>(ANY_PACKAGE, TEXT("ECharStatApplyType"), true);
-//	if (!EnumPtr)
-//	{
-//#if WITH_EDITOR && !PLATFORM_MAC
-//		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(TEXT("ECharStatApplyType Enum 패키지를 찾을 수 없다. 컴퓨터가 곧 폭발한다.")));
-//#endif
-//		return FText::FromString(TEXT("Error"));
-//	}
-//
-//	// Enum name 을 텍스트 테이블의 키로 사용
-//	FString EnumKey = EnumPtr->GetNameStringByIndex(EnumPtr->GetIndexByValue((int32)InPrimaryPointApplyType));
-//	FText EnumString = FText::Format(BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), (TEXT("ENUM_") + EnumKey)), GetLOCTextOfItemOption(InOption, InPCClass));
-//	return (EnumString.IsEmpty() == false) ? EnumString : FText::FromString(EnumKey);
-	return FText::FromString(TEXT("Error"));
+	if (InPrimaryPointApplyType == ECharStatApplyType::ECSA_End || InOption == EItemOption::EIO_End || InPCClass == EPCClass::EPC_End)
+	{
+		return FText::FromString(TEXT("")); // 아무것도 표시 안하는 수단으로 사용하기 위해 빈 문장 리턴.
+	}
+
+	//const UEnum* EnumPtr = FindObject<UEnum>(ANY_PACKAGE, TEXT("ECharStatApplyType"), true);
+	const UEnum* EnumPtr = FindObject<UEnum>(nullptr, TEXT("/Script/BladeII.ECharStatApplyType"));
+	if (!EnumPtr)
+	{
+#if WITH_EDITOR && !PLATFORM_MAC
+		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(TEXT("ECharStatApplyType Enum 패키지를 찾을 수 없다. 컴퓨터가 곧 폭발한다.")));
+#endif
+		return FText::FromString(TEXT("Error"));
+	}
+
+	// Enum name 을 텍스트 테이블의 키로 사용
+	FString EnumKey = EnumPtr->GetNameStringByIndex(EnumPtr->GetIndexByValue((int32)InPrimaryPointApplyType));
+	FText EnumString = FText::Format(BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), (TEXT("ENUM_") + EnumKey)), GetLOCTextOfItemOption(InOption, InPCClass));
+	return (EnumString.IsEmpty() == false) ? EnumString : FText::FromString(EnumKey);
+	//return FText::FromString(TEXT("Error"));
 }
 
 FText GetLOCTextOfPrimaryPointApplyType(ECharStatApplyType InPrimaryPointApplyType)
@@ -856,57 +864,57 @@ EPCClass ItemAllowedPCClassEnum(int32 InPCClassID)
 */
 float GetPreviewPrimaryPoint(EItemPrimaryPointType PrimaryType, float ItemFactorBase, int32 Quality, int32 FactorLevel)
 {
-	//FClientDataStore& ClientDataStore = BladeIIGameImpl::GetClientDataStore();
+	FClientDataStore& ClientDataStore = BladeIIGameImpl::GetClientDataStore();
 
-	//// 레벨업시 마스터 데이터 기반으로 PrimaryPoint 결정 ( 0.8 Factor 곱하는 수식 사라짐 )
-	//const float PrimaryLevelupFactor = ClientDataStore.GetItemLevelupFactor_PrimaryIncrement(FactorLevel);
-	//const float ItemLevelForEnhance = ItemFactorBase + PrimaryLevelupFactor;
-	//float qualityIncLevel=0;
+	// 레벨업시 마스터 데이터 기반으로 PrimaryPoint 결정 ( 0.8 Factor 곱하는 수식 사라짐 )
+	const float PrimaryLevelupFactor = ClientDataStore.GetItemLevelupFactor_PrimaryIncrement(FactorLevel);
+	const float ItemLevelForEnhance = ItemFactorBase + PrimaryLevelupFactor;
+	float qualityIncLevel=0;
 
-	//for (int32 i = 0; i < ClientDataStore.MD_LotteryShopRateQualityInfo.Num(); i++)
-	//{
-	//	if (
-	//		(PrimaryType == EItemPrimaryPointType::EIPP_Attack && ClientDataStore.MD_LotteryShopRateQualityInfo[i].equipCategory == EEquipCategoryType::WEAPON) ||
-	//		(PrimaryType == EItemPrimaryPointType::EIPP_Defense && ClientDataStore.MD_LotteryShopRateQualityInfo[i].equipCategory == EEquipCategoryType::ARMOR) ||
-	//		(PrimaryType == EItemPrimaryPointType::EIPP_Health && ClientDataStore.MD_LotteryShopRateQualityInfo[i].equipCategory == EEquipCategoryType::ACCESSORY)
-	//		)
-	//	{
-	//		if (Quality == ClientDataStore.MD_LotteryShopRateQualityInfo[i].quality)
-	//			qualityIncLevel = ClientDataStore.MD_LotteryShopRateQualityInfo[i].qualityIncLevel;
-	//	}
-	//}
+	for (int32 i = 0; i < ClientDataStore.MD_LotteryShopRateQualityInfo.Num(); i++)
+	{
+		if (
+			(PrimaryType == EItemPrimaryPointType::EIPP_Attack && ClientDataStore.MD_LotteryShopRateQualityInfo[i].equipCategory == EEquipCategoryType::WEAPON) ||
+			(PrimaryType == EItemPrimaryPointType::EIPP_Defense && ClientDataStore.MD_LotteryShopRateQualityInfo[i].equipCategory == EEquipCategoryType::ARMOR) ||
+			(PrimaryType == EItemPrimaryPointType::EIPP_Health && ClientDataStore.MD_LotteryShopRateQualityInfo[i].equipCategory == EEquipCategoryType::ACCESSORY)
+			)
+		{
+			if (Quality == ClientDataStore.MD_LotteryShopRateQualityInfo[i].quality)
+				qualityIncLevel = ClientDataStore.MD_LotteryShopRateQualityInfo[i].qualityIncLevel;
+		}
+	}
 
-	//// 품질 한단계마다 0.2씩 증가
-	//// 품질 변환 업데이트로 품질에 따른 능력치가 눈에 띄게 차이나게 바뀜
-	////const float CalculatedItemLevel	 = (0.2f * (Quality - 1)) + ItemLevelForEnhance;
-	//const float CalculatedItemLevel = (1 + qualityIncLevel) * ItemLevelForEnhance + 0.2f;
+	// 품질 한단계마다 0.2씩 증가
+	// 품질 변환 업데이트로 품질에 따른 능력치가 눈에 띄게 차이나게 바뀜
+	//const float CalculatedItemLevel	 = (0.2f * (Quality - 1)) + ItemLevelForEnhance;
+	const float CalculatedItemLevel = (1 + qualityIncLevel) * ItemLevelForEnhance + 0.2f;
 
 	float ReturnValue = 0.f;
-	//if (PrimaryType == EItemPrimaryPointType::EIPP_Attack)
-	//{
-	//	// 100 + ( 8 * 아이템레벨 ) + ( 0.2 * 아이템레벨  * 아이템레벨 )
-	//	float AttackValue = 
-	//		(100.f + (8.0f * CalculatedItemLevel) + (0.2f * FMath::Pow(CalculatedItemLevel, 2)));
+	if (PrimaryType == EItemPrimaryPointType::EIPP_Attack)
+	{
+		// 100 + ( 8 * 아이템레벨 ) + ( 0.2 * 아이템레벨  * 아이템레벨 )
+		float AttackValue = 
+			(100.f + (8.0f * CalculatedItemLevel) + (0.2f * FMath::Pow(CalculatedItemLevel, 2)));
 
-	//	ReturnValue = AttackValue;
-	//}
+		ReturnValue = AttackValue;
+	}
 
-	//else if (PrimaryType == EItemPrimaryPointType::EIPP_Defense)
-	//{
-	//	// 공격력 * 3 / 4
-	//	float AttackValue =
-	//		(100.f + (8.f * CalculatedItemLevel) + (0.2f * FMath::Pow(CalculatedItemLevel, 2)));
+	else if (PrimaryType == EItemPrimaryPointType::EIPP_Defense)
+	{
+		// 공격력 * 3 / 4
+		float AttackValue =
+			(100.f + (8.f * CalculatedItemLevel) + (0.2f * FMath::Pow(CalculatedItemLevel, 2)));
 
-	//	AttackValue = FMath::FloorToFloat(AttackValue);
+		AttackValue = FMath::FloorToFloat(AttackValue);
 
-	//	ReturnValue = (AttackValue * 3.0f / 4.0f);
-	//}
-	//else if (PrimaryType == EItemPrimaryPointType::EIPP_Health)
-	//{
-	//	// (1 + ( 3 * 아이템레벨 ) + ( 0.05 * 아이템레벨 * 아이템레벨)) / 3
-	//	ReturnValue =
-	//		((1.0f + (3.0f * CalculatedItemLevel)) + (0.05f * FMath::Pow(CalculatedItemLevel, 2))) / 3.0f;
-	//}
+		ReturnValue = (AttackValue * 3.0f / 4.0f);
+	}
+	else if (PrimaryType == EItemPrimaryPointType::EIPP_Health)
+	{
+		// (1 + ( 3 * 아이템레벨 ) + ( 0.05 * 아이템레벨 * 아이템레벨)) / 3
+		ReturnValue =
+			((1.0f + (3.0f * CalculatedItemLevel)) + (0.05f * FMath::Pow(CalculatedItemLevel, 2))) / 3.0f;
+	}
 
 	return ReturnValue;
 }
@@ -1328,66 +1336,64 @@ bool IsItemSafeEnhanceLevel(const FB2Item & InItem)
 
 bool IsItemDecompostionAllowed(const FB2Item& InCheckItem)
 {
-	//FItemDismantleInfo DismantleInfo;
-	//FClientDataStore& CliDataStore = BladeIIGameImpl::GetClientDataStore();
-	//bool bEnableDismantle = CliDataStore.GetItemDismantleInfoData(InCheckItem.InventoryType, InCheckItem.StarGrade, DismantleInfo);
+	FItemDismantleInfo DismantleInfo;
+	FClientDataStore& CliDataStore = BladeIIGameImpl::GetClientDataStore();
+	bool bEnableDismantle = CliDataStore.GetItemDismantleInfoData(InCheckItem.InventoryType, InCheckItem.StarGrade, DismantleInfo);
 
-	//// 보상 대표 아이템의 경우 ItemClass 는 위에 검사하는 것중 하나지만 앞자리는 9번대가 나옴. 이걸 어떻게 처러해야 할까.. 일단은 false 인 걸로.
-	//const bool bRetVal = IsEquipmentItemByType(InCheckItem) && 
-	//	FItemRefIDHelper::IsEquipmentItemByRefID(InCheckItem.ItemRefID) && 
-	//	bEnableDismantle;
+	// 보상 대표 아이템의 경우 ItemClass 는 위에 검사하는 것중 하나지만 앞자리는 9번대가 나옴. 이걸 어떻게 처러해야 할까.. 일단은 false 인 걸로.
+	const bool bRetVal = IsEquipmentItemByType(InCheckItem) && 
+		FItemRefIDHelper::IsEquipmentItemByRefID(InCheckItem.ItemRefID) && 
+		bEnableDismantle;
 
-	//return bRetVal;
-	return true;
+	return bRetVal;
 }
 
 int32 GetLevel_PreviewItemLevelup(float& OutNewExp, const FB2Item& TargetItem, const TArray<FB2Item>& ItemLevelupIngredients, bool bClampResultToMaxValue)
 {
-	//FClientDataStore& CliDataStore = BladeIIGameImpl::GetClientDataStore();
+	FClientDataStore& CliDataStore = BladeIIGameImpl::GetClientDataStore();
 
-	//float TotalFactor = 0.0f;
+	float TotalFactor = 0.0f;
 
-	//float TargetFactor = CliDataStore.GetItemLevelupFactor_TargetItemGrade(TargetItem.StarGrade);
-	//
-	//for (int32 II = 0; II < ItemLevelupIngredients.Num(); ++II)
-	//{
-	//	const FB2Item& ThisIngred = ItemLevelupIngredients[II];
+	float TargetFactor = CliDataStore.GetItemLevelupFactor_TargetItemGrade(TargetItem.StarGrade);
+	
+	for (int32 II = 0; II < ItemLevelupIngredients.Num(); ++II)
+	{
+		const FB2Item& ThisIngred = ItemLevelupIngredients[II];
 
-	//	float IngredFactor1 = CliDataStore.GetItemLevelupFactor_IngredItemGrade(ThisIngred.StarGrade);
-	//	float IngredFactor2 = CliDataStore.GetItemLevelupFactor_IngredItemEquipPlace(ThisIngred.EquipPlace); // 정수 아이템도 EquipPlace 가 있다.
-	//	float IngredFactor3 = CliDataStore.GetItemLevelupFactor_IngredItemEnhLv(ThisIngred.Level);
-	//	float IngredFactor4 = CliDataStore.GetItemLevelupFactor_IngredItemSurpCount(ThisIngred.SurpassCount);
-	//	// 매 아이템 레벨업 재료마다 TargetFactor 도 곱한다.
-	//	float ThisIngredTotalFactor = TargetFactor * IngredFactor1 * IngredFactor2 * IngredFactor3 * IngredFactor4;
+		float IngredFactor1 = CliDataStore.GetItemLevelupFactor_IngredItemGrade(ThisIngred.StarGrade);
+		float IngredFactor2 = CliDataStore.GetItemLevelupFactor_IngredItemEquipPlace(ThisIngred.EquipPlace); // 정수 아이템도 EquipPlace 가 있다.
+		float IngredFactor3 = CliDataStore.GetItemLevelupFactor_IngredItemEnhLv(ThisIngred.Level);
+		float IngredFactor4 = CliDataStore.GetItemLevelupFactor_IngredItemSurpCount(ThisIngred.SurpassCount);
+		// 매 아이템 레벨업 재료마다 TargetFactor 도 곱한다.
+		float ThisIngredTotalFactor = TargetFactor * IngredFactor1 * IngredFactor2 * IngredFactor3 * IngredFactor4;
 
-	//	if (IsEssenceItem(ThisIngred)) { // 정수 아이템은 절반 효율.
-	//		ThisIngredTotalFactor *= 0.5f;
-	//	}
+		if (IsEssenceItem(ThisIngred)) { // 정수 아이템은 절반 효율.
+			ThisIngredTotalFactor *= 0.5f;
+		}
 
-	//	TotalFactor += ThisIngredTotalFactor; // 최종적으로는 매 재료에 대한 factor 계산값들을 더함.
-	//}
+		TotalFactor += ThisIngredTotalFactor; // 최종적으로는 매 재료에 대한 factor 계산값들을 더함.
+	}
 
-	//// 일단 레벨이 얼마나 오를지 신경쓰지 않고 경험치에 단순히 더한다.
-	//const float SimpleAddedExp = TargetItem.Exp + TotalFactor;
+	// 일단 레벨이 얼마나 오를지 신경쓰지 않고 경험치에 단순히 더한다.
+	const float SimpleAddedExp = TargetItem.Exp + TotalFactor;
 
-	//const int32 SimpleAddedExp_Floor = FMath::FloorToInt(SimpleAddedExp);
-	////const float SimpleAddedExp_Frac = FMath::Frac(SimpleAddedExp); 이건 필요없을 듯.
+	const int32 SimpleAddedExp_Floor = FMath::FloorToInt(SimpleAddedExp);
+	//const float SimpleAddedExp_Frac = FMath::Frac(SimpleAddedExp); 이건 필요없을 듯.
 
-	//// 레벨 상승은 앞자리 수만큼.
-	//const int32 LevelToIncrease = SimpleAddedExp_Floor / 100;
-	//int32 RetLevel = TargetItem.Level + LevelToIncrease; // 이 시점에서는 MaxLevel 로 클램프되지 않은 값
+	// 레벨 상승은 앞자리 수만큼.
+	const int32 LevelToIncrease = SimpleAddedExp_Floor / 100;
+	int32 RetLevel = TargetItem.Level + LevelToIncrease; // 이 시점에서는 MaxLevel 로 클램프되지 않은 값
 
-	//// 전체 경험치 상승분에서 두자릿수 이하만 남김.
-	//OutNewExp = SimpleAddedExp - ((float)LevelToIncrease * 100.0f); // 여기서도 정밀도 문제가 될 수 있나..
+	// 전체 경험치 상승분에서 두자릿수 이하만 남김.
+	OutNewExp = SimpleAddedExp - ((float)LevelToIncrease * 100.0f); // 여기서도 정밀도 문제가 될 수 있나..
 
-	//if (bClampResultToMaxValue && RetLevel >= TargetItem.MaxLevel)
-	//{
-	//	RetLevel = TargetItem.MaxLevel;
-	//	OutNewExp = 100.0f;
-	//}
+	if (bClampResultToMaxValue && RetLevel >= TargetItem.MaxLevel)
+	{
+		RetLevel = TargetItem.MaxLevel;
+		OutNewExp = 100.0f;
+	}
 
-	//return RetLevel;
-	return 0.0;
+	return RetLevel;
 }
 
 /** 레벨, 경험치 등 기본적인 값들 채워넣으면 실제 결과 수치라 할 수 있는 옵션값들 채워넣는 함수. 프리뷰 용. */
@@ -1395,66 +1401,66 @@ static void SetPreviewItemResultOptionValuesInternal(const FB2Item& InOriginItem
 { // 결과 옵션값들 외에 여기서 사용하는 기본적인 값들은 채워져 있어야 한다. 
 
 
-	//const float PrimaryPoint = GetPreviewPrimaryPoint(InOutPreviewItem.PrimaryPointType,
-	//												  InOutPreviewItem.ItemFactorLevel,
-	//												  InOutPreviewItem.Quality,
-	//												  InOutPreviewItem.Level);
+	const float PrimaryPoint = GetPreviewPrimaryPoint(InOutPreviewItem.PrimaryPointType,
+													  InOutPreviewItem.ItemFactorLevel,
+													  InOutPreviewItem.Quality,
+													  InOutPreviewItem.Level);
 
-	//InOutPreviewItem.SetPrimaryPoint(PrimaryPoint);
+	InOutPreviewItem.SetPrimaryPoint(PrimaryPoint);
 
 
-	//FClientDataStore& CliDataStore = BladeIIGameImpl::GetClientDataStore();
-	//int32 LevelDistance = (int32)((InOutPreviewItem.Level - InOriginItem.Level + (InOriginItem.Level % 10) ) / 10);
-	//// 기타 옵션값들..
-	//for (int32 IOI = 0; IOI < InOutPreviewItem.IntrinsicOptions.Num(); ++IOI)
-	//{
-	//	FItemOption& ThisOption = InOutPreviewItem.IntrinsicOptions[IOI];
-	//	ThisOption.RawOptionAmount = ThisOption.RawOptionAmount + CliDataStore.GetItemLevelupFactor_PerOptionInc(ThisOption.OptionType) * (float)(LevelDistance);
-	//}
-	//for (int32 IOI = 0; IOI < InOutPreviewItem.RandomOptions.Num(); ++IOI)
-	//{
-	//	FItemOption& ThisOption = InOutPreviewItem.RandomOptions[IOI];
-	//	ThisOption.RawOptionAmount = ThisOption.RawOptionAmount + CliDataStore.GetItemLevelupFactor_PerOptionInc(ThisOption.OptionType) * (float)(LevelDistance);
-	//}
+	FClientDataStore& CliDataStore = BladeIIGameImpl::GetClientDataStore();
+	int32 LevelDistance = (int32)((InOutPreviewItem.Level - InOriginItem.Level + (InOriginItem.Level % 10) ) / 10);
+	// 기타 옵션값들..
+	for (int32 IOI = 0; IOI < InOutPreviewItem.IntrinsicOptions.Num(); ++IOI)
+	{
+		FItemOption& ThisOption = InOutPreviewItem.IntrinsicOptions[IOI];
+		ThisOption.RawOptionAmount = ThisOption.RawOptionAmount + CliDataStore.GetItemLevelupFactor_PerOptionInc(ThisOption.OptionType) * (float)(LevelDistance);
+	}
+	for (int32 IOI = 0; IOI < InOutPreviewItem.RandomOptions.Num(); ++IOI)
+	{
+		FItemOption& ThisOption = InOutPreviewItem.RandomOptions[IOI];
+		ThisOption.RawOptionAmount = ThisOption.RawOptionAmount + CliDataStore.GetItemLevelupFactor_PerOptionInc(ThisOption.OptionType) * (float)(LevelDistance);
+	}
 }
 
 /** 지정한 재료들을 가지고 레벨업 시 결과 데이터가 어떻게 되는지 프리뷰 */
 void GetCalculateItem_PreviewItemLevelup(const FB2Item& InTargetItem, const TArray<FB2Item>& ItemLevelupIngredients, FB2Item& OutPreviewResult, bool bClampResultToMaxValue)
 {
 	// Note(주의!) : 현재 계산 공식은 클라에서 UI상으로 보여주기위한 용도로만 사용하고있고, 실제 공격력 계산은 서버에서 해서 내려주고있음. 
-	//OutPreviewResult = InTargetItem;
+	OutPreviewResult = InTargetItem;
 
-	//if (ItemLevelupIngredients.Num() == 0)
-	//	return;
+	if (ItemLevelupIngredients.Num() == 0)
+		return;
 
-	//float NewExp = InTargetItem.Exp;
-	//OutPreviewResult.Level = GetLevel_PreviewItemLevelup(NewExp, InTargetItem, ItemLevelupIngredients, bClampResultToMaxValue);
-	//OutPreviewResult.Exp = NewExp;
+	float NewExp = InTargetItem.Exp;
+	OutPreviewResult.Level = GetLevel_PreviewItemLevelup(NewExp, InTargetItem, ItemLevelupIngredients, bClampResultToMaxValue);
+	OutPreviewResult.Exp = NewExp;
 
-	//SetPreviewItemResultOptionValuesInternal(InTargetItem, OutPreviewResult); // 기본적인 데이터를 넣은 후 결과 옵션 수치들을 산출해 낸다.
+	SetPreviewItemResultOptionValuesInternal(InTargetItem, OutPreviewResult); // 기본적인 데이터를 넣은 후 결과 옵션 수치들을 산출해 낸다.
 
-	//// 강화가 적용 안된 기본 공방력을 뽑아내고 그 값을 기준으로 강화값을 증가해준다.
-	//int32 BasePrimaryPoint = OutPreviewResult.GetPrimaryPoint();
-	//int32 EnhanceLevel = InTargetItem.EnhanceLevel;
+	// 강화가 적용 안된 기본 공방력을 뽑아내고 그 값을 기준으로 강화값을 증가해준다.
+	int32 BasePrimaryPoint = OutPreviewResult.GetPrimaryPoint();
+	int32 EnhanceLevel = InTargetItem.EnhanceLevel;
 
-	//switch (OutPreviewResult.PrimaryPointType)
-	//{
-	//	// 공격력 += 공격력 * ((등차계수 * 강화레벨) + (등비계수 * 강화레벨 * 강화레벨))
-	//	case EItemPrimaryPointType::EIPP_Attack:
-	//	case EItemPrimaryPointType::EIPP_Defense:
-	//	{
-	//		BasePrimaryPoint += (BasePrimaryPoint * ((0.02f * EnhanceLevel) + (0.00065f * FMath::Pow(EnhanceLevel, 2))));
-	//		OutPreviewResult.SetPrimaryPoint(B2ServerRoundDown(BasePrimaryPoint, 1.f));
-	//	}
-	//		break;
-	//	// 공격력 += (공격력 * ((등차계수 * 강화레벨) + (등비계수 * 강화레벨 * 강화레벨))) + 1
-	//	case EItemPrimaryPointType::EIPP_Health:
-	//	{
-	//		BasePrimaryPoint += ((BasePrimaryPoint * ((0.02f * EnhanceLevel) + (0.00065f * FMath::Pow(EnhanceLevel, 2)))) + 1);
-	//		OutPreviewResult.SetPrimaryPoint(B2ServerRoundDown(BasePrimaryPoint, 1.f));
-	//	}
-	//		break;
-	//}
+	switch (OutPreviewResult.PrimaryPointType)
+	{
+		// 공격력 += 공격력 * ((등차계수 * 강화레벨) + (등비계수 * 강화레벨 * 강화레벨))
+		case EItemPrimaryPointType::EIPP_Attack:
+		case EItemPrimaryPointType::EIPP_Defense:
+		{
+			BasePrimaryPoint += (BasePrimaryPoint * ((0.02f * EnhanceLevel) + (0.00065f * FMath::Pow(static_cast<float>(EnhanceLevel), 2))));
+			OutPreviewResult.SetPrimaryPoint(B2ServerRoundDown(BasePrimaryPoint, 1.f));
+		}
+			break;
+		// 공격력 += (공격력 * ((등차계수 * 강화레벨) + (등비계수 * 강화레벨 * 강화레벨))) + 1
+		case EItemPrimaryPointType::EIPP_Health:
+		{
+			BasePrimaryPoint += ((BasePrimaryPoint * ((0.02f * EnhanceLevel) + (0.00065f * FMath::Pow(static_cast<float>(EnhanceLevel), 2)))) + 1);
+			OutPreviewResult.SetPrimaryPoint(B2ServerRoundDown(BasePrimaryPoint, 1.f));
+		}
+			break;
+	}
 }
 
 /** 특정 수치만큼 레벨업 시 결과 데이터가 어떻게 되는지 프리뷰 */
@@ -1470,46 +1476,46 @@ void GetCalculateItem_PreviewItemLevelup(const FB2Item& InTargetItem, FB2Item& O
 int GetTotalCost_PreviewItemLevelup(const FB2Item& InTargetItem, const TArray<FB2Item>& ItemLevelupIngredients)
 {
 	int32 LevelUpCost = 0;
-	//FClientDataStore& DataStore = BladeIIGameImpl::GetClientDataStore();
-	//for (const FB2Item &Each : ItemLevelupIngredients)
-	//{
-	//	LevelUpCost += DataStore.GetItemLevelUpCost(Each.InventoryType, Each.StarGrade, Each.Level);
-	//}
+	FClientDataStore& DataStore = BladeIIGameImpl::GetClientDataStore();
+	for (const FB2Item& Each : ItemLevelupIngredients)
+	{
+		LevelUpCost += DataStore.GetItemLevelUpCost(Each.InventoryType, Each.StarGrade, Each.Level);
+	}
 	return LevelUpCost;
 }
 
 void GetCalculateItem_PreviewItemEnhance(const FB2Item& InTargetItem, FB2Item& OutPreviewResult, int32 IncreaseEnhanceLevel /*= 0*/, float manualFactor)
 {
-	//OutPreviewResult = InTargetItem;
-	//if (manualFactor != 0)
-	//{
-	//	OutPreviewResult.ItemFactorLevel = manualFactor;
-	//}
-	//FB2Item CalcLevelUpItem;
-	//GetCalculateItem_PreviewItemLevelup(OutPreviewResult, CalcLevelUpItem);
-	//
-	//// 강화가 적용 안된 기본 공방력을 뽑아내고 그 값을 기준으로 강화값을 증가해준다.
-	//int32 BasePrimaryPoint = CalcLevelUpItem.GetPrimaryPoint();
-	//int32 EnhanceLevel = InTargetItem.EnhanceLevel + IncreaseEnhanceLevel;
+	OutPreviewResult = InTargetItem;
+	if (manualFactor != 0)
+	{
+		OutPreviewResult.ItemFactorLevel = manualFactor;
+	}
+	FB2Item CalcLevelUpItem;
+	GetCalculateItem_PreviewItemLevelup(OutPreviewResult, CalcLevelUpItem);
+	
+	// 강화가 적용 안된 기본 공방력을 뽑아내고 그 값을 기준으로 강화값을 증가해준다.
+	int32 BasePrimaryPoint = CalcLevelUpItem.GetPrimaryPoint();
+	int32 EnhanceLevel = InTargetItem.EnhanceLevel + IncreaseEnhanceLevel;
 
-	//switch (CalcLevelUpItem.PrimaryPointType)
-	//{
-	//	// 공격력 += 공격력 * ((등차계수 * 강화레벨) + (등비계수 * 강화레벨 * 강화레벨))
-	//case EItemPrimaryPointType::EIPP_Attack:
-	//case EItemPrimaryPointType::EIPP_Defense:
-	//	{
-	//		BasePrimaryPoint += (BasePrimaryPoint * ((0.02f * EnhanceLevel) + (0.00065f * FMath::Pow(EnhanceLevel, 2))));
-	//		OutPreviewResult.SetPrimaryPoint(B2ServerRoundDown(BasePrimaryPoint, 1.f));
-	//	}
-	//	break;
-	//	// 공격력 += (공격력 * ((등차계수 * 강화레벨) + (등비계수 * 강화레벨 * 강화레벨))) + 1
-	//case EItemPrimaryPointType::EIPP_Health:
-	//	{
-	//		BasePrimaryPoint += ((BasePrimaryPoint * ((0.02f * EnhanceLevel) + (0.00065f * FMath::Pow(EnhanceLevel, 2)))) + 1);
-	//		OutPreviewResult.SetPrimaryPoint(B2ServerRoundDown(BasePrimaryPoint, 1.f));
-	//	}
-	//	break;
-	//}
+	switch (CalcLevelUpItem.PrimaryPointType)
+	{
+		// 공격력 += 공격력 * ((등차계수 * 강화레벨) + (등비계수 * 강화레벨 * 강화레벨))
+	case EItemPrimaryPointType::EIPP_Attack:
+	case EItemPrimaryPointType::EIPP_Defense:
+		{
+			BasePrimaryPoint += (BasePrimaryPoint * ((0.02f * EnhanceLevel) + (0.00065f * FMath::Pow(static_cast<float>(EnhanceLevel), 2))));
+			OutPreviewResult.SetPrimaryPoint(B2ServerRoundDown(BasePrimaryPoint, 1.f));
+		}
+		break;
+		// 공격력 += (공격력 * ((등차계수 * 강화레벨) + (등비계수 * 강화레벨 * 강화레벨))) + 1
+	case EItemPrimaryPointType::EIPP_Health:
+		{
+			BasePrimaryPoint += ((BasePrimaryPoint * ((0.02f * EnhanceLevel) + (0.00065f * FMath::Pow(static_cast<float>(EnhanceLevel), 2)))) + 1);
+			OutPreviewResult.SetPrimaryPoint(B2ServerRoundDown(BasePrimaryPoint, 1.f));
+		}
+		break;
+	}
 }
 
 void GetCalculateCostumeItem_PreviewItemEnhance(const FB2Item& InTargetItem, FB2Item& OutPreviewResult, int32 IncreaseEnhanceLevel /*= 0*/)

@@ -6,6 +6,7 @@
 #include "B2ClientDataStore.h"
 #include "BladeIIGameImpl.h"
 #include "RewardEventManager.h"
+#include "../Common/Event.h"
 
 void UB2UIEventPageTenLottery::CacheAssets()
 {
@@ -16,19 +17,19 @@ void UB2UIEventPageTenLottery::CacheAssets()
 
 void UB2UIEventPageTenLottery::SubscribeEvents_EventPage()
 {
-	//UnsubscribeEvents_EventPage();
+	UnsubscribeEvents_EventPage();
 
-	//CAPTURE_UOBJECT(UB2UIEventPageTenLottery);
+	CAPTURE_UOBJECT(UB2UIEventPageTenLottery);
 
-	//Issues_EventPage.Add(DeliveryRewardTenLotteryEventClass<FB2ResponseRewardTenLotteryEventPtr>::GetInstance().Subscribe2(
-	//	[Capture](FB2ResponseRewardTenLotteryEventPtr ReciveEventReward)
-	//{
-	//	if (Capture.IsValid())
-	//	{
-	//		Capture->ResponseTenLotteryEventReward(ReciveEventReward);
-	//	}
-	//}
-	//));
+	Issues_EventPage.Add(DeliveryRewardTenLotteryEventClass<FB2ResponseRewardTenLotteryEventPtr>::GetInstance().Subscribe2(
+		[Capture](FB2ResponseRewardTenLotteryEventPtr ReciveEventReward)
+	{
+		if (Capture.IsValid())
+		{
+			Capture->ResponseTenLotteryEventReward(ReciveEventReward);
+		}
+	}
+	));
 }
 
 void UB2UIEventPageTenLottery::InitEventPageMasterData()

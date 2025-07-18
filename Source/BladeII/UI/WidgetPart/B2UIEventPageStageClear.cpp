@@ -6,6 +6,7 @@
 #include "B2ClientDataStore.h"
 #include "BladeIIGameImpl.h"
 #include "RewardEventManager.h"
+#include "../Common/Event.h"
 
 void UB2UIEventPageStageClear::CacheAssets()
 {
@@ -16,19 +17,19 @@ void UB2UIEventPageStageClear::CacheAssets()
 
 void UB2UIEventPageStageClear::SubscribeEvents_EventPage()
 {
-	//UnsubscribeEvents_EventPage();
+	UnsubscribeEvents_EventPage();
 
-	//CAPTURE_UOBJECT(UB2UIEventPageStageClear);
+	CAPTURE_UOBJECT(UB2UIEventPageStageClear);
 
-	//Issues_EventPage.Add(DeliveryStageClearEventRewardClass<FB2ResponseReceiveStageClearEventRewardPtr>::GetInstance().Subscribe2(
-	//	[Capture](FB2ResponseReceiveStageClearEventRewardPtr ReceiveEventReward)
-	//{
-	//	if (Capture.IsValid())
-	//	{
-	//		Capture->ResponseStageClearEventReward(ReceiveEventReward);
-	//	}
-	//}
-	//));
+	Issues_EventPage.Add(DeliveryStageClearEventRewardClass<FB2ResponseReceiveStageClearEventRewardPtr>::GetInstance().Subscribe2(
+		[Capture](FB2ResponseReceiveStageClearEventRewardPtr ReceiveEventReward)
+	{
+		if (Capture.IsValid())
+		{
+			Capture->ResponseStageClearEventReward(ReceiveEventReward);
+		}
+	}
+	));
 }
 
 void UB2UIEventPageStageClear::InitEventPageMasterData()

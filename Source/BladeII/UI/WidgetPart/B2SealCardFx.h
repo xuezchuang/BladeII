@@ -8,7 +8,7 @@
 #include "B2SealCardFx.generated.h"
 
 /**
- * 
+ *
  */
 
 USTRUCT()
@@ -16,12 +16,12 @@ struct FCardFXSetupLoadedRefHolder
 {
 	GENERATED_USTRUCT_BODY()
 
-		FCardFXSetupLoadedRefHolder()
+	FCardFXSetupLoadedRefHolder()
 	{
 	}
 
 	UPROPERTY(Transient)
-		TArray<class UParticleSystem*> LoadedPSPtr;
+	TArray<class UParticleSystem*> LoadedPSPtr;
 
 	void CacheMeIfYouCan(class UParticleSystem* InLoadedPS);
 };
@@ -35,7 +35,7 @@ struct FCardFXSetup
 {
 	GENERATED_USTRUCT_BODY()
 
-		FCardFXSetup()
+	FCardFXSetup()
 	{
 		FxCreateNormalizedScreenPos = FVector2D(0.5f, 0.5f);
 		FxCreateRot = FRotator(0.0f, 180.0f, 90.0f);
@@ -45,11 +45,11 @@ struct FCardFXSetup
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BladeiI")
-		TArray<TSoftObjectPtr<class UParticleSystem>> ChainedFX;
+	TArray<TSoftObjectPtr<class UParticleSystem>> ChainedFX;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BladeiI")
-		TArray<TSoftObjectPtr<class UParticleSystem>> UnchainFX;
+	TArray<TSoftObjectPtr<class UParticleSystem>> UnchainFX;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BladeiI")
-		TArray<TSoftObjectPtr<class UParticleSystem>> FlipCardFX;
+	TArray<TSoftObjectPtr<class UParticleSystem>> FlipCardFX;
 
 
 public:
@@ -58,19 +58,19 @@ public:
 	* Normalized screen position (0.0 ~ 1.0 scale) where the particle system component initially created.
 	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BladeiI")
-		FVector2D FxCreateNormalizedScreenPos;
+	FVector2D FxCreateNormalizedScreenPos;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BladeiI")
-		FRotator FxCreateRot;
+	FRotator FxCreateRot;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BladeiI")
-		float FxCreateDepth;
+	float FxCreateDepth;
 
 	/**
 	* Item overlay info can be visible after at least this time has been passed. It can be almost the playing time of particle system.
 	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BladeiI")
-		float MinOverlayHiddenTime;
+	float MinOverlayHiddenTime;
 
 	void PreloadForItems(TArray<FB2Item>& InItems, FStreamableManager& InTAssetLoadManager, FCardFXSetupLoadedRefHolder& InLoadedRefHolder);
 	class UParticleSystem* GetPSForItem(const FB2Item& InItem, FStreamableManager& InTAssetLoadManager, FCardFXSetupLoadedRefHolder& InLoadedRefHolder) const;
@@ -85,7 +85,7 @@ struct FCardFXSet
 {
 	GENERATED_USTRUCT_BODY()
 
-		FCardFXSet()
+	FCardFXSet()
 	{
 		FXComp = NULL;
 		DestMarkerWidget = NULL;
@@ -99,10 +99,10 @@ struct FCardFXSet
 	}
 
 	UPROPERTY(Transient)
-		UParticleSystemComponent* FXComp;
+	UParticleSystemComponent* FXComp;
 
 	UPROPERTY()
-		class UB2UISlotItem* DestMarkerWidget;
+	class UB2UISlotItem* DestMarkerWidget;
 
 	FVector DestPos; // Destination position placed by marker. (Screen > World converted position of DestMarkerWidget)
 	float CurrentSpeed; // Accelerated speed
@@ -120,7 +120,7 @@ UCLASS()
 class BLADEII_API UB2SealCardFx : public UB2UIWidgetBase
 {
 	GENERATED_BODY()
-	
+
 protected:
 
 
@@ -129,48 +129,48 @@ protected:
 	* The same number of placement marker should be present.
 	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BladeiI")
-		int32 ItemNumber;
+	int32 ItemNumber;
 
 	/**
 	* Common prefix for Fx destination marker widget.
 	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BladeiI")
-		FString FxDestMarkerPrefix;
+	FString FxDestMarkerPrefix;
 
 	/**
 	* The size scale of created reward item Fx component.
 	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BladeiI")
-		float FxCreateScale;
+	float FxCreateScale;
 
 	/**
 	* Those three below decide how fast the created reward item Fx will move.
 	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BladeiI")
-		float FxMoveBaseAcceleration;
+	float FxMoveBaseAcceleration;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BladeiI")
-		float FxMoveMinSpeed;
+	float FxMoveMinSpeed;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BladeiI")
-		float FxMoveMaxSpeed;
+	float FxMoveMaxSpeed;
 
 	/** Somewhat like spring const */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BladeiI")
-		float FxMoveAccAdjustConst;
+	float FxMoveAccAdjustConst;
 
 	float FxMoveFinalAcc; // Finally calculated considering FxMoveBaseAcceleration and FxMoveAccAdjustConst, like spring but not exactly.
 
 	int FxStarSize;		// Fx Star Size;
 
-						/**
-						* Array of marker widgets found by FxDestMarkerPrefix and numbering.
-						* Each create Fx comp element will fly to one of its element position.
-						* They also display some of item information which cannot be done by 3D particle effect, as a slot item widget part.
-						*/
+	/**
+	* Array of marker widgets found by FxDestMarkerPrefix and numbering.
+	* Each create Fx comp element will fly to one of its element position.
+	* They also display some of item information which cannot be done by 3D particle effect, as a slot item widget part.
+	*/
 	UPROPERTY()
-		TArray<class UB2UISlotItem*> AllFxDestMarkers;
+	TArray<class UB2UISlotItem*> AllFxDestMarkers;
 
 	UPROPERTY(Transient)
-		TArray<FCardFXSet> CreatedRewardFxSet;
+	TArray<FCardFXSet> CreatedRewardFxSet;
 
 private:
 	// Names defined for NamedMaterialSlots of particle system template.
@@ -209,8 +209,8 @@ private:
 
 protected:
 	UFUNCTION(BlueprintImplementableEvent, Category = "BladeiI")
-		void OnBeginScene_BP();
+	void OnBeginScene_BP();
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "BladeiI")
-		void OnSingleRewardArriveAtDest_BP(int32 RewardIndex);
+	void OnSingleRewardArriveAtDest_BP(int32 RewardIndex);
 };

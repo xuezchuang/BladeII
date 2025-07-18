@@ -6,7 +6,7 @@
 #include "BladeIIUtil.h"
 #include "B2EtherInfo.h"
 #include "B2UIStarGradePart.h"
-
+#include "Event.h"
 
 void UB2UIEtherLotterySlot::Init()
 {
@@ -71,8 +71,8 @@ void UB2UIEtherLotterySlot::CacheAssets()
 
 void UB2UIEtherLotterySlot::OnClickedSenderBTNArea()
 {
-	//SelectEtherLotterySlotClass<int32>::GetInstance().Signal(TypeID);
-	//TouchEtherLotterySlotPlaySound();
+	SelectEtherLotterySlotClass<int32>::GetInstance().Signal(TypeID);
+	TouchEtherLotterySlotPlaySound();
 }
 
 void UB2UIEtherLotterySlot::SetEtherInfo(int32 InTypeID, int32 InTier)

@@ -14,9 +14,8 @@
 #include "BladeIIGameImpl.h"
 #include "BladeIIUtil.h"
 #include "B2AndroidBackManager.h"
-#include "B2EtherManager.h"
 #include "B2GameDefine.h"
-
+#include "Event.h"
 
 void UB2UIEtherDetailPopup::SetPopupInfo(int64 ID, EPCClass SelectPCClass, DetailPopupType InType)
 {
@@ -313,19 +312,19 @@ void UB2UIEtherDetailPopup::CloseWidgetDelegate()
 
 void UB2UIEtherDetailPopup::OnClickClose()
 {
-	//if (CompareIsLock != IsLock && PopupType == DetailPopupType::Scroll)
-	//{
-	//	BladeIIGameImpl::GetLocalCharacterData().GetAllEthers().SortStoredEthers();
-	//	RefreshScrollUIClass<>::GetInstance().Signal();
-	//}
+	if (CompareIsLock != IsLock && PopupType == DetailPopupType::Scroll)
+	{
+		BladeIIGameImpl::GetLocalCharacterData().GetAllEthers().SortStoredEthers();
+		RefreshScrollUIClass<>::GetInstance().Signal();
+	}
 
-	//this->SetVisibility(ESlateVisibility::Collapsed);
-	//B2AndroidBackManager::GetInstance()->RemoveBackWidget(this);
+	this->SetVisibility(ESlateVisibility::Collapsed);
+	B2AndroidBackManager::GetInstance()->RemoveBackWidget(this);
 
-	//if (DecompositionEtherEventID != 0)
-	//{
-	//	DeliveryDecompositionEtherClass<FB2DecompositionEtherPtr>::GetInstance().Unsubscribe(DecompositionEtherEventID);
-	//}
+	if (DecompositionEtherEventID != 0)
+	{
+		DeliveryDecompositionEtherClass<FB2DecompositionEtherPtr>::GetInstance().Unsubscribe(DecompositionEtherEventID);
+	}
 }
 
 void UB2UIEtherDetailPopup::Init()

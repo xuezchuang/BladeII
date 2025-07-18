@@ -8,6 +8,7 @@
 #include "BladeIIUtil.h"
 #include "B2UIEventSlotHB.h"
 #include "RewardEventManager.h"
+#include "../Common/Event.h"
 
 void UB2UIEventPagePointConsume::CacheAssets()
 {
@@ -35,17 +36,17 @@ void UB2UIEventPagePointConsume::SubscribeEvents_EventPage()
 {
 	UnsubscribeEvents_EventPage();
 
-	//CAPTURE_UOBJECT(UB2UIEventPagePointConsume);
+	CAPTURE_UOBJECT(UB2UIEventPagePointConsume);
 
-	//Issues_EventPage.Add(DeliveryRewardPointShopEventClass<FB2ResponseRewardPointShopEventdPtr>::GetInstance().Subscribe2(
-	//	[Capture](FB2ResponseRewardPointShopEventdPtr ReciveEventReward)
-	//{
-	//	if (Capture.IsValid())
-	//	{
-	//		Capture->ResponsePointConsumeEventReward(ReciveEventReward);
-	//	}
-	//}
-	//));
+	Issues_EventPage.Add(DeliveryRewardPointShopEventClass<FB2ResponseRewardPointShopEventdPtr>::GetInstance().Subscribe2(
+		[Capture](FB2ResponseRewardPointShopEventdPtr ReciveEventReward)
+	{
+		if (Capture.IsValid())
+		{
+			Capture->ResponsePointConsumeEventReward(ReciveEventReward);
+		}
+	}
+	));
 }
 
 void UB2UIEventPagePointConsume::InitEventPageMasterData()

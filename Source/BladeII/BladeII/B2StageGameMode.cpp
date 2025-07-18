@@ -7,8 +7,8 @@
 #endif
 
 #include "B2StageManager.h"
-//#include "B2StageInfo.h"
-//#include "B2MonsterSpawnPool.h"
+#include "B2StageInfo.h"
+#include "B2MonsterSpawnPool.h"
 #include "B2StageEventDirector.h"
 #include "B2AutoWayPoint.h"
 #include "B2TreasureChestBase.h"
@@ -18,7 +18,7 @@
 #include "B2UIBattleMain.h"
 #include "B2PCClassInfoBox.h"
 #include "B2UIStore.h"
-//#include "B2UISummonItem.h"
+#include "B2UISummonItem.h"
 #include "B2UIDocHelper.h"
 #include "B2UIGoodsShortcutTooltipPopup.h"
 #include "B2SkillRTManager.h"
@@ -33,7 +33,8 @@
 #include "BladeIIGameImpl.h"
 #include "BladeIIGameMode.h"
 #include "BladeIIUtil.h"
-//#include "B2BGMManager.h"
+#include "../UI/B2UIUtil.h"
+#include "B2BGMManager.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -906,17 +907,17 @@ void AB2StageGameMode::EnterShop(int32 nWhereShop)
 
 bool AB2StageGameMode::OpenEquipNumberNotice()
 {
-	//EPCClass FinalGoBackInvenPageDefClass;
+	EPCClass FinalGoBackInvenPageDefClass;
 
-	//if (!StageManager->GetCacheStageKeepEssentialData().EquipNumberCheck(FinalGoBackInvenPageDefClass))
-	//	return false;
+	if (!StageManager->GetCacheStageKeepEssentialData().EquipNumberCheck(FinalGoBackInvenPageDefClass))
+		return false;
 
-	//B2UIUtil::OpenInventoryFullPopup(FinalGoBackInvenPageDefClass, FMsgPopupOnClick::CreateLambda([this]() {
-	//	bEnterInventory = true;
-	//	int32 NextClientStageId = AB2StageManager::GetCacheStageKeepEssentialData().GetCurrentClientStageId();
-	//	GoToDeferredStage(NextClientStageId);
-	//	}),
-	//	false);
+	B2UIUtil::OpenInventoryFullPopup(FinalGoBackInvenPageDefClass, FMsgPopupOnClick::CreateLambda([this]() {
+		bEnterInventory = true;
+		int32 NextClientStageId = AB2StageManager::GetCacheStageKeepEssentialData().GetCurrentClientStageId();
+		GoToDeferredStage(NextClientStageId);
+		}),
+		false);
 
 	return true;
 }
@@ -930,236 +931,236 @@ void AB2StageGameMode::Tick(float DeltaSeconds)
 
 const FString AB2StageGameMode::GetOpeningMovieName()
 {
-	//if (GMinimalDLCFrontMode)
-	//{ // DLC Front 모드 리소스로딩 최대한 제거. 정말 필요한 곳인지는 모르겠는데 여튼..
-	//	FString(TEXT(""));
-	//}
+	if (GMinimalDLCFrontMode)
+	{ // DLC Front 모드 리소스로딩 최대한 제거. 정말 필요한 곳인지는 모르겠는데 여튼..
+		FString(TEXT(""));
+	}
 
-	//AB2StageManager* StageMgr = GetStageManager();
-	//if (StageMgr && StageMgr->IsScenarioMode()
-	//	// 설정 구조 상 Extra 레벨(대체로 보스전) 전용 동영상 세팅이 없음. 이런 경우는 사실상 연이어 플레이하는 거니 Extra 가 아닌 메인 맵 로딩시에만 플레이
-	//	&& !StageMgr->IsPlayingInExtraLevel()
-	//	)
-	//{
-	//	// StageGameMode 플레이를 위한 리퀘스트를 통해서만 의미있는 StageId 가 들어가 있어야 함.
-	//	int32 StageId = AB2StageManager::GetCacheStageKeepEssentialData().GetCurrentClientStageId();
-	//	UB2StageInfo* StageInfoTable = StaticFindStageInfo();
-	//	FSingleStageInfoData* StageInfoData = StageInfoTable ? StageInfoTable->GetInfoData(StageId) : NULL;
-	//	if (StageInfoData && StageInfoData->HasScenarioMovie())
-	//	{
-	//		return StageInfoData->GetLocalizedMovieName();
-	//	}
-	//}
+	AB2StageManager* StageMgr = GetStageManager();
+	if (StageMgr && StageMgr->IsScenarioMode()
+		// 설정 구조 상 Extra 레벨(대체로 보스전) 전용 동영상 세팅이 없음. 이런 경우는 사실상 연이어 플레이하는 거니 Extra 가 아닌 메인 맵 로딩시에만 플레이
+		&& !StageMgr->IsPlayingInExtraLevel()
+		)
+	{
+		// StageGameMode 플레이를 위한 리퀘스트를 통해서만 의미있는 StageId 가 들어가 있어야 함.
+		int32 StageId = AB2StageManager::GetCacheStageKeepEssentialData().GetCurrentClientStageId();
+		UB2StageInfo* StageInfoTable = StaticFindStageInfo();
+		FSingleStageInfoData* StageInfoData = StageInfoTable ? StageInfoTable->GetInfoData(StageId) : NULL;
+		if (StageInfoData && StageInfoData->HasScenarioMovie())
+		{
+			return StageInfoData->GetLocalizedMovieName();
+		}
+	}
 	return FString(TEXT(""));
 }
 
 void AB2StageGameMode::GetMovieSubtitles(TArray<B2MovieSubtitle>* Subtitles)
 {
-	//if (Subtitles)
-	//{
-	//	int32 StageId = AB2StageManager::GetCacheStageKeepEssentialData().GetCurrentClientStageId();
-	//	UB2StageInfo* StageInfoTable = StaticFindStageInfo();
-	//	FSingleStageInfoData* StageInfoData = StageInfoTable ? StageInfoTable->GetInfoData(StageId) : NULL;
+	if (Subtitles)
+	{
+		int32 StageId = AB2StageManager::GetCacheStageKeepEssentialData().GetCurrentClientStageId();
+		UB2StageInfo* StageInfoTable = StaticFindStageInfo();
+		FSingleStageInfoData* StageInfoData = StageInfoTable ? StageInfoTable->GetInfoData(StageId) : NULL;
 
-	//	if (StageInfoData && StageInfoData->MovieSubtitles.Num() > 0)
-	//	{
-	//		Subtitles->Empty();
-	//		Subtitles->AddDefaulted(StageInfoData->MovieSubtitles.Num());
-	//		for (int32 i = 0; i < StageInfoData->MovieSubtitles.Num(); ++i)
-	//		{
-	//			auto& Subtitle = StageInfoData->MovieSubtitles[i];
-	//			(*Subtitles)[i].Text = BladeIIGetLOCText(B2LOC_CAT_DIALOGTEXT, Subtitle.Text);
-	//			(*Subtitles)[i].Color = Subtitle.Color;
-	//			(*Subtitles)[i].StartTime = Subtitle.StartTime;
-	//			(*Subtitles)[i].EndTime = Subtitle.EndTime;
-	//		}
-	//	}
-	//}
+		if (StageInfoData && StageInfoData->MovieSubtitles.Num() > 0)
+		{
+			Subtitles->Empty();
+			Subtitles->AddDefaulted(StageInfoData->MovieSubtitles.Num());
+			for (int32 i = 0; i < StageInfoData->MovieSubtitles.Num(); ++i)
+			{
+				auto& Subtitle = StageInfoData->MovieSubtitles[i];
+				(*Subtitles)[i].Text = BladeIIGetLOCText(B2LOC_CAT_DIALOGTEXT, Subtitle.Text);
+				(*Subtitles)[i].Color = Subtitle.Color;
+				(*Subtitles)[i].StartTime = Subtitle.StartTime;
+				(*Subtitles)[i].EndTime = Subtitle.EndTime;
+			}
+		}
+	}
 }
 
 void AB2StageGameMode::DeferredGoToLobby()
 {
-	//bool bGoToLobby = false;
-	//auto& ClientDataStore = BladeIIGameImpl::GetClientDataStore();
-	//auto& StageDataStore = BladeIIGameImpl::GetStageDataStore();
+	bool bGoToLobby = false;
+	auto& ClientDataStore = BladeIIGameImpl::GetClientDataStore();
+	auto& StageDataStore = BladeIIGameImpl::GetStageDataStore();
 
-	//if (bFlagDeferredGoToMap)
-	//{		
-	//	int32 ActId = StageDataStore.GetActIdByClientStageId(AB2StageManager::GetCacheStageKeepEssentialData().GetCurrentClientStageId());
-	//	EStageDifficulty Difficulty = AB2StageManager::GetCacheStageKeepEssentialData().GetStageDifficulty();
+	if (bFlagDeferredGoToMap)
+	{		
+		int32 ActId = StageDataStore.GetActIdByClientStageId(AB2StageManager::GetCacheStageKeepEssentialData().GetCurrentClientStageId());
+		EStageDifficulty Difficulty = AB2StageManager::GetCacheStageKeepEssentialData().GetStageDifficulty();
 
-	//	bGoToLobby = bRegistredDeferredUISceneChapter;
-	//	if (!bRegistredDeferredUISceneChapter)
-	//	{
-	//		FLobbySceneManager::DeferredRegistChangeLobbyScene([ActId, Difficulty](){
-	//			// 전체 씬 전환을 하면 실 로딩 시간이 늘어나므로 원하는 화면 직전까지 UI History 만 만들어준다. 
-	//			UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
-	//			if (UIMgrInst){
-	//				UIMgrInst->ArtificialAddUIHistory(EUIScene::LobbyMain);
-	//				// 원래 아래 RequestGetActInfo 이후 응답으로 Chapter Scene 이 열려야 하는데 응답이 오지 않으면 망하므로 적어도 백버튼이라도 있는 Chapter UIScene 이라도 미리 열어둔다.
-	//				UIMgrInst->ChangeUIScene(EUIScene::AdventureEnterBattleMain);
-	//				UIMgrInst->ChangeUIScene(EUIScene::Chapter); 
-	//			}
-	//			BladeIIGameImpl::GetStageDataStore().RequestGetActInfoAndChangeChapter(ActId, Difficulty);
-	//		});			
+		bGoToLobby = bRegistredDeferredUISceneChapter;
+		if (!bRegistredDeferredUISceneChapter)
+		{
+			FLobbySceneManager::DeferredRegistChangeLobbyScene([ActId, Difficulty](){
+				// 전체 씬 전환을 하면 실 로딩 시간이 늘어나므로 원하는 화면 직전까지 UI History 만 만들어준다. 
+				UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
+				if (UIMgrInst){
+					UIMgrInst->ArtificialAddUIHistory(EUIScene::LobbyMain);
+					// 원래 아래 RequestGetActInfo 이후 응답으로 Chapter Scene 이 열려야 하는데 응답이 오지 않으면 망하므로 적어도 백버튼이라도 있는 Chapter UIScene 이라도 미리 열어둔다.
+					UIMgrInst->ChangeUIScene(EUIScene::AdventureEnterBattleMain);
+					UIMgrInst->ChangeUIScene(EUIScene::Chapter); 
+				}
+				BladeIIGameImpl::GetStageDataStore().RequestGetActInfoAndChangeChapter(ActId, Difficulty);
+			});			
 
-	//		bRegistredDeferredUISceneChapter = true;
-	//	}
-	//	else if (!bRequestedGetActInfo)
-	//	{
-	//		StageDataStore.RequestGetActInfoAndChangeChapter(ActId, Difficulty);
-	//		bRequestedGetActInfo = true;
-	//	}
-	//}
+			bRegistredDeferredUISceneChapter = true;
+		}
+		else if (!bRequestedGetActInfo)
+		{
+			StageDataStore.RequestGetActInfoAndChangeChapter(ActId, Difficulty);
+			bRequestedGetActInfo = true;
+		}
+	}
 
-	//if (bFlagDeferredGoToNextArea && bGoToLobby)
-	//{
-	//	int32 NextClientStageId = AB2StageManager::GetCacheStageKeepEssentialData().GetCurrentClientStageId() + 1;
-	//	EStageDifficulty CurStageDifficulty = AB2StageManager::GetCacheStageKeepEssentialData().GetStageDifficulty();
+	if (bFlagDeferredGoToNextArea && bGoToLobby)
+	{
+		int32 NextClientStageId = AB2StageManager::GetCacheStageKeepEssentialData().GetCurrentClientStageId() + 1;
+		EStageDifficulty CurStageDifficulty = AB2StageManager::GetCacheStageKeepEssentialData().GetStageDifficulty();
 
-	//	if (IsRepeatBattleOn() && !IsRepeatBattleLoopAll())
-	//	{ // 반복전투에서 Stage 번호 유지한채 이 기능에 편승 꿀빨기. 아래 GoGameStageInfo 이벤트 날리는 거에도 편승해서 꿀빨기.
-	//		NextClientStageId = AB2StageManager::GetCacheStageKeepEssentialData().GetCurrentClientStageId();
-	//		bRequestedGetStageInfo = true; // 이번 스테이지의 StageInfo 를 가지고 돌아갈 것이므로 또 Request 안해도 됨.
-	//	}
+		if (IsRepeatBattleOn() && !IsRepeatBattleLoopAll())
+		{ // 반복전투에서 Stage 번호 유지한채 이 기능에 편승 꿀빨기. 아래 GoGameStageInfo 이벤트 날리는 거에도 편승해서 꿀빨기.
+			NextClientStageId = AB2StageManager::GetCacheStageKeepEssentialData().GetCurrentClientStageId();
+			bRequestedGetStageInfo = true; // 이번 스테이지의 StageInfo 를 가지고 돌아갈 것이므로 또 Request 안해도 됨.
+		}
 
-	//	if (DeferredClientStageId != INDEX_NONE)
-	//		NextClientStageId = DeferredClientStageId;
+		if (DeferredClientStageId != INDEX_NONE)
+			NextClientStageId = DeferredClientStageId;
 
-	//	UB2StageInfo* StageInfoTable = StaticFindStageInfo();
+		UB2StageInfo* StageInfoTable = StaticFindStageInfo();
 
-	//	if (StageInfoTable == nullptr)
-	//		return;
-	//	
-	//	FServerStageID NextServerStageId;
-	//	if (IsRepeatBattleLoopAll())
-	//	{
-	//		int32 CurrentClientStageID = AB2StageManager::GetCacheStageKeepEssentialData().GetCurrentClientStageId();
-	//		bool FinishRepeatBattleLoop = StageManager != nullptr ? StageManager->IsEndStage(CurrentClientStageID) : true;
-	//		NextServerStageId = StageManager->GetNextServerStageID(CurrentClientStageID, CurStageDifficulty);
+		if (StageInfoTable == nullptr)
+			return;
+		
+		FServerStageID NextServerStageId;
+		if (IsRepeatBattleLoopAll())
+		{
+			int32 CurrentClientStageID = AB2StageManager::GetCacheStageKeepEssentialData().GetCurrentClientStageId();
+			bool FinishRepeatBattleLoop = StageManager != nullptr ? StageManager->IsEndStage(CurrentClientStageID) : true;
+			NextServerStageId = StageManager->GetNextServerStageID(CurrentClientStageID, CurStageDifficulty);
 
-	//		if (NextServerStageId.Id == 0 && FinishRepeatBattleLoop)		//연속전투에서 NextServerID가 0이면 난이도 변경해야하는걸로 간주 멈춰준다
-	//		{
-	//			/*if (UB2UIManager::GetInstance()->GetUI<UB2UIMsgPopupBase>(UIFName::MsgPopupSimple))
-	//				return;*/
+			if (NextServerStageId.Id == 0 && FinishRepeatBattleLoop)		//연속전투에서 NextServerID가 0이면 난이도 변경해야하는걸로 간주 멈춰준다
+			{
+				/*if (UB2UIManager::GetInstance()->GetUI<UB2UIMsgPopupBase>(UIFName::MsgPopupSimple))
+					return;*/
 
-	//			UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
-	//				BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_Notification")),
-	//				BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("BattleStageInfo_ContBattleLastStage")),
-	//				0.f,
-	//				true,
-	//				true,
-	//				EUIMsgPopupButtonGroup::Confirm
-	//			);
-	//			StageManager->CancelOrStopRepeatBattle();
-	//			bFlagDeferredGoToMap = bFlagDeferredGoToNextArea = false;
-	//			return;
-	//		}
-	//	}
-	//	else
-	//	{
-	//		NextServerStageId = StageDataStore.GetServerStageID(NextClientStageId, CurStageDifficulty);
-	//	}
+				UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
+					BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_Notification")),
+					BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("BattleStageInfo_ContBattleLastStage")),
+					0.f,
+					true,
+					true,
+					EUIMsgPopupButtonGroup::Confirm
+				);
+				StageManager->CancelOrStopRepeatBattle();
+				bFlagDeferredGoToMap = bFlagDeferredGoToNextArea = false;
+				return;
+			}
+		}
+		else
+		{
+			NextServerStageId = StageDataStore.GetServerStageID(NextClientStageId, CurStageDifficulty);
+		}
 
 
-	//	bGoToLobby = bGoToLobby && bRegistredDeferredUISceneStageInfo;
-	//	if (StageDataStore.IsCachedStageData(NextServerStageId) && !bRegistredDeferredUISceneStageInfo)
-	//	{		
-	//		
-	//		if (!bEnterInventory && !bEnterShop && IsRepeatBattleOn())
-	//		{
-	//			if (!StageDataStore.IsPossibleToDoRepeatBattle(StageManager->GetServerStageID()) )
-	//			{
-	//				//영혼검이 모자를경우 바로가기 팝업띄우기
-	//				CancelOrStopRepeatBattle();
-	//				bFlagDeferredGoToMap = bFlagDeferredGoToNextArea = false;
-	//				HandleServerErrorGoodsShortageClass<const uint32, const EGoodsButtonType>::GetInstance().Signal(FItemRefIDHelper::GetGoodsID_BladePoint(), EGoodsButtonType::EGoodsButtonType_ShortageShortcut);
-	//				return;
-	//			}
-	//			else if (OpenEquipNumberNotice())
-	//			{
-	//				CancelOrStopRepeatBattle();
-	//				bFlagDeferredGoToMap = bFlagDeferredGoToNextArea = false;
+		bGoToLobby = bGoToLobby && bRegistredDeferredUISceneStageInfo;
+		if (StageDataStore.IsCachedStageData(NextServerStageId) && !bRegistredDeferredUISceneStageInfo)
+		{		
+			
+			if (!bEnterInventory && !bEnterShop && IsRepeatBattleOn())
+			{
+				if (!StageDataStore.IsPossibleToDoRepeatBattle(StageManager->GetServerStageID()) )
+				{
+					//영혼검이 모자를경우 바로가기 팝업띄우기
+					CancelOrStopRepeatBattle();
+					bFlagDeferredGoToMap = bFlagDeferredGoToNextArea = false;
+					HandleServerErrorGoodsShortageClass<const uint32, const EGoodsButtonType>::GetInstance().Signal(FItemRefIDHelper::GetGoodsID_BladePoint(), EGoodsButtonType::EGoodsButtonType_ShortageShortcut);
+					return;
+				}
+				else if (OpenEquipNumberNotice())
+				{
+					CancelOrStopRepeatBattle();
+					bFlagDeferredGoToMap = bFlagDeferredGoToNextArea = false;
 
-	//				return;
-	//			}
+					return;
+				}
 
-	//		}
-	//		// GetRepeatBattleRemainingCount 에서는 아직 줄지 않은 방금 완료한 스테이지 시작 시점에서의 값을 리턴하므로 다음번 반복전투를 위해서는 1 감소한 값을 준다.
-	//		FRepeatBattleStateSet RepeatBattleStateSet = StageManager->GetRepeatBattleState();
-	//		RepeatBattleStateSet.CurrentRepeatCount += 1;
-	//		FLobbySceneManager::DeferredRegistChangeLobbyScene([NextServerStageId, RepeatBattleStateSet](){
-	//			GoGameStageInfoFromLobbyClass<FServerStageID, FRepeatBattleStateSet>::GetInstance().Signal(NextServerStageId, RepeatBattleStateSet);
-	//			LobbyChangeSceneClass<ELobbyScene>::GetInstance().Signal(ELobbyScene::ELobbyScene_CharacterPage);
-	//		});
+			}
+			// GetRepeatBattleRemainingCount 에서는 아직 줄지 않은 방금 완료한 스테이지 시작 시점에서의 값을 리턴하므로 다음번 반복전투를 위해서는 1 감소한 값을 준다.
+			FRepeatBattleStateSet RepeatBattleStateSet = StageManager->GetRepeatBattleState();
+			RepeatBattleStateSet.CurrentRepeatCount += 1;
+			FLobbySceneManager::DeferredRegistChangeLobbyScene([NextServerStageId, RepeatBattleStateSet](){
+				GoGameStageInfoFromLobbyClass<FServerStageID, FRepeatBattleStateSet>::GetInstance().Signal(NextServerStageId, RepeatBattleStateSet);
+				LobbyChangeSceneClass<ELobbyScene>::GetInstance().Signal(ELobbyScene::ELobbyScene_CharacterPage);
+			});
 
-	//		bRegistredDeferredUISceneStageInfo = true;
-	//	}
-	//	else if (!bRequestedGetStageInfo)
-	//	{
-	//		StageDataStore.RequestGetStageInfo(NextServerStageId);
-	//		bRequestedGetStageInfo = true;
-	//	}
-	//}
+			bRegistredDeferredUISceneStageInfo = true;
+		}
+		else if (!bRequestedGetStageInfo)
+		{
+			StageDataStore.RequestGetStageInfo(NextServerStageId);
+			bRequestedGetStageInfo = true;
+		}
+	}
 
-	//if (bGoToLobby)
-	//{
-	//	if (bEnterInventory) //인벤토리로 가야한다면
-	//	{
-	//		bFlagDeferredGoToMap = bFlagDeferredGoToNextArea = false;
-	//		FLobbySceneManager::DeferredRegistChangeLobbyScene([]() {
-	//			LobbyEnterHeroMgmtModeClass<EHeroMgmtSubMode>::GetInstance().Signal(EHeroMgmtSubMode::EHMSM_Inventory);
-	//		});
-	//		LobbyExternalSetInventoryTabClass<EItemInvenType, bool>::GetInstance().Signal(EItemInvenType::EIIVT_Weapon, false);
-	//	}
+	if (bGoToLobby)
+	{
+		if (bEnterInventory) //인벤토리로 가야한다면
+		{
+			bFlagDeferredGoToMap = bFlagDeferredGoToNextArea = false;
+			FLobbySceneManager::DeferredRegistChangeLobbyScene([]() {
+				LobbyEnterHeroMgmtModeClass<EHeroMgmtSubMode>::GetInstance().Signal(EHeroMgmtSubMode::EHMSM_Inventory);
+			});
+			LobbyExternalSetInventoryTabClass<EItemInvenType, bool>::GetInstance().Signal(EItemInvenType::EIIVT_Weapon, false);
+		}
 
-	//	OpenBladeIILobbyCommon(this); // 씬 전환 예약 후 본격 로비 맵 로딩
+		OpenBladeIILobbyCommon(this); // 씬 전환 예약 후 본격 로비 맵 로딩
 
-	//	if (bEnterShop)					//상점으로가야한다면
-	//	{
-	//		auto* DocStore = UB2UIDocHelper::GetDocStore();
+		if (bEnterShop)					//상점으로가야한다면
+		{
+			auto* DocStore = UB2UIDocHelper::GetDocStore();
 
-	//		UB2UIManager* UIMgr = UB2UIManager::GetInstance();
-	//		if (UIMgr)
-	//		{ // 자잘한 팝업이 뜬 상태에서 상점 진입하는 경우가 생길 수 있어서 그거 처리.
-	//			UIMgr->CloseAllStandaloneUIs();
-	//		}
+			UB2UIManager* UIMgr = UB2UIManager::GetInstance();
+			if (UIMgr)
+			{ // 자잘한 팝업이 뜬 상태에서 상점 진입하는 경우가 생길 수 있어서 그거 처리.
+				UIMgr->CloseAllStandaloneUIs();
+			}
 
-	//		switch (static_cast<EStorePageWhere>(nRequestGeneralShop))
-	//		{
-	//		case EStorePageWhere::Store:
-	//		{
-	//			auto* StoreUI = UIMgr->GetUI<UB2UIStore>(UIFName::Store);
-	//			if (StoreUI)
-	//				StoreUI->SetTab();
-	//			else
-	//				data_trader::Retailer::GetInstance().RequestGetGeneralShop();
-	//		}
-	//			break;
-	//		case EStorePageWhere::EquipStore:
-	//		{
-	//			auto* SummonItemUI = UIMgr->GetUI<UB2UISummonItem>(UIFName::SummonItemStore);
-	//			if (SummonItemUI)
-	//				SummonItemUI->SetTab();
-	//			else
-	//				data_trader::Retailer::GetInstance().RequestGetLotteryShop();
-	//		}
-	//			break;
-	//		case EStorePageWhere::PackageStore:
-	//		{
-	//			data_trader::Retailer::GetInstance().RequestGetPackageShop();
-	//		}
-	//			break;
-	//		case EStorePageWhere::MagicStore:
-	//		{
-	//			data_trader::Retailer::GetInstance().RequestGetMagicShop();
-	//		}
-	//		break;
-	//		}
+			switch (static_cast<EStorePageWhere>(nRequestGeneralShop))
+			{
+			case EStorePageWhere::Store:
+			{
+				auto* StoreUI = UIMgr->GetUI<UB2UIStore>(UIFName::Store);
+				if (StoreUI)
+					StoreUI->SetTab();
+				else
+					data_trader::Retailer::GetInstance().RequestGetGeneralShop();
+			}
+				break;
+			case EStorePageWhere::EquipStore:
+			{
+				auto* SummonItemUI = UIMgr->GetUI<UB2UISummonItem>(UIFName::SummonItemStore);
+				if (SummonItemUI)
+					SummonItemUI->SetTab();
+				else
+					data_trader::Retailer::GetInstance().RequestGetLotteryShop();
+			}
+				break;
+			case EStorePageWhere::PackageStore:
+			{
+				data_trader::Retailer::GetInstance().RequestGetPackageShop();
+			}
+				break;
+			case EStorePageWhere::MagicStore:
+			{
+				data_trader::Retailer::GetInstance().RequestGetMagicShop();
+			}
+			break;
+			}
 
-	//		bEnterShop = false;
-	//	}
-	//}
+			bEnterShop = false;
+		}
+	}
 }
 
 int32 AB2StageGameMode::GetCurrentStageNumber() const

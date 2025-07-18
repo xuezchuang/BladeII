@@ -4,6 +4,7 @@
 #if PLATFORM_ANDROID
 #include "Android/AndroidJNI.h"
 #endif
+#include "../BladeII.h"
 #include "B2UITitleScreen.generated.h"
 
 /************************************************************************/

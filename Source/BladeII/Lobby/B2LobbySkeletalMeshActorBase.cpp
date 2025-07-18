@@ -71,34 +71,32 @@ void AB2LobbySkeletalMeshActorBase::Tick(float DeltaSeconds)
 
 void AB2LobbySkeletalMeshActorBase::SetActorHiddenInGame(bool bNewHidden)
 {
-	//const bool bWasHidden = bHidden;
+	Super::SetActorHiddenInGame(bNewHidden);
+	
+	if (IsHidden() == bNewHidden) // 같은 조건으로 여러번 이게 불릴 때가 있어서 아래 추가 코드들은 확실히 변경이 되었을 때만 실행되도록
+		return;
 
-	//Super::SetActorHiddenInGame(bNewHidden);
-	//
-	//if (bWasHidden == bNewHidden) // 같은 조건으로 여러번 이게 불릴 때가 있어서 아래 추가 코드들은 확실히 변경이 되었을 때만 실행되도록
-	//	return;
+	auto* Mesh = GetSkeletalMeshComponent();
+	check(Mesh);
 
-	//auto* Mesh = GetSkeletalMeshComponent();
-	//check(Mesh);
+	if (bNewHidden == false)
+	{
+		if (AnimClass)
+		{
+			Mesh->SetAnimationMode(EAnimationMode::AnimationBlueprint);
+			Mesh->SetAnimInstanceClass(AnimClass);
+		}
 
-	//if (bNewHidden == false)
-	//{
-	//	if (AnimClass)
-	//	{
-	//		Mesh->SetAnimationMode(EAnimationMode::AnimationBlueprint);
-	//		Mesh->SetAnimInstanceClass(AnimClass);
-	//	}
-
-	//	// 특히 Hidden 이후에 다시 보이도록 했을 때 Particle 붙인 것들이 안보이는 경우가 있어서.. 이렇게 해 주니 잘 나옴.
-	//	EnsureActivateStaticallyAttachedPSCs(this);
-	//}
-	//else
-	//{
-	//	Mesh->SetAnimInstanceClass(nullptr);
-	//	bPlayingRotateAnim = bPlayingActionAnim = bActionAnimTriggered = bRotateAnimTriggered = false;
-	//	LookUpAlphaBlend = 0.f;
-	//	CurrentAnimSequence = nullptr;
-	//}
+		// 특히 Hidden 이후에 다시 보이도록 했을 때 Particle 붙인 것들이 안보이는 경우가 있어서.. 이렇게 해 주니 잘 나옴.
+		EnsureActivateStaticallyAttachedPSCs(this);
+	}
+	else
+	{
+		Mesh->SetAnimInstanceClass(nullptr);
+		bPlayingRotateAnim = bPlayingActionAnim = bActionAnimTriggered = bRotateAnimTriggered = false;
+		LookUpAlphaBlend = 0.f;
+		CurrentAnimSequence = nullptr;
+	}
 }
 
 UAnimSequenceBase* AB2LobbySkeletalMeshActorBase::GetCurrentAnimSequence()
@@ -108,11 +106,11 @@ UAnimSequenceBase* AB2LobbySkeletalMeshActorBase::GetCurrentAnimSequence()
 
 void AB2LobbySkeletalMeshActorBase::PlayAnimation(UAnimSequenceBase* Anim, bool bInSkipAnimNotifiers, bool bInSkipSoundNotifiersOnly)
 {
-	//CurrentAnimSequence = Anim;
+	CurrentAnimSequence = Anim;
 
-	//LookUpAlphaBlend = 0.f;
+	LookUpAlphaBlend = 0.f;
 
-	//USkeletalMeshComponent* SKComp = GetSkeletalMeshComponent();
+	USkeletalMeshComponent* SKComp = GetSkeletalMeshComponent();
 	//if (SKComp && SKComp->AnimScriptInstance)
 	//{
 	//	SKComp->AnimScriptInstance->bSkipAnimNotifiers = bInSkipAnimNotifiers;

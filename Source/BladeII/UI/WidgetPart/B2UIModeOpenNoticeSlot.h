@@ -3,6 +3,7 @@
 
 #include "B2UIWidget.h"
 #include "B2UILobbyNoticeSlot.h"
+#include "../DataTrader/OnlineWholesaler.h"
 #include "B2UIModeOpenNoticeSlot.generated.h"
 
 struct FCheckModeInfo

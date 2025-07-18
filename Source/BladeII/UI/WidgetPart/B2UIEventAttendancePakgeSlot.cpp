@@ -3,7 +3,8 @@
 #include "B2UIEventAttendancePakgeSlot.h"
 #include "B2UIStore.h"
 #include "B2UIDocHelper.h"
-
+#include "../BladeII/BladeIILocText.h"
+#include "Event.h"
 void UB2UIEventAttendancePakgeSlot::Init()
 {
 	Super::Init();
@@ -35,11 +36,11 @@ void UB2UIEventAttendancePakgeSlot::BindDelegates()
 
 void UB2UIEventAttendancePakgeSlot::UpdateStaticText()
 {
-	//if (RTB_PossibleBuy.IsValid())	//구매 가능
-	//	RTB_PossibleBuy->SetText(BladeIIGetLOCText(B2LOC_CAT_EVENT, TEXT("Attendance_AvailableForPurchase")));
+	if (RTB_PossibleBuy.IsValid())	//구매 가능
+		RTB_PossibleBuy->SetText(BladeIIGetLOCText(B2LOC_CAT_EVENT, TEXT("Attendance_AvailableForPurchase")));
 
-	//if (RTB_CompleteBuy.IsValid())	//적용 중
-	//	RTB_CompleteBuy->SetText(BladeIIGetLOCText(B2LOC_CAT_EVENT, TEXT("Attendance_Active")));
+	if (RTB_CompleteBuy.IsValid())	//적용 중
+		RTB_CompleteBuy->SetText(BladeIIGetLOCText(B2LOC_CAT_EVENT, TEXT("Attendance_Active")));
 }
 
 void UB2UIEventAttendancePakgeSlot::InitSlotState()
@@ -91,10 +92,10 @@ void UB2UIEventAttendancePakgeSlot::UpdateSlotState(bool IsBought)
 
 void UB2UIEventAttendancePakgeSlot::OnClickBtnGotoPackageShop()
 {
-	//if (auto* DocStore = UB2UIDocHelper::GetDocStore())
-	//{
-	//	const int32 FlatratePackageTabIndex = 7;
-	//	DocStore->SetPackageTabToOpen(FlatratePackageTabIndex);
-	//	EnterShopClass<int32>::GetInstance().Signal(static_cast<int32>(EStorePageWhere::PackageStore));
-	//}
+	if (auto* DocStore = UB2UIDocHelper::GetDocStore())
+	{
+		const int32 FlatratePackageTabIndex = 7;
+		DocStore->SetPackageTabToOpen(FlatratePackageTabIndex);
+		EnterShopClass<int32>::GetInstance().Signal(static_cast<int32>(EStorePageWhere::PackageStore));
+	}
 }

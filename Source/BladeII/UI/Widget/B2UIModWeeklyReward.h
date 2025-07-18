@@ -3,6 +3,7 @@
 #include "B2UIWidget.h"
 #include "B2UIDocBindable.h"
 #include "B2UIBackWidget.h"
+#include "../DataStore/B2ClientDataStore.h"
 #include "B2UIModWeeklyReward.generated.h"
 
 /*

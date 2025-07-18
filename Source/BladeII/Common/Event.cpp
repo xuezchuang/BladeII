@@ -532,7 +532,7 @@ DEFINITION_EVENT_CLASS(HandleServerError8005)
 DEFINITION_EVENT_CLASS(DeliveryReceiveRenewalMagicShopError, FB2ResponseRenewalMagicShopPtr)
 DEFINITION_EVENT_CLASS(DeliveryReceivePurchaseMagicShopError, FB2ResponsePurchaseMagicShopPtr)
 
-//DEFINITION_EVENT_CLASS(HandleServerErrorGoodsShortage, const uint32, const EGoodsButtonType)
+DEFINITION_EVENT_CLASS(HandleServerErrorGoodsShortage, const uint32, const EGoodsButtonType)
 DEFINITION_EVENT_CLASS(HandleServerError4018)
 
 //DEFINITION_EVENT_CLASS(SuccessToMatchmake,				data_trader::ChannelPtr, uint32, const TArray<FB2RoomParticipantPtr>&)

@@ -8,6 +8,7 @@
 #include "B2UIRewardEventSet.h"
 #include "BladeIIUtil.h"
 #include "Retailer.h"
+#include "../Common/Event.h"
 
 void UB2UIEventPageTenLotterySaving::CacheAssets()
 {
@@ -68,20 +69,20 @@ void UB2UIEventPageTenLotterySaving::UpdateStaticText()
 
 void UB2UIEventPageTenLotterySaving::SubscribeEvents_EventPage()
 {
-	//UnsubscribeEvents_EventPage();
+	UnsubscribeEvents_EventPage();
 
-	//CAPTURE_UOBJECT(UB2UIEventPageTenLotterySaving);
+	CAPTURE_UOBJECT(UB2UIEventPageTenLotterySaving);
 
-	//Issues_EventPage.Add(
-	//	DeliveryRewardTenLotterySavingsEventClass <FB2ResponseRewardTenLotterySavingsEventPtr>::GetInstance().Subscribe2(
-	//	[Capture](FB2ResponseRewardTenLotterySavingsEventPtr ReciveEventReward)
-	//	{
-	//		if (Capture.IsValid())
-	//		{
-	//			Capture->ResponseRewardTenLotterySavingsEvent(ReciveEventReward);
-	//		}
-	//	}
-	//));
+	Issues_EventPage.Add(
+		DeliveryRewardTenLotterySavingsEventClass <FB2ResponseRewardTenLotterySavingsEventPtr>::GetInstance().Subscribe2(
+		[Capture](FB2ResponseRewardTenLotterySavingsEventPtr ReciveEventReward)
+		{
+			if (Capture.IsValid())
+			{
+				Capture->ResponseRewardTenLotterySavingsEvent(ReciveEventReward);
+			}
+		}
+	));
 }
 
 void UB2UIEventPageTenLotterySaving::InitEventPageMasterData()

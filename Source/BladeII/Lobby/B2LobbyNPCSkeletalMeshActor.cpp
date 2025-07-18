@@ -7,13 +7,13 @@
 #include "Animation/AnimSequence.h"
 #include "B2LobbyGameMode.h"
 #include "B2UIManager.h"
-//#include "B2UIMsgPopupSelectFairyGift.h"
-//#include "B2UILobbyMain.h"
-//#include "B2UIChatting.h"
-//#include "B2UIQuestDialog.h"
-//#include "B2UISetting.h"
-//#include "B2UIHotTimeBuffPopup.h"
-//#include "B2UIDailyNoticePopup.h"
+#include "B2UIMsgPopupSelectFairyGift.h"
+#include "B2UILobbyMain.h"
+#include "B2UIChatting.h"
+#include "B2UIQuestDialog.h"
+#include "B2UISetting.h"
+#include "B2UIHotTimeBuffPopup.h"
+#include "B2UIDailyNoticePopup.h"
 
 #include "BladeIIGameImpl.h"
 
@@ -31,37 +31,37 @@ void AB2LobbyNPCSkeletalMeshActor::TickForBlendedAnimTransition(class UAnimSeque
 	bool bFireAnimNotifyOfNextAnim
 )
 {
-	//// Matinee AnimControl 에서의 Blending 기능을 가져다 쓰는 것으로 제한적인 환경에서만..
-	//// 여기서 AnimBlueprint 대신 이런 식으로 anim 블렌딩을 하는 이유는 
-	//// AnimBlueprint (뿐 아닌 언리얼 UObject 리소스들..) 의 리소스 레퍼런스로 인한 로딩 시간 증가에 데인 경험 때문.
-	//// 혹여나 이 기능을 딴 데로 가져가서 사용할 때의 경고 차원으로..
-	//check(
-	//	Cast<AB2LobbyNPCSkeletalMeshActor>(this) &&
-	//	Cast<AB2LobbyGameMode>(UGameplayStatics::GetGameMode(this))
-	//);
-	//// NextAnim 이 진행되면서 블렌딩하는 경우에는 CurrAnim 의 마지막 위치를 넣어주어야 함.
-	//check(bPlayingCurrAnim || CurrAnimLastPos >= 0.0f);
+	// Matinee AnimControl 에서의 Blending 기능을 가져다 쓰는 것으로 제한적인 환경에서만..
+	// 여기서 AnimBlueprint 대신 이런 식으로 anim 블렌딩을 하는 이유는 
+	// AnimBlueprint (뿐 아닌 언리얼 UObject 리소스들..) 의 리소스 레퍼런스로 인한 로딩 시간 증가에 데인 경험 때문.
+	// 혹여나 이 기능을 딴 데로 가져가서 사용할 때의 경고 차원으로..
+	check(
+		Cast<AB2LobbyNPCSkeletalMeshActor>(this) &&
+		Cast<AB2LobbyGameMode>(UGameplayStatics::GetGameMode(this))
+	);
+	// NextAnim 이 진행되면서 블렌딩하는 경우에는 CurrAnim 의 마지막 위치를 넣어주어야 함.
+	check(bPlayingCurrAnim || CurrAnimLastPos >= 0.0f);
 
-	//if (!InCurrAnim || !InNextAnim) {
-	//	return;
-	//}
+	if (!InCurrAnim || !InNextAnim) {
+		return;
+	}
 
-	//const float ClampedBlendingWeight = FMath::Clamp(BlendWeightForNextAnim, 0.0f, 1.0f); // 걍 안전 처리..
+	const float ClampedBlendingWeight = FMath::Clamp(BlendWeightForNextAnim, 0.0f, 1.0f); // 걍 안전 처리..
 
-	//// 현재 플레이하는 애니메이션보다 긴 시간의 transition 을 둘 수는 없다.
-	//const float FinalTotalTransitionTime = bPlayingCurrAnim ?
-	//	FMath::Min(InTotalTransitionTime, InCurrAnim->GetPlayLength()) :
-	//	FMath::Min(InTotalTransitionTime, InNextAnim->GetPlayLength());
+	// 현재 플레이하는 애니메이션보다 긴 시간의 transition 을 둘 수는 없다.
+	const float FinalTotalTransitionTime = bPlayingCurrAnim ?
+		FMath::Min(InTotalTransitionTime, InCurrAnim->GetPlayLength()) :
+		FMath::Min(InTotalTransitionTime, InNextAnim->GetPlayLength());
 
-	//// bPlayingCurrent 여부에 따라 CurrAnim 과 NextAnim 각각의 플레이 위치 산정. 하나만 진행이 되고 다른 하나는 정해진 위치.
-	//const float CurrAnimPlayPos = bPlayingCurrAnim ?
-	//	(InCurrAnim->GetPlayLength() - FinalTotalTransitionTime + FinalTotalTransitionTime * ClampedBlendingWeight) :
-	//	CurrAnimLastPos;
-	//const float NexAnimPlayPos = bPlayingCurrAnim ?
-	//	0.0f :
-	//	(FinalTotalTransitionTime * ClampedBlendingWeight);
+	// bPlayingCurrent 여부에 따라 CurrAnim 과 NextAnim 각각의 플레이 위치 산정. 하나만 진행이 되고 다른 하나는 정해진 위치.
+	const float CurrAnimPlayPos = bPlayingCurrAnim ?
+		(InCurrAnim->GetPlayLength() - FinalTotalTransitionTime + FinalTotalTransitionTime * ClampedBlendingWeight) :
+		CurrAnimLastPos;
+	const float NexAnimPlayPos = bPlayingCurrAnim ?
+		0.0f :
+		(FinalTotalTransitionTime * ClampedBlendingWeight);
 
-	//
+	
 	//// 이하.. Matinee AnimControl 트랙에서의 Anim Blending 핵심 코드..
 
 	//TArray<FAnimSlotInfo> AnimWeightSlotInfo;

@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "UI/B2UIWidgetBase.h"
+#include "../B2RichTextBlock.h"
 #include "B2UISelectiveLotteryCostumeSlot.generated.h"
 
 DECLARE_DYNAMIC_DELEGATE_OneParam(FOnSlotCostumeClickDelgate, UB2UISelectiveLotteryCostumeSlot*, ClickedCostume);

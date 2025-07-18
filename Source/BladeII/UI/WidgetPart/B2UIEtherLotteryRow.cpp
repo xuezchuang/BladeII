@@ -33,29 +33,29 @@ void UB2UIEtherLotteryRow::DestroySelf(class UB2UIManager* InUIManager)
 
 void UB2UIEtherLotteryRow::SetEtherLotteryRowInfo(TArray<int32> InTypeIDs, int32 InStar, int32 InTier, UB2UnitedWidgetBase* InReceiver, UB2ScrollBox* HandlingScrollBox)
 {
-	//for (int i = 0; i < X_EtherLotterySlots.Num(); ++i)
-	//{
-	//	if (X_EtherLotterySlots[i].IsValid())
-	//	{
-	//		if (InTypeIDs.IsValidIndex(i))
-	//		{
-	//			X_EtherLotterySlots[i]->SetVisibility(ESlateVisibility::Visible);
-	//			X_EtherLotterySlots[i]->SetEtherLotterySlotInfo(InTypeIDs[i], InStar, InTier);
-	//		}
-	//		else
-	//		{
-	//			X_EtherLotterySlots[i]->SetVisibility(ESlateVisibility::Hidden);
-	//		}
-	//	}
-	//}
+	for (int i = 0; i < X_EtherLotterySlots.Num(); ++i)
+	{
+		if (X_EtherLotterySlots[i].IsValid())
+		{
+			if (InTypeIDs.IsValidIndex(i))
+			{
+				X_EtherLotterySlots[i]->SetVisibility(ESlateVisibility::Visible);
+				X_EtherLotterySlots[i]->SetEtherLotterySlotInfo(InTypeIDs[i], InStar, InTier);
+			}
+			else
+			{
+				X_EtherLotterySlots[i]->SetVisibility(ESlateVisibility::Hidden);
+			}
+		}
+	}
 
-	//for (const TWeakObjectPtr<UB2UIEtherLotterySlot>Elem : X_EtherLotterySlots)
-	//{
-	//	if (Elem.IsValid())
-	//	{
-	//		Elem->SetupManualScrollBoxSender_byReceiver(InReceiver, HandlingScrollBox);
-	//	}
-	//}
+	for (const TWeakObjectPtr<UB2UIEtherLotterySlot>Elem : X_EtherLotterySlots)
+	{
+		if (Elem.IsValid())
+		{
+			Elem->SetupManualScrollBoxSender_byReceiver(InReceiver, HandlingScrollBox);
+		}
+	}
 }
 
 void UB2UIEtherLotteryRow::SetSelectedVisibility(int32 InType)
