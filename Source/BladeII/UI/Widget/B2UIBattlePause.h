@@ -32,27 +32,27 @@ private:
 
 	//===================================================Click
 	UFUNCTION()
-		void OnClickBtnContinue();
+	void OnClickBtnContinue();
 	UFUNCTION()
-		void OnClickBtnWorldMap();
+	void OnClickBtnWorldMap();
 	UFUNCTION()
-		void OnClickBtnTagMatch();
+	void OnClickBtnTagMatch();
 	UFUNCTION()
-		void OnClickBtnTeamMatch();
+	void OnClickBtnTeamMatch();
 	UFUNCTION()
-		void OnClickBtnCounterAttack();
+	void OnClickBtnCounterAttack();
 	UFUNCTION()
-		void OnClickBtnHeroTower();
+	void OnClickBtnHeroTower();
 	UFUNCTION()
-		void OnClickBtnVillage();
+	void OnClickBtnVillage();
 	UFUNCTION()
-		void OnClickBtnConfiguration();
+	void OnClickBtnConfiguration();
 	UFUNCTION()
-		void OnClickBtnRaid();
+	void OnClickBtnRaid();
 	UFUNCTION()
-		void OnClickBtnGuild();
+	void OnClickBtnGuild();
 	UFUNCTION()
-		void OnClickBtnDimension();
+	void OnClickBtnDimension();
 
 private:
 	TArray<std::shared_ptr<class issue>> Issues;

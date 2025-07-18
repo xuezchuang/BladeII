@@ -63,17 +63,17 @@ void UB2NPCClassInfoBox::SetupSpawnPoolAsyncBlacklist()
 
 void UB2NPCClassInfoBox::GetAsyncRequestInfoFromNPCIds(const TArray<FCombinedNPCClassID>& NPCIDs, TArray<FB2AsyncRequestInfo>& OutRequestInfoList)
 { // FCombinedNPCClassID 에 해당하는 AssetReference 를 가져옴. 이걸 NPCClassInfo 에셋 로딩에 쓸 수 있다.
-	//for(const auto& ClassID : NPCIDs)
-	//{
-	//	auto NPCSingleClassAsset = GetNPCSingleClassAsset(ClassID);
-	//	if (NPCSingleClassAsset.IsNull() == false)
-	//	{
-	//		FSoftObjectPath	AssetString = NPCSingleClassAsset.GetSoftObjectPath();
-	//		FB2AsyncRequestInfo		RequestInfo(ClassID, AssetString);
+	for (const auto& ClassID : NPCIDs)
+	{
+		auto NPCSingleClassAsset = GetNPCSingleClassAsset(ClassID);
+		if (NPCSingleClassAsset.IsNull() == false)
+		{
+			FSoftObjectPath	AssetString = NPCSingleClassAsset.ToSoftObjectPath();
+			FB2AsyncRequestInfo		RequestInfo(ClassID, AssetString);
 
-	//		OutRequestInfoList.Add(RequestInfo);
-	//	}
-	//}
+			OutRequestInfoList.Add(RequestInfo);
+		}
+	}
 }
 
 TSoftClassPtr<UB2NPCSingleClassInfo> UB2NPCClassInfoBox::GetNPCSingleClassAsset(const FCombinedNPCClassID& ClassID)
@@ -93,20 +93,20 @@ TSoftClassPtr<UB2NPCSingleClassInfo> UB2NPCClassInfoBox::GetNPCSingleClassAsset(
 
 void UB2NPCClassInfoBox::Unload(const FCombinedNPCClassID& NPCClassID)
 {
-	//if (auto* InfoObj = FindSingleClassInfo(NPCClassID))
-	//{
-	//	const int32 NPCKey = GetNPCClassKey(NPCClassID);
-	//	LoadedPtrMap.Remove(NPCKey);
-	//}
+	if (auto* InfoObj = FindSingleClassInfo(NPCClassID))
+	{
+		const int32 NPCKey = GetNPCClassKey(NPCClassID);
+		LoadedPtrMap.Remove(NPCKey);
+	}
 
-	//if (const auto& InfoAsset = GetNPCSingleClassAsset(NPCClassID))
-	//{
-	//	if (InfoAsset.IsValid())
-	//	{ // RootSet 처리를 하게 될 수 있으므로 unload 전에 떼어놓는다.
-	//		InfoAsset->RemoveFromRoot();
-	//	}
-	//	UnloadAsset(InfoAsset.GetSoftObjectPath());
-	//}
+	if (const auto& InfoAsset = GetNPCSingleClassAsset(NPCClassID))
+	{
+		if (InfoAsset.IsValid())
+		{ // RootSet 처리를 하게 될 수 있으므로 unload 전에 떼어놓는다.
+			InfoAsset->RemoveFromRoot();
+		}
+		UnloadAsset(InfoAsset.ToSoftObjectPath());
+	}
 }
 
 void UB2NPCClassInfoBox::OnAsyncLoadComplete(const FString& CompleteRequest, const TArray<FB2AsyncRequestInfo>& CompleteRequestList)
@@ -209,31 +209,31 @@ void UB2NPCClassInfoBox::PreSave(FObjectPreSaveContext SaveContext)
  */
 UB2NPCSingleClassInfo* UB2NPCClassInfoBox::GetNPCSingleClassInfo(ENPCClass InClass, ENPCClassVariation InVariation)
 {
-	//if (InClass == ENPCClass::ENC_End)
-	//	return nullptr;
+	if (InClass == ENPCClass::ENC_End)
+		return nullptr;
 
-	//FCombinedNPCClassID NPCClassID(InClass, InVariation);
-	//if (auto* LoadedObject = FindSingleClassInfo(NPCClassID))
-	//{
-	//	return LoadedObject;
-	//}
+	FCombinedNPCClassID NPCClassID(InClass, InVariation);
+	if (auto* LoadedObject = FindSingleClassInfo(NPCClassID))
+	{
+		return LoadedObject;
+	}
 
-	//else // need to load
-	//{
-	//	const FCombinedNPCClassID ClassID(InClass, InVariation);
-	//	auto AssetClass = GetNPCSingleClassAsset(ClassID);
-	//	if (AssetClass.IsNull() == false) // 여기 IsNull 은 로딩이 안되어 있음을 뜻하는 게 아니라 에셋 할당이 안되어 있음을 뜻함
-	//	{
-	//		const FSoftObjectPath& StringAsset = AssetClass.GetSoftObjectPath();
-	//		UClass* SingleClassInfo = Cast<UClass>(LoadSynchronous(StringAsset, GENERAL_TASSET_ASYNC_LOAD_TIMEOUT));
-	//		auto* CastedAsset = Cast<UB2NPCSingleClassInfo>(SingleClassInfo->GetDefaultObject());
+	else // need to load
+	{
+		const FCombinedNPCClassID ClassID(InClass, InVariation);
+		auto AssetClass = GetNPCSingleClassAsset(ClassID);
+		if (AssetClass.IsNull() == false) // 여기 IsNull 은 로딩이 안되어 있음을 뜻하는 게 아니라 에셋 할당이 안되어 있음을 뜻함
+		{
+			const FSoftObjectPath& StringAsset = AssetClass.ToSoftObjectPath();
+			UClass* SingleClassInfo = Cast<UClass>(LoadSynchronous(StringAsset, GENERAL_TASSET_ASYNC_LOAD_TIMEOUT));
+			auto* CastedAsset = Cast<UB2NPCSingleClassInfo>(SingleClassInfo->GetDefaultObject());
 
-	//		const int32 NPCKey = GetNPCClassKey(ClassID.GetNPCClassEnum(), ClassID.GetNPCVariationEnum());
-	//		LoadedPtrMap.Add(NPCKey, CastedAsset);
+			const int32 NPCKey = GetNPCClassKey(ClassID.GetNPCClassEnum(), ClassID.GetNPCVariationEnum());
+			LoadedPtrMap.Add(NPCKey, CastedAsset);
 
-	//		return CastedAsset;
-	//	}
-	//}
+			return CastedAsset;
+		}
+	}
 
 	return nullptr;
 }

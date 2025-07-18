@@ -9,6 +9,7 @@
 #include "B2UIManager.h"
 #include "BladeIIGameImpl.h"
 #include "B2EtherManager.h"
+#include "../../../../down/blade_dev_client/BladeII/Source/BladeII/Public/BladeIIUtil.h"
 
 
 namespace CombatStatEval // 전투력 측정 글로벌 유틸

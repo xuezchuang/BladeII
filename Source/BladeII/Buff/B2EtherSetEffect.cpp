@@ -52,19 +52,19 @@ uint32 UB2EtherSetEffect::GetHashValue()
 
 bool UB2EtherSetEffect::GatherAsyncLoadAssets(const FString& RequestName, TArray<FSoftObjectPath>& OutGatheredAssets)
 {
-	//if (EtherEffectObj == nullptr && EtherEffectAsset.IsNull() == false)
-	//	OutGatheredAssets.Add(EtherEffectAsset.GetSoftObjectPath());
+	if (EtherEffectObj == nullptr && EtherEffectAsset.IsNull() == false)
+		OutGatheredAssets.Add(EtherEffectAsset.ToSoftObjectPath());
 
-	//if (TextTextureObj == nullptr && TextTexture.IsNull() == false)
-	//	OutGatheredAssets.Add(TextTexture.GetSoftObjectPath());
+	if (TextTextureObj == nullptr && TextTexture.IsNull() == false)
+		OutGatheredAssets.Add(TextTexture.ToSoftObjectPath());
 
 	return OutGatheredAssets.Num() > 0 ? true : false;
 }
 
 void UB2EtherSetEffect::OnAsyncLoadComplete(const FString& CompleteRequest, const TArray<FSoftObjectPath>& LoadedAssets)
 {
-	//EtherEffectObj = Cast<UParticleSystem>(EtherEffectAsset.GetSoftObjectPath().ResolveObject());
-	//TextTextureObj = Cast<UTexture2D>(TextTexture.GetSoftObjectPath().ResolveObject());
+	EtherEffectObj = Cast<UParticleSystem>(EtherEffectAsset.ToSoftObjectPath().ResolveObject());
+	TextTextureObj = Cast<UTexture2D>(TextTexture.ToSoftObjectPath().ResolveObject());
 }
 
 void UB2EtherSetEffect::TryAsyncLoadEtherAssets()
@@ -391,8 +391,8 @@ void UB2Ether_Thunder::ApplyEtherToCauser(ABladeIICharacter* EtherCauser)
 
 bool UB2Ether_Thunder::GatherAsyncLoadAssets(const FString& RequestName, TArray<FSoftObjectPath>& OutGatheredAssets)
 {
-	//if (HitEffectObj == nullptr && HitEffect.IsNull() == false)
-	//	OutGatheredAssets.Add(HitEffect.GetSoftObjectPath());
+	if (HitEffectObj == nullptr && HitEffect.IsNull() == false)
+		OutGatheredAssets.Add(HitEffect.ToSoftObjectPath());
 
 	return Super::GatherAsyncLoadAssets(RequestName, OutGatheredAssets);
 }
@@ -401,7 +401,7 @@ void UB2Ether_Thunder::OnAsyncLoadComplete(const FString& CompleteRequest, const
 {
 	Super::OnAsyncLoadComplete(CompleteRequest, LoadedAssets);
 
-	//HitEffectObj = Cast<UParticleSystem>(HitEffect.GetSoftObjectPath().ResolveObject());
+	HitEffectObj = Cast<UParticleSystem>(HitEffect.ToSoftObjectPath().ResolveObject());
 }
 
 float UB2Ether_Thunder::GetAbsThunderDamage(ABladeIICharacter* EtherCauser)

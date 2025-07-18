@@ -79,6 +79,7 @@
 #include "B2ServerResultCodeTable.h"
 #include "B2CodeTable.h"
 #include "FairyManager.h"
+#include "../BladeII.h"
 
 
 
@@ -252,28 +253,28 @@ bool OpenBladeIILobbyCommon(class AGameMode* InCurrentGameMode)
 
 bool StartBladeIIGameStage(AGameMode* InCurrentGameMode, int32 InClientStageId, FString OpenURLOption, EB2GameMode ChangeGameMode)
 {
-	//B2_SCOPED_TRACK_LOG(TEXT("StartBladeIIGameStage"));
+	B2_SCOPED_TRACK_LOG(TEXT("StartBladeIIGameStage"));
 
-	//// 다음 맵 로딩 진행도를 위해 순수 맵 로딩만의 예상 지분을 세팅
-	//B2GMLoadingProgCollector::PrepareWithPureMapLoadShareForGM(InCurrentGameMode, ChangeGameMode);
+	// 다음 맵 로딩 진행도를 위해 순수 맵 로딩만의 예상 지분을 세팅
+	B2GMLoadingProgCollector::PrepareWithPureMapLoadShareForGM(InCurrentGameMode, ChangeGameMode);
 
-	//// 주의: 다른 곳에서는 굳이 B2GameModule 에서 StageInfoTable 을 직접 가져다 쓸 필요가 없다.
-	//// 여기는 StageManager 가 들고 있는 CurrentStageNumber 와 다른 StageInfoData 를 가져오기 위함.
-	//// 여타 일반적인 사용에서는 가급적 AB2StageManager::GetCurrentStageInfoData 나 AB2StageGameMode::GetCurrentStageInfoData 를 사용
+	// 주의: 다른 곳에서는 굳이 B2GameModule 에서 StageInfoTable 을 직접 가져다 쓸 필요가 없다.
+	// 여기는 StageManager 가 들고 있는 CurrentStageNumber 와 다른 StageInfoData 를 가져오기 위함.
+	// 여타 일반적인 사용에서는 가급적 AB2StageManager::GetCurrentStageInfoData 나 AB2StageGameMode::GetCurrentStageInfoData 를 사용
 
-	//UB2StageInfo* StageInfoTable = StaticFindStageInfo();
-	//FSingleStageInfoData* StageInfoData = StageInfoTable ? StageInfoTable->GetInfoData(InClientStageId) : NULL;
-	//if (StageInfoData)
-	//{
-	//	// 클라이언트 테스트 용으로 StageNum 넘겨줌.
-	//	BladeIIGameImpl::DevOnlyStageLoadData.SpecifiedClientStageId = InClientStageId;
+	UB2StageInfo* StageInfoTable = StaticFindStageInfo();
+	FSingleStageInfoData* StageInfoData = StageInfoTable ? StageInfoTable->GetInfoData(InClientStageId) : NULL;
+	if (StageInfoData)
+	{
+		// 클라이언트 테스트 용으로 StageNum 넘겨줌.
+		BladeIIGameImpl::DevOnlyStageLoadData.SpecifiedClientStageId = InClientStageId;
 
-	//	// OnPreLoadMap 에서 Movie 시작 시점까지 잠깐 화면을 덮을 UI Screen.
-	//	OpenPreLoadingScreenClass<EPreLoadingScreenType, EB2GameMode>::GetInstance().Signal(EPreLoadingScreenType::PLST_StageBegin, ChangeGameMode);
+		// OnPreLoadMap 에서 Movie 시작 시점까지 잠깐 화면을 덮을 UI Screen.
+		OpenPreLoadingScreenClass<EPreLoadingScreenType, EB2GameMode>::GetInstance().Signal(EPreLoadingScreenType::PLST_StageBegin, ChangeGameMode);
 
-	//	UGameplayStatics::OpenLevel(InCurrentGameMode, StageInfoData->MainMap, true, OpenURLOption);
-	//	return true;
-	//}
+		UGameplayStatics::OpenLevel(InCurrentGameMode, StageInfoData->MainMap, true, OpenURLOption);
+		return true;
+	}
 
 	return false;
 }
@@ -299,18 +300,18 @@ bool StartBladeIIPVPReplay(class AGameMode* InCurrentGameMode, FModReplayInfo Re
 {
 	B2_SCOPED_TRACK_LOG(TEXT("StartBladeIIPVPReplay"));
 
-	//auto* doc = UB2UIDocHelper::GetDocSome();
-	//if (doc)
-	//{
-	//	doc->ReplayInfo = ReplayInfo;
-	//}
+	auto* doc = UB2UIDocHelper::GetDocSome();
+	if (doc)
+	{
+		doc->ReplayInfo = ReplayInfo;
+	}
 
-	//FString ReplayMapName(TEXT("/Game/Maps/ReplayTest"));
+	FString ReplayMapName(TEXT("/Game/Maps/ReplayTest"));
 
-	//OpenPreLoadingScreenClass<EPreLoadingScreenType, EB2GameMode>::GetInstance()
-	//	.Signal(EPreLoadingScreenType::PLST_StageBegin, EB2GameMode::PVPReplay);
+	OpenPreLoadingScreenClass<EPreLoadingScreenType, EB2GameMode>::GetInstance()
+		.Signal(EPreLoadingScreenType::PLST_StageBegin, EB2GameMode::PVPReplay);
 
-	//UGameplayStatics::OpenLevel(InCurrentGameMode, FName(*ReplayMapName), true, OpenURLOption);
+	UGameplayStatics::OpenLevel(InCurrentGameMode, FName(*ReplayMapName), true, OpenURLOption);
 
 	return true;
 }
@@ -352,16 +353,16 @@ bool StartBladeIIControlGame(class AGameMode* InCurrentGameMode, FString OpenURL
 {
 	B2_SCOPED_TRACK_LOG(TEXT("StartBladeIIControlGame"));
 
-	//// 다음 맵 로딩 진행도를 위해 순수 맵 로딩만의 예상 지분을 세팅
-	//B2GMLoadingProgCollector::PrepareWithPureMapLoadShareForGM(InCurrentGameMode, EB2GameMode::Control);
+	// 다음 맵 로딩 진행도를 위해 순수 맵 로딩만의 예상 지분을 세팅
+	B2GMLoadingProgCollector::PrepareWithPureMapLoadShareForGM(InCurrentGameMode, EB2GameMode::Control);
 
-	//FString ControlMapName;
+	FString ControlMapName;
 
-	//GConfig->GetString(TEXT("/Script/BladeII"), TEXT("BladeIIControlMap"), ControlMapName, GGameIni);
+	GConfig->GetString(TEXT("/Script/BladeII"), TEXT("BladeIIControlMap"), ControlMapName, GGameIni);
 
-	//OpenPreLoadingScreenClass<EPreLoadingScreenType, EB2GameMode>::GetInstance().Signal(EPreLoadingScreenType::PLST_StageBegin, EB2GameMode::Control); // 로딩 스크린을 미리 한번 로딩해 주는 게 안전하다는 가설이 있어서 미리 한차례 해 준다..
+	OpenPreLoadingScreenClass<EPreLoadingScreenType, EB2GameMode>::GetInstance().Signal(EPreLoadingScreenType::PLST_StageBegin, EB2GameMode::Control); // 로딩 스크린을 미리 한번 로딩해 주는 게 안전하다는 가설이 있어서 미리 한차례 해 준다..
 
-	//UGameplayStatics::OpenLevel(InCurrentGameMode, FName(*ControlMapName), true, OpenURLOption);
+	UGameplayStatics::OpenLevel(InCurrentGameMode, FName(*ControlMapName), true, OpenURLOption);
 	return true;
 }
 
@@ -635,15 +636,14 @@ UB2PCClassInfoBox* StaticFindPCClassInfoBox(UObject* WorldContextObject)
 }
 UB2NPCClassInfoBox* StaticFindMobClassInfoBox(UObject* WorldContextObject)
 {
-	//if (WorldContextObject)
-	//{ // 가능한 경우 GameInstance 의 캐싱된 레퍼런스를 사용.
-	//	UB2GameInstance* B2GI = Cast<UB2GameInstance>(UGameplayStatics::GetGameInstance(WorldContextObject));
-	//	if (B2GI) {
-	//		return B2GI->GetMobClassInfoBox();
-	//	}
-	//}
-	//return StaticFindBPInfoAssetTempl<UB2NPCClassInfoBox>(TEXT("/Script/BladeII.B2NPCClassInfo"), TEXT("MobClassInfoBoxAsset"));
-	return NULL;
+	if (WorldContextObject)
+	{ // 가능한 경우 GameInstance 의 캐싱된 레퍼런스를 사용.
+		UB2GameInstance* B2GI = Cast<UB2GameInstance>(UGameplayStatics::GetGameInstance(WorldContextObject));
+		if (B2GI) {
+			return B2GI->GetMobClassInfoBox();
+		}
+	}
+	return StaticFindBPInfoAssetTempl<UB2NPCClassInfoBox>(TEXT("/Script/BladeII.B2NPCClassInfo"), TEXT("MobClassInfoBoxAsset"));
 }
 
 UB2CommonSoundInfo* StaticFindCommonSoundInfo(UObject* WorldContextObject)
@@ -812,17 +812,18 @@ class UB2GuildNPCInfo* StaticFindGuildNPCInfo(UObject* WorldContextObject)
 	//if (WorldContextObject)
 	//{ // 가능한 경우 GameInstance 의 캐싱된 레퍼런스를 사용.
 	//	UB2GameInstance* B2GI = Cast<UB2GameInstance>(UGameplayStatics::GetGameInstance(WorldContextObject));
-	//	if (B2GI) {
+	//	if (B2GI)
+	//	{
 	//		return B2GI->GetGuildNPCInfo();
 	//	}
 	//}
 	return StaticFindBPInfoAssetTempl<UB2GuildNPCInfo>(TEXT("/Script/BladeII"), TEXT("GuildNPCInofAsset"));
 }
 
-//class UTutorialControlBotInfos* StaticFindTutorialControlBotInfos()
-//{
-//	return StaticFindBPInfoAssetTempl<UTutorialControlBotInfos>(TEXT("/Script/BladeII.B2TutorialInfo"), TEXT("TutorialControlBotInfos"));
-//}
+class UTutorialControlBotInfos* StaticFindTutorialControlBotInfos()
+{
+	return StaticFindBPInfoAssetTempl<UTutorialControlBotInfos>(TEXT("/Script/BladeII.B2TutorialInfo"), TEXT("TutorialControlBotInfos"));
+}
 
 UB2CombatConstantInfo * StaticFindCombatConstantInfo(UObject * WorldContextObject)
 {
@@ -837,26 +838,26 @@ UB2CombatConstantInfo * StaticFindCombatConstantInfo(UObject * WorldContextObjec
 	return StaticFindBPInfoAssetTempl<UB2CombatConstantInfo>(TEXT("/Script/BladeII"), TEXT("CombatConstantInfoAsset"));
 }
 
-//int32 UpdateAutoBattleType(int32 InAutoBattleType)
-//{
-//	int32 AutoBallte = InAutoBattleType;
-//
-//	if (AutoBallte == AutoBattleType::NONE)
-//	{
-//		AutoBallte = AutoBattleType::Attack;
-//	}
-//	else
-//	{
-//		AutoBallte = AutoBallte << 1;
-//		if (AutoBallte > AutoBattleType::Skill)
-//		{
-//			AutoBallte = AutoBattleType::NONE;
-//		}
-//	}
-//
-//	return AutoBallte;
-//}
-//
+int32 UpdateAutoBattleType(int32 InAutoBattleType)
+{
+	int32 AutoBallte = InAutoBattleType;
+
+	if (AutoBallte == AutoBattleType::NONE)
+	{
+		AutoBallte = AutoBattleType::Attack;
+	}
+	else
+	{
+		AutoBallte = AutoBallte << 1;
+		if (AutoBallte > AutoBattleType::Skill)
+		{
+			AutoBallte = AutoBattleType::NONE;
+		}
+	}
+
+	return AutoBallte;
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////
 
 #if !UE_BUILD_SHIPPING
@@ -882,34 +883,34 @@ FB2ScopedCallTracker::FB2ScopedCallTracker(const ANSICHAR* InScopeName)
 
 FB2ScopedCallTracker::~FB2ScopedCallTracker()
 {
-	//extern bool gDrawPerfMark;
-	//if (bIsOn || gDrawPerfMark)
-	//{
-	//	double TimeTaken = FPlatformTime::Seconds() - RecordedStartTime;
-	//	// 실행 시간이 일정 기준 이상으로 오래 걸리면 경고로 표시.. 몰아서 찾아보기 좋게.. 대체로 이걸 설치하는 곳은 Tick 에서 불리는 건 아니어서 이벤트 성으로도 오래 걸린다 싶은 정도인 거를 걸러낸다.
-	//	const bool bConsiderAsWarningLv1 = (TimeTaken >= PerfMarkLv1Time);
-	//	const bool bConsiderAsWarningLv2 = (TimeTaken >= PerfMarkLv2Time);
+	extern bool gDrawPerfMark;
+	if (bIsOn || gDrawPerfMark)
+	{
+		double TimeTaken = FPlatformTime::Seconds() - RecordedStartTime;
+		// 실행 시간이 일정 기준 이상으로 오래 걸리면 경고로 표시.. 몰아서 찾아보기 좋게.. 대체로 이걸 설치하는 곳은 Tick 에서 불리는 건 아니어서 이벤트 성으로도 오래 걸린다 싶은 정도인 거를 걸러낸다.
+		const bool bConsiderAsWarningLv1 = (TimeTaken >= PerfMarkLv1Time);
+		const bool bConsiderAsWarningLv2 = (TimeTaken >= PerfMarkLv2Time);
 
-	//	FString LogString = FString::Printf(TEXT("%s End (Exec time : %f ms)"), *ScopeName, TimeTaken * 1000.0);
+		FString LogString = FString::Printf(TEXT("%s End (Exec time : %f ms)"), *ScopeName, TimeTaken * 1000.0);
 
-	//	FLinearColor PerfMarkDrawTextColor(1.0f, 1.0f, 0.0f, 1.0f);
-	//	if (bConsiderAsWarningLv2) {
-	//		UE_LOG(LogB2ScopedCallTrack, Warning, TEXT("%s [PerfMark_Lv2]"), *LogString);
-	//		PerfMarkDrawTextColor = FLinearColor(1.0f, 0.0f, 0.0f, 1.0f);
-	//	}
-	//	else if (bConsiderAsWarningLv1) {
-	//		UE_LOG(LogB2ScopedCallTrack, Display, TEXT("%s [PerfMark_Lv1]"), *LogString);
-	//	}
-	//	else {
-	//		UE_LOG(LogB2ScopedCallTrack, Log, TEXT("%s"), *LogString);
-	//	}
+		FLinearColor PerfMarkDrawTextColor(1.0f, 1.0f, 0.0f, 1.0f);
+		if (bConsiderAsWarningLv2) {
+			UE_LOG(LogB2ScopedCallTrack, Warning, TEXT("%s [PerfMark_Lv2]"), *LogString);
+			PerfMarkDrawTextColor = FLinearColor(1.0f, 0.0f, 0.0f, 1.0f);
+		}
+		else if (bConsiderAsWarningLv1) {
+			UE_LOG(LogB2ScopedCallTrack, Display, TEXT("%s [PerfMark_Lv1]"), *LogString);
+		}
+		else {
+			UE_LOG(LogB2ScopedCallTrack, Log, TEXT("%s"), *LogString);
+		}
 
-	//	// 특별히 화면에 보기 쉽게 표시
-	//	if (gDrawPerfMark && (bConsiderAsWarningLv1 || bConsiderAsWarningLv2))
-	//	{
-	//		BII_SCREEN_LOG(LogString, PerfMarkDrawTextColor, 12, 8.0f);
-	//	}
-	//}
+		// 특별히 화면에 보기 쉽게 표시
+		if (gDrawPerfMark && (bConsiderAsWarningLv1 || bConsiderAsWarningLv2))
+		{
+			BII_SCREEN_LOG(LogString, PerfMarkDrawTextColor, 12, 8.0f);
+		}
+	}
 }
 
 
@@ -1130,29 +1131,24 @@ void ManualUnloadOnStageClear(UObject* WorldContextObject)
 	// 기타 이젠 별 볼일 없어 보이는 것들 언로딩.
 
 
-	// GC 도 한번 쿨하게 돌린다. 이걸 해야 실제로 메모리가 확보될 거.
-	//UWorld* TheWorld = B2GM ? B2GM->GetWorld() : NULL;
-	//if (TheWorld)
-	//{
-	//	TheWorld->ForceGarbageCollection();
-	//}
+	CollectGarbage(GARBAGE_COLLECTION_KEEPFLAGS);
 }
 
 void CopyObjectProperties(UObject* ObjCopyTo, UObject* ObjCopyFrom, bool bExcludeTransient, bool bExcludeSubComponents, const TArray<FName>& ExcludeProperties)
 {
-	B2_SCOPED_TRACK_LOG(TEXT("CopyObjectProperties"));
+	//B2_SCOPED_TRACK_LOG(TEXT("CopyObjectProperties"));
 
-	//if (
-	//	!ObjCopyTo || !ObjCopyFrom ||
-	//	// 같은 클래스던지, 내지는 ObjCopyFrom 이 ObjCopyTo 의 하위 클래스던지.
-	//	(ObjCopyTo->GetClass() != ObjCopyFrom->GetClass() && !ObjCopyFrom->IsA(ObjCopyTo->GetClass()))
-	//	)
-	//{
-	//	return;
-	//}
+	////if (
+	////	!ObjCopyTo || !ObjCopyFrom ||
+	////	// 같은 클래스던지, 내지는 ObjCopyFrom 이 ObjCopyTo 의 하위 클래스던지.
+	////	(ObjCopyTo->GetClass() != ObjCopyFrom->GetClass() && !ObjCopyFrom->IsA(ObjCopyTo->GetClass()))
+	////	)
+	////{
+	////	return;
+	////}
 
-	// 참고 : FObjectInitializer::InitProperties
-	// 이건 기본 serialize 후에 사용되는 것이므로 핵심 파트는 좀 단순화 되어 있음.
+	//// 참고 : FObjectInitializer::InitProperties
+	//// 이건 기본 serialize 후에 사용되는 것이므로 핵심 파트는 좀 단순화 되어 있음.
 
 	//UClass* ObjClass = ObjCopyTo->GetClass();
 	//BII_CHECK(ObjClass);
@@ -1206,82 +1202,81 @@ void DevShowNotReadyYetPopup()
 
 bool isLocalConnectIniFileExist()
 {
-//	//UE4Game가 Root인듯 함.
-//	//FPaths::GameDir();		//  ../../../BladeII/
-//	//FPaths::EngineDir();		//  ../../../Engine/
-//	//FPaths::GameSavedDir();	//  ../../../BladeII/Saved/
-//	//FPaths::GameUserDir();	//	../../../BladeII/
-//	//FPaths::RootDir();		//	../../../
-//	//FPaths::ProfilingDir();	//	../../../BladeII/Saved/Profiling/
-//
-//	FString fileName(TEXT("3918D5C54C244BC2C1F44FD221EBD84F200162E1.Luc"));
-//
-//	FString FullPath;
+	//UE4Game가 Root인듯 함.
+	//FPaths::GameDir();		//  ../../../BladeII/
+	//FPaths::EngineDir();		//  ../../../Engine/
+	//FPaths::GameSavedDir();	//  ../../../BladeII/Saved/
+	//FPaths::GameUserDir();	//	../../../BladeII/
+	//FPaths::RootDir();		//	../../../
+	//FPaths::ProfilingDir();	//	../../../BladeII/Saved/Profiling/
+
+	FString fileName(TEXT("3918D5C54C244BC2C1F44FD221EBD84F200162E1.Luc"));
+
+	FString FullPath;
+#if PLATFORM_IOS
+	FullPath = FPaths::Combine(FPaths::RootDir(), fileName);
+#else 
+	//FullPath = FPaths::Combine(FPaths::GamePersistentDownloadDir(), fileName);
+#endif
+
+	bool bFileExist = FPaths::FileExists(FullPath);
+//	if (bFileExist == false)
+//	{
+//		//소문자 검사
+//		fileName = fileName.ToLower();
 //#if PLATFORM_IOS
-//	FullPath = FPaths::Combine(FPaths::RootDir(), fileName);
+//		FullPath = FPaths::Combine(FPaths::RootDir(), fileName);
 //#else 
-//	FullPath = FPaths::Combine(FPaths::GamePersistentDownloadDir(), fileName);
+//		FullPath = FPaths::Combine(FPaths::GamePersistentDownloadDir(), fileName);
 //#endif
-//
-//	bool bFileExist = FPaths::FileExists(FullPath);
-////	if (bFileExist == false)
-////	{
-////		//소문자 검사
-////		fileName = fileName.ToLower();
-////#if PLATFORM_IOS
-////		FullPath = FPaths::Combine(FPaths::RootDir(), fileName);
-////#else 
-////		FullPath = FPaths::Combine(FPaths::GamePersistentDownloadDir(), fileName);
-////#endif
-////		bFileExist = FPaths::FileExists(FullPath);
-////	}
-//
-//#ifdef NONE_KAKAO_SDK_VERSION
-//	bFileExist = true;
-//#endif
-//
-//	UE_LOG(LogBladeII, Log, TEXT("isLocalConnectIniFileExist : FullPath : %s"), *FullPath);
-//
-//	/*
-//	//JSon Writer
-//	FArchive* WriteArc = IFileManager::Get().CreateFileWriter(*FullPath);
-//	if (WriteArc)
-//	{
-//	FString JsonStr;
-//	TSharedPtr<FJsonObject> JsonParsed;
-//	TSharedRef<TJsonWriter<TCHAR>> JsonWriter = TJsonWriterFactory<>::Create(WriteArc);
-//	JsonWriter->WriteObjectStart();
-//	JsonWriter->WriteValue(FString(TEXT("B3D42311E981FA6399D5CD01153D5DD03F6FF220")), FString(TEXT("LOCAL")));
-//	JsonWriter->WriteValue(FString(TEXT("B624E063500C07A876526621E2E7BAB39B3102AE")), true);
-//
-//	JsonWriter->WriteObjectEnd();
-//	JsonWriter->Close();
-//
-//	WriteArc->Flush();
-//	WriteArc->Close();
-//	delete WriteArc;
+//		bFileExist = FPaths::FileExists(FullPath);
 //	}
-//	if (bFileExist)
-//	{
-//	//JSon Reader
-//	FArchive* ReadArc = IFileManager::Get().CreateFileReader(*FullPath);
-//	if (ReadArc)
-//	{
-//	TSharedPtr<FJsonObject> JsonParsed;
-//	TSharedRef<TJsonReader<TCHAR>> JsonReader = TJsonReaderFactory<>::Create(ReadArc);
-//	if (FJsonSerializer::Deserialize(JsonReader, JsonParsed) && JsonParsed.IsValid())
-//	{
-//	FString stServerType = JsonParsed->GetStringField(FString(TEXT("B3D42311E981FA6399D5CD01153D5DD03F6FF220"))); //Sha1(ServerType)
-//	stServerType = stServerType.ToUpper();
-//	bFileExist = stServerType.Compare(FString("LOCAL")) == 0 ? true : false;
-//	bool bCheatEnable = JsonParsed->GetBoolField(FString(TEXT("B624E063500C07A876526621E2E7BAB39B3102AE"))); //Sha1(CheatEnable)
-//	//GShowConsoleWindowNextTick = bCheatEnable;
-//	}
-//	}
-//	}
-//	//*/
-//	return bFileExist;
-	return true;
+
+#ifdef NONE_KAKAO_SDK_VERSION
+	bFileExist = true;
+#endif
+
+	UE_LOG(LogBladeII, Log, TEXT("isLocalConnectIniFileExist : FullPath : %s"), *FullPath);
+
+	/*
+	//JSon Writer
+	FArchive* WriteArc = IFileManager::Get().CreateFileWriter(*FullPath);
+	if (WriteArc)
+	{
+	FString JsonStr;
+	TSharedPtr<FJsonObject> JsonParsed;
+	TSharedRef<TJsonWriter<TCHAR>> JsonWriter = TJsonWriterFactory<>::Create(WriteArc);
+	JsonWriter->WriteObjectStart();
+	JsonWriter->WriteValue(FString(TEXT("B3D42311E981FA6399D5CD01153D5DD03F6FF220")), FString(TEXT("LOCAL")));
+	JsonWriter->WriteValue(FString(TEXT("B624E063500C07A876526621E2E7BAB39B3102AE")), true);
+
+	JsonWriter->WriteObjectEnd();
+	JsonWriter->Close();
+
+	WriteArc->Flush();
+	WriteArc->Close();
+	delete WriteArc;
+	}
+	if (bFileExist)
+	{
+	//JSon Reader
+	FArchive* ReadArc = IFileManager::Get().CreateFileReader(*FullPath);
+	if (ReadArc)
+	{
+	TSharedPtr<FJsonObject> JsonParsed;
+	TSharedRef<TJsonReader<TCHAR>> JsonReader = TJsonReaderFactory<>::Create(ReadArc);
+	if (FJsonSerializer::Deserialize(JsonReader, JsonParsed) && JsonParsed.IsValid())
+	{
+	FString stServerType = JsonParsed->GetStringField(FString(TEXT("B3D42311E981FA6399D5CD01153D5DD03F6FF220"))); //Sha1(ServerType)
+	stServerType = stServerType.ToUpper();
+	bFileExist = stServerType.Compare(FString("LOCAL")) == 0 ? true : false;
+	bool bCheatEnable = JsonParsed->GetBoolField(FString(TEXT("B624E063500C07A876526621E2E7BAB39B3102AE"))); //Sha1(CheatEnable)
+	//GShowConsoleWindowNextTick = bCheatEnable;
+	}
+	}
+	}
+	//*/
+	return bFileExist;
 }
 
 // 아래 SetupNamedMIDForFxComp, GetFxNamedMIDCommon, SetupMIDAtlasParamFromUIMIC 를 사용해서 
@@ -1719,7 +1714,7 @@ void SetLobbyUIHeaderTitle(const FText& InTitleText)
 
 void TryGatherAllBoundPSFromSKComp(class USkeletalMeshComponent* InSKComp, TMap<FName, UParticleSystem*>& OutAllFound)
 {
-	// OutAllFound 를 리셋하지 않고 사용..
+	//// OutAllFound 를 리셋하지 않고 사용..
 
 	//if (!InSKComp || !InSKComp->GetAnimInstance()) {
 	//	return;
@@ -1797,20 +1792,20 @@ void DrawDebugText(float InStartX, float InStartY, const FString& InText, const 
 #endif
 }
 //#if WITH_BII_ON_SCREEN_DEBUG_TEXT
-/** 이건 한번만 콜하면 정해진 시간동안 디스플레이 된다. 대신 위치는 정해져 있음 */
-void DrawTimedDebugText(const FString& InText, const FLinearColor& InFontColor, int32 InFontSize, float InDisplayTime, bool bDrawShadow, const FLinearColor& InShadowColor)
-{
-	//if (UB2UIManager::IsInstanceNull()) { // 여기서 GetInstance 를 할 때에 생성이 되도록 하지 않는다. 특히 FB2ScopedCallTracker 에 사용되기 때문에 UIManager 가 Unload 된 시점에도 불리게 될 수 있다.
-	//	return;
-	//}
-
-	//UB2UIManager* UIMgr = UB2UIManager::GetInstance();
-	//UB2DebugTextWidget* ScreenDebugTextWidget = UIMgr ? UIMgr->GetScreenDebugTextWidget() : NULL;
-	//if (ScreenDebugTextWidget)
-	//{
-	//	ScreenDebugTextWidget->AddTimedDrawText(InText, InFontColor, InFontSize, InDisplayTime, bDrawShadow, InShadowColor);
-	//}
-}
+///** 이건 한번만 콜하면 정해진 시간동안 디스플레이 된다. 대신 위치는 정해져 있음 */
+//void DrawTimedDebugText(const FString& InText, const FLinearColor& InFontColor, int32 InFontSize, float InDisplayTime, bool bDrawShadow, const FLinearColor& InShadowColor)
+//{
+//	if (UB2UIManager::IsInstanceNull()) { // 여기서 GetInstance 를 할 때에 생성이 되도록 하지 않는다. 특히 FB2ScopedCallTracker 에 사용되기 때문에 UIManager 가 Unload 된 시점에도 불리게 될 수 있다.
+//		return;
+//	}
+//
+//	UB2UIManager* UIMgr = UB2UIManager::GetInstance();
+//	UB2DebugTextWidget* ScreenDebugTextWidget = UIMgr ? UIMgr->GetScreenDebugTextWidget() : NULL;
+//	if (ScreenDebugTextWidget)
+//	{
+//		ScreenDebugTextWidget->AddTimedDrawText(InText, InFontColor, InFontSize, InDisplayTime, bDrawShadow, InShadowColor);
+//	}
+//}
 //#endif
 
 bool IsUsingMobileRendering(UWorld* InWorld)
@@ -1826,26 +1821,26 @@ bool IsUsingMobileRendering(UWorld* InWorld)
 
 void TurnOffMeshComponentsDyamicShadowForModulated(AActor* InOwnerActor)
 {
-	////////////////////////////////////////
-	//// InteractiveActor 와 같이 BladeII 자체적인 하위에 movable MeshComponent 들이 있는 Actor 를 위한 dynamic shadow 속성 컨트롤 유틸.
-	//// Modulated shadow 가 좀 문제가 있어서 딱히 필요도 없고 문제만 일으킬 소지가 있는 것들은 shadow 를 드리우지 않도록 하기 위함.
-	//// Modulated shadow 를 대체하는 괜찮은 수단이 나오기 전까지..
-	//// 근데 배경이 static lighting 에 기반하고 있는 한 어차피 modulated shadow 외에 적절한 대안을 찾기도 어려움 ㅋ
-	////////////////////////////////////////
+	//////////////////////////////////////
+	// InteractiveActor 와 같이 BladeII 자체적인 하위에 movable MeshComponent 들이 있는 Actor 를 위한 dynamic shadow 속성 컨트롤 유틸.
+	// Modulated shadow 가 좀 문제가 있어서 딱히 필요도 없고 문제만 일으킬 소지가 있는 것들은 shadow 를 드리우지 않도록 하기 위함.
+	// Modulated shadow 를 대체하는 괜찮은 수단이 나오기 전까지..
+	// 근데 배경이 static lighting 에 기반하고 있는 한 어차피 modulated shadow 외에 적절한 대안을 찾기도 어려움 ㅋ
+	//////////////////////////////////////
 
-	//if (InOwnerActor && ShouldUsePerObjectModulatedShadow(InOwnerActor->GetWorld()))
-	//{
-	//	TArray<UActorComponent*> AllMeshComps = InOwnerActor->GetComponentsByClass(UMeshComponent::StaticClass());
-	//	for (UActorComponent* ThisActorComp : AllMeshComps)
-	//	{
-	//		UMeshComponent* ThisMeshComp = Cast<UMeshComponent>(ThisActorComp);
-	//		if (ThisMeshComp && ThisMeshComp->Mobility == EComponentMobility::Movable && ThisMeshComp->bCastDynamicShadow)
-	//		{
-	//			ThisMeshComp->bCastDynamicShadow = false;
-	//			ThisMeshComp->MarkRenderStateDirty();
-	//		}
-	//	}
-	//}
+	if (InOwnerActor && ShouldUsePerObjectModulatedShadow(InOwnerActor->GetWorld()))
+	{
+		TArray<UActorComponent*> AllMeshComps = InOwnerActor->GetComponentsByClass(UMeshComponent::StaticClass());
+		for (UActorComponent* ThisActorComp : AllMeshComps)
+		{
+			UMeshComponent* ThisMeshComp = Cast<UMeshComponent>(ThisActorComp);
+			if (ThisMeshComp && ThisMeshComp->Mobility == EComponentMobility::Movable && ThisMeshComp->bCastDynamicShadow)
+			{
+				ThisMeshComp->bCastDynamicShadow = false;
+				ThisMeshComp->MarkRenderStateDirty();
+			}
+		}
+	}
 }
 void ForceSendReallocateRenderTargetsSignal()
 {
@@ -1892,23 +1887,23 @@ namespace Utilities
 		data_trader::ServiceNotAvailableEventClass<int32>::GetInstance().Subscribe(
 			[this](int32 error)
 		{
-			//// 세션 서버와 접속이 끊김
-			//this->SetState(CONNECTION_STATE_SERVICENOTAVAILABLE);
+			// 세션 서버와 접속이 끊김
+			this->SetState(CONNECTION_STATE_SERVICENOTAVAILABLE);
 
-			//UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
-			//if (UIMgrInst)
-			//{
-			//	if (this->GetSessionCloseReason() == ESessionCloseReason::ESessionCloseReason_None)
-			//	{
-			//		data_trader::DisconnectReasonLogEventClass<int32>::GetInstance().Signal(error);
-			//		auto* gameMode = GetBladeIIGameMode(UIMgrInst);
+			UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
+			if (UIMgrInst)
+			{
+				if (this->GetSessionCloseReason() == ESessionCloseReason::ESessionCloseReason_None)
+				{
+					data_trader::DisconnectReasonLogEventClass<int32>::GetInstance().Signal(error);
+					auto* gameMode = GetBladeIIGameMode(UIMgrInst);
 
-			//		if (gameMode && gameMode->GetB2GameModeType() == EB2GameMode::PVP_Tag) //PVP Matching일때만 로비로 보내기 위해 예외 처리. 함수 이름이 안어울리지만....
-			//			FBladeIIBlockToSyncNetwork::GetInstance().ChannelDisconnect(error);
-			//		else
-			//			FBladeIIBlockToSyncNetwork::GetInstance().ServiceNotAvailable(error);
-			//	}
-			//}
+					if (gameMode && gameMode->GetB2GameModeType() == EB2GameMode::PVP_Tag) //PVP Matching일때만 로비로 보내기 위해 예외 처리. 함수 이름이 안어울리지만....
+						FBladeIIBlockToSyncNetwork::GetInstance().ChannelDisconnect(error);
+					else
+						FBladeIIBlockToSyncNetwork::GetInstance().ServiceNotAvailable(error);
+				}
+			}
 		}
 		);
 		data_trader::ChannelDisconnectedEventClass<int32>::GetInstance().Subscribe(
@@ -1946,7 +1941,7 @@ namespace Utilities
 #endif // WITH_EDITOR
 
 			//[@AKI, 170619] 여기는 여러번 들어 올수 잇으므로 한번만 들어 오게 함
-			/*if (this->GetSessionCloseReason() == ESessionCloseReason::ESessionCloseReason_None)
+			if (this->GetSessionCloseReason() == ESessionCloseReason::ESessionCloseReason_None)
 			{
 				this->SetSessionCloseReason(ESessionCloseReason::ESessionCloseReason_UpdateProtocolEvent);
 
@@ -1968,60 +1963,60 @@ namespace Utilities
 						);
 				}
 				else	exit(0);
-			}*/
+			}
 		}
 		);
-//		data_trader::RequireUpdateAppVersionEventClass<>::GetInstance().Subscribe(
-//			[this]()
-//		{
-//#if !UE_BUILD_SHIPPING && WITH_EDITOR
-//			if (GIsEditor) return;
-//#endif // WITH_EDITOR
-//
-//			DeliveryAppUpdatePopUpClass<>::GetInstance().Signal();
-//		}
-//		);
-//		data_trader::ServerAddressErrorEventClass<>::GetInstance().Subscribe(
-//			[this]()
-//		{
-//#if !UE_BUILD_SHIPPING && WITH_EDITOR
-//			if (GIsEditor) return;
-//#endif // WITH_EDITOR
-//			UB2UIManager* UIMgr = UB2UIManager::GetInstance();
-//			if (UIMgr)
-//			{
-//				UB2UIManager::GetInstance()->OpenMsgPopup<UB2UIMsgPopupSimple>(EUIMsgPopup::Simple,
-//					BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_Notification")),
-//					BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("GameServerAddressError")),
-//					0.f,
-//					true,
-//					true,
-//					EUIMsgPopupButtonGroup::Confirm,
-//					FMsgPopupOnClick::CreateLambda([]()
-//				{
-//					exit(0);
-//				}
-//					)
-//					);
-//			}
-//			else	exit(0);
-//		}
-//		);
-//		data_trader::SessionClosedNotifyClass<int32>::GetInstance().Subscribe(
-//			[this](int32 _reason)
-//		{
-//			this->SetSessionCloseReason(ESessionCloseReason::ESessionCloseReason_ClosedNotify);
-//
-//			FBladeIIBlockToSyncNetwork::GetInstance().SessionDisconnetFromServer(_reason);
-//		}
-//		);
-//
-//		data_trader::ServerTimeSyncEventClass<int64>::GetInstance().Subscribe(
-//			[this](const int64 InServerTime)
-//		{
-//			UB2GameInstance::SetUTCNow(InServerTime);
-//		}
-//		);
+		data_trader::RequireUpdateAppVersionEventClass<>::GetInstance().Subscribe(
+			[this]()
+		{
+#if !UE_BUILD_SHIPPING && WITH_EDITOR
+			if (GIsEditor) return;
+#endif // WITH_EDITOR
+
+			DeliveryAppUpdatePopUpClass<>::GetInstance().Signal();
+		}
+		);
+		data_trader::ServerAddressErrorEventClass<>::GetInstance().Subscribe(
+			[this]()
+		{
+#if !UE_BUILD_SHIPPING && WITH_EDITOR
+			if (GIsEditor) return;
+#endif // WITH_EDITOR
+			UB2UIManager* UIMgr = UB2UIManager::GetInstance();
+			if (UIMgr)
+			{
+				UB2UIManager::GetInstance()->OpenMsgPopup<UB2UIMsgPopupSimple>(EUIMsgPopup::Simple,
+					BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_Notification")),
+					BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("GameServerAddressError")),
+					0.f,
+					true,
+					true,
+					EUIMsgPopupButtonGroup::Confirm,
+					FMsgPopupOnClick::CreateLambda([]()
+				{
+					exit(0);
+				}
+					)
+					);
+			}
+			else	exit(0);
+		}
+		);
+		data_trader::SessionClosedNotifyClass<int32>::GetInstance().Subscribe(
+			[this](int32 _reason)
+		{
+			this->SetSessionCloseReason(ESessionCloseReason::ESessionCloseReason_ClosedNotify);
+
+			FBladeIIBlockToSyncNetwork::GetInstance().SessionDisconnetFromServer(_reason);
+		}
+		);
+
+		data_trader::ServerTimeSyncEventClass<int64>::GetInstance().Subscribe(
+			[this](const int64 InServerTime)
+		{
+			UB2GameInstance::SetUTCNow(InServerTime);
+		}
+		);
 
 
 	}
@@ -2043,8 +2038,8 @@ namespace Utilities
 
 EB2GameMode GetB2GameModeType(UObject* WorldContextObject)
 {
-	//if (WorldContextObject == nullptr)
-	//	WorldContextObject = UB2UIManager::GetInstance();
+	if (WorldContextObject == nullptr)
+		WorldContextObject = UB2UIManager::GetInstance();
 
 	if (WorldContextObject == nullptr)
 		return EB2GameMode::Unknown;
@@ -2319,11 +2314,11 @@ bool LoadGameSetting_Graphics(int32& OutValue)
 }
 bool LoadGameSetting_Graphics_OrByDefault(int32& OutValue)
 {
-	//if (!LoadGameSetting_Graphics(OutValue)) {
-	//	// 아직 사용자 선택이 없었다면 DeviceProfile 에 의해 detect 된 엔진 scalability 시스템 기본 설정값으로.
-	//	OutValue = B2GraphicsLevelToInt(B2Scalability::GetGraphicsLevelByExpectedScalability());
-	//	return false; // 여하간 저장된 사용자 선택값은 없었음을 리턴함.
-	//}
+	if (!LoadGameSetting_Graphics(OutValue)) {
+		// 아직 사용자 선택이 없었다면 DeviceProfile 에 의해 detect 된 엔진 scalability 시스템 기본 설정값으로.
+		OutValue = B2GraphicsLevelToInt(B2Scalability::GetGraphicsLevelByExpectedScalability());
+		return false; // 여하간 저장된 사용자 선택값은 없었음을 리턴함.
+	}
 	return true;
 }
 bool LoadGameSetting_FrameLimit(int32& OutValue)
@@ -2424,79 +2419,79 @@ EB2ResolutionLevel LoadReservedResolutionLevelOfPrevAppRun()
 
 void InitializeAllGameSettingData(UObject* WorldContextObject, bool bExtraContentScaleFallback)
 {
-	//// High-level 게임 세팅 데이터들을 읽어들이거나, 없으면 초기값으로 저장 및 적용.
-	//// 게임 스타트업, 내지는 첫 BladeIIGameMode 시작 시점에
-	//bool bSavedSome = false;
+	// High-level 게임 세팅 데이터들을 읽어들이거나, 없으면 초기값으로 저장 및 적용.
+	// 게임 스타트업, 내지는 첫 BladeIIGameMode 시작 시점에
+	bool bSavedSome = false;
 
-	//int32 LoadedGraphicsLevel = B2GraphicsLevelToInt(EB2GraphicsLevel::GraphicsLevel_HIGH);
-	//if (!LoadGameSetting_Graphics_OrByDefault(LoadedGraphicsLevel))
-	//{
-	//	// 이건 로딩 실패 시 기본값을 여기서 넣을 필요는 없다. LoadGameSetting_Graphics_OrByDefault 에서 처리될 것.
-	//	SaveGameSetting_Graphics(LoadedGraphicsLevel);
-	//	bSavedSome = true;
-	//}
-	//int32 LoadedFrameLimitLevel = B2FrameLevelToInt(EB2FrameLimitLevel::Mid); // 어지간하면 이건 High 를 기본값으로 안 하는 게 좋을꺼다 낄낄
-	//if (!LoadGameSetting_FrameLimit_OrByDefault(LoadedFrameLimitLevel))
-	//{
-	//	// 이건 로딩 실패 시 기본값을 여기서 넣을 필요는 없다. LoadGameSetting_FrameLimit_OrByDefault 에서 처리될 것.
-	//	SaveGameSetting_FrameLimit(LoadedFrameLimitLevel);
-	//	bSavedSome = true;
-	//}
-	//int32 LoadedResolutionLevel = B2ResolutionLevelToInt(EB2ResolutionLevel::Mid);  // 어지간하면 이건 High 를 기본값으로 안 하는 게 좋을꺼다 히히
-	//if (!LoadGameSetting_Resolution_OrByDefault(LoadedResolutionLevel))
-	//{
-	//	// 이건 로딩 실패 시 기본값을 여기서 넣을 필요는 없다. LoadGameSetting_Resolution_OrByDefault 에서 처리될 것.
-	//	SaveGameSetting_Resolution(LoadedResolutionLevel);
-	//	bSavedSome = true;
-	//}
-	//// 이전 실행에서 런타임 스위칭이 안되는 해상도 변경을 한 경우. 별도 필드에 저장되어 있는 걸 적용.
-	//EB2ResolutionLevel ReservedResLevel = LoadReservedResolutionLevelOfPrevAppRun();
-	//if (ReservedResLevel != EB2ResolutionLevel::End && IntToB2ResolutionLevel(LoadedResolutionLevel) != ReservedResLevel)
-	//{
-	//	UE_LOG(LogBladeII, Log, TEXT("Applying reserved resolution level %d (Was loaded as %d)"), B2ResolutionLevelToInt(ReservedResLevel), LoadedResolutionLevel);
-	//	LoadedResolutionLevel = B2ResolutionLevelToInt(ReservedResLevel);
-	//	SaveGameSetting_Resolution(LoadedResolutionLevel);
-	//	ClearResolutionLevelReserve();
-	//	bSavedSome = true;
-	//}
+	int32 LoadedGraphicsLevel = B2GraphicsLevelToInt(EB2GraphicsLevel::GraphicsLevel_HIGH);
+	if (!LoadGameSetting_Graphics_OrByDefault(LoadedGraphicsLevel))
+	{
+		// 이건 로딩 실패 시 기본값을 여기서 넣을 필요는 없다. LoadGameSetting_Graphics_OrByDefault 에서 처리될 것.
+		SaveGameSetting_Graphics(LoadedGraphicsLevel);
+		bSavedSome = true;
+	}
+	int32 LoadedFrameLimitLevel = B2FrameLevelToInt(EB2FrameLimitLevel::Mid); // 어지간하면 이건 High 를 기본값으로 안 하는 게 좋을꺼다 낄낄
+	if (!LoadGameSetting_FrameLimit_OrByDefault(LoadedFrameLimitLevel))
+	{
+		// 이건 로딩 실패 시 기본값을 여기서 넣을 필요는 없다. LoadGameSetting_FrameLimit_OrByDefault 에서 처리될 것.
+		SaveGameSetting_FrameLimit(LoadedFrameLimitLevel);
+		bSavedSome = true;
+	}
+	int32 LoadedResolutionLevel = B2ResolutionLevelToInt(EB2ResolutionLevel::Mid);  // 어지간하면 이건 High 를 기본값으로 안 하는 게 좋을꺼다 히히
+	if (!LoadGameSetting_Resolution_OrByDefault(LoadedResolutionLevel))
+	{
+		// 이건 로딩 실패 시 기본값을 여기서 넣을 필요는 없다. LoadGameSetting_Resolution_OrByDefault 에서 처리될 것.
+		SaveGameSetting_Resolution(LoadedResolutionLevel);
+		bSavedSome = true;
+	}
+	// 이전 실행에서 런타임 스위칭이 안되는 해상도 변경을 한 경우. 별도 필드에 저장되어 있는 걸 적용.
+	EB2ResolutionLevel ReservedResLevel = LoadReservedResolutionLevelOfPrevAppRun();
+	if (ReservedResLevel != EB2ResolutionLevel::End && IntToB2ResolutionLevel(LoadedResolutionLevel) != ReservedResLevel)
+	{
+		UE_LOG(LogBladeII, Log, TEXT("Applying reserved resolution level %d (Was loaded as %d)"), B2ResolutionLevelToInt(ReservedResLevel), LoadedResolutionLevel);
+		LoadedResolutionLevel = B2ResolutionLevelToInt(ReservedResLevel);
+		SaveGameSetting_Resolution(LoadedResolutionLevel);
+		ClearResolutionLevelReserve();
+		bSavedSome = true;
+	}
 
-	//float LoadedBGMVolume = 1.0f;
-	//if (!LoadGameSetting_BGMVolume(LoadedBGMVolume))
-	//{
-	//	LoadedBGMVolume = 0.7f; // 기본값
-	//	SaveGameSetting_BGMVolume(LoadedBGMVolume);
-	//	bSavedSome = true;
-	//}
-	//float LoadedFxVolume = 1.0f;
-	//if (!LoadGameSetting_EffectVolume(LoadedFxVolume))
-	//{
-	//	LoadedFxVolume = 0.7f; // 기본값
-	//	SaveGameSetting_EffectVolume(LoadedFxVolume);
-	//	bSavedSome = true;
-	//}
-	//int32 LoadedVibrationScale = 1;
-	//if (!LoadGameSetting_Vibration(LoadedVibrationScale))
-	//{
-	//	LoadedVibrationScale = 1; // 기본값
-	//	SaveGameSetting_Vibration(LoadedVibrationScale);
-	//	bSavedSome = true;
-	//}
+	float LoadedBGMVolume = 1.0f;
+	if (!LoadGameSetting_BGMVolume(LoadedBGMVolume))
+	{
+		LoadedBGMVolume = 0.7f; // 기본값
+		SaveGameSetting_BGMVolume(LoadedBGMVolume);
+		bSavedSome = true;
+	}
+	float LoadedFxVolume = 1.0f;
+	if (!LoadGameSetting_EffectVolume(LoadedFxVolume))
+	{
+		LoadedFxVolume = 0.7f; // 기본값
+		SaveGameSetting_EffectVolume(LoadedFxVolume);
+		bSavedSome = true;
+	}
+	int32 LoadedVibrationScale = 1;
+	if (!LoadGameSetting_Vibration(LoadedVibrationScale))
+	{
+		LoadedVibrationScale = 1; // 기본값
+		SaveGameSetting_Vibration(LoadedVibrationScale);
+		bSavedSome = true;
+	}
 
-	//int32 LoadedKeepScreenOn = 1;
-	//if (!LoadGameSetting_KeepScreenOn(LoadedKeepScreenOn))
-	//{
-	//	LoadedKeepScreenOn = 1; // 기본값
-	//	SaveGameSetting_KeepScreenOn(LoadedKeepScreenOn);
-	//	bSavedSome = true;
-	//}
+	int32 LoadedKeepScreenOn = 1;
+	if (!LoadGameSetting_KeepScreenOn(LoadedKeepScreenOn))
+	{
+		LoadedKeepScreenOn = 1; // 기본값
+		SaveGameSetting_KeepScreenOn(LoadedKeepScreenOn);
+		bSavedSome = true;
+	}
 
-	//int32 LoadGamePush = 1;
-	//if (!LoadGameSetting_GamePush(LoadGamePush))
-	//{
-	//	LoadedKeepScreenOn = 1; // 기본값
-	//	SaveGameSetting_GamePush(LoadGamePush);
-	//	bSavedSome = true;
-	//}
+	int32 LoadGamePush = 1;
+	if (!LoadGameSetting_GamePush(LoadGamePush))
+	{
+		LoadedKeepScreenOn = 1; // 기본값
+		SaveGameSetting_GamePush(LoadGamePush);
+		bSavedSome = true;
+	}
 
 	//int32 LoadGameSoundLocType = B2SoundLocalizeType::Default_Type();
 	//if (!LoadGameSetting_SoundLocType(LoadGameSoundLocType))
@@ -2506,19 +2501,19 @@ void InitializeAllGameSettingData(UObject* WorldContextObject, bool bExtraConten
 	//}
 	//FGenericPlatformMisc::SetSoundLocType(LoadGameSoundLocType);
 
-	//// 엔진 초기화 시점에 불리는 곳이기도 하고 관련된 코드기도 하니 다른 모듈에서 사용을 위해 함수 포인터 할당. 
-	//gLoadGameFxVolumeSettingFnPtr = LoadGameSetting_EffectVolume;
-	//gLoadGameBGMVolumeSettingFnPtr = LoadGameSetting_BGMVolume;
+	// 엔진 초기화 시점에 불리는 곳이기도 하고 관련된 코드기도 하니 다른 모듈에서 사용을 위해 함수 포인터 할당. 
+	gLoadGameFxVolumeSettingFnPtr = LoadGameSetting_EffectVolume;
+	gLoadGameBGMVolumeSettingFnPtr = LoadGameSetting_BGMVolume;
 
-	//if (bSavedSome)
-	//{
-	//	GConfig->Flush(false, GB2UserSavedStateIni);
-	//	GConfig->Flush(false, GB2GeneralSavedStateIni);
-	//}
+	if (bSavedSome)
+	{
+		GConfig->Flush(false, GB2UserSavedStateIni);
+		GConfig->Flush(false, GB2GeneralSavedStateIni);
+	}
 
-	//// WorldContextObject 는 게임모드 별 bias 를 위한 거라 모듈 시작이나 DLCFront 에서 불리는 거면 필요가 없다.
-	//B2Scalability::AdjustScalabilityBySelectedLevel(WorldContextObject, LoadedGraphicsLevel, LoadedResolutionLevel, bExtraContentScaleFallback);
-	//B2Scalability::SetRelativeFrameLimitLevel(IntToB2FrameLimitLevel(LoadedFrameLimitLevel));
+	// WorldContextObject 는 게임모드 별 bias 를 위한 거라 모듈 시작이나 DLCFront 에서 불리는 거면 필요가 없다.
+	B2Scalability::AdjustScalabilityBySelectedLevel(WorldContextObject, LoadedGraphicsLevel, LoadedResolutionLevel, bExtraContentScaleFallback);
+	B2Scalability::SetRelativeFrameLimitLevel(IntToB2FrameLimitLevel(LoadedFrameLimitLevel));
 
 	//if (GEngine)
 	//{
@@ -2530,14 +2525,14 @@ void InitializeAllGameSettingData(UObject* WorldContextObject, bool bExtraConten
 	//	}
 	//}
 
-	//if (LoadedVibrationScale == 1)
-	//{
-	//	SetVibration(true);
-	//}
-	//else
-	//{
-	//	SetVibration(false);
-	//}
+	if (LoadedVibrationScale == 1)
+	{
+		SetVibration(true);
+	}
+	else
+	{
+		SetVibration(false);
+	}
 }
 
 void SaveGameSetting_AccessTerm(bool InValue)
@@ -2588,9 +2583,9 @@ void GlobalSetGameVolumeCommon(const FName& SoundClassName, float InVolume)
 
 void SetImageBrushFromPaperSprite(UImage* InImageToSetBrush, UPaperSprite* InSpriteToSet)
 {
-	// 4.13 에서 WrapBox 와 PaperSprite 를 사용한 image widget batching 을 활용하기 위해 임시로 넣음.
-	// 왜 임시냐면 UImage 쪽에서 SetBrushFromMaterial 에 대응하는 SetBrushFromPaperSprite 같은 걸 제공할 거라 기대하기 때문.
-	// 지금 당장은 UMG 쪽에 PaperSprite 코드를 넣을 수가 없군..
+	//// 4.13 에서 WrapBox 와 PaperSprite 를 사용한 image widget batching 을 활용하기 위해 임시로 넣음.
+	//// 왜 임시냐면 UImage 쪽에서 SetBrushFromMaterial 에 대응하는 SetBrushFromPaperSprite 같은 걸 제공할 거라 기대하기 때문.
+	//// 지금 당장은 UMG 쪽에 PaperSprite 코드를 넣을 수가 없군..
 	//if (InImageToSetBrush && InSpriteToSet)
 	//{
 	//	InImageToSetBrush->GetBrush().SetResourceObject(InSpriteToSet);
@@ -2615,88 +2610,88 @@ void SetBlendColorForPaperSpriteBoundImage(UImage* InImageWithPaperSprite, const
 * MatineeActor 도 인자로 받는 마당에 연출용으로 보면 된다. 넣어주는 DataStore 에 맞춰서 플레이어 캐릭터의 외관을 한 SkeletalMeshActor spawn.
 * StageEventDirector 쪽에서 하는 일과 비슷한 일을 하는데 그걸 타지 않는 별도의 연출 기능을 사용하게 된 곳이 있어서 이 함수가 따로 만들어짐.
 */
-//class ASkeletalMeshActor* SpawnPuppetActor(FString TrackName, ALevelSequenceActor * MatineeActor, EPCClass CharClass, const class ICharacterDataStore* DataStore, class UAnimationAsset* ToPlayAnimation)
-//{
-////	if (!DataStore)
-////		return NULL;
-////
-////	if (!MatineeActor)
-////		return NULL;
-////
-////	if (!MatineeActor->bIsPlaying)
-////		MatineeActor->InitInterp();
-////
-////	FTransform SpawnTransform;
-////
-////	for (auto* InterpGroup : MatineeActor->GroupInst)
-////	{
-////		if (InterpGroup->Group && InterpGroup->Group->GroupName == FName(*TrackName) && InterpGroup->GroupActor)
-////		{
-////			SpawnTransform = InterpGroup->GroupActor->GetTransform();
-////		}
-////	}
-////
-////	if (!MatineeActor->bIsPlaying)
-////		MatineeActor->TermInterp();
-////
-////	auto* ClassInfoBox = StaticFindPCClassInfoBox();
-////	auto* ClassInfo = ClassInfoBox ? ClassInfoBox->GetSingleClassInfo(CharClass) : nullptr;
-////
-////	if (ClassInfo)
-////	{
-////		auto* EntryActor = GWorld->SpawnActor<ASkeletalMeshActor>(ASkeletalMeshActor::StaticClass(), SpawnTransform);
-////		check(EntryActor);
-////
-////		float fScale = ClassInfo->MeshScaleOverride;
-////		EntryActor->SetActorScale3D(FVector(fScale, fScale, fScale));
-////
-////		if (!GWorld->HasBegunPlay())
-////		{
-////			UE_LOG(LogBladeII, Log, TEXT("Forcing call to 'BeginPlay' on newly spawned actor."));
-////			EntryActor->DispatchBeginPlay();
-////		}
-////
-////		auto* SkeletalMeshComponent = EntryActor->GetSkeletalMeshComponent();
-////		if (SkeletalMeshComponent)
-////		{
-////			SkeletalMeshComponent->SetSkeletalMesh(ClassInfo->BaseMeshAsset);
-////		}
-////
-////		if (ClassInfo && SkeletalMeshComponent)
-////		{
-////			USkeletalMesh* PrebuiltMeshOrResult = NULL;
-////
-////			TArray<FB2Item> EquippedItems;
-////			DataStore->GetEquippedItems(CharClass, EquippedItems);
-////			DataStore->GetEquippedCostumeItems(CharClass, EquippedItems);
-////			FB2Wing WingData;
-////			const bool bHasWing = DataStore->GetCharacterWing(CharClass, WingData);
-////			ICharacterDataStore::GetRenderItem(DataStore, CharClass, EquippedItems);
-////
-////			if (UB2PCClassInfo::SetupSKCompForParts(CharClass, EntryActor, SkeletalMeshComponent, PrebuiltMeshOrResult, ClassInfo->BaseMeshAsset, ClassInfo->DefaultPartsInfo,
-////				EquippedItems, bHasWing ? &WingData : NULL, NULL,
-////				false, // 글쎄, 혹시 전투 시작 전에 사용할 가능성을 생각한다면 결과물 mesh 를 캐싱하지도 않는 판에 원본 리소스라도 메모리에 남겨 두면 좋을 것 같아서..
-////					   // 이거 용도가 인게임 플레이어 캐릭터가 아닌 모드의 EntryActor spawn.. 내지는 다른 사용이라도 연출용일꺼라 해당 함수로 판별
-////				UB2PCMeshSectionMergeInfo::ShouldUseSectionMergeForStageEvent(EntryActor)
-////			))
-////			{
-////				// 여기선 merge 된 mesh 를 캐싱하면 괜히 ID 꼬이고 해서 문제만 될 수 있으므로 그냥 넘어감. 그래도 맵 로딩 다시 하는 게 아니라면 해 두면 좋긴 하다. 전투 진입하면서 다시 안 해도 되니.
-////			}
-////
-////			ABladeIIPlayer::SetupLODInfoForLobbyRepresentative(EntryActor); // 연출용 LOD == 로비용 LOD
-////
-////			if (SkeletalMeshComponent)
-////			{
-////				SkeletalMeshComponent->SetAnimationMode(EAnimationMode::AnimationSingleNode);
-////				SkeletalMeshComponent->PlayAnimation(ToPlayAnimation, true);
-////			}
-////		}
-////
-////		return EntryActor;
-////	}
-////
-//	return NULL;
-//}
+class ASkeletalMeshActor* SpawnPuppetActor(FString TrackName, ALevelSequenceActor * MatineeActor, EPCClass CharClass, const class ICharacterDataStore* DataStore, class UAnimationAsset* ToPlayAnimation)
+{
+//	if (!DataStore)
+//		return NULL;
+//
+//	if (!MatineeActor)
+//		return NULL;
+//
+//	if (!MatineeActor->bIsPlaying)
+//		MatineeActor->InitInterp();
+//
+//	FTransform SpawnTransform;
+//
+//	for (auto* InterpGroup : MatineeActor->GroupInst)
+//	{
+//		if (InterpGroup->Group && InterpGroup->Group->GroupName == FName(*TrackName) && InterpGroup->GroupActor)
+//		{
+//			SpawnTransform = InterpGroup->GroupActor->GetTransform();
+//		}
+//	}
+//
+//	if (!MatineeActor->bIsPlaying)
+//		MatineeActor->TermInterp();
+//
+//	auto* ClassInfoBox = StaticFindPCClassInfoBox();
+//	auto* ClassInfo = ClassInfoBox ? ClassInfoBox->GetSingleClassInfo(CharClass) : nullptr;
+//
+//	if (ClassInfo)
+//	{
+//		auto* EntryActor = GWorld->SpawnActor<ASkeletalMeshActor>(ASkeletalMeshActor::StaticClass(), SpawnTransform);
+//		check(EntryActor);
+//
+//		float fScale = ClassInfo->MeshScaleOverride;
+//		EntryActor->SetActorScale3D(FVector(fScale, fScale, fScale));
+//
+//		if (!GWorld->HasBegunPlay())
+//		{
+//			UE_LOG(LogBladeII, Log, TEXT("Forcing call to 'BeginPlay' on newly spawned actor."));
+//			EntryActor->DispatchBeginPlay();
+//		}
+//
+//		auto* SkeletalMeshComponent = EntryActor->GetSkeletalMeshComponent();
+//		if (SkeletalMeshComponent)
+//		{
+//			SkeletalMeshComponent->SetSkeletalMesh(ClassInfo->BaseMeshAsset);
+//		}
+//
+//		if (ClassInfo && SkeletalMeshComponent)
+//		{
+//			USkeletalMesh* PrebuiltMeshOrResult = NULL;
+//
+//			TArray<FB2Item> EquippedItems;
+//			DataStore->GetEquippedItems(CharClass, EquippedItems);
+//			DataStore->GetEquippedCostumeItems(CharClass, EquippedItems);
+//			FB2Wing WingData;
+//			const bool bHasWing = DataStore->GetCharacterWing(CharClass, WingData);
+//			ICharacterDataStore::GetRenderItem(DataStore, CharClass, EquippedItems);
+//
+//			if (UB2PCClassInfo::SetupSKCompForParts(CharClass, EntryActor, SkeletalMeshComponent, PrebuiltMeshOrResult, ClassInfo->BaseMeshAsset, ClassInfo->DefaultPartsInfo,
+//				EquippedItems, bHasWing ? &WingData : NULL, NULL,
+//				false, // 글쎄, 혹시 전투 시작 전에 사용할 가능성을 생각한다면 결과물 mesh 를 캐싱하지도 않는 판에 원본 리소스라도 메모리에 남겨 두면 좋을 것 같아서..
+//					   // 이거 용도가 인게임 플레이어 캐릭터가 아닌 모드의 EntryActor spawn.. 내지는 다른 사용이라도 연출용일꺼라 해당 함수로 판별
+//				UB2PCMeshSectionMergeInfo::ShouldUseSectionMergeForStageEvent(EntryActor)
+//			))
+//			{
+//				// 여기선 merge 된 mesh 를 캐싱하면 괜히 ID 꼬이고 해서 문제만 될 수 있으므로 그냥 넘어감. 그래도 맵 로딩 다시 하는 게 아니라면 해 두면 좋긴 하다. 전투 진입하면서 다시 안 해도 되니.
+//			}
+//
+//			ABladeIIPlayer::SetupLODInfoForLobbyRepresentative(EntryActor); // 연출용 LOD == 로비용 LOD
+//
+//			if (SkeletalMeshComponent)
+//			{
+//				SkeletalMeshComponent->SetAnimationMode(EAnimationMode::AnimationSingleNode);
+//				SkeletalMeshComponent->PlayAnimation(ToPlayAnimation, true);
+//			}
+//		}
+//
+//		return EntryActor;
+//	}
+//
+	return NULL;
+}
 
 /** UE 4.15 까지 UNavigationSystem::GetRandomReachablePointInRadius static 버전이 있어서 그걸 꿀빨면서 쓰고 있었는데
 * 4.16 부터 deprecated 되면서 결국 이렇게 똑같이 구현해 놓음. */

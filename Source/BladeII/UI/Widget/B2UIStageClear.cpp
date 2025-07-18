@@ -224,12 +224,7 @@ void UB2UIStageClear::DestroySelf(class UB2UIManager* InUIManager)
 			ItemInfoTable->UnloadAllExceptCurrentLocalEquipPartData();
 		}
 
-		// UI Scene 전환하면서 GC 돌리긴 할 껀데 설정에 따라 달라질 수도 있고 하니 여긴 확실히 돌려준다.
-		//UWorld* TheWorld = GetWorld();
-		//if (TheWorld)
-		//{
-		//	TheWorld->ForceGarbageCollection();
-		//}
+		CollectGarbage(GARBAGE_COLLECTION_KEEPFLAGS);
 	}
 
 	if (CreatedRewardFxPart)

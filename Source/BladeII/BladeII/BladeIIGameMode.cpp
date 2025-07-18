@@ -105,6 +105,7 @@ extern void AndroidThunkCpp_StageMoviePlay(const FString& MovieName);
 #include "B2UIHallOfFame.h"
 
 #include "Engine/PawnIterator.h"
+#include "../../../../down/blade_dev_client/BladeII/Source/BladeII/Public/BladeIIUtil.h"
 
 #if BII_STATS
 bool FStatisticalPerfStatCollector::bDoStatCollecting = false; // 메인 작동 플래그. 바꾸게 되면 다음 레벨에서 적용.

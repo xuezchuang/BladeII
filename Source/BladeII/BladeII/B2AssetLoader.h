@@ -87,7 +87,7 @@ public:
 	T* LoadSynchronous(const TSoftObjectPtr<T>& AssetReference, float AsyncWaiting = -1.f)
 	{
 		if (!AssetReference.IsNull())
-			return Cast<T>(LoadSynchronous(AssetReference.GetSoftObjectPath(), AsyncWaiting));
+			return Cast<T>(LoadSynchronous(AssetReference.ToSoftObjectPath(), AsyncWaiting));
 
 		return nullptr;
 	}
@@ -106,7 +106,7 @@ public:
 	template<class T=UObject>
 	ELoadingState	RequestAsyncLoad(const FString& RequestName, TSoftObjectPtr<T> Asset, FB2AsyncLoadingComplete CompleteDelegate = FB2AsyncLoadingComplete(), bool bBlocking = false)
 	{
-		FSoftObjectPath StringAsset = Asset.GetSoftObjectPath();
+		FSoftObjectPath StringAsset = Asset.ToSoftObjectPath();
 		return RequestAsyncLoad(RequestName, StringAsset, CompleteDelegate, bBlocking);
 	}
 
@@ -137,7 +137,7 @@ public:
 	template <class T=UObject>
 	void	UnloadAsset(TSoftObjectPtr<T> Asset)
 	{
-		UnloadAsset(Asset.GetSoftObjectPath());
+		UnloadAsset(Asset.ToSoftObjectPath());
 	}
 
 

@@ -14,9 +14,10 @@
 #include "Tickable.h"
 #include "BladeIIUtil.h"
 #include "B2AssetLoader.h"
-#include "B2UIEnum.h"
 #include "Framework/Application/IInputProcessor.h"
 #include <memory>
+#include "Event.h"
+#include "../BladeII.h"
 #include "B2UIManager.generated.h"
 
 #define ShortageMGR UB2UIManager::GetInstance()->GetShortagePopupMGR()
@@ -548,76 +549,74 @@ public:
 		, const FMsgPopupOnClick& OnBtnPosClick = 0, const FMsgPopupOnClick& OnBtnNegClick = 0
 		, const bool MustTopView = false, EPopUpPriority PopupPriority = EPopUpPriority::Base)
 	{
+		BLADE2_SCOPE_CYCLE_COUNTER(UB2UIWidget_OpenMsgPopup);
+		B2_SCOPED_TRACK_LOG(TEXT("UB2UIManager::OpenMsgPopup"));
+		StopRelicAutoEnchantClass<>::GetInstance().Signal();
+		//Type convert... ;;
+		FName UIName;
+		switch (UIMsgPopupType)
+		{
+		default:
+		case EUIMsgPopup::Simple: UIName = UIFName::MsgPopupSimple; break;
+		case EUIMsgPopup::Input: UIName = UIFName::MsgPopupInput; break;
+		case EUIMsgPopup::ItemReward: UIName = UIFName::MsgPopupItemReward; break;
+		case EUIMsgPopup::Center: UIName = UIFName::MsgPopupCenter; break;
+		case EUIMsgPopup::ItemCostConfirm: UIName = UIFName::MsgPopupItemCost; break;
+		case EUIMsgPopup::BuySkillPoint: UIName = UIFName::MsgPopupBuySkillPoint; break;
+		case EUIMsgPopup::GoTeamMatch: UIName = UIFName::MsgPopupGoTeamMatch; break;
+		case EUIMsgPopup::NeedClearStage: UIName = UIFName::MsgPopupNeedClearStage; break;
+		case EUIMsgPopup::UseGold: UIName = UIFName::MsgPopupUseGold; break;
+		case EUIMsgPopup::UseGem: UIName = UIFName::MsgPopupUseGem; break;
+		case EUIMsgPopup::SimpleAddComment: UIName = UIFName::MsgPopupSimpleAddComment; break;
+		case EUIMsgPopup::UserInfo: UIName = UIFName::MsgPopupUserInfo; break;
+		case EUIMsgPopup::SelectPCClass: UIName = UIFName::MsgPopupSelectPCClass; break;
+		case EUIMsgPopup::InputNoneFocus: UIName = UIFName::MsgPopupInputNoneFocus; break;
+		case EUIMsgPopup::SimpleInvite: UIName = UIFName::MsgPopupSimpleInvite; break;
+		case EUIMsgPopup::RaidPenalty: UIName = UIFName::MsgPopupRaidPenalty; break;
+		case EUIMsgPopup::InventoryFull: UIName = UIFName::MsgPopupInventoryFull; break;
+		case EUIMsgPopup::DetailMyInfo: UIName = UIFName::MsgPopupDetailMyInfo; break;
+		case EUIMsgPopup::BuyHotTime:  UIName = UIFName::MsgPopupBuyHotTime; break;
+		case EUIMsgPopup::MsgPopupBuyDicePoint:  UIName = UIFName::MsgPopupBuyDicePoint; break;
+		}
 
+		// Just guess better not allow duplicated, close first if found existing one.
+		if (auto* ExistingOne = GetUI<UB2UIMsgPopupBase>(UIName))
+		{
+			if (ExistingOne->GetPriority() > PopupPriority)
+				return nullptr;
 
-	////	BLADE2_SCOPE_CYCLE_COUNTER(UB2UIWidget_OpenMsgPopup);
-	////	B2_SCOPED_TRACK_LOG(TEXT("UB2UIManager::OpenMsgPopup"));
-	////	StopRelicAutoEnchantClass<>::GetInstance().Signal();
-	////	//Type convert... ;;
-	////	FName UIName;
-	////	switch (UIMsgPopupType)
-	////	{
-	////	default:
-	////	case EUIMsgPopup::Simple: UIName = UIFName::MsgPopupSimple; break;
-	////	case EUIMsgPopup::Input: UIName = UIFName::MsgPopupInput; break;
-	////	case EUIMsgPopup::ItemReward: UIName = UIFName::MsgPopupItemReward; break;
-	////	case EUIMsgPopup::Center: UIName = UIFName::MsgPopupCenter; break;
-	////	case EUIMsgPopup::ItemCostConfirm: UIName = UIFName::MsgPopupItemCost; break;
-	////	case EUIMsgPopup::BuySkillPoint: UIName = UIFName::MsgPopupBuySkillPoint; break;
-	////	case EUIMsgPopup::GoTeamMatch: UIName = UIFName::MsgPopupGoTeamMatch; break;
-	////	case EUIMsgPopup::NeedClearStage: UIName = UIFName::MsgPopupNeedClearStage; break;
-	////	case EUIMsgPopup::UseGold: UIName = UIFName::MsgPopupUseGold; break;
-	////	case EUIMsgPopup::UseGem: UIName = UIFName::MsgPopupUseGem; break;
-	////	case EUIMsgPopup::SimpleAddComment: UIName = UIFName::MsgPopupSimpleAddComment; break;
-	////	case EUIMsgPopup::UserInfo: UIName = UIFName::MsgPopupUserInfo; break;
-	////	case EUIMsgPopup::SelectPCClass: UIName = UIFName::MsgPopupSelectPCClass; break;
-	////	case EUIMsgPopup::InputNoneFocus: UIName = UIFName::MsgPopupInputNoneFocus; break;
-	////	case EUIMsgPopup::SimpleInvite: UIName = UIFName::MsgPopupSimpleInvite; break;
-	////	case EUIMsgPopup::RaidPenalty: UIName = UIFName::MsgPopupRaidPenalty; break;
-	////	case EUIMsgPopup::InventoryFull: UIName = UIFName::MsgPopupInventoryFull; break;
-	////	case EUIMsgPopup::DetailMyInfo: UIName = UIFName::MsgPopupDetailMyInfo; break;
-	////	case EUIMsgPopup::BuyHotTime:  UIName = UIFName::MsgPopupBuyHotTime; break;
-	////	case EUIMsgPopup::MsgPopupBuyDicePoint:  UIName = UIFName::MsgPopupBuyDicePoint; break;
-	////	}
+			CloseMsgPopup(ExistingOne);
+		}
 
-	////	// Just guess better not allow duplicated, close first if found existing one.
-	////	if (auto* ExistingOne = GetUI<UB2UIMsgPopupBase>(UIName))
-	////	{
-	////		if (ExistingOne->GetPriority() > PopupPriority)
-	////			return nullptr;
+		auto MsgPopup = OpenUI<UB2UIMsgPopupBase>(UIName, false, MustTopView);
+		if (MsgPopup)
+		{
+			++MsgPopupCnt;
+			MsgPopupMap.Add(MsgPopupCnt, MsgPopup);
+			MsgPopup->SetMsgID(MsgPopupCnt);
+			MsgPopup->MsgPopupType = UIMsgPopupType;
+			MsgPopup->SetTitle(InTitleText);
+			MsgPopup->SetContent(InContentText);
+			MsgPopup->SetModalWindow(bModal);
+			MsgPopup->SetAutoCloseTime(AutoCloseTime);
+			MsgPopup->SetPriority(PopupPriority);
 
-	////		CloseMsgPopup(ExistingOne);
-	////	}
+			//Is this buttoned popup
+			auto MsgPopupSimple = Cast<UB2UIMsgPopupSimple>(MsgPopup);
+			if (MsgPopupSimple)
+			{
+				MsgPopupSimple->SetAutoCloseOnClick(bAutoCloseOnClick);
+				MsgPopupSimple->SetButtonGroup(ButtonGroup);
+				MsgPopupSimple->AddHandler(EUIMsgPopupButton::Positive, OnBtnPosClick);
+				MsgPopupSimple->AddHandler(EUIMsgPopupButton::Negative, OnBtnNegClick);
+			}
 
-	////	auto MsgPopup = OpenUI<UB2UIMsgPopupBase>(UIName, false, MustTopView);
-	////	if (MsgPopup)
-	////	{
-	////		++MsgPopupCnt;
-	////		MsgPopupMap.Add(MsgPopupCnt, MsgPopup);
-	////		MsgPopup->SetMsgID(MsgPopupCnt);
-	////		MsgPopup->MsgPopupType = UIMsgPopupType;
-	////		MsgPopup->SetTitle(InTitleText);
-	////		MsgPopup->SetContent(InContentText);
-	////		MsgPopup->SetModalWindow(bModal);
-	////		MsgPopup->SetAutoCloseTime(AutoCloseTime);
-	////		MsgPopup->SetPriority(PopupPriority);
-
-	////		//Is this buttoned popup
-	////		auto MsgPopupSimple = Cast<UB2UIMsgPopupSimple>(MsgPopup);
-	////		if (MsgPopupSimple)
-	////		{
-	////			MsgPopupSimple->SetAutoCloseOnClick(bAutoCloseOnClick);
-	////			MsgPopupSimple->SetButtonGroup(ButtonGroup);
-	////			MsgPopupSimple->AddHandler(EUIMsgPopupButton::Positive, OnBtnPosClick);
-	////			MsgPopupSimple->AddHandler(EUIMsgPopupButton::Negative, OnBtnNegClick);
-	////		}
-
-	////		return Cast<T>(MsgPopup);
-	////	}
-	////	else
-	////	{
+			return Cast<T>(MsgPopup);
+		}
+		else
+		{
 			return nullptr;
-	////	}
+		}
 	}
 
 	/* When simple to use without a return type. */
@@ -625,13 +624,13 @@ public:
 		const bool bAutoCloseOnClick = true, EUIMsgPopupButtonGroup ButtonGroup = EUIMsgPopupButtonGroup::Yes, const FMsgPopupOnClick& OnBtnPosClick = 0, 
 		const FMsgPopupOnClick& OnBtnNegClick = 0, const bool MustTopView = false, EPopUpPriority PopupPriority = EPopUpPriority::Base)
 	{
-		//OpenMsgPopup<UB2UIMsgPopupSimple>(UIMsgPopupType, InTitleText, InContentText, AutoCloseTime, bModal, bAutoCloseOnClick, ButtonGroup, OnBtnPosClick, OnBtnNegClick, MustTopView, PopupPriority);
+		OpenMsgPopup<UB2UIMsgPopupSimple>(UIMsgPopupType, InTitleText, InContentText, AutoCloseTime, bModal, bAutoCloseOnClick, ButtonGroup, OnBtnPosClick, OnBtnNegClick, MustTopView, PopupPriority);
 	}
 
 	void OpenMsgPopupFromErrorCode(int32 nErrorCode);
 
 	void CloseMsgPopup(int32 MsgPopupId, bool bRightNow = false);
-	//void CloseMsgPopup(UB2UIMsgPopupBase* MsgPopup, bool bRightNow = false);
+	void CloseMsgPopup(UB2UIMsgPopupBase* MsgPopup, bool bRightNow = false);
 
 	/** It can be used when you cannot cache last open msg popup id or ref, for any reason like level transition, but like last resort. */
 	void CloseAllMsgPopups(bool bRightNow = false);
@@ -718,7 +717,7 @@ private:
 	/* To be able to know the specific pop-up. */
 	int32 MsgPopupCnt;
 	/* Save As pop-ups that are currently open. */
-	//TMap<int32, UB2UIMsgPopupBase*> MsgPopupMap;
+	TMap<int32, UB2UIMsgPopupBase*> MsgPopupMap;
 
 	FNumberFormattingOptions FloatNumberOption;
 

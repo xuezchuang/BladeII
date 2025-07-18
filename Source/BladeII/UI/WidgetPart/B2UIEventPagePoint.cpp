@@ -8,6 +8,7 @@
 #include "B2UIEventPointConditionPart.h"
 #include "BladeIIUtil.h"
 #include "RewardEventManager.h"
+#include "../Common/Event.h"
 
 #define SET_EVENTPOINT_PART(Index); \
 GET_SLOT_BYNAME(UB2UIEventSlotPoint, ArrayEventSlotList[Index], UIP_EventSlotPoint##Index); \
@@ -16,35 +17,35 @@ void UB2UIEventPagePoint::CacheAssets()
 {
 	Super::CacheAssets();
 
-	//GET_SLOT(UScrollBox, SB_PointEventCondition);
-	//GET_SLOT(UB2RichTextBlock, RTB_AccruePointTitle);
-	//GET_SLOT(UB2RichTextBlock, RTB_AccurePointMethod);
+	GET_SLOT(UScrollBox, SB_PointEventCondition);
+	GET_SLOT(UB2RichTextBlock, RTB_AccruePointTitle);
+	GET_SLOT(UB2RichTextBlock, RTB_AccurePointMethod);
 
-	//int32 iEventPartMax = 6;
-	//ArrayEventSlotList.SetNum(iEventPartMax);
-	//SET_EVENTPOINT_PART(0)
-	//SET_EVENTPOINT_PART(1)
-	//SET_EVENTPOINT_PART(2)
-	//SET_EVENTPOINT_PART(3)
-	//SET_EVENTPOINT_PART(4)
-	//SET_EVENTPOINT_PART(5)
+	int32 iEventPartMax = 6;
+	ArrayEventSlotList.SetNum(iEventPartMax);
+	SET_EVENTPOINT_PART(0)
+		SET_EVENTPOINT_PART(1)
+		SET_EVENTPOINT_PART(2)
+		SET_EVENTPOINT_PART(3)
+		SET_EVENTPOINT_PART(4)
+		SET_EVENTPOINT_PART(5)
 }
 
 void UB2UIEventPagePoint::SubscribeEvents_EventPage()
 {
-	//UnsubscribeEvents_EventPage();
+	UnsubscribeEvents_EventPage();
 
-	//CAPTURE_UOBJECT(UB2UIEventPagePoint);
+	CAPTURE_UOBJECT(UB2UIEventPagePoint);
 
-	//Issues_EventPage.Add(DeliveryPointEventRewardClass<FB2ResponseReceivePointEventRewardPtr>::GetInstance().Subscribe2(
-	//	[Capture](FB2ResponseReceivePointEventRewardPtr ReceiveEventReward)
-	//{
-	//	if (Capture.IsValid())
-	//	{
-	//		Capture->ResponsePointEventReward(ReceiveEventReward);
-	//	}
-	//}
-	//));
+	Issues_EventPage.Add(DeliveryPointEventRewardClass<FB2ResponseReceivePointEventRewardPtr>::GetInstance().Subscribe2(
+		[Capture](FB2ResponseReceivePointEventRewardPtr ReceiveEventReward)
+		{
+			if (Capture.IsValid())
+			{
+				Capture->ResponsePointEventReward(ReceiveEventReward);
+			}
+		}
+	));
 }
 
 void UB2UIEventPagePoint::InitEventPageMasterData()
@@ -56,42 +57,42 @@ void UB2UIEventPagePoint::InitEventPageMasterData()
 
 void UB2UIEventPagePoint::UpdateEventPage(FB2ResponseGetEventPtr ReciveGetEvent)
 {
-	//if (ReciveGetEvent == nullptr)
-	//	return;
+	if (ReciveGetEvent == nullptr)
+		return;
 
-	//const auto& PointEventInfo = ReciveGetEvent->point_event_statuses;
+	const auto& PointEventInfo = ReciveGetEvent->point_event_statuses;
 
-	//if (!PointEventInfo.IsValidIndex(0))
-	//	return;
+	if (!PointEventInfo.IsValidIndex(0))
+		return;
 
-	//if (RTB_AccurePointMethod.IsValid())
-	//	RTB_AccurePointMethod->SetText(BladeIIGetLOCText(B2LOC_CAT_EVENT, TEXT("EventNotice2")));
+	if (RTB_AccurePointMethod.IsValid())
+		RTB_AccurePointMethod->SetText(BladeIIGetLOCText(B2LOC_CAT_EVENT, TEXT("EventNotice2")));
 
-	//if (RTB_AccruePointTitle.IsValid())
-	//	RTB_AccruePointTitle->SetText(FText::FromString(BladeIIGetLOCText(B2LOC_CAT_EVENT, TEXT("EventNotice1")).ToString() + FString::Printf(TEXT(" : %d"), PointEventInfo[0]->point)));
+	if (RTB_AccruePointTitle.IsValid())
+		RTB_AccruePointTitle->SetText(FText::FromString(BladeIIGetLOCText(B2LOC_CAT_EVENT, TEXT("EventNotice1")).ToString() + FString::Printf(TEXT(" : %d"), PointEventInfo[0]->point)));
 
-	//int32 iPointEventMax = ArrayEventSlotList.Num();
-	//for (int32 i = 0; i < iPointEventMax; ++i)
-	//{
-	//	if (ArrayEventSlotList.IsValidIndex(i))
-	//	{
-	//		auto* EventSlotPoint = Cast<UB2UIEventSlotPoint>(ArrayEventSlotList[i].Get());
+	int32 iPointEventMax = ArrayEventSlotList.Num();
+	for (int32 i = 0; i < iPointEventMax; ++i)
+	{
+		if (ArrayEventSlotList.IsValidIndex(i))
+		{
+			auto* EventSlotPoint = Cast<UB2UIEventSlotPoint>(ArrayEventSlotList[i].Get());
 
-	//		int32 iRewardBitCheck = 2 << i;
+			int32 iRewardBitCheck = 2 << i;
 
-	//		//보상 완료 //reward_state_value 0000001 첫번째 보상 완료 reward_state_value 0000011 첫번째, 두번째 보상 완료
-	//		if (PointEventInfo[0]->reward_state_value & iRewardBitCheck)
-	//		{
-	//			EventSlotPoint->SetEventState(b2network::B2MissionStateType::REWARDED);
-	//		}
-	//		//보상 미완료
-	//		else if (PointEventInfo[0]->point >= EventSlotPoint->GetNeedPoint())
-	//		{
-	//			EventSlotPoint->SetEventState(b2network::B2MissionStateType::COMPLETED);
-	//		}
+			//보상 완료 //reward_state_value 0000001 첫번째 보상 완료 reward_state_value 0000011 첫번째, 두번째 보상 완료
+			if (PointEventInfo[0]->reward_state_value & iRewardBitCheck)
+			{
+				EventSlotPoint->SetEventState(b2network::B2MissionStateType::REWARDED);
+			}
+			//보상 미완료
+			else if (PointEventInfo[0]->point >= EventSlotPoint->GetNeedPoint())
+			{
+				EventSlotPoint->SetEventState(b2network::B2MissionStateType::COMPLETED);
+			}
 
-	//	}
-	//}
+		}
+	}
 }
 
 void UB2UIEventPagePoint::ResponsePointEventReward(FB2ResponseReceivePointEventRewardPtr ReceivePointEventReward)

@@ -1,6 +1,8 @@
 #pragma once
 
 #include "EngineMinimal.h"
+
+class ALevelSequenceActor;
 //#if WITH_EDITOR
 //#include "BladeIIEditorUtil.h"
 //#endif
@@ -18,7 +20,7 @@ bool OpenBladeIILobbyCommon(class AGameMode* InCurrentGameMode);
 
 /** Start the main map of specified StageNum.
 * OpenURLOption is the option string goes to Open command. In normal circumstances, most options might be set by StageInfo. */
-//bool StartBladeIIGameStage(class AGameMode* InCurrentGameMode, int32 InClientStageId, FString OpenURLOption = FString(TEXT("")), EB2GameMode ChangeGameMode = EB2GameMode::Scenario);
+bool StartBladeIIGameStage(class AGameMode* InCurrentGameMode, int32 InClientStageId, FString OpenURLOption = FString(TEXT("")), EB2GameMode ChangeGameMode = EB2GameMode::Scenario);
 
 /** Client side entry point of PVP game mode. */
 bool StartBladeIIPVPGame(class AGameMode* InCurrentGameMode, FString OpenURLOption = FString(TEXT("")));
@@ -96,7 +98,7 @@ class UB2DamageEffectInfo* StaticFindDamageEffectInfo(UObject* WorldContextObjec
 class UB2BuffModeEffectInfo* StaticFindBuffModeEffectInfo(UObject* WorldContextObject = nullptr);
 class UB2SkillAnimInfo* StaticFindSkillAnimInfo(UObject* WorldContextObject = nullptr);
 class UB2GuildNPCInfo* StaticFindGuildNPCInfo(UObject* WorldContextObject = nullptr);
-//class UTutorialControlBotInfos* StaticFindTutorialControlBotInfos();
+class UTutorialControlBotInfos* StaticFindTutorialControlBotInfos();
 class UB2CombatConstantInfo* StaticFindCombatConstantInfo(UObject* WorldContextObject = nullptr);
 //
 #if !UE_BUILD_SHIPPING
@@ -388,14 +390,14 @@ class UParticleSystem* CheckNotifyEventForParticleSystemUse(FAnimNotifyEvent& In
 /** Display text to screen-sized DebugTextWidget */
 void DrawDebugText(float InStartX, float InStartY, const FString& InText, const FLinearColor& InFontColor, int32 InFontSize = 12, bool bDrawShadow = true, const FLinearColor& InShadowColor = FLinearColor::Black);
 
-#ifdef WITH_BII_ON_SCREEN_DEBUG_TEXT
-/** Draw text for a duration, you just call it once, and it will be drawn for designated time and disappear.
- * Use BII_SCREEN_LOG instead of direct use. */
-void DrawTimedDebugText(const FString& InText, const FLinearColor& InFontColor, int32 InFontSize = 12, float InDisplayTime = 2.0f, bool bDrawShadow = true, const FLinearColor& InShadowColor = FLinearColor::Black);
-#define BII_SCREEN_LOG(LogText, InFontColor, InFontSize, InDisplayTime) DrawTimedDebugText(LogText, InFontColor, InFontSize, InDisplayTime)
-#else
-#define BII_SCREEN_LOG(LogText, InFontColor, InFontSize, InDisplayTime)
-#endif
+//#ifdef WITH_BII_ON_SCREEN_DEBUG_TEXT
+///** Draw text for a duration, you just call it once, and it will be drawn for designated time and disappear.
+// * Use BII_SCREEN_LOG instead of direct use. */
+//void DrawTimedDebugText(const FString& InText, const FLinearColor& InFontColor, int32 InFontSize = 12, float InDisplayTime = 2.0f, bool bDrawShadow = true, const FLinearColor& InShadowColor = FLinearColor::Black);
+//#define BII_SCREEN_LOG(LogText, InFontColor, InFontSize, InDisplayTime) DrawTimedDebugText(LogText, InFontColor, InFontSize, InDisplayTime)
+//#else
+//#define BII_SCREEN_LOG(LogText, InFontColor, InFontSize, InDisplayTime)
+//#endif
 
 // Actual mobile device or mobile preview..
 bool IsUsingMobileRendering(UWorld* InWorld);
@@ -667,9 +669,9 @@ bool LoadGameSetting_KakaoDayPush(int32& OutValue);
 bool LoadGameSetting_KakaoNightPush(int32& OutValue);
 bool LoadGameSetting_SoundLocType(int32& OutValue);
 
-//void ReserveResolutionLevelForNextAppStart(EB2ResolutionLevel InReserveLevel);
-//EB2ResolutionLevel LoadReservedResolutionLevelOfPrevAppRun();
-//FORCEINLINE void ClearResolutionLevelReserve() { ReserveResolutionLevelForNextAppStart(EB2ResolutionLevel::End); }
+void ReserveResolutionLevelForNextAppStart(EB2ResolutionLevel InReserveLevel);
+EB2ResolutionLevel LoadReservedResolutionLevelOfPrevAppRun();
+FORCEINLINE void ClearResolutionLevelReserve() { ReserveResolutionLevelForNextAppStart(EB2ResolutionLevel::End); }
 
 void InitializeAllGameSettingData(UObject* WorldContextObject, bool bExtraContentScaleFallback = false);
 
@@ -704,7 +706,7 @@ void SetImageBrushFromPaperSprite(UImage* InImageToSetBrush, class UPaperSprite*
 /** Some workaround needed because we can't get MID from Image widget with PaperSprite. */
 void SetBlendColorForPaperSpriteBoundImage(UImage* InImageWithPaperSprite, const FLinearColor InBlendColor);
 
-//class ASkeletalMeshActor* SpawnPuppetActor(FString TrackName, ALevelSequenceActor * MatineeActor, EPCClass CharClass, const class ICharacterDataStore* DataStore, class UAnimationAsset* ToPlayAnimation);
+class ASkeletalMeshActor* SpawnPuppetActor(FString TrackName, ALevelSequenceActor * MatineeActor, EPCClass CharClass, const class ICharacterDataStore* DataStore, class UAnimationAsset* ToPlayAnimation);
 
 /** Replacing deprecated static UNavigationSystem::GetRandomReachablePointInRadius.. */
 FVector GetRandomReachablePointInRadiusWithCurrNavSys(UWorld* InWorld, const FVector& Origin, float Radius, ANavigationData* NavData = NULL, TSubclassOf<UNavigationQueryFilter> FilterClass = NULL);

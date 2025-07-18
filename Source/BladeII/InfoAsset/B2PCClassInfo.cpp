@@ -1681,20 +1681,20 @@ bool UB2PCClassInfo::IsInGameOnlyInfoAtRootSet()
 
 void UB2PCClassInfo::ReqAsyncLoad(UObject* WorldContextObject, TAsyncLoadPriority InPriority)
 {
-	//// AsyncLoad 로 인한 실제 로딩 시간 단축 체크, 내지는 이상 동작 시 테스트. 쉽핑빌드서도 테스트가 필요할 수 있어서 !UE_BUILD_SHIPPING 으로 안 함.
-	//if (!BladeIIGameImpl::bAllowInfoAssetAsyncLoading) { 
-	//	SyncLoadInGameOnlyAssets();
-	//	return;
-	//}
+	// AsyncLoad 로 인한 실제 로딩 시간 단축 체크, 내지는 이상 동작 시 테스트. 쉽핑빌드서도 테스트가 필요할 수 있어서 !UE_BUILD_SHIPPING 으로 안 함.
+	if (!BladeIIGameImpl::bAllowInfoAssetAsyncLoading) { 
+		SyncLoadInGameOnlyAssets();
+		return;
+	}
 
-	//if (!InGameOnlyAssetPtr.IsValid()) // ManagedPCClassUnload 에 따라 RootSet 일 수 있는데 여튼 로딩이 되어 있다면 요청 생략
-	//{
-	//	TArray<FSoftObjectPath> ThisReqList;
-	//	ThisReqList.Add(InGameOnlyAssetPtr.GetSoftObjectPath());
-	//	// 여기서 this 를 WorldContextObject 로 넣어주고 싶기도 한데 외부에서 적절한 Async Callback 을 먹이기가 슬쩍 까다로워 보이기도..
-	//	InGameOnlyAssetAsyncLoadHandle = InfoLoadManager.RequestAsyncLoad(ThisReqList, FStreamableDelegate::CreateUObject(this, &UB2PCClassInfo::InGameOnlyAssetAsyncLoadCB), InPriority);
-	//	bInGameOnlyAssetAsyncLoadRequestPending = true; // 요 플래그는 딱히 쓸모가 없을 수 있다.. 아직 잘 몰라서
-	//}
+	if (!InGameOnlyAssetPtr.IsValid()) // ManagedPCClassUnload 에 따라 RootSet 일 수 있는데 여튼 로딩이 되어 있다면 요청 생략
+	{
+		TArray<FSoftObjectPath> ThisReqList;
+		ThisReqList.Add(InGameOnlyAssetPtr.ToSoftObjectPath());
+		// 여기서 this 를 WorldContextObject 로 넣어주고 싶기도 한데 외부에서 적절한 Async Callback 을 먹이기가 슬쩍 까다로워 보이기도..
+		InGameOnlyAssetAsyncLoadHandle = InfoLoadManager.RequestAsyncLoad(ThisReqList, FStreamableDelegate::CreateUObject(this, &UB2PCClassInfo::InGameOnlyAssetAsyncLoadCB), InPriority);
+		bInGameOnlyAssetAsyncLoadRequestPending = true; // 요 플래그는 딱히 쓸모가 없을 수 있다.. 아직 잘 몰라서
+	}
 }
 
 void UB2PCClassInfo::InGameOnlyAssetAsyncLoadCB() // 메인쓰레드에서 불림. 거의 확인 차원으로만. 실제 로딩에 대한 waiting 같은 건 FStreamableHandle 로.

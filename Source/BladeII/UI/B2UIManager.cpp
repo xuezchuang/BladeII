@@ -30,6 +30,8 @@
 #include "B2UIHallOfFame.h"
 #include "B2StageManager.h"
 #include "../Common/Event.h"
+#include "B2MessageInfoCommonStruct.h"
+#include "../BladeII.h"
 
 UB2UIManager* UB2UIManager::Instance = nullptr;
 
@@ -64,7 +66,7 @@ void FB2UIWidgetData::ResetAllCacheMarkForUnload()
 
 UB2UIManager::UB2UIManager(const class FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
-	//, m_ShortagePopupMGR(nullptr)
+	, m_ShortagePopupMGR(nullptr)
 {
 	MainWidget = nullptr;
 
@@ -103,7 +105,7 @@ UB2UIManager::~UB2UIManager()
 {
 	// 어떤 오브젝트가 어떤 경로로 소멸자로 들어오는지 알 수 없음. 특히 프로세스 종료시 Destroy 가 불리면 문제가 됨. 
 	// 일반적인 상황에서의 Destroy 는 ABladeIIGameMode::OnPreLoadMap 에서 처리.
-	//Destroy();
+	Destroy();
 	/*if (m_ShortagePopupMGR)
 	{
 		delete m_ShortagePopupMGR;
@@ -342,24 +344,24 @@ void UB2UIManager::ReqAsyncLoadAsset(const FName& InLoadUI)
 }
 void UB2UIManager::ReqAsyncLoadAssets(const TArray<FName>& InLoadUIs)
 {
-	//if (BladeIIGameImpl::bAllowUIAsyncLoading == false)
-	//{
-	//	// bAllowUIAsyncLoading 에 따른 SyncPreload 로의 전환은 여기선 좀 생각해 볼 필요가 있다.
-	//	// UIManager 의 Async Load 는 PreLoad 타이밍의 멀티코어 활용이 목적이 아니라 인게임 진행 도중 백그라운드 로딩이 목적임.
-	//	//SyncPreloadTAssets(InLoadUIs); // 따라서 여기선 필요할 때 로딩하도록 그냥 리턴 ㅋ
-	//	return;
-	//}
+	if (BladeIIGameImpl::bAllowUIAsyncLoading == false)
+	{
+		// bAllowUIAsyncLoading 에 따른 SyncPreload 로의 전환은 여기선 좀 생각해 볼 필요가 있다.
+		// UIManager 의 Async Load 는 PreLoad 타이밍의 멀티코어 활용이 목적이 아니라 인게임 진행 도중 백그라운드 로딩이 목적임.
+		//SyncPreloadTAssets(InLoadUIs); // 따라서 여기선 필요할 때 로딩하도록 그냥 리턴 ㅋ
+		return;
+	}
 
-	//for (const FName& UIName : InLoadUIs)
-	//{
-	//	if (FB2UIWidgetData* WidgetData = GetWidgetData(UIName))
-	//	{
-	//		// UIManager::AsyncLoading은 1 RequestName : 1 UI Asset을 원칙으로 한다. 1 : 다 는 안됨
-	//		WidgetData->bCacheOnLoad = true; // 로딩 완료 후 캐싱을 해야 하는데 마크를 따로 안 했다가는 다른 쪽에서 언로딩을 하게 될 수도 있으니 bCacheOnLoad 마크.
-	//		const auto& ClassAsset = WidgetData->GetWidgetClassAsset();
-	//		TryAsyncLoad(UIName.ToString(), TArray<FSoftObjectPath>{ClassAsset.GetSoftObjectPath()});
-	//	}
-	//}
+	for (const FName& UIName : InLoadUIs)
+	{
+		if (FB2UIWidgetData* WidgetData = GetWidgetData(UIName))
+		{
+			// UIManager::AsyncLoading은 1 RequestName : 1 UI Asset을 원칙으로 한다. 1 : 다 는 안됨
+			WidgetData->bCacheOnLoad = true; // 로딩 완료 후 캐싱을 해야 하는데 마크를 따로 안 했다가는 다른 쪽에서 언로딩을 하게 될 수도 있으니 bCacheOnLoad 마크.
+			const auto& ClassAsset = WidgetData->GetWidgetClassAsset();
+			TryAsyncLoad(UIName.ToString(), TArray<FSoftObjectPath>{ClassAsset.ToSoftObjectPath()});
+		}
+	}
 }
 
 void UB2UIManager::OnAsyncLoadComplete(const FString& CompleteRequest, const TArray<FSoftObjectPath>& CompleteRequestList)
@@ -474,78 +476,78 @@ void UB2UIManager::Init(const FLocalPlayerContext& InPlayerContext)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2UIManager_Init);
 	B2_SCOPED_TRACK_LOG(TEXT("UB2UIManager::Init"));
-//
-//	SetPlayerContext(InPlayerContext);
-//
-//	if (GConfig)
-//	{
-//		GConfig->GetInt(TEXT("/Script/BladeII.B2UIManager"), TEXT("ForceGCOnUISceneCloseInterval"), ForceGCOnUISceneCloseInterval, GGameIni);
-//		GConfig->GetInt(TEXT("/Script/BladeII.B2UIManager"), TEXT("UIDataCacheHistoryNum"), UIDataCacheHistoryNum, GGameIni);
-//	}
-//	UISceneCloseWithoutGCCount = 0;
-//
-//	SetupCacheOnLoadList();
-//	SetupRootsetWidgetList();
-//	SetupLoadOnStartupWidgetList();
-//
-//	UWorld* TheWorld = GetWorld();
-//	if (TheWorld && !bInit)
-//	{
-//#if WITH_EDITOR
-//		if (!FGameDelegates::Get().GetEndPlayMapDelegate().IsBoundToObject(this)) //중첩 바인딩 안되게
-//			FGameDelegates::Get().GetEndPlayMapDelegate().AddUObject(this, &UB2UIManager::Destroy);
-//#endif
-//
-//		MainWidget = Cast<UB2UIMain>(CreateWidget<UUserWidget>(TheWorld, this, UIMainClass));
-//		if (MainWidget)
-//		{
-//			MainWidget->Init();
-//			MainWidget->AddToViewport(BII_WIDGET_ZORDER_NEW_UI_MAIN); // Z-order 를 따로 관리하는 DJLegacy 와 공존하는 한 별도 z 값을 넣는다.
-//			PrepareUI();
-//			bInit = true;
-//		}
-//
-//#if WITH_BII_ON_SCREEN_DEBUG_TEXT
-//		CreateScreenDebugWidget();
-//#endif
-//
-//		SubscribeEvents();
-//	}
-//
-//	InitNotAddUISceneHistoryList();
-//
-//	//반대로 요기에 등록한거만 
-//	NoCheckErrorCode.Add(B2ResultCode::FAILURE_INTERNAL_ERROR);
-//	NoCheckErrorCode.Add(B2ResultCode::FAILURE_INTERNAL_DATABASE_ERROR);
-//	NoCheckErrorCode.Add(B2ResultCode::FAILURE_TRY_AGAIN_ERROR);
-//	NoCheckErrorCode.Add(B2ResultCode::FAILURE_MASTER_DATA_ERROR);
-//	NoCheckErrorCode.Add(B2ResultCode::FAILURE_INVALID_MARKET);
-//	NoCheckErrorCode.Add(B2ResultCode::FAILURE_MAPPER_PARAMETER_ERROR);
-//	NoCheckErrorCode.Add(B2ResultCode::FAILURE_PARAMETERS_CHECKSUM_ERROR);
-//	NoCheckErrorCode.Add(B2ResultCode::FAILURE_RANDOM_FAILURE_COUNT_INSERT);
-//	NoCheckErrorCode.Add(B2ResultCode::FAILURE_RANDOM_FAILURE_COUNT_UPDATE);
-//
-//	/*NoCheckErrorCode.Add(B2ResultCode::FAILURE_CASH_UNDERFLOW);
-//
-//	NoCheckErrorCode.Add(B2ResultCode::FAILURE_BLADEPOINT_UNDERFLOW);
-//	NoCheckErrorCode.Add(B2ResultCode::FAILURE_SOCIALPOINT_UNDERFLOW);
-//	NoCheckErrorCode.Add(B2ResultCode::FAILURE_SOCIALPOINT_OVERFLOW);
-//	NoCheckErrorCode.Add(B2ResultCode::FAILURE_NOT_ENOUGH_INVENTORY_LEFT_SLOT);
-//
-//
-//	NoCheckErrorCode.Add(B2ResultCode::FAILURE_NAME_INVALID_CHAR);
-//	NoCheckErrorCode.Add(B2ResultCode::FAILURE_NAME_LENGTH_TOO_SHORT);
-//	NoCheckErrorCode.Add(B2ResultCode::FAILURE_NAME_LENGTH_TOO_LONG);
-//	NoCheckErrorCode.Add(B2ResultCode::FAILURE_NAME_INCLUDE_SWEAR_WORD);
-//	NoCheckErrorCode.Add(B2ResultCode::FAILURE_NAME_INCLUDE_PROHIBITED_NAME);
-//	NoCheckErrorCode.Add(B2ResultCode::FAILURE_MONEY_UNDERFLOW);
-//
-//	NoCheckErrorCode.Add(B2ResultCode::FAILURE_TODAY_MERCENARY_DONATION_COUNT_OVERFLOW);
-//	NoCheckErrorCode.Add(B2ResultCode::FAILURE_TRANSACTION_WHILE_INCREASE_MERCENARY_EXP);
-//	NoCheckErrorCode.Add(B2ResultCode::FAILURE_MERCENARY_ALREADY_MAX_LEVEL);
-//
-//	NoCheckErrorCode.Add(B2ResultCode::FAILURE_DUPLICATED_GUILD_NAME);
-//	NoCheckErrorCode.Add(B2ResultCode::FAILURE_NEED_MORE_MEMBER_FOR_GUILDBATTLE);*/
+
+	SetPlayerContext(InPlayerContext);
+
+	if (GConfig)
+	{
+		GConfig->GetInt(TEXT("/Script/BladeII.B2UIManager"), TEXT("ForceGCOnUISceneCloseInterval"), ForceGCOnUISceneCloseInterval, GGameIni);
+		GConfig->GetInt(TEXT("/Script/BladeII.B2UIManager"), TEXT("UIDataCacheHistoryNum"), UIDataCacheHistoryNum, GGameIni);
+	}
+	UISceneCloseWithoutGCCount = 0;
+
+	SetupCacheOnLoadList();
+	SetupRootsetWidgetList();
+	SetupLoadOnStartupWidgetList();
+
+	UWorld* TheWorld = GetWorld();
+	if (TheWorld && !bInit)
+	{
+#if WITH_EDITOR
+		if (!FGameDelegates::Get().GetEndPlayMapDelegate().IsBoundToObject(this)) //중첩 바인딩 안되게
+			FGameDelegates::Get().GetEndPlayMapDelegate().AddUObject(this, &UB2UIManager::Destroy);
+#endif
+
+		MainWidget = Cast<UB2UIMain>(CreateWidget<UUserWidget>(TheWorld, this, UIMainClass));
+		if (MainWidget)
+		{
+			MainWidget->Init();
+			MainWidget->AddToViewport(BII_WIDGET_ZORDER_NEW_UI_MAIN); // Z-order 를 따로 관리하는 DJLegacy 와 공존하는 한 별도 z 값을 넣는다.
+			PrepareUI();
+			bInit = true;
+		}
+
+#if WITH_BII_ON_SCREEN_DEBUG_TEXT
+		CreateScreenDebugWidget();
+#endif
+
+		SubscribeEvents();
+	}
+
+	InitNotAddUISceneHistoryList();
+
+	//반대로 요기에 등록한거만 
+	NoCheckErrorCode.Add(B2ResultCode::FAILURE_INTERNAL_ERROR);
+	NoCheckErrorCode.Add(B2ResultCode::FAILURE_INTERNAL_DATABASE_ERROR);
+	NoCheckErrorCode.Add(B2ResultCode::FAILURE_TRY_AGAIN_ERROR);
+	NoCheckErrorCode.Add(B2ResultCode::FAILURE_MASTER_DATA_ERROR);
+	NoCheckErrorCode.Add(B2ResultCode::FAILURE_INVALID_MARKET);
+	NoCheckErrorCode.Add(B2ResultCode::FAILURE_MAPPER_PARAMETER_ERROR);
+	NoCheckErrorCode.Add(B2ResultCode::FAILURE_PARAMETERS_CHECKSUM_ERROR);
+	NoCheckErrorCode.Add(B2ResultCode::FAILURE_RANDOM_FAILURE_COUNT_INSERT);
+	NoCheckErrorCode.Add(B2ResultCode::FAILURE_RANDOM_FAILURE_COUNT_UPDATE);
+
+	/*NoCheckErrorCode.Add(B2ResultCode::FAILURE_CASH_UNDERFLOW);
+
+	NoCheckErrorCode.Add(B2ResultCode::FAILURE_BLADEPOINT_UNDERFLOW);
+	NoCheckErrorCode.Add(B2ResultCode::FAILURE_SOCIALPOINT_UNDERFLOW);
+	NoCheckErrorCode.Add(B2ResultCode::FAILURE_SOCIALPOINT_OVERFLOW);
+	NoCheckErrorCode.Add(B2ResultCode::FAILURE_NOT_ENOUGH_INVENTORY_LEFT_SLOT);
+
+
+	NoCheckErrorCode.Add(B2ResultCode::FAILURE_NAME_INVALID_CHAR);
+	NoCheckErrorCode.Add(B2ResultCode::FAILURE_NAME_LENGTH_TOO_SHORT);
+	NoCheckErrorCode.Add(B2ResultCode::FAILURE_NAME_LENGTH_TOO_LONG);
+	NoCheckErrorCode.Add(B2ResultCode::FAILURE_NAME_INCLUDE_SWEAR_WORD);
+	NoCheckErrorCode.Add(B2ResultCode::FAILURE_NAME_INCLUDE_PROHIBITED_NAME);
+	NoCheckErrorCode.Add(B2ResultCode::FAILURE_MONEY_UNDERFLOW);
+
+	NoCheckErrorCode.Add(B2ResultCode::FAILURE_TODAY_MERCENARY_DONATION_COUNT_OVERFLOW);
+	NoCheckErrorCode.Add(B2ResultCode::FAILURE_TRANSACTION_WHILE_INCREASE_MERCENARY_EXP);
+	NoCheckErrorCode.Add(B2ResultCode::FAILURE_MERCENARY_ALREADY_MAX_LEVEL);
+
+	NoCheckErrorCode.Add(B2ResultCode::FAILURE_DUPLICATED_GUILD_NAME);
+	NoCheckErrorCode.Add(B2ResultCode::FAILURE_NEED_MORE_MEMBER_FOR_GUILDBATTLE);*/
 }
 
 void UB2UIManager::PrepareUI()
@@ -601,114 +603,114 @@ void UB2UIManager::PrepareUI()
 	}
 }
 
-//#include "B2UIBattlePause.h"
+#include "B2UIBattlePause.h"
 void UB2UIManager::SubscribeEvents()
 {
-	/*UnsubscribeEvents();
+	UnsubscribeEvents();
 
 	Issues.Add(StartPauseMenuClass<EB2GameMode>::GetInstance().Subscribe2(
 		[this](EB2GameMode Mod)
-	{
-		if (auto* pUI = OpenUI<UB2UIBattlePause>(UIFName::BattlePause))
-			pUI->SetMod(Mod);
-	}
+		{
+			if (auto* pUI = OpenUI<UB2UIBattlePause>(UIFName::BattlePause))
+				pUI->SetMod(Mod);
+		}
 	));
 
 	Issues.Add(StopPauseMenuClass<>::GetInstance().Subscribe2(
 		[this]()
-	{
-		this->CloseUI(UIFName::BattlePause);
-	}
+		{
+			this->CloseUI(UIFName::BattlePause);
+		}
 	));
 
 	Issues.Add(StartDefeatMenuClass<EB2GameMode>::GetInstance().Subscribe2(
 		[this](EB2GameMode Mod)
-	{
-		this->OpenUI(Mod == EB2GameMode::Raid ? UIFName::RaidDefeat : UIFName::Defeat);
-	}
+		{
+			this->OpenUI(Mod == EB2GameMode::Raid ? UIFName::RaidDefeat : UIFName::Defeat);
+		}
 	));
 
 	Issues.Add(StopDefeatMenuClass<>::GetInstance().Subscribe2(
 		[this]()
-	{
-		this->CloseUI(UIFName::Defeat);
-		this->CloseUI(UIFName::RaidDefeat);
-	}
+		{
+			this->CloseUI(UIFName::Defeat);
+			this->CloseUI(UIFName::RaidDefeat);
+		}
 	));
 
 	Issues.Add(LobbyConditionalBeginOnTouchImpulseRingClass<const FVector2D&>::GetInstance().Subscribe2(
 		[this](const FVector2D& InPressPos)
-	{
-		if (MainWidget)
 		{
-			MainWidget->ConditionalPlayOnTouchImpulseRing(InPressPos);
+			if (MainWidget)
+			{
+				MainWidget->ConditionalPlayOnTouchImpulseRing(InPressPos);
+			}
 		}
-	}
 	));
 
 	Issues.Add(LobbyMoveOnTouchImpulseRingClass<const FVector2D&>::GetInstance().Subscribe2(
 		[this](const FVector2D& InMovePos)
-	{
-		if (MainWidget)
 		{
-			MainWidget->MoveOnTouchImpulseRing(InMovePos);
+			if (MainWidget)
+			{
+				MainWidget->MoveOnTouchImpulseRing(InMovePos);
+			}
 		}
-	}
 	));
 
 	Issues.Add(LobbyEndOnTouchImpulseRingClass<>::GetInstance().Subscribe2(
 		[this]()
-	{
-		if (MainWidget)
 		{
-			MainWidget->PendingStopOnTouchImpulseRing();
+			if (MainWidget)
+			{
+				MainWidget->PendingStopOnTouchImpulseRing();
+			}
 		}
-	}
 	));
 
 	Issues.Add(LobbyShowNetworkLoadingIconClass<bool>::GetInstance().Subscribe2(
 		[this](bool bShow)
-	{
-		if (MainWidget)
 		{
-			MainWidget->ShowNetworkLoadingIcon(bShow);
-			this->IsIndicatorVisible = bShow;
+			if (MainWidget)
+			{
+				MainWidget->ShowNetworkLoadingIcon(bShow);
+				this->IsIndicatorVisible = bShow;
+			}
 		}
-	}
 	));
 
 	Issues.Add(ShowMiscLoadingIconClass<bool>::GetInstance().Subscribe2(
 		[this](bool bShow)
-	{
-		if (MainWidget)
 		{
-			MainWidget->ShowMiscLoadingIcon(bShow);
+			if (MainWidget)
+			{
+				MainWidget->ShowMiscLoadingIcon(bShow);
+			}
 		}
-	}
 	));
 
 	Issues.Add(HandleServerErrorGoodsShortageClass<const uint32, const EGoodsButtonType>::GetInstance().Subscribe2(
 		[this](const uint32 ItemID, const EGoodsButtonType GoodsButtonType)
-	{
-		if (auto* pUI = OpenUI<UB2UIGoodsShortcutTooltipPopup>(UIFName::GoodsShortcutTooltipPopup))
-			pUI->SetItemInfo(ItemID, GoodsButtonType);
-	}
+		{
+			if (auto* pUI = OpenUI<UB2UIGoodsShortcutTooltipPopup>(UIFName::GoodsShortcutTooltipPopup))
+				pUI->SetItemInfo(ItemID, GoodsButtonType);
+		}
 	));
 
 	Issues.Add(HandleServerError4018Class<>::GetInstance().Subscribe2(
 		[this]()
-	{
-		this->ResetRepeatBattle();
-		CancelOrStopRepeatBattleClass<>::GetInstance().Signal();
-	}
+		{
+			this->ResetRepeatBattle();
+			CancelOrStopRepeatBattleClass<>::GetInstance().Signal();
+		}
 	));
 
 	Issues.Add(DeliveryAppUpdatePopUpClass<>::GetInstance().Subscribe2(
 		[this]()
-	{
-		this->OpenAppUpdatePopup();
-	}
-	));*/
+		{
+			this->OpenAppUpdatePopup();
+		}
+	));
 }
 
 void UB2UIManager::UnsubscribeEvents()
@@ -796,38 +798,38 @@ TSubclassOf<UB2UIWidget> UB2UIManager::GetWidgetClass(const FB2UIWidgetData* Wid
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2UIManager_GetWidgetClass);
 
-//	if (WidgetData == nullptr)
-//		return nullptr;
-//
-//	const FName& WidgetFName = WidgetData->WidgetFName;
-//	if (UClass* CachedWidgetClass = FindCachedWidgetClass(WidgetFName))
-//		return CachedWidgetClass;
-//
-//	TSoftClassPtr<UB2UIWidget> WidgetClassAsset = WidgetData->GetWidgetClassAsset();
-//	if (WidgetClassAsset.IsNull() == false)
-//	{
-//		UClass* WidgetClass = LoadSynchronous<UB2UIWidget>(WidgetClassAsset, GENERAL_TASSET_ASYNC_LOAD_TIMEOUT);
-//		if (WidgetClass != nullptr)
-//		{
-//			if (!WidgetData->CanUnloadByPolicy()) { // 어떤 식으로든 Cache 마크가 있는 경우, 언로딩 방지 캐싱
-//				UClass*& FoundOrAddedCache = CachedWidgetClasses.FindOrAdd(WidgetFName);
-//				FoundOrAddedCache = WidgetClass;
-//			}
-//
-//#if !PLATFORM_IOS // [IOS_SPECIFIC_MEMORY_SAVING] iOS 는 메모리 우려로 인해 이런 거 하지 않는다..
-//
-//			if (UB2UIManager::IsRootSetWidgetName(WidgetFName))
-//			{
-//				// 이건 아예 게임 종료 시점까지 안 내리겠다는 보다 강력한 의사 표명.
-//				// 로딩 시간이 충분히 길면서 자주 쓰이는 것들로 선정.
-//				WidgetClass->AddToRoot();
-//			}
-//
-//#endif // end !PLATFORM_IOS
-//
-//			return WidgetClass;
-//		}
-//	}
+	if (WidgetData == nullptr)
+		return nullptr;
+
+	const FName& WidgetFName = WidgetData->WidgetFName;
+	if (UClass* CachedWidgetClass = FindCachedWidgetClass(WidgetFName))
+		return CachedWidgetClass;
+
+	TSoftClassPtr<UB2UIWidget> WidgetClassAsset = WidgetData->GetWidgetClassAsset();
+	if (WidgetClassAsset.IsNull() == false)
+	{
+		UClass* WidgetClass = LoadSynchronous<UB2UIWidget>(WidgetClassAsset, GENERAL_TASSET_ASYNC_LOAD_TIMEOUT);
+		if (WidgetClass != nullptr)
+		{
+			if (!WidgetData->CanUnloadByPolicy()) { // 어떤 식으로든 Cache 마크가 있는 경우, 언로딩 방지 캐싱
+				UClass*& FoundOrAddedCache = CachedWidgetClasses.FindOrAdd(WidgetFName);
+				FoundOrAddedCache = WidgetClass;
+			}
+
+#if !PLATFORM_IOS // [IOS_SPECIFIC_MEMORY_SAVING] iOS 는 메모리 우려로 인해 이런 거 하지 않는다..
+
+			if (UB2UIManager::IsRootSetWidgetName(WidgetFName))
+			{
+				// 이건 아예 게임 종료 시점까지 안 내리겠다는 보다 강력한 의사 표명.
+				// 로딩 시간이 충분히 길면서 자주 쓰이는 것들로 선정.
+				WidgetClass->AddToRoot();
+			}
+
+#endif // end !PLATFORM_IOS
+
+			return WidgetClass;
+		}
+	}
 
 	return nullptr;
 }
@@ -842,146 +844,146 @@ UClass* UB2UIManager::FindCachedWidgetClass(const FName& WidgetFName)
 
 void UB2UIManager::Unload(const FB2UIWidgetData* WidgetData)
 {
-	//if (WidgetData != nullptr)
-	//{
-	//	// CacheOnLoad 등의 마크가 된 건 UnloadAllTAssets 같은 데서 플래그를 제거한 이후에 이걸 콜 해야 한다.
-	//	checkSlow(WidgetData->CanUnloadByPolicy());
+	if (WidgetData != nullptr)
+	{
+		// CacheOnLoad 등의 마크가 된 건 UnloadAllTAssets 같은 데서 플래그를 제거한 이후에 이걸 콜 해야 한다.
+		checkSlow(WidgetData->CanUnloadByPolicy());
 
-	//	CachedWidgetClasses.Remove(WidgetData->WidgetFName);
+		CachedWidgetClasses.Remove(WidgetData->WidgetFName);
 
-	//	TSoftClassPtr<UB2UIWidget> WidgetClassAsset = WidgetData->GetWidgetClassAsset();
-	//	UnloadAsset(WidgetClassAsset.GetSoftObjectPath());
-	//}
+		TSoftClassPtr<UB2UIWidget> WidgetClassAsset = WidgetData->GetWidgetClassAsset();
+		UnloadAsset(WidgetClassAsset.ToSoftObjectPath());
+	}
 }
 
 void UB2UIManager::InternalOpenUI(FName InUIName, UB2UIWidget* Widget, bool bRightNow, bool bMustTop)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2UIManager_InternalOpenUI);
-	//auto WidgetData = GetWidgetData(InUIName);
-	//if (!WidgetData || !Widget) return;
+	auto WidgetData = GetWidgetData(InUIName);
+	if (!WidgetData || !Widget) return;
 
-	//// bStayInViewport 를 굳이 처음부터 열지는 않고 처음 연 이후로 닫지 않는 걸로 바꾼다.
-	////if (!WidgetData->bStayInViewport)
-	//{
-	//	// 20180124_YJ
-	//	// 기본적으로 만드는 위젯들은 MainWidget에 생성순서대로 붙여넣지만,
-	//	// 약네트워크같은 누도성 최상단에 위치 해야만하는 팝업의 경우에 MainWidget을 무시하고
-	//	// AddToViewport 의 Zoder 값을 1000으로 세팅하여 띄워줌
-	//	if (MainWidget && !bMustTop)
-	//	{
-	//		auto MyParent = MainWidget->GetParentLayer(WidgetData->Layer);
-	//		if (MyParent)
-	//		{
-	//			MyParent->AddChild(Widget);
-	//			auto OverlaySlot = Cast<UOverlaySlot>(Widget->Slot);
-	//			if (OverlaySlot)
-	//			{
-	//				OverlaySlot->SetHorizontalAlignment(EHorizontalAlignment::HAlign_Fill);
-	//				OverlaySlot->SetVerticalAlignment(EVerticalAlignment::VAlign_Fill);
-	//			}
-	//		}
-	//		else
-	//			Widget->AddToViewport();
-	//	}
-	//	else
-	//		Widget->AddToViewport(bMustTop ? BII_WIDGET_ZORDER_NEW_UI_MustTop : 0);
-	//}
+	// bStayInViewport 를 굳이 처음부터 열지는 않고 처음 연 이후로 닫지 않는 걸로 바꾼다.
+	//if (!WidgetData->bStayInViewport)
+	{
+		// 20180124_YJ
+		// 기본적으로 만드는 위젯들은 MainWidget에 생성순서대로 붙여넣지만,
+		// 약네트워크같은 누도성 최상단에 위치 해야만하는 팝업의 경우에 MainWidget을 무시하고
+		// AddToViewport 의 Zoder 값을 1000으로 세팅하여 띄워줌
+		if (MainWidget && !bMustTop)
+		{
+			auto MyParent = MainWidget->GetParentLayer(WidgetData->Layer);
+			if (MyParent)
+			{
+				MyParent->AddChild(Widget);
+				auto OverlaySlot = Cast<UOverlaySlot>(Widget->Slot);
+				if (OverlaySlot)
+				{
+					OverlaySlot->SetHorizontalAlignment(EHorizontalAlignment::HAlign_Fill);
+					OverlaySlot->SetVerticalAlignment(EVerticalAlignment::VAlign_Fill);
+				}
+			}
+			else
+				Widget->AddToViewport();
+		}
+		else
+			Widget->AddToViewport(bMustTop ? BII_WIDGET_ZORDER_NEW_UI_MustTop : 0);
+	}
 
-	////오픈 될 때 자동바인드 해야 된다면
-	//if (WidgetData->bBindDocAutoOnOpen)
-	//{
-	//	IB2UIDocBindable* CastDocBindable = Cast<IB2UIDocBindable>(Widget);
-	//	if (CastDocBindable)
-	//		CastDocBindable->BindDocAuto();
-	//}
+	//오픈 될 때 자동바인드 해야 된다면
+	if (WidgetData->bBindDocAutoOnOpen)
+	{
+		IB2UIDocBindable* CastDocBindable = Cast<IB2UIDocBindable>(Widget);
+		if (CastDocBindable)
+			CastDocBindable->BindDocAuto();
+	}
 
-	////오픈 될 때, 월드 블러를 먹여야 된다면
-	//if (WidgetData->bAllowWorldBackgroundBlur)
-	//{
-	//	Widget->bWorldBackgroundBlurOn = true;
-	//	StartWorldBackgroundBlur(WidgetData->WorldBackgroundBlurScale);
-	//}
+	//오픈 될 때, 월드 블러를 먹여야 된다면
+	if (WidgetData->bAllowWorldBackgroundBlur)
+	{
+		Widget->bWorldBackgroundBlurOn = true;
+		StartWorldBackgroundBlur(WidgetData->WorldBackgroundBlurScale);
+	}
 
-	////기본적으로는 Visibility를 켜준다.
-	//Widget->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
+	//기본적으로는 Visibility를 켜준다.
+	Widget->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
 
-	////오픈 될 때, 전투 관련 UI를 숨겨야 한다면( bHideBattleRelatedWidgets는 각 위젯에서 세팅이 되고, bHUDHidingCinematicMode는 외부에서 세팅이 된다 )
-	//if (
-	//	(bCinematicMode && bHUDHidingCinematicMode) ||
-	//	(!bCinematicMode && WidgetData->bHideBattleRelatedWidgets) // 현재는 CinematicMode 설정이 우선임. CinematicMode 라면 bHideBattleRelatedWidgets 설정을 무시.
-	//	)
-	//{
-	//	HideBattleRelatedWidgets(true);
-	//}
+	//오픈 될 때, 전투 관련 UI를 숨겨야 한다면( bHideBattleRelatedWidgets는 각 위젯에서 세팅이 되고, bHUDHidingCinematicMode는 외부에서 세팅이 된다 )
+	if (
+		(bCinematicMode && bHUDHidingCinematicMode) ||
+		(!bCinematicMode && WidgetData->bHideBattleRelatedWidgets) // 현재는 CinematicMode 설정이 우선임. CinematicMode 라면 bHideBattleRelatedWidgets 설정을 무시.
+		)
+	{
+		HideBattleRelatedWidgets(true);
+	}
 
-	//if (Cast<IB2UIBackWidget>(Widget))
-	//{
-	//	B2AndroidBackManager::GetInstance()->AddBackWidget(Widget, InUIName);
-	//}
+	if (Cast<IB2UIBackWidget>(Widget))
+	{
+		B2AndroidBackManager::GetInstance()->AddBackWidget(Widget, InUIName);
+	}
 
-	//Widget->OnOpen(bRightNow);
+	Widget->OnOpen(bRightNow);
 }
 
 void UB2UIManager::InternalCloseUI(FName InUIName, class UB2UIWidget* Widget, bool bRightNow, bool bCloseStaticUIs)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2UIManager_InternalCloseUI);
-	//auto WidgetData = GetWidgetData(InUIName);
-	//if (!WidgetData || WidgetData->Widget != Widget)
-	//	return;
+	auto WidgetData = GetWidgetData(InUIName);
+	if (!WidgetData || WidgetData->Widget != Widget)
+		return;
 
-	////OpenState가 None이면 아예 열리지도 않았으니 닫을 필요도 없다.
-	//if (Widget->GetOpenState() == EUIOpenState::None)return;
+	//OpenState가 None이면 아예 열리지도 않았으니 닫을 필요도 없다.
+	if (Widget->GetOpenState() == EUIOpenState::None)return;
 
 
 
-	////UI쪽 연출이 완료되었으면
-	//if (Widget->GetOpenState() == EUIOpenState::Closed)
-	//{
-	//	Widget->SetVisibility(ESlateVisibility::Hidden);
-	//	Widget->OpenState = EUIOpenState::None;
+	//UI쪽 연출이 완료되었으면
+	if (Widget->GetOpenState() == EUIOpenState::Closed)
+	{
+		Widget->SetVisibility(ESlateVisibility::Hidden);
+		Widget->OpenState = EUIOpenState::None;
 
-	//	// bStayInViewport 인 것들은 bCloseStaticUIs 가 들어온 경우에만 닫는다. (레벨 언로드 시점)
-	//	if (!WidgetData->bStayInViewport || bCloseStaticUIs)
-	//	{
-	//		Widget->DestroySelf(this);
-	//		WidgetData->Widget = nullptr; // 상단 DestroySelf 에서 처리될 것.
-	//	}
+		// bStayInViewport 인 것들은 bCloseStaticUIs 가 들어온 경우에만 닫는다. (레벨 언로드 시점)
+		if (!WidgetData->bStayInViewport || bCloseStaticUIs)
+		{
+			Widget->DestroySelf(this);
+			WidgetData->Widget = nullptr; // 상단 DestroySelf 에서 처리될 것.
+		}
 
-	//	//오픈 될 때 자동바인드 했다면, 자동 해제
-	//	if (WidgetData->bBindDocAutoOnOpen)
-	//	{
-	//		IB2UIDocBindable* CastDocBindable = Cast<IB2UIDocBindable>(Widget);
-	//		if (CastDocBindable)
-	//			CastDocBindable->UnbindDoc();
-	//	}
+		//오픈 될 때 자동바인드 했다면, 자동 해제
+		if (WidgetData->bBindDocAutoOnOpen)
+		{
+			IB2UIDocBindable* CastDocBindable = Cast<IB2UIDocBindable>(Widget);
+			if (CastDocBindable)
+				CastDocBindable->UnbindDoc();
+		}
 
-	//	//오픈 될 때, 월드 블러를 먹였다면 해제
-	//	if (WidgetData->bAllowWorldBackgroundBlur && Widget->bWorldBackgroundBlurOn)
-	//	{
-	//		Widget->bWorldBackgroundBlurOn = false;
-	//		StopWorldBackgroundBlur();
-	//	}
+		//오픈 될 때, 월드 블러를 먹였다면 해제
+		if (WidgetData->bAllowWorldBackgroundBlur && Widget->bWorldBackgroundBlurOn)
+		{
+			Widget->bWorldBackgroundBlurOn = false;
+			StopWorldBackgroundBlur();
+		}
 
-	//	//오픈 될 때, 전투 관련 UI를 숨긴 것을 복구 해야 한다면.
-	//	// 현 구성은 bHideBattleRelatedWidgets 설정된 것이 여러개 열려있을 때 문제가 될 것이다. 그런 경우에 대한 대처가 필요하다면 상태를 따로 저장해 둘 필요가 있다.
-	//	// 그러나 CinematicMode 설정도 같이 고려할 필요가 있을 것.
-	//	if (
-	//		(bCinematicMode && !bHUDHidingCinematicMode) ||
-	//		(!bCinematicMode && WidgetData->bHideBattleRelatedWidgets)
-	//		)
-	//	{
-	//		HideBattleRelatedWidgets(false);
-	//	}
+		//오픈 될 때, 전투 관련 UI를 숨긴 것을 복구 해야 한다면.
+		// 현 구성은 bHideBattleRelatedWidgets 설정된 것이 여러개 열려있을 때 문제가 될 것이다. 그런 경우에 대한 대처가 필요하다면 상태를 따로 저장해 둘 필요가 있다.
+		// 그러나 CinematicMode 설정도 같이 고려할 필요가 있을 것.
+		if (
+			(bCinematicMode && !bHUDHidingCinematicMode) ||
+			(!bCinematicMode && WidgetData->bHideBattleRelatedWidgets)
+			)
+		{
+			HideBattleRelatedWidgets(false);
+		}
 
-	//	if (Cast<IB2UIBackWidget>(Widget))
-	//	{
-	//		B2AndroidBackManager::GetInstance()->RemoveBackWidget(Widget, InUIName);
-	//	}
-	//}
-	//else
-	//{
-	//	Widget->OnClose(bRightNow);
-	//}
+		if (Cast<IB2UIBackWidget>(Widget))
+		{
+			B2AndroidBackManager::GetInstance()->RemoveBackWidget(Widget, InUIName);
+		}
+	}
+	else
+	{
+		Widget->OnClose(bRightNow);
+	}
 }
 
 void UB2UIManager::UpdateUIDataCacheHistoryOnOpen(FB2UIWidgetData* InJustOpenedUIData)
@@ -1037,60 +1039,60 @@ void UB2UIManager::UpdateUIDataCacheHistoryOnOpen(FB2UIWidgetData* InJustOpenedU
 
 void UB2UIManager::StartWorldBackgroundBlur(float WorldBackgroundBlurScale)
 {
-	//BeginGlobalSceneBlurClass<float>::GetInstance().Signal(WorldBackgroundBlurScale);
+	BeginGlobalSceneBlurClass<float>::GetInstance().Signal(WorldBackgroundBlurScale);
 }
 
 void UB2UIManager::StopWorldBackgroundBlur()
 {
-	//EndGlobalSceneBlurClass<>::GetInstance().Signal();
+	EndGlobalSceneBlurClass<>::GetInstance().Signal();
 }
 
 void UB2UIManager::HideBattleRelatedWidgets(bool bHide)
 {
-//	BLADE2_SCOPE_CYCLE_COUNTER(UB2UIManager_HideBattleRelatedWidgets);
-//#if !UE_BUILD_SHIPPING
-//	extern bool gbHACKInGameUIHiddenByDevCommand;
-//#endif
-//	if (bHide
-//#if !UE_BUILD_SHIPPING
-//		|| gbHACKInGameUIHiddenByDevCommand // 개발용 커맨드로 숨긴 경우.		
-//#endif
-//		)
-//	{
-//		// 이게 상황에 따라 완벽히 숨겨주지는 않는데 gbHACKInGameUIHiddenByDevCommand 를 참고. 
-//		// 아마도 WorldBackgroundBlur 를 쓰는 상황에선 그것까지 감안할 필요가 없지 않을까 함.
-//		for (TObjectIterator<UB2UIManager_InGameHUDChar> WMIT; WMIT; ++WMIT)
-//		{
-//			(*WMIT)->HideAll();
-//		}
-//
-//		for (TMap<FName, FB2UIWidgetData>::TIterator WidgetDataIt(AllWidgetData); WidgetDataIt; ++WidgetDataIt)
-//		{
-//			FB2UIWidgetData& WidgetData = WidgetDataIt.Value();
-//			if (WidgetData.IsBattleRelatedWidget)
-//			{
-//				if (WidgetData.Widget)
-//					WidgetData.Widget->ForceHide();
-//			}
-//		}
-//	}
-//	else
-//	{
-//		for (TObjectIterator<UB2UIManager_InGameHUDChar> WMIT; WMIT; ++WMIT)
-//		{
-//			(*WMIT)->RestoreVisibilityAll();
-//		}
-//
-//		for (TMap<FName, FB2UIWidgetData>::TIterator WidgetDataIt(AllWidgetData); WidgetDataIt; ++WidgetDataIt)
-//		{
-//			FB2UIWidgetData& WidgetData = WidgetDataIt.Value();
-//			if (WidgetData.IsBattleRelatedWidget)
-//			{
-//				if (WidgetData.Widget)
-//					WidgetData.Widget->RestoreFromForceHidden();
-//			}
-//		}
-//	}
+	BLADE2_SCOPE_CYCLE_COUNTER(UB2UIManager_HideBattleRelatedWidgets);
+#if !UE_BUILD_SHIPPING
+	extern bool gbHACKInGameUIHiddenByDevCommand;
+#endif
+	if (bHide
+#if !UE_BUILD_SHIPPING
+		|| gbHACKInGameUIHiddenByDevCommand // 개발용 커맨드로 숨긴 경우.		
+#endif
+		)
+	{
+		// 이게 상황에 따라 완벽히 숨겨주지는 않는데 gbHACKInGameUIHiddenByDevCommand 를 참고. 
+		// 아마도 WorldBackgroundBlur 를 쓰는 상황에선 그것까지 감안할 필요가 없지 않을까 함.
+		for (TObjectIterator<UB2UIManager_InGameHUDChar> WMIT; WMIT; ++WMIT)
+		{
+			(*WMIT)->HideAll();
+		}
+
+		for (TMap<FName, FB2UIWidgetData>::TIterator WidgetDataIt(AllWidgetData); WidgetDataIt; ++WidgetDataIt)
+		{
+			FB2UIWidgetData& WidgetData = WidgetDataIt.Value();
+			if (WidgetData.IsBattleRelatedWidget)
+			{
+				if (WidgetData.Widget)
+					WidgetData.Widget->ForceHide();
+			}
+		}
+	}
+	else
+	{
+		for (TObjectIterator<UB2UIManager_InGameHUDChar> WMIT; WMIT; ++WMIT)
+		{
+			(*WMIT)->RestoreVisibilityAll();
+		}
+
+		for (TMap<FName, FB2UIWidgetData>::TIterator WidgetDataIt(AllWidgetData); WidgetDataIt; ++WidgetDataIt)
+		{
+			FB2UIWidgetData& WidgetData = WidgetDataIt.Value();
+			if (WidgetData.IsBattleRelatedWidget)
+			{
+				if (WidgetData.Widget)
+					WidgetData.Widget->RestoreFromForceHidden();
+			}
+		}
+	}
 }
 
 void UB2UIManager::SetHUDHidingCinematicMode(bool bInCinematicMode, bool bIsHUDHiding)
@@ -1107,32 +1109,32 @@ void UB2UIManager::SetHUDHidingCinematicMode(bool bInCinematicMode, bool bIsHUDH
 FString UB2UIManager::FormatSecondsAsTime(int32 Secs, FString Format)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2UIManager_FormatSecondsAsTime);
-	//int32 Hr = FPlatformMath::FloorToInt(Secs / 3600);
-	//int32 Min = FPlatformMath::FloorToInt((Secs - (Hr * 3600)) / 60);
-	//int32 Sec = FPlatformMath::FloorToInt(Secs - (Hr * 3600) - (Min * 60));
+	int32 Hr = FPlatformMath::FloorToInt(Secs / 3600.0f);
+	int32 Min = FPlatformMath::FloorToInt((Secs - (Hr * 3600)) / 60.0f);
+	int32 Sec = FPlatformMath::FloorToInt(Secs - (Hr * 3600) - (Min * 60.0f));
 
-	//FString H_Char;
-	//FString M_Char;
-	//FString S_Char;
+	FString H_Char;
+	FString M_Char;
+	FString S_Char;
 
-	//H_Char = (Hr < 10) ? FString::Printf(TEXT("0%d"), Hr) : *FString::FromInt(Hr);
-	//M_Char = (Min < 10) ? FString::Printf(TEXT("0%d"), Min) : *FString::FromInt(Min);
-	//S_Char = (Sec < 10) ? FString::Printf(TEXT("0%d"), Sec) : *FString::FromInt(Sec);
+	H_Char = (Hr < 10) ? FString::Printf(TEXT("0%d"), Hr) : *FString::FromInt(Hr);
+	M_Char = (Min < 10) ? FString::Printf(TEXT("0%d"), Min) : *FString::FromInt(Min);
+	S_Char = (Sec < 10) ? FString::Printf(TEXT("0%d"), Sec) : *FString::FromInt(Sec);
 
-	//if (Format.Len() > 0)
-	//{
-	//	Format = Format.Replace(TEXT("hh"), *H_Char);
-	//	Format = Format.Replace(TEXT("h"), *FString::FromInt(Hr));
-	//	Format = Format.Replace(TEXT("mm"), *M_Char);
-	//	Format = Format.Replace(TEXT("m"), *FString::FromInt(Min));
-	//	Format = Format.Replace(TEXT("ss"), *S_Char);
-	//	Format = Format.Replace(TEXT("s"), *FString::FromInt(Sec));
-	//	return Format;
-	//}
-	//else
-	//{
+	if (Format.Len() > 0)
+	{
+		Format = Format.Replace(TEXT("hh"), *H_Char);
+		Format = Format.Replace(TEXT("h"), *FString::FromInt(Hr));
+		Format = Format.Replace(TEXT("mm"), *M_Char);
+		Format = Format.Replace(TEXT("m"), *FString::FromInt(Min));
+		Format = Format.Replace(TEXT("ss"), *S_Char);
+		Format = Format.Replace(TEXT("s"), *FString::FromInt(Sec));
+		return Format;
+	}
+	else
+	{
 		return TEXT("00:00:00");
-	//}
+	}
 }
 
 FString UB2UIManager::FormatMilliSecondsAsTime(int32 MilliSecs, FString Format)
@@ -1463,36 +1465,36 @@ void UB2UIManager::OpenMsgPopupFromErrorCode(int32 nErrorCode)
 void UB2UIManager::CloseMsgPopup(int32 MsgPopupId, bool bRightNow)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2UIManager_CloseMsgPopup);
-	//auto MsgPopup = MsgPopupMap.FindRef(MsgPopupId);
-	//if (MsgPopup)
-	//{
-	//	MsgPopupMap.Remove(MsgPopupId);
+	auto MsgPopup = MsgPopupMap.FindRef(MsgPopupId);
+	if (MsgPopup)
+	{
+		MsgPopupMap.Remove(MsgPopupId);
 
-	//	//OpenUI로 열었으면, CloseUI로 닫아야지... 나중에 팝업이 n개 겹쳐서 떠야 될 수 있으니 OpenUI가 아닌 다른 루트로 띄우는 작업이 필요할 듯
-	//	CloseUI(MsgPopup->MyUIFName, bRightNow);
-	//	//MsgPopup->DestroySelf();
-	//}
+		//OpenUI로 열었으면, CloseUI로 닫아야지... 나중에 팝업이 n개 겹쳐서 떠야 될 수 있으니 OpenUI가 아닌 다른 루트로 띄우는 작업이 필요할 듯
+		CloseUI(MsgPopup->MyUIFName, bRightNow);
+		//MsgPopup->DestroySelf();
+	}
 }
 
-//void UB2UIManager::CloseMsgPopup(UB2UIMsgPopupBase* MsgPopup, bool bRightNow)
-//{
-//	if (MsgPopup)
-//		CloseMsgPopup(MsgPopup->GetMsgID(), bRightNow);
-//}
+void UB2UIManager::CloseMsgPopup(UB2UIMsgPopupBase* MsgPopup, bool bRightNow)
+{
+	if (MsgPopup)
+		CloseMsgPopup(MsgPopup->GetMsgID(), bRightNow);
+}
 
 bool UB2UIManager::IsPopupPriority(EPopUpPriority InIsPriority) const
 {
-	//for (auto MsgPopup : MsgPopupMap)
-	//{
-	//	if (MsgPopup.Value)
-	//	{
-	//		// 네트웍 끊김 관련 팝업은 지우지 않음
-	//		if (MsgPopup.Value->GetPriority() == InIsPriority)
-	//		{
-	//			return true;
-	//		}
-	//	}
-	//}
+	for (auto MsgPopup : MsgPopupMap)
+	{
+		if (MsgPopup.Value)
+		{
+			// 네트웍 끊김 관련 팝업은 지우지 않음
+			if (MsgPopup.Value->GetPriority() == InIsPriority)
+			{
+				return true;
+			}
+		}
+	}
 	return false;
 }
 
@@ -1500,112 +1502,112 @@ void UB2UIManager::CloseAllMsgPopups(bool bRightNow)
 { // CloseMsgPopup 에 넣어줄 ID 나 MsgPopup 레퍼런스 사용이 불가할 경우 어쩔 수 없이 사용. 혹은 기타 다른 특수한 경우.
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2UIManager_CloseAllMsgPopups);
 
-	//for (auto MsgPopup : MsgPopupMap)
-	//{
-	//	if (MsgPopup.Value)
-	//	{
-	//		// 네트웍 끊김 관련 팝업은 지우지 않음
-	//		if (MsgPopup.Value->GetPriority() < EPopUpPriority::Server_Message_GoToLobby)
-	//		{
-	//			CloseUI(MsgPopup.Value->MyUIFName, bRightNow);
-	//			MsgPopupMap.Remove(MsgPopup.Key);
-	//		}
-	//	}
-	//}
+	for (auto MsgPopup : MsgPopupMap)
+	{
+		if (MsgPopup.Value)
+		{
+			// 네트웍 끊김 관련 팝업은 지우지 않음
+			if (MsgPopup.Value->GetPriority() < EPopUpPriority::Server_Message_GoToLobby)
+			{
+				CloseUI(MsgPopup.Value->MyUIFName, bRightNow);
+				MsgPopupMap.Remove(MsgPopup.Key);
+			}
+		}
+	}
 }
 
 bool UB2UIManager::IsMsgPopupOpened(int32 MsgPopupId)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2UIManager_IsMsgPopupOpened);
-	//auto MsgPopup = MsgPopupMap.Find(MsgPopupId);
-	//return MsgPopup != nullptr;
-	return nullptr;
+	auto MsgPopup = MsgPopupMap.Find(MsgPopupId);
+	return MsgPopup != nullptr;
 }
 void UB2UIManager::OpenAppUpdatePopup()
 {
-	//OpenMsgPopup<UB2UIMsgPopupSimple>(EUIMsgPopup::Simple,
-	//	BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_Notification")),
-	//	BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("UpdateAppVersion")),
-	//	0.f,
-	//	true,
-	//	true,
-	//	EUIMsgPopupButtonGroup::Confirm,
-	//	FMsgPopupOnClick::CreateLambda([this]()
-	//{
-	//	FBladeIIBlockToSyncNetwork::GetInstance().CloseBlockToSyncNetworkUI();
-	//	GoToDLCMapClass<>::GetInstance().Signal();
-	//})
-	//	, 0
-	//	, false
-	//	, EPopUpPriority::Server_Message_DLCMap
-	//	);
+	OpenMsgPopup<UB2UIMsgPopupSimple>(EUIMsgPopup::Simple,
+		BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_Notification")),
+		BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("UpdateAppVersion")),
+		0.f,
+		true,
+		true,
+		EUIMsgPopupButtonGroup::Confirm,
+		FMsgPopupOnClick::CreateLambda([this]()
+			{
+				FBladeIIBlockToSyncNetwork::GetInstance().CloseBlockToSyncNetworkUI();
+				GoToDLCMapClass<>::GetInstance().Signal();
+			})
+		, 0
+		, false
+		, EPopUpPriority::Server_Message_DLCMap
+	);
 
 }
 
 void UB2UIManager::GoToTitlePopup(int32 nErrorCode)
 {
-	//UB2ErrorCodeInfo* pErrorCodeInfo = StaticFindErrorCodeInfo();
-	//FSingleErrorCodeInfoData* pErrorCodeData = pErrorCodeInfo->GetInfoData(nErrorCode);
+	UB2ErrorCodeInfo* pErrorCodeInfo = StaticFindErrorCodeInfo();
+	FSingleErrorCodeInfoData* pErrorCodeData = pErrorCodeInfo->GetInfoData(nErrorCode);
 
-	//FText txtComment = BladeIIGetLOCText(B2LOC_CAT_ERROR_CODE, FString::FromInt(nErrorCode));
+	FText txtComment = BladeIIGetLOCText(B2LOC_CAT_ERROR_CODE, FString::FromInt(nErrorCode));
 
-	//UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
-	//	BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("General_Notification")),
-	//	txtComment,
-	//	0.f,
-	//	true,
-	//	true,
-	//	EUIMsgPopupButtonGroup::Confirm,
-	//	FMsgPopupOnClick::CreateLambda([]() {
-	//	UB2UIManager::GetInstance()->CloseUI(UIFName::BattlePause);
-	//	GoToTitleClass<>::GetInstance().Signal();
-	//})
-	//);
+	UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
+		BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("General_Notification")),
+		txtComment,
+		0.f,
+		true,
+		true,
+		EUIMsgPopupButtonGroup::Confirm,
+		FMsgPopupOnClick::CreateLambda([]()
+			{
+				UB2UIManager::GetInstance()->CloseUI(UIFName::BattlePause);
+				GoToTitleClass<>::GetInstance().Signal();
+			})
+	);
 }
 
 void UB2UIManager::GoToLobbyPopup(int32 nErrorCode)
 {
-	//OpenMsgPopup<UB2UIMsgPopupSimple>(EUIMsgPopup::Simple,
-	//	FText::FromString(TEXT("")),
-	//	BladeIIGetLOCText(B2LOC_CAT_ERROR_CODE, FString::FromInt(nErrorCode)),
-	//	0.f,
-	//	true,
-	//	true,
-	//	EUIMsgPopupButtonGroup::Confirm,
-	//	FMsgPopupOnClick::CreateLambda([this]()
-	//{
-	//	GoToVillageClass<>::GetInstance().Signal();
-	//}),
-	//	0,
-	//	true,
-	//	EPopUpPriority::Server_Message_Default
-	//	);
+	OpenMsgPopup<UB2UIMsgPopupSimple>(EUIMsgPopup::Simple,
+		FText::FromString(TEXT("")),
+		BladeIIGetLOCText(B2LOC_CAT_ERROR_CODE, FString::FromInt(nErrorCode)),
+		0.f,
+		true,
+		true,
+		EUIMsgPopupButtonGroup::Confirm,
+		FMsgPopupOnClick::CreateLambda([this]()
+	{
+		GoToVillageClass<>::GetInstance().Signal();
+	}),
+		0,
+		true,
+		EPopUpPriority::Server_Message_Default
+		);
 }
 
 void UB2UIManager::SettlePopup(int32 nErrorCode)
 {
-	//if (GetCurrUIScene() == EUIScene::HallOfFame)
-	//{
-	//	if (auto* UIHallOfFame = GetUI<UB2UIHallOfFame>(UIFName::HallOfFame))
-	//	{
-	//		UIHallOfFame->SetSettleState();
-	//	}
-	//}
-	//else
-	//{
-	//	UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
-	//		BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("General_Notification")),
-	//		BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("ContentsCheck")),
-	//		0.f,
-	//		true,
-	//		true,
-	//		EUIMsgPopupButtonGroup::GotoLobby,
-	//		FMsgPopupOnClick::CreateLambda([]() {GoToVillageClass<>::GetInstance().Signal(); }),
-	//		0,
-	//		true,
-	//		EPopUpPriority::Server_Message_GoToLobby
-	//	);
-	//}
+	if (GetCurrUIScene() == EUIScene::HallOfFame)
+	{
+		if (auto* UIHallOfFame = GetUI<UB2UIHallOfFame>(UIFName::HallOfFame))
+		{
+			UIHallOfFame->SetSettleState();
+		}
+	}
+	else
+	{
+		UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
+			BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("General_Notification")),
+			BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("ContentsCheck")),
+			0.f,
+			true,
+			true,
+			EUIMsgPopupButtonGroup::GotoLobby,
+			FMsgPopupOnClick::CreateLambda([]() {GoToVillageClass<>::GetInstance().Signal(); }),
+			0,
+			true,
+			EPopUpPriority::Server_Message_GoToLobby
+		);
+	}
 }
 
 void UB2UIManager::ResetRepeatBattle()
@@ -1647,43 +1649,42 @@ FString UB2UIManager::GetPlatformAppStoreURL()
 
 bool UB2UIManager::IsOpendAppStoreReview()
 {
-	//return B2P_IsInReview() ||
-	//	IsOpenPopupAppStoreReview() ||
-	//	(BladeIIGameImpl::GetClientDataStore().GetShowReviewInducementPopup() == false);
-	return false;
+	return B2P_IsInReview() ||
+		IsOpenPopupAppStoreReview() ||
+		(BladeIIGameImpl::GetClientDataStore().GetShowReviewInducementPopup() == false);
 }
 
 bool UB2UIManager::OpenPopupAppStoreReview()
 {
 	bool IsOpen = false;
 
-	//if (IsOpendAppStoreReview())
-	//{
-	//	return IsOpen;
-	//}
-	//else
-	//{
-	//	IsOpen = true;
-	//	SetTrueOpenPopupAppStoreReview();
-	//}
+	if (IsOpendAppStoreReview())
+	{
+		return IsOpen;
+	}
+	else
+	{
+		IsOpen = true;
+		SetTrueOpenPopupAppStoreReview();
+	}
 
-	//static FString AppStore_Url = GetPlatformAppStoreURL();
+	static FString AppStore_Url = GetPlatformAppStoreURL();
 
-	//UB2UIMsgPopupSimple* pPopupUI = OpenMsgPopup<UB2UIMsgPopupSimple>(
-	//	EUIMsgPopup::Simple,
-	//	BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("PleaseReviewMyGameTitle")),
-	//	BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("PleaseReviewMyGameInfo")),
-	//	0.f,
-	//	true,
-	//	true,
-	//	EUIMsgPopupButtonGroup::YesOrNo,
-	//	FMsgPopupOnClick::CreateLambda([]() { B2P_ShowOpenURL(AppStore_Url); })
-	//	);
+	UB2UIMsgPopupSimple* pPopupUI = OpenMsgPopup<UB2UIMsgPopupSimple>(
+		EUIMsgPopup::Simple,
+		BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("PleaseReviewMyGameTitle")),
+		BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("PleaseReviewMyGameInfo")),
+		0.f,
+		true,
+		true,
+		EUIMsgPopupButtonGroup::YesOrNo,
+		FMsgPopupOnClick::CreateLambda([]() { B2P_ShowOpenURL(AppStore_Url); })
+	);
 
-	//if (pPopupUI)
-	//{
-	//	pPopupUI->SetButtonText(EUIMsgPopupButton::Positive, BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("PleaseReviewMyGameBtn")));
-	//}
+	if (pPopupUI)
+	{
+		pPopupUI->SetButtonText(EUIMsgPopupButton::Positive, BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("PleaseReviewMyGameBtn")));
+	}
 
 	return IsOpen;
 }
@@ -1691,20 +1692,20 @@ bool UB2UIManager::OpenPopupAppStoreReview()
 void UB2UIManager::OpenToolTipTextBox(FText& ContextText, UB2UIWidgetBase* TargetUB2UIWidget, UWidget* Target, float ClockDirection /*= 6.0f*/, float InLifeTime /*= 5.0f*/)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2UIManager_OpenToolTipTextBox);
-	//UB2UIToolTipTextBox* pUI = GetUI<UB2UIToolTipTextBox>(UIFName::ToolTipTextBox);
+	UB2UIToolTipTextBox* pUI = GetUI<UB2UIToolTipTextBox>(UIFName::ToolTipTextBox);
 
-	//if (pUI != NULL)
-	//	CloseUI(UIFName::ToolTipTextBox);
-	//else
-	//{
-	//	pUI = OpenUI<UB2UIToolTipTextBox>(UIFName::ToolTipTextBox);
-	//	if (pUI)
-	//	{
-	//		pUI->Init();
-	//		pUI->SetContentText(ContextText);
-	//		pUI->SetTargetInfo(TargetUB2UIWidget, Target);
-	//	}
-	//}
+	if (pUI != NULL)
+		CloseUI(UIFName::ToolTipTextBox);
+	else
+	{
+		pUI = OpenUI<UB2UIToolTipTextBox>(UIFName::ToolTipTextBox);
+		if (pUI)
+		{
+			pUI->Init();
+			pUI->SetContentText(ContextText);
+			pUI->SetTargetInfo(TargetUB2UIWidget, Target);
+		}
+	}
 }
 
 UB2UIMailRewardPopUp* UB2UIManager::OpenRewardMailPopUp(const b2network::B2RewardPtr RewardItem, bool CheckMailReward)
@@ -1743,9 +1744,9 @@ UB2UIMailRewardPopUp* UB2UIManager::OpenRewardMailPopUp(const TArray<b2network::
 
 bool UB2UIManager::CheckRewardPushType(int32 PushType, int32 RewardId)
 {
-	//BLADE2_SCOPE_CYCLE_COUNTER(UB2UIManager_CheckRewardPushType);
-	//return BladeIIGameImpl::GetClientDataStore().GetRewardPushType(RewardId) == PushType;
-	return false;
+	BLADE2_SCOPE_CYCLE_COUNTER(UB2UIManager_CheckRewardPushType);
+	return BladeIIGameImpl::GetClientDataStore().GetRewardPushType(RewardId) == PushType;
+	//return false;
 }
 
 UB2UIMailRewardPopUp * UB2UIManager::OpenRewardMailPopUp(const int32 RewardId, bool CheckMailReward)
@@ -1828,124 +1829,124 @@ void UB2UIManager::ChangeUIScene(EUIScene SceneName, EUIChangeUISceneTransitionT
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2UIManager_ChangeUIScene);
 	B2_SCOPED_TRACK_LOG(FString::Printf(TEXT("UB2UIManager::ChangeUIScene %d -> %d"), (int32)CurrUIScene, (int32)SceneName));
 
-	//CloseUI(UIFName::ToolTipTextBox);
+	CloseUI(UIFName::ToolTipTextBox);
 
-	////이미 열려 있는 UIScene으로 체인지는 안된다.
-	//if (SceneName == CurrUIScene) return;
+	//이미 열려 있는 UIScene으로 체인지는 안된다.
+	if (SceneName == CurrUIScene) return;
 
-	//B2AndroidBackManager::GetInstance()->RemoveAllPopup();
+	B2AndroidBackManager::GetInstance()->RemoveAllPopup();
 
-	////이미 ChangeUIScene이 동작 중이라는 뜻인데, 또 Change가 불린거다. 일단 전후사정 봐주지 말고 동작중인 UIScene은 걍 닫는걸로.
-	//if (bClosingUIScene || bOpeningUIScene)
-	//{
-	//	ReservedUISceneOpenData.Key = EUIScene::None;
+	//이미 ChangeUIScene이 동작 중이라는 뜻인데, 또 Change가 불린거다. 일단 전후사정 봐주지 말고 동작중인 UIScene은 걍 닫는걸로.
+	if (bClosingUIScene || bOpeningUIScene)
+	{
+		ReservedUISceneOpenData.Key = EUIScene::None;
 
-	//	if (ClosingUIScene != EUIScene::None)
-	//		CloseUIScene(ClosingUIScene, true, DontCloseSameUIAtReservedUIScene);
-	//	if (OpeningUIScene != EUIScene::None)
-	//		CloseUIScene(OpeningUIScene, true, DontCloseSameUIAtReservedUIScene);
+		if (ClosingUIScene != EUIScene::None)
+			CloseUIScene(ClosingUIScene, true, DontCloseSameUIAtReservedUIScene);
+		if (OpeningUIScene != EUIScene::None)
+			CloseUIScene(OpeningUIScene, true, DontCloseSameUIAtReservedUIScene);
 
-	//	if (ClosingUIScene == EUIScene::None && OpeningUIScene == EUIScene::None && CurrUIScene != EUIScene::None) //RightNow였던 상황. ChangeUIScene 로직이 이상하다..
-	//		CloseUIScene(CurrUIScene, true, DontCloseSameUIAtReservedUIScene);
+		if (ClosingUIScene == EUIScene::None && OpeningUIScene == EUIScene::None && CurrUIScene != EUIScene::None) //RightNow였던 상황. ChangeUIScene 로직이 이상하다..
+			CloseUIScene(CurrUIScene, true, DontCloseSameUIAtReservedUIScene);
 
-	//	CurrUIScene = EUIScene::None;
-	//	bOpeningUIScene = false;
-	//	bClosingUIScene = false;
-	//	ClosingUIScene = EUIScene::None;
-	//	OpeningUIScene = EUIScene::None;
+		CurrUIScene = EUIScene::None;
+		bOpeningUIScene = false;
+		bClosingUIScene = false;
+		ClosingUIScene = EUIScene::None;
+		OpeningUIScene = EUIScene::None;
 
-	//	if (SceneName == EUIScene::None)
-	//		return;
-	//}
+		if (SceneName == EUIScene::None)
+			return;
+	}
 
-	//if (!IsDJLegacyUIScene(SceneName))
-	//{ // 별도 시스템인 DJLagacy 페이지가 혹 닫히지 않았을 수 있음.
-	//	DJLegacy_ChangeLobbyUIPageClass<ELobbyUIPages>::GetInstance().Signal(ELobbyUIPages::ELUP_End);
-	//}
+	if (!IsDJLegacyUIScene(SceneName))
+	{ // 별도 시스템인 DJLagacy 페이지가 혹 닫히지 않았을 수 있음.
+		DJLegacy_ChangeLobbyUIPageClass<ELobbyUIPages>::GetInstance().Signal(ELobbyUIPages::ELUP_End);
+	}
 
-	////닫기만 하고, Open은 하지 않는다.
-	//if (SceneName == EUIScene::None)
-	//{
-	//	CloseUIScene(CurrUIScene, TransType == EUIChangeUISceneTransitionType::CANCEL_CLOSE || TransType == EUIChangeUISceneTransitionType::CANCEL_ALL, false);
-	//	CurrUIScene = EUIScene::None;
-	//	return;
-	//}
+	//닫기만 하고, Open은 하지 않는다.
+	if (SceneName == EUIScene::None)
+	{
+		CloseUIScene(CurrUIScene, TransType == EUIChangeUISceneTransitionType::CANCEL_CLOSE || TransType == EUIChangeUISceneTransitionType::CANCEL_ALL, false);
+		CurrUIScene = EUIScene::None;
+		return;
+	}
 
-	////현재 아무 UIScene도 아닌경우, Close없이 Open바로
-	//if (CurrUIScene == EUIScene::None)
-	//{
-	//	OpenUIScene(SceneName, UISceneOnOpenDelegate, TransType == EUIChangeUISceneTransitionType::CANCEL_OPEN || TransType == EUIChangeUISceneTransitionType::CANCEL_ALL, false);
-	//	return;
-	//}
+	//현재 아무 UIScene도 아닌경우, Close없이 Open바로
+	if (CurrUIScene == EUIScene::None)
+	{
+		OpenUIScene(SceneName, UISceneOnOpenDelegate, TransType == EUIChangeUISceneTransitionType::CANCEL_OPEN || TransType == EUIChangeUISceneTransitionType::CANCEL_ALL, false);
+		return;
+	}
 
-	////지금 UIScene을 Tick에서 아닌 바로 닫아야 되는가?
-	//bool CloseCurUISceneRightNow = (TransType == EUIChangeUISceneTransitionType::CANCEL_CLOSE || TransType == EUIChangeUISceneTransitionType::CANCEL_ALL);
+	//지금 UIScene을 Tick에서 아닌 바로 닫아야 되는가?
+	bool CloseCurUISceneRightNow = (TransType == EUIChangeUISceneTransitionType::CANCEL_CLOSE || TransType == EUIChangeUISceneTransitionType::CANCEL_ALL);
 
-	////1. 전환 연출 타입 저장
-	//ChangeUISceneTransitionType = TransType;
-	////2. 예약UIScene 지정
-	//ReservedUISceneOpenData.Key = SceneName;
-	//ReservedUISceneOpenData.Value = UISceneOnOpenDelegate;
-	//bDontCloseSameUIAtReservedUIScene = DontCloseSameUIAtReservedUIScene;
-	////3. 지금UIScene 닫기
-	//CloseUIScene(CurrUIScene, CloseCurUISceneRightNow, DontCloseSameUIAtReservedUIScene);
+	//1. 전환 연출 타입 저장
+	ChangeUISceneTransitionType = TransType;
+	//2. 예약UIScene 지정
+	ReservedUISceneOpenData.Key = SceneName;
+	ReservedUISceneOpenData.Value = UISceneOnOpenDelegate;
+	bDontCloseSameUIAtReservedUIScene = DontCloseSameUIAtReservedUIScene;
+	//3. 지금UIScene 닫기
+	CloseUIScene(CurrUIScene, CloseCurUISceneRightNow, DontCloseSameUIAtReservedUIScene);
 
-	//if (CloseCurUISceneRightNow || TransType == EUIChangeUISceneTransitionType::PREOPEN)
-	//	OpenNextUIScene();
-	//else
-	//	CheckClosingCurrUISceneAndChangeToReservedUIScene();
+	if (CloseCurUISceneRightNow || TransType == EUIChangeUISceneTransitionType::PREOPEN)
+		OpenNextUIScene();
+	else
+		CheckClosingCurrUISceneAndChangeToReservedUIScene();
 }
 
 void UB2UIManager::ChangeUISceneBack(EUIChangeUISceneTransitionType TransType, const FB2UISceneOnOpen& UISceneOnOpenDelegate, bool DontCloseSameUIAtReservedUIScene, bool bPassBattleUIScene)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2UIManager_ChangeUISceneBack);
 
-	//OnChangUISceneBackClass<>::GetInstance().Signal();
+	OnChangUISceneBackClass<>::GetInstance().Signal();
 
-	//auto UIChain = GetUISceneData(CurrUIScene);
-	//if (UIChain)
-	//{
-	//	for (FName& CurWidgetFName : UIChain->WidgetFNames)
-	//	{
-	//		FB2UIWidgetData* FoundWidgetData = AllWidgetData.Find(CurWidgetFName);
+	auto UIChain = GetUISceneData(CurrUIScene);
+	if (UIChain)
+	{
+		for (FName& CurWidgetFName : UIChain->WidgetFNames)
+		{
+			FB2UIWidgetData* FoundWidgetData = AllWidgetData.Find(CurWidgetFName);
 
-	//		if (FoundWidgetData && CurWidgetFName == FoundWidgetData->WidgetFName)
-	//		{
-	//			UB2UIWidget* ThisOpenWidget = GetUI<UB2UIWidget>(FoundWidgetData->WidgetFName);
-	//			if (ThisOpenWidget) {
-	//				if (ThisOpenWidget->OnBackButtonProc())
-	//					return;
-	//			}
-	//		}
-	//	}
-	//}
+			if (FoundWidgetData && CurWidgetFName == FoundWidgetData->WidgetFName)
+			{
+				UB2UIWidget* ThisOpenWidget = GetUI<UB2UIWidget>(FoundWidgetData->WidgetFName);
+				if (ThisOpenWidget) {
+					if (ThisOpenWidget->OnBackButtonProc())
+						return;
+				}
+			}
+		}
+	}
 
-	//EUIScene TargetBackUIScene = bPassBattleUIScene ? GetPrevUIScenePassedBattle() : GetPrevUIScene();
+	EUIScene TargetBackUIScene = bPassBattleUIScene ? GetPrevUIScenePassedBattle() : GetPrevUIScene();
 
-	//if (IsDJLegacyUIScene(TargetBackUIScene))
-	//{
-	//	bOpeningDJLegacyHeroMgmtBySceneHistory = true; // 요건 LobbyEnterHeroMgmtModeClass 에 인자로 넣어주는 게 깔끔할 수도.. 바꿔야 할 곳이 좀 많다.
+	if (IsDJLegacyUIScene(TargetBackUIScene))
+	{
+		bOpeningDJLegacyHeroMgmtBySceneHistory = true; // 요건 LobbyEnterHeroMgmtModeClass 에 인자로 넣어주는 게 깔끔할 수도.. 바꿔야 할 곳이 좀 많다.
 
-	//												   // 이 UIScene 들은 실제 이 시스템에서 사용되지 않는다. 실제로는 DJLegacy 시스템이고 그쪽과의 연결고리로서 남겨둘 뿐.
-	//												   // 거의 두 시스템 사이가 연결되는 백 버튼 작동을 위함.
-	//	OpenDJLegacyHeroMgmtPageForUIScene(TargetBackUIScene);
+													   // 이 UIScene 들은 실제 이 시스템에서 사용되지 않는다. 실제로는 DJLegacy 시스템이고 그쪽과의 연결고리로서 남겨둘 뿐.
+													   // 거의 두 시스템 사이가 연결되는 백 버튼 작동을 위함.
+		OpenDJLegacyHeroMgmtPageForUIScene(TargetBackUIScene);
 
-	//	bOpeningDJLegacyHeroMgmtBySceneHistory = false;
-	//}
-	//else
-	//{
-	//	LobbyChangeSceneByUISceneClass<EUIScene>::GetInstance().Signal(TargetBackUIScene);
+		bOpeningDJLegacyHeroMgmtBySceneHistory = false;
+	}
+	else
+	{
+		LobbyChangeSceneByUISceneClass<EUIScene>::GetInstance().Signal(TargetBackUIScene);
 
-	//	// 백버튼을 눌러 Mail UI 로 돌아올 경우 LinkManager를 통해 돌아온 것이 아니기 때문에 리스트 업데이트가 이루어지지 않으며 직접 업데이트 해주어야 한다.
-	//	if (TargetBackUIScene == EUIScene::Mail)
-	//	{
-	//		MailTabIndex RequestTab = MailTabIndex::EMailTab_Gift;
-	//		data_trader::Retailer::GetInstance().RequestGetMailList(static_cast<int32>(RequestTab));
-	//	}
-	//}
+		// 백버튼을 눌러 Mail UI 로 돌아올 경우 LinkManager를 통해 돌아온 것이 아니기 때문에 리스트 업데이트가 이루어지지 않으며 직접 업데이트 해주어야 한다.
+		if (TargetBackUIScene == EUIScene::Mail)
+		{
+			MailTabIndex RequestTab = MailTabIndex::EMailTab_Gift;
+			data_trader::Retailer::GetInstance().RequestGetMailList(static_cast<int32>(RequestTab));
+		}
+	}
 
-	//// DJLegacy 인 경우는 여기서 UISceneHistory 제거 외에 실질적으로 뭔가는 하지는 않아야.
-	//ChangeUIScene(TargetBackUIScene, TransType, UISceneOnOpenDelegate, DontCloseSameUIAtReservedUIScene, bPassBattleUIScene);
+	// DJLegacy 인 경우는 여기서 UISceneHistory 제거 외에 실질적으로 뭔가는 하지는 않아야.
+	ChangeUIScene(TargetBackUIScene, TransType, UISceneOnOpenDelegate, DontCloseSameUIAtReservedUIScene, bPassBattleUIScene);
 }
 
 EUIScene UB2UIManager::GetPrevUIScene()
@@ -2116,59 +2117,53 @@ void UB2UIManager::OpenUIScene(EUIScene SceneName, const FB2UISceneOnOpen& UISce
 	if (DocUICondition)
 		DocUICondition->SetCurrUIScene(CurrUIScene);
 
-	//OnChangUISceneClass<EUIScene>::GetInstance().Signal(CurrUIScene);
+	OnChangUISceneClass<EUIScene>::GetInstance().Signal(CurrUIScene);
 }
 
 void UB2UIManager::CloseUIScene(EUIScene SceneName, bool RightNow, bool DontCloseSameUIAtReservedUIScene)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2UIManager_CloseUIScene);
-	////마킹하고 Tick에서 처리
-	//if (!RightNow)
-	//{
-	//	bClosingUIScene = true;
-	//	ClosingUIScene = SceneName;
-	//}
+	//마킹하고 Tick에서 처리
+	if (!RightNow)
+	{
+		bClosingUIScene = true;
+		ClosingUIScene = SceneName;
+	}
 
-	//auto CurSceneData = GetUISceneData(SceneName);
-	//auto ReservedSceneData = GetUISceneData(ReservedUISceneOpenData.Key);
-	//if (!CurSceneData) return;
+	auto CurSceneData = GetUISceneData(SceneName);
+	auto ReservedSceneData = GetUISceneData(ReservedUISceneOpenData.Key);
+	if (!CurSceneData) return;
 
-	//bool bClosedSome = false;
+	bool bClosedSome = false;
 
-	//for (auto& CurWidgetFName : CurSceneData->WidgetFNames)
-	//{
-	//	FB2UIWidgetData* FoundWidgetData = AllWidgetData.Find(CurWidgetFName);
+	for (auto& CurWidgetFName : CurSceneData->WidgetFNames)
+	{
+		FB2UIWidgetData* FoundWidgetData = AllWidgetData.Find(CurWidgetFName);
 
-	//	if (FoundWidgetData && FoundWidgetData->Widget)
-	//	{
-	//		//예약된 UIScene에 현재 UI가 여전히 포함되어 있다면 닫지 않는다.
-	//		if (DontCloseSameUIAtReservedUIScene &&  ReservedSceneData && (ReservedSceneData->WidgetFNames.Contains(FoundWidgetData->WidgetFName)))
-	//			continue;
+		if (FoundWidgetData && FoundWidgetData->Widget)
+		{
+			//예약된 UIScene에 현재 UI가 여전히 포함되어 있다면 닫지 않는다.
+			if (DontCloseSameUIAtReservedUIScene &&  ReservedSceneData && (ReservedSceneData->WidgetFNames.Contains(FoundWidgetData->WidgetFName)))
+				continue;
 
-	//		CloseUI(FoundWidgetData->WidgetFName, RightNow);
+			CloseUI(FoundWidgetData->WidgetFName, RightNow);
 
-	//		bClosedSome = true;
-	//	}
-	//}
+			bClosedSome = true;
+		}
+	}
 
-	//// UIScene 전환시마다 강제 GC 돌리기.
-	//if (bClosedSome && ForceGCOnUISceneCloseInterval > 0)
-	//{
-	//	if (UISceneCloseWithoutGCCount >= ForceGCOnUISceneCloseInterval)
-	//	{
-	//		// GC 를 돌린다. 혹은 로비에서만 적용한다거나 할 수도.
-	//		UWorld* TheWorld = GetWorld();
-	//		if (TheWorld)
-	//		{
-	//			B2_SCOPED_TRACK_LOG_L2(TEXT("ForceGarbageCollection at UB2UIManager::CloseUIScene"));
-	//			TheWorld->ForceGarbageCollection();
-	//		}
-	//	}
-	//	else
-	//	{
-	//		++UISceneCloseWithoutGCCount;
-	//	}
-	//}
+	// UIScene 전환시마다 강제 GC 돌리기.
+	if (bClosedSome && ForceGCOnUISceneCloseInterval > 0)
+	{
+		if (UISceneCloseWithoutGCCount >= ForceGCOnUISceneCloseInterval)
+		{
+			CollectGarbage(GARBAGE_COLLECTION_KEEPFLAGS);
+		}
+		else
+		{
+			++UISceneCloseWithoutGCCount;
+		}
+	}
 }
 
 void UB2UIManager::CheckClosingCurrUISceneAndChangeToReservedUIScene()
@@ -2242,27 +2237,27 @@ void UB2UIManager::CheckClosingCurrUISceneAndChangeToReservedUIScene()
 void UB2UIManager::OpenNextUIScene()
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2UIManager_OpenNextUIScene);
-	//bClosingUIScene = false;
-	//ClosingUIScene = EUIScene::None;
+	bClosingUIScene = false;
+	ClosingUIScene = EUIScene::None;
 
-	//if (ReservedUISceneOpenData.Key != EUIScene::None)
-	//{
-	//	OpenUIScene(static_cast<EUIScene>(ReservedUISceneOpenData.Key)
-	//		, ReservedUISceneOpenData.Value
-	//		, ChangeUISceneTransitionType == EUIChangeUISceneTransitionType::CANCEL_OPEN || ChangeUISceneTransitionType == EUIChangeUISceneTransitionType::PREOPEN || ChangeUISceneTransitionType == EUIChangeUISceneTransitionType::CANCEL_ALL
-	//		, bDontCloseSameUIAtReservedUIScene);
-	//	ReservedUISceneOpenData.Key = EUIScene::None;
-	//}
-	//else
-	//{
-	//	CurrUIScene = EUIScene::None;
-	//	//Doc에 CurUIScene을 넣어주고, UI들에서 CurUIScene에 걸맞는 처리를 해야 된다면 처리를 하게 해준다.
-	//	auto DocUICondition = UB2UIDocHelper::GetDocUICondition();
-	//	if (DocUICondition)
-	//		DocUICondition->SetCurrUIScene(CurrUIScene);
+	if (ReservedUISceneOpenData.Key != EUIScene::None)
+	{
+		OpenUIScene(static_cast<EUIScene>(ReservedUISceneOpenData.Key)
+			, ReservedUISceneOpenData.Value
+			, ChangeUISceneTransitionType == EUIChangeUISceneTransitionType::CANCEL_OPEN || ChangeUISceneTransitionType == EUIChangeUISceneTransitionType::PREOPEN || ChangeUISceneTransitionType == EUIChangeUISceneTransitionType::CANCEL_ALL
+			, bDontCloseSameUIAtReservedUIScene);
+		ReservedUISceneOpenData.Key = EUIScene::None;
+	}
+	else
+	{
+		CurrUIScene = EUIScene::None;
+		//Doc에 CurUIScene을 넣어주고, UI들에서 CurUIScene에 걸맞는 처리를 해야 된다면 처리를 하게 해준다.
+		auto DocUICondition = UB2UIDocHelper::GetDocUICondition();
+		if (DocUICondition)
+			DocUICondition->SetCurrUIScene(CurrUIScene);
 
-	//	OnChangUISceneClass<EUIScene>::GetInstance().Signal(CurrUIScene);
-	//}
+		OnChangUISceneClass<EUIScene>::GetInstance().Signal(CurrUIScene);
+	}
 }
 
 bool UB2UIManager::HasUISceneHistory(EUIScene SceneName)

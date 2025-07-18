@@ -20,16 +20,16 @@ public:
 	GENERATED_BODY()
 
 	UB2EtherSetEffect()
-		//: EtherSetType(EEtherSetType::None), EtherSetID(INDEX_NONE), TriggerRate(0.f)/*, EtherEffectAsset(nullptr)*/, Radius(0.0f), FanAngle(180.0f) 
+		: TriggerRate(0.f), EtherEffectAsset(nullptr), Radius(0.0f), FanAngle(180.0f), EtherSetType(EEtherSetType::None), EtherSetID(INDEX_NONE)
 	{
 	}
 	UB2EtherSetEffect(EEtherSetType SetType, int32 SetID)
-		//: EtherSetType(SetType)
-		//, EtherSetID(SetID)
-		//, TriggerRate(0.f)
-		////, EtherEffectAsset(nullptr)
-		//, Radius(0.0f)
-		//, FanAngle(180.0f)
+		: TriggerRate(0.f)
+		, EtherEffectAsset(nullptr)
+		, Radius(0.0f)
+		, FanAngle(180.0f)
+		, EtherSetType(SetType)
+		, EtherSetID(SetID)
 	{
 	}
 	virtual ~UB2EtherSetEffect();
@@ -102,17 +102,17 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Ether")
 	FDamageInfo				DamageInfo;
 
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Ether")
-	//TSoftObjectPtr<UParticleSystem>	EtherEffectAsset;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Ether")
+	TSoftObjectPtr<UParticleSystem>	EtherEffectAsset;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Ether")
 	bool UsingTextEffect;
 
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Ether")
-	//TSoftObjectPtr<class UTexture2D> TextTexture;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Ether")
+	TSoftObjectPtr<class UTexture2D> TextTexture;
 
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Ether")
-	//EFloatingAbnormalEffectArrowType ArrowType;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Ether")
+	EFloatingAbnormalEffectArrowType ArrowType;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Ether")
 	float AdditionalZOffset;

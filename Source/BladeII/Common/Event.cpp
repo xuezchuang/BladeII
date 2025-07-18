@@ -56,7 +56,7 @@ DEFINITION_EVENT_CLASS(ShowMiscLoadingIcon, bool)
 DEFINITION_EVENT_CLASS(StartVisibleChatPopup, EB2GameMode)
 DEFINITION_EVENT_CLASS(StopVisibleChatPopup)
 
-//DEFINITION_EVENT_CLASS(DeliveryAppUpdatePopUp)
+DEFINITION_EVENT_CLASS(DeliveryAppUpdatePopUp)
 DEFINITION_EVENT_CLASS(DJLegacy_ChangeLobbyUIPage, ELobbyUIPages)
 DEFINITION_EVENT_CLASS(DJLegacy_OpenLobbySubPopup, ELobbySubPopups, FDJLegacySubpopupAddPanelInfo)
 DEFINITION_EVENT_CLASS(DJLegacy_CloseLobbySubPopup, ELobbySubPopups)

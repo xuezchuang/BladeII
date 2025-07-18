@@ -71,16 +71,16 @@ void UB2UIBattlePause::SubscribeEvents()
 {
 	UnsubscribeEvents();
 
-	//Issues.Add(DeliveryGetHeroTowerClass<FB2ResponseGetHeroTowerPtr>::GetInstance().Subscribe2(
-	//	[this](const FB2ResponseGetHeroTowerPtr& msgPtr)
-	//{
-	//	if (UB2UIDocHeroTower* pDoc = UB2UIDocHelper::GetDocHeroTower())
-	//		pDoc->SetGetHeroTowerPtr(msgPtr);
+	Issues.Add(DeliveryGetHeroTowerClass<FB2ResponseGetHeroTowerPtr>::GetInstance().Subscribe2(
+		[this](const FB2ResponseGetHeroTowerPtr& msgPtr)
+	{
+		if (UB2UIDocHeroTower* pDoc = UB2UIDocHelper::GetDocHeroTower())
+			pDoc->SetGetHeroTowerPtr(msgPtr);
 
-	//	ReturnToHeroTowerMainMenuClass<>::GetInstance().Signal();
-	//	UB2UIManager::GetInstance()->CloseUI(UIFName::BattlePause);
-	//}
-	//));
+		ReturnToHeroTowerMainMenuClass<>::GetInstance().Signal();
+		UB2UIManager::GetInstance()->CloseUI(UIFName::BattlePause);
+	}
+	));
 }
 
 void UB2UIBattlePause::UnsubscribeEvents()
@@ -125,23 +125,18 @@ void UB2UIBattlePause::CloseWidgetDelegate()
 //====================================================================================
 void UB2UIBattlePause::OnClickBtnContinue()
 {
-	//UB2UIManager::GetInstance()->CloseUI(UIFName::BattlePause);
-	//UGameplayStatics::SetGamePaused(this->GetOwningPlayer(), false); // 무조건 pause 에서 복귀.
+	UB2UIManager::GetInstance()->CloseUI(UIFName::BattlePause);
+	UGameplayStatics::SetGamePaused(this->GetOwningPlayer(), false); // 무조건 pause 에서 복귀.
 
-	//// 이 BattlePause UI 는 인게임 전투 다른 부분에서는 안 쓰는 텍스쳐를 사용하므로 나가면서 GC 를 한번 돌려준다. 예를 들어 복귀 직후 보스를 죽이면서 승리 연출 같은 거 나오면 미처 GC 돌기 전에 메모리가 더 올라갈 수 있으므로
-	//UWorld* TheWorld = GetWorld();
-	//if (TheWorld)
-	//{
-	//	TheWorld->ForceGarbageCollection();
-	//}
+CollectGarbage(GARBAGE_COLLECTION_KEEPFLAGS);
 
-	//// 이후 처리는 ABladeIIGameMode::ClearPause 에서
-	//
-	//// pvp에서만 사용
-	//if (GetB2GameModeType(this) == EB2GameMode::PVP_Tag)
-	//{
-	//	StopPauseMenuClass<>::GetInstance().Signal();
-	//}
+	// 이후 처리는 ABladeIIGameMode::ClearPause 에서
+	
+	// pvp에서만 사용
+	if (GetB2GameModeType(this) == EB2GameMode::PVP_Tag)
+	{
+		StopPauseMenuClass<>::GetInstance().Signal();
+	}
 }
 
 void UB2UIBattlePause::OnClickBtnConfiguration()
@@ -155,32 +150,32 @@ void UB2UIBattlePause::OnClickBtnConfiguration()
 
 void UB2UIBattlePause::OnClickBtnRaid()
 {
-	//FText msg = BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Raid_PenaltyNotice2")); 
-	//if (UB2UIDocRaid* DocRaid = UB2UIDocHelper::GetDocRaid())
-	//{
-	//	if (DocRaid->GetAlreadyExitUser())
-	//		msg = BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Raid_NonPenaltyNotice")); // 이미 탈주한 사람있음.
+	FText msg = BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Raid_PenaltyNotice2")); 
+	if (UB2UIDocRaid* DocRaid = UB2UIDocHelper::GetDocRaid())
+	{
+		if (DocRaid->GetAlreadyExitUser())
+			msg = BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Raid_NonPenaltyNotice")); // 이미 탈주한 사람있음.
 
-	//	DocRaid->SetReturnToPageType(ERaidGotoWhere::RaidMain);
-	//}
+		DocRaid->SetReturnToPageType(ERaidGotoWhere::RaidMain);
+	}
 
-	//UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
-	//	BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_Notification")),
-	//	msg,
-	//	0.f,
-	//	true,
-	//	true,
-	//	EUIMsgPopupButtonGroup::YesOrNo,
-	//	FMsgPopupOnClick::CreateLambda([](){
-	//	UB2UIManager::GetInstance()->CloseUI(UIFName::BattlePause);
-	//	ReturnToRaidMainClass<>::GetInstance().Signal();
-	//})
-	//);
+	UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
+		BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_Notification")),
+		msg,
+		0.f,
+		true,
+		true,
+		EUIMsgPopupButtonGroup::YesOrNo,
+		FMsgPopupOnClick::CreateLambda([](){
+		UB2UIManager::GetInstance()->CloseUI(UIFName::BattlePause);
+		ReturnToRaidMainClass<>::GetInstance().Signal();
+	})
+	);
 }
 
 void UB2UIBattlePause::OnClickBtnGuild()
 {
-	/*UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
+	UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
 		BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_Notification")),
 		(GetB2GameModeType(this) == EB2GameMode::PVP_Tag || GetB2GameModeType(this) == EB2GameMode::PVP_Team) ?
 		BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_WarnForQuit_PVP")) :
@@ -189,135 +184,141 @@ void UB2UIBattlePause::OnClickBtnGuild()
 		true,
 		true,
 		EUIMsgPopupButtonGroup::YesOrNo,
-		FMsgPopupOnClick::CreateLambda([]() {
-		UB2UIManager::GetInstance()->CloseUI(UIFName::GuildMatchBattle);
-		ReturnToGuildMainClass<>::GetInstance().Signal();
-	})
-	);*/
+		FMsgPopupOnClick::CreateLambda([]()
+			{
+				UB2UIManager::GetInstance()->CloseUI(UIFName::GuildMatchBattle);
+				ReturnToGuildMainClass<>::GetInstance().Signal();
+			})
+	);
 }
 
 void UB2UIBattlePause::OnClickBtnVillage()
 {
-	//UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
-	//		BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_Notification")),
-	//		(GetB2GameModeType(this) == EB2GameMode::PVP_Tag || GetB2GameModeType(this) == EB2GameMode::PVP_Team) ?
-	//		BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_WarnForQuit_PVP")) :
-	//		BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_WarnForQuit")),
-	//		0.f,
-	//		true,
-	//		true,
-	//		EUIMsgPopupButtonGroup::YesOrNo,
-	//		FMsgPopupOnClick::CreateLambda([](){
-	//			CancelOrStopRepeatBattleClass<>::GetInstance().Signal(); // 반복전투 도중이었다면 Pause 메뉴 통해 로비로 나갈 때 해제.
-	//			UB2UIManager::GetInstance()->CloseUI(UIFName::BattlePause);
-	//			GoToVillageClass<>::GetInstance().Signal();
-	//		})
-	//);
+	UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
+			BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_Notification")),
+			(GetB2GameModeType(this) == EB2GameMode::PVP_Tag || GetB2GameModeType(this) == EB2GameMode::PVP_Team) ?
+			BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_WarnForQuit_PVP")) :
+			BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_WarnForQuit")),
+			0.f,
+			true,
+			true,
+			EUIMsgPopupButtonGroup::YesOrNo,
+			FMsgPopupOnClick::CreateLambda([](){
+				CancelOrStopRepeatBattleClass<>::GetInstance().Signal(); // 반복전투 도중이었다면 Pause 메뉴 통해 로비로 나갈 때 해제.
+				UB2UIManager::GetInstance()->CloseUI(UIFName::BattlePause);
+				GoToVillageClass<>::GetInstance().Signal();
+			})
+	);
 }
 
 void UB2UIBattlePause::OnClickBtnWorldMap()
 {
-	//UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
-	//		BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_Notification")),
-	//		BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_WarnForQuit")),
-	//		0.f,
-	//		true,
-	//		true,
-	//		EUIMsgPopupButtonGroup::YesOrNo,
-	//		FMsgPopupOnClick::CreateLambda([](){
-	//			GiveUpGameClass<>::GetInstance().Signal();
-	//			CancelOrStopRepeatBattleClass<>::GetInstance().Signal(); // 반복전투 도중이었다면 Pause 메뉴 통해 로비로 나갈 때 해제.
-	//			ChangeStaminaChargeTimeClass<>::GetInstance().Signal();
-	//			UB2UIManager::GetInstance()->CloseUI(UIFName::BattlePause);
-	//			GoToMapClass<>::GetInstance().Signal();
-	//	})
-	//);
+	UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
+			BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_Notification")),
+			BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_WarnForQuit")),
+			0.f,
+			true,
+			true,
+			EUIMsgPopupButtonGroup::YesOrNo,
+			FMsgPopupOnClick::CreateLambda([](){
+				GiveUpGameClass<>::GetInstance().Signal();
+				CancelOrStopRepeatBattleClass<>::GetInstance().Signal(); // 반복전투 도중이었다면 Pause 메뉴 통해 로비로 나갈 때 해제.
+				ChangeStaminaChargeTimeClass<>::GetInstance().Signal();
+				UB2UIManager::GetInstance()->CloseUI(UIFName::BattlePause);
+				GoToMapClass<>::GetInstance().Signal();
+		})
+	);
 }
 
 void UB2UIBattlePause::OnClickBtnTagMatch()
 {
-	//bool IsFriendshipGame = false;
-	//if (auto* DocPVP = UB2UIDocHelper::GetDocPVP1on1Rival())
-	//	IsFriendshipGame = DocPVP->GetIsFriendshipGame();
+	bool IsFriendshipGame = false;
+	if (auto* DocPVP = UB2UIDocHelper::GetDocPVP1on1Rival())
+		IsFriendshipGame = DocPVP->GetIsFriendshipGame();
 
-	//FString SummaryText = IsFriendshipGame ? TEXT("SensitiveNoti_WarnForQuit_FriendshipGame") : TEXT("SensitiveNoti_WarnForQuit_PVP");
+	FString SummaryText = IsFriendshipGame ? TEXT("SensitiveNoti_WarnForQuit_FriendshipGame") : TEXT("SensitiveNoti_WarnForQuit_PVP");
 
-	//UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
-	//		BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_Notification")),
-	//		BladeIIGetLOCText(B2LOC_CAT_GENERAL, SummaryText),
-	//		0.f,
-	//		true,
-	//		true,
-	//		EUIMsgPopupButtonGroup::YesOrNo,
-	//		FMsgPopupOnClick::CreateLambda([](){
-	//		UB2UIManager::GetInstance()->CloseUI(UIFName::BattlePause);
-	//		ReturnToPVPMainMenuClass<bool>::GetInstance().Signal(true);
-	//	})
-	//);
+	UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
+		BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_Notification")),
+		BladeIIGetLOCText(B2LOC_CAT_GENERAL, SummaryText),
+		0.f,
+		true,
+		true,
+		EUIMsgPopupButtonGroup::YesOrNo,
+		FMsgPopupOnClick::CreateLambda([]()
+			{
+				UB2UIManager::GetInstance()->CloseUI(UIFName::BattlePause);
+				ReturnToPVPMainMenuClass<bool>::GetInstance().Signal(true);
+			})
+	);
 }
 
 void UB2UIBattlePause::OnClickBtnTeamMatch()
 {
-	//UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
-	//		BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_Notification")),
-	//		BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_WarnForQuit_PVP")),
-	//		0.f,
-	//		true,
-	//		true,
-	//		EUIMsgPopupButtonGroup::YesOrNo,
-	//		FMsgPopupOnClick::CreateLambda([](){
-	//		UB2UIManager::GetInstance()->CloseUI(UIFName::BattlePause);
-	//		ReturnToPVPMainMenuClass<bool>::GetInstance().Signal(false);
-	//	})
-	//);
+	UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
+		BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_Notification")),
+		BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_WarnForQuit_PVP")),
+		0.f,
+		true,
+		true,
+		EUIMsgPopupButtonGroup::YesOrNo,
+		FMsgPopupOnClick::CreateLambda([]()
+			{
+				UB2UIManager::GetInstance()->CloseUI(UIFName::BattlePause);
+				ReturnToPVPMainMenuClass<bool>::GetInstance().Signal(false);
+			})
+	);
 }
 
 void UB2UIBattlePause::OnClickBtnCounterAttack()
 {
-	//UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
-	//		BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_Notification")),
-	//		BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_WarnForQuit_Counter")),
-	//		0.f,
-	//		true,
-	//		true,
-	//		EUIMsgPopupButtonGroup::YesOrNo,
-	//		FMsgPopupOnClick::CreateLambda([](){
-	//		UB2UIManager::GetInstance()->CloseUI(UIFName::BattlePause);
-	//		GoToMapClass<>::GetInstance().Signal();
-	//	})
-	//);
+	UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
+		BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_Notification")),
+		BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_WarnForQuit_Counter")),
+		0.f,
+		true,
+		true,
+		EUIMsgPopupButtonGroup::YesOrNo,
+		FMsgPopupOnClick::CreateLambda([]()
+			{
+				UB2UIManager::GetInstance()->CloseUI(UIFName::BattlePause);
+				GoToMapClass<>::GetInstance().Signal();
+			})
+	);
 }
 
 void UB2UIBattlePause::OnClickBtnHeroTower()
 {
-	//
 
-	//UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
-	//	BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_Notification")),
-	//	BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_WarnForQuit_HeroTower")),
-	//	0.f,
-	//	true,
-	//	true,
-	//	EUIMsgPopupButtonGroup::YesOrNo,
-	//	FMsgPopupOnClick::CreateLambda([](){
-	//	GiveUpGameClass<>::GetInstance().Signal();
-	//	data_trader::Retailer::GetInstance().RequestGetHeroTower();
-	//})
-	//	);
+
+	UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
+		BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_Notification")),
+		BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_WarnForQuit_HeroTower")),
+		0.f,
+		true,
+		true,
+		EUIMsgPopupButtonGroup::YesOrNo,
+		FMsgPopupOnClick::CreateLambda([]()
+			{
+				GiveUpGameClass<>::GetInstance().Signal();
+				data_trader::Retailer::GetInstance().RequestGetHeroTower();
+			})
+	);
 }
 
 void UB2UIBattlePause::OnClickBtnDimension()
 {
-	//UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
-	//	BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_Notification")),
-	//	BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_WarnForQuit_Dimension")),
-	//	0.f,
-	//	true,
-	//	true,
-	//	EUIMsgPopupButtonGroup::YesOrNo,
-	//	FMsgPopupOnClick::CreateLambda([]() {
-	//	UB2UIManager::GetInstance()->CloseUI(UIFName::BattlePause);
-	//	GiveUpGameClass<>::GetInstance().Signal();
-	//})
-	//);
+	UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
+		BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_Notification")),
+		BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_WarnForQuit_Dimension")),
+		0.f,
+		true,
+		true,
+		EUIMsgPopupButtonGroup::YesOrNo,
+		FMsgPopupOnClick::CreateLambda([]()
+			{
+				UB2UIManager::GetInstance()->CloseUI(UIFName::BattlePause);
+				GiveUpGameClass<>::GetInstance().Signal();
+			})
+	);
 }

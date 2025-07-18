@@ -247,42 +247,37 @@ void UB2UISealBoxResult::UnbindDoc()
 
 void UB2UISealBoxResult::DestroySelf(class UB2UIManager* InUIManager)
 {
-//#if WITH_EDITOR
-//	if (!GIsEditor)
-//#endif
-//	{
-//		// StageClear / Result 가 인게임 메모리 피크가 되고 있기 때문에 Clear -> Result 로 넘어가면서 쓰지 않을 것으로 예상되는 데이터를 좀 날린다. 
-//
-//		// 리워드 아이템 파티클 이펙트 언로딩
-//		RewardPSSetup.UnloadTAssets(UB2AssetLoader::GetStreamableManager(), LoadedRewardPSHolder);
-//
-//		// 리워드 아이템 전 클리어 연출서 사용한 주요 파티클 이펙트들 언로딩.
-//		UB2SomeInfo* SomeInfo = StaticFindSomeInfo();
-//		if (SomeInfo)
-//		{
-//			SomeInfo->UnloadStageClearBGFxTemplate();
-//			SomeInfo->UnloadStageClearGemFxTemplate();
-//			SomeInfo->UnloadStageClearWingFxTemplate();
-//		}
-//		UB2ItemInfo* ItemInfoTable = StaticFindItemInfo();
-//		if (ItemInfoTable)
-//		{ // 클리어 연출에서 등장하는 보상 아이콘 텍스쳐가 매우 클 것이므로 내리는 게 좋겠다.
-//			ItemInfoTable->UnloadAllExceptCurrentLocalEquipPartData();
-//		}
-//
-//		// UI Scene 전환하면서 GC 돌리긴 할 껀데 설정에 따라 달라질 수도 있고 하니 여긴 확실히 돌려준다.
-//		UWorld* TheWorld = GetWorld();
-//		if (TheWorld)
-//		{
-//			TheWorld->ForceGarbageCollection();
-//		}
-//	}
-//
-//	if (CreatedRewardFxPart)
-//	{
-//		CreatedRewardFxPart->DestroySelf(InUIManager);
-//		CreatedRewardFxPart = NULL;
-//	}
+#if WITH_EDITOR
+	if (!GIsEditor)
+#endif
+	{
+		// StageClear / Result 가 인게임 메모리 피크가 되고 있기 때문에 Clear -> Result 로 넘어가면서 쓰지 않을 것으로 예상되는 데이터를 좀 날린다. 
+
+		// 리워드 아이템 파티클 이펙트 언로딩
+		RewardPSSetup.UnloadTAssets(UB2AssetLoader::GetStreamableManager(), LoadedRewardPSHolder);
+
+		// 리워드 아이템 전 클리어 연출서 사용한 주요 파티클 이펙트들 언로딩.
+		UB2SomeInfo* SomeInfo = StaticFindSomeInfo();
+		if (SomeInfo)
+		{
+			SomeInfo->UnloadStageClearBGFxTemplate();
+			SomeInfo->UnloadStageClearGemFxTemplate();
+			SomeInfo->UnloadStageClearWingFxTemplate();
+		}
+		UB2ItemInfo* ItemInfoTable = StaticFindItemInfo();
+		if (ItemInfoTable)
+		{ // 클리어 연출에서 등장하는 보상 아이콘 텍스쳐가 매우 클 것이므로 내리는 게 좋겠다.
+			ItemInfoTable->UnloadAllExceptCurrentLocalEquipPartData();
+		}
+
+		CollectGarbage(GARBAGE_COLLECTION_KEEPFLAGS);
+	}
+
+	if (CreatedRewardFxPart)
+	{
+		CreatedRewardFxPart->DestroySelf(InUIManager);
+		CreatedRewardFxPart = NULL;
+	}
 
 	Super::DestroySelf(InUIManager);
 }

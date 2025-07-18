@@ -1617,19 +1617,15 @@ void UB2UICollectBookMain::FreeupSomeMemory()
 {
 	B2_SCOPED_TRACK_LOG_L2(TEXT("UB2UICollectBookMain::FreeupSomeMemory"));
 
-	//// 도감 뷰에서 이것저것 구경하고 갈아끼면서 순식간에 메모리가 증가할 수 있어서 좀 무리해서라도 필요없는 것들을 자주 해제시킬 필요가 있다.
+	// 도감 뷰에서 이것저것 구경하고 갈아끼면서 순식간에 메모리가 증가할 수 있어서 좀 무리해서라도 필요없는 것들을 자주 해제시킬 필요가 있다.
 
-	//UB2ItemInfo* ItemInfoTable = StaticFindItemInfo();
-	//if (ItemInfoTable)
-	//{ // 현재 로컬 캐릭터 장착 분 제외하고 다 unload mark 하는 거
-	//	ItemInfoTable->UnloadAllExceptCurrentLocalEquipPartData();
-	//}
+	UB2ItemInfo* ItemInfoTable = StaticFindItemInfo();
+	if (ItemInfoTable)
+	{ // 현재 로컬 캐릭터 장착 분 제외하고 다 unload mark 하는 거
+		ItemInfoTable->UnloadAllExceptCurrentLocalEquipPartData();
+	}
 
-	//UWorld* TheWorld = GetWorld();
-	//if (TheWorld)
-	//{
-	//	TheWorld->ForceGarbageCollection();
-	//}
+	CollectGarbage(GARBAGE_COLLECTION_KEEPFLAGS);
 }
 
 void FEquipTypeTab::Init()

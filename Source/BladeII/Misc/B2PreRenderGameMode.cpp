@@ -10,6 +10,7 @@
 //#include "B2PreLoadingScreen.h"
 #include "B2GameLoadingProgress.h"
 #include "B2DLCFrontGameMode.h"
+#include "../BladeII/BladeIIUtil.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -199,56 +200,53 @@ void AB2PreRenderGameMode::UpdateForPreRenderObjects()
 
 void AB2PreRenderGameMode::ProceedToNextPass()
 {
-	//// 현 Pass 가 끝난 시점에 다음 Pass 로 넘어가든지, 혹은 이번이 완전 마지막 pass 이면 종료.
-	//// PreRenderPhase 는 쓰지 않고 대신 CurrentLightPass 와 CurrentContentTypePass 를 사용.
+	// 현 Pass 가 끝난 시점에 다음 Pass 로 넘어가든지, 혹은 이번이 완전 마지막 pass 이면 종료.
+	// PreRenderPhase 는 쓰지 않고 대신 CurrentLightPass 와 CurrentContentTypePass 를 사용.
 
-	//// 메모리를 많이 소모하니 각 패스마다 GC 돌려본다. 단, PCClass 데이터 같은 경우 한번 로딩 후 루트셋 처리로 인해 어차피 (예상대로) 메모리를 소모하게 될 것.
-	//UWorld* TheWorld = GetWorld();
-	//if (TheWorld){
-	//	TheWorld->ForceGarbageCollection();
-	//}
-	//if (PreRenderer) {
-	//	PreRenderer->EnsureSaveCaches(); // 혹여나 모를 크래쉬를 대비한 세이브?
-	//}
+	CollectGarbage(GARBAGE_COLLECTION_KEEPFLAGS);
 
-	//if (IsLastLightPass(CurrentLightPass) && IsLastContentTypePass(CurrentContentTypePass))
-	//{
-	//	OnCompleteAll();
-	//}
-	//else if (IsLastContentTypePass(CurrentContentTypePass))
-	//{
-	//	SetupForLightPass((EPRGMLightPass)((int32)CurrentLightPass + 1));
-	//}
-	//else
-	//{
-	//	// ContentTypePass 를 넘겨야 하는 경우인데 PC 나 PCSkillAnim 의 경우 하위 pass 가 또 있으니 그걸 체크
-	//	if (CurrentContentTypePass == EPRGMContentTypePass::CTP_PC && !IsLastPCClassPass(CurrentPCClassPass))
-	//	{
-	//		SetupForPCClassPass(IntToPCClass(PCClassToInt(CurrentPCClassPass) + 1));
-	//	}
-	//	else if (CurrentContentTypePass == EPRGMContentTypePass::CTP_PC_SkillAnim && !IsLastPCClassPass(CurrentPCClassPass))
-	//	{
-	//		SetupForPCSkillAnimPass(IntToPCClass(PCClassToInt(CurrentPCClassPass) + 1));
-	//	}
-	//	else
-	//	{
-	//		SetupForContentTypePass((EPRGMContentTypePass)((int32)CurrentContentTypePass + 1));
-	//	}
-	//}
+	if (PreRenderer) {
+		PreRenderer->EnsureSaveCaches(); // 혹여나 모를 크래쉬를 대비한 세이브?
+	}
 
-	//// 원칙대로라면 SetupForLightPass 의 일부가 되어야 하는데 예외 케이스가 좀 있어서.. 바보같지만 dynamic point light 셋업을 여기서 다시 ㅡㅡ
-	//if (PreRenderer)
-	//{
-	//	PreRenderer->ConditionalRestoreFromPreRenderLightEnvForDynPL();
-	//	PreRenderer->ConditionalSetupPreRenderLightEnvForDynPL(true);
-	//}
+	if (IsLastLightPass(CurrentLightPass) && IsLastContentTypePass(CurrentContentTypePass))
+	{
+		OnCompleteAll();
+	}
+	else if (IsLastContentTypePass(CurrentContentTypePass))
+	{
+		SetupForLightPass((EPRGMLightPass)((int32)CurrentLightPass + 1));
+	}
+	else
+	{
+		// ContentTypePass 를 넘겨야 하는 경우인데 PC 나 PCSkillAnim 의 경우 하위 pass 가 또 있으니 그걸 체크
+		if (CurrentContentTypePass == EPRGMContentTypePass::CTP_PC && !IsLastPCClassPass(CurrentPCClassPass))
+		{
+			SetupForPCClassPass(IntToPCClass(PCClassToInt(CurrentPCClassPass) + 1));
+		}
+		else if (CurrentContentTypePass == EPRGMContentTypePass::CTP_PC_SkillAnim && !IsLastPCClassPass(CurrentPCClassPass))
+		{
+			SetupForPCSkillAnimPass(IntToPCClass(PCClassToInt(CurrentPCClassPass) + 1));
+		}
+		else
+		{
+			SetupForContentTypePass((EPRGMContentTypePass)((int32)CurrentContentTypePass + 1));
+		}
+	}
 
-	//TimeSinceLastPassBegin = 0.0f;
-	//CurrentPassTickCount = 0;
-	//
-	//// Pass 넘어갈 때 진행도 업데이트
-	//WeightedPassSumSoFar += ((CurrentLightPass == GetFirstLightPass()) ? GetFistLightPassProgressWeight() : 1.0f);
-	//UpdateProgressDisplay();
+	// 원칙대로라면 SetupForLightPass 의 일부가 되어야 하는데 예외 케이스가 좀 있어서.. 바보같지만 dynamic point light 셋업을 여기서 다시 ㅡㅡ
+	if (PreRenderer)
+	{
+		PreRenderer->ConditionalRestoreFromPreRenderLightEnvForDynPL();
+		PreRenderer->ConditionalSetupPreRenderLightEnvForDynPL(true);
+	}
+
+	TimeSinceLastPassBegin = 0.0f;
+	CurrentPassTickCount = 0;
+	
+	// Pass 넘어갈 때 진행도 업데이트
+	WeightedPassSumSoFar += ((CurrentLightPass == GetFirstLightPass()) ? GetFistLightPassProgressWeight() : 1.0f);
+	UpdateProgressDisplay();
 }
 
 void AB2PreRenderGameMode::SetupForLightPass(EPRGMLightPass InSetupLightPass)

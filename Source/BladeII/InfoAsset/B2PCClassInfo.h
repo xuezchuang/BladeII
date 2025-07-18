@@ -195,8 +195,8 @@ protected:
 	/**
 	 * In-game only assets for saving lobby memory. It is expected to take most memory of here.
 	 */
-	//UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	//TSoftClassPtr<UB2InGameOnlyPCClassInfo> InGameOnlyAssetPtr;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSoftClassPtr<UB2InGameOnlyPCClassInfo> InGameOnlyAssetPtr;
 private:
 	UPROPERTY(Transient)
 	TSubclassOf<UB2InGameOnlyPCClassInfo> LoadedInGameOnlyAssetPtr; // Keep the loaded Info asset reference to prevent it get GCd.

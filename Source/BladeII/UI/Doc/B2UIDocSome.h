@@ -5,6 +5,7 @@
 //#include "UObject/Object.h"
 #include "B2UIDocBase.h"
 #include "CommonStruct.h"
+#include "../DataStore/B2ClientDataStore.h"
 #include "B2UIDocSome.generated.h"
 
 /* This is the place where you can put "SOME" fucking data that you have no idea of where to put shits in. */
@@ -81,5 +82,5 @@ private:
 public:
     // @ReplayMode
     FString ReplayFileName;
-    //FModReplayInfo ReplayInfo;
+    FModReplayInfo ReplayInfo;
 };
