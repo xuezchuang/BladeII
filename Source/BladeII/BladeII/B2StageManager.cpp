@@ -2355,20 +2355,20 @@ void FCacheStageEssentialDataToKeep::ResponseStartDimension(AGameMode* InCurrent
 //	//}
 //}
 
-//void FCacheStageEssentialDataToKeep::DecreaseRemainingResurrectionChance(EResurrectGameModeType ResurrectModeType)
-//{ 
-//	if (ResurrectModeType == EResurrectGameModeType::EResurrectType_OnlyClientMode)
-//		return;
-//
-//	//BII_CHECK(ResurrectionList.Contains(ResurrectModeType));
-//
-//	//ResurrectionList[ResurrectModeType].DecreaseResurrectionChance();
-//	//SetResurrectionCostByLookup(ResurrectModeType, ResurrectionList[ResurrectModeType].MaxResurrectionChance, ResurrectionList[ResurrectModeType].RemainingResurrectionChance);
-//
-//	//auto* BattleDoc = UB2UIDocHelper::GetDocBattle();
-//	//if (BattleDoc)
-//	//	BattleDoc->SetRemainingResurrectionChance(ResurrectionList[ResurrectModeType].RemainingResurrectionChance);
-//}
+void FCacheStageEssentialDataToKeep::DecreaseRemainingResurrectionChance(EResurrectGameModeType ResurrectModeType)
+{ 
+	if (ResurrectModeType == EResurrectGameModeType::EResurrectType_OnlyClientMode)
+		return;
+
+	//BII_CHECK(ResurrectionList.Contains(ResurrectModeType));
+
+	//ResurrectionList[ResurrectModeType].DecreaseResurrectionChance();
+	//SetResurrectionCostByLookup(ResurrectModeType, ResurrectionList[ResurrectModeType].MaxResurrectionChance, ResurrectionList[ResurrectModeType].RemainingResurrectionChance);
+
+	//auto* BattleDoc = UB2UIDocHelper::GetDocBattle();
+	//if (BattleDoc)
+	//	BattleDoc->SetRemainingResurrectionChance(ResurrectionList[ResurrectModeType].RemainingResurrectionChance);
+}
 
 //void FCacheStageEssentialDataToKeep::SetResurrectionCostByLookup(EResurrectGameModeType ResurrectModeType, int32 InMaxResurrectionChance, int32 InRemainingResurrectionChance)
 //{

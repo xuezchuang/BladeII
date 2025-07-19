@@ -3,6 +3,7 @@
 
 #include "B2UIWidgetBase.h"
 #include "B2UIBackWidget.h"
+#include "../B2RichTextBlock.h"
 #include "B2UIGuildMapCharPopup.generated.h"
 
 DECLARE_DELEGATE(FGuildPopupClose)

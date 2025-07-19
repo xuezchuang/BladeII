@@ -5,14 +5,15 @@
 
 #include "BladeIICharacter.h"
 #include "BladeIIGameMode.h"
+#include "BladeIIUtil.h"
 
 ABladeIIProjectile::ABladeIIProjectile(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
-	/*CollisionComp = ObjectInitializer.CreateDefaultSubobject<USphereComponent>(this, TEXT("SphereComp"));
+	CollisionComp = ObjectInitializer.CreateDefaultSubobject<USphereComponent>(this, TEXT("SphereComp"));
 	CollisionComp->InitSphereRadius(5.f);
 	CollisionComp->AlwaysLoadOnClient = true;
 	CollisionComp->AlwaysLoadOnServer = true;
-	CollisionComp->bCheckAsyncSceneOnMove = true;
+	//CollisionComp->bCheckAsyncSceneOnMove = true;
 	CollisionComp->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
 	CollisionComp->SetCollisionObjectType(COLLISION_PROJECTILE);
 	CollisionComp->SetCollisionResponseToAllChannels(ECR_Block);
@@ -29,15 +30,15 @@ ABladeIIProjectile::ABladeIIProjectile(const FObjectInitializer& ObjectInitializ
 
 	ParticleComp = ObjectInitializer.CreateDefaultSubobject<UParticleSystemComponent>(this, TEXT("ParticleComp"));
 	ParticleComp->AttachToComponent(RootComponent, FAttachmentTransformRules(EAttachmentRule::KeepRelative, false));
-	
+
 	PrimaryActorTick.bCanEverTick = true;
 	PrimaryActorTick.TickGroup = TG_PrePhysics;
 	SetRemoteRoleForBackwardsCompat(ROLE_SimulatedProxy);
-	bReplicates = true;
-	bReplicateMovement = true;
+	//bReplicates = true;
+	SetReplicateMovement(true);
 
 	DamageInfo.WeaponType = EDamageWeapon::EDW_Hammer;
-	DamageTypeClass = UDamageType::StaticClass();*/
+	DamageTypeClass = UDamageType::StaticClass();
 }
 
 void ABladeIIProjectile::PostInitProperties()

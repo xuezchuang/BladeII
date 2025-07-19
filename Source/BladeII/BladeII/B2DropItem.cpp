@@ -48,7 +48,6 @@ AB2DropBase::AB2DropBase(const FObjectInitializer& ObjectInitializer)
 	PrimaryActorTick.TickGroup = TG_PrePhysics;
 	SetRemoteRoleForBackwardsCompat(ROLE_SimulatedProxy);
 	bReplicates = true;
-	//bReplicateMovement = true;
 	SetReplicatingMovement(true);
 
 	PlaySoundDelay = 1.0f;
@@ -313,23 +312,27 @@ void UB2DropItemMovementComponent::SetSpawningLocationInfo(float SpawningTime, c
 		FVector Start = LocationTarget;
 		FVector End = LocationTarget + FVector(0.f, 0.f, -1200.f);
 
-		//GetWorld()->LineTraceSingleByChannel(Hit, Start, End, ECC_WorldStatic, FCollisionQueryParams(NAME_None, false, UGameplayStatics::GetLocalPlayerCharacter(this)));
+		APlayerController* PC = UGameplayStatics::GetPlayerController(this, 0);
+		ABladeIIPlayer* LocalB2Player = PC ? Cast<ABladeIIPlayer>(PC->GetCharacter()) : nullptr;
+
+		GetWorld()->LineTraceSingleByChannel(Hit, Start, End, ECC_WorldStatic, FCollisionQueryParams(NAME_None, false, LocalB2Player));
 
 		if (!Hit.bBlockingHit)
 		{//바닥을 못찾았다면 지형 밑일 수도 있다.
 			Start.Z += 1200.f;
 			End.Z += 1200.f;
 
-			//GetWorld()->LineTraceSingleByChannel(Hit, Start, End, ECC_WorldStatic, FCollisionQueryParams(NAME_None, false, UGameplayStatics::GetLocalPlayerCharacter(this)));
+			GetWorld()->LineTraceSingleByChannel(Hit, Start, End, ECC_WorldStatic, FCollisionQueryParams(NAME_None, false, LocalB2Player));
 		}
 
-		//if (Hit.bBlockingHit)
-		//{
-		//	if (Hit.Actor.IsValid() && Hit.Actor->IsA(ABladeIICharacter::StaticClass()))
-		//		Hit.Location.Z -= 2.f * Hit.Actor->GetSimpleCollisionHalfHeight();
+		if (Hit.bBlockingHit)
+		{
+			AActor* HitActor = Hit.GetActor();
+			if (HitActor && HitActor->IsA(ABladeIICharacter::StaticClass()))
+				Hit.Location.Z -= 2.f * HitActor->GetSimpleCollisionHalfHeight();
 
-		//	CachedLocationTarget = Hit.Location + FVector(0.f, 0.f, 10.f);
-		//}
+			CachedLocationTarget = Hit.Location + FVector(0.f, 0.f, 10.f);
+		}
 	}
 
 	Velocity = (CachedLocationTarget - GetOwner()->GetActorLocation()) / SpawningTime;

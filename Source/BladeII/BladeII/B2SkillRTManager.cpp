@@ -26,6 +26,7 @@
 
 #include "B2GameInstance.h"
 #include "BladeIIGameImpl.h"
+#include "../Common/CommonStruct.h"
 
 #if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
 float Cheat_ForceCooltime_Skill = -1.f;
@@ -61,12 +62,11 @@ void FInputBoundSkillState_Base::ResetSkillState(UB2SkillRTManager* SkillRTManag
 float FInputBoundSkillState_Base::GetMaxCooltime(const UB2SkillRTManager* SkillRTManager)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(FInputBoundSkillState_GetMaxCooltime);
-	//check(SkillRTManager);
+	check(SkillRTManager);
 
-	//// ActiveSkill 에 바인딩 되는 쿨타임 감소.
-	//// 현재 ECombatOptionApplyType 이 Subtract_Value 인 구현으로 OneMinusMultiply 로 바뀔 수 있다.
-	//return FMath::Clamp(MaxCooltime - SkillRTManager->GetSkillOptionValue(SkillID, ESkillOption::ESO_DecCoolTime), 0.f, MaxCooltime);
-	return 0.0f;
+	// ActiveSkill 에 바인딩 되는 쿨타임 감소.
+	// 현재 ECombatOptionApplyType 이 Subtract_Value 인 구현으로 OneMinusMultiply 로 바뀔 수 있다.
+	return FMath::Clamp(MaxCooltime - SkillRTManager->GetSkillOptionValue(SkillID, ESkillOption::ESO_DecCoolTime), 0.f, MaxCooltime);
 }
 
 void FInputBoundSkillState_Skill::InitSkillState(UB2SkillRTManager* SkillRTManager, int32 InSkillID, EPCClass InPCClass, EAttackState InAttackState, float InMaxCooltime, float InEnableWeaponSkillPoint, bool bWeaponSkill)
@@ -470,93 +470,95 @@ void UB2SkillRTManager::InitSkillRTManager(ABladeIIPlayer* InOwnerPlayer)
 
 void UB2SkillRTManager::InitSkillRTManagerInner(ABladeIIPlayer* InOwnerPlayer)
 {
-	//SetCurrentOwnerPlayer(InOwnerPlayer); // CurrentOwnerPlayer 는 게임 플레이를 거치면서 바뀔 수 있다.
-	//
-	//if (CurrentOwnerPlayer)
-	//{
-	//	CachedSkillInfo = GetSkillInfoOfPlayer(CurrentOwnerPlayer);
+	SetCurrentOwnerPlayer(InOwnerPlayer); // CurrentOwnerPlayer 는 게임 플레이를 거치면서 바뀔 수 있다.
+	
+	if (CurrentOwnerPlayer)
+	{
+		CachedSkillInfo = GetSkillInfoOfPlayer(CurrentOwnerPlayer);
 
-	//	// RTManager 자체가 설계방식이 태그만 고려한듯..
-	//	// 무조건 Main으로 선택한 캐릭터만 Cache하는 방식이라 팀대전, 길드전 같은 게임모드에서는 제대로 동작 안함
-	//	EB2GameMode CurrentGameMode = GetB2GameModeType(CurrentOwnerPlayer);
-	//	if (CurrentGameMode == EB2GameMode::Guild || CurrentGameMode == EB2GameMode::PVP_Team)
-	//	{
-	//		MainPlayerClass = CurrentOwnerPlayer->GetCurrentPlayerClass();
-	//	}
-	//	else
-	//	{
-	//		if (CurrentOwnerPlayer->GetCharacterDataStore())
-	//		{
-	//			MainPlayerClass = CurrentOwnerPlayer->GetCharacterDataStore()->GetMainPlayerClass();
-	//			SubPlayerClass = CurrentOwnerPlayer->GetCharacterDataStore()->GetSubPlayerClass();
-	//		}
-	//		else
-	//		{
-	//			MainPlayerClass = EPCClass::EPC_End;
-	//			SubPlayerClass = EPCClass::EPC_End;
-	//		}
-	//	}
+		// RTManager 자체가 설계방식이 태그만 고려한듯..
+		// 무조건 Main으로 선택한 캐릭터만 Cache하는 방식이라 팀대전, 길드전 같은 게임모드에서는 제대로 동작 안함
+		EB2GameMode CurrentGameMode = GetB2GameModeType(CurrentOwnerPlayer);
+		if (CurrentGameMode == EB2GameMode::Guild || CurrentGameMode == EB2GameMode::PVP_Team)
+		{
+			MainPlayerClass = CurrentOwnerPlayer->GetCurrentPlayerClass();
+		}
+		else
+		{
+			if (CurrentOwnerPlayer->GetCharacterDataStore())
+			{
+				MainPlayerClass = CurrentOwnerPlayer->GetCharacterDataStore()->GetMainPlayerClass();
+				SubPlayerClass = CurrentOwnerPlayer->GetCharacterDataStore()->GetSubPlayerClass();
+			}
+			else
+			{
+				MainPlayerClass = EPCClass::EPC_End;
+				SubPlayerClass = EPCClass::EPC_End;
+			}
+		}
 
-	//	// Tutorial
-	//	if (AllocateSkillState(IBSkillStates) || GetB2GameModeType(CurrentOwnerPlayer) == EB2GameMode::Tutorial)
-	//		SetPlayerCharacterSkill(CurrentOwnerPlayer, IBSkillStates, CachedSkillOption[0]);
+		// Tutorial
+		if (AllocateSkillState(IBSkillStates) || GetB2GameModeType(CurrentOwnerPlayer) == EB2GameMode::Tutorial)
+			SetPlayerCharacterSkill(CurrentOwnerPlayer, IBSkillStates, CachedSkillOption[0]);
 
-	//	if (NeedsRebindSkillDoc(CurrentOwnerPlayer))
-	//		BindSkillDoc(CurrentOwnerPlayer, IBSkillStates);
+		if (NeedsRebindSkillDoc(CurrentOwnerPlayer))
+			BindSkillDoc(CurrentOwnerPlayer, IBSkillStates);
 
-	//	// 이걸 처음에 현재 플레이어 것으로 세팅하는 건 단지 UI 단에 뭔가 보여주기 위함. 한번 태그 후에는 제대로 세팅함.
-	//	// 이 시점에서 OwnerPlayer 의 MaxHealth 는 아직 정식 세팅이 안되어 있을 수 있음 (InitializeCombatStats 가 안 불린 상태라면). 첫 태그 이전에도 정확한 값이 필요하다면 다른 방식으로 세팅 필요 (CombatStatEval::GetEquipAppliedLocalPCHealth 참고)
-	//	InactivePlayerStateCache.SetVariablesByRetiringPlayer(CurrentOwnerPlayer); // 실제로 여기선 RetiringPlayer 의 의미는 아니다.
-	//	InactivePlayerStateCache.LastHealth = InactivePlayerStateCache.MaxHealth;
-	//	InactivePlayerStateCache.CurrentHealth = InactivePlayerStateCache.MaxHealth;
+		// 이걸 처음에 현재 플레이어 것으로 세팅하는 건 단지 UI 단에 뭔가 보여주기 위함. 한번 태그 후에는 제대로 세팅함.
+		// 이 시점에서 OwnerPlayer 의 MaxHealth 는 아직 정식 세팅이 안되어 있을 수 있음 (InitializeCombatStats 가 안 불린 상태라면). 첫 태그 이전에도 정확한 값이 필요하다면 다른 방식으로 세팅 필요 (CombatStatEval::GetEquipAppliedLocalPCHealth 참고)
+		InactivePlayerStateCache.SetVariablesByRetiringPlayer(CurrentOwnerPlayer); // 실제로 여기선 RetiringPlayer 의 의미는 아니다.
+		InactivePlayerStateCache.LastHealth = InactivePlayerStateCache.MaxHealth;
+		InactivePlayerStateCache.CurrentHealth = InactivePlayerStateCache.MaxHealth;
 
-	//	// 단, ExtraLevel 로 넘어온 상태라면 HP 등을 좀 제대로 세팅 해야함. 현재 활성 캐릭터의 경우 ABladeIIPlayer::InitializeCombatStats 에서
-	//	if (AB2StageManager::GetCacheStageKeepEssentialData().IsPlayInExtraLevel())
-	//	{
-	//		AB2StageManager::GetCacheStageKeepEssentialData().SetPostExtraMapLoadSkillRTManager(CurrentOwnerPlayer, &InactivePlayerStateCache);
-	//		InactivePlayerStateCache.bNotCachedYet = false; // 이 경우는 처음부터 caching 이 된 거니 bNotCachedYet 을 false 세팅해 줌.
-	//	}
-	//}
+		// 단, ExtraLevel 로 넘어온 상태라면 HP 등을 좀 제대로 세팅 해야함. 현재 활성 캐릭터의 경우 ABladeIIPlayer::InitializeCombatStats 에서
+		if (AB2StageManager::GetCacheStageKeepEssentialData().IsPlayInExtraLevel())
+		{
+			AB2StageManager::GetCacheStageKeepEssentialData().SetPostExtraMapLoadSkillRTManager(CurrentOwnerPlayer, &InactivePlayerStateCache);
+			InactivePlayerStateCache.bNotCachedYet = false; // 이 경우는 처음부터 caching 이 된 거니 bNotCachedYet 을 false 세팅해 줌.
+		}
+	}
 
-	//if (MainPlayerClass == EPCClass::EPC_End)
-	//	MainPlayerClass = EPCClass::EPC_Gladiator;
-	//if (SubPlayerClass == EPCClass::EPC_End)
-	//	SubPlayerClass = EPCClass::EPC_Assassin;
+	if (MainPlayerClass == EPCClass::EPC_End)
+		MainPlayerClass = EPCClass::EPC_Gladiator;
+	if (SubPlayerClass == EPCClass::EPC_End)
+		SubPlayerClass = EPCClass::EPC_Assassin;
 
-	//if (IsMyOwnerLocalPlayer())
-	//{
-	//	// UIDoc 의 부활버프 값들이 남아있으니 처음에는 리셋. 로컬플레이어의 경우만.
-	//	UB2UIDocBattle* DocBattle = UB2UIDocHelper::GetDocBattle();
-	//	if (DocBattle)
-	//	{
-	//		DocBattle->SetSelectedResurrectBuffAttack(0);
-	//		DocBattle->SetSelectedResurrectBuffDefense(0);
-	//		DocBattle->SetSelectedResurrectBuffHealth(0);
+	if (IsMyOwnerLocalPlayer())
+	{
+		// UIDoc 의 부활버프 값들이 남아있으니 처음에는 리셋. 로컬플레이어의 경우만.
+		UB2UIDocBattle* DocBattle = UB2UIDocHelper::GetDocBattle();
+		if (DocBattle)
+		{
+			DocBattle->SetSelectedResurrectBuffAttack(0);
+			DocBattle->SetSelectedResurrectBuffDefense(0);
+			DocBattle->SetSelectedResurrectBuffHealth(0);
 
-	//		DocBattle->SetCurResurrectBuffAttackCountByIndex(UB2UIDocBattle::MySlotIndex, 0);
-	//		DocBattle->SetCurResurrectBuffDefenseCountByIndex(UB2UIDocBattle::MySlotIndex, 0);
-	//		DocBattle->SetCurResurrectBuffHealthCountByIndex(UB2UIDocBattle::MySlotIndex, 0);
+			DocBattle->SetCurResurrectBuffAttackCountByIndex(UB2UIDocBattle::MySlotIndex, 0);
+			DocBattle->SetCurResurrectBuffDefenseCountByIndex(UB2UIDocBattle::MySlotIndex, 0);
+			DocBattle->SetCurResurrectBuffHealthCountByIndex(UB2UIDocBattle::MySlotIndex, 0);
 
-	//		// 결속 스킬 값들 리셋
-	//		DocBattle->SetOffenseEtherCoolTime(0.0f);
-	//		DocBattle->SetDefenseEtherCoolTime(0.0f);
+			// 결속 스킬 값들 리셋
+			DocBattle->SetOffenseEtherCoolTime(0.0f);
+			DocBattle->SetDefenseEtherCoolTime(0.0f);
 
-	//		for (int32 i = 0; i < GetMaxPCClassNum(); ++i)
-	//		{
-	//			auto* DocHero = UB2UIDocHelper::GetDocHero(i);
-	//			DocHero->SetCurOffenseEtherCoolTime(0.0f);
-	//			DocHero->SetCurDefenseEtherCoolTime(0.0f);
-	//		}
-	//	}
-	//}
+			for (int32 i = 0; i < GetMaxPCClassNum(); ++i)
+			{
+				auto* DocHero = UB2UIDocHelper::GetDocHero(i);
+				DocHero->SetCurOffenseEtherCoolTime(0.0f);
+				DocHero->SetCurDefenseEtherCoolTime(0.0f);
+			}
+		}
+	}
 
-	//UpdateSkillDocDataOnPCSwap();
+	UpdateSkillDocDataOnPCSwap();
 }
 
 bool UB2SkillRTManager::IsMyOwnerLocalPlayer()
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2SkillRTManager_IsMyOwnerLocalPlayer);
-	//return (CurrentOwnerPlayer && CurrentOwnerPlayer == Cast<ABladeIIPlayer>(UGameplayStatics::GetLocalPlayerCharacter(CurrentOwnerPlayer)));
+	APlayerController* PC = UGameplayStatics::GetPlayerController(this, 0);
+	ABladeIIPlayer* LocalB2Player = PC ? Cast<ABladeIIPlayer>(PC->GetCharacter()) : nullptr;
+	return (CurrentOwnerPlayer && CurrentOwnerPlayer == Cast<ABladeIIPlayer>(LocalB2Player));
 	return true;
 }
 
@@ -708,18 +710,17 @@ bool UB2SkillRTManager::AllocateSkillState(TArray<FInputBoundSkillState_Base*>& 
 
 bool UB2SkillRTManager::NeedsRebindSkillDoc(class ABladeIIPlayer* PlayerCharacter)
 {
-	//const auto PlayerClass = PlayerCharacter->GetCurrentPlayerClass();
-	//const bool IsLocalPlayer = CurrentOwnerPlayer && CurrentOwnerPlayer->IsLocalPlayer();
+	const auto PlayerClass = PlayerCharacter->GetCurrentPlayerClass();
+	const bool IsLocalPlayer = CurrentOwnerPlayer && CurrentOwnerPlayer->IsLocalPlayer();
 
-	//const bool IsLocalAIMode = GetB2GameModeType(PlayerCharacter) == EB2GameMode::PVP_Team || GetB2GameModeType(PlayerCharacter) == EB2GameMode::Guild;
-	//const bool IsRemoteSpecific = !IsLocalPlayer && IsLocalAIMode;
-	//auto* TeamAIPlayer = Cast<ABladeIITMAIPlayer>(PlayerCharacter);
-	//const bool IsSameTeamAI = IsRemoteSpecific && TeamAIPlayer && TeamAIPlayer->GetIsLocalPlayerTeam();
+	const bool IsLocalAIMode = GetB2GameModeType(PlayerCharacter) == EB2GameMode::PVP_Team || GetB2GameModeType(PlayerCharacter) == EB2GameMode::Guild;
+	const bool IsRemoteSpecific = !IsLocalPlayer && IsLocalAIMode;
+	auto* TeamAIPlayer = Cast<ABladeIITMAIPlayer>(PlayerCharacter);
+	const bool IsSameTeamAI = IsRemoteSpecific && TeamAIPlayer && TeamAIPlayer->GetIsLocalPlayerTeam();
 
-	//const bool NeedsRegisterSkillDoc = IsLocalPlayer || IsSameTeamAI;
+	const bool NeedsRegisterSkillDoc = IsLocalPlayer || IsSameTeamAI;
 
-	//return NeedsRegisterSkillDoc;
-	return true;
+	return NeedsRegisterSkillDoc;
 }
 
 UB2SkillInfo* UB2SkillRTManager::GetSkillInfoOfPlayer(ABladeIIPlayer* InPlayerChar)
@@ -770,61 +771,61 @@ ESkillAnimType UB2SkillRTManager::GetSkillAnimIndex(int32 SkillInputIndex) const
 
 ESkillAnimType UB2SkillRTManager::GetSkillAnimIndexInternal(int32 InSkillID, int32 InIncMotionValue, UB2SkillInfo* InSkillInfo)
 {
-	//if (!InSkillInfo) {
-	//	return ESkillAnimType::ESA_End;
-	//}
+	if (!InSkillInfo) {
+		return ESkillAnimType::ESA_End;
+	}
 
-	//EAttackState MappedSkillAttackState = InSkillInfo->GetAttackState(InSkillID);
+	EAttackState MappedSkillAttackState = InSkillInfo->GetAttackState(InSkillID);
 
-	//// IncMotion 이 적용되는 스킬이 있고 아닌 스킬이 있다.
-	//switch (MappedSkillAttackState)
-	//{
-	//case EAttackState::ECS_Skill01:
-	//	return (ESkillAnimType)(InIncMotionValue + (int32)ESkillAnimType::ESA_Skill01_01);
-	//case EAttackState::ECS_Skill02:
-	//{
-	//	if (InIncMotionValue != 0) // 모션 딱 하나 있는 스킬
-	//	{
-	//		UE_LOG(LogB2SkillRTManager, Warning, TEXT("Invalid Skill Increase Motion Option data"));
-	//	}
-	//	return (ESkillAnimType::ESA_Skill02_01);
-	//}
-	//case EAttackState::ECS_Skill03:
-	//	return (ESkillAnimType)(InIncMotionValue  + (int32)ESkillAnimType::ESA_Skill03_01);
-	//case EAttackState::ECS_Skill04:
-	//{
-	//	if (InIncMotionValue != 0)
-	//	{
-	//		UE_LOG(LogB2SkillRTManager, Warning, TEXT("Invalid Skill Increase Motion Option data"));
-	//	}
-	//	return (ESkillAnimType::ESA_Skill04_01);
-	//}
-	//case EAttackState::ECS_Skill05:
-	//	return (ESkillAnimType)(InIncMotionValue + (int32)ESkillAnimType::ESA_Skill05_01);
-	//case EAttackState::ECS_Skill06:
-	//{
-	//	if (InIncMotionValue != 0)
-	//	{
-	//		UE_LOG(LogB2SkillRTManager, Warning, TEXT("Invalid Skill Increase Motion Option data"));
-	//	}
-	//	return (ESkillAnimType::ESA_Skill06_01);
-	//}
-	//case EAttackState::ECS_WeaponSkill:
-	//{
-	//	BII_CHECK(InSkillInfo);
-	//	if (InSkillInfo)
-	//	{
-	//		const FSingleSkillInfo* SingleSkillInfo = InSkillInfo->GetSingleInfoOfID(InSkillID);
-	//		BII_CHECK(SingleSkillInfo);
-	//		if (SingleSkillInfo)
-	//		{
-	//			BII_CHECK(SingleSkillInfo->WeaponSkillType != EWeaponSkillType::EWS_None && SingleSkillInfo->WeaponSkillType != EWeaponSkillType::EWS_End);
-	//			return (ESkillAnimType)((int32)ESkillAnimType::ESA_Weapon_01 + (int32)SingleSkillInfo->WeaponSkillType - (int32)EWeaponSkillType::EWS_Weapon01);
-	//		}
-	//	}
-	//	break;
-	//}
-	//}
+	// IncMotion 이 적용되는 스킬이 있고 아닌 스킬이 있다.
+	switch (MappedSkillAttackState)
+	{
+	case EAttackState::ECS_Skill01:
+		return (ESkillAnimType)(InIncMotionValue + (int32)ESkillAnimType::ESA_Skill01_01);
+	case EAttackState::ECS_Skill02:
+	{
+		if (InIncMotionValue != 0) // 모션 딱 하나 있는 스킬
+		{
+			UE_LOG(LogB2SkillRTManager, Warning, TEXT("Invalid Skill Increase Motion Option data"));
+		}
+		return (ESkillAnimType::ESA_Skill02_01);
+	}
+	case EAttackState::ECS_Skill03:
+		return (ESkillAnimType)(InIncMotionValue  + (int32)ESkillAnimType::ESA_Skill03_01);
+	case EAttackState::ECS_Skill04:
+	{
+		if (InIncMotionValue != 0)
+		{
+			UE_LOG(LogB2SkillRTManager, Warning, TEXT("Invalid Skill Increase Motion Option data"));
+		}
+		return (ESkillAnimType::ESA_Skill04_01);
+	}
+	case EAttackState::ECS_Skill05:
+		return (ESkillAnimType)(InIncMotionValue + (int32)ESkillAnimType::ESA_Skill05_01);
+	case EAttackState::ECS_Skill06:
+	{
+		if (InIncMotionValue != 0)
+		{
+			UE_LOG(LogB2SkillRTManager, Warning, TEXT("Invalid Skill Increase Motion Option data"));
+		}
+		return (ESkillAnimType::ESA_Skill06_01);
+	}
+	case EAttackState::ECS_WeaponSkill:
+	{
+		BII_CHECK(InSkillInfo);
+		if (InSkillInfo)
+		{
+			const FSingleSkillInfo* SingleSkillInfo = InSkillInfo->GetSingleInfoOfID(InSkillID);
+			BII_CHECK(SingleSkillInfo);
+			if (SingleSkillInfo)
+			{
+				BII_CHECK(SingleSkillInfo->WeaponSkillType != EWeaponSkillType::EWS_None && SingleSkillInfo->WeaponSkillType != EWeaponSkillType::EWS_End);
+				return (ESkillAnimType)((int32)ESkillAnimType::ESA_Weapon_01 + (int32)SingleSkillInfo->WeaponSkillType - (int32)EWeaponSkillType::EWS_Weapon01);
+			}
+		}
+		break;
+	}
+	}
 
 	return ESkillAnimType::ESA_End;
 }
@@ -1179,85 +1180,85 @@ void UB2SkillRTManager::ForceSetSkillCoolTimerWhenAIPlayerTagging(int32 TagAttac
 bool UB2SkillRTManager::TagToOther(int32 TagAttackType, EAttackState CurrentAttackState /*= EAttackState::ECS_None*/)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2SkillRTManager_TagToOther);
-	//B2_SCOPED_TRACK_LOG(TEXT("UB2SkillRTManager::TagToOther"));
-	//// 태그 입력시 ABladeIIPlayer::StartTag 에서 시작하여 TagNotify 를 거쳐 여기서 본격 동작
+	B2_SCOPED_TRACK_LOG(TEXT("UB2SkillRTManager::TagToOther"));
+	// 태그 입력시 ABladeIIPlayer::StartTag 에서 시작하여 TagNotify 를 거쳐 여기서 본격 동작
 
-	//if (CurrentOwnerPlayer == NULL /*|| CurrentOwnerPlayer->IsAlive() == false*/) // 죽은 시점에 Tag 가 필요할 수도 있다.
-	//{
-	//	return false;
-	//}
+	if (CurrentOwnerPlayer == NULL /*|| CurrentOwnerPlayer->IsAlive() == false*/) // 죽은 시점에 Tag 가 필요할 수도 있다.
+	{
+		return false;
+	}
 
-	//ABladeIIGameMode* pGM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(CurrentOwnerPlayer));
-	//if (!pGM->IsAllowTag())
-	//	return false;
+	ABladeIIGameMode* pGM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(CurrentOwnerPlayer));
+	if (!pGM->IsAllowTag())
+		return false;
 
-	//EPCClass NewSpawnClass = GetTagPlayerClass();
-	//if (NewSpawnClass != EPCClass::EPC_End)
-	//{
-	//	// Spawn 전에 player controller 쪽에 SpawnMotionState 를 먼저 세팅한다. 
-	//	// Player character spawn 도중 AnimBP overriding 에 의해 Anim tick 이 한번 처리되는데 그 전에 상태를 넣어둘 필요가 있어서 Player controller 를 통하도록 함.
-	//	ABladeIIPlayerController* B2PC = Cast<ABladeIIPlayerController>(CurrentOwnerPlayer->Controller);
-	//	if (B2PC)
-	//	{
-	//		B2PC->SetPCSpawnMotionState((EPCSpawnMotionState)(TagAttackType + int32(EPCSpawnMotionState::EPST_Tag)));
-	//	}
+	EPCClass NewSpawnClass = GetTagPlayerClass();
+	if (NewSpawnClass != EPCClass::EPC_End)
+	{
+		// Spawn 전에 player controller 쪽에 SpawnMotionState 를 먼저 세팅한다. 
+		// Player character spawn 도중 AnimBP overriding 에 의해 Anim tick 이 한번 처리되는데 그 전에 상태를 넣어둘 필요가 있어서 Player controller 를 통하도록 함.
+		ABladeIIPlayerController* B2PC = Cast<ABladeIIPlayerController>(CurrentOwnerPlayer->Controller);
+		if (B2PC)
+		{
+			B2PC->SetPCSpawnMotionState((EPCSpawnMotionState)(TagAttackType + int32(EPCSpawnMotionState::EPST_Tag)));
+		}
 
-	//	if (CurrentAttackState != EAttackState::ECS_None) // TagAttack 시 현재 사용하고 있는 skill state 가 들어올 것. 다른 경로로 noti 가 오지 않을 것이므로 쿨타임 카운트를 시작.
-	//	{
-	//		SetSkillCoolTimeTimer(CurrentAttackState);
-	//	}
+		if (CurrentAttackState != EAttackState::ECS_None) // TagAttack 시 현재 사용하고 있는 skill state 가 들어올 것. 다른 경로로 noti 가 오지 않을 것이므로 쿨타임 카운트를 시작.
+		{
+			SetSkillCoolTimeTimer(CurrentAttackState);
+		}
 
-	//	// 태그 쿨타임 뿐 아니라 스킬 사용 도중 태그 예약으로 인해 스킬 쿨타임 카운트 시작이 안된 채로 진행이 될 수 있어서 혹시라도 그런 게 있다면 바꿔치기 전에 시작해 준다.
-	//	check(CachedSkillInfo);
-	//	for (int32 SI = 0; SI < MAX_ACTIVE_SKILL_INPUT; ++SI)
-	//	{
-	//		if (IBSkillStates[SI]->IsSkillDisabledByCooltime() && !IBSkillStates[SI]->IsCountingCooltime())
-	//		{
-	//			SetSkillCoolTimeTimer(IBSkillStates[SI]->GetAttackState());
-	//		}
-	//	}
-	//	
-	//	ABladeIIPlayer* OldPlayerBackup = CurrentOwnerPlayer;
+		// 태그 쿨타임 뿐 아니라 스킬 사용 도중 태그 예약으로 인해 스킬 쿨타임 카운트 시작이 안된 채로 진행이 될 수 있어서 혹시라도 그런 게 있다면 바꿔치기 전에 시작해 준다.
+		check(CachedSkillInfo);
+		for (int32 SI = 0; SI < MAX_ACTIVE_SKILL_INPUT; ++SI)
+		{
+			if (IBSkillStates[SI]->IsSkillDisabledByCooltime() && !IBSkillStates[SI]->IsCountingCooltime())
+			{
+				SetSkillCoolTimeTimer(IBSkillStates[SI]->GetAttackState());
+			}
+		}
+		
+		ABladeIIPlayer* OldPlayerBackup = CurrentOwnerPlayer;
 
-	//	// 로컬플레이어가 바뀌기전에 버프클리어한번 해준다.
-	//	if (OldPlayerBackup)
-	//	{
-	//		OldPlayerBackup->ClearAllBuffs();
-	//	}
+		// 로컬플레이어가 바뀌기전에 버프클리어한번 해준다.
+		if (OldPlayerBackup)
+		{
+			OldPlayerBackup->ClearAllBuffs();
+		}
 
-	//	if (DynSpawnNewPlayerCommon(NewSpawnClass) != NULL)
-	//	{
-	//		// 위에서 성공적이었으면 CurrentOwnerPlayer 가 새로 생성한 것으로 바뀌어 있을 것.
-	//		// 서로에게 각자의 tag 상황을 notify. Auto 인수인계 등 추가적인 뒤치닥꺼리
-	//		OldPlayerBackup->NotifyTagRetire(CurrentOwnerPlayer);
-	//		CurrentOwnerPlayer->NotifyTagSpawn(OldPlayerBackup);
+		if (DynSpawnNewPlayerCommon(NewSpawnClass) != NULL)
+		{
+			// 위에서 성공적이었으면 CurrentOwnerPlayer 가 새로 생성한 것으로 바뀌어 있을 것.
+			// 서로에게 각자의 tag 상황을 notify. Auto 인수인계 등 추가적인 뒤치닥꺼리
+			OldPlayerBackup->NotifyTagRetire(CurrentOwnerPlayer);
+			CurrentOwnerPlayer->NotifyTagSpawn(OldPlayerBackup);
 
-	//		OnPlayerChanged_Tag(OldPlayerBackup, CurrentOwnerPlayer);
+			OnPlayerChanged_Tag(OldPlayerBackup, CurrentOwnerPlayer);
 
-	//		if (IsTagPossibleAtDeadMoment()) // 혼자 남겨진 경우라면 태그 쿨타임을 더 카운트할 필요가 없다.
-	//		{
-	//			// 태그 Cooltime 셋업. 태그와 일반 스킬 간에 실질적으로 공유하는 기능.
-	//			// 여기서 처리하게 되면 바뀐 후 캐릭터 설정으로 태그 타이머가 돌아가게 될 것. 어차피 클래스 따라 달라질 것으로 생각되지는 않지만..
-	//			// 어차피 태그 시 일반 스킬 쿨타임 처리도 개선을 해야 할 것이므로 그 때 같이 생각해 볼 것.
-	//			SetSkillCoolTimeTimer(EAttackState::ECS_TagOtherChar);
-	//		}
+			if (IsTagPossibleAtDeadMoment()) // 혼자 남겨진 경우라면 태그 쿨타임을 더 카운트할 필요가 없다.
+			{
+				// 태그 Cooltime 셋업. 태그와 일반 스킬 간에 실질적으로 공유하는 기능.
+				// 여기서 처리하게 되면 바뀐 후 캐릭터 설정으로 태그 타이머가 돌아가게 될 것. 어차피 클래스 따라 달라질 것으로 생각되지는 않지만..
+				// 어차피 태그 시 일반 스킬 쿨타임 처리도 개선을 해야 할 것이므로 그 때 같이 생각해 볼 것.
+				SetSkillCoolTimeTimer(EAttackState::ECS_TagOtherChar);
+			}
 
-	//		// 바뀐 케릭터한테 어택스테이트 인계
-	//		CurrentOwnerPlayer->SetAttackState(CurrentAttackState);
+			// 바뀐 케릭터한테 어택스테이트 인계
+			CurrentOwnerPlayer->SetAttackState(CurrentAttackState);
 
-	//		CurrentOwnerPlayer->GetWorld()->DestroyActor(OldPlayerBackup);
+			CurrentOwnerPlayer->GetWorld()->DestroyActor(OldPlayerBackup);
 
-	//		return true;
-	//	}
-	//	else
-	//	{
-	//		// 실패했다면 뭔가 막장이지만 여튼 PlayerController 쪽에 세팅해 둔 상태를 취소하자.
-	//		if (B2PC)
-	//		{
-	//			B2PC->SetPCSpawnMotionState(EPCSpawnMotionState::EPST_Normal);
-	//		}
-	//	}
-	//}
+			return true;
+		}
+		else
+		{
+			// 실패했다면 뭔가 막장이지만 여튼 PlayerController 쪽에 세팅해 둔 상태를 취소하자.
+			if (B2PC)
+			{
+				B2PC->SetPCSpawnMotionState(EPCSpawnMotionState::EPST_Normal);
+			}
+		}
+	}
 
 	return false;
 }
@@ -1283,20 +1284,20 @@ int32 UB2SkillRTManager::GetResurrectionCost(EResurrectGameModeType ModeType)
 void UB2SkillRTManager::GetAppliedResurrectionBuffValues(TMap<EResurrectBuffType, int32>& OutBuffValues)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2SkillRTManager_GetAppliedResurrectionBuffValues);
-	//// 서버에서는 지금까지 여러번의 부활을 통해 선택했던 부활 버프가 모두 올 껀데 여기서는 마지막에 선택한 타입만 사용하는 걸로..
-	//EResurrectBuffType LastRequestedBuffType = EResurrectBuffType::RBT_End;
-	//if (auto* GMMode = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(CurrentOwnerPlayer)))
-	//	LastRequestedBuffType = GMMode->GetLastRequestedStageBuffType();
+	// 서버에서는 지금까지 여러번의 부활을 통해 선택했던 부활 버프가 모두 올 껀데 여기서는 마지막에 선택한 타입만 사용하는 걸로..
+	EResurrectBuffType LastRequestedBuffType = EResurrectBuffType::RBT_End;
+	if (auto* GMMode = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(CurrentOwnerPlayer)))
+		LastRequestedBuffType = GMMode->GetLastRequestedStageBuffType();
 
-	//const bool bLastRequestedSpecificBuffType = (LastRequestedBuffType != EResurrectBuffType::RBT_None && LastRequestedBuffType != EResurrectBuffType::RBT_End);
-	//TMap<EResurrectBuffType, int32> FinalFilteredBuffMap;
-	//for (auto ThisBuff : SelectedResurrectionBuffMap)
-	//{ 
-	//	// 딱히 마지막 선택한 정보를 찾을 수 없다면 모두..
-	//	if (!bLastRequestedSpecificBuffType || ThisBuff.Key == LastRequestedBuffType)
-	//		FinalFilteredBuffMap.Add(ThisBuff.Key, ThisBuff.Value);
-	//}
-	//BladeIIGameImpl::GetClientDataStore().GetAppliedResurrectBuff(GetCurResurrectGameModeType(), FinalFilteredBuffMap, OutBuffValues, false);
+	const bool bLastRequestedSpecificBuffType = (LastRequestedBuffType != EResurrectBuffType::RBT_None && LastRequestedBuffType != EResurrectBuffType::RBT_End);
+	TMap<EResurrectBuffType, int32> FinalFilteredBuffMap;
+	for (auto ThisBuff : SelectedResurrectionBuffMap)
+	{ 
+		// 딱히 마지막 선택한 정보를 찾을 수 없다면 모두..
+		if (!bLastRequestedSpecificBuffType || ThisBuff.Key == LastRequestedBuffType)
+			FinalFilteredBuffMap.Add(ThisBuff.Key, ThisBuff.Value);
+	}
+	BladeIIGameImpl::GetClientDataStore().GetAppliedResurrectBuff(GetCurResurrectGameModeType(), FinalFilteredBuffMap, OutBuffValues, false);
 }
 
 EResurrectGameModeType UB2SkillRTManager::GetCurResurrectGameModeType()
@@ -1370,9 +1371,9 @@ bool UB2SkillRTManager::ResurrectOnResponse(const FB2Resurrection& ResurrectionR
 	//int32 SelectedBuffAmount_2 = GET_TUPLE_DATA(FB2ResponseResurrection::selected_count_resurrection_buff2_index, ResurrectionResult);
 	//int32 SelectedBuffAmount_3 = GET_TUPLE_DATA(FB2ResponseResurrection::selected_count_resurrection_buff3_index, ResurrectionResult);
 	//int32 UsedGem = GET_TUPLE_DATA(FB2ResponseResurrection::used_cash_index, ResurrectionResult);
-	//
+
 	//return ResurrectPlayer(EResurrectGameModeType::EResurrectType_Stage, UsedGem, SelectedBuffAmount_1, SelectedBuffAmount_2, SelectedBuffAmount_3);
-	return true;
+	return false;
 }
 
 bool UB2SkillRTManager::RaidResurrectOnResponse(const FB2RaidResurrection& ResurrectionResult)
@@ -1384,42 +1385,42 @@ bool UB2SkillRTManager::RaidResurrectOnResponse(const FB2RaidResurrection& Resur
 	//int32 UsedGem = GET_TUPLE_DATA(FB2ResponseRaidResurrection::used_gem_index, ResurrectionResult);
 
 	//return ResurrectPlayer(EResurrectGameModeType::EResurrectType_Raid, UsedGem, SelectedBuffAmount_1, SelectedBuffAmount_2, SelectedBuffAmount_3);
-	return true;
+	return false;
 }
 
 bool UB2SkillRTManager::ResurrectPlayer(EResurrectGameModeType ModeType, int32 UsedGem/*= -1*/, int32 AttackBuffCount/*= -1*/, int32 DefenseBuffCount/*= -1*/, int32 HealthBuffCount /*= -1*/)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2SkillRTManager_ResurrectPlayer);
-	//// 로컬 플레이어의 경우 서버로 보낸 부활 요청에 대한 응답임. 기타 플레이어 캐릭터 타입이나 ID 에 따른 구분이 필요해 질 수도 있음.
-	//if (!IsMyOwnerLocalPlayer()){
-	//	return false;
-	//}
+	// 로컬 플레이어의 경우 서버로 보낸 부활 요청에 대한 응답임. 기타 플레이어 캐릭터 타입이나 ID 에 따른 구분이 필요해 질 수도 있음.
+	if (!IsMyOwnerLocalPlayer()){
+		return false;
+	}
 
-	//// 버프 선택한 것은 여기에 저장해 둔다. InitializeCombatStats 에서 적용되도록 !!! (주의 : BornAgain 이전에 호출)
-	//if (AttackBuffCount != -1 && DefenseBuffCount != -1 && HealthBuffCount != -1)
-	//	UpdateResurrectionBuffOnResponse(AttackBuffCount, DefenseBuffCount, HealthBuffCount);
+	// 버프 선택한 것은 여기에 저장해 둔다. InitializeCombatStats 에서 적용되도록 !!! (주의 : BornAgain 이전에 호출)
+	if (AttackBuffCount != -1 && DefenseBuffCount != -1 && HealthBuffCount != -1)
+		UpdateResurrectionBuffOnResponse(AttackBuffCount, DefenseBuffCount, HealthBuffCount);
 
-	//// 부활할 위치를 재조정해준다. (주의 : BornAgain 이전에 호출)
-	//SetResurrectionPlayerPosition();
+	// 부활할 위치를 재조정해준다. (주의 : BornAgain 이전에 호출)
+	SetResurrectionPlayerPosition();
 
-	//if (BornAgain(false))
-	//{
-	//	AB2StageManager::GetCacheStageKeepEssentialData().DecreaseRemainingResurrectionChance(ModeType);
+	if (BornAgain(false))
+	{
+		AB2StageManager::GetCacheStageKeepEssentialData().DecreaseRemainingResurrectionChance(ModeType);
 
-	//	if (UsedGem != -1)
-	//	{
-	//		int32 TotalGem = BladeIIGameImpl::GetClientDataStore().GetGemAmount() - UsedGem;
-	//		if (TotalGem < 0) TotalGem = 0;
+		if (UsedGem != -1)
+		{
+			int32 TotalGem = BladeIIGameImpl::GetClientDataStore().GetGemAmount() - UsedGem;
+			if (TotalGem < 0) TotalGem = 0;
 
-	//		BladeIIGameImpl::GetClientDataStore().ReplaceUserDataWithDoc(EDocUserDataType::Gem, TotalGem);
-	//	}
-	//}
-	//else
-	//{
-	//	checkSlow(false);
-	//}
+			BladeIIGameImpl::GetClientDataStore().ReplaceUserDataWithDoc(EDocUserDataType::Gem, TotalGem);
+		}
+	}
+	else
+	{
+		checkSlow(false);
+	}
 
-	//StopDefeatMenuClass<>::GetInstance().Signal();
+	StopDefeatMenuClass<>::GetInstance().Signal();
 	return true;
 }
 
@@ -1427,57 +1428,57 @@ bool UB2SkillRTManager::BornAgain(bool bForceSpawnAsMain)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2SkillRTManager_BornAgain);
 	B2_SCOPED_TRACK_LOG(TEXT("UB2SkillRTManager::BornAgain"));
-	//
-	//if (CurrentOwnerPlayer == NULL) // 이건 거의 resurrect 용을 의도한 것이므로 당연히 IsAlive 체크를 하지 않는다. 오히려 반대로 IsAlive false 인 걸 체크해야 할 수도.
-	//{
-	//	return false;
-	//}
+	
+	if (CurrentOwnerPlayer == NULL) // 이건 거의 resurrect 용을 의도한 것이므로 당연히 IsAlive 체크를 하지 않는다. 오히려 반대로 IsAlive false 인 걸 체크해야 할 수도.
+	{
+		return false;
+	}
 
-	//ABladeIIGameMode* pGM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(CurrentOwnerPlayer));
+	ABladeIIGameMode* pGM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(CurrentOwnerPlayer));
 
-	//// 게임모드가 없을리는 없겠지.
-	//if (!pGM)
-	//	return false;
+	// 게임모드가 없을리는 없겠지.
+	if (!pGM)
+		return false;
 
-	//EPCClass NewSpawnClass = bForceSpawnAsMain ? MainPlayerClass : GetCurrentPlayerClass();
-	//if (NewSpawnClass == EPCClass::EPC_End)
-	//{
-	//	return false;
-	//}
-	//
-	//// Spawn 전에 player Controller 쪽에 SpawnMotionState 를 먼저 세팅한다. 
-	//// Player character spawn 도중 AnimBP overriding 에 의해 Anim tick 이 한번 처리되는데 그 전에 상태를 넣어둘 필요가 있어서 Player controller 를 통하도록 함.
-	//ABladeIIPlayerController* B2PC = Cast<ABladeIIPlayerController>(CurrentOwnerPlayer->Controller);
-	//if (B2PC)
-	//{
-	//	B2PC->SetPCSpawnMotionState(pGM->GetBornAgainSpawnMotionState());
-	//}
+	EPCClass NewSpawnClass = bForceSpawnAsMain ? MainPlayerClass : GetCurrentPlayerClass();
+	if (NewSpawnClass == EPCClass::EPC_End)
+	{
+		return false;
+	}
+	
+	// Spawn 전에 player Controller 쪽에 SpawnMotionState 를 먼저 세팅한다. 
+	// Player character spawn 도중 AnimBP overriding 에 의해 Anim tick 이 한번 처리되는데 그 전에 상태를 넣어둘 필요가 있어서 Player controller 를 통하도록 함.
+	ABladeIIPlayerController* B2PC = Cast<ABladeIIPlayerController>(CurrentOwnerPlayer->Controller);
+	if (B2PC)
+	{
+		B2PC->SetPCSpawnMotionState(pGM->GetBornAgainSpawnMotionState());
+	}
 
-	//ABladeIINetPlayer* pNetPlayer = Cast<ABladeIINetPlayer>(CurrentOwnerPlayer);
-	//if (pNetPlayer)
-	//	pNetPlayer->SetSpawnMotionState(pGM->GetBornAgainSpawnMotionState());
+	ABladeIINetPlayer* pNetPlayer = Cast<ABladeIINetPlayer>(CurrentOwnerPlayer);
+	if (pNetPlayer)
+		pNetPlayer->SetSpawnMotionState(pGM->GetBornAgainSpawnMotionState());
 
-	//ABladeIIPlayer* OldPlayerBackup = CurrentOwnerPlayer;
+	ABladeIIPlayer* OldPlayerBackup = CurrentOwnerPlayer;
 
-	//if (DynSpawnNewPlayerCommon(NewSpawnClass) != NULL)
-	//{
-	//	// 위에서 성공적이었으면 CurrentOwnerPlayer 가 새로 생성한 것으로 바뀌어 있을 것.
-	//	CurrentOwnerPlayer->NotifyBornAgain(OldPlayerBackup);
-	//	OnPlayerchanged_BornAgain(); // 이쪽 처리도
-	//	
-	//	OldPlayerBackup->Role = ROLE_Authority;
-	//	CurrentOwnerPlayer->GetWorld()->DestroyActor(OldPlayerBackup);
-	//	return true;
-	//}
-	//else
-	//{
-	//	// 실패했다면 뭔가 막장이지만 여튼 PlayerController 쪽에 세팅해 둔 상태를 취소하자.
-	//	if (B2PC)
-	//	{
-	//		B2PC->SetPCSpawnMotionState(EPCSpawnMotionState::EPST_Normal);
-	//	}
-	//}
-	//
+	if (DynSpawnNewPlayerCommon(NewSpawnClass) != NULL)
+	{
+		// 위에서 성공적이었으면 CurrentOwnerPlayer 가 새로 생성한 것으로 바뀌어 있을 것.
+		CurrentOwnerPlayer->NotifyBornAgain(OldPlayerBackup);
+		OnPlayerchanged_BornAgain(); // 이쪽 처리도
+		
+		OldPlayerBackup->SetRole(ROLE_Authority);
+		CurrentOwnerPlayer->GetWorld()->DestroyActor(OldPlayerBackup);
+		return true;
+	}
+	else
+	{
+		// 실패했다면 뭔가 막장이지만 여튼 PlayerController 쪽에 세팅해 둔 상태를 취소하자.
+		if (B2PC)
+		{
+			B2PC->SetPCSpawnMotionState(EPCSpawnMotionState::EPST_Normal);
+		}
+	}
+	
 
 	return false;
 }
@@ -2167,19 +2168,19 @@ void UB2SkillRTManager::GetAllSkillOptionValues(int32 InSkillId, TArray<FSkillOp
 
 void UB2SkillRTManager::GetAllSkillOptionValuesForUnitySkill(TArray<FSkillOptionData>& InOutSkillOption) const
 {
-	//FUnitySkillMissionArray UnityInfos;
-	//
-	//CurrentOwnerPlayer->GetCharacterDataStore()->GetUnitySkillMissionArray(UnityInfos, GetCurrentPlayerClass());
+	FUnitySkillMissionArray UnityInfos;
+	
+	CurrentOwnerPlayer->GetCharacterDataStore()->GetUnitySkillMissionArray(UnityInfos, GetCurrentPlayerClass());
 
-	//for (auto UnityItem : UnityInfos)
-	//{
-	//	const FUnitySkillOption UnityOption = GLOBALUNITYSKILLMANAGER.GetUnitySkillOptionInfo(UnityItem.MainClass, UnityItem.SubClass);
-	//	if (UnityOption.OptionId != 0)
-	//	{
-	//		// CacheSkillOption에서 서버타입 옵션을 원하므로. 바꿔줌 FUnitySkillOption::OptionId는 클라꺼 ESkillOption인듯
-	//		InOutSkillOption.Add(FSkillOptionData(UnityOption.OptionId, UnityOption.OptionValue));
-	//	}
-	//}
+	for (auto UnityItem : UnityInfos)
+	{
+		const FUnitySkillOption UnityOption = GLOBALUNITYSKILLMANAGER.GetUnitySkillOptionInfo(UnityItem.MainClass, UnityItem.SubClass);
+		if (UnityOption.OptionId != 0)
+		{
+			// CacheSkillOption에서 서버타입 옵션을 원하므로. 바꿔줌 FUnitySkillOption::OptionId는 클라꺼 ESkillOption인듯
+			InOutSkillOption.Add(FSkillOptionData(UnityOption.OptionId, UnityOption.OptionValue));
+		}
+	}
 }
 
 // 이거 CombatStatEval 에 있는 함수로 대체 안됨??
@@ -2290,32 +2291,32 @@ void UB2SkillRTManager::SetCurrentOwnerPlayer(ABladeIIPlayer* NewOwner)
 void UB2SkillRTManager::FCachedSkillOption::CacheSkillOption(UB2SkillRTManager* SkillRTManager, EPCClass CharClass, const TArray<FInputBoundSkillState_Base*>& InIBSkillStates)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2SkillRTManager_CacheSkillOption);
-	//BII_CHECK(SkillRTManager);
+	BII_CHECK(SkillRTManager);
 
-	//ICharacterDataStore* OwnerCDS = (SkillRTManager->CurrentOwnerPlayer) ? SkillRTManager->CurrentOwnerPlayer->GetCharacterDataStore() : NULL;
-	//// Passive 스킬 옵션 값들은 대부분 다른 곳에 캐싱되는데 스킬과 직접적으로 연관되는 것들은 여기에.
-	//SkillCooltimeDecbyPassive = CombatStatEval::GetUnitedOptionStatusValue(CharClass, EUnitedCombatOptions::UCO_Skill_DecSkillCooltime_General, OwnerCDS);
-	//TagCooltimeDecbyPassive = CombatStatEval::GetUnitedOptionStatusValue(CharClass, EUnitedCombatOptions::UCO_Misc_DecTagCooltime, OwnerCDS);
+	ICharacterDataStore* OwnerCDS = (SkillRTManager->CurrentOwnerPlayer) ? SkillRTManager->CurrentOwnerPlayer->GetCharacterDataStore() : NULL;
+	// Passive 스킬 옵션 값들은 대부분 다른 곳에 캐싱되는데 스킬과 직접적으로 연관되는 것들은 여기에.
+	SkillCooltimeDecbyPassive = CombatStatEval::GetUnitedOptionStatusValue(CharClass, EUnitedCombatOptions::UCO_Skill_DecSkillCooltime_General, OwnerCDS);
+	TagCooltimeDecbyPassive = CombatStatEval::GetUnitedOptionStatusValue(CharClass, EUnitedCombatOptions::UCO_Misc_DecTagCooltime, OwnerCDS);
 
-	//// 특정 ActiveSkill 에 바인딩 되는 옵션값들 캐싱. 
-	//for (auto* IBSkillState : InIBSkillStates)
-	//{
-	//	// Cache all skill options related to this 
-	//	if (IBSkillState->GetAttackState() == EAttackState::ECS_None)
-	//		continue;
+	// 특정 ActiveSkill 에 바인딩 되는 옵션값들 캐싱. 
+	for (auto* IBSkillState : InIBSkillStates)
+	{
+		// Cache all skill options related to this 
+		if (IBSkillState->GetAttackState() == EAttackState::ECS_None)
+			continue;
 
-	//	TArray<FSkillOptionData> SkillOptions;
-	//	SkillRTManager->GetAllSkillOptionValues(IBSkillState->SkillID, SkillOptions);
+		TArray<FSkillOptionData> SkillOptions;
+		SkillRTManager->GetAllSkillOptionValues(IBSkillState->SkillID, SkillOptions);
 
-	//	if(SkillOptions.Num() == 0 && IBSkillState->GetAttackState() == EAttackState::ECS_WeaponSkill)
-	//		SkillRTManager->GetAllSkillOptionValuesForUnitySkill(SkillOptions);
+		if(SkillOptions.Num() == 0 && IBSkillState->GetAttackState() == EAttackState::ECS_WeaponSkill)
+			SkillRTManager->GetAllSkillOptionValuesForUnitySkill(SkillOptions);
 
-	//	for (auto& SkillOption : SkillOptions)
-	//	{
-	//		bool bIsPercent = IsPercentValue(SvrToCliSkillOption(SkillOption.OptionId));
-	//		CachedActiveSkillOptionData.Add(GetSkillKey(IBSkillState->GetAttackState(), SvrToCliSkillOption(SkillOption.OptionId)), 
-	//			bIsPercent ? SkillOption.OptionValue * 0.01f : SkillOption.OptionValue);
-	//	}
-	//}
+		for (auto& SkillOption : SkillOptions)
+		{
+			bool bIsPercent = IsPercentValue(SvrToCliSkillOption(SkillOption.OptionId));
+			CachedActiveSkillOptionData.Add(GetSkillKey(IBSkillState->GetAttackState(), SvrToCliSkillOption(SkillOption.OptionId)), 
+				bIsPercent ? SkillOption.OptionValue * 0.01f : SkillOption.OptionValue);
+		}
+	}
 }
 

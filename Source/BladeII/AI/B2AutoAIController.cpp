@@ -19,6 +19,8 @@
 #include "Event.h"
 #include "B2DestructibleLevelObjBase.h"
 #include "BladeIIAIController.h"
+#include "NavigationSystem.h"
+
 
 AB2AutoAIController::AB2AutoAIController(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
@@ -380,47 +382,54 @@ ABladeIICharacter* AB2AutoAIController::PickOneInterestedWaveMob()
 
 class AActor* AB2AutoAIController::PickOneInterestedDestructible()
 {
-	//auto* PossessedPlayer = Cast<ABladeIIPlayer>(GetPawn());
-	//auto* B2SGM = Cast<AB2StageGameMode>(UGameplayStatics::GetGameMode(GetWorld()));
-	//auto* StageManager = B2SGM ? B2SGM->GetStageManager() : NULL;
+	auto* PossessedPlayer = Cast<ABladeIIPlayer>(GetPawn());
+	auto* B2SGM = Cast<AB2StageGameMode>(UGameplayStatics::GetGameMode(GetWorld()));
+	auto* StageManager = B2SGM ? B2SGM->GetStageManager() : NULL;
 
-	//if (!PossessedPlayer)
-	//	return NULL;
+	if (!PossessedPlayer)
+		return NULL;
 
-	//const FVector PlayerLocation = PossessedPlayer->GetActorLocation();
+	const FVector PlayerLocation = PossessedPlayer->GetActorLocation();
 
-	//TArray<AB2DestructibleLevelObjBase*> Objects;
-	//ABladeIIGameMode* B2GM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(this));
-	//BII_CHECK(B2GM);
-	//if (B2GM) {
-	//	Objects = B2GM->GetDestructibleList();
-	//}
+	TArray<AB2DestructibleLevelObjBase*> Objects;
+	ABladeIIGameMode* B2GM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(this));
+	BII_CHECK(B2GM);
+	if (B2GM)
+	{
+		Objects = B2GM->GetDestructibleList();
+	}
 
-	//// Could be various conditions, but let's just pick up the closest one.
-	//float ClosestDistanceSQ = BIG_NUMBER;
+	// Could be various conditions, but let's just pick up the closest one.
+	float ClosestDistanceSQ = BIG_NUMBER;
 	AActor* SelectedOne = NULL;
 
-	//for (auto* mob : Objects)
-	//{
-	//	if (!mob->IsValidObj())
-	//		continue;
+	for (auto* mob : Objects)
+	{
+		if (!IsValid(mob))
+			continue;
 
-	//	//const float CurrDistSQ = (mob->GetActorLocation() - PlayerLocation).SizeSquared();
-	//	float CurrDistSQ = FLT_MAX;
-	//	FHitResult Result;
-	//	//GetWorld()->LineTraceSingleByChannel(Result, PlayerLocation, mob->GetActorLocation(), ECC_WorldStatic, FCollisionQueryParams(NAME_None, false, UGameplayStatics::GetLocalPlayerCharacter(this)));
-	//	if (Result.bBlockingHit && Result.Actor == mob)
-	//	{
-	//		if (GetWorld()->GetNavigationSystem()->GetPathLength(PlayerLocation, mob->GetActorLocation(), CurrDistSQ) == ENavigationQueryResult::Success)
-	//		{
-	//			if (CurrDistSQ < ClosestDistanceSQ)
-	//			{
-	//				ClosestDistanceSQ = CurrDistSQ;
-	//				SelectedOne = mob;
-	//			}
-	//		}
-	//	}
-	//}
+		float CurrDistSQ = FLT_MAX;
+		FHitResult Result;
+		GetWorld()->LineTraceSingleByChannel(
+			Result, PlayerLocation, mob->GetActorLocation(),
+			ECC_WorldStatic,
+			FCollisionQueryParams(NAME_None, false, UGameplayStatics::GetPlayerController(this, 0))
+		);
+
+		if (Result.bBlockingHit && Result.GetActor() == mob)
+		{
+			UNavigationSystemV1* NavSys = FNavigationSystem::GetCurrent<UNavigationSystemV1>(GetWorld());
+			FVector::FReal  PathLen = 0.f;
+			if (NavSys && NavSys->GetPathLength(PlayerLocation, mob->GetActorLocation(), PathLen) == ENavigationQueryResult::Success)
+			{
+				if (CurrDistSQ < ClosestDistanceSQ)
+				{
+					ClosestDistanceSQ = CurrDistSQ;
+					SelectedOne = mob;
+				}
+			}
+		}
+	}
 	return SelectedOne;
 }
 

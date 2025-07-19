@@ -5,6 +5,7 @@
 #include "BladeIIUserWidget.h"
 #include "B2Airport.h"
 #include "B2WingUIP_PropOptionIcon.h"
+#include "../B2RichTextBlock.h"
 #include "B2WingUIP_PropOptionDetail.generated.h"
 
 /**
@@ -38,15 +39,15 @@ protected:
 
 	// They might just going in WS_PerOptionStateSet 
 	TWeakObjectPtr<UOverlay> OV_EnhanceBtnSet;
-		TWeakObjectPtr<UB2Button> BTN_Enhance;
-		TWeakObjectPtr<UTextBlock> TB_DoEnhance;
-		TWeakObjectPtr<UTextBlock> TB_RequiredFeatherNum;
-		
+	TWeakObjectPtr<UB2Button> BTN_Enhance;
+	TWeakObjectPtr<UTextBlock> TB_DoEnhance;
+	TWeakObjectPtr<UTextBlock> TB_RequiredFeatherNum;
+
 	TWeakObjectPtr<UB2Button> BTN_DoEnhance;
 	TWeakObjectPtr<UImage> IMG_Feather;
 
 	TWeakObjectPtr<UOverlay> OV_AtMaxLevelSet;
-		TWeakObjectPtr<UTextBlock> TB_AtMaxLevel;
+	TWeakObjectPtr<UTextBlock> TB_AtMaxLevel;
 
 	TWeakObjectPtr<UB2RichTextBlock> TB_UnlockInfo;
 
@@ -54,14 +55,14 @@ protected:
 	TWeakObjectPtr<UTextBlock> TB_EnhanceProgress;
 
 	TWeakObjectPtr<UOverlay> OV_AtNextLevelSet;
-		TWeakObjectPtr<UTextBlock> TB_AtNextLevel;
+	TWeakObjectPtr<UTextBlock> TB_AtNextLevel;
 
 public:
 
 	UB2WingUIP_PropOptionDetail(const FObjectInitializer& ObjectInitializer);
-	
+
 	virtual void CacheAssets() override;
-		
+
 	void SetMyOptionInfo(int32 InMyOptionIndex, const FB2Wing& InWingData, const FWingPropOption& InOptionData); // WingData is needed for reference data lookup.
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "BladeII")

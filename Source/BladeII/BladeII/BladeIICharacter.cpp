@@ -580,24 +580,24 @@ void ABladeIICharacter::TriggerKillMonster()
 
 void ABladeIICharacter::OnDeath(float KillingDamage, struct FDamageEvent const& DamageEvent, class APawn* PawnInstigator, class AActor* DamageCauser)
 {
-//	//BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_OnDeath);
-//#if !UE_BUILD_SHIPPING
-//	// 여긴 좀 더 정보를 줘서 트랙킹.
-//	FString ScopedTrackString = FString::Printf(TEXT("ABladeIICharacter::OnDeath %s by %s"), *GetName(), PawnInstigator ? *PawnInstigator->GetName() : TEXT("Unknown"));
-//	B2_SCOPED_TRACK_LOG(ScopedTrackString);
-//#endif
-//
-//	if (bIsDying)
-//	{
-//		return;
-//	}
+	//BLADE2_SCOPE_CYCLE_COUNTER(ABladeIICharacter_OnDeath);
+#if !UE_BUILD_SHIPPING
+	// 여긴 좀 더 정보를 줘서 트랙킹.
+	FString ScopedTrackString = FString::Printf(TEXT("ABladeIICharacter::OnDeath %s by %s"), *GetName(), PawnInstigator ? *PawnInstigator->GetName() : TEXT("Unknown"));
+	B2_SCOPED_TRACK_LOG(ScopedTrackString);
+#endif
 
-	//bReplicateMovement = false;
-	//bTearOff = true;
-	//bIsDying = true; // Animation Blueprint 로 보내는 신호. 스테이지 진행이나 연출 트리거 차원에서의 처리는 네이티브서 하지만 몬스터의 전투 모션을 중단하고 dead 모션을 취하는 건 이걸 통해 들어감.
-	//bCanBeDamaged = false;
+	if (bIsDying)
+	{
+		return;
+	}
+	SetReplicateMovement(false);
+	SetCanBeDamaged(false);
+
+	TearOff();
+	bIsDying = true; // Animation Blueprint 로 보내는 신호. 스테이지 진행이나 연출 트리거 차원에서의 처리는 네이티브서 하지만 몬스터의 전투 모션을 중단하고 dead 모션을 취하는 건 이걸 통해 들어감.
 	SetQTEEnabled(false);
-	//bAbleToMove = false;
+	bAbleToMove = false;
 
 	if (QTEType != EQTEType::EQT_Mount)
 		SetQTEStateFlag(false);

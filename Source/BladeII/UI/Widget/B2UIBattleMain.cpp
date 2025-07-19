@@ -1845,21 +1845,22 @@ void UB2UIBattleMain::OnCompleteAsyncLoad(const FString& RequesetName)
 
 void UB2UIBattleMain::ProcessEvadeCoolTimeUI()
 {
-	//if (IMG_EvadeSkillCooltime.IsValid())
-	//{
-	//	ABladeIIPlayer* pPlayer = Cast<ABladeIIPlayer>(UGameplayStatics::GetLocalPlayerCharacter(this));
+	if (IMG_EvadeSkillCooltime.IsValid())
+	{
+		APlayerController* PC = UGameplayStatics::GetPlayerController(this, 0);
+		ABladeIIPlayer* pPlayer = PC ? Cast<ABladeIIPlayer>(PC->GetCharacter()) : nullptr;
 
-	//	if (pPlayer)
-	//	{
-	//		//쿨타임 머터리얼 처리
-	//		UMaterialInstanceDynamic* pMID = IMG_EvadeSkillCooltime->GetDynamicMaterial();
+		if (pPlayer)
+		{
+			//쿨타임 머터리얼 처리
+			UMaterialInstanceDynamic* pMID = IMG_EvadeSkillCooltime->GetDynamicMaterial();
 
-	//		if (pMID)
-	//		{
-	//			pMID->SetScalarParameterValue(MtrlParamName_CoolTimeRingProgress, pPlayer->GetEvadeCoolTimeProgress());
-	//		}
-	//	}
-	//}
+			if (pMID)
+			{
+				pMID->SetScalarParameterValue(MtrlParamName_CoolTimeRingProgress, pPlayer->GetEvadeCoolTimeProgress());
+			}
+		}
+	}
 }
 
 bool UB2UIBattleMain::CheckInDebuffAction()

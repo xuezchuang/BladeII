@@ -915,8 +915,8 @@ public:
 	int32 IsInAutoPlay() const;
 
 	/** Returns controller for this actor. */
-	//UFUNCTION(BlueprintCallable, Category = "BladeII")
-	//class AB2AutoAIController* GetAutoAIController() const;
+	UFUNCTION(BlueprintCallable, Category = "BladeII")
+	class AB2AutoAIController* GetAutoAIController() const;
 
 	/** Direct Start/Stop AutoPlay of Player Character. Direct use of these interfaces could be temporary purpose. 
 	 * You may want to check GameMode PlayerAutoState interfaces for more formal auto state on/off.*/

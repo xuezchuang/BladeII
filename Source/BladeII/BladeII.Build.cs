@@ -34,7 +34,9 @@ public class BladeII : ModuleRules
 			"B2GameLoadingScreen",
 			"B2Network",
 			"PakFile",
-            "LevelSequence"
+            "LevelSequence",
+            "RenderCore",
+            "NavigationSystem"
         });
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });

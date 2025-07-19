@@ -564,8 +564,8 @@ struct FMonsterSpawnPoolWaveLevelStreamingSettings
 	EWaveCustomEventTiming EventTiming;
 
 	/** The main setting here. */
-	//UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Wave")
-	//FB2StageStreamingSettings StreamingSetting;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Wave")
+	FB2StageStreamingSettings StreamingSetting;
 
 	FTimerHandle StreamingSettingFlushTH;
 };

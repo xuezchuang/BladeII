@@ -79,7 +79,7 @@
 #include "B2ServerResultCodeTable.h"
 #include "B2CodeTable.h"
 #include "FairyManager.h"
-#include "../BladeII.h"
+
 
 
 
@@ -1791,22 +1791,23 @@ void DrawDebugText(float InStartX, float InStartY, const FString& InText, const 
 	}
 #endif
 }
-//#if WITH_BII_ON_SCREEN_DEBUG_TEXT
-///** 이건 한번만 콜하면 정해진 시간동안 디스플레이 된다. 대신 위치는 정해져 있음 */
-//void DrawTimedDebugText(const FString& InText, const FLinearColor& InFontColor, int32 InFontSize, float InDisplayTime, bool bDrawShadow, const FLinearColor& InShadowColor)
-//{
-//	if (UB2UIManager::IsInstanceNull()) { // 여기서 GetInstance 를 할 때에 생성이 되도록 하지 않는다. 특히 FB2ScopedCallTracker 에 사용되기 때문에 UIManager 가 Unload 된 시점에도 불리게 될 수 있다.
-//		return;
-//	}
-//
-//	UB2UIManager* UIMgr = UB2UIManager::GetInstance();
-//	UB2DebugTextWidget* ScreenDebugTextWidget = UIMgr ? UIMgr->GetScreenDebugTextWidget() : NULL;
-//	if (ScreenDebugTextWidget)
-//	{
-//		ScreenDebugTextWidget->AddTimedDrawText(InText, InFontColor, InFontSize, InDisplayTime, bDrawShadow, InShadowColor);
-//	}
-//}
-//#endif
+
+#if WITH_BII_ON_SCREEN_DEBUG_TEXT
+/** 이건 한번만 콜하면 정해진 시간동안 디스플레이 된다. 대신 위치는 정해져 있음 */
+void DrawTimedDebugText(const FString& InText, const FLinearColor& InFontColor, int32 InFontSize, float InDisplayTime, bool bDrawShadow, const FLinearColor& InShadowColor)
+{
+	if (UB2UIManager::IsInstanceNull()) { // 여기서 GetInstance 를 할 때에 생성이 되도록 하지 않는다. 특히 FB2ScopedCallTracker 에 사용되기 때문에 UIManager 가 Unload 된 시점에도 불리게 될 수 있다.
+		return;
+	}
+
+	UB2UIManager* UIMgr = UB2UIManager::GetInstance();
+	UB2DebugTextWidget* ScreenDebugTextWidget = UIMgr ? UIMgr->GetScreenDebugTextWidget() : NULL;
+	if (ScreenDebugTextWidget)
+	{
+		ScreenDebugTextWidget->AddTimedDrawText(InText, InFontColor, InFontSize, InDisplayTime, bDrawShadow, InShadowColor);
+	}
+}
+#endif
 
 bool IsUsingMobileRendering(UWorld* InWorld)
 {
@@ -1830,7 +1831,8 @@ void TurnOffMeshComponentsDyamicShadowForModulated(AActor* InOwnerActor)
 
 	if (InOwnerActor && ShouldUsePerObjectModulatedShadow(InOwnerActor->GetWorld()))
 	{
-		TArray<UActorComponent*> AllMeshComps = InOwnerActor->GetComponentsByClass(UMeshComponent::StaticClass());
+		TArray<UActorComponent*> AllMeshComps;
+		InOwnerActor->GetComponents(AllMeshComps);
 		for (UActorComponent* ThisActorComp : AllMeshComps)
 		{
 			UMeshComponent* ThisMeshComp = Cast<UMeshComponent>(ThisActorComp);

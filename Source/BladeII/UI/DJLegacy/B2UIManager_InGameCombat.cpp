@@ -31,8 +31,8 @@ AB2UIManager_InGameCombat::AB2UIManager_InGameCombat(const FObjectInitializer& O
 	//bReplicates = false;
 	NetUpdateFrequency = 10.0f;
 	//bHidden = true;
-	//bReplicateMovement = false;
-	//bCanBeDamaged = false;
+	SetReplicateMovement(false);
+	SetCanBeDamaged(false);
 
 	TempCurrentOpenCenterPopup = NULL;
 	PlayerHUDManager = NULL;

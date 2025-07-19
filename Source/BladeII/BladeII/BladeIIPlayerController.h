@@ -188,8 +188,8 @@ protected:
 
 	/** AI controller for auto play. In auto play mode, player is possessed by both player controller and this auto AI controller.
 	* We assume player is in auto play mode if AutoAIController reference is valid. */
-	//UPROPERTY()
-	//class AB2AutoAIController* AutoAIController;
+	UPROPERTY()
+	class AB2AutoAIController* AutoAIController;
 
 	/** Total skill management. Normal skill, resurrection, tag, etc.. */
 	UPROPERTY(Transient)
@@ -245,7 +245,7 @@ public:
 	bool MoveToActor(AActor* Goal, float AcceptanceRadius);
 
 	UFUNCTION(BlueprintCallable, Category = "BladeIIGame")
-	//AB2AutoAIController* GetAutoAIController() const { return AutoAIController; }
+	AB2AutoAIController* GetAutoAIController() const { return AutoAIController; }
 	bool IsFineToStartAnyNewInputHandling() const {
 		return bStageEndNonCombatState == false && (IsInCinematicMode() == false || IsInputDisabledCinematicMode() == false);
 	}

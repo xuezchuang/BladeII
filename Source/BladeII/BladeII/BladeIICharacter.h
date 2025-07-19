@@ -734,7 +734,7 @@ struct FMobSpawnedBirthplaceInfo
 
 	FMobSpawnedBirthplaceInfo()
 	{
-		//Birthplace = NULL;
+		Birthplace = NULL;
 		WaveNumber = -1;
 		WaveObjIndex = -1;
 		bSpawnedAsBossMob = false;
@@ -742,20 +742,20 @@ struct FMobSpawnedBirthplaceInfo
 		bOwnerDeathReported = false;
 	}
 
-	//FMobSpawnedBirthplaceInfo(class AB2MonsterSpawnPool* InBirthplace,
-	//	int32 InWaveNum, int32 InWaveObjIndex, bool bInBossMob, bool bInSummoned)
-	//{
-	//	Birthplace = InBirthplace;
-	//	WaveNumber = InWaveNum;
-	//	WaveObjIndex = InWaveObjIndex;
-	//	bSpawnedAsBossMob = bInBossMob;
-	//	bIsSummoned = bInSummoned;
-	//	bOwnerDeathReported = false; // Intended to be initially false in any case.
-	//}
+	FMobSpawnedBirthplaceInfo(class AB2MonsterSpawnPool* InBirthplace,
+		int32 InWaveNum, int32 InWaveObjIndex, bool bInBossMob, bool bInSummoned)
+	{
+		Birthplace = InBirthplace;
+		WaveNumber = InWaveNum;
+		WaveObjIndex = InWaveObjIndex;
+		bSpawnedAsBossMob = bInBossMob;
+		bIsSummoned = bInSummoned;
+		bOwnerDeathReported = false; // Intended to be initially false in any case.
+	}
 
 	/** The spawn pool that its owning character born, if any. Must be null for characters directly placed on the map. */
-	//UPROPERTY()
-	//class AB2MonsterSpawnPool* Birthplace;
+	UPROPERTY()
+	class AB2MonsterSpawnPool* Birthplace;
 
 	/** The wave number that its owning character belongs within wave settings of BirthPlace. */
 	int32 WaveNumber;

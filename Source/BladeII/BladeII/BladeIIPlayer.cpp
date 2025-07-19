@@ -2398,7 +2398,7 @@ float ABladeIIPlayer::GetTargetDistance() const
 int32 ABladeIIPlayer::GetCounterMotionIncrease() const
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_GetCounterMotionIncrease);
-	return /*CachedSkillRTManager ? CachedSkillRTManager->GetCounterMotionInc() :*/ 0;
+	return CachedSkillRTManager ? CachedSkillRTManager->GetCounterMotionInc() : 0;
 }
 
 void ABladeIIPlayer::ForceFeedback() const
@@ -2406,14 +2406,14 @@ void ABladeIIPlayer::ForceFeedback() const
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_ForceFeedback);
 	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIPlayer::ForceFeedback"));
 
-	//ABladeIIPlayerController* PC = Cast<ABladeIIPlayerController>(GetController());
-	//if (PC && IsPlayerControlled())
-	//{
-	//	if (IsVibration())
-	//	{
-	//		PC->ClientPlayForceFeedback(ForceFeedbackSetting, false, FName());
-	//	}
-	//}
+	ABladeIIPlayerController* PC = Cast<ABladeIIPlayerController>(GetController());
+	if (PC && IsPlayerControlled())
+	{
+		if (IsVibration())
+		{
+			PC->ClientPlayForceFeedback(ForceFeedbackSetting);
+		}
+	}
 }
 
 void ABladeIIPlayer::StopForceFeedback() const
@@ -2421,13 +2421,13 @@ void ABladeIIPlayer::StopForceFeedback() const
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_StopForceFeedback);
 	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIPlayer::StopForceFeedback"));
 
-	//ABladeIIPlayerController* PC = Cast<ABladeIIPlayerController>(GetController());
-	//if (PC && IsPlayerControlled())
+	ABladeIIPlayerController* PC = Cast<ABladeIIPlayerController>(GetController());
+	if (PC && IsPlayerControlled())
 	{
-		/*if (IsVibration())
+		if (IsVibration())
 		{
 			PC->ClientStopForceFeedback(ForceFeedbackSetting, FName());
-		}*/
+		}
 	}
 }
 
@@ -2898,15 +2898,15 @@ int32 ABladeIIPlayer::IsInAutoPlay() const
 	return InAutoPlay;
 }
 
-//AB2AutoAIController* ABladeIIPlayer::GetAutoAIController() const
-//{
-//	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_GetAutoAIController);
-//	ABladeIIPlayerController* B2PC = Cast<ABladeIIPlayerController>(GetController());
-//	if (B2PC == nullptr)
-//		return nullptr;
-//
-//	return B2PC->GetAutoAIController();
-//}
+AB2AutoAIController* ABladeIIPlayer::GetAutoAIController() const
+{
+	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_GetAutoAIController);
+	ABladeIIPlayerController* B2PC = Cast<ABladeIIPlayerController>(GetController());
+	if (B2PC == nullptr)
+		return nullptr;
+
+	return B2PC->GetAutoAIController();
+}
 
 // 이쪽의 Start/StopAutoPlay 를 직접 사용하는 것은 일시적으로 Auto 를 On/Off 하거나 AI 플레이어의 경우이고
 // 일반적인 게임모드에서 Auto 를 On/Off 할 때에는 GameMode 쪽 인터페이스를 사용해야 상태가 유지된다.

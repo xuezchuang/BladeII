@@ -96,35 +96,36 @@ void AB2LevelDoorBase::Tick(float DeltaTime)
 void AB2LevelDoorBase::NotifyActorCustomEvent(FName OptionalEventName, UObject* OptionalNotifyingObject)
 {
 	//Super::NotifyActorCustomEvent(OptionalEventName, OptionalNotifyingObject);
-	//
-	//// DoorEnableType 이랑 기타 설정에 따라 해당하는 Event 이면 bDoorEnabled 세팅..
-	//SetFlagByTriggerEnableTypeCommon(bDoorEnabled, NewDoorEnableType, OptionalEventName, EnableDoorEventName, DisableDoorEventName);
+	
+	// DoorEnableType 이랑 기타 설정에 따라 해당하는 Event 이면 bDoorEnabled 세팅..
+	SetFlagByTriggerEnableTypeCommon(bDoorEnabled, NewDoorEnableType, OptionalEventName, EnableDoorEventName, DisableDoorEventName);
 
-	//if (bDoorEnabled && DoorOpenType == ELevelDoorOpenType::EDOT_SomebodyOverlap)
-	//{
-	//	// 약간 특수 케이스로 플레이어가 붙어 있다면 한번 열어주자.
-	//	ABladeIIPlayer* B2Player = Cast<ABladeIIPlayer>(UGameplayStatics::GetLocalPlayerCharacter(this));
-	//	if (B2Player && IsOverlappingActor(B2Player))
-	//	{
-	//		NativeDoorOpen(B2Player);
-	//	}
-	//}
+	if (bDoorEnabled && DoorOpenType == ELevelDoorOpenType::EDOT_SomebodyOverlap)
+	{
+		// 약간 특수 케이스로 플레이어가 붙어 있다면 한번 열어주자.
+		APlayerController* PC = UGameplayStatics::GetPlayerController(this, 0);
+		ABladeIIPlayer* B2Player = PC ? Cast<ABladeIIPlayer>(PC->GetCharacter()) : nullptr;
+		if (B2Player && IsOverlappingActor(B2Player))
+		{
+			NativeDoorOpen(B2Player);
+		}
+	}
 }
 
 void AB2LevelDoorBase::NotifyActorBeginOverlap(AActor* OtherActor)
 {
-	//Super::NotifyActorBeginOverlap(OtherActor);
+	Super::NotifyActorBeginOverlap(OtherActor);
 
-	//ABladeIICharacter* CastedCharacter = Cast<ABladeIICharacter>(OtherActor);
-	//ABladeIIPlayer* CastedPlayer = Cast<ABladeIIPlayer>(OtherActor);
+	ABladeIICharacter* CastedCharacter = Cast<ABladeIICharacter>(OtherActor);
+	ABladeIIPlayer* CastedPlayer = Cast<ABladeIIPlayer>(OtherActor);
 
-	//if (bDoorEnabled &&
-	//	DoorOpenType == ELevelDoorOpenType::EDOT_SomebodyOverlap &&
-	//	CastedCharacter && CastedCharacter->IsValidObj() && // Allow only for approach by a character, not other object (e.g. projectiles).
-	//	(bOnlyPlayerCanOpen == false || CastedPlayer != NULL))
-	//{
-	//	NativeDoorOpen(CastedCharacter);
-	//}
+	if (bDoorEnabled &&
+		DoorOpenType == ELevelDoorOpenType::EDOT_SomebodyOverlap &&
+		IsValid(CastedCharacter) && // Allow only for approach by a character, not other object (e.g. projectiles).
+		(bOnlyPlayerCanOpen == false || CastedPlayer != NULL))
+	{
+		NativeDoorOpen(CastedCharacter);
+	}
 }
 
 void AB2LevelDoorBase::NotifyActorEndOverlap(AActor* OtherActor)

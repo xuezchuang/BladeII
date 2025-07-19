@@ -236,20 +236,20 @@ public:
 
 	virtual void BeginPlay() override;
 
-	//virtual void PreSave(FObjectPreSaveContext SaveContext) override;
+	virtual void PreSave(FObjectPreSaveContext SaveContext) override;
 
 	void InitDefaultPlayerCameraSetting();
 
 	///** To be back to player top-down camera with world default camera setting at any goddamn moment.
 	// * It will use default object value if DefaultPlayerCameraSettings override none. */
-	//void ApplyDefaultPlayerCameraSetting(class ABladeIIPlayerController* InB2PC, float BlendTime = 0.0f, enum EViewTargetBlendFunction BlendFunc = VTBlend_Cubic, bool bNoSetViewTarget = false);
+	void ApplyDefaultPlayerCameraSetting(class ABladeIIPlayerController* InB2PC, float BlendTime = 0.0f, enum EViewTargetBlendFunction BlendFunc = VTBlend_Cubic, bool bNoSetViewTarget = false);
 
 	void ApplyDefaultPlayerCameraSettingForPlayerPawn(class ABladeIIPlayer* targetPlayer);
 
 	void ApplyPlayerLightSettingForPlayerPawn(class ABladeIIPlayer* targetPlayer);
 
-	//FText GetLocalizedAreaNameText();
-	//FText GetLocalizedAreaSubNameText();
+	FText GetLocalizedAreaNameText();
+	FText GetLocalizedAreaSubNameText();
 
 	bool IsDynamicShadowDisallowedWave(int32 InCurrClientStage, int32 InCurrDifficulty, int32 InCheckWaveNum) const;
 

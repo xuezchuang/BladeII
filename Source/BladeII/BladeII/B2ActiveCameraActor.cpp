@@ -338,14 +338,15 @@ void AB2ActiveCameraActor::OnComponentBeginOverlapCallback(UPrimitiveComponent* 
 
 void AB2ActiveCameraActor::OnComponentEndOverlapCallback(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	//ABladeIIPlayer* B2Player = Cast<ABladeIIPlayer>(OtherActor);
-	//ABladeIIPlayer* B2LocalPlayer = Cast<ABladeIIPlayer>(UGameplayStatics::GetLocalPlayerCharacter(this));
+	ABladeIIPlayer* B2Player = Cast<ABladeIIPlayer>(OtherActor);
+	APlayerController* PC = UGameplayStatics::GetPlayerController(this, 0);
+	ABladeIIPlayer* B2LocalPlayer = PC ? Cast<ABladeIIPlayer>(PC->GetCharacter()) : nullptr;
 
-	//if (TriggerMode == EActiveCameraTriggerMode::EACTRG_ToggleByComponent &&
-	//	B2Player && B2LocalPlayer && B2Player == B2LocalPlayer)
-	//{
-	//	// 여기선 딱히 처리 안해도 될 듯.
-	//}
+	if (TriggerMode == EActiveCameraTriggerMode::EACTRG_ToggleByComponent &&
+		B2Player && B2LocalPlayer && B2Player == B2LocalPlayer)
+	{
+		// 여기선 딱히 처리 안해도 될 듯.
+	}
 }
 
 void AB2ActiveCameraActor::RegisterComponentOverlapCallback()

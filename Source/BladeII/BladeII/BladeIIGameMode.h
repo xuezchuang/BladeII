@@ -515,25 +515,25 @@ public:
 	 * If InSelectedGraphicsLevel is GraphicsLevel_End, it will read saved value from ini. */
 	virtual void ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel = EB2GraphicsLevel::GraphicsLevel_End, EB2ResolutionLevel InSelectedResLevel = EB2ResolutionLevel::End);
 	virtual FString GetGameModeScalabilitySettingSectionPostfix() const;
-//	void UpdateManagedActorList(); // Add some type of B2 level deployed actors for our management.
-//protected:
-//	void RemoveAllManagedActors();
-//
+	void UpdateManagedActorList(); // Add some type of B2 level deployed actors for our management.
+protected:
+	void RemoveAllManagedActors();
+
 	virtual void SetDesiredPCClassEnum();
 
 	uint32 bEventsSubscribed : 1; // To un-subscribe only in subscribed GameMode object.
 	virtual void SubscribeEvents(); // Events of EventSubsystem
-//
-//	///////////////////////////////////////////////////////////////////////////////////////////////////////////
-//	//DLCGameMode를 제외한 모든 GameMode는 RAII로 구현 할 것
-//	//UnsubscribeEvents()를 개별로 호출해야 될 일이 있으면 안광익, 김규열팀장님 혹은 권영TD님에게 문의 할 것
-//	virtual void UnsubscribeEvents() final; //!!DO NOT Change & Use THIS METHOD!!
-//	///////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
+
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//DLCGameMode를 제외한 모든 GameMode는 RAII로 구현 할 것
+	//UnsubscribeEvents()를 개별로 호출해야 될 일이 있으면 안광익, 김규열팀장님 혹은 권영TD님에게 문의 할 것
+	virtual void UnsubscribeEvents() final; //!!DO NOT Change & Use THIS METHOD!!
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	/** To be executed at begin timing. meant to find relevant one for current stage number and difficulty. */
 	virtual void DecideAndSetActiveSpawnPool(bool bFallBackToLowerDifficulty = true);
-//
-//	virtual AActor* FindPlayerStartForCurrStage(AController* InController);
+
+	virtual AActor* FindPlayerStartForCurrStage(AController* InController);
 public:
 	void GoToTitle();
 
@@ -660,9 +660,9 @@ protected:
 	/** CharacterAboutToBeDestroyed will be gone after this call. It is like notification of setting NULL for references to CharacterAboutToBeDestroyed if any. */
 	virtual void NotifyForgetACharacter(class ABladeIICharacter* CharacterAboutToBeDestroyed);
 	
-//public:
-//	void StopAllStageEventDirector(class AB2StageEventDirector* skipDirector);
-//
+public:
+	void StopAllStageEventDirector(class AB2StageEventDirector* skipDirector);
+
 protected:
 	virtual void NotifyStageEventSceneBegin(class AB2StageEventDirector* BegunDirector, EStageEvent EventType);
 	/** Stage event scene end notification does not necessarily mean that all the show is played to the end. It can be stop at middle, and this notify must be still valid. */
@@ -753,7 +753,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "BladeIIGame")
 	virtual bool SummonFromSpawnPool(class ABladeIICharacter* Summoner, int32 SummonIndex, float MaxRadius);
 		
-	//FORCEINLINE class AB2UIManager_InGameCombat* GetUIManager_InGameCombat() { return UIManager_InGameCombat; }
+	FORCEINLINE class AB2UIManager_InGameCombat* GetUIManager_InGameCombat() { return UIManager_InGameCombat; }
 
 	/** Show a simple message text displayed at player HUD center, with optionally specifying DisplayTime.
 	 * Need to manually turn it off if DisplayTime is less or equal to zero. 
@@ -879,12 +879,12 @@ public:
 	virtual void ShowCachedCompleteQuestNotify();
 	virtual void OnQuestCompleteNotify(int32 QuestSlot);
 
-	//virtual EPCSpawnMotionState GetBornAgainSpawnMotionState() { return EPCSpawnMotionState::EPST_BornAgain; }
+	virtual EPCSpawnMotionState GetBornAgainSpawnMotionState() { return EPCSpawnMotionState::EPST_BornAgain; }
 	virtual void RealtimeUpdateUIDoc();
 
 	 
-	//virtual float GetTotalAttack(ICharacterDataStore*);
-	//virtual float GetTotalDefense(ICharacterDataStore*);
+	virtual float GetTotalAttack(ICharacterDataStore*);
+	virtual float GetTotalDefense(ICharacterDataStore*);
 
 	virtual void OverrideDamageInfo(FDamageInfo&, const ABladeIICharacter*);
 	virtual void OverridePauseForDuration(float pausetime, const ABladeIICharacter*);

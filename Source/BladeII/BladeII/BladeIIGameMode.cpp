@@ -1,4 +1,4 @@
-// Copyright 1998-2014 Epic Games, Inc. All Rights Reserved.
+ï»¿// Copyright 1998-2014 Epic Games, Inc. All Rights Reserved.
 
 
 #include "BladeIIGameMode.h"
@@ -105,13 +105,13 @@ extern void AndroidThunkCpp_StageMoviePlay(const FString& MovieName);
 #include "B2UIHallOfFame.h"
 
 #include "Engine/PawnIterator.h"
-#include "../../../../down/blade_dev_client/BladeII/Source/BladeII/Public/BladeIIUtil.h"
+#include "BladeIIUtil.h"
 
 #if BII_STATS
-bool FStatisticalPerfStatCollector::bDoStatCollecting = false; // ¸ŞÀÎ ÀÛµ¿ ÇÃ·¡±×. ¹Ù²Ù°Ô µÇ¸é ´ÙÀ½ ·¹º§¿¡¼­ Àû¿ë.
-bool FStatisticalPerfStatCollector::bSkipEventCinematics = false; // ÀÏ¹İÀûÀÎ ÀüÅõ Àå¸é¸¸ ÃøÁ¤ÇÏ°í ½ÍÀº °æ¿ì true ·Î. ¿¬Ãâ°ú ÀüÅõ¿¡¼­ »ç¿ëÇÏ´Â LOD °¡ ´Ù¸£±âµµ ÇÏ°í..
+bool FStatisticalPerfStatCollector::bDoStatCollecting = false; // çš‹ç‰¢ ç´¯æ‚¼ æ•²è´°å¼Š. å®˜æ“éœ¸ ç™»æ ä¿ƒæ¾œ é¥­éª‡ä¿Šè¾‘ åˆ©ä¾©.
+bool FStatisticalPerfStatCollector::bSkipEventCinematics = false; // è€é¦†åˆ©ç‰¢ å‚ˆæ§ å˜æçˆ¶ èŸæ²¥çªç»Š é…µç¯® ç‰ˆå¿« true è‚º. æ¥·å…è‹ å‚ˆæ§ä¿Šè¾‘ è¤ä¾©çªç»° LOD å•Š ä¿ƒç¦æ‰æ¡£ çªç»Š..
 bool FStatisticalPerfStatCollector::bIsCurrentlyInEventScene = false;
-float FStatisticalPerfStatCollector::SkipFrameTimeLimit = 1000.0f; // Æ¯Á¤ ÇÑµµ ÀÌ»óÀÇ Å« FrameTime ÀÌ °¨ÁöµÈ °Ç ¹º°¡ ·Îµù ½Ã°£ÀÌ µé¾î°¬°Å³ª ÇÑ °É·Î °£ÁÖÇÏ°í ½ºÅµ
+float FStatisticalPerfStatCollector::SkipFrameTimeLimit = 1000.0f; // æ¼‚æ²¥ èŒ„æ¡£ ææƒ‘ç‹¼ å¥´ FrameTime æ çš‘ç˜¤ç­‰ æ‰’ è´­å•Š è‚ºçˆ¹ çŸ«åŸƒæ ç”¸ç»¢è‰¾èŠ­å”± èŒ„ å§è‚º åŸƒæ—çªç»Š èƒ¶è¯º
 FStatisticalPerfStatCollector::FStatisticalPerfStatCollector()
 	: bInitialized(false), bDataAvailableForDisplay(false) 
 	, Result_GameThreadTime_Avg(0.0f), Result_RenderThreadTime_Avg(0.0f), Result_GPUTime_Avg(0.0f), Result_FrameTime_Avg(0.0f), Result_DrawCall_Avg(0), Result_PolyCount_Avg(0)
@@ -156,23 +156,23 @@ void FStatisticalPerfStatCollector::OnTick(ABladeIIGameMode* InB2GM, float InDel
 	//}
 
 	//if (bDataAvailableForDisplay)
-	//{ // ¼öÁıÇÑ °ªµéÀ» Ç¥½Ã
+	//{ // èç¬¼èŒ„ è”¼ç”¸é˜‘ é’çŸ«
 	//	DisplayResultStats(InB2GM);
 	//}
 	//else
-	//{ // ¾ÆÁ÷ µ¥ÀÌÅÍ ¼öÁı Áß		
+	//{ // é…’æµ å•æç£ èç¬¼ å		
 	//	if (!bSkipEventCinematics || !bIsCurrentlyInEventScene)
 	//	{
 	//		double FrameDiffTime = FApp::GetCurrentTime() - FApp::GetLastTime();
 	//		double FrameDiffTimeMs = FrameDiffTime * 1000.0;
-	//		if (FrameDiffTimeMs >= (double)SkipFrameTimeLimit) // ³Ê¹« Å« ÇÁ·¹ÀÓÅ¸ÀÓÀº ·Îµù Á÷ÈÄ Ã¹ ÇÁ·¹ÀÓÀÏ ¼ö ÀÖ´Ù..
+	//		if (FrameDiffTimeMs >= (double)SkipFrameTimeLimit) // å‘ˆå…¬ å¥´ æ©‡é¥­çƒ™é¸¥çƒ™ç¯® è‚ºçˆ¹ æµé¥¶ éœ‰ æ©‡é¥­çƒ™è€ è ä¹ä¿ƒ..
 	//		{
 	//			++SkippedFrameNum;
-	//			SkippedFrameTimeAvg += FrameDiffTimeMs; // Âü°í¿ëÀ¸·Î ÀÏ´Ü ´õÇØ³õ°í ÃÖÈÄ¿¡ Æò±Õ ³¿.
+	//			SkippedFrameTimeAvg += FrameDiffTimeMs; // æ›¼ç»Šä¾©æ è‚º è€çªœ æ­¹ç§¦åˆç»Š å¼¥é¥¶ä¿Š ä¹é—­ æ™¨.
 	//		}
 	//		else
 	//		{
-	//			// FStatUnitData ¿¡¼­.. ±×ÂÊ¼­´Â ±âÁ¸ ¼öÄ¡µé¿¡ 0.9 °¡ÁßÄ¡·Î ºí·»µùÀ» ÇØ¼­ Áï¼® LPF ¸¦ °Å´Âµ¥ ¿©±â¼± ÀÏ´Ü ¸ğÀº ÈÄ Åë°è¸¦ ³½´Ù.
+	//			// FStatUnitData ä¿Šè¾‘.. å¼Šç‡è¾‘ç»° æ‰ç²® èæ‘¹ç”¸ä¿Š 0.9 å•Šåæ‘¹è‚º å–‰åŠçˆ¹é˜‘ ç§¦è¾‘ æºœç± LPF ç”« èŠ­ç»°å• å’¯æ‰æ€¥ è€çªœ è‘›ç¯® é¥¶ çƒ¹æ‹Œç”« è¾°ä¿ƒ.
 	//			if (GGameThreadTime > 0) {
 	//				GameThreadTimes.AddValue(FPlatformTime::ToMilliseconds(GGameThreadTime));
 	//			}
@@ -202,7 +202,7 @@ void FStatisticalPerfStatCollector::OnEnd(ABladeIIGameMode* InB2GM)
 		return;
 	}
 
-	// ±×³É Æò±Õ
+	// å¼Šæˆ ä¹é—­
 	//Result_GameThreadTime_Avg = GameThreadTimes.GetTotalAverage();
 	//Result_RenderThreadTime_Avg = RenderThreadTimes.GetTotalAverage();
 	//Result_GPUTime_Avg = GPUTimes.GetTotalAverage();
@@ -210,7 +210,7 @@ void FStatisticalPerfStatCollector::OnEnd(ABladeIIGameMode* InB2GM)
 	//Result_DrawCall_Avg = DrawCalls.GetTotalAverage();
 	//Result_PolyCount_Avg = PolyCounts.GetTotalAverage();
 
-	// Ç¥ÁØÆíÂ÷
+	// é’éœ–ç¥ˆç’
 	Result_GameThreadTime_SD = GameThreadTimes.GetStandardDeviation();
 	Result_RenderThreadTime_SD = RenderThreadTimes.GetStandardDeviation();
 	Result_GPUTime_SD = GPUTimes.GetStandardDeviation();
@@ -218,7 +218,7 @@ void FStatisticalPerfStatCollector::OnEnd(ABladeIIGameMode* InB2GM)
 	Result_DrawCall_SD = DrawCalls.GetStandardDeviation();
 	Result_PolyCount_SD = PolyCounts.GetStandardDeviation();
 
-	// »óÀ§ 10% Æò±Õ
+	// æƒ‘å›° 10% ä¹é—­
 	//Result_GameThreadTime_Upper10 = GameThreadTimes.GetRangedAverage(true, 0.1f);
 	//Result_RenderThreadTime_Upper10 = RenderThreadTimes.GetRangedAverage(true, 0.1f);
 	//Result_GPUTime_Upper10 = GPUTimes.GetRangedAverage(true, 0.1f);
@@ -227,7 +227,7 @@ void FStatisticalPerfStatCollector::OnEnd(ABladeIIGameMode* InB2GM)
 	//Result_PolyCount_Upper10 = PolyCounts.GetRangedAverage(true, 0.1f);
 
 	if (SkippedFrameNum > 0 && SkippedFrameTimeAvg > 0.0)
-	{ // Âü°í¿ëÀ¸·Î ÀÌ°Íµµ µû·Î Æò±Õ.
+	{ // æ›¼ç»Šä¾©æ è‚º æå·´æ¡£ è¶è‚º ä¹é—­.
 		SkippedFrameTimeAvg /= (double)SkippedFrameNum;
 	}
 
@@ -236,7 +236,7 @@ void FStatisticalPerfStatCollector::OnEnd(ABladeIIGameMode* InB2GM)
 
 void FStatisticalPerfStatCollector::DisplayResultStats(ABladeIIGameMode* InB2GM)
 {
-#if WITH_BII_ON_SCREEN_DEBUG_TEXT // Shipping ¹öÀü¿¡¼­ PerfStatCollector ¸¦ ¾²°Ô µÇ¸é WITH_BII_ON_SCREEN_DEBUG_TEXT µµ °°ÀÌ..
+#if WITH_BII_ON_SCREEN_DEBUG_TEXT // Shipping æ»šå‚ˆä¿Šè¾‘ PerfStatCollector ç”« é™éœ¸ ç™»æ WITH_BII_ON_SCREEN_DEBUG_TEXT æ¡£ éæ..
 	int32 FontSize = 18;
 	int32 LineDist = 12;
 
@@ -283,7 +283,7 @@ void FStatisticalPerfStatCollector::DisplayResultStats(ABladeIIGameMode* InB2GM)
 	DrawY += (float)(FontSize + LineDist);
 	DrawDebugText(DrawX, DrawY, FString::Printf(TEXT("[10%%] Polygons : %d"), Result_PolyCount_Upper10), FLinearColor::Red, FontSize);
 
-	// ±× ¾Æ·¡¿¡ ±âÅ¸ Ãß°¡ Âü°í Á¤º¸. ¹Ù·Î ½º¼¦ Âï¾î¼­ ±â·ÏÇÏ±â ÁÁ°Ô
+	// å¼Š é…’è´°ä¿Š æ‰é¸¥ çœ å•Š æ›¼ç»Š æ²¥ç„Š. å®˜è‚º èƒ¶é¸¡ å˜›ç»¢è¾‘ æ‰åºŸçªæ‰ äº®éœ¸
 	DrawX = 10.0f;
 
 	DrawY += (float)((FontSize + LineDist) * 1);
@@ -293,7 +293,7 @@ void FStatisticalPerfStatCollector::DisplayResultStats(ABladeIIGameMode* InB2GM)
 
 	UWorld* TheWorld = InB2GM ? InB2GM->GetWorld() : nullptr;
 	ERHIFeatureLevel::Type RHIFeatureLevel = (TheWorld && TheWorld->Scene) ? TheWorld->Scene->GetFeatureLevel() : ERHIFeatureLevel::Num;
-	// UEnum ÀÌ ¾Æ´Ï¶ó¼­ ´çÀå ¹®ÀÚ¿­ º¯°æÀÌ ¾ÈµÊ ¤Ñ¤Ñ;
+	// UEnum æ é…’èªæ‰¼è¾‘ å¯¸å˜ å·©ç£Šå‡¯ å‡½ç‰ˆæ æ•‘å‡³ ã±ã±;
 	EShaderPlatform ShaderPlatform = GetFeatureLevelShaderPlatform(RHIFeatureLevel);
 	
 	FString PlatformAPIStr = FString::Printf(TEXT("Unknown.. ShaderPlatform %d"), (int32)ShaderPlatform);
@@ -324,26 +324,26 @@ void FStatisticalPerfStatCollector::DisplayResultStats(ABladeIIGameMode* InB2GM)
 	}		
 #elif PLATFORM_IOS
 	if (ShaderPlatform == EShaderPlatform::SP_METAL || ShaderPlatform == EShaderPlatform::SP_METAL_MRT){
-		PlatformAPIStr = TEXT("iOS Metal"); // Metal ±¸ºĞ ÀÌ°Å ¸Â³ª ¸ô¶ó.
+		PlatformAPIStr = TEXT("iOS Metal"); // Metal å¤‡ç›’ æèŠ­ å˜å”± éš”æ‰¼.
 	}
 	else{
 		PlatformAPIStr = TEXT("iOS");
 	}
 #endif
 
-	// °á°ú¿¡ ¿µÇâÀ» ¹ÌÄ¥ ¼ö ÀÖ´Â ±¸µ¿ È¯°æ ¹× ¼³Á¤µéÀ» Ç¥½Ã.
+	// æ¬è‹ä¿Š åº·æ°¢é˜‘ å›ºç£¨ è ä¹ç»° å¤‡æ‚¼ åˆ¸ç‰ˆ æ£º æ±²æ²¥ç”¸é˜‘ é’çŸ«.
 	{
 		Scalability::FQualityLevels CurrScalabilityLevel = Scalability::GetQualityLevels();
 		int32 TotalAdded =
 			CurrScalabilityLevel.AntiAliasingQuality +
 			CurrScalabilityLevel.EffectsQuality +
 			CurrScalabilityLevel.PostProcessQuality +
-			//InScalabilityLevel.ResolutionQuality + ÀÌ°Ç ¼öÄ¡°¡ Á» ´Ù¸£´Ï »©¾ß..
+			//InScalabilityLevel.ResolutionQuality + ææ‰’ èæ‘¹å•Š ç²± ä¿ƒç¦èª å“—å…·..
 			CurrScalabilityLevel.TextureQuality +
 			CurrScalabilityLevel.ShadowQuality +
 			CurrScalabilityLevel.ViewDistanceQuality +
 			CurrScalabilityLevel.GameplayOnlyLODQuality;
-		// È¤¿©³ª Ãß°¡µÉ Scalability Ç×¸ñ¿¡ ´ëÇÑ Ã³¸®°¡ ÇÊ¿äÇÏ±ä ÇÑµ¥ ±×·¸°Ô Á¤±³ÇÏ°Ô±îÁö ÇÒ ÇÊ¿ä´Â ¾øÀ» µí.
+		// è¶£å’¯å”± çœ å•Šçª Scalability äº²æ ¼ä¿Š æªèŒ„ è´¸åºœå•Š é˜å¤¸çªå˜ èŒ„å• å¼ŠçŠ¯éœ¸ æ²¥èƒŒçªéœ¸é³–ç˜¤ ä¸” é˜å¤¸ç»° ç»é˜‘ æ·€.
 		float AvergageScalabilityValue = (float)TotalAdded / 7.0f;
 
 		UPackage* WorldOuterMost = TheWorld ? TheWorld->GetOutermost() : nullptr;
@@ -376,7 +376,7 @@ void FStatisticalPerfStatCollector::DisplayResultStats(ABladeIIGameMode* InB2GM)
 	}
 
 	if (InB2GM)
-	{ // Ãß°¡·Î ÇÏÀ§ °ÔÀÓ¸ğµå ¼º°İ¿¡ µû¶ó Ç¥½ÃÇÒ °Å ÀÖÀ½.
+	{ // çœ å•Šè‚º çªå›° éœ¸çƒ™è‘›é› å·±æ‹œä¿Š è¶æ‰¼ é’çŸ«ä¸” èŠ­ ä¹æ¾œ.
 		InB2GM->DrawAdditionalPerfStatInfo(DrawX, DrawY + (float)(FontSize + LineDist));
 	}
 #endif
@@ -384,8 +384,8 @@ void FStatisticalPerfStatCollector::DisplayResultStats(ABladeIIGameMode* InB2GM)
 #endif
 
 #ifdef BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
-// ·Îµù ½Ã°£ ÃøÁ¤ ¿ë. 
-// ·Îµù ½Ã°£ÀÌ¾ß ±×³É º¸¸é ³ª¿À´Â °Å ¾Æ´Ï³Ä°í ÇÒ ¼ö ÀÖÁö¸¸ ÀÌ·±Àú·± ±â´É Å×½ºÆ®ÇØ °¡¸é¼­ º¸·Á¸é 1~2 ÃÊ ´ÜÃàµÇ´Â °Å Ã¼Å©ÇÒ ÇÊ¿ä°¡ ÀÖ¾î¼­ ³ÖÀ½.
+// è‚ºçˆ¹ çŸ«åŸƒ èŸæ²¥ ä¾©. 
+// è‚ºçˆ¹ çŸ«åŸƒæå…· å¼Šæˆ ç„Šæ å”±å·ç»° èŠ­ é…’èªè¡¬ç»Š ä¸” è ä¹ç˜¤çˆ¶ æç¹å†ç¹ æ‰ç“· æŠ›èƒ¶é£˜ç§¦ å•Šæè¾‘ ç„Šå¦¨æ 1~2 æª¬ çªœç»µç™»ç»° èŠ­ çœ‰å†œä¸” é˜å¤¸å•Š ä¹ç»¢è¾‘ æŒæ¾œ.
 bool gDisplayLoadingTimeTaken = false;
 static bool gLoadTimeCheckBeginMark = false;
 static double gLastLoadStartTime = 0.0;
@@ -401,13 +401,13 @@ void DevCheckLoadingTimeEnd()
 {
 	if (gDisplayLoadingTimeTaken && gLoadTimeCheckBeginMark)
 	{
-		// °ÔÀÓ ÄÚµå »óÀ¸·Î´Â ÀûÀıÇÑ À§Ä¡¿¡¼­ ·Îµù ½Ã°£ Ã¼Å©¸¦ ÇÑ´Ù°í ÇØµµ ·»´õ¾²·¹µå¿ÍÀÇ Å¸ÀÌ¹ÖÀ¸·Î ÀÎÇØ ½ÇÁ¦ Ã¼°¨ ·Îµù½Ã°£Àº ´Ù¸¦ ¼ö ÀÖ´Ù.
-		//FlushRenderingCommands(); // ±Ùµ¥ ÀÌ·¸°Ô ÇØµµ ¼Ò¿ëÀÌ ¾ø´Ü °Ç ÇÔÁ¤. °á±¹ ÀÌ°Ç Âü°í¿ëÀ¸·Î¸¸ ¾²°í ½ÇÁ¦ ·Îµù ½Ã°£ ÃøÁ¤Àº Á÷Á¢ ½ºÅé¿öÄ¡·Î...
+		// éœ¸çƒ™ å†…é› æƒ‘æ è‚ºç»° åˆ©ä¾‹èŒ„ å›°æ‘¹ä¿Šè¾‘ è‚ºçˆ¹ çŸ«åŸƒ çœ‰å†œç”« èŒ„ä¿ƒç»Š ç§¦æ¡£ åŠæ­¹é™é¥­é›å®¢ç‹¼ é¸¥ææ€ªæ è‚º ç‰¢ç§¦ è§’åŠ› çœ‰çš‘ è‚ºçˆ¹çŸ«åŸƒç¯® ä¿ƒç”« è ä¹ä¿ƒ.
+		//FlushRenderingCommands(); // è¾Ÿå• æçŠ¯éœ¸ ç§¦æ¡£ å®¶ä¾©æ ç»çªœ æ‰’ çªƒæ²¥. æ¬æƒ« ææ‰’ æ›¼ç»Šä¾©æ è‚ºçˆ¶ é™ç»Š è§’åŠ› è‚ºçˆ¹ çŸ«åŸƒ èŸæ²¥ç¯® æµç«‹ èƒ¶ç °å†µæ‘¹è‚º...
 		gLoadTimeCheckBeginMark = false;
 		double LoadingTimeTaken = FPlatformTime::Seconds() - gLastLoadStartTime;
 		UE_LOG(LogBladeII, Log, TEXT("[DevCheckLoadingTime] LastLoadingTime %f"), LoadingTimeTaken);
 
-		// ÀÌ°É ·»´õ¸µ ÇÒ ¼ö ÀÖ´Â ½ÃÁ¡ÀÌ·Á¸é UIManager °¡ ÃÊ±âÈ­ µÈ »óÅÂ¿©¾ß ÇÔ.
+		// æå§ åŠæ­¹å‚… ä¸” è ä¹ç»° çŸ«ç—¢æå¦¨æ UIManager å•Š æª¬æ‰æ‹³ ç­‰ æƒ‘æ€•å’¯å…· çªƒ.
 		BII_SCREEN_LOG(FString::Printf(TEXT("[DevCheckLoadingTime] LastLoadingTime %f"), LoadingTimeTaken),
 			FLinearColor(0.0, 1.0f, 0.0f, 1.0f), 16, 10.0f);
 	}
@@ -446,16 +446,16 @@ ABladeIIGameMode::ABladeIIGameMode(const FObjectInitializer& ObjectInitializer) 
 //	//CurrentPlayingAMB = NULL;
 //
 //	//if (!HasAnyFlags(RF_ClassDefaultObject))
-//	//{// Á¤½Ä °ÔÀÓ¿¡¼­ ÀÌ °ªÀÌ Ã³À½¿¡ true ¿©¾ß ÇØ¼­ ±âº»°ª true ·Î ¼¼ÆÃÇÏ´Ù º¸´Ï DLCFrontMap À» °ÅÄ¡Áö ¾Ê´Â °³¹ß¿ë Å×½ºÆ®¸¦ À§ÇØ ¿©±â µé¾î¿À¸é °Á ¹Ù²ãÁÜ.
-//	//	GMinimalDLCFrontMode = false; // ±×¸®°í ini ¿¡ ÀÌ°É true ·Î ÇØ¼­ ½ÃÀÛÇß´Ù ÇÏ´õ¶óµµ false ·Î ¹Ù²î¾î¼­ ¿¡µğÅÍ °°Àº °æ¿ì ¿ø·¡ ÀÇµµ¿Í ´Ù¸¥ µ¿ÀÛÀ» ÇÒ ¼ö ÀÖÀ» Å×´Ï Á¶½ÉÁ¶½É
+//	//{// æ²¥ä¾¥ éœ¸çƒ™ä¿Šè¾‘ æ è”¼æ è´¸æ¾œä¿Š true å’¯å…· ç§¦è¾‘ æ‰å¤¯è”¼ true è‚º æŠ€æ³¼çªä¿ƒ ç„Šèª DLCFrontMap é˜‘ èŠ­æ‘¹ç˜¤ è‡¼ç»° ä¿ºæƒ¯ä¾© æŠ›èƒ¶é£˜ç”« å›°ç§¦ å’¯æ‰ ç”¸ç»¢å·æ å‚² å®˜å±‚æ·‹.
+//	//	GMinimalDLCFrontMode = false; // å¼Šåºœç»Š ini ä¿Š æå§ true è‚º ç§¦è¾‘ çŸ«ç´¯æ²ä¿ƒ çªæ­¹æ‰¼æ¡£ false è‚º å®˜å·®ç»¢è¾‘ ä¿Šå¼ç£ éç¯® ç‰ˆå¿« ç›”è´° ç‹¼æ¡£å®¢ ä¿ƒå¼— æ‚¼ç´¯é˜‘ ä¸” è ä¹é˜‘ æŠ›èª ç‚¼ç¼´ç‚¼ç¼´
 //	//}
 //	//	
-//	//if (!GMinimalDLCFrontMode){ // DLC Front ¸ğµå ¸®¼Ò½º·Îµù ÃÖ´ëÇÑ Á¦°Å
+//	//if (!GMinimalDLCFrontMode){ // DLC Front è‘›é› åºœå®¶èƒ¶è‚ºçˆ¹ å¼¥æªèŒ„ åŠ›èŠ­
 //	//	FString PreLoadingScreenWidgetClassPath;
 //	//	GConfig->GetString(TEXT("/Script/BladeII"), TEXT("PreLoadingScreenWidgetClass"), PreLoadingScreenWidgetClassPath, GGameIni);
 //	//	static ConstructorHelpers::FClassFinder<UB2PreLoadingScreen> PreLoadingScreenClassFoundSet(*PreLoadingScreenWidgetClassPath);
 //	//	PreLoadingScreenWidgetClass = PreLoadingScreenClassFoundSet.Class;
-//	//	// ±âº»°ª µÑ ´Ù ¶È°°À½..
+//	//	// æ‰å¤¯è”¼ ç¬› ä¿ƒ åº¦éæ¾œ..
 //	//	PreLoadingScreenWidgetClass_PreRender = PreLoadingScreenClassFoundSet.Class;
 //	//}
 //
@@ -491,7 +491,7 @@ void ABladeIIGameMode::RecordDamageLog(const float ActualDamage, class ABladeIIC
 {
 	//if(NeedToRecordDamageLog(ActualDamage, Attacker))
 	//{
-	//	// ÀÏ¹İÀûÀÎ Local½ÇÇà ¸ğµå (Stage, ¿µ¿õÀÇ Å¾, ¹İ°İ´øÀü, ÆÀ´ëÀü)Àº Attacker°¡ LocalÀÏ ¶§ ±â·Ï
+	//	// è€é¦†åˆ©ç‰¢ Localè§’é’ è‘›é› (Stage, åº·æ—·ç‹¼ å•ª, é¦†æ‹œå¸¦å‚ˆ, è¯„æªå‚ˆ)ç¯® Attackerå•Š Localè€ é”­ æ‰åºŸ
 
 	//	DamageLogInfo.ActualDamage = ActualDamage;
 	//	DamageLogInfo.AttackerAccountID = Cast<ABladeIIPlayer>(Attacker)->GetAccountId();
@@ -517,7 +517,7 @@ void ABladeIIGameMode::SendDamageLog()
 TArray<EPCClass> ABladeIIGameMode::GetPCClassesToPreLoad()
 {
 	TArray<EPCClass> RetArray;
-	// ÇÏÀ§ Å¬·¡½º, Æ¯È÷ StageGameMode ¿¡¼­ ÇÊ¿äÇÑ ¾Öµé¸¸ ³Ö¾î¼­ ¸®ÅÏÇÏµµ·Ï ÇÏ±â À§ÇÔ..
+	// çªå›° åŠªè´°èƒ¶, æ¼‚æ´’ StageGameMode ä¿Šè¾‘ é˜å¤¸èŒ„ å±€ç”¸çˆ¶ æŒç»¢è¾‘ åºœç•”çªæ¡£åºŸ çªæ‰ å›°çªƒ..
 	for (int32 PCI = 0; PCI < GetMaxPCClassNum(); ++PCI)
 	{
 		RetArray.Add(IntToPCClass((PCI)));
@@ -526,7 +526,7 @@ TArray<EPCClass> ABladeIIGameMode::GetPCClassesToPreLoad()
 }
 TArray<EPCClass> ABladeIIGameMode::GetPCClassesToMatineePreLoad()
 {
-	return GetPCClassesToPreLoad(); // ÀÏºÎ °ÔÀÓ¸ğµå¿¡¼­ ÀÌ°Ô ¾Æ´Ñ °æ¿ì°¡ ÀÖÀ» °Í.
+	return GetPCClassesToPreLoad(); // è€ä½• éœ¸çƒ™è‘›é›ä¿Šè¾‘ æéœ¸ é…’å›± ç‰ˆå¿«å•Š ä¹é˜‘ å·´.
 }
 TArray<FCombinedPCSkillAnimID> ABladeIIGameMode::GetPCSkillAnimsToPreLoad()
 {
@@ -536,10 +536,10 @@ TArray<FCombinedPCSkillAnimID> ABladeIIGameMode::GetPCSkillAnimsToPreLoad()
 
 	//for (EPCClass ThisPCClass : AllPCClassToPreLoad)
 	//{
-	//	// ±âº» ±¸ÇöÀº ¸Å PCClass º°·Î °¡´ÉÇÑ ½ºÅ³ ¾Ö´Ï¸ŞÀÌ¼ÇµéÀ» ¸ù¶¥ ´Ù ³ÖÀ½. 
-	//	// ÇÏÀ§ GameMode Å¬·¡½º¿¡¼­´Â °¢ ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ º°·Î ÀåÂøÇÑ Skill »óÅÂ¿¡ µû¶ó ÇÊ¿äÇÑ °Í¸¸ ³ÖÀ» ¼ö ÀÖµµ·Ï ÇØ¾ß ÇÔ.
-	//	// ÀÌ¸¦ À§ÇØ¼­´Â CharacterDataStore °¡ ÇÊ¿äÇÏ¹Ç·Î ³×Æ®¿öÅ© °ÔÀÓÀÌ¶ó¸é Ä³¸¯ÅÍ º°·Î iteration À» µ¹¾Æ¼­ ÀåÂøÇÑ skill µéÀ» ¸ğ¾Æ¿Í¾ßÁö, PCClass ·Î iteration ÇÏ¸é ¾ÈµÉ °ÍÀÓ.
-	//	// ±×·¯³ª ÀÏºÎ ³×Æ®¿öÅ© ±â¹İ ¸ğµå¿¡¼­´Â ½ÇÁ¦ ¸ÅÄªÀÌ µÇ±â Àü¿¡´Â CharacterDataStore °¡ ¾øÀ» °ÍÀÌ¹Ç·Î Preload ½ÃÁ¡¿¡ ºÒ°¡´ÉÇÒ ¼öµµ ÀÖ´Ù.
+	//	// æ‰å¤¯ å¤‡æ³…ç¯® æ¦‚ PCClass å–Šè‚º å•Šç“·èŒ„ èƒ¶æ‡¦ å±€èªçš‹æè®°ç”¸é˜‘ æ ¹é¡¶ ä¿ƒ æŒæ¾œ. 
+	//	// çªå›° GameMode åŠªè´°èƒ¶ä¿Šè¾‘ç»° é˜¿ æ•²é¥­æç»¢ æŸè…ç£ å–Šè‚º å˜é¦’èŒ„ Skill æƒ‘æ€•ä¿Š è¶æ‰¼ é˜å¤¸èŒ„ å·´çˆ¶ æŒé˜‘ è ä¹æ¡£åºŸ ç§¦å…· çªƒ.
+	//	// æç”« å›°ç§¦è¾‘ç»° CharacterDataStore å•Š é˜å¤¸çªéª¨è‚º åŒ™é£˜å†µå†œ éœ¸çƒ™ææ‰¼æ æŸè…ç£ å–Šè‚º iteration é˜‘ å€’é…’è¾‘ å˜é¦’èŒ„ skill ç”¸é˜‘ è‘›é…’å®¢å…·ç˜¤, PCClass è‚º iteration çªæ æ•‘çª å·´çƒ™.
+	//	// å¼ŠçŸ¾å”± è€ä½• åŒ™é£˜å†µå†œ æ‰é¦† è‘›é›ä¿Šè¾‘ç»° è§’åŠ› æ¦‚è«æ ç™»æ‰ å‚ˆä¿Šç»° CharacterDataStore å•Š ç»é˜‘ å·´æéª¨è‚º Preload çŸ«ç—¢ä¿Š é˜‚å•Šç“·ä¸” èæ¡£ ä¹ä¿ƒ.
 
 	//	TArray<FCombinedPCSkillAnimID> AllAnimIDOfThisClass = GetAllPCSkillAnimsOfClass(ThisPCClass);
 	//	RetArray.Append(AllAnimIDOfThisClass);
@@ -548,12 +548,12 @@ TArray<FCombinedPCSkillAnimID> ABladeIIGameMode::GetPCSkillAnimsToPreLoad()
 }
 
 TArray<FCombinedPCSkillAnimID> ABladeIIGameMode::GetAllPCSkillAnimsOfClass(EPCClass InCharClass)
-{ // À¯Æ¿ ¼öÁØ. ²À ¿©±â¿¡ ÀÖÀ» ÇÊ¿ä´Â ¾ø´Ù.
+{ // èœ¡ç“¶ èéœ–. æ€– å’¯æ‰ä¿Š ä¹é˜‘ é˜å¤¸ç»° ç»ä¿ƒ.
 	TArray<FCombinedPCSkillAnimID> RetArray;
 	for (int32 SAI = 0; SAI < static_cast<int32>(ESkillAnimType::ESA_End); ++SAI)
 	{
 		ESkillAnimType ThisAnimType = static_cast<ESkillAnimType>(SAI);
-		if (ThisAnimType != ESkillAnimType::ESA_Weapon_Normal_End) // ÀÌ°Ç Áß°£¿¡ ¹¹ ½Äº°ÇÑ´ä½Ã°í ³ÖÀº °Å´Ï »©°í
+		if (ThisAnimType != ESkillAnimType::ESA_Weapon_Normal_End) // ææ‰’ ååŸƒä¿Š æ„ ä¾¥å–ŠèŒ„ç¿ çŸ«ç»Š æŒç¯® èŠ­èª å“—ç»Š
 		{
 			RetArray.Add(FCombinedPCSkillAnimID(InCharClass, ThisAnimType));
 		}
@@ -561,7 +561,7 @@ TArray<FCombinedPCSkillAnimID> ABladeIIGameMode::GetAllPCSkillAnimsOfClass(EPCCl
 	return RetArray;
 }
 
-// ±âº»ÀûÀ¸·Î Main / Sub µÎ°³¸¦ ·ÎµåÇÏ°í GameModeº°·Î °ü¸®ÇÑ´Ù. ex ) ÆÀ´ëÀü - ¼Â, ·¹ÀÌµå, Á¡·ÉÀü - ÇÏ³ª
+// æ‰å¤¯åˆ©æ è‚º Main / Sub æ»´ä¿ºç”« è‚ºé›çªç»Š GameModeå–Šè‚º åŒ…åºœèŒ„ä¿ƒ. ex ) è¯„æªå‚ˆ - æ‚¸, é¥­æé›, ç—¢é£å‚ˆ - çªå”±
 void ABladeIIGameMode::TryAsyncLoadSkillAnims(ICharacterDataStore* DataStore)
 {
 	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIGameMode::TryAsyncLoadSkillAnims"));
@@ -581,7 +581,7 @@ void ABladeIIGameMode::TryAsyncLoadSkillAnims(ICharacterDataStore* DataStore)
 	}
 }
 
- //GatherEquippedSkillAnimIDs ÇÔ¼ö¸¸ ÀçÁ¤ÀÇ ÇÏ¿© °ÔÀÓ ¸ğµåº° ÇÊ¿ä Class SkillAnimµéÀ» AsyncLoad
+ //GatherEquippedSkillAnimIDs çªƒèçˆ¶ çŠæ²¥ç‹¼ çªå’¯ éœ¸çƒ™ è‘›é›å–Š é˜å¤¸ Class SkillAnimç”¸é˜‘ AsyncLoad
 void ABladeIIGameMode::GatherEquippedSkillAnimIDs(ICharacterDataStore* DataStore, TArray<FCombinedPCSkillAnimID>& OutEquippedSkills)
 {
 	//OutEquippedSkills.Append(GetEquippedSkillAnimIDs(DataStore->GetMainPlayerClass(), DataStore));
@@ -607,19 +607,19 @@ void ABladeIIGameMode::PreloadAnyNecessaryInfo(bool bAboutToPlayLoadingMovie)
 {
 	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIGameMode::PreloadAnyNecessaryInfo"));
 
-	//// TAsset ·ÎµùÇÏ´Â InfoAsset µéÀÌ ´ë»óÀÓ. ¹İ´ë´Â ManualUnloadBeforeNewBeginning
+	//// TAsset è‚ºçˆ¹çªç»° InfoAsset ç”¸æ æªæƒ‘çƒ™. é¦†æªç»° ManualUnloadBeforeNewBeginning
 	//
 	//UB2PCClassInfoBox* PCBox = StaticFindPCClassInfoBox(this);
 	//if (PCBox)
 	//{
 	//	B2_SCOPED_TIME_LOG(TEXT("PreloadAnyNecessaryInfo > PCClassInfo"));
-	//	// ÀÌ°Ç º°·Î ½Ã°£ ¾È ¸ÔÀ» °ÍÀÌ°í PCClassInfo Áß¿¡¼­ µû·Î ¶¼¾î³½ InGameOnlyInfo °¡ ¸¹ÀÌ ¸ÔÀ» ²¨. ±×°Ç Async ·Îµù ´ë»óÀÌ¶ó ÀÌ°Å ÀÌÈÄ¿¡ ÇÔ.
+	//	// ææ‰’ å–Šè‚º çŸ«åŸƒ æ•‘ å†ˆé˜‘ å·´æç»Š PCClassInfo åä¿Šè¾‘ è¶è‚º éƒ½ç»¢è¾° InGameOnlyInfo å•Š è…¹æ å†ˆé˜‘ æ³¢. å¼Šæ‰’ Async è‚ºçˆ¹ æªæƒ‘ææ‰¼ æèŠ­ æé¥¶ä¿Š çªƒ.
 	//	TArray<EPCClass> ClassesToLoad = GetPCClassesToPreLoad();
 	//	PCBox->PreloadClassAssets(ClassesToLoad);
 	//}
 	//
 	//{
-	//	// SpawnPool ¿¡¼­ spawn ÇÒ ¼ö ÀÖ´Â ¸ğµç NPC class µé preload ÇÏ´Â °Ç ¾Æ´Ï°í ¿©±â¼± °ÔÀÓ ½ÃÀÛ ÀÌÈÄ Async ´ë»ó Á¦¿ÜÇÏ°í.
+	//	// SpawnPool ä¿Šè¾‘ spawn ä¸” è ä¹ç»° è‘›ç”µ NPC class ç”¸ preload çªç»° æ‰’ é…’èªç»Š å’¯æ‰æ€¥ éœ¸çƒ™ çŸ«ç´¯ æé¥¶ Async æªæƒ‘ åŠ›å¯‡çªç»Š.
 	//	B2_SCOPED_TIME_LOG(TEXT("PreloadAnyNecessaryInfo > MobClassInfo"));
 	//	if (TheActiveSpawnPool)
 	//		TheActiveSpawnPool->PreloadPoolMonsters();
@@ -632,18 +632,18 @@ void ABladeIIGameMode::PreloadInGameInfoAsset_SynchronousOnly(bool bAboutToPlayL
 {
 	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIGameMode::PreloadInGameInfoAsset_SynchronousOnly"));
 
-	// ¿ä Synchronous ·ÎµùÀÌ FlushAsyncLoading À» À¯¹ßÇÑ´Ù¸é ´Ù¸¥ async ¿äÃ» ÀÌÀü¿¡ ÇØ¾ß ÇÏ°í,
-	// ±×°Ô ¾Æ´Ï¶ó¸é ÀÌ°É ¿ÀÈ÷·Á ´Ù¸¥ async ¿äÃ» ÀÌÈÄ¿¡ ÇÔÀ¸·Î¼­ ´ÙÁß ¾²·¹µå·Î ·ÎµùÀÌ µ¹¾Æ°¡µµ·Ï ÇÒ ¼ö ÀÖ.. À»±î?
+	// å¤¸ Synchronous è‚ºçˆ¹æ FlushAsyncLoading é˜‘ èœ¡æƒ¯èŒ„ä¿ƒæ ä¿ƒå¼— async å¤¸æ²¡ æå‚ˆä¿Š ç§¦å…· çªç»Š,
+	// å¼Šéœ¸ é…’èªæ‰¼æ æå§ å·æ´’å¦¨ ä¿ƒå¼— async å¤¸æ²¡ æé¥¶ä¿Š çªƒæ è‚ºè¾‘ ä¿ƒå é™é¥­é›è‚º è‚ºçˆ¹æ å€’é…’å•Šæ¡£åºŸ ä¸” è ä¹.. é˜‘é³–?
 		
-	// TAsset À¸·Î ¹Ù²Û Matinee ·¹ÆÛ·±½º ¿¡¼Â ·Îµù.. ÀÌ°Ç ¿ø·¡ ¸Ê ·ÎµùÀÇ ÀÏºÎ¿´´ø °ÍÀÌ´Ù. °¡´ÉÇÑ Ã³À½¿¡ À§Ä¡½ÃÅ´.
+	// TAsset æ è‚º å®˜æ§½ Matinee é¥­æ¬ºç¹èƒ¶ ä¿Šæ‚¸ è‚ºçˆ¹.. ææ‰’ ç›”è´° ç”˜ è‚ºçˆ¹ç‹¼ è€ä½•çœ‹å¸¦ å·´æä¿ƒ. å•Šç“·èŒ„ è´¸æ¾œä¿Š å›°æ‘¹çŸ«ç³¯.
 	{
 		int32 LazyLoadHandledNum = B2GamePreloadMatineeRefAssets();
 		B2GMLoadingProgCollector::StepCustom((float)LazyLoadHandledNum * (bAboutToPlayLoadingMovie ? 0.02f : 0.01f));
 	}
 
-	{ // DamageEffectInfo ¿Í BuffModeEffectInfo ·Îµù¿¡ ÀÇÇÑ ÁøÇàµµ »êÁ¤½Ã ½ÇÁ¦ ·Îµù ÇÊ¿ä°¡ ÀÖ´ÂÁö¿¡ µû¶ó ´Ù¸£°Ô..
+	{ // DamageEffectInfo å®¢ BuffModeEffectInfo è‚ºçˆ¹ä¿Š ç‹¼èŒ„ æŸ³é’æ¡£ é­‚æ²¥çŸ« è§’åŠ› è‚ºçˆ¹ é˜å¤¸å•Š ä¹ç»°ç˜¤ä¿Š è¶æ‰¼ ä¿ƒç¦éœ¸..
 		if (!UB2DamageEffectInfo::AssetsAreRooted() && !UB2BuffModeEffectInfo::AssetsAreRooted())
-		{ // µÑ ´Ù ·ÎµùÇÏ°Ô µÇ´Â °æ¿ì
+		{ // ç¬› ä¿ƒ è‚ºçˆ¹çªéœ¸ ç™»ç»° ç‰ˆå¿«
 			B2GMLoadingProgCollector::SetStepRate(bAboutToPlayLoadingMovie ? 0.4f : 0.1f);
 		}
 		else if (UB2DamageEffectInfo::AssetsAreRooted() && UB2BuffModeEffectInfo::AssetsAreRooted())
@@ -651,13 +651,13 @@ void ABladeIIGameMode::PreloadInGameInfoAsset_SynchronousOnly(bool bAboutToPlayL
 			B2GMLoadingProgCollector::SetStepRate(0.0f);
 		}
 		else
-		{ // µÑ Áß ÇÏ³ª¸¸ ·ÎµùÇÏ°Ô µÇ´Â °æ¿ì
+		{ // ç¬› å çªå”±çˆ¶ è‚ºçˆ¹çªéœ¸ ç™»ç»° ç‰ˆå¿«
 			B2GMLoadingProgCollector::SetStepRate(bAboutToPlayLoadingMovie ? 0.2f : 0.07f);
 		}
 	}
 	UB2DamageEffectInfo* DFXInfo = StaticFindDamageEffectInfo(this);
 	if (DFXInfo)
-	{ // ÀüÅõ¿¡¼­ ÀÚÀßÇÑ spike ¿äÀÎÀÌ µÉ ¼ö ÀÖÀ½.
+	{ // å‚ˆæ§ä¿Šè¾‘ ç£Šè‚‹èŒ„ spike å¤¸ç‰¢æ çª è ä¹æ¾œ.
 		DFXInfo->PreloadAndCacheAllTAsset();
 	}
 	UB2BuffModeEffectInfo* BuffInfo = StaticFindBuffModeEffectInfo(this);
@@ -665,16 +665,16 @@ void ABladeIIGameMode::PreloadInGameInfoAsset_SynchronousOnly(bool bAboutToPlayL
 	{
 		BuffInfo->PreloadAndCacheAllTAsset();
 	}
-	B2GMLoadingProgCollector::Step(); // ¾Õ¼­ »êÁ¤ÇÑ StepRate ·Î ÁøÇàµµ Áõ°¡.
+	B2GMLoadingProgCollector::Step(); // èŠè¾‘ é­‚æ²¥èŒ„ StepRate è‚º æŸ³é’æ¡£ åˆ˜å•Š.
 
 	UB2PCClassInfoBox* PCBox = StaticFindPCClassInfoBox(this);
 	if (PCBox)
-	{ // ¸ŞÀÎ Ä³¸¯ÅÍ µ¥ÀÌÅÍ´Â sync ·ÎµùÀ¸·Î Ã³¸®ÇÔ. RootSet ÀÌ¸é ±×³É ³Ñ¾î°¡°Ô µÉ ²¨°í.
+	{ // çš‹ç‰¢ æŸè…ç£ å•æç£ç»° sync è‚ºçˆ¹æ è‚º è´¸åºœçªƒ. RootSet ææ å¼Šæˆ é€ç»¢å•Šéœ¸ çª æ³¢ç»Š.
 		UB2PCClassInfo* ThisLoadedInfo = PCBox->GetSingleClassInfo(BladeIIGameImpl::GetLocalCharacterData().GetMainPlayerClass());
 		if (ThisLoadedInfo)
 		{
-			// ·çÆ®¼Â Ã³¸® ¿©ºÎ¿Í °ü°è¾øÀÌ ÀÌ ½ÃÁ¡¿¡¼­ ·çÆ®¼ÂÀÌ ¾Æ´Ï¸é ·ÎµùÀÌ ¾ÈµÇ¾î ÀÖ¾î¾ß ÇÔ.
-			// ÃÖ¾ÇÀÇ °æ¿ì ´Ù¸¥ PCClass InGameOnly µ¥ÀÌÅÍµµ ´Ù ·ÎµùÇÏ´Â °æ¿ìµµ ÀÖ°ÚÁö¸¸.. ¿©±â¼± ÀÏ´Ü È®½ÇÇÑ °÷ÀÌ´Ï ¸¹Àº Step ÁöºĞ ¹è´ç.
+			// é£é£˜æ‚¸ è´¸åºœ å’¯ä½•å®¢ åŒ…æ‹Œç»æ æ çŸ«ç—¢ä¿Šè¾‘ é£é£˜æ‚¸æ é…’èªæ è‚ºçˆ¹æ æ•‘ç™»ç»¢ ä¹ç»¢å…· çªƒ.
+			// å¼¥å©ç‹¼ ç‰ˆå¿« ä¿ƒå¼— PCClass InGameOnly å•æç£æ¡£ ä¿ƒ è‚ºçˆ¹çªç»° ç‰ˆå¿«æ¡£ ä¹æ‘†ç˜¤çˆ¶.. å’¯æ‰æ€¥ è€çªœ çŠ¬è§’èŒ„ é•‘æèª è…¹ç¯® Step ç˜¤ç›’ ç¡…å¯¸.
 			B2GMLoadingProgCollector::SetStepRate(
 				ThisLoadedInfo->IsInGameOnlyInfoAtRootSet() ? 0.0f : 
 				 (bAboutToPlayLoadingMovie ? 0.6f : 0.4f)
@@ -692,18 +692,18 @@ void ABladeIIGameMode::PreloadInGameInfoAsset_AsyncAllowed(bool bAboutToPlayLoad
 	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIGameMode::PreloadInGameInfoAsset_AsyncAllowed"));
 	B2_SCOPED_TIME_LOG(TEXT("ABladeIIGameMode::PreloadInGameInfoAsset_AsyncAllowed"));
 
-	// ·Îºñ¸¦ Á¦¿ÜÇÑ °ÔÀÓ¸ğµåµé¿¡¼­´Â ½ÇÁúÀûÀ¸·Î ¸Ş¸ğ¸®¿Í ·ÎµùÅ¸ÀÓÀ» ¼Ò¸ğÇÏ´Â InGameOnlyInfo ¸¦ ·ÎµùÇØ ³õÀ» ÇÊ¿ä°¡ ÀÖ´Ù.
-	// °ÔÀÓ¸ğµå º° ÇÊ¿ä ¹× ±¸Á¶¿¡ µû¶ó °¡´ÉÇÑ ºÎºĞÀº ºñµ¿±â ·ÎµùÀ¸·Î Ã³¸®¸¦ ÇÏµµ·Ï ÇÑ´Ù.
-	// ¿©±â¼­ ¹Ù·Î ·ÎµùÀ» ÇÏ´ø Async ¿äÃ»¸¸ ÇÏ´ø Å« µ¢¾î¸®¿¡ ´ëÇÑ ·ÎµùÀÌ¶ó ±Ã±ØÀûÀ¸·Î ¸¹Àº ¸Ş¸ğ¸®°¡ ¿Ã¶ó°¨.
-	// ´Ü, RootSet Ã³¸®¸¦ ÇÑ °Å¶ó¸é ÀÌ¹Ì ¸Ş¸ğ¸®¿¡ ¿Ã¶ó¿Í ÀÖÀ» Å×´Ï ¾Æ¹« º¯È­ ¾ø°ÚÁö.
+	// è‚ºåšç”« åŠ›å¯‡èŒ„ éœ¸çƒ™è‘›é›ç”¸ä¿Šè¾‘ç»° è§’é¾™åˆ©æ è‚º çš‹è‘›åºœå®¢ è‚ºçˆ¹é¸¥çƒ™é˜‘ å®¶è‘›çªç»° InGameOnlyInfo ç”« è‚ºçˆ¹ç§¦ åˆé˜‘ é˜å¤¸å•Š ä¹ä¿ƒ.
+	// éœ¸çƒ™è‘›é› å–Š é˜å¤¸ æ£º å¤‡ç‚¼ä¿Š è¶æ‰¼ å•Šç“·èŒ„ ä½•ç›’ç¯® åšæ‚¼æ‰ è‚ºçˆ¹æ è‚º è´¸åºœç”« çªæ¡£åºŸ èŒ„ä¿ƒ.
+	// å’¯æ‰è¾‘ å®˜è‚º è‚ºçˆ¹é˜‘ çªå¸¦ Async å¤¸æ²¡çˆ¶ çªå¸¦ å¥´ è€½ç»¢åºœä¿Š æªèŒ„ è‚ºçˆ¹ææ‰¼ æ³µå¿…åˆ©æ è‚º è…¹ç¯® çš‹è‘›åºœå•Š æ£µæ‰¼çš‘.
+	// çªœ, RootSet è´¸åºœç”« èŒ„ èŠ­æ‰¼æ æå›º çš‹è‘›åºœä¿Š æ£µæ‰¼å®¢ ä¹é˜‘ æŠ›èª é…’å…¬ å‡½æ‹³ ç»æ‘†ç˜¤.
 
-	// ¿©±â¼­ StaticFindPCClassInfoBox ¸¦ ÄİÇÏ´Â °ÍÀÌ Async flush ¸¦ ÀÏÀ¸Å²´Ù¸é ´Ü¼øÈ÷ ÀÌÀü¿¡ ÇÑ¹ø ÄİÇØ ³õÀ¸¸é µÈ´Ù.
+	// å’¯æ‰è¾‘ StaticFindPCClassInfoBox ç”« å¦®çªç»° å·´æ Async flush ç”« è€æ æŒªä¿ƒæ çªœé‰´æ´’ æå‚ˆä¿Š èŒ„é”… å¦®ç§¦ åˆæ æ ç­‰ä¿ƒ.
 	UB2PCClassInfoBox* PCBox = StaticFindPCClassInfoBox(this);
 	if (PCBox)
 	{
 		TArray<EPCClass> ClassesToLoad = GetPCClassesToPreLoad();
 
-#if !UE_BUILD_SHIPPING // PC Å¬·¡½º ·ÎµùÀÇ ¿µÇâ »ó¼¼ ÆÄ¾Ç
+#if !UE_BUILD_SHIPPING // PC åŠªè´°èƒ¶ è‚ºçˆ¹ç‹¼ åº·æ°¢ æƒ‘æŠ€ é¢‡å©
 		extern int32 gPCDataPreLoadMaxNum;
 		if (gPCDataPreLoadMaxNum >= 0)
 		{
@@ -711,7 +711,7 @@ void ABladeIIGameMode::PreloadInGameInfoAsset_AsyncAllowed(bool bAboutToPlayLoad
 			{
 				ClassesToLoad.Empty();
 			}
-			else if (gPCDataPreLoadMaxNum == 1) // ÇÏ³ª¸¸ÀÌ¸é Ã³À½ spawn ÇÒ ¾Ö¸¸
+			else if (gPCDataPreLoadMaxNum == 1) // çªå”±çˆ¶ææ è´¸æ¾œ spawn ä¸” å±€çˆ¶
 			{
 				ClassesToLoad.Empty();
 				ClassesToLoad.Add(CurrentPCClassEnum);
@@ -721,7 +721,7 @@ void ABladeIIGameMode::PreloadInGameInfoAsset_AsyncAllowed(bool bAboutToPlayLoad
 				if (ClassesToLoad.Num() > gPCDataPreLoadMaxNum)
 				{
 					ClassesToLoad.RemoveAt(gPCDataPreLoadMaxNum, ClassesToLoad.Num() - gPCDataPreLoadMaxNum);
-					if (!ClassesToLoad.Find(CurrentPCClassEnum)) { // ¿©ÇÏ°£ Ã³À½ spawn ÇÒ Å¬·¡½º´Â pre-load ¸¦ ÇØ¾ß Å×½ºÆ®°¡ Á¤È®ÇØ Áú °Í.
+					if (!ClassesToLoad.Find(CurrentPCClassEnum)) { // å’¯çªåŸƒ è´¸æ¾œ spawn ä¸” åŠªè´°èƒ¶ç»° pre-load ç”« ç§¦å…· æŠ›èƒ¶é£˜å•Š æ²¥çŠ¬ç§¦ é¾™ å·´.
 						ClassesToLoad.RemoveAt(ClassesToLoad.Num() - 1);
 						ClassesToLoad.Add(CurrentPCClassEnum);
 					}
@@ -732,8 +732,8 @@ void ABladeIIGameMode::PreloadInGameInfoAsset_AsyncAllowed(bool bAboutToPlayLoad
 
 		for (EPCClass ThisClassLoad : ClassesToLoad)
 		{
-			// ¸ŞÀÎ Ä³¸¯ÅÍ Å¬·¡½º´Â ·çÆ®¼Â È¤Àº ·ÎµùÀÌ µÇ´õ¶óµµ PreloadInGameInfoAsset_SynchronousOnly ¿¡¼­ ·ÎµùµÈ »óÅÂ.. 
-			// °Å³ª ¾Æ´Ï¸é ÀÌ ¿äÃ» Á÷ÈÄ¿¡ Synchronous ·ÎµùÀ» ÇØ¼­ ´ÙÁßÀ¸·Î µ¹¾Æ°¡´Â ·ÎµùÀÇ ÀÌµæÀ» ¾òÀ» ¼ö ÀÖÀ¸¸é ÁÁ°ÚÁö.
+			// çš‹ç‰¢ æŸè…ç£ åŠªè´°èƒ¶ç»° é£é£˜æ‚¸ è¶£ç¯® è‚ºçˆ¹æ ç™»æ­¹æ‰¼æ¡£ PreloadInGameInfoAsset_SynchronousOnly ä¿Šè¾‘ è‚ºçˆ¹ç­‰ æƒ‘æ€•.. 
+			// èŠ­å”± é…’èªæ æ å¤¸æ²¡ æµé¥¶ä¿Š Synchronous è‚ºçˆ¹é˜‘ ç§¦è¾‘ ä¿ƒåæ è‚º å€’é…’å•Šç»° è‚ºçˆ¹ç‹¼ æå«é˜‘ æ˜é˜‘ è ä¹æ æ äº®æ‘†ç˜¤.
 			UB2PCClassInfo* ThisLoadedInfo = PCBox->GetSingleClassInfo(ThisClassLoad);
 			if (ThisLoadedInfo)
 			{
@@ -753,25 +753,25 @@ void ABladeIIGameMode::PreloadLocalSkillAnimation()
 
 void ABladeIIGameMode::PreloadMatineeRefAssetsDefault()
 {
-	// ÀÇµµÀûÀ¸·Î ºñ¿öÁü.
+	// ç‹¼æ¡£åˆ©æ è‚º åšå†µå’™.
 
-	// ¿©±â¼­ ¿ø·¡ ÇÏ´Â GameMode ÂÊ ±âº» ±â´ÉÀº Á¦°ÅÇÏ°í
-	// ÇÊ¿äÇÑ Á¤º¸µéÀÌ È®½ÇÈ÷ Ã¤¿öÁø ÈÄ¿¡ StageEventDirector ´ÜÀ§·Î ÇÊ¿äÇÑ °ÍµéÀ» °É·¯³»¸é¼­ 
-	// AB2StageEventDirector::LoadLazyLoadedMatineeRefAssets ¸¦ »ç¿ëÇØ¼­ pre-load ÇÔ. (B2GamePreloadMatineeRefAssets)
+	// å’¯æ‰è¾‘ ç›”è´° çªç»° GameMode ç‡ æ‰å¤¯ æ‰ç“·ç¯® åŠ›èŠ­çªç»Š
+	// é˜å¤¸èŒ„ æ²¥ç„Šç”¸æ çŠ¬è§’æ´’ ç›²å†µæŸ³ é¥¶ä¿Š StageEventDirector çªœå›°è‚º é˜å¤¸èŒ„ å·´ç”¸é˜‘ å§çŸ¾éƒ´æè¾‘ 
+	// AB2StageEventDirector::LoadLazyLoadedMatineeRefAssets ç”« è¤ä¾©ç§¦è¾‘ pre-load çªƒ. (B2GamePreloadMatineeRefAssets)
 }
 int32 ABladeIIGameMode::B2GamePreloadMatineeRefAssets()
 {
 	int32 LazyLoadedSEDNum = 0;
-//#if _MATINEE_REF_ASSET_LAZYLOAD // °ÔÀÓ ÄÚµå ÂÊ¿¡¼± ¿©±â¿¡¸¸ À§Ä¡½ÃÅ°¸é °ü·Ã ±â´É ÄÁÆ®·ÑÀÌ °¡´É.
+//#if _MATINEE_REF_ASSET_LAZYLOAD // éœ¸çƒ™ å†…é› ç‡ä¿Šæ€¥ å’¯æ‰ä¿Šçˆ¶ å›°æ‘¹çŸ«è™æ åŒ…è®¿ æ‰ç“· ç‰§é£˜è´¹æ å•Šç“·.
 //	TArray<FString> StageEventRefLoadExcludeFilters;
 //
-//#if 0 // ÀÏºÎ Æ®·¢À» Á¦¿Ü½ÃÄÑµµ ³ªÁß¿¡ ¿¬Ãâ ÃÊ±âÈ­µÇ¸é¼­ °á±¹ ·Îµù. ±×¸®°í ÀÌ°É·Î Á¦¿ÜµÇ´Â ¾çÀº ±×¸® ¸¹Áö ¾ÊÀº µí. ÀÏ´Ü ¿©±ä º¸·ù.
+//#if 0 // è€ä½• é£˜å‘é˜‘ åŠ›å¯‡çŸ«éš¾æ¡£ å”±åä¿Š æ¥·å… æª¬æ‰æ‹³ç™»æè¾‘ æ¬æƒ« è‚ºçˆ¹. å¼Šåºœç»Š æå§è‚º åŠ›å¯‡ç™»ç»° å‰§ç¯® å¼Šåºœ è…¹ç˜¤ è‡¼ç¯® æ·€. è€çªœ å’¯å˜ ç„Šå¹….
 //	TArray<EPCClass> PCClassesToLoad = GetPCClassesToMatineePreLoad();
 //	if (PCClassesToLoad.Num() > 0)
 //	{
-//		// Preload ´ë»ó PCClass ¸¦ Exclude ¿¡¼­ Á¦¿Ü
-//		// ¸®¼Ò½º ¼Â¾÷¿¡µµ »ó´çÈ÷ ÀÇÁ¸ÇÏ´Â °Å¶ó ÀÌ°Ô 100% Á¤È®ÇÏÁö ¾ÊÀ» ¼öµµ ÀÖ´Âµ¥
-//		// ±×·± ½ÄÀ¸·Î ÀÇµµÄ¡ ¾Ê°Ô °É·¯Á®¼­ ¿©±â¼­ ·ÎµùÀÌ ¾ÈµÈ´Ù°í ÇØµµ Å«ÀÏ ³ª´Â °Ç ¾Æ´Ï´Ù. ÇÊ¿äÇÒ ¶© ¾îÂ÷ÇÇ ·ÎµùÀÌ µÈ´Ù. 
+//		// Preload æªæƒ‘ PCClass ç”« Exclude ä¿Šè¾‘ åŠ›å¯‡
+//		// åºœå®¶èƒ¶ æ‚¸è¯€ä¿Šæ¡£ æƒ‘å¯¸æ´’ ç‹¼ç²®çªç»° èŠ­æ‰¼ æéœ¸ 100% æ²¥çŠ¬çªç˜¤ è‡¼é˜‘ èæ¡£ ä¹ç»°å•
+//		// å¼Šç¹ ä¾¥æ è‚º ç‹¼æ¡£æ‘¹ è‡¼éœ¸ å§çŸ¾å»‰è¾‘ å’¯æ‰è¾‘ è‚ºçˆ¹æ æ•‘ç­‰ä¿ƒç»Š ç§¦æ¡£ å¥´è€ å”±ç»° æ‰’ é…’èªä¿ƒ. é˜å¤¸ä¸” è®¢ ç»¢ç’ä¹” è‚ºçˆ¹æ ç­‰ä¿ƒ. 
 //		ABladeIIPlayer::GetAllTrimmedNameFromPCClassEnum(StageEventRefLoadExcludeFilters);
 //		for (EPCClass ThisPCClass : PCClassesToLoad)
 //		{
@@ -788,9 +788,9 @@ int32 ABladeIIGameMode::B2GamePreloadMatineeRefAssets()
 //#endif
 //#endif
 //
-//	// °ÔÀÓ¸ğµåÀÇ ·¹º§ ±¸¼º¿¡ µû¶ó¼­ ÀÌ°É ÄİÇÏ´Â ±âº» ½ÃÁ¡¿¡ EventDirectors ¹è¿­ÀÌ ¾È Ã¤¿öÁ® ÀÖÀ» ¼öµµ ÀÖ´Ù.
-//	// ±×·± °æ¿ì ±×³É ³öµÖµµ ±â´É ÀÚÃ¼´Â ÀÌ»óÀÌ ¾øÀ» °ÍÀÌ³ª ¸¸ÀÏ Matinee ÂüÁ¶ ¿¡¼ÂÀÌ ·ÎµùµÇ¸é¼­ ´«¿¡ ¶ç´Â ²÷±èÀ» À¯¹ßÇÏ°Å³ª async flush ¸¦ ÀÏÀ¸Å²´Ù¸é
-//	// ÀÌ°É Ãß°¡·Î ÄİÇØ¾ß ÇÒ ¼öµµ.
+//	// éœ¸çƒ™è‘›é›ç‹¼ é¥­éª‡ å¤‡å·±ä¿Š è¶æ‰¼è¾‘ æå§ å¦®çªç»° æ‰å¤¯ çŸ«ç—¢ä¿Š EventDirectors ç¡…å‡¯æ æ•‘ ç›²å†µå»‰ ä¹é˜‘ èæ¡£ ä¹ä¿ƒ.
+//	// å¼Šç¹ ç‰ˆå¿« å¼Šæˆ å‡ºæŠµæ¡£ æ‰ç“· ç£Šçœ‰ç»° ææƒ‘æ ç»é˜‘ å·´æå”± çˆ¶è€ Matinee æ›¼ç‚¼ ä¿Šæ‚¸æ è‚ºçˆ¹ç™»æè¾‘ ä¼ ä¿Š å‰ç»° è°—è¾«é˜‘ èœ¡æƒ¯çªèŠ­å”± async flush ç”« è€æ æŒªä¿ƒæ
+//	// æå§ çœ å•Šè‚º å¦®ç§¦å…· ä¸” èæ¡£.
 //	for (AB2StageEventDirector* CurrSED : EventDirectors)
 //	{
 //		if (CurrSED && CurrSED->IsExpectedForGameMode(this))
@@ -800,13 +800,13 @@ int32 ABladeIIGameMode::B2GamePreloadMatineeRefAssets()
 //		}
 //	}
 //#endif
-	return LazyLoadedSEDNum; // Lazy-loading Ã³¸®°¡ µÈ StageEventDirector (°ÅÀÇ Matinee) °³¼ö¸¦ ¸®ÅÏ.
+	return LazyLoadedSEDNum; // Lazy-loading è´¸åºœå•Š ç­‰ StageEventDirector (èŠ­ç‹¼ Matinee) ä¿ºèç”« åºœç•”.
 }
 
 void ABladeIIGameMode::GameContextAsyncFlush()
-{ // ·Îµù Å¸ÀÓ¿¡ Preload ÇÑ °Å ÀÌ¿Ü¿¡ °ÔÀÓ ÇÃ·¹ÀÌ µÇ¸é¼­ Async ·Îµù ÇÒ °ÍµéÀÌ flush µÉ ¼ö ÀÖ´Ù°Å³ª 
-	// ³»Áö´Â ¹Ù¶÷Á÷ÇÏÁö ¾ÊÀº »óÈ²ÀÌ ÀÖ´Ù¸é ÀÌ°É »ç¿ëÇØ¼­ ±×·± °ÍµéÀ» ¹Ì¿¬¿¡ Ã³¸®ÇÏ±â À§ÇØ Á¦°ø
-	// ÀÌ°Ç ·Îµù Å¸ÀÓ¿¡ ºÒ·Á¾ß ÇÑ´Ù.
+{ // è‚ºçˆ¹ é¸¥çƒ™ä¿Š Preload èŒ„ èŠ­ æå¯‡ä¿Š éœ¸çƒ™ æ•²é¥­æ ç™»æè¾‘ Async è‚ºçˆ¹ ä¸” å·´ç”¸æ flush çª è ä¹ä¿ƒèŠ­å”± 
+	// éƒ´ç˜¤ç»° å®˜æ©æµçªç˜¤ è‡¼ç¯® æƒ‘ç‚”æ ä¹ä¿ƒæ æå§ è¤ä¾©ç§¦è¾‘ å¼Šç¹ å·´ç”¸é˜‘ å›ºæ¥·ä¿Š è´¸åºœçªæ‰ å›°ç§¦ åŠ›å‚
+	// ææ‰’ è‚ºçˆ¹ é¸¥çƒ™ä¿Š é˜‚å¦¨å…· èŒ„ä¿ƒ.
 	if (TheActiveSpawnPool)
 	{
 		TheActiveSpawnPool->TryAsyncLoadReservedMonsters();
@@ -816,17 +816,17 @@ void ABladeIIGameMode::GameContextAsyncFlush()
 
 void ABladeIIGameMode::PrebuildAndCacheCharMesh(EPCClass InCharClass, const TArray<FB2Item>& InEquippedItems, const FB2Wing* InWingData, bool bMergeSections, int32 InOptionalCharEntryID /*= -1*/)
 {
-	// Preload ½ÃÁ¡¿¡ ÅÂ±× Ä³¸¯ÅÍ mesh merge ¸¦ ¹Ì¸® ÇØ ³õ±â À§ÇÑ ¸ñÀûÀÎµ¥.. 
-	// ·ÎÄÃ Ä³¸¯ÅÍ mesh ÀÇ RootSet Ã³¸®¸¦ ÇÏ´Â B2CompositeMeshCache ÀÇ µµÀÔ ÀÌÈÄ·Î´Â ÀÏ¹İ °ÔÀÓ¸ğµå¿¡¼­´Â »ç½Ç»ó ÇÊ¿ä ¾ø´Â ±â´ÉÀÌ´Ù.
-	// Àåºñ ÀåÂøÀÌ ´Ù¸¥ °É·Î °­Á¦µÇ´Â Æ©Åä¸®¾ó ¸ğµå¿¡¼­´Â ÇÊ¿äÇÏ°í.. 
-	// ³»Áö´Â PVP ÀÇ »ó´ë¹æ ÅÂ±× Ä³¸¯ÅÍ¸¦ ¹Ì¸® merge ÇØ ³õ°Ô µÇ¸é °Å±â¼­ ÇÊ¿äÇÒ ¼öµµ ÀÖ±ä ÇÑµ¥.. ±×·²·Á¸é Á» ¼öÁ¤ÀÌ ÇÊ¿ä.
+	// Preload çŸ«ç—¢ä¿Š æ€•å¼Š æŸè…ç£ mesh merge ç”« å›ºåºœ ç§¦ åˆæ‰ å›°èŒ„ æ ¼åˆ©ç‰¢å•.. 
+	// è‚ºæ‹¿ æŸè…ç£ mesh ç‹¼ RootSet è´¸åºœç”« çªç»° B2CompositeMeshCache ç‹¼ æ¡£æ¶ æé¥¶è‚ºç»° è€é¦† éœ¸çƒ™è‘›é›ä¿Šè¾‘ç»° è¤è§’æƒ‘ é˜å¤¸ ç»ç»° æ‰ç“·æä¿ƒ.
+	// å˜åš å˜é¦’æ ä¿ƒå¼— å§è‚º ç¢åŠ›ç™»ç»° è­¬é…åºœå€” è‘›é›ä¿Šè¾‘ç»° é˜å¤¸çªç»Š.. 
+	// éƒ´ç˜¤ç»° PVP ç‹¼ æƒ‘æªè§„ æ€•å¼Š æŸè…ç£ç”« å›ºåºœ merge ç§¦ åˆéœ¸ ç™»æ èŠ­æ‰è¾‘ é˜å¤¸ä¸” èæ¡£ ä¹å˜ èŒ„å•.. å¼Šå‡¡å¦¨æ ç²± èæ²¥æ é˜å¤¸.
 
 	UWorld* TheWorld = GetWorld();
 	UB2PCClassInfoBox* PCInfoBox = StaticFindPCClassInfoBox(this);
 	UB2PCClassInfo* ThisCharInfo = PCInfoBox ? PCInfoBox->GetSingleClassInfo(InCharClass) : nullptr;
 	if (TheWorld && ThisCharInfo)
 	{
-		// ÀÏ½ÃÀûÀ¸·Î owner ¿ªÇÒÀ» ÇÒ dummy ¸¦ spawn ½ÃÅ²´Ù.
+		// è€çŸ«åˆ©æ è‚º owner å¼€ä¸”é˜‘ ä¸” dummy ç”« spawn çŸ«æŒªä¿ƒ.
 		FActorSpawnParameters SpawnInfo;
 		SpawnInfo.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 		SpawnInfo.ObjectFlags |= RF_Transient;
@@ -835,16 +835,16 @@ void ABladeIIGameMode::PrebuildAndCacheCharMesh(EPCClass InCharClass, const TArr
 		UB2CompositeMeshCache* MeshCacheManager = StaticFindCompositeMeshCacher();
 		if (DummyOwnerSKActor && MeshCacheManager)
 		{
-			// LocalPlayerChar ´Â NULL ÀÌ¾îµµ ¹®Á¦ ¾øÀ½. ¿©ÇÏ°£ CompositeMeshCache ÂÊ¼­ Local ¿ëÀ¸·Î Ã³¸®ÇÒ °Í.
+			// LocalPlayerChar ç»° NULL æç»¢æ¡£ å·©åŠ› ç»æ¾œ. å’¯çªåŸƒ CompositeMeshCache ç‡è¾‘ Local ä¾©æ è‚º è´¸åºœä¸” å·´.
 			ABladeIIPlayer* LocalPlayerChar = Cast<ABladeIIPlayer>(GetWorld()->GetFirstPlayerController()->GetCharacter());
-			// ÀÇµµÇÑ ÀÌ ÇÔ¼öÀÇ »ç¿ë¿¡¼­ BuiltResult ´Â NULL ÀÏ °ÍÀÌ´Ù. B2CompositeMeshCache ¿¡¼­ ·ÎÄÃ Ä³¸¯ÅÍ ¿ë ¸Ş½¬¸¦ RootSet Ã³¸®¸¦ ÇÏ´Â ÀÏ¹İ ½ºÅ×ÀÌÁö ¸ğµå¿¡¼± ¿©±â·Î ¿Í¼± ¾ÈµÊ.
-			// ÀÌ°Ô NULL ÀÌ ¾Æ´Ò ÇÏ³ªÀÇ °¡´É¼ºÀº Å×½ºÆ® Áß¿¡ Æ©Åä¸®¾ó °ÔÀÓ¸ğµå¿¡¼­ ¾²´Â °Í°ú ¶È°°Àº Àåºñ¸¦ ÀÔÇô³õ°í Æ©Åä¸®¾ó °ÔÀÓ¸ğµå·Î µé¾î°¡´Â °Å.
+			// ç‹¼æ¡£èŒ„ æ çªƒèç‹¼ è¤ä¾©ä¿Šè¾‘ BuiltResult ç»° NULL è€ å·´æä¿ƒ. B2CompositeMeshCache ä¿Šè¾‘ è‚ºæ‹¿ æŸè…ç£ ä¾© çš‹æµ†ç”« RootSet è´¸åºœç”« çªç»° è€é¦† èƒ¶æŠ›æç˜¤ è‘›é›ä¿Šæ€¥ å’¯æ‰è‚º å®¢æ€¥ æ•‘å‡³.
+			// æéœ¸ NULL æ é…’åŒ† çªå”±ç‹¼ å•Šç“·å·±ç¯® æŠ›èƒ¶é£˜ åä¿Š è­¬é…åºœå€” éœ¸çƒ™è‘›é›ä¿Šè¾‘ é™ç»° å·´è‹ åº¦éç¯® å˜åšç”« æ¶å›šåˆç»Š è­¬é…åºœå€” éœ¸çƒ™è‘›é›è‚º ç”¸ç»¢å•Šç»° èŠ­.
 			USkeletalMesh* BuiltResult = MeshCacheManager->GetCachedCompositeMesh(InCharClass, LocalPlayerChar, InEquippedItems, (InWingData && InWingData->bShouldBeVisible), InWingData, bMergeSections);
 
 			if (UB2PCClassInfo::SetupSKCompForParts(InCharClass, DummyOwnerSKActor, DummyOwnerSKActor->GetSkeletalMeshComponent(), BuiltResult, ThisCharInfo->BaseMeshAsset, ThisCharInfo->DefaultPartsInfo,
 				InEquippedItems, InWingData, 
-				nullptr, // ¸Ş½¬¸¸ ºôµåÇÏ´Â °Ô ¸ñÀûÀÌ¹Ç·Î AnimBP °°Àº °Ç Àü´ŞÇÒ ÇÊ¿ä ¾øÁö
-				false, // ¾ÆÁ÷Àº ºôµåÇÑ °É Ä³½ÌÇÏ´Â ¸ñÀûÀ» »ì¸®·Á¸é ¿øº» ÆÄÆ®µéµµ º¸Á¸ÇØ¾ß ÇØ¼­..
+				nullptr, // çš‹æµ†çˆ¶ å‘¼é›çªç»° éœ¸ æ ¼åˆ©æéª¨è‚º AnimBP éç¯® æ‰’ å‚ˆå´”ä¸” é˜å¤¸ ç»ç˜¤
+				false, // é…’æµç¯® å‘¼é›èŒ„ å§ æŸæ•™çªç»° æ ¼åˆ©é˜‘ æ··åºœå¦¨æ ç›”å¤¯ é¢‡é£˜ç”¸æ¡£ ç„Šç²®ç§¦å…· ç§¦è¾‘..
 				bMergeSections)) 
 			{
 				MeshCacheManager->SetCachedCompositeMesh(InCharClass, LocalPlayerChar, BuiltResult, InEquippedItems, (InWingData && InWingData->bShouldBeVisible), InWingData, bMergeSections);
@@ -856,13 +856,13 @@ void ABladeIIGameMode::PrebuildAndCacheCharMesh(EPCClass InCharClass, const TArr
 
 void ABladeIIGameMode::PrebuildLocalTagCharMesh()
 {
-	// ·ÎÄÃ Ä³¸¯ÅÍÀÇ ÅÂ±×°¡ Çã¿ëµÇ´Â ¸ğµå¿¡¼­ ÇÊ¿äÇÑ ±â´É. Áï ¸ğÇè¸ğµå, ¿µ¿õÀÇÅ¾, PVP
-	// PVP ÀÇ °æ¿ì´Â ·ÎÄÃ Ä³¸¯ÅÍ »Ó ¾Æ´Ï¶ó ¸®¸ğÆ® Ä³¸¯ÅÍµµ ÅÂ±×¸¦ ÇÏ¹Ç·Î ±×°Í±îÁö °í·ÁÇÏ·Á¸é È®ÀåµÈ ±â´ÉÀÌ ÇÊ¿äÇÏ´Ù.
+	// è‚ºæ‹¿ æŸè…ç£ç‹¼ æ€•å¼Šå•Š å€¾ä¾©ç™»ç»° è‘›é›ä¿Šè¾‘ é˜å¤¸èŒ„ æ‰ç“·. æºœ è‘›æ°°è‘›é›, åº·æ—·ç‹¼å•ª, PVP
+	// PVP ç‹¼ ç‰ˆå¿«ç»° è‚ºæ‹¿ æŸè…ç£ æŒ¥ é…’èªæ‰¼ åºœè‘›é£˜ æŸè…ç£æ¡£ æ€•å¼Šç”« çªéª¨è‚º å¼Šå·´é³–ç˜¤ ç»Šå¦¨çªå¦¨æ çŠ¬å˜ç­‰ æ‰ç“·æ é˜å¤¸çªä¿ƒ.
 
 	UB2CompositeMeshCache* MeshCacheManager = StaticFindCompositeMeshCacher();
 	if (MeshCacheManager && MeshCacheManager->IsLocalPCMeshRootSetAllowed()) {
-		// ·ÎÄÃ Ä³¸¯ÅÍ ¸Ş½¬ÀÇ RootSet Ã³¸® ÀÌÈÄ¿¡´Â ÀÌ°Ç ÇÊ¿ä ¾øÀ» °ÍÀÓ. 
-		// Å×½ºÆ®¸¦ À§ÇØ ´çºĞ°£ ³²°ÜµÒ.
+		// è‚ºæ‹¿ æŸè…ç£ çš‹æµ†ç‹¼ RootSet è´¸åºœ æé¥¶ä¿Šç»° ææ‰’ é˜å¤¸ ç»é˜‘ å·´çƒ™. 
+		// æŠ›èƒ¶é£˜ç”« å›°ç§¦ å¯¸ç›’åŸƒ å·¢è´¥ç‹„.
 		return;
 	}
 
@@ -875,10 +875,10 @@ void ABladeIIGameMode::PrebuildLocalTagCharMesh()
 	ICharacterDataStore::GetRenderItem(&LocalCharData, LocalCharData.GetSubPlayerClass(), TagCharEquipItems);
 
 	PrebuildAndCacheCharMesh(LocalCharData.GetSubPlayerClass(), TagCharEquipItems, bHasWing ? &TagCharWing : nullptr,
-		false // ÀÏ´Ü ±âº»ÀûÀ¸·Î ¼½¼Ç ³ª´²Áø ÀÏ¹İ ¸ğµ¨·Î.
+		false // è€çªœ æ‰å¤¯åˆ©æ è‚º å†€è®° å”±åºŠæŸ³ è€é¦† è‘›èƒ†è‚º.
 	);
 
-	// ÅÂ±× Ä³¸¯ÅÍ¸¦ »ç¿ëÇÏ´Â ¸ğµå¶ó¸é ¼½¼Ç º´ÇÕµÈ ¸ğµ¨À» »ç¿ëÇÒ °¡´É¼ºÀ» »ı°¢ÇÏ±â´Â ¾î·ÆÁö¸¸.. ÄÚµå´Â °®ÃçµÎ°í.
+	// æ€•å¼Š æŸè…ç£ç”« è¤ä¾©çªç»° è‘›é›æ‰¼æ å†€è®° æé’¦ç­‰ è‘›èƒ†é˜‘ è¤ä¾©ä¸” å•Šç“·å·±é˜‘ ç§¯é˜¿çªæ‰ç»° ç»¢è²ç˜¤çˆ¶.. å†…é›ç»° çˆ±è‹—æ»´ç»Š.
 	if (UB2PCMeshSectionMergeInfo::ShouldUseSectionMergeByGameContext(this))
 	{
 		PrebuildAndCacheCharMesh(LocalCharData.GetSubPlayerClass(), TagCharEquipItems, bHasWing ? &TagCharWing : nullptr, true);
@@ -897,18 +897,18 @@ bool ABladeIIGameMode::IsAllowTag()
 
 bool ABladeIIGameMode::ShouldSetupPreRender()
 {
-//#if !UE_BUILD_SHIPPING // PreRender ¼Â¾÷ÇÏ¸é¼­ ·ÎµùÇÏ°Ô µÉ ¼öµµ ÀÖÀ¸´Ï Å×½ºÆ®ÇÏ·Á¸é ²ö´Ù ¤»
+//#if !UE_BUILD_SHIPPING // PreRender æ‚¸è¯€çªæè¾‘ è‚ºçˆ¹çªéœ¸ çª èæ¡£ ä¹æ èª æŠ›èƒ¶é£˜çªå¦¨æ é¦‹ä¿ƒ ã›
 //	extern int32 gPCDataPreLoadMaxNum;
 //#endif
 //
-//	return (UB2PreRenderer::MaxPreRenderCount > 0 // ºñ±³ Å×½ºÆ®¸¦ À§ÇØ 0 ÀÌ¸é »ı¼ºÀ» ÇÏÁö ¾Ê´Â´Ù. ÇÃ·§ÆûÀÌ³ª ±âÅ¸ Á¶°Ç¿¡ µû¶ó »ç¿ëÀ» ¾ÈÇØ¾ß ÇÒ ¼öµµ ÀÖ°í..
+//	return (UB2PreRenderer::MaxPreRenderCount > 0 // åšèƒŒ æŠ›èƒ¶é£˜ç”« å›°ç§¦ 0 ææ ç§¯å·±é˜‘ çªç˜¤ è‡¼ç»°ä¿ƒ. æ•²é˜€æ±½æå”± æ‰é¸¥ ç‚¼æ‰’ä¿Š è¶æ‰¼ è¤ä¾©é˜‘ æ•‘ç§¦å…· ä¸” èæ¡£ ä¹ç»Š..
 //#if WITH_EDITOR
-//		&& !GIsEditor // ¿¡µğÅÍ ÇÃ·¹ÀÌ¿¡¼­ °¡²û º¸±â ¾ÈÁÁÀº ·»´õ¸µ ¹®Á¦¸¦ ÀÏÀ¸Å°±âµµ..
+//		&& !GIsEditor // ä¿Šå¼ç£ æ•²é¥­æä¿Šè¾‘ å•Šé˜ ç„Šæ‰ æ•‘äº®ç¯® åŠæ­¹å‚… å·©åŠ›ç”« è€æ è™æ‰æ¡£..
 //#endif
-//#if PLATFORM_IOS // [IOS_SPECIFIC_MEMORY_SAVING] iOS ´Â ¸Ş¸ğ¸® ¼Ò¸ğ°¡ ´õ Å« ¹®Á¦¶ó °ï¶õÇÏ±âµµ ÇÏ°í ¼ÎÀÌ´õ Ä³½ÌÀ» ¾î¶»°Ô ÇÏ´ÂÁö ¸ô¶óµµ ¾Èµå·ÎÀÌµåº¸´Ù ´ú ¹ö¹÷ÀÓ.
-//		&& UB2PreRenderer::ShouldDoPreRenderForIOS() // SetupPreRenderObjects µµÁß 30 ~ 50MB Á¤µµ ¸Ş¸ğ¸®°¡ ¿Ã¶ó°£´Ù. ±×¸®°í GPU ¸Ş¸ğ¸®¿¡ »ó´çÈ÷ À§ÇùÀÌ µÇ´Â ¸ğ¾ç. º°µµÀÇ PreRenderGameMode ¿¡¼­´Â ÇØ º¼ ¼öµµ ÀÖ´Ù.
+//#if PLATFORM_IOS // [IOS_SPECIFIC_MEMORY_SAVING] iOS ç»° çš‹è‘›åºœ å®¶è‘›å•Š æ­¹ å¥´ å·©åŠ›æ‰¼ å¸®é„‚çªæ‰æ¡£ çªç»Š å˜‰ææ­¹ æŸæ•™é˜‘ ç»¢ç—˜éœ¸ çªç»°ç˜¤ éš”æ‰¼æ¡£ æ•‘é›è‚ºæé›ç„Šä¿ƒ ä»£ æ»šæ£çƒ™.
+//		&& UB2PreRenderer::ShouldDoPreRenderForIOS() // SetupPreRenderObjects æ¡£å 30 ~ 50MB æ²¥æ¡£ çš‹è‘›åºœå•Š æ£µæ‰¼åŸƒä¿ƒ. å¼Šåºœç»Š GPU çš‹è‘›åºœä¿Š æƒ‘å¯¸æ´’ å›°è›†æ ç™»ç»° è‘›å‰§. å–Šæ¡£ç‹¼ PreRenderGameMode ä¿Šè¾‘ç»° ç§¦ æ­ èæ¡£ ä¹ä¿ƒ.
 //#endif
-//#if !UE_BUILD_SHIPPING // PreRender ¼Â¾÷ÇÏ¸é¼­ ·ÎµùÇÏ°Ô µÉ ¼öµµ ÀÖÀ¸´Ï Å×½ºÆ®ÇÏ·Á¸é ²ö´Ù ¤»
+//#if !UE_BUILD_SHIPPING // PreRender æ‚¸è¯€çªæè¾‘ è‚ºçˆ¹çªéœ¸ çª èæ¡£ ä¹æ èª æŠ›èƒ¶é£˜çªå¦¨æ é¦‹ä¿ƒ ã›
 //		&& (gPCDataPreLoadMaxNum < 0 || gPCDataPreLoadMaxNum >= PCClassToInt(EPCClass::EPC_End))
 //#endif
 //		);
@@ -917,7 +917,7 @@ bool ABladeIIGameMode::ShouldSetupPreRender()
 ////
 void ABladeIIGameMode::SetupPreRenderObjects() 
 {
-	// ¼ÎÀÌ´õ ÄÄÆÄÀÏÀ» ¹Ì¸® ÇØ ³õÁö ¾Ê´Â ¸ğ¹ÙÀÏ ÇÃ·§Æû¿¡¼­ÀÇ ¼ÎÀÌ´õ ÄÄÆÄÀÏÀ» À§ÇÑ ±â´É. ¿©±â¼­ ³õÄ¡´Â °Ô ÀÖ´Ù°í ¹¹°¡ ÀÛµ¿ ¾ÈÇÏ´Â °Ç ¾Æ´Ï°í °Á Áß°£¿¡ ÇÊ¿äÇØ Áú ¶§ ¹ö¹÷°Å¸².
+	// å˜‰ææ­¹ å“ªé¢‡è€é˜‘ å›ºåºœ ç§¦ åˆç˜¤ è‡¼ç»° è‘›å®˜è€ æ•²é˜€æ±½ä¿Šè¾‘ç‹¼ å˜‰ææ­¹ å“ªé¢‡è€é˜‘ å›°èŒ„ æ‰ç“·. å’¯æ‰è¾‘ åˆæ‘¹ç»° éœ¸ ä¹ä¿ƒç»Š æ„å•Š ç´¯æ‚¼ æ•‘çªç»° æ‰’ é…’èªç»Š å‚² ååŸƒä¿Š é˜å¤¸ç§¦ é¾™ é”­ æ»šæ£èŠ­è¦†.
 
 	//check(!PreRenderer);
 	//PreRenderer = NewObject<UB2PreRenderer>(this, NAME_None, RF_Transient);
@@ -926,17 +926,17 @@ void ABladeIIGameMode::SetupPreRenderObjects()
 	//{
 	//	if (PreRenderer->SetupPreRenderObjects(this))
 	//	{
-	//		B2GMLoadingProgCollector::StepCustom(0.2f); // Pre-render ¼Â¾÷À» Çß´Ù¸é Á» ¸Ô¾úÀ» µí.
+	//		B2GMLoadingProgCollector::StepCustom(0.2f); // Pre-render æ‚¸è¯€é˜‘ æ²ä¿ƒæ ç²± å†ˆèŒé˜‘ æ·€.
 
-	//		// °¡¸° µ¿¾È °ÔÀÓÀÌ³ª Æ¯È÷ Ã³À½ ¿¬ÃâÀÌ °ÅÀÇ ÁøÇàµÇÁö ¾Êµµ·Ï ¸Å¿ì ÀÛÀº TimeDilation À» ÁØ´Ù.
-	//		SetWholeGameTimeScale(0.0001f); // ´Ù¸¥ °÷¿¡¼­ÀÇ TimeDilation °ú ¾ôÈ÷Áö ¾Êµµ·Ï ÀÏ½ÃÀûÀ¸·Î WholeGameTimeScale À» »ç¿ë.
+	//		// å•Šèµ´ æ‚¼æ•‘ éœ¸çƒ™æå”± æ¼‚æ´’ è´¸æ¾œ æ¥·å…æ èŠ­ç‹¼ æŸ³é’ç™»ç˜¤ è‡¼æ¡£åºŸ æ¦‚å¿« ç´¯ç¯® TimeDilation é˜‘ éœ–ä¿ƒ.
+	//		SetWholeGameTimeScale(0.0001f); // ä¿ƒå¼— é•‘ä¿Šè¾‘ç‹¼ TimeDilation è‹ çˆµæ´’ç˜¤ è‡¼æ¡£åºŸ è€çŸ«åˆ©æ è‚º WholeGameTimeScale é˜‘ è¤ä¾©.
 
-	//		PreRenderPhase = EPreRenderPhase::EPRP_Selected; // PreRender ÁøÀÔ ¸¶Å©. ¸¸¿¡ ÇÏ³ª »ı¼ºµÈ Dummy °¡ ¾ø´õ¶óµµ ÀÏ´Ü Selected ·Î. All ·Î ÁøÇàÀº ÀÌÈÄ Ã³¸®µÉ °Í.
+	//		PreRenderPhase = EPreRenderPhase::EPRP_Selected; // PreRender æŸ³æ¶ ä»˜å†œ. çˆ¶ä¿Š çªå”± ç§¯å·±ç­‰ Dummy å•Š ç»æ­¹æ‰¼æ¡£ è€çªœ Selected è‚º. All è‚º æŸ³é’ç¯® æé¥¶ è´¸åºœçª å·´.
 	//	}
 	//	else
 	//	{
-	//		// SetupPreRenderObjects ½ÇÆĞ¶ó±âº¸´Ù´Â.. ÀÌ¹Ì Pre-render ¸¦ °ÅÄ£ ÀÌÈÄ¸é ÀÌ·¸°Ô µÇ´Â °Çµ¥..
-	//		// ¸Å¹ø OnPreRenderComplete ¶ó´Ï Á» ³¶ºñ½º·´±º.
+	//		// SetupPreRenderObjects è§’è©æ‰¼æ‰ç„Šä¿ƒç»°.. æå›º Pre-render ç”« èŠ­æ¨¡ æé¥¶æ æçŠ¯éœ¸ ç™»ç»° æ‰’å•..
+	//		// æ¦‚é”… OnPreRenderComplete æ‰¼èª ç²± æ‰¯åšèƒ¶åç„™.
 	//		OnPreRenderComplete(); 
 	//	}
 	//}
@@ -953,20 +953,20 @@ void ABladeIIGameMode::UpdateForPreRenderObjects()
 
 	//if (PreRenderPhase == EPreRenderPhase::EPRP_Selected)
 	//{
-	//	if (PreRenderer && !PreRenderer->HasPreRenderDummyToProcess()) // ±âº» Selected ´Ü°è ¿Ï·á.
+	//	if (PreRenderer && !PreRenderer->HasPreRenderDummyToProcess()) // æ‰å¤¯ Selected çªœæ‹Œ è‚¯ä¸°.
 	//	{
 	//		if (UB2PreRenderer::bPreRenderAllPrimitives) 
-	//		{// Ãß°¡·Î ÀüÃ¼ primitive µé ´ë»óÀ¸·Î..
+	//		{// çœ å•Šè‚º å‚ˆçœ‰ primitive ç”¸ æªæƒ‘æ è‚º..
 	//			if (PreRenderer->SetupPreRenderAllPrimPhase()) {
 	//				PreRenderPhase = EPreRenderPhase::EPRP_AllPrim;
 	//			}
 	//			else {
-	//				// ÀÌ¹Ì ÇÑ¹ø PreRender ¸¦ °ÅÄ£ ·¹º§ÀÌ°Å³ª ±âÅ¸ »çÀ¯·Î Æ¯º°È÷ AllPrim Ã³¸®¸¦ ¾ÈÇÏµµ·Ï ÇÑ °÷Àº ½ÇÆĞÇÒ °Í. Á¾·á Ã³¸®
+	//				// æå›º èŒ„é”… PreRender ç”« èŠ­æ¨¡ é¥­éª‡æèŠ­å”± æ‰é¸¥ è¤èœ¡è‚º æ¼‚å–Šæ´’ AllPrim è´¸åºœç”« æ•‘çªæ¡£åºŸ èŒ„ é•‘ç¯® è§’è©ä¸” å·´. è¾†ä¸° è´¸åºœ
 	//				OnPreRenderComplete(); 
 	//			}
 	//		}
 	//		else 
-	//		{ // Pre-render Á¾·á
+	//		{ // Pre-render è¾†ä¸°
 	//			OnPreRenderComplete(); 
 	//		}
 	//	}
@@ -974,7 +974,7 @@ void ABladeIIGameMode::UpdateForPreRenderObjects()
 	//else if (PreRenderPhase == EPreRenderPhase::EPRP_AllPrim)
 	//{
 	//	if (PreRenderer && PreRenderer->CheckAndFinishPreRenderAllPrimPhase())
-	//	{ // Pre-render ÀüÃ¼ ½ÎÀÌÅ¬ ´Ù ³¡³»°í Á¾·á
+	//	{ // Pre-render å‚ˆçœ‰ è½¿æåŠª ä¿ƒ åœºéƒ´ç»Š è¾†ä¸°
 	//		OnPreRenderComplete();
 	//	}
 	//}
@@ -984,16 +984,16 @@ void ABladeIIGameMode::OnPreRenderComplete()
 {
 	check(PreRenderer);
 	if (PreRenderer) {
-		// AllPrim ¿©ºÎ¿¡ »ó°ü¾øÀÌ ÇöÀç ¿ùµå°¡ ±â¹İÇÏ°í ÀÖ´Â ·¹º§¿¡¼­´Â Pre-render °¡ ÇÑ¹ø ¿Ï·áµÈ °ÍÀ¸·Î ±â·Ï.
+		// AllPrim å’¯ä½•ä¿Š æƒ‘åŒ…ç»æ æ³…çŠ å²¿é›å•Š æ‰é¦†çªç»Š ä¹ç»° é¥­éª‡ä¿Šè¾‘ç»° Pre-render å•Š èŒ„é”… è‚¯ä¸°ç­‰ å·´æ è‚º æ‰åºŸ.
 		PreRenderer->MarkCurrentWorldLevelPreRendered();
 		PreRenderer->OnPreRenderComplete();
-		PreRenderer->ConditionalBeginDestroy(); // ¹º°¡ »¡¸® Á¦°Å ¸¶Å©¶óµµ ÇØ ÁÖ¾î¾ß ¾È½ÉÀÌ µÉ µíÇÑ ±âºĞ
+		PreRenderer->ConditionalBeginDestroy(); // è´­å•Š å¼§åºœ åŠ›èŠ­ ä»˜å†œæ‰¼æ¡£ ç§¦ æ—ç»¢å…· æ•‘ç¼´æ çª æ·€èŒ„ æ‰ç›’
 	}
 	PreRenderer = nullptr;
 	
 	PreRenderPhase = EPreRenderPhase::EPRP_Done;
 
-	// Pre-render °É¸° »óÅÂ¿¡¼­ ½ÃÀÛÇß´ø ¿¬Ãâ¿¡¼­ ÀÏºÎ ºñÈ°¼ºÈ­ ½ÃÄ×´ø °Å ÀÖÀ¸¸é º¹±¸.
+	// Pre-render å§èµ´ æƒ‘æ€•ä¿Šè¾‘ çŸ«ç´¯æ²å¸¦ æ¥·å…ä¿Šè¾‘ è€ä½• åšåŠå·±æ‹³ çŸ«æ·–å¸¦ èŠ­ ä¹æ æ æ±—å¤‡.
 	for (AB2StageEventDirector* ThisSED : EventDirectors)
 	{
 		if (ThisSED && ThisSED->IsPlayingShow())
@@ -1003,14 +1003,14 @@ void ABladeIIGameMode::OnPreRenderComplete()
 	}
 
 	ClosePreLoadingScreen(EPreLoadingScreenType::PLST_PreRender_Default);
-	RestoreWholeGameTimeScale(); // È­¸é °¡¸° µ¿¾È ³·Ãè´ø WholeGameTimeScale º¹±¸.
-	EnsureStageEventTimeDilation(); // EventDirector ÂÊµµ TimeDilation ¾È ÁÖ¾úÀ» Å×´Ï ÀÌ ¶§ °°ÀÌ º¹±¸¸¦.
+	RestoreWholeGameTimeScale(); // æ‹³æ å•Šèµ´ æ‚¼æ•‘ æ’¤æå¸¦ WholeGameTimeScale æ±—å¤‡.
+	EnsureStageEventTimeDilation(); // EventDirector ç‡æ¡£ TimeDilation æ•‘ æ—èŒé˜‘ æŠ›èª æ é”­ éæ æ±—å¤‡ç”«.
 
-	// Pre-render ¸¦ ÇÑ´Ù¸é µû·Î Å¸ÀÌ¸Ó ¼³Ä¡ ¾ÈÇßÀ» ²¨°í ÀÌ ½ÃÁ¡¿¡¼­ ·Îµù ÀÌ¹ÌÁö ¾ğ·Îµå. Pre-render ½Ã ºí·Ï ½ºÅ©¸°¿¡ ¾²°Ô µÉ ¼öµµ ÀÖ°í.
+	// Pre-render ç”« èŒ„ä¿ƒæ è¶è‚º é¸¥æèµ£ æ±²æ‘¹ æ•‘æ²é˜‘ æ³¢ç»Š æ çŸ«ç—¢ä¿Šè¾‘ è‚ºçˆ¹ æå›ºç˜¤ æ”«è‚ºé›. Pre-render çŸ« å–‰åºŸ èƒ¶å†œèµ´ä¿Š é™éœ¸ çª èæ¡£ ä¹ç»Š.
 	UnloadAndClearLoadingImageState();
 
 #if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
-	// Pre-render ¸¦ Çß´Ù¸é ÀÌ ½ÃÁ¡¿¡¼­ ·Îµù ½Ã°£ ÃøÁ¤ Á¾·á
+	// Pre-render ç”« æ²ä¿ƒæ æ çŸ«ç—¢ä¿Šè¾‘ è‚ºçˆ¹ çŸ«åŸƒ èŸæ²¥ è¾†ä¸°
 	DevCheckLoadingTimeEnd();
 #endif
 }
@@ -1021,15 +1021,15 @@ int32 gDetectedGarbageExcessiveRenderCount = 0;
 void ABladeIIGameMode::OnPreLoadMap(const FString& InString)
 {
 //	//
-//	// ÀÌ¸§Àº PreLoadMap ÀÌ¶ó ÀÌ¹ø °ÔÀÓ¸ğµå ½ÃÀÛ Á÷ÀüÀ¸·Î ¿ÀÇØÇÒ ¼ö ÀÖÁö¸¸ ½ÇÁ¦·Î´Â ÀÚ±â ÀÚ½ÅÀº ³»·Á°¥ ÁØºñ¸¦ ÇÏ´Â ºÎºĞ.
-//	// ¸Å ¸Ê ÀüÈ¯ Á÷Àü ¾ÆÁ÷ World GC µÇ±â ÀÌÀü ¹«¾ğ°¡ Á¤¸®ÇÏ±â ÁÁÀº ½ºÆÌÀÓ.
-//	// °¢ UObject µéÀÇ BeginDestroy ¿¡¼­´Â ÇÏ¸é Àß ¾ÈµÇ´Â °ÍµéÀÌ ¿©±â¿¡¼­´Â ¿©ÀüÈ÷ °¡´ÉÇÑ °æ¿ì°¡ ¸¹À½.
+//	// ææŠšç¯® PreLoadMap ææ‰¼ æé”… éœ¸çƒ™è‘›é› çŸ«ç´¯ æµå‚ˆæ è‚º å·ç§¦ä¸” è ä¹ç˜¤çˆ¶ è§’åŠ›è‚ºç»° ç£Šæ‰ ç£Šè„šç¯® éƒ´å¦¨å“ éœ–åšç”« çªç»° ä½•ç›’.
+//	// æ¦‚ ç”˜ å‚ˆåˆ¸ æµå‚ˆ é…’æµ World GC ç™»æ‰ æå‚ˆ å…¬æ”«å•Š æ²¥åºœçªæ‰ äº®ç¯® èƒ¶é“ºçƒ™.
+//	// é˜¿ UObject ç”¸ç‹¼ BeginDestroy ä¿Šè¾‘ç»° çªæ è‚‹ æ•‘ç™»ç»° å·´ç”¸æ å’¯æ‰ä¿Šè¾‘ç»° å’¯å‚ˆæ´’ å•Šç“·èŒ„ ç‰ˆå¿«å•Š è…¹æ¾œ.
 //	//
 //
 //	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIGameMode::OnPreLoadMap"));
 //
 //#if !UE_BUILD_SHIPPING || BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
-//	// ExcessiveRenderProcessing Àº Pre-render µµÁß¿¡¸¸ »ç¿ëÇÏ´Â Æ¯º°ÇÑ ±â´ÉÀ¸·Î, ÀÚÄ© ÀÏ¹İÀûÀÎ »óÈ²¿¡±îÁö Èê·¯³ª¿Ô´Ù°¡´Â ¼º´É¿¡ Å« Áã¾àÀÌ µÈ´Ù.
+//	// ExcessiveRenderProcessing ç¯® Pre-render æ¡£åä¿Šçˆ¶ è¤ä¾©çªç»° æ¼‚å–ŠèŒ„ æ‰ç“·æ è‚º, ç£Šæœ« è€é¦†åˆ©ç‰¢ æƒ‘ç‚”ä¿Šé³–ç˜¤ æ±çŸ¾å”±å­ä¿ƒå•Šç»° å·±ç“·ä¿Š å¥´ é›¶è·æ ç­‰ä¿ƒ.
 //	{
 //		int32 ExcessiveRenderModeCount = 0;
 //		for (TObjectIterator<UPrimitiveComponent> It; It; ++It)
@@ -1040,18 +1040,18 @@ void ABladeIIGameMode::OnPreLoadMap(const FString& InString)
 //				++ExcessiveRenderModeCount;
 //			}
 //		}
-//#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2 // ½±ÇÎ Å×½ºÆ® ºôµå¿¡¼­µµ Ç¥½Ã..
+//#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2 // å¥–ä¿ æŠ›èƒ¶é£˜ å‘¼é›ä¿Šè¾‘æ¡£ é’çŸ«..
 //		gDetectedGarbageExcessiveRenderCount = ExcessiveRenderModeCount;
 //#endif
 //		checkf(ExcessiveRenderModeCount == 0, TEXT("Detected %d PrimitiveComponents in ExcessiveRenderProcessing at last level transition!"), ExcessiveRenderModeCount);
 //	}
 //#endif
 //
-//	// ±âº»°ª Â÷¿ø.. °ÔÀÓ¸ğµå ÂÊ º¯¼ö(UseCustomWaitForLoadingScreen)´Â ¿©±â¼­ ¼¼ÆÃÇØºÁ¾ß ¼Ò¿ëÀÌ ¾ø°ÚÁö¸¸ MoviePlayer ÂÊ º¯¼ö´Â ¸®¼ÂÀÌ ÇÊ¿äÇØ¼­.
+//	// æ‰å¤¯è”¼ ç’ç›”.. éœ¸çƒ™è‘›é› ç‡ å‡½è(UseCustomWaitForLoadingScreen)ç»° å’¯æ‰è¾‘ æŠ€æ³¼ç§¦æ¯«å…· å®¶ä¾©æ ç»æ‘†ç˜¤çˆ¶ MoviePlayer ç‡ å‡½èç»° åºœæ‚¸æ é˜å¤¸ç§¦è¾‘.
 //	SetUseCustomWaitForLoadingScreen(false);
 //
 //#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
-//	// ·Îµù ½Ã°£ ÃøÁ¤.
+//	// è‚ºçˆ¹ çŸ«åŸƒ èŸæ²¥.
 //	DevCheckLoadingTimeBegin();
 //#endif
 //
@@ -1061,38 +1061,38 @@ void ABladeIIGameMode::OnPreLoadMap(const FString& InString)
 //		MeshCacheManager->OnPreLoadMap(this);
 //	}
 //	
-//	UnloadAndClearLoadingImageState(); // À¢¸¸ÇØ¼­ ÀÌ ½ÃÁ¡¿¡ ´Ù ³»·Á°¡ ÀÖ±ä ÇØ¾ß ÇÏ´Âµ¥ Å¸ÀÓ µô·¹ÀÌ¸¦ ÁÖ´Â ÀÌ»ó ¸ğ¸£´Â ÀÏÀÌ´Ï. PreLoadingScreen ¿­¾ú´Ù°¡ ÀÌ°É·Î Unload ÇÏ°í ´Ù½Ã LoadingScreen ¶§¹®¿¡ ·ÎµùÇÏ´Â °Ç ¹®Á¦¾ø´Ù.
-//	ClosePreLoadingScreenAll(); // ¿¹¿­(?) ¼º°İÀ¸·Î UI ·Î Á¦ÀÛµÈ PreLoadingScreen À» ¶ç¿ì´Â °Ô ÀÖ¾î¼­ ±×°É ´İÀ½.
+//	UnloadAndClearLoadingImageState(); // æ„§çˆ¶ç§¦è¾‘ æ çŸ«ç—¢ä¿Š ä¿ƒ éƒ´å¦¨å•Š ä¹å˜ ç§¦å…· çªç»°å• é¸¥çƒ™ æ‰é¥­æç”« æ—ç»° ææƒ‘ è‘›ç¦ç»° è€æèª. PreLoadingScreen å‡¯èŒä¿ƒå•Š æå§è‚º Unload çªç»Š ä¿ƒçŸ« LoadingScreen é”­å·©ä¿Š è‚ºçˆ¹çªç»° æ‰’ å·©åŠ›ç»ä¿ƒ.
+//	ClosePreLoadingScreenAll(); // æŠ—å‡¯(?) å·±æ‹œæ è‚º UI è‚º åŠ›ç´¯ç­‰ PreLoadingScreen é˜‘ å‰å¿«ç»° éœ¸ ä¹ç»¢è¾‘ å¼Šå§ æ‘§æ¾œ.
 //	SetupNextGameLoadingScreen();
 //	
-//	LobbyEndOnTouchImpulseRingClass<>::GetInstance().Signal(); // Ã³¸®¸¦ ¾ÈÇØÁÖ´Â °æ¿ì ¸¸¿¡ ÇÏ³ª ³²¾Æ ÀÖÀ» ¼ö ÀÖ´Ù. ·Îºñ¸ğµå ¾Æ´Ï¸é ÀÌ°É Ã³¸®ÇÏÁö ¾ÊÀ¸¹Ç·Î È®½ÇÈ÷ ³¡³»ÁÜ.
+//	LobbyEndOnTouchImpulseRingClass<>::GetInstance().Signal(); // è´¸åºœç”« æ•‘ç§¦æ—ç»° ç‰ˆå¿« çˆ¶ä¿Š çªå”± å·¢é…’ ä¹é˜‘ è ä¹ä¿ƒ. è‚ºåšè‘›é› é…’èªæ æå§ è´¸åºœçªç˜¤ è‡¼æ éª¨è‚º çŠ¬è§’æ´’ åœºéƒ´æ·‹.
 //	
-//	// ±âº» ÄÚµå¿¡¼­´Â ·¹º§ Á¾·á½Ã ºÒ¸®Áö ¾Ê´Â µíÇÑµ¥, VirtualJoystick Àº ¸Å¹ø »õ·Î »ı¼º. ¿¹Àü¿¡ ¹º°¡ ¹ö±×°¡ ÀÖ¾î¼­ ³Ö¾îµÎ¾ú¾ú´Âµ¥ ÀÌÁ¦ ±¦ÂúÀ»Áöµµ..?
+//	// æ‰å¤¯ å†…é›ä¿Šè¾‘ç»° é¥­éª‡ è¾†ä¸°çŸ« é˜‚åºœç˜¤ è‡¼ç»° æ·€èŒ„å•, VirtualJoystick ç¯® æ¦‚é”… è´§è‚º ç§¯å·±. æŠ—å‚ˆä¿Š è´­å•Š æ»šå¼Šå•Š ä¹ç»¢è¾‘ æŒç»¢æ»´èŒèŒç»°å• æåŠ› å®æ»¡é˜‘ç˜¤æ¡£..?
 //	ABladeIIPlayerController* B2PC = Cast<ABladeIIPlayerController>(UGameplayStatics::GetLocalPlayerController(this));
 //	if (B2PC)
 //	{
 //		B2PC->DeactivateVitualJoystick();
 //	}
 //
-//	// °á±¹ ¸Å ¿ùµå ³»·Á°¥ ¶§¸¶´Ù °°ÀÌ ¾ø¾ÖÁÖ´Â °É·Î. UIManager ´Â ¸®¼Ò½º ¿ÀºêÁ§Æ®¶ó ½ÇÁúÀûÀÎ GC ´Â ¾ÈµÇ¹Ç·Î ³»ºÎ Âî²¨±âµéÀ» Á÷Á¢ Á¦°ÅÇØ¾ß ÇÑ´Ù.
+//	// æ¬æƒ« æ¦‚ å²¿é› éƒ´å¦¨å“ é”­ä»˜ä¿ƒ éæ ç»å±€æ—ç»° å§è‚º. UIManager ç»° åºœå®¶èƒ¶ å·å®ç’ƒé£˜æ‰¼ è§’é¾™åˆ©ç‰¢ GC ç»° æ•‘ç™»éª¨è‚º éƒ´ä½• éª‚æ³¢æ‰ç”¸é˜‘ æµç«‹ åŠ›èŠ­ç§¦å…· èŒ„ä¿ƒ.
 //	UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
 //	if (UIMgrInst)
 //	{
-//		UIMgrInst->MasterDestroy(); // ±×³É Destroy ¸»°í MasterDestroy ·Î ÇØ¾ß ÇÔ.
+//		UIMgrInst->MasterDestroy(); // å¼Šæˆ Destroy å¯Œç»Š MasterDestroy è‚º ç§¦å…· çªƒ.
 //	}
-//	if (UIManager_InGameCombat) // DJLegacy ÀÇ ÀüÅõ¾À UIManager 
+//	if (UIManager_InGameCombat) // DJLegacy ç‹¼ å‚ˆæ§çº  UIManager 
 //	{
 //		UIManager_InGameCombat->OnPreLoadMap();
 //	}
 //
 //	StopBGM();
 //
-//	// Async Load request °°Àº °Å ¸ğµÎ ¿Ï·á ¹× Å¬¸®¾î.
-//	// ¹Ù·Î ¾Æ·¡ ManualUnloadBeforeNewBeginning °ú °°Àº ¸Æ¶ôÀÓ.
+//	// Async Load request éç¯® èŠ­ è‘›æ»´ è‚¯ä¸° æ£º åŠªåºœç»¢.
+//	// å®˜è‚º é…’è´° ManualUnloadBeforeNewBeginning è‹ éç¯® é’™éçƒ™.
 //	if (UB2AssetLoader* AssetLoader = UB2AssetLoader::Get()){
 //		AssetLoader->FlushAll();
 //	}
-//	ManualUnloadBeforeNewBeginning(this); // InfoAsset µé ÀÏºÎ ¿¹¿Ü Á¦¿ÜÇÏ°í ¸ğµÎ ½Ï Å¬¸®¾î
+//	ManualUnloadBeforeNewBeginning(this); // InfoAsset ç”¸ è€ä½• æŠ—å¯‡ åŠ›å¯‡çªç»Š è‘›æ»´ è¾ƒ åŠªåºœç»¢
 //
 //	SaveLocalIniStateOnPreLoadMap(); 
 //	
@@ -1101,7 +1101,7 @@ void ABladeIIGameMode::OnPreLoadMap(const FString& InString)
 //	IStreamingManager::Get().StreamAllResources(5.0f);
 }
 
-/** OnPreLoadMap ½ÃÁ¡ÀÇ ÀÌÁ¦ ·ÎµùÀÌ ½ÃÀÛµÇ´Â °ÔÀÓ¸ğµå¸¦ À§ÇÑ ·Îµù ½ºÅ©¸°¼Â¾÷. */
+/** OnPreLoadMap çŸ«ç—¢ç‹¼ æåŠ› è‚ºçˆ¹æ çŸ«ç´¯ç™»ç»° éœ¸çƒ™è‘›é›ç”« å›°èŒ„ è‚ºçˆ¹ èƒ¶å†œèµ´æ‚¸è¯€. */
 void ABladeIIGameMode::SetupNextGameLoadingScreen()
 {
 	//IB2GameLoadingScreenModule* const LoadingScreenModule = GetB2LoadingScreenModulePtr();
@@ -1110,23 +1110,23 @@ void ABladeIIGameMode::SetupNextGameLoadingScreen()
 	//	const FString ClosingMovieName = GetClosingMovieName();
 	//	if (ClosingMovieName.Len() > 0) 
 	//	{
-	//		// Æ¯º°È÷ Á¾·á ½Ã ÇÃ·¹ÀÌÇÒ µ¿¿µ»óÀ» ÁöÁ¤ÇÏ´Â °æ¿ì.. Subtitle ÀÌ³ª ±âÅ¸ ÀÎÀÚ´Â ÇÊ¿ä¿¡ µû¶ó ±¸Çö Ãß°¡µÇ¾î¾ß ÇÔ.
-	//		// ÀÏ¹İÀûÀÎ ½Ã³ª¸®¿À µ¿¿µ»óÀÌ ¾Æ´Ô. ±×°Ç ´ÙÀ½ ·ÎµùµÈ °ÔÀÓ¸ğµåÀÇ StartPlay ¿¡¼­ ¼Â¾÷
+	//		// æ¼‚å–Šæ´’ è¾†ä¸° çŸ« æ•²é¥­æä¸” æ‚¼åº·æƒ‘é˜‘ ç˜¤æ²¥çªç»° ç‰ˆå¿«.. Subtitle æå”± æ‰é¸¥ ç‰¢ç£Šç»° é˜å¤¸ä¿Š è¶æ‰¼ å¤‡æ³… çœ å•Šç™»ç»¢å…· çªƒ.
+	//		// è€é¦†åˆ©ç‰¢ çŸ«å”±åºœå· æ‚¼åº·æƒ‘æ é…’ä¸›. å¼Šæ‰’ ä¿ƒæ¾œ è‚ºçˆ¹ç­‰ éœ¸çƒ™è‘›é›ç‹¼ StartPlay ä¿Šè¾‘ æ‚¸è¯€
 	//		LoadingScreenModule->StartGameLoadingScreen_Movie(*ClosingMovieName,
-	//			// ±×³É FitToMin À¸·Î ÇÏ¸é ´Ù¾çÇÑ µ¿¿µ»ó ºñÀ²¿¡ ´ëÇÑ ´ëÃ³°¡ °¡´ÉÇÏ³ª AppleMovieStreamer ±¸Á¶¿Í °ü·ÃÇØ¼­ IOS ÀÏºÎ ±â±â¿¡¼­ ÀÏ½ÃÀûÀ¸·Î È­¸é ºñÀ²ÀÌ ÈåÆ®·¯Áö´Â ¹®Á¦°¡ ¹ß»ıÇÒ ¼ö ÀÖ´Ù.
-	//			// DLC Å¸ÀÌÆ²¿¡¼­ ·Îºñ ·ÎµùÀ» Á¦¿ÜÇÑ ±âÅ¸ ·Îµù µ¿¿µ»óÀÌ 16:9 ·Î Á¦ÀÛµÇ´Â ÇÑ ¿©±â´Â StdHD ·Î °íÁ¤.
+	//			// å¼Šæˆ FitToMin æ è‚º çªæ ä¿ƒå‰§èŒ„ æ‚¼åº·æƒ‘ åšå•¦ä¿Š æªèŒ„ æªè´¸å•Š å•Šç“·çªå”± AppleMovieStreamer å¤‡ç‚¼å®¢ åŒ…è®¿ç§¦è¾‘ IOS è€ä½• æ‰æ‰ä¿Šè¾‘ è€çŸ«åˆ©æ è‚º æ‹³æ åšå•¦æ å„’é£˜çŸ¾ç˜¤ç»° å·©åŠ›å•Š æƒ¯ç§¯ä¸” è ä¹ä¿ƒ.
+	//			// DLC é¸¥ææ’‡ä¿Šè¾‘ è‚ºåš è‚ºçˆ¹é˜‘ åŠ›å¯‡èŒ„ æ‰é¸¥ è‚ºçˆ¹ æ‚¼åº·æƒ‘æ 16:9 è‚º åŠ›ç´¯ç™»ç»° èŒ„ å’¯æ‰ç»° StdHD è‚º ç»Šæ²¥.
 	//			ELoadingScreenMovieAlignMode::FitToMin_StdHD,
-	//			true	// Æ©Åä¸®¾ó Skip Ãß°¡
+	//			true	// è­¬é…åºœå€” Skip çœ å•Š
 	//		);
 	//	}
 	//	else 
-	//	{ // ÀÏ¹İÀûÀÎ ÀÌ¹ÌÁö ·Îµù ½ºÅ©¸°
+	//	{ // è€é¦†åˆ©ç‰¢ æå›ºç˜¤ è‚ºçˆ¹ èƒ¶å†œèµ´
 	//		SetupLoadingScreenImageCommon(false, true, false);
 	//	}
 	//}
 }
 void ABladeIIGameMode::SetupLoadingScreenImageCommon(
-	bool bSetImagePersistent, // »ç¿ëÇÑ ·Îµù ÀÌ¹ÌÁö¸¦ (Çö °ÔÀÓ¸ğµå µµÁß) ´ÙÀ½¹ø¿¡µµ »ç¿ëÇÏ·Á¸é true ·Î.
+	bool bSetImagePersistent, // è¤ä¾©èŒ„ è‚ºçˆ¹ æå›ºç˜¤ç”« (æ³… éœ¸çƒ™è‘›é› æ¡£å) ä¿ƒæ¾œé”…ä¿Šæ¡£ è¤ä¾©çªå¦¨æ true è‚º.
 	bool bInDisplayProgress, bool bInDisplayIndicator,
 	const TCHAR* InOptionalImageName, /*= nullptr*/
 	EB2LoadingMessageType InLoadingMessageType /*= EB2LoadingMessageType::ELMT_GameLoading*/)
@@ -1146,10 +1146,10 @@ void ABladeIIGameMode::SetupLoadingScreenImageCommon(
 		GConfig->GetFloat(TEXT("/Script/BladeII"), TEXT("LoadingImageOptimalAspectRatio"), OptimalAspectRatio, GGameIni);
 
 		LoadingScreenModule->StartGameLoadingScreen_Image(
-			InOptionalImageName ? InOptionalImageName : *GetLoadingImageName(bSetImagePersistent), // ÀÏ¹İÀûÀÎ °æ¿ì, InOptionalImageName À» ³ÖÁö ¾Ê°í GameMode ÀÚÃ¼ÀûÀ¸·Î Á¤ÇØÁø ·çÆ¾¿¡ µû¸¥ ÀÌ¹ÌÁö¸¦ »ç¿ë.
+			InOptionalImageName ? InOptionalImageName : *GetLoadingImageName(bSetImagePersistent), // è€é¦†åˆ©ç‰¢ ç‰ˆå¿«, InOptionalImageName é˜‘ æŒç˜¤ è‡¼ç»Š GameMode ç£Šçœ‰åˆ©æ è‚º æ²¥ç§¦æŸ³ é£å‡­ä¿Š è¶å¼— æå›ºç˜¤ç”« è¤ä¾©.
 			bInDisplayProgress, bInDisplayIndicator,
 			FVector2D((float)ViewSizeX, (float)ViewSizeY),
-			false, OptimalAspectRatio, // Æ¯Á¤ È­¸éºñÀ²À» ÃÖÀûÀ¸·Î ÇÑ Áß¾ÓÁ¤·Ä »ç¿ë.
+			false, OptimalAspectRatio, // æ¼‚æ²¥ æ‹³æåšå•¦é˜‘ å¼¥åˆ©æ è‚º èŒ„ åå±…æ²¥çºº è¤ä¾©.
 			InLoadingMessageType
 		);
 	}
@@ -1158,7 +1158,7 @@ void ABladeIIGameMode::SetupLoadingScreenImageCommon(
 #if WITH_EDITOR
 void ABladeIIGameMode::OnEditorEndPlayMap()
 {
-	// ¿¡µğÅÍ ÇÃ·¹ÀÌ Áß´Ü ½Ã¿¡µµ ÀÛµ¿ÇßÀ¸¸é ÇÏ´Â OnPreLoadMap µ¿ÀÛµéÀÌ ÀÖÀ¸¸é ¿©±â¿¡.. UIManager Destroy ´Â ÀÚÃ¼ÀûÀ¸·Î ½ÇÇàµÊ.
+	// ä¿Šå¼ç£ æ•²é¥­æ åçªœ çŸ«ä¿Šæ¡£ ç´¯æ‚¼æ²æ æ çªç»° OnPreLoadMap æ‚¼ç´¯ç”¸æ ä¹æ æ å’¯æ‰ä¿Š.. UIManager Destroy ç»° ç£Šçœ‰åˆ©æ è‚º è§’é’å‡³.
 		
 	SaveLocalSavedAutoType();
 }
@@ -1182,8 +1182,8 @@ UTexture2D* ABladeIIGameMode::GetLoadingImageTexture(EB2GameMode InGameMode, boo
 	if (LIInfo)
 	{
 		UTexture2D* LoadedLoadingImageTexture = NULL;
-		// ±âÁ¸¿¡ ¹«ÀÛÀ§·Î Á¤ÇØ³õÀº °ªÀÌ ¾øÀ¸¸é »õ·Î »Ì¾Æ ¾²°í
-		// bPersistent ÀÎ °æ¿ì ¹«ÀÛÀ§·Î Á¤ÇØÁø °ªÀ» ÀúÀåÇØ¼­ ´ÙÀ½¿¡ ¶È°°ÀÌ »ç¿ëÇÒ ¼ö ÀÖµµ·Ï ÇÔ.
+		// æ‰ç²®ä¿Š å…¬ç´¯å›°è‚º æ²¥ç§¦åˆç¯® è”¼æ ç»æ æ è´§è‚º æƒ¶é…’ é™ç»Š
+		// bPersistent ç‰¢ ç‰ˆå¿« å…¬ç´¯å›°è‚º æ²¥ç§¦æŸ³ è”¼é˜‘ å†å˜ç§¦è¾‘ ä¿ƒæ¾œä¿Š åº¦éæ è¤ä¾©ä¸” è ä¹æ¡£åºŸ çªƒ.
 
 		if (LoadingImageIdx == INDEX_NONE)
 		{
@@ -1199,7 +1199,7 @@ UTexture2D* ABladeIIGameMode::GetLoadingImageTexture(EB2GameMode InGameMode, boo
 			LoadedLoadingImageTexture = LIInfo->GetLoadingImageOfIndex(InGameMode, LoadingImageIdx);
 		}
 
-		// ÀÌ°Ç ´Ù¸¥ »óÈ²¿¡¼­ ·Îµù ÀÌ¹ÌÁö¸¦ ¿¬ÀåÇØ¼­ ¾²±â À§ÇØ..
+		// ææ‰’ ä¿ƒå¼— æƒ‘ç‚”ä¿Šè¾‘ è‚ºçˆ¹ æå›ºç˜¤ç”« æ¥·å˜ç§¦è¾‘ é™æ‰ å›°ç§¦..
 		LastUsedLoadingImageName = LoadedLoadingImageTexture ? LoadedLoadingImageTexture->GetPathName() : TEXT("");
 
 		return LoadedLoadingImageTexture;
@@ -1213,13 +1213,13 @@ void ABladeIIGameMode::OnLoadingImageUnloadTimerCB()
 	//if (TheWorld)
 	//{
 	//	TheWorld->GetTimerManager().ClearTimer(LoadingImageUnloadTH);
-	//	if (!IsInPreRenderPhase() && GetMoviePlayer()->IsLoadingFinished()) // »ç½Ç WaitForMovieToFinish ÈÄ¸é IsLoadingFinished ¿©¾ß ÇÑ´Ù. ±× ½ÃÁ¡¿¡ Unload ¸¦ ÇØµµ ¹®Á¦°¡ ÀÏ¾î³ª´Â ÀÌÀ¯¸¦ ¾Ë¼ö°¡ ¾ø¾î¼­ ÀÌ·¯´Â °Çµ¥..
+	//	if (!IsInPreRenderPhase() && GetMoviePlayer()->IsLoadingFinished()) // è¤è§’ WaitForMovieToFinish é¥¶æ IsLoadingFinished å’¯å…· èŒ„ä¿ƒ. å¼Š çŸ«ç—¢ä¿Š Unload ç”« ç§¦æ¡£ å·©åŠ›å•Š è€ç»¢å”±ç»° æèœ¡ç”« èˆ…èå•Š ç»ç»¢è¾‘ æçŸ¾ç»° æ‰’å•..
 	//	{
-	//		//FlushRenderingCommands(); // IsLoadingFinished ÀÌÈÄ¿¡µµ ½ÇÁúÀûÀ¸·Î ·Îµù ÀÌ¹ÌÁö¸¦ ¾µ °¡´É¼ºÀÌ ÀÖ´Â °Å¶ó¸é ·»´õ ¾²·¹µå ÇÃ·¯½¬¶óµµ..
+	//		//FlushRenderingCommands(); // IsLoadingFinished æé¥¶ä¿Šæ¡£ è§’é¾™åˆ©æ è‚º è‚ºçˆ¹ æå›ºç˜¤ç”« é•œ å•Šç“·å·±æ ä¹ç»° èŠ­æ‰¼æ åŠæ­¹ é™é¥­é› æ•²çŸ¾æµ†æ‰¼æ¡£..
 	//		UnloadAndClearLoadingImageState();
 	//	}
 	//	else
-	//	{// ¸¸ÀÏ ¾Æ´Ï¸é ¶Ç ´ë±â. ½ÇÁúÀûÀ¸·Î ÀÌ·¸°Ô °É¸®´Â ÀÏÀº ¾øÀ» µí..?
+	//	{// çˆ¶è€ é…’èªæ è‚š æªæ‰. è§’é¾™åˆ©æ è‚º æçŠ¯éœ¸ å§åºœç»° è€ç¯® ç»é˜‘ æ·€..?
 	//		TheWorld->GetTimerManager().SetTimer(LoadingImageUnloadTH, this, &ABladeIIGameMode::OnLoadingImageUnloadTimerCB, 1.0f, false);
 	//	}
 	//}
@@ -1246,15 +1246,15 @@ void ABladeIIGameMode::SetUseCustomWaitForLoadingScreen(bool bSet)
 {
 	//bUseCustomWaitForLoadingScreen = bSet;
 	//IGameMoviePlayer* GMP = GetMoviePlayer();
-	//if (GMP) { // GameMoviePlayer ÂÊ¿¡µµ °°ÀÌ ¼¼ÆÃÀ» ÇØ¾ß ±âº» ¿£Áø ·çÆ¾¿¡ ÀÇÇÑ Á¾·á¸¦ ¸·À» ¼ö ÀÖ´Ù.
+	//if (GMP) { // GameMoviePlayer ç‡ä¿Šæ¡£ éæ æŠ€æ³¼é˜‘ ç§¦å…· æ‰å¤¯ æµšæŸ³ é£å‡­ä¿Š ç‹¼èŒ„ è¾†ä¸°ç”« é˜œé˜‘ è ä¹ä¿ƒ.
 	//	GMP->SetUseCustomWait(bUseCustomWaitForLoadingScreen);
 	//}
 }
 void ABladeIIGameMode::WaitForLoadingScreen()
 { 
-//	GlobalMarkMapLoadingProgressDone(); // 100% ·Î Ã¤¿ì´Â °Çµ¥ »ç½Ç ¿©±â´Â ·Îµù È­¸é ³¡³ª´Â °÷ÀÌ¶ó ÀÌ°Å ÀÌÀü ÀûÀıÇÑ ½ÃÁ¡¿¡ 100% ·Î Ã¤¿ö³õ¾Æ¾ß..
+//	GlobalMarkMapLoadingProgressDone(); // 100% è‚º ç›²å¿«ç»° æ‰’å• è¤è§’ å’¯æ‰ç»° è‚ºçˆ¹ æ‹³æ åœºå”±ç»° é•‘ææ‰¼ æèŠ­ æå‚ˆ åˆ©ä¾‹èŒ„ çŸ«ç—¢ä¿Š 100% è‚º ç›²å†µåˆé…’å…·..
 //
-//	// ±×³É ·Îµù È­¸éÀÌ¸é Áß´ÜÀÌ µÉ ²¨°í ¿µ»ó ÇÃ·¹ÀÌ¸¦ ½ÃÀÛÇÑ °æ¿ì¶ó¸é ³¡³¯¶§±îÁö ´ë±â. ÀÌ·¸°Ô ´ë±â Áß ÁöÁ¤ÇÑ ½Ã°£ÀÌ Áö³ª¼­ ÇÃ·¹ÀÌ µÇ°í ÀÖÀ¸¸é Skip ¹öÆ°ÀÌ ¶ã °Í
+//	// å¼Šæˆ è‚ºçˆ¹ æ‹³æææ åçªœæ çª æ³¢ç»Š åº·æƒ‘ æ•²é¥­æç”« çŸ«ç´¯èŒ„ ç‰ˆå¿«æ‰¼æ åœºæœé”­é³–ç˜¤ æªæ‰. æçŠ¯éœ¸ æªæ‰ å ç˜¤æ²¥èŒ„ çŸ«åŸƒæ ç˜¤å”±è¾‘ æ•²é¥­æ ç™»ç»Š ä¹æ æ Skip æ»šç“¢æ èº² å·´
 //	IGameMoviePlayer* GMP = GetMoviePlayer();
 //	if (GMP) {
 //		GMP->WaitForMovieToFinish();
@@ -1262,19 +1262,19 @@ void ABladeIIGameMode::WaitForLoadingScreen()
 //
 //	B2Scalability::OnGameModeLoadingScreenEnd();
 //
-//	// ÀÏ¹İÀûÀÎ ¸Ê ·ÎµùÀÌ ¾Æ´Ï¸é¼­ GameMoviePlayer ¸¦ ¾´´Ù¸é ¾à°£ ¾ê±â°¡ ´Ù¸£°ÚÁö¸¸
-//	// ÀÏ¹İÀûÀ¸·Î ÀÌ Å¸ÀÌ¹ÖÀº ÀÌ¹ø °ÔÀÓ¸ğµåÀÇ ·ÎµùÀÌ ¿Ï·áµÇ°í ·Îµù ½ºÅ©¸°±îÁö °ÈÈù ½ÃÁ¡ÀÌ µÇ°Ú´Ù.
+//	// è€é¦†åˆ©ç‰¢ ç”˜ è‚ºçˆ¹æ é…’èªæè¾‘ GameMoviePlayer ç”« æ•¬ä¿ƒæ è·åŸƒ å¨Ÿæ‰å•Š ä¿ƒç¦æ‘†ç˜¤çˆ¶
+//	// è€é¦†åˆ©æ è‚º æ é¸¥ææ€ªç¯® æé”… éœ¸çƒ™è‘›é›ç‹¼ è‚ºçˆ¹æ è‚¯ä¸°ç™»ç»Š è‚ºçˆ¹ èƒ¶å†œèµ´é³–ç˜¤ å­è…® çŸ«ç—¢æ ç™»æ‘†ä¿ƒ.
 //	OnLoadingScreenFinished();
 //
 //#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
 //	if (!IsInPreRenderPhase())
 //	{
-//		// Pre-render ¸¦ ¾È ÇÑ´Ù¸é ÀÌ ½ÃÁ¡¿¡¼­ ·Îµù ½Ã°£ ÃøÁ¤ Á¾·á
+//		// Pre-render ç”« æ•‘ èŒ„ä¿ƒæ æ çŸ«ç—¢ä¿Šè¾‘ è‚ºçˆ¹ çŸ«åŸƒ èŸæ²¥ è¾†ä¸°
 //		DevCheckLoadingTimeEnd();
 //	}
 //#endif
 }
-void ABladeIIGameMode::ConditionalWaitForLoadingScreen() // WaitForMovieToFinish ¿¡¼­µµ Ã¼Å©´Â ÇÏ¹Ç·Î ±»ÀÌ ÀÌ·¸°Ô ¾È ÇØµµ µÉ °Í °°±ä ÇÑµ¥..
+void ABladeIIGameMode::ConditionalWaitForLoadingScreen() // WaitForMovieToFinish ä¿Šè¾‘æ¡£ çœ‰å†œç»° çªéª¨è‚º è¢«æ æçŠ¯éœ¸ æ•‘ ç§¦æ¡£ çª å·´ éå˜ èŒ„å•..
 {
 	IGameMoviePlayer* GMP = GetMoviePlayer();
 	if (GMP && GMP->IsMovieCurrentlyPlaying()) {
@@ -1284,16 +1284,16 @@ void ABladeIIGameMode::ConditionalWaitForLoadingScreen() // WaitForMovieToFinish
 void ABladeIIGameMode::OnLoadingScreenFinished()
 {
 	/*
-	 ÀÌ¹ø °ÔÀÓ¸ğµåÀÇ ·ÎµùÀÌ ³¡³­ ½ÃÁ¡ÀÌ µÉ ¼ö ÀÖ´Âµ¥
-	 ÀÏ¹İÀûÀ¸·Î´Â ÀÌ°Íº¸´Ù PreBeginPlay, BeginPlay µîÀÇ ´Ù¸¥ "Ä£¼÷ÇÑ" ½ÃÁ¡À» »ç¿ëÇÏ´Â °Ô ÁÁ´Ù.
+	 æé”… éœ¸çƒ™è‘›é›ç‹¼ è‚ºçˆ¹æ åœºæŠ„ çŸ«ç—¢æ çª è ä¹ç»°å•
+	 è€é¦†åˆ©æ è‚ºç»° æå·´ç„Šä¿ƒ PreBeginPlay, BeginPlay æ®¿ç‹¼ ä¿ƒå¼— "æ¨¡æ§›èŒ„" çŸ«ç—¢é˜‘ è¤ä¾©çªç»° éœ¸ äº®ä¿ƒ.
 	 
-	 ·Îµù È­¸éÀº ºñµ¿±â·Î µ¹¾Æ°¡¸é¼­ Æ¯È÷ µ¿¿µ»óÀÎ °æ¿ì´Â ¸ŞÀÎ¾²·¹µå°¡ ÁØºñµÈ ÀÌÈÄ¿¡´Â ¸ŞÀÎ¾²·¹µå¸¦ ¸·±â ¶§¹®¿¡ 
-	 ÀÏ¹İÀûÀ¸·Î´Â ·Îµù È­¸éÀÌ µ¹¾Æ°¡´Â µ¿¾È ¿øÄ¡ ¾Ê´Â µ¿ÀÛÀÌ ¹é±×¶ó¿îµå·Î µ¹¾Æ°¡´Â °Í¿¡ ´ëÇØ ¿ì·ÁÇÒ ÇÊ¿ä´Â ¾ø´Ù.
+	 è‚ºçˆ¹ æ‹³æç¯® åšæ‚¼æ‰è‚º å€’é…’å•Šæè¾‘ æ¼‚æ´’ æ‚¼åº·æƒ‘ç‰¢ ç‰ˆå¿«ç»° çš‹ç‰¢é™é¥­é›å•Š éœ–åšç­‰ æé¥¶ä¿Šç»° çš‹ç‰¢é™é¥­é›ç”« é˜œæ‰ é”­å·©ä¿Š 
+	 è€é¦†åˆ©æ è‚ºç»° è‚ºçˆ¹ æ‹³ææ å€’é…’å•Šç»° æ‚¼æ•‘ ç›”æ‘¹ è‡¼ç»° æ‚¼ç´¯æ å½’å¼Šæ‰¼æ¬¾é›è‚º å€’é…’å•Šç»° å·´ä¿Š æªç§¦ å¿«å¦¨ä¸” é˜å¤¸ç»° ç»ä¿ƒ.
 
-	 ±×·¯³ª °£È¤ ¿¹¿Ü »óÈ²ÀÌ¶õ °Ô ÀÖ±â ¶§¹®¿¡ (¿£Áø ¿ÜºÎ ÇÃ·§Æû ÂÊÀ¸·Î ½ÅÈ£¸¦ º¸³½´Ù°Å³ª ÇÏ´Â µîÀÇ)
-	 ±×·± °æ¿ì´Â °á±¹ ¿©±â¼­ ·Îµù ½ºÅ©¸°ÀÌ ³¡³ª´Â Å¸ÀÌ¹ÖÀ» ¾Ë¾Æ¿Í¾ß ÇÔ.
+	 å¼ŠçŸ¾å”± åŸƒè¶£ æŠ—å¯‡ æƒ‘ç‚”æé„‚ éœ¸ ä¹æ‰ é”­å·©ä¿Š (æµšæŸ³ å¯‡ä½• æ•²é˜€æ±½ ç‡æ è‚º è„šé¾‹ç”« ç„Šè¾°ä¿ƒèŠ­å”± çªç»° æ®¿ç‹¼)
+	 å¼Šç¹ ç‰ˆå¿«ç»° æ¬æƒ« å’¯æ‰è¾‘ è‚ºçˆ¹ èƒ¶å†œèµ´æ åœºå”±ç»° é¸¥ææ€ªé˜‘ èˆ…é…’å®¢å…· çªƒ.
 
-	 °ÔÀÓ¸ğµå ¼º°İ¿¡ µû¶ó override ÇØ¼­ »ç¿ë
+	 éœ¸çƒ™è‘›é› å·±æ‹œä¿Š è¶æ‰¼ override ç§¦è¾‘ è¤ä¾©
 	*/ 
 }
 
@@ -1301,13 +1301,13 @@ void ABladeIIGameMode::OpenPreLoadingScreen(EPreLoadingScreenType InPreLoadType,
 {
 	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIGameMode::OpenPreLoadingScreen"));
 
-	ClosePreLoadingScreen(InPreLoadType); // ¸¸¿¡ ÇÏ³ª Áßº¹ÇØ¼­ ÄİÇÏ°Ô µÉ ¶§ ÀÌÀü²¨ Ã³¸® ¾ÈÇØÁÖ¸é Á» ¹®Á¦°¡..
+	ClosePreLoadingScreen(InPreLoadType); // çˆ¶ä¿Š çªå”± åæ±—ç§¦è¾‘ å¦®çªéœ¸ çª é”­ æå‚ˆæ³¢ è´¸åºœ æ•‘ç§¦æ—æ ç²± å·©åŠ›å•Š..
 	
 	CachedPreLoadingGameMode = GameMode;
 
-	// ¿ø·¡ ÀÌ°Å ¸ñÀûÀÌ ±×·± °Ç ¾Æ´Ñµ¥ OnPreLoadMap ¿¡¼­ B2GameLoadingScreenModule ÀÇ ·Îµù ½ºÅ©¸° ¶ç¿ì±â Àü ·Îµù ÀÌ¹ÌÁö ·ÎµùÀ» È®½ÇÈ÷ ÇÏ´Â ¿ªÇÒÀÌ ÀÖ´Â µí ÇÔ.
+	// ç›”è´° æèŠ­ æ ¼åˆ©æ å¼Šç¹ æ‰’ é…’å›±å• OnPreLoadMap ä¿Šè¾‘ B2GameLoadingScreenModule ç‹¼ è‚ºçˆ¹ èƒ¶å†œèµ´ å‰å¿«æ‰ å‚ˆ è‚ºçˆ¹ æå›ºç˜¤ è‚ºçˆ¹é˜‘ çŠ¬è§’æ´’ çªç»° å¼€ä¸”æ ä¹ç»° æ·€ çªƒ.
 
-	// InPreLoadType ÃßÈÄ Ãß°¡µÇ¸é ÇÊ¿ä¿¡ µû¶ó »ç¿ë
+	// InPreLoadType çœ é¥¶ çœ å•Šç™»æ é˜å¤¸ä¿Š è¶æ‰¼ è¤ä¾©
 	//APlayerController* LocalPC = UGameplayStatics::GetLocalPlayerController(this);
 	APlayerController* LocalPC = GetWorld()->GetFirstPlayerController();
 	TSubclassOf<class UB2PreLoadingScreen>& UsedWidgetClass = IsOneOfPreRenderScreenType(InPreLoadType) ? PreLoadingScreenWidgetClass_PreRender : PreLoadingScreenWidgetClass;
@@ -1317,7 +1317,7 @@ void ABladeIIGameMode::OpenPreLoadingScreen(EPreLoadingScreenType InPreLoadType,
 
 		if (LocalCreated)
 		{
-			// PreRenderScreen Àº ÇÏ´õ¶óµµ º°µµ·Î Ã³¸®.. ¾Æ´Ï¸é ½ÇÁ¦·Î ¿©±â¼­ PreRender °¡¸²¸·¿¡ »ç¿ëÇÒ ÀÌ¹ÌÁö¸¦ ·ÎµùÇÏ°Ô µÉ ¼öµµ ÀÖ°í.
+			// PreRenderScreen ç¯® çªæ­¹æ‰¼æ¡£ å–Šæ¡£è‚º è´¸åºœ.. é…’èªæ è§’åŠ›è‚º å’¯æ‰è¾‘ PreRender å•Šè¦†é˜œä¿Š è¤ä¾©ä¸” æå›ºç˜¤ç”« è‚ºçˆ¹çªéœ¸ çª èæ¡£ ä¹ç»Š.
 			UTexture2D* LoadedLoadingImage = nullptr;
 			if (IsOneOfPreRenderScreenType(InPreLoadType))
 			{
@@ -1325,11 +1325,11 @@ void ABladeIIGameMode::OpenPreLoadingScreen(EPreLoadingScreenType InPreLoadType,
 				{
 					LoadedLoadingImage = LoadObject<UTexture2D>(nullptr, *LastUsedLoadingImageName);
 				}
-				// PLST_PreRender_First ¿¡¼­´Â ±×³É NULL.. UB2PreLoadingScreen ¾È¿¡¼­ Ã³¸®.
+				// PLST_PreRender_First ä¿Šè¾‘ç»° å¼Šæˆ NULL.. UB2PreLoadingScreen æ•‘ä¿Šè¾‘ è´¸åºœ.
 			}
 			else
 			{
-				// ÀÏ¹İÀûÀÎ ¸Ê ·Îµù Á÷Àü ÄÉÀÌ½º.
+				// è€é¦†åˆ©ç‰¢ ç”˜ è‚ºçˆ¹ æµå‚ˆ çº³æèƒ¶.
 				LoadedLoadingImage = GetLoadingImageTexture(GameMode, true);
 			}
 			
@@ -1337,7 +1337,7 @@ void ABladeIIGameMode::OpenPreLoadingScreen(EPreLoadingScreenType InPreLoadType,
 			LocalCreated->SetPreLoadingType(InPreLoadType, LoadedLoadingImage);
 
 			if (IsOneOfPreRenderScreenType(InPreLoadType)) {
-				CreatedPreLoadingScreen_PreRender = LocalCreated; // ¾ê´Â µû·Î..
+				CreatedPreLoadingScreen_PreRender = LocalCreated; // å¨Ÿç»° è¶è‚º..
 			}
 			else {
 				CreatedPreLoadingScreen = LocalCreated;
@@ -1351,7 +1351,7 @@ void ABladeIIGameMode::ClosePreLoadingScreen(EPreLoadingScreenType InPreLoadType
 	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIGameMode::ClosePreLoadingScreen"));
 
 	if (IsOneOfPreRenderScreenType(InPreLoadType)) {
-		if (CreatedPreLoadingScreen_PreRender) // ¾ê´Â µû·Î °ü¸®¸¦..
+		if (CreatedPreLoadingScreen_PreRender) // å¨Ÿç»° è¶è‚º åŒ…åºœç”«..
 		{
 			CreatedPreLoadingScreen_PreRender->DestroySelf();
 			CreatedPreLoadingScreen_PreRender = NULL;
@@ -1386,12 +1386,12 @@ void ABladeIIGameMode::BeginPlay()
 //	Super::BeginPlay();
 //
 //#if WITH_EDITOR
-//	if (GIsEditor && !FGameDelegates::Get().GetEndPlayMapDelegate().IsBoundToObject(this)) { //ÁßÃ¸ ¹ÙÀÎµù ¾ÈµÇ°Ô
+//	if (GIsEditor && !FGameDelegates::Get().GetEndPlayMapDelegate().IsBoundToObject(this)) { //åé…¶ å®˜ç‰¢çˆ¹ æ•‘ç™»éœ¸
 //		FGameDelegates::Get().GetEndPlayMapDelegate().AddUObject(this, &ABladeIIGameMode::OnEditorEndPlayMap);
 //	}
 //#endif
 //
-//	if (!bDeferAutoBeginAuto) // ½ÇÁ¦ Match Start ½ÃÁ¡ÀÌ ´Ê¾îÁö´Â °ÔÀÓ¸ğµå´Â bDeferAutoBeginAuto ¸¦ True ·Î µÎ°í ÀûÀıÇÑ ½ÃÁ¡¿¡ TryAutoBeginAutoAtBeginning À» Á÷Á¢ ÄİÇÏµµ·Ï.
+//	if (!bDeferAutoBeginAuto) // è§’åŠ› Match Start çŸ«ç—¢æ è¯ç»¢ç˜¤ç»° éœ¸çƒ™è‘›é›ç»° bDeferAutoBeginAuto ç”« True è‚º æ»´ç»Š åˆ©ä¾‹èŒ„ çŸ«ç—¢ä¿Š TryAutoBeginAutoAtBeginning é˜‘ æµç«‹ å¦®çªæ¡£åºŸ.
 //	{
 //		TryAutoBeginAutoAtBeginning();
 //	}
@@ -1400,7 +1400,7 @@ void ABladeIIGameMode::BeginPlay()
 //		DocBattle->ClearBattleDataForStageClear();
 //
 //
-//#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2 // ½±ÇÎ Å×½ºÆ® ºôµå¿¡¼­µµ Ç¥½Ã..
+//#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2 // å¥–ä¿ æŠ›èƒ¶é£˜ å‘¼é›ä¿Šè¾‘æ¡£ é’çŸ«..
 //	if (gDetectedGarbageExcessiveRenderCount > 0)
 //	{
 //		BII_SCREEN_LOG(FString::Printf(TEXT("[WARNING] Found %d objects in ExcessiveRenderProcessing!"), gDetectedGarbageExcessiveRenderCount),
@@ -1409,7 +1409,7 @@ void ABladeIIGameMode::BeginPlay()
 //	}
 //#endif
 //
-//	// UAnimNotifyState_B2CameraAnim::SetBGVisibility ¿¡¼­ ¼³Á¤ÇØ³í°Å ÃÊ±âÈ­
+//	// UAnimNotifyState_B2CameraAnim::SetBGVisibility ä¿Šè¾‘ æ±²æ²¥ç§¦ç¨ èŠ­ æª¬æ‰æ‹³
 //	auto* ViewportClient = GetWorld()->GetGameViewport();
 //	if (ViewportClient)
 //	{
@@ -1425,7 +1425,7 @@ void ABladeIIGameMode::BeginDestroy()
 	//DeleteGameRule();
 	//
 	//if (bEventsSubscribed)
-	//{ // ½ÇÁ¦ »ç¿ëµÇÁö ¾Ê´Â °ÔÀÓ¸ğµå°¡ »ı¼ºµÇ¾ú´Ù°¡ Á¦°ÅµÉ ¼ö ÀÖÀ½. Subscribe ¸¦ Çß´ø °ÔÀÓ¸ğµåÀÏ °æ¿ì¸¸ Unsubscribe. Unsubscribe ½Ã GameMode °¡ unique ÇÏ´Ù°í °¡Á¤ÇÏ¹Ç·Î.
+	//{ // è§’åŠ› è¤ä¾©ç™»ç˜¤ è‡¼ç»° éœ¸çƒ™è‘›é›å•Š ç§¯å·±ç™»èŒä¿ƒå•Š åŠ›èŠ­çª è ä¹æ¾œ. Subscribe ç”« æ²å¸¦ éœ¸çƒ™è‘›é›è€ ç‰ˆå¿«çˆ¶ Unsubscribe. Unsubscribe çŸ« GameMode å•Š unique çªä¿ƒç»Š å•Šæ²¥çªéª¨è‚º.
 	//	UnsubscribeEvents();
 	//}
 
@@ -1454,7 +1454,7 @@ void ABladeIIGameMode::Tick(float dt)
 //
 //	if (BladeIIGameImpl::GetClientDataStore().ExistAccountInfo()
 //#if WITH_EDITOR
-//		|| 1  // °³¹ß ¹öÀü ÇÁ¸®ºä ÇÃ·¹ÀÌ ÇÃ¸®Áî
+//		|| 1  // ä¿ºæƒ¯ æ»šå‚ˆ æ©‡åºœè½° æ•²é¥­æ æ•²åºœä»¤
 //#endif
 //		) 
 //	{
@@ -1463,9 +1463,9 @@ void ABladeIIGameMode::Tick(float dt)
 //
 //	if (IsInPreRenderPhase()) 
 //	{
-//		UpdateForPreRenderObjects(); // ÀÌ°Ô µ¹¾Æ°¡´Â ¿ÍÁß¿¡´Â ¾ÆÁ÷ Á¤½Ä ½ÃÀÛ ¾È ÇÑ °Å..
+//		UpdateForPreRenderObjects(); // æéœ¸ å€’é…’å•Šç»° å®¢åä¿Šç»° é…’æµ æ²¥ä¾¥ çŸ«ç´¯ æ•‘ èŒ„ èŠ­..
 //
-//		// Pre-render ¿¡¼­ ¸ŞÀÎ ¸Ê ·Îµù È­¸é ´İ´Â °É Áö¿¬½ÃÅ°°Ô µÇ¹Ç·Î ¿©±â¼­ Ã³¸®. Pre-render ¿ë ·Îµù È­¸éÀº µû·Î ÀÖ°í ÀÌ°Ç ´ÜÁö ·Îµù »±±ÛÀÌ µ¹¾Æ°¡´Â °Å ¿¬ÀåÇÏ±â À§ÇÑ Â÷¿øÀÌ´Ù.
+//		// Pre-render ä¿Šè¾‘ çš‹ç‰¢ ç”˜ è‚ºçˆ¹ æ‹³æ æ‘§ç»° å§ ç˜¤æ¥·çŸ«è™éœ¸ ç™»éª¨è‚º å’¯æ‰è¾‘ è´¸åºœ. Pre-render ä¾© è‚ºçˆ¹ æ‹³æç¯® è¶è‚º ä¹ç»Š ææ‰’ çªœç˜¤ è‚ºçˆ¹ æ§è‡‚æ å€’é…’å•Šç»° èŠ­ æ¥·å˜çªæ‰ å›°èŒ„ ç’ç›”æä¿ƒ.
 //		ConditionalWaitForLoadingScreen();
 //	}
 //
@@ -1476,11 +1476,11 @@ void ABladeIIGameMode::Tick(float dt)
 //#endif
 //
 //#if !UE_BUILD_SHIPPING
-//	// ¸ğ¹ÙÀÏ ¼ÎÀÌ´õ ÄÄÆÄÀÏ ·Î±× ÇÃ·¯½Ã
+//	// è‘›å®˜è€ å˜‰ææ­¹ å“ªé¢‡è€ è‚ºå¼Š æ•²çŸ¾çŸ«
 //	if (GDevCheckMobileShaderCompile)
 //	{
-//		// ¾Æ·¡ ·Î±× Ç¥½ÃÇÏ´Â µ¿¾È ·»´õ ¾²·¹µå¿¡¼­ GShaderCompileCheck_AllCompiledNotLogged ÀÌ°Å Ãß°¡ÇÒ °¡´É¼º ÃÖ¼ÒÈ­. 
-//		// ±â´É ¿Àµ¿ÀÛ¿¡ ¹Î°¨ÇÏÁö´Â ¾ÊÀº °³¹ß¿ë ÄÚµåÀÌ´Ï lock °°Àº °Å ¾È °É°í Àû´çÈ÷..
+//		// é…’è´° è‚ºå¼Š é’çŸ«çªç»° æ‚¼æ•‘ åŠæ­¹ é™é¥­é›ä¿Šè¾‘ GShaderCompileCheck_AllCompiledNotLogged æèŠ­ çœ å•Šä¸” å•Šç“·å·± å¼¥å®¶æ‹³. 
+//		// æ‰ç“· å·æ‚¼ç´¯ä¿Š åˆ®çš‘çªç˜¤ç»° è‡¼ç¯® ä¿ºæƒ¯ä¾© å†…é›æèª lock éç¯® èŠ­ æ•‘ å§ç»Š åˆ©å¯¸æ´’..
 //		FlushRenderingCommands(); 
 //
 //		TArray<FString> ListCopy = GShaderCompileCheck_AllCompiledNotLogged;
@@ -1499,7 +1499,7 @@ void ABladeIIGameMode::Tick(float dt)
 //		}
 //		GShaderCompileCheck_AllCompiledNotLogged.Empty();
 //	}
-//	// ¶Ç ´Ù¸¥ ¿£Áø ³»ºÎ µ¿ÀÛ ·Î±× ÇÃ·¯½Ã
+//	// è‚š ä¿ƒå¼— æµšæŸ³ éƒ´ä½• æ‚¼ç´¯ è‚ºå¼Š æ•²çŸ¾çŸ«
 //	if (GDevCheckSoundWaveLoading)
 //	{
 //		TArray<FString> ListCopy = GSoundWaveLoadingCheck_NotLoggedList;
@@ -1531,7 +1531,7 @@ void ABladeIIGameMode::StartPlay()
 //#if !UE_BUILD_SHIPPING
 //	extern int32 gPCDataPreLoadMaxNum;
 //	if (gPCDataPreLoadMaxNum == 0) {
-//		// ¾Æ¿¹ Ã³À½ºÎÅÍ spawn À» ÇÏ¸é¼­ ÇÏ³ª´Â ·ÎµùÇÏ°Ô µÇ´Ï 0 ÀÌ¸é ±âº» spawn µµ ÇÏÁö ¾Ê°Ô ÇÑ´Ù.
+//		// é…’æŠ— è´¸æ¾œä½•ç£ spawn é˜‘ çªæè¾‘ çªå”±ç»° è‚ºçˆ¹çªéœ¸ ç™»èª 0 ææ æ‰å¤¯ spawn æ¡£ çªç˜¤ è‡¼éœ¸ èŒ„ä¿ƒ.
 //		DefaultPawnClass = ASpectatorPawn::StaticClass();
 //	}
 //#endif
@@ -1551,20 +1551,20 @@ void ABladeIIGameMode::StartPlay()
 //		// Show all levels
 //		World->bShouldForceVisibleStreamingLevels = true;
 //		World->FlushLevelStreaming();
-//		World->ForceGarbageCollection(); // ·¹º§ transition ÇÏ¸é¼­ ´ç¿¬È÷ µÉ °É·Î »ı°¢Çß´Âµ¥ ½ÇÁ¦·Î º¸¸é ¿ÀºêÁ§Æ®°¡ Á» ³²¾ÆÀÖ°í GC ¸¦ µ¹¸®°í ³ª¸é Á» Á¦°ÅµÈ´Ù.
+//		World->ForceGarbageCollection(); // é¥­éª‡ transition çªæè¾‘ å¯¸æ¥·æ´’ çª å§è‚º ç§¯é˜¿æ²ç»°å• è§’åŠ›è‚º ç„Šæ å·å®ç’ƒé£˜å•Š ç²± å·¢é…’ä¹ç»Š GC ç”« å€’åºœç»Š å”±æ ç²± åŠ›èŠ­ç­‰ä¿ƒ.
 //	}
 	
 #if WITH_EDITOR
-	bDevCheckBladeIIGameModeEnteredOnce = true; // µü ÇÑ¹ø ÁøÀÔ½Ã ¸¶Å©ÇØ µÒ. ´Ü¼ø Ã¼Å©¿ëµµ.
+	bDevCheckBladeIIGameModeEnteredOnce = true; // è¿­ èŒ„é”… æŸ³æ¶çŸ« ä»˜å†œç§¦ ç‹„. çªœé‰´ çœ‰å†œä¾©æ¡£.
 #endif
 
 //	B2Scalability::OnGameModeStartPlay(this);
 //
 //	{
-//		// ¿©±â¼­ ÁÖ¿ä InfoAsset µé¿¡ ´ëÇØ ¹Ì¸® StaticFind~~ ¸¦ ÇØ ³õ´Âµ¥ 
-//		// ÀÌµéÀ» Ã³À½ È£ÃâÇÏ´Â »óÈ²¿¡¼­´Â Async ·ÎµùµéÀÌ flush µÇ±â ¶§¹®¿¡ ¹Ì¸® ÇÑ¹ø ºÒ·¯ÁÖ´Â °Å.
-//		// ÀÌ·¸°Ô ÇØ ³õ¾Æµµ ´Ù¸¥ ÄÚµå¿¡¼­ Á÷Á¢ StatiFind~~ ¸¦ WorldContextObject ¾øÀÌ »ç¿ëÇÏ¸é µµ·ç¹¬.
-//		// ´ëºÎºĞ ²®µ¥±â¸¸ °¡Á®¿À´Â °Å¶ó ±×¸® ¿À·¡ ¾È °É¸².
+//		// å’¯æ‰è¾‘ æ—å¤¸ InfoAsset ç”¸ä¿Š æªç§¦ å›ºåºœ StaticFind~~ ç”« ç§¦ åˆç»°å• 
+//		// æç”¸é˜‘ è´¸æ¾œ é¾‹å…çªç»° æƒ‘ç‚”ä¿Šè¾‘ç»° Async è‚ºçˆ¹ç”¸æ flush ç™»æ‰ é”­å·©ä¿Š å›ºåºœ èŒ„é”… é˜‚çŸ¾æ—ç»° èŠ­.
+//		// æçŠ¯éœ¸ ç§¦ åˆé…’æ¡£ ä¿ƒå¼— å†…é›ä¿Šè¾‘ æµç«‹ StatiFind~~ ç”« WorldContextObject ç»æ è¤ä¾©çªæ æ¡£é£å®«.
+//		// æªä½•ç›’ ä¼¯å•æ‰çˆ¶ å•Šå»‰å·ç»° èŠ­æ‰¼ å¼Šåºœ å·è´° æ•‘ å§è¦†.
 //		StaticFindPCClassInfoBox(this);
 //		StaticFindMobClassInfoBox(this);
 //		StaticFindCommonSoundInfo(this);
@@ -1578,10 +1578,10 @@ void ABladeIIGameMode::StartPlay()
 //		StaticFindBuffModeEffectInfo(this);
 //		StaticFindSkillAnimInfo(this);
 //
-//		// ¿©±ä BladeIiGameMode ÂÊ¿¡ Ä³½ÌÇØ ³õ´Â °Ç ¾Æ´Ñµ¥ ¿©ÇÏ°£ ÀÌÂÊµµ ¾ÆÁ÷ ÇÑ¹øµµ ¾È ºÒ¸° »óÅÂ¿¡¼­´Â ¸¶Âù°¡Áö ¹®Á¦¸¦ ¾ß±âÇÒ ¼ö ÀÖÀ½.
+//		// å’¯å˜ BladeIiGameMode ç‡ä¿Š æŸæ•™ç§¦ åˆç»° æ‰’ é…’å›±å• å’¯çªåŸƒ æç‡æ¡£ é…’æµ èŒ„é”…æ¡£ æ•‘ é˜‚èµ´ æƒ‘æ€•ä¿Šè¾‘ç»° ä»˜è›®å•Šç˜¤ å·©åŠ›ç”« å…·æ‰ä¸” è ä¹æ¾œ.
 //		StaticFindDialogInfoTable();
 //		StaticFindDialogSoundInfoTable();
-//		StaticFindQuestTable(); // ½ºÅ×ÀÌÁö Å¬¸®¾î ½ÃÁ¡¿¡ QuestCompleteNotify ¶ß¸é¼­ Ã³À½ ºÒ¸®¸é flush ³ª´Â µí.
+//		StaticFindQuestTable(); // èƒ¶æŠ›æç˜¤ åŠªåºœç»¢ çŸ«ç—¢ä¿Š QuestCompleteNotify å“†æè¾‘ è´¸æ¾œ é˜‚åºœæ flush å”±ç»° æ·€.
 //		StaticFindCharacterTagDialogueInfo();
 //	}
 //
@@ -1592,18 +1592,18 @@ void ABladeIIGameMode::StartPlay()
 //
 //	B2GMLoadingProgCollector::Step();
 //
-//	// ´Ù¸¥ Actor µéÀÇ BeginPlay °¡ ¾Æ·¡ Super::StartPlay ¿¡¼­ ½ÃÀÛµÊ.
-//	PreBeginPlay(); // ·ÎÁ÷ Ã³¸® Å¸ÀÌ¹Ö µîÀ¸·Î ÀÎÇØ ¹®Á¦°¡ ¹ß»ıÇÏ¸é WaitForMovieToFinish º¸´Ù µÚ·Î º¸³»¾ß ÇÒ ¼öµµ ÀÖ´Ù.
+//	// ä¿ƒå¼— Actor ç”¸ç‹¼ BeginPlay å•Š é…’è´° Super::StartPlay ä¿Šè¾‘ çŸ«ç´¯å‡³.
+//	PreBeginPlay(); // è‚ºæµ è´¸åºœ é¸¥ææ€ª æ®¿æ è‚º ç‰¢ç§¦ å·©åŠ›å•Š æƒ¯ç§¯çªæ WaitForMovieToFinish ç„Šä¿ƒ ç¬¬è‚º ç„Šéƒ´å…· ä¸” èæ¡£ ä¹ä¿ƒ.
 //		
-//	// ·Îµù ÁøÇàµµ »êÁ¤ ¶«¿¡ ¹Ì¸® ÀÌÂë¿¡ ¾Ë¾Æ¾ß ÇÔ. µ¿¿µ»óÀ» ÇÃ·¹ÀÌÇÏ°Ô µÇ¸é ·Îµù ÁøÇàµµ´Â º¸´Ù ÀÏÂï Ã¤¿ö º»´Ù.
+//	// è‚ºçˆ¹ æŸ³é’æ¡£ é­‚æ²¥ ä¸œä¿Š å›ºåºœ æç ä¿Š èˆ…é…’å…· çªƒ. æ‚¼åº·æƒ‘é˜‘ æ•²é¥­æçªéœ¸ ç™»æ è‚ºçˆ¹ æŸ³é’æ¡£ç»° ç„Šä¿ƒ è€å˜› ç›²å†µ å¤¯ä¿ƒ.
 //	const FString PossibleOpeningMovieName = GetOpeningMovieName();
 //	const bool bSupposedToPlayMove = (PossibleOpeningMovieName.Len() > 0);
 //
-//	// TSoftObjectPtr µîÀ¸·Î ÀÎÇØ »çÀü¿¡ ·ÎµùÀÌ ¾ÈµÇ¾î ÀÖ´Â asset µé Áß ÀÌ¹ø ½ºÅ×ÀÌÁö¿¡¼­ ÇÊ¿äÇÒ °ÍÀ¸·Î ¿¹»óµÇ´Â °ÍµéÀ» ·ÎµùÇÑ´Ù. 
-//	// Synchronous ·ÎµùÀÌ Æ÷ÇÔµÇ¹Ç·Î ¾Æ·¡ °ÅÄ¡¸é¼­ ½Ã°£ÀÌ Á» °É¸². ±×·¯³ª ÁøÂ¥ Å« °Ç Async ·ÎµùÀ» ÇÔ.
+//	// TSoftObjectPtr æ®¿æ è‚º ç‰¢ç§¦ è¤å‚ˆä¿Š è‚ºçˆ¹æ æ•‘ç™»ç»¢ ä¹ç»° asset ç”¸ å æé”… èƒ¶æŠ›æç˜¤ä¿Šè¾‘ é˜å¤¸ä¸” å·´æ è‚º æŠ—æƒ‘ç™»ç»° å·´ç”¸é˜‘ è‚ºçˆ¹èŒ„ä¿ƒ. 
+//	// Synchronous è‚ºçˆ¹æ å™¨çªƒç™»éª¨è‚º é…’è´° èŠ­æ‘¹æè¾‘ çŸ«åŸƒæ ç²± å§è¦†. å¼ŠçŸ¾å”± æŸ³æ¥¼ å¥´ æ‰’ Async è‚ºçˆ¹é˜‘ çªƒ.
 //	PreloadAnyNecessaryInfo(bSupposedToPlayMove);
 //
-//	// Preload ¿Í ºñ½ÁÇÏÁö¸¸ ´Ù¸¥ Â÷¿ø¿¡¼­.. ¸ğ¹ÙÀÏ ¼ÎÀÌ´õ ÄÄÆÄÀÏÀ» À§ÇÑ Pre-render
+//	// Preload å®¢ åšæ…çªç˜¤çˆ¶ ä¿ƒå¼— ç’ç›”ä¿Šè¾‘.. è‘›å®˜è€ å˜‰ææ­¹ å“ªé¢‡è€é˜‘ å›°èŒ„ Pre-render
 //	if (ShouldSetupPreRender())
 //	{
 //		SetupPreRenderObjects();
@@ -1612,22 +1612,22 @@ void ABladeIIGameMode::StartPlay()
 //	IStreamingManager::Get().StreamAllResources(2.0f);
 //	
 //	////////////////////////////////////////////
-//	bool bPlayingOpeningMovie = false; // ½ÇÁ¦ ÇÃ·¹ÀÌ ¿©ºÎ..
-//	{ // ½ºÅ×ÀÌÁö µµÀÔ ¿µ»óÀÌ ÀÖ´Â °æ¿ì µ¿¿µ»ó ÇÃ·¹ÀÌ
-//	  // ¸ŞÀÎ ¿¡¼Â ·Îµù (PreloadAnyNecessaryInfo) Àü¿¡ ½ÃÀÛÀ» ÇÏ¸é ÁÁÀºµ¥ È¤¿©³ª ¿¡¼Â ·Îµù ´Ù µÇ±â Àü¿¡ ¿µ»óÀÌ ³¡³ª¹ö¸± ¼ö ÀÖ´Ù. ·çÇÎÀ» ÇÏ°Å³ª ¾Æ´Ï¸é ±×³É ±î¸¸ È­¸éÀÌ ³ª¿À°ÚÁö.
-//		// ÀÌÈÄ BeginPlay ¸¦ °ÅÄ¡¸é¼­µµ ÀÌ°ÍÀú°Í ÇÒ Å×´Ï ÀÌÂë¼­ Æ²¾îº¸ÀÚ.		
+//	bool bPlayingOpeningMovie = false; // è§’åŠ› æ•²é¥­æ å’¯ä½•..
+//	{ // èƒ¶æŠ›æç˜¤ æ¡£æ¶ åº·æƒ‘æ ä¹ç»° ç‰ˆå¿« æ‚¼åº·æƒ‘ æ•²é¥­æ
+//	  // çš‹ç‰¢ ä¿Šæ‚¸ è‚ºçˆ¹ (PreloadAnyNecessaryInfo) å‚ˆä¿Š çŸ«ç´¯é˜‘ çªæ äº®ç¯®å• è¶£å’¯å”± ä¿Šæ‚¸ è‚ºçˆ¹ ä¿ƒ ç™»æ‰ å‚ˆä¿Š åº·æƒ‘æ åœºå”±æ»šå‰¯ è ä¹ä¿ƒ. é£ä¿é˜‘ çªèŠ­å”± é…’èªæ å¼Šæˆ é³–çˆ¶ æ‹³ææ å”±å·æ‘†ç˜¤.
+//		// æé¥¶ BeginPlay ç”« èŠ­æ‘¹æè¾‘æ¡£ æå·´å†å·´ ä¸” æŠ›èª æç è¾‘ æ’‡ç»¢ç„Šç£Š.		
 //		if (bSupposedToPlayMove)
 //		{
-//			// ÀÌ °æ¿ì PreloadAnyNecessaryInfo ¸¦ °ÅÄ¡¸é¼­ ÁøÇàµµµµ ´Ù¸¥ °æ¿ìº¸´Ù ¸¹ÀÌ ¿Ã¶ó°¬À» °Í.
-//			// ³¡±îÁö Ã¤¿ì·Á´Ï ¾Æ·¡ AsyncFlush ¿ä¼Ò°¡ ÀÖ¾î¼­.. µ¿¿µ»ó ÇÃ·¹ÀÌµµ ·Îµù ½ºÅ©¸°ÀÎ ¸¸Å­ Ã¤¿ö³õ°í ÇÑÂü ±â´Ù¸®´À´Ï ¾à°£ ³²°ÜµÎÀÚ.
+//			// æ ç‰ˆå¿« PreloadAnyNecessaryInfo ç”« èŠ­æ‘¹æè¾‘ æŸ³é’æ¡£æ¡£ ä¿ƒå¼— ç‰ˆå¿«ç„Šä¿ƒ è…¹æ æ£µæ‰¼è‰¾é˜‘ å·´.
+//			// åœºé³–ç˜¤ ç›²å¿«å¦¨èª é…’è´° AsyncFlush å¤¸å®¶å•Š ä¹ç»¢è¾‘.. æ‚¼åº·æƒ‘ æ•²é¥­ææ¡£ è‚ºçˆ¹ èƒ¶å†œèµ´ç‰¢ çˆ¶æ€’ ç›²å†µåˆç»Š èŒ„æ›¼ æ‰ä¿ƒåºœè ¢èª è·åŸƒ å·¢è´¥æ»´ç£Š.
 //			B2GMLoadingProgCollector::StepCustom(0.1f, 0.9f); 
 //
-//			// ÀÌ°Ô Async ·Îµù flush ¸¦ ÀÏÀ¸Å°°í.. ÀÌ°É ¾È¾´´Ù ÇØµµ LoadingScreenModule ¾È¿¡¼­ ³»ºÎÀûÀ¸·Î ·ÎµùÇÏ´Â °Ô ¶Ç ÀÖ¾î¼­ .. ¤Ğ¤Ğ ±×³É ¸ÕÀú ·ÎµùÇØ µÒ..
+//			// æéœ¸ Async è‚ºçˆ¹ flush ç”« è€æ è™ç»Š.. æå§ æ•‘æ•¬ä¿ƒ ç§¦æ¡£ LoadingScreenModule æ•‘ä¿Šè¾‘ éƒ´ä½•åˆ©æ è‚º è‚ºçˆ¹çªç»° éœ¸ è‚š ä¹ç»¢è¾‘ .. ã°ã° å¼Šæˆ åˆšå† è‚ºçˆ¹ç§¦ ç‹„..
 //			FString LoadingImageName = GetLoadingImageName(false);
 //
-//			GetMoviePlayer()->WaitForMovieToFinish(); // ±âÁ¸ ·Îµù ½ºÅ©¸°À» ¸ØÃá´Ù.
+//			GetMoviePlayer()->WaitForMovieToFinish(); // æ‰ç²® è‚ºçˆ¹ èƒ¶å†œèµ´é˜‘ è‚›å†•ä¿ƒ.
 //			
-//			// AndroidThunkCpp_StageMoviePlay(MovieName); ¼öÆ²·ÈÀ» ¶© ÇÃ·§Æû ÀÚÃ¼ ±â´ÉÀ¸·Î ÀÌ·± ½ÄÀ¸·Î µ¿¿µ»ó ÇÃ·¹ÀÌ¸¦ ÇÏ±âµµ..
+//			// AndroidThunkCpp_StageMoviePlay(MovieName); èæ’‡å•¡é˜‘ è®¢ æ•²é˜€æ±½ ç£Šçœ‰ æ‰ç“·æ è‚º æç¹ ä¾¥æ è‚º æ‚¼åº·æƒ‘ æ•²é¥­æç”« çªæ‰æ¡£..
 //			
 //			IB2GameLoadingScreenModule* const LoadingScreenModule = GetB2LoadingScreenModulePtr();
 //			if (LoadingScreenModule != nullptr)
@@ -1638,12 +1638,12 @@ void ABladeIIGameMode::StartPlay()
 //				int32 LastClearClientStageId = StageDataStore.GetLastClearClientId(StageDifficulty);
 //				int32 CurrentStageId = AB2StageManager::GetCacheStageKeepEssentialData().GetCurrentClientStageId();
 //
-//				// StartGameLoadingScreen_Movie ¿¡ ÀüÃ¼È­¸é ¿©ºÎ, Skip¹öÆ° Ç¥½Ã ¿©ºÎ µîÀÇ ÀÎÀÚ¸¦ ³Ö¾îÁÙ ¼ö ÀÖÀ½. ÇÊ¿ä¿¡ µû¶ó »ç¿ë.
+//				// StartGameLoadingScreen_Movie ä¿Š å‚ˆçœ‰æ‹³æ å’¯ä½•, Skipæ»šç“¢ é’çŸ« å’¯ä½• æ®¿ç‹¼ ç‰¢ç£Šç”« æŒç»¢ä¸´ è ä¹æ¾œ. é˜å¤¸ä¿Š è¶æ‰¼ è¤ä¾©.
 //				GetMovieSubtitles(LoadingScreenModule->StartGameLoadingScreen_Movie(*PossibleOpeningMovieName, 
-//					// ±×³É FitToMin À¸·Î ÇÏ¸é ´Ù¾çÇÑ µ¿¿µ»ó ºñÀ²¿¡ ´ëÇÑ ´ëÃ³°¡ °¡´ÉÇÏ³ª AppleMovieStreamer ±¸Á¶¿Í °ü·ÃÇØ¼­ IOS ÀÏºÎ ±â±â¿¡¼­ ÀÏ½ÃÀûÀ¸·Î È­¸é ºñÀ²ÀÌ ÈåÆ®·¯Áö´Â ¹®Á¦°¡ ¹ß»ıÇÒ ¼ö ÀÖ´Ù.
-//					// DLC Å¸ÀÌÆ²¿¡¼­ ·Îºñ ·ÎµùÀ» Á¦¿ÜÇÑ ±âÅ¸ ·Îµù µ¿¿µ»óÀÌ 16:9 ·Î Á¦ÀÛµÇ´Â ÇÑ ¿©±â´Â StdHD ·Î °íÁ¤.
+//					// å¼Šæˆ FitToMin æ è‚º çªæ ä¿ƒå‰§èŒ„ æ‚¼åº·æƒ‘ åšå•¦ä¿Š æªèŒ„ æªè´¸å•Š å•Šç“·çªå”± AppleMovieStreamer å¤‡ç‚¼å®¢ åŒ…è®¿ç§¦è¾‘ IOS è€ä½• æ‰æ‰ä¿Šè¾‘ è€çŸ«åˆ©æ è‚º æ‹³æ åšå•¦æ å„’é£˜çŸ¾ç˜¤ç»° å·©åŠ›å•Š æƒ¯ç§¯ä¸” è ä¹ä¿ƒ.
+//					// DLC é¸¥ææ’‡ä¿Šè¾‘ è‚ºåš è‚ºçˆ¹é˜‘ åŠ›å¯‡èŒ„ æ‰é¸¥ è‚ºçˆ¹ æ‚¼åº·æƒ‘æ 16:9 è‚º åŠ›ç´¯ç™»ç»° èŒ„ å’¯æ‰ç»° StdHD è‚º ç»Šæ²¥.
 //					ELoadingScreenMovieAlignMode::FitToMin_StdHD,
-//					true	// ÃÖÃÊ ÇÃ·¹ÀÌºÎÅÍ Skip °¡´ÉÇÏµµ·Ï º¯°æ
+//					true	// å¼¥æª¬ æ•²é¥­æä½•ç£ Skip å•Šç“·çªæ¡£åºŸ å‡½ç‰ˆ
 //				));
 //				bPlayingOpeningMovie = true;
 //			}
@@ -1663,7 +1663,7 @@ void ABladeIIGameMode::StartPlay()
 //	
 //	if (!IsInPreRenderPhase())
 //	{
-//		// ÀÌ ½ÃÁ¡¿¡¼­ LoadingImage ¸¦ Unload ÇØ ÁÖ¸é ÀûÀıÇÒ °Å °°Àºµ¥ Å©·¡½¬°¡ ³ª´Â °æ¿ì°¡ ¿©ÀüÈ÷ ÀÖ´Ù. ¿ÏÀüÈ÷ ·»´õ¸µ ´Ü±îÁö ¾È ³¡³µÀ» °¡´É¼ºÀÌ.. ±Ã¿©ÁöÃ¥À¸·Î Å¸ÀÌ¸Ó¸¦.
+//		// æ çŸ«ç—¢ä¿Šè¾‘ LoadingImage ç”« Unload ç§¦ æ—æ åˆ©ä¾‹ä¸” èŠ­ éç¯®å• å†œè´°æµ†å•Š å”±ç»° ç‰ˆå¿«å•Š å’¯å‚ˆæ´’ ä¹ä¿ƒ. è‚¯å‚ˆæ´’ åŠæ­¹å‚… çªœé³–ç˜¤ æ•‘ åœºè½¦é˜‘ å•Šç“·å·±æ.. æ³µå’¯ç˜¤æ°“æ è‚º é¸¥æèµ£ç”«.
 //		UWorld* TheWorld = GetWorld();
 //		if (TheWorld)
 //		{
@@ -1673,19 +1673,19 @@ void ABladeIIGameMode::StartPlay()
 //	else
 //	{ 
 //		if (PreRenderer && !PreRenderer->IsInPreRenderGameMode()) {
-//			// ÀÏ¹İÀûÀÎ ·¹º§ ·ÎµùÅ¸ÀÓ¿¡¼­ÀÇ PreRender »óÈ².
-//			// SetupPreRenderObjects ½Ã¿¡´Â ¾È¸ÔÈú ¼ö ÀÖ¾î¼­ ¿©±â¼­ Light È¯°æÀ» ¼Â¾÷ÇÏ´Âµ¥, PreRenderGM ¿¡¼­´Â º°µµ·Î Æ¯º°È÷ Light pass ¸¦ µ¹¸± °Å¶ó ¿©±â¼­ ÇÏÁö ¾Ê´Â´Ù.
+//			// è€é¦†åˆ©ç‰¢ é¥­éª‡ è‚ºçˆ¹é¸¥çƒ™ä¿Šè¾‘ç‹¼ PreRender æƒ‘ç‚”.
+//			// SetupPreRenderObjects çŸ«ä¿Šç»° æ•‘å†ˆé³ƒ è ä¹ç»¢è¾‘ å’¯æ‰è¾‘ Light åˆ¸ç‰ˆé˜‘ æ‚¸è¯€çªç»°å•, PreRenderGM ä¿Šè¾‘ç»° å–Šæ¡£è‚º æ¼‚å–Šæ´’ Light pass ç”« å€’å‰¯ èŠ­æ‰¼ å’¯æ‰è¾‘ çªç˜¤ è‡¼ç»°ä¿ƒ.
 //			PreRenderer->ConditionalSetupPreRenderLightEnvForDynPL();
 //		}
 //
 //		if (!bPlayingOpeningMovie) {
-//			// PreRender ¿¡¼­´Â ±âº» ·Îµù È­¸é ´İ´Â ·çÆ¾À¸·Î´Â »±±ÛÀÌ ¸ØÃá ÈÄ¿¡ ½Ã°£ Áö¿¬ÀÌ Á» ÀÖ¾î¼­ ·Îµù È­¸é ´İ´Â °É Á» ´ÊÃá´Ù.
-//			// ´Ü µ¿¿µ»ó ÇÃ·¹ÀÌÇÏ°Ô µÇ¸é ÀÌ°Ô ¿ÀÈ÷·Á µ¿¿µ»óÀÇ ²÷±èÀ» À¯¹ßÇØ¼­ ¾îÂ¿ ¼ö ¾øÁö..
+//			// PreRender ä¿Šè¾‘ç»° æ‰å¤¯ è‚ºçˆ¹ æ‹³æ æ‘§ç»° é£å‡­æ è‚ºç»° æ§è‡‚æ è‚›å†• é¥¶ä¿Š çŸ«åŸƒ ç˜¤æ¥·æ ç²± ä¹ç»¢è¾‘ è‚ºçˆ¹ æ‹³æ æ‘§ç»° å§ ç²± è¯å†•ä¿ƒ.
+//			// çªœ æ‚¼åº·æƒ‘ æ•²é¥­æçªéœ¸ ç™»æ æéœ¸ å·æ´’å¦¨ æ‚¼åº·æƒ‘ç‹¼ è°—è¾«é˜‘ èœ¡æƒ¯ç§¦è¾‘ ç»¢é©´ è ç»ç˜¤..
 //			SetUseCustomWaitForLoadingScreen(true);
 //		}
 //	}
 //		
-//	// ·Îµù È­¸éÀ» ´İ´Â WaitForLoadingScreen À» ´ëÃ¼·Î ¿©±â¼­ ÇÏÁö¸¸ ¾Æ´Ñ °æ¿ìµµ Á¾Á¾ ÀÖ°ÚÁö..
+//	// è‚ºçˆ¹ æ‹³æé˜‘ æ‘§ç»° WaitForLoadingScreen é˜‘ æªçœ‰è‚º å’¯æ‰è¾‘ çªç˜¤çˆ¶ é…’å›± ç‰ˆå¿«æ¡£ è¾†è¾† ä¹æ‘†ç˜¤..
 //	if (!UseCustomWaitForLoadingScreen())
 //	{
 //		WaitForLoadingScreen();
@@ -1705,7 +1705,7 @@ void ABladeIIGameMode::HandleMatchHasStarted()
 //
 //	Super::HandleMatchHasStarted();
 //	
-//#if BII_STATS // PerfStat Àº MatchStart ½ÃÁ¡ºÎÅÍ ¸ğÀ¸±â ½ÃÀÛ.
+//#if BII_STATS // PerfStat ç¯® MatchStart çŸ«ç—¢ä½•ç£ è‘›æ æ‰ çŸ«ç´¯.
 //	PerfStatCollector.OnBegin(this);
 //#endif
 //
@@ -1726,7 +1726,7 @@ AB2StageEventDirector* ABladeIIGameMode::GetCurrentPlayingStageEventDirector()
 int32 ABladeIIGameMode::GetLocalSavedAutoType() const
 {
 	int32 bRetSavedState = AutoBattleType::NONE;
-	const FString& SavedKeyName = GetLocalSavedAutoStateKeyName(); // °ÔÀÓ¸ğµå º° Auto »óÅÂ¸¦ ÀúÀåÇÒ ini Å° °ª
+	const FString& SavedKeyName = GetLocalSavedAutoStateKeyName(); // éœ¸çƒ™è‘›é› å–Š Auto æƒ‘æ€•ç”« å†å˜ä¸” ini è™ è”¼
 	if (GConfig && SavedKeyName.Len() > 0) {
 		GConfig->GetInt(TEXT("AutoState"), *SavedKeyName, bRetSavedState, GB2UserSavedStateIni);
 	}
@@ -1735,7 +1735,7 @@ int32 ABladeIIGameMode::GetLocalSavedAutoType() const
 
 void ABladeIIGameMode::SaveLocalSavedAutoType() const
 {
-	const FString& SavedKeyName = GetLocalSavedAutoStateKeyName(); // °ÔÀÓ¸ğµå º° Auto »óÅÂ¸¦ ÀúÀåÇÒ ini Å° °ª
+	const FString& SavedKeyName = GetLocalSavedAutoStateKeyName(); // éœ¸çƒ™è‘›é› å–Š Auto æƒ‘æ€•ç”« å†å˜ä¸” ini è™ è”¼
 	if (GConfig && SavedKeyName.Len() > 0)
 	{
 		GConfig->SetInt(TEXT("AutoState"), *SavedKeyName, PlayerAutoBattleType, GB2UserSavedStateIni);
@@ -1753,46 +1753,49 @@ bool ABladeIIGameMode::ShouldStartAutoFromBeginning()
 		Result = true;
 	}
 
-	return Result; // ÀÌ Á¶°ÇÀº ÇÏÀ§ Å¬·¡½º¿¡¼­ ±âº»À¸·Î Æ÷ÇÔÇÒ ÇÊ¿ä°¡ ÀÖ°Ú´Ù.
+	return Result; // æ ç‚¼æ‰’ç¯® çªå›° åŠªè´°èƒ¶ä¿Šè¾‘ æ‰å¤¯æ è‚º å™¨çªƒä¸” é˜å¤¸å•Š ä¹æ‘†ä¿ƒ.
 }
 
-//void ABladeIIGameMode::TryAutoBeginAutoAtBeginning()
-//{ // °¢ ¸ğµå º° »ç¿ëÀÚ°¡ ÀÌÀü¿¡ auto ¸¦ »ç¿ëÇß´ÂÁö ¿©ºÎ¿¡ µû¶ó ÀÚµ¿À¸·Î auto ¸¦ µ¹¸®±â À§ÇÔ. ³×¹s°×¸ğµåÀÇ AI ÇÃ·¹ÀÌ¾î´Â ÇØ´ç¾ÈµÊ.
-//	ABladeIIPlayer* LocalPlayer = Cast<ABladeIIPlayer>(UGameplayStatics::GetLocalPlayerCharacter(this));
-//	if (LocalPlayer && ShouldStartAutoFromBeginning())
-//	{
-//		// Auto ¸¦ ²ô´Â ¿¬ÃâÀÌ ÇöÀç ÁøÇàÁßÀÎ°¡¸¦ º¸°í ¾Æ´Ï¸é ´çÀå ½ÃÀÛÀº ¾ÈÇÑ´Ù. ¾îÂ÷ÇÇ ¿¬ÃâÀÌ ³¡³ª¸é ¾Ë¾Æ¼­ ½ÃÀÛµÉ °ÍÀÓ.
-//		bool bAutoStopEventRunning = false;
-//		for (AB2StageEventDirector* CurrSED : EventDirectors)
-//		{
-//			if (CurrSED && CurrSED->IsPlayingShow() && CurrSED->ShouldStopAutoDuringShow())
-//			{
-//				bAutoStopEventRunning = true;
-//				break;
-//			}
-//		}
-//
-//		if (!bAutoStopEventRunning)
-//		{
-//			SetPlayerAutoType(GetLocalSavedAutoType());
-//		}
-//		else
-//		{ // ´çÀå Auto ½ÃÀÛÀº ¾È ÇÏ´õ¶óµµ UIDoc ¿¡ ¼¼ÆÃÀº ÇØ¾ß.. StageEventDirector ÂÊ¿¡¼­ Auto º¹±¸¸¦ ÇÒ ¶§¿¡´Â ÀÌ°Ç Ã³¸® ¾È ÇÒ °ÍÀÌ¹Ç·Î.
-//			UB2UIDocBattle* DocBattle = UB2UIDocHelper::GetDocBattle();
-//			if (DocBattle)
-//			{
-//				DocBattle->SetInAutoPlay(GetLocalSavedAutoType());
-//			}
-//		}
-//	}
-//	else 
-//	{
-//		SetPlayerAutoType(GetLocalSavedAutoType());
-//	}
-//}
-//
-//PVPÂÊ¿¡¼­ AutoAIController¸¦ ·ÎµùÇÏ´Â Çö»óÀÌ ÀÖ¾î °¡»ó¸Ş¼Òµå·Î µ¹·Á¼­ B2PVPGameMode¿¡¼­ ¿À¹ö¶óÀÌµå ÇÔ
-void ABladeIIGameMode::SetPlayerAutoType(int32 InAuto) // ÀÏ½ÃÀûÀÎ On/Off °¡ ¾Æ´Ñ Çö °ÔÀÓ¸ğµå¿¡¼­ À¯ÁöµÇ´Â auto »óÅÂ.
+void ABladeIIGameMode::TryAutoBeginAutoAtBeginning()
+{ // é˜¿ è‘›é› å–Š è¤ä¾©ç£Šå•Š æå‚ˆä¿Š auto ç”« è¤ä¾©æ²ç»°ç˜¤ å’¯ä½•ä¿Š è¶æ‰¼ ç£Šæ‚¼æ è‚º auto ç”« å€’åºœæ‰ å›°çªƒ. åŒ™ç®‚ç™½è‘›é›ç‹¼ AI æ•²é¥­æç»¢ç»° ç§¦å¯¸æ•‘å‡³.
+
+	APlayerController* PC = UGameplayStatics::GetPlayerController(this, 0);
+	ABladeIIPlayer* LocalPlayer = PC ? Cast<ABladeIIPlayer>(PC->GetCharacter()) : nullptr;
+
+	if (LocalPlayer && ShouldStartAutoFromBeginning())
+	{
+		// Auto ç”« æºç»° æ¥·å…æ æ³…çŠ æŸ³é’åç‰¢å•Šç”« ç„Šç»Š é…’èªæ å¯¸å˜ çŸ«ç´¯ç¯® æ•‘èŒ„ä¿ƒ. ç»¢ç’ä¹” æ¥·å…æ åœºå”±æ èˆ…é…’è¾‘ çŸ«ç´¯çª å·´çƒ™.
+		bool bAutoStopEventRunning = false;
+		for (AB2StageEventDirector* CurrSED : EventDirectors)
+		{
+			if (CurrSED && CurrSED->IsPlayingShow() && CurrSED->ShouldStopAutoDuringShow())
+			{
+				bAutoStopEventRunning = true;
+				break;
+			}
+		}
+
+		if (!bAutoStopEventRunning)
+		{
+			SetPlayerAutoType(GetLocalSavedAutoType());
+		}
+		else
+		{ // å¯¸å˜ Auto çŸ«ç´¯ç¯® æ•‘ çªæ­¹æ‰¼æ¡£ UIDoc ä¿Š æŠ€æ³¼ç¯® ç§¦å…·.. StageEventDirector ç‡ä¿Šè¾‘ Auto æ±—å¤‡ç”« ä¸” é”­ä¿Šç»° ææ‰’ è´¸åºœ æ•‘ ä¸” å·´æéª¨è‚º.
+			UB2UIDocBattle* DocBattle = UB2UIDocHelper::GetDocBattle();
+			if (DocBattle)
+			{
+				DocBattle->SetInAutoPlay(GetLocalSavedAutoType());
+			}
+		}
+	}
+	else 
+	{
+		SetPlayerAutoType(GetLocalSavedAutoType());
+	}
+}
+
+//PVPç‡ä¿Šè¾‘ AutoAIControllerç”« è‚ºçˆ¹çªç»° æ³…æƒ‘æ ä¹ç»¢ å•Šæƒ‘çš‹å®¶é›è‚º å€’å¦¨è¾‘ B2PVPGameModeä¿Šè¾‘ å·æ»šæ‰¼æé› çªƒ
+void ABladeIIGameMode::SetPlayerAutoType(int32 InAuto) // è€çŸ«åˆ©ç‰¢ On/Off å•Š é…’å›± æ³… éœ¸çƒ™è‘›é›ä¿Šè¾‘ èœ¡ç˜¤ç™»ç»° auto æƒ‘æ€•.
 {
 	//if (PlayerAutoBattleType != InAuto)
 	//{
@@ -1800,7 +1803,7 @@ void ABladeIIGameMode::SetPlayerAutoType(int32 InAuto) // ÀÏ½ÃÀûÀÎ On/Off °¡ ¾Æ´
 	//	SaveLocalSavedAutoType();
 	//}
 
-	//// ÀÌ°É Äİ ÇÏ´Â »óÈ²¿¡¼­´Â ¿¬Ãâ µî¿¡ ÀÇÇØ ÀÓ½ÃÀûÀ¸·Î Auto °¡ ²¨Áø´Ù°Å³ª ÇÏ´Â °Ç ¹«½ÃÇÑ´Ù. ±×°Í±îÁö »ı°¢ÇÏ·Á¸é Á» º¹ÀâÇÏ°í ±×·² ÇÊ¿ä±îÁö´Â ¾øÀ» µíÇÔ.
+	//// æå§ å¦® çªç»° æƒ‘ç‚”ä¿Šè¾‘ç»° æ¥·å… æ®¿ä¿Š ç‹¼ç§¦ çƒ™çŸ«åˆ©æ è‚º Auto å•Š æ³¢æŸ³ä¿ƒèŠ­å”± çªç»° æ‰’ å…¬çŸ«èŒ„ä¿ƒ. å¼Šå·´é³–ç˜¤ ç§¯é˜¿çªå¦¨æ ç²± æ±—æ£±çªç»Š å¼Šå‡¡ é˜å¤¸é³–ç˜¤ç»° ç»é˜‘ æ·€çªƒ.
 	//ABladeIIPlayer* LocalB2Player = Cast<ABladeIIPlayer>(UGameplayStatics::GetLocalPlayerCharacter(this));
 	//if (LocalB2Player) 
 	//{
@@ -1817,7 +1820,7 @@ void ABladeIIGameMode::SetPlayerAutoType(int32 InAuto) // ÀÏ½ÃÀûÀÎ On/Off °¡ ¾Æ´
 	//	}
 	//}
 
-	//// UI ·Î ½Ã±×³ÎÀº ±âº»ÀûÀ¸·Î´Â ÀÌ°É·Î¸¸ º¸³¿. ÀÏ½ÃÀûÀÎ On/Off ¿¡¼­´Â ¾È º¸³»°í. ±Ùµ¥ ÇÏ´Ùº¸´Ï ±×·¸°Ô¸¸ µÇÁö´Â ¾Ê´Â±º ÂÁ..
+	//// UI è‚º çŸ«å¼Šæ¾„ç¯® æ‰å¤¯åˆ©æ è‚ºç»° æå§è‚ºçˆ¶ ç„Šæ™¨. è€çŸ«åˆ©ç‰¢ On/Off ä¿Šè¾‘ç»° æ•‘ ç„Šéƒ´ç»Š. è¾Ÿå• çªä¿ƒç„Šèª å¼ŠçŠ¯éœ¸çˆ¶ ç™»ç˜¤ç»° è‡¼ç»°ç„™ é“..
 	//UB2UIDocBattle* DocBattle = UB2UIDocHelper::GetDocBattle();
 	//if (DocBattle)
 	//{
@@ -1825,42 +1828,45 @@ void ABladeIIGameMode::SetPlayerAutoType(int32 InAuto) // ÀÏ½ÃÀûÀÎ On/Off °¡ ¾Æ´
 	//}
 }
 
-//void ABladeIIGameMode::ToggleLocalPlayerAutoState()
-//{
-//	SetPlayerAutoType(UpdateAutoBattleType(PlayerAutoBattleType));
-//}
-//
-//bool ABladeIIGameMode::IsLocalPlayerAutoBattle()
-//{
-//	bool Result = false;
-//
-//	if (PlayerAutoBattleType == AutoBattleType::Attack || PlayerAutoBattleType == AutoBattleType::Skill)
-//	{
-//		Result = true;
-//	}
-//
-//	return Result;
-//}
-//
-//void ABladeIIGameMode::TemporaryStopLocalPlayerAuto()
-//{// bMaintainedLocalPlayerAutoState ´Â À¯ÁöÇÏ°í ÀÌ°É·Î´Â UI Doc ¼¼ÆÃÀ» ÇÏÁö ¾Ê´Â´Ù. ¿¬Ãâ µîÀ¸·Î ÀÏ½ÃÀûÀ¸·Î off ÇÒ ¶§ »ç¿ë.
-//	ABladeIIPlayer* LocalB2Player = Cast<ABladeIIPlayer>(UGameplayStatics::GetLocalPlayerCharacter(this));
-//	if (LocalB2Player && LocalB2Player->IsInAutoPlay()) 
-//	{
-//		LocalB2Player->StopAutoPlay();
-//	}	
-//}
-//void ABladeIIGameMode::RestoreLocalPlayerAuto()
-//{ // ±âº» »óÅÂ°¡ true ÀÎ °æ¿ì¸¸ º¹±¸.
-//	if (PlayerAutoBattleType != AutoBattleType::NONE)
-//	{
-//		ABladeIIPlayer* LocalB2Player = Cast<ABladeIIPlayer>(UGameplayStatics::GetLocalPlayerCharacter(this));
-//		if (LocalB2Player) 
-//		{
-//			LocalB2Player->StartAutoPlay();
-//		}
-//	}
-//}
+void ABladeIIGameMode::ToggleLocalPlayerAutoState()
+{
+	SetPlayerAutoType(UpdateAutoBattleType(PlayerAutoBattleType));
+}
+
+bool ABladeIIGameMode::IsLocalPlayerAutoBattle()
+{
+	bool Result = false;
+
+	if (PlayerAutoBattleType == AutoBattleType::Attack || PlayerAutoBattleType == AutoBattleType::Skill)
+	{
+		Result = true;
+	}
+
+	return Result;
+}
+
+void ABladeIIGameMode::TemporaryStopLocalPlayerAuto()
+{// bMaintainedLocalPlayerAutoState ç»° èœ¡ç˜¤çªç»Š æå§è‚ºç»° UI Doc æŠ€æ³¼é˜‘ çªç˜¤ è‡¼ç»°ä¿ƒ. æ¥·å… æ®¿æ è‚º è€çŸ«åˆ©æ è‚º off ä¸” é”­ è¤ä¾©.
+	APlayerController* PC = UGameplayStatics::GetPlayerController(this, 0);
+	ABladeIIPlayer* LocalB2Player = PC ? Cast<ABladeIIPlayer>(PC->GetCharacter()) : nullptr;
+
+	if (LocalB2Player && LocalB2Player->IsInAutoPlay()) 
+	{
+		LocalB2Player->StopAutoPlay();
+	}	
+}
+void ABladeIIGameMode::RestoreLocalPlayerAuto()
+{ // æ‰å¤¯ æƒ‘æ€•å•Š true ç‰¢ ç‰ˆå¿«çˆ¶ æ±—å¤‡.
+	if (PlayerAutoBattleType != AutoBattleType::NONE)
+	{
+		APlayerController* PC = UGameplayStatics::GetPlayerController(this, 0);
+		ABladeIIPlayer* LocalB2Player = PC ? Cast<ABladeIIPlayer>(PC->GetCharacter()) : nullptr;
+		if (LocalB2Player) 
+		{
+			LocalB2Player->StartAutoPlay();
+		}
+	}
+}
 
 bool ABladeIIGameMode::IsGlobalTimeDilationEnabled(const AActor* RelativePawn /*= NULL*/)
 {
@@ -1877,28 +1883,28 @@ void ABladeIIGameMode::PreBeginPlay()
 	
 	bAnyStageEventPlayedOnce = false;
 //
-//	// ´Ù¸¥ Actor µéÀÇ BeginPlay °¡ ºÒ¸®±â Àü¿¡ Ã³¸®µÇ¾î¾ß ÇÒ °ÍµéÀ» ¿©±â¿¡ ¾¥¼Å³Ö¾î º¸ÀÚ.
+//	// ä¿ƒå¼— Actor ç”¸ç‹¼ BeginPlay å•Š é˜‚åºœæ‰ å‚ˆä¿Š è´¸åºœç™»ç»¢å…· ä¸” å·´ç”¸é˜‘ å’¯æ‰ä¿Š èŒå¯‚æŒç»¢ ç„Šç£Š.
 //
-//	BladeIIGameImpl::GetLocalCharacterData().SetCharClassNames(StaticFindPCClassInfoBox(this)); // ÀüÃ¼ ¸ğµâ Â÷¿ø¿¡¼­ ÃÊ±â ÇÑ¹ø¸¸ ÇÊ¿äÇÑ ÇÊ¼öÁ¤º¸. AccountInfo ¸¦ ¹Ş´Â °÷À» Á¦¿ÜÇÏ¸é µüÈ÷ Àû´çÇÑ °÷ÀÌ ¾ø¾î¼­..
+//	BladeIIGameImpl::GetLocalCharacterData().SetCharClassNames(StaticFindPCClassInfoBox(this)); // å‚ˆçœ‰ è‘›ç¢˜ ç’ç›”ä¿Šè¾‘ æª¬æ‰ èŒ„é”…çˆ¶ é˜å¤¸èŒ„ é˜èæ²¥ç„Š. AccountInfo ç”« ç½ç»° é•‘é˜‘ åŠ›å¯‡çªæ è¿­æ´’ åˆ©å¯¸èŒ„ é•‘æ ç»ç»¢è¾‘..
 //
 //	UpdateManagedActorList();
 //
 //	// It will be picked up by player's BeginPlay.
 //	SetDesiredPCClassEnum();
 //
-//	// À¢¸¸ÇÏ¸é DefaultPawnClass ´Â ³×ÀÌÆ¼ºê ±âº»°ªÀ¸·Î ¼¼ÆÃÇÑ ±×´ë·Î
-//	// GetCurrentPCClassInfo ÀÇ BaseBPClass ·Î ¼¼ÆÃÇØ¼­´Â ¾ÈµÊ. ±âº» spawn Àº ³×ÀÌÆ¼ºê ±â¹İÀ¸·Î ÇÏ°í BaseBPClass ´Â PCClassInfo overriding Àü¿¡ Àû¿ëÀ» ÇÑ´Ù.
+//	// æ„§çˆ¶çªæ DefaultPawnClass ç»° åŒ™æèå® æ‰å¤¯è”¼æ è‚º æŠ€æ³¼èŒ„ å¼Šæªè‚º
+//	// GetCurrentPCClassInfo ç‹¼ BaseBPClass è‚º æŠ€æ³¼ç§¦è¾‘ç»° æ•‘å‡³. æ‰å¤¯ spawn ç¯® åŒ™æèå® æ‰é¦†æ è‚º çªç»Š BaseBPClass ç»° PCClassInfo overriding å‚ˆä¿Š åˆ©ä¾©é˜‘ èŒ„ä¿ƒ.
 //#if WITH_EDITOR
-//	checkSlow(!IsDefaultPawnTestBP()); // Á¤½Ä ¸Ê¿¡¼­´Â °É¸®¸é ¾ÈµÈ´Ù. ÀÏºÎ Å×½ºÆ® ¸Ê¿¡¼­´Â °É¸± ¼ö ÀÖÀ½. ±×·± °æ¿ì´Â ±×³É ³Ñ¾î°¡µµ·Ï.
+//	checkSlow(!IsDefaultPawnTestBP()); // æ²¥ä¾¥ ç”˜ä¿Šè¾‘ç»° å§åºœæ æ•‘ç­‰ä¿ƒ. è€ä½• æŠ›èƒ¶é£˜ ç”˜ä¿Šè¾‘ç»° å§å‰¯ è ä¹æ¾œ. å¼Šç¹ ç‰ˆå¿«ç»° å¼Šæˆ é€ç»¢å•Šæ¡£åºŸ.
 //#endif
 //
 //#if WITH_EDITOR
 //	if (GIsEditor)
-//	{ // UIManager ¸¦ ¸ÊÀ» »õ·Î ·ÎµùÇÒ ¶§¸¶´Ù »õ·Î »ı¼ºÇÏ´Âµ¥ ¿¡µğÅÍ¿¡¼­´Â ¾È¸ÔÈú ¶§°¡ ÀÖ´Â °Å °°´Ù.
+//	{ // UIManager ç”« ç”˜é˜‘ è´§è‚º è‚ºçˆ¹ä¸” é”­ä»˜ä¿ƒ è´§è‚º ç§¯å·±çªç»°å• ä¿Šå¼ç£ä¿Šè¾‘ç»° æ•‘å†ˆé³ƒ é”­å•Š ä¹ç»° èŠ­ éä¿ƒ.
 //		UB2UIManager::EditorGetNewInstance();
 //	}
 //	else
-//	{// UIManager °¡ static ÇÑ ±¸Á¶·Î ¸¸µé¾îÁ³´Âµ¥ ¾ğ¸®¾ó ±¸Á¶¿¡¼­ À§Çè¼ºÀÌ ÀÖÀ¸¹Ç·Î ¸Ê ÀüÈ¯ ½Ã destroy ¸¦ ÇÑ´Ù. °èÈ¹´ë·Î¶ó¸é ÀÌ ½ÃÁ¡¿¡¼­ UIManager ´Â »õ·Î »ı¼ºÇÏ´Â °ÍÀÌ¾î¾ß ÇÔ.
+//	{// UIManager å•Š static èŒ„ å¤‡ç‚¼è‚º çˆ¶ç”¸ç»¢è„¸ç»°å• æ”«åºœå€” å¤‡ç‚¼ä¿Šè¾‘ å›°æ°°å·±æ ä¹æ éª¨è‚º ç”˜ å‚ˆåˆ¸ çŸ« destroy ç”« èŒ„ä¿ƒ. æ‹Œè£™æªè‚ºæ‰¼æ æ çŸ«ç—¢ä¿Šè¾‘ UIManager ç»° è´§è‚º ç§¯å·±çªç»° å·´æç»¢å…· çªƒ.
 //		BII_CHECK(UB2UIManager::IsInstanceNull());
 //	}
 //#else
@@ -1910,13 +1916,13 @@ void ABladeIIGameMode::PreBeginPlay()
 //		UIMgr->Init(FLocalPlayerContext(GetWorld()->GetFirstLocalPlayerFromController()));
 //	}
 //
-//	//UIµ¶¸Å´ÏÀú ÃÊ±âÈ­
+//	//UIåˆ€æ¦‚èªå† æª¬æ‰æ‹³
 //	UB2UIDocManager* UIDocManager = UB2UIDocManager::GetInstance();
 //	if (UIDocManager){
 //		UIDocManager->Init(this);
 //	}
 //
-//	// B2UIManager_InGameCombat Àº DJLegacy ÀÎµ¥ ¿©ÀüÈ÷ »ç¿ë. ÀÌ¸§¸¸ InGameCombat ÀÌ°í ½ÇÁ¦·Î´Â ABladeIIGameMode ¸¦ »ç¿ëÇÏ´Â ¸ğµç °÷¿¡ Á¸ÀçÇÏ°Ú±º. SetCenterMessage À¯Æ¿¶«¿¡ ÇÊ¿äÇÏ±ä ÇÔ.
+//	// B2UIManager_InGameCombat ç¯® DJLegacy ç‰¢å• å’¯å‚ˆæ´’ è¤ä¾©. ææŠšçˆ¶ InGameCombat æç»Š è§’åŠ›è‚ºç»° ABladeIIGameMode ç”« è¤ä¾©çªç»° è‘›ç”µ é•‘ä¿Š ç²®çŠçªæ‘†ç„™. SetCenterMessage èœ¡ç“¶ä¸œä¿Š é˜å¤¸çªå˜ çªƒ.
 //	FActorSpawnParameters SpawnInfo;
 //	SpawnInfo.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 //	SpawnInfo.ObjectFlags |= RF_Transient;
@@ -1937,114 +1943,114 @@ void ABladeIIGameMode::PreBeginPlay()
 	SubscribeEvents();
 }
 
-//void ABladeIIGameMode::UpdateManagedActorList()
-//{
-//	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIGameMode::UpdateManagedActorList"));
-//
-//	// ·¹º§ ½ºÆ®¸®¹ÖÀÌ¶óµµ ÇÑ´Ù¸é PreBeginPlay ÀÌÈÄ¶óµµ µû·Î ºÒ·¯ÁÙ ÇÊ¿ä°¡ »ı±æ °Í.
-//
-//	RemoveAllManagedActors();
-//
-//	for (FActorIterator It(GetWorld()); It; ++It)
-//	{
-//		if ((*It)->Tags.Num() > 0)
-//		{
-//			AddTaggedActor((*It));
-//		}
-//
-//		// ¾êµé »çÀÌ¿¡ ¼­·Î BeginPlay ½ÃÁ¡ÀÇ ÀÇÁ¸ °ü°è°¡ ÀÖÀ» ¼ö ÀÖ¾î¼­ BeginPlay ½ÃÀÛ Àü¿¡ ¹Ì¸® µî·ÏÇØ µĞ´Ù.
-//		auto* CurrSpawnPool = Cast<AB2MonsterSpawnPool>(*It);
-//		if (CurrSpawnPool)
-//		{
-//			AddSpawnPool(CurrSpawnPool);
-//			continue;
-//		}
-//
-//		auto* CurrSED = Cast<AB2StageEventDirector>(*It);
-//		if (CurrSED)
-//		{
-//			AddStageEventDirector(CurrSED);
-//			continue;
-//		}
-//
-//		auto* CurrWayPoint = Cast<AB2AutoWayPoint>(*It);
-//		if (CurrWayPoint)
-//		{
-//			AddAutoWayPoint(CurrWayPoint);
-//			continue;
-//		}
-//
-//		auto* CurrAC = Cast<AB2ActiveCameraActor>(*It);
-//		if (CurrAC)
-//		{
-//			AddActiveCameraActor(CurrAC);
-//			continue;
-//		}
-//
-//		auto* CurrTC = Cast<AB2TreasureChestBase>(*It);
-//		if (CurrTC)
-//		{
-//			AddTreasureChest(CurrTC);
-//			continue;
-//		}
-//
-//		auto* CurrDO = Cast<AB2DestructibleLevelObjBase>(*It);
-//		if (CurrDO)
-//		{
-//			AddDestructibleObject(CurrDO);
-//			continue;
-//		}
-//
-//		auto* CurrHomePoint = Cast<AB2HomePoint>(*It);
-//		if (CurrHomePoint)
-//		{
-//			AddHomePoint(CurrHomePoint);
-//			continue;
-//		}
-//
-//		auto* CastedDialogTrigger = Cast<AB2DialogTriggerActorBase>(*It);
-//		if (CastedDialogTrigger)
-//		{
-//			AddDialogTriggerActor(CastedDialogTrigger);
-//			continue;
-//		}
-//	}
-//
-//	if (AutoWayPoints.Num() >= 2)
-//		AutoWayPoints.Sort([](const AB2AutoWayPoint& a, const AB2AutoWayPoint& b){ return a.PassOrder < b.PassOrder; });
-//
-//	DecideAndSetActiveSpawnPool(); // ¸®½ºÆ® ´Ù Â÷¸é ÀÌ¹ø ·¹º§¿¡¼­ »ç¿ëµÉ SpawnPool ÇÏ³ª¸¦ Ã£¾Æ¼­ ¼¼ÆÃ.
-//}
-//
-//void ABladeIIGameMode::RemoveAllManagedActors()
-//{
-//	SpawnPools.Empty();
-//	EventDirectors.Empty();
-//	AutoWayPoints.Empty();
-//	ActiveCameraActors.Empty();
-//	TreasureChests.Empty();
-//	DestructibleObjects.Empty();
-//	HomePoints.Empty();
-//	TaggedActors.Empty();
-//	DialogTriggers.Empty();
-//}
+void ABladeIIGameMode::UpdateManagedActorList()
+{
+	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIGameMode::UpdateManagedActorList"));
+
+	// é¥­éª‡ èƒ¶é£˜åºœæ€ªææ‰¼æ¡£ èŒ„ä¿ƒæ PreBeginPlay æé¥¶æ‰¼æ¡£ è¶è‚º é˜‚çŸ¾ä¸´ é˜å¤¸å•Š ç§¯è¾¨ å·´.
+
+	RemoveAllManagedActors();
+
+	for (FActorIterator It(GetWorld()); It; ++It)
+	{
+		if ((*It)->Tags.Num() > 0)
+		{
+			AddTaggedActor((*It));
+		}
+
+		// å¨Ÿç”¸ è¤æä¿Š è¾‘è‚º BeginPlay çŸ«ç—¢ç‹¼ ç‹¼ç²® åŒ…æ‹Œå•Š ä¹é˜‘ è ä¹ç»¢è¾‘ BeginPlay çŸ«ç´¯ å‚ˆä¿Š å›ºåºœ æ®¿åºŸç§¦ æ•Œä¿ƒ.
+		auto* CurrSpawnPool = Cast<AB2MonsterSpawnPool>(*It);
+		if (CurrSpawnPool)
+		{
+			AddSpawnPool(CurrSpawnPool);
+			continue;
+		}
+
+		auto* CurrSED = Cast<AB2StageEventDirector>(*It);
+		if (CurrSED)
+		{
+			AddStageEventDirector(CurrSED);
+			continue;
+		}
+
+		auto* CurrWayPoint = Cast<AB2AutoWayPoint>(*It);
+		if (CurrWayPoint)
+		{
+			AddAutoWayPoint(CurrWayPoint);
+			continue;
+		}
+
+		auto* CurrAC = Cast<AB2ActiveCameraActor>(*It);
+		if (CurrAC)
+		{
+			AddActiveCameraActor(CurrAC);
+			continue;
+		}
+
+		auto* CurrTC = Cast<AB2TreasureChestBase>(*It);
+		if (CurrTC)
+		{
+			AddTreasureChest(CurrTC);
+			continue;
+		}
+
+		auto* CurrDO = Cast<AB2DestructibleLevelObjBase>(*It);
+		if (CurrDO)
+		{
+			AddDestructibleObject(CurrDO);
+			continue;
+		}
+
+		auto* CurrHomePoint = Cast<AB2HomePoint>(*It);
+		if (CurrHomePoint)
+		{
+			AddHomePoint(CurrHomePoint);
+			continue;
+		}
+
+		auto* CastedDialogTrigger = Cast<AB2DialogTriggerActorBase>(*It);
+		if (CastedDialogTrigger)
+		{
+			AddDialogTriggerActor(CastedDialogTrigger);
+			continue;
+		}
+	}
+
+	if (AutoWayPoints.Num() >= 2)
+		AutoWayPoints.Sort([](const AB2AutoWayPoint& a, const AB2AutoWayPoint& b){ return a.PassOrder < b.PassOrder; });
+
+	DecideAndSetActiveSpawnPool(); // åºœèƒ¶é£˜ ä¿ƒ ç’æ æé”… é¥­éª‡ä¿Šè¾‘ è¤ä¾©çª SpawnPool çªå”±ç”« èŒ«é…’è¾‘ æŠ€æ³¼.
+}
+
+void ABladeIIGameMode::RemoveAllManagedActors()
+{
+	SpawnPools.Empty();
+	EventDirectors.Empty();
+	AutoWayPoints.Empty();
+	ActiveCameraActors.Empty();
+	TreasureChests.Empty();
+	DestructibleObjects.Empty();
+	HomePoints.Empty();
+	TaggedActors.Empty();
+	DialogTriggers.Empty();
+}
 
 void ABladeIIGameMode::SetDesiredPCClassEnum()
 {
 //	if (Utilities::FConnectionState::GetInstance().IsConnected())
 //	{
-//		// Main À» »ç¿ëÇÏ´Â °ÍÀº ±âº»¸Ê ÇÃ·¹ÀÌÇÒ ¶§ÀÌ°í Extra ¸ÊÀÇ °æ¿ì´Â ÀÌÀü¿¡ ¸¶Áö¸·À¸·Î ÇÃ·¹ÀÌÇÑ current Å¬·¡½º¸¦ ¼¼ÆÃÇØ¾ß ÇÔ. AB2StageGameMode::SetDesiredPCClassEnum Âü°í.
+//		// Main é˜‘ è¤ä¾©çªç»° å·´ç¯® æ‰å¤¯ç”˜ æ•²é¥­æä¸” é”­æç»Š Extra ç”˜ç‹¼ ç‰ˆå¿«ç»° æå‚ˆä¿Š ä»˜ç˜¤é˜œæ è‚º æ•²é¥­æèŒ„ current åŠªè´°èƒ¶ç”« æŠ€æ³¼ç§¦å…· çªƒ. AB2StageGameMode::SetDesiredPCClassEnum æ›¼ç»Š.
 //		CurrentPCClassEnum = BladeIIGameImpl::GetLocalCharacterData().GetMainPlayerClass();
 //	}
 //#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
 //	else
 //	{
-//		// ¿¬°á ¾È µÈ »óÅÂ¿©µµ °³¹ß Å×½ºÆ® ¿ë ´Üµ¶ ÇÃ·¹ÀÌ ¸ğµåµµ ÀÖ°í LocalCharacterData ¿¡¼­´Â ·ÎÄÃ¿¡ ÀúÀåµÈ °ªÀ» ·ÎµùÇØ ³õ¾ÒÀ» ¼öµµ ÀÖ¾î¼­ ±× °ªÀ» »ç¿ë.
+//		// æ¥·æ¬ æ•‘ ç­‰ æƒ‘æ€•å’¯æ¡£ ä¿ºæƒ¯ æŠ›èƒ¶é£˜ ä¾© çªœåˆ€ æ•²é¥­æ è‘›é›æ¡£ ä¹ç»Š LocalCharacterData ä¿Šè¾‘ç»° è‚ºæ‹¿ä¿Š å†å˜ç­‰ è”¼é˜‘ è‚ºçˆ¹ç§¦ åˆç–½é˜‘ èæ¡£ ä¹ç»¢è¾‘ å¼Š è”¼é˜‘ è¤ä¾©.
 //		CurrentPCClassEnum = BladeIIGameImpl::GetLocalCharacterData().GetMainPlayerClass();
 //	}
 //#endif
 //
-//	// Ã·¿£ ¹º°¡ °ªÀÌ ÀÖ¾î¾ß ¾ÈÀüÇÔ.
+//	// æ¢…æµš è´­å•Š è”¼æ ä¹ç»¢å…· æ•‘å‚ˆçªƒ.
 //	if (CurrentPCClassEnum == EPCClass::EPC_End)
 //		CurrentPCClassEnum = DefaultPCClassEnum;
 }
@@ -2054,7 +2060,7 @@ void ABladeIIGameMode::SubscribeEvents()
 	if (bEventsSubscribed)
 		return;
 
-	//// ´ëÃ¼·Î UI °ü·Ã ÀÌº¥Æ® ¹Ş±â À§ÇÔ.
+	//// æªçœ‰è‚º UI åŒ…è®¿ æäº¥é£˜ ç½æ‰ å›°çªƒ.
 	//Issues.Add(BeginGlobalSceneBlurClass<float>::GetInstance().Subscribe2(
 	//	[this](float f)
 	//	{
@@ -2333,35 +2339,35 @@ void ABladeIIGameMode::SubscribeEvents()
 	//	}
 	//));
 
-	bEventsSubscribed = true; // SubsResponseGetQuestRewardcribeEvents ¸¦ Çß´Ù¸é ¾îÂî¾îÂî ´õ¹Ì·Î »ı¼ºµÇ´Â GameMode ´Â ¾Æ´Ò °Í.
+	bEventsSubscribed = true; // SubsResponseGetQuestRewardcribeEvents ç”« æ²ä¿ƒæ ç»¢éª‚ç»¢éª‚ æ­¹å›ºè‚º ç§¯å·±ç™»ç»° GameMode ç»° é…’åŒ† å·´.
 }
 
-//void ABladeIIGameMode::UnsubscribeEvents()
-//{
-//	Issues.Empty();
-//
-//	bEventsSubscribed = false;
-//}
+void ABladeIIGameMode::UnsubscribeEvents()
+{
+	Issues.Empty();
+
+	bEventsSubscribed = false;
+}
 
 void ABladeIIGameMode::DecideAndSetActiveSpawnPool(bool bFallBackToLowerDifficulty)
-{ // Æ¯Á¤ °ÔÀÓ¸ğµå¿¡¼­³ª (StageGameMode ±â¹İ) ÇöÀç »óÈ²¿¡¼­ÀÇ ÀÇ¹ÌÀÖ´Â SpawnPool ·Î ¼¼ÆÃÀÌ µÉ °Í.
+{ // æ¼‚æ²¥ éœ¸çƒ™è‘›é›ä¿Šè¾‘å”± (StageGameMode æ‰é¦†) æ³…çŠ æƒ‘ç‚”ä¿Šè¾‘ç‹¼ ç‹¼å›ºä¹ç»° SpawnPool è‚º æŠ€æ³¼æ çª å·´.
 	//TheActiveSpawnPool = (SpawnPools.Num() > 0) ? SpawnPools[0] : NULL;
 }
 
-//AActor* ABladeIIGameMode::FindPlayerStartForCurrStage(AController* InController)
-//{
-//	return FindPlayerStart(InController); // °ÅÀÇ StageGameMode ¿ëÀÌ´Ù. »çÁ¤ÀÌ ÀÖ¾î¼­ ¿©±â·Î ²ø°í ¿È.
-//}
-//
+AActor* ABladeIIGameMode::FindPlayerStartForCurrStage(AController* InController)
+{
+	return FindPlayerStart(InController); // èŠ­ç‹¼ StageGameMode ä¾©æä¿ƒ. è¤æ²¥æ ä¹ç»¢è¾‘ å’¯æ‰è‚º ç¼ ç»Š å’³.
+}
+
 void ABladeIIGameMode::RestartGame()
 {
 	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIGameMode::RestartGame"));
 
-//	// AB2StageGameMode::RestartGame ¿¡¼­´Â ±â´ÉÀ» ´Ù¸£°Ô Á¤ÀÇÇØ¼­ »ç¿ëÇÏ°í ÀÖÀ¸´Ï ´ëºÎºĞÀÇ °æ¿ì´Â ±×ÂÊÀ» È®ÀÎ.
+//	// AB2StageGameMode::RestartGame ä¿Šè¾‘ç»° æ‰ç“·é˜‘ ä¿ƒç¦éœ¸ æ²¥ç‹¼ç§¦è¾‘ è¤ä¾©çªç»Š ä¹æ èª æªä½•ç›’ç‹¼ ç‰ˆå¿«ç»° å¼Šç‡é˜‘ çŠ¬ç‰¢.
 //#if WITH_EDITOR
 //	if (GIsEditor)
 //	{
-//		// ¿¡µğÅÍ¿¡¼­´Â ´ÜÁö Play ¼¼¼ÇÀ» ³¡³½´Ù.
+//		// ä¿Šå¼ç£ä¿Šè¾‘ç»° çªœç˜¤ Play æŠ€è®°é˜‘ åœºè¾°ä¿ƒ.
 //		GEditor->RequestEndPlayMap();
 //		return;
 //	}
@@ -2384,7 +2390,7 @@ void ABladeIIGameMode::GoToTutorial(bool bIsSkip)
 
 	//TutorialManager::GetInstance().SetSkipNewTutorial(bIsSkip);
 
-	// ¹İº¹µÇ´Â ÄÚµåµéÀÌ ÀÖ¾î¼­ ÇÑµ¥ ¸ğ¾Æ³õÀº °÷¿¡ ÀÖ´Â °Å »ç¿ë.
+	// é¦†æ±—ç™»ç»° å†…é›ç”¸æ ä¹ç»¢è¾‘ èŒ„å• è‘›é…’åˆç¯® é•‘ä¿Š ä¹ç»° èŠ­ è¤ä¾©.
 	//StartBladeIIGameTutorial(this);
 }
 
@@ -2392,18 +2398,18 @@ void ABladeIIGameMode::GoToVillage()
 {
 	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIGameMode::GoToVillage"));
 
-	//OpenPreLoadingScreen(EPreLoadingScreenType::PLST_GoToLobby, EB2GameMode::Lobby); // ·Îºñ·Î µ¹¾Æ°¥ ¶§ ·Îµù ½ºÅ©¸° °ü·ÃÇØ¼­ Å©·¡½¬°¡ Á» ÀÖ´Âµ¥ ÀÌ°É ÀÌ ½ÃÁ¡¿¡¼­ ¹Ì¸® ÇÑ¹ø ·ÎµùÇØÁÖ´Â °Ô ¾ÈÀüÇÏ´Ù´Â °¡¼³ÀÌ ÀÖ¾î¼­ ÇØ º½..
+	OpenPreLoadingScreen(EPreLoadingScreenType::PLST_GoToLobby, EB2GameMode::Lobby); // è‚ºåšè‚º å€’é…’å“ é”­ è‚ºçˆ¹ èƒ¶å†œèµ´ åŒ…è®¿ç§¦è¾‘ å†œè´°æµ†å•Š ç²± ä¹ç»°å• æå§ æ çŸ«ç—¢ä¿Šè¾‘ å›ºåºœ èŒ„é”… è‚ºçˆ¹ç§¦æ—ç»° éœ¸ æ•‘å‚ˆçªä¿ƒç»° å•Šæ±²æ ä¹ç»¢è¾‘ ç§¦ èˆª..
 
-	//FLobbySceneManager::DeferredRegistChangeLobbyScene([](){
-	//	LobbyChangeSceneClass<ELobbyScene>::GetInstance().Signal(ELobbyScene::ELobbyScene_LobbyMain);
-	//});
-	//	
-	//OpenBladeIILobbyCommon(this); // ¾À ÀüÈ¯ ¿¹¾à ÈÄ º»°İ ·Îºñ ¸Ê ·Îµù
+	FLobbySceneManager::DeferredRegistChangeLobbyScene([](){
+		LobbyChangeSceneClass<ELobbyScene>::GetInstance().Signal(ELobbyScene::ELobbyScene_LobbyMain);
+	});
+		
+	OpenBladeIILobbyCommon(this); // çº  å‚ˆåˆ¸ æŠ—è· é¥¶ å¤¯æ‹œ è‚ºåš ç”˜ è‚ºçˆ¹
 }
 
 void ABladeIIGameMode::GoToVillageDefeated()
 {
-	GoToVillage(); // ÇÏÀ§ Å¬·¡½º¿¡¼­ ÇÊ¿ä¿¡ µû¶ó ´Ù¸£°Ô ¾²µµ·Ï..
+	GoToVillage(); // çªå›° åŠªè´°èƒ¶ä¿Šè¾‘ é˜å¤¸ä¿Š è¶æ‰¼ ä¿ƒç¦éœ¸ é™æ¡£åºŸ..
 }
 
 void ABladeIIGameMode::GoToMap()
@@ -2424,7 +2430,7 @@ void ABladeIIGameMode::GoToNextArea()
 
 void ABladeIIGameMode::EnterShop(int32 nWhereShop)
 {
-	// ÀÏ´Ü LobbyGameMode ¿¡¼­.. ÀÎ°ÔÀÓ¿¡¼­µµ »óÁ¡ ÁøÀÔÀ» ÇØ¾ß ÇÒ ¼ö ÀÖÀ½.
+	// è€çªœ LobbyGameMode ä¿Šè¾‘.. ç‰¢éœ¸çƒ™ä¿Šè¾‘æ¡£ æƒ‘ç—¢ æŸ³æ¶é˜‘ ç§¦å…· ä¸” è ä¹æ¾œ.
 }
 
 float ABladeIIGameMode::GetPVEProportionalConstant()
@@ -2482,8 +2488,8 @@ float ABladeIIGameMode::GetDefenseCoefficient()
 
 void ABladeIIGameMode::RecacheLevelResources()
 {
-	// °¢ ·¹º§ ºí·çÇÁ¸°Æ® (ALevelScriptActor) ¿¡¼­ ¸®¼Ò½º Ä³½Ì (¹ÙÀÎµù) µ¿ÀÛÀ» Æ¯Á¤ ½ÃÁ¡¿¡ È£ÃâÇÏ±â À§ÇÔ.
-	// ¿¹¸¦ µé¾î BeginPlay ½ÃÁ¡¿¡ ÁÖ·Î ÇÏ´Â °É ´Ù¸¥ Å¸ÀÌ¹Ö¿¡µµ ½ÇÇàÇÏ±â À§ÇØ.
+	// é˜¿ é¥­éª‡ å–‰é£æ©‡èµ´é£˜ (ALevelScriptActor) ä¿Šè¾‘ åºœå®¶èƒ¶ æŸæ•™ (å®˜ç‰¢çˆ¹) æ‚¼ç´¯é˜‘ æ¼‚æ²¥ çŸ«ç—¢ä¿Š é¾‹å…çªæ‰ å›°çªƒ.
+	// æŠ—ç”« ç”¸ç»¢ BeginPlay çŸ«ç—¢ä¿Š æ—è‚º çªç»° å§ ä¿ƒå¼— é¸¥ææ€ªä¿Šæ¡£ è§’é’çªæ‰ å›°ç§¦.
 
 	if (GEngine && GLog)
 	{
@@ -2501,43 +2507,53 @@ UB2PCClassInfo* ABladeIIGameMode::GetCurrentPCClassInfo()
 	return NULL;
 }
 
-ABladeIIPlayer* ABladeIIGameMode::SpawnPCClassInfoPlayer(class UWorld* SpawnWorld, EPCClass InClass,
-	const FTransform& SpawnTransform, FActorSpawnParameters& SpawnParameters, bool bSpawnAsDummyPuppet, UClass* OverridePawnClass)
+ABladeIIPlayer* ABladeIIGameMode::SpawnPCClassInfoPlayer(
+	class UWorld* SpawnWorld,
+	EPCClass InClass,
+	const FTransform& SpawnTransform,
+	FActorSpawnParameters& SpawnParameters,
+	bool bSpawnAsDummyPuppet,
+	UClass* OverridePawnClass)
 {
 	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIGameMode::SpawnPCClassInfoPlayer"));
 
-	//FActorSpawnParameters FinalSpawnParameter = SpawnParameters;
-	//FinalSpawnParameter.bDeferPostSpawnInitialize = true; // bDeferConstruction °ü·Ã Ã³¸®´Â ¹Û¿¡¼­ ÇÏÁö¸¸ bDeferPostSpawnInitialize ´Â ¿©±â¼± ¹«Á¶°Ç »ç¿ëÇØ¾ß. 
+	UB2PCClassInfoBox* PCBox = StaticFindPCClassInfoBox(this);
+	if (SpawnWorld && InClass != EPCClass::EPC_End && PCBox)
+	{
+		UB2PCClassInfo* ClassInfo = PCBox->GetSingleClassInfo(InClass);
+		if (ClassInfo)
+		{
+			// It will be picked up by player's BeginPlay.
+			CurrentPCClassEnum = InClass;
 
-	//UB2PCClassInfoBox* PCBox = StaticFindPCClassInfoBox(this);
-	//if (SpawnWorld && InClass != EPCClass::EPC_End && PCBox) // Even for the EPC_End, we can still do some..
-	//{
-	//	UB2PCClassInfo* ClassInfo = PCBox->GetSingleClassInfo(InClass);
-	//	if (ClassInfo)
-	//	{
-	//		// It will be picked up by player's BeginPlay.
-	//		CurrentPCClassEnum = InClass; 
+			UClass* PawnClass = (OverridePawnClass != nullptr) ? OverridePawnClass : DefaultPawnClass;
 
-	//		// Main spawn operation. Other spawn handling (e.g. FinishSpawning) needs to be done outside of here depend on spawn parameters.
-	//		UClass* PawnClass = DefaultPawnClass;
-	//		if (OverridePawnClass != nullptr)
-	//			PawnClass = OverridePawnClass;
-	//		
-	//		ABladeIIPlayer* SpawnedActor = Cast<ABladeIIPlayer>(SpawnWorld->SpawnActor(PawnClass, &SpawnTransform, FinalSpawnParameter));
-	//		
-	//		// Rest of overriding by PCClassInfo object are done by BladeIIPlayer's BeginPlay and OverrideByPCClassInfo
+			// âœ… æ”¹ç”¨ SpawnActorDeferred
+			ABladeIIPlayer* SpawnedActor = Cast<ABladeIIPlayer>(
+				SpawnWorld->SpawnActorDeferred<ABladeIIPlayer>(
+					PawnClass,
+					SpawnTransform,
+					nullptr, // Owner
+					nullptr, // Instigator
+					ESpawnActorCollisionHandlingMethod::AlwaysSpawn
+				)
+			);
 
-	//		if (SpawnedActor)
-	//		{
-	//			SpawnedActor->FinalizePCClassInfoSpawn(bSpawnAsDummyPuppet); // DummyPuppet spawn ½Ã InGameInfo »ç¿ë ¾øÀÌ ÁøÇàÇÏµµ·Ï ÀÎÀÚ¸¦ ³Ñ°ÜÁØ´Ù.
-	//			SpawnWorld->ManualPostSpawnInitialize(SpawnedActor, SpawnTransform, FinalSpawnParameter); // bDeferPostSpawnInitialize ¿¡ µû¸¥ Ã³¸®.
-	//			return SpawnedActor;
-	//		}
-	//	}
-	//}
+			if (SpawnedActor)
+			{
+				SpawnedActor->FinalizePCClassInfoSpawn(bSpawnAsDummyPuppet);
+
+				// âœ… å¿…é¡»æ‰‹åŠ¨ Finish
+				UGameplayStatics::FinishSpawningActor(SpawnedActor, SpawnTransform);
+				return SpawnedActor;
+			}
+		}
+	}
+
 	BII_CHECK(0);
-	return NULL;
+	return nullptr;
 }
+
 
 ABladeIIPlayer* ABladeIIGameMode::StaticSpawnPCClassInfoPlayer(UObject* WorldContextObject, EPCClass InClass, const FTransform& SpawnTransform, 
 	ESpawnActorCollisionHandlingMethod CollisionHandlingOverride /*= ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn*/, bool bDeferConstruction /*= true*/, AActor* InOwner /*= nullptr*/)
@@ -2546,7 +2562,7 @@ ABladeIIPlayer* ABladeIIGameMode::StaticSpawnPCClassInfoPlayer(UObject* WorldCon
 
 	FActorSpawnParameters SpawnParam;
 	SpawnParam.Owner = InOwner;
-	SpawnParam.bDeferConstruction = bDeferConstruction; // ÀÌ°É true ·Î ÇÏ¸é ÀÌ°Å È£Ãâ ÀÌÈÄ¿¡ FinishSpawning À» µû·Î ºÒ·¯ÁÖ¾î¾ß ÇÏ´Â ¹ø°Å·Î¿òÀÌ ÀÖÁö¸¸ ÀÏ¹İÀûÀÎ °ÔÀÓÇÃ·¹ÀÌ »óÈ²¿¡¼­ÀÇ ·ÎÄÃ ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ¶ó¸é BeginPlay ½ÃÁ¡¿¡ PlayerController ¿¡ ÀÇÇØ Possess µÈ »óÅÂ¿©¾ß ÇÒ °ÍÀÌ¹Ç·Î ÇÊ¿äÇÔ.
+	SpawnParam.bDeferConstruction = bDeferConstruction; // æå§ true è‚º çªæ æèŠ­ é¾‹å… æé¥¶ä¿Š FinishSpawning é˜‘ è¶è‚º é˜‚çŸ¾æ—ç»¢å…· çªç»° é”…èŠ­è‚ºæ¡†æ ä¹ç˜¤çˆ¶ è€é¦†åˆ©ç‰¢ éœ¸çƒ™æ•²é¥­æ æƒ‘ç‚”ä¿Šè¾‘ç‹¼ è‚ºæ‹¿ æ•²é¥­æç»¢ æŸè…ç£æ‰¼æ BeginPlay çŸ«ç—¢ä¿Š PlayerController ä¿Š ç‹¼ç§¦ Possess ç­‰ æƒ‘æ€•å’¯å…· ä¸” å·´æéª¨è‚º é˜å¤¸çªƒ.
 	SpawnParam.SpawnCollisionHandlingOverride = CollisionHandlingOverride;
 
 	ABladeIIGameMode* B2GameMode = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(WorldContextObject));
@@ -2561,22 +2577,22 @@ ABladeIIPlayer* ABladeIIGameMode::StaticSpawnPCClassInfoPlayer(UObject* WorldCon
 
 void ABladeIIGameMode::HookOnSpawnDefaultPawn(APawn* InSpawned)
 {
-	// GameMode ½ÃÀÛ ½Ã default pawn spawn ½ÃÁ¡¿¡¸¸ ºÒ¸². BeginPlay ¹× ÄÄÆ÷³ÍÆ®µé register ÀÌÀü.
-//	ABladeIIPlayer* SpawnedB2Player = Cast<ABladeIIPlayer>(InSpawned);
-//	if (SpawnedB2Player)
-//	{
-//		SpawnedB2Player->FinalizePCClassInfoSpawn();
-//		
-//		// ·Îµù ÁøÇàµµ Áı°è.. FinalizePCClassInfoSpawn µµÁß BaseBP ·ÎµùÇÏ¸é¼­ ¹º°¡ ¾Õ¼­ ¿äÃ»ÇÑ °ÍµéÀÌ flush µÇ´Â µí ¸¹Àº ½Ã°£ÀÌ ¼Ò¸ğ..
-//		B2GMLoadingProgCollector::StepCustom(0.4f);
-//
-//#if WITH_EDITOR // ¾ÆÁ÷ PCClass °¡ ¾ø´Â Å×½ºÆ® »óÈ²¿¡¼­´Â.. CharacterType À» ÀÓÀÇ·Î ÁØ´Ù. ÀÌ°Å¶óµµ ¾È ³Ö¾îÁÖ¸é Å©·¡½¬ ³ª´Â °÷ÀÌ ³Ê¹« ¸¹À½.
-//		if (IsDefaultPawnTestBP() && CurrentPCClassEnum == EPCClass::EPC_End)
-//		{
-//			SpawnedB2Player->CharacterType = ECharacterType::ECT_Gladiator;
-//		}
-//#endif
-//	}
+	// GameMode çŸ«ç´¯ çŸ« default pawn spawn çŸ«ç—¢ä¿Šçˆ¶ é˜‚è¦†. BeginPlay æ£º å“ªå™¨æƒ©é£˜ç”¸ register æå‚ˆ.
+	ABladeIIPlayer* SpawnedB2Player = Cast<ABladeIIPlayer>(InSpawned);
+	if (SpawnedB2Player)
+	{
+		SpawnedB2Player->FinalizePCClassInfoSpawn();
+		
+		// è‚ºçˆ¹ æŸ³é’æ¡£ ç¬¼æ‹Œ.. FinalizePCClassInfoSpawn æ¡£å BaseBP è‚ºçˆ¹çªæè¾‘ è´­å•Š èŠè¾‘ å¤¸æ²¡èŒ„ å·´ç”¸æ flush ç™»ç»° æ·€ è…¹ç¯® çŸ«åŸƒæ å®¶è‘›..
+		B2GMLoadingProgCollector::StepCustom(0.4f);
+
+#if WITH_EDITOR // é…’æµ PCClass å•Š ç»ç»° æŠ›èƒ¶é£˜ æƒ‘ç‚”ä¿Šè¾‘ç»°.. CharacterType é˜‘ çƒ™ç‹¼è‚º éœ–ä¿ƒ. æèŠ­æ‰¼æ¡£ æ•‘ æŒç»¢æ—æ å†œè´°æµ† å”±ç»° é•‘æ å‘ˆå…¬ è…¹æ¾œ.
+		if (IsDefaultPawnTestBP() && CurrentPCClassEnum == EPCClass::EPC_End)
+		{
+			SpawnedB2Player->CharacterType = ECharacterType::ECT_Gladiator;
+		}
+#endif
+	}
 }
 
 ABladeIIPlayer* ABladeIIGameMode::SpawnPlayerCharAsPuppet(UObject* WorldContextObject, EPCClass InClass, const FTransform& InSpawnTransform, bool bPossessByAIController, UClass* OverridePawnClass)
@@ -2589,18 +2605,18 @@ ABladeIIPlayer* ABladeIIGameMode::SpawnPlayerCharAsPuppet(UObject* WorldContextO
 	if (InClass != EPCClass::EPC_End && B2GameMode && TheWorld)
 	{		
 		FActorSpawnParameters SpawnParam;
-		SpawnParam.bDeferConstruction = false; // ¿©±ä DeferContruction µûÀ§ ÇÒ ÇÊ¿ä°¡ ¾ø°ÚÁö..
+		SpawnParam.bDeferConstruction = false; // å’¯å˜ DeferContruction è¶å›° ä¸” é˜å¤¸å•Š ç»æ‘†ç˜¤..
 		SpawnParam.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
 
-		ABladeIIPlayer* SpawnedPuppet = B2GameMode->SpawnPCClassInfoPlayer(TheWorld, InClass, InSpawnTransform, SpawnParam, true, OverridePawnClass); // SpawnAsDummyPuppet ÀÎÀÚ¸¦ ÁÖ¸é InGameInfo »ç¿ë ¾øÀÌ spawn À» ÁøÇàÇÏ°Ô µÉ °Í.
+		ABladeIIPlayer* SpawnedPuppet = B2GameMode->SpawnPCClassInfoPlayer(TheWorld, InClass, InSpawnTransform, SpawnParam, true, OverridePawnClass); // SpawnAsDummyPuppet ç‰¢ç£Šç”« æ—æ InGameInfo è¤ä¾© ç»æ spawn é˜‘ æŸ³é’çªéœ¸ çª å·´.
 
 		if (SpawnedPuppet)
 		{
 			if (bPossessByAIController)
 			{
-				// APawn::PostInitializeComponents ¿¡¼­ Á¶°Ç¿¡ µû¶ó »ı¼ºÀ» ÇÏ´Âµ¥, 
-				// ±âº» AutoPossessAI ¸¦ Spawned ·Î ÇÏ±â¿¡´Â PlayerController ¿¡ possess µÇ´Â °æ¿ì¸¦ »ı°¢ÇÏ¸é ³¶ºñÀÌ°í 
-				// Puppet spawn ½Ã¿¡´Â ¿©ÇÏ°£ Áß·ÂÀ» ¹ŞÀ¸·Á¸é ±âº» AI controller °¡ ÇÊ¿äÇÏ´Ï º°µµ·Î ºÒ·¯ÁØ´Ù.
+				// APawn::PostInitializeComponents ä¿Šè¾‘ ç‚¼æ‰’ä¿Š è¶æ‰¼ ç§¯å·±é˜‘ çªç»°å•, 
+				// æ‰å¤¯ AutoPossessAI ç”« Spawned è‚º çªæ‰ä¿Šç»° PlayerController ä¿Š possess ç™»ç»° ç‰ˆå¿«ç”« ç§¯é˜¿çªæ æ‰¯åšæç»Š 
+				// Puppet spawn çŸ«ä¿Šç»° å’¯çªåŸƒ åä»¿é˜‘ ç½æ å¦¨æ æ‰å¤¯ AI controller å•Š é˜å¤¸çªèª å–Šæ¡£è‚º é˜‚çŸ¾éœ–ä¿ƒ.
 				SpawnedPuppet->SpawnDefaultController();
 			}
 			return SpawnedPuppet;
@@ -2619,179 +2635,178 @@ bool ABladeIIGameMode::TagPlayerCharacter(AActor* Player)
 {
 	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIGameMode::TagPlayerCharacter"));
 
-	//BII_CHECK(Player);
+	BII_CHECK(Player);
 
-	//auto* B2PC = Cast<ABladeIIPlayerController>(UGameplayStatics::GetLocalPlayerController(this));
-	//auto* B2Player = Cast<ABladeIIPlayer>(B2PC->GetPawn());
-	//UB2SkillRTManager* SkillRTManager = B2Player ? B2Player->GetSkillRTManager() : NULL;
-	//
-	//BII_CHECK(SkillRTManager && B2Player);
-	//return SkillRTManager->TagToOther((int32)B2Player->TagAttackMode, B2Player->TagAttackMode == ETagAttackMode::EAM_Disable ? EAttackState(EAttackState::ECS_None) : B2Player->GetAttackState());
+	auto* B2PC = UGameplayStatics::GetPlayerController(this, 0);
+	ABladeIIPlayer* B2Player = B2PC ? Cast<ABladeIIPlayer>(B2PC->GetCharacter()) : nullptr;
+	UB2SkillRTManager* SkillRTManager = B2Player ? B2Player->GetSkillRTManager() : NULL;
+	
+	BII_CHECK(SkillRTManager && B2Player);
+	return SkillRTManager->TagToOther((int32)B2Player->TagAttackMode, B2Player->TagAttackMode == ETagAttackMode::EAM_Disable ? EAttackState(EAttackState::ECS_None) : B2Player->GetAttackState());
 	return true;
 }
 
 bool ABladeIIGameMode::RequestResurrect(EResurrectBuffType InResurrectBuffType)
 {
-	return false; // ÇÏÀ§ °ÔÀÓ ¸ğµå Å¬·¡½º¿¡¼­ ±¸Çö.
+	return false; // çªå›° éœ¸çƒ™ è‘›é› åŠªè´°èƒ¶ä¿Šè¾‘ å¤‡æ³….
 }
 
-// Áøµ¿ ·Îºñ¿¡¼± ÇÃ·¹ÀÌ¾î ¾øÀ¸´Ï ÀÌ°Å¾²ÀÚ. ´Ù¸¥µ¥¼­µµ ½áµÎµÊ.
+// æŸ³æ‚¼ è‚ºåšä¿Šæ€¥ æ•²é¥­æç»¢ ç»æ èª æèŠ­é™ç£Š. ä¿ƒå¼—å•è¾‘æ¡£ ç»“æ»´å‡³.
 void ABladeIIGameMode::ForceFeedback()
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIGameMode_ForceFeedback);
 	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIGameMode::ForceFeedback"));
 
-	//APlayerController* PC = UGameplayStatics::GetLocalPlayerController(this);
-	
-	//if (PC)
-	//{
-	//	UB2SomeInfo* SomeInfo = StaticFindSomeInfo(this);
-	//	if (IsVibration() && SomeInfo && SomeInfo->GetForceFeedbackEffect())
-	//	{
-	//		PC->ClientPlayForceFeedback(SomeInfo->GetForceFeedbackEffect() , false, FName());
-	//	}
-	//}
+	APlayerController* PC = UGameplayStatics::GetPlayerController(this, 0);
+	if (PC)
+	{
+		UB2SomeInfo* SomeInfo = StaticFindSomeInfo(this);
+		if (IsVibration() && SomeInfo && SomeInfo->GetForceFeedbackEffect())
+		{
+			PC->ClientPlayForceFeedback(SomeInfo->GetForceFeedbackEffect());
+		}
+	}
 }
 
 void ABladeIIGameMode::NotifySpawnPoolMobSpawn(class ABladeIICharacter* SpawnedMob, const FMobSpawnedBirthplaceInfo& InBirthplaceInfo)
 {
 	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIGameMode::NotifySpawnPoolMobSpawn"));
 
-	//checkSlow(!InBirthplaceInfo.Birthplace || InBirthplaceInfo.Birthplace == TheActiveSpawnPool);
+	checkSlow(!InBirthplaceInfo.Birthplace || InBirthplaceInfo.Birthplace == TheActiveSpawnPool);
 
-	//if (InBirthplaceInfo.Birthplace && SpawnedMob)
-	//{
-	//	SpawnedMob->SetBirthPlace(InBirthplaceInfo);
-	//}
+	if (InBirthplaceInfo.Birthplace && SpawnedMob)
+	{
+		SpawnedMob->SetBirthPlace(InBirthplaceInfo);
+	}
 }
 
 void ABladeIIGameMode::NotifySpawnPoolComplete(class AB2MonsterSpawnPool* CompletedSpawnPool)
 {
-	//checkSlow(!CompletedSpawnPool || CompletedSpawnPool == TheActiveSpawnPool);
+	checkSlow(!CompletedSpawnPool || CompletedSpawnPool == TheActiveSpawnPool);
 }
 
 void ABladeIIGameMode::NotifySpawnPoolSingleWaveStart(AB2MonsterSpawnPool* StartedSpawnPool, int32 WaveNum)
 {
 	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIGameMode::NotifySpawnPoolSingleWaveStart"));
 
-	//checkSlow(!StartedSpawnPool || StartedSpawnPool == TheActiveSpawnPool);
+	checkSlow(!StartedSpawnPool || StartedSpawnPool == TheActiveSpawnPool);
 
-	//for (int32 DI = 0; DI < EventDirectors.Num(); ++DI)
-	//{
-	//	AB2StageEventDirector* CurrDirector = EventDirectors[DI];
-	//	if (CurrDirector)
-	//	{
-	//		CurrDirector->NotifySpawnPoolSingleWaveStart(WaveNum);
-	//	}
-	//}
+	for (int32 DI = 0; DI < EventDirectors.Num(); ++DI)
+	{
+		AB2StageEventDirector* CurrDirector = EventDirectors[DI];
+		if (CurrDirector)
+		{
+			CurrDirector->NotifySpawnPoolSingleWaveStart(WaveNum);
+		}
+	}
 }
 
 void ABladeIIGameMode::NotifySpawnPoolSingleWaveComplete(AB2MonsterSpawnPool* CompletedSpawnPool, int32 WaveNum)
 {
 	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIGameMode::NotifySpawnPoolSingleWaveComplete"));
 
-	//checkSlow(!CompletedSpawnPool || CompletedSpawnPool == TheActiveSpawnPool);
+	checkSlow(!CompletedSpawnPool || CompletedSpawnPool == TheActiveSpawnPool);
 
-	//for (int32 DI = 0; DI < EventDirectors.Num(); ++DI)
-	//{
-	//	AB2StageEventDirector* CurrDirector = EventDirectors[DI];
-	//	if (CurrDirector)
-	//	{
-	//		CurrDirector->NotifySpawnPoolSingleWaveComplete(WaveNum);
-	//	}
-	//}
+	for (int32 DI = 0; DI < EventDirectors.Num(); ++DI)
+	{
+		AB2StageEventDirector* CurrDirector = EventDirectors[DI];
+		if (CurrDirector)
+		{
+			CurrDirector->NotifySpawnPoolSingleWaveComplete(WaveNum);
+		}
+	}
 }
 
 void ABladeIIGameMode::NotifySpawnPoolWaveMobDead(class AB2MonsterSpawnPool* SpawnPool, class ABladeIICharacter* DyingMob, int32 WaveNum, int32 MobIndex)
 {
-//	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIGameMode::NotifySpawnPoolWaveMobDead"));
-//
-//	BII_CHECK(DyingMob && DyingMob->IsValidObj());
-//	checkSlow(!SpawnPool || SpawnPool == TheActiveSpawnPool);
-//
-//	for (int32 DI = 0; DI < EventDirectors.Num(); ++DI)
-//	{
-//		AB2StageEventDirector* CurrDirector = EventDirectors[DI];
-//		if (CurrDirector)
-//		{
-//			CurrDirector->NotifySpawnPoolSingleMobDead(DyingMob, WaveNum, MobIndex);
-//		}
-//	}
-//
-//	// SpawnPool º¸´Ù StageEventDirector ¿¡ ¸ÕÀú Notify ¸¦ ÁÙ ÇÊ¿ä°¡ ÀÖ´Ù. 
-//	// ±×·¡¾ß ¿¡¼­ MobDying ÀÌº¥Æ® Ã³¸® ½Ã WaveNum °ú ObjIndex ·Î DyingMonster ¸¦ °¡Á®¿Ã ¼ö°¡ ÀÖÀ½.
-//	// ¹°·Ğ ÀÌ °æ¿ì delay ¾øÀÌ ¹Ù·Î show ¸¦ ½ÃÀÛÇØ¾ß ÇÔ. ±×°Ô ¾Æ´Ï¶ó¸é DyingMonstser ¸¦ ¾î¶² ½ÄÀ¸·Îµç Ä³½ÌÇØ¼­ ½á¾ß ÇÔ.
-//
-//	if (SpawnPool)
-//	{
-//		SpawnPool->OnSpawnedMonsterDead(DyingMob, WaveNum, MobIndex, false);
-//	}
+	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIGameMode::NotifySpawnPoolWaveMobDead"));
+
+	BII_CHECK(DyingMob && DyingMob->IsValidObj());
+	checkSlow(!SpawnPool || SpawnPool == TheActiveSpawnPool);
+
+	for (int32 DI = 0; DI < EventDirectors.Num(); ++DI)
+	{
+		AB2StageEventDirector* CurrDirector = EventDirectors[DI];
+		if (CurrDirector)
+		{
+			CurrDirector->NotifySpawnPoolSingleMobDead(DyingMob, WaveNum, MobIndex);
+		}
+	}
+
+	// SpawnPool ç„Šä¿ƒ StageEventDirector ä¿Š åˆšå† Notify ç”« ä¸´ é˜å¤¸å•Š ä¹ä¿ƒ. 
+	// å¼Šè´°å…· ä¿Šè¾‘ MobDying æäº¥é£˜ è´¸åºœ çŸ« WaveNum è‹ ObjIndex è‚º DyingMonster ç”« å•Šå»‰æ£µ èå•Š ä¹æ¾œ.
+	// æ‹±æ²¸ æ ç‰ˆå¿« delay ç»æ å®˜è‚º show ç”« çŸ«ç´¯ç§¦å…· çªƒ. å¼Šéœ¸ é…’èªæ‰¼æ DyingMonstser ç”« ç»¢æ« ä¾¥æ è‚ºç”µ æŸæ•™ç§¦è¾‘ ç»“å…· çªƒ.
+
+	if (SpawnPool)
+	{
+		SpawnPool->OnSpawnedMonsterDead(DyingMob, WaveNum, MobIndex, false);
+	}
 }
 
 void ABladeIIGameMode::NotifySpawnPoolWaveMobPhaseChange(class AB2MonsterSpawnPool* SpawnPool, class ABladeIICharacter* ChangedMob, class ABladeIICharacter* DestroyedPrevRef, int32 WaveNum, int32 MobObjIndex, int32 NewPhase)
 {
-//	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIGameMode::NotifySpawnPoolWaveMobPhaseChange"));
-//
-//	// DestroyedPrevRef ´Â NULL ÀÌ ¾Æ´Ñ °æ¿ì¶óµµ IsValidObj ÇÏÁö ¾ÊÀ» °ÍÀÓ.
-//
-//	BII_CHECK(ChangedMob && ChangedMob->IsValidObj());
-//	checkSlow(!SpawnPool || SpawnPool == TheActiveSpawnPool);
-//
-//	for (int32 DI = 0; DI < EventDirectors.Num(); ++DI)
-//	{
-//		AB2StageEventDirector* CurrDirector = EventDirectors[DI];
-//		if (CurrDirector)
-//		{
-//			CurrDirector->NotifySpawnPoolSingleMobPhaseChange(ChangedMob, DestroyedPrevRef, WaveNum, MobObjIndex, NewPhase);
-//		}
-//	}
+	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIGameMode::NotifySpawnPoolWaveMobPhaseChange"));
+
+	// DestroyedPrevRef ç»° NULL æ é…’å›± ç‰ˆå¿«æ‰¼æ¡£ IsValidObj çªç˜¤ è‡¼é˜‘ å·´çƒ™.
+
+	BII_CHECK(ChangedMob && ChangedMob->IsValidObj());
+	checkSlow(!SpawnPool || SpawnPool == TheActiveSpawnPool);
+
+	for (int32 DI = 0; DI < EventDirectors.Num(); ++DI)
+	{
+		AB2StageEventDirector* CurrDirector = EventDirectors[DI];
+		if (CurrDirector)
+		{
+			CurrDirector->NotifySpawnPoolSingleMobPhaseChange(ChangedMob, DestroyedPrevRef, WaveNum, MobObjIndex, NewPhase);
+		}
+	}
 }
 
 void ABladeIIGameMode::NotifySpawnPoolSummonedMobDead(class AB2MonsterSpawnPool* SpawnPool, class ABladeIICharacter* DyingMob)
 {
 	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIGameMode::NotifySpawnPoolSummonedMobDead"));
-//
-//	checkSlow(!SpawnPool || SpawnPool == TheActiveSpawnPool);
-//
-//	// ¿©±â¼± StageEventDirector ÂÊ ÅëÁö´Â ÇÊ¿ä¾ø°ÚÀ½. ¸¸ÀÏ ÇÊ¿äÇØÁø´Ù¸é ¾Æ¸¶µµ SpawnPool º¸´Ù´Â ¸ÕÀú ÅëÁö.
-//
-//	if (SpawnPool)
-//	{
-//		SpawnPool->OnSpawnedMonsterDead(DyingMob, -1, -1, true); // ¼ÒÈ¯ÀÌ¸é WaveNum µîÀº ÇÊ¿ä¾øÀ½.
-//	}
+
+	checkSlow(!SpawnPool || SpawnPool == TheActiveSpawnPool);
+
+	// å’¯æ‰æ€¥ StageEventDirector ç‡ çƒ¹ç˜¤ç»° é˜å¤¸ç»æ‘†æ¾œ. çˆ¶è€ é˜å¤¸ç§¦æŸ³ä¿ƒæ é…’ä»˜æ¡£ SpawnPool ç„Šä¿ƒç»° åˆšå† çƒ¹ç˜¤.
+
+	if (SpawnPool)
+	{
+		SpawnPool->OnSpawnedMonsterDead(DyingMob, -1, -1, true); // å®¶åˆ¸ææ WaveNum æ®¿ç¯® é˜å¤¸ç»æ¾œ.
+	}
 }
 
 void ABladeIIGameMode::NotifyForgetACharacter(class ABladeIICharacter* CharacterAboutToBeDestroyed)
 {
 	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIGameMode::NotifyForgetACharacter"));
 
-//	// Notify**Dead °¡ °ÔÀÓ ÇÃ·¹ÀÌ»óÀÇ Á×À½À» ÀÇ¹ÌÇÑ´Ù¸é ÀÌ°Ç ¾ğ¸®¾ó ¿ÀºêÁ§Æ® Â÷¿øÀÇ Á¦°Å Á÷ÀüÀÓ. ³Ñ¾î¿Â ¿ÀºêÁ§Æ®¸¦ ÂüÁ¶ÇÏ´Â °Ô ÀÖ´Ù¸é ¸ğµÎ NULL out.
-//
-//	BII_CHECK(CharacterAboutToBeDestroyed && CharacterAboutToBeDestroyed->IsValidObj()); // ¾ÆÁ÷Àº Valid ÇØ¾ß°ÚÁö..
-//
-//	for (int32 DI = 0; DI < EventDirectors.Num(); ++DI)
-//	{
-//		AB2StageEventDirector* CurrDirector = EventDirectors[DI];
-//		if (CurrDirector)
-//		{
-//			CurrDirector->NotifyForgetACharacter(CharacterAboutToBeDestroyed);
-//		}
-//	}
+	// Notify**Dead å•Š éœ¸çƒ™ æ•²é¥­ææƒ‘ç‹¼ ç£·æ¾œé˜‘ ç‹¼å›ºèŒ„ä¿ƒæ ææ‰’ æ”«åºœå€” å·å®ç’ƒé£˜ ç’ç›”ç‹¼ åŠ›èŠ­ æµå‚ˆçƒ™. é€ç»¢æŸ¯ å·å®ç’ƒé£˜ç”« æ›¼ç‚¼çªç»° éœ¸ ä¹ä¿ƒæ è‘›æ»´ NULL out.
+
+	BII_CHECK(CharacterAboutToBeDestroyed && CharacterAboutToBeDestroyed->IsValidObj()); // é…’æµç¯® Valid ç§¦å…·æ‘†ç˜¤..
+
+	for (int32 DI = 0; DI < EventDirectors.Num(); ++DI)
+	{
+		AB2StageEventDirector* CurrDirector = EventDirectors[DI];
+		if (CurrDirector)
+		{
+			CurrDirector->NotifyForgetACharacter(CharacterAboutToBeDestroyed);
+		}
+	}
 }
 
-//void ABladeIIGameMode::StopAllStageEventDirector(class AB2StageEventDirector* skipDirector)
-//{
-//	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIGameMode::StopAllStageEventDirector"));
-//
-//	for (int32 DI = 0; DI < EventDirectors.Num(); ++DI)
-//	{
-//		AB2StageEventDirector* CurrDirector = EventDirectors[DI];
-//		if (CurrDirector && CurrDirector->IsPlayingShow() && CurrDirector != skipDirector)
-//		{
-//			CurrDirector->CustomFinishShow();
-//		}
-//	}
-//}
+void ABladeIIGameMode::StopAllStageEventDirector(class AB2StageEventDirector* skipDirector)
+{
+	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIGameMode::StopAllStageEventDirector"));
+
+	for (int32 DI = 0; DI < EventDirectors.Num(); ++DI)
+	{
+		AB2StageEventDirector* CurrDirector = EventDirectors[DI];
+		if (CurrDirector && CurrDirector->IsPlayingShow() && CurrDirector != skipDirector)
+		{
+			CurrDirector->CustomFinishShow();
+		}
+	}
+}
 
 void ABladeIIGameMode::NotifyStageEventSceneBegin(class AB2StageEventDirector* BegunDirector, EStageEvent EventType)
 {
@@ -2804,52 +2819,52 @@ void ABladeIIGameMode::NotifyUIWidgetOpenComplete(FName InOpenedUI)
 {
 	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIGameMode::NotifyUIWidgetOpenComplete"));
 
-	//if (AB2StageEventDirector::IsStageEventRelatedUI(InOpenedUI))
-	//{
-	//	for (AB2StageEventDirector* CurrSED : EventDirectors)
-	//	{
-	//		if (CurrSED)
-	//		{
-	//			CurrSED->NotifyStageEventUIOpenComplete(InOpenedUI);
-	//		}
-	//	}
-	//}
+	if (AB2StageEventDirector::IsStageEventRelatedUI(InOpenedUI))
+	{
+		for (AB2StageEventDirector* CurrSED : EventDirectors)
+		{
+			if (CurrSED)
+			{
+				CurrSED->NotifyStageEventUIOpenComplete(InOpenedUI);
+			}
+		}
+	}
 }
 
 void ABladeIIGameMode::AddSpawnPool(class AB2MonsterSpawnPool* InNewSpawnPool)
 {
-	//if (InNewSpawnPool)
-	//{
-	//	SpawnPools.AddUnique(InNewSpawnPool);
-	//	InNewSpawnPool->SetCurrentGameMode(this);
-	//}
+	if (InNewSpawnPool)
+	{
+		SpawnPools.AddUnique(InNewSpawnPool);
+		InNewSpawnPool->SetCurrentGameMode(this);
+	}
 }
 
 void ABladeIIGameMode::AddStageEventDirector(class AB2StageEventDirector* InNewEventDirector)
 {
-	//if (InNewEventDirector)
-	//{
-	//	EventDirectors.AddUnique(InNewEventDirector);
-	//}
+	if (InNewEventDirector)
+	{
+		EventDirectors.AddUnique(InNewEventDirector);
+	}
 }
 
 void ABladeIIGameMode::AddActiveCameraActor(class AB2ActiveCameraActor* InNewActiveCameraActor)
 {
-	//if (InNewActiveCameraActor)
-	//{
-	//	ActiveCameraActors.AddUnique(InNewActiveCameraActor);
-	//}
+	if (InNewActiveCameraActor)
+	{
+		ActiveCameraActors.AddUnique(InNewActiveCameraActor);
+	}
 }
 
 class AB2ActiveCameraActor* ABladeIIGameMode::FindActiveCameraActorByTag(FName ACATagName)
 {
-	//for (AB2ActiveCameraActor* pACA : ActiveCameraActors)
-	//{
-	//	if (pACA->ActorHasTag(ACATagName))
-	//	{
-	//		return pACA;
-	//	}
-	//}
+	for (AB2ActiveCameraActor* pACA : ActiveCameraActors)
+	{
+		if (pACA->ActorHasTag(ACATagName))
+		{
+			return pACA;
+		}
+	}
 
 	return nullptr;
 }
@@ -2937,7 +2952,7 @@ AActor* ABladeIIGameMode::GetTaggedActor(FName TagName)
 
 void ABladeIIGameMode::GetSingleWaveMobList(int32 WaveNum, TArray<class ABladeIICharacter*>& OutList, bool bOnlyLiveMobs /*= true*/)
 {
-	//if (TheActiveSpawnPool) // ÀüÃ¼ SpawnPool À» iteration ÇÒ ÇÊ¿ä°¡ ¾ø¾î¾ß ÇÑ´Ù.
+	//if (TheActiveSpawnPool) // å‚ˆçœ‰ SpawnPool é˜‘ iteration ä¸” é˜å¤¸å•Š ç»ç»¢å…· èŒ„ä¿ƒ.
 	//{
 	//	TArray<class ABladeIICharacter*> CurrList;
 	//	TheActiveSpawnPool->GetWaveMobList(WaveNum, CurrList, bOnlyLiveMobs);
@@ -2947,7 +2962,7 @@ void ABladeIIGameMode::GetSingleWaveMobList(int32 WaveNum, TArray<class ABladeII
 
 void ABladeIIGameMode::GetAllWaveMobList(TArray<class ABladeIICharacter*>& OutList, bool bOnlyLiveMobs /*= true*/)
 {
-//	if (TheActiveSpawnPool) // ÀüÃ¼ SpawnPool À» iteration ÇÒ ÇÊ¿ä°¡ ¾ø¾î¾ß ÇÑ´Ù.
+//	if (TheActiveSpawnPool) // å‚ˆçœ‰ SpawnPool é˜‘ iteration ä¸” é˜å¤¸å•Š ç»ç»¢å…· èŒ„ä¿ƒ.
 //	{
 //		TArray<class ABladeIICharacter*> CurrList;
 //		TheActiveSpawnPool->GetAllWaveMobList(CurrList, bOnlyLiveMobs);
@@ -2957,7 +2972,7 @@ void ABladeIIGameMode::GetAllWaveMobList(TArray<class ABladeIICharacter*>& OutLi
 
 void ABladeIIGameMode::GetAllSummonedMobList(TArray<class ABladeIICharacter*>& OutList, bool bOnlyLiveMobs /*= true*/)
 {
-	//if (TheActiveSpawnPool) // ÀüÃ¼ SpawnPool À» iteration ÇÒ ÇÊ¿ä°¡ ¾ø¾î¾ß ÇÑ´Ù.
+	//if (TheActiveSpawnPool) // å‚ˆçœ‰ SpawnPool é˜‘ iteration ä¸” é˜å¤¸å•Š ç»ç»¢å…· èŒ„ä¿ƒ.
 	//{
 	//	TArray<class ABladeIICharacter*> CurrList;
 	//	TheActiveSpawnPool->GetAllSummonedMobList(CurrList, bOnlyLiveMobs);
@@ -2993,8 +3008,8 @@ void ABladeIIGameMode::GetAllWorldMobList(TArray<class ABladeIICharacter*>& OutL
 //	GetAllSummonedMobList(OutList, bOnlyLiveMobs);
 //
 //#if WITH_EDITOR && !UE_BUILD_SHIPPING
-//	// ¿¡µğÅÍ¿¡¼± Å×½ºÆ®µµ ¸¹ÀÌ ÇÏ°í ÇÏ´ÏSpawnNPC Ä¿¸Çµå·Î »ı¼ºÇÑ ±Ùº»¾ø´Â ¸÷µéµµ Å¸°Ù Ã¼Å©ÇØ ÁØ´Ù.
-//	for (FActorIterator It(GetWorld()); It; ++It) // ActorIterator ÀÌ¹Ç·Î Å×½ºÆ® ¿Ü¿£ ¹«¸®.
+//	// ä¿Šå¼ç£ä¿Šæ€¥ æŠ›èƒ¶é£˜æ¡£ è…¹æ çªç»Š çªèªSpawnNPC ç›®ç›–é›è‚º ç§¯å·±èŒ„ è¾Ÿå¤¯ç»ç»° å„ç”¸æ¡£ é¸¥ç™¾ çœ‰å†œç§¦ éœ–ä¿ƒ.
+//	for (FActorIterator It(GetWorld()); It; ++It) // ActorIterator æéª¨è‚º æŠ›èƒ¶é£˜ å¯‡æµš å…¬åºœ.
 //	{
 //		ABladeIICharacter* Actor = Cast<ABladeIICharacter>(*It);
 //		if (Actor && Actor->IsValidObj())
@@ -3010,7 +3025,7 @@ void ABladeIIGameMode::GetAllWorldMobList(TArray<class ABladeIICharacter*>& OutL
 }
 
 bool ABladeIIGameMode::ApplyActiveCameraIfAny(float BlendInTimeOverride /*= -1.0f*/)
-{ // StageEventDirector ÂÊ¿¡¼­ ¿¬Ãâ Àå¸é Á¾·á ÈÄ¿¡ ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ ÅÚ·¹Æ÷Æ®¿¡ µû¶ó ÇÊ¿äÇÑ ±â´É.
+{ // StageEventDirector ç‡ä¿Šè¾‘ æ¥·å… å˜æ è¾†ä¸° é¥¶ä¿Š æ•²é¥­æç»¢ æŸè…ç£ ç‚®é¥­å™¨é£˜ä¿Š è¶æ‰¼ é˜å¤¸èŒ„ æ‰ç“·.
 	
 	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIGameMode::ApplyActiveCameraIfAny"));
 
@@ -3018,11 +3033,11 @@ bool ABladeIIGameMode::ApplyActiveCameraIfAny(float BlendInTimeOverride /*= -1.0
 	//{
 	//	if (ActiveCameraActors[ACI]->ManualTestBeginActiveCamera(BlendInTimeOverride) == true)
 	//	{
-	//		return true; // ÇÏ³ª Àû¿ëµÇ¾úÀ¸¸é ´õ º¼ ÇÊ¿ä ¾øÀ½.
+	//		return true; // çªå”± åˆ©ä¾©ç™»èŒæ æ æ­¹ æ­ é˜å¤¸ ç»æ¾œ.
 	//	}
 	//}
 
-	//// ¿ø·¡ ¾×Æ¼ºêµÈ Ä«¸Ş¶ó ÀÖÀ¸¸é ±×³ÉµÒ
+	//// ç›”è´° å’€èå®ç­‰ å¢¨çš‹æ‰¼ ä¹æ æ å¼Šæˆç‹„
 	//if (CurrentActiveActiveCameraActor)
 	//{
 	//	return true;
@@ -3031,7 +3046,7 @@ bool ABladeIIGameMode::ApplyActiveCameraIfAny(float BlendInTimeOverride /*= -1.0
 	return false;
 }
 
-// ±âº» ¾×Æ¼ºêÄ«¸Ş¶ó ÀÖÀ¸¸é ±×°Å È°¼ºÈ­
+// æ‰å¤¯ å’€èå®å¢¨çš‹æ‰¼ ä¹æ æ å¼ŠèŠ­ åŠå·±æ‹³
 void ABladeIIGameMode::SetBaseActiveCamera()
 {
 	//for (int32 ACI = 0; ACI < ActiveCameraActors.Num(); ++ACI)
@@ -3046,7 +3061,7 @@ void ABladeIIGameMode::SetBaseActiveCamera()
 
 bool ABladeIIGameMode::SummonFromSpawnPool(class ABladeIICharacter* Summoner, int32 SummonIndex, float MaxRadius)
 {
-	//if (TheActiveSpawnPool) // ÀüÃ¼ SpawnPool À» iteration ÇÒ ÇÊ¿ä°¡ ¾ø¾î¾ß ÇÑ´Ù.
+	//if (TheActiveSpawnPool) // å‚ˆçœ‰ SpawnPool é˜‘ iteration ä¸” é˜å¤¸å•Š ç»ç»¢å…· èŒ„ä¿ƒ.
 	//{
 	//	return TheActiveSpawnPool->SummonMobs(Summoner, SummonIndex, MaxRadius);
 	//}
@@ -3130,7 +3145,7 @@ bool ABladeIIGameMode::ClearPause()
 
 	bool bSuperPauseCleared = Super::ClearPause();
 
-	// Pause menu widget ÇØÁ¦
+	// Pause menu widget ç§¦åŠ›
 	//StopPauseMenuClass<>::GetInstance().Signal();
 
 	return bSuperPauseCleared;
@@ -3141,7 +3156,7 @@ bool ABladeIIGameMode::BeginGlobalSceneBlur(float BlurScale)
 	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIGameMode::BeginGlobalSceneBlur"));
 	//
 	//if (bGlobalSceneBlurOn) {
-	//	// Blur µÇ±â ÀüÀÇ Ä«¸Ş¶ó ¼³Á¤À» Ä³½ÌÇØ ³õ±â ¶§¹®¿¡ ÀÌ¹Ì Àû¿ëµÇ¾î ÀÖ´Â »óÅÂ¿¡¼­ µÎ¹ø µé¾î¿À¸é °ï¶õ
+	//	// Blur ç™»æ‰ å‚ˆç‹¼ å¢¨çš‹æ‰¼ æ±²æ²¥é˜‘ æŸæ•™ç§¦ åˆæ‰ é”­å·©ä¿Š æå›º åˆ©ä¾©ç™»ç»¢ ä¹ç»° æƒ‘æ€•ä¿Šè¾‘ æ»´é”… ç”¸ç»¢å·æ å¸®é„‚
 	//	return false;
 	//}
 	//
@@ -3149,27 +3164,27 @@ bool ABladeIIGameMode::BeginGlobalSceneBlur(float BlurScale)
 
 	//if (CachedCameraAtBlurBegin)
 	//{
-	//	// GlobalSceneBlur ¿¡¼­ º¹±¸ÇÏ±â À§ÇØ ¼³Á¤µé Ä³½Ì.
+	//	// GlobalSceneBlur ä¿Šè¾‘ æ±—å¤‡çªæ‰ å›°ç§¦ æ±²æ²¥ç”¸ æŸæ•™.
 	//	CachedPPBeforeBlur = CachedCameraAtBlurBegin->PostProcessSettings;
 	//	CachedPPWeightBeforeBlur = CachedCameraAtBlurBegin->PostProcessBlendWeight;
 
 	//	CachedCameraAtBlurBegin->PostProcessSettings.bOverride_DepthOfFieldMethod = true;
 	//	CachedCameraAtBlurBegin->PostProcessSettings.DepthOfFieldMethod = EDepthOfFieldMethod::DOFM_Gaussian;
 	//	
-	//	// PC ¹öÀüÀÇ GaussianDOF ´Â Near/FarBlurSize ¸¦ Á¶ÀıÇÏÁö¸¸ Mobile ¹öÀü¿¡¼­´Â Scale °ªÀ¸·Î Á¶ÀıÇÔ. µÑÀÌ °Á ´Ù¸§
+	//	// PC æ»šå‚ˆç‹¼ GaussianDOF ç»° Near/FarBlurSize ç”« ç‚¼ä¾‹çªç˜¤çˆ¶ Mobile æ»šå‚ˆä¿Šè¾‘ç»° Scale è”¼æ è‚º ç‚¼ä¾‹çªƒ. ç¬›æ å‚² ä¿ƒæŠš
 	//	CachedCameraAtBlurBegin->PostProcessSettings.bOverride_DepthOfFieldScale = true;
-	//	CachedCameraAtBlurBegin->PostProcessSettings.DepthOfFieldScale = BlurScale; // ±Ùµ¥ ¾îÂ° ¸ğ¹ÙÀÏ¿¡¼­µµ ¾È¸ÔÈ÷´Â µí? °Á Á¤ÇØÁø ½ºÄÉÀÏÀÌ µé¾î°¡´Â °Å °°´Ù. ºí·¯ Ä¿³Î »çÀÌÁî¿¡ µû¶ó ¼º´ÉÀÌ ÁÂ¿ìµÇ´Â ½ÄÀÌ¸é ÃæºĞÈ÷ ¸»ÀÌ µÇ°ÚÁö ³¥³¥
+	//	CachedCameraAtBlurBegin->PostProcessSettings.DepthOfFieldScale = BlurScale; // è¾Ÿå• ç»¢æ³ è‘›å®˜è€ä¿Šè¾‘æ¡£ æ•‘å†ˆæ´’ç»° æ·€? å‚² æ²¥ç§¦æŸ³ èƒ¶çº³è€æ ç”¸ç»¢å•Šç»° èŠ­ éä¿ƒ. å–‰çŸ¾ ç›®æ¾„ è¤æä»¤ä¿Š è¶æ‰¼ å·±ç“·æ è°…å¿«ç™»ç»° ä¾¥ææ é¢ç›’æ´’ å¯Œæ ç™»æ‘†ç˜¤ å¿å¿
 	//	
-	//	// Áï, ¿©±â Near/FarBlurSize ¼¼ÆÃÇÏ´Â °Ç PC ¿¡¼­ Àû´çÈ÷ º¸¿©ÁÖ±â À§ÇÔ.
+	//	// æºœ, å’¯æ‰ Near/FarBlurSize æŠ€æ³¼çªç»° æ‰’ PC ä¿Šè¾‘ åˆ©å¯¸æ´’ ç„Šå’¯æ—æ‰ å›°çªƒ.
 	//	CachedCameraAtBlurBegin->PostProcessSettings.bOverride_DepthOfFieldNearBlurSize = true;
 	//	CachedCameraAtBlurBegin->PostProcessSettings.bOverride_DepthOfFieldFarBlurSize = true;
 	//	CachedCameraAtBlurBegin->PostProcessSettings.DepthOfFieldNearBlurSize = BlurScale * 5.0f;
 	//	CachedCameraAtBlurBegin->PostProcessSettings.DepthOfFieldFarBlurSize = BlurScale * 5.0f;
 
 	//	CachedCameraAtBlurBegin->PostProcessSettings.bOverride_DepthOfFieldFocalDistance = true;
-	//	CachedCameraAtBlurBegin->PostProcessSettings.DepthOfFieldFocalDistance = 100000.0f; // ÀÌ°Ç ±×³É Å« ¼ö·Î Áà¼­ ¸ğµÎ ºí·¯¸µ µÇµµ·Ï ÇÔ.
+	//	CachedCameraAtBlurBegin->PostProcessSettings.DepthOfFieldFocalDistance = 100000.0f; // ææ‰’ å¼Šæˆ å¥´ èè‚º æ‹è¾‘ è‘›æ»´ å–‰çŸ¾å‚… ç™»æ¡£åºŸ çªƒ.
 
-	//	// ÇÑ¹ø FSceneView::OverridePostProcessSettings ¸¦ °ÅÄ£ ÈÄ¿¡³ª ½ÇÁ¦ Àû¿ëÀÌ µÇ´Â µí. Pause ¸Ş´º °°Àº °æ¿ì¶ó¸é ½ÇÁ¦ Àû¿ëÀ» ÇÑ Æ½ ´ÊÃç¾ß..
+	//	// èŒ„é”… FSceneView::OverridePostProcessSettings ç”« èŠ­æ¨¡ é¥¶ä¿Šå”± è§’åŠ› åˆ©ä¾©æ ç™»ç»° æ·€. Pause çš‹æ˜¥ éç¯® ç‰ˆå¿«æ‰¼æ è§’åŠ› åˆ©ä¾©é˜‘ èŒ„ å¹³ è¯è‹—å…·..
 
 	//	bGlobalSceneBlurOn = true;
 
@@ -3183,7 +3198,7 @@ void ABladeIIGameMode::EndGlobalSceneBlur()
 {
 	if (bGlobalSceneBlurOn)
 	{
-		if (CachedCameraAtBlurBegin) // ¾ø´Ù°í ÇØ¼­ ´Ù½Ã °¡Á®¿ÀÁö ¾Ê´Â´Ù. 
+		if (CachedCameraAtBlurBegin) // ç»ä¿ƒç»Š ç§¦è¾‘ ä¿ƒçŸ« å•Šå»‰å·ç˜¤ è‡¼ç»°ä¿ƒ. 
 		{
 			CachedCameraAtBlurBegin->PostProcessSettings = CachedPPBeforeBlur;
 			CachedCameraAtBlurBegin->PostProcessBlendWeight = CachedPPWeightBeforeBlur;
@@ -3212,15 +3227,15 @@ void ABladeIIGameMode::NotifyCharacterDead(class ABladeIICharacter* TargetCharac
 	}
 }
 
-void ABladeIIGameMode::DeactivateWorldMovablePointLight() // ¸ğµç MovablePointLight ´Â ¾Æ´Ï°í ÇÊ¼öÀûÀÎ °Å »«.. ´ë·« ¿¬Ãâ ¿ë ²ô±â
+void ABladeIIGameMode::DeactivateWorldMovablePointLight() // è‘›ç”µ MovablePointLight ç»° é…’èªç»Š é˜èåˆ©ç‰¢ èŠ­ çŒ¾.. æªå¸† æ¥·å… ä¾© æºæ‰
 {
-	// Æ¯È÷ ¿¬Ãâ Àü¿¡ ÀÇµµÇÏÁö ¾Ê°Ô ÄÑÁ® ÀÖ´Â movable point light ¸¦ ²¨¼­ ¸ğ¹ÙÀÏ ·»´õ·¯ÀÇ movable point light Á¦ÇÑÀ» ÁöÅ°±â À§ÇÑ ÀÇ¹Ì·Î »ç¿ëÇÏ´Â °Í.
-	// ¿¬Ãâ¿¡¼­´Â matinee Æ®·¢ÀÌ³ª ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ light ¸¦ ÀÌ¾î¹Ş´Â ½ÄÀ¸·Î ÀÚÃ¼ÀûÀÎ ¶óÀÌÆ® ¼¼ÆÃÀ» ÇÏ°Ô µÈ´Ù.
+	// æ¼‚æ´’ æ¥·å… å‚ˆä¿Š ç‹¼æ¡£çªç˜¤ è‡¼éœ¸ éš¾å»‰ ä¹ç»° movable point light ç”« æ³¢è¾‘ è‘›å®˜è€ åŠæ­¹çŸ¾ç‹¼ movable point light åŠ›èŒ„é˜‘ ç˜¤è™æ‰ å›°èŒ„ ç‹¼å›ºè‚º è¤ä¾©çªç»° å·´.
+	// æ¥·å…ä¿Šè¾‘ç»° matinee é£˜å‘æå”± æ•²é¥­æç»¢ æŸè…ç£ light ç”« æç»¢ç½ç»° ä¾¥æ è‚º ç£Šçœ‰åˆ©ç‰¢ æ‰¼æé£˜ æŠ€æ³¼é˜‘ çªéœ¸ ç­‰ä¿ƒ.
 	for (TActorIterator<APointLight> It(GetWorld()); It; ++It)
 	{
 		APointLight* ThisPLActor = Cast<APointLight>(*It);
 		UPointLightComponent* ThisPLComp = ThisPLActor ? Cast<UPointLightComponent>(ThisPLActor->GetLightComponent()) : nullptr;
-		// º°µµ·Î ¼³Ä¡ÇÑ PointLight ¸¸ ²ô´Â °ÍÀÌ¹Ç·Î ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ ¸Ó¸® À§¿¡ ºÙÀÎ °Ç ÀÌ°É·Î ²¨ÁöÁö ¾Ê´Â´Ù.
+		// å–Šæ¡£è‚º æ±²æ‘¹èŒ„ PointLight çˆ¶ æºç»° å·´æéª¨è‚º æ•²é¥­æç»¢ æŸè…ç£ èµ£åºœ å›°ä¿Š å˜¿ç‰¢ æ‰’ æå§è‚º æ³¢ç˜¤ç˜¤ è‡¼ç»°ä¿ƒ.
 		if (ThisPLComp && ThisPLComp->Mobility == EComponentMobility::Type::Movable)
 		{
 			ThisPLComp->bAffectsWorld = false;
@@ -3251,7 +3266,7 @@ void ABladeIIGameMode::StartEventScene_GameClear()
 //		}
 //	}
 //#if BII_STATS
-//	PerfStatCollector.OnEnd(this); // ´ë·« °ÔÀÓ Å¬¸®¾î ½ÃÁ¡ÀÌ ÁÁÀºµ¥ ¸ğµåº°·Î Á¶±İ¾¿ ´Ş¶ó¼­.. OnEnd ´Â ¿©·¯ °÷¿¡¼­ È£Ãâ
+//	PerfStatCollector.OnEnd(this); // æªå¸† éœ¸çƒ™ åŠªåºœç»¢ çŸ«ç—¢æ äº®ç¯®å• è‘›é›å–Šè‚º ç‚¼é™›ç©¶ å´”æ‰¼è¾‘.. OnEnd ç»° å’¯çŸ¾ é•‘ä¿Šè¾‘ é¾‹å…
 //#endif
 //
 //	SendDamageLog();
@@ -3260,15 +3275,15 @@ void ABladeIIGameMode::StartEventScene_GameClear()
 void ABladeIIGameMode::StartEventScene_MatchResult(bool HasLocalPlayerWon)
 {
 	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIGameMode::StartEventScene_MatchResult"));
-	// ÀÏÂ÷ÀûÀ¸·Î, PVP ¸ğµå °á°ú ¿¬ÃâÀÌ ½Â¸® ÆĞ¹è »ó°ü¾øÀÌ ½ÂÀÚ¸¦ º¸¿©ÁÖ´Â ¹æ½ÄÀÌ µÇ¾î StartEventScene_GameClear ¿Í ±¸ºĞÀÌ µÇ¾úÀ½.
+	// è€ç’åˆ©æ è‚º, PVP è‘›é› æ¬è‹ æ¥·å…æ é“°åºœ è©ç¡… æƒ‘åŒ…ç»æ é“°ç£Šç”« ç„Šå’¯æ—ç»° è§„ä¾¥æ ç™»ç»¢ StartEventScene_GameClear å®¢ å¤‡ç›’æ ç™»èŒæ¾œ.
 //	for (AB2StageEventDirector* CurrSED : EventDirectors)
 //	{
-//		if (CurrSED){ // ÇâÈÄ ´Ù¸¥ NetGameMode °á°ú ¿¬Ãâµµ ¸¶Âù°¡Áö ·çÆ®¸¦ Å» ¼ö ÀÖÀ»Áö´Â ¸ğ¸£°Ú´Ù.
+//		if (CurrSED){ // æ°¢é¥¶ ä¿ƒå¼— NetGameMode æ¬è‹ æ¥·å…æ¡£ ä»˜è›®å•Šç˜¤ é£é£˜ç”« å‘• è ä¹é˜‘ç˜¤ç»° è‘›ç¦æ‘†ä¿ƒ.
 //			CurrSED->NotifyMatchEnd(HasLocalPlayerWon);
 //		}
 //	}
 //#if BII_STATS
-//	PerfStatCollector.OnEnd(this); // ´ë·« °ÔÀÓ Å¬¸®¾î ½ÃÁ¡ÀÌ ÁÁÀºµ¥ ¸ğµåº°·Î Á¶±İ¾¿ ´Ş¶ó¼­.. OnEnd ´Â ¿©·¯ °÷¿¡¼­ È£Ãâ
+//	PerfStatCollector.OnEnd(this); // æªå¸† éœ¸çƒ™ åŠªåºœç»¢ çŸ«ç—¢æ äº®ç¯®å• è‘›é›å–Šè‚º ç‚¼é™›ç©¶ å´”æ‰¼è¾‘.. OnEnd ç»° å’¯çŸ¾ é•‘ä¿Šè¾‘ é¾‹å…
 //#endif
 //
 //	SendDamageLog();
@@ -3357,7 +3372,7 @@ void ABladeIIGameMode::PlayAMBByCommonSoundID(ECommonSoundID InID, bool bForceSt
 	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIGameMode::PlayAMBByCommonSoundID"));
 
 	if (bStopCurrentBGM)
-	{ // ÀÏ¹İÀûÀ¸·Î Ambient sound Æ®´Âµ¥ BGM À» ¸ØÃâ ÀÌÀ¯´Â ¾ø°ÚÁö..
+	{ // è€é¦†åˆ©æ è‚º Ambient sound é£˜ç»°å• BGM é˜‘ è‚›å… æèœ¡ç»° ç»æ‘†ç˜¤..
 		StopBGM();
 	}
 
@@ -3378,7 +3393,7 @@ void ABladeIIGameMode::PlayAMBByCommonSoundID(ECommonSoundID InID, bool bForceSt
 			if (!bSameOneAlreadyPlaying)
 			{
 				if (!bForceStopCurrentAMB){
-					StopAMB(); // Ã³À½¿¡ ¸ØÃßÁö ¾Ê¾Ò´Ù¸é
+					StopAMB(); // è´¸æ¾œä¿Š è‚›çœ ç˜¤ è‡¼ç–½ä¿ƒæ
 				}
 				CurrentPlayingAMB = UGameplayStatics::SpawnSound2D(this, WantedSound);
 			}
@@ -3435,7 +3450,7 @@ FString EB2LOC_CAT_ToString(EB2LOC_CAT InB2LOCEnum)
 		EB2LOC_CAT_ENUM_TO_STRING_CASE_MAPPING(GUILDNPC)
 		EB2LOC_CAT_ENUM_TO_STRING_CASE_MAPPING(GUILDNPCSKILL)
 	}
-	check(0); // »õ·Î¿î Ç×¸ñ¿¡ ´ëÇØ case ±¸¹®À» Á¦°øÇÏÁö ¾ÊÀ¸¸é check ¿¡ °É¸®°Ô µÉ °Í.
+	check(0); // è´§è‚ºæ¬¾ äº²æ ¼ä¿Š æªç§¦ case å¤‡å·©é˜‘ åŠ›å‚çªç˜¤ è‡¼æ æ check ä¿Š å§åºœéœ¸ çª å·´.
 	return TEXT("");
 }
 
@@ -3504,7 +3519,7 @@ void ABladeIIGameMode::B2GM_SetAllowCullDistance(bool bAllow, TArray<UPrimitiveC
 
 void ABladeIIGameMode::SetCameraMatineeCam(class ALevelSequenceActor * MatineeActor, float KeyTime)
 {
-	//// ¾Æ¸¶µµ ¸ğÇè¸Ê ÀÚµ¿ ½ºÅ©·ÑÀÇ ¿µÇâÀÎÁö °¡¸¸È÷ ÀÖ¾îµµ ·Î±×°¡ ¸¹ÀÌ ³ª¿Í¼­.. ¿©±ä Á¦°Å.
+	//// é…’ä»˜æ¡£ è‘›æ°°ç”˜ ç£Šæ‚¼ èƒ¶å†œè´¹ç‹¼ åº·æ°¢ç‰¢ç˜¤ å•Šçˆ¶æ´’ ä¹ç»¢æ¡£ è‚ºå¼Šå•Š è…¹æ å”±å®¢è¾‘.. å’¯å˜ åŠ›èŠ­.
 	////B2_SCOPED_TRACK_LOG(TEXT("ABladeIIGameMode::SetCameraMatineeCam"));
 
 	//if (!MatineeActor)
@@ -3523,7 +3538,7 @@ void ABladeIIGameMode::SetCameraMatineeCam(class ALevelSequenceActor * MatineeAc
 	//	if (GroupActor == NULL)
 	//		continue;
 
-	//	// Á¦ÀÏ ¸ÕÀú ¹ß°ßÇÑ Ä«¸Ş¶ó Æ®·¢À» »ç¿ë.. ÀÌ°É·Î »ç¿ëÇÏ·Á´Â Ä«¸Ş¶ó Æ®·¢À» Á¦ÀÏ À§¿¡ ¹èÄ¡ÇØ¾ß ÇÑ´Ù.
+	//	// åŠ›è€ åˆšå† æƒ¯æ–‘èŒ„ å¢¨çš‹æ‰¼ é£˜å‘é˜‘ è¤ä¾©.. æå§è‚º è¤ä¾©çªå¦¨ç»° å¢¨çš‹æ‰¼ é£˜å‘é˜‘ åŠ›è€ å›°ä¿Š ç¡…æ‘¹ç§¦å…· èŒ„ä¿ƒ.
 	//	if (GroupActor->IsA(ACameraActor::StaticClass()) && InterpGroup->Group)
 	//	{
 	//		LocalController->PlayerCameraManager->SetViewTarget(GroupActor);
@@ -3581,7 +3596,7 @@ void ABladeIIGameMode::SetupUIScene()
 
 void ABladeIIGameMode::OnStageBegin()
 {
-	//B2GMLoadingProgCollector::StepToMax(); // ´ëÃ¼·Î SetupUIScene Á÷Àü¿¡ ·Îµù¹Ù ²Ë Ã¤¿ì¸é ÀûÀıÇÑ µí
+	//B2GMLoadingProgCollector::StepToMax(); // æªçœ‰è‚º SetupUIScene æµå‚ˆä¿Š è‚ºçˆ¹å®˜ èœ ç›²å¿«æ åˆ©ä¾‹èŒ„ æ·€
 	SetupUIScene();
 }
 
@@ -3605,17 +3620,17 @@ void ABladeIIGameMode::CheckOpenModeStateNoticeUI(int32 ContentsMode, int32 Curr
 {
 //	UB2UITimerNotice* pUI = UB2UIManager::GetInstance()->GetUI<UB2UITimerNotice>(UIFName::TimerNotice);
 //	
-//	// ÀÌ¹Ì ¿ÀÇÂµÇÀÖÀ¸¸é Ã¼Å©¤¤¤¤
+//	// æå›º å·é”¹ç™»ä¹æ æ çœ‰å†œã„ã„
 //	if (!pUI)
 //	{
 //		bool bNeedOpen = false;
 //		EUIScene CurrentUIScene = UB2UIManager::GetInstance()->GetCurrUIScene();
 //
-//		// Ã¼Å©ÇÒ¶§ ÇöÀç°ÔÀÓ¸ğµå³ª UI¾ÀÀÌ ÀûÇÕÇÏ¸é ·Îºñ·Î ÆÃ±èUI º¸¿©ÁØ´Ù.
-//		// Á¤»êÀÌ¶û Á¡°ËÀÌ¶û Ã³¸®°¡ ´Ù¸£´Ù.
+//		// çœ‰å†œä¸”é”­ æ³…çŠéœ¸çƒ™è‘›é›å”± UIçº æ åˆ©é’¦çªæ è‚ºåšè‚º æ³¼è¾«UI ç„Šå’¯éœ–ä¿ƒ.
+//		// æ²¥é­‚æå°” ç—¢å…«æå°” è´¸åºœå•Š ä¿ƒç¦ä¿ƒ.
 //		if (CurrentModeState == b2network::B2ContentsModeState::SYSTEM_CHECK)
 //		{
-//			// Á¡°Ë ÄÉÀÌ½º
+//			// ç—¢å…« çº³æèƒ¶
 //			switch (ContentsMode)
 //			{
 //			case b2network::B2ContentsMode::PVP_DUEL:
@@ -3651,8 +3666,8 @@ void ABladeIIGameMode::CheckOpenModeStateNoticeUI(int32 ContentsMode, int32 Curr
 //		}
 //		else if (CurrentModeState == b2network::B2ContentsModeState::MODE_FINISH)
 //		{
-//			// Á¤»ê ÄÉÀÌ½º
-//			// 1:1 ÆÀ´ëÀü Á¡·ÉÀü ±Õ¿­¸¸ Á¤»êÀÖÀ½.
+//			// æ²¥é­‚ çº³æèƒ¶
+//			// 1:1 è¯„æªå‚ˆ ç—¢é£å‚ˆ é—­å‡¯çˆ¶ æ²¥é­‚ä¹æ¾œ.
 //			switch (ContentsMode)
 //			{
 //			case b2network::B2ContentsMode::PVP_DUEL:
@@ -3692,13 +3707,13 @@ void ABladeIIGameMode::CheckOpenModeStateNoticeUI(int32 ContentsMode, int32 Curr
 //			case b2network::B2ContentsMode::PVP_DUEL:
 //			case b2network::B2ContentsMode::PVP_TEAM:
 //			case b2network::B2ContentsMode::ASSAULT:
-//			//case b2network::B2ContentsMode::DIMENSION: // ±Õ¿­Àº Àü´çÇÏ°í °ü°è¾øÀ½
+//			//case b2network::B2ContentsMode::DIMENSION: // é—­å‡¯ç¯® å‚ˆå¯¸çªç»Š åŒ…æ‹Œç»æ¾œ
 //			{
 //
 //				if (auto* UIHallOfFame = UB2UIManager::GetInstance()->GetUI<UB2UIHallOfFame>(UIFName::HallOfFame))
 //				{
 //					UIHallOfFame->SetSettleState();
-//					bNeedOpen = false; // ÀÌ°Ç ¹«Á¶°Ç ¾È¶°¾ß µÊ.
+//					bNeedOpen = false; // ææ‰’ å…¬ç‚¼æ‰’ æ•‘æ ‹å…· å‡³.
 //				}
 //
 //				break;
@@ -3765,7 +3780,7 @@ void ABladeIIGameMode::UpdateChatUI(bool bIsScrollEnd)
 
 bool ABladeIIGameMode::CheckConditionBroadcastMessage()
 {
-//	// Çì´õ°¡ Á¸Àç ÇÒ °æ¿ì¿Í ±æµå¾À Á¦¿ÜÇÏ°í ¸ğµÎ ¹æ¼Û °¡´É
+//	// åº†æ­¹å•Š ç²®çŠ ä¸” ç‰ˆå¿«å®¢ è¾¨é›çº  åŠ›å¯‡çªç»Š è‘›æ»´ è§„ä»· å•Šç“·
 //	UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
 //	UB2UIChatting* MainChatPage = UIMgrInst ? UIMgrInst->GetUI<UB2UIChatting>(UIFName::Chatting) : NULL;
 //
@@ -3809,7 +3824,7 @@ void ABladeIIGameMode::TryOpenChatSinglePopup(const FB2ChatMessage& InNewMessage
 //		bool ConditionShowMessage = CheckConditionBroadcastMessage();
 //		bool HasWidget = UIMgrInst && !MainChatPage && UIMgrInst->GetMainWidget();
 //
-//		if (HasWidget && ConditionShowMessage) // MainChatPage °¡ ÀÖ´Ù¸é ÇÑÁÙÃ¤ÆÃÀ» ¿­ ÇÊ¿ä°¡ ¾ø´Ù.
+//		if (HasWidget && ConditionShowMessage) // MainChatPage å•Š ä¹ä¿ƒæ èŒ„ä¸´ç›²æ³¼é˜‘ å‡¯ é˜å¤¸å•Š ç»ä¿ƒ.
 //		{
 //			UIMgrInst->GetMainWidget()->OpenChatSinglePopupWithNewMessage(InNewMessage);
 //		}
@@ -3834,7 +3849,7 @@ void ABladeIIGameMode::StartEventScene_FinishAttack(ABladeIICharacter* Inflictor
 }
 
 void ABladeIIGameMode::EnsureStageEventTimeDilation()
-{ // ±âº»ÀûÀ¸·Î ¿¬Ãâ ½ÃÀÛ ½Ã TimeDilation Ã³¸®¸¦ ÇÏÁö¸¸ TimeDilation ÀÌ ÀÖ´Â AnimNotifyState µî°ú °£¹ßÀÇ Â÷ÀÌ·Î ÀÎÇØ ±×°Ô ¹«È¿È­µÉ ¶§¿¡ ´Ù½Ã Àû¿ëÀ» À§ÇÔ.
+{ // æ‰å¤¯åˆ©æ è‚º æ¥·å… çŸ«ç´¯ çŸ« TimeDilation è´¸åºœç”« çªç˜¤çˆ¶ TimeDilation æ ä¹ç»° AnimNotifyState æ®¿è‹ åŸƒæƒ¯ç‹¼ ç’æè‚º ç‰¢ç§¦ å¼Šéœ¸ å…¬ç“¤æ‹³çª é”­ä¿Š ä¿ƒçŸ« åˆ©ä¾©é˜‘ å›°çªƒ.
 	//for (AB2StageEventDirector* CurrSED : EventDirectors)
 	//{
 	//	if (CurrSED){
@@ -3845,7 +3860,7 @@ void ABladeIIGameMode::EnsureStageEventTimeDilation()
 
 void ABladeIIGameMode::RestoreWholeGameTimeScale()
 {
-	//SetWholeGameTimeScale(1.0f); // ±âº» 1.0 ÀÌ°í Æ¯Á¤ ¼³Á¤À¸·Î ÀÎÇØ ´Ù¸£°Ô ¾µ ¼ö ÀÖÀ½. SetGlobalTimeDilation °ú º°µµ·Î ¸ÔÈû.
+	//SetWholeGameTimeScale(1.0f); // æ‰å¤¯ 1.0 æç»Š æ¼‚æ²¥ æ±²æ²¥æ è‚º ç‰¢ç§¦ ä¿ƒç¦éœ¸ é•œ è ä¹æ¾œ. SetGlobalTimeDilation è‹ å–Šæ¡£è‚º å†ˆå¡.
 }
 
 ABladeIICharacter* ABladeIIGameMode::SpawnCharacter(UB2NPCClassInfoBox* InfoBox, ENPCClass InClass, ENPCClassVariation InVariation, FTransform& SpawnTransform, FActorSpawnParameters& SpawnParameters)
@@ -3917,16 +3932,16 @@ void ABladeIIGameMode::OnPlatformPause()
 
 void ABladeIIGameMode::RealtimeUpdateUIDocSkill(ABladeIIPlayer* const B2Player)
 {
-//	//¸Å Tick¸¶´Ù ºÒ¸®´Â °ÍÀÓ
-//	// ABladeIIPlayer::SpawnOtherAsPuppet °°Àº °É·Î »ı¼ºµÈ °æ¿ì update ¿¡ ³¢¾î µé¾î°¡¼± ¾ÈµÊ.
+//	//æ¦‚ Tickä»˜ä¿ƒ é˜‚åºœç»° å·´çƒ™
+//	// ABladeIIPlayer::SpawnOtherAsPuppet éç¯® å§è‚º ç§¯å·±ç­‰ ç‰ˆå¿« update ä¿Š å°ç»¢ ç”¸ç»¢å•Šæ€¥ æ•‘å‡³.
 //	if (B2Player && B2Player->IsLocalPlayer())
 //	{
 //		UB2UIDocBattle* DocBattle = UB2UIDocHelper::GetDocBattle();
 //		if (DocBattle)
 //		{
 //			DocBattle->SetCurrPCInCriticalCondition(B2Player->IsInCriticalCondition());
-//			// TagPCHealth ´Â SkillRTManager ÂÊ¿¡¼­..
-//			if (B2Player->CurrentComboNum > 0) // 0 º¸´Ù Å©´Ù¸é ¾ğÁ¦³ª Ä«¿îÆ® ÇÏ°í ÀÖÀ» °ÍÀÓ
+//			// TagPCHealth ç»° SkillRTManager ç‡ä¿Šè¾‘..
+//			if (B2Player->CurrentComboNum > 0) // 0 ç„Šä¿ƒ å†œä¿ƒæ æ”«åŠ›å”± å¢¨æ¬¾é£˜ çªç»Š ä¹é˜‘ å·´çƒ™
 //			{
 //				DocBattle->SetComboExpireProgress((GetWorld()->GetTimeSeconds() - B2Player->LastAttackSuccessTime) / B2Player->ComboMaintainDuration);
 //			}
@@ -3937,23 +3952,23 @@ void ABladeIIGameMode::RealtimeUpdateUIDocSkill(ABladeIIPlayer* const B2Player)
 //
 //			ABladeIICharacter* TargetActor = B2Player->QTEActor ? B2Player->QTEActor : B2Player->FindQTEEnableTarget();
 //			if (B2Player->IsAlive() && TargetActor && TargetActor->IsAlive() && TargetActor->IsTimingForQTEPossession()
-//				// QTEÁøÀÔ °¡´ÉÇÒ¶§¸¸ º¸¿©ÁÖÀÚ.
+//				// QTEæŸ³æ¶ å•Šç“·ä¸”é”­çˆ¶ ç„Šå’¯æ—ç£Š.
 //				&& B2Player->IsQTEStartAble()
 //				&& TargetActor->GetDamagedNum() == 0
-//				// Á¶°ÇÃß°¡. Å¸°Ù¸÷¸·Å¸Ä£ÆÀ(QTEEnableTeam) ¼³Á¤ ¾ÈµÇ¾ú°Å³ª, ÇÃ·¹ÀÌ¾îÆÀÀÌ¶û ÀÏÄ¡ÇÒ¶§.
-//				// Å¸°Ù¾×ÅÍ°¡ ³İÇÃ·¹ÀÌ¾î ¾Æ´Ï¸é Å¸°Ù¸÷¸·Å¸Ä£ÆÀ(QTEEnableTeam) ¼³Á¤ÀÌ ¾ÈµÇ¾îÀÖÀ»°ÅÀÓ
+//				// ç‚¼æ‰’çœ å•Š. é¸¥ç™¾å„é˜œé¸¥æ¨¡è¯„(QTEEnableTeam) æ±²æ²¥ æ•‘ç™»èŒèŠ­å”±, æ•²é¥­æç»¢è¯„æå°” è€æ‘¹ä¸”é”­.
+//				// é¸¥ç™¾å’€ç£å•Š é½¿æ•²é¥­æç»¢ é…’èªæ é¸¥ç™¾å„é˜œé¸¥æ¨¡è¯„(QTEEnableTeam) æ±²æ²¥æ æ•‘ç™»ç»¢ä¹é˜‘èŠ­çƒ™
 //				&& (TargetActor->QTEEnableTeam == ETeamType::ETT_End || ETeamType(B2Player->GetTeamNum()) == TargetActor->QTEEnableTeam))
-//			{//QTE 1Å¸ ÁøÀÔ °¡´É ½ÃÁ¡
+//			{//QTE 1é¸¥ æŸ³æ¶ å•Šç“· çŸ«ç—¢
 //				if(TargetActor->QTEType == EQTEType::EQT_Mount)
 //					DocBattle->SetQTEEnableState(EQTEUIAttackEnableTimingState::Mount);
 //				else
 //					DocBattle->SetQTEEnableState(EQTEUIAttackEnableTimingState::FirstAttack);
 //			}
 //			else if (B2Player->IsAlive() && TargetActor && TargetActor->IsAlive() && B2Player->IsTimingForSuccessiveQTE()
-//				// QTEÁøÀÔ °¡´ÉÇÒ¶§¸¸ º¸¿©ÁÖÀÚ.
+//				// QTEæŸ³æ¶ å•Šç“·ä¸”é”­çˆ¶ ç„Šå’¯æ—ç£Š.
 //				&& B2Player->IsQTEStartAble()
 //				&& TargetActor->GetDamagedNum() == 0)
-//			{// QTE 2Å¸ ÁøÀÔ ½ÃÁ¡
+//			{// QTE 2é¸¥ æŸ³æ¶ çŸ«ç—¢
 //				DocBattle->SetQTEEnableState(EQTEUIAttackEnableTimingState::SecondAttack);
 //			}
 //			else
@@ -3976,7 +3991,7 @@ void ABladeIIGameMode::RealtimeUpdateUIDocSkill(ABladeIIPlayer* const B2Player)
 
 void ABladeIIGameMode::RealtimeUpdateUIDocHealth(ABladeIIPlayer* const B2Player)
 {
-//	//¸Å Tick¸¶´Ù ºÒ¸®´Â °ÍÀÓ
+//	//æ¦‚ Tickä»˜ä¿ƒ é˜‚åºœç»° å·´çƒ™
 //	if (B2Player && B2Player->IsLocalPlayer())
 //	{
 //		UB2UIDocBattle* DocBattle = UB2UIDocHelper::GetDocBattle();
@@ -3992,13 +4007,13 @@ void ABladeIIGameMode::RealtimeUpdateUIDocHealth(ABladeIIPlayer* const B2Player)
 //		{
 //			UB2UIDocBattle* DocBattle = UB2UIDocHelper::GetDocBattle();
 //			if (DocBattle)
-//			{ // BossMob °ü·Ã ³ª¸ÓÁö ÃÊ±â ¼öÄ¡µéÀº SpawnPool ¿¡¼­ ¼¼ÆÃ
+//			{ // BossMob åŒ…è®¿ å”±èµ£ç˜¤ æª¬æ‰ èæ‘¹ç”¸ç¯® SpawnPool ä¿Šè¾‘ æŠ€æ³¼
 //				DocBattle->SetBossHPCurrent(mob->Health < 0 ? 0 : mob->Health);
 //				if (mob->IsQTEBreakable()){
 //					DocBattle->SetBossQTEBreakPointCurrent(mob->GetCurrentQTEBreakPoint());
 //				}
 //			}
-//			// ¸®½ºÆ® Áß Boss ´Â ÇÏ³ª¸¸ ÀÖ¾î¾ß ÇÑ´Ù. ¿©±â¼­ ³Ö°íÀÚ ÇÏ´Â ¼öÄ¡°¡ ´ÜÀÏ UI ¿¡ ¿µÇâÀ» ¹ÌÄ¡°Ô µÇ¹Ç·Î ¸¸¿¡ ÇÏ³ª ¿©·µ ÀÖ´Ù°í ¸ğµÎ ³Ö¾îºÁ¾ß ¹®Á¦¸¸ µÊ.
+//			// åºœèƒ¶é£˜ å Boss ç»° çªå”±çˆ¶ ä¹ç»¢å…· èŒ„ä¿ƒ. å’¯æ‰è¾‘ æŒç»Šç£Š çªç»° èæ‘¹å•Š çªœè€ UI ä¿Š åº·æ°¢é˜‘ å›ºæ‘¹éœ¸ ç™»éª¨è‚º çˆ¶ä¿Š çªå”± å’¯è¿” ä¹ä¿ƒç»Š è‘›æ»´ æŒç»¢æ¯«å…· å·©åŠ›çˆ¶ å‡³.
 //			break;
 //		}
 //	}
@@ -4006,14 +4021,14 @@ void ABladeIIGameMode::RealtimeUpdateUIDocHealth(ABladeIIPlayer* const B2Player)
 
 void ABladeIIGameMode::ShowMissionDialog()
 {
-//	//Æ©Åä¸®¾ó ÁøÇà Áß¿¡´Â ´ÙÀÌ¾ó·Î±× Ã¢ÀÌ ¶ßÁö ¾Ê¾Æ¾ß ÇÑ´Ù.
+//	//è­¬é…åºœå€” æŸ³é’ åä¿Šç»° ä¿ƒæå€”è‚ºå¼Š èŠ’æ å“†ç˜¤ è‡¼é…’å…· èŒ„ä¿ƒ.
 //	if (TutorialManager::GetInstance().HasAnyTutorial())
 //		return;
 //
 //	UB2UIManager* UIManager = UB2UIManager::GetInstance();
 //	if (UIManager != nullptr)
 //	{
-//		// Dialog ¶ç¿öÁÖ±â
+//		// Dialog å‰å†µæ—æ‰
 //		TArray<MissionPtr> CompleteMissionList = MissionManager::GetInstance().GetCachedCompleteMission();
 //		if (CompleteMissionList.IsValidIndex(0))
 //		{
@@ -4041,54 +4056,54 @@ void ABladeIIGameMode::MakeMobUndead()
 
 void ABladeIIGameMode::MakeUndeadMobDeath()
 {
-//	//µ¥¹ÌÁö ¼ıÀÚ ¿Ã¶ó°¡´Â °Í
+//	//å•å›ºç˜¤ ç®­ç£Š æ£µæ‰¼å•Šç»° å·´
 //	CharacterTakeDamageEvent.Broadcast();
 //	CharacterTakeDamageEvent.Clear();
 //
-//	//Á×´Â °Í(OnDeath¿¡¼­ Undeath»óÅÂ¸¦ º¯°æÇÏ±â ¶§¹®¿¡ ¸Ç ¾Æ·¡ ÀÖ¾î¾ß ÇÔ)
+//	//ç£·ç»° å·´(OnDeathä¿Šè¾‘ Undeathæƒ‘æ€•ç”« å‡½ç‰ˆçªæ‰ é”­å·©ä¿Š ç›– é…’è´° ä¹ç»¢å…· çªƒ)
 //	CharacterDeathEvent.Broadcast();
-//	CharacterDeathEvent.Clear();//[fixme][@AKI, 170815]À§ÇèÇØ º¸ÀÌ´Âµ¥...Timer¸¦ °É¾î¼­ Á¦°Å ÇÒ±î??
+//	CharacterDeathEvent.Clear();//[fixme][@AKI, 170815]å›°æ°°ç§¦ ç„Šæç»°å•...Timerç”« å§ç»¢è¾‘ åŠ›èŠ­ ä¸”é³–??
 }
 
-//float ABladeIIGameMode::GetTotalAttack(ICharacterDataStore* CharacterDataStore)
-//{
-//	//const auto	MainPCClass = CharacterDataStore->GetMainPlayerClass();
-//	//const auto	TagPCClass = CharacterDataStore->GetSubPlayerClass();
-//
-//	//float		MainPCAttack = CombatStatEval::GetPCAttack(MainPCClass, CharacterDataStore);
-//	//float		MainModSpecializeAttack = CombatStatEval::GetPCAttackByMod(MainPCClass, GetB2GameModeType(), CharacterDataStore);
-//	//float		MainTotalAttack = MainPCAttack + MainModSpecializeAttack;
-//	//MainTotalAttack = FMath::Max(static_cast<float>(CombatStatEval::GetPCBaseAttack(CharacterDataStore->GetCharacterLevel(MainPCClass))), MainTotalAttack);
-//
-//	//float		TagPCAttack = CombatStatEval::GetPCAttack(TagPCClass, CharacterDataStore);
-//	//float		TagModSpecializeAttack = CombatStatEval::GetPCAttackByMod(TagPCClass, GetB2GameModeType(), CharacterDataStore);
-//	//float		TagTotalAttack = TagPCAttack + TagModSpecializeAttack;
-//	//TagTotalAttack = FMath::Max(static_cast<float>(CombatStatEval::GetPCBaseAttack(CharacterDataStore->GetCharacterLevel(TagPCClass))), TagTotalAttack);
-//
-//	//float		TotalAttack = MainTotalAttack + TagTotalAttack;
-//
-//	//return TotalAttack;
-//}
-//
-//float ABladeIIGameMode::GetTotalDefense(ICharacterDataStore* CharacterDataStore)
-//{
-//	const auto	MainPCClass = CharacterDataStore->GetMainPlayerClass();
-//	const auto	TagPCClass = CharacterDataStore->GetSubPlayerClass();
-//
-//	float		MainPCDefense = CombatStatEval::GetPCDefense(MainPCClass, CharacterDataStore);
-//	float		MainModSpecializeDefense = CombatStatEval::GetPCDefenseByMod(MainPCClass, GetB2GameModeType(), CharacterDataStore);
-//	float		MainTotalDefense = MainPCDefense + MainModSpecializeDefense;
-//	MainTotalDefense = FMath::Max(static_cast<float>(CombatStatEval::GetPCBaseDefense(CharacterDataStore->GetCharacterLevel(MainPCClass))), MainTotalDefense);
-//
-//	float		TagPCDefense = CombatStatEval::GetPCDefense(TagPCClass, CharacterDataStore);
-//	float		TagModSpecializeDefense = CombatStatEval::GetPCDefenseByMod(TagPCClass, GetB2GameModeType(), CharacterDataStore);
-//	float		TagTotalDefense = TagPCDefense + TagModSpecializeDefense;
-//	TagTotalDefense = FMath::Max(static_cast<float>(CombatStatEval::GetPCBaseDefense(CharacterDataStore->GetCharacterLevel(TagPCClass))), TagTotalDefense);
-//
-//	float		TotalDefense = MainTotalDefense + TagTotalDefense;
-//
-//	return TotalDefense;
-//}
+float ABladeIIGameMode::GetTotalAttack(ICharacterDataStore* CharacterDataStore)
+{
+	const auto	MainPCClass = CharacterDataStore->GetMainPlayerClass();
+	const auto	TagPCClass = CharacterDataStore->GetSubPlayerClass();
+
+	float		MainPCAttack = CombatStatEval::GetPCAttack(MainPCClass, CharacterDataStore);
+	float		MainModSpecializeAttack = CombatStatEval::GetPCAttackByMod(MainPCClass, GetB2GameModeType(), CharacterDataStore);
+	float		MainTotalAttack = MainPCAttack + MainModSpecializeAttack;
+	MainTotalAttack = FMath::Max(static_cast<float>(CombatStatEval::GetPCBaseAttack(CharacterDataStore->GetCharacterLevel(MainPCClass))), MainTotalAttack);
+
+	float		TagPCAttack = CombatStatEval::GetPCAttack(TagPCClass, CharacterDataStore);
+	float		TagModSpecializeAttack = CombatStatEval::GetPCAttackByMod(TagPCClass, GetB2GameModeType(), CharacterDataStore);
+	float		TagTotalAttack = TagPCAttack + TagModSpecializeAttack;
+	TagTotalAttack = FMath::Max(static_cast<float>(CombatStatEval::GetPCBaseAttack(CharacterDataStore->GetCharacterLevel(TagPCClass))), TagTotalAttack);
+
+	float		TotalAttack = MainTotalAttack + TagTotalAttack;
+
+	return TotalAttack;
+}
+
+float ABladeIIGameMode::GetTotalDefense(ICharacterDataStore* CharacterDataStore)
+{
+	const auto	MainPCClass = CharacterDataStore->GetMainPlayerClass();
+	const auto	TagPCClass = CharacterDataStore->GetSubPlayerClass();
+
+	float		MainPCDefense = CombatStatEval::GetPCDefense(MainPCClass, CharacterDataStore);
+	float		MainModSpecializeDefense = CombatStatEval::GetPCDefenseByMod(MainPCClass, GetB2GameModeType(), CharacterDataStore);
+	float		MainTotalDefense = MainPCDefense + MainModSpecializeDefense;
+	MainTotalDefense = FMath::Max(static_cast<float>(CombatStatEval::GetPCBaseDefense(CharacterDataStore->GetCharacterLevel(MainPCClass))), MainTotalDefense);
+
+	float		TagPCDefense = CombatStatEval::GetPCDefense(TagPCClass, CharacterDataStore);
+	float		TagModSpecializeDefense = CombatStatEval::GetPCDefenseByMod(TagPCClass, GetB2GameModeType(), CharacterDataStore);
+	float		TagTotalDefense = TagPCDefense + TagModSpecializeDefense;
+	TagTotalDefense = FMath::Max(static_cast<float>(CombatStatEval::GetPCBaseDefense(CharacterDataStore->GetCharacterLevel(TagPCClass))), TagTotalDefense);
+
+	float		TotalDefense = MainTotalDefense + TagTotalDefense;
+
+	return TotalDefense;
+}
 
 void ABladeIIGameMode::OverrideDamageInfo(FDamageInfo& OutDamage, const ABladeIICharacter* B2Char)
 {
@@ -4107,7 +4122,7 @@ void ABladeIIGameMode::OverridePauseForDuration(float pausetime, const ABladeIIC
 }
 #if WITH_EDITOR
 bool ABladeIIGameMode::IsDefaultPawnTestBP() const
-{ // DefaultPCClassEnum À» EPC_End ·Î µÎ°í BP Å¬·¡½º¸¦ Å×½ºÆ® ¿ëµµ·Î spawn ÇÏ·Á´Â ÀÇµµ. Á¤½Ä ·¹º§¿¡´Â ÀÌ·¸°Ô ÇÏ¸é ¾ÈµÊ. ¾Æ¿¹ ¾È¸ÔÈú °Í.
+{ // DefaultPCClassEnum é˜‘ EPC_End è‚º æ»´ç»Š BP åŠªè´°èƒ¶ç”« æŠ›èƒ¶é£˜ ä¾©æ¡£è‚º spawn çªå¦¨ç»° ç‹¼æ¡£. æ²¥ä¾¥ é¥­éª‡ä¿Šç»° æçŠ¯éœ¸ çªæ æ•‘å‡³. é…’æŠ— æ•‘å†ˆé³ƒ å·´.
 	return (Cast<UBlueprintGeneratedClass>(*DefaultPawnClass) != NULL);
 }
 #endif

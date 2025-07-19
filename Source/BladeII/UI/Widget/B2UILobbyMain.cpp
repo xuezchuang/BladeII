@@ -40,7 +40,7 @@
 #if PLATFORM_IOS
 #include "KakaoTalkPlugin.h"
 #endif
-#include "../../../../../down/blade_dev_client/BladeII/Source/BladeII/Public/BladeIIUtil.h"
+#include "BladeIIUtil.h"
 
 UB2UILobbyMain::UB2UILobbyMain(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)

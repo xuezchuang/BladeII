@@ -76,8 +76,8 @@ struct FSingleSkillInfo
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "SkillInfo")
 	EPassiveType PassiveType;
 
-	//UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "SkillInfo")
-	//EWeaponSkillType WeaponSkillType;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "SkillInfo")
+	EWeaponSkillType WeaponSkillType;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "SkillInfo")
 	int32 EnableWeaponSkillPoint;

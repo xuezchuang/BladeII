@@ -136,7 +136,7 @@ public:
 	FORCEINLINE int32 GetResurrectionCost(EResurrectGameModeType ModeType) { return ResurrectionList[ModeType].ResurrectionCost; };
 
 	//void SetClearResurrection(EResurrectGameModeType ResurrectModeType, int32 InMaxResurrectionChance);
-	//void DecreaseRemainingResurrectionChance(EResurrectGameModeType ResurrectModeType);
+	void DecreaseRemainingResurrectionChance(EResurrectGameModeType ResurrectModeType);
 	//void SetResurrectionCostByLookup(EResurrectGameModeType ResurrectModeType, int32 InMaxResurrectionChance, int32 InRemainingResurrectionChance); // Set resurrect cost by looking up client data store's master table.
 	//	
 	/** Set combat state related cache variables ready before we start load extra level */

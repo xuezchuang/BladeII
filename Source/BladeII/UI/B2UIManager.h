@@ -18,6 +18,7 @@
 #include <memory>
 #include "Event.h"
 #include "../BladeII.h"
+#include "B2DebugTextWidget.h"
 #include "B2UIManager.generated.h"
 
 #define ShortageMGR UB2UIManager::GetInstance()->GetShortagePopupMGR()
