@@ -1861,7 +1861,7 @@ enum class MailWhatCause : uint8
 	TeamMatchRanking = b2network::B2MailSourceType::TEAM_MATCH_RANKING,
 	HeroTower = b2network::B2MailSourceType::HERO_TOWER,
 	SourceRaid = b2network::B2MailSourceType::SOURCE_RAID,
-	Tutorial = b2network::B2MailSourceType::TUTORIAL2,
+	Tutorial = b2network::B2MailSourceType::TUTORIAL,
 	AssaultWin = b2network::B2MailSourceType::ASSAULT_RESULT,
 	AssaultRewardBox = b2network::B2MailSourceType::ASSAULT_REWARD_BOX,
 	AssaultRanking = b2network::B2MailSourceType::ASSAULT_RANKING,

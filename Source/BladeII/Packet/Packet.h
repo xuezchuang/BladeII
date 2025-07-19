@@ -94,10 +94,10 @@ namespace packet
 				 Option			- 1Byte
 	*/
 	//DECLARE_BEGIN(Header)
-	//	DECLARE_FIELD(0, uint16, Version)
-	//	DECLARE_FIELD(1, uint16, Type)
-	//	DECLARE_FIELD(2, uint32, Sender)
-	//	DECLARE_FIELD(3, uint32, Receiver)
-	//	DECLARE_FIELD(4, uint8, Option)
+	//	B2_DECLARE_FIELD(0, uint16, Version)
+	//	B2_DECLARE_FIELD(1, uint16, Type)
+	//	B2_DECLARE_FIELD(2, uint32, Sender)
+	//	B2_DECLARE_FIELD(3, uint32, Receiver)
+	//	B2_DECLARE_FIELD(4, uint8, Option)
 	//DECLARE_END(5)
 }

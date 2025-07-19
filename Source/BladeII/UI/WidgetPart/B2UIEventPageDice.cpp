@@ -229,7 +229,7 @@ void UB2UIEventPageDice::ResponseRollDiceEvent(FB2ResponseRollDiceEventPtr pReci
 	REFLECTION_REGISTER_FIELD(int32, free_dice_count)
 	REFLECTION_REGISTER_FIELD(int32, finish_count)
 	REFLECTION_REGISTER_FIELD(int32, roll_dice_count)
-	DECLARE_FIELD(10, int32, current_point)
+	B2_DECLARE_FIELD(10, int32, current_point)
 	REFLECTION_REGISTER_END(11)
 	*/
 

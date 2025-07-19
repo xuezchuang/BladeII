@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 
-#include "EngineMinimal.h"
+//#include "EngineMinimal.h"
 //#include "ModuleManager.h"
 //[TO-DO] [@AKI, 170817] BladeII.h가 PCH로 의심 되는 상황이라 이 아래 해더와 관련 된 것들은 새로 만드는게 좋을듯.
 //#include "B2ClientDataStore.h"

@@ -3079,23 +3079,23 @@ void AB2MonsterSpawnPool::PostEditChangeProperty(FPropertyChangedEvent& Property
 
 		if (UndesiredBeginEnableCompsSetting.Num() > 0)
 		{
-			FString WarnMessage = TEXT("WaveCompOnOffSettings 에 잘못된 플레이를 유발할 수 있는 설정이 있습니다. 아래 인덱스의 설정(들)을 확인해 주세요.\n\n");
-			for (int32 CI = 0; CI < UndesiredBeginEnableCompsSetting.Num(); ++CI)
-			{
-				WarnMessage += UndesiredBeginEnableCompsSetting[CI] + TEXT("\n");
-			}
-			WarnMessage += FString(TEXT("\nWave 시작 시 MeshComponent 를 enable 시키는 설정에서는 WaveExec_TriggerComponent 만 사용하는 것이 좋습니다."));
-			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(WarnMessage));
+			//FString WarnMessage = TEXT("WaveCompOnOffSettings 에 잘못된 플레이를 유발할 수 있는 설정이 있습니다. 아래 인덱스의 설정(들)을 확인해 주세요.\n\n");
+			//for (int32 CI = 0; CI < UndesiredBeginEnableCompsSetting.Num(); ++CI)
+			//{
+			//	WarnMessage += UndesiredBeginEnableCompsSetting[CI] + TEXT("\n");
+			//}
+			//WarnMessage += FString(TEXT("\nWave 시작 시 MeshComponent 를 enable 시키는 설정에서는 WaveExec_TriggerComponent 만 사용하는 것이 좋습니다."));
+			//FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(WarnMessage));
 		}
 		if (UndesiredComplEnableCompsSetting.Num() > 0)
 		{
-			FString WarnMessage = TEXT("WaveCompOnOffSettings 에 잘못된 플레이를 유발할 수 있는 설정이 있습니다. 아래 인덱스의 설정(들)을 확인해 주세요.\n\n");
-			for (int32 CI = 0; CI < UndesiredComplEnableCompsSetting.Num(); ++CI)
-			{
-				WarnMessage += UndesiredComplEnableCompsSetting[CI] + TEXT("\n");
-			}
-			WarnMessage += FString(TEXT("\nWave 종료 시 MeshComponent 를 enable 시키는 것은 플레이 루트를 막을 가능성이 있습니다."));
-			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(WarnMessage));
+			//FString WarnMessage = TEXT("WaveCompOnOffSettings 에 잘못된 플레이를 유발할 수 있는 설정이 있습니다. 아래 인덱스의 설정(들)을 확인해 주세요.\n\n");
+			//for (int32 CI = 0; CI < UndesiredComplEnableCompsSetting.Num(); ++CI)
+			//{
+			//	WarnMessage += UndesiredComplEnableCompsSetting[CI] + TEXT("\n");
+			//}
+			//WarnMessage += FString(TEXT("\nWave 종료 시 MeshComponent 를 enable 시키는 것은 플레이 루트를 막을 가능성이 있습니다."));
+			//FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(WarnMessage));
 		}
 #endif
 	}

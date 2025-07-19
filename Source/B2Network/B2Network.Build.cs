@@ -6,38 +6,97 @@ public class B2Network : ModuleRules
 {
     public B2Network(ReadOnlyTargetRules Target) : base(Target)
     {
-		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
+        PrivateDependencyModuleNames.AddRange(
+             new string[] {
+                 "Core",
+                 "CoreUObject"
+             }
+         );
 
-		PrivateDependencyModuleNames.AddRange(
-			new string[] {
-				"Core",
-				"CoreUObject",
-				"Engine",
-				"MoviePlayer",
-				"Slate",
-				"SlateCore",
-				"InputCore"
-			}
-		 );
+        PrivateIncludePaths.AddRange(
+            new string[]
+            {
+                "BladeII",
+                "BladeII/BladeII",
+                "B2Network",
+                "B2Network/Public",
+            });
 
-		//Definitions.Add("GOOGLE_PROTOBUF_NO_RTTI=1");
-		//Definitions.Add("_WINSOCK_DEPRECATED_NO_WARNINGS");
-		//Definitions.Add("_CRT_SECURE_NO_WARNINGS");
-		//Definitions.Add("FORCE_LOGGING_IN_ANDROID=1");
+        bEnableExceptions = true; // for enabling c++ exception
 
-		//var thirdPartyPath = Path.GetFullPath(UEBuildConfiguration.UEThirdPartySourceDirectory);
-		//PublicIncludePaths.Add(Path.Combine(thirdPartyPath, "ProtoBuf", "include"));
-		//PublicIncludePaths.Add(Path.Combine(thirdPartyPath, "libsodium", "include"));
-		PublicIncludePaths.AddRange(
-			new string[]
-		{
-			"BladeII"
-		});
+        if (Target.Type == TargetRules.TargetType.Editor)
+        {
+            // Allow exception only for editor
+            //PublicDefinitions.Add("B2NETWORK_PLATFORM_EXCEPTION=1");
+        }
 
-		//string EnginePath = DirectoryReference.Combine(new DirectoryReference(Target.RelativeEnginePath), "Source").ToString();
-		//string EnginePath = Path.GetFullPath(UEBuildConfiguration.UEThirdPartySourceDirectory);
-		//string ThirdPartyPath = Path.GetFullPath(Path.Combine(ModuleDirectory, "../ThirdParty"));
-		//PublicIncludePaths.Add(Path.Combine(ThirdPartyPath, "ProtoBuf", "include"));
 
+        var ProtobufIncludePath = Path.GetFullPath(Path.Combine(ModuleDirectory, "..", "ThirdParty", "ProtoBuf", "include"));
+        PublicIncludePaths.Add(ProtobufIncludePath);
+
+        if (Target.Platform == UnrealTargetPlatform.Win64)
+        {
+            PublicDefinitions.Add("B2NETWORK_PLATFORM_WINDOWS=1");
+            PublicDefinitions.Add("SODIUM_STATIC=1");
+            PublicDefinitions.Add("SODIUM_EXPORT= ");
+
+
+
+            //PublicSystemLibraryPaths.Add(Path.Combine(ThirdPartyPath, "ProtoBuf", "lib", "Windows", "x64"));
+            //PublicSystemLibraryPaths.Add(Path.Combine(ThirdPartyPath, "libsodium", "lib", "Windows", "x64"));
+
+            //PublicAdditionalLibraries.Add("libprotobuf.lib");
+            //PublicAdditionalLibraries.Add("libsodium.lib");
+            // 
+            string ProtobufPath = Path.Combine(ModuleDirectory, "..", "ThirdParty", "ProtoBuf");
+            PublicAdditionalLibraries.Add(Path.Combine(ProtobufPath, "lib", "Windows", "x64", "libprotobuf.lib"));
+        }
+        else if (Target.Platform == UnrealTargetPlatform.Android)
+        {
+            //PublicDefinitions.Add("B2NETWORK_PLATFORM_ANDROID=1");
+
+            //var protobuf_libPath_arm64 = Path.Combine(thirdPartyPath, "ProtoBuf", "lib", "Android", "arm64");
+            //var protobuf_libPath_armv7 = Path.Combine(thirdPartyPath, "ProtoBuf", "lib", "Android", "armv7");
+            //var sodium_libPath_arm64 = Path.Combine(thirdPartyPath, "libsodium", "lib", "Android", "arm64");
+            //var sodium_libPath_armv7 = Path.Combine(thirdPartyPath, "libsodium", "lib", "Android", "armv7");
+
+            //PublicLibraryPaths.Add(protobuf_libPath_arm64);
+            //PublicLibraryPaths.Add(protobuf_libPath_armv7);
+            //PublicLibraryPaths.Add(sodium_libPath_arm64);
+            //PublicLibraryPaths.Add(sodium_libPath_armv7);
+
+            //PublicAdditionalLibraries.Add("protobuf");
+            //PublicAdditionalLibraries.Add("sodium");
+        }
+        else if (Target.Platform == UnrealTargetPlatform.IOS)
+        {
+            //PublicDefinitions.Add("B2NETWORK_PLATFORM_IOS=1");
+
+            //var protobuf_libPath = Path.Combine(thirdPartyPath, "ProtoBuf", "lib", "iOS");
+            //var sodium_libPath = Path.Combine(thirdPartyPath, "libsodium", "lib", "iOS");
+
+            //PublicLibraryPaths.Add(protobuf_libPath);
+            //PublicLibraryPaths.Add(sodium_libPath);
+
+            //PublicAdditionalLibraries.Add(Path.Combine(protobuf_libPath, "libprotobuf_arm64.a"));
+            //PublicAdditionalLibraries.Add(Path.Combine(sodium_libPath, "libsodium.a"));
+        }
+        else if (Target.Platform == UnrealTargetPlatform.Mac)
+        {
+            //PublicDefinitions.Add("B2NETWORK_PLATFORM_IOS=1");
+
+            //var protobuf_libPath = Path.Combine(thirdPartyPath, "ProtoBuf", "lib", "iOS");
+            //var sodium_libPath = Path.Combine(thirdPartyPath, "libsodium", "lib", "iOS");
+
+            //PublicLibraryPaths.Add(protobuf_libPath);
+            //PublicLibraryPaths.Add(sodium_libPath);
+
+            //PublicAdditionalLibraries.Add(Path.Combine(protobuf_libPath, "libprotobuf.a"));
+            //PublicAdditionalLibraries.Add(Path.Combine(sodium_libPath, "libsodium.a"));
+        }
+        else
+        {
+            throw new Exception("Platform not supported");
+        }
     }
 }

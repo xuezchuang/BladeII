@@ -96,9 +96,9 @@ UB2CharacterTagDialogueInfo::UB2CharacterTagDialogueInfo(const FObjectInitialize
 {
 	LoadCharacterTagDialogueInfoTable();
 
-	FCultureRef fCurretCulture = FInternationalization::Get().GetCurrentCulture();
+	//FCultureRef fCurretCulture = FInternationalization::Get().GetCurrentCulture();
 
-	strNativeCulture = fCurretCulture->GetName();
+	//strNativeCulture = fCurretCulture->GetName();
 }
 
 const UDataTable* UB2CharacterTagDialogueInfo::LoadCharacterTagDialogueInfoTable()
