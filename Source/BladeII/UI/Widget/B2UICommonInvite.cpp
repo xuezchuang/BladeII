@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UICommonInvite.h"
 #include "B2UIManager.h"
 #include "B2NetGameMode.h"
@@ -86,10 +86,10 @@ void UB2UICommonInvite::NativeTick(const FGeometry& MyGeometry, float InDeltaTim
 	}
 }
 
-// ÃÊ´ë(¹ß½Å) ÀÚ°¡ RequestGameInvite È£Ãâ ÈÄ GameMode¿¡¼­ ÄÝ
+// æª¬æŽª(æƒ¯è„š) ç£Šå•Š RequestGameInvite é¾‹å… é¥¶ GameModeä¿Šè¾‘ å¦®
 void UB2UICommonInvite::OnRequestGameInvite(const FString& InviteeName, EB2GameMode GameModeType)
 {
-	// ÃÊ´ëÀÚ´Â ¼ö¶ô + Ä³¸¯ÅÍ ¼±ÅÃ±îÁö ±â´Ù¸²
+	// æª¬æŽªç£Šç»° èé + æŸè…ç£ æ€¥ç¶é³–ç˜¤ æ‰ä¿ƒè¦†
 	const float TimeoutSeconds = GetInviterWaitingSeconds();
 
 	InvitationGameMode = GameModeType;
@@ -101,7 +101,7 @@ void UB2UICommonInvite::OnRequestGameInvite(const FString& InviteeName, EB2GameM
 		DocLobbyMatch->SetInvitationBeginTime(GWorld->GetTimeSeconds());
 }
 
-// ÃÊ´ë(¼ö½Å) ÀÚ°¡ RequestGameInvite ¹Þ¾ÒÀ» ¶§ GameMode¿¡¼­ ÄÝ
+// æª¬æŽª(èè„š) ç£Šå•Š RequestGameInvite ç½ç–½é˜‘ é”­ GameModeä¿Šè¾‘ å¦®
 void UB2UICommonInvite::OnReceiveInvitation(const FString& InviterName, EB2GameMode GameModeType)
 {
 	const float TimeoutSeconds = GetAcceptTimeoutSeconds(GameModeType);
@@ -132,7 +132,7 @@ void UB2UICommonInvite::OnReceiveAcceptInvitation(bool bMyInvitation)
 	{
 		bWaitAccept = false;
 
-		// "»ó´ë¹æÀÌ ÃÊ´ë¸¦ ¼ö¶ô Çß½À´Ï´Ù " ¸Þ½ÃÁö
+		// "æƒ‘æŽªè§„æž æª¬æŽªç”« èé æ²åš¼èªä¿ƒ " çš‹çŸ«ç˜¤
 
 		FText AcceptInvitationMsg = BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Invitation_InvitationAccepted"));
 		ABladeIIGameMode::SetHUDCenterMessage(AcceptInvitationMsg, 1.0f);
@@ -159,7 +159,7 @@ void UB2UICommonInvite::ShowInvitationNotify(const FString& InviterName, int32 T
 
 	//// Dynamics..
 
-	//// %s ´ÔÀÌ ÀÏ´ëÀÏ Ä£¼±Àü(·¹ÀÌµå)¿¡ ÃÊ´ëÇÏ¿´½À´Ï´Ù...
+	//// %s ä¸›æž è€æŽªè€ æ¨¡æ€¥å‚ˆ(é¥­æžé›)ä¿Š æª¬æŽªçªçœ‹åš¼èªä¿ƒ...
 	//const FText& Summary = GetSummaryTextByGameMode(InvitationGameMode, InviterName);
 	//if (RTB_InvitationSummary.IsValid())
 	//	RTB_InvitationSummary->SetText(Summary);
@@ -180,7 +180,7 @@ void UB2UICommonInvite::ShowWaitingAccept(const FString& InviteeName, int32 Time
 
 	// Dynamics..
 
-	// %s ´ÔÀÌ Ä£¼±Àü µµÀüÀ» ¹Þ¾ÆµéÀÌ±â¸¦ ±â´Ù¸®´Â ÁßÀÔ´Ï´Ù...
+	// %s ä¸›æž æ¨¡æ€¥å‚ˆ æ¡£å‚ˆé˜‘ ç½é…’ç”¸æžæ‰ç”« æ‰ä¿ƒåºœç»° åæ¶èªä¿ƒ...
 	const FText Summary = FText::Format(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Invitation_WaitingAcceptFriendshipGame")), FText::FromString(InviteeName));
 	if (RTB_WaitingNotice.IsValid())
 		RTB_WaitingNotice->SetText(Summary);

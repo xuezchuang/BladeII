@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #pragma once
 //#include "BladeII.h"
 #include "B2UIWidgetBase.h"
@@ -23,8 +23,8 @@ struct FCustomImageInfos
 UENUM(BlueprintType)
 enum class ETutorialLockType : uint8
 {
-	EOverrideLock,			// Æ©Åä¸®¾óÀÌ Å¬¸®¾îµÇÁö ¾Ê¾ÒÀ¸¸é LockÀÌ¹ÌÁö(¹öÆ°)¸¦ ³ëÃâ (¹öÆ°À» ´©¸£Áö¸øÇÏ°Ô ¸·À»¶§ »ç¿ë)
-	EParentHidden,			// Æ©Åä¸®¾óÀÌ Å¬¸®¾îµÇÁö ¾Ê¾ÒÀ¸¸é ºÎ¸ğ¸¦ HiddenÃ³¸®ÇÔ. (¹öÆ°À» ¾Æ¿¹ ¾Èº¸¿©ÁÖ±âÀ§ÇØ¼­ »ç¿ë)
+	EOverrideLock,			// è­¬é…åºœå€”æ åŠªåºœç»¢ç™»ç˜¤ è‡¼ç–½æ æ Lockæå›ºç˜¤(æ»šç“¢)ç”« ç•´å… (æ»šç“¢é˜‘ ç©¿ç¦ç˜¤ç»™çªéœ¸ é˜œé˜‘é”­ è¤ä¾©)
+	EParentHidden,			// è­¬é…åºœå€”æ åŠªåºœç»¢ç™»ç˜¤ è‡¼ç–½æ æ ä½•è‘›ç”« Hiddenè´¸åºœçªƒ. (æ»šç“¢é˜‘ é…’æŠ— æ•‘ç„Šå’¯æ—æ‰å›°ç§¦è¾‘ è¤ä¾©)
 };
 
 UCLASS()

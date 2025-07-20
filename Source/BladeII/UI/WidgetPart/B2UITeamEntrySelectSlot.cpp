@@ -1,4 +1,4 @@
-#include "B2UITeamEntrySelectSlot.h"
+ï»¿#include "B2UITeamEntrySelectSlot.h"
 #include "B2UIDocHelper.h"
 #include "B2UIManager.h"
 
@@ -44,7 +44,7 @@ void UB2UITeamEntrySelectSlot::SetCharacterSlot(EPCClass CharacterClass)
 
 	if (TBS_CharacterLv.IsValid())
 	{
-		//[@SameLine, 180612] explevelinfo doc, datastore -> datastore °³¼±
+		//[@SameLine, 180612] explevelinfo doc, datastore -> datastore ä¿ºæ€¥
 		//TBS_CharacterLv->SetText(
 		//	FText::Format(BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("General_Stat_Level_Abbrev"))), FText::FromString(FString::FromInt(HeroDoc->GetCurrentLevel())))
 		//	);
@@ -75,7 +75,7 @@ void UB2UITeamEntrySelectSlot::SetEnterTeamMatchCheck(EPCClass CharacterClass)
 	if (!TeamDoc)
 		return;
 
-	for (int32 idx = 0; idx < /*AB2TMGameMode::GetNumCharactersOfTeam()*/3; ++idx)//ÀÓ½Ã
+	for (int32 idx = 0; idx < /*AB2TMGameMode::GetNumCharactersOfTeam()*/3; ++idx)//çƒ™çŸ«
 	{
 		if (TeamDoc->GetCharacterClass(true, idx) == CharacterClass)
 		{
@@ -94,7 +94,7 @@ void UB2UITeamEntrySelectSlot::OnClickSelect()
 	//if (!TeamDoc)
 	//	return;
 
-	//for (int32 idx = 0; idx < /*AB2TMGameMode::GetNumCharactersOfTeam()*/3; ++idx)//ÀÓ½Ã
+	//for (int32 idx = 0; idx < /*AB2TMGameMode::GetNumCharactersOfTeam()*/3; ++idx)//çƒ™çŸ«
 	//{
 	//	if (TeamDoc->GetCharacterClass(true, idx) == ChacacterClassEnum)
 	//	{

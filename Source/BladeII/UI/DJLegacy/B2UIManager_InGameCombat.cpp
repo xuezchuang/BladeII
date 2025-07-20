@@ -19,8 +19,8 @@
 
 //////////////////////////////////////////////////
 //
-// ÀÌ¸§¸¸ InGameCombat ÀÌ°í Lobby ¿¡¼­µµ »ç¿ëÇÏ´Â ±¸¼®ÀÌ Á» ÀÖÀ½.
-// ¾Æ¸¶µµ °è¼Ó »ç¿ëµÉ µíÇÑ DJLegacy UI ÀÏºÎ
+// ææŠšçˆ¶ InGameCombat æç»Š Lobby ä¿Šè¾‘æ¡£ è¤ä¾©çªç»° å¤‡ç±æ ç²± ä¹æ¾œ.
+// é…’ä»˜æ¡£ æ‹ŒåŠ  è¤ä¾©çª æ·€èŒ„ DJLegacy UI è€ä½•
 //
 //////////////////////////////////////////////////
 
@@ -38,9 +38,9 @@ AB2UIManager_InGameCombat::AB2UIManager_InGameCombat(const FObjectInitializer& O
 	PlayerHUDManager = NULL;
 
 	
-	if (!HasAnyFlags(RF_ClassDefaultObject) && !GMinimalDLCFrontMode) // DLC Front ¸ğµå ¸®¼Ò½º·Îµù ÃÖ´ëÇÑ Á¦°Å. ±Ùµ¥ ¼³¸¶ ÀÌ°Ç DLCFront ¸ğµå¿¡¼­ »ı¼ºµÇÁö ¾Ê°ÚÁö? ¤»
+	if (!HasAnyFlags(RF_ClassDefaultObject) && !GMinimalDLCFrontMode) // DLC Front è‘›é› åºœå®¶èƒ¶è‚ºçˆ¹ å¼¥æªèŒ„ åŠ›èŠ­. è¾Ÿå• æ±²ä»˜ ææ‰’ DLCFront è‘›é›ä¿Šè¾‘ ç§¯å·±ç™»ç˜¤ è‡¼æ‘†ç˜¤? ã›
 	{ 
-		// ¿©±â¼­ ·ÎµùÇÏ´Â WidgetClass ¼³Á¤ÀÌ Ã³À½ ±¸Çö½Ã¿¡´Â BladeIICharacter ³ª BladeIIPlayer ¿¡ ÀÖ¾ú¾î¼­ ini ¼½¼Ç ÀÌ¸§ÀÌ ±×°É ¹İ¿µÇÏ°í ÀÖÀ½. 
+		// å’¯æ‰è¾‘ è‚ºçˆ¹çªç»° WidgetClass æ±²æ²¥æ è´¸æ¾œ å¤‡æ³…çŸ«ä¿Šç»° BladeIICharacter å”± BladeIIPlayer ä¿Š ä¹èŒç»¢è¾‘ ini å†€è®° ææŠšæ å¼Šå§ é¦†åº·çªç»Š ä¹æ¾œ. 
 		{
 			FString DefaultDamageNumWidgetClassPath;
 			GConfig->GetString(TEXT("/Script/BladeII.BladeIICharacter"), TEXT("DefaultDamageNumWidgetClass"), DefaultDamageNumWidgetClassPath, GGameIni);
@@ -89,7 +89,7 @@ void AB2UIManager_InGameCombat::Tick(float DeltaSeconds)
 
 	if (PlayerHUDManager)
 	{
-		PlayerHUDManager->UpdateManual(DeltaSeconds); // CustomTimeDilation À» °í·ÁÇØ¾ß ÇÏ¸é GetDeltaTimeAsOtherWorldObj ¸¦.. ¿©±â¿¡ CustomTimeDilation À» Àû¿ëÇÒ ÀÏÀÌ Á¤¸» ¾øÀ» °Å °°±ä ÇÏÁö¸¸ 
+		PlayerHUDManager->UpdateManual(DeltaSeconds); // CustomTimeDilation é˜‘ ç»Šå¦¨ç§¦å…· çªæ GetDeltaTimeAsOtherWorldObj ç”«.. å’¯æ‰ä¿Š CustomTimeDilation é˜‘ åˆ©ä¾©ä¸” è€æ æ²¥å¯Œ ç»é˜‘ èŠ­ éå˜ çªç˜¤çˆ¶ 
 	}
 
 	for (UB2UIManager_InGameHUDChar* CharHUDWidget : AllNPCHUDManager)
@@ -106,7 +106,7 @@ void AB2UIManager_InGameCombat::PreBeginPlay()
 
 void AB2UIManager_InGameCombat::OnPreLoadMap()
 {
-	// UObject ¿Í °ü·ÃµÈ destroy ´Â ¿©±â¼­
+	// UObject å®¢ åŒ…è®¿ç­‰ destroy ç»° å’¯æ‰è¾‘
 	DestroyFloatingWidgetPool();
 }
 
@@ -132,14 +132,14 @@ UB2UIManager_InGameHUDChar* AB2UIManager_InGameCombat::CreateHUDForNewChar(class
 	UB2UIManager_InGameHUDChar* NewUIManager = NULL;
 
 	//ABladeIIPlayer* CastedPlayer = Cast<ABladeIIPlayer>(InNewCreated);
-	//if (CastedPlayer != UGameplayStatics::GetLocalPlayerCharacter(this)) // ¸®¸ğÆ® ÇÃ·¹ÀÌ¾î´Â ÇÃ·¹ÀÌ¾î Ãë±Ş ¾Æ´Ô.
+	//if (CastedPlayer != UGameplayStatics::GetLocalPlayerCharacter(this)) // åºœè‘›é£˜ æ•²é¥­æç»¢ç»° æ•²é¥­æç»¢ ç§’é­ é…’ä¸›.
 	//{
 	//	CastedPlayer = NULL;
 	//}
 
 	//if (CastedPlayer)
 	//{
-	//	// ÀÌ °æ¿ì Player ¿ë HUD ·Î
+	//	// æ ç‰ˆå¿« Player ä¾© HUD è‚º
 	//	NewUIManager = NewObject<UB2UIManager_InGameHUDPlayer>(this, *FString::Printf(TEXT("UIManager_InGameHUD_%s"), *CastedPlayer->GetName()), RF_Transient);
 	//}
 	//else
@@ -147,7 +147,7 @@ UB2UIManager_InGameHUDChar* AB2UIManager_InGameCombat::CreateHUDForNewChar(class
 	//	NewUIManager = NewObject<UB2UIManager_InGameHUDChar>(this, *FString::Printf(TEXT("UIManager_InGameHUD_%s"), *InNewCreated->GetName()), RF_Transient);
 	//}
 
-	//if (NewUIManager && NewUIManager->InitUIManager(InNewCreated, this) == false) // PlayerController ±¸¼º¿¡ µû¶ó ½ÇÆĞÇÒ ¼ö ÀÖÀ½.
+	//if (NewUIManager && NewUIManager->InitUIManager(InNewCreated, this) == false) // PlayerController å¤‡å·±ä¿Š è¶æ‰¼ è§’è©ä¸” è ä¹æ¾œ.
 	//{
 	//	NewUIManager->ConditionalBeginDestroy();
 	//	NewUIManager = NULL;
@@ -155,10 +155,10 @@ UB2UIManager_InGameHUDChar* AB2UIManager_InGameCombat::CreateHUDForNewChar(class
 
 	//if (NewUIManager)
 	//{
-	//	// »õ·Î »ı¼ºÇÑ °ÍÀ» ÀÌÂÊ¿¡ µî·Ï
+	//	// è´§è‚º ç§¯å·±èŒ„ å·´é˜‘ æç‡ä¿Š æ®¿åºŸ
 	//	if (CastedPlayer)
 	//	{
-	//		if (PlayerHUDManager) // ¸¸¿¡ ÇÏ³ª ±âÁ¸¿¡ ÀÖ¾ú´Ù¸é ÆÄ±«
+	//		if (PlayerHUDManager) // çˆ¶ä¿Š çªå”± æ‰ç²®ä¿Š ä¹èŒä¿ƒæ é¢‡é²
 	//		{
 	//			PlayerHUDManager->DestroyPlayerWidgets();
 	//			PlayerHUDManager->ConditionalBeginDestroy();
@@ -178,7 +178,7 @@ UB2UIManager_InGameHUDChar* AB2UIManager_InGameCombat::CreateHUDForNewChar(class
 void AB2UIManager_InGameCombat::DestroyHUDForDyingChar(class ABladeIICharacter* InDying)
 {
 //	ABladeIIPlayer* LocalPlayer = Cast<ABladeIIPlayer>(UGameplayStatics::GetLocalPlayerCharacter(this));
-//	// Not for local player character. ABladeIIPlayer ¶óµµ ÀÌ°É »ç¿ëÇÏ´Â °æ¿ì°¡ ÀÖ±ä ÇÔ.
+//	// Not for local player character. ABladeIIPlayer æ‰¼æ¡£ æå§ è¤ä¾©çªç»° ç‰ˆå¿«å•Š ä¹å˜ çªƒ.
 //	if (InDying == NULL || (LocalPlayer && LocalPlayer == InDying)) 
 //	{
 //		return;
@@ -215,7 +215,7 @@ void AB2UIManager_InGameCombat::HideFloatingHPBarForChar(ABladeIICharacter* InCh
 		WantedUIManager->HideFloatingHPBar(binHide);
 }
 
-// HideFloatingHPBarForChar ÇÔ¼ö¶û µû·ÎÃ³¸®(ÇÃ·¹ÀÌ¾îÀÏ¶§ ¸®ÅÏÇÑ ÀÌÀ¯°¡ ÀÖÀ»Å×´Ï..)
+// HideFloatingHPBarForChar çªƒèå°” è¶è‚ºè´¸åºœ(æ•²é¥­æç»¢è€é”­ åºœç•”èŒ„ æèœ¡å•Š ä¹é˜‘æŠ›èª..)
 void AB2UIManager_InGameCombat::HideFloatingHPBarForPlayer(class ABladeIIPlayer* InChar, bool binHide)
 {
 	UB2UIManager_InGameHUDChar* WantedUIManager = GetRelevantUIManager(InChar);
@@ -252,11 +252,11 @@ void AB2UIManager_InGameCombat::InitializeFloatingWidgetPool()
 
 	//int32 PooledObjectPreCreateCount = 5;
 	//if (GConfig)
-	//{ // ¾Æ¸¶ DamageNum_Mob ÀÌ Á¦ÀÏ ¸¹À» °Í °°±ä ÇÑµ¥ ±»ÀÌ Å¸ÀÔº°·Î PreCreate °³¼ö¸¦ ´Ù¸£°Ô °¡Á®°¥ ÇÊ¿ä±îÁø ¾øÀ» °Í °°´Ù.
+	//{ // é…’ä»˜ DamageNum_Mob æ åŠ›è€ è…¹é˜‘ å·´ éå˜ èŒ„å• è¢«æ é¸¥æ¶å–Šè‚º PreCreate ä¿ºèç”« ä¿ƒç¦éœ¸ å•Šå»‰å“ é˜å¤¸é³–æŸ³ ç»é˜‘ å·´ éä¿ƒ.
 	//	GConfig->GetInt(TEXT("/Script/BladeII"), TEXT("FloatingWidgetPoolPreCreateNum"), PooledObjectPreCreateCount, GGameIni);
 	//}
 
-	//// ·Îºñ¿¡¼­ ÀÌ°É »ı¼ºÇØ ³õÀ» ÇÏµîÀÇ ÀÌÀ¯°¡ ¾ø´Ù.
+	//// è‚ºåšä¿Šè¾‘ æå§ ç§¯å·±ç§¦ åˆé˜‘ çªæ®¿ç‹¼ æèœ¡å•Š ç»ä¿ƒ.
 	//AB2LobbyGameMode* B2LobbyGM = Cast<AB2LobbyGameMode>(UGameplayStatics::GetGameMode(this));
 	//if (B2LobbyGM){
 	//	PooledObjectPreCreateCount = 0;
@@ -331,7 +331,7 @@ EFloatingWidgetPoolClassType AB2UIManager_InGameCombat::GetDamageNumWidgetPoolTy
 ////////////////////////////////////// FloatingWidgetPool
 
 
-//[FIXME] [@AKI, 170818] 10°³ÀÇ ¸÷À» Å¸°İÇÏ°Ô µÉ°æ¿ì O(N^2)À» ÇÏ¿© 100¹ø ·çÇÁ¸¦ ÇÏ°Ô µÊ -> À¸¾Ç (djsong)
+//[FIXME] [@AKI, 170818] 10ä¿ºç‹¼ å„é˜‘ é¸¥æ‹œçªéœ¸ çªç‰ˆå¿« O(N^2)é˜‘ çªå’¯ 100é”… é£æ©‡ç”« çªéœ¸ å‡³ -> æ å© (djsong)
 class UB2UIManager_InGameHUDChar* AB2UIManager_InGameCombat::GetRelevantUIManager(class ABladeIICharacter* InChar)
 {
 	if (InChar == NULL)
@@ -364,8 +364,8 @@ void AB2UIManager_InGameCombat::SubscribeEvents()
 	if (bEventsSubscribed)
 		return;
 
-	//// ¿ùµå BeginPlay ÀÌÀü ½ÃÁ¡¿¡ ºÒ·Á¾ß ÇÔ
-	//// InGameCombat UIManager ÇÏ³ªÀÌ¹Ç·Î ID ÀúÀåÇÒ ÇÊ¿ä¾øÀÌ ÃßÈÄ UnsubscribeAll ·Î
+	//// å²¿é› BeginPlay æå‚ˆ çŸ«ç—¢ä¿Š é˜‚å¦¨å…· çªƒ
+	//// InGameCombat UIManager çªå”±æéª¨è‚º ID å†å˜ä¸” é˜å¤¸ç»æ çœ é¥¶ UnsubscribeAll è‚º
 	//CAPTURE_UOBJECT(AB2UIManager_InGameCombat);
 
 	//StageBeginTicket = StageBeginClass<>::GetInstance().Subscribe(
@@ -488,7 +488,7 @@ void AB2UIManager_InGameCombat::NotifyBeginPlay(class ABladeIICharacter* InNotif
 
 void AB2UIManager_InGameCombat::NotifyStageBegin()
 {
-	// ÀÏ´Ü ÇÊ¿äÇÑ °Ç ÇÃ·¹ÀÌ¾î »Ó
+	// è€çªœ é˜å¤¸èŒ„ æ‰’ æ•²é¥­æç»¢ æŒ¥
 	if (PlayerHUDManager)
 		PlayerHUDManager->NotifyStageBegin();
 
@@ -496,7 +496,7 @@ void AB2UIManager_InGameCombat::NotifyStageBegin()
 
 void AB2UIManager_InGameCombat::NotifyTargetDamaged(class ABladeIICharacter* InNotifyOwner, int32 SuccessiveComboNum, float DamageAmount)
 {
-	// Áö±İÀ¸·Î¼± ÇÃ·¹ÀÌ¾î¿¡¸¸ ÇÊ¿ä.
+	// ç˜¤é™›æ è‚ºæ€¥ æ•²é¥­æç»¢ä¿Šçˆ¶ é˜å¤¸.
 	if (Cast<ABladeIIPlayer>(InNotifyOwner) && PlayerHUDManager)
 	{
 		PlayerHUDManager->NotifyTargetDamaged(SuccessiveComboNum, DamageAmount);
@@ -510,7 +510,7 @@ void AB2UIManager_InGameCombat::NotifyAutoStateChange(bool bInAutoNow)
 		PlayerHUDManager->NotifyAutoStateChange(bInAutoNow);
 	}
 
-	//Å×½ºÆ®ÄÚµå(DocBattle·Î ÀÌº¥Æ® ¼ö½ÅÃ³¸¦ ¹Ù²ã¾ß ÇÑ´Ù)
+	//æŠ›èƒ¶é£˜å†…é›(DocBattleè‚º æäº¥é£˜ èè„šè´¸ç”« å®˜å±‚å…· èŒ„ä¿ƒ)
 	/*auto BattleUI = UB2UIManager::GetInstance()->GetUI<UB2UIBattleMain>(UIFName::BattleMain);
 	if (BattleUI)
 	{
@@ -572,7 +572,7 @@ void AB2UIManager_InGameCombat::NotifyCharacterDeath(class ABladeIICharacter* In
 void AB2UIManager_InGameCombat::SetCenterMessage(const FText& InMessageText, float DisplayTime, int32 AnimIndex)
 {
 	if (TempCurrentOpenCenterPopup){
-		HideCenterMessage(); // ÇÑ¹ø¿¡ ÇÏ³ª¾¿. ±âÁ¸¿¡ ÀÚµ¿À¸·Î ´İÈ÷Áö ¾ÊÀº °ÍÀÌ ÀÖ¾ú´Ù¸é ´İ¾ÆÁØ´Ù.
+		HideCenterMessage(); // èŒ„é”…ä¿Š çªå”±ç©¶. æ‰ç²®ä¿Š ç£Šæ‚¼æ è‚º æ‘§æ´’ç˜¤ è‡¼ç¯® å·´æ ä¹èŒä¿ƒæ æ‘§é…’éœ–ä¿ƒ.
 	}
 
 	TempCurrentOpenCenterPopup = UB2UIManager::GetInstance()->OpenMsgPopup<UB2UIMsgPopupCenter>(EUIMsgPopup::Center,
@@ -582,20 +582,20 @@ void AB2UIManager_InGameCombat::SetCenterMessage(const FText& InMessageText, flo
 		false
 	);
 
-	// ¿ÀÇÂ ¾Ö´Ï¸ŞÀÌ¼ÇÀÎµ¥ Àû¾îµµ ±âº» ¾Ö´Ï¸ŞÀÌ¼ÇÀº ÇÃ·¹ÀÌ ÇØ¾ß ¸Ş½ÃÁö°¡ º¸ÀÎ´Ù. AnimIndex °¡ Àß¸øµÇ¾îµµ BP ¿¡¼­ ±âº» ÇÃ·¹ÀÌ´Â ÇÒ °Í.
+	// å·é”¹ å±€èªçš‹æè®°ç‰¢å• åˆ©ç»¢æ¡£ æ‰å¤¯ å±€èªçš‹æè®°ç¯® æ•²é¥­æ ç§¦å…· çš‹çŸ«ç˜¤å•Š ç„Šç‰¢ä¿ƒ. AnimIndex å•Š è‚‹ç»™ç™»ç»¢æ¡£ BP ä¿Šè¾‘ æ‰å¤¯ æ•²é¥­æç»° ä¸” å·´.
 	UB2UIMsgPopupCenter* CastedPopupCenter = Cast<UB2UIMsgPopupCenter>(TempCurrentOpenCenterPopup);
 	if (CastedPopupCenter){
 		CastedPopupCenter->PlayOpenAnimation(AnimIndex);
 	}
 
-	if (DisplayTime > 0.0f){ // 0 º¸´Ù Å« °æ¿ì ÀÚµ¿À¸·Î ´İÈú °ÍÀÌ¹Ç·Î ±»ÀÌ ÀÌ°É µé°í ÀÖÁö ¾Ê´Â´Ù.
+	if (DisplayTime > 0.0f){ // 0 ç„Šä¿ƒ å¥´ ç‰ˆå¿« ç£Šæ‚¼æ è‚º æ‘§é³ƒ å·´æéª¨è‚º è¢«æ æå§ ç”¸ç»Š ä¹ç˜¤ è‡¼ç»°ä¿ƒ.
 		TempCurrentOpenCenterPopup = NULL;
 	}
 }
 
 void AB2UIManager_InGameCombat::HideCenterMessage()
 {
-	//// ¾Õ¼­ SetCenterMessage ¸¦ ÇßÀ» ¶§ DisplayTime À» 0 ÀÌÇÏ·Î ÁÖ¾ú´Ù¸é ÀÖ¾î¾ß. ÇÏÁö¸¸ ·¹º§ÀÌ ¹Ù²ï ÈÄ¶ó¸é ÀÇ¹Ì ¾øÀ½. UB2UIManager ´Â static ÀÌ¶ó ·¹º§ÀÌ ¹Ù²î¾îµµ ±×´ë·ÎÀÓ. ±×·± °æ¿ì´Â CloseAllMsgPopups À» ÇÏ°Å³ª ·¹ÆÛ·±½º¸¦ ´Ù¸¥ ½ÄÀ¸·Î ÀúÀåÇØ¾ß..
+	//// èŠè¾‘ SetCenterMessage ç”« æ²é˜‘ é”­ DisplayTime é˜‘ 0 æçªè‚º æ—èŒä¿ƒæ ä¹ç»¢å…·. çªç˜¤çˆ¶ é¥­éª‡æ å®˜è¯§ é¥¶æ‰¼æ ç‹¼å›º ç»æ¾œ. UB2UIManager ç»° static ææ‰¼ é¥­éª‡æ å®˜å·®ç»¢æ¡£ å¼Šæªè‚ºçƒ™. å¼Šç¹ ç‰ˆå¿«ç»° CloseAllMsgPopups é˜‘ çªèŠ­å”± é¥­æ¬ºç¹èƒ¶ç”« ä¿ƒå¼— ä¾¥æ è‚º å†å˜ç§¦å…·..
 	//if (TempCurrentOpenCenterPopup)
 	//{
 	//	UB2UIManager::GetInstance()->CloseMsgPopup(TempCurrentOpenCenterPopup);

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UICollectBookIcon.h"
 #include "B2UIManager.h"
 #include "B2ItemInfo.h"
@@ -127,8 +127,8 @@ void UB2UICollectBookIcon::HideCollectBookIcon()
 }
 
 /* 
-	ÀÏ¹İ ItemÀÇ °æ¿ì ID == ItemTemplateID
-	¼ÂÆ® ItemÀÇ °æ¿ì ID == SetUniqueKey
+	è€é¦† Itemç‹¼ ç‰ˆå¿« ID == ItemTemplateID
+	æ‚¸é£˜ Itemç‹¼ ç‰ˆå¿« ID == SetUniqueKey
 */
 
 void UB2UICollectBookIcon::InitCollectBookIcon(EItemClass ItemClass, int32 ID)

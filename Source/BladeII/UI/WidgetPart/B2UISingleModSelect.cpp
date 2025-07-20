@@ -1,4 +1,4 @@
-#include "B2UISingleModSelect.h"
+ï»¿#include "B2UISingleModSelect.h"
 #include "B2UIManager.h"
 
 UB2UISingleModSelect::UB2UISingleModSelect(const FObjectInitializer& ObjectInitializer)
@@ -13,9 +13,9 @@ UB2UISingleModSelect::UB2UISingleModSelect(const FObjectInitializer& ObjectIniti
 void UB2UISingleModSelect::CacheAssets()
 {
 	//////////////////////////
-	//½ºÅ©·Ñ°ú Å¬¸¯ ÀÌº¥Æ®¸¦ °°ÀÌ Ã³¸®ÇÒ ¼ö ¾ø±â¿¡
-	//¹öÆ°Çü½ÄÀÌ ¾Æ´Ñ ÀÏ¹İ Widget inputÃ³¸®¸¦ ÇØ¾ßµÈ´Ù. (¹öÆ°ÀÌ inputÀ» Ã³¸®ÇÏ°í ¹ö¸².)
-	//Input°ü·Ã Ã³¸®´Â NativeOnMouse/NativeOnTouch·Î Ã³¸®ÇÔ.
+	//èƒ¶å†œè´¹è‹ åŠªè… æäº¥é£˜ç”« éæ è´¸åºœä¸” è ç»æ‰ä¿Š
+	//æ»šç“¢å±ˆä¾¥æ é…’å›± è€é¦† Widget inputè´¸åºœç”« ç§¦å…·ç­‰ä¿ƒ. (æ»šç“¢æ inputé˜‘ è´¸åºœçªç»Š æ»šè¦†.)
+	//InputåŒ…è®¿ è´¸åºœç»° NativeOnMouse/NativeOnTouchè‚º è´¸åºœçªƒ.
 	GET_SLOT(UB2Button, BTN_Area)
 	if (BTN_Area.IsValid())
 		BTN_Area->SetVisibility(ESlateVisibility::Hidden);
@@ -34,7 +34,7 @@ void UB2UISingleModSelect::UpdateStaticText()
 
 void UB2UISingleModSelect::BindDelegates()
 {
-	//NativeOnMouseButtonUp / NativeOnTouchEnded ¿¡¼­ Ã³¸®ÇÔ.
+	//NativeOnMouseButtonUp / NativeOnTouchEnded ä¿Šè¾‘ è´¸åºœçªƒ.
 	//BIND_CLICK_FUNC_TO_BTN(BTN_Area, &UB2UISingleModSelect::OnClickBtnArea)
 }
 
@@ -48,14 +48,14 @@ void UB2UISingleModSelect::SetMyModInfo(ELobbyModSceneElem InModEnum, bool bInLo
 		BTN_Area->SetIsEnabled(bIsLocked ? false : true);
 	}
 	if (IMG_ModMain.IsValid())
-	{ // ÃßÈÄ ÀÌÂÊ¿¡´Â image ¸¦ ¹èÄ¡ÇÏÁö ¾Ê°Ô µÉ ¼öµµ. Lock ¸¸ ¹èÄ¡ÇÏ°Ô µÉ ¼ö ÀÖÀ½.
+	{ // çœ é¥¶ æç‡ä¿Šç»° image ç”« ç¡…æ‘¹çªç˜¤ è‡¼éœ¸ çª èæ¡£. Lock çˆ¶ ç¡…æ‘¹çªéœ¸ çª è ä¹æ¾œ.
 		IMG_ModMain->SetBrushFromMaterial(bIsLocked ? LockedImageMaterial : ModImageMaterial);
-		IMG_ModMain->SetVisibility(ESlateVisibility::HitTestInvisible); // È¤ ½Ç¼öÇÒÁö ¸ğ¸£´Ï
+		IMG_ModMain->SetVisibility(ESlateVisibility::HitTestInvisible); // è¶£ è§’èä¸”ç˜¤ è‘›ç¦èª
 	}
 	if (TB_ModName.IsValid())
 	{
 		TB_ModName->SetText(GetModNameText(MyMod));
-		TB_ModName->SetVisibility(ESlateVisibility::HitTestInvisible); // È¤ ½Ç¼öÇÒÁö ¸ğ¸£´Ï
+		TB_ModName->SetVisibility(ESlateVisibility::HitTestInvisible); // è¶£ è§’èä¸”ç˜¤ è‘›ç¦èª
 	}
 }
 

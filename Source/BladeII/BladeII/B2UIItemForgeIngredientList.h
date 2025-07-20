@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 //#include "BladeII.h"
@@ -89,8 +89,8 @@ private:
 	EPCClass slotClass;
 	int32 mainWantsThisMany;
 
-	int32 mainItemEnhanceLevel;	//°­È­ ·¹º§
-	int32 mainItemLevel;		//·¹º§¾÷ ·¹º§
+	int32 mainItemEnhanceLevel;	//ç¢æ‹³ é¥­éª‡
+	int32 mainItemLevel;		//é¥­éª‡è¯€ é¥­éª‡
 
 	bool isConsumable;
 };

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIEnterDungeonSlot.h"
 #include "B2UIManager.h"
 #include "Retailer.h"
@@ -41,8 +41,8 @@ void UB2UIEnterDungeonSlot::CacheAssets()
 		OV_ControlMode->SetVisibility(ESlateVisibility::Collapsed);
 	GET_SLOT(UB2RichTextBlock, TB_ControlMode);
 
-	// Slot BG ´Â UMG ³»ºÎ BGImage º¯¼ö¿¡ µî·ÏÇØ¼­, Construct ¿¡¼­ ¼¼ÆÃÇÏ°Ô µÇ¾îÀÖÀ½.
-	// RewardIcon, RewardName, DungeonName, DungeonDesc, STB_ClosePossible Æ÷ÇÔ
+	// Slot BG ç»° UMG éƒ´ä½• BGImage å‡½èä¿Š æ®¿åºŸç§¦è¾‘, Construct ä¿Šè¾‘ æŠ€æ³¼çªéœ¸ ç™»ç»¢ä¹æ¾œ.
+	// RewardIcon, RewardName, DungeonName, DungeonDesc, STB_ClosePossible å™¨çªƒ
 }
 
 void UB2UIEnterDungeonSlot::BindDelegates()
@@ -68,7 +68,7 @@ void UB2UIEnterDungeonSlot::OnClickBTN_Select()
 	{
 	case b2network::B2ContentsModeState::NONE:
 	case b2network::B2ContentsModeState::RUN:
-		// ¾Ï°Íµµ ¾ÈÇÔ. 
+		// éž å·´æ¡£ æ•‘çªƒ. 
 
 		break;
 	case b2network::B2ContentsModeState::BLOCK_ENTER:
@@ -83,28 +83,28 @@ void UB2UIEnterDungeonSlot::OnClickBTN_Select()
 		int32 nEndHour = -1;
 		int32 nEndMin = -1;
 
-		// RUN ³¡³ª´Â ½Ã°£
+		// RUN åœºå”±ç»° çŸ«åŸƒ
 		BladeIIGameImpl::GetClientDataStore().GetDuelModeSettleSchedule(GetCurrentModeType(CurrentGameMode),
 			b2network::B2ContentsModeState::RUN,
 			nStartDay,
 			nStartHour,
 			nStartMin);
 
-		// SETTLE_END ³¡³ª´Â ½Ã°£
+		// SETTLE_END åœºå”±ç»° çŸ«åŸƒ
 		BladeIIGameImpl::GetClientDataStore().GetDuelModeSettleSchedule(GetCurrentModeType(CurrentGameMode),
 			b2network::B2ContentsModeState::SETTLE_END,
 			nEndDay,
 			nEndHour,
 			nEndMin);
 
-		// BLOCK_ENTERÀÏ¶© ´Ù¸¥¸àÆ®
+		// BLOCK_ENTERè€è®¢ ä¿ƒå¼—è†é£˜
 		FText CommentText;
 		if (CurrentModeState == b2network::B2ContentsModeState::BLOCK_ENTER)
 			CommentText = BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("RankingBlockEnter"));
 		else
 			CommentText = BladeIIGetLOCText(B2LOC_CAT_ERROR_CODE, TEXT("811"));
 
-		// Á¤»êÁßUI
+		// æ²¥é­‚åUI
 		UB2UIManager* pUIManager = UB2UIManager::GetInstance();
 		UB2UIMsgPopupSimpleAddComment* pPopupUI = pUIManager->OpenMsgPopup<UB2UIMsgPopupSimpleAddComment>(EUIMsgPopup::SimpleAddComment,
 			BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("General_Notification")),
@@ -119,7 +119,7 @@ void UB2UIEnterDungeonSlot::OnClickBTN_Select()
 		FormattingOption.MinimumIntegralDigits = 2;
 
 
-		// Ãß°¡ÄÚ¸àÆ® n½ÃnºÐ ~ n½ÃnºÐ±îÁö Á¤»êÇÔ
+		// çœ å•Šå†…è†é£˜ nçŸ«nç›’ ~ nçŸ«nç›’é³–ç˜¤ æ²¥é­‚çªƒ
 		pPopupUI->SetAddComment(FText::Format(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("RankCalculteTime")), FText::AsNumber(nStartHour, &FormattingOption), FText::AsNumber(nStartMin, &FormattingOption), FText::AsNumber(nEndHour, &FormattingOption), FText::AsNumber(nEndMin, &FormattingOption)));
 
 		//FString::FromInt(nErrorCode)
@@ -128,7 +128,7 @@ void UB2UIEnterDungeonSlot::OnClickBTN_Select()
 		break;
 	}
 	case b2network::B2ContentsModeState::SYSTEM_CHECK:
-		// Á¡°ËÁßUI
+		// ç—¢å…«åUI
 		UB2UIManager::GetInstance()->OpenMsgPopupFromErrorCode(812);
 		return;
 		break;
@@ -146,19 +146,19 @@ void UB2UIEnterDungeonSlot::SetModeState(int32 ModeState)
 	{
 	case b2network::B2ContentsModeState::NONE:
 	case b2network::B2ContentsModeState::RUN:
-		// ¾Ï°Íµµ ¾ÈÇÔ. 
+		// éž å·´æ¡£ æ•‘çªƒ. 
 		
 		break;
 	case b2network::B2ContentsModeState::BLOCK_ENTER:
 	case b2network::B2ContentsModeState::MODE_FINISH:
 	case b2network::B2ContentsModeState::SETTLE_BEGIN:
 	case b2network::B2ContentsModeState::SETTLE_END:
-		// Á¤»êÁßUI
+		// æ²¥é­‚åUI
 		OV_NoEnter->SetVisibility(ESlateVisibility::HitTestInvisible);
 		TB_NoEnterText->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("RankCalculte")));
 		break;
 	case b2network::B2ContentsModeState::SYSTEM_CHECK:
-		// Á¡°ËÁßUI
+		// ç—¢å…«åUI
 		OV_NoEnter->SetVisibility(ESlateVisibility::HitTestInvisible);
 		TB_NoEnterText->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("ContentsShutdown")));
 		break;
@@ -206,7 +206,7 @@ int32 UB2UIEnterDungeonSlot::GetCurrentModeType(ELobbyModSceneElem LobbyModScene
 
 void UB2UIEnterDungeonSlot::SetCountInfo(int32 LastCount, int32 MaxCount)
 {
-	if (TB_DungeonCount.IsValid())// (´øÀü ÀÔÀåÈ½¼ö / MAX)
+	if (TB_DungeonCount.IsValid())// (å¸¦å‚ˆ æ¶åŽ˜å†‰è / MAX)
 	{
 		if (MaxCount > 0)
 			TB_DungeonCount->SetText(FText::FromString("(" + FString::FromInt(LastCount) + "/" + FString::FromInt(MaxCount) + ")"));

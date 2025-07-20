@@ -1,4 +1,4 @@
-#include "B2UICharacterSelect.h"
+ï»¿#include "B2UICharacterSelect.h"
 #include "B2UICharacterSelectItem.h"
 #include "B2UIManager.h"
 #include "B2UIDocHelper.h"
@@ -50,7 +50,7 @@ void UB2UICharacterSelect::CacheAssets()
 	GET_SLOT(UOverlay, O_TouchHero1)
 	GET_SLOT(UOverlay, O_TouchHero2)
 
-	//È÷¾î·Î ¾î¼ÂÀ» °¡Á®¿Â´Ù.
+	//æ´’ç»¢è‚º ç»¢æ‚¸é˜‘ å•Šå»‰æŸ¯ä¿ƒ.
 	for (int32 ClassCnt = 0; ClassCnt < GetMaxPCClassNum(); ++ClassCnt)
 	{
 		FString HeroItemAssetStr = PrefixHeroItem + FString::FormatAsNumber(ClassCnt);
@@ -85,11 +85,11 @@ void UB2UICharacterSelect::Init()
 {
 	Super::Init();
 
-	//´õ¹Ì¹ë·ù ÃÊ±âÈ­
+	//æ­¹å›ºé—ºå¹… æª¬æ‰æ‹³
 	SetHerosTotalCombat(0);
 	NewSetHerosTotalCombat(0);
 
-	//¹ë·ùÇ¥½Ã ÅØ½ºÆ®ºí·ÏÀÇ ¿ø·¡ ÄÃ·¯ ÀúÀå
+	//é—ºå¹…é’çŸ« å’†èƒ¶é£˜å–‰åºŸç‹¼ ç›”è´° æ‹¿çŸ¾ å†å˜
 	if (TB_NewHerosTotalAttack.IsValid())
 		TextColor_OriginValue = TB_NewHerosTotalAttack->GetColorAndOpacity();
 	
@@ -109,7 +109,7 @@ void UB2UICharacterSelect::BindDocAuto()
 	SetDoc(DocBattle);
 	if (DocBattle)
 	{
-		//°¢ ¾ÆÀÌÅÛ¿¡ µ¥ÀÌÅÍ¸¦ ³Ö¾îÁØ´Ù.
+		//é˜¿ é…’æè¢ä¿Š å•æç£ç”« æŒç»¢éœ–ä¿ƒ.
 		for (int32 ClassCnt = 0; ClassCnt < GetMaxPCClassNum(); ++ClassCnt)
 		{
 			auto HeroItem = HeroItems.IsValidIndex(ClassCnt) ? HeroItems[ClassCnt] : nullptr;
@@ -138,7 +138,7 @@ void UB2UICharacterSelect::BindDocAuto()
 
 		}
 
-		//ÇöÀç ¸ŞÀÎ°ú ¼·ÀÇ Á¤º¸¸¦ ³Ö¾îÁØ´Ù.
+		//æ³…çŠ çš‹ç‰¢è‹ æŒ¤ç‹¼ æ²¥ç„Šç”« æŒç»¢éœ–ä¿ƒ.
 		MainHeroDoc = UB2UIDocHelper::GetDocHero((int32)MainPCClass);
 		SubHeroDoc = UB2UIDocHelper::GetDocHero((int32)TagPCClass);
 
@@ -155,7 +155,7 @@ void UB2UICharacterSelect::BindDocAuto()
 		SetMainSelectCharacter(MainPCClass, EUIHeroSelectType::Main);
 		SetMainSelectCharacter(TagPCClass, EUIHeroSelectType::Sub);
 
-		//¼¿·ºÆ® »óÅÂ ¼¼ÆÃ
+		//ä¼æ³›é£˜ æƒ‘æ€• æŠ€æ³¼
 		for (int32 ClassCnt = 0; ClassCnt < GetMaxPCClassNum(); ++ClassCnt)
 		{
 			auto HeroItem = HeroItems.IsValidIndex(ClassCnt) ? HeroItems[ClassCnt] : nullptr;
@@ -177,7 +177,7 @@ void UB2UICharacterSelect::BindDocAuto()
 		}
 		int32 nTotalCombatPower = (MainHeroDoc ? MainHeroDoc->GetCombatPower() : 0) + (SubHeroDoc ? SubHeroDoc->GetCombatPower() : 0);
 		
-		//°ø/¹æ
+		//å‚/è§„
 		SetHerosTotalCombat(nTotalCombatPower);
 	}
 }
@@ -204,7 +204,7 @@ void UB2UICharacterSelect::SetCurrentSelectType(EUIHeroSelectType InCurSelectTyp
 {
 	CurSelectType = InCurSelectType;
 
-	//¾Æ¹« ¼¿·ºÆ®µµ ¾Æ´Ñ»óÅÂÀÌ¸é ¼¿·ºÆ® »óÅÂ¸¦ Å¬¸®¾î ÇØÁÖ¾î¾ß ÇÑ´Ù.
+	//é…’å…¬ ä¼æ³›é£˜æ¡£ é…’å›±æƒ‘æ€•ææ ä¼æ³›é£˜ æƒ‘æ€•ç”« åŠªåºœç»¢ ç§¦æ—ç»¢å…· èŒ„ä¿ƒ.
 	if (InCurSelectType == EUIHeroSelectType::None)
 	{
 		for (int32 HeroCnt = 0; HeroCnt < HeroItems.Num(); ++HeroCnt)
@@ -253,7 +253,7 @@ void UB2UICharacterSelect::SetMainSelectCharacter(EPCClass type, EUIHeroSelectTy
 
 void UB2UICharacterSelect::SetMainSelectType(EUIHeroSelectType SelectType, EUIHeroSelectModeType ModType)
 {
-	/* UWidgetSwitcher 0.¾Ö´Ï¾øÀ½ 1. ¸ŞÀÎ 2. ¼­ºê*/
+	/* UWidgetSwitcher 0.å±€èªç»æ¾œ 1. çš‹ç‰¢ 2. è¾‘å®*/
 
 	int32 SwitcherIndex = 0;
 
@@ -304,19 +304,19 @@ void UB2UICharacterSelect::UpdateNewHerosData()
 		const EPCClass MainPCClass = NewMainHeroDoc->GetHeroClass();
 		const EPCClass TagPCClass = NewSubHeroDoc->GetHeroClass();
 
-		//¸ŞÀÎ Ä³¸¯ÅÍ ÅÂ±×Ä³¸¯ÅÍ Ç¥½Ã
+		//çš‹ç‰¢ æŸè…ç£ æ€•å¼ŠæŸè…ç£ é’çŸ«
 		SetMainSelectCharacter(MainPCClass, EUIHeroSelectType::Main);
 		SetMainSelectCharacter(TagPCClass, EUIHeroSelectType::Sub);
 
 		TBS_MainCharacterText->SetText(BladeIIGameImpl::GetClientDataStore().GetLocalCharClassOrNickName(MainPCClass));
 		TBS_SubCharacterText->SetText(BladeIIGameImpl::GetClientDataStore().GetLocalCharClassOrNickName(TagPCClass));
 
-		//»õ·Î¿î ¼öÄ¡·Î º¯°æÇØÁÖ°í
+		//è´§è‚ºæ¬¾ èæ‘¹è‚º å‡½ç‰ˆç§¦æ—ç»Š
 		int32 NewCombatPower = NewMainHeroDoc->GetCombatPower() + NewSubHeroDoc->GetCombatPower();
 
 		NewSetHerosTotalCombat(NewCombatPower);;
 
-		//°ú°ÅÀÇ ¼öÄ¡¿ÍÀÇ Â÷ÀÌÁ¡À» Ç¥½Ã
+		//è‹èŠ­ç‹¼ èæ‘¹å®¢ç‹¼ ç’æç—¢é˜‘ é’çŸ«
 		int32 OldAttackPower = 0;
 		int32 OldDefensePower = 0;
 		int32 OldCombatPower = 0;
@@ -329,7 +329,7 @@ void UB2UICharacterSelect::UpdateNewHerosData()
 			
 			SetTotalAttackIncreaseAmount(NewCombatPower - OldCombatPower);
 
-			//ÅØ½ºÆ®ÄÃ·¯Ã³¸®
+			//å’†èƒ¶é£˜æ‹¿çŸ¾è´¸åºœ
 			if (TB_NewHerosTotalAttack.IsValid())
 			{
 				if (NewCombatPower - OldCombatPower > 0)
@@ -385,11 +385,11 @@ void UB2UICharacterSelect::OnClickBtnClose()
 
 void UB2UICharacterSelect::OnFinalSelectionConfirmCommon()
 {
-	//ÀÌº¥Æ®·Î ¸ŞÀÎÄ³¸¯°ú ¼·Ä³¸¯À» ÅëÁöÇÑ´Ù. LobbyGameMode°°Àº°÷À¸·Î. °Å±â¼­ DocBattleÀº ¼¼ÆÃÇÏ¸é BattleStageInfoÀÇ Main,Subµµ ¹Ù²ğ°ÍÀÌ´Ù.
+	//æäº¥é£˜è‚º çš‹ç‰¢æŸè…è‹ æŒ¤æŸè…é˜‘ çƒ¹ç˜¤èŒ„ä¿ƒ. LobbyGameModeéç¯®é•‘æ è‚º. èŠ­æ‰è¾‘ DocBattleç¯® æŠ€æ³¼çªæ BattleStageInfoç‹¼ Main,Subæ¡£ å®˜æ‹†å·´æä¿ƒ.
 	if (NewMainHeroDoc && NewSubHeroDoc){
 		LobbySetPCSelectionClass<EPCClass, EPCClass>::GetInstance().Signal(IntToPCClass(NewMainHeroDoc->GetDocId()), IntToPCClass(NewSubHeroDoc->GetDocId()));
 
-		// ¼±ÅÃ Å¬·¡½º°¡ º¯°æµÊ¿¡ µû¶ó ¾Æ¸°ÀÇ Á¶¾ğµµ Ã¼Å©
+		// æ€¥ç¶ åŠªè´°èƒ¶å•Š å‡½ç‰ˆå‡³ä¿Š è¶æ‰¼ é…’èµ´ç‹¼ ç‚¼æ”«æ¡£ çœ‰å†œ
 		UB2UIDocBattleStage* DocBS = UB2UIDocHelper::GetDocBattleStage();
 		GameStageCheckForArinConsultingClass<FServerStageID>::GetInstance().Signal(DocBS ? DocBS->GetServerStageId() : FServerStageID());
 		DevShowNotReadyYetMessage(FString(TEXT("ChangeCharacter")));
@@ -400,19 +400,19 @@ void UB2UICharacterSelect::OnFinalSelectionConfirmCommon()
 
 void UB2UICharacterSelect::OnClickBtnHero(class UB2UICharacterSelectItem* ClickedHero)
 {
-	//Å¬¸¯ÇÑ ¾ÆÀÌÅÛÀÇ ¼¿·ºÆ® »óÅÂ´Â
+	//åŠªè…èŒ„ é…’æè¢ç‹¼ ä¼æ³›é£˜ æƒ‘æ€•ç»°
 	auto ClickedSelectType = ClickedHero->GetSelectedType();
 
 	SetMainSelectType(ClickedSelectType, ClickedHero->GetSelecteMode());
 
 	switch (ClickedHero->GetSelecteMode())
 	{
-		//¼¿·ºÆ® ¸ğµå°¡ ¾Æ´Ò¶§´Â ¼¿·ºÆ® »óÅÂ·Î ¹Ù²Ù¾î ÁØ´Ù.	
+		//ä¼æ³›é£˜ è‘›é›å•Š é…’åŒ†é”­ç»° ä¼æ³›é£˜ æƒ‘æ€•è‚º å®˜æ“ç»¢ éœ–ä¿ƒ.	
 		default:
 		case EUIHeroSelectModeType::None:
 			SetCurrentSelectType(ClickedSelectType);
 
-			//"¸ŞÀÎ"ÀÌ³ª "ÅÂ±×"°¡ ¾Æ´Ñ "None"»óÅÂÀÇ ¾ÆÀÌÅÛÀº Å¬¸¯ÇØ ºÁ¾ß ¾Æ¹«ÀÏ ÀÏ¾î³ª¸é ¾ÈµÊ
+			//"çš‹ç‰¢"æå”± "æ€•å¼Š"å•Š é…’å›± "None"æƒ‘æ€•ç‹¼ é…’æè¢ç¯® åŠªè…ç§¦ æ¯«å…· é…’å…¬è€ è€ç»¢å”±æ æ•‘å‡³
 			if (ClickedSelectType != EUIHeroSelectType::None)
 			{
 				for (auto HeroItem : HeroItems)
@@ -438,7 +438,7 @@ void UB2UICharacterSelect::OnClickBtnHero(class UB2UICharacterSelectItem* Clicke
 
 
 
-		//ÇöÀç ¼¿·ºÆ®ÁßÀÎ »óÅÂ¸¦ ºüÁ®³ª¿Â´Ù
+		//æ³…çŠ ä¼æ³›é£˜åç‰¢ æƒ‘æ€•ç”« ç‹å»‰å”±æŸ¯ä¿ƒ
 		case EUIHeroSelectModeType::SelectOwnerMain:
 		case EUIHeroSelectModeType::SelectOwnerSub:
 			SetCurrentSelectType(EUIHeroSelectType::None);
@@ -446,12 +446,12 @@ void UB2UICharacterSelect::OnClickBtnHero(class UB2UICharacterSelectItem* Clicke
 
 
 
-		//¼¿·ºÆ® »óÅÂ ¾÷µ¥ÀÌÆ® ÇØÁÖ°í ºüÁ®³ª¿Â´Ù
+		//ä¼æ³›é£˜ æƒ‘æ€• è¯€å•æé£˜ ç§¦æ—ç»Š ç‹å»‰å”±æŸ¯ä¿ƒ
 		case EUIHeroSelectModeType::SelectTargetMain:
 		case EUIHeroSelectModeType::SelectTargetSub:
 			EUIHeroSelectType TargetSelectedType = ClickedHero->GetSelectedType();
 
-			//¼¿·ºÆ® »óÅÂ¸¦ ½º¿ÒÇØÁØ´Ù.
+			//ä¼æ³›é£˜ æƒ‘æ€•ç”« èƒ¶æ³ç§¦éœ–ä¿ƒ.
 			for (int32 HeroCnt = 0; HeroCnt < HeroItems.Num(); ++HeroCnt)
 			{
 				auto HeroItem = HeroItems[HeroCnt];
@@ -460,10 +460,10 @@ void UB2UICharacterSelect::OnClickBtnHero(class UB2UICharacterSelectItem* Clicke
 			}
 			ClickedHero->SetSelectedType(CurSelectType);
 
-			//ÇöÀç ¼¿·ºÆ®ÁßÀÎ »óÅÂ¸¦ ºüÁ®³ª¿Â´Ù
+			//æ³…çŠ ä¼æ³›é£˜åç‰¢ æƒ‘æ€•ç”« ç‹å»‰å”±æŸ¯ä¿ƒ
 			SetCurrentSelectType(EUIHeroSelectType::None);
 
-			//½º¿ÒÀÌ ¿Ï·áµÇ°í, »õ·Î¿î Main,Sub Hero Á¤º¸¸¦ °»½ÅÇØÁØ´Ù. ¹°·Ğ ConfirmÀ» ´­¸£±â Àü±îÁö È®Á¤Àº ¾Æ´ÏÁö¸¸
+			//èƒ¶æ³æ è‚¯ä¸°ç™»ç»Š, è´§è‚ºæ¬¾ Main,Sub Hero æ²¥ç„Šç”« ç›è„šç§¦éœ–ä¿ƒ. æ‹±æ²¸ Confirmé˜‘ å–˜ç¦æ‰ å‚ˆé³–ç˜¤ çŠ¬æ²¥ç¯® é…’èªç˜¤çˆ¶
 			UpdateNewHerosData();
 
 			PlayCharacterChangeSoundBP();

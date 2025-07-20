@@ -1,4 +1,4 @@
-
+ï»¿
 #include "CharacterDataStore.h"
 #include "B2PCClassInfo.h"
 #include "B2PCClassInfoBox.h"
@@ -104,8 +104,8 @@ FString	FLocalCharacterData::GetUserNickName() const
 int32 FLocalCharacterData::GetUserLevel() const
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(FLocalCharacterData_GetUserLevel);
-	//±âÈ¹È®¸³½Ã±îÁö ÀÓ½Ã
-	//Á¦ÀÏ ·¹º§ÀÌ ³ôÀº Ä³¸¯ÅÍ ·¹º§ ¹İÈ¯
+	//æ‰è£™çŠ¬èµ‹çŸ«é³–ç˜¤ çƒ™çŸ«
+	//åŠ›è€ é¥­éª‡æ è‡­ç¯® æŸè…ç£ é¥­éª‡ é¦†åˆ¸
 	int32 UserLevel = 0;
 	for (auto Character : PlayerSharedStats)
 	{
@@ -143,7 +143,7 @@ void FLocalCharacterData::GetCharacterRegistredSkills(EPCClass InCharacterClass,
 			{
 				RegistredSkills.Add(SkillInfo->using_skill_id_1);
 
-				// Áßº¹µÈ ID °¡ µé¾î¿Í¼­ Á» Ã¼Å©.. µ¥ÀÌÅÍ°¡ Àß¸øµÈ °Å±ä ÇÑµ¥.
+				// åæ±—ç­‰ ID å•Š ç”¸ç»¢å®¢è¾‘ ç²± çœ‰å†œ.. å•æç£å•Š è‚‹ç»™ç­‰ èŠ­å˜ èŒ„å•.
 				RegistredSkills.Add((SkillInfo->using_skill_id_1 != SkillInfo->using_skill_id_2) ? SkillInfo->using_skill_id_2 : SKILL_INVALID_ID);
 
 				RegistredSkills.Add(
@@ -171,8 +171,8 @@ void FLocalCharacterData::GetCharacterRegistredSkills(EPCClass InCharacterClass,
 
 #if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
 	if (bDevModeDummySkills)
-	{ // ¾Ï°Íµµ ¾ø´Â standalone »óÈ² È¤Àº Å×½ºÆ® ¿ëÀ¸·Î Àû´çÈ÷ °ø°İ¿ë ½ºÅ³ ³¢¿ö³Ö±â.
-		// Å×½ºÆ® ¿ëÀ¸·Î´Â ¸ñÀûÀÌ Á» ÀÖ¾î¼­ Unity ½ºÅ³Àº ¾ø¾Ö º¸°í..
+	{ // é å·´æ¡£ ç»ç»° standalone æƒ‘ç‚” è¶£ç¯® æŠ›èƒ¶é£˜ ä¾©æ è‚º åˆ©å¯¸æ´’ å‚æ‹œä¾© èƒ¶æ‡¦ å°å†µæŒæ‰.
+		// æŠ›èƒ¶é£˜ ä¾©æ è‚ºç»° æ ¼åˆ©æ ç²± ä¹ç»¢è¾‘ Unity èƒ¶æ‡¦ç¯® ç»å±€ ç„Šç»Š..
 		if (gCheatUseDummySkills)
 		{
 			RegistredSkills.Empty();
@@ -353,7 +353,7 @@ void FLocalCharacterData::GetCharacterUnregistredSkills(EPCClass InCharacterClas
 }
 
 void FLocalCharacterData::GetCharacterSkillToLearnAtLevel(TArray<int32>& OutSkillIDs, EPCClass InCharClass, int32 InCharLevel) const
-{ // MasterData »ó¿¡¼­ InCharLevel ¿¡¼­ ¹è¿ìµµ·Ï µÇ¾î ÀÖ´Â ½ºÅ³ ID ¸ñ·Ï ¸®ÅÏ.
+{ // MasterData æƒ‘ä¿Šè¾‘ InCharLevel ä¿Šè¾‘ ç¡…å¿«æ¡£åºŸ ç™»ç»¢ ä¹ç»° èƒ¶æ‡¦ ID æ ¼åºŸ åºœç•”.
 	BLADE2_SCOPE_CYCLE_COUNTER(FLocalCharacterData_GetCharacterSkillToLearnAtLevel);
 	if (auto CharInfo = GetPlayerStatBasicInfo(InCharClass))
 	{
@@ -373,7 +373,7 @@ void FLocalCharacterData::GetCharacterSkills(EPCClass InCharacterClass, TArray<F
 	BLADE2_SCOPE_CYCLE_COUNTER(FLocalCharacterData_GetCharacterSkills);
 	Skills.Empty();
 
-	// Çö ±¸Çö »ó »ç¿ë °¡´ÉÇÑ ¸ğµç ½ºÅ³ÀÓ. ActiveSkill ÀÇ °æ¿ì ÀåÂø ¿©ºÎ¸¦ µûÁ®¾ß ÇÑ´Ù¸é Ãß°¡ÇØ¾ß.
+	// æ³… å¤‡æ³… æƒ‘ è¤ä¾© å•Šç“·èŒ„ è‘›ç”µ èƒ¶æ‡¦çƒ™. ActiveSkill ç‹¼ ç‰ˆå¿« å˜é¦’ å’¯ä½•ç”« è¶å»‰å…· èŒ„ä¿ƒæ çœ å•Šç§¦å…·.
 	if (auto CharInfo = GetPlayerStatBasicInfo(InCharacterClass))
 	{
 		for (auto Skill : CharInfo->skills)
@@ -386,11 +386,11 @@ void FLocalCharacterData::GetCharacterSkills(EPCClass InCharacterClass, TArray<i
 	BLADE2_SCOPE_CYCLE_COUNTER(FLocalCharacterData_GetCharacterSkills_Out);
 	OutSkillIDs.Empty();
 	
-	// Çö ±¸Çö »ó »ç¿ë °¡´ÉÇÑ ¸ğµç ½ºÅ³ÀÓ. ActiveSkill ÀÇ °æ¿ì ÀåÂø ¿©ºÎ¸¦ µûÁ®¾ß ÇÑ´Ù¸é Ãß°¡ÇØ¾ß.
+	// æ³… å¤‡æ³… æƒ‘ è¤ä¾© å•Šç“·èŒ„ è‘›ç”µ èƒ¶æ‡¦çƒ™. ActiveSkill ç‹¼ ç‰ˆå¿« å˜é¦’ å’¯ä½•ç”« è¶å»‰å…· èŒ„ä¿ƒæ çœ å•Šç§¦å…·.
 	if (auto CharInfo = GetPlayerStatBasicInfo(InCharacterClass))
 	{
 		for (auto Skill : CharInfo->skills)
-			OutSkillIDs.Add(Skill->skill_id); // ID ¸¸
+			OutSkillIDs.Add(Skill->skill_id); // ID çˆ¶
 	}
 }
 
@@ -438,7 +438,7 @@ int32 FLocalCharacterData::GetCharacterSkillLevel(int32 SkillId) const
 void FLocalCharacterData::GetCharacterSkillOptionsOfID(int32 InSkillId, TArray<FSkillOptionData>& OutFoundOptionData) const
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(FLocalCharacterData_GetCharacterSkillOptionsOfID);
-	// Æ¯Á¤ ½ºÅ³ ID ¿Í ÇöÀç ÇØ´ç ½ºÅ³ ·¹º§¿¡¼­ÀÇ ½ºÅ³¿É¼Çµé
+	// æ¼‚æ²¥ èƒ¶æ‡¦ ID å®¢ æ³…çŠ ç§¦å¯¸ èƒ¶æ‡¦ é¥­éª‡ä¿Šè¾‘ç‹¼ èƒ¶æ‡¦å¯è®°ç”¸
 	//const FSkillMasterData* SkillMDOfID = BladeIIGameImpl::GetClientDataStore().GetSkillMasterData(InSkillId);
 	//if (SkillMDOfID)
 	//{
@@ -609,7 +609,7 @@ int32 FLocalCharacterData::GetCharacterLeftSkillPoint(EPCClass InCharacterClass)
 	if (PlayerStatBasicInfo)
 		return PlayerStatBasicInfo->remain_skill_point;
 
-	return 0; //[@AKI, 180426] B2BUG-1310¿¡ µ¡±Û¿¡ ÀÇÇØ Default´Â 0À¸·Î º¯°æ
+	return 0; //[@AKI, 180426] B2BUG-1310ä¿Š æ€ è‡‚ä¿Š ç‹¼ç§¦ Defaultç»° 0æ è‚º å‡½ç‰ˆ
 }
 
 void FLocalCharacterData::SetCharacterLeftSkillPoint(EPCClass InCharacterClass, int32 LeftPoint)
@@ -646,9 +646,9 @@ int32 FLocalCharacterData::GetCharacterSkillLevelupGold(int32 SkillId)
 		return 0;
 
 	//auto* SkillMD = BladeIIGameImpl::GetClientDataStore().GetSkillMasterData(SkillId);
-	//check(SkillMD)  // ¾øÀ¸¸é ¾ÈµÊ..
+	//check(SkillMD)  // ç»æ æ æ•‘å‡³..
 
-	//// ½ºÅ³ ·¹º§¾÷ ºñ¿ë °ø½Ä = (ÇöÀç·¹º§ +1) * MDÀÇ ·¹º§¾÷ ÀÎÀÚ°ª
+	//// èƒ¶æ‡¦ é¥­éª‡è¯€ åšä¾© å‚ä¾¥ = (æ³…çŠé¥­éª‡ +1) * MDç‹¼ é¥­éª‡è¯€ ç‰¢ç£Šè”¼
 	//int32 LevelUpCost = (SkillLevel + 1) * SkillMD->LevelUpCostFactor;
 
 	//return LevelUpCost;
@@ -661,7 +661,7 @@ int32 FLocalCharacterData::GetCharacterSkillLevelupPoint(int32 SkillId, int32 Sk
 		return 0;
 
 	//auto* SkillMD = BladeIIGameImpl::GetClientDataStore().GetSkillMasterData(SkillId);
-	//check(SkillMD)  // ¾øÀ¸¸é ¾ÈµÊ..
+	//check(SkillMD)  // ç»æ æ æ•‘å‡³..
 	//
 	//if (SkillMD->LevelUpPointData.Contains(SkillLevel))
 	//	return SkillMD->LevelUpPointData[SkillLevel];
@@ -780,7 +780,7 @@ void FLocalCharacterData::GetSetItemValue(EPCClass InPCClass, TMap<int32, int32>
 }
 
 //float FB2ModPlayerInfo::GetOptionStatusValue
-//¼öÁ¤½Ã À§¿¡°ÍµÎ ¼öÁ¤
+//èæ²¥çŸ« å›°ä¿Šå·´æ»´ èæ²¥
 float FLocalCharacterData::GetOptionStatusValue(EPCClass InPCClass, EItemOption OptionType, TArray<FB2Item>* InItemArray/* = NULL*/)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(FLocalCharacterData_GetOptionStatusValue);
@@ -797,7 +797,7 @@ float FLocalCharacterData::GetOptionStatusValue(EPCClass InPCClass, EItemOption 
 	//		AllEthers.EquippedEthers.Add(InPCClass, TMap<int64, FB2Ether>());
 	//	}
 
-	//	// ÀåÂø Àåºñ¸¦ µû·Î ÁöÁ¤ÇÒ ¼ö ÀÖ´Ù. ´Ù¸¥ Àåºñ ÀÔÇô³õ°í ÇÁ¸®ºä¸¦ ÇÏ´Â µîÀÇ ¿ëµµ·Î
+	//	// å˜é¦’ å˜åšç”« è¶è‚º ç˜¤æ²¥ä¸” è ä¹ä¿ƒ. ä¿ƒå¼— å˜åš æ¶å›šåˆç»Š æ©‡åºœè½°ç”« çªç»° æ®¿ç‹¼ ä¾©æ¡£è‚º
 	//	const TArray<FB2Item>& FinalEquipmentInfo = InItemArray ? *InItemArray : GatheredLocalEquippedItems;
 
 	//	TArray<FB2FairyStatusInfo> FairyStatus;
@@ -823,7 +823,7 @@ float FLocalCharacterData::GetOptionStatusValue(EPCClass InPCClass, EItemOption 
 
 
 //float FB2ModPlayerInfo::GetOptionStatusValueByMod
-//¼öÁ¤½Ã À§¿¡°ÍµÎ ¼öÁ¤
+//èæ²¥çŸ« å›°ä¿Šå·´æ»´ èæ²¥
 float FLocalCharacterData::GetOptionStatusValueByMod(EPCClass InPCClass, EB2GameMode ModeType, EItemOption OptionType, TArray<FB2Item>* InItemArray /* = NULL */)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(FLocalCharacterData_GetOptionStatusValueByMod);
@@ -835,7 +835,7 @@ float FLocalCharacterData::GetOptionStatusValueByMod(EPCClass InPCClass, EB2Game
 	//	GetEquippedItems(InPCClass, GatheredLocalEquippedItems);
 	//	GetEquippedCostumeItems(InPCClass, GatheredLocalEquippedItems);
 
-	//	// ÀåÂø Àåºñ¸¦ µû·Î ÁöÁ¤ÇÒ ¼ö ÀÖ´Ù. ´Ù¸¥ Àåºñ ÀÔÇô³õ°í ÇÁ¸®ºä¸¦ ÇÏ´Â µîÀÇ ¿ëµµ·Î
+	//	// å˜é¦’ å˜åšç”« è¶è‚º ç˜¤æ²¥ä¸” è ä¹ä¿ƒ. ä¿ƒå¼— å˜åš æ¶å›šåˆç»Š æ©‡åºœè½°ç”« çªç»° æ®¿ç‹¼ ä¾©æ¡£è‚º
 	//	const TArray<FB2Item>& FinalEquipmentInfo = InItemArray ? *InItemArray : GatheredLocalEquippedItems;
 
 	//	TMap<int64, FB2Totem> GatheredLocalEquippedTotems;
@@ -866,7 +866,7 @@ bool FLocalCharacterData::GetOptionStatusRawValues(EPCClass InPCClass, EItemOpti
 	//	GetEquippedItems(InPCClass, GatheredLocalEquippedItems);
 	//	GetEquippedCostumeItems(InPCClass, GatheredLocalEquippedItems);
 
-	//	// ÀåÂø Àåºñ¸¦ µû·Î ÁöÁ¤ÇÒ ¼ö ÀÖ´Ù. ´Ù¸¥ Àåºñ ÀÔÇô³õ°í ÇÁ¸®ºä¸¦ ÇÏ´Â µîÀÇ ¿ëµµ·Î
+	//	// å˜é¦’ å˜åšç”« è¶è‚º ç˜¤æ²¥ä¸” è ä¹ä¿ƒ. ä¿ƒå¼— å˜åš æ¶å›šåˆç»Š æ©‡åºœè½°ç”« çªç»° æ®¿ç‹¼ ä¾©æ¡£è‚º
 	//	const TArray<FB2Item>& FinalEquipmentInfo = InItemArray ? *InItemArray : GatheredLocalEquippedItems;
 
 	//	TMap<int64, FB2Ether> EquippedEthers;
@@ -906,7 +906,7 @@ float FLocalCharacterData::GetCombatStatusValue(EPCClass InPCClass, TArray<FB2It
 	GetEquippedItems(InPCClass, GatheredLocalEquippedItems);
 	GetEquippedCostumeItems(InPCClass, GatheredLocalEquippedCostumes);
 
-	// ÀåÂø Àåºñ¸¦ µû·Î ÁöÁ¤ÇÒ ¼ö ÀÖ´Ù. ´Ù¸¥ Àåºñ ÀÔÇô³õ°í ÇÁ¸®ºä¸¦ ÇÏ´Â µîÀÇ ¿ëµµ·Î
+	// å˜é¦’ å˜åšç”« è¶è‚º ç˜¤æ²¥ä¸” è ä¹ä¿ƒ. ä¿ƒå¼— å˜åš æ¶å›šåˆç»Š æ©‡åºœè½°ç”« çªç»° æ®¿ç‹¼ ä¾©æ¡£è‚º
 	const TArray<FB2Item>& FinalEquipmentItemInfo = InItemArray ? *InItemArray : GatheredLocalEquippedItems;
 	const TArray<FB2Item>& FinalEquipmentCostumeInfo = GatheredLocalEquippedCostumes;
 
@@ -1000,7 +1000,7 @@ float FLocalCharacterData::GetRequestCombatStatusValue(EPCClass InPCClass, TArra
 //////////////////////////////////////////////////////////////////////////
 
 void FLocalCharacterData::SetCharClassNames(UB2PCClassInfoBox* InClassInfoBox)
-{ // ÇÑ¹ø¸¸ ÇØÁÖ¸é µÇ´Âµ¥ InitializeAccountInfo ½ÃÁ¡¿¡¼­´Â PCClassInfoBox ¸¦ °¡Á®¿ÀÁö ¸øÇÒ ¼ö ÀÖ¾î¼­ µû·Î ¿ÜºÎ¿¡¼­..
+{ // èŒ„é”…çˆ¶ ç§¦æ—æ ç™»ç»°å• InitializeAccountInfo çŸ«ç—¢ä¿Šè¾‘ç»° PCClassInfoBox ç”« å•Šå»‰å·ç˜¤ ç»™ä¸” è ä¹ç»¢è¾‘ è¶è‚º å¯‡ä½•ä¿Šè¾‘..
 	BLADE2_SCOPE_CYCLE_COUNTER(FLocalCharacterData_SetCharClassNames);
 	if (InClassInfoBox)
 	{
@@ -1036,7 +1036,7 @@ void FLocalCharacterData::SetCharBrevetInfo(EPCClass InClass, int32 RankIndex, i
 	}
 
 	////////////////////////////////////////////////////////////////////
-	////¾×¼Ç ÁöÇ¥ ·Î±× (Ä³¸¯ÅÍ Áø±Ş)
+	////å’€è®° ç˜¤é’ è‚ºå¼Š (æŸè…ç£ æŸ³é­)
 	//FString RankName(TEXT("PROMOTION_NONE"));
 	//FString RankNameKey = BladeIIGameImpl::GetClientDataStore().GetBrevetRankNameKey(RankIndex);
 	//RankName = BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), RankNameKey).ToString().ToUpper();
@@ -1059,22 +1059,22 @@ int32 FLocalCharacterData::GetCharBrevetNodeIndex(EPCClass InClass) const
 	return 0;
 }
 
-//FB2ModPlayerInfo::GetAppliedCharBrevetRank ¼öÁ¤
+//FB2ModPlayerInfo::GetAppliedCharBrevetRank èæ²¥
 int32 FLocalCharacterData::GetAppliedCharBrevetRank(EPCClass InCharacterClass) const
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(FLocalCharacterData_GetAppliedCharBrevetRank);
 	int32 CurRank = GetCharBrevetRank(InCharacterClass);
 	int32 CurNodeIndex = GetCharBrevetNodeIndex(InCharacterClass);
 
-	// Ã¹ ·©Å©(·©Å© 1)°¡ ¾Æ´Ï°í ·©Å©ÀÇ Ã¹³ëµåÀÏ °æ¿ì ÀÌÀü ·©Å©¸¦ ¹İÈ¯
+	// éœ‰ çå†œ(çå†œ 1)å•Š é…’èªç»Š çå†œç‹¼ éœ‰ç•´é›è€ ç‰ˆå¿« æå‚ˆ çå†œç”« é¦†åˆ¸
 	if (CurRank != 0 && CurRank != 1 && CurNodeIndex == 1)
 		return CurRank-1;
 	
-	// ÀÏ¹İ°æ¿ì´Â ÇöÀç ·©Å©°¡ Àû¿ëµÈ ·©Å©
+	// è€é¦†ç‰ˆå¿«ç»° æ³…çŠ çå†œå•Š åˆ©ä¾©ç­‰ çå†œ
 	return CurRank;
 }
 
-//FB2ModPlayerInfo::GetAppliedCharBrevetNodeIndex ¼öÁ¤
+//FB2ModPlayerInfo::GetAppliedCharBrevetNodeIndex èæ²¥
 int32 FLocalCharacterData::GetAppliedCharBrevetNodeIndex(EPCClass InClass) const
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(FLocalCharacterData_GetAppliedCharBrevetNodeIndex);
@@ -1084,17 +1084,17 @@ int32 FLocalCharacterData::GetAppliedCharBrevetNodeIndex(EPCClass InClass) const
 	//if (CurRank == 0)
 	//	return 0;
 
-	//// Ã¹ ·©Å©°¡ ¾Æ´Ñ °æ¿ì Ã¹¹ø¤Š ³ëµå´Â ÀÌÀü ·©Å©ÀÇ ÃÖ´ë ÀÎµ¦½º°¡ Àû¿ë°ª
+	//// éœ‰ çå†œå•Š é…’å›± ç‰ˆå¿« éœ‰é”…î˜¯ ç•´é›ç»° æå‚ˆ çå†œç‹¼ å¼¥æª ç‰¢éƒ¸èƒ¶å•Š åˆ©ä¾©è”¼
 	//if (CurRank != 1 && CurNodeIndex == 1)
 	//	return BladeIIGameImpl::GetClientDataStore().GetBrevetNodeCount(CurRank);
 
-	//// ¸¶Áö¸· ·©Å·¿¡ ¸¶Áö¸· ³ëµåÀÎµ¦½º¸é
+	//// ä»˜ç˜¤é˜œ çæ¬§ä¿Š ä»˜ç˜¤é˜œ ç•´é›ç‰¢éƒ¸èƒ¶æ
 	//if (BladeIIGameImpl::GetClientDataStore().GetBrevetMaxRank() == CurRank 
 	//	&& BladeIIGameImpl::GetClientDataStore().GetBrevetNodeCount(CurRank) == CurNodeIndex
 	//	&& GetCharBrevetNodeState(InClass))
 	//	return CurNodeIndex;
 
-	// ±âÁ¸ÀûÀ¸·Î´Â ÇöÀç ³ëµå¿¡¼­ ÇÏ³ª ÀÛÀº°Ô Àû¿ëµÈ ³ëµå
+	// æ‰ç²®åˆ©æ è‚ºç»° æ³…çŠ ç•´é›ä¿Šè¾‘ çªå”± ç´¯ç¯®éœ¸ åˆ©ä¾©ç­‰ ç•´é›
 	return CurNodeIndex - 1;
 }
 
@@ -1103,12 +1103,12 @@ bool FLocalCharacterData::GetCharBrevetNodeState(EPCClass InClass) const
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(FLocalCharacterData_GetCharBrevetNodeState);
 	if (auto CharInfo = GetPlayerStatBasicInfo(InClass))
-		return CharInfo->rank_node_state;	// rank_node_state (-1 : ¾Æ¹« ¼öÇàµµ ¾ÈÇÔ, 0 :  1
+		return CharInfo->rank_node_state;	// rank_node_state (-1 : é…’å…¬ èé’æ¡£ æ•‘çªƒ, 0 :  1
 
 	return false;
 }
 
-//ÀÌ°Ç Áö±İ À¯¹° ±¸Á¶·Î´Â ¾î·Á¿ì´Ï....¾²Áö ¸»ÀÚ
+//ææ‰’ ç˜¤é™› èœ¡æ‹± å¤‡ç‚¼è‚ºç»° ç»¢å¦¨å¿«èª....é™ç˜¤ å¯Œç£Š
 /*
 void FLocalCharacterData::SetRelicInfos(TMap<EPCClass, FAncientRelicArray> InRelicInfos)
 {
@@ -1123,7 +1123,7 @@ void FLocalCharacterData::SetRelicInfo(EPCClass nClass, FB2ResponseGetAccountRel
 
 	RelicInfos[nClass].Empty();
 
-	for (auto RelicItem : msgPtr->relics) // ÇöÀç ¿ÀÇÂµÈ À¯¹°ÀÇ Á¤º¸.
+	for (auto RelicItem : msgPtr->relics) // æ³…çŠ å·é”¹ç­‰ èœ¡æ‹±ç‹¼ æ²¥ç„Š.
 	{
 		RelicInfos[nClass].Add(FAncientRelic(RelicItem->relic_id, RelicItem->enhance_level, RelicItem->grade));
 	}
@@ -1708,7 +1708,7 @@ void FLocalCharacterData::LoadLocalData()
 }
 
 void FLocalCharacterData::LoadLocalData_ResourceBound()
-{// ¸ğµâ Startup ´Ü°è¿¡¼­´Â ÀûÀıÄ¡ ¾ÊÀº InfoAsset ³»Áö´Â MasterData °¡ ÇÊ¿äÇÑ config µ¥ÀÌÅÍ°¡ ÀÖ¾î¼­ µû·Î ¶¼¾î³¿.
+{// è‘›ç¢˜ Startup çªœæ‹Œä¿Šè¾‘ç»° åˆ©ä¾‹æ‘¹ è‡¼ç¯® InfoAsset éƒ´ç˜¤ç»° MasterData å•Š é˜å¤¸èŒ„ config å•æç£å•Š ä¹ç»¢è¾‘ è¶è‚º éƒ½ç»¢æ™¨.
 	BLADE2_SCOPE_CYCLE_COUNTER(FLocalCharacterData_LoadLocalData_ResourceBound);
 	//if (GConfig)
 	//{
@@ -1724,7 +1724,7 @@ void FLocalCharacterData::LoadLocalData_ResourceBound()
 
 	//		for (TMap<int32, FSingleSkillInfo*>::TConstIterator It(SkillInfoMap); It; ++It)
 	//		{
-	//			// Å° °ª¿¡ ½ºÅ³ ID °¡ µé¾î°¡´Âµ¥ ÀÌ°Å ¸®½ºÆ®¸¦ ÇöÀç´Â InfoAsset ¿¡¼­ ¾ò¾î¿Ã ¼ö ÀÖÀ½. ±×°Ô ¾Æ´Ï¾îµµ MasterData µçÁö..
+	//			// è™ è”¼ä¿Š èƒ¶æ‡¦ ID å•Š ç”¸ç»¢å•Šç»°å• æèŠ­ åºœèƒ¶é£˜ç”« æ³…çŠç»° InfoAsset ä¿Šè¾‘ æ˜ç»¢æ£µ è ä¹æ¾œ. å¼Šéœ¸ é…’èªç»¢æ¡£ MasterData ç”µç˜¤..
 	//			FString ToLoadPropertyText = LoadPropertyText + FString::FromInt(It.Key());
 
 	//			bool bSavedProperty = false;

@@ -1,4 +1,4 @@
-#include "B2UITutorialBattleMain.h"
+ï»¿#include "B2UITutorialBattleMain.h"
 #include "B2UIDocHelper.h"
 #include "B2TutorialGameMode.h"
 #include "Event.h"
@@ -169,7 +169,7 @@ void UB2UITutorialBattleMain::TagCommon(EPCClass MainClass, EPCClass SubClass)
 
 void UB2UITutorialBattleMain::SetLevelMainChar(int32 InValue)
 {
-	InValue = 1; // 1·Î °íÁ¤
+	InValue = 1; // 1è‚º ç»Šæ²¥
 	if (TB_MainCharLevel.IsValid())
 		TB_MainCharLevel->SetText(FText::AsNumber(InValue));
 }
@@ -374,7 +374,7 @@ void UB2UITutorialBattleMain::SetQTEWidgetState(ETutorialWidgetState WidgetState
 	if (CP_QTESuggest.IsValid())
 		CP_QTESuggest->SetVisibility(QTESuggestVisible);
 
-	// ÃÊ±â Æ©Åä¸®¾ó ±¸Çö ½Ã First/Second QTE Attack ±¸ºĞÀÌ ¾ø¾úÀ½.. 
+	// æª¬æ‰ è­¬é…åºœå€” å¤‡æ³… çŸ« First/Second QTE Attack å¤‡ç›’æ ç»èŒæ¾œ.. 
 	//SetQTEEnable(bQTEVisible ? EQTEUIAttackEnableTimingState::FirstAttack : EQTEUIAttackEnableTimingState::None);
 }
 

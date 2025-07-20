@@ -1,4 +1,4 @@
-
+ï»¿
 #include "MyAssetStore.h"
 
 #include "B2UIDocHelper.h"
@@ -26,8 +26,8 @@ void FMyAssetStore::SetStartingGold(int32 NewAmount)
 }
 
 void FMyAssetStore::SyncCurrentTempGoldToAccountInfo(bool bOptionalFreeze)
-{ // StageClear ½ÃÁ¡¿¡ ½ÌÅ©¹ÞÀº °ñµå ¾çÀ» ¿©±â·Î ¸ÂÃçÁÖ±â À§ÇÔ.
-	bFreezeAdd = bOptionalFreeze; // ±×¸®°í ÀÌ·± °æ¿ì ¾Æ¸¶µµ ´õ ´õÇÏ±æ ¿øÇÏÁö´Â ¾ÊÀ» °Í. Å¬¸®¾î ½ÅÈ£ ÀÌÈÄ¿¡ º¸½º ¸÷ °ñµå¸¦ sucking ÇÒ ¼ö ÀÖ´Ù.
+{ // StageClear çŸ«ç—¢ä¿Š æ•™å†œç½ç¯® æ¦œé› å‰§é˜‘ å’¯æ‰è‚º å˜Žè‹—æž—æ‰ å›°çªƒ.
+	bFreezeAdd = bOptionalFreeze; // å¼Šåºœç»Š æžç¹ ç‰ˆå¿« é…’ä»˜æ¡£ æ­¹ æ­¹çªè¾¨ ç›”çªç˜¤ç»° è‡¼é˜‘ å·´. åŠªåºœç»¢ è„šé¾‹ æžé¥¶ä¿Š ç„Šèƒ¶ å„ æ¦œé›ç”« sucking ä¸” è ä¹ä¿ƒ.
 
 	CurrentTempGoldAmount = BladeIIGameImpl::GetClientDataStore().GetGoldAmount();
 	UB2UIDocUser* DocUser = UB2UIDocHelper::GetDocUser();
@@ -49,7 +49,7 @@ void FMyAssetStore::AddGold(int32 AddAmount)
 			DocUser->SetGold(CurrentTempGoldAmount);
 		}
 
-		// UI ·Î ½ÅÈ£
+		// UI è‚º è„šé¾‹
 		PlayerSuckedGoldClass<int32>::GetInstance().Signal(AddAmount);
 	}
 }

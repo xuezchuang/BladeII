@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2ButtonGoodInfoToolTip.h"
@@ -22,10 +22,10 @@ UB2ButtonGoodInfoToolTip::UB2ButtonGoodInfoToolTip(const FObjectInitializer& Obj
 	, ReflectImg(UWidgetBlueprintLibrary::NoResourceBrush())
 {
 	DefaultOnClickSoundIndex = -1;
-	//ÀÌ°Ô ÀÖ¾î¾ß ½ºÅ©·Ñ °¡´ÉÇÔ
+	//æžéœ¸ ä¹ç»¢å…· èƒ¶å†œè´¹ å•Šç“·çªƒ
 	//ClickMethod = EButtonClickMethod::PreciseClick;
 	//TouchMethod = EButtonTouchMethod::PreciseTap;
-	//[@AKI, 170417] À§ÇèÀÌ ÀÖÀ» °¡´É¼ºÀÌ ÀÖ°í, ¾ÆÆ®ÂÊ¿¡¼­ »ç¿ë ¾ÈÇÏ±â·Î ÇßÀ¸¹Ç·Î ÁÖ¼® Ã³¸®
+	//[@AKI, 170417] å›°æ°°æž ä¹é˜‘ å•Šç“·å·±æž ä¹ç»Š, é…’é£˜çŽ‡ä¿Šè¾‘ è¤ä¾© æ•‘çªæ‰è‚º æ²æ éª¨è‚º æž—ç± è´¸åºœ
 	//SetIcon(WidgetStyle.Normal, WidgetStyle.Normal, WidgetStyle.Normal);
 	//SetDrawAs(ESlateBrushDrawType::Image);
 }
@@ -45,21 +45,21 @@ void UB2ButtonGoodInfoToolTip::SetItemInfo(int32 _ItemInfoidx)
 		FSlateBrush iconSlate( UWidgetBlueprintLibrary::MakeBrushFromMaterial(icon, WidgetStyle.Normal.ImageSize.X, WidgetStyle.Normal.ImageSize.Y) );
 		iconSlate.Tiling = WidgetStyle.Normal.Tiling;
 		iconSlate.TintColor = WidgetStyle.Normal.TintColor;
-		//[@AKI, 170329] ESlateBrushDrawType::ImageÀ¸·Î ÇÏ°í ÀÖ±â ¶§¹®¿¡ MarginÀÌ ¹«½ÃµÇ¾î ³Ñ°ÜÁÙ ÇÊ¿ä°¡ ¾øÀ½. ESlateBrushDrawType::Box·Î º¯°æµÉ °æ¿ì Margin°ªÀ» ³Ñ°ÜÁà¾ß ÇÔ
+		//[@AKI, 170329] ESlateBrushDrawType::Imageæ è‚º çªç»Š ä¹æ‰ é”­å·©ä¿Š Marginæž å…¬çŸ«ç™»ç»¢ é€žè´¥ä¸´ éž˜å¤¸å•Š ç»æ¾œ. ESlateBrushDrawType::Boxè‚º å‡½ç‰ˆçžª ç‰ˆå¿« Marginè”¼é˜‘ é€žè´¥æ‹Žå…· çªƒ
 		//iconSlate.Margin = WidgetStyle.Normal.Margin; 
 
-		//[@AKI, 170329] ÀÏ´ÜÀº Normal²¨¸¦ °øÅëÀ¸·Î ³Ö°í ÀÖÀ¸³ª ¾ÆÆ®ÂÊ ¾ê±â¸¦ µé¾îº¸°í
-		//Normal, Hovered, Pressed¸¦ ºÐ¸® ÇÏ°í ½Í´Ù°í ÇÏ¸é ºÐ¸® ÇØ¾ß ÇÔ.
+		//[@AKI, 170329] è€çªœç¯® Normalæ³¢ç”« å‚çƒ¹æ è‚º æŒç»Š ä¹æ å”± é…’é£˜çŽ‡ å¨Ÿæ‰ç”« ç”¸ç»¢ç„Šç»Š
+		//Normal, Hovered, Pressedç”« ç›’åºœ çªç»Š é…µä¿ƒç»Š çªæ ç›’åºœ ç§¦å…· çªƒ.
 		//SetIcon(iconSlate, iconSlate, iconSlate);
 		//SetDrawAs(ESlateBrushDrawType::Image);
 	}
 	*/
 }
-//[@AKI, 170329] MakeBrushFromMaterialÀ» ÇÏ¸é ¾ø¾îµµ ¿£ÁøÀÇ Default¸¦ ÁÖ±â ¶§¹®¿¡ nullptr Ã¼Å©¸¦ ¾ÈÇÔ
+//[@AKI, 170329] MakeBrushFromMaterialé˜‘ çªæ ç»ç»¢æ¡£ æµšæŸ³ç‹¼ Defaultç”« æž—æ‰ é”­å·©ä¿Š nullptr çœ‰å†œç”« æ•‘çªƒ
 void UB2ButtonGoodInfoToolTip::SetIcon(const FSlateBrush& _NormalSlate, const FSlateBrush& _PressedSlate, const FSlateBrush& _HoveredSlate)
 {
 	/*/
-	//[@AKI, 170329] È¤½Ã ¸ô¶ó ³öµÒ. ¿£ÁøÀÇ DefaultÀÌ¹ÌÁö¸¦ »ç¿ë ÇÒ °æ¿ì Normal°ú °°Àº°ÍÀ» »ç¿ëÇÏ°Ô ÇÏ¶ó°í ÇÔ.
+	//[@AKI, 170329] è¶£çŸ« éš”æ‰¼ å‡ºç‹„. æµšæŸ³ç‹¼ Defaultæžå›ºç˜¤ç”« è¤ä¾© ä¸” ç‰ˆå¿« Normalè‹ž éžç¯®å·´é˜‘ è¤ä¾©çªéœ¸ çªæ‰¼ç»Š çªƒ.
 	FName DefaultResourceName(TEXT("../../../Engine/Content/Slate/Common/Button.png"));
 
 	WidgetStyle.SetNormal(_NormalSlate);
@@ -96,9 +96,9 @@ FVector2D UB2ButtonGoodInfoToolTip::GetPopupPosition(UB2UIGoodsShortcutTooltipPo
 	//	ViewportClient->GetViewportSize(viewportSize);
 	//	RatioViewportSize = viewportSize;
 	//	ratio = viewportSize.X / viewportSize.Y;
-	//	if ( FMath::Abs(ratio - 1.7f) > 0.1f) // 16:9 == 1.6666667°¡ ¾Æ´Ò¶§
+	//	if ( FMath::Abs(ratio - 1.7f) > 0.1f) // 16:9 == 1.6666667å•Š é…’åŒ†é”­
 	//	{
-	//		//16:9·Î °­Á¦·Î º¯È¯ÇØ ÁØ´Ù.
+	//		//16:9è‚º ç¢åŠ›è‚º å‡½åˆ¸ç§¦ éœ–ä¿ƒ.
 	//		if(viewportSize.X < viewportSize.Y)
 	//		{
 	//			ratio = viewportSize.X / viewportSize.Y;
@@ -112,7 +112,7 @@ FVector2D UB2ButtonGoodInfoToolTip::GetPopupPosition(UB2UIGoodsShortcutTooltipPo
 	//			touchPos.Y *= ratio;
 	//		}
 	//	}
-	//	else //16:9ÀÏ¶§´Â ratio´Â 1.0 ÀÓ
+	//	else //16:9è€é”­ç»° ratioç»° 1.0 çƒ™
 	//		ratio = 1.0f;
 	//}
 	//const FVector2D viewRatio(RatioViewportSize / UB2UnitedWidgetBase::DesignedRefViewSize);
@@ -121,8 +121,8 @@ FVector2D UB2ButtonGoodInfoToolTip::GetPopupPosition(UB2UIGoodsShortcutTooltipPo
 	//const FVector2D halfRatioViewportSize(RatioViewportSize * _pUI->GetSlotAnchors());
 	//const FVector2D uiSize(_pUI->GetUISize() * viewRatio);
 	//const FVector2D checkUISize(touchPos.X + uiSize.X + this->WidgetStyle.Normal.ImageSize.X, touchPos.Y - uiSize.Y - this->WidgetStyle.Normal.ImageSize.Y);
-	////UIµµ °¡¿îµ¥¿¡ ¾ÞÄ¿Æ÷ÀÎÆ®°¡ ÀÖÀ¸¹Ç·Î °¡¿îµ¥·Î º¸³»±â À§ÇØ¼­ Á¤¸®
-	//FVector2D uiPos(touchPos.X + halfUISize.X - halfRatioViewportSize.X + this->WidgetStyle.Normal.ImageSize.X * 2, touchPos.Y - halfUISize.Y - halfRatioViewportSize.Y); //°¡¿îµ¥°¡ 0,0ÀÌ¹Ç·Î
+	////UIæ¡£ å•Šæ¬¾å•ä¿Š å·¨ç›®å™¨ç‰¢é£˜å•Š ä¹æ éª¨è‚º å•Šæ¬¾å•è‚º ç„Šéƒ´æ‰ å›°ç§¦è¾‘ æ²¥åºœ
+	//FVector2D uiPos(touchPos.X + halfUISize.X - halfRatioViewportSize.X + this->WidgetStyle.Normal.ImageSize.X * 2, touchPos.Y - halfUISize.Y - halfRatioViewportSize.Y); //å•Šæ¬¾å•å•Š 0,0æžéª¨è‚º
 	//if (checkUISize.X > viewportSize.X)
 	//{
 	//	uiPos.X = viewportSize.X * _pUI->GetSlotAnchors().X - halfUISize.X;
@@ -131,7 +131,7 @@ FVector2D UB2ButtonGoodInfoToolTip::GetPopupPosition(UB2UIGoodsShortcutTooltipPo
 	//{
 	//	uiPos.Y = -viewportSize.Y * _pUI->GetSlotAnchors().Y + uiSize.Y;
 	//}
-//	if (FMath::Abs(ratio - 1.0f) > FLT_EPSILON) // 16:9°¡ ¾Æ´Ñ ÇØ»óµµ¿¡¼­´Â UISize¸¸Å­ ³»·Á°¡´Â ¹®Á¦°¡ ÀÖ¾î º¸°£ÇÔ.
+//	if (FMath::Abs(ratio - 1.0f) > FLT_EPSILON) // 16:9å•Š é…’å›± ç§¦æƒ‘æ¡£ä¿Šè¾‘ç»° UISizeçˆ¶æ€’ éƒ´å¦¨å•Šç»° å·©åŠ›å•Š ä¹ç»¢ ç„ŠåŸƒçªƒ.
 //		uiPos.Y -= uiSize.Y;
 
 	return touchPos;
@@ -186,19 +186,19 @@ void UB2ButtonGoodInfoToolTip::ExtraOnClick()
 
 	if (GoodsPopupType == EGoodsInfoPopupType::EGoodsPopup_Info)
 	{
-		//±×³É ÀÏ¹Ý ÆË¾÷
+		//å¼Šæˆ è€é¦† æ‰‘è¯€
 		auto* pUI = UIMgrInst->OpenUI<UB2UIGoodsShortcutTooltipPopup>(UIFName::GoodsShortcutTooltipPopup);
 		if (pUI)
 		{
 			pUI->SetItemInfo(m_ItemInfoidx, EGoodsButtonType::EGoodsButtonType_Info);
-			//[@AKI, 170720] M19ºôµå °³¼±¿¡ ÀÇÇØ Áß¾ÓÀ¸·Î ¿Å±è.
-			//´Ù½Ã ÅÍÄ¡ ¿µ¿ªÀ¸·Î º¯°æ ÇÏ·Á¸é ¾Æ·¡ pUI->SetSlotPosition(GetPopupPosition(pUI)); ÁÖ¼®À» ÇØÁ¦ÇÏ¸é µÊ
+			//[@AKI, 170720] M19å‘¼é› ä¿ºæ€¥ä¿Š ç‹¼ç§¦ åå±…æ è‚º é¢—è¾«.
+			//ä¿ƒçŸ« ç£æ‘¹ åº·å¼€æ è‚º å‡½ç‰ˆ çªå¦¨æ é…’è´° pUI->SetSlotPosition(GetPopupPosition(pUI)); æž—ç±é˜‘ ç§¦åŠ›çªæ å‡³
 			//pUI->SetSlotPosition(GetPopupPosition(pUI));
 		}
 	}
 	else if (GoodsPopupType == EGoodsInfoPopupType::EGoodsPopup_Shortcut)
 	{
-		//¹Ù·Î °¡±â°¡ ÀÖ´Â ÆË¾÷
+		//å®˜è‚º å•Šæ‰å•Š ä¹ç»° æ‰‘è¯€
 		ShortageMGR->CheckContentsInfoShortcut(m_ItemInfoidx);
 		
 	/*	
@@ -210,9 +210,9 @@ void UB2ButtonGoodInfoToolTip::ExtraOnClick()
 	}
 	else if (GoodsPopupType == EGoodsInfoPopupType::EGoodsPopup_Check)
 	{
-		//°ñµå·Î ¿¹¸¦ µé¸é
-		//°ñµå°¡ ºÎÁ·ÇÏ¸é GoTo ÆË¾÷
-		//°ñµå°¡ ºÎÁ·ÇÏÁö ¾ÊÀ¸¸é Info ÆË¾÷
+		//æ¦œé›è‚º æŠ—ç”« ç”¸æ
+		//æ¦œé›å•Š ä½•ç»ƒçªæ GoTo æ‰‘è¯€
+		//æ¦œé›å•Š ä½•ç»ƒçªç˜¤ è‡¼æ æ Info æ‰‘è¯€
 	}
 }
 
@@ -222,7 +222,7 @@ void UB2ButtonGoodInfoToolTip::ExtraOnPress()
 }
 void UB2ButtonGoodInfoToolTip::ExtraOnHovered()
 {
-	//Touch Moved ¿©±â¿£ ¹¹ÇÒ±î??
+	//Touch Moved å’¯æ‰æµš æž„ä¸”é³–??
 	Super::ExtraOnHovered();
 }
 

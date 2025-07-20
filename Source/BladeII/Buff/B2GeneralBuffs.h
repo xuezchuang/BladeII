@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 //#include "BladeII.h"
 #include "B2Buff_Base.h"
 #include "B2GeneralBuffs.generated.h"
@@ -8,7 +8,7 @@ static const TArray<EBuffType> DebuffGroup = {EBuffType::Debuff_Freezing , EBuff
 void ClearDebuffGroup(EBuffType CurrentBuff, class ABladeIICharacter* Character);
 
 /*
-	¼Ó¹Ú
+	åŠ å† 
 */
 UCLASS()
 class BLADEII_API UB2Buff_Restraint : public UB2Buff_Base
@@ -26,7 +26,7 @@ private:
 
 
 /*
-	½¯µå
+	è’‹é›
 */
 UCLASS()
 class BLADEII_API UB2Buff_Shield : public UB2Buff_Base
@@ -50,7 +50,7 @@ protected:
 
 
 /*
-	DoT µ¥¹ÌÁö
+	DoT å•å›ºç˜¤
 */
 UCLASS()
 class BLADEII_API UB2Buff_DotDamage : public UB2Buff_Base
@@ -87,7 +87,7 @@ public:
 
 
 /*
-	ºù°á
+	è‘«æ¬
 */
 UCLASS()
 class BLADEII_API UB2Buff_Freezing : public UB2Buff_Base
@@ -105,7 +105,7 @@ public:
 
 
 /*
-	¹İ»ç
+	é¦†è¤
 */
 UCLASS()
 class BLADEII_API UB2Buff_Reflect : public UB2Buff_Base
@@ -124,7 +124,7 @@ protected:
 
 
 /*
-	½ºÅÏ
+	èƒ¶ç•”
 */
 UCLASS()
 class BLADEII_API UB2Buff_Stun : public UB2Buff_Base
@@ -140,7 +140,7 @@ public:
 
 
 /*
-	Áßµ¶
+	ååˆ€
 */
 UCLASS()
 class BLADEII_API UB2Buff_Poison : public UB2Buff_Base
@@ -158,7 +158,7 @@ public:
 
 
 /*
-	Àº½Å
+	ç¯®è„š
 */
 UCLASS()
 class BLADEII_API UB2Buff_Hide : public UB2Buff_Base
@@ -174,7 +174,7 @@ public:
 
 
 /*
-	ÈíÇ÷
+	è½¯è¶‹
 */
 UCLASS()
 class BLADEII_API UB2Buff_HealHPByAttack : public UB2Buff_Base
@@ -188,7 +188,7 @@ public:
 
 
 /*
-	µğ¹öÇÁ ÀÌ¹Ã
+	å¼æ»šæ©‡ æå§‘
 */
 UCLASS()
 class BLADEII_API UB2Buff_AbnormalStateImmune : public UB2Buff_Base
@@ -203,7 +203,7 @@ public:
 
 
 /*
-	ÀÌ¼ÓÁõ°¡
+	æåŠ åˆ˜å•Š
 */
 UCLASS()
 class BLADEII_API UB2Buff_IncreaseMoveSpeed : public UB2Buff_Base
@@ -219,7 +219,7 @@ public:
 
 
 /*
-	»óÅÂÀÌ»ó °ø°İ
+	æƒ‘æ€•ææƒ‘ å‚æ‹œ
 */
 UCLASS()
 class BLADEII_API UB2Buff_DebuffAttack : public UB2Buff_Base
@@ -247,7 +247,7 @@ public:
 };
 
 /*
-°ø¹æ °­È­
+å‚è§„ ç¢æ‹³
 */
 UCLASS()
 class BLADEII_API UB2Buff_Enhance : public UB2Buff_Base
@@ -268,7 +268,7 @@ private:
 };
 
 /*
-¹æ¾î·Â »ó½Â
+è§„ç»¢ä»¿ æƒ‘é“°
 */
 UCLASS()
 class BLADEII_API UB2Buff_IncreaseDefense : public UB2Buff_Base
@@ -282,7 +282,7 @@ public:
 };
 
 /*
-µğ¹öÇÁ µµ¹ß
+å¼æ»šæ©‡ æ¡£æƒ¯
 */
 UCLASS()
 class BLADEII_API UB2Buff_Taunt : public UB2Buff_Base
@@ -296,7 +296,7 @@ public:
 };
 
 /*
-µğ¹öÇÁ Ä§¹¬(½ºÅ³ »ç¿ë ±İÁö)
+å¼æ»šæ©‡ é­”å®«(èƒ¶æ‡¦ è¤ä¾© é™›ç˜¤)
 */
 UCLASS()
 class BLADEII_API UB2Buff_Silent : public UB2Buff_Base
@@ -311,7 +311,7 @@ public:
 
 
 /*
-µğ¹öÇÁ ºÀÀÎ(Çàµ¿±İÁö == ÇÁ¸®Â¡ È¿°ú´Â °°°í ÀÌÆåÆ®¸¸ ´Ù¸§)
+å¼æ»šæ©‡ è±ªç‰¢(é’æ‚¼é™›ç˜¤ == æ©‡åºœéš† ç“¤è‹ç»° éç»Š ææ£‹é£˜çˆ¶ ä¿ƒæŠš)
 */
 UCLASS()
 class BLADEII_API UB2Buff_Seal : public UB2Buff_Base
@@ -341,7 +341,7 @@ public:
 };
 
 /*
-µğ½ºÆç
+å¼èƒ¶æ­§
 */
 UCLASS()
 class BLADEII_API UB2Buff_Dispell : public UB2Buff_InstanceBuff
@@ -356,7 +356,7 @@ public:
 
 
 /*
-Áö¼Ó Èú
+ç˜¤åŠ  é³ƒ
 */
 UCLASS()
 class BLADEII_API UB2Buff_Heal : public UB2Buff_Base

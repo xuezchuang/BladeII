@@ -1,8 +1,8 @@
-#include "B2UIGuildSlotBar.h"
+﻿#include "B2UIGuildSlotBar.h"
 #include "B2UIGuildInfoPart.h"
 #include "Retailer.h"
 #include "BladeIILocText.h"
-
+#include "Event.h"
 
 void UB2UIGuildInfoSlot::CacheAssets()
 {

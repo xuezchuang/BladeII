@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 //#include "BladeII.h"
 #include "BladeIIPlayer.h"
 #include "BladeIINetPlayer.generated.h"
@@ -91,7 +91,7 @@ public:
 	virtual void OnSpawnEnd() override;
 	void RemoteOnSpawnEnd();
 	virtual void NotifyBornAgain(class ABladeIIPlayer* PrevLife) override;
-	virtual int32 GetSkillLOD() const final { return 1; } //[@AKI, 170815][M20]6¼º ½ºÅ³ °³¼± NetMode¿¡¼­´Â ¹«Á¶°Ç LOD ÇÏ°Ô º¯°æ
+	virtual int32 GetSkillLOD() const final { return 1; } //[@AKI, 170815][M20]6å·± èƒ¶æ‡¦ ä¿ºæ€¥ NetModeä¿Šè¾‘ç»° å…¬ç‚¼æ‰’ LOD çªéœ¸ å‡½ç‰ˆ
 	//virtual int32 GetSkillLOD() const final { return (NetStatus != NET_MASTER) ? 1 : 0; }
 	virtual int64 GetAccountId() override;
 

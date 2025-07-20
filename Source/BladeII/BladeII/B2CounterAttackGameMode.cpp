@@ -1,4 +1,4 @@
-
+ï»¿
 #include "B2CounterAttackGameMode.h"
 //#include "BladeII.h"
 #include "B2UIManager.h"
@@ -56,7 +56,7 @@ void AB2CounterAttackGameMode::RestartPlayer(class AController* NewPlayer)
 		if (CameraBoom)
 		{
 			CameraBoom->bEnableCameraLag = true;
-			CameraBoom->CameraLagSpeed = 5.f; //0.2ÃÊ. TotalInterpolatedTime = 1/CameraLagSpeed
+			CameraBoom->CameraLagSpeed = 5.f; //0.2æª¬. TotalInterpolatedTime = 1/CameraLagSpeed
 			CameraBoom->CameraLagMaxDistance = 1000.f;
 			CameraBoom->bUseCameraLagSubstepping = false;
 		}
@@ -106,7 +106,7 @@ void AB2CounterAttackGameMode::SubscribeEvents()
 				if (DocBattle)
 				{
 					/*
-					// ÄŞº¸ È¿°ú ¾Æ·¡¿Í °°ÀÌ ¼öÁ¤
+					// éœ“ç„Š ç“¤è‹ é…’è´°å®¢ éæ èæ²¥
 					// Good		:  0 % -> 10%
 					// Great	: 10 % -> 20%
 					// Perfect	: 20 % -> 40%
@@ -156,7 +156,7 @@ TArray<EPCClass> AB2CounterAttackGameMode::GetPCClassesToPreLoad()
 
 #if WITH_EDITOR
 	if (GIsEditor)
-	{ // ÀÌ°Ô ¸Ş¸ğ¸® ¾Æ³¢·Á°í ÇÏ´Â°Å¶ó ¿¡µğÅÍ¿¡¼± ÀÇ¹Ìµµ ¾ø°í ÇÁ¸®ºä¿¡ ¹æÇØ¸¸ µÊ. ´Ù ³Ö¾îÁØ´Ù.
+	{ // æéœ¸ çš‹è‘›åºœ é…’å°å¦¨ç»Š çªç»°èŠ­æ‰¼ ä¿Šå¼ç£ä¿Šæ€¥ ç‹¼å›ºæ¡£ ç»ç»Š æ©‡åºœè½°ä¿Š è§„ç§¦çˆ¶ å‡³. ä¿ƒ æŒç»¢éœ–ä¿ƒ.
 		for (int32 PCI = 0; PCI < GetMaxPCClassNum(); ++PCI)
 		{
 			RetArray.AddUnique(IntToPCClass(PCI));
@@ -170,7 +170,7 @@ TArray<EPCClass> AB2CounterAttackGameMode::GetPCClassesToPreLoad()
 TArray<FCombinedPCSkillAnimID> AB2CounterAttackGameMode::GetPCSkillAnimsToPreLoad()
 {
 	TArray<FCombinedPCSkillAnimID> RetArray;
-	// AnimBP ¿¡¼­ Skill Anim À» ºĞ¸®ÇÏ·Á´Â ±¸Á¶»ó ¹İ°İ ´øÀüÀº Á¤ÇØÁø ´ÜÀÏ ½ºÅ³À» ¿©ÀüÈ÷ AnimBP ¿¡ ¹èÄ¡ÇØ¼­ ¾µ °ÍÀÌ¹Ç·Î Pre-load ÀÇ ÇÊ¿ä°¡ ¾øÀ½.
+	// AnimBP ä¿Šè¾‘ Skill Anim é˜‘ ç›’åºœçªå¦¨ç»° å¤‡ç‚¼æƒ‘ é¦†æ‹œ å¸¦å‚ˆç¯® æ²¥ç§¦æŸ³ çªœè€ èƒ¶æ‡¦é˜‘ å’¯å‚ˆæ´’ AnimBP ä¿Š ç¡…æ‘¹ç§¦è¾‘ é•œ å·´æéª¨è‚º Pre-load ç‹¼ é˜å¤¸å•Š ç»æ¾œ.
 	return RetArray;
 }
 
@@ -247,16 +247,16 @@ void AB2CounterAttackGameMode::GoToVillage()
 
 void AB2CounterAttackGameMode::GoToVillageDefeated()
 {
-	//¹İ°İ´øÀü ·Îºñ·Î..
+	//é¦†æ‹œå¸¦å‚ˆ è‚ºåšè‚º..
 	GoToMap();
 }
 
 void AB2CounterAttackGameMode::GoToMap()
 {
-	GoToVillage(); // GoToVillage ¿¡¼­ LobbyMain UI ¸¦ ¿©´Â ¹Ù¶÷¿¡.. µ¹¾Æ°¡´Â ±æ¿¡ ¾à°£ ³¶ºñ°¡ ÀÖ´Ù.
+	GoToVillage(); // GoToVillage ä¿Šè¾‘ LobbyMain UI ç”« å’¯ç»° å®˜æ©ä¿Š.. å€’é…’å•Šç»° è¾¨ä¿Š è·åŸƒ æ‰¯åšå•Š ä¹ä¿ƒ.
 
 	FLobbySceneManager::DeferredRegistChangeLobbyScene([](){
-		// ÀüÃ¼ ¾À ÀüÈ¯À» ÇÏ¸é ½Ç ·Îµù ½Ã°£ÀÌ ´Ã¾î³ª¹Ç·Î ¿øÇÏ´Â È­¸é Á÷Àü±îÁö UI History ¸¸ ¸¸µé¾îÁØ´Ù. 
+		// å‚ˆçœ‰ çº  å‚ˆåˆ¸é˜‘ çªæ è§’ è‚ºçˆ¹ çŸ«åŸƒæ ç–µç»¢å”±éª¨è‚º ç›”çªç»° æ‹³æ æµå‚ˆé³–ç˜¤ UI History çˆ¶ çˆ¶ç”¸ç»¢éœ–ä¿ƒ. 
 		UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
 		if (UIMgrInst) {
 			UIMgrInst->ArtificialAddUIHistory(EUIScene::EnterDungeonMain);
@@ -269,10 +269,10 @@ void AB2CounterAttackGameMode::GoToMap()
 
 void AB2CounterAttackGameMode::GetFullStackSkillId(EPCClass InCharacterClass, TArray<int32>& OutSkillArray)
 {
-	//¿ì¼± ÀÌ·¸°Ô.. 
-	// ÀÌ°Ç ¹İ°İ´øÀü ¿ë Æ¯Á¤ ½ºÅ³ÀÌ ´Ü ÇÏ³ª¸¸ Á¸ÀçÇÑ´Ù´Â °¡Á¤ÀÌ´Ù. 
-	// ¹İ°İ ´øÀü ¿ëÀ¸·Î AnimBP ½ºÅ×ÀÌÆ®°¡ º°µµ·Î Á¸ÀçÇÏ°í ÀÖÀ¸¸ç °Å±â¼­ ¹İ°İ ´øÀü¿ë AnimSequence °¡ º°µµ·Î Æ¯¼öÇÏ°Ô ¸µÅ©µÇ¾î ÀÖÀ¸¹Ç·Î 
-	// ¸¸ÀÏ ¹İ°İ´øÀü¿¡¼­µµ ÇÃ·¹ÀÌ¾î ·¹º§ µî¿¡ µû¶ó ¿©·¯ ½ºÅ³µéÀ» ÇÃ·¹ÀÌÇÏ°Å³ª ÀÏ¹İ ÀüÅõ¿ë ½ºÅ³ ¾Ö´Ï¸ŞÀÌ¼ÇÀ» °øÀ¯ÇØ¼­ »ç¿ëÇÏ°Å³ª ÇÏ´Â µîÀÇ º¯°æÀÌ ¹ß»ıÇÏ°Ô µÈ´Ù¸é AnimBPÂÊµµ ¸¶Âù°¡Áö·Î ¼ÕÁúÀ» ÇØ ÁÖ¾î¾ß ÇÑ´Ù.
+	//å¿«æ€¥ æçŠ¯éœ¸.. 
+	// ææ‰’ é¦†æ‹œå¸¦å‚ˆ ä¾© æ¼‚æ²¥ èƒ¶æ‡¦æ çªœ çªå”±çˆ¶ ç²®çŠèŒ„ä¿ƒç»° å•Šæ²¥æä¿ƒ. 
+	// é¦†æ‹œ å¸¦å‚ˆ ä¾©æ è‚º AnimBP èƒ¶æŠ›æé£˜å•Š å–Šæ¡£è‚º ç²®çŠçªç»Š ä¹æ å“¥ èŠ­æ‰è¾‘ é¦†æ‹œ å¸¦å‚ˆä¾© AnimSequence å•Š å–Šæ¡£è‚º æ¼‚èçªéœ¸ å‚…å†œç™»ç»¢ ä¹æ éª¨è‚º 
+	// çˆ¶è€ é¦†æ‹œå¸¦å‚ˆä¿Šè¾‘æ¡£ æ•²é¥­æç»¢ é¥­éª‡ æ®¿ä¿Š è¶æ‰¼ å’¯çŸ¾ èƒ¶æ‡¦ç”¸é˜‘ æ•²é¥­æçªèŠ­å”± è€é¦† å‚ˆæ§ä¾© èƒ¶æ‡¦ å±€èªçš‹æè®°é˜‘ å‚èœ¡ç§¦è¾‘ è¤ä¾©çªèŠ­å”± çªç»° æ®¿ç‹¼ å‡½ç‰ˆæ æƒ¯ç§¯çªéœ¸ ç­‰ä¿ƒæ AnimBPç‡æ¡£ ä»˜è›®å•Šç˜¤è‚º é¢Šé¾™é˜‘ ç§¦ æ—ç»¢å…· èŒ„ä¿ƒ.
 	OutSkillArray.Add((PCClassToInt(InCharacterClass)+1) * 10000);
 }
 
@@ -284,7 +284,7 @@ void AB2CounterAttackGameMode::PlayVictoryBGM()
 #include "Animation/AnimTypes.h"
 #include "Animation/AnimSequenceBase.h"
 #include "Animation/AnimInstanceProxy.h"
-//BossMob_master_Anim_BPÀÇ Idle->Attack trasition Á¾·á Æ®¸®°Å·Î ºÒ¸®°ÔµÊ.
+//BossMob_master_Anim_BPç‹¼ Idle->Attack trasition è¾†ä¸° é£˜åºœèŠ­è‚º é˜‚åºœéœ¸å‡³.
 void AB2CounterAttackGameMode::MobAttackStarted(class ABladeIICharacter* Mob)
 {
 	//auto* MobSkelMeshComp = Mob ? Mob->GetMesh() : nullptr;
@@ -313,14 +313,14 @@ void AB2CounterAttackGameMode::MobAttackStarted(class ABladeIICharacter* Mob)
 	//	{
 	//		if (DocCounterDG->GetNewDifficulty() == 1)
 	//		{
-	//			// ±âÁ¸ ³­ÀÌµµº° Àû¿ëµÇ´Â RateScaleÀº »ç¿ëÇÏÁö¾ÊÀ½.
-	//			// µğÆúÆ®·Î ¾Ö´Ô¿¡ ¼¼ÆÃµÇ¾îÀÖ´Â RateScale°ªÀº °è»êÇØÁÖ¾î¾ßÇÔ.
-	//			const float rateScale(1 / MobAttackAnim->RateScale); //¿©±â¼­ ÇÑ¹ø¸¸ ³ª´©°í ¹×¿¡¼­´Â °öÇÏ±â
+	//			// æ‰ç²® æŠ„ææ¡£å–Š åˆ©ä¾©ç™»ç»° RateScaleç¯® è¤ä¾©çªç˜¤è‡¼æ¾œ.
+	//			// å¼å¼ƒé£˜è‚º å±€ä¸›ä¿Š æŠ€æ³¼ç™»ç»¢ä¹ç»° RateScaleè”¼ç¯® æ‹Œé­‚ç§¦æ—ç»¢å…·çªƒ.
+	//			const float rateScale(1 / MobAttackAnim->RateScale); //å’¯æ‰è¾‘ èŒ„é”…çˆ¶ å”±ç©¿ç»Š æ£ºä¿Šè¾‘ç»° èšŒçªæ‰
 
 	//			BattelMainUI-> InitCounterSuggestTimer();
 	//			for (auto& AnimNotify : MobAttackAnim->Notifies)
 	//			{
-	//				const float triggerTime(AnimNotify.GetTriggerTime() * rateScale); //Á¤È®ÇÑ Å¸ÀÌ¹Ö
+	//				const float triggerTime(AnimNotify.GetTriggerTime() * rateScale); //æ²¥çŠ¬èŒ„ é¸¥ææ€ª
 	//				if (AnimNotify.NotifyName.ToString().Find(TEXT("B2DamageNotify_StunCountable")) != INDEX_NONE)
 	//				{
 	//					BattelMainUI->AddCounterSuggestTimer(triggerTime);
@@ -335,7 +335,7 @@ void AB2CounterAttackGameMode::MobAttackStarted(class ABladeIICharacter* Mob)
 	//}
 }
 
-//BossMob_master_Anim_BPÀÇ Attack end Æ®¸®°Å·Î ºÒ¸®°ÔµÊ.
+//BossMob_master_Anim_BPç‹¼ Attack end é£˜åºœèŠ­è‚º é˜‚åºœéœ¸å‡³.
 void AB2CounterAttackGameMode::MobAttackFinished(class ABladeIICharacter* Mob)
 {
 	auto* DocCounterDG = UB2UIDocHelper::GetDocCounterAttack();
@@ -397,7 +397,7 @@ bool AB2CounterAttackGameMode::SetFinishState(ABladeIICharacter* Mob)
 
 	OnFinishMobStun();
 
-	//UI ¼û±è.
+	//UI è§è¾«.
 	BattelMainUI->SetCounterFinishMode();
 
 	bTriggeredFinishAttack = true;
@@ -437,8 +437,8 @@ void AB2CounterAttackGameMode::MoveCharacters(const FVector& OriginDiffMove, boo
 
 	//for (TActorIterator<ALevelSequenceActor > It(GetWorld()); It; ++It)
 	//{
-	//	//ALevelSequenceActor ::ApplyWorldOffsetÀ» ºÎ¸£·ÁÇß´Âµ¥,
-	//	//AttacheµÈ child actorÀÇ °æ¿ì, movement°¡ relative¶ó ¿øÇÏ´Â ±×¸²ÀÌ ³ª¿ÀÁö ¾ÊÀ½..
+	//	//ALevelSequenceActor ::ApplyWorldOffseté˜‘ ä½•ç¦å¦¨æ²ç»°å•,
+	//	//Attacheç­‰ child actorç‹¼ ç‰ˆå¿«, movementå•Š relativeæ‰¼ ç›”çªç»° å¼Šè¦†æ å”±å·ç˜¤ è‡¼æ¾œ..
 	//	ALevelSequenceActor * Matinee = (*It);
 	//	if (Matinee && Matinee->MatineeData)
 	//	{

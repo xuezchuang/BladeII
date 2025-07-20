@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+Ôªø// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -10,10 +10,11 @@
 #include "../../BladeII/BladeIIGameMode.h"
 #include "Engine/TimerHandle.h"
 #include "../B2RichTextBlock.h"
+#include "EventSubsystem.h"
 #include "B2UI_TotemInfoPopup.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class BLADEII_API UB2UI_TotemInfoPopup : public UB2UIWidget, public IB2UIBackWidget
@@ -27,7 +28,7 @@ protected:
 	virtual void UpdateStaticText() override;
 
 	virtual void CloseWidgetDelegate() override;
-	
+
 public:
 	void InitTotemInfoPopup(const FVector2D& v2PopupPosition, const float& fPopupSizeX, const FB2Totem& InTotem);
 
@@ -75,61 +76,61 @@ private:
 
 private:
 	UFUNCTION()
-		void OnClickBTN_Close();
+	void OnClickBTN_Close();
 
 	UFUNCTION()
-		void OnClickBTN_Smelting();
+	void OnClickBTN_Smelting();
 
 	UFUNCTION()
-		void OnClickBTN_Decomposition();
+	void OnClickBTN_Decomposition();
 
 	UFUNCTION()
-		void OnClickBTN_Sell();
+	void OnClickBTN_Sell();
 
 	UFUNCTION()
-		void OnClickBTN_EquipOrRelease();
+	void OnClickBTN_EquipOrRelease();
 
 	UFUNCTION()
-		void OnClickBTN_ItemLock();
+	void OnClickBTN_ItemLock();
 
 protected:
 	UFUNCTION(BlueprintImplementableEvent, Category = "BladeII")
-		void PlayEquipOrReleaseSound(bool bIsForEquip);
+	void PlayEquipOrReleaseSound(bool bIsForEquip);
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "BladeII")
-		void PlayLockOrUnlockSound(bool bIsforLock);
+	void PlayLockOrUnlockSound(bool bIsforLock);
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "UIHeaderBezel")
-		float fTopBezel_BP;
+	float fTopBezel_BP;
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "PopupSubOptionType")
-		TArray<ETotemSubOptionType> SubOptionType;
+	TArray<ETotemSubOptionType> SubOptionType;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "OptionColor")
-		FSlateColor OptionChanceColor;
+	FSlateColor OptionChanceColor;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "OptionColor")
-		FSlateColor OptionValueColor;
+	FSlateColor OptionValueColor;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DeltaColor")
-		FLinearColor ItemStatIncColor;
+	FLinearColor ItemStatIncColor;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DeltaColor")
-		FLinearColor ItemStatSameColor;
+	FLinearColor ItemStatSameColor;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DeltaColor")
-		FLinearColor ItemStatDecColor;
+	FLinearColor ItemStatDecColor;
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "UITotemOption")
-		TSubclassOf<class UB2DynText_Multiple>		UITotemOptionClass;
+	TSubclassOf<class UB2DynText_Multiple>		UITotemOptionClass;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "UITotemSmeltingBonus")
-		TSubclassOf<class UB2UI_TotemSmeltingBonus>	UITotemSmeltingBonusClass;
+	TSubclassOf<class UB2UI_TotemSmeltingBonus>	UITotemSmeltingBonusClass;
 
 private:
 	TWeakObjectPtr<UCanvasPanel>		CP_PopupBackground;
 
-	TWeakObjectPtr<UCanvasPanel>		CP_PopupMain;	// ¿ßƒ° ¿‚¿ª∂ß ªÁøÎ
+	TWeakObjectPtr<UCanvasPanel>		CP_PopupMain;	// Âõ∞Êëπ Ê£±ÈòëÈî≠ Ëç§‰æ©
 
 	TWeakObjectPtr<UB2Button>			BTN_Close;
 
@@ -172,7 +173,7 @@ private:
 	TArray<issue_ptr> Issues;
 
 	FTimerHandle DelayCallbackTH;
-		
+
 	FB2Totem CachedB2TotemInfo;
 	EPCClass CachedPCClass;
 

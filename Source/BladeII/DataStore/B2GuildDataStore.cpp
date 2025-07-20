@@ -1,4 +1,4 @@
-#include "B2GuildDataStore.h"
+ï»¿#include "B2GuildDataStore.h"
 //#include "BladeII.h"
 #include "B2StageDataStore.h"
 #include "B2ClientDataStore.h"
@@ -164,7 +164,7 @@ bool FGuildDataStore::GetGuildSupportItems(const EPCClass InPCClass, TArray<FB2I
 			return (A.ItemRefID < B.ItemRefID);
 		}
 	};
-	OutResults.StableSort(FConsumablesTypeSorter_RefID());  // ÀÌ¾îÁö´Â ¾Æ·¡ ¼ÒÆÃ¿¡¼­µµ ÀÌÀü ¼ÒÆÃÀ» º¸Á¸ÇÏ±â À§ÇØ StableSort ·Î.
+	OutResults.StableSort(FConsumablesTypeSorter_RefID());  // ì´ì–´ì§€ëŠ” ì•„ëž˜ ì†ŒíŒ…ì—ì„œë„ ì´ì „ ì†ŒíŒ…ì„ ë³´ì¡´í•˜ê¸° ìœ„í•´ StableSort ë¡œ.
 
 	return OutResults.Num() > 0;
 }

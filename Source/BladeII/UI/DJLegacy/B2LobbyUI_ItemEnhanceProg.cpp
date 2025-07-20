@@ -10,7 +10,7 @@
 #include "B2LobbyUI_ItemDetailPostOp.h"
 #include "TutorialManager.h"
 
-// ¾Æ·¡ ÀÌ¸§µéÀº Æ¯Á¤ Particle System ¸®¼Ò½ºÀÇ Named Material Slots ¿¡ Á¤ÀÇµÇ¸ç ¶ÇÇÑ Required ¸ğµâÀÇ Named Material Override ¿¡¼­ »ç¿ë.
+// é…’è´° ææŠšç”¸ç¯® æ¼‚æ²¥ Particle System åºœå®¶èƒ¶ç‹¼ Named Material Slots ä¿Š æ²¥ç‹¼ç™»å“¥ è‚šèŒ„ Required è‘›ç¢˜ç‹¼ Named Material Override ä¿Šè¾‘ è¤ä¾©.
 const FName UB2LobbyUI_ItemEnhanceProg::Name_FxMID_TargetBGPanel(TEXT("MAT_ItemBGPanel_Left"));
 const FName UB2LobbyUI_ItemEnhanceProg::Name_FxMID_TargetItemIcon(TEXT("MAT_ItemIcon_Left"));
 const FName UB2LobbyUI_ItemEnhanceProg::Name_FxMID_IngredBGPanel(TEXT("MAT_ItemBGPanel_Right"));
@@ -44,12 +44,12 @@ void UB2LobbyUI_ItemEnhanceProg::StartFromLobby(class UB2UIManager_Lobby* InUIMa
 
 	SetItemData_Target(NativeItemData_Target);
 
-	TArray<FB2Item> AllIngreds; // Àç·á´Â ÇÏ³ª¿©¾ß ÇÔ.
+	TArray<FB2Item> AllIngreds; // çŠä¸°ç»° çªå”±å’¯å…· çªƒ.
 	CachedInventory->GetAllGhostIngreds(AllIngreds);
 	if (AllIngreds.Num() > 0)
 		SetItemData_Ingred(AllIngreds[0]);
 
-	// ¿¬Ãâ¿¡¼­ ¾´ ÀÌ°÷ÀÇ Å¸°Ù ¾ÆÀÌÅÛ ¾ÆÀÌÄÜÀ» °á°ú È­¸é¿¡¼­µµ ¿¬ÀåÇØ¼­ º¸¿©ÁÙ °ÍÀÓ. °á°ú ÆäÀÌÁö¿¡ ÀÖ´Â °Ç ¹«½ÃÇÔ.
+	// æ¥·å…ä¿Šè¾‘ æ•¬ æé•‘ç‹¼ é¸¥ç™¾ é…’æè¢ é…’æèƒ½é˜‘ æ¬è‹ æ‹³æä¿Šè¾‘æ¡£ æ¥·å˜ç§¦è¾‘ ç„Šå’¯ä¸´ å·´çƒ™. æ¬è‹ å…¶æç˜¤ä¿Š ä¹ç»° æ‰’ å…¬çŸ«çªƒ.
 	if (UIP_FinalResultPageP.IsValid())
 	{
 		UIP_FinalResultPageP->SetShowMainItemIcon(false);
@@ -79,7 +79,7 @@ void UB2LobbyUI_ItemEnhanceProg::UpdateStaticWidgets()
 
 void UB2LobbyUI_ItemEnhanceProg::StartGettingCloseScene()
 {
-	DestroyAllFx(); // ¸¸ÀÏ ÀÌÀü°ÍÀÌ ³²¾ÆÀÖ¾î¾ß ÇÑ´Ù¸é ¹Ù²Ü °Í.
+	DestroyAllFx(); // çˆ¶è€ æå‚ˆå·´æ å·¢é…’ä¹ç»¢å…· èŒ„ä¿ƒæ å®˜æ›¹ å·´.
 
 	if (!GettingClosePS) {
 		return;
@@ -91,10 +91,10 @@ void UB2LobbyUI_ItemEnhanceProg::StartGettingCloseScene()
 	{
 		CreatedGettingCloseFx->SetWorldScale3D(GettingCloseFxScale);
 
-		// ÀÌÇÏ RefID ¿¡ µû¶ó ÀûÀıÇÑ ¸ÓÆ¼¸®¾óÀÌ Àû¿ëµÇ´Â UI ¾ÆÀÌÄÜ°ú ¸¶Âù°¡Áö ¿Ü°üÀÌ ³ª¿Àµµ·Ï ÇÔ.
+		// æçª RefID ä¿Š è¶æ‰¼ åˆ©ä¾‹èŒ„ èµ£èåºœå€”æ åˆ©ä¾©ç™»ç»° UI é…’æèƒ½è‹ ä»˜è›®å•Šç˜¤ å¯‡åŒ…æ å”±å·æ¡£åºŸ çªƒ.
 
-		SetupNamedMIDForFxComp(CreatedGettingCloseFx); // ÇÊ¿äÇÑ MIC µé¿¡¼­ MID ¸¦ ¸¸µé¾î¼­ »ç¿ë °¡´ÉÇÏµµ·Ï ¼¼ÆÃ.
-													   // Fx ÂÊ¿¡ MID ±îÁö ÁØºñ°¡ µÇ¾ú´Ù¸é ÆÄÆ®º°·Î ÆÄ¶ó¹ÌÅÍ °ªÀ» °¡Á®¿Ã UI ÂÊÀÇ MIC ¸¦ °¡Á®¿Í¼­ MID ¿¡ ÆÄ¶ó¹ÌÅÍ¸¦ ¼¼ÆÃ.
+		SetupNamedMIDForFxComp(CreatedGettingCloseFx); // é˜å¤¸èŒ„ MIC ç”¸ä¿Šè¾‘ MID ç”« çˆ¶ç”¸ç»¢è¾‘ è¤ä¾© å•Šç“·çªæ¡£åºŸ æŠ€æ³¼.
+													   // Fx ç‡ä¿Š MID é³–ç˜¤ éœ–åšå•Š ç™»èŒä¿ƒæ é¢‡é£˜å–Šè‚º é¢‡æ‰¼å›ºç£ è”¼é˜‘ å•Šå»‰æ£µ UI ç‡ç‹¼ MIC ç”« å•Šå»‰å®¢è¾‘ MID ä¿Š é¢‡æ‰¼å›ºç£ç”« æŠ€æ³¼.
 		{
 			UMaterialInstanceDynamic* TargetBGPanelMID = GetFxNamedMID(CreatedGettingCloseFx, Name_FxMID_TargetBGPanel);
 			UMaterialInstanceConstant* TargetBGPanelMIC_Ref = CreatedItemIcon_Target ? CreatedItemIcon_Target->GetBGPanelMIC() : NULL;
@@ -117,14 +117,14 @@ void UB2LobbyUI_ItemEnhanceProg::StartGettingCloseScene()
 
 void UB2LobbyUI_ItemEnhanceProg::StartUnitingScene()
 {
-	DestroyAllFx(); // ¸¸ÀÏ ÀÌÀü°ÍÀÌ ³²¾ÆÀÖ¾î¾ß ÇÑ´Ù¸é ¹Ù²Ü °Í.
+	DestroyAllFx(); // çˆ¶è€ æå‚ˆå·´æ å·¢é…’ä¹ç»¢å…· èŒ„ä¿ƒæ å®˜æ›¹ å·´.
 
 	check(CachedInventory);
-	CachedInventory->GetItemOPTargetItemData(NativeItemData_Result, false); // °á°ú ¾ÆÀÌÅÛ µ¥ÀÌÅÍ¸¦ ´Ù½Ã ÇÑ¹ø °¡Á®¿È.
+	CachedInventory->GetItemOPTargetItemData(NativeItemData_Result, false); // æ¬è‹ é…’æè¢ å•æç£ç”« ä¿ƒçŸ« èŒ„é”… å•Šå»‰å’³.
 
-	SetItemData_Result(NativeItemData_Result); // °á°ú ¾ÆÀÌÅÛ ¾ÆÀÌÄÜÀ» ÇöÀç º¸ÀÌ°Ç ¾È º¸ÀÌ°Ç ÀÏ´Ü »ı¼ºÀ» ÇØ¾ß ÇÔ. ±×·¡¾ß ¹Ù·Î ¾Æ·¡¿¡¼­ UI material °¡Á®¿Í¼­ Fx ÂÊ¿¡¼­ ÆÄ¶ó¹ÌÅÍ¸¦ ¼¼ÆÃÇÑ´Ù.
+	SetItemData_Result(NativeItemData_Result); // æ¬è‹ é…’æè¢ é…’æèƒ½é˜‘ æ³…çŠ ç„Šææ‰’ æ•‘ ç„Šææ‰’ è€çªœ ç§¯å·±é˜‘ ç§¦å…· çªƒ. å¼Šè´°å…· å®˜è‚º é…’è´°ä¿Šè¾‘ UI material å•Šå»‰å®¢è¾‘ Fx ç‡ä¿Šè¾‘ é¢‡æ‰¼å›ºç£ç”« æŠ€æ³¼èŒ„ä¿ƒ.
 	if (CreatedItemIcon_Result)
-		CreatedItemIcon_Result->SetVisibility(ESlateVisibility::Hidden); // ¾î¶² °æ¿ìµç ÀÏ´Ü ¼û°Ü³õ°Ô µÉ °ÍÀÌ´Ù. Áö±İÀº 3D È¿°ú°¡ ³ª¿Í¾ß ÇÒ ½ÃÁ¡.
+		CreatedItemIcon_Result->SetVisibility(ESlateVisibility::Hidden); // ç»¢æ« ç‰ˆå¿«ç”µ è€çªœ è§è´¥åˆéœ¸ çª å·´æä¿ƒ. ç˜¤é™›ç¯® 3D ç“¤è‹å•Š å”±å®¢å…· ä¸” çŸ«ç—¢.
 	
 	UParticleSystem* CurUnitingPS = CachedInventory->IsSuccessEnhanceItemForResultPresent() ? EnhanceSuccessUnitingPS : EnhanceFailUnitingPS;
 	if (CurUnitingPS)
@@ -135,9 +135,9 @@ void UB2LobbyUI_ItemEnhanceProg::StartUnitingScene()
 		{
 			CreatedUnitingFx->SetWorldScale3D(EnhanceSuccessUnitingFxScale);
 
-			SetupNamedMIDForFxComp(CreatedUnitingFx); // ÇÊ¿äÇÑ MIC µé¿¡¼­ MID ¸¦ ¸¸µé¾î¼­ »ç¿ë °¡´ÉÇÏµµ·Ï ¼¼ÆÃ.
+			SetupNamedMIDForFxComp(CreatedUnitingFx); // é˜å¤¸èŒ„ MIC ç”¸ä¿Šè¾‘ MID ç”« çˆ¶ç”¸ç»¢è¾‘ è¤ä¾© å•Šç“·çªæ¡£åºŸ æŠ€æ³¼.
 
-			// Fx ÂÊ¿¡ MID ±îÁö ÁØºñ°¡ µÇ¾ú´Ù¸é ÆÄÆ®º°·Î ÆÄ¶ó¹ÌÅÍ °ªÀ» °¡Á®¿Ã UI ÂÊÀÇ MIC ¸¦ °¡Á®¿Í¼­ MID ¿¡ ÆÄ¶ó¹ÌÅÍ¸¦ ¼¼ÆÃ.
+			// Fx ç‡ä¿Š MID é³–ç˜¤ éœ–åšå•Š ç™»èŒä¿ƒæ é¢‡é£˜å–Šè‚º é¢‡æ‰¼å›ºç£ è”¼é˜‘ å•Šå»‰æ£µ UI ç‡ç‹¼ MIC ç”« å•Šå»‰å®¢è¾‘ MID ä¿Š é¢‡æ‰¼å›ºç£ç”« æŠ€æ³¼.
 			{
 				UMaterialInstanceDynamic* UnitingPSBGPanelMID = GetFxNamedMID(CreatedUnitingFx, Name_FxMID_UnitingBGPanel);
 				UMaterialInstanceConstant* UnitingPSBGPanelMIC_Ref = CreatedItemIcon_Result ? CreatedItemIcon_Result->GetBGPanelMIC() : NULL;
@@ -191,7 +191,7 @@ void UB2LobbyUI_ItemEnhanceProg::DestroyUnitingFx()
 }
 
 void UB2LobbyUI_ItemEnhanceProg::ShowBattleScorePopup()
-{// ¾Ö´Ï¸ŞÀÌ¼Ç ¿¬Ãâ Á¾·á½Ã È£ÃâµÇ´Â ÀüÅõ·Â °ü·Ã ÆË¾÷ 
+{// å±€èªçš‹æè®° æ¥·å… è¾†ä¸°çŸ« é¾‹å…ç™»ç»° å‚ˆæ§ä»¿ åŒ…è®¿ æ‰‘è¯€ 
 	ShowBattleScoreNotifyClass<EPCClass>::GetInstance().Signal(IntToPCClass(NativeItemData_Target.AllowedPCClass));
 }
 
@@ -207,7 +207,7 @@ void UB2LobbyUI_ItemEnhanceProg::StartShowResultItemIcon()
 {
 	Super::StartShowResultItemIcon();
 
-	// Note : Àåºñ °­È­´Â º°µî±ŞÀÌ º¯°æµÇ´Â°ÍÀº ¾Æ´Ï¹Ç·Î µî±ŞÀº ¿¬ÃâÀÌ ¾Æ´Ñ ±×³É UI»óÀ¸·Î Ç¥½ÃÇÏµµ·Ï ÇÏÀÚ.
+	// Note : å˜åš ç¢æ‹³ç»° å–Šæ®¿é­æ å‡½ç‰ˆç™»ç»°å·´ç¯® é…’èªéª¨è‚º æ®¿é­ç¯® æ¥·å…æ é…’å›± å¼Šæˆ UIæƒ‘æ è‚º é’çŸ«çªæ¡£åºŸ çªç£Š.
 	if (CreatedItemIcon_Result)	
 		CreatedItemIcon_Result->SetShowOverlayInfoOnly(false, true);
 }

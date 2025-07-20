@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2UIControlChatPanelMessage.h"
@@ -37,7 +37,7 @@ void UB2UIControlChatPanelMessage::BindDelegates()
 
 void UB2UIControlChatPanelMessage::OnClickBtnSend()
 {
-	// °ÔÀÓ¸ğµåÅëÇØ¼­ Àü¼Û. ControlBattleSub¿¡´Â °ÔÀÓ¸ğµå¿¡¼­ ³ëÆ¼.
+	// éœ¸çƒ™è‘›é›çƒ¹ç§¦è¾‘ å‚ˆä»·. ControlBattleSubä¿Šç»° éœ¸çƒ™è‘›é›ä¿Šè¾‘ ç•´è.
 	AB2ControlGameMode* pGM = Cast<AB2ControlGameMode>(UGameplayStatics::GetGameMode(this));
 
 	if (pGM)
@@ -53,16 +53,16 @@ void UB2UIControlChatPanelMessage::AddControlChatPanelMessageItem(EControlChatTy
 	//{
 	//	if (!MI)
 	//	{
-	//		// ¾ÆÀÌÄÜ ¼û±â°í
+	//		// é…’æèƒ½ è§æ‰ç»Š
 	//		IMG_Icon->SetVisibility(ESlateVisibility::Hidden);
 
-	//		// ¹éÆÇ ÇÊ¿äÇÏ¸é ¹Ù²ãÁÜ(±âÈ¹¼­¿£ ÀÖ¾î¼­)
+	//		// å½’é­„ é˜å¤¸çªæ å®˜å±‚æ·‹(æ‰è£™è¾‘æµš ä¹ç»¢è¾‘)
 	//	}
 	//	else
 	//		IMG_Icon->SetBrushFromMaterial(MI);
 	//}
 
-	//// ¹è°á¼³Á¤.
+	//// ç¡…æ¬æ±²æ²¥.
 	//if (MI)
 	//{
 	//	if (IMG_BG_Bright.IsValid())

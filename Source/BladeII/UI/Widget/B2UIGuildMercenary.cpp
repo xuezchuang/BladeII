@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIGuildMercenary.h"
 #include "B2UIManager.h"
 
@@ -424,8 +424,8 @@ void UB2UIGuildMercenary::SetMercenary()
 	FGuildDataStore& GuildData = BladeIIGameImpl::GetGuildDataStore();
 
 
-	auto NPCData = GuildData.GetGuildAllMercenaryData();				//ÇöÀç °¡Áö°íÀÖ´Â ¿ëº´µ¥ÀÌÅ¸
-	//auto NPCMasterDataArr = GuildData.GetGuildMercenaryMasterData();			//¿ëº´ Á¤º¸ ¸¶½ºÅÍ µ¥ÀÌÅ¸(ÀüÃ¼)
+	auto NPCData = GuildData.GetGuildAllMercenaryData();				//æ³…çŠ å•Šç˜¤ç»Šä¹ç»° ä¾©æå•æé¸¥
+	//auto NPCMasterDataArr = GuildData.GetGuildMercenaryMasterData();			//ä¾©æ æ²¥ç„Š ä»˜èƒ¶ç£ å•æé¸¥(å‚ˆçœ‰)
 
 	auto NPCMasterDataArr = GuildData.GetGuildMercenaryMasterData().GetMercenariesArr();
 
@@ -433,7 +433,7 @@ void UB2UIGuildMercenary::SetMercenary()
 	int32 i = 0;
 	for (auto ElNPCData : NPCMasterDataArr)
 	{
-		//auto NPCMasterData = NPCMasterDataArr.GetMercenaries(ElNPCData.Value->id);				//¿ëº´ Á¤º¸ ¸¶½ºÅÍ µ¥ÀÌÅ¸(°³ÀÎ)
+		//auto NPCMasterData = NPCMasterDataArr.GetMercenaries(ElNPCData.Value->id);				//ä¾©æ æ²¥ç„Š ä»˜èƒ¶ç£ å•æé¸¥(ä¿ºç‰¢)
 
 		if (GuildMercenarySlotArr[i].IsValid())
 		{
@@ -482,16 +482,16 @@ void UB2UIGuildMercenary::SetMercenaryInfo(int32 InNPCID)
 	FGuildDataStore& GuildData = BladeIIGameImpl::GetGuildDataStore();
 	FB2GuildMercenaryInfo GuildMasterData = GuildData.GetGuildMercenaryMasterData();
 
-	auto NPCData = GuildData.GetGuildMercenaryData(NPCID);			//ÀÚ±â ¿ëº´·¹º§ °æÇèÄ¡ µîµî °¡Á®¿À±â
+	auto NPCData = GuildData.GetGuildMercenaryData(NPCID);			//ç£Šæ‰ ä¾©æé¥­éª‡ ç‰ˆæ°°æ‘¹ æ®¿æ®¿ å•Šå»‰å·æ‰
 
-	auto NPCMasterDataArr = GuildData.GetGuildMercenaryMasterData();		//¿ëº´ ¸¶½ºÅÍ µ¥ÀÌÅÍ ÀüÃ¼ °¡Á®¿À±â
-	auto NPCMercenariesData = GuildMasterData.GetMercenaries(NPCID);		//¿ëº´ÀÌ ¹«½¼½ºÅ³°¡Áö°íÀÖ´ÂÁö »ç¿ë¿©ºÎµî °¡Á®¿À±â
-	b2network::B2mdGuildMercenaryMasteryPtr MercenaryMasteries = GuildMasterData.GetMercenaryMasteries(NPCID, NPCData->level);	//·¹º§¾÷À§ÇÑ°æÇèÄ¡, Àü¹®È­±â¼ú ¹¹ÀÖ³ª °¡Á®¿À±â
+	auto NPCMasterDataArr = GuildData.GetGuildMercenaryMasterData();		//ä¾©æ ä»˜èƒ¶ç£ å•æç£ å‚ˆçœ‰ å•Šå»‰å·æ‰
+	auto NPCMercenariesData = GuildMasterData.GetMercenaries(NPCID);		//ä¾©ææ å…¬éƒŠèƒ¶æ‡¦å•Šç˜¤ç»Šä¹ç»°ç˜¤ è¤ä¾©å’¯ä½•æ®¿ å•Šå»‰å·æ‰
+	b2network::B2mdGuildMercenaryMasteryPtr MercenaryMasteries = GuildMasterData.GetMercenaryMasteries(NPCID, NPCData->level);	//é¥­éª‡è¯€å›°èŒ„ç‰ˆæ°°æ‘¹, å‚ˆå·©æ‹³æ‰è´± æ„ä¹å”± å•Šå»‰å·æ‰
 
-	b2network::B2mdGuildMercenaryDonationPtr MercenaryDonatioGold = GuildMasterData.GetMercenaryDonations(b2network::B2GuildMercenaryDonationType::GOLD);		//±âºÎ°ñµåÁ¤º¸
-	b2network::B2mdGuildMercenaryDonationPtr MercenaryDonatioGem = GuildMasterData.GetMercenaryDonations(b2network::B2GuildMercenaryDonationType::GEM);		//±âºÎº¸¼®Á¤º¸
+	b2network::B2mdGuildMercenaryDonationPtr MercenaryDonatioGold = GuildMasterData.GetMercenaryDonations(b2network::B2GuildMercenaryDonationType::GOLD);		//æ‰ä½•æ¦œé›æ²¥ç„Š
+	b2network::B2mdGuildMercenaryDonationPtr MercenaryDonatioGem = GuildMasterData.GetMercenaryDonations(b2network::B2GuildMercenaryDonationType::GEM);		//æ‰ä½•ç„Šç±æ²¥ç„Š
 
-	auto NPCMercenariesDataArr = NPCMasterDataArr.GetMercenariesArr();		//¿ëº´ÀüÃ¼Array°¡Á®¿À±â
+	auto NPCMercenariesDataArr = NPCMasterDataArr.GetMercenariesArr();		//ä¾©æå‚ˆçœ‰Arrayå•Šå»‰å·æ‰
 
 	int32 i = 0;
 	for (auto El : NPCMercenariesDataArr)
@@ -510,21 +510,21 @@ void UB2UIGuildMercenary::SetMercenaryInfo(int32 InNPCID)
 		++i;
 	}
 
-	//ÀÌ¸§
+	//ææŠš
 	if (TB_NPCName.IsValid())
 		TB_NPCName->SetText(BladeIIGetLOCText(B2LOC_CAT_GUILDNPC, GetGuildNPCLocalizedTextKey(EGuildNPCTextDataType::NPCName, NPCID)));
 
-	//ÀÌ¸§ ¼³¸í
+	//ææŠš æ±²ç–™
 	if (TB_NPCDesc.IsValid())
 		TB_NPCDesc->SetText(BladeIIGetLOCText(B2LOC_CAT_GUILDNPC, GetGuildNPCLocalizedTextKey(EGuildNPCTextDataType::NPCNameDesc, NPCID)));
 
-	//·¹º§
+	//é¥­éª‡
 	if (TB_NPCLv.IsValid())
 		TB_NPCLv->SetText(FText::Format(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("General_Stat_Level_Abbrev")), FText::AsNumber(NPCData->level)));
 	if (TB_NPCLvNext.IsValid())
 		TB_NPCLvNext->SetText(FText::Format(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("General_Stat_Level_Abbrev")), FText::AsNumber(NPCData->level)));
 
-	//°æÇèÄ¡
+	//ç‰ˆæ°°æ‘¹
 	if (PB_Exp.IsValid())
 	{
 		float Exp = float(NPCData->exp) / float(MercenaryMasteries->max_exp);
@@ -538,7 +538,7 @@ void UB2UIGuildMercenary::SetMercenaryInfo(int32 InNPCID)
 		TB_Exp->SetText(FText::Format(FText::FromString(ExpString), FText::AsNumber(NPCData->exp), FText::AsNumber(MercenaryMasteries->max_exp)));
 	}
 
-	//Àü¹®´É·Â
+	//å‚ˆå·©ç“·ä»¿
 	if (UIP_SpecialSkill1.IsValid())
 	{
 		UIP_SpecialSkill1->SetVisibility(MercenaryMasteries->option_id_1 ? ESlateVisibility::SelfHitTestInvisible : ESlateVisibility::Hidden);
@@ -557,7 +557,7 @@ void UB2UIGuildMercenary::SetMercenaryInfo(int32 InNPCID)
 		UIP_SpecialSkill3->SetIDAndSkillType(NPCID, ENPCSKillType::Special, NPCData->level, ENPCSpecialSKill::Option3);
 	}
 
-	//½ºÅ³
+	//èƒ¶æ‡¦
 
 	if (UIP_Skill1.IsValid())
 	{
@@ -581,7 +581,7 @@ void UB2UIGuildMercenary::SetMercenaryInfo(int32 InNPCID)
 
 	check(DocUser)
 
-	//±âºÎÂÊ
+	//æ‰ä½•ç‡
 	if (UIP_GoldPrice.IsValid())
 	{	
 		UIP_GoldPrice->SetCost(EStoreItemCost::Gold, MercenaryDonatioGold->donation_amount, 0);
@@ -630,7 +630,7 @@ void UB2UIGuildMercenary::DeliveryuildDonation(FB2ResponseGuildDonationPtr InGui
 	FGuildDataStore& GuildData = BladeIIGameImpl::GetGuildDataStore();
 	FB2GuildMercenaryInfo GuildMasterData = GuildData.GetGuildMercenaryMasterData();
 
-	auto NPCData = GuildData.GetGuildMercenaryData(InGuildDonatio->mercenary->id);			//ÀÚ±â ¿ëº´·¹º§ °æÇèÄ¡ µîµî °¡Á®¿À±â]
+	auto NPCData = GuildData.GetGuildMercenaryData(InGuildDonatio->mercenary->id);			//ç£Šæ‰ ä¾©æé¥­éª‡ ç‰ˆæ°°æ‘¹ æ®¿æ®¿ å•Šå»‰å·æ‰]
 	if (NPCData)
 	{
 		BeforeExp = NPCData->exp;
@@ -684,8 +684,8 @@ void UB2UIGuildMercenary::UpgradeTick(float InDeltaTime)
 
 		UpgradeTimeRemain = UpgradeTimeRemain - InDeltaTime;
 
-		int32 IncreaseExp = BeforeLevel == AfterLevel ? AfterExp - BeforeExp : (MercenaryMasteriesBeforeExp->max_exp - BeforeExp) + AfterExp;			//¿Ã¶ó°¥ ¾çÀÇ EXP
-		int32 IncreaseTickExp = 0; //ÀÌ¹øÆ½ÀÇ EXP
+		int32 IncreaseExp = BeforeLevel == AfterLevel ? AfterExp - BeforeExp : (MercenaryMasteriesBeforeExp->max_exp - BeforeExp) + AfterExp;			//æ£µæ‰¼å“ å‰§ç‹¼ EXP
+		int32 IncreaseTickExp = 0; //æé”…å¹³ç‹¼ EXP
 		int32 MaxExp = 0;
 		float TickPercent = 0;
 

@@ -51,7 +51,7 @@ const FString UB2UIManager_Lobby::AsyncOpenUIStr = TEXT("Open_");
 
 void OpenDJLegacyHeroMgmtPageForUIScene(EUIScene InUIScene)
 {
-	// DJLegacy UI ¿ÍÀÇ È£È¯À» À§ÇØ EUIScene ¿¡ ³Ö¾îµĞ ´õ¹Ì ¿£Æ®¸® ¸ÊÇÎ
+	// DJLegacy UI ì™€ì˜ í˜¸í™˜ì„ ìœ„í•´ EUIScene ì— ë„£ì–´ë‘” ë”ë¯¸ ì—”íŠ¸ë¦¬ ë§µí•‘
 	switch (InUIScene)
 	{
 	case EUIScene::Inventory: 
@@ -90,12 +90,12 @@ FDJLegacySubpopupAddPanelInfo::FDJLegacySubpopupAddPanelInfo(UB2UnitedWidgetBase
 }
 bool FDJLegacySubpopupAddPanelInfo::AddWidgetToThisInfo(UB2LobbyUserWidget* InCreatedWidget)
 {
-	// ParentPanel À» Æ¯Á¤ Å¸ÀÔ¸¸ Çã¿ëÇÏµµ·Ï ÇÒ ¼öµµ..
+	// ParentPanel ì„ íŠ¹ì • íƒ€ì…ë§Œ í—ˆìš©í•˜ë„ë¡ í•  ìˆ˜ë„..
 	if (InCreatedWidget && OwnerWidget && ParentPanel)
 	{
 		UPanelSlot* AddeddSlot = ParentPanel->AddChild(InCreatedWidget);
 		UCanvasPanelSlot* CastedCPSlot = Cast<UCanvasPanelSlot>(AddeddSlot);
-		// Slot ¼³Á¤À» ÇÊ¿ä¿¡ µû¶ó ´Ù¾çÇÏ°Ô ÇØ¾ß ÇÒ ¼öµµ..
+		// Slot ì„¤ì •ì„ í•„ìš”ì— ë”°ë¼ ë‹¤ì–‘í•˜ê²Œ í•´ì•¼ í•  ìˆ˜ë„..
 		if (CastedCPSlot)
 		{
 			CastedCPSlot->SetAutoSize(true);
@@ -117,8 +117,8 @@ bool FDJLegacySubpopupAddPanelInfo::AddWidgetToThisInfo(UB2LobbyUserWidget* InCr
 	return false;
 }
 
-/** °ú°Å¿¡ ·Îºñ Ä³¸¯ÅÍ ¸Ó¸® À§¿¡ µÕµÕ ¶° ÀÖ´ø widget ÀÎµ¥ Áö±İ ±â´É Á¦°ÅµÇ¾î ÀÖÁö¸¸ È¤½Ã ¸ô¶ó¼­ LobbySceneManager ÂÊ¿¡ »ç¿ëÇÏ´Â ÄÚµå¸¦ ³²°ÜµĞ µí ÇÔ
- * ´Ü, ¿©±â¼­ ¸®¼Ò½º ·ÎµùÇÏ°í CreateWidget ÇÏ°í ÀÌ·± °ÍµéÀº ³Ñ³ª ³¶ºñ¶ó¼­ ¿ä define À¸·Î ²¨ µÒ. */
+/** ê³¼ê±°ì— ë¡œë¹„ ìºë¦­í„° ë¨¸ë¦¬ ìœ„ì— ë‘¥ë‘¥ ë–  ìˆë˜ widget ì¸ë° ì§€ê¸ˆ ê¸°ëŠ¥ ì œê±°ë˜ì–´ ìˆì§€ë§Œ í˜¹ì‹œ ëª°ë¼ì„œ LobbySceneManager ìª½ì— ì‚¬ìš©í•˜ëŠ” ì½”ë“œë¥¼ ë‚¨ê²¨ë‘” ë“¯ í•¨
+ * ë‹¨, ì—¬ê¸°ì„œ ë¦¬ì†ŒìŠ¤ ë¡œë”©í•˜ê³  CreateWidget í•˜ê³  ì´ëŸ° ê²ƒë“¤ì€ ë„˜ë‚˜ ë‚­ë¹„ë¼ì„œ ìš” define ìœ¼ë¡œ êº¼ ë‘ . */
 #define RESTORE_BII_LOBBY_ONHEAD_DISPLAY 0
 
 UB2UIManager_Lobby::UB2UIManager_Lobby(const FObjectInitializer& ObjectInitializer)
@@ -136,7 +136,7 @@ UB2UIManager_Lobby::UB2UIManager_Lobby(const FObjectInitializer& ObjectInitializ
 	IsOpenDailyQeustDialog = false;
 
 #if RESTORE_BII_LOBBY_ONHEAD_DISPLAY
-	if (!GMinimalDLCFrontMode){ // DLC Front ¸ğµå ¸®¼Ò½º·Îµù ÃÖ´ëÇÑ Á¦°Å
+	if (!GMinimalDLCFrontMode){ // DLC Front ëª¨ë“œ ë¦¬ì†ŒìŠ¤ë¡œë”© ìµœëŒ€í•œ ì œê±°
 		FString OnHeadDisplayWidgetClassPath;
 		GConfig->GetString(TEXT("/Script/BladeII.BladeIICharacter"), TEXT("LobbyOnHeadDisplayWidgetClass"), OnHeadDisplayWidgetClassPath, GGameIni);
 		static ConstructorHelpers::FClassFinder<UB2FloatingLobbyOnHeadDisplay> OnHeadDisplayWidgetClassFoundSet(*OnHeadDisplayWidgetClassPath);
@@ -159,7 +159,7 @@ void UB2UIManager_Lobby::BeginDestroy()
 
 void UB2UIManager_Lobby::OnPreLoadMap()
 { 
-	// UObject ÆÄ±«´Â BeginDestroy °¡ ¾Æ´Ï¶ó ¿©±â°¡ ÀûÀıÇÏ´Ù.
+	// UObject íŒŒê´´ëŠ” BeginDestroy ê°€ ì•„ë‹ˆë¼ ì—¬ê¸°ê°€ ì ì ˆí•˜ë‹¤.
 
 	if (LobbyUIAssetInfo)
 		LobbyUIAssetInfo->UnloadTAssets(true, this);
@@ -171,11 +171,11 @@ void UB2UIManager_Lobby::OnPreLoadMap()
 bool UB2UIManager_Lobby::InitUIManager(AB2LobbyGameMode* InLobbyGM)
 {
 //	if (GMinimalDLCFrontMode){
-//		return false; // DLC Front ¸ğµå ¸®¼Ò½º·Îµù ÃÖ´ëÇÑ Á¦°Å
+//		return false; // DLC Front ëª¨ë“œ ë¦¬ì†ŒìŠ¤ë¡œë”© ìµœëŒ€í•œ ì œê±°
 //	}
 //
 //	// Anything necessary..
-//	// ¸¸ÀÏ °è¼ÓÇØ¼­ ¸Ş¸ğ¸® »óÁÖÇÏ´Â °ÍÀÌ ÀÖ´Ù¸é ¿©±â¼­ »ı¼ºÇÏ°Ô µÇ°Ú´Ù.
+//	// ë§Œì¼ ê³„ì†í•´ì„œ ë©”ëª¨ë¦¬ ìƒì£¼í•˜ëŠ” ê²ƒì´ ìˆë‹¤ë©´ ì—¬ê¸°ì„œ ìƒì„±í•˜ê²Œ ë˜ê² ë‹¤.
 //
 //	OwnerLobbyGM = InLobbyGM;
 //	check(OwnerLobbyGM);
@@ -183,7 +183,7 @@ bool UB2UIManager_Lobby::InitUIManager(AB2LobbyGameMode* InLobbyGM)
 //	CachedPlayerController = UGameplayStatics::GetLocalPlayerController(OwnerLobbyGM);
 //	check(CachedPlayerController);
 //
-//	// UISwitcher. ºí·çÇÁ¸°Æ® Å¬·¡½º °¡Á®¿Í¼­ Default Object ·Î´Ù°¡
+//	// UISwitcher. ë¸”ë£¨í”„ë¦°íŠ¸ í´ë˜ìŠ¤ ê°€ì ¸ì™€ì„œ Default Object ë¡œë‹¤ê°€
 //	FString CfgClassPath;
 //	GConfig->GetString(TEXT("/Script/BladeII.B2UIManager_Lobby"), TEXT("LobbyUISwitcherClass"), CfgClassPath, GGameIni);
 //	ConstructorHelpers::StripObjectClass(CfgClassPath, true);
@@ -197,7 +197,7 @@ bool UB2UIManager_Lobby::InitUIManager(AB2LobbyGameMode* InLobbyGM)
 //	if (LobbyUIAssetInfo == NULL)
 //	{
 //		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-//			FString::Printf(TEXT("[Warning] LobbyUISwitcher ¸¦ Ã£Áö ¸øÇÔ. ÄÄÇ»ÅÍ°¡ °ğ Æø¹ßÇÑ´Ù."))
+//			FString::Printf(TEXT("[Warning] LobbyUISwitcher ë¥¼ ì°¾ì§€ ëª»í•¨. ì»´í“¨í„°ê°€ ê³§ í­ë°œí•œë‹¤."))
 //			));
 //		return false;
 //	}
@@ -207,14 +207,14 @@ bool UB2UIManager_Lobby::InitUIManager(AB2LobbyGameMode* InLobbyGM)
 //
 //	SubscribeEvents();
 //
-//	/* //UIManagerÂÊ Ã¼°è¿Í ºÙÈ÷´Â ÀÛ¾÷Áß...
-//	// ÀÏ´Ü ·Î±äÃ¢ºÎÅÍ ½ÃÀÛ. ÀÌ ÀÌÈÄ´Â GameMode ÂÊÀÇ DJLegacy_ChangeLobbyUIPage ¸¦ »ç¿ëÇÏ°Ô µÉ °Í.
+//	/* //UIManagerìª½ ì²´ê³„ì™€ ë¶™íˆëŠ” ì‘ì—…ì¤‘...
+//	// ì¼ë‹¨ ë¡œê¸´ì°½ë¶€í„° ì‹œì‘. ì´ ì´í›„ëŠ” GameMode ìª½ì˜ DJLegacy_ChangeLobbyUIPage ë¥¼ ì‚¬ìš©í•˜ê²Œ ë  ê²ƒ.
 //	DJLegacy_ChangeLobbyUIPage(ELobbyUIPages::ELUP_Login);
 //	*/
 //
-//	//ÇöÀç ÀÎº¥ºÎºĞ ¶§¹®¿¡ B2UIManager_Lobby¸¦ ³²°ÜµÎ´Â °ÍÀÌ°í ÃßÈÄ Á¦°ÅÇÏ¿©¾ß ÇÔ -> DJLegacy °¡ ½±°Ô »ç¸®ÁöÁö´Â ¾ÊÀ» µíÇÔ.
+//	//í˜„ì¬ ì¸ë²¤ë¶€ë¶„ ë•Œë¬¸ì— B2UIManager_Lobbyë¥¼ ë‚¨ê²¨ë‘ëŠ” ê²ƒì´ê³  ì¶”í›„ ì œê±°í•˜ì—¬ì•¼ í•¨ -> DJLegacy ê°€ ì‰½ê²Œ ì‚¬ë¦¬ì§€ì§€ëŠ” ì•Šì„ ë“¯í•¨.
 //	UB2UIManager::GetInstance()->ClearUISceneHistory();	
-//	LobbyChangeSceneByUISceneClass<EUIScene>::GetInstance().Signal(EUIScene::CharacterIntro); // ÀÏ´Ü CharacterIntro ·Î ½ÃÀÛÇß´Ù°¡.. ÀüÅõ¿¡¼­ µ¹¾Æ¿À´Â »óÈ²ÀÌ¶ó¸é ´Ù¸¥ °É·Î ¹Ù²Ù°Ô µÉ °Í.
+//	LobbyChangeSceneByUISceneClass<EUIScene>::GetInstance().Signal(EUIScene::CharacterIntro); // ì¼ë‹¨ CharacterIntro ë¡œ ì‹œì‘í–ˆë‹¤ê°€.. ì „íˆ¬ì—ì„œ ëŒì•„ì˜¤ëŠ” ìƒí™©ì´ë¼ë©´ ë‹¤ë¥¸ ê±¸ë¡œ ë°”ê¾¸ê²Œ ë  ê²ƒ.
 	return true;
 }
 
@@ -224,7 +224,7 @@ void UB2UIManager_Lobby::UpdateManual(float DeltaSeconds)
 	{
 		if (ThisOnHead)
 		{
-			ThisOnHead->UpdatePosition(); // Á» ¹Ùº¸°°Àº »çÁ¤ÀÌ ÀÖ¾î¼­ ÀÌ·¸°Ô Á÷Á¢ ¾÷µ¥ÀÌÆ® ÇØ ÁØ´Ù. Ã³À½ »ı¼º½Ã¿¡´Â Á¦´ë·Î ¼¼ÆÃÀÌ ¾ÈµÇ´Â ¹®Á¦¿¡´Ù°¡ NativeTick ÀÌ ¾È ºÒ¸®´Â µî.
+			ThisOnHead->UpdatePosition(); // ì¢€ ë°”ë³´ê°™ì€ ì‚¬ì •ì´ ìˆì–´ì„œ ì´ë ‡ê²Œ ì§ì ‘ ì—…ë°ì´íŠ¸ í•´ ì¤€ë‹¤. ì²˜ìŒ ìƒì„±ì‹œì—ëŠ” ì œëŒ€ë¡œ ì„¸íŒ…ì´ ì•ˆë˜ëŠ” ë¬¸ì œì—ë‹¤ê°€ NativeTick ì´ ì•ˆ ë¶ˆë¦¬ëŠ” ë“±.
 		}
 	}
 	/*
@@ -491,12 +491,12 @@ void UB2UIManager_Lobby::DJLegacy_OpenLobbySubPopup(ELobbySubPopups InPopupEnum,
 
 			if (!InOptionalAddPanelInfo.AddWidgetToThisInfo(NewPopupWidget))
 			{ 
-				// AddWidgetToThisInfo °¡ ¼º°øÇÏ¸é ¸¶Ä¡ º°µµ·Î Àü´ŞµÈ Widget ¹× Panel ¾Æ·¡ÀÇ UIP Ã³·³ µÇ´Â °Å.
-				// ±×°Ô ¾Æ´Ï¸é ±×³É Viewport ¿¡ ³Ö±â. ÀÌ·¸°Ô µÇ¸é ¿ÏÀü º°µµ·Î µ¿ÀÛÇÏ´Âµ¥ ¿©Å¸ ´Ù¸¥ Ã¼°èÀûÀ¸·Î ·¹ÀÌ¾î¸µ µÈ UI ¿Í ¾î±ß³ª´Â ÀÏÀÌ ¹ß»ıÇÒ ¼ö ÀÖÀ½.
+				// AddWidgetToThisInfo ê°€ ì„±ê³µí•˜ë©´ ë§ˆì¹˜ ë³„ë„ë¡œ ì „ë‹¬ëœ Widget ë° Panel ì•„ë˜ì˜ UIP ì²˜ëŸ¼ ë˜ëŠ” ê±°.
+				// ê·¸ê²Œ ì•„ë‹ˆë©´ ê·¸ëƒ¥ Viewport ì— ë„£ê¸°. ì´ë ‡ê²Œ ë˜ë©´ ì™„ì „ ë³„ë„ë¡œ ë™ì‘í•˜ëŠ”ë° ì—¬íƒ€ ë‹¤ë¥¸ ì²´ê³„ì ìœ¼ë¡œ ë ˆì´ì–´ë§ ëœ UI ì™€ ì–´ê¸‹ë‚˜ëŠ” ì¼ì´ ë°œìƒí•  ìˆ˜ ìˆìŒ.
 				const int32 ZOrder = LobbyUIAssetInfo->GetSubPopupZOrder(InPopupEnum);
 				NewPopupWidget->AddToViewport(ZOrder);
 			}
-			NewPopupWidget->StartFromLobby(this, OwnerLobbyGM); // ¿©±âÀÇ Init °İ..
+			NewPopupWidget->StartFromLobby(this, OwnerLobbyGM); // ì—¬ê¸°ì˜ Init ê²©..
 
 			if(Cast<IB2UIBackWidget>(NewPopupWidget))
 			{
@@ -516,14 +516,14 @@ void UB2UIManager_Lobby::DJLegacy_CloseLobbySubPopup(ELobbySubPopups InPopupEnum
 UB2LobbyUserWidget* UB2UIManager_Lobby::DJLegacy_FindLobbySubPopup(ELobbySubPopups InPopupEnum)
 {
 	UB2LobbyUserWidget** FoundOne = CreatedSubPopups.Find(InPopupEnum);
-	if (FoundOne && *FoundOne) // LobbyUISwitcher ¿¡¼­µµ ¿©±â ¸ñ·ÏÀ» Âü°íÇÏ´Âµ¥ ±»ÀÌ °Å±â·Î °¥ ÇÊ¿ä°¡ ¾øÁö ³¥³¥
+	if (FoundOne && *FoundOne) // LobbyUISwitcher ì—ì„œë„ ì—¬ê¸° ëª©ë¡ì„ ì°¸ê³ í•˜ëŠ”ë° êµ³ì´ ê±°ê¸°ë¡œ ê°ˆ í•„ìš”ê°€ ì—†ì§€ ë‚„ë‚„
 	{
 		return (*FoundOne);
 	}
 	return NULL;
 }
 
-// ÇÑ¹øÀÇ Request¿¡ ÇÏ³ªÀÇ UIPage¸¸ ·Îµå °¡´É - 1Request : 1UI ¸¸ ÁöÅ°¸é ¿©·¯°³¸¦ µ¿½Ã ¿äÃ»ÇØµµ »ó°ü¾øÀ½
+// í•œë²ˆì˜ Requestì— í•˜ë‚˜ì˜ UIPageë§Œ ë¡œë“œ ê°€ëŠ¥ - 1Request : 1UI ë§Œ ì§€í‚¤ë©´ ì—¬ëŸ¬ê°œë¥¼ ë™ì‹œ ìš”ì²­í•´ë„ ìƒê´€ì—†ìŒ
 void UB2UIManager_Lobby::ReqAsyncLoadUIPageAsset(ELobbyUIPages InLoadUIPage, bool bBlockingOpenUI/* = false*/)
 {
 	ReqAsyncLoadUIPageAssets(TArray<ELobbyUIPages> { InLoadUIPage }, bBlockingOpenUI);
@@ -531,7 +531,7 @@ void UB2UIManager_Lobby::ReqAsyncLoadUIPageAsset(ELobbyUIPages InLoadUIPage, boo
 
 bool UB2UIManager_Lobby::TryAsyncLoadOpenUI(ELobbyUIPages InLoadUIPage, bool bBlockingOpenUI)
 {
-	if (bBlockingOpenUI) // Async ¿äÃ» ´ë±â ÈÄ Callback¿¡¼­ OpenUI. ´ë±âÁßÀÓÀ» ³ªÅ¸³»´Â UI Ç¥½Ã.
+	if (bBlockingOpenUI) // Async ìš”ì²­ ëŒ€ê¸° í›„ Callbackì—ì„œ OpenUI. ëŒ€ê¸°ì¤‘ì„ì„ ë‚˜íƒ€ë‚´ëŠ” UI í‘œì‹œ.
 	{
 		ReqAsyncLoadUIPageAsset(InLoadUIPage, bBlockingOpenUI);
 	}
@@ -630,7 +630,7 @@ void UB2UIManager_Lobby::OnLoadedLobbyWidget(ELobbyUIPages UIPage, TSubclassOf<U
 			if (PageInfo->ShouldCacheOnLoad())
 				CachedLobbyUserWidgetClasses.Add(UIPage, LoadedClass);
 
-#if !PLATFORM_IOS // [IOS_SPECIFIC_MEMORY_SAVING] iOS ´Â ¸Ş¸ğ¸® ¿ì·Á·Î ÀÎÇØ ÀÌ·± °Å ÇÏÁö ¾Ê´Â´Ù..
+#if !PLATFORM_IOS // [IOS_SPECIFIC_MEMORY_SAVING] iOS ëŠ” ë©”ëª¨ë¦¬ ìš°ë ¤ë¡œ ì¸í•´ ì´ëŸ° ê±° í•˜ì§€ ì•ŠëŠ”ë‹¤..
 			if (UB2LobbyUISwitcher::IsRootSetPage(UIPage))
 				LoadedClass->AddToRoot();
 #endif
@@ -681,7 +681,7 @@ UClass* UB2UIManager_Lobby::GetInventoryItemIconClass(bool bIsForEquipped)
 void UB2UIManager_Lobby::InitializeDynItemIconWidgetPool()
 {
 	EquippedItemIconWidgetPool.PreInitSetType(EInventoryDynItemIconPoolClassType::EquippedItem);
-	// FloatingWidgetPool ¸¶³É PreCreate ÇØ ³õÀ» ÇÊ¿ä´Â ¾øÀ» µí
+	// FloatingWidgetPool ë§ˆëƒ¥ PreCreate í•´ ë†“ì„ í•„ìš”ëŠ” ì—†ì„ ë“¯
 	EquippedItemIconWidgetPool.InitPool(this, CachedPlayerController, 0, 0); 
 
 	StoredItemIconWidgetPool.PreInitSetType(EInventoryDynItemIconPoolClassType::StoredItem);
@@ -716,15 +716,15 @@ void UB2UIManager_Lobby::TryUpdateAllVisibleItemIcons()
 {
 	UB2LobbyUI_InventoryMain* InvenPage = Cast<UB2LobbyUI_InventoryMain>(CurrentActiveUIPage);
 	if (InvenPage)
-	{ // °Á ¾ÆÀÌÅÛ ¾ÆÀÌÄÜ ÀüÃ¼ ¾÷µ¥ÀÌÆ® ÇÏ´Â °Í. ¾ÆÀÌÅÛ »óÅÂ°¡ ¹Ù²ï ´Ù¾çÇÑ °æ¿ì¿¡ »ç¿ëÇÏ±â À§ÇÔ. ¹°·Ğ ¸Å ÇÁ·¹ÀÓ »ç¿ëÇÏ´Â ½ÄÀº ¾Æ´Ï°í.
+	{ // ê± ì•„ì´í…œ ì•„ì´ì½˜ ì „ì²´ ì—…ë°ì´íŠ¸ í•˜ëŠ” ê²ƒ. ì•„ì´í…œ ìƒíƒœê°€ ë°”ë€ ë‹¤ì–‘í•œ ê²½ìš°ì— ì‚¬ìš©í•˜ê¸° ìœ„í•¨. ë¬¼ë¡  ë§¤ í”„ë ˆì„ ì‚¬ìš©í•˜ëŠ” ì‹ì€ ì•„ë‹ˆê³ .
 		InvenPage->UpdateAllItemIconsForCurrentSelection();
 	}
 	UB2LobbyUI_AutoEquip* AutoEquipPopup = Cast<UB2LobbyUI_AutoEquip>(DJLegacy_FindLobbySubPopup(ELobbySubPopups::ELSPU_AutoEquip));
-	if (AutoEquipPopup) // ÀÚµ¿ ÀåÂø Ã¢ÀÌ ÀÖ´Ù¸é °Å±âµµ ¾÷µ¥ÀÌÆ®
+	if (AutoEquipPopup) // ìë™ ì¥ì°© ì°½ì´ ìˆë‹¤ë©´ ê±°ê¸°ë„ ì—…ë°ì´íŠ¸
 	{
 		AutoEquipPopup->UpdateOnEquipChange();
 	}
-	// ÀÌ°Ç Á» Æ¯¼ö ÄÉÀÌ½º±ä ÇÑµ¥ ½ºÅÈ Ã¢ÀÌ ¿­·Á ÀÖ´Â ¿ÍÁß¿¡ ÀåÂø »óÅÂ º¯°æ ½Ã ½ºÅÈ °»½ÅÀ» À§ÇÔ. 
+	// ì´ê±´ ì¢€ íŠ¹ìˆ˜ ì¼€ì´ìŠ¤ê¸´ í•œë° ìŠ¤íƒ¯ ì°½ì´ ì—´ë ¤ ìˆëŠ” ì™€ì¤‘ì— ì¥ì°© ìƒíƒœ ë³€ê²½ ì‹œ ìŠ¤íƒ¯ ê°±ì‹ ì„ ìœ„í•¨. 
 	UB2LobbyUI_CharStatDetail* CharStatPopup = Cast<UB2LobbyUI_CharStatDetail>(DJLegacy_FindLobbySubPopup(ELobbySubPopups::ELSPU_CharStatDetail));
 	if (CharStatPopup)
 	{
@@ -740,8 +740,8 @@ void UB2UIManager_Lobby::TryUpdateSingleVisibleItemIcon(int64 ItemInstanceUID)
 		InvenPage->TryUpdateSingleItemIconOfID(ItemInstanceUID);
 	}
 
-	// ¾ÆÀÌÅÛ ¼¼ºÎ Á¤º¸ Ã¢µµ.. ¿¹¸¦ µé¾î Àá±İ »óÅÂ ¾÷µ¥ÀÌÆ® °°Àº °æ¿ì ÀÀ´äÀÌ ¿Â ÈÄ ¿©±æ ÅëÇØ UI ¾÷µ¥ÀÌÆ®¸¦ ÇÔ.
-	// º¸°üÇÔÀÌ¶û ÀåÂøÀåºñ ÂÊ µÑ ´Ù ÀÌ°Ô ¶° ÀÖÀ» ¼ö ÀÖÀ¸¹Ç·Î µÑ ´Ù °Ë»çÇØ¼­ InstanceID ¸Â´Â °É ¾÷µ¥ÀÌÆ® ÇÑ´Ù.
+	// ì•„ì´í…œ ì„¸ë¶€ ì •ë³´ ì°½ë„.. ì˜ˆë¥¼ ë“¤ì–´ ì ê¸ˆ ìƒíƒœ ì—…ë°ì´íŠ¸ ê°™ì€ ê²½ìš° ì‘ë‹µì´ ì˜¨ í›„ ì—¬ê¸¸ í†µí•´ UI ì—…ë°ì´íŠ¸ë¥¼ í•¨.
+	// ë³´ê´€í•¨ì´ë‘ ì¥ì°©ì¥ë¹„ ìª½ ë‘˜ ë‹¤ ì´ê²Œ ë–  ìˆì„ ìˆ˜ ìˆìœ¼ë¯€ë¡œ ë‘˜ ë‹¤ ê²€ì‚¬í•´ì„œ InstanceID ë§ëŠ” ê±¸ ì—…ë°ì´íŠ¸ í•œë‹¤.
 	UB2LobbyUI_ItemDetail* ItemDetailPopup_Stored = Cast<UB2LobbyUI_ItemDetail>(DJLegacy_FindLobbySubPopup(ELobbySubPopups::ELSPU_StoredItemDetail));
 	UB2LobbyUI_ItemDetail* ItemDetailPopup_Equipped = Cast<UB2LobbyUI_ItemDetail>(DJLegacy_FindLobbySubPopup(ELobbySubPopups::ELSPU_EquippedItemDetail));
 
@@ -764,9 +764,9 @@ void UB2UIManager_Lobby::TryUpdateSingleVisibleItemIcon(int64 ItemInstanceUID)
 }
 
 void UB2UIManager_Lobby::TryPopupCreateAccountMenu()
-{ // ÀÓ½Ã ±¸ÇöÀÓ. Å×½ºÆ®°¡ ÇÊ¿äÇÑ ºÎºĞÀÌ¶ó.
+{ // ì„ì‹œ êµ¬í˜„ì„. í…ŒìŠ¤íŠ¸ê°€ í•„ìš”í•œ ë¶€ë¶„ì´ë¼.
 
-	/* //UIManagerÂÊ Ã¼°è¿Í ºÙÈ÷´Â ÀÛ¾÷Áß...
+	/* //UIManagerìª½ ì²´ê³„ì™€ ë¶™íˆëŠ” ì‘ì—…ì¤‘...
 	UB2LobbyUI_LoginMenu* LoginPage = Cast<UB2LobbyUI_LoginMenu>(CurrentActiveUIPage);
 	if (LoginPage)
 	{
@@ -783,7 +783,7 @@ void UB2UIManager_Lobby::TryPopupCreateAccountMenu()
 
 void UB2UIManager_Lobby::TryUpdateItemOPMainMenu()
 {
-	//// ¸ğµåº°·Î ¿­·Á ÀÖ´Â Ã¢ÀÌ ´Ù¸¦ °Í.
+	//// ëª¨ë“œë³„ë¡œ ì—´ë ¤ ìˆëŠ” ì°½ì´ ë‹¤ë¥¼ ê²ƒ.
 	//auto* LevelupPopup = Cast<UB2LobbyUI_ItemLevelupMain>(DJLegacy_FindLobbySubPopup(ELobbySubPopups::ELSPU_ItemLevelUpMain));
 	//if (LevelupPopup)
 	//{
@@ -852,7 +852,7 @@ EItemInvenType UB2UIManager_Lobby::GetInventoryTabSelection()
 	if (InvenPage == nullptr)
 		return EItemInvenType::EIIVT_End;
 
-	//// Note : ¾ÆÀÌÅÛ °­È­°°ÀÌ Àåºñ(¹«±â,¹æ¾î±¸)Ã¢¿¡¼­ °­Á¦ÀûÀ¸·Î ¼Ò¸ğÇ°Ã¢À» ¿­¾îÁáÀ»°æ¿ì ´Ù½Ã Àåºñ(¹«±â,¹æ¾î±¸)Ã¢À» ÀÌµ¿ÇÏ±âÀ§ÇÑ ¿ëµµ
+	//// Note : ì•„ì´í…œ ê°•í™”ê°™ì´ ì¥ë¹„(ë¬´ê¸°,ë°©ì–´êµ¬)ì°½ì—ì„œ ê°•ì œì ìœ¼ë¡œ ì†Œëª¨í’ˆì°½ì„ ì—´ì–´ì¤¬ì„ê²½ìš° ë‹¤ì‹œ ì¥ë¹„(ë¬´ê¸°,ë°©ì–´êµ¬)ì°½ì„ ì´ë™í•˜ê¸°ìœ„í•œ ìš©ë„
 	//EItemInvenType CustomInvenTab = InvenPage->GetCustomOldInvenTab();
 	//if (CustomInvenTab != EItemInvenType::EIIVT_End)
 	//	return CustomInvenTab;
@@ -868,10 +868,10 @@ void UB2UIManager_Lobby::ExternalSetInventoryTab(EItemInvenType InNewTab, bool b
 		InvenPage->NativeSetInvenTabSelection(InNewTab);
 		
 		if (bDisableOtherTabSelection){
-			InvenPage->SetEnableOnlyOneTabType(InNewTab); // InNewTab ¿ÜÀÇ ´Ù¸¥ ¼±ÅÃ ¸øÇÏ°Ô ÇÔ. ¹°·Ğ µû·Î Ç®¾îÁÖ¾î¾ß.
+			InvenPage->SetEnableOnlyOneTabType(InNewTab); // InNewTab ì™¸ì˜ ë‹¤ë¥¸ ì„ íƒ ëª»í•˜ê²Œ í•¨. ë¬¼ë¡  ë”°ë¡œ í’€ì–´ì£¼ì–´ì•¼.
 		}
 		else{
-			InvenPage->SetEnableAllTabButtons(true); // °Á bDisableOtherTabSelection À» false ·Î ³Ñ°ÜÁÖ¸é ´Ù Çª´Â °É·Î..
+			InvenPage->SetEnableAllTabButtons(true); // ê± bDisableOtherTabSelection ì„ false ë¡œ ë„˜ê²¨ì£¼ë©´ ë‹¤ í‘¸ëŠ” ê±¸ë¡œ..
 		}
 	}
 }
@@ -934,7 +934,7 @@ void UB2UIManager_Lobby::UpdateWingMainUI()
 	{
 		WingMainPage->UpdateByCurrentWingData();
 	}
-	// ÀÌ°Íµµ ¿­·Á ÀÖÀ»Áö ¸ğ¸£´Ï.. ¸ñÀû»ó ÀÌ°Íµµ ¾÷µ¥ÀÌÆ®°¡ ÇÊ¿ä..
+	// ì´ê²ƒë„ ì—´ë ¤ ìˆì„ì§€ ëª¨ë¥´ë‹ˆ.. ëª©ì ìƒ ì´ê²ƒë„ ì—…ë°ì´íŠ¸ê°€ í•„ìš”..
 	UB2LobbyUI_WingPropOptionEnhance* WingPropOptionEnhancePopup = Cast<UB2LobbyUI_WingPropOptionEnhance>(DJLegacy_FindLobbySubPopup(ELobbySubPopups::ELSPU_WingPropOptionEnhance));
 	if (WingPropOptionEnhancePopup)
 	{
@@ -993,7 +993,7 @@ void UB2UIManager_Lobby::PopUpLobbyNotice(int32 NoticeIndex)
 {
 	if (NoticeIndex == 0)
 	{
-		// ¸¸¾à notice°¡ ´õ ¿¬°áµÇ¾î¾ß ÇÑ´Ù¸é »óÅÂ¸¦ ¸ğµÎ ¹Ş°í Æ¯Á¤ ½ÃÁ¡¿¡¼­ ÀÏ°ı Ã³¸®ÇØ¾ßÇÒµí.
+		// ë§Œì•½ noticeê°€ ë” ì—°ê²°ë˜ì–´ì•¼ í•œë‹¤ë©´ ìƒíƒœë¥¼ ëª¨ë‘ ë°›ê³  íŠ¹ì • ì‹œì ì—ì„œ ì¼ê´„ ì²˜ë¦¬í•´ì•¼í• ë“¯.
 		if (BladeIIGameImpl::GetClientDataStore().GetAttendanceInfo().bIsAttendance || BladeIIGameImpl::GetRedDotManager().HasLobbyRedDot_EventAttendance())
 		{
 			if (UB2UIManager* UIMgrInst = UB2UIManager::GetInstance())
@@ -1039,7 +1039,7 @@ void UB2UIManager_Lobby::ResponseGetQuest(const FB2GetQuest& Quest)
 //	QuestNoticeList = GET_TUPLE_DATA(FB2ResponseGetQuest::quest_infos_index, Quest);
 //	bool bDailyInitialized = GET_TUPLE_DATA(FB2ResponseGetQuest::daily_quest_initialized_index, Quest);
 //
-//	// Sorting ÇØ¼­ ¸ŞÀÎÄù°¡ ¹«Á¶°Ç ¾ÕÀ¸·Î ¿Àµµ·Ï
+//	// Sorting í•´ì„œ ë©”ì¸í€˜ê°€ ë¬´ì¡°ê±´ ì•ìœ¼ë¡œ ì˜¤ë„ë¡
 //	QuestNoticeList.Sort([](const b2network::B2QuestInfoPtr Left, const b2network::B2QuestInfoPtr Right) {
 //		return Left->slot < Right->slot; });
 //
@@ -1101,7 +1101,7 @@ void UB2UIManager_Lobby::ResponseAcceptQuest(const FB2AcceptQuest& Quest)
 	//		break;
 	//	case DAILY_QUEST:
 	//		{
-	//			// ÀÏÀÏÄù½ºÆ®ÀÇ °æ¿ì ·Îºñ ¸ŞÀÎÈ­¸é¿¡¼­ Äù½ºÆ® ¹öÆ° Å¬¸¯À¸·Î ¿äÃ» ÇÑ´Ù. (´ÙÀÌ¾ó·Î±×¸¦ ¶ç¿öÁÖÀÚ)
+	//			// ì¼ì¼í€˜ìŠ¤íŠ¸ì˜ ê²½ìš° ë¡œë¹„ ë©”ì¸í™”ë©´ì—ì„œ í€˜ìŠ¤íŠ¸ ë²„íŠ¼ í´ë¦­ìœ¼ë¡œ ìš”ì²­ í•œë‹¤. (ë‹¤ì´ì–¼ë¡œê·¸ë¥¼ ë„ì›Œì£¼ì)
 	//			if (auto* QuestDialogUI = UB2UIManager::GetInstance()->OpenUI<UB2UIQuestDialog>(UIFName::QuestDialog))
 	//				QuestDialogUI->OpenDialogBySlotIndex(AcceptQuest->slot);
 	//		}
@@ -1137,7 +1137,7 @@ void UB2UIManager_Lobby::ResponseGetQuestReward(const Quest& CompleteQuest, cons
 
 				RewardPopup->AddRewardItems(Reward);
 
-				// »Ì±â±ÇÀº ¼ö·® Àü´Ş¿¡ ´ëÇÑ ³íÀÇ°¡ ³¡³­ ÈÄ Àû¿ë
+				// ë½‘ê¸°ê¶Œì€ ìˆ˜ëŸ‰ ì „ë‹¬ì— ëŒ€í•œ ë…¼ì˜ê°€ ëë‚œ í›„ ì ìš©
 				if (CompleteQuest.GetType() == MAIN_QUEST)
 				{
 					RewardPopup->SetConfirmCallback(FOnQuestDialogClosed::CreateLambda([this](){ this->OnClickMsgReward(b2network::B2QuestSlotType::MAIN2); BladeIIGameImpl::GetClientDataStore().ResponseGetQuestReward(this->ToViewReward); }));
@@ -1155,7 +1155,7 @@ void UB2UIManager_Lobby::ResponseGetQuestReward(const Quest& CompleteQuest, cons
 
 void UB2UIManager_Lobby::OnClickMsgReward(int32 QuestSlot)
 {
-	// Ä³½¬µÈ Äù½ºÆ®¸¦ Áö¿öÁÖ°í, ¼­¹ö·ÎºÎÅÍ »õ·Î °»½Å¹Ş´Â´Ù.
+	// ìºì‰¬ëœ í€˜ìŠ¤íŠ¸ë¥¼ ì§€ì›Œì£¼ê³ , ì„œë²„ë¡œë¶€í„° ìƒˆë¡œ ê°±ì‹ ë°›ëŠ”ë‹¤.
 	QuestManager &Manager = QuestManager::GetInstance();
 	Manager.FlushCachedCompleteQuest(QuestSlot);
 	
@@ -1165,7 +1165,7 @@ void UB2UIManager_Lobby::OnClickMsgReward(int32 QuestSlot)
 	{
 		if (auto* QuestDialogUI = UB2UIManager::GetInstance()->OpenUI<UB2UIQuestDialog>(UIFName::QuestDialog))
 		{
-			// ¸¸¾à ´ëÈ­Çü°°Àº ¹Ì¸® ¿Ï·á·Î µÇÀÖÀ» °æ¿ì Auto Clear »óÅÂ·Î ¸¸µé¾î ÁÖ¾î ´ëÈ­ÈÄ º¸»ó¹Ş±â·Î ³Ñ¾î°¡°Ô ÇÑ´Ù.
+			// ë§Œì•½ ëŒ€í™”í˜•ê°™ì€ ë¯¸ë¦¬ ì™„ë£Œë¡œ ë˜ìˆì„ ê²½ìš° Auto Clear ìƒíƒœë¡œ ë§Œë“¤ì–´ ì£¼ì–´ ëŒ€í™”í›„ ë³´ìƒë°›ê¸°ë¡œ ë„˜ì–´ê°€ê²Œ í•œë‹¤.
 			if (QuestPtrInfo->GetState() == EQS_COMPLETED)
 			{
 				QuestPtrInfo->UpdateState(EQS_PROGRESS);
@@ -1173,7 +1173,7 @@ void UB2UIManager_Lobby::OnClickMsgReward(int32 QuestSlot)
 			}
 
 			QuestDialogUI->OpenDialogBySlotIndex(QuestSlot);
-			// ÆË¾÷ Á¾·á ÈÄ Äù½ºÆ® °»½Å
+			// íŒì—… ì¢…ë£Œ í›„ í€˜ìŠ¤íŠ¸ ê°±ì‹ 
 			QuestDialogUI->SetDialogCloseDelegate(FOnQuestDialogClosed::CreateLambda([this, QuestSlot]() {
 				this->ResponseQuestComplete(QuestSlot);
 			}));
@@ -1217,7 +1217,7 @@ void UB2UIManager_Lobby::ResponseGetAccountRelic(const FB2ResponseGetAccountReli
 
 void UB2UIManager_Lobby::ResponseEnhanceRelic(const FB2ResponseEnhanceRelicPtr& msgPtr)
 {
-	// ³²Àº ¿µ¿õÀÇ Á¶°¢ ÀÎº¥Åä¸® °»½Å
+	// ë‚¨ì€ ì˜ì›…ì˜ ì¡°ê° ì¸ë²¤í† ë¦¬ ê°±ì‹ 
 	const FMD_AncientRelicLevelElem* LevelUpInfo = GLOBALRELICMANAGER.getRelicLevelInfo(msgPtr->relic->relic_id, msgPtr->relic->enhance_level);
 	if (!LevelUpInfo) return;
 
@@ -1225,7 +1225,7 @@ void UB2UIManager_Lobby::ResponseEnhanceRelic(const FB2ResponseEnhanceRelicPtr& 
 																			LevelUpInfo->nNeed_HeroPiece,
 																			msgPtr->changed_hero_piece_items,
 																			msgPtr->deleted_hero_piece_item_ids);
-	// ³²Àº µ·, ¿µ¿õÀÇÁ¶°¢ °»½Å
+	// ë‚¨ì€ ëˆ, ì˜ì›…ì˜ì¡°ê° ê°±ì‹ 
 	BladeIIGameImpl::GetClientDataStore().ReplaceUserDataWithDoc(EDocUserDataType::Gold, msgPtr->current_money);
 	BladeIIGameImpl::GetClientDataStore().ReplaceUserDataWithDoc(EDocUserDataType::HeroPiece);
 
@@ -1234,7 +1234,7 @@ void UB2UIManager_Lobby::ResponseEnhanceRelic(const FB2ResponseEnhanceRelicPtr& 
 		RelicManagement->OnResponseRelicLevelUp(msgPtr->relic->enhance_level);
 	
 	//////////////////////////////////////////////////////////////////
-	//¾×¼Ç ÁöÇ¥ ·Î±× (Ä³¸¯ÅÍ °í´ë À¯¹° °­È­)
+	//ì•¡ì…˜ ì§€í‘œ ë¡œê·¸ (ìºë¦­í„° ê³ ëŒ€ ìœ ë¬¼ ê°•í™”)
 	const EPCClass PCClass(SvrToCliPCClassType(msgPtr->relic->character_type));
 	FString itemName(TEXT("ITEM_ENHANCE_NONE"));
 	UB2ItemInfo* IteminfoTable(StaticFindItemInfo());
@@ -1251,10 +1251,10 @@ void UB2UIManager_Lobby::ResponseEnhanceRelic(const FB2ResponseEnhanceRelicPtr& 
 
 void UB2UIManager_Lobby::ResponsePromotionRelic(const FB2ResponsePromotionRelicPtr& msgPtr)
 {
-	// ³²Àº µ· °»½Å
+	// ë‚¨ì€ ëˆ ê°±ì‹ 
 	BladeIIGameImpl::GetClientDataStore().ReplaceUserDataWithDoc(EDocUserDataType::Gold, msgPtr->current_money);
 
-	// À¯¹°Á¶°¢ °»½Å
+	// ìœ ë¬¼ì¡°ê° ê°±ì‹ 
 	const FMD_AncientRelicGradeElem* GradeUpInfo = GLOBALRELICMANAGER.getRelicGradeInfo(msgPtr->relic->relic_id, msgPtr->relic->grade);
 	if (!GradeUpInfo) return;
 	BladeIIGameImpl::GetClientDataStore().OnResponseConsumableAmountDecrease(FItemRefIDHelper::GetBossPieceRefIDFromRelicID(msgPtr->relic->relic_id), 

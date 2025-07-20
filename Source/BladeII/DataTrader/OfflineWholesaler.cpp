@@ -1,4 +1,4 @@
-#include "OfflineWholesaler.h"
+﻿#include "OfflineWholesaler.h"
 #include "B2NetworkBridge.h"
 
 

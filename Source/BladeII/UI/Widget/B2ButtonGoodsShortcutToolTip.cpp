@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2ButtonGoodsShortcutToolTip.h"
 #include "B2GoodsShortcutinfo.h"
@@ -14,14 +14,14 @@
 
 //#include "B2UIManager.h"
 
-//DocÁ¤º¸¿¡ ÇÊ¿ä ÇÑ °Í
+//Docæ²¥ç„Šä¿Š é˜å¤¸ èŒ„ å·´
 // ShortcutInfoID (Key)
-// Popup Title String ¶Ç´Â Popup Title String Table ID(Key)
-// Shortcut<TArray> String ¶Ç´Â Shortcut String Table ID(Key)
-// Shortcut<TArray> EName (¹Ù·Î°¡±â ÀÌ¸§)
+// Popup Title String è‚šç»° Popup Title String Table ID(Key)
+// Shortcut<TArray> String è‚šç»° Shortcut String Table ID(Key)
+// Shortcut<TArray> EName (å®˜è‚ºå•Šæ‰ ææŠš)
 // Condition<TArray> type
 // Condition<TArray> amount
-// Condition<TArray> Popup String ¶Ç´Â Popup String Table ID(Key)
+// Condition<TArray> Popup String è‚šç»° Popup String Table ID(Key)
 // Condition<TArray> icon
 
 UB2ButtonGoodsShortcutToolTip::UB2ButtonGoodsShortcutToolTip(const FObjectInitializer& ObjectInitializer)
@@ -39,17 +39,17 @@ UB2ButtonGoodsShortcutToolTip::UB2ButtonGoodsShortcutToolTip(const FObjectInitia
 void UB2ButtonGoodsShortcutToolTip::StartFromLobby(class UB2UIManager_Lobby* const InUIManager, class AB2LobbyGameMode* const InGM)
 {
 	CachedLobbyGM = InGM;
-	// ´Ü¼øÈ÷ ¾ÆÀÌÅÛ Á¤º¸¸¸ ¾ò¾î¿À·Á¸é Inventory ÀÎ½ºÅÏ½º ¾øÀÌ static À¸·Î ¾ò¾î¿Ã ¼ö ÀÖÀ¸³ª °­È­ ±â´ÉÀº ÀÎº¥Åä¸®°¡ ¶° ÀÖ´Â »óÅÂ¿¡¼­ µ¿ÀÛ.
+	// çªœé‰´æ´’ é…’æè¢ æ²¥ç„Šçˆ¶ æ˜ç»¢å·å¦¨æ Inventory ç‰¢èƒ¶ç•”èƒ¶ ç»æ static æ è‚º æ˜ç»¢æ£µ è ä¹æ å”± ç¢æ‹³ æ‰ç“·ç¯® ç‰¢äº¥é…åºœå•Š æ ‹ ä¹ç»° æƒ‘æ€•ä¿Šè¾‘ æ‚¼ç´¯.
 	CachedInventory = InGM->GetLobbyInventory();
 	check(CachedInventory);
 
 	m_isEnough = true;
 
-	// ÀÌ ½ÃÁ¡¿¡ Inventory ÀÇ TargetItemID ´Â ¼¼ÆÃµÇ¾î ÀÖ¾î¾ß ÇÔ. (UB2LobbyInventory::EnterItemOpMode)
+	// æ çŸ«ç—¢ä¿Š Inventory ç‹¼ TargetItemID ç»° æŠ€æ³¼ç™»ç»¢ ä¹ç»¢å…· çªƒ. (UB2LobbyInventory::EnterItemOpMode)
 	//if (!CachedInventory->GetItemOPTargetItemData(NativeUpgradeTargetData) || CachedInventory->GetItemOpMode() != ELobbyInvenItemOpMode::EIVIOP_Upgrade)
 	//{
-		//±Ùµ¥ Button¿¡¼­ ½ÇÆĞÇÏ¸é ¾î¶»°Ô ÇØ¾ß ÇÏÁö??
-		//CloseAndQuitItemOpMode(); // ¸¸¿¡ ÇÏ³ª ½ÇÆĞÇÑ´Ù¸é.. ¾îÂ¿ ¼ö ¾øÁö.
+		//è¾Ÿå• Buttonä¿Šè¾‘ è§’è©çªæ ç»¢ç—˜éœ¸ ç§¦å…· çªç˜¤??
+		//CloseAndQuitItemOpMode(); // çˆ¶ä¿Š çªå”± è§’è©èŒ„ä¿ƒæ.. ç»¢é©´ è ç»ç˜¤.
 	//	return;
 	//}
 }
@@ -68,14 +68,14 @@ bool UB2ButtonGoodsShortcutToolTip::IsGoodsShorcutCondition(FName& InFGoodsType)
 {	
 	//for (auto& shortcutinfo : m_ShortcutInfoDocID)
 	//{
-	//	//¿¹¿ÜÃ³¸®¸¦ ³Ê¹« ¸¹ÀÌ ÇÏ´Â°Å °°Áö¸¸....ÀÏ´Ü ¾ÈÁ¤¼ºÀ» À§ÇØ
+	//	//æŠ—å¯‡è´¸åºœç”« å‘ˆå…¬ è…¹æ çªç»°èŠ­ éç˜¤çˆ¶....è€çªœ æ•‘æ²¥å·±é˜‘ å›°ç§¦
 	//	FSingleItemInfoData* const singleData = StaticFindItemInfo() ? StaticFindItemInfo()->GetInfoData(shortcutinfo) : nullptr;
 	//	if (!singleData)
 	//		continue;
 
 	//	const int32 userNeedAmount(m_GoodsAmountMap[shortcutinfo]);
 	//	const int32 userHaveAmount( GetHaveAmount(singleData->FGoodsType) );
-	//	//[@AKI, 170331] 12°³ÀÇ ÀçÈ­(Good)°¡ ÀÖÀ¸´Ï conditiontypeÀ» ¸¸µé¾î¼­ ÄÁµğ¼Ç¿¡ µû¶ó Doc¿¡¼­ °¡Á®¿Í¼­ °Ë»ç ÇÏÀÚ.
+	//	//[@AKI, 170331] 12ä¿ºç‹¼ çŠæ‹³(Good)å•Š ä¹æ èª conditiontypeé˜‘ çˆ¶ç”¸ç»¢è¾‘ ç‰§å¼è®°ä¿Š è¶æ‰¼ Docä¿Šè¾‘ å•Šå»‰å®¢è¾‘ å…«è¤ çªç£Š.
 	//	if (userNeedAmount > userHaveAmount)
 	//	{
 	//		InFGoodsType = singleData->FGoodsType;
@@ -98,7 +98,7 @@ int32 UB2ButtonGoodsShortcutToolTip::GetHaveAmount(FName FGoodsType) const
 	}
 	else if (FGoodsType.Compare(GoodsTypeFName::ACHIEVEMENT_POINT) == 0)
 	{
-		//ÀÌ°Ç ºÎÁ·ÇÑ °æ¿ì°¡ ¾ø´Ù°í ±âÈ¹(¹Ú°æÅÂ)ÇÑÅ× ±¸µÎ·Î Àü´Ş ¹ŞÀ½
+		//ææ‰’ ä½•ç»ƒèŒ„ ç‰ˆå¿«å•Š ç»ä¿ƒç»Š æ‰è£™(å† ç‰ˆæ€•)èŒ„æŠ› å¤‡æ»´è‚º å‚ˆå´” ç½æ¾œ
 		return 0;
 	}
 	else if (FGoodsType.Compare(GoodsTypeFName::SOUL_BLADE) == 0)
@@ -109,13 +109,13 @@ int32 UB2ButtonGoodsShortcutToolTip::GetHaveAmount(FName FGoodsType) const
 		FGoodsType.Compare(GoodsTypeFName::UPGRADE_STONE_ARMOR) == 0 || FGoodsType.Compare(GoodsTypeFName::ADVANCED_UPGRADE_STONE_ARMOR) == 0 ||
 		FGoodsType.Compare(GoodsTypeFName::UPGRADE_STONE_ACCESSORY) == 0 ||FGoodsType.Compare(GoodsTypeFName::ADVANCED_UPGRADE_STONE_ACCESSORY) == 0 )
 	{
-		//LobbyGMÀ» °¡Áö°í ¿Í¾ßÁö¸¸ ¾òÀ» ¼ö ÀÖÀ½. StartFromLobby¿¡¼­ °¡Á®¿È
+		//LobbyGMé˜‘ å•Šç˜¤ç»Š å®¢å…·ç˜¤çˆ¶ æ˜é˜‘ è ä¹æ¾œ. StartFromLobbyä¿Šè¾‘ å•Šå»‰å’³
 		return CachedInventory ? CachedInventory->HowManyUpgradeStoneForCurrentTarget() : -1;
 	}
 	else if (FGoodsType.Compare(GoodsTypeFName::UPGRADE_WING_ENHANCE_INGREDIENT) == 0 ||
 		FGoodsType.Compare(GoodsTypeFName::UPGRADE_WING_EVOLVE_INGREDIENT) == 0)
 	{
-		// B2Airport::HasEnoughGoldForWingEvolveLocalPlayer()¶û ¶È°°Àº ·ÎÁ÷ÀÓ.
+		// B2Airport::HasEnoughGoldForWingEvolveLocalPlayer()å°” åº¦éç¯® è‚ºæµçƒ™.
 		FB2Wing CharacterWingData;
 		EPCClass InPCClass = CachedLobbyGM ? CachedLobbyGM->GetHeroMgmtModePCClass() : EPCClass::EPC_End;
 		BladeIIGameImpl::GetLocalCharacterData().GetCharacterWing(InPCClass, CharacterWingData);
@@ -130,7 +130,7 @@ int32 UB2ButtonGoodsShortcutToolTip::GetHaveAmount(FName FGoodsType) const
 	}
 	else if (FGoodsType.Compare(GoodsTypeFName::UPGRADE_WING_PROP_OPTION_ENHANCE_INGREDIENT) == 0)
 	{
-		// ´ëÃµ»çÀÇ ±êÅĞÀº BladeIIGameImpl::GetClientDataStore()¿©±â¼­ È£ÃâÇÏ´Â°Ô ¾ø¾î¼­ LobbyInventory¿¡¼­ °¡Á®¿Í¼­ »ç¿ëÇÔ
+		// æªç«è¤ç‹¼ æ ‡åˆ¤ç¯® BladeIIGameImpl::GetClientDataStore()å’¯æ‰è¾‘ é¾‹å…çªç»°éœ¸ ç»ç»¢è¾‘ LobbyInventoryä¿Šè¾‘ å•Šå»‰å®¢è¾‘ è¤ä¾©çªƒ
 		return UB2LobbyInventory::GetSharedConsumableAmountOfType(FItemRefIDHelper::GetWingPropOptionEnhanceResourceRefID());
 	}
 	else if (FGoodsType.Compare(GoodsTypeFName::BREVET_STONE) == 0)
@@ -223,15 +223,15 @@ void UB2ButtonGoodsShortcutToolTip::StopButtonPressed()
 	OnPressed.Clear();
 }
 
-//ÀÌ ¹öÆ°À» »ç¿ë½Ã ¼­¹ö Åë½Å °°Àº °ÍÀº Press¿¡¼­ ÇÏ°í
-//±× ÈÄ ÀÌº¥Æ®´Â Clicked¿¡¼­ ÇÏ¸é µÊ.
+//æ æ»šç“¢é˜‘ è¤ä¾©çŸ« è¾‘æ»š çƒ¹è„š éç¯® å·´ç¯® Pressä¿Šè¾‘ çªç»Š
+//å¼Š é¥¶ æäº¥é£˜ç»° Clickedä¿Šè¾‘ çªæ å‡³.
 void UB2ButtonGoodsShortcutToolTip::ExtraOnPress()
 {
 	Super::ExtraOnPress();
 
 	if (m_DelayPress)
 	{
-		//È£Ãâ ¼ø¼­»ó ¿©±â¸¦ ¸ÕÀú µî·Ï ÇØÁÖ°í ´ÙÀ½ ÀÌº¥Æ®¸¦ ¹ß»ıÇÏ°Ô ÇØ¾ß ÇÔ
+		//é¾‹å… é‰´è¾‘æƒ‘ å’¯æ‰ç”« åˆšå† æ®¿åºŸ ç§¦æ—ç»Š ä¿ƒæ¾œ æäº¥é£˜ç”« æƒ¯ç§¯çªéœ¸ ç§¦å…· çªƒ
 		RegisterDelayClickEvent();
 		RegisterDelayPressEvent();
 
@@ -257,7 +257,7 @@ void UB2ButtonGoodsShortcutToolTip::ExtraOnClick()
 	//	uint32 isShowShorcutIteminfoIdx = 0;
 	//	for (auto& shortcutinfo : m_ShortcutInfoDocID)
 	//	{
-	//		//¿¹¿ÜÃ³¸®¸¦ ³Ê¹« ¸¹ÀÌ ÇÏ´Â°Å °°Áö¸¸....ÀÏ´Ü ¾ÈÁ¤¼ºÀ» À§ÇØ
+	//		//æŠ—å¯‡è´¸åºœç”« å‘ˆå…¬ è…¹æ çªç»°èŠ­ éç˜¤çˆ¶....è€çªœ æ•‘æ²¥å·±é˜‘ å›°ç§¦
 	//		FSingleItemInfoData* const singleData = StaticFindItemInfo() ? StaticFindItemInfo()->GetInfoData(shortcutinfo) : nullptr;
 	//		if (!singleData)
 	//			continue;
@@ -283,12 +283,12 @@ void UB2ButtonGoodsShortcutToolTip::ExtraOnClick()
 	//	RegisterExtraStuff(m_InOwnerUnitedWidget);
 	//}
 
-	////±×³É ³öµÎ¸é ¿ø·¡ ÇÏ·Á´Â°Å ÇÔ
+	////å¼Šæˆ å‡ºæ»´æ ç›”è´° çªå¦¨ç»°èŠ­ çªƒ
 }
 
 void UB2ButtonGoodsShortcutToolTip::ExtraOnHovered()
 {
-	//Touch Moved ¿©±â¿£ ¹¹ÇÒ±î??
+	//Touch Moved å’¯æ‰æµš æ„ä¸”é³–??
 	Super::ExtraOnHovered();
 }
 

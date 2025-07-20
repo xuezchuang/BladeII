@@ -1,4 +1,4 @@
-#include "B2UIGuildMatchBattleSlot.h"
+﻿#include "B2UIGuildMatchBattleSlot.h"
 #include "B2UIDocHelper.h"
 #include "Event.h"
 #include "B2UIManager.h"

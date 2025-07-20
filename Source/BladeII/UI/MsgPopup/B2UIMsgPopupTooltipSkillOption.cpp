@@ -1,4 +1,4 @@
-#include "B2UIMsgPopupTooltipSkillOption.h"
+ï»¿#include "B2UIMsgPopupTooltipSkillOption.h"
 #include "B2UISkillOptionText.h"
 #include "B2UIManager.h"
 #include "B2PCClassInfoBox.h"
@@ -35,7 +35,7 @@ void UB2UIMsgPopupTooltipSkillOption::SetSkillID(int32 SkillId)
 
 	if (AllSkillInfo)
 	{
-		// LoadSynchronous ¸¦ ÇÏ·Á´Ï const ¸¦ ¾ø¾Ö¾ß..
+		// LoadSynchronous ç”« çªå¦¨èª const ç”« ç»å±€å…·..
 		FSingleSkillInfo* SkillInfo = const_cast<FSingleSkillInfo*>(AllSkillInfo->GetSingleInfoOfID(SkillId));
 		if (SkillInfo)
 		{
@@ -119,7 +119,7 @@ void UB2UIMsgPopupTooltipSkillOption::SetUnitySkillID(int32 SkillId, EPCClass eM
 
 	if (AllSkillInfo)
 	{
-		// LoadSynchronous ¸¦ ÇÏ·Á´Ï const ¸¦ ¾ø¾Ö¾ß..
+		// LoadSynchronous ç”« çªå¦¨èª const ç”« ç»å±€å…·..
 		FSingleSkillInfo* SkillInfo = const_cast<FSingleSkillInfo*>(AllSkillInfo->GetSingleInfoOfID(SkillId));
 		if (SkillInfo)
 		{
@@ -260,7 +260,7 @@ void UB2UIMsgPopupTooltipSkillOption::SetMercenarySpecialSKillID(int32 InSkillID
 	FGuildDataStore& GuildData = BladeIIGameImpl::GetGuildDataStore();
 	FB2GuildMercenaryInfo GuildMasterData = GuildData.GetGuildMercenaryMasterData();
 
-	b2network::B2mdGuildMercenaryMasteryPtr MercenaryMasteries = GuildMasterData.GetMercenaryMasteries(InSkillID, InLv);	//·¹º§¾÷À§ÇÑ°æÇèÄ¡, Àü¹®È­±â¼ú ¹¹ÀÖ³ª °¡Á®¿À±â
+	b2network::B2mdGuildMercenaryMasteryPtr MercenaryMasteries = GuildMasterData.GetMercenaryMasteries(InSkillID, InLv);	//é¥­éª‡è¯€å›°èŒ„ç‰ˆæ°°æ‘¹, å‚ˆå·©æ‹³æ‰è´± æ„ä¹å”± å•Šå»‰å·æ‰
 
 	check(MercenaryMasteries)
 

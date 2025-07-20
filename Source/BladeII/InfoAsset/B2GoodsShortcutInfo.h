@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 #include "UObject/NoExportTypes.h"
@@ -24,10 +24,10 @@ struct FB2GoodsShortcutPopupConditionInfo
 	//int32 GoodsAmount;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	int32 GoodsPopupStringID; //ÀçÈ­°¡ ºÎÁ·ÇÒ¶§ ¶ß´Â ÆË¾÷¿¡ µé¾î°¥ ½ºÆ®¸µ
+	int32 GoodsPopupStringID; //çŠæ‹³å•Š ä½•ç»ƒä¸”é”­ å“†ç»° æ‰‘è¯€ä¿Š ç”¸ç»¢å“ èƒ¶é£˜å‚…
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	int32 ItemInfoDataTableID; //iconÀ» °¡Á®¿Ã ¾ÆÀÌÅÛ µ¥ÀÌÅÍ Å×ÀÌºíÀÇ LocalizeNameKey
+	int32 ItemInfoDataTableID; //iconé˜‘ å•Šå»‰æ£µ é…’æè¢ å•æç£ æŠ›æå–‰ç‹¼ LocalizeNameKey
 };
 */
 
@@ -64,7 +64,7 @@ public:
 	virtual void PostLoad() override;
 	FORCEINLINE FB2GoodsShortcutIndividualInfo* GetInfoData(int32 _shortcutInfoID) { return m_GoodsShortcutInfoMap.Find(_shortcutInfoID); };
 /////////////////////////////////////////////////////////////////////////////////////////////
-//[@AKI, 170331] ÀÌ ¾Æ·¡ °ÍµéÀº B2SomeInfo°ÍÀ» °¡Áö°í ¿Â °ÍÀÓ.
+//[@AKI, 170331] æ é…’è´° å·´ç”¸ç¯® B2SomeInfoå·´é˜‘ å•Šç˜¤ç»Š æŸ¯ å·´çƒ™.
 	//
 	// To be added..
 	//

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+О╩©// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIUnitySkillRewardPopup.h"
 #include "B2UIManager.h"
 #include "B2UIMailRewardPopUp.h"
@@ -48,7 +48,7 @@ void UB2UIUnitySkillRewardPopup::SetUnitySkillImage(int32 nUnitySkillIndex)
 {
 	auto* ClassInfoBox = StaticFindPCClassInfoBox();
 	auto* AllSkillInfo = ClassInfoBox ? ClassInfoBox->GetAllSkillInfo() : nullptr;
-	// LoadSynchronous ╦╕ го╥а╢о const ╦╕ ╬Ь╬ж╬ъ..
+	// LoadSynchronous Г■╚ Г╙█Е╕╗Х│╙ const Г■╚ Г╩²Е╠─Е┘╥..
 	FSingleSkillInfo* SkillClientData = AllSkillInfo ? const_cast<FSingleSkillInfo*>(AllSkillInfo->GetSingleInfoOfID(nUnitySkillIndex)) : nullptr;
 
 	if (IMG_SkillIcon.IsValid() && SkillClientData)

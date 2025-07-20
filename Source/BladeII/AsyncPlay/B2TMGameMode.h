@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "B2AsyncGameMode.h"
 #include "B2UIDocTeamMatch.h"
@@ -13,7 +13,7 @@ enum class ETeamMatchState : uint8
 	Ready,
 	Battle,
 	EndMatchByTime,
-	BattleEnd,			//[@AKI, 170420] HP°¡ ´Ù µÇ¾î ³¡³­ °æ¿ì(HandleNotifyLeave, NotifyPlayerDeadEnd) CastingÇØ¼­ »ç¿ë ÇÒ ¼öµµ ÀÖÀ¸´Ï ¸¶Áö¸·¿¡ ³Ö¾îÁÜ
+	BattleEnd,			//[@AKI, 170420] HPå•Š ä¿ƒ ç™»ç»¢ åœºæŠ„ ç‰ˆå¿«(HandleNotifyLeave, NotifyPlayerDeadEnd) Castingç§¦è¾‘ è¤ä¾© ä¸” èæ¡£ ä¹æ èª ä»˜ç˜¤é˜œä¿Š æŒç»¢æ·‹
 };
 
 enum class ETMBGMPlayContext : uint8

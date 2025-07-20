@@ -10,6 +10,7 @@
 
 
 #include "BladeIIGameImpl.h"
+#include "../../BladeII/BladeIILocText.h"
 
 UB2FloatingLobbyOnHeadDisplay::UB2FloatingLobbyOnHeadDisplay(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
@@ -40,7 +41,7 @@ void UB2FloatingLobbyOnHeadDisplay::SetMasterType(ELobbyOnHeadDisplayType InType
 	MasterType = InType;
 
 	UpdateOnMasterTypeChange();
-	UpdatePosition(); // ¸Å Æ½ ºÒ¸®±ä ÇÔ.
+	UpdatePosition(); // æ¦‚ å¹³ é˜‚åºœå˜ çªƒ.
 }
 
 void UB2FloatingLobbyOnHeadDisplay::UpdateOnMasterTypeChange()
@@ -74,12 +75,12 @@ void UB2FloatingLobbyOnHeadDisplay::UpdateOnMasterTypeChange()
 		BTN_SetNickName->SetVisibility(MasterType == ELobbyOnHeadDisplayType::LOHDT_LobbyMain ? ESlateVisibility::Hidden : ESlateVisibility::Visible);
 	}
 
-	//°è±Ş °ü·Ã
+	//æ‹Œé­ åŒ…è®¿
 	if (OwnerPCClass != EPCClass::EPC_End)
 	{
 		int32 BrevetRank = BladeIIGameImpl::GetLocalCharacterData().GetCharBrevetRank(OwnerPCClass);
 
-		// 0°è±ŞÀÏ¶§ Ç¥±â¾ÈÇÔ(Å×ÀÌºí¿¡ 0°è±Ş¿¡ ´ëÇÑ µ¥ÀÌÅÍ´Â ÀÖÀ½ - ´Ù¸¥µ¥ »ç¿ë)
+		// 0æ‹Œé­è€é”­ é’æ‰æ•‘çªƒ(æŠ›æå–‰ä¿Š 0æ‹Œé­ä¿Š æªèŒ„ å•æç£ç»° ä¹æ¾œ - ä¿ƒå¼—å• è¤ä¾©)
 		if (BrevetRank == 0)
 		{
 			if (TB_Rank.IsValid())
@@ -90,7 +91,7 @@ void UB2FloatingLobbyOnHeadDisplay::UpdateOnMasterTypeChange()
 		}
 		else
 		{
-			// °è±Ş¸í
+			// æ‹Œé­ç–™
 			if (TB_Rank.IsValid())
 			{
 				FString BrevetRankNameKeyText = BladeIIGameImpl::GetClientDataStore().GetBrevetRankNameKey(BrevetRank);
@@ -99,7 +100,7 @@ void UB2FloatingLobbyOnHeadDisplay::UpdateOnMasterTypeChange()
 				TB_Rank->SetText(BrevetRankName);
 			}
 
-			// °è±Ş ¸¶Å©
+			// æ‹Œé­ ä»˜å†œ
 			if (IMG_RankMark.IsValid())
 			{
 				UMaterialInterface* pMAT = BladeIIGameImpl::GetClientDataStore().GetBrevetRankIconMaterial(BrevetRank);
@@ -110,7 +111,7 @@ void UB2FloatingLobbyOnHeadDisplay::UpdateOnMasterTypeChange()
 	}
 
 	//////////////////////////////////////////////////
-	// ÇöÀç Observe È­¸é¿¡¼­ÀÇ À§Ä¡ ¼¼ÆÃÀÌ ¾Ö¸ÅÇÏ¿© Observe È­¸é¿¡¼­´Â °Á ¼û±â±â·Î ÇÔ. NickName ¿¡µğÆ®ÇÏ´Â ¹öÆ°Àº UB2UICharacterObserve ¿¡ µÒ.
+	// æ³…çŠ Observe æ‹³æä¿Šè¾‘ç‹¼ å›°æ‘¹ æŠ€æ³¼æ å±€æ¦‚çªå’¯ Observe æ‹³æä¿Šè¾‘ç»° å‚² è§æ‰æ‰è‚º çªƒ. NickName ä¿Šå¼é£˜çªç»° æ»šç“¢ç¯® UB2UICharacterObserve ä¿Š ç‹„.
 	if (MasterType == ELobbyOnHeadDisplayType::LOHDT_CharObserve)
 	{
 		this->SetVisibility(ESlateVisibility::Collapsed);
@@ -124,7 +125,7 @@ void UB2FloatingLobbyOnHeadDisplay::SetOwnerInfo(EPCClass InOwnerClass, class AS
 	OwnerSKActor = InOwner; 
 
 	UpdateOnMasterTypeChange();
-	UpdatePosition(); // Ã³À½ ºÒ¸± ¶§´Â ´ëÃ¼·Î ·»´õ¸µ Àå¸é ÀüÈ¯ ÀÚÃ¼´Â ¾ÈµÇ¾î ÀÖ¾î¼­ ±×·±Áö projection ÀÌ ½ÇÆĞÇÏ´Â µí.
+	UpdatePosition(); // è´¸æ¾œ é˜‚å‰¯ é”­ç»° æªçœ‰è‚º åŠæ­¹å‚… å˜æ å‚ˆåˆ¸ ç£Šçœ‰ç»° æ•‘ç™»ç»¢ ä¹ç»¢è¾‘ å¼Šç¹ç˜¤ projection æ è§’è©çªç»° æ·€.
 }
 
 void UB2FloatingLobbyOnHeadDisplay::OnClickSetNickNameBtn()
@@ -146,8 +147,8 @@ void UB2FloatingLobbyOnHeadDisplay::UpdatePosition()
 		if (/*!bWidgetProjectedPosBeingSet && */GetOwningPlayer())
 		{
 			// Follows this character position with specified offset.
-			// LocOffsetFromOwner À» Actor À§Ä¡¿¡ ±×´ë·Î Àû¿ëÇÒ ¼öµµ ÀÖ°í, ³»Áö´Â MeshComponent ÀÇ ¹Ù¿îµå¸¦ °í·ÁÇÏ¿© ÀÏ´Ü ¸Ó¸® À§·Î ¿Ã¸° ´ÙÀ½¿¡ Ãß°¡ Á¶ÀıÀ» ÇÏ´Â ½ÄÀ¸·Î Àû¿ëÇÒ ¼öµµ ÀÖ´Ù.
-			// Actor À§Ä¡¿¡ ±×´ë·Î Àû¿ëÇÏ¸é SkeletalMeshActor ´Â ¹Ù´ÚÀÌ ¿øÁ¡ÀÌ¹Ç·Î Ä³¸¯ÅÍ Å©±â¿¡ »ó°ü¾øÀÌ µ¿ÀÏÇÑ ³ôÀÌ¿¡ À§Ä¡ÇÏ°Ô µÉ °Í. ¾Æ¸¶ ±×°Ô ³ªÀ» °Å´Ù.
+			// LocOffsetFromOwner é˜‘ Actor å›°æ‘¹ä¿Š å¼Šæªè‚º åˆ©ä¾©ä¸” èæ¡£ ä¹ç»Š, éƒ´ç˜¤ç»° MeshComponent ç‹¼ å®˜æ¬¾é›ç”« ç»Šå¦¨çªå’¯ è€çªœ èµ£åºœ å›°è‚º æ£µèµ´ ä¿ƒæ¾œä¿Š çœ å•Š ç‚¼ä¾‹é˜‘ çªç»° ä¾¥æ è‚º åˆ©ä¾©ä¸” èæ¡£ ä¹ä¿ƒ.
+			// Actor å›°æ‘¹ä¿Š å¼Šæªè‚º åˆ©ä¾©çªæ SkeletalMeshActor ç»° å®˜è¹¿æ ç›”ç—¢æéª¨è‚º æŸè…ç£ å†œæ‰ä¿Š æƒ‘åŒ…ç»æ æ‚¼è€èŒ„ è‡­æä¿Š å›°æ‘¹çªéœ¸ çª å·´. é…’ä»˜ å¼Šéœ¸ å”±é˜‘ èŠ­ä¿ƒ.
 			FVector WidgetWorldLocation = OwnerSKActor->GetActorLocation() + 
 				(MasterType == ELobbyOnHeadDisplayType::LOHDT_LobbyMain ? LocOffsetFromOwner_LobbyMain : LocOffsetFromOwner_CharObserve);
 
@@ -157,19 +158,19 @@ void UB2FloatingLobbyOnHeadDisplay::UpdatePosition()
 				ProjectedLocation += FinalScreenOffset;
 				SetPositionInViewport(ProjectedLocation);
 				SelfVisibility = ESlateVisibility::Visible;
-				//bWidgetProjectedPosBeingSet = true; // ¼³·É Tick ¿¡¼­ ºÒ¸®´õ¶óµµ ÇÑ¹ø¸¸ ¼¼ÆÃÇÏ·Á°í Çß´Âµ¥ ¹º°¡ ¾È¸ÔÈû ¤§¤§
+				//bWidgetProjectedPosBeingSet = true; // æ±²é£ Tick ä¿Šè¾‘ é˜‚åºœæ­¹æ‰¼æ¡£ èŒ„é”…çˆ¶ æŠ€æ³¼çªå¦¨ç»Š æ²ç»°å• è´­å•Š æ•‘å†ˆå¡ ã‡ã‡
 			}
 		}
 
 		//////////////////////////////////////////////////
-		// ÇöÀç Observe È­¸é¿¡¼­ÀÇ À§Ä¡ ¼¼ÆÃÀÌ ¾Ö¸ÅÇÏ¿© Observe È­¸é¿¡¼­´Â °Á ¼û±â±â·Î ÇÔ. NickName ¿¡µğÆ®ÇÏ´Â ¹öÆ°Àº UB2UICharacterObserve ¿¡ µÒ.
+		// æ³…çŠ Observe æ‹³æä¿Šè¾‘ç‹¼ å›°æ‘¹ æŠ€æ³¼æ å±€æ¦‚çªå’¯ Observe æ‹³æä¿Šè¾‘ç»° å‚² è§æ‰æ‰è‚º çªƒ. NickName ä¿Šå¼é£˜çªç»° æ»šç“¢ç¯® UB2UICharacterObserve ä¿Š ç‹„.
 		if (MasterType == ELobbyOnHeadDisplayType::LOHDT_CharObserve)
 		{
 			SelfVisibility = ESlateVisibility::Collapsed;
 		}
 		//////////////////////////////////////////////////
 
-		// ForceHidden ÀÎ °æ¿ì À¯Áö. ¿©±â¼­ SetVisibility ¸¦ Á÷Á¢ »ç¿ëÇÏ´Â ´ë½Å °¢ widget º°·Î visibility ¹ÙÀÎµùÀ» ÇÏ´Â °Ô ÁÁÀ» °Íµµ °°´Ù. 
+		// ForceHidden ç‰¢ ç‰ˆå¿« èœ¡ç˜¤. å’¯æ‰è¾‘ SetVisibility ç”« æµç«‹ è¤ä¾©çªç»° æªè„š é˜¿ widget å–Šè‚º visibility å®˜ç‰¢çˆ¹é˜‘ çªç»° éœ¸ äº®é˜‘ å·´æ¡£ éä¿ƒ. 
 		SetVisibility(IsForceHidden() ? ESlateVisibility::Hidden : SelfVisibility);
 	}
 }

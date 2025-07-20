@@ -1,4 +1,4 @@
-#include "B2UISettingGame.h"
+ï»¿#include "B2UISettingGame.h"
 #include "B2UIManager.h"
 #include "UnrealEngine.h"
 #include "BladeIIGameMode.h"
@@ -11,7 +11,7 @@ UB2UISettingGame::UB2UISettingGame(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
 	m_nGraphicLevel = B2GraphicsLevelToInt(EB2GraphicsLevel::GraphicsLevel_HIGH);
-	m_nFrameLimitLevel = B2FrameLevelToInt(EB2FrameLimitLevel::Mid); // FrameLimit ¶û ResolutionLevel Àº ±âº»°ªÀ» Mid ·Î ÇÏ´Â °Ô ÁÁ´Ù.
+	m_nFrameLimitLevel = B2FrameLevelToInt(EB2FrameLimitLevel::Mid); // FrameLimit å°” ResolutionLevel ç¯® æ‰å¤¯è”¼é˜‘ Mid è‚º çªç»° éœ¸ äº®ä¿ƒ.
 	m_nSafeResolutionLevel = B2ResolutionLevelToInt(EB2ResolutionLevel::Mid);
 	m_fBGM_Volume = 1.0f;
 	m_fFXSound_Volume = 1.0f;
@@ -44,7 +44,7 @@ void UB2UISettingGame::CacheAssets()
 		GET_SLOT(UImage, IMG_Graphics_High_Unselect)
 		GET_SLOT(UTextBlock, TB_Graphics_High_Select)
 		GET_SLOT(UTextBlock, TB_Graphics_High_Unselect)
-		// On/Off »óÅÂ¿¡ µû¸¥ µðÀÚÀÎ Àû¿ëÀ» À§ÇØ µ¿ÀÏ À§Ä¡ÀÇ »óÅÂ¿¡ µû¸¥ ¹öÆ° ¹× ÅØ½ºÆ®µéÀ» ÇÑµ¥ ¹­À½.
+		// On/Off æƒ‘æ€•ä¿Š è¶å¼— å¼ç£Šç‰¢ åˆ©ä¾©é˜‘ å›°ç§¦ æ‚¼è€ å›°æ‘¹ç‹¼ æƒ‘æ€•ä¿Š è¶å¼— æ»šç“¢ æ£º å’†èƒ¶é£˜ç”¸é˜‘ èŒ„å• å¼“æ¾œ.
 		Graphics_High_Bundle.IMG_On = IMG_Graphics_High_Select;
 		Graphics_High_Bundle.IMG_Off = IMG_Graphics_High_Unselect;
 		Graphics_High_Bundle.TB_On = TB_Graphics_High_Select;
@@ -150,7 +150,7 @@ void UB2UISettingGame::CacheAssets()
 	GET_SLOT(UTextBlock, TB_FXSound_Label)
 
 	GET_SLOT(UPanelWidget, P_ScreenLock_Vib_Set)
-	if (P_ScreenLock_Vib_Set.IsValid()) { // ¿¹Àü¿¡ ÇÏ´Ü ¼³Á¤ ¹öÆ° ¼¼Æ®¸¦ On/Off ÇÏ´Â Á¶°ÇÀÌ ÀÖ¾ú´ø ¸ð¾ç?
+	if (P_ScreenLock_Vib_Set.IsValid()) { // æŠ—å‚ˆä¿Š çªçªœ æ±²æ²¥ æ»šç“¢ æŠ€é£˜ç”« On/Off çªç»° ç‚¼æ‰’æž ä¹èŒå¸¦ è‘›å‰§?
 		P_ScreenLock_Vib_Set->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
 	}
 	{
@@ -191,7 +191,7 @@ void UB2UISettingGame::CacheAssets()
 
 	RefreshAllButtonSelectedState();
 
-	// ÇÁ·¹ÀÓ ¸®¹ÌÆ®¿Í ÇØ»óµµAA ¼³Á¤ ¹öÆ° È°¼ºÈ­ ¿©ºÎ´Â Ã³À½ ÇÑ¹ø¸¸ ¾÷µ¥ÀÌÆ® ÇØÁÖ¸é µÊ.
+	// æ©‡é¥­çƒ™ åºœå›ºé£˜å®¢ ç§¦æƒ‘æ¡£AA æ±²æ²¥ æ»šç“¢ åŠå·±æ‹³ å’¯ä½•ç»° è´¸æ¾œ èŒ„é”…çˆ¶ è¯€å•æžé£˜ ç§¦æž—æ å‡³.
 	SetFrameLimitButtonEnableState();
 	SetResAAButtonEnableState();
 }
@@ -312,7 +312,7 @@ void UB2UISettingGame::BindDelegates()
 	BIND_CLICK_FUNC_TO_BTN(BTN_ResAA_Mid, &UB2UISettingGame::OnClick_ResAA_Mid);
 	BIND_CLICK_FUNC_TO_BTN(BTN_ResAA_Low, &UB2UISettingGame::OnClick_ResAA_Low);
 
-	// ³ª¸ÓÁö ¹öÆ° ÇÚµé·¯´Â ºí·çÇÁ¸°Æ®¿¡¼­ ¹ÙÀÎµù.
+	// å”±èµ£ç˜¤ æ»šç“¢ å‹¤ç”¸çŸ¾ç»° å–‰é£Žæ©‡èµ´é£˜ä¿Šè¾‘ å®˜ç‰¢çˆ¹.
 }
 
 void UB2UISettingGame::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
@@ -322,7 +322,7 @@ void UB2UISettingGame::NativeTick(const FGeometry& MyGeometry, float InDeltaTime
 
 void UB2UISettingGame::OnClick_BackToSuggested()
 {
-	// ±×·¡ÇÈ ·¹º§ »Ó ¾Æ´Ï¶ó ´Ù¸¥ ¼º´É °ü·ÃÇÑ °Íµµ ±âº»°ª µ¹·Á³ö º¸ÀÚ..
+	// å¼Šè´°ä¾¨ é¥­éª‡ æŒ¥ é…’èªæ‰¼ ä¿ƒå¼— å·±ç“· åŒ…è®¿èŒ„ å·´æ¡£ æ‰å¤¯è”¼ å€’å¦¨å‡º ç„Šç£Š..
 
 	OnClick_Graphic_Common(B2Scalability::GetGraphicsLevelByExpectedScalability());
 
@@ -345,7 +345,7 @@ void UB2UISettingGame::OnClick_Graphic_Low()
 }
 void UB2UISettingGame::OnClick_Graphic_Common(EB2GraphicsLevel SelectedLevel)
 {
-	// UISettingGame ÀÌ ·Îºñ»Ó ¾Æ´Ï¶ó ´Ù¸¥ °ÔÀÓ¸ðµå¿¡¼­µµ ºÒ¸± ¼ö ÀÖÀ¸¹Ç·Î °ÔÀÓ¸ðµå º° ¼³Á¤À» ÇÒ ¼ö ÀÖµµ·Ï WorldContextobject ¸¦ ³Ö¾îÁÖ´Â °ÍÀÌ ÇÊ¿äÇÏ´Ù.
+	// UISettingGame æž è‚ºåŽšæŒ¥ é…’èªæ‰¼ ä¿ƒå¼— éœ¸çƒ™è‘›é›ä¿Šè¾‘æ¡£ é˜‚å‰¯ è ä¹æ éª¨è‚º éœ¸çƒ™è‘›é› å–Š æ±²æ²¥é˜‘ ä¸” è ä¹æ¡£åºŸ WorldContextobject ç”« æŒç»¢æž—ç»° å·´æž éž˜å¤¸çªä¿ƒ.
 	B2Scalability::AdjustScalabilityBySelectedLevel(this, SelectedLevel, GetContextDesiredResolutionLevel(false));
 	
 	m_nGraphicLevel = B2GraphicsLevelToInt(SelectedLevel);
@@ -416,7 +416,7 @@ void UB2UISettingGame::SetFrameLimitButtonSelectedState(EB2FrameLimitLevel Selec
 }
 void UB2UISettingGame::SetFrameLimitButtonEnableState()
 {
-	// ÃßÈÄ disable µÈ °Ç »óÀ§ ÆÐ³Î collapse ¸¦ °í·Á..
+	// çœ é¥¶ disable ç­‰ æ‰’ æƒ‘å›° è©æ¾„ collapse ç”« ç»Šå¦¨..
 
 	if (BTN_FrameLimit_High.IsValid())
 	{
@@ -458,22 +458,22 @@ void UB2UISettingGame::OnClick_ResAA_Common(EB2ResolutionLevel SelectedLevel)
 
 	//bool bPopupMsgForReservedApply = false;
 	//if (B2Scalability::DoesRQTypeRequiresAppRestart(SelectedRQType))
-	//{ // ÀÌ¹ø ·±Å¸ÀÓ ½ºÀ§ÄªÀº ¾È µÇ´Ï m_nSafeResolutionLevel À» ¹Ù²ÙÁö´Â ¸»°í ´ÙÀ½ ¹ø ½ÇÇà½Ã Àû¿ëÀ» À§ÇØ ¿¹¾à¸¸ ÇØ µÒ.
+	//{ // æžé”… ç¹é¸¥çƒ™ èƒ¶å›°èŽ«ç¯® æ•‘ ç™»èª m_nSafeResolutionLevel é˜‘ å®˜æ“ç˜¤ç»° å¯Œç»Š ä¿ƒæ¾œ é”… è§’é’çŸ« åˆ©ä¾©é˜‘ å›°ç§¦ æŠ—è·çˆ¶ ç§¦ ç‹„.
 	//	ReserveResolutionLevelForNextAppStart(SelectedLevel);
 	//	bPopupMsgForReservedApply = true;
 	//}
 	//else
-	//{ // ÀÌÀü¿¡ ¿¹¾àÇØ µÎ¾ú´ø °Ô ÀÖ´õ¶óµµ Å¬¸®¾î ÇÔ.
+	//{ // æžå‚ˆä¿Š æŠ—è·ç§¦ æ»´èŒå¸¦ éœ¸ ä¹æ­¹æ‰¼æ¡£ åŠªåºœç»¢ çªƒ.
 	//	ClearResolutionLevelReserve();
 	//	m_nSafeResolutionLevel = B2ResolutionLevelToInt(SelectedLevel);
 	//}
 
 	//SaveSettingData();
 
-	//// ¾ÕµÚ·Î FlushRenderingCommands ¸¦ ÇÏ´Â °Ç MobileContentScaleFactor °¡ º¯°æµÇ´Â »óÈ²¿¡¼­ ¾Æ¸¶µµ ·»´õÅ¸°Ù ÀçÇÒ´çÇÏ¸é¼­ µ¿ÀÛÀÌ ºÒ¾ÈÁ¤ÇØÁö´Â Â¡ÈÄ°¡ ÀÖ¾ú±â ¶§¹®.
-	//// Àû¾îµµ ÀÌ°Ô MobileContentScaleFactor º¯°æ ½Ã ºÒ¾ÈÁ¤ÇÑ µ¿ÀÛÀ» ¸·¾ÆÁÖ´Â °Ç °ÅÀÇ È®½ÇÇÔ.
+	//// èŠç¬¬è‚º FlushRenderingCommands ç”« çªç»° æ‰’ MobileContentScaleFactor å•Š å‡½ç‰ˆç™»ç»° æƒ‘ç‚”ä¿Šè¾‘ é…’ä»˜æ¡£ åŠæ­¹é¸¥ç™¾ çŠä¸”å¯¸çªæè¾‘ æ‚¼ç´¯æž é˜‚æ•‘æ²¥ç§¦ç˜¤ç»° éš†é¥¶å•Š ä¹èŒæ‰ é”­å·©.
+	//// åˆ©ç»¢æ¡£ æžéœ¸ MobileContentScaleFactor å‡½ç‰ˆ çŸ« é˜‚æ•‘æ²¥èŒ„ æ‚¼ç´¯é˜‘ é˜œé…’æž—ç»° æ‰’ èŠ­ç‹¼ çŠ¬è§’çªƒ.
 	//FlushRenderingCommands();
-	//// ±âº» ±×·¡ÇÈ ¼³Á¤°ú ¸Â¹°·Á µ¹¾Æ°¡´Â ¼³Á¤ÀÓ
+	//// æ‰å¤¯ å¼Šè´°ä¾¨ æ±²æ²¥è‹ž å˜Žæ‹±å¦¨ å€’é…’å•Šç»° æ±²æ²¥çƒ™
 	//B2Scalability::AdjustScalabilityBySelectedLevel(this, IntToB2GraphicsLevel(m_nGraphicLevel), GetContextDesiredResolutionLevel(false));
 	//FlushRenderingCommands();
 
@@ -481,7 +481,7 @@ void UB2UISettingGame::OnClick_ResAA_Common(EB2ResolutionLevel SelectedLevel)
 
 	//if (bPopupMsgForReservedApply)
 	//{
-	//	// Àç½ÃÀÛ ÈÄ Àû¿ëµÇ´Â °Í¿¡ ´ëÇÑ ¾È³» ÆË¾÷
+	//	// çŠçŸ«ç´¯ é¥¶ åˆ©ä¾©ç™»ç»° å·´ä¿Š æŽªèŒ„ æ•‘éƒ´ æ‰‘è¯€
 	//	UB2UIManager::GetInstance()->OpenMsgPopup<UB2UIMsgPopupSimple>(EUIMsgPopup::Simple,
 	//		BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_Notification")),
 	//		BladeIIGetLOCText(B2LOC_CAT_CONFIGURATION, TEXT("Configuration_GuideOnContentScaleChange")),
@@ -518,13 +518,13 @@ void UB2UISettingGame::SetResAAButtonSelectedState(EB2ResolutionLevel SelectedLe
 }
 void UB2UISettingGame::SetResAAButtonEnableState()
 {
-	// ÃßÈÄ disable µÈ °Ç collapse ¸¦ °í·Á..
+	// çœ é¥¶ disable ç­‰ æ‰’ collapse ç”« ç»Šå¦¨..
 
 	if (BTN_ResAA_High.IsValid())
 	{
 		bool bIsEnable = B2Scalability::IsResolutionLevelAvailable(EB2ResolutionLevel::High);
 		BTN_ResAA_High->SetIsEnabled(bIsEnable);
-		ResAA_High_Bundle.SetEnable(bIsEnable); // ¹öÆ° ÀÚÃ¼ÀÇ disable ÄÃ·¯·Î´Â ºÎÁ·ÇØ¼­ ÀÚÃ¼ÀûÀÎ »ö»ó º¸Á¤À» Á» ÇÑ´Ù.
+		ResAA_High_Bundle.SetEnable(bIsEnable); // æ»šç“¢ ç£Šçœ‰ç‹¼ disable æ‹¿çŸ¾è‚ºç»° ä½•ç»ƒç§¦è¾‘ ç£Šçœ‰åˆ©ç‰¢ ç¥¸æƒ‘ ç„Šæ²¥é˜‘ ç²± èŒ„ä¿ƒ.
 	}
 	if (BTN_ResAA_Mid.IsValid())
 	{
@@ -543,11 +543,11 @@ void UB2UISettingGame::SetResAAButtonEnableState()
 void UB2UISettingGame::RefreshAllButtonSelectedState()
 {
 #if !UE_BUILD_SHIPPING
-	// ½Ç¼ö·Î ¼ø¼­ ²¿ÀÌÁö ¾Ê°Ô Ã¼Å©. ÃÖ¼Ò ÇÑ¹ø ÀúÀåÇÑ ·ÎÄÃ ¼³Á¤À» ·ÎµùÇÑ ÈÄ¿¡ ÀÌ°É »ç¿ëÇØ¾ß ÇÑ´Ù.
+	// è§’èè‚º é‰´è¾‘ éƒ¨æžç˜¤ è‡¼éœ¸ çœ‰å†œ. å¼¥å®¶ èŒ„é”… åŽ†åŽ˜èŒ„ è‚ºæ‹¿ æ±²æ²¥é˜‘ è‚ºçˆ¹èŒ„ é¥¶ä¿Š æžå§ è¤ä¾©ç§¦å…· èŒ„ä¿ƒ.
 	check(bLoadSettingGameDataCalledOnce);
 #endif
 
-	// ·ÎµùÇÑ ÇöÀç ¼³Á¤°ª¿¡ µû¶ó ¹öÆ° On/Off »óÅÂ ¼¼ÆÃ.
+	// è‚ºçˆ¹èŒ„ æ³…çŠ æ±²æ²¥è”¼ä¿Š è¶æ‰¼ æ»šç“¢ On/Off æƒ‘æ€• æŠ€æ³¼.
 	SetGraphicsButtonSelectedState(IntToB2GraphicsLevel(m_nGraphicLevel));
 	SetFrameLimitButtonSelectedState(IntToB2FrameLimitLevel(m_nFrameLimitLevel));
 	SetResAAButtonSelectedState(GetContextDesiredResolutionLevel(true));
@@ -649,7 +649,7 @@ int32 UB2UISettingGame::OnValue_TextView(float fValue)
 
 void UB2UISettingGame::OnsetVibration()
 {
-	// Áøµ¿
+	// æŸ³æ‚¼
 	
 	m_bVibration = !m_bVibration;
 	SetVibration(m_bVibration);
@@ -662,7 +662,7 @@ void UB2UISettingGame::OnsetVoice()
 {
 	DevShowNotReadyYetMessage();
 	
-	// ÃßÈÄ ±â´É ³ÖÀÚ
+	// çœ é¥¶ æ‰ç“· æŒç£Š
 }
 
 void UB2UISettingGame::OnsetScreenLock()
@@ -691,28 +691,28 @@ void UB2UISettingGame::LoadSettingGameData()
 {
 	bool bCouldNotLoadSome = false;
 	if (!LoadGameSetting_Graphics_OrByDefault(m_nGraphicLevel)) {
-		// ÀÌ°Ç ·Îµù ½ÇÆÐ ½Ã ±âº»°ªÀ» ¿©±â¼­ ³ÖÀ» ÇÊ¿ä´Â ¾ø´Ù. LoadGameSetting_Graphics_OrByDefault ¿¡¼­ Ã³¸®µÉ °Í.
+		// æžæ‰’ è‚ºçˆ¹ è§’è© çŸ« æ‰å¤¯è”¼é˜‘ å’¯æ‰è¾‘ æŒé˜‘ éž˜å¤¸ç»° ç»ä¿ƒ. LoadGameSetting_Graphics_OrByDefault ä¿Šè¾‘ è´¸åºœçžª å·´.
 		bCouldNotLoadSome = true;
 	}
 	if (!LoadGameSetting_FrameLimit_OrByDefault(m_nFrameLimitLevel)) {
-		// ÀÌ°Ç ·Îµù ½ÇÆÐ ½Ã ±âº»°ªÀ» ¿©±â¼­ ³ÖÀ» ÇÊ¿ä´Â ¾ø´Ù. LoadGameSetting_FrameLimit_OrByDefault ¿¡¼­ Ã³¸®µÉ °Í.
+		// æžæ‰’ è‚ºçˆ¹ è§’è© çŸ« æ‰å¤¯è”¼é˜‘ å’¯æ‰è¾‘ æŒé˜‘ éž˜å¤¸ç»° ç»ä¿ƒ. LoadGameSetting_FrameLimit_OrByDefault ä¿Šè¾‘ è´¸åºœçžª å·´.
 		bCouldNotLoadSome = true;
 	}
 	if (!LoadGameSetting_Resolution_OrByDefault(m_nSafeResolutionLevel)) {
-		// ÀÌ°Ç ·Îµù ½ÇÆÐ ½Ã ±âº»°ªÀ» ¿©±â¼­ ³ÖÀ» ÇÊ¿ä´Â ¾ø´Ù. LoadGameSetting_Resolution_OrByDefault ¿¡¼­ Ã³¸®µÉ °Í.
+		// æžæ‰’ è‚ºçˆ¹ è§’è© çŸ« æ‰å¤¯è”¼é˜‘ å’¯æ‰è¾‘ æŒé˜‘ éž˜å¤¸ç»° ç»ä¿ƒ. LoadGameSetting_Resolution_OrByDefault ä¿Šè¾‘ è´¸åºœçžª å·´.
 		bCouldNotLoadSome = true;
 	}
 	if (!LoadGameSetting_BGMVolume(m_fBGM_Volume)) {
-		m_fBGM_Volume = 0.7f; // ±âº»°ª
+		m_fBGM_Volume = 0.7f; // æ‰å¤¯è”¼
 		bCouldNotLoadSome = true;
 	}
 	if (!LoadGameSetting_EffectVolume(m_fFXSound_Volume)) {
-		m_fFXSound_Volume = 0.7f; // ±âº»°ª
+		m_fFXSound_Volume = 0.7f; // æ‰å¤¯è”¼
 		bCouldNotLoadSome = true;
 	}
 	int32 LoadedVibInt = 0;
 	if (!LoadGameSetting_Vibration(LoadedVibInt)) {
-		LoadedVibInt = 1; // ±âº»°ª
+		LoadedVibInt = 1; // æ‰å¤¯è”¼
 		bCouldNotLoadSome = true;
 	}
 	m_bVibration = (LoadedVibInt == 0) ? false : true;
@@ -720,7 +720,7 @@ void UB2UISettingGame::LoadSettingGameData()
 	int32 LoadedScreenLockInt = 0;
 	if (!LoadGameSetting_KeepScreenOn(LoadedScreenLockInt))
 	{
-		LoadedScreenLockInt = 1; // ±âº»°ª
+		LoadedScreenLockInt = 1; // æ‰å¤¯è”¼
 		bCouldNotLoadSome = true;
 	}
 	m_bScreenLock = (LoadedScreenLockInt == 0) ? false : true;
@@ -739,8 +739,8 @@ void UB2UISettingGame::LoadSettingGameData()
 
 EB2ResolutionLevel UB2UISettingGame::GetContextDesiredResolutionLevel(bool bIsForUI)
 {
-	//// Àç½ÃÀÛ ÈÄ Àû¿ëµÇ´Â ÄÉÀÌ½º¸¦ À§ÇØ ´ëºÎºÐÀÇ °æ¿ì m_nSafeResolutionLevel ¿¡ ±×³É Á¢±ÙÇÏÁö ¸»°í ÀÌ°É »ç¿ëÇØ¾ß ÇÔ.
-	//if (bIsForUI) // UI ´Ü Ç¥½ÃÀÇ °æ¿ì¸¸ Reserved ¸¦ °í·Á.
+	//// çŠçŸ«ç´¯ é¥¶ åˆ©ä¾©ç™»ç»° çº³æžèƒ¶ç”« å›°ç§¦ æŽªä½•ç›’ç‹¼ ç‰ˆå¿« m_nSafeResolutionLevel ä¿Š å¼Šæˆ ç«‹è¾Ÿçªç˜¤ å¯Œç»Š æžå§ è¤ä¾©ç§¦å…· çªƒ.
+	//if (bIsForUI) // UI çªœ é’ŽçŸ«ç‹¼ ç‰ˆå¿«çˆ¶ Reserved ç”« ç»Šå¦¨.
 	//{		
 	//	EB2ResolutionLevel ReservedLevel = LoadReservedResolutionLevelOfPrevAppRun();
 	//	if (ReservedLevel != EB2ResolutionLevel::End)
@@ -748,7 +748,7 @@ EB2ResolutionLevel UB2UISettingGame::GetContextDesiredResolutionLevel(bool bIsFo
 	//		return ReservedLevel;
 	//	}
 	//}
-	return IntToB2ResolutionLevel(m_nSafeResolutionLevel); // Àû¾îµµ ³»ºÎ¿¡ Àû¿ëµÇ´Â °Ç ¹«Á¶°Ç ÀÌ°É ½á¾ß ÇÔ.
+	return IntToB2ResolutionLevel(m_nSafeResolutionLevel); // åˆ©ç»¢æ¡£ éƒ´ä½•ä¿Š åˆ©ä¾©ç™»ç»° æ‰’ å…¬ç‚¼æ‰’ æžå§ ç»“å…· çªƒ.
 }
 
 void UB2UISettingGame::FOnOffBtnBundle::SetOnOff(bool bOn)
@@ -768,7 +768,7 @@ void UB2UISettingGame::FOnOffBtnBundle::SetOnOff(bool bOn)
 }
 void UB2UISettingGame::FOnOffBtnBundle::SetEnable(bool bEnable)
 {
-	// ÀÌ°Í±îÁø ÇÁ·Î±×·¡¸ÓÀÇ Àç·®À¸·Î..
+	// æžå·´é³–æŸ³ æ©‡è‚ºå¼Šè´°èµ£ç‹¼ çŠæ¨Šæ è‚º..
 	static const FLinearColor EnableColor(1.0f, 1.0f, 1.0f, 1.0f);
 	static const FLinearColor DisableColor(0.2f, 0.2f, 0.2f, 0.4f);
 
@@ -778,10 +778,10 @@ void UB2UISettingGame::FOnOffBtnBundle::SetEnable(bool bEnable)
 	if (IMG_On.IsValid()) {
 		IMG_On->SetColorAndOpacity(bEnable ? EnableColor : DisableColor);
 	}
-	if (IMG_Off.IsValid()) { // »ç½Ç»ó ÀÌ°Ô º¸ÀÌ°Ú´Âµ¥.. ÀÌ°É·Ð ºÒÃæºÐÇÒ µí.
+	if (IMG_Off.IsValid()) { // è¤è§’æƒ‘ æžéœ¸ ç„Šæžæ‘†ç»°å•.. æžå§æ²¸ é˜‚é¢ç›’ä¸” æ·€.
 		IMG_Off->SetColorAndOpacity(bEnable ? EnableColor : DisableColor);
 	}
-	// ÅØ½ºÆ®´Â ÀÚÃ¼ »ö»óÀÌ ÀÖ¾î¼­ ¾ËÆÄ¸¸.. ±Ã»öÇÏ±º.
+	// å’†èƒ¶é£˜ç»° ç£Šçœ‰ ç¥¸æƒ‘æž ä¹ç»¢è¾‘ èˆ…é¢‡çˆ¶.. æ³µç¥¸çªç„™.
 	if (TB_On.IsValid()) {
 		TB_On->SetOpacity(bEnable ? EnableAlphaOnly : DisableAlphaOnly);
 	}

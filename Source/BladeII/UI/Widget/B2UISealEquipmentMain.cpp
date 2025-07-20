@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UISealEquipmentMain.h"
 #include "B2UIStoreProductCost.h"
@@ -347,7 +347,7 @@ void UB2UISealEquipmentMain::UpdateCost(int32 InSlotNumber)
 
 	for (FSealOption SealOptionInfo : CacheItem.SealOptions)
 	{
-		if (InSlotNumber - 1 == SealOptionInfo.SealSlotNumber && SealOptionInfo.IsOpened == false)		//Àü½½·ÔÀÌ ´İÇôÀÖ´ÂÁö º¸ÀÚ
+		if (InSlotNumber - 1 == SealOptionInfo.SealSlotNumber && SealOptionInfo.IsOpened == false)		//å‚ˆæµ‡å©æ æ‘§å›šä¹ç»°ç˜¤ ç„Šç£Š
 		{
 			IsBeforeSlotLock = false;
 		}
@@ -361,21 +361,21 @@ void UB2UISealEquipmentMain::UpdateCost(int32 InSlotNumber)
 				if (CP_Seal.IsValid())
 					CP_Seal->SetVisibility(ESlateVisibility::Collapsed);
 
-				if (IsBeforeSlotLock == false)			//±×ÀÌÀü½½·Ôµµ ´İÇôÀÖÀ»°æ¿ì ¹öÆ° ºñÈ°¼ºÈ­ && ÅØ½ºÆ® º¯°æ
+				if (IsBeforeSlotLock == false)			//å¼Šæå‚ˆæµ‡å©æ¡£ æ‘§å›šä¹é˜‘ç‰ˆå¿« æ»šç“¢ åšåŠå·±æ‹³ && å’†èƒ¶é£˜ å‡½ç‰ˆ
 				{
 					TB_LockDesc->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SealPopup_SlotUnlock_Precondition")));
 					BTN_UnLock->SetIsEnabled(false);
 				}
 				else
 				{
-					TB_LockDesc->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SealPopup_SlotUnlock"))); //ÃßÈÄ³ª¿À¸é º¯°æ
+					TB_LockDesc->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SealPopup_SlotUnlock"))); //çœ é¥¶å”±å·æ å‡½ç‰ˆ
 					BTN_UnLock->SetIsEnabled(true);
 				}
 
 				if (UIP_UnLockCost.IsValid())
 					UIP_UnLockCost->SetSealCosnt(static_cast<ESealCostType>(SealCostData->open_price_type), SealCostData->open_price);
 			}
-			else                     //	°¢ÀÎ °³¹æµÇ¾îÀÖÀ»¶§
+			else                     //	é˜¿ç‰¢ ä¿ºè§„ç™»ç»¢ä¹é˜‘é”­
 			{
 				if (CP_Lock.IsValid())
 					CP_Lock->SetVisibility(ESlateVisibility::Collapsed);
@@ -493,7 +493,7 @@ bool UB2UISealEquipmentMain::CheckSealPopup()
 					BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_Notification")),
 					FText::Format(
 						BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SealPopup_OptionDeleteMessage")), OptionName, OptionValue)
-					, // ¹®±¸¿¡´Â Ãß°¡ Á¤º¸°¡ ÇÊ¿äÇØÁú ¼öµµ..?
+					, // å·©å¤‡ä¿Šç»° çœ å•Š æ²¥ç„Šå•Š é˜å¤¸ç§¦é¾™ èæ¡£..?
 					0.f,
 					true,
 					true,

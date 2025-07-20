@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIEnterAdventure.h"
 #include "B2UIManager.h"
@@ -21,7 +21,7 @@ void UB2UIEnterAdventure::CacheAssets()
 	if(UIP_15Act.IsValid())
 	{
 		UIP_15Act->Init();
-		UIP_15Act->SetAdventureLock(false);																							//1~5´Â Ç×»ó ¿­·ÁÀÖÀ½
+		UIP_15Act->SetAdventureLock(false);																							//1~5ç»° äº²æƒ‘ å‡¯å¦¨ä¹æ¾œ
 		UIP_15Act->SetAdventureType(AdventureNewChapterNumber::Act1_5);
 		UIP_15Act->FOnClickDelegate.BindUObject(this, &UB2UIEnterAdventure::OnClickAct15);
 	}
@@ -115,7 +115,7 @@ void UB2UIEnterAdventure::OnClickAct15()
 	FServerStageID ServerStageID = StageStore.GetLastClearServerStageId(StageDifficulty);
 	int32 ChapterNumber = StageStore.GetActIdByClientStageId(StageStore.GetLastClearClientId(StageDifficulty));
 	
-	if (ServerStageID == 0)// ¼­¹ö¿¡ ÀúÀåµÈ ÃÖ±Ù ÇÃ·¹ÀÌ Á¤º¸°¡ 0 ÀÏ¶§. °­Á¦·Î 1-1·Î ¼¼ÆÃ
+	if (ServerStageID == 0)// è¾‘æ»šä¿Š å†å˜ç­‰ å¼¥è¾Ÿ æ•²é¥­æ æ²¥ç„Šå•Š 0 è€é”­. ç¢åŠ›è‚º 1-1è‚º æŠ€æ³¼
 	{
 		ChapterNumber = 1;
 		StageDifficulty = EStageDifficulty::ESD_Normal;

@@ -1,4 +1,4 @@
-#include "B2UIRepeatableElements.h"
+ï»¿#include "B2UIRepeatableElements.h"
 #include "B2UIManager.h"
 
 UB2UIRepeatableElements::UB2UIRepeatableElements(const FObjectInitializer& ObjectInitializer)
@@ -45,7 +45,7 @@ void UB2UIRepeatableElements::CacheAssets()
 void UB2UIRepeatableElements::SetMaxElementNum(int32 Num)
 {
 	MaxNum = Num;
-	//EmptyÀÌ¹ÌÁö¿Í FilledÀÌ¹ÌÁö¸¦ Æ÷ÇÔÇÏ°í ÀÖ´Â ChildPanelÀ» Á¦¾îÇÑ´Ù.
+	//Emptyæå›ºç˜¤å®¢ Filledæå›ºç˜¤ç”« å™¨çªƒçªç»Š ä¹ç»° ChildPanelé˜‘ åŠ›ç»¢èŒ„ä¿ƒ.
 	if (CON_Elements.IsValid())
 	{
 		for (uint8 Cnt = 0; Cnt < CON_Elements->GetChildrenCount(); Cnt++)
@@ -101,7 +101,7 @@ void UB2UIRepeatableElements::SynchronizeProperties()
 {
 	Super::SynchronizeProperties();
 
-//¿¡µğÅÍ¿¡¼­ ÀÛ¾÷ÁßÀÎµ¥, PIE°¡ ¾Æ´Ï¸é
+//ä¿Šå¼ç£ä¿Šè¾‘ ç´¯è¯€åç‰¢å•, PIEå•Š é…’èªæ
 #if WITH_EDITOR
 	UWorld* World = GetWorld();
 	UGameInstance* GameInstance = World ? World->GetGameInstance() : nullptr;

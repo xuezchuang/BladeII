@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+Ôªø// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIControlMvpView.h"
 #include "B2UIControlMvpViewPlayerInfo.h"
@@ -98,7 +98,7 @@ void UB2UIControlMvpView::OnClickBTN_Next()
 
 	//m_bSendResult = true;
 	//
-	////¿Ã∫•∆ÆπŸ¿ŒµÂ
+	////Êçû‰∫•È£òÂÆòÁâ¢Èùõ
 	//DeliveryAssaultResultTicket = DeliveryAssaultResultClass<FB2ResponseAssaultResultPtr>::GetInstance().Subscribe([this](FB2ResponseAssaultResultPtr MsgPtr) {
 
 	//	DeliveryAssaultResultClass<FB2ResponseAssaultResultPtr>::GetInstance().Unsubscribe(DeliveryAssaultResultTicket);

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIControlKillInfo.h"
 #include "B2UIManager.h"
@@ -23,7 +23,7 @@ void UB2UIControlKillInfo::Init()
 
 	m_fStartTime = GetWorld()->GetTimeSeconds();
 
-	// ���� �ִϸ��̼� �ʿ��ϸ� ���⼭ ���
+	// 殿厘 局聪皋捞记 鞘夸窍搁 咯扁辑 犁积
 
 }
 

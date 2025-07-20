@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+Ôªø// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIEnhanceEther.h"
 #include "B2UIEtherOptionSlot.h"
@@ -104,7 +104,7 @@
 //			X_RTB_UpMainOptionValue->SetText(GetItemOptionValueDisplayText(EnhanceEther->MainOption.OptionType, UpMainValue, true));
 //		}
 //
-//		if (SubOptionState == 1) // √ﬂ∞°
+//		if (SubOptionState == 1) // Áú†Âïä
 //		{
 //			if (X_O_UpOptionDesc.IsValid())
 //			{
@@ -125,7 +125,7 @@
 //				X_TB_UpOptionDesc->SetText(BladeIIGetLOCText(FString(B2LOC_CAT_ETHER), FString(TEXT("Ether_Option_Add"))));
 //			}
 //		}
-//		else if (SubOptionState == 2) // ∞≠»≠
+//		else if (SubOptionState == 2) // Á¢çÊã≥
 //		{
 //			if (X_O_UpOptionDesc.IsValid())
 //			{
@@ -399,7 +399,7 @@ void UB2UIEnhanceEther::UpdateStaticText()
 
 	if (X_TB_TItle.IsValid())
 	{
-		X_TB_TItle->SetText(BladeIIGetLOCText(FString(B2LOC_CAT_ETHER), FString(TEXT("Ether_Enhancement_Title")))); //ø°≈◊∏£ ∞≠»≠
+		X_TB_TItle->SetText(BladeIIGetLOCText(FString(B2LOC_CAT_ETHER), FString(TEXT("Ether_Enhancement_Title")))); //‰øäÊäõÁ¶è Á¢çÊã≥
 	}
 }
 
@@ -546,7 +546,7 @@ void UB2UIEnhanceEther::OnClickAutoEnhance()
 
 void UB2UIEnhanceEther::CollectLightAnimationFinished()
 {
-	if (IsEnhanceSuccess == true) // ∞≠»≠ º∫∞¯
+	if (IsEnhanceSuccess == true) // Á¢çÊã≥ Â∑±ÂÇç
 	{
 		if (ANIM_Bonus_01.IsValid())
 		{
@@ -632,7 +632,7 @@ void UB2UIEnhanceEther::ResponseEnhanceEther(const FB2EnhanceEtherPtr EnhanceEth
 	if (EnhanceEtherPtr != nullptr)
 	{
 		IsEnhanceSuccess = EnhanceEtherPtr->is_success;
-		//∞·∞˙ ø°≈◊∏£ ∞ªΩ≈
+		//Êê¨Ëãû ‰øäÊäõÁ¶è ÁõéËÑö
 		EnhanceEtherInfo = EnhanceEtherPtr->aether;
 	}
 	
@@ -647,11 +647,11 @@ void UB2UIEnhanceEther::ResponseEnhanceEther(const FB2EnhanceEtherPtr EnhanceEth
 //{
 //	//if (EnhanceEther)
 //	//{
-//	//	if (InSubOptionState == 1) // √ﬂ∞°
+//	//	if (InSubOptionState == 1) // Áú†Âïä
 //	//	{
 //	//		return EnhanceEther->SubOption.Num() - 1;
 //	//	}
-//	//	else if (InSubOptionState == 2) // ∞≠»≠
+//	//	else if (InSubOptionState == 2) // Á¢çÊã≥
 //	//	{
 //	//		for (int i = 0; i < EnhanceEther->SubOption.Num(); ++i)
 //	//		{

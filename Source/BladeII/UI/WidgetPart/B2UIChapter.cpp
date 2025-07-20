@@ -1,4 +1,4 @@
-#include "B2UIChapter.h"
+ï»¿#include "B2UIChapter.h"
 #include "B2UIManager.h"
 #include "B2UIDocHelper.h"
 #include "B2UIChapterStage.h"
@@ -13,7 +13,7 @@ UB2UIChapter::UB2UIChapter(const FObjectInitializer& ObjectInitializer)
 	ChapterStages.Empty();
 	ChapterNum = INDEX_NONE;
 	StageDifficulty = EStageDifficulty::ESD_None;
-	bExternalDynamicSetupReady = true; // ¼Â¾÷ÀÌ ¾È µÇ¾î ÀÖ¾î¼­ UMG ¿¡ ±ò¾Æ³õÀº ¼Â¾÷À» ¾´´Ù¸é false ·Î..
+	bExternalDynamicSetupReady = true; // æ‚¸è¯€æ æ•‘ ç™»ç»¢ ä¹ç»¢è¾‘ UMG ä¿Š å½¬é…’åˆç¯® æ‚¸è¯€é˜‘ æ•¬ä¿ƒæ false è‚º..
 }
 
 void UB2UIChapter::CacheAssets()
@@ -25,38 +25,38 @@ void UB2UIChapter::CacheAssets()
 		FString StageAssetStr = PrefixStageName + FString::FormatAsNumber(Cnt);
 		UB2UIChapterStage* StageItem = GetSlot<UB2UIChapterStage>(FName(*StageAssetStr));
 		if (StageItem) 
-		{ // UniquelyDefinedStageParts ·Î µ¿Àû »ı¼ºÇÏµµ·Ï ÇßÀ¸¸é ºüÁú ¼ö ÀÖ´Ù.
+		{ // UniquelyDefinedStageParts è‚º æ‚¼åˆ© ç§¯å·±çªæ¡£åºŸ æ²æ æ ç‹é¾™ è ä¹ä¿ƒ.
 			ChapterStages.Add(StageItem);
 		}
 		else 
-		{ // UniquelyDefinedStageParts ·Î µ¿Àû »ı¼ºÇÏ´Â °æ¿ì´Â °°Àº ³×ÀÌ¹ÖÀÇ PanelWidget ÀÌ ÀÖ¾î¾ß ÇÔ.
+		{ // UniquelyDefinedStageParts è‚º æ‚¼åˆ© ç§¯å·±çªç»° ç‰ˆå¿«ç»° éç¯® åŒ™ææ€ªç‹¼ PanelWidget æ ä¹ç»¢å…· çªƒ.
 			UCanvasPanel* PanelWidgetItem = GetSlot<UCanvasPanel>(FName(*StageAssetStr));
 			UniquelyDefinedPartsCreatePanels.Add(Cnt, PanelWidgetItem);
 		}
 	}
 	check(ChapterStages.Num() + UniquelyDefinedPartsCreatePanels.Num() == StageNum);
 
-	// GetSlot À¸·Î ¾ò¾î¿Ã ¼ö ÀÖ´Â ¹èÄ¡µÈ °Å ¸»°í µû·Î µ¿Àû »ı¼ºÇÏ´Â °Å.. 
-	// ÀÌ·¸°Ô ÇÏ¸é ÀÏºÎ ½ºÅ×ÀÌÁö ÆÄÆ®¸¸ (´ëÃ¼·Î º¸½º ½ºÅ×ÀÌÁö) ´Ù¸£°í ³ª¸ÓÁö´Â ´Ù ¶È°°Àº ¿©·¯ Ã©ÅÍ¸Ê ±¸¼ºµéÀ» 
-	// ÇÏ³ªÀÇ UIChapter WidgetBP ±¸¼ºÀ» °¡Áö°í ÀçÈ°¿ëÀÌ °¡´ÉÇØ¼­ Ã©ÅÍ°£ ¹Ù·Î ÀÌµ¿ ½Ã ·¢ °¨¼Ò¿¡ µµ¿ò
+	// GetSlot æ è‚º æ˜ç»¢æ£µ è ä¹ç»° ç¡…æ‘¹ç­‰ èŠ­ å¯Œç»Š è¶è‚º æ‚¼åˆ© ç§¯å·±çªç»° èŠ­.. 
+	// æçŠ¯éœ¸ çªæ è€ä½• èƒ¶æŠ›æç˜¤ é¢‡é£˜çˆ¶ (æªçœ‰è‚º ç„Šèƒ¶ èƒ¶æŠ›æç˜¤) ä¿ƒç¦ç»Š å”±èµ£ç˜¤ç»° ä¿ƒ åº¦éç¯® å’¯çŸ¾ èŒ…ç£ç”˜ å¤‡å·±ç”¸é˜‘ 
+	// çªå”±ç‹¼ UIChapter WidgetBP å¤‡å·±é˜‘ å•Šç˜¤ç»Š çŠåŠä¾©æ å•Šç“·ç§¦è¾‘ èŒ…ç£åŸƒ å®˜è‚º ææ‚¼ çŸ« å‘ çš‘å®¶ä¿Š æ¡£æ¡†
 	GenerateUniquelyDefinedPartsOfCurrentChapter(DynCreatedStages);
 	for (UB2UIChapterStage* ThisCreatedParts : DynCreatedStages)
 	{
 		if (ThisCreatedParts)
 		{
-			// ÇØ´ç ½ºÅ×ÀÌÁö ³Ñ¹öÀÇ UniquelyDefinedPartsCreatePanels À» Ã£Áö ¸øÇßÀ¸¸é ÁøÀÛ¿¡ »ı¼ººÎÅÍ ¾ÈµÇ¾ú°ÚÁö..
+			// ç§¦å¯¸ èƒ¶æŠ›æç˜¤ é€æ»šç‹¼ UniquelyDefinedPartsCreatePanels é˜‘ èŒ«ç˜¤ ç»™æ²æ æ æŸ³ç´¯ä¿Š ç§¯å·±ä½•ç£ æ•‘ç™»èŒæ‘†ç˜¤..
 			check(UniquelyDefinedPartsCreatePanels.Find(ThisCreatedParts->GetSubChapterNum()));
-			// »ı¼ºÇÑ °ÍÀ» ChapterStages ¿¡ ³¢¿ö³Ö±â ÇÑ´Ù. ¾ÆÁ÷Àº ChapterStages ÀÇ SubChapterNum ÀÌ ¹è¿­ ÀÎµ¦½º ¼ø¼­´ë·Î ¸ÂÃçÁö±â Àü..
+			// ç§¯å·±èŒ„ å·´é˜‘ ChapterStages ä¿Š å°å†µæŒæ‰ èŒ„ä¿ƒ. é…’æµç¯® ChapterStages ç‹¼ SubChapterNum æ ç¡…å‡¯ ç‰¢éƒ¸èƒ¶ é‰´è¾‘æªè‚º å˜è‹—ç˜¤æ‰ å‚ˆ..
 			ChapterStages.Insert(ThisCreatedParts, ThisCreatedParts->GetSubChapterNum() - 1);
 		}
 	}
-	// ¹èÄ¡µÈ °Å + µ¿Àû»ı¼º ¼ö°¡ ±âº» °¡Á¤µÇ´Â ÀüÃ¼ StageNum ¿¡ ¸ÂÁö ¾ÊÀ¸¸é ¹º°¡ ºü¶ß·È´øÁö.. ¾Æ´Ï¸é ±¸Á¶»ó ¾Æ·¡ °¡Á¤À» ¸ÂÃâ ¼ö ¾ø´Â »óÈ²ÀÌ¶ó¸é UIChapter WidgetBP ¸¦ º°µµ·Î ²Ù¹ÌµçÁö.
+	// ç¡…æ‘¹ç­‰ èŠ­ + æ‚¼åˆ©ç§¯å·± èå•Š æ‰å¤¯ å•Šæ²¥ç™»ç»° å‚ˆçœ‰ StageNum ä¿Š å˜ç˜¤ è‡¼æ æ è´­å•Š ç‹å“†å•¡å¸¦ç˜¤.. é…’èªæ å¤‡ç‚¼æƒ‘ é…’è´° å•Šæ²¥é˜‘ å˜å… è ç»ç»° æƒ‘ç‚”ææ‰¼æ UIChapter WidgetBP ç”« å–Šæ¡£è‚º æ“å›ºç”µç˜¤.
 	check(ChapterStages.Num() == StageNum);
 
 	GET_SLOT(UPanelWidget, CP_TempNonMatineeBG)
 	if (CP_TempNonMatineeBG.IsValid())
 	{
-		CP_TempNonMatineeBG->SetVisibility(bExternalDynamicSetupReady ? ESlateVisibility::Collapsed : ESlateVisibility::Visible); // External dynamic (matinee) ¼Â¾÷ÀÌ ¾ÈµÇ¾î ÀÖÀ» ¶§ º¸ÀÌ±â À§ÇÑ °Å.
+		CP_TempNonMatineeBG->SetVisibility(bExternalDynamicSetupReady ? ESlateVisibility::Collapsed : ESlateVisibility::Visible); // External dynamic (matinee) æ‚¸è¯€æ æ•‘ç™»ç»¢ ä¹é˜‘ é”­ ç„Šææ‰ å›°èŒ„ èŠ­.
 	}
 }
 
@@ -85,16 +85,16 @@ void UB2UIChapter::UpdateStageUIPosition(TArray<FVector2D>& Positions2D)
 		auto* StageItem = ChapterStages[Cnt];
 		if (Positions2D.IsValidIndex(Cnt))
 		{
-			// UniquelyDefinedStageParts ¸¦ °¡Áö°í µ¿Àû »ı¼ºÇÏ´Â °æ¿ì ÇÑ´Ü°è »óÀ§ PanelSlot À» Ã£¾Æ¾ß ÇÔ. 
+			// UniquelyDefinedStageParts ç”« å•Šç˜¤ç»Š æ‚¼åˆ© ç§¯å·±çªç»° ç‰ˆå¿« èŒ„çªœæ‹Œ æƒ‘å›° PanelSlot é˜‘ èŒ«é…’å…· çªƒ. 
 			UCanvasPanel** DynamicCreateBasePanelPtr = UniquelyDefinedPartsCreatePanels.Find(Cnt + 1);
 			UCanvasPanel* DynamicCreateBasePanel = DynamicCreateBasePanelPtr ? *DynamicCreateBasePanelPtr : nullptr;
 			bool bIsDynamicallyCreated = (DynamicCreateBasePanel != nullptr);
-			// CanvasSlotToAdjust ´Â ½ºÅ©¸° »çÀÌÁîÀÇ ÃÖ»óÀ§ ÆĞ³ÎÀÌ µÇ¾î¾ß ÇÑ´Ù.
+			// CanvasSlotToAdjust ç»° èƒ¶å†œèµ´ è¤æä»¤ç‹¼ å¼¥æƒ‘å›° è©æ¾„æ ç™»ç»¢å…· èŒ„ä¿ƒ.
 			UCanvasPanelSlot* CanvasSlotToAdjust = bIsDynamicallyCreated ?
 				Cast<UCanvasPanelSlot>(DynamicCreateBasePanel->Slot) : Cast<UCanvasPanelSlot>(StageItem->Slot);
 			if (CanvasSlotToAdjust)
 			{
-				//À§Ä¡º¸Á¤.
+				//å›°æ‘¹ç„Šæ²¥.
 				FVector2D offset = -CanvasSlotToAdjust->GetSize();
 				offset.X *= 0.5f;
 				CanvasSlotToAdjust->SetPosition(Positions2D[Cnt] + offset);
@@ -116,7 +116,7 @@ UB2UIChapterStage* UB2UIChapter::GetStageWidget(const int32 StageNumber)
 
 void UB2UIChapter::GenerateUniquelyDefinedPartsOfCurrentChapter(TArray<class UB2UIChapterStage*>& OutCreatedParts)
 {
-	// UniquelyDefinedPartsCreatePanels ¸¦ °¡Á®¿Â »óÈ²¿¡¼­ »ç¿ëÀÌ °¡´É
+	// UniquelyDefinedPartsCreatePanels ç”« å•Šå»‰æŸ¯ æƒ‘ç‚”ä¿Šè¾‘ è¤ä¾©æ å•Šç“·
 	APlayerController* OwningPC = GetOwningPlayer();
 	for (TMap<FChapterStageUniqueSettingKey, FChapterStageUniqueSettingValue>::TIterator UPIt(UniquelyDefinedStageParts); UPIt; ++UPIt)
 	{
@@ -136,7 +136,7 @@ void UB2UIChapter::GenerateUniquelyDefinedPartsOfCurrentChapter(TArray<class UB2
 					// More outer slot..
 					UCanvasPanelSlot* ParentPanelSlot = Cast<UCanvasPanelSlot>((*ThisParentPanel)->Slot);
 					if (ThisSettingValue.DisplayPanelSize.X > 0.0f && ThisSettingValue.DisplayPanelSize.Y > 0.0f) {
-						// »ı¼ºµÈ UIP °¡ À§Ä¡ÇÏ´Â Slot °ú ÇÑ´Ü°è ´õ ¿Ã¶ó°£ Slot µÑ ´Ù ¶È°°ÀÌ ¸ÂÃçÁÜ.
+						// ç§¯å·±ç­‰ UIP å•Š å›°æ‘¹çªç»° Slot è‹ èŒ„çªœæ‹Œ æ­¹ æ£µæ‰¼åŸƒ Slot ç¬› ä¿ƒ åº¦éæ å˜è‹—æ·‹.
 						if (AddedCPSlot) {
 							AddedCPSlot->SetSize(ThisSettingValue.DisplayPanelSize);
 						}
@@ -144,7 +144,7 @@ void UB2UIChapter::GenerateUniquelyDefinedPartsOfCurrentChapter(TArray<class UB2
 							ParentPanelSlot->SetSize(ThisSettingValue.DisplayPanelSize);
 						}
 					}
-					else { // »çÀÌÁî ¸í½Ã°¡ ¾È µÇ¾î ÀÖÀ¸¸é ÀÚµ¿ ¸ÂÃã
+					else { // è¤æä»¤ ç–™çŸ«å•Š æ•‘ ç™»ç»¢ ä¹æ æ ç£Šæ‚¼ å˜å‹‰
 						if (AddedCPSlot) {
 							AddedCPSlot->SetAutoSize(true);
 						}
@@ -153,8 +153,8 @@ void UB2UIChapter::GenerateUniquelyDefinedPartsOfCurrentChapter(TArray<class UB2
 						}
 					}
 					NewCreated->Init();
-					NewCreated->SetSubChapterNum(ThisSettingKey.SubStageNum); // Init ¿¡¼­ °á±¹ SubChapterNum À» ´Ù½Ã Ã¤¿ö³ÖÀ» ²«µ¥ ±× ¶§ ÈåÆ®·¯ÁöÁö ¾ÊÀ¸·Á¸é ¿©±â¼­ »ı¼ºµÈ °ÍµéÀ» ChapterStages ¹è¿­¿¡ ÀûÀıÇÏ°Ô ³Ö¾î³õ¾Æ¾ß ÇÔ.
-					// ÀÌ°Íµµ °ğ ChapterStages ¿¡ ³¢¿ö³Ö¾î¾ß..
+					NewCreated->SetSubChapterNum(ThisSettingKey.SubStageNum); // Init ä¿Šè¾‘ æ¬æƒ« SubChapterNum é˜‘ ä¿ƒçŸ« ç›²å†µæŒé˜‘ æå• å¼Š é”­ å„’é£˜çŸ¾ç˜¤ç˜¤ è‡¼æ å¦¨æ å’¯æ‰è¾‘ ç§¯å·±ç­‰ å·´ç”¸é˜‘ ChapterStages ç¡…å‡¯ä¿Š åˆ©ä¾‹çªéœ¸ æŒç»¢åˆé…’å…· çªƒ.
+					// æå·´æ¡£ æ¢† ChapterStages ä¿Š å°å†µæŒç»¢å…·..
 					OutCreatedParts.Add(NewCreated);
 				}
 			}
@@ -164,7 +164,7 @@ void UB2UIChapter::GenerateUniquelyDefinedPartsOfCurrentChapter(TArray<class UB2
 
 void UB2UIChapter::ResetStateForReuse()
 {
-	// ChapterFrame ¿¡¼­ ÀçÈ°¿ëÀ» ÇØ¼­ ¾²´Â »óÈ²ÀÌ ÀÖ¾î¼­ ºñ¿ö³õ´Â °Å..
+	// ChapterFrame ä¿Šè¾‘ çŠåŠä¾©é˜‘ ç§¦è¾‘ é™ç»° æƒ‘ç‚”æ ä¹ç»¢è¾‘ åšå†µåˆç»° èŠ­..
 
 	ChapterStages.Empty();
 	UniquelyDefinedPartsCreatePanels.Empty();
@@ -180,17 +180,17 @@ void UB2UIChapter::ResetStateForReuse()
 
 void UB2UIChapter::Init()
 {
-	ResetStateForReuse(); // Àç»ç¿ë ÇÏ´Â °æ¿ì¸¦ À§ÇØ.
+	ResetStateForReuse(); // çŠè¤ä¾© çªç»° ç‰ˆå¿«ç”« å›°ç§¦.
 
 	Super::Init();
 	
-	// ¿©±â¼­ ChapterStages ÆÄÃ÷µéÀÇ SubChapterNum À» ¼ø¼­´ë·Î ³Ö°Ô µÇ¹Ç·Î µ¿Àû »ı¼ºÇÏ´Â UniquelyDefinedStageParts ¸¦ ÀÌ Àü¿¡ »ı¼ºÇØ ³õ¾Æ¾ß ÇÑ´Ù.
+	// å’¯æ‰è¾‘ ChapterStages é¢‡æ˜ç”¸ç‹¼ SubChapterNum é˜‘ é‰´è¾‘æªè‚º æŒéœ¸ ç™»éª¨è‚º æ‚¼åˆ© ç§¯å·±çªç»° UniquelyDefinedStageParts ç”« æ å‚ˆä¿Š ç§¯å·±ç§¦ åˆé…’å…· èŒ„ä¿ƒ.
 	for (int Cnt = 0; Cnt < ChapterStages.Num(); ++Cnt )
 	{
 		auto StageItem = ChapterStages[Cnt];
 		StageItem->Init();
 		StageItem->SetSubChapterNum(Cnt + 1);
-		//const FStage¾îÂ¼°í& StageData = ;
+		//const FStageç»¢å½•ç»Š& StageData = ;
 		//StageItem->BindDoc(StageData);						
 	}
 
@@ -209,10 +209,10 @@ void UB2UIChapter::SetChapterNum(int32 InValue, EStageDifficulty InStageDifficul
 	}
 }
 
-void UB2UIChapter::SetStageDatas(/*TArray<FStage¾îÂ¼°í> StageDatas*/)
+void UB2UIChapter::SetStageDatas(/*TArray<FStageç»¢å½•ç»Š> StageDatas*/)
 {
 	for (auto StageItem : ChapterStages)
-		StageItem->BindDoc(/*FStage¾îÂ¼°í*/);
+		StageItem->BindDoc(/*FStageç»¢å½•ç»Š*/);
 }
 
 //====================================================================================

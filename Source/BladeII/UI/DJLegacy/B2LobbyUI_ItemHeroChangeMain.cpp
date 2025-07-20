@@ -22,7 +22,7 @@ void UB2LobbyUI_ItemHeroChangeMain::Init()
 
 		if (!CachedInventory->GetItemOPTargetItemData(TargetItem) || CachedInventory->GetItemOpMode() != ELobbyInvenItemOpMode::EIVIOP_HeroChange)
 		{
-			CloseAndQuitItemOpMode(); // ¸¸¿¡ ÇÏ³ª ½ÇÆÐÇÑ´Ù¸é.. ¾îÂ¿ ¼ö ¾øÁö.
+			CloseAndQuitItemOpMode(); // çˆ¶ä¿Š çªå”± è§’è©èŒ„ä¿ƒæ.. ç»¢é©´ è ç»ç˜¤.
 			return;
 		}
 
@@ -386,7 +386,7 @@ void UB2LobbyUI_ItemHeroChangeMain::ServerResultItemHeroChangeMain(const FB2Resp
 	}
 	UB2UIDocUser* DocUser = UB2UIDocHelper::GetDocUser();
 
-	//¾ÆÀÌÅÛ ³Ö¾îÁÖ±â
+	//é…’æžè¢ æŒç»¢æž—æ‰
 	ResultItem = InSeverPtr->updated_item;
 	BladeIIGameImpl::GetClientDataStore().AddChangeItem(ResultItem);
 

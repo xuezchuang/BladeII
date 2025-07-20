@@ -1,4 +1,4 @@
-
+ï»¿
 #include "B2CombatStatEvaluator.h"
 #include "../Common/CommonStructCombatOption.h"
 //#include "BladeII.h"
@@ -12,12 +12,12 @@
 #include "BladeIIUtil.h"
 
 
-namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
+namespace CombatStatEval // å‚ˆæ§ä»¿ èŸæ²¥ è‡‚è‚ºå›½ èœ¡ç“¶
 {
 	/**
-	 * ICharacterDataStore ÀÌ¿ëÇØ¼­ Ã¼·Â ½ºÅİ ¾ò¾î¿È.
-	 * CharacterData ´Â ¸®¸ğÆ® ÇÃ·¹ÀÌ¾î ¿ëÀ¸·Î ÀÇµµÇÑ °ÍÀ¸·Î ¸í½ÃÇÏÁö ¾ÊÀ¸¸é ·ÎÄÃ Ä³¸¯ÅÍ Á¤º¸¸¦ »ç¿ëÇÑ´Ù.
-	 * SpecifiedLevel °ú SpecifiedEquipData ¸¦ ±âº»°ªÀÌ ¾Æ´Ñ ÀÓÀÇÀÇ °ªÀ» ÁÖ¸é ±×°É »ç¿ëÇÑ´Ù. Æ¯Á¤ ·¹º§ÀÌ³ª Àåºñ Á¶ÇÕÀÇ ÇÁ¸®ºä µîÀÇ ¿ëµµ.
+	 * ICharacterDataStore æä¾©ç§¦è¾‘ çœ‰ä»¿ èƒ¶æ³¡ æ˜ç»¢å’³.
+	 * CharacterData ç»° åºœè‘›é£˜ æ•²é¥­æç»¢ ä¾©æ è‚º ç‹¼æ¡£èŒ„ å·´æ è‚º ç–™çŸ«çªç˜¤ è‡¼æ æ è‚ºæ‹¿ æŸè…ç£ æ²¥ç„Šç”« è¤ä¾©èŒ„ä¿ƒ.
+	 * SpecifiedLevel è‹ SpecifiedEquipData ç”« æ‰å¤¯è”¼æ é…’å›± çƒ™ç‹¼ç‹¼ è”¼é˜‘ æ—æ å¼Šå§ è¤ä¾©èŒ„ä¿ƒ. æ¼‚æ²¥ é¥­éª‡æå”± å˜åš ç‚¼é’¦ç‹¼ æ©‡åºœè½° æ®¿ç‹¼ ä¾©æ¡£.
 	 */
 	float GetPCHealth(EPCClass InPCClass, ICharacterDataStore* CharacterData /*= NULL*/, int32 SpecifiedLevel /*= -1*/, TArray<FB2Item>* SpecifiedEquipData /*= NULL*/, bool IsGuildBattle)
 	{
@@ -26,28 +26,28 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 
 		float fStatusValue = 0.0f;
 
-		if (!CharacterData) // ÁöÁ¤ÇÏÁö ¾ÊÀ» °æ¿ì ·ÎÄÃ Ä³¸¯ÅÍ Á¤º¸·Î.
+		if (!CharacterData) // ç˜¤æ²¥çªç˜¤ è‡¼é˜‘ ç‰ˆå¿« è‚ºæ‹¿ æŸè…ç£ æ²¥ç„Šè‚º.
 			CharacterData = &BladeIIGameImpl::GetLocalCharacterData();
 
-		const int32 FinalUsedLevel = SpecifiedLevel > 0 ? SpecifiedLevel : CharacterData->GetCharacterLevel(InPCClass); // 0 º¸´Ù Å©¸é ·¹º§°ªÀ» Á÷Á¢ ÁöÁ¤ÇÑ °É·Î »ç¿ë
+		const int32 FinalUsedLevel = SpecifiedLevel > 0 ? SpecifiedLevel : CharacterData->GetCharacterLevel(InPCClass); // 0 ç„Šä¿ƒ å†œæ é¥­éª‡è”¼é˜‘ æµç«‹ ç˜¤æ²¥èŒ„ å§è‚º è¤ä¾©
 
 		fStatusValue += GetPCBaseHealth(FinalUsedLevel);
 		fStatusValue += CharacterData->GetOptionStatusValue(InPCClass, EItemOption::EIO_Health_IncHealth, SpecifiedEquipData);
 
-		// SkillOption ¿¡´Â ±âº» °ø/¹æ/Ã¼ ´õÇÏ±â´Â ¾øÁö¸¸ Æ¯º°È÷ Health ¸¦ ÆÛ¼¾Æ®·Î ¿Ã¸®´Â ¿É¼ÇÀÌ ÀÖ´Ù.
+		// SkillOption ä¿Šç»° æ‰å¤¯ å‚/è§„/çœ‰ æ­¹çªæ‰ç»° ç»ç˜¤çˆ¶ æ¼‚å–Šæ´’ Health ç”« æ¬ºå­£é£˜è‚º æ£µåºœç»° å¯è®°æ ä¹ä¿ƒ.
 		const float ExtraIncMaxHPRate = GetUnitedOptionStatusValue(InPCClass, EUnitedCombatOptions::UCO_Health_IncMaxHP, CharacterData);
 		fStatusValue *= (1.0f + ExtraIncMaxHPRate);
 
-		fStatusValue = fStatusValue + (fStatusValue * (GetPCHalthGuildBuffValue(CharacterData, IsGuildBattle) * 0.01));		//±æµå ¹öÇÁ
+		fStatusValue = fStatusValue + (fStatusValue * (GetPCHalthGuildBuffValue(CharacterData, IsGuildBattle) * 0.01));		//è¾¨é› æ»šæ©‡
 
 		return fStatusValue;
 	}
 
 
 	/**
-	 * ICharacterDataStore ÀÌ¿ëÇØ¼­ °ø°İ ½ºÅİ ¾ò¾î¿È.
-	 * CharacterData ´Â ¸®¸ğÆ® ÇÃ·¹ÀÌ¾î ¿ëÀ¸·Î ÀÇµµÇÑ °ÍÀ¸·Î ¸í½ÃÇÏÁö ¾ÊÀ¸¸é ·ÎÄÃ Ä³¸¯ÅÍ Á¤º¸¸¦ »ç¿ëÇÑ´Ù.
-	 * SpecifiedLevel °ú SpecifiedEquipData ¸¦ ±âº»°ªÀÌ ¾Æ´Ñ ÀÓÀÇÀÇ °ªÀ» ÁÖ¸é ±×°É »ç¿ëÇÑ´Ù. Æ¯Á¤ ·¹º§ÀÌ³ª Àåºñ Á¶ÇÕÀÇ ÇÁ¸®ºä µîÀÇ ¿ëµµ.
+	 * ICharacterDataStore æä¾©ç§¦è¾‘ å‚æ‹œ èƒ¶æ³¡ æ˜ç»¢å’³.
+	 * CharacterData ç»° åºœè‘›é£˜ æ•²é¥­æç»¢ ä¾©æ è‚º ç‹¼æ¡£èŒ„ å·´æ è‚º ç–™çŸ«çªç˜¤ è‡¼æ æ è‚ºæ‹¿ æŸè…ç£ æ²¥ç„Šç”« è¤ä¾©èŒ„ä¿ƒ.
+	 * SpecifiedLevel è‹ SpecifiedEquipData ç”« æ‰å¤¯è”¼æ é…’å›± çƒ™ç‹¼ç‹¼ è”¼é˜‘ æ—æ å¼Šå§ è¤ä¾©èŒ„ä¿ƒ. æ¼‚æ²¥ é¥­éª‡æå”± å˜åš ç‚¼é’¦ç‹¼ æ©‡åºœè½° æ®¿ç‹¼ ä¾©æ¡£.
 	 */
 	float GetPCAttack(EPCClass InPCClass, ICharacterDataStore* CharacterData /*= NULL*/, int32 SpecifiedLevel /*= -1*/, TArray<FB2Item>* SpecifiedEquipData /*= NULL*/, bool IsGuildBattle)
 	{
@@ -56,23 +56,23 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 
 		float fStatusValue = 0.0f;
 
-		if (!CharacterData) // ÁöÁ¤ÇÏÁö ¾ÊÀ» °æ¿ì ·ÎÄÃ Ä³¸¯ÅÍ Á¤º¸·Î.
+		if (!CharacterData) // ç˜¤æ²¥çªç˜¤ è‡¼é˜‘ ç‰ˆå¿« è‚ºæ‹¿ æŸè…ç£ æ²¥ç„Šè‚º.
 			CharacterData = &BladeIIGameImpl::GetLocalCharacterData();
 
-		const int32 FinalUsedLevel = SpecifiedLevel > 0 ? SpecifiedLevel : CharacterData->GetCharacterLevel(InPCClass); // 0 º¸´Ù Å©¸é ·¹º§°ªÀ» Á÷Á¢ ÁöÁ¤ÇÑ °É·Î »ç¿ë
+		const int32 FinalUsedLevel = SpecifiedLevel > 0 ? SpecifiedLevel : CharacterData->GetCharacterLevel(InPCClass); // 0 ç„Šä¿ƒ å†œæ é¥­éª‡è”¼é˜‘ æµç«‹ ç˜¤æ²¥èŒ„ å§è‚º è¤ä¾©
 
 		fStatusValue += GetPCBaseAttack(FinalUsedLevel);
 		fStatusValue += CharacterData->GetOptionStatusValue(InPCClass, EItemOption::EIO_Offense_IncAttack, SpecifiedEquipData);
 
-		fStatusValue = fStatusValue + (fStatusValue * (GetPCAttackGuildBuffValue(CharacterData, IsGuildBattle) * 0.01));		//±æµå ¹öÇÁ
+		fStatusValue = fStatusValue + (fStatusValue * (GetPCAttackGuildBuffValue(CharacterData, IsGuildBattle) * 0.01));		//è¾¨é› æ»šæ©‡
 		return fStatusValue;
 	}
 
 
 	/**
-	 * ICharacterDataStore ÀÌ¿ëÇØ¼­ ¹æ¾î ½ºÅİ ¾ò¾î¿È.
-	 * CharacterData ´Â ¸®¸ğÆ® ÇÃ·¹ÀÌ¾î ¿ëÀ¸·Î ÀÇµµÇÑ °ÍÀ¸·Î ¸í½ÃÇÏÁö ¾ÊÀ¸¸é ·ÎÄÃ Ä³¸¯ÅÍ Á¤º¸¸¦ »ç¿ëÇÑ´Ù.
-	 * SpecifiedLevel °ú SpecifiedEquipData ¸¦ ±âº»°ªÀÌ ¾Æ´Ñ ÀÓÀÇÀÇ °ªÀ» ÁÖ¸é ±×°É »ç¿ëÇÑ´Ù. Æ¯Á¤ ·¹º§ÀÌ³ª Àåºñ Á¶ÇÕÀÇ ÇÁ¸®ºä µîÀÇ ¿ëµµ.
+	 * ICharacterDataStore æä¾©ç§¦è¾‘ è§„ç»¢ èƒ¶æ³¡ æ˜ç»¢å’³.
+	 * CharacterData ç»° åºœè‘›é£˜ æ•²é¥­æç»¢ ä¾©æ è‚º ç‹¼æ¡£èŒ„ å·´æ è‚º ç–™çŸ«çªç˜¤ è‡¼æ æ è‚ºæ‹¿ æŸè…ç£ æ²¥ç„Šç”« è¤ä¾©èŒ„ä¿ƒ.
+	 * SpecifiedLevel è‹ SpecifiedEquipData ç”« æ‰å¤¯è”¼æ é…’å›± çƒ™ç‹¼ç‹¼ è”¼é˜‘ æ—æ å¼Šå§ è¤ä¾©èŒ„ä¿ƒ. æ¼‚æ²¥ é¥­éª‡æå”± å˜åš ç‚¼é’¦ç‹¼ æ©‡åºœè½° æ®¿ç‹¼ ä¾©æ¡£.
 	 */
 	float GetPCDefense(EPCClass InPCClass, ICharacterDataStore* CharacterData /*= NULL*/, int32 SpecifiedLevel /*= -1*/, TArray<FB2Item>* SpecifiedEquipData /*= NULL*/, bool IsGuildBattle)
 	{
@@ -81,38 +81,38 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 
 		float fStatusValue = 0.0f;
 
-		if (!CharacterData) // ÁöÁ¤ÇÏÁö ¾ÊÀ» °æ¿ì ·ÎÄÃ Ä³¸¯ÅÍ Á¤º¸·Î.
+		if (!CharacterData) // ç˜¤æ²¥çªç˜¤ è‡¼é˜‘ ç‰ˆå¿« è‚ºæ‹¿ æŸè…ç£ æ²¥ç„Šè‚º.
 			CharacterData = &BladeIIGameImpl::GetLocalCharacterData();
 
-		const int32 FinalUsedLevel = SpecifiedLevel > 0 ? SpecifiedLevel : CharacterData->GetCharacterLevel(InPCClass); // 0 º¸´Ù Å©¸é ·¹º§°ªÀ» Á÷Á¢ ÁöÁ¤ÇÑ °É·Î »ç¿ë
+		const int32 FinalUsedLevel = SpecifiedLevel > 0 ? SpecifiedLevel : CharacterData->GetCharacterLevel(InPCClass); // 0 ç„Šä¿ƒ å†œæ é¥­éª‡è”¼é˜‘ æµç«‹ ç˜¤æ²¥èŒ„ å§è‚º è¤ä¾©
 
 		fStatusValue += GetPCBaseDefense(FinalUsedLevel);
 		fStatusValue += CharacterData->GetOptionStatusValue(InPCClass, EItemOption::EIO_Defense_IncDefense, SpecifiedEquipData);
 
-		fStatusValue = fStatusValue + (fStatusValue * (GetPCDefendseGuildBuffValue(CharacterData, IsGuildBattle) * 0.01));		//±æµå ¹öÇÁ
+		fStatusValue = fStatusValue + (fStatusValue * (GetPCDefendseGuildBuffValue(CharacterData, IsGuildBattle) * 0.01));		//è¾¨é› æ»šæ©‡
 		return fStatusValue;
 	}
 
 
 
 	/**
-	 * ICharacterDataStore ÀÌ¿ëÇØ¼­ Ä³¸¯ÅÍ Á¾ÇÕ ÀüÅõ·ÂÀ» ¾ò¾î¿È.
-	 * ÀÌ°Ç ½ÇÁ¦ ÀüÅõ¿¡ »ç¿ëµÇ´Â °ÍÀº ¾Æ´Ï°í ÀÏÁ¾ÀÇ Á¾ÇÕ Æò°¡ ¼öÄ¡ÀÇ ÀÇ¹Ì·Î »ç¿ëµÇ´Â °ÍÀÌ´Ù. °ªÀÌ ³ôÀ»¼ö·Ï ÀüÅõ¿¡¼­ À¯¿ëÇÏ±ä ÇÏ°ÚÁö.
-	 * CharacterData ´Â ¸®¸ğÆ® ÇÃ·¹ÀÌ¾î ¿ëÀ¸·Î ÀÇµµÇÑ °ÍÀ¸·Î ¸í½ÃÇÏÁö ¾ÊÀ¸¸é ·ÎÄÃ Ä³¸¯ÅÍ Á¤º¸¸¦ »ç¿ëÇÑ´Ù.
-	 * SpecifiedLevel °ú SpecifiedEquipData ¸¦ ±âº»°ªÀÌ ¾Æ´Ñ ÀÓÀÇÀÇ °ªÀ» ÁÖ¸é ±×°É »ç¿ëÇÑ´Ù. Æ¯Á¤ ·¹º§ÀÌ³ª Àåºñ Á¶ÇÕÀÇ ÇÁ¸®ºä µîÀÇ ¿ëµµ.
+	 * ICharacterDataStore æä¾©ç§¦è¾‘ æŸè…ç£ è¾†é’¦ å‚ˆæ§ä»¿é˜‘ æ˜ç»¢å’³.
+	 * ææ‰’ è§’åŠ› å‚ˆæ§ä¿Š è¤ä¾©ç™»ç»° å·´ç¯® é…’èªç»Š è€è¾†ç‹¼ è¾†é’¦ ä¹å•Š èæ‘¹ç‹¼ ç‹¼å›ºè‚º è¤ä¾©ç™»ç»° å·´æä¿ƒ. è”¼æ è‡­é˜‘èåºŸ å‚ˆæ§ä¿Šè¾‘ èœ¡ä¾©çªå˜ çªæ‘†ç˜¤.
+	 * CharacterData ç»° åºœè‘›é£˜ æ•²é¥­æç»¢ ä¾©æ è‚º ç‹¼æ¡£èŒ„ å·´æ è‚º ç–™çŸ«çªç˜¤ è‡¼æ æ è‚ºæ‹¿ æŸè…ç£ æ²¥ç„Šç”« è¤ä¾©èŒ„ä¿ƒ.
+	 * SpecifiedLevel è‹ SpecifiedEquipData ç”« æ‰å¤¯è”¼æ é…’å›± çƒ™ç‹¼ç‹¼ è”¼é˜‘ æ—æ å¼Šå§ è¤ä¾©èŒ„ä¿ƒ. æ¼‚æ²¥ é¥­éª‡æå”± å˜åš ç‚¼é’¦ç‹¼ æ©‡åºœè½° æ®¿ç‹¼ ä¾©æ¡£.
 	 */
 	float GetPCCombatPower(EPCClass InPCClass, ICharacterDataStore* CharacterData /*= NULL*/, int32 SpecifiedLevel /*= -1*/, TArray<FB2Item>* SpecifiedEquipData /*= NULL*/)
 	{
 		float fStatusValue = 0.0f;
 
-		if (!CharacterData) // CharacterData ¸¦ ÁöÁ¤ ¾ÈÇßÀ¸¸é ·ÎÄÃ ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ ²¬·Î.
+		if (!CharacterData) // CharacterData ç”« ç˜¤æ²¥ æ•‘æ²æ æ è‚ºæ‹¿ æ•²é¥­æç»¢ æŸè…ç£ é“‚è‚º.
 			CharacterData = &BladeIIGameImpl::GetLocalCharacterData();
 
-		const int32 FinalUsedLevel = SpecifiedLevel > 0 ? SpecifiedLevel : CharacterData->GetCharacterLevel(InPCClass); // 0 º¸´Ù Å©¸é ·¹º§°ªÀ» Á÷Á¢ ÁöÁ¤ÇÑ °É·Î »ç¿ë
+		const int32 FinalUsedLevel = SpecifiedLevel > 0 ? SpecifiedLevel : CharacterData->GetCharacterLevel(InPCClass); // 0 ç„Šä¿ƒ å†œæ é¥­éª‡è”¼é˜‘ æµç«‹ ç˜¤æ²¥èŒ„ å§è‚º è¤ä¾©
 
 		auto& ClientData = BladeIIGameImpl::GetClientDataStore();
 
-		// ±âº» Ä³¸¯ÅÍ °ø¹æÃ¼ ÀüÅõ·Â
+		// æ‰å¤¯ æŸè…ç£ å‚è§„çœ‰ å‚ˆæ§ä»¿
 		float AttackPower = (static_cast<float>(GetPCBaseAttack(FinalUsedLevel)) * ClientData.GetOptionWeight(EItemOption::EIO_Offense_IncAttack));
 		float DefensePower = (static_cast<float>(GetPCBaseDefense(FinalUsedLevel)) * ClientData.GetOptionWeight(EItemOption::EIO_Defense_IncDefense));
 		float HealthPower = (static_cast<float>(GetPCBaseHealth(FinalUsedLevel)) * ClientData.GetOptionWeight(EItemOption::EIO_Health_IncHealth));
@@ -121,11 +121,11 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 		fStatusValue += DefensePower;
 		fStatusValue += HealthPower;
 
-		// Àåºñ,³¯°³ µîµîÀ¸·Î Ãß°¡µÈ ÀüÅõ·Â
+		// å˜åš,æœä¿º æ®¿æ®¿æ è‚º çœ å•Šç­‰ å‚ˆæ§ä»¿
 		fStatusValue += CharacterData->GetCombatStatusValue(InPCClass, SpecifiedEquipData);
 
-		// ±æµå¹öÇÁ·Î Ãß°¡µÈ ÀüÅõ·Â
-		// ÃÑ °ø¹æÃ¼ * ±æµå¹öÇÁÆÛ¼¾Æ® * ÀüÅõ·Â °¡ÁßÄ¡ 
+		// è¾¨é›æ»šæ©‡è‚º çœ å•Šç­‰ å‚ˆæ§ä»¿
+		// é†š å‚è§„çœ‰ * è¾¨é›æ»šæ©‡æ¬ºå­£é£˜ * å‚ˆæ§ä»¿ å•Šåæ‘¹ 
 		float TotalAtt = static_cast<float>(GetPCBaseAttack(FinalUsedLevel)) + CharacterData->GetOptionStatusValue(InPCClass, EItemOption::EIO_Offense_IncAttack, SpecifiedEquipData);
 		float TotalDef = static_cast<float>(GetPCBaseDefense(FinalUsedLevel)) + CharacterData->GetOptionStatusValue(InPCClass, EItemOption::EIO_Defense_IncDefense, SpecifiedEquipData);
 		float TotalHP = static_cast<float>(GetPCBaseHealth(FinalUsedLevel)) + CharacterData->GetOptionStatusValue(InPCClass, EItemOption::EIO_Health_IncHealth, SpecifiedEquipData);
@@ -152,10 +152,10 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 
 		float fStatusValue = 0.0f;
 
-		if (!CharacterData) // ÁöÁ¤ÇÏÁö ¾ÊÀ» °æ¿ì ·ÎÄÃ Ä³¸¯ÅÍ Á¤º¸·Î.
+		if (!CharacterData) // ç˜¤æ²¥çªç˜¤ è‡¼é˜‘ ç‰ˆå¿« è‚ºæ‹¿ æŸè…ç£ æ²¥ç„Šè‚º.
 			CharacterData = &BladeIIGameImpl::GetLocalCharacterData();
 
-		//Temp Value Áö±İÀº °í´ëÀ¯¹° ¹Û¿¡ ¾È»ç¿ë ÇÏ±â ¶§¹®. ÇÊ¿äÇÏ¸é È£Ãâ À§Ä¡¸¦(CharacterData->GetOptionStatusValue) º¯°æÇÏ¿© »ç¿ëÇÏ½Ã¸é µÊ.
+		//Temp Value ç˜¤é™›ç¯® ç»Šæªèœ¡æ‹± è§‚ä¿Š æ•‘è¤ä¾© çªæ‰ é”­å·©. é˜å¤¸çªæ é¾‹å… å›°æ‘¹ç”«(CharacterData->GetOptionStatusValue) å‡½ç‰ˆçªå’¯ è¤ä¾©çªçŸ«æ å‡³.
 		fStatusValue = CharacterData->GetOptionStatusValueByMod(InPCClass, ModeType, EItemOption::EIO_Offense_IncAttack);
 
 		return fStatusValue;
@@ -168,10 +168,10 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 
 		float fStatusValue = 0.0f;
 
-		if (!CharacterData) // ÁöÁ¤ÇÏÁö ¾ÊÀ» °æ¿ì ·ÎÄÃ Ä³¸¯ÅÍ Á¤º¸·Î.
+		if (!CharacterData) // ç˜¤æ²¥çªç˜¤ è‡¼é˜‘ ç‰ˆå¿« è‚ºæ‹¿ æŸè…ç£ æ²¥ç„Šè‚º.
 			CharacterData = &BladeIIGameImpl::GetLocalCharacterData();
 
-		//Temp Value Áö±İÀº °í´ëÀ¯¹° ¹Û¿¡ ¾È»ç¿ë ÇÏ±â ¶§¹®. ÇÊ¿äÇÏ¸é È£Ãâ À§Ä¡¸¦(CharacterData->GetOptionStatusValue) º¯°æÇÏ¿© »ç¿ëÇÏ½Ã¸é µÊ.
+		//Temp Value ç˜¤é™›ç¯® ç»Šæªèœ¡æ‹± è§‚ä¿Š æ•‘è¤ä¾© çªæ‰ é”­å·©. é˜å¤¸çªæ é¾‹å… å›°æ‘¹ç”«(CharacterData->GetOptionStatusValue) å‡½ç‰ˆçªå’¯ è¤ä¾©çªçŸ«æ å‡³.
 		fStatusValue = CharacterData->GetOptionStatusValueByMod(InPCClass, ModeType, EItemOption::EIO_Defense_IncDefense);
 
 		return fStatusValue;
@@ -184,10 +184,10 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 
 		float fStatusValue = 0.0f;
 
-		if (!CharacterData) // ÁöÁ¤ÇÏÁö ¾ÊÀ» °æ¿ì ·ÎÄÃ Ä³¸¯ÅÍ Á¤º¸·Î.
+		if (!CharacterData) // ç˜¤æ²¥çªç˜¤ è‡¼é˜‘ ç‰ˆå¿« è‚ºæ‹¿ æŸè…ç£ æ²¥ç„Šè‚º.
 			CharacterData = &BladeIIGameImpl::GetLocalCharacterData();
 
-		//Temp Value Áö±İÀº °í´ëÀ¯¹° ¹Û¿¡ ¾È»ç¿ë ÇÏ±â ¶§¹®. ÇÊ¿äÇÏ¸é È£Ãâ À§Ä¡¸¦(CharacterData->GetOptionStatusValue) º¯°æÇÏ¿© »ç¿ëÇÏ½Ã¸é µÊ.
+		//Temp Value ç˜¤é™›ç¯® ç»Šæªèœ¡æ‹± è§‚ä¿Š æ•‘è¤ä¾© çªæ‰ é”­å·©. é˜å¤¸çªæ é¾‹å… å›°æ‘¹ç”«(CharacterData->GetOptionStatusValue) å‡½ç‰ˆçªå’¯ è¤ä¾©çªçŸ«æ å‡³.
 		fStatusValue = CharacterData->GetOptionStatusValueByMod(InPCClass, ModeType, EItemOption::EIO_Health_IncHealth);
 
 		return fStatusValue;
@@ -203,7 +203,7 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 
 		const int32 FinalUsedLevel = CharacterData.GetCharacterLevel(InPCClass);
 
-		// ±âº» Ä³¸¯ÅÍ °ø¹æÃ¼ ÀüÅõ·Â
+		// æ‰å¤¯ æŸè…ç£ å‚è§„çœ‰ å‚ˆæ§ä»¿
 		float AttackPower = (static_cast<float>(GetPCBaseAttack(FinalUsedLevel)) * ClientData.GetOptionWeight(EItemOption::EIO_Offense_IncAttack));
 		float DefensePower = (static_cast<float>(GetPCBaseDefense(FinalUsedLevel)) * ClientData.GetOptionWeight(EItemOption::EIO_Defense_IncDefense));
 		float HealthPower = (static_cast<float>(GetPCBaseHealth(FinalUsedLevel)) * ClientData.GetOptionWeight(EItemOption::EIO_Health_IncHealth));
@@ -221,7 +221,7 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 		OutCharacterPowerPtr.Add(StatPowerSpecific);
 		BII_SCREEN_LOG(FString::Printf(TEXT("CombatPower (Base) : %0.2f"), fBaseCombatPower), FLinearColor(0.0, 1.0f, 0.0f, 1.0f), 12, 10.0f);
 
-		// Àåºñ,³¯°³ µîµîÀ¸·Î Ãß°¡µÈ ÀüÅõ·Â
+		// å˜åš,æœä¿º æ®¿æ®¿æ è‚º çœ å•Šç­‰ å‚ˆæ§ä»¿
 		fStatusValue += CharacterData.GetRequestCombatStatusValue(InPCClass, OutCharacterPowerPtr);
 
 		/* TOTAL_POWER */
@@ -231,8 +231,8 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 		OutCharacterPowerPtr.Add(TotalPowerSpecific);
 		BII_SCREEN_LOG(FString::Printf(TEXT("Total CombatPower : %0.2f"), fStatusValue), FLinearColor(0.0, 0.5f, 0.5f, 1.0f), 15, 10.0f);
 
-		// ±æµå¹öÇÁ·Î Ãß°¡µÈ ÀüÅõ·Â
-		// ÃÑ °ø¹æÃ¼ * ±æµå¹öÇÁÆÛ¼¾Æ® * ÀüÅõ·Â °¡ÁßÄ¡ 
+		// è¾¨é›æ»šæ©‡è‚º çœ å•Šç­‰ å‚ˆæ§ä»¿
+		// é†š å‚è§„çœ‰ * è¾¨é›æ»šæ©‡æ¬ºå­£é£˜ * å‚ˆæ§ä»¿ å•Šåæ‘¹ 
 		float TotalAtt = static_cast<float>(GetPCBaseAttack(FinalUsedLevel)) + CharacterData.GetOptionStatusValue(InPCClass, EItemOption::EIO_Offense_IncAttack);
 		float TotalDef = static_cast<float>(GetPCBaseDefense(FinalUsedLevel)) + CharacterData.GetOptionStatusValue(InPCClass, EItemOption::EIO_Defense_IncDefense);
 		float TotalHP = static_cast<float>(GetPCBaseHealth(FinalUsedLevel)) + CharacterData.GetOptionStatusValue(InPCClass, EItemOption::EIO_Health_IncHealth);
@@ -282,10 +282,10 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 	//		CombatRawDatas.GetAllRawValues(PrimaryPointRawValues);
 	//
 	//		double EnhanceIncreaseFactor = (ConvertItemOptionToItemPrimaryPointType(OptionType) != EItemPrimaryPointType::EIPP_End ? GetEnhanceSetEffectFactor(AllEquipped) : 0.f);
-	//		// °­È­ ¾ÆÀÌÅÛ ¼¼Æ® È¿°ú¸¦ °í·ÁÇÑ GetEffectiveOptionValue.. ¹öÀüÀ¸·Î.. 
+	//		// ç¢æ‹³ é…’æè¢ æŠ€é£˜ ç“¤è‹ç”« ç»Šå¦¨èŒ„ GetEffectiveOptionValue.. æ»šå‚ˆæ è‚º.. 
 	//		float ResultOptionValue = GetEffectiveOptionValueWithEnhanceSetEffectTempl<EItemOption>(OptionType, PrimaryPointRawValues, EnhanceIncreaseFactor, true);
 	//
-	//		// °ø¹æÃ¼ ¿É¼ÇÀÇ °æ¿ì Ä³¸¯ÅÍ ±âº» ¿É¼Ç°ú ÇÕÃÄÁö±â Àü¿¡ Á¶Á¤ °úÁ¤À» °ÅÄ£´Ù.
+	//		// å‚è§„çœ‰ å¯è®°ç‹¼ ç‰ˆå¿« æŸè…ç£ æ‰å¤¯ å¯è®°è‹ é’¦åªšç˜¤æ‰ å‚ˆä¿Š ç‚¼æ²¥ è‹æ²¥é˜‘ èŠ­æ¨¡ä¿ƒ.
 	//		if (IsPrimPointTypeByItemOption(OptionType))
 	//		{
 	//			ResultOptionValue = FMath::Max(0.0f, ResultOptionValue);
@@ -300,28 +300,28 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 		//auto& ClientDataStore = BladeIIGameImpl::GetClientDataStore();
 		//EItemPrimaryPointType CheckPrimaryPointType = ConvertItemOptionToItemPrimaryPointType(OptionType);
 
-		//// ¾ÆÀÌÅÛ ¿É¼Ç
+		//// é…’æè¢ å¯è®°
 		//for (auto& Item : AllEquipped)
 		//{
-		//	// ±âº»´É·ÂÄ¡
+		//	// æ‰å¤¯ç“·ä»¿æ‘¹
 		//	if (Item.PrimaryPointType == CheckPrimaryPointType)
 		//		OutCombatStatInfo.AddPrimaryPointValue(ECharStatApplyType::ECSA_NormalPoint, Item.GetPrimaryPoint());
 
-		//	// °íÀ¯¿É¼Ç
+		//	// ç»Šèœ¡å¯è®°
 		//	for (auto& CurrOption : Item.IntrinsicOptions)
 		//	{
 		//		if (CurrOption.OptionType == OptionType)
 		//			OutCombatStatInfo.AddPrimaryPointValue(ECharStatApplyType::ECSA_IntrinsicOptions, CurrOption.RawOptionAmount);
 		//	}
 
-		//	// ·£´ı(ÀÏ¹İ)¿É¼Ç
+		//	// ç½šå¾…(è€é¦†)å¯è®°
 		//	for (auto& CurrOption : Item.RandomOptions)
 		//	{
 		//		if (CurrOption.OptionType == OptionType)
 		//			OutCombatStatInfo.AddPrimaryPointValue(ECharStatApplyType::ECSA_RandomOptions, CurrOption.RawOptionAmount);
 		//	}
 
-		//	//°¢¼º ¿É¼Ç
+		//	//é˜¿å·± å¯è®°
 		//	for (auto& CurrOption : Item.SealOptions)
 		//	{
 		//		if(CurrOption.OptionInfo.OptionType == OptionType)
@@ -329,14 +329,14 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 		//	}
 		//}
 
-		//// ³¯°³ ¿É¼Ç
+		//// æœä¿º å¯è®°
 		//if (InWingContainer.bHasWing)
 		//{
 		//	const FWingPropOption* ThisPropOption = InWingContainer.WingData.GetPropOptionPtr(OptionType);
 		//	if (ThisPropOption && ThisPropOption->bIsOpen)
 		//		OutCombatStatInfo.AddPrimaryPointValue(ECharStatApplyType::ECSA_WingAdditionalOption, ThisPropOption->RawOptionAmount);
 
-		//	// ±âº»´É·ÂÄ¡
+		//	// æ‰å¤¯ç“·ä»¿æ‘¹
 		//	switch (CheckPrimaryPointType)
 		//	{
 		//	case EItemPrimaryPointType::EIPP_Attack:
@@ -353,14 +353,14 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 		//	}
 		//}
 
-		//// Áø±Ş ¿É¼Ç(°ø ¹æ Ã¼)
+		//// æŸ³é­ å¯è®°(å‚ è§„ çœ‰)
 		//if (BrevetRank != 0)
 		//{
 		//	int32 nAddStatus = ClientDataStore.GetBrevetNodeTotalStatus(OptionType, BrevetRank, BrevetNodeNum);
 		//	OutCombatStatInfo.AddPrimaryPointValue(ECharStatApplyType::ECSA_RankPromotion, float(nAddStatus));
 		//}
-		///////////////////////////////////////////////////////////////////////////////////¿©±â±º//////////////////////////
-		//// ¾ÆÀÌÅÛ ¼¼Æ®È¿°ú
+		///////////////////////////////////////////////////////////////////////////////////å’¯æ‰ç„™//////////////////////////
+		//// é…’æè¢ æŠ€é£˜ç“¤è‹
 		//TMap<int32, int32>	ItemSetMap;
 		//TMap<int32, TArray<int32>>	EquipmentGroupIDMap;
 		//TMap<int32, TArray<int32>>	AccessoriesGroupIDMap;
@@ -368,13 +368,13 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 		//GetSetItemValue(AllEquipped, ItemSetMap);
 		//GetSetItemValueByInvenType(AllEquipped, EItemInvenType::EIIVT_Protection, EquipmentGroupIDMap);
 		//GetSetItemValueByInvenType(AllEquipped, EItemInvenType::EIIVT_Accessory, AccessoriesGroupIDMap);
-		//GetCostumesSetItemValue(AllEquipped, CostumeGroupIDMap );// ÇöÀç ÄÚ½ºÆ¬ÀÈ ¹æ¾î±¸ ¹«±â°¡ ¼¼Æ®·Î ÀÛµ¿ÇÔ
+		//GetCostumesSetItemValue(AllEquipped, CostumeGroupIDMap );// æ³…çŠ å†…èƒ¶ç‰‡å»Š è§„ç»¢å¤‡ å…¬æ‰å•Š æŠ€é£˜è‚º ç´¯æ‚¼çªƒ
 		//
 		//ApplySetItemValueByInvenType(ClientDataStore,ItemSetMap, OptionType, OutCombatStatInfo, EquipmentGroupIDMap);
 		//ApplySetItemValueByInvenType(ClientDataStore, ItemSetMap, OptionType, OutCombatStatInfo, AccessoriesGroupIDMap);
 		//ApplyCostumeSetItemValue(ClientDataStore, CostumeGroupIDMap,OptionType,OutCombatStatInfo);
 
-		//// Æä¾î¸®
+		//// å…¶ç»¢åºœ
 		//for (const FB2FairyStatusInfo& Status : FairyStatus)
 		//{
 		//	EItemOption BlessOption = SvrToCliOptionType(Status.ActivedOptoinId);
@@ -386,9 +386,9 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 		//		OutCombatStatInfo.AddPrimaryPointValue(ECharStatApplyType::ECSA_FairyOption, OutData.OptionValue);
 		//}
 
-		//// °í´ëÀ¯¹°
+		//// ç»Šæªèœ¡æ‹±
 		//RelicManager RelicMGR(GLOBALRELICMANAGER);
-		//// if (&RelicMGR) //Áö¿ª¿¡¼­ staticÀ¸·Î ½Ì±ÛÅæ »ı¼ºÇÏ´Â°Å¶ó ¹«Á¶°Ç ½Å·Ú ÇØ¾ß ÇÒµí...
+		//// if (&RelicMGR) //ç˜¤å¼€ä¿Šè¾‘ staticæ è‚º æ•™è‡‚æ²› ç§¯å·±çªç»°èŠ­æ‰¼ å…¬ç‚¼æ‰’ è„šæ±¾ ç§¦å…· ä¸”æ·€...
 		//{
 		//	const FMD_AncientRelicGradeElem* gradeInfo;
 		//	int32 nRelicId, nGrade;
@@ -401,7 +401,7 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 
 		//		if (gradeInfo)
 		//		{
-		//			// ±âº»´É·ÂÄ¡
+		//			// æ‰å¤¯ç“·ä»¿æ‘¹
 		//			switch (CheckPrimaryPointType)
 		//			{
 		//			case EItemPrimaryPointType::EIPP_Attack:
@@ -420,7 +420,7 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 		//	}
 		//}
 
-		//// ¿¡Å×¸£
+		//// ä¿ŠæŠ›ç¦
 		//for (const TPair<int64, FB2Ether>& Elem : Ethers)
 		//{
 		//	if (Elem.Value.MainOption.OptionType == OptionType)
@@ -437,21 +437,21 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 		//	}
 		//}
 
-		//// ÅäÅÛ
+		//// é…è¢
 		//for (const TPair<int64, FB2Totem>& Elem : Totems)
 		//{
-		//	// Àåºñ °ø°İ·Â, ¹æ¾î·Â, Ã¼·Â
+		//	// å˜åš å‚æ‹œä»¿, è§„ç»¢ä»¿, çœ‰ä»¿
 		//	if (Elem.Value.MainOptionDetail.OptionType == OptionType)
 		//	{
 		//		OutCombatStatInfo.AddPrimaryPointValue(ECharStatApplyType::ECSA_NormalPoint, Elem.Value.MainOptionDetail.RawOptionAmount);
 		//	}
 
-		//	// Àåºñ Ãß°¡ ¿É¼Ç
+		//	// å˜åš çœ å•Š å¯è®°
 		//	for (int SubOptionIndex = 0; SubOptionIndex < Elem.Value.SubOptionDetails.Num(); ++SubOptionIndex)
 		//	{
 		//		if (Elem.Value.SubOptionDetails[SubOptionIndex].SubOption.OptionType == OptionType)
 		//		{
-		//			// °¨¼Ò ¿É¼ÇÀÌ °¡´ÉÇÑ ºÎºĞ
+		//			// çš‘å®¶ å¯è®°æ å•Šç“·èŒ„ ä½•ç›’
 		//			EOptionVariation OptionVariation = Elem.Value.SubOptionDetails[SubOptionIndex].SubOption.OptionVariationType;
 		//			float OptionAmount = Elem.Value.SubOptionDetails[SubOptionIndex].SubOption.RawOptionAmount;
 		//			FOptionValue OptionValue = FOptionValue(OptionVariation, OptionAmount);
@@ -459,7 +459,7 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 		//		}
 		//	}
 
-		//	// Á¦·Ã º¸³Ê½º È¿°ú
+		//	// åŠ›è®¿ ç„Šå‘ˆèƒ¶ ç“¤è‹
 		//	TArray<FItemOption> TotemBonusOptions;
 		//	if (BladeIIGameImpl::GetTotemDataStore().GetTotemBonusOption(Elem.Value, TotemBonusOptions))
 		//	{
@@ -482,27 +482,27 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 		return FinalUsedCDS->GetOptionStatusRawValues(InPCClass, OptionType, OutCombatStatInfo);
 	}
 
-	/* GetCombatStatusValue ¹Ù²Ü¶§ ¾Æ·¡ GetRequestCombatStatusValue µµ ¶È°°ÀÌ ¸ÂÃâ°Í!! */
+	/* GetCombatStatusValue å®˜æ›¹é”­ é…’è´° GetRequestCombatStatusValue æ¡£ åº¦éæ å˜å…å·´!! */
 	float GetCombatStatusValue(EPCClass InPCClass, const TArray<FB2Item>& InEquipmentItem, const TArray<FB2Item>& InEquipmentCostume, const FPCWingContainer& InWingContainer, int32 BrevetRank, int32 BrevetNodeNum, const FAncientRelicArray& RelicInfos, const FUnitySkillMissionArray& UnityInfos, const TMap<int64, FB2Ether>& Ethers, const TArray<FB2FairyStatusInfo>& FairyStatus, const TMap<int64, FB2Totem>& Totems)
 	{
 		//float CharacterCombatPower = 0;
 		//auto& ClientData = BladeIIGameImpl::GetClientDataStore();
 
-		//// ¾ÆÀÌÅÛ ÀüÅõ·Â
+		//// é…’æè¢ å‚ˆæ§ä»¿
 		//float fItemCombatPower = 0;
 		//for (auto& Item : InEquipmentItem)
 		//{
 		//	fItemCombatPower += Item.Power;
 		//}
 
-		//// ÄÚ½ºÆ¬ ÀüÅõ·Â
+		//// å†…èƒ¶ç‰‡ å‚ˆæ§ä»¿
 		//float fCostumeCombatPower = 0;
 		//for (auto& Item : InEquipmentCostume)
 		//{
 		//	fCostumeCombatPower += Item.Power;
 		//}
 
-		//// ¼¼Æ® ¾ÆÀÌÅÛ ÀüÅõ·Â
+		//// æŠ€é£˜ é…’æè¢ å‚ˆæ§ä»¿
 		//float fSetItemCombatPower = 0;
 		//TMap<int32, int32> ItemSetMap;
 		//TMap<int32, TArray<int32>>	EquipmentGroupIDMap;
@@ -672,7 +672,7 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 
 		//}
 
-		//// ¼¼Æ® ÄÚ½ºÆ¬ ÀüÅõ·Â
+		//// æŠ€é£˜ å†…èƒ¶ç‰‡ å‚ˆæ§ä»¿
 		//float fSetCoustumeCombatPower = 0;
 		//TMap<int32, int32> CoustumeSetMap;
 		//GetSetItemValue(InEquipmentCostume, CoustumeSetMap);
@@ -698,7 +698,7 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 		//	}
 		//}
 
-		//// ³¯°³ ÀüÅõ·Â
+		//// æœä¿º å‚ˆæ§ä»¿
 		//float fWingCombatPower = 0;
 		//const TArray<FWingPropOption>& ThisPropOption = InWingContainer.WingData.GetPropOptionArr();
 		//fWingCombatPower += InWingContainer.WingData.GetAttackPoint() * ClientData.GetOptionWeight(EItemOption::EIO_Offense_IncAttack);
@@ -711,7 +711,7 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 		//		fWingCombatPower += El.RawOptionAmount * ClientData.GetOptionWeight(El.MyOptionType);
 		//}
 
-		//// Áø±Ş ÀüÅõ·Â
+		//// æŸ³é­ å‚ˆæ§ä»¿
 		//float fBrevetCombatPower = 0;
 		//if (BrevetRank != 0)
 		//{
@@ -720,7 +720,7 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 		//	fBrevetCombatPower += BladeIIGameImpl::GetClientDataStore().GetBrevetNodeTotalStatus(EItemOption::EIO_Health_IncHealth, BrevetRank, BrevetNodeNum) *  ClientData.GetOptionWeight(EItemOption::EIO_Health_IncHealth);
 		//}
 
-		//// °í´ëÀ¯¹° ÀüÅõ·Â
+		//// ç»Šæªèœ¡æ‹± å‚ˆæ§ä»¿
 		//float fRelicCombatPower = 0;
 		//for (auto RelicItem : RelicInfos)
 		//{
@@ -733,21 +733,21 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 		//	}
 		//}
 
-		//// °á¼Ó½ºÅ³ ÀüÅõ·Â
+		//// æ¬åŠ èƒ¶æ‡¦ å‚ˆæ§ä»¿
 		//float fUnitySkillCombatPower = 0;
 		//for (auto UnityItem : UnityInfos)
 		//{
 		//	fUnitySkillCombatPower += GLOBALUNITYSKILLMANAGER.GetUnitySkillPower(UnityItem);
 		//}
 
-		//// ¿¡Å×¸£
+		//// ä¿ŠæŠ›ç¦
 		//float fEtherCombatPower = 0;
 		//for (auto Elem : Ethers)
 		//{
 		//	fEtherCombatPower += Elem.Value.GetCombat();
 		//}
 
-		//// Æä¾î¸®
+		//// å…¶ç»¢åºœ
 		//float fFairyCombatPower = 0;
 		//for (const FB2FairyStatusInfo& Status : FairyStatus)
 		//{
@@ -760,7 +760,7 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 		//	}
 		//}
 		//
-		//// ÅäÅÛ
+		//// é…è¢
 		//float fTotemCombatPower = 0;
 		//for (auto Elem : Totems)
 		//{
@@ -782,7 +782,7 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 		float CharacterCombatPower = 0;
 		auto& ClientData = BladeIIGameImpl::GetClientDataStore();
 
-		// ¾ÆÀÌÅÛ ÀüÅõ·Â
+		// é…’æè¢ å‚ˆæ§ä»¿
 		float fItemCombatPower = 0;
 		for (auto& Item : InEquipmentItem)
 		{
@@ -796,7 +796,7 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 		OutCharacterPowerPtr.Add(ItemPowerSpecific);
 		BII_SCREEN_LOG(FString::Printf(TEXT("CombatPower (Item) : %0.2f"), fItemCombatPower), FLinearColor(0.0, 1.0f, 0.0f, 1.0f), 12, 10.0f);
 
-		// ÄÚ½ºÆ¬ ÀüÅõ·Â
+		// å†…èƒ¶ç‰‡ å‚ˆæ§ä»¿
 		float fCostumeCombatPower = 0;
 		for (auto& Item : InEquipmentCostume)
 		{
@@ -810,7 +810,7 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 		OutCharacterPowerPtr.Add(CostumePowerSpecific);
 		BII_SCREEN_LOG(FString::Printf(TEXT("CombatPower (Costume) : %0.2f"), fCostumeCombatPower), FLinearColor(0.0, 1.0f, 0.0f, 1.0f), 12, 10.0f);
 
-		// ¼¼Æ® ¾ÆÀÌÅÛ ÀüÅõ·Â
+		// æŠ€é£˜ é…’æè¢ å‚ˆæ§ä»¿
 		float fSetItemCombatPower = 0;
 		TMap<int32, int32> ItemSetMap;
 		TMap<int32, TArray<int32>>	EquipmentGroupIDMap;
@@ -987,7 +987,7 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 		OutCharacterPowerPtr.Add(SetItemPowerSpecific);
 		BII_SCREEN_LOG(FString::Printf(TEXT("CombatPower (Set Item) : %0.2f"), fSetItemCombatPower), FLinearColor(0.0, 1.0f, 0.0f, 1.0f), 12, 10.0f);
 
-		// ¼¼Æ® ÄÚ½ºÆ¬ ÀüÅõ·Â
+		// æŠ€é£˜ å†…èƒ¶ç‰‡ å‚ˆæ§ä»¿
 		float fSetCoustumeCombatPower = 0;
 		TMap<int32, int32> CoustumeSetMap;
 		GetSetItemValue(InEquipmentCostume, CoustumeSetMap);
@@ -1020,7 +1020,7 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 		OutCharacterPowerPtr.Add(SetCostumePowerSpecific);
 		BII_SCREEN_LOG(FString::Printf(TEXT("CombatPower (Set Costume) : %0.2f"), fSetCoustumeCombatPower), FLinearColor(0.0, 1.0f, 0.0f, 1.0f), 12, 10.0f);
 
-		// Áø±Ş ÀüÅõ·Â
+		// æŸ³é­ å‚ˆæ§ä»¿
 		float fBrevetCombatPower = 0;
 		if (BrevetRank != 0)
 		{
@@ -1036,7 +1036,7 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 		OutCharacterPowerPtr.Add(BrevetPowerSpecific);
 		BII_SCREEN_LOG(FString::Printf(TEXT("CombatPower (Brevet) : %0.2f"), fBrevetCombatPower), FLinearColor(0.0, 1.0f, 0.0f, 1.0f), 12, 10.0f);
 
-		// ³¯°³ ÀüÅõ·Â
+		// æœä¿º å‚ˆæ§ä»¿
 		float fWingCombatPower = 0;
 		const TArray<FWingPropOption>& ThisPropOption = InWingContainer.WingData.GetPropOptionArr();
 		fWingCombatPower += InWingContainer.WingData.GetAttackPoint() * ClientData.GetOptionWeight(EItemOption::EIO_Offense_IncAttack);
@@ -1056,7 +1056,7 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 		OutCharacterPowerPtr.Add(WingPowerSpecific);
 		BII_SCREEN_LOG(FString::Printf(TEXT("CombatPower (Wing) : %0.2f"), fWingCombatPower), FLinearColor(0.0, 1.0f, 0.0f, 1.0f), 12, 10.0f);
 
-		// °í´ëÀ¯¹° ÀüÅõ·Â
+		// ç»Šæªèœ¡æ‹± å‚ˆæ§ä»¿
 		float fRelicCombatPower = 0;
 		for (auto RelicItem : RelicInfos)
 		{
@@ -1076,7 +1076,7 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 		OutCharacterPowerPtr.Add(RelicPowerSpecific);
 		BII_SCREEN_LOG(FString::Printf(TEXT("CombatPower (Relic) : %0.2f"), fRelicCombatPower), FLinearColor(0.0, 1.0f, 0.0f, 1.0f), 12, 10.0f);
 
-		// °á¼Ó½ºÅ³ ÀüÅõ·Â
+		// æ¬åŠ èƒ¶æ‡¦ å‚ˆæ§ä»¿
 		float fUnitySkillCombatPower = 0;
 		for (auto UnityItem : UnityInfos)
 		{
@@ -1090,7 +1090,7 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 		OutCharacterPowerPtr.Add(UnitySkillPowerSpecific);
 		BII_SCREEN_LOG(FString::Printf(TEXT("CombatPower (Unity Skill) : %0.2f"), fUnitySkillCombatPower), FLinearColor(0.0, 1.0f, 0.0f, 1.0f), 12, 10.0f);
 
-		// ¿¡Å×¸£
+		// ä¿ŠæŠ›ç¦
 		float fEtherCombatPower = 0;
 		for (auto Elem : Ethers)
 		{
@@ -1104,7 +1104,7 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 		OutCharacterPowerPtr.Add(EtherPowerSpecific);
 		BII_SCREEN_LOG(FString::Printf(TEXT("CombatPower (Ether) : %0.2f"), fEtherCombatPower), FLinearColor(0.0, 1.0f, 0.0f, 1.0f), 12, 10.0f);
 
-		// Æä¾î¸®
+		// å…¶ç»¢åºœ
 		float fFairyCombatPower = 0;
 		for (const FB2FairyStatusInfo& Status : FairyStatus)
 		{
@@ -1124,7 +1124,7 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 		OutCharacterPowerPtr.Add(FairyPowerSpecific);
 		BII_SCREEN_LOG(FString::Printf(TEXT("CombatPower (Fairy) : %0.2f"), fFairyCombatPower), FLinearColor(0.0, 1.0f, 0.0f, 1.0f), 12, 10.0f);
 
-		// ÅäÅÛ
+		// é…è¢
 		float fTotemCombatPower = 0;
 		for (auto Elem : Totems)
 		{
@@ -1149,15 +1149,15 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 
 	float GetOptionStatusValue(EPCClass InPCClass, EItemOption OptionType, ICharacterDataStore* InCharacterData)
 	{
-		// °á±¹ »ó´Ü GetOptionStatusValue ¸¦ ÄİÇÏ°Ô µÉ °ÍÀÌ´Ù. ±âÁ¸ ÀÎÅÍÆäÀÌ½º¶û ¸ÂÃß·Á°í ³Ö°Ô µÈ °Çµ¥ ÇÊ¿ä¾ø°Ô µÉ ¼öµµ ÀÖ´Ù.
+		// æ¬æƒ« æƒ‘çªœ GetOptionStatusValue ç”« å¦®çªéœ¸ çª å·´æä¿ƒ. æ‰ç²® ç‰¢ç£å…¶æèƒ¶å°” å˜çœ å¦¨ç»Š æŒéœ¸ ç­‰ æ‰’å• é˜å¤¸ç»éœ¸ çª èæ¡£ ä¹ä¿ƒ.
 
-		// CharacterData ¸¦ ÁöÁ¤ ¾ÈÇßÀ¸¸é ·ÎÄÃ ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ ²¬·Î.
+		// CharacterData ç”« ç˜¤æ²¥ æ•‘æ²æ æ è‚ºæ‹¿ æ•²é¥­æç»¢ æŸè…ç£ é“‚è‚º.
 		ICharacterDataStore* FinalUsedCDS = InCharacterData ? InCharacterData : &BladeIIGameImpl::GetLocalCharacterData();
-		return FinalUsedCDS->GetOptionStatusValue(InPCClass, OptionType); // ÇÊ¿äÇÏ¸é Item µ¥ÀÌÅÍ µû·Î ÁöÁ¤ °¡´ÉÇÏ°Ô.
+		return FinalUsedCDS->GetOptionStatusValue(InPCClass, OptionType); // é˜å¤¸çªæ Item å•æç£ è¶è‚º ç˜¤æ²¥ å•Šç“·çªéœ¸.
 	}
 
 	/** Get applied SkillOption value of designated CharacterDataStore (LocalCharacterData if NULL) Info.
-	 * Æ¯Á¤ Active Skill ¿¡ ´ëÇØ¼­¸¸ ÀÛµ¿ÇÏ´Â ¿É¼Ç°ªÀÌ ¾Æ´Ñ ÀÏ¹İÀûÀ¸·Î Àû¿ëµÇ´Â Passive ·ù ¿É¼Ç °ªµéÀ» ¾ò¾î¿È. */
+	 * æ¼‚æ²¥ Active Skill ä¿Š æªç§¦è¾‘çˆ¶ ç´¯æ‚¼çªç»° å¯è®°è”¼æ é…’å›± è€é¦†åˆ©æ è‚º åˆ©ä¾©ç™»ç»° Passive å¹… å¯è®° è”¼ç”¸é˜‘ æ˜ç»¢å’³. */
 	float GetSkillOptionStatusValue(EPCClass InPCClass, ESkillOption InOptionType, ICharacterDataStore* InCharacterData /*= NULL*/)
 	{
 		CombatStatInfoRawDatas CombatRawDatas;
@@ -1171,29 +1171,29 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 
 	////////////////////////////////////////////////////////////////////////////////
 	////////// The master option status value querying function
-	/** EItemOption ÀÌ¶û ESkillOption ¾Æ¿ì¸£±â. SkillOption Áß¿¡¼± passive ¸¸. */
+	/** EItemOption æå°” ESkillOption é…’å¿«ç¦æ‰. SkillOption åä¿Šæ€¥ passive çˆ¶. */
 	float GetUnitedOptionStatusValue(EPCClass InPCClass, EUnitedCombatOptions InUnitedOptionType, ICharacterDataStore* InCharacterData /*= NULL*/)
 	{
-		// InUnitedOptionType ¿¡ ÇØ´çÇÏ´Â ItemOption °ú SkillOption °ªÀ» °¡Á®¿Í¼­ ÇÑµ¥ Àû¿ë.
+		// InUnitedOptionType ä¿Š ç§¦å¯¸çªç»° ItemOption è‹ SkillOption è”¼é˜‘ å•Šå»‰å®¢è¾‘ èŒ„å• åˆ©ä¾©.
 		EItemOption MappedItemOption = GetItemOptionOfUnitedOption(InUnitedOptionType);
 		ESkillOption MappedSkillOption = GetSkillOptionOfUnitedOption(InUnitedOptionType);
 
-		// Àû¾îµµ µÑ Áß ÇÏ³ª´Â À¯È¿ÇØ¾ß. »õ·Î µé¾î¿Â °Å¶ó¸é InitializeUnitedOptionMapping À»..
+		// åˆ©ç»¢æ¡£ ç¬› å çªå”±ç»° èœ¡ç“¤ç§¦å…·. è´§è‚º ç”¸ç»¢æŸ¯ èŠ­æ‰¼æ InitializeUnitedOptionMapping é˜‘..
 		checkSlow(MappedItemOption != EItemOption::EIO_End || MappedSkillOption != ESkillOption::ESO_End);
 
-		// GetEffectiveOptionValueTempl ¿¡¼­ ÇÏ´Â ÀÏºÎ¸¦ ¿©±â¼­µµ ÇØ¾ß ÇÒ µí.
-		// itemOption, SkillOption µÑ ´Ù À¯È¿ÇÒ °æ¿ì µÑ ¸ğµÎ¿¡¼­ GetCombatOptionApplyType °á°ú´Â ÀÏÄ¡ÇØ¾ß ÇÑ´Ù. CheckUnitedOptionMappingValidity ¿¡¼­ Ã¼Å©
+		// GetEffectiveOptionValueTempl ä¿Šè¾‘ çªç»° è€ä½•ç”« å’¯æ‰è¾‘æ¡£ ç§¦å…· ä¸” æ·€.
+		// itemOption, SkillOption ç¬› ä¿ƒ èœ¡ç“¤ä¸” ç‰ˆå¿« ç¬› è‘›æ»´ä¿Šè¾‘ GetCombatOptionApplyType æ¬è‹ç»° è€æ‘¹ç§¦å…· èŒ„ä¿ƒ. CheckUnitedOptionMappingValidity ä¿Šè¾‘ çœ‰å†œ
 		ECombatOptionApplyType OptionApplyType = (MappedItemOption != EItemOption::EIO_End) ? GetCombatOptionApplyType(MappedItemOption) : GetCombatOptionApplyType(MappedSkillOption);
-		// µÑ Áß ÇÏ³ª´Â ¾øÀ» ¼ö ÀÖÀ¸¹Ç·Î ÃÊ±â°ªÀÌ Á¦°øµÇ¾î¾ß.
+		// ç¬› å çªå”±ç»° ç»é˜‘ è ä¹æ éª¨è‚º æª¬æ‰è”¼æ åŠ›å‚ç™»ç»¢å…·.
 		const float InitialValueOfInvalidID = GetInitialValueOfCombatOptionApplyType(OptionApplyType);
 
-		// µÎ ½Ã½ºÅÛÀÇ °á°ú°ªÀ» µû·Î ±¸ÇØ¼­ ÇÕÃ¼
+		// æ»´ çŸ«èƒ¶è¢ç‹¼ æ¬è‹è”¼é˜‘ è¶è‚º å¤‡ç§¦è¾‘ é’¦çœ‰
 		const float ItemOptionStatusValue = (MappedItemOption != EItemOption::EIO_End) ?
 			GetOptionStatusValue(InPCClass, MappedItemOption, InCharacterData) : InitialValueOfInvalidID;
 		const float SkillOptionStatusValue = (MappedSkillOption != ESkillOption::ESO_End) ?
 			GetSkillOptionStatusValue(InPCClass, MappedSkillOption, InCharacterData) : InitialValueOfInvalidID;
 
-		// RawValue °¡ ¾Æ´Ñ ScaledValue ·Î Ä¡°í OptionApplyType ¿¡ µû¶ó ÇÕÃ¼
+		// RawValue å•Š é…’å›± ScaledValue è‚º æ‘¹ç»Š OptionApplyType ä¿Š è¶æ‰¼ é’¦çœ‰
 		TArray<FOptionValue> GatheredOptionValue;
 		FOptionValue ItemOptionValue = FOptionValue(ItemOptionStatusValue);
 		FOptionValue SkillOptionValue = FOptionValue(SkillOptionStatusValue);
@@ -1206,17 +1206,17 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 	{
 		OutCombatStatInfo.Empty();
 
-		// InUnitedOptionType ¿¡ ÇØ´çÇÏ´Â ItemOption °ú SkillOption °ªÀ» °¡Á®¿Í¼­ ÇÑµ¥ Àû¿ë.
+		// InUnitedOptionType ä¿Š ç§¦å¯¸çªç»° ItemOption è‹ SkillOption è”¼é˜‘ å•Šå»‰å®¢è¾‘ èŒ„å• åˆ©ä¾©.
 		EItemOption MappedItemOption = GetItemOptionOfUnitedOption(InUnitedOptionType);
 		ESkillOption MappedSkillOption = GetSkillOptionOfUnitedOption(InUnitedOptionType);
 
-		// Àû¾îµµ µÑ Áß ÇÏ³ª´Â À¯È¿ÇØ¾ß. »õ·Î µé¾î¿Â °Å¶ó¸é InitializeUnitedOptionMapping À»..
+		// åˆ©ç»¢æ¡£ ç¬› å çªå”±ç»° èœ¡ç“¤ç§¦å…·. è´§è‚º ç”¸ç»¢æŸ¯ èŠ­æ‰¼æ InitializeUnitedOptionMapping é˜‘..
 		checkSlow(MappedItemOption != EItemOption::EIO_End || MappedSkillOption != ESkillOption::ESO_End);
 
-		// GetEffectiveOptionValueTempl ¿¡¼­ ÇÏ´Â ÀÏºÎ¸¦ ¿©±â¼­µµ ÇØ¾ß ÇÒ µí.
-		// itemOption, SkillOption µÑ ´Ù À¯È¿ÇÒ °æ¿ì µÑ ¸ğµÎ¿¡¼­ GetCombatOptionApplyType °á°ú´Â ÀÏÄ¡ÇØ¾ß ÇÑ´Ù. CheckUnitedOptionMappingValidity ¿¡¼­ Ã¼Å©
+		// GetEffectiveOptionValueTempl ä¿Šè¾‘ çªç»° è€ä½•ç”« å’¯æ‰è¾‘æ¡£ ç§¦å…· ä¸” æ·€.
+		// itemOption, SkillOption ç¬› ä¿ƒ èœ¡ç“¤ä¸” ç‰ˆå¿« ç¬› è‘›æ»´ä¿Šè¾‘ GetCombatOptionApplyType æ¬è‹ç»° è€æ‘¹ç§¦å…· èŒ„ä¿ƒ. CheckUnitedOptionMappingValidity ä¿Šè¾‘ çœ‰å†œ
 		ECombatOptionApplyType OptionApplyType = (MappedItemOption != EItemOption::EIO_End) ? GetCombatOptionApplyType(MappedItemOption) : GetCombatOptionApplyType(MappedSkillOption);
-		// µÑ Áß ÇÏ³ª´Â ¾øÀ» ¼ö ÀÖÀ¸¹Ç·Î ÃÊ±â°ªÀÌ Á¦°øµÇ¾î¾ß.
+		// ç¬› å çªå”±ç»° ç»é˜‘ è ä¹æ éª¨è‚º æª¬æ‰è”¼æ åŠ›å‚ç™»ç»¢å…·.
 		const float InitialValueOfInvalidID = GetInitialValueOfCombatOptionApplyType(OptionApplyType);
 
 		//if (MappedItemOption != EItemOption::EIO_End)
@@ -1236,10 +1236,10 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 		TArray<FOptionValue> PrimaryPointRawValues;
 		CombatRawDatas.GetAllRawValues(PrimaryPointRawValues);
 
-		//ÀÏ´Ü »ç¿ë ¾ÈÇÔ. ÃßÈÄ¿¡ ÇÊ¿äÇÏ¸é ¿­¾î¼­ »ç¿ëÇÏ½Ã¸é µÊ.
+		//è€çªœ è¤ä¾© æ•‘çªƒ. çœ é¥¶ä¿Š é˜å¤¸çªæ å‡¯ç»¢è¾‘ è¤ä¾©çªçŸ«æ å‡³.
 		//double EnhanceIncreaseFactor = (ConvertItemOptionToItemPrimaryPointType(OptionType) != EItemPrimaryPointType::EIPP_End ? GetEnhanceSetEffectFactor(AllEquipped) : 0.f);
 		double EnhanceIncreaseFactor = 0.0;
-		// °­È­ ¾ÆÀÌÅÛ ¼¼Æ® È¿°ú¸¦ °í·ÁÇÑ GetEffectiveOptionValue.. ¹öÀüÀ¸·Î..
+		// ç¢æ‹³ é…’æè¢ æŠ€é£˜ ç“¤è‹ç”« ç»Šå¦¨èŒ„ GetEffectiveOptionValue.. æ»šå‚ˆæ è‚º..
 		return  GetEffectiveOptionValueWithEnhanceSetEffectTempl<EItemOption>(OptionType, PrimaryPointRawValues, EnhanceIncreaseFactor, true);
 	}
 
@@ -1248,15 +1248,15 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 		//auto& ClientDataStore = BladeIIGameImpl::GetClientDataStore();
 		//EItemPrimaryPointType CheckPrimaryPointType = ConvertItemOptionToItemPrimaryPointType(OptionType);
 		//
-		//// PVP °íÀ¯ ¿É¼Ç Ã¼Å©
+		//// PVP ç»Šèœ¡ å¯è®° çœ‰å†œ
 		//EItemOption PVPModeItemOption = ConvertItemPrimaryPointTypeToItemOptionByPVPMode(CheckPrimaryPointType, ModeType);
 
-		//// ¾ÆÀÌÅÛ ¿É¼Ç
+		//// é…’æè¢ å¯è®°
 		//for (auto& Item : AllEquipped)
 		//{
-		//	// ±âº»´É·ÂÄ¡
+		//	// æ‰å¤¯ç“·ä»¿æ‘¹
 		//	
-		//	// °íÀ¯¿É¼Ç (°áÅõÀÇ Àå½Å±¸)
+		//	// ç»Šèœ¡å¯è®° (æ¬æ§ç‹¼ å˜è„šå¤‡)
 		//	if (PVPModeItemOption != EItemOption::EIO_End)
 		//	{
 		//		for (auto& CurrOption : Item.IntrinsicOptions)
@@ -1268,38 +1268,38 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 		//		}
 		//	}
 
-		//	//°¢¼º ¿É¼Ç
+		//	//é˜¿å·± å¯è®°
 		//	for (auto& CurrOption : Item.SealOptions)
 		//	{
 		//		if (CurrOption.OptionInfo.OptionType == PVPModeItemOption)
 		//			OutCombatStatInfo.AddPrimaryPointValue(ECharStatApplyType::ECSA_SealOption, CurrOption.OptionInfo.RawOptionAmount);
 		//	}
 
-		//	// ·£´ı(ÀÏ¹İ)¿É¼Ç
+		//	// ç½šå¾…(è€é¦†)å¯è®°
 		//}
 
-		//// ³¯°³ ¿É¼Ç
+		//// æœä¿º å¯è®°
 		////if (InWingContainer.bHasWing)
 		//{
-		//	// ±âº»´É·ÂÄ¡
+		//	// æ‰å¤¯ç“·ä»¿æ‘¹
 		//}
 
-		//// Áø±Ş ¿É¼Ç(°ø ¹æ Ã¼)
+		//// æŸ³é­ å¯è®°(å‚ è§„ çœ‰)
 		////if (BrevetRank != 0)
 		//{
 		//}
 
-		//// ¾ÆÀÌÅÛ ¼¼Æ®È¿°ú
+		//// é…’æè¢ æŠ€é£˜ç“¤è‹
 		////TMap<int32, int32>	ItemSetMap;
 		////GetSetItemValue(AllEquipped, ItemSetMap);
-		////¾ÆÀÌÅÛ ¼¼Æ® °Ë»ç
+		////é…’æè¢ æŠ€é£˜ å…«è¤
 		////for (auto& ItemSetPair : ItemSetMap)
 		//{
 		//}
 
-		////°í´ëÀ¯¹°
+		////ç»Šæªèœ¡æ‹±
 		//RelicManager RelicMGR(GLOBALRELICMANAGER);
-		////if (&RelicMGR) //Áö¿ª¿¡¼­ staticÀ¸·Î ½Ì±ÛÅæ »ı¼ºÇÏ´Â°Å¶ó ¹«Á¶°Ç ½Å·Ú ÇØ¾ß ÇÒµí...
+		////if (&RelicMGR) //ç˜¤å¼€ä¿Šè¾‘ staticæ è‚º æ•™è‡‚æ²› ç§¯å·±çªç»°èŠ­æ‰¼ å…¬ç‚¼æ‰’ è„šæ±¾ ç§¦å…· ä¸”æ·€...
 		//{
 		//	int32 nRelicId, nGrade, nLevel;
 
@@ -1307,7 +1307,7 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 		//	{
 		//		nRelicId = RelicInfo.nRelicId; nGrade = RelicInfo.nRelicGrade;  nLevel = RelicInfo.nRelicLevel;
 
-		//		// ±âº»´É·ÂÄ¡
+		//		// æ‰å¤¯ç“·ä»¿æ‘¹
 		//		switch (CheckPrimaryPointType)
 		//		{
 		//		case EItemPrimaryPointType::EIPP_Attack:					
@@ -1325,20 +1325,20 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 		//	}
 		//}
 
-		//// ÅäÅÛ¿¡ ºÙÀ» ¼ö ÀÖ´Â Option ¸ñ·Ï
+		//// é…è¢ä¿Š å˜¿é˜‘ è ä¹ç»° Option æ ¼åºŸ
 		//EItemOption TotemModeItemOption = ConvertItemPrimaryPointTypeToItemOptionByTotemMode(CheckPrimaryPointType, ModeType);
 
 		//for (const TPair<int64, FB2Totem>& Elem : Totems)
 		//{
 		//	if (TotemModeItemOption != EItemOption::EIO_End)
 		//	{
-		//		// Àåºñ °ø°İ·Â, ¹æ¾î·Â, Ã¼·Â
+		//		// å˜åš å‚æ‹œä»¿, è§„ç»¢ä»¿, çœ‰ä»¿
 		//		if (Elem.Value.MainOptionDetail.OptionType == TotemModeItemOption)
 		//		{
 		//			OutCombatStatInfo.AddPrimaryPointValue(ECharStatApplyType::ECSA_NormalPoint, Elem.Value.MainOptionDetail.RawOptionAmount);
 		//		}
 
-		//		// Àåºñ Ãß°¡ ¿É¼Ç
+		//		// å˜åš çœ å•Š å¯è®°
 		//		for (int SubOptionIndex = 0; SubOptionIndex < Elem.Value.SubOptionDetails.Num(); ++SubOptionIndex)
 		//		{
 		//			if (Elem.Value.SubOptionDetails[SubOptionIndex].SubOption.OptionType == TotemModeItemOption)
@@ -1350,7 +1350,7 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 		//			}
 		//		}
 
-		//		// Á¦·Ã º¸³Ê½º È¿°ú
+		//		// åŠ›è®¿ ç„Šå‘ˆèƒ¶ ç“¤è‹
 		//		TArray<FItemOption> TotemBonusOptions;
 		//		if (BladeIIGameImpl::GetTotemDataStore().GetTotemBonusOption(Elem.Value, TotemBonusOptions))
 		//		{
@@ -1370,8 +1370,8 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 	}
 
 
-	/** UnitedOption ÀÇ ÇÙ½É Á¤º¸ÀÎ EItemOption °ú ESkillOption ¿¡ ´ëÇÑ ¸ÊÇÎ Á¤º¸. Const ·Î ¸¸µé°í ½Í¾úÁö¸¸ ±×·¸°Ô ÇÏÁö ¸øÇÑ lookup Å×ÀÌºí ¿ëµµ.
-	 * Á÷Á¢ »ç¿ëÇÏÁö ¾Ê°í Get**OptionOfUnitedOption À» »ç¿ë. */
+	/** UnitedOption ç‹¼ ç´ç¼´ æ²¥ç„Šç‰¢ EItemOption è‹ ESkillOption ä¿Š æªèŒ„ ç”˜ä¿ æ²¥ç„Š. Const è‚º çˆ¶ç”¸ç»Š é…µèŒç˜¤çˆ¶ å¼ŠçŠ¯éœ¸ çªç˜¤ ç»™èŒ„ lookup æŠ›æå–‰ ä¾©æ¡£.
+	 * æµç«‹ è¤ä¾©çªç˜¤ è‡¼ç»Š Get**OptionOfUnitedOption é˜‘ è¤ä¾©. */
 	static TMap<EUnitedCombatOptions, FUCOBoundInfo>	UnitedOptionMappingTable;
 	static TMap<EItemOption, EUnitedCombatOptions>		ItemOptionToUnitedOptionMappingTable;
 	static TMap<ESkillOption, EUnitedCombatOptions>		SkillOptionToUnitedOptionMappingTable;
@@ -1398,26 +1398,26 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 			//}
 
 			//if (MappedItemOption != EItemOption::EIO_End && MappedSkillOption != ESkillOption::ESO_End)
-			//{ // µÑ »çÀÌ¿¡ CombatOptionApplyType ÀÌ ÇÊÈ÷ µ¿ÀÏÇØ¾ß °è»êµÈ °É ¶È°°ÀÌ ÀûŠEÇÏµçÁö ÇÒ °Å´Ù. ´Ù¸¥ °Ô ÀÖ´Ù¸é ÇÑÂÊÀ» ¼ÕÁú
+			//{ // ç¬› è¤æä¿Š CombatOptionApplyType æ é˜æ´’ æ‚¼è€ç§¦å…· æ‹Œé­‚ç­‰ å§ åº¦éæ åˆ©å¥…çªç”µç˜¤ ä¸” èŠ­ä¿ƒ. ä¿ƒå¼— éœ¸ ä¹ä¿ƒæ èŒ„ç‡é˜‘ é¢Šé¾™
 			//	checkSlow(GetCombatOptionApplyType(MappedItemOption) == GetCombatOptionApplyType(MappedSkillOption));
 			//}
 		}
 
-		checkSlow(FoundItemOptionNum == static_cast<int32>(EItemOption::EIO_End)); // ¿©±ä ´Ù Æ÷ÇÔµÇ¾î¾ß
-		// 0 ¾Æ´Ñ 1 ºÎÅÍ ½ÃÀÛÇØ¼­ -1, ÀÚÃ¼ ¼º°İ»ó Æ÷ÇÔ ¾ÈµÇ´Â °Å -4, ActiveSkill ·Î¸¸ Àû¿ëµÇ´Â °Å¶ó Æ÷ÇÔ ¾ÈµÇ´Â °Å -14 (±âÈ¹¿¡ µû¶ó º¯°æµÉ ¼ö ÀÖÀ½.)
+		checkSlow(FoundItemOptionNum == static_cast<int32>(EItemOption::EIO_End)); // å’¯å˜ ä¿ƒ å™¨çªƒç™»ç»¢å…·
+		// 0 é…’å›± 1 ä½•ç£ çŸ«ç´¯ç§¦è¾‘ -1, ç£Šçœ‰ å·±æ‹œæƒ‘ å™¨çªƒ æ•‘ç™»ç»° èŠ­ -4, ActiveSkill è‚ºçˆ¶ åˆ©ä¾©ç™»ç»° èŠ­æ‰¼ å™¨çªƒ æ•‘ç™»ç»° èŠ­ -14 (æ‰è£™ä¿Š è¶æ‰¼ å‡½ç‰ˆçª è ä¹æ¾œ.)
 		checkSlow(FoundSkillOptionNum == static_cast<int32>(ESkillOption::ESO_End) - 1 - 4 - 14);
 	}
 #endif
-	void InitializeUnitedOptionMapping() // ÀÌ°É ¸ğµâ ÃÊ±âÈ­ µî ¾îµò°¡¿¡¼­ ÇÑ¹ø ÀÌ»ó Äİ ÇØ¼­ ¸ÊÇÎ Á¤º¸¸¦ Ã¤¿ö³Ö¾î¾ß ÇÑ´Ù.
+	void InitializeUnitedOptionMapping() // æå§ è‘›ç¢˜ æª¬æ‰æ‹³ æ®¿ ç»¢å‡‹å•Šä¿Šè¾‘ èŒ„é”… ææƒ‘ å¦® ç§¦è¾‘ ç”˜ä¿ æ²¥ç„Šç”« ç›²å†µæŒç»¢å…· èŒ„ä¿ƒ.
 	{
-		// ½ÇÁ¦ ¸ÊÇÎ ÄÚµå´Â ÀÇµµÀûÀ¸·Î °ü·Ã µğÆÄÀÎ ¸ğ¾Æ³õÀº Æ¯Á¤ Çì´õ ÆÄÀÏ¿¡ À§Ä¡½ÃÅ´.
+		// è§’åŠ› ç”˜ä¿ å†…é›ç»° ç‹¼æ¡£åˆ©æ è‚º åŒ…è®¿ å¼é¢‡ç‰¢ è‘›é…’åˆç¯® æ¼‚æ²¥ åº†æ­¹ é¢‡è€ä¿Š å›°æ‘¹çŸ«ç³¯.
 		INITIALIZE_UNITED_OPTION_MAPPING_BLOCK(UnitedOptionMappingTable, ItemOptionToUnitedOptionMappingTable, SkillOptionToUnitedOptionMappingTable, MercenarySkillOptionToUnitedOptionMappingTable);
 #if !UE_BUILD_SHIPPING
 		CheckUnitedOptionMappingValidity(); // Check for possible miss..
 #endif
 	}
 	void ConditionalInitializeUnitedOptionMapping()
-	{  // ¾Æ¸¶ ¿¡µğÅÍ¸¸ ±×·± °Å °°±ä ÇÑµ¥ ¸ğµâÀÌ ¾Æ¿¹ ´Ù½Ã ¶ß´ÂÁö ÇÑ¹ø Initialize ÇÑ ÈÄ¿¡ ºñ¾î¹ö¸®´Â ÀÏÀÌ ¹ß»ıÇØ¼­ ÀÌ°É ÁØºñ.
+	{  // é…’ä»˜ ä¿Šå¼ç£çˆ¶ å¼Šç¹ èŠ­ éå˜ èŒ„å• è‘›ç¢˜æ é…’æŠ— ä¿ƒçŸ« å“†ç»°ç˜¤ èŒ„é”… Initialize èŒ„ é¥¶ä¿Š åšç»¢æ»šåºœç»° è€æ æƒ¯ç§¯ç§¦è¾‘ æå§ éœ–åš.
 		if (UnitedOptionMappingTable.Num() == 0)
 		{
 			InitializeUnitedOptionMapping();
@@ -1484,7 +1484,7 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 			const int32 MinEnhanceLevel = BladeIIGameImpl::GetClientDataStore().GetMinEnhanceLevelForSetEffect();
 			const int32 MinArrayEnhanceEffectLevel = (MIN_COUNT_ENHANCE_ITEM_SET_EFFECT - 1);
 				
-			// 1. ÀåÂøµÈ°Í Áß¿¡ ÃÖ¼Ò·¹º§ ÀÌ»óÀÎ°ÍµéÀ» ¸®½ºÆ®È­
+			// 1. å˜é¦’ç­‰å·´ åä¿Š å¼¥å®¶é¥­éª‡ ææƒ‘ç‰¢å·´ç”¸é˜‘ åºœèƒ¶é£˜æ‹³
 			TArray<int32> ApplyItemLevelList;
 			for (auto& EquipItem : AllEquipped)
 			{
@@ -1492,11 +1492,11 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 					ApplyItemLevelList.Add(EquipItem.EnhanceLevel);
 			}
 	
-			// 2. ¸®½ºÆ® ¼ö°¡ ÃÖ¼ÒÀû¿ë ¼öº¸´Ù ¾ÈµÉ¶§´Â Àû¿ë¾ÈÇÔ
+			// 2. åºœèƒ¶é£˜ èå•Š å¼¥å®¶åˆ©ä¾© èç„Šä¿ƒ æ•‘çªé”­ç»° åˆ©ä¾©æ•‘çªƒ
 			if (ApplyItemLevelList.Num() == 0 || ApplyItemLevelList.Num() < MIN_COUNT_ENHANCE_ITEM_SET_EFFECT)
 				return 0;
 	
-			// 3. ³»¸²Â÷¼ø Á¤·ÄÈÄ MinEnhanceLevel ÀÎµ¦½º°¡ ÃÖ¼Ò·¹º§
+			// 3. éƒ´è¦†ç’é‰´ æ²¥çººé¥¶ MinEnhanceLevel ç‰¢éƒ¸èƒ¶å•Š å¼¥å®¶é¥­éª‡
 			ApplyItemLevelList.Sort([](const int32& A, const int32& B) { return (A > B); } );
 			
 			if (ApplyItemLevelList.IsValidIndex(MinArrayEnhanceEffectLevel) == false)
@@ -1734,17 +1734,17 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 
 	bool GetSkillOptionStatusRawValues(EPCClass InPCClass, ESkillOption InOptionType, CombatStatInfoRawDatas& OutCombatStatInfo, ICharacterDataStore* InCharacterData /*= NULL*/)
 	{
-		// ¾ÆÀÌÅÛ, ³¯°³, Áø±Ş, À¯¹° µî¿¡¼­ »ç¿ëÇÏ´Â EItemOption À¸·Î ±¸ºĞµÇ´Â ¿É¼Ç¸»°í ESkillOption À¸·Î ±¸ºĞµÇ´Â °Å.
+		// é…’æè¢, æœä¿º, æŸ³é­, èœ¡æ‹± æ®¿ä¿Šè¾‘ è¤ä¾©çªç»° EItemOption æ è‚º å¤‡ç›’ç™»ç»° å¯è®°å¯Œç»Š ESkillOption æ è‚º å¤‡ç›’ç™»ç»° èŠ­.
 		ICharacterDataStore* FinalUsedCDS = InCharacterData ? InCharacterData : &BladeIIGameImpl::GetLocalCharacterData();
 
 		TArray<int32> AllFoundSkillID;
-		// ¿©±â¼­ÀÇ »ç¿ë ÀÇ¹Ì»ó PassiveSkill ¸¸ °¡Á®¿Â´Ù. ActiveSkill ÀÇ ÇØ´ç ½ºÅ³¿¡ Àû¿ëµÇ´Â ¿É¼Ç »óÅÂ°ªÀº º°µµ·Î Ã³¸®.
+		// å’¯æ‰è¾‘ç‹¼ è¤ä¾© ç‹¼å›ºæƒ‘ PassiveSkill çˆ¶ å•Šå»‰æŸ¯ä¿ƒ. ActiveSkill ç‹¼ ç§¦å¯¸ èƒ¶æ‡¦ä¿Š åˆ©ä¾©ç™»ç»° å¯è®° æƒ‘æ€•è”¼ç¯® å–Šæ¡£è‚º è´¸åºœ.
 		FinalUsedCDS->GetCharacterPassiveSkills(InPCClass, AllFoundSkillID);
 
-		// Ä³¸¯ÅÍ°¡ °¡Áö°í ÀÖ´Â ½ºÅ³¿É¼Çµé¿¡¼­ InOptionType ¿¡ ÇØ´çÇÏ´Â °ªµéÀ» ±Ü¾î¸ğÀ½.
+		// æŸè…ç£å•Š å•Šç˜¤ç»Š ä¹ç»° èƒ¶æ‡¦å¯è®°ç”¸ä¿Šè¾‘ InOptionType ä¿Š ç§¦å¯¸çªç»° è”¼ç”¸é˜‘ é¿ç»¢è‘›æ¾œ.
 		for (int32 ThisSkillID : AllFoundSkillID)
 		{
-			// ÇØ´ç ½ºÅ³ ID ¿Í ·¹º§¿¡¼­ÀÇ ½ºÅ³¿É¼Çµé.
+			// ç§¦å¯¸ èƒ¶æ‡¦ ID å®¢ é¥­éª‡ä¿Šè¾‘ç‹¼ èƒ¶æ‡¦å¯è®°ç”¸.
 			TArray<FSkillOptionData> FoundSkillOptions;
 			FinalUsedCDS->GetCharacterSkillOptionsOfID(ThisSkillID, FoundSkillOptions);
 			for (FSkillOptionData& SkillOptionElem : FoundSkillOptions)
@@ -1846,7 +1846,7 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 
 	}
 
-	//void GetSetItemValue(const TArray<FB2Item>& AllEquipped, CheckInventoryType ENum optionÀ¸·Î ÀÎº¥ Å¸ÀÔÀ» ³Ö¾î¼­ °°Àº°ÅÀÏ °æ¿ì¸¸ ³Ö°Ô ÇØÁÖ¸é µÊ TMap<int32, int32>& OutSetItemDatas,
+	//void GetSetItemValue(const TArray<FB2Item>& AllEquipped, CheckInventoryType ENum optionæ è‚º ç‰¢äº¥ é¸¥æ¶é˜‘ æŒç»¢è¾‘ éç¯®èŠ­è€ ç‰ˆå¿«çˆ¶ æŒéœ¸ ç§¦æ—æ å‡³ TMap<int32, int32>& OutSetItemDatas,
 	void GetSetItemValueByInvenType(const TArray<FB2Item>& AllEquipped, EItemInvenType CheckInventoryType,
 		TMap<int32, TArray<int32>>& OutGroupIDDatas)
 	{
@@ -1886,26 +1886,26 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 		if (InCharacterDataStore == nullptr)
 			return 0;
 
-		auto GuildSkillInfo = InCharacterDataStore->GetGuildSkillInfos();		//ÇöÀç°¡Áö°íÀÖ´Â ±æµå½ºÅ³ °¡Á®¿Â´Ù
+		auto GuildSkillInfo = InCharacterDataStore->GetGuildSkillInfos();		//æ³…çŠå•Šç˜¤ç»Šä¹ç»° è¾¨é›èƒ¶æ‡¦ å•Šå»‰æŸ¯ä¿ƒ
 
 		for (auto GuildSkillInfoSlot : GuildSkillInfo)
 		{
 			if (GuildSkillInfoSlot == nullptr)
 				continue;
 
-			//if (GuildSkillInfoSlot->level)				//·¹º§0ÀÌµé¾î¿Ã¼öµµ ÀÖÀ»¼ö ÀÖ´Ù
+			//if (GuildSkillInfoSlot->level)				//é¥­éª‡0æç”¸ç»¢æ£µèæ¡£ ä¹é˜‘è ä¹ä¿ƒ
 			//{
-			//	auto GuildSkillMasterData = BladeIIGameImpl::GetClientDataStore().GetGuildSkillInfo(GuildSkillInfoSlot->id, GuildSkillInfoSlot->level);	// ½ºÅ³¿¡´ëÇÑ ¸¶½ºÅÍ µ¥ÀÌÅÍ¸¦ °¡Á®¿Â´Ù
+			//	auto GuildSkillMasterData = BladeIIGameImpl::GetClientDataStore().GetGuildSkillInfo(GuildSkillInfoSlot->id, GuildSkillInfoSlot->level);	// èƒ¶æ‡¦ä¿ŠæªèŒ„ ä»˜èƒ¶ç£ å•æç£ç”« å•Šå»‰æŸ¯ä¿ƒ
 
 			//	if (!GuildSkillMasterData || (!IsGuildBattle && !GuildSkillMasterData->buff_time_sec))
 			//		continue;
 
-			//	//±æµåÀüÀÌ¸é ½Ã°£°ª Ã¼Å© ¾ÈÇÔ
+			//	//è¾¨é›å‚ˆææ çŸ«åŸƒè”¼ çœ‰å†œ æ•‘çªƒ
 			//	if (!IsGuildBattle)
 			//	{
 			//		float RemainTime = UB2UIManager::RemainTimeFunction(GuildSkillInfoSlot->buff_end_time);
 
-			//		if (RemainTime <= 0)		//½Ã°£ÀÌ Áö³µÀ¸¸é °ªÀ¸ 0À» ¹İÈ¯
+			//		if (RemainTime <= 0)		//çŸ«åŸƒæ ç˜¤è½¦æ æ è”¼æ  0é˜‘ é¦†åˆ¸
 			//			continue;
 			//	}
 
@@ -1923,23 +1923,23 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 		if (InCharacterDataStore == nullptr)
 			return false;
 
-		auto GuildSkillInfo = InCharacterDataStore->GetGuildSkillInfos();		//ÇöÀç°¡Áö°íÀÖ´Â ±æµå½ºÅ³ °¡Á®¿Â´Ù
+		auto GuildSkillInfo = InCharacterDataStore->GetGuildSkillInfos();		//æ³…çŠå•Šç˜¤ç»Šä¹ç»° è¾¨é›èƒ¶æ‡¦ å•Šå»‰æŸ¯ä¿ƒ
 
 		for (auto GuildSkillInfoSlot : GuildSkillInfo)
 		{
 			if (GuildSkillInfoSlot == nullptr)
 				continue;
 
-			if (GuildSkillInfoSlot->level)				//·¹º§0ÀÌµé¾î¿Ã¼öµµ ÀÖÀ»¼ö ÀÖ´Ù
+			if (GuildSkillInfoSlot->level)				//é¥­éª‡0æç”¸ç»¢æ£µèæ¡£ ä¹é˜‘è ä¹ä¿ƒ
 			{
-				auto GuildSkillMasterData = BladeIIGameImpl::GetClientDataStore().GetGuildSkillInfo(GuildSkillInfoSlot->id, GuildSkillInfoSlot->level);	// ½ºÅ³¿¡´ëÇÑ ¸¶½ºÅÍ µ¥ÀÌÅÍ¸¦ °¡Á®¿Â´Ù
+				auto GuildSkillMasterData = BladeIIGameImpl::GetClientDataStore().GetGuildSkillInfo(GuildSkillInfoSlot->id, GuildSkillInfoSlot->level);	// èƒ¶æ‡¦ä¿ŠæªèŒ„ ä»˜èƒ¶ç£ å•æç£ç”« å•Šå»‰æŸ¯ä¿ƒ
 
 				//if (!GuildSkillMasterData || !GuildSkillMasterData->buff_time_sec)
 				//	continue;
 
 				//float RemainTime = UB2UIManager::RemainTimeFunction(GuildSkillInfoSlot->buff_end_time);
 
-				//if (RemainTime <= 0)		//½Ã°£ÀÌ Áö³µÀ¸¸é °ªÀ¸ 0À» ¹İÈ¯
+				//if (RemainTime <= 0)		//çŸ«åŸƒæ ç˜¤è½¦æ æ è”¼æ  0é˜‘ é¦†åˆ¸
 				//	continue;
 
 				//if (SvrToCliOptionType(GuildSkillMasterData->buff_option_type) == InItemOption)
@@ -2101,17 +2101,17 @@ namespace CombatStatEval // ÀüÅõ·Â ÃøÁ¤ ±Û·Î¹ú À¯Æ¿
 }
 
 
-// Core of GetEffectiveOptionValueTempl. SkillOption ÀÌ¶û ItemOption ÅëÇÕ °Ç ¿Ï·áµÇ¸é ÀÌ°Å¶û °ü·Ã ÇÔ¼öµé À§Ä¡ Á» Á¤¸®.
+// Core of GetEffectiveOptionValueTempl. SkillOption æå°” ItemOption çƒ¹é’¦ æ‰’ è‚¯ä¸°ç™»æ æèŠ­å°” åŒ…è®¿ çªƒèç”¸ å›°æ‘¹ ç²± æ²¥åºœ.
 float GetEffectiveOptionValueInternal(ECombatOptionApplyType InOptionApplyType,
 	TArray<FOptionValue>& InSourceValues, // Raw (displayed) values if bRawValueSource is true, effective scaled values if false
 	bool bRawValueSource, /*= true*/ // Designate whether InSourceValues are raw values or effective scaled values.
-	bool bClampValue /*= false*/) // °ª¿¡ ÃÖ´ë ÃÖ¼Ò°ª º¸Á¤ÀÌ µé¾î°£´Ù.
+	bool bClampValue /*= false*/) // è”¼ä¿Š å¼¥æª å¼¥å®¶è”¼ ç„Šæ²¥æ ç”¸ç»¢åŸƒä¿ƒ.
 {
 	// Initial value should be different depend on whether it is add or (1 minus) multiplication.
 	float FinalEffectiveValue = GetInitialValueOfCombatOptionApplyType(InOptionApplyType);
 
-	// ECombatOptionApplyType ¿¡ µû¶ó ¸ğ¾ÆÁø °ªµéÀ» ÇÕÄ¡´Â operator ¸¦ Á¦°øÇÏ´Â °ÍÀÌ ÀÌ ÇÔ¼öÀÇ ¿ªÇÒÀÌ´Ù. 
-	// ÇÕÄ£´Ù´Â °Ô ´õÇÏ±â¸¦ ÀÇ¹ÌÇÏÁö¸¸Àº ¾Ê´Â´Ù.
+	// ECombatOptionApplyType ä¿Š è¶æ‰¼ è‘›é…’æŸ³ è”¼ç”¸é˜‘ é’¦æ‘¹ç»° operator ç”« åŠ›å‚çªç»° å·´æ æ çªƒèç‹¼ å¼€ä¸”æä¿ƒ. 
+	// é’¦æ¨¡ä¿ƒç»° éœ¸ æ­¹çªæ‰ç”« ç‹¼å›ºçªç˜¤çˆ¶ç¯® è‡¼ç»°ä¿ƒ.
 	for (FOptionValue SourceValue : InSourceValues)
 	{
 		// 0.0 ~ 1.0 scaling if SourceValue if raw. Need clamping for multiplication type.
@@ -2121,7 +2121,7 @@ float GetEffectiveOptionValueInternal(ECombatOptionApplyType InOptionApplyType,
 		{ // Now it is about how to apply, as its type name implies.
 			FinalEffectiveValue *= EffectiveValue;
 		}
-		else // Add_Value, Add_Percent, Subtract_Value ÀÇ °æ¿ì´Â ½Ç Àû¿ë½Ã¿¡´Â - ÇØ ÁÖ¾î¾ß..
+		else // Add_Value, Add_Percent, Subtract_Value ç‹¼ ç‰ˆå¿«ç»° è§’ åˆ©ä¾©çŸ«ä¿Šç»° - ç§¦ æ—ç»¢å…·..
 		{
 			if (SourceValue.OptionVariationType == EOptionVariation::EOV_Incerease)
 			{
@@ -2134,17 +2134,17 @@ float GetEffectiveOptionValueInternal(ECombatOptionApplyType InOptionApplyType,
 		}
 	}
 
-	//  ´É·ÂÄ¡ Áõ°¨ °è»êÀ» ³¡³½ ÈÄ »óÇÑ¿¡ Á¦ÇÑÀ» °Ç´Ù.
+	//  ç“·ä»¿æ‘¹ åˆ˜çš‘ æ‹Œé­‚é˜‘ åœºè¾° é¥¶ æƒ‘èŒ„ä¿Š åŠ›èŒ„é˜‘ æ‰’ä¿ƒ.
 	if (bClampValue)
 	{
 		if (InOptionApplyType == ECombatOptionApplyType::ECOAT_OneMinusMultiply)
 		{
-			// ex > º¸½º ¸÷ µ¥¹ÌÁö °¨¼Ò ¿É¼ÇÀÌ ¿ªÀ¸·Î Àû¿ëµÇ´õ¶óµµ ±âÁ¸º¸´Ù ´õ ¾ÆÇÁ°Ô µé¾î¿ÀÁø ¾Êµµ·Ï ÇÑ´Ù.
+			// ex > ç„Šèƒ¶ å„ å•å›ºç˜¤ çš‘å®¶ å¯è®°æ å¼€æ è‚º åˆ©ä¾©ç™»æ­¹æ‰¼æ¡£ æ‰ç²®ç„Šä¿ƒ æ­¹ é…’æ©‡éœ¸ ç”¸ç»¢å·æŸ³ è‡¼æ¡£åºŸ èŒ„ä¿ƒ.
 			FinalEffectiveValue = FMath::Clamp(FinalEffectiveValue, 0.0f, 1.0f);
 		}
 		else
 		{
-			// ex > Ã¼·Â °¨¼Ò ¿É¼ÇÀÌ ¾Æ¹«¸® ¹ß·ÁÀÖ¾îµµ 0º¸´Ù ³·¾ÆÁöÁö ¾Ê´Â´Ù.
+			// ex > çœ‰ä»¿ çš‘å®¶ å¯è®°æ é…’å…¬åºœ æƒ¯å¦¨ä¹ç»¢æ¡£ 0ç„Šä¿ƒ æ’¤é…’ç˜¤ç˜¤ è‡¼ç»°ä¿ƒ.
 			FinalEffectiveValue = FMath::Max(FinalEffectiveValue, 0.0f);
 		}
 	}

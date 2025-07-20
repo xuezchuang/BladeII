@@ -1,4 +1,4 @@
-#include "B2UINetworkLoading.h"
+﻿#include "B2UINetworkLoading.h"
 
 void UB2UINetWorkLoading::CacheAssets()
 {

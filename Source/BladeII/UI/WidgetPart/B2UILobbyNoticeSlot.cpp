@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UILobbyNoticeSlot.h"
 #include "B2UIManager.h"
@@ -64,9 +64,9 @@ void UB2UILobbyNoticeSlot::SetModeOpenType(int32 iType)
 
 void UB2UILobbyNoticeSlot::OnClickBtnModeOpen()
 {
-	switch (m_eModeOpenType)	//¸µÄ¿¸Å´ÏÀú »ç¿ë, ¾À µî·ÏÇÏ°í »ç¿ë
+	switch (m_eModeOpenType)	//å‚…ç›®æ¦‚èªåŽ† è¤ä¾©, çº  æ®¿åºŸçªç»Š è¤ä¾©
 	{
-	case EModeOpenType::EModeOpenType_Raid:	//Æ©Åä¸®¾ó ¿ÀÇÂ(·¹ÀÌµå)
+	case EModeOpenType::EModeOpenType_Raid:	//è­¬é…åºœå€” å·é”¹(é¥­æžé›)
 		{
 			if (TutorialManager::GetInstance().IsLockTutorial(TutorialID_Raid, 0) == false)
 			{
@@ -87,7 +87,7 @@ void UB2UILobbyNoticeSlot::OnClickBtnModeOpen()
 					0.f, true, true, EUIMsgPopupButtonGroup::Confirm);
 			}
 		}break;
-	case EModeOpenType::EModeOpenType_Occupy:	//Æ©Åä¸®¾ó ¿ÀÇÂ(Á¡·ÉÀü)
+	case EModeOpenType::EModeOpenType_Occupy:	//è­¬é…åºœå€” å·é”¹(ç—¢é£žå‚ˆ)
 		{
 			if (TutorialManager::GetInstance().IsLockTutorial(TutorialID_Occupy, 0) == false)
 			{
@@ -116,7 +116,7 @@ void UB2UILobbyNoticeSlot::OnClickBtnModeOpen()
 			{
 				data_trader::Retailer::GetInstance().RequestGuildDetailInfo(0);
 			}
-			else //±æµåÀüÀ» ÀÔÀå ¸øÇÒ½Ã¶óµµ ±æµå¸Þ´ºÃ¢¿¡ µé¾î°¡Áö±â ¶§¹®¿¡ º°µµÀÇ ¿¹¿ÜÃ³¸® ¾øÀ½(±âÈ¹ÀÇµµ)
+			else //è¾¨é›å‚ˆé˜‘ æ¶åŽ˜ ç»™ä¸”çŸ«æ‰¼æ¡£ è¾¨é›çš‹æ˜¥èŠ’ä¿Š ç”¸ç»¢å•Šç˜¤æ‰ é”­å·©ä¿Š å–Šæ¡£ç‹¼ æŠ—å¯‡è´¸åºœ ç»æ¾œ(æ‰è£™ç‹¼æ¡£)
 			{ }
 				
 		}break;
@@ -153,7 +153,7 @@ void UB2UILobbyNoticeSlot::OpenRaidInviteCheckPopup()
 		);
 
 
-	// Ãß°¡ÄÚ¸àÆ®
+	// çœ å•Šå†…è†é£˜
 	pPopupUI->SetSubContent(FText::Format(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Raid_AutoReject")), FText::AsNumber(nCurrentLeftTime)));
 	pPopupUI->AddHandler(EUIMsgPopupButton::Positive, FMsgPopupOnClick::CreateLambda([this]() 
 	{ 
@@ -170,7 +170,7 @@ void UB2UILobbyNoticeSlot::OpenRaidInviteCheckPopup()
 
 void UB2UILobbyNoticeSlot::OpenRaidInviteSelectClassPopup()
 {
-	if (TutorialManager::GetInstance().IsLockTutorial(TutorialID_Raid, 0)) // ·¹ÀÌµå Àá±Ý½Ã ÆË¾÷ È£Ãâ
+	if (TutorialManager::GetInstance().IsLockTutorial(TutorialID_Raid, 0)) // é¥­æžé› æ³ªé™›çŸ« æ‰‘è¯€ é¾‹å…
 	{
 		FText ftTitle = BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("ModeOpen_RaidUnlock1"));
 		FText ftOpenCondition = BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("ModeOpen_RaidUnlock2"));
@@ -202,11 +202,11 @@ void UB2UILobbyNoticeSlot::OpenRaidInviteSelectClassPopup()
 		EUIMsgPopupButtonGroup::AcceptOrReject);
 
 
-	// RequestRaidStart ÀÌ¸§Àº ·¹ÀÌµå ½ÃÀÛÀÌÁö¸¸, ¼­¹öÆÀ¿¡¼­ ÇÁ·ÎÅäÄÝ Àç»ç¿ëÀ¸·Î
-	// ·¹ÀÌµå ÃÊ´ë½Ã¿¡ ¾î¶² Ä³¸¯ÅÍ¸¦ ¼±ÅÃÇß´ÂÁö ¾Ë¸®°í, ¸®½ºÆù½º¸¦ ¹ÞÀº ÈÄ¿¡ ·ëÁ¶ÀÎ.
+	// RequestRaidStart æžæŠšç¯® é¥­æžé› çŸ«ç´¯æžç˜¤çˆ¶, è¾‘æ»šè¯„ä¿Šè¾‘ æ©‡è‚ºé…å¦® çŠè¤ä¾©æ è‚º
+	// é¥­æžé› æª¬æŽªçŸ«ä¿Š ç»¢æ« æŸè…ç£ç”« æ€¥ç¶æ²ç»°ç˜¤ èˆ…åºœç»Š, åºœèƒ¶è¿„èƒ¶ç”« ç½ç¯® é¥¶ä¿Š å†¯ç‚¼ç‰¢.
 	if (RaidInvitePopupUI)
 	{
-		RaidInvitePopupUI->SetAutoCloseOnClick(false); // ¸®½ºÆù½º¸¦ Ã³¸®ÇÑ ÈÄ¿¡ ´Ý¾Æ¾ßÇÔ
+		RaidInvitePopupUI->SetAutoCloseOnClick(false); // åºœèƒ¶è¿„èƒ¶ç”« è´¸åºœèŒ„ é¥¶ä¿Š æ‘§é…’å…·çªƒ
 		RaidInvitePopupUI->AddHandler(EUIMsgPopupButton::Positive, FMsgPopupOnClick::CreateLambda([this, RaidInvitePopupUI]() {
 			data_trader::Retailer::GetInstance().RequestRaidStart(CliToSvrPCClassType(RaidInvitePopupUI->GetSelectPCClass()));
 			RemoveRaidInvite();
@@ -247,7 +247,7 @@ void UB2UILobbyNoticeSlot::CheckLimittime()
 {
 	/*
 	nCurrentLeftTime -= 1;
-	// ÃÊ´ë ÆË¾÷ÀÌ ÀÖ´Ù¸é... ÆË¾÷µµ ¶È°°ÀÌ °»½Å.
+	// æª¬æŽª æ‰‘è¯€æž ä¹ä¿ƒæ... æ‰‘è¯€æ¡£ åº¦éžæž ç›Žè„š.
 	UB2UIMsgPopupSimple* pPopupUI = bUsedInvitePopup ? UB2UIManager::GetInstance()->GetUI<UB2UIMsgPopupSimple>(UIFName::MsgPopupSimpleInvite) : nullptr;
 	if (nCurrentLeftTime < 1)
 	{

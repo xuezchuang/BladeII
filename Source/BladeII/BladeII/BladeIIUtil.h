@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "EngineMinimal.h"
 
@@ -12,6 +12,7 @@ class ALevelSequenceActor;
 #include "BladeII.h"
 #include "Engine/StreamableManager.h"
 #include "../Common/CommonStruct.h"
+#include "NavigationData.h"
 
 FText GetPCClassLocalizedText(EPCClass PCClass);
 
@@ -120,7 +121,7 @@ private:
 	FString ScopeName;
 };
 #endif
-//ÃßÈÄ LogManager·Î ¿Å±æ ¿¹Á¤ÀÓ
+//çœ é¥¶ LogManagerè‚º é¢—è¾¨ æŠ—æ²¥çƒ™
 #if B2_PROFILE_LEVEL
 #define BLADE2_SCOPE_CYCLE_COUNTER(STATNAME)								\
 	BLADE2_DECLARE_STAT(BLADE2_##STATNAME,STATNAME);						\
@@ -556,7 +557,7 @@ namespace Utilities
 		FConnectionState& operator =(FConnectionState const&)	= delete;
 
 		uint32	ConnectionState;
-		ESessionCloseReason SessionCloseReason;//ServiceNotAvailableEvent°¡ ¹ß»ı Àü¿¡ Disconnect ÀÌÀ¯°¡ ÀÖÀ»¶§ °ªÀ» ³Ö¾îÁÜ(ex>Áßº¹ Á¢¼Ó)
+		ESessionCloseReason SessionCloseReason;//ServiceNotAvailableEventå•Š æƒ¯ç§¯ å‚ˆä¿Š Disconnect æèœ¡å•Š ä¹é˜‘é”­ è”¼é˜‘ æŒç»¢æ·‹(ex>åæ±— ç«‹åŠ )
 	};
 
 	FORCEINLINE	bool IsNearlyEqual(FVector const& lhs, FVector const& rhs)
@@ -681,7 +682,7 @@ bool IsAccessTerm();
 void SaveGameData_DLCDownload(bool bSuccess);
 bool IsDLCDownload();
 
-// Ä£±¸ ÃÊ´ë Á¤º¸ ·ÎÄÃ ÀúÀå
+// æ¨¡å¤‡ æª¬æª æ²¥ç„Š è‚ºæ‹¿ å†å˜
 void SaveGameData_KakaoInvitedFriends(const TArray<FString> &SaveList);
 bool LoadGameData_KakaoInvitedFriends(TArray<FString> &OutList);
 
@@ -893,8 +894,8 @@ FDateTime ConvertUTCToLocalTime(const FDateTime& InDate);
 struct FItemGradeInfo
 {
 	static CONSTEXPR int32 MINIMUM_SURPASS_STAR_GRADE = 6;
-	static CONSTEXPR int32 MINIMUM_ADVANCED_SURPASS_STAR_GRADE = 11;	// 11¼º ÀÌ»óÀº 11¼º ÀÌ»óÀÇ Àåºñµé¸¸À» ÃÊ¿ù ÇÒ ¼ö ÀÖ´Ù.
-	static CONSTEXPR int32 MINIMUM_ADVANCED_UPGRADE_STAR_GRADE = 10;	// »óÀ§ ½Â±Ş¼®ÀÌ ÇÊ¿ä·Î ÇÏ´Â Àåºñ ¼º
+	static CONSTEXPR int32 MINIMUM_ADVANCED_SURPASS_STAR_GRADE = 11;	// 11å·± ææƒ‘ç¯® 11å·± ææƒ‘ç‹¼ å˜åšç”¸çˆ¶é˜‘ æª¬å²¿ ä¸” è ä¹ä¿ƒ.
+	static CONSTEXPR int32 MINIMUM_ADVANCED_UPGRADE_STAR_GRADE = 10;	// æƒ‘å›° é“°é­ç±æ é˜å¤¸è‚º çªç»° å˜åš å·±
 	static CONSTEXPR int32 MAX_NORMAL_ITEM_STAR_GRADE = 12;
 
 	static FText GetItemGradeColor(uint32 ItemGrade);

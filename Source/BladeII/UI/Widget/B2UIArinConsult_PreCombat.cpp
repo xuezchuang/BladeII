@@ -1,4 +1,4 @@
-#include "B2UIArinConsult_PreCombat.h"
+ï»¿#include "B2UIArinConsult_PreCombat.h"
 #include "B2UIManager.h"
 #include "B2UIDocHelper.h"
 #include "B2StageInfo.h"
@@ -142,7 +142,7 @@ void UB2UIArinConsult_PreCombat::OnClickBtnItemOrSkillEnhance()
 	{
 		LobbyEnterHeroMgmtModeClass<EHeroMgmtSubMode>::GetInstance().Signal(EHeroMgmtSubMode::EHMSM_Inventory);
 		
-		// ½ÇÁ¦·Î ½ºÅÈÀÌ ¾àÇÑ ¾Ö°¡ ¸ŞÀÎÀÌ³Ä ¼­ºê³Ä¿¡ µû¶ó¼­µµ ´Ù¸£°Ô ÇØ¾ß ÇÒ ¼öµµ.. AB2LobbyGameMode::GameStageCheckForArinConsulting. ±Ùµ¥ ´Ü¼øÈ÷ ´©±¸ ½ºÅÈÀÌ ´õ ³ôÀº°¡·Î Á¤ÇÏ´Â °Íµµ ¿©·¯ »óÈ²À» µûÁ³À» ¶§ Á¤È®ÇÏÁö´Â ¾Ê°í Á» ¾Ö¸ÅÇÏ±º.
+		// è§’åŠ›è‚º èƒ¶æ¹ƒæ è·èŒ„ å±€å•Š çš‹ç‰¢æè¡¬ è¾‘å®è¡¬ä¿Š è¶æ‰¼è¾‘æ¡£ ä¿ƒç¦éœ¸ ç§¦å…· ä¸” èæ¡£.. AB2LobbyGameMode::GameStageCheckForArinConsulting. è¾Ÿå• çªœé‰´æ´’ ç©¿å¤‡ èƒ¶æ¹ƒæ æ­¹ è‡­ç¯®å•Šè‚º æ²¥çªç»° å·´æ¡£ å’¯çŸ¾ æƒ‘ç‚”é˜‘ è¶è„¸é˜‘ é”­ æ²¥çŠ¬çªç˜¤ç»° è‡¼ç»Š ç²± å±€æ¦‚çªç„™.
 		const EPCClass MainCharClass = LocalCharData.GetMainPlayerClass();
 		LobbySetHeroMgmtModePCSelectionClass<EPCClass>::GetInstance().Signal(MainCharClass);
 
@@ -155,7 +155,7 @@ void UB2UIArinConsult_PreCombat::OnClickBtnItemOrSkillEnhance()
 	{
 		LobbyEnterHeroMgmtModeClass<EHeroMgmtSubMode>::GetInstance().Signal(EHeroMgmtSubMode::EHMSM_Skill);
 
-		// ½ºÅ³Æ÷ÀÎÆ®´Â Àû¾îµµ ¾ø´Â ÂÊ Ä³¸¯ÅÍ·Î´Â ¾È°¡µµ·Ï ÇÒ ¼ö ÀÖ°Ú´Ù.
+		// èƒ¶æ‡¦å™¨ç‰¢é£˜ç»° åˆ©ç»¢æ¡£ ç»ç»° ç‡ æŸè…ç£è‚ºç»° æ•‘å•Šæ¡£åºŸ ä¸” è ä¹æ‘†ä¿ƒ.
 		const EPCClass MainCharClass = LocalCharData.GetMainPlayerClass();
 		const EPCClass TagCharClass = LocalCharData.GetSubPlayerClass();
 
@@ -181,7 +181,7 @@ void UB2UIArinConsult_PreCombat::OnClickBtnProceedToCombat()
 			auto& StageData = AB2StageManager::GetCacheStageKeepEssentialData();
 			StageData.RequestStartCounterDungeon(DocBS->GetServerStageId(), IntToPCClass(DocBattle->GetCurPCClass()), IntToPCClass(DocBattle->GetTagPCClass()));
 		}
-		else {// AB2LobbyGameMode::GoGameStageInfo ¿¡¼­ ¼¼ÆÃµÈ StageId ±×´ë·Î..
+		else {// AB2LobbyGameMode::GoGameStageInfo ä¿Šè¾‘ æŠ€æ³¼ç­‰ StageId å¼Šæªè‚º..
 			UB2UIDocUICondition* DocCon = UB2UIDocHelper::GetDocUICondition();
 			StartGameStageFromLobbyClass<int32, EStageDifficulty, const TArray<EStageBuffType>&, bool>::GetInstance().Signal(DocBS->GetClientStageId(), DocBS->GetStageDifficulty(), DocBS->GetSelectedStageBuffs(), (DocCon ? DocCon->GetbUserSelectedSkipStory() : false));
 		}
@@ -201,7 +201,7 @@ void UB2UIArinConsult_PreCombat::CloseMe()
 
 void UB2UIArinConsult_PreCombat::CloseAndIgnore()
 {
-	// ÇâÈÄ ÀÏÁ¤ È½¼ö´Â ½ºÅµÇÏµµ·Ï UIDocUICondition ÂÊ ¼¼ÆÃ.
+	// æ°¢é¥¶ è€æ²¥ å†‰èç»° èƒ¶è¯ºçªæ¡£åºŸ UIDocUICondition ç‡ æŠ€æ³¼.
 	UB2UIDocUICondition* DocCondition = UB2UIDocHelper::GetDocUICondition();
 	if (GConfig && DocCondition)
 	{

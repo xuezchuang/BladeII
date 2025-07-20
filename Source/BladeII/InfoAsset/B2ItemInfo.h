@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 //#include "BladeII.h"
@@ -11,6 +11,8 @@
 #include "../Common/CommonStruct.h"
 #include "../UI/B2UIEnum.h"
 #include "UObject/ObjectSaveContext.h"
+#include "Engine/World.h"
+#include "UMG.h"
 #include "B2ItemInfo.generated.h"
 
 // Some socket name define for special effect to be attached to upgraded item.
@@ -100,13 +102,13 @@ struct FSingleItemInfoData : public FTableRowBase
 	GENERATED_USTRUCT_BODY()
 
 	FSingleItemInfoData()
-	{			
+	{
 		CachedMyRefID = -1;
 
 		bHasExtraSlotEffect = false;
 
 		BaseBPClass = NULL;
-		
+
 		Offset_SpawnMinDistance = 0.f;
 		Offset_SpawnMaxDistance = 0.f;
 		Offset_SpawnLocationZ = 0.0f;
@@ -163,7 +165,7 @@ protected:
 public:
 	class USkeletalMesh* GetPCPartMesh(class UB2ItemInfo* InInfoObj);
 	FORCEINLINE uint32 GetAsyncReqKey_PCPartMesh() const // For FB2AsyncRequestInfo AssetKey.
-	{ 
+	{
 		check(IsCachedMyRefIDValid()); // If we get caught here, need to find a way to call it later or set CachedMyRefID prior to this.
 		return CachedMyRefID * 100 + 1; // Simply need a unique uint32 identification.
 	}
@@ -299,7 +301,7 @@ public:
 	float PlaySoundDelayOverride;
 
 	/** Time to stay alive after the player sucked this item.
-	 * During this time, It is invisible, just let it live for some while to express its glorious fucking moment of getting sucked by wicked player. 
+	 * During this time, It is invisible, just let it live for some while to express its glorious fucking moment of getting sucked by wicked player.
 	 * 0 or negative value for using default value. */
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	float PostSuckLifeSpanOverride;
@@ -314,7 +316,7 @@ public:
 	/** Specifies the radius of collision body. 0 or negative value for using default value. */
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	bool bMIDAtlasParamFromUIMIC;
-	
+
 
 	////////////////////////////////////////////////////////////////////////////////
 
@@ -335,7 +337,7 @@ public:
 
 	void UnloadOnlyEquipPart(FStreamableManager& InLoadManager, int32 MyRefID, TMap<int32, FSingleItemInfoLoadedPtrData>& LoadedPtrMap, bool bUnloadEvenRootSet);
 	void UnloadOnlyEquipPart(class UB2ItemInfo* OwnerItemInfoTable, bool bUnloadEvenRootSet);
-	
+
 	/** It is now about saving loading time. */
 	void MarkLoadedEquipPartAtRooSet(bool bRootSet);
 
@@ -384,7 +386,7 @@ private:
 public:
 	int64 MySerialNumber; // Serial number being counted inside ItemInfo.
 	FString MyAsyncRequestName;
-	
+
 	void SetRefIDs(const TArray<int32>& InRefIDs);
 	FORCEINLINE const TArray<int32>& GetRefIDs() const { return RefIDs; }
 	FORCEINLINE bool IsValid() const { return (MySerialNumber >= 0 && MyAsyncRequestName.Len() > 0); }
@@ -404,9 +406,9 @@ UCLASS()
 class BLADEII_API UB2ItemInfo : public UObject, public IB2AsyncInterface
 {
 	GENERATED_BODY()
-	
+
 protected:
-	
+
 	/** Data table asset, containing the actual data, providing CSV import/export feature */
 	UPROPERTY()
 	class UDataTable* TheData;
@@ -429,7 +431,7 @@ protected:
 public:
 	UB2ItemInfo(const FObjectInitializer& ObjectInitializer);
 
-	/** Get single info data by ItemRefID, NULL if not found. 
+	/** Get single info data by ItemRefID, NULL if not found.
 	 * For Editor or bFullyLoad true, it loads all lazyloaded TSoftObjectPtr. Otherwise, TAsset refs are still not valid. */
 	FSingleItemInfoData* GetInfoData(int32 ItemRefID, bool bFullyLoad = false);
 	FItemSetInfoData* GetSetInfoData(int32 SetUniqueKey);
@@ -494,7 +496,7 @@ public:
 	bool TryAsyncLoadOfEquipParts(const TArray<int32>& InRefIDList, FString& OutRequestedName, bool bShowBlockingUI);
 
 	/** You get a data struct that needed for async load interface use, with a unique identification of designated RefID list. */
-	bool GetAsyncReqCombinedIDofPartsList(const TArray<int32>& InRefIDList, 
+	bool GetAsyncReqCombinedIDofPartsList(const TArray<int32>& InRefIDList,
 		FItemInfoEquipPartsAsyncReqCombinedID& OutNewOrGeneratedID,
 		bool bGenerateNewOnMiss = false /* False might return invalid data, True might increase internal serial number and array. */);
 
@@ -521,9 +523,9 @@ struct FB2ItemMiscInfoLoadedRefHolder
 	UPROPERTY(Transient)
 	TMap<int32, class UMaterialInterface*> LoadedItemIconBGMtrlPerGrade_Simple;
 
-	
+
 	UPROPERTY(Transient)
-	TMap<int32, class UMaterialInterface*> LoadedEquipCategoryIcon;	
+	TMap<int32, class UMaterialInterface*> LoadedEquipCategoryIcon;
 
 	/** Equipped item icon background material. Element index is StarGrade - 1 */
 	UPROPERTY(Transient)
@@ -544,13 +546,13 @@ struct FB2ItemMiscInfoLoadedRefHolder
 	TMap<int32, class UMaterialInterface*> LoadedEtherPosBGMtrl;
 
 	UPROPERTY(Transient)
-		TMap<int32, class UMaterialInterface*> LoadedEtherTierBGMtrl;
+	TMap<int32, class UMaterialInterface*> LoadedEtherTierBGMtrl;
 
 	UPROPERTY(Transient)
-		TMap<int32, class UMaterialInterface*> LoadedStarNumberMtrl;
+	TMap<int32, class UMaterialInterface*> LoadedStarNumberMtrl;
 
 	UPROPERTY(Transient)
-		TMap<int32, class UMaterialInterface*> LoadedEtherTierNameBGMtrl;
+	TMap<int32, class UMaterialInterface*> LoadedEtherTierNameBGMtrl;
 
 	/** costume item icon background material. Element index is StarGrade - 1 */
 	UPROPERTY(Transient)
@@ -567,7 +569,7 @@ struct FB2ItemMiscInfoLoadedRefHolder
 	{
 		LoadedItemIconBGMtrlPerGrade.Empty();
 		LoadedItemIconBGMtrlPerGrade_Simple.Empty();
-		
+
 		LoadedEquipCategoryIcon.Empty();
 
 		LoadedItemQualityBGMtrl.Empty();
@@ -596,7 +598,7 @@ class BLADEII_API UB2ItemMiscInfo : public UObject
 	GENERATED_BODY()
 
 	FStreamableManager InfoLoadManager;
-	
+
 public:
 	UB2ItemMiscInfo(const FObjectInitializer& ObjectInitializer);
 
@@ -618,7 +620,7 @@ protected:
 	/** Element index is StarGrade - 1 */
 	UPROPERTY(EditAnywhere)
 	TArray<TSoftObjectPtr<class UMaterialInterface>> EquipCategoryIcon;
-	
+
 public:
 	class UMaterialInterface* GetEquipCategoryIcon(EEquipCategoryType InEquipCategory);
 	void UnloadEquipCategoryIcon(EEquipCategoryType InEquipCategory);
@@ -658,13 +660,13 @@ public:
 
 protected:
 	UPROPERTY(EditAnywhere)
-		TMap<int32, TSoftObjectPtr<class UMaterialInterface>> EtherPosBGMtrl;
+	TMap<int32, TSoftObjectPtr<class UMaterialInterface>> EtherPosBGMtrl;
 	UPROPERTY(EditAnywhere)
-		TMap<int32, TSoftObjectPtr<class UMaterialInterface>> EtherTierBGMtrl;
+	TMap<int32, TSoftObjectPtr<class UMaterialInterface>> EtherTierBGMtrl;
 	UPROPERTY(EditAnywhere)
-		TMap<int32, TSoftObjectPtr<class UMaterialInterface>> EtherTierNameBGMtrl;
+	TMap<int32, TSoftObjectPtr<class UMaterialInterface>> EtherTierNameBGMtrl;
 	UPROPERTY(EditAnywhere)
-		TMap<int32, FSlateColor> EtherTierTextColor;
+	TMap<int32, FSlateColor> EtherTierTextColor;
 
 public:
 	class UMaterialInterface* GetEtherPosBGMtrl(int32 ElemIndex);
@@ -680,7 +682,7 @@ public:
 
 protected:
 	UPROPERTY(EditAnywhere)
-		TMap<int32, TSoftObjectPtr<class UMaterialInterface>> StarNumberMtrl;
+	TMap<int32, TSoftObjectPtr<class UMaterialInterface>> StarNumberMtrl;
 public:
 	class UMaterialInterface* GetStarNumberMtrl(int32 ElemIndex);
 	void UnloadStarNumberMtrl(int32 ElemIndex);
@@ -712,13 +714,13 @@ private:
 	// Common util for material cache maps of AllLoadedRefHolder
 	void AddOrUpdateMtrlRefHolderCache(int32 EntryIndex, UMaterialInterface* MtrlToCache, TMap<int32, class UMaterialInterface*>& HolderMap);
 public:
-	
+
 	void UnloadAll();
-	
+
 #if WITH_EDITOR
 	//void EditorLoadAll();
 #endif
-	
+
 #if TEMP_LAZYLOADING_MISHANDLING_CLEANUP
 	void CleanupOnPreSave();
 	virtual void PreSave(FObjectPreSaveContext SaveContext) override;

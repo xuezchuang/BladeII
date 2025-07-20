@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIPackageStore.h"
 #include "B2UIManager.h"
 #include "B2UICommonTab.h"
@@ -404,7 +404,7 @@ void UB2UIPackageStore::DestroyGuestWarningPopup()
 
 void UB2UIPackageStore::ClosePopupConfirmToBuyItem()
 {
-	// ´İ´Â °÷¿¡¼­ ConditionalCreate~~ ¸¦ ÇÒ ÇÊ¿ä°¡ ¾ø´Ù.. ÀÌ·± ÄÚµå´Â ¾ÆÁ÷ ÇØ´ç ÆÄÆ®°¡ »ç¿ëÀÌ ¾ÈµÇ´Â »óÈ²¿¡¼­µµ ºÒ¸± ¼ö ÀÖÀ¸¹Ç·Î »ı¼ºÀ» ½ÃµµÇÏ¸é ³¶ºñ°¡ µÉ ¼ö ÀÖÀ½.
+	// æ‘§ç»° é•‘ä¿Šè¾‘ ConditionalCreate~~ ç”« ä¸” é˜å¤¸å•Š ç»ä¿ƒ.. æç¹ å†…é›ç»° é…’æµ ç§¦å¯¸ é¢‡é£˜å•Š è¤ä¾©æ æ•‘ç™»ç»° æƒ‘ç‚”ä¿Šè¾‘æ¡£ é˜‚å‰¯ è ä¹æ éª¨è‚º ç§¯å·±é˜‘ çŸ«æ¡£çªæ æ‰¯åšå•Š çª è ä¹æ¾œ.
 	if (Created_UIP_PackageDetailPopup)
 		Created_UIP_PackageDetailPopup->CloseMe();
 }
@@ -462,6 +462,6 @@ bool UB2UIPackageStore::RedDotCondition_Level()
 
 void UB2UIPackageStore::OnClickProbability()
 {
-	// °¡Ã­ È®·ü °ø°³
+	// å•Šé“† çŠ¬ä¼ å‚ä¿º
 	B2P_ShowKakaoGachaOddsView();
 }

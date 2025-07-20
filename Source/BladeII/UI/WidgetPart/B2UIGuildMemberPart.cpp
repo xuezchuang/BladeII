@@ -1,4 +1,4 @@
-#include "B2UIGuildMemberPart.h"
+ï»¿#include "B2UIGuildMemberPart.h"
 #include "Retailer.h"
 #include "B2UIManager.h"
 #include "B2UIGuildUserMsg.h"
@@ -51,7 +51,7 @@ void UB2UIGuildInfoMemberPart::SetRank(int32 Rank)
 		return;
 
 
-	/* 0. ±æ¸¶ 1 ºÎ±æ¸¶ Á¶¿øµéÀº ¼û°Ü¿©*/
+	/* 0. è¾¨ä»˜ 1 ä½•è¾¨ä»˜ ç‚¼ç›”ç”¸ç¯® è§è´¥å’¯*/
 
 	if (Rank == b2network::B2GuildMemberRank::MASTER)
 	{
@@ -115,7 +115,7 @@ void UB2UIGuildInfoMemberPart1::OnClickSelect()
 {
 	if (ChangeType == EGuildChangeType::PROFILE)
 	{
-		data_trader::Retailer::GetInstance().RequestFindAccount(MemberID);			//ÆË¾÷¾øÀÌ ¹Ù·Î ¶ç¿öÁØ´Ù
+		data_trader::Retailer::GetInstance().RequestFindAccount(MemberID);			//æ‰‘è¯€ç»æ å®˜è‚º å‰å†µéœ–ä¿ƒ
 	}
 	else
 	{

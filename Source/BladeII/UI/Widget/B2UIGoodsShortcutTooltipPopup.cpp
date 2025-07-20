@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIGoodsShortcutTooltipPopup.h"
 #include "B2ItemInfo.h"
@@ -23,7 +23,7 @@ void UB2UIGoodsShortcutTooltipPopup::CacheAssets()
 	Super::CacheAssets();
 
 #if !PLATFORM_MAC
-	// ¸Æ ¿¡µğÅÍ È¯°æÀÏ °æ¿ì GET_SLOT_CHECK ºôµå ½ÇÆĞ·Î ÀÎÇØ Á¦¿Ü..
+	// é’™ ä¿Šå¼ç£ åˆ¸ç‰ˆè€ ç‰ˆå¿« GET_SLOT_CHECK å‘¼é› è§’è©è‚º ç‰¢ç§¦ åŠ›å¯‡..
 	GET_SLOT_CHECK(UOverlay, O_ShortcutTooltip)
 	GET_SLOT_CHECK(UOverlay, O_InfoTooltip)
 	GET_SLOT_CHECK(UImage, IMG_BGImage)
@@ -55,16 +55,16 @@ void UB2UIGoodsShortcutTooltipPopup::CacheAssets()
 
 		for (auto& elem : localwidget)
 		{
-			//Subclass´Â ¾îÂ¼Áö??
+			//Subclassç»° ç»¢å½•ç˜¤??
 			if (false == elem->GetClass()->IsChildOf(*m_CheckValid.Find(elem->GetName())))
 			{
-				//SubClass°¡ ¾Æ´Ï´Ï Àß¸ø ¼³Á¤ ÇÑ °ÍÀÓ
-				//°æ°íÃ¢ ¶ç¿öÁÖ±â
+				//SubClasså•Š é…’èªèª è‚‹ç»™ æ±²æ²¥ èŒ„ å·´çƒ™
+				//ç‰ˆç»ŠèŠ’ å‰å†µæ—æ‰
 			}
 			auto namecheck = m_CheckValid.Find(elem->GetName());
 			if (namecheck != nullptr)
 			{
-				//ÀÌ¸§ÀÌ ¹Ù²ï°Å´Ï ÀÌ¸§À» ´Ù½Ã ³Ö¾îÁà¾ß ÇÔ
+				//ææŠšæ å®˜è¯§èŠ­èª ææŠšé˜‘ ä¿ƒçŸ« æŒç»¢æ‹å…· çªƒ
 			}
 			B2LOGMANAGER_ERROR(LoggerUITooltipPopup, "Name is [%s], Class Name is [%s]", TCHAR_TO_ANSI(*elem->GetName()), TCHAR_TO_ANSI(*elem->GetClass()->GetName()));
 		}
@@ -94,7 +94,7 @@ void UB2UIGoodsShortcutTooltipPopup::PreSave(FObjectPreSaveContext SaveContext)
 {
 //#if WITH_EDITOR
 //	if (true == GIsEditor && !IsSavingForCookingOnPreSave(TargetPlatform))
-//	{ // ¿¡¼Â °Ë»ç¿ë ÄÚµå. ÄíÅ·¿¡¼­´Â Å©·¡½¬¸¦ ÀÏÀ¸Å°¹Ç·Î Á¦¿Ü. È¤Àº °Ë»ç ÄÚµå¸¦ ÄíÅ·¿¡¼­µµ ÀÛµ¿ÇÏµµ·Ï º¸¿Ï..
+//	{ // ä¿Šæ‚¸ å…«è¤ä¾© å†…é›. æ»æ¬§ä¿Šè¾‘ç»° å†œè´°æµ†ç”« è€æ è™éª¨è‚º åŠ›å¯‡. è¶£ç¯® å…«è¤ å†…é›ç”« æ»æ¬§ä¿Šè¾‘æ¡£ ç´¯æ‚¼çªæ¡£åºŸ ç„Šè‚¯..
 //		CacheAssets();
 //	}
 //#endif //WITH_EDITOR
@@ -104,8 +104,8 @@ void UB2UIGoodsShortcutTooltipPopup::PreSave(FObjectPreSaveContext SaveContext)
 void UB2UIGoodsShortcutTooltipPopup::SetItemInfo(uint32 _IteminfoIdx, const EGoodsButtonType& _type)
 {
 //#if UE_BUILD_SHIPPING
-//	//_IteminfoIdx°¡ 0ÀÌÇÏ°¡ µé¾î¿À¸é ÆË¾÷¿¡ ¶ç¿öÁÖ´Â Á¤º¸°¡ ÇÏ³ªµµ ¾øÀ¸¹Ç·Î ÀÚµ¿ ÆÄ±«
-//	//´Ü µğ¹ö±×ÀÏ¶§´Â µğ¹ö±×¸¦ À§ÇØ Á¤º¸°¡ ¾ø´Â »óÅÂ·Î ³²±è
+//	//_IteminfoIdxå•Š 0æçªå•Š ç”¸ç»¢å·æ æ‰‘è¯€ä¿Š å‰å†µæ—ç»° æ²¥ç„Šå•Š çªå”±æ¡£ ç»æ éª¨è‚º ç£Šæ‚¼ é¢‡é²
+//	//çªœ å¼æ»šå¼Šè€é”­ç»° å¼æ»šå¼Šç”« å›°ç§¦ æ²¥ç„Šå•Š ç»ç»° æƒ‘æ€•è‚º å·¢è¾«
 //	if (_IteminfoIdx < 1)
 //	{
 //		OnClickBtnClose();
@@ -121,7 +121,7 @@ void UB2UIGoodsShortcutTooltipPopup::SetItemInfo(uint32 _IteminfoIdx, const EGoo
 //	if (singleData == nullptr) 
 //	{
 //		OnClickBtnClose();
-//		return; //µ¥ÀÌÅÍ°¡ ¾øÀ¸¸é Close ¹öÆ°¸¸ º¸¿©ÁÜ
+//		return; //å•æç£å•Š ç»æ æ Close æ»šç“¢çˆ¶ ç„Šå’¯æ·‹
 //	}
 //		
 //	const FSingleGoodsTypeInfoData* const goodsTypeInfo(GetGoodsTypeFromGoodsTypeInfoObject(singleData->FGoodsType));
@@ -276,7 +276,7 @@ FVector2D UB2UIGoodsShortcutTooltipPopup::GetSlotAnchors() const
 
 void UB2UIGoodsShortcutTooltipPopup::SetGoodsIcon(int32 _GoodsIconID)
 {
-	//_GoodsIconID¸¦ ¹Ş¾Æ¿Í¼­ ¹Ù²ãÁÜ
+	//_GoodsIconIDç”« ç½é…’å®¢è¾‘ å®˜å±‚æ·‹
 	UB2ItemInfo* const iteminfo = StaticFindItemInfo();
 	if (iteminfo)
 	{
@@ -293,7 +293,7 @@ void UB2UIGoodsShortcutTooltipPopup::SetGoodsIcon(int32 _GoodsIconID)
 
 void UB2UIGoodsShortcutTooltipPopup::SetGoodsNameText(int32 _GoodsNameStringID)
 {
-	//_GoodsNameStringID¸¦ ¹Ş¾Æ¿Í¼­ ¹Ù²ãÁÜ
+	//_GoodsNameStringIDç”« ç½é…’å®¢è¾‘ å®˜å±‚æ·‹
 	UB2ItemInfo* const iteminfo(StaticFindItemInfo());
 	if (iteminfo)
 	{
@@ -346,10 +346,10 @@ void UB2UIGoodsShortcutTooltipPopup::SetGoodsShortageText(int32 _GoodsInfoString
 	}
 }
 
-//UIP_TooltipButton¿¡ µé¾î°¥ Á¤º¸
+//UIP_TooltipButtonä¿Š ç”¸ç»¢å“ æ²¥ç„Š
 void UB2UIGoodsShortcutTooltipPopup::addRow(const struct FSingleGoodsTypeInfoData*  _GoodsShortcutInfo)
 {
-	// [@AKI, 170412] ÀÏ´Ü ÀÌ·¸°Ô ¸¶¹«¸® ÇÏ°í ¾Æ·¡ÂÊÀ» ´Ù½Ã ±¸Çö ÇÏ±â·Î ÇÔ
+	// [@AKI, 170412] è€çªœ æçŠ¯éœ¸ ä»˜å…¬åºœ çªç»Š é…’è´°ç‡é˜‘ ä¿ƒçŸ« å¤‡æ³… çªæ‰è‚º çªƒ
 	/*/
 	SB_ShortcutPage->ClearChildren();
 	const FUB2GoodsShortcutButtonInfo shortcutInfo = _GoodsShortcutInfo->ShortcutInfo[0];
@@ -598,7 +598,7 @@ void UB2UIGoodsShortcutTooltipPopup::BindDelegates()
 
 void UB2UIGoodsShortcutTooltipPopup::OnClickBtnClose()
 {
-	//// [¹İº¹ÀüÅõ / ¿¬¼ÓÀüÅõ] ¿¡¼­ ½ºÅ×ÀÌÁö ÁøÀÔ¿¡ ÇÊ¿äÇÑ ÀçÈ­°¡ ºÎÁ·ÇÏ¸é ÀüÅõ ¹× Ä«¿îÆ®´Ù¿îÀ» Áß´ÜÇÑ´Ù
+	//// [é¦†æ±—å‚ˆæ§ / æ¥·åŠ å‚ˆæ§] ä¿Šè¾‘ èƒ¶æŠ›æç˜¤ æŸ³æ¶ä¿Š é˜å¤¸èŒ„ çŠæ‹³å•Š ä½•ç»ƒçªæ å‚ˆæ§ æ£º å¢¨æ¬¾é£˜ä¿ƒæ¬¾é˜‘ åçªœèŒ„ä¿ƒ
 	//if ( m_type == EGoodsButtonType::EGoodsButtonType_ShortageShortcut && AB2StageManager::GetCacheStageKeepEssentialData().GetRepeatBattleState().bIsOn )
 	//{
 	//	CancelOrStopRepeatBattleClass<>::GetInstance().Signal();

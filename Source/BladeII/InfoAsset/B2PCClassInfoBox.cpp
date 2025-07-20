@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2PCClassInfoBox.h"
 #include "B2SkillInfo.h"
@@ -12,7 +12,7 @@
 
 UB2PCClassInfo* FPCClassInfoSearchMap::GetPCClassInfoObject(FStreamableManager& InLoadManager, int32 MyArrayIndex, TMap<int32, FSinglePCClassInfoLoadedRefHolder>& LoadedPtrMap)
 {
-	// ÀÏ´Ü ·ÎµùµÈ ¿¡¼Â Ä³½Ì ±¸Á¶Ã¼ºÎÅÍ È®ÀÎ.
+	// è€çªœ è‚ºçˆ¹ç­‰ ä¿Šæ‚¸ æŸæ•™ å¤‡ç‚¼çœ‰ä½•ç£ çŠ¬ç‰¢.
 	FSinglePCClassInfoLoadedRefHolder* FoundLoadedPtrEntry = LoadedPtrMap.Find(MyArrayIndex);
 	if (!FoundLoadedPtrEntry)
 	{
@@ -20,7 +20,7 @@ UB2PCClassInfo* FPCClassInfoSearchMap::GetPCClassInfoObject(FStreamableManager& 
 		LoadedPtrMap.Add(MyArrayIndex, NewLoadedEntry);
 		FoundLoadedPtrEntry = LoadedPtrMap.Find(MyArrayIndex);
 	}
-	checkSlow(FoundLoadedPtrEntry); // ¾øÀ¸¸é ¹Ùº¸
+	checkSlow(FoundLoadedPtrEntry); // ç»æ æ å®˜ç„Š
 
 	if (FoundLoadedPtrEntry->LoadedInfoPtr)
 		return Cast<UB2PCClassInfo>(FoundLoadedPtrEntry->LoadedInfoPtr->GetDefaultObject());
@@ -31,7 +31,7 @@ UB2PCClassInfo* FPCClassInfoSearchMap::GetPCClassInfoObject(FStreamableManager& 
 	{
 		UB2PCClassInfo* LoadedInfoDO = Cast<UB2PCClassInfo>(FoundLoadedPtrEntry->LoadedInfoPtr->GetDefaultObject());
 		if (!UB2PCClassInfoBox::ShouldUnloadAllPCClassInfoOnLevelTransition())
-		{// ·¹º§ ³»¸± ¶§ unload ¾È ÇÒ ²¨¸é È®½ÇÈ÷ RootSet ¿¡ ¹Ú¾ÆµÒ.
+		{// é¥­éª‡ éƒ´å‰¯ é”­ unload æ•‘ ä¸” æ³¢æ çŠ¬è§’æ´’ RootSet ä¿Š å† é…’ç‹„.
 			FoundLoadedPtrEntry->LoadedInfoPtr->AddToRoot(); 
 		}
 		return LoadedInfoDO;
@@ -41,11 +41,11 @@ UB2PCClassInfo* FPCClassInfoSearchMap::GetPCClassInfoObject(FStreamableManager& 
 
 void FPCClassInfoSearchMap::Unload(FStreamableManager& InLoadManager, int32 MyArrayIndex, TMap<int32, FSinglePCClassInfoLoadedRefHolder>& LoadedPtrMap)
 {
-	// UB2PCClassInfo ÀÚÃ¼µµ ³»ºÎÀûÀ¸·Î TAsset ±¸¼ºÀ» ÇÑ °Ô ÀÖ¾î¼­ ¾ğ·ÎµùÀ» ÇØ ÁØ´Ù.
+	// UB2PCClassInfo ç£Šçœ‰æ¡£ éƒ´ä½•åˆ©æ è‚º TAsset å¤‡å·±é˜‘ èŒ„ éœ¸ ä¹ç»¢è¾‘ æ”«è‚ºçˆ¹é˜‘ ç§¦ éœ–ä¿ƒ.
 	UB2PCClassInfo* TheInfoAsset = AssetPtr.IsValid() ? Cast<UB2PCClassInfo>(AssetPtr->GetDefaultObject()) : NULL;
 	if (TheInfoAsset)
 	{
-		// ManagedPCClassUnload ¿¡ µû¶ó RootSet ÀÏ ¼ö ÀÖ´Ù.
+		// ManagedPCClassUnload ä¿Š è¶æ‰¼ RootSet è€ è ä¹ä¿ƒ.
 		AssetPtr->RemoveFromRoot();
 		
 		TheInfoAsset->UnloadInGameOnlyAssets();
@@ -53,19 +53,19 @@ void FPCClassInfoSearchMap::Unload(FStreamableManager& InLoadManager, int32 MyAr
 
 	LoadedPtrMap.Remove(MyArrayIndex);
 
-	TSubclassOf<UB2PCClassInfo> DummyLoadePtr = NULL; // ´ÜÁö UnloadSomeLazyLoadedClassAssetCommon ¿¡ ³Ñ°ÜÁÖ±â À§ÇÔ. ¿©±â¼± À§¿¡¼­ ºñ¿ì°í ½ÃÀÛ.
+	TSubclassOf<UB2PCClassInfo> DummyLoadePtr = NULL; // çªœç˜¤ UnloadSomeLazyLoadedClassAssetCommon ä¿Š é€è´¥æ—æ‰ å›°çªƒ. å’¯æ‰æ€¥ å›°ä¿Šè¾‘ åšå¿«ç»Š çŸ«ç´¯.
 	UnloadSomeLazyLoadedClassAssetCommon<UB2PCClassInfo>(InLoadManager, AssetPtr, &DummyLoadePtr);
 }
 
 bool FPCClassInfoSearchMap::IsClassDataAtRootSet(bool bCheckForInGameOnlyInfo)
 {
-	if (!AssetPtr.IsValid()) { // ÀÌ °æ¿ìµµ È¤¿©³ª InGameOnlyInfo ´Â ·ÎµùµÇ¾î ÀÖÀ»Áöµµ ¸ğ¸£Áö¸¸ ±×°Í±îÁö »ı°¢ÇÒ ÇÊ¿ä´Â ¾ø°í..
+	if (!AssetPtr.IsValid()) { // æ ç‰ˆå¿«æ¡£ è¶£å’¯å”± InGameOnlyInfo ç»° è‚ºçˆ¹ç™»ç»¢ ä¹é˜‘ç˜¤æ¡£ è‘›ç¦ç˜¤çˆ¶ å¼Šå·´é³–ç˜¤ ç§¯é˜¿ä¸” é˜å¤¸ç»° ç»ç»Š..
 		return false;
 	}
 
 	UB2PCClassInfo* LoadedInfo = Cast<UB2PCClassInfo>(AssetPtr->GetDefaultObject());
 
-	// bCheckForInGameOnlyInfo ¿¡ µû¶ó ½ÇÁ¦·Î ¼­·Î ´Ù¸¥ ´ë»óÀ» Ã¼Å©
+	// bCheckForInGameOnlyInfo ä¿Š è¶æ‰¼ è§’åŠ›è‚º è¾‘è‚º ä¿ƒå¼— æªæƒ‘é˜‘ çœ‰å†œ
 	return LoadedInfo && (
 		(!bCheckForInGameOnlyInfo && LoadedInfo->IsRooted()) || (bCheckForInGameOnlyInfo && LoadedInfo->IsInGameOnlyInfoAtRootSet())
 		);
@@ -80,7 +80,7 @@ bool FPCClassInfoSearchMap::CheckPCClassEnumSettingValid(FStreamableManager& InL
 #endif
 
 /** 
- * Á÷Á¢ ÂüÁ¶ÇÏÁö ¸»°í ShouldUnloadAllPCClassInfoOnLevelTransition ¸¦ »ç¿ëÇÒ °Í!
+ * æµç«‹ æ›¼ç‚¼çªç˜¤ å¯Œç»Š ShouldUnloadAllPCClassInfoOnLevelTransition ç”« è¤ä¾©ä¸” å·´!
  */
 bool UB2PCClassInfoBox::bManagedPCClassUnload = true;
 
@@ -88,10 +88,10 @@ UB2PCClassInfoBox::UB2PCClassInfoBox(const FObjectInitializer& ObjectInitializer
 	: Super(ObjectInitializer)
 {
 
-#if WITH_EDITOR && !PLATFORM_MAC// Enum ³×ÀÌ¹Ö Ã¼Å©. Á» ¸ÂÃç¾ß ÇÒ »çÁ¤ÀÌ ÀÖ¾î¼­.. ABladeIIPlayer::GetTrimmedNameFromPCClassEnum Âü°í
+#if WITH_EDITOR && !PLATFORM_MAC// Enum åŒ™ææ€ª çœ‰å†œ. ç²± å˜è‹—å…· ä¸” è¤æ²¥æ ä¹ç»¢è¾‘.. ABladeIIPlayer::GetTrimmedNameFromPCClassEnum æ›¼ç»Š
 	if (UB2PCClassInfo::CheckPCClassEnumNamingConvention() == false)
 	{
-		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(TEXT("[B2PCClassInfo] PCClass Enum ¸ñ·Ï¿¡ ¾öÃ»³­ ¿À·ù°¡ ³ªÅ¸³µÀ½. ÄÄÇ»ÅÍ°¡ °ğ Æø¹ßÇÑ´Ù.")));
+		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(TEXT("[B2PCClassInfo] PCClass Enum æ ¼åºŸä¿Š å†³æ²¡æŠ„ å·å¹…å•Š å”±é¸¥è½¦æ¾œ. å“ªè…”ç£å•Š æ¢† æ°”æƒ¯èŒ„ä¿ƒ.")));
 	}
 #endif
 
@@ -103,7 +103,7 @@ UB2PCClassInfoBox::UB2PCClassInfoBox(const FObjectInitializer& ObjectInitializer
 	MeshSectionMergeInfo = nullptr;
 }
 
-// TAsset lazy-loading À» »ç¿ëÇÏ´Â Blueprint InfoAsset ÀÇ ¿Àµ¿ÀÛ ¹®Á¦¸¦ Á¤½ÄÀ¸·Î ÇØ°áÇÏ±â Àü±îÁöÀÇ ÀÓ½Ã ¶«Áú.
+// TAsset lazy-loading é˜‘ è¤ä¾©çªç»° Blueprint InfoAsset ç‹¼ å·æ‚¼ç´¯ å·©åŠ›ç”« æ²¥ä¾¥æ è‚º ç§¦æ¬çªæ‰ å‚ˆé³–ç˜¤ç‹¼ çƒ™çŸ« ä¸œé¾™.
 #if TEMP_LAZYLOADING_MISHANDLING_CLEANUP
 void UB2PCClassInfoBox::CleanupOnPreSave()
 {
@@ -113,7 +113,7 @@ void UB2PCClassInfoBox::PreSave(FObjectPreSaveContext SaveContext)
 {
 	Super::PreSave(SaveContext);
 
-	// ÀÇµµÄ¡ ¾Ê°Ô ÀúÀåµÈ ·¹ÆÛ·±½º¸¦ ³¯·ÁÁØ´Ù.
+	// ç‹¼æ¡£æ‘¹ è‡¼éœ¸ å†å˜ç­‰ é¥­æ¬ºç¹èƒ¶ç”« æœå¦¨éœ–ä¿ƒ.
 	CleanupOnPreSave();
 }
 #endif
@@ -131,7 +131,7 @@ void UB2PCClassInfoBox::PreloadClassAssets(const TArray<EPCClass>& InClasses)
 		{
 			if (ThisInfo.PCClassEnum == InClasses[CI])
 			{
-				ThisInfo.GetPCClassInfoObject(InfoLoadManager, IMI, LoadedPtrMap); // AssetPtr ÀÌ valid ÇÏÁö ¾Ê´Ù¸é ¹Ì¸® ÁØºñÇØ ³õ°Ô µÉ °Í.
+				ThisInfo.GetPCClassInfoObject(InfoLoadManager, IMI, LoadedPtrMap); // AssetPtr æ valid çªç˜¤ è‡¼ä¿ƒæ å›ºåºœ éœ–åšç§¦ åˆéœ¸ çª å·´.
 #if !UE_BUILD_SHIPPING
 				AllLoadedCount++;
 #endif
@@ -152,11 +152,11 @@ void UB2PCClassInfoBox::UnloadAll()
 	{
 		InfoMapArray[CII].Unload(InfoLoadManager, CII, LoadedPtrMap);
 	}
-	LoadedPtrMap.Empty(); // È®ÀÎ»ç»ì
+	LoadedPtrMap.Empty(); // çŠ¬ç‰¢è¤æ··
 }
 void UB2PCClassInfoBox::UnloadExcept(const TArray<EPCClass>& InExceptClasses)
 {
-	// ManagedPCClassUnload ¿¡¼­ »ç¿ëÀ» À§ÇÔ. ¸î°³´Â ¾ğ·Îµå ¾ÈÇÏ°í ³²°ÜµÎ·Á´Â..
+	// ManagedPCClassUnload ä¿Šè¾‘ è¤ä¾©é˜‘ å›°çªƒ. å‰²ä¿ºç»° æ”«è‚ºé› æ•‘çªç»Š å·¢è´¥æ»´å¦¨ç»°..
 	for (int32 CII = 0; CII < InfoMapArray.Num(); ++CII)
 	{
 		FPCClassInfoSearchMap& ThisInfo = InfoMapArray[CII];
@@ -165,42 +165,42 @@ void UB2PCClassInfoBox::UnloadExcept(const TArray<EPCClass>& InExceptClasses)
 		}
 		ThisInfo.Unload(InfoLoadManager, CII, LoadedPtrMap);
 	}
-	// Àû¾îµµ ³²°ÜµÎ·Á´Â Å¬·¡½ºº¸´Ù ¸¹ÀÌ ·ÎµùµÈ »óÅÂ¸é ¾ÈµÇ°ÚÁö.
+	// åˆ©ç»¢æ¡£ å·¢è´¥æ»´å¦¨ç»° åŠªè´°èƒ¶ç„Šä¿ƒ è…¹æ è‚ºçˆ¹ç­‰ æƒ‘æ€•æ æ•‘ç™»æ‘†ç˜¤.
 	check(LoadedPtrMap.Num() <= InExceptClasses.Num());
 }
 void UB2PCClassInfoBox::UnloadAllOrExceptSelected()
 {
-	// ·¹º§ transition È¤Àº StageClear ½ÃÁ¡¿¡ ºÒ¸². ManagedPCClassUnload ¿¡ µû¶ó ¾î¶² °É ¼±º°ÀûÀ¸·Î ³²°ÜµÑÁö ÆÇº°..
+	// é¥­éª‡ transition è¶£ç¯® StageClear çŸ«ç—¢ä¿Š é˜‚è¦†. ManagedPCClassUnload ä¿Š è¶æ‰¼ ç»¢æ« å§ æ€¥å–Šåˆ©æ è‚º å·¢è´¥ç¬›ç˜¤ é­„å–Š..
 	if (ShouldUnloadAllPCClassInfoOnLevelTransition()) 
 	{
-		UnloadAll(); // ¾ÈÀüÇÏ°Ô ÁË´Ù ³»¸®Áö¸¸ ´ÙÀ½ ·ÎµùÀÌ ±æ¾îÁö°ÚÁö
+		UnloadAll(); // æ•‘å‚ˆçªéœ¸ äº†ä¿ƒ éƒ´åºœç˜¤çˆ¶ ä¿ƒæ¾œ è‚ºçˆ¹æ è¾¨ç»¢ç˜¤æ‘†ç˜¤
 	}
 	else 
 	{
 		TArray<EPCClass> UnloadExceptClasses;
-		// ÇöÀç ¼±ÅÃµÇ¾î ÀÖ´Â ¸ŞÀÎ, ÅÂ±× µÎ Á¾·ù¸¦ ³²°ÜµÎ´Â °É·Î. °è¼Ó ¶È°°Àº °É·Î ÇÃ·¹ÀÌ ÇÏ¸é ·Îµù ½Ã°£ÀÌ ÁÙ¾îµç Ã¤·Î °¡°ÚÁö..
-		// Àû¾îµµ ·Îºñ¿¡¼­´Â ÇöÀç ¼±ÅÃÀÌ ´ÙÀ½ ½ºÅ×ÀÌÁö Ä³¸¯ÅÍ ±×´ë·ÎÀÌ±âµµ ÇÏ°í.
+		// æ³…çŠ æ€¥ç¶ç™»ç»¢ ä¹ç»° çš‹ç‰¢, æ€•å¼Š æ»´ è¾†å¹…ç”« å·¢è´¥æ»´ç»° å§è‚º. æ‹ŒåŠ  åº¦éç¯® å§è‚º æ•²é¥­æ çªæ è‚ºçˆ¹ çŸ«åŸƒæ ä¸´ç»¢ç”µ ç›²è‚º å•Šæ‘†ç˜¤..
+		// åˆ©ç»¢æ¡£ è‚ºåšä¿Šè¾‘ç»° æ³…çŠ æ€¥ç¶æ ä¿ƒæ¾œ èƒ¶æŠ›æç˜¤ æŸè…ç£ å¼Šæªè‚ºææ‰æ¡£ çªç»Š.
 		//UnloadExceptClasses.Add(BladeIIGameImpl::GetLocalCharacterData().GetMainPlayerClass());
 		//UnloadExceptClasses.Add(BladeIIGameImpl::GetLocalCharacterData().GetSubPlayerClass());
 		UnloadExcept(UnloadExceptClasses);
 
-		// ±×·¯³ª ¾ÆÁ÷ ÀÌ°Ô ÀÇµµ´ë·Î µ¿ÀÛÇÏÁö´Â ¾Ê¾Æ¼­.. ¾Æ·¡ UnloadAllOrExceptSelectedIfAllowed À» µû·Î Á¦°øÇÏ°Ô µÊ.
+		// å¼ŠçŸ¾å”± é…’æµ æéœ¸ ç‹¼æ¡£æªè‚º æ‚¼ç´¯çªç˜¤ç»° è‡¼é…’è¾‘.. é…’è´° UnloadAllOrExceptSelectedIfAllowed é˜‘ è¶è‚º åŠ›å‚çªéœ¸ å‡³.
 	}
 }
 void UB2PCClassInfoBox::UnloadAllOrExceptSelectedIfAllowed()
 {
 #if PLATFORM_IOS // [IOS_SPECIFIC_MEMORY_SAVING]
-	// iOS ¿¡¼­´Â ÀÌ°É »ç¿ëÇÏ´õ¶óµµ ÇÊ¿äÇÑ °Í¸¸ ³²°Ü³õÀ½.
+	// iOS ä¿Šè¾‘ç»° æå§ è¤ä¾©çªæ­¹æ‰¼æ¡£ é˜å¤¸èŒ„ å·´çˆ¶ å·¢è´¥åˆæ¾œ.
 	UnloadAllOrExceptSelected();
 #else
 	if (ShouldUnloadAllPCClassInfoOnLevelTransition())
 	{
-		UnloadAll(); // ¾ÈÀüÇÏ°Ô ÁË´Ù ³»¸®Áö¸¸ ´ÙÀ½ ·ÎµùÀÌ ±æ¾îÁö°ÚÁö
+		UnloadAll(); // æ•‘å‚ˆçªéœ¸ äº†ä¿ƒ éƒ´åºœç˜¤çˆ¶ ä¿ƒæ¾œ è‚ºçˆ¹æ è¾¨ç»¢ç˜¤æ‘†ç˜¤
 	}
 	else
 	{
-		// ¿©±â¼± ManagedPCClassUnload ÀÎ °æ¿ì ¾Ï°Íµµ ÇÏÁö ¾Ê´Â´Ù.
-		// ÇÑ ¹ø ·ÎµùÇÑ PCClass Á¤º¸´Â ³¡±îÁö µé°í ÀÖ´Â °Í.
+		// å’¯æ‰æ€¥ ManagedPCClassUnload ç‰¢ ç‰ˆå¿« é å·´æ¡£ çªç˜¤ è‡¼ç»°ä¿ƒ.
+		// èŒ„ é”… è‚ºçˆ¹èŒ„ PCClass æ²¥ç„Šç»° åœºé³–ç˜¤ ç”¸ç»Š ä¹ç»° å·´.
 	}
 #endif
 }
@@ -218,7 +218,7 @@ UB2PCMeshSectionMergeInfo* UB2PCClassInfoBox::GetMeshSectionMergeInfo()
 bool UB2PCClassInfoBox::ShouldUnloadAllPCClassInfoOnLevelTransition()
 {
 #if PLATFORM_IOS // [IOS_SPECIFIC_MEMORY_SAVING]
-	return !bManagedPCClassUnload; // ÁÁ´Ù ¿©±ä iOS µµ ÇØ º»´Ù. ´Ü, ¾à°£Àº ´Ù¸¦ ¼ö ÀÖ´Ù..
+	return !bManagedPCClassUnload; // äº®ä¿ƒ å’¯å˜ iOS æ¡£ ç§¦ å¤¯ä¿ƒ. çªœ, è·åŸƒç¯® ä¿ƒç”« è ä¹ä¿ƒ..
 #else
 	return !bManagedPCClassUnload;
 #endif
@@ -241,10 +241,10 @@ UB2PCClassInfo* UB2PCClassInfoBox::GetSingleClassInfo(EPCClass InClass)
 	return NULL;
 }
 
-// ¸Ê ·Îµù progress »êÁ¤ Âü°í¿¡ ¾²ÀÓ
+// ç”˜ è‚ºçˆ¹ progress é­‚æ²¥ æ›¼ç»Šä¿Š é™çƒ™
 bool UB2PCClassInfoBox::IsClassDataAtRootSet(EPCClass InClass, bool bCheckForInGameOnlyInfo)
 {
-	// ²¿¶ô ¸î °³ ¾ÈµÇÁö¸¸ ¸Å¹ø iteration µµ´Â °Å ½â º¸±â ÁÁÁö´Â ¾ÊÀº µí. ¤Ì¤Ì
+	// éƒ¨é å‰² ä¿º æ•‘ç™»ç˜¤çˆ¶ æ¦‚é”… iteration æ¡£ç»° èŠ­ è§£ ç„Šæ‰ äº®ç˜¤ç»° è‡¼ç¯® æ·€. ã¬ã¬
 	for (FPCClassInfoSearchMap& ThisMap : InfoMapArray)
 	{
 		if (ThisMap.PCClassEnum == InClass)
@@ -268,14 +268,14 @@ USkeletalMesh* UB2PCClassInfoBox::GetBaseSkeletalMeshFromClass(EPCClass InClass)
 	//{
 	//	return PCInfo->BaseMeshAsset;
 	//}
-	//// GetBaseBPClass ¿¡ null À» ³Ñ°ÜÁØ´Ù°í ÇØ¼­ ´çÀå ÀÛµ¿ ¾ÈÇÏ´Â °Ç ¾Æ´Ï°í asyn ·Îµù flush °¡ ÀÏ¾î³ª´Â °É °æ°èÇÏ´Â °Çµ¥ ¿¡µğÅÍ¿¡¼­ ±×·¯´Â °Å¾ß ¹®Á¦µÉ °Å ¾ø°í.
+	//// GetBaseBPClass ä¿Š null é˜‘ é€è´¥éœ–ä¿ƒç»Š ç§¦è¾‘ å¯¸å˜ ç´¯æ‚¼ æ•‘çªç»° æ‰’ é…’èªç»Š asyn è‚ºçˆ¹ flush å•Š è€ç»¢å”±ç»° å§ ç‰ˆæ‹Œçªç»° æ‰’å• ä¿Šå¼ç£ä¿Šè¾‘ å¼ŠçŸ¾ç»° èŠ­å…· å·©åŠ›çª èŠ­ ç»ç»Š.
 	//TSubclassOf<class ABladeIIPlayer> PCInfoBaseBPClass = PCInfo->GetBaseBPClass(nullptr);
 	//if (PCInfoBaseBPClass)
 	//{
 	//	ABladeIIPlayer* DefaultPlayerObj = Cast<ABladeIIPlayer>(PCInfoBaseBPClass->GetDefaultObject());
 	//	USkeletalMeshComponent* SkeletalMeshComponent = DefaultPlayerObj->GetMesh();
 
-	//	// ´Ó×é¼şÖĞ»ñÈ¡USkeletalMesh
+	//	// ä»ç»„ä»¶ä¸­è·å–USkeletalMesh
 	//	USkeletalMesh* SkeletalMesh = nullptr;
 	//	if (SkeletalMeshComponent)
 	//	{
@@ -324,15 +324,15 @@ void UB2PCClassInfoBox::EditorLoadAll(SetB2ContentLoadingProgressSplashFnPtr InS
 	}
 
 	const float TotalProgRange = FMath::Max(0.0f, InEndProgress - InStartProgress);
-	const int32 TotalProgUpdateCount = InfoMapArray.Num(); // ÀÌ°Ç ÇÏ³ª ·ÎµùÇÒ ¶§ ¸¶´Ù progress Ã¼Å©
+	const int32 TotalProgUpdateCount = InfoMapArray.Num(); // ææ‰’ çªå”± è‚ºçˆ¹ä¸” é”­ ä»˜ä¿ƒ progress çœ‰å†œ
 	const float SingleProgIncAmount = TotalProgRange / (float)TotalProgUpdateCount;
 
 	float CurrProg = InStartProgress;
 
-	// ÇÑ¹ø ¹Ì¸® ºÒ·¯ÁÖ¸é AssetPtr ÀÌ valid ÇØ Áú °Í. ¹°·Ğ ÀÌ ¿ÍÁß¿¡ ¸Ş¸ğ¸®´Â ¿ÕÃ¢ ¸Ô°ÚÁö.
+	// èŒ„é”… å›ºåºœ é˜‚çŸ¾æ—æ AssetPtr æ valid ç§¦ é¾™ å·´. æ‹±æ²¸ æ å®¢åä¿Š çš‹è‘›åºœç»° ç©ºèŠ’ å†ˆæ‘†ç˜¤.
 	for (int32 CII = 0; CII < InfoMapArray.Num(); ++CII)
 	{
-		////////////////////////////// ½ÇÁ¦ ·Îµù
+		////////////////////////////// è§’åŠ› è‚ºçˆ¹
 		UB2PCClassInfo* ThisLoadedinfo = InfoMapArray[CII].GetPCClassInfoObject(InfoLoadManager, CII, LoadedPtrMap);
 		//////////////////////////////
 
@@ -342,9 +342,9 @@ void UB2PCClassInfoBox::EditorLoadAll(SetB2ContentLoadingProgressSplashFnPtr InS
 			InSplashProgFnPtr(CurrProg);
 		}
 
-		////////////////////////////// ½ÇÁ¦ ·Îµù
+		////////////////////////////// è§’åŠ› è‚ºçˆ¹
 		if (ThisLoadedinfo)
-		{ // ¹°·Ğ ÀÎ°ÔÀÓ Àü¿ë ¿¡¼Âµéµµ ·Îµù. ¿©±â¿¡ ÀÎ°ÔÀÓ AnimBP °¡ µé¾îÀÖ¾î¼­ ÈÎ Å­.
+		{ // æ‹±æ²¸ ç‰¢éœ¸çƒ™ å‚ˆä¾© ä¿Šæ‚¸ç”¸æ¡£ è‚ºçˆ¹. å’¯æ‰ä¿Š ç‰¢éœ¸çƒ™ AnimBP å•Š ç”¸ç»¢ä¹ç»¢è¾‘ ä»» æ€’.
 			ThisLoadedinfo->SyncLoadInGameOnlyAssets();
 		}
 		//////////////////////////////
@@ -384,7 +384,7 @@ void UB2PCClassInfoBox::PostEditChangeProperty(FPropertyChangedEvent& PropertyCh
 		if (CheckAllPCClassEnumSettingValid() == false)
 		{
 			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-				FString::Printf(TEXT("[Warning] PCClassInfoBox ¿Í °³º° ClassInfo ÀÇ PCClassEnum ¼³Á¤ °£¿¡ ºÒÀÏÄ¡°¡ ÀÖÀ½. ÄÄÇ»ÅÍ°¡ °ğ Æø¹ßÇÑ´Ù."))
+				FString::Printf(TEXT("[Warning] PCClassInfoBox å®¢ ä¿ºå–Š ClassInfo ç‹¼ PCClassEnum æ±²æ²¥ åŸƒä¿Š é˜‚è€æ‘¹å•Š ä¹æ¾œ. å“ªè…”ç£å•Š æ¢† æ°”æƒ¯èŒ„ä¿ƒ."))
 				));
 		}
 	}

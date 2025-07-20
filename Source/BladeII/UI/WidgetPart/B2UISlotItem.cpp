@@ -1,4 +1,4 @@
-#include "B2UISlotItem.h"
+ï»¿#include "B2UISlotItem.h"
 #include "B2UIManager.h"
 #include "B2UIDocHelper.h"
 #include "B2ItemInfo.h"
@@ -71,7 +71,7 @@ void UB2UISlotItem::Init()
 	if (UIP_Stars.IsValid())
 		UIP_Stars->Init();
 
-	//¿¡Å×¸£·Î »ç¿ë½Ã »öÀ» º¯°æÇØ¼­ ÃÊ±âÈ­°¡ ÇÊ¿äÇÔ
+	//ä¿ŠæŠ›ç¦è‚º è¤ä¾©çŸ« ç¥¸é˜‘ å‡½ç‰ˆç§¦è¾‘ æª¬æ‰æ‹³å•Š é˜å¤¸çªƒ
 	if (IMG_Icon.IsValid())
 	{
 		IMG_Icon->SetColorAndOpacity(FLinearColor::White);
@@ -101,13 +101,13 @@ void UB2UISlotItem::BindDoc(const FB2Item& InItemData, int32 quantity)
 		BindItemInfoData(ItemInfoTable->GetInfoData(InItemData.ItemRefID), InItemData.Quality);
 	}
 
-	// ¾Æ·¡µµ ÀÇ¹Ì»ó BindItemInfoData ¿¡ µé¾î°¡¾ß ÀûÀıÇÑ °Íµé.
-	UB2ItemMiscInfo* ItemMiscInfo = StaticFindItemMiscInfo(); // RefID ¿¡ Á¾¼ÓµÇÁö ¾ÊÀº ±âÅ¸ ÀÚÀßÇÑ ¸®¼Ò½ºµé
+	// é…’è´°æ¡£ ç‹¼å›ºæƒ‘ BindItemInfoData ä¿Š ç”¸ç»¢å•Šå…· åˆ©ä¾‹èŒ„ å·´ç”¸.
+	UB2ItemMiscInfo* ItemMiscInfo = StaticFindItemMiscInfo(); // RefID ä¿Š è¾†åŠ ç™»ç˜¤ è‡¼ç¯® æ‰é¸¥ ç£Šè‚‹èŒ„ åºœå®¶èƒ¶ç”¸
 	if (IMG_ItemBGPanel.IsValid())
 	{
 		UMaterialInterface* BGMtrl = ItemMiscInfo ?
 			ItemMiscInfo->GetItemIconBGMtrl(
-			(IsEquipmentItemByType(InItemData) || IsEssenceItem(InItemData)) ? InItemData.StarGrade : 1,  // ÀåÂø ¾ÆÀÌÅÛÀÌ³ª Á¤¼ö¸¸ º°¼º¿¡ µû¸¥ Â÷ÀÌ..
+			(IsEquipmentItemByType(InItemData) || IsEssenceItem(InItemData)) ? InItemData.StarGrade : 1,  // å˜é¦’ é…’æè¢æå”± æ²¥èçˆ¶ å–Šå·±ä¿Š è¶å¼— ç’æ..
 				bUseSimpleBGImage,
 				(InItemData.InventoryType == EItemInvenType::EIIVT_Consumables))
 			: NULL;
@@ -144,7 +144,7 @@ void UB2UISlotItem::BindDoc(const FB2Item& InItemData, int32 quantity)
 	const bool bIsEssenceItem = IsEssenceItem(InItemData);
 	const bool bIsAnvilItem = IsAnvilItem(InItemData);
 
-	// ÀÏ¹İ ÀåÂø ¾ÆÀÌÅÛ(È¤Àº Á¤¼ö¾ÆÀÌÅÛ)ÀÌ ¾Æ´Ñ °æ¿ì ¼û°Ü¾ß ÇÒ °Íµé
+	// è€é¦† å˜é¦’ é…’æè¢(è¶£ç¯® æ²¥èé…’æè¢)æ é…’å›± ç‰ˆå¿« è§è´¥å…· ä¸” å·´ç”¸
 	if (TB_ItemLevel.IsValid()) {
 		TB_ItemLevel->SetVisibility(bIsEquipmentItem ? ESlateVisibility::HitTestInvisible : ESlateVisibility::Hidden);
 	}
@@ -194,13 +194,13 @@ void UB2UISlotItem::BindDoc(const FB2RewardItemPreviewInfo& ItemPreviewInfoStruc
 		BindItemInfoData(ItemInfoTable->GetInfoData(ItemPreviewInfoStruct.SomeCommonData.ItemRefID), ItemPreviewInfoStruct.SomeCommonData.Quality);
 	}
 
-	// ¾Æ·¡µµ ÀÇ¹Ì»ó BindItemInfoData ¿¡ µé¾î°¡¾ß ÀûÀıÇÑ °Íµé.
-	UB2ItemMiscInfo* ItemMiscInfo = StaticFindItemMiscInfo(); // RefID ¿¡ Á¾¼ÓµÇÁö ¾ÊÀº ±âÅ¸ ÀÚÀßÇÑ ¸®¼Ò½ºµé
+	// é…’è´°æ¡£ ç‹¼å›ºæƒ‘ BindItemInfoData ä¿Š ç”¸ç»¢å•Šå…· åˆ©ä¾‹èŒ„ å·´ç”¸.
+	UB2ItemMiscInfo* ItemMiscInfo = StaticFindItemMiscInfo(); // RefID ä¿Š è¾†åŠ ç™»ç˜¤ è‡¼ç¯® æ‰é¸¥ ç£Šè‚‹èŒ„ åºœå®¶èƒ¶ç”¸
 	if (IMG_ItemBGPanel.IsValid())
 	{
 		UMaterialInterface* BGMtrl = ItemMiscInfo ?
 			ItemMiscInfo->GetItemIconBGMtrl(
-			(IsEquipmentItemByType(ItemPreviewInfoStruct.SomeCommonData) || IsEssenceItem(ItemPreviewInfoStruct.SomeCommonData)) ? ItemPreviewInfoStruct.MaxGrade : 1,  // ÀåÂø ¾ÆÀÌÅÛÀÌ³ª Á¤¼ö¸¸ º°¼º¿¡ µû¸¥ Â÷ÀÌ..
+			(IsEquipmentItemByType(ItemPreviewInfoStruct.SomeCommonData) || IsEssenceItem(ItemPreviewInfoStruct.SomeCommonData)) ? ItemPreviewInfoStruct.MaxGrade : 1,  // å˜é¦’ é…’æè¢æå”± æ²¥èçˆ¶ å–Šå·±ä¿Š è¶å¼— ç’æ..
 				bUseSimpleBGImage,
 				(ItemPreviewInfoStruct.SomeCommonData.InventoryType == EItemInvenType::EIIVT_Consumables))
 			: NULL;
@@ -236,7 +236,7 @@ void UB2UISlotItem::BindDoc(const FB2RewardItemPreviewInfo& ItemPreviewInfoStruc
 	const bool bIsEssenceItem = IsEssenceItem(ItemPreviewInfoStruct.SomeCommonData);
 	const bool bIsAnvilItem = IsAnvilItem(ItemPreviewInfoStruct.SomeCommonData);
 
-	// ÀÏ¹İ ÀåÂø ¾ÆÀÌÅÛ(È¤Àº Á¤¼ö¾ÆÀÌÅÛ)ÀÌ ¾Æ´Ñ °æ¿ì ¼û°Ü¾ß ÇÒ °Íµé
+	// è€é¦† å˜é¦’ é…’æè¢(è¶£ç¯® æ²¥èé…’æè¢)æ é…’å›± ç‰ˆå¿« è§è´¥å…· ä¸” å·´ç”¸
 	if (TB_ItemLevel.IsValid()) {
 		TB_ItemLevel->SetVisibility(bIsEquipmentItem ? ESlateVisibility::HitTestInvisible : ESlateVisibility::Hidden);
 	}
@@ -277,7 +277,7 @@ void UB2UISlotItem::BindByRefID(int32 RefID)
 
 	UB2ItemInfo* AllItemInfo = StaticFindItemInfo();
 	FSingleItemInfoData* ThisItemInfo = AllItemInfo ? AllItemInfo->GetInfoData(RefID) : NULL;
-	UB2ItemMiscInfo* ItemMiscInfo = StaticFindItemMiscInfo(); // RefID ¿¡ Á¾¼ÓµÇÁö ¾ÊÀº ±âÅ¸ ÀÚÀßÇÑ ¸®¼Ò½ºµé
+	UB2ItemMiscInfo* ItemMiscInfo = StaticFindItemMiscInfo(); // RefID ä¿Š è¾†åŠ ç™»ç˜¤ è‡¼ç¯® æ‰é¸¥ ç£Šè‚‹èŒ„ åºœå®¶èƒ¶ç”¸
 
 	BindItemInfoData(ThisItemInfo, 1);
 
@@ -301,7 +301,7 @@ void UB2UISlotItem::BindByRefID(int32 RefID)
 	{
 		if (ItemMiscInfo)
 		{
-			TB_ItemName->SetColorAndOpacity(ItemMiscInfo->GetItemNameTextColor(6));	//±×³É 6¼º¿¡ ÇØ´çÇÏ´Â »öÀ» ÁØ´Ù.
+			TB_ItemName->SetColorAndOpacity(ItemMiscInfo->GetItemNameTextColor(6));	//å¼Šæˆ 6å·±ä¿Š ç§¦å¯¸çªç»° ç¥¸é˜‘ éœ–ä¿ƒ.
 		}
 	}
 
@@ -381,7 +381,7 @@ void UB2UISlotItem::BindEther(const FB2Item& InItemData)
 void UB2UISlotItem::BindEther(const FB2AetherItemPreviewInfo& ItemPreviewInfoStruct)
 {
 	UnbindDoc();
-	// BattleStageInfo ¿¡¼­ ÅøÆÁÁ¤º¸¸¦ À§ÇØ ¿¡Å×¸£ Å¸ÀÔ¸¸ °­Á¦·Î Ä³½Ì.
+	// BattleStageInfo ä¿Šè¾‘ ç ’å±æ²¥ç„Šç”« å›°ç§¦ ä¿ŠæŠ›ç¦ é¸¥æ¶çˆ¶ ç¢åŠ›è‚º æŸæ•™.
 	FB2Item InItemData;
 	InItemData.Quality = ItemPreviewInfoStruct.AetherType;
 	SetDocStruct(InItemData);
@@ -434,11 +434,11 @@ void UB2UISlotItem::BindEther(const FB2AetherItemPreviewInfo& ItemPreviewInfoStr
 
 void UB2UISlotItem::BindItemInfoData(struct FSingleItemInfoData* InItemInfoData, int32 ItemQuality)
 {
-	// ½Ç»ó ItemInfo °ü·Ã µ¥ÀÌÅÍ¸¦ ¿©±â¼­ ´Ù ¼¼ÆÃÇÏ·Á¸é Ãß°¡ ¸Å°³º¯¼öµéÀÌ ÇÊ¿äÇÏ´Ù.. ÀÌ°Ç °Á ÀÌÀü´ë·Î ³öµÎ°í.
+	// è§’æƒ‘ ItemInfo åŒ…è®¿ å•æç£ç”« å’¯æ‰è¾‘ ä¿ƒ æŠ€æ³¼çªå¦¨æ çœ å•Š æ¦‚ä¿ºå‡½èç”¸æ é˜å¤¸çªä¿ƒ.. ææ‰’ å‚² æå‚ˆæªè‚º å‡ºæ»´ç»Š.
 	if (InItemInfoData)
 	{
 		SetIcon(InItemInfoData->GetIconMaterial(StaticFindItemInfo()));
-		SetItemName(InItemInfoData->GetLocalizedName(false, ItemQuality)); // ItemQuality ÀÏ´Ü ÀÌ¸§ ÀüÃ¼¿¡ ºÙ¿©¼­ Ç¥½ÃÇÏÁö´Â ¾Ê´Â °É·Î.		
+		SetItemName(InItemInfoData->GetLocalizedName(false, ItemQuality)); // ItemQuality è€çªœ ææŠš å‚ˆçœ‰ä¿Š å˜¿å’¯è¾‘ é’çŸ«çªç˜¤ç»° è‡¼ç»° å§è‚º.		
 
 		if (IMG_ExtraSlotEffect.IsValid())
 			IMG_ExtraSlotEffect->SetVisibility((InItemInfoData->bHasExtraSlotEffect) ? ESlateVisibility::HitTestInvisible : ESlateVisibility::Hidden);
@@ -446,7 +446,7 @@ void UB2UISlotItem::BindItemInfoData(struct FSingleItemInfoData* InItemInfoData,
 	else
 	{
 		UMaterialInterface* NullMtrl = nullptr;
-		SetIcon(NullMtrl); // ±»ÀÌ ÀÌ·² ÇÊ¿ä°¡ ÀÖ³ª..
+		SetIcon(NullMtrl); // è¢«æ æå‡¡ é˜å¤¸å•Š ä¹å”±..
 		SetItemName(FText::FromString(TEXT("")));
 	}
 }
@@ -481,7 +481,7 @@ void UB2UISlotItem::SetItemName(const FText& InText)
 
 void UB2UISlotItem::SetItemType(EItemClass ItemType)
 {
-	//¾ÆÀÌÅÛ Å¸ÀÔ¿¡ µû¸¥ Ã³¸®°¡ ÇÊ¿äÇÏ¸é ÇØÁØ´Ù.
+	//é…’æè¢ é¸¥æ¶ä¿Š è¶å¼— è´¸åºœå•Š é˜å¤¸çªæ ç§¦éœ–ä¿ƒ.
 }
 
 void UB2UISlotItem::SetStarGrade(const FB2Item& InValue)
@@ -638,7 +638,7 @@ UMaterialInterface* UB2UISlotItem::GetActiveEtherItemBGPanelMaterial() const
 
 void UB2UISlotItem::SetShowOverlayInfoOnly(bool bOverlayInfoOnly)
 {
-	// ¸ŞÀÎ ¾ÆÀÌÄÜÀÌ¶û ¹é±×¶ó¿îµå ÆĞ³Î µîÀ» 3D ÀÌÆåÆ®·Î Ç¥½ÃÇÏ°í ÀÌ°Ç ÅØ½ºÆ®³ª ±âÅ¸ UI ·Î Ç¥½ÃÇÏ±â ÆíÇÑ °Í¸¸ Ç¥½ÃÇÏ±â À§ÇÑ ¿ëµµ.
+	// çš‹ç‰¢ é…’æèƒ½æå°” å½’å¼Šæ‰¼æ¬¾é› è©æ¾„ æ®¿é˜‘ 3D ææ£‹é£˜è‚º é’çŸ«çªç»Š ææ‰’ å’†èƒ¶é£˜å”± æ‰é¸¥ UI è‚º é’çŸ«çªæ‰ ç¥ˆèŒ„ å·´çˆ¶ é’çŸ«çªæ‰ å›°èŒ„ ä¾©æ¡£.
 	if (IMG_Icon.IsValid())
 	{
 		IMG_Icon->SetVisibility(bOverlayInfoOnly ? ESlateVisibility::Hidden : ESlateVisibility::HitTestInvisible);
@@ -660,14 +660,14 @@ void UB2UISlotItem::SetShowOverlayInfoOnly(bool bOverlayInfoOnly)
 
 void UB2UISlotItem::OnSetupManualScrollBoxSender(UB2UnitedWidgetBase* InReceiver, UB2ScrollBox* HandlingScrollBox)
 {
-	// ½ºÅ©·Ñ¹Ú½º ¾È¿¡ µé¾î°¡´Â º¸»ó ¾ÆÀÌÅÛ µîÀÌ ÀÌ°É ÇÊ¿ä·Î ÇÏ°Ô µÉ °Í.
-	// NativeOn** À» ¹Şµµ·Ï ÀÚ±â ÀÚ½ÅÀº Visible ·Î, ¹öÆ°Àº Invisible ·Î..
+	// èƒ¶å†œè´¹å† èƒ¶ æ•‘ä¿Š ç”¸ç»¢å•Šç»° ç„Šæƒ‘ é…’æè¢ æ®¿æ æå§ é˜å¤¸è‚º çªéœ¸ çª å·´.
+	// NativeOn** é˜‘ ç½æ¡£åºŸ ç£Šæ‰ ç£Šè„šç¯® Visible è‚º, æ»šç“¢ç¯® Invisible è‚º..
 	if (BTN_Area.IsValid())
 	{
 		BTN_Area->SetVisibility(ESlateVisibility::HitTestInvisible);
 
-		// OnClickBtnArea ¹ÙÀÎµùÀº Á¦°Å.
-		//BTN_Area->OnClicked.RemoveDynamic(this, &UB2UISlotIcon::OnClickBtnArea); ¾Æ, protected ¶ó.. ¾îÂ÷ÇÇ HitTestInvisible ÀÌ´Ï ³öµÖº¸ÀÚ.
+		// OnClickBtnArea å®˜ç‰¢çˆ¹ç¯® åŠ›èŠ­.
+		//BTN_Area->OnClicked.RemoveDynamic(this, &UB2UISlotIcon::OnClickBtnArea); é…’, protected æ‰¼.. ç»¢ç’ä¹” HitTestInvisible æèª å‡ºæŠµç„Šç£Š.
 	}
 	this->SetVisibility(ESlateVisibility::Visible);
 }
@@ -678,19 +678,19 @@ void UB2UISlotItem::OnSetupManualScrollBoxSender(UB2UnitedWidgetBase* InReceiver
 
 
 void UB2UISlotItem::OnClickedSenderBTNArea()
-{ // ManualScrollBox ±â´ÉÀÇ ÀÏºÎ·Î ºÒ¸®´Â ÀÎÅÍÆäÀÌ½º. ManualScrollBoxSender ¼Â¾÷ÀÌ µÇ¾î ÀÖ´Â °æ¿ì¸¸ ¿©±æ ÅëÇØ¼­
+{ // ManualScrollBox æ‰ç“·ç‹¼ è€ä½•è‚º é˜‚åºœç»° ç‰¢ç£å…¶æèƒ¶. ManualScrollBoxSender æ‚¸è¯€æ ç™»ç»¢ ä¹ç»° ç‰ˆå¿«çˆ¶ å’¯è¾¨ çƒ¹ç§¦è¾‘
 	Super::OnClickedSenderBTNArea();
 
-	OnClickBtnArea(); // ½ÇÁ¦ Å¬¸¯ ÇÚµé¸µ
+	OnClickBtnArea(); // è§’åŠ› åŠªè… å‹¤ç”¸å‚…
 }
 void UB2UISlotItem::OnPressedSenderBTNArea()
-{// ManualScrollBox ±â´ÉÀÇ ÀÏºÎ·Î ºÒ¸®´Â ÀÎÅÍÆäÀÌ½º
+{// ManualScrollBox æ‰ç“·ç‹¼ è€ä½•è‚º é˜‚åºœç»° ç‰¢ç£å…¶æèƒ¶
 	Super::OnPressedSenderBTNArea();
 
 	OnPressedBtnAreaBP();
 }
 void UB2UISlotItem::OnReleasedSenderBTNArea()
-{// ManualScrollBox ±â´ÉÀÇ ÀÏºÎ·Î ºÒ¸®´Â ÀÎÅÍÆäÀÌ½º
+{// ManualScrollBox æ‰ç“·ç‹¼ è€ä½•è‚º é˜‚åºœç»° ç‰¢ç£å…¶æèƒ¶
 	Super::OnReleasedSenderBTNArea();
 
 	OnReleasedBtnAreaBP();

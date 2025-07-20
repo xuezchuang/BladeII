@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UICombineMenu.h"
 #include "B2UIManager.h"
 #include "Retailer.h"
@@ -181,8 +181,8 @@ void UB2UICombineMenu::Init()
 	Super::Init();
 	m_KakaoLinkDelegateCalled.AtomicSet(false);
 	SubscribeEvent();
-	// IOS¿¡¼­´Â ±¸±Û ¾÷Àû ¾ÆÀÌÄÜÀÌ ¾Èº¸ÀÌµµ·Ï.
-#if PLATFORM_ANDROID // kakao ·Î±×ÀÎ delegate µî·Ï
+	// IOSä¿Šè¾‘ç»° å¤‡è‡‚ è¯€åˆ© é…’æèƒ½æ æ•‘ç„Šææ¡£åºŸ.
+#if PLATFORM_ANDROID // kakao è‚ºå¼Šç‰¢ delegate æ®¿åºŸ
 	FJavaWrapper::OnKakaoLinkCompletedDelegate.Remove(OnKakaoLinkHandler);
 	OnKakaoLinkHandler = FJavaWrapper::OnKakaoLinkCompletedDelegate.AddUObject(this, &UB2UICombineMenu::KakaoLinkDelegate);
 #elif PLATFORM_IOS
@@ -250,7 +250,7 @@ void UB2UICombineMenu::OnPlayOpenAni(bool bIsOpen)
 }
 void UB2UICombineMenu::OnClickBTN_Inven()
 {
-	//Æ©Åä¸®¾ó ÁøÇà Áß ÀÎº¥Åä¸® ÁøÀÔ½Ã MainPCº¯°æÀ» °¡Àå ¸¶Áö¸·¿¡ È£ÃâÇÏ´Â ºÎºĞ ³ªÁß¿¡ º¯°æ µÉ ¼ö µµ ÀÖ´Ù.
+	//è­¬é…åºœå€” æŸ³é’ å ç‰¢äº¥é…åºœ æŸ³æ¶çŸ« MainPCå‡½ç‰ˆé˜‘ å•Šå˜ ä»˜ç˜¤é˜œä¿Š é¾‹å…çªç»° ä½•ç›’ å”±åä¿Š å‡½ç‰ˆ çª è æ¡£ ä¹ä¿ƒ.
 	if (TutorialManager::GetInstance().HasAnyTutorial())
 	{
 		LobbyHeroMgmtSelectClass<EPCClass>::GetInstance().Signal(
@@ -261,8 +261,8 @@ void UB2UICombineMenu::OnClickBTN_Inven()
 
 void UB2UICombineMenu::OnClickBTN_Collect()
 {
-	int32 SvrPCype = 0; // ¸ğµç Å¬·¡½º
-	int32 SvrEquipCategory = 0;	// ÀüÃ¼ Á¾·ù ¾ÆÀÌÅÛ
+	int32 SvrPCype = 0; // è‘›ç”µ åŠªè´°èƒ¶
+	int32 SvrEquipCategory = 0;	// å‚ˆçœ‰ è¾†å¹… é…’æè¢
 	data_trader::Retailer::GetInstance().RequestGetCollectionItem(SvrPCype, SvrEquipCategory);
 
 	UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
@@ -295,7 +295,7 @@ void UB2UICombineMenu::OnClickBTN_Guild()
 
 	if (BladeIIGameImpl::GetClientDataStore().GetUserGuildID())
 	{
-		//ÀÚ½ÅÀÇ ±æµå°¡ ÀÖÀ»¶§´Â ¹«Á¶°Ç 0À¸·Î ³Ö¾îÁà¾ßÇÑ´Ù 
+		//ç£Šè„šç‹¼ è¾¨é›å•Š ä¹é˜‘é”­ç»° å…¬ç‚¼æ‰’ 0æ è‚º æŒç»¢æ‹å…·èŒ„ä¿ƒ 
 		data_trader::Retailer::GetInstance().RequestGuildDetailInfo(0/*BladeIIGameImpl::GetClientDataStore().GetUserGuildID()*/);
 
 	}
@@ -352,7 +352,7 @@ void UB2UICombineMenu::OnClickBTN_Community()
 	/*
 	if (B2P_GetKakaoIDPCode() == EPlatformIDPCode::Guest)
 	{
-		// ¼­¹ö ÂÊÀ¸·Î ¿ì¼± °ËÁõÀ» À§ÇÏ¿© º¸³¿
+		// è¾‘æ»š ç‡æ è‚º å¿«æ€¥ å…«åˆ˜é˜‘ å›°çªå’¯ ç„Šæ™¨
 		FString sIDPCode = TEXT("kakaocapri");
 		data_trader::Retailer::GetInstance().RequestKakaoAccountConversionPrepare(sIDPCode);
 	}
@@ -360,7 +360,7 @@ void UB2UICombineMenu::OnClickBTN_Community()
 	{
 		B2P_KakaoCommunityView();
 	}*/
-	// ³×ÀÌ¹ö Ä«Æä·Î º¯°æµÇ¾î ¼öÁ¤
+	// åŒ™ææ»š å¢¨å…¶è‚º å‡½ç‰ˆç™»ç»¢ èæ²¥
 	B2P_ShowOpenURL(TEXT("https://cafe.naver.com/b2forkakao"));
 
 }
@@ -374,7 +374,7 @@ void UB2UICombineMenu::OnClickBTN_GoogleMission()
 {
 	if (B2P_IsGoogleLogin())
 	{
-		B2P_ShowAchivementView();	// ±¸±Û ¾÷Àû È­¸éÀ¸·Î~
+		B2P_ShowAchivementView();	// å¤‡è‡‚ è¯€åˆ© æ‹³ææ è‚º~
 	}
 	else
 	{
@@ -383,7 +383,7 @@ void UB2UICombineMenu::OnClickBTN_GoogleMission()
 		{
 			UIMgrInst->OpenMsgPopup<UB2UIMsgPopupSimple>(EUIMsgPopup::Simple,
 				BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_Notification")),
-				BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Google_MissionFeatured")), // ´ë·« ÀÌ·± ³»¿ëÀÇ °æ°í ¹®ÀÚ°¡ µé¾î°¡°ÚÁö..
+				BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Google_MissionFeatured")), // æªå¸† æç¹ éƒ´ä¾©ç‹¼ ç‰ˆç»Š å·©ç£Šå•Š ç”¸ç»¢å•Šæ‘†ç˜¤..
 				0.f,
 				true,
 				true,

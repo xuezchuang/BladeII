@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UICollectBookItemDetail.h"
 #include "B2UIManager.h"
 #include "B2ClientDataStore.h"
@@ -179,7 +179,7 @@ void UB2UICollectBookItemDetail::SetDetailViewSingleItem(int32 ItemTemplateID, E
 		SetItemDisplayInfo(ItemName, IconMtrl);
 
 		//MaxLevel = ItemInfo->MaxLevel + SurpassLevel;
-		MaxLevel = 30 + SurpassLevel;	//±âº» ¾ÆÀÌÅÛ ÃÖ´ë ·¹º§ÀÌ 30ÀÌ¶ó°í °¡Á¤ÇÑ´Ù. ±× ÀÌ»óÀÇ °Íµµ ¼­¹ö¿¡¼­ ÃÖ´ë·¹º§ Á¦ÇÑÀÌ °É·Á¼­ ¼ýÀÚ¸¦ ¸ÂÃß±â À§ÇØ ÀÌ·¸°Ô ÁøÇàÇÑ´Ù.
+		MaxLevel = 30 + SurpassLevel;	//æ‰å¤¯ é…’æžè¢ å¼¥æŽª é¥­éª‡æž 30æžæ‰¼ç»Š å•Šæ²¥èŒ„ä¿ƒ. å¼Š æžæƒ‘ç‹¼ å·´æ¡£ è¾‘æ»šä¿Šè¾‘ å¼¥æŽªé¥­éª‡ åŠ›èŒ„æž å§å¦¨è¾‘ ç®­ç£Šç”« å˜Žçœ æ‰ å›°ç§¦ æžçŠ¯éœ¸ æŸ³é’èŒ„ä¿ƒ.
 		CurrentLevelupFactor = 1;
 		CurrentEnhanceFactor = 0;
 
@@ -227,7 +227,7 @@ void UB2UICollectBookItemDetail::SetDetailViewSingleItem(int32 ItemTemplateID, E
 				ItemOptionCombatValue += ItemOpt.RawOptionAmount * DataStore.GetOptionWeight(ItemOpt.OptionType);
 			}
 
-			// UniqueOptionÀÌ ¾øÀ¸¸é RandomOption ÅØ½ºÆ®°¡ HeaderTitleÀ» ´ë½Å ÇÔ
+			// UniqueOptionæž ç»æ æ RandomOption å’†èƒ¶é£˜å•Š HeaderTitleé˜‘ æŽªè„š çªƒ
 			if (ItemInfo->UniqueOptions.Num() == 0)
 				DetailPart->HideTitleText();
 
@@ -247,7 +247,7 @@ void UB2UICollectBookItemDetail::SetDetailViewSingleItem(int32 ItemTemplateID, E
 				}
 			}
 
-			SetItemPrimaryOption(ItemInfo->PrimaryType, MinQualityPrimaryPoint, MaxQualityPrimaryPoint); //ÀüÅõ·Â°è»êÀ» ÇØ¾ßÇÏ±â¶§¹®¿¡ Á¦ÀÏ ¹ØÀ¸·Î µ¹¸®°Ú½À´Ï´Ù
+			SetItemPrimaryOption(ItemInfo->PrimaryType, MinQualityPrimaryPoint, MaxQualityPrimaryPoint); //å‚ˆæ§ä»¿æ‹Œé­‚é˜‘ ç§¦å…·çªæ‰é”­å·©ä¿Š åŠ›è€ å…³æ è‚º å€’åºœæ‘†åš¼èªä¿ƒ
 		}
 
 	}
@@ -467,7 +467,7 @@ void UB2UICollectBookItemDetail::SetSelectiveLottery()
 		UIP_CollectBookIcon->SetIconCollectionState(EItemCollectionState::Lottery);
 	}
 	
-	//¼±ÅÃ »Ì±â±Ç¿¡¼­ ·¹º§, °­È­¸¦ Á¶ÀýÇÏ´Â°É ¸·´Â ±¸¹®ÀÎµ¥, ±âÈ¹ÂÊ¿¡¼­ ¼±ÅÃ »Ì±â±Ç¿¡¼­µµ µ¥¸ð·Î º¸¿©ÁÖÀÚ°í ÇØ¼­ ÁÖ¼®Ã³¸® ÇÔ.
+	//æ€¥ç¶ æƒ¶æ‰é¼»ä¿Šè¾‘ é¥­éª‡, ç¢æ‹³ç”« ç‚¼ä¾‹çªç»°å§ é˜œç»° å¤‡å·©ç‰¢å•, æ‰è£™çŽ‡ä¿Šè¾‘ æ€¥ç¶ æƒ¶æ‰é¼»ä¿Šè¾‘æ¡£ å•è‘›è‚º ç„Šå’¯æž—ç£Šç»Š ç§¦è¾‘ æž—ç±è´¸åºœ çªƒ.
 	/*
 	if (P_LevelSlide.IsValid())
 	{
@@ -479,7 +479,7 @@ void UB2UICollectBookItemDetail::SetSelectiveLottery()
 	}
 	if (TB_Enhance.IsValid())
 	{
-		//±âÁ¸¿¡ +0 ±¸¹® ÀÚÃ¼°¡ ºí·çÇÁ¸°Æ® ÇÏµåÄÚµùÀÌ¿´´Ù. ±×·¯¹Ç·Î ¿©±âµµ ±×³É ÇÏµåÄÚµùÀ¸·Î µ¤¾î¹ö¸®ÀÚ.
+		//æ‰ç²®ä¿Š +0 å¤‡å·© ç£Šçœ‰å•Š å–‰é£Žæ©‡èµ´é£˜ çªé›å†…çˆ¹æžçœ‹ä¿ƒ. å¼ŠçŸ¾éª¨è‚º å’¯æ‰æ¡£ å¼Šæˆ çªé›å†…çˆ¹æ è‚º ä¸¹ç»¢æ»šåºœç£Š.
 		TB_Enhance->SetText(FText::FromString(TEXT("+0")));
 	}
 	*/

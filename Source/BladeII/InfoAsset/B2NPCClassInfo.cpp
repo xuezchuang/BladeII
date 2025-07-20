@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 // Project BladeII, Action Square
 
 
@@ -34,14 +34,14 @@ void ABladeIICharacter::OverrideByNPCClassInfo(ENPCClass InClass, UB2NPCSingleCl
 
 	//check(InClassInfo);
 
-	//// NPCClassInfo ·Î override ÇÏ±â Àü BaseBP override ºÎÅÍ. ÀÌ ½ÃÁ¡Àº ´ëÃ¼·Î »ı¼ºÀº ÇßÀ¸³ª PostSpawnInitialize ¸¦ ÇÏÁö ¾ÊÀº ½ÃÁ¡ÀÌ µÉ °Í.
+	//// NPCClassInfo è‚º override çªæ‰ å‚ˆ BaseBP override ä½•ç£. æ çŸ«ç—¢ç¯® æªçœ‰è‚º ç§¯å·±ç¯® æ²æ å”± PostSpawnInitialize ç”« çªç˜¤ è‡¼ç¯® çŸ«ç—¢æ çª å·´.
 	//this->OverrideByBaseBP(InClassInfo->GetBaseBPClass(this));
 
 	//this->NPCClassEnum = InClass;
 	//this->NPCClassVariation = InClassInfo->ClassVariation;
 	//
-	//// CharacterType Àº ±×´ë·Î µ¤¾î¾º¿öÁü. 
-	//// ¿©±â¼­ CharacterType À» ¼³Á¤Çß´Ù ÇÏ´õ¶óµµ MonsterSpawnPool ¿¡¼­ ¾²ÀÌ´Â MonsterClassTypeMap ¿¡¼­´Â ´Ù¸¥ type ¿¡ ¸ÊÇÎÀÌ µÉ ¼ö ÀÖÀ¸¸ç ÇØ´ç Á¤º¸¸¦ »ç¿ëÇØ¼­ spawn µÇ°í ³ª¸é ±×¿¡ ¸Â°Ô CharacterType ÀÌ ´Ù½Ã ¼¼ÆÃµÉ °Í.
+	//// CharacterType ç¯® å¼Šæªè‚º ä¸¹ç»¢ç«å†µå’™. 
+	//// å’¯æ‰è¾‘ CharacterType é˜‘ æ±²æ²¥æ²ä¿ƒ çªæ­¹æ‰¼æ¡£ MonsterSpawnPool ä¿Šè¾‘ é™æç»° MonsterClassTypeMap ä¿Šè¾‘ç»° ä¿ƒå¼— type ä¿Š ç”˜ä¿æ çª è ä¹æ å“¥ ç§¦å¯¸ æ²¥ç„Šç”« è¤ä¾©ç§¦è¾‘ spawn ç™»ç»Š å”±æ å¼Šä¿Š å˜éœ¸ CharacterType æ ä¿ƒçŸ« æŠ€æ³¼çª å·´.
 	//this->CharacterType = InClassInfo->DefaultCharacterType;
 
 	//UCapsuleComponent* CollisionCapsule = this->GetCapsuleComponent();
@@ -67,17 +67,17 @@ void ABladeIICharacter::OverrideByNPCClassInfo(ENPCClass InClass, UB2NPCSingleCl
 	//{
 	//	this->ShadowSizeCenter = InClassInfo->ShadowSizeOverride;
 	//}
-	//if (InClassInfo->DamageNumZOffsetOverride != 0.0f) // - °ªµµ µé¾î°¥ ¼ö ÀÖ°Ô..
+	//if (InClassInfo->DamageNumZOffsetOverride != 0.0f) // - è”¼æ¡£ ç”¸ç»¢å“ è ä¹éœ¸..
 	//{
 	//	this->DamageNumZOffset = InClassInfo->DamageNumZOffsetOverride;
 	//}
 
 	//if (InClassInfo->bUsePreSpawnState)
 	//{
-	//	// ÀÌ°ÍÀº AI BT ÂÊ¿¡¼­ DetectDistance ³»¿¡ ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ°¡ °¨ÁöµÇ¸é false °¡ µÉ °Í. ÀÌ°ÍÀÌ ¼¼ÆÃµÇÁö ¾ÊÀº BT °¡ »ç¿ëµÇ¸é ÃÊ±â »óÅÂ¿¡¼­ ¹ş¾î³ªÁö ¸øÇÏ°Ô µÈ´Ù.
-	//	// AnimBP Æ½¿¡¼­ Ã³À½ºÎÅÍ ÀÌ°É Ã¼Å©ÇÏ¹Ç·Î AnimBP ¼¼ÆÃ (SetAnimInstanceClass) Àü¿¡ ÇØ¾ß ÇÔ.
+	//	// æå·´ç¯® AI BT ç‡ä¿Šè¾‘ DetectDistance éƒ´ä¿Š æ•²é¥­æç»¢ æŸè…ç£å•Š çš‘ç˜¤ç™»æ false å•Š çª å·´. æå·´æ æŠ€æ³¼ç™»ç˜¤ è‡¼ç¯® BT å•Š è¤ä¾©ç™»æ æª¬æ‰ æƒ‘æ€•ä¿Šè¾‘ å“ˆç»¢å”±ç˜¤ ç»™çªéœ¸ ç­‰ä¿ƒ.
+	//	// AnimBP å¹³ä¿Šè¾‘ è´¸æ¾œä½•ç£ æå§ çœ‰å†œçªéª¨è‚º AnimBP æŠ€æ³¼ (SetAnimInstanceClass) å‚ˆä¿Š ç§¦å…· çªƒ.
 	//	this->bNeedSpawnCheck = true;
-	//	//this->CustomTimeDilation = 0.0f; -> ÀÌ ¹æ½ÄÀ» Áö¿øÇÏ°Ô µÉÁö´Â ¸ğ¸£°Ú´Ù. ¾ÆÁ÷Àº note..
+	//	//this->CustomTimeDilation = 0.0f; -> æ è§„ä¾¥é˜‘ ç˜¤ç›”çªéœ¸ çªç˜¤ç»° è‘›ç¦æ‘†ä¿ƒ. é…’æµç¯® note..
 	//}
 
 	//this->bUsePhaseChangeAnimation = InClassInfo->bUsePhaseChangeAnimation;
@@ -96,7 +96,7 @@ void ABladeIICharacter::OverrideByNPCClassInfo(ENPCClass InClass, UB2NPCSingleCl
 	//this->QTEMountTime = InClassInfo->QTEMountTime;
 	//this->QTEEnableTime = InClassInfo->QTEEnableTime;
 
-	//USkeletalMeshComponent* MeshComp = this->GetBaseMesh();  // NPC µéÀº Æ¯¼öÇÑ attachment ¿Ü¿¡ ±× ±âº»ÀÌ multi-component ±¸¼ºÀÌ ¾Æ´Ñ ÇÑÀº BaseMesh ¸¸ »ç¿ë.
+	//USkeletalMeshComponent* MeshComp = this->GetBaseMesh();  // NPC ç”¸ç¯® æ¼‚èèŒ„ attachment å¯‡ä¿Š å¼Š æ‰å¤¯æ multi-component å¤‡å·±æ é…’å›± èŒ„ç¯® BaseMesh çˆ¶ è¤ä¾©.
 
 	//if (MeshComp)
 	//{
@@ -127,10 +127,10 @@ void ABladeIICharacter::OverrideByNPCClassInfo(ENPCClass InClass, UB2NPCSingleCl
 	//			}
 	//		}
 
-	//		// AnimBP ¹Ù²ãÄ¡±â Àü¿¡ SetSkeletalMesh ºÎÅÍ
+	//		// AnimBP å®˜å±‚æ‘¹æ‰ å‚ˆä¿Š SetSkeletalMesh ä½•ç£
 	//		MeshComp->SetSkeletalMesh(InClassInfo->MeshAssetOverride);
 	//		if (InClassInfo->AnimBPOverride)
-	//		{// ÀÌ°Ç °á±¹ MeshComp->SetAnimInstanceClass ÀÓ. ¸ğ¹ÙÀÏ µğ¹ÙÀÌ½º µğ¹ö±ë °úÁ¤ÀÇ À¯»ê
+	//		{// ææ‰’ æ¬æƒ« MeshComp->SetAnimInstanceClass çƒ™. è‘›å®˜è€ å¼å®˜æèƒ¶ å¼æ»šå½ª è‹æ²¥ç‹¼ èœ¡é­‚
 	//			this->SafeSetAnimBPClass(InClassInfo->AnimBPOverride);
 	//		}
 	//	}
@@ -151,11 +151,11 @@ void ABladeIICharacter::OverrideByNPCClassInfo(ENPCClass InClass, UB2NPCSingleCl
 	//	if (CollisionCapsule)
 	//	{
 	//		// Mesh assets have their pivot root at their feet, so lower it by half capsule size to locate it at the center.
-	//		// MeshRelativeOffset ÀÇ Z ´Â capsule ÀÇ half height ¿¡ Ãß°¡·Î Àû¿ë
+	//		// MeshRelativeOffset ç‹¼ Z ç»° capsule ç‹¼ half height ä¿Š çœ å•Šè‚º åˆ©ä¾©
 	//		MeshComp->SetRelativeLocation(FVector(InClassInfo->MeshRelativeOffset.X, InClassInfo->MeshRelativeOffset.Y, -1.0f * CollisionCapsule->GetScaledCapsuleHalfHeight() + InClassInfo->MeshRelativeOffset.Z));
 	//	}
 
-	//	// SkeletalMeshComponent ¿¡ ºÙÀÏ Ãß°¡ ÄÄÆ÷³ÍÆ®µé
+	//	// SkeletalMeshComponent ä¿Š å˜¿è€ çœ å•Š å“ªå™¨æƒ©é£˜ç”¸
 	//	for (int32 STI = 0; STI < InClassInfo->AttachStaticMeshes.Num(); ++STI)
 	//	{
 	//		FCHSKCompAttachStaticMeshInfo& ThisInfo = InClassInfo->AttachStaticMeshes[STI];
@@ -167,7 +167,7 @@ void ABladeIICharacter::OverrideByNPCClassInfo(ENPCClass InClass, UB2NPCSingleCl
 	//				NewAttachComp->bReceivesDecals = false;
 	//				NewAttachComp->SetStaticMesh(ThisInfo.StaticMeshAsset);
 	//				NewAttachComp->SetRelativeScale3D(FVector(ThisInfo.AttachScale, ThisInfo.AttachScale, ThisInfo.AttachScale));
-	//				NewAttachComp->SetMobility(EComponentMobility::Movable); // StaticMesh ¸¦ Character ¿¡ ºÙÀÌ´Ï Movable ·Î
+	//				NewAttachComp->SetMobility(EComponentMobility::Movable); // StaticMesh ç”« Character ä¿Š å˜¿æèª Movable è‚º
 	//				NewAttachComp->AttachToComponent(MeshComp, FAttachmentTransformRules(EAttachmentRule::KeepRelative, true), ThisInfo.AttachSocketName);
 	//				NewAttachComp->RegisterComponent();
 	//			}
@@ -208,8 +208,8 @@ void ABladeIICharacter::OverrideByNPCClassInfo(ENPCClass InClass, UB2NPCSingleCl
 	//		MovementComp->MaxAcceleration = InClassInfo->CharMovementEssentialSettings.MaxAccelerationOverride;
 	//	}
 
-	//	// ·ÎÅ×ÀÌ¼Ç¼Óµµ µ¤¾î¾²±â(ÀÔ·Â°ªÀÌ 0¹Ì¸¸ÀÌ¸é µ¤¾î¾²±â ¾ÈÇÔ)
-	//	// µ¤¾î¾²±â ¾ÈÇÏ¸é UB2SomeInfo - DefaultNPCClassInfoBaseBPClass ¼³Á¤°ª ÀÌ¿ëÇÔ.
+	//	// è‚ºæŠ›æè®°åŠ æ¡£ ä¸¹ç»¢é™æ‰(æ¶ä»¿è”¼æ 0å›ºçˆ¶ææ ä¸¹ç»¢é™æ‰ æ•‘çªƒ)
+	//	// ä¸¹ç»¢é™æ‰ æ•‘çªæ UB2SomeInfo - DefaultNPCClassInfoBaseBPClass æ±²æ²¥è”¼ æä¾©çªƒ.
 	//	if (InClassInfo->CharMovementEssentialSettings.RotationRate.Yaw >= 0.0f)
 	//		MovementComp->RotationRate.Yaw = InClassInfo->CharMovementEssentialSettings.RotationRate.Yaw;
 
@@ -234,16 +234,16 @@ void ABladeIICharacter::OverrideByNPCClassInfo(ENPCClass InClass, UB2NPCSingleCl
 	//else if (SomeInfo)
 	//{
 	//	if (InClassInfo->bUsePreSpawnState)
-	//	{ // UsePreSpawnState ´Â AI BT ÂÊ¿¡¼­ ÇÃ·¹ÀÌ¾î °¨ÁöÇØ¼­ ÇØÁ¦ÇÏ´Â °Ô ÇÊ¿äÇÔ. µüÈ÷ override ¾ÈµÇ¾î ÀÖÀ¸¸é ±âº» SpawnBT ¸¦ »ç¿ë.
+	//	{ // UsePreSpawnState ç»° AI BT ç‡ä¿Šè¾‘ æ•²é¥­æç»¢ çš‘ç˜¤ç§¦è¾‘ ç§¦åŠ›çªç»° éœ¸ é˜å¤¸çªƒ. è¿­æ´’ override æ•‘ç™»ç»¢ ä¹æ æ æ‰å¤¯ SpawnBT ç”« è¤ä¾©.
 	//		this->SetBehaviorTree(SomeInfo->GetDefaultNPCClassInfoSpawnBT());
 	//	}
 	//	else
-	//	{ // ¿ÏÀü ±âº» BT
+	//	{ // è‚¯å‚ˆ æ‰å¤¯ BT
 	//		this->SetBehaviorTree(SomeInfo->GetDefaultNPCClassInfoMeleeBT());
 	//	}
 	//}
 
-	//// µ¥¹ÌÁö¸ğ¼ÇÀ¸·ÎÀÎÇÑ È¸Àü ¹«½Ã
+	//// å•å›ºç˜¤è‘›è®°æ è‚ºç‰¢èŒ„ é›€å‚ˆ å…¬çŸ«
 	//if (InClassInfo->bIgnoreRotateByDamage)
 	//	this->SetIgnoreRotateByDamage();
 
@@ -254,16 +254,16 @@ void ABladeIICharacter::OverrideByNPCClassInfo(ENPCClass InClass, UB2NPCSingleCl
 	//this->SetFinalHPScale(HPScale);
 
 	//ABladeIIGameMode* B2GM = GetBladeIIGameMode(this);
-	//// ÇöÀç ½ºÅ×ÀÌÁö ³­ÀÌµµ ¼öÄ¡´Â Ä³¸¯ÅÍ(¸÷) ÀüÅõ·Â¿¡ ¹İ¿µµÈ´Ù.
+	//// æ³…çŠ èƒ¶æŠ›æç˜¤ æŠ„ææ¡£ èæ‘¹ç»° æŸè…ç£(å„) å‚ˆæ§ä»¿ä¿Š é¦†åº·ç­‰ä¿ƒ.
 	//if (B2GM)
 	//	this->CharacterLevel = B2GM->GetCurrentStageDifficultyScale();
 
-	//// CharacterLevel ¿¡ ±â¹İÇÏ¿© ¿©Å¸ ´Ù¸¥ ÀüÅõ ´É·ÂÄ¡µéÀ» °è»êÇÏ¹Ç·Î °»½ÅÇØ ÁÜ. ±Ùµ¥ ¾îÂ÷ÇÇ ABladeIICharacter::BeginPlay ¿¡¼­ ÇÔ.
+	//// CharacterLevel ä¿Š æ‰é¦†çªå’¯ å’¯é¸¥ ä¿ƒå¼— å‚ˆæ§ ç“·ä»¿æ‘¹ç”¸é˜‘ æ‹Œé­‚çªéª¨è‚º ç›è„šç§¦ æ·‹. è¾Ÿå• ç»¢ç’ä¹” ABladeIICharacter::BeginPlay ä¿Šè¾‘ çªƒ.
 	//this->InitializeCombatStats();
 
 	//if (MaxArmorOverride > 0.0f)
 	//{
-	//	// Armor °ªÀº µû·ÎÀÓ. InitializeCombatStats ¿¡¼­ CharacterLevel À» ±â¹İÀ¸·Î °è»êµÈ´Ù¸é ¿©±â´Â ¾ø¾Ö¾ß ÇÔ.
+	//	// Armor è”¼ç¯® è¶è‚ºçƒ™. InitializeCombatStats ä¿Šè¾‘ CharacterLevel é˜‘ æ‰é¦†æ è‚º æ‹Œé­‚ç­‰ä¿ƒæ å’¯æ‰ç»° ç»å±€å…· çªƒ.
 	//	this->MaxArmor = MaxArmorOverride;
 	//	this->Armor = this->MaxArmor;
 	//}			
@@ -349,15 +349,15 @@ void ABladeIICharacter::OverrideByBaseBP(TSubclassOf<class ABladeIICharacter> BP
 	//if (!BPCDO)
 	//	return;
 
-	//// ÀÌ°ÍÀÌ ºÒ¸®´Â ½ÃÁ¡Àº NPCClassInfo Àû¿ëÀÌ³ª BeginPlay ÀÌÀüÀÓ.
-	//// ¸®¼Ò½º ·¹ÆÛ·±½º ¼¼ÆÃÀÇ °æ¿ì ¼¼ÆÃ ÈÄ ½ÇÁ¦ »ç¿ë ½ÃÁ¡ÀÌ ¾ğÁ¦ÀÎÁö È®ÀÎÇÒ ÇÊ¿ä°¡ ÀÖÀ½.
+	//// æå·´æ é˜‚åºœç»° çŸ«ç—¢ç¯® NPCClassInfo åˆ©ä¾©æå”± BeginPlay æå‚ˆçƒ™.
+	//// åºœå®¶èƒ¶ é¥­æ¬ºç¹èƒ¶ æŠ€æ³¼ç‹¼ ç‰ˆå¿« æŠ€æ³¼ é¥¶ è§’åŠ› è¤ä¾© çŸ«ç—¢æ æ”«åŠ›ç‰¢ç˜¤ çŠ¬ç‰¢ä¸” é˜å¤¸å•Š ä¹æ¾œ.
 
-	//// ÇÏÀ§ ÄÄÆ÷³ÍÆ®µéÀº µû·Î Ã³¸®ÇØ¾ß ÇÑ´Ù. this ´ë»óÀÇ CopyObjectProperties ¿¡¼­ ÇÏÀ§ ÄÄÆ÷³ÍÆ®µéÀ» º¹»çÇÏ°Ô ÇÏ¸é ÄÄÆ÷³ÍÆ® ÀÚÃ¼¸¦ ±×´ë·Î °¡Á®¿Í »ç¿ëÇÏ¹Ç·Î ¾ÈµÊ.
+	//// çªå›° å“ªå™¨æƒ©é£˜ç”¸ç¯® è¶è‚º è´¸åºœç§¦å…· èŒ„ä¿ƒ. this æªæƒ‘ç‹¼ CopyObjectProperties ä¿Šè¾‘ çªå›° å“ªå™¨æƒ©é£˜ç”¸é˜‘ æ±—è¤çªéœ¸ çªæ å“ªå™¨æƒ©é£˜ ç£Šçœ‰ç”« å¼Šæªè‚º å•Šå»‰å®¢ è¤ä¾©çªéª¨è‚º æ•‘å‡³.
 
 	//CopyObjectProperties(this->GetMovementComponent(), BPCDO->GetMovementComponent(), true, true);
 	//CopyObjectProperties(this->CenterShadow, BPCDO->CenterShadow, true, true);
 
-	//// SkeletalMeshComponent ´Â Á» ¹®Á¦ÀÇ ¼ÒÁö°¡ ÀÖ¾î¼­ Á÷Á¢ ¼Ó¼ºµé ÁöÁ¤ÇØ¼­ ¼öµ¿À¸·Î º¹»ç. ±»ÀÌ CopyObjectProperties ¸¦ »ç¿ëÇÏ·Á¸é Á¦¿ÜÇÒ ¼Ó¼º ÀÌ¸§ ÇÊÅÍ¸¦ ÁöÁ¤ÇÒ ¼ö´Â ÀÖ´Ù.
+	//// SkeletalMeshComponent ç»° ç²± å·©åŠ›ç‹¼ å®¶ç˜¤å•Š ä¹ç»¢è¾‘ æµç«‹ åŠ å·±ç”¸ ç˜¤æ²¥ç§¦è¾‘ èæ‚¼æ è‚º æ±—è¤. è¢«æ CopyObjectProperties ç”« è¤ä¾©çªå¦¨æ åŠ›å¯‡ä¸” åŠ å·± ææŠš é˜ç£ç”« ç˜¤æ²¥ä¸” èç»° ä¹ä¿ƒ.
 	//{
 	//	USkeletalMeshComponent* ThisSKMeshComp = this->GetMesh();
 	//	USkeletalMeshComponent* BPCDOSKMeshComp = BPCDO->GetMesh();
@@ -379,7 +379,7 @@ void ABladeIICharacter::OverrideByBaseBP(TSubclassOf<class ABladeIICharacter> BP
 
 	//	ThisSKMeshComp->MeshComponentUpdateFlag = BPCDOSKMeshComp->MeshComponentUpdateFlag;
 
-	//	// [¸ğÇè¸ğµå] ¿¡¼­´Â Ä«¸Ş¶ó ÇÁ·¯½ºÅÒÀ» ¹ş¾î³ª´õ¶óµµ Ç×»ó ¾÷µ¥ÀÌÆ®¸¦ ÇÏµµ·Ï ÇÑ´Ù
+	//	// [è‘›æ°°è‘›é›] ä¿Šè¾‘ç»° å¢¨çš‹æ‰¼ æ©‡çŸ¾èƒ¶ä¹“é˜‘ å“ˆç»¢å”±æ­¹æ‰¼æ¡£ äº²æƒ‘ è¯€å•æé£˜ç”« çªæ¡£åºŸ èŒ„ä¿ƒ
 	//	if ( EB2GameMode::Scenario == GetB2GameModeType( this ) )
 	//	{
 	//		ThisSKMeshComp->MeshComponentUpdateFlag = EMeshComponentUpdateFlag::AlwaysTickPoseAndRefreshBones;
@@ -388,7 +388,7 @@ void ABladeIICharacter::OverrideByBaseBP(TSubclassOf<class ABladeIICharacter> BP
 
 	//CopyObjectProperties(this->GetCapsuleComponent(), BPCDO->GetCapsuleComponent(), true, true);
 
-	//// ÀÚ±â ÀÚ½ÅÀº ¸Ç ³ªÁß¿¡ Ã³¸®ÇØ º»´Ù. ¿©±â¿£ Á¦¿Ü½ÃÅ°´Â ¼Ó¼º°ªµéÀÌ Á» ÀÖ´Âµ¥ MinimalDLCFrontMode ·Î ÀÎÇØ ÃÊ¹İ¿¡ BaseBP ¿¡¼­ ·Îµù ¾ÈµÈ °ªµéÀ» »ç¿ëÇÏ¸é ¾ÈµÇ±â ¶§¹®.
+	//// ç£Šæ‰ ç£Šè„šç¯® ç›– å”±åä¿Š è´¸åºœç§¦ å¤¯ä¿ƒ. å’¯æ‰æµš åŠ›å¯‡çŸ«è™ç»° åŠ å·±è”¼ç”¸æ ç²± ä¹ç»°å• MinimalDLCFrontMode è‚º ç‰¢ç§¦ æª¬é¦†ä¿Š BaseBP ä¿Šè¾‘ è‚ºçˆ¹ æ•‘ç­‰ è”¼ç”¸é˜‘ è¤ä¾©çªæ æ•‘ç™»æ‰ é”­å·©.
 	//CopyObjectProperties(this, BPCDO, true, true, BaseBPCopyExcludeProperties);
 }
 
@@ -406,7 +406,7 @@ FDropItemInfo::FDropItemInfo()
 /**
  * ========================================================================
  * NPCSingleClassInfo
- * NPCClass, Variation ´ÜÀ§ÀÇ Å¬¶óÀÌ¾ğÆ® µ¥ÀÌÅÍ Á¤ÀÇ
+ * NPCClass, Variation çªœå›°ç‹¼ åŠªæ‰¼ææ”«é£˜ å•æç£ æ²¥ç‹¼
  * ========================================================================
  */
 UB2NPCSingleClassInfo::UB2NPCSingleClassInfo(const FObjectInitializer& ObjectInitializer)
@@ -489,13 +489,13 @@ TSubclassOf<class ABladeIICharacter> UB2NPCSingleClassInfo::GetBaseBPClass(UObje
 void UB2NPCSingleClassInfo::PostLoad()
 {
 	//Super::PostLoad();
-	//// ¼³Á¤µÈ °ÍÀÌ ¾ø´Ù¸é ÃßÃµ °ªÀ¸·Î.
+	//// æ±²æ²¥ç­‰ å·´æ ç»ä¿ƒæ çœ ç« è”¼æ è‚º.
 	//SensitiveDataRowKey = UB2NPCSensitiveInfo::SuggestSensitiveInfoDataRowKey(NPCClassEnum, ClassVariation);
 }
 
 void UB2NPCSingleClassInfo::GetAllExpectedPhaseClasses(TArray<FCombinedNPCClassID>& OutClassIDs)
 {
-	//// Phase Å¬·¡½º´Â º°µµ·Î ½Äº°ÇØ¼­ ·ÎµùÇØ ³õÁö ¾ÊÀ¸¸é ÇÃ·¹ÀÌ µµÁß ·Îµù ·¢À» À¯¹ßÇÏ´Â ¿ä¼Ò°¡ µÊ.
+	//// Phase åŠªè´°èƒ¶ç»° å–Šæ¡£è‚º ä¾¥å–Šç§¦è¾‘ è‚ºçˆ¹ç§¦ åˆç˜¤ è‡¼æ æ æ•²é¥­æ æ¡£å è‚ºçˆ¹ å‘é˜‘ èœ¡æƒ¯çªç»° å¤¸å®¶å•Š å‡³.
 	//for (FAIPhaseData& ThisPhaseData : AdditionalPhaseDataArray)
 	//{
 	//	if (ThisPhaseData.BladeIICharacterClass != ENPCClass::ENC_End)
@@ -509,7 +509,7 @@ void UB2NPCSingleClassInfo::GetAllExpectedPhaseClasses(TArray<FCombinedNPCClassI
 #if !UE_BUILD_SHIPPING
 ENPCClass UB2NPCSingleClassInfo::FindNPCClassEnumFromTrimmedName(FString InTrimmedName)
 {
-	//FString ExpectedFullName = ENPCCLASSENUM_COMMON_PREFIX + InTrimmedName; // InTrimmedName Àº prefix ºüÁø °É·Î °£ÁÖ
+	//FString ExpectedFullName = ENPCCLASSENUM_COMMON_PREFIX + InTrimmedName; // InTrimmedName ç¯® prefix ç‹æŸ³ å§è‚º åŸƒæ—
 
 	//const UEnum* EnumPtr = FindObject<UEnum>(ANY_PACKAGE, ENPCCLASS_ENUM_PACKAGE_NAME, true);
 	//if (EnumPtr)
@@ -527,12 +527,12 @@ ENPCClass UB2NPCSingleClassInfo::FindNPCClassEnumFromTrimmedName(FString InTrimm
 
 ENPCClassVariation UB2NPCSingleClassInfo::FindNPCClassVariEnumFromTrimmedName(FString InTrimmedName)
 {
-	FString ExpectedFullName = ENPCCLASSVARIENUM_COMMON_PREFIX + InTrimmedName; // InTrimmedName Àº prefix ºüÁø °É·Î °£ÁÖ
+	FString ExpectedFullName = ENPCCLASSVARIENUM_COMMON_PREFIX + InTrimmedName; // InTrimmedName ç¯® prefix ç‹æŸ³ å§è‚º åŸƒæ—
 
 	//const UEnum* EnumPtr = FindObject<UEnum>(ANY_PACKAGE, ENPCCLASSVARI_ENUM_PACKAGE_NAME, true);
 	//if (EnumPtr)
 	//{
-	//	for (int32 EI = 0; EI <= (int32)ENPCClassVariation::ENCV_ControlBattle; ++EI) // ÀÌ°Ç End °¡ ¾ø±º.. ½Ç¼ö·Î ´©¶ôµÈ´Ù°í ÇØ ºÁ¾ß ¿¡µğÅÍ Å×½ºÆ® ±â´ÉÀÌ´Ï.
+	//	for (int32 EI = 0; EI <= (int32)ENPCClassVariation::ENCV_ControlBattle; ++EI) // ææ‰’ End å•Š ç»ç„™.. è§’èè‚º ç©¿éç­‰ä¿ƒç»Š ç§¦ æ¯«å…· ä¿Šå¼ç£ æŠ›èƒ¶é£˜ æ‰ç“·æèª.
 	//	{
 	//		if (EnumPtr->GetNameStringByIndex(EI) == ExpectedFullName)
 	//		{
@@ -562,7 +562,7 @@ void UB2NPCSingleClassInfo::PostEditChangeProperty(FPropertyChangedEvent& Proper
 //
 //	if (PropertyName == Name_NPCClassEnum)
 //	{
-//		// ¿©±â¼± MobClassInfoBox ¸¸ Ã£¾Æ¼­ °Ë»öÇÏ´Âµ¥, ¸¸ÀÏ ´Ù¸¥ NPCClassInfoBox °¡ Ãß°¡µÇ¸é ±×°Íµµ °Ë»öÇØ¾ß ÇÔ.
+//		// å’¯æ‰æ€¥ MobClassInfoBox çˆ¶ èŒ«é…’è¾‘ å…«ç¥¸çªç»°å•, çˆ¶è€ ä¿ƒå¼— NPCClassInfoBox å•Š çœ å•Šç™»æ å¼Šå·´æ¡£ å…«ç¥¸ç§¦å…· çªƒ.
 //		UB2NPCClassInfoBox* MobClassInfoBox = StaticFindMobClassInfoBox();
 //		if (MobClassInfoBox)
 //		{
@@ -570,7 +570,7 @@ void UB2NPCSingleClassInfo::PostEditChangeProperty(FPropertyChangedEvent& Proper
 //			{
 //#if !PLATFORM_MAC
 //				FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-//					FString::Printf(TEXT("[Warning] ENC_Reserve# ´Â ²À ÇÊ¿äÇÑ »óÈ²¿¡¼­¸¸ ÀÓ½ÃÀûÀ¸·Î »ç¿ëÇÕ´Ï´Ù!"))
+//					FString::Printf(TEXT("[Warning] ENC_Reserve# ç»° æ€– é˜å¤¸èŒ„ æƒ‘ç‚”ä¿Šè¾‘çˆ¶ çƒ™çŸ«åˆ©æ è‚º è¤ä¾©é’¦èªä¿ƒ!"))
 //				));
 //#endif
 //			}
@@ -584,7 +584,7 @@ void UB2NPCSingleClassInfo::PostEditChangeProperty(FPropertyChangedEvent& Proper
 //		{
 //#if !PLATFORM_MAC
 //			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-//				FString::Printf(TEXT("[°æ°í] ENCV_CounterDungeon Àº ´õ ÀÌ»ó Áö¿øÇÏÁö ¾Ê½À´Ï´Ù.\r\n´Ù¸¥ °É·Î ¹Ù²ãÁÖ¼¼¿ä."),
+//				FString::Printf(TEXT("[ç‰ˆç»Š] ENCV_CounterDungeon ç¯® æ­¹ ææƒ‘ ç˜¤ç›”çªç˜¤ è‡¼åš¼èªä¿ƒ.\r\nä¿ƒå¼— å§è‚º å®˜å±‚æ—æŠ€å¤¸."),
 //				*GetName())
 //			));
 //#endif
@@ -596,12 +596,12 @@ void UB2NPCSingleClassInfo::PostEditChangeProperty(FPropertyChangedEvent& Proper
 //		UB2SomeInfo* SomeInfo = StaticFindSomeInfo();
 //		UBehaviorTree* DefaultSpawnBT = SomeInfo ? SomeInfo->GetDefaultNPCClassInfoSpawnBT() : NULL;
 //
-//		// bUsePreSpawnState ¼¼ÆÃ ½Ã BT °¡ bUsePreSpawnState ¿ë ±âº»°ªÀÌ ¾Æ´Ñ °Ô Á÷Á¢ ¼¼ÆÃÀÌ µÇ¾î ÀÖ´Ù¸é °æ°í. ¹°·Ğ ÀÌ°É Áö¿øÇÏ´Â ´Ù¸¥ °Ô ÀÖÀ» ¼öµµ ÀÖÁö¸¸.
+//		// bUsePreSpawnState æŠ€æ³¼ çŸ« BT å•Š bUsePreSpawnState ä¾© æ‰å¤¯è”¼æ é…’å›± éœ¸ æµç«‹ æŠ€æ³¼æ ç™»ç»¢ ä¹ä¿ƒæ ç‰ˆç»Š. æ‹±æ²¸ æå§ ç˜¤ç›”çªç»° ä¿ƒå¼— éœ¸ ä¹é˜‘ èæ¡£ ä¹ç˜¤çˆ¶.
 //		if (bUsePreSpawnState && BehaviorTreeOverride && BehaviorTreeOverride != DefaultSpawnBT)
 //		{
 //#if !PLATFORM_MAC
 //			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-//				FString::Printf(TEXT("[°æ°í] UsePreSpawnState ´Â ÇØ´ç ±â´ÉÀ» Áö¿øÇÏ´Â AI BehaviorTree °¡ ÇÊ¿äÇÕ´Ï´Ù.\nÇöÀç UsePreSpawnState °¡ ¼¼ÆÃµÈ Class %d Variation %d ¿¡ ÇØ´ç ±â´ÉÀ» À§ÇØ ÁØºñµÈ ±âº» BehaviorTree ¿Í ´Ù¸¥ BehaviorTree °¡ ¼³Á¤µÇ¾î ÀÖ½À´Ï´Ù.\n\n¸¸ÀÏ ÇöÀç ¼³Á¤À» È®½ÅÇÒ ¼ö ¾ø´Ù¸é UsePreSpawnState °¡ ¼¼ÆÃµÈ Variation ÀÇ BehaviorTreeOverride Ç×¸ñÀ» ºñ¿ö µÎ´Â °ÍÀ» ±ÇÀåÇÕ´Ï´Ù."),
+//				FString::Printf(TEXT("[ç‰ˆç»Š] UsePreSpawnState ç»° ç§¦å¯¸ æ‰ç“·é˜‘ ç˜¤ç›”çªç»° AI BehaviorTree å•Š é˜å¤¸é’¦èªä¿ƒ.\næ³…çŠ UsePreSpawnState å•Š æŠ€æ³¼ç­‰ Class %d Variation %d ä¿Š ç§¦å¯¸ æ‰ç“·é˜‘ å›°ç§¦ éœ–åšç­‰ æ‰å¤¯ BehaviorTree å®¢ ä¿ƒå¼— BehaviorTree å•Š æ±²æ²¥ç™»ç»¢ ä¹åš¼èªä¿ƒ.\n\nçˆ¶è€ æ³…çŠ æ±²æ²¥é˜‘ çŠ¬è„šä¸” è ç»ä¿ƒæ UsePreSpawnState å•Š æŠ€æ³¼ç­‰ Variation ç‹¼ BehaviorTreeOverride äº²æ ¼é˜‘ åšå†µ æ»´ç»° å·´é˜‘ é¼»å˜é’¦èªä¿ƒ."),
 //				(int32)NPCClassEnum, (int32)ClassVariation)
 //			));
 //#endif

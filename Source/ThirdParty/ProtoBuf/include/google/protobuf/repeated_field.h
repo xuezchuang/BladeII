@@ -58,6 +58,9 @@
 #include <google/protobuf/generated_message_util.h>
 #include <google/protobuf/message_lite.h>
 
+//#define _SILENCE_CXX17_ITERATOR_BASE_CLASS_DEPRECATION_WARNING
+//#define _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS
+
 namespace google {
 
 namespace upb {

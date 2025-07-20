@@ -1,4 +1,6 @@
-#pragma once
+﻿#pragma once
+//#include "CoreMinimal.h"
+#include "B2Ai.generated.h"
 
 UENUM()
 enum class BTTASK_MODE : uint8

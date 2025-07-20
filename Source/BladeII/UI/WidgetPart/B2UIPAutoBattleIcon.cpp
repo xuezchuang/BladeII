@@ -1,10 +1,11 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIPAutoBattleIcon.h"
 #include "B2UIDocHelper.h"
 #include "BladeIIUtil.h"
 #include "B2UIRepeatBattleCountDown.h"
 #include "B2StageGameMode.h"
+#include "../../Common/Event.h"
 
 
 void UB2UIPAutoBattleIcon::Init()
@@ -96,7 +97,7 @@ void UB2UIPAutoBattleIcon::OnClickAutoBattle()
 
 		if (bRepeatBattleOn)
 		{
-			PopUpRepeatBattleStopMsg(GetOwningPlayer()); // ¹İº¹ ÀüÅõ »óÅÂ¿¡¼­´Â Áß´Ü ¹öÆ°ÀÇ ¿ªÇÒÀÌ µÊ.
+			PopUpRepeatBattleStopMsg(GetOwningPlayer()); // é¦†æ±— å‚ˆæ§ æƒ‘æ€•ä¿Šè¾‘ç»° åçªœ æ»šç“¢ç‹¼ å¼€ä¸”æ å‡³.
 			return;
 		}
 	}

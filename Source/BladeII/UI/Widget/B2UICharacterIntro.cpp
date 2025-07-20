@@ -1,4 +1,4 @@
-#include "B2UICharacterIntro.h"
+ï»¿#include "B2UICharacterIntro.h"
 #include "B2UIDocHelper.h"
 #include "B2UIDocHero.h"
 #include "B2UIManager.h"
@@ -98,9 +98,9 @@ void UB2UICharacterIntro::OnOpen(bool RightNow)
 {
 	Super::OnOpen(RightNow);
 
-	SelectCharacter(BladeIIGameImpl::GetLocalCharacterData().GetMainPlayerClass(), true);	//µğÆúÆ® ¼±ÅÃ. ¿ÀÇÂ½Ã Ä³¸¯ÅÍ ¼±ÅÃ½Ã¿¡´Â SkillPV ¾Ö´ÔÀ» ¾Ã¾îÁØ´Ù. ¿Ö³ÄÇÏ¸é OpenAnim¿¡ SkillPV¾Ö´ÔÀÌ Áßº¹µÇ¾î ÀÖ±â ¶§¹®....;;;
+	SelectCharacter(BladeIIGameImpl::GetLocalCharacterData().GetMainPlayerClass(), true);	//å¼å¼ƒé£˜ æ€¥ç¶. å·é”¹çŸ« æŸè…ç£ æ€¥ç¶çŸ«ä¿Šç»° SkillPV å±€ä¸›é˜‘ ä¹…ç»¢éœ–ä¿ƒ. æè¡¬çªæ OpenAnimä¿Š SkillPVå±€ä¸›æ åæ±—ç™»ç»¢ ä¹æ‰ é”­å·©....;;;
 
-	WrappedResetCharIntroFlipbookAnim(); // Ã¹ ÇÁ·¹ÀÓºÎÅÍ ½ÃÀÛ.
+	WrappedResetCharIntroFlipbookAnim(); // éœ‰ æ©‡é¥­çƒ™ä½•ç£ çŸ«ç´¯.
 }
 
 void UB2UICharacterIntro::OnClose(bool RightNow)
@@ -127,22 +127,22 @@ void UB2UICharacterIntro::DestroySelf(class UB2UIManager* InUIManager)
 		UB2SomeInfo* SomeInfo = StaticFindSomeInfo();
 		if (SomeInfo)
 		{
-			SomeInfo->UnloadAllPCIntroFlipbookMtrl(); // ¾êµéÀÌ Å« ÅØ½ºÃÄ µ¢¾î¸®¶ó ¸Ş¸ğ¸®¸¦ »ó´çÈ÷ ¸ÔÀ» °Í. ÀÌ ÀÌÈÄ¿£ ÇÊ¿ä ¾øÀ¸´Ï ³¯¸².
+			SomeInfo->UnloadAllPCIntroFlipbookMtrl(); // å¨Ÿç”¸æ å¥´ å’†èƒ¶åªš è€½ç»¢åºœæ‰¼ çš‹è‘›åºœç”« æƒ‘å¯¸æ´’ å†ˆé˜‘ å·´. æ æé¥¶æµš é˜å¤¸ ç»æ èª æœè¦†.
 		}
 	}
 }
 
 void UB2UICharacterIntro::SelectCharacter(EPCClass CharType, bool bCancelEffectOpeningSkillPV)
 {
-	//CharacterIntro¿¡¼­ ¼±ÅÃÇÑ ¿µ¿õÀº ±×³É Ä³¸¯ÅÍ ¼Ò°³¸¸ º¸¿©Áö´Â ¿ëµµ
+	//CharacterIntroä¿Šè¾‘ æ€¥ç¶èŒ„ åº·æ—·ç¯® å¼Šæˆ æŸè…ç£ å®¶ä¿ºçˆ¶ ç„Šå’¯ç˜¤ç»° ä¾©æ¡£
 	LobbyCharacterIntroSetPCSelectionClass<EPCClass>::GetInstance().Signal(CharType);
 	SelectedHeroDoc = UB2UIDocHelper::GetDocHero((int32)CharType);
 
-	WrappedResetCharIntroFlipbookAnim(); // Ä³¸¯ÅÍ°¡ ¹Ù²î¸é Flipbook material µµ ¹Ù²ğ Å×´Ï Ã¹ ÇÁ·¹ÀÓºÎÅÍ ½ÃÀÛÇÏµµ·Ï ¸®¼Â.
+	WrappedResetCharIntroFlipbookAnim(); // æŸè…ç£å•Š å®˜å·®æ Flipbook material æ¡£ å®˜æ‹† æŠ›èª éœ‰ æ©‡é¥­çƒ™ä½•ç£ çŸ«ç´¯çªæ¡£åºŸ åºœæ‚¸.
 
-	SelectCharacter_BP(CharType, bCancelEffectOpeningSkillPV);	//BPÂÊ¿¡¼­ Ã³¸® ÇÒ ¿¬Ãâµé
+	SelectCharacter_BP(CharType, bCancelEffectOpeningSkillPV);	//BPç‡ä¿Šè¾‘ è´¸åºœ ä¸” æ¥·å…ç”¸
 
-	// Flipbook µ¿¿µ»ó material ¼¼ÆÃ. Ã³À½ ·Îµù ½Ã ºí·ÎÅ·ÀÌ ÀÖÀ» ¼ö ÀÖ´Ù.
+	// Flipbook æ‚¼åº·æƒ‘ material æŠ€æ³¼. è´¸æ¾œ è‚ºçˆ¹ çŸ« å–‰è‚ºæ¬§æ ä¹é˜‘ è ä¹ä¿ƒ.
 	UB2SomeInfo* SomeInfo = StaticFindSomeInfo();
 	UMaterialInterface* SelectedCharIntroFlipbook = SomeInfo ? SomeInfo->GetPCIntroFlipbookMtrl(CharType) : NULL;
 	if (IMG_IntroFlipbook.IsValid() && SelectedCharIntroFlipbook)
@@ -172,7 +172,7 @@ void UB2UICharacterIntro::SetSelectedCharDesc(const FText& InText)
 
 void UB2UICharacterIntro::WrappedResetCharIntroFlipbookAnim()
 {
-	// °Á ResetCharIntroFlipbookAnim Áï½Ã È£Ãâ ¾Æ´Ï¸é Å¸ÀÌ¸Ó. Flipbook anim image ¾Ö´Ï¸ŞÀÌ¼Ç ¶§¹®¿¡.
+	// å‚² ResetCharIntroFlipbookAnim æºœçŸ« é¾‹å… é…’èªæ é¸¥æèµ£. Flipbook anim image å±€èªçš‹æè®° é”­å·©ä¿Š.
 	if (CharIntroFlipbookResetDelay > 0.0f)
 	{
 		APlayerController* OwningPC = GetOwningPlayer();
@@ -196,7 +196,7 @@ void UB2UICharacterIntro::ResetCharIntroFlipbookAnim()
 	}
 
 	UWorld* TheWorld = GetWorld();
-	// UpdateCharIntroFlipbookMID ¿¡¼­ ÀÌ Á÷ÈÄ¿¡ ExternalTime ÆÄ¶ó¹ÌÅÍ ¾÷µ¥ÀÌÆ® ½Ã 0 ºÎÅÍ ½ÃÀÛ.
+	// UpdateCharIntroFlipbookMID ä¿Šè¾‘ æ æµé¥¶ä¿Š ExternalTime é¢‡æ‰¼å›ºç£ è¯€å•æé£˜ çŸ« 0 ä½•ç£ çŸ«ç´¯.
 	CharIntroFlipbookMIDTimeSync = TheWorld ? TheWorld->GetTimeSeconds() : 0.0f;
 }
 
@@ -208,7 +208,7 @@ void UB2UICharacterIntro::UpdateCharIntroFlipbookMID()
 	UWorld* TheWorld = GetWorld();
 	if (CurrCharIntroFlipbookMID && TheWorld)
 	{
-		// ÇØ´ç material ÀÌ ExternalTime À» »ç¿ëÇÏµµ·Ï ¼¼ÆÃµÇ¾î ÀÖ¾î¾ß ÀÛµ¿ÇÒ °Í. ±×°Ô ¾Æ´Ï¸é material ³»ºÎÀûÀ¸·Î ½Ã°£ÀÌ ÀÚµ¿ ¾÷µ¥ÀÌÆ® µÉ °ÍÀÌ´Ù.
+		// ç§¦å¯¸ material æ ExternalTime é˜‘ è¤ä¾©çªæ¡£åºŸ æŠ€æ³¼ç™»ç»¢ ä¹ç»¢å…· ç´¯æ‚¼ä¸” å·´. å¼Šéœ¸ é…’èªæ material éƒ´ä½•åˆ©æ è‚º çŸ«åŸƒæ ç£Šæ‚¼ è¯€å•æé£˜ çª å·´æä¿ƒ.
 		CurrCharIntroFlipbookMID->SetScalarParameterValue(FName(TEXT("ExternalTime")), TheWorld->GetTimeSeconds() - CharIntroFlipbookMIDTimeSync);
 	}
 }

@@ -1,4 +1,4 @@
-
+ï»¿
 #include "QuestManager.h"
 #include "Event.h"
 #include "InternalEvents.h"
@@ -81,7 +81,7 @@ void QuestManager::SubscribeEvents()
 			QuestPtr CompleteSubQuest = GetQuest(slot);
 			if (CompleteSubQuest)
 			{
-				CachedCompleteSubQuests.Add(CompleteSubQuest); // ¹Ù·Î Notify ¶§¸®´Â°Ô ¿ì¼±. Noti ½ÃÁ¡À» Á¤ÇØ¾ßÇÏ¹Ç·Î Cachingµµ ÇØ¾ßÇÔ
+				CachedCompleteSubQuests.Add(CompleteSubQuest); // å®˜è‚º Notify é”­åºœç»°éœ¸ å¿«æ€¥. Noti çŸ«ç—¢é˜‘ æ²¥ç§¦å…·çªéª¨è‚º Cachingæ¡£ ç§¦å…·çªƒ
 				OnQuestCompleteNotifyClass<int32>::GetInstance().Signal(slot);
 			}
 		}
@@ -200,7 +200,7 @@ void QuestManager::DoneQuest(FB2ReceiveQuestReward const& data)
 	//UB2UIManager::GetInstance()->CloseUI(UIFName::QuestNotice);
 	//UB2UIManager::GetInstance()->CloseUI(UIFName::QuestDialog);
 
-	////¼­ºêÄù ¾÷µ¥ÀÌÆ® ÇØ¾ßÇÔ
+	////è¾‘å®æ¶… è¯€å•æé£˜ ç§¦å…·çªƒ
 	//UpdateSubQuestScollClass<>::GetInstance().Signal();
 }
 
@@ -220,7 +220,7 @@ void QuestManager::GiveUpQuest(FB2GiveUpQuestPtr const& InData)
 
 	//	QuestsInHand.FindAndRemoveChecked(QuestSlot);
 
-	//	// slot == 0 && quest_id == 0 -> ´ÙÀ½Äù½ºÆ®°¡ Á¸ÀçÇÏÁö ¾ÊÀ½
+	//	// slot == 0 && quest_id == 0 -> ä¿ƒæ¾œæ¶…èƒ¶é£˜å•Š ç²®çŠçªç˜¤ è‡¼æ¾œ
 	//	if (NextQuestInfo->slot != 0 && NextQuestInfo->quest_id != 0)
 	//	{
 	//		CreateOrUpdateQuest(NextQuestInfo);
@@ -243,7 +243,7 @@ void QuestManager::GiveUpQuest(FB2GiveUpQuestPtr const& InData)
 	//		CachedCompleteMap[QuestSlot]->AddCompleteQuest(Finded);
 	//	}
 
-	//	// Ä³½¬µÈ Äù½ºÆ®¸¦ Áö¿öÁÖ°í, ¼­¹ö·ÎºÎÅÍ »õ·Î °»½Å¹Ş´Â´Ù.
+	//	// æŸæµ†ç­‰ æ¶…èƒ¶é£˜ç”« ç˜¤å†µæ—ç»Š, è¾‘æ»šè‚ºä½•ç£ è´§è‚º ç›è„šç½ç»°ä¿ƒ.
 	//	FlushCachedCompleteQuest(QuestSlot);
 
 	//	UB2UIQuestDialog* QuestDialogUI = UB2UIManager::GetInstance()->GetUI<UB2UIQuestDialog>(UIFName::QuestDialog);
@@ -255,7 +255,7 @@ void QuestManager::GiveUpQuest(FB2GiveUpQuestPtr const& InData)
 	//	QuestPtr QuestPtrInfo = GetQuest(QuestSlot);
 	//	if (QuestPtrInfo != nullptr && QuestPtrInfo->GetState() != EQS_REWARDED && QuestDialogUI != nullptr)
 	//	{
-	//		// ¸¸¾à ´ëÈ­Çü°°Àº ¹Ì¸® ¿Ï·á·Î µÇÀÖÀ» °æ¿ì Auto Clear »óÅÂ·Î ¸¸µé¾î ÁÖ¾î ´ëÈ­ÈÄ º¸»ó¹Ş±â·Î ³Ñ¾î°¡°Ô ÇÑ´Ù.
+	//		// çˆ¶è· æªæ‹³å±ˆéç¯® å›ºåºœ è‚¯ä¸°è‚º ç™»ä¹é˜‘ ç‰ˆå¿« Auto Clear æƒ‘æ€•è‚º çˆ¶ç”¸ç»¢ æ—ç»¢ æªæ‹³é¥¶ ç„Šæƒ‘ç½æ‰è‚º é€ç»¢å•Šéœ¸ èŒ„ä¿ƒ.
 	//		if (QuestPtrInfo->GetState() == EQS_COMPLETED)
 	//		{
 	//			QuestPtrInfo->UpdateState(EQS_PROGRESS);
@@ -263,7 +263,7 @@ void QuestManager::GiveUpQuest(FB2GiveUpQuestPtr const& InData)
 	//		}
 
 	//		QuestDialogUI->OpenDialogBySlotIndex(QuestSlot);
-	//		// ÆË¾÷ Á¾·á ÈÄ Äù½ºÆ® °»½Å
+	//		// æ‰‘è¯€ è¾†ä¸° é¥¶ æ¶…èƒ¶é£˜ ç›è„š
 	//		QuestDialogUI->SetDialogCloseDelegate(FOnQuestDialogClosed::CreateLambda([QuestSlot]() {
 	//			UB2UILobbyMain* LobbyMainWidget = UB2UIManager::GetInstance()->GetUI<UB2UILobbyMain>(UIFName::LobbyMain);
 	//			if (LobbyMainWidget != nullptr)
@@ -287,7 +287,7 @@ void QuestManager::GiveUpQuest(FB2GiveUpQuestPtr const& InData)
 	//	UB2UIManager::GetInstance()->CloseUI(UIFName::QuestDialog);
 	//}
 
-	////¼­ºêÄù ¾÷µ¥ÀÌÆ® ÇØ¾ßÇÔ
+	////è¾‘å®æ¶… è¯€å•æé£˜ ç§¦å…·çªƒ
 	//UpdateSubQuestScollClass<>::GetInstance().Signal();
 }
 
@@ -629,7 +629,7 @@ void QuestManager::InternalDoneQuest(int32 quest_slot, b2network::B2QuestInfoPtr
 
 	QuestsInHand.FindAndRemoveChecked(quest_slot);
 
-	// slot == 0 && quest_id == 0 -> ´ÙÀ½Äù½ºÆ®°¡ Á¸ÀçÇÏÁö ¾ÊÀ½
+	// slot == 0 && quest_id == 0 -> ä¿ƒæ¾œæ¶…èƒ¶é£˜å•Š ç²®çŠçªç˜¤ è‡¼æ¾œ
 	if (next_quest_info && next_quest_info->slot != 0 && next_quest_info->quest_id != 0)
 	{
 		CreateOrUpdateQuest(next_quest_info);
@@ -649,7 +649,7 @@ void QuestManager::InternalDoneQuest(int32 quest_slot, b2network::B2QuestInfoPtr
 		CachedCompleteMap[quest_slot]->AddCompleteQuest(Finded);
 	}
 
-	// ¸ŞÀÎÄùÀÏ¶© º¸»ó¼ö·® Àû¿ë, ³ª¸ÓÁö´Â ÀÌº¥Æ® È£Ãâ(º¸»óÈ®ÀÎ ÆË¾÷ ´İ°í ¼ö·®Àû¿ëÇÔ)
+	// çš‹ç‰¢æ¶…è€è®¢ ç„Šæƒ‘èæ¨Š åˆ©ä¾©, å”±èµ£ç˜¤ç»° æäº¥é£˜ é¾‹å…(ç„Šæƒ‘çŠ¬ç‰¢ æ‰‘è¯€ æ‘§ç»Š èæ¨Šåˆ©ä¾©çªƒ)
 	if (Finded.GetType() == DAILY_QUEST || Finded.GetType() == MAIN_QUEST)
 	{
 		DeliveryQuestRewardClass<Quest, TArray<b2network::B2RewardPtr>>::GetInstance().Signal(Finded, rewardList);

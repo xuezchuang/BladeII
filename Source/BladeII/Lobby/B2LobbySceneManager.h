@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 //#include "BladeII.h"
 #include "EngineMinimal.h"
 #include "CommonStruct.h"
@@ -6,6 +6,7 @@
 #include "EventSubsystem.h"
 #include "B2UIEnum.h"
 #include "B2ModPlayerInfoData.h"
+
 #include "B2LobbySceneManager.generated.h"
 
 
@@ -89,7 +90,7 @@ enum class ELobbyLevelType : uint8
 	ELobbyLevelType_C_MOD, // Let's say this is also a kind of C type.
 	ELobbyLevelType_D,		// Hero Tower Floor Select.
 	ELobbyLevelType_E,		// Guild Map.
-	//ELobbyLevelType_F,		// ´õÀÌ»ó »ç¿ë ¾ÈÇÔ (´©±º°¡ ´ÙÀ½¿¡ Ãß°¡ÇÒ ÀÏÀÌ ÀÖÀ¸¸é ÀÌ°ÍÀ» »ç¿ëÇÏ½Ã±æ...)
+	//ELobbyLevelType_F,		// æ­¹ææƒ‘ è¤ä¾© æ•‘çªƒ (ç©¿ç„™å•Š ä¿ƒæ¾œä¿Š çœ å•Šä¸” è€æ ä¹æ æ æå·´é˜‘ è¤ä¾©çªçŸ«è¾¨...)
 	ELobbyLevelType_G,
 	ELobbyLevelType_H,
 	ELobbyLevelType_SummonItem,
@@ -113,7 +114,7 @@ enum class ELobbyNPCType : uint8
 	ELobbyNPC_FlyingFairy_Niece,
 	ELobbyNPC_FlyingFairy_Pang,
 	ELobbyNPC_FlyingFairy_Rio,
-	ELobbyNPC_Test,	//ºÀÀÎÇÔ Ä«µå ÀÓ½Ã Ç×¸ñ
+	ELobbyNPC_Test,	//è±ªç‰¢çªƒ å¢¨é› çƒ™çŸ« äº²æ ¼
 
 	ELobbyNPC_None // End
 };
@@ -734,7 +735,7 @@ private:
 
 	float AutoHideInterval;
 	float ElapsedOpenScene;
-	float ElapsedTimeNoInput; // ÀÏÁ¤½Ã°£ ÈÄ¿¡ ¸¶Æ¼´Ï Àç»ı¼Óµµ¸¦ 1.0f ·Î ¸¸µé±â À§ÇÑ º¯¼ö
+	float ElapsedTimeNoInput; // è€æ²¥çŸ«åŸƒ é¥¶ä¿Š ä»˜èèª çŠç§¯åŠ æ¡£ç”« 1.0f è‚º çˆ¶ç”¸æ‰ å›°èŒ„ å‡½è
 	bool bVisibleUI;
 
 	float MatineePos;

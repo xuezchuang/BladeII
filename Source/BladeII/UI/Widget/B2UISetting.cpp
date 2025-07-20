@@ -1,4 +1,4 @@
-#include "B2UISetting.h"
+ï»¿#include "B2UISetting.h"
 #include "B2UIManager.h"
 #include "UnrealEngine.h"
 #include "BladeIIPlayer.h"
@@ -28,7 +28,7 @@ void UB2UISetting::Init()
 {
 	Super::Init();
 	SetViewVibBtn(false);
-#if PLATFORM_ANDROID // kakao ·Î±×ÀÎ delegate µî·Ï
+#if PLATFORM_ANDROID // kakao è‚ºå¼Šç‰¢ delegate æ®¿åºŸ
 	FJavaWrapper::OnKakaoCouponSucessDelegate.Remove(OnKakaoCouponHandler);
 	OnKakaoCouponHandler = FJavaWrapper::OnKakaoCouponSucessDelegate.AddUObject(this, &UB2UISetting::KakaoCouponDelegate);
 	
@@ -112,7 +112,7 @@ void UB2UISetting::UpdateStaticText()
 		TXT_Setting_Account->SetText(BladeIIGetLOCText(B2LOC_CAT_CONFIGURATION, TEXT("Configuration_AccountTab")));
 	if (TXT_Setting_Info.IsValid())
 		TXT_Setting_Info->SetText(BladeIIGetLOCText(B2LOC_CAT_CONFIGURATION, TEXT("Configuration_Info")));
-	// À§¿¡ TXT_Setting_~ µéÀº ¾È ¾²´Â °Ç°¡..?
+	// å›°ä¿Š TXT_Setting_~ ç”¸ç¯® æ•‘ é™ç»° æ‰’å•Š..?
 	if (TB_Setting_Game_Unselected.IsValid())
 		TB_Setting_Game_Unselected->SetText(BladeIIGetLOCText(B2LOC_CAT_CONFIGURATION, TEXT("Configuration_GameTab")));
 	if (TB_Setting_Game_Selected.IsValid())
@@ -203,7 +203,7 @@ void UB2UISetting::DestroySelf(class UB2UIManager* InUIManager)
 
 void UB2UISetting::SelectSubMenu(EUISettingSubMenu submenu)
 {
-	ConditionalCreateSubUIP(submenu); // ÇÊ¿ä½Ã »ý¼º
+	ConditionalCreateSubUIP(submenu); // éž˜å¤¸çŸ« ç§¯å·±
 
 	for(int32 SI = 0; SI < GetAllUISettingSubMenuNum(); ++SI)
 	{
@@ -236,7 +236,7 @@ void UB2UISetting::SelectSubMenu(EUISettingSubMenu submenu)
 		}
 		else
 		{
-			if (ThisSubWidget) { // ¾ÆÁ÷ »ý¼º ¾ÈµÈ °Ç ¿©±â¼­ ¾øÀ» ¼ö ÀÖ´Ù.
+			if (ThisSubWidget) { // é…’æµ ç§¯å·± æ•‘ç­‰ æ‰’ å’¯æ‰è¾‘ ç»é˜‘ è ä¹ä¿ƒ.
 				ThisSubWidget->SetVisibility(ESlateVisibility::Hidden);
 			}
 			if (ThisTextBlockWidget) {
@@ -292,7 +292,7 @@ void UB2UISetting::RestartTutorial()
 
 void UB2UISetting::ShowGachaView()
 {
-	// °¡Ã­ È®·ü °ø°³
+	// å•Šé“† çŠ¬ä¼ å‚ä¿º
 	B2P_ShowKakaoGachaOddsView();
 }
 
@@ -308,7 +308,7 @@ void UB2UISetting::KakaoCouponDelegate(JNIEnv *env, jobject thiz)
 }
 #endif
 
-// Áøµ¿
+// æŸ³æ‚¼
 //ABladeIIGameMode* B2GM = GetBladeIIGameMode(this);
 
 //	B2GM->SetUseForceFeedback(true);

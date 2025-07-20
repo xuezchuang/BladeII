@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIDLCFrontSimplePopup.h"
 #include "BladeIIGameImpl.h"
@@ -83,7 +83,7 @@ void UB2UIDLCFrontSimplePopup::SetButtonGroup(EUIMsgPopupButtonGroup ButtonType)
 	case EUIMsgPopupButtonGroup::Reconnect:
 		SetButtonText(EDLCPopupButtonType::Positive, BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("General_ReconnectButton"))));
 		SetButtonText(EDLCPopupButtonType::Negative, BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("General_Cancel"))));
-#if WITH_EDITOR // Ãë¼Ò ¹öÆ°ÀÌ ¾øÀ¸¸é ¼­¹ö ²÷°åÀ» ¶§ ·Îºñ¿¡ ¾Æ¿¹ µé¾î°¥ ¼ö°¡ ¾ø´Ù. ÀÌ·¡Àú·¡ ºÒÆíÇÏ°í ¹Î¿ø Áõ°¡µµ ¿¹»óµÇ´Ï ¿¡µğÅÍ ÇÑÁ¤ Ãë¼Ò °¡´ÉÇÏ°Ô..
+#if WITH_EDITOR // ç§’å®¶ æ»šç“¢æ ç»æ æ è¾‘æ»š è°—æ¿é˜‘ é”­ è‚ºåšä¿Š é…’æŠ— ç”¸ç»¢å“ èå•Š ç»ä¿ƒ. æè´°å†è´° é˜‚ç¥ˆçªç»Š åˆ®ç›” åˆ˜å•Šæ¡£ æŠ—æƒ‘ç™»èª ä¿Šå¼ç£ èŒ„æ²¥ ç§’å®¶ å•Šç“·çªéœ¸..
 		if (!GIsEditor)
 #endif
 		{

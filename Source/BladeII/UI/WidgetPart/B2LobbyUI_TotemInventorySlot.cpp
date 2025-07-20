@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2LobbyUI_TotemInventorySlot.h"
@@ -67,7 +67,7 @@ void UB2LobbyUI_TotemInventorySlot::CacheAssets()
 
 	GET_SLOT(UB2UIWidgetBase,	UIP_RedDot);
 
-	// Ä¡Æ®Å°¿ë ID È®ÀÎ ////////////////////////////
+	// æ‘¹é£˜è™ä¾© ID çŠ¬ç‰¢ ////////////////////////////
 	GET_SLOT(UPanelWidget, P_DevUI);
 #if !UE_BUILD_SHIPPING
 	GET_SLOT(UTextBlock, TB_ItemRefId_Dev);
@@ -147,7 +147,7 @@ void UB2LobbyUI_TotemInventorySlot::UpdateTotemSlot_FromFB2Totem(const FB2Totem&
 {
 	CachedB2TotemInfo = InTotem;
 
-	// Á¦·Ã ¿Ï·á À¯¹«·Î °¥¶ó¼­ ¾ÆÀÌÄÜ ¾÷µ¥ÀÌÆ® ºĞ±â¸¦ °¡Á®¾ßÇÑ´Ù.
+	// åŠ›è®¿ è‚¯ä¸° èœ¡å…¬è‚º å“æ‰¼è¾‘ é…’æèƒ½ è¯€å•æé£˜ ç›’æ‰ç”« å•Šå»‰å…·èŒ„ä¿ƒ.
 	if (UB2ItemInfo* pAllItemInfo = StaticFindItemInfo())
 	{
 		if (FSingleItemInfoData* pItemInfo = pAllItemInfo->GetInfoData(InTotem.RefID))
@@ -399,8 +399,8 @@ void UB2LobbyUI_TotemInventorySlot::OpenTotemInfoPopup(const FB2Totem& InTotem, 
 	//}
 
 	//AB2LobbyGameMode* LobbyGM = Cast<AB2LobbyGameMode>(UGameplayStatics::GetGameMode(GetOwningPlayer()));
-	//// ÇØ´ç user widget »ı¼º ½ÅÈ£.
-	//// »ı¼ºµÈ Popup widget À» UIP Ã³·³ ¹èÄ¡ÇØ ³ÖÀ» ÆĞ³Î Á¤º¸¸¦ ¸¸µé¾îÁØ´Ù.
+	//// ç§¦å¯¸ user widget ç§¯å·± è„šé¾‹.
+	//// ç§¯å·±ç­‰ Popup widget é˜‘ UIP è´¸çƒ¦ ç¡…æ‘¹ç§¦ æŒé˜‘ è©æ¾„ æ²¥ç„Šç”« çˆ¶ç”¸ç»¢éœ–ä¿ƒ.
 	//UB2LobbyUI_TotemInventoryMain* InventoryUI = LobbyGM ? Cast<UB2LobbyUI_TotemInventoryMain>(LobbyGM->DJLegacy_GetCurrLobbyUIPage()) : nullptr;
 	//UPanelWidget* PopupAddPanel = InventoryUI ? InventoryUI->GetItemDetailPopupParentFullPanel() : nullptr;
 

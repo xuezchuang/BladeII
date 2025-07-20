@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIEventPageDice.h"
 
@@ -96,8 +96,8 @@ void UB2UIEventPageDice::BindDelegates()
 void UB2UIEventPageDice::UpdateStaticText()
 {
 	//[@SameLine, 180905]
-	//±Û·Î¹ú ³ª°¥½Ã Å¸ÀÓÁ¸°ú ÃÊ±âÈ­ ½Ã°£³»·ÁÁÖ´Â°Å ÀÛ¾÷ ¿¹Á¤ ¼­¹ö¿Í ÇùÀÇ
-	//ÀÓ½Ã·Î 24 ³ÖÀ½ == ¹«·á ÁÖ»çÀ§´Â ¸ÅÀÏ 24½Ã¿¡ Áö±Þ µË´Ï´Ù.
+	//è‡‚è‚ºå›½ å”±å“ŽçŸ« é¸¥çƒ™ç²®è‹ž æª¬æ‰æ‹³ çŸ«åŸƒéƒ´å¦¨æž—ç»°èŠ­ ç´¯è¯€ æŠ—æ²¥ è¾‘æ»šå®¢ è›†ç‹¼
+	//çƒ™çŸ«è‚º 24 æŒæ¾œ == å…¬ä¸° æž—è¤å›°ç»° æ¦‚è€ 24çŸ«ä¿Š ç˜¤éž­ é‚“èªä¿ƒ.
 	if (TB_NpcDialog.IsValid())
 	{
 		TB_NpcDialog->SetText(FText::Format(BladeIIGetLOCText(B2LOC_CAT_EVENT, TEXT("DiceEvent_NPCMessage")), FText::AsNumber(24)));
@@ -407,7 +407,7 @@ void UB2UIEventPageDice::PlayAnimDiceRollEffect()
 
 void UB2UIEventPageDice::UpdateDiceMovePositionAnim(int32 iCellNumber, bool IsFirstStart /*= false*/)
 {
-	if (iCellNumber >= ArrayEventSlotList.Num())	//startÁöÁ¡ Åë°ú
+	if (iCellNumber >= ArrayEventSlotList.Num())	//startç˜¤ç—¢ çƒ¹è‹ž
 	{
 		iCellNumber = 0;
 	}

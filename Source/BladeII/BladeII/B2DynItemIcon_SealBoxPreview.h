@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -65,32 +65,32 @@
 //	virtual void CacheAssets() override;
 //
 //	virtual void UpdateItemData(const FB2Item& InItem) override;
-//	void SetItem(int32 RefId			//¼Ò¸ğÇ° RefID
-//		, int32 minQuantity = -1		//¼Ò¸ğÇ° ÃÖ¼Ò °¹¼ö
-//		, int32 maxQuantity = -1		//¼Ò¸ğÇ° ÃÖ´ë °¹¼ö
+//	void SetItem(int32 RefId			//å®¶è‘›å‰ RefID
+//		, int32 minQuantity = -1		//å®¶è‘›å‰ å¼¥å®¶ è‚®è
+//		, int32 maxQuantity = -1		//å®¶è‘›å‰ å¼¥æª è‚®è
 //	);
-//	void SetItem(int32 groupID			//Àåºñ Á¢µÎ¾î
-//		, EPCClass equipClass			//Àåºñ Å¬·¡½º
-//		, int32 equipCategory			//Àåºñ Á¾·ù
-//		, int32 equipPlace				//Àåºñ ÀåÂø ºÎÀ§
-//		, int32 starGrade				//Àåºñ º°µî±Ş
-//		, int32 quality					//Àåºñ Ç°Áú
-//		, int32 enhancedLevel			//Àåºñ °­È­·¹º§
-//		, int32 surpassLevel			//Àåºñ ÃÊ¿ù·¹º§
+//	void SetItem(int32 groupID			//å˜åš ç«‹æ»´ç»¢
+//		, EPCClass equipClass			//å˜åš åŠªè´°èƒ¶
+//		, int32 equipCategory			//å˜åš è¾†å¹…
+//		, int32 equipPlace				//å˜åš å˜é¦’ ä½•å›°
+//		, int32 starGrade				//å˜åš å–Šæ®¿é­
+//		, int32 quality					//å˜åš å‰é¾™
+//		, int32 enhancedLevel			//å˜åš ç¢æ‹³é¥­éª‡
+//		, int32 surpassLevel			//å˜åš æª¬å²¿é¥­éª‡
 //	);
 //	void SetItem(int32 RefId, bool showQuantity);
 //
 //	void SetResultPannel(class UB2UISealBoxResultSimple* mainResult);
 //
-//// 	Àåºñ RefID ¿¡ ´ëÇÑ Á¤º¸
-//// 	(¿ŞÂÊÀ» Ã¹¹øÂ°·Î ÇÑ´Ù)
-//// 	Ã¹Â° ÀÚ¸®:		ÀåºñÀÎÁö ¿©ºÎ (1ÀÌ¸é Àåºñ)	(CommonStruct.hÀÇ 3278¹ø ÁÙ Âü°í)
-//// 	µÑÂ° ÀÚ¸®:		Å¬·¡½º (0ÀÌ¸é °ËÅõ»ç)		(EPCClass Å¬·¡½º Âü°í)
-//// 	¼ÂÂ° ÀÚ¸®:		¼º 10ÀÇ ÀÚ¸®
-//// 	³İÂ° ÀÚ¸®:		Âø¿ë ºÎÀ§ (0ÀÌ¸é ¹«±â)		(EItemEquipPlace Å¬·¡½º Âü°í)
-//// 	´Ù¼¸Â° ÀÚ¸®:	¼º 1ÀÇ ÀÚ¸®
-//// 	¿©¼¸Â° ÀÚ¸®:	Á¢µÎ¾î 10ÀÇ ÀÚ¸®			(b2network::B2GroupPrefix ³×ÀÓ½ºÆäÀÌ½º Âü°í)
-//// 	ÀÏ°öÂ° ÀÚ¸®:	Á¢µÎ¾î 1ÀÇ ÀÚ¸®
+//// 	å˜åš RefID ä¿Š æªèŒ„ æ²¥ç„Š
+//// 	(å“­ç‡é˜‘ éœ‰é”…æ³è‚º èŒ„ä¿ƒ)
+//// 	éœ‰æ³ ç£Šåºœ:		å˜åšç‰¢ç˜¤ å’¯ä½• (1ææ å˜åš)	(CommonStruct.hç‹¼ 3278é”… ä¸´ æ›¼ç»Š)
+//// 	ç¬›æ³ ç£Šåºœ:		åŠªè´°èƒ¶ (0ææ å…«æ§è¤)		(EPCClass åŠªè´°èƒ¶ æ›¼ç»Š)
+//// 	æ‚¸æ³ ç£Šåºœ:		å·± 10ç‹¼ ç£Šåºœ
+//// 	é½¿æ³ ç£Šåºœ:		é¦’ä¾© ä½•å›° (0ææ å…¬æ‰)		(EItemEquipPlace åŠªè´°èƒ¶ æ›¼ç»Š)
+//// 	ä¿ƒå‡ æ³ ç£Šåºœ:	å·± 1ç‹¼ ç£Šåºœ
+//// 	å’¯å‡ æ³ ç£Šåºœ:	ç«‹æ»´ç»¢ 10ç‹¼ ç£Šåºœ			(b2network::B2GroupPrefix åŒ™çƒ™èƒ¶å…¶æèƒ¶ æ›¼ç»Š)
+//// 	è€èšŒæ³ ç£Šåºœ:	ç«‹æ»´ç»¢ 1ç‹¼ ç£Šåºœ
 //	
 //
 //	virtual void SetBackgroundImageFromGrade(int32 InItemGrade, bool bForConsumables) override;

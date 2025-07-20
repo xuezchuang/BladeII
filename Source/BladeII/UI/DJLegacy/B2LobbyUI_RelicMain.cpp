@@ -72,7 +72,7 @@ void UB2LobbyUI_RelicMain::StartFromLobby(class UB2UIManager_Lobby* InUIManager,
 	CreateList();
 
 	if (UIP_HeroMgmtBase.IsValid())
-		UIP_HeroMgmtBase->StartFromLobby(InUIManager, InGM); // ÀÌ°Ç LobbyUISwitcher ¿¡¼­ ¸ð¸£´Ï Á÷Á¢ ÇØ ÁÖ¾î¾ß..
+		UIP_HeroMgmtBase->StartFromLobby(InUIManager, InGM); // æžæ‰’ LobbyUISwitcher ä¿Šè¾‘ è‘›ç¦èª æµç«‹ ç§¦ æž—ç»¢å…·..
 
 	UpdateStaticText();
 	DoMarkRedDot_Relic();
@@ -85,9 +85,9 @@ void UB2LobbyUI_RelicMain::NativeTick(const FGeometry& MyGeometry, float InDelta
 
 	if (!bRelicMgmtPartAsyncLoadRequested && OwnerUIManager)
 	{
-		// °í´ëÀ¯¹° °­È­ ÆäÀÌÁö ·ÎµùÀÌ ²Ï³ª °É¸®¹Ç·Î (À¯Àú°¡ ¾î¹°ÂÄ ÇÏ´Â µ¿¾È¿¡¶óµµ ·ÎµùÀ» ¹Ì¸® ÇØ ³õ±â À§ÇØ) async ·Îµù ¿äÃ»À» ³¯¸°´Ù. 
-		// StartFromLobby ¿¡¼­ ÇÏ¸é flush °¡ °É¸± °Å¶ó ¿©±â¼­ ÇÔ.
-		// ´Ü, ±× °­È­ ÆäÀÌÁö¿¡¼­´Â ½ÇÁ¦ º¸½ºº° µ¥ÀÌÅÍ(BoardWidget)¸¦ µû·Î ·ÎµùÀ» ÇÏ¹Ç·Î ÀÏºÎ¸¸ È¿°ú°¡ ÀÖ´Ù. 
+		// ç»ŠæŽªèœ¡æ‹± ç¢æ‹³ å…¶æžç˜¤ è‚ºçˆ¹æž èš•å”± å§åºœéª¨è‚º (èœ¡åŽ†å•Š ç»¢æ‹±å±¥ çªç»° æ‚¼æ•‘ä¿Šæ‰¼æ¡£ è‚ºçˆ¹é˜‘ å›ºåºœ ç§¦ åˆæ‰ å›°ç§¦) async è‚ºçˆ¹ å¤¸æ²¡é˜‘ æœèµ´ä¿ƒ. 
+		// StartFromLobby ä¿Šè¾‘ çªæ flush å•Š å§å‰¯ èŠ­æ‰¼ å’¯æ‰è¾‘ çªƒ.
+		// çªœ, å¼Š ç¢æ‹³ å…¶æžç˜¤ä¿Šè¾‘ç»° è§’åŠ› ç„Šèƒ¶å–Š å•æžç£(BoardWidget)ç”« è¶è‚º è‚ºçˆ¹é˜‘ çªéª¨è‚º è€ä½•çˆ¶ ç“¤è‹žå•Š ä¹ä¿ƒ. 
 		OwnerUIManager->ReqAsyncLoadUIPageAsset(ELobbyUIPages::ELUP_RelicManagement);
 		bRelicMgmtPartAsyncLoadRequested = true;
 	}
@@ -127,7 +127,7 @@ void UB2LobbyUI_RelicMain::UpdateList()
 	if (!TotalRelic) return;
 	if (EnchantInfoList.Num() < 1) return;
 
-	for (auto RelicItem : *TotalRelic) // ÇöÀç ¿ÀÇÂµÈ À¯¹°ÀÇ Á¤º¸.
+	for (auto RelicItem : *TotalRelic) // æ³…çŠ å·é”¹ç­‰ èœ¡æ‹±ç‹¼ æ²¥ç„Š.
 	{
 		for (int32 i = 0; i < EnchantInfoList.Num(); i++)
 		{
@@ -146,12 +146,12 @@ void UB2LobbyUI_RelicMain::UpdateList()
 		TotalHP += GradeOptionValue[2];
 	}
 
-	for (int32 i = LastRelicIndex ; i < EnchantInfoList.Num() ; i++) // ¿ÀÇÂµÇÁö ¾ÊÀº À¯¹°Àº ºñÈ°¼ºÈ­.
+	for (int32 i = LastRelicIndex ; i < EnchantInfoList.Num() ; i++) // å·é”¹ç™»ç˜¤ è‡¼ç¯® èœ¡æ‹±ç¯® åŽšåŠå·±æ‹³.
 	{
 		EnchantInfoList[i]->ClearRelicData();
 	}
 
-	// Ä³¸¯º° ÀüÃ¼ Áõ°¡µÈ °ø,¹æ,Ã¼
+	// æŸè…å–Š å‚ˆçœ‰ åˆ˜å•Šç­‰ å‚,è§„,çœ‰
 	if(TB_AttackIncAmount.IsValid())
 		TB_AttackIncAmount->SetText(FText::Format(FText::FromString(TEXT("+{0}")), FText::AsNumber(static_cast<int32>(TotalAtt))));
 	if (TB_AttackIncAmount.IsValid())
@@ -167,7 +167,7 @@ void UB2LobbyUI_RelicMain::CreateList()
 
 	int32 RelicNum = GLOBALRELICMANAGER.GetRelicNum();
 
-	for (int32 i = 0; i < RelicNum; i++) // MasterData¿¡ÀÖ´Â ÀüÃ¼ À¯¹° °¹¼ö¸¸Å­ »ý¼º
+	for (int32 i = 0; i < RelicNum; i++) // MasterDataä¿Šä¹ç»° å‚ˆçœ‰ èœ¡æ‹± è‚®èçˆ¶æ€’ ç§¯å·±
 	{
 		UB2RelicUIP_EnchantInfo* UIP_RelicEnchantitem = CreateWidget<UB2RelicUIP_EnchantInfo>(GetWorld(), RelicItemSlotClass);
 		if (UIP_RelicEnchantitem)

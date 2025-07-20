@@ -1,10 +1,13 @@
-
+﻿
 #include "B2BTDecorator_CheckLOStoTarget.h"
-//#include "BladeII.h"
+#include "BladeII.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "BehaviorTree/Blackboard/BlackboardKeyAllTypes.h"
 #include "BladeIIPlayerAIController.h"
 #include "BladeIIPlayer.h"
+#include "CollisionShape.h"
+#include "Components/CapsuleComponent.h"
+
 
 UB2BTDecorator_CheckLOStoTarget::UB2BTDecorator_CheckLOStoTarget(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)

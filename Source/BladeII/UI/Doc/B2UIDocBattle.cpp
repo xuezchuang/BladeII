@@ -26,7 +26,7 @@ UB2UIDocBattle::~UB2UIDocBattle()
 
 void UB2UIDocBattle::ClearBattleDataForStageClear()
 {
-	// ½ºÅ×ÀÌÁö ±ü ÈÄ Å¬¸®¾î
+	// èƒ¶æŠ›æç˜¤ ç§‰ é¥¶ åŠªåºœç»¢
 	SelectedResurrectBuffAttack = 0;
 	SelectedResurrectBuffDefense = 0;
 	SelectedResurrectBuffHealth = 0;

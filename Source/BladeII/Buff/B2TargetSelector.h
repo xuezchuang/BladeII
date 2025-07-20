@@ -1,7 +1,9 @@
-#pragma once
+﻿#pragma once
 //#include "BladeII.h"
 #include "BladeIIDamageType.h"
 #include <type_traits>
+#include <functional>
+#include "../BladeII/BladeIIGameMode.h"
 
 template<typename EnumValue>
 class EnumMaskValue

@@ -1,4 +1,4 @@
-#include "B2UITimerNotice.h"
+﻿#include "B2UITimerNotice.h"
 
 void UB2UITimerNotice::CacheAssets()
 {

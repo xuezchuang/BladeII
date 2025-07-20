@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "UI/B2UIWidget.h"
 #include "B2UIRestPointMain.generated.h"

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UILobbyBanner.h"
 #include "B2UIManager.h"
 #include "B2UIStoreBanner.h"
@@ -293,7 +293,7 @@ void UB2UILobbyBanner::OnBeginScroll(float ScrolledDelta)
 			BannerScrollBox->SetScrollOffset(ScrolledDelta - DesiredPosition);
 	}
 
-	if (BannerScrollBox.IsValid()) //¸ğ¹ÙÀÏ¿¡¼­ SScrollBox::ScrollBy·Î ÀÎÇØ AnimateScrollÀÌ °è¼Ó ÄÑÁö°Ô µÊ. AnimateScrollÀÌ ÄÑÁö¸é ChangeBanner³ª ShowBannerµî ScrollOffsetÀÌ ¹Ù·Î ¾÷µ¥ÀÌÆ®°¡ µÇÁö ¾Ê´Â´Ù.
+	if (BannerScrollBox.IsValid()) //è‘›å®˜è€ä¿Šè¾‘ SScrollBox::ScrollByè‚º ç‰¢ç§¦ AnimateScrollæ æ‹ŒåŠ  éš¾ç˜¤éœ¸ å‡³. AnimateScrollæ éš¾ç˜¤æ ChangeBannerå”± ShowBanneræ®¿ ScrollOffsetæ å®˜è‚º è¯€å•æé£˜å•Š ç™»ç˜¤ è‡¼ç»°ä¿ƒ.
 		BannerScrollBox->SetAnimateScroll(false);
 
 	ElapsedNextBannerScrollTime = 0.f;
@@ -364,7 +364,7 @@ void UB2UILobbyBanner::ClickBanner(int32 idx)
 			if (OutList.Num() > 0)
 			{
 				EPCClass ItemPCClass = FItemRefIDHelper::ExtractItemAllowedPCClassFromRefID(OutList[0].PackageProductId);
-				//Æ¯Á¤ ÆĞÅ°Áö PCClass Ã¢À¸·Î ¹Ì¸® ¼ÂÆÃ
+				//æ¼‚æ²¥ è©è™ç˜¤ PCClass èŠ’æ è‚º å›ºåºœ æ‚¸æ³¼
 				LobbySetHeroMgmtModePCSelectionClass<EPCClass>::GetInstance().Signal(ItemPCClass);
 			}
 			EnterCostumePageClass<ECostumePage>::GetInstance().Signal(ECostumePage::Store);
@@ -502,9 +502,9 @@ bool UB2UILobbyBanner::CheckImageSize(class UTexture2DDynamic* Tex)
 	FResourceSizeEx TotalAddedTextureSizeInfo;
 	Tex->GetResourceSizeEx(TotalAddedTextureSizeInfo);
 
-	if (TotalAddedTextureSizeInfo.GetTotalMemoryBytes() > 64 * 1024) // »çÀÌÁî°¡ ³Ê¹« Å©´Ù¸é ÀÌ¹ÌÁö¸¦ ´ëÃ¼
+	if (TotalAddedTextureSizeInfo.GetTotalMemoryBytes() > 64 * 1024) // è¤æä»¤å•Š å‘ˆå…¬ å†œä¿ƒæ æå›ºç˜¤ç”« æªçœ‰
 	{ 
-#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2 && WITH_BII_ON_SCREEN_DEBUG_TEXT // ³»ºÎ ºôµå¿¡¼­´Â º¸´Ù ÀÚ¼¼ÇÑ ³»¿ëÀ» µğ½ºÇÃ·¹ÀÌ.
+#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2 && WITH_BII_ON_SCREEN_DEBUG_TEXT // éƒ´ä½• å‘¼é›ä¿Šè¾‘ç»° ç„Šä¿ƒ ç£ŠæŠ€èŒ„ éƒ´ä¾©é˜‘ å¼èƒ¶æ•²é¥­æ.
 //		const UEnum* EnumPtr = FindObject<UEnum>(ANY_PACKAGE, TEXT("EPixelFormat"), true);
 //		FString FormatInfoStr;
 //		if (EnumPtr){

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2Button.h"
@@ -32,11 +32,11 @@ bool FImpluseRingInstInfo::Init(class UB2UnitedWidgetBase* InOwnerUnitedWidget, 
 
 		if (ImpulseRingImage.IsValid())
 		{
-			WholeAnimTime = InWholeAnimTime; // ÆÄ¶ó¹ÌÅÍ Àü´Ş.
+			WholeAnimTime = InWholeAnimTime; // é¢‡æ‰¼å›ºç£ å‚ˆå´”.
 			MIDParamRange_Begin = InBeginMIDParam;
 			MIDParamRange_End = InEndMIDParam;
 
-			ImpulseRingImage->SetVisibility(ESlateVisibility::Hidden); // ÀÏ´Ü ¼û°Ü¾ß°ÚÁö
+			ImpulseRingImage->SetVisibility(ESlateVisibility::Hidden); // è€çªœ è§è´¥å…·æ‘†ç˜¤
 			bIsCurrentOn = false;
 			ImpulseRingMID = NULL;
 			return true;
@@ -47,7 +47,7 @@ bool FImpluseRingInstInfo::Init(class UB2UnitedWidgetBase* InOwnerUnitedWidget, 
 }
 void FImpluseRingInstInfo::Clear()
 {
-	Stop(); // ´õ ÇÊ¿äÇÑ°¡?
+	Stop(); // æ­¹ é˜å¤¸èŒ„å•Š?
 }
 
 void FImpluseRingInstInfo::Play()
@@ -57,7 +57,7 @@ void FImpluseRingInstInfo::Play()
 		ImpulseRingImage->SetVisibility(ESlateVisibility::HitTestInvisible);
 		ImpulseRingMID = ImpulseRingImage->GetDynamicMaterial();
 		if (ImpulseRingMID)
-		{ // Material Anim progress ¸®¼Â
+		{ // Material Anim progress åºœæ‚¸
 			CurrentAnimTime = 0.0f;
 			ApplyMIDParam();
 			bIsCurrentOn = true;
@@ -79,13 +79,13 @@ bool FImpluseRingInstInfo::Tick(float DeltaSecond, bool bAutoRepeatOnEnd)
 	bool bRetVal = false;
 	if (bIsCurrentOn)
 	{
-		// 0 ~ WholeAnimTime »çÀÌ·Î ÆÄ¶ó¹ÌÅÍ ¾Ö´Ï¸ŞÀÌ¼Ç ½ÃÅ´
+		// 0 ~ WholeAnimTime è¤æè‚º é¢‡æ‰¼å›ºç£ å±€èªçš‹æè®° çŸ«ç³¯
 		CurrentAnimTime += DeltaSecond;
 		if (CurrentAnimTime > WholeAnimTime)
 		{
 			CurrentAnimTime = 0.0f;
-			bRetVal = true; // ´Ù½Ã Ã³À½ºÎÅÍ ÇÃ·¹ÀÌ ÇÏ´øÁö, stop ÇÏ´øÁö, ¹Û¿¡¼­ ¾Ë¾Æ¼­ ÇÏµµ·Ï
-			if (bAutoRepeatOnEnd) // ±×·¯³ª bAutoRepeatOnEnd ÀÎ °æ¿ì´Â ¹Û¿¡¼­ ´õ ½Å°æ¾µ ÇÊ¿ä ¾ø°Ú´Ù.
+			bRetVal = true; // ä¿ƒçŸ« è´¸æ¾œä½•ç£ æ•²é¥­æ çªå¸¦ç˜¤, stop çªå¸¦ç˜¤, è§‚ä¿Šè¾‘ èˆ…é…’è¾‘ çªæ¡£åºŸ
+			if (bAutoRepeatOnEnd) // å¼ŠçŸ¾å”± bAutoRepeatOnEnd ç‰¢ ç‰ˆå¿«ç»° è§‚ä¿Šè¾‘ æ­¹ è„šç‰ˆé•œ é˜å¤¸ ç»æ‘†ä¿ƒ.
 			{
 				Play();
 			}
@@ -99,7 +99,7 @@ void FImpluseRingInstInfo::ApplyMIDParam()
 {
 	if (ImpulseRingMID)
 	{
-		// CurrentAnimTime ÀÌ WholeAnimTime ±îÁö¸¸ Áõ°¡ÇÏ´Âµ¥ ÃÖÁ¾ÀûÀÎ ÆÄ¶ó¹ÌÅÍ Àû¿ëÀº MIDParamRange_Begin ~ MIDParamRange_End »çÀÌ·Î.
+		// CurrentAnimTime æ WholeAnimTime é³–ç˜¤çˆ¶ åˆ˜å•Šçªç»°å• å¼¥è¾†åˆ©ç‰¢ é¢‡æ‰¼å›ºç£ åˆ©ä¾©ç¯® MIDParamRange_Begin ~ MIDParamRange_End è¤æè‚º.
 		const float ParamRange = MIDParamRange_End - MIDParamRange_Begin;
 		const float AnimScale = (WholeAnimTime > KINDA_SMALL_NUMBER) ? (ParamRange / WholeAnimTime) : 1.0f;
 		const float FinalParameter = MIDParamRange_Begin + (AnimScale * CurrentAnimTime);
@@ -109,10 +109,10 @@ void FImpluseRingInstInfo::ApplyMIDParam()
 }
 
 void FImpluseRingInstInfo::SetImageCenterPosition(const FVector2D& InPosUpperLeftOrigin)
-{ // InPosUpperLeftOrigin Àº È­¸é ÁÂ»ó´Ü ±âÁØÀÇ UMG ·¹ÆÛ·±½º ÇØ»óµµ ±âÁØ ÁÂÇ¥·Î Ä£´Ù. UB2UnitedWidgetBase::HACKGetWidgetScreenCoord Âü°í
+{ // InPosUpperLeftOrigin ç¯® æ‹³æ è°…æƒ‘çªœ æ‰éœ–ç‹¼ UMG é¥­æ¬ºç¹èƒ¶ ç§¦æƒ‘æ¡£ æ‰éœ– è°…é’è‚º æ¨¡ä¿ƒ. UB2UnitedWidgetBase::HACKGetWidgetScreenCoord æ›¼ç»Š
 	//if (ImpulseRingImage.IsValid())
 	//{
-	//	UCanvasPanelSlot* CPSlot = Cast<UCanvasPanelSlot>(ImpulseRingImage->Slot); // ÀüÃ¼ ¿µ¿ª Å©±âÀÇ CanvasPanel ¿¡ ¹èÄ¡ÇÑ °æ¿ì¸¸ ¸ÔÈú °ÍÀÓ.
+	//	UCanvasPanelSlot* CPSlot = Cast<UCanvasPanelSlot>(ImpulseRingImage->Slot); // å‚ˆçœ‰ åº·å¼€ å†œæ‰ç‹¼ CanvasPanel ä¿Š ç¡…æ‘¹èŒ„ ç‰ˆå¿«çˆ¶ å†ˆé³ƒ å·´çƒ™.
 	//	if (CPSlot)
 	//	{
 	//		const FAnchors& SlotAnchor = CPSlot->LayoutData.Anchors;
@@ -124,7 +124,7 @@ void FImpluseRingInstInfo::SetImageCenterPosition(const FVector2D& InPosUpperLef
 	//			FinalAdjusted.Y += RefScaledAnchor.Y;
 
 	//			const FVector2D& ImageSize = CPSlot->GetSize();
-	//			// µé¾î¿Â ÁÂÇ¥¸¦ ÀÌ¹ÌÁö Áß½É ÁÂÇ¥·Î 
+	//			// ç”¸ç»¢æŸ¯ è°…é’ç”« æå›ºç˜¤ åç¼´ è°…é’è‚º 
 	//			FinalAdjusted.X -= (ImageSize.X * 0.5f);
 	//			FinalAdjusted.Y -= (ImageSize.Y * 0.5f);
 
@@ -150,13 +150,13 @@ UB2Button::UB2Button(const FObjectInitializer& ObjectInitializer)
 	//bReleaseOnFocusLost = true;
 
 	///*
-	// Click/TouchMethod ¼³Á¤ÀÌ MouseDown/PreciseTap ÀÏ ¶§ ¹öÆ° Click ½Ã±×³ÎÀº Press ½ÃÁ¡¿¡ ¹ß»ı.
-	// Pressed ¿Í Click ¹ÙÀÎµùÀÌ »ç½Ç»ó ¸¶Âù°¡Áö°¡ µÈ´Ù.
-	// ÀÌ´Â ¹öÆ° ÅÍÄ¡ ¹İÀÀÀÌ ½Ã¿ø½Ã¿øÇÏ°í »¡¶ó¾ß ÇÑ´Ù´Â ¿ä±¸»çÇ×¿¡ ÀÇÇÑ °ÍÀÎµ¥ (Ãß°¡·Î ºñ½ÁÇÑ ¹«·Æ¿¡ ¹öÆ° ÅÍÄ¡ ¿µ¿ª È®Àåµµ ±¸ÇöµÊ)
-	// ¾Æ¸¶ ´ç½Ã±îÁöÀÇ ±¸Çö¿¡¼­ º° »ı°¢¾øÀÌ Click ¿¡ ¹ÙÀÎµùÇÑ ¾îÁö°£ÇÑ ¹öÆ°µé ¸ğµÎ ÅÍÄ¡ Áï½Ã ¹İÀÀÀ» ¿øÇß´ø °Í °°´Ù.
-	// ¹öÆ° ¿ëµµ¿¡ µû¶ó ÀÌ°ÍÀÌ ºÎÀÛ¿ëÀ» ÀÏÀ¸Å³ ¼ö ÀÖ´Âµ¥ ¸¸ÀÏ ÀÌ ±âº»°ªÀ» ¿£Áø ±âº»ÀÎ DownAndUp À¸·Î µÇµ¹¸± ½Ã 
-	// ±âÁ¸¿¡ Click ¿¡ ¹ÙÀÎµùÇÑ ¹öÆ°µé Áß Áï°¢ÀûÀÎ ¹İÀÀÀÌ ÇÊ¿äÇÑ ¹öÆ°µéÀº Á÷Á¢ ¼³Á¤À» º¯°æÇÏ°Å³ª Pressed ¿¡ ¹ÙÀÎµùÇÏ°Å³ª..
-	// ÀÌ¿¡ µû¶ó °ÔÀÓ ¸Ş´º Á¶ÀÛÀÇ Àü¹İÀûÀÎ ÅÍÄ¡°¨ÀÌ ´Ş¶óÁú ¼ö ÀÖ´Ù.
+	// Click/TouchMethod æ±²æ²¥æ MouseDown/PreciseTap è€ é”­ æ»šç“¢ Click çŸ«å¼Šæ¾„ç¯® Press çŸ«ç—¢ä¿Š æƒ¯ç§¯.
+	// Pressed å®¢ Click å®˜ç‰¢çˆ¹æ è¤è§’æƒ‘ ä»˜è›®å•Šç˜¤å•Š ç­‰ä¿ƒ.
+	// æç»° æ»šç“¢ ç£æ‘¹ é¦†è§ˆæ çŸ«ç›”çŸ«ç›”çªç»Š å¼§æ‰¼å…· èŒ„ä¿ƒç»° å¤¸å¤‡è¤äº²ä¿Š ç‹¼èŒ„ å·´ç‰¢å• (çœ å•Šè‚º åšæ…èŒ„ å…¬è²ä¿Š æ»šç“¢ ç£æ‘¹ åº·å¼€ çŠ¬å˜æ¡£ å¤‡æ³…å‡³)
+	// é…’ä»˜ å¯¸çŸ«é³–ç˜¤ç‹¼ å¤‡æ³…ä¿Šè¾‘ å–Š ç§¯é˜¿ç»æ Click ä¿Š å®˜ç‰¢çˆ¹èŒ„ ç»¢ç˜¤åŸƒèŒ„ æ»šç“¢ç”¸ è‘›æ»´ ç£æ‘¹ æºœçŸ« é¦†è§ˆé˜‘ ç›”æ²å¸¦ å·´ éä¿ƒ.
+	// æ»šç“¢ ä¾©æ¡£ä¿Š è¶æ‰¼ æå·´æ ä½•ç´¯ä¾©é˜‘ è€æ æ‡¦ è ä¹ç»°å• çˆ¶è€ æ æ‰å¤¯è”¼é˜‘ æµšæŸ³ æ‰å¤¯ç‰¢ DownAndUp æ è‚º ç™»å€’å‰¯ çŸ« 
+	// æ‰ç²®ä¿Š Click ä¿Š å®˜ç‰¢çˆ¹èŒ„ æ»šç“¢ç”¸ å æºœé˜¿åˆ©ç‰¢ é¦†è§ˆæ é˜å¤¸èŒ„ æ»šç“¢ç”¸ç¯® æµç«‹ æ±²æ²¥é˜‘ å‡½ç‰ˆçªèŠ­å”± Pressed ä¿Š å®˜ç‰¢çˆ¹çªèŠ­å”±..
+	// æä¿Š è¶æ‰¼ éœ¸çƒ™ çš‹æ˜¥ ç‚¼ç´¯ç‹¼ å‚ˆé¦†åˆ©ç‰¢ ç£æ‘¹çš‘æ å´”æ‰¼é¾™ è ä¹ä¿ƒ.
 	//*/
 	//ClickMethod = EButtonClickMethod::MouseDown;
 	//TouchMethod = EButtonTouchMethod::PreciseTap;
@@ -173,14 +173,14 @@ UB2Button::UB2Button(const FObjectInitializer& ObjectInitializer)
 
 void UB2Button::SetIsEnabled(bool bInIsEnabled)
 {
-	bIsEnabledByNormalUsage = bInIsEnabled; // ´Ù¸¥ ±â´É¿¡ ÀÇÇØ Enable/Disable ÇÒ ¶§¿¡ ¿ø·¡ »óÅÂ°ªÀ» È®ÀÎÇÏ´Â µ¥¿¡ ¾µ °Í.
+	bIsEnabledByNormalUsage = bInIsEnabled; // ä¿ƒå¼— æ‰ç“·ä¿Š ç‹¼ç§¦ Enable/Disable ä¸” é”­ä¿Š ç›”è´° æƒ‘æ€•è”¼é˜‘ çŠ¬ç‰¢çªç»° å•ä¿Š é•œ å·´.
 	Super::SetIsEnabled(bInIsEnabled);
 }
 
 //////////////////////////////////////////////////
-// Æ¯Á¤ÇÑ »ç¿ë ¿Ü¿¡ ÀÏ¹İÀûÀÎ ¿ëµµ·Î »ç¿ëÇÏÁö ¸» °Í.
+// æ¼‚æ²¥èŒ„ è¤ä¾© å¯‡ä¿Š è€é¦†åˆ©ç‰¢ ä¾©æ¡£è‚º è¤ä¾©çªç˜¤ å¯Œ å·´.
 void UB2Button::StunForDuration()
-{ // bIsEnabledByNormalUsage Àº À¯ÁöÇÑ Ã¤ »ó´Ü SetIsEnabled ¸¦ È£Ãâ.
+{ // bIsEnabledByNormalUsage ç¯® èœ¡ç˜¤èŒ„ ç›² æƒ‘çªœ SetIsEnabled ç”« é¾‹å….
 	bIsStunned = true;
 	LastStunnedTime = static_cast<float>(FPlatformTime::Seconds());
 	Super::SetIsEnabled(false);
@@ -189,13 +189,13 @@ bool UB2Button::TryRestoreFromStun()
 {
 	if (bIsStunned)
 	{
-		// ½Ã°£ Ã¼Å©..  StunDuration ÀÌ 0 ÀÌÇÏ¸é ¹Ù·Î º¹±¸
+		// çŸ«åŸƒ çœ‰å†œ..  StunDuration æ 0 æçªæ å®˜è‚º æ±—å¤‡
 		const float CurrTime = static_cast<float>(FPlatformTime::Seconds());
 		if (ShouldStunSingleTickOnly() || (CurrTime - LastStunnedTime >= StunDuration))
 		{
 			Super::SetIsEnabled(bIsEnabledByNormalUsage);
-			bIsStunned = false; // ¼³·É ¿©ÀüÈ÷ disable ÀÌ´õ¶óµµ stun Àº Ç®¸° °Í.
-			return true; // ½ÇÁ¦ stun ÀÌ¾ú´Ù°¡ Ç®¸° °æ¿ì¸¸
+			bIsStunned = false; // æ±²é£ å’¯å‚ˆæ´’ disable ææ­¹æ‰¼æ¡£ stun ç¯® é’±èµ´ å·´.
+			return true; // è§’åŠ› stun æèŒä¿ƒå•Š é’±èµ´ ç‰ˆå¿«çˆ¶
 		}		
 	}
 	return false;
@@ -203,8 +203,8 @@ bool UB2Button::TryRestoreFromStun()
 //////////////////////////////////////////////////
 
 bool UB2Button::IsTickRequired() const
-{ // Owning user widget »ı¼º ½Ã ºÒ¸®´Â °ÍÀÓ. »çÀü¿¡ ¼³Á¤ °¡´ÉÇÑ °ªÀ¸·Î¸¸ ÆÇÁ¤ÇØ¾ß ÇÔ.
-	return (OnTouchImpulseRingWidgetName != NAME_None); // Name ¼³Á¤ÀÌ µÇ¾î ÀÖÀ¸¸é OnTouchImpulseRingImage ¸¦ ¾ò¾î¿Ã °¡´É¼ºÀÌ ÀÖÀ¸¹Ç·Î tick À» µ·´Ù.
+{ // Owning user widget ç§¯å·± çŸ« é˜‚åºœç»° å·´çƒ™. è¤å‚ˆä¿Š æ±²æ²¥ å•Šç“·èŒ„ è”¼æ è‚ºçˆ¶ é­„æ²¥ç§¦å…· çªƒ.
+	return (OnTouchImpulseRingWidgetName != NAME_None); // Name æ±²æ²¥æ ç™»ç»¢ ä¹æ æ OnTouchImpulseRingImage ç”« æ˜ç»¢æ£µ å•Šç“·å·±æ ä¹æ éª¨è‚º tick é˜‘ æ£ä¿ƒ.
 }
 
 void UB2Button::ManualTick(float DeltaSecond)
@@ -213,7 +213,7 @@ void UB2Button::ManualTick(float DeltaSecond)
 	{
 		if (OnTouchImpulseRingInst.Tick(DeltaSecond))
 		{
-			OnOnTouchImpulseRingAnimTimeCycle(); // ÇÑ »çÀÌÅ¬ ´Ù µ¹¸é ´Ù½Ã Ã³À½ºÎÅÍ ÇÃ·¹ÀÌ ÇÏ´øÁö, stop µÇ´øÁö.
+			OnOnTouchImpulseRingAnimTimeCycle(); // èŒ„ è¤æåŠª ä¿ƒ å€’æ ä¿ƒçŸ« è´¸æ¾œä½•ç£ æ•²é¥­æ çªå¸¦ç˜¤, stop ç™»å¸¦ç˜¤.
 		}
 	}
 }
@@ -221,7 +221,7 @@ void UB2Button::ManualTick(float DeltaSecond)
 void UB2Button::RegisterExtraStuff(UB2UnitedWidgetBase* InOwnerUnitedWidget)
 {
 	//CachedOwnerUnitedWidget = InOwnerUnitedWidget;
-	//bIsEnabledByNormalUsage = bIsEnabled; // ÀÌ ½ÃÁ¡¿¡¼­´Â ÀÌ°Ô °°¾Æ¾ß ÇÑ´Ù. ÀÌ°Ô ´Ş¶óÁö´Â °æ¿ì´Â CachedOwnerUnitedWidget À» ÅëÇØ µ¿ÀÛÇÏ¹Ç·Î
+	//bIsEnabledByNormalUsage = bIsEnabled; // æ çŸ«ç—¢ä¿Šè¾‘ç»° æéœ¸ éé…’å…· èŒ„ä¿ƒ. æéœ¸ å´”æ‰¼ç˜¤ç»° ç‰ˆå¿«ç»° CachedOwnerUnitedWidget é˜‘ çƒ¹ç§¦ æ‚¼ç´¯çªéª¨è‚º
 
 	//OnClicked.AddUniqueDynamic(this, &UB2Button::ExtraOnClick);
 	//OnPressed.AddUniqueDynamic(this, &UB2Button::ExtraOnPress);
@@ -252,15 +252,15 @@ void UB2Button::ExtraOnClick()
 void UB2Button::ExtraOnPress()
 {
 	//if (CachedOwnerUnitedWidget) {
-	//	// ¾Æ¹«³ª ´­·ÈÀ¸¸é ¹Ù·Î ´Ù¸¥ ¹öÆ°µé stun À».. ¼³Á¤¿¡ µû¶ó ÇÑ Æ½ È¤Àº ÀÏÁ¤ ½Ã°£ À¯Áö. ÀÚ½ÅÀÇ StunDuration ÀÌ 0 º¸´Ù Å©¸é ÀÚ½Åµµ stun
-	//	// ±Ùµ¥ ÀÌ°Í ÀÚÃ¼°¡ ÇÑ Æ½¿¡ µ¿½Ã¿¡ µé¾î°¥ ¼öµµ..?
+	//	// é…’å…¬å”± å–˜å•¡æ æ å®˜è‚º ä¿ƒå¼— æ»šç“¢ç”¸ stun é˜‘.. æ±²æ²¥ä¿Š è¶æ‰¼ èŒ„ å¹³ è¶£ç¯® è€æ²¥ çŸ«åŸƒ èœ¡ç˜¤. ç£Šè„šç‹¼ StunDuration æ 0 ç„Šä¿ƒ å†œæ ç£Šè„šæ¡£ stun
+	//	// è¾Ÿå• æå·´ ç£Šçœ‰å•Š èŒ„ å¹³ä¿Š æ‚¼çŸ«ä¿Š ç”¸ç»¢å“ èæ¡£..?
 	//	CachedOwnerUnitedWidget->SetButtonsStunForDuration(this);
 	//}
 
 	//bIsPressedForImpulseRing = true;
 	//
 	//if (!OnTouchImpulseRingInst.IsCurrentOn()){
-	//	PlayOnTouchImpulseRing(); // ºü¸¥ ÅÍÄ¡ ½Ã ¸Å¹ø »õ·Î ÇÃ·¹ÀÌ µÇÁö ¾Êµµ·Ï ÄÑÁ® ÀÖ´Â µ¿¾È¿¡´Â Å¸ÀÌ¸Ó¿¡ ÀÇÇØ¼­¸¸ ´Ù½Ã ÇÃ·¹ÀÌ.
+	//	PlayOnTouchImpulseRing(); // ç‹å¼— ç£æ‘¹ çŸ« æ¦‚é”… è´§è‚º æ•²é¥­æ ç™»ç˜¤ è‡¼æ¡£åºŸ éš¾å»‰ ä¹ç»° æ‚¼æ•‘ä¿Šç»° é¸¥æèµ£ä¿Š ç‹¼ç§¦è¾‘çˆ¶ ä¿ƒçŸ« æ•²é¥­æ.
 	//}
 
 	//if (bPlayDefaultOnClickSoundOnPress){
@@ -272,12 +272,12 @@ void UB2Button::ExtraOnRelease()
 {
 	bIsPressedForImpulseRing = false;
 
-	// OnTouchImpulseRing À» ¿©±â¼­ µüÈ÷ stop ½ÃÅ°Áö´Â ¾Ê´Â´Ù.
+	// OnTouchImpulseRing é˜‘ å’¯æ‰è¾‘ è¿­æ´’ stop çŸ«è™ç˜¤ç»° è‡¼ç»°ä¿ƒ.
 }
 
 void UB2Button::ExtraOnHovered()
 {
-	//[@AKi, 170329] Æ¯º°È÷ »ç¿ëÀº ¾ÈÇÏ³ª È¤½Ã ¸ô¶ó¼­ ¸¸µé¾î ³õÀ½.
+	//[@AKi, 170329] æ¼‚å–Šæ´’ è¤ä¾©ç¯® æ•‘çªå”± è¶£çŸ« éš”æ‰¼è¾‘ çˆ¶ç”¸ç»¢ åˆæ¾œ.
 }
 
 void UB2Button::PlayOnClickDefaultSound()
@@ -311,16 +311,16 @@ void UB2Button::StopOnTouchImpulseRing()
 void UB2Button::OnOnTouchImpulseRingAnimTimeCycle()
 {
 	if (bIsPressedForImpulseRing && bLoopOnTouchImpulseRing){
-		PlayOnTouchImpulseRing(); // ´Ù½Ã Ã³À½ºÎÅÍ ½ÃÀÛ
+		PlayOnTouchImpulseRing(); // ä¿ƒçŸ« è´¸æ¾œä½•ç£ çŸ«ç´¯
 	}
 	else{
-		StopOnTouchImpulseRing(); // ¾Æ´Ï¸é ÀÌÁ¦ ±×¸¸
+		StopOnTouchImpulseRing(); // é…’èªæ æåŠ› å¼Šçˆ¶
 	}
 }
 
 void UB2Button::CustomStopOnTouchImpulseRing()
 {
-	bIsPressedForImpulseRing = false; // ÇÃ·¹ÀÌ µÇ°í ÀÖ´Â »óÈ²ÀÌ¶ó¸é OnOnTouchImpulseRingAnimTimeCycle ¿¡¼­ ÇÈ¾÷ÇÒ °Í.
+	bIsPressedForImpulseRing = false; // æ•²é¥­æ ç™»ç»Š ä¹ç»° æƒ‘ç‚”ææ‰¼æ OnOnTouchImpulseRingAnimTimeCycle ä¿Šè¾‘ ä¾¨è¯€ä¸” å·´.
 }
 
 void UB2Button::TutorialButtonSignal()

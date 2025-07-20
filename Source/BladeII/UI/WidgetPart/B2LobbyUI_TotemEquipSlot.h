@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 //#include "BladeII.h"
@@ -7,6 +7,7 @@
 #include "../../DataStore/B2TotemData.h"
 #include "../Widget/B2Image.h"
 #include "../../DataTrader/ChannelManager.h"
+#include "EventSubsystem.h"
 #include "B2LobbyUI_TotemEquipSlot.generated.h"
 
 /**
@@ -82,7 +83,7 @@ protected:
 	void OnClickBTN_EquipSlot();
 
 protected:
-	// TotemEquipPlace ·Î º¯°æ ÇÊ¿ä
+	// TotemEquipPlace è‚º å‡½ç‰ˆ éž˜å¤¸
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	ETotemEquipSlot TotemEquipPlace;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)

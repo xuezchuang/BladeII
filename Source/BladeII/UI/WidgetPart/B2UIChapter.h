@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 // Project BladeII, Action Square
 
 #pragma once
@@ -68,7 +68,7 @@ public:
 
 	FORCEINLINE void SetChapterNumOnly(int32 InValue) { ChapterNum = InValue; }
 	void SetChapterNum(int32 InValue, EStageDifficulty InStageDifficulty); // It update ChapterStage parts too.
-	void SetStageDatas(/*TArray<FStage¾îÂ¼°í> StageDatas*/);
+	void SetStageDatas(/*TArray<FStageç»¢å½•ç»Š> StageDatas*/);
 
 	void UpdateStageUIPosition(TArray<FVector2D>& Positions2D);
 

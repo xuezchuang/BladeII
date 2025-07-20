@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -24,7 +24,7 @@ public:
 		int32 VisibleMaxStarGrade = 12;
 
 	UPROPERTY(EditInstanceOnly, Category = FilterCount)
-		int32 MinGradeFilter = 1;	//0Àº ÀüÃ¼ ¼±ÅÃ
+		int32 MinGradeFilter = 1;	//0ç¯® å‚ˆçœ‰ æ€¥ç¶
 
 	int32 ApplyAllAtStarGrade = 1;
 

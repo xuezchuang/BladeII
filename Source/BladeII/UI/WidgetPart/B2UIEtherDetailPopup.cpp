@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIEtherDetailPopup.h"
 #include "B2EtherManager.h"
@@ -136,7 +136,7 @@ void UB2UIEtherDetailPopup::SetPopupInfo(int64 ID, EPCClass SelectPCClass, Detai
 					X_TB_SetName->SetText(BladeIIGetLOCText(FString(B2LOC_CAT_ETHER), FString(TEXT("Ether_SetName_2"))));
 				}
 			}
-			else if (Ether->SetType == EtherSetType::OFFENCE) // °ø°İ ¼¼Æ®
+			else if (Ether->SetType == EtherSetType::OFFENCE) // å‚æ‹œ æŠ€é£˜
 			{
 				if (X_TB_SetName.IsValid())
 				{

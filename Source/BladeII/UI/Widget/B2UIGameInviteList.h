@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #pragma once
 
 #include "B2UIWidget.h"
@@ -125,7 +125,7 @@ protected:
 	TWeakObjectPtr<UB2Button>				BTN_Refresh;
 	TWeakObjectPtr<UTextBlock>				TB_RefreshTime;
 	
-	// °Ë»ö
+	// å…«ç¥¸
 	TWeakObjectPtr<UOverlay>				O_UserSearch;
 	TWeakObjectPtr<UB2Button>				BTN_UserSearch;
 	TWeakObjectPtr<UEditableTextBox>		TIB_SearchName;
@@ -154,7 +154,7 @@ private:
 	int64					SendPointTime;
 	FTimerHandle			RefeshPointTimer;
 
-	TMap<FName, int64>		InvitingSlotDatas;	// ÃÊ´ë¸¦ ÁøÇàÇÏ°í ÀÖ´Â ½½·Ô ¸®½ºÆ® (Key : FName, StartTime)
+	TMap<FName, int64>		InvitingSlotDatas;	// æª¬æªç”« æŸ³é’çªç»Š ä¹ç»° æµ‡å© åºœèƒ¶é£˜ (Key : FName, StartTime)
 
 	EB2GameMode				GameModeType;
 };

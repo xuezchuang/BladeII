@@ -12,5 +12,5 @@ public class DFEditorTarget : TargetRules
 		IncludeOrderVersion = EngineIncludeOrderVersion.Unreal5_2;
 		ExtraModuleNames.Add("BladeII");
 		ExtraModuleNames.Add("B2Network");
-	}
+    }
 }

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 #include "UMG.h"
@@ -36,8 +36,8 @@ namespace NetMatchState
 
 static const uint32 PEER_SUPER			=	1;
 static const uint32 PEER_RESTRICTED		=	2;
-static const uint32 PEER_NETSTANDALONE	=	3; //Á¤»óÀûÀ¸·Î ´ëÀüÀÌ ÀÌ·ç¾îÁ³Áö¸¸ »ó´ë°¡ ¶°³ª¼­ AI¿Í ´ë°áÇÏ´Â »óÅÂ
-static const uint32 PEER_STANDALONE		=	4; //½ÃÀÛºÎÅÍ AI¿Í ´ëÀü
+static const uint32 PEER_NETSTANDALONE	=	3; //æ²¥æƒ‘åˆ©æ è‚º æªå‚ˆæ æé£ç»¢è„¸ç˜¤çˆ¶ æƒ‘æªå•Š æ ‹å”±è¾‘ AIå®¢ æªæ¬çªç»° æƒ‘æ€•
+static const uint32 PEER_STANDALONE		=	4; //çŸ«ç´¯ä½•ç£ AIå®¢ æªå‚ˆ
 static const uint32 PEER_NONE			=	5;
 
 USTRUCT()
@@ -133,7 +133,7 @@ public:
 	void	ShutdownChannelIfStillExist();
 	void	SendGameMessage(FString const&);
 	void	SendMessageToHost(FString const&);
-	void	ChangeRoomPublicAccess();	// ¹æÀ» °ø°³¹æÀ¸·Î º¯°æÇØÁØ´Ù.
+	void	ChangeRoomPublicAccess();	// è§„é˜‘ å‚ä¿ºè§„æ è‚º å‡½ç‰ˆç§¦éœ–ä¿ƒ.
 
 	void	ReserveDecodePacket(uint32 sender, uint32 receiver, FString const& context);
 	void	ApplyReservedDecodePacket();
@@ -300,7 +300,7 @@ public:
 
 	// NetGameMode interfaces...
 //	virtual void HandleTakeDamage(AActor* , class AController*, class AActor*);
-//	virtual void HandleHealingHealth(AActor*); //ÀÏ´Ü TakeDamage¿¡ ½Ç¾î º¸³»ÀÚ. Àß ¾ÈµÇ¸é PacketÀ» ¸¸µé¾î¼­ µû·Î º¸³»ÀÚ
+//	virtual void HandleHealingHealth(AActor*); //è€çªœ TakeDamageä¿Š è§’ç»¢ ç„Šéƒ´ç£Š. è‚‹ æ•‘ç™»æ Packeté˜‘ çˆ¶ç”¸ç»¢è¾‘ è¶è‚º ç„Šéƒ´ç£Š
 	virtual void HandleHealth(uint32,float,uint32);
 	virtual bool CanDie() const;
 	virtual bool CanTakeDamage();
@@ -345,8 +345,8 @@ private:
 
 	float								HeartbeatTick;
 
-	// NetIdº°·Î ¸¶Áö¸·¿¡ ¹ŞÀº SyncedAnimStateIndexÀúÀå
-	// ¹Ì½ºÆù ÄÉ¸¯¿¡ ´ëÇÑ ³»¿ëÀÏ°æ¿ì ´ëºñ. ABladeIINetPlayer::BeginPlay()¿¡¼­ º»ÀÎ¾ÆÀÌµğ²¨ °®´Ù¾¸
+	// NetIdå–Šè‚º ä»˜ç˜¤é˜œä¿Š ç½ç¯® SyncedAnimStateIndexå†å˜
+	// å›ºèƒ¶è¿„ çº³è…ä¿Š æªèŒ„ éƒ´ä¾©è€ç‰ˆå¿« æªåš. ABladeIINetPlayer::BeginPlay()ä¿Šè¾‘ å¤¯ç‰¢é…’æå¼æ³¢ çˆ±ä¿ƒé–
 	TMap<uint32, TArray<FNetSyncAnimInfo>> SyncedAnimStateIndexByNetId;
 };
 

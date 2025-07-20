@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIGuildBattleHistorySlot.h"
 #include "B2UIManager.h"
 #include "B2UIGuildMark.h"
@@ -72,7 +72,7 @@ void UB2UIGuildBattleHistorySlot::SetMyGuild(int32 Pattern, int32 PatternColor, 
 	if (!RTB_BattleResult.IsValid())
 		return;
 
-	//½Â¹«ÆÐ Ç¥½ÃÇØÁÖ´Â ºÎºÐ
+	//é“°å…¬è© é’ŽçŸ«ç§¦æž—ç»° ä½•ç›’
 	if (Result == b2network::B2GuildBattleResultType::BGBRT_LOSE)
 	{
 		IMG_Win->SetVisibility(ESlateVisibility::Hidden);

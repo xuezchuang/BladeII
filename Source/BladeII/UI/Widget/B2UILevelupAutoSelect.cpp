@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UILevelupAutoSelect.h"
 #include "B2UIManager.h"
@@ -190,7 +190,7 @@ void UB2UILevelupAutoSelect::UpdateTargetItemInfo()
 	auto* LobbyGM = Cast<AB2LobbyGameMode>(UGameplayStatics::GetGameMode(this));
 	auto* DJLegacyUIMgr = LobbyGM ? LobbyGM->DJLegacy_GetLobbyUIManager() : nullptr;
 	
-	// ·¹º§ °è»ê
+	// é¥­éª‡ æ‹Œé­‚
 	if (DJLegacyUIMgr)
 	{
 		auto* LevelupPopup = Cast<UB2LobbyUI_ItemLevelupMain>(DJLegacyUIMgr->DJLegacy_FindLobbySubPopup(ELobbySubPopups::ELSPU_ItemLevelUpMain));
@@ -208,7 +208,7 @@ void UB2UILevelupAutoSelect::UpdateTargetItemInfo()
 		}
 	}
 
-	// ºñ¿ë °è»ê
+	// åŽšä¾© æ‹Œé­‚
 	FText CostText;
 	if (LobbyInventory && LobbyInventory->GetCurrentItemOpGoldCost() > 0)
 	{

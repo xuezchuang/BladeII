@@ -1,4 +1,4 @@
-
+ï»¿
 #include "B2StageDataStore.h"
 #include "B2ClientDataStore.h"
 #include "B2StageManager.h"
@@ -111,10 +111,10 @@ void FStageDataStore::SetMasterData(const FB2MasterDatas& InMasterDatas)
 	//for (const b2network::B2mdStageInfoPtr& ThisInfo : AllmdStageInfo)
 	//{
 	//	FStageInfoGameplayData NewElem(ThisInfo);
-	//	StageGameplayDatas.Add(FServerStageID(ThisInfo->stage_id), NewElem); // ¿©±â¼­ stage_id´Â serverStageID
+	//	StageGameplayDatas.Add(FServerStageID(ThisInfo->stage_id), NewElem); // å’¯æ‰è¾‘ stage_idç»° serverStageID
 	//}
 
-	//// Cache StageGameplayDatas Key : ServerStageID¸¦ ºü¸£°Ô °Ë»öÇÏ±âÀ§ÇØ Map/StageDifficulty¸¦ ±âÁØÀ¸·Î »õ·Î¿î Å°°ªÀ» ¸¸µé¾îÁØ´Ù. (Ä³½Ì¿ë)
+	//// Cache StageGameplayDatas Key : ServerStageIDç”« ç‹ç¦éœ¸ å…«ç¥¸çªæ‰å›°ç§¦ Map/StageDifficultyç”« æ‰éœ–æ è‚º è´§è‚ºæ¬¾ è™è”¼é˜‘ çˆ¶ç”¸ç»¢éœ–ä¿ƒ. (æŸæ•™ä¾©)
 	//ServerStageIdMappingKeys.Empty();
 	//for (auto& stageInfo : StageGameplayDatas)
 	//{
@@ -153,8 +153,8 @@ void FStageDataStore::AddMDStageGamePlayData(FServerStageID InServerStageId, con
 
 void FStageDataStore::RequestGetActInfoAndChangeChapter(int32 ActId, EStageDifficulty Difficulty, bool bShortCut, FServerStageID ShortCutServerStageID)
 {
-	// ÀÏ¹İÀûÀÎ »óÈ²¿¡¼­ UI Chapter ºä ¿­ ¶§ »ç¿ë.
-	// µ¥ÀÌÅÍ°¡ ¾øÀ» ½Ã ¼­¹ö¿¡ ¿äÃ»ÇÏ´Â °É °âÇÔ.
+	// è€é¦†åˆ©ç‰¢ æƒ‘ç‚”ä¿Šè¾‘ UI Chapter è½° å‡¯ é”­ è¤ä¾©.
+	// å•æç£å•Š ç»é˜‘ çŸ« è¾‘æ»šä¿Š å¤¸æ²¡çªç»° å§ æ‰³çªƒ.
 
 	BLADE2_SCOPE_CYCLE_COUNTER(FStageDataStore_RequestGetActInfoAndChangeChapter);
 	ensure(ActId > 0);
@@ -180,10 +180,10 @@ void FStageDataStore::RequestGetActInfoAndChangeChapter(int32 ActId, EStageDiffi
 	bChangeChapterShortCut = bShortCut;
 	ShortCutSvrStageID = ShortCutServerStageID;
 	
-	if (ActId == 0)//ºñÁ¤»óÀûÀÎ ¹æ¹ıÀ¸·Î µé¾î¿Ô°Å³ª ¼­¹öÁ¢¼ÓÀÌ Áö¿¬µÇ¼­ ÃÊ±â°ª ¼³Á¤ÀÌ Àß¸øµÇ¾ú°Å³ª..
+	if (ActId == 0)//åšæ²¥æƒ‘åˆ©ç‰¢ è§„è¿‡æ è‚º ç”¸ç»¢å­èŠ­å”± è¾‘æ»šç«‹åŠ æ ç˜¤æ¥·ç™»è¾‘ æª¬æ‰è”¼ æ±²æ²¥æ è‚‹ç»™ç™»èŒèŠ­å”±..
 		ActId = 1;
 
-	RequestedActId = ActId; // ²À ¼­¹ö·Î request Çß´Ü ÀÇ¹Ì´Â ¾Æ´Ñ..
+	RequestedActId = ActId; // æ€– è¾‘æ»šè‚º request æ²çªœ ç‹¼å›ºç»° é…’å›±..
 	RequestedActDifficulty = Difficulty;
 
 	auto DocChapter = Cast<UB2UIDocChapter>(UB2UIDocHelper::GetDocChapter());
@@ -195,15 +195,15 @@ void FStageDataStore::RequestGetActInfoAndChangeChapter(int32 ActId, EStageDiffi
 
 	if (IsCachedActData(ActId, Difficulty))
 	{
-		ChangeChapterScene(); // µ¥ÀÌÅÍ°¡ ÀÖÀ¸´Ï Áö¿¬ ¾øÀÌ ¹Ù·Î ¿¬´Ù.
+		ChangeChapterScene(); // å•æç£å•Š ä¹æ èª ç˜¤æ¥· ç»æ å®˜è‚º æ¥·ä¿ƒ.
 	}
 	else
 	{
 		if (!bHasRequestedActInfo && !bHasRequestedActInfoWithChangeSceneReserve)
 		{
-			// ¼­¹ö¿¡ ¿äÃ»À» ÇÏ¸é¼­.. Response °¡ ¿ÔÀ» ½Ã Àå¸é ±³Ã¼¿¡ ´ëÇÑ ¿¹¾àµµ ÇØ ³õ´Â´Ù.
+			// è¾‘æ»šä¿Š å¤¸æ²¡é˜‘ çªæè¾‘.. Response å•Š å­é˜‘ çŸ« å˜æ èƒŒçœ‰ä¿Š æªèŒ„ æŠ—è·æ¡£ ç§¦ åˆç»°ä¿ƒ.
 			bool bActuallyRequested = ConditionalRequestGetActInfo(ActId, Difficulty, bShortCut, ShortCutServerStageID);
-			check(bActuallyRequested); // ½ÇÇà ·çÆ®»ó ÀÌ·¸°Ô µÇ¾î¾ß..
+			check(bActuallyRequested); // è§’é’ é£é£˜æƒ‘ æçŠ¯éœ¸ ç™»ç»¢å…·..
 			if (bActuallyRequested)
 			{
 				bHasRequestedActInfoWithChangeSceneReserve = true;
@@ -214,26 +214,26 @@ void FStageDataStore::RequestGetActInfoAndChangeChapter(int32 ActId, EStageDiffi
 
 bool FStageDataStore::ConditionalRequestGetActInfo(int32 ActId, EStageDifficulty Difficulty, bool  bShortCut, FServerStageID ShortCutServerStageID)
 {
-	// ÀÌ°É RequestGetActInfoAndChangeChapter ÀÌÀü¿¡ pre-fetching À¸·Î »ç¿ëÇÒ ¼ö ÀÖ°Ô ÇÏ¸é Ã©ÅÍºä ¿©´Â °É Ãß°¡ ÃÖÀûÈ­ ÇÒ ¼ö ÀÖ´Ù..
-	// Áö±İÀº ¾à°£ÀÇ ¼ÕÁúÀÌ ÇÊ¿ä.
+	// æå§ RequestGetActInfoAndChangeChapter æå‚ˆä¿Š pre-fetching æ è‚º è¤ä¾©ä¸” è ä¹éœ¸ çªæ èŒ…ç£è½° å’¯ç»° å§ çœ å•Š å¼¥åˆ©æ‹³ ä¸” è ä¹ä¿ƒ..
+	// ç˜¤é™›ç¯® è·åŸƒç‹¼ é¢Šé¾™æ é˜å¤¸.
 
 	BLADE2_SCOPE_CYCLE_COUNTER(FStageDataStore_RequestGetActInfo);
 	ensure(ActId > 0);
 
-	if (ActId == 0)//ºñÁ¤»óÀûÀÎ ¹æ¹ıÀ¸·Î µé¾î¿Ô°Å³ª ¼­¹öÁ¢¼ÓÀÌ Áö¿¬µÇ¼­ ÃÊ±â°ª ¼³Á¤ÀÌ Àß¸øµÇ¾ú°Å³ª..
+	if (ActId == 0)//åšæ²¥æƒ‘åˆ©ç‰¢ è§„è¿‡æ è‚º ç”¸ç»¢å­èŠ­å”± è¾‘æ»šç«‹åŠ æ ç˜¤æ¥·ç™»è¾‘ æª¬æ‰è”¼ æ±²æ²¥æ è‚‹ç»™ç™»èŒèŠ­å”±..
 		ActId = 1;
 
-	if (!IsCachedActData(ActId, Difficulty) && !bHasRequestedActInfo) // ÀÌÀü ¿äÃ»¿¡ ´ëÇÑ ÀÀ´äÀÌ Ã³¸® ¾ÈµÈ »óÅÂ¿¡¼­´Â ½ºÅµ.
+	if (!IsCachedActData(ActId, Difficulty) && !bHasRequestedActInfo) // æå‚ˆ å¤¸æ²¡ä¿Š æªèŒ„ è§ˆç¿ æ è´¸åºœ æ•‘ç­‰ æƒ‘æ€•ä¿Šè¾‘ç»° èƒ¶è¯º.
 	{
 		bHasRequestedActInfo = true;
-		RequestedActId = ActId; // ÀÌ °æ¿ì´Â ½ÇÁ¦·Î ¼­¹ö·Î ¿äÃ»ÇÑ °ªÀÌ µÇ°Ú´Ù.
+		RequestedActId = ActId; // æ ç‰ˆå¿«ç»° è§’åŠ›è‚º è¾‘æ»šè‚º å¤¸æ²¡èŒ„ è”¼æ ç™»æ‘†ä¿ƒ.
 		RequestedActDifficulty = Difficulty;
 
-		//ActorID°¡ INDEX_NONEÀÏ ¼öµµ ÀÖÀ¸´Ï ¿©±â¼­µµ °Ë»çÇÔ
+		//ActorIDå•Š INDEX_NONEè€ èæ¡£ ä¹æ èª å’¯æ‰è¾‘æ¡£ å…«è¤çªƒ
 		ensure(ActId > 0);
 		data_trader::Retailer::GetInstance().RequestGetActInfo(CliToSvrStageDifficulty(Difficulty), ActId);
 
-		return true; // ½ÇÁ¦ ¿äÃ»À» ÇÑ °Í¿¡ ´ëÇØ true ¸®ÅÏ.
+		return true; // è§’åŠ› å¤¸æ²¡é˜‘ èŒ„ å·´ä¿Š æªç§¦ true åºœç•”.
 	}
 	return false;
 }
@@ -243,7 +243,7 @@ void FStageDataStore::ResponseGetActInfo(FB2OriginGetActInfoPtr ActInfo)
 	BLADE2_SCOPE_CYCLE_COUNTER(FStageDataStore_ResponseGetActInfo);
 	CacheActData(RequestedActId, RequestedActDifficulty, ActInfo);
 
-	// Act°ü·Ã UIDoc º¯°æ
+	// ActåŒ…è®¿ UIDoc å‡½ç‰ˆ
 	if (UB2UIDocChapter* DocChapter = UB2UIDocHelper::GetDocChapter())
 	{
 		if (UB2ChapterInfo* ChapterInfoTable = StaticFindChapterInfo())
@@ -258,40 +258,40 @@ void FStageDataStore::ResponseGetActInfo(FB2OriginGetActInfoPtr ActInfo)
 	checkSlow(bHasRequestedActInfo);
 	bHasRequestedActInfo = false;
 
-	if (bHasRequestedActInfoWithChangeSceneReserve) // µ¥ÀÌÅÍ ¿äÃ»ÇÏ¸é¼­ Ã©ÅÍ ºä·ÎÀÇ º¯°æµµ ¿¹¾àÇß´Ù¸é
+	if (bHasRequestedActInfoWithChangeSceneReserve) // å•æç£ å¤¸æ²¡çªæè¾‘ èŒ…ç£ è½°è‚ºç‹¼ å‡½ç‰ˆæ¡£ æŠ—è·æ²ä¿ƒæ
 	{
 		bHasRequestedActInfoWithChangeSceneReserve = false;
 		ChangeChapterScene();
 	}
 }
 
-/** ±âÁ¸ RequestGetActInfo ´Â ÀÇ¹Ì¸¦ ¸íÈ®È÷ ÇÏ°í ±â´ÉÀ» ±¸ºĞÇÏ±â À§ÇØ ´ëºÎºĞ RequestGetActInfoAndChangeChapter ·Î ´ëÃ¼µÊ.
- * ¿©±âµµ ÇÊ¿ä¿¡ µû¶ó.. Áö±İÀº ÀÌ RequestGetStageInfo °¡ UI ÀüÈ¯ ÀÇ¹Ìµµ Áö´Ï°í ÀÖÀ½. */
+/** æ‰ç²® RequestGetActInfo ç»° ç‹¼å›ºç”« ç–™çŠ¬æ´’ çªç»Š æ‰ç“·é˜‘ å¤‡ç›’çªæ‰ å›°ç§¦ æªä½•ç›’ RequestGetActInfoAndChangeChapter è‚º æªçœ‰å‡³.
+ * å’¯æ‰æ¡£ é˜å¤¸ä¿Š è¶æ‰¼.. ç˜¤é™›ç¯® æ RequestGetStageInfo å•Š UI å‚ˆåˆ¸ ç‹¼å›ºæ¡£ ç˜¤èªç»Š ä¹æ¾œ. */
 void FStageDataStore::RequestGetStageInfo(FServerStageID ServerStageId, bool bInForceReqToServer)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(FStageDataStore_RequestGetStageInfo);
-	// Note :	Ã©ÅÍ(Act)µ¥ÀÌÅÍ°¡ ¾øÀ¸¸é Ã©ÅÍ¸¦ ¸ÕÀú °¡Á®¿Àµµ·Ï ÇÏÀÚ.
-	//			Act¸¦ ¸ÕÀú °¡Á®¿Í¾ßÇÏ´Â ÀÌÀ¯´Â ¾×Æ® ÂÊ¿¡¼­ ¹Ì¸® ¼ÂÆÃµÇ´Â Á¤º¸°¡ ÀÖ±â ¶§¹® (¹İº¹´øÀü µîµî)
+	// Note :	èŒ…ç£(Act)å•æç£å•Š ç»æ æ èŒ…ç£ç”« åˆšå† å•Šå»‰å·æ¡£åºŸ çªç£Š.
+	//			Actç”« åˆšå† å•Šå»‰å®¢å…·çªç»° æèœ¡ç»° å’€é£˜ ç‡ä¿Šè¾‘ å›ºåºœ æ‚¸æ³¼ç™»ç»° æ²¥ç„Šå•Š ä¹æ‰ é”­å·© (é¦†æ±—å¸¦å‚ˆ æ®¿æ®¿)
 	int32 ActId = GetActIdByClientStageId(GetClientStageId(ServerStageId));
 	EStageDifficulty Difficulty = GetStageDifficulty(ServerStageId);
 		
 	if (bInForceReqToServer && IsCachedActData(ActId, Difficulty) == false)
 	{
-		// ¿©±â ÀÀ´ä¿¡¼­ ´Ù½Ã RequestGetStageInfo °¡ È£ÃâµÉ °ÍÀÓ..
-		// ´ëÃ¼ ¿Ö ÀÌ·¸°Ô À§ÇèÇÑ ¼øÈ¯½Ä È£Ãâ ±¸Á¶°¡ µÈ °ÇÁö ¸ğ¸£°Ú´Ù.. ÁÖÀÇ°¡ ÇÊ¿ä.. ¤Ğ¤Ğ
+		// å’¯æ‰ è§ˆç¿ ä¿Šè¾‘ ä¿ƒçŸ« RequestGetStageInfo å•Š é¾‹å…çª å·´çƒ™..
+		// æªçœ‰ æ æçŠ¯éœ¸ å›°æ°°èŒ„ é‰´åˆ¸ä¾¥ é¾‹å… å¤‡ç‚¼å•Š ç­‰ æ‰’ç˜¤ è‘›ç¦æ‘†ä¿ƒ.. æ—ç‹¼å•Š é˜å¤¸.. ã°ã°
 		RequestGetActInfoAndChangeChapter(ActId, Difficulty, true, ServerStageId);
 		return;
 	}
 
 	RequestedServerStageId = ServerStageId;
 
-	// ÀÌÀü¿¡ FB2MessageInfoResponseGetStageInfo °¡ static µ¥ÀÌÅÍµé·Î¸¸ µÇ¾î ÀÖÀ» ¶§¿¡´Â ÇÑ¹ø ¹Ş°í ³ª¸é Ä³½ÌÇÑ °É ²¨³»¼­ ¾²±â¸¸ ÇßÀ¸³ª 
-	// ÀÌÁ¦´Â ½ÇÇà µµÁß º¯°æµÉ ¼ö ÀÖ´Â µ¥ÀÌÅÍ°¡ µé¾î°¡¼­ ´Ù½Ã ¿äÃ»ÇÒ ¼ö ÀÖµµ·Ï ÇÑ´Ù.
+	// æå‚ˆä¿Š FB2MessageInfoResponseGetStageInfo å•Š static å•æç£ç”¸è‚ºçˆ¶ ç™»ç»¢ ä¹é˜‘ é”­ä¿Šç»° èŒ„é”… ç½ç»Š å”±æ æŸæ•™èŒ„ å§ æ³¢éƒ´è¾‘ é™æ‰çˆ¶ æ²æ å”± 
+	// æåŠ›ç»° è§’é’ æ¡£å å‡½ç‰ˆçª è ä¹ç»° å•æç£å•Š ç”¸ç»¢å•Šè¾‘ ä¿ƒçŸ« å¤¸æ²¡ä¸” è ä¹æ¡£åºŸ èŒ„ä¿ƒ.
 	if (!IsCachedStageData(ServerStageId) || bInForceReqToServer) {
 		data_trader::Retailer::GetInstance().RequestGetStageInfo(ServerStageId);
 	}
 	else {
-		// ¿©±â¼­ ¹İº¹ÀüÅõ °ü·Ã Ã³¸®´Â ÇÏÁö ¾Ê´Â´Ù.
+		// å’¯æ‰è¾‘ é¦†æ±—å‚ˆæ§ åŒ…è®¿ è´¸åºœç»° çªç˜¤ è‡¼ç»°ä¿ƒ.
 
 		UB2UIDocBattleStage* DocBS = UB2UIDocHelper::GetDocBattleStage();
 		if (DocBS)
@@ -323,8 +323,8 @@ void FStageDataStore::ResponseGetStageInfo(FB2OriginGetStageInfoPtr StageInfo)
 		RepeatBattleRequestState.bRepeatOne = DocBS->GetRepeatBattleLoopOne();
 		RepeatBattleRequestState.bRepeatAll = DocBS->GetRepeatBattleLoopAll();
 		RepeatBattleRequestState.bBoostOn = DocBS->GetRepeatBattleBoostOn();
-		// colosseum comment : 3¹è ¸ğÇè ÀÌ¿ë±Ç
-		// TODO : ±âÁ¸Àº ´©Àû Ä«¿îÆ®¸¦ ¸®ÅÏ Çß´Ù¸é ÇöÀç´Â º¸À¯ÁßÀÎ ÀÌ¿ë±Ç Ä«¿îÆ®¸¦ ¸®ÅÏÇÑ´Ù.
+		// colosseum comment : 3ç¡… è‘›æ°° æä¾©é¼»
+		// TODO : æ‰ç²®ç¯® ç©¿åˆ© å¢¨æ¬¾é£˜ç”« åºœç•” æ²ä¿ƒæ æ³…çŠç»° ç„Šèœ¡åç‰¢ æä¾©é¼» å¢¨æ¬¾é£˜ç”« åºœç•”èŒ„ä¿ƒ.
 		RepeatBattleRequestState.RemainingBoostCount = StageInfo->stage_boost_ticket;
 		BladeIIGameImpl::GetClientDataStore().ReplaceUserDataWithDoc(EDocUserDataType::StageBoostTicket, StageInfo->stage_boost_ticket);
 
@@ -339,7 +339,7 @@ void FStageDataStore::ResponseGetStageInfo(FB2OriginGetStageInfoPtr StageInfo)
 		}
 		DocBS->SetStageClearConditions(StageClearConditions);
 
-		// ¿©±â¼­ ¹İº¹ÀüÅõ °ü·Ã Ã³¸®´Â ÇÏÁö ¾Ê´Â´Ù.
+		// å’¯æ‰è¾‘ é¦†æ±—å‚ˆæ§ åŒ…è®¿ è´¸åºœç»° çªç˜¤ è‡¼ç»°ä¿ƒ.
 		GoGameStageInfoFromLobbyClass<FServerStageID, FRepeatBattleStateSet>::GetInstance().Signal(RequestedServerStageId, RepeatBattleRequestState);
 	}
 }
@@ -351,7 +351,7 @@ void FStageDataStore::SetActRewardState(FB2OriginGetActInfoPtr ActInfo)
 	if (ActInfo != nullptr)
 	{
 		CachedActStarRewards.Empty();
-		// ¹Ş´Â Reward ÇöÈ²Àº Ç×»ó ÃÖ½ÅÀ¸·Î À¯Áö
+		// ç½ç»° Reward æ³…ç‚”ç¯® äº²æƒ‘ å¼¥è„šæ è‚º èœ¡ç˜¤
 		for (b2network::B2ActIdentifierPtr RewardInfo : ActInfo->has_reward_acts)
 		{
 			if (RewardInfo != nullptr)
@@ -448,7 +448,7 @@ bool FStageDataStore::IsCachedActData(int32 ActId, EStageDifficulty Difficulty)
 void FStageDataStore::CacheStageData(FServerStageID ServerStageId, FB2OriginGetStageInfoPtr StageInfo)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(FStageDataStore_CacheStageData);
-	CachedStageDatas.Remove(ServerStageId); // Add ÇÏ¸é µ¤¾î¾²±ä ÇÏÁö¸¸ Remove ¸ÕÀú ÇÏ´Â °Ô º¸´Ù È®½ÇÇÔ. ¹º°¡ Á» ´Ù¸§.
+	CachedStageDatas.Remove(ServerStageId); // Add çªæ ä¸¹ç»¢é™å˜ çªç˜¤çˆ¶ Remove åˆšå† çªç»° éœ¸ ç„Šä¿ƒ çŠ¬è§’çªƒ. è´­å•Š ç²± ä¿ƒæŠš.
 	CachedStageDatas.Add(ServerStageId, FB2StageData(StageInfo));
 }
 
@@ -577,7 +577,7 @@ void FStageDataStore::GetStageRewardPreviewItems(FServerStageID ServerStageId, T
 			int32 index = OutRewardInfo.AddDefaulted();
 			if (index != INDEX_NONE)
 			{
-				//±×·ì ´ëÇ¥ ¾ÆÀÌÄÜÀº °¡»óÀÇ ¾ÆÀÌÅÛÀ¸·Î ±×·ì¾ÆÀÌµğ¿Í Å¸ÀÔ Á¶ÇÕÀ¸·Î ID¸¦ °¡Áø´Ù. ±×·¸Áö¸¸ ³ª¸§ ItemInfo Å×ÀÌºí¿¡ µî·ÏµÇ¾î ÀÖÀ½.
+				//å¼Šç¼ æªé’ é…’æèƒ½ç¯® å•Šæƒ‘ç‹¼ é…’æè¢æ è‚º å¼Šç¼é…’æå¼å®¢ é¸¥æ¶ ç‚¼é’¦æ è‚º IDç”« å•ŠæŸ³ä¿ƒ. å¼ŠçŠ¯ç˜¤çˆ¶ å”±æŠš ItemInfo æŠ›æå–‰ä¿Š æ®¿åºŸç™»ç»¢ ä¹æ¾œ.
 				int32 RewardRepresentativeRefId = FItemRefIDHelper::GenerateRewardRepresentativeItemID(RewardItem->group_id, RewardItem->type);
 
 				FB2RewardItemPreviewInfo& ThisInfo = OutRewardInfo[index];
@@ -587,7 +587,7 @@ void FStageDataStore::GetStageRewardPreviewItems(FServerStageID ServerStageId, T
 				ThisInfo.SomeCommonData.ItemClass = SvrToCliItemClass(RewardItem->type);
 				ThisInfo.SomeCommonData.PrimaryPointType = SvrToCliPrimPointType(RewardItem->main_attribute);
 
-				//ÅøÆÁÀ¸·Î º¸¿©Áú Ãß°¡ µ¥ÀÌÅÍ
+				//ç ’å±æ è‚º ç„Šå’¯é¾™ çœ å•Š å•æç£
 				ThisInfo.PrimPointMinValue = RewardItem->main_attribute_value_min;
 				ThisInfo.PrimPointMaxValue = RewardItem->main_attribute_value_max;
 				ThisInfo.RandomOptionCount = RewardItem->random_option_count;
@@ -645,7 +645,7 @@ void FStageDataStore::GetStageAetherPreviewItems(FServerStageID ServerStageId, T
 				FB2AetherItemPreviewInfo& ThisInfo = OutAetherInfo[index];
 
 				ThisInfo.AetherType = AetherItem->type;
-				ThisInfo.AetherTiers = AetherItem->tiers;	// M20¿¡¼­ »ç¿ë ¾ÈÇÔ ÃßÈÄ ÆË¾÷¿¡ ³ª¿Ã¶§ »ç¿ë (ºÀ¸¶, ºÒ¸ê °°Àº°Å..)
+				ThisInfo.AetherTiers = AetherItem->tiers;	// M20ä¿Šè¾‘ è¤ä¾© æ•‘çªƒ çœ é¥¶ æ‰‘è¯€ä¿Š å”±æ£µé”­ è¤ä¾© (è±ªä»˜, é˜‚æˆˆ éç¯®èŠ­..)
 				ThisInfo.AetherGrades = AetherItem->grades;
 
 				int32 MinGrade = 99;
@@ -693,7 +693,7 @@ void FStageDataStore::GetStageCostData(FServerStageID ServerStageId, int32& OutR
 	auto* StageInfo = CachedStageDatas.Find(ServerStageId);
 	if (StageInfo && StageInfo->ServerData)
 	{
-		//ÇöÀç´Â °ñµå·Î¸¸
+		//æ³…çŠç»° æ¦œé›è‚ºçˆ¶
 		OutRepeatBattleCostRefId = FItemRefIDHelper::GetGoodsID_Gold();
 		OutRepeatBattleCostCount = StageInfo->ServerData->auto_repeat_battle_cost;
 
@@ -804,7 +804,7 @@ bool FStageDataStore::IsFirstActClear(int32 ActNumber)
 bool FStageDataStore::IsFirstActOpen(int32 ActNumber)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(FStageDataStore_IsFirstActOpen);
-	if (ActNumber == 1)	// 1Àº Open ¶ç¿ìÁö¸¶
+	if (ActNumber == 1)	// 1ç¯® Open å‰å¿«ç˜¤ä»˜
 		return false;
 
 	int32 LastClearStage = GetLastClearClientId(EStageDifficulty::ESD_Normal);
@@ -941,14 +941,14 @@ float FStageDataStore::GetStageDifficultyScale(int32 ClientStageId, EStageDiffic
 	GConfig->GetBool(TEXT("/Script/BladeII"), TEXT("bUsingOnlyClientDataForBalancingTest"), bUsingOnlyClientDataForBalancingTest, GGameIni);
 
 	FServerStageID* ServerStageID = ServerStageIdMappingKeys.Find(GetCombineKey(ClientStageId, Difficulty));
-	// Scenario ¸ğµå¿¡¼­¸¸ ¼­¹ö¿¡¼­ µ¥ÀÌÅÍ¸¦ ¹Şµµ·Ï ÇÑ °ÍÀº M15 ºôµå ´ç½ÃÀÇ ÀÓ½ÃÀÌ´Ù. ¼­¹ö Å×ÀÌºí ÁØºñµÈ ÈÄ¿¡´Â ¿©±â·Î ³Ñ¾î¿À´Â TemporaryGameModeType À» ¾ø¾Ö¾ß ÇÔ. 
+	// Scenario è‘›é›ä¿Šè¾‘çˆ¶ è¾‘æ»šä¿Šè¾‘ å•æç£ç”« ç½æ¡£åºŸ èŒ„ å·´ç¯® M15 å‘¼é› å¯¸çŸ«ç‹¼ çƒ™çŸ«æä¿ƒ. è¾‘æ»š æŠ›æå–‰ éœ–åšç­‰ é¥¶ä¿Šç»° å’¯æ‰è‚º é€ç»¢å·ç»° TemporaryGameModeType é˜‘ ç»å±€å…· çªƒ. 
 	if (ServerStageID != nullptr && TemporaryGameModeType == EB2GameMode::Scenario)
 	{
 		if (FStageInfoGameplayData* ThisStageInfo = StageGameplayDatas.Find(*ServerStageID))
 			return ThisStageInfo->GetStageDifficultyScale_ServerData();
 	}
 	else
-		bUsingOnlyClientDataForBalancingTest = true; //¼­¹ö·ÎºÎÅÍ µ¥ÀÌÅÍ¸¦ ¹ŞÁö ¸øÇÑ °æ¿ì.
+		bUsingOnlyClientDataForBalancingTest = true; //è¾‘æ»šè‚ºä½•ç£ å•æç£ç”« ç½ç˜¤ ç»™èŒ„ ç‰ˆå¿«.
 
 	if (ShouldShowGDCVersionContent() || bUsingOnlyClientDataForBalancingTest)
 	{
@@ -973,12 +973,12 @@ EUIBattleDifficulty FStageDataStore::GetRelativeStageDifficulty(FServerStageID S
 
 	GetStageSuggestedCombatStats(ServerStageId, SuggestedAttack, SuggestedDefense);
 
-	// ¸ŞÀÎ ÅÂ±× ¿¬ÇÕ ½ºÅÈ
+	// çš‹ç‰¢ æ€•å¼Š æ¥·é’¦ èƒ¶æ¹ƒ
 	const float MyUnitedAttack = (MainClass == EPCClass::EPC_End ? 0 : CombatStatEval::GetPCAttack(MainClass))
 		+ (TagClass == EPCClass::EPC_End ? 0 : CombatStatEval::GetPCAttack(TagClass));
 	const float MyUnitedDefense = (MainClass == EPCClass::EPC_End ? 0 : CombatStatEval::GetPCDefense(MainClass))
 		+ (TagClass == EPCClass::EPC_End ? 0 : CombatStatEval::GetPCDefense(TagClass));
-	// °ø°İ ¹æ¾î ÇÕµ¿ ½ºÅÈ
+	// å‚æ‹œ è§„ç»¢ é’¦æ‚¼ èƒ¶æ¹ƒ
 	const float SuggestedJointStat = SuggestedAttack + SuggestedDefense;
 	const float MyJointCombatStat = MyUnitedAttack + MyUnitedDefense;
 
@@ -994,7 +994,7 @@ EUIBattleDifficulty FStageDataStore::GetRelativeStageDifficulty(FServerStageID S
 }
 
 int32 FStageDataStore::GetStageExpectedClearStarGrade(FServerStageID ServerStageId, int32 CurrentPlayTime)
-{ // ½ºÅ×ÀÌÁö Á¾·á ½Ã º¸¿©ÁÖ´Â Å¬¸®¾î ½Ã°£¿¡ µû¸¥ º° µî±Ş 1 ~ 3
+{ // èƒ¶æŠ›æç˜¤ è¾†ä¸° çŸ« ç„Šå’¯æ—ç»° åŠªåºœç»¢ çŸ«åŸƒä¿Š è¶å¼— å–Š æ®¿é­ 1 ~ 3
 	BLADE2_SCOPE_CYCLE_COUNTER(FStageDataStore_GetStageExpectedClearStarGrade);
 	FStageInfoGameplayData* ThisStageInfo = StageGameplayDatas.Find(ServerStageId);
 	if (ThisStageInfo)
@@ -1008,8 +1008,8 @@ int32 FStageDataStore::GetStageExpectedClearStarGrade(FServerStageID ServerStage
 }
 
 int32 FStageDataStore::GetTimeLimitForStageClearGrade(FServerStageID ServerStageId, int32 InStarGrade)
-{ // GetStageExpectedClearStarGrade ¿Í ¹İ´ë·Î StarGrade ¸¦ ´Ş¼ºÇÏ±â À§ÇÑ Á¦ÇÑ PlayTime À» ¸®ÅÏ.
-  // 0 Àº Á¶°Ç ¾ø´Â °É·Î.
+{ // GetStageExpectedClearStarGrade å®¢ é¦†æªè‚º StarGrade ç”« å´”å·±çªæ‰ å›°èŒ„ åŠ›èŒ„ PlayTime é˜‘ åºœç•”.
+  // 0 ç¯® ç‚¼æ‰’ ç»ç»° å§è‚º.
 	BLADE2_SCOPE_CYCLE_COUNTER(FStageDataStore_GetTimeLimitForStageClearGrade);
 	FStageInfoGameplayData* ThisStageInfo = StageGameplayDatas.Find(ServerStageId);
 	if (ThisStageInfo)
@@ -1040,7 +1040,7 @@ bool FStageDataStore::IsPossibleToDoRepeatBattle(FServerStageID ServerStageId)
 		if (CachedStage->enable_auto_repeat_battle == false)
 			return false;
 
-		// ¿µÈ¥°Ë °³¼ö´Â ±»ÀÌ ¹İº¹ ÀüÅõ ¾Æ´Ï¾îµµ ±âº» ÀüÅõ ¿ä°ÇÀÌ±âµµ ÇÑµ¥..
+		// åº·å»å…« ä¿ºèç»° è¢«æ é¦†æ±— å‚ˆæ§ é…’èªç»¢æ¡£ æ‰å¤¯ å‚ˆæ§ å¤¸æ‰’ææ‰æ¡£ èŒ„å•..
 		if (CachedStage->need_blade_point > BladeIIGameImpl::GetClientDataStore().GetBladeCurPoint())
 			return false;
 
@@ -1064,10 +1064,10 @@ bool FStageDataStore::IsEnoughGoldToRepeatBattle(FServerStageID ServerStageId)
 	{
 		FB2OriginGetStageInfoPtr CachedStage = StageInfo->ServerData;
 
-		// ³ªÁß¿¡ ¼­¹ö¿¡¼­ Àü´Ş¹ŞÀº Valid BuffÀÇ °¡°İ
+		// å”±åä¿Š è¾‘æ»šä¿Šè¾‘ å‚ˆå´”ç½ç¯® Valid Buffç‹¼ å•Šæ‹œ
 		TArray<EStageBuffType> CurrentBuffs;
 		UB2UIDocBattleStage* DocBS = UB2UIDocHelper::GetDocBattleStage();
-		if (DocBS != nullptr) // DocBattleStage ³»ºÎÀÇ Buff´Â Ç×»ó ÃÖ½ÅÀ¸·Î À¯ÁöÇØ¾ßÇÑ´Ù. [ ¼­¹ö Response ÀÌÈÄ ¹Ù·Î µ¿±âÈ­ ]
+		if (DocBS != nullptr) // DocBattleStage éƒ´ä½•ç‹¼ Buffç»° äº²æƒ‘ å¼¥è„šæ è‚º èœ¡ç˜¤ç§¦å…·èŒ„ä¿ƒ. [ è¾‘æ»š Response æé¥¶ å®˜è‚º æ‚¼æ‰æ‹³ ]
 		{
 			CurrentBuffs = DocBS->GetSelectedStageBuffs();
 		}
@@ -1136,15 +1136,15 @@ void FStageDataStore::SetActClearStageData(FServerStageID ServerStageId, int32 C
 		{
 			if (ServerStageId == StageClearInfo->stage_id)
 			{
-				StageClearInfo->clear_grade = FMath::Max(StageClearInfo->clear_grade, ClearGrade); // ´õ ³·¾ÆÁöÁö´Â ¾Ê´Â´Ù 
+				StageClearInfo->clear_grade = FMath::Max(StageClearInfo->clear_grade, ClearGrade); // æ­¹ æ’¤é…’ç˜¤ç˜¤ç»° è‡¼ç»°ä¿ƒ 
 				return;
 			}
 		}
 
-		// À§¿¡¼­ ¸®ÅÏµÇÁö ¾Ê¾Ò´Ù´Â°Ç Ã³À½ Å¬¸®¾îÇÑ ¸ÊÀÌ¶ó´Â ¶æ.
-		// ±âÁ¸¿¡ Ä³½ÌÇÑ µ¥ÀÌÅÍ¿¡ »õ Å¬¸®¾î ¸ÊÀÇ Á¤º¸°¡ ¾ø±â¶§¹®¿¡, ¼­¹ö·Î ¾×Æ® Á¤º¸ °»½Å ¿äÃ».
+		// å›°ä¿Šè¾‘ åºœç•”ç™»ç˜¤ è‡¼ç–½ä¿ƒç»°æ‰’ è´¸æ¾œ åŠªåºœç»¢èŒ„ ç”˜ææ‰¼ç»° èˆµ.
+		// æ‰ç²®ä¿Š æŸæ•™èŒ„ å•æç£ä¿Š è´§ åŠªåºœç»¢ ç”˜ç‹¼ æ²¥ç„Šå•Š ç»æ‰é”­å·©ä¿Š, è¾‘æ»šè‚º å’€é£˜ æ²¥ç„Š ç›è„š å¤¸æ²¡.
 		
-		CachedActDatas.Remove(GetCombineKey(ActId, Difficulty)); // ¼­¹ö ¾÷µ¥ÀÌÆ®¸¦ À§ÇØ Å° Á¦°Å
+		CachedActDatas.Remove(GetCombineKey(ActId, Difficulty)); // è¾‘æ»š è¯€å•æé£˜ç”« å›°ç§¦ è™ åŠ›èŠ­
 		ConditionalRequestGetActInfo(ActId, Difficulty); 
 	}
 }
@@ -1222,14 +1222,14 @@ int32 FStageDataStore::GetLastSubChapterNum(int32 ActNum)
 FServerStageID FStageDataStore::GetLastClearServerStageIdByLastPlayedStageDifficulty()
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(FStageDataStore_GetLastClearServerStageIdByLastPlayedStageDifficulty);
-	// °¡Àå ¸¶Áö¸·¿¡ ÇÃ·¹ÀÌÇÑ ³­ÀÌµµÀÇ ¸¶Áö¸· ½ºÅ×ÀÌÁö ¾ÆÀÌµğ ¹İÈ¯
+	// å•Šå˜ ä»˜ç˜¤é˜œä¿Š æ•²é¥­æèŒ„ æŠ„ææ¡£ç‹¼ ä»˜ç˜¤é˜œ èƒ¶æŠ›æç˜¤ é…’æå¼ é¦†åˆ¸
 	EStageDifficulty LastStageDifficulty = GetStageDifficulty(GetLastPlayedServerStageId());
 	return GetLastClearServerStageId(LastStageDifficulty);
 }
 
 FServerStageID FStageDataStore::GetNextClearServerStageIdByLastPlayedStageDifficulty()
 {
-	// °¡Àå ¸¶Áö¸·¿¡ ÇÃ·¹ÀÌÇÑ ³­ÀÌµµÀÇ ¸¶Áö¸· ½ºÅ×ÀÌÁö ¾ÆÀÌµğ ¹İÈ¯
+	// å•Šå˜ ä»˜ç˜¤é˜œä¿Š æ•²é¥­æèŒ„ æŠ„ææ¡£ç‹¼ ä»˜ç˜¤é˜œ èƒ¶æŠ›æç˜¤ é…’æå¼ é¦†åˆ¸
 	BLADE2_SCOPE_CYCLE_COUNTER(FStageDataStore_GetNextClearServerStageIdByLastPlayedStageDifficulty);
 	EStageDifficulty LastStageDifficulty = GetStageDifficulty(GetLastPlayedServerStageId());
 	return GetNextClearServerStageId(LastStageDifficulty);
@@ -1269,7 +1269,7 @@ EStageDifficulty FStageDataStore::GetMaxOpenedStageDifficulty()
 
 EStageDifficulty FStageDataStore::GetMaxOpenedNewStageDifficulty(int32 InChapter)
 {
-	FServerStageID LastServerID;		//InChapter * 10 ÀÌ ¸¶Áö¸·½ºÅ×ÀÌÁö¶ó´Â °¡Á¤ÇÏ¿¡ °è»êÇÏ´Ù
+	FServerStageID LastServerID;		//InChapter * 10 æ ä»˜ç˜¤é˜œèƒ¶æŠ›æç˜¤æ‰¼ç»° å•Šæ²¥çªä¿Š æ‹Œé­‚çªä¿ƒ
 
 	LastServerID = GetServerStageID(InChapter * 10 , EStageDifficulty::ESD_VeryHard);
 
@@ -1358,7 +1358,7 @@ FServerStageID FStageDataStore::GetNextClearServerStageId(EStageDifficulty InDif
 	}
 
 
-	// ÇöÀç ³­ÀÌµµ¿¡ ´ÙÀ½ ½ºÅ×ÀÌÁö ¹øÈ£¸¦ Ã£¾ÆÁØ´Ù.
+	// æ³…çŠ æŠ„ææ¡£ä¿Š ä¿ƒæ¾œ èƒ¶æŠ›æç˜¤ é”…é¾‹ç”« èŒ«é…’éœ–ä¿ƒ.
 	return GetServerStageID(GetClientStageId(lastClearServerStageId) + 1, GetStageDifficulty(lastClearServerStageId));
 }
 
@@ -1424,7 +1424,7 @@ bool FStageDataStore::IsClearedStartAdventureModeClientStageId(EStageDifficulty 
 }
 
 bool FStageDataStore::CanAdventureMode(EStageDifficulty InCheckDifficulty /*= EStageDifficulty::ESD_Normal*/, bool IsNext /*= false*/)
-{ // ÇØ´ç ³­ÀÌµµ¸¦ ¼±ÅÃÇÒ ¼ö ÀÖ´ÂÁö Ã¼Å©
+{ // ç§¦å¯¸ æŠ„ææ¡£ç”« æ€¥ç¶ä¸” è ä¹ç»°ç˜¤ çœ‰å†œ
 	BLADE2_SCOPE_CYCLE_COUNTER(FStageDataStore_CanAdventureMode);
 	if (InCheckDifficulty == EStageDifficulty::ESD_None)
 		return false;
@@ -1432,7 +1432,7 @@ bool FStageDataStore::CanAdventureMode(EStageDifficulty InCheckDifficulty /*= ES
 	if (InCheckDifficulty == EStageDifficulty::ESD_Normal)
 		return true;
 
-	// Note : ÀÌÀü ³­ÀÌµµ¿¡¼­ ½ºÅ×ÀÌÁö¸¦ AdventureModeClientStageIdÀÌ»óÀ» Å¬¸®¾îÇßÀ»½Ã ³­ÀÌµµ ¼±ÅÃ °¡´É
+	// Note : æå‚ˆ æŠ„ææ¡£ä¿Šè¾‘ èƒ¶æŠ›æç˜¤ç”« AdventureModeClientStageIdææƒ‘é˜‘ åŠªåºœç»¢æ²é˜‘çŸ« æŠ„ææ¡£ æ€¥ç¶ å•Šç“·
 	EStageDifficulty PreDifficulty = static_cast<EStageDifficulty>((int32)InCheckDifficulty - 1);
 	return IsClearedStartAdventureModeClientStageId(PreDifficulty, IsNext);
 }
@@ -1469,7 +1469,7 @@ int32 FStageDataStore::GetStageBuffGoldCost(FServerStageID ServerStageId, const 
 		for (EStageBuffType ThisBuff : InAllSelectedType)
 		{
 			/*
-			// Buff Ticket Á¦ÀÛµÇ¸é ±¸Çö
+			// Buff Ticket åŠ›ç´¯ç™»æ å¤‡æ³…
 			if (bExceptBuffTicket && HasFreeTicket(ThisBuff))
 			continue;
 			*/
@@ -1543,7 +1543,7 @@ void FStageDataStore::ResponseChapterClearReward(const FB2GetReceiveActClearRewa
 	//		int32 RewardedInfoIndex = GET_TUPLE_DATA(FB2ResponseReceiveActClearReward::reward_index_index, ResponseRewardInfo);
 
 	//		for (b2network::B2ActRewardInfoPtr& RewardInfo : ActInfo->ServerData->reward_infos)
-	//		{ // ÀÌ¹ø¿¡ º¸»óÀ» ¹ŞÀº index ÀÇ info ¸¦ Ã£¾Æ¼­ ¹Ş¾ÒÀ½ Ç¥½Ã
+	//		{ // æé”…ä¿Š ç„Šæƒ‘é˜‘ ç½ç¯® index ç‹¼ info ç”« èŒ«é…’è¾‘ ç½ç–½æ¾œ é’çŸ«
 	//			if (RewardInfo->reward_index == RewardedInfoIndex)
 	//			{
 	//				RewardInfo->received = true;
@@ -1552,7 +1552,7 @@ void FStageDataStore::ResponseChapterClearReward(const FB2GetReceiveActClearRewa
 	//		}
 	//	}
 
-	//	// ¾÷µ¥ÀÌÆ® ÇßÀ¸¸é »õ·Î Á¤º¸ ¾ò¾î¿Í¼­ UIDoc ÂÊ¿¡ ¼¼ÆÃ.
+	//	// è¯€å•æé£˜ æ²æ æ è´§è‚º æ²¥ç„Š æ˜ç»¢å®¢è¾‘ UIDoc ç‡ä¿Š æŠ€æ³¼.
 	//	UB2UIDocChapter* DocChapter = UB2UIDocHelper::GetDocChapter();
 	//	if (DocChapter)
 	//	{
@@ -1598,7 +1598,7 @@ void FStageDataStore::ResponseRepeatMissionClearReward(const FB2GetReceiveActRep
 	//if (FB2OriginAccountInfoPtr AccountInfo = BladeIIGameImpl::GetClientDataStore().GetAccountInfo())
 	//	AccountInfo->money += RewardGold;	
 
-	//// Ãß°¡·Î UI ¿¬ÃâÀ» À§ÇÑ ÀÌº¥Æ® ½Ã±×³Î
+	//// çœ å•Šè‚º UI æ¥·å…é˜‘ å›°èŒ„ æäº¥é£˜ çŸ«å¼Šæ¾„
 	//LobbyReceivedRepeatClearRewardClass<int32>::GetInstance().Signal(RewardGold);
 
 	//RequestedActIdForRepeatClearReward = -1;

@@ -1,4 +1,4 @@
-
+ï»¿
 
 
 #include "BladeIIGameImpl.h"
@@ -85,21 +85,21 @@ FCostumeDataStore BladeIIGameImpl::CostumeDataStore;
 FTotemDataStore BladeIIGameImpl::TotemDataStore;
 //
 //#if WITH_EDITOR
-///** Æ¯Á¤ ÁøÇàµµ¿¡¼­ ¸ØÃç¼± Ã¤ ±â³ª±ä ½Ã°£À» ¼Ò¸ğÇÏ´Â B2 ÄÁÅÙÃ÷ ·Îµù progresss ¸¦ Ç¥½ÃÇÏ±â À§ÇÑ hack */
+///** æ¼‚æ²¥ æŸ³é’æ¡£ä¿Šè¾‘ è‚›è‹—æ€¥ ç›² æ‰å”±å˜ çŸ«åŸƒé˜‘ å®¶è‘›çªç»° B2 ç‰§åˆ¨æ˜ è‚ºçˆ¹ progresss ç”« é’çŸ«çªæ‰ å›°èŒ„ hack */
 //float GB2ContentLoadingProgress = 0.0f; // 0.0 ~ 1.0
-//										/** StartupModule ¸¦ °ÅÄ¡¸é¼­ ±âº» progress °¡ °íÁ¤µÇ¾î ÀÖ´Â µ¿¾È ÀÌ°É·Î B2 ÄÁÅÙÃ÷ ·Îµù ÇöÈ²À» Ç¥½ÃÇÑ´Ù. 0 ~ 1 »çÀÌ·Î */
+//										/** StartupModule ç”« èŠ­æ‘¹æè¾‘ æ‰å¤¯ progress å•Š ç»Šæ²¥ç™»ç»¢ ä¹ç»° æ‚¼æ•‘ æå§è‚º B2 ç‰§åˆ¨æ˜ è‚ºçˆ¹ æ³…ç‚”é˜‘ é’çŸ«èŒ„ä¿ƒ. 0 ~ 1 è¤æè‚º */
 //void EditorSetB2ContentLoadingProgressSplash(float InProgress)
 //{
 //	if (GIsEditor)
 //	{
 //		GB2ContentLoadingProgress = FMath::Clamp(InProgress, 0.0f, 1.0f);
-//		// ±âº» splash ÅØ½ºÆ® µÚ¿¡´Ù ºÙÀÏ °Å.
+//		// æ‰å¤¯ splash å’†èƒ¶é£˜ ç¬¬ä¿Šä¿ƒ å˜¿è€ èŠ­.
 //		FString OurProgressText = FString::Printf(TEXT(" (Loading BladeII contents.. %d%%)"), (int32)(GB2ContentLoadingProgress * 100.0f / 1.0f));
 //		SetAdditionalStartupProgressSplashText(OurProgressText);
 //	}
 //}
 //void BeginB2ContentLoadingProgressSplash()
-//{ // ¸ğÁ¾ÀÇ ÇÃ·¡±×¸¦ ¼¼ÆÃÇÒ ¼öµµ..
+//{ // è‘›è¾†ç‹¼ æ•²è´°å¼Šç”« æŠ€æ³¼ä¸” èæ¡£..
 //	if (GIsEditor)
 //	{
 //		EditorSetB2ContentLoadingProgressSplash(0.0f);
@@ -122,25 +122,25 @@ FTotemDataStore BladeIIGameImpl::TotemDataStore;
 //#if WITH_EDITOR
 //	if (CanLoadInfoAssetWhileStartupModule())
 //	{
-//		//Editor¿¡¼­ °ÔÀÓÇÁ·ÎÁ§Æ®ÀÇ LocRes¸¦ ·ÎµùÇÏÁö ¾Ê°í ÀÖ¾î¼­ ¸®¼Ò½ºÀÇ FText Ã£±â¿¡ ¹®Á¦°¡ ÀÖ´Ù.
-//		//Ãß°¡·Î ·ÎµåÇØ¾ßÇÒ ÇÊ¿ä°¡ ÀÖ´Ù.
+//		//Editorä¿Šè¾‘ éœ¸çƒ™æ©‡è‚ºç’ƒé£˜ç‹¼ LocResç”« è‚ºçˆ¹çªç˜¤ è‡¼ç»Š ä¹ç»¢è¾‘ åºœå®¶èƒ¶ç‹¼ FText èŒ«æ‰ä¿Š å·©åŠ›å•Š ä¹ä¿ƒ.
+//		//çœ å•Šè‚º è‚ºé›ç§¦å…·ä¸” é˜å¤¸å•Š ä¹ä¿ƒ.
 //		GConfig->SetString(TEXT("Internationalization"), TEXT("NativeGameCulture"), *FInternationalization::Get().GetCurrentCulture().Get().GetName(), GEditorSettingsIni);
 //		FInternationalization::Get().OnCultureChanged().Broadcast();
 //
-//		// TAsset Lazy-loading À» ÇÏ´Â ¿¡¼ÂµéÀ» ¿¡µğÅÍ¿¡¼± ¸ğµÎ ·ÎµùÇØ ³õÀ½. ÀÌ°É ¾È ÇÏ¸é Redirector Ã³¸®¿¡ ¹®Á¦°¡ ¹ß»ıÇÏ´Â °æ¿ì°¡ ÀÖÀ½
-//		// ¿©±â¼­ EditorLoadAll ¿¡ ÀÎÀÚ¸¦ ³Ö¾î¼­ ³»ºÎ¿¡¼­ progress °è»êÀ» ÇÏ´Â ¾ÖµéÀº Æ¯È÷³ª ¸ğµÎ ·ÎµùÇÒ °æ¿ì ¸Ş¸ğ¸®°¡ ¸¹ÀÌ ¿Ã¶ó¿À´Â major InfoAsset µéÀÎµ¥ 
-//		// ÀÌ°ÍµéÀÌ StaticFind** ¿¡¼­ ½Ã°£ ¹× ¸Ş¸ğ¸® ¼Ò¸ğ°¡ ¸¹°í EditorLoadAll ¿¡¼­´Â º°´Ù¸¥ ½Ã°£À» ¸ÔÁö ¾Ê´Â´Ù¸é ÇØ´ç asset ÀÇ lazy-loading ÀÌ ¿Àµ¿ÀÛ ÇÏ´Â °Å¶ó°í ¿¹»óÇØ º¼ ¼ö ÀÖ´Ù.
+//		// TAsset Lazy-loading é˜‘ çªç»° ä¿Šæ‚¸ç”¸é˜‘ ä¿Šå¼ç£ä¿Šæ€¥ è‘›æ»´ è‚ºçˆ¹ç§¦ åˆæ¾œ. æå§ æ•‘ çªæ Redirector è´¸åºœä¿Š å·©åŠ›å•Š æƒ¯ç§¯çªç»° ç‰ˆå¿«å•Š ä¹æ¾œ
+//		// å’¯æ‰è¾‘ EditorLoadAll ä¿Š ç‰¢ç£Šç”« æŒç»¢è¾‘ éƒ´ä½•ä¿Šè¾‘ progress æ‹Œé­‚é˜‘ çªç»° å±€ç”¸ç¯® æ¼‚æ´’å”± è‘›æ»´ è‚ºçˆ¹ä¸” ç‰ˆå¿« çš‹è‘›åºœå•Š è…¹æ æ£µæ‰¼å·ç»° major InfoAsset ç”¸ç‰¢å• 
+//		// æå·´ç”¸æ StaticFind** ä¿Šè¾‘ çŸ«åŸƒ æ£º çš‹è‘›åºœ å®¶è‘›å•Š è…¹ç»Š EditorLoadAll ä¿Šè¾‘ç»° å–Šä¿ƒå¼— çŸ«åŸƒé˜‘ å†ˆç˜¤ è‡¼ç»°ä¿ƒæ ç§¦å¯¸ asset ç‹¼ lazy-loading æ å·æ‚¼ç´¯ çªç»° èŠ­æ‰¼ç»Š æŠ—æƒ‘ç§¦ æ­ è ä¹ä¿ƒ.
 //
 //		UB2NPCClassInfoBox* MobInfoBox = StaticFindMobClassInfoBox();
 //		if (MobInfoBox)
-//		{ // ¾Æ ÀÌ°Å °³¹ß ÁøÇàµÇ¸é¼­ Á¡Á¡ ´Ã¾î³ª´Ï full load ÇÏÁö ¸»ÀÚ.. ÀÌ°Ç full load ¾È ÇØµµ redirector Ã³¸® ¹®Á¦µÉ °Å ¾øÀ» µí..
+//		{ // é…’ æèŠ­ ä¿ºæƒ¯ æŸ³é’ç™»æè¾‘ ç—¢ç—¢ ç–µç»¢å”±èª full load çªç˜¤ å¯Œç£Š.. ææ‰’ full load æ•‘ ç§¦æ¡£ redirector è´¸åºœ å·©åŠ›çª èŠ­ ç»é˜‘ æ·€..
 //			//MobInfoBox->EditorLoadAll(EditorSetB2ContentLoadingProgressSplash, 0.02f, 0.4f);
 //		}
 //
 //		UB2PCClassInfoBox* PCInfoBox = StaticFindPCClassInfoBox();
 //		if (PCInfoBox)
-//		{ // ÀÌ°Å µî·ÏµÈ asset ÀÌ ¸î°³ µÇÁöµµ ¾Ê´Âµ¥ ¼³·É redirector Ã³¸® Àß¸øµÈ´Ù°í ÇØ¼­ Å«ÀÏ ³¯°Å ±îÁö¾ß. LoadEditorData ¿¡¼­ Á¦°Å
-//		  //PCInfoBox->EditorLoadAll(EditorSetB2ContentLoadingProgressSplash, 0.25f, 0.45f); EditorLoadAll ÇÏ°Ô µÇ¸é progress ¹üÀ§ Á¶Àı
+//		{ // æèŠ­ æ®¿åºŸç­‰ asset æ å‰²ä¿º ç™»ç˜¤æ¡£ è‡¼ç»°å• æ±²é£ redirector è´¸åºœ è‚‹ç»™ç­‰ä¿ƒç»Š ç§¦è¾‘ å¥´è€ æœèŠ­ é³–ç˜¤å…·. LoadEditorData ä¿Šè¾‘ åŠ›èŠ­
+//		  //PCInfoBox->EditorLoadAll(EditorSetB2ContentLoadingProgressSplash, 0.25f, 0.45f); EditorLoadAll çªéœ¸ ç™»æ progress è£¹å›° ç‚¼ä¾‹
 //		}
 //
 //		UB2CommonSoundInfo* CommonSoundInfo = StaticFindCommonSoundInfo();
@@ -164,8 +164,8 @@ FTotemDataStore BladeIIGameImpl::TotemDataStore;
 //		}
 //
 //		B2_CONTENT_LOADING_PROGRESS_SPLASH(0.2f);
-//		// ItemInfo °ÑÀ¸·Î º¸ÀÌ´Â Å×ÀÌºí »çÀÌÁî¿¡ ºñÇØ ½ÇÁ¦ ·ÎµùÇÏ´Â ¾çÀÌ ±×·¸°Ô ¸¹Áö´Â ¾ÊÀº µí.
-//		// DataTable ±â¹İÀÌ¶ó ½ÇÁ¦·Î full-load ¾È ÇÒ ½Ã redirector Ã³¸®¿¡ ¹®Á¦°¡ ÀÖ´ø °æÇèÀÌ ÀÖ°í ·¹ÆÛ·±½Ì ÇÏ´Â ¸®¼Ò½º°¡ ¿ö³«¿¡ ¸¹¾Æ ¿¡µğÅÍ¿¡¼± full load ÇÏ´Â °Ô ¾ÈÀüÇÏ´Ù.
+//		// ItemInfo æŠŠæ è‚º ç„Šæç»° æŠ›æå–‰ è¤æä»¤ä¿Š åšç§¦ è§’åŠ› è‚ºçˆ¹çªç»° å‰§æ å¼ŠçŠ¯éœ¸ è…¹ç˜¤ç»° è‡¼ç¯® æ·€.
+//		// DataTable æ‰é¦†ææ‰¼ è§’åŠ›è‚º full-load æ•‘ ä¸” çŸ« redirector è´¸åºœä¿Š å·©åŠ›å•Š ä¹å¸¦ ç‰ˆæ°°æ ä¹ç»Š é¥­æ¬ºç¹æ•™ çªç»° åºœå®¶èƒ¶å•Š å†µå€¡ä¿Š è…¹é…’ ä¿Šå¼ç£ä¿Šæ€¥ full load çªç»° éœ¸ æ•‘å‚ˆçªä¿ƒ.
 //		UB2ItemInfo* ItemInfoTable = StaticFindItemInfo();
 //		if (ItemInfoTable) {
 //			ItemInfoTable->EditorLoadAll(EditorSetB2ContentLoadingProgressSplash, 0.2f, 0.8f);
@@ -175,8 +175,8 @@ FTotemDataStore BladeIIGameImpl::TotemDataStore;
 //
 //		UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
 //		if (UIMgrInst)
-//		{ // ¾êµµ ÀÏ´Ü ¿¡µğÅÍ load ¸¦ ¾È ÇØµµ º° ¹®Á¦ ¾ø´Â °Å °°¾Æ Á¦¿ÜÇØ º½. ¿ö³« ¾çÀÌ °è¼Ó ´Ã¾î³ª´Â °Å±âµµ ÇÏ°í..
-//		  //UIMgrInst->EditorLoadAll(EditorSetB2ContentLoadingProgressSplash, 0.65f, 0.96f); EditorLoadAll ÇÏ°Ô µÇ¸é progress ¹üÀ§ Á¶Àı
+//		{ // å¨Ÿæ¡£ è€çªœ ä¿Šå¼ç£ load ç”« æ•‘ ç§¦æ¡£ å–Š å·©åŠ› ç»ç»° èŠ­ éé…’ åŠ›å¯‡ç§¦ èˆª. å†µå€¡ å‰§æ æ‹ŒåŠ  ç–µç»¢å”±ç»° èŠ­æ‰æ¡£ çªç»Š..
+//		  //UIMgrInst->EditorLoadAll(EditorSetB2ContentLoadingProgressSplash, 0.65f, 0.96f); EditorLoadAll çªéœ¸ ç™»æ progress è£¹å›° ç‚¼ä¾‹
 //		}
 //
 //		B2_CONTENT_LOADING_PROGRESS_SPLASH(0.88f);
@@ -192,7 +192,7 @@ FTotemDataStore BladeIIGameImpl::TotemDataStore;
 //		UB2SomeInfo* SomeInfo = StaticFindSomeInfo();
 //		if (SomeInfo)
 //		{
-//			SomeInfo->EditorLoadAll(); // ³ª¸ÓÁö Áß¿¡¼± ÀÌ°Ô Á» Å« µí.
+//			SomeInfo->EditorLoadAll(); // å”±èµ£ç˜¤ åä¿Šæ€¥ æéœ¸ ç²± å¥´ æ·€.
 //		}
 //
 //		B2_CONTENT_LOADING_PROGRESS_SPLASH(0.95f);
@@ -251,7 +251,7 @@ FTotemDataStore BladeIIGameImpl::TotemDataStore;
 //		{
 //#if !PLATFORM_MAC
 //			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-//				FString::Printf(TEXT("[Warning] BladeII ¸ğµâ¿¡¼­ ÇÊ¿ä·Î ÇÏ´Â ÇÊ¼ö InfoAsset À» Ã£Áö ¸øÇÔ. ÄÄÇ»ÅÍ°¡ °ğ Æø¹ßÇÑ´Ù."))
+//				FString::Printf(TEXT("[Warning] BladeII è‘›ç¢˜ä¿Šè¾‘ é˜å¤¸è‚º çªç»° é˜è InfoAsset é˜‘ èŒ«ç˜¤ ç»™çªƒ. å“ªè…”ç£å•Š æ¢† æ°”æƒ¯èŒ„ä¿ƒ."))
 //			));
 //#endif
 //		}
@@ -294,7 +294,7 @@ BladeIIGameImpl::BladeIIGameImpl()
 	FairyInfoTable = NULL;*/
 }
 
-/** InfoAsset Async loading On/Off ÇÃ·¡±×. Á¤½Ä ±â´ÉÀ¸·Î On/Off Á¦°øÇÏ°íÀÚ ÇÏ´Â °Ç ¾Æ´Ï°í ±â´ÉÀÌ ¾ÈÀüÇÏ´Ù°í È®½Ç½Ã µÉ ¶§±îÁö.. ½±ÇÎ ºôµå Àü´ŞÇß´Âµ¥ ÀÌ°É·Î ÀÇ½ÉµÇ´Â Å©·¡½¬°¡ ¹ß»ıÇÒ ¼öµµ ÀÖÀ¸´Ï */
+/** InfoAsset Async loading On/Off æ•²è´°å¼Š. æ²¥ä¾¥ æ‰ç“·æ è‚º On/Off åŠ›å‚çªç»Šç£Š çªç»° æ‰’ é…’èªç»Š æ‰ç“·æ æ•‘å‚ˆçªä¿ƒç»Š çŠ¬è§’çŸ« çª é”­é³–ç˜¤.. å¥–ä¿ å‘¼é› å‚ˆå´”æ²ç»°å• æå§è‚º ç‹¼ç¼´ç™»ç»° å†œè´°æµ†å•Š æƒ¯ç§¯ä¸” èæ¡£ ä¹æ èª */
 bool BladeIIGameImpl::bAllowInfoAssetAsyncLoading = true;
 bool BladeIIGameImpl::bAllowUIAsyncLoading = true;
 bool BladeIIGameImpl::bAllowUIOnDemandAsyncLoading = true;
@@ -305,13 +305,13 @@ float BladeIIGameImpl::UIOnDemandAsyncLoadingFlushTimeLimit = 0.5f;
 void BladeIIGameImpl::StartupModule()
 {
 //#if WITH_EDITOR 
-//	BeginB2ContentLoadingProgressSplash(); // Full ·Îµù ÇÏ´õ¶óµµ progress ¶óµµ Ç¥½ÃÇÏ¸é ´ä´äÇÏÁö ¾ÊÁö..
+//	BeginB2ContentLoadingProgressSplash(); // Full è‚ºçˆ¹ çªæ­¹æ‰¼æ¡£ progress æ‰¼æ¡£ é’çŸ«çªæ ç¿ ç¿ çªç˜¤ è‡¼ç˜¤..
 //	if (GIsEditor) {
-//		SetManangedChunkIDAssingmentFn(); // ÄíÅ· °ü·Ã Ä¿½ºÅÒ ±â´É µ¿ÀÛ ¼Â¾÷
+//		SetManangedChunkIDAssingmentFn(); // æ»æ¬§ åŒ…è®¿ ç›®èƒ¶ä¹“ æ‰ç“· æ‚¼ç´¯ æ‚¸è¯€
 //	}
 //#endif
 //
-//	CombatStatEval::InitializeUnitedOptionMapping(); // °¡´ÉÇÑ ÀÏÂï ÃÊ±âÈ­ ½ÃÄÑ ÁÖ¾î¾ß ÇÔ.
+//	CombatStatEval::InitializeUnitedOptionMapping(); // å•Šç“·èŒ„ è€å˜› æª¬æ‰æ‹³ çŸ«éš¾ æ—ç»¢å…· çªƒ.
 //
 //#if WITH_EDITOR
 //	if (GIsEditor)
@@ -338,12 +338,12 @@ void BladeIIGameImpl::StartupModule()
 //	B2_CONTENT_LOADING_PROGRESS_SPLASH(0.01f);
 //
 //#if WITH_EDITOR
-//	// LoadEditorData ¿¡¼­´Â TAsset µéÀ» ÀÏ°ı ·ÎµùÇÏ´Âµ¥ skip ÇÏ¸é redirector Ã³¸®¿¡ ¹®Á¦°¡ ¹ß»ıÇÒ ¼ö ÀÖ´Ù. ½ºÅµ ¿É¼ÇÀº ¸ô·¡ ¾Æ´Â »ç¶÷¸¸ »ç¿ë. ¿ÜºÎ¿¡ ¾Ë¸®Áö ¾Ê´Â´Ù.
-//	bool bSkipLoadEditorData = (FParse::Param(FCommandLine::Get(), TEXT("UnsafeQuickEditor")) || FParse::Param(FCommandLine::Get(), TEXT("J3M4"))); // J3M4 ´Â Á¶»ï¸ğ»çÀÇ ¾àÀÚÀÎµ¥ ¿ø·¡ ºñ½ÁÇÑ ¸ñÀûÀÇ ´Ù¸¥ ¹æ½ÄÀÇ ·ÎµùÀ» ÀÌ·¸°Ô ÄªÇß´ø ÀûÀÌ ÀÖÀ½. ½ÇÁ¦·Î ÀÌ°Íµµ ¾î´ÀÁ¤µµ Á¶»ï¸ğ»çÀÌ±âµµ ÇÏ°í.
+//	// LoadEditorData ä¿Šè¾‘ç»° TAsset ç”¸é˜‘ è€è¤’ è‚ºçˆ¹çªç»°å• skip çªæ redirector è´¸åºœä¿Š å·©åŠ›å•Š æƒ¯ç§¯ä¸” è ä¹ä¿ƒ. èƒ¶è¯º å¯è®°ç¯® éš”è´° é…’ç»° è¤æ©çˆ¶ è¤ä¾©. å¯‡ä½•ä¿Š èˆ…åºœç˜¤ è‡¼ç»°ä¿ƒ.
+//	bool bSkipLoadEditorData = (FParse::Param(FCommandLine::Get(), TEXT("UnsafeQuickEditor")) || FParse::Param(FCommandLine::Get(), TEXT("J3M4"))); // J3M4 ç»° ç‚¼ä¼™è‘›è¤ç‹¼ è·ç£Šç‰¢å• ç›”è´° åšæ…èŒ„ æ ¼åˆ©ç‹¼ ä¿ƒå¼— è§„ä¾¥ç‹¼ è‚ºçˆ¹é˜‘ æçŠ¯éœ¸ è«æ²å¸¦ åˆ©æ ä¹æ¾œ. è§’åŠ›è‚º æå·´æ¡£ ç»¢è ¢æ²¥æ¡£ ç‚¼ä¼™è‘›è¤ææ‰æ¡£ çªç»Š.
 //	if (!bSkipLoadEditorData)
 //	{
-//		// ¿¡µğÅÍ progress Ç¥½Ã¸¦ ½±°Ô °ü¸®ÇÏ±â À§ÇØ ÀÌ°É ¸ÕÀú.
-//		// ¿¡µğÅÍ¿¡¼­´Â Lazy-loading À» ÇÏ´Â ¾ÖµéÀ» ¸ğµÎ ·ÎµùÇØ µĞ´Ù. Redirector Ã³¸® µî ¿¡µğÅÍ µ¿ÀÛ ¹× ÄíÅ·¿¡ Æ÷ÇÔµÇ´Â °ÍÀ» º¸ÀåÇÏ±â À§ÇØ. ±×¸®°í ²À ±×·± °Å ¾Æ´Ï¾îµµ ¿¡µğÅÍ´Â ¾î´À Á¤µµ ¹Ì¸® ·ÎµùÇØ µÎ´Â °Ô ÁÁÀº ¸éµµ.. 
+//		// ä¿Šå¼ç£ progress é’çŸ«ç”« å¥–éœ¸ åŒ…åºœçªæ‰ å›°ç§¦ æå§ åˆšå†.
+//		// ä¿Šå¼ç£ä¿Šè¾‘ç»° Lazy-loading é˜‘ çªç»° å±€ç”¸é˜‘ è‘›æ»´ è‚ºçˆ¹ç§¦ æ•Œä¿ƒ. Redirector è´¸åºœ æ®¿ ä¿Šå¼ç£ æ‚¼ç´¯ æ£º æ»æ¬§ä¿Š å™¨çªƒç™»ç»° å·´é˜‘ ç„Šå˜çªæ‰ å›°ç§¦. å¼Šåºœç»Š æ€– å¼Šç¹ èŠ­ é…’èªç»¢æ¡£ ä¿Šå¼ç£ç»° ç»¢è ¢ æ²¥æ¡£ å›ºåºœ è‚ºçˆ¹ç§¦ æ»´ç»° éœ¸ äº®ç¯® ææ¡£.. 
 //		LoadEditorData();
 //	}
 //
@@ -354,12 +354,12 @@ void BladeIIGameImpl::StartupModule()
 //
 //#endif
 //
-//	B2_CONTENT_LOADING_PROGRESS_SPLASH(0.98f); // ¿¡µğÅÍÀÇ °æ¿ì ÀÌÈÄ¿¡´Â Á¤¸» ¾ó¸¶ ¾ÈµÉ °Å..
+//	B2_CONTENT_LOADING_PROGRESS_SPLASH(0.98f); // ä¿Šå¼ç£ç‹¼ ç‰ˆå¿« æé¥¶ä¿Šç»° æ²¥å¯Œ å€”ä»˜ æ•‘çª èŠ­..
 //
 //	GetStageDataStore();	// test
 //	
-//	LoadLocalIniStateOnStartup(); // ·ÎÄÃ ini ÀúÀå »óÅÂ Áß À¯Àú Á¾¼ÓÀûÀÌÁö ¾ÊÀº °Íµé
-//	LoadIniSystemSettings(); // ¸¶Âù°¡Áö·Î ini ÀÎµ¥ ·ÎÄÃ »óÅÂ°¡ ¾Æ´Ñ °ÅÀÇ ½Ã½ºÅÛ ¼³Á¤µé?
+//	LoadLocalIniStateOnStartup(); // è‚ºæ‹¿ ini å†å˜ æƒ‘æ€• å èœ¡å† è¾†åŠ åˆ©æç˜¤ è‡¼ç¯® å·´ç”¸
+//	LoadIniSystemSettings(); // ä»˜è›®å•Šç˜¤è‚º ini ç‰¢å• è‚ºæ‹¿ æƒ‘æ€•å•Š é…’å›± èŠ­ç‹¼ çŸ«èƒ¶è¢ æ±²æ²¥ç”¸?
 //
 //	InitB2GameSubsystemsOnStartupModule();
 //
@@ -370,8 +370,8 @@ void BladeIIGameImpl::StartupModule()
 //#if WITH_EDITOR
 //	if (CanLoadInfoAssetWhileStartupModule())
 //	{
-//		// Æ¯È÷ LoadEditorData ¿¡ Æ÷ÇÔµÇÁö ¾ÊÀº InfoAsset µéÀº ÄíÅ·¿¡ È®½ÇÈ÷ Æ÷ÇÔ½ÃÅ°·Á¸é ¿©±â¼­ ÇÑÂ÷·Ê ·¹ÆÛ·±½º¸¦ ¾ò¾î µÑ ÇÊ¿ä°¡ ÀÖ´Ù.
-//		// -> ´Ü, Blueprints/InfoAsset Æú´õ¸¦ ÄíÅ·¿¡ °­Á¦ Æ÷ÇÔ½ÃÅ²´Ù¸é ÇÊ¼ö±îÁø ¾Æ´Ï´Ù. ±×·¡µµ ¾ÈÀüÀåÄ¡ Á¤µµ·Î »ı°¢ÇØµµ µÉ µí.
+//		// æ¼‚æ´’ LoadEditorData ä¿Š å™¨çªƒç™»ç˜¤ è‡¼ç¯® InfoAsset ç”¸ç¯® æ»æ¬§ä¿Š çŠ¬è§’æ´’ å™¨çªƒçŸ«è™å¦¨æ å’¯æ‰è¾‘ èŒ„ç’è‚¥ é¥­æ¬ºç¹èƒ¶ç”« æ˜ç»¢ ç¬› é˜å¤¸å•Š ä¹ä¿ƒ.
+//		// -> çªœ, Blueprints/InfoAsset å¼ƒæ­¹ç”« æ»æ¬§ä¿Š ç¢åŠ› å™¨çªƒçŸ«æŒªä¿ƒæ é˜èé³–æŸ³ é…’èªä¿ƒ. å¼Šè´°æ¡£ æ•‘å‚ˆå˜æ‘¹ æ²¥æ¡£è‚º ç§¯é˜¿ç§¦æ¡£ çª æ·€.
 //		GetStageInfoTable();
 //		GetChapterInfoTable();
 //		GetItemInfoTable();
@@ -398,7 +398,7 @@ void BladeIIGameImpl::StartupModule()
 //		GetCharacterTagDialogueInfoTable();
 //		GetSeasonEventInfoTable();
 //		GetFairyInfoTable();
-//		// Cooking¿¡ TutorialAsset Æ÷ÇÔ½ÃÅ°±â À§ÇÔ
+//		// Cookingä¿Š TutorialAsset å™¨çªƒçŸ«è™æ‰ å›°çªƒ
 //		TutorialManager::GetInstance().Init();
 //	}
 //#endif
@@ -435,7 +435,7 @@ void BladeIIGameImpl::HandleCorePreExit()
 	B2_SCOPED_TRACK_LOG(TEXT("BladeIIGameImpl::HandleCorePreExit"));
 
 	//
-	// ÀÌ°Ô ºÒ¸®·Á¸é ¿£Áø¿¡¼­ Á¤½Ä Á¾·á ÀıÂ÷¸¦ ¹â¾Æ¾ß ÇÑ´Ù. (FPlatformMisc::RequestExit(false)
+	// æéœ¸ é˜‚åºœå¦¨æ æµšæŸ³ä¿Šè¾‘ æ²¥ä¾¥ è¾†ä¸° ä¾‹ç’ç”« å…‰é…’å…· èŒ„ä¿ƒ. (FPlatformMisc::RequestExit(false)
 	//
 
 	UB2UIDocManager* UIDocManager = UB2UIDocManager::GetInstance();
@@ -480,9 +480,9 @@ void BladeIIGameImpl::HandleCorePreExit()
 //{
 //	B2_SCOPED_TRACK_LOG(TEXT("BladeIIGameImpl::OnAndroidDestroyWindow"));
 //
-//	// ¾Èµå·ÎÀÌµå ±â±â ÁÂÃø ¹öÆ°À¸·Î ¾Û ¸ñ·Ï º¸ÀÌ°Ô ÇÒ ¶§ ºÒ¸². È¨¹öÆ°µµ ¸¶Âù°¡Áö.
-//	// ÀÌ¸§¿¡¼­ ´À²¸Áú ¼ö ÀÖ´Â °Í°ú´Â ´Ş¸® ÀÌ°Ô ²À ¾Û Á¾·á¸¦ ¶æÇÏ´Â °Ç ¾Æ´ÏÁö¸¸ Á¾·á·Î ¿¬°áµÉ ¼ö´Â ÀÖÀ½.
-//	// ±âº» ¾Èµå·ÎÀÌµå ¾Û Á¾·á °úÁ¤¿¡¼­ ³õÄ¥ ¼ö ÀÖ´Â µ¿ÀÛ ÀÏºÎ¸¦ ½ÇÇà.
+//	// æ•‘é›è‚ºæé› æ‰æ‰ è°…èŸ æ»šç“¢æ è‚º èš æ ¼åºŸ ç„Šæéœ¸ ä¸” é”­ é˜‚è¦†. æƒæ»šç“¢æ¡£ ä»˜è›®å•Šç˜¤.
+//	// ææŠšä¿Šè¾‘ è ¢å“ºé¾™ è ä¹ç»° å·´è‹ç»° å´”åºœ æéœ¸ æ€– èš è¾†ä¸°ç”« èˆµçªç»° æ‰’ é…’èªç˜¤çˆ¶ è¾†ä¸°è‚º æ¥·æ¬çª èç»° ä¹æ¾œ.
+//	// æ‰å¤¯ æ•‘é›è‚ºæé› èš è¾†ä¸° è‹æ²¥ä¿Šè¾‘ åˆç£¨ è ä¹ç»° æ‚¼ç´¯ è€ä½•ç”« è§’é’.
 //
 //	SaveLocalIniStateOnAppBecomeInactive();
 //}
@@ -494,13 +494,13 @@ void BladeIIGameImpl::ShutdownModule()
 	B2_SCOPED_TRACK_LOG(TEXT("BladeIIGameImpl::ShutdownModule"));
 //
 //	//
-//	// ÀÌ°Ô ºÒ¸®·Á¸é ¿£Áø¿¡¼­ Á¤½Ä Á¾·á ÀıÂ÷¸¦ ¹â¾Æ¾ß ÇÑ´Ù. (FPlatformMisc::RequestExit(false)
+//	// æéœ¸ é˜‚åºœå¦¨æ æµšæŸ³ä¿Šè¾‘ æ²¥ä¾¥ è¾†ä¸° ä¾‹ç’ç”« å…‰é…’å…· èŒ„ä¿ƒ. (FPlatformMisc::RequestExit(false)
 //	//
 //
-//	// ÁÖ¿ä ÇÏÀ§ ¸Å´ÏÀúµé ¿©±â¼­ Á¤¸®.
+//	// æ—å¤¸ çªå›° æ¦‚èªå†ç”¸ å’¯æ‰è¾‘ æ²¥åºœ.
 //	CloseB2GameSubsystemsOnShutdown();
 //
-//	SaveLocalIniStateOnExit();  // ÇÃ·§Æû¿¡¼­ÀÇ ±â´É ±¸Çö¿¡ µû¶ó ShutdownModule ÀÌ ¾È ºÒ¸± ¼ö ÀÖÀ¸¹Ç·Î ÀÌ°Ç µı °÷¿¡¼­µµ Ã³¸®µÉ ÇÊ¿ä°¡ ÀÖÀ½.
+//	SaveLocalIniStateOnExit();  // æ•²é˜€æ±½ä¿Šè¾‘ç‹¼ æ‰ç“· å¤‡æ³…ä¿Š è¶æ‰¼ ShutdownModule æ æ•‘ é˜‚å‰¯ è ä¹æ éª¨è‚º ææ‰’ è° é•‘ä¿Šè¾‘æ¡£ è´¸åºœçª é˜å¤¸å•Š ä¹æ¾œ.
 //
 //	if (!IsRunningCommandlet())
 //	{
@@ -535,14 +535,14 @@ void BladeIIGameImpl::LoadIniSystemSettings()
 UObject* CreastSingleStaticInfoAssetCommon(UClass* InClass)
 {
 	if (GMinimalDLCFrontMode) {
-		return NULL; // DLC Front ¸ğµå ¸®¼Ò½º·Îµù ÃÖ´ëÇÑ Á¦°Å
+		return NULL; // DLC Front è‘›é› åºœå®¶èƒ¶è‚ºçˆ¹ å¼¥æªèŒ„ åŠ›èŠ­
 	}
 
 #if WITH_EDITOR // In formal game, InfoAsset loading must be with BladeIIGameMode (not with StartupModule).
 	checkSlow(CanLoadInfoAssetWhileStartupModule() || ABladeIIGameMode::bDevCheckBladeIIGameModeEnteredOnce);
 #endif
 
-	/* Engine »ı¼ºÇÒ ¶§ Ã³·³ TransientPackage ¸¦ Outer »ï¾Æ¼­ */
+	/* Engine ç§¯å·±ä¸” é”­ è´¸çƒ¦ TransientPackage ç”« Outer ä¼™é…’è¾‘ */
 	UObject* RetObject = NewObject<UObject>(GetTransientPackage(), InClass, NAME_None); \
 		if (RetObject) {
 			RetObject->AddToRoot();
@@ -1025,14 +1025,14 @@ void BladeIIGameImpl::DestroySeasonEventInfoTable()
 UB2CompositeMeshCache* BladeIIGameImpl::GetCompositeMeshCacher()
 {
 	//if (!CompositeMeshCacher) {
-	//	// Engine »ı¼ºÇÒ ¶§ Ã³·³ TransientPackage ¸¦ Outer »ï¾Æ¼­
+	//	// Engine ç§¯å·±ä¸” é”­ è´¸çƒ¦ TransientPackage ç”« Outer ä¼™é…’è¾‘
 	//	CompositeMeshCacher = NewObject<UB2CompositeMeshCache>(GetTransientPackage(), UB2CompositeMeshCache::StaticClass(), NAME_None);
 	//	if (CompositeMeshCacher) {
 	//		CompositeMeshCacher->AddToRoot();
 	//	}
 	//}
 
-	BII_CHECK(GMinimalDLCFrontMode || CompositeMeshCacher); /* MinimalDLCFrontMode ¶óµµ ÀÌ°Ç »ı¼ºÇØµµ µÊ. µ¥ÀÌÅÍ info °¡ ¾Æ´Ô. */
+	BII_CHECK(GMinimalDLCFrontMode || CompositeMeshCacher); /* MinimalDLCFrontMode æ‰¼æ¡£ ææ‰’ ç§¯å·±ç§¦æ¡£ å‡³. å•æç£ info å•Š é…’ä¸›. */
 	return CompositeMeshCacher;
 }
 
@@ -1050,7 +1050,7 @@ UBannerManager* BladeIIGameImpl::GetLobbyBannerCacher()
 {
 	//LobbyBannerCacher = CreastSingleStaticInfoAssetCommon(UObject::StaticClass());
 	if (!LobbyBannerCacher) {
-		// Engine »ı¼ºÇÒ ¶§ Ã³·³ TransientPackage ¸¦ Outer »ï¾Æ¼­
+		// Engine ç§¯å·±ä¸” é”­ è´¸çƒ¦ TransientPackage ç”« Outer ä¼™é…’è¾‘
 		LobbyBannerCacher = NewObject<UBannerManager>(GetTransientPackage(), UBannerManager::StaticClass(), NAME_None);
 		if (LobbyBannerCacher) {
 			LobbyBannerCacher->AddToRoot();

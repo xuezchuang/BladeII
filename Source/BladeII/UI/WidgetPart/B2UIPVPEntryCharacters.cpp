@@ -1,4 +1,4 @@
-#include "B2UIPVPEntryCharacters.h"
+﻿#include "B2UIPVPEntryCharacters.h"
 
 
 #include "BladeIIUtil.h"

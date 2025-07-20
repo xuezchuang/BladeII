@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIEventPageTenLottery.h"
 
@@ -101,7 +101,7 @@ void UB2UIEventPageTenLottery::SortEventSlotList()
 	ArrayEventSlotList.StableSort(
 		[](const TWeakObjectPtr<class UB2UIEventSlot>& A, const TWeakObjectPtr<class UB2UIEventSlot>& B)
 	{
-		//º¸»ó ¿Ï·á ½½·ÔÀº °¡Àå µÚ·Î Á¤·Ä
+		//ç„Šæƒ‘ è‚¯ä¸° æµ‡å©ç¯® å•ŠåŽ˜ ç¬¬è‚º æ²¥çºº
 		bool Result = false;
 		if (A->GetEventIndex() < B->GetEventIndex())
 		{

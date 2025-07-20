@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 //#include "BladeII.h"
@@ -8,6 +8,7 @@
 #include "../Widget/B2ScrollBox.h"
 #include "../B2UnitedWidgetBase.h"
 #include "../../BladeII/BladeIIGameMode.h"
+#include "EventSubsystem.h"
 #include "B2LobbyUI_TotemInventorySlot.generated.h"
 
 /**
@@ -61,7 +62,7 @@ private:
 	void UpdateEquipMark(const FB2Totem& InTotem);
 	void UpdateRedDot(const FB2Totem& InTotem);
 
-	// ġƮŰ�� ID Ȯ�� ////////////////////////////
+	// 摹飘虐侩 ID 犬牢 ////////////////////////////
 public:
 	bool ShouldShowDevUI() const;
 
@@ -104,7 +105,7 @@ private:
 
 	TWeakObjectPtr<class UB2UIWidgetBase>	UIP_RedDot;
 
-	// ġƮŰ�� ID Ȯ�� ////////////////////////////
+	// 摹飘虐侩 ID 犬牢 ////////////////////////////
 	TWeakObjectPtr<UPanelWidget> P_DevUI;
 #if !UE_BUILD_SHIPPING
 	TWeakObjectPtr<UTextBlock> TB_ItemRefId_Dev;

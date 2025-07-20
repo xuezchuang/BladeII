@@ -1,4 +1,4 @@
-#include "B2UITeamMatchCharSelect.h"
+ï»¿#include "B2UITeamMatchCharSelect.h"
 #include "B2UITeamEntrySelectSlot.h"
 #include "B2UIWidget.h"
 #include "B2UIHeader.h"
@@ -60,7 +60,7 @@ void UB2UITeamMatchCharSelect::OnSceneOpen(EUIScene InOpenedScene)
 {
 	Super::OnSceneOpen(InOpenedScene);
 
-	// UIHeader ¿Í °°ÀÌ Scene À¸·Î ±¸¼ºÇÏ´Â °æ¿ì Init ½ÃÁ¡¿¡ ÇÏ¸é Scene ¿¡ Æ÷ÇÔµÈ header °¡ »ý¼ºÀÌ ¾ÈµÈ »óÈ²ÀÏ ¼ö ÀÖÀ½.
+	// UIHeader å®¢ éžæž Scene æ è‚º å¤‡å·±çªç»° ç‰ˆå¿« Init çŸ«ç—¢ä¿Š çªæ Scene ä¿Š å™¨çªƒç­‰ header å•Š ç§¯å·±æž æ•‘ç­‰ æƒ‘ç‚”è€ è ä¹æ¾œ.
 	SetLobbyUIHeaderTitleByGeneralTextTableKey(TEXT("ChallengeMod_TeamMatch_DuelReady"));
 }
 
@@ -112,7 +112,7 @@ void UB2UITeamMatchCharSelect::OnClickBtnHeroSlot(class UB2UICharacterSelectItem
 		if (TeamUIDoc == nullptr)
 			return;
 		
-		////´Ù¸¥½½·Ô°ú ±³È¯µÉ¶§ °Ë»ç
+		////ä¿ƒå¼—æµ‡å©è‹ž èƒŒåˆ¸çžªé”­ å…«è¤
 		if (TeamUIDoc->GetPCCharacterClass1() == SelectHero->GetCharacterClass())
 		{
 			TeamUIDoc->SetPCCharacterClass1(NewFormationClass);
@@ -270,7 +270,7 @@ void UB2UITeamMatchCharSelect::SetTotalHerostat(UB2UIDocTeamMatch* TeamDoc)
 
 void UB2UITeamMatchCharSelect::OnClickTeamMatchStart()
 {
-	// Á¡°Ë Á¤»ê Ã¼Å©
+	// ç—¢å…« æ²¥é­‚ çœ‰å†œ
 	if (TutorialManager::GetInstance().IsFinishTutorial(TutorialID_PvPTeam) && CheckContentsModeState(b2network::B2ContentsMode::PVP_TEAM))
 		return;
 
@@ -458,7 +458,7 @@ void UB2UITeamMatchCharSelect::UpdateFormationInfo(ETMFormation TMFormaiton)
 
 bool UB2UITeamMatchCharSelect::CheckBuyTicket()
 {
-	//true¸é  Æ¼ÄÏÀÌ ÀÖ´Ù false¸é ¾ø´Ù¿ä
+	//trueæ  èå—æž ä¹ä¿ƒ falseæ ç»ä¿ƒå¤¸
 
 	auto* TeamDoc = UB2UIDocHelper::GetDocTeamMatch();
 
@@ -491,7 +491,7 @@ void UB2UITeamMatchCharSelect::CheckGemForBuyTicket()
 	auto* TeamBattleDoc = UB2UIDocHelper::GetDocTeamMatch();
 	int32 AdditonalCount = TeamBattleDoc->GetTeamAdditionalMatchCount();
 
-	if (BladeIIGameImpl::GetClientDataStore().GetAdditionalMatchPointCost(AdditonalCount) > BladeIIGameImpl::GetClientDataStore().GetGemAmount()) // ÀëºÎÁ·
+	if (BladeIIGameImpl::GetClientDataStore().GetAdditionalMatchPointCost(AdditonalCount) > BladeIIGameImpl::GetClientDataStore().GetGemAmount()) // ç¦»ä½•ç»ƒ
 		ShortageMGR->PopupGoToShopForGemMessage();
 	else
 		OnStartGame(true);

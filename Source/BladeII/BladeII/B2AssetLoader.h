@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+Ôªø// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 #include "BladeII.h"
@@ -64,25 +64,10 @@ public:
 
 	GENERATED_BODY()
 
-	static UB2AssetLoader* Get() 
-	{
-		static UB2AssetLoader* AssetLoader = nullptr;
+	static UB2AssetLoader* Get();
 
-		if (AssetLoader == nullptr)
-		{
-			if (UPackage* TransientPkg = GetTransientPackage())
-			{
-				AssetLoader = NewObject<UB2AssetLoader>(GetTransientPackage(), FName(TEXT("B2AssetLoader")), RF_MarkAsRootSet);
-				if(AssetLoader)
-					AssetLoader->GlobalFlushHandle = FCoreDelegates::OnAsyncLoadingFlush.AddUObject(AssetLoader, &UB2AssetLoader::OnAsyncLoadFlush);
-			}
-		}
 
-		//BII_CHECK(AssetLoader);
-		return AssetLoader;
-	}
-
-	// AsyncWaiting < 0 ¿œ∂© LoadSynchronous∑Œ
+	// AsyncWaiting < 0 ËÄÅËÆ¢ LoadSynchronousËÇ∫
 	template<class T=UObject>
 	T* LoadSynchronous(const TSoftObjectPtr<T>& AssetReference, float AsyncWaiting = -1.f)
 	{
@@ -173,24 +158,24 @@ private:
 
 	FDelegateHandle					GlobalFlushHandle;
 
-//#if B2_BUILD_LEVEL == B2_BUILD_LEVEL_LIVE
-//#define BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2 0
-//#else
-//#if UE_BUILD_SHIPPING
-//#define BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2 0
-//#else
-//#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV1
-//#define BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2 1
-//#else
-//#define BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2 0
-//#endif
-//#endif
-//#endif
+#if B2_BUILD_LEVEL == B2_BUILD_LEVEL_LIVE
+#define BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2 0
+#else
+#if UE_BUILD_SHIPPING
+#define BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2 0
+#else
+#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV1
+#define BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2 1
+#else
+#define BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2 0
+#endif
+#endif
+#endif
 
-//#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
-//public:
-//	static bool bEnableDevLog; // Including on-screen log..
-//#endif
+#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
+public:
+	static bool bEnableDevLog; // Including on-screen log..
+#endif
 };
 
 
@@ -276,7 +261,7 @@ protected:
 	virtual void OnAsyncLoadComplete(const FString& CompleteRequest, const TArray<FB2AsyncRequestInfo>& CompleteRequestList) {}
 	virtual void OnAsyncLoadComplete(const FString& CompleteRequest, const TArray<FSoftObjectPath>& CompleteRequestList) {}
 
-	/* FB2AsyncRequestInfo ∏¶ ªÁøÎ«ÿº≠ TryAsyncLoad «“∂ß∏∏ »£√‚µ  */
+	/* FB2AsyncRequestInfo Áî´ Ëç§‰æ©Áß¶Ëæë TryAsyncLoad ‰∏îÈî≠Áà∂ ÈæãÂÖçÂá≥ */
 	virtual void OnAsyncLoadComplete_EachObject(const uint32 AssetKey, UObject* LoadedAssetObject) {}
 
 

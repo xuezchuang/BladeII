@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIHeroTowerCharacterSelectPage.h"
 #include "B2UIStartButton.h"
 #include "B2UIManager.h"
@@ -89,7 +89,7 @@ void UB2UIHeroTowerCharacterSelectPage::Init()
 
 	SetLobbyUIHeaderTitleByGeneralTextTableKey(TEXT("ChallengeMod_HeroTop"));
 
-	// °ÔÀÓ½ÃÀÛ ¿äÃ»¿©ºÎ ÃÊ±âÈ­
+	// éœ¸çƒ™çŸ«ç´¯ å¤¸æ²¡å’¯ä½• æª¬æ‰æ‹³
 	UB2UIDocHeroTower* pDoc = UB2UIDocHelper::GetDocHeroTower();
 
 	auto DocBattle = UB2UIDocHelper::GetDocBattle();
@@ -118,7 +118,7 @@ void UB2UIHeroTowerCharacterSelectPage::OnSceneOpen(EUIScene InOpenedScene)
 {
 	Super::OnSceneOpen(InOpenedScene);
 
-	// UIHeader ¿Í °°ÀÌ Scene À¸·Î ±¸¼ºÇÏ´Â °æ¿ì Init ½ÃÁ¡¿¡ ÇÏ¸é Scene ¿¡ Æ÷ÇÔµÈ header °¡ »ı¼ºÀÌ ¾ÈµÈ »óÈ²ÀÏ ¼ö ÀÖÀ½.
+	// UIHeader å®¢ éæ Scene æ è‚º å¤‡å·±çªç»° ç‰ˆå¿« Init çŸ«ç—¢ä¿Š çªæ Scene ä¿Š å™¨çªƒç­‰ header å•Š ç§¯å·±æ æ•‘ç­‰ æƒ‘ç‚”è€ è ä¹æ¾œ.
 	SetLobbyUIHeaderTitleByGeneralTextTableKey(TEXT("ChallengeMod_HeroTop"));
 }
 
@@ -190,7 +190,7 @@ void UB2UIHeroTowerCharacterSelectPage::BattleStart()
 
 bool UB2UIHeroTowerCharacterSelectPage::CanStartBattle()
 {
-	// Á¡°Ë Á¤»ê Ã¼Å©
+	// ç—¢å…« æ²¥é­‚ çœ‰å†œ
 	if (TutorialManager::GetInstance().IsFinishTutorial(TutorialID_HeroTower) && CheckContentsModeState(b2network::B2ContentsMode::HERO_TOWER))
 		return false;
 
@@ -242,16 +242,16 @@ void UB2UIHeroTowerCharacterSelectPage::CheckStartButton()
 	}
 }
 
-void UB2UIHeroTowerCharacterSelectPage::OnClickBtnChangeMainSub()							//Main, Sub ±³Ã¼ »ì·ÁµÎ°Ú½À´Ï´Ù...
+void UB2UIHeroTowerCharacterSelectPage::OnClickBtnChangeMainSub()							//Main, Sub èƒŒçœ‰ æ··å¦¨æ»´æ‘†åš¼èªä¿ƒ...
 {
-	// UB2UICharacterSelect ¿¡¼­ ÇÏ´Â °Í°ú Áßº¹µÇ±ä ÇÏ´Âµ¥ µû·Î »©±âµµ ¹¹ÇÏ±º..
+	// UB2UICharacterSelect ä¿Šè¾‘ çªç»° å·´è‹ åæ±—ç™»å˜ çªç»°å• è¶è‚º å“—æ‰æ¡£ æ„çªç„™..
 
 	UB2UIDocBattle* DocBattle = UB2UIDocHelper::GetDocBattle();
 	if (DocBattle)
-	{// Main/Sub ¹Ù²ãÄ¡±â
+	{// Main/Sub å®˜å±‚æ‘¹æ‰
 		LobbySetPCSelectionClass<EPCClass, EPCClass>::GetInstance().Signal(IntToPCClass(DocBattle->GetTagPCClass()), IntToPCClass(DocBattle->GetCurPCClass()));
 		Swap(ChangeMainClass, ChangeSubClass);
-		// ¼±ÅÃ Å¬·¡½º°¡ º¯°æµÊ¿¡ µû¶ó ¾Æ¸°ÀÇ Á¶¾ğµµ Ã¼Å©. ÀüÅõ·ÂÀº µÑÀÌ ÇÕÄ¡´Ï ´Ş¶óÁú °Ô ¾ø°ÚÁö¸¸ ½ºÅ³Æ÷ÀÎÆ® °°Àº °Å¿¡ µû¶ó ÀÌµ¿ ½Ã ´©±¸ È­¸éÀ¸·Î °¡´ÂÁö Á¤µµ ´Ş¶óÁö°Ú±º ¤»
+		// æ€¥ç¶ åŠªè´°èƒ¶å•Š å‡½ç‰ˆå‡³ä¿Š è¶æ‰¼ é…’èµ´ç‹¼ ç‚¼æ”«æ¡£ çœ‰å†œ. å‚ˆæ§ä»¿ç¯® ç¬›æ é’¦æ‘¹èª å´”æ‰¼é¾™ éœ¸ ç»æ‘†ç˜¤çˆ¶ èƒ¶æ‡¦å™¨ç‰¢é£˜ éç¯® èŠ­ä¿Š è¶æ‰¼ ææ‚¼ çŸ« ç©¿å¤‡ æ‹³ææ è‚º å•Šç»°ç˜¤ æ²¥æ¡£ å´”æ‰¼ç˜¤æ‘†ç„™ ã›
 		UB2UIDocBattleStage* DocBS = UB2UIDocHelper::GetDocBattleStage();
 		GameStageCheckForArinConsultingClass<FServerStageID>::GetInstance().Signal(DocBS ? DocBS->GetServerStageId() : FServerStageID());
 		PlayChangeChacterAnimBP();
@@ -308,7 +308,7 @@ void UB2UIHeroTowerCharacterSelectPage::UpDateHero()
 		}
 	}
 
-	// ³¯°³ °»½ÅÀÌ ÇÊ¿äÇÑ ÄÉÀÌ½º°¡ ÀÖ´Ù. ¸Ş½¬Á¶ÇÕÃ¼Å©
+	// æœä¿º ç›è„šæ é˜å¤¸èŒ„ çº³æèƒ¶å•Š ä¹ä¿ƒ. çš‹æµ†ç‚¼é’¦çœ‰å†œ
 	LobbyUpdateCharacterPartClass<EPCClass>::GetInstance().Signal(IntToPCClass(ChangeMainClass));
 	LobbyUpdateCharacterPartClass<EPCClass>::GetInstance().Signal(IntToPCClass(ChangeSubClass));
 

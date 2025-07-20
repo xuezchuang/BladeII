@@ -1,4 +1,4 @@
-#include "B2UIChapterStarRewardPreview.h"
+ï»¿#include "B2UIChapterStarRewardPreview.h"
 #include "B2UIRewardEventSet.h"
 #include "B2UIManager.h"
 #include "B2UIDocHelper.h"
@@ -88,8 +88,8 @@ void UB2UIChapterStarRewardPreview::ShowMe(bool bInCanGetReward, int32 InChapter
 
 	OnPopupBP();
 	IsOnStar(true);
-	// [fixme][@AKI, 170430] ÀÏ´Ü IsOnStar(false)ÀÎ°É·Î º¸¾Æ ¿©±â´Â Gold¸¸ µé¾î¿ÈÀ¸·Î ÀÌ·¸°Ô ÇÔ.
-	// ÃßÈÄ¿¡ RewardID¸¦ ¹Þ¾Æ¿À¸é ¸Â°Ô º¯°æÇØ¾ß ÇÔ.
+	// [fixme][@AKI, 170430] è€çªœ IsOnStar(false)ç‰¢å§è‚º ç„Šé…’ å’¯æ‰ç»° Goldçˆ¶ ç”¸ç»¢å’³æ è‚º æžçŠ¯éœ¸ çªƒ.
+	// çœ é¥¶ä¿Š RewardIDç”« ç½é…’å·æ å˜Žéœ¸ å‡½ç‰ˆç§¦å…· çªƒ.
 	if (BTN_Goods.IsValid())
 	{
 		BTN_Goods->SetItemInfo(FItemRefIDHelper::GetGoodsID_Gem());
@@ -115,8 +115,8 @@ void UB2UIChapterStarRewardPreview::JoinShowMe(bool bInCanGetReward, int32 InRew
 	}
 	OnPopupBP();
 	IsOnStar(false);
-	// [fixme][@AKI, 170430] ÀÏ´Ü IsOnStar(false)ÀÎ°É·Î º¸¾Æ ¿©±â´Â Gold¸¸ µé¾î¿ÈÀ¸·Î ÀÌ·¸°Ô ÇÔ.
-	// ÃßÈÄ¿¡ RewardID¸¦ ¹Þ¾Æ¿À¸é ¸Â°Ô º¯°æÇØ¾ß ÇÔ.
+	// [fixme][@AKI, 170430] è€çªœ IsOnStar(false)ç‰¢å§è‚º ç„Šé…’ å’¯æ‰ç»° Goldçˆ¶ ç”¸ç»¢å’³æ è‚º æžçŠ¯éœ¸ çªƒ.
+	// çœ é¥¶ä¿Š RewardIDç”« ç½é…’å·æ å˜Žéœ¸ å‡½ç‰ˆç§¦å…· çªƒ.
 	if (BTN_Goods.IsValid())
 	{
 		BTN_Goods->SetItemInfo(FItemRefIDHelper::GetGoodsID_Gold());
@@ -146,16 +146,16 @@ void UB2UIChapterStarRewardPreview::CreateRewardIcons(int32 InGoldAmount, int32 
 	if (!RewardTemplate || !X_Rewards.IsValid()){
 		return;
 	}
-	// Reward º°·Î ÇÏ³ª¾¿ »ý¼ºÇÑ´Ù.
+	// Reward å–Šè‚º çªå”±ç©¶ ç§¯å·±èŒ„ä¿ƒ.
 	if (InGoldAmount > 0)
 	{
-		//[@AKI, 170605] Goods¸¦ ¼³Á¤ÇÏ±â À§ÇØ IconÀ» ³Ö´Â ¹æ½Ä¿¡¼­ Index¸¦ ³Ö´Â ¹æ½ÄÀ¸·Î º¯°æ
+		//[@AKI, 170605] Goodsç”« æ±²æ²¥çªæ‰ å›°ç§¦ Iconé˜‘ æŒç»° è§„ä¾¥ä¿Šè¾‘ Indexç”« æŒç»° è§„ä¾¥æ è‚º å‡½ç‰ˆ
 		//CreateRewardIconCommon(RewardIcon_Gold, FText::AsNumber(InGoldAmount));
 		CreateRewardIconCommon(Reward_GoldIdx, FText::AsNumber(InGoldAmount));
 	}
 	if (InGemAmount > 0)
 	{
-		//[@AKI, 170605] Goods¸¦ ¼³Á¤ÇÏ±â À§ÇØ IconÀ» ³Ö´Â ¹æ½Ä¿¡¼­ Index¸¦ ³Ö´Â ¹æ½ÄÀ¸·Î º¯°æ
+		//[@AKI, 170605] Goodsç”« æ±²æ²¥çªæ‰ å›°ç§¦ Iconé˜‘ æŒç»° è§„ä¾¥ä¿Šè¾‘ Indexç”« æŒç»° è§„ä¾¥æ è‚º å‡½ç‰ˆ
 		//CreateRewardIconCommon(RewardIcon_Gem, FText::AsNumber(InGemAmount));
 		CreateRewardIconCommon(Reward_GemIdx, FText::AsNumber(InGemAmount));
 	}
@@ -168,7 +168,7 @@ void UB2UIChapterStarRewardPreview::CreateRewardIconCommon(class UMaterialInterf
 		CreatedIcon->Init();
 		UHorizontalBoxSlot* HBSlot = Cast<UHorizontalBoxSlot>(CreatedIcon->Slot);
 		if (HBSlot)
-		{ // ¾Æ ÀÏ´Ü ÇÊ¿ä¾øÀ½. È¤½Ã¶óµµ ÇÊ¿äÇØÁö¸é.. ÀÏ´ÜÀº DynCreateInHorizontalBox ÂÊ¿¡ Ãß°¡ ¸Å°³º¯¼ö ³Ñ°ÜÁÖ´Â °É ¸ÕÀú ÇØ º¸°í..
+		{ // é…’ è€çªœ éž˜å¤¸ç»æ¾œ. è¶£çŸ«æ‰¼æ¡£ éž˜å¤¸ç§¦ç˜¤æ.. è€çªœç¯® DynCreateInHorizontalBox çŽ‡ä¿Š çœ å•Š æ¦‚ä¿ºå‡½è é€žè´¥æž—ç»° å§ åˆšåŽ† ç§¦ ç„Šç»Š..
 			//HBSlot->Size.SizeRule = ESlateSizeRule::Fill;
 			//HBSlot->SetHorizontalAlignment(HAlign_Center);
 		}
@@ -190,7 +190,7 @@ void UB2UIChapterStarRewardPreview::CreateRewardIconCommon(int32 _rewardType, co
 		CreatedIcon->Init();
 		UHorizontalBoxSlot* HBSlot = Cast<UHorizontalBoxSlot>(CreatedIcon->Slot);
 		if (HBSlot)
-		{ // ¾Æ ÀÏ´Ü ÇÊ¿ä¾øÀ½. È¤½Ã¶óµµ ÇÊ¿äÇØÁö¸é.. ÀÏ´ÜÀº DynCreateInHorizontalBox ÂÊ¿¡ Ãß°¡ ¸Å°³º¯¼ö ³Ñ°ÜÁÖ´Â °É ¸ÕÀú ÇØ º¸°í..
+		{ // é…’ è€çªœ éž˜å¤¸ç»æ¾œ. è¶£çŸ«æ‰¼æ¡£ éž˜å¤¸ç§¦ç˜¤æ.. è€çªœç¯® DynCreateInHorizontalBox çŽ‡ä¿Š çœ å•Š æ¦‚ä¿ºå‡½è é€žè´¥æž—ç»° å§ åˆšåŽ† ç§¦ ç„Šç»Š..
 		  //HBSlot->Size.SizeRule = ESlateSizeRule::Fill;
 		  //HBSlot->SetHorizontalAlignment(HAlign_Center);
 		}
@@ -212,8 +212,8 @@ void UB2UIChapterStarRewardPreview::CreateRewardIconCommon(b2network::B2RewardPt
 
 void UB2UIChapterStarRewardPreview::SetRewardTemplateClass(TSubclassOf<class UB2UIRewardIcon> InNewTemplate)
 { 
-	// µ¿Àû »ý¼ºÇÏ´Â ÄÉÀÌ½º¿¡¼­ RewardTemplate ±îÁö µû·Î ³Ö¾îÁÖ¾î¾ß ÇØ¼­ ÀÌ·± ÁþÀ» ÇÔ. 
-	// RewardTemplate ÀÌ ÇÊ¿äÇØÁö±â Àü¿¡ ¼¼ÆÃÇØ¾ß
+	// æ‚¼åˆ© ç§¯å·±çªç»° çº³æžèƒ¶ä¿Šè¾‘ RewardTemplate é³–ç˜¤ è¶è‚º æŒç»¢æž—ç»¢å…· ç§¦è¾‘ æžç¹ çª¿é˜‘ çªƒ. 
+	// RewardTemplate æž éž˜å¤¸ç§¦ç˜¤æ‰ å‚ˆä¿Š æŠ€æ³¼ç§¦å…·
 	RewardTemplate = InNewTemplate;
 }
 
@@ -235,11 +235,11 @@ void UB2UIChapterStarRewardPreview::DestroyRewardIcons()
 
 void UB2UIChapterStarRewardPreview::OnClickBtnGetReward()
 {
-	if (bCanGetReward) // False ¸é ¾Ö´çÃÊ ¹öÆ° Å¬¸¯ÀÌ ºÒ°¡´ÉÇØ¾ß ÇÔ.
-	{ // º¸»ó ¿äÃ»¿¡´Â ÀÎµ¦½º°¡ ¾øÀ¸¹Ç·Î ¿©±â¼­ ÀÌÀü º¸»óÀ» ¹Þ¾Ò´ÂÁö ¿©ºÎ¿¡ µû¶ó ¿äÃ»À» º¸³¾Áö ¾î¶³Áö Ã¼Å©ÇØ¾ß ÇÒ ¼öµµ ÀÖÀ½.
-		// ÀÌÀü¿¡ ¹ÞÁö ¾ÊÀº °Ô ÀÖ´Ù¸é GetReward ¹öÆ°À» ºñÈ°¼ºÈ­ ÇÏ´Â °Ô ³ªÀ» µí.
+	if (bCanGetReward) // False æ å±€å¯¸æª¬ æ»šç“¢ åŠªè…æž é˜‚å•Šç“·ç§¦å…· çªƒ.
+	{ // ç„Šæƒ‘ å¤¸æ²¡ä¿Šç»° ç‰¢éƒ¸èƒ¶å•Š ç»æ éª¨è‚º å’¯æ‰è¾‘ æžå‚ˆ ç„Šæƒ‘é˜‘ ç½ç–½ç»°ç˜¤ å’¯ä½•ä¿Š è¶æ‰¼ å¤¸æ²¡é˜‘ ç„Šå°˜ç˜¤ ç»¢å†»ç˜¤ çœ‰å†œç§¦å…· ä¸” èæ¡£ ä¹æ¾œ.
+		// æžå‚ˆä¿Š ç½ç˜¤ è‡¼ç¯® éœ¸ ä¹ä¿ƒæ GetReward æ»šç“¢é˜‘ åŽšåŠå·±æ‹³ çªç»° éœ¸ å”±é˜‘ æ·€.
 		BladeIIGameImpl::GetStageDataStore().RequestGetChapterClearReward(ChapterNum, Difficulty, MyRewardIndex);
-		CloseMe(); // ¹ÞÀÚ¸¶ÀÚ ´Ý¾Æ¾ß ¿¬Ãâµµ º¸°í ¶Ç ÇêµÈ ÀÀ´äµµ ¾ÈÇÏ°í.
+		CloseMe(); // ç½ç£Šä»˜ç£Š æ‘§é…’å…· æ¥·å…æ¡£ ç„Šç»Š è‚š é¡·ç­‰ è§ˆç¿ æ¡£ æ•‘çªç»Š.
 	}
 	else if (bCounterDungeonReward)
 	{
@@ -267,7 +267,7 @@ void UB2UIChapterStarRewardPreview::SetPopupVisible(bool IsVisible)
 	}
 	else if(IsVisible == false && this->GetVisibility() != ESlateVisibility::Collapsed)
 	{
-		this->SetVisibility(ESlateVisibility::Collapsed); // ³»ºÎ ¾ÆÀÌÄÜµéÀº destroy ÇÏÁö¸¸ ÀÚ½ÅÀº ¼û±â±â¸¸ ÇÔ.
+		this->SetVisibility(ESlateVisibility::Collapsed); // éƒ´ä½• é…’æžèƒ½ç”¸ç¯® destroy çªç˜¤çˆ¶ ç£Šè„šç¯® è§æ‰æ‰çˆ¶ çªƒ.
 		B2AndroidBackManager::GetInstance()->RemoveBackWidget(this);
 	}
 }

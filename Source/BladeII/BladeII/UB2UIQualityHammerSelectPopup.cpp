@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "UB2UIQualityHammerSelectPopup.h"
 
 #include "Event.h"
@@ -118,7 +118,7 @@ void UB2UIQualityHammerSelectPopup::UpdateItemInfo(FB2Item& TargetItem)
 		UB2DynItemIcon_Hammer* NewItemIcon = CreateItemIcon();
 		if (NewItemIcon)
 		{
-			NewItemIcon->UpdateItemData(ThisIngred); // °³º° ¾ÆÀÌÅÛ Á¤º¸¸¦ ³Ñ°ÜÁØ´Ù.
+			NewItemIcon->UpdateItemData(ThisIngred); // ä¿ºå–Š é…’æè¢ æ²¥ç„Šç”« é€è´¥éœ–ä¿ƒ.
 			NewItemIcon->SetupManualScrollBoxSender_byReceiver(this, SB_HammerIcons.Get());
 			CreatedItemIcons.Add(NewItemIcon);
 		}
@@ -147,7 +147,7 @@ UB2DynItemIcon_Hammer* UB2UIQualityHammerSelectPopup::CreateItemIcon()
 	UScaleBoxSlot* AddedSBSlot = Cast<UScaleBoxSlot>(OuterSB->AddChild(CreatedWidget));
 	if (AddedSBSlot)
 	{
-		CreatedWidget->SetDynCreatedDummyParent(OuterSB); // CreatedWidget À» Á¦°ÅÇÒ ¶§ OuterSB µµ °°ÀÌ Á¦°ÅµÇµµ·Ï µî·Ï.
+		CreatedWidget->SetDynCreatedDummyParent(OuterSB); // CreatedWidget é˜‘ åŠ›èŠ­ä¸” é”­ OuterSB æ¡£ éæ åŠ›èŠ­ç™»æ¡£åºŸ æ®¿åºŸ.
 	}
 
 	UScrollBoxSlot* AddedCPSlot = Cast<UScrollBoxSlot>(SB_HammerIcons->AddChild(OuterSB));

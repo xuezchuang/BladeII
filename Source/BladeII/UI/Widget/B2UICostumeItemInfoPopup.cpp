@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UICostumeItemInfoPopup.h"
 
@@ -375,7 +375,7 @@ void UB2UICostumeItemInfoPopup::UpdateButtonsVisibleState()
 		P_CostumeLinkBtn->SetVisibility(bIsCostumeOpenLinkBtnVisible ? ESlateVisibility::Visible : ESlateVisibility::Collapsed);
 	}
 
-	// ºÐÇØ °­È­ Àá±Ý ¹öÆ°Àº ÄÚ½ºÆ¬ ÀÎº¥Åä¸®ÀÏ¶§¸¸..
+	// ç›’ç§¦ ç¢æ‹³ æ³ªé™› æ»šç“¢ç¯® å†…èƒ¶ç‰‡ ç‰¢äº¥é…åºœè€é”­çˆ¶..
 	if (BTN_Enhance.IsValid())
 	{
 		bool bVisible = bIsEquipOrReleaseBtnVisible && (CachedB2ItemInfo.ItemRefID > 0 ? MAX_ENHANCE_COSTUME_LEVEL > CachedB2ItemInfo.EnhanceLevel : false);

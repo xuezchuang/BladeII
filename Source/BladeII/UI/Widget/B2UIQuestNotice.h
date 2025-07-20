@@ -1,7 +1,8 @@
-#pragma once
+﻿#pragma once
 
 #include "B2UIWidget.h"
 #include "B2UIDocBindable.h"
+#include "../B2RichTextBlock.h"
 #include "B2UIQuestNotice.generated.h"
 
 /*
@@ -56,8 +57,6 @@ protected:
 
 
 };
-
-
 
 USTRUCT()
 struct FQuestNotifySlot

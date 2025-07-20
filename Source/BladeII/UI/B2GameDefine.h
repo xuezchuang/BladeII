@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #define CONTROL_GAME_MAX_PLAYERS 6
 #define ETHER_MAX_STAR 7

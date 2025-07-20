@@ -1,6 +1,7 @@
-#pragma once
+﻿#pragma once
 //#include "BladeII.h"
 #include "GameFramework/Actor.h"
+#include "BladeIICharacter.h"
 #include "BladeIINetControlObject.generated.h"
 
 class IState;
@@ -24,7 +25,7 @@ class BLADEII_API ABladeIINetControlObject : public AActor
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	float ViewLimitLength;
-	
+
 public:
 	ABladeIINetControlObject(const FObjectInitializer& ObjectInitializer);
 
@@ -44,23 +45,23 @@ public:
 	void AddControlPointGage(bool bRed, float fAmount);
 
 	UFUNCTION(BlueprintCallable, Category = "BladeII")
-	float GetConquestGage(bool bRed){ return bRed ? m_fConquestGageRed : m_fConquestGageBlue; }
+	float GetConquestGage(bool bRed) { return bRed ? m_fConquestGageRed : m_fConquestGageBlue; }
 
-	float GetControlPointGage(bool bRed){ return bRed ? m_fControlPointGageRed : m_fControlPointGageBlue; }
+	float GetControlPointGage(bool bRed) { return bRed ? m_fControlPointGageRed : m_fControlPointGageBlue; }
 
 	UFUNCTION(BlueprintCallable, Category = "BladeII")
-	EConquestAreaState GetConquestAreaState(){ return ConquestAreaState; }
+	EConquestAreaState GetConquestAreaState() { return ConquestAreaState; }
 
 	void SetConquestAreaState(EConquestAreaState NewState);
 	void ApplyConquestAreaState(uint8 NewState, float fConquestGageRed, float fConquestGageBlue);
-	
+
 	void BroadCastCurrentState();
 
 	void CheckToNotifyControlPoint(float DeltaSeconds);
 
 	//void OnCharacterDead();
 
-	float GetViewLimitLength(){ return ViewLimitLength; }
+	float GetViewLimitLength() { return ViewLimitLength; }
 
 	bool IsOverlap(AActor* pTarget);
 
@@ -69,19 +70,19 @@ public:
 	bool IsAssaultState();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
-		float ConquestGageMaxTime;
+	float ConquestGageMaxTime;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
-		float ControlPointGageMaxTime;
+	float ControlPointGageMaxTime;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
-		float BonusTime;
+	float BonusTime;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
-		float GageRateForTutorial;
-	
+	float GageRateForTutorial;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
-		float NotifyControlPointTerm;
+	float NotifyControlPointTerm;
 
 	void SetActiveControlObject(bool NewActive);
 
@@ -110,11 +111,11 @@ private:
 	void CheckOverlap();
 
 	void SetBonusTime(ETeamType OwnerTeam);
-	
+
 	void UpdateBonusTimeGage(float DeltaSeconds);
 
 private:
-	IState*		ControledState;
+	IState* ControledState;
 
 	TMap<uint8, IState*>	StateMaps;
 
@@ -144,9 +145,9 @@ public:
 	bool bEndMatch;
 };
 
-const uint8 CONTROL_STATE_NEUTRAL		=	1;
-const uint8 CONTROL_STATE_RED			=	2;
-const uint8 CONTROL_STATE_BLUE			=	3;
+const uint8 CONTROL_STATE_NEUTRAL = 1;
+const uint8 CONTROL_STATE_RED = 2;
+const uint8 CONTROL_STATE_BLUE = 3;
 
 class IState
 {

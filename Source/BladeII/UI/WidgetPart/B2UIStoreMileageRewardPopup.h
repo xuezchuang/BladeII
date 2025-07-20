@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "B2UIChapterStarRewardPreview.h"
 #include "B2UIStoreMileageRewardPopup.generated.h"

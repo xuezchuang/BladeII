@@ -1,4 +1,4 @@
-#include "B2UIChapterStarRewardBox.h"
+ï»¿#include "B2UIChapterStarRewardBox.h"
 #include "B2UIManager.h"
 
 UB2UIChapterStarRewardBox::UB2UIChapterStarRewardBox(const FObjectInitializer& ObjectInitializer)
@@ -184,7 +184,7 @@ void UB2UIChapterStarRewardBox::UpdateRewardState()
 	}
 
 	if (BTN_Area.IsValid())
-	{ // Reward ¸¦ ¹ÞÀº »óÈ²¿¡¼­´Â ´õ ÀÌ»ó º¼ ÀÏÀÌ ¾ø°Ú´Ù. È¤Àº bMyPreviousRewarded ¿©ºÎ¿¡ µû¶ó ´Þ¶óÁú ¼öµµ..
+	{ // Reward ç”« ç½ç¯® æƒ‘ç‚”ä¿Šè¾‘ç»° æ­¹ æžæƒ‘ æ­ è€æž ç»æ‘†ä¿ƒ. è¶£ç¯® bMyPreviousRewarded å’¯ä½•ä¿Š è¶æ‰¼ å´”æ‰¼é¾™ èæ¡£..
 		BTN_Area->SetIsEnabled(GoalReachedState == EUIChapterStarRewardState::Rewarded ? false : true);
 	}
 
@@ -217,7 +217,7 @@ void UB2UIChapterStarRewardBox::SetMissionBox(int32 CurrentPoint, int32 RequireP
 		TB_MissionGoalNum->SetText(FText::AsNumber(RequirePoint));
 	}
 
-	// MissionÀº RewardState¿Í »ó°ü¾øÀÌ Ç×»ó Click°¡´É
+	// Missionç¯® RewardStateå®¢ æƒ‘åŒ…ç»æž äº²æƒ‘ Clickå•Šç“·
 	if (BTN_Area.IsValid())
 	{
 		BTN_Area->SetVisibility(ESlateVisibility::Visible);

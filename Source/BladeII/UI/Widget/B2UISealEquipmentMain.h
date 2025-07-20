@@ -1,14 +1,15 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
 #include "UI/B2UIWidget.h"
 #include "CoreMinimal.h"
 #include "B2UIBackWidget.h"
+#include "../B2RichTextBlock.h"
 #include "B2UISealEquipmentMain.generated.h"
 
 /**
- * 
+ *
  */
 
 
@@ -55,10 +56,10 @@ public:
 	TWeakObjectPtr<UWidgetAnimation> SealAni;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UISealSlot")
-		int32 OptionSlotNumber;
+	int32 OptionSlotNumber;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UISealSlot")
-		FSlateColor TintColor;
+	FSlateColor TintColor;
 };
 
 
@@ -109,22 +110,22 @@ public:
 	void CheckTutorialNextStep();
 
 	UFUNCTION()
-		void OnClickSlot1();
+	void OnClickSlot1();
 	UFUNCTION()
-		void OnClickSlot2();
+	void OnClickSlot2();
 	UFUNCTION()
-		void OnClickSlot3();
+	void OnClickSlot3();
 	UFUNCTION()
-		void OnClickSlot4();
+	void OnClickSlot4();
 
 	UFUNCTION()
-		void OnClickClose();
+	void OnClickClose();
 
 	UFUNCTION()
-		void OnClickUnLock();
+	void OnClickUnLock();
 
 	UFUNCTION()
-		void OnClickSeal();
+	void OnClickSeal();
 
 public:
 	TWeakObjectPtr<class UB2DynItemIcon_LobbyInven> TargetItemIcon;
@@ -133,7 +134,7 @@ public:
 
 	TWeakObjectPtr<UB2Button>						BTN_Close;
 
-/////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////
 	TWeakObjectPtr<UVerticalBox>					VB_OptionList;
 	TWeakObjectPtr<UHorizontalBox>					HB_SealMaterial;
 
@@ -166,10 +167,10 @@ public:
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "UISeal")
-		TSubclassOf<class UB2DynText_Multiple>		UISealOptionClass;
+	TSubclassOf<class UB2DynText_Multiple>		UISealOptionClass;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "UISeal")
-		TSubclassOf<class UB2UIRewardIcon>		UIRewardIconClass;
+	TSubclassOf<class UB2UIRewardIcon>		UIRewardIconClass;
 
 
 private:

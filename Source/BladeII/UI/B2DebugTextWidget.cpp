@@ -1,4 +1,4 @@
-
+ï»¿
 #include "B2DebugTextWidget.h"
 #include "BladeIIUtil.h"
 
@@ -12,11 +12,11 @@ void FDebugTextWidgetTextEntry::SetTBByThisInfo(UTextBlock* InTB)
 
 	//FSlateFontInfo& FontInfoAdjust = InTB->Font;
 	//FontInfoAdjust.Size = FontSize;
-	//InTB->SetFont(FontInfoAdjust); // ÀÌ·¸°Ô ÇØ¾ß È®½ÇÈ÷ ¾÷µ¥ÀÌÆ® µÇ´Â µí.
+	//InTB->SetFont(FontInfoAdjust); // æçŠ¯éœ¸ ç§¦å…· çŠ¬è§’æ´’ è¯€å•æé£˜ ç™»ç»° æ·€.
 	//InTB->SetColorAndOpacity(FontColor);
 
 	//if (bShadowed)
-	//{ // Shadow ¸¦ ¾ó¸¶³ª ÁÙÁö´Â °Á ¿©±â¼­ ÀÓÀÇ·Î
+	//{ // Shadow ç”« å€”ä»˜å”± ä¸´ç˜¤ç»° å‚² å’¯æ‰è¾‘ çƒ™ç‹¼è‚º
 	//	float ShadowOffsetScale = (float)FontSize * 0.12f;
 	//	InTB->SetShadowOffset( FVector2D(ShadowOffsetScale, ShadowOffsetScale) );
 	//	InTB->SetShadowColorAndOpacity(ShadowColor);
@@ -28,9 +28,9 @@ void FDebugTextWidgetTextEntry::SetCPSByThisInfo(UCanvasPanelSlot* InCPS)
 	if (!InCPS) {
 		return;
 	}
-	// ÅØ½ºÆ® ºí·ÏÀÌ ÁÂ»ó´Ü ¾ŞÄ¿·Î ÀüÃ¼ »çÀÌÁîÀÇ Äµ¹ö½º ÆĞ³Î¿¡ ¼³Ä¡µÇ¾î ÀÖ´Ù´Â °¡Á¤.
+	// å’†èƒ¶é£˜ å–‰åºŸæ è°…æƒ‘çªœ å·¨ç›®è‚º å‚ˆçœ‰ è¤æä»¤ç‹¼ ç‰¡æ»šèƒ¶ è©æ¾„ä¿Š æ±²æ‘¹ç™»ç»¢ ä¹ä¿ƒç»° å•Šæ²¥.
 	InCPS->SetPosition(UpperLeftCoord);
-	// ¼¼·Î·Î´Â Àû´çÈ÷ ¿©ºĞµÎ°í, °¡·Î·Î´Â È­¸é ³¡±îÁö ´Ã·ÁÁÜ.
+	// æŠ€è‚ºè‚ºç»° åˆ©å¯¸æ´’ å’¯ç›’æ»´ç»Š, å•Šè‚ºè‚ºç»° æ‹³æ åœºé³–ç˜¤ ç–µå¦¨æ·‹.
 	InCPS->SetSize(FVector2D(UB2UnitedWidgetBase::DesignedRefViewSize.X - UpperLeftCoord.X, FontSize * 2.0f));
 }
 
@@ -44,8 +44,8 @@ UB2DebugTextWidget::UB2DebugTextWidget(const FObjectInitializer& ObjectInitializ
 
 TSubclassOf<class UB2DebugTextWidget> UB2DebugTextWidget::GetUniqueClassForScreenDisplay()
 {
-	// ÀüÃ¼ ½ºÅ©¸°¿¡ ¶ç¿ï ¿ëµµÀÇ WidgetBP Å¬·¡½º
-	// ½±ÇÎ¿¡¼­ ÃÖ´ëÇÑ ¸¹ÀÌ ºüÁöµµ·Ï ±»ÀÌ ini ¿¡¼­ ÀĞ¾îµéÀÌÁö ¾Ê´Â °É·Î.
+	// å‚ˆçœ‰ èƒ¶å†œèµ´ä¿Š å‰åŒ¡ ä¾©æ¡£ç‹¼ WidgetBP åŠªè´°èƒ¶
+	// å¥–ä¿ä¿Šè¾‘ å¼¥æªèŒ„ è…¹æ ç‹ç˜¤æ¡£åºŸ è¢«æ ini ä¿Šè¾‘ ä½¬ç»¢ç”¸æç˜¤ è‡¼ç»° å§è‚º.
 	FString WidgetClassPath = TEXT("/Game/UI/DevOnlyWidget/ScreenDebugTextWidget");
 
 	ConstructorHelpers::StripObjectClass(WidgetClassPath, true);
@@ -69,7 +69,7 @@ void UB2DebugTextWidget::NativeTick(const FGeometry& MyGeometry, float InDeltaTi
 {
 	Super::NativeTick(MyGeometry, InDeltaTime);
 		
-	UpdateDrawText(); // ÀÏ´Ü ¸Å Æ½ ÇØ º¸°í..
+	UpdateDrawText(); // è€çªœ æ¦‚ å¹³ ç§¦ ç„Šç»Š..
 
 	UpdateTimedText(InDeltaTime);
 }
@@ -83,7 +83,7 @@ void UB2DebugTextWidget::DestroySelf()
 
 void UB2DebugTextWidget::EnqueueDrawText(float InStartX, float InStartY, const FString& InText, const FLinearColor& InFontColor, int32 InFontSize, bool bDrawShadow, const FLinearColor& InShadowColor)
 {
-	// ¿©±â¼­ Å¥À×ÇÑ ÅØ½ºÆ® draw Á¤º¸´Â ´ÙÀ½ ¾÷µ¥ÀÌÆ® ¶§ ¹İ¿µµÇ°í ±× ´ÙÀ½ ¾÷µ¥ÀÌÆ® ¶§±îÁö (ÇÑ ÇÁ·¹ÀÓ) Áö¼Ó. ¸Å ÇÁ·¹ÀÓ Draw È£ÃâÇÏµíÀÌ ¾²¸é µÊ.
+	// å’¯æ‰è¾‘ é’®é›·èŒ„ å’†èƒ¶é£˜ draw æ²¥ç„Šç»° ä¿ƒæ¾œ è¯€å•æé£˜ é”­ é¦†åº·ç™»ç»Š å¼Š ä¿ƒæ¾œ è¯€å•æé£˜ é”­é³–ç˜¤ (èŒ„ æ©‡é¥­çƒ™) ç˜¤åŠ . æ¦‚ æ©‡é¥­çƒ™ Draw é¾‹å…çªæ·€æ é™æ å‡³.
 
 	FDebugTextWidgetTextEntry NewEntry;
 	NewEntry.UpperLeftCoord = FVector2D(InStartX, InStartY);
@@ -99,7 +99,7 @@ void UB2DebugTextWidget::EnqueueDrawText(float InStartX, float InStartY, const F
 void UB2DebugTextWidget::AddTimedDrawText(const FString& InText, const FLinearColor& InFontColor, int32 InFontSize, float InDisplayDuration, bool bDrawShadow, const FLinearColor& InShadowColor)
 {
 	FTimedDebugTextWidgetTextEntry NewEntry;
-	NewEntry.DebugTextInfo.UpperLeftCoord = FVector2D(20.0f, 10.0f); // ¿©±â¼­ À§Ä¡´Â ³»ºÎÀûÀ¸·Î °íÁ¤µÈ´Ù. Ãß°¡·Î µé¾î¿Ã ¼ö·Ï ÀÌÀü ²« ³»·Á°¥ °Í..
+	NewEntry.DebugTextInfo.UpperLeftCoord = FVector2D(20.0f, 10.0f); // å’¯æ‰è¾‘ å›°æ‘¹ç»° éƒ´ä½•åˆ©æ è‚º ç»Šæ²¥ç­‰ä¿ƒ. çœ å•Šè‚º ç”¸ç»¢æ£µ èåºŸ æå‚ˆ æ éƒ´å¦¨å“ å·´..
 	NewEntry.DebugTextInfo.TheText = InText;
 	NewEntry.DebugTextInfo.FontColor = InFontColor;
 	NewEntry.DebugTextInfo.FontSize = InFontSize;
@@ -124,7 +124,7 @@ void UB2DebugTextWidget::AddNewTextEntry(const FDebugTextWidgetTextEntry& NewTex
 
 void UB2DebugTextWidget::AddTimedTextEntry(const FTimedDebugTextWidgetTextEntry& NewTimedEntry)
 {
-	while (TimedTextList.Num() > MaxTimedListSize) // ÃÖ´ë °³¼ö ÃÊ°úÇÏ¸é ¾Õ¿¡ºÎÅÍ Á¦°Å..
+	while (TimedTextList.Num() > MaxTimedListSize) // å¼¥æª ä¿ºè æª¬è‹çªæ èŠä¿Šä½•ç£ åŠ›èŠ­..
 	{
 		if (TimedTextList[0].CreatedTB)
 		{
@@ -136,13 +136,13 @@ void UB2DebugTextWidget::AddTimedTextEntry(const FTimedDebugTextWidgetTextEntry&
 
 	
 	FTimedDebugTextWidgetTextEntry LocalNewEntry = NewTimedEntry;
-	LocalNewEntry.DebugTextInfo.UpperLeftCoord.Y = 10.0f; // ´Ù½Ã ÇÑ¹ø ¸Ç À§·Î È®½ÇÈ÷
+	LocalNewEntry.DebugTextInfo.UpperLeftCoord.Y = 10.0f; // ä¿ƒçŸ« èŒ„é”… ç›– å›°è‚º çŠ¬è§’æ´’
 	
-	// ÅØ½ºÆ® »ı¼º
+	// å’†èƒ¶é£˜ ç§¯å·±
 	LocalNewEntry.CreatedTB = NewObject<UTextBlock>(this, NAME_None, RF_Transient);
 	if (LocalNewEntry.CreatedTB && CP_Base.IsValid())
 	{		
-		LocalNewEntry.CreatedTB->SetVisibility(ESlateVisibility::HitTestInvisible); // ¹öÆ°ÀÌ °¡¸®Áö ¾Ê°Ô.
+		LocalNewEntry.CreatedTB->SetVisibility(ESlateVisibility::HitTestInvisible); // æ»šç“¢æ å•Šåºœç˜¤ è‡¼éœ¸.
 		LocalNewEntry.DebugTextInfo.SetTBByThisInfo(LocalNewEntry.CreatedTB);
 		UCanvasPanelSlot* NewTBCPS = Cast<UCanvasPanelSlot>(CP_Base->AddChild(LocalNewEntry.CreatedTB));
 		if (NewTBCPS)
@@ -151,7 +151,7 @@ void UB2DebugTextWidget::AddTimedTextEntry(const FTimedDebugTextWidgetTextEntry&
 		}
 	}
 		
-	// »õ·Î¿î °Ç µÚ¿¡´Ù°¡ ³Ö°í.. ÀÌÀü °ÍµéÀº ´Ù ¾Æ·¡·Î ÇÑÄ­¾¿
+	// è´§è‚ºæ¬¾ æ‰’ ç¬¬ä¿Šä¿ƒå•Š æŒç»Š.. æå‚ˆ å·´ç”¸ç¯® ä¿ƒ é…’è´°è‚º èŒ„æ²«ç©¶
 	TimedTextList.Add(LocalNewEntry);	
 	for (int32 TLI = TimedTextList.Num()-1; TLI >= 0; --TLI)
 	{
@@ -171,9 +171,9 @@ void UB2DebugTextWidget::AddTimedTextEntry(const FTimedDebugTextWidgetTextEntry&
 
 void UB2DebugTextWidget::UpdateDrawText()
 {
-	// Á÷Àü±îÁö ½×ÀÎ DebugTextQueue ¿¡ µû¶ó display ¸¦ ÇÏ°í DebugTextQueue ¸¦ ºñ¿î´Ù.
+	// æµå‚ˆé³–ç˜¤ é˜¶ç‰¢ DebugTextQueue ä¿Š è¶æ‰¼ display ç”« çªç»Š DebugTextQueue ç”« åšæ¬¾ä¿ƒ.
 
-	// ±âÁ¸¿¡ »ı¼ºµÈ TextBlock µéÀ» ÃÖ´ëÇÑ ÀçÈ°¿ë.
+	// æ‰ç²®ä¿Š ç§¯å·±ç­‰ TextBlock ç”¸é˜‘ å¼¥æªèŒ„ çŠåŠä¾©.
 	const int32 RecycleNum = FMath::Min(DebugTextQueue.Num(), AllCreatedTBs.Num());
 	for (int32 TI = 0; TI < RecycleNum; ++TI)
 	{
@@ -191,7 +191,7 @@ void UB2DebugTextWidget::UpdateDrawText()
 	}
 
 	if (AllCreatedTBs.Num() > RecycleNum)
-	{ // ³²Àº ¾µ¸ğ¾ø´Â °Ç Á¦°Å
+	{ // å·¢ç¯® é•œè‘›ç»ç»° æ‰’ åŠ›èŠ­
 		int32 RemoveStartIndex = RecycleNum;
 		for (int32 TBRI = RemoveStartIndex; TBRI < AllCreatedTBs.Num(); ++TBRI)
 		{
@@ -207,7 +207,7 @@ void UB2DebugTextWidget::UpdateDrawText()
 		checkSlow(AllCreatedTBs.Num() == RecycleNum);
 	}
 	else if(DebugTextQueue.Num() > RecycleNum)
-	{ // Ãß°¡·Î »ı¼º
+	{ // çœ å•Šè‚º ç§¯å·±
 		for (int32 NTI = RecycleNum; NTI < DebugTextQueue.Num(); ++NTI)
 		{
 			FDebugTextWidgetTextEntry& ThisTextEntry = DebugTextQueue[NTI];
@@ -215,7 +215,7 @@ void UB2DebugTextWidget::UpdateDrawText()
 			UTextBlock* NewTB = NewObject<UTextBlock>(this, NAME_None, RF_Transient);
 			if(NewTB && CP_Base.IsValid())
 			{
-				NewTB->SetVisibility(ESlateVisibility::HitTestInvisible); // ¹öÆ°ÀÌ °¡¸®Áö ¾Ê°Ô.
+				NewTB->SetVisibility(ESlateVisibility::HitTestInvisible); // æ»šç“¢æ å•Šåºœç˜¤ è‡¼éœ¸.
 				ThisTextEntry.SetTBByThisInfo(NewTB);
 				UCanvasPanelSlot* NewTBCPS = Cast<UCanvasPanelSlot>(CP_Base->AddChild(NewTB));
 				if (NewTBCPS)
@@ -228,7 +228,7 @@ void UB2DebugTextWidget::UpdateDrawText()
 		}
 	}
 
-	DebugTextQueue.Empty(); // ÀÌ¹ø ²« ¸ğµÎ Ã³¸®.
+	DebugTextQueue.Empty(); // æé”… æ è‘›æ»´ è´¸åºœ.
 }
 
 void UB2DebugTextWidget::UpdateTimedText(float InDeltaSecond)
@@ -237,7 +237,7 @@ void UB2DebugTextWidget::UpdateTimedText(float InDeltaSecond)
 	{
 		FTimedDebugTextWidgetTextEntry& ThisEntry = TimedTextList[TLI];
 
-		// ½Ã°£ ´Ù µÈ °Å Á¦°Å
+		// çŸ«åŸƒ ä¿ƒ ç­‰ èŠ­ åŠ›èŠ­
 		ThisEntry.CurrentDisplayedTime += InDeltaSecond;
 		if (ThisEntry.CurrentDisplayedTime >= ThisEntry.MaxDisplayTime) {
 			if (ThisEntry.CreatedTB) {

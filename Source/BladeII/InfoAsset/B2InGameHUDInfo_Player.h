@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 // Project BladeII, Action Square
 
 #pragma once
@@ -43,7 +43,7 @@ protected:
 public:
 	// WorldContextObject is needed to check if it is currently lobby or in-game battle.
 	UMaterialInterface* GetPlayerPortrait(UObject* WorldContextObject);
-	//UObject* WorldContextObject´Â ¾ø¾îµµ µÇÁö¸¸ ÃßÈÄ¸¦ À§ÇØ ³²°Ü ³õÀ½
+	//UObject* WorldContextObjectç»° ç»ç»¢æ¡£ ç™»ç˜¤çˆ¶ çœ é¥¶ç”« å›°ç§¦ å·¢è´¥ åˆæ¾œ
 	UMaterialInterface* GetPlayerDeathPortrait(UObject* WorldContextObject);
 	UTexture2D* GetPlayerLargePortrait();
 

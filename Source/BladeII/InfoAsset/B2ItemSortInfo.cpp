@@ -1,14 +1,15 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2ItemSortInfo.h"
+#include "Misc/ConfigCacheIni.h" 
 
 UB2ItemSortInfo::UB2ItemSortInfo(const FObjectInitializer & ObjectInitializer)
 	: Super(ObjectInitializer), DataTable(nullptr)
 {
 	if (HasAnyFlags(RF_ClassDefaultObject) == false)
 	{
-		// Á¤ÇØÁø ÇÏ³ª¸¦ ·Îµù
+		// æ²¥ç§¦æŸ³ çªå”±ç”« è‚ºçˆ¹
 		FString ItemSortInfoTablePath;
 		GConfig->GetString(TEXT("/Script/BladeII.ItemSortInfo"), TEXT("ItemSortInfoTable"), ItemSortInfoTablePath, GGameIni);
 

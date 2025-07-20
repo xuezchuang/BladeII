@@ -1,4 +1,4 @@
-// Copyright 1998-2014 Epic Games, Inc. All Rights Reserved.
+﻿// Copyright 1998-2014 Epic Games, Inc. All Rights Reserved.
 // Author : leejswo(SangwooLee)
 #pragma once
 #include "BladeIICharacter.h"

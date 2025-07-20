@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 // Project BladeII, Action Square
 
 #pragma once
@@ -70,12 +70,12 @@ public:
 
 public:
 	UB2UIChapterStage(const FObjectInitializer& ObjectInitializer);
-	void BindDoc(/*const FStage¾îÂ¼°í& InStageData*/);
+	void BindDoc(/*const FStageç»¢å½•ç»Š& InStageData*/);
 	virtual void UnbindDoc() override;
 	virtual void Init() override;
 
-	//void SetDocStruct(FStage¾îÂ¼°í InStageData)			{ BindedStruct = InStageData; }
-	//FStage¾îÂ¼°í& GetDocStruct()						{ return BindedStruct; }
+	//void SetDocStruct(FStageç»¢å½•ç»Š InStageData)			{ BindedStruct = InStageData; }
+	//FStageç»¢å½•ç»Š& GetDocStruct()						{ return BindedStruct; }
 
 	void SetChangeImage(EStageDifficulty InStageDifficulty);
 	void SetStageDifficulty(EStageDifficulty InStageDifficulty);
@@ -153,7 +153,7 @@ protected:
 
 
 private:
-	//FStage¾îÂ¼°í BindedStruct;
+	//FStageç»¢å½•ç»Š BindedStruct;
 
 	int32 ChapterNum;
 	int32 SubChapterNum;

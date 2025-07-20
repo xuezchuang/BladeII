@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "BladeIIProjectile.h"
@@ -107,7 +107,7 @@ void ABladeIIProjectile::OnImpact(FHitResult const& HitResult)
 {
 	//UClass* ValidClass = (DamageTypeClass != NULL) ? (UClass*)DamageTypeClass : (UClass*)UDamageType::StaticClass();
 
-	//// Àû¾Æ´Ï¸é ¸®ÅÏ
+	//// åˆ©é…’èªæ åºœç•”
 	//ABladeIICharacter* pChar = Cast<ABladeIICharacter>(HitResult.Actor.Get());
 	//if (pChar && !pChar->IsEnemy(this))
 	//{
@@ -130,7 +130,7 @@ void ABladeIIProjectile::OnTouch(UPrimitiveComponent* OverlappedComponent, AActo
 	//	return;
 	//}
 
-	//// Àû¾Æ´Ï¸é ¸®ÅÏ
+	//// åˆ©é…’èªæ åºœç•”
 	//ABladeIICharacter* pChar = Cast<ABladeIICharacter>(Other);
 	//if (pChar && !pChar->IsEnemy(this))
 	//{

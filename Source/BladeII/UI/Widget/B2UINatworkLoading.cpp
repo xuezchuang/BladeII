@@ -1,4 +1,4 @@
-#include "B2UINatworkLoading.h"
+﻿#include "B2UINatworkLoading.h"
 
 void UB2UINatWorkLoading::CacheAssets()
 {

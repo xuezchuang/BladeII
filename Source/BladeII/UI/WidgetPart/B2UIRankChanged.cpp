@@ -1,4 +1,4 @@
-#include "B2UIRankChanged.h"
+ï»¿#include "B2UIRankChanged.h"
 
 
 #include "BladeIIUtil.h"
@@ -71,7 +71,7 @@ void UB2UIRankChanged::SetUsingGameMode(EB2GameMode ModeType)
 	if (UIP_MyRankingInfo_ControlMatch.IsValid())
 		UIP_MyRankingInfo_ControlMatch->SetVisibility(bControlMatch ? ESlateVisibility::HitTestInvisible : ESlateVisibility::Collapsed);
 
-	//¼­¹ö ÇÁ·ÎÅäÄÝ º¯°æ½Ã±îÁö °è¼Ó ¼û±è
+	//è¾‘æ»š æ©‡è‚ºé…å¦® å‡½ç‰ˆçŸ«é³–ç˜¤ æ‹ŒåŠ  è§è¾«
 	if (UIP_OtherRankingInfo_TagMatch.IsValid())
 		UIP_OtherRankingInfo_TagMatch->SetVisibility(bTagMatch ? ESlateVisibility::HitTestInvisible : ESlateVisibility::Collapsed);
 

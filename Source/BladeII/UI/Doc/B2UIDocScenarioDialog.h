@@ -4,6 +4,7 @@
 #pragma once
 #include "UObject/Object.h"
 #include "B2UIDocBase.h"
+#include "Materials/MaterialInterface.h"
 #include "B2UIDocScenarioDialog.generated.h"
 
 /* Data indicating the dialog involved in the scenario. */

@@ -1,6 +1,7 @@
-#pragma once
+﻿#pragma once
 //#include "BladeII.h"
 #include "UObject/Object.h"
+#include "Materials/MaterialInstance.h"
 #include "B2GuildMarkInfo.generated.h"
 
 
@@ -11,18 +12,18 @@ class BLADEII_API UB2GuildMarkInfo : public UObject
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BladeII")
-		TArray<TSoftObjectPtr<UMaterialInstance>> PatternImage;
+	TArray<TSoftObjectPtr<UMaterialInstance>> PatternImage;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BladeII")
-		TArray<FLinearColor> PatternColor;
+	TArray<FLinearColor> PatternColor;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BladeII")
-		TArray<TSoftObjectPtr<UMaterialInstance>> BGImage;
+	TArray<TSoftObjectPtr<UMaterialInstance>> BGImage;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BladeII")
-		TArray<FLinearColor> BGColor;
+	TArray<FLinearColor> BGColor;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BladeII")
-		TArray<TSoftObjectPtr<UMaterialInstance>> BGBorder;
+	TArray<TSoftObjectPtr<UMaterialInstance>> BGBorder;
 
 
 public:

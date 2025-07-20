@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 #include "BladeII.h"
@@ -207,8 +207,8 @@ private:
 	TWeakObjectPtr<UTextBlock>		TB_MaxQuantity;
 
 	TWeakObjectPtr<UCanvasPanel>	CP_PeriodLimit;
-	TWeakObjectPtr<UB2RichTextBlock> TB_LimitStartTime;	//±â°£ Á¦ÇÑ Á¦ÀÛ ½ÃÀÛ½Ã°£
-	TWeakObjectPtr<UB2RichTextBlock> TB_LimitEndTime;	//±â°£ Á¦ÇÑ Á¦ÀÛ Á¾·á½Ã°£
+	TWeakObjectPtr<UB2RichTextBlock> TB_LimitStartTime;	//æ‰åŸƒ åŠ›èŒ„ åŠ›ç´¯ çŸ«ç´¯çŸ«åŸƒ
+	TWeakObjectPtr<UB2RichTextBlock> TB_LimitEndTime;	//æ‰åŸƒ åŠ›èŒ„ åŠ›ç´¯ è¾†ä¸°çŸ«åŸƒ
 
 	TWeakObjectPtr<UB2Button>		BTN_Execute;
 	TWeakObjectPtr<UTextBlock>		TB_Execute;
@@ -298,7 +298,7 @@ protected:
 
 private:
 	FB2Item selectedMainItem;
-	//ÀÌ°Ô 4°³·Î °íÁ¤µÈ ÀÌÀ¯´Â ¼­¹öÂÊ¿¡¼­ 4°³·Î °íÁ¤ÇØ ¹ö·È±â ¶§¹®
+	//æéœ¸ 4ä¿ºè‚º ç»Šæ²¥ç­‰ æèœ¡ç»° è¾‘æ»šç‡ä¿Šè¾‘ 4ä¿ºè‚º ç»Šæ²¥ç§¦ æ»šå•¡æ‰ é”­å·©
 	FB2Item selected1stMaterial;
 	FB2Item selected2ndMaterial;
 	FB2Item selected3rdMaterial;
@@ -339,7 +339,7 @@ private:
 	bool needSub4;
 
 	int32 quantity;
-	int32 maxQuantity;	//ÃÖ»ó´Ü¿¡ defineµÈ°Í ¸»°í °¡Áø ÀÎº¥Åä¸® ¾È¿¡¼­ °¡´ÉÇÑ ÃÖ´ë °¹¼ö
+	int32 maxQuantity;	//å¼¥æƒ‘çªœä¿Š defineç­‰å·´ å¯Œç»Š å•ŠæŸ³ ç‰¢äº¥é…åºœ æ•‘ä¿Šè¾‘ å•Šç“·èŒ„ å¼¥æª è‚®è
 	int32 resultIndex;
 	int32 refundIndex;
 

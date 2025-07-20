@@ -66,7 +66,7 @@ public:
 
 	//UIDocSkill
 	UFUNCTION(BlueprintCallable, Category = "BladeII")
-	//static class UB2UIDocSkill* GetDocSkill(); //HeroDoc¿¡¼­ GetÇÒ°Í.
+	//static class UB2UIDocSkill* GetDocSkill(); //HeroDocä¿Šè¾‘ Getä¸”å·´.
 	static class UB2UIDocSkill* GetDocSkill(const int32 PCClassType, const int32 SkillInfoSkillID);
 
 	//UIDocItem

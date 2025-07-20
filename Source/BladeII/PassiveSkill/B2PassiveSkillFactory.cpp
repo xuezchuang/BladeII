@@ -1,4 +1,4 @@
-#include "B2PassiveSkillFactory.h"
+﻿#include "B2PassiveSkillFactory.h"
 #include <type_traits>
 #include "B2SkillTrigger.h"
 #include "B2SkillCommand.h"

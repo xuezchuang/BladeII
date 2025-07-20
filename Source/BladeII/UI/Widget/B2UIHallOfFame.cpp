@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIHallOfFame.h"
 #include "B2UIManager.h"
 
@@ -224,25 +224,25 @@ void UB2UIHallOfFame::SetCelebratePopup(EHallOfFameMode InMode, int32 InRanking,
 		P_RankerPanel->SetVisibility(ESlateVisibility::Visible);
 	}
 
-	// ÃàÇÏÇÕ´Ï´Ù.
+	// ç»µçªé’¦èªä¿ƒ.
 	if (TB_Celebrate.IsValid())
 	{
 		TB_Celebrate->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("HallOfFame_Celebrate")));
 	}
 
-	// ÀÏ´ëÀÏ ´ëÀü Áö³­ ½ÃÁð {0}À§ ´Þ¼º¿¡ ¼º°øÇÏ¼Ì½À´Ï´Ù!
+	// è€æŽªè€ æŽªå‚ˆ ç˜¤æŠ„ çŸ«ç‰ {0}å›° å´”å·±ä¿Š å·±å‚çªç»§åš¼èªä¿ƒ!
 	if (TB_Ranking.IsValid())
 	{
 		TB_Ranking->SetText(FText::Format(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("HallOfFame_Ranking")), GetModeString(GetHallOfFameMode()), FText::AsNumber(InRanking)));
 	}
 
-	// º¸»ó : 
+	// ç„Šæƒ‘ : 
 	if (TB_RewardInfo.IsValid())
 	{
 		TB_RewardInfo->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("HallOfFame_RewardInfo")));
 	}
 
-	// {0} ¸í¿¹ ÁÖÈ­
+	// {0} ç–™æŠ— æž—æ‹³
 	if (TB_Reward.IsValid())
 	{
 		if (InRewardItem.IsValidIndex(0) && InRewardItem[0]->raw_reward)
@@ -251,7 +251,7 @@ void UB2UIHallOfFame::SetCelebratePopup(EHallOfFameMode InMode, int32 InRanking,
 		}
 	}
 
-	// º¸»óÀº ¿ìÆíÇÔ¿¡¼­ ¼ö·É °¡´ÉÇÕ´Ï´Ù.
+	// ç„Šæƒ‘ç¯® å¿«ç¥ˆçªƒä¿Šè¾‘ èé£ž å•Šç“·é’¦èªä¿ƒ.
 	if (TB_ToMail.IsValid())
 	{
 		TB_ToMail->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("HallOfFame_ToMail")));

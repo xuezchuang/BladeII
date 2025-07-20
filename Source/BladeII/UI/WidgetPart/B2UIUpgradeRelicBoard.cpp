@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIUpgradeRelicBoard.h"
 #include "B2UIManager.h"
@@ -270,23 +270,23 @@ void UB2UIUpgradeRelicBoard::OnPlayAnimation_Levelup(int32 nPlayIndex)
 	AnimationPlayIndex = 0;
 	AnimationIsLevelUp = true;
 
-	if (!AnimationIsLevelUp) // ½Â±Ş
+	if (!AnimationIsLevelUp) // é“°é­
 	{
 		for (int32 i = 0; i < ItemArray.Num(); i++)
 		{
 			ItemArray[i]->OnPlayAnimation2_BP(this);
 		}
 	}
-	else // ·¹º§¾÷
+	else // é¥­éª‡è¯€
 	{
 		AnimationPlayIndex = nPlayIndex;
 
-		if (AnimationPlayIndex == 1)// 1·¾¾÷ ¾Ö´Ï´Â ¿ÀÁ÷ ½½·Ô¸¸..
+		if (AnimationPlayIndex == 1)// 1è‚ªè¯€ å±€èªç»° å·æµ æµ‡å©çˆ¶..
 		{
 			if (ItemArray.IsValidIndex(AnimationPlayIndex))
 				ItemArray[AnimationPlayIndex - 1]->OnPlayAnimation_BP(this);
 		}
-		else // 1 ÀÌ»ó ºÎÅÍ´Â ¹Ù+½½·Ô
+		else // 1 ææƒ‘ ä½•ç£ç»° å®˜+æµ‡å©
 		{
 			if (BarArray.IsValidIndex(AnimationPlayIndex - 2))
 				BarArray[AnimationPlayIndex - 2]->OnPlayAnimation_BP(this, false);
@@ -310,7 +310,7 @@ void UB2UIUpgradeRelicBoard::OnPlayFailAnimation_Levelup(int32 nPlayIndex)
 
 	AnimationPlayIndex = nPlayIndex;
 
-	if(AnimationPlayIndex != 1) // 1 ÀÌ»ó ºÎÅÍ´Â ¹Ù+½½·Ô
+	if(AnimationPlayIndex != 1) // 1 ææƒ‘ ä½•ç£ç»° å®˜+æµ‡å©
 	{
 		if (BarArray.IsValidIndex(AnimationPlayIndex - 2))
 			BarArray[AnimationPlayIndex - 2]->OnPlayAnimation_BP(this, true);
@@ -320,9 +320,9 @@ void UB2UIUpgradeRelicBoard::OnPlayFailAnimation_Levelup(int32 nPlayIndex)
 
 void UB2UIUpgradeRelicBoard::OnEndSlotAnimation_BP(int32 nSlotIndex)
 {
-	if (!AnimationIsLevelUp)// ½Â±ŞÀÏ¶§
+	if (!AnimationIsLevelUp)// é“°é­è€é”­
 	{
-		if (nSlotIndex == 0) // ÇÑ¹ø¸¸ È£Ãâ
+		if (nSlotIndex == 0) // èŒ„é”…çˆ¶ é¾‹å…
 		{
 			if (m_parentClass)
 			{

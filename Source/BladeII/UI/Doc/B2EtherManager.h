@@ -34,7 +34,7 @@ public:
 	int32 GetEtherTypeFromSetId(int32 InEtherSetId) const;
 	int32 GetEnhanceCost(int32 Level, int32 Star);
 	float GetEnhanceRate(int32 Level, int32 Star);
-	int32 GetEnhanceSubOptionState(int32 Level, int32 Tier); // 0 À¯Áö, 1 Ãß°¡, 2 °­È­
+	int32 GetEnhanceSubOptionState(int32 Level, int32 Tier); // 0 èœ¡ç˜¤, 1 çœ å•Š, 2 ç¢æ‹³
 	float GetEnhanceIncMainValue(int32 Id, int32 Star);
 	int32 GetEtherPiece(int32 Star, int32 EnhanceLevel);
 	int32 GetEtherPiece(int64 EtherID);

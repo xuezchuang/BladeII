@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIStartButton.h"
 #include "B2UIManager.h"
 
@@ -145,9 +145,9 @@ void UB2UIStartButton::StartGame()
 
 void UB2UIStartButton::OnClickBTN_Start()
 {
-	// ¹öÆ° Å¬¸¯ÇÔ¼ö
-	// ½ÇÁúÀûÀ¸·Î ¹ÙÀÎµåµÈ ÇÔ¼ö´Â ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ ³¡³ª°í StartGame() È£ÃâµÊ
-	// ¾Æ¸¶µµ ¹öÆ° ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ ²À Ãâ·ÂµÇ°í È­¸é ÀüÈ¯À» ½ÃÄÑ¾ß ÇÑ´Ù´Â ´ÏÁî°¡ ÀÖ¾ú´øµí.
+	// æ»šç“¢ åŠªè…çªƒè
+	// è§’é¾™åˆ©æ è‚º å®˜ç‰¢é›ç­‰ çªƒèç»° å±€èªçš‹æè®°æ åœºå”±ç»Š StartGame() é¾‹å…å‡³
+	// é…’ä»˜æ¡£ æ»šç“¢ å±€èªçš‹æè®°æ æ€– å…ä»¿ç™»ç»Š æ‹³æ å‚ˆåˆ¸é˜‘ çŸ«éš¾å…· èŒ„ä¿ƒç»° èªä»¤å•Š ä¹èŒå¸¦æ·€.
 
 	if (ClickState)
 		return;
@@ -163,7 +163,7 @@ void UB2UIStartButton::OnClickBTN_Start()
 	if(StartAnimation)
 		PlayAnimation(StartAnimation);
 
-	// ½ÃÀÛ ¹öÆ°ÀÌ ´­¸®°í ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ Ãâ·ÂµÇ´Â »çÀÌ½Ã°£µ¿¾È È­¸é ºí¶ôÀÌ¶ó´øÁö Ã³¸®¸¦ À§ÇØ
+	// çŸ«ç´¯ æ»šç“¢æ å–˜åºœç»Š å±€èªçš‹æè®°æ å…ä»¿ç™»ç»° è¤æçŸ«åŸƒæ‚¼æ•‘ æ‹³æ å–‰éææ‰¼å¸¦ç˜¤ è´¸åºœç”« å›°ç§¦
 	ClickDirectDelegate.ExecuteIfBound();
 }
 

@@ -1,4 +1,4 @@
-#include "B2UIScenarioDialog.h"
+ï»¿#include "B2UIScenarioDialog.h"
 #include "B2UIManager.h"
 #include "B2UIDocHelper.h"
 #include "Event.h"
@@ -33,7 +33,7 @@ void UB2UIScenarioDialog::NativeTick(const FGeometry& MyGeometry, float InDeltaT
 {
 	Super::NativeTick(MyGeometry, InDeltaTime);
 
-	// Pause »óÅÂÀÏ ¼ö ÀÖÀ¸¹Ç·Î Á÷Á¢ RealTime À¸·Î Ä«¿îÆ®ÇÑ´Ù.
+	// Pause æƒ‘æ€•è€ è ä¹æ éª¨è‚º æµç«‹ RealTime æ è‚º å¢¨æ¬¾é£˜èŒ„ä¿ƒ.
 	UpdateManualTimeCounter();
 
 	bool IsLastChar = false;
@@ -48,7 +48,7 @@ void UB2UIScenarioDialog::UpdateManualTimeCounter()
 	{
 		float ThisRealTime = TheWorld->GetRealTimeSeconds();
 		ManualRealDeltaTime = FMath::Max(ThisRealTime - ManualLastRealTime - ManualPauseDiffTime, 0.0f);
-		// bPause »óÈ²¿¡¼­´Â ManualLastRealTime À» À¯Áö½ÃÅ°´Â °Å..
+		// bPause æƒ‘ç‚”ä¿Šè¾‘ç»° ManualLastRealTime é˜‘ èœ¡ç˜¤çŸ«è™ç»° èŠ­..
 		if (bPause) 
 			ManualPauseDiffTime += ManualRealDeltaTime;
 
@@ -98,7 +98,7 @@ void UB2UIScenarioDialog::CloseWidgetDelegate()
 	OnClickBtnNext();
 }
 
-//ÀÌ UI´Â Ç×»ó ¶° ÀÖ´Â UIÀÌ¹Ç·Î, Open½Ã¿¡ BindDocAuto°¡ ºÒ¸®´Â°Ô ¾Æ´Ï¶ó Á©Ã³À½ »ı¼ºµÉ¶§ ºÒ¸®µµ·Ï µÇ¾îÀÖÀ½ UB2UIManager::PrepareUI()Âü°í
+//æ UIç»° äº²æƒ‘ æ ‹ ä¹ç»° UIæéª¨è‚º, OpençŸ«ä¿Š BindDocAutoå•Š é˜‚åºœç»°éœ¸ é…’èªæ‰¼ ä¿©è´¸æ¾œ ç§¯å·±çªé”­ é˜‚åºœæ¡£åºŸ ç™»ç»¢ä¹æ¾œ UB2UIManager::PrepareUI()æ›¼ç»Š
 void UB2UIScenarioDialog::BindDocAuto()
 {
 	UnbindDoc();
@@ -141,7 +141,7 @@ void UB2UIScenarioDialog::ChangeDialog()
 
 void UB2UIScenarioDialog::ChangeFadeOutDialogComplete()
 {
-	//ÆäÀÌµå ¾Æ¿ôÀÌ ¿Ï·áµÇ¸é, »õ·Î¿î µ¥ÀÌÅÍ¸¦ Ã¤¿ö³õ°í FadeIn ½ÃÅ²´Ù.
+	//å…¶æé› é…’çœ¶æ è‚¯ä¸°ç™»æ, è´§è‚ºæ¬¾ å•æç£ç”« ç›²å†µåˆç»Š FadeIn çŸ«æŒªä¿ƒ.
 	UpdateDialogDatas();
 	ChangeFadeInDialog();
 }
@@ -162,7 +162,7 @@ void UB2UIScenarioDialog::UpdateDialogDatas()
 
 		TempPrevSpeakerName = DocScenarioDialog->GetSpeakerName().ToString();
 		
-		// ScenarioDialog ´Â ¸Å¹ø »ı¼ºÀÌ ¾Æ´Ï¶ó StayInViewport ·Î´Ù°¡ visibility ¸¦ Á¦¾îÇÒ ²¨¶ó.. µ¥ÀÌÅÍ °»½Å ½Ã »óÅÂ ¸®¼ÂÀÌ ÇÊ¿ä.
+		// ScenarioDialog ç»° æ¦‚é”… ç§¯å·±æ é…’èªæ‰¼ StayInViewport è‚ºä¿ƒå•Š visibility ç”« åŠ›ç»¢ä¸” æ³¢æ‰¼.. å•æç£ ç›è„š çŸ« æƒ‘æ€• åºœæ‚¸æ é˜å¤¸.
 		ResetTimeStates();
 	}
 }
@@ -223,7 +223,7 @@ void UB2UIScenarioDialog::ShowDialogBox(bool bShow)
 //====================================================================================
 void UB2UIScenarioDialog::OnClickBtnNext()
 {
-	if (ProgressiveDialogText.IsStringFilledUp()) // ±ÛÀÚ¸¦ ´Ù Ã¤¿î »óÅÂ¿¡¼­´Â NextDialog ·Î.
+	if (ProgressiveDialogText.IsStringFilledUp()) // è‡‚ç£Šç”« ä¿ƒ ç›²æ¬¾ æƒ‘æ€•ä¿Šè¾‘ç»° NextDialog è‚º.
 	{
 		NextDialogClass<>::GetInstance().Signal();
 	}
@@ -244,8 +244,8 @@ void UB2UIScenarioDialog::OnClickBtnSkip()
 //====================================================================================
 void UB2UIScenarioDialog::OnChangedSpeakerPortrait(class UB2UIDocBase* Sender, UMaterialInterface* SpeakerPortrait, UMaterialInterface* PrevSpeakerPortrait)
 {
-	//¿¹Àü ½ºÇÇÄ¿¿Í Áö±İ ½ºÇÇÄ¿°¡ °°¾Æ¾ßÁö Prtrait¸¦ ¹Ù²Ü ¼ö ÀÖ´Ù(°¨Á¤Ç¥Çö ÀÏµí?) 
-	//¸¸¾á ¿¹Àü ½ºÇÇÄ¿¿Í Áö±İ ½ºÇÇÄ¿°¡ ´Ù¸£´Ù¸é ¿©±â¼­ Portrait¸¦ ¹Ù²Ü ¼ö ¾ø°í, ChangeDialog()¿¡¼­ Ã³¸® µÇ¾î¾ßÇÔ. (¿¬Ãâ¶§¹®ÀÓ!! ChangeDialog´Â SpeakerNameÀÇ º¯°æÀ¸·Î È£ÃâµÊ)
+	//æŠ—å‚ˆ èƒ¶ä¹”ç›®å®¢ ç˜¤é™› èƒ¶ä¹”ç›®å•Š éé…’å…·ç˜¤ Prtraitç”« å®˜æ›¹ è ä¹ä¿ƒ(çš‘æ²¥é’æ³… è€æ·€?) 
+	//çˆ¶è¸ æŠ—å‚ˆ èƒ¶ä¹”ç›®å®¢ ç˜¤é™› èƒ¶ä¹”ç›®å•Š ä¿ƒç¦ä¿ƒæ å’¯æ‰è¾‘ Portraitç”« å®˜æ›¹ è ç»ç»Š, ChangeDialog()ä¿Šè¾‘ è´¸åºœ ç™»ç»¢å…·çªƒ. (æ¥·å…é”­å·©çƒ™!! ChangeDialogç»° SpeakerNameç‹¼ å‡½ç‰ˆæ è‚º é¾‹å…å‡³)
 	auto DocScenarioDialog = Cast<UB2UIDocScenarioDialog>(GetDoc());
 	if (DocScenarioDialog)
 	{
@@ -258,7 +258,7 @@ void UB2UIScenarioDialog::OnChangedSpeakerPortrait(class UB2UIDocBase* Sender, U
 
 void UB2UIScenarioDialog::OnChangedSpeakerName(class UB2UIDocBase* Sender, FText SpeakerName, FText PrevSpeakerName)
 {
-	//½ºÇÇÄ¿°¡ ¹Ù²î¸é, ÆäÀÌµå¾Æ¿ô ¿¬ÃâÀ» ½ÃÅ°°í ¿¬ÃâÀÌ ³¡³ª¸é ÀÏ°ıÀûÀ¸·Î µ¥ÀÌÅÍ¸¦ ¹Ù²Û´Ù. ¿©±â¼­ ¹Ù·Î ¼¼ÆÃÇÏ¸é ¾ÈµÊ
+	//èƒ¶ä¹”ç›®å•Š å®˜å·®æ, å…¶æé›é…’çœ¶ æ¥·å…é˜‘ çŸ«è™ç»Š æ¥·å…æ åœºå”±æ è€è¤’åˆ©æ è‚º å•æç£ç”« å®˜æ§½ä¿ƒ. å’¯æ‰è¾‘ å®˜è‚º æŠ€æ³¼çªæ æ•‘å‡³
 	if (SpeakerName.ToString() != PrevSpeakerName.ToString())
 	{
 		ChangeDialog();
@@ -272,8 +272,8 @@ void UB2UIScenarioDialog::OnChangedDialogShowingTime(class UB2UIDocBase* Sender,
 
 void UB2UIScenarioDialog::OnChangedDialogText(class UB2UIDocBase* Sender, FText DialogText, FText PrevDialogText)
 {
-	//¿¹Àü ½ºÇÇÄ¿¿Í Áö±İ ½ºÇÇÄ¿°¡ °°¾Æ¾ßÁö ÅØ½ºÆ®³»¿ëÀ» ¹Ù²Ü ¼ö ÀÖ´Ù.
-	//¸¸¾á ¿¹Àü ½ºÇÇÄ¿¿Í Áö±İ ½ºÇÇÄ¿°¡ ´Ù¸£´Ù¸é ¿©±â¼­ ÅØ½ºÆ® ³»¿ëÀ» ¹Ù²Ü ¼ö ¾ø°í, ChangeDialog()¿¡¼­ Ã³¸® µÇ¾î¾ßÇÔ. (¿¬Ãâ¶§¹®ÀÓ!! ChangeDialog´Â SpeakerNameÀÇ º¯°æÀ¸·Î È£ÃâµÊ)
+	//æŠ—å‚ˆ èƒ¶ä¹”ç›®å®¢ ç˜¤é™› èƒ¶ä¹”ç›®å•Š éé…’å…·ç˜¤ å’†èƒ¶é£˜éƒ´ä¾©é˜‘ å®˜æ›¹ è ä¹ä¿ƒ.
+	//çˆ¶è¸ æŠ—å‚ˆ èƒ¶ä¹”ç›®å®¢ ç˜¤é™› èƒ¶ä¹”ç›®å•Š ä¿ƒç¦ä¿ƒæ å’¯æ‰è¾‘ å’†èƒ¶é£˜ éƒ´ä¾©é˜‘ å®˜æ›¹ è ç»ç»Š, ChangeDialog()ä¿Šè¾‘ è´¸åºœ ç™»ç»¢å…·çªƒ. (æ¥·å…é”­å·©çƒ™!! ChangeDialogç»° SpeakerNameç‹¼ å‡½ç‰ˆæ è‚º é¾‹å…å‡³)
 	auto DocScenarioDialog = Cast<UB2UIDocScenarioDialog>(GetDoc());
 	if (DocScenarioDialog)
 	{
@@ -293,7 +293,7 @@ void UB2UIScenarioDialog::OnChangedLastBattleUIHidden(class UB2UIDocBase* Sender
 {
 	if (CP_OverallLayout.IsValid())
 	{
-		// ÀüÅõ UI °¡ ¼û¾îÀÖÀ» ¶§¿¡´Â ±âº» ·¹ÀÌ¾Æ¿ô¿¡¼­ Á» ³»¸°´Ù. È­¸é º¸ÀÌ´Â ¿µ¿ªÀ» Á» ´õ È®ÀåÇÏ±â À§ÇØ.
+		// å‚ˆæ§ UI å•Š è§ç»¢ä¹é˜‘ é”­ä¿Šç»° æ‰å¤¯ é¥­æé…’çœ¶ä¿Šè¾‘ ç²± éƒ´èµ´ä¿ƒ. æ‹³æ ç„Šæç»° åº·å¼€é˜‘ ç²± æ­¹ çŠ¬å˜çªæ‰ å›°ç§¦.
 		UCanvasPanelSlot* LayoutSlot = Cast<UCanvasPanelSlot>(CP_OverallLayout->Slot);
 		if (LayoutSlot)
 		{

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIHeaderResource.h"
 #include "B2UIManager.h"
@@ -23,13 +23,13 @@ void UB2UIHeaderResource::Init()
 	m_fValueChangeStartTime = -1;
 	
 	m_nBladePointShowMaxValue = 99999; // const value
-	m_maxBladeAmount = 150;			//¼ÒÅÁ±Ç »ç¿ë½Ã ÃÖ´ë ¿µÈ¥°Ë ¼öÄ¡°¡ -1·Î ÃÊ±âÈ­µÇ´Â ¹®Á¦·Î Ç¥½Ã¿¡¼­¸¸ ÇÏµåÄÚµù µÊ.
+	m_maxBladeAmount = 150;			//å®¶å¸•é¼» è¤ä¾©çŸ« å¼¥æª åº·å»å…« èæ‘¹å•Š -1è‚º æª¬æ‰æ‹³ç™»ç»° å·©åŠ›è‚º é’çŸ«ä¿Šè¾‘çˆ¶ çªé›å†…çˆ¹ å‡³.
 	isRequirement = false;
 }
 
 void UB2UIHeaderResource::SetAmount(int32 NewValueAmount, int32 MaxValueAmount, bool bFromInit)
 {
-	// ÃÊ±âÈ­¿¡¼­ ºÒ¸°°Å¸é ¹Ù·Î ÅØ½ºÆ®¿¡ ¼ÂÆÃÇÏ±¸ ¸®ÅÏ
+	// æª¬æ‰æ‹³ä¿Šè¾‘ é˜‚èµ´èŠ­æ å®˜è‚º å’†èƒ¶é£˜ä¿Š æ‚¸æ³¼çªå¤‡ åºœç•”
 	if (bFromInit)
 	{
 		SetAmountText(NewValueAmount, MaxValueAmount);
@@ -37,7 +37,7 @@ void UB2UIHeaderResource::SetAmount(int32 NewValueAmount, int32 MaxValueAmount, 
 		return;
 	}
 
-	// ¾îµò°¡ Æ½¿¡¼­ °è¼Ó È£ÃâµÇ´Âµí.. ¸ñÇ¥·®ÀÌ¶û °°À¸¸é ¸®ÅÏ
+	// ç»¢å‡‹å•Š å¹³ä¿Šè¾‘ æ‹ŒåŠ  é¾‹å…ç™»ç»°æ·€.. æ ¼é’æ¨Šæå°” éæ æ åºœç•”
 	if (m_nGoalValueAmount == NewValueAmount)
 		return;
 	
@@ -45,7 +45,7 @@ void UB2UIHeaderResource::SetAmount(int32 NewValueAmount, int32 MaxValueAmount, 
 	m_nGoalValueAmount = NewValueAmount;
 	//TB_Amount->SetText(txtAmount);
 	
-	// ÀÌ°Ç ´Ü¼ø ÀúÀå¿ë
+	// ææ‰’ çªœé‰´ å†å˜ä¾©
 	m_nMaxValueAmount = MaxValueAmount;
 
 	m_fValueChangeStartTime = GetWorld()->GetTimeSeconds();
@@ -70,7 +70,7 @@ void UB2UIHeaderResource::SetAmountText(int32 NewValueAmount, int32 MaxValueAmou
 
 			if (EUIHeaderResourceType::BladePoint == ResourceUIType)
 			{
-				//½ºÅ×¹Ì³Ê¿¡ ¿¹¿ÜÃ³¸®°¡ ¸¹¾ÆÁ®¼­ µû·Î ±¸Çö
+				//èƒ¶æŠ›å›ºå‘ˆä¿Š æŠ—å¯‡è´¸åºœå•Š è…¹é…’å»‰è¾‘ è¶è‚º å¤‡æ³…
 				SetBladePointAmountText(NewValueAmount, m_maxBladeAmount);
 			}
 		}
@@ -78,10 +78,10 @@ void UB2UIHeaderResource::SetAmountText(int32 NewValueAmount, int32 MaxValueAmou
 		{
 			TB_Amount->SetText(FText::Format(FText::FromString(TEXT("{0}/{1}")), FText::AsNumber(NewValueAmount), FText::AsNumber(MaxValueAmoun)));
 
-			//[@AKI, 171113] B2BUG-541 ¿µÈ¥°Ë ¼ÒÁö °¹¼ö Ç¥Çö ¼öÁ¤
+			//[@AKI, 171113] B2BUG-541 åº·å»å…« å®¶ç˜¤ è‚®è é’æ³… èæ²¥
 			if (EUIHeaderResourceType::BladePoint == ResourceUIType)
 			{
-				//½ºÅ×¹Ì³Ê¿¡ ¿¹¿ÜÃ³¸®°¡ ¸¹¾ÆÁ®¼­ µû·Î ±¸Çö
+				//èƒ¶æŠ›å›ºå‘ˆä¿Š æŠ—å¯‡è´¸åºœå•Š è…¹é…’å»‰è¾‘ è¶è‚º å¤‡æ³…
 				SetBladePointAmountText(NewValueAmount, MaxValueAmoun);
 			}
 		}
@@ -90,20 +90,20 @@ void UB2UIHeaderResource::SetAmountText(int32 NewValueAmount, int32 MaxValueAmou
 
 void UB2UIHeaderResource::SetBladePointAmountText(const int32 NewValueAmount, const int32 MaxValueAmoun /* = -1 */)
 {
-	//³»°¡ ¼ÒÀ¯ÇÑ ¿µÈ¥°ËÀÌ 120°³ ¹Ì¸¸ÀÌ¾î¼­ RemainTimeÀ» º¸¿©Áà¾ß ÇÏ´Â °æ¿ì
+	//éƒ´å•Š å®¶èœ¡èŒ„ åº·å»å…«æ 120ä¿º å›ºçˆ¶æç»¢è¾‘ RemainTimeé˜‘ ç„Šå’¯æ‹å…· çªç»° ç‰ˆå¿«
 	if (NewValueAmount < MaxValueAmoun)
 	{
 		if (TB_RemainTime.IsValid())
 			TB_RemainTime->SetVisibility(ESlateVisibility::Visible);
 	}
-	//³»°¡ ¼ÒÀ¯ÇÑ ¿µÈ¥°ËÀÌ 120°³ ÀÌ»óÀÌ¾î¼­ RemainTimeÀ» ¾Èº¸¿©Áà¾ß ÇÏ´Â °æ¿ì
+	//éƒ´å•Š å®¶èœ¡èŒ„ åº·å»å…«æ 120ä¿º ææƒ‘æç»¢è¾‘ RemainTimeé˜‘ æ•‘ç„Šå’¯æ‹å…· çªç»° ç‰ˆå¿«
 	else
 	{
-		//ÀÏ´Ü ÀÌ°æ¿ì´Â RemainTimeÀ» ¹«Á¶°Ç ²¨ÁÜ.
+		//è€çªœ æç‰ˆå¿«ç»° RemainTimeé˜‘ å…¬ç‚¼æ‰’ æ³¢æ·‹.
 		if (TB_RemainTime.IsValid())
 			TB_RemainTime->SetVisibility(ESlateVisibility::Collapsed);
 
-		/*999°³¸¦ ³ÑÀ»¶§*/
+		/*999ä¿ºç”« é€é˜‘é”­*/
 		if (NewValueAmount > m_nBladePointShowMaxValue	/* 999 */)
 		{
 			TB_Amount->SetText(FText::Format(FText::FromString(TEXT("{0}+/{1}")), FText::AsNumber(m_nBladePointShowMaxValue), FText::AsNumber(MaxValueAmoun)));
@@ -180,7 +180,7 @@ void UB2UIHeaderResource::OnPlusBtnClick()
 
 void UB2UIHeaderResource::OnToolTipBtnClick()
 {
-	// ÅØ½ºÆ® Ãß°¡ÇÏ°í º¸¿©ÁÖÀÚ
+	// å’†èƒ¶é£˜ çœ å•Šçªç»Š ç„Šå’¯æ—ç£Š
 	return;
 
 	UB2UIManager* pUIManager = UB2UIManager::GetInstance();
@@ -188,7 +188,7 @@ void UB2UIHeaderResource::OnToolTipBtnClick()
 	if (pUIManager)
 	{
 #if WITH_EDITOR && !PLATFORM_MAC
-		FText txtContent = FText::FromString(TEXT("ÅøÆÁ\nÀÌ°Å »ı°¢ÇØº¸´Ï Á¤·Äµµ ¾à°£\n¹®Á¦°¡ µÇ°Ú´Âµ¥... ±×³É ¿ŞÂÊ Á¤·ÄÇÏ¸é ÀÌ»Ü·Á³ª\nÀÏ´Ü Àß³ª¿À´ÂÁö ºÁº¸ÀÚ¤»"));
+		FText txtContent = FText::FromString(TEXT("ç ’å±\næèŠ­ ç§¯é˜¿ç§¦ç„Šèª æ²¥çººæ¡£ è·åŸƒ\nå·©åŠ›å•Š ç™»æ‘†ç»°å•... å¼Šæˆ å“­ç‡ æ²¥çººçªæ æå‰å¦¨å”±\nè€çªœ è‚‹å”±å·ç»°ç˜¤ æ¯«ç„Šç£Šã›"));
 #else
 		FText txtContent = FText::FromString(TEXT("[TEMP] Tootip\nAlignment might be an issue too..\nLet's just see if left alignment works fine."));
 #endif
@@ -223,7 +223,7 @@ void UB2UIHeaderResource::CacheAssets()
 		else if (ResourceUIType == EUIHeaderResourceType::HeroPiece)
 			BTN_Goods->SetItemInfo(FItemRefIDHelper::ITEM_REF_ID_HERO_PIECE);
 		else if (ResourceUIType == EUIHeaderResourceType::SocialPoint)
-			BTN_Goods->SetItemInfo(FItemRefIDHelper::GetGoodsID_FriendshipPoint()); //¼Ò¼ÈÆ÷ÀÎÆ®´Â ¾ø¾î¼­ ÀÓ½Ã·Î ¿µ¿õÁ¶°¢À» º¸¿©ÁÜ
+			BTN_Goods->SetItemInfo(FItemRefIDHelper::GetGoodsID_FriendshipPoint()); //å®¶æ—¢å™¨ç‰¢é£˜ç»° ç»ç»¢è¾‘ çƒ™çŸ«è‚º åº·æ—·ç‚¼é˜¿é˜‘ ç„Šå’¯æ·‹
 		else if (ResourceUIType == EUIHeaderResourceType::DimensionPiece)
 			BTN_Goods->SetItemInfo(FItemRefIDHelper::ITEM_REF_ID_DIMENSION_PIECE);
 		else if (ResourceUIType == EUIHeaderResourceType::Gold)
@@ -241,7 +241,7 @@ void UB2UIHeaderResource::UpdateValueAmount()
 
 	float fElapseTime = GetWorld()->GetTimeSeconds() - m_fValueChangeStartTime;
 
-	//testValue Çì´õUI¿¡ ÀÔ·ÂÇÏ°ÔÇÏ°Å³ª..
+	//testValue åº†æ­¹UIä¿Š æ¶ä»¿çªéœ¸çªèŠ­å”±..
 	float fTimeTotalDuration = ValueActionTime;
 
 	if (fElapseTime >= fTimeTotalDuration)
@@ -251,7 +251,7 @@ void UB2UIHeaderResource::UpdateValueAmount()
 		return;
 	}
 
-	// UI¿¡ Âï¾îÁÙ ÀçÈ­·®
+	// UIä¿Š å˜›ç»¢ä¸´ çŠæ‹³æ¨Š
 	int32 nAmount = int32(m_nOrgValueAmount + ((m_nGoalValueAmount - m_nOrgValueAmount) * (fElapseTime / fTimeTotalDuration)));
 	SetAmountText(nAmount, m_nMaxValueAmount);
 

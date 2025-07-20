@@ -1,4 +1,4 @@
-#include "BladeIIUtil.h"
+ï»¿#include "BladeIIUtil.h"
 #include "../Common/CommonStruct.h"
 
 #include "Components/SkeletalMeshComponent.h"
@@ -204,11 +204,11 @@ FText GetPCClassLocalizedText(EPCClass PCClass)
 
 bool OpenBladeIIDLCFrontCommon(class AGameMode* InCurrentGameMode)
 {
-	// DLC ÁøÀÔÀ» À§ÇÑ ÄÚ¾î ±â´É¸¸ ³Ö¾î³õÀ½. 
-	// ÀÌ°ÍÀ» Äİ ÇÏ±â ÀÌÀü¿¡ DeferredRegistChangeLobbyScene À» ³Ö¾î¾ß ÁøÇàµµ ¿¹ÃøÀÌ ÀÇµµ´ë·Î µÉ °Í.
+	// DLC æŸ³æ¶é˜‘ å›°èŒ„ å†…ç»¢ æ‰ç“·çˆ¶ æŒç»¢åˆæ¾œ. 
+	// æå·´é˜‘ å¦® çªæ‰ æå‚ˆä¿Š DeferredRegistChangeLobbyScene é˜‘ æŒç»¢å…· æŸ³é’æ¡£ æŠ—èŸæ ç‹¼æ¡£æªè‚º çª å·´.
 
-	//[@AKI, 180508] ¾ÛÀÌ Àç½ÇÇà µÇ´Â °Í Á¦¿ÜÇÏ°í´Â »ç¿ëÇØ¼­´Â ¾ÈµÊ!!!
-	//µ¥ÀÌÅÍ¸¦ ÃÊ±âÈ­ ÇÏÁö ¾Ê°í »ç¿ëÇÏ°í ÀÖ¾î¼­ ¾ÈµÊ!! »ç¿ë½Ã µ¥ÀÌÅÍ ÃÊ±âÈ­ ÇÏ´Â ºÎºĞÀ» ±¸Çö ÇØ¾ß ÇÒ °Í
+	//[@AKI, 180508] èšæ çŠè§’é’ ç™»ç»° å·´ åŠ›å¯‡çªç»Šç»° è¤ä¾©ç§¦è¾‘ç»° æ•‘å‡³!!!
+	//å•æç£ç”« æª¬æ‰æ‹³ çªç˜¤ è‡¼ç»Š è¤ä¾©çªç»Š ä¹ç»¢è¾‘ æ•‘å‡³!! è¤ä¾©çŸ« å•æç£ æª¬æ‰æ‹³ çªç»° ä½•ç›’é˜‘ å¤‡æ³… ç§¦å…· ä¸” å·´
 
 	FString DLCFrontMapPath;
 	GConfig->GetString(TEXT("/Script/BladeII"), TEXT("BladeIIDLCMap"), DLCFrontMapPath, GGameIni);
@@ -217,7 +217,7 @@ bool OpenBladeIIDLCFrontCommon(class AGameMode* InCurrentGameMode)
 
 	if (DLCFrontMapPath.Len() > 0)
 	{
-		// ¼ø¼ö ¸Ê ·Îµù¸¸ÀÇ ¿¹»ó ÁöºĞ ¼¼ÆÃ.
+		// é‰´è ç”˜ è‚ºçˆ¹çˆ¶ç‹¼ æŠ—æƒ‘ ç˜¤ç›’ æŠ€æ³¼.
 		B2GMLoadingProgCollector::PrepareWithPureMapLoadShareForGM(InCurrentGameMode, EB2GameMode::Lobby);
 		UGameplayStatics::OpenLevel(InCurrentGameMode, FName(*DLCFrontMapPath));
 		return true;
@@ -231,15 +231,15 @@ bool OpenBladeIIDLCFrontCommon(class AGameMode* InCurrentGameMode)
 
 bool OpenBladeIILobbyCommon(class AGameMode* InCurrentGameMode)
 {
-	// ·Îºñ ÁøÀÔÀ» À§ÇÑ ÄÚ¾î ±â´É¸¸ ³Ö¾î³õÀ½. 
-	// ÀÌ°ÍÀ» Äİ ÇÏ±â ÀÌÀü¿¡ DeferredRegistChangeLobbyScene À» ³Ö¾î¾ß ÁøÇàµµ ¿¹ÃøÀÌ ÀÇµµ´ë·Î µÉ °Í.
+	// è‚ºåš æŸ³æ¶é˜‘ å›°èŒ„ å†…ç»¢ æ‰ç“·çˆ¶ æŒç»¢åˆæ¾œ. 
+	// æå·´é˜‘ å¦® çªæ‰ æå‚ˆä¿Š DeferredRegistChangeLobbyScene é˜‘ æŒç»¢å…· æŸ³é’æ¡£ æŠ—èŸæ ç‹¼æ¡£æªè‚º çª å·´.
 
 	FString LobbyMapPath;
 	GConfig->GetString(TEXT("/Script/BladeII"), TEXT("BladeIILobbyMap"), LobbyMapPath, GGameIni);
 
 	if (LobbyMapPath.Len() > 0)
 	{
-		// ¼ø¼ö ¸Ê ·Îµù¸¸ÀÇ ¿¹»ó ÁöºĞ ¼¼ÆÃ.
+		// é‰´è ç”˜ è‚ºçˆ¹çˆ¶ç‹¼ æŠ—æƒ‘ ç˜¤ç›’ æŠ€æ³¼.
 		B2GMLoadingProgCollector::PrepareWithPureMapLoadShareForGM(InCurrentGameMode, EB2GameMode::Lobby);
 		UGameplayStatics::OpenLevel(InCurrentGameMode, FName(*LobbyMapPath));
 		return true;
@@ -255,21 +255,21 @@ bool StartBladeIIGameStage(AGameMode* InCurrentGameMode, int32 InClientStageId, 
 {
 	B2_SCOPED_TRACK_LOG(TEXT("StartBladeIIGameStage"));
 
-	// ´ÙÀ½ ¸Ê ·Îµù ÁøÇàµµ¸¦ À§ÇØ ¼ø¼ö ¸Ê ·Îµù¸¸ÀÇ ¿¹»ó ÁöºĞÀ» ¼¼ÆÃ
+	// ä¿ƒæ¾œ ç”˜ è‚ºçˆ¹ æŸ³é’æ¡£ç”« å›°ç§¦ é‰´è ç”˜ è‚ºçˆ¹çˆ¶ç‹¼ æŠ—æƒ‘ ç˜¤ç›’é˜‘ æŠ€æ³¼
 	B2GMLoadingProgCollector::PrepareWithPureMapLoadShareForGM(InCurrentGameMode, ChangeGameMode);
 
-	// ÁÖÀÇ: ´Ù¸¥ °÷¿¡¼­´Â ±»ÀÌ B2GameModule ¿¡¼­ StageInfoTable À» Á÷Á¢ °¡Á®´Ù ¾µ ÇÊ¿ä°¡ ¾ø´Ù.
-	// ¿©±â´Â StageManager °¡ µé°í ÀÖ´Â CurrentStageNumber ¿Í ´Ù¸¥ StageInfoData ¸¦ °¡Á®¿À±â À§ÇÔ.
-	// ¿©Å¸ ÀÏ¹İÀûÀÎ »ç¿ë¿¡¼­´Â °¡±ŞÀû AB2StageManager::GetCurrentStageInfoData ³ª AB2StageGameMode::GetCurrentStageInfoData ¸¦ »ç¿ë
+	// æ—ç‹¼: ä¿ƒå¼— é•‘ä¿Šè¾‘ç»° è¢«æ B2GameModule ä¿Šè¾‘ StageInfoTable é˜‘ æµç«‹ å•Šå»‰ä¿ƒ é•œ é˜å¤¸å•Š ç»ä¿ƒ.
+	// å’¯æ‰ç»° StageManager å•Š ç”¸ç»Š ä¹ç»° CurrentStageNumber å®¢ ä¿ƒå¼— StageInfoData ç”« å•Šå»‰å·æ‰ å›°çªƒ.
+	// å’¯é¸¥ è€é¦†åˆ©ç‰¢ è¤ä¾©ä¿Šè¾‘ç»° å•Šé­åˆ© AB2StageManager::GetCurrentStageInfoData å”± AB2StageGameMode::GetCurrentStageInfoData ç”« è¤ä¾©
 
 	UB2StageInfo* StageInfoTable = StaticFindStageInfo();
 	FSingleStageInfoData* StageInfoData = StageInfoTable ? StageInfoTable->GetInfoData(InClientStageId) : NULL;
 	if (StageInfoData)
 	{
-		// Å¬¶óÀÌ¾ğÆ® Å×½ºÆ® ¿ëÀ¸·Î StageNum ³Ñ°ÜÁÜ.
+		// åŠªæ‰¼ææ”«é£˜ æŠ›èƒ¶é£˜ ä¾©æ è‚º StageNum é€è´¥æ·‹.
 		BladeIIGameImpl::DevOnlyStageLoadData.SpecifiedClientStageId = InClientStageId;
 
-		// OnPreLoadMap ¿¡¼­ Movie ½ÃÀÛ ½ÃÁ¡±îÁö Àá±ñ È­¸éÀ» µ¤À» UI Screen.
+		// OnPreLoadMap ä¿Šè¾‘ Movie çŸ«ç´¯ çŸ«ç—¢é³–ç˜¤ æ³ªç˜ª æ‹³æé˜‘ ä¸¹é˜‘ UI Screen.
 		OpenPreLoadingScreenClass<EPreLoadingScreenType, EB2GameMode>::GetInstance().Signal(EPreLoadingScreenType::PLST_StageBegin, ChangeGameMode);
 
 		UGameplayStatics::OpenLevel(InCurrentGameMode, StageInfoData->MainMap, true, OpenURLOption);
@@ -283,14 +283,14 @@ bool StartBladeIIPVPGame(class AGameMode* InCurrentGameMode, FString OpenURLOpti
 {
 	B2_SCOPED_TRACK_LOG(TEXT("StartBladeIIPVPGame"));
 
-	// ´ÙÀ½ ¸Ê ·Îµù ÁøÇàµµ¸¦ À§ÇØ ¼ø¼ö ¸Ê ·Îµù¸¸ÀÇ ¿¹»ó ÁöºĞÀ» ¼¼ÆÃ
+	// ä¿ƒæ¾œ ç”˜ è‚ºçˆ¹ æŸ³é’æ¡£ç”« å›°ç§¦ é‰´è ç”˜ è‚ºçˆ¹çˆ¶ç‹¼ æŠ—æƒ‘ ç˜¤ç›’é˜‘ æŠ€æ³¼
 	B2GMLoadingProgCollector::PrepareWithPureMapLoadShareForGM(InCurrentGameMode, EB2GameMode::PVP_Tag);
 
 	FString PVPMapName;
 
 	GConfig->GetString(TEXT("/Script/BladeII"), TEXT("BladeIIPVPMap"), PVPMapName, GGameIni);
 
-	OpenPreLoadingScreenClass<EPreLoadingScreenType, EB2GameMode>::GetInstance().Signal(EPreLoadingScreenType::PLST_StageBegin, EB2GameMode::PVP_Tag); // ·Îµù ½ºÅ©¸°À» ¹Ì¸® ÇÑ¹ø ·ÎµùÇØ ÁÖ´Â °Ô ¾ÈÀüÇÏ´Ù´Â °¡¼³ÀÌ ÀÖ¾î¼­ ¹Ì¸® ÇÑÂ÷·Ê ÇØ ÁØ´Ù..
+	OpenPreLoadingScreenClass<EPreLoadingScreenType, EB2GameMode>::GetInstance().Signal(EPreLoadingScreenType::PLST_StageBegin, EB2GameMode::PVP_Tag); // è‚ºçˆ¹ èƒ¶å†œèµ´é˜‘ å›ºåºœ èŒ„é”… è‚ºçˆ¹ç§¦ æ—ç»° éœ¸ æ•‘å‚ˆçªä¿ƒç»° å•Šæ±²æ ä¹ç»¢è¾‘ å›ºåºœ èŒ„ç’è‚¥ ç§¦ éœ–ä¿ƒ..
 
 	UGameplayStatics::OpenLevel(InCurrentGameMode, FName(*PVPMapName), true, OpenURLOption);
 	return true;
@@ -320,14 +320,14 @@ bool StartBladeIITeamMatchGame(class AGameMode* InCurrentGameMode, FString OpenU
 {
 	B2_SCOPED_TRACK_LOG(TEXT("StartBladeIITeamMatchGame"));
 
-	// ´ÙÀ½ ¸Ê ·Îµù ÁøÇàµµ¸¦ À§ÇØ ¼ø¼ö ¸Ê ·Îµù¸¸ÀÇ ¿¹»ó ÁöºĞÀ» ¼¼ÆÃ
+	// ä¿ƒæ¾œ ç”˜ è‚ºçˆ¹ æŸ³é’æ¡£ç”« å›°ç§¦ é‰´è ç”˜ è‚ºçˆ¹çˆ¶ç‹¼ æŠ—æƒ‘ ç˜¤ç›’é˜‘ æŠ€æ³¼
 	B2GMLoadingProgCollector::PrepareWithPureMapLoadShareForGM(InCurrentGameMode, EB2GameMode::PVP_Team);
 
 	FString TeamMatchMapName;
 
 	GConfig->GetString(TEXT("/Script/BladeII"), TEXT("BladeIITeamMatchMap"), TeamMatchMapName, GGameIni);
 
-	OpenPreLoadingScreenClass<EPreLoadingScreenType, EB2GameMode>::GetInstance().Signal(EPreLoadingScreenType::PLST_StageBegin, EB2GameMode::PVP_Team); // ·Îµù ½ºÅ©¸°À» ¹Ì¸® ÇÑ¹ø ·ÎµùÇØ ÁÖ´Â °Ô ¾ÈÀüÇÏ´Ù´Â °¡¼³ÀÌ ÀÖ¾î¼­ ¹Ì¸® ÇÑÂ÷·Ê ÇØ ÁØ´Ù..
+	OpenPreLoadingScreenClass<EPreLoadingScreenType, EB2GameMode>::GetInstance().Signal(EPreLoadingScreenType::PLST_StageBegin, EB2GameMode::PVP_Team); // è‚ºçˆ¹ èƒ¶å†œèµ´é˜‘ å›ºåºœ èŒ„é”… è‚ºçˆ¹ç§¦ æ—ç»° éœ¸ æ•‘å‚ˆçªä¿ƒç»° å•Šæ±²æ ä¹ç»¢è¾‘ å›ºåºœ èŒ„ç’è‚¥ ç§¦ éœ–ä¿ƒ..
 
 	UGameplayStatics::OpenLevel(InCurrentGameMode, FName(*TeamMatchMapName), true, OpenURLOption);
 	return true;
@@ -353,14 +353,14 @@ bool StartBladeIIControlGame(class AGameMode* InCurrentGameMode, FString OpenURL
 {
 	B2_SCOPED_TRACK_LOG(TEXT("StartBladeIIControlGame"));
 
-	// ´ÙÀ½ ¸Ê ·Îµù ÁøÇàµµ¸¦ À§ÇØ ¼ø¼ö ¸Ê ·Îµù¸¸ÀÇ ¿¹»ó ÁöºĞÀ» ¼¼ÆÃ
+	// ä¿ƒæ¾œ ç”˜ è‚ºçˆ¹ æŸ³é’æ¡£ç”« å›°ç§¦ é‰´è ç”˜ è‚ºçˆ¹çˆ¶ç‹¼ æŠ—æƒ‘ ç˜¤ç›’é˜‘ æŠ€æ³¼
 	B2GMLoadingProgCollector::PrepareWithPureMapLoadShareForGM(InCurrentGameMode, EB2GameMode::Control);
 
 	FString ControlMapName;
 
 	GConfig->GetString(TEXT("/Script/BladeII"), TEXT("BladeIIControlMap"), ControlMapName, GGameIni);
 
-	OpenPreLoadingScreenClass<EPreLoadingScreenType, EB2GameMode>::GetInstance().Signal(EPreLoadingScreenType::PLST_StageBegin, EB2GameMode::Control); // ·Îµù ½ºÅ©¸°À» ¹Ì¸® ÇÑ¹ø ·ÎµùÇØ ÁÖ´Â °Ô ¾ÈÀüÇÏ´Ù´Â °¡¼³ÀÌ ÀÖ¾î¼­ ¹Ì¸® ÇÑÂ÷·Ê ÇØ ÁØ´Ù..
+	OpenPreLoadingScreenClass<EPreLoadingScreenType, EB2GameMode>::GetInstance().Signal(EPreLoadingScreenType::PLST_StageBegin, EB2GameMode::Control); // è‚ºçˆ¹ èƒ¶å†œèµ´é˜‘ å›ºåºœ èŒ„é”… è‚ºçˆ¹ç§¦ æ—ç»° éœ¸ æ•‘å‚ˆçªä¿ƒç»° å•Šæ±²æ ä¹ç»¢è¾‘ å›ºåºœ èŒ„ç’è‚¥ ç§¦ éœ–ä¿ƒ..
 
 	UGameplayStatics::OpenLevel(InCurrentGameMode, FName(*ControlMapName), true, OpenURLOption);
 	return true;
@@ -370,26 +370,26 @@ bool StartBladeIIGuildMatchGame(class AGameMode* InCurrentGameMode, FString Open
 {
 	B2_SCOPED_TRACK_LOG(TEXT("StartBladeIIGuildGame"));
 
-	// ´ÙÀ½ ¸Ê ·Îµù ÁøÇàµµ¸¦ À§ÇØ ¼ø¼ö ¸Ê ·Îµù¸¸ÀÇ ¿¹»ó ÁöºĞÀ» ¼¼ÆÃ
+	// ä¿ƒæ¾œ ç”˜ è‚ºçˆ¹ æŸ³é’æ¡£ç”« å›°ç§¦ é‰´è ç”˜ è‚ºçˆ¹çˆ¶ç‹¼ æŠ—æƒ‘ ç˜¤ç›’é˜‘ æŠ€æ³¼
 	B2GMLoadingProgCollector::PrepareWithPureMapLoadShareForGM(InCurrentGameMode, EB2GameMode::Guild);
 
 	FString ControlMapName;
 
 	GConfig->GetString(TEXT("/Script/BladeII"), TEXT("BladeIIGuildMatchMap"), ControlMapName, GGameIni);
 
-	OpenPreLoadingScreenClass<EPreLoadingScreenType, EB2GameMode>::GetInstance().Signal(EPreLoadingScreenType::PLST_StageBegin, EB2GameMode::Guild); // ·Îµù ½ºÅ©¸°À» ¹Ì¸® ÇÑ¹ø ·ÎµùÇØ ÁÖ´Â °Ô ¾ÈÀüÇÏ´Ù´Â °¡¼³ÀÌ ÀÖ¾î¼­ ¹Ì¸® ÇÑÂ÷·Ê ÇØ ÁØ´Ù..
+	OpenPreLoadingScreenClass<EPreLoadingScreenType, EB2GameMode>::GetInstance().Signal(EPreLoadingScreenType::PLST_StageBegin, EB2GameMode::Guild); // è‚ºçˆ¹ èƒ¶å†œèµ´é˜‘ å›ºåºœ èŒ„é”… è‚ºçˆ¹ç§¦ æ—ç»° éœ¸ æ•‘å‚ˆçªä¿ƒç»° å•Šæ±²æ ä¹ç»¢è¾‘ å›ºåºœ èŒ„ç’è‚¥ ç§¦ éœ–ä¿ƒ..
 
 	UGameplayStatics::OpenLevel(InCurrentGameMode, FName(*ControlMapName), true, OpenURLOption);
 	return true;
 
 }
 
-// ÀÌ°Å ´ë½Å ABladeIIGameMode::GoToTutorial ÀÌ°Å ¾²´Â µí..?
+// æèŠ­ æªè„š ABladeIIGameMode::GoToTutorial æèŠ­ é™ç»° æ·€..?
 bool StartBladeIIGameTutorial(class AGameMode* InCurrentGameMode, FString OpenURLOption)
 {
 	B2_SCOPED_TRACK_LOG(TEXT("StartBladeIIGameTutorial"));
 
-	// ´ÙÀ½ ¸Ê ·Îµù ÁøÇàµµ¸¦ À§ÇØ ¼ø¼ö ¸Ê ·Îµù¸¸ÀÇ ¿¹»ó ÁöºĞÀ» ¼¼ÆÃ
+	// ä¿ƒæ¾œ ç”˜ è‚ºçˆ¹ æŸ³é’æ¡£ç”« å›°ç§¦ é‰´è ç”˜ è‚ºçˆ¹çˆ¶ç‹¼ æŠ—æƒ‘ ç˜¤ç›’é˜‘ æŠ€æ³¼
 	B2GMLoadingProgCollector::PrepareWithPureMapLoadShareForGM(InCurrentGameMode, EB2GameMode::Tutorial);
 
 	FString TutorialMapPath;
@@ -409,17 +409,17 @@ bool StartBladeIIDimension(class AGameMode* InCurrentGameMode, int32 MapLoadID, 
 {
 	B2_SCOPED_TRACK_LOG(TEXT("StartBladeIIDimension"));
 
-	// ´ÙÀ½ ¸Ê ·Îµù ÁøÇàµµ¸¦ À§ÇØ ¼ø¼ö ¸Ê ·Îµù¸¸ÀÇ ¿¹»ó ÁöºĞÀ» ¼¼ÆÃ
+	// ä¿ƒæ¾œ ç”˜ è‚ºçˆ¹ æŸ³é’æ¡£ç”« å›°ç§¦ é‰´è ç”˜ è‚ºçˆ¹çˆ¶ç‹¼ æŠ—æƒ‘ ç˜¤ç›’é˜‘ æŠ€æ³¼
 	B2GMLoadingProgCollector::PrepareWithPureMapLoadShareForGM(InCurrentGameMode, EB2GameMode::Dimension);
 
 	UB2StageInfo* StageInfoTable = StaticFindStageInfo();
 	FSingleStageInfoData* StageInfoData = StageInfoTable ? StageInfoTable->GetInfoData(MapLoadID) : NULL;
 	if (StageInfoData)
 	{
-		// Å¬¶óÀÌ¾ğÆ® Å×½ºÆ® ¿ëÀ¸·Î StageNum ³Ñ°ÜÁÜ.
+		// åŠªæ‰¼ææ”«é£˜ æŠ›èƒ¶é£˜ ä¾©æ è‚º StageNum é€è´¥æ·‹.
 		BladeIIGameImpl::DevOnlyStageLoadData.SpecifiedClientStageId = MapLoadID;
 
-		// OnPreLoadMap ¿¡¼­ Movie ½ÃÀÛ ½ÃÁ¡±îÁö Àá±ñ È­¸éÀ» µ¤À» UI Screen.
+		// OnPreLoadMap ä¿Šè¾‘ Movie çŸ«ç´¯ çŸ«ç—¢é³–ç˜¤ æ³ªç˜ª æ‹³æé˜‘ ä¸¹é˜‘ UI Screen.
 		OpenPreLoadingScreenClass<EPreLoadingScreenType, EB2GameMode>::GetInstance().Signal(EPreLoadingScreenType::PLST_StageBegin, EB2GameMode::Dimension);
 
 		UGameplayStatics::OpenLevel(InCurrentGameMode, StageInfoData->MainMap, true, OpenURLOption);
@@ -620,12 +620,12 @@ class UB2FairyInfo* StaticFindFairyInfo()
 
 //
 //////////////////////////////////////////////////////////////////////////////////////////
-// ÀÌ ÀÌÇÏ StaticFind µéÀº ´À¸± ¼ö ÀÖÀ¸¹Ç·Î °¡±ŞÀû BladeIIGameMode ¿¡ Ä³½ÌµÈ °É »ç¿ëÇÏ°í(WorldContextObject¸¦ ³Ñ°ÜÁÜ), ¸Å tick »ç¿ëÇÏÁö ¸» °Í.
+// æ æçª StaticFind ç”¸ç¯® è ¢å‰¯ è ä¹æ éª¨è‚º å•Šé­åˆ© BladeIIGameMode ä¿Š æŸæ•™ç­‰ å§ è¤ä¾©çªç»Š(WorldContextObjectç”« é€è´¥æ·‹), æ¦‚ tick è¤ä¾©çªç˜¤ å¯Œ å·´.
 
 UB2PCClassInfoBox* StaticFindPCClassInfoBox(UObject* WorldContextObject)
 {
 	if (WorldContextObject)
-	{ // °¡´ÉÇÑ °æ¿ì GameInstance ÀÇ Ä³½ÌµÈ ·¹ÆÛ·±½º¸¦ »ç¿ë.
+	{ // å•Šç“·èŒ„ ç‰ˆå¿« GameInstance ç‹¼ æŸæ•™ç­‰ é¥­æ¬ºç¹èƒ¶ç”« è¤ä¾©.
 		UB2GameInstance* B2GI = Cast<UB2GameInstance>(UGameplayStatics::GetGameInstance(WorldContextObject));
 		if (B2GI)
 		{
@@ -637,7 +637,7 @@ UB2PCClassInfoBox* StaticFindPCClassInfoBox(UObject* WorldContextObject)
 UB2NPCClassInfoBox* StaticFindMobClassInfoBox(UObject* WorldContextObject)
 {
 	if (WorldContextObject)
-	{ // °¡´ÉÇÑ °æ¿ì GameInstance ÀÇ Ä³½ÌµÈ ·¹ÆÛ·±½º¸¦ »ç¿ë.
+	{ // å•Šç“·èŒ„ ç‰ˆå¿« GameInstance ç‹¼ æŸæ•™ç­‰ é¥­æ¬ºç¹èƒ¶ç”« è¤ä¾©.
 		UB2GameInstance* B2GI = Cast<UB2GameInstance>(UGameplayStatics::GetGameInstance(WorldContextObject));
 		if (B2GI) {
 			return B2GI->GetMobClassInfoBox();
@@ -649,7 +649,7 @@ UB2NPCClassInfoBox* StaticFindMobClassInfoBox(UObject* WorldContextObject)
 UB2CommonSoundInfo* StaticFindCommonSoundInfo(UObject* WorldContextObject)
 {
 	if (WorldContextObject)
-	{ // °¡´ÉÇÑ °æ¿ì GameInstance ÀÇ Ä³½ÌµÈ ·¹ÆÛ·±½º¸¦ »ç¿ë.
+	{ // å•Šç“·èŒ„ ç‰ˆå¿« GameInstance ç‹¼ æŸæ•™ç­‰ é¥­æ¬ºç¹èƒ¶ç”« è¤ä¾©.
 		UB2GameInstance* B2GI = Cast<UB2GameInstance>(UGameplayStatics::GetGameInstance(WorldContextObject));
 		if (B2GI)
 		{
@@ -662,7 +662,7 @@ UB2CommonSoundInfo* StaticFindCommonSoundInfo(UObject* WorldContextObject)
 UB2DialogCharacterInfoSet* StaticFindDialogCharacterInfoTable(UObject* WorldContextObject)
 {
 	if (WorldContextObject)
-	{ // °¡´ÉÇÑ °æ¿ì GameInstance ÀÇ Ä³½ÌµÈ ·¹ÆÛ·±½º¸¦ »ç¿ë.
+	{ // å•Šç“·èŒ„ ç‰ˆå¿« GameInstance ç‹¼ æŸæ•™ç­‰ é¥­æ¬ºç¹èƒ¶ç”« è¤ä¾©.
 		UB2GameInstance* B2GI = Cast<UB2GameInstance>(UGameplayStatics::GetGameInstance(WorldContextObject));
 		if (B2GI) {
 			return B2GI->GetDialogCharacterInfoTable();
@@ -674,7 +674,7 @@ UB2DialogCharacterInfoSet* StaticFindDialogCharacterInfoTable(UObject* WorldCont
 UB2WingInfo* StaticFindWingInfo(UObject* WorldContextObject)
 {
 	if (WorldContextObject)
-	{ // °¡´ÉÇÑ °æ¿ì GameInstance ÀÇ Ä³½ÌµÈ ·¹ÆÛ·±½º¸¦ »ç¿ë.
+	{ // å•Šç“·èŒ„ ç‰ˆå¿« GameInstance ç‹¼ æŸæ•™ç­‰ é¥­æ¬ºç¹èƒ¶ç”« è¤ä¾©.
 		UB2GameInstance* B2GI = Cast<UB2GameInstance>(UGameplayStatics::GetGameInstance(WorldContextObject));
 		if (B2GI)
 		{
@@ -687,7 +687,7 @@ UB2WingInfo* StaticFindWingInfo(UObject* WorldContextObject)
 UB2SomeInfo* StaticFindSomeInfo(UObject* WorldContextObject)
 {
 	if (WorldContextObject)
-	{ // °¡´ÉÇÑ °æ¿ì GameInstance ÀÇ Ä³½ÌµÈ ·¹ÆÛ·±½º¸¦ »ç¿ë.
+	{ // å•Šç“·èŒ„ ç‰ˆå¿« GameInstance ç‹¼ æŸæ•™ç­‰ é¥­æ¬ºç¹èƒ¶ç”« è¤ä¾©.
 		UB2GameInstance* B2GI = Cast<UB2GameInstance>(UGameplayStatics::GetGameInstance(WorldContextObject));
 		if (B2GI)
 		{
@@ -700,7 +700,7 @@ UB2SomeInfo* StaticFindSomeInfo(UObject* WorldContextObject)
 UB2ItemMiscInfo* StaticFindItemMiscInfo(UObject* WorldContextObject)
 {
 	if (WorldContextObject)
-	{ // °¡´ÉÇÑ °æ¿ì GameInstance ÀÇ Ä³½ÌµÈ ·¹ÆÛ·±½º¸¦ »ç¿ë.
+	{ // å•Šç“·èŒ„ ç‰ˆå¿« GameInstance ç‹¼ æŸæ•™ç­‰ é¥­æ¬ºç¹èƒ¶ç”« è¤ä¾©.
 		UB2GameInstance* B2GI = Cast<UB2GameInstance>(UGameplayStatics::GetGameInstance(WorldContextObject));
 		if (B2GI) {
 			return B2GI->GetItemMiscInfo();
@@ -712,7 +712,7 @@ UB2ItemMiscInfo* StaticFindItemMiscInfo(UObject* WorldContextObject)
 class UB2GuildMarkInfo* StaticFindGuildMarkInfo(UObject* WorldContextObject)
 {
 	if (WorldContextObject)
-	{ // °¡´ÉÇÑ °æ¿ì GameInstance ÀÇ Ä³½ÌµÈ ·¹ÆÛ·±½º¸¦ »ç¿ë.
+	{ // å•Šç“·èŒ„ ç‰ˆå¿« GameInstance ç‹¼ æŸæ•™ç­‰ é¥­æ¬ºç¹èƒ¶ç”« è¤ä¾©.
 		UB2GameInstance* B2GI = Cast<UB2GameInstance>(UGameplayStatics::GetGameInstance(WorldContextObject));
 		if (B2GI) {
 			return B2GI->GetGuildMarkInfo();
@@ -724,7 +724,7 @@ class UB2GuildMarkInfo* StaticFindGuildMarkInfo(UObject* WorldContextObject)
 UB2LoadingImageInfo* StaticFindLoadingImageInfo(UObject* WorldContextObject)
 {
 	if (WorldContextObject)
-	{ // °¡´ÉÇÑ °æ¿ì GameInstance ÀÇ Ä³½ÌµÈ ·¹ÆÛ·±½º¸¦ »ç¿ë.
+	{ // å•Šç“·èŒ„ ç‰ˆå¿« GameInstance ç‹¼ æŸæ•™ç­‰ é¥­æ¬ºç¹èƒ¶ç”« è¤ä¾©.
 		UB2GameInstance* B2GI = Cast<UB2GameInstance>(UGameplayStatics::GetGameInstance(WorldContextObject));
 		if (B2GI) {
 			return B2GI->GetLoadingImageInfo();
@@ -736,7 +736,7 @@ UB2LoadingImageInfo* StaticFindLoadingImageInfo(UObject* WorldContextObject)
 class UB2GuildSkillInfo* StaticFindGuildSkillInfo(UObject* WorldContextObject)
 {
 	if (WorldContextObject)
-	{ // °¡´ÉÇÑ °æ¿ì GameInstance ÀÇ Ä³½ÌµÈ ·¹ÆÛ·±½º¸¦ »ç¿ë.
+	{ // å•Šç“·èŒ„ ç‰ˆå¿« GameInstance ç‹¼ æŸæ•™ç­‰ é¥­æ¬ºç¹èƒ¶ç”« è¤ä¾©.
 		UB2GameInstance* B2GI = Cast<UB2GameInstance>(UGameplayStatics::GetGameInstance(WorldContextObject));
 		if (B2GI) {
 			return B2GI->GetGuildSkillInfo();
@@ -749,7 +749,7 @@ class UB2GuildSkillInfo* StaticFindGuildSkillInfo(UObject* WorldContextObject)
 class UB2NoAnimSkillInfo* StaticFindNoAnimSkillInfo(UObject* WorldContextObject)
 {
 	if (WorldContextObject)
-	{ // °¡´ÉÇÑ °æ¿ì GameInstance ÀÇ Ä³½ÌµÈ ·¹ÆÛ·±½º¸¦ »ç¿ë.
+	{ // å•Šç“·èŒ„ ç‰ˆå¿« GameInstance ç‹¼ æŸæ•™ç­‰ é¥­æ¬ºç¹èƒ¶ç”« è¤ä¾©.
 		UB2GameInstance* B2GI = Cast<UB2GameInstance>(UGameplayStatics::GetGameInstance(WorldContextObject));
 		if (B2GI) {
 			return B2GI->GetNoAnimSkillInfo();
@@ -761,7 +761,7 @@ class UB2NoAnimSkillInfo* StaticFindNoAnimSkillInfo(UObject* WorldContextObject)
 class UB2InfluenceSkillInfo* StaticFindInfluenceSkillInfo(UObject* WorldContextObject)
 {
 	if (WorldContextObject)
-	{ // °¡´ÉÇÑ °æ¿ì GameInstance ÀÇ Ä³½ÌµÈ ·¹ÆÛ·±½º¸¦ »ç¿ë.
+	{ // å•Šç“·èŒ„ ç‰ˆå¿« GameInstance ç‹¼ æŸæ•™ç­‰ é¥­æ¬ºç¹èƒ¶ç”« è¤ä¾©.
 		UB2GameInstance* B2GI = Cast<UB2GameInstance>(UGameplayStatics::GetGameInstance(WorldContextObject));
 		if (B2GI) {
 			return B2GI->GetInfluenceSkillInfo();
@@ -773,7 +773,7 @@ class UB2InfluenceSkillInfo* StaticFindInfluenceSkillInfo(UObject* WorldContextO
 UB2DamageEffectInfo* StaticFindDamageEffectInfo(UObject* WorldContextObject)
 {
 	if (WorldContextObject)
-	{ // °¡´ÉÇÑ °æ¿ì GameInstance ÀÇ Ä³½ÌµÈ ·¹ÆÛ·±½º¸¦ »ç¿ë.
+	{ // å•Šç“·èŒ„ ç‰ˆå¿« GameInstance ç‹¼ æŸæ•™ç­‰ é¥­æ¬ºç¹èƒ¶ç”« è¤ä¾©.
 		UB2GameInstance* B2GI = Cast<UB2GameInstance>(UGameplayStatics::GetGameInstance(WorldContextObject));
 		if (B2GI)
 		{
@@ -786,7 +786,7 @@ UB2DamageEffectInfo* StaticFindDamageEffectInfo(UObject* WorldContextObject)
 UB2BuffModeEffectInfo* StaticFindBuffModeEffectInfo(UObject* WorldContextObject)
 {
 	if (WorldContextObject)
-	{ // °¡´ÉÇÑ °æ¿ì GameInstance ÀÇ Ä³½ÌµÈ ·¹ÆÛ·±½º¸¦ »ç¿ë.
+	{ // å•Šç“·èŒ„ ç‰ˆå¿« GameInstance ç‹¼ æŸæ•™ç­‰ é¥­æ¬ºç¹èƒ¶ç”« è¤ä¾©.
 		UB2GameInstance* B2GI = Cast<UB2GameInstance>(UGameplayStatics::GetGameInstance(WorldContextObject));
 		if (B2GI) {
 			return B2GI->GetBuffModeEffectInfo();
@@ -798,7 +798,7 @@ UB2BuffModeEffectInfo* StaticFindBuffModeEffectInfo(UObject* WorldContextObject)
 UB2SkillAnimInfo* StaticFindSkillAnimInfo(UObject* WorldContextObject)
 {
 	if (WorldContextObject)
-	{ // °¡´ÉÇÑ °æ¿ì GameInstance ÀÇ Ä³½ÌµÈ ·¹ÆÛ·±½º¸¦ »ç¿ë.
+	{ // å•Šç“·èŒ„ ç‰ˆå¿« GameInstance ç‹¼ æŸæ•™ç­‰ é¥­æ¬ºç¹èƒ¶ç”« è¤ä¾©.
 		UB2GameInstance* B2GI = Cast<UB2GameInstance>(UGameplayStatics::GetGameInstance(WorldContextObject));
 		if (B2GI) {
 			return B2GI->GetSkillAnimInfo();
@@ -810,7 +810,7 @@ UB2SkillAnimInfo* StaticFindSkillAnimInfo(UObject* WorldContextObject)
 class UB2GuildNPCInfo* StaticFindGuildNPCInfo(UObject* WorldContextObject)
 {
 	//if (WorldContextObject)
-	//{ // °¡´ÉÇÑ °æ¿ì GameInstance ÀÇ Ä³½ÌµÈ ·¹ÆÛ·±½º¸¦ »ç¿ë.
+	//{ // å•Šç“·èŒ„ ç‰ˆå¿« GameInstance ç‹¼ æŸæ•™ç­‰ é¥­æ¬ºç¹èƒ¶ç”« è¤ä¾©.
 	//	UB2GameInstance* B2GI = Cast<UB2GameInstance>(UGameplayStatics::GetGameInstance(WorldContextObject));
 	//	if (B2GI)
 	//	{
@@ -828,7 +828,7 @@ class UTutorialControlBotInfos* StaticFindTutorialControlBotInfos()
 UB2CombatConstantInfo * StaticFindCombatConstantInfo(UObject * WorldContextObject)
 {
 	if (WorldContextObject)
-	{ // °¡´ÉÇÑ °æ¿ì GameInstance ÀÇ Ä³½ÌµÈ ·¹ÆÛ·±½º¸¦ »ç¿ë.
+	{ // å•Šç“·èŒ„ ç‰ˆå¿« GameInstance ç‹¼ æŸæ•™ç­‰ é¥­æ¬ºç¹èƒ¶ç”« è¤ä¾©.
 		UB2GameInstance* B2GI = Cast<UB2GameInstance>(UGameplayStatics::GetGameInstance(WorldContextObject));
 		if (B2GI)
 		{
@@ -887,7 +887,7 @@ FB2ScopedCallTracker::~FB2ScopedCallTracker()
 	if (bIsOn || gDrawPerfMark)
 	{
 		double TimeTaken = FPlatformTime::Seconds() - RecordedStartTime;
-		// ½ÇÇà ½Ã°£ÀÌ ÀÏÁ¤ ±âÁØ ÀÌ»óÀ¸·Î ¿À·¡ °É¸®¸é °æ°í·Î Ç¥½Ã.. ¸ô¾Æ¼­ Ã£¾Æº¸±â ÁÁ°Ô.. ´ëÃ¼·Î ÀÌ°É ¼³Ä¡ÇÏ´Â °÷Àº Tick ¿¡¼­ ºÒ¸®´Â °Ç ¾Æ´Ï¾î¼­ ÀÌº¥Æ® ¼ºÀ¸·Îµµ ¿À·¡ °É¸°´Ù ½ÍÀº Á¤µµÀÎ °Å¸¦ °É·¯³½´Ù.
+		// è§’é’ çŸ«åŸƒæ è€æ²¥ æ‰éœ– ææƒ‘æ è‚º å·è´° å§åºœæ ç‰ˆç»Šè‚º é’çŸ«.. éš”é…’è¾‘ èŒ«é…’ç„Šæ‰ äº®éœ¸.. æªçœ‰è‚º æå§ æ±²æ‘¹çªç»° é•‘ç¯® Tick ä¿Šè¾‘ é˜‚åºœç»° æ‰’ é…’èªç»¢è¾‘ æäº¥é£˜ å·±æ è‚ºæ¡£ å·è´° å§èµ´ä¿ƒ é…µç¯® æ²¥æ¡£ç‰¢ èŠ­ç”« å§çŸ¾è¾°ä¿ƒ.
 		const bool bConsiderAsWarningLv1 = (TimeTaken >= PerfMarkLv1Time);
 		const bool bConsiderAsWarningLv2 = (TimeTaken >= PerfMarkLv2Time);
 
@@ -905,7 +905,7 @@ FB2ScopedCallTracker::~FB2ScopedCallTracker()
 			UE_LOG(LogB2ScopedCallTrack, Log, TEXT("%s"), *LogString);
 		}
 
-		// Æ¯º°È÷ È­¸é¿¡ º¸±â ½±°Ô Ç¥½Ã
+		// æ¼‚å–Šæ´’ æ‹³æä¿Š ç„Šæ‰ å¥–éœ¸ é’çŸ«
 		if (gDrawPerfMark && (bConsiderAsWarningLv1 || bConsiderAsWarningLv2))
 		{
 			BII_SCREEN_LOG(LogString, PerfMarkDrawTextColor, 12, 8.0f);
@@ -914,10 +914,10 @@ FB2ScopedCallTracker::~FB2ScopedCallTracker()
 }
 
 
-// ScopedCallTracker ¿¡µµ ½Ã°£ ÃøÁ¤ ±â´ÉÀÌ µé¾î°¬´Âµ¥ ±×·¸´Ù°í ScopedTimeLogger ¸¦ ¾µ¸ğ¾ø´Ù°í ÇÒ ÇÊ¿æ ¾ø°í Æ¯º°È÷ ½Ã°£ ÃøÁ¤ÀÌ ÇÊ¿äÇÑ ½ºÆı¿¡ ³Ö¾î¼­ ¾²¸é µÊ.
+// ScopedCallTracker ä¿Šæ¡£ çŸ«åŸƒ èŸæ²¥ æ‰ç“·æ ç”¸ç»¢è‰¾ç»°å• å¼ŠçŠ¯ä¿ƒç»Š ScopedTimeLogger ç”« é•œè‘›ç»ä¿ƒç»Š ä¸” é˜æŒ ç»ç»Š æ¼‚å–Šæ´’ çŸ«åŸƒ èŸæ²¥æ é˜å¤¸èŒ„ èƒ¶è®«ä¿Š æŒç»¢è¾‘ é™æ å‡³.
 //
 DEFINE_LOG_CATEGORY_STATIC(LogB2ScopedTimeLog, Log, All)
-bool FB2ScopedTimeLogger::bIsOn = false; // ÀÌ°Ç ±âº»°ª false.. ÇÊ¿äÇÒ ¶§¸¸ »ç¿ëÇÏ·Á´Â °Å
+bool FB2ScopedTimeLogger::bIsOn = false; // ææ‰’ æ‰å¤¯è”¼ false.. é˜å¤¸ä¸” é”­çˆ¶ è¤ä¾©çªå¦¨ç»° èŠ­
 float FB2ScopedTimeLogger::PerfMarkLv1Time = 0.1f;
 float FB2ScopedTimeLogger::PerfMarkLv2Time = 0.5f;
 FB2ScopedTimeLogger::FB2ScopedTimeLogger(FString InScopeName)
@@ -939,7 +939,7 @@ FB2ScopedTimeLogger::~FB2ScopedTimeLogger()
 	if (bIsOn)
 	{
 		double TimeTaken = FPlatformTime::Seconds() - RecordedStartTime;
-		// ½ÇÇà ½Ã°£ÀÌ ÀÏÁ¤ ±âÁØ ÀÌ»óÀ¸·Î ¿À·¡ °É¸®¸é °æ°í·Î Ç¥½Ã.. ¸ô¾Æ¼­ Ã£¾Æº¸±â ÁÁ°Ô.. ´ëÃ¼·Î ÀÌ°É ¼³Ä¡ÇÏ´Â °÷Àº Tick ¿¡¼­ ºÒ¸®´Â °Ç ¾Æ´Ï¾î¼­ ÀÌº¥Æ® ¼ºÀ¸·Îµµ ¿À·¡ °É¸°´Ù ½ÍÀº Á¤µµÀÎ °Å¸¦ °É·¯³½´Ù.
+		// è§’é’ çŸ«åŸƒæ è€æ²¥ æ‰éœ– ææƒ‘æ è‚º å·è´° å§åºœæ ç‰ˆç»Šè‚º é’çŸ«.. éš”é…’è¾‘ èŒ«é…’ç„Šæ‰ äº®éœ¸.. æªçœ‰è‚º æå§ æ±²æ‘¹çªç»° é•‘ç¯® Tick ä¿Šè¾‘ é˜‚åºœç»° æ‰’ é…’èªç»¢è¾‘ æäº¥é£˜ å·±æ è‚ºæ¡£ å·è´° å§èµ´ä¿ƒ é…µç¯® æ²¥æ¡£ç‰¢ èŠ­ç”« å§çŸ¾è¾°ä¿ƒ.
 		const bool bConsiderAsWarningLv1 = (TimeTaken >= PerfMarkLv1Time);
 		const bool bConsiderAsWarningLv2 = (TimeTaken >= PerfMarkLv2Time);
 
@@ -965,20 +965,20 @@ void ManualUnloadBeforeNewBeginning(UObject* WorldContextObject)
 #if WITH_EDITOR
 	if (GIsEditor)
 	{
-		return; // ¿¡µğÅÍ¿¡¼± ÀÌ·± ÁşÀ» ÇØ¼± ¾ÈµÈ´Ù. ¸ğµÎ ·ÎµùµÈ »óÅÂ À¯Áö.
+		return; // ä¿Šå¼ç£ä¿Šæ€¥ æç¹ çª¿é˜‘ ç§¦æ€¥ æ•‘ç­‰ä¿ƒ. è‘›æ»´ è‚ºçˆ¹ç­‰ æƒ‘æ€• èœ¡ç˜¤.
 	}
 #endif
 
-	FlushAsyncLoading(); // ÀÌ°É ÇÏ´Â °Ô ¾ÈÀüÇÒ±î?
+	FlushAsyncLoading(); // æå§ çªç»° éœ¸ æ•‘å‚ˆä¸”é³–?
 
 	ABladeIIGameMode* B2GM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(WorldContextObject));
 
-	// TAsset Àû¿ëµÈ InfoAsset µé Áß¿¡¼­ º°µµÀÇ ·¹ÆÛ·±½º Ä³½Ì°ú ÇÔ²² FStreamableManager ¸¦ ¾²´Â ¾ÖµéÀº ¸í½ÃÀûÀ¸·Î ¾ğ·ÎµùÇÑ´Ù. 
-	// FStreamableManager ÀÇ ¹®Á¦Á¡ÀÌ±âµµ ÇÑµ¥, ²À ±×°Å ¾Æ´Ï´õ¶óµµ Preload ÀÇ ÇÊ¿ä¼ºÀ¸·Î ·¹ÆÛ·±½º Ä³½ÌÀÌ ÀÖ´Ù¸é Á¦°Å´Â ÇØ ÁÖ¾î¾ß ÇÔ.
-	// ÀÚÀßÇÑ ¾ÖµéÀº FStreamableManager ´ë½Å ´Ü¼ø LoadSynchronous »ç¿ëÀ¸·Î ÀüÈ¯ÇÏ¸é ÀÌ°Å ¾ÈÇÏ°Ô µÉ °ÍÀÓ.
-	// ÀÌ°ÅÀÇ ¹İ´ë´Â GameMode ÀÇ PreloadAnyNecessaryInfo
+	// TAsset åˆ©ä¾©ç­‰ InfoAsset ç”¸ åä¿Šè¾‘ å–Šæ¡£ç‹¼ é¥­æ¬ºç¹èƒ¶ æŸæ•™è‹ çªƒè†Š FStreamableManager ç”« é™ç»° å±€ç”¸ç¯® ç–™çŸ«åˆ©æ è‚º æ”«è‚ºçˆ¹èŒ„ä¿ƒ. 
+	// FStreamableManager ç‹¼ å·©åŠ›ç—¢ææ‰æ¡£ èŒ„å•, æ€– å¼ŠèŠ­ é…’èªæ­¹æ‰¼æ¡£ Preload ç‹¼ é˜å¤¸å·±æ è‚º é¥­æ¬ºç¹èƒ¶ æŸæ•™æ ä¹ä¿ƒæ åŠ›èŠ­ç»° ç§¦ æ—ç»¢å…· çªƒ.
+	// ç£Šè‚‹èŒ„ å±€ç”¸ç¯® FStreamableManager æªè„š çªœé‰´ LoadSynchronous è¤ä¾©æ è‚º å‚ˆåˆ¸çªæ æèŠ­ æ•‘çªéœ¸ çª å·´çƒ™.
+	// æèŠ­ç‹¼ é¦†æªç»° GameMode ç‹¼ PreloadAnyNecessaryInfo
 
-	UB2NPCClassInfoBox* MobInfoBox = StaticFindMobClassInfoBox(WorldContextObject); // °¡´ÉÇÑ ÇÑ BladeIIGameMode ¿¡ Ä³½ÌµÇ¾î ÀÖ´Â °É °¡Á®¿À±â À§ÇØ WorldContextObject ¸¦ ³Ñ°ÜÁÜ.
+	UB2NPCClassInfoBox* MobInfoBox = StaticFindMobClassInfoBox(WorldContextObject); // å•Šç“·èŒ„ èŒ„ BladeIIGameMode ä¿Š æŸæ•™ç™»ç»¢ ä¹ç»° å§ å•Šå»‰å·æ‰ å›°ç§¦ WorldContextObject ç”« é€è´¥æ·‹.
 	if (MobInfoBox)
 	{
 		MobInfoBox->UnloadExceptCurrentExplicit(B2GM);
@@ -986,28 +986,28 @@ void ManualUnloadBeforeNewBeginning(UObject* WorldContextObject)
 
 	UB2PCClassInfoBox* PCClassInfoBox = StaticFindPCClassInfoBox(WorldContextObject);
 	if (PCClassInfoBox)
-	{ // ¼³Á¤°ú ÇÃ·§Æû¿¡ µû¶ó unload ¸¦ ¾ÈÇÏ°Ô µÉ ¼öµµ ÀÖ´Ù.
+	{ // æ±²æ²¥è‹ æ•²é˜€æ±½ä¿Š è¶æ‰¼ unload ç”« æ•‘çªéœ¸ çª èæ¡£ ä¹ä¿ƒ.
 		PCClassInfoBox->UnloadAllOrExceptSelectedIfAllowed();
 	}
 	for (int32 PCI = 0; PCI < GetMaxPCClassNum(); ++PCI)
-	{ // PCClassInfo ¸¦ È®½ÇÈ÷ Unload ÇÏ·Á¸é ¿©±â µ¥ÀÌÅÍ¸¦ ¹°°í ÀÖ´Â HeroDoc µµ ¾ÈÀüÇÏ°Ô release ÇØ ÁÙ ÇÊ¿ä°¡ ÀÖ´Ù.
+	{ // PCClassInfo ç”« çŠ¬è§’æ´’ Unload çªå¦¨æ å’¯æ‰ å•æç£ç”« æ‹±ç»Š ä¹ç»° HeroDoc æ¡£ æ•‘å‚ˆçªéœ¸ release ç§¦ ä¸´ é˜å¤¸å•Š ä¹ä¿ƒ.
 		UB2UIDocHero* DocHero = UB2UIDocHelper::GetDocHero(PCI);
 		if (DocHero)
 		{
 			DocHero->ReleaseResources();
 		}
 	}
-	// ÇÑ¶§´Â PCClassInfo ÀÇ ÀÏºÎ·Î ·ÎµùµÇ´ø skill ¾Ö´Ï¸ŞÀÌ¼Ç µ¥ÀÌÅÍ
+	// èŒ„é”­ç»° PCClassInfo ç‹¼ è€ä½•è‚º è‚ºçˆ¹ç™»å¸¦ skill å±€èªçš‹æè®° å•æç£
 	UB2SkillAnimInfo* SkillAnimInfo = StaticFindSkillAnimInfo(WorldContextObject);
 	if (SkillAnimInfo)
 	{
-		SkillAnimInfo->UnloadAllOrExceptSelected(B2GM); // PCClassInfo ÀÇ ÀÏºÎ °İÀÎ ¸¸Å­ ¸¶Âù°¡Áö·Î UnloadAllOrExceptSelected ·Î
+		SkillAnimInfo->UnloadAllOrExceptSelected(B2GM); // PCClassInfo ç‹¼ è€ä½• æ‹œç‰¢ çˆ¶æ€’ ä»˜è›®å•Šç˜¤è‚º UnloadAllOrExceptSelected è‚º
 	}
 
 	UB2UIDocScenarioDialog* DocScenarioDlg = UB2UIDocHelper::GetDocScenarioDialog();
 	if (DocScenarioDlg)
 	{
-		DocScenarioDlg->ReleaseResources(); // ÃÊ»óÈ­ material À» µé°í ÀÖÀ½.
+		DocScenarioDlg->ReleaseResources(); // æª¬æƒ‘æ‹³ material é˜‘ ç”¸ç»Š ä¹æ¾œ.
 	}
 
 	UB2CommonSoundInfo* CommonSoundInfo = StaticFindCommonSoundInfo(WorldContextObject);
@@ -1064,12 +1064,12 @@ void ManualUnloadBeforeNewBeginning(UObject* WorldContextObject)
 		CharDlgInfo->ConditionalUnloadAllOrPreserve();
 	}
 
-	// UIManager ÂÊÀº ¿©±â¼­ Unload ¾ÈÇÔ. ±¦È÷ ±×°Å Destroy ½ÃÁ¡ÇÏ°í ¾ôÈú¶ó..
-	// UB2LoadingImageInfo µµ ¿©±â¼­ Unload ¾È ÇÔ. ±×°Ç ¹İ´ë·Î ´ë·« ÀÌ ½ÃÁ¡¿¡ ÇÊ¿äÇÑ °É ·ÎµùÇÏ°í ´ÙÀ½ ·¹º§ ·Îµù ÈÄ¿¡ ¾ğ·ÎµùÀÌ µÉ °Í.
+	// UIManager ç‡ç¯® å’¯æ‰è¾‘ Unload æ•‘çªƒ. å®æ´’ å¼ŠèŠ­ Destroy çŸ«ç—¢çªç»Š çˆµé³ƒæ‰¼..
+	// UB2LoadingImageInfo æ¡£ å’¯æ‰è¾‘ Unload æ•‘ çªƒ. å¼Šæ‰’ é¦†æªè‚º æªå¸† æ çŸ«ç—¢ä¿Š é˜å¤¸èŒ„ å§ è‚ºçˆ¹çªç»Š ä¿ƒæ¾œ é¥­éª‡ è‚ºçˆ¹ é¥¶ä¿Š æ”«è‚ºçˆ¹æ çª å·´.
 
 	UE_LOG(LogBladeII, Log, TEXT("Unloaded lazy-loaded info assets"));
 
-	// ±âÅ¸ Ãß°¡µÉ ¼ö ÀÖÀ½.
+	// æ‰é¸¥ çœ å•Šçª è ä¹æ¾œ.
 }
 
 void ManualUnloadOnStageClear(UObject* WorldContextObject)
@@ -1079,19 +1079,19 @@ void ManualUnloadOnStageClear(UObject* WorldContextObject)
 #if WITH_EDITOR
 	if (GIsEditor)
 	{
-		return; // ¿¡µğÅÍ¿¡¼± ÀÌ·± ÁşÀ» ÇØ¼± ¾ÈµÈ´Ù. ¸ğµÎ ·ÎµùµÈ »óÅÂ À¯Áö.
+		return; // ä¿Šå¼ç£ä¿Šæ€¥ æç¹ çª¿é˜‘ ç§¦æ€¥ æ•‘ç­‰ä¿ƒ. è‘›æ»´ è‚ºçˆ¹ç­‰ æƒ‘æ€• èœ¡ç˜¤.
 	}
 #endif
 
-	FlushAsyncLoading(); // ÀÌ°É ÇÏ´Â °Ô ¾ÈÀüÇÒ±î?
+	FlushAsyncLoading(); // æå§ çªç»° éœ¸ æ•‘å‚ˆä¸”é³–?
 
 	ABladeIIGameMode* B2GM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(WorldContextObject));
 
-	// ½ºÅ×ÀÌÁö Á¾·á ¿¬Ãâ °°Àº °Å ³ª¿À¸é¼­ ¸Ş¸ğ¸® »ó½ÂÇÏ±â Á÷Àü ³»¸± °Å ³»¸®±â.
-	// ¿©±â¼­ ¾ğ·Îµù ÇÏÁö ¾ÊÀº °Íµéµµ ManualUnloadBeforeNewBeginning ¿¡¼­ ¸ğµÎ ³»·Á°¥ °Å
+	// èƒ¶æŠ›æç˜¤ è¾†ä¸° æ¥·å… éç¯® èŠ­ å”±å·æè¾‘ çš‹è‘›åºœ æƒ‘é“°çªæ‰ æµå‚ˆ éƒ´å‰¯ èŠ­ éƒ´åºœæ‰.
+	// å’¯æ‰è¾‘ æ”«è‚ºçˆ¹ çªç˜¤ è‡¼ç¯® å·´ç”¸æ¡£ ManualUnloadBeforeNewBeginning ä¿Šè¾‘ è‘›æ»´ éƒ´å¦¨å“ èŠ­
 
-	// ½ºÅ×ÀÌÁö Å¬¸®¾î ½ÃÁ¡ÀÌ¶ó MobInfo ´Â ´õ ÀÌ»ó ÇÊ¿ä¾øÀ» °ÍÀ¸·Î °£ÁÖ. (¼³·É ÇÊ¿äÇÑ °æ¿ì°¡ ¹ß»ıÇÑ´Ù ÇÏ´õ¶óµµ ·Îµù ºí·ÎÅ·ÀÌ Á» »ı±ä´Ù »Ó)
-	UB2NPCClassInfoBox* MobInfoBox = StaticFindMobClassInfoBox(WorldContextObject); // °¡´ÉÇÑ ÇÑ BladeIIGameMode ¿¡ Ä³½ÌµÇ¾î ÀÖ´Â °É °¡Á®¿À±â À§ÇØ WorldContextObject ¸¦ ³Ñ°ÜÁÜ.
+	// èƒ¶æŠ›æç˜¤ åŠªåºœç»¢ çŸ«ç—¢ææ‰¼ MobInfo ç»° æ­¹ ææƒ‘ é˜å¤¸ç»é˜‘ å·´æ è‚º åŸƒæ—. (æ±²é£ é˜å¤¸èŒ„ ç‰ˆå¿«å•Š æƒ¯ç§¯èŒ„ä¿ƒ çªæ­¹æ‰¼æ¡£ è‚ºçˆ¹ å–‰è‚ºæ¬§æ ç²± ç§¯å˜ä¿ƒ æŒ¥)
+	UB2NPCClassInfoBox* MobInfoBox = StaticFindMobClassInfoBox(WorldContextObject); // å•Šç“·èŒ„ èŒ„ BladeIIGameMode ä¿Š æŸæ•™ç™»ç»¢ ä¹ç»° å§ å•Šå»‰å·æ‰ å›°ç§¦ WorldContextObject ç”« é€è´¥æ·‹.
 	if (MobInfoBox)
 	{
 		MobInfoBox->UnloadExceptCurrentExplicit(B2GM);
@@ -1099,15 +1099,15 @@ void ManualUnloadOnStageClear(UObject* WorldContextObject)
 
 	UB2PCClassInfoBox* PCInfoBox = StaticFindPCClassInfoBox(WorldContextObject);
 	if (PCInfoBox)
-	{// ÀÌ ½ÃÁ¡¿¡¼­ ÅÂ±×´Â ¹°·Ğ ¾ø¾î¾ß ÇÏ°í.. ½Â¸® ¿¬Ãâ¿¡¼­ ÅÂ±×Ä³¸¯ÅÍ puppet À» spawn ÇÒ ¼ö´Â ÀÖ´Âµ¥ °Å±â¼­ ½ÇÁúÀûÀÎ PCClassInfo µ¥ÀÌÅÍ¸¦ »ç¿ëÇÏÁö ¾Êµµ·Ï ÇØ¾ß ÇÑ´Ù.
-	 // ABladeIIGameMode::SpawnPlayerCharAsPuppet ¿¡¼­ºÎÅÍ °ü·Ã ÀÎÀÚ¸¦ ³Ñ°ÜÁÖµµ·Ï µÇ¾î ÀÖÀ½.
+	{// æ çŸ«ç—¢ä¿Šè¾‘ æ€•å¼Šç»° æ‹±æ²¸ ç»ç»¢å…· çªç»Š.. é“°åºœ æ¥·å…ä¿Šè¾‘ æ€•å¼ŠæŸè…ç£ puppet é˜‘ spawn ä¸” èç»° ä¹ç»°å• èŠ­æ‰è¾‘ è§’é¾™åˆ©ç‰¢ PCClassInfo å•æç£ç”« è¤ä¾©çªç˜¤ è‡¼æ¡£åºŸ ç§¦å…· èŒ„ä¿ƒ.
+	 // ABladeIIGameMode::SpawnPlayerCharAsPuppet ä¿Šè¾‘ä½•ç£ åŒ…è®¿ ç‰¢ç£Šç”« é€è´¥æ—æ¡£åºŸ ç™»ç»¢ ä¹æ¾œ.
 		PCInfoBox->UnloadAllOrExceptSelectedIfAllowed();
 	}
-	// ÇÑ¶§´Â PCClassInfo ÀÇ ÀÏºÎ·Î ·ÎµùµÇ´ø skill ¾Ö´Ï¸ŞÀÌ¼Ç µ¥ÀÌÅÍ
+	// èŒ„é”­ç»° PCClassInfo ç‹¼ è€ä½•è‚º è‚ºçˆ¹ç™»å¸¦ skill å±€èªçš‹æè®° å•æç£
 	UB2SkillAnimInfo* SkillAnimInfo = StaticFindSkillAnimInfo(WorldContextObject);
 	if (SkillAnimInfo)
 	{
-		SkillAnimInfo->UnloadAllOrExceptSelected(B2GM); // PCClassInfo ÀÇ ÀÏºÎ °İÀÎ ¸¸Å­ ¸¶Âù°¡Áö·Î UnloadAllOrExceptSelected ·Î
+		SkillAnimInfo->UnloadAllOrExceptSelected(B2GM); // PCClassInfo ç‹¼ è€ä½• æ‹œç‰¢ çˆ¶æ€’ ä»˜è›®å•Šç˜¤è‚º UnloadAllOrExceptSelected è‚º
 	}
 
 	UB2DamageEffectInfo* DamageFxInfo = StaticFindDamageEffectInfo(WorldContextObject);
@@ -1128,7 +1128,7 @@ void ManualUnloadOnStageClear(UObject* WorldContextObject)
 		CharDlgInfo->ConditionalUnloadAllOrPreserve();
 	}
 
-	// ±âÅ¸ ÀÌÁ¨ º° º¼ÀÏ ¾ø¾î º¸ÀÌ´Â °Íµé ¾ğ·Îµù.
+	// æ‰é¸¥ æå“© å–Š æ­è€ ç»ç»¢ ç„Šæç»° å·´ç”¸ æ”«è‚ºçˆ¹.
 
 
 	CollectGarbage(GARBAGE_COLLECTION_KEEPFLAGS);
@@ -1140,15 +1140,15 @@ void CopyObjectProperties(UObject* ObjCopyTo, UObject* ObjCopyFrom, bool bExclud
 
 	////if (
 	////	!ObjCopyTo || !ObjCopyFrom ||
-	////	// °°Àº Å¬·¡½º´øÁö, ³»Áö´Â ObjCopyFrom ÀÌ ObjCopyTo ÀÇ ÇÏÀ§ Å¬·¡½º´øÁö.
+	////	// éç¯® åŠªè´°èƒ¶å¸¦ç˜¤, éƒ´ç˜¤ç»° ObjCopyFrom æ ObjCopyTo ç‹¼ çªå›° åŠªè´°èƒ¶å¸¦ç˜¤.
 	////	(ObjCopyTo->GetClass() != ObjCopyFrom->GetClass() && !ObjCopyFrom->IsA(ObjCopyTo->GetClass()))
 	////	)
 	////{
 	////	return;
 	////}
 
-	//// Âü°í : FObjectInitializer::InitProperties
-	//// ÀÌ°Ç ±âº» serialize ÈÄ¿¡ »ç¿ëµÇ´Â °ÍÀÌ¹Ç·Î ÇÙ½É ÆÄÆ®´Â Á» ´Ü¼øÈ­ µÇ¾î ÀÖÀ½.
+	//// æ›¼ç»Š : FObjectInitializer::InitProperties
+	//// ææ‰’ æ‰å¤¯ serialize é¥¶ä¿Š è¤ä¾©ç™»ç»° å·´æéª¨è‚º ç´ç¼´ é¢‡é£˜ç»° ç²± çªœé‰´æ‹³ ç™»ç»¢ ä¹æ¾œ.
 
 	//UClass* ObjClass = ObjCopyTo->GetClass();
 	//BII_CHECK(ObjClass);
@@ -1159,14 +1159,14 @@ void CopyObjectProperties(UObject* ObjCopyTo, UObject* ObjCopyFrom, bool bExclud
 	//		continue;
 	//	}
 
-	//	// Actor ¸¦ Ä«ÇÇÇÏ´Â °æ¿ì ÇÏÀ§ Component ±îÁö Ä«ÇÇÇÏ°í ½ÍÁö´Â ¾ÊÀ» °ÍÀÌ´Ù. À¢¸¸ÇÏ¸é µû·Î Ã³¸®
+	//	// Actor ç”« å¢¨ä¹”çªç»° ç‰ˆå¿« çªå›° Component é³–ç˜¤ å¢¨ä¹”çªç»Š é…µç˜¤ç»° è‡¼é˜‘ å·´æä¿ƒ. æ„§çˆ¶çªæ è¶è‚º è´¸åºœ
 	//	UObjectProperty* CastedObjProp = Cast<UObjectProperty>(P);
 	//	if (bExcludeSubComponents && CastedObjProp && CastedObjProp->PropertyClass &&
 	//		CastedObjProp->PropertyClass->GetDefaultObject()->IsA(UActorComponent::StaticClass())) {
 	//		continue;
 	//	}
 
-	//	// ±âÅ¸ Æ¯º°È÷ Á¦¿ÜÇÏ°í ½ÍÀº °Íµé.
+	//	// æ‰é¸¥ æ¼‚å–Šæ´’ åŠ›å¯‡çªç»Š é…µç¯® å·´ç”¸.
 	//	if (ExcludeProperties.Find(P->GetFName()) == INDEX_NONE)
 	//	{
 	//		P->CopyCompleteValue_InContainer(ObjCopyTo, ObjCopyFrom);
@@ -1202,7 +1202,7 @@ void DevShowNotReadyYetPopup()
 
 bool isLocalConnectIniFileExist()
 {
-	//UE4Game°¡ RootÀÎµí ÇÔ.
+	//UE4Gameå•Š Rootç‰¢æ·€ çªƒ.
 	//FPaths::GameDir();		//  ../../../BladeII/
 	//FPaths::EngineDir();		//  ../../../Engine/
 	//FPaths::GameSavedDir();	//  ../../../BladeII/Saved/
@@ -1222,7 +1222,7 @@ bool isLocalConnectIniFileExist()
 	bool bFileExist = FPaths::FileExists(FullPath);
 //	if (bFileExist == false)
 //	{
-//		//¼Ò¹®ÀÚ °Ë»ç
+//		//å®¶å·©ç£Š å…«è¤
 //		fileName = fileName.ToLower();
 //#if PLATFORM_IOS
 //		FullPath = FPaths::Combine(FPaths::RootDir(), fileName);
@@ -1279,8 +1279,8 @@ bool isLocalConnectIniFileExist()
 	return bFileExist;
 }
 
-// ¾Æ·¡ SetupNamedMIDForFxComp, GetFxNamedMIDCommon, SetupMIDAtlasParamFromUIMIC ¸¦ »ç¿ëÇØ¼­ 
-// ÀÏ¹İÀûÀÎ 3D material À» Æ¯Á¤ UI material °ú ¸¶Âù°¡Áö·Î ²Ù¹Ì´Â ¿¹½Ã¸¦ B2LobbyUI_ItemCUSProg ¿¡¼­ Âü°í..
+// é…’è´° SetupNamedMIDForFxComp, GetFxNamedMIDCommon, SetupMIDAtlasParamFromUIMIC ç”« è¤ä¾©ç§¦è¾‘ 
+// è€é¦†åˆ©ç‰¢ 3D material é˜‘ æ¼‚æ²¥ UI material è‹ ä»˜è›®å•Šç˜¤è‚º æ“å›ºç»° æŠ—çŸ«ç”« B2LobbyUI_ItemCUSProg ä¿Šè¾‘ æ›¼ç»Š..
 
 void SetupNamedMIDForFxComp(UParticleSystemComponent* InPSComp)
 {
@@ -1290,9 +1290,9 @@ void SetupNamedMIDForFxComp(UParticleSystemComponent* InPSComp)
 		return;
 	}
 
-	// FParticleEmitterInstance::Tick_MaterialOverrides Âü°í
-	// NamedMaterialSlots ¿¡ ¼¼ÆÃÇÑ °Í¿¡ µû¶ó °°Àº ÀÎµ¦½ºÀÇ EmitterMaterials °¡ ÀÖÀ¸¸é ±×°É »ç¿ëÇÏ°Ô µÈ´Ù. 
-	// Fx Component »ı¼ºÇÏ¸é¼­ ¼ø¼­´ë·Î EmitterMaterials ¿¡ MID ¸¦ ¸¸µé¾î¼­ ³Ö¾îÁÜ
+	// FParticleEmitterInstance::Tick_MaterialOverrides æ›¼ç»Š
+	// NamedMaterialSlots ä¿Š æŠ€æ³¼èŒ„ å·´ä¿Š è¶æ‰¼ éç¯® ç‰¢éƒ¸èƒ¶ç‹¼ EmitterMaterials å•Š ä¹æ æ å¼Šå§ è¤ä¾©çªéœ¸ ç­‰ä¿ƒ. 
+	// Fx Component ç§¯å·±çªæè¾‘ é‰´è¾‘æªè‚º EmitterMaterials ä¿Š MID ç”« çˆ¶ç”¸ç»¢è¾‘ æŒç»¢æ·‹
 	for (int32 SI = 0; SI < InPSComp->Template->NamedMaterialSlots.Num(); ++SI)
 	{
 		FNamedEmitterMaterial& CurrSlot = InPSComp->Template->NamedMaterialSlots[SI];
@@ -1312,12 +1312,12 @@ UMaterialInstanceDynamic* GetFxNamedMID(UParticleSystemComponent* InPSComp, cons
 	{
 		for (int32 SI = 0; SI < InPSComp->Template->NamedMaterialSlots.Num(); ++SI)
 		{
-			// FParticleEmitterInstance::Tick_MaterialOverrides Âü°í
-			// NamedMaterialSlots ¿¡ ¼¼ÆÃÇÑ °Í¿¡ µû¶ó °°Àº ÀÎµ¦½ºÀÇ EmitterMaterials °¡ ÀÖÀ¸¸é ±×°É »ç¿ëÇÏ°Ô µÈ´Ù. 
+			// FParticleEmitterInstance::Tick_MaterialOverrides æ›¼ç»Š
+			// NamedMaterialSlots ä¿Š æŠ€æ³¼èŒ„ å·´ä¿Š è¶æ‰¼ éç¯® ç‰¢éƒ¸èƒ¶ç‹¼ EmitterMaterials å•Š ä¹æ æ å¼Šå§ è¤ä¾©çªéœ¸ ç­‰ä¿ƒ. 
 			FNamedEmitterMaterial& CurrSlot = InPSComp->Template->NamedMaterialSlots[SI];
 			if (CurrSlot.Name == MatSlotName && InPSComp->EmitterMaterials.IsValidIndex(SI))
 			{
-				// Fx »ı¼º½Ã ¼ø¼­´ë·Î EmitterMaterials ¿¡ MID »ı¼ºÇØ¼­ ³Ö¾î³ù¾î¾ß ÇÔ. (SetupNamedMIDForFxComp)
+				// Fx ç§¯å·±çŸ« é‰´è¾‘æªè‚º EmitterMaterials ä¿Š MID ç§¯å·±ç§¦è¾‘ æŒç»¢èº‡ç»¢å…· çªƒ. (SetupNamedMIDForFxComp)
 				return Cast<UMaterialInstanceDynamic>(InPSComp->EmitterMaterials[SI]);
 			}
 		}
@@ -1330,7 +1330,7 @@ bool HasFxNamedMID(class UParticleSystemComponent* InPSComp, const FName& MatSlo
 	return GetFxNamedMID(InPSComp, MatSlotName) != nullptr;
 }
 
-// SetupMIDAtlasParamFromUIMIC ÀÇ ¹İº¹ ÆÄÆ®
+// SetupMIDAtlasParamFromUIMIC ç‹¼ é¦†æ±— é¢‡é£˜
 void GetAndSetMIScalarParamCommon(UMaterialInstanceDynamic* MIDToSet, UMaterialInstanceConstant* RefUIMIC, const FName& ParamName)
 {
 	B2_SCOPED_TRACK_LOG(TEXT("GetAndSetMIScalarParamCommon"));
@@ -1349,20 +1349,20 @@ void SetupMIDAtlasParamFromUIMIC(class UMaterialInstanceDynamic* MIDToSet, class
 	if (!MIDToSet || !RefUIMIC) {
 		return;
 	}
-	// ¹°·Ğ °¢°¢ÀÇ master material ¿¡´Â °°Àº ÀÌ¸§ÀÇ ÆÄ¶ó¹ÌÅÍ°¡ °°Àº ¿ªÇÒ·Î µé¾î°¡ ÀÖ¾î¾ß°Ú´Ù.
+	// æ‹±æ²¸ é˜¿é˜¿ç‹¼ master material ä¿Šç»° éç¯® ææŠšç‹¼ é¢‡æ‰¼å›ºç£å•Š éç¯® å¼€ä¸”è‚º ç”¸ç»¢å•Š ä¹ç»¢å…·æ‘†ä¿ƒ.
 	GetAndSetMIScalarParamCommon(MIDToSet, RefUIMIC, MtrlParamName_UIAtlasSampleX);
 	GetAndSetMIScalarParamCommon(MIDToSet, RefUIMIC, MtrlParamName_UIAtlasSampleY);
 	GetAndSetMIScalarParamCommon(MIDToSet, RefUIMIC, MtrlParamName_UIAtlasSampleWidth);
 	GetAndSetMIScalarParamCommon(MIDToSet, RefUIMIC, MtrlParamName_UIAtlasSampleHeight);
 	GetAndSetMIScalarParamCommon(MIDToSet, RefUIMIC, MtrlParamName_UIAtlasWholeWidth);
 	GetAndSetMIScalarParamCommon(MIDToSet, RefUIMIC, MtrlParamName_UIAtlasWholeHeight);
-	// ¸¶Áö¸·À¸·Î ÅØ½ºÃÄ ÆÄ¶ó¹ÌÅÍµµ.
+	// ä»˜ç˜¤é˜œæ è‚º å’†èƒ¶åªš é¢‡æ‰¼å›ºç£æ¡£.
 	UTexture* ThisTextureParamValue = NULL;
 	if (RefUIMIC->GetTextureParameterValue(MtrlParamName_UIAtlasTexture, ThisTextureParamValue)) {
 		MIDToSet->SetTextureParameterValue(MtrlParamName_UIAtlasTexture, ThisTextureParamValue);
 	}
 }
-// À§¿¡ SetupMIDAtlasParamFromUIMIC ¶û µ¿ÀÏÇÑ ¸¶½ºÅÍ ¸ÓÆ¼¸®¾ó °¡Á¤¿¡ ¸¶Âù°¡Áö ±â´ÉÀÎµ¥ NoAtlas static switch ·Î »ç¿ëÇÏ´Â °Å
+// å›°ä¿Š SetupMIDAtlasParamFromUIMIC å°” æ‚¼è€èŒ„ ä»˜èƒ¶ç£ èµ£èåºœå€” å•Šæ²¥ä¿Š ä»˜è›®å•Šç˜¤ æ‰ç“·ç‰¢å• NoAtlas static switch è‚º è¤ä¾©çªç»° èŠ­
 void SetupMIDNonAtlasParamFromUIMIC(class UMaterialInstanceDynamic* MIDToSet, class UMaterialInstanceConstant* RefUIMIC)
 {
 	B2_SCOPED_TRACK_LOG(TEXT("SetupMIDNonAtlasParamFromUIMIC"));
@@ -1370,11 +1370,11 @@ void SetupMIDNonAtlasParamFromUIMIC(class UMaterialInstanceDynamic* MIDToSet, cl
 	if (!MIDToSet || !RefUIMIC) {
 		return;
 	}
-	// ÅØ½ºÃÄ ÆÄ¶ó¹ÌÅÍ¸¸ ÀÖÀ¸¸é µÊ.
+	// å’†èƒ¶åªš é¢‡æ‰¼å›ºç£çˆ¶ ä¹æ æ å‡³.
 	UTexture* ThisTextureParamValue = NULL;
 	if (RefUIMIC->GetTextureParameterValue(MtrlParamName_NoAtlasSingleTexture, ThisTextureParamValue)) {
 		MIDToSet->SetTextureParameterValue(MtrlParamName_NoAtlasSingleTexture, ThisTextureParamValue);
-		MIDToSet->SetTextureParameterValue(MtrlParamName_UIAtlasTexture, nullptr); // ¾îÂ÷ÇÇ Ç¥½ÃµÇÁö´Â ¾Ê°ÚÁö¸¸ È®½ÇÈ÷ ³¯¸®´Â °Ô Á» ´õ ÁÁÀ» °Å °°¾Æ¼­ 
+		MIDToSet->SetTextureParameterValue(MtrlParamName_UIAtlasTexture, nullptr); // ç»¢ç’ä¹” é’çŸ«ç™»ç˜¤ç»° è‡¼æ‘†ç˜¤çˆ¶ çŠ¬è§’æ´’ æœåºœç»° éœ¸ ç²± æ­¹ äº®é˜‘ èŠ­ éé…’è¾‘ 
 	}
 }
 
@@ -1408,7 +1408,7 @@ void SetStageResultStar(class UMaterialInstanceDynamic* MIDToSet, const uint8 In
 
 int32 B2ServerRoundDown(double a, float NumDigit)
 {
-	// ¼­¹ö¿¡¼­ »ç¿ëÇÏ´Â RoundDown °ø½Ä
+	// è¾‘æ»šä¿Šè¾‘ è¤ä¾©çªç»° RoundDown å‚ä¾¥
 	return FPlatformMath::FloorToInt(a * FMath::Pow(10.f, NumDigit)) / FMath::Pow(10.f, NumDigit);
 }
 
@@ -1419,7 +1419,7 @@ void GetTimeFormatFromRawSecond(int32 InRawSecond, int32& OutHour, int32& OutMin
 {
 	OutHour = InRawSecond / 3600;
 
-	int32 RemainingSecond = InRawSecond - OutHour * 3600; // 1½Ã°£ ¹Ì¸¸ÀÇ ³ª¸ÓÁö ÃÊ
+	int32 RemainingSecond = InRawSecond - OutHour * 3600; // 1çŸ«åŸƒ å›ºçˆ¶ç‹¼ å”±èµ£ç˜¤ æª¬
 
 	OutMin = RemainingSecond / 60;
 	OutSec = RemainingSecond % 60;
@@ -1448,7 +1448,7 @@ void SnapBladeIICharacterToGround(class ABladeIICharacter* InB2Char)
 {
 	B2_SCOPED_TRACK_LOG(TEXT("SnapBladeIICharacterToGround"));
 
-	// bFixInAirÇÃ·¡±×·Î ÀÎÇØ ¹«ºê¸ÕÆ®²°À¸¸é ÆĞ½º
+	// bFixInAiræ•²è´°å¼Šè‚º ç‰¢ç§¦ å…¬å®åˆšé£˜èˆ¶æ æ è©èƒ¶
 	if (!InB2Char->GetCharacterMovement()->bAutoActivate)
 		return;
 
@@ -1459,7 +1459,7 @@ void SnapBladeIICharacterToGround(class ABladeIICharacter* InB2Char)
 	{
 		FVector ActorBoundOrigin;
 		FVector ActorBoundBoxExtent;
-		// Sometimes it could be better to use RootComponent's Bounds. Character ¿¡ ¼³Ä¡µÈ snapping À» ¹æÇØÇÒ ¸¸ÇÑ ´Ù¸¥ °ÍµéÀÇ ¿µÇâÀ» ÁÙÀÌ±â À§ÇØ ·çÆ®ÀÎ Capsule component ¿¡¼­ bound °ªÀ» °¡Á®¿È.
+		// Sometimes it could be better to use RootComponent's Bounds. Character ä¿Š æ±²æ‘¹ç­‰ snapping é˜‘ è§„ç§¦ä¸” çˆ¶èŒ„ ä¿ƒå¼— å·´ç”¸ç‹¼ åº·æ°¢é˜‘ ä¸´ææ‰ å›°ç§¦ é£é£˜ç‰¢ Capsule component ä¿Šè¾‘ bound è”¼é˜‘ å•Šå»‰å’³.
 		ActorBoundOrigin = InB2Char->GetCapsuleComponent()->Bounds.Origin;
 		ActorBoundBoxExtent = InB2Char->GetCapsuleComponent()->Bounds.BoxExtent;
 		FVector TraceStartLocation = ActorBoundOrigin;
@@ -1531,9 +1531,9 @@ float ZOffsetFromMatchingSKActorToBIICharacter(class ABladeIICharacter* InB2Char
 
 void EnsureActivateStaticallyAttachedPSCs(class AActor* InActor)
 {
-	// ÀÌ°Ç Æ¯È÷ ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ¿¡ ºÙÀº 20/30·¾ ¹× 6¼º ¹«±â particle effect °¡ Àß ¾È³ª¿À°ï ÇÏ´Â ÀÌ½´¿¡ ´ëÀÀÇÏ±â À§ÇØ ÁØºñµÇ¾úÀ½.
-	// AB2StageEventDirector::ActivateMatineePuppetPSCs ¿Í ¸¶Âù°¡Áö ¸Æ¶ô.
-	// ´Ü¼øÈ÷ Hidden ÇØÁ¦ ÀÌÈÄ Activate ¸¦ ½ÃÅ°´Âµ¥ Á¤È®È÷ ¹«¾ùÀÌ ¹®Á¦µÇ¾ú´ÂÁö´Â ¾ËÁö ¸øÇÑ´Ù.
+	// ææ‰’ æ¼‚æ´’ æ•²é¥­æç»¢ æŸè…ç£ä¿Š å˜¿ç¯® 20/30è‚ª æ£º 6å·± å…¬æ‰ particle effect å•Š è‚‹ æ•‘å”±å·å¸® çªç»° æé…±ä¿Š æªè§ˆçªæ‰ å›°ç§¦ éœ–åšç™»èŒæ¾œ.
+	// AB2StageEventDirector::ActivateMatineePuppetPSCs å®¢ ä»˜è›®å•Šç˜¤ é’™é.
+	// çªœé‰´æ´’ Hidden ç§¦åŠ› æé¥¶ Activate ç”« çŸ«è™ç»°å• æ²¥çŠ¬æ´’ å…¬å‡æ å·©åŠ›ç™»èŒç»°ç˜¤ç»° èˆ…ç˜¤ ç»™èŒ„ä¿ƒ.
 
 	/*if (InActor && InActor->IsValidObj())
 	{
@@ -1550,17 +1550,17 @@ void EnsureActivateStaticallyAttachedPSCs(class AActor* InActor)
 }
 
 void EnsureActivatePSCInternal(UParticleSystemComponent* InPSC)
-{ // Æ¯Á¤ÇÏ°Ô »ç¿ëÇÏ´Â °÷ÀÌ ÀÖÀ½.
+{ // æ¼‚æ²¥çªéœ¸ è¤ä¾©çªç»° é•‘æ ä¹æ¾œ.
 	if (InPSC) {
 		InPSC->SetVisibility(true);
 		InPSC->SetHiddenInGame(false);
-		InPSC->SecondsBeforeInactive = BIG_NUMBER; // ÀÌ°Í ¶§¹®¿¡ ¹®Á¦°¡ µÈ »óÈ²ÀÌ ÀÌÀü¿¡ ¾î¶² ¿µ»ó ¾À¿¡¼­ ¹ß°ßµÈ ÀûÀº ÀÖ¾ú´Âµ¥ ÀÌ°Ç °Á Ãß°¡·Î µµ¿òÀÌ µÉ±î ½Í¾î¼­..
+		InPSC->SecondsBeforeInactive = BIG_NUMBER; // æå·´ é”­å·©ä¿Š å·©åŠ›å•Š ç­‰ æƒ‘ç‚”æ æå‚ˆä¿Š ç»¢æ« åº·æƒ‘ çº ä¿Šè¾‘ æƒ¯æ–‘ç­‰ åˆ©ç¯® ä¹èŒç»°å• ææ‰’ å‚² çœ å•Šè‚º æ¡£æ¡†æ çªé³– é…µç»¢è¾‘..
 		InPSC->Activate(true);
 	}
 }
 
 bool IsStaticallyVisiblePSC(class UParticleSystemComponent* InPSC)
-{ // ¿¬ÃâÀÌ³ª ±âÅ¸ÀÇ °æ¿ì¿¡ visibility ÇÚµé¸µ ½Ã Ã³¸® ¸ñ·Ï¿¡ ³ÖÀ» ¾Öµé. ÀÌ°Ô ¾Æ´Ï¸é anim notify ¸¦ ÅëÇØ ÀÏ½ÃÀûÀ¸·Î ºÙÀº °É·Î °£ÁÖ.
+{ // æ¥·å…æå”± æ‰é¸¥ç‹¼ ç‰ˆå¿«ä¿Š visibility å‹¤ç”¸å‚… çŸ« è´¸åºœ æ ¼åºŸä¿Š æŒé˜‘ å±€ç”¸. æéœ¸ é…’èªæ anim notify ç”« çƒ¹ç§¦ è€çŸ«åˆ©æ è‚º å˜¿ç¯® å§è‚º åŸƒæ—.
 	//return (InPSC && InPSC->Template
 	//	&& InPSC->Template->IsLooping()
 	//	&& InPSC->IsStaticVisible
@@ -1578,12 +1578,12 @@ bool IsActiveFakeChannelMessage()
 	return IsActiveControlTutorial();
 }
 
-// GameplayStatics.cpp ¿¡ ÀÖ´Â ·ÎÄÃ À¯Æ¿ ÇÔ¼ö¸¦ °¡Á®¿È. ÀÏ¹İÀûÀÎ °æ¿ì¿¡´Â UGameplayStatics::SpawnEmitter ¾¾¸®Áî¸¦ ¾²µµ·Ï.
+// GameplayStatics.cpp ä¿Š ä¹ç»° è‚ºæ‹¿ èœ¡ç“¶ çªƒèç”« å•Šå»‰å’³. è€é¦†åˆ©ç‰¢ ç‰ˆå¿«ä¿Šç»° UGameplayStatics::SpawnEmitter æªåºœä»¤ç”« é™æ¡£åºŸ.
 UParticleSystemComponent* CreateParticleSystemHelper(UParticleSystem* EmitterTemplate, UWorld* World, AActor* Actor, bool bAutoDestroy)
 {
 	UParticleSystemComponent* PSC = NewObject<UParticleSystemComponent>((Actor ? Actor : (UObject*)World));
 	PSC->bAutoDestroy = bAutoDestroy;
-	// ¸î¸î ±âÅ¸ º¯¼öµéÀº ÀÓÀÇ·Î Ã¤¿ö³Ö´Â´Ù. ´ëÃ¼·Î ÀÎ°ÔÀÓ dynamic spawn ¿¡ ¾²±â ÀûÀıÇÑ ¼³Á¤ÀÎ°Ç°¡..
+	// å‰²å‰² æ‰é¸¥ å‡½èç”¸ç¯® çƒ™ç‹¼è‚º ç›²å†µæŒç»°ä¿ƒ. æªçœ‰è‚º ç‰¢éœ¸çƒ™ dynamic spawn ä¿Š é™æ‰ åˆ©ä¾‹èŒ„ æ±²æ²¥ç‰¢æ‰’å•Š..
 	PSC->bAllowAnyoneToDestroyMe = true;
 	PSC->SecondsBeforeInactive = 0.0f;
 	PSC->bAutoActivate = false;
@@ -1594,7 +1594,7 @@ UParticleSystemComponent* CreateParticleSystemHelper(UParticleSystem* EmitterTem
 }
 
 UCameraComponent* GetCurrentActiveCamComp(UObject* WorldContextObject)
-{ // ÇöÀç ºä ·»´õ¸µ¿¡ ¾²ÀÌ°í ÀÖ´Â Ä«¸Ş¶ó Äõ¸®. ¿¹¸¦ µé¾î ÀÏ¹İÀûÀÎ ÇÃ·¹ÀÌ¾î ÀüÅõ ºä¶ó¸é ÇÃ·¹ÀÌ¾î¿¡ ´Ş·Á ÀÖ´Â Ä«¸Ş¶ó.
+{ // æ³…çŠ è½° åŠæ­¹å‚…ä¿Š é™æç»Š ä¹ç»° å¢¨çš‹æ‰¼ å­½åºœ. æŠ—ç”« ç”¸ç»¢ è€é¦†åˆ©ç‰¢ æ•²é¥­æç»¢ å‚ˆæ§ è½°æ‰¼æ æ•²é¥­æç»¢ä¿Š å´”å¦¨ ä¹ç»° å¢¨çš‹æ‰¼.
 	//APlayerCameraManager* PCM = UGameplayStatics::GetLocalPlayerCameraManager(WorldContextObject);
 	//AActor* CurrentViewTarget = PCM ? PCM->GetViewTarget() : NULL;
 	//if (CurrentViewTarget)
@@ -1614,17 +1614,17 @@ UCameraComponent* GetCurrentActiveCamComp(UObject* WorldContextObject)
 
 void ApplyNormallyExpectedInGameCamera(ABladeIIGameMode* InB2GM, ABladeIIPlayerController* InLocalPC, float InBlendInTime)
 {
-	//// ÀÎ°ÔÀÓ ÀüÅõ »óÈ²¿¡¼­ ÇöÀç ÀûÀıÇÑ Ä«¸Ş¶ó ¿öÅ©·Î µ¹¾Æ°¥ ¼ö ÀÖµµ·Ï ÇÏ´Â ±â´É.
-	//// ÀÏ¹İÀûÀ¸·Î ÀÌ°É ÄİÇØ¾ß Ä«¸Ş¶ó°¡ Àû¿ëµÇ´Â °Ç ¾Æ´Ï°í ÀÏ½ÃÀûÀ¸·Î Æ¯¼öÇÑ Ä«¸Ş¶ó¸¦ ½è´Ù°¡ µ¹¾Æ°¡´Â µîÀÇ »óÈ²¿¡¼­ ¾µ ¼ö ÀÖ´Ù.
+	//// ç‰¢éœ¸çƒ™ å‚ˆæ§ æƒ‘ç‚”ä¿Šè¾‘ æ³…çŠ åˆ©ä¾‹èŒ„ å¢¨çš‹æ‰¼ å†µå†œè‚º å€’é…’å“ è ä¹æ¡£åºŸ çªç»° æ‰ç“·.
+	//// è€é¦†åˆ©æ è‚º æå§ å¦®ç§¦å…· å¢¨çš‹æ‰¼å•Š åˆ©ä¾©ç™»ç»° æ‰’ é…’èªç»Š è€çŸ«åˆ©æ è‚º æ¼‚èèŒ„ å¢¨çš‹æ‰¼ç”« å€Ÿä¿ƒå•Š å€’é…’å•Šç»° æ®¿ç‹¼ æƒ‘ç‚”ä¿Šè¾‘ é•œ è ä¹ä¿ƒ.
 
 	//if (InB2GM && InLocalPC)
 	//{
 	//	check(InLocalPC == Cast<ABladeIIPlayerController>(UGameplayStatics::GetLocalPlayerController(InB2GM)));
 
-	//	if (!InB2GM->ApplyActiveCameraIfAny(InBlendInTime)) // Æ¯Á¤ ±¸¿ª¿¡ ¼³Ä¡ÇÑ ActiveCamera Àû¿ë ½Ãµµ.
+	//	if (!InB2GM->ApplyActiveCameraIfAny(InBlendInTime)) // æ¼‚æ²¥ å¤‡å¼€ä¿Š æ±²æ‘¹èŒ„ ActiveCamera åˆ©ä¾© çŸ«æ¡£.
 	//	{
-	//		// µüÈ÷ ÇöÀç Àû¿ëµÇ´Â ActiveCamera °¡ ¾ø´Ù¸é ¿ùµå ±âº» Ä«¸Ş¶ó·Î.
-	//		// ¿©±â ºí·»µù ¼³Á¤Àº µû·Î °¡´Âµ¥ BlendFunction µµ ÇÊ¿äÇÏ¸é ÀÎÀÚ·Î ³Ñ°Ü ÁÖ°Å³ª.. ÀÌ »óÈ²¿¡¼± Cubic ÀÌ Á¸³ª ÀûÀıÇØ º¸¿©¼­ ÃÄ³Ö¾îº½.
+	//		// è¿­æ´’ æ³…çŠ åˆ©ä¾©ç™»ç»° ActiveCamera å•Š ç»ä¿ƒæ å²¿é› æ‰å¤¯ å¢¨çš‹æ‰¼è‚º.
+	//		// å’¯æ‰ å–‰åŠçˆ¹ æ±²æ²¥ç¯® è¶è‚º å•Šç»°å• BlendFunction æ¡£ é˜å¤¸çªæ ç‰¢ç£Šè‚º é€è´¥ æ—èŠ­å”±.. æ æƒ‘ç‚”ä¿Šæ€¥ Cubic æ ç²®å”± åˆ©ä¾‹ç§¦ ç„Šå’¯è¾‘ åªšæŒç»¢èˆª.
 	//		InLocalPC->ApplyWorldDefaultCamera(InBlendInTime, EViewTargetBlendFunction::VTBlend_Cubic);
 	//	}
 	//}
@@ -1642,7 +1642,7 @@ FText ClampTextLength(const FText& InSrcText, int32 InMaxLen, bool bAppendEllips
 		FString ClampedStr = TextString.LeftChop(SrcLen - InMaxLen);
 		if (bAppendEllipsisIfClamped)
 		{
-			ClampedStr += TEXT("..."); // ¸»ÁÙÀÓÇ¥ ºÙÀÌ´Â ¿É¼Ç
+			ClampedStr += TEXT("..."); // å¯Œä¸´çƒ™é’ å˜¿æç»° å¯è®°
 		}
 		return FText::FromString(ClampedStr);
 	}
@@ -1655,7 +1655,7 @@ FText ClampTextLength(const FText& InSrcText, int32 InMaxLen, bool bAppendEllips
 FText GetAutoFractionalFormattedText(float InNumber, int32 InMaxFracDigit)
 {
 	FNumberFormattingOptions NumberDisplayFormat;
-	// ¼Ò¼öÁ¡ InMaxFracDigit ±îÁö Çã¿ëÇÏµÇ ³¡ÀÚ¸® 0 Àº À¯È¿¼ıÀÚ·Î ¾È Ä¡°í »ı·«.
+	// å®¶èç—¢ InMaxFracDigit é³–ç˜¤ å€¾ä¾©çªç™» åœºç£Šåºœ 0 ç¯® èœ¡ç“¤ç®­ç£Šè‚º æ•‘ æ‘¹ç»Š ç§¯å¸†.
 	NumberDisplayFormat.SetMinimumFractionalDigits(0);
 	NumberDisplayFormat.SetMaximumFractionalDigits(InMaxFracDigit);
 
@@ -1664,8 +1664,8 @@ FText GetAutoFractionalFormattedText(float InNumber, int32 InMaxFracDigit)
 
 FText GetAutoFractionalFormattedText_FirstFracCountOnly(float InCountNumber, float InMaxNumber, int32 InMaxFracDigit)
 {
-	// À¯Æ¿ÀÌ¶ó±âº¸´Ù´Â Æ¯Á¤ÇÑ ÄÉÀÌ½º¿¡ »ç¿ëÇÏ´Â ±â´ÉÀÎµ¥ »ç¿ëÇÒ °÷ÀÌ ¿©·¯ °÷ ÀÖ¾î¼­ ¿©±â¿¡ »© ³õ´Â´Ù.
-	// ÃÖ´ë ÄğÅ¸ÀÓÀÌ ¼Ò¼öÁ¡À¸·Î Á¶Á¤µÈ °æ¿ì¸¦ Ç¥½ÃÇÏ±â À§ÇØ Ã¹ ¼Ò¼öÁ¡À» Ä«¿îÆ®ÇÏ´Â µ¿¾È¿¡¸¸ ¼Ò¼öÁ¡À» Ç¥½ÃÇÏ±âÀ§ÇÑ ¿ëµµ. °è¼Ó Ç¥½ÃÇÏ¸é ¼Ò¼öÁ¡ÀÌ ³ªÅ¸³µ´Ù »ç¶óÁ³´Ù ÇØ¼­ Á¤½Å¾ø´Ù º¸´Ï
+	// èœ¡ç“¶ææ‰¼æ‰ç„Šä¿ƒç»° æ¼‚æ²¥èŒ„ çº³æèƒ¶ä¿Š è¤ä¾©çªç»° æ‰ç“·ç‰¢å• è¤ä¾©ä¸” é•‘æ å’¯çŸ¾ é•‘ ä¹ç»¢è¾‘ å’¯æ‰ä¿Š å“— åˆç»°ä¿ƒ.
+	// å¼¥æª é…¿é¸¥çƒ™æ å®¶èç—¢æ è‚º ç‚¼æ²¥ç­‰ ç‰ˆå¿«ç”« é’çŸ«çªæ‰ å›°ç§¦ éœ‰ å®¶èç—¢é˜‘ å¢¨æ¬¾é£˜çªç»° æ‚¼æ•‘ä¿Šçˆ¶ å®¶èç—¢é˜‘ é’çŸ«çªæ‰å›°èŒ„ ä¾©æ¡£. æ‹ŒåŠ  é’çŸ«çªæ å®¶èç—¢æ å”±é¸¥è½¦ä¿ƒ è¤æ‰¼è„¸ä¿ƒ ç§¦è¾‘ æ²¥è„šç»ä¿ƒ ç„Šèª
 
 	const bool bIsCountingFirstFraction = (InMaxNumber > 0.0f && FMath::TruncToInt(InMaxNumber) == FMath::TruncToInt(InCountNumber)) ? true : false;
 	return GetAutoFractionalFormattedText(InCountNumber, bIsCountingFirstFraction ? InMaxFracDigit : 0);
@@ -1714,7 +1714,7 @@ void SetLobbyUIHeaderTitle(const FText& InTitleText)
 
 void TryGatherAllBoundPSFromSKComp(class USkeletalMeshComponent* InSKComp, TMap<FName, UParticleSystem*>& OutAllFound)
 {
-	//// OutAllFound ¸¦ ¸®¼ÂÇÏÁö ¾Ê°í »ç¿ë..
+	//// OutAllFound ç”« åºœæ‚¸çªç˜¤ è‡¼ç»Š è¤ä¾©..
 
 	//if (!InSKComp || !InSKComp->GetAnimInstance()) {
 	//	return;
@@ -1723,7 +1723,7 @@ void TryGatherAllBoundPSFromSKComp(class USkeletalMeshComponent* InSKComp, TMap<
 	//B2_SCOPED_TRACK_LOG(TEXT("TryGatherAllBoundPSFromSKComp"));
 	//B2_SCOPED_TIME_LOG(FString::Printf(TEXT("TryGatherAllBoundPSFromSKComp %s"), InSKComp->GetOwner() ? *(InSKComp->GetOwner()->GetName()) : *InSKComp->GetName()));
 
-	//// ÀûÀıÈ÷ ÃÊ±âÈ­°¡ µÈ AnimInstance ¿¡¼­¸¸ ¸ÔÈú °ÍÀÌ´Ù.
+	//// åˆ©ä¾‹æ´’ æª¬æ‰æ‹³å•Š ç­‰ AnimInstance ä¿Šè¾‘çˆ¶ å†ˆé³ƒ å·´æä¿ƒ.
 	//UAnimInstance* TheAnimInst = InSKComp->GetAnimInstance();
 
 	//TArray<UAnimationAsset*> AllPlayableAnims;
@@ -1731,7 +1731,7 @@ void TryGatherAllBoundPSFromSKComp(class USkeletalMeshComponent* InSKComp, TMap<
 
 	//for (UAnimationAsset* ThisAnim : AllPlayableAnims)
 	//{
-	//	// BlendSpace ¸¦ ³Ö¾î¾ß ÇÏ´Âµ¥., ÀÏ´Ü ¿ä ÇÔ¼öÀÇ »ç¿ë ¸ñÀû »ó ½ÇÁúÀûÀ¸·Î ÀÇ¹ÌÀÖ´Â ParticleSystem µéÀº ´ÜÀÏ AnimSequence ¿¡ µé¾î°¡ ÀÖÀ» µí.
+	//	// BlendSpace ç”« æŒç»¢å…· çªç»°å•., è€çªœ å¤¸ çªƒèç‹¼ è¤ä¾© æ ¼åˆ© æƒ‘ è§’é¾™åˆ©æ è‚º ç‹¼å›ºä¹ç»° ParticleSystem ç”¸ç¯® çªœè€ AnimSequence ä¿Š ç”¸ç»¢å•Š ä¹é˜‘ æ·€.
 	//	UAnimSequenceBase* ThisAnimSeq = Cast<UAnimSequenceBase>(ThisAnim);
 	//	TryGatherAllBoundPSFromAnimSeq(ThisAnimSeq, OutAllFound);
 	//}
@@ -1747,7 +1747,7 @@ void TryGatherAllBoundPSFromAnimSeq(UAnimSequenceBase* InAnimSeq, TMap<FName, UP
 	{
 		UParticleSystem* FoundPS = CheckNotifyEventForParticleSystemUse(ThisNotifyEvt);
 		if (FoundPS)
-		{ // ÀÌ¹Ì Ãß°¡µÈ °Å ¾Æ´ÑÁö °Ë»ç. TArray ·Î AddUnique ÇÏ¸é ³Ñ ´À¸±±îºÁ PathName À» Key ·Î ÇÑ ¸ÊÀ¸·Î..
+		{ // æå›º çœ å•Šç­‰ èŠ­ é…’å›±ç˜¤ å…«è¤. TArray è‚º AddUnique çªæ é€ è ¢å‰¯é³–æ¯« PathName é˜‘ Key è‚º èŒ„ ç”˜æ è‚º..
 			FName ThisPSKey(*FoundPS->GetPathName());
 			UParticleSystem** FoundOne = OutAllFound.Find(ThisPSKey);
 			if (!FoundOne)
@@ -1760,7 +1760,7 @@ void TryGatherAllBoundPSFromAnimSeq(UAnimSequenceBase* InAnimSeq, TMap<FName, UP
 
 UParticleSystem* CheckNotifyEventForParticleSystemUse(FAnimNotifyEvent& InNotifyEvent)
 {
-	// ParticleSystem À» »ç¿ëÇÏ´Â Á¾·ùÀÇ AnimNotify(State) ·Î.. ÀÏ´Ü ¾Æ´Â °Ç µÎ°¡Áö..
+	// ParticleSystem é˜‘ è¤ä¾©çªç»° è¾†å¹…ç‹¼ AnimNotify(State) è‚º.. è€çªœ é…’ç»° æ‰’ æ»´å•Šç˜¤..
 	UAnimNotify_PlayParticleEffect* CastedPPX = Cast<UAnimNotify_PlayParticleEffect>(InNotifyEvent.Notify);
 	if (CastedPPX) {
 		return CastedPPX->PSTemplate;
@@ -1775,11 +1775,11 @@ UParticleSystem* CheckNotifyEventForParticleSystemUse(FAnimNotifyEvent& InNotify
 	return NULL;
 }
 
-/** ÇÑ¹ø È£Ãâ¿¡ ÇÑ ÇÁ·¹ÀÓ ±×·ÁÁü. ÇÊ¿äÇÑ ±â°£ µ¿¾È ¸Å ÇÁ·¹ÀÓ È£Ãâ */
+/** èŒ„é”… é¾‹å…ä¿Š èŒ„ æ©‡é¥­çƒ™ å¼Šå¦¨å’™. é˜å¤¸èŒ„ æ‰åŸƒ æ‚¼æ•‘ æ¦‚ æ©‡é¥­çƒ™ é¾‹å… */
 void DrawDebugText(float InStartX, float InStartY, const FString& InText, const FLinearColor& InFontColor, int32 InFontSize, bool bDrawShadow, const FLinearColor& InShadowColor)
 {
 #if WITH_BII_ON_SCREEN_DEBUG_TEXT
-	if (UB2UIManager::IsInstanceNull()) { // ¿©±â¼­ GetInstance ¸¦ ÇÒ ¶§¿¡ »ı¼ºÀÌ µÇµµ·Ï ÇÏÁö ¾Ê´Â´Ù.
+	if (UB2UIManager::IsInstanceNull()) { // å’¯æ‰è¾‘ GetInstance ç”« ä¸” é”­ä¿Š ç§¯å·±æ ç™»æ¡£åºŸ çªç˜¤ è‡¼ç»°ä¿ƒ.
 		return;
 	}
 
@@ -1793,10 +1793,10 @@ void DrawDebugText(float InStartX, float InStartY, const FString& InText, const 
 }
 
 #if WITH_BII_ON_SCREEN_DEBUG_TEXT
-/** ÀÌ°Ç ÇÑ¹ø¸¸ ÄİÇÏ¸é Á¤ÇØÁø ½Ã°£µ¿¾È µğ½ºÇÃ·¹ÀÌ µÈ´Ù. ´ë½Å À§Ä¡´Â Á¤ÇØÁ® ÀÖÀ½ */
+/** ææ‰’ èŒ„é”…çˆ¶ å¦®çªæ æ²¥ç§¦æŸ³ çŸ«åŸƒæ‚¼æ•‘ å¼èƒ¶æ•²é¥­æ ç­‰ä¿ƒ. æªè„š å›°æ‘¹ç»° æ²¥ç§¦å»‰ ä¹æ¾œ */
 void DrawTimedDebugText(const FString& InText, const FLinearColor& InFontColor, int32 InFontSize, float InDisplayTime, bool bDrawShadow, const FLinearColor& InShadowColor)
 {
-	if (UB2UIManager::IsInstanceNull()) { // ¿©±â¼­ GetInstance ¸¦ ÇÒ ¶§¿¡ »ı¼ºÀÌ µÇµµ·Ï ÇÏÁö ¾Ê´Â´Ù. Æ¯È÷ FB2ScopedCallTracker ¿¡ »ç¿ëµÇ±â ¶§¹®¿¡ UIManager °¡ Unload µÈ ½ÃÁ¡¿¡µµ ºÒ¸®°Ô µÉ ¼ö ÀÖ´Ù.
+	if (UB2UIManager::IsInstanceNull()) { // å’¯æ‰è¾‘ GetInstance ç”« ä¸” é”­ä¿Š ç§¯å·±æ ç™»æ¡£åºŸ çªç˜¤ è‡¼ç»°ä¿ƒ. æ¼‚æ´’ FB2ScopedCallTracker ä¿Š è¤ä¾©ç™»æ‰ é”­å·©ä¿Š UIManager å•Š Unload ç­‰ çŸ«ç—¢ä¿Šæ¡£ é˜‚åºœéœ¸ çª è ä¹ä¿ƒ.
 		return;
 	}
 
@@ -1814,7 +1814,7 @@ bool IsUsingMobileRendering(UWorld* InWorld)
 //#if PLATFORM_ANDROID || PLATFORM_IOS
 	return true;
 //#else
-//	// ¿©±â °É¸®¸é ¸ğ¹ÙÀÏ ÇÁ¸®ºä. ¸î¸î °ÔÀÓ»óÀÇ ·»´õ¸µ ÇÁ¸®ºä µîÀ» À§ÇÑ °Å¶ó Àß¸øµÈ´Ù°í ÇØ¼­ ÃÖÁ¾ ±â´É¿¡ ¿µÇâÀ» ¹ÌÄ¡´Â °Ç ¾Æ´Ï´Ù.
+//	// å’¯æ‰ å§åºœæ è‘›å®˜è€ æ©‡åºœè½°. å‰²å‰² éœ¸çƒ™æƒ‘ç‹¼ åŠæ­¹å‚… æ©‡åºœè½° æ®¿é˜‘ å›°èŒ„ èŠ­æ‰¼ è‚‹ç»™ç­‰ä¿ƒç»Š ç§¦è¾‘ å¼¥è¾† æ‰ç“·ä¿Š åº·æ°¢é˜‘ å›ºæ‘¹ç»° æ‰’ é…’èªä¿ƒ.
 //	ERHIFeatureLevel::Type RHIFeatureLevel = (InWorld && InWorld->Scene) ? InWorld->Scene->GetFeatureLevel() : ERHIFeatureLevel::Num;
 //	return (RHIFeatureLevel == ERHIFeatureLevel::ES2 || RHIFeatureLevel == ERHIFeatureLevel::ES3_1);
 //#endif
@@ -1823,10 +1823,10 @@ bool IsUsingMobileRendering(UWorld* InWorld)
 void TurnOffMeshComponentsDyamicShadowForModulated(AActor* InOwnerActor)
 {
 	//////////////////////////////////////
-	// InteractiveActor ¿Í °°ÀÌ BladeII ÀÚÃ¼ÀûÀÎ ÇÏÀ§¿¡ movable MeshComponent µéÀÌ ÀÖ´Â Actor ¸¦ À§ÇÑ dynamic shadow ¼Ó¼º ÄÁÆ®·Ñ À¯Æ¿.
-	// Modulated shadow °¡ Á» ¹®Á¦°¡ ÀÖ¾î¼­ µüÈ÷ ÇÊ¿äµµ ¾ø°í ¹®Á¦¸¸ ÀÏÀ¸Å³ ¼ÒÁö°¡ ÀÖ´Â °ÍµéÀº shadow ¸¦ µå¸®¿ìÁö ¾Êµµ·Ï ÇÏ±â À§ÇÔ.
-	// Modulated shadow ¸¦ ´ëÃ¼ÇÏ´Â ±¦ÂúÀº ¼ö´ÜÀÌ ³ª¿À±â Àü±îÁö..
-	// ±Ùµ¥ ¹è°æÀÌ static lighting ¿¡ ±â¹İÇÏ°í ÀÖ´Â ÇÑ ¾îÂ÷ÇÇ modulated shadow ¿Ü¿¡ ÀûÀıÇÑ ´ë¾ÈÀ» Ã£±âµµ ¾î·Á¿ò ¤»
+	// InteractiveActor å®¢ éæ BladeII ç£Šçœ‰åˆ©ç‰¢ çªå›°ä¿Š movable MeshComponent ç”¸æ ä¹ç»° Actor ç”« å›°èŒ„ dynamic shadow åŠ å·± ç‰§é£˜è´¹ èœ¡ç“¶.
+	// Modulated shadow å•Š ç²± å·©åŠ›å•Š ä¹ç»¢è¾‘ è¿­æ´’ é˜å¤¸æ¡£ ç»ç»Š å·©åŠ›çˆ¶ è€æ æ‡¦ å®¶ç˜¤å•Š ä¹ç»° å·´ç”¸ç¯® shadow ç”« é›åºœå¿«ç˜¤ è‡¼æ¡£åºŸ çªæ‰ å›°çªƒ.
+	// Modulated shadow ç”« æªçœ‰çªç»° å®æ»¡ç¯® èçªœæ å”±å·æ‰ å‚ˆé³–ç˜¤..
+	// è¾Ÿå• ç¡…ç‰ˆæ static lighting ä¿Š æ‰é¦†çªç»Š ä¹ç»° èŒ„ ç»¢ç’ä¹” modulated shadow å¯‡ä¿Š åˆ©ä¾‹èŒ„ æªæ•‘é˜‘ èŒ«æ‰æ¡£ ç»¢å¦¨æ¡† ã›
 	//////////////////////////////////////
 
 	if (InOwnerActor && ShouldUsePerObjectModulatedShadow(InOwnerActor->GetWorld()))
@@ -1846,12 +1846,12 @@ void TurnOffMeshComponentsDyamicShadowForModulated(AActor* InOwnerActor)
 }
 void ForceSendReallocateRenderTargetsSignal()
 {
-	// µğ¹ÙÀÌ½º¿¡¼­ °£È¤ °¡´Ù º¸ÀÌ´Â ·»´õ¸µ ¹ö±×¿¡ ´ëÃ³ÇÏ´Â Â÷¿ø¿¡¼­..
-	// ¸¸µç ½ÃÁ¡¿¡ ÀÌ°Ô ½ÇÁ¦·Î È¿°ú°¡ ÀÖ´ÂÁö´Â ¸ğ¸§. ÀçÇöÀÌ µÇ°í Å×½ºÆ®ÇØ¼­ ¸ÔÈ÷¸é ÀûÀıÇÑ Å¸ÀÌ¹Ö¿¡ »ç¿ëÇÏ°Ô µÇ´Â °Å..
+	// å¼å®˜æèƒ¶ä¿Šè¾‘ åŸƒè¶£ å•Šä¿ƒ ç„Šæç»° åŠæ­¹å‚… æ»šå¼Šä¿Š æªè´¸çªç»° ç’ç›”ä¿Šè¾‘..
+	// çˆ¶ç”µ çŸ«ç—¢ä¿Š æéœ¸ è§’åŠ›è‚º ç“¤è‹å•Š ä¹ç»°ç˜¤ç»° è‘›æŠš. çŠæ³…æ ç™»ç»Š æŠ›èƒ¶é£˜ç§¦è¾‘ å†ˆæ´’æ åˆ©ä¾‹èŒ„ é¸¥ææ€ªä¿Š è¤ä¾©çªéœ¸ ç™»ç»° èŠ­..
 
 	IConsoleVariable* CVarSendSignal = IConsoleManager::Get().FindConsoleVariable(TEXT("r.ReallocateRenderTargetsSignal"));
 	if (CVarSendSignal)
-	{ // ´Ü¼øÈ÷ ÇÏ³ª Áõ°¡½ÃÅ² °É ½Ã±×³Î·Î ¾¸ ¤Ñ¤Ñ;
+	{ // çªœé‰´æ´’ çªå”± åˆ˜å•ŠçŸ«æŒª å§ çŸ«å¼Šæ¾„è‚º é– ã±ã±;
 		CVarSendSignal->Set(CVarSendSignal->GetInt() + 1, ECVF_SetByCode);
 	}
 }
@@ -1889,7 +1889,7 @@ namespace Utilities
 		data_trader::ServiceNotAvailableEventClass<int32>::GetInstance().Subscribe(
 			[this](int32 error)
 		{
-			// ¼¼¼Ç ¼­¹ö¿Í Á¢¼ÓÀÌ ²÷±è
+			// æŠ€è®° è¾‘æ»šå®¢ ç«‹åŠ æ è°—è¾«
 			this->SetState(CONNECTION_STATE_SERVICENOTAVAILABLE);
 
 			UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
@@ -1900,7 +1900,7 @@ namespace Utilities
 					data_trader::DisconnectReasonLogEventClass<int32>::GetInstance().Signal(error);
 					auto* gameMode = GetBladeIIGameMode(UIMgrInst);
 
-					if (gameMode && gameMode->GetB2GameModeType() == EB2GameMode::PVP_Tag) //PVP MatchingÀÏ¶§¸¸ ·Îºñ·Î º¸³»±â À§ÇØ ¿¹¿Ü Ã³¸®. ÇÔ¼ö ÀÌ¸§ÀÌ ¾È¾î¿ï¸®Áö¸¸....
+					if (gameMode && gameMode->GetB2GameModeType() == EB2GameMode::PVP_Tag) //PVP Matchingè€é”­çˆ¶ è‚ºåšè‚º ç„Šéƒ´æ‰ å›°ç§¦ æŠ—å¯‡ è´¸åºœ. çªƒè ææŠšæ æ•‘ç»¢åŒ¡åºœç˜¤çˆ¶....
 						FBladeIIBlockToSyncNetwork::GetInstance().ChannelDisconnect(error);
 					else
 						FBladeIIBlockToSyncNetwork::GetInstance().ServiceNotAvailable(error);
@@ -1911,7 +1911,7 @@ namespace Utilities
 		data_trader::ChannelDisconnectedEventClass<int32>::GetInstance().Subscribe(
 			[this](int32 error)
 		{
-			// TODO: Ã¤³Î ¼­¹ö¿Í ¿¬°á ²÷±è, PVP/Raid/Assault µî °ü·Ã °ÔÀÓ ¸ğµå Áß´ÜµÊ
+			// TODO: ç›²æ¾„ è¾‘æ»šå®¢ æ¥·æ¬ è°—è¾«, PVP/Raid/Assault æ®¿ åŒ…è®¿ éœ¸çƒ™ è‘›é› åçªœå‡³
 			data_trader::DisconnectReasonLogEventClass<int32>::GetInstance().Signal(error);
 			FBladeIIBlockToSyncNetwork::GetInstance().ChannelDisconnect(error);
 		}
@@ -1942,7 +1942,7 @@ namespace Utilities
 			if (GIsEditor) return;
 #endif // WITH_EDITOR
 
-			//[@AKI, 170619] ¿©±â´Â ¿©·¯¹ø µé¾î ¿Ã¼ö ÀÕÀ¸¹Ç·Î ÇÑ¹ø¸¸ µé¾î ¿À°Ô ÇÔ
+			//[@AKI, 170619] å’¯æ‰ç»° å’¯çŸ¾é”… ç”¸ç»¢ æ£µè å‹’æ éª¨è‚º èŒ„é”…çˆ¶ ç”¸ç»¢ å·éœ¸ çªƒ
 			if (this->GetSessionCloseReason() == ESessionCloseReason::ESessionCloseReason_None)
 			{
 				this->SetSessionCloseReason(ESessionCloseReason::ESessionCloseReason_UpdateProtocolEvent);
@@ -2186,7 +2186,7 @@ bool LoadGameData_KakaoInvitedFriends(TArray<FString> &OutList)
 }
 
 // [GDC] Feb 2017 temporary. 
-// GDC ÀÌÈÄ¿£ ÀÌ°Å »ç¿ëÇÑ ºÎºĞ »öÃâÇØ³»¼­ ¸ğµÎ ¾ø¾Ø´Ù. °Á ¿ì¸®ÄÚµå¿¡¼­ GDC °Ë»öÇØ¼­ ³ª¿À´Â °Å ´Ù Ã¼Å©.
+// GDC æé¥¶æµš æèŠ­ è¤ä¾©èŒ„ ä½•ç›’ ç¥¸å…ç§¦éƒ´è¾‘ è‘›æ»´ ç»çŸ©ä¿ƒ. å‚² å¿«åºœå†…é›ä¿Šè¾‘ GDC å…«ç¥¸ç§¦è¾‘ å”±å·ç»° èŠ­ ä¿ƒ çœ‰å†œ.
 bool ShouldShowGDCVersionContent()
 {
 	bool bRetVal = false;
@@ -2198,8 +2198,8 @@ bool ShouldShowGDCVersionContent()
 }
 
 #if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
-/** CBTVersionReady °¡ true ÀÎ »óÅÂ·Î ÄíÅ· Å×½ºÆ®ÇÒ ¶§ ÄÁÅÙÃ÷°¡ ¸·Çô¼­ ´çÈ²½º·¯¿î »óÈ² ´ëºñ.
-//* ÀÌ°É º¯°æÇÏ´Â ÄÜ¼Ö Ä¿¸Çµå°¡ ÀÖÀ½. */
+/** CBTVersionReady å•Š true ç‰¢ æƒ‘æ€•è‚º æ»æ¬§ æŠ›èƒ¶é£˜ä¸” é”­ ç‰§åˆ¨æ˜å•Š é˜œå›šè¾‘ å¯¸ç‚”èƒ¶çŸ¾æ¬¾ æƒ‘ç‚” æªåš.
+//* æå§ å‡½ç‰ˆçªç»° èƒ½è´¾ ç›®ç›–é›å•Š ä¹æ¾œ. */
 bool gbAllowNonCBTVersionContentOverride = false;
 #endif
 bool (ShouldShowCBTVersionContent)()
@@ -2239,7 +2239,7 @@ bool ChangeGuildBattleId(int32 SeasonID, int32 turnID)
 
 void SaveGameSetting_Graphics(int32 InValue)
 {
-	// ¿©±â¿¡ µû¶ó ½ÇÁúÀûÀ¸·Î Àû¿ëµÇ´Â ¿Â°® ¿£Áø ±×·¡ÇÈ ¿É¼ÇµéÀº B2Scalability ¸¦ Âü°í
+	// å’¯æ‰ä¿Š è¶æ‰¼ è§’é¾™åˆ©æ è‚º åˆ©ä¾©ç™»ç»° æŸ¯çˆ± æµšæŸ³ å¼Šè´°ä¾¨ å¯è®°ç”¸ç¯® B2Scalability ç”« æ›¼ç»Š
 	if (GConfig) {
 		GConfig->SetInt(TEXT("GameSetting"), *FString::Printf(TEXT("GameGraphicLevel")), InValue, GB2GeneralSavedStateIni);
 	}
@@ -2310,16 +2310,16 @@ void SaveGameSetting_SoundLocType(int32 InValue)
 
 bool LoadGameSetting_Graphics(int32& OutValue)
 {
-	// ¿©±â¿¡ µû¶ó ½ÇÁúÀûÀ¸·Î Àû¿ëµÇ´Â ¿Â°® ¿£Áø ±×·¡ÇÈ ¿É¼ÇµéÀº B2Scalability ¸¦ Âü°í
-	// EB2GraphicsLevel enum ¼ø¼­ ¹Ù²Ù´Â ¿ÍÁß¿¡.. ¼³Á¤ »õ·Î ·ÎµùÇÏµµ·Ï "GameGraphicLevel_N" À¸·Î ¹Ù²Ş. ÀÏÁ¤ ½Ã°£ Áö³ª°í ³ª¼­ ´Ù½Ã "GameGraphicLevel" ·Î µÇµ¹¸± °Í.
+	// å’¯æ‰ä¿Š è¶æ‰¼ è§’é¾™åˆ©æ è‚º åˆ©ä¾©ç™»ç»° æŸ¯çˆ± æµšæŸ³ å¼Šè´°ä¾¨ å¯è®°ç”¸ç¯® B2Scalability ç”« æ›¼ç»Š
+	// EB2GraphicsLevel enum é‰´è¾‘ å®˜æ“ç»° å®¢åä¿Š.. æ±²æ²¥ è´§è‚º è‚ºçˆ¹çªæ¡£åºŸ "GameGraphicLevel_N" æ è‚º å®˜å•. è€æ²¥ çŸ«åŸƒ ç˜¤å”±ç»Š å”±è¾‘ ä¿ƒçŸ« "GameGraphicLevel" è‚º ç™»å€’å‰¯ å·´.
 	return (GConfig && GConfig->GetInt(TEXT("GameSetting"), *FString::Printf(TEXT("GameGraphicLevel")), OutValue, GB2GeneralSavedStateIni));
 }
 bool LoadGameSetting_Graphics_OrByDefault(int32& OutValue)
 {
 	if (!LoadGameSetting_Graphics(OutValue)) {
-		// ¾ÆÁ÷ »ç¿ëÀÚ ¼±ÅÃÀÌ ¾ø¾ú´Ù¸é DeviceProfile ¿¡ ÀÇÇØ detect µÈ ¿£Áø scalability ½Ã½ºÅÛ ±âº» ¼³Á¤°ªÀ¸·Î.
+		// é…’æµ è¤ä¾©ç£Š æ€¥ç¶æ ç»èŒä¿ƒæ DeviceProfile ä¿Š ç‹¼ç§¦ detect ç­‰ æµšæŸ³ scalability çŸ«èƒ¶è¢ æ‰å¤¯ æ±²æ²¥è”¼æ è‚º.
 		OutValue = B2GraphicsLevelToInt(B2Scalability::GetGraphicsLevelByExpectedScalability());
-		return false; // ¿©ÇÏ°£ ÀúÀåµÈ »ç¿ëÀÚ ¼±ÅÃ°ªÀº ¾ø¾úÀ½À» ¸®ÅÏÇÔ.
+		return false; // å’¯çªåŸƒ å†å˜ç­‰ è¤ä¾©ç£Š æ€¥ç¶è”¼ç¯® ç»èŒæ¾œé˜‘ åºœç•”çªƒ.
 	}
 	return true;
 }
@@ -2330,9 +2330,9 @@ bool LoadGameSetting_FrameLimit(int32& OutValue)
 bool LoadGameSetting_FrameLimit_OrByDefault(int32& OutValue)
 {
 	if (!LoadGameSetting_FrameLimit(OutValue)) {
-		// ¾ÆÁ÷ »ç¿ëÀÚ ¼³Á¤ ÀúÀåÀÌ ¾ø¾ú´Ù¸é DeviceProfile ¿¡ ÀÇÇØ µé¾î°¡ ÀÖÀ» ÇöÀç °ª..
+		// é…’æµ è¤ä¾©ç£Š æ±²æ²¥ å†å˜æ ç»èŒä¿ƒæ DeviceProfile ä¿Š ç‹¼ç§¦ ç”¸ç»¢å•Š ä¹é˜‘ æ³…çŠ è”¼..
 		OutValue = B2FrameLevelToInt(B2Scalability::GetDefaultRelativeFrameLimitLevel());
-		return false; // ¿©ÇÏ°£ ÀúÀåµÈ »ç¿ëÀÚ ¼±ÅÃ°ªÀº ¾ø¾úÀ½À» ¸®ÅÏÇÔ.
+		return false; // å’¯çªåŸƒ å†å˜ç­‰ è¤ä¾©ç£Š æ€¥ç¶è”¼ç¯® ç»èŒæ¾œé˜‘ åºœç•”çªƒ.
 	}
 	return true;
 }
@@ -2343,9 +2343,9 @@ bool LoadGameSetting_Resolution(int32& OutValue)
 bool LoadGameSetting_Resolution_OrByDefault(int32& OutValue)
 {
 	if (!LoadGameSetting_Resolution(OutValue)) {
-		// ¾ÆÁ÷ »ç¿ëÀÚ ¼³Á¤ ÀúÀåÀÌ ¾ø¾ú´Ù¸é DeviceProfile ¿¡ ÀÇÇØ µé¾î°¡ ÀÖÀ» ±âº» °ª.
+		// é…’æµ è¤ä¾©ç£Š æ±²æ²¥ å†å˜æ ç»èŒä¿ƒæ DeviceProfile ä¿Š ç‹¼ç§¦ ç”¸ç»¢å•Š ä¹é˜‘ æ‰å¤¯ è”¼.
 		OutValue = B2ResolutionLevelToInt(B2Scalability::GetResolutionLevelOfRQType(GetDefaultGraphicsRQType()));
-		return false; // ¿©ÇÏ°£ ÀúÀåµÈ »ç¿ëÀÚ ¼±ÅÃ°ªÀº ¾ø¾úÀ½À» ¸®ÅÏÇÔ.
+		return false; // å’¯çªåŸƒ å†å˜ç­‰ è¤ä¾©ç£Š æ€¥ç¶è”¼ç¯® ç»èŒæ¾œé˜‘ åºœç•”çªƒ.
 	}
 	return true;
 }
@@ -2394,11 +2394,11 @@ void ReserveResolutionLevelForNextAppStart(EB2ResolutionLevel InReserveLevel)
 		if (InReserveLevel != EB2ResolutionLevel::End)
 		{
 			int32 CastedSaveValue = B2ResolutionLevelToInt(InReserveLevel);
-			check(CastedSaveValue >= 0); // À½¼ö´Â Å¬¸®¾î µÈ °É·Î ÀÎ½ÄÇÒ °Í.
+			check(CastedSaveValue >= 0); // æ¾œèç»° åŠªåºœç»¢ ç­‰ å§è‚º ç‰¢ä¾¥ä¸” å·´.
 			GConfig->SetInt(TEXT("GameSetting"), TEXT("ReservedResolutionLevel"), CastedSaveValue, GB2GeneralSavedStateIni);
 		}
 		else
-		{ // ÀÌ°Ç Å¬¸®¾î¿¡ ÇØ´ç.
+		{ // ææ‰’ åŠªåºœç»¢ä¿Š ç§¦å¯¸.
 			GConfig->SetInt(TEXT("GameSetting"), TEXT("ReservedResolutionLevel"), -1, GB2GeneralSavedStateIni);
 		}
 	}
@@ -2416,37 +2416,37 @@ EB2ResolutionLevel LoadReservedResolutionLevelOfPrevAppRun()
 			}
 		}
 	}
-	return EB2ResolutionLevel::End; // ÀÌ°Ç reserve ¾È µÇ¾î ÀÖ´Ù´Â ÀÇ¹Ì·Î.
+	return EB2ResolutionLevel::End; // ææ‰’ reserve æ•‘ ç™»ç»¢ ä¹ä¿ƒç»° ç‹¼å›ºè‚º.
 }
 
 void InitializeAllGameSettingData(UObject* WorldContextObject, bool bExtraContentScaleFallback)
 {
-	// High-level °ÔÀÓ ¼¼ÆÃ µ¥ÀÌÅÍµéÀ» ÀĞ¾îµéÀÌ°Å³ª, ¾øÀ¸¸é ÃÊ±â°ªÀ¸·Î ÀúÀå ¹× Àû¿ë.
-	// °ÔÀÓ ½ºÅ¸Æ®¾÷, ³»Áö´Â Ã¹ BladeIIGameMode ½ÃÀÛ ½ÃÁ¡¿¡
+	// High-level éœ¸çƒ™ æŠ€æ³¼ å•æç£ç”¸é˜‘ ä½¬ç»¢ç”¸æèŠ­å”±, ç»æ æ æª¬æ‰è”¼æ è‚º å†å˜ æ£º åˆ©ä¾©.
+	// éœ¸çƒ™ èƒ¶é¸¥é£˜è¯€, éƒ´ç˜¤ç»° éœ‰ BladeIIGameMode çŸ«ç´¯ çŸ«ç—¢ä¿Š
 	bool bSavedSome = false;
 
 	int32 LoadedGraphicsLevel = B2GraphicsLevelToInt(EB2GraphicsLevel::GraphicsLevel_HIGH);
 	if (!LoadGameSetting_Graphics_OrByDefault(LoadedGraphicsLevel))
 	{
-		// ÀÌ°Ç ·Îµù ½ÇÆĞ ½Ã ±âº»°ªÀ» ¿©±â¼­ ³ÖÀ» ÇÊ¿ä´Â ¾ø´Ù. LoadGameSetting_Graphics_OrByDefault ¿¡¼­ Ã³¸®µÉ °Í.
+		// ææ‰’ è‚ºçˆ¹ è§’è© çŸ« æ‰å¤¯è”¼é˜‘ å’¯æ‰è¾‘ æŒé˜‘ é˜å¤¸ç»° ç»ä¿ƒ. LoadGameSetting_Graphics_OrByDefault ä¿Šè¾‘ è´¸åºœçª å·´.
 		SaveGameSetting_Graphics(LoadedGraphicsLevel);
 		bSavedSome = true;
 	}
-	int32 LoadedFrameLimitLevel = B2FrameLevelToInt(EB2FrameLimitLevel::Mid); // ¾îÁö°£ÇÏ¸é ÀÌ°Ç High ¸¦ ±âº»°ªÀ¸·Î ¾È ÇÏ´Â °Ô ÁÁÀ»²¨´Ù ³¥³¥
+	int32 LoadedFrameLimitLevel = B2FrameLevelToInt(EB2FrameLimitLevel::Mid); // ç»¢ç˜¤åŸƒçªæ ææ‰’ High ç”« æ‰å¤¯è”¼æ è‚º æ•‘ çªç»° éœ¸ äº®é˜‘æ³¢ä¿ƒ å¿å¿
 	if (!LoadGameSetting_FrameLimit_OrByDefault(LoadedFrameLimitLevel))
 	{
-		// ÀÌ°Ç ·Îµù ½ÇÆĞ ½Ã ±âº»°ªÀ» ¿©±â¼­ ³ÖÀ» ÇÊ¿ä´Â ¾ø´Ù. LoadGameSetting_FrameLimit_OrByDefault ¿¡¼­ Ã³¸®µÉ °Í.
+		// ææ‰’ è‚ºçˆ¹ è§’è© çŸ« æ‰å¤¯è”¼é˜‘ å’¯æ‰è¾‘ æŒé˜‘ é˜å¤¸ç»° ç»ä¿ƒ. LoadGameSetting_FrameLimit_OrByDefault ä¿Šè¾‘ è´¸åºœçª å·´.
 		SaveGameSetting_FrameLimit(LoadedFrameLimitLevel);
 		bSavedSome = true;
 	}
-	int32 LoadedResolutionLevel = B2ResolutionLevelToInt(EB2ResolutionLevel::Mid);  // ¾îÁö°£ÇÏ¸é ÀÌ°Ç High ¸¦ ±âº»°ªÀ¸·Î ¾È ÇÏ´Â °Ô ÁÁÀ»²¨´Ù È÷È÷
+	int32 LoadedResolutionLevel = B2ResolutionLevelToInt(EB2ResolutionLevel::Mid);  // ç»¢ç˜¤åŸƒçªæ ææ‰’ High ç”« æ‰å¤¯è”¼æ è‚º æ•‘ çªç»° éœ¸ äº®é˜‘æ³¢ä¿ƒ æ´’æ´’
 	if (!LoadGameSetting_Resolution_OrByDefault(LoadedResolutionLevel))
 	{
-		// ÀÌ°Ç ·Îµù ½ÇÆĞ ½Ã ±âº»°ªÀ» ¿©±â¼­ ³ÖÀ» ÇÊ¿ä´Â ¾ø´Ù. LoadGameSetting_Resolution_OrByDefault ¿¡¼­ Ã³¸®µÉ °Í.
+		// ææ‰’ è‚ºçˆ¹ è§’è© çŸ« æ‰å¤¯è”¼é˜‘ å’¯æ‰è¾‘ æŒé˜‘ é˜å¤¸ç»° ç»ä¿ƒ. LoadGameSetting_Resolution_OrByDefault ä¿Šè¾‘ è´¸åºœçª å·´.
 		SaveGameSetting_Resolution(LoadedResolutionLevel);
 		bSavedSome = true;
 	}
-	// ÀÌÀü ½ÇÇà¿¡¼­ ·±Å¸ÀÓ ½ºÀ§ÄªÀÌ ¾ÈµÇ´Â ÇØ»óµµ º¯°æÀ» ÇÑ °æ¿ì. º°µµ ÇÊµå¿¡ ÀúÀåµÇ¾î ÀÖ´Â °É Àû¿ë.
+	// æå‚ˆ è§’é’ä¿Šè¾‘ ç¹é¸¥çƒ™ èƒ¶å›°è«æ æ•‘ç™»ç»° ç§¦æƒ‘æ¡£ å‡½ç‰ˆé˜‘ èŒ„ ç‰ˆå¿«. å–Šæ¡£ é˜é›ä¿Š å†å˜ç™»ç»¢ ä¹ç»° å§ åˆ©ä¾©.
 	EB2ResolutionLevel ReservedResLevel = LoadReservedResolutionLevelOfPrevAppRun();
 	if (ReservedResLevel != EB2ResolutionLevel::End && IntToB2ResolutionLevel(LoadedResolutionLevel) != ReservedResLevel)
 	{
@@ -2460,21 +2460,21 @@ void InitializeAllGameSettingData(UObject* WorldContextObject, bool bExtraConten
 	float LoadedBGMVolume = 1.0f;
 	if (!LoadGameSetting_BGMVolume(LoadedBGMVolume))
 	{
-		LoadedBGMVolume = 0.7f; // ±âº»°ª
+		LoadedBGMVolume = 0.7f; // æ‰å¤¯è”¼
 		SaveGameSetting_BGMVolume(LoadedBGMVolume);
 		bSavedSome = true;
 	}
 	float LoadedFxVolume = 1.0f;
 	if (!LoadGameSetting_EffectVolume(LoadedFxVolume))
 	{
-		LoadedFxVolume = 0.7f; // ±âº»°ª
+		LoadedFxVolume = 0.7f; // æ‰å¤¯è”¼
 		SaveGameSetting_EffectVolume(LoadedFxVolume);
 		bSavedSome = true;
 	}
 	int32 LoadedVibrationScale = 1;
 	if (!LoadGameSetting_Vibration(LoadedVibrationScale))
 	{
-		LoadedVibrationScale = 1; // ±âº»°ª
+		LoadedVibrationScale = 1; // æ‰å¤¯è”¼
 		SaveGameSetting_Vibration(LoadedVibrationScale);
 		bSavedSome = true;
 	}
@@ -2482,7 +2482,7 @@ void InitializeAllGameSettingData(UObject* WorldContextObject, bool bExtraConten
 	int32 LoadedKeepScreenOn = 1;
 	if (!LoadGameSetting_KeepScreenOn(LoadedKeepScreenOn))
 	{
-		LoadedKeepScreenOn = 1; // ±âº»°ª
+		LoadedKeepScreenOn = 1; // æ‰å¤¯è”¼
 		SaveGameSetting_KeepScreenOn(LoadedKeepScreenOn);
 		bSavedSome = true;
 	}
@@ -2490,7 +2490,7 @@ void InitializeAllGameSettingData(UObject* WorldContextObject, bool bExtraConten
 	int32 LoadGamePush = 1;
 	if (!LoadGameSetting_GamePush(LoadGamePush))
 	{
-		LoadedKeepScreenOn = 1; // ±âº»°ª
+		LoadedKeepScreenOn = 1; // æ‰å¤¯è”¼
 		SaveGameSetting_GamePush(LoadGamePush);
 		bSavedSome = true;
 	}
@@ -2503,7 +2503,7 @@ void InitializeAllGameSettingData(UObject* WorldContextObject, bool bExtraConten
 	//}
 	//FGenericPlatformMisc::SetSoundLocType(LoadGameSoundLocType);
 
-	// ¿£Áø ÃÊ±âÈ­ ½ÃÁ¡¿¡ ºÒ¸®´Â °÷ÀÌ±âµµ ÇÏ°í °ü·ÃµÈ ÄÚµå±âµµ ÇÏ´Ï ´Ù¸¥ ¸ğµâ¿¡¼­ »ç¿ëÀ» À§ÇØ ÇÔ¼ö Æ÷ÀÎÅÍ ÇÒ´ç. 
+	// æµšæŸ³ æª¬æ‰æ‹³ çŸ«ç—¢ä¿Š é˜‚åºœç»° é•‘ææ‰æ¡£ çªç»Š åŒ…è®¿ç­‰ å†…é›æ‰æ¡£ çªèª ä¿ƒå¼— è‘›ç¢˜ä¿Šè¾‘ è¤ä¾©é˜‘ å›°ç§¦ çªƒè å™¨ç‰¢ç£ ä¸”å¯¸. 
 	gLoadGameFxVolumeSettingFnPtr = LoadGameSetting_EffectVolume;
 	gLoadGameBGMVolumeSettingFnPtr = LoadGameSetting_BGMVolume;
 
@@ -2513,7 +2513,7 @@ void InitializeAllGameSettingData(UObject* WorldContextObject, bool bExtraConten
 		GConfig->Flush(false, GB2GeneralSavedStateIni);
 	}
 
-	// WorldContextObject ´Â °ÔÀÓ¸ğµå º° bias ¸¦ À§ÇÑ °Å¶ó ¸ğµâ ½ÃÀÛÀÌ³ª DLCFront ¿¡¼­ ºÒ¸®´Â °Å¸é ÇÊ¿ä°¡ ¾ø´Ù.
+	// WorldContextObject ç»° éœ¸çƒ™è‘›é› å–Š bias ç”« å›°èŒ„ èŠ­æ‰¼ è‘›ç¢˜ çŸ«ç´¯æå”± DLCFront ä¿Šè¾‘ é˜‚åºœç»° èŠ­æ é˜å¤¸å•Š ç»ä¿ƒ.
 	B2Scalability::AdjustScalabilityBySelectedLevel(WorldContextObject, LoadedGraphicsLevel, LoadedResolutionLevel, bExtraContentScaleFallback);
 	B2Scalability::SetRelativeFrameLimitLevel(IntToB2FrameLimitLevel(LoadedFrameLimitLevel));
 
@@ -2539,7 +2539,7 @@ void InitializeAllGameSettingData(UObject* WorldContextObject, bool bExtraConten
 
 void SaveGameSetting_AccessTerm(bool InValue)
 {
-	// ÀÌ°Å ³ªÁß¿¡ ¼­¹öµµ ÀúÀåÇØ¾ßÇÔ [@AKI, 171220] ¿ë¿î´Ô¿¡°Ô È®ÀÎ°á°ú ¼­¹ö¿¡ ÀúÀåÀÌ ÇÊ¿ä ¾øÀ½
+	// æèŠ­ å”±åä¿Š è¾‘æ»šæ¡£ å†å˜ç§¦å…·çªƒ [@AKI, 171220] ä¾©æ¬¾ä¸›ä¿Šéœ¸ çŠ¬ç‰¢æ¬è‹ è¾‘æ»šä¿Š å†å˜æ é˜å¤¸ ç»æ¾œ
 	if (GConfig) {
 		GConfig->SetBool(TEXT("AccessTermNotice"), *FString::Printf(TEXT("AccessTerm")), InValue, GB2GeneralSavedStateIni);
 	}
@@ -2569,7 +2569,7 @@ bool IsDLCDownload()
 }
 
 void GlobalSetGameVolumeCommon(const FName& SoundClassName, float InVolume)
-{ // °ÔÀÓ »ç¿îµå ¿É¼Ç Á¶Àı¿¡ »ç¿ë. ½ÇÁ¦ ÀúÀåÀ» ÇÏÁö´Â ¾Ê°í ±×°Ç SaveGameSetting_ À¸·Î µû·Î. ÁÖÀÇ : Object iterate ÇÔ.
+{ // éœ¸çƒ™ è¤æ¬¾é› å¯è®° ç‚¼ä¾‹ä¿Š è¤ä¾©. è§’åŠ› å†å˜é˜‘ çªç˜¤ç»° è‡¼ç»Š å¼Šæ‰’ SaveGameSetting_ æ è‚º è¶è‚º. æ—ç‹¼ : Object iterate çªƒ.
 //	for (TObjectIterator<USoundClass>lt; lt; ++lt)
 //	{
 //		USoundClass* soundClass = *lt;
@@ -2585,9 +2585,9 @@ void GlobalSetGameVolumeCommon(const FName& SoundClassName, float InVolume)
 
 void SetImageBrushFromPaperSprite(UImage* InImageToSetBrush, UPaperSprite* InSpriteToSet)
 {
-	//// 4.13 ¿¡¼­ WrapBox ¿Í PaperSprite ¸¦ »ç¿ëÇÑ image widget batching À» È°¿ëÇÏ±â À§ÇØ ÀÓ½Ã·Î ³ÖÀ½.
-	//// ¿Ö ÀÓ½Ã³Ä¸é UImage ÂÊ¿¡¼­ SetBrushFromMaterial ¿¡ ´ëÀÀÇÏ´Â SetBrushFromPaperSprite °°Àº °É Á¦°øÇÒ °Å¶ó ±â´ëÇÏ±â ¶§¹®.
-	//// Áö±İ ´çÀåÀº UMG ÂÊ¿¡ PaperSprite ÄÚµå¸¦ ³ÖÀ» ¼ö°¡ ¾ø±º..
+	//// 4.13 ä¿Šè¾‘ WrapBox å®¢ PaperSprite ç”« è¤ä¾©èŒ„ image widget batching é˜‘ åŠä¾©çªæ‰ å›°ç§¦ çƒ™çŸ«è‚º æŒæ¾œ.
+	//// æ çƒ™çŸ«è¡¬æ UImage ç‡ä¿Šè¾‘ SetBrushFromMaterial ä¿Š æªè§ˆçªç»° SetBrushFromPaperSprite éç¯® å§ åŠ›å‚ä¸” èŠ­æ‰¼ æ‰æªçªæ‰ é”­å·©.
+	//// ç˜¤é™› å¯¸å˜ç¯® UMG ç‡ä¿Š PaperSprite å†…é›ç”« æŒé˜‘ èå•Š ç»ç„™..
 	//if (InImageToSetBrush && InSpriteToSet)
 	//{
 	//	InImageToSetBrush->GetBrush().SetResourceObject(InSpriteToSet);
@@ -2599,18 +2599,18 @@ void SetBlendColorForPaperSpriteBoundImage(UImage* InImageWithPaperSprite, const
 {
 	//if (InImageWithPaperSprite)
 	//{
-	//	// MaterialInstance ¸¦ ¼¼ÆÃÇÑ UImage ´Â GetDynamicMaterial À» ÅëÇØ MID ¸¦ °¡Á®¿Í¼­ ÆÄ¶ó¹ÌÅÍ¸¦ ¼¼ÆÃÇÒ ¼ö ÀÖ´Âµ¥ 
-	//	// PaperSprite ´Â ÇöÀç·Î¼± (4.14) ±×·± °Ô ¾È¸ÔÈû.
-	//	// ´Ü ÄÃ·¯ ºí·»µù±îÁö´Â UImage ¿¡ ÀÖ´Â °É·Î ÇÒ ¼ö ÀÖ´Ù. PaperSpriteComponent µµ ÄÃ·¯ ºê·»µù Á¤µµ¸¸ Áö¿øÇÏ´Â µíÇÔ.
+	//	// MaterialInstance ç”« æŠ€æ³¼èŒ„ UImage ç»° GetDynamicMaterial é˜‘ çƒ¹ç§¦ MID ç”« å•Šå»‰å®¢è¾‘ é¢‡æ‰¼å›ºç£ç”« æŠ€æ³¼ä¸” è ä¹ç»°å• 
+	//	// PaperSprite ç»° æ³…çŠè‚ºæ€¥ (4.14) å¼Šç¹ éœ¸ æ•‘å†ˆå¡.
+	//	// çªœ æ‹¿çŸ¾ å–‰åŠçˆ¹é³–ç˜¤ç»° UImage ä¿Š ä¹ç»° å§è‚º ä¸” è ä¹ä¿ƒ. PaperSpriteComponent æ¡£ æ‹¿çŸ¾ å®åŠçˆ¹ æ²¥æ¡£çˆ¶ ç˜¤ç›”çªç»° æ·€çªƒ.
 	//	InImageWithPaperSprite->SetColorAndOpacity(InBlendColor);
-	//	InImageWithPaperSprite->GetBrush().TintColor = InBlendColor; // SetColorAndOpacity ·Î´Â ¾È¸ÔÈ÷°ï ÇØ¼­.. Tint µµ ¼³Á¤.
+	//	InImageWithPaperSprite->GetBrush().TintColor = InBlendColor; // SetColorAndOpacity è‚ºç»° æ•‘å†ˆæ´’å¸® ç§¦è¾‘.. Tint æ¡£ æ±²æ²¥.
 	//	InImageWithPaperSprite->SetBrush(InImageWithPaperSprite->Brush);
 	//}
 }
 
 /**
-* MatineeActor µµ ÀÎÀÚ·Î ¹Ş´Â ¸¶´ç¿¡ ¿¬Ãâ¿ëÀ¸·Î º¸¸é µÈ´Ù. ³Ö¾îÁÖ´Â DataStore ¿¡ ¸ÂÃç¼­ ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍÀÇ ¿Ü°üÀ» ÇÑ SkeletalMeshActor spawn.
-* StageEventDirector ÂÊ¿¡¼­ ÇÏ´Â ÀÏ°ú ºñ½ÁÇÑ ÀÏÀ» ÇÏ´Âµ¥ ±×°É Å¸Áö ¾Ê´Â º°µµÀÇ ¿¬Ãâ ±â´ÉÀ» »ç¿ëÇÏ°Ô µÈ °÷ÀÌ ÀÖ¾î¼­ ÀÌ ÇÔ¼ö°¡ µû·Î ¸¸µé¾îÁü.
+* MatineeActor æ¡£ ç‰¢ç£Šè‚º ç½ç»° ä»˜å¯¸ä¿Š æ¥·å…ä¾©æ è‚º ç„Šæ ç­‰ä¿ƒ. æŒç»¢æ—ç»° DataStore ä¿Š å˜è‹—è¾‘ æ•²é¥­æç»¢ æŸè…ç£ç‹¼ å¯‡åŒ…é˜‘ èŒ„ SkeletalMeshActor spawn.
+* StageEventDirector ç‡ä¿Šè¾‘ çªç»° è€è‹ åšæ…èŒ„ è€é˜‘ çªç»°å• å¼Šå§ é¸¥ç˜¤ è‡¼ç»° å–Šæ¡£ç‹¼ æ¥·å… æ‰ç“·é˜‘ è¤ä¾©çªéœ¸ ç­‰ é•‘æ ä¹ç»¢è¾‘ æ çªƒèå•Š è¶è‚º çˆ¶ç”¸ç»¢å’™.
 */
 class ASkeletalMeshActor* SpawnPuppetActor(FString TrackName, ALevelSequenceActor * MatineeActor, EPCClass CharClass, const class ICharacterDataStore* DataStore, class UAnimationAsset* ToPlayAnimation)
 {
@@ -2672,15 +2672,15 @@ class ASkeletalMeshActor* SpawnPuppetActor(FString TrackName, ALevelSequenceActo
 //
 //			if (UB2PCClassInfo::SetupSKCompForParts(CharClass, EntryActor, SkeletalMeshComponent, PrebuiltMeshOrResult, ClassInfo->BaseMeshAsset, ClassInfo->DefaultPartsInfo,
 //				EquippedItems, bHasWing ? &WingData : NULL, NULL,
-//				false, // ±Û½ê, È¤½Ã ÀüÅõ ½ÃÀÛ Àü¿¡ »ç¿ëÇÒ °¡´É¼ºÀ» »ı°¢ÇÑ´Ù¸é °á°ú¹° mesh ¸¦ Ä³½ÌÇÏÁöµµ ¾Ê´Â ÆÇ¿¡ ¿øº» ¸®¼Ò½º¶óµµ ¸Ş¸ğ¸®¿¡ ³²°Ü µÎ¸é ÁÁÀ» °Í °°¾Æ¼­..
-//					   // ÀÌ°Å ¿ëµµ°¡ ÀÎ°ÔÀÓ ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ°¡ ¾Æ´Ñ ¸ğµåÀÇ EntryActor spawn.. ³»Áö´Â ´Ù¸¥ »ç¿ëÀÌ¶óµµ ¿¬Ãâ¿ëÀÏ²¨¶ó ÇØ´ç ÇÔ¼ö·Î ÆÇº°
+//				false, // è‡‚ç–¥, è¶£çŸ« å‚ˆæ§ çŸ«ç´¯ å‚ˆä¿Š è¤ä¾©ä¸” å•Šç“·å·±é˜‘ ç§¯é˜¿èŒ„ä¿ƒæ æ¬è‹æ‹± mesh ç”« æŸæ•™çªç˜¤æ¡£ è‡¼ç»° é­„ä¿Š ç›”å¤¯ åºœå®¶èƒ¶æ‰¼æ¡£ çš‹è‘›åºœä¿Š å·¢è´¥ æ»´æ äº®é˜‘ å·´ éé…’è¾‘..
+//					   // æèŠ­ ä¾©æ¡£å•Š ç‰¢éœ¸çƒ™ æ•²é¥­æç»¢ æŸè…ç£å•Š é…’å›± è‘›é›ç‹¼ EntryActor spawn.. éƒ´ç˜¤ç»° ä¿ƒå¼— è¤ä¾©ææ‰¼æ¡£ æ¥·å…ä¾©è€æ³¢æ‰¼ ç§¦å¯¸ çªƒèè‚º é­„å–Š
 //				UB2PCMeshSectionMergeInfo::ShouldUseSectionMergeForStageEvent(EntryActor)
 //			))
 //			{
-//				// ¿©±â¼± merge µÈ mesh ¸¦ Ä³½ÌÇÏ¸é ±¦È÷ ID ²¿ÀÌ°í ÇØ¼­ ¹®Á¦¸¸ µÉ ¼ö ÀÖÀ¸¹Ç·Î ±×³É ³Ñ¾î°¨. ±×·¡µµ ¸Ê ·Îµù ´Ù½Ã ÇÏ´Â °Ô ¾Æ´Ï¶ó¸é ÇØ µÎ¸é ÁÁ±ä ÇÏ´Ù. ÀüÅõ ÁøÀÔÇÏ¸é¼­ ´Ù½Ã ¾È ÇØµµ µÇ´Ï.
+//				// å’¯æ‰æ€¥ merge ç­‰ mesh ç”« æŸæ•™çªæ å®æ´’ ID éƒ¨æç»Š ç§¦è¾‘ å·©åŠ›çˆ¶ çª è ä¹æ éª¨è‚º å¼Šæˆ é€ç»¢çš‘. å¼Šè´°æ¡£ ç”˜ è‚ºçˆ¹ ä¿ƒçŸ« çªç»° éœ¸ é…’èªæ‰¼æ ç§¦ æ»´æ äº®å˜ çªä¿ƒ. å‚ˆæ§ æŸ³æ¶çªæè¾‘ ä¿ƒçŸ« æ•‘ ç§¦æ¡£ ç™»èª.
 //			}
 //
-//			ABladeIIPlayer::SetupLODInfoForLobbyRepresentative(EntryActor); // ¿¬Ãâ¿ë LOD == ·Îºñ¿ë LOD
+//			ABladeIIPlayer::SetupLODInfoForLobbyRepresentative(EntryActor); // æ¥·å…ä¾© LOD == è‚ºåšä¾© LOD
 //
 //			if (SkeletalMeshComponent)
 //			{
@@ -2695,13 +2695,13 @@ class ASkeletalMeshActor* SpawnPuppetActor(FString TrackName, ALevelSequenceActo
 	return NULL;
 }
 
-/** UE 4.15 ±îÁö UNavigationSystem::GetRandomReachablePointInRadius static ¹öÀüÀÌ ÀÖ¾î¼­ ±×°É ²Ü»¡¸é¼­ ¾²°í ÀÖ¾ú´Âµ¥
-* 4.16 ºÎÅÍ deprecated µÇ¸é¼­ °á±¹ ÀÌ·¸°Ô ¶È°°ÀÌ ±¸ÇöÇØ ³õÀ½. */
+/** UE 4.15 é³–ç˜¤ UNavigationSystem::GetRandomReachablePointInRadius static æ»šå‚ˆæ ä¹ç»¢è¾‘ å¼Šå§ æ›¹å¼§æè¾‘ é™ç»Š ä¹èŒç»°å•
+* 4.16 ä½•ç£ deprecated ç™»æè¾‘ æ¬æƒ« æçŠ¯éœ¸ åº¦éæ å¤‡æ³…ç§¦ åˆæ¾œ. */
 FVector GetRandomReachablePointInRadiusWithCurrNavSys(UWorld* InWorld, const FVector& Origin, float Radius, ANavigationData* NavData, TSubclassOf<UNavigationQueryFilter> FilterClass)
 {
 	FNavLocation RandomPoint;
 
-	//UNavigationSystem* NavSys = UNavigationSystem::GetCurrent(InWorld); // ´Ü ¿øº» GetRandomReachablePointInRadius ¿¡¼­´Â WorldContextObject ¸¦ ¹Ş¾Ò´Âµ¥ ¿©±â¼± ±×³É World ·Î ¹Ş´Â´Ù.
+	//UNavigationSystem* NavSys = UNavigationSystem::GetCurrent(InWorld); // çªœ ç›”å¤¯ GetRandomReachablePointInRadius ä¿Šè¾‘ç»° WorldContextObject ç”« ç½ç–½ç»°å• å’¯æ‰æ€¥ å¼Šæˆ World è‚º ç½ç»°ä¿ƒ.
 	//if (NavSys)
 	//{
 	//	ANavigationData* UseNavData = NavData ? NavData : NavSys->GetMainNavData(FNavigationSystem::DontCreate);
@@ -2719,7 +2719,7 @@ void EditorPopupTAssetBlowupWarning(const FString& InfoAssetName, const FString&
 {
 #if !PLATFORM_MAC
 	FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-		FString::Printf(TEXT("InfoAsset %s ¿¡ µî·ÏµÈ TAsset %s ·Îµù ½ÇÆĞ. ÄÄÇ»ÅÍ°¡ °ğ Æø¹ßÇÑ´Ù."), *InfoAssetName, *WarningAssetName)
+		FString::Printf(TEXT("InfoAsset %s ä¿Š æ®¿åºŸç­‰ TAsset %s è‚ºçˆ¹ è§’è©. å“ªè…”ç£å•Š æ¢† æ°”æƒ¯èŒ„ä¿ƒ."), *InfoAssetName, *WarningAssetName)
 	));
 #endif
 }
@@ -2727,9 +2727,9 @@ void EditorPopupTAssetBlowupWarning(const FString& InfoAssetName, const FString&
 
 #if !UE_BUILD_SHIPPING
 void CheckResetAssumeNoWorldLoadingCondition(UObject* WorldContextObject)
-{ // GameMode ¹× ¸î¸î ¾×ÅÍµé¿¡ µé¾î°£ ResetAssumeNoWorldLoading ±â´ÉÀÇ ½ÇÁ¦ »ç¿ë Á¶°Ç Ã¼Å©. ¾Æ¹«µ¥¼­³ª »ç¿ëÀÌ °¡´ÉÇÒ Á¤µµ·Î °ß°íÇÑ ±â´ÉÀº ¾Æ´Ï¹Ç·Î..
+{ // GameMode æ£º å‰²å‰² å’€ç£ç”¸ä¿Š ç”¸ç»¢åŸƒ ResetAssumeNoWorldLoading æ‰ç“·ç‹¼ è§’åŠ› è¤ä¾© ç‚¼æ‰’ çœ‰å†œ. é…’å…¬å•è¾‘å”± è¤ä¾©æ å•Šç“·ä¸” æ²¥æ¡£è‚º æ–‘ç»ŠèŒ„ æ‰ç“·ç¯® é…’èªéª¨è‚º..
 #if WITH_EDITOR
-	if (GIsEditor) { // ¿¡µğÅÍ¿¡¼­¸¸ Å×½ºÆ®¸¦ À§ÇØ ´Ù¸¥ °ÔÀÓ¸ğµå¿¡¼­ÀÇ »ç¿ëÀ» Çã°¡ÇÔ.
+	if (GIsEditor) { // ä¿Šå¼ç£ä¿Šè¾‘çˆ¶ æŠ›èƒ¶é£˜ç”« å›°ç§¦ ä¿ƒå¼— éœ¸çƒ™è‘›é›ä¿Šè¾‘ç‹¼ è¤ä¾©é˜‘ å€¾å•Šçªƒ.
 		return;
 	}
 #endif
@@ -2803,7 +2803,7 @@ FDateTime ConvertTime(const FDateTime & InDate, int32 InTimezone, int32 OutTimez
 FDateTime ConvertUTCToLocalTime(const FDateTime & InDate)
 {
 	int32 InTimeZone = UB2GameInstance::GetTimeZone(ETimeZone::UTC);
-	//ÀÓ½Ã ÀÏ´Ü ¼­¿ï·Î..
+	//çƒ™çŸ« è€çªœ è¾‘åŒ¡è‚º..
 	int32 OutTimeZone = UB2GameInstance::GetTimeZone(ETimeZone::Seoul);
 
 	return ConvertTime(InDate, InTimeZone, OutTimeZone);
@@ -2840,7 +2840,7 @@ bool CheckContentsModeState(int32 ContentsModeType)
 	{
 	case b2network::B2ContentsModeState::NONE:
 	case b2network::B2ContentsModeState::RUN:
-		// ¾Ï°Íµµ ¾ÈÇÔ. 
+		// é å·´æ¡£ æ•‘çªƒ. 
 		break;
 	case b2network::B2ContentsModeState::BLOCK_ENTER:
 	case b2network::B2ContentsModeState::MODE_FINISH:
@@ -2850,7 +2850,7 @@ bool CheckContentsModeState(int32 ContentsModeType)
 		return true;
 		break;
 	case b2network::B2ContentsModeState::SYSTEM_CHECK:
-		// Á¡°ËÁßUI
+		// ç—¢å…«åUI
 		UB2UIManager::GetInstance()->OpenMsgPopupFromErrorCode(812);
 		return true;
 		break;

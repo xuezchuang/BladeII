@@ -1,4 +1,4 @@
-
+ï»¿
 
 #include "FairyManager.h"
 #include "Event.h"
@@ -56,7 +56,7 @@ void UB2FairyInfo::CheckInfoDataIntegrity()
 	if (!FairyBlessInfoTable)
 	{
 		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-			FString::Printf(TEXT("FairyBlessInfoTable µ¥ÀÌÅÍ ¾øÀ½. ÄÄÇ»ÅÍ°¡ °ğ Æø¹ßÇÑ´Ù."))
+			FString::Printf(TEXT("FairyBlessInfoTable å•æç£ ç»æ¾œ. å“ªè…”ç£å•Š æ¢† æ°”æƒ¯èŒ„ä¿ƒ."))
 		));
 		return;
 	}
@@ -507,7 +507,7 @@ bool FairyManager::GetIsOpenedFairy(const EFairyType TargetFairy)
 	//	int32 LastClearStageActNumber = StageDataStore.GetActIdByClientStageId(LastClearClientStageID);
 	//	EStageDifficulty Difficulty = StageDataStore.GetStageDifficulty(RequestServerStageID);
 
-	//	// °« 6Àå ÁøÀÔ ÈÄ ½ºÅ×ÀÌÁö Å¬¸®¾î½Ã ³­ÀÌµµ°¡ 1·Î ÃÊ±âÈ­µÇ±â ¶§¹®¿¡ Act ¸¦ ÅëÇØ »óÀ§ ¾×Æ®¸¦ ÁøÇàÁßÀÌ¶ó¸é ¿­¸° °ÍÀ¸·Î ÀÎÁöÇÑ´Ù.
+	//	// çŸ® 6å˜ æŸ³æ¶ é¥¶ èƒ¶æŠ›æç˜¤ åŠªåºœç»¢çŸ« æŠ„ææ¡£å•Š 1è‚º æª¬æ‰æ‹³ç™»æ‰ é”­å·©ä¿Š Act ç”« çƒ¹ç§¦ æƒ‘å›° å’€é£˜ç”« æŸ³é’åææ‰¼æ å‡¯èµ´ å·´æ è‚º ç‰¢ç˜¤èŒ„ä¿ƒ.
 	//	if (LastClearStageActNumber > RequestActNumber)
 	//	{
 	//		return true;

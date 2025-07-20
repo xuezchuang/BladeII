@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 // Project BladeII, Action Square
 
 #pragma once
@@ -30,8 +30,8 @@ public:
 	void SetVisibilityStarGrade(bool bVisible);
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////
-	//[@AKI, 170413] M16_ÀÏ´ëÀÏ&ÆÀ´ëÀü°³¼±À¸·Î ¾È¿¡ ³»¿ë¸¸ »èÁ¦.
-	//ÃßÈÄ¿¡ ÇÊ¿äÇÒ °¡´É¼ºµµ ÀÖ¾îº¸¿© ÇÔ¼ö´Â ³²°Ü ³õÀ½
+	//[@AKI, 170413] M16_è€æªè€&è¯„æªå‚ˆä¿ºæ€¥æ è‚º æ•‘ä¿Š éƒ´ä¾©çˆ¶ æ˜åŠ›.
+	//çœ é¥¶ä¿Š é˜å¤¸ä¸” å•Šç“·å·±æ¡£ ä¹ç»¢ç„Šå’¯ çªƒèç»° å·¢è´¥ åˆæ¾œ
 	void SetChracterLevel(int32 InLevel) {};
 	void SetGuildNameAndMark(const FString& GuildName, int32 Pattern, int32 PatternColor, int32 BG, int32 BGColor) {};
 	////////////////////////////////////////////////////////////////////////////////////////////////////

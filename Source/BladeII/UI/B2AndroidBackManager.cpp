@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2AndroidBackManager.h"
 //#include "BladeII.h"
 
@@ -68,7 +68,7 @@ void B2AndroidBackManager::OnPlatformPausePress()
 	//{
 	//	if (BattleMainWidget != NULL && BattleMainWidget.IsValid())
 	//	{
-	//		// [¸ğÇè¸ğµå] Áß "¹İº¹ÀüÅõ" ¹× "¿¬¼ÓÀüÅõ" ÀÏ °æ¿ì ½Ã½ºÅÛ(FJavaWrapper::OnPlatformResumeDelegate) À» ÅëÇØ µé¾î¿Â ¸ØÃã¸Ş´ºÀÇ °æ¿ì Ã³¸® ÇÏÁö ¾Ê´Â´Ù
+	//		// [è‘›æ°°è‘›é›] å "é¦†æ±—å‚ˆæ§" æ£º "æ¥·åŠ å‚ˆæ§" è€ ç‰ˆå¿« çŸ«èƒ¶è¢(FJavaWrapper::OnPlatformResumeDelegate) é˜‘ çƒ¹ç§¦ ç”¸ç»¢æŸ¯ è‚›å‹‰çš‹æ˜¥ç‹¼ ç‰ˆå¿« è´¸åºœ çªç˜¤ è‡¼ç»°ä¿ƒ
 	//		if ( AB2StageGameMode* StageGameMode = Cast< AB2StageGameMode >( UGameplayStatics::GetGameMode( GWorld ) ) )
 	//		{
 	//			if ( StageGameMode->IsRepeatBattleOn() )
@@ -161,7 +161,7 @@ void B2AndroidBackManager::OnClickBackButton()
 //			}
 //			case EAndroidBackState::EXIT:
 //			{
-//				// ¾Æ·¡ EndingPromotion À» ÅëÇØ Á¾·á¸¦ ÇÏ´Â °æ¿ì Á¤»óÀûÀÎ ¿£Áø Á¾·á ·çÆ®¸¦ ÅëÇÏÁö´Â ¾Ê°Ô µÈ´Ù. ·ÎÄÃ ini ¶óµµ ÀúÀå.
+//				// é…’è´° EndingPromotion é˜‘ çƒ¹ç§¦ è¾†ä¸°ç”« çªç»° ç‰ˆå¿« æ²¥æƒ‘åˆ©ç‰¢ æµšæŸ³ è¾†ä¸° é£é£˜ç”« çƒ¹çªç˜¤ç»° è‡¼éœ¸ ç­‰ä¿ƒ. è‚ºæ‹¿ ini æ‰¼æ¡£ å†å˜.
 //				SaveLocalIniStateOnAppBecomeInactive();
 //
 //				//B2P_ShowKakaoPromotionView();
@@ -272,7 +272,7 @@ EAndroidBackState B2AndroidBackManager::GetAndroidBackState()
 	UB2UIManager* UIManager = UB2UIManager::GetInstance();
 	if (UIManager)
 	{
-		// ÀÎµğ°ÔÀÌÅÍ Ã¼Å©
+		// ç‰¢å¼éœ¸æç£ çœ‰å†œ
 		bool IsNetworkIndicator = UIManager->GetIndicatorVisible() == true;
 		bool IsLoopIndicator = UIManager->GetUI<UB2UIClientIndicator>(UIFName::ClientIndicator) != nullptr;
 		if (IsNetworkIndicator || IsLoopIndicator)

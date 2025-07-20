@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 // Project BladeII, Action Square
 
 #pragma once
@@ -316,7 +316,7 @@ protected:
 	const int MaxSlideButtonCount = 6;
 	bool SlideOpen;
 	bool bAllUIHidden;
-	float ElapsedTimeNoInput; // ÀÏÁ¤½Ã°£ ÈÄ¿¡ ¸¶Æ¼´Ï Àç»ı¼Óµµ¸¦ 1.0f ·Î ¸¸µé±â À§ÇÑ º¯¼ö
+	float ElapsedTimeNoInput; // è€æ²¥çŸ«åŸƒ é¥¶ä¿Š ä»˜èèª çŠç§¯åŠ æ¡£ç”« 1.0f è‚º çˆ¶ç”¸æ‰ å›°èŒ„ å‡½è
 
 	TUTORIAL TArray<FContentOpenSlot>		ContentOpenSlots;
 	TUTORIAL TWeakObjectPtr<UImage>			IMG_TutorialBagLock;

@@ -69,7 +69,7 @@ void UB2LobbyUI_WingEvolveResult::StartFromLobby(class UB2UIManager_Lobby* InUIM
 
 	const EPCClass SelectedPCClass = CachedLobbyGM ? CachedLobbyGM->GetHeroMgmtModePCClass() : EPCClass::EPC_End;
 
-	// ÁøÈ­°¡ ¿Ï·áµÈ ½ÃÁ¡ÀÌ¾î¾ß ÇÑ´Ù. ÁøÈ­ ÀÌÀü µ¥ÀÌÅÍ´Â Airport ¿¡ Ä³½Ì..
+	// æŸ³æ‹³å•Š è‚¯ä¸°ç­‰ çŸ«ç—¢æç»¢å…· èŒ„ä¿ƒ. æŸ³æ‹³ æå‚ˆ å•æç£ç»° Airport ä¿Š æŸæ•™..
 	FB2Wing PreEvolveData;
 	const bool bPreEvolveDataValid = CachedAirport ? CachedAirport->GetPreEvolveData(PreEvolveData) : false;
 	FB2Wing EvolvedWingData;
@@ -127,11 +127,11 @@ void UB2LobbyUI_WingEvolveResult::UpdateStaticWidgets()
 
 void UB2LobbyUI_WingEvolveResult::UpdateByWingEvolutionData(const FB2Wing& PrevWing, const FB2Wing& EvolvedWing)
 {
-	// ¿©±â´Â WingMain È­¸éÃ³·³ ÇöÀç ¼öÄ¡¸¦ »Ñ¸®´Âµ¥.. Áõ°¡ Ç¥½Ã¸¦ Á» ÇÑ´Ù.
+	// å’¯æ‰ç»° WingMain æ‹³æè´¸çƒ¦ æ³…çŠ èæ‘¹ç”« è°åºœç»°å•.. åˆ˜å•Š é’çŸ«ç”« ç²± èŒ„ä¿ƒ.
 	if (TB_AttackIncAmount.IsValid())
 	{
 		TB_AttackIncAmount->SetText(
-			FText::FromString(FString::Printf(TEXT("%d"), (int32)EvolvedWing.GetAttackPoint())) // ÃßÈÄ ¿ä±¸»çÇ×¿¡ µû¶ó GetAutoFractionalFormattedText ¸¦ Âü°í..
+			FText::FromString(FString::Printf(TEXT("%d"), (int32)EvolvedWing.GetAttackPoint())) // çœ é¥¶ å¤¸å¤‡è¤äº²ä¿Š è¶æ‰¼ GetAutoFractionalFormattedText ç”« æ›¼ç»Š..
 			);
 	}
 	if (TB_DefenseIncAmount.IsValid())
@@ -147,7 +147,7 @@ void UB2LobbyUI_WingEvolveResult::UpdateByWingEvolutionData(const FB2Wing& PrevW
 			);
 	}
 
-	// ¼öÄ¡°¡ ÀÌÀüº¸´Ù Áõ°¡Çß´ÂÁö.. ¾Æ¸¶µµ Áõ°¡Çß°ÚÁö¸¸ ¿¹ÀÇ»ó Ã¼Å©´Â ÇØ¾ßÁö
+	// èæ‘¹å•Š æå‚ˆç„Šä¿ƒ åˆ˜å•Šæ²ç»°ç˜¤.. é…’ä»˜æ¡£ åˆ˜å•Šæ²æ‘†ç˜¤çˆ¶ æŠ—ç‹¼æƒ‘ çœ‰å†œç»° ç§¦å…·ç˜¤
 	const bool bAttackIncreased = (EvolvedWing.GetAttackPoint() - PrevWing.GetAttackPoint() > 0.0f);
 	const bool bDefenseIncreased = (EvolvedWing.GetDefensePoint() - PrevWing.GetDefensePoint() > 0.0f);
 	const bool bHealthIncreased = (EvolvedWing.GetHealthPoint() - PrevWing.GetHealthPoint() > 0.0f);
@@ -165,14 +165,14 @@ void UB2LobbyUI_WingEvolveResult::UpdateByWingEvolutionData(const FB2Wing& PrevW
 		IMG_HealthIncSign->SetVisibility(bHealthIncreased ? ESlateVisibility::Visible : ESlateVisibility::Hidden);
 	}
 
-	// ÀÌ¹ø¿£ ¿­¸° ¼Ó¼º ¿É¼ÇÀ» Ã£¾Æ³¿
+	// æé”…æµš å‡¯èµ´ åŠ å·± å¯è®°é˜‘ èŒ«é…’æ™¨
 	int32 JustOpenedOptionIndex = -1;
 	for (int32 POI = 0; POI < MAX_WING_PROP_OPTION_NUM; ++POI)
 	{
-		// °°Àº ÀÎµ¦½º¿¡ °°Àº Å¸ÀÔÀÌ ÀÖ±ä ÇÒ °ÅÀÓ
+		// éç¯® ç‰¢éƒ¸èƒ¶ä¿Š éç¯® é¸¥æ¶æ ä¹å˜ ä¸” èŠ­çƒ™
 		const FWingPropOption* CurrOptionOfIdx = EvolvedWing.GetPropOptionPtr(POI);
 		if (CurrOptionOfIdx && CurrOptionOfIdx->bIsOpen)
-		{ // ÀÌ¹ø¿£ ¿­·Á ÀÖ´Â Å¸ÀÔÀÇ ¿É¼ÇÀÌ ÀÌÀü¿£ ¿­·Á ÀÖÁö ¾Ê¾Ò´ÂÁö.
+		{ // æé”…æµš å‡¯å¦¨ ä¹ç»° é¸¥æ¶ç‹¼ å¯è®°æ æå‚ˆæµš å‡¯å¦¨ ä¹ç˜¤ è‡¼ç–½ç»°ç˜¤.
 			const FWingPropOption* PrevOptionOfSameType = PrevWing.GetPropOptionPtr(CurrOptionOfIdx->MyOptionType);
 			if (PrevOptionOfSameType && !PrevOptionOfSameType->bIsOpen)
 			{
@@ -183,7 +183,7 @@ void UB2LobbyUI_WingEvolveResult::UpdateByWingEvolutionData(const FB2Wing& PrevW
 	}
 	
 	const FWingPropOption* JustOpenedOption = (JustOpenedOptionIndex >= 0) ? EvolvedWing.GetPropOptionPtr(JustOpenedOptionIndex) : NULL;
-	// ¾Æ¸¶µµ ¾øÁö´Â ¾Ê°ÚÁö¸¸ ¸¸¿¡ ÇÏ³ª ¾ø´Ù¸é »õ·Î¿î ¿É¼Ç Á¤º¸´Â ¼û±ä´Ù.
+	// é…’ä»˜æ¡£ ç»ç˜¤ç»° è‡¼æ‘†ç˜¤çˆ¶ çˆ¶ä¿Š çªå”± ç»ä¿ƒæ è´§è‚ºæ¬¾ å¯è®° æ²¥ç„Šç»° è§å˜ä¿ƒ.
 	if (TB_PropOptionLabel.IsValid())
 	{
 		TB_PropOptionLabel->SetVisibility(JustOpenedOption ? ESlateVisibility::Visible : ESlateVisibility::Hidden);
@@ -252,7 +252,7 @@ void UB2LobbyUI_WingEvolveResult::CloseWidgetDelegate()
 
 void UB2LobbyUI_WingEvolveResult::OnClickedBtnConfirm()
 {
-	// ÀÌ ÀÌº¥Æ® ¹Ş´Â °÷¿¡¼­ ÀÌ°É ´İ°í ¸ŞÀÎ Wing ÆäÀÌÁö·Î ÀüÈ¯ÇÒ °ÍÀÓ.
+	// æ æäº¥é£˜ ç½ç»° é•‘ä¿Šè¾‘ æå§ æ‘§ç»Š çš‹ç‰¢ Wing å…¶æç˜¤è‚º å‚ˆåˆ¸ä¸” å·´çƒ™.
 	EndWingEvolutionSceneClass<>::GetInstance().Signal();
 }
 

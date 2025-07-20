@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+Ôªø// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "BladeIITestDummyNPC.h"
@@ -10,8 +10,8 @@
 #include "Event.h"
 
 //
-// ¿”¿«∑Œ ∑±≈∏¿” spawn Ω√ƒ—º≠ ¥Î√º∑Œ º∫¥… ≈◊Ω∫∆Æ øÎ¿∏∑Œ ªÁøÎ.
-// ABladeIITestDummyPlayer øÕ ¡ﬂ∫πµ» ±‚¥…¿Ã ¿÷¿ª ºˆ ¿÷¥¬µ• ¡§Ωƒ ±‚¥…¿∫ æ∆¥— ≈◊Ω∫∆Æ øÎ¿Ãπ«∑Œ ¿¢∏∏«— ¡ﬂ∫π ƒ⁄µÂ¥¬ ≥—æÓ∞®.
+// ÏûÑÏùòÎ°ú Îü∞ÌÉÄÏûÑ spawn ÏãúÏºúÏÑú ÎåÄÏ≤¥Î°ú ÏÑ±Îä• ÌÖåÏä§Ìä∏ Ïö©ÏúºÎ°ú ÏÇ¨Ïö©.
+// ABladeIITestDummyPlayer ÏôÄ Ï§ëÎ≥µÎêú Í∏∞Îä•Ïù¥ ÏûàÏùÑ Ïàò ÏûàÎäîÎç∞ Ï†ïÏãù Í∏∞Îä•ÏùÄ ÏïÑÎãå ÌÖåÏä§Ìä∏ Ïö©Ïù¥ÎØÄÎ°ú Ïõ¨ÎßåÌïú Ï§ëÎ≥µ ÏΩîÎìúÎäî ÎÑòÏñ¥Í∞ê.
 // 
 
 ABladeIITestDummyNPC::ABladeIITestDummyNPC(const FObjectInitializer& ObjectInitializer)
@@ -47,7 +47,7 @@ void ABladeIITestDummyNPC::SetAttackState(EAttackState InAttackState)
 	Super::SetAttackState(InAttackState);
 
 	if (IsOneOfComboAttackState(LastStateBackup) && InAttackState == EAttackState::ECS_None)
-	{ // BladeIICharacter ¬ ¿∫ AnimBPFnLib ¿ª ≈Î«ÿ ø¿¥¬ ReceiveComboEnd ∞° æ¯æÓº≠ ¥Î∑´ ¿Ã∑∏∞‘.. 
+	{ // BladeIICharacter Ï™ΩÏùÄ AnimBPFnLib ÏùÑ ÌÜµÌï¥ Ïò§Îäî ReceiveComboEnd Í∞Ä ÏóÜÏñ¥ÏÑú ÎåÄÎûµ Ïù¥Î†áÍ≤å.. 
 		OnComboEnd(LastStateBackup);
 	}
 #endif
@@ -59,7 +59,7 @@ void ABladeIITestDummyNPC::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// ¥ıπÃ∑ŒΩ· æµ∏æ¯¥¬ ∞ÕµÈ ≤Ù±‚.
+	// ÎçîÎØ∏Î°úÏç® Ïì∏Î™®ÏóÜÎäî Í≤ÉÎì§ ÎÅÑÍ∏∞.
 
 }
 
@@ -77,15 +77,15 @@ void ABladeIITestDummyNPC::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 		
-	// ªÁΩ«ªÛ ø©±Ê ≈Î«ÿº≠ AttackState ∑Œ ¿¸¥ﬁµ«¥¬ DirectAttackState ¥¬ ∞¯∞› ªÛ≈¬∞° µ«æÓæﬂ «“ µÌ.
+	// ÏÇ¨Ïã§ÏÉÅ Ïó¨Í∏∏ ÌÜµÌï¥ÏÑú AttackState Î°ú Ï†ÑÎã¨ÎêòÎäî DirectAttackState Îäî Í≥µÍ≤© ÏÉÅÌÉúÍ∞Ä ÎêòÏñ¥Ïïº Ìï† ÎìØ.
 	if (IsOneOfComboAttackState(DirectAttackState))
 	{
-		SetSignalAttack(true); // ±‚¡∏ ƒ⁄µÂ ±∏¡∂ ªÛ SetDirectAttackState ø°º≠ ¥‹πﬂº∫¿∏∑Œ SetSignalAttack ∏¶ «œ¥¬ ∞…∑Œ¥¬ √Ê∫–ƒ° æ ¿∫ µÌ «‘.
+		SetSignalAttack(true); // Í∏∞Ï°¥ ÏΩîÎìú Íµ¨Ï°∞ ÏÉÅ SetDirectAttackState ÏóêÏÑú Îã®Î∞úÏÑ±ÏúºÎ°ú SetSignalAttack Î•º ÌïòÎäî Í±∏Î°úÎäî Ï∂©Î∂ÑÏπò ÏïäÏùÄ ÎìØ Ìï®.
 		SetAttackState(DirectAttackState);
 	}
 	
 	TimeSinceLastSpawnFloatingUITime += DeltaSeconds;
-	// Ω«¡¶∑Œ¥¬ NextTimeSpawnFloatingUIInterval ¿ª ∫ª¥Ÿ. ∏≈ ≈œ∏∂¥Ÿ SpawnFloatingUIInterval ¿ª ±‚¡ÿ¿∏∑Œ ¡∂±›æø ∫Øµø. øœ¿¸»˜ ∂»∞∞¿∫ interval ¿Ã∏È ø©∑Ø∏∂∏Æ µøΩ√ spawn Ω√ ¿œ¡¶»˜ ≥™ø√ ºˆµµ ¿÷¿∏π«∑Œ
+	// Ïã§Ï†úÎ°úÎäî NextTimeSpawnFloatingUIInterval ÏùÑ Î≥∏Îã§. Îß§ ÌÑ¥ÎßàÎã§ SpawnFloatingUIInterval ÏùÑ Í∏∞Ï§ÄÏúºÎ°ú Ï°∞Í∏àÏî© Î≥ÄÎèô. ÏôÑÏ†ÑÌûà ÎòëÍ∞ôÏùÄ interval Ïù¥Î©¥ Ïó¨Îü¨ÎßàÎ¶¨ ÎèôÏãú spawn Ïãú ÏùºÏ†úÌûà ÎÇòÏò¨ ÏàòÎèÑ ÏûàÏúºÎØÄÎ°ú
 	if (SpawnFloatingUIInterval > 0.0f && TimeSinceLastSpawnFloatingUITime >= NextTimeSpawnFloatingUIInterval)
 	{
 		RandomSpawnFloatingUIs();
@@ -94,7 +94,7 @@ void ABladeIITestDummyNPC::Tick(float DeltaSeconds)
 	}
 
 	TimeSinceLastSpawnDamageFxTime += DeltaSeconds;
-	// ø©±‚µµ ∏∂¬˘∞°¡ˆ∑Œ ∏≈ ≈∏¿”∏∂¥Ÿ ∑£¥˝¿∏∑Œ ¡§«ÿ¡ˆ¥¬ NextTimeSpawnDamageFxInterval ¿ª..
+	// Ïó¨Í∏∞ÎèÑ ÎßàÏ∞¨Í∞ÄÏßÄÎ°ú Îß§ ÌÉÄÏûÑÎßàÎã§ ÎûúÎç§ÏúºÎ°ú Ï†ïÌï¥ÏßÄÎäî NextTimeSpawnDamageFxInterval ÏùÑ..
 	if (SpawnDamageFxInterval > 0.0f && TimeSinceLastSpawnDamageFxTime >= NextTimeSpawnDamageFxInterval)
 	{
 		RandomSpawnDamageFx();
@@ -102,7 +102,7 @@ void ABladeIITestDummyNPC::Tick(float DeltaSeconds)
 		NextTimeSpawnDamageFxInterval = SpawnDamageFxInterval * FMath::FRandRange(0.75f, 1.25f);
 	}
 
-	// Spawn ¥ÁΩ√ ¡ˆ¡§«— ¿ßƒ°ø° ∞Ì¡§. Z ∞™¿∫ Spawn ¥ÁΩ√ø° ∏∑«Ùº≠ ∞¯¡ﬂø° ∂∞ ¿÷¿ª ºˆ ¿÷¿∏¥œ æ˜µ•¿Ã∆Æ µ» ∞™¿ª ∫Ø∞Ê«œ¡ˆ æ ∞Ì µº.
+	// Spawn ÎãπÏãú ÏßÄÏ†ïÌïú ÏúÑÏπòÏóê Í≥†Ï†ï. Z Í∞íÏùÄ Spawn ÎãπÏãúÏóê ÎßâÌòÄÏÑú Í≥µÏ§ëÏóê Îñ† ÏûàÏùÑ Ïàò ÏûàÏúºÎãà ÏóÖÎç∞Ïù¥Ìä∏ Îêú Í∞íÏùÑ Î≥ÄÍ≤ΩÌïòÏßÄ ÏïäÍ≥† Îèî.
 	if (bMaintainLocation)
 	{
 		SetActorLocation(FVector(InitialLocation.X, InitialLocation.Y, GetActorLocation().Z));
@@ -128,32 +128,32 @@ void ABladeIITestDummyNPC::InitializeCombatStats()
 {
 	Super::InitializeCombatStats();
 
-	// ∞¯∞› ∏º«¿∏∑Œ Damage ¿‘»˜¡ˆ ∏¯«œ∞‘ «‘. ±◊∑∏¡ˆ∏∏ ¿Ã∞Õ∏∏ ∞°¡ˆ∞Ì¥¬ «√∑π¿ÃæÓ∞° ∞¯∞›ø° ∏¬æ“¿ª Ω√ π–∏∞¥Ÿ∞≈≥™ «œ¥¬ ∞Õ±Ó¡ˆ ∏∑¡¯ ∏¯«‘.
+	// Í≥µÍ≤© Î™®ÏÖòÏúºÎ°ú Damage ÏûÖÌûàÏßÄ Î™ªÌïòÍ≤å Ìï®. Í∑∏Î†áÏßÄÎßå Ïù¥Í≤ÉÎßå Í∞ÄÏßÄÍ≥†Îäî ÌîåÎ†àÏù¥Ïñ¥Í∞Ä Í≥µÍ≤©Ïóê ÎßûÏïòÏùÑ Ïãú Î∞ÄÎ¶∞Îã§Í±∞ÎÇò ÌïòÎäî Í≤ÉÍπåÏßÄ ÎßâÏßÑ Î™ªÌï®.
 	TotalAttack = 0.0f;
 	AttackLevel = CombatStatEval::GetADLevel(TotalAttack, CombatStatEval::GetDefaultCombatCoefficient());
 }
 
 void ABladeIITestDummyNPC::OnComboEnd(EAttackState LastState)
 {
-	// ¥Ÿ¿Ω æ÷¥œ∏ﬁ¿Ãº« Ω√¿€.. ∞£∞›¿ª µŒ∞≈≥™ πŸ∑Œ
+	// Îã§Ïùå Ïï†ÎãàÎ©îÏù¥ÏÖò ÏãúÏûë.. Í∞ÑÍ≤©ÏùÑ ÎëêÍ±∞ÎÇò Î∞îÎ°ú
 	UWorld* TheWorld = GetWorld();
 	if (CooltimeBetweenAnim > 0.0f && TheWorld)
 	{
 		TheWorld->GetTimerManager().SetTimer(CooltimeBetweenAnimTH,
-			// RandomAttackState ¿Œ ∞ÊøÏ BeginNextAnimCommon ø° π´æ˘¿ª ≥—∞‹¡÷µÁ ∑£¥˝ º±≈√µ… ∞Õ¿Ã¡ˆ∏∏ ¿«πÃ∏¶ ∏Ì»Æ»˜..
+			// RandomAttackState Ïù∏ Í≤ΩÏö∞ BeginNextAnimCommon Ïóê Î¨¥ÏóáÏùÑ ÎÑòÍ≤®Ï£ºÎì† ÎûúÎç§ ÏÑ†ÌÉùÎê† Í≤ÉÏù¥ÏßÄÎßå ÏùòÎØ∏Î•º Î™ÖÌôïÌûà..
 			FTimerDelegate::CreateUObject(this, &ABladeIITestDummyNPC::BeginNextAnimCommon, (bUseRandomAttackState ? EAttackState::ECS_End : DirectAttackState)),
 			CooltimeBetweenAnim, false);
-		SetDirectAttackState(EAttackState::ECS_None); // ¥Ÿ¿Ω æ÷¥œ∏ﬁ¿Ãº« πﬂµø ¿¸±Ó¡ˆ Idle ªÛ≈¬∑Œ »ﬁΩƒ.
+		SetDirectAttackState(EAttackState::ECS_None); // Îã§Ïùå Ïï†ÎãàÎ©îÏù¥ÏÖò Î∞úÎèô Ï†ÑÍπåÏßÄ Idle ÏÉÅÌÉúÎ°ú Ìú¥Ïãù.
 	}
 	else
 	{
-		BeginNextAnimCommon(); // πŸ∑Œ Ω√¿€. «ˆ¿Á DirectAttackState ±◊¥Î∑Œ ¿ÃæÓº≠.
+		BeginNextAnimCommon(); // Î∞îÎ°ú ÏãúÏûë. ÌòÑÏû¨ DirectAttackState Í∑∏ÎåÄÎ°ú Ïù¥Ïñ¥ÏÑú.
 	}
 }
 
 void ABladeIITestDummyNPC::RandomSpawnFloatingUIs()
 {
-	// NPC ø° HP ø‹ø° FloatingUI ∂ÁøÏ¥¬ ∞‘ ¿÷¿∏∑¡≥™.. ¿÷¥ı∂Ûµµ ±◊¥⁄..?
+	// NPC Ïóê HP Ïô∏Ïóê FloatingUI ÎùÑÏö∞Îäî Í≤å ÏûàÏúºÎ†§ÎÇò.. ÏûàÎçîÎùºÎèÑ Í∑∏Îã•..?
 	TestRandomSpawnFloatingUIs(this, 1.0f);
 }
 
@@ -162,7 +162,7 @@ void ABladeIITestDummyNPC::RandomSpawnDamageFx()
 	TestRandomSpawnDamageFx(this);
 }
 
-void ABladeIITestDummyNPC::BeginNextAnimCommon(EAttackState SpecifiedNextAnim /* RandomAttackState ∞° æ∆¥œ∞Ì EAttackState::ECS_End ø‹¿« ∞™¿ª ¡Ÿ Ω√ ªÁøÎµ . */)
+void ABladeIITestDummyNPC::BeginNextAnimCommon(EAttackState SpecifiedNextAnim /* RandomAttackState Í∞Ä ÏïÑÎãàÍ≥† EAttackState::ECS_End Ïô∏Ïùò Í∞íÏùÑ Ï§Ñ Ïãú ÏÇ¨Ïö©Îê®. */)
 {
 	UWorld* TheWorld = GetWorld();
 	if (TheWorld)
@@ -170,13 +170,13 @@ void ABladeIITestDummyNPC::BeginNextAnimCommon(EAttackState SpecifiedNextAnim /*
 		TheWorld->GetTimerManager().ClearTimer(CooltimeBetweenAnimTH);
 	}
 
-	if (bUseRandomAttackState) // ∑£¥˝ ¿Áª˝ Ω√ ¥Ÿ¿Ω ∑£¥˝ æ÷¥œ∏ﬁ¿Ãº«¿ª º±≈√
+	if (bUseRandomAttackState) // ÎûúÎç§ Ïû¨ÏÉù Ïãú Îã§Ïùå ÎûúÎç§ Ïï†ÎãàÎ©îÏù¥ÏÖòÏùÑ ÏÑ†ÌÉù
 	{
 		GoToNextRandomAttackState();
 	}
 	else
-	{ // ∑£¥˝ æ÷¥‘ ¿Áª˝¿Ã æ∆¥œ∂Û∏È ¡ˆ¡§µ» ∞…∑Œ ¥ŸΩ√ Ω√¿€.
-	  // ƒﬁ∫∏ state ¥¬ √≥¿Ω∫Œ≈Õ ¥ŸΩ√ Ω√¿€«ÿæﬂ «ÿº≠ ThisTickFinalAttackState ±Ó¡ˆ ∏Æº¬¿Ã µ»¥Ÿ.
+	{ // ÎûúÎç§ Ïï†Îãò Ïû¨ÏÉùÏù¥ ÏïÑÎãàÎùºÎ©¥ ÏßÄÏ†ïÎêú Í±∏Î°ú Îã§Ïãú ÏãúÏûë.
+	  // ÏΩ§Î≥¥ state Îäî Ï≤òÏùåÎ∂ÄÌÑ∞ Îã§Ïãú ÏãúÏûëÌï¥Ïïº Ìï¥ÏÑú ThisTickFinalAttackState ÍπåÏßÄ Î¶¨ÏÖãÏù¥ ÎêúÎã§.
 		const EAttackState FinalNextAnim = (SpecifiedNextAnim != EAttackState::ECS_End) ? SpecifiedNextAnim : DirectAttackState;
 		if (IsOneOfComboAttackState(FinalNextAnim))
 		{
@@ -187,7 +187,7 @@ void ABladeIITestDummyNPC::BeginNextAnimCommon(EAttackState SpecifiedNextAnim /*
 
 void ABladeIITestDummyNPC::SetDirectAttackStateByKeyword(const FString& InAttackStateKeyword)
 {
-	// ƒ‹º÷ ƒø∏«µÂ∏¶ ≈Î«ÿ AttackState ¡ˆ¡§«œ¥¬ ±‚¥…¿ª æ≤∑¡∞Ì.
+	// ÏΩòÏÜî Ïª§Îß®ÎìúÎ•º ÌÜµÌï¥ AttackState ÏßÄÏ†ïÌïòÎäî Í∏∞Îä•ÏùÑ Ïì∞Î†§Í≥†.
 
 	if (InAttackStateKeyword == TEXT("None") || InAttackStateKeyword == TEXT("No"))
 	{
@@ -197,7 +197,7 @@ void ABladeIITestDummyNPC::SetDirectAttackStateByKeyword(const FString& InAttack
 	{
 		int32 ParsedAttackIndex = FCString::Atoi(*InAttackStateKeyword);
 
-		if (ParsedAttackIndex == 0) // Atoi ∞° Ω«∆–«ﬂµÁ¡ˆ æ∆¥‘ 0 ¿ª ¡ˆ¡§«ﬂµÁ¡ˆ.
+		if (ParsedAttackIndex == 0) // Atoi Í∞Ä Ïã§Ìå®ÌñàÎì†ÏßÄ ÏïÑÎãò 0 ÏùÑ ÏßÄÏ†ïÌñàÎì†ÏßÄ.
 		{
 			if (InAttackStateKeyword == TEXT("A1")) {
 				ParsedAttackIndex = 1;
@@ -228,17 +228,17 @@ void ABladeIITestDummyNPC::SetDirectAttackStateByKeyword(const FString& InAttack
 			}
 		}
 
-		// Ω«¡¶ ºº∆√µ» AttackData ∞≥ºˆ ¿Ã≥ª∑Œ.
+		// Ïã§Ï†ú ÏÑ∏ÌåÖÎêú AttackData Í∞úÏàò Ïù¥ÎÇ¥Î°ú.
 		AIAttackIndex = ParsedAttackIndex % AIAttackDataArray.Num();
 
-		// NPC µÈ¿∫ ∞¯∞› ªÛ≈¬¥¬ «œ≥™∏∏ ªÁøÎ.
+		// NPC Îì§ÏùÄ Í≥µÍ≤© ÏÉÅÌÉúÎäî ÌïòÎÇòÎßå ÏÇ¨Ïö©.
 		SetDirectAttackState(EAttackState::ECS_Combo01);
 	}
 }
 
 void ABladeIITestDummyNPC::SetDirectAttackState(EAttackState InState)
 {
-	// ø©±‚º≠ SetSignalAttack ¿ª ∫Œ∏£¥¬ ∞Õ∏∏¿∏∑Œ √Ê∫–ƒ°¥¬ æ ¿Ω..
+	// Ïó¨Í∏∞ÏÑú SetSignalAttack ÏùÑ Î∂ÄÎ•¥Îäî Í≤ÉÎßåÏúºÎ°ú Ï∂©Î∂ÑÏπòÎäî ÏïäÏùå..
 	if (IsOneOfComboAttackState(DirectAttackState))
 	{
 		SetSignalAttack(true);
@@ -267,7 +267,7 @@ void ABladeIITestDummyNPC::SetCooltimeBetweenAnim(float InCooltime)
 void ABladeIITestDummyNPC::SetMaintainLocation(bool bMaintain)
 {
 	bMaintainLocation = bMaintain;
-	// InitialLocation ¿ª ∞ªΩ≈«œ¥¬ ø…º«¿Ã∂Ûµµ..?
+	// InitialLocation ÏùÑ Í∞±Ïã†ÌïòÎäî ÏòµÏÖòÏù¥ÎùºÎèÑ..?
 }
 void ABladeIITestDummyNPC::SetMaintainRotation(bool bMaintain)
 {
@@ -276,14 +276,14 @@ void ABladeIITestDummyNPC::SetMaintainRotation(bool bMaintain)
 
 void ABladeIITestDummyNPC::GoToNextRandomAttackState()
 {
-	// AIAttackDataArray ø° µÓ∑œµ» ∞≥ºˆ∏∏≈≠.
+	// AIAttackDataArray Ïóê Îì±Î°ùÎêú Í∞úÏàòÎßåÌÅº.
 	AIAttackIndex = FMath::RandRange(0, AIAttackDataArray.Num() - 1);
 	
-	// NPC µÈ¿∫ ∞¯∞› ªÛ≈¬¥¬ «œ≥™∏∏ ªÁøÎ.
+	// NPC Îì§ÏùÄ Í≥µÍ≤© ÏÉÅÌÉúÎäî ÌïòÎÇòÎßå ÏÇ¨Ïö©.
 	SetDirectAttackState(EAttackState::ECS_Combo01);
 }
 
-/** ªÁøÎ¿ª ¿ß«— ∏ﬁ¿Œ ¿Ø∆ø */
+/** ÏÇ¨Ïö©ÏùÑ ÏúÑÌïú Î©îÏù∏ Ïú†Ìã∏ */
 ABladeIITestDummyNPC* ABladeIITestDummyNPC::SpawnUtil(UObject* WorldContextObject,
 		ENPCClass InClass, ENPCClassVariation InVariation,
 		const FTransform& InSpawnTransform,
@@ -299,7 +299,7 @@ ABladeIITestDummyNPC* ABladeIITestDummyNPC::SpawnUtil(UObject* WorldContextObjec
 	{
 		FActorSpawnParameters SpawnInfo;
 		SpawnInfo.Owner = TheWorld->GetAuthGameMode();
-		SpawnInfo.bDeferConstruction = true; // AutoPossessAI º≥¡§ π◊ NPCClassInfo ¿˚øÎ¿ª ¿ß«ÿ DeferConstruction ¿Ã « ø‰.
+		SpawnInfo.bDeferConstruction = true; // AutoPossessAI ÏÑ§Ï†ï Î∞è NPCClassInfo Ï†ÅÏö©ÏùÑ ÏúÑÌï¥ DeferConstruction Ïù¥ ÌïÑÏöî.
 		SpawnInfo.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 		SpawnInfo.ObjectFlags |= RF_Transient;
 
@@ -308,13 +308,13 @@ ABladeIITestDummyNPC* ABladeIITestDummyNPC::SpawnUtil(UObject* WorldContextObjec
 		
 		if (SpawnedDummy)
 		{
-			// AI possess ∏¶ «œ¡ˆ æ ¿∏¥œ ∞·±π spawn ¥ÁΩ√ ªÛ»≤ø° µ˚∂Û ¡ˆ∏È snap ¿Ã ¿ﬂ æ»µ«¥¬ ∞Õ ∂ßπÆø° AI possess «œ∞Ìº± ø©≈∏ ¡¶«—¿ª ∞°«‘.
-			// ±◊∏Æ∞Ì ªÛ»≤ø° µ˚∂Û «√∑π¿ÃæÓ∏¶ µ˚∂Ûø¿∞≈≥™ »∏¿¸ ¡§µµ¥¬ ªÁøÎ«“ « ø‰µµ ¿÷¿ª ºˆ ¿÷∞Ì «ÿº≠..
+			// AI possess Î•º ÌïòÏßÄ ÏïäÏúºÎãà Í≤∞Íµ≠ spawn ÎãπÏãú ÏÉÅÌô©Ïóê Îî∞Îùº ÏßÄÎ©¥ snap Ïù¥ Ïûò ÏïàÎêòÎäî Í≤É ÎïåÎ¨∏Ïóê AI possess ÌïòÍ≥†ÏÑ† Ïó¨ÌÉÄ Ï†úÌïúÏùÑ Í∞ÄÌï®.
+			// Í∑∏Î¶¨Í≥† ÏÉÅÌô©Ïóê Îî∞Îùº ÌîåÎ†àÏù¥Ïñ¥Î•º Îî∞ÎùºÏò§Í±∞ÎÇò ÌöåÏ†Ñ Ï†ïÎèÑÎäî ÏÇ¨Ïö©Ìï† ÌïÑÏöîÎèÑ ÏûàÏùÑ Ïàò ÏûàÍ≥† Ìï¥ÏÑú..
 			SpawnedDummy->AutoPossessAI = EAutoPossessAI::Spawned;
 			SpawnedDummy->FinishSpawning(InSpawnTransform);
-			SpawnedDummy->bNeedSpawnCheck = false; // SpawnStay ∞° ¿÷¥¬ ∞ÊøÏ ≥—±‚µµ∑œ.
+			SpawnedDummy->bNeedSpawnCheck = false; // SpawnStay Í∞Ä ÏûàÎäî Í≤ΩÏö∞ ÎÑòÍ∏∞ÎèÑÎ°ù.
 			SnapBladeIICharacterToGround(SpawnedDummy);
-			// «ˆ ¿ßƒ°ø° ∞Ì¡§Ω√≈∞±‚ ¿ß«ÿ ¿˙¿Â«ÿ µ“.
+			// ÌòÑ ÏúÑÏπòÏóê Í≥†Ï†ïÏãúÌÇ§Í∏∞ ÏúÑÌï¥ Ï†ÄÏû•Ìï¥ Îë†.
 			SpawnedDummy->InitialLocation = SpawnedDummy->GetActorLocation();
 			SpawnedDummy->InitialRotation = SpawnedDummy->GetActorRotation();
 
@@ -326,7 +326,7 @@ ABladeIITestDummyNPC* ABladeIITestDummyNPC::SpawnUtil(UObject* WorldContextObjec
 
 			UCharacterMovementComponent* CharMoveComp = SpawnedDummy->GetCharacterMovement();
 			if (CharMoveComp)
-			{ // øÚ¡˜¿œ ø©¡ˆ∏¶ √÷¥Î«— ¡¶∞≈.. «œ∑¡¥Ÿ∞° Z √‡¿∫ øÚ¡˜¿œ « ø‰∞° ¿÷æÓº≠ ¥Ÿ∏• Ωƒ¿∏∑Œ.. §ª
+			{ // ÏõÄÏßÅÏùº Ïó¨ÏßÄÎ•º ÏµúÎåÄÌïú Ï†úÍ±∞.. ÌïòÎ†§Îã§Í∞Ä Z Ï∂ïÏùÄ ÏõÄÏßÅÏùº ÌïÑÏöîÍ∞Ä ÏûàÏñ¥ÏÑú Îã§Î•∏ ÏãùÏúºÎ°ú.. „Öã
 				//CharMoveComp->SetUpdateRotationOnly(true);
 			}
 
@@ -352,7 +352,7 @@ void TestRandomSpawnFloatingUIs(ABladeIICharacter* InOwnerDummy, float HPProbabi
 		return;
 	}
 
-	// HPProbabilityAlpha ∞° 0 ¿Ã∏È BuffEffect ∏∏, 1 ¿Ã∏È HP ∏∏.
+	// HPProbabilityAlpha Í∞Ä 0 Ïù¥Î©¥ BuffEffect Îßå, 1 Ïù¥Î©¥ HP Îßå.
 	const bool bSpawnHP = (HPProbabilityAlpha <= 0.0f) ? false : (FMath::RandRange(0.0f, 1.0f) <= FMath::Clamp(HPProbabilityAlpha, 0.0f, 1.0f));
 	if (bSpawnHP)
 	{

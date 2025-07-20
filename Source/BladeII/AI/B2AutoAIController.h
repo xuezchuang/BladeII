@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 // Project BladeII, Action Square
 
 #pragma once
@@ -95,7 +95,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "BladeII")
 	bool HadMovementInput();
 
-	// °ø°İ ¹æ¾î¹öÆ° ÀÔ·ÂÁßÀÎ°¡
+	// å‚æ‹œ è§„ç»¢æ»šç“¢ æ¶ä»¿åç‰¢å•Š
 	UFUNCTION(BlueprintCallable, Category = "BladeII")
 	bool HadBattleInput();
 

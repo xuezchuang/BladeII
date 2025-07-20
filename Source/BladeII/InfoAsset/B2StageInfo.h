@@ -1,10 +1,11 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 //#include "BladeII.h"
 //#include "UObject/Object.h"
 #include "Engine/DataTable.h"
 #include "CommonStruct.h"
+#include "TimerManager.h"
 #include "B2StageInfo.generated.h"
 
 USTRUCT(BlueprintType)

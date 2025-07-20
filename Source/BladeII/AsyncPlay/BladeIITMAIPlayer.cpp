@@ -1,4 +1,4 @@
-
+ï»¿
 #include "BladeIITMAIPlayer.h"
 //#include "BladeII.h"
 #include "BladeIIPlayerAIController.h"
@@ -36,7 +36,7 @@ void ABladeIITMAIPlayer::BeginPlay()
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIITMAIPlayer_BeginPlay);
 	Super::BeginPlay();
 
-	FormalSetPointLightOn(false); // ¾îÂ÷ÇÇ IsHeadPointLightAllowed() °¡ false ¿©¾ß..
+	FormalSetPointLightOn(false); // ç»¢ç’ä¹” IsHeadPointLightAllowed() å•Š false å’¯å…·..
 }
 
 void ABladeIITMAIPlayer::PossessedBy(AController* InController)
@@ -94,7 +94,7 @@ UB2SkillRTManager* ABladeIITMAIPlayer::GetSkillRTManager()
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIITMAIPlayer_GetSkillRTManager);
 	if (CachedSkillRTManager == nullptr)
 	{
-		//ÅÂ±×°¡ ºÒ°¡´ÉÇÑ PlayerÀÌ±â ¶§¹®¿¡ ÀÌ°÷¿¡¼­ SkillRTManager¸¦ »ı¼ºÇÑ´Ù.
+		//æ€•å¼Šå•Š é˜‚å•Šç“·èŒ„ Playerææ‰ é”­å·©ä¿Š æé•‘ä¿Šè¾‘ SkillRTManagerç”« ç§¯å·±èŒ„ä¿ƒ.
 		CachedSkillRTManager = NewObject<UB2SkillRTManager>(this, *FString::Printf(TEXT("SkillRTManager_%s"), *this->GetName()), RF_Transient);
 		CachedSkillRTManager->InitSkillRTManager(this);
 	}
@@ -144,11 +144,11 @@ void ABladeIITMAIPlayer::InitializeCombatStats()
 	CharacterDataStore->GetEquippedItems(TeamOtherCharClasses[1], Other2EquippedItem);
 		
 	/*
-	FB2Wing MyWingData; // bMyHasWing ÀÌ true ¿©¾ß valid ÇÔ.
+	FB2Wing MyWingData; // bMyHasWing æ true å’¯å…· valid çªƒ.
 	const bool bMyHasWing = CharacterDataStore->GetCharacterWing(CurrPCClassEnum, MyWingData);
-	FB2Wing Other1WingData; // Other1HasWing ÀÌ true ¿©¾ß valid ÇÔ.
+	FB2Wing Other1WingData; // Other1HasWing æ true å’¯å…· valid çªƒ.
 	const bool bOther1HasWing = CharacterDataStore->GetCharacterWing(GetTagPlayerClass(), Other1WingData);
-	FB2Wing Other2WingData; // Other2HasWing ÀÌ true ¿©¾ß valid ÇÔ.
+	FB2Wing Other2WingData; // Other2HasWing æ true å’¯å…· valid çªƒ.
 	const bool bOther2HasWing = CharacterDataStore->GetCharacterWing(GetTagPlayerClass(), Other2WingData);
 	*/
 
@@ -214,22 +214,22 @@ void ABladeIITMAIPlayer::InitializeCombatStats()
 	// No formula for armor for now
 	Armor = MaxArmor;
 	
-	// ±âº» °ø/¹æ/Ã¼ ÀÌ¿ÜÀÇ ÀüÅõ ¿É¼Ç ¼öÄ¡µé Ä³½Ì.
+	// æ‰å¤¯ å‚/è§„/çœ‰ æå¯‡ç‹¼ å‚ˆæ§ å¯è®° èæ‘¹ç”¸ æŸæ•™.
 	InitializeCombatOptionCacheValues();
 
 	UCharacterMovementComponent* MovementComp = GetCharacterMovement();
 	if (MovementComp)
-	{ // PCClassInfo ¿¡¼­´Â ±âº»°ª¸¸À» ³Ö°í ¾ÆÀÌÅÛÀÌ¶û ½ºÅ³ ¿É¼Ç µîÀÌ ¹İ¿µµÈ walk speed Àû¿ë
+	{ // PCClassInfo ä¿Šè¾‘ç»° æ‰å¤¯è”¼çˆ¶é˜‘ æŒç»Š é…’æè¢æå°” èƒ¶æ‡¦ å¯è®° æ®¿æ é¦†åº·ç­‰ walk speed åˆ©ä¾©
 		MovementComp->MaxWalkSpeed = GetStaticOptionAppliedWalkSpeed();
 	}
 
 	if (GameMode)
 	{
-		//ÁøÇü¿¡ µû¸¥ º¸Á¤
+		//æŸ³å±ˆä¿Š è¶å¼— ç„Šæ²¥
 		BaseDamageDecreaseRate	*= (100 - GameMode->GetReduceDamageBonusPercentageByFormation(GetTeamNum())) * 0.01f;
 		CharacterDamageRate		+= (GameMode->GetAttackDamageBonusPercentageByFormation(GetTeamNum()));
 
-		//GameMode¿¡ µû¸¥ ½ºÅÈº¸Á¤
+		//GameModeä¿Š è¶å¼— èƒ¶æ¹ƒç„Šæ²¥
 		CharacterDamageRate		*= GameMode->GetDamageRateByGameModeType() * GameMode->GetOpponentHandicap(GetTeamNum());
 		Health					*= GameMode->GetHealthRateByGameModeType() * GameMode->GetOpponentHandicap(GetTeamNum());
 		MaxHealth				*= GameMode->GetHealthRateByGameModeType() * GameMode->GetOpponentHandicap(GetTeamNum());
@@ -280,7 +280,7 @@ void ABladeIITMAIPlayer::NotifyPlayerDeadEnd()
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIITMAIPlayer_NotifyPlayerDeadEnd);
 	Super::NotifyPlayerDeadEnd();
 
-	//[@AKI, 170629] [FIXME] Destroy µÈ ÈÄ¿¡ ³ëÆ¼¸¦ ÇÏ´Â °Í °°À½.....
+	//[@AKI, 170629] [FIXME] Destroy ç­‰ é¥¶ä¿Š ç•´èç”« çªç»° å·´ éæ¾œ.....
 	auto* MyController = Cast<ABladeIIPlayerAIController>(GetController());
 
 	//check(MyController);
@@ -310,13 +310,13 @@ float ABladeIITMAIPlayer::UpdateTarget(bool bInputGuided, bool bOnlyQTEEnabled /
 int32 ABladeIITMAIPlayer::GetGameEntryID() const
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIITMAIPlayer_GetGameEntryID);
-	// °ÔÀÓ ·¹º§ ¾È¿¡¼­ º» Ä³¸¯ÅÍ¸¦ ½Äº° °¡´ÉÇÏ°Ô ÇÒ ID °¡ µÊ. ÆÀ ¹øÈ£¸¦ ¹İ¿µÇÑ´Ù.
+	// éœ¸çƒ™ é¥­éª‡ æ•‘ä¿Šè¾‘ å¤¯ æŸè…ç£ç”« ä¾¥å–Š å•Šç“·çªéœ¸ ä¸” ID å•Š å‡³. è¯„ é”…é¾‹ç”« é¦†åº·èŒ„ä¿ƒ.
 	return (GetTeamNum() * 10) + PCClassToInt(GetCurrentPlayerClass());
 }
 bool ABladeIITMAIPlayer::HasValidGameEntryID() const
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIITMAIPlayer_HasValidGameEntryID);
-	return (GetTeamNum() != INDEX_NONE); // ¾ÆÁ÷ TeamNumber ¸¦ ºÎ¿©¹ŞÁö ¸øÇÑ »óÈ²¿¡¼­´Â GameEntryID ¸¦ ¾²¸é ¾ÈµÊ.
+	return (GetTeamNum() != INDEX_NONE); // é…’æµ TeamNumber ç”« ä½•å’¯ç½ç˜¤ ç»™èŒ„ æƒ‘ç‚”ä¿Šè¾‘ç»° GameEntryID ç”« é™æ æ•‘å‡³.
 }
 
 int32 ABladeIITMAIPlayer::GetHighPrioritySkillIndex()
@@ -327,7 +327,7 @@ int32 ABladeIITMAIPlayer::GetHighPrioritySkillIndex()
 		{
 			const int32 SkillIndex = AutoSkillPriority[PriorityIdx];
 
-			// ³» Ä³¸¯ÅÍµéÀÏ °æ¿ì¿¡ °á¼Ó½ºÅ³ ÀÚµ¿À¸·Î ¾È³ª°¡µµ·Ï.
+			// éƒ´ æŸè…ç£ç”¸è€ ç‰ˆå¿«ä¿Š æ¬åŠ èƒ¶æ‡¦ ç£Šæ‚¼æ è‚º æ•‘å”±å•Šæ¡£åºŸ.
 			if (SkillIndex == WEAPON_6STAR_SKILL_INDEX && GetIsLocalPlayerTeam())
 				continue;
 
@@ -348,7 +348,7 @@ EAttackState ABladeIITMAIPlayer::StartSkillInner(int32 SkillInputIndex, bool IsP
 
 	if (FinalAttackState == EAttackState::ECS_WeaponSkill)
 	{
-		// ÆÀ´ëÀüÀÇ °æ¿ì °°Àº Æí ´Ù¸¥ Ä³¸¯ÅÍµé ½ºÅ³ Æ÷ÀÎÆ®µµ ÃÊ±âÈ­ .
+		// è¯„æªå‚ˆç‹¼ ç‰ˆå¿« éç¯® ç¥ˆ ä¿ƒå¼— æŸè…ç£ç”¸ èƒ¶æ‡¦ å™¨ç‰¢é£˜æ¡£ æª¬æ‰æ‹³ .
 		auto* TeamMatchGameMode = Cast<AB2TMGameMode>(UGameplayStatics::GetGameMode(this));
 		if (TeamMatchGameMode)
 			TeamMatchGameMode->OnOtherPlayerUnityPointClear(this);
@@ -365,7 +365,7 @@ void ABladeIITMAIPlayer::OnDeath(float KillingDamage, struct FDamageEvent const&
 	if (TeamMatchGameMode)
 		TeamMatchGameMode->OnMyTeamDead_AddUnityPoint(this->GetTeamNum());
 
-	this->SetWeaponSkillPoint(0.0f); // Á×Àº»ç¶÷ °á¼Ó½ºÅ³ Æ÷ÀÎÆ® ÃÊ±âÈ­
+	this->SetWeaponSkillPoint(0.0f); // ç£·ç¯®è¤æ© æ¬åŠ èƒ¶æ‡¦ å™¨ç‰¢é£˜ æª¬æ‰æ‹³
 
 	Super::OnDeath(KillingDamage, DamageEvent, InstigatingPawn, DamageCauser);
 }

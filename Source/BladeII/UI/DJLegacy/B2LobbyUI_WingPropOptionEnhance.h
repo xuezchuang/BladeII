@@ -6,6 +6,7 @@
 #include "B2Airport.h"
 #include "B2WingUIP_PropOptionDetail.h"
 #include "B2UIBackWidget.h"
+#include "../Widget/B2ButtonGoodInfoToolTip.h"
 #include "B2LobbyUI_WingPropOptionEnhance.generated.h"
 
 /**

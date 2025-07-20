@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UI_TotemInvenFilterPopup.h"
 
@@ -194,7 +194,7 @@ void UB2UI_TotemInvenSellAll::OnClickBTN_Confirm()
 }
 
 void UB2UI_TotemInvenSellAll::UpdateAcquireText()
-{// ÇöÀç filter ¼±ÅÃ¿¡ µû¶ó ¾ÆÀÌÅÛµé ÃëÇÕÇØ¼­ ¾×¼ö °è»ê
+{// æ³…çŠ filter æ€¥ç¶ä¿Š è¶æ‰¼ é…’æè¢ç”¸ ç§’é’¦ç§¦è¾‘ å’€è æ‹Œé­‚
 	int32 SellPrice = 0, SellItemCount = 0;
 	GetAllTargetItemSellingPrice(SellItemCount, SellPrice);
 
@@ -282,7 +282,7 @@ void UB2UI_TotemInvenDecompositionAll::OnClickBTN_Confirm()
 }
 
 void UB2UI_TotemInvenDecompositionAll::UpdateAcquireText()
-{// ÇöÀç filter ¼±ÅÃ¿¡ µû¶ó ¾ÆÀÌÅÛµé ÃëÇÕÇØ¼­ ¾×¼ö °è»ê
+{// æ³…çŠ filter æ€¥ç¶ä¿Š è¶æ‰¼ é…’æè¢ç”¸ ç§’é’¦ç§¦è¾‘ å’€è æ‹Œé­‚
 	int32 SellPrice = 0, SellItemCount = 0;
 	GetAllTargetItemSellingPrice(SellItemCount, SellPrice);
 

@@ -74,7 +74,6 @@ public class BladeII : ModuleRules
                 "BladeII/NetPlay",
                 "BladeII/Packet",
                 "B2Network",
-                "B2Network/11",
                 "BladeII/Log",
                 "BladeII/Buff",
                 "BladeII/AsyncPlay",
@@ -83,12 +82,15 @@ public class BladeII : ModuleRules
                 "BladeII/Misc",
                 "BladeII/DLCFront",
             });
-		// Uncomment if you are using Slate UI
-		// PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });
+        // Uncomment if you are using Slate UI
+        // PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });
 
-		// Uncomment if you are using online features
-		// PrivateDependencyModuleNames.Add("OnlineSubsystem");
+        // Uncomment if you are using online features
+        // PrivateDependencyModuleNames.Add("OnlineSubsystem");
 
-		// To include OnlineSubsystemSteam, add it to the plugins section in your uproject file with the Enabled attribute set to true
-	}
+        // To include OnlineSubsystemSteam, add it to the plugins section in your uproject file with the Enabled attribute set to true
+
+        PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+        PrivatePCHHeaderFile = "BladeIIPCH.h"; // 或者放在 Private 也可以，只要路径正确
+    }
 }

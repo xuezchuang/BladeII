@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 //#include "BladeII.h"
 #include "BladeIIDamageType.h"
 #include "B2CharacterBuffManager.generated.h"
@@ -96,6 +96,6 @@ private:
 	TArray<EBuffType> m_arBuffMaterialMark;
 
 public:
-	// Áö¼Ó½Ã°£ °¨¼Ò¿¡ ¾²´Â CCÄ«¿îÆ® µğ¹öÇÁ¸¦ °­Á¦·Î ÇØÁ¦ÇÒ°æ¿ì ÇÊ¿äÇÏ¸é 0À¸·Î ¼³Á¤µû·Î ÇØÁà¾ßÇÔ
+	// ç˜¤åŠ çŸ«åŸƒ çš‘å®¶ä¿Š é™ç»° CCå¢¨æ¬¾é£˜ å¼æ»šæ©‡ç”« ç¢åŠ›è‚º ç§¦åŠ›ä¸”ç‰ˆå¿« é˜å¤¸çªæ 0æ è‚º æ±²æ²¥è¶è‚º ç§¦æ‹å…·çªƒ
 	int32 CrowdControlCount;
 };

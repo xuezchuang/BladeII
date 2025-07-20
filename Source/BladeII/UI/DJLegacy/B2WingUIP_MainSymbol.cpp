@@ -30,12 +30,12 @@ void UB2WingUIP_MainSymbol::CacheAssets()
 	PropOptionIcons.Empty();
 	ExtraActivatedImages.Empty();
 	for (int32 POPI = 1; POPI <= MAX_WING_PROP_OPTION_NUM; ++POPI)
-	{// ¼ø¼­´ë·Î Ã£¾Æ¼­ ³Ö´Â´Ù.
+	{// é‰´è¾‘æŽªè‚º èŒ«é…’è¾‘ æŒç»°ä¿ƒ.
 		const FString& ThisPartName = FString::Printf(TEXT("%s_%d"), *UIPPropOptionPrefix, POPI);
 		UB2WingUIP_PropOptionIcon* ThisFoundElem = GetSlot<UB2WingUIP_PropOptionIcon>(FName(*ThisPartName));
 		if (ThisFoundElem)
 		{
-			ThisFoundElem->SetUsageType(EWingPropOptionUIPUsage::WPOUU_WingPageMain); // ÆÄÆ®·Î »« ¸¸Å­ ÀÌ°Ç º°µµ·Î ¼¼ÆÃ °¡´ÉÇÏµµ·Ï ÇØ¾ß..
+			ThisFoundElem->SetUsageType(EWingPropOptionUIPUsage::WPOUU_WingPageMain); // é¢‡é£˜è‚º çŒ¾ çˆ¶æ€’ æžæ‰’ å–Šæ¡£è‚º æŠ€æ³¼ å•Šç“·çªæ¡£åºŸ ç§¦å…·..
 			PropOptionIcons.Add(ThisFoundElem);
 		}
 
@@ -61,7 +61,7 @@ void UB2WingUIP_MainSymbol::StartFromLobby(class UB2UIManager_Lobby* InUIManager
 	UpdateStaticWidgets();
 	UpdateByCurrentWingData();
 
-	PlayOpeningAnim(); // ÇÃ·¹ÀÌ Á¶°ÇÀÌ Ãß°¡µÉ ¼ö ÀÖÀ½..
+	PlayOpeningAnim(); // æ•²é¥­æž ç‚¼æ‰’æž çœ å•Šçžª è ä¹æ¾œ..
 }
 
 void UB2WingUIP_MainSymbol::DestroySelf()
@@ -85,9 +85,9 @@ void UB2WingUIP_MainSymbol::UpdateByCurrentWingData()
 {
 	EPCClass SelectedPCClass = CachedLobbyGM ? CachedLobbyGM->GetHeroMgmtModePCClass() : EPCClass::EPC_End;
 	FB2Wing CurrentWingData;
-	// ¿©±â¼­ ½ÇÁ¦·Î ¾î¶² ¿É¼ÇÀ» »©¿ÃÁö´Â ´Þ¶óÁú ¼ö ÀÖÀ½. °³¼±ÇØ¾ß ÇÔ.
+	// å’¯æ‰è¾‘ è§’åŠ›è‚º ç»¢æ« å¯è®°é˜‘ å“—æ£µç˜¤ç»° å´”æ‰¼é¾™ è ä¹æ¾œ. ä¿ºæ€¥ç§¦å…· çªƒ.
 	const bool bGotValidWingData = BladeIIGameImpl::GetLocalCharacterData().GetCharacterWing(SelectedPCClass, CurrentWingData);
-	UB2ItemMiscInfo* ItemMiscInfo = StaticFindItemMiscInfo(); // ¿©±â¼­ ¾²´Â °Ô Á» ÀÖÀ½.
+	UB2ItemMiscInfo* ItemMiscInfo = StaticFindItemMiscInfo(); // å’¯æ‰è¾‘ é™ç»° éœ¸ ç²± ä¹æ¾œ.
 	UB2WingInfo* WingInfo = StaticFindWingInfo();
 
 	if (bGotValidWingData)
@@ -104,13 +104,13 @@ void UB2WingUIP_MainSymbol::UpdateByCurrentWingData()
 
 		if (UIP_EvolveGradeStar.IsValid())
 		{
-			UIP_EvolveGradeStar->SetVisibility(ESlateVisibility::HitTestInvisible); // ³¯°³°¡ ¾ø´Â »óÅÂ¿¡¼­ ¼û°Ü³ù´Ù°¡ °»½ÅÀÌ µÇ´Â °É ¼öµµ ÀÖÀ¸´Ï ÄÑ ÁÜ.
+			UIP_EvolveGradeStar->SetVisibility(ESlateVisibility::HitTestInvisible); // æœä¿ºå•Š ç»ç»° æƒ‘æ€•ä¿Šè¾‘ è§è´¥èº‡ä¿ƒå•Š ç›Žè„šæž ç™»ç»° å§ èæ¡£ ä¹æ èª éš¾ æ·‹.
 			UIP_EvolveGradeStar->SetCurrentGrade(CurrentWingData.EvolutionGrade);
 		}
 
 		for (int32 POPI = 0; POPI < PropOptionIcons.Num(); ++POPI)
-		{ // ÀÎµ¦½º·Î ¸ÂÃç¼­ µ¥ÀÌÅÍ ¼¼ÆÃ. UIP ´Â ¾Õ ÀÎµ¦½º°¡ ÁÂÃøÀÏ °Çµ¥, ½ÇÁ¦ µ¥ÀÌÅÍµµ ¾ÕºÎºÐ element °¡ ¸ÕÀú open µÉ °ÍÀ¸·Î °£ÁÖ¸¦..
-			// ¹°·Ð ÀÌ°Å Á» ¾È¸Â´Â´Ù°í ÄÄÇ»ÅÍ Æø¹ßÇÏ°í ±×·± °Ç ¾Æ´Ï°í °Á Á» ¾ß¸®²Ù¸®ÇØÁö´Â Á¤µµ
+		{ // ç‰¢éƒ¸èƒ¶è‚º å˜Žè‹—è¾‘ å•æžç£ æŠ€æ³¼. UIP ç»° èŠ ç‰¢éƒ¸èƒ¶å•Š è°…èžŸè€ æ‰’å•, è§’åŠ› å•æžç£æ¡£ èŠä½•ç›’ element å•Š åˆšåŽ† open çžª å·´æ è‚º åŸƒæž—ç”«..
+			// æ‹±æ²¸ æžèŠ­ ç²± æ•‘å˜Žç»°ä¿ƒç»Š å“ªè…”ç£ æ°”æƒ¯çªç»Š å¼Šç¹ æ‰’ é…’èªç»Š å‚² ç²± å…·åºœæ“åºœç§¦ç˜¤ç»° æ²¥æ¡£
 			UB2WingUIP_PropOptionIcon* ThisPart = PropOptionIcons[POPI];
 			const FWingPropOption* ThisOptionPtr = CurrentWingData.GetPropOptionPtr(POPI);
 			if (ThisPart && ThisOptionPtr)
@@ -119,7 +119,7 @@ void UB2WingUIP_MainSymbol::UpdateByCurrentWingData()
 				ThisPart->SetWingPropExtraInfo(SelectedPCClass, POPI);
 			}
 		}
-		// PropOptionIcons ¶û ¸¶Âù°¡Áö ¼ø¼­·Î.
+		// PropOptionIcons å°” ä»˜è›®å•Šç˜¤ é‰´è¾‘è‚º.
 		for (int32 POPI = 0; POPI < ExtraActivatedImages.Num(); ++POPI)
 		{ 
 			UImage* ThisExtraImage = ExtraActivatedImages[POPI];
@@ -134,7 +134,7 @@ void UB2WingUIP_MainSymbol::UpdateByCurrentWingData()
 		{
 			TB_WingTitle->SetText(GetLOCTextOfWingName(SelectedPCClass, CurrentWingData.EvolutionGrade));
 			if (ItemMiscInfo)
-			{ // ÁøÈ­µî±Þ¿¡ µû¸¥ ÅØ½ºÆ® »ö»óÀº ¾ÆÀÌÅÛ º° µî±Þ°ú ¸¶Âù°¡Áö·Î ÇÔ.
+			{ // æŸ³æ‹³æ®¿éž­ä¿Š è¶å¼— å’†èƒ¶é£˜ ç¥¸æƒ‘ç¯® é…’æžè¢ å–Š æ®¿éž­è‹ž ä»˜è›®å•Šç˜¤è‚º çªƒ.
 				TB_WingTitle->SetColorAndOpacity(ItemMiscInfo->GetItemNameTextColor(CurrentWingData.EvolutionGrade));
 			}
 		}
@@ -143,7 +143,7 @@ void UB2WingUIP_MainSymbol::UpdateByCurrentWingData()
 	}
 	else
 	{
-		// ¾ÆÁ÷ ³¯°³°¡ ¾ø´Â »óÈ²ÀÌ¶ó Ä¡°í ÀÌ°ÍÀú°Í ¼û±â°Å³ª ´õ¹Ì Á¤º¸¸¦ Ç¥½ÃÇÏ°Å³ª.
+		// é…’æµ æœä¿ºå•Š ç»ç»° æƒ‘ç‚”æžæ‰¼ æ‘¹ç»Š æžå·´åŽ†å·´ è§æ‰èŠ­å”± æ­¹å›º æ²¥ç„Šç”« é’ŽçŸ«çªèŠ­å”±.
 		if (IMG_BigFatIcon.IsValid()){
 			IMG_BigFatIcon->SetVisibility(ESlateVisibility::Hidden);
 		}
@@ -156,7 +156,7 @@ void UB2WingUIP_MainSymbol::UpdateByCurrentWingData()
 		FWingPropOption DummyLockedOptionInfo;
 		DummyLockedOptionInfo.bIsOpen = false;
 		for (int32 POPI = 0; POPI < PropOptionIcons.Num(); ++POPI)
-		{ // ¼û±â´Â °Íº¸´Ù Àá±ä »óÅÂ·Î º¸¿©ÁÖÀÚ..
+		{ // è§æ‰ç»° å·´ç„Šä¿ƒ æ³ªå˜ æƒ‘æ€•è‚º ç„Šå’¯æž—ç£Š..
 			UB2WingUIP_PropOptionIcon* ThisPart = PropOptionIcons[POPI];
 			if (ThisPart){
 				ThisPart->SetMyOptionInfo(DummyLockedOptionInfo);
@@ -168,7 +168,7 @@ void UB2WingUIP_MainSymbol::UpdateByCurrentWingData()
 
 void UB2WingUIP_MainSymbol::SetExtraDisableButtons(bool bInDisable)
 {
-	// °³º° ¹öÆ° (°á±¹ ¼Ó¼º ¿É¼Ç ¾ÆÀÌÄÜ) ´ÜÀ§·Î ²ô°í ÄÓ ¼öµµ ÀÖÁö¸¸ ÀÏ´ÜÀº ´Ü¼øÇÏ°Ô °¡ÀÚ..
+	// ä¿ºå–Š æ»šç“¢ (æ¬æƒ« åŠ å·± å¯è®° é…’æžèƒ½) çªœå›°è‚º æŽºç»Š æŒ  èæ¡£ ä¹ç˜¤çˆ¶ è€çªœç¯® çªœé‰´çªéœ¸ å•Šç£Š..
 	this->SetVisibility(bInDisable ? ESlateVisibility::HitTestInvisible : ESlateVisibility::SelfHitTestInvisible);
 }
 

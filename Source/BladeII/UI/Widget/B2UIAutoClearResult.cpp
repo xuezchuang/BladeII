@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIAutoClearResult.h"
 #include "B2UIPAutoClearResultCharacter.h"
@@ -85,7 +85,7 @@ void UB2UIAutoClearResult::SetInfo(const FB2SweepStageInfo& InSweepStageinfo)
 	//	}
 	//}
 
-	//// ÃÖÁ¾ Total Gold (Àåºñ ÆÇ¸Å Gold ¹ÌÆ÷ÇÔ)
+	//// å¼¥è¾† Total Gold (å˜åš é­„æ¦‚ Gold å›ºå™¨çªƒ)
 	//int32 TotalGold = GET_TUPLE_DATA(FB2ResponseSweepStage::total_added_gold_index, InSweepStageinfo);
 	//int32 ServerRepeatCount = GET_TUPLE_DATA(FB2ResponseSweepStage::repeat_count_index, InSweepStageinfo);
 	//AddSlot(Items, ServerRepeatCount, TotalGold);
@@ -175,12 +175,12 @@ void UB2UIAutoClearResult::OnClickBTNOneClear()
 
 void UB2UIAutoClearResult::OnClickBTNRepeatAutoClear()
 {
-	if (IsRepeat == true) // ¹İº¹³¡
+	if (IsRepeat == true) // é¦†æ±—åœº
 	{
 		OpenRepeatEndPopup();
 		SetRepeat(false);
 	}
-	else // ¹İº¹½ÃÀÛ
+	else // é¦†æ±—çŸ«ç´¯
 	{
 		ResetInfo();
 		SetRepeat(true);
@@ -243,7 +243,7 @@ void UB2UIAutoClearResult::SubscribeEvents()
 	}
 	));
 
-	//LevelupFinishDelegate °è¼Ó Áö¿ö¼­ »ç¿ëÇÏ±â Èûµë..
+	//LevelupFinishDelegate æ‹ŒåŠ  ç˜¤å†µè¾‘ è¤ä¾©çªæ‰ å¡æƒ¦..
 	Issues.Add(OnResetStartingLevelInfoClass<>::GetInstance().Subscribe2(
 		[Capture]()
 	{
@@ -273,7 +273,7 @@ void UB2UIAutoClearResult::UnsubscribeEvents()
 void UB2UIAutoClearResult::SetRepeat(bool InValue)
 {
 	IsRepeat = InValue;
-	if (InValue)//ÀÚµ¿ ¼ÒÅÁ ½ÃÀÛ
+	if (InValue)//ç£Šæ‚¼ å®¶å¸• çŸ«ç´¯
 	{
 		IsRepeat = true;
 		RequestSweepStagePacket();
@@ -314,7 +314,7 @@ void UB2UIAutoClearResult::SetRepeat(bool InValue)
 			TB_RepeatAutoClear->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("General_AutoClear_Ongoing2")));
 		}
 	}
-	else//ÀÚµ¿ ¼ÒÅÁ ³¡
+	else//ç£Šæ‚¼ å®¶å¸• åœº
 	{
 		if (BTN_OK.IsValid())
 		{
@@ -384,10 +384,10 @@ void UB2UIAutoClearResult::SetCharacterInfo(const TArray<b2network::B2CharacterS
 
 void UB2UIAutoClearResult::GetResultItemInfo(OUT TArray<FB2Item>& ResultItems, const FB2SweepStageInfo& InSweepStageinfo)
 {
-	//// º¸»ó ¾ÆÀÌÅÛ.. ±âº» ¾ÆÀÌÅÛ ¸ñ·ÏÀÌ¶û.. º¸»ó°ñµå(µå¶ø°ñµå ÀÌ¿ÜÀÇ)µµ ÀÖÀ¸¸é º¸»ó¾ÆÀÌÅÛ ÇüÅÂ·Î Ãß°¡ÇÑ´Ù.
+	//// ç„Šæƒ‘ é…’æè¢.. æ‰å¤¯ é…’æè¢ æ ¼åºŸæå°”.. ç„Šæƒ‘æ¦œé›(é›è€Œæ¦œé› æå¯‡ç‹¼)æ¡£ ä¹æ æ ç„Šæƒ‘é…’æè¢ å±ˆæ€•è‚º çœ å•ŠèŒ„ä¿ƒ.
 	//GetB2ItemArray(FB2ResponseSweepStage::items_index, InSweepStageinfo);
 
-	//// º¸½ºÁ¶°¢ º¸»ó ¾ÆÀÌÅÛ
+	//// ç„Šèƒ¶ç‚¼é˜¿ ç„Šæƒ‘ é…’æè¢
 	//const TArray<b2network::B2DropDataPtr> FixedItemInfos = GET_TUPLE_DATA(FB2ResponseSweepStage::fixed_items_index, InSweepStageinfo);
 	//for (auto FixedItemInfo : FixedItemInfos)
 	//{
@@ -398,7 +398,7 @@ void UB2UIAutoClearResult::GetResultItemInfo(OUT TArray<FB2Item>& ResultItems, c
 	//	B2ItemArray.Add(BossItem);
 	//}
 
-	//// ¿¡Å×¸£ º¸»ó ¾ÆÀÌÅÛ
+	//// ä¿ŠæŠ›ç¦ ç„Šæƒ‘ é…’æè¢
 	//const TArray<b2network::B2AetherServerInfoPtr> EtherInfos = GET_TUPLE_DATA(FB2ResponseSweepStage::aethers_index, InSweepStageinfo);
 
 	//if (EtherInfos.Num() > 0)
@@ -412,7 +412,7 @@ void UB2UIAutoClearResult::GetResultItemInfo(OUT TArray<FB2Item>& ResultItems, c
 	//	B2ItemArray.Add(ItemEther);
 	//}
 
-	//// Àç·á º¸»ó ¾ÆÀÌÅÛ
+	//// çŠä¸° ç„Šæƒ‘ é…’æè¢
 	//const TArray<b2network::B2DropDataPtr> MaterialItemInfos = GET_TUPLE_DATA(FB2ResponseSweepStage::material_items_index, InSweepStageinfo);
 	//for (const b2network::B2DropDataPtr& Elem : MaterialItemInfos)
 	//{
@@ -425,9 +425,9 @@ void UB2UIAutoClearResult::GetResultItemInfo(OUT TArray<FB2Item>& ResultItems, c
 	//}
 
 	///* Gold */
-	//// ½ºÅ×ÀÌÁö Å¬¸®¾î ÈÄ º¸»óÀ¸·Î ÁÙ¼ö ÀÖ´Â Reward Gold
+	//// èƒ¶æŠ›æç˜¤ åŠªåºœç»¢ é¥¶ ç„Šæƒ‘æ è‚º ä¸´è ä¹ç»° Reward Gold
 	//TArray<int32> StageRewardGolds = GET_TUPLE_DATA(FB2ResponseSweepStage::reward_golds_index, InSweepStageinfo);
-	//int32 GoldBuffRate = GET_TUPLE_DATA(FB2ResponseSweepStage::gold_buff_rate_index, InSweepStageinfo);// ÇÖÅ¸ÀÓ °ñµå ¹öÇÁ Áõ°¡À²(ÆÛ¼¾Æ®)
+	//int32 GoldBuffRate = GET_TUPLE_DATA(FB2ResponseSweepStage::gold_buff_rate_index, InSweepStageinfo);// ä¾µé¸¥çƒ™ æ¦œé› æ»šæ©‡ åˆ˜å•Šå•¦(æ¬ºå­£é£˜)
 	//int32 GoldItemEquipRate = GET_TUPLE_DATA(FB2ResponseSweepStage::equip_item_gold_rate_index, InSweepStageinfo);
 	//int32 GoldItemSetRate = GET_TUPLE_DATA(FB2ResponseSweepStage::item_set_gold_rate_index, InSweepStageinfo);
 	//int32 TotalGoldRate = GoldBuffRate + GoldItemEquipRate + GoldItemSetRate;
@@ -442,12 +442,12 @@ void UB2UIAutoClearResult::GetResultItemInfo(OUT TArray<FB2Item>& ResultItems, c
 	//		RewardGoldItem.ItemClass = EItemClass::EIC_Gold;
 	//		RewardGoldItem.InventoryType = EItemInvenType::EIIVT_Consumables;
 	//		RewardGoldItem.ConsumingAmount = (int32)GoldSum;
-	//		RewardGoldItem.SetPrimaryPoint((int32)GoldSum); // ¿¹Àü¿¡ PrimaryPoint ·Î ¾´ °Ô ÀÖ¾î¼­..
+	//		RewardGoldItem.SetPrimaryPoint((int32)GoldSum); // æŠ—å‚ˆä¿Š PrimaryPoint è‚º æ•¬ éœ¸ ä¹ç»¢è¾‘..
 	//		B2ItemArray.Add(RewardGoldItem);
 	//	}
 	//}
 
-	//// º¸»ó ¾ÆÀÌÅÛ ¸®½ºÆ®
+	//// ç„Šæƒ‘ é…’æè¢ åºœèƒ¶é£˜
 	//B2ItemArray.Sort([](const FB2Item& lhs, const FB2Item& rhs)->bool
 	//{
 	//	if (lhs.StarGrade == rhs.StarGrade)

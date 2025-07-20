@@ -1,4 +1,4 @@
-#include "B2LobbySkeletalMeshActorBase.h"
+ï»¿#include "B2LobbySkeletalMeshActorBase.h"
 //#include "BladeII.h"
 #include "Animation/AnimInstance.h"
 
@@ -6,9 +6,9 @@
 
 /************************************************************************/
 /* AB2UnitedLobbySKMeshActorBase
- AB2LobbySkeletalMeshActorBase ÀÌÈÄ¿¡ ¸¸µé¾îÁ³À½.
- ÀÌÈÄ¿¡ Ãß°¡µÈ ´Ù¸¥ Å¬·¡½º¸¦ °°ÀÌ ¹­±â À§ÇÑ ´õ¹Ì°İÀÇ ºÎ¸ğ Å¬·¡½º
- ¹º°¡ ±â´ÉÀÌ µé¾î°¥ ¼öµµ ÀÖ°í..
+ AB2LobbySkeletalMeshActorBase æé¥¶ä¿Š çˆ¶ç”¸ç»¢è„¸æ¾œ.
+ æé¥¶ä¿Š çœ å•Šç­‰ ä¿ƒå¼— åŠªè´°èƒ¶ç”« éæ å¼“æ‰ å›°èŒ„ æ­¹å›ºæ‹œç‹¼ ä½•è‘› åŠªè´°èƒ¶
+ è´­å•Š æ‰ç“·æ ç”¸ç»¢å“ èæ¡£ ä¹ç»Š..
  */
 /************************************************************************/
 
@@ -22,8 +22,8 @@ const float LookUpTime = 1.2f;
 
 /************************************************************************/
 /* AB2LobbySkeletalMeshActorBase
- Ã³À½ ¸¸µé¾úÀ» ¶© ÀÌ¸§ ±×´ë·Î Lobby ¿¡¼­ÀÇ SkeletalMeshActor Base ¿´°ÚÁö¸¸  
- ÀÌÁ¦´Â ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ¸¦ À§ÇÑ º£ÀÌ½º°¡ µÊ.
+ è´¸æ¾œ çˆ¶ç”¸èŒé˜‘ è®¢ ææŠš å¼Šæªè‚º Lobby ä¿Šè¾‘ç‹¼ SkeletalMeshActor Base çœ‹æ‘†ç˜¤çˆ¶  
+ æåŠ›ç»° æ•²é¥­æç»¢ æŸè…ç£ç”« å›°èŒ„ æµ·æèƒ¶å•Š å‡³.
 */
 /************************************************************************/
 
@@ -73,7 +73,7 @@ void AB2LobbySkeletalMeshActorBase::SetActorHiddenInGame(bool bNewHidden)
 {
 	Super::SetActorHiddenInGame(bNewHidden);
 	
-	if (IsHidden() == bNewHidden) // °°Àº Á¶°ÇÀ¸·Î ¿©·¯¹ø ÀÌ°Ô ºÒ¸± ¶§°¡ ÀÖ¾î¼­ ¾Æ·¡ Ãß°¡ ÄÚµåµéÀº È®½ÇÈ÷ º¯°æÀÌ µÇ¾úÀ» ¶§¸¸ ½ÇÇàµÇµµ·Ï
+	if (IsHidden() == bNewHidden) // éç¯® ç‚¼æ‰’æ è‚º å’¯çŸ¾é”… æéœ¸ é˜‚å‰¯ é”­å•Š ä¹ç»¢è¾‘ é…’è´° çœ å•Š å†…é›ç”¸ç¯® çŠ¬è§’æ´’ å‡½ç‰ˆæ ç™»èŒé˜‘ é”­çˆ¶ è§’é’ç™»æ¡£åºŸ
 		return;
 
 	auto* Mesh = GetSkeletalMeshComponent();
@@ -87,7 +87,7 @@ void AB2LobbySkeletalMeshActorBase::SetActorHiddenInGame(bool bNewHidden)
 			Mesh->SetAnimInstanceClass(AnimClass);
 		}
 
-		// Æ¯È÷ Hidden ÀÌÈÄ¿¡ ´Ù½Ã º¸ÀÌµµ·Ï ÇßÀ» ¶§ Particle ºÙÀÎ °ÍµéÀÌ ¾Èº¸ÀÌ´Â °æ¿ì°¡ ÀÖ¾î¼­.. ÀÌ·¸°Ô ÇØ ÁÖ´Ï Àß ³ª¿È.
+		// æ¼‚æ´’ Hidden æé¥¶ä¿Š ä¿ƒçŸ« ç„Šææ¡£åºŸ æ²é˜‘ é”­ Particle å˜¿ç‰¢ å·´ç”¸æ æ•‘ç„Šæç»° ç‰ˆå¿«å•Š ä¹ç»¢è¾‘.. æçŠ¯éœ¸ ç§¦ æ—èª è‚‹ å”±å’³.
 		EnsureActivateStaticallyAttachedPSCs(this);
 	}
 	else
@@ -189,11 +189,11 @@ void AB2LobbySkeletalMeshActorBase::SetPauseLookAt(float PauseTime)
 
 FVector AB2LobbySkeletalMeshActorBase::GetLobbyAnimAdjustOffset()
 {
-	//Lobby Anim Æ¯º° º¸Á¤
-	//Lobby animationÀº ÀÏ¹İ animation°úÀÇ rootÀ§Ä¡°¡ ´Ù¸¥µ¥,
-	//Lobby animationÀº Bip001-Pelvis°¡ rootÀÌ°í
-	//ÀÏ¹İ animationÀº RootBoneÀÌ rootÀÓ.
-	//±× Â÷ÀÌÀÎÁö´Â ¸ô¶óµµ GetBoneLocationÀÇ À§Ä¡°¡ ½ÇÁ¦ ·»´õ¸µµÇ´Â À§Ä¡¶û Â÷ÀÌ°¡ ÀÖÀ½.
+	//Lobby Anim æ¼‚å–Š ç„Šæ²¥
+	//Lobby animationç¯® è€é¦† animationè‹ç‹¼ rootå›°æ‘¹å•Š ä¿ƒå¼—å•,
+	//Lobby animationç¯® Bip001-Pelviså•Š rootæç»Š
+	//è€é¦† animationç¯® RootBoneæ rootçƒ™.
+	//å¼Š ç’æç‰¢ç˜¤ç»° éš”æ‰¼æ¡£ GetBoneLocationç‹¼ å›°æ‘¹å•Š è§’åŠ› åŠæ­¹å‚…ç™»ç»° å›°æ‘¹å°” ç’æå•Š ä¹æ¾œ.
 
 	return (GetSkeletalMeshComponent()->GetBoneLocation(TEXT("Bip001-Pelvis")) - GetSkeletalMeshComponent()->GetBoneLocation(TEXT("RootBone")));
 }
@@ -242,8 +242,8 @@ void AB2LobbySkeletalMeshActorBase::UpdateLookAtParameters()
 	////ActorToCamera
 	//ActorToCameraRotationActorSpace = GetActorRotation().UnrotateVector(LookAtTargetLocation - (GetSkeletalMeshComponent()->GetBoneLocation(TEXT("Bip001-head")) - WorldToBoneOffset)).Rotation();
 	//
-	////[@AKI, 171118] ¾Ï»ìÀÚ¿¡¼­ Floating ¿¡·¯°¡ ³ª¼­ ±×³É ¼Ò¼öÁ¡ Floor(¹ö¸²) ÇßÀ½.
-	//// ¸Å Æ½¸¶´Ù Ä³½ºÆÃ ÇØ¼­ °ÆÁ¤ÀÌ µÇ±â´Â ÇÏÁö¸¸ ¼Óµµº¸´Ù VisualizationÀÌ¶ó ÀÌ·¸°Ô ÇÔ
+	////[@AKI, 171118] é æ··ç£Šä¿Šè¾‘ Floating ä¿ŠçŸ¾å•Š å”±è¾‘ å¼Šæˆ å®¶èç—¢ Floor(æ»šè¦†) æ²æ¾œ.
+	//// æ¦‚ å¹³ä»˜ä¿ƒ æŸèƒ¶æ³¼ ç§¦è¾‘ æŒæ²¥æ ç™»æ‰ç»° çªç˜¤çˆ¶ åŠ æ¡£ç„Šä¿ƒ Visualizationææ‰¼ æçŠ¯éœ¸ çªƒ
 	//ActorToCameraRotationActorSpace.Pitch = static_cast<float>(FPlatformMath::FloorToInt(ActorToCameraRotationActorSpace.Pitch));
 	//ActorToCameraRotationActorSpace.Roll = static_cast<float>(FPlatformMath::FloorToInt(ActorToCameraRotationActorSpace.Roll));
 	//ActorToCameraRotationActorSpace.Yaw = static_cast<float>(FPlatformMath::FloorToInt(ActorToCameraRotationActorSpace.Yaw));

@@ -1,4 +1,4 @@
-#include "B2UIBattleMain.h"
+ï»¿#include "B2UIBattleMain.h"
 #include "B2UIBattleSkill.h"
 #include "B2UIBattleCombo.h"
 #include "B2UIBattleVignette.h"
@@ -74,16 +74,16 @@ void UB2UIBattleMain::CacheAssets()
 {
 	//////////////////////////////////////////////////////////////////
 	// 
-	// ¹İ°İ ´øÀü / ÀÏ¹İ ÀüÅõ UI °ø¿ë Widget
+	// é¦†æ‹œ å¸¦å‚ˆ / è€é¦† å‚ˆæ§ UI å‚ä¾© Widget
 	// 
 
-	//¹öÆ°µé
+	//æ»šç“¢ç”¸
 	ADD_WIDGET_SLOT(CommonWidgets, UButton, BTN_Tag);
 	ADD_WIDGET_SLOT(CommonWidgets, UButton, BTN_Pause);
 	ADD_WIDGET_SLOT(CommonWidgets, UButton, BTN_Pause2);
 	ADD_WIDGET_SLOT(CommonWidgets, UButton, BTN_Attack);	
 		
-	//¸ŞÀÎÄ³¸¯
+	//çš‹ç‰¢æŸè…
 	ADD_WIDGET_SLOT(CommonWidgets, UImage, IMG_PortraitMain);
 	ADD_WIDGET_SLOT(CommonWidgets, UImage, CRTInfoBGImage_01);
 	ADD_WIDGET_SLOT(CommonWidgets, UTextBlock, TB_MainCharLevel);
@@ -92,12 +92,12 @@ void UB2UIBattleMain::CacheAssets()
 	ADD_WIDGET_SLOT(CommonWidgets, UProgressBar, PB_MainCharHP);
 	ADD_WIDGET_SLOT(CommonWidgets, UProgressBar, PB_MainCharShield);
 
-	//¼­ºêÄ³¸¯
+	//è¾‘å®æŸè…
 	ADD_WIDGET_SLOT(CommonWidgets, UImage, IMG_PortraitSub);
 	ADD_WIDGET_SLOT(CommonWidgets, UImage, IMG_PortraitSubDisable);
 	ADD_WIDGET_SLOT(CommonWidgets, UProgressBar, PB_SubCharHP);
 
-	//ÄğÅ¸ÀÓ
+	//é…¿é¸¥çƒ™
 	ADD_WIDGET_SLOT(CommonWidgets, UImage, IMG_TagCooltime);
 	ADD_WIDGET_SLOT(CommonWidgets, UImage, IMG_TagCooltimeBottom);
 	ADD_WIDGET_SLOT(CommonWidgets, UTextBlock, TB_TagCooltimeNumBottom);
@@ -109,7 +109,7 @@ void UB2UIBattleMain::CacheAssets()
 
 	ADD_WIDGET_SLOT(CommonWidgets, UImage, IMG_FX_TagSuggest);
 	if (IMG_FX_TagSuggest.IsValid())
-	{ // ¼û°Ü³õ°í ½ÃÀÛ.
+	{ // è§è´¥åˆç»Š çŸ«ç´¯.
 		IMG_FX_TagSuggest->SetVisibility(ESlateVisibility::Hidden);
 	}
 	ADD_WIDGET_SLOT(CommonWidgets, UPanelWidget, CP_TagSuggest_TagCharChallenge);
@@ -139,13 +139,13 @@ void UB2UIBattleMain::CacheAssets()
 
 	ADD_WIDGET_SLOT(NormalBattleWidgets, UB2UIPAutoBattleIcon, UIP_AutoBattleIcon);
 
-	//¹èÆ²ÄŞº¸
+	//ç¡…æ’‡éœ“ç„Š
 	ADD_WIDGET_SLOT(CommonWidgets, UB2UIBattleCombo, UIP_BattleCombo);
 
-	//ºñ³ØÆ®
+	//åšæ± é£˜
 	ADD_WIDGET_SLOT(CommonWidgets, UB2UIBattleVignette, UIP_BattleVignette);
 	
-	//ÇÖÅ¸ÀÓ ¾ÆÀÌÄÜ
+	//ä¾µé¸¥çƒ™ é…’æèƒ½
 	ADD_WIDGET_SLOT(CommonWidgets, UB2UIHotTimeIcon, UIP_Hottime);
 	
 	ADD_WIDGET_SLOT(CommonWidgets, UPanelWidget, CP_Attack);
@@ -164,7 +164,7 @@ void UB2UIBattleMain::CacheAssets()
 	ADD_WIDGET_SLOT(CommonWidgets, UImage, IMG_QTEBG);
 	//////////////////////////////////////////////////////////////////
 	// 
-	// ÀÏ¹İ ÀüÅõ¿¡¸¸ ¾²ÀÌ´Â UI Widget
+	// è€é¦† å‚ˆæ§ä¿Šçˆ¶ é™æç»° UI Widget
 	// 
 	ADD_WIDGET_SLOT(NormalBattleWidgets, UButton, BTN_MountAttack);
 	ADD_WIDGET_SLOT(NormalBattleWidgets, UPanelWidget, CP_MountAttack);
@@ -203,7 +203,7 @@ void UB2UIBattleMain::CacheAssets()
 	ADD_WIDGET_SLOT(NormalBattleWidgets, UImage, IMG_EvadeSkillCooltime);
 	//////////////////////////////////////////////////////////////////
 	// 
-	// ¹İ°İ ´øÀü¿¡¸¸ ¾²ÀÌ´Â UI Widget
+	// é¦†æ‹œ å¸¦å‚ˆä¿Šçˆ¶ é™æç»° UI Widget
 	// 
 
 	ADD_WIDGET_SLOT(CounterAttackWidgets, UB2UIBattleSkill, UIP_CounterAttack_Skill);
@@ -218,7 +218,7 @@ void UB2UIBattleMain::CacheAssets()
 
 	//////////////////////////////////////////////////////////////////
 	// 
-	// Mount °ø°İ ¶§ ¼û°ÜÁ®¾ßÇÏ´Â À§Á¬µé.
+	// Mount å‚æ‹œ é”­ è§è´¥å»‰å…·çªç»° å›°è¿ç”¸.
 	// 
 
 	WidgetsToHideInMountAttackState.Add(TPairInitializer<TWeakObjectPtr<UObject>, ESlateVisibility>(IMG_SkillSetBG,	ESlateVisibility::SelfHitTestInvisible));	
@@ -243,7 +243,7 @@ void UB2UIBattleMain::CacheAssets()
 
 	GET_SLOT(UB2Button, BTN_Chat);
 	
-#if !UE_BUILD_SHIPPING // °³¹ß Å×½ºÆ®¿ë
+#if !UE_BUILD_SHIPPING // ä¿ºæƒ¯ æŠ›èƒ¶é£˜ä¾©
 	GET_SLOT(UPanelWidget, P_DevLODTest);
 	GET_SLOT(UB2Button, BTN_Dev_FxLOD_PC);
 	GET_SLOT(UB2Button, BTN_Dev_FxLOD_Mob);
@@ -414,7 +414,7 @@ void UB2UIBattleMain::UpdateStaticText()
 	{
 		UB2UIDocBattleStage* DocBS = UB2UIDocHelper::GetDocBattleStage();
 		const FServerStageID CurrentServerStageId = DocBS ? DocBS->GetServerStageId() : FServerStageID(1);
-		// º° 3°³ ¹Ş±â À§ÇÑ Á¶°Ç ÅØ½ºÆ®
+		// å–Š 3ä¿º ç½æ‰ å›°èŒ„ ç‚¼æ‰’ å’†èƒ¶é£˜
 		TB_ClearGradeCondition->SetText(GetStageClearGradeConditonText(CurrentServerStageId, STAGE_CLEAR_GRADE_STAR_3));
 	}
 }
@@ -440,7 +440,7 @@ void UB2UIBattleMain::BindDelegates()
 	BIND_PRESS_FUNC_TO_BTN(BTN_ShowClearGradeCondition, &UB2UIBattleMain::OnPressedShowClearGradeConditionBtn)
 	BIND_RELEASE_FUNC_TO_BTN(BTN_ShowClearGradeCondition, &UB2UIBattleMain::OnReleasedShowClearGradeConditionBtn)
 	if (BTN_ShowClearGradeCondition.IsValid())
-	{ // ¾êµéÀº ¹öÆ° ¸ñÀû»ó Hovered µµ ÇØ º¸ÀÚ..
+	{ // å¨Ÿç”¸ç¯® æ»šç“¢ æ ¼åˆ©æƒ‘ Hovered æ¡£ ç§¦ ç„Šç£Š..
 		BTN_ShowClearGradeCondition->OnHovered.RemoveDynamic(this, &UB2UIBattleMain::OnPressedShowClearGradeConditionBtn);
 		BTN_ShowClearGradeCondition->OnHovered.AddDynamic(this, &UB2UIBattleMain::OnPressedShowClearGradeConditionBtn);
 		BTN_ShowClearGradeCondition->OnUnhovered.RemoveDynamic(this, &UB2UIBattleMain::OnReleasedShowClearGradeConditionBtn);
@@ -471,7 +471,7 @@ void UB2UIBattleMain::BindDocAuto()
 {
 //	UnbindDoc();
 //
-//	//½ºÅ³
+//	//èƒ¶æ‡¦
 //	for (uint8 Cnt = 0; Cnt < MAX_SKILL_INPUT; Cnt++)
 //	{
 //		FString SkillAssetName = PrefixSkillAsset + FString::FromInt(Cnt);
@@ -480,7 +480,7 @@ void UB2UIBattleMain::BindDocAuto()
 //		{
 //			SkillAssets.Add(SkillAsset);
 //			SkillAsset->Init();
-//			SkillAsset->SetIndex(Cnt);	//SkillRTÂÊ¿¡¼­´Â 1º£ÀÌ½º·Î ÀÛ¾÷ÇÑ µí
+//			SkillAsset->SetIndex(Cnt);	//SkillRTç‡ä¿Šè¾‘ç»° 1æµ·æèƒ¶è‚º ç´¯è¯€èŒ„ æ·€
 //			SkillAsset->OnBattleSkillClicked.BindDynamic(this, &UB2UIBattleMain::OnPressedSkillBtn);
 //		}
 //	}
@@ -518,7 +518,7 @@ void UB2UIBattleMain::BindDocAuto()
 //	else
 //		UB2UIManager::GetInstance()->CloseUI(UIFName::BossStatus);
 //
-//	//½ÃÀÛ ÇÒ¶§, Main°ú SubÀÇ Å¬·¡½º¸¦ ¼¼ÆÃÇÏ°í CurPCClass³ª TagPCClassÀÇ °ªÀÌ ¹Ù²ğ¶§ µÎ°³¸¦ ½º¿ÒÇØÁØ´Ù.
+//	//çŸ«ç´¯ ä¸”é”­, Mainè‹ Subç‹¼ åŠªè´°èƒ¶ç”« æŠ€æ³¼çªç»Š CurPCClasså”± TagPCClassç‹¼ è”¼æ å®˜æ‹†é”­ æ»´ä¿ºç”« èƒ¶æ³ç§¦éœ–ä¿ƒ.
 //	BindDocMainChar(UB2UIDocHelper::GetDocHero(DocBattle->GetCurPCClass()));
 //	BindDocSubChar(UB2UIDocHelper::GetDocHero(DocBattle->GetTagPCClass()));
 //
@@ -557,7 +557,7 @@ void UB2UIBattleMain::BindDocAuto()
 //	{
 //		DocBS->OnStagePlayTimeChanged.AddUObject(this, &UB2UIBattleMain::OnChangedStagePlayTime);
 //
-//		//// StageBuff ´Â ½ºÅ×ÀÌÁö ÁøÇà µµÁß ¹Ù²îÁö ¾ÊÀ½. Ã³À½¿¡¸¸ »ı¼ºÇÏ¸é µÉ °Í.
+//		//// StageBuff ç»° èƒ¶æŠ›æç˜¤ æŸ³é’ æ¡£å å®˜å·®ç˜¤ è‡¼æ¾œ. è´¸æ¾œä¿Šçˆ¶ ç§¯å·±çªæ çª å·´.
 //		//const TArray<EStageBuffType> AllStageBuff = DocBS->GetSelectedStageBuffs();
 //		//for (EStageBuffType ThisStageBuff : AllStageBuff)
 //		//	CreateOrFindStageBuffIcon(ThisStageBuff);
@@ -604,13 +604,13 @@ void UB2UIBattleMain::BindDocAuto()
 //			
 //	}
 //
-//	// ºÎÈ°¹öÇÁ´Â »ı¼º¸¸ ÇØ µÒ. ÀÏ´Ü Ç¥½Ã ¾È µÉ °Í.
+//	// ä½•åŠæ»šæ©‡ç»° ç§¯å·±çˆ¶ ç§¦ ç‹„. è€çªœ é’çŸ« æ•‘ çª å·´.
 //	CreateOrUpdateResurrectBuffIcon(EResurrectBuffType::RBT_None);
 //
-//	// ÅÂ±× ÄğÅ¸ÀÓ ÃÊ±âÈ­
+//	// æ€•å¼Š é…¿é¸¥çƒ™ æª¬æ‰æ‹³
 //	SetTagCooltime(0);
 //
-//	//±æµå ¹öÇÁ µî·Ï
+//	//è¾¨é› æ»šæ©‡ æ®¿åºŸ
 //	UpdateGuildBuff();
 //	
 //	SetVisibilityTagWidget(true);
@@ -622,7 +622,7 @@ void UB2UIBattleMain::BindDocAuto()
 //	DocBattle->OnMaxCounterAttackPointChanged.AddUObject(this, &UB2UIBattleMain::OnChangedCounterAttackPoint);
 //	DocBattle->OnCounterAttackPointChanged.AddUObject(this, &UB2UIBattleMain::OnChangedCounterAttackPoint);
 //	
-//	// ÃßÈÄ¿¡ Ãß°¡µÉ °æ¿ì ÀÌ·¸°Ô ºĞ±âÇÏÁö¸»°í, »ó¼ÓÇØ¼­ ¸¸µì½Ã´Ù¿ä~ Á¶¸¸°£ ¾ø¾Ö¾ßÁö.. (Âü°í RaidBattle.h)
+//	// çœ é¥¶ä¿Š çœ å•Šçª ç‰ˆå¿« æçŠ¯éœ¸ ç›’æ‰çªç˜¤å¯Œç»Š, æƒ‘åŠ ç§¦è¾‘ çˆ¶å¥ çŸ«ä¿ƒå¤¸~ ç‚¼çˆ¶åŸƒ ç»å±€å…·ç˜¤.. (æ›¼ç»Š RaidBattle.h)
 //	if (CurrentGameModeType == EB2GameMode::CounterDungeon)
 //		SetWidgetForCounterAttackBattle();
 //	else
@@ -633,12 +633,12 @@ void UB2UIBattleMain::BindDocAuto()
 
 void UB2UIBattleMain::BindDocMainChar(UB2UIDocHero* InDocHero)
 {
-	// ·Îºñ¿¡¼­ÀÇ ¸ŞÀÎ Ä³¸¯ÅÍ ¼±ÅÃÀÌ ¾Æ´Ï¶ó ÇöÀç µîÀåÇÑ Ä³¸¯ÅÍ. °ÔÀÓ ½ÃÀÛ Ã³À½¿¡´Â ½ÇÁ¦ ¸ŞÀÎ Ä³¸¯ÅÍÀÓ.
+	// è‚ºåšä¿Šè¾‘ç‹¼ çš‹ç‰¢ æŸè…ç£ æ€¥ç¶æ é…’èªæ‰¼ æ³…çŠ æ®¿å˜èŒ„ æŸè…ç£. éœ¸çƒ™ çŸ«ç´¯ è´¸æ¾œä¿Šç»° è§’åŠ› çš‹ç‰¢ æŸè…ç£çƒ™.
 
 	MainHeroDoc = InDocHero;
 	if (!InDocHero) return;
 
-	//½ºÅ³ Ã³¸®. ±Ùµ¥ ÇöÀç 4°³ÀÇ ½ºÅ³¸¸ Ã³¸®µÇ°í ÀÖ°í "°ø°İ"°ú "¹æ¾î"¹öÆ°Àº ½ºÅ³·Î Ãë±ŞÇÏ°í ÀÖÁö ¾Ê´Âµ¥ ±×·¡µÇ µÇ·Á³ª -..-
+	//èƒ¶æ‡¦ è´¸åºœ. è¾Ÿå• æ³…çŠ 4ä¿ºç‹¼ èƒ¶æ‡¦çˆ¶ è´¸åºœç™»ç»Š ä¹ç»Š "å‚æ‹œ"è‹ "è§„ç»¢"æ»šç“¢ç¯® èƒ¶æ‡¦è‚º ç§’é­çªç»Š ä¹ç˜¤ è‡¼ç»°å• å¼Šè´°ç™» ç™»å¦¨å”± -..-
 	for (int SkillCnt = 0; SkillCnt < SkillAssets.Num(); ++SkillCnt)
 	{
 		UB2UIBattleSkill* SkillAsset = SkillAssets[SkillCnt];
@@ -658,25 +658,25 @@ void UB2UIBattleMain::BindDocMainChar(UB2UIDocHero* InDocHero)
 	FClientDataStore& ClientDataStore = BladeIIGameImpl::GetClientDataStore();
 	EPCClass pcClass = InDocHero->GetHeroClass();
 
-	//ÃÊ»óÈ­ Ã³¸®
+	//æª¬æƒ‘æ‹³ è´¸åºœ
 	SetPortraitMainHero(UB2UIDocHero::GetPlayerPortraitMaterial(this, pcClass));
 
 	SetNameMainChar(ClientDataStore.GetLocalCharClassOrNickName(pcClass));
 
-	//[@SameLine, 180612] explevelinfo doc, datastore -> datastore °³¼±
+	//[@SameLine, 180612] explevelinfo doc, datastore -> datastore ä¿ºæ€¥
 	//SetLevelMainChar(InDocHero->GetCurrentLevel());
 	SetLevelMainChar(ClientDataStore.GetLocalCharacterData().GetCharacterLevel(pcClass));
 }
 
 void UB2UIBattleMain::BindDocSubChar(UB2UIDocHero* InDocHero)
 {
-	// ·Îºñ¿¡¼­ÀÇ ¼­ºê Ä³¸¯ÅÍ ¼±ÅÃÀÌ ¾Æ´Ï¶ó ÇöÀç ´ë±âÁßÀÎ Ä³¸¯ÅÍ. °ÔÀÓ ½ÃÀÛ Ã³À½¿¡´Â ½ÇÁ¦ ¼­ºê Ä³¸¯ÅÍÀÓ.
+	// è‚ºåšä¿Šè¾‘ç‹¼ è¾‘å® æŸè…ç£ æ€¥ç¶æ é…’èªæ‰¼ æ³…çŠ æªæ‰åç‰¢ æŸè…ç£. éœ¸çƒ™ çŸ«ç´¯ è´¸æ¾œä¿Šç»° è§’åŠ› è¾‘å® æŸè…ç£çƒ™.
 	SubHeroDoc = InDocHero;
 
 	if (!InDocHero) 
 		return;
 
-	//ÃÊ»óÈ­ Ã³¸®.
+	//æª¬æƒ‘æ‹³ è´¸åºœ.
 	SetPortraitSubHero(UB2UIDocHero::GetPlayerPortraitMaterial(this, InDocHero->GetHeroClass()));
 }
 
@@ -783,7 +783,7 @@ void UB2UIBattleMain::TagCommon(EPCClass MainClass, EPCClass SubClass)
 	bool bIsTagAttack = (DocBattle ? DocBattle->GetbTagAttackPending() : false);
 
 	BeginTagAnim(MainClass, bIsTagAttack);
-	Tag_BP(MainClass, SubClass, bIsTagAttack); // B2UIBattleTagAnim ¿¡¼­ ÅÂ±× ¾Ö´Ï¸ŞÀÌ¼Ç °ü·ÃÇÑ ¸ğµç °É Ã³¸®ÇÏÁö´Â ¾Ê´Â´Ù.
+	Tag_BP(MainClass, SubClass, bIsTagAttack); // B2UIBattleTagAnim ä¿Šè¾‘ æ€•å¼Š å±€èªçš‹æè®° åŒ…è®¿èŒ„ è‘›ç”µ å§ è´¸åºœçªç˜¤ç»° è‡¼ç»°ä¿ƒ.
 
 	PlayTagDialogueSound(MainClass, SubClass);
 }
@@ -837,7 +837,7 @@ void UB2UIBattleMain::SetNameMainChar(const FText& InText)
 }
 void UB2UIBattleMain::SetLevelMainChar(int32 InValue)
 {
-	// ¿©±â °¡´ÉÇÑ Lv ÅØ½ºÆ®µµ ´Ù±¹¾î·Î ÇÏ´Â °Ô ÁÁ´Ù. ÇöÀç´Â ºí·çÇÁ¸°Æ®¿¡ ¹ÚÇô ÀÖÀ½
+	// å’¯æ‰ å•Šç“·èŒ„ Lv å’†èƒ¶é£˜æ¡£ ä¿ƒæƒ«ç»¢è‚º çªç»° éœ¸ äº®ä¿ƒ. æ³…çŠç»° å–‰é£æ©‡èµ´é£˜ä¿Š å† å›š ä¹æ¾œ
 	//FText::Format(BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("General_Stat_Level_Abbrev"))), FText::FromString(FString::FromInt(InValue))) :
 
 	if (TB_MainCharLevel.IsValid())
@@ -884,7 +884,7 @@ void UB2UIBattleMain::SetTagCooltime(float RemainingTagCooltime)
 	{
 		UB2UIDocBattle* DocBattle = Cast<UB2UIDocBattle>(GetDoc());
 		const float MaxCoolTime = DocBattle ? DocBattle->GetFinalTagCooltime() : 0.0f;
-		// ½ºÅ³ÄğÅ¸ÀÓÃ³·³ Ã¹ ¼Ò¼öÁ¡À» Ä«¿îÆ®ÇÏ´Â µ¿¾È¿¡´Â ¼Ò¼öÁ¡ Ã¹Â°ÀÚ¸®±îÁö Ç¥½ÃÇÏ´Âµ¥ ¿©±â´Â ÃÊ¹İ¿¡ ¾Ö´Ï¸ŞÀÌ¼ÇÀ¸·Î ÀÎÇØ ÄğÅ¸ÀÓ Ç¥½Ã ÀÚÃ¼°¡ ¾ÈµÇ¾î¼­ µüÈ÷ ´«¿¡´Â ¾È ¶é µí.. ±×·¡µµ ÅÂ±× ÄğÅ¸ÀÓ °¨¼Ò ¿É¼ÇÀÌ ÀÖÀ¸´Ï ±â´ÉÀº ³Ö¾îµĞ´Ù.
+		// èƒ¶æ‡¦é…¿é¸¥çƒ™è´¸çƒ¦ éœ‰ å®¶èç—¢é˜‘ å¢¨æ¬¾é£˜çªç»° æ‚¼æ•‘ä¿Šç»° å®¶èç—¢ éœ‰æ³ç£Šåºœé³–ç˜¤ é’çŸ«çªç»°å• å’¯æ‰ç»° æª¬é¦†ä¿Š å±€èªçš‹æè®°æ è‚º ç‰¢ç§¦ é…¿é¸¥çƒ™ é’çŸ« ç£Šçœ‰å•Š æ•‘ç™»ç»¢è¾‘ è¿­æ´’ ä¼ ä¿Šç»° æ•‘ å • æ·€.. å¼Šè´°æ¡£ æ€•å¼Š é…¿é¸¥çƒ™ çš‘å®¶ å¯è®°æ ä¹æ èª æ‰ç“·ç¯® æŒç»¢æ•Œä¿ƒ.
 		FText CoolTimeText = GetAutoFractionalFormattedText_FirstFracCountOnly(RemainingTagCooltime, MaxCoolTime, 1);
 		TB_TagCooltimeNumBottom->SetText(CoolTimeText);
 	};
@@ -916,7 +916,7 @@ void UB2UIBattleMain::UpdateAttackButtonStyleToPCClass(EPCClass InPCClass)
 	if (BTN_Attack.IsValid() && HUDInfo && HUDInfo->bOverrideAttackButtonStyle)
 	{
 		FButtonStyle BtnStyle = HUDInfo->AttackButtonStyle;
-		HUDInfo->ApplyAttackBtnMargin(BtnStyle, GetWorld()); // °ÔÀÓ¸ğµå¿¡ µû¶ó ´Ù¸¥ ¼¼ÆÃÀ» ÇÒ ¼ö ÀÖ´Ù.
+		HUDInfo->ApplyAttackBtnMargin(BtnStyle, GetWorld()); // éœ¸çƒ™è‘›é›ä¿Š è¶æ‰¼ ä¿ƒå¼— æŠ€æ³¼é˜‘ ä¸” è ä¹ä¿ƒ.
 		BTN_Attack->SetStyle(BtnStyle);
 	}
 }
@@ -1062,16 +1062,16 @@ void UB2UIBattleMain::SetGold(int32 InValue)
 
 void UB2UIBattleMain::UpdateStagePlayTimeInfoDisplay(int32 InCurrentTime)
 {
-	// ½ºÅ×ÀÌÁö Á¾·á ½Ã º¸°Ô µÉ Á¤º¸¿Í ´Ù¸¥ °æ¿ì¸¦ ÃÖ¼ÒÈ­ÇÏ±â À§ÇØ ÀÌ°Ç ¸Å Æ½ ¾÷µ¥ÀÌÆ®¸¦ ÇÏ´Â °Ô ÁÁÀ» ¼öµµ.. ¿©ÇÏ°£ ÃæºĞÈ÷ ÀÚÁÖ ¾÷µ¥ÀÌÆ® µÇ±ä ÇÒ °Å. ¾Æ¹«¸® ´Ê¾îµµ 1ÃÊ¿¡ ÇÑ¹ø.
+	// èƒ¶æŠ›æç˜¤ è¾†ä¸° çŸ« ç„Šéœ¸ çª æ²¥ç„Šå®¢ ä¿ƒå¼— ç‰ˆå¿«ç”« å¼¥å®¶æ‹³çªæ‰ å›°ç§¦ ææ‰’ æ¦‚ å¹³ è¯€å•æé£˜ç”« çªç»° éœ¸ äº®é˜‘ èæ¡£.. å’¯çªåŸƒ é¢ç›’æ´’ ç£Šæ— è¯€å•æé£˜ ç™»å˜ ä¸” èŠ­. é…’å…¬åºœ è¯ç»¢æ¡£ 1æª¬ä¿Š èŒ„é”….
 	auto& ClientDataStore = BladeIIGameImpl::GetClientDataStore();
 	auto& StageDataStore = BladeIIGameImpl::GetStageDataStore();
 
 	UB2UIDocBattleStage* DocBS = UB2UIDocHelper::GetDocBattleStage();
 	const FServerStageID CurrentServerStageId = DocBS ? DocBS->GetServerStageId() : FServerStageID(1);
 	const int32 ExpectedGrade = StageDataStore.GetStageExpectedClearStarGrade(CurrentServerStageId, InCurrentTime);
-	// ¸îÃÊ ÈÄÀÇ »óÈ²À» ¹Ì¸® ¿¹Ãø.
+	// å‰²æª¬ é¥¶ç‹¼ æƒ‘ç‚”é˜‘ å›ºåºœ æŠ—èŸ.
 	const int32 PreExpectedGrade = StageDataStore.GetStageExpectedClearStarGrade(CurrentServerStageId, InCurrentTime + StageClearGradePreDropAnimTime);
-	// ½Ã°£À¸·Î Grade¸¦ ÇÏ¶ô½ÃÅ°´Â °æ¿ì°¡ ÇÑ°¡Áö°¡ µÇ¸é¼­ 3¼º->2¼º Á¦ÇÑ½Ã°£Àº »ç¿ëµÇµ¥ 2¼º->1¼º º¯È­ Á¦ÇÑ½Ã°£Àº »ç¿ëµÇÁö ¾Ê´Â´Ù.
+	// çŸ«åŸƒæ è‚º Gradeç”« çªéçŸ«è™ç»° ç‰ˆå¿«å•Š èŒ„å•Šç˜¤å•Š ç™»æè¾‘ 3å·±->2å·± åŠ›èŒ„çŸ«åŸƒç¯® è¤ä¾©ç™»å• 2å·±->1å·± å‡½æ‹³ åŠ›èŒ„çŸ«åŸƒç¯® è¤ä¾©ç™»ç˜¤ è‡¼ç»°ä¿ƒ.
 	bool bThisTimePreExpectedGradeDifferent = (ExpectedGrade != PreExpectedGrade && PreExpectedGrade != STAGE_CLEAR_GRADE_STAR_1);
 	check(ExpectedGrade >= PreExpectedGrade);
 
@@ -1084,7 +1084,7 @@ void UB2UIBattleMain::UpdateStagePlayTimeInfoDisplay(int32 InCurrentTime)
 		else
 			TB_StagePlayingTime->SetText(FText::FromString(UB2UIManager::FormatSecondsAsTime(InCurrentTime, TEXT("mm:ss"))));
 	}
-	// Ã³À½¿£ ¾È ±×·¨´Âµ¥ »õ·Î ¹èÄ¡ÇÏ°í ÇÏ´Ùº¸´Ï ÀÇµµÇÑ ¼ıÀÚ¶û grade °¡ ¾î±ß³² ¤Ñ0¤Ñ
+	// è´¸æ¾œæµš æ•‘ å¼Šæ³•ç»°å• è´§è‚º ç¡…æ‘¹çªç»Š çªä¿ƒç„Šèª ç‹¼æ¡£èŒ„ ç®­ç£Šå°” grade å•Š ç»¢è¾¹å·¢ ã±0ã±
 	if (IMG_StageClearGradeStarTwinkle_01.IsValid())
 	{
 		IMG_StageClearGradeStarTwinkle_01->SetVisibility(ExpectedGrade >= STAGE_CLEAR_GRADE_STAR_3 ? ESlateVisibility::Visible : ESlateVisibility::Hidden);
@@ -1095,11 +1095,11 @@ void UB2UIBattleMain::UpdateStagePlayTimeInfoDisplay(int32 InCurrentTime)
 	}
 	if (IMG_StageClearGradeStarTwinkle_03.IsValid())
 	{
-		IMG_StageClearGradeStarTwinkle_03->SetVisibility(ExpectedGrade >= STAGE_CLEAR_GRADE_STAR_1 ? ESlateVisibility::Visible : ESlateVisibility::Hidden); // »ç½Ç»ó grade °¡ 1º¸´Ù ÀÛÀ» ÀÏÀº ¾øÀ» µí.
+		IMG_StageClearGradeStarTwinkle_03->SetVisibility(ExpectedGrade >= STAGE_CLEAR_GRADE_STAR_1 ? ESlateVisibility::Visible : ESlateVisibility::Hidden); // è¤è§’æƒ‘ grade å•Š 1ç„Šä¿ƒ ç´¯é˜‘ è€ç¯® ç»é˜‘ æ·€.
 	}
 	
 	if (bThisTimePreExpectedGradeDifferent && !bLastPreExpectedGradeDifferent)
-	{ // ¸îÃÊ ÈÄ¿¡ µî±ŞÀÌ ³·¾ÆÁú °É·Î ¿¹ÃøµÇ±â ½ÃÀÛÇÑ »óÈ².
+	{ // å‰²æª¬ é¥¶ä¿Š æ®¿é­æ æ’¤é…’é¾™ å§è‚º æŠ—èŸç™»æ‰ çŸ«ç´¯èŒ„ æƒ‘ç‚”.
 		PlayStageClearGradePreDropAnim(PreExpectedGrade);
 	}
 
@@ -1108,7 +1108,7 @@ void UB2UIBattleMain::UpdateStagePlayTimeInfoDisplay(int32 InCurrentTime)
 
 void UB2UIBattleMain::SetVisibilityClearGradeCondition(bool InShow)
 {
-	// º¸¿©Áö´Â ÅØ½ºÆ® ÀÚÃ¼´Â static ÀÌ¶ó ´Ù¸¥ °÷¿¡¼­ ¼¼ÆÃ.
+	// ç„Šå’¯ç˜¤ç»° å’†èƒ¶é£˜ ç£Šçœ‰ç»° static ææ‰¼ ä¿ƒå¼— é•‘ä¿Šè¾‘ æŠ€æ³¼.
 
 	if (TB_ClearGradeCondition.IsValid())
 	{
@@ -1145,8 +1145,8 @@ void UB2UIBattleMain::OnPressedPauseBtn()
 {
 	if (UGameplayStatics::IsGamePaused(GetOwningPlayer()) == false)
 	{
-		// Pause ¸Ş´º widget »ı¼º. ¿©±â¼­ post process DOF ¼³Á¤À» ÇÏ¹Ç·Î ÀÌ°ÍÀÌ Àû¿ëµÇµµ·Ï ÇÏ±â À§ÇØ ½ÇÁ¦ pause ´Â ÇÑ Æ½ ´ÊÃá´Ù.
-		StartPauseMenuClass<EB2GameMode>::GetInstance().Signal(GetB2GameModeType(this)); // UIManager_InGameMenu ÂÊ¿¡ µî·ÏÇÑ StartPauseMenu ¸¦ ÄİÇÏ°Ô µÉ °Í.
+		// Pause çš‹æ˜¥ widget ç§¯å·±. å’¯æ‰è¾‘ post process DOF æ±²æ²¥é˜‘ çªéª¨è‚º æå·´æ åˆ©ä¾©ç™»æ¡£åºŸ çªæ‰ å›°ç§¦ è§’åŠ› pause ç»° èŒ„ å¹³ è¯å†•ä¿ƒ.
+		StartPauseMenuClass<EB2GameMode>::GetInstance().Signal(GetB2GameModeType(this)); // UIManager_InGameMenu ç‡ä¿Š æ®¿åºŸèŒ„ StartPauseMenu ç”« å¦®çªéœ¸ çª å·´.
 		SetPendingPause();
 		//bPendingPause = true;
 
@@ -1154,7 +1154,7 @@ void UB2UIBattleMain::OnPressedPauseBtn()
 	}
 	else
 	{
-		// »ç½Ç Pause »óÅÂ¿¡¼­´Â ´Ù½Ã ¿©±âÀÇ PuaseButton À» ´©¸£´Â °ÍÀÌ ¾Æ´Ï¶ó Pause ¸Ş´º¿¡¼­ Continue ¹öÆ°À» ´­·¯¾ß µ¹¾Æ°¡°Ô µÉ °Í.
+		// è¤è§’ Pause æƒ‘æ€•ä¿Šè¾‘ç»° ä¿ƒçŸ« å’¯æ‰ç‹¼ PuaseButton é˜‘ ç©¿ç¦ç»° å·´æ é…’èªæ‰¼ Pause çš‹æ˜¥ä¿Šè¾‘ Continue æ»šç“¢é˜‘ å–˜çŸ¾å…· å€’é…’å•Šéœ¸ çª å·´.
 		UGameplayStatics::SetGamePaused(GetOwningPlayer(), false);
 	}
 }
@@ -1195,7 +1195,7 @@ void UB2UIBattleMain::OnChangedCurPCClass(class UB2UIDocBase* Sender, int32 CurP
 	{
 		if (MainHeroDoc && SubHeroDoc)
 		{
-			//¾Ã¾î¾ß µÇ´Â ÄÉÀÌ½º
+			//ä¹…ç»¢å…· ç™»ç»° çº³æèƒ¶
 			if(MainHeroDoc->GetDocId() == CurPCClass/* || SubHeroDoc->GetDocId() == DocBattle->GetTagPCClass()*/)
 				return;
 
@@ -1277,7 +1277,7 @@ void UB2UIBattleMain::OnChangedIsTagPossible(class UB2UIDocBase* Sender, bool Is
 void UB2UIBattleMain::OnChangedIsTagDisabledByCooltime(class UB2UIDocBase* Sender, bool IsTagDisabledByCooltime, bool PrevIsTagDisabledByCooltime)
 {
 	//SetEnabledTagBtn(!IsTagDisabledByCooltime);
-	SetTagCooltimeVisible(IsTagDisabledByCooltime); // ´çÀå Ä«¿îÆ®´Â ¾È ÇÏÁö¸¸ ¿©±â¼­ºÎÅÍ º¸¿©ÁÖ±â ½ÃÀÛ.
+	SetTagCooltimeVisible(IsTagDisabledByCooltime); // å¯¸å˜ å¢¨æ¬¾é£˜ç»° æ•‘ çªç˜¤çˆ¶ å’¯æ‰è¾‘ä½•ç£ ç„Šå’¯æ—æ‰ çŸ«ç´¯.
 }
 
 void UB2UIBattleMain::OnChangedRemainingTagCooltime(class UB2UIDocBase* Sender, float RemainingTagCooltime, float PrevRemainingTagCooltime)
@@ -1357,14 +1357,14 @@ void UB2UIBattleMain::OnChangedbCurrentlyBossAppeared(class UB2UIDocBase* Sender
 {
 	if (bCurrentlyBossAppeared == true)
 	{
-		if(!PrevbCurrentlyBossAppeared)  //È¤½Ã Áßº¹ÇØ¼­ µé¾î ¿Ã ¼ö ÀÖÀ¸´Ï ÇÑ¹ø ÇÊÅÍ
+		if(!PrevbCurrentlyBossAppeared)  //è¶£çŸ« åæ±—ç§¦è¾‘ ç”¸ç»¢ æ£µ è ä¹æ èª èŒ„é”… é˜ç£
 		{
 			UB2UIManager::GetInstance()->OpenUI(UIFName::BossStatus);
 		}
 		else
-		{ // Á» º¹ÀâÇÑ »çÁ¤À¸·Î UB2UIBossStatus ÂÊ¿¡¼­ BossMobClass ¿Í BossMobClassVariation º¯°æ¿¡ ´ëÇÑ Ã³¸®¸¦ ÇÏÁö ¸øÇØ¼­ ¿©±â¼­ ´ë½Å..
-			// ¹°·Ğ CurrentlyBossAppeared ¼¼ÆÃÇÏ±â Àü¿¡ BossMobClass ¿Í BossMobClassVariation À» Á¦´ë·Î ¼¼ÆÃÇØ ³õ¾Æ¾ß ÇÑ´Ù.
-			// BossStatus ¿­¸®±â Àü¿¡ ¾ğÁ¦³ª BossMobClass ¿Í Variation ÀÌ ÀûÀıÈ÷ ¼¼ÆÃÀÌ µÈ´Ù¸é ¿©±â¼­ ¾È ÇØÁàµµ µÊ. º¸½º°¡ ¿¬´Ş¾Æ µîÀåÇÒ ¶§ ²¿ÀÏ±îºÁ ¾ÈÀüÀåÄ¡·Î ÇØ µÎ´Â °Å.
+		{ // ç²± æ±—æ£±èŒ„ è¤æ²¥æ è‚º UB2UIBossStatus ç‡ä¿Šè¾‘ BossMobClass å®¢ BossMobClassVariation å‡½ç‰ˆä¿Š æªèŒ„ è´¸åºœç”« çªç˜¤ ç»™ç§¦è¾‘ å’¯æ‰è¾‘ æªè„š..
+			// æ‹±æ²¸ CurrentlyBossAppeared æŠ€æ³¼çªæ‰ å‚ˆä¿Š BossMobClass å®¢ BossMobClassVariation é˜‘ åŠ›æªè‚º æŠ€æ³¼ç§¦ åˆé…’å…· èŒ„ä¿ƒ.
+			// BossStatus å‡¯åºœæ‰ å‚ˆä¿Š æ”«åŠ›å”± BossMobClass å®¢ Variation æ åˆ©ä¾‹æ´’ æŠ€æ³¼æ ç­‰ä¿ƒæ å’¯æ‰è¾‘ æ•‘ ç§¦æ‹æ¡£ å‡³. ç„Šèƒ¶å•Š æ¥·å´”é…’ æ®¿å˜ä¸” é”­ éƒ¨è€é³–æ¯« æ•‘å‚ˆå˜æ‘¹è‚º ç§¦ æ»´ç»° èŠ­.
 			UB2UIBossStatus* BossStatusUI = UB2UIManager::GetInstance()->GetUI<UB2UIBossStatus>(UIFName::BossStatus);
 			UB2UIDocBattle* DocBattle = UB2UIDocHelper::GetDocBattle();
 			if (BossStatusUI && DocBattle)
@@ -1382,7 +1382,7 @@ void UB2UIBattleMain::OnChangedbCurrentlyBossAppeared(class UB2UIDocBase* Sender
 void UB2UIBattleMain::OnChangedIsTagSuggested(class UB2UIDocBase* Sender, bool bTagSuggested, bool bPrevTagSuggested)
 {
 	UB2UIDocBattle* DocBattle = UB2UIDocHelper::GetDocBattle();
-	const bool bIsForTagAttack = DocBattle ? DocBattle->GetIsTagAttackSuggested() : false; // ÀÌ°Ô ¾Æ´Ï¸é ÇÃ·¹ÀÌ¾î ÄÁµğ¼Ç (HP) ¿¡ ÀÇÇÑ °Í. IsTagAttackSuggested ¸¦ ¿©±â¼­ Ã¼Å©ÇÒ ¼ö ÀÖµµ·Ï IsTagSuggested º¸´Ù ¸ÕÀú ¼¼ÆÃÇØ¾ß ÇÔ.
+	const bool bIsForTagAttack = DocBattle ? DocBattle->GetIsTagAttackSuggested() : false; // æéœ¸ é…’èªæ æ•²é¥­æç»¢ ç‰§å¼è®° (HP) ä¿Š ç‹¼èŒ„ å·´. IsTagAttackSuggested ç”« å’¯æ‰è¾‘ çœ‰å†œä¸” è ä¹æ¡£åºŸ IsTagSuggested ç„Šä¿ƒ åˆšå† æŠ€æ³¼ç§¦å…· çªƒ.
 
 	if (bTagSuggested != bPrevTagSuggested)
 	{
@@ -1392,7 +1392,7 @@ void UB2UIBattleMain::OnChangedIsTagSuggested(class UB2UIDocBase* Sender, bool b
 		}
 		if (CP_TagSuggest_TagCharChallenge.IsValid())
 		{
-			//½ºÅ³ÀÌµç ÄÁµğ¼ÇÀÌµç ¸ğµÎ SuggestText È°¼ºÈ­
+			//èƒ¶æ‡¦æç”µ ç‰§å¼è®°æç”µ è‘›æ»´ SuggestText åŠå·±æ‹³
 			//CP_TagSuggest_TagCharChallenge->SetVisibility((bTagSuggested && !bIsForTagAttack) ? ESlateVisibility::HitTestInvisible : ESlateVisibility::Hidden);
 			CP_TagSuggest_TagCharChallenge->SetVisibility(bTagSuggested ? ESlateVisibility::HitTestInvisible : ESlateVisibility::Hidden);
 		}
@@ -1411,7 +1411,7 @@ void UB2UIBattleMain::OnChangedIsTagSuggested(class UB2UIDocBase* Sender, bool b
 		}
 		else{
 			StopTagSuggestAnim_BP();
-			StopTagSuggestByPlayerConditionAnim_BP(); // ¿©±â¿¡ HP ·Î ÀÎÇÑ ÅÂ±×±ÇÀå »óÅÂÀÓÀ» ¸í½ÃÇÏ´Â Á¶°ÇÀÌ ÀÖ´Ù¸é ¾ê±â°¡ ´Ù¸£±ä ÇÑµ¥..
+			StopTagSuggestByPlayerConditionAnim_BP(); // å’¯æ‰ä¿Š HP è‚º ç‰¢èŒ„ æ€•å¼Šé¼»å˜ æƒ‘æ€•çƒ™é˜‘ ç–™çŸ«çªç»° ç‚¼æ‰’æ ä¹ä¿ƒæ å¨Ÿæ‰å•Š ä¿ƒç¦å˜ èŒ„å•..
 		}
 	}
 }
@@ -1429,13 +1429,13 @@ void UB2UIBattleMain::OnChangedStagePlayTime(class UB2UIDocBase* Sender, int32 C
 
 void UB2UIBattleMain::OnChangedCharacterSkillBuffState(class UB2UIDocBase* Sender, TArray<FUISkillBuffDisplayInfo_Character> CurrentState, TArray<FUISkillBuffDisplayInfo_Character> Prevstate)
 {
-	// ¹İ°İ ´øÀüÀÏ¶§´Â ¹«½Ã
+	// é¦†æ‹œ å¸¦å‚ˆè€é”­ç»° å…¬çŸ«
 	if (CurrentGameModeType == EB2GameMode::CounterDungeon 
 		|| CurrentGameModeType == EB2GameMode::Tutorial 
 		|| CurrentGameModeType == EB2GameMode::Control)
 		return;
 
-	// TODO : ÄÉ¸¯ÅÍ ¹öÇÁÂÊÀ¸·Î ÇÁ¸®Â¡ÀÌ¶û ½ºÅÏ ÀÌ½ÄÇÒ¶© OnChangedStateDamangeSkillBuffState ÇÔ¼ö¾È¿¡ ÀÎÇ² ¸·´ÂºÎºĞ °®°í¿Í¾ßÇÔ.
+	// TODO : çº³è…ç£ æ»šæ©‡ç‡æ è‚º æ©‡åºœéš†æå°” èƒ¶ç•” æä¾¥ä¸”è®¢ OnChangedStateDamangeSkillBuffState çªƒèæ•‘ä¿Š ç‰¢é£ é˜œç»°ä½•ç›’ çˆ±ç»Šå®¢å…·çªƒ.
 	UpdateSkillBuffIcons();
 
 	const bool bDisableInput = CheckInDebuffAction();
@@ -1521,7 +1521,7 @@ void UB2UIBattleMain::OnAbnormalStateChanged(class UB2UIDocBase* Sender, bool Ne
 
 	for (uint8 Cnt = 0; Cnt < MAX_SKILL_INPUT; Cnt++)
 	{
-		// Freezing/Stun »óÅÂ¿¡¼­ ¹ş¾î³ª´Â ¸ñÀûÀÎ SurviveSkillÀº Disable ½ÃÅ°Áö ¾ÊÀ½
+		// Freezing/Stun æƒ‘æ€•ä¿Šè¾‘ å“ˆç»¢å”±ç»° æ ¼åˆ©ç‰¢ SurviveSkillç¯® Disable çŸ«è™ç˜¤ è‡¼æ¾œ
 		if (SkillAssets.IsValidIndex(Cnt) && SkillAssets[Cnt] != nullptr)
 		{
 			auto* SkillAsset = SkillAssets[Cnt];
@@ -1560,7 +1560,7 @@ UB2UIInGameBuffIcon* UB2UIBattleMain::CreateBuffIconCommon(TSubclassOf<UB2UIInGa
 
 UB2UIInGameBuffIcon_Stage* UB2UIBattleMain::CreateOrFindStageBuffIcon(EStageBuffType InBuffType)
 {
-	// ÀÏ´Ü Ã£±âºÎÅÍ.
+	// è€çªœ èŒ«æ‰ä½•ç£.
 	for (UB2UIInGameBuffIcon* ThisBuffIcon : AllMyBuffIcons_Resurrection)
 	{
 		UB2UIInGameBuffIcon_Stage* CastedStageBuffIcon = Cast<UB2UIInGameBuffIcon_Stage>(ThisBuffIcon);
@@ -1582,7 +1582,7 @@ UB2UIInGameBuffIcon_Stage* UB2UIBattleMain::CreateOrFindStageBuffIcon(EStageBuff
 
 UB2UIInGameBuffIcon_Resurrect* UB2UIBattleMain::CreateOrUpdateResurrectBuffIcon(EResurrectBuffType InBuffType)
 {
-	// ºÎÈ° ¹öÇÁ´Â ÇÏ³ª¸¸ Ç¥½ÃµÉ °Å±â ¶«¿¡ ±âÁ¸¿¡ ÀÖ´Â °É Ã£¾Æ¼­ ¾÷µ¥ÀÌÆ® ÇÏµçÁö »õ·Î »ı¼º
+	// ä½•åŠ æ»šæ©‡ç»° çªå”±çˆ¶ é’çŸ«çª èŠ­æ‰ ä¸œä¿Š æ‰ç²®ä¿Š ä¹ç»° å§ èŒ«é…’è¾‘ è¯€å•æé£˜ çªç”µç˜¤ è´§è‚º ç§¯å·±
 	UB2UIInGameBuffIcon_Resurrect* CreatedOrFound = NULL;
 
 	for (UB2UIInGameBuffIcon* ThisBuffIcon : AllMyBuffIcons_Resurrection)
@@ -1712,7 +1712,7 @@ void UB2UIBattleMain::CollectAndSortSkillBuffData(bool& bOutOnlyCountTimeChanged
 	UB2UIDocBattle* DocBattle = UB2UIDocHelper::GetDocBattle();
 	if (DocBattle)
 	{
-		TArray<FUISkillBuffDisplayInfo_United> PrevSkillBuffData = AllCollectedSkillBuffData; // OnlyTimeChanged °Ë»ç¸¦ À§ÇØ.
+		TArray<FUISkillBuffDisplayInfo_United> PrevSkillBuffData = AllCollectedSkillBuffData; // OnlyTimeChanged å…«è¤ç”« å›°ç§¦.
 		AllCollectedSkillBuffData.Empty();
 
 		const TArray<FUISkillBuffDisplayInfo_Character>& CharacterSkillBuffInfo = DocBattle->GetCharacterBuffState();
@@ -1733,16 +1733,16 @@ void UB2UIBattleMain::CollectAndSortSkillBuffData(bool& bOutOnlyCountTimeChanged
 			}
 		}
 
-		// ¸¶Áö¸·À¸·Î »ı¼º ½ÃÁ¡¿¡ µû¶ó Á¤·Ä. ¸ÕÀú »ı¼ºµÈ °ÍÀÌ ¾ÕÀ¸·Î ¿Àµµ·Ï.
+		// ä»˜ç˜¤é˜œæ è‚º ç§¯å·± çŸ«ç—¢ä¿Š è¶æ‰¼ æ²¥çºº. åˆšå† ç§¯å·±ç­‰ å·´æ èŠæ è‚º å·æ¡£åºŸ.
 		AllCollectedSkillBuffData.Sort([](const FUISkillBuffDisplayInfo_United& A, const FUISkillBuffDisplayInfo_United& B)->bool
 		{
 			return A.LastStartedTime < B.LastStartedTime;
 		});
 
-		// Ä«¿îÆ® ½Ã°£¸¸ ¹Ù²î¾ú´ÂÁö, Buff Ç×¸ñ ÀÚÃ¼°¡ ¹Ù²ï °Ô ÀÖ´ÂÁö °Ë»ç.
+		// å¢¨æ¬¾é£˜ çŸ«åŸƒçˆ¶ å®˜å·®èŒç»°ç˜¤, Buff äº²æ ¼ ç£Šçœ‰å•Š å®˜è¯§ éœ¸ ä¹ç»°ç˜¤ å…«è¤.
 		bOutOnlyCountTimeChanged = true;
 		if (PrevSkillBuffData.Num() != AllCollectedSkillBuffData.Num())
-		{ // Ç×¸ñ ¼ö°¡ ´Ù¸£¸é ¹°·Ğ ´õ º¼ ÇÊ¿ä ¾ø°í.
+		{ // äº²æ ¼ èå•Š ä¿ƒç¦æ æ‹±æ²¸ æ­¹ æ­ é˜å¤¸ ç»ç»Š.
 			bOutOnlyCountTimeChanged = false;
 		}
 		else
@@ -1758,7 +1758,7 @@ void UB2UIBattleMain::CollectAndSortSkillBuffData(bool& bOutOnlyCountTimeChanged
 					}
 				}
 
-				if (!bFoundSameBuff) // ÇÏ³ª¶óµµ °°Àº °É ¸ø Ã£Àº °Ô ÀÖ´Ù¸é Ä«¿îÆ® Å¸ÀÓ ¿Ü¿¡ ¹Ù²ï °Ô ÀÖ´Â °Å
+				if (!bFoundSameBuff) // çªå”±æ‰¼æ¡£ éç¯® å§ ç»™ èŒ«ç¯® éœ¸ ä¹ä¿ƒæ å¢¨æ¬¾é£˜ é¸¥çƒ™ å¯‡ä¿Š å®˜è¯§ éœ¸ ä¹ç»° èŠ­
 				{
 					bOutOnlyCountTimeChanged = false;
 					break;
@@ -1771,11 +1771,11 @@ void UB2UIBattleMain::CollectAndSortSkillBuffData(bool& bOutOnlyCountTimeChanged
 void UB2UIBattleMain::UpdateSkillBuffIconsByCollectedData(bool bUpdateCountTimeOnly)
 {
 	if (!bUpdateCountTimeOnly)
-	{ // ÀÌ °æ¿ì´Â ÀÏ´Ü ±âÁ¸ °ÍµéÀ» Á¦°Å. ÀÌ°É °ÅÄ¡Áö ¾Ê¾Ò´Ù¸é ±âÁ¸¿¡ ÀÖ´Â °ÍµéÀ» Ã£¾Æ¼­ °ª¸¸ ¹Ù²Ù°Ô µÉ °Í.
+	{ // æ ç‰ˆå¿«ç»° è€çªœ æ‰ç²® å·´ç”¸é˜‘ åŠ›èŠ­. æå§ èŠ­æ‘¹ç˜¤ è‡¼ç–½ä¿ƒæ æ‰ç²®ä¿Š ä¹ç»° å·´ç”¸é˜‘ èŒ«é…’è¾‘ è”¼çˆ¶ å®˜æ“éœ¸ çª å·´.
 		DestroyAllMyBuffIcons_Skill();
 	}
 
-	for (const FUISkillBuffDisplayInfo_United& ThisBuff : AllCollectedSkillBuffData) // LastStartedTime ¿¡ µû¶ó Á¤·ÄµÇ¾î ÀÖ¾î¾ß ÇÔ.
+	for (const FUISkillBuffDisplayInfo_United& ThisBuff : AllCollectedSkillBuffData) // LastStartedTime ä¿Š è¶æ‰¼ æ²¥çººç™»ç»¢ ä¹ç»¢å…· çªƒ.
 	{
 		CreateOrUpdateSkillBuffIcon(ThisBuff.MyType, ThisBuff.RemainingTime);
 	}
@@ -1790,9 +1790,9 @@ void UB2UIBattleMain::UpdateSkillBuffIcons()
 
 void UB2UIBattleMain::BeginTagAnim(EPCClass NewTaggedClass, bool bIsTagAttack)
 {
-	DestroyTagAnimUIP(false); // Á¤»óÀûÀÎ »óÈ²ÀÌ¸é ÀÌÀü¿¡ ÇÃ·¹ÀÌÇÏ´ø °Ô Á¾·áµÇ°í »ı¼ºÇß´ø °Ç Äİ¹é¹Ş¾Æ ÀÌ¹Ì destroy µÇ¾î ÀÖ¾î¾ß.. ±×·¯³ª destroy ÀÌÀü¿¡ ÅÂ±×¸¦ ¶Ç ÇßÀ» ¼öµµ.
+	DestroyTagAnimUIP(false); // æ²¥æƒ‘åˆ©ç‰¢ æƒ‘ç‚”ææ æå‚ˆä¿Š æ•²é¥­æçªå¸¦ éœ¸ è¾†ä¸°ç™»ç»Š ç§¯å·±æ²å¸¦ æ‰’ å¦®å½’ç½é…’ æå›º destroy ç™»ç»¢ ä¹ç»¢å…·.. å¼ŠçŸ¾å”± destroy æå‚ˆä¿Š æ€•å¼Šç”« è‚š æ²é˜‘ èæ¡£.
 
-	if (!bIsTagAttack) // ¿¬°è ÅÂ±×´Â ÀÌ°Å ¾È ÇÔ.
+	if (!bIsTagAttack) // æ¥·æ‹Œ æ€•å¼Šç»° æèŠ­ æ•‘ çªƒ.
 	{
 		CreatedTagAnimUIP = LoadAndBeginTAssetBattleTagAnimUIP<UB2UIBattleMain>(
 			this, TagAnimUIPClass, &LoadedTagAnimUIPClass, NewTaggedClass, bIsTagAttack);
@@ -1815,7 +1815,7 @@ void UB2UIBattleMain::DestroyTagAnimUIP(bool bUnloadTAsset)
 }
 
 void UB2UIBattleMain::RequestAsyncLoadWidgets()
-{ 	// ¿©±â¼­ µ¿Àû ·ÎµùÇÏ´Â UIP µéÀ» ¹Ì¸® ¹é±×¶ó¿îµå ·ÎµùÇØ ³õ¾Æ¼­ ÀüÅõ Áß hitch ¸¦ ÃÖ¼ÒÈ­ ÇÏ±â À§ÇÔ.
+{ 	// å’¯æ‰è¾‘ æ‚¼åˆ© è‚ºçˆ¹çªç»° UIP ç”¸é˜‘ å›ºåºœ å½’å¼Šæ‰¼æ¬¾é› è‚ºçˆ¹ç§¦ åˆé…’è¾‘ å‚ˆæ§ å hitch ç”« å¼¥å®¶æ‹³ çªæ‰ å›°çªƒ.
 	if (auto* AssetLoader = UB2AssetLoader::Get())
 	{
 		auto LoadCallback = FB2AsyncLoadingComplete::CreateUObject(this, &UB2UIBattleMain::OnCompleteAsyncLoad);
@@ -1852,7 +1852,7 @@ void UB2UIBattleMain::ProcessEvadeCoolTimeUI()
 
 		if (pPlayer)
 		{
-			//ÄğÅ¸ÀÓ ¸ÓÅÍ¸®¾ó Ã³¸®
+			//é…¿é¸¥çƒ™ èµ£ç£åºœå€” è´¸åºœ
 			UMaterialInstanceDynamic* pMID = IMG_EvadeSkillCooltime->GetDynamicMaterial();
 
 			if (pMID)
@@ -1886,9 +1886,9 @@ bool UB2UIBattleMain::CheckInDebuffAction()
 
 void SetHPShieldPBCommon(UProgressBar* InHPPB, UProgressBar* InShieldPB, float HPValue, float MaxHPValue, float ShieldValue)
 {
-	// HPValue ¿Í ShieldValue ´Â MaxHPValue ¿¡ ´ëÇÑ ºñÀ²ÀÌ ¾Æ´Ñ Àı´ë°ªÀÌ¾î¾ß ÇÔ.
+	// HPValue å®¢ ShieldValue ç»° MaxHPValue ä¿Š æªèŒ„ åšå•¦æ é…’å›± ä¾‹æªè”¼æç»¢å…· çªƒ.
 
-	float FinalShieldAmount = InShieldPB ? ShieldValue : 0.0f;// ¿©±â·Î µé¾î¿À´Â °ª¿¡ µû¶ó ´Ù¸¥ ½Ä (MaxHPValue * ShieldValue) À» »ç¿ëÇÏ°Ô µÉ ¼öµµ.
+	float FinalShieldAmount = InShieldPB ? ShieldValue : 0.0f;// å’¯æ‰è‚º ç”¸ç»¢å·ç»° è”¼ä¿Š è¶æ‰¼ ä¿ƒå¼— ä¾¥ (MaxHPValue * ShieldValue) é˜‘ è¤ä¾©çªéœ¸ çª èæ¡£.
 
 	float FinalMaxValue = FMath::Max(MaxHPValue + FinalShieldAmount, KINDA_SMALL_NUMBER);
 	
@@ -1907,8 +1907,8 @@ void UB2UIBattleMain::SetAttackEnable(bool bToSet)
 	{
 		if (!bToSet)
 		{
-			//SWidgetÀÌ Focus¸¦ °¡Á®°£Ã¤ DisableµÇ´Â °æ¿ì, ´Ù¸¥ Widget ¹× GameViewport¿¡¼­ Focus¸¦ ¸ø °¡Á®°¡´Â Çö»óÀÌ ¹ß»ıÇÏ¿©
-			//°­Á¦ÀûÀ¸·Î MouseUpÀ» ºÒ·¯ Focus¸¦ ÀÒ°Ô ÇÑ´Ù.
+			//SWidgetæ Focusç”« å•Šå»‰åŸƒç›² Disableç™»ç»° ç‰ˆå¿«, ä¿ƒå¼— Widget æ£º GameViewportä¿Šè¾‘ Focusç”« ç»™ å•Šå»‰å•Šç»° æ³…æƒ‘æ æƒ¯ç§¯çªå’¯
+			//ç¢åŠ›åˆ©æ è‚º MouseUpé˜‘ é˜‚çŸ¾ Focusç”« é…ªéœ¸ èŒ„ä¿ƒ.
 // 			FSlateApplication::Get().OnMouseUp(EMouseButtons::Left);
 // 
 // 			for (int32 i = 0; i < EKeys::NUM_TOUCH_KEYS; ++i)
@@ -1974,17 +1974,17 @@ void UB2UIBattleMain::OnReleasedShowClearGradeConditionBtn()
 	SetVisibilityClearGradeCondition(false);
 }
 void UB2UIBattleMain::OnBattleTagAnimUIPExpired(UB2UIBattleTagAnim* ExpiredUIP)
-{// UB2UIBattleTagAnim ÂÊÀ¸·ÎºÎÅÍ ¿À´Â ½ÅÈ£. ¸Ş¸ğ¸® Àı¾àÀ» À§ÇØ ´Ù µÇ¾úÀ¸¸é destroy.. ÇÏ·Á°í Çß´Âµ¥ ÀÌÁ¨ hitch Á¦¾î°¡ ´õ Áß¿äÇØ¼­ ¿ÏÀüÈ÷ ³»¸®Áö´Â ¾Ê´Â´Ù.
+{// UB2UIBattleTagAnim ç‡æ è‚ºä½•ç£ å·ç»° è„šé¾‹. çš‹è‘›åºœ ä¾‹è·é˜‘ å›°ç§¦ ä¿ƒ ç™»èŒæ æ destroy.. çªå¦¨ç»Š æ²ç»°å• æå“© hitch åŠ›ç»¢å•Š æ­¹ åå¤¸ç§¦è¾‘ è‚¯å‚ˆæ´’ éƒ´åºœç˜¤ç»° è‡¼ç»°ä¿ƒ.
 	checkSlow(ExpiredUIP && ExpiredUIP == CreatedTagAnimUIP);
 	DestroyTagAnimUIP(false);
 }
 
 void UB2UIBattleMain::SetQTEEnable(EQTEUIAttackEnableTimingState InEnableState)
-{ // ´ëÃ¼·Î QTE ÀÔ·Â °¡´É Å¸ÀÌ¹ÖÀ» ¾Ë¸®´Â °Å°í QTE »óÅÂ´Â ¾Æ´Ô.
-	// µµÁß¿¡ QTE UIP ¸¦ Á¦°ÅÇÒ ¼ö ÀÖµµ·Ï ÇöÀç QTE »óÅÂ¸¦ ¿©±â·Î º¸³»´Â °Ô ÁÁÀ» µí..
+{ // æªçœ‰è‚º QTE æ¶ä»¿ å•Šç“· é¸¥ææ€ªé˜‘ èˆ…åºœç»° èŠ­ç»Š QTE æƒ‘æ€•ç»° é…’ä¸›.
+	// æ¡£åä¿Š QTE UIP ç”« åŠ›èŠ­ä¸” è ä¹æ¡£åºŸ æ³…çŠ QTE æƒ‘æ€•ç”« å’¯æ‰è‚º ç„Šéƒ´ç»° éœ¸ äº®é˜‘ æ·€..
 
-	if (InEnableState != EQTEUIAttackEnableTimingState::None) { // None ÀÏ ¶§ ¸Å ÇÁ·¹ÀÓ µé¾î¿À´Â °Å °°¾Æ¼­ ¿©±â´Â Enable µÇ¾úÀ» ¶§¸¸ Ã¼Å©. ²¨Áú ¶§´Â ´Ù¸¥ °æ·Î·Î µé¾î¿È.
-		CheckForQTEStateUISetup(); // °ü·Ã UI »ı¼º ¹× visibility ¼Â¾÷ºÎÅÍ.
+	if (InEnableState != EQTEUIAttackEnableTimingState::None) { // None è€ é”­ æ¦‚ æ©‡é¥­çƒ™ ç”¸ç»¢å·ç»° èŠ­ éé…’è¾‘ å’¯æ‰ç»° Enable ç™»èŒé˜‘ é”­çˆ¶ çœ‰å†œ. æ³¢é¾™ é”­ç»° ä¿ƒå¼— ç‰ˆè‚ºè‚º ç”¸ç»¢å’³.
+		CheckForQTEStateUISetup(); // åŒ…è®¿ UI ç§¯å·± æ£º visibility æ‚¸è¯€ä½•ç£.
 	}
 
 	if (CreatedQTEUIP) 
@@ -1998,18 +1998,18 @@ void UB2UIBattleMain::CheckForQTEStateUISetup()
 	UB2UIDocBattle* DocBattle = UB2UIDocHelper::GetDocBattle();
 	if (DocBattle)
 	{
-		// ±âº»ÀûÀÎ QTE UIP º¸ÀÌ´Â Á¶°ÇÀº Æø³Ğ°Ô.
+		// æ‰å¤¯åˆ©ç‰¢ QTE UIP ç„Šæç»° ç‚¼æ‰’ç¯® æ°”æ‰¿éœ¸.
 		const bool bQTEUIPMustbeVisible = (DocBattle->GetQTEEnableState() != EQTEUIAttackEnableTimingState::None || DocBattle->GetbIsQTEMounted() || DocBattle->GetbIsPlayerInQTEState());
 		
-		// ÇÊ¿äÇÒ ¶§¸¸ »ı¼ºÇØ¼­ »ç¿ëÇÏµµ·Ï.
+		// é˜å¤¸ä¸” é”­çˆ¶ ç§¯å·±ç§¦è¾‘ è¤ä¾©çªæ¡£åºŸ.
 		if (bQTEUIPMustbeVisible){
 			ConditionalCreateQTEUIP();
 		}
 		else{
-			DestroyQTEUIP(false); // ¸Ç ¸¶Áö¸· ¾Æ´Ï¸é TAsset Àº ³»¸®Áö ¾ÊÀ½.
+			DestroyQTEUIP(false); // ç›– ä»˜ç˜¤é˜œ é…’èªæ TAsset ç¯® éƒ´åºœç˜¤ è‡¼æ¾œ.
 		}
 
-		// ´ëÃ¼·Î ¿¬Ãâ°ú ¹ĞÁ¢ÇÑ QTE »óÅÂ µµÁß¿¡´Â QTE ¿ÜÀÇ ´Ù¸¥ UI µéÀ» ¼û±ä´Ù. Ã¹ QTE Å¸ÀÌ¹ÖÀº ¾ÆÁ÷ ½ÇÁ¦ QTE ´Â ¾Æ´Ï´Ï ¿©±â¼­ ¼û±â¸é ´çÈ²½º·¯¿ï ²¨°í ¸¶¿îÆ®¿¡¼­ °ø°İÀÌ °¡´ÉÇÑ »óÅÂ´Â ÀüÅõ Á¶ÀÛÀ» ÇØ¾ßÇÏ´Ï UI °¡ ÇÊ¿äÇÏ°í.
+		// æªçœ‰è‚º æ¥·å…è‹ å‰ç«‹èŒ„ QTE æƒ‘æ€• æ¡£åä¿Šç»° QTE å¯‡ç‹¼ ä¿ƒå¼— UI ç”¸é˜‘ è§å˜ä¿ƒ. éœ‰ QTE é¸¥ææ€ªç¯® é…’æµ è§’åŠ› QTE ç»° é…’èªèª å’¯æ‰è¾‘ è§æ‰æ å¯¸ç‚”èƒ¶çŸ¾åŒ¡ æ³¢ç»Š ä»˜æ¬¾é£˜ä¿Šè¾‘ å‚æ‹œæ å•Šç“·èŒ„ æƒ‘æ€•ç»° å‚ˆæ§ ç‚¼ç´¯é˜‘ ç§¦å…·çªèª UI å•Š é˜å¤¸çªç»Š.
 		const bool bHideBattleMainUI = bQTEUIPMustbeVisible && (!DocBattle->GetbIsQTEMountedAndReadyForAttack() && DocBattle->GetQTEEnableState() == EQTEUIAttackEnableTimingState::None);
 		HideHUDForQTE(bHideBattleMainUI ? true : false);
 	}
@@ -2053,14 +2053,14 @@ void UB2UIBattleMain::UpdateGuildBuff()
 
 void UB2UIBattleMain::HideHUDForQTE(bool bHide)
 {
-	// PlayerController ÀÇ CinematicMode ¸¦ »ç¿ëÇÏ·Á´Ï Á» ²¿ÀÏ °Å °°À½. ±×³É µû·Î Ã³¸®.
+	// PlayerController ç‹¼ CinematicMode ç”« è¤ä¾©çªå¦¨èª ç²± éƒ¨è€ èŠ­ éæ¾œ. å¼Šæˆ è¶è‚º è´¸åºœ.
 	ABladeIIPlayerController* B2PC = Cast<ABladeIIPlayerController>(GetOwningPlayer());
 
 	if (bHide)
 	{
-		// °ÅÀÇ ¿ä BattleMain ¸¸ ¼û±â´Â Á¤µµ..
-		// QTE UIP ´Â BattleMain ÀÇ child °¡ ¾Æ´Ñ µ¶ÀÚÀûÀÎ UI widget À¸·Î »ı¼ºµÇ¹Ç·Î ¿©±â¿¡ ¿µÇâÀ» ¹ŞÁö ¾Ê´Â´Ù. Á¤¸»·Î ¼û°Ü¾ß ÇÒ ¶§°¡ µÇ¾îµµ ³ª¿Ã ²¨¶õ ¾ê±äµ¥ ±×°Ô ¹®Á¦°¡ µÇ´Â »óÈ²ÀÌ ¹ß»ıÇÏ¸é µû·Î Ã³¸®¸¦ ÇØ¾ß ÇÒ µí..
-		// -> ÀÌÁ¦ °°ÀÌ ¼û±ä´Ù.
+		// èŠ­ç‹¼ å¤¸ BattleMain çˆ¶ è§æ‰ç»° æ²¥æ¡£..
+		// QTE UIP ç»° BattleMain ç‹¼ child å•Š é…’å›± åˆ€ç£Šåˆ©ç‰¢ UI widget æ è‚º ç§¯å·±ç™»éª¨è‚º å’¯æ‰ä¿Š åº·æ°¢é˜‘ ç½ç˜¤ è‡¼ç»°ä¿ƒ. æ²¥å¯Œè‚º è§è´¥å…· ä¸” é”­å•Š ç™»ç»¢æ¡£ å”±æ£µ æ³¢é„‚ å¨Ÿå˜å• å¼Šéœ¸ å·©åŠ›å•Š ç™»ç»° æƒ‘ç‚”æ æƒ¯ç§¯çªæ è¶è‚º è´¸åºœç”« ç§¦å…· ä¸” æ·€..
+		// -> æåŠ› éæ è§å˜ä¿ƒ.
 		this->ForceHide();
 
 		if (CreatedQTEUIP)
@@ -2075,7 +2075,7 @@ void UB2UIBattleMain::HideHUDForQTE(bool bHide)
 	}
 	else
 	{
-		if (B2PC && !B2PC->IsInCinematicMode()) // ¿©±â¼± CinematicMode ÁøÀÔÀ» ÇÏÁö ¾ÊÀ¸¹Ç·Î È¤½Ã¶óµµ CinematicMode ¶ó¸é ´Ù¸¥ °÷¿¡¼­ Ã³¸®ÇÒ Å×´Ï ³öµÒ
+		if (B2PC && !B2PC->IsInCinematicMode()) // å’¯æ‰æ€¥ CinematicMode æŸ³æ¶é˜‘ çªç˜¤ è‡¼æ éª¨è‚º è¶£çŸ«æ‰¼æ¡£ CinematicMode æ‰¼æ ä¿ƒå¼— é•‘ä¿Šè¾‘ è´¸åºœä¸” æŠ›èª å‡ºç‹„
 		{
 			this->RestoreFromForceHidden();
 
@@ -2089,13 +2089,13 @@ void UB2UIBattleMain::HideHUDForQTE(bool bHide)
 
 void UB2UIBattleMain::ConditionalCreateQTEUIP()
 {
-	// ÀÌ¹Ì »ı¼ºµÇ¾î ÀÖÀ¸¸é ±»ÀÌ »õ·Î ¸¸µéÁö ¾Ê´Â´Ù. 
+	// æå›º ç§¯å·±ç™»ç»¢ ä¹æ æ è¢«æ è´§è‚º çˆ¶ç”¸ç˜¤ è‡¼ç»°ä¿ƒ. 
 	if (!CreatedQTEUIP)
 	{
 		CreatedQTEUIP = LoadAndBeginTAssetQTEUIP<UB2UIBattleMain>(this, QTEUIPClass, &LoadedQTEUIPClass);
 		if (CreatedQTEUIP){
 
-			CreatedQTEUIP->BindDoc(); // ÀÏºÎ·¯ ¿©±â¼­ ÄİÇÑ´Ù. ¹Ù·Î ¾Æ·¡ Destroy ¿¡¼­ÀÇ UnbindDoc ÇÏ°í Â¦¸ÂÃç ³õ±â À§ÇØ.
+			CreatedQTEUIP->BindDoc(); // è€ä½•çŸ¾ å’¯æ‰è¾‘ å¦®èŒ„ä¿ƒ. å®˜è‚º é…’è´° Destroy ä¿Šè¾‘ç‹¼ UnbindDoc çªç»Š å¨„å˜è‹— åˆæ‰ å›°ç§¦.
 		}
 	}
 }
@@ -2138,16 +2138,16 @@ void UB2UIBattleMain::SetSkillLock(int32 SkillIndex, bool bLock)
 }
 
 void UB2UIBattleMain::SetForQTEMountUI(bool ToSet)
-{ // ToSet ÀÌ true ¶ó ÇØµµ ´çÀå ¸¶¿îÆ® °ø°İ ÀÔ·Â±îÁö °¡´ÉÇÑ »óÅÂ´Â ¾Æ´Ò ¼ö ÀÖ´Ù.
+{ // ToSet æ true æ‰¼ ç§¦æ¡£ å¯¸å˜ ä»˜æ¬¾é£˜ å‚æ‹œ æ¶ä»¿é³–ç˜¤ å•Šç“·èŒ„ æƒ‘æ€•ç»° é…’åŒ† è ä¹ä¿ƒ.
 	if (CP_Attack.IsValid())
 		CP_Attack->SetVisibility(ToSet ? ESlateVisibility::Hidden : ESlateVisibility::SelfHitTestInvisible);
 	if (CP_MountAttack.IsValid())
 		CP_MountAttack->SetVisibility(ToSet ? ESlateVisibility::SelfHitTestInvisible : ESlateVisibility::Hidden);
 
-	CheckForQTEStateUISetup(); // °ü·Ã UI »ı¼º ¹× visibility ¼Â¾÷ºÎÅÍ.
+	CheckForQTEStateUISetup(); // åŒ…è®¿ UI ç§¯å·± æ£º visibility æ‚¸è¯€ä½•ç£.
 
 	if (CreatedQTEUIP)
-	{ // ¸¶¿îÆ® ³»³» ÄÑÁ® ÀÖ¾î¾ß ÇÔ. ´Ü, Å¬¸¯Àº ¾È µÇ°Ô. ³»ºÎ¿¡¼­ Á¶Àı..
+	{ // ä»˜æ¬¾é£˜ éƒ´éƒ´ éš¾å»‰ ä¹ç»¢å…· çªƒ. çªœ, åŠªè…ç¯® æ•‘ ç™»éœ¸. éƒ´ä½•ä¿Šè¾‘ ç‚¼ä¾‹..
 		bool bVisibleTimeNum = (CurrentGameModeType == EB2GameMode::Tutorial) ? false : true;
 		UB2UIDocBattle* DocBattle = UB2UIDocHelper::GetDocBattle();
 		CreatedQTEUIP->SetQTEMounted(ToSet, DocBattle ? DocBattle->GetMaxQTEMountTime() : 1.0f, bVisibleTimeNum);
@@ -2187,7 +2187,7 @@ void UB2UIBattleMain::InitCounterSuggestTimer()
 
 void UB2UIBattleMain::AddCounterSuggestTimer(float time)
 {
-	// CounterSuggestRingTime Àº CounterBattleMainÀÇ Construct¿¡¼­ SuggetRing ¾Ö´Ï¸ŞÀÌ¼ÇÀÇ ±æÀÌ °ªÀ¸·Î ¼¼ÆÃ.
+	// CounterSuggestRingTime ç¯® CounterBattleMainç‹¼ Constructä¿Šè¾‘ SuggetRing å±€èªçš‹æè®°ç‹¼ è¾¨æ è”¼æ è‚º æŠ€æ³¼.
 	if (time - CounterSuggestRingTime <= 0) return;
 
 	FTimerHandle AnimStartTimerHandle;
@@ -2238,9 +2238,9 @@ void UB2UIBattleMain::UpdateTagSuggestDialogue(const bool bIsForTagAttack)
 	{
 		const int32 iSubClass = SubHeroDoc->GetDocId();
 
-		if (bIsForTagAttack) //°ø°İ ½ºÅ³ ÅÂ±×
+		if (bIsForTagAttack) //å‚æ‹œ èƒ¶æ‡¦ æ€•å¼Š
 			TB_TagSuggest_TagCharChallenge->SetText(CharacterTagDialogueInfo->GetRandomTagSuggestTextFromSkill(iSubClass));
-		else //ºó»ç »óÅÂ ÅÂ±×
+		else //åè¤ æƒ‘æ€• æ€•å¼Š
 			TB_TagSuggest_TagCharChallenge->SetText(CharacterTagDialogueInfo->GetRandomTagSuggestTextFromDyingHp(iSubClass));
 	}
 }
@@ -2289,11 +2289,11 @@ void OnChangedDevFxLODLevel()
 	//	if (ThisComp && ThisComp->Template)
 	//	{
 	//		if (IsB2CharFxCheatLODInUse()) {
-	//			ThisComp->SetLODLevel(0); // ¿©±â ³Ö¾îÁÖ´Â °ªÀº ÀÇ¹Ì¾ø°í °Á ¾÷µ¥ÀÌÆ® Â÷¿ø..
+	//			ThisComp->SetLODLevel(0); // å’¯æ‰ æŒç»¢æ—ç»° è”¼ç¯® ç‹¼å›ºç»ç»Š å‚² è¯€å•æé£˜ ç’ç›”..
 	//		}
 	//		else {
 	//			if (ThisComp->GetWorld()) {
-	//				ThisComp->RestoreLODLevelToDesiredValue(); // ÀÌ·¯¸é ¿ø·¡ ¿¹»óµÇ´Â °ªÀ¸·Î µ¹¾Æ°¡·Á³ª
+	//				ThisComp->RestoreLODLevelToDesiredValue(); // æçŸ¾æ ç›”è´° æŠ—æƒ‘ç™»ç»° è”¼æ è‚º å€’é…’å•Šå¦¨å”±
 	//			}
 	//		}
 	//	}
@@ -2307,7 +2307,7 @@ void UB2UIBattleMain::OnClickBtnDevFxLODPC()
 //	GB2CharFxCheatLODLevel_PC++;
 //	if (GB2CharFxCheatLODLevel_PC > GB2CharFxCheatLODLevel_PC_Max)
 //	{
-//		GB2CharFxCheatLODLevel_PC = -1; //0 ÀÌ ¾Æ´Ï¶ó -1 ·Î µ¹¾Æ°¨. ±âº» LOD ±â´ÉÀÇ ÀÇ¹Ì·Î
+//		GB2CharFxCheatLODLevel_PC = -1; //0 æ é…’èªæ‰¼ -1 è‚º å€’é…’çš‘. æ‰å¤¯ LOD æ‰ç“·ç‹¼ ç‹¼å›ºè‚º
 //	}
 //	OnChangedDevFxLODLevel();
 //	UpdateDevFxLODWidgets();
@@ -2319,7 +2319,7 @@ void UB2UIBattleMain::OnClickBtnDevFxLODMob()
 //	GB2CharFxCheatLODLevel_Mob++;
 //	if (GB2CharFxCheatLODLevel_Mob > GB2CharFxCheatLODLevel_Mob_Max)
 //	{
-//		GB2CharFxCheatLODLevel_Mob = -1; //0 ÀÌ ¾Æ´Ï¶ó -1 ·Î µ¹¾Æ°¨. ±âº» LOD ±â´ÉÀÇ ÀÇ¹Ì·Î
+//		GB2CharFxCheatLODLevel_Mob = -1; //0 æ é…’èªæ‰¼ -1 è‚º å€’é…’çš‘. æ‰å¤¯ LOD æ‰ç“·ç‹¼ ç‹¼å›ºè‚º
 //	}
 //	OnChangedDevFxLODLevel();
 //	UpdateDevFxLODWidgets();
@@ -2331,7 +2331,7 @@ void UB2UIBattleMain::OnClickBtnDevFxLODBoss()
 //	GB2CharFxCheatLODLevel_Boss++;
 //	if (GB2CharFxCheatLODLevel_Boss > GB2CharFxCheatLODLevel_Boss_Max)
 //	{
-//		GB2CharFxCheatLODLevel_Boss = -1; //0 ÀÌ ¾Æ´Ï¶ó -1 ·Î µ¹¾Æ°¨. ±âº» LOD ±â´ÉÀÇ ÀÇ¹Ì·Î
+//		GB2CharFxCheatLODLevel_Boss = -1; //0 æ é…’èªæ‰¼ -1 è‚º å€’é…’çš‘. æ‰å¤¯ LOD æ‰ç“·ç‹¼ ç‹¼å›ºè‚º
 //	}
 //	OnChangedDevFxLODLevel();
 //	UpdateDevFxLODWidgets();
@@ -2344,8 +2344,8 @@ FSlateColor GetDevFxLODTestBtnColor(int32 InCheatLODLevel, int32 SupposedMaxLODL
 	return FSlateColor(
 		(InCheatLODLevel == SupposedMaxLODLevel) ? FLinearColor(1.0f,0.0f,0.0f) :
 			(InCheatLODLevel == 0 ? FLinearColor(1.0f,1.0f,1.0f) : (
-				(InCheatLODLevel < 0 ? FLinearColor(0.5f,0.5f,0.5f) : // ±âº» LOD ±â´ÉÀ» »ç¿ëÇÏ´Â »óÈ²¿¡¼­ È¸»ö
-					FLinearColor(1.0f,0.5f,0.0f) ) // ÀÌ°Ç 1 ~ Max »çÀÌ Áß°£ LOD ´Ü°è°¡ ÀÖ´Â °æ¿ì.. ÁÖÈ²»ö Ç¥½Ã.
+				(InCheatLODLevel < 0 ? FLinearColor(0.5f,0.5f,0.5f) : // æ‰å¤¯ LOD æ‰ç“·é˜‘ è¤ä¾©çªç»° æƒ‘ç‚”ä¿Šè¾‘ é›€ç¥¸
+					FLinearColor(1.0f,0.5f,0.0f) ) // ææ‰’ 1 ~ Max è¤æ ååŸƒ LOD çªœæ‹Œå•Š ä¹ç»° ç‰ˆå¿«.. æ—ç‚”ç¥¸ é’çŸ«.
 	)));
 }
 
@@ -2355,13 +2355,13 @@ void AdjustDevFxLODTestBtnStyleCommon(UB2Button* InBtn, int32 CurrCheatLODLevel,
 	{
 		FButtonStyle AdjustStyle = InBtn->GetStyle();
 		AdjustStyle.Normal.TintColor = GetDevFxLODTestBtnColor(CurrCheatLODLevel, MaxCheatLODLevel);
-		AdjustStyle.Hovered.TintColor = AdjustStyle.Normal.TintColor; // Normal ¸¸ º¯°æÇØ¼­´Â ÃæºĞÇÏÁö°¡ ¾Ê±º. ¤Ñ¤Ñ
+		AdjustStyle.Hovered.TintColor = AdjustStyle.Normal.TintColor; // Normal çˆ¶ å‡½ç‰ˆç§¦è¾‘ç»° é¢ç›’çªç˜¤å•Š è‡¼ç„™. ã±ã±
 		AdjustStyle.Pressed.TintColor = AdjustStyle.Hovered.TintColor;
 		InBtn->SetStyle(AdjustStyle);
 	}
 }
 
-void UB2UIBattleMain::UpdateDevFxLODWidgets() // ÅäÅ» ¾÷µ¥ÀÌÆ®
+void UB2UIBattleMain::UpdateDevFxLODWidgets() // é…å‘• è¯€å•æé£˜
 {
 	//extern bool gIsDevUI;
 

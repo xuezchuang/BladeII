@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "BehaviorTree/Tasks/BTTask_BlackboardBase.h"
 #include "B2BTTask_MobUpdateAttackIndex.generated.h"

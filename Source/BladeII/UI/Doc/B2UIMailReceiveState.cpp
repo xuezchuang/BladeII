@@ -373,7 +373,7 @@ void B2UIMailReceiveTicketState::OpenAllMailReceiveData()
 					BladeIIGameImpl::GetClientDataStore().AddNewAcquiredItem(AddItem);
 				}
 
-				AddItem.ConsumingAmount = ItemInfo->item_amount; // UIÇ¥½Ã¸¦ À§ÇØ º¯°æ
+				AddItem.ConsumingAmount = ItemInfo->item_amount; // UIé’ŽçŸ«ç”« å›°ç§¦ å‡½ç‰ˆ
 			}
 
 			ResultItems.Add(AddItem);

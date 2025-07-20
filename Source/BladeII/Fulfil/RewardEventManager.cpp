@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "RewardEventManager.h"
@@ -97,7 +97,7 @@ void RewardEventManager::InitEventFromMD(const FB2MasterDatas& InMasterDatas)
 	InitEventConditionInfoFromMD(InMasterDatas);
 	InitEventDiceInfoFromMD(InMasterDatas);
 
-	//ÀÌº¥Æ® Ãâ¼® µî ºü¸¥ ½ÃÁ¡¿¡ response md ÇÊ¿ä
+	//æäº¥é£˜ å…ç± æ®¿ ç‹å¼— çŸ«ç—¢ä¿Š response md é˜å¤¸
 	RequestLatestEventInfo();
 }
 
@@ -229,7 +229,7 @@ void RewardEventManager::UpdateLatestEventInfo(FB2ResponseGetLatestEventDataPtr 
 		ResponseEventData->md_event_attendances,
 		TMapEventInfo_Attendance);
 
-	//±âºÎ ÀÌº¥Æ®´Â µû·Î ÀÛ¾÷
+	//æ‰ä½• æäº¥é£˜ç»° è¶è‚º ç´¯è¯€
 	UB2UIDocDonation* DocDonation = UB2UIDocHelper::GetDocDonation();
 	if (DocDonation)
 	{
@@ -372,8 +372,8 @@ void RewardEventManager::ResponseLatestEventInfo(FB2ResponseGetLatestEventDataPt
 		if (EventDataLastUpdateTime == 0)
 		{
 			//waring
-			//ÃÖ¾ÇÀÇ °æ¿ì : Ã³À½ RequestGetLatestEventData Çß´Âµ¥ empty¿Â°æ¿ì
-			//ÀÌ °æ¿ì ÀÌº¥Æ® ÆäÀÌÁö ÁøÀÔ½Ã ÁøÇàÁßÀÌ ÀÌº¥Æ®°¡ ¾ø´Ù°í ³ª¿Ã°Í
+			//å¼¥å©ç‹¼ ç‰ˆå¿« : è´¸æ¾œ RequestGetLatestEventData æ²ç»°å• emptyæŸ¯ç‰ˆå¿«
+			//æ ç‰ˆå¿« æäº¥é£˜ å…¶æç˜¤ æŸ³æ¶çŸ« æŸ³é’åæ æäº¥é£˜å•Š ç»ä¿ƒç»Š å”±æ£µå·´
 		}
 	}
 

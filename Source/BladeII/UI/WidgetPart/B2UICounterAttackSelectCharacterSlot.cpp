@@ -1,4 +1,4 @@
-#include "B2UICounterAttackSelectCharacterSlot.h"
+﻿#include "B2UICounterAttackSelectCharacterSlot.h"
 #include "B2UIDocHelper.h"
 #include "BladeIILocText.h"
 
@@ -248,7 +248,7 @@ void UB2UIDungeonDifficulty::Init()
 {
 	Super::Init();
 
-	SetCurrentDifficulty(1);			//Ȥ�ø� �ʱⰪ
+	SetCurrentDifficulty(1);			//趣矫葛甫 檬扁蔼
 }
 
 void UB2UIDungeonDifficulty::CacheAssets()

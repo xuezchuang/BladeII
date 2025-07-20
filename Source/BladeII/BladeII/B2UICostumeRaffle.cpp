@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UICostumeRaffle.h"
 #include "B2UIManager.h"
@@ -158,7 +158,7 @@ void UB2UICostumeRaffleOp::StartFromRaffle(const FB2Item& ItemInfo)
 
 void UB2UICostumeRaffleOp::UpdateItemData(const FB2Item& InBeforeItem, const FB2Item& InAfterItem)
 {
-	UpdateSubWidgets(InBeforeItem, InAfterItem); // º»°İ ¹èÄ¡ÇÑ widget µé ¾÷µ¥ÀÌÆ®
+	UpdateSubWidgets(InBeforeItem, InAfterItem); // ë³¸ê²© ë°°ì¹˜í•œ widget ë“¤ ì—…ë°ì´íŠ¸
 	UpdateItemOptions();
 	UpdataItemSetEffect();
 }
@@ -221,11 +221,11 @@ void UB2UICostumeRaffleOp::UpdateItemOptions()
 
 	if (NativeItemData_After.IntrinsicOptions.Num() > 0)
 	{
-		// Padding Àº ÀÏ´Ü ÁÖÁö ¾Ê´Â´Ù.
+		// Padding ì€ ì¼ë‹¨ ì£¼ì§€ ì•ŠëŠ”ë‹¤.
 		CreatedIntrinsicOptionTitle = Cast<UB2DynText_Multiple>(DynCreateInVerticalBox(IntrinsicOptionTitleClass, this, VB_OptionsDisplayPanel.Get(), FMargin()));
 		if (CreatedIntrinsicOptionTitle)
 		{
-			CreatedIntrinsicOptionTitle->SetDynText(0, // °Á Ã¹ÁÙ¸¸ ÀÖÀ½.
+			CreatedIntrinsicOptionTitle->SetDynText(0, // ê± ì²«ì¤„ë§Œ ìˆìŒ.
 				BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("LobbyItemDetail_IntrinsicOptionPanelTitle")))
 			);
 		}
@@ -233,15 +233,15 @@ void UB2UICostumeRaffleOp::UpdateItemOptions()
 		for (int32 AI = 0; AI < NativeItemData_After.IntrinsicOptions.Num(); ++AI)
 		{
 			FItemOption& CurrOption = NativeItemData_After.IntrinsicOptions[AI];
-			FItemOption SameOptionOfBefore; // °­È­ ÀÌÀüÀÇ µ¿ÀÏ ¿É¼Ç ¼öÄ¡
-			bool bFoundSameOptionOfBefore = false; // ¹°·Ğ true ¿©¾ß°ÚÁö? ¾Æ¸¶µµ?
+			FItemOption SameOptionOfBefore; // ê°•í™” ì´ì „ì˜ ë™ì¼ ì˜µì…˜ ìˆ˜ì¹˜
+			bool bFoundSameOptionOfBefore = false; // ë¬¼ë¡  true ì—¬ì•¼ê² ì§€? ì•„ë§ˆë„?
 
-												   // bFoundSameOptionOfBefore °¡ true ÀÌ¸é SameOptionOfEquipped °¡ valid ÇÑ °Í.
+												   // bFoundSameOptionOfBefore ê°€ true ì´ë©´ SameOptionOfEquipped ê°€ valid í•œ ê²ƒ.
 			bFoundSameOptionOfBefore = GetItemIntrinsicOptionOfType(NativeItemData_Before, SameOptionOfBefore, CurrOption.OptionType);
 
 			UB2DynText_ItemDetailOption* CurrCreated = Cast<UB2DynText_ItemDetailOption>(DynCreateInVerticalBox(IntrinsicOptionDisplayClass, this, VB_OptionsDisplayPanel.Get(), FMargin()));
 			if (CurrCreated)
-			{ // SameOptionOfBefore ´Â Ã£Àº °æ¿ì ¾Æ´Ï¸é NULL ·Î. AllowedPCClass ´Â ÀÏºÎ Ä³¸¯ÅÍ º°·Î ´Ù¸£°Ô µé¾î°¡´Â ¿É¼Ç Ç¥½Ã¸¦ À§ÇÔÀÎµ¥, °ø¿ëÀÌ¶ó¸é ±×·± ¿É¼ÇÀÌ ¾ø¾î¾ß°ÚÁö..?
+			{ // SameOptionOfBefore ëŠ” ì°¾ì€ ê²½ìš° ì•„ë‹ˆë©´ NULL ë¡œ. AllowedPCClass ëŠ” ì¼ë¶€ ìºë¦­í„° ë³„ë¡œ ë‹¤ë¥´ê²Œ ë“¤ì–´ê°€ëŠ” ì˜µì…˜ í‘œì‹œë¥¼ ìœ„í•¨ì¸ë°, ê³µìš©ì´ë¼ë©´ ê·¸ëŸ° ì˜µì…˜ì´ ì—†ì–´ì•¼ê² ì§€..?
 				CurrCreated->UpdateOptionTextSet(false, AI, ItemAllowedPCClassEnum(NativeItemData_After.AllowedPCClass), &CurrOption, bFoundSameOptionOfBefore ? &SameOptionOfBefore : NULL, ItemStatIncColor, ItemStatSameColor, ItemStatDecColor, true);
 				CreatedIntrinsicOptionDisplay.Add(CurrCreated);
 			}

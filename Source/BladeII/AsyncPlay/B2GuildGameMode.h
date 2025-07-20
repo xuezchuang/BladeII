@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "B2AsyncGameMode.h"
 #include "B2ModPlayerInfoData.h"
@@ -103,7 +103,7 @@ struct FMoveToCompleteInfo
 	//bool ReceiveRequestID(uint32 RequestID, EPathFollowingResult::Type Result, ETeamIndex & ComplateTeam, AAIController** OutController);
 };
 
-//config·Î? Config Á¶ÀÛÀÌ ³Ê¹« ½¬¿ö¼­ ÀÏ´Ü ÄÚµå¿¡
+//configè‚º? Config ç‚¼ç´¯æ å‘ˆå…¬ æµ†å†µè¾‘ è€çªœ å†…é›ä¿Š
 const float GUILD_FIGHT_TIME_LIMIT = 90.0f;
 
 USTRUCT()

@@ -1,4 +1,4 @@
-#include "B2UIProgressBarDivided.h"
+ï»¿#include "B2UIProgressBarDivided.h"
 #include "B2UIManager.h"
 
 UB2UIProgressBarDivided::UB2UIProgressBarDivided(const FObjectInitializer& ObjectInitializer)
@@ -21,33 +21,33 @@ void UB2UIProgressBarDivided::CacheAssets()
 
 void UB2UIProgressBarDivided::SetPercent(float InValue)
 {
-	//ÇöÀç ³ªÅ¸³»¾ß µÇ´Â x¼ıÀÚ
+	//æ³…çŠ å”±é¸¥éƒ´å…· ç™»ç»° xç®­ç£Š
 	CurDividedNum = FPlatformMath::CeilToInt(InValue / PercentPerEachDivide);
 	SetCurDividedNum(CurDividedNum);
 
-	//ÇöÀç ÁøÇàÁßÀÎ Progress°¡ È¦¼ö³Ä
+	//æ³…çŠ æŸ³é’åç‰¢ Progresså•Š åœˆèè¡¬
 	IsOddCurDividedNum = ( CurDividedNum % 2 != 0 );
 
-	//¸·ÆÇ¿¡´Â ¹Ø¿¡ ±ò¸° ¹Ù¸¦ ¾Èº¸ÀÌ°Ô ÇØÁà¾ßµÊ
+	//é˜œé­„ä¿Šç»° å…³ä¿Š å½¬èµ´ å®˜ç”« æ•‘ç„Šæéœ¸ ç§¦æ‹å…·å‡³
 	HideExtraProgressBar(CurDividedNum <= 1);
 
-	//À§¿Í ¾Æ·¡ÀÇ ÇÁ·Î±×·¡½º¹ÙÀÇ ½ºÅ¸ÀÏÀ» Àç¼³Á¤
+	//å›°å®¢ é…’è´°ç‹¼ æ©‡è‚ºå¼Šè´°èƒ¶å®˜ç‹¼ èƒ¶é¸¥è€é˜‘ çŠæ±²æ²¥
 	UpdateProgressBarStyle();
 
-	//ÇöÀç ÇÁ·Î±×·¹½º¹ÙÀÇ ÆÛ¼¾Æ®
+	//æ³…çŠ æ©‡è‚ºå¼Šé¥­èƒ¶å®˜ç‹¼ æ¬ºå­£é£˜
 	float CurDividedPercent = CurDividedNum > 0 ? 1.f - (static_cast<float>(CurDividedNum)-(InValue / PercentPerEachDivide)) : 0.f;
 
 	Super::SetPercent(CurDividedPercent);
 	SetPercentDivided_BP(InValue, CurDividedPercent, PrevCurDividedPercent, CurDividedNum, PrevCurDivideNum);
 
-	//ÀÌÀü °ª ÀúÀå
+	//æå‚ˆ è”¼ å†å˜
 	PrevCurDivideNum = CurDividedNum;
 	PrevCurDividedPercent = CurDividedPercent;
 }
 
 void UB2UIProgressBarDivided::UpdateProgressBarStyle()
 {
-	//µÎ°¡Áö ÀÌ¹ÌÁö°¡ ±³Â÷µÇ¹Ç·Î È¦Â¦¿¡ µû¶ó ¹Ù²ãÁØ´Ù.
+	//æ»´å•Šç˜¤ æå›ºç˜¤å•Š èƒŒç’ç™»éª¨è‚º åœˆå¨„ä¿Š è¶æ‰¼ å®˜å±‚éœ–ä¿ƒ.
 	if (IsOddCurDividedNum)
 	{
 		SetProgressStyle(PB, StyleOdd);
@@ -101,7 +101,7 @@ void UB2UIProgressBarDivided::SynchronizeProperties()
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-// UB2UIProgressBarDividedDual - ±×³É º°µµÀÇ ¼öÄ¡¸¦ Ç¥½ÃÇÏ´Â Ãß°¡ ProgressBar ¼³Ä¡ÇÑ °ÍÀÓ.
+// UB2UIProgressBarDividedDual - å¼Šæˆ å–Šæ¡£ç‹¼ èæ‘¹ç”« é’çŸ«çªç»° çœ å•Š ProgressBar æ±²æ‘¹èŒ„ å·´çƒ™.
 ////////////////////////////////////////////////////////////////////////////////
 
 UB2UIProgressBarDividedDual::UB2UIProgressBarDividedDual(const FObjectInitializer& ObjectInitializer)
@@ -139,5 +139,5 @@ void UB2UIProgressBarDividedDual::Init()
 {
 	Super::Init();
 	
-	SetShowSecond(bShowSecondPB); // ÃÊ±â ¼³Á¤µÈ °ªÀ¸·Î.
+	SetShowSecond(bShowSecondPB); // æª¬æ‰ æ±²æ²¥ç­‰ è”¼æ è‚º.
 }

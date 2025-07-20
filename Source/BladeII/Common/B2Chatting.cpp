@@ -1,4 +1,4 @@
-
+ï»¿
 #include "B2Chatting.h"
 //#include "B2UIChatting.h"
 //#include "B2ClientDataStore.h"
@@ -24,7 +24,7 @@ FB2ChatTypeMessageList
 ==================================================*/
 FB2ChatMessage* FB2ChatTypeMessageList::FindMessage(const int64 ChatID)
 {
-	// 0ÀÌ¸é °Ë»ç ºÒ°¡
+	// 0ææ å…«è¤ é˜‚å•Š
 	if (ChatID < 1)
 		return nullptr;
 
@@ -39,7 +39,7 @@ FB2ChatMessage* FB2ChatTypeMessageList::FindMessage(const int64 ChatID)
 
 void FB2ChatTypeMessageList::RemoveFromChatID(const int64 ChatID)
 {
-	// 0ÀÌ¸é °Ë»ç ºÒ°¡
+	// 0ææ å…«è¤ é˜‚å•Š
 	if (ChatID < 1)
 		return;
 	for (int32 i = 0; i < Messages.Num(); ++i)
@@ -73,7 +73,7 @@ void FB2ChatMessage::SetCurrentAsMessageTime()
 {
 	if (MessageType != EB2ChatType::GuildNotice && MessageType != EB2ChatType::Guild)
 	{
-		// ½ÇÁ¦·Î ¸Ş½ÃÁö°¡ ¼­¹ö¿¡¼­ µµÂøÇÑ ½ÃÁ¡ È¤Àº ÀÚ½ÅÀÇ ¸Ş½ÃÁö¿¡ ´ëÇÑ ½ÂÀÎ½ÅÈ£°¡ ¿Â ½ÃÁ¡¿¡ ¼¼ÆÃµÇ¾î¾ß ÇÔ.
+		// è§’åŠ›è‚º çš‹çŸ«ç˜¤å•Š è¾‘æ»šä¿Šè¾‘ æ¡£é¦’èŒ„ çŸ«ç—¢ è¶£ç¯® ç£Šè„šç‹¼ çš‹çŸ«ç˜¤ä¿Š æªèŒ„ é“°ç‰¢è„šé¾‹å•Š æŸ¯ çŸ«ç—¢ä¿Š æŠ€æ³¼ç™»ç»¢å…· çªƒ.
 		MessageTime = FDateTime::UtcNow().ToUnixTimestamp();//static_cast<int64>(FPlatformTime::Seconds() * 1000);
 	}
 }
@@ -165,7 +165,7 @@ void FB2ChatMessage::SetChatInfo(b2network::B2GuildChatDataPtr InGuildChatInfo)
 	UserAcccountID = InGuildChatInfo->account_id;
 	ChatID = InGuildChatInfo->id;
 	CharacterMaxLevel = InGuildChatInfo->character_level_max;
-	// ±æµå Áö¿ø¸¸ update_timeÀ» ¾´´Ù.(Áö¿ø¿Ï·á´Â ¾ø¾îÁö±â¶§¹®¿¡ ¾È¾¸)
+	// è¾¨é› ç˜¤ç›”çˆ¶ update_timeé˜‘ æ•¬ä¿ƒ.(ç˜¤ç›”è‚¯ä¸°ç»° ç»ç»¢ç˜¤æ‰é”­å·©ä¿Š æ•‘é–)
 	MessageTime = (NoticeType == EB2ChatNoticeType::GuildSupport ? InGuildChatInfo->update_time : InGuildChatInfo->create_time);
 
 	if (InGuildChatInfo->guild_id > 0)
@@ -203,7 +203,7 @@ void FB2ChatMessage::SetCheckBroadCastMessage()
 	//		{
 	//			int32 StarGrade = FItemRefIDHelper::ExtractItemStarGradeFromRefID(FCString::Atoi(*NoticeArgs[1]));
 
-	//			// °øÁöÅ¸ÀÔÁß ¾ÆÀÌÅÛ È¹µæ ¾Ë¸²ÀÏ °æ¿ì¸¸ ¹æ¼Û°¡´ÉÇÔ. (6¼ººÎÅÍ °¡´É)
+	//			// å‚ç˜¤é¸¥æ¶å é…’æè¢ è£™å« èˆ…è¦†è€ ç‰ˆå¿«çˆ¶ è§„ä»·å•Šç“·çªƒ. (6å·±ä½•ç£ å•Šç“·)
 	//			const int32 LimitStarGrade = FItemGradeInfo::MAX_NORMAL_ITEM_STAR_GRADE - 1;
 	//			bCanBroadcast = StarGrade >= LimitStarGrade;
 	//		}
@@ -373,7 +373,7 @@ void FB2ChatMessage::SetConvertMessage(const FString& InMessage)
 FB2ChatStore
 ==================================================*/
 
-const int32 FB2ChatStore::MessageLengthLimit = 140; // ¼­¹ö¿¡¼­ ¹Ş¾Æ¾ß ÇÑ´Ù¸é const Ç®°í ¹Şµµ·Ï..
+const int32 FB2ChatStore::MessageLengthLimit = 140; // è¾‘æ»šä¿Šè¾‘ ç½é…’å…· èŒ„ä¿ƒæ const é’±ç»Š ç½æ¡£åºŸ..
 const int32 FB2ChatStore::MinAllowedChannel = 1;
 const int32 FB2ChatStore::MaxAllowedChannel = 999;
 
@@ -518,10 +518,10 @@ void FB2ChatStore::OnServerChatMessageNotify(b2network::FB2MessageInfoChatNotify
 
 	AddChatMessage(CliChatMsgInfo.MessageType, CliChatMsgInfo);
 
-	//UpdateChatUIClass<bool>::GetInstance().Signal(IsShowingChatCategory(CliChatMsgInfo.MessageType)); // UI °¡ ¿­·Á ÀÖ´Ù¸é ¾÷µ¥ÀÌÆ®
-	// Ã¤ÆÃ UI °¡ ¿­·ÁÀÖÁö ¾ÊÀº °æ¿ì¸¦ À§ÇØ ÇÑÁÙ Ã¤ÆÃ ½Ã±×³Îµµ
+	//UpdateChatUIClass<bool>::GetInstance().Signal(IsShowingChatCategory(CliChatMsgInfo.MessageType)); // UI å•Š å‡¯å¦¨ ä¹ä¿ƒæ è¯€å•æé£˜
+	// ç›²æ³¼ UI å•Š å‡¯å¦¨ä¹ç˜¤ è‡¼ç¯® ç‰ˆå¿«ç”« å›°ç§¦ èŒ„ä¸´ ç›²æ³¼ çŸ«å¼Šæ¾„æ¡£
 
-	// ½Ì±ÛÃ¤ÆÃÆË¾÷Àº ºê·ÎµåÄ³½ºÆ® ¸Ş¼¼ÁöÀÏ°æ¿ì¸¸ ÀÌº¥Æ® ³¯·ÁÁÜ
+	// æ•™è‡‚ç›²æ³¼æ‰‘è¯€ç¯® å®è‚ºé›æŸèƒ¶é£˜ çš‹æŠ€ç˜¤è€ç‰ˆå¿«çˆ¶ æäº¥é£˜ æœå¦¨æ·‹
 	//if (CliChatMsgInfo.IsBroadcastMessage())
 	//	UpdateChatSinglePopupClass<const FB2ChatMessage&>::GetInstance().Signal(CliChatMsgInfo);
 }
@@ -556,7 +556,7 @@ void FB2ChatStore::SetProcessGuildChatMessages(b2network::FB2MessageInfoGuildCha
 {
 	bool bIsAutoScrollEnd = true;
 
-	// Æ¯Á¤ ¸Ş¼¼ÁöÀÏ °æ¿ì ±âÁ¸ ¸Ş¼¼Áö¿¡¼­ Áö¿î´Ù..
+	// æ¼‚æ²¥ çš‹æŠ€ç˜¤è€ ç‰ˆå¿« æ‰ç²® çš‹æŠ€ç˜¤ä¿Šè¾‘ ç˜¤æ¬¾ä¿ƒ..
 	for (auto& guildChat : GuildChatNotify->chat_list)
 	{
 		EB2ChatNoticeType NoticeType = SvrToCliChatNoticeType(guildChat->chat_notice_type);
@@ -611,7 +611,7 @@ void FB2ChatStore::SetProcessGuildChatMessages(b2network::FB2MessageInfoGuildCha
 
 	bIsAutoScrollEnd = bIsAutoScrollEnd ? IsShowingChatCategory(EB2ChatType::Guild) : bIsAutoScrollEnd;
 
-	//UpdateChatUIClass<bool>::GetInstance().Signal(bIsAutoScrollEnd); // UI °¡ ¿­·Á ÀÖ´Ù¸é ¾÷µ¥ÀÌÆ®
+	//UpdateChatUIClass<bool>::GetInstance().Signal(bIsAutoScrollEnd); // UI å•Š å‡¯å¦¨ ä¹ä¿ƒæ è¯€å•æé£˜
 
 	//UpdateMarkRedDotClass<const FName&>::GetInstance().Signal(UIFName::BattleMain);
 }
@@ -666,7 +666,7 @@ void FB2ChatStore::GetChatMessages(const TArray<EB2ChatType>& WantedTypes, TArra
 
 	if (bSortByTime)
 	{
-		// ¶Ç ´Ù¸¥ Á¤·Ä ±âÁØÀÌ ÇÊ¿äÇØÁö¸é StableSort ·Î
+		// è‚š ä¿ƒå¼— æ²¥çºº æ‰éœ–æ é˜å¤¸ç§¦ç˜¤æ StableSort è‚º
 		OutData.Sort(FB2ChatMessageListTimeSorter());
 	}
 	else
@@ -714,7 +714,7 @@ void FB2ChatStore::AddChatMessage(EB2ChatType InType, const FB2ChatMessage& InMe
 	{
 		TArray<FB2ChatMessage>& ThisMessages = ThisList->Messages;
 
-		// ±âÁ¸¿¡ ÀÕÀ¸¸é ¾ø¾Ú.
+		// æ‰ç²®ä¿Š å‹’æ æ ç»æ²®.
 		if (InMessageStruct.NoticeType == EB2ChatNoticeType::GuildSupport)
 		{
 			FB2ChatMessage* FindMessage = ThisList->FindMessage(InMessageStruct.ChatID);
@@ -727,8 +727,8 @@ void FB2ChatStore::AddChatMessage(EB2ChatType InType, const FB2ChatMessage& InMe
 		int32 NewElemIndex = ThisMessages.Add(InMessageStruct);
 		if (ThisMessages.IsValidIndex(NewElemIndex))
 		{
-			ThisMessages[NewElemIndex].MessageType = InType; // Å¸ÀÔÀº ¿©±â¼­ ¸ÂÃçÁÜ.
-			// ¿©±â¼­ MessageTime ÀÌ ¼¼ÆÃµÇ¹Ç·Î Ã¤ÆÃ ¸Ş½ÃÁö°¡ ¿À¸é ¹Ù·Î ÀÌ°É ÅëÇØ Add ¸¦ ÇØ¾ß ÇÔ.
+			ThisMessages[NewElemIndex].MessageType = InType; // é¸¥æ¶ç¯® å’¯æ‰è¾‘ å˜è‹—æ·‹.
+			// å’¯æ‰è¾‘ MessageTime æ æŠ€æ³¼ç™»éª¨è‚º ç›²æ³¼ çš‹çŸ«ç˜¤å•Š å·æ å®˜è‚º æå§ çƒ¹ç§¦ Add ç”« ç§¦å…· çªƒ.
 			ThisMessages[NewElemIndex].SetCurrentAsMessageTime();
 		}
 
@@ -737,13 +737,13 @@ void FB2ChatStore::AddChatMessage(EB2ChatType InType, const FB2ChatMessage& InMe
 			CachedNewChat.Enqueue(ThisMessages[NewElemIndex]);
 		}
 
-		// Á¦ÇÑ °³¼ö ³Ñ°å´ÂÁö Ã¼Å©ÇÏ°í Á¦°Å
+		// åŠ›èŒ„ ä¿ºè é€æ¿ç»°ç˜¤ çœ‰å†œçªç»Š åŠ›èŠ­
 		if (ThisList->SortType == FB2ChatManagementRaw::Sort::Id)
 			ThisMessages.Sort(FB2ChatMessageListIDSorter());
 		else
 			ThisMessages.Sort(FB2ChatMessageListTimeSorter());
 
-		// Á¦ÇÑ °³¼ö¸¦ ³Ñ°å´ÂÁö Ã¼Å©
+		// åŠ›èŒ„ ä¿ºèç”« é€æ¿ç»°ç˜¤ çœ‰å†œ
 		if (ThisMessages.Num() > ThisList->ClientStoreLimit)
 		{
 			ThisMessages.RemoveAt(ThisList->ClientStoreLimit, ThisMessages.Num() - ThisList->ClientStoreLimit);
@@ -755,8 +755,8 @@ void FB2ChatStore::RequestChatCommand(EB2ChatType InType, const FText& InMessage
 {
 	//if (InType != EB2ChatType::End)
 	//{
-	//	// º¸³»´Â ´ë»óÀº ÀÏ´ëÀÏ Ã¤ÆÃÀÌ ¾ø´Ù¸é ÇÊ¿ä¾øÀ» °Í..
-	//	// TODO get max character level	//Á¦ÀÏ ³ôÀº Ä³¸¯ÅÍ ·¹º§ »ç¿ë
+	//	// ç„Šéƒ´ç»° æªæƒ‘ç¯® è€æªè€ ç›²æ³¼æ ç»ä¿ƒæ é˜å¤¸ç»é˜‘ å·´..
+	//	// TODO get max character level	//åŠ›è€ è‡­ç¯® æŸè…ç£ é¥­éª‡ è¤ä¾©
 	//	int32 characterLevelMax = BladeIIGameImpl::GetLocalCharacterData().GetUserLevel();
 	//	data_trader::SendChatMessageClass<int32, const FString&, int32, const FString&, int32>::GetInstance().Signal(
 	//		CliToSvrChatType(InType), TEXT(""), 0, InMessageText.ToString(), characterLevelMax
@@ -886,7 +886,7 @@ void FB2ChatStore::RequestChangeChannel(int32 InReqNum)
 	if (IsInAllowedChannelRange(InReqNum))
 	{
 		//data_trader::Retailer::GetInstance().RequestChangeChatChannel(InReqNum);
-		LastRequestedChannelNum = InReqNum; // ¿äÃ»¿¡ ´ëÇÑ ÀÀ´äÀÌ ¿À¸é ÀÌ°É·Î ¼¼ÆÃÇÒ °Å.
+		LastRequestedChannelNum = InReqNum; // å¤¸æ²¡ä¿Š æªèŒ„ è§ˆç¿ æ å·æ æå§è‚º æŠ€æ³¼ä¸” èŠ­.
 	}
 }
 
@@ -900,7 +900,7 @@ void FB2ChatStore::ResponseChangeChannel()
 	TArray<FString> Args;
 	Args.Add(FString::FromInt(LastRequestedChannelNum));
 	CreateSystemNotice(EB2ChatType::Channel, EB2ChatNoticeType::ChangeChannel, Args);
-	//UpdateChatUIClass<bool>::GetInstance().Signal(IsShowingChatCategory(EB2ChatType::Channel)); // UI °¡ ¿­·Á ÀÖ´Ù¸é ¾÷µ¥ÀÌÆ®
+	//UpdateChatUIClass<bool>::GetInstance().Signal(IsShowingChatCategory(EB2ChatType::Channel)); // UI å•Š å‡¯å¦¨ ä¹ä¿ƒæ è¯€å•æé£˜
 
 	LastRequestedChannelNum = -1;
 }
@@ -934,7 +934,7 @@ void FB2ChatStore::ResponseGuildSupport(const FB2ResponseGuildSupportPtr& InResp
 {
 	//BladeIIGameImpl::GetLocalCharacterData().GetUserAllItems().RemoveItems(InResponse->deleted_item_ids);
 
-	//UpdateChatUIClass<bool>::GetInstance().Signal(false); // UI °¡ ¿­·Á ÀÖ´Ù¸é ¾÷µ¥ÀÌÆ®
+	//UpdateChatUIClass<bool>::GetInstance().Signal(false); // UI å•Š å‡¯å¦¨ ä¹ä¿ƒæ è¯€å•æé£˜
 	//UpdateMarkRedDotClass<const FName&>::GetInstance().Signal(UIFName::BattleMain);
 }
 
@@ -983,7 +983,7 @@ void FB2ChatStore::ResponseAdminMessage(const FString& InMessage, const int32 Di
 {
 	//UpdateAdminMessageClass<const FString&, const int32>::GetInstance().Signal(InMessage, DisplayTime);
 
-	// ½Ã½ºÅÛ ¾Ë¸²¿¡ Ãß°¡
+	// çŸ«èƒ¶è¢ èˆ…è¦†ä¿Š çœ å•Š
 	TArray<FString> Args;
 	Args.Add(InMessage);
 	CreateSystemNotice(EB2ChatType::Notice, EB2ChatNoticeType::AdminMessage, Args);
@@ -1001,14 +1001,14 @@ void FB2ChatStore::GuildOutStateSetting(const FString& SendName, int64 InUpdateT
 
 
 	//		GuildDoc->SetKickedGuildId(BladeIIGameImpl::GetClientDataStore().GetUserGuildID());
-	//	BladeIIGameImpl::GetClientDataStore().SetGuildAccountID(0);			//ÀÚ±â°¡ Ãß¹æ´çÇß´Ù¸é ±æµå¾ÆÀÌµğ¸¦ 0À¸·Î ¸¸µé¾îÁØ´Ù;
+	//	BladeIIGameImpl::GetClientDataStore().SetGuildAccountID(0);			//ç£Šæ‰å•Š çœ è§„å¯¸æ²ä¿ƒæ è¾¨é›é…’æå¼ç”« 0æ è‚º çˆ¶ç”¸ç»¢éœ–ä¿ƒ;
 
 	//	GuildDoc->SetLeaveGuildTime(InUpdateTime/* + (BladeIIGameImpl::GetClientDataStore().GetGuildRejoinTimeMin() * 60 * 1000)*/);
 
 	//	if (UB2UIManager::GetInstance()->GetCurrUIScene() == EUIScene::GuildMain)
 	//	{
-	//		//Áö±İ ±æµå ¸ŞÀÎ ÆäÀÌÁö°æ¿ì¸¸ µû·Î Ã³¸®
-	//		//±æµå¿¡¼­ Ãß¹æ´çÇÏ¼Ì½À´Ï´Ù
+	//		//ç˜¤é™› è¾¨é› çš‹ç‰¢ å…¶æç˜¤ç‰ˆå¿«çˆ¶ è¶è‚º è´¸åºœ
+	//		//è¾¨é›ä¿Šè¾‘ çœ è§„å¯¸çªç»§åš¼èªä¿ƒ
 
 	//		FMsgPopupOnClick	Delegate;
 	//		Delegate.BindLambda([]()
@@ -1031,7 +1031,7 @@ void FB2ChatStore::GuildOutStateSetting(const FString& SendName, int64 InUpdateT
 
 void FB2ChatStore::CreateSystemNotice(EB2ChatType InType, EB2ChatNoticeType InNoticeType, const TArray<FString>& InArgs)
 {
-	// Ã¤³Î ÀÌµ¿¿¡ µû¸¥ ¸Ş¼¼Áö Ãß°¡ 
+	// ç›²æ¾„ ææ‚¼ä¿Š è¶å¼— çš‹æŠ€ç˜¤ çœ å•Š 
 	FB2ChatMessage CliChatMsgInfo;
 	CliChatMsgInfo.MessageType = InType;
 	CliChatMsgInfo.NoticeType = InNoticeType;
@@ -1045,7 +1045,7 @@ void FB2ChatStore::CreateSystemNotice(EB2ChatType InType, EB2ChatNoticeType InNo
 
 	AddChatMessage(CliChatMsgInfo.MessageType, CliChatMsgInfo);
 
-	// ½Ì±ÛÃ¤ÆÃÆË¾÷Àº ºê·ÎµåÄ³½ºÆ® ¸Ş¼¼ÁöÀÏ°æ¿ì¸¸ ÀÌº¥Æ® ³¯·ÁÁÜ
+	// æ•™è‡‚ç›²æ³¼æ‰‘è¯€ç¯® å®è‚ºé›æŸèƒ¶é£˜ çš‹æŠ€ç˜¤è€ç‰ˆå¿«çˆ¶ æäº¥é£˜ æœå¦¨æ·‹
 	//if (CliChatMsgInfo.IsBroadcastMessage())
 	//	UpdateChatSinglePopupClass<const FB2ChatMessage&>::GetInstance().Signal(CliChatMsgInfo);
 }

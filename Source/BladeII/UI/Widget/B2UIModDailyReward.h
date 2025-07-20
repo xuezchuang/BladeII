@@ -1,12 +1,14 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
 #include "UI/B2UIWidget.h"
+#include "../../Common/CommonStruct.h"
+#include "../../DataStore/B2ClientDataStore.h"
 #include "B2UIModDailyReward.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class BLADEII_API UB2UIModDailyReward : public UB2UIWidget
@@ -38,7 +40,7 @@ public:
 	void SetRewardSlotFromServerData(MailGiftType RewardType, const FModDailyReward& ServerRewardInfo);
 
 	UFUNCTION()
-		void OnClickButtonClose();
+	void OnClickButtonClose();
 
 protected:
 	TWeakObjectPtr<UB2Button>				BTN_Close;

@@ -1,4 +1,4 @@
-
+ï»¿
 #include "B2UIUserInfoActionPopup.h"
 #include "BladeIIGameMode.h"
 #include "B2UIDocHelper.h"
@@ -155,12 +155,12 @@ void UB2UIUserInfoActionPopup::OnClickBtnFriendship()
 
  	if (FriendDoc->GetFriendSendInfo(CachedAccountID))
  	{
- 		DevShowError(TEXT("5503"));			//ÀÌ¹ÌÄ£±¸½ÅÃ»À» ÇßÀ»¶§
+ 		DevShowError(TEXT("5503"));			//æžå›ºæ¨¡å¤‡è„šæ²¡é˜‘ æ²é˜‘é”­
  		return;
  	}
  	else if (FriendDoc->GetFriendSendListInfo().Num() >= BladeIIGameImpl::GetClientDataStore().GetMaxSendAskFriend())
  	{
- 		DevShowError(TEXT("5504"));			//º¸³½Ä£±¸°¡ ¿À¹ö ÇÒ°æ¿ì
+ 		DevShowError(TEXT("5504"));			//ç„Šè¾°æ¨¡å¤‡å•Š å·æ»š ä¸”ç‰ˆå¿«
  		return;
  	}
 
@@ -201,7 +201,7 @@ void UB2UIUserInfoActionPopup::OnClickBtnUserBlock()
 }
 
 void UB2UIUserInfoActionPopup::CloseMe()
-{ // ´Ù¸¥ °ÍÀÇ ÆÄÆ®ÀÓ. ¼û±â±â¸¸
+{ // ä¿ƒå¼— å·´ç‹¼ é¢‡é£˜çƒ™. è§æ‰æ‰çˆ¶
 	this->SetVisibility(ESlateVisibility::Collapsed);
 	B2AndroidBackManager::GetInstance()->RemoveBackWidget(this);
 }

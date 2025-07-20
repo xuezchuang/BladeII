@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2LoadingImageInfo.h"
@@ -12,6 +12,8 @@
 //#include "B2GuildGameMode.h"
 //#include "B2UIDocHelper.h"
 //#include "B2DLCFrontGameMode.h"
+#include "Engine/Texture2D.h"
+
 
 UB2LoadingImageInfo::UB2LoadingImageInfo(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
@@ -45,7 +47,7 @@ UTexture2D* UB2LoadingImageInfo::GetLoadingImageCommon(TArray<TSoftObjectPtr<cla
 	}
 	else if (InTAssetArray.Num() > 0)
 	{
-		// ¿¹¿Ü·Î ¾øÀ» °æ¿ì Ã¹¹øÂ° ÀÌ¹ÌÁö¸¦ ³ëÃâ½ÃÄÑ ÁØ´Ù.
+		// æŠ—å¯‡è‚º ç»é˜‘ ç‰ˆå¿« éœ‰é”…æ³ æå›ºç˜¤ç”« ç•´å…çŸ«éš¾ éœ–ä¿ƒ.
 		return LoadLoadingImage(InTAssetArray[0]);
 	}
 
@@ -55,12 +57,12 @@ UTexture2D* UB2LoadingImageInfo::GetLoadingImageCommon(TArray<TSoftObjectPtr<cla
 UTexture2D * UB2LoadingImageInfo::LoadLoadingImage(TSoftObjectPtr<class UTexture2D>& Texture)
 {
 	UTexture2D* LoadedTexture = nullptr;
-	LoadedTexture = Texture.LoadSynchronous(); // ÀÏ¹İÀûÀÎ ·Îµù ÀÌ¹ÌÁö ·ÎµùÀÇ °æ¿ì async flush ¸¦ °ÆÁ¤ÇÒ ÇÊ¿ä°¡ ¾ø´Ù. ¹º°¡ ¸·¾Æ³õ°í ·ÎµùÇÏ·Á´Â Å¸ÀÌ¹ÖÀÌ¹Ç·Î.
+	LoadedTexture = Texture.LoadSynchronous(); // è€é¦†åˆ©ç‰¢ è‚ºçˆ¹ æå›ºç˜¤ è‚ºçˆ¹ç‹¼ ç‰ˆå¿« async flush ç”« æŒæ²¥ä¸” é˜å¤¸å•Š ç»ä¿ƒ. è´­å•Š é˜œé…’åˆç»Š è‚ºçˆ¹çªå¦¨ç»° é¸¥ææ€ªæéª¨è‚º.
 
 	if (LoadedTexture != nullptr)
 	{
-		LoadedTexture->AddToRoot(); // »ç¿ë Æ¯¼º»ó ÀÌ°Ç ·çÆ®¼Â¿¡ ³Ö´Â´Ù. ¾ğ·Îµùµµ Á÷Á¢ ÇØ ÁÜ.
-		LoadedLoadingImages.AddUnique(LoadedTexture); // ¿©±â¿¡ ·¹ÆÛ·±½º °ü¸®±îÁö
+		LoadedTexture->AddToRoot(); // è¤ä¾© æ¼‚å·±æƒ‘ ææ‰’ é£é£˜æ‚¸ä¿Š æŒç»°ä¿ƒ. æ”«è‚ºçˆ¹æ¡£ æµç«‹ ç§¦ æ·‹.
+		LoadedLoadingImages.AddUnique(LoadedTexture); // å’¯æ‰ä¿Š é¥­æ¬ºç¹èƒ¶ åŒ…åºœé³–ç˜¤
 		return LoadedTexture;
 	}
 	return nullptr;
@@ -122,7 +124,7 @@ UTexture2D* UB2LoadingImageInfo::RandGetLoadingImage(EB2GameMode InGameMode, int
 	UTexture2D* LoadedImage = GetLoadingImageCommon(RelevantAssetArray, LocalRandomIndex);
 	if (LoadedImage) 
 	{
-		OutRandomlySetIndex = LocalRandomIndex; // ¸®ÅÏ°ªÀÌ ÀÖÀ» ¶§¿¡¸¸ ÀÇ¹Ì°¡ ÀÖ´Ù.
+		OutRandomlySetIndex = LocalRandomIndex; // åºœç•”è”¼æ ä¹é˜‘ é”­ä¿Šçˆ¶ ç‹¼å›ºå•Š ä¹ä¿ƒ.
 		return LoadedImage;
 	}
 	return NULL;
@@ -143,7 +145,7 @@ int32 UB2LoadingImageInfo::GetLoadingImageNum(EB2GameMode InGameMode)
 
 FString UB2LoadingImageInfo::GetLobbyLoginLoadingImageName() const
 {
-	//// Å¸ÀÌÆ²¿¡¼­ ·£´ıÀ¸·Î ¼±ÅÃµÈ Å¬·¡½º Á¤º¸¸¦ »ç¿ë. µ¿¿µ»ó¿¡¼­ºÎÅÍ ÀÌ¾îÁöµµ·Ï.
+	//// é¸¥ææ’‡ä¿Šè¾‘ ç½šå¾…æ è‚º æ€¥ç¶ç­‰ åŠªè´°èƒ¶ æ²¥ç„Šç”« è¤ä¾©. æ‚¼åº·æƒ‘ä¿Šè¾‘ä½•ç£ æç»¢ç˜¤æ¡£åºŸ.
 	//EPCClass CachedTitleClass = AB2DLCFrontGameMode::GetSelectedFrontTitleMovieClass();
 	//if (CachedTitleClass != EPCClass::EPC_End)
 	//{
@@ -169,7 +171,7 @@ void UB2LoadingImageInfo::UnloadAll()
 		if (ThisLoadedImage)
 		{
 			ThisLoadedImage->RemoveFromRoot();
-			//ThisLoadedImage->MarkPendingKill(); // À½.. ±Û½ê?
+			//ThisLoadedImage->MarkPendingKill(); // æ¾œ.. è‡‚ç–¥?
 		}
 	}
 	LoadedLoadingImages.Empty();
@@ -182,14 +184,14 @@ void UB2LoadingImageInfo::EditorLoadAll()
 		return;
 	}
 
-	// ÇÑ¹ø ¹Ì¸® ºÒ·¯ÁÖ¸é AssetPtr ÀÌ valid ÇØ Áú °Í.
+	// èŒ„é”… å›ºåºœ é˜‚çŸ¾æ—æ AssetPtr æ valid ç§¦ é¾™ å·´.
 
 	for (int32 II = 0; II < LoadingImages_Default.Num(); ++II)
 	{
 		GetLoadingImageCommon(LoadingImages_Default, II);
 	}
 
-	// ³ª¸ÓÁöµµ Ãß°¡µÇ´Â ´ë·Î..
+	// å”±èµ£ç˜¤æ¡£ çœ å•Šç™»ç»° æªè‚º..
 
 
 
@@ -197,7 +199,7 @@ void UB2LoadingImageInfo::EditorLoadAll()
 }
 #endif
 
-// TAsset lazy-loading À» »ç¿ëÇÏ¸é¼­ ¿¡µğÅÍ¿¡¼­ ½×¿©¼­ ¹Ù·Î ·ÎµùµÇ¾î ¹ö¸± ¼ö ÀÖ´Â ·¹ÆÛ·±½º Á¦°Å
+// TAsset lazy-loading é˜‘ è¤ä¾©çªæè¾‘ ä¿Šå¼ç£ä¿Šè¾‘ é˜¶å’¯è¾‘ å®˜è‚º è‚ºçˆ¹ç™»ç»¢ æ»šå‰¯ è ä¹ç»° é¥­æ¬ºç¹èƒ¶ åŠ›èŠ­
 #if TEMP_LAZYLOADING_MISHANDLING_CLEANUP
 void UB2LoadingImageInfo::CleanupOnPreSave()
 {
@@ -207,7 +209,7 @@ void UB2LoadingImageInfo::PreSave(FObjectPreSaveContext SaveContext)
 {
 	Super::PreSave(SaveContext);
 
-	// ÀÇµµÄ¡ ¾Ê°Ô ÀúÀåµÈ ·¹ÆÛ·±½º¸¦ ³¯·ÁÁØ´Ù.
+	// ç‹¼æ¡£æ‘¹ è‡¼éœ¸ å†å˜ç­‰ é¥­æ¬ºç¹èƒ¶ç”« æœå¦¨éœ–ä¿ƒ.
 	CleanupOnPreSave();
 }
 #endif

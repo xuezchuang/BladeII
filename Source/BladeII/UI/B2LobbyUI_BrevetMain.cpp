@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2LobbyUI_BrevetMain.h"
 
 #include "B2LobbyUI_HeroMgmtCommon.h"
@@ -58,7 +58,7 @@ void UB2LobbyUI_BrevetMain::StartFromLobby(class UB2UIManager_Lobby* InUIManager
 
 	//if (HeroMgmtBaseNRef)
 	//{
-	//	HeroMgmtBaseNRef->StartFromLobby(InUIManager, InGM); // ÀÌ°Ç LobbyUISwitcher ¿¡¼­ ¸ğ¸£´Ï Á÷Á¢ ÇØ ÁÖ¾î¾ß..		
+	//	HeroMgmtBaseNRef->StartFromLobby(InUIManager, InGM); // ææ‰’ LobbyUISwitcher ä¿Šè¾‘ è‘›ç¦èª æµç«‹ ç§¦ æ—ç»¢å…·..		
 	//}
 
 	//SetLobbyUIHeaderTitle(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("LobbyHeroMgmt_BrevetButton")));
@@ -89,7 +89,7 @@ void UB2LobbyUI_BrevetMain::DestroySelf()
 
 void UB2LobbyUI_BrevetMain::BeginDestroy()
 {
-	////Editor »óÈ²¿¡¼­ ¹®Á¦°¡ Á» ÀÖ¾î¼­ ¿©±â¼­µµ unsubscribe
+	////Editor æƒ‘ç‚”ä¿Šè¾‘ å·©åŠ›å•Š ç²± ä¹ç»¢è¾‘ å’¯æ‰è¾‘æ¡£ unsubscribe
 	//if (CachedLobbyGM)
 	//{
 	//	DeliveryEnhanceRankNodeClass<FB2EnhanceRankNode>::GetInstance().Unsubscribe(DeliveryEnhanceRankNodeTicket);
@@ -258,22 +258,22 @@ void UB2LobbyUI_BrevetMain::RefreshBrevetUIScrollBoxInfo()
 	//	int32 BrevetNodeMaxCount = BladeIIGameImpl::GetClientDataStore().GetBrevetNodeCount(CurrentCharBrevetRank);
 
 	//	m_arBrevetNodes.Empty();		
-	//	// ÇöÀç °è±ŞÀÇ ·©Å© ³ëµåµé
+	//	// æ³…çŠ æ‹Œé­ç‹¼ çå†œ ç•´é›ç”¸
 	//	for (int32 nCnt = 0; nCnt < BrevetNodeMaxCount; ++nCnt)
 	//	{
-	//		//¾ÆÀÌÄÜ ¼ÂÆÃ, °è±Ş, ·©Å©³ëµå¹øÈ£
+	//		//é…’æèƒ½ æ‚¸æ³¼, æ‹Œé­, çå†œç•´é›é”…é¾‹
 	//		const FBrevetNodeInfo* BrevetNodeInfo = BladeIIGameImpl::GetClientDataStore().GetBrevetNodeInfo(CurrentCharBrevetRank == 0 ? 1 : CurrentCharBrevetRank, nCnt + 1);
 	//		if (!BrevetNodeInfo)
 	//			continue;
 
-	//		// ¿ŞÂÊ ³¡ ´õ¹Ì
+	//		// å“­ç‡ åœº æ­¹å›º
 	//		if (nCnt == 0)
 	//		{
 	//			UB2LobbyUserWidget* DummyLeft = CreateWidget<UB2LobbyUserWidget>(GetOwningPlayer(), NodeItemClass_DummyL);
 	//			SB_BrevetNode->AddChild(DummyLeft);
 	//			m_arBrevetNodes.Add(DummyLeft);
 
-	//			// Á¶°Ç ¾ÈµÇ¸é ÅØ½ºÆ® ¼³Á¤(Ã¹¹øÂ°²¨¸¸ °Ë»çÇÏ¸éµÊ)
+	//			// ç‚¼æ‰’ æ•‘ç™»æ å’†èƒ¶é£˜ æ±²æ²¥(éœ‰é”…æ³æ³¢çˆ¶ å…«è¤çªæå‡³)
 	//			if (BrevetNodeInfo->OpenLevel > BladeIIGameImpl::GetLocalCharacterData().GetCharacterLevel(CurrentPCClass))
 	//			{
 	//				UB2LobbyUI_BrevetNodeIconDummy* pUI = Cast<UB2LobbyUI_BrevetNodeIconDummy>(DummyLeft);
@@ -287,10 +287,10 @@ void UB2LobbyUI_BrevetMain::RefreshBrevetUIScrollBoxInfo()
 	//		NewBrevetNodeIcon = CreateWidget<UB2LobbyUI_BrevetNodeIcon>(GetOwningPlayer(), NodeItemClass);
 	//		SB_BrevetNode->AddChild(NewBrevetNodeIcon);
 
-	//		// ³ëµå¹øÈ£ ¼³Á¤
+	//		// ç•´é›é”…é¾‹ æ±²æ²¥
 	//		NewBrevetNodeIcon->SetBreverNodeNum(nCnt + 1);
 
-	//		// ³ëµå »óÅÂ
+	//		// ç•´é› æƒ‘æ€•
 	//		EBrevetNodeState BrevetNodeState = EBrevetNodeState::EBNS_None;
 
 	//		if (IsCompleteBrevet)
@@ -321,25 +321,25 @@ void UB2LobbyUI_BrevetMain::RefreshBrevetUIScrollBoxInfo()
 
 	//		NewBrevetNodeIcon->InitBrevetNodeIcon(this, BrevetNodeInfo, BrevetNodeState);
 
-	//		// ¾Õ³ëµå È°¼ºÈ­ ¾È³» ¹®±¸
+	//		// èŠç•´é› åŠå·±æ‹³ æ•‘éƒ´ å·©å¤‡
 	//		if (nCnt != 0)
 	//		{
 	//			UB2LobbyUI_BrevetNodeIcon* pUI = Cast<UB2LobbyUI_BrevetNodeIcon>(m_arBrevetNodes[m_arBrevetNodes.Num() - 1]);
 
-	//			// Ã¹¹øÂ°¶û ³¡¿¡ ´õ¹Ì³ëµå°¡ µé¾î°¡´Ï 1»©ÁÜ
+	//			// éœ‰é”…æ³å°” åœºä¿Š æ­¹å›ºç•´é›å•Š ç”¸ç»¢å•Šèª 1å“—æ·‹
 	//			if (pUI && pUI->GetBrevetNodeState() == EBrevetNodeState::EBNS_UnLocked)
 	//				NewBrevetNodeIcon->SetNotOpenText(m_arBrevetNodes.Num() - 1);
 	//		}
 
-	//		// ¾ÆÀÌÄÜ ¸ÓÅÍ¸®¾ó ¼¼ÆÃ
+	//		// é…’æèƒ½ èµ£ç£åºœå€” æŠ€æ³¼
 	//		SetNodeIconFromStatusType(NewBrevetNodeIcon, EBrevetStatusType(BrevetNodeInfo->StatusType));
 
-	//		// °ÔÀÌÁö ÃÊ±âÈ­
+	//		// éœ¸æç˜¤ æª¬æ‰æ‹³
 	//		NewBrevetNodeIcon->SetProgressGauge(0);
 	//		
 	//		m_arBrevetNodes.Add(Cast<UB2LobbyUserWidget>(NewBrevetNodeIcon));
 
-	//		// ¿À¸¥ÂÊ ³¡ ´õ¹Ì
+	//		// å·å¼—ç‡ åœº æ­¹å›º
 	//		if (nCnt == BrevetNodeMaxCount - 1)
 	//		{
 	//			UB2LobbyUserWidget* DummyRight = CreateWidget<UB2LobbyUserWidget>(GetOwningPlayer(), NodeItemClass_DummyR);
@@ -355,7 +355,7 @@ void UB2LobbyUI_BrevetMain::RefreshBrevetUIScrollBoxInfo()
 	//			}
 	//			else
 	//			{
-	//				// ´ÙÀ½ °è±Ş ¾ÆÀÌÄÜ ³Ö¾îÁÖ±â
+	//				// ä¿ƒæ¾œ æ‹Œé­ é…’æèƒ½ æŒç»¢æ—æ‰
 	//				if (UB2LobbyUI_BrevetNodeIconDummy* pUI = Cast<UB2LobbyUI_BrevetNodeIconDummy>(DummyRight))
 	//				{
 	//					UMaterialInterface* pMI = BladeIIGameImpl::GetClientDataStore().GetBrevetRankIconMaterial(CurrentCharBrevetRank + 1, true);
@@ -368,7 +368,7 @@ void UB2LobbyUI_BrevetMain::RefreshBrevetUIScrollBoxInfo()
 	//	}
 	//}
 
-	////ÇöÀç³ëµå ¼³Á¤
+	////æ³…çŠç•´é› æ±²æ²¥
 	//SetCurrentNode();
 	//SetCurrentNodeProgress(0.0f);
 	//
@@ -384,7 +384,7 @@ bool UB2LobbyUI_BrevetMain::CheckNeedNodeOpenAnimation()
 
 	if (!bIsOpenAnimPlayed)
 	{
-		// true ¸®ÅÏÇÒ‹š È£Ãâ
+		// true åºœç•”ä¸”å« é¾‹å…
 		GConfig->SetBool(TEXT("BrevetNodeAnim"), *FString::FromInt((int32)CurrentPCClass), true, GB2UserSavedStateIni);
 
 		return true;
@@ -445,10 +445,10 @@ bool UB2LobbyUI_BrevetMain::IsCompletedCurrentBrevetNode()
 
 void UB2LobbyUI_BrevetMain::OnSelectedCurrentBrevetNode()
 {
-	// ÇöÀç ½½·ÔÀ¸·Î ÀÌµ¿ ÈÄ
+	// æ³…çŠ æµ‡å©æ è‚º ææ‚¼ é¥¶
 	OnToCenterBtnClick();
 
-	// ¾÷±×·¹ÀÌµå ÁøÇà
+	// è¯€å¼Šé¥­æé› æŸ³é’
 	OnUpgradeBtnClick();
 }
 
@@ -598,7 +598,7 @@ void UB2LobbyUI_BrevetMain::NativeTick(const FGeometry& MyGeometry, float InDelt
 void UB2LobbyUI_BrevetMain::CloseWidgetDelegate()
 {
 	//if (m_bIsAutoUpgradeState == true)
-	//{//ÀÚµ¿ °­È­Áß
+	//{//ç£Šæ‚¼ ç¢æ‹³å
 	//	SetToggleAutoUpgradeBtn(true);
 	//}
 	//else if (HeroMgmtBaseNRef)
@@ -614,8 +614,8 @@ void UB2LobbyUI_BrevetMain::UpdateCurrentNodeGauge(float InDeltaTime)
 
 	//m_bIsUpgrading = true;
 
-	//// °¡¼Óµµ¿Í ½Ã°£À» ±â¹İÀ¸·Î ÀÌµ¿ÇÑ À§Ä¡¸¦ °è»ê
-	//float fElapseTime = (GetWorld()->GetTimeSeconds() - m_fStartTime);	// °æ°ú ½Ã°£
+	//// å•ŠåŠ æ¡£å®¢ çŸ«åŸƒé˜‘ æ‰é¦†æ è‚º ææ‚¼èŒ„ å›°æ‘¹ç”« æ‹Œé­‚
+	//float fElapseTime = (GetWorld()->GetTimeSeconds() - m_fStartTime);	// ç‰ˆè‹ çŸ«åŸƒ
 	//if (fElapseTime > m_fTotalTime)
 	//	fElapseTime = m_fTotalTime;
 
@@ -657,7 +657,7 @@ void UB2LobbyUI_BrevetMain::SetCurrentNodeProgress(float fGaugePercent)
 
 void UB2LobbyUI_BrevetMain::CheckCurrentScrollViewState()
 {
-	//// ºí·ÏUIÀÖÀ»¶© ³ëÃ¼Å©	
+	//// å–‰åºŸUIä¹é˜‘è®¢ ç•´çœ‰å†œ	
 	//if (UB2UIManager::GetInstance()->GetUI<UB2UIWidget>(UIFName::BlockScreen) != NULL)
 	//	return;
 
@@ -683,7 +683,7 @@ void UB2LobbyUI_BrevetMain::CheckAutoUpgrade(float fDelayTime /*= 0.0f*/)
 	if (IsUpgrading())
 		return;
 
-	// ÇöÀç °­È­ ¿¡´Ï¸ŞÀÌ¼ÇÀÌ ³ª¿À°íÀÖ´Ù¸é 
+	// æ³…çŠ ç¢æ‹³ ä¿Šèªçš‹æè®°æ å”±å·ç»Šä¹ä¿ƒæ 
 	if (m_fStartTime != -1 && m_fTotalTime != 0.0f)
 		return;
 
@@ -693,7 +693,7 @@ void UB2LobbyUI_BrevetMain::CheckAutoUpgrade(float fDelayTime /*= 0.0f*/)
 	if (GetWorld())
 		GetWorld()->GetTimerManager().ClearTimer(DelayAutoUpgradeTimerHandle);
 
-	// ¾÷±×·¹ÀÌµå ÁøÇà
+	// è¯€å¼Šé¥­æé› æŸ³é’
 	if (fDelayTime == 0.0f)
 	{
 		OnSelectedCurrentBrevetNode();
@@ -798,12 +798,12 @@ void UB2LobbyUI_BrevetMain::OpenAddStatusUI()
 	//if (!BrevetNodeData)
 	//	return;
 
-	////¿¬Ãâ¿ë UI¶ç¿ò ½ºÅİÁõ°¡!
+	////æ¥·å…ä¾© UIå‰æ¡† èƒ¶æ³¡åˆ˜å•Š!
 	//int32 nStatusType = BrevetNodeData->StatusType;
 	//int32 nStatusValue = BrevetNodeData->StatusValue;
 
-	//// UI¸®´º¾ó·Î ÀÎÇÑ ÄÚµå ÁÖ¼®Ã³¸® 170512 YJ
-	////UI¸¸µé°í À§°ª ¼³Á¤ÇØÁÜ
+	//// UIåºœæ˜¥å€”è‚º ç‰¢èŒ„ å†…é› æ—ç±è´¸åºœ 170512 YJ
+	////UIçˆ¶ç”¸ç»Š å›°è”¼ æ±²æ²¥ç§¦æ·‹
 	///*if (UB2UIBrevetAddStatus* pUI = UB2UIManager::GetInstance()->OpenUI<UB2UIBrevetAddStatus>(UIFName::BrevetAddStatus))
 	//{
 	//	UMaterialInterface* pGaugeMI = NULL;
@@ -874,7 +874,7 @@ void UB2LobbyUI_BrevetMain::OpenRankUpSuccessUI()
 void UB2LobbyUI_BrevetMain::SetCurrentNode()
 {
 	//int32 BrevetNodeIndex = GetCurrentBrevetNodeIndex();
-	//// ÇöÀç³ëµå ÀúÀå(m_arBrevetNodes Ã¹¹øÂ°¶û ³¡ ¾ÆÀÌÅÛÀº Àå½Ä¿ë ´õ¹ÌÀÓ)
+	//// æ³…çŠç•´é› å†å˜(m_arBrevetNodes éœ‰é”…æ³å°” åœº é…’æè¢ç¯® å˜ä¾¥ä¾© æ­¹å›ºçƒ™)
 	//if (BrevetNodeIndex != -1 && m_arBrevetNodes.Num()-2 >= BrevetNodeIndex)
 	//	m_pCurrentBrevetNode = Cast<UB2LobbyUI_BrevetNodeIcon>(m_arBrevetNodes[BrevetNodeIndex]);
 }
@@ -883,10 +883,10 @@ void UB2LobbyUI_BrevetMain::SetCurrentNode()
 //{
 //	int32 BrevetNodeIndex = GetCurrentBrevetNodeIndex();
 //
-//	//ÇöÀç²¨ ´ÙÀ½²¨
+//	//æ³…çŠæ³¢ ä¿ƒæ¾œæ³¢
 //	BrevetNodeIndex += 1;
 //
-//	// ÇöÀç³ëµå ÀúÀå(m_arBrevetNodes Ã¹¹øÂ°¶û ³¡ ¾ÆÀÌÅÛÀº Àå½Ä¿ë ´õ¹ÌÀÓ)
+//	// æ³…çŠç•´é› å†å˜(m_arBrevetNodes éœ‰é”…æ³å°” åœº é…’æè¢ç¯® å˜ä¾¥ä¾© æ­¹å›ºçƒ™)
 //	if (BrevetNodeIndex != -1 && m_arBrevetNodes.Num()-2 >= BrevetNodeIndex)
 //		return Cast<UB2LobbyUI_BrevetNodeIcon>(m_arBrevetNodes[BrevetNodeIndex]);
 //
@@ -956,7 +956,7 @@ void UB2LobbyUI_BrevetMain::BlockInputBrevetMain(bool bCheck)
 	//	BTN_Block2->SetVisibility(bCheck ? ESlateVisibility::Visible : ESlateVisibility::Hidden);
 
 	//if (HeroMgmtBaseNRef)
-	//{ // °øÅë ÆÄÆ®¿¡µµ ¹öÆ°ÀÌ ¸¹À¸´Ï..
+	//{ // å‚çƒ¹ é¢‡é£˜ä¿Šæ¡£ æ»šç“¢æ è…¹æ èª..
 	//	HeroMgmtBaseNRef->SetExtraDisableButtons(bCheck);
 	//}
 }
@@ -969,7 +969,7 @@ void UB2LobbyUI_BrevetMain::OnUpgradeBtnClick()
 	//if (m_fStartTime != -1 && m_fTotalTime != 0.0f)
 	//	return;
 
-	//// °­È­¸¦ ³¡±îÁö ÁøÇàÇß´ÂÁö
+	//// ç¢æ‹³ç”« åœºé³–ç˜¤ æŸ³é’æ²ç»°ç˜¤
 	//if (IsCompletedCurrentBrevetNode())
 	//{
 	//	StopAutoUpgrade();
@@ -1082,7 +1082,7 @@ void UB2LobbyUI_BrevetMain::OnDeliveryEnhanceRankNode(FB2EnhanceRankNode Enhance
 	//int32 current_gold = GET_TUPLE_DATA(FB2ResponseEnhanceRankNode::current_gold_index, EnhanceRankNode);
 	//bool is_success = GET_TUPLE_DATA(FB2ResponseEnhanceRankNode::is_success_index, EnhanceRankNode);
 
-	//bool checkNormal = (GetCurrentBrevetRank() <= BladeIIGameImpl::GetClientDataStore().GetMaximumNormalBrevetGade());	//ÀÌ ºÎºĞ °ËÁõ ÇÊ¿ä
+	//bool checkNormal = (GetCurrentBrevetRank() <= BladeIIGameImpl::GetClientDataStore().GetMaximumNormalBrevetGade());	//æ ä½•ç›’ å…«åˆ˜ é˜å¤¸
 	//if (checkNormal)
 	//{
 	//	BladeIIGameImpl::GetClientDataStore().OnResponseConsumableAmountDecrease(FItemRefIDHelper::ITEM_REF_ID_BREVET_STONE, -1,
@@ -1108,7 +1108,7 @@ void UB2LobbyUI_BrevetMain::OnDeliveryEnhanceRankNode(FB2EnhanceRankNode Enhance
 
 	////RefreshBrevetUIInfo();
 
-	//UB2UIManager::GetInstance()->OpenUI(UIFName::BlockScreen);	//ºí·ÏUI »ı¼º
+	//UB2UIManager::GetInstance()->OpenUI(UIFName::BlockScreen);	//å–‰åºŸUI ç§¯å·±
 
 	//StartGaugeAnimation(is_success);
 	//
@@ -1138,7 +1138,7 @@ void UB2LobbyUI_BrevetMain::OnFinishAnimationEvent_Anim_Current_Close()
 	//	return;
 	//}
 
-	//// ·©Å©¾÷Çß³ª Ã¼Å© / ÃÊ±â(Ã¹³ëµå È°¼ºÈ­ ÀÌÀü)¿£ Ç¥±â»ó 1·©Å©Áö¸¸ µ¥ÀÌÅÍ´Â 0·©Å©ÀÓ °í·Î 0·©Å© ¹«½Ã
+	//// çå†œè¯€æ²å”± çœ‰å†œ / æª¬æ‰(éœ‰ç•´é› åŠå·±æ‹³ æå‚ˆ)æµš é’æ‰æƒ‘ 1çå†œç˜¤çˆ¶ å•æç£ç»° 0çå†œçƒ™ ç»Šè‚º 0çå†œ å…¬çŸ«
 	//const int32 OldRank = GetOldBrevetRank();
 	//if (OldRank != 0 && OldRank != GetCurrentBrevetRank())
 	//{
@@ -1146,10 +1146,10 @@ void UB2LobbyUI_BrevetMain::OnFinishAnimationEvent_Anim_Current_Close()
 	//	return;
 	//}
 
-	//// ÇöÀç ³ëµå¼³Á¤
+	//// æ³…çŠ ç•´é›æ±²æ²¥
 	//SetCurrentNode();
 
-	//// ½ºÅ©·Ñ ¼ÂÆÃ
+	//// èƒ¶å†œè´¹ æ‚¸æ³¼
 	//int32 BrevetNodeIndex = GetCurrentBrevetNodeIndex();
 	//
 	//SB_BrevetNode->SetAnimateScroll(true);
@@ -1158,14 +1158,14 @@ void UB2LobbyUI_BrevetMain::OnFinishAnimationEvent_Anim_Current_Close()
 	//if (!m_pCurrentBrevetNode)
 	//	return;
 
-	//// ³ëµå ¾Ö´Ï¸ŞÀÌ¼Ç
+	//// ç•´é› å±€èªçš‹æè®°
 	//if ( BladeIIGameImpl::GetLocalCharacterData().GetCharacterLevel(CurrentPCClass) < m_pCurrentBrevetNode->m_pBrevetNodeInfo->OpenLevel)
 	//{
-	//	//¾Æ¸¶µµ ÀÌÁ¨ ¿©±â¸¦ Å»ÀÏÀÌ ¾øÀ»°ÍÀÌ´Ù.
+	//	//é…’ä»˜æ¡£ æå“© å’¯æ‰ç”« å‘•è€æ ç»é˜‘å·´æä¿ƒ.
 	//	m_pCurrentBrevetNode->PlayAnimationEvent_Anim_Current_Lock();
 	//	m_pCurrentBrevetNode->SetBrevetNodeState(EBrevetNodeState::EBNS_Locked_Current);
 
-	//	// ¿ÀÇÂ ¾Ö´Ï¸ŞÀÌ¼Ç ¸ø”f´Ù°í ÀúÀå CheckNeexNodeOpenAnimation() ¿¡¼­ ¼³Á¤
+	//	// å·é”¹ å±€èªçš‹æè®° ç»™æ”†ä¿ƒç»Š å†å˜ CheckNeexNodeOpenAnimation() ä¿Šè¾‘ æ±²æ²¥
 	//	GConfig->SetBool(TEXT("BrevetNodeAnim"), *FString::FromInt((int32)CurrentPCClass), false, GB2UserSavedStateIni);
 	//}
 	//else
@@ -1173,12 +1173,12 @@ void UB2LobbyUI_BrevetMain::OnFinishAnimationEvent_Anim_Current_Close()
 	//	m_pCurrentBrevetNode->PlayAnimationEvent_Anim_Current_Open();
 	//	m_pCurrentBrevetNode->SetBrevetNodeState(EBrevetNodeState::EBNS_UnLocked);
 
-	//	// ´ÙÀ½³ëµå¿¡ xxÈ°¼ºÈ­½Ã ¿ÀÇÂ ÅØ½ºÆ® º¸ÀÌ±â¼³Á¤
+	//	// ä¿ƒæ¾œç•´é›ä¿Š xxåŠå·±æ‹³çŸ« å·é”¹ å’†èƒ¶é£˜ ç„Šææ‰æ±²æ²¥
 	//	if (UB2LobbyUI_BrevetNodeIcon* pUI = GetNextNode())
 	//		pUI->SetNotOpenText(m_pCurrentBrevetNode->GetBrevetNodeNum());
 	//}
 
-	//// È°¼ºÈ­·Î ¸¸µç ºí·ÏUI ÀÌÂë¿¡¼­ Á¦°ÅÇØÁàµµ µÉµí
+	//// åŠå·±æ‹³è‚º çˆ¶ç”µ å–‰åºŸUI æç ä¿Šè¾‘ åŠ›èŠ­ç§¦æ‹æ¡£ çªæ·€
 	//UB2UIManager::GetInstance()->CloseUI(UIFName::BlockScreen);
 
 	//if (m_bIsAutoUpgradeState == false)

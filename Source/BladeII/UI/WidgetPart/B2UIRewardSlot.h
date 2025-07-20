@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -35,7 +35,7 @@ public:
 	virtual void Init() override;
 	virtual void DestroySelf(class UB2UIManager* InUIManager) override;
 
-	// CommonStruct MailGiftType Ȱ��
+	// CommonStruct MailGiftType 劝侩
 	void InitRewardSlotTemplate(MailGiftType RewardType);
 	void SetRewardSlotDefaultDisplay(const FRewardDisplayInfo& InRewardDisplayInfo);
 	void SetRewardSlotItem(int32 ItemID);

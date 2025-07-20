@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIEventPageGemSpend.h"
 
@@ -27,7 +27,7 @@ void UB2UIEventPageGemSpend::UpdateStaticText()
 	if (RTB_AccrueGemPurchase.IsValid())
 		RTB_AccrueGemPurchase->SetText(BladeIIGetLOCText(B2LOC_CAT_EVENT, TEXT("SpendGemEvent_GemCount")));
 
-	//ÃÊ±âÈ­
+	//æª¬æ‰æ‹³
 	UpdateSpendGemPointText(0);
 }
 
@@ -113,12 +113,12 @@ void UB2UIEventPageGemSpend::UpdateEventPage(FB2ResponseGetEventPtr ReciveGetEve
 				EventSlotGemSpend->SetGemProgressAndGoalCountText(SpendGemCount);
 
 				int32 iRewardBitCheck = 2 << i;
-				//º¸»ó ¿Ï·á //reward_state_value 0000001 Ã¹¹øÂ° º¸»ó ¿Ï·á reward_state_value 0000011 Ã¹¹øÂ°, µÎ¹øÂ° º¸»ó ¿Ï·á
+				//ç„Šæƒ‘ è‚¯ä¸° //reward_state_value 0000001 éœ‰é”…æ³ ç„Šæƒ‘ è‚¯ä¸° reward_state_value 0000011 éœ‰é”…æ³, æ»´é”…æ³ ç„Šæƒ‘ è‚¯ä¸°
 				if (RewardStateValue & iRewardBitCheck)
 				{
 					EventSlotGemSpend->SetEventState(b2network::B2MissionStateType::REWARDED);
 				}
-				//º¸»ó ¹Ì¿Ï·á
+				//ç„Šæƒ‘ å›ºè‚¯ä¸°
 				else if (SpendGemCount >= EventSlotGemSpend->GetGoalCount())
 				{
 					EventSlotGemSpend->SetEventState(b2network::B2MissionStateType::COMPLETED);	
@@ -163,7 +163,7 @@ void UB2UIEventPageGemSpend::UpdateEventPage(FB2ResponseGetEventPtr ReciveGetEve
 
 void UB2UIEventPageGemSpend::SortEventSlotList()
 {
-	//ÁÖ»çÀ§ ÀÌº¥Æ®¿¡¼­ Æ÷ÀÎÆ® ±¸ÀÔ ¶§¹®¿¡ ±×³É UpdateEventPage ¿¡¼­ º°µµ·Î Á¤·ÄÇÏµµ·Ï »õ·Î Â«.
+	//æ—è¤å›° æäº¥é£˜ä¿Šè¾‘ å™¨ç‰¢é£˜ å¤‡æ¶ é”­å·©ä¿Š å¼Šæˆ UpdateEventPage ä¿Šè¾‘ å–Šæ¡£è‚º æ²¥çººçªæ¡£åºŸ è´§è‚º èŠ¦.
 	
 	if (VB_EventSlotList.IsValid() == false)
 	{
@@ -175,7 +175,7 @@ void UB2UIEventPageGemSpend::SortEventSlotList()
 	ArrayEventSlotList.StableSort(
 		[](const TWeakObjectPtr<class UB2UIEventSlot>& A, const TWeakObjectPtr<class UB2UIEventSlot>& B)
 	{
-		//º¸»ó ¿Ï·á ½½·ÔÀº °¡Àå µÚ·Î Á¤·Ä
+		//ç„Šæƒ‘ è‚¯ä¸° æµ‡å©ç¯® å•Šå˜ ç¬¬è‚º æ²¥çºº
 		bool Result = false;
 		if (A->GetEventIndex() < B->GetEventIndex())
 		{

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIFairyMain.h"
 #include "B2UIManager.h"
 #include "B2UIDocHelper.h"
@@ -140,7 +140,7 @@ void UB2UIFairyMain::OnOpen(bool RightNow)
 void UB2UIFairyMain::OnClose(bool RightNow)
 {
 	Super::OnClose(RightNow);
-	// ÀÓ½ÃÄÚµå
+	// çƒ™çŸ«å†…é›
 	if (UIP_FairyLevelUpPopup.IsValid())
 	{
 		UIP_FairyLevelUpPopup->OnClose(RightNow);
@@ -247,7 +247,7 @@ void UB2UIFairyMain::OnClickBTN_GoToBless()
 
 	const FB2FairyBlessSlotInfo& SlotInfo = CachedFairyBlessList[CachedBlessSlotRowIndex];
 
-	// Ãàº¹ÁßÀÎ°Ô ÀÖÀ¸¸é ÆË¾÷À¸·Î ¹°¾îº½
+	// ç»µæ±—åç‰¢éœ¸ ä¹æ æ æ‰‘è¯€æ è‚º æ‹±ç»¢èˆª
 	FB2FairyStatusInfo StatusInfo;
 	if (FairyManager::GetInstance().GetFairyInfo(SlotInfo.FairyType, StatusInfo) && StatusInfo.ActivedOptoinId > 0)
 	{
@@ -468,7 +468,7 @@ void UB2UIFairyMain::RefreshFairyButtons()
 		}
 	}
 
-	// À§¿¡¼­ °»½ÅÇÏ¸é¼­ ´Ù ºñÈ°¼ºÈ­ ½ÃÄÑÁÜ
+	// å›°ä¿Šè¾‘ ç›è„šçªæè¾‘ ä¿ƒ åšåŠå·±æ‹³ çŸ«éš¾æ·‹
 	switch (CurrentFairyType)
 	{
 	case EFairyType::FAIRY_NIECE:
@@ -485,7 +485,7 @@ void UB2UIFairyMain::RefreshFairyButtons()
 
 void UB2UIFairyMain::RefreshBottomButtons()
 {
-	// ÀÚµ¿ ·¹º§¾÷ ÁßÀÌ¸é ¹«½Ã
+	// ç£Šæ‚¼ é¥­éª‡è¯€ åææ å…¬çŸ«
 	if (bLoopReceiveAutoLevelUp)
 		return;
 

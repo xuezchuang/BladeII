@@ -1,4 +1,4 @@
-
+ï»¿
 #include "B2ModPlayerInfoData.h"
 #include "B2PCClassInfo.h"
 //#include "B2SkillInfo.h"
@@ -58,7 +58,7 @@ void FB2ModPlayerInfo::SetModPlayerInfo(const FB2FindAccountInfoPtr& InPlayerInf
 		FB2ModCharInfo& ThisModCharInfo = Characters[CI];
 		b2network::B2CharacterServerInfoPtr& ThisServerCharInfo = InPlayerInfo->characters[CI];
 
-		// InPlayerInfo->wing_options Áß¿¡¼­ ÀÌ¹ø Ä³¸¯ÅÍ °Í¸¸ »© ¿È. ¾ÆÁ÷ ÇÑ¹øµµ GetWing À» ÇÏÁö ¾ÊÀº Ä³¸¯ÅÍ¶ó¸é ¿É¼Ç µ¥ÀÌÅÍ°¡ ¾È ¿Ã ¼ö ÀÖ´Ù.
+		// InPlayerInfo->wing_options åä¿Šè¾‘ æé”… æŸè…ç£ å·´çˆ¶ å“— å’³. é…’æµ èŒ„é”…æ¡£ GetWing é˜‘ çªç˜¤ è‡¼ç¯® æŸè…ç£æ‰¼æ å¯è®° å•æç£å•Š æ•‘ æ£µ è ä¹ä¿ƒ.
 		TArray<b2network::B2WingOptionInfoPtr> WingOptionsForThisChar;
 		for (int32 AllInfoIndex = 0; AllInfoIndex < InPlayerInfo->wing_options.Num(); ++AllInfoIndex)
 		{
@@ -70,13 +70,13 @@ void FB2ModPlayerInfo::SetModPlayerInfo(const FB2FindAccountInfoPtr& InPlayerInf
 		}
 		
 		ThisModCharInfo.WingContainer.WingData.UpdateByPartialServerInfo(ThisServerCharInfo, WingOptionsForThisChar);
-		ThisModCharInfo.WingContainer.SetHasWingByWingData(); // bHasWing À» µû·Î ¼­¹ö¿¡¼­ ¹Ş¾Æ¾ß ÇÒ °Å´Â °°Àºµ¥ ÀÏ´Ü ¾øÀ¸´Ï..
+		ThisModCharInfo.WingContainer.SetHasWingByWingData(); // bHasWing é˜‘ è¶è‚º è¾‘æ»šä¿Šè¾‘ ç½é…’å…· ä¸” èŠ­ç»° éç¯®å• è€çªœ ç»æ èª..
 	}
 
 	MainPlayerClass = Characters.IsValidIndex(0) ? Characters[0].CharClass : EPCClass::EPC_End;
 	SubPlayerClass = Characters.IsValidIndex(1) ? Characters[1].CharClass : EPCClass::EPC_End;
 	
-	for (auto RelicItem : InPlayerInfo->relics) // ÇöÀç ¿ÀÇÂµÈ À¯¹°ÀÇ Á¤º¸.
+	for (auto RelicItem : InPlayerInfo->relics) // æ³…çŠ å·é”¹ç­‰ èœ¡æ‹±ç‹¼ æ²¥ç„Š.
 	{
 		for (auto& Character : Characters)
 		{
@@ -87,7 +87,7 @@ void FB2ModPlayerInfo::SetModPlayerInfo(const FB2FindAccountInfoPtr& InPlayerInf
 		}
 	}
 
-	for (b2network::B2AetherServerInfoPtr EtherItem : InPlayerInfo->mount_aethers) // ¿¡Å×¸£ Á¤º¸
+	for (b2network::B2AetherServerInfoPtr EtherItem : InPlayerInfo->mount_aethers) // ä¿ŠæŠ›ç¦ æ²¥ç„Š
 	{
 		for (FB2ModCharInfo& Character : Characters)
 		{
@@ -99,7 +99,7 @@ void FB2ModPlayerInfo::SetModPlayerInfo(const FB2FindAccountInfoPtr& InPlayerInf
 		}
 	}
 
-	for (auto UnityItem : InPlayerInfo->unity_skills) // ÇöÀç °­È­µÈ °á¼Ó½ºÅ³ Á¤º¸
+	for (auto UnityItem : InPlayerInfo->unity_skills) // æ³…çŠ ç¢æ‹³ç­‰ æ¬åŠ èƒ¶æ‡¦ æ²¥ç„Š
 	{
 		for (auto& Character : Characters)
 		{
@@ -115,13 +115,13 @@ void FB2ModPlayerInfo::SetModPlayerInfo(const FB2FindAccountInfoPtr& InPlayerInf
 	}
 	//RelicInfos = InPlayerInfo->relics;
 
-	//Æä¾î¸®
+	//å…¶ç»¢åºœ
 	FairyStatus.Empty();
 
 	FairyStatus = FairyManager::GetInstance().ModUpdateFairyStatus(InPlayerInfo->fairies);
 
 
-	//±æµå ½ºÅ³ Á¤º¸
+	//è¾¨é› èƒ¶æ‡¦ æ²¥ç„Š
 	GuildSkillInfos.Empty();
 	GuildSkillInfos.Append(InPlayerInfo->guild_skills);
 }
@@ -161,8 +161,8 @@ int32 FB2ModPlayerInfo::GetIndex(EPCClass CharClass) const
 
 int32 FB2ModPlayerInfo::GetUserLevel() const
 {
-	//±âÈ¹È®¸³½Ã±îÁö ÀÓ½Ã
-	//Á¦ÀÏ ·¹º§ÀÌ ³ôÀº Ä³¸¯ÅÍ ·¹º§ ¹İÈ¯
+	//æ‰è£™çŠ¬èµ‹çŸ«é³–ç˜¤ çƒ™çŸ«
+	//åŠ›è€ é¥­éª‡æ è‡­ç¯® æŸè…ç£ é¥­éª‡ é¦†åˆ¸
 	int32 UserLevel = 0;
 	for (auto Character : Characters)
 	{
@@ -375,7 +375,7 @@ void FB2ModPlayerInfo::GetCharacterSkills(EPCClass InCharacterClass, TArray<int3
 		if (SkillInfo)
 		{
 			for (auto Skill : CharInfo->skills)
-				OutSkillIDs.Add(Skill->skill_id); // ID ¸¸
+				OutSkillIDs.Add(Skill->skill_id); // ID çˆ¶
 		}
 	}	
 }
@@ -446,7 +446,7 @@ int32 FB2ModPlayerInfo::GetCharacterSkillLevel(int32 SkillId) const
 
 void FB2ModPlayerInfo::GetCharacterSkillOptionsOfID(int32 InSkillId, TArray<FSkillOptionData>& OutFoundOptionData) const
 {
-	// Æ¯Á¤ ½ºÅ³ ID ¿Í ÇöÀç ÇØ´ç ½ºÅ³ ·¹º§¿¡¼­ÀÇ ½ºÅ³¿É¼Çµé
+	// æ¼‚æ²¥ èƒ¶æ‡¦ ID å®¢ æ³…çŠ ç§¦å¯¸ èƒ¶æ‡¦ é¥­éª‡ä¿Šè¾‘ç‹¼ èƒ¶æ‡¦å¯è®°ç”¸
 	//const FSkillMasterData* SkillMDOfID = BladeIIGameImpl::GetClientDataStore().GetSkillMasterData(InSkillId);
 	//if (SkillMDOfID)
 	//{
@@ -562,7 +562,7 @@ void FB2ModPlayerInfo::SetCharacterEquipItems(FB2ModCharInfo& CharacterInfo)
 	}
 	else
 	{
-		// ÇÁ¸®¼Â Á¤º¸°¡ ¾ø´Ù¸é ¾ÆÀÌÅÛ ÀÎµ¦½º 0 À¸·Î Ã¤¿öÁÜ.
+		// æ©‡åºœæ‚¸ æ²¥ç„Šå•Š ç»ä¿ƒæ é…’æè¢ ç‰¢éƒ¸èƒ¶ 0 æ è‚º ç›²å†µæ·‹.
 		for(int32 i = 0; i < static_cast<int32>(EItemEquipPlace::EIEP_End) ; i++)
 		{
 			FB2Item EquippedItem;
@@ -720,7 +720,7 @@ bool FB2ModPlayerInfo::GetOptionStatusRawValues(EPCClass InPCClass, EItemOption 
 	//if (Characters.IsValidIndex(PCI))
 	//{
 	//	const FB2ModCharInfo& ModCharInfo = Characters[PCI];
-	//	// ÀåÂø Àåºñ¸¦ µû·Î ÁöÁ¤ÇÒ ¼ö ÀÖ´Ù.
+	//	// å˜é¦’ å˜åšç”« è¶è‚º ç˜¤æ²¥ä¸” è ä¹ä¿ƒ.
 	//	const TArray<FB2Item>& FinalEquipmentInfo = InItemArray ? *InItemArray : ModCharInfo.EquippedItems;
 
 	//	return CombatStatEval::GetOptionStatusRawValues(InPCClass,
@@ -740,7 +740,7 @@ bool FB2ModPlayerInfo::GetOptionStatusRawValues(EPCClass InPCClass, EItemOption 
 }
 
 //float FLocalCharacterData::GetOptionStatusValue
-//¼öÁ¤½Ã À§¿¡°ÍµÎ ¼öÁ¤
+//èæ²¥çŸ« å›°ä¿Šå·´æ»´ èæ²¥
 float FB2ModPlayerInfo::GetOptionStatusValue(EPCClass InPCClass, EItemOption OptionType, TArray<FB2Item>* InItemArray/* = NULL*/)
 {
 	//const int32 PCI = GetIndex(InPCClass);
@@ -754,7 +754,7 @@ float FB2ModPlayerInfo::GetOptionStatusValue(EPCClass InPCClass, EItemOption Opt
 	//		GetEquippedCostumeItems(InPCClass, CharEquipmentInfo);
 	//	}
 
-	//	// ÀåÂø Àåºñ¸¦ µû·Î ÁöÁ¤ÇÒ ¼ö ÀÖ´Ù.
+	//	// å˜é¦’ å˜åšç”« è¶è‚º ç˜¤æ²¥ä¸” è ä¹ä¿ƒ.
 	//	const TArray<FB2Item>& FinalEquipmentInfo = InItemArray ? *InItemArray : CharEquipmentInfo;
 
 	//	return CombatStatEval::GetOptionStatusValue(InPCClass,
@@ -773,7 +773,7 @@ float FB2ModPlayerInfo::GetOptionStatusValue(EPCClass InPCClass, EItemOption Opt
 }
 
 //float FLocalCharacterData::GetOptionStatusValueByMod
-//¼öÁ¤½Ã À§¿¡°ÍµÎ ¼öÁ¤
+//èæ²¥çŸ« å›°ä¿Šå·´æ»´ èæ²¥
 float FB2ModPlayerInfo::GetOptionStatusValueByMod(EPCClass InPCClass, EB2GameMode ModeType, EItemOption OptionType, TArray<FB2Item>* InItemArray/* = NULL*/)
 {
 	const int32 PCI = GetIndex(InPCClass);
@@ -787,7 +787,7 @@ float FB2ModPlayerInfo::GetOptionStatusValueByMod(EPCClass InPCClass, EB2GameMod
 	//		GetEquippedCostumeItems(InPCClass, CharEquipmentInfo);
 	//	}
 
-	//	// ÀåÂø Àåºñ¸¦ µû·Î ÁöÁ¤ÇÒ ¼ö ÀÖ´Ù.
+	//	// å˜é¦’ å˜åšç”« è¶è‚º ç˜¤æ²¥ä¸” è ä¹ä¿ƒ.
 	//	const TArray<FB2Item>& FinalEquipmentInfo = InItemArray ? *InItemArray : CharEquipmentInfo;
 
 	//	return CombatStatEval::GetOptionStatusValueByMod(InPCClass,
@@ -811,7 +811,7 @@ float FB2ModPlayerInfo::GetCombatStatusValue(EPCClass InPCClass, TArray<FB2Item>
 	GetEquippedItems(InPCClass, EquippedItems);
 	GetEquippedCostumeItems(InPCClass, EquippedCostumes);
 	
-	// ÀåÂø Àåºñ¸¦ µû·Î ÁöÁ¤ÇÒ ¼ö ÀÖ´Ù. Local ¾Æ´Ñ ModPlayerInfo ¿¡¼­ ±×·² ÀÏÀÌ ÀÖÀ»Áö´Â ¸ğ¸£°ÚÁö¸¸
+	// å˜é¦’ å˜åšç”« è¶è‚º ç˜¤æ²¥ä¸” è ä¹ä¿ƒ. Local é…’å›± ModPlayerInfo ä¿Šè¾‘ å¼Šå‡¡ è€æ ä¹é˜‘ç˜¤ç»° è‘›ç¦æ‘†ç˜¤çˆ¶
 	const TArray<FB2Item>& FinalEquipmentItemInfo = InItemArray ? *InItemArray : EquippedItems;
 	const TArray<FB2Item>& FinalEquipmentCostumeInfo = EquippedCostumes;
 
@@ -892,11 +892,11 @@ int32 FB2ModPlayerInfo::GetAppliedCharBrevetRank(EPCClass InCharacterClass) cons
 	int32 CurRank = GetCharBrevetRank(InCharacterClass);
 	int32 CurNodeIndex = GetCharBrevetNodeIndex(InCharacterClass);
 
-	// Ã¹ ·©Å©(·©Å© 1)°¡ ¾Æ´Ï°í ·©Å©ÀÇ Ã¹³ëµåÀÏ °æ¿ì ÀÌÀü ·©Å©¸¦ ¹İÈ¯
+	// éœ‰ çå†œ(çå†œ 1)å•Š é…’èªç»Š çå†œç‹¼ éœ‰ç•´é›è€ ç‰ˆå¿« æå‚ˆ çå†œç”« é¦†åˆ¸
 	if (CurRank != 0 && CurRank != 1 && CurNodeIndex == 1)
 		return CurRank - 1;
 
-	// ÀÏ¹İ°æ¿ì´Â ÇöÀç ·©Å©°¡ Àû¿ëµÈ ·©Å©
+	// è€é¦†ç‰ˆå¿«ç»° æ³…çŠ çå†œå•Š åˆ©ä¾©ç­‰ çå†œ
 	return CurRank;
 }
 
@@ -908,7 +908,7 @@ int32 FB2ModPlayerInfo::GetAppliedCharBrevetNodeIndex(EPCClass InClass) const
 	//if (CurRank == 0)
 	//	return 0;
 
-	//// Ã¹ ·©Å©°¡ ¾Æ´Ñ °æ¿ì Ã¹¹ø¤Š ³ëµå´Â ÀÌÀü ·©Å©ÀÇ ÃÖ´ë ÀÎµ¦½º°¡ Àû¿ë°ª
+	//// éœ‰ çå†œå•Š é…’å›± ç‰ˆå¿« éœ‰é”…î˜¯ ç•´é›ç»° æå‚ˆ çå†œç‹¼ å¼¥æª ç‰¢éƒ¸èƒ¶å•Š åˆ©ä¾©è”¼
 	//if (CurRank != 1 && CurNodeIndex == 1)
 	//	return BladeIIGameImpl::GetClientDataStore().GetBrevetNodeCount(CurRank);
 	//
@@ -919,13 +919,13 @@ int32 FB2ModPlayerInfo::GetAppliedCharBrevetNodeIndex(EPCClass InClass) const
 	//	MaxRank = Characters[PCI].CharInfo->rank_node_state;
 	//}
 
-	//// ¸¶Áö¸· ·©Å·¿¡ ¸¶Áö¸· ³ëµåÀÎµ¦½º¸é
+	//// ä»˜ç˜¤é˜œ çæ¬§ä¿Š ä»˜ç˜¤é˜œ ç•´é›ç‰¢éƒ¸èƒ¶æ
 	//if (BladeIIGameImpl::GetClientDataStore().GetBrevetMaxRank() == CurRank
 	//	&& BladeIIGameImpl::GetClientDataStore().GetBrevetNodeCount(CurRank) == CurNodeIndex
 	//	&& MaxRank)
 	//	return CurNodeIndex;
 
-	// ±âÁ¸ÀûÀ¸·Î´Â ÇöÀç ³ëµå¿¡¼­ ÇÏ³ª ÀÛÀº°Ô Àû¿ëµÈ ³ëµå
+	// æ‰ç²®åˆ©æ è‚ºç»° æ³…çŠ ç•´é›ä¿Šè¾‘ çªå”± ç´¯ç¯®éœ¸ åˆ©ä¾©ç­‰ ç•´é›
 	return FMath::Max(CurNodeIndex - 1, 0);
 }
 

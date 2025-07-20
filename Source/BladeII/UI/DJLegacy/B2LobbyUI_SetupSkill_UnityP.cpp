@@ -50,7 +50,7 @@ void UB2LobbyUI_SetupSkill_UnityP::StartFromLobby(class UB2UIManager_Lobby* InUI
 void UB2LobbyUI_SetupSkill_UnityP::InitFromOwnerSkillMain(UB2LobbyUI_SetupSkillMain* InOwnerPage, UB2LobbyUI_HeroMgmtCommon* InHeroMgmtCommon)
 {
 	OwnerSkillMainPage = InOwnerPage;
-	HeroMgmtBaseNRef = InHeroMgmtCommon; // Àü´Þ¸¸ ¹Þ°í ÀÌÂÊ¼­ Init °°Àº °Å ¾ÈÇÔ.
+	HeroMgmtBaseNRef = InHeroMgmtCommon; // å‚ˆå´”çˆ¶ ç½ç»Š æžçŽ‡è¾‘ Init éžç¯® èŠ­ æ•‘çªƒ.
 
 	check(HeroMgmtBaseNRef);
 	check(OwnerSkillMainPage);
@@ -157,7 +157,7 @@ void UB2LobbyUI_SetupSkill_UnityP::BindDelegates()
 
 void UB2LobbyUI_SetupSkill_UnityP::BeginDestroy()
 {
-	//Editor »óÈ²¿¡¼­ ¹®Á¦°¡ Á» ÀÖ¾î¼­ ¿©±â¼­µµ unsubscribe
+	//Editor æƒ‘ç‚”ä¿Šè¾‘ å·©åŠ›å•Š ç²± ä¹ç»¢è¾‘ å’¯æ‰è¾‘æ¡£ unsubscribe
 	if (CachedLobbyGM)
 	{
 		UnsubscribeEvents();
@@ -213,12 +213,12 @@ void UB2LobbyUI_SetupSkill_UnityP::UnsubscribeEvents()
 
 void UB2LobbyUI_SetupSkill_UnityP::UpdatePanelMain(EPCClass InPCClassIfChanged )
 {
-	if (InPCClassIfChanged != EPCClass::EPC_End) // ÇÊ¿äÇÑ °æ¿ì PCClass ÀÌ°É·Î ÅëÇØ º¯°æ.
+	if (InPCClassIfChanged != EPCClass::EPC_End) // éž˜å¤¸èŒ„ ç‰ˆå¿« PCClass æžå§è‚º çƒ¹ç§¦ å‡½ç‰ˆ.
 	{
 		MainPCClass = InPCClassIfChanged;
 	}
 
-	// ÀÌÀü¿¡ SetupSkillMain ÀÌ¶û ºÙ¾îÀÖÀ» ¶§ ÀÌÂÊ ÅÇ ¼±ÅÃÀÌ³ª ¿µ¿õ°ü¸® Å¬·¡½º ±³Ã¼ ½Ã ¼öÇàµÇ´ø µ¿ÀÛ ¸ðÀ½.
+	// æžå‚ˆä¿Š SetupSkillMain æžå°” å˜¿ç»¢ä¹é˜‘ é”­ æžçŽ‡ å¾˜ æ€¥ç¶æžå”± åº·æ—·åŒ…åºœ åŠªè´°èƒ¶ èƒŒçœ‰ çŸ« èé’ç™»å¸¦ æ‚¼ç´¯ è‘›æ¾œ.
 	SetUnitySkillPanel();
 	OnClickedUnityButton();
 	DoMarkReddotAll();
@@ -327,7 +327,7 @@ void UB2LobbyUI_SetupSkill_UnityP::OnReceiveUnitySkillReward(FB2ResponseUnitySki
 
 void UB2LobbyUI_SetupSkill_UnityP::OnReceiveUnitySkillAwake(FB2ResponseAwakenUnitySkillPtr RewardPtr)
 {
-	// º¸³»¸é ¹«Á¶°Ç ¼º°øÀÌ´Ï ¾÷µ¥ÀÌÆ® Ã³¸®ÇØÁÜ.
+	// ç„Šéƒ´æ å…¬ç‚¼æ‰’ å·±å‚æžèª è¯€å•æžé£˜ è´¸åºœç§¦æ·‹.
 	BladeIIGameImpl::GetLocalCharacterData().SetUnitySkillAwakeSuccess(MainPCClass);
 	OnPlayUnityWakeReward_IMP();
 	DoMarkReddotAll();
@@ -335,18 +335,18 @@ void UB2LobbyUI_SetupSkill_UnityP::OnReceiveUnitySkillAwake(FB2ResponseAwakenUni
 
 void UB2LobbyUI_SetupSkill_UnityP::DoMarkReddotAll()
 {
-	// °á¼ÓÆäÀÌÁö
+	// æ¬åŠ å…¶æžç˜¤
 	DoMarkRedDot();
 
-	// ÁÂÃø Ä³¸¯ÅÍ ¹öÆ°µé
+	// è°…èžŸ æŸè…ç£ æ»šç“¢ç”¸
 	if (HeroMgmtBaseNRef)
 		HeroMgmtBaseNRef->DoMarkRedDot();
 
-	// ½ºÅ³ ÅÇ¹öÆ°µé
+	// èƒ¶æ‡¦ å¾˜æ»šç“¢ç”¸
 	if (OwnerSkillMainPage)
 		OwnerSkillMainPage->DoMarkRedDot();
 
-	// °¢¼º ¹öÆ°µé
+	// é˜¿å·± æ»šç“¢ç”¸
 	if (Lobby_SetupSkill_UnityP_AwakePopup.IsValid())
 		Lobby_SetupSkill_UnityP_AwakePopup->DoMarkRedDot();
 }
@@ -398,7 +398,7 @@ void UB2LobbyUI_SetupSkill_UnityP::OnClickedUnityAwake()
 
 void UB2LobbyUI_SetupSkill_UnityP::OnClickedUnityAwakeNotice()
 {
-	// ÀÌ¸§ º¯°æ±Ç »ç¿ëÇÏÁö ¾ÊÀ½.
+	// æžæŠš å‡½ç‰ˆé¼» è¤ä¾©çªç˜¤ è‡¼æ¾œ.
 	UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
 		BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("SensitiveNoti_Notification"))),
 		BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("Skill_Unity_AwakenMissionCondition"))),
@@ -444,7 +444,7 @@ void UB2LobbyUI_SetupSkill_UnityP::SetUnitySkillPanel()
 
 void UB2LobbyUI_SetupSkill_UnityP::SetUnitySkillPortraitInfo()
 {
-	int32 CurrentUnitySkillIndex = GetUnitySkillID(MainPCClass); // [todo] ÀÌ°Å ·ÎÄÃ ÄÉ¸¯ÅÍµ¥ÀÌÅÍ·Î ÇØ¾ßµÉµí?
+	int32 CurrentUnitySkillIndex = GetUnitySkillID(MainPCClass); // [todo] æžèŠ­ è‚ºæ‹¿ çº³è…ç£å•æžç£è‚º ç§¦å…·çžªæ·€?
 	auto* ClassInfoBox = StaticFindPCClassInfoBox();
 	auto* AllSkillInfo = ClassInfoBox ? ClassInfoBox->GetAllSkillInfo() : nullptr;
 	
@@ -493,7 +493,7 @@ void UB2LobbyUI_SetupSkill_UnityP::OnClickedUnityPortraitButton(EPCClass seleted
 					PanelState = EUnityBottomInfoType::InMission;
 			}
 
-			for (int32 i = 1; i < 3; i++) // °¢ ¹Ì¼ÇÀÇ Á¶°ÇÀÎµ¦½º´Â 1,2
+			for (int32 i = 1; i < 3; i++) // é˜¿ å›ºè®°ç‹¼ ç‚¼æ‰’ç‰¢éƒ¸èƒ¶ç»° 1,2
 			{
 				UB2UIUnitySkillAcquireInfo* MissionInfoWidget = CreateWidget<UB2UIUnitySkillAcquireInfo>(GetWorld(), UnitySkillAcquireItemClass);
 				if (MissionInfoWidget)
@@ -511,7 +511,7 @@ void UB2LobbyUI_SetupSkill_UnityP::OnClickedUnityPortraitButton(EPCClass seleted
 			
 					List_UinityAccuire->AddChild(MissionInfoWidget);
 
-					if (!CheckCanReward) // ÇÏ³ª¶óµµ Á¶°Ç¿¡ ¸ÂÁö ¾ÊÀ»°æ¿ì º¸»ó¹ÞÀ»¼ö¾øÀ½
+					if (!CheckCanReward) // çªå”±æ‰¼æ¡£ ç‚¼æ‰’ä¿Š å˜Žç˜¤ è‡¼é˜‘ç‰ˆå¿« ç„Šæƒ‘ç½é˜‘èç»æ¾œ
 						bRewardAble = false;
 				}
 			}
@@ -528,7 +528,7 @@ void UB2LobbyUI_SetupSkill_UnityP::OnClickedUnityPortraitButton(EPCClass seleted
 			UnityItem->OnChangeSelected(false);
 	}
 
-	if (IMG_UnitySelect.IsValid()) // Áß¾Ó¹öÆ°ÀÇ ¼±ÅÃ ÀÌ¹ÌÁö Ã³¸®´Â µû·Î.
+	if (IMG_UnitySelect.IsValid()) // åå±…æ»šç“¢ç‹¼ æ€¥ç¶ æžå›ºç˜¤ è´¸åºœç»° è¶è‚º.
 		IMG_UnitySelect->SetVisibility(MainPCClass != SubPCClass ? ESlateVisibility::Hidden : ESlateVisibility::HitTestInvisible);
 
 	if (STB_UnityTitle.IsValid())

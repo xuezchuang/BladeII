@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIUpgradeStoneAllReceive.h"
 #include "B2UIManager.h"
@@ -30,7 +30,7 @@ void UB2UIUpgradeStoneAllReceive::Init()
 		BTN_OK->SetIsEnabled(false);
 	}
 
-	// TODO ³×Æ®¿öÅ©·Î ¼ÂÆÃµÈ °ªÀ» ÀÌ°÷¿¡¼­ ¼ÂÆÃÇÑ´Ù.
+	// TODO åŒ™é£˜å†µå†œè‚º æ‚¸æ³¼ç­‰ è”¼é˜‘ æé•‘ä¿Šè¾‘ æ‚¸æ³¼èŒ„ä¿ƒ.
 	ReceiveCount = 1;
 	SetValueMailCountSlider(ReceiveCount);
 	SetTBCount(ReceiveCount);
@@ -70,7 +70,7 @@ void UB2UIUpgradeStoneAllReceive::SetUpgradeStoneMailInfo(const TArray<TWeakObje
 		if (Elem->GetGiftType() == MailGiftType::Selective_Item_Lottery &&
 			//Elem->GetSelectItemRefIDs()[0] != 8000100
 			Elem->GetItemRefId() != 8
-			)								// ÇÏµå ÄÚµù °í±Ş ½Â±Ş¼® ¿¹¿Ü Ã³¸®
+			)								// çªé› å†…çˆ¹ ç»Šé­ é“°é­ç± æŠ—å¯‡ è´¸åºœ
 		{
 			MailIDs.Add(Elem->GetMailId());
 
@@ -122,7 +122,7 @@ void UB2UIUpgradeStoneAllReceive::SetRareUpgradeStoneMailInfo(const TArray<TWeak
 		if(mailbox == nullptr) mailbox = Elem->GetMailBox();
 
 		if (Elem->GetGiftType() == MailGiftType::Selective_Item_Lottery &&
-			Elem->GetItemRefId() == 8										// ÇÏµåÄÚµù °í±Ş ½Â±Ş¼® ¿¹¿Ü Ã³¸®¸¦ À§ÇÔ.
+			Elem->GetItemRefId() == 8										// çªé›å†…çˆ¹ ç»Šé­ é“°é­ç± æŠ—å¯‡ è´¸åºœç”« å›°çªƒ.
 			)
 		{
 			MailIDs.Add(Elem->GetMailId());

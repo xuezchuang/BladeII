@@ -1,4 +1,4 @@
-#include "B2UIInGameBuffIcon.h"
+ï»¿#include "B2UIInGameBuffIcon.h"
 #include "B2UIManager.h"
 #include "B2UIDocHelper.h"
 
@@ -219,7 +219,7 @@ void UB2UIInGameBuffIcon_Resurrect::UpdateWidgets()
 {
 	Super::UpdateWidgets();
 
-	// ºÎÈ° ¹öÇÁ´Â ÇÑ Á¾·ù¸¸ ¼±ÅÃ °¡´É
+	// ä½•åŠ æ»šæ©‡ç»° èŒ„ è¾†å¹…çˆ¶ æ€¥ç¶ å•Šç“·
 	int32 AttackBuffValue, DefenseBuffValue, HealthBuffValue;
 	GetBuffData(AttackBuffValue, DefenseBuffValue, HealthBuffValue);
 	
@@ -238,7 +238,7 @@ void UB2UIInGameBuffIcon_Resurrect::UpdateWidgets()
 	}
 	else
 	{
-		// ½ÇÁ¦·Î Buff °¡ ¾ø´Â Ã¤·Î »ý¼ºÀÌ µÉ ¼öµµ ÀÖÀ¸´Ï ±×·± °æ¿ì Collapse
+		// è§’åŠ›è‚º Buff å•Š ç»ç»° ç›²è‚º ç§¯å·±æž çžª èæ¡£ ä¹æ èª å¼Šç¹ ç‰ˆå¿« Collapse
 		this->SetVisibility(ESlateVisibility::Collapsed);
 	}
 }
@@ -354,7 +354,7 @@ void UB2UIInGameBuffIcon_Skill::SetRemainigTime(float InTime)
 {
 	if (TB_RemainingTime.IsValid())
 	{
-		// À½¼ö¿¡¼­´Â ¼û±â´Â °É·Î ÇÏÀÚ.
+		// æ¾œèä¿Šè¾‘ç»° è§æ‰ç»° å§è‚º çªç£Š.
 		TB_RemainingTime->SetVisibility(InTime < 0.0f ? ESlateVisibility::Hidden : ESlateVisibility::HitTestInvisible);
 
 		TB_RemainingTime->SetText(FText::AsNumber((int32)InTime));
@@ -505,7 +505,7 @@ void UB2UIInGameBuffIcon_DimensionTower::UpdateWidgets()
 	}
 	else
 	{
-		// ½ÇÁ¦·Î Buff °¡ ¾ø´Â Ã¤·Î »ý¼ºÀÌ µÉ ¼öµµ ÀÖÀ¸´Ï ±×·± °æ¿ì Collapse
+		// è§’åŠ›è‚º Buff å•Š ç»ç»° ç›²è‚º ç§¯å·±æž çžª èæ¡£ ä¹æ èª å¼Šç¹ ç‰ˆå¿« Collapse
 		this->SetVisibility(ESlateVisibility::Collapsed);
 	}
 }

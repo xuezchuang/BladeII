@@ -118,19 +118,19 @@ void UB2LobbyUI_ConvertItemPopup::UpdateDynamicWidgets()
 {
 	UB2ItemInfo* ItemInfoTable = StaticFindItemInfo();
 	
-	//±âÈ¹¿¡¼­ °ñµå ±³È¯ (°ñµåº¯È¯ Á¦ÇÑ ¼ıÀÚ ¾Õ¿¡ ºÙ´Â ±Û±Í)¿¡ ´ëÇÑ ¹®ÀÚ¿­ ÀÌ¸§À» ¹Ş¾Æ¿Í¾ß ÇÔ.
+	//æ‰è£™ä¿Šè¾‘ æ¦œé› èƒŒåˆ¸ (æ¦œé›å‡½åˆ¸ åŠ›èŒ„ ç®­ç£Š èŠä¿Š å˜¿ç»° è‡‚è“–)ä¿Š æªèŒ„ å·©ç£Šå‡¯ ææŠšé˜‘ ç½é…’å®¢å…· çªƒ.
 	if (TB_GoldConvertLimit.IsValid())
 		TB_GoldConvertLimit->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("convertgold_text")));
 
-	//±âÈ¹¿¡¼­ ´ÙÀÌ¾Æ ±³È¯ (´ÙÀÌ¾Æº¯È¯ Á¦ÇÑ ¼ıÀÚ ¾Õ¿¡ ºÙ´Â ±Û±Í)¿¡ ´ëÇÑ ¹®ÀÚ¿­ ÀÌ¸§À» ¹Ş¾Æ¿Í¾ß ÇÔ.
+	//æ‰è£™ä¿Šè¾‘ ä¿ƒæé…’ èƒŒåˆ¸ (ä¿ƒæé…’å‡½åˆ¸ åŠ›èŒ„ ç®­ç£Š èŠä¿Š å˜¿ç»° è‡‚è“–)ä¿Š æªèŒ„ å·©ç£Šå‡¯ ææŠšé˜‘ ç½é…’å®¢å…· çªƒ.
 	if (TB_CrystalConvertLimit.IsValid())
 		TB_CrystalConvertLimit->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("convertgem_text")));
 	
 
 	if (BTN_Cancel.IsValid())
-		BTN_Cancel->SetVisibility(ESlateVisibility::Visible); // ±×³É °á°ú ÅëÁö´Â cancel ¹öÆ°ÀÌ ÇÊ¿ä¾øÀ½.
+		BTN_Cancel->SetVisibility(ESlateVisibility::Visible); // å¼Šæˆ æ¬è‹ çƒ¹ç˜¤ç»° cancel æ»šç“¢æ é˜å¤¸ç»æ¾œ.
 
-	//º¯È¯ Àü ¾ÆÀÌÅÛ ÀÌ¹ÌÁö ¹× Á¤º¸
+	//å‡½åˆ¸ å‚ˆ é…’æè¢ æå›ºç˜¤ æ£º æ²¥ç„Š
 	if (IMG_BeforeConvert.IsValid())
 	{
 		FSingleItemInfoData* BeforeConvertItemInfo = ItemInfoTable ? ItemInfoTable->GetInfoData(ItemBeforeConvert->ItemRefID) : NULL;
@@ -144,7 +144,7 @@ void UB2LobbyUI_ConvertItemPopup::UpdateDynamicWidgets()
 		}
 	}
 
-	//º¯È¯ ÈÄ ¾ÆÀÌÅÛ ÀÌ¹ÌÁö ¹× Á¤º¸
+	//å‡½åˆ¸ é¥¶ é…’æè¢ æå›ºç˜¤ æ£º æ²¥ç„Š
 	if (IMG_AfterConvert.IsValid())
 	{
 		FSingleItemInfoData* AfterConvertItemInfo = ItemInfoTable ? ItemInfoTable->GetInfoData(afterconvertItemID) : NULL;
@@ -161,19 +161,19 @@ void UB2LobbyUI_ConvertItemPopup::UpdateDynamicWidgets()
 
 void UB2LobbyUI_ConvertItemPopup::UpdateConvertItemWidgets()
 {
-	//º¯È¯ Àü ¾ÆÀÌÅÛ °¹¼ö
+	//å‡½åˆ¸ å‚ˆ é…’æè¢ è‚®è
 	if (TB_BeforeConvertQuantity.IsValid())
 		TB_BeforeConvertQuantity->SetText(FText::AsNumber(requiredBeforeConvertItemQuantity));
 
-	//º¯È¯ ÈÄ ¾ÆÀÌÅÛ °¹¼ö
+	//å‡½åˆ¸ é¥¶ é…’æè¢ è‚®è
 	if (TB_AfterConvertQuantity.IsValid())
 		TB_AfterConvertQuantity->SetText(FText::AsNumber(resultAfterConvertItemQuantity));
 
-	//°ñµå °¡°İ
+	//æ¦œé› å•Šæ‹œ
 	if (TB_GoldPrice.IsValid())
 		TB_GoldPrice->SetText(FText::AsNumber(goldPrice));
 
-	//´ÙÀÌ¾Æ °¡°İ
+	//ä¿ƒæé…’ å•Šæ‹œ
 	if (TB_CrystalPrice.IsValid())
 		TB_CrystalPrice->SetText(FText::AsNumber(crystalPrice));
 }
@@ -188,7 +188,7 @@ void UB2LobbyUI_ConvertItemPopup::ResponseConvertData(const T& ConvertDataPtr)
 
 		DocConvert->SetConvertMaxCount(ConvertDataPtr->exchange_max_count);
 
-		//DocConvert->SetConvertRemainTime(ConvertDataPtr->next_exchange_remain_time);	//¾îµğ¼­ ÇÊ¿äÇÑ °ÇÁö ¸ğ¸£°ÚÀ½
+		//DocConvert->SetConvertRemainTime(ConvertDataPtr->next_exchange_remain_time);	//ç»¢å¼è¾‘ é˜å¤¸èŒ„ æ‰’ç˜¤ è‘›ç¦æ‘†æ¾œ
 
 		DocConvert->ResetConvertItemList();
 		for (auto ConvertTable : ConvertDataPtr->convert_table)
@@ -201,7 +201,7 @@ void UB2LobbyUI_ConvertItemPopup::ResponseConvertData(const T& ConvertDataPtr)
 
 void UB2LobbyUI_ConvertItemPopup::SetGoldCountInfo(int32 LastCount, int32 MaxCount)
 {
-	if (TB_MaxGoldConvertCount.IsValid())// (°ñµå º¯È¯ È½¼ö / MAX)
+	if (TB_MaxGoldConvertCount.IsValid())// (æ¦œé› å‡½åˆ¸ å†‰è / MAX)
 	{
 		if (MaxCount > 0)
 			TB_MaxGoldConvertCount->SetText(FText::FromString("(" + FString::FromInt(LastCount) + "/" + FString::FromInt(MaxCount) + ")"));
@@ -225,7 +225,7 @@ void UB2LobbyUI_ConvertItemPopup::SetGoldCountInfo(int32 LastCount, int32 MaxCou
 
 void UB2LobbyUI_ConvertItemPopup::SetCrystalCountInfo(int32 LastCount, int32 MaxCount)
 {
-	if (TB_MaxCrystalConvertCount.IsValid())// (´ÙÀÌ¾Æ º¯È¯ È½¼ö / MAX)
+	if (TB_MaxCrystalConvertCount.IsValid())// (ä¿ƒæé…’ å‡½åˆ¸ å†‰è / MAX)
 	{
 		if (MaxCount > 0)
 			TB_MaxCrystalConvertCount->SetText(FText::FromString("(" + FString::FromInt(LastCount) + "/" + FString::FromInt(MaxCount) + ")"));
@@ -258,7 +258,7 @@ void UB2LobbyUI_ConvertItemPopup::PopupMain(int32 convertItemID, int32 convertGo
 	BTN_PayGold->SetIsEnabled(true);
 	BTN_PayCrystal->SetIsEnabled(true);
 
-	SetConvertInfo(convertItemID, convertGold, convertCrystal);	//¿©±â¼­ ÇÊ¿äÇÑ°Å ´Ù ¼³Á¤ÇØ ÁÙ °ÍÀÓ.
+	SetConvertInfo(convertItemID, convertGold, convertCrystal);	//å’¯æ‰è¾‘ é˜å¤¸èŒ„èŠ­ ä¿ƒ æ±²æ²¥ç§¦ ä¸´ å·´çƒ™.
 	if (ItemBeforeConvert == NULL)
 	{
 		CloseMe();
@@ -271,7 +271,7 @@ void UB2LobbyUI_ConvertItemPopup::PopupMain(int32 convertItemID, int32 convertGo
 	UpdateDynamicWidgets();
 	UpdateConvertItemWidgets();
 
-	//¾Æ¿¹ ÇÊ¿äÇÑ ¸¸Å­ ¾øÀ¸¸é ¸ğµç ¹öÆ° ºñÈ°¼ºÈ­
+	//é…’æŠ— é˜å¤¸èŒ„ çˆ¶æ€’ ç»æ æ è‘›ç”µ æ»šç“¢ åšåŠå·±æ‹³
 	if (requiredBeforeConvertItemQuantity <= beforeConvertItemQuantity)
 	{
 		//BTN_PayCrystal->SetIsEnabled(true);
@@ -294,7 +294,7 @@ void UB2LobbyUI_ConvertItemPopup::PopupMain(int32 convertItemID, int32 convertGo
 
 void UB2LobbyUI_ConvertItemPopup::PopupAsConvertResult(const int32 AcquiredGold)
 {
-	//°á°ú Ãâ·Â ÈÄ PopupMainÃ³·³ µ¿ÀÏÇÏ°Ô ÇØ Áà¾ß ÇÔ.
+	//æ¬è‹ å…ä»¿ é¥¶ PopupMainè´¸çƒ¦ æ‚¼è€çªéœ¸ ç§¦ æ‹å…· çªƒ.
 
 	UpdateDynamicWidgets();
 	UpdateConvertItemWidgets();
@@ -311,9 +311,9 @@ void UB2LobbyUI_ConvertItemPopup::SetConvertInfo(int32 beforeConvertItem, int32 
 		return;
 	}
 
-	beforeConvertItemQuantity = ItemBeforeConvert->ConsumingAmount;	//ÇöÀç °¡Áø ¾ÆÀÌÅÛ °¹¼ö
+	beforeConvertItemQuantity = ItemBeforeConvert->ConsumingAmount;	//æ³…çŠ å•ŠæŸ³ é…’æè¢ è‚®è
 
-	//Å×ÀÌºí¿¡¼­ º¯È¯ µ¥ÀÌÅÍ¸¦ ÀĞ¾î¼­ µ¥ÀÌÅÍ ¹× °¡°İ¿¡ ¸Â°Ô ¼öÁ¤ÇÏµµ·Ï ÇØ¾ß ÇÔ
+	//æŠ›æå–‰ä¿Šè¾‘ å‡½åˆ¸ å•æç£ç”« ä½¬ç»¢è¾‘ å•æç£ æ£º å•Šæ‹œä¿Š å˜éœ¸ èæ²¥çªæ¡£åºŸ ç§¦å…· çªƒ
 	SetConvertTableData(ItemBeforeConvert->ItemRefID, goldConvertCount, crystalConvertCount);
 }
 
@@ -323,7 +323,7 @@ void UB2LobbyUI_ConvertItemPopup::SetGoldCost(EStoreItemCost InCostType, int32 p
 	
 	if (TB_GoldPrice.IsValid())
 	{
-		TB_GoldPrice->SetColorAndOpacity(price <= UserInfo->GetGold() ? FLinearColor::White : UB2UIManager::GetInstance()->TextColor_Decrease);	//»ö ¼³Á¤. ÁÖ¾îÁö´Â °¡°İ°ú ¼ÒÁö±İÀ» ºñ±³ÇÏ¿©¾ß ÇÑ´Ù.
+		TB_GoldPrice->SetColorAndOpacity(price <= UserInfo->GetGold() ? FLinearColor::White : UB2UIManager::GetInstance()->TextColor_Decrease);	//ç¥¸ æ±²æ²¥. æ—ç»¢ç˜¤ç»° å•Šæ‹œè‹ å®¶ç˜¤é™›é˜‘ åšèƒŒçªå’¯å…· èŒ„ä¿ƒ.
 
 		auto* HBSlot = Cast<UHorizontalBoxSlot>(TB_GoldPrice->Slot);
 		if (HBSlot)
@@ -336,7 +336,7 @@ void UB2LobbyUI_ConvertItemPopup::SetCrystalCost(EStoreItemCost InCostType, int3
 
 	if (TB_CrystalPrice.IsValid())
 	{
-		TB_GoldPrice->SetColorAndOpacity(price <= UserInfo->GetGem() ? FLinearColor::White : UB2UIManager::GetInstance()->TextColor_Decrease);	//»ö ¼³Á¤. ÁÖ¾îÁö´Â °¡°İ°ú ¼ÒÁö±İÀ» ºñ±³ÇÏ¿©¾ß ÇÑ´Ù.
+		TB_GoldPrice->SetColorAndOpacity(price <= UserInfo->GetGem() ? FLinearColor::White : UB2UIManager::GetInstance()->TextColor_Decrease);	//ç¥¸ æ±²æ²¥. æ—ç»¢ç˜¤ç»° å•Šæ‹œè‹ å®¶ç˜¤é™›é˜‘ åšèƒŒçªå’¯å…· èŒ„ä¿ƒ.
 
 		auto* HBSlot = Cast<UHorizontalBoxSlot>(TB_CrystalPrice->Slot);
 		if (HBSlot)

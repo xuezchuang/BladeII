@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Fill out your copyright notice in the Description page of Project Settings.
 // Project BladeII, Action Square
 #include "B2AutoWayPointMarker.h"
 //#include "BladeII.h"
@@ -13,6 +13,9 @@
 #include "B2MonsterSpawnPool.h"
 #include "B2StageManager.h"
 #include "BladeIIGameMode.h"
+#include "Components/BoxComponent.h"
+#include "BladeIIUtil.h"
+
 
 AB2AutoWayPointMarker* AB2AutoWayPointMarker::Instance = nullptr;
 AB2AutoWayPointMarker* AB2AutoWayPointMarker::GetInstance(class UWorld* World)

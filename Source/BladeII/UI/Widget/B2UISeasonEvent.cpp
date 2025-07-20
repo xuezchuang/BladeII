@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UISeasonEvent.h"
 
@@ -307,7 +307,7 @@ bool UB2UISeasonEvent::CheckFinalEventSlot(b2network::B2SeasonMissionInfoPtr Sea
 {
 	bool bCheck = false;
 
-	//½ÃÁð ÀÌº¥Æ® µ¥ÀÌÅÍ¸¦ °°ÀÌ ¾²´Â °ü°è·Î ³¯Â¥°¡ 0ÀÌ¶ó¸é ÃÖÁ¾ ¾÷ÀûÀÌ¶ó´Â ¼­¹ö¿ÍÀÇ ¾à¼Ó
+	//çŸ«ç‰ æžäº¥é£˜ å•æžç£ç”« éžæž é™ç»° åŒ…æ‹Œè‚º æœæ¥¼å•Š 0æžæ‰¼æ å¼¥è¾† è¯€åˆ©æžæ‰¼ç»° è¾‘æ»šå®¢ç‹¼ è·åŠ 
 	if (SeasonMission && SeasonMission->day == 0)
 		bCheck = true;
 

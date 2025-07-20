@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIDimensionSelectPage.h"
 #include "B2UIManager.h"
 #include "B2UIFairyLinkButton.h"
@@ -72,14 +72,14 @@ void UB2UIDimensionSelectPage::UpdateStaticText()
 
 void UB2UIDimensionSelectPage::BattleStart()
 {
-	// Á¡°Ë Á¤»ê Ã¼Å©
+	// ç—¢å…« æ²¥é­‚ çœ‰å†œ
 	if (CheckContentsModeState(b2network::B2ContentsMode::DIMENSION))
 		return;
 
 	auto DocDimension = UB2UIDocHelper::GetDocDimension();
 	if (DocDimension)
 	{
-		// Æ¼ÄÏºÎÁ·
+		// èå—ä½•ç»ƒ
 		if (DocDimension->GetDimensionTicket() < 1)
 		{
 			UB2UIManager::GetInstance()->OpenMsgPopup<UB2UIMsgPopupSimple>(EUIMsgPopup::Simple,
@@ -94,7 +94,7 @@ void UB2UIDimensionSelectPage::BattleStart()
 			return;
 		}
 
-		// ÀÎº¥Åä¸® Ç®
+		// ç‰¢äº¥é…åºœ é’±
 		if (BladeIIGameImpl::GetClientDataStore().GetLocalCharacterData().IsFullTotemInventory())
 		{
 			UB2UIManager::GetInstance()->OpenMsgPopup<UB2UIMsgPopupSimple>(EUIMsgPopup::Simple,

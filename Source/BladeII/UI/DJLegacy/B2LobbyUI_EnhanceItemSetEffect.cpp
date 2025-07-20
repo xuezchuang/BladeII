@@ -48,7 +48,7 @@ void UB2LobbyUI_EnhanceItemSetEffect::StartFromLobby(class UB2UIManager_Lobby* I
 {
 	Super::StartFromLobby(InUIManager, InGM);
 
-	// ´Ü¼øÈ÷ ¾ÆÀÌÅÛ Á¤º¸¸¸ ¾ò¾î¿À·Á¸é Inventory ÀÎ½ºÅÏ½º ¾øÀÌ static À¸·Î ¾ò¾î¿Ã ¼ö ÀÖÀ¸³ª °­È­ ±â´ÉÀº ÀÎº¥Åä¸®°¡ ¶° ÀÖ´Â »óÅÂ¿¡¼­ µ¿ÀÛ.
+	// çªœé‰´æ´’ é…’æè¢ æ²¥ç„Šçˆ¶ æ˜ç»¢å·å¦¨æ Inventory ç‰¢èƒ¶ç•”èƒ¶ ç»æ static æ è‚º æ˜ç»¢æ£µ è ä¹æ å”± ç¢æ‹³ æ‰ç“·ç¯® ç‰¢äº¥é…åºœå•Š æ ‹ ä¹ç»° æƒ‘æ€•ä¿Šè¾‘ æ‚¼ç´¯.
 	CachedInventory = CachedLobbyGM->GetLobbyInventory();
 	check(CachedInventory);
 	
@@ -95,12 +95,12 @@ void UB2LobbyUI_EnhanceItemSetEffect::UpdateDynamicStaticTexts(EPCClass CurrentP
 	auto& ClientDataStore = BladeIIGameImpl::GetClientDataStore();
 	auto& LocalCharacterDataStore = BladeIIGameImpl::GetLocalCharacterData();
 	
-	// Àû¿ë ·¹º§ ¹× °¡ÁßÄ¡°ª È®ÀÎ
+	// åˆ©ä¾© é¥­éª‡ æ£º å•Šåæ‘¹è”¼ çŠ¬ç‰¢
 	const int32 MinEnhanceLevelSetEffect = ClientDataStore.GetMinEnhanceLevelForSetEffect();
 	int32 CurEnhanceEffectLevel = LocalCharacterDataStore.GetEnhanceSetEffectLevel(CurrentPC);
 	bool IsAcceptEnhanceEffectLevel = CurEnhanceEffectLevel != 0;
 	double CurEnhanceEffectFactor = (IsAcceptEnhanceEffectLevel ? LocalCharacterDataStore.GetEnhanceSetEffectFactor(CurrentPC) : 0.f);
-	int32 NextEnhanceEffectLevel = (IsAcceptEnhanceEffectLevel ? CurEnhanceEffectLevel + 1 : MinEnhanceLevelSetEffect);	// ÇöÀç ·¹º§ÀÌ ÃÖ¼Ò·¹º§À» µµ´ŞÇÏÁö ¸øÇßÀ» °æ¿ì ÃÖ¼Ò·¹º§ÀÌ Next´Ù!
+	int32 NextEnhanceEffectLevel = (IsAcceptEnhanceEffectLevel ? CurEnhanceEffectLevel + 1 : MinEnhanceLevelSetEffect);	// æ³…çŠ é¥­éª‡æ å¼¥å®¶é¥­éª‡é˜‘ æ¡£å´”çªç˜¤ ç»™æ²é˜‘ ç‰ˆå¿« å¼¥å®¶é¥­éª‡æ Nextä¿ƒ!
 	bool IsMaxLevel = ClientDataStore.GetMaxEnhanceLevelForSetEffect() <= CurEnhanceEffectLevel;
 	double NextEnhanceEffectFactor = ClientDataStore.GetEnhanceItemSetEffect(NextEnhanceEffectLevel);	
 	

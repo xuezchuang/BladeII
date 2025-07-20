@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -36,7 +36,7 @@ public:
 	virtual void  ResetAssumeNoWorldLoading() override;
 
 	// BladeIIGameMode interfaces...
-	virtual ABladeIICharacter* SpawnCharacter(UB2NPCClassInfoBox* InfoBox, ENPCClass InClass, ENPCClassVariation InVariation, FTransform& SpawnTransform, FActorSpawnParameters& SpawnParameters) override;//[@AKI, 171114] B2BUG-858 ¿µ¿õÀÇ Å¾ ¿¬¼Ó ÀüÅõ °ü·Ã ¿À·ù ¼öÁ¤ Map »ı¼º½Ã¿¡¸¸ Mob LevelÀ» CachingÇÏ´Â °ÍÀ» ¸Å ÀüÅõ ½ÃÀÛ ½Ã·Î º¯°æ
+	virtual ABladeIICharacter* SpawnCharacter(UB2NPCClassInfoBox* InfoBox, ENPCClass InClass, ENPCClassVariation InVariation, FTransform& SpawnTransform, FActorSpawnParameters& SpawnParameters) override;//[@AKI, 171114] B2BUG-858 åº·æ—·ç‹¼ å•ª æ¥·åŠ  å‚ˆæ§ åŒ…è®¿ å·å¹… èæ²¥ Map ç§¯å·±çŸ«ä¿Šçˆ¶ Mob Levelé˜‘ Cachingçªç»° å·´é˜‘ æ¦‚ å‚ˆæ§ çŸ«ç´¯ çŸ«è‚º å‡½ç‰ˆ
 	int32 GetHeroTowerFloor();
 	
 	//void CheckRemainTime();

@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 //#include "BladeII.h"
 #include "CommonStruct.h"
 #include "EngineMinimal.h"
@@ -17,7 +17,7 @@ public:
 		FSoftObjectPath GuestWarningPopupAsset;
 };
 
-//Unreal¿¡¼­ UClass·Î ¼±¾ğµÈ ¾êµéÀº Namespace¸¦ »ç¿ë ÇÒ ¼ö ¾ø´Ù....
+//Unrealä¿Šè¾‘ UClassè‚º æ€¥æ”«ç­‰ å¨Ÿç”¸ç¯® Namespaceç”« è¤ä¾© ä¸” è ç»ä¿ƒ....
 class B2UIUtil
 {
 public:

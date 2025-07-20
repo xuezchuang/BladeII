@@ -17,11 +17,11 @@ UB2DynItemIconRow_LobbyInven::UB2DynItemIconRow_LobbyInven(const FObjectInitiali
 
 void UB2DynItemIconRow_LobbyInven::UpdateItemIcons(const TArray<FB2Item>& AllItemsArray, int32 InStartIndex, UB2LobbyUI_InventoryMain* ContainingInvenPage)
 {
-	DestroyItemIcons(); // ±âÁ¸¿¡ ¸¸µç °Å Á¦°Å.
+	DestroyItemIcons(); // æ‰ç²®ä¿Š çˆ¶ç”µ èŠ­ åŠ›èŠ­.
 
 	//AB2LobbyGameMode* LobbyGM = Cast<AB2LobbyGameMode>(UGameplayStatics::GetGameMode(this));
 	//UB2UIManager_Lobby* DJLegacyUIMgr = LobbyGM ? LobbyGM->DJLegacy_GetLobbyUIManager() : nullptr;
-	//// ¿©±â¼­ÀÇ ¾ÆÀÌÅÛ ¾ÆÀÌÄÜ widget class ´Â µıµ¥¼­µµ ÂüÁ¶ÇÒ ÀÏÀÌ ÀÖ¾î¼­ Æ¯º°È÷ B2UIManager_Lobby °ÅÃÄ¼­ °¡Á®¿Â´Ù
+	//// å’¯æ‰è¾‘ç‹¼ é…’æè¢ é…’æèƒ½ widget class ç»° è°å•è¾‘æ¡£ æ›¼ç‚¼ä¸” è€æ ä¹ç»¢è¾‘ æ¼‚å–Šæ´’ B2UIManager_Lobby èŠ­åªšè¾‘ å•Šå»‰æŸ¯ä¿ƒ
 	//UClass* ItemIconWidgetClass = DJLegacyUIMgr ? DJLegacyUIMgr->GetInventoryItemIconClass(false) : nullptr;
 
 	//if (ItemIconWidgetClass == NULL || MainPanelNativeRef == NULL)
@@ -32,34 +32,34 @@ void UB2DynItemIconRow_LobbyInven::UpdateItemIcons(const TArray<FB2Item>& AllIte
 	//const int32 StartIndex = FMath::Clamp(InStartIndex, 0, AllItemsArray.Num() - 1);
 	//const int32 EndIndex = FMath::Clamp(StartIndex + InventoryRowSlotCount - 1, 0, AllItemsArray.Num() - 1);
 	//
-	//const FVector2D AllowedSingleSlotSize = GetAllowedSingleItemIconSize(); // Main panel ±¸¼º¿¡ µû¸¥ Çã¿ë »çÀÌÁî
+	//const FVector2D AllowedSingleSlotSize = GetAllowedSingleItemIconSize(); // Main panel å¤‡å·±ä¿Š è¶å¼— å€¾ä¾© è¤æä»¤
 	//APlayerController* OwningPC = GetOwningPlayer();
 
 	//for (int32 II = StartIndex; II <= EndIndex; ++II)
 	//{
-	//	// »ı¼ºÇÒ ¾ÆÀÌÄÜ widget ÀÇ À§Ä¡ »êÁ¤. °¡·Î margin ÀÌ ¾Æ·¡Ã³·³ ¹İ¿µµÇ°í ¼¼·Î margin Àº ¿©±â main panel ÀÚÃ¼ ±¸¼º¿¡ ÀÇÇØ..
+	//	// ç§¯å·±ä¸” é…’æèƒ½ widget ç‹¼ å›°æ‘¹ é­‚æ²¥. å•Šè‚º margin æ é…’è´°è´¸çƒ¦ é¦†åº·ç™»ç»Š æŠ€è‚º margin ç¯® å’¯æ‰ main panel ç£Šçœ‰ å¤‡å·±ä¿Š ç‹¼ç§¦..
 	//	const int32 PlacementIndex = II % InventoryRowSlotCount;
 	//	const float PosX = (ItemPlacementMargin * 0.5f) + (float)(PlacementIndex * (AllowedSingleSlotSize.X + ItemPlacementMargin));
 	//	
 	//	UB2DynItemIcon* DynIconCDO = Cast<UB2DynItemIcon>(ItemIconWidgetClass->GetDefaultObject());
 
-	//	// MainPanelNativeRef À§¿¡ ÃÖÁ¾ÀûÀÎ ¾ÆÀÌÅÛ ¾ÆÀÌÄÜ widget »ı¼ºÇÏ´Âµ¥.. WidgetPool ¿¡¼­ ÀÓ´ëÂ÷ °è¾à
+	//	// MainPanelNativeRef å›°ä¿Š å¼¥è¾†åˆ©ç‰¢ é…’æè¢ é…’æèƒ½ widget ç§¯å·±çªç»°å•.. WidgetPool ä¿Šè¾‘ çƒ™æªç’ æ‹Œè·
 	//	if (DJLegacyUIMgr)
 	//	{
 	//		UB2DynItemIcon_LobbyInven* NewItemIcon =
-	//			Cast<UB2DynItemIcon_LobbyInven>(DJLegacyUIMgr->RentInvenDynItemIconWidget(false, OwningPC, this, nullptr)); // ParentPanel À» ¿©±â¼­ ³Ñ°ÜÁÖÁö ¸»°í.. ÀÏ´Ü ÀÓ´ëÂ÷ °è¾à ÈÄ¿¡
+	//			Cast<UB2DynItemIcon_LobbyInven>(DJLegacyUIMgr->RentInvenDynItemIconWidget(false, OwningPC, this, nullptr)); // ParentPanel é˜‘ å’¯æ‰è¾‘ é€è´¥æ—ç˜¤ å¯Œç»Š.. è€çªœ çƒ™æªç’ æ‹Œè· é¥¶ä¿Š
 
 	//		if(NewItemIcon)
 	//		{
-	//			// ÀûÀıÇÑ À§Ä¡¿¡ ¹Ú¾Æ³Ö±â
+	//			// åˆ©ä¾‹èŒ„ å›°æ‘¹ä¿Š å† é…’æŒæ‰
 	//			PutWidgetInCanvasPanel(this, NewItemIcon, MainPanelNativeRef, DynIconCDO ? DynIconCDO->GetNonScaledSize() : FVector2D(100.0f, 100.0f), AllowedSingleSlotSize,
 	//				FVector2D(PosX, 0.0f), 0, false);
 	//			NewItemIcon->SetVisibility(ESlateVisibility::Visible);
-	//			NewItemIcon->SetIconUsageType(ELobbyInvenItemIconUsage::EEIIT_LobbyInven); // ±âº»°ªÀÌ±ä ÇÏÁö¸¸ È®½ÇÈ÷ ÇÏ±â À§ÇØ.. UpdateItemData ÀÌÀü¿¡ ¼¼ÆÃÇØ¾ß ÇÔ.
-	//			NewItemIcon->UpdateItemData(AllItemsArray[II]); // °³º° ¾ÆÀÌÅÛ Á¤º¸¸¦ ³Ñ°ÜÁØ´Ù.
+	//			NewItemIcon->SetIconUsageType(ELobbyInvenItemIconUsage::EEIIT_LobbyInven); // æ‰å¤¯è”¼æå˜ çªç˜¤çˆ¶ çŠ¬è§’æ´’ çªæ‰ å›°ç§¦.. UpdateItemData æå‚ˆä¿Š æŠ€æ³¼ç§¦å…· çªƒ.
+	//			NewItemIcon->UpdateItemData(AllItemsArray[II]); // ä¿ºå–Š é…’æè¢ æ²¥ç„Šç”« é€è´¥éœ–ä¿ƒ.
 
 	//			CreatedItemIcons.Add(NewItemIcon);
-	//			//UB2LobbyInventory::SetChangeNewItemTofalse(AllItemsArray[II].InstanceUID);//»Ì¾ÆÁØ¾ÆÀÌÅÛÀº false·Î ¹Ù²ãÁÖÀÚ
+	//			//UB2LobbyInventory::SetChangeNewItemTofalse(AllItemsArray[II].InstanceUID);//æƒ¶é…’éœ–é…’æè¢ç¯® falseè‚º å®˜å±‚æ—ç£Š
 	//		}
 	//	}
 	//}
@@ -80,13 +80,13 @@ FVector2D UB2DynItemIconRow_LobbyInven::GetAllowedSingleItemIconSize()
 {
 	FVector2D ReturnSize(0.0f, 0.0f);
 
-	// Anchor ¼³Á¤¿¡ µû¶ó GetSize ´Â ¿øÇÏ´Â °ªÀÌ ¾È ³ª¿Ã °ÍÀÌ¹Ç·Î ÁÖÀÇ.
+	// Anchor æ±²æ²¥ä¿Š è¶æ‰¼ GetSize ç»° ç›”çªç»° è”¼æ æ•‘ å”±æ£µ å·´æéª¨è‚º æ—ç‹¼.
 	UCanvasPanelSlot* MainPanelSlot = MainPanelNativeRef ? Cast<UCanvasPanelSlot>(MainPanelNativeRef->Slot) : NULL;;
 	if (MainPanelSlot)
 	{
 		FVector2D MainPanelSize = MainPanelSlot->GetSize();
 
-		// MainPanelSize ¿Í Margin ¿¡ µû¶ó..
+		// MainPanelSize å®¢ Margin ä¿Š è¶æ‰¼..
 		ReturnSize.X = ((MainPanelSize.X / (float)InventoryRowSlotCount) - ItemPlacementMargin);
 		ReturnSize.Y = MainPanelSize.Y;
 	}
@@ -127,7 +127,7 @@ void UB2DynItemIconRow_LobbyInven::DestroyItemIcons()
 		if (ThisOne)
 		{
 			if (DJLegacyUIMgr)
-			{ // ÀÓ´ë°è¾à Á¾·á.
+			{ // çƒ™æªæ‹Œè· è¾†ä¸°.
 				DJLegacyUIMgr->TurnInDynItemIconWidget(false, ThisOne);
 			}
 			else

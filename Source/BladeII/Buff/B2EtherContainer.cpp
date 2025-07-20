@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2EtherContainer.h"
@@ -110,7 +110,7 @@ bool UB2EtherContainer::AddEtherSetEffect(const int32 EtherSetID, float TriggerR
 	{
 		EEtherSetType SetType = DefaultObj->GetEtherSetType();
 		
-		RemoveEtherSetEffect(SetType); // ÀÏ´Ü Áö¿ì°í
+		RemoveEtherSetEffect(SetType); // è€çªœ ç˜¤å¿«ç»Š
 
 		UB2EtherSetEffect* NewEtherSetObject = CreateEtherSetEffect(SetType, EtherSetID);
 		if (NewEtherSetObject)

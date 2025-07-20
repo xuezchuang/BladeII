@@ -1,4 +1,4 @@
-#include "B2UIMailContent.h"
+ï»¿#include "B2UIMailContent.h"
 #include "B2UIItemRaffle.h"
 #include "B2UICostumeRaffle.h"
 #include "B2LobbyUI_ItemDetailPostOp.h"
@@ -108,7 +108,7 @@ void UB2UIMailContent::SetTime(int64 TimeSeconds)
 
 void UB2UIMailContent::SetSender(MailSenderType SenderType, const FString& FriendName)
 {
-	//Sender°¡ ´õ Ãß°¡µÇ¸é µ¥ÀÌÅÍÅ×ÀÌºí·Î »©´Â °ÍÀÌ ÁÁ°Ú´Ù.
+	//Senderå•Š æ­¹ çœ å•Šç™»æ å•æžç£æŠ›æžå–‰è‚º å“—ç»° å·´æž äº®æ‘†ä¿ƒ.
 	if (IMG_Portrait.IsValid())
 	{
 		for (auto* Portrait : SenderPortraits)
@@ -157,7 +157,7 @@ void UB2UIMailContent::SetSender(MailSenderType SenderType, const FString& Frien
 		}
 	}
 
-	//±âÁ¸ °áÅõÀå °ü¸®ÀÚ ¶ó¹Ì¿¤ -> ¶ó¹Ì¿¤ ·Î º¯°æ ´Ð³×ÀÓ »ç¿ë¾ÈÇÔ
+	//æ‰ç²® æ¬æ§åŽ˜ åŒ…åºœç£Š æ‰¼å›ºéƒ¡ -> æ‰¼å›ºéƒ¡ è‚º å‡½ç‰ˆ è‘±åŒ™çƒ™ è¤ä¾©æ•‘çªƒ
 	TB_NickName->SetText(FText::FromString(TEXT("")));
 }
 
@@ -501,35 +501,35 @@ UB2UIMailContent::ELeftTimeType UB2UIMailContent::GetLeftTimeType(int64 TimeSeco
 {
 	if (TimeSeconds <= 0)
 	{
-		// ¸¸·á
+		// çˆ¶ä¸°
 		return ELeftTimeType::Expiration;
 	}
 	else if (TimeSeconds < 60)
 	{
-		// ssÃÊ
+		// ssæª¬
 		return ELeftTimeType::Sec;
 	}
 
 	else if (TimeSeconds < 3600)
 	{
-		// mmºÐ ssÃÊ
+		// mmç›’ ssæª¬
 		return ELeftTimeType::Min_Sec;
 	}
 
 	else if (TimeSeconds < 86400)
 	{
-		// hh½Ã°£ mmºÐ ssÃÊ
+		// hhçŸ«åŸƒ mmç›’ ssæª¬
 		return ELeftTimeType::Hour_Min_Sec;
 	}
 
-	else if (TimeSeconds < 157680000)	// 50³â
+	else if (TimeSeconds < 157680000)	// 50æ–¥
 	{
-		// ddÀÏ hh½Ã°£ mmºÐ
+		// ddè€ hhçŸ«åŸƒ mmç›’
 		return ELeftTimeType::Day_Hour_Min;
 	}
 	else
 	{
-		// ¹«Á¦ÇÑ
+		// å…¬åŠ›èŒ„
 		return ELeftTimeType::Unlimited;
 	}
 }
@@ -690,7 +690,7 @@ FText UB2UIMailContent::GetText_WhatGift(MailGiftType GiftType, int32 Num, int32
 
 	case MailGiftType::Selective_Item_Lottery:		// 8
 	{
-		if (ItemTemplateId == 8)					// ÇÏµå ÄÚµù, ÀÌÈÄ Å×ÀÌºíÀ» ÇÏ³ª »ý¼ºÇÏ¿© Ã³¸®°¡ ÇÊ¿ä ÇÔ.
+		if (ItemTemplateId == 8)					// çªé› å†…çˆ¹, æžé¥¶ æŠ›æžå–‰é˜‘ çªå”± ç§¯å·±çªå’¯ è´¸åºœå•Š éž˜å¤¸ çªƒ.
 		{
 			return BladeIIGetLOCText(B2LOC_CAT_MAILCONTENT, TEXT("MailContent_WhatReward_RareUpgradeStoneTicket"));
 		}
@@ -998,7 +998,7 @@ void UB2UIMailContent::OpenedMail(const FB2ResponseOpenMailPtr& MailInfo)
 	//
 
 	////Todo
-	//// ~À» ¹Þ¾Ò½À´Ï´Ù. ÆË¾÷UI
+	//// ~é˜‘ ç½ç–½åš¼èªä¿ƒ. æ‰‘è¯€UI
 	//BII_CHECK(MailBox);
 	//if (MailBox)
 	//{

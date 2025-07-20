@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "B2UIWidgetBase.h"
 #include "../../DataStore/B2ClientDataStore.h"

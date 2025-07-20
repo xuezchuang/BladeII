@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "TutorialManager.h"
 
 #include "Event.h"
@@ -36,8 +36,8 @@ const FTutorialInfo* UB2TutorialInfo::GetTutorialInfo(int32 TutorialID)
 	if(TutorialID <= 0)
 	{ return nullptr; }
 
-	// Device¿¡¼­ TutorialInfoTableÀ» ÃÊ±âÈ­ È£Ãâ ½ÃÁ¡¿¡ Á¦´ë·Î LoadÇÏÁö ¸øÇÏ´Â ¹®Á¦°¡ ÀÖÀ½
-	// ÀÏ´Ü ¿©±â¼­ Ã³¸®·Î Å¸ÀÌ¹Ö ÀÌ½´ÀÎÁö È®½ÇÈ÷ ÇÑ ÈÄ ÁøÇà
+	// Deviceä¿Šè¾‘ TutorialInfoTableé˜‘ æª¬æ‰æ‹³ é¾‹å… çŸ«ç—¢ä¿Š åŠ›æªè‚º Loadçªç˜¤ ç»™çªç»° å·©åŠ›å•Š ä¹æ¾œ
+	// è€çªœ å’¯æ‰è¾‘ è´¸åºœè‚º é¸¥ææ€ª æé…±ç‰¢ç˜¤ çŠ¬è§’æ´’ èŒ„ é¥¶ æŸ³é’
 	if (TutorialInfoTable == nullptr)
 		LoadTutorialInfoTable();
 
@@ -49,8 +49,8 @@ const FTutorialInfo* UB2TutorialInfo::GetTutorialInfo(int32 TutorialID)
 
 const FTutorialStep* UB2TutorialInfo::GetTutorialStep(int32 TutorialID, int32 TutorialStep)
 {
-	// Device¿¡¼­ TutorialInfoTableÀ» ÃÊ±âÈ­ È£Ãâ ½ÃÁ¡¿¡ Á¦´ë·Î LoadÇÏÁö ¸øÇÏ´Â ¹®Á¦°¡ ÀÖÀ½
-	// ÀÏ´Ü ¿©±â¼­ Ã³¸®·Î Å¸ÀÌ¹Ö ÀÌ½´ÀÎÁö È®½ÇÈ÷ ÇÑ ÈÄ ÁøÇà
+	// Deviceä¿Šè¾‘ TutorialInfoTableé˜‘ æª¬æ‰æ‹³ é¾‹å… çŸ«ç—¢ä¿Š åŠ›æªè‚º Loadçªç˜¤ ç»™çªç»° å·©åŠ›å•Š ä¹æ¾œ
+	// è€çªœ å’¯æ‰è¾‘ è´¸åºœè‚º é¸¥ææ€ª æé…±ç‰¢ç˜¤ çŠ¬è§’æ´’ èŒ„ é¥¶ æŸ³é’
 	if (TutorialInfoTable == nullptr)
 		LoadTutorialInfoTable();
 	if (TutorialStepTable == nullptr)
@@ -290,7 +290,7 @@ bool TutorialManager::IsFinishTutorial(const int32 TutorialID)
 
 void TutorialManager::OpenLockContentPopup(const int32 TutorialID, const int32 TutorialStep)
 {
-	//¹öÆ° ¿µ¿ª °ãÄ§ ¹®Á¦·Î Æ©Åä¸®¾ó ½ºÅÜ ÁøÇà Áß¿¡´Â ÆË¾÷ ¾È¿­¸² Ã³¸®
+	//æ»šç“¢ åº·å¼€ èˆ¬é­” å·©åŠ›è‚º è­¬é…åºœå€” èƒ¶è·‘ æŸ³é’ åä¿Šç»° æ‰‘è¯€ æ•‘å‡¯è¦† è´¸åºœ
 	if (TutorialManager::GetInstance().HasAnyTutorial())
 		return;
 
@@ -446,7 +446,7 @@ bool TutorialManager::HasAnyTutorial()
 	if (IsTutorialAvailable() == false)
 		return false;
 
-	// ÇöÀç ÁøÇàÁßÀÎ Æ©Åä¸®¾óÀÌ ÀÖ°Å³ª ÁøÇà °¡´ÉÇÑ ´ÙÀ½ Æ©Åä¸®¾óÀÌ ÀÖ´Ù¸é
+	// æ³…çŠ æŸ³é’åç‰¢ è­¬é…åºœå€”æ ä¹èŠ­å”± æŸ³é’ å•Šç“·èŒ„ ä¿ƒæ¾œ è­¬é…åºœå€”æ ä¹ä¿ƒæ
 	if (IsProcessingTutorial() || GetProcessableNextTutorial() != nullptr)
 		return true;
 
@@ -502,13 +502,13 @@ int32 TutorialManager::GetFirstTutorialID()
 
 const FTutorialInfo* TutorialManager::GetProcessableNextTutorial()
 {
-	// 1. ÇöÀç ÁøÇàÁßÀÎ TutorialÀÌ ¾ø¾î¾ß ÇÔ
+	// 1. æ³…çŠ æŸ³é’åç‰¢ Tutorialæ ç»ç»¢å…· çªƒ
 	if (CurrentTutorialID == INDEX_NONE)
 	{
-		// 2. ´ÙÀ½ Æ©Åä¸®¾ó Á¤º¸°¡ À¯È¿ÇØ¾ß ÇÔ
+		// 2. ä¿ƒæ¾œ è­¬é…åºœå€” æ²¥ç„Šå•Š èœ¡ç“¤ç§¦å…· çªƒ
 		if (const FTutorialInfo* TutorialInfo = GetNextTutorialInfo())
 		{
-			// 3. ½ÃÀÛ ¿ä±¸Á¶°ÇÀ» ÃæÁ·ÇØ¾ß ÇÔ
+			// 3. çŸ«ç´¯ å¤¸å¤‡ç‚¼æ‰’é˜‘ é¢ç»ƒç§¦å…· çªƒ
 			if (IsProcessableTutorial(TutorialInfo->TutorialID))
 			{
 				return TutorialInfo;
@@ -600,7 +600,7 @@ void TutorialManager::OnTutorialBeginUIClose(int32 TutorialID)
 
 void TutorialManager::OnTutorialRewardUIClose(int32 TutorialID)
 {
-	// Reward UI¸¦ ´İÀ¸¸é ´Ù½Ã Update¸¦ ¿äÃ»ÇØ¼­ »õ TutorialÀ» ¹Ş¾Æ¿Â´Ù.
+	// Reward UIç”« æ‘§æ æ ä¿ƒçŸ« Updateç”« å¤¸æ²¡ç§¦è¾‘ è´§ Tutorialé˜‘ ç½é…’æŸ¯ä¿ƒ.
 	OnTutorialEnd(TutorialID);
 
 	RequestUpdateTutorial();
@@ -660,7 +660,7 @@ void TutorialManager::ProcessStep()
 	{
 		if (IsPassableStep(CurrentStepInfo))
 		{
-			// ÀÌÀü StepÀ» Ã³¸®ÇÏ´Âµ¥ ÀÖ¾î µû·Î »¬ ºÎºĞÀÌ ÀÖÀ»Áö °í¹ÎÇØº¸ÀÚ
+			// æå‚ˆ Stepé˜‘ è´¸åºœçªç»°å• ä¹ç»¢ è¶è‚º æ»‘ ä½•ç›’æ ä¹é˜‘ç˜¤ ç»Šåˆ®ç§¦ç„Šç£Š
 			if (const FTutorialStep* PrevStep = GetPrevStep(CurrentStepInfo))
 			{
 				if (PrevStep->Action == ETutorialAction::Highlight || PrevStep->Action == ETutorialAction::BlockHilight)
@@ -672,7 +672,7 @@ void TutorialManager::ProcessStep()
 
 			if (const FTutorialStep* NextStepInfo = GetNextStep(CurrentStepInfo))
 			{
-				// IsValid NextStepInfo - ´ÙÀ½ ÁøÇàÇÒ StepÀÌ ³²¾ÆÀÖ´Ù¸é
+				// IsValid NextStepInfo - ä¿ƒæ¾œ æŸ³é’ä¸” Stepæ å·¢é…’ä¹ä¿ƒæ
 				OnTutorialStepBegin(NextStepInfo);
 			}
 
@@ -759,7 +759,7 @@ void TutorialManager::OnCahcedCheckAndProgressTutorial()
 			const int32 PrevTutorialID = GetPrevTutorialID(ServerTutorialID);
 			SetLastClearTutorialID(PrevTutorialID);
 
-			//»õÁ¢¼Ó½Ã ÀÌÀü¿¡ Æ©Åä¸®¾ó ¾ÆÀÌÅÛÀ» Áö±Ş¹Ş°í °­Á¾ÇÑ »óÅÂ¶ó¸é ÇØ´ç Æ©Åä¸®¾ó ¿Ï·á Ã³¸®
+			//è´§ç«‹åŠ çŸ« æå‚ˆä¿Š è­¬é…åºœå€” é…’æè¢é˜‘ ç˜¤é­ç½ç»Š ç¢è¾†èŒ„ æƒ‘æ€•æ‰¼æ ç§¦å¯¸ è­¬é…åºœå€” è‚¯ä¸° è´¸åºœ
 			if (CachedResponse->is_item_prepared || CachedResponse->is_lottery_drawn)
 			{
 				RequestRewardTutorial();
@@ -771,7 +771,7 @@ void TutorialManager::OnCahcedCheckAndProgressTutorial()
 
 	if (const FTutorialStep* TutorialStep = GetCurrentStepInfo())
 	{
-		//ÃÖ¾ÇÀÇ °æ¿ì Æ©Åä¸®¾ó Áß°£ ÁøÇà »óÅÂ·Î ·Îºñ¿¡ ¿ÔÀ»¶§ º¸»ó ¿äÃ»
+		//å¼¥å©ç‹¼ ç‰ˆå¿« è­¬é…åºœå€” ååŸƒ æŸ³é’ æƒ‘æ€•è‚º è‚ºåšä¿Š å­é˜‘é”­ ç„Šæƒ‘ å¤¸æ²¡
 		if (TutorialStep->TutorialStep > 1 && TutorialStep->Action != ETutorialAction::TutorialClear)
 			RequestRewardTutorial();
 	}
@@ -779,7 +779,7 @@ void TutorialManager::OnCahcedCheckAndProgressTutorial()
 	{
 		SetCurrentTutorialID(INDEX_NONE);
 		SetCurrentTutorialStep(INDEX_NONE);
-		ExternalProcessTutorial();	// ¾Æ¸¶ ÀÚµ¿ÀûÀÎ Èå¸§À¸·Î RequestUpdateTutorialÀ» ÇÏ°ÔµÉ °ÍÀÓ
+		ExternalProcessTutorial();	// é…’ä»˜ ç£Šæ‚¼åˆ©ç‰¢ å„’æŠšæ è‚º RequestUpdateTutorialé˜‘ çªéœ¸çª å·´çƒ™
 		RefreshContentLockUI();
 	}
 }
@@ -801,7 +801,7 @@ void TutorialManager::BeginTutorial(int32 TutorialID)
 
 bool TutorialManager::IsPassableStep(const FTutorialStep* TutorialStepInfo)
 {
-	// Passable State È®ÀÎ ¹× !!!!!!! ÇÏµåÄÚµù ÇÑ Á¶°ÇÀ» ¸¸Á·ÇÏ´ÂÁö Ã¼Å© - ÇÏµåÄÚµù Á¶°ÇÀÌ ¾øÀ¸¸é ¹«Á¶°Ç true ¸®ÅÏ
+	// Passable State çŠ¬ç‰¢ æ£º !!!!!!! çªé›å†…çˆ¹ èŒ„ ç‚¼æ‰’é˜‘ çˆ¶ç»ƒçªç»°ç˜¤ çœ‰å†œ - çªé›å†…çˆ¹ ç‚¼æ‰’æ ç»æ æ å…¬ç‚¼æ‰’ true åºœç•”
 	if (GetTutorialStepState() == ETutorialStepState::Passable && ProcessExceptionRequire(TutorialStepInfo))
 	{
 		return true;
@@ -848,16 +848,16 @@ bool TutorialManager::IsSatisfiedOpenStage(const FTutorialInfo* TutorialInfo)
 	//	FStageDataStore& StageDataStore = BladeIIGameImpl::GetStageDataStore();
 	//	const FServerStageID RequireServerStageID = FServerStageID(TutorialInfo->RequireOpenStage);
 
-	//	// Lobby¿¡¼­ È®ÀÎ
+	//	// Lobbyä¿Šè¾‘ çŠ¬ç‰¢
 	//	if (StageDataStore.IsStageClearedOnce(RequireServerStageID) || RequireServerStageID == 0)
 	//		return true;
 
-	//	// StageClear UI (In Game) ¿¡¼­ È®ÀÎ
+	//	// StageClear UI (In Game) ä¿Šè¾‘ çŠ¬ç‰¢
 	//	const FServerStageID CurrClearStageID = CheckAdventureStageID(AB2StageManager::GetCacheStageKeepEssentialData().GetServerStageID());
 	//	if ((RequireServerStageID < CurrClearStageID) || RequireServerStageID == CurrClearStageID)
 	//		return true;
 
-	//	// CachedActData°¡ ¾øÀ»¼öµµ ÀÖÀ¸´Ï AccountInfo¿¡¼­ È®ÀÎ
+	//	// CachedActDataå•Š ç»é˜‘èæ¡£ ä¹æ èª AccountInfoä¿Šè¾‘ çŠ¬ç‰¢
 	//	const FServerStageID LastClearStageID = CheckAdventureStageID(StageDataStore.GetLastClearServerStageIdByLastPlayedStageDifficulty());
 	//	if ((RequireServerStageID < LastClearStageID) || RequireServerStageID == LastClearStageID)
 	//		return true;
@@ -899,13 +899,13 @@ void TutorialManager::ProcessTutorialAction(const FTutorialStep* TutorialStepInf
 
 	//case ETutorialAction::TutorialClear:
 	//	if(GetNextStep(TutorialStepInfo) == nullptr)
-	//		OnTutorialClear(CurrentTutorialID); // ÇöÀç´Â ¹Ù·Î º¸¿©ÁÖÁö¸¸ ¼­¹ö ¿¬µ¿ ÈÄ Clear Request ³¯¸®°í Response¿¡¼­ UIº¸¿©ÁØ´Ù
+	//		OnTutorialClear(CurrentTutorialID); // æ³…çŠç»° å®˜è‚º ç„Šå’¯æ—ç˜¤çˆ¶ è¾‘æ»š æ¥·æ‚¼ é¥¶ Clear Request æœåºœç»Š Responseä¿Šè¾‘ UIç„Šå’¯éœ–ä¿ƒ
 	//	break;
 	//}
 
 	//SetVisibleSkipButton(TutorialStepInfo->ViewSkipButton);
 
-	//// ÇÏµåÄÚµùÇÑ Actionµµ ½ÇÇàÇÑ´Ù.
+	//// çªé›å†…çˆ¹èŒ„ Actionæ¡£ è§’é’èŒ„ä¿ƒ.
 	//ProcessExceptionAction(TutorialStepInfo);
 
 	//ProcessNPCSoundAction(TutorialStepInfo);
@@ -913,20 +913,20 @@ void TutorialManager::ProcessTutorialAction(const FTutorialStep* TutorialStepInf
 
 bool TutorialManager::CheckAndBeginTutorial(int32 ServerTutorialID)
 {
-	if(bTestTutorialAvailable == false)	//Æ©Åä¸®¾ó Å×½ºÆ® offÁßÀÏ¶© ´ÙÀ½ Æ©Åä¸®¾ó ÁøÇà ¾ÈµÇµµ·Ï ¼öÁ¤
+	if(bTestTutorialAvailable == false)	//è­¬é…åºœå€” æŠ›èƒ¶é£˜ offåè€è®¢ ä¿ƒæ¾œ è­¬é…åºœå€” æŸ³é’ æ•‘ç™»æ¡£åºŸ èæ²¥
 	{ return false; }
 
 	//FString ScopeString = FString::Printf(TEXT("TutorialManager::CheckAndBeginTutorial : ServerTutorialID [%d]"), ServerTutorialID);
 	//B2_SCOPED_TRACK_LOG(*ScopeString);
 
 	//// Dummy Code
-	//CachingTableInit();	// ¸ğ¹ÙÀÏµğ¹ÙÀÌ½º¿¡¼­ TableInfo°¡ ·ÎµåµÇÁö ¾Ê´Â °æ¿ì°¡ Á¸Àç
+	//CachingTableInit();	// è‘›å®˜è€å¼å®˜æèƒ¶ä¿Šè¾‘ TableInfoå•Š è‚ºé›ç™»ç˜¤ è‡¼ç»° ç‰ˆå¿«å•Š ç²®çŠ
 	//// Dummy Code
 
-	//// ÁøÇàÁßÀÎ TutorialÀÌ ¾ø°í À¯¿äÇÑ TutorialID ÀÌ¾î¾ß ÇÔ
+	//// æŸ³é’åç‰¢ Tutorialæ ç»ç»Š èœ¡å¤¸èŒ„ TutorialID æç»¢å…· çªƒ
 	//if (IsProcessingTutorial() == false && GetTutorialInfo(ServerTutorialID) != nullptr)
 	//{
-	//	// ½ÇÇà °¡´ÉÇÏ¸ç ÇöÀç UISceneÀÌ LobbyMainÀÌ¾î¾ßÇÔ
+	//	// è§’é’ å•Šç“·çªå“¥ æ³…çŠ UISceneæ LobbyMainæç»¢å…·çªƒ
 	//	if (IsProcessableTutorial(ServerTutorialID) && UB2UIManager::GetInstance()->GetCurrUIScene() == EUIScene::LobbyMain)
 	//	{
 	//		BeginTutorial(ServerTutorialID);
@@ -988,7 +988,7 @@ bool TutorialManager::ProcessExceptionRequire(const FTutorialStep* StepInfo)
 		}
 	}
 
-	return true;	// ¾øÀ¸¸é true
+	return true;	// ç»æ æ true
 }
 
 bool TutorialManager::ProcessExceptionAction(const FTutorialStep* StepInfo)
@@ -1001,7 +1001,7 @@ bool TutorialManager::ProcessExceptionAction(const FTutorialStep* StepInfo)
 		}
 	}
 
-	return true;	// ¾øÀ¸¸é true
+	return true;	// ç»æ æ true
 }
 
 
@@ -1016,7 +1016,7 @@ bool TutorialManager::ProcessExceptionEnd(const FTutorialInfo* TutorialInfo)
 		}
 	}
 
-	return true;	// ¾øÀ¸¸é true
+	return true;	// ç»æ æ true
 }
 
 void TutorialManager::OnGetTutorialProgress(FB2ResponseGetTutorialProgressPtr TutorialProgress)
@@ -1153,7 +1153,7 @@ void TutorialManager::OnGiveTutorialReward(FB2ResponseGiveTutorialRewardPtr Tuto
 
 	//if (RewardTutorialID == TutorialID_GDC || RewardTutorialID == -1)
 	//{
-	//	// ÀüÅõ Æ©Åä¸®¾ó ÀÏ °æ¿ì Ä³½ÌÇÑ Æ©Åä¸®¾ó Á¤º¸ °»½Å ¿äÃ»
+	//	// å‚ˆæ§ è­¬é…åºœå€” è€ ç‰ˆå¿« æŸæ•™èŒ„ è­¬é…åºœå€” æ²¥ç„Š ç›è„š å¤¸æ²¡
 	//	RequestGetTutorial();
 	//}
 	//else
@@ -1232,7 +1232,7 @@ void TutorialManager::OnAttendanceUIClose()
 }
 
 /*
-	SetTutorialProgress ServerCommand´Â °³¹ß ¹öÀü(¼­¹ö)¿¡¼­¸¸ »ç¿ë °¡´É! Àı´ë ¾ö¼ö
+	SetTutorialProgress ServerCommandç»° ä¿ºæƒ¯ æ»šå‚ˆ(è¾‘æ»š)ä¿Šè¾‘çˆ¶ è¤ä¾© å•Šç“·! ä¾‹æª å†³è
 */
 void TutorialManager::ForceBeginTutorial(int32 TutorialID, bool bFinish)
 {
@@ -1243,12 +1243,12 @@ void TutorialManager::ForceBeginTutorial(int32 TutorialID, bool bFinish)
 #endif
 }
 
-// Tutorial Hardcoding - ·ÎÁ÷ÀÌ ÇÏµåÄÚµùÀ¸·Î ¹ÙÀÎµù µÇ¾î¾ß ´Â ºÎºĞµé
+// Tutorial Hardcoding - è‚ºæµæ çªé›å†…çˆ¹æ è‚º å®˜ç‰¢çˆ¹ ç™»ç»¢å…· ç»° ä½•ç›’ç”¸
 
 
 void TutorialManager::OnStageClear()
 {
-	// ÇöÀç ClearÇÑ StageID´Â GetProcessableNextTutorial ³»ºÎ¿¡¼­ È®ÀÎ
+	// æ³…çŠ ClearèŒ„ StageIDç»° GetProcessableNextTutorial éƒ´ä½•ä¿Šè¾‘ çŠ¬ç‰¢
 	if (IsFirstStageClear(TutorialID_FirstStageClear, EStageDifficulty::ESD_Normal) ||
 		IsFirstStageClear(TutorialID_ExpertDungon, EStageDifficulty::ESD_Hard))
 	{
@@ -1349,7 +1349,7 @@ FText TutorialManager::GetTutorialConditionText(int32 TutorialID)
 	//		return FText::FromString(ConditionText);
 	//	}
 	//	break;
-	//	// ±âÈ¹ÀÇµµ·Î ÀÎÇØ ETutorialType::DefaultÀÏ °æ¿ì TutorialDesc¸¦ º¸¿©ÁØ´Ù.
+	//	// æ‰è£™ç‹¼æ¡£è‚º ç‰¢ç§¦ ETutorialType::Defaultè€ ç‰ˆå¿« TutorialDescç”« ç„Šå’¯éœ–ä¿ƒ.
 	//case ETutorialType::Default:
 	//	return GetTutorialDesc(TutorialID);
 	//}
@@ -1431,7 +1431,7 @@ void TutorialManager::OnTutorialStepClear(const FTutorialStep* ClearStepInfo)
 {
 	if (ClearStepInfo && ClearStepInfo->Action == ETutorialAction::TutorialClear)
 	{
-		SetTutorialStepState(ETutorialStepState::WaitForRequirement); // Process StepºÒ°¡´ÉÇÏ°Ô ¸·À½
+		SetTutorialStepState(ETutorialStepState::WaitForRequirement); // Process Stepé˜‚å•Šç“·çªéœ¸ é˜œæ¾œ
 	}
 }
 
@@ -1470,12 +1470,12 @@ FString GetTutorialKey(int32 TutorialID)
 //	
 //	if (TargetWidget)
 //	{
-//		// ÀÏ¹İ UIData ÀÏ °æ¿ì
+//		// è€é¦† UIData è€ ç‰ˆå¿«
 //		if (FB2UIWidgetData* WidgetData = UB2UIManager::GetInstance()->GetWidgetDataByWidget(Cast<UB2UIWidget>(TargetWidget)))
 //		{
 //			WidgetName = WidgetData->WidgetFName.ToString();
 //		}
-//		// DJLegacy ÀÏ °æ¿ì
+//		// DJLegacy è€ ç‰ˆå¿«
 //		else if (UBladeIIUserWidget* DJLegacyWidget = Cast<UBladeIIUserWidget>(TargetWidget))
 //		{
 //			if (AB2LobbyGameMode* LobbyGM = Cast<AB2LobbyGameMode>(UGameplayStatics::GetGameMode(TargetWidget)))
@@ -1528,55 +1528,55 @@ UMaterialInterface* GetTutorialSpeakerMaterial(int32 TutorialID)
 
 void TutorialManager::RegisterExceptionFunc()
 {
-	//Ã³À½ ½ºÅ×ÀÌÁö Å¬¸®¾î
-	REGISTERSTEP_ACTION_EXCEPTION(TutorialID_FirstStageClear, 1);	// Action1 Chapter¿¡¼­ Stage 1 - 1 ÀÔÀå Àü SceneÀÌ Swipe¹æÁö ¹× Highlight Àç¹èÄ¡
-	REGISTERSTEP_ACTION_EXCEPTION(TutorialID_FirstStageClear, 2);	// Action2	Chapter¿¡¼­ BlockµÈ SwipeÇØÁ¦
-	REGISTERSTEP_REQUIRE_EXCEPTION(TutorialID_FirstStageClear, 8);	// Require8 - Stage1 Á¾·á ÈÄ ·Îºñ·Î µ¹¾Æ¿Í¼­ Á¤»ó Clear È¤Àº ½ÇÆĞ/Ãë¼Ò È®ÀÎ
-	REGISTERTUTORIAL_END_EXCEPTION(TutorialID_FirstStageClear);		// TutorialEnd - 01 ¿¡¼­ SkipÇØ¹ö¸± °æ¿ì¸¦ À§ÇØ DocChapter Swipe false·Î ÇØÁ¦
+	//è´¸æ¾œ èƒ¶æŠ›æç˜¤ åŠªåºœç»¢
+	REGISTERSTEP_ACTION_EXCEPTION(TutorialID_FirstStageClear, 1);	// Action1 Chapterä¿Šè¾‘ Stage 1 - 1 æ¶å˜ å‚ˆ Sceneæ Swipeè§„ç˜¤ æ£º Highlight çŠç¡…æ‘¹
+	REGISTERSTEP_ACTION_EXCEPTION(TutorialID_FirstStageClear, 2);	// Action2	Chapterä¿Šè¾‘ Blockç­‰ Swipeç§¦åŠ›
+	REGISTERSTEP_REQUIRE_EXCEPTION(TutorialID_FirstStageClear, 8);	// Require8 - Stage1 è¾†ä¸° é¥¶ è‚ºåšè‚º å€’é…’å®¢è¾‘ æ²¥æƒ‘ Clear è¶£ç¯® è§’è©/ç§’å®¶ çŠ¬ç‰¢
+	REGISTERTUTORIAL_END_EXCEPTION(TutorialID_FirstStageClear);		// TutorialEnd - 01 ä¿Šè¾‘ Skipç§¦æ»šå‰¯ ç‰ˆå¿«ç”« å›°ç§¦ DocChapter Swipe falseè‚º ç§¦åŠ›
 
-	//Àåºñ ·¹º§¾÷
-	REGISTERSTEP_ACTION_EXCEPTION(TutorialID_ItemLevelup, 0);		// Action0 - Àåºñ ·¹º§¾÷ Àü Àç·á¿ë Item ¹× °ñµå Request	
-	REGISTERSTEP_ACTION_EXCEPTION(TutorialID_ItemLevelup, 3);		// Action4 - 400_5¿¡¼­ Àç·á µî·ÏÀ» ÇÒ¶§ B2lobbyInventory::SelectForIngred ¿¡¼­ Signal³¯¸± Event¸¦ Subscribe
-	REGISTERSTEP_REQUIRE_EXCEPTION(TutorialID_ItemLevelup, 4);		// Require5 - Àåºñ ·¹º§¾÷¿ë Àç·á°¡ ÀûÀıÇÏ°Ô µî·ÏµÇ¾ú´ÂÁö È®ÀÎ
-	REGISTERSTEP_ACTION_EXCEPTION(TutorialID_ItemLevelup, 4);		// Action5 - Àåºñ ·¹º§¾÷ °¡°İÀ» 0À¸·Î ¼öÁ¤ÇÏ°í Æ©Åä¸®¾ó ·¹º§¾÷ Àü¿ë ÇÁ·ÎÅäÄİ ÁØºñ - ·¹º§¾÷ ¹öÆ° ´­·¶À»¶§ ±â´É ¹Ù²ãÄ¡±â, 400_4 ¿¡¼­ SubscribeÇß´ø Event Unsubscribe
-	REGISTERSTEP_ACTION_EXCEPTION(TutorialID_ItemLevelup, 5);		// Action6 - ÇÏÀÌ¶óÀÌÆ® Ä³½¬ À§Á¬ Å¬¸®¾î
+	//å˜åš é¥­éª‡è¯€
+	REGISTERSTEP_ACTION_EXCEPTION(TutorialID_ItemLevelup, 0);		// Action0 - å˜åš é¥­éª‡è¯€ å‚ˆ çŠä¸°ä¾© Item æ£º æ¦œé› Request	
+	REGISTERSTEP_ACTION_EXCEPTION(TutorialID_ItemLevelup, 3);		// Action4 - 400_5ä¿Šè¾‘ çŠä¸° æ®¿åºŸé˜‘ ä¸”é”­ B2lobbyInventory::SelectForIngred ä¿Šè¾‘ Signalæœå‰¯ Eventç”« Subscribe
+	REGISTERSTEP_REQUIRE_EXCEPTION(TutorialID_ItemLevelup, 4);		// Require5 - å˜åš é¥­éª‡è¯€ä¾© çŠä¸°å•Š åˆ©ä¾‹çªéœ¸ æ®¿åºŸç™»èŒç»°ç˜¤ çŠ¬ç‰¢
+	REGISTERSTEP_ACTION_EXCEPTION(TutorialID_ItemLevelup, 4);		// Action5 - å˜åš é¥­éª‡è¯€ å•Šæ‹œé˜‘ 0æ è‚º èæ²¥çªç»Š è­¬é…åºœå€” é¥­éª‡è¯€ å‚ˆä¾© æ©‡è‚ºé…å¦® éœ–åš - é¥­éª‡è¯€ æ»šç“¢ å–˜èŒƒé˜‘é”­ æ‰ç“· å®˜å±‚æ‘¹æ‰, 400_4 ä¿Šè¾‘ Subscribeæ²å¸¦ Event Unsubscribe
+	REGISTERSTEP_ACTION_EXCEPTION(TutorialID_ItemLevelup, 5);		// Action6 - çªææ‰¼æé£˜ æŸæµ† å›°è¿ åŠªåºœç»¢
 
-	//¹İ°İ ´øÀü
-	REGISTERSTEP_ACTION_EXCEPTION(TutorialID_CounterDungeon, 3);	// Action3 - ¹İ°İ´øÀü ÇØ´ç ¿äÀÏ¿¡ ¸Â°Ô Highlight º¯°æ
-	REGISTERSTEP_ACTION_EXCEPTION(TutorialID_CounterDungeon, 4);	// Action4 - ÀÏ¹İÀûÀÎ Highlight StepÀÌ ¾Æ´Ï¹Ç·Î DungeonSlot UI Ä³½Ì ÈÄ °­Á¦·Î ClearHighlight È£Ãâ
+	//é¦†æ‹œ å¸¦å‚ˆ
+	REGISTERSTEP_ACTION_EXCEPTION(TutorialID_CounterDungeon, 3);	// Action3 - é¦†æ‹œå¸¦å‚ˆ ç§¦å¯¸ å¤¸è€ä¿Š å˜éœ¸ Highlight å‡½ç‰ˆ
+	REGISTERSTEP_ACTION_EXCEPTION(TutorialID_CounterDungeon, 4);	// Action4 - è€é¦†åˆ©ç‰¢ Highlight Stepæ é…’èªéª¨è‚º DungeonSlot UI æŸæ•™ é¥¶ ç¢åŠ›è‚º ClearHighlight é¾‹å…
 
-	//Á¡·ÉÀü
-	REGISTERSTEP_ACTION_EXCEPTION(TutorialID_Occupy, TutorialStep_Occupy_InitAndCenterCamera);	// Action - ÀÎ°ÔÀÓ Ã¹¾×¼Ç Ä«¸Ş¶ó ¿Å±â°í ¹èÆ²¸ŞÀÎ¼û±â°í ¹¹ ¸·ÇØº½
-	REGISTERSTEP_ACTION_EXCEPTION(TutorialID_Occupy, TutorialStep_Occupy_BotCamera);			// Action - Ä«¸Ş¶ó ¿Å±â±â. ´Ù¿Å±â¸é °ÔÀÓ¸ğµå¿¡¼­ ½ºÅÇ ³Ñ°ÜÁØ´Ù.
-	REGISTERSTEP_ACTION_EXCEPTION(TutorialID_Occupy, TutorialStep_Occupy_TopCamera);			// Action - Ä«¸Ş¶ó ¿Å±â±â. ´Ù¿Å±â¸é °ÔÀÓ¸ğµå¿¡¼­ ½ºÅÇ ³Ñ°ÜÁØ´Ù.
-	REGISTERSTEP_ACTION_EXCEPTION(TutorialID_Occupy, TutorialStep_Occupy_IngameCamera);			// Action - Ä«¸Ş¶ó ÀÎ°ÔÀÓ º¹±¸.
-	REGISTERSTEP_ACTION_EXCEPTION(TutorialID_Occupy, TutorialStep_Occupy_SetIngame);			// Action - °ÔÀÓ °è¼ÓÇÒ¼öÀÖ´Â »óÅÂ·Î UI¶û °ÔÀÓ¸ğµå ¼³Á¤ÇØÁÜ
+	//ç—¢é£å‚ˆ
+	REGISTERSTEP_ACTION_EXCEPTION(TutorialID_Occupy, TutorialStep_Occupy_InitAndCenterCamera);	// Action - ç‰¢éœ¸çƒ™ éœ‰å’€è®° å¢¨çš‹æ‰¼ é¢—æ‰ç»Š ç¡…æ’‡çš‹ç‰¢è§æ‰ç»Š æ„ é˜œç§¦èˆª
+	REGISTERSTEP_ACTION_EXCEPTION(TutorialID_Occupy, TutorialStep_Occupy_BotCamera);			// Action - å¢¨çš‹æ‰¼ é¢—æ‰æ‰. ä¿ƒé¢—æ‰æ éœ¸çƒ™è‘›é›ä¿Šè¾‘ èƒ¶å¾˜ é€è´¥éœ–ä¿ƒ.
+	REGISTERSTEP_ACTION_EXCEPTION(TutorialID_Occupy, TutorialStep_Occupy_TopCamera);			// Action - å¢¨çš‹æ‰¼ é¢—æ‰æ‰. ä¿ƒé¢—æ‰æ éœ¸çƒ™è‘›é›ä¿Šè¾‘ èƒ¶å¾˜ é€è´¥éœ–ä¿ƒ.
+	REGISTERSTEP_ACTION_EXCEPTION(TutorialID_Occupy, TutorialStep_Occupy_IngameCamera);			// Action - å¢¨çš‹æ‰¼ ç‰¢éœ¸çƒ™ æ±—å¤‡.
+	REGISTERSTEP_ACTION_EXCEPTION(TutorialID_Occupy, TutorialStep_Occupy_SetIngame);			// Action - éœ¸çƒ™ æ‹ŒåŠ ä¸”èä¹ç»° æƒ‘æ€•è‚º UIå°” éœ¸çƒ™è‘›é› æ±²æ²¥ç§¦æ·‹
 
-	//Àåºñ °­È­
-	REGISTERSTEP_ACTION_EXCEPTION(TutorialID_ItemEnhance, 0);		// Action0 - Æ©Åä¸®¾ó ÁøÇà Àü °­È­ ÁØºñ ÇÁ·ÎÅäÄİ º¸³¿
-	REGISTERSTEP_REQUIRE_EXCEPTION(TutorialID_ItemEnhance, 1);		// Require2 - ÀÔÀå Àü MainÄ³¸¯ÅÍ ¹«±âÂø¿ë ¿©ºÎ È®ÀÎ,(ÁÖ¹®¼­, ¹«±â°¡ 4Ä³¸¯ ´Ù ¾øÀ»°æ¿ì ´õ¹Ì¹«±âµµ) ¼­¹ö ¿äÃ», Response¹ŞÀ¸¸é true
-	REGISTERSTEP_ACTION_EXCEPTION(TutorialID_ItemEnhance, 5);		// Action6 - Ä³½¬ ÇÏÀÌ¶óÀÌÆ® À§Á¬ È°¼ºÈ­
-	REGISTERSTEP_REQUIRE_EXCEPTION(TutorialID_ItemEnhance, 6);		// Require7 - °­È­¿ë ItemDetailPopupÀÌ Á¤»óÀûÀ¸·Î ¿­·È´ÂÁö È®ÀÎ
-	REGISTERSTEP_ACTION_EXCEPTION(TutorialID_ItemEnhance, 6);		// Action7 - °­È­ ¹öÆ° ´©¸£±â Àü °­È­ Protocol Subscribe
-	REGISTERSTEP_REQUIRE_EXCEPTION(TutorialID_ItemEnhance, 7);		// Require8 - °­È­ ProtocolÀÌ Á¦´ë·Î ResponseµÇ¾ú´ÂÁö È®ÀÎ
-	REGISTERSTEP_ACTION_EXCEPTION(TutorialID_ItemEnhance, 7);		// Action8 - TutorialUI Hide ½ÃÅ°°í 1100_7¿¡¼­ °­È­ ÇÁ·ÎÅäÄİ subscribe¸¦ unsubscribe
+	//å˜åš ç¢æ‹³
+	REGISTERSTEP_ACTION_EXCEPTION(TutorialID_ItemEnhance, 0);		// Action0 - è­¬é…åºœå€” æŸ³é’ å‚ˆ ç¢æ‹³ éœ–åš æ©‡è‚ºé…å¦® ç„Šæ™¨
+	REGISTERSTEP_REQUIRE_EXCEPTION(TutorialID_ItemEnhance, 1);		// Require2 - æ¶å˜ å‚ˆ MainæŸè…ç£ å…¬æ‰é¦’ä¾© å’¯ä½• çŠ¬ç‰¢,(æ—å·©è¾‘, å…¬æ‰å•Š 4æŸè… ä¿ƒ ç»é˜‘ç‰ˆå¿« æ­¹å›ºå…¬æ‰æ¡£) è¾‘æ»š å¤¸æ²¡, Responseç½æ æ true
+	REGISTERSTEP_ACTION_EXCEPTION(TutorialID_ItemEnhance, 5);		// Action6 - æŸæµ† çªææ‰¼æé£˜ å›°è¿ åŠå·±æ‹³
+	REGISTERSTEP_REQUIRE_EXCEPTION(TutorialID_ItemEnhance, 6);		// Require7 - ç¢æ‹³ä¾© ItemDetailPopupæ æ²¥æƒ‘åˆ©æ è‚º å‡¯å•¡ç»°ç˜¤ çŠ¬ç‰¢
+	REGISTERSTEP_ACTION_EXCEPTION(TutorialID_ItemEnhance, 6);		// Action7 - ç¢æ‹³ æ»šç“¢ ç©¿ç¦æ‰ å‚ˆ ç¢æ‹³ Protocol Subscribe
+	REGISTERSTEP_REQUIRE_EXCEPTION(TutorialID_ItemEnhance, 7);		// Require8 - ç¢æ‹³ Protocolæ åŠ›æªè‚º Responseç™»èŒç»°ç˜¤ çŠ¬ç‰¢
+	REGISTERSTEP_ACTION_EXCEPTION(TutorialID_ItemEnhance, 7);		// Action8 - TutorialUI Hide çŸ«è™ç»Š 1100_7ä¿Šè¾‘ ç¢æ‹³ æ©‡è‚ºé…å¦® subscribeç”« unsubscribe
 
-	//Á¤¿¹ ´øÀü
-	REGISTERSTEP_ACTION_EXCEPTION(TutorialID_ExpertDungon, 3);		// Action2 Chapter¿¡¼­ Stage 1 - 1 ÀÔÀå Àü SceneÀÌ Swipe¹æÁö ¹× Highlight Àç¹èÄ¡
-	REGISTERSTEP_ACTION_EXCEPTION(TutorialID_ExpertDungon, 4);		// Action3	Chapter¿¡¼­ BlockµÈ SwipeÇØÁ¦
-	REGISTERTUTORIAL_END_EXCEPTION(TutorialID_ExpertDungon);		// TutorialEnd - 01 ¿¡¼­ SkipÇØ¹ö¸± °æ¿ì¸¦ À§ÇØ DocChapter Swipe false·Î ÇØÁ¦
+	//æ²¥æŠ— å¸¦å‚ˆ
+	REGISTERSTEP_ACTION_EXCEPTION(TutorialID_ExpertDungon, 3);		// Action2 Chapterä¿Šè¾‘ Stage 1 - 1 æ¶å˜ å‚ˆ Sceneæ Swipeè§„ç˜¤ æ£º Highlight çŠç¡…æ‘¹
+	REGISTERSTEP_ACTION_EXCEPTION(TutorialID_ExpertDungon, 4);		// Action3	Chapterä¿Šè¾‘ Blockç­‰ Swipeç§¦åŠ›
+	REGISTERTUTORIAL_END_EXCEPTION(TutorialID_ExpertDungon);		// TutorialEnd - 01 ä¿Šè¾‘ Skipç§¦æ»šå‰¯ ç‰ˆå¿«ç”« å›°ç§¦ DocChapter Swipe falseè‚º ç§¦åŠ›
 
-	//¿¡Å×¸£
-	REGISTERSTEP_ACTION_EXCEPTION(TutorialID_Ether, 0);				// Action0 - ¿¡Å×¸£ Æ©Åä¸®¾ó¿ë ¾ÆÀÌÅÛ Request
-	REGISTERSTEP_ACTION_EXCEPTION(TutorialID_Ether, 13);			// Action13 - ¿¡Å×¸£ ÀåÂø ¾Ö´Ï¸ŞÀÌ¼Ç ÀÛµ¿ Áß Æ©Åä¸®¾ó À§Á¬ hide
+	//ä¿ŠæŠ›ç¦
+	REGISTERSTEP_ACTION_EXCEPTION(TutorialID_Ether, 0);				// Action0 - ä¿ŠæŠ›ç¦ è­¬é…åºœå€”ä¾© é…’æè¢ Request
+	REGISTERSTEP_ACTION_EXCEPTION(TutorialID_Ether, 13);			// Action13 - ä¿ŠæŠ›ç¦ å˜é¦’ å±€èªçš‹æè®° ç´¯æ‚¼ å è­¬é…åºœå€” å›°è¿ hide
 
-	//°¢¼º
-	REGISTERSTEP_ACTION_EXCEPTION(TutorialID_Seal, 0);				// Action0 - ¿¡Å×¸£ Æ©Åä¸®¾ó¿ë ¾ÆÀÌÅÛ Request
+	//é˜¿å·±
+	REGISTERSTEP_ACTION_EXCEPTION(TutorialID_Seal, 0);				// Action0 - ä¿ŠæŠ›ç¦ è­¬é…åºœå€”ä¾© é…’æè¢ Request
 
-	//¾Ç¸ù ´øÀü	//±âÈ¹ ¿äÃ» Á¦°Å(±â´ÉÀº ³²°Ü´Ş¶ó°í ÇÏ½É)
-	//REGISTERSTEP_ACTION_EXCEPTION(TutorialID_NightmareDungeon, 2);		// Action2 Chapter¿¡¼­ Stage 1 - 1 ÀÔÀå Àü SceneÀÌ Swipe¹æÁö ¹× Highlight Àç¹èÄ¡
-	//REGISTERSTEP_ACTION_EXCEPTION(TutorialID_NightmareDungeon, 3);		// Action3	Chapter¿¡¼­ BlockµÈ SwipeÇØÁ¦
-	//REGISTERTUTORIAL_END_EXCEPTION(TutorialID_NightmareDungeon);		// TutorialEnd - 01 ¿¡¼­ SkipÇØ¹ö¸± °æ¿ì¸¦ À§ÇØ DocChapter Swipe false·Î ÇØÁ¦
+	//å©æ ¹ å¸¦å‚ˆ	//æ‰è£™ å¤¸æ²¡ åŠ›èŠ­(æ‰ç“·ç¯® å·¢è´¥å´”æ‰¼ç»Š çªç¼´)
+	//REGISTERSTEP_ACTION_EXCEPTION(TutorialID_NightmareDungeon, 2);		// Action2 Chapterä¿Šè¾‘ Stage 1 - 1 æ¶å˜ å‚ˆ Sceneæ Swipeè§„ç˜¤ æ£º Highlight çŠç¡…æ‘¹
+	//REGISTERSTEP_ACTION_EXCEPTION(TutorialID_NightmareDungeon, 3);		// Action3	Chapterä¿Šè¾‘ Blockç­‰ Swipeç§¦åŠ›
+	//REGISTERTUTORIAL_END_EXCEPTION(TutorialID_NightmareDungeon);		// TutorialEnd - 01 ä¿Šè¾‘ Skipç§¦æ»šå‰¯ ç‰ˆå¿«ç”« å›°ç§¦ DocChapter Swipe falseè‚º ç§¦åŠ›
 }
 
 void FTutorialStep::SetStepBasicInfoFromKey(const FName& InStepKey)
@@ -1601,7 +1601,7 @@ void TutorialManager::CloseLobbyMainCombineMenu()
 	//CloseCombineMenuClass<>::GetInstance().Signal();
 }
 
-// ÇÏµåÄÚµùÀÎ°É Æ¼³»±â À§ÇØ º¸±â ±¸¸®°Ô ¸¸µë
+// çªé›å†…çˆ¹ç‰¢å§ èéƒ´æ‰ å›°ç§¦ ç„Šæ‰ å¤‡åºœéœ¸ çˆ¶æƒ¦
 
 void TutorialManager::InitHardCodingProperties()
 {
@@ -1626,7 +1626,7 @@ void TutorialManager::InitHardCodingProperties()
 	//CachedUIItemIcon = nullptr;
 }
 
-// Action - Tutorial100_1 Chapter¿¡¼­ Stage 1 - 1 ÀÔÀå Àü SceneÀÌ SwipeµÇ´Â °ÍÀ» ¹æÁöÇÏ±â À§ÇÔ
+// Action - Tutorial100_1 Chapterä¿Šè¾‘ Stage 1 - 1 æ¶å˜ å‚ˆ Sceneæ Swipeç™»ç»° å·´é˜‘ è§„ç˜¤çªæ‰ å›°çªƒ
 //#include "B2UIChapter.h"
 //#include "B2UIChapterFrame.h"
 //#include "B2UIChapterStage.h"
@@ -1662,7 +1662,7 @@ bool TutorialManager::IsFirstStageClear(int32 iTutorialID, EStageDifficulty eSta
 	return false;
 }
 
-// Require - Tutorial100_8 - Stage1 Á¾·á ÈÄ ·Îºñ·Î µ¹¾Æ¿Í¼­ Á¤»ó Clear È¤Àº ½ÇÆĞ/Ãë¼Ò È®ÀÎ
+// Require - Tutorial100_8 - Stage1 è¾†ä¸° é¥¶ è‚ºåšè‚º å€’é…’å®¢è¾‘ æ²¥æƒ‘ Clear è¶£ç¯® è§’è©/ç§’å®¶ çŠ¬ç‰¢
 DEFINESTEP_REQUIRE_EXCEPTION(TutorialID_FirstStageClear, 8)
 {
 	return bStage1Clear;
@@ -1704,7 +1704,7 @@ DEFINESTEP_ACTION_EXCEPTION(TutorialID_ItemLevelup, 0)
 	return true;
 }
 
-// 400-5 ¿¡¼­ ÁøÇàÇÒ Àç·á µî·ÏStep¿ë Event¸¦ subscribe
+// 400-5 ä¿Šè¾‘ æŸ³é’ä¸” çŠä¸° æ®¿åºŸStepä¾© Eventç”« subscribe
 DEFINESTEP_ACTION_EXCEPTION(TutorialID_ItemLevelup, 3)
 {
 	//LobbyTryUpdateItemOPMainMenuTicket = LobbyTryUpdateItemOPMainMenuClass<>::GetInstance().Subscribe([this] {this->OnItemIngredRegistered(); });
@@ -1802,7 +1802,7 @@ DEFINESTEP_ACTION_EXCEPTION(TutorialID_Occupy, TutorialStep_Occupy_InitAndCenter
 	//	{
 	//		pGM->ProcessTutorialAction(EControlTutorialActionStep::ViewCenterCamera);
 
-	//		// ÀÌµ¿ÆĞ³Î ¼û±è
+	//		// ææ‚¼è©æ¾„ è§è¾«
 	//		pGM->GetUIManager_InGameCombat()->HideVirtualJoystick(true);
 	//	}
 	//}
@@ -1874,7 +1874,7 @@ DEFINESTEP_ACTION_EXCEPTION(TutorialID_Occupy, TutorialStep_Occupy_SetIngame)
 	//	{
 	//		pGM->ProcessTutorialAction(EControlTutorialActionStep::SetIngame);
 
-	//		// ÀÌµ¿ÆĞ³Î	º¸ÀÓ
+	//		// ææ‚¼è©æ¾„	ç„Šçƒ™
 	//		pGM->GetUIManager_InGameCombat()->HideVirtualJoystick(false);
 	//	}
 	//}
@@ -1896,7 +1896,7 @@ DEFINESTEP_ACTION_EXCEPTION(TutorialID_ItemEnhance, 0)
 	return true;
 }
 
-// Require - Tutorial1100_1 - ÀÔÀå Àü MainÄ³¸¯ÅÍ ¹«±âÂø¿ë ¿©ºÎ È®ÀÎ,(ÁÖ¹®¼­, ¹«±â°¡ 4Ä³¸¯ ´Ù ¾øÀ»°æ¿ì ´õ¹Ì¹«±âµµ) ¼­¹ö ¿äÃ», Response¹ŞÀ¸¸é true
+// Require - Tutorial1100_1 - æ¶å˜ å‚ˆ MainæŸè…ç£ å…¬æ‰é¦’ä¾© å’¯ä½• çŠ¬ç‰¢,(æ—å·©è¾‘, å…¬æ‰å•Š 4æŸè… ä¿ƒ ç»é˜‘ç‰ˆå¿« æ­¹å›ºå…¬æ‰æ¡£) è¾‘æ»š å¤¸æ²¡, Responseç½æ æ true
 #include "CharacterDataStore.h"
 #include "B2LobbyInventory.h"
 DEFINESTEP_REQUIRE_EXCEPTION(TutorialID_ItemEnhance, 1)
@@ -2115,7 +2115,7 @@ void TutorialManager::PrePareTutorialID_ItemEnhance()
 	bReadyForEnhance = true;
 	ProcessStep();
 
-	//// Response ¹Ş´Â ½Ã±â°¡ UIOpen ÀÌÈÄÀÏ ¼ö ÀÖ¾î ´Ù½Ã ÇÑ¹ø Ã¼Å©ÇØÁà¾ß ÇÔ
+	//// Response ç½ç»° çŸ«æ‰å•Š UIOpen æé¥¶è€ è ä¹ç»¢ ä¿ƒçŸ« èŒ„é”… çœ‰å†œç§¦æ‹å…· çªƒ
 	//if (GetTutorialUI()->GetCurrentDJLegacyUIName() == GetCurrentStepInfo()->RequireName)
 	//{
 	//	SetTutorialStepState(ETutorialStepState::Passable);
@@ -2135,7 +2135,7 @@ void TutorialManager::PrePareTutorialID_Seal()
 	data_trader::Retailer::GetInstance().RequestGetAccountItem(CliToSvrPCClassType(MainClass), b2network::B2InventoryType::Weapon);
 }
 
-//¾Ç¸ù ´øÀü	//±âÈ¹ ¿äÃ» Á¦°Å(±â´ÉÀº ³²°Ü´Ş¶ó°í ÇÏ½É)
+//å©æ ¹ å¸¦å‚ˆ	//æ‰è£™ å¤¸æ²¡ åŠ›èŠ­(æ‰ç“·ç¯® å·¢è´¥å´”æ‰¼ç»Š çªç¼´)
 //DEFINESTEP_ACTION_EXCEPTION(TutorialID_NightmareDungeon, 2)
 //{
 //	ChapterWidgetActiveHiglight(true);

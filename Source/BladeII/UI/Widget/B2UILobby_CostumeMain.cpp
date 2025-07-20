@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UILobby_CostumeMain.h"
 
@@ -14,7 +14,7 @@ void UB2UILobby_CostumeMain::StartFromLobby(class UB2UIManager_Lobby* InUIManage
 
 	if (HeroMgmtBaseNRef)
 	{
-		HeroMgmtBaseNRef->StartFromLobby(InUIManager, InGM); // ÀÌ°Ç LobbyUISwitcher ¿¡¼­ ¸ð¸£´Ï Á÷Á¢ ÇØ ÁÖ¾î¾ß..		
+		HeroMgmtBaseNRef->StartFromLobby(InUIManager, InGM); // æžæ‰’ LobbyUISwitcher ä¿Šè¾‘ è‘›ç¦èª æµç«‹ ç§¦ æž—ç»¢å…·..		
 	}
 
 	DoMarkRedDot();
@@ -249,7 +249,7 @@ bool UB2UILobby_CostumeMain::IsEnableInputDelay()
 
 void UB2UILobby_CostumeMain::CloseAllStandaloneUIFromUIManager()
 {
-	//¿­¸° ÆË¾÷µéÀÇ close Ã³¸®°¡ ¾î·Á¿ö ÆË¾÷·ù ÀÏ°ý close Ãß°¡
+	//å‡¯èµ´ æ‰‘è¯€ç”¸ç‹¼ close è´¸åºœå•Š ç»¢å¦¨å†µ æ‰‘è¯€å¹… è€è¤’ close çœ å•Š
 	if (UB2UIManager* pUIManager = UB2UIManager::GetInstance())
 	{
 		pUIManager->CloseAllStandaloneUIs();
@@ -300,8 +300,8 @@ UB2UIWidget* UB2UILobby_CostumeMain::CreateDynamicCostumePage(const TSoftClassPt
 UCanvasPanel* UB2UILobby_CostumeMain::GetDetailPopupParentPanel(bool bOfLeftSide) const
 {
 	return bOfLeftSide ? X_LeftPopupPanel.Get() :
-		// ¿ìÃøÆË¾÷Àº HeroMgmt °øÅëÆÄÆ®ÀÇ Çì´õÆÄÆ®¿¡¼­ ³ª¿À´Â ¸ðµå ¾Ë¸²À» °¡¸®Áö ¾Êµµ·Ï HeroMgmt ÂÊ Panel À» »ç¿ëÇÑ´Ù.
-		// ¿©±â widget µé ¹èÄ¡ ½Ã ¼ø¼­ ¹× z-order ÁÖÀÇÇØ¾ß ÇÔ.
+		// å¿«èžŸæ‰‘è¯€ç¯® HeroMgmt å‚çƒ¹é¢‡é£˜ç‹¼ åº†æ­¹é¢‡é£˜ä¿Šè¾‘ å”±å·ç»° è‘›é› èˆ…è¦†é˜‘ å•Šåºœç˜¤ è‡¼æ¡£åºŸ HeroMgmt çŽ‡ Panel é˜‘ è¤ä¾©èŒ„ä¿ƒ.
+		// å’¯æ‰ widget ç”¸ ç¡…æ‘¹ çŸ« é‰´è¾‘ æ£º z-order æž—ç‹¼ç§¦å…· çªƒ.
 		(HeroMgmtBaseNRef ? HeroMgmtBaseNRef->GetInfoPopupParentPanel(bOfLeftSide) : X_RightPopupPanel.Get());
 }
 

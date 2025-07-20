@@ -1,4 +1,4 @@
-#include "B2UICounterDGResult.h"
+ï»¿#include "B2UICounterDGResult.h"
 #include "B2UIDocHelper.h"
 #include "B2UIManager.h"
 #include "B2ItemInfo.h"
@@ -121,7 +121,7 @@ void UB2UICounterDGResult::CheckAndOpenLevelUpPart()
 
 	if (DocHero)
 	{
-		//[@SameLine, 180612] explevelinfo doc, datastore -> datastore °³¼±
+		//[@SameLine, 180612] explevelinfo doc, datastore -> datastore ä¿ºæ€¥
 		EPCClass pcClass = IntToPCClass(DocBattle->GetCurPCClass());
 		FLocalCharacterData& CharacterDataStore = BladeIIGameImpl::GetClientDataStore().GetLocalCharacterData();
 

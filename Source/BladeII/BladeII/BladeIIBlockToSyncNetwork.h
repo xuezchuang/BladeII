@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "BladeII.h"
 #include "EngineMinimal.h"
@@ -11,8 +11,8 @@ UENUM()
 enum class DisconnectResasonType : uint8
 {
 	EDISCONNECT_REASON_NONE,
-	//»ç½Ç Resoponeµµ SessionÀÌ ²÷±ä °ÅÁö¸¸ 
-	//Resopone¸¦ ¸ø¹Ş´Â °Í°ú Session Disconnect°¡ Á¶±İ ´Ù¸¥ ÀÇ¹Ì·Î ¾²ÀÌ±â ¶§¹®¿¡ ºĞ¸®
+	//è¤è§’ Resoponeæ¡£ Sessionæ è°—å˜ èŠ­ç˜¤çˆ¶ 
+	//Resoponeç”« ç»™ç½ç»° å·´è‹ Session Disconnectå•Š ç‚¼é™› ä¿ƒå¼— ç‹¼å›ºè‚º é™ææ‰ é”­å·©ä¿Š ç›’åºœ
 	EDISCONNECT_REASON_RESPONSE,
 	EDISCONNECT_REASON_SESSION,
 	EDISCONNECT_REASON_CHANNEL,
@@ -49,7 +49,7 @@ public:
 	void SessionDisconnect(int32 _errorCode);
 	void ChannelDisconnect(int32 _errorCode);
 	void ServiceNotAvailable(int32 _errorCode);
-	void SessionDisconnetFromServer(int32 _reasonCode); //ÀÌ °á°úÄÚµå´Â À§ÀÇ ¿¡·¯ÄÚµå¿Í´Â ´Ù¸¥ ¿¡·¯ÄÚµå ÀÓ
+	void SessionDisconnetFromServer(int32 _reasonCode); //æ æ¬è‹å†…é›ç»° å›°ç‹¼ ä¿ŠçŸ¾å†…é›å®¢ç»° ä¿ƒå¼— ä¿ŠçŸ¾å†…é› çƒ™
 	void Retry();
 	void GoToTitle();
 	void GoToLobby(); //For PVP

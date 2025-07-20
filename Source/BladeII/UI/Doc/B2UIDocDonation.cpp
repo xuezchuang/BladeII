@@ -22,7 +22,7 @@ void UB2UIDocDonation::SetDonationEventData(const FB2GetDonationEventPtr& InData
 	Settled = InData->settled;
 	Rankers.Empty();
 	for (int i = 0; i < InData->rankers.Num(); i++)
-	{//¹è¿­ ¼ø¼­´ë·Î ¼øÀ§
+	{//ç¡…å‡¯ é‰´è¾‘æŽªè‚º é‰´å›°
 		Rankers.Add(FRankerData(InData->rankers[i]->account_id ,i + 1, InData->rankers[i]->nickname, InData->rankers[i]->point));
 	}
 
@@ -338,7 +338,7 @@ EDonationEventState UB2UIDocDonation::GetDonationEventState()
 
 	if (DateNow > GetStartTime() && DateNow < GetEndTime())
 	{
-		//ÀÌ À¯Àú´Â ÀÌº¥Æ®¿¡ Âü¿© Çß´Ù
+		//æž èœ¡åŽ†ç»° æžäº¥é£˜ä¿Š æ›¼å’¯ æ²ä¿ƒ
 		if (GConfig)
 		{
 			GConfig->SetBool(TEXT("DonationEvent"), TEXT("Participation"), true, GB2UserSavedStateIni);

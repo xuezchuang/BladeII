@@ -58,7 +58,7 @@ void UB2LobbyUI_SellItemPopup::PopupMain(const FB2Item& InItemToSell, const FSel
 	OnClickConfirmBtnHandler = InConfirmBtnHandler;
 	OnClickCancelBtnHandler = InCancelBtnHandler;
 
-	// »çÀÌµå¹Ù ÃÊ±âÈ­
+	// è¤æé›å®˜ æª¬æ‰æ‹³
 	if (SD_ItemCount.IsValid())
 		SD_ItemCount->SetValue(0);
 
@@ -69,7 +69,7 @@ void UB2LobbyUI_SellItemPopup::PopupMain(const FB2Item& InItemToSell, const FSel
 
 	if (bUseCheckMoney)
 	{
-		// ¸ğµÎ ÆÈ±â ÇßÀ»¶§ÀÇ °¹¼ö°¡ 21¾ïÀÌ ³ÑÀ¸¸é.. max °¹¼ö¸¦ ¹Ù²ãÁÜ
+		// è‘›æ»´ è¿«æ‰ æ²é˜‘é”­ç‹¼ è‚®èå•Š 21æ’…æ é€æ æ.. max è‚®èç”« å®˜å±‚æ·‹
 		int64 RemainMoney = MaxGoldAmount - static_cast<int64>(BladeIIGameImpl::GetClientDataStore().GetGoldAmount());
 		int64 PreviewMoney = static_cast<int64>(ItemToSell.SellingPrice) * static_cast<int64>(ItemToSell.ConsumingAmount);
 		bool bIsMaxMoney = RemainMoney < PreviewMoney;
@@ -105,7 +105,7 @@ void UB2LobbyUI_SellItemPopup::PopupMain(const int32 EtherPrice, const FSellItem
 	OnClickConfirmBtnHandler = InConfirmBtnHandler;
 	OnClickCancelBtnHandler = InCancelBtnHandler;
 
-	// »çÀÌµå¹Ù ÃÊ±âÈ­
+	// è¤æé›å®˜ æª¬æ‰æ‹³
 	if (SD_ItemCount.IsValid())
 		SD_ItemCount->SetValue(0);
 	SetItemCount(1);
@@ -140,7 +140,7 @@ void UB2LobbyUI_SellItemPopup::PopupMain(const FB2Totem& InTotemToSell, const FS
 	OnClickConfirmBtnHandler = InConfirmBtnHandler;
 	OnClickCancelBtnHandler = InCancelBtnHandler;
 
-	// »çÀÌµå¹Ù ÃÊ±âÈ­
+	// è¤æé›å®˜ æª¬æ‰æ‹³
 	if (SD_ItemCount.IsValid())
 		SD_ItemCount->SetValue(0);
 	SetItemCount(1);
@@ -163,7 +163,7 @@ void UB2LobbyUI_SellItemPopup::PopupAsSellTotemResult(const int32 AcquiredGold)
 
 void UB2LobbyUI_SellItemPopup::OnChangeItemCountSliderBar(float fValue)
 {
-	// ±âº»ÀûÀ¸·Î ÆÇ¸Å½Ã 0°³¶ó´Â°ÍÀº ¾ø±â¶§¹®¿¡ 0ÀÌÇÏÀÏ °æ¿ì 1°³·Î º¸Á¤ÇØÁØ´Ù.
+	// æ‰å¤¯åˆ©æ è‚º é­„æ¦‚çŸ« 0ä¿ºæ‰¼ç»°å·´ç¯® ç»æ‰é”­å·©ä¿Š 0æçªè€ ç‰ˆå¿« 1ä¿ºè‚º ç„Šæ²¥ç§¦éœ–ä¿ƒ.
 	if (fValue <= 0.f)
 	{
 		if (SD_ItemCount.IsValid())
@@ -233,20 +233,20 @@ void UB2LobbyUI_SellItemPopup::UpdateStaticWidgets()
 	}
 
 	if (TB_ItemSellMax.IsValid())
-		TB_ItemSellMax->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("General_Maximum")));		//ÃÖ´ë
+		TB_ItemSellMax->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("General_Maximum")));		//å¼¥æª
 
 	if(TB_ItemSell.IsValid())
-		TB_ItemSell->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("LobbyInvenText_SellMax")));		//ÆÇ¸Å °³¼ö ¼±ÅÃ
+		TB_ItemSell->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("LobbyInvenText_SellMax")));		//é­„æ¦‚ ä¿ºè æ€¥ç¶
 }
 
 void UB2LobbyUI_SellItemPopup::UpdateDynamicWidgets()
 {
-	// ¿ø·¡´Â AskForSelling »ÓÀÌ¾úÁö¸¸ ¸ğµÎ ÆÈ±â °á°ú°¡ Ãß°¡µÊ.
+	// ç›”è´°ç»° AskForSelling æŒ¥æèŒç˜¤çˆ¶ è‘›æ»´ è¿«æ‰ æ¬è‹å•Š çœ å•Šå‡³.
 	if (TB_AskForSelling.IsValid())
 		TB_AskForSelling->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, bIsForSellAllResult ? TEXT("LobbyInvenText_SellAllItemResultMessage") : TEXT("LobbyInvenText_AskForSellingItem")));
 	
 	if (BTN_Cancel.IsValid())
-		BTN_Cancel->SetVisibility(bIsForSellAllResult ? ESlateVisibility::Collapsed : ESlateVisibility::Visible); // ±×³É °á°ú ÅëÁö´Â cancel ¹öÆ°ÀÌ ÇÊ¿ä¾øÀ½.
+		BTN_Cancel->SetVisibility(bIsForSellAllResult ? ESlateVisibility::Collapsed : ESlateVisibility::Visible); // å¼Šæˆ æ¬è‹ çƒ¹ç˜¤ç»° cancel æ»šç“¢æ é˜å¤¸ç»æ¾œ.
 }
 
 void UB2LobbyUI_SellItemPopup::UpdateSellItemWidgets()
@@ -257,8 +257,8 @@ void UB2LobbyUI_SellItemPopup::UpdateSellItemWidgets()
 	if (TB_TotalGold.IsValid())
 		TB_TotalGold->SetText(FText::FromString(FString::FormatAsNumber(bIsForSellAllResult ? SellAllResultGold : (ItemToSell.SellingPrice * SellItemCount))));
 
-	// ¼±ÅÃÀÌ ºÒ°¡´ÉÇÑ »óÈ²¿¡¼­´Â ¼±ÅÃ°¡´É ¹öÆ°µé µõµå Ã³¸®
-	bool IsSelectableButton = (bIsForSellAllResult == false && MaxItemCount != 1);  // ±âº»ÀûÀ¸·Î ¾ÆÀÌÅÛ °³¼ö°¡ 1ÀÌ°Å³ª ¸Æ½ºÄ¡¸¦ º¸¿©ÁÖ´Â °æ¿ì´Â µõµå
+	// æ€¥ç¶æ é˜‚å•Šç“·èŒ„ æƒ‘ç‚”ä¿Šè¾‘ç»° æ€¥ç¶å•Šç“· æ»šç“¢ç”¸ åŠé› è´¸åºœ
+	bool IsSelectableButton = (bIsForSellAllResult == false && MaxItemCount != 1);  // æ‰å¤¯åˆ©æ è‚º é…’æè¢ ä¿ºèå•Š 1æèŠ­å”± é’™èƒ¶æ‘¹ç”« ç„Šå’¯æ—ç»° ç‰ˆå¿«ç»° åŠé›
 
 	if (IsSelectableButton == false)
 		HiddenSelectWidgets_BP();
@@ -272,7 +272,7 @@ void UB2LobbyUI_SellItemPopup::UpdateSellEtherWidgets()
 	if (TB_TotalGold.IsValid())
 		TB_TotalGold->SetText(FText::FromString(FString::FormatAsNumber(SellAllResultGold)));
 
-	// ¼±ÅÃÀÌ ºÒ°¡´ÉÇÑ »óÈ²¿¡¼­´Â ¼±ÅÃ°¡´É ¹öÆ°µé µõµå Ã³¸®
+	// æ€¥ç¶æ é˜‚å•Šç“·èŒ„ æƒ‘ç‚”ä¿Šè¾‘ç»° æ€¥ç¶å•Šç“· æ»šç“¢ç”¸ åŠé› è´¸åºœ
 	bool IsSelectableButton = (bIsForSellAllResult == false && MaxItemCount != 1);
 
 	if (IsSelectableButton == false)
@@ -315,7 +315,7 @@ float UB2LobbyUI_SellItemPopup::GetDivideElement()
 
 void UB2LobbyUI_SellItemPopup::OnClickConfirmBtn()
 {
-	OnClickConfirmBtnHandler.ExecuteIfBound(); // ½ÇÁ¦ ÆÇ¸Åµ¿ÀÛÀº ¿©±â¼­ ÇÏµµ·Ï ¿ÜºÎ¿¡¼­ ÁöÁ¤. ÀÌ ÆË¾÷À» invoke ÇÑ ºÎ¸ğ widget À» °°ÀÌ ¾ø¾Ö¾ß ÇØ¼­ ¾îÂ÷ÇÇ ¿©±â¼­ ´Ù Ã³¸®ÇÏ±â°¡ ¹ø°Å·Î¿ò.
+	OnClickConfirmBtnHandler.ExecuteIfBound(); // è§’åŠ› é­„æ¦‚æ‚¼ç´¯ç¯® å’¯æ‰è¾‘ çªæ¡£åºŸ å¯‡ä½•ä¿Šè¾‘ ç˜¤æ²¥. æ æ‰‘è¯€é˜‘ invoke èŒ„ ä½•è‘› widget é˜‘ éæ ç»å±€å…· ç§¦è¾‘ ç»¢ç’ä¹” å’¯æ‰è¾‘ ä¿ƒ è´¸åºœçªæ‰å•Š é”…èŠ­è‚ºæ¡†.
 	
 	CloseMe();
 }

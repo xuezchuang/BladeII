@@ -1,8 +1,8 @@
-#include "B2UIMsgPopupCenter.h"
+ï»¿#include "B2UIMsgPopupCenter.h"
 #include "B2UIManager.h"
 
 
-//BP¿¡¼­ MsgPopupBase¸¦ ¹Ù·Î ¹Ş¾Æ¼­ Ã³¸® ÇØµµ µÇÁö¸¸, ÃßÈÄ È®ÀåÀ» ´ëºñÇØ¼­ º°µµÀÇ Å¬·¡½º ¸¶·Ã
+//BPä¿Šè¾‘ MsgPopupBaseç”« å®˜è‚º ç½é…’è¾‘ è´¸åºœ ç§¦æ¡£ ç™»ç˜¤çˆ¶, çœ é¥¶ çŠ¬å˜é˜‘ æªåšç§¦è¾‘ å–Šæ¡£ç‹¼ åŠªè´°èƒ¶ ä»˜è®¿
 
 UB2UIMsgPopupCenter::UB2UIMsgPopupCenter(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)

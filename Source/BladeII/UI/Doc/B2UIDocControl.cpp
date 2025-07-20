@@ -33,7 +33,7 @@ void UB2UIDocControl::AddSerialKillCount()
 {
 	nSerialKillCount++;
 
-	//// UI¿¡ Ç¥±â(1Å³Â°ºÎÅÍ Ç¥½ÃÀÎ°¡. 2Å³Â°ºÎÅÍ Ç¥½ÃÀÎ°¡.)
+	//// UIä¿Š é’æ‰(1æ‡¦æ³ä½•ç£ é’çŸ«ç‰¢å•Š. 2æ‡¦æ³ä½•ç£ é’çŸ«ç‰¢å•Š.)
 	//UB2UIControlBattleSub* pUI = UB2UIManager::GetInstance()->GetUI<UB2UIControlBattleSub>(UIFName::ControlBattleSub);
 
 	//if (pUI)
@@ -96,7 +96,7 @@ void UB2UIDocControl::RefreshKillInfoUI()
 
 void UB2UIDocControl::SetAllyPlayerCount(int32 nPlayerCount)
 {
-	////UIÀÖÀ¸¸é Àü´Ş.
+	////UIä¹æ æ å‚ˆå´”.
 	//UB2UIControlFindMatch* pUI = UB2UIManager::GetInstance()->GetUI<UB2UIControlFindMatch>(UIFName::ControlFindMatch);
 
 	//if (pUI)
@@ -105,7 +105,7 @@ void UB2UIDocControl::SetAllyPlayerCount(int32 nPlayerCount)
 
 void UB2UIDocControl::SetFindingEnd()
 {
-	////UIÀÖÀ¸¸é Àü´Ş.
+	////UIä¹æ æ å‚ˆå´”.
 	//UB2UIControlFindMatch* pUI = UB2UIManager::GetInstance()->GetUI<UB2UIControlFindMatch>(UIFName::ControlFindMatch);
 
 	//if (pUI)
@@ -150,7 +150,7 @@ void UB2UIDocControl::SetGetAssaultPtr(FB2ResponseGetAssaultBattleStatusPtr Resp
 }
 
 
-// °Ù°Ù¾î½äÆ®(¸ğµåÀÎÆ÷)
+// ç™¾ç™¾ç»¢æˆ’é£˜(è‘›é›ç‰¢å™¨)
 FB2ResponseGetAssaultBattleStatusPtr UB2UIDocControl::GetGetAssaultPtr()
 {
 	return m_ptrGetAssault;
@@ -163,11 +163,11 @@ void UB2UIDocControl::SetResultPtr(FB2ResponseAssaultResultPtr ResponsePtr)
 	SetBeforeGradeInfo(GetGradeInfo());
 	SetGradeInfo(ResponsePtr->match_status);
 	
-	// ¸ğµåÁ¤º¸¶û °á°úÁ¤º¸¿¡ ¸®¿öµå¹Ú½º Á¤º¸ ÀÖ´ÂÁö È®ÀÎ
+	// è‘›é›æ²¥ç„Šå°” æ¬è‹æ²¥ç„Šä¿Š åºœå†µé›å† èƒ¶ æ²¥ç„Š ä¹ç»°ç˜¤ çŠ¬ç‰¢
 	if (m_ptrGetAssault && m_ptrGetAssault->reward_box_status
 		&& m_ptrResult && m_ptrResult->reward_box_status)
 	{
-		// ¸ğµåÁ¤º¸´Â º¸»ó¤¤¤¤°í °á°úÁ¤º¸´Â º¸»ó¤·¤»¸é ÀüÅõ ½ÃÀÛ½Ã °æ°í ÆË¾÷º¸±â ¸®¼Â
+		// è‘›é›æ²¥ç„Šç»° ç„Šæƒ‘ã„ã„ç»Š æ¬è‹æ²¥ç„Šç»° ç„Šæƒ‘ã—ã›æ å‚ˆæ§ çŸ«ç´¯çŸ« ç‰ˆç»Š æ‰‘è¯€ç„Šæ‰ åºœæ‚¸
 		if (!m_ptrGetAssault->reward_box_status->is_reward_state
 			&& m_ptrResult->reward_box_status->is_reward_state)
 			SetCanViewModRewardBoxConfirm(true);
@@ -175,8 +175,8 @@ void UB2UIDocControl::SetResultPtr(FB2ResponseAssaultResultPtr ResponsePtr)
 
 	if (m_ptrGetAssault	&& m_ptrResult)
 	{
-		// ¸ğµåÀÎÆ÷ Æ÷ÀÎÆ®º¸´Ù °á°ú Æ÷ÀÎÆ®°¡ ³ô°í. ±×°Ô º¸»ó¹ŞÀ»¼ö ÀÖ´Â Á¡¼ö¸é ÀüÅõ ½ÃÀÛ½Ã °æ°í ÆË¾÷º¸±â ¸®¼Â
-		// °á°ú¿¡ ÃÑ MvpÆ÷ÀÎÆ®Á¤º¸°¡ ¾øÀ½.
+		// è‘›é›ç‰¢å™¨ å™¨ç‰¢é£˜ç„Šä¿ƒ æ¬è‹ å™¨ç‰¢é£˜å•Š è‡­ç»Š. å¼Šéœ¸ ç„Šæƒ‘ç½é˜‘è ä¹ç»° ç—¢èæ å‚ˆæ§ çŸ«ç´¯çŸ« ç‰ˆç»Š æ‰‘è¯€ç„Šæ‰ åºœæ‚¸
+		// æ¬è‹ä¿Š é†š Mvpå™¨ç‰¢é£˜æ²¥ç„Šå•Š ç»æ¾œ.
 		//if (m_ptrResult->mvp_point > m_ptrGetAssault->mvp_point&& m_ptrResult->mvp_point >= BladeIIGameImpl::GetClientDataStore().GetAssaultMvpPointToOpenReward())
 		//	SetCanViewMvpRewardBoxConfirm(true);
 	}
@@ -221,22 +221,22 @@ bool UB2UIDocControl::IsAlwaysOpenControlMatch()
 
 	//for (auto TimeInfo : AssaultOpenPeriodInfo)
 	//{
-	//	//Local Time¿¡ ¸ÂÃç °è»êÇÏ°í ÀÖÀ½.
+	//	//Local Timeä¿Š å˜è‹— æ‹Œé­‚çªç»Š ä¹æ¾œ.
 	//	/*
 	//	FDateTime DateNow = UB2GameInstance::GetUtcToLocalTime(UB2GameInstance::GetUtcNow());
 	//	int32 nUTCDayofweek = static_cast<int32>(DateNow.GetDayOfWeek());
-	//	int32 nCurrentDayofweek = (DateNow.GetHour() >= 24) ? nUTCDayofweek + 1 : nUTCDayofweek; // ¿¹¿Ü»óÈ²ÀÌ ¹ß»ı ÇÒ °æ¿ì¸¦ ´ëºñÇÑ ÄÚµå
-	//	nCurrentDayofweek = (nCurrentDayofweek + 1) % 7 + 1; // ¼­¹ö´Â ÀÏ¿äÀÏÀÌ 1·Î ½ÃÀÛ. UTCTimeÀÇ EDayOfWeek´Â ¿ù¿äÀÏÀÌ 1
+	//	int32 nCurrentDayofweek = (DateNow.GetHour() >= 24) ? nUTCDayofweek + 1 : nUTCDayofweek; // æŠ—å¯‡æƒ‘ç‚”æ æƒ¯ç§¯ ä¸” ç‰ˆå¿«ç”« æªåšèŒ„ å†…é›
+	//	nCurrentDayofweek = (nCurrentDayofweek + 1) % 7 + 1; // è¾‘æ»šç»° è€å¤¸è€æ 1è‚º çŸ«ç´¯. UTCTimeç‹¼ EDayOfWeekç»° å²¿å¤¸è€æ 1
 	//	/*/
 	//	int32 nCurrentDayofweek = UB2GameInstance::ConvertToSvrDayOfWeek();
 	//	//*/
 
-	//	if (TimeInfo->day_of_week != nCurrentDayofweek) continue; // °°Àº ¿äÀÏ¸¸ °è»êÇØ¾ßÇÔ
+	//	if (TimeInfo->day_of_week != nCurrentDayofweek) continue; // éç¯® å¤¸è€çˆ¶ æ‹Œé­‚ç§¦å…·çªƒ
 
 	//	int32 TimeOpen = (TimeInfo->begin_hour * 60) + TimeInfo->begin_min;
 	//	int32 TimeClose = (TimeInfo->end_hour * 60) + TimeInfo->end_min;
 
-	//	// match_open_period_infos¿¡ ³¯Â¥Á¤º¸°¡ ¾ø¾î¼­ 0½Ã0ºĞ ~ 24½Ã0ºĞ ÀÌ¿ÜÀÇ °ªÀÌ ¼³Á¤µÉÀÏÀº ¾øÁö¸¸. µ¿ÀÏ½Ã°£µµ Ã¼Å©
+	//	// match_open_period_infosä¿Š æœæ¥¼æ²¥ç„Šå•Š ç»ç»¢è¾‘ 0çŸ«0ç›’ ~ 24çŸ«0ç›’ æå¯‡ç‹¼ è”¼æ æ±²æ²¥çªè€ç¯® ç»ç˜¤çˆ¶. æ‚¼è€çŸ«åŸƒæ¡£ çœ‰å†œ
 	//	if (TimeOpen % (60 * 24) == TimeClose % (60 * 24))
 	//		return true;
 	//}
@@ -246,7 +246,7 @@ bool UB2UIDocControl::IsAlwaysOpenControlMatch()
 
 int32 UB2UIDocControl::GetControlMatchRemainTime()
 {
-	// ´ÜÀ§ ºĞ
+	// çªœå›° ç›’
 
 	if (AssaultOpenPeriodInfo.Num() == 0)
 		return 0;
@@ -255,7 +255,7 @@ int32 UB2UIDocControl::GetControlMatchRemainTime()
 
 	for (auto TimeInfo : AssaultOpenPeriodInfo)
 	{
-		// ÇöÀç½Ã°£º¸´Ù Å«°ÅÁß¿¡ Á©°¡±î¿î°Å(Â÷ÀÌ°¡ ÀûÀº°Å) Ã£±â
+		// æ³…çŠçŸ«åŸƒç„Šä¿ƒ å¥´èŠ­åä¿Š ä¿©å•Šé³–æ¬¾èŠ­(ç’æå•Š åˆ©ç¯®èŠ­) èŒ«æ‰
 
 		int32 TimeOpen = (TimeInfo->begin_hour * 60) + TimeInfo->begin_min;
 		int32 TimeClose = (TimeInfo->end_hour * 60) + TimeInfo->end_min;
@@ -263,19 +263,19 @@ int32 UB2UIDocControl::GetControlMatchRemainTime()
 		int32 nTestHour = FDateTime::UtcNow().GetHour();
 		int32 nTestMin = FDateTime::UtcNow().GetMinute();
 		
-		// ÀÓ½Ã·Î ½Ã°£ ¸ÂÃçº»´Ù. ÇÑ±¹½Ã°£À¸·Î
-		// ¼­¹ö¿¡¼­ ¹Ş´Â°Ô UTC°¡ µÇ¸é ÀÌ°É Á¦°ÅÇÏ¸éµÊ
+		// çƒ™çŸ«è‚º çŸ«åŸƒ å˜è‹—å¤¯ä¿ƒ. èŒ„æƒ«çŸ«åŸƒæ è‚º
+		// è¾‘æ»šä¿Šè¾‘ ç½ç»°éœ¸ UTCå•Š ç™»æ æå§ åŠ›èŠ­çªæå‡³
 		nTestHour = (nTestHour + 9) % 24;
 		int32 TimeNow = (/*FDateTime::UtcNow().GetHour()*/nTestHour * 60) + FDateTime::UtcNow().GetMinute();
 
-		// ¿ÀÇÂ½Ã°£
+		// å·é”¹çŸ«åŸƒ
 		int32 RemainTimeOpen = TimeOpen - TimeNow;
 		if (RemainTimeOpen < 0)
 			RemainTimeOpen += 24 * 60;
 
 		MinRemainTime = FMath::Min(MinRemainTime, RemainTimeOpen);
 
-		// Á¾·á½Ã°£
+		// è¾†ä¸°çŸ«åŸƒ
 		int32 RemainTimeClose = TimeClose - TimeNow;
 		if (RemainTimeClose < 0)
 			RemainTimeClose += 24 * 60;
@@ -283,7 +283,7 @@ int32 UB2UIDocControl::GetControlMatchRemainTime()
 		MinRemainTime = FMath::Min(MinRemainTime, RemainTimeClose);
 	}
 
-	//Á©ÀÛÀº°Å ¸®ÅÏ
+	//ä¿©ç´¯ç¯®èŠ­ åºœç•”
 	return MinRemainTime;
 }
 

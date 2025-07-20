@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "BladeIIGameMode.h"
 #include "B2UIWidget.h"

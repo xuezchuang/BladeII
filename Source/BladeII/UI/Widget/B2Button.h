@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 //#include "BladeII.h"
@@ -13,8 +13,8 @@ enum class EGoodsInfoPopupType : uint8
 	EGoodsPopup_None = 0,
 	EGoodsPopup_Info,
 	EGoodsPopup_Shortcut,
-	EGoodsPopup_Check,		//info PopupÀ» ÇÒÁö Goto Popup ÇÒÁö °Ë»çÇÏ°í °áÁ¤ÇÏ´Â ÆË¾÷
-	EGoodsPopup_Check_Shortcut, //Check¸¦ ÇØº¸°í ºÎÁ·ÇÏ¸é Goto PopupÀ» ¶ç¿ï °Í ÀÎÁö, ¿ø·¡ ±â´ÉÀ» ÇÒ °ÍÀÎÁö °áÁ¤ÇÏ´Â ÆË¾÷
+	EGoodsPopup_Check,		//info Popupé˜‘ ä¸”ç˜¤ Goto Popup ä¸”ç˜¤ å…«è¤çªç»Š æ¬æ²¥çªç»° æ‰‘è¯€
+	EGoodsPopup_Check_Shortcut, //Checkç”« ç§¦ç„Šç»Š ä½•ç»ƒçªæ Goto Popupé˜‘ å‰åŒ¡ å·´ ç‰¢ç˜¤, ç›”è´° æ‰ç“·é˜‘ ä¸” å·´ç‰¢ç˜¤ æ¬æ²¥çªç»° æ‰‘è¯€
 	EGoods_PopupEnd,
 };
 

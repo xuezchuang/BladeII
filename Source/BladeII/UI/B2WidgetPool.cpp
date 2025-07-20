@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2WidgetPool.h"
 
 #include "B2UIManager_InGameCombat.h"
@@ -17,7 +17,7 @@
 
 UClass* FWidgetPoolBase::GetDesiredClass()
 {
-	// ´ç¿¬È÷ ÀÌ°É ±×´ë·Î »ç¿ëÇÏ¸é ¾Æ¹«°Íµµ µÇ´Â °Ô ¾øÀ» ²¨´Ù. ½ÇÁ¦·Î´Â Widget Blueprint Å¬·¡½º¸¦ ¸®ÅÏÇØ¾ß..
+	// ë‹¹ì—°íˆ ì´ê±¸ ê·¸ëŒ€ë¡œ ì‚¬ìš©í•˜ë©´ ì•„ë¬´ê²ƒë„ ë˜ëŠ” ê²Œ ì—†ì„ êº¼ë‹¤. ì‹¤ì œë¡œëŠ” Widget Blueprint í´ë˜ìŠ¤ë¥¼ ë¦¬í„´í•´ì•¼..
 	check(0);
 	return UB2UnitedWidgetBase::StaticClass();
 }
@@ -44,10 +44,10 @@ UB2UnitedWidgetBase* FWidgetPoolBase::CreateSingleInternal(APlayerController* In
 	UB2UnitedWidgetBase* NewCreated = CreateWidget<UB2UnitedWidgetBase>(InPC, GetDesiredClass());
 	if (NewCreated)
 	{
-		// ´Ù¸¥ panel ¿¡ AddChild ÇØ¾ßÇÑ´Ù¸é Rent ½ÃÁ¡¿¡..
-		// ±×³É AddToViewport ÇØ¼­ »ç¿ëÇÏ´Â °æ¿ìµµ Rent ½ÃÁ¡¿¡ ¹Ù²Ü ¼ö ÀÖ°ÚÁö¸¸ ±×·± »ç¿ë¿¡¼­´Â Ã³À½ Z-order ¸¦ À¯ÁöÇÏ´Â °Ô ÀÏ¹İÀûÀÏ °Í °°¾Æ ±»ÀÌ º¯°æ °¡´ÉÇÏ°Ô Á¦°ø ¾È ÇÔ.
+		// ë‹¤ë¥¸ panel ì— AddChild í•´ì•¼í•œë‹¤ë©´ Rent ì‹œì ì—..
+		// ê·¸ëƒ¥ AddToViewport í•´ì„œ ì‚¬ìš©í•˜ëŠ” ê²½ìš°ë„ Rent ì‹œì ì— ë°”ê¿€ ìˆ˜ ìˆê² ì§€ë§Œ ê·¸ëŸ° ì‚¬ìš©ì—ì„œëŠ” ì²˜ìŒ Z-order ë¥¼ ìœ ì§€í•˜ëŠ” ê²Œ ì¼ë°˜ì ì¼ ê²ƒ ê°™ì•„ êµ³ì´ ë³€ê²½ ê°€ëŠ¥í•˜ê²Œ ì œê³µ ì•ˆ í•¨.
 		NewCreated->AddToViewport(CreateZOrder); 
-		NewCreated->SetAsPooledObject(); // »ı¼º Á÷ÈÄºÎÅÍ rent ´Â ¾Æ´Ô.
+		NewCreated->SetAsPooledObject(); // ìƒì„± ì§í›„ë¶€í„° rent ëŠ” ì•„ë‹˜.
 		AllPooledObjects.Add(NewCreated, false);
 	}
 	return NewCreated;
@@ -60,7 +60,7 @@ void FWidgetPoolBase::DestroyAll()
 	//	UB2UnitedWidgetBase* ThisOne = ItPO.Key();
 	//	if (ThisOne)
 	//	{
-	//		// °¢ UI Å¸ÀÔº° µû·Î.. ¤Ñ¤Ñ
+	//		// ê° UI íƒ€ì…ë³„ ë”°ë¡œ.. ã…¡ã…¡
 	//		UB2UIWidgetBase* CastedUIWidgetBase = Cast<UB2UIWidgetBase>(ThisOne);
 	//		UBladeIIUserWidget* CastedDJLegacyWidget = Cast<UBladeIIUserWidget>(ThisOne);
 	//		check(CastedUIWidgetBase || CastedDJLegacyWidget);
@@ -82,7 +82,7 @@ UB2UnitedWidgetBase* FWidgetPoolBase::Rent(APlayerController* InPC, UObject* InR
 {
 	UB2UnitedWidgetBase* FoundOrCreated = nullptr;
 
-	// ÇöÀç º¸À¯ÇÑ ÀÚ»êºÎÅÍ °Ë»ö. °ø½ÇÀÌ ÀÖ´ÂÁö
+	// í˜„ì¬ ë³´ìœ í•œ ìì‚°ë¶€í„° ê²€ìƒ‰. ê³µì‹¤ì´ ìˆëŠ”ì§€
 	for (TMap<UB2UnitedWidgetBase*, bool>::TIterator ItPO(AllPooledObjects); ItPO; ++ItPO)
 	{
 		UB2UnitedWidgetBase* ThisOne = ItPO.Key();
@@ -93,26 +93,26 @@ UB2UnitedWidgetBase* FWidgetPoolBase::Rent(APlayerController* InPC, UObject* InR
 		}
 	}
 
-	if (!FoundOrCreated) // ÇöÀç pool ÀÌ º¸À¯ÇÑ free ¿ÀºêÁ§Æ®°¡ ¾øÀ½. ÀÚ»ê Áõ½Ä.
+	if (!FoundOrCreated) // í˜„ì¬ pool ì´ ë³´ìœ í•œ free ì˜¤ë¸Œì íŠ¸ê°€ ì—†ìŒ. ìì‚° ì¦ì‹.
 	{
 		FoundOrCreated = CreateSingleInternal(InPC);
 	}
 	checkSlow(FoundOrCreated);
 
-	if (FoundOrCreated) // º»°İ ÀÓ´ëÂ÷ °è¾à
+	if (FoundOrCreated) // ë³¸ê²© ì„ëŒ€ì°¨ ê³„ì•½
 	{
 		if (InOptionalPlacePanel)
 		{
-			// ²À CanvasPanel ÀÏ ÇÊ¿ä´Â ¾ø´Ù. CanvasPanel ÀÌ¸é µû·Î Z-order ¸¦ ³Ö¾îÁÙ ¼ö ÀÖ´Â Á¤µµ.
+			// ê¼­ CanvasPanel ì¼ í•„ìš”ëŠ” ì—†ë‹¤. CanvasPanel ì´ë©´ ë”°ë¡œ Z-order ë¥¼ ë„£ì–´ì¤„ ìˆ˜ ìˆëŠ” ì •ë„.
 			UCanvasPanelSlot* AddedCP = Cast<UCanvasPanelSlot>(InOptionalPlacePanel->AddChild(FoundOrCreated));
 			if (AddedCP && CreateZOrder >= 0)
-			{ // CreateZOrder ¿ø·¡ ÀÇµµ¿Í´Â Á» ´Ù¸£±ä ÇÑµ¥..
+			{ // CreateZOrder ì›ë˜ ì˜ë„ì™€ëŠ” ì¢€ ë‹¤ë¥´ê¸´ í•œë°..
 				AddedCP->SetZOrder(CreateZOrder);
 			}
 		}
 
 		FoundOrCreated->SetCurrentlyRent(true, InRenter);
-		// ÀÌ¹Ì Rent »óÅÂ´Â FloatingWidget ÀÌ µé°í ÀÖÀ¸´Ï ±»ÀÌ ÇÊ¿ä´Â ¾ø´Ù. ¹İ³³ÇÒ ¶§ È®ÀÎÇÏ·Á´Â Á¤µµ.
+		// ì´ë¯¸ Rent ìƒíƒœëŠ” FloatingWidget ì´ ë“¤ê³  ìˆìœ¼ë‹ˆ êµ³ì´ í•„ìš”ëŠ” ì—†ë‹¤. ë°˜ë‚©í•  ë•Œ í™•ì¸í•˜ë ¤ëŠ” ì •ë„.
 		bool* bFoundStatePtr = AllPooledObjects.Find(FoundOrCreated);
 		checkSlow(bFoundStatePtr && *bFoundStatePtr == false);
 		if (bFoundStatePtr)
@@ -128,14 +128,14 @@ void FWidgetPoolBase::TurnIn(class UB2UnitedWidgetBase* InUsedOne)
 {
 	if (InUsedOne)
 	{
-		// »ç½Ç»ó ÀÌ°É TMap À¸·Î ÇÒ ÀÌÀ¯´Â º°·Î ¾ø´Ù. Rent ¿©ºÎ´Â °¢ FloatingWidget ÀÌ µé°í ÀÖÀ¸¹Ç·Î. °ÅÀÇ ÀÌ·¸°Ô È®ÀÎ¿ëÀ¸·Î..
+		// ì‚¬ì‹¤ìƒ ì´ê±¸ TMap ìœ¼ë¡œ í•  ì´ìœ ëŠ” ë³„ë¡œ ì—†ë‹¤. Rent ì—¬ë¶€ëŠ” ê° FloatingWidget ì´ ë“¤ê³  ìˆìœ¼ë¯€ë¡œ. ê±°ì˜ ì´ë ‡ê²Œ í™•ì¸ìš©ìœ¼ë¡œ..
 		bool* bFoundStatePtr = AllPooledObjects.Find(InUsedOne);
 		checkSlow(bFoundStatePtr && *bFoundStatePtr == true);
 		if (bFoundStatePtr)
 		{
 			*bFoundStatePtr = false;
 		}
-		InUsedOne->SetCurrentlyRent(false, nullptr); // ÇÊ¿äÇÒ °Å °°À½ ¹İ³³½Ã ºô·Á°£ »ç¶÷ Àü´ŞÇØ¼­ °Ë»ç¶óµµ ¤»
+		InUsedOne->SetCurrentlyRent(false, nullptr); // í•„ìš”í•  ê±° ê°™ìŒ ë°˜ë‚©ì‹œ ë¹Œë ¤ê°„ ì‚¬ëŒ ì „ë‹¬í•´ì„œ ê²€ì‚¬ë¼ë„ ã…‹
 	}
 }
 
@@ -153,7 +153,7 @@ UClass* FFloatingWidgetPool::GetDesiredClass()
 	//	case EFloatingWidgetPoolClassType::EFWPCT_GoldAcq: return OwnerUIManager->GetFloatingGoldAcqWidgetClass();
 	//	}
 	//}
-	//return UB2FloatingWidget::StaticClass(); // ½ÇÁ¦·Î ÀÌ°É·Î´Â ¾Æ¹«°Íµµ ¸øÇÒ °ÍÀÌ´Ù ¤»
+	//return UB2FloatingWidget::StaticClass(); // ì‹¤ì œë¡œ ì´ê±¸ë¡œëŠ” ì•„ë¬´ê²ƒë„ ëª»í•  ê²ƒì´ë‹¤ ã…‹
 	return NULL;
 }
 
@@ -164,12 +164,12 @@ void FFloatingWidgetPool::PreInitSetType(EFloatingWidgetPoolClassType InType)
 
 void FFloatingWidgetPool::InitPool(UObject* InOwnerObject, class APlayerController* InPC, int32 InPreCreateNum, int32 InCreateZOrder)
 {
-	check(WidgetClassType != EFloatingWidgetPoolClassType::EFWPCT_End); // ÀÌ°Å call ÇÏ±â Àü¿¡ WidgetClassType ÁöÁ¤µÇ¾î ÀÖ¾î¾ß.
+	check(WidgetClassType != EFloatingWidgetPoolClassType::EFWPCT_End); // ì´ê±° call í•˜ê¸° ì „ì— WidgetClassType ì§€ì •ë˜ì–´ ìˆì–´ì•¼.
 
-	//// ÀÌ°Å ¸ÕÀú ÇØ ÁÖ¾î¾ß Á¦´ë·Î »ı¼ºÀÌ µÊ.
+	//// ì´ê±° ë¨¼ì € í•´ ì£¼ì–´ì•¼ ì œëŒ€ë¡œ ìƒì„±ì´ ë¨.
 	//OwnerUIManager = Cast<AB2UIManager_InGameCombat>(InOwnerObject);
 
-	//// Z-order ´Â ¿©±â¼­ µû·Î ¸í½ÃÇØÁÜ,
+	//// Z-order ëŠ” ì—¬ê¸°ì„œ ë”°ë¡œ ëª…ì‹œí•´ì¤Œ,
 	//Super::InitPool(InOwnerObject, InPC, InPreCreateNum, BII_WIDGET_ZORDER_FLOATING_DEFAULT);
 	//	
 	//check(OwnerUIManager == Cast<AB2UIManager_InGameCombat>(MyOwner));
@@ -177,7 +177,7 @@ void FFloatingWidgetPool::InitPool(UObject* InOwnerObject, class APlayerControll
 
 UB2UnitedWidgetBase* FFloatingWidgetPool::Rent(class APlayerController* InPC, UObject* InRenter, UPanelWidget* InOptionalPlacePanel)
 {
-	checkSlow(!InOptionalPlacePanel); // Floating Widget ÀÌ¶ó ÀÌ·± °Å ÁÖÁö ¾Êµµ·Ï.
+	checkSlow(!InOptionalPlacePanel); // Floating Widget ì´ë¼ ì´ëŸ° ê±° ì£¼ì§€ ì•Šë„ë¡.
 	
 	UB2UnitedWidgetBase* RetObject = Super::Rent(InPC, InRenter, nullptr);
 	//check(Cast<UB2FloatingWidget>(RetObject));
@@ -203,7 +203,7 @@ UClass* FInventoryDynItemIconPool::GetDesiredClass()
 //		case EInventoryDynItemIconPoolClassType::EquippedItem: return OwnerUIManager->GetInventoryItemIconClass(true);
 //		}
 //	}
-//	return UB2DynItemIcon::StaticClass(); // ½ÇÁ¦·Î ÀÌ°É·Î´Â ¾Æ¹«°Íµµ ¸øÇÒ °ÍÀÌ´Ù ¤»
+//	return UB2DynItemIcon::StaticClass(); // ì‹¤ì œë¡œ ì´ê±¸ë¡œëŠ” ì•„ë¬´ê²ƒë„ ëª»í•  ê²ƒì´ë‹¤ ã…‹
 return NULL;
 }
 
@@ -214,7 +214,7 @@ void FInventoryDynItemIconPool::PreInitSetType(EInventoryDynItemIconPoolClassTyp
 
 void FInventoryDynItemIconPool::InitPool(UObject* InOwnerObject, class APlayerController* InPC, int32 InPreCreateNum, int32 InCreateZOrder)
 {
-	//check(WidgetClassType != EInventoryDynItemIconPoolClassType::End); // ÀÌ°Å call ÇÏ±â Àü¿¡ WidgetClassType ÁöÁ¤µÇ¾î ÀÖ¾î¾ß.
+	//check(WidgetClassType != EInventoryDynItemIconPoolClassType::End); // ì´ê±° call í•˜ê¸° ì „ì— WidgetClassType ì§€ì •ë˜ì–´ ìˆì–´ì•¼.
 
 	//OwnerUIManager = Cast<UB2UIManager_Lobby>(InOwnerObject);
 
@@ -233,11 +233,11 @@ void FInventoryDynItemIconPool::TurnIn(UB2UnitedWidgetBase* InUsedOne)
 {
 	if (InUsedOne)
 	{
-		// DynItemIcon »ç¿ë Æ¯¼º »ó µ¿ÀûÀ¸·Î »ı¼ºÇÑ dummy ¿¡ ºÙ¿© ÀÖÀ» ¼ö ÀÖ´Ù.
-		// ±âÁ¸¿¡ ºÙ¿´´ø °÷¿¡¼­´Â ¶¼¾î³¿.
+		// DynItemIcon ì‚¬ìš© íŠ¹ì„± ìƒ ë™ì ìœ¼ë¡œ ìƒì„±í•œ dummy ì— ë¶™ì—¬ ìˆì„ ìˆ˜ ìˆë‹¤.
+		// ê¸°ì¡´ì— ë¶™ì˜€ë˜ ê³³ì—ì„œëŠ” ë–¼ì–´ëƒ„.
 		InUsedOne->ConditionalClearDynCreatedDummyParent();
 		InUsedOne->RemoveFromParent();
-		// ¸¸ÀÏ ÀÌ WidgetPool À» UPROPERTY ·Î ¸¸µéÁö ¾ÊÀ¸¸é ÀÌ·¸°Ô µı µ¥ ºÙ¿©³ö¾ß GC °¡ ¾ÈµÊ ¤» ±Ùµ¥ AddToViewport °°Àº °Ô ¼º´ÉÀ» ¸¹ÀÌ ¸Ô¾î¼­ ÀÌ·± widget pool È¿°ú¸¦ ¹İ°¨½ÃÅ´.
+		// ë§Œì¼ ì´ WidgetPool ì„ UPROPERTY ë¡œ ë§Œë“¤ì§€ ì•Šìœ¼ë©´ ì´ë ‡ê²Œ ë”´ ë° ë¶™ì—¬ë†”ì•¼ GC ê°€ ì•ˆë¨ ã…‹ ê·¼ë° AddToViewport ê°™ì€ ê²Œ ì„±ëŠ¥ì„ ë§ì´ ë¨¹ì–´ì„œ ì´ëŸ° widget pool íš¨ê³¼ë¥¼ ë°˜ê°ì‹œí‚´.
 		//InUsedOne->AddToViewport(CreateZOrder);
 	}
 

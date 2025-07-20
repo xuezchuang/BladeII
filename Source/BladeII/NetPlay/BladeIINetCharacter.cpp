@@ -1,4 +1,4 @@
-
+ï»¿
 #include "BladeIINetCharacter.h"
 
 #include "AIController.h"
@@ -123,7 +123,7 @@ void ABladeIINetCharacter::PostInitializeComponents()
 	{
 		if (HasAuthority() && !GetController())
 		{
-			SpawnDefaultController();  // Ö»ÓĞÔÚ·şÎñÆ÷¶ËÎŞ Controller ²ÅÉú³É
+			SpawnDefaultController();  // åªæœ‰åœ¨æœåŠ¡å™¨ç«¯æ—  Controller æ‰ç”Ÿæˆ
 		}
 
 		// update movement component's nav agent values
@@ -204,7 +204,7 @@ bool ABladeIINetCharacter::Die(float KillingDamage, FDamageEvent const& DamageEv
 
 	if (GotRemoteDyingSignal)
 	{
-		// ¿©±ä ÆĞÅ¶ ¹Ş°í µé¾î¿Â°Å´Ù. È£½ºÆ®µµ.
+		// å’¯å˜ è©å“¦ ç½ç»Š ç”¸ç»¢æŸ¯èŠ­ä¿ƒ. é¾‹èƒ¶é£˜æ¡£.
 		return Super::Die(KillingDamage, DamageEvent, Killer, DamageCauser);
 	}
 
@@ -481,8 +481,8 @@ void ABladeIINetCharacter::DemoteNetStatus()
 	NetStatus = NET_SLAVE;
 	DetachFromControllerPendingDestroy();
 
-	// °­µîµÇ¾úÀ¸´Ï ÀÌº¥Æ® ´Ù½ÃºÙÀÓ
-	// NetStatus¸ÕÀú ¹Ù²ã¾ß ÀÛµ¿ÇÑ´Ù.
+	// ç¢æ®¿ç™»èŒæ èª æäº¥é£˜ ä¿ƒçŸ«å˜¿çƒ™
+	// NetStatusåˆšå† å®˜å±‚å…· ç´¯æ‚¼èŒ„ä¿ƒ.
 	SubscribeEvents();
 }
 

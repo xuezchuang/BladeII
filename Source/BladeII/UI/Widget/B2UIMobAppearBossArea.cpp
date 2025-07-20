@@ -1,4 +1,4 @@
-#include "B2UIMobAppearBossArea.h"
+﻿#include "B2UIMobAppearBossArea.h"
 #include "B2UIManager.h"
 #include "B2UIDocHelper.h"
 

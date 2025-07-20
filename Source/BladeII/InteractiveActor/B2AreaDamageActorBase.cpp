@@ -1,4 +1,4 @@
-
+ï»¿
 #include "B2AreaDamageActorBase.h"
 //#include "BladeII.h"
 #include "Particles/ParticleSystem.h"
@@ -7,6 +7,7 @@
 //#include "BladeIICharacter.h"
 #include "Engine/World.h"
 //#include "Event.h"
+#include "TimerManager.h"
 
 FName AB2AreaDamageActorBase::OldFxParamCountTimeName = FName(TEXT("CountTime"));
 FName AB2AreaDamageActorBase::OldFxParamRadiusName = FName(TEXT("Radius"));
@@ -150,7 +151,7 @@ void AB2AreaDamageActorBase::InteractAction()
 	{
 		PSCComponent->SetTemplate(ActivatingFX);
 		PSCComponent->SetVectorParameter(OldFxParamRadiusName, FVector(DamageRadius));
-		PSCComponent->SetRelativeScale3D(FVector(1.f, 1.f, 1.f)); // ÀÌ°Ç ÇöÀç·Î¼± ½ºÄÉÀÏ ÆÄ¶ó¹ÌÅÍ°¡ ¾øÀ¸´Ï 1.0 À¸·Î ¸ÂÃçÁÜ. ÀÌ°É ¾ÈÇØÁÖ¸é ¾Õ¼­ WarningFxScale ³ÖÀº °Ô À¯ÁöµÉ °Í.
+		PSCComponent->SetRelativeScale3D(FVector(1.f, 1.f, 1.f)); // ì´ê±´ í˜„ì¬ë¡œì„  ìŠ¤ì¼€ì¼ íŒŒë¼ë¯¸í„°ê°€ ì—†ìœ¼ë‹ˆ 1.0 ìœ¼ë¡œ ë§ì¶°ì¤Œ. ì´ê±¸ ì•ˆí•´ì£¼ë©´ ì•ì„œ WarningFxScale ë„£ì€ ê²Œ ìœ ì§€ë  ê²ƒ.
 		ElapsedTimeSinceActivate = 0.f;
 	}
 
@@ -193,7 +194,7 @@ void AB2AreaDamageActorBase::Tick(float DeltaSeconds)
 		{
 			PSCComponent->SetFloatParameter(OldFxParamFadeName, 0.f);
 
-			// Ãë¼Ò½Ã±×³Î ¿Ô±¸ ½Ã°£ ´ÙµÇ¾úÀ¸¸é Á¦°Å
+			// ì·¨ì†Œì‹œê·¸ë„ ì™”êµ¬ ì‹œê°„ ë‹¤ë˜ì—ˆìœ¼ë©´ ì œê±°
 			if (bCancelCastAreaDamage)
 				EndInteract();
 		}
@@ -229,7 +230,7 @@ void AB2AreaDamageActorBase::Destroyed()
 
 void AB2AreaDamageActorBase::CancelCastAreaDamage_CallBack()
 {
-	// LifeSpanÀÌ -1ÀÌ¸é ¿À³Ê ÄÉ¸¯ÅÍ°¡ Á×´Â °æ·Î·Î¸¸ Á¦°ÅµÈ´Ù.
+	// LifeSpanì´ -1ì´ë©´ ì˜¤ë„ˆ ì¼€ë¦­í„°ê°€ ì£½ëŠ” ê²½ë¡œë¡œë§Œ ì œê±°ëœë‹¤.
 	if (LifeSpan == -1)
 	{
 		EndInteract();

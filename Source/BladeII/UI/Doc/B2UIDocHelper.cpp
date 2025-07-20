@@ -103,7 +103,7 @@ UB2UIDocBattleStage* UB2UIDocHelper::CreateDocBattleStage()
 	return DocBattleStage;
 }
 //
-// //DocItemÀº ¾²Áö¸»°í, FB2ItemÀ» ¾²´Â ¹æÇâÀ¸·Î °áÁ¤³². ´Ü, FB2ItemÀº Lobby¿¡¼­¸¸ ¾µ ¼ö ÀÖÀ½¿¡ ÁÖÀÇÇØ¾ßÇÔ.
+// //DocItemç¯® é™ç˜¤å¯Œç»Š, FB2Itemé˜‘ é™ç»° è§„æ°¢æ è‚º æ¬æ²¥å·¢. çªœ, FB2Itemç¯® Lobbyä¿Šè¾‘çˆ¶ é•œ è ä¹æ¾œä¿Š æ—ç‹¼ç§¦å…·çªƒ.
 //UB2UIDocItem* UB2UIDocHelper::GetDocItem(const int32 InstanceUID, const int32 ItemRefID)
 //{
 //	if (InstanceUID <= INDEX_NONE) return nullptr;

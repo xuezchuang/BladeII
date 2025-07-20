@@ -42,7 +42,7 @@ void UB2WingUIP_EnhLevelProgElem::UpdateByWingEnhanceLevel(int32 InWingLevel)
 
 	if (IMG_Unfilled.IsValid())
 	{
-		// ÀÏ´Ü ·¹º§ Â÷ ÀÖ´Â ºÎºĞ¿¡¼± ¼û±â´Âµ¥ background °°Àº µğÀÚÀÎÀÌ¶ó¸é ÀÌ·± °Å ÇÒ ÇÊ¿ä¾øÀÌ °è¼Ó º¸ÀÌµµ·Ï ÇØ¾ß ÇÔ.
+		// è€çªœ é¥­éª‡ ç’ ä¹ç»° ä½•ç›’ä¿Šæ€¥ è§æ‰ç»°å• background éç¯® å¼ç£Šç‰¢ææ‰¼æ æç¹ èŠ­ ä¸” é˜å¤¸ç»æ æ‹ŒåŠ  ç„Šææ¡£åºŸ ç§¦å…· çªƒ.
 		IMG_Unfilled->SetVisibility((MyEnhanceLevel > InWingLevel) ? ESlateVisibility::Visible : ESlateVisibility::Collapsed);
 	}
 }
@@ -59,7 +59,7 @@ void UB2WingUIP_EnhLevelProgElem::PlayLevelupAnim()
 		TheWorld->GetTimerManager().SetTimer(LevelUpAnimStopTH, this, &UB2WingUIP_EnhLevelProgElem::StopLevelupAnim, LevelUpAnimPlayTime, false);
 	}
 
-	PlayLevelupAnim_BP(); // ¾Ö´Ï¸ŞÀÌ¼Ç ÇÃ·¹ÀÌ´Â ¿©±â¼­ ½ÇÇà..
+	PlayLevelupAnim_BP(); // å±€èªçš‹æè®° æ•²é¥­æç»° å’¯æ‰è¾‘ è§’é’..
 }
 
 void UB2WingUIP_EnhLevelProgElem::StopLevelupAnim()

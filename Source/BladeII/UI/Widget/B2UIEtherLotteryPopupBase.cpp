@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIEtherLotteryPopupBase.h"
 #include "B2UIEtherScrollSlot.h"
@@ -80,11 +80,11 @@ void UB2UIEtherLotteryPopupBase::SetEtherSetInfo(b2network::B2mdAetherSetOptionI
 	{
 		if (X_TB_SetName.IsValid())
 		{
-			if (SetOptionPtr->min_apply_count == EtherSetCount::DEFENCE) //¹æ¾î ¼¼Æ®
+			if (SetOptionPtr->min_apply_count == EtherSetCount::DEFENCE) //è§„ç»¢ æŠ€é£˜
 			{
 				X_TB_SetName->SetText(BladeIIGetLOCText(FString(B2LOC_CAT_ETHER), FString(TEXT("Ether_SetName_2"))));
 			}
-			else if (SetOptionPtr->min_apply_count == EtherSetCount::OFFENCE) // °ø°Ý ¼¼Æ®
+			else if (SetOptionPtr->min_apply_count == EtherSetCount::OFFENCE) // å‚æ‹œ æŠ€é£˜
 			{
 				X_TB_SetName->SetText(BladeIIGetLOCText(FString(B2LOC_CAT_ETHER), FString(TEXT("Ether_SetName_1"))));
 			}

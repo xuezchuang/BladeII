@@ -83,14 +83,14 @@ public:
 
 	DECLARE_UIDOC_FIELD(TArray<b2network::B2GuildBattleCharacterSlotPtr> ,GuildBattleEntry);
 
-	//³»Á¤º¸ Ä³¸¯ÅÍ Àåºñµî
+	//éƒ´æ²¥ç„Š æŸè…ç£ å˜åšæ®¿
 	DECLARE_UIDOC_FIELD(b2network::B2FindAccountInfoPtr, AllyGuildMemeberCharInfo)
-	//³» Á¤º¸ ¿£Æ®¸®
+	//éƒ´ æ²¥ç„Š æµšé£˜åºœ
 	DECLARE_UIDOC_FIELD(b2network::B2GuildBattleEntryPtr, AllyGuildMemeberEntry)
 
-	//»ó´ëÁ¤º¸ Ä³¸¯ÅÍ Àåºñµî
+	//æƒ‘æªæ²¥ç„Š æŸè…ç£ å˜åšæ®¿
 	DECLARE_UIDOC_FIELD(b2network::B2FindAccountInfoPtr, OtherGuildMemeberCharInfo)
-	//»ó´ë Á¤º¸ ¿£Æ®¸®
+	//æƒ‘æª æ²¥ç„Š æµšé£˜åºœ
 	DECLARE_UIDOC_FIELD(b2network::B2GuildBattleEntryPtr, OtherGuildMemeberEntry)
 	
 	//Opponent
@@ -101,7 +101,7 @@ public:
 	DECLARE_UIDOC_FIELD(int32, GuildChatBadge)
 	DECLARE_UIDOC_FIELD(int64, NextAskSupportTime)
 
-	//ÀÎ°ÔÀÓ ÀüÅõ ¸ğÀ½
+	//ç‰¢éœ¸çƒ™ å‚ˆæ§ è‘›æ¾œ
 	DECLARE_UIDOC_FIELD(int32, BattleTime)
 	
 	DECLARE_UIDOC_FIELD(int32, CurrentRound)

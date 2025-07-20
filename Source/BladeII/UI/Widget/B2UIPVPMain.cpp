@@ -1,4 +1,4 @@
-#include "B2UIPVPMain.h"
+ï»¿#include "B2UIPVPMain.h"
 #include "B2UIDocHelper.h"
 #include "B2UIDocBattle.h"
 #include "B2UIManager.h"
@@ -206,7 +206,7 @@ void UB2UIPVPMain::OnClose(bool RightNow /*= false*/)
 
 void UB2UIPVPMain::RequestUpdate()
 {
-	//¼­¹ö ¿ÔÀ»¶§ ¾÷µ¥ÀÌÆ® ÇÒ°æ¿ì
+	//è¾‘æ»š å­é˜‘é”­ è¯€å•æžé£˜ ä¸”ç‰ˆå¿«
 }
 
 void UB2UIPVPMain::BindDocAuto()
@@ -259,7 +259,7 @@ void UB2UIPVPMain::OnSceneOpen(EUIScene InOpenedScene)
 {
 	Super::OnSceneOpen(InOpenedScene);
 
-	// UIHeader ¿Í °°ÀÌ Scene À¸·Î ±¸¼ºÇÏ´Â °æ¿ì Init ½ÃÁ¡¿¡ ÇÏ¸é Scene ¿¡ Æ÷ÇÔµÈ header °¡ »ý¼ºÀÌ ¾ÈµÈ »óÈ²ÀÏ ¼ö ÀÖÀ½.
+	// UIHeader å®¢ éžæž Scene æ è‚º å¤‡å·±çªç»° ç‰ˆå¿« Init çŸ«ç—¢ä¿Š çªæ Scene ä¿Š å™¨çªƒç­‰ header å•Š ç§¯å·±æž æ•‘ç­‰ æƒ‘ç‚”è€ è ä¹æ¾œ.
 	SetLobbyUIHeaderTitleByGeneralTextTableKey(TEXT("PVP1on1_TitleName"));
 
 }
@@ -308,11 +308,11 @@ void UB2UIPVPMain::OnClickBtnFriendRank()
 
 void UB2UIPVPMain::OnClickBtnStartPVPMatch()
 {
-	// Á¡°Ë Á¤»ê Ã¼Å©
+	// ç—¢å…« æ²¥é­‚ çœ‰å†œ
 	if (TutorialManager::GetInstance().IsFinishTutorial(TutorialID_PvPOneAndOne) && CheckContentsModeState(b2network::B2ContentsMode::PVP_DUEL))
 		return;
 
-	// »óÀÚ º¸»ó or Mvpº¸»ó Ã¼Å©
+	// æƒ‘ç£Š ç„Šæƒ‘ or Mvpç„Šæƒ‘ çœ‰å†œ
 	UB2UIDocPVP1on1Rival* pDoc = UB2UIDocHelper::GetDocPVP1on1Rival();
 
 	if (!pDoc)
@@ -320,9 +320,9 @@ void UB2UIPVPMain::OnClickBtnStartPVPMatch()
 
 	if (pDoc->GetRewardBoxStatus()
 		&& pDoc->GetRewardBoxStatus()->is_reward_state
-		&& pDoc->GetCanViewModRewardBoxConfirm()/*ÇÑ¹ø¸¸ º¸±â ÇÃ·¡±×*/)
+		&& pDoc->GetCanViewModRewardBoxConfirm()/*èŒ„é”…çˆ¶ ç„Šæ‰ æ•²è´°å¼Š*/)
 	{
-		// ÆË¾÷Ã¢ ¶ç¿öÁÖ°í ÇÑ¹ø¸¸ º¸±â ÇÃ·¡±× ¿ÀÇÁ
+		// æ‰‘è¯€èŠ’ å‰å†µæž—ç»Š èŒ„é”…çˆ¶ ç„Šæ‰ æ•²è´°å¼Š å·æ©‡
 		UB2UIMsgPopupBoxRewardConfirm* pUI = UB2UIManager::GetInstance()->OpenUI<UB2UIMsgPopupBoxRewardConfirm>(UIFName::MsgPopupBoxRewardConfirm);
 
 		if (pUI)
@@ -520,7 +520,7 @@ void UB2UIPVPMain::ShowInviteUI(bool bShowInvite)
 
 void UB2UIPVPMain::UpdateList()
 {
-	//Todo Ä£±¸ÅÇÀÎÁö ¾Æ´ÑÁö..
+	//Todo æ¨¡å¤‡å¾˜ç‰¢ç˜¤ é…’å›±ç˜¤..
 	if (VB_RankerList.IsValid())
 	{
 		VB_RankerList->ClearChildren();

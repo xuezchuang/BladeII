@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #ifndef __B2_STAGE_DATA_STORE_H__
 #define __B2_STAGE_DATA_STORE_H__
@@ -36,7 +36,7 @@ struct FStageInfoGameplayData
 		if (InServerinfoPtr)
 		{
 			Difficulty = InServerinfoPtr->difficulty;
-			ClientStageId = InServerinfoPtr->map_id;	// ÀÌ°Ô Å¬¶óÀÌ¾ğÆ®¿¡¼­ »ç¿ëÇÏ´Â stageIdÀÌ´Ù. (¼­¹ö¿¡¼­´Â map_id¶ó°í ³Ñ¾î¿È)
+			ClientStageId = InServerinfoPtr->map_id;	// æéœ¸ åŠªæ‰¼ææ”«é£˜ä¿Šè¾‘ è¤ä¾©çªç»° stageIdæä¿ƒ. (è¾‘æ»šä¿Šè¾‘ç»° map_idæ‰¼ç»Š é€ç»¢å’³)
 
 			ClearTimeGrade_High = InServerinfoPtr->clear_time_grade_high;
 			ClearTimeGrade_Medium = InServerinfoPtr->clear_time_grade_medium;
@@ -50,7 +50,7 @@ struct FStageInfoGameplayData
 			AutoSkillBuffCost = InServerinfoPtr->gold_cost_auto_skill_buff;
 			BoostBuffCost = InServerinfoPtr->gold_cost_boost_buff;
 
-			//¹ë·±½Ì¿ä¼Ò.
+			//é—ºç¹æ•™å¤¸å®¶.
 			DifficultyScale = SvrToCliBalancingScaleFactor(InServerinfoPtr->difficulty_scale);
 		}
 	}
@@ -133,14 +133,14 @@ public:
 	EStageDifficulty	GetLastPlayedStageDifficulty();
 	int32				GetLastSubChapterNum(int32 ActNum);
 
-	FServerStageID		GetLastClearServerStageIdByLastPlayedStageDifficulty();	// ¸¶Áö¸· Å¬¸®¾îÇÑ ³­ÀÇµµÀÇ ¸¶Áö¸· ½ºÅ×ÀÌÁö ¾ÆÀÌµğ¸¦ ¹İÈ¯
-	FServerStageID		GetNextClearServerStageIdByLastPlayedStageDifficulty();	// ¸¶Áö¸· Å¬¸®¾îÇÑ ³­ÀÇµµÀÇ ¸¶Áö¸· ½ºÅ×ÀÌÁö ¾ÆÀÌµğ+ 1À» ¹İÈ¯ 
+	FServerStageID		GetLastClearServerStageIdByLastPlayedStageDifficulty();	// ä»˜ç˜¤é˜œ åŠªåºœç»¢èŒ„ æŠ„ç‹¼æ¡£ç‹¼ ä»˜ç˜¤é˜œ èƒ¶æŠ›æç˜¤ é…’æå¼ç”« é¦†åˆ¸
+	FServerStageID		GetNextClearServerStageIdByLastPlayedStageDifficulty();	// ä»˜ç˜¤é˜œ åŠªåºœç»¢èŒ„ æŠ„ç‹¼æ¡£ç‹¼ ä»˜ç˜¤é˜œ èƒ¶æŠ›æç˜¤ é…’æå¼+ 1é˜‘ é¦†åˆ¸ 
 
-	FServerStageID		GetNewLastClearServerStageIdByLastPlayedStageDifficulty(int32 InChapter);	//6Ã©ÅÍÀÌÈÄ ¸¶Áö¸· Å¬¸®¾îÇÑ ³­µµÀÇ ¸¶Áö¸· ½ºÅ×ÀÌÁö +1, ´õ ±ı°Ô ¾øÀ¸¸é ¸¶Áö¸· Å¬¸®¾îÇÑ ½ºÅ×ÀÌÁö
+	FServerStageID		GetNewLastClearServerStageIdByLastPlayedStageDifficulty(int32 InChapter);	//6èŒ…ç£æé¥¶ ä»˜ç˜¤é˜œ åŠªåºœç»¢èŒ„ æŠ„æ¡£ç‹¼ ä»˜ç˜¤é˜œ èƒ¶æŠ›æç˜¤ +1, æ­¹ é¥¼éœ¸ ç»æ æ ä»˜ç˜¤é˜œ åŠªåºœç»¢èŒ„ èƒ¶æŠ›æç˜¤
 	
-	EStageDifficulty	GetMaxOpenedStageDifficulty();							//±âÁ¸ 1~5³­ÀÌµµ ÁÖ´Â ÇÔ¼ö
-	EStageDifficulty	GetMaxOpenedNewStageDifficulty(int32 InChapter);		//6~ÀÌÈÄ ³­ÀÌµµ ÁÖ´Â ÇÔ¼ö
-	bool				GetNewChapterOpenState(int32 InChapter);				//6ºÎÅÍ ¿ÀÇÂÀÌ µÈ°ÇÁö ¾ÈµÈ°ÇÁö
+	EStageDifficulty	GetMaxOpenedStageDifficulty();							//æ‰ç²® 1~5æŠ„ææ¡£ æ—ç»° çªƒè
+	EStageDifficulty	GetMaxOpenedNewStageDifficulty(int32 InChapter);		//6~æé¥¶ æŠ„ææ¡£ æ—ç»° çªƒè
+	bool				GetNewChapterOpenState(int32 InChapter);				//6ä½•ç£ å·é”¹æ ç­‰æ‰’ç˜¤ æ•‘ç­‰æ‰’ç˜¤
 	FServerStageID		GetLastClearServerStageId(EStageDifficulty InDifficulty);
 	FServerStageID		GetNextClearServerStageId(EStageDifficulty InDifficulty);
 	
@@ -195,7 +195,7 @@ public:
 	int32				LoadClearAct();
 	int32				LoadOpenAct();
 	bool				LoadCBTClear();
-	//[@AKI, 170908] B2BUG-704 °ü·Ã Ãß°¡ ÇÔ. 704 ¼öÁ¤À» À§ÇØ¼­´Â LoadClearAct¿Í LoadOpenAct¸¦ ¼öÁ¤ÇØ¾ß ÇÔ
+	//[@AKI, 170908] B2BUG-704 åŒ…è®¿ çœ å•Š çªƒ. 704 èæ²¥é˜‘ å›°ç§¦è¾‘ç»° LoadClearActå®¢ LoadOpenActç”« èæ²¥ç§¦å…· çªƒ
 	int32				LoadClearDifficult();
 	int32				GetEventSceneChapter(const int32 RequestActNumber);
 

@@ -1,7 +1,7 @@
 #include "B2UIDocManager.h"
-//#include "B2UIDocHelper.h"
+#include "B2UIDocHelper.h"
 //#include "GameDelegates.h"
-//#include "BladeIIPlayer.h"	//¿©±â ÀÖ´Â enum¶§¹®¿¡ include. enumÀ» ±Û·Î¹úÇÏ°Ô ÀúÀåÇÏ´Â °÷À» ¾øÀ»±î?
+//#include "BladeIIPlayer.h"	//å’¯æ‰ ä¹ç»° enumé”­å·©ä¿Š include. enumé˜‘ è‡‚è‚ºå›½çªéœ¸ å†å˜çªç»° é•‘é˜‘ ç»é˜‘é³–?
 //#include "B2ItemInfo.h"
 //#include "B2PCClassInfo.h"
 //#include "BladeIIGameMode.h"
@@ -15,8 +15,8 @@ UB2UIDocManager::~UB2UIDocManager()
 
 void UB2UIDocManager::Init(ABladeIIGameMode* InGM)
 {
-////	// ¿©±â·Î ³Ñ¾î¿À´Â GameMode ´Â Init ´Ü°è¿¡¼­ÀÇ Âü°í¸¦ À§ÇÔ. ±×¸®°í ¸Å GameMode ¸¶´Ù Init ÀÌ ºÒ¸°´Ù´Â °ÍÀ» ¾Ï½ÃÇÒ ¼öµµ
-////	// UIDocManager °¡ static ÀÎ ÇÑ, ÀÌ GameMode ¸¦ Ä³½ÌÇØ¼­ »ç¿ëÇÏÁö ¸» °Í. ´ÜÁö ¿©±â¼­¸¸..
+////	// å’¯æ‰è‚º é€ç»¢å·ç»° GameMode ç»° Init çªœæ‹Œä¿Šè¾‘ç‹¼ æ›¼ç»Šç”« å›°çªƒ. å¼Šåºœç»Š æ¦‚ GameMode ä»˜ä¿ƒ Init æ é˜‚èµ´ä¿ƒç»° å·´é˜‘ é çŸ«ä¸” èæ¡£
+////	// UIDocManager å•Š static ç‰¢ èŒ„, æ GameMode ç”« æŸæ•™ç§¦è¾‘ è¤ä¾©çªç˜¤ å¯Œ å·´. çªœç˜¤ å’¯æ‰è¾‘çˆ¶..
 ////	BII_CHECK(InGM);
 ////
 ////	if (bInit)
@@ -27,76 +27,76 @@ void UB2UIDocManager::Init(ABladeIIGameMode* InGM)
 ////	{
 ////		/*
 ////#if WITH_EDITOR
-////		if (!FGameDelegates::Get().GetEndPlayMapDelegate().IsBoundToObject(this)) //ÁßÃ¸ ¹ÙÀÎµù ¾ÈµÇ°Ô
+////		if (!FGameDelegates::Get().GetEndPlayMapDelegate().IsBoundToObject(this)) //åé…¶ å®˜ç‰¢çˆ¹ æ•‘ç™»éœ¸
 ////			FGameDelegates::Get().GetEndPlayMapDelegate().AddRaw(this, &UB2UIDocManager::Destroy);
 ////#endif
 ////		*/
-////		UB2UIDocHelper::CreateDocSome(); // ¾Ö¸ÅÇÑ °Íµé ³ÖÀ» ½æ´Ú½æ´Ú
+////		UB2UIDocHelper::CreateDocSome(); // å±€æ¦‚èŒ„ å·´ç”¸ æŒé˜‘ èŠ¥è¹¿èŠ¥è¹¿
 ////
-////		//ÇÃ·¹ÀÌ¾îµ¶ »ı¼º(°ñµå°°Àº ±Û·Î¹úÇÑ µ¥ÀÌÅÍ, Single)
+////		//æ•²é¥­æç»¢åˆ€ ç§¯å·±(æ¦œé›éç¯® è‡‚è‚ºå›½èŒ„ å•æç£, Single)
 ////		UB2UIDocHelper::CreateDocUser();
 ////
-////		//UIÀÇ ÀÚÁú±¸·¹ÇÑ »óÅÂµéÀ» ÀúÀå ÇÒ µµÅ¥¸ÕÆ® »ı¼º(Single)
+////		//UIç‹¼ ç£Šé¾™å¤‡é¥­èŒ„ æƒ‘æ€•ç”¸é˜‘ å†å˜ ä¸” æ¡£é’®åˆšé£˜ ç§¯å·±(Single)
 ////		UB2UIDocHelper::CreateDocUICondition();
 ////
-////		//4¸íÀÇ È÷¾î·Î µµÅ¥¸ÕÆ® »ı¼º
+////		//4ç–™ç‹¼ æ´’ç»¢è‚º æ¡£é’®åˆšé£˜ ç§¯å·±
 ////		DEV_CHECK_FOR_POSSIBLE_NEW_PCCLASS();
 ////		UB2UIDocHelper::CreateDocHero(PCClassToInt(EPCClass::EPC_Gladiator));
 ////		UB2UIDocHelper::CreateDocHero(PCClassToInt(EPCClass::EPC_Assassin));
 ////		UB2UIDocHelper::CreateDocHero(PCClassToInt(EPCClass::EPC_Wizard));
 ////		UB2UIDocHelper::CreateDocHero(PCClassToInt(EPCClass::EPC_Fighter));
-////		// »ı¼ºÀº ¸ğµÎ ÇÏ°í PCClassInfo ·ÎµùÀÌ ÇÊ¿äÇÑ ÀÛ¾÷Àº ÇÊ¿äÇÑ ¾Öµé¸¸ ¸ğ¾Æ¼­ µû·Î ÇÔ.
+////		// ç§¯å·±ç¯® è‘›æ»´ çªç»Š PCClassInfo è‚ºçˆ¹æ é˜å¤¸èŒ„ ç´¯è¯€ç¯® é˜å¤¸èŒ„ å±€ç”¸çˆ¶ è‘›é…’è¾‘ è¶è‚º çªƒ.
 ////		InitResourcesOnNecessaryHeroDoc(InGM);
 ////
-////		//¹èÆ²µ¶ »ı¼º(Single)
+////		//ç¡…æ’‡åˆ€ ç§¯å·±(Single)
 ////		UB2UIDocHelper::CreateDocBattle();
 ////
-////		//¹èÆ²½ºÅ×ÀÌÁö(Single)
+////		//ç¡…æ’‡èƒ¶æŠ›æç˜¤(Single)
 ////		UB2UIDocHelper::CreateDocBattleStage();
 ////
-////		//½Ã³ª¸®¿À ´ÙÀÌ¾Ë·Î±×(Single)
+////		//çŸ«å”±åºœå· ä¿ƒæèˆ…è‚ºå¼Š(Single)
 ////		UB2UIDocHelper::CreateDocScenarioDialog();
 ////
-////		//Ã©ÅÍ(Single)
+////		//èŒ…ç£(Single)
 ////		UB2UIDocHelper::CreateDocChapter();
 ////
-////		//¸ğµå °ø¿ë(1´ë1´ëÀü, ÆÀ¸ÅÄ¡, Á¡·ÉÀü, ¹İ°İ´øÀü, ¿µ¿õÀÇ Å¾, ·¹ÀÌµå)
+////		//è‘›é› å‚ä¾©(1æª1æªå‚ˆ, è¯„æ¦‚æ‘¹, ç—¢é£å‚ˆ, é¦†æ‹œå¸¦å‚ˆ, åº·æ—·ç‹¼ å•ª, é¥­æé›)
 ////		UB2UIDocHelper::CreateDocMode();
 ////
-////		//1´ë1´ëÀü
+////		//1æª1æªå‚ˆ
 ////		UB2UIDocHelper::CreateDocPVP1on1Rival();
 ////
-////		//ÆÀ¸ÅÄ¡
+////		//è¯„æ¦‚æ‘¹
 ////		UB2UIDocHelper::CreateDocTeamMatch();
 ////
-////		//¹İ°İ´øÀü
+////		//é¦†æ‹œå¸¦å‚ˆ
 ////		UB2UIDocHelper::CreateDocCounterAttack();
 ////
-////		//·¹ÀÌµå
+////		//é¥­æé›
 ////		UB2UIDocHelper::CreateDocRaid();
 ////
-////		//¿µ¿õÀÇ Å¾
+////		//åº·æ—·ç‹¼ å•ª
 ////		UB2UIDocHelper::CreateDocHeroTower();
 ////
-////		//±æµå
+////		//è¾¨é›
 ////		UB2UIDocHelper::CreateDocGuild();
 ////
-////		//»óÁ¡
+////		//æƒ‘ç—¢
 ////		UB2UIDocHelper::CreateDocStore();
 ////
-////		//Á¡·ÉÀü
+////		//ç—¢é£å‚ˆ
 ////		UB2UIDocHelper::CreateDocControl();
 ////
-////		//·Îºñ¸ÅÄª
+////		//è‚ºåšæ¦‚è«
 ////		UB2UIDocHelper::CreateDocLobbyMatch();
 ////
-////		//Ä£±¸
+////		//æ¨¡å¤‡
 ////		UB2UIDocHelper::CreateDocFriend();
 ////
-////		//±âºÎÀÌº¥Æ®
+////		//æ‰ä½•æäº¥é£˜
 ////		UB2UIDocHelper::CreateDocDonation();
 ////
-////		//Â÷¿øÀÇ±Õ¿­
+////		//ç’ç›”ç‹¼é—­å‡¯
 ////		UB2UIDocHelper::CreateDocDimension();
 ////
 ////		bInit = true;
@@ -106,8 +106,8 @@ void UB2UIDocManager::Init(ABladeIIGameMode* InGM)
 void UB2UIDocManager::InitResourcesOnNecessaryHeroDoc(class ABladeIIGameMode* InGM)
 {
 //	BII_CHECK(InGM);
-//	// ¾Æ·¡ InitResources ¿¡¼­ PCClassInfo ¸¦ ·ÎµùÇÏ°Ô µÈ´Ù¸é ÇÊ¿äÇÑ ¾Öµé¸¸ ¸ğ¾Æ¼­ HeroDoc À» »ı¼ºÇÒ ÇÊ¿ä°¡ ÀÖ´Ù. Àû¾îµµ PCClassInGameOnlyInfo ´Â ·Îµù ¾ÈÇÏ¸é ±¦ÂúÀ» µí.
-//	// ¸¸ÀÏ ÇÊ¿äÇÑ ¾Öµé¸¸ ±Ü¾î¸ğ¾Æ¾ß ÇÒ °æ¿ì GetPCClassesToPreLoad ´Â Á» ºüÁö´Â Å¬·¡½º°¡ ÀÖÀ» °¡´É¼ºÀÌ ÀÖ¾î¼­ ¿©±â¿¡ ¾²¸é ¾ÈµÊ.
+//	// é…’è´° InitResources ä¿Šè¾‘ PCClassInfo ç”« è‚ºçˆ¹çªéœ¸ ç­‰ä¿ƒæ é˜å¤¸èŒ„ å±€ç”¸çˆ¶ è‘›é…’è¾‘ HeroDoc é˜‘ ç§¯å·±ä¸” é˜å¤¸å•Š ä¹ä¿ƒ. åˆ©ç»¢æ¡£ PCClassInGameOnlyInfo ç»° è‚ºçˆ¹ æ•‘çªæ å®æ»¡é˜‘ æ·€.
+//	// çˆ¶è€ é˜å¤¸èŒ„ å±€ç”¸çˆ¶ é¿ç»¢è‘›é…’å…· ä¸” ç‰ˆå¿« GetPCClassesToPreLoad ç»° ç²± ç‹ç˜¤ç»° åŠªè´°èƒ¶å•Š ä¹é˜‘ å•Šç“·å·±æ ä¹ç»¢è¾‘ å’¯æ‰ä¿Š é™æ æ•‘å‡³.
 //	{		
 //		for (int32 PCI = 0; PCI < GetMaxPCClassNum(); ++PCI)
 //		{
@@ -133,7 +133,7 @@ UB2UIDocManager* UB2UIDocManager::GetInstance()
 			}
 		}
 	}	
-	// check(Instance); GIsRequestingExit µ¿¾È¿¡´Â GetTransientPackage °¡ ¾ø¾î¼­ Instance °¡ NULL ÀÏ ¼ö ÀÖ´Ù.
+	// check(Instance); GIsRequestingExit æ‚¼æ•‘ä¿Šç»° GetTransientPackage å•Š ç»ç»¢è¾‘ Instance å•Š NULL è€ è ä¹ä¿ƒ.
 	return Instance;
 }
 
@@ -173,7 +173,7 @@ void UB2UIDocManager::Shutdown()
 
 void UB2UIDocManager::Tick(float DeltaTime)
 {
-	//³ªÁß¿¡ µô·¹ÀÌµé Áà¼­ Æ½½ÃÅ³°Í(ÃÖÀûÈ­)
+	//å”±åä¿Š æ‰é¥­æç”¸ æ‹è¾‘ å¹³çŸ«æ‡¦å·´(å¼¥åˆ©æ‹³)
 
 }
 

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 //#include "BladeII.h"
@@ -47,7 +47,7 @@ protected:
 	EBuffType BuffType;
 };
 
-//±×·¹°í¸£ Àü¿ë ÇÏµåÄÚµù
+//å¼Šé¥­ç»Šç¦ å‚ˆä¾© çªé›å†…çˆ¹
 UCLASS(Blueprintable)
 class BLADEII_API UB2SkillCommand_Transfusion : public UB2SkillCommand_AddBuff
 {

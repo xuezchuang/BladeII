@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UISealBoxResultSimple.h"
 #include "B2UIManager.h"
@@ -76,7 +76,7 @@ void UB2UISealBoxResultSimple::OnClickedBTNOneMoreTime()
 {
 	if (UnsealData->left_amount > 0)
 	{
-		data_trader::Retailer::GetInstance().RequestUnsealBox(UnsealData->seal_box_id,savedClass + 1, 1);	//ÇÑ¹ø¿¡ ¸î°³ ¿­¶ó´Â ³»¿ëÀº ±âÈ¹¿¡ ¾ø¾î¼­ ÇÑ¹ø¿¡ 1°³¾¿ ¿­µµ·Ï ÇÏµåÄÚµù µÊ
+		data_trader::Retailer::GetInstance().RequestUnsealBox(UnsealData->seal_box_id,savedClass + 1, 1);	//èŒ„é”…ä¿Š å‰²ä¿º å‡¯æ‰¼ç»° éƒ´ä¾©ç¯® æ‰è£™ä¿Š ç»ç»¢è¾‘ èŒ„é”…ä¿Š 1ä¿ºç©¶ å‡¯æ¡£åºŸ çªé›å†…çˆ¹ å‡³
 		SealBoxSelectCharClass<int32>::GetInstance().Signal(savedClass);
 		
 		UB2UIManager::GetInstance()->CloseUI(UIFName::SealBoxResultSimple);
@@ -168,7 +168,7 @@ void UB2UISealBoxResultSimple::SetRewardDataManually(const FB2ResponseUnsealBoxP
 
 void UB2UISealBoxResultSimple::ContinueResultShowing()
 {
-	//// Á¦ÀÛ¼Ò Ã³·³ ¾Ö´Ï¸ŞÀÌ¼Ç ³¡³µÀ» ¶§ ±× ´ÙÀ½²¨ ÁøÇàÇÏµµ·Ï
+	//// åŠ›ç´¯å®¶ è´¸çƒ¦ å±€èªçš‹æè®° åœºè½¦é˜‘ é”­ å¼Š ä¿ƒæ¾œæ³¢ æŸ³é’çªæ¡£åºŸ
 
 	//if (currentArrayIndex >= UnsealData->rewards.Num())
 	//{

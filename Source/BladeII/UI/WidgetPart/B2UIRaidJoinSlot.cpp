@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIRaidJoinSlot.h"
 #include "B2UIDocRaid.h"
@@ -64,12 +64,12 @@ void UB2UIRaidJoinSlot::OnClick_BTN_Select()
 
 void UB2UIRaidJoinSlot::OnClick_BTN_Close()
 {
-	// ÃÊ´ë Ãë¼Ò
+	// æª¬æŽª ç§’å®¶
 }
 
 void UB2UIRaidJoinSlot::OnClick_BTN_Close2()
 {
-	// °­Åð
+	// ç¢ç¡¼
 }
 
 void UB2UIRaidJoinSlot::SetSlotNum(int32 InSlotNum)
@@ -191,7 +191,7 @@ void UB2UIRaidJoinSlot::SetIsMySlot(bool InIsMySlot)
 
 void UB2UIRaidJoinSlot::SetIsVisibleBTNCancel(bool IsVisble)
 {
-	// È°¼ºÈ­ °¡´ÉÇÏ°í, ³»°ÍÀÌ ¾Æ´Ò¶§¸¸ º¸¿©Áö°Ô
+	// åŠå·±æ‹³ å•Šç“·çªç»Š, éƒ´å·´æž é…’åŒ†é”­çˆ¶ ç„Šå’¯ç˜¤éœ¸
 	if (BT_Close_02.IsValid())
 		BT_Close_02->SetVisibility(IsVisble ? ESlateVisibility::Visible : ESlateVisibility::Hidden);
 }

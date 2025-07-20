@@ -1,4 +1,4 @@
-#include "B2PlatformAPI.h"
+ï»¿#include "B2PlatformAPI.h"
 #include "Event.h"
 
 #if PLATFORM_ANDROID
@@ -209,7 +209,7 @@ bool B2P_IsKakaoLogin()
 #elif PLATFORM_IOS
 	return KakaotalkAPI::IsLogin();
 #endif
-	// Å¸ ÇÃ·§ÆûÀº Å×½ºÆ®¶óµµ ÇÏ°Ô true·Î ¹İÈ¯
+	// íƒ€ í”Œë«í¼ì€ í…ŒìŠ¤íŠ¸ë¼ë„ í•˜ê²Œ trueë¡œ ë°˜í™˜
 	return true;
 }
 
@@ -218,7 +218,7 @@ void B2P_KG_GoogleLogin()
 #if PLATFORM_ANDROID
 	AndroidThunkCpp_GoogleClientConnect();
 #elif PLATFORM_IOS
-	// IOS´Â ¾øÀ½
+	// IOSëŠ” ì—†ìŒ
 #endif
 }
 
@@ -227,7 +227,7 @@ void B2P_KG_GoogleLogOut()
 #if PLATFORM_ANDROID
 	AndroidThunkCpp_GoogleClientDisconnect();
 #elif PLATFORM_IOS
-	// IOS´Â ¾øÀ½
+	// IOSëŠ” ì—†ìŒ
 #endif
 }
 
@@ -399,7 +399,7 @@ void B2P_ShowOpenURL(FString sUrl)
 #elif PLATFORM_IOS
 	KakaotalkAPI::ShowOpenURL(sUrl);
 #else
-	// ¾Æ.. iosµµ ÀÌ°É·Î ¾µ±î...
+	// ì•„.. iosë„ ì´ê±¸ë¡œ ì“¸ê¹Œ...
 	FPlatformProcess::LaunchURL(*sUrl, nullptr, nullptr);
 #endif	
 }
@@ -470,7 +470,7 @@ void B2P_KakaoNewGameMessage(FString sKakaoUserID)
 #if PLATFORM_ANDROID
 	AndroidThunkCpp_KakaoSendNewGameMessage(sKakaoUserID);
 #elif PLATFORM_IOS
-	FString TempleteID = TEXT("7314");	// µû·Î ¹Ş¾Æ¿À´Â °÷ÀÌ ¾ø¾î¼­ ¿©±â¼­ ¼ÂÆÃ.
+	FString TempleteID = TEXT("7314");	// ë”°ë¡œ ë°›ì•„ì˜¤ëŠ” ê³³ì´ ì—†ì–´ì„œ ì—¬ê¸°ì„œ ì…‹íŒ….
 	KakaotalkAPI::SendNewGameMessage(sKakaoUserID, TempleteID);
 #endif	
 }
@@ -643,7 +643,7 @@ FString B2P_GetKakaoCustomData(FString sKey)
 //#if PLATFORM_ANDROID
 //	KeyDebugString = AndroidThunkCpp_GetKakaoCustomData(sKey);
 //#elif PLATFORM_IOS
-//	// IOS Ã³¸® ÇÊ¿ä
+//	// IOS ì²˜ë¦¬ í•„ìš”
 //	KeyDebugString = KakaotalkAPI::GetCustomData(sKey);
 //#else	
 //	KeyDebugString = TEXT("https://cs.kakao.com/helps?category=356&device=1081&locale=ko&service=4&articleId=1073191067&page=1");
@@ -666,7 +666,7 @@ void B2P_ShowEndingPromotion()
 //#if PLATFORM_ANDROID
 //	AndroidThunkCpp_ShowEndingPormotion();
 //#elif PLATFORM_IOS
-//	// IOS Ã³¸® ÇÊ¿ä ¾øÀ½
+//	// IOS ì²˜ë¦¬ í•„ìš” ì—†ìŒ
 //#endif		
 }
 
@@ -677,14 +677,14 @@ void B2P_UpdateStatusbarOrientationState()
 }
 
 /**
-* @return true:°¡·Î, false:¼¼·Î
+* @return true:ê°€ë¡œ, false:ì„¸ë¡œ
 */
 bool B2P_GetDeviceOrientationState()
 {
 	return [[IOSAppDelegate GetDelegate] GetDeviceOrientaionState];
 }
 /** 
-* @return true:°¡·Î, false:¼¼·Î
+* @return true:ê°€ë¡œ, false:ì„¸ë¡œ
 */
 bool B2P_GetStatusbarOrientationState()
 {

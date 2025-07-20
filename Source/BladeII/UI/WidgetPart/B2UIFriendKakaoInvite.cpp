@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIFriendKakaoInvite.h"
 #include "B2UIKakaoFriendInviteRow.h"
@@ -298,7 +298,7 @@ void UB2UIFriendKakaoInvite::SubscribeEvent()
 //	FJavaWrapper::OnKakaoNewInviteCompletedDelegate.Remove(OnKakaoInviteHandler);
 //	OnKakaoInviteHandler = FJavaWrapper::OnKakaoNewInviteCompletedDelegate.AddUObject(this, &UB2UIFriendKakaoInvite::OnKakaoInvitePlatformCallback);
 //
-//	// ¿©±â¿¡ Ã³¸® Ä£±¸ ¸ñ·Ï
+//	// å’¯æ‰ä¿Š è´¸åºœ æ¨¡å¤‡ æ ¼åºŸ
 //	FJavaWrapper::OnInviteKakaoFriendInfoCompletedDelegate.Remove(OnKakaoFriendInfoHandler);
 //	OnKakaoFriendInfoHandler = FJavaWrapper::OnInviteKakaoFriendInfoCompletedDelegate.AddUObject(this, &UB2UIFriendKakaoInvite::OnInviteFriendInfoCompletedCallback);
 //
@@ -327,7 +327,7 @@ void UB2UIFriendKakaoInvite::UnsubscribeEvent()
 //	FKakaoTalkPlugin::OnInviteFriendDelegate.Remove(OnKakaoInviteHandler);
 //	FKakaoTalkPlugin::OnInvitationEventInfoDelegate.Remove(OnInvitionEventsHandler);
 //#endif
-//#if PLATFORM_ANDROID // ÁøÂ¥ kakao ·Î±×ÀÎ delegate µî·Ï
+//#if PLATFORM_ANDROID // æŸ³æ¥¼ kakao è‚ºå¼Šç‰¢ delegate æ®¿åºŸ
 //	FJavaWrapper::OnKakaoNewInviteCompletedDelegate.Remove(OnKakaoInviteHandler);
 //	FJavaWrapper::OnInviteKakaoFriendInfoCompletedDelegate.Remove(OnKakaoFriendInfoHandler);
 //	FJavaWrapper::OnKakaoInvitationEventsCompletedDelegate.Remove(OnKakaoInviteEventHandler);
@@ -501,7 +501,7 @@ void UB2UIFriendKakaoInvite::CreateJoinerRewardList()
 		FClientDataStore& CliDataStore = BladeIIGameImpl::GetClientDataStore();
 		CliDataStore.GetKakaoFriendInviteRewardInfo(b2network::B2FriendInviteRewardType::JOINER_COUNT, JoinerList);
 		
-		// 0ÇàÀº ÃÊ´ëÇÒ¶§¸¶´Ù º¸»ó¹Ş´Â ÀÌº¥Æ® Á¤º¸ÀÓ.
+		// 0é’ç¯® æª¬æªä¸”é”­ä»˜ä¿ƒ ç„Šæƒ‘ç½ç»° æäº¥é£˜ æ²¥ç„Šçƒ™.
 		const int32 EventIndex = 0;
 		if (RewardRowList.IsValidIndex(EventIndex))
 		{
@@ -519,7 +519,7 @@ void UB2UIFriendKakaoInvite::CreateJoinerRewardList()
 		const b2network::B2FriendInviteRewardInfoPtr RewardInfo = FriendDoc->GetFriendInviteRewardInfo();
 		for (int32 Index = 0; Index < JoinerList.Num(); ++Index)
 		{
-			// 0Çà °Ç³Ê ¶Ü
+			// 0é’ æ‰’å‘ˆ ç›¾
 			int32 TargetRow = Index + 1;
 			if (RewardRowList.IsValidIndex(TargetRow))
 			{
@@ -532,7 +532,7 @@ void UB2UIFriendKakaoInvite::CreateJoinerRewardList()
 			}
 		}
 
-		// ³ª¸ÓÁö ´Â °¡·ÁÁÜ.
+		// å”±èµ£ç˜¤ ç»° å•Šå¦¨æ·‹.
 		for (int32 Index = JoinerList.Num() + 1; Index < RewardRowList.Num(); ++Index)
 		{
 			if (RewardRowList.IsValidIndex(Index))
@@ -566,7 +566,7 @@ void UB2UIFriendKakaoInvite::CreateInviteRewardList()
 			}
 		}
 
-		// ³ª¸ÓÁö ´Â °¡·ÁÁÜ.
+		// å”±èµ£ç˜¤ ç»° å•Šå¦¨æ·‹.
 		for (int32 Index = InviteList.Num() + 1; Index < RewardRowList.Num(); ++Index)
 		{
 			if (RewardRowList.IsValidIndex(Index))
@@ -593,12 +593,12 @@ void UB2UIFriendKakaoInvite::CreateInviteFriendList()
 
 	SB_FriendList->ScrollToStart();
 
-	// 2000¸íÀÌ»ó Ä£±¸¸ñ·ÏÀ» ÀĞ¾îº¸¸é SDK»ó¿¡¼­ Àß¸øµÈ Ä£±¸ ¸ñ·ÏÀ» ¸®ÅÏÇØ¼­
-	// Ä«Ä«¿ÀÃø°ú ÇùÀÇ ÈÄ 2000ÀÌ»óÀº ¾Èº¸ÀÌ°Ô ¼öÁ¤ÇÔ..
+	// 2000ç–™ææƒ‘ æ¨¡å¤‡æ ¼åºŸé˜‘ ä½¬ç»¢ç„Šæ SDKæƒ‘ä¿Šè¾‘ è‚‹ç»™ç­‰ æ¨¡å¤‡ æ ¼åºŸé˜‘ åºœç•”ç§¦è¾‘
+	// å¢¨å¢¨å·èŸè‹ è›†ç‹¼ é¥¶ 2000ææƒ‘ç¯® æ•‘ç„Šæéœ¸ èæ²¥çªƒ..
 	int32 MaxCount = FMath::Min(2000, KakaoFriendList.Num());
 	CreateFriendRows(0, MaxCount);
 	
-	// ÀÌ¹ÌÁö ´Ù¿î·Îµå ½ÃÀÛ~
+	// æå›ºç˜¤ ä¿ƒæ¬¾è‚ºé› çŸ«ç´¯~
 	ProfileManagerPtr->Start();
 }
 
@@ -622,7 +622,7 @@ void UB2UIFriendKakaoInvite::SetInvisibleFriendRows()
 
 	bool bScrollDown = SB_FriendList->GetScrollVelocity() > 0.0f;
 
-	// ½ºÅ©·Ñ¹Ú½º »ó´Ü
+	// èƒ¶å†œè´¹å† èƒ¶ æƒ‘çªœ
 	int32 ScrolledIndex = FMath::RoundToInt(Offset / SizeCount);
 	for (int32 i = ScrolledIndex - 1;  i > -1 ; --i)
 	{
@@ -636,7 +636,7 @@ void UB2UIFriendKakaoInvite::SetInvisibleFriendRows()
 			FriendRowList[i]->SetVisibility(ESlateVisibility::Hidden);
 	}
 
-	// ½ºÅ©·Ñ¹Ú½º Å¬¸®ÇÎ ¿µ¿ª¾È (7°³´Â º¸¿©ÁÜ)
+	// èƒ¶å†œè´¹å† èƒ¶ åŠªåºœä¿ åº·å¼€æ•‘ (7ä¿ºç»° ç„Šå’¯æ·‹)
 	int32 VisibleMax = FMath::Min(MaxCount, ScrolledIndex + 7);
 	for (int32 i = ScrolledIndex; i < VisibleMax; ++i)
 	{
@@ -646,7 +646,7 @@ void UB2UIFriendKakaoInvite::SetInvisibleFriendRows()
 			FriendRowList[i]->SetVisibility(ESlateVisibility::Visible);
 	}
 	
-	// ½ºÅ©·Ñ¹Ú½º ÇÏ´Ü
+	// èƒ¶å†œè´¹å† èƒ¶ çªçªœ
 	int MaxBottomCount = FMath::Min(VisibleMax + 5, MaxCount);
 	for (int32 i = VisibleMax; i < MaxBottomCount; ++i)
 	{
@@ -691,7 +691,7 @@ void UB2UIFriendKakaoInvite::CreateFriendRows(int32 StartIndex, int32 EndIndex)
 	//	FriendRowList.Add(Row);
 	//	Row->SetupManualScrollBoxSender_byReceiver(this, SB_FriendList.Get());
 
-	//	// ÇÁ·ÎÇÊ ÀÌ¹ÌÁö ´Ù¿î·Îµå Á¤º¸ ¼ÂÆÃ
+	//	// æ©‡è‚ºé˜ æå›ºç˜¤ ä¿ƒæ¬¾è‚ºé› æ²¥ç„Š æ‚¸æ³¼
 	//	std::shared_ptr<FB2KakaoProfileDownloadInfo> DownloadInfo = std::make_shared<FB2KakaoProfileDownloadInfo>();
 	//	DownloadInfo->SetIndex(Index);
 	//	DownloadInfo->SetImageUrl(FriendInfo.sThumbnailImageUrl);
@@ -815,7 +815,7 @@ void UB2UIFriendKakaoInvite::OnKakaoInvitePlatformCallback(const int32 ResultCod
 			FriendDoc->AddInviteKakaoFriend(RowIndex);
 		}
 
-		// ÃÊ´ë ¼ıÀÚ °»½ÅÇØÁÜ
+		// æª¬æª ç®­ç£Š ç›è„šç§¦æ·‹
 		data_trader::Retailer::GetInstance().RequestPlatformFriendInviteCountUp(b2network::B2PlatformCode::FOR_KAKAO);
 		ShowSimplePopup(TEXT("FriendAdd"));
 	}
@@ -824,19 +824,19 @@ void UB2UIFriendKakaoInvite::OnKakaoInvitePlatformCallback(const int32 ResultCod
 		FString ErrorText = FString(TEXT("Friend_KakaoFriendInviteFailed"));
 		switch (Code)
 		{
-		case EKakaoInviteResultCode::ExceedMonthlyUsage:	// ¿ù°£ Çã¿ë »ç¿ë·® ÃÊ°ú
+		case EKakaoInviteResultCode::ExceedMonthlyUsage:	// å²¿åŸƒ å€¾ä¾© è¤ä¾©æ¨Š æª¬è‹
 			ErrorText = FString(TEXT("Friend_KakaoFriendInviteCondition2"));
 			break;
-		case EKakaoInviteResultCode::ExceedDailyUsage:		// ÀÏ°£ Çã¿ë »ç¿ë·® ÃÊ°ú
+		case EKakaoInviteResultCode::ExceedDailyUsage:		// è€åŸƒ å€¾ä¾© è¤ä¾©æ¨Š æª¬è‹
 			ErrorText = FString(TEXT("Friend_KakaoFriendInviteExceed"));
 			break;
-		case EKakaoInviteResultCode::SettingDisabled:		// ¼ö½Å Â÷´Ü »óÅÂ
+		case EKakaoInviteResultCode::SettingDisabled:		// èè„š ç’çªœ æƒ‘æ€•
 			ErrorText = FString(TEXT("Friend_KakaoFriendInviteDenied"));
 			break;
-// 		case EKakaoInviteResultCode::NotKakaoTalkUser:		// Ä«Ä«¿ÀÅå À¯Àú ¾Æ´Ô (ÀÌ°Ç¾È¾¸)
+// 		case EKakaoInviteResultCode::NotKakaoTalkUser:		// å¢¨å¢¨å·ä½© èœ¡å† é…’ä¸› (ææ‰’æ•‘é–)
 //		case EKakaoInviteResultCode::Error:
 // 			break;
-		default:// ¸ğµç ¿¡·¯
+		default:// è‘›ç”µ ä¿ŠçŸ¾
 			ErrorText = FString(TEXT("Friend_KakaoFriendInviteFailed"));
 			break;
 		}

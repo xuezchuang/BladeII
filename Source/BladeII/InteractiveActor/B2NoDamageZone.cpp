@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2NoDamageZone.h"
@@ -50,7 +50,7 @@ void AB2NoDamageZone::CheckNoDamageFX(class ABladeIIPlayer* TargetPlayer, bool i
 	//	pPSC->Activate(true);
 	//	NoDamageFX_Components.Add(pPSC);
 
-	//	// °ãÄ¡Áö ¾ÊÀ¸¸é. µ¥¹ÌÁö ¹ŞÀ½
+	//	// èˆ¬æ‘¹ç˜¤ è‡¼æ æ. å•å›ºç˜¤ ç½æ¾œ
 	//	TargetPlayer->SetCanBeDamagedForB2(!isOverlap);
 	//}
 	//else
@@ -70,13 +70,13 @@ void AB2NoDamageZone::CheckNoDamageFX(class ABladeIIPlayer* TargetPlayer, bool i
 	//		pRemovePSC->UnregisterComponent();
 	//		NoDamageFX_Components.Remove(pRemovePSC);
 
-	//		// °ãÄ¡Áö ¾ÊÀ¸¸é. µ¥¹ÌÁö ¹ŞÀ½
+	//		// èˆ¬æ‘¹ç˜¤ è‡¼æ æ. å•å›ºç˜¤ ç½æ¾œ
 	//		TargetPlayer->SetCanBeDamagedForB2(!isOverlap);
 
-	//		// Á¾·á ÀÌÆåÆ®´Â µû·Î ºÙ¿©ÁÜ.
+	//		// è¾†ä¸° ææ£‹é£˜ç»° è¶è‚º å˜¿å’¯æ·‹.
 	//		if (NoDamageFX_PS_End)
 	//		{
-	//			// ÀÌ·¸°Ô ¾²¸é ÇÃ·¹ÀÌÈÄ ÀÚµ¿ Á¦°Å µÉµí
+	//			// æçŠ¯éœ¸ é™æ æ•²é¥­æé¥¶ ç£Šæ‚¼ åŠ›èŠ­ çªæ·€
 	//			UParticleSystemComponent* pEndPSC = UGameplayStatics::SpawnEmitterAttached(NoDamageFX_PS_End, TargetPlayer->GetRootComponent());
 	//			if (pEndPSC)
 	//			{
@@ -92,7 +92,7 @@ void AB2NoDamageZone::CheckOverlap()
 {
 	//for (FConstPawnIterator Iterator = GetWorld()->GetPawnIterator(); Iterator; ++Iterator)
 	//{
-	//	// ÇÃ·¹ÀÌ¾îÇÑÅ×¸¸ Àû¿ëÇØº½
+	//	// æ•²é¥­æç»¢èŒ„æŠ›çˆ¶ åˆ©ä¾©ç§¦èˆª
 	//	ABladeIIPlayer* pPlayer = Cast<ABladeIIPlayer>(*Iterator);
 
 	//	if (pPlayer && pPlayer->IsAlive())

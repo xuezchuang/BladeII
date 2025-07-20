@@ -2,7 +2,7 @@
 // Project BladeII, Action Square
 
 #pragma once
-//#include "BladeII.h"
+#include "BladeII.h"
 //#include "UObject/Object.h"
 #include "B2UIDocBase.h"
 #include "BladeIICharacter.h"
@@ -228,7 +228,7 @@ public:
 	DECLARE_UIDOC_FIELD(int32, SelectedResurrectBuffDefense)
 	DECLARE_UIDOC_FIELD(int32, SelectedResurrectBuffHealth)
 
-	// UIÇ¥½Ã¸¦ À§ÇØ Àû¿ëÁßÀÎ ¹öÇÁ´Â ÆÀº°·Î °¡Áö°í ÀÖÀ½. / Index´Â ½½·Ô ¼ø¼­/ 0(UB2UIDocBattle::MyIndex)¹øÀº ÀÚ±âÀÚ½Å
+	// UIé’çŸ«ç”« å›°ç§¦ åˆ©ä¾©åç‰¢ æ»šæ©‡ç»° è¯„å–Šè‚º å•Šç˜¤ç»Š ä¹æ¾œ. / Indexç»° æµ‡å© é‰´è¾‘/ 0(UB2UIDocBattle::MyIndex)é”…ç¯® ç£Šæ‰ç£Šè„š
 	DECLARE_UIDOC_FIELD_FourField(int32, CurResurrectBuffAttackCount, 0)
 	DECLARE_UIDOC_FIELD_FourField(int32, CurResurrectBuffDefenseCount, 0)
 	DECLARE_UIDOC_FIELD_FourField(int32, CurResurrectBuffHealthCount, 0)

@@ -1,4 +1,4 @@
-
+ï»¿
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UICostumePageInven.h"
@@ -501,7 +501,7 @@ void UB2UICostumePageInven::RedDotCondition_TapState()
 }
 
 void UB2UICostumePageInven::RequestModifyCostumeNewFlag()
-{// ¼­¹ö·Î NEW ¸¶Å© °»½Å
+{// è¾‘æ»šè‚º NEW ä»˜å†œ ç›Žè„š
 	
 	if(CurSelectedItemInvenTab == EItemInvenType::EIIVT_Consumables)
 		return;

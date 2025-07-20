@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 //#include "BladeII.h"
@@ -15,7 +15,7 @@ enum class EPVPMatchState : uint8
 	PreBattle,
 	Battle,
 	EndMatchByTime,
-	BattleEnd,			//[@AKI, 170418] HP°¡ ´Ù µÇ¾î ³¡³­ °æ¿ì(HandleNotifyLeave, NotifyPlayerDeadEnd) CastingÇØ¼­ »ç¿ë ÇÒ ¼öµµ ÀÖÀ¸´Ï ¸¶Áö¸·¿¡ ³Ö¾îÁÜ
+	BattleEnd,			//[@AKI, 170418] HPå•Š ä¿ƒ ç™»ç»¢ åœºæŠ„ ç‰ˆå¿«(HandleNotifyLeave, NotifyPlayerDeadEnd) Castingç§¦è¾‘ è¤ä¾© ä¸” èæ¡£ ä¹æ èª ä»˜ç˜¤é˜œä¿Š æŒç»¢æ·‹
 };
 
 enum class EPVPBGMPlayContext : uint8

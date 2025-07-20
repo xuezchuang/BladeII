@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -104,7 +104,7 @@ public:
 	UFUNCTION(BlueprintImplementableEvent)
 	void SetControlNpcUIState(EControlNpcUiState state, float TimerSec = 0.0f);
 
-	// BP Æ©Åä¸®¾ó¿ë UIÀû¿ë or ÃÊ±âÈ­
+	// BP è­¬é…åºœå€”ä¾© UIåˆ©ä¾© or æª¬æ‰æ‹³
 	UFUNCTION(BlueprintImplementableEvent)
 	void SetTutorialUIState(bool bEndTutorial = false);
 

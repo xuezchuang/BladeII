@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 //#include "BladeII.h"
@@ -23,16 +23,16 @@ struct FEtherInfoData : public FTableRowBase
 	FName FGoodsType;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	int32 TypeID;												//¿¡Å×¸£ Å¸ÀÔ
+	int32 TypeID;												//ä¿ŠæŠ›ç¦ é¸¥æ¶
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	FString EtherName;											//¿¡Å×¸£ ÀÌ¸§
+	FString EtherName;											//ä¿ŠæŠ›ç¦ ææŠš
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	FString TypeName;											//Å¸ÀÔ ÀÌ¸§
+	FString TypeName;											//é¸¥æ¶ ææŠš
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	TSoftObjectPtr<class UMaterialInterface> IconMaterial;			//¿¡Å×¸£ Icon
+	TSoftObjectPtr<class UMaterialInterface> IconMaterial;			//ä¿ŠæŠ›ç¦ Icon
 };
 
 UCLASS()

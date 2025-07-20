@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #pragma once
 //#include "BladeII.h"
 #include "B2MessageInfoCommonStruct.h"
@@ -91,21 +91,21 @@ struct FMD_AncientRelicSingleElem
 	TMap<int32, FMD_AncientRelicLevelElem> MD_AncientRelicLevel;
 };
 
-//ENum ¼ø¼­°¡ ÀÇ¹Ì°¡ ÀÖÀ½. M18¿¡ °í´ëÀ¯¹° ¸®´º¾ó¿¡ °í´ëÀ¯¹° Á¤¸®¸¦ Âü°íÇÏ¸é ¼­¹ö ID¿Í ¸ÅÄª µÊ.
-//¼ø¼­¸¦ ¹Ù²Ü¶ó¸é ¼­¹ö¶û ¸ÕÀú ¸ÂÃç¾ß ÇÔ.
+//ENum é‰´è¾‘å•Š ç‹¼å›ºå•Š ä¹æ¾œ. M18ä¿Š ç»Šæªèœ¡æ‹± åºœæ˜¥å€”ä¿Š ç»Šæªèœ¡æ‹± æ²¥åºœç”« æ›¼ç»Šçªæ è¾‘æ»š IDå®¢ æ¦‚è« å‡³.
+//é‰´è¾‘ç”« å®˜æ›¹æ‰¼æ è¾‘æ»šå°” åˆšå† å˜è‹—å…· çªƒ.
 enum EApplyMode : uint8
 {
 	EApplyMode_None,
 	EApplyMode_HeroTower	= 1,
 	EApplyMode_PVP_Tag		= 2,
-	EApplyMode_Control		= 3, //ÆÀ Á¡·ÉÀüÀÎµ¥....
+	EApplyMode_Control		= 3, //è¯„ ç—¢é£å‚ˆç‰¢å•....
 	EApplyMode_Raid			= 4,
 	EApplyMode_PVP_Team		= 5,
 	EApplyMode_Guild		= 6,
-	//EApplyMode_Assault, //µµÀüÀÇ Å¾
+	//EApplyMode_Assault, //æ¡£å‚ˆç‹¼ å•ª
 	EApplyMode_Total,
-	//Totalº¸´Ù Å©¸é GetPC(Attack)(Defence)(Health)ByMod¿¡¼­ returnÇÔÀ¸·Î
-	//»ç¿ë½Ã ¿©±â¼­ Totalº¸´Ù À§·Î ¿Ã¸±°Í
+	//Totalç„Šä¿ƒ å†œæ GetPC(Attack)(Defence)(Health)ByModä¿Šè¾‘ returnçªƒæ è‚º
+	//è¤ä¾©çŸ« å’¯æ‰è¾‘ Totalç„Šä¿ƒ å›°è‚º æ£µå‰¯å·´
 	//EApplyMode_Scenario,
 	//EApplyMode_CounterDungeon,
 	//EApplyMode_Tutorial,

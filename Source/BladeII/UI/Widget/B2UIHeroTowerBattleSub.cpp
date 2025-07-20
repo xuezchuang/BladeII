@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIHeroTowerBattleSub.h"
 #include "B2HeroTowerGameMode.h"
@@ -31,7 +31,7 @@ void UB2UIHeroTowerBattleSub::NativeConstruct()
 
 	if (HB_Rewards.IsValid())
 	{
-		//Áö¿ì°í
+		//ç˜¤å¿«ç»Š
 		TArray<UPanelSlot*> Slots = HB_Rewards->GetSlots();
 
 		for (UPanelSlot* pSlot : Slots)
@@ -40,7 +40,7 @@ void UB2UIHeroTowerBattleSub::NativeConstruct()
 				HB_Rewards->RemoveChild(pSlot->Content);
 		}
 
-		//¸¸µé°í
+		//çˆ¶ç”¸ç»Š
 		TArray<FRewardItem>* pArray = BladeIIGameImpl::GetClientDataStore().GetHeroTowerRewards(nFloor);
 		for (FRewardItem& RewardItem : *pArray)
 		{

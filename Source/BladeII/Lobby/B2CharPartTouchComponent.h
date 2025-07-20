@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "Components/CapsuleComponent.h"
 #include "B2CharPartTouchComponent.generated.h"

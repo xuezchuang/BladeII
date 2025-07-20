@@ -1,4 +1,4 @@
-#include "B2UIChatting.h"
+ï»¿#include "B2UIChatting.h"
 #include "B2UIManager.h"
 #include "B2UIChatMessage.h"
 #include "B2UIMsgPopupInputNoneFocus.h"
@@ -39,30 +39,30 @@ void UB2UIChatting::Init()
 {
 	Super::Init();
 
-	//SetChatCategoryTab(EB2UIChatCategory::UICHTY_All); // ¿©±â¼­ ÇÏÁö ¾Ê´Â´Ù. ScrollBox °¡ ¿ÏÀüÈ÷ ÃÊ±âÈ­ µÈ »óÅÂ°¡ ¾Æ´Ô..
+	//SetChatCategoryTab(EB2UIChatCategory::UICHTY_All); // å’¯æ‰è¾‘ çªç˜¤ è‡¼ç»°ä¿ƒ. ScrollBox å•Š è‚¯å‚ˆæ´’ æª¬æ‰æ‹³ ç­‰ æƒ‘æ€•å•Š é…’ä¸›..
 
 	BladeIIGameImpl::GetChatStore().RequestGetChannelNum();
 
-	UpdateControlInfo(); // RequestGetChannelNum ¿¡ ÀÇÇØ ÀÀ´äÀÌ ¿À¸é ´Ù½Ã ¼¼ÆÃµÇ¾î¾ß.
+	UpdateControlInfo(); // RequestGetChannelNum ä¿Š ç‹¼ç§¦ è§ˆç¿ æ å·æ ä¿ƒçŸ« æŠ€æ³¼ç™»ç»¢å…·.
 
 	UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
 	if (UIMgrInst)
 	{
 		UB2UIMain* UIMain = UIMgrInst->GetMainWidget();
-		// Ã¤ÆÃ Ã¢ ¾øÀ» ¶§¿¡ Ç¥½ÃÇÏ´Â ÇÑÁÙ Ã¤ÆÃÀÌ ¿­·Á ÀÖ´Ù¸é ¹Ù·Î ´İ´Â´Ù. 
+		// ç›²æ³¼ èŠ’ ç»é˜‘ é”­ä¿Š é’çŸ«çªç»° èŒ„ä¸´ ç›²æ³¼æ å‡¯å¦¨ ä¹ä¿ƒæ å®˜è‚º æ‘§ç»°ä¿ƒ. 
 		if(UIMain)	UIMain->ForceCloseChatSinglePopup();
 	}
 
 	bool JoinedGuild = BladeIIGameImpl::GetClientDataStore().GetUserGuildID() > 0;
 	if (JoinedGuild)
 	{
-		//¾ÆÀÌÅÛ ÀÎº¥Åä¸®¿¡¼­ ¹Ş¾Ò´Âµ¥ Á¤¼ö Á¤º¸ ¶§¹®¿¡ È£Ãâ..
+		//é…’æè¢ ç‰¢äº¥é…åºœä¿Šè¾‘ ç½ç–½ç»°å• æ²¥è æ²¥ç„Š é”­å·©ä¿Š é¾‹å…..
 		for (int32 i = 0; i < GetMaxPCClassNum(); ++i)
 		{
 			BladeIIGameImpl::GetClientDataStore().SyncingInventoryData(IntToPCClass(i));
 		}
 
-		// ÃÖÃÊ Ã¤ÆÃ ³»¿ë ¾÷µ¥ÀÌÆ®.
+		// å¼¥æª¬ ç›²æ³¼ éƒ´ä¾© è¯€å•æé£˜.
 		BladeIIGameImpl::GetChatStore().RequestGetGuildChat();
 	}
 
@@ -242,7 +242,7 @@ void UB2UIChatting::OnOpen(bool RightNow)
 	//if (X_GuildBadge.IsValid())
 	//	X_GuildBadge->SetVisibility(ESlateVisibility::Hidden);
 
-	//SetChatCategoryTab(EB2UIChatCategory::UICHTY_All); // ÀÌÀü¿¡ Ã¤ÆÃ Ã¢À» ¿­¾úÀ» ¶§ÀÇ ÅÇ ¼±ÅÃ »óÅÂ Ä³½ÌÀÌ ÇÊ¿äÇÒ ¼ö ÀÖÀ½..
+	//SetChatCategoryTab(EB2UIChatCategory::UICHTY_All); // æå‚ˆä¿Š ç›²æ³¼ èŠ’é˜‘ å‡¯èŒé˜‘ é”­ç‹¼ å¾˜ æ€¥ç¶ æƒ‘æ€• æŸæ•™æ é˜å¤¸ä¸” è ä¹æ¾œ..
 	//UpdateGuildBadge();
 
 	//UGameplayStatics::GetGameMode(this)->GetWorldTimerManager().ClearTimer(TimeToMessageUpdate);
@@ -337,7 +337,7 @@ void UB2UIChatting::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
 {
 	Super::NativeTick(MyGeometry, InDeltaTime);
 
-	// ±æÀÌ Á¦ÇÑ ³Ñ¾î°¡¼­ Àß¸° ÅØ½ºÆ® ¿©±â¼­ ¼¼ÆÃ.
+	// è¾¨æ åŠ›èŒ„ é€ç»¢å•Šè¾‘ è‚‹èµ´ å’†èƒ¶é£˜ å’¯æ‰è¾‘ æŠ€æ³¼.
 	if (bClampedEditMsgPending && EDIT_ChatMsg.IsValid())
 	{
 		EDIT_ChatMsg->SetText(PendingClampedEditMsg);
@@ -389,7 +389,7 @@ void UB2UIChatting::UpdateChatMessageAll()
 	const bool bTabGuild = (SelectedCategory == EB2UIChatCategory::UICHTY_Guild);
 	TArray<FB2ChatMessage> AllMessages;
 	BladeIIGameImpl::GetChatStore().GetChatMessages(GetAllDisplayTypes(SelectedCategory), AllMessages, !bTabGuild);
-	// GetChatMessages ¿¡¼­ ¾òÀº °Ç »õ ¸Ş½ÃÁö°¡ ¾ÕÀ¸·Î Á¤·ÄÀÌ µÇ¾î ÀÖÀ½. ½ºÅ©·Ñ ¹Ú½º¿¡´Â ¿À·¡µÈ ¸Ş½ÃÁöºÎÅÍ ³Ö¾î¾ß ÇÔ. µÚ¿¡¼­ºÎÅÍ.
+	// GetChatMessages ä¿Šè¾‘ æ˜ç¯® æ‰’ è´§ çš‹çŸ«ç˜¤å•Š èŠæ è‚º æ²¥çººæ ç™»ç»¢ ä¹æ¾œ. èƒ¶å†œè´¹ å† èƒ¶ä¿Šç»° å·è´°ç­‰ çš‹çŸ«ç˜¤ä½•ç£ æŒç»¢å…· çªƒ. ç¬¬ä¿Šè¾‘ä½•ç£.
 	for (int32 MI = AllMessages.Num() - 1; MI >= 0; --MI)
 	{
 		const FB2ChatMessage& ThisMessage = AllMessages[MI];
@@ -404,7 +404,7 @@ void UB2UIChatting::UpdateChatMessageAll()
 		UScrollBoxSlot* AddedRowSlot = Cast<UScrollBoxSlot>(SB_MessagePanel->AddChild(ThisChatMsg));
 		if (AddedRowSlot)
 		{
-			// È¤½Ã Margin ¼³Á¤ °°Àº °Å ÇÊ¿äÇÏ¸é AddedRowSlot À» °¡Áö°í..
+			// è¶£çŸ« Margin æ±²æ²¥ éç¯® èŠ­ é˜å¤¸çªæ AddedRowSlot é˜‘ å•Šç˜¤ç»Š..
 
 			if (ThisMessage.MessageType == EB2ChatType::Notice || ThisMessage.MessageType == EB2ChatType::GuildNotice)
 			{
@@ -484,7 +484,7 @@ void UB2UIChatting::UpdateChatMessage(bool bAutoScrollDown)
 		UScrollBoxSlot* AddedRowSlot = Cast<UScrollBoxSlot>(SB_MessagePanel->AddChild(ThisChatMsg));
 		if (AddedRowSlot)
 		{
-			// È¤½Ã Margin ¼³Á¤ °°Àº °Å ÇÊ¿äÇÏ¸é AddedRowSlot À» °¡Áö°í..
+			// è¶£çŸ« Margin æ±²æ²¥ éç¯® èŠ­ é˜å¤¸çªæ AddedRowSlot é˜‘ å•Šç˜¤ç»Š..
 
 			if (ThisMessage.MessageType == EB2ChatType::Notice || ThisMessage.MessageType == EB2ChatType::GuildNotice)
 			{
@@ -516,7 +516,7 @@ void UB2UIChatting::UpdateChatScrollEnd(bool bForce)
 	bool IsScrolling = IsValid ? SB_MessagePanel->IsScrolling() : false;
 	bool bFocused  = SB_MessagePanel->HasAnyUserFocus();
 	if (bForce && (bBlockScrollBox == false))
-		SB_MessagePanel->ScrollToEnd(); // ¸Ç ¾Æ·¡¿¡ ÃÖ½Å ¸Ş½ÃÁö°¡ ÀÖ´Ù.
+		SB_MessagePanel->ScrollToEnd(); // ç›– é…’è´°ä¿Š å¼¥è„š çš‹çŸ«ç˜¤å•Š ä¹ä¿ƒ.
 }
 
 void UB2UIChatting::SetUserBlockState(bool IsBlock, const FString& UserNickName)
@@ -597,7 +597,7 @@ void UB2UIChatting::SetChatCategoryTab(EB2UIChatCategory InUIChatCategory)
 		return;
 	SelectedCategory = InUIChatCategory;
 
-	// ±æµå ±¸Çö Àü±îÁö ±æµå Ã¤ÆÃ ÅÇÀº ¼û±ä´Ù. »ç¿ëÀÚ°¡ ±æµå °¡ÀÔµÇ¾î ÀÖ´Â °æ¿ì¸¸ »ç¿ë.
+	// è¾¨é› å¤‡æ³… å‚ˆé³–ç˜¤ è¾¨é› ç›²æ³¼ å¾˜ç¯® è§å˜ä¿ƒ. è¤ä¾©ç£Šå•Š è¾¨é› å•Šæ¶ç™»ç»¢ ä¹ç»° ç‰ˆå¿«çˆ¶ è¤ä¾©.
 	if (CP_ChatTabSet_Guild.IsValid())
 	{
 		bool JoinedGuild = BladeIIGameImpl::GetClientDataStore().GetUserGuildID() > 0;
@@ -650,7 +650,7 @@ void UB2UIChatting::SetChatCategoryTab(EB2UIChatCategory InUIChatCategory)
 	if (BTN_ScrollUp.IsValid())
 		BTN_ScrollUp->SetVisibility(bTabGuild ? ESlateVisibility::Visible : ESlateVisibility::Hidden);
 
-	// ¾Ë¸²ÅÇ¿¡¼­´Â ÀÔ·ÂÃ¢ ¾ø¾Ú
+	// èˆ…è¦†å¾˜ä¿Šè¾‘ç»° æ¶ä»¿èŠ’ ç»æ²®
 	const bool bChatInputPossible = (SelectedCategory == EB2UIChatCategory::UICHTY_All || SelectedCategory == EB2UIChatCategory::UICHTY_Guild);
 	if (X_ChatInput.IsValid())
 	{
@@ -693,7 +693,7 @@ TArray<EB2ChatType> UB2UIChatting::GetAllDisplayTypes(EB2UIChatCategory InUIChat
 EB2ChatType UB2UIChatting::GetMessageInputType(EB2UIChatCategory InUIChatCategory)
 {
 	switch (InUIChatCategory)
-	{ // ·ÎÄÃ »ç¿ëÀÚ°¡ º¸³¾ ¼ö ÀÖ´Â °Í¿¡ ´ëÇØ¼­¸¸.
+	{ // è‚ºæ‹¿ è¤ä¾©ç£Šå•Š ç„Šå°˜ è ä¹ç»° å·´ä¿Š æªç§¦è¾‘çˆ¶.
 	case EB2UIChatCategory::UICHTY_All: return EB2ChatType::Channel;
 	case EB2UIChatCategory::UICHTY_Guild: return EB2ChatType::Guild;
 	}
@@ -729,7 +729,7 @@ class UB2UIChatMessageBase* UB2UIChatting::GetUIMessageSlot(const FB2ChatMessage
 	//	ThisChatMsg->Init();
 	//	ThisChatMsg->SetSlotType(SlotType);
 
-	//	// SB_MessagePanel ÀÇ ½ºÅ©·Ñ ÇÚµé¸µÀ» À§ÇÑ µî·Ï. ThisChatMsg ÀÇ ¹öÆ°ÀÌ ÀÔ·ÂÀ» °¡·ÎÃ¤Áö ¾Ê°í ³Ñ°ÜÁÖ¾î¼­ Á÷Á¢ ÇÚµé¸µ ÇÏµµ·Ï.
+	//	// SB_MessagePanel ç‹¼ èƒ¶å†œè´¹ å‹¤ç”¸å‚…é˜‘ å›°èŒ„ æ®¿åºŸ. ThisChatMsg ç‹¼ æ»šç“¢æ æ¶ä»¿é˜‘ å•Šè‚ºç›²ç˜¤ è‡¼ç»Š é€è´¥æ—ç»¢è¾‘ æµç«‹ å‹¤ç”¸å‚… çªæ¡£åºŸ.
 	//	ThisChatMsg->SetupManualScrollBoxSender_byReceiver(this, SB_MessagePanel.Get());
 
 	//	return ThisChatMsg;
@@ -793,24 +793,24 @@ TSubclassOf<UB2UIChatMessageBase> UB2UIChatting::GetProperUIMessageClass(const i
 	return MessagePartClass_PublicNoti; // defalut
 }
 
-// Ã¤ÆÃÃ¢À» È°¿ëÇÑ ÄÜ¼ÖÄ¿¸Çµå.. ¿¡¹Ä·¹ÀÌÅÍ È¯°æ¿¡¼­ »ç¿ëÀ» À§ÇØ.
+// ç›²æ³¼èŠ’é˜‘ åŠä¾©èŒ„ èƒ½è´¾ç›®ç›–é›.. ä¿Šé¼“é¥­æç£ åˆ¸ç‰ˆä¿Šè¾‘ è¤ä¾©é˜‘ å›°ç§¦.
 bool UB2UIChatting::CheckAndExecuteConsoleCommandFromChatInput(const FString& ChatEditMsg)
 {
 #if B2_BUILD_LEVEL != B2_BUILD_LEVEL_LIVE
-	//4Finger¶û µ¿ÀÏÇÑ ÀÛµ¿À» ÇÏ´Â ÄÚµå
+	//4Fingerå°” æ‚¼è€èŒ„ ç´¯æ‚¼é˜‘ çªç»° å†…é›
 	/*
 	static const FString SYS_MSG_PREFIX(TEXT("//sys"));
 
 	FString CmdOnly = ChatEditMsg;
-	if (InPC && CmdOnly.RemoveFromStart(SYS_MSG_PREFIX)) // Ãß°¡·Î º¯¼ö ÇÏ³ª¸¦ ´õ µÎ´øÁö..
+	if (InPC && CmdOnly.RemoveFromStart(SYS_MSG_PREFIX)) // çœ å•Šè‚º å‡½è çªå”±ç”« æ­¹ æ»´å¸¦ç˜¤..
 	{
-		CmdOnly.RemoveFromStart(TEXT(" ")); // º¸Åë prefix µÚ¿¡ °ø¹éÀ» µÎ°Ô µÉ Å×´Ï ÀÖÀ¸¸é Á¦°Å. ¾ø´Ù°í ÇØµµ ±×´ë·Î ÀÎ½ÄÇÏµµ·Ï ÇÏ°í.
+		CmdOnly.RemoveFromStart(TEXT(" ")); // ç„Šçƒ¹ prefix ç¬¬ä¿Š å‚å½’é˜‘ æ»´éœ¸ çª æŠ›èª ä¹æ æ åŠ›èŠ­. ç»ä¿ƒç»Š ç§¦æ¡£ å¼Šæªè‚º ç‰¢ä¾¥çªæ¡£åºŸ çªç»Š.
 
 		InPC->ConsoleCommand(CmdOnly);
 		return true;
 	}
 	/*/
-	//[@AKI, 180328][TO-DO] Android Build¿¡¼­ Casting¶§¹®¿¡ ´Ù½Ã È®ÀÎ ÇØºÁ¾ß ÇÒ°Í
+	//[@AKI, 180328][TO-DO] Android Buildä¿Šè¾‘ Castingé”­å·©ä¿Š ä¿ƒçŸ« çŠ¬ç‰¢ ç§¦æ¯«å…· ä¸”å·´
 	const FString CheatMsg(ChatEditMsg.ToUpper());
 	const TCHAR* Cmd = *CheatMsg;
 	if (FParse::Command(&Cmd, SYS_CHEAT_PREFIX))
@@ -831,13 +831,13 @@ void UB2UIChatting::OnClickBtnEnterChatMsg()
 	if (EDIT_ChatMsg.IsValid())
 	{
 		FText EdittedMsg = EDIT_ChatMsg->GetText();
-		EdittedMsg = ClampTextLength(EdittedMsg, FB2ChatStore::MessageLengthLimit); // ±æÀÌ´Â ¹°·Ğ ¿¡µğÆ® µµÁß¿¡ Àß·Á¾ß ÇÔ. ÃÖÁ¾ °Ë»çÀÏ »Ó.
+		EdittedMsg = ClampTextLength(EdittedMsg, FB2ChatStore::MessageLengthLimit); // è¾¨æç»° æ‹±æ²¸ ä¿Šå¼é£˜ æ¡£åä¿Š è‚‹å¦¨å…· çªƒ. å¼¥è¾† å…«è¤è€ æŒ¥.
 
 		if (!CheckAndExecuteConsoleCommandFromChatInput(EdittedMsg.ToString()) &&
 			EdittedMsg.ToString().Len() > 0 && 
-			!BladeIIGameImpl::GetChatStore().IsPossibleSpamMessage(EdittedMsg)) // µµ¹è Ã¼Å©
+			!BladeIIGameImpl::GetChatStore().IsPossibleSpamMessage(EdittedMsg)) // æ¡£ç¡… çœ‰å†œ
 		{
-			// @TODO Chat ºñ¼Ó¾î ÇÊÅÍ
+			// @TODO Chat åšåŠ ç»¢ é˜ç£
 			
 			BladeIIGameImpl::GetChatStore().RequestChatCommand(GetMessageInputType(SelectedCategory), EdittedMsg);
 		}
@@ -894,8 +894,8 @@ void UB2UIChatting::OnChatMsgEditChanged(const FText& InText)
 {
 	if (InText.ToString().Len() > FB2ChatStore::MessageLengthLimit)
 	{
-		// ±æÀÌ Á¦ÇÑ ³Ñ¾î°¡¸é ÀÚ¸£´Âµ¥ ÀÚ¸¥ °É ¹Ù·Î ¼¼ÆÃÇÏ¸é ÇÑ±Û¿¡¼­ Å©·¡½¬°¡ ³ª°í ÀÌ·¸°Ô ÀÚ¸¥ °É ÀúÀåÇØ µÎ¾ú´Ù°¡ Tick ¿¡¼­ ¼¼ÆÃ
-		// ±×¸®°í ¿©±â¼± ÀÏ´Ü ºñ¿öµÖ¾ß ÇÔ.
+		// è¾¨æ åŠ›èŒ„ é€ç»¢å•Šæ ç£Šç¦ç»°å• ç£Šå¼— å§ å®˜è‚º æŠ€æ³¼çªæ èŒ„è‡‚ä¿Šè¾‘ å†œè´°æµ†å•Š å”±ç»Š æçŠ¯éœ¸ ç£Šå¼— å§ å†å˜ç§¦ æ»´èŒä¿ƒå•Š Tick ä¿Šè¾‘ æŠ€æ³¼
+		// å¼Šåºœç»Š å’¯æ‰æ€¥ è€çªœ åšå†µæŠµå…· çªƒ.
 
 		PendingClampedEditMsg = ClampTextLength(InText, FB2ChatStore::MessageLengthLimit);
 		bClampedEditMsgPending = true;
@@ -950,14 +950,14 @@ void UB2UIChatting::OpenChangeChannelPopup()
 		if (InputPopup)
 		{
 			InputPopup->AddHandler(EUIMsgPopupButton::Positive, FMsgPopupOnClick::CreateLambda([this, InputPopup](){
-				// Ã¤³Î º¯°æÀ» ¿äÃ»..
+				// ç›²æ¾„ å‡½ç‰ˆé˜‘ å¤¸æ²¡..
 				int32 EdittedChannelNum = FCString::Atoi(*(InputPopup->GetInputText().ToString()));
 				if (BladeIIGameImpl::GetChatStore().IsInAllowedChannelRange(EdittedChannelNum))
 				{
 					BladeIIGameImpl::GetChatStore().RequestChangeChannel(EdittedChannelNum);
 				}
 				else
-				{ // ÀÔ·Â ¹üÀ§°¡ Àß¸øµÇ¾ú´Ù¸é ´Ù½Ã ÀÌ ¸Ş½ÃÁö ¹Ú½º¸¦ ¿©´Â ¾È³» ¸Ş½ÃÁö. Çö ±¸Á¶»ó ´İÁö ¾Ê°Ô´Â ¸øÇÒ µí.
+				{ // æ¶ä»¿ è£¹å›°å•Š è‚‹ç»™ç™»èŒä¿ƒæ ä¿ƒçŸ« æ çš‹çŸ«ç˜¤ å† èƒ¶ç”« å’¯ç»° æ•‘éƒ´ çš‹çŸ«ç˜¤. æ³… å¤‡ç‚¼æƒ‘ æ‘§ç˜¤ è‡¼éœ¸ç»° ç»™ä¸” æ·€.
 					UB2UIManager* UIMgrInst2 = UB2UIManager::GetInstance();
 					if (UIMgrInst2)
 					{
@@ -1015,7 +1015,7 @@ void UB2UIChatting::OnCloseCallback()
 
 void UB2UIChatting::OnChangedCurrentChannel(class UB2UIDocBase* Sender, const int32 CurrentChannelNum, const int32 PrevChannelNum)
 {
-	UpdateControlInfo(); // ¾îÂ÷ÇÇ ChatStore ¿¡ µé¾î°¡ ÀÖ´Â °ªÀ» ¾µ°Å.
+	UpdateControlInfo(); // ç»¢ç’ä¹” ChatStore ä¿Š ç”¸ç»¢å•Š ä¹ç»° è”¼é˜‘ é•œèŠ­.
 }
 
 bool UB2UIChatting::GetIsAvailableForInput()
@@ -1058,7 +1058,7 @@ void UB2UIChatting::SetInvisibleChatRows()
 
 	bool bScrollDown = SB_MessagePanel->GetScrollVelocity() > 0.0f;
 
-	// ½ºÅ©·Ñ¹Ú½º »ó´Ü
+	// èƒ¶å†œè´¹å† èƒ¶ æƒ‘çªœ
 	int32 ScrolledIndex = FMath::RoundToInt(Offset / SizeCount);
 	for (int32 i = ScrolledIndex - 1; i > -1; --i)
 	{
@@ -1072,7 +1072,7 @@ void UB2UIChatting::SetInvisibleChatRows()
 			CreatedMessages[i]->SetVisibility(ESlateVisibility::Hidden);
 	}
 
-	// ½ºÅ©·Ñ¹Ú½º Å¬¸®ÇÎ ¿µ¿ª¾È (7°³´Â º¸¿©ÁÜ)
+	// èƒ¶å†œè´¹å† èƒ¶ åŠªåºœä¿ åº·å¼€æ•‘ (7ä¿ºç»° ç„Šå’¯æ·‹)
 	int32 VisibleMax = FMath::Min(MaxCount, ScrolledIndex + 7);
 	for (int32 i = ScrolledIndex; i < VisibleMax; ++i)
 	{
@@ -1082,7 +1082,7 @@ void UB2UIChatting::SetInvisibleChatRows()
 			CreatedMessages[i]->SetVisibility(ESlateVisibility::Visible);
 	}
 
-	// ½ºÅ©·Ñ¹Ú½º ÇÏ´Ü
+	// èƒ¶å†œè´¹å† èƒ¶ çªçªœ
 	int MaxBottomCount = FMath::Min(VisibleMax + 5, MaxCount);
 	for (int32 i = VisibleMax; i < MaxBottomCount; ++i)
 	{
@@ -1154,7 +1154,7 @@ int32 UB2UIChatting::GetTargetScrollCount(const int32 From, const bool bIsMin)
 			}
 			else
 			{
-				// È­¸é¿¡ ³ëÃâµÇ´Â »çÀÌÁî¸¸Å­Àº °è»ê ¾ÈµÊ..
+				// æ‹³æä¿Š ç•´å…ç™»ç»° è¤æä»¤çˆ¶æ€’ç¯® æ‹Œé­‚ æ•‘å‡³..
 				if (From + VisibleOffset < index)
 					++Result;
 			}
@@ -1228,7 +1228,7 @@ int32 UB2UIChatting::GetScrollNearBottomIndex()
 	int32 CurScrolledIndex = 0;
 	if (SB_MessagePanel.IsValid())
 	{
-		float HalfSize = 400.0f;//°­Á¦·Î ¹Ú¾ÆµÒ..
+		float HalfSize = 400.0f;//ç¢åŠ›è‚º å† é…’ç‹„..
 		float Offset = SB_MessagePanel->GetScrollOffset() + HalfSize;
 
 		float SizeCount = 0;

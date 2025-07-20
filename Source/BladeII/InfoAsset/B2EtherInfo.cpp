@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2EtherInfo.h"
@@ -11,7 +11,7 @@ UB2EtherInfo::UB2EtherInfo(const FObjectInitializer& ObjectInitializer) : Super(
 {
 	if (HasAnyFlags(RF_ClassDefaultObject) == false)
 	{
-		// Á¤ÇØÁø ÇÏ³ª¸¦ ·Îµù
+		// æ²¥ç§¦æŸ³ çªå”±ç”« è‚ºçˆ¹
 		FString EtherInfoDataTablePath;
 		GConfig->GetString(TEXT("/Script/BladeII.B2EtherInfo"), TEXT("EtherInfoTable"), EtherInfoDataTablePath, GGameIni);
 
@@ -121,7 +121,7 @@ void UB2EtherInfo::CheckInfoDataIntegrity()
 		bool bHasRowKeyLessThan0 = false;
 		bool bHasNonSequentialRowKey = false;
 
-		// DataTable ÀÇ ¸ğµç row ¸¦ iterate ÇÏ´Â ¹æ¹ıÀÎµí.
+		// DataTable ç‹¼ è‘›ç”µ row ç”« iterate çªç»° è§„è¿‡ç‰¢æ·€.
 		TArray<FName> RowKeys = TheData->GetRowNames();
 		for (int32 RI = 0; RI < RowKeys.Num(); ++RI)
 		{
@@ -131,13 +131,13 @@ void UB2EtherInfo::CheckInfoDataIntegrity()
 			{
 				bHasRowKeyLessThan0 = true;
 			}
-			if (RI + 1 != RowKeyNumber) // bHasRowKeyLessThan0 ÀÌ¸é °á±¹ ¿©±âµµ..
+			if (RI + 1 != RowKeyNumber) // bHasRowKeyLessThan0 ææ æ¬æƒ« å’¯æ‰æ¡£..
 			{
 				bHasNonSequentialRowKey = true;
 			}
 		}
 
-		if (bHasRowKeyLessThan0 /*|| bHasNonSequentialRowKey*/) // ¼ø¼­´ë·ÎÀÏ ÇÊ¿ä´Â ¾øÀ» °Í °°´Ù. ÀÏ´Ü ÀÌ°Ç °æ°í¿¡¼­ Á¦°Å.
+		if (bHasRowKeyLessThan0 /*|| bHasNonSequentialRowKey*/) // é‰´è¾‘æªè‚ºè€ é˜å¤¸ç»° ç»é˜‘ å·´ éä¿ƒ. è€çªœ ææ‰’ ç‰ˆç»Šä¿Šè¾‘ åŠ›èŠ­.
 		{
 #if !PLATFORM_MAC
 			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
@@ -157,8 +157,8 @@ void UB2EtherInfo::CheckInfoDataIntegrity()
 }
 void UB2EtherInfo::EditorLoadAll()
 {
-	// DataTable ±â¹İÀÌ¶ó Redirector ²¿ÀÌÁö ¾ÊÀ¸·Á¸é ¿¡µğÅÍ¿¡¼­ TAsset ÀÇ °­Á¦ ·ÎµùÀÌ ÇÊ¼öÀûÀÌ´Ù.
-	// ±×¸® Å©Áö ¾Ê°í ÇÏ´Ï.. ±»ÀÌ Ä³½Ì ¾ÈÇÏ°í. ±×·¸°Ô±îÁö Ä³½Ì ¾È ÇØµµ ÇÑ¹ø ·Îµù¸¸ ÇÏ¸é ¿¡µğÅÍ¿¡¼­ redirector ¹®Á¦ ¾È °Ş´Â °Í °°´øµ¥..
+	// DataTable æ‰é¦†ææ‰¼ Redirector éƒ¨æç˜¤ è‡¼æ å¦¨æ ä¿Šå¼ç£ä¿Šè¾‘ TAsset ç‹¼ ç¢åŠ› è‚ºçˆ¹æ é˜èåˆ©æä¿ƒ.
+	// å¼Šåºœ å†œç˜¤ è‡¼ç»Š çªèª.. è¢«æ æŸæ•™ æ•‘çªç»Š. å¼ŠçŠ¯éœ¸é³–ç˜¤ æŸæ•™ æ•‘ ç§¦æ¡£ èŒ„é”… è‚ºçˆ¹çˆ¶ çªæ ä¿Šå¼ç£ä¿Šè¾‘ redirector å·©åŠ› æ•‘ ç¨—ç»° å·´ éå¸¦å•..
 
 	if (TheData)
 	{

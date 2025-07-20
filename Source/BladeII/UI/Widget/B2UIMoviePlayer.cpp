@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIMoviePlayer.h"
 #include "BladeIIGameMode.h"
@@ -16,22 +16,22 @@ UB2UIMoviePlayer::UB2UIMoviePlayer(const FObjectInitializer& ObjectInitializer)
 
 void UB2UIMoviePlayer::SetMediaPlayer(class UMediaPlayer* InMediaPlayer)
 {
-	// Àç»ı ¿Ï·á½Ã Á¦°Å´Â BP¿¡ ÀÖÀ½.
+	// çŠç§¯ è‚¯ä¸°çŸ« åŠ›èŠ­ç»° BPä¿Š ä¹æ¾œ.
 	m_MediaPlayer = InMediaPlayer;
 }
 
 void UB2UIMoviePlayer::SetMovie(class UMediaSource* InMediaSource, const TArray<struct FMovieSubtitle>& InSubtitleArray)
 {
-	// °ÔÀÓÁ¤Áö
+	// éœ¸çƒ™æ²¥ç˜¤
 	UGameplayStatics::SetGamePaused(this, true);
 	
-	// BGM ½ºÅ¾
+	// BGM èƒ¶å•ª
 	ABladeIIGameMode* pGM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(this));
 
 	if (pGM)
 		pGM->SetPauseBGM(true);
 	
-	// »ç¿îµå ÄÄÆ÷³ÍÆ®
+	// è¤æ¬¾é› å“ªå™¨æƒ©é£˜
 	CreateMovieSoundComponent();
 
 	if (m_MovieSoundComp)
@@ -39,10 +39,10 @@ void UB2UIMoviePlayer::SetMovie(class UMediaSource* InMediaSource, const TArray<
 
 	check(m_MediaPlayer);
 
-	// ¿ÀÇÂ. ¹Ù·ÎÀç»ıÇÏ°Ô ¼³Á¤µÇÀÖ´Ù.
+	// å·é”¹. å®˜è‚ºçŠç§¯çªéœ¸ æ±²æ²¥ç™»ä¹ä¿ƒ.
 	m_MediaPlayer->OpenSource(InMediaSource);
 
-	// ÀÚ¸·(ÀúÀå¸¸ ÇØº¸±¸ ¾ÆÁ÷ Ã³¸®¾ÈÇÔ)
+	// ç£Šé˜œ(å†å˜çˆ¶ ç§¦ç„Šå¤‡ é…’æµ è´¸åºœæ•‘çªƒ)
 	m_SubtitleArray.Empty();
 	m_SubtitleArray = InSubtitleArray;
 }
@@ -51,16 +51,16 @@ void UB2UIMoviePlayer::NativeDestruct()
 {
 	Super::NativeDestruct();
 
-	// °ÔÀÓÁ¤Áö ÇØÁ¦
+	// éœ¸çƒ™æ²¥ç˜¤ ç§¦åŠ›
 	UGameplayStatics::SetGamePaused(this, false);
 
-	// BGM Àç°³
+	// BGM çŠä¿º
 	ABladeIIGameMode* pGM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(this));
 
 	if (pGM)
 		pGM->SetPauseBGM(false);
 
-	// »ç¿îµå ÄÄÆ÷³ÍÆ® Á¦°Å
+	// è¤æ¬¾é› å“ªå™¨æƒ©é£˜ åŠ›èŠ­
 	if (m_MovieSoundComp)
 	{
 		m_MovieSoundComp->Stop();
@@ -71,7 +71,7 @@ void UB2UIMoviePlayer::NativeDestruct()
 
 void UB2UIMoviePlayer::CreateMovieSoundComponent()
 {
-	//// »ç¿îµå ÄÄÆ÷³ÍÆ® ¼ÂÆÃ
+	//// è¤æ¬¾é› å“ªå™¨æƒ©é£˜ æ‚¸æ³¼
 	//if (m_MediaPlayer)
 	//{
 	//	UMediaSoundWave* pMSW = m_MediaPlayer->GetSoundWave();

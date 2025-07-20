@@ -1,4 +1,4 @@
-// Copyright 1998-2014 Epic Games, Inc. All Rights Reserved.
+ï»¿// Copyright 1998-2014 Epic Games, Inc. All Rights Reserved.
 
 
 #include "B2DLCFrontGameMode.h"
@@ -24,15 +24,15 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// °ÔÀÓ ·Îºñ ÁøÀÔ Àü °ÔÀÓ ÄÁÅÙÃ÷¸¦ (DLC) ´Ù¿î·Îµå ¹Ş´Â ÇÁ·ĞÆ® ±¸Çö¿¡ »ç¿ë
-// ÀÌ °ÔÀÓ¸ğµå¸¦ ½ÇÇàÇÏ±â À§ÇÑ ¸ğµç ¸®¼Ò½ºµéÀº Á¦ÇÑµÈ Å©±âÀÇ ´ÜÀÏ apk ¾È¿¡ µé¾î°¡¾ß ÇÔ.
-// Åë»óÀûÀÎ InfoAsset ·ÎµùÀº ÀÌ °ÔÀÓ¸ğµå°¡ ¶° ÀÖ´Â µ¿¾È ·ÎµùÀÌ Çã¿ëµÇÁö ¾ÊÀ¸¸ç ÀÌ¿Ü¿¡µµ ¸¹Àº BladeII ±â´ÉµéÀÇ »ç¿ëÀÌ ºÒ°¡´ÉÇÒ ¼ö ÀÖ´Ù.
-// ÃÖ¼ÒÇÑÀÇ À¯Æ¿ Á¤µµ¸¸ °øÀ¯°¡ °¡´ÉÇÒ °ÍÀÌ´Ù.
-// ±×¿¡ ¸Â°Ô ¿©±â¼­ Á¦°øÇÏ´Â ±â´É ¹üÀ§µµ Á¦ÇÑµÊ.
+// éœ¸çƒ™ è‚ºåš æŸ³æ¶ å‚ˆ éœ¸çƒ™ ç‰§åˆ¨æ˜ç”« (DLC) ä¿ƒæ¬¾è‚ºé› ç½ç»° æ©‡æ²¸é£˜ å¤‡æ³…ä¿Š è¤ä¾©
+// æ éœ¸çƒ™è‘›é›ç”« è§’é’çªæ‰ å›°èŒ„ è‘›ç”µ åºœå®¶èƒ¶ç”¸ç¯® åŠ›èŒ„ç­‰ å†œæ‰ç‹¼ çªœè€ apk æ•‘ä¿Š ç”¸ç»¢å•Šå…· çªƒ.
+// çƒ¹æƒ‘åˆ©ç‰¢ InfoAsset è‚ºçˆ¹ç¯® æ éœ¸çƒ™è‘›é›å•Š æ ‹ ä¹ç»° æ‚¼æ•‘ è‚ºçˆ¹æ å€¾ä¾©ç™»ç˜¤ è‡¼æ å“¥ æå¯‡ä¿Šæ¡£ è…¹ç¯® BladeII æ‰ç“·ç”¸ç‹¼ è¤ä¾©æ é˜‚å•Šç“·ä¸” è ä¹ä¿ƒ.
+// å¼¥å®¶èŒ„ç‹¼ èœ¡ç“¶ æ²¥æ¡£çˆ¶ å‚èœ¡å•Š å•Šç“·ä¸” å·´æä¿ƒ.
+// å¼Šä¿Š å˜éœ¸ å’¯æ‰è¾‘ åŠ›å‚çªç»° æ‰ç“· è£¹å›°æ¡£ åŠ›èŒ„å‡³.
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-FString AB2DLCFrontGameMode::SelectedFrontTitleMovieName; // ½ÇÇà ÈÄ Ã¹ Å¸ÀÌÆ² È­¸é¿¡¼­ ¼¼ÆÃ. DLCFrontGameMode ¸¦ ¹ş¾î³­ ÀÌÈÄ¿¡µµ ÇÊ¿äÇÒ °Í.
+FString AB2DLCFrontGameMode::SelectedFrontTitleMovieName; // è§’é’ é¥¶ éœ‰ é¸¥ææ’‡ æ‹³æä¿Šè¾‘ æŠ€æ³¼. DLCFrontGameMode ç”« å“ˆç»¢æŠ„ æé¥¶ä¿Šæ¡£ é˜å¤¸ä¸” å·´.
 EPCClass AB2DLCFrontGameMode::SelectedFrontTitleMovieClass = EPCClass::EPC_End;
 
 AB2DLCFrontGameMode::AB2DLCFrontGameMode(const FObjectInitializer& ObjectInitializer) 
@@ -40,8 +40,8 @@ AB2DLCFrontGameMode::AB2DLCFrontGameMode(const FObjectInitializer& ObjectInitial
 {
 	bEventsSubscribed = false;
 
-	DefaultPawnClass = ASpectatorPawn::StaticClass(); // SpectatorPawn À» ±âº»À¸·Î
-	PlayerControllerClass = APlayerController::StaticClass(); // ÇÊ¿ä¿¡ µû¶ó µû·Î extend ÇØ¼­ »ç¿ë..
+	DefaultPawnClass = ASpectatorPawn::StaticClass(); // SpectatorPawn é˜‘ æ‰å¤¯æ è‚º
+	PlayerControllerClass = APlayerController::StaticClass(); // é˜å¤¸ä¿Š è¶æ‰¼ è¶è‚º extend ç§¦è¾‘ è¤ä¾©..
 	
 	if (!HasAnyFlags(RF_ClassDefaultObject))
 	{
@@ -66,25 +66,25 @@ void AB2DLCFrontGameMode::StartPlay()
 		return;
 	}
 	
-	// ¾Æ·¡ µÑ ¼ø¼­ ÁÖÀÇ
+	// é…’è´° ç¬› é‰´è¾‘ æ—ç‹¼
 	InitializeAllGameSettingData(this);
 	B2Scalability::OnGameModeStartPlay(this);
 
-	PreBeginPlay(); // ABladeIIGameMode::PreBeginPlay ¿Í ¸¶Âù°¡Áö Å¸ÀÌ¹ÖÀ¸·Î.
+	PreBeginPlay(); // ABladeIIGameMode::PreBeginPlay å®¢ ä»˜è›®å•Šç˜¤ é¸¥ææ€ªæ è‚º.
 
 	Super::StartPlay();
 
 #if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV1
-	// Á¤½ÄÀ¸·Î DLCFrontMap À» Åë°úÇßÀ½À» ¸¶Å©ÇØ¼­ »¹Áş ¹æÁö. Àû¾îµµ ¸ğ¹ÙÀÏ ¹èÆ÷¿¡¼­´Â ÀÌ °ÔÀÓ¸ğµå¸¦ Åë°úÇÏ´Â »óÈ²Àº ½ÇÁ¦ DLC ¸ğµåÀÏ °ÍÀÌ´Ù.
+	// æ²¥ä¾¥æ è‚º DLCFrontMap é˜‘ çƒ¹è‹æ²æ¾œé˜‘ ä»˜å†œç§¦è¾‘ è¿˜çª¿ è§„ç˜¤. åˆ©ç»¢æ¡£ è‘›å®˜è€ ç¡…å™¨ä¿Šè¾‘ç»° æ éœ¸çƒ™è‘›é›ç”« çƒ¹è‹çªç»° æƒ‘ç‚”ç¯® è§’åŠ› DLC è‘›é›è€ å·´æä¿ƒ.
 	UB2UIDummyDLCFront::bWentThroughRealDLCFront = true;
 #endif
 }
 
 void AB2DLCFrontGameMode::PreBeginPlay()
 {
-	GMinimalDLCFrontMode = true; // ½ÇÇà µµÁß¿¡´Â ÀÌ°Ç ±âº» true ÀÓ. InfoAsset ·ÎµùÀ» ¸·À½.
+	GMinimalDLCFrontMode = true; // è§’é’ æ¡£åä¿Šç»° ææ‰’ æ‰å¤¯ true çƒ™. InfoAsset è‚ºçˆ¹é˜‘ é˜œæ¾œ.
 
-#if WITH_EDITOR // BladeIIGameMode ·Î ÇÑ¹øÀÌ¶óµµ ÇÃ·¹ÀÌ ÈÄ¿¡ ÀÛµ¿ È®ÀÎÀ» ÇÏÁö ¾Êµµ·Ï °æ°í Á¤µµ Â÷¿ø¿¡¼­¸¸ ³Ö¾î³õÀ½. Å×½ºÆ®¸¦ ¸·À» ÇÊ¿ä±îÁø ¾ø°ÚÁö¸¸ µ¿ÀÛÀÌ Á» ´Ù¸¦ ¼ö ÀÖÀ¸¹Ç·Î °æ°í´Â ÇÑ´Ù.
+#if WITH_EDITOR // BladeIIGameMode è‚º èŒ„é”…ææ‰¼æ¡£ æ•²é¥­æ é¥¶ä¿Š ç´¯æ‚¼ çŠ¬ç‰¢é˜‘ çªç˜¤ è‡¼æ¡£åºŸ ç‰ˆç»Š æ²¥æ¡£ ç’ç›”ä¿Šè¾‘çˆ¶ æŒç»¢åˆæ¾œ. æŠ›èƒ¶é£˜ç”« é˜œé˜‘ é˜å¤¸é³–æŸ³ ç»æ‘†ç˜¤çˆ¶ æ‚¼ç´¯æ ç²± ä¿ƒç”« è ä¹æ éª¨è‚º ç‰ˆç»Šç»° èŒ„ä¿ƒ.
 	ensureMsgf(GIsEditor || !ABladeIIGameMode::bDevCheckBladeIIGameModeEnteredOnce, TEXT("DLCFrontGameMode must be the First GameMode before any BladeIIGameMode is played!"));
 #endif
 
@@ -108,9 +108,9 @@ void AB2DLCFrontGameMode::OpenUIScene(EDLCFrontUIName InUIName, bool bCloseOther
 }
 
 void AB2DLCFrontGameMode::SetSelectedFrontTitleMovieInfo(const FString& InMovieName, EPCClass InMovieRepresentingClass)
-{ // Å¸ÀÌÆ² È­¸é¿¡¼­ ·£´ı ¼±ÅÃµÈ °Å ÀÌ¸§ ÀúÀå
+{ // é¸¥ææ’‡ æ‹³æä¿Šè¾‘ ç½šå¾… æ€¥ç¶ç­‰ èŠ­ ææŠš å†å˜
 	SelectedFrontTitleMovieName = InMovieName;
-	check(!SelectedFrontTitleMovieName.EndsWith(TEXT(".mp4"))); // ¾ğ¸®¾ó GameMoviePlayer ±â´É¿¡¼­ »ç¿ëÇÏ·Á¸é È®ÀåÀÚ°¡ ºüÁ® ÀÖ¾î¾ß ÇÔ.
+	check(!SelectedFrontTitleMovieName.EndsWith(TEXT(".mp4"))); // æ”«åºœå€” GameMoviePlayer æ‰ç“·ä¿Šè¾‘ è¤ä¾©çªå¦¨æ çŠ¬å˜ç£Šå•Š ç‹å»‰ ä¹ç»¢å…· çªƒ.
 
 	SelectedFrontTitleMovieClass = InMovieRepresentingClass;
 	check(SelectedFrontTitleMovieClass != EPCClass::EPC_End);
@@ -124,7 +124,7 @@ void AB2DLCFrontGameMode::ClearSelectedFrontTitleMovieInfo()
 }
 #if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
 void AB2DLCFrontGameMode::DevSetFrontTitleMovieClassOnly(EPCClass InClass)
-{ // Á¤½Ä ±â´É¿¡¼­ Å¸ÀÌÆ² Å¬·¡½º ÁöÁ¤Àº B2DLCFrontGameMode °¡ ¶° ÀÖ´Â µ¿¾È¿¡¸¸ Çã¿ëµÈ´Ù. °³¹ß ¹öÀü Å×½ºÆ®¿¡¼­µµ ¾î´À Á¤µµ µé¾î°¡ ÀÖÀ¸¸é ´ë·« ±â´ÉÀ» µû¶óÇÒ ¼ö ÀÖ¾î¼­ ¿­¾îµÒ.
+{ // æ²¥ä¾¥ æ‰ç“·ä¿Šè¾‘ é¸¥ææ’‡ åŠªè´°èƒ¶ ç˜¤æ²¥ç¯® B2DLCFrontGameMode å•Š æ ‹ ä¹ç»° æ‚¼æ•‘ä¿Šçˆ¶ å€¾ä¾©ç­‰ä¿ƒ. ä¿ºæƒ¯ æ»šå‚ˆ æŠ›èƒ¶é£˜ä¿Šè¾‘æ¡£ ç»¢è ¢ æ²¥æ¡£ ç”¸ç»¢å•Š ä¹æ æ æªå¸† æ‰ç“·é˜‘ è¶æ‰¼ä¸” è ä¹ç»¢è¾‘ å‡¯ç»¢ç‹„.
 	SelectedFrontTitleMovieClass = InClass;
 }
 #endif
@@ -133,7 +133,7 @@ void AB2DLCFrontGameMode::TrySetupLoadingScreenWithInitialTitleMovie(UObject* Wo
 {
 	B2_SCOPED_TRACK_LOG(TEXT("AB2DLCFrontGameMode::TrySetupLoadingScreenWithInitialTitleMovie"));
 
-	//// DLCFront Ã¹ Title ¿¡¼­ ·£´ı ¼±ÅÃµÈ µ¿¿µ»óÀ» ·Îµù È­¸é¿¡ ¶ç¿ì·Á´Â °Å.
+	//// DLCFront éœ‰ Title ä¿Šè¾‘ ç½šå¾… æ€¥ç¶ç­‰ æ‚¼åº·æƒ‘é˜‘ è‚ºçˆ¹ æ‹³æä¿Š å‰å¿«å¦¨ç»° èŠ­.
 
 	//IB2GameLoadingScreenModule* const LoadingScreenModule = GetB2LoadingScreenModulePtr();
 	//if (LoadingScreenModule != nullptr)
@@ -148,18 +148,18 @@ void AB2DLCFrontGameMode::TrySetupLoadingScreenWithInitialTitleMovie(UObject* Wo
 	//		}
 	//		const bool bUseShorterScreenLayout = ShouldUseShorterScreenLoadingImageLayout(FVector2D((float)ViewSizeX, (float)ViewSizeY));
 
-	//		// ÀÏ¹İÀûÀÎ ½ºÅ×ÀÌÁö ¿ÀÇÁ´×ÀÌ³ª Å¬·ÎÂ¡ ¿µ»ó°ú´Â ¼º°İÀÌ Á» ´Ù¸£´Ù. ±×³É ·ÎµùÈ­¸éÀÎµ¥ ·çÇÎ µ¿¿µ»óÀÎ°Å..
-	//		// ±âº» »ç¿ëÇÏ°í´Â Á» ´Ù¸£¹Ç·Î ÆÄ¶ó¹ÌÅÍ¸¦ ÁÖÀÇÇØ¼­..
+	//		// è€é¦†åˆ©ç‰¢ èƒ¶æŠ›æç˜¤ å·æ©‡é†‹æå”± åŠªè‚ºéš† åº·æƒ‘è‹ç»° å·±æ‹œæ ç²± ä¿ƒç¦ä¿ƒ. å¼Šæˆ è‚ºçˆ¹æ‹³æç‰¢å• é£ä¿ æ‚¼åº·æƒ‘ç‰¢èŠ­..
+	//		// æ‰å¤¯ è¤ä¾©çªç»Šç»° ç²± ä¿ƒç¦éª¨è‚º é¢‡æ‰¼å›ºç£ç”« æ—ç‹¼ç§¦è¾‘..
 	//		TArray<B2MovieSubtitle>* LoadingSubtitle = LoadingScreenModule->StartGameLoadingScreen_Movie(
 	//			*SelectedFrontTitleMovieName,
-	//			// ÀÏ¹İÀûÀÎ È­¸é ºñÀ²¿¡¼­´Â µ¿¿µ»óÀ» È­¸é ¹ÛÀ¸·Î ´Ã·Á °¡¸é¼­ Á¤ÇØÁø ºñÀ² À¯Áö.
+	//			// è€é¦†åˆ©ç‰¢ æ‹³æ åšå•¦ä¿Šè¾‘ç»° æ‚¼åº·æƒ‘é˜‘ æ‹³æ è§‚æ è‚º ç–µå¦¨ å•Šæè¾‘ æ²¥ç§¦æŸ³ åšå•¦ èœ¡ç˜¤.
 	//			bUseShorterScreenLayout ? ELoadingScreenMovieAlignMode::FitToMin_WideHD : ELoadingScreenMovieAlignMode::FitToMax_WideHD, 
 	//			false, true, true, EMoviePlaybackType::MT_Looped, true);
 	//		if (LoadingSubtitle)
 	//		{
-	//			// ¸®ÅÏ°ª MovieSubtitles array ´Â ¿©±â¼­ Ã¤¿ö ÁÜ
+	//			// åºœç•”è”¼ MovieSubtitles array ç»° å’¯æ‰è¾‘ ç›²å†µ æ·‹
 	//			B2MovieSubtitle LoadingScreenMsg;
-	//			// Subtitle ¿ë ÀÎÅÍÆäÀÌ½º¸¦ ¾²Áö¸¸ ¿©±â¼± ·Îµù ¸Ş½ÃÁö·Î ¾²·Á´Â °Å. Time ¹üÀ§ ÃæºĞÇÏ°Ô.
+	//			// Subtitle ä¾© ç‰¢ç£å…¶æèƒ¶ç”« é™ç˜¤çˆ¶ å’¯æ‰æ€¥ è‚ºçˆ¹ çš‹çŸ«ç˜¤è‚º é™å¦¨ç»° èŠ­. Time è£¹å›° é¢ç›’çªéœ¸.
 	//			LoadingScreenMsg.StartTime = 0.0f;
 	//			LoadingScreenMsg.EndTime = 100.0f;
 	//			LoadingScreenMsg.Color = FLinearColor(1.0f, 1.0f, 1.0f, 1.0f);
@@ -168,8 +168,8 @@ void AB2DLCFrontGameMode::TrySetupLoadingScreenWithInitialTitleMovie(UObject* Wo
 	//		}
 	//	}
 	//	else {
-	//		// ÀÇµµÇÏÁö ¾ÊÀº °æ¿ì°¡ µÉ ²«µ¥ LoadingImageName À¸·Î null À» ³Ñ°ÜÁÖ¸é ¾È¿¡¼­ fallback ÀÌ¹ÌÁö·Î µ¿ÀÛÇÒ °ÍÀÓ.
-	//		// DLC ¾Æ´Ñ °³¹ß¹öÀüÀÌ¸é ÀÌ·¸°Ô µÉ µí.
+	//		// ç‹¼æ¡£çªç˜¤ è‡¼ç¯® ç‰ˆå¿«å•Š çª æå• LoadingImageName æ è‚º null é˜‘ é€è´¥æ—æ æ•‘ä¿Šè¾‘ fallback æå›ºç˜¤è‚º æ‚¼ç´¯ä¸” å·´çƒ™.
+	//		// DLC é…’å›± ä¿ºæƒ¯æ»šå‚ˆææ æçŠ¯éœ¸ çª æ·€.
 	//		LoadingScreenModule->StartGameLoadingScreen_Image(nullptr, true);
 	//	}
 	//}
@@ -184,12 +184,12 @@ void AB2DLCFrontGameMode::BeginPlay()
 
 	//APlayerController* LocalPC = UGameplayStatics::GetLocalPlayerController(this);
 	//if (LocalPC) {
-	//	LocalPC->ActivateTouchInterface(nullptr); // Virtual Joystick ¾ø¾Ö´Â °Å
+	//	LocalPC->ActivateTouchInterface(nullptr); // Virtual Joystick ç»å±€ç»° èŠ­
 	//	LocalPC->bShowMouseCursor = true;
 	//}
 
 
-	//// ¿ä°Ç Á¤½Ä ÄÚµå´Â ¾Æ´Ï°í.. »ó¼¼ ±¸ÇöÀº ¿ä±¸ »çÇ×¿¡ µû¶ó..
+	//// å¤¸æ‰’ æ²¥ä¾¥ å†…é›ç»° é…’èªç»Š.. æƒ‘æŠ€ å¤‡æ³…ç¯® å¤¸å¤‡ è¤äº²ä¿Š è¶æ‰¼..
 	//OpenUI(EDLCFrontUIName::EDLCUI_ActionLogo);
 }
 
@@ -220,19 +220,19 @@ void AB2DLCFrontGameMode::OnDestroyCommon()
 
 	CloseAllUIs();
 
-	GMinimalDLCFrontMode = false; // Á¤½Ä °ÔÀÓ ½ÇÇà µµÁß ÀÌ°Ô ´Ù½Ã true ·Î µ¹¾Æ°¡¼± ¾È µÊ.
+	GMinimalDLCFrontMode = false; // æ²¥ä¾¥ éœ¸çƒ™ è§’é’ æ¡£å æéœ¸ ä¿ƒçŸ« true è‚º å€’é…’å•Šæ€¥ æ•‘ å‡³.
 }
 
 void AB2DLCFrontGameMode::OnPreLoadMap(const FString& InString)
 {
 	//
-	// ÀÌ¸§Àº PreLoadMap ÀÌ¶ó ÀÌ¹ø °ÔÀÓ¸ğµå ½ÃÀÛ Á÷ÀüÀ¸·Î ¿ÀÇØÇÒ ¼ö ÀÖÁö¸¸ ½ÇÁ¦·Î´Â ÀÚ±â ÀÚ½ÅÀº ³»·Á°¥ ÁØºñ¸¦ ÇÏ´Â ºÎºĞ.
-	// ¸Ê ÀüÈ¯ (·Îºñ ÁøÀÔ) Á÷Àü DLCFront World GC µÇ±â ÀÌÀü ¹«¾ğ°¡ Á¤¸®ÇÏ±â ÁÁÀº ½ºÆÌÀÓ.
+	// ææŠšç¯® PreLoadMap ææ‰¼ æé”… éœ¸çƒ™è‘›é› çŸ«ç´¯ æµå‚ˆæ è‚º å·ç§¦ä¸” è ä¹ç˜¤çˆ¶ è§’åŠ›è‚ºç»° ç£Šæ‰ ç£Šè„šç¯® éƒ´å¦¨å“ éœ–åšç”« çªç»° ä½•ç›’.
+	// ç”˜ å‚ˆåˆ¸ (è‚ºåš æŸ³æ¶) æµå‚ˆ DLCFront World GC ç™»æ‰ æå‚ˆ å…¬æ”«å•Š æ²¥åºœçªæ‰ äº®ç¯® èƒ¶é“ºçƒ™.
 	//
 
 	B2_SCOPED_TRACK_LOG(TEXT("AB2DLCFrontGameMode::OnPreLoadMap"));
 
-	// ·Îºñ·Î µé¾î°¡´Â ·Îµù È­¸éÀ» ¶ç¿î´Ù..
+	// è‚ºåšè‚º ç”¸ç»¢å•Šç»° è‚ºçˆ¹ æ‹³æé˜‘ å‰æ¬¾ä¿ƒ..
 	SetupLoadingScreen_Lobby();
 }
 
@@ -249,7 +249,7 @@ void AB2DLCFrontGameMode::SubscribeEvents()
 	//	END_CAPTURE_OBJECT()
 	//	);
 	//	
-	//// ÇÊ¿äÇÑ Event °¡ ÀÖ´Ù¸é Subcribe µî·Ï.
+	//// é˜å¤¸èŒ„ Event å•Š ä¹ä¿ƒæ Subcribe æ®¿åºŸ.
 
 
 
@@ -262,7 +262,7 @@ void AB2DLCFrontGameMode::UnsubscribeEvents()
 	//
 	//DLCFrontLaunchBladeIIGameClass<>::GetInstance().Unsubscribe(DLCFrontLaunchBladeIIGameTicket);
 	//
-	//// ÇÊ¿äÇÑ Event °¡ ÀÖ´Ù¸é Subcribe ÇØÁ¦. 
+	//// é˜å¤¸èŒ„ Event å•Š ä¹ä¿ƒæ Subcribe ç§¦åŠ›. 
 
 
 
@@ -283,7 +283,7 @@ UB2UIDLCFrontBase* AB2DLCFrontGameMode::OpenUI(EDLCFrontUIName InUIName)
 	//	NewCreated = CreateWidget<UB2UIDLCFrontBase>(LocalPC, FoundUIData->WidgetClass);
 	//	if (NewCreated)
 	//	{
-	//		NewCreated->AddToViewport(FoundUIData->CreateZOrder); // UIManager ¿Í´Â ´Ş¸® Z-order ·Î widget °£ÀÇ »óÇÏ °¡¸² °ü°è¸¦ Á¦¾î. Z-order °¡ µ¿ÀÏÇÏ¸é ³ªÁß¿¡ »ı¼ºµÈ °Ô À§·Î.
+	//		NewCreated->AddToViewport(FoundUIData->CreateZOrder); // UIManager å®¢ç»° å´”åºœ Z-order è‚º widget åŸƒç‹¼ æƒ‘çª å•Šè¦† åŒ…æ‹Œç”« åŠ›ç»¢. Z-order å•Š æ‚¼è€çªæ å”±åä¿Š ç§¯å·±ç­‰ éœ¸ å›°è‚º.
 	//		NewCreated->Init();
 	//	}
 	//}
@@ -318,7 +318,7 @@ void AB2DLCFrontGameMode::CloseAllUIs()
 		CloseUI(ThisUIName);
 	}
 
-	checkSlow(AllCreatedUI.Num() == 0); // È®½ÅÀÌ ¾ø¾î¼­ check ´Â ¾Æ´Ï°í checkSlow ·Î..
+	checkSlow(AllCreatedUI.Num() == 0); // çŠ¬è„šæ ç»ç»¢è¾‘ check ç»° é…’èªç»Š checkSlow è‚º..
 
 	AllCreatedUI.Empty();
 }
@@ -331,7 +331,7 @@ UB2UIDLCFrontBase* AB2DLCFrontGameMode::GetUI(EDLCFrontUIName InUIName)
 
 void AB2DLCFrontGameMode::SetupLoadingScreen_Lobby()
 {
-	TrySetupLoadingScreenWithInitialTitleMovie(this); // µı µ¥¼­µµ »ç¿ëÇÒ ÀÏÀÌ ÀÖ¾î¼­ static À¸·Î »© ³õ°Ô µÊ.
+	TrySetupLoadingScreenWithInitialTitleMovie(this); // è° å•è¾‘æ¡£ è¤ä¾©ä¸” è€æ ä¹ç»¢è¾‘ static æ è‚º å“— åˆéœ¸ å‡³.
 }
 
 void AB2DLCFrontGameMode::LaunchBladeIIGame()
@@ -342,13 +342,13 @@ void AB2DLCFrontGameMode::LaunchBladeIIGame()
 //#endif
 //		)
 //	{
-//		// DLC ÄÁÅÙÃ÷ ¹Ş±â ¿Ï·áÇÏ°í ·Îºñ ÀÔÀå.		
-//		// Å¸ÀÌÆ² È­¸éÀÌ ¾Æ´Ñ ·Îºñ ¸ŞÀÎÀ¸·Î °¡¾ß ÇÏ´Âµ¥ ÀÌ °æ¿ì´Â AccountInfo ¸¦ ±×ÂÊ¼­ ¹Ş¾Æ¾ß ÇØ¼­ ¾ÀÀüÈ¯ ¿¹¾à±îÁö ÇÏÁö´Â ¾Ê°í ÀÏ´Ü Title ·Î °¡µµ·Ï ÇÑ´Ù.
-//		// ÀÌÈÄ ÀÚµ¿ ÀüÈ¯ Ã³¸®´Â UITitle ¼­ ÇÒ °Í.
+//		// DLC ç‰§åˆ¨æ˜ ç½æ‰ è‚¯ä¸°çªç»Š è‚ºåš æ¶å˜.		
+//		// é¸¥ææ’‡ æ‹³ææ é…’å›± è‚ºåš çš‹ç‰¢æ è‚º å•Šå…· çªç»°å• æ ç‰ˆå¿«ç»° AccountInfo ç”« å¼Šç‡è¾‘ ç½é…’å…· ç§¦è¾‘ çº å‚ˆåˆ¸ æŠ—è·é³–ç˜¤ çªç˜¤ç»° è‡¼ç»Š è€çªœ Title è‚º å•Šæ¡£åºŸ èŒ„ä¿ƒ.
+//		// æé¥¶ ç£Šæ‚¼ å‚ˆåˆ¸ è´¸åºœç»° UITitle è¾‘ ä¸” å·´.
 //		OpenBladeIILobbyCommon(this);
 //	}
 //	else
-//	{ // ¼³Ä¡ÇÏ°í ¸Ç Ã³À½ ½ÇÇàÀÌ µÉ ²«µ¥ ÁÖ¿ä InfoAsset µé¿¡ µî·ÏµÈ ¼ÎÀÌ´õ ÄÄÆÄÀÏÀ» ¹Ì¸® ÇØ ³õ´Â PreRender ·¹º§À» ½ÇÇàÇÑ´Ù.
+//	{ // æ±²æ‘¹çªç»Š ç›– è´¸æ¾œ è§’é’æ çª æå• æ—å¤¸ InfoAsset ç”¸ä¿Š æ®¿åºŸç­‰ å˜‰ææ­¹ å“ªé¢‡è€é˜‘ å›ºåºœ ç§¦ åˆç»° PreRender é¥­éª‡é˜‘ è§’é’èŒ„ä¿ƒ.
 //		StartBladeIIPreRenderGame(this);
 //	}
 }
@@ -373,7 +373,7 @@ void AB2DLCFrontGameMode::PostEditChangeProperty(struct FPropertyChangedEvent& P
 
 void AB2DLCFrontGameMode::EditorCheckForWidgetNameIntegrity()
 {
-	// UIDate TMap ¿¡ µî·ÏÇÑ Key °ªÀ» WidgetName ¿¡ ³Ñ°ÜÁÜ.
+	// UIDate TMap ä¿Š æ®¿åºŸèŒ„ Key è”¼é˜‘ WidgetName ä¿Š é€è´¥æ·‹.
 
 	for (TMap<EDLCFrontUIName, FDLCFrontUIData>::TIterator UIDataIt(MyAssetRef.AllUIData); UIDataIt; ++UIDataIt)
 	{

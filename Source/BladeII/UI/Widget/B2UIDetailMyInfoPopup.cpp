@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIDetailMyInfoPopup.h"
 #include "B2UIManager.h"
 #include "B2UIGuildMark.h"
@@ -83,7 +83,7 @@ void UB2UIDetailMyInfoSlot::SetCharInfo(EPCClass HeroClass, int32 Lv, int32 Comb
 
 	if (ExpProgressBar.IsValid() && ExpProgressBar_Max.IsValid())
 	{
-		// ¸¸·¦ÀÌ¸é ¶ç¿ìÁÜ.
+		// çˆ¶ä¹ææ å‰å¿«æ·‹.
 		bool IsMax = CharacterMaxLevel <= Lv;
 		ExpProgressBar->SetPercent(IsMax ? 0.0f : ExpPercent);
 		ExpProgressBar->SetVisibility(IsMax ? ESlateVisibility::Collapsed : ESlateVisibility::SelfHitTestInvisible);
@@ -213,7 +213,7 @@ void UB2UIDetailMyInfoPopup::OnClickBTN_ChangeChar()
 
 void UB2UIDetailMyInfoPopup::OnClickBTN_Close()
 {
-	// ¹é¹öÆ° Ãß°¡ Ã³¸® ÇÊ¿ä
+	// å½’æ»šç“¢ çœ å•Š è´¸åºœ é˜å¤¸
 	this->CloseSelf();
 }
 
@@ -258,13 +258,13 @@ void UB2UIDetailMyInfoPopup::SetUserGuild()
 		}
 
 		if (IMG_DefaultMark.IsValid()) {
-			IMG_DefaultMark->SetVisibility(ESlateVisibility::Hidden); // GuildMark ¶û °°Àº À§Ä¡.
+			IMG_DefaultMark->SetVisibility(ESlateVisibility::Hidden); // GuildMark å°” éç¯® å›°æ‘¹.
 		}
 	}
 	else
 	{
 		if (IMG_DefaultMark.IsValid()) {
-			IMG_DefaultMark->SetVisibility(ESlateVisibility::HitTestInvisible); // GuildMark ¶û °°Àº À§Ä¡.
+			IMG_DefaultMark->SetVisibility(ESlateVisibility::HitTestInvisible); // GuildMark å°” éç¯® å›°æ‘¹.
 		}
 		if (UIP_GuildMark.IsValid()) {
 			UIP_GuildMark->SetVisibility(ESlateVisibility::Hidden);

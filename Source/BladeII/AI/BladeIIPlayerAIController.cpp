@@ -1,4 +1,4 @@
-
+ï»¿
 #include "BladeIIPlayerAIController.h"
 //#include "BladeII.h"
 
@@ -191,8 +191,8 @@ bool ABladeIIPlayerAIController::UpdateTargetAndLocation(FString const& KeyName)
 
 	CurrentTargetMob = PickedOpponent;
 
-	//ÀÌ°Ô ¾øÀ¸¸é Ä³¸¯ÅÍ°¡ Å¸°ÙÀ» ¦i¾Æ ´Ù´Ï¸é¼­ °ø°İÀ» ¾ÈÇÏ°Ô µÊ.
-	//¿ì¸®´Â Rotate to face BB entry¸¦ »ç¿ëÇÒ¼ö ¾øÀ½(ÀÌÀ¯´Â ¿©·¯°¡Áö ÀÓ.)
+	//æéœ¸ ç»æ æ æŸè…ç£å•Š é¸¥ç™¾é˜‘ î›é…’ ä¿ƒèªæè¾‘ å‚æ‹œé˜‘ æ•‘çªéœ¸ å‡³.
+	//å¿«åºœç»° Rotate to face BB entryç”« è¤ä¾©ä¸”è ç»æ¾œ(æèœ¡ç»° å’¯çŸ¾å•Šç˜¤ çƒ™.)
 	PossessedPlayer->TargetActor = CurrentTargetMob;
 
 	return true;
@@ -207,8 +207,8 @@ bool ABladeIIPlayerAIController::UpdateTarget()
 		return false;
 	}
 
-	//ÀÌ°Ô ¾øÀ¸¸é Ä³¸¯ÅÍ°¡ Å¸°ÙÀ» ¦i¾Æ ´Ù´Ï¸é¼­ °ø°İÀ» ¾ÈÇÏ°Ô µÊ.
-	//¿ì¸®´Â Rotate to face BB entry¸¦ »ç¿ëÇÒ¼ö ¾øÀ½(ÀÌÀ¯´Â ¿©·¯°¡Áö ÀÓ.)
+	//æéœ¸ ç»æ æ æŸè…ç£å•Š é¸¥ç™¾é˜‘ î›é…’ ä¿ƒèªæè¾‘ å‚æ‹œé˜‘ æ•‘çªéœ¸ å‡³.
+	//å¿«åºœç»° Rotate to face BB entryç”« è¤ä¾©ä¸”è ç»æ¾œ(æèœ¡ç»° å’¯çŸ¾å•Šç˜¤ çƒ™.)
 	ABladeIIPlayer* B2Char = Cast<ABladeIIPlayer>(GetPawn());
 	if (B2Char)
 	{

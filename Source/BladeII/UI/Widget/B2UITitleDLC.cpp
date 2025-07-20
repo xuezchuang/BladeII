@@ -1,4 +1,4 @@
-#include "B2UITitleDLC.h"
+ï»¿#include "B2UITitleDLC.h"
 #include "B2UITitleDesign.h"
 #include "B2UIEnum.h"
 #include "Event.h"
@@ -12,7 +12,7 @@
 #include "MediaSource.h"
 #include "B2MessageInfoCommonStruct.h"
 #include "B2AndroidBackManager.h"
-// kakao ÀÓ½Ã
+// kakao çƒ™çŸ«
 #include "B2PlatformAPI.h"
 
 #include "UnrealEngine.h"
@@ -43,7 +43,7 @@ void UB2UITitleDLC::Init()
 	m_firstRequestGetAccount = true;
 	m_LoginDelegateCalled.AtomicSet(false);
 
-#if PLATFORM_ANDROID  // kakao ·Î±×ÀÎ delegate µî·Ï
+#if PLATFORM_ANDROID  // kakao è‚ºå¼Šç‰¢ delegate æ®¿åºŸ
 
 #if defined(NONE_KAKAO_SDK_VERSION)
  
@@ -65,7 +65,7 @@ void UB2UITitleDLC::Init()
 	OnKakaoLoginHandler = FKakaoTalkPlugin::OnLoggedInDelegate.AddUObject(this, &UB2UITitleDLC::KakaoLoginDelegate);
 #endif
 
-	// Ã³À½ ½ÇÇà ÈÄ ·£´ı ¼±ÅÃÀ¸·Î ÇÃ·¹ÀÌ ÇÏ´Â °÷. ÀÌÈÄ Title µ¿¿µ»ó ÇÃ·¹ÀÌ´Â ¿©±â¼­ ¼±ÅÃÇÑ °ÍÀ» ÀÌ¾î¼­ ÇÏ°Ô µÊ.
+	// è´¸æ¾œ è§’é’ é¥¶ ç½šå¾… æ€¥ç¶æ è‚º æ•²é¥­æ çªç»° é•‘. æé¥¶ Title æ‚¼åº·æƒ‘ æ•²é¥­æç»° å’¯æ‰è¾‘ æ€¥ç¶èŒ„ å·´é˜‘ æç»¢è¾‘ çªéœ¸ å‡³.
 	if (UIP_TitleDesign.IsValid())
 	{
 		UIP_TitleDesign->StartMovieRandomPick();
@@ -124,7 +124,7 @@ void UB2UITitleDLC::TurnOffStartMovies()
 
 void UB2UITitleDLC::SetSelectedMediaSourceInfo(UMediaSource* InSelectedSource, EPCClass inSelectedClass)
 {
-	// ¿©±â¼­ ¹«ÀÛÀ§·Î ¼±ÅÃµÈ µ¿¿µ»ó Å¬¸³ ÀÌ¸§ ¹× ¼Â¾÷ Å°¸¦ ÀúÀåÇØ¼­ ·Îºñ ·Îµù È­¸é¿¡ ¾²±â À§ÇÔ.
+	// å’¯æ‰è¾‘ å…¬ç´¯å›°è‚º æ€¥ç¶ç­‰ æ‚¼åº·æƒ‘ åŠªèµ‹ ææŠš æ£º æ‚¸è¯€ è™ç”« å†å˜ç§¦è¾‘ è‚ºåš è‚ºçˆ¹ æ‹³æä¿Š é™æ‰ å›°çªƒ.
 	if (InSelectedSource && inSelectedClass != EPCClass::EPC_End)
 	{
 		const FString MovieClipName = FPaths::GetCleanFilename(InSelectedSource->GetUrl());
@@ -132,7 +132,7 @@ void UB2UITitleDLC::SetSelectedMediaSourceInfo(UMediaSource* InSelectedSource, E
 		if (LoginGameMode && !MovieClipName.IsEmpty())
 		{
 			LoginGameMode->SetSelectedFrontTitleMovieInfo(
-				FPaths::GetBaseFilename(MovieClipName), // È®ÀåÀÚ°¡ ºüÁ®¾ß ÇÑ´Ù.
+				FPaths::GetBaseFilename(MovieClipName), // çŠ¬å˜ç£Šå•Š ç‹å»‰å…· èŒ„ä¿ƒ.
 				inSelectedClass
 			);
 		}
@@ -144,7 +144,7 @@ void UB2UITitleDLC::CloseWidgetDelegate()
 	B2P_GameExitPopUp("byebye");
 }
 
-//[@AKI, 170927][FIXME]Main Thread¿¡¼­ È£ÃâµÇ´Â Çö»óÀÌ ÀÖ¾î ÀÓ½Ã ¹æÆíÀ¸·Î º¯°æ ÇÔ.
+//[@AKI, 170927][FIXME]Main Threadä¿Šè¾‘ é¾‹å…ç™»ç»° æ³…æƒ‘æ ä¹ç»¢ çƒ™çŸ« è§„ç¥ˆæ è‚º å‡½ç‰ˆ çªƒ.
 void UB2UITitleDLC::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
 {
 	Super::NativeTick(MyGeometry, InDeltaTime);
@@ -159,8 +159,8 @@ FReply UB2UITitleDLC::NativeOnTouchStarted(const FGeometry& InGeometry, const FP
 {
 	PlayTouchAnimHandling();
 
-	//¼­¹ö¿ÍÀÇ Á¢¼ÓÀ» ¸ÕÀúÇØ¾ßµÊ.
-	// PlayTouchAnim ÀÌ µé¾î°¨¿¡ µû¶ó.. ±×°Ô ³¡±îÁö ÇÃ·¹ÀÌµÇ´Â °É º¸ÀåÇÏÁö´Â ¾ÊÁö¸¸ ¾ÆÁÖ ÂÉ±İÀÌ¶óµµ Áö¿¬Àº ½ÃÄÑ º¸ÀÚ. ¾ÆÁÖ ÂÉ±İ..
+	//è¾‘æ»šå®¢ç‹¼ ç«‹åŠ é˜‘ åˆšå†ç§¦å…·å‡³.
+	// PlayTouchAnim æ ç”¸ç»¢çš‘ä¿Š è¶æ‰¼.. å¼Šéœ¸ åœºé³–ç˜¤ æ•²é¥­æç™»ç»° å§ ç„Šå˜çªç˜¤ç»° è‡¼ç˜¤çˆ¶ é…’æ— å¾‹é™›ææ‰¼æ¡£ ç˜¤æ¥·ç¯® çŸ«éš¾ ç„Šç£Š. é…’æ— å¾‹é™›..
 	DeferredPlatformServerConnectionHandling(0.1f);
 
 	return Super::NativeOnTouchStarted(InGeometry, InGestureEvent);
@@ -171,9 +171,9 @@ FReply UB2UITitleDLC::NativeOnMouseButtonDown(const FGeometry& InGeometry, const
 	PlayTouchAnimHandling();
 	OnMouseDownHandling();
 
-#if !PLATFORM_IOS // IOS ¿¡¼­´Â Áßº¹ È£ÃâÀÌ ¾ÈµÇ¾î ÀÔ·Â ÇÏ³ª´Â ¸·À½.. Å×½ºÆ® ÈÄ ¾Èµå·ÎÀÌµå¿¡¼­µµ Áßº¹ È£Ãâ½Ã ÇÏ³ª´Â »èÁ¦µÇ¾î¾ß ÇÔ.
-	//¼­¹ö¿ÍÀÇ Á¢¼ÓÀ» ¸ÕÀúÇØ¾ßµÊ.
-	// PlayTouchAnim ÀÌ µé¾î°¨¿¡ µû¶ó.. ±×°Ô ³¡±îÁö ÇÃ·¹ÀÌµÇ´Â °É º¸ÀåÇÏÁö´Â ¾ÊÁö¸¸ ¾ÆÁÖ ÂÉ±İÀÌ¶óµµ Áö¿¬Àº ½ÃÄÑ º¸ÀÚ. ¾ÆÁÖ ÂÉ±İ..
+#if !PLATFORM_IOS // IOS ä¿Šè¾‘ç»° åæ±— é¾‹å…æ æ•‘ç™»ç»¢ æ¶ä»¿ çªå”±ç»° é˜œæ¾œ.. æŠ›èƒ¶é£˜ é¥¶ æ•‘é›è‚ºæé›ä¿Šè¾‘æ¡£ åæ±— é¾‹å…çŸ« çªå”±ç»° æ˜åŠ›ç™»ç»¢å…· çªƒ.
+	//è¾‘æ»šå®¢ç‹¼ ç«‹åŠ é˜‘ åˆšå†ç§¦å…·å‡³.
+	// PlayTouchAnim æ ç”¸ç»¢çš‘ä¿Š è¶æ‰¼.. å¼Šéœ¸ åœºé³–ç˜¤ æ•²é¥­æç™»ç»° å§ ç„Šå˜çªç˜¤ç»° è‡¼ç˜¤çˆ¶ é…’æ— å¾‹é™›ææ‰¼æ¡£ ç˜¤æ¥·ç¯® çŸ«éš¾ ç„Šç£Š. é…’æ— å¾‹é™›..
 	DeferredPlatformServerConnectionHandling(0.1f);
 #endif
 	return Super::NativeOnMouseButtonDown(InGeometry, InMouseEvent);
@@ -182,7 +182,7 @@ FReply UB2UITitleDLC::NativeOnMouseButtonDown(const FGeometry& InGeometry, const
 void UB2UITitleDLC::PlatformServerConnectionHandling()
 {
 
-#if PLATFORM_WINDOWS || defined( NONE_KAKAO_SDK_VERSION ) // ½ÇÁ¦ Ä«Ä«¿À ·Î±×ÀÎÀÌ ºÒ°¡ÇÑ PC °³¹ß¹öÀü ·çÆ®. ½ÇÁ¦·Î DLCFront ¸ğµå °³¹ß ´ã´çÀÚ°¡ ¾Æ´Ñ UITitleDLC ·Î ¿Ã ÀÏµµ °ÅÀÇ ¾ø´Ù.
+#if PLATFORM_WINDOWS || defined( NONE_KAKAO_SDK_VERSION ) // è§’åŠ› å¢¨å¢¨å· è‚ºå¼Šç‰¢æ é˜‚å•ŠèŒ„ PC ä¿ºæƒ¯æ»šå‚ˆ é£é£˜. è§’åŠ›è‚º DLCFront è‘›é› ä¿ºæƒ¯ æ·¬å¯¸ç£Šå•Š é…’å›± UITitleDLC è‚º æ£µ è€æ¡£ èŠ­ç‹¼ ç»ä¿ƒ.
 	auto* LoginGameMode = Cast<AB2DLCFrontGameMode>(UGameplayStatics::GetGameMode(this));
 	if (LoginGameMode)
 	{
@@ -201,7 +201,7 @@ void UB2UITitleDLC::PlatformServerConnectionHandling()
 
 	UWorld* TheWorld = GetWorld();
 	if (TheWorld)
-	{ // DeferredPlatformServerConnectionHandling À¸·Î ºÒ·ÈÀ» ¼ö ÀÖ´Ù.
+	{ // DeferredPlatformServerConnectionHandling æ è‚º é˜‚å•¡é˜‘ è ä¹ä¿ƒ.
 		TheWorld->GetTimerManager().ClearTimer(DeferredPlatformServerConnectTH);
 	}
 }
@@ -211,7 +211,7 @@ void UB2UITitleDLC::DeferredPlatformServerConnectionHandling(float InDeferSecond
 	{
 		UWorld* TheWorld = GetWorld();
 		if (TheWorld &&
-			!DeferredPlatformServerConnectTH.IsValid() // ÀÌ¹Ì ÅÍÄ¡ÇÑ »óÈ²¿¡¼­ ¶Ç ÅÍÄ¡ÀÏ ¼ö ÀÖ´Ù. ¹«½Ã.
+			!DeferredPlatformServerConnectTH.IsValid() // æå›º ç£æ‘¹èŒ„ æƒ‘ç‚”ä¿Šè¾‘ è‚š ç£æ‘¹è€ è ä¹ä¿ƒ. å…¬çŸ«.
 			)
 		{
 			TheWorld->GetTimerManager().ClearTimer(DeferredPlatformServerConnectTH);
@@ -226,10 +226,10 @@ void UB2UITitleDLC::DeferredPlatformServerConnectionHandling(float InDeferSecond
 
 void UB2UITitleDLC::PlayTouchAnimHandling()
 {
-	// Å¸ÀÌ¸Ó¸¦ ¼³Ä¡ÇÏ°Å³ª ½ÃÀÛ ½Ã°¢À» ±â·ÏÇÏ°Å³ª ÇØ¼­ KakaoLoginDelegate °¡ ¿ÔÀ» ½Ã ¾ÆÁ÷ ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ ´Ù ÇÃ·¹ÀÌ ¾È µÇ¾úÀ¸¸é ´ÙÀ½ Àå¸éÀ¸·Î ³Ñ¾î°¡´Â °É hold ÇØ º¼ ¼öµµ ÀÖ´Ù.
-	// ±×·²·¯¸é UIPatch ¿©´Â ±¸Á¶¸¦ ¾à°£ ¹Ù²ã¾ß ÇÏ´Âµ¥ ±×ÂÊÇÏ°í ¿«ÀÌ°í ½ÍÁö ¾Ê°í,
-	// ±×·¸´Ù°í PlatformServerConnectionHandling À» Áö¿¬½ÃÅ°´Â °Ç ¾Æ´Ñ °Å °°°í
-	// ´Ü¼øÈ÷ ÇÃ·¹ÀÌ È£Ãâ¸¸ ÇØ µÒ.
+	// é¸¥æèµ£ç”« æ±²æ‘¹çªèŠ­å”± çŸ«ç´¯ çŸ«é˜¿é˜‘ æ‰åºŸçªèŠ­å”± ç§¦è¾‘ KakaoLoginDelegate å•Š å­é˜‘ çŸ« é…’æµ å±€èªçš‹æè®°æ ä¿ƒ æ•²é¥­æ æ•‘ ç™»èŒæ æ ä¿ƒæ¾œ å˜ææ è‚º é€ç»¢å•Šç»° å§ hold ç§¦ æ­ èæ¡£ ä¹ä¿ƒ.
+	// å¼Šå‡¡çŸ¾æ UIPatch å’¯ç»° å¤‡ç‚¼ç”« è·åŸƒ å®˜å±‚å…· çªç»°å• å¼Šç‡çªç»Š æ©æç»Š é…µç˜¤ è‡¼ç»Š,
+	// å¼ŠçŠ¯ä¿ƒç»Š PlatformServerConnectionHandling é˜‘ ç˜¤æ¥·çŸ«è™ç»° æ‰’ é…’å›± èŠ­ éç»Š
+	// çªœé‰´æ´’ æ•²é¥­æ é¾‹å…çˆ¶ ç§¦ ç‹„.
 
 	if (UIP_TitleDesign.IsValid())
 	{
@@ -248,7 +248,7 @@ void UB2UITitleDLC::OnMouseDownHandling()
 #if PLATFORM_ANDROID 
 void UB2UITitleDLC::None_Kakao_Sdk_Login()
 {
-	// ¿©±ä Dummy °¡ ¾Æ´Ñ ÁøÂ¥ Kakao ·Î±×ÀÎ µÈ °Å.
+	// å’¯å˜ Dummy å•Š é…’å›± æŸ³æ¥¼ Kakao è‚ºå¼Šç‰¢ ç­‰ èŠ­.
 
 	UE_LOG(LogClass, Log, TEXT("####KakaoLoginDelegate !!!!!!!!!!!!!!"));
 	FString KakaoUserID;
@@ -309,7 +309,7 @@ void UB2UITitleDLC::None_Kakao_Sdk_Login()
 
 	// TODO fill any other value
 
-	// ¿©±ä °ÔÀÓ¾²·¹µå°¡ ¾Æ´Ï¹Ç·Î ÀÌÈÄ Ã³¸®´Â ÀÌ°É °Ë»çÇØ¼­ °ÔÀÓ¾²·¹µå Tick ¿¡¼­ ¼öÇà.
+	// å’¯å˜ éœ¸çƒ™é™é¥­é›å•Š é…’èªéª¨è‚º æé¥¶ è´¸åºœç»° æå§ å…«è¤ç§¦è¾‘ éœ¸çƒ™é™é¥­é› Tick ä¿Šè¾‘ èé’.
 	m_LoginDelegateCalled.AtomicSet(true);
 }
 #endif
@@ -317,7 +317,7 @@ void UB2UITitleDLC::None_Kakao_Sdk_Login()
 #if (PLATFORM_ANDROID )
 void UB2UITitleDLC::KakaoLoginDelegate(JNIEnv *env, jobject thiz, jstring userID, jstring accessToken)
 {
-	// ¿©±ä Dummy °¡ ¾Æ´Ñ ÁøÂ¥ Kakao ·Î±×ÀÎ µÈ °Å.
+	// å’¯å˜ Dummy å•Š é…’å›± æŸ³æ¥¼ Kakao è‚ºå¼Šç‰¢ ç­‰ èŠ­.
 
 	UE_LOG(LogClass, Log, TEXT("####KakaoLoginDelegate !!!!!!!!!!!!!!"));
 	FString KakaoUserID;
@@ -384,7 +384,7 @@ void UB2UITitleDLC::KakaoLoginDelegate(JNIEnv *env, jobject thiz, jstring userID
 	}
 	// TODO fill any other value
 
-	// ¿©±ä °ÔÀÓ¾²·¹µå°¡ ¾Æ´Ï¹Ç·Î ÀÌÈÄ Ã³¸®´Â ÀÌ°É °Ë»çÇØ¼­ °ÔÀÓ¾²·¹µå Tick ¿¡¼­ ¼öÇà.
+	// å’¯å˜ éœ¸çƒ™é™é¥­é›å•Š é…’èªéª¨è‚º æé¥¶ è´¸åºœç»° æå§ å…«è¤ç§¦è¾‘ éœ¸çƒ™é™é¥­é› Tick ä¿Šè¾‘ èé’.
 	m_LoginDelegateCalled.AtomicSet(true);
 }
 
@@ -393,7 +393,7 @@ void UB2UITitleDLC::KakaoLoginDelegate(JNIEnv *env, jobject thiz, jstring userID
 #if PLATFORM_ANDROID 
 void UB2UITitleDLC::KakaoLoginfailDelegate(JNIEnv *env, jobject thiz, jint resultCode)
 {
-	// ³×Æ®¿öÅ© ¿¬°á
+	// åŒ™é£˜å†µå†œ æ¥·æ¬
 	if (AB2DLCFrontGameMode* DLCGameMode = Cast<AB2DLCFrontGameMode>(UGameplayStatics::GetGameMode(this)))
 	{
 		DLCGameMode->ShowKakaoErrorPopup(resultCode);
@@ -456,7 +456,7 @@ void UB2UITitleDLC::KakaoLoginDelegate(bool IsSuccess, int32 ErrorCode)
 			FB2AuthInfo::GetInstance().SetSessionPort(11000);
 		}
 
-		// ¿©±ä °ÔÀÓ¾²·¹µå°¡ ¾Æ´Ï¹Ç·Î ÀÌÈÄ Ã³¸®´Â ÀÌ°É °Ë»çÇØ¼­ °ÔÀÓ¾²·¹µå Tick ¿¡¼­ ¼öÇà.
+		// å’¯å˜ éœ¸çƒ™é™é¥­é›å•Š é…’èªéª¨è‚º æé¥¶ è´¸åºœç»° æå§ å…«è¤ç§¦è¾‘ éœ¸çƒ™é™é¥­é› Tick ä¿Šè¾‘ èé’.
 		m_LoginDelegateCalled.AtomicSet(true);
 	}
 	else
@@ -465,14 +465,14 @@ void UB2UITitleDLC::KakaoLoginDelegate(bool IsSuccess, int32 ErrorCode)
 		bool bInitializeFailed = ErrorCode == 3000 || ErrorCode == 3001;
 		if (bInitializeFailed && B2P_IsNetworkConnected() == true)
 		{
-			//³×Æ®¿öÅ© ¿¬°áÀÌ µÇ¾ú°í, ÃÊ±âÈ­ ½ÇÆĞ¸é ´Ù½Ã ½ÃµµÇÔ.
+			//åŒ™é£˜å†µå†œ æ¥·æ¬æ ç™»èŒç»Š, æª¬æ‰æ‹³ è§’è©æ ä¿ƒçŸ« çŸ«æ¡£çªƒ.
 			KakaotalkAPI::OnInit();
 			B2P_KakaoLogin();
 			m_firstRequestGetAccount = true;
 			return;
 		}
 
-		// ³×Æ®¿öÅ© ¿¬°á
+		// åŒ™é£˜å†µå†œ æ¥·æ¬
 		if (AB2DLCFrontGameMode* DLCGameMode = Cast<AB2DLCFrontGameMode>(UGameplayStatics::GetGameMode(this)))
 		{
 			DLCGameMode->ShowKakaoErrorPopup(ErrorCode);
@@ -530,7 +530,7 @@ void UB2UITitleDLC::PostKakaoLoginInit()
 {
 	check(m_LoginDelegateCalled && IsInGameThread());
 
-	// ´ÙÀ½ ¾ÀÀ¸·Î ³Ñ¾î°¨.
+	// ä¿ƒæ¾œ çº æ è‚º é€ç»¢çš‘.
 	AB2DLCFrontGameMode* LoginGameMode = Cast<AB2DLCFrontGameMode>(UGameplayStatics::GetGameMode(this));
 	if (LoginGameMode)
 	{
@@ -540,7 +540,7 @@ void UB2UITitleDLC::PostKakaoLoginInit()
 	TurnOffStartMovies();
 }
 
-// ÀÌ°Ç ÀÌÁ¦ ¾È ¾²´Â °Ç°¡?
+// ææ‰’ æåŠ› æ•‘ é™ç»° æ‰’å•Š?
 int32 GetFirstCharacterViewState()
 {
 	int32 RetValue = 0;

@@ -60,10 +60,10 @@ void UB2WingUIP_PropOptionIcon::UpdateWidgets()
 {
 	if (IMG_Icon.IsValid())
 	{
-		// ¿ø·¡ ¿­·ÁÀÖÀ» ¶§¸¸ ÀÌ°É ÄÑ´Â °Å¿´´Âµ¥ Àá±ä ÀÌ¹ÌÁö¸¦ ÀÌ À§¿¡ ¾º¿ì´Â ½ÄÀ¸·Î ¹Ù²ñ. ÀÌ°Ç Ç×»ó on.
+		// ç›”è´° å‡¯å¦¨ä¹é˜‘ é”­çˆ¶ æå§ éš¾ç»° èŠ­çœ‹ç»°å• æ³ªå˜ æå›ºç˜¤ç”« æ å›°ä¿Š ç«å¿«ç»° ä¾¥æ è‚º å®˜æŸ´. ææ‰’ äº²æƒ‘ on.
 		IMG_Icon->SetVisibility(/*CachedOptionData.bIsOpen ? */ESlateVisibility::HitTestInvisible /*: ESlateVisibility::Collapsed*/);
 
-		// Àá°ÜÀÖ´Â ¾ÆÀÌÄÜµµ ÇØ´ç ¿É¼Ç¿¡ ¸Â°Ô Ãâ·ÂµÇ°Ô²û
+		// æ³ªè´¥ä¹ç»° é…’æèƒ½æ¡£ ç§¦å¯¸ å¯è®°ä¿Š å˜éœ¸ å…ä»¿ç™»éœ¸é˜
 		//if (CachedOptionData.bIsOpen)
 		{
 			UB2WingInfo* WingInfoTable = StaticFindWingInfo();
@@ -102,8 +102,8 @@ void UB2WingUIP_PropOptionIcon::UpdateWidgets()
 
 	if (BTN_Area.IsValid())
 	{
-		// ³¯°³ ¸ŞÀÎ UI ¿¡¼­´Â ¼Ó¼º ¿É¼ÇÀÌ Open µÇÁö ¾ÊÀº °æ¿ì¶óµµ Å¬¸¯ °¡´ÉÇÏµµ·Ï ÇØ¼­ ¼Ó¼º¿É¼Ç °­È­Ã¢ÀÌ ¿­¸®µµ·Ï ÇÑ´Ù.
-		// ±âÅ¸ ´Ù¸¥ °æ¿ì´Â Å¬¸¯ÇÒ °÷ ¾øÀ» µí..
+		// æœä¿º çš‹ç‰¢ UI ä¿Šè¾‘ç»° åŠ å·± å¯è®°æ Open ç™»ç˜¤ è‡¼ç¯® ç‰ˆå¿«æ‰¼æ¡£ åŠªè… å•Šç“·çªæ¡£åºŸ ç§¦è¾‘ åŠ å·±å¯è®° ç¢æ‹³èŠ’æ å‡¯åºœæ¡£åºŸ èŒ„ä¿ƒ.
+		// æ‰é¸¥ ä¿ƒå¼— ç‰ˆå¿«ç»° åŠªè…ä¸” é•‘ ç»é˜‘ æ·€..
 		BTN_Area->SetVisibility(
 			(MyUsageType == EWingPropOptionUIPUsage::WPOUU_WingPageMain /*&& CachedOptionData.bIsOpen*/) ? 
 			ESlateVisibility::Visible : ESlateVisibility::Collapsed);
@@ -112,8 +112,8 @@ void UB2WingUIP_PropOptionIcon::UpdateWidgets()
 
 void UB2WingUIP_PropOptionIcon::OnClickBtnArea()
 {
-	if (MyUsageType == EWingPropOptionUIPUsage::WPOUU_WingPageMain /*&& CachedOptionData.bIsOpen*/) // ÀÌ Á¶°ÇÀÌ ¾Æ´Ò ¶§ ¾Æ¿¹ click ÀÌ µÇÁö ¸»¾Æ¾ß..
-	{// ¼Ó¼º¿É¼Ç °­È­ ¸Ş´º ¿ÀÇÂ.
+	if (MyUsageType == EWingPropOptionUIPUsage::WPOUU_WingPageMain /*&& CachedOptionData.bIsOpen*/) // æ ç‚¼æ‰’æ é…’åŒ† é”­ é…’æŠ— click æ ç™»ç˜¤ å¯Œé…’å…·..
+	{// åŠ å·±å¯è®° ç¢æ‹³ çš‹æ˜¥ å·é”¹.
 		DJLegacy_OpenLobbySubPopupClass<ELobbySubPopups, FDJLegacySubpopupAddPanelInfo>::GetInstance().Signal(ELobbySubPopups::ELSPU_WingPropOptionEnhance, FDJLegacySubpopupAddPanelInfo());
 	}
 }

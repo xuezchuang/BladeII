@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+Ôªø// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UICostumeEnhancePopup.h"
 #include "B2UIManager.h"
 #include "B2UICostumeItemSlot.h"
@@ -233,7 +233,7 @@ void UB2UICostumeEnhancePopup::OnEndAnimation_BP()
 {
 	//EnterItemCostumeEnhanceModeClass<int64>::GetInstance().Signal(CurrentItemID);
 	//data_trader::Retailer::GetInstance().RequestEnhanceCostume(CurrentItemID);
-	//// response ¥¬ void UB2LobbyInventory::CostumeEnhanceItem(const FB2ResponseEnhanceCostumePtr& msg) ø‰±‚¿”
+	//// response Áª∞ void UB2LobbyInventory::CostumeEnhanceItem(const FB2ResponseEnhanceCostumePtr& msg) Â§∏ÊâÅÁÉô
 	//OnClickBTN_Close();
 }
 

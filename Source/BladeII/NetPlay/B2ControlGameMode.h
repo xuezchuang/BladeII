@@ -1,20 +1,21 @@
-#pragma once
+ï»¿#pragma once
 //#include "BladeII.h"
 #include "CoreMinimal.h"
 #include "UMG.h"
 #include "B2NetGameMode.h"
-#include "../DataStore/B2ClientDataStore.h"
+#include "B2ClientDataStore.h"
+#include "UObject/Class.h"
 #include "B2ControlGameMode.generated.h"
 
 UENUM()
 enum class EControlMatchSceneState : uint8
 {
 	None,
-	Intro,			// ÀÎÆ®·Î
-	Ready,			// ÁØºñ¿Ï·á
-	WaitActive,		// °ÅÁ¡ È°¼ºÈ­ ´ë±â
-	InGame,			// °ÔÀÓÁß
-	EndMatch		// °ÔÀÓ Á¾·á
+	Intro,			// ç‰¢é£˜è‚º
+	Ready,			// éœ–åšè‚¯ä¸°
+	WaitActive,		// èŠ­ç—¢ åŠå·±æ‹³ æªæ‰
+	InGame,			// éœ¸çƒ™å
+	EndMatch		// éœ¸çƒ™ è¾†ä¸°
 };
 
 UENUM()
@@ -41,11 +42,11 @@ struct FControlMatchAnims
 UENUM()
 enum class EControlTutorialActionStep : uint8
 {
-	ViewCenterCamera,			// Áß¾Ó¿¡ Ä«¸Ş¶ó³õ±â
-	ViewSanctuaryBottomCamera,	// ÇÏ´Ü ¼º¼Ò Ä«¸Ş¶ó³õ±â
-	ViewSanctuaryTopCamera,		// »ó´Ü ¼º¼Ò Ä«¸Ş¶ó³õ±â
-	ViewIngameCamera,			// Ä«¸Ş¶ó¸¸ ÀÎ°ÔÀÓÀ¸·Î º¹±¸
-	SetIngame,			// ³¡ º¹±¸
+	ViewCenterCamera,			// åå±…ä¿Š å¢¨çš‹æ‰¼åˆæ‰
+	ViewSanctuaryBottomCamera,	// çªçªœ å·±å®¶ å¢¨çš‹æ‰¼åˆæ‰
+	ViewSanctuaryTopCamera,		// æƒ‘çªœ å·±å®¶ å¢¨çš‹æ‰¼åˆæ‰
+	ViewIngameCamera,			// å¢¨çš‹æ‰¼çˆ¶ ç‰¢éœ¸çƒ™æ è‚º æ±—å¤‡
+	SetIngame,			// åœº æ±—å¤‡
 };
 
 USTRUCT(BlueprintType)
@@ -474,7 +475,7 @@ public:
 	float WaitFinalResultTime;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Timer)
-	float WaitActiveTime;		// °ÅÁ¡ È°¼ºÈ­ ´ë±â
+	float WaitActiveTime;		// èŠ­ç—¢ åŠå·±æ‹³ æªæ‰
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Timer)
 	float WaitInMatchMakingTime;
@@ -561,7 +562,7 @@ private:
 	AEmitter* WinFxEmittersRed;
 	AEmitter* WinFxEmittersBlue;
 
-	// ¼º¼Ò ¸¶½ÅÀÚ Á¤º¸. Å°´Â ¼º¼Ò¾ÆÀÌµğ °ªÀº ¸ÔÀºÀÚ ³İ¾ÆÀÌµğ
+	// å·±å®¶ ä»˜è„šç£Š æ²¥ç„Š. è™ç»° å·±å®¶é…’æå¼ è”¼ç¯® å†ˆç¯®ç£Š é½¿é…’æå¼
 	TMap<int32, uint32> SanctuaryDrunkInfos;
 
 	bool m_bApplyedNpcSpawnTimer;

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2EtherSetEffect.h"
@@ -151,7 +151,7 @@ void UB2EtherSetEffect::SpawnEtherFx(ABladeIICharacter* ApplyCharacter)
 	//	if (EtherEffectObj == nullptr)
 	//		EtherEffectObj = LoadSynchronous(EtherEffectAsset);
 
-	//	//[@AKI, 181206] Ether Effect ¾È³ª¿Â´Ù°í Crash ³¯ ÇÊ¿ä´Â ¾øÀ»µí ÇÔ. //https://rink.hockeyapp.net/manage/apps/591832/app_versions/383/crash_reasons/251788769
+	//	//[@AKI, 181206] Ether Effect æ•‘å”±æŸ¯ä¿ƒç»Š Crash æœ é˜å¤¸ç»° ç»é˜‘æ·€ çªƒ. //https://rink.hockeyapp.net/manage/apps/591832/app_versions/383/crash_reasons/251788769
 	//	if (ApplyCharacter && ApplyCharacter->IsAlive())
 	//	{
 	//		UGameplayStatics::SpawnEmitterAtLocation(ApplyCharacter, EtherEffectObj, ApplyCharacter->GetActorLocation());
@@ -249,7 +249,7 @@ void UB2EtherSetOffense::SetEtherCondition(float EtherCoolTime)
 
 void UB2EtherSetOffense::ProcessEffect(ABladeIICharacter* VictimCharacter)
 {
-	// °ø°İ Ether - ÀÌÆåÆ®ÀÇ Default Spawn ´ë»óÀº ÇÇÇØÀÚ ( == VictimCharacter )
+	// å‚æ‹œ Ether - ææ£‹é£˜ç‹¼ Default Spawn æªæƒ‘ç¯® ä¹”ç§¦ç£Š ( == VictimCharacter )
 	SpawnEtherFx(VictimCharacter);
 
 	SpawnTextFx(VictimCharacter);
@@ -323,7 +323,7 @@ void UB2EtherSetDefense::SetEtherCondition(float EtherCoolTime)
 
 void UB2EtherSetDefense::ProcessEffect(ABladeIICharacter* EtherCauser)
 {
-	// ¹æ¾î Ether - ÀÌÆåÆ®ÀÇ Default Spawn ´ë»óÀº EtherOwner
+	// è§„ç»¢ Ether - ææ£‹é£˜ç‹¼ Default Spawn æªæƒ‘ç¯® EtherOwner
 	SpawnEtherFx(GetOwner());
 
 	SpawnTextFx(GetOwner());
@@ -361,7 +361,7 @@ void UB2EtherSetDefense::EndCoolDown()
 }
 
 
-/* ----- Æø·Ú(°ø°İ) - ¹ø°³°ø°İ [B2AetherSetOptionType::THUNDER_DAMAGE = 1001 ] ----- */
+/* ----- æ°”æ±¾(å‚æ‹œ) - é”…ä¿ºå‚æ‹œ [B2AetherSetOptionType::THUNDER_DAMAGE = 1001 ] ----- */
 UB2Ether_Thunder::UB2Ether_Thunder() : Super(b2network::B2AetherSetOptionType::THUNDER_DAMAGE)
 {
 	ThunderDamageRate = 0.08f;
@@ -407,10 +407,10 @@ void UB2Ether_Thunder::OnAsyncLoadComplete(const FString& CompleteRequest, const
 float UB2Ether_Thunder::GetAbsThunderDamage(ABladeIICharacter* EtherCauser)
 {
 	float ThunderDamage;
-	// ÃÖ´ëÃ¼·Â¿¡ ºñ·ÊÇÑ µ¥¹ÌÁö
+	// å¼¥æªçœ‰ä»¿ä¿Š åšè‚¥èŒ„ å•å›ºç˜¤
 	const float VictimHealthMax = (EtherCauser != nullptr) ? EtherCauser->GetMaxHealth() : 0.f;
 
-	//º¸½º¸÷ÀÏ¶§ µû·Î °è»ê
+	//ç„Šèƒ¶å„è€é”­ è¶è‚º æ‹Œé­‚
 	if (EtherCauser->IsBossMob())
 	{
 		ThunderDamage = ThunderDamageRateToBoss * VictimHealthMax;
@@ -429,7 +429,7 @@ void UB2Ether_Thunder::GetThunderDamageRate(OUT float& OutThunderDamageRate, OUT
 	OutThunderDamageRateToBoss = ThunderDamageRateToBoss;
 }
 
-/* ----- ¼Ó¹Ú(°ø°İ) - ÀÌµ¿ºÒ°¡ [B2AetherSetOptionType::IMMOBILIZE = 1002 ] ----- */
+/* ----- åŠ å† (å‚æ‹œ) - ææ‚¼é˜‚å•Š [B2AetherSetOptionType::IMMOBILIZE = 1002 ] ----- */
 UB2Ether_Immobilize::UB2Ether_Immobilize() : Super(b2network::B2AetherSetOptionType::IMMOBILIZE) {}
 
 void UB2Ether_Immobilize::ApplyEtherToCauser(ABladeIICharacter* EtherCauser)
@@ -444,7 +444,7 @@ float UB2Ether_Immobilize::GetDuration()
 	return Duration;
 }
 
-/* ----- ¼öÈ£(¹æ¾î) - ½¯µå [B2AetherSetOptionType::SHIELD = 1003 ] ----- */
+/* ----- èé¾‹(è§„ç»¢) - è’‹é› [B2AetherSetOptionType::SHIELD = 1003 ] ----- */
 UB2Ether_Shield::UB2Ether_Shield() : Super(b2network::B2AetherSetOptionType::SHIELD)
 {
 	ShieldRate = 0.2f;
@@ -471,7 +471,7 @@ float UB2Ether_Shield::GetShieldRate()
 	return ShieldRate;
 }
 
-/* ----- ¿­Á¤(¹æ¾î) - ÁÖº¯ È­¿°°ø°İ [B2AetherSetOptionType::FIRE_RANGE = 1004 ] ----- */
+/* ----- å‡¯æ²¥(è§„ç»¢) - æ—å‡½ æ‹³å ªå‚æ‹œ [B2AetherSetOptionType::FIRE_RANGE = 1004 ] ----- */
 UB2Ether_FireRange::UB2Ether_FireRange() : Super(b2network::B2AetherSetOptionType::FIRE_RANGE)
 {
 	Radius = 500.f;
@@ -497,7 +497,7 @@ void UB2Ether_FireRange::ApplyEtherToCauser(ABladeIICharacter* EtherCauser)
 
 void UB2Ether_FireRange::ApplyEtherToOther(ABladeIICharacter* Other)
 {
-	ApplyEtherToCauser(Other);	// Causer¿Í µ¿ÀÏÇÑ È¿°ú¸¦ Àû¿ë
+	ApplyEtherToCauser(Other);	// Causerå®¢ æ‚¼è€èŒ„ ç“¤è‹ç”« åˆ©ä¾©
 }
 
 bool UB2Ether_FireRange::GetInfluencedCharacters(ABladeIICharacter* EtherCauser, TArray<ABladeIICharacter*>& OutInfluenced)
@@ -517,7 +517,7 @@ float UB2Ether_FireRange::GetDuration()
 	return GetDamageInfo()->StateDamageDuration;
 }
 
-/* ----- ÆÄ¸ê(°ø°İ) - ¹ø°³°ø°İ [B2AetherSetOptionType::METEOR_DAMAGE = 1005 ] ----- */
+/* ----- é¢‡æˆˆ(å‚æ‹œ) - é”…ä¿ºå‚æ‹œ [B2AetherSetOptionType::METEOR_DAMAGE = 1005 ] ----- */
 UB2Ether_Meteor::UB2Ether_Meteor() : Super(b2network::B2AetherSetOptionType::METEOR_DAMAGE) {}
 
 void UB2Ether_Meteor::ApplyEtherToCauser(ABladeIICharacter* EtherCauser)
@@ -546,7 +546,7 @@ bool UB2Ether_Meteor::GetInfluencedCharacters(ABladeIICharacter* EtherCauser, TA
 	//	{
 	//		if (Enemy && Enemy->IsPendingKill() == false && Enemy->IsEnemy(GetOwner()))
 	//		{
-	//			// ¿øÅëÇüÀ¸·Î Radius¸¦ Á¶»ç
+	//			// ç›”çƒ¹å±ˆæ è‚º Radiusç”« ç‚¼è¤
 	//			const float DistSq = FVector::DistSquaredXY(Enemy->GetActorLocation(), EtherCauser->GetActorLocation());
 	//			if (DistSq <= MeteorRadiusSq)
 	//				OutInfluenced.Add(Enemy);
@@ -566,7 +566,7 @@ float UB2Ether_Meteor::GetDamageAmount()
 	return DamageAmount;
 }
 
-/* ----- ÅëÂû(°ø°İ) - ´ë»ó ½ºÅ³ Àç»ç¿ë½Ã°£ max [B2AetherSetOptionType::SKILL_COOLTIME = 1006 ] ----- */
+/* ----- çƒ¹è”“(å‚æ‹œ) - æªæƒ‘ èƒ¶æ‡¦ çŠè¤ä¾©çŸ«åŸƒ max [B2AetherSetOptionType::SKILL_COOLTIME = 1006 ] ----- */
 UB2Ether_IncreaseCooltime::UB2Ether_IncreaseCooltime() : Super(b2network::B2AetherSetOptionType::SKILL_COOLTIME) {}
 
 
@@ -595,15 +595,15 @@ void UB2Ether_IncreaseCooltime::ProcessEffect(ABladeIICharacter* VictimCharacter
 {
 	Super::ProcessEffect(VictimCharacter);
 
-	// Insight!! ´Ü¾î ¶ç¿öÁÜ (Victim¿¡)
+	// Insight!! çªœç»¢ å‰å†µæ·‹ (Victimä¿Š)
 }
 
 
 
-/* ----- ºĞ³ë(°ø°İ) - °á¼Ó½ºÅ³ ÄğÅ¸ÀÓ °¨¼Ò [B2AetherSetOptionType::SKILL_GAGE = 1007 ] ----- */
+/* ----- ç›’ç•´(å‚æ‹œ) - æ¬åŠ èƒ¶æ‡¦ é…¿é¸¥çƒ™ çš‘å®¶ [B2AetherSetOptionType::SKILL_GAGE = 1007 ] ----- */
 UB2Ether_DecreaseCooltime::UB2Ether_DecreaseCooltime() : Super(b2network::B2AetherSetOptionType::SKILL_GAGE)
 {
-	DecreaseCooltime = 1.f;	// 1ÃÊ¾¿
+	DecreaseCooltime = 1.f;	// 1æª¬ç©¶
 }
 
 void UB2Ether_DecreaseCooltime::ApplyEtherToOwner(ABladeIIPlayer* EtherOwner)
@@ -650,17 +650,17 @@ bool UB2Ether_DecreaseCooltime::IsAvailGameMode(EB2GameMode CurrentGameMode)
 	return false;
 }
 
-/* ----- Àı¸Á(°ø°İ) -  ½ºÅÏ [B2AetherSetOptionType::STUN = 1008 ] ----- */
+/* ----- ä¾‹å™¶(å‚æ‹œ) -  èƒ¶ç•” [B2AetherSetOptionType::STUN = 1008 ] ----- */
 UB2Ether_Stun::UB2Ether_Stun() : Super(b2network::B2AetherSetOptionType::STUN) {}
 
 void UB2Ether_Stun::ApplyEtherToCauser(ABladeIICharacter* EtherCauser)
 {
-	// DamageInfo ÀÚÃ¼¸¦ StunÀ¸·Î ¼ÂÆÃ
+	// DamageInfo ç£Šçœ‰ç”« Stunæ è‚º æ‚¸æ³¼
 	if (EtherCauser && EtherCauser->IsAlive() && EtherCauser->GetLocalRole()  == ROLE_Authority)
 	{
 		EtherCauser->RequestDamage(1.f, GetDamageInfo(), GetOwner());
 	}
-	// Effect°¡ ÀÖ´Ù¸é...
+	// Effectå•Š ä¹ä¿ƒæ...
 }
 
 
@@ -670,7 +670,7 @@ float UB2Ether_Stun::GetDuration()
 	return GetDamageInfo()->StateDamageDuration;
 }
 
-/* ----- ÀúÇ×(¹æ¾î) - ¹«Àû [B2AetherSetOptionType::SUPER_ARMOR = 1009 ] ----- */
+/* ----- å†äº²(è§„ç»¢) - å…¬åˆ© [B2AetherSetOptionType::SUPER_ARMOR = 1009 ] ----- */
 UB2Ether_invincible::UB2Ether_invincible() : Super(b2network::B2AetherSetOptionType::SUPER_ARMOR) {}
 
 bool UB2Ether_invincible::IsActivatable(ABladeIICharacter* EtherCauser, const FDamageInfo& CauserDamageInfo, float ActualDamage)
@@ -679,7 +679,7 @@ bool UB2Ether_invincible::IsActivatable(ABladeIICharacter* EtherCauser, const FD
 	{
 		const float MaxHealth = GetOwner()->GetMaxHealth();
 
-		// ÃÖ´ëÃ¼·ÂÀÇ ActivateDamageRate(ºñÀ²) ÀÌ»óÀÇ µ¥¹ÌÁö¸¦ ÀÔÀ¸¸é
+		// å¼¥æªçœ‰ä»¿ç‹¼ ActivateDamageRate(åšå•¦) ææƒ‘ç‹¼ å•å›ºç˜¤ç”« æ¶æ æ
 		if (MaxHealth > 0.f && (ActualDamage / MaxHealth) >= ActivateDamageRate)
 			return true;
 	}
@@ -705,7 +705,7 @@ float UB2Ether_invincible::GetActivateDamageRate()
 	return ActivateDamageRate;
 }
 
-/* ----- º¹¼ö(¹æ¾î) - µ¥¹ÌÁö ¹İ»ç [B2AetherSetOptionType::DAMAGE_REFLECT = 1010 ] ----- */
+/* ----- æ±—è(è§„ç»¢) - å•å›ºç˜¤ é¦†è¤ [B2AetherSetOptionType::DAMAGE_REFLECT = 1010 ] ----- */
 UB2Ether_Reflect::UB2Ether_Reflect() : Super(b2network::B2AetherSetOptionType::DAMAGE_REFLECT)
 {
 	ReflectAmount = 400.f;
@@ -714,7 +714,7 @@ UB2Ether_Reflect::UB2Ether_Reflect() : Super(b2network::B2AetherSetOptionType::D
 
 void UB2Ether_Reflect::ApplyEtherToCauser(ABladeIICharacter* EtherCauser)
 {
-	// EtherCauser´Â EtherOwner¸¦ °ø°İÇÑ( OwnerÀÇ DefenseEther¸¦ ¹ßµ¿½ÃÅ²) ÁÖÃ¼
+	// EtherCauserç»° EtherOwnerç”« å‚æ‹œèŒ„( Ownerç‹¼ DefenseEtherç”« æƒ¯æ‚¼çŸ«æŒª) æ—çœ‰
 	//if (EtherCauser && EtherCauser->Role == ROLE_Authority && EtherCauser->IsAlive())
 	//{
 	//	const float DamageAmount = GetReflectDamageAmount();
@@ -730,12 +730,12 @@ float UB2Ether_Reflect::GetReflectDamageAmount()
 	return ReflectAmount;
 }
 
-/* ----- ¸Á°¢(°ø°İ) - NÃÊ°£ ¹æ¾î/¹İ°İ/±¸¸£±â/ÅÂ±× ºÒ´É »óÅÂ [B2AetherSetOptionType::PROHIBIT_BEHAVIOR = 1011] ----- */
+/* ----- å™¶é˜¿(å‚æ‹œ) - Næª¬åŸƒ è§„ç»¢/é¦†æ‹œ/å¤‡ç¦æ‰/æ€•å¼Š é˜‚ç“· æƒ‘æ€• [B2AetherSetOptionType::PROHIBIT_BEHAVIOR = 1011] ----- */
 UB2Ether_NotTagDefence::UB2Ether_NotTagDefence() : Super(b2network::B2AetherSetOptionType::PROHIBIT_BEHAVIOR) {}
 
 void UB2Ether_NotTagDefence::ApplyEtherToCauser(ABladeIICharacter* EtherCauser)
 {
-	//ÅëÂû°ú °°Àº Á¶°Ç (ÇÃ·¹ÀÌ¾îÇÑÅ×¸¸ Àû¿ë µÇ°Ô)
+	//çƒ¹è”“è‹ éç¯® ç‚¼æ‰’ (æ•²é¥­æç»¢èŒ„æŠ›çˆ¶ åˆ©ä¾© ç™»éœ¸)
 	//if (EtherCauser && EtherCauser->IsPlayerControlled() && EtherCauser->IsAlive() && EtherCauser->Role == ROLE_Authority)
 	//{
 	//	ABladeIIPlayer* VictimPlyaer = Cast<ABladeIIPlayer>(EtherCauser);
@@ -759,7 +759,7 @@ float UB2Ether_NotTagDefence::GetDuration()
 	return Duration;
 }
 
-/* ----- È¤ÇÑ(¹æ¾î) - ºù°á µğ¹öÇÁ [B2AetherSetOptionType::FREEZE_RANGE = 1012] ----- */
+/* ----- è¶£èŒ„(è§„ç»¢) - è‘«æ¬ å¼æ»šæ©‡ [B2AetherSetOptionType::FREEZE_RANGE = 1012] ----- */
 UB2Ether_FreezeRange::UB2Ether_FreezeRange() :Super(b2network::B2AetherSetOptionType::FREEZE_RANGE)
 {
 	Radius = 500.0f;
@@ -798,7 +798,7 @@ void UB2Ether_FreezeRange::ApplyEtherToOther(ABladeIICharacter* Other)
 	//}
 	//else
 	//{
-	//	ApplyEtherToCauser(Other);	// Causer¿Í µ¿ÀÏÇÑ È¿°ú¸¦ Àû¿ë
+	//	ApplyEtherToCauser(Other);	// Causerå®¢ æ‚¼è€èŒ„ ç“¤è‹ç”« åˆ©ä¾©
 	//}
 }
 

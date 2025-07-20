@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "BladeIITestDummyPlayer.h"
@@ -11,8 +11,8 @@
 #include "Event.h"
 
 //
-// ÀÓÀÇ·Î ·±Å¸ÀÓ spawn ½ÃÄÑ¼­ ´ëÃ¼·Î ¼º´É Å×½ºÆ® ¿ëÀ¸·Î »ç¿ë.
-// Á» È®Àå½ÃÅ°¸é ´Ù¸¥ ¿ëµµ·Î »ç¿ëÀÌ °¡´ÉÇÒÁöµµ.
+// çƒ™ç‹¼è‚º ç¹é¸¥çƒ™ spawn çŸ«éš¾è¾‘ æªçœ‰è‚º å·±ç“· æŠ›èƒ¶é£˜ ä¾©æ è‚º è¤ä¾©.
+// ç²± çŠ¬å˜çŸ«è™æ ä¿ƒå¼— ä¾©æ¡£è‚º è¤ä¾©æ å•Šç“·ä¸”ç˜¤æ¡£.
 // 
 
 ABladeIITestDummyPlayer::ABladeIITestDummyPlayer(const FObjectInitializer& ObjectInitializer)
@@ -45,8 +45,8 @@ void ABladeIITestDummyPlayer::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// ´õ¹Ì·Î½á ¾µ¸ğ¾ø´Â °Íµé ²ô±â.
-	FormalSetPointLightOn(false);  // ¾îÂ÷ÇÇ IsHeadPointLightAllowed() °¡ false ¿©¾ß..
+	// æ­¹å›ºè‚ºç»“ é•œè‘›ç»ç»° å·´ç”¸ æºæ‰.
+	FormalSetPointLightOn(false);  // ç»¢ç’ä¹” IsHeadPointLightAllowed() å•Š false å’¯å…·..
 }
 
 void ABladeIITestDummyPlayer::BeginDestroy()
@@ -63,21 +63,21 @@ void ABladeIITestDummyPlayer::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 	
-	// AnimBP State Ã³¸®¸¦ À§ÇØ ¼øÂ÷ÀûÀ¸·Î ¹â¾Æ¾ß ÇÏ´Â state °¡ ÀÖ´Ù¸é Ã³¸®. ´ëÃ¼·Î ÄŞº¸ ¾îÅÃÀÇ °æ¿ì
+	// AnimBP State è´¸åºœç”« å›°ç§¦ é‰´ç’åˆ©æ è‚º å…‰é…’å…· çªç»° state å•Š ä¹ä¿ƒæ è´¸åºœ. æªçœ‰è‚º éœ“ç„Š ç»¢ç¶ç‹¼ ç‰ˆå¿«
 	if (FinalAttackStateMaintainCount <= 0)
 	{
 		if (IsOneOfComboAttackState(DirectAttackState))
 		{
 			if (ThisTickFinalAttackState < DirectAttackState) {
 				ThisTickFinalAttackState = (EAttackState)((int32)ThisTickFinalAttackState + 1);
-				FinalAttackStateMaintainCount = FINAL_ATTACK_STATE_MAINTAIN_MAX_COUNT; // ´ÙÀ½¹ø State transition ±îÁö ´ë±â.
+				FinalAttackStateMaintainCount = FINAL_ATTACK_STATE_MAINTAIN_MAX_COUNT; // ä¿ƒæ¾œé”… State transition é³–ç˜¤ æªæ‰.
 			}
 			else {
 				ThisTickFinalAttackState = DirectAttackState;
 			}
 		}
 		else
-		{ // ´Ù¸¥ °Íµµ ºñ½ÁÇÑ Ã³¸®°¡ ÇÊ¿äÇÏ¸é..
+		{ // ä¿ƒå¼— å·´æ¡£ åšæ…èŒ„ è´¸åºœå•Š é˜å¤¸çªæ..
 			ThisTickFinalAttackState = DirectAttackState;
 		}
 	}
@@ -89,7 +89,7 @@ void ABladeIITestDummyPlayer::Tick(float DeltaSeconds)
 	SetAttackState(ThisTickFinalAttackState);
 
 	TimeSinceLastSpawnFloatingUITime += DeltaSeconds;
-	// ½ÇÁ¦·Î´Â NextTimeSpawnFloatingUIInterval À» º»´Ù. ¸Å ÅÏ¸¶´Ù SpawnFloatingUIInterval À» ±âÁØÀ¸·Î Á¶±İ¾¿ º¯µ¿. ¿ÏÀüÈ÷ ¶È°°Àº interval ÀÌ¸é ¿©·¯¸¶¸® µ¿½Ã spawn ½Ã ÀÏÁ¦È÷ ³ª¿Ã ¼öµµ ÀÖÀ¸¹Ç·Î
+	// è§’åŠ›è‚ºç»° NextTimeSpawnFloatingUIInterval é˜‘ å¤¯ä¿ƒ. æ¦‚ ç•”ä»˜ä¿ƒ SpawnFloatingUIInterval é˜‘ æ‰éœ–æ è‚º ç‚¼é™›ç©¶ å‡½æ‚¼. è‚¯å‚ˆæ´’ åº¦éç¯® interval ææ å’¯çŸ¾ä»˜åºœ æ‚¼çŸ« spawn çŸ« è€åŠ›æ´’ å”±æ£µ èæ¡£ ä¹æ éª¨è‚º
 	if (SpawnFloatingUIInterval > 0.0f && TimeSinceLastSpawnFloatingUITime >= NextTimeSpawnFloatingUIInterval)
 	{
 		RandomSpawnFloatingUIs();
@@ -98,7 +98,7 @@ void ABladeIITestDummyPlayer::Tick(float DeltaSeconds)
 	}
 
 	TimeSinceLastSpawnDamageFxTime += DeltaSeconds;
-	// ¿©±âµµ ¸¶Âù°¡Áö·Î ¸Å Å¸ÀÓ¸¶´Ù ·£´ıÀ¸·Î Á¤ÇØÁö´Â NextTimeSpawnDamageFxInterval À»..
+	// å’¯æ‰æ¡£ ä»˜è›®å•Šç˜¤è‚º æ¦‚ é¸¥çƒ™ä»˜ä¿ƒ ç½šå¾…æ è‚º æ²¥ç§¦ç˜¤ç»° NextTimeSpawnDamageFxInterval é˜‘..
 	if (SpawnDamageFxInterval > 0.0f && TimeSinceLastSpawnDamageFxTime >= NextTimeSpawnDamageFxInterval)
 	{
 		RandomSpawnDamageFx();
@@ -119,13 +119,13 @@ bool ABladeIITestDummyPlayer::CanDie(float KillingDamage, FDamageEvent const& Da
 
 void ABladeIITestDummyPlayer::ReceiveComboEnd(EAttackState InLastAttackState, bool IsAttackCanceled)
 {
-	// ¾ğÁ¨°¡ ReceiveComboEnd ¸¦ »ç¿ë ¸øÇÏ°Ô µÇ¸é ´Ù¸¥ °æ·Î¸¦ ÅëÇÏµµ·Ï..
+	// æ”«å“©å•Š ReceiveComboEnd ç”« è¤ä¾© ç»™çªéœ¸ ç™»æ ä¿ƒå¼— ç‰ˆè‚ºç”« çƒ¹çªæ¡£åºŸ..
 	AttackStateEndInternal(InLastAttackState);
 }
 
 void ABladeIITestDummyPlayer::AttackStateEndInternal(EAttackState InLastAttackState)
 {
-	// SkillRTManager ¸¦ °¡Áö°í ¹¹ ÇÏ´Â °Ô ÀÖ¾î¼­ ¿Ü°ü¿¡ ¿µÇâÀ» ¹ÌÄ¥ ¸¸ÇÑ °Íµé »©°í ºñ¿öµÒ.
+	// SkillRTManager ç”« å•Šç˜¤ç»Š æ„ çªç»° éœ¸ ä¹ç»¢è¾‘ å¯‡åŒ…ä¿Š åº·æ°¢é˜‘ å›ºç£¨ çˆ¶èŒ„ å·´ç”¸ å“—ç»Š åšå†µç‹„.
 
 	if (InLastAttackState >= EAttackState::ECS_GuardStart && InLastAttackState <= EAttackState::ECS_Evade)
 	{
@@ -134,22 +134,22 @@ void ABladeIITestDummyPlayer::AttackStateEndInternal(EAttackState InLastAttackSt
 
 	if (InLastAttackState == EAttackState::ECS_WeaponSkill)
 	{
-		SetupLODInfoForInGame(); // WeaponSkill ½ÃÀÛ ½Ã ¿¬Ãâ¿ë LOD ¸¦ ¼Â¾÷ÇÏ¹Ç·Î µÇµ¹·ÁÁÜ.
+		SetupLODInfoForInGame(); // WeaponSkill çŸ«ç´¯ çŸ« æ¥·å…ä¾© LOD ç”« æ‚¸è¯€çªéª¨è‚º ç™»å€’å¦¨æ·‹.
 	}
 
-	// ´ÙÀ½ ¾Ö´Ï¸ŞÀÌ¼Ç ½ÃÀÛ.. °£°İÀ» µÎ°Å³ª ¹Ù·Î
+	// ä¿ƒæ¾œ å±€èªçš‹æè®° çŸ«ç´¯.. åŸƒæ‹œé˜‘ æ»´èŠ­å”± å®˜è‚º
 	UWorld* TheWorld = GetWorld();
 	if (CooltimeBetweenAnim > 0.0f && TheWorld)
 	{
 		TheWorld->GetTimerManager().SetTimer(CooltimeBetweenAnimTH, 
-			// RandomAttackState ÀÎ °æ¿ì BeginNextAnimCommon ¿¡ ¹«¾ùÀ» ³Ñ°ÜÁÖµç ·£´ı ¼±ÅÃµÉ °ÍÀÌÁö¸¸ ÀÇ¹Ì¸¦ ¸íÈ®È÷..
+			// RandomAttackState ç‰¢ ç‰ˆå¿« BeginNextAnimCommon ä¿Š å…¬å‡é˜‘ é€è´¥æ—ç”µ ç½šå¾… æ€¥ç¶çª å·´æç˜¤çˆ¶ ç‹¼å›ºç”« ç–™çŠ¬æ´’..
 			FTimerDelegate::CreateUObject(this, &ABladeIITestDummyPlayer::BeginNextAnimCommon, (bUseRandomAttackState ? EAttackState::ECS_End : DirectAttackState)), 
 			CooltimeBetweenAnim, false);
-		SetDirectAttackState(EAttackState::ECS_None); // ´ÙÀ½ ¾Ö´Ï¸ŞÀÌ¼Ç ¹ßµ¿ Àü±îÁö Idle »óÅÂ·Î ÈŞ½Ä.
+		SetDirectAttackState(EAttackState::ECS_None); // ä¿ƒæ¾œ å±€èªçš‹æè®° æƒ¯æ‚¼ å‚ˆé³–ç˜¤ Idle æƒ‘æ€•è‚º ç»’ä¾¥.
 	}
 	else
 	{
-		BeginNextAnimCommon(); // ¹Ù·Î ½ÃÀÛ. ÇöÀç DirectAttackState ±×´ë·Î ÀÌ¾î¼­.
+		BeginNextAnimCommon(); // å®˜è‚º çŸ«ç´¯. æ³…çŠ DirectAttackState å¼Šæªè‚º æç»¢è¾‘.
 	}
 }
 
@@ -164,7 +164,7 @@ bool ABladeIITestDummyPlayer::IsFineToStartAnyNewMoveInputHandling()
 
 void ABladeIITestDummyPlayer::SubscribeEvents()
 {
-	// »ó´ÜÀÇ ÀÔ·Â subscribe ¾øµµ·Ï..
+	// æƒ‘çªœç‹¼ æ¶ä»¿ subscribe ç»æ¡£åºŸ..
 }
 void ABladeIITestDummyPlayer::UnsubscribeEvents()
 {
@@ -181,7 +181,7 @@ void ABladeIITestDummyPlayer::RandomSpawnDamageFx()
 	TestRandomSpawnDamageFx(this);
 }
 
-void ABladeIITestDummyPlayer::BeginNextAnimCommon(EAttackState SpecifiedNextAnim /* RandomAttackState °¡ ¾Æ´Ï°í EAttackState::ECS_End ¿ÜÀÇ °ªÀ» ÁÙ ½Ã »ç¿ëµÊ. */)
+void ABladeIITestDummyPlayer::BeginNextAnimCommon(EAttackState SpecifiedNextAnim /* RandomAttackState å•Š é…’èªç»Š EAttackState::ECS_End å¯‡ç‹¼ è”¼é˜‘ ä¸´ çŸ« è¤ä¾©å‡³. */)
 {
 	UWorld* TheWorld = GetWorld();
 	if (TheWorld)
@@ -189,13 +189,13 @@ void ABladeIITestDummyPlayer::BeginNextAnimCommon(EAttackState SpecifiedNextAnim
 		TheWorld->GetTimerManager().ClearTimer(CooltimeBetweenAnimTH);
 	}
 
-	if (bUseRandomAttackState) // ·£´ı Àç»ı ½Ã ´ÙÀ½ ·£´ı ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ¼±ÅÃ
+	if (bUseRandomAttackState) // ç½šå¾… çŠç§¯ çŸ« ä¿ƒæ¾œ ç½šå¾… å±€èªçš‹æè®°é˜‘ æ€¥ç¶
 	{
 		GoToNextRandomAttackState();
 	}
 	else
-	{ // ·£´ı ¾Ö´Ô Àç»ıÀÌ ¾Æ´Ï¶ó¸é ÁöÁ¤µÈ °É·Î ´Ù½Ã ½ÃÀÛ.
-	  // ÄŞº¸ state ´Â Ã³À½ºÎÅÍ ´Ù½Ã ½ÃÀÛÇØ¾ß ÇØ¼­ ThisTickFinalAttackState ±îÁö ¸®¼ÂÀÌ µÈ´Ù.
+	{ // ç½šå¾… å±€ä¸› çŠç§¯æ é…’èªæ‰¼æ ç˜¤æ²¥ç­‰ å§è‚º ä¿ƒçŸ« çŸ«ç´¯.
+	  // éœ“ç„Š state ç»° è´¸æ¾œä½•ç£ ä¿ƒçŸ« çŸ«ç´¯ç§¦å…· ç§¦è¾‘ ThisTickFinalAttackState é³–ç˜¤ åºœæ‚¸æ ç­‰ä¿ƒ.
 		const EAttackState FinalNextAnim = (SpecifiedNextAnim != EAttackState::ECS_End) ? SpecifiedNextAnim : DirectAttackState;
 		if (IsOneOfComboAttackState(FinalNextAnim))
 		{
@@ -206,7 +206,7 @@ void ABladeIITestDummyPlayer::BeginNextAnimCommon(EAttackState SpecifiedNextAnim
 
 void ABladeIITestDummyPlayer::SetDirectAttackStateByKeyword(const FString& InAttackStateKeyword)
 {
-	// ÄÜ¼Ö Ä¿¸Çµå¸¦ ÅëÇØ AttackState ÁöÁ¤ÇÏ´Â ±â´ÉÀ» ¾²·Á°í.
+	// èƒ½è´¾ ç›®ç›–é›ç”« çƒ¹ç§¦ AttackState ç˜¤æ²¥çªç»° æ‰ç“·é˜‘ é™å¦¨ç»Š.
 
 	EAttackState ParsedAttackState = EAttackState::ECS_None;
 
@@ -228,7 +228,7 @@ void ABladeIITestDummyPlayer::SetDirectAttackStateByKeyword(const FString& InAtt
 	else if (InAttackStateKeyword == TEXT("A6")) {
 		ParsedAttackState = EAttackState::ECS_Combo06;
 	}
-	// SkillAnimIdx ±îÁö »ó¼¼ Á¶Àı..
+	// SkillAnimIdx é³–ç˜¤ æƒ‘æŠ€ ç‚¼ä¾‹..
 	else if (InAttackStateKeyword.StartsWith(TEXT("S1"))) {
 		ParsedAttackState = EAttackState::ECS_Skill01;
 		CurrentSkillAnimIdx = ESkillAnimType::ESA_Skill01_01;
@@ -284,7 +284,7 @@ void ABladeIITestDummyPlayer::SetDirectAttackStateByKeyword(const FString& InAtt
 		ParsedAttackState = EAttackState::ECS_WeaponSkill;
 		CurrentSkillAnimIdx = ESkillAnimType::ESA_Weapon_01;
 
-		// SkillLOD °ªÀº 1 ÀÌ µé¾î°¡°Ô µÉ ²«µ¥ SkillAnimIdx LOD ¾Æ´Ñ °É·Î ³Ö¾îÁÖ¸é ¾îÄÉ µÇ³ª..
+		// SkillLOD è”¼ç¯® 1 æ ç”¸ç»¢å•Šéœ¸ çª æå• SkillAnimIdx LOD é…’å›± å§è‚º æŒç»¢æ—æ ç»¢çº³ ç™»å”±..
 		if (InAttackStateKeyword == TEXT("WP1")) {
 			CurrentSkillAnimIdx = ESkillAnimType::ESA_Weapon_01;
 		}
@@ -317,7 +317,7 @@ void ABladeIITestDummyPlayer::SetDirectAttackStateByKeyword(const FString& InAtt
 		}
 	}
 
-	// ±âÅ¸ ÇÊ¿ä¿¡ µû¶ó..
+	// æ‰é¸¥ é˜å¤¸ä¿Š è¶æ‰¼..
 
 	SetDirectAttackState(ParsedAttackState);
 }
@@ -327,19 +327,19 @@ void ABladeIITestDummyPlayer::SetDirectAttackState(EAttackState InState)
 	DirectAttackState = InState;
 
 	if (IsOneOfComboAttackState(DirectAttackState)){
-		ThisTickFinalAttackState = EAttackState::ECS_Combo01; // Direct ÇÏ°Ô AnimBP ¿¡ ¼¼ÆÃÇÑ´Ù ÇØµµ State ¸Ó½ÅÀÌ ¼ø¼­´ë·Î ¹Ş±â ¶«¿¡ ¾îÂ¿ ¼ö ¾øÀÌ Combo1 ºÎÅÍ ½ÃÀÛÇØ¾ß..
+		ThisTickFinalAttackState = EAttackState::ECS_Combo01; // Direct çªéœ¸ AnimBP ä¿Š æŠ€æ³¼èŒ„ä¿ƒ ç§¦æ¡£ State èµ£è„šæ é‰´è¾‘æªè‚º ç½æ‰ ä¸œä¿Š ç»¢é©´ è ç»æ Combo1 ä½•ç£ çŸ«ç´¯ç§¦å…·..
 	}
 	else {
-		// ´Ù¸¥ °Íµµ ¼ø¼­´ë·Î ÇØ¾ß ÇÏ´Â °Ô ÀÖÀ» ¼ö ÀÖ´Ù. ÇÊ¿äÇÏ¸é ºñ½ÁÇÏ°Ô..
+		// ä¿ƒå¼— å·´æ¡£ é‰´è¾‘æªè‚º ç§¦å…· çªç»° éœ¸ ä¹é˜‘ è ä¹ä¿ƒ. é˜å¤¸çªæ åšæ…çªéœ¸..
 		ThisTickFinalAttackState = DirectAttackState;
 	}
 
 	if (IsOneOfSkillAttackState(ThisTickFinalAttackState))
-	{ // Skill ½ÃÀü ½Ã Æ¯º°È÷ Ãß°¡ÇØ¾ß ÇÏ´Â °Å
+	{ // Skill çŸ«å‚ˆ çŸ« æ¼‚å–Šæ´’ çœ å•Šç§¦å…· çªç»° èŠ­
 		SetReservedSkill(ThisTickFinalAttackState);
 	}
 
-	FinalAttackStateMaintainCount = FINAL_ATTACK_STATE_MAINTAIN_MAX_COUNT; // AttackState ¸¦ ¼øÂ÷ÀûÀ¸·Î Áõ°¡½ÃÄÑ¾ß ÇÏ´Â °æ¿ìÀÇ Ä«¿îÆ® ÇÚµé¸µÀ» À§ÇØ
+	FinalAttackStateMaintainCount = FINAL_ATTACK_STATE_MAINTAIN_MAX_COUNT; // AttackState ç”« é‰´ç’åˆ©æ è‚º åˆ˜å•ŠçŸ«éš¾å…· çªç»° ç‰ˆå¿«ç‹¼ å¢¨æ¬¾é£˜ å‹¤ç”¸å‚…é˜‘ å›°ç§¦
 }
 
 void ABladeIITestDummyPlayer::SetUseRandomAttackState(bool bInRandomAttackState)
@@ -358,7 +358,7 @@ void ABladeIITestDummyPlayer::SetCooltimeBetweenAnim(float InCooltime)
 
 void ABladeIITestDummyPlayer::GoToNextRandomAttackState()
 {
-	// ·£´ı¿¡¼­´Â WeaponSkill ¾È³ª¿È. È®½ÇÈ÷ »ç¿ëÇÏ´Â state µé·Î.
+	// ç½šå¾…ä¿Šè¾‘ç»° WeaponSkill æ•‘å”±å’³. çŠ¬è§’æ´’ è¤ä¾©çªç»° state ç”¸è‚º.
 
 	const int32 RandStateInt = FMath::RandRange(0, 10);
 	const int32 RandSkillVariInt = FMath::RandRange(0, 2);
@@ -442,17 +442,17 @@ void ABladeIITestDummyPlayer::GoToNextRandomAttackState()
 		break;
 	}
 
-	// bUseRandomAttackState °¡ true ÀÌ¸é ÀÌ¹ø ¸ğ¼ÇÀÌ ³¡³ª°í ³ª¼­ ´Ù½Ã ÀÌ¹ø ·£´ı ¼±ÅÃ ÀıÂ÷¸¦ °ÅÄ¡°Ô µÉ °ÍÀÌ´Ù.
+	// bUseRandomAttackState å•Š true ææ æé”… è‘›è®°æ åœºå”±ç»Š å”±è¾‘ ä¿ƒçŸ« æé”… ç½šå¾… æ€¥ç¶ ä¾‹ç’ç”« èŠ­æ‘¹éœ¸ çª å·´æä¿ƒ.
 	SetDirectAttackState(RandAttackState);
 }
 
-/** »ç¿ëÀ» À§ÇÑ ¸ŞÀÎ À¯Æ¿ */
+/** è¤ä¾©é˜‘ å›°èŒ„ çš‹ç‰¢ èœ¡ç“¶ */
 ABladeIITestDummyPlayer* ABladeIITestDummyPlayer::SpawnWithStandardEquipment(UObject* WorldContextObject, EPCClass InClass, const FTransform& InSpawnTransform, 
 	int32 InEquipGrade, float InSpawnFloatingUIInterval, float InSpawnDamageFxInterval, bool bShowWing, int32 InWingGrade, bool bPossessByAIController)
 {
-	// SpawnPlayerCharAsPuppet ¾È¿¡¼­µµ ºñ½ÁÇÏ°Ô ºÎ²ô·¯¿î ÁşÀ» ÇÏ´Âµ¥ ¿©±â¼­µµ..
-	// BladeIIGameMode ¾È¿¡ ±¸ÇöµÈ Spawn ÇÔ¼ö¿¡¼­ »ç¿ëÇÏ´Â Å¬·¡½º ¸â¹ö º¯¼ö¸¦ ½½Â½ ¹Ù²ã³õ°í È£Ãâ.
-	// ¿©±ä ±×³ª¸¶ °³¹ß¿ë ±â´ÉÀÌ´Ï Á» ´ÙÇàÀÎµí
+	// SpawnPlayerCharAsPuppet æ•‘ä¿Šè¾‘æ¡£ åšæ…çªéœ¸ ä½•æºçŸ¾æ¬¾ çª¿é˜‘ çªç»°å• å’¯æ‰è¾‘æ¡£..
+	// BladeIIGameMode æ•‘ä¿Š å¤‡æ³…ç­‰ Spawn çªƒèä¿Šè¾‘ è¤ä¾©çªç»° åŠªè´°èƒ¶ ç³•æ»š å‡½èç”« æµ‡é™† å®˜å±‚åˆç»Š é¾‹å….
+	// å’¯å˜ å¼Šå”±ä»˜ ä¿ºæƒ¯ä¾© æ‰ç“·æèª ç²± ä¿ƒé’ç‰¢æ·€
 	ABladeIIGameMode* B2GM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(WorldContextObject));
 	TSubclassOf<APawn> CachedGMDefaultPawnClass = nullptr;
 	if (B2GM)
@@ -463,7 +463,7 @@ ABladeIITestDummyPlayer* ABladeIITestDummyPlayer::SpawnWithStandardEquipment(UOb
 
 	ABladeIITestDummyPlayer* SpawnedDummy = Cast<ABladeIITestDummyPlayer>(ABladeIIGameMode::SpawnPlayerCharAsPuppet(WorldContextObject, InClass, InSpawnTransform, bPossessByAIController));
 
-	if (B2GM && CachedGMDefaultPawnClass) // ºÎ²ô·¯¿î Áş ½» ´Ù½Ã µ¹·Á³õ±â
+	if (B2GM && CachedGMDefaultPawnClass) // ä½•æºçŸ¾æ¬¾ çª¿ äº¤ ä¿ƒçŸ« å€’å¦¨åˆæ‰
 	{
 		B2GM->DefaultPawnClass = CachedGMDefaultPawnClass;
 	}
@@ -482,7 +482,7 @@ ABladeIITestDummyPlayer* ABladeIITestDummyPlayer::SpawnWithStandardEquipment(UOb
 
 		UB2PCClassInfoBox* PCClassInfoBox = StaticFindPCClassInfoBox(WorldContextObject);
 		UB2PCClassInfo* ThisClassPCInfo = PCClassInfoBox ? PCClassInfoBox->GetSingleClassInfo(InClass) : NULL;
-		// SpawnPlayerCharAsPuppet ¿¡¼­´Â InGameOnlyInfo °¡ ¾øÀÌ µÇ´Àµ¥ InGameOnlyInfo Æ÷ÇÔÇØ¼­ ´Ù½Ã±İ.
+		// SpawnPlayerCharAsPuppet ä¿Šè¾‘ç»° InGameOnlyInfo å•Š ç»æ ç™»è ¢å• InGameOnlyInfo å™¨çªƒç§¦è¾‘ ä¿ƒçŸ«é™›.
 		SpawnedDummy->OverrideByPCClassInfo(B2GM, ThisClassPCInfo , false);
 		if (SpawnedDummy->CenterShadow)
 		{
@@ -490,7 +490,7 @@ ABladeIITestDummyPlayer* ABladeIITestDummyPlayer::SpawnWithStandardEquipment(UOb
 			SpawnedDummy->CenterShadow->SetDecalMaterial(SpawnedDummy->ShadowMaterial);
 		}
 
-		// MergeSections ´Â ¿©±â¼­ º¸³¾ ÇÊ¿ä¾øÀÌ Å×½ºÆ® Ä¿¸Çµå·Î Á¦¾îÇÏ¸é µÉ µí.
+		// MergeSections ç»° å’¯æ‰è¾‘ ç„Šå°˜ é˜å¤¸ç»æ æŠ›èƒ¶é£˜ ç›®ç›–é›è‚º åŠ›ç»¢çªæ çª æ·€.
 		SpawnedDummy->SetupComponentsForPartsCommon(EquipDummyItems, bShowWing ? &DummyWing : nullptr, false, true);
 
 		SpawnedDummy->SpawnFloatingUIInterval = InSpawnFloatingUIInterval;

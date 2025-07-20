@@ -1,7 +1,8 @@
-#pragma once
+ï»¿#pragma once
 
 #include "B2UIWidget.h"
 #include "B2UIDocBindable.h"
+#include "../B2RichTextBlock.h"
 #include "B2UIGuildMemberListInfo.generated.h"
 
 UCLASS(BlueprintType, Blueprintable)
@@ -33,7 +34,7 @@ public:
 
 private:
 	FVector2D							MemberSlotSize;
-	int64								MemberID; //±æµå¿ø accountid
+	int64								MemberID; //è¾¨é›ç›” accountid
 
 	uint32								AppointSubGuildMasterTicket;
 	uint32								DismissSubGuildMasterTicket;

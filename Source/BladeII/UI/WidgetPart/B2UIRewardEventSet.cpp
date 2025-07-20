@@ -1,4 +1,4 @@
-#include "B2UIRewardEventSet.h"
+ï»¿#include "B2UIRewardEventSet.h"
 #include "B2UIManager.h"
 #include "B2ClientDataStore.h"
 #include "B2RewardInfo.h"
@@ -12,10 +12,10 @@
 UB2UIRewardIcon::UB2UIRewardIcon(const FObjectInitializer& ObjectInitializer)
 	:Super(ObjectInitializer)
 {
-	// BP¿¡¼­ ¼³Á¤ÇßÀ¸¸é ±×°É·Î ¾ÆÀÌÄÜÀÌ¶û ÀÌ¸§ ¶ç¿öÁØ´Ù.
+	// BPä¿Šè¾‘ æ±²æ²¥æ²æ æ å¼Šå§è‚º é…’æžèƒ½æžå°” æžæŠš å‰å†µéœ–ä¿ƒ.
 	RewardIdFromBP = -1;
 
-	// RewardIdFromBP ¼³Á¤ µÇ¾úÀ¸¸é ¼ö·®µµ BPÁ¤º¸·Î ¶ç¿öÁØ´Ù. -1ÀÌ¸é ¾È¶ç¿ì°í
+	// RewardIdFromBP æ±²æ²¥ ç™»èŒæ æ èæ¨Šæ¡£ BPæ²¥ç„Šè‚º å‰å†µéœ–ä¿ƒ. -1æžæ æ•‘å‰å¿«ç»Š
 	RewardAmountFromBP = -1;
 }
 
@@ -99,7 +99,7 @@ void UB2UIRewardIcon::SetDetailText(const FText& Text)
 		TB_RewardAmount->SetText(Text);
 }
 
-// ²À ¼ö·®¾Æ´Ï±¸ Ãß°¡ÅØ½ºÆ® Ç¥±â¿ëµµ·Îµµ »ç¿ëÇÔ.
+// æ€– èæ¨Šé…’èªå¤‡ çœ å•Šå’†èƒ¶é£˜ é’Žæ‰ä¾©æ¡£è‚ºæ¡£ è¤ä¾©çªƒ.
 void UB2UIRewardIcon::SetAmount(const FText& AmountText)
 {
 	if (TB_RewardAmount.IsValid())
@@ -115,7 +115,7 @@ void UB2UIRewardIcon::UpdateRewardIconAndName(int32 RewardID)
 
 void UB2UIRewardIcon::UpdateRewardIconByItemIndex(int32 ItemIndex, const FText& Text)
 {
-	// ¾ÆÀÌÅÛ ÀÎÆ÷¿¡ ¾ø´Â ¾ÆÀÌÅÛÀÌ¸é RewardInfo¿¡¼­ ÇÑ¹ø´õ Ã£µµ·Ï ¼öÁ¤
+	// é…’æžè¢ ç‰¢å™¨ä¿Š ç»ç»° é…’æžè¢æžæ RewardInfoä¿Šè¾‘ èŒ„é”…æ­¹ èŒ«æ¡£åºŸ èæ²¥
 	UMaterialInterface* IconMtrl = nullptr;
 	IconMtrl = StaticFindItemInfo() ? StaticFindItemInfo()->GetItemIcon(ItemIndex) : nullptr;
 	if (IconMtrl == nullptr)

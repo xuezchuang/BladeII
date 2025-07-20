@@ -1,8 +1,8 @@
-#include "B2AIUtil.h"
+ï»¿#include "B2AIUtil.h"
 
 
 #include "BladeIIUtil.h"
-#include "../BladeII/BladeIICharacter.h"
+#include "BladeIICharacter.h"
 
 
 FVector B2AIUtil::GetFleeLocation(ABladeIICharacter* CurrentCharacter, TArray<ABladeIICharacter*>& FleeToChracters, int32 TestNumLocation, float Radius)
@@ -27,8 +27,8 @@ FVector B2AIUtil::GetFleeLocation(ABladeIICharacter* CurrentCharacter, TArray<AB
 		Location.Score = 0.f;
 	}
 
-	//¿ì¼± ´Ü¼øÇÏ°Ô °Å¸®¼øÀ¸·Î.
-	//ÇÃ·¹ÀÌ¾î¿¡°Ô¼­ °Å¸®°¡ ¸Ö¼ö·Ï ÁÁÀº ÁöÁ¡ 100uu´ç 1Á¡¾¿
+	//å¿«æ€¥ çªœé‰´çªéœ¸ èŠ­åºœé‰´æ è‚º.
+	//æ•²é¥­æç»¢ä¿Šéœ¸è¾‘ èŠ­åºœå•Š é’¢èåºŸ äº®ç¯® ç˜¤ç—¢ 100uuå¯¸ 1ç—¢ç©¶
 	for (auto& Location : TestLocations)
 	{
 		//for (ABladeIICharacter* Character : FleeToChracters)
@@ -44,7 +44,7 @@ FVector B2AIUtil::GetFleeLocation(ABladeIICharacter* CurrentCharacter, TArray<AB
 		return A.Score > B.Score;
 	});
 
-	//Blocking volumeµîÀ¸·Î ÀÌµ¿¸øÇÏ´Â °æ¿ì°¡ »ı±æ ¼ö ÀÖ´Ù.
+	//Blocking volumeæ®¿æ è‚º ææ‚¼ç»™çªç»° ç‰ˆå¿«å•Š ç§¯è¾¨ è ä¹ä¿ƒ.
 	FCollisionQueryParams TraceParams(NAME_None, false, CurrentCharacter);
 	for (auto Location : TestLocations)
 	{

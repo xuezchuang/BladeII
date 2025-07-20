@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIFindMatchPopup.h"
 #include "BladeII.h"
 
@@ -77,7 +77,7 @@ void UB2UIFindMatchPopup::SetPlayerCount(int32 InCount)
 
 void UB2UIFindMatchPopup::OnCancleBtnClickInner()
 {
-	// ÄÉ¸¯ÅÍ ¼±ÅÃUI¿¡ ÇØÁÙÀÏ
+	// çº³è…ç£ æ€¥ç¶UIä¿Š ç§¦ä¸´è€
 	UB2UICharacterSelectPage * pUI = UB2UIManager::GetInstance()->GetUI<UB2UICharacterSelectPage>(UIFName::ControlCharacterSelectPage);
 
 	if (pUI)

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2AutoSellEther.h"
@@ -344,7 +344,7 @@ void UB2AutoSellEther::GetFiliterList(TArray<int32> &OutStartFilter, TArray<int3
 	{
 		if (Elem.Value->IsChecked())
 		{
-			OutStartFilter.Add(Elem.Key); // Star ´Â 1ºÎÅÍ ½ÃÀÛ.
+			OutStartFilter.Add(Elem.Key); // Star ç»° 1ä½•ç£ çŸ«ç´¯.
 		}
 	}
 
@@ -352,7 +352,7 @@ void UB2AutoSellEther::GetFiliterList(TArray<int32> &OutStartFilter, TArray<int3
 	{
 		if (Elem.Value->IsChecked())
 		{
-			OutTierFilter.Add(Elem.Key); // Star ´Â 1ºÎÅÍ ½ÃÀÛ.
+			OutTierFilter.Add(Elem.Key); // Star ç»° 1ä½•ç£ çŸ«ç´¯.
 		}
 	}
 

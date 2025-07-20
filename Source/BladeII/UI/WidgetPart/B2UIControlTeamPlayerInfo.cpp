@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIControlTeamPlayerInfo.h"
 #include "BladeIINetPlayer.h"
@@ -6,6 +6,7 @@
 #include "B2InGameHUDInfo_Player.h"
 #include "B2PCClassInfoBox.h"
 #include "B2GameInstance.h"
+#include "../../BladeII/BladeIILocText.h"
 
 
 
@@ -81,11 +82,11 @@ void UB2UIControlTeamPlayerInfo::SetPlayer(class ABladeIINetPlayer* pPlayer)
 	TargetPlayer = pPlayer;
 	TargetPlayerNetId = TargetPlayer->GetNetId();
 
-	// Á¤º¸ ¼ÂÆÃ
+	// æ²¥ç„Š æ‚¸æ³¼
 	if (TB_LvName.IsValid())
 		TB_LvName->SetText(FText::Format(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("LobbyCharOnHeadLevelAndName")), FText::AsNumber(pPlayer->GetPlayerLevel()), FText::FromString(pPlayer->GetCharacterDataStore()->GetUserNickName())));
 
-	//ÃÊ»óÈ­
+	//æª¬æƒ‘æ‹³
 	UB2GameInstance* B2GI = Cast<UB2GameInstance>(UGameplayStatics::GetGameInstance(this));
 
 	if (B2GI)

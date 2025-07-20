@@ -1,4 +1,4 @@
-// Copyright 1998-2014 Epic Games, Inc. All Rights Reserved.
+﻿// Copyright 1998-2014 Epic Games, Inc. All Rights Reserved.
 // Author : leejswo(SangwooLee)
 #pragma once
 ////#include "BladeII.h"
@@ -14,6 +14,7 @@
 //#include "B2FloatingAbnormalEffect.h"
 //#include "UObject/ObjectSaveContext.h"
 #include "B2CharacterBuffManager.h"
+#include "BladeIIDamageType.h"
 #include "BladeIICharacter.generated.h"
 //
 /** To categorize characters. */
@@ -1726,8 +1727,8 @@ public:
 	/** Setting this enables float HP bar widget, only for common mobs.
 	 * Not for player and boss mob who will have its own UI widget for various stuff including HP bar.
 	 * Other Floating Widget classes are now AB2UIManager_InGameCombat */
-	//UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "HUD")
-	//TSubclassOf<class UB2FloatingHPBar> FloatingHPBarWidgetClass;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "HUD")
+	TSubclassOf<class UB2FloatingHPBar> FloatingHPBarWidgetClass;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "HUD")
 	FName AttachHPBarSocketName;
@@ -2028,7 +2029,7 @@ protected:
 	TArray<class UMaterialInterface*> CachedStateMaterials;
 
 	/** Back-up MeshComponentUpdateFlag when certain Anim notify state (or by any other stuff..) changes its mesh component's MeshComponentUpdateFlag */
-	//TEnumAsByte<EMeshComponentUpdateFlag::Type> TemporaryMeshCompUpdateFlagBackUp;
+	EVisibilityBasedAnimTickOption TemporaryMeshCompUpdateFlagBackUp;
 	uint32 bTemporarilySetMeshCompUpdateFlag : 1;
 
 	int32				TeamNum;

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -57,10 +57,10 @@ public:
 		float DelayTime;
 	UPROPERTY(EditAnywhere, Category = "PopupOption")
 		int32 RepeatMaxCount;
-	//¹İº¹ ¼ÒÅÁ ÁßÀÏ¶§ ·¹º§¾÷ ÆäÀÌÁö µô·¹ÀÌ ½Ã°£
+	//é¦†æ±— å®¶å¸• åè€é”­ é¥­éª‡è¯€ å…¶æç˜¤ æ‰é¥­æ çŸ«åŸƒ
 	UPROPERTY(EditAnywhere, Category = "PopupOption")
 		float RepeatLevelUpDelayTime;
-	//·¹º§¾÷ ÆäÀÌÁö µô·¹ÀÌ ½Ã°£
+	//é¥­éª‡è¯€ å…¶æç˜¤ æ‰é¥­æ çŸ«åŸƒ
 	UPROPERTY(EditAnywhere, Category = "PopupOption")
 		float LevelUpDelayTime;
 

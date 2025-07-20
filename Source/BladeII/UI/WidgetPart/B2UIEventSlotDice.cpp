@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIEventSlotDice.h"
 
@@ -87,7 +87,7 @@ void UB2UIEventSlotDice::UpdateVisibleState()
 	{
 		if (IMG_Start.IsValid())
 		{
-			// ÇÑ¹ø Hidden µÈ Start ÀÌ¹ÌÁö°¡ ´Ù½Ã Ç¥±âµÉ ÀÏÀº ¾ø´Ù.
+			// èŒ„é”… Hidden ç­‰ Start æžå›ºç˜¤å•Š ä¿ƒçŸ« é’Žæ‰çžª è€ç¯® ç»ä¿ƒ.
 			if (IMG_Start->GetVisibility() != ESlateVisibility::Hidden)
 			{
 				IMG_Start->SetVisibility(CachedDiceEventCellMD.cell_type == b2network::B2DiceEventCellType::START ? ESlateVisibility::SelfHitTestInvisible : ESlateVisibility::Hidden);

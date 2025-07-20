@@ -108,13 +108,13 @@ FVector2D UB2LobbyUI_AutoEquip::GetAllowedSingleEquipItemIconSize(EItemEquipPlac
 	UCanvasPanelSlot* PanelSlot = PlacePanel ? Cast<UCanvasPanelSlot>(PlacePanel->Slot) : NULL;
 	if (PanelSlot)
 	{
-		return PanelSlot->GetSize(); // ÀüÃ¼ »çÀÌÁî ±×´ë·Î
+		return PanelSlot->GetSize(); // å‚ˆçœ‰ è¤æä»¤ å¼Šæªè‚º
 	}
 	return FVector2D(0.0f, 0.0f);
 }
 
 void UB2LobbyUI_AutoEquip::UpdateOnEquipChange()
-{ // ÀåÂø ¹öÆ° ´©¸£°í ½ÇÁ¦ ÀåÂøÀÌ µÇ¸é ºÒ¸®°Ô µÉ °Í.
+{ // å˜é¦’ æ»šç“¢ ç©¿ç¦ç»Š è§’åŠ› å˜é¦’æ ç™»æ é˜‚åºœéœ¸ çª å·´.
 	UpdateItemIcons();
 	UpdateEquipSuggestionSummaryTexts();
 }
@@ -146,33 +146,33 @@ void UB2LobbyUI_AutoEquip::UpdateStaticTexts()
 
 void UB2LobbyUI_AutoEquip::UpdateItemIcons()
 {
-	PendingEquipSuggestedItemIDs.Empty(); // ¼³·É ¾ÆÀÌÄÜÀÌ »ı¼ºµÇÁö ¾Ê´õ¶óµµ PendingEquipSuggestedItemIDs ±îÁö´Â ¹Ì¸® ¾ò¾î³õµµ·Ï.
+	PendingEquipSuggestedItemIDs.Empty(); // æ±²é£ é…’æèƒ½æ ç§¯å·±ç™»ç˜¤ è‡¼æ­¹æ‰¼æ¡£ PendingEquipSuggestedItemIDs é³–ç˜¤ç»° å›ºåºœ æ˜ç»¢åˆæ¡£åºŸ.
 	UB2LobbyInventory::GetEquipSuggestion(PendingEquipSuggestedItemIDs);
 
 	DestroyAllItemIcons();
-	UpdateIconsForCurrentEquipState(); // ÀÏ´Ü ÇöÀç »óÅÂ´ë·Î ¾ÆÀÌÄÜ ¾÷µ¥ÀÌÆ® ÈÄ¿¡
-	UpdateIconsForEquipSuggestion(); // ÀåÂø ±ÇÀå¿¡ µû¸¥ ¾÷µ¥ÀÌÆ®
+	UpdateIconsForCurrentEquipState(); // è€çªœ æ³…çŠ æƒ‘æ€•æªè‚º é…’æèƒ½ è¯€å•æé£˜ é¥¶ä¿Š
+	UpdateIconsForEquipSuggestion(); // å˜é¦’ é¼»å˜ä¿Š è¶å¼— è¯€å•æé£˜
 }
 
 void UB2LobbyUI_AutoEquip::UpdateEquipSuggestionSummaryTexts()
 {
-	EPCClass DisplayPCClass = CachedLobbyGM ? CachedLobbyGM->GetHeroMgmtModePCClass() : EPCClass::EPC_End; // ¿µ¿õ°ü¸® ¸ğµåÀÓ.
+	EPCClass DisplayPCClass = CachedLobbyGM ? CachedLobbyGM->GetHeroMgmtModePCClass() : EPCClass::EPC_End; // åº·æ—·åŒ…åºœ è‘›é›çƒ™.
 	if (DisplayPCClass == EPCClass::EPC_End){
-		return; // EPC_End ¸é GetPlayerSharedStat ºÎÅÍ ÀÛµ¿ ¾ÈÇÒ °Í.
+		return; // EPC_End æ GetPlayerSharedStat ä½•ç£ ç´¯æ‚¼ æ•‘ä¸” å·´.
 	}
 
 //	const int32 PCLevel = BladeIIGameImpl::GetLocalCharacterData().GetCharacterLevel(DisplayPCClass);
 
-	// ÇöÀç ÀåÂø »óÅÂ¿¡ µû¸¥ °ªÀ» °¡Á®¿À´Âµ¥ GetEquipApplied** ¾¾¸®Áî¿¡¼­´Â ¿É¼Ç¿¡ µû¸¥ ¼öÄ¡±îÁö °í·ÁµÉ °ÍÀÌ´Ù.
+	// æ³…çŠ å˜é¦’ æƒ‘æ€•ä¿Š è¶å¼— è”¼é˜‘ å•Šå»‰å·ç»°å• GetEquipApplied** æªåºœä»¤ä¿Šè¾‘ç»° å¯è®°ä¿Š è¶å¼— èæ‘¹é³–ç˜¤ ç»Šå¦¨çª å·´æä¿ƒ.
 	const int32 CurrentAttack = (int32)CombatStatEval::GetPCAttack(DisplayPCClass);
 	const int32 CurrentDefense = (int32)CombatStatEval::GetPCDefense(DisplayPCClass);
 	const int32 CurrentHealth = (int32)CombatStatEval::GetPCHealth(DisplayPCClass);
 
-	// PendingEquipSuggestedItemIDs ´Â ÀÖ´Ù Ä¡°í ½ÇÁ¦ ¾ÆÀÌÅÛ µ¥ÀÌÅÍ ¾ò¾î¿È.
+	// PendingEquipSuggestedItemIDs ç»° ä¹ä¿ƒ æ‘¹ç»Š è§’åŠ› é…’æè¢ å•æç£ æ˜ç»¢å’³.
 	TArray<FB2Item> EquipSuggestedItems;
 	for (int64 CurrEquipSuggestID : PendingEquipSuggestedItemIDs)
 	{
-		// GetEquipSuggestion ¿¡¼­µµ ÇÏ´Â µ¿ÀÛµéÀÎµ¥ °³º° ID º°·Î ´Ù½Ã Ã£¾Æ¿À´Â±º. ¾È½À ¤§¤§ ³¥³¥
+		// GetEquipSuggestion ä¿Šè¾‘æ¡£ çªç»° æ‚¼ç´¯ç”¸ç‰¢å• ä¿ºå–Š ID å–Šè‚º ä¿ƒçŸ« èŒ«é…’å·ç»°ç„™. æ•‘åš¼ ã‡ã‡ å¿å¿
 		FB2Item CurrSuggestItem;
 		if (UB2LobbyInventory::FindStoredItem(CurrSuggestItem, CurrEquipSuggestID))
 		{
@@ -180,7 +180,7 @@ void UB2LobbyUI_AutoEquip::UpdateEquipSuggestionSummaryTexts()
 		}
 	}
 
-	// ¿©±â¿¡ ÀåÂø »óÅÂ À¯ÁöÇÏ´Â ¾Öµé ¸®½ºÆ®µµ ´õÇØ¾ß ÇÑ´Ù.
+	// å’¯æ‰ä¿Š å˜é¦’ æƒ‘æ€• èœ¡ç˜¤çªç»° å±€ç”¸ åºœèƒ¶é£˜æ¡£ æ­¹ç§¦å…· èŒ„ä¿ƒ.
 	TArray<FB2Item> CurrentEquippedItems;
 	TArray<FB2Item> NonSuggestedEquipList;
 	UB2LobbyInventory::GetAllEquippedItem(CurrentEquippedItems, DisplayPCClass);
@@ -195,14 +195,14 @@ void UB2LobbyUI_AutoEquip::UpdateEquipSuggestionSummaryTexts()
 			}
 		}
 
-		if (!bHasSuggested){ // ÀÌ¹ø ÀåÂøµÈ Àåºñ¿¡ ÇØ´çÇÏ´Â ±ÇÀå ¾ÆÀÌÅÛÀÌ ¾øÀ½.
+		if (!bHasSuggested){ // æé”… å˜é¦’ç­‰ å˜åšä¿Š ç§¦å¯¸çªç»° é¼»å˜ é…’æè¢æ ç»æ¾œ.
 			NonSuggestedEquipList.Add(CurrEquipped);
 		}
 	}
 
-	EquipSuggestedItems.Append(NonSuggestedEquipList); // ÀåÂø ±ÇÀå + ±âÁ¸ ÀåÂø Áß ±ÇÀå ¾ø´Â °Í ÇÕ.
+	EquipSuggestedItems.Append(NonSuggestedEquipList); // å˜é¦’ é¼»å˜ + æ‰ç²® å˜é¦’ å é¼»å˜ ç»ç»° å·´ é’¦.
 
-	FB2Wing WingData; // GetEquip** ¿¡¼­´Â ¾È¿¡¼­ wing À» °¨¾ÈÇßÀ» °ÍÀÌ¹Ç·Î ¿©±â¼­µµ ³Ö¾îÁÜ.
+	FB2Wing WingData; // GetEquip** ä¿Šè¾‘ç»° æ•‘ä¿Šè¾‘ wing é˜‘ çš‘æ•‘æ²é˜‘ å·´æéª¨è‚º å’¯æ‰è¾‘æ¡£ æŒç»¢æ·‹.
 	const bool bHasWing = BladeIIGameImpl::GetLocalCharacterData().GetCharacterWing(DisplayPCClass, WingData);
 
 	const int32 SuggestedAttack = (int32)CombatStatEval::GetPCAttack(DisplayPCClass, NULL, -1, &EquipSuggestedItems);
@@ -248,8 +248,8 @@ void UB2LobbyUI_AutoEquip::UpdateIconsForCurrentEquipState()
 	}
 
 	TArray<FB2Item> CurrPCEquipItemList;
-	// ·Îºñ ÀÎº¥Åä¸®¿¡¼­ ÇöÀç ¼±ÅÃµÈ PC ¿¡ ´ëÇØ °¡Á®¿À±â À§ÇØ EPC_End ¸¦ »ç¿ëÇß´Âµ¥ static ÇÔ¼ö¸¦ »ç¿ëÇÏÁö¸¸ 
-	// »ç½Ç»ó LobbyInventory °¡ »ı¼ºµÇ¾î ÀÖ´Â »óÅÂ¿¡¼­³ª ÇöÀç ¼±ÅÃµÈ PC °¡ Á¦´ë·Î ÀÎ½ÄÀÌ µÉ °Í.
+	// è‚ºåš ç‰¢äº¥é…åºœä¿Šè¾‘ æ³…çŠ æ€¥ç¶ç­‰ PC ä¿Š æªç§¦ å•Šå»‰å·æ‰ å›°ç§¦ EPC_End ç”« è¤ä¾©æ²ç»°å• static çªƒèç”« è¤ä¾©çªç˜¤çˆ¶ 
+	// è¤è§’æƒ‘ LobbyInventory å•Š ç§¯å·±ç™»ç»¢ ä¹ç»° æƒ‘æ€•ä¿Šè¾‘å”± æ³…çŠ æ€¥ç¶ç­‰ PC å•Š åŠ›æªè‚º ç‰¢ä¾¥æ çª å·´.
 	UB2LobbyInventory::GetAllEquippedItem(CurrPCEquipItemList, EPCClass::EPC_End);
 
 	for (int32 EI = 0; EI < CurrPCEquipItemList.Num(); ++EI)
@@ -258,7 +258,7 @@ void UB2LobbyUI_AutoEquip::UpdateIconsForCurrentEquipState()
 
 		UB2DynItemIcon* DynIconCDO = Cast<UB2DynItemIcon>(EquipItemIconWidgetClass->GetDefaultObject());
 
-		// ¼³Ä¡ÇÑ canvas panel À§¿¡ EquipItemIcon À» »ı¼º.
+		// æ±²æ‘¹èŒ„ canvas panel å›°ä¿Š EquipItemIcon é˜‘ ç§¯å·±.
 		UB2DynItemIcon_LobbyEquip* NewIcon = Cast<UB2DynItemIcon_LobbyEquip>(DynCreateInCanvasPanel(
 			EquipItemIconWidgetClass, this, GetEquipItemIconPanelNativeRef(CurrEquip.EquipPlace), DynIconCDO ? DynIconCDO->GetNonScaledSize() : FVector2D(100.0f, 100.0f),
 			GetAllowedSingleEquipItemIconSize(CurrEquip.EquipPlace), FVector2D(0.0f, 0.0f), 0, false
@@ -267,7 +267,7 @@ void UB2LobbyUI_AutoEquip::UpdateIconsForCurrentEquipState()
 		if (NewIcon)
 		{
 			NewIcon->SetEquipItemIconType(ELobbyEquipItemIconType::EEIIT_AutoEquipCurrent);
-			NewIcon->UpdateItemData(CurrEquip); // °³º° ¾ÆÀÌÅÛ Á¤º¸.
+			NewIcon->UpdateItemData(CurrEquip); // ä¿ºå–Š é…’æè¢ æ²¥ç„Š.
 			SetEquipItemIcon(CurrEquip.EquipPlace, NewIcon);
 		}
 	}
@@ -281,14 +281,14 @@ void UB2LobbyUI_AutoEquip::UpdateIconsForEquipSuggestion()
 
 	for (int64 CurrEquipSuggestID : PendingEquipSuggestedItemIDs)
 	{
-		// GetEquipSuggestion ¿¡¼­µµ ÇÏ´Â µ¿ÀÛµéÀÎµ¥ °³º° ID º°·Î ´Ù½Ã Ã£¾Æ¿À´Â±º. ¾È½À ¤§¤§ ³¥³¥
-		// GetEquipSuggestion ÀÌ Á¦´ë·Î µ¿ÀÛÇß´Ù¸é CurrSuggestItem ÀÌ CurrEquipped º¸´Ù ÁÁ¾Æ¾ß ÇÔ. (¾Æ´Ï¸é CurrEquipped °¡ ¾ø°Å³ª)
+		// GetEquipSuggestion ä¿Šè¾‘æ¡£ çªç»° æ‚¼ç´¯ç”¸ç‰¢å• ä¿ºå–Š ID å–Šè‚º ä¿ƒçŸ« èŒ«é…’å·ç»°ç„™. æ•‘åš¼ ã‡ã‡ å¿å¿
+		// GetEquipSuggestion æ åŠ›æªè‚º æ‚¼ç´¯æ²ä¿ƒæ CurrSuggestItem æ CurrEquipped ç„Šä¿ƒ äº®é…’å…· çªƒ. (é…’èªæ CurrEquipped å•Š ç»èŠ­å”±)
 		FB2Item CurrSuggestItem;
 		if(!UB2LobbyInventory::FindStoredItem(CurrSuggestItem, CurrEquipSuggestID))
 			continue;
 		FB2Item CurrEquipped;
 		bool bCurrentlyEquippedAny = UB2LobbyInventory::GetEquippedItemAtPlace(CurrEquipped, CurrSuggestItem.EquipPlace);
-		if (!bCurrentlyEquippedAny){ // ÀåÂøµÈ °ÍÀÌ ¾ø´Ù¸é 0 °ú ºñ±³ÇÏµµ·Ï °ªµéÀ» Á» ¼¼ÆÃ.
+		if (!bCurrentlyEquippedAny){ // å˜é¦’ç­‰ å·´æ ç»ä¿ƒæ 0 è‹ åšèƒŒçªæ¡£åºŸ è”¼ç”¸é˜‘ ç²± æŠ€æ³¼.
 			CurrEquipped.EquipPlace = CurrSuggestItem.EquipPlace;
 			CurrEquipped.bCurrentlyEquipped = true;
 			CurrEquipped.SetPrimaryPoint(0.0f);
@@ -305,8 +305,8 @@ void UB2LobbyUI_AutoEquip::UpdateIconsForEquipSuggestion()
 		{
 			NewIcon->SetEquipItemIconType(ELobbyEquipItemIconType::EEIIT_AutoEquipSuggest);
 			NewIcon->UpdateItemData(CurrSuggestItem);
-			NewIcon->UpdateStatIncSigns(CurrEquipped); // ºñ±³ ´ë»óÀ» ³Ö¾îÁÜ ¤»
-			DestroyEquipItemIcon(CurrSuggestItem.EquipPlace); // ±âÁ¸¿¡ »ı¼ºÇß´ø °Ô ÀÖ´Ù¸é Áö¿î´Ù.
+			NewIcon->UpdateStatIncSigns(CurrEquipped); // åšèƒŒ æªæƒ‘é˜‘ æŒç»¢æ·‹ ã›
+			DestroyEquipItemIcon(CurrSuggestItem.EquipPlace); // æ‰ç²®ä¿Š ç§¯å·±æ²å¸¦ éœ¸ ä¹ä¿ƒæ ç˜¤æ¬¾ä¿ƒ.
 			SetEquipItemIcon(CurrSuggestItem.EquipPlace, NewIcon);
 		}
 	}
@@ -329,12 +329,12 @@ void UB2LobbyUI_AutoEquip::OnAutoEquipButtonClicked()
 	if (DoAutoEquip())
 	{
 		bAutoEquipRequested = true;
-		PlayAutoEquipCommitSoundBP(); // ½ÇÁ¦ ÀåÂøÀÌ µÇ´Â »óÈ²¿¡¼­´Â »ç¿îµå¸¦ ÇÃ·¹ÀÌ ÇÑ´Ù.
+		PlayAutoEquipCommitSoundBP(); // è§’åŠ› å˜é¦’æ ç™»ç»° æƒ‘ç‚”ä¿Šè¾‘ç»° è¤æ¬¾é›ç”« æ•²é¥­æ èŒ„ä¿ƒ.
 	}
 
-	// UpdateOnEquipChange ¿¡¼­ ºÒ¸®µµ·Ï ÇÏ·Á°í Çß´Âµ¥ °Á ÀåÂø µÇµç ¸»µç ´İÈ÷µµ·Ï ÇØ ´Ş¶ó°í ÇØ¼­.
+	// UpdateOnEquipChange ä¿Šè¾‘ é˜‚åºœæ¡£åºŸ çªå¦¨ç»Š æ²ç»°å• å‚² å˜é¦’ ç™»ç”µ å¯Œç”µ æ‘§æ´’æ¡£åºŸ ç§¦ å´”æ‰¼ç»Š ç§¦è¾‘.
 	//if (bAutoEquipRequested)
-	{ // ÀÚµ¿ ´İ±â.
+	{ // ç£Šæ‚¼ æ‘§æ‰.
 		if (PostAutoEquipCloseTime > 0.0f && GetOwningPlayer())
 		{
 			GetOwningPlayer()->GetWorldTimerManager().SetTimer(
@@ -364,14 +364,14 @@ bool UB2LobbyUI_AutoEquip::DoAutoEquip()
 		FB2Item CurrSuggestItem;
 		if (UB2LobbyInventory::FindStoredItem(CurrSuggestItem, CurrEquipSuggestID))
 		{
-			// ÀÎº¥Åä¸® ÅÇ È®ÀÎ ¾øÀÌ º¸°üÇÔ¿¡¼­ Á¦°ÅµÉ ¼ö ÀÖ´Â °ÍÀÎ ¸¸Å­ ½Å±Ô È¹µæ Ç¥½Ã ¸®½ºÆ®¿¡¼­µµ Á¦°Å. º¸´Ù È®½ÇÇÏ°Ô´Â ÀÀ´äÀÌ ¿ÔÀ» ¶§ ÇØ¾ß µÇ±ä ÇÔ. ±×·¸°Ô±îÁö Ã¶ÀúÇÏ°Ô ÇØ¾ß µÉ ÇÊ¿ä±îÁø ¾øÀ» °Å °°°í..
+			// ç‰¢äº¥é…åºœ å¾˜ çŠ¬ç‰¢ ç»æ ç„ŠåŒ…çªƒä¿Šè¾‘ åŠ›èŠ­çª è ä¹ç»° å·´ç‰¢ çˆ¶æ€’ è„šç—¹ è£™å« é’çŸ« åºœèƒ¶é£˜ä¿Šè¾‘æ¡£ åŠ›èŠ­. ç„Šä¿ƒ çŠ¬è§’çªéœ¸ç»° è§ˆç¿ æ å­é˜‘ é”­ ç§¦å…· ç™»å˜ çªƒ. å¼ŠçŠ¯éœ¸é³–ç˜¤ æšå†çªéœ¸ ç§¦å…· çª é˜å¤¸é³–æŸ³ ç»é˜‘ èŠ­ éç»Š..
 //			BladeIIGameImpl::GetRedDotManager().RemoveNewItem(CurrSuggestItem);
 		}
 	}
 
 	PendingEquipSuggestedItemIDs.Empty();
 
-	// ½ÇÁ¦ ¼­¹ö¿¡¼­ÀÇ ÀåÂø ÀÀ´äÀÌ ¿À¸é ¾ÆÀÌÄÜ ¾÷µ¥ÀÌÆ®°¡ µÉ °Í.
+	// è§’åŠ› è¾‘æ»šä¿Šè¾‘ç‹¼ å˜é¦’ è§ˆç¿ æ å·æ é…’æèƒ½ è¯€å•æé£˜å•Š çª å·´.
 
 	return bAtLeastOnePending;
 }

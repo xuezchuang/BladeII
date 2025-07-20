@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2SanctuaryControlGame.h"
@@ -16,17 +16,17 @@ void AB2SanctuaryControlGame::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// Ã·¿¡ ²¨³õ´Â´Ù. ±¸½½ ¼û±â´Â°ÇBP¿¡¼­ ÇØÁÜ
+	// æ¢…ä¿Š æ³¢åˆç»°ä¿ƒ. å¤‡æµ‡ è§æ‰ç»°æ‰’BPä¿Šè¾‘ ç§¦æ·‹
 	SetPhase(EInteractivePhaseType::FinishPhase);
 }
 
 void AB2SanctuaryControlGame::ReceiveInteract(class AActor* InInteractingActor)
 {
 	////BeginInteract(InInteractingActor);
-	//// ºÎ¸ğ ±â´É ¾È¾´´Ù. AB2SanctuaryActorBase::InteractAction³»¿ë º¹ºÙ + ÇÇ¾ÈÃ¤¿ì°í Æ¯Á¤Å¸°Ù ÃßÀûÇÏ°ÔÇÔ.
-	//// ¿ø·¡´Â ·ÎÄÃÇÃ·¹ÀÌ¾î ÃßÀûÇÑ´Ù. Èú·®°ü·Ã ³»¿ë Á¦°Å.
+	//// ä½•è‘› æ‰ç“· æ•‘æ•¬ä¿ƒ. AB2SanctuaryActorBase::InteractActionéƒ´ä¾© æ±—å˜¿ + ä¹”æ•‘ç›²å¿«ç»Š æ¼‚æ²¥é¸¥ç™¾ çœ åˆ©çªéœ¸çªƒ.
+	//// ç›”è´°ç»° è‚ºæ‹¿æ•²é¥­æç»¢ çœ åˆ©èŒ„ä¿ƒ. é³ƒæ¨ŠåŒ…è®¿ éƒ´ä¾© åŠ›èŠ­.
 
-	//// ÆĞÅ¶ ¹Ş±¸ ²¨ÁÜ.
+	//// è©å“¦ ç½å¤‡ æ³¢æ·‹.
 	//DeactiveSanctuary();
 
 	//auto* World = GetWorld();
@@ -89,13 +89,13 @@ void AB2SanctuaryControlGame::Interact(class AActor* InInteractingActor)
 		if (pGM->GetPeerType() != PEER_SUPER)
 			return;
 		
-		// ÇÃ·¹ÀÌ¾î¸¸ °í·ÁÇÔ.
+		// æ•²é¥­æç»¢çˆ¶ ç»Šå¦¨çªƒ.
 		ABladeIINetPlayer* pPlayer = Cast<ABladeIINetPlayer>(InInteractingActor);
 
-		// AI´Â ¸ÔÁö¸¶¶ó..
+		// AIç»° å†ˆç˜¤ä»˜æ‰¼..
 		if (pPlayer && pPlayer->GetNetStatus() != ABladeIINetPlayer::NET_AIMASTER)
 		{
-			// ÀÏ´Ü ²ô°í ÆĞÅ¶Àü¼Û
+			// è€çªœ æºç»Š è©å“¦å‚ˆä»·
 			SetPhase(EInteractivePhaseType::FinishPhase);
 
 			pGM->NetSendDrinkControlSanctuary(pPlayer->GetNetId(), NetIndex);

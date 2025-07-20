@@ -1,4 +1,4 @@
-
+ï»¿
 #include "B2DialogTriggerActorBase.h"
 #include "B2StageManager.h"
 #include "B2StageGameMode.h"
@@ -25,7 +25,7 @@ AB2DialogTriggerActorBase::AB2DialogTriggerActorBase(const FObjectInitializer& O
 			FName ID_B2DialogTriggerActor;
 			FText NAME_B2DialogTriggerActor;
 			FConstructorStatics()
-				: SpriteTexture(TEXT("/Engine/EditorResources/S_FTest")) // Àû´çÈ÷ ´ëº» °°Àº ¸ğ¾ç..
+				: SpriteTexture(TEXT("/Engine/EditorResources/S_FTest")) // åˆ©å¯¸æ´’ æªå¤¯ éç¯® è‘›å‰§..
 				, ID_B2DialogTriggerActor(TEXT("B2DialogTriggerActor"))
 				, NAME_B2DialogTriggerActor(FText::FromString(TEXT("B2DialogTriggerActorEditorSprite")))
 			{
@@ -58,14 +58,14 @@ bool AB2DialogTriggerActorBase::IsTriggering(AActor* Other, TEnumAsByte<EInterac
 {
 	if (AB2StageEventDirector::CheckSkipForManageMode(this, ManageMode, false) != EStageEventSkipType::SEST_Play)
 	{
-		return false; // ½Ã³ª¸®¿À ¸ğµå, ±âÅ¸ Ãß°¡µÉ ¼ö ÀÖ´Â Æ¯¼ö °ÔÀÓ¸ğµå »óÈ² Ã¼Å©
+		return false; // çŸ«å”±åºœå· è‘›é›, æ‰é¸¥ çœ å•Šçª è ä¹ç»° æ¼‚è éœ¸çƒ™è‘›é› æƒ‘ç‚” çœ‰å†œ
 	}
 
 	AB2StageGameMode* StageGM = Cast<AB2StageGameMode>(UGameplayStatics::GetGameMode(this));
 	AB2StageManager* StageMgr = StageGM ? StageGM->GetStageManager() : NULL;
 	if (StageMgr)
 	{
-		// ½ºÅ×ÀÌÁö¶û ³­ÀÌµµ µÑ´Ù ¸Â´Â°æ¿ì¸¸ ¹ßµ¿
+		// èƒ¶æŠ›æç˜¤å°” æŠ„ææ¡£ ç¬›ä¿ƒ å˜ç»°ç‰ˆå¿«çˆ¶ æƒ¯æ‚¼
 		if (IsStageSupported(StageMgr->GetCurrentClientStageId()) && IsDifficultySupported(StageMgr->GetStageDifficultyLevel()))
 		{
 			return Super::IsTriggering(Other, InTriggerType);
@@ -79,7 +79,7 @@ bool AB2DialogTriggerActorBase::IsStageSupported(int32 InClientStageId) const
 {
 	if (SupportedStages.Num() == 0)
 	{
-		return true; // ºñ¾î ÀÖ´Â °æ¿ì ±âº»À¸·Î ¸ğµç ½ºÅ×ÀÌÁö Áö¿ø
+		return true; // åšç»¢ ä¹ç»° ç‰ˆå¿« æ‰å¤¯æ è‚º è‘›ç”µ èƒ¶æŠ›æç˜¤ ç˜¤ç›”
 	}
 	for (int32 CurrStage : SupportedStages)
 	{
@@ -95,7 +95,7 @@ bool AB2DialogTriggerActorBase::IsDifficultySupported(EStageDifficulty InStageDi
 {
 	if (SupportedDifficulty.Num() == 0)
 	{
-		return true; // ºñ¾î ÀÖ´Â °æ¿ì ±âº»À¸·Î ¸ğµç ½ºÅ×ÀÌÁö Áö¿ø
+		return true; // åšç»¢ ä¹ç»° ç‰ˆå¿« æ‰å¤¯æ è‚º è‘›ç”µ èƒ¶æŠ›æç˜¤ ç˜¤ç›”
 	}
 	for (EStageDifficulty StageDifficulty : SupportedDifficulty)
 	{
@@ -109,7 +109,7 @@ bool AB2DialogTriggerActorBase::IsDifficultySupported(EStageDifficulty InStageDi
 
 bool AB2DialogTriggerActorBase::IsExpectedForGameMode(class ABladeIIGameMode* InB2GM) const
 {
-	// ÀÌ¹ø °ÔÀÓ¸ğµå ¼¼¼ÇÀÇ ±âº» flow »ó¿¡¼­ ½ÇÁ¦ ¹ßµ¿ÇÒ °É·Î ¿¹»óµÇ´ÂÁö.
+	// æé”… éœ¸çƒ™è‘›é› æŠ€è®°ç‹¼ æ‰å¤¯ flow æƒ‘ä¿Šè¾‘ è§’åŠ› æƒ¯æ‚¼ä¸” å§è‚º æŠ—æƒ‘ç™»ç»°ç˜¤.
 	AB2StageGameModeBase* CastedSGM = Cast<AB2StageGameModeBase>(InB2GM);
 	AB2StageManager* StageManagerIfAny = CastedSGM ? CastedSGM->GetStageManager() : NULL;
 	if (StageManagerIfAny)
@@ -117,7 +117,7 @@ bool AB2DialogTriggerActorBase::IsExpectedForGameMode(class ABladeIIGameMode* In
 		return IsStageSupported(StageManagerIfAny->GetCurrentClientStageId()) &&
 			(AB2StageEventDirector::CheckSkipForManageMode(CastedSGM, ManageMode, false) == EStageEventSkipType::SEST_Play);
 	}
-	return true; // StageGameMode °¡ ¾Æ´Ñ °æ¿ì´Â ±âº» Áö¿øµÇ´Â °É·Î º»´Ù. º°µµ ½ºÅ×ÀÌÁö °³³äÀÌ ¾øÀÌ ±âº» µ¿ÀÛ Ãë±ŞÀÎ °Í.
+	return true; // StageGameMode å•Š é…’å›± ç‰ˆå¿«ç»° æ‰å¤¯ ç˜¤ç›”ç™»ç»° å§è‚º å¤¯ä¿ƒ. å–Šæ¡£ èƒ¶æŠ›æç˜¤ ä¿ºå……æ ç»æ æ‰å¤¯ æ‚¼ç´¯ ç§’é­ç‰¢ å·´.
 }
 
 #if WITH_EDITOR

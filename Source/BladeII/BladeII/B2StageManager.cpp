@@ -1,4 +1,4 @@
- //Fill out your copyright notice in the Description page of Project Settings.
+ï»¿ //Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2StageManager.h"
@@ -97,7 +97,7 @@ AB2StageManager::AB2StageManager(const FObjectInitializer& ObjectInitializer)
 
 	CurrentBossMobCount = 0;
 
-	StagePlayTimeAutoUpdateInterval = 0.2f; // ÃÖÁ¾ÀûÀÎ Á¤È®µµ¿¡ ¿µÇâÀ» ¹ÌÄ¡Áö´Â ¾ÊÁö¸¸ ÀüÅõ UI Ç¥½ÃµÈ °Í°ú °á°ú UI Ç¥½Ã¿¡¼­ÀÇ Â÷ÀÌ¸¦ °¡±ŞÀû ÁÙÀÏ ÇÊ¿ä°¡ ÀÖ¾î¼­ ÀÛÀº °ªÀ¸·Î..
+	StagePlayTimeAutoUpdateInterval = 0.2f; // å¼¥è¾†åˆ©ç‰¢ æ²¥çŠ¬æ¡£ä¿Š åº·æ°¢é˜‘ å›ºæ‘¹ç˜¤ç»° è‡¼ç˜¤çˆ¶ å‚ˆæ§ UI é’çŸ«ç­‰ å·´è‹ æ¬è‹ UI é’çŸ«ä¿Šè¾‘ç‹¼ ç’æç”« å•Šé­åˆ© ä¸´è€ é˜å¤¸å•Š ä¹ç»¢è¾‘ ç´¯ç¯® è”¼æ è‚º..
 
 	CurrentPlayingDialogSound = NULL;
 	
@@ -106,20 +106,20 @@ AB2StageManager::AB2StageManager(const FObjectInitializer& ObjectInitializer)
 
 void AB2StageManager::PreBeginPlay()
 {	
-//	// ´Ù¸¥ Actor µéÀÇ BeginPlay °¡ ºÒ¸®±â Àü¿¡ Ã³¸®µÇ¾î¾ß ÇÒ °ÍµéÀ» ¿©±â¿¡ ¾¥¼Å³Ö¾î º¸ÀÚ.
+//	// ä¿ƒå¼— Actor ç”¸ç‹¼ BeginPlay å•Š é˜‚åºœæ‰ å‚ˆä¿Š è´¸åºœç™»ç»¢å…· ä¸” å·´ç”¸é˜‘ å’¯æ‰ä¿Š èŒå¯‚æŒç»¢ ç„Šç£Š.
 //#if WITH_EDITOR
-//	if (GEditor && GEditor->bIsPlayWorldQueued) // PlayInEditor ¶óµµ ·Îºñ¸¦ ÅëÇØ ¿Â °æ¿ì´Â ¿©±â¸¦ Åë°úÇÏÁö ¾ÊÀ» °Í.
+//	if (GEditor && GEditor->bIsPlayWorldQueued) // PlayInEditor æ‰¼æ¡£ è‚ºåšç”« çƒ¹ç§¦ æŸ¯ ç‰ˆå¿«ç»° å’¯æ‰ç”« çƒ¹è‹çªç˜¤ è‡¼é˜‘ å·´.
 //		StaticCacheStageData.Initialize();
 //#endif
 //	
 //	ScenarioDialogManager.SetStageManager(this);
 //
 //	GetStageRewardManager().SetStageManager(this);
-//	//[@AKI, 180213] ÀÌ°Å´Â ¼¼ÆÃ ¾ÈµÇ°Ô ÀÏ´Ü ÀÌ°Å´Â ºüÁ®¾ß ÇÒµí(ÀÌ°Ô StageId¸¦¹Ù²Ù³ª....)
+//	//[@AKI, 180213] æèŠ­ç»° æŠ€æ³¼ æ•‘ç™»éœ¸ è€çªœ æèŠ­ç»° ç‹å»‰å…· ä¸”æ·€(æéœ¸ StageIdç”«å®˜æ“å”±....)
 //#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
 //	if (!Utilities::FConnectionState::GetInstance().IsConnected()
-//		// FConnectionState ¸¸ °Ë»çÇÑ´Ù¸é ÇÑ¹øÀÌ¶óµµ ·Îºñ¸Ê ¿­°í Á¢¼ÓÇÑ ÀÌÈÄ¿¡´Â ¼­¹ö Á¢¼ÓÇÑ °É·Î Ã³¸®µÇ¾î ¿¡µğÅÍ ¼³Á¤À» »ç¿ëÇÒ ¼ö°¡ ¾øÀ½. 
-//		// ¿¡µğÅÍ ¹× ±×³É Open À» ÅëÇÑ ÇÃ·¹ÀÌ¿¡¼­ÀÇ ÆíÀÇ»ó standalone ¸ğµå Á¦°ø
+//		// FConnectionState çˆ¶ å…«è¤èŒ„ä¿ƒæ èŒ„é”…ææ‰¼æ¡£ è‚ºåšç”˜ å‡¯ç»Š ç«‹åŠ èŒ„ æé¥¶ä¿Šç»° è¾‘æ»š ç«‹åŠ èŒ„ å§è‚º è´¸åºœç™»ç»¢ ä¿Šå¼ç£ æ±²æ²¥é˜‘ è¤ä¾©ä¸” èå•Š ç»æ¾œ. 
+//		// ä¿Šå¼ç£ æ£º å¼Šæˆ Open é˜‘ çƒ¹èŒ„ æ•²é¥­æä¿Šè¾‘ç‹¼ ç¥ˆç‹¼æƒ‘ standalone è‘›é› åŠ›å‚
 //		|| DevOnlyIsStandalonePlay()
 //		)
 //	{
@@ -127,21 +127,21 @@ void AB2StageManager::PreBeginPlay()
 //	}
 //#endif
 //
-//	RefreshStagePlayTimeCheck(); // ExtraMap »ó°ü¾øÀÌ Ä«¿îÆ®´Â ½ÃÀÛ
+//	RefreshStagePlayTimeCheck(); // ExtraMap æƒ‘åŒ…ç»æ å¢¨æ¬¾é£˜ç»° çŸ«ç´¯
 //
-//	// ±âÅ¸ ´Ù¸¥ µ¥ÀÌÅÍµé..
+//	// æ‰é¸¥ ä¿ƒå¼— å•æç£ç”¸..
 //	
 //	SyncDataToUIDoc();
 //	for (int32 PCI = 0; PCI < GetMaxPCClassNum(); ++PCI)
 //	{
 //		UB2UIDocHero* UIDocClass = UB2UIDocHelper::GetDocHero(PCI);
 //		if (UIDocClass)
-//		{ // ½ºÅ×ÀÌÁö Å¬¸®¾îÇÒ ¶§ (·¹º§¾÷ÇÏ¸é) ¼¼ÆÃµÇ´Â µ¥ÀÌÅÍ. ½ÃÀÛÇÒ ¶§ ¸®¼Â.
+//		{ // èƒ¶æŠ›æç˜¤ åŠªåºœç»¢ä¸” é”­ (é¥­éª‡è¯€çªæ) æŠ€æ³¼ç™»ç»° å•æç£. çŸ«ç´¯ä¸” é”­ åºœæ‚¸.
 //			UIDocClass->SetLastAcquiredSkillPoint(0);
 //		}
 //	}
 
-	SubscribeEvents(); // BeginPlay ½ÃÁ¡¿¡ ºÒ¸®´Â ÀÌº¥Æ®°¡ ÀÖÀ» Å×´Ï ÀÌ ½ÃÁ¡¿¡ ¸ÕÀú µî·ÏÇØ ³õ¾Æ¾ß.
+	SubscribeEvents(); // BeginPlay çŸ«ç—¢ä¿Š é˜‚åºœç»° æäº¥é£˜å•Š ä¹é˜‘ æŠ›èª æ çŸ«ç—¢ä¿Š åˆšå† æ®¿åºŸç§¦ åˆé…’å…·.
 }
 
 // Called when the game starts or when spawned
@@ -151,7 +151,7 @@ void AB2StageManager::BeginPlay()
 	
 	StageBeginHandling();
 
-	BladeIIGameImpl::DevOnlyStageLoadData.SpecifiedClientStageId = -1; // ÀÌ ½ÃÁ¡¿¡¼­ ´õ ÀÌ»ó ÇÊ¿äÇÏÁö ¾ÊÀ» »Ó´õ·¯ ³²¾Æ ÀÖÀ¸¸é ¿¡µğÅÍ ÇÃ·¹ÀÌ¿¡ ¹æÇØ°¡ µÊ
+	BladeIIGameImpl::DevOnlyStageLoadData.SpecifiedClientStageId = -1; // æ çŸ«ç—¢ä¿Šè¾‘ æ­¹ ææƒ‘ é˜å¤¸çªç˜¤ è‡¼é˜‘ æŒ¥æ­¹çŸ¾ å·¢é…’ ä¹æ æ ä¿Šå¼ç£ æ•²é¥­æä¿Š è§„ç§¦å•Š å‡³
 }
 
 void AB2StageManager::BeginDestroy()
@@ -188,29 +188,29 @@ void AB2StageManager::StageBeginHandling()
 	//bStageCleared = false;
 	//IsPossiblePlayBossBgm = true;
 
-	//// Note: ´Ù¸¥ actor µéÀÇ BeginPlay ÀÌÀü¿¡ Ã³¸®°¡ ÇÊ¿äÇÑ ºÎºĞÀº ABladeIIGameMode::PreBeginPlay ¸¦ Âü°í.
-	//// ÀÌ°ÍÀÌ ºÒ¸®´Â ½ÃÁ¡Àº ´Ü¼øÈ÷ actor µéÀÇ BeginPlay °¡ Ã³¸®µÇ´Â ½ÃÁ¡ÀÓ. ¼±ÈÄ°ü°è´Â Á¤ÀÇµÇÁö ¾ÊÀ½.
+	//// Note: ä¿ƒå¼— actor ç”¸ç‹¼ BeginPlay æå‚ˆä¿Š è´¸åºœå•Š é˜å¤¸èŒ„ ä½•ç›’ç¯® ABladeIIGameMode::PreBeginPlay ç”« æ›¼ç»Š.
+	//// æå·´æ é˜‚åºœç»° çŸ«ç—¢ç¯® çªœé‰´æ´’ actor ç”¸ç‹¼ BeginPlay å•Š è´¸åºœç™»ç»° çŸ«ç—¢çƒ™. æ€¥é¥¶åŒ…æ‹Œç»° æ²¥ç‹¼ç™»ç˜¤ è‡¼æ¾œ.
 
-	//SyncDataToUIDoc(); // ¶Ç ÇÑ¹ø ÇØÁÖÁö ¸Ó.
+	//SyncDataToUIDoc(); // è‚š èŒ„é”… ç§¦æ—ç˜¤ èµ£.
 
-	//if (StaticCacheStageData.bPlayInExtraLevel) // ExtraLevel ·Îµù ½ÃÀÇ Ã³¸®. SetReadyPlayingExtraMap ÀÇ ¹İ´ë
+	//if (StaticCacheStageData.bPlayInExtraLevel) // ExtraLevel è‚ºçˆ¹ çŸ«ç‹¼ è´¸åºœ. SetReadyPlayingExtraMap ç‹¼ é¦†æª
 	//{
-	//	//ABladeIIGameMode::HideHUDCenterMessage(); // Extralevel ·Îµù ´ë±â ½ÃÀÛÇÏ¸é¼­ Ä×´ø ¼¾ÅÍ ¸Ş½ÃÁö ²ô±â. È¤½Ã ±× »çÀÌ¿¡ ´Ù¸¥ ¼¾ÅÍ ¸Ş½ÃÁö°¡ ÇÊ¿äÇØÁø´Ù¸é..?
-	//	// ABladeIIGameMode::HideHUDCenterMessage °¡ ¾îÂ÷ÇÇ ¾È¸ÔÈ÷´Âµ¥ ·¹º§ º¯°æ ÈÄ¶ó ±×ÂÊ¿¡¼­ Ä³½ÌÇØ ³õÀº ·¹ÆÛ·±½º°¡ ÀÇ¹Ì°¡ ¾ø±â ¶§¹®ÀÌ´Ù. ¾îÂ¿ ¼ö ¾øÁö.
+	//	//ABladeIIGameMode::HideHUDCenterMessage(); // Extralevel è‚ºçˆ¹ æªæ‰ çŸ«ç´¯çªæè¾‘ æ·–å¸¦ å­£ç£ çš‹çŸ«ç˜¤ æºæ‰. è¶£çŸ« å¼Š è¤æä¿Š ä¿ƒå¼— å­£ç£ çš‹çŸ«ç˜¤å•Š é˜å¤¸ç§¦æŸ³ä¿ƒæ..?
+	//	// ABladeIIGameMode::HideHUDCenterMessage å•Š ç»¢ç’ä¹” æ•‘å†ˆæ´’ç»°å• é¥­éª‡ å‡½ç‰ˆ é¥¶æ‰¼ å¼Šç‡ä¿Šè¾‘ æŸæ•™ç§¦ åˆç¯® é¥­æ¬ºç¹èƒ¶å•Š ç‹¼å›ºå•Š ç»æ‰ é”­å·©æä¿ƒ. ç»¢é©´ è ç»ç˜¤.
 	//	UB2UIManager::GetInstance()->CloseAllMsgPopups();
 	//	RetrieveDataForExtraMap();
 	//}
 
 	//PlayStageBGM();
 
-	//UpdateStagePlayTime(false); // UI Ç¥½Ã¸¦ À§ÇØ Ã³À½ ÇÑ¹ø È®½ÇÈ÷ ºÒ·¯ÁÙ ÇÊ¿ä°¡ ÀÖÀ½.
+	//UpdateStagePlayTime(false); // UI é’çŸ«ç”« å›°ç§¦ è´¸æ¾œ èŒ„é”… çŠ¬è§’æ´’ é˜‚çŸ¾ä¸´ é˜å¤¸å•Š ä¹æ¾œ.
 	//GetWorldTimerManager().SetTimer(AutoUpdateStagePlayTimeTH, this, &AB2StageManager::AutoUpdateStagePlayTimeCB, StagePlayTimeAutoUpdateInterval, false);
 
-	//StageBeginClass<>::GetInstance().Signal(); // UI ÂÊ ½ÅÈ£.
+	//StageBeginClass<>::GetInstance().Signal(); // UI ç‡ è„šé¾‹.
 }
 
 void AB2StageManager::SyncDataToUIDoc()
-{ // UI ¿¡¼­ ¾µ µ¥ÀÌÅÍµé ¼¼ÆÃ.
+{ // UI ä¿Šè¾‘ é•œ å•æç£ç”¸ æŠ€æ³¼.
 	//UB2UIDocBattleStage* DocBS = UB2UIDocHelper::GetDocBattleStage();
 	//if (DocBS)
 	//{
@@ -355,14 +355,14 @@ void AB2StageManager::UnsubscribeEvents()
 
 #if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
 bool AB2StageManager::DevOnlyIsStandalonePlay() const
-{ // ¼­¹ö¿¡ ºÙÁö ¾ÊÀº ÅäÅ» standalone ÇÃ·¹ÀÌ ¿©ºÎ
+{ // è¾‘æ»šä¿Š å˜¿ç˜¤ è‡¼ç¯® é…å‘• standalone æ•²é¥­æ å’¯ä½•
 #if WITH_EDITOR
 	if (IsStandalonePIE()){
 		return true;
 	}
 #endif
 
-	if (FBladeIIBlockToSyncNetwork::GetInstance().DevIsStandaloneMode()) { // ÀÌ°É ¼¼ÆÃÇÏ´Â °Ô Á© ¼ÓÆíÇÒ µí..
+	if (FBladeIIBlockToSyncNetwork::GetInstance().DevIsStandaloneMode()) { // æå§ æŠ€æ³¼çªç»° éœ¸ ä¿© åŠ ç¥ˆä¸” æ·€..
 		return true;
 	}
 
@@ -370,7 +370,7 @@ bool AB2StageManager::DevOnlyIsStandalonePlay() const
 	{
 		FWorldContext* TheWorldContext = GEngine->GetWorldContextFromWorld(GetWorld());
 		if (TheWorldContext)
-		{ // Open ¸í·É¿¡ Standalone ÀÎÀÚ. ¿¹¸¦ µé¾î Open LV01_02?Standalone?StageNum=2 ÀÌ·± ½ÄÀ¸·Î
+		{ // Open ç–™é£ä¿Š Standalone ç‰¢ç£Š. æŠ—ç”« ç”¸ç»¢ Open LV01_02?Standalone?StageNum=2 æç¹ ä¾¥æ è‚º
 			if (TheWorldContext->LastURL.HasOption(TEXT("Standalone")))
 			{
 				return true;
@@ -387,7 +387,7 @@ void AB2StageManager::NotifySpawnPoolMobSpawn(class ABladeIICharacter* SpawnedMo
 	//{
 	//	if (bStopAllMobs)
 	//	{
-	//		SpawnedMob->PreventMovementByStageEvent(); // StopOrRestoreAllWorldMobs È£Ãâ ½ÃÁ¡ ÀÌÈÄ¿¡ spawn µÈ °Íµéµµ Ã³¸®.
+	//		SpawnedMob->PreventMovementByStageEvent(); // StopOrRestoreAllWorldMobs é¾‹å… çŸ«ç—¢ æé¥¶ä¿Š spawn ç­‰ å·´ç”¸æ¡£ è´¸åºœ.
 	//	}
 
 	//	if (InBirthplaceInfo.bSpawnedAsBossMob)
@@ -417,7 +417,7 @@ void AB2StageManager::NotifySpawnPoolMobSpawn(class ABladeIICharacter* SpawnedMo
 
 void AB2StageManager::NotifySpawnPoolComplete(class AB2MonsterSpawnPool* CompletedSpawnPool)
 {
-	CheckStageClear(); // SpawnPool Á¾·á´Â ´ëÃ¼·Î StageClear ·Î ÀÌ¾îÁö³ª Ãß°¡ Á¶°ÇÀÌ ÇÊ¿äÇÒ ¼ö ÀÖÀ½.
+	CheckStageClear(); // SpawnPool è¾†ä¸°ç»° æªçœ‰è‚º StageClear è‚º æç»¢ç˜¤å”± çœ å•Š ç‚¼æ‰’æ é˜å¤¸ä¸” è ä¹æ¾œ.
 }
 
 void AB2StageManager::NotifySpawnPoolSingleWaveStart(AB2MonsterSpawnPool* StartedSpawnPool, int32 WaveNum)
@@ -439,7 +439,7 @@ void AB2StageManager::NotifySpawnPoolWaveMobDead(class AB2MonsterSpawnPool* Spaw
 
 void AB2StageManager::NotifySpawnPoolWaveMobPhaseChange(class AB2MonsterSpawnPool* SpawnPool, class ABladeIICharacter* ChangedMob, class ABladeIICharacter* DestroyedPrevRef, int32 WaveNum, int32 MobObjIndex, int32 NewPhase)
 {
-	// DestroyedPrevRef ´Â NULL ÀÌ ¾Æ´Ñ °æ¿ì¶óµµ IsValidObj ÇÏÁö ¾ÊÀ» °ÍÀÓ.
+	// DestroyedPrevRef ç»° NULL æ é…’å›± ç‰ˆå¿«æ‰¼æ¡£ IsValidObj çªç˜¤ è‡¼é˜‘ å·´çƒ™.
 }
 
 void AB2StageManager::NotifySpawnPoolSummonedMobDead(class AB2MonsterSpawnPool* SpawnPool, class ABladeIICharacter* DyingMob)
@@ -460,16 +460,16 @@ void AB2StageManager::NotifyForgetACharacter(class ABladeIICharacter* CharacterA
 
 void AB2StageManager::NotifyStageEventSceneBegin(class AB2StageEventDirector* BegunDirector, EStageEvent EventType)
 {
-	if (!bCurrentLevelCleared) // ·¹º§ Á¾·á ÈÄ¿¡ ¿Ã ¼ö ÀÖÀ¸¹Ç·Î ¾÷µ¥ÀÌÆ® ÇÏÁö ¾Êµµ·Ï ÁÖÀÇ.
+	if (!bCurrentLevelCleared) // é¥­éª‡ è¾†ä¸° é¥¶ä¿Š æ£µ è ä¹æ éª¨è‚º è¯€å•æé£˜ çªç˜¤ è‡¼æ¡£åºŸ æ—ç‹¼.
 	{
-		// ¾Æ·¡ UpdateStagePlayTime ¿¡ true ¸¦ ³Ö¾îÁÖ¸é ¿¬Ãâ Àå¸é Àç»ıµÇ´Â µ¿¾È Àá½Ã ½Ã°£ Ä«¿îÆÃÀÌ Áß´ÜµÉ °Í.
-		// Áö±İÀº ¿¬Ãâ µµÁß¿¡µµ ½Ã°£ Ä«¿îÆÃ ÇÏ°Ô µÇ¾úÀ½.
+		// é…’è´° UpdateStagePlayTime ä¿Š true ç”« æŒç»¢æ—æ æ¥·å… å˜æ çŠç§¯ç™»ç»° æ‚¼æ•‘ æ³ªçŸ« çŸ«åŸƒ å¢¨æ¬¾æ³¼æ åçªœçª å·´.
+		// ç˜¤é™›ç¯® æ¥·å… æ¡£åä¿Šæ¡£ çŸ«åŸƒ å¢¨æ¬¾æ³¼ çªéœ¸ ç™»èŒæ¾œ.
 		UpdateStagePlayTime(false);
 	}
 }
 void AB2StageManager::NotifyStageEventSceneEnd(class AB2StageEventDirector* EndedDirector)
-{ // ÀÌ Notify °¡ ²À ÀüÃ¼ ¿¬Ãâ Àå¸éÀÌ ÇÃ·¹ÀÌµÇ¾úÀ½À» ¶æÇÏÁö´Â ¾Ê´Â´Ù. Áß°£¿¡ Áß´ÜÇß´õ¶óµµ ÀÌ·¸°Ô ¿À°Ô µÉ °Í.
-	if (!bCurrentLevelCleared) // ·¹º§ Á¾·á ÈÄ¿¡ ¿Ã ¼ö ÀÖÀ¸¹Ç·Î ÁÖÀÇ..
+{ // æ Notify å•Š æ€– å‚ˆçœ‰ æ¥·å… å˜ææ æ•²é¥­æç™»èŒæ¾œé˜‘ èˆµçªç˜¤ç»° è‡¼ç»°ä¿ƒ. ååŸƒä¿Š åçªœæ²æ­¹æ‰¼æ¡£ æçŠ¯éœ¸ å·éœ¸ çª å·´.
+	if (!bCurrentLevelCleared) // é¥­éª‡ è¾†ä¸° é¥¶ä¿Š æ£µ è ä¹æ éª¨è‚º æ—ç‹¼..
 	{
 		RefreshStagePlayTimeCheck();
 	}
@@ -482,9 +482,9 @@ void AB2StageManager::NotifyUIWidgetOpenComplete(FName InOpenedUI)
 
 void AB2StageManager::PreloadAdditionalNecessaryInfo()
 {
-	// TAsset ·ÎµùÇÏ´Â InfoAsset µéÀÌ ´ë»óÀÓ. ±âº»ÀûÀ¸·Î AB2StageGameMode::PreloadAnyNecessaryInfo ¿¡¼­ Ã³¸®ÇÏ´Â ÀÌ¿ÜÀÇ °Íµé
+	// TAsset è‚ºçˆ¹çªç»° InfoAsset ç”¸æ æªæƒ‘çƒ™. æ‰å¤¯åˆ©æ è‚º AB2StageGameMode::PreloadAnyNecessaryInfo ä¿Šè¾‘ è´¸åºœçªç»° æå¯‡ç‹¼ å·´ç”¸
 
-	GetStageRewardManager().PreloadAllRewardItemInfo(); // °ñµå¶û.. ¿©Å¸ º¸½º¸÷ Àâ¾ÒÀ» ¶§ÀÇ º¸»ó ¾ÆÀÌÅÛ µî ·Îµù.
+	GetStageRewardManager().PreloadAllRewardItemInfo(); // æ¦œé›å°”.. å’¯é¸¥ ç„Šèƒ¶å„ æ£±ç–½é˜‘ é”­ç‹¼ ç„Šæƒ‘ é…’æè¢ æ®¿ è‚ºçˆ¹.
 }
 
 void AB2StageManager::CheckStageClear()
@@ -493,7 +493,7 @@ void AB2StageManager::CheckStageClear()
 //
 //	bool bSpawnPoolDone = true;
 //
-//	// ¸ğµç SpawnPool µéÀÌ ³¡³µ´ÂÁö Ã¼Å© -> ÀÏ´ÜÀº SpawnPool ÇÏ³ª °¡Á¤ÀÌÁö¸¸ ¼³Ä¡ °¡´É¼ºÀº ÀÖÀ¸´Ï ³²°ÜµÒ.
+//	// è‘›ç”µ SpawnPool ç”¸æ åœºè½¦ç»°ç˜¤ çœ‰å†œ -> è€çªœç¯® SpawnPool çªå”± å•Šæ²¥æç˜¤çˆ¶ æ±²æ‘¹ å•Šç“·å·±ç¯® ä¹æ èª å·¢è´¥ç‹„.
 //	check(CachedGameMode);
 //
 //	AB2MonsterSpawnPool* CheckSpawnPool = CachedGameMode->GetActiveSpawnPool();
@@ -507,25 +507,25 @@ void AB2StageManager::CheckStageClear()
 //
 //
 //	//
-//	// ±âÅ¸ Á¶°Çµé »ı±â´Â °æ¿ì..
+//	// æ‰é¸¥ ç‚¼æ‰’ç”¸ ç§¯æ‰ç»° ç‰ˆå¿«..
 //	//
 //
 //
-//	bCurrentLevelCleared = bSpawnPoolDone; // ´Ù¸¥ Á¶°ÇÀº ÇÊ¿ä¿¡ µû¶ó Ãß°¡.
+//	bCurrentLevelCleared = bSpawnPoolDone; // ä¿ƒå¼— ç‚¼æ‰’ç¯® é˜å¤¸ä¿Š è¶æ‰¼ çœ å•Š.
 //
-//	if (bCurrentLevelCleared) // ·¹º§ÀÌ ³¡³­ °Çµ¥ Stage Å¬¸®¾î°¡ µÇ±â À§ÇØ¼­´Â ¾ÆÁ÷ Á» ´õ Ã¼Å©ÇÒ °Ô ÀÖÀ½.
+//	if (bCurrentLevelCleared) // é¥­éª‡æ åœºæŠ„ æ‰’å• Stage åŠªåºœç»¢å•Š ç™»æ‰ å›°ç§¦è¾‘ç»° é…’æµ ç²± æ­¹ çœ‰å†œä¸” éœ¸ ä¹æ¾œ.
 //	{		
-//		// ÇÃ·¹ÀÌ ÀÚÃ¼´Â ³¡³µÀ¸¹Ç·Î Ä«¿îÆ® Áß´ÜÇÏ¸é¼­ PlayTime °»½Å. ExtraMap ÀÌ ÀÖ´Ù¸é Áö±İ±îÁö Ä«¿îÆ®µÈ PlayTime Àº Àü´ŞµÉ °Í. 
-//		UpdateStagePlayTime(true); // ÀÌ¹Ì ¿¬Ãâ Àå¸éÀÌ ½ÃÀÛµÇ¸é¼­ Áß´ÜµÈ »óÅÂÀÏ ¼ö ÀÖ´Ù. (¾Æ¸¶ ±×°Ô ´ëºÎºĞÀÏµí?)
+//		// æ•²é¥­æ ç£Šçœ‰ç»° åœºè½¦æ éª¨è‚º å¢¨æ¬¾é£˜ åçªœçªæè¾‘ PlayTime ç›è„š. ExtraMap æ ä¹ä¿ƒæ ç˜¤é™›é³–ç˜¤ å¢¨æ¬¾é£˜ç­‰ PlayTime ç¯® å‚ˆå´”çª å·´. 
+//		UpdateStagePlayTime(true); // æå›º æ¥·å… å˜ææ çŸ«ç´¯ç™»æè¾‘ åçªœç­‰ æƒ‘æ€•è€ è ä¹ä¿ƒ. (é…’ä»˜ å¼Šéœ¸ æªä½•ç›’è€æ·€?)
 //
 //#if WITH_EDITOR
-//		// ¿¡µğÅÍ¿¡¼­ ExtraMap ´Üµ¶ ÇÃ·¹ÀÌÇÒ ¶§¿¡ ÀÚ±âÀÚ½ÅÀ» ´Ù½Ã ·ÎµùÇÏÁö ¾Ê°í ½ºÅ×ÀÌÁö Á¾·á Ã³¸®¸¦ ÇÏµµ·Ï ÇÑ´Ù.
+//		// ä¿Šå¼ç£ä¿Šè¾‘ ExtraMap çªœåˆ€ æ•²é¥­æä¸” é”­ä¿Š ç£Šæ‰ç£Šè„šé˜‘ ä¿ƒçŸ« è‚ºçˆ¹çªç˜¤ è‡¼ç»Š èƒ¶æŠ›æç˜¤ è¾†ä¸° è´¸åºœç”« çªæ¡£åºŸ èŒ„ä¿ƒ.
 //		bool bEDITOR_IsExtraMap = false;
 //		if (GIsEditor && StaticCacheStageData.bHasExtraLevel && StaticCacheStageData.CachedCurrentStageInfoData)
 //		{
 //			UPackage* OuterMostPackage = GetWorld()->GetOutermost();
-//			// ¿øº» FIleName °ú ExtraMap ÀÌ °°ÀºÁö °Ë»ç. FileName Àº °æ·Î¸¦ Æ÷ÇÔÇÏ´Âµ¥ ExtraMap Àº ±×·¸Áö ¾ÊÀ» °ÍÀÌ¹Ç·Î ¸Ç µŞºÎºĞ¸¸ Ã¼Å©.
-//			// ¹°·Ğ ¿¹»ó ¿ÜÀÇ ³×ÀÌ¹ÖÀ¸·Î ÀÎÇØ ¾û¶×ÇÏ°Ô ExtraMap Ã³¸®°¡ µÉ ¼öµµ ÀÖ°ÚÁö¸¸ ¿¡µğÅÍ ÀÌ½´ÀÌ°í ¹®Á¦°¡ µÈ´Ù¸é ±İ¹æ ¾Ë°Ô µÉ °ÍÀÓ
+//			// ç›”å¤¯ FIleName è‹ ExtraMap æ éç¯®ç˜¤ å…«è¤. FileName ç¯® ç‰ˆè‚ºç”« å™¨çªƒçªç»°å• ExtraMap ç¯® å¼ŠçŠ¯ç˜¤ è‡¼é˜‘ å·´æéª¨è‚º ç›– ç¼”ä½•ç›’çˆ¶ çœ‰å†œ.
+//			// æ‹±æ²¸ æŠ—æƒ‘ å¯‡ç‹¼ åŒ™ææ€ªæ è‚º ç‰¢ç§¦ é’§è¹²çªéœ¸ ExtraMap è´¸åºœå•Š çª èæ¡£ ä¹æ‘†ç˜¤çˆ¶ ä¿Šå¼ç£ æé…±æç»Š å·©åŠ›å•Š ç­‰ä¿ƒæ é™›è§„ èˆ…éœ¸ çª å·´çƒ™
 //			if (OuterMostPackage && OuterMostPackage->FileName.ToString().EndsWith(StaticCacheStageData.CachedCurrentStageInfoData->ExtraMap.ToString()))
 //			{
 //				bEDITOR_IsExtraMap = true;
@@ -538,11 +538,11 @@ void AB2StageManager::CheckStageClear()
 //#endif
 //			)
 //		{
-//			// ExtraMap À» ·ÎµùÇÔ¿¡ µû¶ó ´ÙÀ½ ¸Ê¿¡ Àü´ŞÇØ ÁÙ µ¥ÀÌÅÍ¸¦ ¼¼ÆÃ.. ÇØ¾ß ÇÏ´Âµ¥ ÀÌ ½ÃÁ¡¿¡¼­ ÇÏ¸é ExtraMapDelay ¿¡ µû¶ó ¸î°¡Áö ³õÄ¡´Â °ÍÀÌ »ı±æ ¼ö ÀÖ´Ù.
-//			// LoadExtraMap ½ÃÁ¡¿¡ Ã³¸®ÇÔ.
+//			// ExtraMap é˜‘ è‚ºçˆ¹çªƒä¿Š è¶æ‰¼ ä¿ƒæ¾œ ç”˜ä¿Š å‚ˆå´”ç§¦ ä¸´ å•æç£ç”« æŠ€æ³¼.. ç§¦å…· çªç»°å• æ çŸ«ç—¢ä¿Šè¾‘ çªæ ExtraMapDelay ä¿Š è¶æ‰¼ å‰²å•Šç˜¤ åˆæ‘¹ç»° å·´æ ç§¯è¾¨ è ä¹ä¿ƒ.
+//			// LoadExtraMap çŸ«ç—¢ä¿Š è´¸åºœçªƒ.
 //			//SetReadyPlayingExtraMap();
 //			
-//			// ExtraMap ÀüÈ¯ ¸Ş½ÃÁö.. ExtraMapDelay º¸´Ù ´ÊÁø ¾Ê°Ô ³ª¿Í¾ß ÇÔ.
+//			// ExtraMap å‚ˆåˆ¸ çš‹çŸ«ç˜¤.. ExtraMapDelay ç„Šä¿ƒ è¯æŸ³ è‡¼éœ¸ å”±å®¢å…· çªƒ.
 //			const float ExtraMapMessageDelay = StaticCacheStageData.CachedCurrentStageInfoData->GetFinalExtraMapMessageDelay(IsScenarioMode());
 //			if (ExtraMapMessageDelay > 0.0f){
 //				GetWorldTimerManager().SetTimer(ExtraMapMessageDelayTimer, this, &AB2StageManager::ExtraMapMessageDelayTimerCB, ExtraMapMessageDelay, false);
@@ -558,17 +558,17 @@ void AB2StageManager::CheckStageClear()
 //			}
 //			else
 //			{
-//				PreHandleLoadExtraMap(); // ÃßÈÄ »çÁ¤¿¡ µû¶ó PreHandleLoadExtraMap Àº ¾à°£ ¾Õ´ç°ÜÁú ¼öµµ.. °£´ÜÇÏÁö´Â ¾Ê°ÚÁö¸¸
-//				LoadExtraMap(); // ¹Ù·Î ·Îµù
+//				PreHandleLoadExtraMap(); // çœ é¥¶ è¤æ²¥ä¿Š è¶æ‰¼ PreHandleLoadExtraMap ç¯® è·åŸƒ èŠå¯¸è´¥é¾™ èæ¡£.. åŸƒçªœçªç˜¤ç»° è‡¼æ‘†ç˜¤çˆ¶
+//				LoadExtraMap(); // å®˜è‚º è‚ºçˆ¹
 //			}
 //		}
 //		else
 //		{
-//			// Extra ¸Ê±îÁö °í·ÁÇØ¼­ ÁøÂ¥ ³¡³­ °Å.
+//			// Extra ç”˜é³–ç˜¤ ç»Šå¦¨ç§¦è¾‘ æŸ³æ¥¼ åœºæŠ„ èŠ­.
 //			bStageCleared = true;
 //			StageCompleteClass<>::GetInstance().Signal();
 //			if (GetB2GameModeType(CachedGameMode) == EB2GameMode::CounterDungeon)
-//			{//¹İ°İ´øÀü 
+//			{//é¦†æ‹œå¸¦å‚ˆ 
 //				RequestCounterDungeonClear();
 //			}
 //			else if (GetB2GameModeType(CachedGameMode) ==  EB2GameMode::HeroTower)
@@ -584,15 +584,15 @@ void AB2StageManager::CheckStageClear()
 //				if (GetB2GameModeType(CachedGameMode) == EB2GameMode::Tutorial)
 //					return;
 //
-//				RequestStageClear(); // ¼­¹ö¿¡ ½ºÅ×ÀÌÁö Å¬¸®¾î ¾Ë¸²
+//				RequestStageClear(); // è¾‘æ»šä¿Š èƒ¶æŠ›æç˜¤ åŠªåºœç»¢ èˆ…è¦†
 //			}			
 //		}
 //
-//		// Stage Á¾·á ¹× Transition ´ë±â ½Ã ÀÔ·Â ºÒ°¡´ÉÇÏ°Ô
+//		// Stage è¾†ä¸° æ£º Transition æªæ‰ çŸ« æ¶ä»¿ é˜‚å•Šç“·çªéœ¸
 //		ABladeIIPlayerController* B2PC = Cast<ABladeIIPlayerController>(UGameplayStatics::GetLocalPlayerController(this));
 //		if (B2PC)
 //		{
-//			// Stage Á¾·á ¹× Transition ´ë±â ½Ã ÀÔ·Â ºÒ°¡´ÉÇÏ°Ô
+//			// Stage è¾†ä¸° æ£º Transition æªæ‰ çŸ« æ¶ä»¿ é˜‚å•Šç“·çªéœ¸
 //			B2PC->SetStageEndNonCombatState(true);
 //		}
 //	}
@@ -603,8 +603,8 @@ void AB2StageManager::RequestStageClear()
 	StaticCacheStageData.PlayTimeInMainMap = LastUpdatedPlayTime;
 
 #if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
-	// ½ÃÀÛ½Ã¿¡ ¼­¹ö¸¦ ÅëÇÏÁö ¾Ê¾ÒÀ¸¸é StageClear Ã¼Å©µµ ·ÎÄÃ¿¡¼­ ¹Ù·Î. IsConnected Ã¼Å©¸¦ ÇÏÁö ¾Ê´Âµ¥ ¿¬°áµÈ »óÅÂ¿¡¼­ ¿¡µğÅÍ¿¡¼­ ÇÁ¸®ºä ÇÃ·¹ÀÌ¸¦ ÇÏ°Ô µÉ ¼ö ÀÖÀ¸¹Ç·Î
-	// ´Ü, ÄíÅ· ¹öÀü¿¡¼­´Â ´õ ÀÌ»ó ÀÌ·± ¹æ½ÄÀÇ Å¬¸®¾î Ã³¸®¸¦ Áö¿øÇÏÁö ¾Ê´Â´Ù.
+	// çŸ«ç´¯çŸ«ä¿Š è¾‘æ»šç”« çƒ¹çªç˜¤ è‡¼ç–½æ æ StageClear çœ‰å†œæ¡£ è‚ºæ‹¿ä¿Šè¾‘ å®˜è‚º. IsConnected çœ‰å†œç”« çªç˜¤ è‡¼ç»°å• æ¥·æ¬ç­‰ æƒ‘æ€•ä¿Šè¾‘ ä¿Šå¼ç£ä¿Šè¾‘ æ©‡åºœè½° æ•²é¥­æç”« çªéœ¸ çª è ä¹æ éª¨è‚º
+	// çªœ, æ»æ¬§ æ»šå‚ˆä¿Šè¾‘ç»° æ­¹ ææƒ‘ æç¹ è§„ä¾¥ç‹¼ åŠªåºœç»¢ è´¸åºœç”« ç˜¤ç›”çªç˜¤ è‡¼ç»°ä¿ƒ.
 	if (DevOnlyIsStandalonePlay())
 	{
 		OnStageClear();
@@ -640,7 +640,7 @@ void AB2StageManager::RequestStageClear()
 		StaticCacheStageData.PlayToken,
 		CliToSvrPCClassType(BladeIIGameImpl::GetLocalCharacterData().GetMainPlayerClass()),
 		CliToSvrPCClassType(BladeIIGameImpl::GetLocalCharacterData().GetSubPlayerClass()),
-		FMath::TruncToInt(LastUpdatedPlayTime), // Å¬¸®¾î µî±ŞÀ» Á¤ÇÏ´Â ¼öÄ¡ÀÎµ¥ ±¦È÷ ¾Ö¸ÅÇÑ »óÈ²¿¡¼­ ¹İ¿Ã¸²ÇÏ´Â °Íº¸´Ù °¡´ÉÇÑ ÁÁ°Ô ³ª¿Àµµ·Ï ÀÚ¸£´Â °Ô ³´°ÚÁö..
+		FMath::TruncToInt(LastUpdatedPlayTime), // åŠªåºœç»¢ æ®¿é­é˜‘ æ²¥çªç»° èæ‘¹ç‰¢å• å®æ´’ å±€æ¦‚èŒ„ æƒ‘ç‚”ä¿Šè¾‘ é¦†æ£µè¦†çªç»° å·´ç„Šä¿ƒ å•Šç“·èŒ„ äº®éœ¸ å”±å·æ¡£åºŸ ç£Šç¦ç»° éœ¸ ç‚’æ‘†ç˜¤..
 		KilledMonsterInfos,
 		TotalKilledMonster,
 		DocBattleStage != nullptr ? DocBattleStage->GetAllServival() : false, 
@@ -680,13 +680,13 @@ void AB2StageManager::ResponseStageClear(const FB2ClearStageInfo& Info)
 //			StageClearConditions.Add(ClearCondition == 0 ? false : true);
 //		}
 //		DocBattleStage->SetStageClearConditions(StageClearConditions);
-//		DocBattleStage->SetStageClearGrade(StageClearGrade); // ½ºÅ×ÀÌÁö Á¾·á UI º° ºÒÅ¸´Â °Å ¸î°³³ª ³ª¿À´ÂÁö.
+//		DocBattleStage->SetStageClearGrade(StageClearGrade); // èƒ¶æŠ›æç˜¤ è¾†ä¸° UI å–Š é˜‚é¸¥ç»° èŠ­ å‰²ä¿ºå”± å”±å·ç»°ç˜¤.
 //		
 //		/* Item */
 //		int32 MultipleValue = GET_TUPLE_DATA(FB2ResponseClearStage::multiple_value_index, Info);
-//		// º¸»ó ¾ÆÀÌÅÛ.. ±âº» ¾ÆÀÌÅÛ ¸ñ·ÏÀÌ¶û.. º¸»ó°ñµå(µå¶ø°ñµå ÀÌ¿ÜÀÇ)µµ ÀÖÀ¸¸é º¸»ó¾ÆÀÌÅÛ ÇüÅÂ·Î Ãß°¡ÇÑ´Ù.
+//		// ç„Šæƒ‘ é…’æè¢.. æ‰å¤¯ é…’æè¢ æ ¼åºŸæå°”.. ç„Šæƒ‘æ¦œé›(é›è€Œæ¦œé› æå¯‡ç‹¼)æ¡£ ä¹æ æ ç„Šæƒ‘é…’æè¢ å±ˆæ€•è‚º çœ å•ŠèŒ„ä¿ƒ.
 //		GetB2ItemArray(FB2ResponseClearStage::items_index, Info);
-//		// º¸½ºÁ¶°¢ º¸»ó ¾ÆÀÌÅÛ
+//		// ç„Šèƒ¶ç‚¼é˜¿ ç„Šæƒ‘ é…’æè¢
 //		const TArray<b2network::B2DropDataPtr> FixedItemInfos = GET_TUPLE_DATA(FB2ResponseClearStage::fixed_items_index, Info);
 //		TArray<FB2Item>	BossItemArray;
 //		for (auto FixedItemInfo : FixedItemInfos)
@@ -697,7 +697,7 @@ void AB2StageManager::ResponseStageClear(const FB2ClearStageInfo& Info)
 //			BossItem.ItemClass = EItemClass::EIC_BossPiece;
 //			BossItemArray.Add(BossItem);
 //		}
-//		// ¿¡Å×¸£ º¸»ó ¾ÆÀÌÅÛ
+//		// ä¿ŠæŠ›ç¦ ç„Šæƒ‘ é…’æè¢
 //		const TArray<b2network::B2AetherServerInfoPtr> EtherInfos = GET_TUPLE_DATA(FB2ResponseClearStage::aethers_index, Info);
 //		TArray<FB2Item>	EtherItemArray;
 //		if (EtherInfos.Num() > 0)
@@ -709,7 +709,7 @@ void AB2StageManager::ResponseStageClear(const FB2ClearStageInfo& Info)
 //			FB2Item ItemEther(Elem);
 //			EtherItemArray.Add(ItemEther);
 //		}
-//		// Àç·á º¸»ó ¾ÆÀÌÅÛ
+//		// çŠä¸° ç„Šæƒ‘ é…’æè¢
 //		const TArray<b2network::B2DropDataPtr> MaterialItemInfos = GET_TUPLE_DATA(FB2ResponseClearStage::material_items_index, Info);
 //		TArray<FB2Item>	MaterialItemArray;
 //		for (const b2network::B2DropDataPtr& Elem : MaterialItemInfos)
@@ -723,7 +723,7 @@ void AB2StageManager::ResponseStageClear(const FB2ClearStageInfo& Info)
 //		}
 //
 //		/* Auto Sell */
-//		// ÆÇ¸Å Àåºñ ¾ÆÀÌÅÛ
+//		// é­„æ¦‚ å˜åš é…’æè¢
 //		const TArray<b2network::B2SoldItemInfoPtr> SoldItemInfos = GET_TUPLE_DATA(FB2ResponseClearStage::sold_items_index, Info);
 //		TArray<FB2Item>	SoldItemArray;
 //		for (const b2network::B2SoldItemInfoPtr& Elem : SoldItemInfos)
@@ -741,7 +741,7 @@ void AB2StageManager::ResponseStageClear(const FB2ClearStageInfo& Info)
 //			SoldItem.ItemClass = EItemClass::EIC_Weapon;
 //			SoldItemArray.Add(SoldItem);
 //		}
-//		// ÆÇ¸Å ¿¡Å×¸£ ¾ÆÀÌÅÛ
+//		// é­„æ¦‚ ä¿ŠæŠ›ç¦ é…’æè¢
 //		const TArray<b2network::B2SoldAetherInfoPtr> SoldEtherInfos = GET_TUPLE_DATA(FB2ResponseClearStage::sold_aethers_index, Info);
 //		for (const b2network::B2SoldAetherInfoPtr& Elem : SoldEtherInfos)
 //		{
@@ -765,17 +765,17 @@ void AB2StageManager::ResponseStageClear(const FB2ClearStageInfo& Info)
 //		}
 //
 //		/* Gold */
-//		// ¸÷Àâ°í ¶³¾îÁö´Â Drop Gold
+//		// å„æ£±ç»Š å†»ç»¢ç˜¤ç»° Drop Gold
 //		int32 StageDropGold = GET_TUPLE_DATA(FB2ResponseClearStage::total_added_drop_gold_index, Info);
-//		// ½ºÅ×ÀÌÁö Å¬¸®¾î ÈÄ º¸»óÀ¸·Î ÁÙ¼ö ÀÖ´Â Reward Gold
+//		// èƒ¶æŠ›æç˜¤ åŠªåºœç»¢ é¥¶ ç„Šæƒ‘æ è‚º ä¸´è ä¹ç»° Reward Gold
 //		TArray<int32> StageRewardGolds = GET_TUPLE_DATA(FB2ResponseClearStage::reward_golds_index, Info);
-//		// Reward Gold ÃÑÇÕ (x3 ¹è¼ö Àû¿ë)
+//		// Reward Gold é†šé’¦ (x3 ç¡…è åˆ©ä¾©)
 //		int32 StageRewardTotalGold = GET_TUPLE_DATA(FB2ResponseClearStage::total_added_reward_gold_index, Info);
 //		// QTE Gold 
 //		int32 QTEGold = GET_TUPLE_DATA(FB2ResponseClearStage::total_added_qte_gold_index, Info);		
-//		// ÃÖÁ¾ Total Gold (Àåºñ ÆÇ¸Å Gold ¹ÌÆ÷ÇÔ)
+//		// å¼¥è¾† Total Gold (å˜åš é­„æ¦‚ Gold å›ºå™¨çªƒ)
 //		int32 TotalGold = GET_TUPLE_DATA(FB2ResponseClearStage::total_added_gold_index, Info);
-//		// Àåºñ/¿¡Å×¸£ ÆÇ¸Å Gold
+//		// å˜åš/ä¿ŠæŠ›ç¦ é­„æ¦‚ Gold
 //		int32 SoldGold = GET_TUPLE_DATA(FB2ResponseClearStage::total_added_sales_gold_index, Info);
 //
 //		int32 GoldBuffRate = GET_TUPLE_DATA(FB2ResponseClearStage::gold_buff_rate_index, Info);
@@ -802,7 +802,7 @@ void AB2StageManager::ResponseStageClear(const FB2ClearStageInfo& Info)
 //		DocBattleStage->SetStageTotalGold(TotalGold);
 //		DocBattleStage->SetStageSoldGold(SoldGold);
 //		
-//		// º¸»ó ¾ÆÀÌÅÛ ¸®½ºÆ®
+//		// ç„Šæƒ‘ é…’æè¢ åºœèƒ¶é£˜
 //		B2ItemArray.Sort([](const FB2Item& lhs, const FB2Item& rhs)->bool
 //		{
 //			if (lhs.StarGrade == rhs.StarGrade)
@@ -822,15 +822,15 @@ void AB2StageManager::ResponseStageClear(const FB2ClearStageInfo& Info)
 //		DocBattleStage->SetEndExpBuffRate(ExpBuffRate);
 //	}
 //
-//	//µ¥ÀÌÅÍ ÀúÀå. º¸»ó ¾ÆÀÌÅÛµµ ¿©±â¼­ µé¾î°¨.
+//	//å•æç£ å†å˜. ç„Šæƒ‘ é…’æè¢æ¡£ å’¯æ‰è¾‘ ç”¸ç»¢çš‘.
 //	BladeIIGameImpl::GetStageDataStore().ClearStage(Info, StaticCacheStageData.ServerStageID);
 //
 //	ABladeIIPlayerController* PlayerController = Cast<ABladeIIPlayerController>(UGameplayStatics::GetLocalPlayerController(this));
 //	FMyAssetStore* MyAssetStore = PlayerController? &PlayerController->GetMyAssetStore() : NULL;
 //	if (MyAssetStore)
-//	{ // Å¬¶ó ¿¬Ãâ ¿ëÀÌÁö¸¸ ÇöÀç´Â ½ÇÁ¦ °ªÀ» ¼­¹ö¿¡¼­ ¹Ş¾Ò°í °á°ú È­¸é¿¡ Á¦´ë·Î »Ñ·ÁÁÖ·Á¸é ¿©±â ½ÌÅ©°¡ ÇÊ¿äÇÔ.
-//		// ±Ùµ¥ °è¼Ó Àß ¾ÈµÇ°í ÇÏ¸é FB2MessageInfoResponseClearStage ¿¡ total_added_drop_gold ¶û total_added_reward_gold ÀÖÀ¸´Ï ±×°É·Î´Ù°¡..
-//		MyAssetStore->SyncCurrentTempGoldToAccountInfo(true); // Freeze ½ÃÅ²´Ù.
+//	{ // åŠªæ‰¼ æ¥·å… ä¾©æç˜¤çˆ¶ æ³…çŠç»° è§’åŠ› è”¼é˜‘ è¾‘æ»šä¿Šè¾‘ ç½ç–½ç»Š æ¬è‹ æ‹³æä¿Š åŠ›æªè‚º è°å¦¨æ—å¦¨æ å’¯æ‰ æ•™å†œå•Š é˜å¤¸çªƒ.
+//		// è¾Ÿå• æ‹ŒåŠ  è‚‹ æ•‘ç™»ç»Š çªæ FB2MessageInfoResponseClearStage ä¿Š total_added_drop_gold å°” total_added_reward_gold ä¹æ èª å¼Šå§è‚ºä¿ƒå•Š..
+//		MyAssetStore->SyncCurrentTempGoldToAccountInfo(true); // Freeze çŸ«æŒªä¿ƒ.
 //	}
 //	OnStageClear();
 }
@@ -840,7 +840,7 @@ void AB2StageManager::OnStageClear()
 	B2_SCOPED_TRACK_LOG(TEXT("AB2StageManager::OnStageClear"));
 
 	//if (CachedGameMode)
-	//{ // ±âº»ÀûÀÎ Auto »óÅÂ¸¦ ²ô´Â °Ô ¾Æ´Ï¶ó ÀÏ½ÃÀûÀ¸·Î¸¸ ²ö´Ù. ±âº» auto »óÅÂ´Â ¾ğÁ¦µç ÀúÀåÇÒ ÇÊ¿ä°¡ ÀÖÀ¸¹Ç·Î.
+	//{ // æ‰å¤¯åˆ©ç‰¢ Auto æƒ‘æ€•ç”« æºç»° éœ¸ é…’èªæ‰¼ è€çŸ«åˆ©æ è‚ºçˆ¶ é¦‹ä¿ƒ. æ‰å¤¯ auto æƒ‘æ€•ç»° æ”«åŠ›ç”µ å†å˜ä¸” é˜å¤¸å•Š ä¹æ éª¨è‚º.
 	//	CachedGameMode->TemporaryStopLocalPlayerAuto();
 	//}
 
@@ -850,21 +850,21 @@ void AB2StageManager::OnStageClear()
 	//	DocBattleStage->SetStagePlayTime(StaticCacheStageData.GetStageClearTime());
 	//	if (!Utilities::FConnectionState::GetInstance().IsConnected())
 	//	{
-	//		DocBattleStage->SetStageClearGrade(STAGE_CLEAR_GRADE_STAR_3); // ¿¬°á ¾ÈµÈ »óÅÂ¶ó¸é °Á ´Ù º¸ÀÌ°Ô ¸¸¶¥ Ã¤¿öÁØ´Ù.
+	//		DocBattleStage->SetStageClearGrade(STAGE_CLEAR_GRADE_STAR_3); // æ¥·æ¬ æ•‘ç­‰ æƒ‘æ€•æ‰¼æ å‚² ä¿ƒ ç„Šæéœ¸ çˆ¶é¡¶ ç›²å†µéœ–ä¿ƒ.
 	//	}
 	//}
 
-	//// ½ºÅ×ÀÌÁö Å¬¸®¾î ÈÄ º¸»ó »êÁ¤ µîÀ» À§ÇÑ noti.
-	//// StageEventDirector ÂÊÀ¸·Î notify ¸¦ ÇÏ±â Àü¿¡ ÀÌÂÊÀ¸·Î ¸ÕÀú ÇØ¾ß EventWidget ÃÊ±âÈ­ ½Ã Âü°íÇÒ µ¥ÀÌÅÍµéÀÌ Ã¤¿öÁú °ÍÀÓ.
+	//// èƒ¶æŠ›æç˜¤ åŠªåºœç»¢ é¥¶ ç„Šæƒ‘ é­‚æ²¥ æ®¿é˜‘ å›°èŒ„ noti.
+	//// StageEventDirector ç‡æ è‚º notify ç”« çªæ‰ å‚ˆä¿Š æç‡æ è‚º åˆšå† ç§¦å…· EventWidget æª¬æ‰æ‹³ çŸ« æ›¼ç»Šä¸” å•æç£ç”¸æ ç›²å†µé¾™ å·´çƒ™.
 	//auto* BladeIIPlayer = Cast<ABladeIIPlayer>(UGameplayStatics::GetLocalPlayerCharacter(this));
 	//ABladeIIPlayerController* B2PC = Cast<ABladeIIPlayerController>(BladeIIPlayer ? BladeIIPlayer->GetController() : UGameplayStatics::GetLocalPlayerController(this));
 	//BII_CHECK(BladeIIPlayer && B2PC);
 
-	//// ½ºÅ×ÀÌÁö Å¬¸®¾î ¿¬Ãâ·Î ÀÎÇØ ¸Ş¸ğ¸® »ó½Â Àü¿¡ °¡´ÉÇÑ °ÍµéÀ» ³»·ÁÁÜ. 
-	//// GC ¸¦ µ¹±â ¶§¹®¿¡ ºí·ÎÅ·ÀÌ Á» °É¸± ¼ö ÀÖ´Ù. º¸½º¸÷ ¸·Å¸ ¶§ ºí·ÎÅ·ÀÌ Á» °Å½½¸°´Ù ½ÍÀ¸¸é Àç°í.
+	//// èƒ¶æŠ›æç˜¤ åŠªåºœç»¢ æ¥·å…è‚º ç‰¢ç§¦ çš‹è‘›åºœ æƒ‘é“° å‚ˆä¿Š å•Šç“·èŒ„ å·´ç”¸é˜‘ éƒ´å¦¨æ·‹. 
+	//// GC ç”« å€’æ‰ é”­å·©ä¿Š å–‰è‚ºæ¬§æ ç²± å§å‰¯ è ä¹ä¿ƒ. ç„Šèƒ¶å„ é˜œé¸¥ é”­ å–‰è‚ºæ¬§æ ç²± èŠ­æµ‡èµ´ä¿ƒ é…µæ æ çŠç»Š.
 	//ManualUnloadOnStageClear(this); 
 	//
-	//// ÀÌ Å¸ÀÌ¹Ö ÁîÀ½ ÇØ¼­ StageResult UI ¸¦ ¹é±×¶ó¿îµå ·ÎµùÇØ º»´Ù.. µµÁß¿¡ ½½Â½ Æ¢±ä ÇÔ.
+	//// æ é¸¥ææ€ª ä»¤æ¾œ ç§¦è¾‘ StageResult UI ç”« å½’å¼Šæ‰¼æ¬¾é› è‚ºçˆ¹ç§¦ å¤¯ä¿ƒ.. æ¡£åä¿Š æµ‡é™† è„¾å˜ çªƒ.
 	//UB2UIManager::GetInstance()->ReqAsyncLoadAsset(UIFName::StageResult);
 
 	//OnClearStageClass<>::GetInstance().Signal();
@@ -892,8 +892,8 @@ void AB2StageManager::RequestFailStage(EStageFailReason reason)
 void AB2StageManager::RequestCounterDungeonClear()
 {
 #if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
-	// ½ÃÀÛ½Ã¿¡ ¼­¹ö¸¦ ÅëÇÏÁö ¾Ê¾ÒÀ¸¸é StageClear Ã¼Å©µµ ·ÎÄÃ¿¡¼­ ¹Ù·Î. IsConnected Ã¼Å©¸¦ ÇÏÁö ¾Ê´Âµ¥ ¿¬°áµÈ »óÅÂ¿¡¼­ ¿¡µğÅÍ¿¡¼­ ÇÁ¸®ºä ÇÃ·¹ÀÌ¸¦ ÇÏ°Ô µÉ ¼ö ÀÖÀ¸¹Ç·Î
-	// ´Ü, ÄíÅ· ¹öÀü¿¡¼­´Â ´õ ÀÌ»ó ÀÌ·± ¹æ½ÄÀÇ Å¬¸®¾î Ã³¸®¸¦ Áö¿øÇÏÁö ¾Ê´Â´Ù.
+	// çŸ«ç´¯çŸ«ä¿Š è¾‘æ»šç”« çƒ¹çªç˜¤ è‡¼ç–½æ æ StageClear çœ‰å†œæ¡£ è‚ºæ‹¿ä¿Šè¾‘ å®˜è‚º. IsConnected çœ‰å†œç”« çªç˜¤ è‡¼ç»°å• æ¥·æ¬ç­‰ æƒ‘æ€•ä¿Šè¾‘ ä¿Šå¼ç£ä¿Šè¾‘ æ©‡åºœè½° æ•²é¥­æç”« çªéœ¸ çª è ä¹æ éª¨è‚º
+	// çªœ, æ»æ¬§ æ»šå‚ˆä¿Šè¾‘ç»° æ­¹ ææƒ‘ æç¹ è§„ä¾¥ç‹¼ åŠªåºœç»¢ è´¸åºœç”« ç˜¤ç›”çªç˜¤ è‡¼ç»°ä¿ƒ.
 	if (DevOnlyIsStandalonePlay())
 	{
 		OnCounterDungeonClear();
@@ -989,9 +989,9 @@ void AB2StageManager::ResponseHeroTowerClear(const FB2ResponseFinishHeroTowerPtr
 
 	//	if (pDoc->m_bIsClearHeroTower)
 	//	{
-	//		// colosseum comment : reward list ¸¦ ÂüÁ¶ÇÏ¿© ¸®¿öµå Å¸ÀÔ¿¡ µû¸¥ º¸»óÀ» Ã³¸®ÇÒ ¼ö ÀÖµµ·Ï ÀÛ¾÷ÀÌ ÇÊ¿äÇÕ´Ï´Ù.
+	//		// colosseum comment : reward list ç”« æ›¼ç‚¼çªå’¯ åºœå†µé› é¸¥æ¶ä¿Š è¶å¼— ç„Šæƒ‘é˜‘ è´¸åºœä¸” è ä¹æ¡£åºŸ ç´¯è¯€æ é˜å¤¸é’¦èªä¿ƒ.
 
-	//		// Å¬¸®¾î¸é ¿¬Ãâ UI´Â ¿¬ÃâÇÏ¸é¼­ ¶ç¿öÁÜ
+	//		// åŠªåºœç»¢æ æ¥·å… UIç»° æ¥·å…çªæè¾‘ å‰å†µæ·‹
 	//		/*BII_CHECK(CachedGameMode);
 	//		CachedGameMode->StartEventScene_GameClear();*/
 
@@ -1004,7 +1004,7 @@ void AB2StageManager::ResponseHeroTowerClear(const FB2ResponseFinishHeroTowerPtr
 	//	}
 	//	else
 	//	{
-	//		// ÆĞ¹è¸é ±âÁ¸ ¿µ¿õÀÇ Å¾ °á°ú UI°¡ ¾Æ´Ñ DefeatUI ¸¦ ¶ç¿öÁÜ.
+	//		// è©ç¡…æ æ‰ç²® åº·æ—·ç‹¼ å•ª æ¬è‹ UIå•Š é…’å›± DefeatUI ç”« å‰å†µæ·‹.
 	//		StartDefeatMenuClass<EB2GameMode>::GetInstance().Signal(EB2GameMode::HeroTower);
 	//	}
 	//}	
@@ -1043,18 +1043,18 @@ void AB2StageManager::ResponseDimensionClear(const FB2ResponseFinishDimensionPtr
 
 	//	if (pDoc->m_bIsClear == EDimensionResult::CLEAR)
 	//	{
-	//		// º¸»óÃ³¸®		
+	//		// ç„Šæƒ‘è´¸åºœ		
 	//		for (auto Reward : MsgPtr->totems)
 	//		{
-	//			BladeIIGameImpl::GetClientDataStore().AddTotem(Reward); // ÅäÅÛ
+	//			BladeIIGameImpl::GetClientDataStore().AddTotem(Reward); // é…è¢
 	//		}
 
 	//		for (auto Reward : MsgPtr->update_items)
 	//		{
-	//			BladeIIGameImpl::GetClientDataStore().OnResponseConsumableAmountIncrease(FItemRefIDHelper::ITEM_REF_ID_DIMENSION_PIECE, Reward); // ÅäÅÛ Á¶°¢ 
+	//			BladeIIGameImpl::GetClientDataStore().OnResponseConsumableAmountIncrease(FItemRefIDHelper::ITEM_REF_ID_DIMENSION_PIECE, Reward); // é…è¢ ç‚¼é˜¿ 
 	//		}
 
-	//		// ¾ÀÃ³¸®
+	//		// çº è´¸åºœ
 	//		OnClearStageClass<>::GetInstance().Signal();
 	//		BII_CHECK(CachedGameMode);
 	//		CachedGameMode->StartEventScene_GameClear();
@@ -1078,23 +1078,23 @@ void AB2StageManager::ExtraMapMessageDelayTimerCB()
 
 void AB2StageManager::ShowExtraMapMessage()
 {
-	// ¿©±â¼± DisplayTime À» ÁÙ ¼ö´Â ¾ø°í ¿ùµå°¡ »õ·Î ·Îµù µÈ ÈÄ¿¡ Á÷Á¢ ²¨¾ß ÇÔ. ÀÌ°Ô Á» ¹®Á¦ÀÎµ¥, ¿©±â¼­ ¿­¾îµĞ ÆË¾÷À» ·¹º§ ÀÇÁ¸ÀûÀÎ °ÔÀÓÄÚµå¿¡ Ä³½ÌÇØ ³õ±âµµ ÁÁÁö ¾Ê°í ÇØ¼­. °Á ·¹º§ ¿ÀÇÂÇÒ ¶§ ÆË¾÷µéÀº ¸ğµÎ ÇØÁ¦ÇÏ´Â ½ÄÀÌ µÇ¾î¾ß ÇÒ µí.
+	// å’¯æ‰æ€¥ DisplayTime é˜‘ ä¸´ èç»° ç»ç»Š å²¿é›å•Š è´§è‚º è‚ºçˆ¹ ç­‰ é¥¶ä¿Š æµç«‹ æ³¢å…· çªƒ. æéœ¸ ç²± å·©åŠ›ç‰¢å•, å’¯æ‰è¾‘ å‡¯ç»¢æ•Œ æ‰‘è¯€é˜‘ é¥­éª‡ ç‹¼ç²®åˆ©ç‰¢ éœ¸çƒ™å†…é›ä¿Š æŸæ•™ç§¦ åˆæ‰æ¡£ äº®ç˜¤ è‡¼ç»Š ç§¦è¾‘. å‚² é¥­éª‡ å·é”¹ä¸” é”­ æ‰‘è¯€ç”¸ç¯® è‘›æ»´ ç§¦åŠ›çªç»° ä¾¥æ ç™»ç»¢å…· ä¸” æ·€.
 	//FText TransitionMessage = BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("InGameHUD_TrasitToExtra")));
-	//ABladeIIGameMode::SetHUDCenterMessage(TransitionMessage, 0.0f, 1); // AnimIndex 1 ¹ø. ÀÌ°Ç Á» ÇÏµåÄÚµùÀÓ. ¹øÈ£ Æ²¸°´Ù°í Å« Âü»ç°¡ ÀÏ¾î³¯ °Íµµ ¾Æ´Ï°í..
+	//ABladeIIGameMode::SetHUDCenterMessage(TransitionMessage, 0.0f, 1); // AnimIndex 1 é”…. ææ‰’ ç²± çªé›å†…çˆ¹çƒ™. é”…é¾‹ æ’‡èµ´ä¿ƒç»Š å¥´ æ›¼è¤å•Š è€ç»¢æœ å·´æ¡£ é…’èªç»Š..
 }
 
 void AB2StageManager::ExtraMapLoadingDelayTimerCB()
 {
 	GetWorldTimerManager().ClearTimer(ExtraMapLoadingDelayTimer);
-	PreHandleLoadExtraMap(); // ÃßÈÄ »çÁ¤¿¡ µû¶ó PreHandleLoadExtraMap Àº ¾à°£ ¾Õ´ç°ÜÁú ¼öµµ.. °£´ÜÇÏÁö´Â ¾Ê°ÚÁö¸¸
+	PreHandleLoadExtraMap(); // çœ é¥¶ è¤æ²¥ä¿Š è¶æ‰¼ PreHandleLoadExtraMap ç¯® è·åŸƒ èŠå¯¸è´¥é¾™ èæ¡£.. åŸƒçªœçªç˜¤ç»° è‡¼æ‘†ç˜¤çˆ¶
 	LoadExtraMap();
 }
 
 void AB2StageManager::PreHandleLoadExtraMap()
 {
-	// ¿ø·¡ ´Ù¸¥ °Ô ÀÖ¾ú´Âµ¥ Áö±İÀº µş¶û SaveDataForExtraMap ¸¸ ÀÖ±º..
+	// ç›”è´° ä¿ƒå¼— éœ¸ ä¹èŒç»°å• ç˜¤é™›ç¯® å å°” SaveDataForExtraMap çˆ¶ ä¹ç„™..
 
-	SetReadyPlayingExtraMap(); // ExtraMap À¸·Î ³Ñ°ÜÁÙ µ¥ÀÌÅÍ ÀúÀå.
+	SetReadyPlayingExtraMap(); // ExtraMap æ è‚º é€è´¥ä¸´ å•æç£ å†å˜.
 }
 
 void AB2StageManager::LoadExtraMap()
@@ -1117,7 +1117,7 @@ void AB2StageManager::SetReadyPlayingExtraMap()
 
 	//if (PlayerCharacter && PlayerController && CachedGameMode)
 	//{
-	//	StaticCacheStageData.PreExtraLastPlayedCharClass = PlayerCharacter->GetCurrentPlayerClass(); // ÇöÀç Å¬·¡½º¸¸ ÀúÀå. ´Ù¸¥ ÇÏ³ª´Â ÀÌ °ª¿¡ µû¶ó DataStore ¿¡ ÀÖ´Â Main È¤Àº Sub ·Î.
+	//	StaticCacheStageData.PreExtraLastPlayedCharClass = PlayerCharacter->GetCurrentPlayerClass(); // æ³…çŠ åŠªè´°èƒ¶çˆ¶ å†å˜. ä¿ƒå¼— çªå”±ç»° æ è”¼ä¿Š è¶æ‰¼ DataStore ä¿Š ä¹ç»° Main è¶£ç¯® Sub è‚º.
 	//	auto* MyAssetStore = &PlayerController->GetMyAssetStore();
 	//	if (MyAssetStore)
 	//	{
@@ -1128,15 +1128,15 @@ void AB2StageManager::SetReadyPlayingExtraMap()
 	//	UB2SkillRTManager* SkillRTManager = PlayerCharacter->GetSkillRTManager();
 	//	if (SkillRTManager)
 	//	{
-	//		StaticCacheStageData.SetReadyPreExtraCombatVariables(PlayerCharacter, SkillRTManager); // ³ª¸ÓÁö ÀüÅõ »óÅÂ °ü·Ã º¯¼öµéÀº µû·Î ¸ğ¾Æ¼­..
+	//		StaticCacheStageData.SetReadyPreExtraCombatVariables(PlayerCharacter, SkillRTManager); // å”±èµ£ç˜¤ å‚ˆæ§ æƒ‘æ€• åŒ…è®¿ å‡½èç”¸ç¯® è¶è‚º è‘›é…’è¾‘..
 	//	}
 	//}	
 }
 
 void AB2StageManager::RetrieveDataForExtraMap()
 {
-	//// SetReadyPlayingExtraMap ¿¡¼­ PreExtraLastPlayedCharClass ¸¦ ¼¼ÆÃÇÏ´Âµ¥ ±×·¸´Ù°í ¿©±â¼­ GetPreExtraLastPlayedClass ¸¦ ÇÏÁö ¾Ê´Â´Ù. ±×°Ç °ÔÀÓ¸ğµå¿¡¼­ Player Character spawn ½Ã ¹Ì¸® ÇØ ³õ¾Ò¾î¾ß.
-	//// Health µéµµ ¸¶Âù°¡Áö. ±×°Ç BladeIIPlayer ¶û SkillRTManager ÂÊ¿¡¼­..
+	//// SetReadyPlayingExtraMap ä¿Šè¾‘ PreExtraLastPlayedCharClass ç”« æŠ€æ³¼çªç»°å• å¼ŠçŠ¯ä¿ƒç»Š å’¯æ‰è¾‘ GetPreExtraLastPlayedClass ç”« çªç˜¤ è‡¼ç»°ä¿ƒ. å¼Šæ‰’ éœ¸çƒ™è‘›é›ä¿Šè¾‘ Player Character spawn çŸ« å›ºåºœ ç§¦ åˆç–½ç»¢å…·.
+	//// Health ç”¸æ¡£ ä»˜è›®å•Šç˜¤. å¼Šæ‰’ BladeIIPlayer å°” SkillRTManager ç‡ä¿Šè¾‘..
 
 	//ABladeIIPlayer* PlayerCharacter = Cast<ABladeIIPlayer>(UGameplayStatics::GetLocalPlayerCharacter(this));
 	//BII_CHECK(PlayerCharacter && PlayerCharacter->IsValidObj());
@@ -1148,7 +1148,7 @@ void AB2StageManager::RetrieveDataForExtraMap()
 	//	if (MyAssetStore)
 	//	{
 	//		MyAssetStore->SetStartingGold(StaticCacheStageData.MainMapStartingGold);
-	//		MyAssetStore->AddGold(StaticCacheStageData.MainMapLastGold - StaticCacheStageData.MainMapStartingGold); // ÇöÀç °ªÀ» MainMapLastGold ·Î.
+	//		MyAssetStore->AddGold(StaticCacheStageData.MainMapLastGold - StaticCacheStageData.MainMapStartingGold); // æ³…çŠ è”¼é˜‘ MainMapLastGold è‚º.
 	//	}
 	//}
 
@@ -1157,17 +1157,17 @@ void AB2StageManager::RetrieveDataForExtraMap()
 
 void AB2StageManager::BeginStageClearScene_Phase1()
 {
-	//UB2UIManager::GetInstance()->ChangeUIScene(EUIScene::StageClear); // StageClear UI ¿¡¼­ º¸³»´Â ½ÅÈ£¿¡ ÀÇÇØ BeginStageClearScene_Phase2 °¡ ½ÃÀÛµÉ °Í.
+	//UB2UIManager::GetInstance()->ChangeUIScene(EUIScene::StageClear); // StageClear UI ä¿Šè¾‘ ç„Šéƒ´ç»° è„šé¾‹ä¿Š ç‹¼ç§¦ BeginStageClearScene_Phase2 å•Š çŸ«ç´¯çª å·´.
 
-	//// StageClear Phase1 ¿ë Ä«¸Ş¶ó ¼¼ÆÃ.
+	//// StageClear Phase1 ä¾© å¢¨çš‹æ‰¼ æŠ€æ³¼.
 	//UWorld* TheWorld = GetWorld();
 	//ABladeIIPlayerController* B2PC = Cast<ABladeIIPlayerController>(UGameplayStatics::GetLocalPlayerController(this));
 	//if (TheWorld && B2PC)
 	//{
 	//	if (!StageClearViewCam){
-	//		// ¼­ºê·¹º§ BP ¸¦ ÅëÇØ ¼¼ÆÃÀÌ µÇÁö ¾Ê¾Ò´Ù¸é ³»ºÎÀûÀ¸·Î Á÷Á¢ »ı¼ºÇÑ´Ù.
-	//		// °¡´ÉÇÑ sky box µî¿¡ °¡¸®Áö ¾ÊÀº ±î¸¸ ¹è°æÀ» ¹Ù¶óº¼ ¼ö ÀÖ°Ô. ±×·¸´Ù°í ³Ê¹« ¸Ö¸é ±×°Í´ë·Î ºÎµ¿¼Ò¼ö Á¤¹Ğµµ ¹®Á¦¸¦ °ŞÀ» ¼ö ÀÖ´Ù.
-	//		// »ç¿ëÇÏ´Â ÀÌÆåÆ®°¡ ¿ùµåÁÂÇ¥¿¡¸¸ align µÇ´Â °Å °°¾Æ¼­ À§³ª ¾Æ·¡¸¦ º¸Áö´Â ¸øÇÏ°í ¼öÆòÀ» À¯ÁöÇÏ¸é fog ¶§¹®¿¡ ¸Ö¸®¼­µµ ¾îµÓÁö°¡ ¾ÊÀºµ¥ °Á ¾Æ·¡¼­ fog ¸¦ ²û
+	//		// è¾‘å®é¥­éª‡ BP ç”« çƒ¹ç§¦ æŠ€æ³¼æ ç™»ç˜¤ è‡¼ç–½ä¿ƒæ éƒ´ä½•åˆ©æ è‚º æµç«‹ ç§¯å·±èŒ„ä¿ƒ.
+	//		// å•Šç“·èŒ„ sky box æ®¿ä¿Š å•Šåºœç˜¤ è‡¼ç¯® é³–çˆ¶ ç¡…ç‰ˆé˜‘ å®˜æ‰¼æ­ è ä¹éœ¸. å¼ŠçŠ¯ä¿ƒç»Š å‘ˆå…¬ é’¢æ å¼Šå·´æªè‚º ä½•æ‚¼å®¶è æ²¥å‰æ¡£ å·©åŠ›ç”« ç¨—é˜‘ è ä¹ä¿ƒ.
+	//		// è¤ä¾©çªç»° ææ£‹é£˜å•Š å²¿é›è°…é’ä¿Šçˆ¶ align ç™»ç»° èŠ­ éé…’è¾‘ å›°å”± é…’è´°ç”« ç„Šç˜¤ç»° ç»™çªç»Š èä¹é˜‘ èœ¡ç˜¤çªæ fog é”­å·©ä¿Š é’¢åºœè¾‘æ¡£ ç»¢æ¶¤ç˜¤å•Š è‡¼ç¯®å• å‚² é…’è´°è¾‘ fog ç”« é˜
 	//		FTransform CamSpawnTransform(FRotator(0.0f, 0.0f, 0.0f), FVector(200000.0f, 0.0f, 0.0f));
 	//		FActorSpawnParameters CamSpawnParam;
 	//		StageClearViewCam = Cast<ACameraActor>(TheWorld->SpawnActor(ACameraActor::StaticClass(), &CamSpawnTransform, CamSpawnParam));
@@ -1175,24 +1175,24 @@ void AB2StageManager::BeginStageClearScene_Phase1()
 	//	UCameraComponent* StageClearViewCamComp = StageClearViewCam ? StageClearViewCam->GetCameraComponent() : NULL;
 	//	if (StageClearViewCam && StageClearViewCamComp)
 	//	{
-	//		// ¿ÍÀÌµå È­¸é ´ëÀÀ.. ÀÌ°Ç ±×³É ¾²¸é ³ĞÀº È­¸é¿¡¼­ ¿¬Ãâ È¿°úµéÀÌ Â©¸®°Ô µÇ¾î¼­ adaptive FOV °¡ ÇÊ¿äÇÔ.
+	//		// å®¢æé› æ‹³æ æªè§ˆ.. ææ‰’ å¼Šæˆ é™æ æ‰¿ç¯® æ‹³æä¿Šè¾‘ æ¥·å… ç“¤è‹ç”¸æ æ¼åºœéœ¸ ç™»ç»¢è¾‘ adaptive FOV å•Š é˜å¤¸çªƒ.
 	//		StageClearViewCamComp->SetConstraintAspectRatio(false);
 	//		StageClearViewCamComp->SetAspectRatioAdaptiveFOV(true);
 
 	//		EnsureTargetToStageClearCam();
 
-	//		StageClearPhase1_StartVictoryBGFx(); // Ä«¸Ş¶ó°¡ »ı¼ºµÇ¸é VictoryBGFx ´Â ¹Ù·Î ½ÃÀÛ. ³ª¸ÓÁö Wing ÀÌ¶û Gem Àº UIStageClear ÂÊ¿¡¼­ ½ÅÈ£¸¦ º¸³¾ °Í.
+	//		StageClearPhase1_StartVictoryBGFx(); // å¢¨çš‹æ‰¼å•Š ç§¯å·±ç™»æ VictoryBGFx ç»° å®˜è‚º çŸ«ç´¯. å”±èµ£ç˜¤ Wing æå°” Gem ç¯® UIStageClear ç‡ä¿Šè¾‘ è„šé¾‹ç”« ç„Šå°˜ å·´.
 	//	}
 	//	
-	//	// StageClearPhase1 Àº StageEventDirector ¿¡¼­ clnematic mode ÁøÀÔÀ» ÇÏÁö ¾ÊÀ¸¹Ç·Î ¿©±â¼­ Àû´çÈ÷ ³Ö¾îÁÜ. Á¾·á ½ÃÁ¡ÀÌ´Ï CinematicMode ¿¡¼­ ³ª¿À´Â °É °ÆÁ¤ÇÒ ÇÊ¿ä´Â ¾ø°ÚÁö..?
+	//	// StageClearPhase1 ç¯® StageEventDirector ä¿Šè¾‘ clnematic mode æŸ³æ¶é˜‘ çªç˜¤ è‡¼æ éª¨è‚º å’¯æ‰è¾‘ åˆ©å¯¸æ´’ æŒç»¢æ·‹. è¾†ä¸° çŸ«ç—¢æèª CinematicMode ä¿Šè¾‘ å”±å·ç»° å§ æŒæ²¥ä¸” é˜å¤¸ç»° ç»æ‘†ç˜¤..?
 	//	B2PC->SetCinematicMode(true, false, true, false, true);
 	//}
 
-	//TurnOffAllFogs(); // Æ÷±× ¶§¹®¿¡ ¿øÇÏ´Â ¾îµÎ¿î ¹è°æÀÌ ¾È³ª¿À´Ï ²¨³õÀÚ.
+	//TurnOffAllFogs(); // å™¨å¼Š é”­å·©ä¿Š ç›”çªç»° ç»¢æ»´æ¬¾ ç¡…ç‰ˆæ æ•‘å”±å·èª æ³¢åˆç£Š.
 }
 
 void AB2StageManager::StageClearPhase1_StartVictoryWingFx()
-{// StageClear UI ¿¡¼­ÀÇ ÀÌº¥Æ®¸¦ ÅëÇØ ¿À°Ô µÉ °Í.
+{// StageClear UI ä¿Šè¾‘ç‹¼ æäº¥é£˜ç”« çƒ¹ç§¦ å·éœ¸ çª å·´.
 	//UB2SomeInfo* SomeInfo = StaticFindSomeInfo(this);
 	//StageClearPhase1_StartVictoryFxCommon(
 	//	StageClearWingFxComp ? NULL : (SomeInfo ? SomeInfo->GetStageClearWingFxTemplate() : NULL),
@@ -1201,7 +1201,7 @@ void AB2StageManager::StageClearPhase1_StartVictoryWingFx()
 }
 
 void AB2StageManager::StageClearPhase1_StartVictoryGemFx()
-{ // StageClear UI ¿¡¼­ÀÇ ÀÌº¥Æ®¸¦ ÅëÇØ ¿À°Ô µÉ °Í.
+{ // StageClear UI ä¿Šè¾‘ç‹¼ æäº¥é£˜ç”« çƒ¹ç§¦ å·éœ¸ çª å·´.
 	//UB2SomeInfo* SomeInfo = StaticFindSomeInfo(this);
 	//StageClearPhase1_StartVictoryFxCommon(
 	//	StageClearGemFxComp ? NULL : (SomeInfo ? SomeInfo->GetStageClearGemFxTemplate() : NULL),
@@ -1210,7 +1210,7 @@ void AB2StageManager::StageClearPhase1_StartVictoryGemFx()
 }
 
 void AB2StageManager::StageClearPhase1_StartVictoryBGFx()
-{// StageClear UI ¿¡¼­ÀÇ ÀÌº¥Æ®¸¦ ÅëÇØ ¿À°Ô µÉ °Í.
+{// StageClear UI ä¿Šè¾‘ç‹¼ æäº¥é£˜ç”« çƒ¹ç§¦ å·éœ¸ çª å·´.
 	//UB2SomeInfo* SomeInfo = StaticFindSomeInfo(this);
 	//StageClearPhase1_StartVictoryFxCommon(
 	//	StageClearBGFxComp ? NULL : (SomeInfo ? SomeInfo->GetStageClearBGFxTemplate() : NULL),
@@ -1223,21 +1223,21 @@ void AB2StageManager::StageClearPhase1_StartVictoryFxCommon(class UParticleSyste
 	//UCameraComponent* StageClearViewCamComp = StageClearViewCam ? StageClearViewCam->GetCameraComponent() : NULL;
 	//if (StageClearViewCamComp)
 	//{
-	//	// ¿ÍÀÌµå È­¸é ´ëÀÀ.. ÀÌ°Ç ±×³É ¾²¸é ³ĞÀº È­¸é¿¡¼­ ¿¬Ãâ È¿°úµéÀÌ Â©¸®°Ô µÇ¾î¼­ adaptive FOV °¡ ÇÊ¿äÇÔ.
+	//	// å®¢æé› æ‹³æ æªè§ˆ.. ææ‰’ å¼Šæˆ é™æ æ‰¿ç¯® æ‹³æä¿Šè¾‘ æ¥·å… ç“¤è‹ç”¸æ æ¼åºœéœ¸ ç™»ç»¢è¾‘ adaptive FOV å•Š é˜å¤¸çªƒ.
 	//	StageClearViewCamComp->SetConstraintAspectRatio(false);
 	//	StageClearViewCamComp->SetAspectRatioAdaptiveFOV(true);
 	//	
-	//	EnsureTargetToStageClearCam(); // ºÎ²ô·¯¿î Áş
+	//	EnsureTargetToStageClearCam(); // ä½•æºçŸ¾æ¬¾ çª¿
 
-	//	if (InOutCompForSet) // Ä«¸Ş¶óÃ³·³ ¸Ê¿¡ ¹èÄ¡µÈ °ÍÀÌ ¼¼ÆÃµÇ¾î ÀÖ´Ù¸é ±×°É »ç¿ëÇÏ°í
+	//	if (InOutCompForSet) // å¢¨çš‹æ‰¼è´¸çƒ¦ ç”˜ä¿Š ç¡…æ‘¹ç­‰ å·´æ æŠ€æ³¼ç™»ç»¢ ä¹ä¿ƒæ å¼Šå§ è¤ä¾©çªç»Š
 	//	{
 	//		InOutCompForSet->Activate();
 	//	}
-	//	else // ¾Æ´Ï¸é ³»ºÎ¿¡¼­ »ı¼º
+	//	else // é…’èªæ éƒ´ä½•ä¿Šè¾‘ ç§¯å·±
 	//	{
 	//		if (InPSTemplate)
 	//		{
-	//			// Ä«¸Ş¶ó·ÎºÎÅÍÀÇ »ó´ë À§Ä¡ ¹× ½ºÄÉÀÏ µîÀº Å×½ºÆ®¸¦ ÅëÇØ Á¤ÇØ¼­ ini ¿¡ ±â·Ï.
+	//			// å¢¨çš‹æ‰¼è‚ºä½•ç£ç‹¼ æƒ‘æª å›°æ‘¹ æ£º èƒ¶çº³è€ æ®¿ç¯® æŠ›èƒ¶é£˜ç”« çƒ¹ç§¦ æ²¥ç§¦è¾‘ ini ä¿Š æ‰åºŸ.
 	//			FVector FxRelativePos(500.0f, 0.0f, 0.0f);
 	//			GConfig->GetVector(TEXT("/Script/BladeII.B2StageManager"), PosConfigKey, FxRelativePos, GGameIni);
 	//			FRotator FXRelativeRot(0.0f, 0.0f, 0.0f);
@@ -1260,22 +1260,22 @@ void AB2StageManager::StageClearPhase1_StartVictoryFxCommon(class UParticleSyste
 
 void AB2StageManager::BeginStageClearScene_Phase2()
 {
-	TurnBackOnAllFogs(); // Phase 1 ¿¡¼­ ²ö Æ÷±×µé ´Ù½Ã ÄÑ±â.
+	TurnBackOnAllFogs(); // Phase 1 ä¿Šè¾‘ é¦‹ å™¨å¼Šç”¸ ä¿ƒçŸ« éš¾æ‰.
 
 	//check(CachedGameMode);
 	//const TArray<class AB2StageEventDirector*>& EventDirectors = CachedGameMode->GetEventDirectorArray();
 	//for (AB2StageEventDirector* CurrSED : EventDirectors)
 	//{
-	//	// ÀÌ°Ç StageClear UI ¿¡¼­ ¿À´Â ½ÅÈ£¸¦ ¹Ş´Â´Ù. ÃÖÁ¾ °á°úÃ¢°ú ÇÔ²²ÇÏ´Â ½Â¸® Æ÷Áî ¶ç¿ì±â
-	//	// ESEV_Clear ´ë½Å °Å±â¼­ ÂÉ°³Áø ´Ù¸¥ enum À¸·Î °Ë»çÇÏ°Ô µÉ ¼öµµ ÀÖÀ½.
+	//	// ææ‰’ StageClear UI ä¿Šè¾‘ å·ç»° è„šé¾‹ç”« ç½ç»°ä¿ƒ. å¼¥è¾† æ¬è‹èŠ’è‹ çªƒè†Šçªç»° é“°åºœ å™¨ä»¤ å‰å¿«æ‰
+	//	// ESEV_Clear æªè„š èŠ­æ‰è¾‘ å¾‹ä¿ºæŸ³ ä¿ƒå¼— enum æ è‚º å…«è¤çªéœ¸ çª èæ¡£ ä¹æ¾œ.
 	//	if (CurrSED->GetDirectingEvent() == EStageEvent::ESEV_Clear){
 	//		CurrSED->CustomBeginShow();
 	//	}
 	//}
 
-	//EnsureTargetToStageClearCam(); // ºÎ²ô·¯¿î Áş
+	//EnsureTargetToStageClearCam(); // ä½•æºçŸ¾æ¬¾ çª¿
 	//
-	//// ½Â¸® BGM Àº °á±¹ Phase2 ¿Í ÇÔ²²..
+	//// é“°åºœ BGM ç¯® æ¬æƒ« Phase2 å®¢ çªƒè†Š..
 	//ABladeIIGameMode* B2GM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(GetWorld()));
 	//BII_CHECK(B2GM);
 	//if (B2GM)
@@ -1286,8 +1286,8 @@ void AB2StageManager::BeginStageClearScene_Phase2()
 
 void AB2StageManager::EnsureTargetToStageClearCam()
 {
-	// ±âº»ÀûÀ¸·Î´Â StageClearScene Phase1 ½ÃÀÛ ½Ã StageClearViewCam À¸·Î ViewTarget ÇÑ¹ø¸¸ ¼¼ÆÃÇÏ¸é µÇ´Â °Çµ¥ ÀÌ·±Àú·± Ä«¸Ş¶óÈ¿°ú°¡ ÀÖ´Â ½ºÅ³°ú ÇÔ²² ¸·Å¸¸¦ ³¯¸± ½Ã ±×°Ô ¾È ¸ÔÈ÷´Â ÀÏÀÌ ÀÖ´Ù.
-	//// ºÎ²ô·´°Ôµµ ±×°É Á¦´ë·Î °íÄ¡Áö ¸øÇØ¼­ ÀÌ ÄÚµå¸¦ µû·Î ¹­¾î¼­ ¿©·¯¹ø È£ÃâÇÔ. ±×·¸°Ô ÇØ¼­ Å©°Ô ¼ÕÇØ º¼ °Íµµ ¾Æ´Ï°í ÇØ¼­ 
+	// æ‰å¤¯åˆ©æ è‚ºç»° StageClearScene Phase1 çŸ«ç´¯ çŸ« StageClearViewCam æ è‚º ViewTarget èŒ„é”…çˆ¶ æŠ€æ³¼çªæ ç™»ç»° æ‰’å• æç¹å†ç¹ å¢¨çš‹æ‰¼ç“¤è‹å•Š ä¹ç»° èƒ¶æ‡¦è‹ çªƒè†Š é˜œé¸¥ç”« æœå‰¯ çŸ« å¼Šéœ¸ æ•‘ å†ˆæ´’ç»° è€æ ä¹ä¿ƒ.
+	//// ä½•æºåéœ¸æ¡£ å¼Šå§ åŠ›æªè‚º ç»Šæ‘¹ç˜¤ ç»™ç§¦è¾‘ æ å†…é›ç”« è¶è‚º å¼“ç»¢è¾‘ å’¯çŸ¾é”… é¾‹å…çªƒ. å¼ŠçŠ¯éœ¸ ç§¦è¾‘ å†œéœ¸ é¢Šç§¦ æ­ å·´æ¡£ é…’èªç»Š ç§¦è¾‘ 
 	//ABladeIIPlayerController* B2PC = Cast<ABladeIIPlayerController>(UGameplayStatics::GetLocalPlayerController(this));
 	//if (B2PC && StageClearViewCam) {
 	//	B2PC->SetViewTargetWithBlend(StageClearViewCam, 0.0f);
@@ -1301,7 +1301,7 @@ void AB2StageManager::TurnOffAllFogs()
 	//	AExponentialHeightFog* ExpFog = Cast<AExponentialHeightFog>(*FogIt);
 	//	AAtmosphericFog* AtmosFog = Cast<AAtmosphericFog>(*FogIt);
 
-	//	// ±×³É ²ôÁö ¾Ê°í visibility ¸¦ ¹é¾÷ÇØ ³ù´Ù°¡ ²û. ³ªÁß¿¡ ´Ù½Ã ÄÑ¾ß ÇÏ´Ï
+	//	// å¼Šæˆ æºç˜¤ è‡¼ç»Š visibility ç”« å½’è¯€ç§¦ èº‡ä¿ƒå•Š é˜. å”±åä¿Š ä¿ƒçŸ« éš¾å…· çªèª
 	//	if (ExpFog && ExpFog->GetComponent()){
 	//		const bool bWasVisible = (ExpFog->GetComponent()->IsVisible() && !ExpFog->bHidden);
 	//		CachedExpFogVisMap.Add(ExpFog, bWasVisible);
@@ -1319,13 +1319,13 @@ void AB2StageManager::TurnBackOnAllFogs()
 {
 	for (auto& ExpFogElem : CachedExpFogVisMap)
 	{
-		if (ExpFogElem.Key && ExpFogElem.Value){ // ±âÁ¸¿¡ visible Çß´ø °æ¿ì¸¸ ´Ù½Ã ÄÒ´Ù.
+		if (ExpFogElem.Key && ExpFogElem.Value){ // æ‰ç²®ä¿Š visible æ²å¸¦ ç‰ˆå¿«çˆ¶ ä¿ƒçŸ« å›Šä¿ƒ.
 			ExpFogElem.Key->SetActorHiddenInGame(false);
 		}
 	}
 	for (auto& AtmosFogElem : CachedAtmosFogVisMap)
 	{
-		if (AtmosFogElem.Key && AtmosFogElem.Value){ // ±âÁ¸¿¡ visible Çß´ø °æ¿ì¸¸ ´Ù½Ã ÄÒ´Ù.
+		if (AtmosFogElem.Key && AtmosFogElem.Value){ // æ‰ç²®ä¿Š visible æ²å¸¦ ç‰ˆå¿«çˆ¶ ä¿ƒçŸ« å›Šä¿ƒ.
 			AtmosFogElem.Key->SetActorHiddenInGame(false);
 		}
 	}
@@ -1344,9 +1344,9 @@ void AB2StageManager::PlayStageBGM()
 
 void AB2StageManager::PlayBossStageBGM()
 {
-	//[@SameLine, 180524] º¸½º¸÷ Å¸ÀÔ ½ºÆù½Ã ¹«Á¶°Ç ·£´ı bgm Àç»ı ¼öÁ¤
-	//x-10(BossStage)°¡ ¾Æ´Ñ °æ¿ì Ã¹bgm->º¸½ºbgm º¯°æÈÄ º¯°æX
-	//x-10(BossStage)ÀÇ °æ¿ì Ã¹bgm->º¸½ºbgm->º¸½ºbgm º¯°æ °¡´É
+	//[@SameLine, 180524] ç„Šèƒ¶å„ é¸¥æ¶ èƒ¶è¿„çŸ« å…¬ç‚¼æ‰’ ç½šå¾… bgm çŠç§¯ èæ²¥
+	//x-10(BossStage)å•Š é…’å›± ç‰ˆå¿« éœ‰bgm->ç„Šèƒ¶bgm å‡½ç‰ˆé¥¶ å‡½ç‰ˆX
+	//x-10(BossStage)ç‹¼ ç‰ˆå¿« éœ‰bgm->ç„Šèƒ¶bgm->ç„Šèƒ¶bgm å‡½ç‰ˆ å•Šç“·
 
 	if (IsBossStage() || IsPossiblePlayBossBgm)
 	{
@@ -1377,7 +1377,7 @@ void AB2StageManager::PlayBGM()
 }
 
 void AB2StageManager::SetStageClearViewObjects(ACameraActor* InCamActor, UParticleSystemComponent* InPSWingComp, UParticleSystemComponent* InPSGemComp, UParticleSystemComponent* InPSBGComp)
-{ // ¿©±æ ÅëÇØ ¼¼ÆÃµÈ´Ù¸é ·¹º§¿¡ ¹èÄ¡µÈ ¾ÖµéÀÏ °Í. StageClearPhase1_StartVictoryGemFx µî¿¡¼­ µ¿Àû Ã³¸®¸¦ ÇÏÁö ¾Ê°Ô µÈ´Ù.
+{ // å’¯è¾¨ çƒ¹ç§¦ æŠ€æ³¼ç­‰ä¿ƒæ é¥­éª‡ä¿Š ç¡…æ‘¹ç­‰ å±€ç”¸è€ å·´. StageClearPhase1_StartVictoryGemFx æ®¿ä¿Šè¾‘ æ‚¼åˆ© è´¸åºœç”« çªç˜¤ è‡¼éœ¸ ç­‰ä¿ƒ.
 	StageClearViewCam = InCamActor;
 	StageClearWingFxComp = InPSWingComp;
 	StageClearGemFxComp = InPSGemComp;
@@ -1385,7 +1385,7 @@ void AB2StageManager::SetStageClearViewObjects(ACameraActor* InCamActor, UPartic
 }
 
 void AB2StageManager::RefreshStagePlayTimeCheck()
-{ // UpdateStagePlayTime ÀÌ¿Ü¿¡ µû·Î Ä«¿îÆ® ½ÃÀÛ ½ÃÁ¡ °»½ÅÀÌ ÇÊ¿äÇÑ °æ¿ì »ç¿ë. ÀÏÁ¾ÀÇ Start ³ª Resume °İ.
+{ // UpdateStagePlayTime æå¯‡ä¿Š è¶è‚º å¢¨æ¬¾é£˜ çŸ«ç´¯ çŸ«ç—¢ ç›è„šæ é˜å¤¸èŒ„ ç‰ˆå¿« è¤ä¾©. è€è¾†ç‹¼ Start å”± Resume æ‹œ.
 	UWorld* TheWorld = GetWorld();
 	BII_CHECK(TheWorld);
 
@@ -1393,7 +1393,7 @@ void AB2StageManager::RefreshStagePlayTimeCheck()
 	{
 		PlayTimeLastCheckedCache = TheWorld->GetTimeSeconds();
 
-		bCountingPlayTime = true; // Refresh ¸¦ ÇÑ ÀÌ»ó Ä«¿îÆ® ½ÃÀÛ.
+		bCountingPlayTime = true; // Refresh ç”« èŒ„ ææƒ‘ å¢¨æ¬¾é£˜ çŸ«ç´¯.
 	}
 }
 void AB2StageManager::UpdateStagePlayTime(bool bStopCounting)
@@ -1402,7 +1402,7 @@ void AB2StageManager::UpdateStagePlayTime(bool bStopCounting)
 	//BII_CHECK(TheWorld);
 
 	//if (TheWorld && bCountingPlayTime)
-	//{ // ¸¶Áö¸· PlayTimeLastCheckedCache ½ÃÁ¡À¸·ÎºÎÅÍ ´©Àû ½Ã°£ °»½Å.
+	//{ // ä»˜ç˜¤é˜œ PlayTimeLastCheckedCache çŸ«ç—¢æ è‚ºä½•ç£ ç©¿åˆ© çŸ«åŸƒ ç›è„š.
 
 	//	ABladeIIPlayerController* B2PC = Cast<ABladeIIPlayerController>(UGameplayStatics::GetLocalPlayerController(this));
 	//	bool bCinematicMode = B2PC && B2PC->IsInCinematicMode();
@@ -1412,13 +1412,13 @@ void AB2StageManager::UpdateStagePlayTime(bool bStopCounting)
 
 	//	PlayTimeLastCheckedCache = TheWorld->GetTimeSeconds();
 
-	//	if (bStopCounting) // ÀÌ °æ¿ì Stop ÀÌ³ª Pause °İÀ¸·Î »ç¿ë.
+	//	if (bStopCounting) // æ ç‰ˆå¿« Stop æå”± Pause æ‹œæ è‚º è¤ä¾©.
 	//	{
 	//		bCountingPlayTime = false;
 	//	}
 	//	
 	//	UB2UIDocBattleStage* DocBS = UB2UIDocHelper::GetDocBattleStage();
-	//	if (DocBS) // UI Doc ¾÷µ¥ÀÌÆ®.
+	//	if (DocBS) // UI Doc è¯€å•æé£˜.
 	//	{
 	//		DocBS->SetStagePlayTime((int32)LastUpdatedPlayTime);
 	//	}
@@ -1429,7 +1429,7 @@ float AB2StageManager::GetStagePlayTime(bool bUpdateNow)
 {
 	if (bUpdateNow)
 	{
-		UpdateStagePlayTime(false); // Áß°£ ÀÓÀÇ ½ÃÁ¡¿¡ ¾÷µ¥ÀÌÆ® ÇÏ´Â »ç¿ë. Áß´ÜµÈ »óÅÂ¿¡¼± ¾îÂ÷ÇÇ ¾÷µ¥ÀÌÆ® ¾È ÇÔ.
+		UpdateStagePlayTime(false); // ååŸƒ çƒ™ç‹¼ çŸ«ç—¢ä¿Š è¯€å•æé£˜ çªç»° è¤ä¾©. åçªœç­‰ æƒ‘æ€•ä¿Šæ€¥ ç»¢ç’ä¹” è¯€å•æé£˜ æ•‘ çªƒ.
 	}
 
 	return LastUpdatedPlayTime;
@@ -1439,7 +1439,7 @@ void AB2StageManager::AutoUpdateStagePlayTimeCB()
 {
 	GetWorldTimerManager().ClearTimer(AutoUpdateStagePlayTimeTH);
 
-	UpdateStagePlayTime(false); // ¾÷µ¥ÀÌÆ® µÇ¸é¼­ UIDoc ¾÷µ¥ÀÌÆ® ÇÏ¸é ¾Ë¾Æ¼­ Ç¥½Ã °»½Å ¤» Áß´Ü µµÁß¿¡´Â ¾Ë¾Æ¼­ ³ëÄ«¿îÆ®
+	UpdateStagePlayTime(false); // è¯€å•æé£˜ ç™»æè¾‘ UIDoc è¯€å•æé£˜ çªæ èˆ…é…’è¾‘ é’çŸ« ç›è„š ã› åçªœ æ¡£åä¿Šç»° èˆ…é…’è¾‘ ç•´å¢¨æ¬¾é£˜
 
 	if (!bCurrentLevelCleared)
 	{
@@ -1461,11 +1461,11 @@ float AB2StageManager::GetStageDifficultyScale()
 //	}
 //#endif
 //
-//	// ÇöÀç ¼±ÅÃµÈ DifficultyLevel °ú Info ¼¼ÆÃ (³»Áö´Â ¼­¹ö ¸¶½ºÅÍ µ¥ÀÌÅÍ) ¿¡¼­ ºñ·ÔµÇ´Â ½ÇÁ¦ Àû¿ëµÇ´Â scale °ª ¸®ÅÏ
+//	// æ³…çŠ æ€¥ç¶ç­‰ DifficultyLevel è‹ Info æŠ€æ³¼ (éƒ´ç˜¤ç»° è¾‘æ»š ä»˜èƒ¶ç£ å•æç£) ä¿Šè¾‘ åšå©ç™»ç»° è§’åŠ› åˆ©ä¾©ç™»ç»° scale è”¼ åºœç•”
 //	return BladeIIGameImpl::GetStageDataStore().GetStageDifficultyScale(
 //		StaticCacheStageData.ClientStageId, 
 //		StaticCacheStageData.StageDifficultyLevel,
-//		// B2GameModeType ³Ñ°ÜÁÖ´Â °Ç M15 ¿¡¼­ÀÇ ÀÓ½Ã.
+//		// B2GameModeType é€è´¥æ—ç»° æ‰’ M15 ä¿Šè¾‘ç‹¼ çƒ™çŸ«.
 //		CachedGameMode ? CachedGameMode->GetB2GameModeType() : EB2GameMode::Scenario);
 	return 0.0;
 }
@@ -1483,7 +1483,7 @@ void AB2StageManager::StopOrRestoreAllWorldMobs(bool bStop)
 	//{
 	//	if (bStopAllMobs)
 	//	{
-	//		CurrMob->PreventMovementByStageEvent(); // PreventMovementByStageEvent ·Î ÇØ¾ß AnimNotify ¿¡ ÀÇÇØ AllowMovement µÉ ¶§ ¾È µ¹¾Æ°¨ ¤§¤§
+	//		CurrMob->PreventMovementByStageEvent(); // PreventMovementByStageEvent è‚º ç§¦å…· AnimNotify ä¿Š ç‹¼ç§¦ AllowMovement çª é”­ æ•‘ å€’é…’çš‘ ã‡ã‡
 	//	}
 	//	else
 	//	{
@@ -1524,14 +1524,14 @@ FCacheStageEssentialDataToKeep::FCacheStageEssentialDataToKeep()
 
 void FCacheStageEssentialDataToKeep::SetStandaloneStageData(AB2StageManager* StageManager)
 {
-//	// ±âº»ÀûÀ¸·Î´Â ¿¡µğÅÍ ÇÃ·¹ÀÌ ¹× ¼­¹ö ¿¬°áÀÌ ¾ÈµÈ »óÅÂ¿¡¼­ÀÇ ÇÁ¸®ºä ÇÃ·¹ÀÌ Á¤µµ¿¡ »ç¿ë.
-//	// ÃÖÁ¾ °ÔÀÓ¿¡¼­ Á¤»óÀûÀÎ »óÈ²ÀÌ¸é »ç¿ëÇÒ ±â´ÉÀº ¾Æ´ÏÁö¸¸ ½ºÅ×ÀÌÁö ÁøÀÔ Á÷ÈÄ ³×Æ®¿öÅ©°¡ ²÷°å´Ù¸é ÀÏ´Ü ÇÃ·¹ÀÌ´Â °¡´ÉÇØ¾ß ÇÏ¹Ç·Î ¾î´À Á¤µµ ¼¼ÆÃÀº ÇÊ¿äÇÏ´Ù.
+//	// æ‰å¤¯åˆ©æ è‚ºç»° ä¿Šå¼ç£ æ•²é¥­æ æ£º è¾‘æ»š æ¥·æ¬æ æ•‘ç­‰ æƒ‘æ€•ä¿Šè¾‘ç‹¼ æ©‡åºœè½° æ•²é¥­æ æ²¥æ¡£ä¿Š è¤ä¾©.
+//	// å¼¥è¾† éœ¸çƒ™ä¿Šè¾‘ æ²¥æƒ‘åˆ©ç‰¢ æƒ‘ç‚”ææ è¤ä¾©ä¸” æ‰ç“·ç¯® é…’èªç˜¤çˆ¶ èƒ¶æŠ›æç˜¤ æŸ³æ¶ æµé¥¶ åŒ™é£˜å†µå†œå•Š è°—æ¿ä¿ƒæ è€çªœ æ•²é¥­æç»° å•Šç“·ç§¦å…· çªéª¨è‚º ç»¢è ¢ æ²¥æ¡£ æŠ€æ³¼ç¯® é˜å¤¸çªä¿ƒ.
 //
 //	check(StageManager);
 //
-//	TotalExpOfCurrentStage = 1000; // ¹°·Ğ, Á¤½Ä ¼¼ÆÃÀº ¾Æ´Ô.
+//	TotalExpOfCurrentStage = 1000; // æ‹±æ²¸, æ²¥ä¾¥ æŠ€æ³¼ç¯® é…’ä¸›.
 //
-//	// ÀÏ´Ü WorldSettings ¿¡ ¼¼ÆÃÇÑ °ªÀ» ¿ì¼± Àû¿ë ½Ãµµ. ·Îµù ¿É¼ÇÀ» ÁÖ¾ú´Ù¸é ¾Æ·¡¿¡¼­ ±×°Ô Àû¿ëµÉ °Í. ¹°·Ğ °³¹ß¿ë ¼¼ÆÃ
+//	// è€çªœ WorldSettings ä¿Š æŠ€æ³¼èŒ„ è”¼é˜‘ å¿«æ€¥ åˆ©ä¾© çŸ«æ¡£. è‚ºçˆ¹ å¯è®°é˜‘ æ—èŒä¿ƒæ é…’è´°ä¿Šè¾‘ å¼Šéœ¸ åˆ©ä¾©çª å·´. æ‹±æ²¸ ä¿ºæƒ¯ä¾© æŠ€æ³¼
 //	ABladeIIWorldSettings* B2WS = Cast<ABladeIIWorldSettings>(StageManager->GetWorldSettings());
 //	BII_CHECK(B2WS);
 //
@@ -1544,7 +1544,7 @@ void FCacheStageEssentialDataToKeep::SetStandaloneStageData(AB2StageManager* Sta
 //	}
 //#endif
 //
-//	// °³¹ß ¹öÀü¿ë ½ºÅ×ÀÌÁö ¹øÈ£ µîÀÇ ¿É¼ÇÀ» ºí·çÇÁ¸°Æ® OpenLevel ¿É¼Ç ¹®ÀÚ¿­(Open ¸í·É ÀÎÀÚ)À» ÅëÇØ ¼¼ÆÃÇÒ ¼ö ÀÖµµ·Ï. ÃÖÁ¾ÀûÀ¸·Î´Â ¼­¹ö¿¡¼­ °¡Á®¿Í¾ß ÇÔ.
+//	// ä¿ºæƒ¯ æ»šå‚ˆä¾© èƒ¶æŠ›æç˜¤ é”…é¾‹ æ®¿ç‹¼ å¯è®°é˜‘ å–‰é£æ©‡èµ´é£˜ OpenLevel å¯è®° å·©ç£Šå‡¯(Open ç–™é£ ç‰¢ç£Š)é˜‘ çƒ¹ç§¦ æŠ€æ³¼ä¸” è ä¹æ¡£åºŸ. å¼¥è¾†åˆ©æ è‚ºç»° è¾‘æ»šä¿Šè¾‘ å•Šå»‰å®¢å…· çªƒ.
 //	if (GEngine)
 //	{
 //		FWorldContext* TheWorldContext = GEngine->GetWorldContextFromWorld(StageManager->GetWorld());
@@ -1555,7 +1555,7 @@ void FCacheStageEssentialDataToKeep::SetStandaloneStageData(AB2StageManager* Sta
 //				const TCHAR* StageNumStr = TheWorldContext->LastURL.GetOption(TEXT("StageNum="), TEXT("1"));
 //				ClientStageId = FCString::Atoi(StageNumStr);
 //			}
-//			else if (TheWorldContext->LastURL.HasOption(TEXT("SN"))) // Â©Àº ¹öÀü
+//			else if (TheWorldContext->LastURL.HasOption(TEXT("SN"))) // æ¼ç¯® æ»šå‚ˆ
 //			{
 //				const TCHAR* StageNumStr = TheWorldContext->LastURL.GetOption(TEXT("SN="), TEXT("1"));
 //				ClientStageId = FCString::Atoi(StageNumStr);
@@ -1566,7 +1566,7 @@ void FCacheStageEssentialDataToKeep::SetStandaloneStageData(AB2StageManager* Sta
 //				const TCHAR* DifficultyNumStr = TheWorldContext->LastURL.GetOption(TEXT("Difficulty="), TEXT("1"));
 //				StageDifficultyLevel = (EStageDifficulty)FCString::Atoi(DifficultyNumStr);
 //			}
-//			else if (TheWorldContext->LastURL.HasOption(TEXT("DF"))) // ÂªÀº ¹öÀü
+//			else if (TheWorldContext->LastURL.HasOption(TEXT("DF"))) // é™‹ç¯® æ»šå‚ˆ
 //			{
 //				const TCHAR* DifficultyNumStr = TheWorldContext->LastURL.GetOption(TEXT("DF="), TEXT("1"));
 //				StageDifficultyLevel = (EStageDifficulty)FCString::Atoi(DifficultyNumStr);
@@ -1577,7 +1577,7 @@ void FCacheStageEssentialDataToKeep::SetStandaloneStageData(AB2StageManager* Sta
 //				const TCHAR* ScenarioModeStr = TheWorldContext->LastURL.GetOption(TEXT("ScenarioMode="), TEXT("1"));
 //				bScenarioMode = (FCString::Atoi(ScenarioModeStr) != 0);
 //			}
-//			else if (TheWorldContext->LastURL.HasOption(TEXT("SM"))) // ÂªÀº ¹öÀü
+//			else if (TheWorldContext->LastURL.HasOption(TEXT("SM"))) // é™‹ç¯® æ»šå‚ˆ
 //			{
 //				const TCHAR* ScenarioModeStr = TheWorldContext->LastURL.GetOption(TEXT("SM="), TEXT("1"));
 //				bScenarioMode = (FCString::Atoi(ScenarioModeStr) != 0);
@@ -1591,8 +1591,8 @@ void FCacheStageEssentialDataToKeep::SetStandaloneStageData(AB2StageManager* Sta
 //		}
 //	}
 //
-//	// ´Üµ¶ ÇÃ·¹ÀÌ¶óµµ ³­ÀÌµµ¿¡ µû¶ó ½Ã³ª¸®¿À ¸ğµå¸¦ º¸Áö ¸øÇÏµµ·Ï.
-//	// ¿©±â¼­ ¿¹¿Ü Ã³¸® ÇÏÁö ¾ÊÀ¸¸é »óÀ§ ³­ÀÌµµ¿¡¼­µµ ½Ã³ª¸®¿À ¿¬ÃâÀ» º¸°Ô µÉ ¼ö ÀÖ´Âµ¥ ±¦È÷ ¿¡µğÅÍ ÇÃ·¹ÀÌ¿¡¼­ ±â´ÉÀ» ¾û¶×ÇÏ°Ô È®ÀÎÇÒ ¼ÒÁö°¡ ÀÖÀ½.
+//	// çªœåˆ€ æ•²é¥­ææ‰¼æ¡£ æŠ„ææ¡£ä¿Š è¶æ‰¼ çŸ«å”±åºœå· è‘›é›ç”« ç„Šç˜¤ ç»™çªæ¡£åºŸ.
+//	// å’¯æ‰è¾‘ æŠ—å¯‡ è´¸åºœ çªç˜¤ è‡¼æ æ æƒ‘å›° æŠ„ææ¡£ä¿Šè¾‘æ¡£ çŸ«å”±åºœå· æ¥·å…é˜‘ ç„Šéœ¸ çª è ä¹ç»°å• å®æ´’ ä¿Šå¼ç£ æ•²é¥­æä¿Šè¾‘ æ‰ç“·é˜‘ é’§è¹²çªéœ¸ çŠ¬ç‰¢ä¸” å®¶ç˜¤å•Š ä¹æ¾œ.
 //	if (!IsScenarioModeAllowedDifficulty(StageDifficultyLevel))
 //	{
 //		bScenarioMode = false;
@@ -1601,7 +1601,7 @@ void FCacheStageEssentialDataToKeep::SetStandaloneStageData(AB2StageManager* Sta
 //	if (BladeIIGameImpl::DevOnlyStageLoadData.SpecifiedClientStageId > 0)
 //	{
 //		ClientStageId = BladeIIGameImpl::DevOnlyStageLoadData.SpecifiedClientStageId;
-//		BladeIIGameImpl::DevOnlyStageLoadData.SpecifiedClientStageId = -1; // ÇÑ¹ø ¾²°í ³ª¼­µµ ³²¾ÆÀÖÀ¸¸é ¿©·¯¸ğ·Î °ï¶õ
+//		BladeIIGameImpl::DevOnlyStageLoadData.SpecifiedClientStageId = -1; // èŒ„é”… é™ç»Š å”±è¾‘æ¡£ å·¢é…’ä¹æ æ å’¯çŸ¾è‘›è‚º å¸®é„‚
 //	}
 //
 //	CachingStageInfoData();
@@ -1610,13 +1610,13 @@ void FCacheStageEssentialDataToKeep::SetStandaloneStageData(AB2StageManager* Sta
 //	{
 //		bHasExtraLevel = CachedCurrentStageInfoData->bHasExtraMap;
 //
-//		//ExtraMapÀº World°¡ ´Ù¸¥ °³³äÀ¸·Î º¸»ó¿¡ ´ëÇØ Ãß°¡ ¼³Á¤ÇØÁà¾ß ÇÑ´Ù.(¼­¹ö µ¥ÀÌÅ¸ È®Á¤½Ã±îÁö ÀÓ½Ã)
+//		//ExtraMapç¯® Worldå•Š ä¿ƒå¼— ä¿ºå……æ è‚º ç„Šæƒ‘ä¿Š æªç§¦ çœ å•Š æ±²æ²¥ç§¦æ‹å…· èŒ„ä¿ƒ.(è¾‘æ»š å•æé¸¥ çŠ¬æ²¥çŸ«é³–ç˜¤ çƒ™çŸ«)
 //		StageReward.SetTotalStageRewardGold(bPlayInExtraLevel ? 700 : 500);
 //
 //		UB2ItemInfo* ItemDataTable = StageReward.GetItemInfoTable();
 //		if (ItemDataTable)
 //		{
-//			// ÀÏ´ÜÀº ½ºÅ×ÀÌÁö¿¡¼­´Â ÇÏ³ªÀÇ ¾ÆÀÌÅÛ¸¸ÀÌ µå·ÓµÈ´Ù°í ÇÏÀÚ. (±âÈ¹Àº ÃÖ´ë 2°³)
+//			// è€çªœç¯® èƒ¶æŠ›æç˜¤ä¿Šè¾‘ç»° çªå”±ç‹¼ é…’æè¢çˆ¶æ é›é…šç­‰ä¿ƒç»Š çªç£Š. (æ‰è£™ç¯® å¼¥æª 2ä¿º)
 //			// StageReward.SetDefeatBossRewardItem(ItemDataTable->GetRandomItemRefID());
 //		}
 //	}
@@ -1626,7 +1626,7 @@ void FCacheStageEssentialDataToKeep::SetStandaloneStageData(AB2StageManager* Sta
 //		bStandalonePIE = true;
 //	}
 //
-//	// ÀÌ°Íµµ ¿¡µğÅÍ ÇÁ¸®ºä Â÷¿ø¿¡¼­
+//	// æå·´æ¡£ ä¿Šå¼ç£ æ©‡åºœè½° ç’ç›”ä¿Šè¾‘
 //	FB2Item DummyReward;
 //	DummyReward.ItemRefID = 1000100;
 //	StageReward.SetDefeatBossRewardItem(DummyReward);
@@ -1638,7 +1638,7 @@ void FCacheStageEssentialDataToKeep::Initialize()
 	StageReward.Initialize();
 
 	//
-	// ÀÀ´ä ¹Ş°í °ª ¼¼ÆÃ Àü ÀÌ°Ô ºÒ¸®¹Ç·Î Request »óÅÂ Ä³½Ì ·ù º¯¼öµéÀº ¿©±â¼­ ÃÊ±âÈ­ ÇÏ¸é ¾ÈµÊ. ÇÊ¿äÇÏ¸é »ı¼ºÀÚ¿¡¼­..
+	// è§ˆç¿  ç½ç»Š è”¼ æŠ€æ³¼ å‚ˆ æéœ¸ é˜‚åºœéª¨è‚º Request æƒ‘æ€• æŸæ•™ å¹… å‡½èç”¸ç¯® å’¯æ‰è¾‘ æª¬æ‰æ‹³ çªæ æ•‘å‡³. é˜å¤¸çªæ ç§¯å·±ç£Šä¿Šè¾‘..
 	//
 
 	PreExtraLastPlayedCharClass = EPCClass::EPC_Gladiator;
@@ -1674,7 +1674,7 @@ void FCacheStageEssentialDataToKeep::Initialize()
 	/*MaxResurrectionChance = RemainingResurrectionChance = 3;
 	ResurrectionCost = 0;*/
 
-	// EResurrectGameModeType::EResurrectType_OnlyClientMode´Â ¸®½ºÆ®¿¡¼­ Á¦¿ÜÇØÁØ´Ù.
+	// EResurrectGameModeType::EResurrectType_OnlyClientModeç»° åºœèƒ¶é£˜ä¿Šè¾‘ åŠ›å¯‡ç§¦éœ–ä¿ƒ.
 	//ResurrectionList.Empty();
 	//for (int32 i = (int32)EResurrectGameModeType::EResurrectType_Stage; i < (int32)EResurrectGameModeType::EResurrectType_Max; ++i)
 	//	ResurrectionList.Add((EResurrectGameModeType)i, FResurrectData());
@@ -1682,7 +1682,7 @@ void FCacheStageEssentialDataToKeep::Initialize()
 	//ServerSelectedStageBuff.Empty();
 
 	/*
-	//UI¿¡¼­ Æú¸µÀ» ¹æÁö ÇÏ±â À§ÇØ Doc¿¡ µ¥ÀÌÅÍ½ÌÅ©
+	//UIä¿Šè¾‘ å¼ƒå‚…é˜‘ è§„ç˜¤ çªæ‰ å›°ç§¦ Docä¿Š å•æç£æ•™å†œ
 	if (UB2UIDocBattle* DocBattle = UB2UIDocHelper::GetDocBattle())
 	{
 		DocBattle->SetMaxResurrectionChance(MaxResurrectionChance);
@@ -1691,7 +1691,7 @@ void FCacheStageEssentialDataToKeep::Initialize()
 	}
 	*/
 #if WITH_EDITOR // For use play-in-editor stage settings
-	bStandalonePIE = GIsEditor; // ¿¡µğÅÍ¿¡¼­´Â ·Îºñ¸¦ ÅëÇØ ·ÎµùµÇ¾î ¼­¹ö ÀÀ´äÀ» ¹ŞÀº °æ¿ì ´Ù½Ã false ¼¼ÆÃÀÌ µÉ °Í.
+	bStandalonePIE = GIsEditor; // ä¿Šå¼ç£ä¿Šè¾‘ç»° è‚ºåšç”« çƒ¹ç§¦ è‚ºçˆ¹ç™»ç»¢ è¾‘æ»š è§ˆç¿ é˜‘ ç½ç¯® ç‰ˆå¿« ä¿ƒçŸ« false æŠ€æ³¼æ çª å·´.
 #endif
 }
 
@@ -1753,19 +1753,19 @@ bool FCacheStageEssentialDataToKeep::EquipNumberCheck(EPCClass& PCClass)
 	//UB2LobbyInventory::GetPCClassesNeedToCleanInventory(AllPCClassNeedCleanInven);
 
 	///*
-	//// AllPCClassNeedCleanInven Àº ºñ¾îÀÖÁö ¾Ê¾Æ¾ß ¸»ÀÌ µÇÁö¸¸ ¼­¹ö±îÁö ¿À°£ ÀÀ´äÀÌ ¾î¶»°Ô µÉÁö¿¡ ´ëÇØ¼­ check ¸¦ °É°í ½ÍÁö´Â ¾Ê±º.
-	//// ÀÎº¥Åä¸®¸¦ ºñ¿ö³¾ ÇÊ¿ä°¡ ÀÖ´Â Å¬·¡½ºµéÀ» ¹Ì¸® Á¡°ËÇØ¼­ ÀÎº¥Åä¸® Ã¢ °¬À» ¶§ ¼±ÅÃµÇ¾î ÀÖ´Â Å¬·¡½º¿¡ ¹İ¿µÇÑ´Ù.
+	//// AllPCClassNeedCleanInven ç¯® åšç»¢ä¹ç˜¤ è‡¼é…’å…· å¯Œæ ç™»ç˜¤çˆ¶ è¾‘æ»šé³–ç˜¤ å·åŸƒ è§ˆç¿ æ ç»¢ç—˜éœ¸ çªç˜¤ä¿Š æªç§¦è¾‘ check ç”« å§ç»Š é…µç˜¤ç»° è‡¼ç„™.
+	//// ç‰¢äº¥é…åºœç”« åšå†µå°˜ é˜å¤¸å•Š ä¹ç»° åŠªè´°èƒ¶ç”¸é˜‘ å›ºåºœ ç—¢å…«ç§¦è¾‘ ç‰¢äº¥é…åºœ èŠ’ è‰¾é˜‘ é”­ æ€¥ç¶ç™»ç»¢ ä¹ç»° åŠªè´°èƒ¶ä¿Š é¦†åº·èŒ„ä¿ƒ.
 	//const bool bIsMainClassNeedToCleanInven = (AllPCClassNeedCleanInven.Find(RequestedMainPlayerCharClass) != INDEX_NONE);
 	//const bool bIsSubClassNeedToCleanInven = (AllPCClassNeedCleanInven.Find(RequestedSubPlayerCharClass) != INDEX_NONE);
-	//// Main/Sub µÑ ´Ù ±¦Âú´õ¶óµµ ´Ù¸¥ ¼±ÅÃ ¾ÈµÈ ¾ÖÀÇ inventory °¡ Â÷ ÀÖÀ¸¸é ±×°Íµµ ÀÔÀåºÒ°¡ÀÓ.
+	//// Main/Sub ç¬› ä¿ƒ å®æ»¡æ­¹æ‰¼æ¡£ ä¿ƒå¼— æ€¥ç¶ æ•‘ç­‰ å±€ç‹¼ inventory å•Š ç’ ä¹æ æ å¼Šå·´æ¡£ æ¶å˜é˜‚å•Šçƒ™.
 	//const EPCClass FallbackInvenCleanCharClass = (AllPCClassNeedCleanInven.Num() > 0) ? AllPCClassNeedCleanInven[0] : EPCClass::EPC_Gladiator;
 	//PCClass = bIsMainClassNeedToCleanInven ? RequestedMainPlayerCharClass :
 	//	(bIsSubClassNeedToCleanInven ? RequestedSubPlayerCharClass : FallbackInvenCleanCharClass);
-	//if (PCClass == EPCClass::EPC_End) { // ÀÌ·± ÀÏÀº ¾ø¾î¾ß°ÚÁö¸¸..
+	//if (PCClass == EPCClass::EPC_End) { // æç¹ è€ç¯® ç»ç»¢å…·æ‘†ç˜¤çˆ¶..
 	//	PCClass = EPCClass::EPC_Gladiator;
 	//}
 
-	//// ±×¸®°í Å¬·¡½º ¼±ÅÃÀÌ µÇ¾ú´Ù¸é ½ÇÁ¦·Î Â÷ ÀÖ´Â Å¬·¡½º ÅÇ±îÁö..
+	//// å¼Šåºœç»Š åŠªè´°èƒ¶ æ€¥ç¶æ ç™»èŒä¿ƒæ è§’åŠ›è‚º ç’ ä¹ç»° åŠªè´°èƒ¶ å¾˜é³–ç˜¤..
 	//const bool bIsNeedToClean = UB2LobbyInventory::IsInventoryFull(EItemInvenType::EIIVT_United, PCClass);
 	//if (!bIsNeedToClean)
 	//	return false;
@@ -1773,10 +1773,10 @@ bool FCacheStageEssentialDataToKeep::EquipNumberCheck(EPCClass& PCClass)
 
 	//if (AllPCClassNeedCleanInven.Num() > 0)
 	//{
-	//	// ÀÌ ½ÃÁ¡¿¡ PreLoadingScreen ÀÌ ¿­·Á ÀÖÀ» °ÍÀÌ¹Ç·Î ´İµµ·Ï.
+	//	// æ çŸ«ç—¢ä¿Š PreLoadingScreen æ å‡¯å¦¨ ä¹é˜‘ å·´æéª¨è‚º æ‘§æ¡£åºŸ.
 	//	ClosePreLoadingScreenAllClass<>::GetInstance().Signal();
 	//	CancelStartGameStageClass<>::GetInstance().Signal();
-	//	CancelOrStopRepeatBattleClass<>::GetInstance().Signal(); // ±âÅ¸ ÀüÅõ ¿äÃ» Ã³¸®°¡ ºÒ°¡ÇÑ °æ¿ì °¡´ÉÇÑ ¹İº¹ ÀüÅõ ¿äÃ»À» Ãë¼ÒÇØ¾ß ÇÔ.
+	//	CancelOrStopRepeatBattleClass<>::GetInstance().Signal(); // æ‰é¸¥ å‚ˆæ§ å¤¸æ²¡ è´¸åºœå•Š é˜‚å•ŠèŒ„ ç‰ˆå¿« å•Šç“·èŒ„ é¦†æ±— å‚ˆæ§ å¤¸æ²¡é˜‘ ç§’å®¶ç§¦å…· çªƒ.
 
 	//	const EPCClass FallbackInvenCleanCharClass = AllPCClassNeedCleanInven[0];
 	//	PCClass = FallbackInvenCleanCharClass;
@@ -1906,7 +1906,7 @@ void FCacheStageEssentialDataToKeep::SetStageResponseData(FString Token, int32 D
 
 void FCacheStageEssentialDataToKeep::SetStageResponseDataQuest(int32 QuestItemID, int32 QuestItemCount)
 {
-	// ÀÏ´ÜÀº ¾Æ¹«°Íµµ ¾ÈÇÔ 
+	// è€çªœç¯® é…’å…¬å·´æ¡£ æ•‘çªƒ 
 }
 
 void FCacheStageEssentialDataToKeep::SetQTEBonus(int32 StartQTEBonus, int32 FinishQTEBonus)
@@ -1921,7 +1921,7 @@ void FCacheStageEssentialDataToKeep::SetStageResponseDataStageBuff(int32 BuffFla
 	UB2UIDocBattleStage* DocBS = UB2UIDocHelper::GetDocBattleStage();
 	if (DocBS)
 	{
-		DocBS->SetSelectedStageBuffs(ServerSelectedStageBuff); // Server Response¿¡¼­ ÀÎÁ¤µÈ Buff¸¸ UIDoc¿¡ °»½Å
+		DocBS->SetSelectedStageBuffs(ServerSelectedStageBuff); // Server Responseä¿Šè¾‘ ç‰¢æ²¥ç­‰ Buffçˆ¶ UIDocä¿Š ç›è„š
 	}
 }
 
@@ -1942,9 +1942,9 @@ void FCacheStageEssentialDataToKeep::RequestStartStage(int32 InClientStageId, ES
 
 void FCacheStageEssentialDataToKeep::RequestStartStage(int32 InClientStageId, EStageDifficulty InStageDifficulty, EPCClass MainCharClass, EPCClass SubCharClass, const TArray<EStageBuffType>& StageBuffTypes, FRepeatBattleStateSet RepeatBattle, bool bSkipStoryCinematic, int32 TurorialId, int32 MainPresetId, int32 SubPresetId)
 {
-	//// [180712_YJ] ³­ÀÌµµ On/OFF±â´É Ãß°¡.
-	//// È¤½Ã³ª °­Á¦·Î ¸·Èù³­ÀÌµµ¿¡ ÁøÀÔÇßÀ»°æ¿ì¿¡, ¿¡·¯ÆË¾÷ È£Ãâ ¹× ·Îºñ·Î ÀÌµ¿.
-	//// Æ©Åä¸®¾ó °í·Á ¾ÈÇÔ.
+	//// [180712_YJ] æŠ„ææ¡£ On/OFFæ‰ç“· çœ å•Š.
+	//// è¶£çŸ«å”± ç¢åŠ›è‚º é˜œè…®æŠ„ææ¡£ä¿Š æŸ³æ¶æ²é˜‘ç‰ˆå¿«ä¿Š, ä¿ŠçŸ¾æ‰‘è¯€ é¾‹å… æ£º è‚ºåšè‚º ææ‚¼.
+	//// è­¬é…åºœå€” ç»Šå¦¨ æ•‘çªƒ.
 	//if (static_cast<int32>(InStageDifficulty) > BladeIIGameImpl::GetClientDataStore().GetLimitOpenStageDifficulty())
 	//{
 	//	UB2UIMsgPopupSimple* MsgUI = UB2UIManager::GetInstance()->OpenMsgPopup<UB2UIMsgPopupSimple>(EUIMsgPopup::Simple,
@@ -1972,14 +1972,14 @@ void FCacheStageEssentialDataToKeep::RequestStartStage(int32 InClientStageId, ES
 	//RequestMainPCPresetId = MainPresetId;
 	//RequestSubPCPresetId = SubPresetId;
 
-	//bStageRequestedWithSkipStoryCinematic = bSkipStoryCinematic; // ÀÀ´äÀÌ ¿Â ÈÄ bScenarioMode ¿©ºÎ ÆÇº°¿¡ ¾²ÀÓ.
+	//bStageRequestedWithSkipStoryCinematic = bSkipStoryCinematic; // è§ˆç¿ æ æŸ¯ é¥¶ bScenarioMode å’¯ä½• é­„å–Šä¿Š é™çƒ™.
 
-	//// ¿©±â¼­ÀÇ RepeatBattleState ´Â Response °¡ ¿À¸é ¼¼ÆÃÇÑ´Ù.
+	//// å’¯æ‰è¾‘ç‹¼ RepeatBattleState ç»° Response å•Š å·æ æŠ€æ³¼èŒ„ä¿ƒ.
 
-	////ToDo ¼­¹ö·Î ÀÔÀå¿äÃ» ÆĞÅ¶À» º¸³½´Ù. (½ºÅ×ÀÌÁöId, ¸ŞÀÎ/¼­ºê Ä³¸¯ÅÍ Å¬·¡½º, ±âÅ¸ ¾ÆÀÌÅÛ(°ñµå¾÷, ¾ÆÀÌÅÛÃß°¡±Çµîµî)
+	////ToDo è¾‘æ»šè‚º æ¶å˜å¤¸æ²¡ è©å“¦é˜‘ ç„Šè¾°ä¿ƒ. (èƒ¶æŠ›æç˜¤Id, çš‹ç‰¢/è¾‘å® æŸè…ç£ åŠªè´°èƒ¶, æ‰é¸¥ é…’æè¢(æ¦œé›è¯€, é…’æè¢çœ å•Šé¼»æ®¿æ®¿)
 	//
 	//UE_LOG(LogBladeII, Log, TEXT("StageRequest"));
-	////[@AKI, 180214] RequestServerStageId°¡ 0À¸·Î µé¾î¿À´Â Çö»ó ¶§¹®¿¡ ensure°É¾î ³õÀ½. È¤½Ã ¿©±â¿¡ °É¸± °æ¿ì ¾È±¤ÀÍ¿¡°Ô ¿¬¶ô ¹Ù¶÷.
+	////[@AKI, 180214] RequestServerStageIdå•Š 0æ è‚º ç”¸ç»¢å·ç»° æ³…æƒ‘ é”­å·©ä¿Š ensureå§ç»¢ åˆæ¾œ. è¶£çŸ« å’¯æ‰ä¿Š å§å‰¯ ç‰ˆå¿« æ•‘å ¡åŠ³ä¿Šéœ¸ æ¥·é å®˜æ©.
 	//ensure( !RequestServerStageId.IsEmpty() );
 	//if (RequestServerStageId.IsEmpty())
 	//	RequestServerStageId.Id = 1;
@@ -2030,7 +2030,7 @@ void FCacheStageEssentialDataToKeep::RequestStartStageNext()
 	int32 MainPCPresetId = BladeIIGameImpl::GetLocalCharacterData().GetUserAllItems().GetCurrentItemPresetID(BladeIIGameImpl::GetLocalCharacterData().GetMainPlayerClass());
 	int32 SubPCPresetId = BladeIIGameImpl::GetLocalCharacterData().GetUserAllItems().GetCurrentItemPresetID(BladeIIGameImpl::GetLocalCharacterData().GetSubPlayerClass());
 
-	TArray<EStageBuffType> ThisRequestBuff = ServerSelectedStageBuff; // È¤½Ã¶óµµ ÃÊ±â ¼±ÅÃ°ú ¸¶Âù°¡Áö·Î Áö¼ÓÇØ¼­ ³Ö¾î¾ß ÇÑ´Ù¸é AllSelectedStageBuff ·Î
+	TArray<EStageBuffType> ThisRequestBuff = ServerSelectedStageBuff; // è¶£çŸ«æ‰¼æ¡£ æª¬æ‰ æ€¥ç¶è‹ ä»˜è›®å•Šç˜¤è‚º ç˜¤åŠ ç§¦è¾‘ æŒç»¢å…· èŒ„ä¿ƒæ AllSelectedStageBuff è‚º
 	RequestStartStage( ClientStageId + 1
 		, StageDifficultyLevel
 		, BladeIIGameImpl::GetLocalCharacterData().GetMainPlayerClass()
@@ -2093,9 +2093,9 @@ void FCacheStageEssentialDataToKeep::SetStageBasisData(int32 InClientStageId, ES
 	//FStageDataStore& StageDataStore = BladeIIGameImpl::GetStageDataStore();
 	//ServerStageID = StageDataStore.GetServerStageID(InClientStageId, InStageDifficulty);
 
-	//// Ã³À½ ÇÃ·¹ÀÌ ½Ã¿¡´Â true. µÎ¹øÂ° ÀÌ»óÀÏ ¶§¿¡´Â ½ºÅä¸®¸ğµå¿¡¼­ »ç¿ëÀÚ°¡ ½ºÅä¸®³Ñ±èÀ» ¼±ÅÃÇß°Å³ª, ¸ğÇé¸ğµå(ÀÏ¹İ ÀÌ»óÀÇ ³­ÀÌµµ)ÀÌ¸é false.
+	//// è´¸æ¾œ æ•²é¥­æ çŸ«ä¿Šç»° true. æ»´é”…æ³ ææƒ‘è€ é”­ä¿Šç»° èƒ¶é…åºœè‘›é›ä¿Šè¾‘ è¤ä¾©ç£Šå•Š èƒ¶é…åºœé€è¾«é˜‘ æ€¥ç¶æ²èŠ­å”±, è‘›æƒ…è‘›é›(è€é¦† ææƒ‘ç‹¼ æŠ„ææ¡£)ææ false.
 	//bScenarioMode =
-	//	// ³­ÀÌµµ°¡ ´Ş¶óÁ³À» ½Ã ServerStageID µµ ´Ş¶óÁö°Ô µÇ¹Ç·Î Ã¹ ÇÃ·¹ÀÌ ½Ã¿¡´Â IsStageClearedOnce °¡ ´Ù½Ã false °¡ µÈ´Ù. µû¶ó¼­ IsScenarioModeAllowedDifficulty ´Â && Á¶°ÇÀÌ µÇ¾î¾ß ÇÔ.
+	//	// æŠ„ææ¡£å•Š å´”æ‰¼è„¸é˜‘ çŸ« ServerStageID æ¡£ å´”æ‰¼ç˜¤éœ¸ ç™»éª¨è‚º éœ‰ æ•²é¥­æ çŸ«ä¿Šç»° IsStageClearedOnce å•Š ä¿ƒçŸ« false å•Š ç­‰ä¿ƒ. è¶æ‰¼è¾‘ IsScenarioModeAllowedDifficulty ç»° && ç‚¼æ‰’æ ç™»ç»¢å…· çªƒ.
 	//	IsScenarioModeAllowedDifficulty(InStageDifficulty) && 
 	//	(StageDataStore.IsStageClearedOnce(ServerStageID) == false || !bStageRequestedWithSkipStoryCinematic);
 
@@ -2109,7 +2109,7 @@ void FCacheStageEssentialDataToKeep::SetStageBasisData_CounterDungeon(int32 InCl
 {
 	Initialize();
 
-	// ¹İ°İ´øÀüÀº ClientId¿Í ServerId°¡ °°À½.
+	// é¦†æ‹œå¸¦å‚ˆç¯® ClientIdå®¢ ServerIdå•Š éæ¾œ.
 	ServerStageID = FServerStageID(InClientStageId);
 	bScenarioMode = false;
 
@@ -2118,7 +2118,7 @@ void FCacheStageEssentialDataToKeep::SetStageBasisData_CounterDungeon(int32 InCl
 
 void FCacheStageEssentialDataToKeep::SetStageBasisData_CommonInternal(int32 InClientStageId, EStageDifficulty InStageDifficulty, EPCClass MainCharClass, EPCClass SubCharClass)
 {
-	// ServerStageID ´Â ÀÌ°Å ÀÌÀü¿¡ ¼¼ÆÃµÇ¾î ÀÖ¾î¾ß ÇÏ´Âµ¥... TutorialGameMode °°Àº ¿¹¿Ü »óÈ²ÀÌ ÀÖ¾î¼­ Ã¼Å©´Â ¸øÇÏ°Ú±º ¤Ñ¤Ñ
+	// ServerStageID ç»° æèŠ­ æå‚ˆä¿Š æŠ€æ³¼ç™»ç»¢ ä¹ç»¢å…· çªç»°å•... TutorialGameMode éç¯® æŠ—å¯‡ æƒ‘ç‚”æ ä¹ç»¢è¾‘ çœ‰å†œç»° ç»™çªæ‘†ç„™ ã±ã±
 	//check(!ServerStageID.IsEmpty());
 
 	ClientStageId = InClientStageId;
@@ -2136,12 +2136,12 @@ void FCacheStageEssentialDataToKeep::SetStageBasisData_CommonInternal(int32 InCl
 void FCacheStageEssentialDataToKeep::ClearStageBasisData()
 {
 	ClientStageId = INDEX_NONE;
-	ServerStageID = FServerStageID(); // ÀÏ´Ü ÀÌ°É ¸®¼ÂÇÏ´Â °Ô Á© Áß¿ä.
-	bScenarioMode = true; // ¾ê´Â ±âº»°ª true °¡ ´õ ¾î¿ï¸®°Ú´Ù.
+	ServerStageID = FServerStageID(); // è€çªœ æå§ åºœæ‚¸çªç»° éœ¸ ä¿© åå¤¸.
+	bScenarioMode = true; // å¨Ÿç»° æ‰å¤¯è”¼ true å•Š æ­¹ ç»¢åŒ¡åºœæ‘†ä¿ƒ.
 	bStageRequestedWithSkipStoryCinematic = false;
 	ServerSelectedStageBuff.Empty();
 	bHasExtraLevel = false;
-	//[@AKI, 180208] Extra Map µé¾î°¬´Ù¿À¸é ÃÊ±âÈ­¸¦ ¾È½ÃÅ°´Â ¹®Á¦(Ä³½¬ µÇ¾î ÀÖ´Â ÀÜÀç°¡ ³²¾ÆÀÖÀ½)
+	//[@AKI, 180208] Extra Map ç”¸ç»¢è‰¾ä¿ƒå·æ æª¬æ‰æ‹³ç”« æ•‘çŸ«è™ç»° å·©åŠ›(æŸæµ† ç™»ç»¢ ä¹ç»° å„¡çŠå•Š å·¢é…’ä¹æ¾œ)
 	bPlayInExtraLevel = false;
 }
 
@@ -2157,7 +2157,7 @@ void FCacheStageEssentialDataToKeep::CachingStageInfoData()
 
 void FCacheStageEssentialDataToKeep::ResponseStartStage(AGameMode* InCurrentGameMode, const FB2StartStageInfo& Info)
 {
-	//AB2LobbyGameMode* LobbyGM = Cast<AB2LobbyGameMode>(InCurrentGameMode); // ÀÏ¹İÀûÀÎ °æ¿ì ¿©±â·Î µé¾î¿À´Â °Ç LobbyGameMode. ·Îºñ¿¡¼­ ½ºÅ×ÀÌÁö ½ÃÀÛ ¹öÆ° ´©¸£°í ¼­¹ö ÀÀ´ä ½Ã Å¬¶óÀÌ¾ğÆ® ¸Ê ·Îµù Àü °ª Àü´ŞÇÏ´Â ºÎºĞ.
+	//AB2LobbyGameMode* LobbyGM = Cast<AB2LobbyGameMode>(InCurrentGameMode); // è€é¦†åˆ©ç‰¢ ç‰ˆå¿« å’¯æ‰è‚º ç”¸ç»¢å·ç»° æ‰’ LobbyGameMode. è‚ºåšä¿Šè¾‘ èƒ¶æŠ›æç˜¤ çŸ«ç´¯ æ»šç“¢ ç©¿ç¦ç»Š è¾‘æ»š è§ˆç¿  çŸ« åŠªæ‰¼ææ”«é£˜ ç”˜ è‚ºçˆ¹ å‚ˆ è”¼ å‚ˆå´”çªç»° ä½•ç›’.
 	//FRepeatBattleStateSet NewRepeatBattleState = RepeatBattleState;
 	//if (LobbyGM){
 	//	NewRepeatBattleState = LobbyGM->GetRepeatBattleRequestState();
@@ -2170,7 +2170,7 @@ void FCacheStageEssentialDataToKeep::ResponseStartStage(AGameMode* InCurrentGame
 	//	DocBattleStage->SetStartGoldBuffRate(GET_TUPLE_DATA(FB2ResponseStartStage::gold_buff_rate_index, Info));
 	//}
 
-	//// FB2StartStageInfo ¿¡ ÃÖÁ¾ Çã°¡µÈ StageBuff Á¤º¸°¡ µé¾îÀÖ´Ù¸é RequestedStageOption ´ë½Å ±×°É·Î ÇØ¼­ SetStageResponseData ¿¡¼­ ¼¼ÆÃÀ»
+	//// FB2StartStageInfo ä¿Š å¼¥è¾† å€¾å•Šç­‰ StageBuff æ²¥ç„Šå•Š ç”¸ç»¢ä¹ä¿ƒæ RequestedStageOption æªè„š å¼Šå§è‚º ç§¦è¾‘ SetStageResponseData ä¿Šè¾‘ æŠ€æ³¼é˜‘
 	//SetStageBasisData(RequestedClientStageId, RequestedStageDifficulty, RequestedMainPlayerCharClass, RequestedSubPlayerCharClass, &RequestedStageOption, &NewRepeatBattleState);
 
 	//TArray<FB2Item>	Items;
@@ -2210,7 +2210,7 @@ void FCacheStageEssentialDataToKeep::ResponseStartStage(AGameMode* InCurrentGame
 	//SetStageResponseDataQuest(GET_TUPLE_DATA(FB2ResponseStartStage::quest_item_id_index, Info),
 	//						  GET_TUPLE_DATA(FB2ResponseStartStage::quest_item_count_index, Info));
 
-	//// ½ºÅ×ÀÌÁö ½ÃÀÛ°ú ÇÔ²² AccountInfo °»½Å ÇÊ¿ä·Î ÀÎÇØ ClientDataStore/StageDataStore ÂÊ¿¡µµ.
+	//// èƒ¶æŠ›æç˜¤ çŸ«ç´¯è‹ çªƒè†Š AccountInfo ç›è„š é˜å¤¸è‚º ç‰¢ç§¦ ClientDataStore/StageDataStore ç‡ä¿Šæ¡£.
 	//BladeIIGameImpl::GetStageDataStore().StartStage(Info);
 
 	//bool StartStageRet = StartBladeIIGameStage(InCurrentGameMode, ClientStageId);
@@ -2224,7 +2224,7 @@ void FCacheStageEssentialDataToKeep::ResponseStartStage(AGameMode* InCurrentGame
 	//	}
 	//}
 
-	//// ¿¬Ãâ Ä×À¸¸é ·Î±×Àü¼Û
+	//// æ¥·å… æ·–æ æ è‚ºå¼Šå‚ˆä»·
 	//if (IsScenarioMode())
 	//{
 	//	B2ActionLogSender Sender;
@@ -2237,7 +2237,7 @@ void FCacheStageEssentialDataToKeep::ResponseStartStage(AGameMode* InCurrentGame
 
 void FCacheStageEssentialDataToKeep::ResponseStartCounterDungeon(AGameMode* InCurrentGameMode, const FString& Token)
 {
-	//// ¹İ°İ´øÀüÀº GetServerStageID·Î ServerStageID¸¦ °¡Á®¿Ã ¼ö ¾øÀ¸¹Ç·Î, SetStageBasisData_CounterDungeon() À¸·Î µû·Î Ã³¸®
+	//// é¦†æ‹œå¸¦å‚ˆç¯® GetServerStageIDè‚º ServerStageIDç”« å•Šå»‰æ£µ è ç»æ éª¨è‚º, SetStageBasisData_CounterDungeon() æ è‚º è¶è‚º è´¸åºœ
 	//SetStageBasisData_CounterDungeon(RequestedClientStageId, RequestedStageDifficulty, RequestedMainPlayerCharClass, RequestedSubPlayerCharClass);
 
 	//TArray<FB2Item> EmptyArray;
@@ -2246,13 +2246,13 @@ void FCacheStageEssentialDataToKeep::ResponseStartCounterDungeon(AGameMode* InCu
 	//StartBladeIICounterDungeon(InCurrentGameMode, ClientStageId);
 }
 
-// colosseum comment : bUseGem Á¦°Å
+// colosseum comment : bUseGem åŠ›èŠ­
 void FCacheStageEssentialDataToKeep::RequestStartHeroTower(AGameMode* InCurrentGameMode, int32 nStartFloor, EPCClass MainCharClass, EPCClass SubCharClass, FString szToken)
 {
 	//RequestedMainPlayerCharClass = MainCharClass;
 	//RequestedSubPlayerCharClass = SubCharClass;
 
-	//// Ãş°®°í ¸¶½ºÅÍµ¥ÀÌÅÍ¿¡¼­ ¾ÆÀÌµğ ¾ò¾î¿Í¶û
+	//// æ‘¸çˆ±ç»Š ä»˜èƒ¶ç£å•æç£ä¿Šè¾‘ é…’æå¼ æ˜ç»¢å®¢å°”
 	//RequestedClientStageId = BladeIIGameImpl::GetClientDataStore().GetHeroTowerMapId(nStartFloor);
 	//	
 	//data_trader::Retailer::GetInstance().RequestStartHeroTower(nStartFloor, 
@@ -2273,10 +2273,10 @@ void FCacheStageEssentialDataToKeep::ResponseStartHeroTower(AGameMode* InCurrent
 //
 //	if (pDoc)
 //	{
-//		// colosseum comment : daily_left_free_try_count Á¦°Å
+//		// colosseum comment : daily_left_free_try_count åŠ›èŠ­
 //		//pDoc->m_ptrGetHeroTower->daily_left_free_try_count = msgPtr->left_free_ticket;
 //		pDoc->m_ptrGetHeroTower->daily_try_count = msgPtr->daily_enter_count;
-//		// colosseum comment : current_gem Á¦°Å
+//		// colosseum comment : current_gem åŠ›èŠ­
 //		//BladeIIGameImpl::GetClientDataStore().SetGemAmount(msgPtr->current_gem);
 //		pDoc->m_bIsClearHeroTower = false;
 //	}	
@@ -2286,7 +2286,7 @@ void FCacheStageEssentialDataToKeep::ResponseStartHeroTower(AGameMode* InCurrent
 //#endif
 //	AB2HeroTowerGameMode* pGM = Cast<AB2HeroTowerGameMode>(InCurrentGameMode);
 //	if (pGM 
-//#if !UE_BUILD_SHIPPING // ¿µ¿õÀÇ Å¾Àº ´ÙÀ½ Ãş ¹Ù·Î ÀÌµ¿½Ã ·Îµù ¾øÀÌ ½ºÅ×ÀÌÁö ¸®¼ÂÀ» ÇÏ´Âµ¥ ÀÌ°Ô °³¹ßµµÁß Ãß°¡µÇ´Â ÄÚµå ´ëÀÀÀÌ ¾ÈµÇ¸é ¹®Á¦¸¦ ÀÏÀ¸Å°±â ½¬¿ì¹Ç·Î Æ¯Á¤ ¹®Á¦ ¹ß»ı½Ã Å×½ºÆ®¸¦ À§ÇØ ÇÃ·¡±×¸¦ Á¦°ø.
+//#if !UE_BUILD_SHIPPING // åº·æ—·ç‹¼ å•ªç¯® ä¿ƒæ¾œ æ‘¸ å®˜è‚º ææ‚¼çŸ« è‚ºçˆ¹ ç»æ èƒ¶æŠ›æç˜¤ åºœæ‚¸é˜‘ çªç»°å• æéœ¸ ä¿ºæƒ¯æ¡£å çœ å•Šç™»ç»° å†…é› æªè§ˆæ æ•‘ç™»æ å·©åŠ›ç”« è€æ è™æ‰ æµ†å¿«éª¨è‚º æ¼‚æ²¥ å·©åŠ› æƒ¯ç§¯çŸ« æŠ›èƒ¶é£˜ç”« å›°ç§¦ æ•²è´°å¼Šç”« åŠ›å‚.
 //		&& gUseHeroTowerResetNoLoading
 //#endif
 //		)
@@ -2320,7 +2320,7 @@ void FCacheStageEssentialDataToKeep::ResponseStartDimension(AGameMode* InCurrent
 	//SetStageBasisData(RequestedClientStageId, EStageDifficulty::ESD_Normal, RequestedMainPlayerCharClass, RequestedSubPlayerCharClass);
 
 	//TArray<FB2Item> EmptyArray;
-	//// ÅäÅÛµå¶øÀÌ 100% ÀÌ´Ï °­Á¦·Î ½ºÆùÇÒ°Í Ã¬°ÜÁÜ
+	//// é…è¢é›è€Œæ 100% æèª ç¢åŠ›è‚º èƒ¶è¿„ä¸”å·´ çŸ›è´¥æ·‹
 	//TArray<FB2Item> DefaultRewardArray;
 	//FB2Item NewItem;
 	//NewItem.ItemRefID = FItemRefIDHelper::ITEM_REF_ID_PREVIEW_TOTEM;
@@ -2345,7 +2345,7 @@ void FCacheStageEssentialDataToKeep::ResponseStartDimension(AGameMode* InCurrent
 //	//ResurrectionList[ResurrectModeType].ClearResurrectionChange(InMaxResurrectionChance);
 //	//SetResurrectionCostByLookup(ResurrectModeType, ResurrectionList[ResurrectModeType].MaxResurrectionChance, ResurrectionList[ResurrectModeType].RemainingResurrectionChance);
 //
-//	////UI¿¡¼­ Æú¸µÀ» ¹æÁö ÇÏ±â À§ÇØ Doc¿¡ µ¥ÀÌÅÍ½ÌÅ©
+//	////UIä¿Šè¾‘ å¼ƒå‚…é˜‘ è§„ç˜¤ çªæ‰ å›°ç§¦ Docä¿Š å•æç£æ•™å†œ
 //	//if (UB2UIDocBattle* DocBattle = UB2UIDocHelper::GetDocBattle())
 //	//{
 //	//	DocBattle->SetResurrectGameModeType(ResurrectModeType);
@@ -2373,11 +2373,11 @@ void FCacheStageEssentialDataToKeep::DecreaseRemainingResurrectionChance(EResurr
 //void FCacheStageEssentialDataToKeep::SetResurrectionCostByLookup(EResurrectGameModeType ResurrectModeType, int32 InMaxResurrectionChance, int32 InRemainingResurrectionChance)
 //{
 //	//const int32 NextResurrectionNum = InMaxResurrectionChance - InRemainingResurrectionChance + 1;
-//	//// ºÎÈ° Â÷¼ö º°·Î Á¤ÇØÁ® ÀÖ´Â ºñ¿ëÀ» ClientDataStore ¿¡¼­ ·è¾÷.
+//	//// ä½•åŠ ç’è å–Šè‚º æ²¥ç§¦å»‰ ä¹ç»° åšä¾©é˜‘ ClientDataStore ä¿Šè¾‘ ç–¯è¯€.
 //
 //	//ResurrectionList[ResurrectModeType].ResurrectionCost = BladeIIGameImpl::GetClientDataStore().GetResurrectionCost(ResurrectModeType, NextResurrectionNum);
 //	//
-//	//// UIDoc¿¡µµ ¼ÂÆÃ
+//	//// UIDocä¿Šæ¡£ æ‚¸æ³¼
 //	//if (auto* BattleDoc = UB2UIDocHelper::GetDocBattle())
 //	//	BattleDoc->SetResurrectionCost(ResurrectionList[ResurrectModeType].ResurrectionCost);
 //}
@@ -2413,9 +2413,9 @@ void FCacheStageEssentialDataToKeep::SetReadyPreExtraCombatVariables(class ABlad
 void FCacheStageEssentialDataToKeep::SetPostExtraMapLoadSkillRTManager(class ABladeIIPlayer* CurrentActivePlayer, struct FInactivePlayerStateCache* StructToSet)
 {
 	//if (CurrentActivePlayer && StructToSet)
-	//{// StructToSet Àº ÇöÀç ¼û¾îÀÖ´Â ÅÂ±× Ä³¸¯ÅÍ »óÅÂ ÀúÀå¿ëÀÌ¶ó AmIMainCharacter ¿Í ¹İ´ëÀÇ °ªÀ» »ç¿ëÇØ¼­ ¼¼ÆÃ.
+	//{// StructToSet ç¯® æ³…çŠ è§ç»¢ä¹ç»° æ€•å¼Š æŸè…ç£ æƒ‘æ€• å†å˜ä¾©ææ‰¼ AmIMainCharacter å®¢ é¦†æªç‹¼ è”¼é˜‘ è¤ä¾©ç§¦è¾‘ æŠ€æ³¼.
 	//	StructToSet->MaxHealth = CurrentActivePlayer->AmIMainCharacter() ? PreExtraSubPlayerLastMaxHP : PreExtraMainPlayerLastMaxHP;
-	//	// »ç½Ç»ó ExtraMap ·Îµù Á÷ÀüÀÇ CurrentHealth °ªÀÏ °Çµ¥ LastHealth °¡ µüÈ÷ ÇÊ¿äÇÑ°¡?
+	//	// è¤è§’æƒ‘ ExtraMap è‚ºçˆ¹ æµå‚ˆç‹¼ CurrentHealth è”¼è€ æ‰’å• LastHealth å•Š è¿­æ´’ é˜å¤¸èŒ„å•Š?
 	//	StructToSet->LastHealth = CurrentActivePlayer->AmIMainCharacter() ? PreExtraSubPlayerLastHP : PreExtraMainPlayerLastHP;
 	//	StructToSet->CurrentHealth = StructToSet->LastHealth;
 	//	StructToSet->LastArmor = CurrentActivePlayer->AmIMainCharacter() ? PreExtraSubPlayerLastArmor : PreExtraMainPlayerLastArmor;
@@ -2434,7 +2434,7 @@ void FCacheStageEssentialDataToKeep::SetPostExtraMapLoadB2Player(class ABladeIIP
 }
 
 void FCacheStageEssentialDataToKeep::SetRepeatBattleStateStop()
-{ // ÀÎ°ÔÀÓ¿¡¼­ ¹İº¹ÀüÅõ stop ÇÏ·Á¸é ¿©±â¼­ ¸®¼Â ÈÄ StageManager ¿¡¼­ Ãß°¡ Ã³¸® ÇÊ¿ä.
+{ // ç‰¢éœ¸çƒ™ä¿Šè¾‘ é¦†æ±—å‚ˆæ§ stop çªå¦¨æ å’¯æ‰è¾‘ åºœæ‚¸ é¥¶ StageManager ä¿Šè¾‘ çœ å•Š è´¸åºœ é˜å¤¸.
 	/*auto BattleDoc = UB2UIDocHelper::GetDocBattleStage();
 
 	if (!BattleDoc)
@@ -2490,7 +2490,7 @@ int32 FStageRewardManager::GetRewardGold(float weight, float TotalMobWeight, boo
 	//{
 	//	AB2MonsterSpawnPool* CheckSpawnPool = B2GM->GetActiveSpawnPool();
 	//	if(CheckSpawnPool)
-	//	{//³²Àº °ñµå È¹µæ °¡ÁßÄ¡¸¦ ¸ğµÎ ´õÇÑ´Ù.
+	//	{//å·¢ç¯® æ¦œé› è£™å« å•Šåæ‘¹ç”« è‘›æ»´ æ­¹èŒ„ä¿ƒ.
 	//		LeftGoldWeight += CheckSpawnPool->GetLeftGoldWeight(StageManager->GetCurrentClientStageId(), StageManager->GetStageDifficultyLevel());
 	//	}
 
@@ -2500,7 +2500,7 @@ int32 FStageRewardManager::GetRewardGold(float weight, float TotalMobWeight, boo
 	//	}
 
 	//	if (LeftGoldWeight > weight)
-	//	{//³²Àº °ñµå·®À» À§¿¡¼­ ±¸ÇÑ °¡ÁßÄ¡ ÃÑÇÕÀ¸·Î ³ª´©¾î ±âÁØ°ªÀ» Á¤ÇÑ´Ù.
+	//	{//å·¢ç¯® æ¦œé›æ¨Šé˜‘ å›°ä¿Šè¾‘ å¤‡èŒ„ å•Šåæ‘¹ é†šé’¦æ è‚º å”±ç©¿ç»¢ æ‰éœ–è”¼é˜‘ æ²¥èŒ„ä¿ƒ.
 	//		int32 randBarometer = (TotalStageRewardGold - SumCurrentRewardGold) / LeftGoldWeight * weight;
 
 	//		rtnValue = FMath::Max(1, (int32)(randBarometer * (1.f + FMath::FRandRange(-0.2f, 0.2f))));
@@ -2509,7 +2509,7 @@ int32 FStageRewardManager::GetRewardGold(float weight, float TotalMobWeight, boo
 	//		SumCurrentRewardGold += rtnValue;
 	//	}
 	//	else
-	//	{//³²Àº ÃÑ °¡ÁßÄ¡°¡ ÇöÀç ±¸ÇÒ °¡ÁßÄ¡º¸´Ù ÀûÀ» °æ¿ì ³²Àº °ñµå ¸ğµÎ ¹İÈ¯
+	//	{//å·¢ç¯® é†š å•Šåæ‘¹å•Š æ³…çŠ å¤‡ä¸” å•Šåæ‘¹ç„Šä¿ƒ åˆ©é˜‘ ç‰ˆå¿« å·¢ç¯® æ¦œé› è‘›æ»´ é¦†åˆ¸
 	//		rtnValue = TotalStageRewardGold - SumCurrentRewardGold;
 
 	//		SumCurrentRewardGold = TotalStageRewardGold;
@@ -2557,18 +2557,18 @@ void FStageRewardManager::RequestSpawnDropItem(const FDropItemInfo& DropItemInfo
 //	}
 //
 //	FActorSpawnParameters CommonSpawnParam;
-//	//CommonSpawnParam.bDeferConstruction = true; // bDeferConstruction °ú bDeferPostSpawnInitialize ´Â SpawnDropItem µµÁß¿¡ ÀÚµ¿À¸·Î »ç¿ëµÉ °Í.
+//	//CommonSpawnParam.bDeferConstruction = true; // bDeferConstruction è‹ bDeferPostSpawnInitialize ç»° SpawnDropItem æ¡£åä¿Š ç£Šæ‚¼æ è‚º è¤ä¾©çª å·´.
 //	CommonSpawnParam.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;		
 //	
 //	bool IsQTEDeath = DelaySpawnRefActor ? DelaySpawnRefActor->IsInQTEState() : false;
 //
 //	uint32 GoldWieght = IsQTEDeath ? DropCoinCountForQTE : DropItemInfo.RewardGoldWeight;
-//	uint32 NumGoldCoin = GoldWieght; //º°´Ù¸¥ ÀÌ¾ß±â°¡ ¾øÀ¸¸é weight 1´ç 1°³¾¿
+//	uint32 NumGoldCoin = GoldWieght; //å–Šä¿ƒå¼— æå…·æ‰å•Š ç»æ æ weight 1å¯¸ 1ä¿ºç©¶
 //	uint32 NumDropItems = NumGoldCoin + (DropItemInfo.bCanDropItem ? 1 : 0);
 //
 //#define AVAILABLE_EDITOR_PREVIEW_SPAWNITEM 1
 //#if AVAILABLE_EDITOR_PREVIEW_SPAWNITEM
-//	//¿¡µğÆ® ÇÁ¸®ºä ¿ëµµ - SpawnPool·Î ½ºÆùµÈ ¸÷ÀÌ ¾Æ´Ñ °æ¿ì.
+//	//ä¿Šå¼é£˜ æ©‡åºœè½° ä¾©æ¡£ - SpawnPoolè‚º èƒ¶è¿„ç­‰ å„æ é…’å›± ç‰ˆå¿«.
 //	bool bEditorPreview = false;
 //	if (NumDropItems == 0)
 //	{
@@ -2586,13 +2586,13 @@ void FStageRewardManager::RequestSpawnDropItem(const FDropItemInfo& DropItemInfo
 //	{
 //		float MinAngle = CoinIdx * ModAngle + FirstItemYawAngle;
 //		float MaxAngle = MinAngle + ModAngle;
-//		FRotator SpawnRotation(0.f, FMath::FRandRange(MinAngle, MaxAngle), 0.f); // ¿©±â¼± Rotation ¸¸ ±¸ÇÑ´Ù. Location Àº delay °¡ ÀÖÀ» °æ¿ì SpawnRefActor ÀÇ ¾÷µ¥ÀÌÆ® µÈ À§Ä¡°ªÀ» °¡Á®°¨.
+//		FRotator SpawnRotation(0.f, FMath::FRandRange(MinAngle, MaxAngle), 0.f); // å’¯æ‰æ€¥ Rotation çˆ¶ å¤‡èŒ„ä¿ƒ. Location ç¯® delay å•Š ä¹é˜‘ ç‰ˆå¿« SpawnRefActor ç‹¼ è¯€å•æé£˜ ç­‰ å›°æ‘¹è”¼é˜‘ å•Šå»‰çš‘.
 //
 //		StageManager->DeferredSpawnDropGold(
 //#if AVAILABLE_EDITOR_PREVIEW_SPAWNITEM
 //			bEditorPreview ? 10 : 
 //#endif
-//			// SpawnTimeDelay ´Â spawn ºÎÇÏ ºĞ»êÀ» À§ÇØ Ãß°¡ Á¶ÀıÀ» ÇÒ ¼öµµ ÀÖ´Ù.
+//			// SpawnTimeDelay ç»° spawn ä½•çª ç›’é­‚é˜‘ å›°ç§¦ çœ å•Š ç‚¼ä¾‹é˜‘ ä¸” èæ¡£ ä¹ä¿ƒ.
 //			GetRewardGold(WeightStep, LeftGoldWeight, IsQTEDeath), CommonSpawnParam, DelaySpawnRefActor, SpawnLocation, SpawnRotation, DropItemInfo.GoldSpawnDelay, IsQTEDeath);
 //	}
 //
@@ -2604,19 +2604,19 @@ void FStageRewardManager::RequestSpawnDropItem(const FDropItemInfo& DropItemInfo
 //	{
 //		float MinAngle = GoldWieght * ModAngle + FirstItemYawAngle;
 //		float MaxAngle = MinAngle + ModAngle;
-//		FRotator SpawnRotation(0.f, FMath::FRandRange(MinAngle, MaxAngle), 0.f); // ¿©±â¼± Rotation ¸¸ ±¸ÇÑ´Ù. Location Àº delay °¡ ÀÖÀ» °æ¿ì SpawnRefActor ÀÇ ¾÷µ¥ÀÌÆ® µÈ À§Ä¡°ªÀ» °¡Á®°¨.
+//		FRotator SpawnRotation(0.f, FMath::FRandRange(MinAngle, MaxAngle), 0.f); // å’¯æ‰æ€¥ Rotation çˆ¶ å¤‡èŒ„ä¿ƒ. Location ç¯® delay å•Š ä¹é˜‘ ç‰ˆå¿« SpawnRefActor ç‹¼ è¯€å•æé£˜ ç­‰ å›°æ‘¹è”¼é˜‘ å•Šå»‰çš‘.
 //
 //		StageManager->DeferredSpawnDropItem(
 //#if AVAILABLE_EDITOR_PREVIEW_SPAWNITEM
 //			bEditorPreview ? DropItemInfo.TestNumSpawnItemRefID :
 //#endif
-//			// SpawnTimeDelay ´Â spawn ºÎÇÏ ºĞ»êÀ» À§ÇØ Ãß°¡ Á¶ÀıÀ» ÇÒ ¼öµµ ÀÖ´Ù.
+//			// SpawnTimeDelay ç»° spawn ä½•çª ç›’é­‚é˜‘ å›°ç§¦ çœ å•Š ç‚¼ä¾‹é˜‘ ä¸” èæ¡£ ä¹ä¿ƒ.
 //			GetDefeatBossRewardItem().ItemRefID, CommonSpawnParam, DelaySpawnRefActor, SpawnLocation, SpawnRotation, DropItemInfo.RewardSpawnDelay);
 //		StageManager->DeferredSpawnDropItem(
 //#if AVAILABLE_EDITOR_PREVIEW_SPAWNITEM
 //			bEditorPreview ? DropItemInfo.TestNumSpawnItemRefID :
 //#endif
-//			// SpawnTimeDelay ´Â spawn ºÎÇÏ ºĞ»êÀ» À§ÇØ Ãß°¡ Á¶ÀıÀ» ÇÒ ¼öµµ ÀÖ´Ù.
+//			// SpawnTimeDelay ç»° spawn ä½•çª ç›’é­‚é˜‘ å›°ç§¦ çœ å•Š ç‚¼ä¾‹é˜‘ ä¸” èæ¡£ ä¹ä¿ƒ.
 //			GetDefeatBossPieceRewardItem().ItemRefID, CommonSpawnParam, DelaySpawnRefActor, SpawnLocation, SpawnRotation, DropItemInfo.RewardSpawnDelay);
 //	}
 }
@@ -2662,8 +2662,8 @@ void FStageRewardManager::PreloadAllRewardItemInfo()
 			PreloadIDs.Add(BossPieceReward.ItemRefID);
 		}
 
-		// ÀÌ°Ô ID º°·Î µş·Á ÀÖ´Â µ¥ÀÌÅÍ¸¦ ´Ù ·ÎµùÇÏ´Â ±¸Á¶¶ó ItemInfo ·ÎµùÀ» ³ª´« µÚ·Î´Â ±×¸® ±ÇÀåµÇ´Â »ç¿ëÀº ¾Æ´Ñµ¥
-		// Reward ¾ÆÀÌÅÛÀÌ¶ó¸é »ç½Ç»ó ´ëºÎºĞÀÇ ¸®¼Ò½ºµéÀÌ ÇÊ¿äÇÏ±ä ÇÒ °Å °°´Ù. ÀÏ´Ü ³öµÒ. Á» ³¶ºñ°¡ µÈ´Ù ½ÍÀ¸¸é PreloadClassAssets ¸¦ ¹üÁÖº°·Î ³ª´©´Â °É ÇØº¼ ¼öµµ.
+		// æéœ¸ ID å–Šè‚º å å¦¨ ä¹ç»° å•æç£ç”« ä¿ƒ è‚ºçˆ¹çªç»° å¤‡ç‚¼æ‰¼ ItemInfo è‚ºçˆ¹é˜‘ å”±ä¼  ç¬¬è‚ºç»° å¼Šåºœ é¼»å˜ç™»ç»° è¤ä¾©ç¯® é…’å›±å•
+		// Reward é…’æè¢ææ‰¼æ è¤è§’æƒ‘ æªä½•ç›’ç‹¼ åºœå®¶èƒ¶ç”¸æ é˜å¤¸çªå˜ ä¸” èŠ­ éä¿ƒ. è€çªœ å‡ºç‹„. ç²± æ‰¯åšå•Š ç­‰ä¿ƒ é…µæ æ PreloadClassAssets ç”« è£¹æ—å–Šè‚º å”±ç©¿ç»° å§ ç§¦æ­ èæ¡£.
 		ItemInfoTable->PreloadClassAssets(PreloadIDs);
 	}
 }
@@ -2748,7 +2748,7 @@ void FB2ScenarioDialogManager::SetScenarioDialog(const FDialogInfoInstance* ToSe
 	//if (UIMgr)
 	//{
 	//	UIMgr->OpenUI(UIFName::ScenarioDialog);
-	//	if (bMaintainBattleUI) // ±âº»ÀûÀ¸·Î ÀÌÂÊ widget ¼³Á¤¿¡ bHideBattleRelatedWidgets °¡ ÀÖÀ» °Çµ¥ µû·Î ÄÑ°í ½ÍÀº °æ¿ì¸¦ À§ÇØ..
+	//	if (bMaintainBattleUI) // æ‰å¤¯åˆ©æ è‚º æç‡ widget æ±²æ²¥ä¿Š bHideBattleRelatedWidgets å•Š ä¹é˜‘ æ‰’å• è¶è‚º éš¾ç»Š é…µç¯® ç‰ˆå¿«ç”« å›°ç§¦..
 	//	{
 	//		UIMgr->HideBattleRelatedWidgets(false);
 	//	}
@@ -2757,11 +2757,11 @@ void FB2ScenarioDialogManager::SetScenarioDialog(const FDialogInfoInstance* ToSe
 	//UB2UIDocScenarioDialog* DocSDG = UB2UIDocHelper::GetDocScenarioDialog();
 	//if (DocSDG)
 	//{
-	//	// bLastBattleUIHidden °ª¿¡ µû¶ó ´ëÈ­Ã¢ À§Ä¡°¡ Á» ¹Ù²ğ °Å.
+	//	// bLastBattleUIHidden è”¼ä¿Š è¶æ‰¼ æªæ‹³èŠ’ å›°æ‘¹å•Š ç²± å®˜æ‹† èŠ­.
 	//	ABladeIIPlayerController* B2PC = Cast<ABladeIIPlayerController>(UGameplayStatics::GetLocalPlayerController(CachedStageManager));
 	//	if (B2PC && B2PC->IsInCinematicMode())
 	//	{
-	//		DocSDG->SetbLastBattleUIHidden(B2PC->IsHUDHidingCinematicMode()); // CinematicMode ¼³Á¤Àº ¿ì¼±½Ã µÊ.
+	//		DocSDG->SetbLastBattleUIHidden(B2PC->IsHUDHidingCinematicMode()); // CinematicMode æ±²æ²¥ç¯® å¿«æ€¥çŸ« å‡³.
 	//	}
 	//	else
 	//	{
@@ -2780,8 +2780,8 @@ void FB2ScenarioDialogManager::SetDialogLine(int32 NextDialogLineIndex)
 
 	if (!DialogInfoInstace->DialogSequence.IsValidIndex(NextDialogLineIndex))
 	{
-		// Á¾·á½Ã INDEX_NONE
-		// ¹İµå½Ã ForceSkip() ÀÌÀü¿¡ È£Ãâ µÇ¾î¾ß ÇÔ - DialogInstance°¡ nullptr µÊ
+		// è¾†ä¸°çŸ« INDEX_NONE
+		// é¦†é›çŸ« ForceSkip() æå‚ˆä¿Š é¾‹å… ç™»ç»¢å…· çªƒ - DialogInstanceå•Š nullptr å‡³
 		OnUpdatedDialogClass<FName, int32>::GetInstance().Signal(DialogInfoInstace->DialogCodeName, INDEX_NONE);
 		CloseDialogClass<FName>::GetInstance().Signal(DialogInfoInstace->DialogCodeName);
 		ForceSkip();
@@ -2795,7 +2795,7 @@ void FB2ScenarioDialogManager::SetDialogLine(int32 NextDialogLineIndex)
 	CurrentDialogLineIndex = NextDialogLineIndex;
 		
 	const FDialogLine& DialogLineInfo = DialogInfoInstace->DialogSequence[CurrentDialogLineIndex];
-	// DialogCharacterInfo °¡ Portrait material µµ µé°í ÀÖÁö¸¸ ±×°Ç DialogCharacterInfo ¿¡¼­ Á÷Á¢ ²¨³»¿ÀÁö ¾Ê°í InfoSet Å×ÀÌºí¿¡¼­ º°µµ ÀÎÅÍÆäÀÌ½º·Î °¡Á®¿È.
+	// DialogCharacterInfo å•Š Portrait material æ¡£ ç”¸ç»Š ä¹ç˜¤çˆ¶ å¼Šæ‰’ DialogCharacterInfo ä¿Šè¾‘ æµç«‹ æ³¢éƒ´å·ç˜¤ è‡¼ç»Š InfoSet æŠ›æå–‰ä¿Šè¾‘ å–Šæ¡£ ç‰¢ç£å…¶æèƒ¶è‚º å•Šå»‰å’³.
 	FDialogCharacterInfo* CharacterInfo = GetDialogCharacterInfo(DialogLineInfo.SpeakerCodeName, CachedStageManager);
 
 	UB2DialogCharacterInfoSet* DialogCharacterInfoTable = GetDialogCharacterInfoSet(CachedStageManager);
@@ -2813,11 +2813,11 @@ void FB2ScenarioDialogManager::SetDialogLine(int32 NextDialogLineIndex)
 	{
 		CachedStageManager->PlayDialogSound(DialogSound);
 	}
-	UIDocDialog->SetThisDialogShowingTime(DialogLineInfo.ShowingTime); // Dialog UI ÂÊ¿¡¼­ Âü°í¸¸.. Å¸ÀÌ¸Ó´Â ¿©±â¼­ µ¹¸°´Ù. SetDialogText Àü¿¡ ÀÌ°ÅºÎÅÍ..
+	UIDocDialog->SetThisDialogShowingTime(DialogLineInfo.ShowingTime); // Dialog UI ç‡ä¿Šè¾‘ æ›¼ç»Šçˆ¶.. é¸¥æèµ£ç»° å’¯æ‰è¾‘ å€’èµ´ä¿ƒ. SetDialogText å‚ˆä¿Š æèŠ­ä½•ç£..
 	UIDocDialog->SetDialogText(BladeIIGetLOCText(B2LOC_CAT_DIALOGTEXT, DialogLineInfo.DialogLineCodeName.ToString()));
 	
 	UIDocDialog->SetShowNextButton(
-		// ´ÙÀ½ ÁÙÀÌ ÀÖÀ» ¶§¿¡ NextButton À» º¸ÀÎ´Ù. ¾îÂ÷ÇÇ ÀüÃ¼ ¿µ¿ª¹öÆ°ÀÌ³ª Á¶±×¸¸ NextButton ÀÌ³ª ¿ªÇÒ ÀÚÃ¼´Â µ¿ÀÏÇÒ °Å..
+		// ä¿ƒæ¾œ ä¸´æ ä¹é˜‘ é”­ä¿Š NextButton é˜‘ ç„Šç‰¢ä¿ƒ. ç»¢ç’ä¹” å‚ˆçœ‰ åº·å¼€æ»šç“¢æå”± ç‚¼å¼Šçˆ¶ NextButton æå”± å¼€ä¸” ç£Šçœ‰ç»° æ‚¼è€ä¸” èŠ­..
 		DialogInfoInstace->DialogSequence.Num() > 1 && DialogInfoInstace->DialogSequence.IsValidIndex(CurrentDialogLineIndex+1)
 		);
 	
@@ -2853,7 +2853,7 @@ void AB2StageManager::PauseDialog(bool Pause)
 	//			CurrentPlayingDialogSound->SetPaused(true);
 	//			bPausedDialog = true;
 	//		}
-	//		else if (bPausedDialog) // ½ÇÁ¦·Î Pause»óÅÂÀÏ ¶§  - Pause ÀÌÈÄ ½ÇÇàµÈ Dialog Sound´Â Pause¿Í °ü°è¾øÀÌ °è¼Ó ½ÇÇàµÇ¹Ç·Î ±»ÀÌ Resume½ÃÅ³ ÇÊ¿ä ¾ø´Ù
+	//		else if (bPausedDialog) // è§’åŠ›è‚º Pauseæƒ‘æ€•è€ é”­  - Pause æé¥¶ è§’é’ç­‰ Dialog Soundç»° Pauseå®¢ åŒ…æ‹Œç»æ æ‹ŒåŠ  è§’é’ç™»éª¨è‚º è¢«æ ResumeçŸ«æ‡¦ é˜å¤¸ ç»ä¿ƒ
 	//		{
 	//			CurrentPlayingDialogSound->SetPaused(false);
 	//			bPausedDialog = false;
@@ -2870,17 +2870,17 @@ void FB2ScenarioDialogManager::NextDialogLine()
 	//}
 
 	//bool bNextDialogDelayed = false;
-	//// ½ÇÁ¦·Î ´ÙÀ½ ¶óÀÎÀÌ ÀÖ´Â °æ¿ì, ¹Ù·Î ³Ñ¾î°¡±â Àü Delay ¸¦ Ã¼Å©
+	//// è§’åŠ›è‚º ä¿ƒæ¾œ æ‰¼ç‰¢æ ä¹ç»° ç‰ˆå¿«, å®˜è‚º é€ç»¢å•Šæ‰ å‚ˆ Delay ç”« çœ‰å†œ
 	//if (CachedStageManager && DialogInfoInstace 
 	//	&& DialogInfoInstace->DialogSequence.IsValidIndex(CurrentDialogLineIndex)
 	//	&& DialogInfoInstace->DialogSequence.IsValidIndex(CurrentDialogLineIndex + 1))
 	//{
 	//	const FDialogLine& CurrDialogSequence = DialogInfoInstace->DialogSequence[CurrentDialogLineIndex];
 	//	if (CurrDialogSequence.DelayToNextLine > 0.0f)
-	//	{ // GoToNextLineTimerHandle µ¹·Á¾²±â
+	//	{ // GoToNextLineTimerHandle å€’å¦¨é™æ‰
 	//		CachedStageManager->GetWorldTimerManager().SetTimer(GoToNextLineTimerHandle, CachedStageManager, &AB2StageManager::NextDialogLineImmediateWrapper, CurrDialogSequence.DelayToNextLine, false);
 
-	//		// ForceSkip °°Àº °Ç ÇÏ¸é ¾ÈµÇ°í Àá½Ã ¼û±â±â¸¸ ÇÏÀÚ.
+	//		// ForceSkip éç¯® æ‰’ çªæ æ•‘ç™»ç»Š æ³ªçŸ« è§æ‰æ‰çˆ¶ çªç£Š.
 	//		UB2UIManager* UIMgr = UB2UIManager::GetInstance();
 	//		UB2UIScenarioDialog* DialogUI = UIMgr ? UIMgr->GetUI<UB2UIScenarioDialog>(UIFName::ScenarioDialog) : NULL;
 	//		if (DialogUI)
@@ -2893,7 +2893,7 @@ void FB2ScenarioDialogManager::NextDialogLine()
 	//}
 	//
 	//if (!bNextDialogDelayed){
-	//	NextDialogLineImmediate(); // ´ÙÀ½ ¶óÀÎÀÌ ¾ø´Â °æ¿ì¶ó¸é skip Ã³¸®°¡ µÉ °Í.
+	//	NextDialogLineImmediate(); // ä¿ƒæ¾œ æ‰¼ç‰¢æ ç»ç»° ç‰ˆå¿«æ‰¼æ skip è´¸åºœå•Š çª å·´.
 	//}
 }
 
@@ -2904,11 +2904,11 @@ void FB2ScenarioDialogManager::NextDialogLineImmediate()
 //		CachedStageManager->GetWorldTimerManager().ClearTimer(GoToNextLineTimerHandle);
 //	}
 //
-//	// NextDialogLine ¿¡¼­ delay ½ÃÄ×´ø °æ¿ì. hide º¹±¸¸¦.
+//	// NextDialogLine ä¿Šè¾‘ delay çŸ«æ·–å¸¦ ç‰ˆå¿«. hide æ±—å¤‡ç”«.
 //	UB2UIManager* UIMgr = UB2UIManager::GetInstance();
 //	UB2UIScenarioDialog* DialogUI = UIMgr ? UIMgr->GetUI<UB2UIScenarioDialog>(UIFName::ScenarioDialog) : NULL;
 //#if !UE_BUILD_SHIPPING
-//	extern bool gbHACKInGameUIHiddenByDevCommand; // UI ¼û±â´Â Ä¡Æ® ½è´Âµ¥ ³ª¿Ã ¼ö ÀÖÀ¸´Ï ÀÌ°Íµµ °í·Á¸¦..
+//	extern bool gbHACKInGameUIHiddenByDevCommand; // UI è§æ‰ç»° æ‘¹é£˜ å€Ÿç»°å• å”±æ£µ è ä¹æ èª æå·´æ¡£ ç»Šå¦¨ç”«..
 //#endif
 //	if (DialogUI
 //#if !UE_BUILD_SHIPPING
@@ -2929,7 +2929,7 @@ void AB2StageManager::SkipDialogWrapper()
 
 void AB2StageManager::PlayDialogSound(USoundCue* InSoundCue)
 {
-	StopCurrentDialogSound(); // Áß´ÜºÎÅÍ
+	StopCurrentDialogSound(); // åçªœä½•ç£
 	if (InSoundCue)
 	{
 		CurrentPlayingDialogSound = UGameplayStatics::SpawnSound2D(this, InSoundCue);
@@ -2982,7 +2982,7 @@ FServerStageID AB2StageManager::GetNextServerStageID(int32 CurrentStageID, EStag
 void AB2StageManager::DeferredSpawnDropGold(int32 Amount, const struct FActorSpawnParameters SpawnParam, ABladeIICharacter* DelaySpawnLocRefActor, const FVector& SpawnLocation, const FRotator SpawnRotation, float SpawnTimeDelay, bool InQTE)
 {	
 #if !UE_BUILD_SHIPPING
-	// µğ¹ÙÀÌ½º Å×½ºÆ® µîÀ» À§ÇØ Gold spawn ºñÀ²À» Á¶ÀıÇÒ ¼ö ÀÖ°Ô ÇÔ.
+	// å¼å®˜æèƒ¶ æŠ›èƒ¶é£˜ æ®¿é˜‘ å›°ç§¦ Gold spawn åšå•¦é˜‘ ç‚¼ä¾‹ä¸” è ä¹éœ¸ çªƒ.
 
 	float FinalDropGoldSpawnRate = FMath::Clamp(GCheat_DropGoldSpawnRate, 0.0f, 1.0f);
 	
@@ -2992,7 +2992,7 @@ void AB2StageManager::DeferredSpawnDropGold(int32 Amount, const struct FActorSpa
 	}
 #endif
 
-	// ¹Ù·Î Spawn ÀÌ¶ó¸é ¿©±â·Î ³Ñ¾î¿Â SpawnLocation/Rotation °ªÀ» ¾²°ÚÁö¸¸ delay µÇ´Â °æ¿ì´Â DelaySpawnLocRefActor ÀÇ À§Ä¡¸¦ »ç¿ëÇÏ°Ô µÉ °Í.
+	// å®˜è‚º Spawn ææ‰¼æ å’¯æ‰è‚º é€ç»¢æŸ¯ SpawnLocation/Rotation è”¼é˜‘ é™æ‘†ç˜¤çˆ¶ delay ç™»ç»° ç‰ˆå¿«ç»° DelaySpawnLocRefActor ç‹¼ å›°æ‘¹ç”« è¤ä¾©çªéœ¸ çª å·´.
 
 	if (SpawnTimeDelay > 0.0f)
 	{
@@ -3003,17 +3003,17 @@ void AB2StageManager::DeferredSpawnDropGold(int32 Amount, const struct FActorSpa
 		
 		NewDelayInfo.DelaySpawnLocRefActor = DelaySpawnLocRefActor;
 		DelayedDropSpawnInfoMap.Add(DelayedDropSpawnSerialNumber, NewDelayInfo);
-		++DelayedDropSpawnSerialNumber; // ÀÏ·Ã¹øÈ£¶ó °è¼Ó Áõ°¡
+		++DelayedDropSpawnSerialNumber; // è€è®¿é”…é¾‹æ‰¼ æ‹ŒåŠ  åˆ˜å•Š
 	}
 	else
-	{ // ¹Ù·Î spawn ÇÒ ¶§¿¡´Â SpawnTimerMapKey °ªÀ» À½¼ö·Î
+	{ // å®˜è‚º spawn ä¸” é”­ä¿Šç»° SpawnTimerMapKey è”¼é˜‘ æ¾œèè‚º
 		SpawnDropGold(Amount, SpawnParam, SpawnLocation, SpawnRotation, -1, InQTE);
 	}
 }
 
 void AB2StageManager::DeferredSpawnDropItem(int32 ItemRefID, const struct FActorSpawnParameters SpawnParam, ABladeIICharacter* DelaySpawnLocRefActor, const FVector& SpawnLocation, const FRotator SpawnRotation, float SpawnTimeDelay)
 {
-	// ¹Ù·Î Spawn ÀÌ¶ó¸é ¿©±â·Î ³Ñ¾î¿Â SpawnLocation/Rotation °ªÀ» ¾²°ÚÁö¸¸ delay µÇ´Â °æ¿ì´Â DelaySpawnLocRefActor ÀÇ À§Ä¡¸¦ »ç¿ëÇÏ°Ô µÉ °Í.
+	// å®˜è‚º Spawn ææ‰¼æ å’¯æ‰è‚º é€ç»¢æŸ¯ SpawnLocation/Rotation è”¼é˜‘ é™æ‘†ç˜¤çˆ¶ delay ç™»ç»° ç‰ˆå¿«ç»° DelaySpawnLocRefActor ç‹¼ å›°æ‘¹ç”« è¤ä¾©çªéœ¸ çª å·´.
 
 	if (SpawnTimeDelay > 0.0f)
 	{		
@@ -3024,17 +3024,17 @@ void AB2StageManager::DeferredSpawnDropItem(int32 ItemRefID, const struct FActor
 
 		NewDelayInfo.DelaySpawnLocRefActor = DelaySpawnLocRefActor;
 		DelayedDropSpawnInfoMap.Add(DelayedDropSpawnSerialNumber, NewDelayInfo);
-		++DelayedDropSpawnSerialNumber; // ÀÏ·Ã¹øÈ£¶ó °è¼Ó Áõ°¡
+		++DelayedDropSpawnSerialNumber; // è€è®¿é”…é¾‹æ‰¼ æ‹ŒåŠ  åˆ˜å•Š
 	}
 	else
-	{ // ¹Ù·Î spawn ÇÒ ¶§¿¡´Â SpawnTimerMapKey °ªÀ» À½¼ö·Î
+	{ // å®˜è‚º spawn ä¸” é”­ä¿Šç»° SpawnTimerMapKey è”¼é˜‘ æ¾œèè‚º
 		SpawnDropItem(ItemRefID, SpawnParam, SpawnLocation, SpawnRotation, -1);
 	}
 }
 
 void AB2StageManager::SpawnDropGold(int32 Amount, const FActorSpawnParameters SpawnParam, FVector InitialSpawnLocation, FRotator InitialSpawnRotation, int32 DelaySpawnInfoMapKey, bool InQTE)
 {
-	//FTransform FinalSpawnTransform = SpawnDropDelayHandlingCommon(InitialSpawnLocation, InitialSpawnRotation, DelaySpawnInfoMapKey); // Delay ref actor °¡ ÀÖ´Â °æ¿ì ÇØ´ç ¾×ÅÍÀÇ À§Ä¡¸¦ »ç¿ë.
+	//FTransform FinalSpawnTransform = SpawnDropDelayHandlingCommon(InitialSpawnLocation, InitialSpawnRotation, DelaySpawnInfoMapKey); // Delay ref actor å•Š ä¹ç»° ç‰ˆå¿« ç§¦å¯¸ å’€ç£ç‹¼ å›°æ‘¹ç”« è¤ä¾©.
 
 	//if (Amount == 0)
 	//	return;
@@ -3050,16 +3050,16 @@ void AB2StageManager::SpawnDropGold(int32 Amount, const FActorSpawnParameters Sp
 	//BII_CHECK(NewDropItem && NewDropItem->IsValidObj());
 
 	//if (NewDropItem)
-	//{ // ±»ÀÌ Consumables Ãë±ŞÀº ¾Æ´ÏÁö¸¸ ConsumingAmount ¸¦ ÅëÇØ Àü´Ş..
+	//{ // è¢«æ Consumables ç§’é­ç¯® é…’èªç˜¤çˆ¶ ConsumingAmount ç”« çƒ¹ç§¦ å‚ˆå´”..
 	//	NewDropItem->SignificantData.ConsumingAmount = Amount;
 	//}
 }
 
 void AB2StageManager::SpawnDropItem(int32 ItemRefID, const FActorSpawnParameters SpawnParam, FVector InitialSpawnLocation, FRotator InitialSpawnRotation, int32 DelaySpawnInfoMapKey)
 {
-	//FTransform FinalSpawnTransform = SpawnDropDelayHandlingCommon(InitialSpawnLocation, InitialSpawnRotation, DelaySpawnInfoMapKey); // Delay ref actor °¡ ÀÖ´Â °æ¿ì ÇØ´ç ¾×ÅÍÀÇ À§Ä¡¸¦ »ç¿ë.
+	//FTransform FinalSpawnTransform = SpawnDropDelayHandlingCommon(InitialSpawnLocation, InitialSpawnRotation, DelaySpawnInfoMapKey); // Delay ref actor å•Š ä¹ç»° ç‰ˆå¿« ç§¦å¯¸ å’€ç£ç‹¼ å›°æ‘¹ç”« è¤ä¾©.
 
-	//if (ItemRefID <= 0) // ½ÇÁ¦·Î Á¤º¸¸¦ ¾ò¾î¿ÀÁö ¸øÇÑ »óÈ²ÀÓ. 
+	//if (ItemRefID <= 0) // è§’åŠ›è‚º æ²¥ç„Šç”« æ˜ç»¢å·ç˜¤ ç»™èŒ„ æƒ‘ç‚”çƒ™. 
 	//	return;
 	//	
 	//UB2ItemInfo* ItemDataTable = StaticFindItemInfo();
@@ -3075,7 +3075,7 @@ FTransform AB2StageManager::SpawnDropDelayHandlingCommon(FVector InSpawnLocation
 	FTransform RetSpawnTransform(InSpawnRotation, InSpawnLocation);
 	//FDelayedSpawnDropItemInfo* ThisInfoForDeferCall = DelayedDropSpawnInfoMap.Find(DelaySpawnInfoMapKey);
 	//if (ThisInfoForDeferCall)
-	//{ // ÀÌ°ÍÀÌ Å¸ÀÌ¸Ó¸¦ ÅëÇØ ºÒ·ÁÁø °æ¿ì Å¸ÀÌ¸Ó Å¬¸®¾î
+	//{ // æå·´æ é¸¥æèµ£ç”« çƒ¹ç§¦ é˜‚å¦¨æŸ³ ç‰ˆå¿« é¸¥æèµ£ åŠªåºœç»¢
 	//	if (ThisInfoForDeferCall->DelayTH.IsValid())
 	//	{
 	//		GetWorldTimerManager().ClearTimer(ThisInfoForDeferCall->DelayTH);
@@ -3083,10 +3083,10 @@ FTransform AB2StageManager::SpawnDropDelayHandlingCommon(FVector InSpawnLocation
 
 	//	if (ThisInfoForDeferCall->DelaySpawnLocRefActor)
 	//	{
-	//		// DelaySpawnLocRefActor ÀÇ »ç¸Á ½Ã LifeSpan ÀÌ Delay º¸´Ù Âª´Ù¸é Valid ÇÏÁö ¾ÊÀ» °ÍÀÌ´Ù. 
-	//		// NotifyForgetACharacter ¿¡¼­ È¤½Ã DelaySpawnLocRefActor °¡ ¿ÀÁö ¾Ê¾Ò´ÂÁö °Ë»çÇØ¼­ Á¦°ÅÇÒ ÇÊ¿ä°¡ ÀÖÀ½.
+	//		// DelaySpawnLocRefActor ç‹¼ è¤å™¶ çŸ« LifeSpan æ Delay ç„Šä¿ƒ é™‹ä¿ƒæ Valid çªç˜¤ è‡¼é˜‘ å·´æä¿ƒ. 
+	//		// NotifyForgetACharacter ä¿Šè¾‘ è¶£çŸ« DelaySpawnLocRefActor å•Š å·ç˜¤ è‡¼ç–½ç»°ç˜¤ å…«è¤ç§¦è¾‘ åŠ›èŠ­ä¸” é˜å¤¸å•Š ä¹æ¾œ.
 	//		checkSlow(ThisInfoForDeferCall->DelaySpawnLocRefActor->IsValidObj());
-	//		// DelaySpawnLocRefActor ÀÇ Çö À§Ä¡·Î °»½Å.
+	//		// DelaySpawnLocRefActor ç‹¼ æ³… å›°æ‘¹è‚º ç›è„š.
 	//		RetSpawnTransform.SetTranslation(ThisInfoForDeferCall->DelaySpawnLocRefActor->GetActorLocation());
 	//	}
 
@@ -3101,11 +3101,11 @@ void AB2StageManager::CancelOrStopRepeatBattle()
 
 	/*
 	if (CachedGameMode && CachedGameMode->GetMaintainedLocalPlayerAutoState()){
-		// ¿©±â¼± ÀÏ½ÃÀûÀ¸·Î ²ô´Â °Ô ¾Æ´Ï¶ó ±âº»ÀûÀÎ auto »óÅÂ¸¦ ²û.
+		// å’¯æ‰æ€¥ è€çŸ«åˆ©æ è‚º æºç»° éœ¸ é…’èªæ‰¼ æ‰å¤¯åˆ©ç‰¢ auto æƒ‘æ€•ç”« é˜.
 		TogglePlayerAutoStateClass<>::GetInstance().Signal();
 	}
 	*/
-	SyncDataToUIDoc(); // Á» ¾µµ¥¾øÀÌ ¸¹Àº µ¥ÀÌÅÍ°¡ ¼¼ÆÃµÇ±ä ÇÏÁö¸¸..
+	SyncDataToUIDoc(); // ç²± é•œå•ç»æ è…¹ç¯® å•æç£å•Š æŠ€æ³¼ç™»å˜ çªç˜¤çˆ¶..
 }
 void AB2StageManager::RequestFailStageDefeat()
 {
@@ -3143,8 +3143,8 @@ void FB2ScenarioDialogManager::ForceSkip()
 
 FText GetStageClearGradeConditonText(FServerStageID InServerStageId, int32 InWantedGrade)
 {
-	// ½ºÅ×ÀÌÁö¿¡¼­ Æ¯Á¤ Star µî±ŞÀ» ¹Ş±â À§ÇÑ ½Ã°£ ±âÁØ ¾È³» ÅØ½ºÆ® ¸®ÅÏ. UI ¿¡¼­ »ç¿ë.
-	// InWantedGrade ´Â STAGE_CLEAR_GRADE_STAR_1 ~ 3 »çÀÌ.
+	// èƒ¶æŠ›æç˜¤ä¿Šè¾‘ æ¼‚æ²¥ Star æ®¿é­é˜‘ ç½æ‰ å›°èŒ„ çŸ«åŸƒ æ‰éœ– æ•‘éƒ´ å’†èƒ¶é£˜ åºœç•”. UI ä¿Šè¾‘ è¤ä¾©.
+	// InWantedGrade ç»° STAGE_CLEAR_GRADE_STAR_1 ~ 3 è¤æ.
 	
 	//const int32 TimeLimitInSec = BladeIIGameImpl::GetStageDataStore().GetTimeLimitForStageClearGrade(InServerStageId, InWantedGrade);
 
@@ -3152,9 +3152,9 @@ FText GetStageClearGradeConditonText(FServerStageID InServerStageId, int32 InWan
 	int32 FormattedMin = 0;
 	int32 FormattedSec = 0;
 	//GetTimeFormatFromRawSecond(TimeLimitInSec, FormattedHour, FormattedMin, FormattedSec);
-	// À§ °á°ú¿¡¼­ FormattedMin °ú Sec ¸¸ »ç¿ëÇÑ´Ù. ÀÌ°Ô ¸î ½Ã°£ ´ÜÀ§ ÀÌ·¸°Ô ³ª¿À¸é ¸·ÀåÀÌ°ÚÁö
+	// å›° æ¬è‹ä¿Šè¾‘ FormattedMin è‹ Sec çˆ¶ è¤ä¾©èŒ„ä¿ƒ. æéœ¸ å‰² çŸ«åŸƒ çªœå›° æçŠ¯éœ¸ å”±å·æ é˜œå˜ææ‘†ç˜¤
 
-	// ºĞ, ÃÊ, µî±Ş Á¤º¸ ÀÌ·¸°Ô ³Ö¾îÁÜ.
+	// ç›’, æª¬, æ®¿é­ æ²¥ç„Š æçŠ¯éœ¸ æŒç»¢æ·‹.
 	return FText::Format(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("BattleStage_ClearGradeCondition")),
 		FText::FromString(FString::FromInt(FormattedMin)), FText::FromString(FString::FromInt(FormattedSec)), FText::FromString(FString::FromInt(InWantedGrade)));
 }
@@ -3168,9 +3168,9 @@ FText GetStageClearGradeInfoText(FServerStageID InServerStageId, int32 InWantedG
 	int32 FormattedMin = 0;
 	int32 FormattedSec = 0;
 	//GetTimeFormatFromRawSecond(TimeLimitInSec, FormattedHour, FormattedMin, FormattedSec);
-	// À§ °á°ú¿¡¼­ FormattedMin °ú Sec ¸¸ »ç¿ëÇÑ´Ù. ÀÌ°Ô ¸î ½Ã°£ ´ÜÀ§ ÀÌ·¸°Ô ³ª¿À¸é ¸·ÀåÀÌ°ÚÁö
+	// å›° æ¬è‹ä¿Šè¾‘ FormattedMin è‹ Sec çˆ¶ è¤ä¾©èŒ„ä¿ƒ. æéœ¸ å‰² çŸ«åŸƒ çªœå›° æçŠ¯éœ¸ å”±å·æ é˜œå˜ææ‘†ç˜¤
 
-	// ºĞ, ÃÊ, µî±Ş Á¤º¸ ÀÌ·¸°Ô ³Ö¾îÁÜ.
+	// ç›’, æª¬, æ®¿é­ æ²¥ç„Š æçŠ¯éœ¸ æŒç»¢æ·‹.
 	if(bIsClear)
 		return FText::Format(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Stage_Grade_Clear_2")),
 			FText::FromString(FString::FromInt(FormattedMin)), FText::FromString(FString::FromInt(FormattedSec)));
@@ -3181,8 +3181,8 @@ FText GetStageClearGradeInfoText(FServerStageID InServerStageId, int32 InWantedG
 
 void AB2StageManager::OnTalkDialogStart(const int32 GroupID, const bool IsClear)
 {
-	//// ¸¸ÀÏ ÀÌ ¶§°¡ BeginPlay Å¸ÀÌ¹ÖÀÌ¸é ´çÀå TalkDialog ¿­¸®´Â °Ô async ·Îµù °ü·ÃÇÑ Æ¯º°ÇÑ ¹®Á¦¸¦ ¾ß±âÇÏÁö ¾Ê°ÚÁö¸¸
-	//// ³»ºÎ¿¡¼­ ÇÑ Æ½ ÀÌÈÄ¿¡ TalkDialog ¿¡ ¾²ÀÌ´Â ¸®¼Ò½º¸¦ ·ÎµùÇÏ´Â °Ô ÀÖ¾î¼­ °á±¹ Å« ¸®¼Ò½º flush ²¨¸®´Â ÇØ ³õ¾Æ¾ß ÇÑ´Ù.
+	//// çˆ¶è€ æ é”­å•Š BeginPlay é¸¥ææ€ªææ å¯¸å˜ TalkDialog å‡¯åºœç»° éœ¸ async è‚ºçˆ¹ åŒ…è®¿èŒ„ æ¼‚å–ŠèŒ„ å·©åŠ›ç”« å…·æ‰çªç˜¤ è‡¼æ‘†ç˜¤çˆ¶
+	//// éƒ´ä½•ä¿Šè¾‘ èŒ„ å¹³ æé¥¶ä¿Š TalkDialog ä¿Š é™æç»° åºœå®¶èƒ¶ç”« è‚ºçˆ¹çªç»° éœ¸ ä¹ç»¢è¾‘ æ¬æƒ« å¥´ åºœå®¶èƒ¶ flush æ³¢åºœç»° ç§¦ åˆé…’å…· èŒ„ä¿ƒ.
 	//if (CachedGameMode)
 	//{
 	//	CachedGameMode->GameContextAsyncFlush();
@@ -3208,7 +3208,7 @@ bool AB2StageManager::GetIsShowTalkDialog()
 {
 	//if (GetB2GameModeType(this) == EB2GameMode::Scenario)
 	//{
-	//	// ½ºÅä¸® ¸ğµå ½ºÅµ 
+	//	// èƒ¶é…åºœ è‘›é› èƒ¶è¯º 
 	//	UB2UIDocUICondition* DocCon = UB2UIDocHelper::GetDocUICondition();
 	//	if (DocCon)
 	//	{

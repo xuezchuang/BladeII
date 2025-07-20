@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2JumpEventZone.h"
 
 #include "Event.h"
@@ -14,7 +14,7 @@ void AB2JumpEventZone::BeginPlay()
 	Super::BeginPlay();
 	CurrentInteractActor = nullptr;
 
-	/** [°ÔÀÓÇÃ·¹ÀÌ¾×ÅÍ] ¿Í [¸¶Æ¼´Ï¾×ÅÍ] ÀÇ Æ®¸®°Å ¿ì¼±¼øÀ§¿¡ µû¸¥ ¾×ÅÍ ÂüÁ¶ ¹®Á¦·Î, ¿şÀÌÆ÷ÀÎÆ® °­Á¦ ¸¶Å· ±â´ÉÀº ½ºÅ×ÀÌÁö ÀÌº¥Æ® µğ·ºÅÍ·Î ÅëÇÕ.
+	/** [éœ¸çƒ™æ•²é¥­æå’€ç£] å®¢ [ä»˜èèªå’€ç£] ç‹¼ é£˜åºœèŠ­ å¿«æ€¥é‰´å›°ä¿Š è¶å¼— å’€ç£ æ›¼ç‚¼ å·©åŠ›è‚º, å‚€æå™¨ç‰¢é£˜ ç¢åŠ› ä»˜æ¬§ æ‰ç“·ç¯® èƒ¶æŠ›æç˜¤ æäº¥é£˜ å¼æ³›ç£è‚º çƒ¹é’¦.
 	SubscribeStageEventDirector();
 	*/
 }
@@ -24,7 +24,7 @@ void AB2JumpEventZone::EndInteract()
 	Super::EndInteract();
 	CurrentInteractActor = nullptr;
 
-	/** [°ÔÀÓÇÃ·¹ÀÌ¾×ÅÍ] ¿Í [¸¶Æ¼´Ï¾×ÅÍ] ÀÇ Æ®¸®°Å ¿ì¼±¼øÀ§¿¡ µû¸¥ ¾×ÅÍ ÂüÁ¶ ¹®Á¦·Î, ¿şÀÌÆ÷ÀÎÆ® °­Á¦ ¸¶Å· ±â´ÉÀº ½ºÅ×ÀÌÁö ÀÌº¥Æ® µğ·ºÅÍ·Î ÅëÇÕ.
+	/** [éœ¸çƒ™æ•²é¥­æå’€ç£] å®¢ [ä»˜èèªå’€ç£] ç‹¼ é£˜åºœèŠ­ å¿«æ€¥é‰´å›°ä¿Š è¶å¼— å’€ç£ æ›¼ç‚¼ å·©åŠ›è‚º, å‚€æå™¨ç‰¢é£˜ ç¢åŠ› ä»˜æ¬§ æ‰ç“·ç¯® èƒ¶æŠ›æç˜¤ æäº¥é£˜ å¼æ³›ç£è‚º çƒ¹é’¦.
 	UnSubscribeStageEventDirector();
 	*/
 }
@@ -63,7 +63,7 @@ void AB2JumpEventZone::NotifyStageEventSceneBegin(class AB2StageEventDirector* B
 
 void AB2JumpEventZone::InteractAction()
 {
-	/** [°ÔÀÓÇÃ·¹ÀÌ¾×ÅÍ] ¿Í [¸¶Æ¼´Ï¾×ÅÍ] ÀÇ Æ®¸®°Å ¿ì¼±¼øÀ§¿¡ µû¸¥ ¾×ÅÍ ÂüÁ¶ ¹®Á¦·Î, ¿şÀÌÆ÷ÀÎÆ® °­Á¦ ¸¶Å· ±â´ÉÀº ½ºÅ×ÀÌÁö ÀÌº¥Æ® µğ·ºÅÍ·Î ÅëÇÕ.
+	/** [éœ¸çƒ™æ•²é¥­æå’€ç£] å®¢ [ä»˜èèªå’€ç£] ç‹¼ é£˜åºœèŠ­ å¿«æ€¥é‰´å›°ä¿Š è¶å¼— å’€ç£ æ›¼ç‚¼ å·©åŠ›è‚º, å‚€æå™¨ç‰¢é£˜ ç¢åŠ› ä»˜æ¬§ æ‰ç“·ç¯® èƒ¶æŠ›æç˜¤ æäº¥é£˜ å¼æ³›ç£è‚º çƒ¹é’¦.
 	if (auto* LocalPlayer = Cast<ABladeIIPlayer>(CurrentInteractActor))
 		if (LocalPlayer && TriggerShareWayPoint != nullptr)
 			TriggerShareWayPoint->ForceMarkByJumpEvent(this, LocalPlayer);

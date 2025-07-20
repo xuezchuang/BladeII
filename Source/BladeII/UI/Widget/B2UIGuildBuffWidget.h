@@ -1,8 +1,9 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #pragma once
 
 #include "B2UIWidget.h"
 #include "B2UIBackWidget.h"
+#include "../B2RichTextBlock.h"
 #include "B2UIGuildBuffWidget.generated.h"
 
 
@@ -98,7 +99,7 @@ private:
 	int32 SelectSkillID;
 	int32 purchasableBuffCount = 3;
 	int32 oneBTNBuyNumber = 6;
-	int32 countAbleHour = 2;	//¸Å ¹öÇÁ¸¶´Ù ¿Ã¶ó°¡´Â ½Ã°£(Hr)
+	int32 countAbleHour = 2;	//æ¦‚ æ»šæ©‡ä»˜ä¿ƒ æ£µæ‰¼å•Šç»° çŸ«åŸƒ(Hr)
 
 	int32 purchasedBuffCount = 0;
 	int32 oneBTNBuyCount = 1;

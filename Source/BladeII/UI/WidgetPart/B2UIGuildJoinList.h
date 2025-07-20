@@ -1,8 +1,9 @@
-#pragma once
+﻿#pragma once
 
 #include "B2UIWidget.h"
 #include "B2UIDocBindable.h"
 #include "B2UICommonTab.h"
+#include "../B2RichTextBlock.h"
 #include "B2UIGuildJoinList.generated.h"
 
 

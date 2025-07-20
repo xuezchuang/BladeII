@@ -1,4 +1,4 @@
-#include "B2UIFloatingText.h"
+﻿#include "B2UIFloatingText.h"
 
 void UB2UIFloatingText::CacheAssets()
 {

@@ -1,4 +1,4 @@
-#include "B2UIMsgPopupItemCostConfirm.h"
+﻿#include "B2UIMsgPopupItemCostConfirm.h"
 #include "B2UIManager.h"
 #include "B2ItemInfo.h"
 #include "B2UISlotItem.h"

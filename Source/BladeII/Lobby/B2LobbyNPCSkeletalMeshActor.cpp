@@ -1,4 +1,4 @@
-#include "B2LobbyNPCSkeletalMeshActor.h"
+ï»¿#include "B2LobbyNPCSkeletalMeshActor.h"
 //#include "BladeII.h"
 #include "Event.h"
 #include "Animation/AnimInstance.h"
@@ -25,35 +25,35 @@ AB2LobbyNPCSkeletalMeshActor::AB2LobbyNPCSkeletalMeshActor(const FObjectInitiali
 
 void AB2LobbyNPCSkeletalMeshActor::TickForBlendedAnimTransition(class UAnimSequence* InCurrAnim, class UAnimSequence* InNextAnim,
 	float InTotalTransitionTime, float BlendWeightForNextAnim,
-	bool bPlayingCurrAnim, // True ¸é InCurrAnim ÀÇ ÇÃ·¹ÀÌ¸¦ À¯ÁöÇÏ¸é¼­ InNextAnim À¸·Î ³Ñ¾î°¡´Â °Å°í, False ¸é InCurrAnim Àº ¸¶Áö¸· À§Ä¡¸¦ À¯ÁöÇÑ Ã¤ InNextAnim ÀÌ ÇÃ·¹ÀÌµÇ¸é¼­ ³Ñ¾î°¡´Â °Å
-	float CurrAnimLastPos, // bPlayingCurrAnim ÀÌ False ÀÏ ¶§¸¸ ÇÊ¿ä.
+	bool bPlayingCurrAnim, // True ë©´ InCurrAnim ì˜ í”Œë ˆì´ë¥¼ ìœ ì§€í•˜ë©´ì„œ InNextAnim ìœ¼ë¡œ ë„˜ì–´ê°€ëŠ” ê±°ê³ , False ë©´ InCurrAnim ì€ ë§ˆì§€ë§‰ ìœ„ì¹˜ë¥¼ ìœ ì§€í•œ ì±„ InNextAnim ì´ í”Œë ˆì´ë˜ë©´ì„œ ë„˜ì–´ê°€ëŠ” ê±°
+	float CurrAnimLastPos, // bPlayingCurrAnim ì´ False ì¼ ë•Œë§Œ í•„ìš”.
 	bool bFireAnimNotifyOfCurrAnim,
 	bool bFireAnimNotifyOfNextAnim
 )
 {
-	// Matinee AnimControl ¿¡¼­ÀÇ Blending ±â´ÉÀ» °¡Á®´Ù ¾²´Â °ÍÀ¸·Î Á¦ÇÑÀûÀÎ È¯°æ¿¡¼­¸¸..
-	// ¿©±â¼­ AnimBlueprint ´ë½Å ÀÌ·± ½ÄÀ¸·Î anim ºí·»µùÀ» ÇÏ´Â ÀÌÀ¯´Â 
-	// AnimBlueprint (»Ó ¾Æ´Ñ ¾ğ¸®¾ó UObject ¸®¼Ò½ºµé..) ÀÇ ¸®¼Ò½º ·¹ÆÛ·±½º·Î ÀÎÇÑ ·Îµù ½Ã°£ Áõ°¡¿¡ µ¥ÀÎ °æÇè ¶§¹®.
-	// È¤¿©³ª ÀÌ ±â´ÉÀ» µı µ¥·Î °¡Á®°¡¼­ »ç¿ëÇÒ ¶§ÀÇ °æ°í Â÷¿øÀ¸·Î..
+	// Matinee AnimControl ì—ì„œì˜ Blending ê¸°ëŠ¥ì„ ê°€ì ¸ë‹¤ ì“°ëŠ” ê²ƒìœ¼ë¡œ ì œí•œì ì¸ í™˜ê²½ì—ì„œë§Œ..
+	// ì—¬ê¸°ì„œ AnimBlueprint ëŒ€ì‹  ì´ëŸ° ì‹ìœ¼ë¡œ anim ë¸”ë Œë”©ì„ í•˜ëŠ” ì´ìœ ëŠ” 
+	// AnimBlueprint (ë¿ ì•„ë‹Œ ì–¸ë¦¬ì–¼ UObject ë¦¬ì†ŒìŠ¤ë“¤..) ì˜ ë¦¬ì†ŒìŠ¤ ë ˆí¼ëŸ°ìŠ¤ë¡œ ì¸í•œ ë¡œë”© ì‹œê°„ ì¦ê°€ì— ë°ì¸ ê²½í—˜ ë•Œë¬¸.
+	// í˜¹ì—¬ë‚˜ ì´ ê¸°ëŠ¥ì„ ë”´ ë°ë¡œ ê°€ì ¸ê°€ì„œ ì‚¬ìš©í•  ë•Œì˜ ê²½ê³  ì°¨ì›ìœ¼ë¡œ..
 	check(
 		Cast<AB2LobbyNPCSkeletalMeshActor>(this) &&
 		Cast<AB2LobbyGameMode>(UGameplayStatics::GetGameMode(this))
 	);
-	// NextAnim ÀÌ ÁøÇàµÇ¸é¼­ ºí·»µùÇÏ´Â °æ¿ì¿¡´Â CurrAnim ÀÇ ¸¶Áö¸· À§Ä¡¸¦ ³Ö¾îÁÖ¾î¾ß ÇÔ.
+	// NextAnim ì´ ì§„í–‰ë˜ë©´ì„œ ë¸”ë Œë”©í•˜ëŠ” ê²½ìš°ì—ëŠ” CurrAnim ì˜ ë§ˆì§€ë§‰ ìœ„ì¹˜ë¥¼ ë„£ì–´ì£¼ì–´ì•¼ í•¨.
 	check(bPlayingCurrAnim || CurrAnimLastPos >= 0.0f);
 
 	if (!InCurrAnim || !InNextAnim) {
 		return;
 	}
 
-	const float ClampedBlendingWeight = FMath::Clamp(BlendWeightForNextAnim, 0.0f, 1.0f); // °Á ¾ÈÀü Ã³¸®..
+	const float ClampedBlendingWeight = FMath::Clamp(BlendWeightForNextAnim, 0.0f, 1.0f); // ê± ì•ˆì „ ì²˜ë¦¬..
 
-	// ÇöÀç ÇÃ·¹ÀÌÇÏ´Â ¾Ö´Ï¸ŞÀÌ¼Çº¸´Ù ±ä ½Ã°£ÀÇ transition À» µÑ ¼ö´Â ¾ø´Ù.
+	// í˜„ì¬ í”Œë ˆì´í•˜ëŠ” ì• ë‹ˆë©”ì´ì…˜ë³´ë‹¤ ê¸´ ì‹œê°„ì˜ transition ì„ ë‘˜ ìˆ˜ëŠ” ì—†ë‹¤.
 	const float FinalTotalTransitionTime = bPlayingCurrAnim ?
 		FMath::Min(InTotalTransitionTime, InCurrAnim->GetPlayLength()) :
 		FMath::Min(InTotalTransitionTime, InNextAnim->GetPlayLength());
 
-	// bPlayingCurrent ¿©ºÎ¿¡ µû¶ó CurrAnim °ú NextAnim °¢°¢ÀÇ ÇÃ·¹ÀÌ À§Ä¡ »êÁ¤. ÇÏ³ª¸¸ ÁøÇàÀÌ µÇ°í ´Ù¸¥ ÇÏ³ª´Â Á¤ÇØÁø À§Ä¡.
+	// bPlayingCurrent ì—¬ë¶€ì— ë”°ë¼ CurrAnim ê³¼ NextAnim ê°ê°ì˜ í”Œë ˆì´ ìœ„ì¹˜ ì‚°ì •. í•˜ë‚˜ë§Œ ì§„í–‰ì´ ë˜ê³  ë‹¤ë¥¸ í•˜ë‚˜ëŠ” ì •í•´ì§„ ìœ„ì¹˜.
 	const float CurrAnimPlayPos = bPlayingCurrAnim ?
 		(InCurrAnim->GetPlayLength() - FinalTotalTransitionTime + FinalTotalTransitionTime * ClampedBlendingWeight) :
 		CurrAnimLastPos;
@@ -62,7 +62,7 @@ void AB2LobbyNPCSkeletalMeshActor::TickForBlendedAnimTransition(class UAnimSeque
 		(FinalTotalTransitionTime * ClampedBlendingWeight);
 
 	
-	//// ÀÌÇÏ.. Matinee AnimControl Æ®·¢¿¡¼­ÀÇ Anim Blending ÇÙ½É ÄÚµå..
+	//// ì´í•˜.. Matinee AnimControl íŠ¸ë™ì—ì„œì˜ Anim Blending í•µì‹¬ ì½”ë“œ..
 
 	//TArray<FAnimSlotInfo> AnimWeightSlotInfo;
 	//{
@@ -75,7 +75,7 @@ void AB2LobbyNPCSkeletalMeshActor::TickForBlendedAnimTransition(class UAnimSeque
 	//	NewInfoB.ChannelWeights.Add(ClampedBlendingWeight);
 	//	AnimWeightSlotInfo.Add(NewInfoB);
 
-	//	// Transition µ¿¾È¸¸ ÀÌ°É ¾²´Â °É ÀÇµµÇÏ´Â °Å¶ó Looping °°Àº ÀÎÀÚ´Â Å« ÀÇ¹Ì´Â ¾ø°í.. FireNotifies ÇÏÀ§ ¿É¼ÇÀÌ³ª RootMotion °°Àº °É ´Ù¸£°Ô ½á¾ß ÇÏ¸é ¿©±â ¸Å°³º¯¼ö·Î ³Ñ±âµµ·Ï.
+	//	// Transition ë™ì•ˆë§Œ ì´ê±¸ ì“°ëŠ” ê±¸ ì˜ë„í•˜ëŠ” ê±°ë¼ Looping ê°™ì€ ì¸ìëŠ” í° ì˜ë¯¸ëŠ” ì—†ê³ .. FireNotifies í•˜ìœ„ ì˜µì…˜ì´ë‚˜ RootMotion ê°™ì€ ê±¸ ë‹¤ë¥´ê²Œ ì¨ì•¼ í•˜ë©´ ì—¬ê¸° ë§¤ê°œë³€ìˆ˜ë¡œ ë„˜ê¸°ë„ë¡.
 	//	SetAnimPosition(NewInfoA.SlotName, 0, Cast<UAnimSequence>(InCurrAnim), CurrAnimPlayPos, bFireAnimNotifyOfCurrAnim, true);
 	//	SetAnimPosition(NewInfoB.SlotName, 1, Cast<UAnimSequence>(InNextAnim), NexAnimPlayPos, bFireAnimNotifyOfNextAnim, true);
 
@@ -86,7 +86,7 @@ void AB2LobbyNPCSkeletalMeshActor::TickForBlendedAnimTransition(class UAnimSeque
 /************************************************************************/
 /* 
  AB2LobbyDoumiGirlBase
- »óÁ¡¼Ò³à¿Í ÈŞ½Äµµ¿ì¹Ì °£¿¡ ±â´É »ó ºñ½ÁÇÑ ¸éÀÌ ÀÖ¾î¼­ °øÅë ºÎ¸ğ¸¦ µÒ.
+ ìƒì ì†Œë…€ì™€ íœ´ì‹ë„ìš°ë¯¸ ê°„ì— ê¸°ëŠ¥ ìƒ ë¹„ìŠ·í•œ ë©´ì´ ìˆì–´ì„œ ê³µí†µ ë¶€ëª¨ë¥¼ ë‘ .
 */
 /************************************************************************/
 AB2LobbyDoumiGirlBase::AB2LobbyDoumiGirlBase(const FObjectInitializer& ObjectInitializer)
@@ -122,10 +122,10 @@ void AB2LobbyDoumiGirlBase::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 
-	// PlayTemporaryAnim À¸·Î ½ÃÀÛÇÑ TempAnim ¿¡¼­ DefaultPose ·ÎÀÇ ºí·»µù.
+	// PlayTemporaryAnim ìœ¼ë¡œ ì‹œì‘í•œ TempAnim ì—ì„œ DefaultPose ë¡œì˜ ë¸”ë Œë”©.
 	if (bInTempAnimEndTransition && CachedCurrPlayingTempAnim && DefaultPose)
 	{		
-		CurrEndTransitionTimeCounter += DeltaSeconds; // DefaultPose ÀÇ ºí·»µù weight ·Î È¯»êµÊ.
+		CurrEndTransitionTimeCounter += DeltaSeconds; // DefaultPose ì˜ ë¸”ë Œë”© weight ë¡œ í™˜ì‚°ë¨.
 
 		TickForBlendedAnimTransition(Cast<UAnimSequence>(CachedCurrPlayingTempAnim), Cast<UAnimSequence>(DefaultPose),
 			TempAnimEndTransitionTime,
@@ -136,7 +136,7 @@ void AB2LobbyDoumiGirlBase::Tick(float DeltaSeconds)
 	{
 		CurrTouchAnimTransitionTimeCounter += DeltaSeconds;
 
-		// CachedCurrPlayingTempAnim Àº ¿©±â¼± NextAnim ÀÌ µÈ´Ù.
+		// CachedCurrPlayingTempAnim ì€ ì—¬ê¸°ì„  NextAnim ì´ ëœë‹¤.
 		TickForBlendedAnimTransition(Cast<UAnimSequence>(CachedPreTouchAnim), Cast<UAnimSequence>(CachedCurrPlayingTempAnim),
 			TouchAnimTransitionTime,
 			FMath::Clamp(CurrTouchAnimTransitionTimeCounter / TouchAnimTransitionTime, 0.0f, 1.0f),
@@ -149,7 +149,7 @@ void AB2LobbyDoumiGirlBase::BeginDefaultPose()
 {
 	USkeletalMeshComponent* SKComp = GetSkeletalMeshComponent();
 	if (DefaultPose && SKComp)
-	{ // DefaultPose ´Â ·çÇÎÀ¸·Î Áö¼Ó½ÃÅ²´Ù.
+	{ // DefaultPose ëŠ” ë£¨í•‘ìœ¼ë¡œ ì§€ì†ì‹œí‚¨ë‹¤.
 		SKComp->PlayAnimation(DefaultPose, true);
 
 		CachedCurrPlayingTempAnim = nullptr;
@@ -162,24 +162,24 @@ void AB2LobbyDoumiGirlBase::PlayTemporaryAnim(class UAnimSequenceBase* InAnimToP
 {
 	B2_SCOPED_TRACK_LOG(FString::Printf(TEXT("AB2LobbyDoumiGirlBase::PlayTemporaryAnim, AnimToPlay %s"), InAnimToPlay ? *InAnimToPlay->GetName() : TEXT("NULL")));
 
-	check(!IsInAnimStateGuard()); // ÇÏÀ§ Å¬·¡½º¿¡¼­ ±î¸Ô¾úÀ» ½Ã °É¸².
+	check(!IsInAnimStateGuard()); // í•˜ìœ„ í´ë˜ìŠ¤ì—ì„œ ê¹Œë¨¹ì—ˆì„ ì‹œ ê±¸ë¦¼.
 
 	USkeletalMeshComponent* SKComp = GetSkeletalMeshComponent();
 	if (InAnimToPlay && InAnimToPlay->GetPlayLength() > 0.0f && SKComp)
 	{
-		// ¾Ö´Ï¸ŞÀÌ¼Ç ±æÀÌ µ¿¾È¸¸ ÇÃ·¹ÀÌÇÏµµ·Ï Å¸ÀÌ¸Ó ¼³Ä¡
+		// ì• ë‹ˆë©”ì´ì…˜ ê¸¸ì´ ë™ì•ˆë§Œ í”Œë ˆì´í•˜ë„ë¡ íƒ€ì´ë¨¸ ì„¤ì¹˜
 		LastPlayTempAnimLength = InAnimToPlay->GetPlayLength();
 		UWorld* TheWorld = GetWorld();
 		if (TheWorld)
 		{
 			FTimerManager& WTM = TheWorld->GetTimerManager();
 
-			WTM.ClearTimer(TempAnimPlayTH); // ÀÌÀü²¨ ³¡³ªÁö ¾Ê¾Ò´Âµ¥ ¹Ù·Î ´Ù¸¥ Anim ÇÃ·¹ÀÌ¿¡ ´ëÇÑ ¿äÃ»ÀÌ ¿Ã ¼öµµ ÀÖ°Ú´Ù.
+			WTM.ClearTimer(TempAnimPlayTH); // ì´ì „êº¼ ëë‚˜ì§€ ì•Šì•˜ëŠ”ë° ë°”ë¡œ ë‹¤ë¥¸ Anim í”Œë ˆì´ì— ëŒ€í•œ ìš”ì²­ì´ ì˜¬ ìˆ˜ë„ ìˆê² ë‹¤.
 			WTM.SetTimer(TempAnimPlayTH, this, &AB2LobbyDoumiGirlBase::TempAnimPlayDoneCB, LastPlayTempAnimLength, false);
 
 			WTM.ClearTimer(TempAnimPlayEndTransitionTH);
 			WTM.SetTimer(TempAnimPlayEndTransitionTH, this, &AB2LobbyDoumiGirlBase::TempAnimEndTransitionCB,
-				// ¾Ö´Ï¸ŞÀÌ¼Ç ±æÀÌ°¡ TempAnimEndTransitionTime º¸´Ù ÂªÀ» ¼öµµ ÀÖ°Ú´Âµ¥ ±×·³ ½ÃÀÛºÎÅÍ DefaultPose ·Î ºí·»µùÀ» ÇÏ°ÚÁö..
+				// ì• ë‹ˆë©”ì´ì…˜ ê¸¸ì´ê°€ TempAnimEndTransitionTime ë³´ë‹¤ ì§§ì„ ìˆ˜ë„ ìˆê² ëŠ”ë° ê·¸ëŸ¼ ì‹œì‘ë¶€í„° DefaultPose ë¡œ ë¸”ë Œë”©ì„ í•˜ê² ì§€..
 				FMath::Max(LastPlayTempAnimLength - TempAnimEndTransitionTime, KINDA_SMALL_NUMBER), false);
 		}
 
@@ -192,8 +192,8 @@ void AB2LobbyDoumiGirlBase::PlayTemporaryAnim(class UAnimSequenceBase* InAnimToP
 
 void AB2LobbyDoumiGirlBase::TempAnimEndTransitionCB()
 {
-	// TempAnimPlayDoneCB ÀüÀ¸·Î ÀÇµµ.
-	// ÀÌ ½ÃÁ¡ºÎÅÍ ´ÙÀ½ (DefaultPose) ¾Ö´Ï¸ŞÀÌ¼Ç±îÁö ºí·»µùÀÌ µÇ´Ù°¡ TempAnimPlayDoneCB ¿¡¼­ ¿ÏÀüÈ÷ ÀüÈ¯
+	// TempAnimPlayDoneCB ì „ìœ¼ë¡œ ì˜ë„.
+	// ì´ ì‹œì ë¶€í„° ë‹¤ìŒ (DefaultPose) ì• ë‹ˆë©”ì´ì…˜ê¹Œì§€ ë¸”ë Œë”©ì´ ë˜ë‹¤ê°€ TempAnimPlayDoneCB ì—ì„œ ì™„ì „íˆ ì „í™˜
 	
 	UWorld* TheWorld = GetWorld();
 	if (TheWorld)
@@ -211,7 +211,7 @@ void AB2LobbyDoumiGirlBase::TempAnimPlayDoneCB()
 		TheWorld->GetTimerManager().ClearTimer(TempAnimPlayTH);
 
 	if (auto* SKComp = GetSkeletalMeshComponent())
-		SKComp->Stop(); // ÇÊ¿äÇÑ°¡..
+		SKComp->Stop(); // í•„ìš”í•œê°€..
 
 	if (bCurrPlayTouchAnim)
 		bCurrPlayTouchAnim = false;
@@ -221,9 +221,9 @@ void AB2LobbyDoumiGirlBase::TempAnimPlayDoneCB()
 
 void AB2LobbyDoumiGirlBase::QuitTempAnimEndTransitionState()
 {
-	// TempAnimEndTransition ÀÇ ºí·»µùÀÌ³ª BeginDefaultPose ·Î µ¹¾Æ°¡´Â ¿¹¾à °°Àº °Å ¾ø¾Ö´Â °Å.
-	// ÀÌ°É ÄİÇÏ°í ±×³É µÎ¸é ÇöÀç TempAnim ÀÌ ³¡³ª°í ³ª¸é ±×³É Á¤ÁöÇÑ »óÅÂ°¡ µÉ °ÍÀÓ.
-	// Æ¯Á¤ÇÑ »ç¿ë »óÈ²ÀÌ ÀÖÀ½.
+	// TempAnimEndTransition ì˜ ë¸”ë Œë”©ì´ë‚˜ BeginDefaultPose ë¡œ ëŒì•„ê°€ëŠ” ì˜ˆì•½ ê°™ì€ ê±° ì—†ì• ëŠ” ê±°.
+	// ì´ê±¸ ì½œí•˜ê³  ê·¸ëƒ¥ ë‘ë©´ í˜„ì¬ TempAnim ì´ ëë‚˜ê³  ë‚˜ë©´ ê·¸ëƒ¥ ì •ì§€í•œ ìƒíƒœê°€ ë  ê²ƒì„.
+	// íŠ¹ì •í•œ ì‚¬ìš© ìƒí™©ì´ ìˆìŒ.
 
 	UWorld* TheWorld = GetWorld();
 	if (TheWorld)
@@ -235,7 +235,7 @@ void AB2LobbyDoumiGirlBase::QuitTempAnimEndTransitionState()
 }
 
 void AB2LobbyDoumiGirlBase::NotifyActorOnReleased(FKey ButtonReleased)
-{ // PC ÇÁ¸®ºä ¿ë
+{ // PC í”„ë¦¬ë·° ìš©
 	Super::NotifyActorOnReleased(ButtonReleased);
 
 	if (bUseTouchReaction)
@@ -257,8 +257,8 @@ void AB2LobbyDoumiGirlBase::PlayReactionOnTouch()
 {
 	/************************************************************************/
 	/*
-	±âº» ±â´ÉÀº ±×³É Touch ¸ğ¼Ç¿¡ ´ëÇØ PlayTemporaryAnim ÇÏ³ª·Î ³¡³ª´Â °Çµ¥
-	Á÷Àü¿¡ ÇÃ·¹ÀÌÇÏ´ø ¾Ö´Ï¸ŞÀÌ¼ÇÀ¸·ÎºÎÅÍÀÇ ºí·»µùÀ» ³Ö´À¶ó Á» º¹ÀâÇØÁü.
+	ê¸°ë³¸ ê¸°ëŠ¥ì€ ê·¸ëƒ¥ Touch ëª¨ì…˜ì— ëŒ€í•´ PlayTemporaryAnim í•˜ë‚˜ë¡œ ëë‚˜ëŠ” ê±´ë°
+	ì§ì „ì— í”Œë ˆì´í•˜ë˜ ì• ë‹ˆë©”ì´ì…˜ìœ¼ë¡œë¶€í„°ì˜ ë¸”ë Œë”©ì„ ë„£ëŠë¼ ì¢€ ë³µì¡í•´ì§.
 	*/
 	/************************************************************************/
 
@@ -266,13 +266,13 @@ void AB2LobbyDoumiGirlBase::PlayReactionOnTouch()
 		return;
 
 	const bool bWasInTempAnimEndTransition = bInTempAnimEndTransition;
-	QuitTempAnimEndTransitionState(); // ¸¸ÀÏ TempAnim ÇÃ·¹ÀÌ ÁßÀÌ¸é ±âº» DefaultPose ·ÎÀÇ transition Àº Ãë¼Ò.
+	QuitTempAnimEndTransitionState(); // ë§Œì¼ TempAnim í”Œë ˆì´ ì¤‘ì´ë©´ ê¸°ë³¸ DefaultPose ë¡œì˜ transition ì€ ì·¨ì†Œ.
 
-	// TouchAnim ÀÌÀü¿¡ ÇÃ·¹ÀÌÇÏ´ø ¾Ö´Ï¸ŞÀÌ¼Ç »óÅÂ¸¦ Ä³½ÌÇØ µĞ´Ù. 
+	// TouchAnim ì´ì „ì— í”Œë ˆì´í•˜ë˜ ì• ë‹ˆë©”ì´ì…˜ ìƒíƒœë¥¼ ìºì‹±í•´ ë‘”ë‹¤. 
 	if (CachedCurrPlayingTempAnim) {
 		CachedPreTouchAnim = CachedCurrPlayingTempAnim;
 	}
-	else { // DefaultPose ·Î µ¹¾Æ°¥ ¶§ CachedCurrPlayingTempAnim ÀÌ null-out µÇ¾ú°ÚÁö.
+	else { // DefaultPose ë¡œ ëŒì•„ê°ˆ ë•Œ CachedCurrPlayingTempAnim ì´ null-out ë˜ì—ˆê² ì§€.
 		CachedPreTouchAnim = DefaultPose;
 	}
 	USkeletalMeshComponent* SKComp = GetSkeletalMeshComponent();
@@ -280,9 +280,9 @@ void AB2LobbyDoumiGirlBase::PlayReactionOnTouch()
 	{
 		if (bWasInTempAnimEndTransition)
 		{
-			// ÀÌ ¶§¿¡´Â º°µµ·Î blending À» ÇÏ´Â ¹Ù¶÷¿¡ SKComp->GetPosition() ÀÌ 0 ÀÌ ³ª¿À¹Ç·Î LastPreTouchAnimPlayedPos À» º°µµ·Î..
-			// TempAnimEndTransitionTime µîÀ» °¡Áö°í Á¤È®ÇÑ position À» °è»êÇØ ³¾ ¼ö ÀÖ±ä ÇÑµ¥.. TickForBlendedAnimTransition ³»¿ëÀ» °¡Á®¿Í¾ß ÇÔ.
-			// Á» º¹ÀâÇØÁú °Í °°À¸´Ï Àû´çÈ÷ Áß°£ ÁöÁ¡¿¡¼­ºÎÅÍ ½ÃÀÛ.. ÀÌ Á¤µµ·Î ´ëºÎºĞÀÇ »óÈ²¿¡¼­ Å©°Ô ´«¿¡ ¾È ¶ç¸é ÀÌ·¸°Ô °¡°í.
+			// ì´ ë•Œì—ëŠ” ë³„ë„ë¡œ blending ì„ í•˜ëŠ” ë°”ëŒì— SKComp->GetPosition() ì´ 0 ì´ ë‚˜ì˜¤ë¯€ë¡œ LastPreTouchAnimPlayedPos ì„ ë³„ë„ë¡œ..
+			// TempAnimEndTransitionTime ë“±ì„ ê°€ì§€ê³  ì •í™•í•œ position ì„ ê³„ì‚°í•´ ë‚¼ ìˆ˜ ìˆê¸´ í•œë°.. TickForBlendedAnimTransition ë‚´ìš©ì„ ê°€ì ¸ì™€ì•¼ í•¨.
+			// ì¢€ ë³µì¡í•´ì§ˆ ê²ƒ ê°™ìœ¼ë‹ˆ ì ë‹¹íˆ ì¤‘ê°„ ì§€ì ì—ì„œë¶€í„° ì‹œì‘.. ì´ ì •ë„ë¡œ ëŒ€ë¶€ë¶„ì˜ ìƒí™©ì—ì„œ í¬ê²Œ ëˆˆì— ì•ˆ ë„ë©´ ì´ë ‡ê²Œ ê°€ê³ .
 			LastPreTouchAnimPlayedPos = FMath::Max((CachedPreTouchAnim->GetPlayLength() - TempAnimEndTransitionTime * 0.5f), 0.0f);
 		}
 		else
@@ -291,7 +291,7 @@ void AB2LobbyDoumiGirlBase::PlayReactionOnTouch()
 		}
 	}
 
-	OnPlayReactionOnTouch(); // ¿©±â¼­ ½ÇÁ¦ TouchAnim ¿¡ ´ëÇÑ Play ¸¦ È£ÃâÇØ ÁÖ¾î¾ß ÇÑ´Ù.
+	OnPlayReactionOnTouch(); // ì—¬ê¸°ì„œ ì‹¤ì œ TouchAnim ì— ëŒ€í•œ Play ë¥¼ í˜¸ì¶œí•´ ì£¼ì–´ì•¼ í•œë‹¤.
 	
 	UWorld* TheWorld = GetWorld();
 	if (CachedPreTouchAnim && CachedCurrPlayingTempAnim && SKComp && TheWorld)
@@ -300,7 +300,7 @@ void AB2LobbyDoumiGirlBase::PlayReactionOnTouch()
 
 		WTM.ClearTimer(TouchAnimTransitionTH);
 		WTM.SetTimer(TouchAnimTransitionTH, this, &AB2LobbyDoumiGirlBase::TouchAnimTransitionCB, TouchAnimTransitionTime, false);
-		// TouchAnimTransitionTime ÀÌ µÉ ¶§±îÁö ºí·»µù ½ÃÀÛ.
+		// TouchAnimTransitionTime ì´ ë  ë•Œê¹Œì§€ ë¸”ë Œë”© ì‹œì‘.
 		bInTouchAnimTransition = true;
 		CurrTouchAnimTransitionTimeCounter = 0.0f;
 	}
@@ -308,7 +308,7 @@ void AB2LobbyDoumiGirlBase::PlayReactionOnTouch()
 
 void AB2LobbyDoumiGirlBase::TouchAnimTransitionCB()
 {
-	check(!bInTempAnimEndTransition); // ¾Ö´Ï¸ŞÀÌ¼Ç transition ºí·»µùÀ» À§ÇÑ »óÅÂ µÑÀÌ ¼­·Î È¥ÇÕµÇÁö ¾Êµµ·Ï..
+	check(!bInTempAnimEndTransition); // ì• ë‹ˆë©”ì´ì…˜ transition ë¸”ë Œë”©ì„ ìœ„í•œ ìƒíƒœ ë‘˜ì´ ì„œë¡œ í˜¼í•©ë˜ì§€ ì•Šë„ë¡..
 
 	bInTouchAnimTransition = false;
 	CurrTouchAnimTransitionTimeCounter = 0.0f;
@@ -320,12 +320,12 @@ void AB2LobbyDoumiGirlBase::TouchAnimTransitionCB()
 		TheWorld->GetTimerManager().ClearTimer(TouchAnimTransitionTH);
 	}
 
-	OnTouchAnimTransitionCB(); // TouchAnimTransitionTime ¸¸Å­ÀÇ À§Ä¡¿¡¼­ ´Ù½Ã±İ Touch ¸ğ¼ÇÀ» ÇÃ·¹ÀÌ.
+	OnTouchAnimTransitionCB(); // TouchAnimTransitionTime ë§Œí¼ì˜ ìœ„ì¹˜ì—ì„œ ë‹¤ì‹œê¸ˆ Touch ëª¨ì…˜ì„ í”Œë ˆì´.
 }
 
 void AB2LobbyDoumiGirlBase::QuitTouchAnimTransitionState()
 {
-	// ÀÏ¹İÀûÀÎ TouchAnim ÇÚµé¸µ ¿ÍÁß¿¡ »ç¿ëµÉ ¸ñÀûÀº ¾Æ´Ï°í, ´Ù¸¥ ¾Ö´Ï¸ŞÀÌ¼Ç ÇÃ·¹ÀÌ ÀÌÀü¿¡ »óÅÂ Å¬¸®¾î¸¦ È®½ÇÈ÷ ÇÏ°íÀÚ ÇÏ´Â °Í.
+	// ì¼ë°˜ì ì¸ TouchAnim í•¸ë“¤ë§ ì™€ì¤‘ì— ì‚¬ìš©ë  ëª©ì ì€ ì•„ë‹ˆê³ , ë‹¤ë¥¸ ì• ë‹ˆë©”ì´ì…˜ í”Œë ˆì´ ì´ì „ì— ìƒíƒœ í´ë¦¬ì–´ë¥¼ í™•ì‹¤íˆ í•˜ê³ ì í•˜ëŠ” ê²ƒ.
 
 	UWorld* TheWorld = GetWorld();
 	if (TheWorld)
@@ -334,20 +334,20 @@ void AB2LobbyDoumiGirlBase::QuitTouchAnimTransitionState()
 	}
 	bInTouchAnimTransition = false;
 	CurrTouchAnimTransitionTimeCounter = 0.0f;
-	//CachedPreTouchAnim = nullptr; ¿©±â¼­ null-out ÇÏ±â ÀûÀıÇÒ °Í °°Áö¸¸ CachedPreTouchAnim À» ¼¼ÆÃÇÑ Á÷ÈÄ¿¡ ÀÌ°É ÄİÇÏ´Â »óÈ²ÀÌ ÀÖ¾î¼­ ÀÌ°Ç Á¦¿Ü.
+	//CachedPreTouchAnim = nullptr; ì—¬ê¸°ì„œ null-out í•˜ê¸° ì ì ˆí•  ê²ƒ ê°™ì§€ë§Œ CachedPreTouchAnim ì„ ì„¸íŒ…í•œ ì§í›„ì— ì´ê±¸ ì½œí•˜ëŠ” ìƒí™©ì´ ìˆì–´ì„œ ì´ê±´ ì œì™¸.
 }
 
 void AB2LobbyDoumiGirlBase::OnPlayReactionOnTouch()
 {
-	// TouchAnim À» »ç¿ëÇÏ·Á¸é Overriding ÇÊ¿ä.
-	// ½ÇÁ¦ TouchAnim ¿¡ ´ëÇÑ Play ¸¦ È£ÃâÇØ ÁÖ¾î¾ß ÇÑ´Ù.
+	// TouchAnim ì„ ì‚¬ìš©í•˜ë ¤ë©´ Overriding í•„ìš”.
+	// ì‹¤ì œ TouchAnim ì— ëŒ€í•œ Play ë¥¼ í˜¸ì¶œí•´ ì£¼ì–´ì•¼ í•œë‹¤.
 	bCurrPlayTouchAnim = true;
 }
 
 void AB2LobbyDoumiGirlBase::OnTouchAnimTransitionCB()
 {
-	// TouchAnim À» »ç¿ëÇÏ·Á¸é Overriding ÇÊ¿ä.
-	// TouchReaction ½ÃÀÛ ÀÌÈÄ Èå¸¥ ½Ã°£(TouchAnimTransitionTime)¸¸Å­ÀÇ À§Ä¡¿¡¼­ ´Ù½Ã±İ Touch ¸ğ¼ÇÀ» ÇÃ·¹ÀÌ ÇÏ´Â °Ô ÇÊ¿ä.
+	// TouchAnim ì„ ì‚¬ìš©í•˜ë ¤ë©´ Overriding í•„ìš”.
+	// TouchReaction ì‹œì‘ ì´í›„ íë¥¸ ì‹œê°„(TouchAnimTransitionTime)ë§Œí¼ì˜ ìœ„ì¹˜ì—ì„œ ë‹¤ì‹œê¸ˆ Touch ëª¨ì…˜ì„ í”Œë ˆì´ í•˜ëŠ” ê²Œ í•„ìš”.
 }
 
 void AB2LobbyDoumiGirlBase::SetAnimStateGuard(float InGuardDuration)
@@ -360,7 +360,7 @@ void AB2LobbyDoumiGirlBase::SetAnimStateGuard(float InGuardDuration)
 			FTimerManager& WTM = TheWorld->GetTimerManager();
 			WTM.ClearTimer(AnimStateGuardTH);
 
-			// ¸ğµÎ´Â ¾Æ´ÏÁö¸¸ ´ëºÎºĞÀÇ ¾Ö´Ï¸ŞÀÌ¼Ç ÇÃ·¹ÀÌ È£ÃâÀÌ ¾ÃÈú °Í.
+			// ëª¨ë‘ëŠ” ì•„ë‹ˆì§€ë§Œ ëŒ€ë¶€ë¶„ì˜ ì• ë‹ˆë©”ì´ì…˜ í”Œë ˆì´ í˜¸ì¶œì´ ì”¹í ê²ƒ.
 			bInAnimStateGuard = true;
 
 			WTM.SetTimer(AnimStateGuardTH, this, &AB2LobbyDoumiGirlBase::AnimStateGuardExpireCB, InGuardDuration, false);
@@ -378,7 +378,7 @@ void AB2LobbyDoumiGirlBase::AnimStateGuardExpireCB()
 	bInAnimStateGuard = false;
 }
 
-/** ShopGirl °ú RelaxingDoumi °£ÀÇ ¹İº¹ ÄÚµå ÃÖ¼ÒÈ­ ÅÛÇÃ¸´ ³¥³¥ */
+/** ShopGirl ê³¼ RelaxingDoumi ê°„ì˜ ë°˜ë³µ ì½”ë“œ ìµœì†Œí™” í…œí”Œë¦¿ ë‚„ë‚„ */
 template<typename TStateEnum>
 UAnimSequenceBase* GetLobbyNPCAnimSeqOfStateFromTMapTempl(TMap<TStateEnum, TSoftObjectPtr<UAnimSequenceBase>>& InStateAnimMap, TStateEnum InState)
 {
@@ -387,8 +387,8 @@ UAnimSequenceBase* GetLobbyNPCAnimSeqOfStateFromTMapTempl(TMap<TStateEnum, TSoft
 	{
 		TSoftObjectPtr<UAnimSequenceBase>& FoundTSoftObjectPtr = *FoundTSoftObjectPtrPtr;
 		if (!FoundTSoftObjectPtr.IsNull())
-		{ // ´Ü¼ø LoadSynchronous ¸¦ »ç¿ë.
-			// ÀÌ°Í ÀÚÃ¼ÀÇ Async ·Îµù °èÈ¹ÀÌ³ª ´Ù¸¥ asset ÀÇ async ·Îµù°ú ¾ôÈú ¼ÒÁö°¡ ¾ø´Ù´Â ÆÇ´Ü ÇÏ¿¡ »ç¿ëÇÏ´Â °ÍÀÓ.
+		{ // ë‹¨ìˆœ LoadSynchronous ë¥¼ ì‚¬ìš©.
+			// ì´ê²ƒ ìì²´ì˜ Async ë¡œë”© ê³„íšì´ë‚˜ ë‹¤ë¥¸ asset ì˜ async ë¡œë”©ê³¼ ì–½í ì†Œì§€ê°€ ì—†ë‹¤ëŠ” íŒë‹¨ í•˜ì— ì‚¬ìš©í•˜ëŠ” ê²ƒì„.
 			return FoundTSoftObjectPtr.LoadSynchronous();
 		}
 	}
@@ -399,7 +399,7 @@ UAnimSequenceBase* GetLobbyNPCAnimSeqOfStateFromTMapTempl(TMap<TStateEnum, TSoft
 /************************************************************************/
 /* 
  AB2LobbyShopGirl
- À¯ÀúµéÀÇ ÁÖ¸Ó´Ï¸¦ ÅÍ´Â µ¥ ÀÏ°¡°ßÀÌ ÀÖ´Â ±â¿ä¹Ì »óÁ¡ ¼Ò³à
+ ìœ ì €ë“¤ì˜ ì£¼ë¨¸ë‹ˆë¥¼ í„°ëŠ” ë° ì¼ê°€ê²¬ì´ ìˆëŠ” ê¸°ìš”ë¯¸ ìƒì  ì†Œë…€
 */
 /************************************************************************/
 AB2LobbyShopGirl::AB2LobbyShopGirl(const FObjectInitializer& ObjectInitializer)
@@ -412,7 +412,7 @@ AB2LobbyShopGirl::AB2LobbyShopGirl(const FObjectInitializer& ObjectInitializer)
 UAnimSequenceBase* AB2LobbyShopGirl::GetAnimSeqOfState(ELobbyShopGirlState InState)
 {
 	if (InState == ELobbyShopGirlState::ELSG_IdleLoop && DefaultPose)
-	{ // Idle Àº ±×³É DefaultPose.. »ç½Ç Idle À» ÇÃ·¹ÀÌÇÏ´Â °æ¿ì¸é ¾îÁö°£ÇØ¼± BeginDefaultPose ¸¦ ¹Ù·Î ½á¾ß..
+	{ // Idle ì€ ê·¸ëƒ¥ DefaultPose.. ì‚¬ì‹¤ Idle ì„ í”Œë ˆì´í•˜ëŠ” ê²½ìš°ë©´ ì–´ì§€ê°„í•´ì„  BeginDefaultPose ë¥¼ ë°”ë¡œ ì¨ì•¼..
 		return DefaultPose;
 	}
 
@@ -439,13 +439,13 @@ void AB2LobbyShopGirl::OnPlayReactionOnTouch()
 
 	PlayTemporaryAnimOfState(ELobbyShopGirlState::ELSG_TouchReaction);
 
-	// CachedCurrPlayingTempAnim Àº Touch ¸ğ¼ÇÀÌ µÇ¾î¾ß..
-	// CachedPreTouchAnim ÀÌ¶û CachedCurrPlayingTempAnim Àº °°À» ¼öµµ ÀÖ´Ù. ¿¬´Ş¾Æ ÅÍÄ¡¸¦ ÇÏ¸é
+	// CachedCurrPlayingTempAnim ì€ Touch ëª¨ì…˜ì´ ë˜ì–´ì•¼..
+	// CachedPreTouchAnim ì´ë‘ CachedCurrPlayingTempAnim ì€ ê°™ì„ ìˆ˜ë„ ìˆë‹¤. ì—°ë‹¬ì•„ í„°ì¹˜ë¥¼ í•˜ë©´
 	check(CachedPreTouchAnim && (GetAnimSeqOfState(ELobbyShopGirlState::ELSG_TouchReaction) == CachedCurrPlayingTempAnim));
 }
 void AB2LobbyShopGirl::OnTouchAnimTransitionCB()
 {
-	// TouchAnim À» Áö±İ±îÁö ÇÃ·¹ÀÌÇÑ À§Ä¡¿¡¼­ ½ÃÀÛÇØ¾ß ÇØ¼­ ´Ù½Ã ÇÑ ¹ø ´õ..
+	// TouchAnim ì„ ì§€ê¸ˆê¹Œì§€ í”Œë ˆì´í•œ ìœ„ì¹˜ì—ì„œ ì‹œì‘í•´ì•¼ í•´ì„œ ë‹¤ì‹œ í•œ ë²ˆ ë”..
 	USkeletalMeshComponent* SKComp = GetSkeletalMeshComponent();
 	if (SKComp)
 	{
@@ -457,7 +457,7 @@ void AB2LobbyShopGirl::OnTouchAnimTransitionCB()
 /************************************************************************/
 /* 
  AB2LobbyRelaxingDoumi
- À¯ÀúµéÀÌ ÇÑ´« ÆÈ Æ´À» ÁÖÁö ¾Ê´Â ÆÊ¹ÇÆÄÅº ÈŞ½Ä µµ¿ì¹Ì
+ ìœ ì €ë“¤ì´ í•œëˆˆ íŒ” í‹ˆì„ ì£¼ì§€ ì•ŠëŠ” íŒœë¯€íŒŒíƒ„ íœ´ì‹ ë„ìš°ë¯¸
 */
 /************************************************************************/
 AB2LobbyRelaxingDoumi::AB2LobbyRelaxingDoumi(const FObjectInitializer& ObjectInitializer)
@@ -470,7 +470,7 @@ AB2LobbyRelaxingDoumi::AB2LobbyRelaxingDoumi(const FObjectInitializer& ObjectIni
 UAnimSequenceBase* AB2LobbyRelaxingDoumi::GetAnimSeqOfState(ELobbyRelaxingDoumiState InState)
 {
 	if (InState == ELobbyRelaxingDoumiState::ELRD_IdleLoop && DefaultPose)
-	{ // Idle Àº ±×³É DefaultPose.. »ç½Ç Idle À» ÇÃ·¹ÀÌÇÏ´Â °æ¿ì¸é ¾îÁö°£ÇØ¼± BeginDefaultPose ¸¦ ¹Ù·Î ½á¾ß..
+	{ // Idle ì€ ê·¸ëƒ¥ DefaultPose.. ì‚¬ì‹¤ Idle ì„ í”Œë ˆì´í•˜ëŠ” ê²½ìš°ë©´ ì–´ì§€ê°„í•´ì„  BeginDefaultPose ë¥¼ ë°”ë¡œ ì¨ì•¼..
 		return DefaultPose;
 	}
 
@@ -497,13 +497,13 @@ void AB2LobbyRelaxingDoumi::OnPlayReactionOnTouch()
 
 	PlayTemporaryAnimOfState(ELobbyRelaxingDoumiState::ELRD_TouchReaction);
 
-	// CachedCurrPlayingTempAnim Àº Touch ¸ğ¼ÇÀÌ µÇ¾î¾ß..
-	// CachedPreTouchAnim ÀÌ¶û CachedCurrPlayingTempAnim Àº °°À» ¼öµµ ÀÖ´Ù. ¿¬´Ş¾Æ ÅÍÄ¡¸¦ ÇÏ¸é
+	// CachedCurrPlayingTempAnim ì€ Touch ëª¨ì…˜ì´ ë˜ì–´ì•¼..
+	// CachedPreTouchAnim ì´ë‘ CachedCurrPlayingTempAnim ì€ ê°™ì„ ìˆ˜ë„ ìˆë‹¤. ì—°ë‹¬ì•„ í„°ì¹˜ë¥¼ í•˜ë©´
 	check(CachedPreTouchAnim && (GetAnimSeqOfState(ELobbyRelaxingDoumiState::ELRD_TouchReaction) == CachedCurrPlayingTempAnim));
 }
 void AB2LobbyRelaxingDoumi::OnTouchAnimTransitionCB()
 {
-	// TouchAnim À» Áö±İ±îÁö ÇÃ·¹ÀÌÇÑ À§Ä¡¿¡¼­ ½ÃÀÛÇØ¾ß ÇØ¼­ ´Ù½Ã ÇÑ ¹ø ´õ..
+	// TouchAnim ì„ ì§€ê¸ˆê¹Œì§€ í”Œë ˆì´í•œ ìœ„ì¹˜ì—ì„œ ì‹œì‘í•´ì•¼ í•´ì„œ ë‹¤ì‹œ í•œ ë²ˆ ë”..
 	USkeletalMeshComponent* SKComp = GetSkeletalMeshComponent();
 	if (SKComp)
 	{
@@ -730,7 +730,7 @@ bool AB2LobbyFlyingFairyDoumi::IsOpenedOtherPopup()
 	//UB2UILobbyMain* LobbyMainUIPage = UB2UIManager::GetInstance()->GetUI<UB2UILobbyMain>(UIFName::LobbyMain);
 	//if (LobbyMainUIPage)
 	//{
-	//	if (LobbyMainUIPage->GetCombineMenuIsVisible()) // ÅëÇÕ¸Ş´º°¡ ¶°ÀÖ´Â »óÅÂ¿¡¼­´Â »ç¿ë¾ÈµÇ°Ô²û
+	//	if (LobbyMainUIPage->GetCombineMenuIsVisible()) // í†µí•©ë©”ë‰´ê°€ ë– ìˆëŠ” ìƒíƒœì—ì„œëŠ” ì‚¬ìš©ì•ˆë˜ê²Œë”
 	//		return true;
 	//}
 
@@ -836,6 +836,6 @@ void AB2SealCard::EndPlay(const EEndPlayReason::Type EndPlayReason)
 
 void AB2SealCard::OnPlayReactionOnTouch()
 {
-//	ºÀÀÎÇÔ Ä«µå ÀÓ½Ã ÀÛ¾÷
+//	ë´‰ì¸í•¨ ì¹´ë“œ ì„ì‹œ ì‘ì—…
 	//SealBoxCardFlipClass<int32, int32>::GetInstance().Signal(1,1);
 }

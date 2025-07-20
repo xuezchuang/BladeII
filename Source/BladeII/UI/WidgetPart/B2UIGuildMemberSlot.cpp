@@ -1,4 +1,4 @@
-#include "B2UIGuildMemberSlot.h"
+﻿#include "B2UIGuildMemberSlot.h"
 #include "B2UIGuildMemberPart.h"
 #include "B2UIGuildInfoPart.h"
 #include "Retailer.h"

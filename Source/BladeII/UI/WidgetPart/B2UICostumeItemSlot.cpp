@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UICostumeItemSlot.h"
 
@@ -131,7 +131,7 @@ void UB2UICostumeItemSlot::UpdateIMGItemGrade(const uint8& StarGrade)
 {
 	if (IMG_ItemGrade.IsValid())
 	{
-		// ÀÏ´Ü µğÆúÆ®·Î ¼¼ÆÃÇØ³õ°í..
+		// è€çªœ å¼å¼ƒé£˜è‚º æŠ€æ³¼ç§¦åˆç»Š..
 		IMG_ItemGrade->SetBrushFromMaterial(DefaultIconBGMtrl);
 
 		if (UB2ItemMiscInfo* pAllItemMiscInfo = StaticFindItemMiscInfo())
@@ -215,7 +215,7 @@ void UB2UICostumeItemSlot::UpdateRedDot(const FB2Item & InItem)
 
 bool UB2UICostumeItemSlot::IsNotNeedUpdateCostumeItemSlot(const FB2Item& InItem)
 {
-	if (CachedB2ItemInfo.InstanceUID &&	//ÀÌ°ªÀÌ 0ÀÏ °æ¿ì ÇÁ¸®ºä ¾ÆÀÌÅÛÀ¸·Î ¹«Á¶°Ç ¾÷µ¥ÀÌÆ® ÇØ¾ßÇÔ
+	if (CachedB2ItemInfo.InstanceUID &&	//æè”¼æ 0è€ ç‰ˆå¿« æ©‡åºœè½° é…’æè¢æ è‚º å…¬ç‚¼æ‰’ è¯€å•æé£˜ ç§¦å…·çªƒ
 		CachedB2ItemInfo.InstanceUID == InItem.InstanceUID &&
 		CachedB2ItemInfo.IsNew == InItem.IsNew &&
 		CachedB2ItemInfo.bIsLocked == InItem.bIsLocked &&

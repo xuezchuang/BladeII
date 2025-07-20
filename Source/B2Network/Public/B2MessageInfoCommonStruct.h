@@ -1,4 +1,6 @@
-#pragma once
+ï»¿#pragma once
+
+#include "CoreMinimal.h"
 #include <memory>
 #include "B2Reflection.h"
 #ifdef TUTORIAL
@@ -55,8 +57,8 @@ namespace b2network {
 
 	namespace B2CharacterType
 	{
-		const int32 Common			= 0;	// Item Á¤º¸, ¸ğµç Ä³¸¯ÅÍ »ç¿ë °¡´É
-		const int32 Not_Used		= 0;	// ¿¡Å×¸£ Á¤º¸, ¹Ì»ç¿ëÁß( »ç¿ëÁßÀÎ Ä³¸¯ÅÍ°¡ ¾ø´Â °æ¿ì )
+		const int32 Common			= 0;	// Item ì •ë³´, ëª¨ë“  ìºë¦­í„° ì‚¬ìš© ê°€ëŠ¥
+		const int32 Not_Used		= 0;	// ì—í…Œë¥´ ì •ë³´, ë¯¸ì‚¬ìš©ì¤‘( ì‚¬ìš©ì¤‘ì¸ ìºë¦­í„°ê°€ ì—†ëŠ” ê²½ìš° )
 
 		const int32 Gladiator		= 1;
 		const int32 Assassin		= 2;
@@ -358,84 +360,84 @@ namespace b2network {
 
 	namespace B2MailSenderType
 	{
-		const int ARIN = 1;          // ¾Æ¸°
-		const int HUNT = 2;          // ÇåÆ®
-		const int GAIUS = 3;         // °¡ÀÌ¿ì½º
-		const int BELLA = 4;         // º§¶ó
-		const int LUCHI = 5;         // ·çÄ¡
-		const int RAMIEL = 6;        // ¶óºñ¿¤
-		const int ADMIN = 7;         // ¿î¿µÀÚ
-		const int GRATIA = 8;        // ±×¶óÆ¼¾Æ
-		const int BROKK = 9;         // ºê·ÎÅ©
+		const int ARIN = 1;          // ì•„ë¦°
+		const int HUNT = 2;          // í—ŒíŠ¸
+		const int GAIUS = 3;         // ê°€ì´ìš°ìŠ¤
+		const int BELLA = 4;         // ë²¨ë¼
+		const int LUCHI = 5;         // ë£¨ì¹˜
+		const int RAMIEL = 6;        // ë¼ë¹„ì—˜
+		const int ADMIN = 7;         // ìš´ì˜ì
+		const int GRATIA = 8;        // ê·¸ë¼í‹°ì•„
+		const int BROKK = 9;         // ë¸Œë¡œí¬
 	}
 
 	namespace B2MailSourceType
 	{
-		const int32 ATTENDANCE = 1;                      //Ãâ¼® º¸»ó
-		const int32 PLAY_TIME = 2;                       //Á¢¼Ó º¸»ó
-		const int32 EVENT_ATTENDANCE = 3;                //ÀÌº¥Æ® Ãâ¼® º¸»ó
-		const int32 DAILY_MISSION = 4;                   //ÀÏÀÏ ¾÷Àû º¸»ó
-		const int32 WEEKLY_MISSION = 5;                  //ÁÖ°£ ¾÷Àû º¸»ó
-		const int32 MONTHLY_MISSION = 6;                 //¿ù°£ ¾÷Àû º¸»ó
-		const int32 SERIAL_MISSION = 7;                  //ÀÏ¹İ ¾÷Àû º¸»ó
-		const int32 MISSION_COMPLETE_POINT_REWARD = 8;   //¾÷Àû ¿Ï·á Á¡¼ö º¸»ó
-		const int32 DAILY_QUEST = 9;                     //ÀÏÀÏ Äù½ºÆ®
-		const int32 MAIN_QUEST = 10;                     //¸ŞÀÎ Äù½ºÆ®
-		const int32 SUB_QUEST = 11;                      //¼­ºê Äù½ºÆ®
-		const int32 PVP_RESULT = 12;                     //ÀÏ´ëÀÏ ´ëÀü º¸»ó
-		const int32 PVP_REWARD_BOX = 13;                 //ÀÏ´ëÀÏ ´ëÀü °áÅõ »óÀÚ º¸»ó
-		const int32 PVP_RANKING = 14;                    //ÀÏ´ëÀÏ ´ëÀü ·©Å·
-		const int32 COUNTER_DUNGEON_WIN = 15;            //¹İ°İ ´øÀü ½Â¸®
-		const int32 COUNTER_DUNGEON_WEEKLY = 16;         //¹İ°İ ´øÀü ÁÖ°£ Âü¿©
-		const int32 TEAM_MATCH_RESULT = 17;              //ÆÀ ´ëÀü °á°ú º¸»ó
-		const int32 TEAM_MATCH_REWARD_BOX = 18;          //ÆÀ ´ëÀü °áÅõ »óÀÚ º¸»ó
-		const int32 TEAM_MATCH_RANKING = 19;             //ÆÀ ´ëÀü ·©Å· º¸»ó
-		const int32 HERO_TOWER = 20;                     //¿µ¿õÀÇ Å¾ ½Â¸® º¸»ó
-		const int32 SOURCE_RAID = 21;                    //·¹ÀÌµå ½Â¸® º¸»ó
-		const int32 TUTORIAL = 22;                       //Æ©Åä¸®¾ó
-		const int32 ASSAULT_RESULT = 23;                 //Á¡·ÉÀü °á°ú º¸»ó
-		const int32 ASSAULT_REWARD_BOX = 24;             //Á¡·ÉÀü °áÅõ »óÀÚ º¸»ó
-		const int32 ASSAULT_RANKING = 25;                //Á¡·ÉÀü ·©Å· º¸»ó
-		const int32 ASSAULT_MVP = 26;                    //Á¡·ÉÀü MVP º¸»ó
-		const int32 GUILD_BATTLE = 27;                   //±æµåÀü Âü¿© º¸»ó
-		const int32 GUILD_REWARD_BOX = 28;               //±æµåÀü »óÀÚ º¸»ó
-		const int32 GUILD_SUPPORT = 29;                  //±æµå Áö¿ø
-		const int32 FRIEND = 30;                         //Ä£±¸(¿ìÁ¤Æ÷ÀÎÆ®)
-		const int32 COLLECT = 31;                        //µµ°¨
-		const int32 ACT_CLEAR = 32;                      //¾×Æ® Å¬¸®¾î º¸»ó
-		const int32 BUY_SHOP = 33;                       //»óÁ¡ ±¸¸Å
-		const int32 SHOP_DRAW_MILEAGE = 34;              //Àåºñ »óÁ¡ ¸¶ÀÏ¸®Áö
-		const int32 SHOP_BUY_MILEAGE = 35;               //ÀçÈ­ »óÁ¡ ¸¶ÀÏ¸®Áö º¸»ó
-		const int32 PUSH = 36;                           //Çª½Ã º¸»ó
-		const int32 MAINTENANCE = 37;                    //Á¡°Ë º¸»ó
-		const int32 EVENT = 38;                          //ÀÌº¥Æ® º¸»ó
-		const int32 ADMIN = 39;                          //¿î¿µÀÚ º¸»ó
-		const int32 UNITY_SKILL_MISSION = 40;			 //°á¼Ó ½ºÅ³
-		const int32 HERO_TOWER_SWEEP = 41;			     //¿µ¿õÀÇ Å¾ ¼ÒÅÁ º¸»ó
-		const int32 REST = 42;		     			     //ÈŞ½Ä º¸»ó
-		const int32 COUPON = 43;		     			 //ÄíÆù º¸»ó
-		const int32 PROMOTION = 44;		     			 //ÇÁ·Î¸ğ¼Ç º¸»ó
-		const int32 KAKAO_FRIEND_INVITE = 45;            //Ä«Ä«¿À Ä£±¸ ÃÊ´ë º¸»ó
-		const int32 SHOP_CASH = 46;                      //»óÁ¡¿¡¼­ Çö±İÀ¸·Î ±¸¸Å
-		const int32 SHOP_EVENT = 47;                     //»óÁ¡¿¡¼­ ÀÌº¥Æ® Çü½ÄÀ¸·Î Áö±Ş
-		const int32 SHOP_PACKAGE = 48;                       // »óÁ¡¿¡¼­ ÆĞÅ°Áö Çü½ÄÀ¸·Î Áö±Ş
-		const int32 SHOP_FLAT_RATE_PACKAGE_BONUS = 49;       // »óÁ¡¿¡¼­ Á¤¾× »óÇ° ÆĞÅ°Áö ±¸¸Å ½Ã º¸³Ê½º Çü½ÄÀ¸·Î Áö±Ş
-		const int32 SHOP_LEVEL_UP_PACKAGE = 50;              // ·¹º§¾÷ ÆĞÅ°Áö º¸»ó
-		const int32 SHOP_REACH_LEVEL_PACKAGE_BUY = 51;       // ·¹º§ ´Ş¼º ÆĞÅ°Áö ±¸¸Å º¸»ó
-		const int32 SHOP_REACH_LEVEL_PACKAGE_COMPLETE = 52;  // ·¹º§ ´Ş¼º ÆĞÅ°Áö ´Ş¼º º¸»ó
-		const int32 SHOP_PACKAGE_PERIOD_BONUS = 53;          // ÆĞÅ°Áö ±â°£ Áö±Ş º¸³Ê½º(±â°£ µ¿¾È ¸ğµÎ Áö±Ş ¹ŞÀ¸¸é ¹Ş´Â º¸³Ê½º)
-		const int32 FAME_PRAISE_REWARD = 54;			 //¸í¿¹ Æ÷ÀÎÆ® °æ¹è º¸³½ º¸»ó
-		const int32 FAME_RAISED_RANKING_REWARD = 55;     //¸í¿¹ Æ÷ÀÎÆ® °æ¹è ¹ŞÀº È½¼ö ·©Å· º¸»ó
-		const int32 FAME_RANKER_REWARD = 56;			 //¸í¿¹ Æ÷ÀÎÆ® ¸ğµåº° ·©Å· ´Ş¼º º¸»ó
-		const int32 BUY_MAGIC_SHOP = 57;				 //¸¶¹ı»óÁ¡ ±¸¸Å
-		const int32 BEGINNER_ATTENDANCE = 58;			 //½Å±Ô À¯Àú Ãâ¼® º¸»ó
-		const int32 MAKE_DONATION = 59;                  //±âºÎÇÏ±â
-		const int32 DONATION_POINT_REWARD = 60;          //±âºÎ Æ÷ÀÎÆ® º° º¸»ó
-		const int32 DONATION_POINT_RANKING = 61;         //±âºÎ½ÃÁğ ·©Å· º¸»ó
-		const int32 DIMENSION_RANKING = 62;				 //Â÷¿øÀÇ ±Õ¿­ ·©Å· º¸»ó
-		const int32 FAIRY_GIFT = 63;					 //Æä¾î¸® ¼±¹° º¸»ó
-		const int32 WELCOME = 64;						 //½Å±Ô À¯Àú ¿ìÆí º¸»ó
-		const int32 GUILD_REFUND = 65;					 //±æµå Å»Åğ ½ºÅ³ºñ¿ë º¸»ó
+		const int32 ATTENDANCE = 1;                      //ì¶œì„ ë³´ìƒ
+		const int32 PLAY_TIME = 2;                       //ì ‘ì† ë³´ìƒ
+		const int32 EVENT_ATTENDANCE = 3;                //ì´ë²¤íŠ¸ ì¶œì„ ë³´ìƒ
+		const int32 DAILY_MISSION = 4;                   //ì¼ì¼ ì—…ì  ë³´ìƒ
+		const int32 WEEKLY_MISSION = 5;                  //ì£¼ê°„ ì—…ì  ë³´ìƒ
+		const int32 MONTHLY_MISSION = 6;                 //ì›”ê°„ ì—…ì  ë³´ìƒ
+		const int32 SERIAL_MISSION = 7;                  //ì¼ë°˜ ì—…ì  ë³´ìƒ
+		const int32 MISSION_COMPLETE_POINT_REWARD = 8;   //ì—…ì  ì™„ë£Œ ì ìˆ˜ ë³´ìƒ
+		const int32 DAILY_QUEST = 9;                     //ì¼ì¼ í€˜ìŠ¤íŠ¸
+		const int32 MAIN_QUEST = 10;                     //ë©”ì¸ í€˜ìŠ¤íŠ¸
+		const int32 SUB_QUEST = 11;                      //ì„œë¸Œ í€˜ìŠ¤íŠ¸
+		const int32 PVP_RESULT = 12;                     //ì¼ëŒ€ì¼ ëŒ€ì „ ë³´ìƒ
+		const int32 PVP_REWARD_BOX = 13;                 //ì¼ëŒ€ì¼ ëŒ€ì „ ê²°íˆ¬ ìƒì ë³´ìƒ
+		const int32 PVP_RANKING = 14;                    //ì¼ëŒ€ì¼ ëŒ€ì „ ë­í‚¹
+		const int32 COUNTER_DUNGEON_WIN = 15;            //ë°˜ê²© ë˜ì „ ìŠ¹ë¦¬
+		const int32 COUNTER_DUNGEON_WEEKLY = 16;         //ë°˜ê²© ë˜ì „ ì£¼ê°„ ì°¸ì—¬
+		const int32 TEAM_MATCH_RESULT = 17;              //íŒ€ ëŒ€ì „ ê²°ê³¼ ë³´ìƒ
+		const int32 TEAM_MATCH_REWARD_BOX = 18;          //íŒ€ ëŒ€ì „ ê²°íˆ¬ ìƒì ë³´ìƒ
+		const int32 TEAM_MATCH_RANKING = 19;             //íŒ€ ëŒ€ì „ ë­í‚¹ ë³´ìƒ
+		const int32 HERO_TOWER = 20;                     //ì˜ì›…ì˜ íƒ‘ ìŠ¹ë¦¬ ë³´ìƒ
+		const int32 SOURCE_RAID = 21;                    //ë ˆì´ë“œ ìŠ¹ë¦¬ ë³´ìƒ
+		const int32 TUTORIAL = 22;                       //íŠœí† ë¦¬ì–¼
+		const int32 ASSAULT_RESULT = 23;                 //ì ë ¹ì „ ê²°ê³¼ ë³´ìƒ
+		const int32 ASSAULT_REWARD_BOX = 24;             //ì ë ¹ì „ ê²°íˆ¬ ìƒì ë³´ìƒ
+		const int32 ASSAULT_RANKING = 25;                //ì ë ¹ì „ ë­í‚¹ ë³´ìƒ
+		const int32 ASSAULT_MVP = 26;                    //ì ë ¹ì „ MVP ë³´ìƒ
+		const int32 GUILD_BATTLE = 27;                   //ê¸¸ë“œì „ ì°¸ì—¬ ë³´ìƒ
+		const int32 GUILD_REWARD_BOX = 28;               //ê¸¸ë“œì „ ìƒì ë³´ìƒ
+		const int32 GUILD_SUPPORT = 29;                  //ê¸¸ë“œ ì§€ì›
+		const int32 FRIEND = 30;                         //ì¹œêµ¬(ìš°ì •í¬ì¸íŠ¸)
+		const int32 COLLECT = 31;                        //ë„ê°
+		const int32 ACT_CLEAR = 32;                      //ì•¡íŠ¸ í´ë¦¬ì–´ ë³´ìƒ
+		const int32 BUY_SHOP = 33;                       //ìƒì  êµ¬ë§¤
+		const int32 SHOP_DRAW_MILEAGE = 34;              //ì¥ë¹„ ìƒì  ë§ˆì¼ë¦¬ì§€
+		const int32 SHOP_BUY_MILEAGE = 35;               //ì¬í™” ìƒì  ë§ˆì¼ë¦¬ì§€ ë³´ìƒ
+		const int32 PUSH = 36;                           //í‘¸ì‹œ ë³´ìƒ
+		const int32 MAINTENANCE = 37;                    //ì ê²€ ë³´ìƒ
+		const int32 EVENT = 38;                          //ì´ë²¤íŠ¸ ë³´ìƒ
+		const int32 ADMIN = 39;                          //ìš´ì˜ì ë³´ìƒ
+		const int32 UNITY_SKILL_MISSION = 40;			 //ê²°ì† ìŠ¤í‚¬
+		const int32 HERO_TOWER_SWEEP = 41;			     //ì˜ì›…ì˜ íƒ‘ ì†Œíƒ• ë³´ìƒ
+		const int32 REST = 42;		     			     //íœ´ì‹ ë³´ìƒ
+		const int32 COUPON = 43;		     			 //ì¿ í° ë³´ìƒ
+		const int32 PROMOTION = 44;		     			 //í”„ë¡œëª¨ì…˜ ë³´ìƒ
+		const int32 KAKAO_FRIEND_INVITE = 45;            //ì¹´ì¹´ì˜¤ ì¹œêµ¬ ì´ˆëŒ€ ë³´ìƒ
+		const int32 SHOP_CASH = 46;                      //ìƒì ì—ì„œ í˜„ê¸ˆìœ¼ë¡œ êµ¬ë§¤
+		const int32 SHOP_EVENT = 47;                     //ìƒì ì—ì„œ ì´ë²¤íŠ¸ í˜•ì‹ìœ¼ë¡œ ì§€ê¸‰
+		const int32 SHOP_PACKAGE = 48;                       // ìƒì ì—ì„œ íŒ¨í‚¤ì§€ í˜•ì‹ìœ¼ë¡œ ì§€ê¸‰
+		const int32 SHOP_FLAT_RATE_PACKAGE_BONUS = 49;       // ìƒì ì—ì„œ ì •ì•¡ ìƒí’ˆ íŒ¨í‚¤ì§€ êµ¬ë§¤ ì‹œ ë³´ë„ˆìŠ¤ í˜•ì‹ìœ¼ë¡œ ì§€ê¸‰
+		const int32 SHOP_LEVEL_UP_PACKAGE = 50;              // ë ˆë²¨ì—… íŒ¨í‚¤ì§€ ë³´ìƒ
+		const int32 SHOP_REACH_LEVEL_PACKAGE_BUY = 51;       // ë ˆë²¨ ë‹¬ì„± íŒ¨í‚¤ì§€ êµ¬ë§¤ ë³´ìƒ
+		const int32 SHOP_REACH_LEVEL_PACKAGE_COMPLETE = 52;  // ë ˆë²¨ ë‹¬ì„± íŒ¨í‚¤ì§€ ë‹¬ì„± ë³´ìƒ
+		const int32 SHOP_PACKAGE_PERIOD_BONUS = 53;          // íŒ¨í‚¤ì§€ ê¸°ê°„ ì§€ê¸‰ ë³´ë„ˆìŠ¤(ê¸°ê°„ ë™ì•ˆ ëª¨ë‘ ì§€ê¸‰ ë°›ìœ¼ë©´ ë°›ëŠ” ë³´ë„ˆìŠ¤)
+		const int32 FAME_PRAISE_REWARD = 54;			 //ëª…ì˜ˆ í¬ì¸íŠ¸ ê²½ë°° ë³´ë‚¸ ë³´ìƒ
+		const int32 FAME_RAISED_RANKING_REWARD = 55;     //ëª…ì˜ˆ í¬ì¸íŠ¸ ê²½ë°° ë°›ì€ íšŸìˆ˜ ë­í‚¹ ë³´ìƒ
+		const int32 FAME_RANKER_REWARD = 56;			 //ëª…ì˜ˆ í¬ì¸íŠ¸ ëª¨ë“œë³„ ë­í‚¹ ë‹¬ì„± ë³´ìƒ
+		const int32 BUY_MAGIC_SHOP = 57;				 //ë§ˆë²•ìƒì  êµ¬ë§¤
+		const int32 BEGINNER_ATTENDANCE = 58;			 //ì‹ ê·œ ìœ ì € ì¶œì„ ë³´ìƒ
+		const int32 MAKE_DONATION = 59;                  //ê¸°ë¶€í•˜ê¸°
+		const int32 DONATION_POINT_REWARD = 60;          //ê¸°ë¶€ í¬ì¸íŠ¸ ë³„ ë³´ìƒ
+		const int32 DONATION_POINT_RANKING = 61;         //ê¸°ë¶€ì‹œì¦Œ ë­í‚¹ ë³´ìƒ
+		const int32 DIMENSION_RANKING = 62;				 //ì°¨ì›ì˜ ê· ì—´ ë­í‚¹ ë³´ìƒ
+		const int32 FAIRY_GIFT = 63;					 //í˜ì–´ë¦¬ ì„ ë¬¼ ë³´ìƒ
+		const int32 WELCOME = 64;						 //ì‹ ê·œ ìœ ì € ìš°í¸ ë³´ìƒ
+		const int32 GUILD_REFUND = 65;					 //ê¸¸ë“œ íƒˆí‡´ ìŠ¤í‚¬ë¹„ìš© ë³´ìƒ
 	}
 
 	namespace B2HallOfFameType
@@ -950,40 +952,40 @@ namespace b2network {
 
 	namespace B2GameEventType
 	{
-		const int32 CLEAR_DUNGEON = 1; // ´øÀü Å¬¸®¾î (condition1 : ´øÀü ¾ÆÀÌµğ, condition1 : Å¬·¡½º Å¸ÀÔ)
-		const int32 COMPOSE_EQUIPMENT = 2; // Àåºñ ÇÕ¼ºÇÏ±â(condition1 : ÇÕ¼º ÈÄ ¾ÆÀÌÅÛ µî±Ş)
-		const int32 UPGRADE_EQUIPMENT = 3; // Àåºñ ½Â±ŞÇÏ±â(condition1 : ½Â±Ş ÈÄ ¾ÆÀÌÅÛ µî±Ş)
-		const int32 LEVEL_UP_EQUIPMENT = 4; // Àåºñ °­È­ÇÏ±â (condition1 : µµ´Ş ·¹º§)
-		const int32 SURPASS_EQUIPMENT = 5; // Àåºñ ÃÊ¿ùÇÏ±â
-		const int32 COMPLETE_DAILY_MISSION = 6; // ÀÏÀÏ ¾÷Àû ´Ş¼ºÇÏ±â
-		const int32 COMPLETE_WEEKLY_MISSION = 7; // ÁÖ°£ ¾÷Àû ´Ş¼ºÇÏ±â
-		const int32 GET_ITEM = 8; // ¾ÆÀÌÅÛ È¹µæÇÏ±â(condition1 : ¾ÆÀÌÅÛ ¾ÆÀÌµğ)
-		const int32 GET_QUEST_ITEM = 9; //½ºÅ×ÀÌÁö¿¡¼­ Äù½ºÆ® ¾ÆÀÌÅÛ È¹µæ
-										// (condition1 : ½ºÅ×ÀÌÁö ¾ÆÀÌµğ; condition2 : Äù½ºÆ® ¾ÆÀÌÅÛ ¾ÆÀÌµğ, condition3 : Å¬·¡½º Å¸ÀÔ)
-		const int32 GET_GOLD = 10; // °ñµå È¹µæÇÏ±â
-		const int32 REACH_CHARACTER_POWER = 11; //Ä³¸¯ÅÍ ÀüÅõ·Â ´Ş¼º
-		const int32 REACH_GOLD = 12; // ´©Àû °ñµå ´Ş¼º
-		const int32 REACH_LEVEL = 13;  // ¿¬¼Ó : ·¹º§¾÷ ´Ş¼º(condition1 : Å¬·¡½º, value ·¹º§¾÷ ÈÄ ÇöÀç ·¹º§)
-		const int32 KILL_MONSTER = 14;   //¸ó½ºÅÍ ¸î ¸¶¸® Ã³¸®
-		const int32 KILL_SPECIFIC_MONSTER_STAGE = 15;   //Æ¯Á¤ ½ºÅ×ÀÌÁö¿¡¼­ Æ¯Á¤ ¸ó½ºÅÍ ¸î ¸¶¸® Ã³¸®
-		const int32 JOIN_MATCH_MAKING = 16; //ÀÏ´ëÀÏ ´ëÀü Âü¿©
-		const int32 JOIN_TEAM_MATCH_MAKING = 17;  //ÆÀ´ëÀü Âü¿©
-		const int32 JOIN_DUNGEON_MODE = 18; // ´øÀü ¸ğµå Âü¿©
-		const int32 JOIN_HERO_TOWER = 19; // ¿µ¿õÀÇ Å¾ Âü¿©
-		const int32 JOIN_GUILD_BATTLE = 20; // ±æµåÀü Âü¿©
-		const int32 JOIN_COUNTER_DUNGEON = 21; // ¹İ°İ ´øÀü Âü¿©
-		const int32 JOIN_RAID = 22; //·¹ÀÌµå Âü¿©
-		const int32 JOIN_ASSAULT = 23; //³­ÅõÀü Âü¿©
-		const int32 SEND_SOCIAL_POINT = 24; // ¿ìÁ¤ Æ÷ÀÎÆ® º¸³»±â
-		const int32 QUEST_ACCEPTED = 25;     //Äù½ºÆ® ¼ö¶ô
-		const int32 ENHANCE_RANK_NODE = 26; //Áø±Ş ³ëµå °­È­½Ãµµ
-		const int32 UPGRADE_WING = 27;      //³¯°³ ½Â±Ş
-		const int32 RESURRECTION = 28;      // ºÎÈ°ÇÏ±â
-		const int32 BUY_SKILL_POINT = 29;    //½ºÅ³ Æ÷ÀÎÆ® ±¸¸Å
-		const int32 SELL_EQUIPMENT = 30;    //Àåºñ ÆÇ¸ÅÇÏ±â
-		const int32 DRAW_EQUIPMENT = 31;    //Àåºñ»Ì±â
-		const int32 ENHANCE_EQUIPMENT = 32; //Àåºñ °­È­
-		const int32 JOIN_MATCH_MODE = 33; //´ë°á ¸ğµå Âü¿©
+		const int32 CLEAR_DUNGEON = 1; // ë˜ì „ í´ë¦¬ì–´ (condition1 : ë˜ì „ ì•„ì´ë””, condition1 : í´ë˜ìŠ¤ íƒ€ì…)
+		const int32 COMPOSE_EQUIPMENT = 2; // ì¥ë¹„ í•©ì„±í•˜ê¸°(condition1 : í•©ì„± í›„ ì•„ì´í…œ ë“±ê¸‰)
+		const int32 UPGRADE_EQUIPMENT = 3; // ì¥ë¹„ ìŠ¹ê¸‰í•˜ê¸°(condition1 : ìŠ¹ê¸‰ í›„ ì•„ì´í…œ ë“±ê¸‰)
+		const int32 LEVEL_UP_EQUIPMENT = 4; // ì¥ë¹„ ê°•í™”í•˜ê¸° (condition1 : ë„ë‹¬ ë ˆë²¨)
+		const int32 SURPASS_EQUIPMENT = 5; // ì¥ë¹„ ì´ˆì›”í•˜ê¸°
+		const int32 COMPLETE_DAILY_MISSION = 6; // ì¼ì¼ ì—…ì  ë‹¬ì„±í•˜ê¸°
+		const int32 COMPLETE_WEEKLY_MISSION = 7; // ì£¼ê°„ ì—…ì  ë‹¬ì„±í•˜ê¸°
+		const int32 GET_ITEM = 8; // ì•„ì´í…œ íšë“í•˜ê¸°(condition1 : ì•„ì´í…œ ì•„ì´ë””)
+		const int32 GET_QUEST_ITEM = 9; //ìŠ¤í…Œì´ì§€ì—ì„œ í€˜ìŠ¤íŠ¸ ì•„ì´í…œ íšë“
+										// (condition1 : ìŠ¤í…Œì´ì§€ ì•„ì´ë””; condition2 : í€˜ìŠ¤íŠ¸ ì•„ì´í…œ ì•„ì´ë””, condition3 : í´ë˜ìŠ¤ íƒ€ì…)
+		const int32 GET_GOLD = 10; // ê³¨ë“œ íšë“í•˜ê¸°
+		const int32 REACH_CHARACTER_POWER = 11; //ìºë¦­í„° ì „íˆ¬ë ¥ ë‹¬ì„±
+		const int32 REACH_GOLD = 12; // ëˆ„ì  ê³¨ë“œ ë‹¬ì„±
+		const int32 REACH_LEVEL = 13;  // ì—°ì† : ë ˆë²¨ì—… ë‹¬ì„±(condition1 : í´ë˜ìŠ¤, value ë ˆë²¨ì—… í›„ í˜„ì¬ ë ˆë²¨)
+		const int32 KILL_MONSTER = 14;   //ëª¬ìŠ¤í„° ëª‡ ë§ˆë¦¬ ì²˜ë¦¬
+		const int32 KILL_SPECIFIC_MONSTER_STAGE = 15;   //íŠ¹ì • ìŠ¤í…Œì´ì§€ì—ì„œ íŠ¹ì • ëª¬ìŠ¤í„° ëª‡ ë§ˆë¦¬ ì²˜ë¦¬
+		const int32 JOIN_MATCH_MAKING = 16; //ì¼ëŒ€ì¼ ëŒ€ì „ ì°¸ì—¬
+		const int32 JOIN_TEAM_MATCH_MAKING = 17;  //íŒ€ëŒ€ì „ ì°¸ì—¬
+		const int32 JOIN_DUNGEON_MODE = 18; // ë˜ì „ ëª¨ë“œ ì°¸ì—¬
+		const int32 JOIN_HERO_TOWER = 19; // ì˜ì›…ì˜ íƒ‘ ì°¸ì—¬
+		const int32 JOIN_GUILD_BATTLE = 20; // ê¸¸ë“œì „ ì°¸ì—¬
+		const int32 JOIN_COUNTER_DUNGEON = 21; // ë°˜ê²© ë˜ì „ ì°¸ì—¬
+		const int32 JOIN_RAID = 22; //ë ˆì´ë“œ ì°¸ì—¬
+		const int32 JOIN_ASSAULT = 23; //ë‚œíˆ¬ì „ ì°¸ì—¬
+		const int32 SEND_SOCIAL_POINT = 24; // ìš°ì • í¬ì¸íŠ¸ ë³´ë‚´ê¸°
+		const int32 QUEST_ACCEPTED = 25;     //í€˜ìŠ¤íŠ¸ ìˆ˜ë½
+		const int32 ENHANCE_RANK_NODE = 26; //ì§„ê¸‰ ë…¸ë“œ ê°•í™”ì‹œë„
+		const int32 UPGRADE_WING = 27;      //ë‚ ê°œ ìŠ¹ê¸‰
+		const int32 RESURRECTION = 28;      // ë¶€í™œí•˜ê¸°
+		const int32 BUY_SKILL_POINT = 29;    //ìŠ¤í‚¬ í¬ì¸íŠ¸ êµ¬ë§¤
+		const int32 SELL_EQUIPMENT = 30;    //ì¥ë¹„ íŒë§¤í•˜ê¸°
+		const int32 DRAW_EQUIPMENT = 31;    //ì¥ë¹„ë½‘ê¸°
+		const int32 ENHANCE_EQUIPMENT = 32; //ì¥ë¹„ ê°•í™”
+		const int32 JOIN_MATCH_MODE = 33; //ëŒ€ê²° ëª¨ë“œ ì°¸ì—¬
 	}
 
 	namespace B2GuildMercenaryDonationType
@@ -1042,9 +1044,9 @@ namespace b2network {
 	}
 
 	namespace B2EventPointShopType
-	{	// Æ÷ÀÎÆ® ±¸¸Å(±³È¯) ÀÌº¥Æ® ¼¼ºÎ À¯Çü
-		const int NORMAL = 0;			// ÀÏ¹İ
-		const int LIMITED = 1;			// ±¸¸ÅÁ¦ÇÑ À¯Çü
+	{	// í¬ì¸íŠ¸ êµ¬ë§¤(êµí™˜) ì´ë²¤íŠ¸ ì„¸ë¶€ ìœ í˜•
+		const int NORMAL = 0;			// ì¼ë°˜
+		const int LIMITED = 1;			// êµ¬ë§¤ì œí•œ ìœ í˜•
 	}
 	
 	namespace B2HotTimeBuffType
@@ -1055,8 +1057,8 @@ namespace b2network {
 
 	namespace B2FriendInviteRewardType
 	{
-		const int INVITE_COUNT = 1;   // ´©Àû ÃÊ´ë º¸»ó
-		const int JOINER_COUNT = 2;   // ´©Àû ÃÊ´ë Âü¿© º¸»ó
+		const int INVITE_COUNT = 1;   // ëˆ„ì  ì´ˆëŒ€ ë³´ìƒ
+		const int JOINER_COUNT = 2;   // ëˆ„ì  ì´ˆëŒ€ ì°¸ì—¬ ë³´ìƒ
 	}
 
 	namespace B2MainQuestType
@@ -1067,36 +1069,36 @@ namespace b2network {
 
 	namespace B2MarketPurchaseState
 	{
-		const int REGISTERED = 1;		// ±¸¸Å Á¤º¸ µî·Ï(½ÃÀÛ)
-		const int VERIFIED = 2;			// ±¸¸Å °ËÁõ ¿Ï·á
-		const int COMPLETED = 3;		// Áö±Ş ¿Ï·á
+		const int REGISTERED = 1;		// êµ¬ë§¤ ì •ë³´ ë“±ë¡(ì‹œì‘)
+		const int VERIFIED = 2;			// êµ¬ë§¤ ê²€ì¦ ì™„ë£Œ
+		const int COMPLETED = 3;		// ì§€ê¸‰ ì™„ë£Œ
 	}
 
 	namespace B2MarketPurchaseCancel
 	{
-		const int CANCEL_CURRENT = 1;	// À¯Àú Ãë¼Ò Ã³¸®
-		const int CANCEL_PAST = 2;		// ¹ÌÃ³¸®µÈ ÀÌÀü Á¤º¸ Ãë¼Ò Ã³¸®
-		const int ORDER_FAILURE = 3;	// ¸¶ÄÏ ÁÖ¹® ½ÇÆĞ
+		const int CANCEL_CURRENT = 1;	// ìœ ì € ì·¨ì†Œ ì²˜ë¦¬
+		const int CANCEL_PAST = 2;		// ë¯¸ì²˜ë¦¬ëœ ì´ì „ ì •ë³´ ì·¨ì†Œ ì²˜ë¦¬
+		const int ORDER_FAILURE = 3;	// ë§ˆì¼“ ì£¼ë¬¸ ì‹¤íŒ¨
 	}
 
 	namespace B2ShopPackageCategory
 	{
-		const int BASIC = 1;             // ÀÏ¹İ ÆĞÅ°Áö
-		const int LEVEL_UP = 2;           // ·¹º§¾÷ ÆĞÅ°Áö
-		const int REACH_LEVEL = 3;        // ·¹º§ ´Ş¼º ÆĞÅ°Áö
-		const int FLAT_RATE = 4;          // Á¤¾× ÆĞÅ°Áö
+		const int BASIC = 1;             // ì¼ë°˜ íŒ¨í‚¤ì§€
+		const int LEVEL_UP = 2;           // ë ˆë²¨ì—… íŒ¨í‚¤ì§€
+		const int REACH_LEVEL = 3;        // ë ˆë²¨ ë‹¬ì„± íŒ¨í‚¤ì§€
+		const int FLAT_RATE = 4;          // ì •ì•¡ íŒ¨í‚¤ì§€
 	}
 
 	namespace B2ShopPackageTabType
 	{
-		const int BASIC = 1;          //ÃßÃµ ÆĞÅ°Áö
-		const int EQUIPMENT = 2;     //Àåºñ ÆĞÅ°Áö
-		const int GROWTH = 3;        //¼ºÀå ÆĞÅ°Áö
-		const int HERO = 4;          //¿µ¿õ ÆĞÅ°Áö
-		const int BOOST = 5;         //ºÎ½ºÆ® ÆĞÅ°Áö
-		const int LEVEL_UP = 6;      //·¹º§¾÷ ÆĞÅ°Áö
-		const int FLAT_RATE = 7;      //Á¤¾× ÆĞÅ°Áö
-		const int COSTUME = 8;		 //ÄÚ½ºÆ¬
+		const int BASIC = 1;          //ì¶”ì²œ íŒ¨í‚¤ì§€
+		const int EQUIPMENT = 2;     //ì¥ë¹„ íŒ¨í‚¤ì§€
+		const int GROWTH = 3;        //ì„±ì¥ íŒ¨í‚¤ì§€
+		const int HERO = 4;          //ì˜ì›… íŒ¨í‚¤ì§€
+		const int BOOST = 5;         //ë¶€ìŠ¤íŠ¸ íŒ¨í‚¤ì§€
+		const int LEVEL_UP = 6;      //ë ˆë²¨ì—… íŒ¨í‚¤ì§€
+		const int FLAT_RATE = 7;      //ì •ì•¡ íŒ¨í‚¤ì§€
+		const int COSTUME = 8;		 //ì½”ìŠ¤íŠ¬
 	}
 	
 	namespace B2ReportModeType
@@ -1128,84 +1130,84 @@ namespace b2network {
 
 	namespace B2FairyType
 	{
-		const int NIECE = 1;			// ½£ÀÇ ¿äÁ¤ ´Ï½º
-		const int PANG = 2;				// ½£ÀÇ ¿äÁ¤ ÆÎ
-		const int RIO = 3;				// ½£ÀÇ ¿äÁ¤ ¸®¿À
+		const int NIECE = 1;			// ìˆ²ì˜ ìš”ì • ë‹ˆìŠ¤
+		const int PANG = 2;				// ìˆ²ì˜ ìš”ì • íŒ¡
+		const int RIO = 3;				// ìˆ²ì˜ ìš”ì • ë¦¬ì˜¤
 	}
 
 	namespace B2TotemEquipSlot
 	{
-		const int NONE = 0;				// Âø¿ëÁ¤º¸ ¾øÀ½
-		const int TOP = 1;				// »ó´Ü
-		const int MIDDLE = 2;			// Áß´Ü
-		const int BOTTOM = 3;			// ÇÏ´Ü
+		const int NONE = 0;				// ì°©ìš©ì •ë³´ ì—†ìŒ
+		const int TOP = 1;				// ìƒë‹¨
+		const int MIDDLE = 2;			// ì¤‘ë‹¨
+		const int BOTTOM = 3;			// í•˜ë‹¨
 	}
 
 	namespace B2TotemGrade
 	{
-		const int NORMAL = 1;			// ÀÏ¹İ
-		const int MAGIC = 2;			// ¸¶¹ı
-		const int RARE = 3;				// Èñ±Í
-		const int HERO = 4;				// ¿µ¿õ
-		const int LEGEND = 5;			// Àü¼³
-		const int RELIC = 6;			// À¯¹°
+		const int NORMAL = 1;			// ì¼ë°˜
+		const int MAGIC = 2;			// ë§ˆë²•
+		const int RARE = 3;				// í¬ê·€
+		const int HERO = 4;				// ì˜ì›…
+		const int LEGEND = 5;			// ì „ì„¤
+		const int RELIC = 6;			// ìœ ë¬¼
 	}
 
 	namespace B2TotemBasePrefix
 	{
-		const int VALOROUS = 1;			// ¿ë¸ÍÀÇ
-		const int PATRON = 2;			// ¼öÈ£ÀÇ
-		const int VIGOROUS = 3;			// È°·ÂÀÇ
+		const int VALOROUS = 1;			// ìš©ë§¹ì˜
+		const int PATRON = 2;			// ìˆ˜í˜¸ì˜
+		const int VIGOROUS = 3;			// í™œë ¥ì˜
 	}
 
 	namespace B2TotemRefinePrefix
 	{
-		const int ECLIPSE = 1;			// ºûÀ» ÀÒÀº
-		const int SHINING = 2;			// ºûÀ» ´ãÀº
-		const int STRONG = 3;			// °­·ÂÇÑ
-		const int SACRED = 4;			// ½Å¼ºÇÑ
+		const int ECLIPSE = 1;			// ë¹›ì„ ìƒì€
+		const int SHINING = 2;			// ë¹›ì„ ë‹´ì€
+		const int STRONG = 3;			// ê°•ë ¥í•œ
+		const int SACRED = 4;			// ì‹ ì„±í•œ
 	}
 
 	namespace B2Refinestatus
 	{
-		const int NONE = 0;				// Á¦·ÃÀÌ·Â ¾øÀ½
-		const int SUCCESS = 1;			// Á¦·Ã ¼º°ø
-		const int FAIL = 2;				// Á¦·Ã ½ÇÆĞ
+		const int NONE = 0;				// ì œë ¨ì´ë ¥ ì—†ìŒ
+		const int SUCCESS = 1;			// ì œë ¨ ì„±ê³µ
+		const int FAIL = 2;				// ì œë ¨ ì‹¤íŒ¨
 	}
 
 	namespace B2TotemRefineCostType
 	{
-		const int GOLD = 1;				// °ñµå
-		const int DIMENSIONAL_PIECE = 2;// Â÷¿øÀÇ Á¶°¢
+		const int GOLD = 1;				// ê³¨ë“œ
+		const int DIMENSIONAL_PIECE = 2;// ì°¨ì›ì˜ ì¡°ê°
 	}
 
 	namespace B2FactoryLimitType
 	{
-		const int TRY = 1;		// ½Ãµµ
-		const int SUCCESS = 2;	// ¼º°ø
+		const int TRY = 1;		// ì‹œë„
+		const int SUCCESS = 2;	// ì„±ê³µ
 	}
 
 	namespace B2FactoryLimitTimeType
 	{
-		const int ONCE = 1;		// ¿µ±¸
-		const int DAY = 2;		// ÀÏ°£
-		const int WEEK = 3;		// ÁÖ°£
-		const int MONTH = 4;	// ¿ù°£
-		const int NONE = 5;		// ¹«Á¦ÇÑ
+		const int ONCE = 1;		// ì˜êµ¬
+		const int DAY = 2;		// ì¼ê°„
+		const int WEEK = 3;		// ì£¼ê°„
+		const int MONTH = 4;	// ì›”ê°„
+		const int NONE = 5;		// ë¬´ì œí•œ
 	}
 
 	namespace B2FactoryResultType
 	{
-		const int FAIL = 1;			// ½ÇÆĞ
-		const int SUCCESS = 2;		// ¼º°ø
-		const int HUGE_SUCCESS = 3;	// ´ë¼º°ø
+		const int FAIL = 1;			// ì‹¤íŒ¨
+		const int SUCCESS = 2;		// ì„±ê³µ
+		const int HUGE_SUCCESS = 3;	// ëŒ€ì„±ê³µ
 	}
 
 	namespace B2FactoryVisibleType
 	{
-		const int CLOSE = 1;	// ºñ°ø°³
-		const int OPEN = 2;		// °ø°³
-		const int PERIOD = 3;	// ±â°£°ø°³
+		const int CLOSE = 1;	// ë¹„ê³µê°œ
+		const int OPEN = 2;		// ê³µê°œ
+		const int PERIOD = 3;	// ê¸°ê°„ê³µê°œ
 	}
 
 	namespace B2DonationConsumableType
@@ -1248,21 +1250,21 @@ namespace b2network {
 
 	namespace B2PowerCategory
 	{
-		const int TOTAL_POWER = 0;        // Ä³¸¯ÅÍ ÀüÅõ·Â ÃÑÇÕ
+		const int TOTAL_POWER = 0;        // ìºë¦­í„° ì „íˆ¬ë ¥ ì´í•©
 
-		const int STAT_POWER = 1;         // Ä³¸¯ÅÍ ½ºÅİ¿¡ ÀÇÇÑ ÀüÅõ·Â
-		const int ITEM_POWER = 2;         // ÀåÂø ¾ÆÀÌÅÛ¿¡ ÀÇÇÑ ÀüÅõ·Â
-		const int COSTUME_POWER = 3;      // ÀåÂø ÄÚ½ºÃõ¿¡ ÀÇÇÑ ÀüÅõ·Â
-		const int SET_ITEM_POWER = 4;     // ÀåÂø ¾ÆÀÌÅÛÀÇ ¼¼Æ®È¿°ú¿¡ ÀÇÇÑ ÀüÅõ·Â
-		const int RANK_POWER = 5;         // Ä³¸¯ÅÍ Áø±Ş¿¡ ÀÇÇÑ ÀüÅõ·Â
-		const int WING_POWER = 6;         // Ä³¸¯ÅÍ ³¯°³¿¡ ÀÇÇÑ ÀüÅõ·Â
-		const int RELIC_POWER = 7;        // Ä³¸¯ÅÍ À¯¹°¿¡ ÀÇÇÑ ÀüÅõ·Â
-		const int SKILL_POWER = 8;        // Ä³¸¯ÅÍ ½ºÅ³¿¡ ÀÇÇÑ ÀüÅõ·Â
-		const int UNITY_SKILL_POWER = 9;  // °á¼Ó ½ºÅ³¿¡ ÀÇÇÑ ÀüÅõ·Â
-		const int AETHER_POWER = 10;      // Ä³¸¯ÅÍÀÇ ¿¡Å×¸£¿¡ ÀÇÇÑ ÀüÅõ·Â
-		const int FAIRY_POWER = 11;       // Æä¾î¸® Ãàº¹ È¿°ú¿¡ ÀÇÇÑ ÀüÅõ·Â
-		const int TOTEM_POWER = 12;		  // ÀåÂø ÅäÅÛ¿¡ ÀÇÇÑ ÀüÅõ·Â
-		const int SET_COSTUME_POWER = 13; // Âø¿ë ÄÚ½ºÆ¬ÀÇ ¼¼Æ®È¿°ú¿¡ ÀÇÇÑ ÀüÅõ·Â
+		const int STAT_POWER = 1;         // ìºë¦­í„° ìŠ¤í…Ÿì— ì˜í•œ ì „íˆ¬ë ¥
+		const int ITEM_POWER = 2;         // ì¥ì°© ì•„ì´í…œì— ì˜í•œ ì „íˆ¬ë ¥
+		const int COSTUME_POWER = 3;      // ì¥ì°© ì½”ìŠ¤ì¸”ì— ì˜í•œ ì „íˆ¬ë ¥
+		const int SET_ITEM_POWER = 4;     // ì¥ì°© ì•„ì´í…œì˜ ì„¸íŠ¸íš¨ê³¼ì— ì˜í•œ ì „íˆ¬ë ¥
+		const int RANK_POWER = 5;         // ìºë¦­í„° ì§„ê¸‰ì— ì˜í•œ ì „íˆ¬ë ¥
+		const int WING_POWER = 6;         // ìºë¦­í„° ë‚ ê°œì— ì˜í•œ ì „íˆ¬ë ¥
+		const int RELIC_POWER = 7;        // ìºë¦­í„° ìœ ë¬¼ì— ì˜í•œ ì „íˆ¬ë ¥
+		const int SKILL_POWER = 8;        // ìºë¦­í„° ìŠ¤í‚¬ì— ì˜í•œ ì „íˆ¬ë ¥
+		const int UNITY_SKILL_POWER = 9;  // ê²°ì† ìŠ¤í‚¬ì— ì˜í•œ ì „íˆ¬ë ¥
+		const int AETHER_POWER = 10;      // ìºë¦­í„°ì˜ ì—í…Œë¥´ì— ì˜í•œ ì „íˆ¬ë ¥
+		const int FAIRY_POWER = 11;       // í˜ì–´ë¦¬ ì¶•ë³µ íš¨ê³¼ì— ì˜í•œ ì „íˆ¬ë ¥
+		const int TOTEM_POWER = 12;		  // ì¥ì°© í† í…œì— ì˜í•œ ì „íˆ¬ë ¥
+		const int SET_COSTUME_POWER = 13; // ì°©ìš© ì½”ìŠ¤íŠ¬ì˜ ì„¸íŠ¸íš¨ê³¼ì— ì˜í•œ ì „íˆ¬ë ¥
 	};
 
 	namespace B2SealSlotOpenPriceType
@@ -1294,8 +1296,8 @@ namespace b2network {
 	DECLARE_BEGIN(B2GlobalAccountInfo)
 		B2_DECLARE_FIELD(0, int64, account_id)
 		B2_DECLARE_FIELD(1, FString, nickname)
-		B2_DECLARE_FIELD(2, int32, type)						// °èÁ¤Å¸ÀÔ, @see B2AccountType
-		B2_DECLARE_FIELD(3, int32, status)						// °èÁ¤»óÅÂ, @see B2AccountStatus
+		B2_DECLARE_FIELD(2, int32, type)						// ê³„ì •íƒ€ì…, @see B2AccountType
+		B2_DECLARE_FIELD(3, int32, status)						// ê³„ì •ìƒíƒœ, @see B2AccountStatus
 	DECLARE_END(4)
 
 	//////////////////////////////////////////////////////////////////////////
@@ -1542,31 +1544,31 @@ namespace b2network {
 
 	//////////////////////////////////////////////////////////////////////////
 	DECLARE_BEGIN(B2AetherServerInfo)
-		B2_DECLARE_FIELD(0, int64, id)							// ¿¡Å×¸£ °íÀ¯ ¾ÆÀÌµğ
-		B2_DECLARE_FIELD(1, int32, type)						// ¿¡Å×¸£ Å¸ÀÔ, @see B2AetherType
-		B2_DECLARE_FIELD(2, int32, slot)						// ¿¡Å×¸£ ½½·Ô(shape)
-		B2_DECLARE_FIELD(3, int32, character_type)				// ÇöÀç »ç¿ëÁßÀÎ Ä³¸¯ÅÍ Å¸ÀÔ, @see B2CharacterType
-		B2_DECLARE_FIELD(4, int32, level)						// ·¹º§
-		B2_DECLARE_FIELD(5, int32, grade)						// µî±Ş
-		B2_DECLARE_FIELD(6, int32, tier)						// »ı¼º ½Ã ºÎ¿©µÈ Æ¼¾î, @see B2AetherTierType
-		B2_DECLARE_FIELD(7, int32, main_option_id)				// ¸ŞÀÎ ¿É¼Ç ¾ÆÀÌµğ
-		B2_DECLARE_FIELD(8, float, main_option_value)			// ¸ŞÀÎ ¿É¼Ç °ª
-		B2_DECLARE_FIELD(9, int32, sub_option_id1)				// º¸Á¶ ¿É¼Ç Á¾·ù 1
-		B2_DECLARE_FIELD(10, int32, sub_option_id2)			// º¸Á¶ ¿É¼Ç Á¾·ù 2
-		B2_DECLARE_FIELD(11, int32, sub_option_id3)			// º¸Á¶ ¿É¼Ç Á¾·ù 3
-		B2_DECLARE_FIELD(12, float, sub_option_value1)			// º¸Á¶ ¿É¼Ç °ª 1
-		B2_DECLARE_FIELD(13, float, sub_option_value2)			// º¸Á¶ ¿É¼Ç °ª 2
-		B2_DECLARE_FIELD(14, float, sub_option_value3)			// º¸Á¶ ¿É¼Ç °ª 3
-		B2_DECLARE_FIELD(15, int32, sub_option_enhance_count1)	// º¸Á¶ ¿É¼Ç °­È­ ¼öÄ¡ 1
-		B2_DECLARE_FIELD(16, int32, sub_option_enhance_count2)	// º¸Á¶ ¿É¼Ç °­È­ ¼öÄ¡ 2
-		B2_DECLARE_FIELD(17, int32, sub_option_enhance_count3)	// º¸Á¶ ¿É¼Ç °­È­ ¼öÄ¡ 3
-		B2_DECLARE_FIELD(18, bool, locked)						// Àá±İ »óÅÂ ¿©ºÎ
-		B2_DECLARE_FIELD(19, bool, is_new)						// ½Å±Ô ¿©ºÎ
-		B2_DECLARE_FIELD(20, float, calc_main_option_value)	// °è»êµÈ ÃÖÁ¾ ¸ŞÀÎ ¿É¼Ç °ª
-		B2_DECLARE_FIELD(21, float, calc_sub_option_value1)	// °è»êµÈ ÃÖÁ¾ º¸Á¶ ¿É¼Ç °ª 1
-		B2_DECLARE_FIELD(22, float, calc_sub_option_value2)	// °è»êµÈ ÃÖÁ¾ º¸Á¶ ¿É¼Ç °ª 2
-		B2_DECLARE_FIELD(23, float, calc_sub_option_value3)	// °è»êµÈ ÃÖÁ¾ º¸Á¶ ¿É¼Ç °ª 3
-		B2_DECLARE_FIELD(24, int32, calc_tier)					// °è»êµÈ ÃÖÁ¾ Æ¼¾î, @see B2AetherTierType
+		B2_DECLARE_FIELD(0, int64, id)							// ì—í…Œë¥´ ê³ ìœ  ì•„ì´ë””
+		B2_DECLARE_FIELD(1, int32, type)						// ì—í…Œë¥´ íƒ€ì…, @see B2AetherType
+		B2_DECLARE_FIELD(2, int32, slot)						// ì—í…Œë¥´ ìŠ¬ë¡¯(shape)
+		B2_DECLARE_FIELD(3, int32, character_type)				// í˜„ì¬ ì‚¬ìš©ì¤‘ì¸ ìºë¦­í„° íƒ€ì…, @see B2CharacterType
+		B2_DECLARE_FIELD(4, int32, level)						// ë ˆë²¨
+		B2_DECLARE_FIELD(5, int32, grade)						// ë“±ê¸‰
+		B2_DECLARE_FIELD(6, int32, tier)						// ìƒì„± ì‹œ ë¶€ì—¬ëœ í‹°ì–´, @see B2AetherTierType
+		B2_DECLARE_FIELD(7, int32, main_option_id)				// ë©”ì¸ ì˜µì…˜ ì•„ì´ë””
+		B2_DECLARE_FIELD(8, float, main_option_value)			// ë©”ì¸ ì˜µì…˜ ê°’
+		B2_DECLARE_FIELD(9, int32, sub_option_id1)				// ë³´ì¡° ì˜µì…˜ ì¢…ë¥˜ 1
+		B2_DECLARE_FIELD(10, int32, sub_option_id2)			// ë³´ì¡° ì˜µì…˜ ì¢…ë¥˜ 2
+		B2_DECLARE_FIELD(11, int32, sub_option_id3)			// ë³´ì¡° ì˜µì…˜ ì¢…ë¥˜ 3
+		B2_DECLARE_FIELD(12, float, sub_option_value1)			// ë³´ì¡° ì˜µì…˜ ê°’ 1
+		B2_DECLARE_FIELD(13, float, sub_option_value2)			// ë³´ì¡° ì˜µì…˜ ê°’ 2
+		B2_DECLARE_FIELD(14, float, sub_option_value3)			// ë³´ì¡° ì˜µì…˜ ê°’ 3
+		B2_DECLARE_FIELD(15, int32, sub_option_enhance_count1)	// ë³´ì¡° ì˜µì…˜ ê°•í™” ìˆ˜ì¹˜ 1
+		B2_DECLARE_FIELD(16, int32, sub_option_enhance_count2)	// ë³´ì¡° ì˜µì…˜ ê°•í™” ìˆ˜ì¹˜ 2
+		B2_DECLARE_FIELD(17, int32, sub_option_enhance_count3)	// ë³´ì¡° ì˜µì…˜ ê°•í™” ìˆ˜ì¹˜ 3
+		B2_DECLARE_FIELD(18, bool, locked)						// ì ê¸ˆ ìƒíƒœ ì—¬ë¶€
+		B2_DECLARE_FIELD(19, bool, is_new)						// ì‹ ê·œ ì—¬ë¶€
+		B2_DECLARE_FIELD(20, float, calc_main_option_value)	// ê³„ì‚°ëœ ìµœì¢… ë©”ì¸ ì˜µì…˜ ê°’
+		B2_DECLARE_FIELD(21, float, calc_sub_option_value1)	// ê³„ì‚°ëœ ìµœì¢… ë³´ì¡° ì˜µì…˜ ê°’ 1
+		B2_DECLARE_FIELD(22, float, calc_sub_option_value2)	// ê³„ì‚°ëœ ìµœì¢… ë³´ì¡° ì˜µì…˜ ê°’ 2
+		B2_DECLARE_FIELD(23, float, calc_sub_option_value3)	// ê³„ì‚°ëœ ìµœì¢… ë³´ì¡° ì˜µì…˜ ê°’ 3
+		B2_DECLARE_FIELD(24, int32, calc_tier)					// ê³„ì‚°ëœ ìµœì¢… í‹°ì–´, @see B2AetherTierType
 	DECLARE_END(25)
 
 	//////////////////////////////////////////////////////////////////////////
@@ -1592,9 +1594,9 @@ namespace b2network {
 		B2_DECLARE_FIELD(4, int32, grade)
 		B2_DECLARE_FIELD(5, int32, main_option_id)
 		B2_DECLARE_FIELD(6, float, main_option_value)
-		B2_DECLARE_FIELD(7, TArray<B2TotemSubOptionDetailPtr>, sub_option_details)		// ¼ø¼­´ë·Î 1, 2, 3¹ø ¿É¼Ç
-		B2_DECLARE_FIELD(8, int32, refine_level)										// Á¦·Ã ·¹º§ (¿É¼Ç1, 2ÀÇ Á¦·ÃÈ½¼ö ÇÕ)
-		B2_DECLARE_FIELD(9, int32, refine_try_count)									// Á¦·Ã ½Ãµµ È½¼ö (°¢ ¿É¼ÇÀÇ Á¦·Ã ½Ãµµ È½¼ö ÇÕ)
+		B2_DECLARE_FIELD(7, TArray<B2TotemSubOptionDetailPtr>, sub_option_details)		// ìˆœì„œëŒ€ë¡œ 1, 2, 3ë²ˆ ì˜µì…˜
+		B2_DECLARE_FIELD(8, int32, refine_level)										// ì œë ¨ ë ˆë²¨ (ì˜µì…˜1, 2ì˜ ì œë ¨íšŸìˆ˜ í•©)
+		B2_DECLARE_FIELD(9, int32, refine_try_count)									// ì œë ¨ ì‹œë„ íšŸìˆ˜ (ê° ì˜µì…˜ì˜ ì œë ¨ ì‹œë„ íšŸìˆ˜ í•©)
 		B2_DECLARE_FIELD(10, int32, gold_success_rate)
 		B2_DECLARE_FIELD(11, int32, piece_success_rate)
 		B2_DECLARE_FIELD(12, bool, locked)
@@ -1984,8 +1986,8 @@ namespace b2network {
 		B2_DECLARE_FIELD(1, int32, act_id)
 		B2_DECLARE_FIELD(2, int32, reward_index)
 		B2_DECLARE_FIELD(3, int32, require_star_count)
-		B2_DECLARE_FIELD(4, int32, reward_gold)	// @NOTE »èÁ¦ ¿¹Á¤
-		B2_DECLARE_FIELD(5, int32, reward_gem)		// @NOTE »èÁ¦ ¿¹Á¤
+		B2_DECLARE_FIELD(4, int32, reward_gold)	// @NOTE ì‚­ì œ ì˜ˆì •
+		B2_DECLARE_FIELD(5, int32, reward_gem)		// @NOTE ì‚­ì œ ì˜ˆì •
 		B2_DECLARE_FIELD(6, TArray<B2RewardPtr>, rewards)
 		B2_DECLARE_FIELD(7, bool, received)
 	DECLARE_END(8)
@@ -3953,9 +3955,9 @@ namespace b2network {
 
 	//////////////////////////////////////////////////////////////////////////
 	DECLARE_BEGIN(B2PointShopEventRewardHistory)
-		B2_DECLARE_FIELD(0, int32, event_id)				// ÀÌº¥Æ® °íÀ¯ ¹øÈ£
-		B2_DECLARE_FIELD(1, int32, index)					// º¸»ó °íÀ¯ ¹øÈ£
-		B2_DECLARE_FIELD(2, int32, total_reward_count)		// ´©Àû º¸»ó(±³È¯) È½¼ö
+		B2_DECLARE_FIELD(0, int32, event_id)				// ì´ë²¤íŠ¸ ê³ ìœ  ë²ˆí˜¸
+		B2_DECLARE_FIELD(1, int32, index)					// ë³´ìƒ ê³ ìœ  ë²ˆí˜¸
+		B2_DECLARE_FIELD(2, int32, total_reward_count)		// ëˆ„ì  ë³´ìƒ(êµí™˜) íšŸìˆ˜
 	DECLARE_END(3)
 
 	//////////////////////////////////////////////////////////////////////////
@@ -4118,7 +4120,7 @@ namespace b2network {
 	DECLARE_BEGIN(B2DonationPresent)
 		B2_DECLARE_FIELD(0, int32, item_template_id)
 		B2_DECLARE_FIELD(1, int32, amount)
-		B2_DECLARE_FIELD(2, int32, donation_consumable_type)		// ±âºÎ º¸»ó : ¼Ò¸ğÇ° Å¸ÀÔ Á¤º¸ (UNDEFINED ÀÌ¸é Àåºñ ¾ÆÀÌÅÛ)
+		B2_DECLARE_FIELD(2, int32, donation_consumable_type)		// ê¸°ë¶€ ë³´ìƒ : ì†Œëª¨í’ˆ íƒ€ì… ì •ë³´ (UNDEFINED ì´ë©´ ì¥ë¹„ ì•„ì´í…œ)
 	DECLARE_END(3)
 
 	//////////////////////////////////////////////////////////////////////////

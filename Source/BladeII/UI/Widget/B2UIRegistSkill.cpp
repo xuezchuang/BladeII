@@ -1,4 +1,4 @@
-#include "B2UIRegistSkill.h"
+ï»¿#include "B2UIRegistSkill.h"
 #include "B2UIManager.h"
 #include "B2PCClassInfoBox.h"
 #include "B2SkillInfo.h"
@@ -273,7 +273,7 @@ TWeakObjectPtr<UB2UIPlayerSkillInfo> UB2UIRegistSkill::GetSkillSlot(int SkillId)
 //			WidgetPart->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
 //
 //			WidgetPart->SetSkillId(SkillId);
-//			// GetButtonIconStyle ¿¡ ·ÎµùÀÌ ÀÖ¾î¼­ const ¸¦ »©¾ß ÇÔ..
+//			// GetButtonIconStyle ä¿Š è‚ºçˆ¹æ ä¹ç»¢è¾‘ const ç”« å“—å…· çªƒ..
 //			UB2SkillInfo* CastedNonConstSkillInfo = const_cast<UB2SkillInfo*>(AllSkillInfo);
 //			if (CastedNonConstSkillInfo){
 //				WidgetPart->SetButtonStyle(CastedNonConstSkillInfo->GetButtonIconStyle(SkillId));

@@ -1,4 +1,4 @@
-#include "B2UIResurrectBuffIcon.h"
+ï»¿#include "B2UIResurrectBuffIcon.h"
 #include "B2UIManager.h"
 #include "B2UIDocHelper.h"
 
@@ -47,7 +47,7 @@ void UB2UIResurrectBuffIcon::SetSelected(bool bSelect)
 
 	if (bIsSelected)
 	{
-		// ´Ù¸¥ Å¸ÀÔÀ» ²ô±â À§ÇØ ¿ÜºÎ·Î ÀÌº¥Æ® ÀüÆÄ.
+		// ä¿ƒå¼— é¸¥æ¶é˜‘ æºæ‰ å›°ç§¦ å¯‡ä½•è‚º æäº¥é£˜ å‚ˆé¢‡.
 		OnSelectedOuterDelegate.ExecuteIfBound(MyBuffType);
 	}
 
@@ -110,6 +110,6 @@ void UB2UIResurrectBuffIcon::OnClickBtnArea()
 {
 	if (MyBuffType != EResurrectBuffType::RBT_None || MyBuffType != EResurrectBuffType::RBT_End)
 	{
-		SetSelected(true);  // On/Off Åä±ÛÀÌ ¾Æ´Ñ ¶óµğ¿À¹öÆ°Ã³·³ ¼±ÅÃ¸¸. ´ë½Å SetSelected ¿¡¼­ ´Ù¸¥ °ÍµéÀ» ²ô±â À§ÇØ ¿ÜºÎ·Î ÀÌº¥Æ®¸¦ ÀüÆÄÇÒ °Í.
+		SetSelected(true);  // On/Off é…è‡‚æ é…’å›± æ‰¼å¼å·æ»šç“¢è´¸çƒ¦ æ€¥ç¶çˆ¶. æªè„š SetSelected ä¿Šè¾‘ ä¿ƒå¼— å·´ç”¸é˜‘ æºæ‰ å›°ç§¦ å¯‡ä½•è‚º æäº¥é£˜ç”« å‚ˆé¢‡ä¸” å·´.
 	}
 }

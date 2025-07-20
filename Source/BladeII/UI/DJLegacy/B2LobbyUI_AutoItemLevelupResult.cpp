@@ -29,7 +29,7 @@ void UB2LobbyUI_AutoItemLevelupResult::StartFromLobby(class UB2UIManager_Lobby* 
 	if (LobbyInven)
 	{
 		TArray<FB2Item> ResultItems;
-		LobbyInven->GetCachedAutoItemLevelupResultItems(ResultItems); // ¿ä°Ç µü ÀÌ ÆäÀÌÁö ½ÃÀÛ ½ÃÁ¡¿¡¸¸ »ç¿ë °¡´ÉÇÒ °ÍÀÓ. (UB2LobbyInventory::EndAutoItemEnhance)
+		LobbyInven->GetCachedAutoItemLevelupResultItems(ResultItems); // å¤¸æ‰’ è¿­ æ å…¶æç˜¤ çŸ«ç´¯ çŸ«ç—¢ä¿Šçˆ¶ è¤ä¾© å•Šç“·ä¸” å·´çƒ™. (UB2LobbyInventory::EndAutoItemEnhance)
 		UpdateResultItemIcons(ResultItems);
 	}
 
@@ -66,7 +66,7 @@ void UB2LobbyUI_AutoItemLevelupResult::UpdateResultItemIcons(const TArray<FB2Ite
 		return;
 	}
 
-	// B2LobbyUI_InventoryMain ¿¡¼­ ÇÏ´Â °Å¶û ¸¶Âù°¡Áö
+	// B2LobbyUI_InventoryMain ä¿Šè¾‘ çªç»° èŠ­å°” ä»˜è›®å•Šç˜¤
 	const int32 InventoryRowMaxCount = DynItemIconRowMaxCount::AutoLevelupResult;
 	const int32 RequiredRowNum = (FMath::Max(0, InResultItems.Num() - 1) / InventoryRowMaxCount) + 1;
 	for (int RI = 0; RI < RequiredRowNum; ++RI)
@@ -77,12 +77,12 @@ void UB2LobbyUI_AutoItemLevelupResult::UpdateResultItemIcons(const TArray<FB2Ite
 		}
 
 		UScrollBoxSlot* AddedRowSlot = Cast<UScrollBoxSlot>(SB_ItemDisplayPanel->AddChild(NewItemRow));
-		// ÇÊ¿ä¿¡ µû¶ó AddedRowSlot ¸¦ Á¶Àı..
+		// é˜å¤¸ä¿Š è¶æ‰¼ AddedRowSlot ç”« ç‚¼ä¾‹..
 
 		NewItemRow->SetInventorySlotMaxCount(DynItemIconRowMaxCount::AutoLevelupResult);
-		// NewItemRow ´Â ¿©ÀüÈ÷ CanvasPanel ¼öÁØÀÌ°í ¿©±â¿¡ ½ÇÁ¦ ¾ÆÀÌÅÛ ¾ÆÀÌÄÜµéÀ» ÃÄ³Ö´Â´Ù.
-		NewItemRow->UpdateItemIcons(InResultItems, RI * InventoryRowMaxCount, NULL); // 3¹øÂ° ÀÎÀÚ´Â º¹ÇÕ ½ºÅ©·Ñ Ã³¸®¸¦ ÇØ¾ß ÇÏ´Â ¸ŞÀÎ º¸°üÇÔ¿¡¼­¸¸ ÇÊ¿ä.
-		// AutoEnhanceResult IconUsage ¿¡¼­´Â ¾ÆÀÌÄÜ ÀÚÃ¼´Â ÀÔ·ÂÀ» ÆĞ½ºÇÏ°í ½ºÅ©·Ñ¸¸ µÇµµ·Ï ¼¼ÆÃµÉ °Í.
+		// NewItemRow ç»° å’¯å‚ˆæ´’ CanvasPanel èéœ–æç»Š å’¯æ‰ä¿Š è§’åŠ› é…’æè¢ é…’æèƒ½ç”¸é˜‘ åªšæŒç»°ä¿ƒ.
+		NewItemRow->UpdateItemIcons(InResultItems, RI * InventoryRowMaxCount, NULL); // 3é”…æ³ ç‰¢ç£Šç»° æ±—é’¦ èƒ¶å†œè´¹ è´¸åºœç”« ç§¦å…· çªç»° çš‹ç‰¢ ç„ŠåŒ…çªƒä¿Šè¾‘çˆ¶ é˜å¤¸.
+		// AutoEnhanceResult IconUsage ä¿Šè¾‘ç»° é…’æèƒ½ ç£Šçœ‰ç»° æ¶ä»¿é˜‘ è©èƒ¶çªç»Š èƒ¶å†œè´¹çˆ¶ ç™»æ¡£åºŸ æŠ€æ³¼çª å·´.
 		NewItemRow->OverrideItemIconUsage(ELobbyInvenItemIconUsage::EEIIT_AutoEnhanceResult);
 		NewItemRow->PlayEnhanceResultAnims();
 		CreatedItemRows.Add(NewItemRow);
@@ -112,6 +112,6 @@ void UB2LobbyUI_AutoItemLevelupResult::OnConfirmBtnClicked()
 
 void UB2LobbyUI_AutoItemLevelupResult::CloseMe()
 { 
-	// ÀÌ Ã¢ÀÌ ¿­·ÁÀÖÀ» ¶© ÀÌ¹Ì ÀÚµ¿°­È­ ¸ğµå ÀÚÃ¼´Â ³¡³­ »óÅÂÀÓ. Ã¢¸¸ ´İ¾ÆÁØ´Ù.
+	// æ èŠ’æ å‡¯å¦¨ä¹é˜‘ è®¢ æå›º ç£Šæ‚¼ç¢æ‹³ è‘›é› ç£Šçœ‰ç»° åœºæŠ„ æƒ‘æ€•çƒ™. èŠ’çˆ¶ æ‘§é…’éœ–ä¿ƒ.
 	//DJLegacy_CloseLobbySubPopupClass<ELobbySubPopups>::GetInstance().Signal(ELobbySubPopups::ELSPU_AutoItemLevelupResult);
 }

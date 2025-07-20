@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 //#include "BladeII.h"
@@ -472,7 +472,7 @@ private:
 
 	TArray<std::shared_ptr<issue>> Issues;
 	
-public: // ¿©±âºÎÅÏ ÇÏµåÄÚµùÀÇ ¿µ¿ª
+public: // å’¯æ‰ä½•ç•” çªé›å†…çˆ¹ç‹¼ åº·å¼€
 	void CloseLobbyMainCombineMenu();
 
 	void InitHardCodingProperties();
@@ -494,7 +494,7 @@ public: // ¿©±âºÎÅÏ ÇÏµåÄÚµùÀÇ ¿µ¿ª
 	EPCClass m_epcRequestPrepareClass;
 	EPCClass GetTutorialRequestPrepareClass() { return m_epcRequestPrepareClass; }
 
-	// Àåºñ ·¹º§¾÷
+	// å˜åš é¥­éª‡è¯€
 	UB2UnitedWidgetBase* CachedUIItemIcon;
 	void SetCachedUIItemIcon(UB2UnitedWidgetBase* pItemIcon);
 	
@@ -515,7 +515,7 @@ public: // ¿©±âºÎÅÏ ÇÏµåÄÚµùÀÇ ¿µ¿ª
 	DECLARESTEP_ACTION_EXCEPTION(TutorialID_CounterDungeon, 4);
 	//UB2UnitedWidgetBase* CachedDungeonSlot;
 
-	//Á¡·ÉÀü
+	//ç—¢é£å‚ˆ
 #define TutorialStep_Occupy_InitAndCenterCamera 11
 #define TutorialStep_Occupy_BotCamera 14
 #define TutorialStep_Occupy_TopCamera 16
@@ -528,7 +528,7 @@ public: // ¿©±âºÎÅÏ ÇÏµåÄÚµùÀÇ ¿µ¿ª
 	DECLARESTEP_ACTION_EXCEPTION(TutorialID_Occupy, TutorialStep_Occupy_IngameCamera);
 	DECLARESTEP_ACTION_EXCEPTION(TutorialID_Occupy, TutorialStep_Occupy_SetIngame);
 
-	//Àåºñ °­È­
+	//å˜åš ç¢æ‹³
 	DECLARESTEP_ACTION_EXCEPTION(TutorialID_ItemEnhance, 0);
 	bool bReadyForEnhance;
 

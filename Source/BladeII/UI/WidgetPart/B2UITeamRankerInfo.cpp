@@ -1,4 +1,4 @@
-
+ï»¿
 #include "B2UITeamRankerInfo.h"
 #include "B2UIDocHelper.h"
 #include "B2UIDocHero.h"
@@ -38,7 +38,7 @@ void UB2UITeamRankerInfo::CacheAssets()
 	GET_SLOT(UTextBlock, TB_TotalDefencePoint);
 	GET_SLOT(UTextBlock, TB_CombatPower);
 
-	// [@AKI, 170419] M16¿¡¼­ Á¦°Å µÇ¾úÀ¸³ª UI¿¡¼­ ¸¸¾à »èÁ¦¸¦ ¾ÈÇßÀ» °æ¿ì¸¦ ´ëºñÇØ VisibleÀ» ¾ÈÇÏ°Ô ÇÔ
+	// [@AKI, 170419] M16ä¿Šè¾‘ åŠ›èŠ­ ç™»èŒæ å”± UIä¿Šè¾‘ çˆ¶è· æ˜åŠ›ç”« æ•‘æ²é˜‘ ç‰ˆå¿«ç”« æŽªåŽšç§¦ Visibleé˜‘ æ•‘çªéœ¸ çªƒ
 	GET_SLOT(UTextBlock, TB_PlayerLevel);
 	if (TB_PlayerLevel.IsValid())
 	{
@@ -91,7 +91,7 @@ void UB2UITeamRankerInfo::SetRankerInfo(const FModRankerInfo& RankerInfo, bool b
 		TB_Ranking->SetVisibility(RankerInfo.Rank > 3 ? ESlateVisibility::HitTestInvisible : ESlateVisibility::Hidden);
 	}
 
-	//if (TB_PlayerLevel.IsValid()) //À¯Àú·¹º§°³³ä.
+	//if (TB_PlayerLevel.IsValid()) //èœ¡åŽ†é¥­éª‡ä¿ºå…….
 	//	TB_PlayerLevel->SetText(FText::Format(BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), TEXT("PVP1on1_RankerLevel")), FText::AsNumber(RankerInfo.EntryLevels[0])));
 
 	if (TB_PlayerName.IsValid())

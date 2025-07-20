@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 //#include "BladeII.h"
 //#include "UObject/Object.h"
 #include "Event.h"
@@ -122,227 +122,227 @@ public:
 
 	////////////////////////////////////////////////
 	
-	// Æä¾î¸® Á¤º¸
+	// å…¶ç»¢åºœ æ²¥ç„Š
 	bool GetFairyInfo(EFairyType Fairy, FB2FairyStatusInfo &OutData);
 	void GetFairyInfos(TArray<FB2FairyStatusInfo> &OutData);
 
-	// Æä¾î¸® ÀÌ¸§ °¡Á®¿À±â
+	// å…¶ç»¢åºœ ææŠš å•Šå»‰å·æ‰
 	FText GetFairyName(EFairyType Type);
 
-	// Ãàº¹ ÀÌ¸§ °¡Á®¿À±â
+	// ç»µæ±— ææŠš å•Šå»‰å·æ‰
 	FText GetBlessOptionName(int32 OptionId);
 	
-	// Æä¾î¸® ¿ÀÇÂ ½ºÅ×ÀÌÁö Á¤º¸ °¡Á®¿À±â
+	// å…¶ç»¢åºœ å·é”¹ èƒ¶æŠ›æç˜¤ æ²¥ç„Š å•Šå»‰å·æ‰
 	FText GetFairyOpenStageName(EFairyType Type);
 
-	// ´ÙÀ½ ·¹º§ Æä¾î¸® Á¤º¸
+	// ä¿ƒæ¾œ é¥­éª‡ å…¶ç»¢åºœ æ²¥ç„Š
 	bool GetFairyNextLevelInfo(EFairyType Fairy, FB2FairyStatusInfo &OutData);
 
 	////////////////////////////////////////////////
 
-	// Æä¾î¸® ÃÖ´ë ·¹º§
+	// å…¶ç»¢åºœ å¼¥æª é¥­éª‡
 	int32 GetFairyLevelUpMax();
 
-	// Æä¾î¸® ·¹º§ ºñ¿ë
+	// å…¶ç»¢åºœ é¥­éª‡ åšä¾©
 	int32 GetFairyLevelUpCost(int32 Level);
 
 	/*
-	* ÆäÀÌ·¯ Å×ÀÌºí Á¤º¸ °¡Á®¿À±â
+	* å…¶æçŸ¾ æŠ›æå–‰ æ²¥ç„Š å•Šå»‰å·æ‰
 	*/
 	const FFairyBelssInfo* GetFairyBlessInfo(EFairyType Target, int32 OptionId);
 
 	/**
-	* ¸®½ºÆ®¿¡ º¸¿©ÁÙ Ãàº¹ ¸ñ·Ï °¡Á®¿À±â
+	* åºœèƒ¶é£˜ä¿Š ç„Šå’¯ä¸´ ç»µæ±— æ ¼åºŸ å•Šå»‰å·æ‰
 	*
 	*/
 	bool GetFairyBlessSlotInfoAll(const EFairyType Target, TArray<FB2FairyBlessSlotInfo> &OutList);
 
 	/**
-	* ¸®½ºÆ®¿¡ º¸¿©ÁÙ ¿ÀÇÂµÈ Ãàº¹ Á¤º¸ °¡Á®¿À±â
+	* åºœèƒ¶é£˜ä¿Š ç„Šå’¯ä¸´ å·é”¹ç­‰ ç»µæ±— æ²¥ç„Š å•Šå»‰å·æ‰
 	*
 	*/
 	bool GetFairyOpendBlessInfo(EFairyType Target, int32 OptionId, int32 FairyLevel, FMD_FairyInfo &OutData);
 
-	// ¿É¼Ç IDÀÇ ¼öÄ¡ ¸ñ·Ï °¡Á®¿À±â
+	// å¯è®° IDç‹¼ èæ‘¹ æ ¼åºŸ å•Šå»‰å·æ‰
 	bool GetFairyBlessInfoAll(EFairyType Target, int32 OptionId, TArray<FMD_FairyInfo> &OutList);
 
-	// FairyLevelº¸´Ù Å« Á¤º¸ °¡Á®¿À±â
+	// FairyLevelç„Šä¿ƒ å¥´ æ²¥ç„Š å•Šå»‰å·æ‰
 	bool GetFairyNextBlessInfo(EFairyType Target,int32 FairyLevel, FMD_FairyInfo &OutData);
 
-	// FairyLevel ÀÇ Á¤º¸ °¡Á®¿À±â
+	// FairyLevel ç‹¼ æ²¥ç„Š å•Šå»‰å·æ‰
 	bool GetFairyTargetBlessInfo(EFairyType Target, int32 FairyLevel, FMD_FairyInfo &OutData);
 
-	// Æä¾î¸® ·¹º§A¿Í ·¹º§BÀÇ Ãàº¹ÀÌ °°ÀºÁö °Ë»ç (true:°°À½)
+	// å…¶ç»¢åºœ é¥­éª‡Aå®¢ é¥­éª‡Bç‹¼ ç»µæ±—æ éç¯®ç˜¤ å…«è¤ (true:éæ¾œ)
 	bool IsSameFairyBlessInfo(EFairyType Target, int32 LevelA, int32 LevelB);
 
 	/**
-	* (ÇÁ·ÎÅäÄİ) Æä¾î¸® Á¤º¸ Á¶È¸
+	* (æ©‡è‚ºé…å¦®) å…¶ç»¢åºœ æ²¥ç„Š ç‚¼é›€
 	*
 	*/
 	void RequestGetFairy();
 
 	/**
-	* (ÇÁ·ÎÅäÄİ)Æä¾î¸® ·¹º§¾÷ ¿äÃ»
+	* (æ©‡è‚ºé…å¦®)å…¶ç»¢åºœ é¥­éª‡è¯€ å¤¸æ²¡
 	*
-	* @param TargetFairy ·¹º§¾÷ ÇÒ ÆäÀÌ·¯ Å¸ÀÔ Á¤º¸
+	* @param TargetFairy é¥­éª‡è¯€ ä¸” å…¶æçŸ¾ é¸¥æ¶ æ²¥ç„Š
 	*/
 	void RequestLevelUpFairy(const EFairyType TargetFairy);
 	
 	/**
-	* (ÇÁ·ÎÅäÄİ)Æä¾î¸® Ãàº¹ ¿äÃ»
+	* (æ©‡è‚ºé…å¦®)å…¶ç»¢åºœ ç»µæ±— å¤¸æ²¡
 	*
-	* @param TargetFairy Ãàº¹ Àû¿ë ÇÒ ÆäÀÌ·¯ Å¸ÀÔ Á¤º¸
-	* @param BlessOptionId Àû¿ë ÇÒ ¿É¼Ç ¾ÆÀÌµğ
+	* @param TargetFairy ç»µæ±— åˆ©ä¾© ä¸” å…¶æçŸ¾ é¸¥æ¶ æ²¥ç„Š
+	* @param BlessOptionId åˆ©ä¾© ä¸” å¯è®° é…’æå¼
 	*/
 	void RequestBlessFairy(const EFairyType TargetFairy, const int32 BlessOptionId);
 
 	/**
-	* Æ¯Á¤ Æä¾î¸® »ç¿ë °¡´É ÆÇ´ÜÇÏ±â
+	* æ¼‚æ²¥ å…¶ç»¢åºœ è¤ä¾© å•Šç“· é­„çªœçªæ‰
 	*
 	*/
 	bool GetIsOpenedFairy(const EFairyType TargetFairy);
 
 	/**
-	* Æ¯Á¤ Æä¾î¸® ¿­¸®´Â ½ºÅ×ÀÌÁö Á¤º¸ °¡Á®¿À±â
+	* æ¼‚æ²¥ å…¶ç»¢åºœ å‡¯åºœç»° èƒ¶æŠ›æç˜¤ æ²¥ç„Š å•Šå»‰å·æ‰
 	*
 	*/
 	struct FSingleStageInfoData* GetFairyOpenStageInfo(const EFairyType TargetFairy);
 
 	/**
-	* Æ¯Á¤ Æä¾î¸® ¿­¸®´Â ½ºÅ×ÀÌÁö ³­ÀÌµµ Á¤º¸ °¡Á®¿À±â
+	* æ¼‚æ²¥ å…¶ç»¢åºœ å‡¯åºœç»° èƒ¶æŠ›æç˜¤ æŠ„ææ¡£ æ²¥ç„Š å•Šå»‰å·æ‰
 	*
 	*/
 	EStageDifficulty GetFairyOpenStageDifficulty(const EFairyType TargetFairy);
 
 	
 	/**
-	* Æä¾î¸® »óÅÂ °»½Å
+	* å…¶ç»¢åºœ æƒ‘æ€• ç›è„š
 	*
-	* @param Infos Æä¾î¸® »óÅÂ Á¤º¸ ¸®½ºÆ®
+	* @param Infos å…¶ç»¢åºœ æƒ‘æ€• æ²¥ç„Š åºœèƒ¶é£˜
 	*/
 	void UpdateFairyStatus(const TArray<b2network::B2FairyStatusPtr> &Infos);
 
 	TArray<FB2FairyStatusInfo> ModUpdateFairyStatus(const TArray<b2network::B2FairyStatusPtr> &Infairies);
 
 	/**
-	* Æä¾î¸® »óÅÂ °»½Å
+	* å…¶ç»¢åºœ æƒ‘æ€• ç›è„š
 	*
 	*/
 	void UpdateFairyStatus(const b2network::B2FairyStatusPtr &Info);
 private:
 	/**
-	* Æ¯Á¤ Æä¾î¸® Á¤º¸ °¡Á®¿À±â
+	* æ¼‚æ²¥ å…¶ç»¢åºœ æ²¥ç„Š å•Šå»‰å·æ‰
 	*
-	* @param Target Æ¯Á¤ Æä¾î¸® Å¸ÀÔ Á¤º¸
-	* @param OptionId Æ¯Á¤ Æä¾î¸® Ãàº¹ ¿É¼Ç ¾ÆÀÌµğ
-	* @param BlessLevel Æ¯Á¤ Ãàº¹ Æä¾î¸® ·¹º§
-	* @param OutData Æä¾î¸® Á¤º¸ ³Ñ°Ü ÁÜ
+	* @param Target æ¼‚æ²¥ å…¶ç»¢åºœ é¸¥æ¶ æ²¥ç„Š
+	* @param OptionId æ¼‚æ²¥ å…¶ç»¢åºœ ç»µæ±— å¯è®° é…’æå¼
+	* @param BlessLevel æ¼‚æ²¥ ç»µæ±— å…¶ç»¢åºœ é¥­éª‡
+	* @param OutData å…¶ç»¢åºœ æ²¥ç„Š é€è´¥ æ·‹
 	*
-	* @return µ¥ÀÌÅÍ À¯,¹« ¿©ºÎ
+	* @return å•æç£ èœ¡,å…¬ å’¯ä½•
 	*/
 	bool GetMDFairyInfo(EFairyType Target, int32 OptionId, int32 BlessLevel, FMD_FairyInfo &OutData);
 
 	//>>----------------- MasterData Wrapper
 	/**
-	* ÀüÃ¼ Æä¾î¸® ¿­¸®´Â Á¤º¸ °¡Á®¿À±â
+	* å‚ˆçœ‰ å…¶ç»¢åºœ å‡¯åºœç»° æ²¥ç„Š å•Šå»‰å·æ‰
 	*
-	* @param OutList ÀüÃ¼ Æä¾î¸® ¿­¸®´Â Á¤º¸¸¦  ³Ñ°ÜÁÜ
+	* @param OutList å‚ˆçœ‰ å…¶ç»¢åºœ å‡¯åºœç»° æ²¥ç„Šç”«  é€è´¥æ·‹
 	*
-	* @return µ¥ÀÌÅÍ À¯,¹« ¿©ºÎ
+	* @return å•æç£ èœ¡,å…¬ å’¯ä½•
 	*/
 	bool GetMDFairyOpenInfoAll(TArray<FMD_FairyOpenInfo> &OutList);
 
 	/**
-	* Æ¯Á¤ Æä¾î¸® ¿­¸®´Â Á¤º¸ °¡Á®¿À±â
+	* æ¼‚æ²¥ å…¶ç»¢åºœ å‡¯åºœç»° æ²¥ç„Š å•Šå»‰å·æ‰
 	*
-	* @param Target Æ¯Á¤ Æä¾î¸® Å¸ÀÔ Á¤º¸
-	* @param OutData Æä¾î¸® ¿­¸®´Â Á¤º¸ ³Ñ°Ü ÁÜ
+	* @param Target æ¼‚æ²¥ å…¶ç»¢åºœ é¸¥æ¶ æ²¥ç„Š
+	* @param OutData å…¶ç»¢åºœ å‡¯åºœç»° æ²¥ç„Š é€è´¥ æ·‹
 	*
-	* @return µ¥ÀÌÅÍ À¯,¹« ¿©ºÎ
+	* @return å•æç£ èœ¡,å…¬ å’¯ä½•
 	*/
 	bool GetMDFairyOpenInfo(EFairyType Target, FMD_FairyOpenInfo &OutData);
 
 	/**
-	* ÀüÃ¼ Æä¾î¸® Á¤º¸ °¡Á®¿À±â
+	* å‚ˆçœ‰ å…¶ç»¢åºœ æ²¥ç„Š å•Šå»‰å·æ‰
 	*
-	* @param Target Æ¯Á¤ Æä¾î¸® Å¸ÀÔ Á¤º¸
-	* @param OutList ÀüÃ¼ Æä¾î¸® Á¤º¸¸¦  ³Ñ°ÜÁÜ
+	* @param Target æ¼‚æ²¥ å…¶ç»¢åºœ é¸¥æ¶ æ²¥ç„Š
+	* @param OutList å‚ˆçœ‰ å…¶ç»¢åºœ æ²¥ç„Šç”«  é€è´¥æ·‹
 	*
-	* @return µ¥ÀÌÅÍ À¯,¹« ¿©ºÎ
+	* @return å•æç£ èœ¡,å…¬ å’¯ä½•
 	*/
 	bool GetMDFairyInfoAll(EFairyType Target, TArray<FMD_FairyInfo> &OutList);
 
 	/**
-	* ÀüÃ¼ Æä¾î¸® ºí·¹½º ID ¸ñ·Ï °¡Á®¿À±â
+	* å‚ˆçœ‰ å…¶ç»¢åºœ å–‰é¥­èƒ¶ ID æ ¼åºŸ å•Šå»‰å·æ‰
 	*
-	* @param Target Æ¯Á¤ Æä¾î¸® Å¸ÀÔ Á¤º¸
-	* @param OutList ÀüÃ¼ Æä¾î¸® ºí·¹½º ID ¸ñ·Ï ³Ñ°ÜÁÜ
+	* @param Target æ¼‚æ²¥ å…¶ç»¢åºœ é¸¥æ¶ æ²¥ç„Š
+	* @param OutList å‚ˆçœ‰ å…¶ç»¢åºœ å–‰é¥­èƒ¶ ID æ ¼åºŸ é€è´¥æ·‹
 	*
-	* @return µ¥ÀÌÅÍ À¯,¹« ¿©ºÎ
+	* @return å•æç£ èœ¡,å…¬ å’¯ä½•
 	*/
 	bool GetMDFairyInfoOptionIdAll(EFairyType Target, TArray<int32> &OutList);
 
 	/**
-	* ÀüÃ¼ Æä¾î¸® ·¹º§¾÷ ºñ¿ë Á¤º¸ °¡Á®¿À±â
+	* å‚ˆçœ‰ å…¶ç»¢åºœ é¥­éª‡è¯€ åšä¾© æ²¥ç„Š å•Šå»‰å·æ‰
 	*
-	* @param OutList ÀüÃ¼ Æä¾î¸® ·¹º§¾÷ ºñ¿ë Á¤º¸¸¦  ³Ñ°ÜÁÜ
+	* @param OutList å‚ˆçœ‰ å…¶ç»¢åºœ é¥­éª‡è¯€ åšä¾© æ²¥ç„Šç”«  é€è´¥æ·‹
 	*
-	* @return µ¥ÀÌÅÍ À¯,¹« ¿©ºÎ
+	* @return å•æç£ èœ¡,å…¬ å’¯ä½•
 	*/
 	bool GetMDFairyLevelUpCostAll(TArray<FMD_FairyLevelUpCost> &OutList);
 
 	/**
-	* Æ¯Á¤ Æä¾î¸® ·¹º§¾÷ ºñ¿ë Á¤º¸ °¡Á®¿À±â
+	* æ¼‚æ²¥ å…¶ç»¢åºœ é¥­éª‡è¯€ åšä¾© æ²¥ç„Š å•Šå»‰å·æ‰
 	*
-	* @param Target Æ¯Á¤ Æä¾î¸® Å¸ÀÔ Á¤º¸
-	* @param OutData Æä¾î¸® ·¹º§¾÷ ºñ¿ë Á¤º¸ ³Ñ°Ü ÁÜ
+	* @param Target æ¼‚æ²¥ å…¶ç»¢åºœ é¸¥æ¶ æ²¥ç„Š
+	* @param OutData å…¶ç»¢åºœ é¥­éª‡è¯€ åšä¾© æ²¥ç„Š é€è´¥ æ·‹
 	*
-	* @return µ¥ÀÌÅÍ À¯,¹« ¿©ºÎ
+	* @return å•æç£ èœ¡,å…¬ å’¯ä½•
 	*/
 	bool GetMDFairyLevelUpCost(int32 TargetLevel, FMD_FairyLevelUpCost &OutData);
 	//<<----------------- MasterData Wrapper
 
 	/**
-	* (ÇÁ·ÎÅäÄİ ÀÀ´ä) Æä¾î¸® Á¤º¸ Á¶È¸
+	* (æ©‡è‚ºé…å¦® è§ˆç¿ ) å…¶ç»¢åºœ æ²¥ç„Š ç‚¼é›€
 	*
-	* @param data °»½ÅµÈ Æä¾î¸® Á¤º¸
+	* @param data ç›è„šç­‰ å…¶ç»¢åºœ æ²¥ç„Š
 	*/
 	void OnReceivedGetFairy(const FB2GetFairyPtr& data);
 	
 	/**
-	* (ÇÁ·ÎÅäÄİ ÀÀ´ä)Æä¾î¸® Ãàº¹ Äİ¹é
+	* (æ©‡è‚ºé…å¦® è§ˆç¿ )å…¶ç»¢åºœ ç»µæ±— å¦®å½’
 	*
-	* @param data °»½ÅµÈ Æä¾î¸® Á¤º¸
+	* @param data ç›è„šç­‰ å…¶ç»¢åºœ æ²¥ç„Š
 	*/
 	void OnReceivedLevelUpFairy(const FB2LevelupFairyPtr& data);
 	void OnErrorReceivedLevelUpFairy(const FB2LevelupFairyPtr& data);
 	
 	/**
-	* (ÇÁ·ÎÅäÄİ ÀÀ´ä)Æä¾î¸® Ãàº¹ Äİ¹é
+	* (æ©‡è‚ºé…å¦® è§ˆç¿ )å…¶ç»¢åºœ ç»µæ±— å¦®å½’
 	*
-	* @param data °»½ÅµÈ Æä¾î¸® Á¤º¸
+	* @param data ç›è„šç­‰ å…¶ç»¢åºœ æ²¥ç„Š
 	*/
 	void OnReceivedBlessFairy(const FB2BlessFairyPtr& data);
 
 	/**
-	* Ãàº¹ ÁßÀÎ Æä¾î¸®ÀÇ Ãàº¹ Á¤º¸ °¡Á®¿À±â
+	* ç»µæ±— åç‰¢ å…¶ç»¢åºœç‹¼ ç»µæ±— æ²¥ç„Š å•Šå»‰å·æ‰
 	*
 	*/
 	bool GetActivatedFairyBlessInfo(const EFairyType TargetFairy, int32 OptionId, int32 FairyLevel, FMD_FairyInfo &OutData);
 
 	/**
-	* Ãàº¹ ÁßÀÎ Æä¾î¸®ÀÇ Ãàº¹ Á¤º¸ °¡Á®¿À±â
+	* ç»µæ±— åç‰¢ å…¶ç»¢åºœç‹¼ ç»µæ±— æ²¥ç„Š å•Šå»‰å·æ‰
 	*
 	*/
 	bool GetActivatedFairyBlessInfo(const EFairyType TargetFairy, FMD_FairyInfo &OutData);
 
 	/**
-	* ¸ğµç Æä¾î¸® Ãàº¹ Á¤º¸ °¡Á®¿À±â
+	* è‘›ç”µ å…¶ç»¢åºœ ç»µæ±— æ²¥ç„Š å•Šå»‰å·æ‰
 	*
 	*/
 	bool GetActivatedFairyBlessInfoAll(TArray<FMD_FairyInfo> &OutList);
 
-	//Æä¾î¸® º¯È­ÀÖÀ»½Ã ÀüÅõ·ÂÁ¤º¸ ¼öÁ¤
+	//å…¶ç»¢åºœ å‡½æ‹³ä¹é˜‘çŸ« å‚ˆæ§ä»¿æ²¥ç„Š èæ²¥
 private:
 	void RefreshCombatInfo();
 

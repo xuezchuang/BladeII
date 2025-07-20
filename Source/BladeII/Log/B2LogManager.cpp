@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2LogManager.h"
 //#include "BladeII.h"
 
@@ -66,7 +66,7 @@ std::shared_ptr<B2LogFilterManager> B2LogFilterManager::m_pInstance = nullptr;
 
 Logger::Logger(const std::string _name) : m_name(_name)
 {
-	std::transform(_name.cbegin(), _name.cend(), m_namelower.begin(), ::tolower); // ¼Ò¹®ÀÚ·Î ÀüÈ¯
+	std::transform(_name.cbegin(), _name.cend(), m_namelower.begin(), ::tolower); // å®¶å·©ç£Šè‚º å‚ˆåˆ¸
 }
 
 void Logger::Trace(const ANSICHAR* File, int32 Line, const ANSICHAR* func, const char* format, ...)
@@ -201,7 +201,7 @@ void B2LogFilterManager::AddFilter(const std::string& _filterName)
 {
 	if (!_filterName.compare("")) return;
 	std::string _filterNameLower;
-	std::transform(_filterName.cbegin(), _filterName.cend(), _filterNameLower.begin(), ::tolower); // ¼Ò¹®ÀÚ·Î ÀüÈ¯
+	std::transform(_filterName.cbegin(), _filterName.cend(), _filterNameLower.begin(), ::tolower); // å®¶å·©ç£Šè‚º å‚ˆåˆ¸
 	//Value Check
 	auto result = std::find(m_filter.cbegin(), m_filter.cend(), _filterNameLower);
 	if (result == m_filter.end())
@@ -212,7 +212,7 @@ void B2LogFilterManager::RemoveFilter(const std::string& _filterName)
 {
 	if (!_filterName.compare("")) return;
 	std::string _filterNameLower;
-	std::transform(_filterName.cbegin(), _filterName.cend(), _filterNameLower.begin(), ::tolower); // ¼Ò¹®ÀÚ·Î ÀüÈ¯
+	std::transform(_filterName.cbegin(), _filterName.cend(), _filterNameLower.begin(), ::tolower); // å®¶å·©ç£Šè‚º å‚ˆåˆ¸
 	//Value Check
 	auto result = std::find(m_filter.cbegin(), m_filter.cend(), _filterNameLower);
 	if (result != m_filter.end())
@@ -258,7 +258,7 @@ std::shared_ptr<B2LogFilterManager> B2LogFilterManager::GetInstance()
 	{
 		m_pInstance = std::unique_ptr<B2LogFilterManager>(new B2LogFilterManager);
 	}
-	BII_CHECK(m_pInstance);//±×·² ÀÏÀº °ÅÀÇ ¾ø°ÚÁö¸¸ È¤½Ã ÇÊÅÍ ¶§¹®¿¡ Á×À»¼öµµ ÀÖ¾î¼­ Ã¼Å©ÇÔ
+	BII_CHECK(m_pInstance);//å¼Šå‡¡ è€ç¯® èŠ­ç‹¼ ç»æ‘†ç˜¤çˆ¶ è¶£çŸ« é˜ç£ é”­å·©ä¿Š ç£·é˜‘èæ¡£ ä¹ç»¢è¾‘ çœ‰å†œçªƒ
 	return m_pInstance;
 }
 

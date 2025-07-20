@@ -1,10 +1,11 @@
-
+﻿
 #include "B2BTTask_SelectMoveMethod2.h"
 //#include "BladeII.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "BladeIICharacter.h"
 #include "B2ControlModePlayer.h"
 #include "BladeIIPlayerAIController.h"
+#include "../BladeII/BladeIIUtil.h"
 
 UB2BTTask_SelectMoveMethod2::UB2BTTask_SelectMoveMethod2(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)

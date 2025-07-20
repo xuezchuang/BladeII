@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "B2UIMsgPopupBase.h"
 #include "B2UIMsgPopupGuildPopup.generated.h"

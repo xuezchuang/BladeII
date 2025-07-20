@@ -7,10 +7,10 @@
 /* ERaidJointSlotState */
 enum class ERaidJoinSlotState : uint8
 {
-	Invitable,				// ÃÊ´ë°¡´É
-	OpenInviteUI,			// ÃÊ´ë ÆË¾÷ ¿ÀÇÂ
-	SearchingQuickJoin,		// ºü¸¥°Ë»öÁß
-	JoinCharacter,			// ÆÄÆ¼ÇÕ·ù
+	Invitable,				// æª¬æªå•Šç“·
+	OpenInviteUI,			// æª¬æª æ‰‘è¯€ å·é”¹
+	SearchingQuickJoin,		// ç‹å¼—å…«ç¥¸å
+	JoinCharacter,			// é¢‡èé’¦å¹…
 	Max,					//
 };
 
@@ -33,7 +33,7 @@ public:
 	virtual void Destroy() override;
 
 	bool	IsEmpty();
-	void	ClearRaidJoinData();		// RaidJoin °ü·Ã µ¥ÀÌÅÍ¸¦ ÃÊ±âÈ­ ÇÑ´Ù. (½½·Ôµ¥ÀÌÅÍ, ÃÊ´ë¹ŞÀº RoomId)
+	void	ClearRaidJoinData();		// RaidJoin åŒ…è®¿ å•æç£ç”« æª¬æ‰æ‹³ èŒ„ä¿ƒ. (æµ‡å©å•æç£, æª¬æªç½ç¯® RoomId)
 	void	ClearRaidBattleData();
 	
 	void	SetJoinSlotData(int32 SlotIndex, int32 InJoinSlotNetId, FText InCharName, int32 InCharLevel, EPCClass InPCClass, int32 InCombatPower, int32 InGuildIndex);
@@ -81,7 +81,7 @@ public:
 	DECLARE_UIDOC_FIELD(ERaidJoinType,			OpenedRaidJoinType)
 	DECLARE_UIDOC_FIELD(bool,					RaidOpen)
 
-	// ==================== RaidJoin UI (0~3 : ½½·Ô ¼ø¼­´ë·Î)
+	// ==================== RaidJoin UI (0~3 : æµ‡å© é‰´è¾‘æªè‚º)
 	DECLARE_UIDOC_FIELD(int32,	MySlotIdx)
 	DECLARE_UIDOC_FIELD_FourField(ERaidJoinSlotState, JoinSlotState, ERaidJoinSlotState::Max)
 	DECLARE_UIDOC_FIELD_FourField(int32,	JoinSlotNetId, -1)
@@ -96,7 +96,7 @@ public:
 	DECLARE_UIDOC_FIELD(bool,		IsOpenedInviteUI)
 	DECLARE_UIDOC_FIELD(bool,		IsReceiveInvite)
 
-	// ==================== InGame UI (0¹ø ÀÎµ¦½º : ³» Ä³¸¯ÅÍ µ¥ÀÌÅÍ (ÁÖÀÇ : DocBattle¿¡¼­ Áßº¹À¸·Î °ü¸®ÇÏ´Â µ¥ÀÌÅÍ´Â ¹«½Ã)
+	// ==================== InGame UI (0é”… ç‰¢éƒ¸èƒ¶ : éƒ´ æŸè…ç£ å•æç£ (æ—ç‹¼ : DocBattleä¿Šè¾‘ åæ±—æ è‚º åŒ…åºœçªç»° å•æç£ç»° å…¬çŸ«)
 	DECLARE_UIDOC_FIELD(int32,	RaidBattleTime)
 	DECLARE_UIDOC_FIELD(int32, RaidEndBattleTime)
 	DECLARE_UIDOC_FIELD(int32,	FailCountDownTime)

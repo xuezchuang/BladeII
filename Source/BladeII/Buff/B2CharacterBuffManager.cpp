@@ -1,4 +1,4 @@
-
+ï»¿
 #include "B2CharacterBuffManager.h"
 #include "B2BuffModeEffectInfo.h"
 #include "B2Buff_Base.h"
@@ -40,27 +40,27 @@ UB2Buff_Base* UB2CharacterBuffManager::AddBuff(EBuffType BuffType, float fDurati
 
 		float fCompareDuration = fDuration;
 
-		// µğ¹öÇÁ¸é ½Ã°£°¨¼Ò Àû¿ëÇØ¼­ ºñ±³
+		// å¼æ»šæ©‡æ çŸ«åŸƒçš‘å®¶ åˆ©ä¾©ç§¦è¾‘ åšèƒŒ
 		if (PrevBuffInstance->IsDebuff())
 			fCompareDuration *= GetOwnerCharacter()->GetDurationDecreaseRate();
 
-		// Á¡°¨ »ç¿ëÇÏ´Â ¹öÇÁ¸é Àû¿ëÇØ¼­ ºñ±³
+		// ç—¢çš‘ è¤ä¾©çªç»° æ»šæ©‡æ åˆ©ä¾©ç§¦è¾‘ åšèƒŒ
 		if(PrevBuffInstance->IsUseCrowdControlCount())
 			fCompareDuration *= FMath::Pow(0.5, CrowdControlCount);
 			
-		// ±âÁ¸¹öÇÁ ³²Àº½Ã°£
+		// æ‰ç²®æ»šæ©‡ å·¢ç¯®çŸ«åŸƒ
 		float fPrevBuffDuration = PrevBuffInstance->GetRemainTime();
 
 		const bool IsBetterThanPrev = fPrevBuffDuration != -1 && fPrevBuffDuration < fCompareDuration ? true : false;
 		
-		// ±âÁ¸ Buff°¡ °É·ÁÀÖ´Â »óÅÂ && ±âÁ¸°Åº¸´Ù ÂªÀ¸¸é ³ë°»½Å
+		// æ‰ç²® Buffå•Š å§å¦¨ä¹ç»° æƒ‘æ€• && æ‰ç²®èŠ­ç„Šä¿ƒ é™‹æ æ ç•´ç›è„š
 		if (PrevBuffInstance->IsActive() && !IsBetterThanPrev)
 			return PrevBuffInstance;
 	}
 
 	/* 
-		BuffManager ³»ºÎ¿¡¼­ Buff´Â ÀÏÁ¾ÀÇ Pool Çü½ÄÀ¸·Î °ü¸®µÈ´Ù
-		ÇÑ¹ø »ı¼ºµÇ¾ú´ø Buff´Â ´Ù½Ã »ı¼ºµÉ °¡´É¼ºÀÌ ³ôÀ¸¹Ç·Î NewObjectÀÇ ÃÖ¼ÒÈ­¸¦ À§ÇØ¼­ ¹ö¸®Áö ¾Ê°í Deactive¸¸ ½ÃÅ´
+		BuffManager éƒ´ä½•ä¿Šè¾‘ Buffç»° è€è¾†ç‹¼ Pool å±ˆä¾¥æ è‚º åŒ…åºœç­‰ä¿ƒ
+		èŒ„é”… ç§¯å·±ç™»èŒå¸¦ Buffç»° ä¿ƒçŸ« ç§¯å·±çª å•Šç“·å·±æ è‡­æ éª¨è‚º NewObjectç‹¼ å¼¥å®¶æ‹³ç”« å›°ç§¦è¾‘ æ»šåºœç˜¤ è‡¼ç»Š Deactiveçˆ¶ çŸ«ç³¯
 	*/
 	UB2Buff_Base* BuffInstance = FindOrCreateBuff(BuffType);
 	if (BuffInstance != nullptr)
@@ -127,8 +127,8 @@ void UB2CharacterBuffManager::ClearAllBuffs()
 	}
 	m_arBuff.Empty();
 
-	// ¹öÇÁÁ¦°ÅÈÄ ÄÉ¸¯ÅÍ ¾Ö´Ï¸ŞÀÌ¼Ç Àç»ı¼Óµµ Ã¼Å©
-	// Ä¿½ºÅÒ µô·¹ÀÌ¼Ç Á¦¾îÇÏ´Â ¹öÇÁµé ¾È¿¡¼­ ÇØÁÜÀÌÁ¦
+	// æ»šæ©‡åŠ›èŠ­é¥¶ çº³è…ç£ å±€èªçš‹æè®° çŠç§¯åŠ æ¡£ çœ‰å†œ
+	// ç›®èƒ¶ä¹“ æ‰é¥­æè®° åŠ›ç»¢çªç»° æ»šæ©‡ç”¸ æ•‘ä¿Šè¾‘ ç§¦æ·‹æåŠ›
 	//CheckCustomTimeDilation();
 }
 
@@ -144,7 +144,7 @@ void UB2CharacterBuffManager::ClearDebuffs()
 	}
 }
 
-// ÄÉ¸¯ÅÍ CustomTimeDilation Á¶ÀÛÇÏ´Â°Ç ¹öÇÁ¸¦ ÅëÇÑ´Ù. Ãß°¡·Î Á¶ÀÛ ÇÊ¿äÇÏ¸é Ä¿½ºÅÒ ¹öÇÁ Ãß°¡ÇØ¼­ ±¸Çö
+// çº³è…ç£ CustomTimeDilation ç‚¼ç´¯çªç»°æ‰’ æ»šæ©‡ç”« çƒ¹èŒ„ä¿ƒ. çœ å•Šè‚º ç‚¼ç´¯ é˜å¤¸çªæ ç›®èƒ¶ä¹“ æ»šæ©‡ çœ å•Šç§¦è¾‘ å¤‡æ³…
 void UB2CharacterBuffManager::CheckCustomTimeDilation()
 {
 	float AccumulatedDilation = 1.f;
@@ -246,7 +246,7 @@ class UB2Buff_Base* UB2CharacterBuffManager::FindOrCreateBuff(EBuffType BuffType
 		NewBuff = CreateBuff<UB2Buff_DebuffAttack>(BuffType);
 		break;
 
-	// ´Ü¼ø ½ºÅİÁõ°¡¸é ¿©±â·Î µé¾î¿À±âµµÇÑ´Ù.
+	// çªœé‰´ èƒ¶æ³¡åˆ˜å•Šæ å’¯æ‰è‚º ç”¸ç»¢å·æ‰æ¡£èŒ„ä¿ƒ.
 	default:									NewBuff = CreateBuff<UB2Buff_Base>(BuffType); break;
 	}
 	
@@ -266,7 +266,7 @@ TArray<UB2Buff_Base*>* UB2CharacterBuffManager::GetBuffList()
 	return &m_arBuff;
 }
 
-// ¹öÇÁ °É¸®°Å³ª ÇØÁ¦µÇ¸é ¿©±âµé¾î¿Í¾ßÇÔ.
+// æ»šæ©‡ å§åºœèŠ­å”± ç§¦åŠ›ç™»æ å’¯æ‰ç”¸ç»¢å®¢å…·çªƒ.
 void UB2CharacterBuffManager::OnPlayerBuffChanged()
 {
 	CheckCustomTimeDilation();

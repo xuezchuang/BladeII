@@ -115,7 +115,7 @@ void UB2DynItemIcon_ItemForge::UpdateItemData(const FB2Item& InItem)
 	}
 
 	if (ItemNameText != nullptr)
-	{ // ¾ÆÀÌÅÛ ÀÌ¸§¿¡¼­ Ç°Áú µû·Î Ç¥½ÃÇÒ °Å. GetLocalizedName ¿¡ ¸Å°³º¯¼ö ¾È³Ñ°ÜÁÜ.
+	{ // é…’æè¢ ææŠšä¿Šè¾‘ å‰é¾™ è¶è‚º é’çŸ«ä¸” èŠ­. GetLocalizedName ä¿Š æ¦‚ä¿ºå‡½è æ•‘é€è´¥æ·‹.
 		ItemNameText->SetText(ThisItemInfo ? ThisItemInfo->GetLocalizedName() : FText::FromString(TEXT("Unknown Item")));
 		if (ItemMiscInfo)
 		{
@@ -133,7 +133,7 @@ void UB2DynItemIcon_ItemForge::UpdateItemData(const FB2Item& InItem)
 	const bool bIsCostumeItem = IsCostumeItem(InItem);
 	const bool bIsAnvilItem = IsAnvilItem(InItem);
 
-	// ÃßÈÄ ÇÁ¸®¼Â¿¡ ÀåÂø ¿©ºÎ È®ÀÎÇÏ¿© ÀåÂø V Ã¼Å© ¹× ´­·¶À» ½Ã ÇØÁ¦ ÆË¾÷À¸·Î ÀÌµ¿ÇÏ°Ô ÇØ¾ß µÊ.
+	// çœ é¥¶ æ©‡åºœæ‚¸ä¿Š å˜é¦’ å’¯ä½• çŠ¬ç‰¢çªå’¯ å˜é¦’ V çœ‰å†œ æ£º å–˜èŒƒé˜‘ çŸ« ç§¦åŠ› æ‰‘è¯€æ è‚º ææ‚¼çªéœ¸ ç§¦å…· å‡³.
 
 	if (DisabledSlotImage.IsValid())
 		DisabledSlotImage->SetVisibility(GetDisabledSlotImageVisibility());
@@ -223,7 +223,7 @@ void UB2DynItemIcon_ItemForge::UpdateItemData(const FB2Item& InItem)
 		}
 	}
 
-	//º»¾ÆÀÌÅÛÀº New»óÅÂ¸¦ ¹Ù²ãÁİ´Ï´Ù
+	//å¤¯é…’æè¢ç¯® Newæƒ‘æ€•ç”« å®˜å±‚å‡›èªä¿ƒ
 	FB2Item InventoryItem;
 	if (UB2LobbyInventory::FindStoredItem(InventoryItem, InItem.InstanceUID))
 		InventoryItem.SetNewItemState();
@@ -262,7 +262,7 @@ void UB2DynItemIcon_ItemForge::UpdateItemData(const FB2Item& InItem)
 
 void UB2DynItemIcon_ItemForge::UpdateTargetItemData(int32 RefId,int32 Count)
 {
-	// ÀÌ¸§, ¾ÆÀÌÄÜ, °³¼ö, ÀÌÆåÆ® ÆÇ´ÜÃß°¡ ÇÊ¿ä
+	// ææŠš, é…’æèƒ½, ä¿ºè, ææ£‹é£˜ é­„çªœçœ å•Š é˜å¤¸
 	EItemClass TempItemClass = FItemRefIDHelper::ExtractItemClassFromRefIDForItemForge(RefId);
 	NativeItemData.ItemRefID = RefId;
 	NativeItemData.InventoryType = GetItemInvenTypeFromClass(TempItemClass);
@@ -279,12 +279,12 @@ void UB2DynItemIcon_ItemForge::UpdateTargetItemData(int32 RefId,int32 Count)
 		ItemNameText->SetText(ItemInfo->GetLocalizedName());
 	}
 	int32 StarGrade = FItemRefIDHelper::ExtractItemStarGradeFromRefID(RefId);
-	//stargrade ¼¼ÆÃ
+	//stargrade æŠ€æ³¼
 
 	if (StarGradePart.IsValid())
 	{
 		FB2Item dummyItem;
-		StarGradePart->UpdateStar(StarGrade,requiredItemLevel>dummyItem.ItemNormalMaxLevel ? true:false);	//¿µ¿øÀÇ Àå½Å±¸ÀÇ °æ¿ìµµ ±×³É 30 ³Ñ¾î°¡¸é ÃÊ¿ù º°·Î ¶ç¿ì°Ô µÊ.
+		StarGradePart->UpdateStar(StarGrade,requiredItemLevel>dummyItem.ItemNormalMaxLevel ? true:false);	//åº·ç›”ç‹¼ å˜è„šå¤‡ç‹¼ ç‰ˆå¿«æ¡£ å¼Šæˆ 30 é€ç»¢å•Šæ æª¬å²¿ å–Šè‚º å‰å¿«éœ¸ å‡³.
 	}
 
 	if (Count > 1)
@@ -339,7 +339,7 @@ void UB2DynItemIcon_ItemForge::SetBackgroundImageFromGrade(int32 InItemGrade, bo
 
 	if (BackgroundImage.IsValid() && ItemMiscInfo)
 	{
-		// Á¾·ù¿¡ µû¶ó Simple À» »ç¿ëÇÏ´Â °Ô ÀÖ°í ¾Æ´Ñ °Ô ÀÖÀ½.
+		// è¾†å¹…ä¿Š è¶æ‰¼ Simple é˜‘ è¤ä¾©çªç»° éœ¸ ä¹ç»Š é…’å›± éœ¸ ä¹æ¾œ.
 		UMaterialInterface* BGMtrl = ItemMiscInfo->GetItemIconBGMtrl(InItemGrade,
 			false,
 			bForConsumables
@@ -366,10 +366,10 @@ bool UB2DynItemIcon_ItemForge::IsContainsCurrentPreset(const FB2Item& InItem)
 
 ESlateVisibility UB2DynItemIcon_ItemForge::GetDisabledSlotImageVisibility() const
 {
-	// ¾ÆÀÌÅÛ°­È­ º¸È£¼® Ã¼Å©
+	// é…’æè¢ç¢æ‹³ ç„Šé¾‹ç± çœ‰å†œ
 	if (NativeItemData.ItemClass == EItemClass::EIC_ProtectionScroll)
 	{
-		// ÇöÀç NativeItemData ¸¦ »ç¿ëÇØ¼­ ¼¼ºÎ Á¤º¸Ã¢ ÆË¾÷... ¸¸ÀÌ ¾Æ´Ï¶ó °­È­ ¸ğµåÀÏ ¶§´Â ¼±ÅÃÀ» ÇØ¾ß.
+		// æ³…çŠ NativeItemData ç”« è¤ä¾©ç§¦è¾‘ æŠ€ä½• æ²¥ç„ŠèŠ’ æ‰‘è¯€... çˆ¶æ é…’èªæ‰¼ ç¢æ‹³ è‘›é›è€ é”­ç»° æ€¥ç¶é˜‘ ç§¦å…·.
 		AB2LobbyGameMode* LobbyGM = Cast<AB2LobbyGameMode>(UGameplayStatics::GetGameMode(GetOwningPlayer()));
 		UB2LobbyInventory* LobbyInven = LobbyGM ? LobbyGM->GetLobbyInventory() : NULL;
 		if (LobbyInven && LobbyInven->GetItemOpMode() == ELobbyInvenItemOpMode::EIVIOP_Enhancement)
@@ -416,7 +416,7 @@ void UB2DynItemIcon_ItemForge::OnClickBTNArea()
 	else
 	{
 		DeliverySelectItemForgeClass<FB2Item&>::GetInstance().Signal(NativeItemData);
-		// ¼±ÅÃ ¹öÆ° È°¼ºÈ­ ºñÈ°¼ºÈ­ ÇÊ¿ä
+		// æ€¥ç¶ æ»šç“¢ åŠå·±æ‹³ åšåŠå·±æ‹³ é˜å¤¸
 		if (OV_Selected->GetVisibility() == ESlateVisibility::Visible)
 		{
 			OV_Selected->SetVisibility(ESlateVisibility::Hidden);
@@ -433,8 +433,8 @@ void UB2DynItemIcon_ItemForge::OnClickBTNArea()
 }
 
 void UB2DynItemIcon_ItemForge::AskForUnlockItemPopupCommon( )
-{ // ¾ÆÀÌÅÛÀÌ Àá°ÜÀÖ°Å³ª ´Ù¸¥ ÇÁ¸®¼Â¿¡ ÀåÂøµÇ¾î ÀÖÀ» °æ¿ì ¹°¾îº¸´Â ÆË¾÷
-	FString PopupStringKey = TEXT("Chatting_PublicNoti_GetItemFromFactory_Forge");	//´Ü¼øÈ÷ °°Àº ÀÌ¸§À» »ç¿ëÇÑ´Ù´Â ÀÌÀ¯¿¡¼­ È¹µæ ¾Ë¸²¿¡ ÀÖ´Â°É °®´Ù »ç¿ëÇÏ°í ÀÖ´Ù.
+{ // é…’æè¢æ æ³ªè´¥ä¹èŠ­å”± ä¿ƒå¼— æ©‡åºœæ‚¸ä¿Š å˜é¦’ç™»ç»¢ ä¹é˜‘ ç‰ˆå¿« æ‹±ç»¢ç„Šç»° æ‰‘è¯€
+	FString PopupStringKey = TEXT("Chatting_PublicNoti_GetItemFromFactory_Forge");	//çªœé‰´æ´’ éç¯® ææŠšé˜‘ è¤ä¾©èŒ„ä¿ƒç»° æèœ¡ä¿Šè¾‘ è£™å« èˆ…è¦†ä¿Š ä¹ç»°å§ çˆ±ä¿ƒ è¤ä¾©çªç»Š ä¹ä¿ƒ.
 	
 	UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
 		BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_Notification")),
@@ -490,7 +490,7 @@ FText UB2DynItemIcon_ItemForge::GetItemLevelText() const
 	if (!IsEssenceItem(NativeItemData) &&
 		NativeItemData.InventoryType != EItemInvenType::EIIVT_Consumables && 
 		!IsCostumeItem(NativeItemData) && !IsAnvilItem(NativeItemData))
-	{	// °­È­ Àç·á ¾ÆÀÌÄÜÀº ¸¹¾Æ¼­ ÀÛÀ¸´Ï±î ·¹º§ Ç¥½Ã¸¦ ÇÏÁö ¾Ê´Â´Ù. Á¤¼ö ¾ÆÀÌÅÛÀº ·¹º§ÀÌ ¾ø´Â °É·Î Ä¡°í..		
+	{	// ç¢æ‹³ çŠä¸° é…’æèƒ½ç¯® è…¹é…’è¾‘ ç´¯æ èªé³– é¥­éª‡ é’çŸ«ç”« çªç˜¤ è‡¼ç»°ä¿ƒ. æ²¥è é…’æè¢ç¯® é¥­éª‡æ ç»ç»° å§è‚º æ‘¹ç»Š..		
 		return FText::Format(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("General_Stat_Level_Abbrev")), FText::FromString(FString::FromInt(NativeItemData.Level)));
 	}
 
@@ -501,7 +501,7 @@ FText UB2DynItemIcon_ItemForge::GetItemAmountText() const
 {
 	if (!IsEssenceItem(NativeItemData) &&
 		NativeItemData.InventoryType == EItemInvenType::EIIVT_Consumables && !IsAnvilItem(NativeItemData))
-	{ // °­È­ Àç·á ¾ÆÀÌÄÜÀº ¸¹¾Æ¼­ ÀÛÀ¸´Ï±î ·¹º§ Ç¥½Ã¸¦ ÇÏÁö ¾Ê´Â´Ù. Á¤¼ö ¾ÆÀÌÅÛÀº ·¹º§ÀÌ ¾ø´Â °É·Î Ä¡°í..		
+	{ // ç¢æ‹³ çŠä¸° é…’æèƒ½ç¯® è…¹é…’è¾‘ ç´¯æ èªé³– é¥­éª‡ é’çŸ«ç”« çªç˜¤ è‡¼ç»°ä¿ƒ. æ²¥è é…’æè¢ç¯® é¥­éª‡æ ç»ç»° å§è‚º æ‘¹ç»Š..		
 		if (NativeItemData.ConsumingAmount >= 10000)
 			return FText::FromString(TEXT("9999+"));
 
@@ -548,7 +548,7 @@ FText UB2DynItemIcon_ItemForge::SetItemLevelText(int32 itemLevel) const
 	if (!IsEssenceItem(NativeItemData) &&
 		NativeItemData.InventoryType != EItemInvenType::EIIVT_Consumables &&
 		!IsCostumeItem(NativeItemData) && !IsAnvilItem(NativeItemData))
-	{	// °­È­ Àç·á ¾ÆÀÌÄÜÀº ¸¹¾Æ¼­ ÀÛÀ¸´Ï±î ·¹º§ Ç¥½Ã¸¦ ÇÏÁö ¾Ê´Â´Ù. Á¤¼ö ¾ÆÀÌÅÛÀº ·¹º§ÀÌ ¾ø´Â °É·Î Ä¡°í..		
+	{	// ç¢æ‹³ çŠä¸° é…’æèƒ½ç¯® è…¹é…’è¾‘ ç´¯æ èªé³– é¥­éª‡ é’çŸ«ç”« çªç˜¤ è‡¼ç»°ä¿ƒ. æ²¥è é…’æè¢ç¯® é¥­éª‡æ ç»ç»° å§è‚º æ‘¹ç»Š..		
 		return FText::Format(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("General_Stat_Level_Abbrev")), FText::FromString(FString::FromInt(itemLevel)));
 	}
 

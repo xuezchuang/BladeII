@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+Ôªø// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIBattleStageInfoToolTip.h"
 #include "B2ItemInfo.h"
@@ -53,7 +53,7 @@ void UB2UIBattleStageInfoToolTip::ShowRewardItemInfo(const FB2RewardItemPreviewI
 			TempString += TEXT("PreArmor_");
 		}
 
-		TempString += FText::AsNumber((InRewardInfoData.SomeCommonData.ItemRefID / 1000) % 100).ToString(); // Ω«¡¶ ¡∏¿Á«œ¥¬ æ∆¿Ã≈€¿Ã æ∆¥œ∂Û, ∫∏ø©¡÷±‚Ωƒ æ∆¿Ã≈€¿Ãπ«∑Œ ¡ﬂ∞£ ¿Œµ¶Ω∫ ªÁøÎ
+		TempString += FText::AsNumber((InRewardInfoData.SomeCommonData.ItemRefID / 1000) % 100).ToString(); // ËßíÂäõ Á≤ÆÁäÅÁ™çÁª∞ ÈÖíÊçûË¢çÊçû ÈÖíËÅ™Êâº, ÁÑäÂíØÊûóÊâÅ‰æ• ÈÖíÊçûË¢çÊçûÈ™®ËÇ∫ ÂêùÂüÉ Áâ¢ÈÉ∏ËÉ∂ Ëç§‰æ©
 
 		TB_RewardItemDesc->SetText(BladeIIGetLOCText(B2LOC_CAT_ITEMPREFIX, TempString));
 	}
@@ -92,7 +92,7 @@ void UB2UIBattleStageInfoToolTip::ShowBossPieceInfo(const FB2RewardItemPreviewIn
 
 	//FString descStr(TEXT("Relic_PieceInfo_ACT") + FString::FormatAsNumber(InRewardInfoData.RandomOptionCount));
 
-	////¡∂∞¢¿∫ º≥∏Ì¿Ã µÈæÓ∞®. RewardItemInfoø°º≠ TB_RewardItemOptionInfoø° ≥÷¡ˆ∏∏ ø©±‚º≠ ±◊¿ßø° ¥ŸΩ√ µ§æÓ æ∫øÚ
+	////ÁÇºÈòøÁØÆ Ê±≤ÁñôÊçû Áî∏Áª¢Áöë. RewardItemInfo‰øäËæë TB_RewardItemOptionInfo‰øä ÊåÅÁò§Áà∂ ÂíØÊâÅËæë ÂºäÂõ∞‰øä ‰øÉÁü´ ‰∏πÁª¢ Á´ûÊ°Ü
 	//if (TB_RewardItemDesc.IsValid())
 	//{
 	//	TB_RewardItemDesc->SetText(BladeIIGetLOCText(B2LOC_CAT_ANCIENTRELIC, descStr));
@@ -115,7 +115,7 @@ void UB2UIBattleStageInfoToolTip::ShowEtherItemInfo(const FB2RewardItemPreviewIn
 
 	if (TB_RewardItemDesc.IsValid() && TB_RewardItemName.IsValid())
 	{
-		b2network::B2mdAetherSetOptionInfoPtr SetOptionPtr = B2EtherManager::GetInstance().GetEtherSetOptionInfoPtrByType(InRewardInfoData.SomeCommonData.Quality, 1); //tier¥¬ 1∑Œ »∞øÎ
+		b2network::B2mdAetherSetOptionInfoPtr SetOptionPtr = B2EtherManager::GetInstance().GetEtherSetOptionInfoPtrByType(InRewardInfoData.SomeCommonData.Quality, 1); //tierÁª∞ 1ËÇ∫ Âäù‰æ©
 		if (SetOptionPtr != nullptr)
 		{
 			if (StaticFindEtherSetOptionInfoTable() != NULL)

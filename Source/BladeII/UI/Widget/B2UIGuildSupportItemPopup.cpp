@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIGuildSupportItemPopup.h"
 #include "B2UIGuildSupportCharacterSlot.h"
@@ -158,7 +158,7 @@ void UB2UIGuildSupportItemPopup::DestroyAllItemRows()
 
 void UB2UIGuildSupportItemPopup::UpdateStoredGuildItemIcons()
 {
-	DestroyAllItemRows(); // ±âÁ¸¿¡ ¸¸µé¾ú´ø °Å ¾Èº¸ÀÌ°Ô
+	DestroyAllItemRows(); // æ‰ç²®ä¿Š çˆ¶ç”¸èŒå¸¦ èŠ­ æ•‘ç„Šæéœ¸
 	if (ItemIconRowWidgetClass == NULL || SB_Items.IsValid() == false) {
 		return;
 	}
@@ -168,7 +168,7 @@ void UB2UIGuildSupportItemPopup::UpdateStoredGuildItemIcons()
 	const int32 TotalCount = FMath::Max(0, CurrPCItemList.Num() - 1);
 	const int32 RequiredRowNum = FMath::RoundToInt(TotalCount /  (float)B2GuildRequestItem::SlotColumnMax);
 
-	// Ãß°¡·Î ´õ ÇÊ¿äÇÑ ½½·Ô »ı¼º.
+	// çœ å•Šè‚º æ­¹ é˜å¤¸èŒ„ æµ‡å© ç§¯å·±.
 	for (int32 i = CreatedItemRows.Num(); i < RequiredRowNum; ++i)
 	{
 		UB2UIGuildSupportRowSlot* NewItemRow = CreateWidget<UB2UIGuildSupportRowSlot>(GetOwningPlayer(), ItemIconRowWidgetClass);
@@ -192,7 +192,7 @@ void UB2UIGuildSupportItemPopup::UpdateStoredGuildItemIcons()
 		BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("EssenceRequestPopup_ArmorEssence")),
 		BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("EssenceRequestPopup_AccessoryEssence"))
 	};
-	// »ı¼ºµÈ ½½·Ô ÃÊ±âÈ­
+	// ç§¯å·±ç­‰ æµ‡å© æª¬æ‰æ‹³
 	for (int32 RI = 0; RI < RequiredRowNum; ++RI)
 	{
 		UB2UIGuildSupportRowSlot* NewItemRow = CreatedItemRows[RI];

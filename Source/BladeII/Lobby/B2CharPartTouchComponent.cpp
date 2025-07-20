@@ -1,4 +1,4 @@
-#include "B2CharPartTouchComponent.h"
+﻿#include "B2CharPartTouchComponent.h"
 //#include "BladeII.h"
 
 

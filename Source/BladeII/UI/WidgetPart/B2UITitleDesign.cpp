@@ -1,4 +1,4 @@
-
+ï»¿
 #include "B2UITitleDesign.h"
 #include "B2UITitleDLC.h"
 #include "B2UITitleScreen.h"
@@ -19,24 +19,24 @@
 /* 
  [ B2UITitleDesign ]
 
- UITitleScreen À¸·Î ¸¸µé¾îÁ³´ø ±â´ÉÀÌ UITitleDLC ·Î µğÀÚÀÎÀ» À¯ÁöÇÑ Ã¤ ¿Å°ÜÁ®¼­ 
- Áßº¹µÈ ºÎºĞÀ» ÆÄÆ®·Î ¸ğ¾Æ³õÀ½.
- µğÀÚÀÎ °ü·Ã (Å¸ÀÌÆ² µ¿¿µ»ó) ºÎºĞÀÌ¸ç DLC ³ª ·Î±×ÀÎ ±â´ÉÀº ¿©±â¼± ºüÁü
- DLCFront ¿¡¼­ ¾²°Ô µÇ¹Ç·Î UIWidgetBase ¸¦ »ó¼Ó¹ŞÁö ¸øÇÔ.
+ UITitleScreen æ è‚º çˆ¶ç”¸ç»¢è„¸å¸¦ æ‰ç“·æ UITitleDLC è‚º å¼ç£Šç‰¢é˜‘ èœ¡ç˜¤èŒ„ ç›² é¢—è´¥å»‰è¾‘ 
+ åæ±—ç­‰ ä½•ç›’é˜‘ é¢‡é£˜è‚º è‘›é…’åˆæ¾œ.
+ å¼ç£Šç‰¢ åŒ…è®¿ (é¸¥ææ’‡ æ‚¼åº·æƒ‘) ä½•ç›’æå“¥ DLC å”± è‚ºå¼Šç‰¢ æ‰ç“·ç¯® å’¯æ‰æ€¥ ç‹å’™
+ DLCFront ä¿Šè¾‘ é™éœ¸ ç™»éª¨è‚º UIWidgetBase ç”« æƒ‘åŠ ç½ç˜¤ ç»™çªƒ.
 
 */
 /************************************************************************/
 
 UMediaSource* FB2UITitleMovieSetup::GetMovieSource(FB2UITitleMovieSetupLoadedCacher& LoadedCacher, bool bLoadIfUnloaded)
 {
-	// ÇÑ ¶§ ¿©±â ¸®¼Ò½º¸¦ TAsset À¸·Î ½è¾ú´Âµ¥ ¿©±â¼± º°¹İ ÀÇ¹Ìµµ ¾ø°í ½½Â½ Å¸ÀÌ¹ÖÀÌ ÀÌ»óÇØÁö´Â °Í °°¾Æ¼­ ±×³ÉÀ¸·Î ¹Ù²Ş
+	// èŒ„ é”­ å’¯æ‰ åºœå®¶èƒ¶ç”« TAsset æ è‚º å€ŸèŒç»°å• å’¯æ‰æ€¥ å–Šé¦† ç‹¼å›ºæ¡£ ç»ç»Š æµ‡é™† é¸¥ææ€ªæ ææƒ‘ç§¦ç˜¤ç»° å·´ éé…’è¾‘ å¼Šæˆæ è‚º å®˜å•
 	//if (bLoadIfUnloaded)
 	//{
 	//	if (!MovieSource.IsValid())
-	//	{ // ÀÌ°É »ç¿ëÇÏ´Â ½ÃÁ¡¿¡ º°µµÀÇ async ·ÎµùÀÌ µ¹¾Æ°¥ ²«´öÁö´Â ¾ø´Â °É·Î.
+	//	{ // æå§ è¤ä¾©çªç»° çŸ«ç—¢ä¿Š å–Šæ¡£ç‹¼ async è‚ºçˆ¹æ å€’é…’å“ æå‚£ç˜¤ç»° ç»ç»° å§è‚º.
 	//		MovieSource.LoadSynchronous();
 	//	}
-	//	// º¸Åë LoadSynchronous ÇØ¼­ µıµ¥¼­ ¾²¸é ³¯¾Æ°¥ °Å °ÆÁ¤ ¾ÈÇØµµ µÇ´Âµ¥ ¿ä°Ç µ¿¿µ»ó ÇÃ·¹ÀÌ¾î ±â´ÉÂÊ¿¡¼­ ·¹ÆÛ·±½º °ü¸®°¡ Àß ¾ÈµÇ´ÂÁö ¹Ù·Î GC µÇ´Â °æ¿ì°¡ ÀÖ¾î¼­ Ä³½ÌÇØ µÒ.
+	//	// ç„Šçƒ¹ LoadSynchronous ç§¦è¾‘ è°å•è¾‘ é™æ æœé…’å“ èŠ­ æŒæ²¥ æ•‘ç§¦æ¡£ ç™»ç»°å• å¤¸æ‰’ æ‚¼åº·æƒ‘ æ•²é¥­æç»¢ æ‰ç“·ç‡ä¿Šè¾‘ é¥­æ¬ºç¹èƒ¶ åŒ…åºœå•Š è‚‹ æ•‘ç™»ç»°ç˜¤ å®˜è‚º GC ç™»ç»° ç‰ˆå¿«å•Š ä¹ç»¢è¾‘ æŸæ•™ç§¦ ç‹„.
 	//	LoadedCacher.LoadedMovieSource = MovieSource.Get();
 	//}
 
@@ -44,7 +44,7 @@ UMediaSource* FB2UITitleMovieSetup::GetMovieSource(FB2UITitleMovieSetupLoadedCac
 }
 UMediaPlayer* FB2UITitleMovieSetup::GetMoviePlayer(FB2UITitleMovieSetupLoadedCacher& LoadedCacher, bool bLoadIfUnloaded)
 {
-	// ÇÑ ¶§ ¿©±â ¸®¼Ò½º¸¦ TAsset À¸·Î ½è¾ú´Âµ¥ ¿©±â¼± º°¹İ ÀÇ¹Ìµµ ¾ø°í ½½Â½ Å¸ÀÌ¹ÖÀÌ ÀÌ»óÇØÁö´Â °Í °°¾Æ¼­ ±×³ÉÀ¸·Î ¹Ù²Ş
+	// èŒ„ é”­ å’¯æ‰ åºœå®¶èƒ¶ç”« TAsset æ è‚º å€ŸèŒç»°å• å’¯æ‰æ€¥ å–Šé¦† ç‹¼å›ºæ¡£ ç»ç»Š æµ‡é™† é¸¥ææ€ªæ ææƒ‘ç§¦ç˜¤ç»° å·´ éé…’è¾‘ å¼Šæˆæ è‚º å®˜å•
 	//if (bLoadIfUnloaded)
 	//{
 	//	if (!PlayerSetup.IsValid())
@@ -83,7 +83,7 @@ UB2UITitleDesign::UB2UITitleDesign(const FObjectInitializer& ObjectInitializer)
 
 	ReaptedStartMovieCountdown = 10;
 
-#if !UE_BUILD_SHIPPING // È¤¿©³ª ´©±º°¡ ¸ğ¸£°í ¹Ù²Ù´Â °Å ¹æÁö
+#if !UE_BUILD_SHIPPING // è¶£å’¯å”± ç©¿ç„™å•Š è‘›ç¦ç»Š å®˜æ“ç»° èŠ­ è§„ç˜¤
 	check(!IsA(UB2UIWidgetBase::StaticClass()));
 #endif
 }
@@ -113,7 +113,7 @@ void UB2UITitleDesign::DestroySelf()
 #define _UITITLEDESIGN_STARTBACKMOVIEIMAGE_GET_CODEBLOCK(ClassEnum, ClassName) \
 	TWeakObjectPtr<UImage> StartBackMovie_##ClassName; \
 	GET_SLOT(UImage, StartBackMovie_##ClassName); \
-	/* ÀÌ¸§ÀÌ ÇÏµåÄÚµùÀ¸·Î µé¾î°¡´Âµ¥ assert ¶óµµ °É¾îµÒ. */ \
+	/* ææŠšæ çªé›å†…çˆ¹æ è‚º ç”¸ç»¢å•Šç»°å• assert æ‰¼æ¡£ å§ç»¢ç‹„. */ \
 	checkSlow(StartBackMovie_##ClassName.IsValid()); \
 	StartMovieImagePerPC.Add(ClassEnum, StartBackMovie_##ClassName);
 
@@ -166,7 +166,7 @@ void UB2UITitleDesign::SetConnectingUI()
 
 bool UB2UITitleDesign::IsLimitedResourceAvailable() const
 {
-	// DLC Download °¡ ¾È µÈ »óÈ²¿¡¼­ apk ¸¦ ÅëÇØ ¹èÆ÷µÇ´Â Æ¯Á¤ µ¿¿µ»ó¸¸À» »ç¿ëÇØ¾ß ÇÔ.
+	// DLC Download å•Š æ•‘ ç­‰ æƒ‘ç‚”ä¿Šè¾‘ apk ç”« çƒ¹ç§¦ ç¡…å™¨ç™»ç»° æ¼‚æ²¥ æ‚¼åº·æƒ‘çˆ¶é˜‘ è¤ä¾©ç§¦å…· çªƒ.
 	return /*IsFinalDLCCookRun() &&*/ !IsDLCDownload();
 }
 
@@ -189,27 +189,27 @@ FB2UITitleMovieSetup* UB2UITitleDesign::GetMovieSetupSafe(bool bApkOnly, EPCClas
 {
 	FB2UITitleMovieSetup* FoundSetup = GetMovieSetup(bApkOnly, InPCClass);
 
-	// ·ÎÄÃ ÀúÀå »óÅÂ¿Í DLC ´Ù¿î·Îµå ¹ŞÀº »óÅÂ°¡ ²¿¿´À» °æ¿ì.. MovieSource ³ª MoviePlayer °¡ NULL ÀÏ ¼ö ÀÖ°í, ³»Áö´Â µ¿¿µ»ó ¿øº»¸¸ ¾øÀ» ¼öµµ ÀÖ´Ù.
-	// ¿¹¿ÜÃ³¸®¸¦ Á» ÇÏ·Á´Ù º¸´Ï Get ÇÔ¼öÀÎµ¥ º¹Àâ´Ù´ÜÇÏ°Ô ²Ï³ª µé¾î°¡´Â±º..  ¤Ñ¤Ñ
+	// è‚ºæ‹¿ å†å˜ æƒ‘æ€•å®¢ DLC ä¿ƒæ¬¾è‚ºé› ç½ç¯® æƒ‘æ€•å•Š éƒ¨çœ‹é˜‘ ç‰ˆå¿«.. MovieSource å”± MoviePlayer å•Š NULL è€ è ä¹ç»Š, éƒ´ç˜¤ç»° æ‚¼åº·æƒ‘ ç›”å¤¯çˆ¶ ç»é˜‘ èæ¡£ ä¹ä¿ƒ.
+	// æŠ—å¯‡è´¸åºœç”« ç²± çªå¦¨ä¿ƒ ç„Šèª Get çªƒèç‰¢å• æ±—æ£±ä¿ƒçªœçªéœ¸ èš•å”± ç”¸ç»¢å•Šç»°ç„™..  ã±ã±
 	UMediaSource* FoundMediaSourceOfSetup = FoundSetup ? FoundSetup->GetMovieSource(CurrLoadedMovieResourceCache) : nullptr;
 	UMediaPlayer* FoundMediaPlayerOfSetup = FoundSetup ? FoundSetup->GetMoviePlayer(CurrLoadedMovieResourceCache) : nullptr;
 	const USoundCue* FoundSoundCueOfSetup = FoundSetup ? FoundSetup->GetMoiveSoundCue(CurrLoadedMovieResourceCache) : nullptr;
 
 	bool bMediaSourceValid = false;
 	if (FoundMediaSourceOfSetup && FoundMediaPlayerOfSetup 
-		//&& FoundSoundCueOfSetup ÀÌ°Í±îÁø °Ë»çÇÒ ÇÊ¿æ ¾øÀ» µíÇÏ´Ï ½ºÅµ. ÀÌ°Ç Æ¯È÷³ª ´ã´çÀÚ Æ¯¼º »ó ¸®¼Ò½º ¼Â¾÷ »§²Ù³ª±â°¡ ½¬¿îµ¥ ±×·² °æ¿ì ¹®Á¦°¡ ¹Ù·Î µå·¯³ªÁöµµ ¾Ê°Ô µÈ´Ù.
+		//&& FoundSoundCueOfSetup æå·´é³–æŸ³ å…«è¤ä¸” é˜æŒ ç»é˜‘ æ·€çªèª èƒ¶è¯º. ææ‰’ æ¼‚æ´’å”± æ·¬å¯¸ç£Š æ¼‚å·± æƒ‘ åºœå®¶èƒ¶ æ‚¸è¯€ æˆ·æ“å”±æ‰å•Š æµ†æ¬¾å• å¼Šå‡¡ ç‰ˆå¿« å·©åŠ›å•Š å®˜è‚º é›çŸ¾å”±ç˜¤æ¡£ è‡¼éœ¸ ç­‰ä¿ƒ.
 		)
 	{
 #if PLATFORM_IOS
 		if (FoundMediaPlayerOfSetup->CanPlaySource(FoundMediaSourceOfSetup))
 #else 
-		// DLC ÄÁÅÙÃ÷¸é FoundMediaSourceOfSetup->Validate() °¡ ½ÇÆĞÇÏ°Ô µÇ¾î ÀÖ¾î¼­ ±×°É·Î Ã¼Å© ¸ø ÇÔ..
+		// DLC ç‰§åˆ¨æ˜æ FoundMediaSourceOfSetup->Validate() å•Š è§’è©çªéœ¸ ç™»ç»¢ ä¹ç»¢è¾‘ å¼Šå§è‚º çœ‰å†œ ç»™ çªƒ..
 		if (FoundMediaPlayerOfSetup->OpenSource(FoundMediaSourceOfSetup))
 #endif
 		{
 			bMediaSourceValid = true;
 #if !PLATFORM_IOS
-			FoundMediaPlayerOfSetup->Close(); // Valid Ã¼Å©¸¸ ÇÏ±â À§ÇØ Open ÇÑ °ÍÀÌ¹Ç·Î ¹Ù·Î ´İÀ½.
+			FoundMediaPlayerOfSetup->Close(); // Valid çœ‰å†œçˆ¶ çªæ‰ å›°ç§¦ Open èŒ„ å·´æéª¨è‚º å®˜è‚º æ‘§æ¾œ.
 #endif
 		}
 	}
@@ -224,21 +224,21 @@ FB2UITitleMovieSetup* UB2UITitleDesign::GetMovieSetupSafe(bool bApkOnly, EPCClas
 			(int32)bMediaSourceValid
 		);
 #endif
-		// ÀÌ °æ¿ì Apk ¿¡ ÀÖ´Â °É °¡Á®¿È.
-		FoundSetup = GetMovieSetup(true, InPCClass); // Apk ¿¡ ÀÖ´Â °Ç ´Ü ÇÑ Å¬·¡½ºÀÏ °Å¶ó InPCClass ÁöÁ¤ÀÌ ÀÇ¹Ì°¡ ¾øÁö¸¸ È¤¿©³ª ¶Ç ¹«½¼ ÀÏÀÌ »ı±æÁö ¸ğ¸£Áö.
+		// æ ç‰ˆå¿« Apk ä¿Š ä¹ç»° å§ å•Šå»‰å’³.
+		FoundSetup = GetMovieSetup(true, InPCClass); // Apk ä¿Š ä¹ç»° æ‰’ çªœ èŒ„ åŠªè´°èƒ¶è€ èŠ­æ‰¼ InPCClass ç˜¤æ²¥æ ç‹¼å›ºå•Š ç»ç˜¤çˆ¶ è¶£å’¯å”± è‚š å…¬éƒŠ è€æ ç§¯è¾¨ç˜¤ è‘›ç¦ç˜¤.
 	}
 	return FoundSetup;
 }
 
 TWeakObjectPtr<UImage> UB2UITitleDesign::GetMovieBackImageOfSetup(FB2UITitleMovieSetup* InSetup)
 {
-	//// InSetup ¿¡ ÇØ´çÇÏ´Â º£ÀÌ½º Image Widget À» ¸®ÅÏ
+	//// InSetup ä¿Š ç§¦å¯¸çªç»° æµ·æèƒ¶ Image Widget é˜‘ åºœç•”
 	//if (InSetup)
 	//{
 	//	UMediaSource* MediaSourceOfSetup = InSetup->GetMovieSource(CurrLoadedMovieResourceCache);
 	//	if (MediaSourceOfSetup)
 	//	{
-	//		if (!MediaSourceOfSetup->IsUsingDLCPath()) // IsUsingDLCPath °¡ ¾Æ´Ï¸é Apk ¿ëÀÌ¶õ ¾ê±â.
+	//		if (!MediaSourceOfSetup->IsUsingDLCPath()) // IsUsingDLCPath å•Š é…’èªæ Apk ä¾©æé„‚ å¨Ÿæ‰.
 	//		{
 	//			return StartBackMovie_ApkOnly;
 	//		}
@@ -249,7 +249,7 @@ TWeakObjectPtr<UImage> UB2UITitleDesign::GetMovieBackImageOfSetup(FB2UITitleMovi
 	//		}
 	//	}
 	//}
-	// ¾î¶² °æ¿ì°Ç Æú¹éÀ» ÀÌ°É·Î..
+	// ç»¢æ« ç‰ˆå¿«æ‰’ å¼ƒå½’é˜‘ æå§è‚º..
 	return StartBackMovie_ApkOnly;
 }
 
@@ -271,28 +271,28 @@ void UB2UITitleDesign::SetHiddenAllBackImages()
 
 void UB2UITitleDesign::StartMovieRandomPick()
 {
-	// Random Pick Àº ÃÖÁ¾ ¹öÀü¿¡¼­´Â ¸Ç Ã³À½ ½ÇÇàÇÏ´Â DLCFrontGM ¿¡¼­ »ç¿ëÇÏ°í
-	// °³¹ß¹öÀü¿¡¼­´Â ·Îºñ Å¸ÀÌÆ²¿¡¼­ »ç¿ë.	
+	// Random Pick ç¯® å¼¥è¾† æ»šå‚ˆä¿Šè¾‘ç»° ç›– è´¸æ¾œ è§’é’çªç»° DLCFrontGM ä¿Šè¾‘ è¤ä¾©çªç»Š
+	// ä¿ºæƒ¯æ»šå‚ˆä¿Šè¾‘ç»° è‚ºåš é¸¥ææ’‡ä¿Šè¾‘ è¤ä¾©.	
 
 	FB2UITitleMovieSetup* RandomPickedSetup = nullptr;
 	{
 		EPCClass RandomPickedClass = IntToPCClass(FMath::RandRange(0, GetMaxPCClassNum() - 1));
 		RandomPickedSetup = GetMovieSetupSafe(IsLimitedResourceAvailable(), RandomPickedClass);
-		// RandomPickedClass ¿Í RandomPickedSetup->RepresentingClass ´Â ´Ù¸¦ ¼ö ÀÖ´Ù.
+		// RandomPickedClass å®¢ RandomPickedSetup->RepresentingClass ç»° ä¿ƒç”« è ä¹ä¿ƒ.
 	}
 
 	check(RandomPickedSetup);
 //	if (RandomPickedSetup)
 //	{
 //		StartMovie(RandomPickedSetup->RepresentingClass);
-//		// ÀÌÈÄ ´Ù¸¥ È­¸é¿¡¼­µµ ÀÌ¾î¼­ »ç¿ëÇÏ±â À§ÇØ ·£´ı ¼±ÅÃÇÑ Á¤º¸¸¦ ÀúÀåÇØ µĞ´Ù.
+//		// æé¥¶ ä¿ƒå¼— æ‹³æä¿Šè¾‘æ¡£ æç»¢è¾‘ è¤ä¾©çªæ‰ å›°ç§¦ ç½šå¾… æ€¥ç¶èŒ„ æ²¥ç„Šç”« å†å˜ç§¦ æ•Œä¿ƒ.
 //		if (OwnerDLCTitle)
 //		{ 
 //			OwnerDLCTitle->SetSelectedMediaSourceInfo(RandomPickedSetup->GetMovieSource(CurrLoadedMovieResourceCache), RandomPickedSetup->RepresentingClass);
 //		}
 //#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
 //		else if(!IsFinalDLCCookRun())
-//		{ // ÀÌ °æ¿ì´Â ±×³É °³¹ß¹öÀü ½ÇÇàÀÌ°Å³ª NonDLC ÄíÅ·ÀÇ °æ¿ì. Å×½ºÆ® ÁßÀÌ¶óµµ È¥¼± ¹æÁö¸¦ À§ÇØ ÃÖ¼ÒÇÑÀÇ Á¤º¸´Â ³Ö¾îÁÜ.
+//		{ // æ ç‰ˆå¿«ç»° å¼Šæˆ ä¿ºæƒ¯æ»šå‚ˆ è§’é’æèŠ­å”± NonDLC æ»æ¬§ç‹¼ ç‰ˆå¿«. æŠ›èƒ¶é£˜ åææ‰¼æ¡£ å»æ€¥ è§„ç˜¤ç”« å›°ç§¦ å¼¥å®¶èŒ„ç‹¼ æ²¥ç„Šç»° æŒç»¢æ·‹.
 //			AB2DLCFrontGameMode::DevSetFrontTitleMovieClassOnly(RandomPickedSetup->RepresentingClass);
 //		}
 //#endif
@@ -305,31 +305,31 @@ void UB2UITitleDesign::StartMovie(EPCClass InWantedClass)
 	if (WantedSetup)
 	{
 		ReaptedStartMovieBySetupCommon(*WantedSetup);
-		StartMovieBP(); // Á¤»óÀûÀÎ widget ¾Ö´Ï¸ŞÀÌ¼Ç ÇÃ·¹ÀÌ°¡ µÇ°ÚÁö..
+		StartMovieBP(); // æ²¥æƒ‘åˆ©ç‰¢ widget å±€èªçš‹æè®° æ•²é¥­æå•Š ç™»æ‘†ç˜¤..
 		StartMovieSound(WantedSetup->GetMoiveSoundCue(CurrLoadedMovieResourceCache));
 	}
 }
 
 void UB2UITitleDesign::StartMovieImmediate(EPCClass InWantedClass)
 {
-	// ´Ù¸¥ ¿ä¼ÒµéÀÇ UI Widget Anim Àº ½ºÅµÇÏ°í Ã¹ Å¸ÀÌÆ² È­¸é¿¡¼­ º¸¿©ÁØ °É ±×´ë·Î À¯ÁöÇÏ´Â Â÷¿ø¿¡¼­..
+	// ä¿ƒå¼— å¤¸å®¶ç”¸ç‹¼ UI Widget Anim ç¯® èƒ¶è¯ºçªç»Š éœ‰ é¸¥ææ’‡ æ‹³æä¿Šè¾‘ ç„Šå’¯éœ– å§ å¼Šæªè‚º èœ¡ç˜¤çªç»° ç’ç›”ä¿Šè¾‘..
 	
 	FB2UITitleMovieSetup* WantedSetup = GetMovieSetupSafe(IsLimitedResourceAvailable(), InWantedClass);
 	if (WantedSetup)
 	{
-		ReaptedStartMovieBySetupCommon(*WantedSetup, 1); // 0 ÃÊºÎÅÍ´Â ±î¸¸ È­¸éÀÌ¶ó 1 ÃÊºÎÅÍ ÇÃ·¹ÀÌ.
-		StartMovieImmediateBP(); // Blueprint ¿¡¼­ ¾Æ¹«°Íµµ ¾ÈÇÏµçÁö, ¹º°¡ ÇÏ¸é Ã·ºÎÅÍ ³¡À¸·Î ÇØ ³õµçÁö..
+		ReaptedStartMovieBySetupCommon(*WantedSetup, 1); // 0 æª¬ä½•ç£ç»° é³–çˆ¶ æ‹³æææ‰¼ 1 æª¬ä½•ç£ æ•²é¥­æ.
+		StartMovieImmediateBP(); // Blueprint ä¿Šè¾‘ é…’å…¬å·´æ¡£ æ•‘çªç”µç˜¤, è´­å•Š çªæ æ¢…ä½•ç£ åœºæ è‚º ç§¦ åˆç”µç˜¤..
 		StartMovieSound(WantedSetup->GetMoiveSoundCue(CurrLoadedMovieResourceCache));
 	}
 
-	// µû·Î ¼û±æ °Å ¼û±è
+	// è¶è‚º è§è¾¨ èŠ­ è§è¾«
 	if (P_StartTextSet.IsValid())
 	{ 
 		P_StartTextSet->SetVisibility(ESlateVisibility::Hidden);
 	}
 }
 
-// ½ÇÆĞ ½Ã ÀÏÁ¤ È½¼ö Àç½Ãµµ¸¦ ÇÏ·Á¸é ÀÌ°É Á÷Á¢ »ç¿ëÇÏ´Â ´ë½Å ReaptedStartMovieBySetupCommon À» »ç¿ë.
+// è§’è© çŸ« è€æ²¥ å†‰è çŠçŸ«æ¡£ç”« çªå¦¨æ æå§ æµç«‹ è¤ä¾©çªç»° æªè„š ReaptedStartMovieBySetupCommon é˜‘ è¤ä¾©.
 bool UB2UITitleDesign::StartMovieBySetupCommon(FB2UITitleMovieSetup& InMovieSetup, int32 InDesiredStartPosSec)
 {
 	B2_SCOPED_TRACK_LOG(FString::Printf(TEXT("UB2UITitleDesign::StartMovieBySetupCommon PCClass %d"), PCClassToInt(InMovieSetup.RepresentingClass)));
@@ -340,26 +340,26 @@ bool UB2UITitleDesign::StartMovieBySetupCommon(FB2UITitleMovieSetup& InMovieSetu
 	UMediaPlayer* TheMoviePlayer = InMovieSetup.GetMoviePlayer(CurrLoadedMovieResourceCache);
 	TWeakObjectPtr<UImage> MovieBackImage = GetMovieBackImageOfSetup(&InMovieSetup);
 	
-	SetHiddenAllBackImages(); // µı °Ç ´Ù ¼û°Ü³õ°í..
+	SetHiddenAllBackImages(); // è° æ‰’ ä¿ƒ è§è´¥åˆç»Š..
 	if (MovieBackImage.IsValid())
-	{ // HitTestInvisible ·Î ÇÏÁö ¸» °Í. ¹º°¡ ÇÏ³ª´Â Visible ÀÌ ÄÑÁ® ÀÖ¾î¾ß TitleDLC ¿¡¼­ Touch ½ÅÈ£¸¦ ¹ŞÀ» ¼ö°¡ ÀÖÀ½.
+	{ // HitTestInvisible è‚º çªç˜¤ å¯Œ å·´. è´­å•Š çªå”±ç»° Visible æ éš¾å»‰ ä¹ç»¢å…· TitleDLC ä¿Šè¾‘ Touch è„šé¾‹ç”« ç½é˜‘ èå•Š ä¹æ¾œ.
 		MovieBackImage->SetVisibility(ESlateVisibility::Visible);
 	}
 	if (TheMovieSource && TheMoviePlayer)
 	{
-		// ÇÃ·¹ÀÌ ½ÃÀÛ.
-		if (TheMoviePlayer->OpenSource(TheMovieSource)) // ¿©±â¼­ ÀÏ½ÃÀûÀ¸·Î ½ÇÆĞÇÏ´Â °æ¿ì°¡ ÀÖ´Ù´Â Ä«´õ¶ó Åë½ÅÀ» µéÀº ¹Ù°¡ ÀÖÀ½.
+		// æ•²é¥­æ çŸ«ç´¯.
+		if (TheMoviePlayer->OpenSource(TheMovieSource)) // å’¯æ‰è¾‘ è€çŸ«åˆ©æ è‚º è§’è©çªç»° ç‰ˆå¿«å•Š ä¹ä¿ƒç»° å¢¨æ­¹æ‰¼ çƒ¹è„šé˜‘ ç”¸ç¯® å®˜å•Š ä¹æ¾œ.
 		{
 			bRetVal = true;
 			TheMoviePlayer->Play();
 		}
 		
 		if (InDesiredStartPosSec > 0)
-		{ // Æ¯Á¤ À§Ä¡ºÎÅÍ º¸¿©ÁÖ±â ¿øÇÒ ¶§.. 
+		{ // æ¼‚æ²¥ å›°æ‘¹ä½•ç£ ç„Šå’¯æ—æ‰ ç›”ä¸” é”­.. 
 			TheMoviePlayer->Seek(FTimespan(0, 0, InDesiredStartPosSec));
 		}
 
-		// °¢ Movie ¸¶´Ù ÀûÀıÇÑ BI À§Ä¡°¡ ÀÖÀ½.
+		// é˜¿ Movie ä»˜ä¿ƒ åˆ©ä¾‹èŒ„ BI å›°æ‘¹å•Š ä¹æ¾œ.
 		if (PN_BI.IsValid())
 		{
 			PN_BI->SetRenderTranslation(InMovieSetup.BITranslation);
@@ -367,8 +367,8 @@ bool UB2UITitleDesign::StartMovieBySetupCommon(FB2UITitleMovieSetup& InMovieSetu
 	}
 
 	if(!bRetVal)
-	{ // ½ÇÆĞÇÏ´Â °æ¿ì µÚ¿¡ ÀÖ´Â Fallback ÀÌ¹ÌÁö¸¦ ´ë½Å º¸¿©ÁÜ.
-	  // ½ÇÆĞ ¿©ºÎ¿Í °ü°è¾øÀÌ º£ÀÌ½º·Î Ç×»ó º¸ÀÌµµ·Ï ÇÏ°í ½ÍÁö¸¸ Movie ÇÃ·¹ÀÌ¿¡¼­µµ ³ª¸§ÀÇ Image widget À» ¶ç¿ö¾ß ÇØ¼­ Æ¯º°ÇÑ ½ÇÆĞ Á¶°Ç ¾øÀÌ´Â ±×·¸°Ô ÇÒ ¼ö ¾ø´Ù.
+	{ // è§’è©çªç»° ç‰ˆå¿« ç¬¬ä¿Š ä¹ç»° Fallback æå›ºç˜¤ç”« æªè„š ç„Šå’¯æ·‹.
+	  // è§’è© å’¯ä½•å®¢ åŒ…æ‹Œç»æ æµ·æèƒ¶è‚º äº²æƒ‘ ç„Šææ¡£åºŸ çªç»Š é…µç˜¤çˆ¶ Movie æ•²é¥­æä¿Šè¾‘æ¡£ å”±æŠšç‹¼ Image widget é˜‘ å‰å†µå…· ç§¦è¾‘ æ¼‚å–ŠèŒ„ è§’è© ç‚¼æ‰’ ç»æç»° å¼ŠçŠ¯éœ¸ ä¸” è ç»ä¿ƒ.
 		ShowTitleMovieFallbackImage(InMovieSetup);
 	}
 
@@ -385,22 +385,22 @@ void UB2UITitleDesign::ReaptedStartMovieBySetupCommon(FB2UITitleMovieSetup InMov
 
 	const bool bStartMovieSucceeded = StartMovieBySetupCommon(InMovieSetup, InDesiredStartPosSec);
 
-	// StartMovieBySetupCommon ½ÇÆĞ ½Ã ÀÏÁ¤ È½¼ö±îÁö Àç½Ãµµ¸¦ ÇÑ´Ù.
+	// StartMovieBySetupCommon è§’è© çŸ« è€æ²¥ å†‰èé³–ç˜¤ çŠçŸ«æ¡£ç”« èŒ„ä¿ƒ.
 	if (!bStartMovieSucceeded && ReaptedStartMovieCountdown > 0 && TheWorld)
-	{ // ½Ã°£Àº ¿©±â¼­ Àû´çÈ÷ ÁÜ. ¾ÆÁÖ ¾à°£ ÈÄ¿¡ Àç½Ãµµ.
+	{ // çŸ«åŸƒç¯® å’¯æ‰è¾‘ åˆ©å¯¸æ´’ æ·‹. é…’æ— è·åŸƒ é¥¶ä¿Š çŠçŸ«æ¡£.
 		TheWorld->GetTimerManager().SetTimer(ReaptedStartMovieTH, FTimerDelegate::CreateUObject(this, &UB2UITitleDesign::ReaptedStartMovieBySetupCommon, InMovieSetup, InDesiredStartPosSec), 0.1f, false);
 		--ReaptedStartMovieCountdown;
 	}
 }
 
 void UB2UITitleDesign::ShowTitleMovieFallbackImage(FB2UITitleMovieSetup& InMovieSetup)
-{ // ¾î¶² ÀÌÀ¯·Îµç Å¸ÀÌÆ² µ¿¿µ»óÀ» º¸ÀÌÁö ¸øÇÏ´Â »óÈ²¿¡¼­ µ¿¿µ»óÀ» Ä¸ÃÄÇÑ ÀÌ¹ÌÁö¸¦ º¸ÀÌµµ·Ï ÇÏ±â À§ÇÔ.
+{ // ç»¢æ« æèœ¡è‚ºç”µ é¸¥ææ’‡ æ‚¼åº·æƒ‘é˜‘ ç„Šæç˜¤ ç»™çªç»° æƒ‘ç‚”ä¿Šè¾‘ æ‚¼åº·æƒ‘é˜‘ æ¯åªšèŒ„ æå›ºç˜¤ç”« ç„Šææ¡£åºŸ çªæ‰ å›°çªƒ.
 	B2_SCOPED_TRACK_LOG(FString::Printf(TEXT("UB2UITitleDesign::ShowTitleMovieFallbackImage PCClass %d"), PCClassToInt(InMovieSetup.RepresentingClass)));
 
 	if (IMG_FallbackMovieSnapshot.IsValid())
 	{
 		SetHiddenAllBackImages();
-		// HitTestInvisible ·Î ÇÏÁö ¸» °Í. ¹º°¡ ÇÏ³ª´Â Visible ÀÌ ÄÑÁ® ÀÖ¾î¾ß TitleDLC ¿¡¼­ Touch ½ÅÈ£¸¦ ¹ŞÀ» ¼ö°¡ ÀÖÀ½.
+		// HitTestInvisible è‚º çªç˜¤ å¯Œ å·´. è´­å•Š çªå”±ç»° Visible æ éš¾å»‰ ä¹ç»¢å…· TitleDLC ä¿Šè¾‘ Touch è„šé¾‹ç”« ç½é˜‘ èå•Š ä¹æ¾œ.
 		IMG_FallbackMovieSnapshot->SetVisibility(ESlateVisibility::Visible);
 		UTexture2D* LoadedImage = InMovieSetup.GetFallbackSnapshotImage(CurrLoadedMovieResourceCache);
 		if (LoadedImage)
@@ -444,9 +444,9 @@ void UB2UITitleDesign::PlayTouchAnim()
 void UB2UITitleDesign::TurnOffStartMovies()
 {
 #if !PLATFORM_IOS
-	// ÀÌ°É È®½ÇÈ÷ ¾È ÇßÀ» ¶§ ·Îºñ¿¡ Á¢¼ÓÇÑ ÀÌÈÄ¿¡µµ ¿©ÀüÈ÷ ¹é±×¶ó¿îµå¿¡ Å¸ÀÌÆ² µ¿¿µ»óÀÌ µ¹¾Æ°£´Ù´Â ÇÁ·ÎÆÄÀÏ¸µ °á°ú°¡ ÀÖ¾úÀ½.
+	// æå§ çŠ¬è§’æ´’ æ•‘ æ²é˜‘ é”­ è‚ºåšä¿Š ç«‹åŠ èŒ„ æé¥¶ä¿Šæ¡£ å’¯å‚ˆæ´’ å½’å¼Šæ‰¼æ¬¾é›ä¿Š é¸¥ææ’‡ æ‚¼åº·æƒ‘æ å€’é…’åŸƒä¿ƒç»° æ©‡è‚ºé¢‡è€å‚… æ¬è‹å•Š ä¹èŒæ¾œ.
 	
-	// ·ÎµùÀÌ µÇ¾î ÀÖ´Â °Í¸¸ Close ÇÔ.
+	// è‚ºçˆ¹æ ç™»ç»¢ ä¹ç»° å·´çˆ¶ Close çªƒ.
 	UMediaPlayer* LoadedPlayerIfAny = MovieSetup_ApkOnly.GetMoviePlayer(CurrLoadedMovieResourceCache, false);
 	if(LoadedPlayerIfAny)
 	{

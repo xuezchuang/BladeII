@@ -1,4 +1,4 @@
-#include "B2UIStageClearRewardFx.h"
+ï»¿#include "B2UIStageClearRewardFx.h"
 #include "B2UIManager.h"
 #include "B2ItemInfo.h"
 #include "B2UISlotItem.h"
@@ -16,7 +16,7 @@ void FStageClearRewardPSSetupLoadedRefHolder::CacheMeIfYouCan(class UParticleSys
 
 void FStageClearRewardPSSetup::PreloadForItems(TArray<FB2Item>& InItems, FStreamableManager& InTAssetLoadManager, FStageClearRewardPSSetupLoadedRefHolder& InLoadedRefHolder)
 {
-	// Àº±Ù ·Îµù ºí·ÎÅ·ÀÌ Á» ÀÖ¾î¼­ ¹Ì¸® ·ÎµùÇÒ ÇÊ¿ä°¡ ÀÖ±º..
+	// ç¯®è¾Ÿ è‚ºçˆ¹ å–‰è‚ºæ¬§æ ç²± ä¹ç»¢è¾‘ å›ºåºœ è‚ºçˆ¹ä¸” é˜å¤¸å•Š ä¹ç„™..
 	for (FB2Item& ThisItem : InItems)
 	{
 		GetPSForItem(ThisItem, InTAssetLoadManager, InLoadedRefHolder);
@@ -127,7 +127,7 @@ void FStageClearRewardPSSetup::UnloadTAssets(FStreamableManager& InTAssetLoadMan
 {
 #if WITH_EDITOR
 	if (GIsEditor) {
-		return; // ¿¡µğÅÍ¿¡¼± ¾ğ·Îµù °°Àº °Å ¾ÈÇÔ.
+		return; // ä¿Šå¼ç£ä¿Šæ€¥ æ”«è‚ºçˆ¹ éç¯® èŠ­ æ•‘çªƒ.
 	}
 #endif
 
@@ -158,7 +158,7 @@ void FStageClearRewardPSSetup::UnloadTAssets(FStreamableManager& InTAssetLoadMan
 		InTAssetLoadManager.Unload(PSForNonAtlasMaterial.ToSoftObjectPath());
 	}
 
-	InLoadedRefHolder.LoadedPSPtr.Empty(); // ºñ¿ï ¶© ÇÑ²¨¹ø¿¡
+	InLoadedRefHolder.LoadedPSPtr.Empty(); // åšåŒ¡ è®¢ èŒ„æ³¢é”…ä¿Š
 }
 
 #if WITH_EDITOR
@@ -167,7 +167,7 @@ void FStageClearRewardPSSetup::EditorLoadAll()
 	if (!GIsEditor) {
 		return;
 	}
-	// ±»ÀÌ Ä³½Ì°°Àº °Å ¾ÈÇÔ.
+	// è¢«æ æŸæ•™éç¯® èŠ­ æ•‘çªƒ.
 	for (TSoftObjectPtr<UParticleSystem>& ThisOne : PSPerItemGrade)
 	{
 		ThisOne.LoadSynchronous();
@@ -222,7 +222,7 @@ void UB2UIStageClearRewardFx::NativeTick(const FGeometry& MyGeometry, float InDe
 
 void UB2UIStageClearRewardFx::DestroySelf(class UB2UIManager* InUIManager)
 {
-	CleanupScene(); // ÀÌ ÆÄÆ®ÀÇ owner ÂÊ¿¡¼­ DestroySelf ¸¦ Á÷Á¢ call ÇÏµçÁö, ¾Æ´Ï¸é CleanupScene À» Á÷Á¢ call ÇÏµçÁö.
+	CleanupScene(); // æ é¢‡é£˜ç‹¼ owner ç‡ä¿Šè¾‘ DestroySelf ç”« æµç«‹ call çªç”µç˜¤, é…’èªæ CleanupScene é˜‘ æµç«‹ call çªç”µç˜¤.
 	Super::DestroySelf(InUIManager);
 }
 
@@ -235,7 +235,7 @@ void UB2UIStageClearRewardFx::CacheAssets()
 		if (ThisMarker)
 		{
 			ThisMarker->Init();
-			ThisMarker->SetVisibility(ESlateVisibility::Hidden); // ÀÏ´Ü ¼û±â°í.. ³ªÁß¿¡ Overlay Info ¸¸ º¸ÀÌµµ·Ï ÇÒ °Å.
+			ThisMarker->SetVisibility(ESlateVisibility::Hidden); // è€çªœ è§æ‰ç»Š.. å”±åä¿Š Overlay Info çˆ¶ ç„Šææ¡£åºŸ ä¸” èŠ­.
 			AllFxDestMarkers.Add(ThisMarker);
 		}
 	}
@@ -251,7 +251,7 @@ void UB2UIStageClearRewardFx::BeginScene(const TArray<FB2Item>& InRewardItems, c
 		APlayerController* OwningPC = GetOwningPlayer();
 		UB2UISlotItem* ThisDestMarker = AllFxDestMarkers.IsValidIndex(RI) ? AllFxDestMarkers[RI] : NULL;
 		FVector2D MarkerScreenPos;
-		// Marker ÀÇ ¹èÄ¡¿¡ µû¶ó HACKGetWidgetScreenCoord ·Î ½ºÅ©¸°ÁÂÇ¥¸¦ ¾òÁö ¸øÇÒ ¼ö ÀÖ´Ù.
+		// Marker ç‹¼ ç¡…æ‘¹ä¿Š è¶æ‰¼ HACKGetWidgetScreenCoord è‚º èƒ¶å†œèµ´è°…é’ç”« æ˜ç˜¤ ç»™ä¸” è ä¹ä¿ƒ.
 		if (ThisDestMarker && OwningPC && HACKGetWidgetScreenCoord(ThisDestMarker, OwningPC, MarkerScreenPos, true))
 		{
 			if (InRewardItems[RI].ItemClass == EItemClass::EIC_Ether)
@@ -260,7 +260,7 @@ void UB2UIStageClearRewardFx::BeginScene(const TArray<FB2Item>& InRewardItems, c
 			}
 			else
 			{
-				ThisDestMarker->BindDoc(InRewardItems[RI]); // 2D Slot Item Widget ¿¡ ¾ÆÀÌÅÛ Á¤º¸.
+				ThisDestMarker->BindDoc(InRewardItems[RI]); // 2D Slot Item Widget ä¿Š é…’æè¢ æ²¥ç„Š.
 			}
 
 			UParticleSystemComponent* NewFx = CreateSingleRewardFx(InRewardItems[RI], ThisDestMarker, InPSSetup, InTAssetLoadManager, InLoadedRefHolder);
@@ -294,7 +294,7 @@ void UB2UIStageClearRewardFx::CleanupScene()
 			ThisMarker->UnbindDoc();
 		}
 	}
-	// AllFxDestMarkers ¸¦ ºñ¿ì´Â °Ç ¹®¸Æ¿¡ ¸ÂÁö ¾ÊÀ» µí. º° »ó°üµµ ¾ø°ÚÁö¸¸ ¤»
+	// AllFxDestMarkers ç”« åšå¿«ç»° æ‰’ å·©é’™ä¿Š å˜ç˜¤ è‡¼é˜‘ æ·€. å–Š æƒ‘åŒ…æ¡£ ç»æ‘†ç˜¤çˆ¶ ã›
 
 	UWorld* TheWorld = GetWorld();
 	for (FStageClearRewardFxSet& ThisSet : CreatedRewardFxSet)
@@ -312,7 +312,7 @@ void UB2UIStageClearRewardFx::CleanupScene()
 	}
 	CreatedRewardFxSet.Empty();
 
-	// FStageClearRewardPSSetup Unload ´Â µû·Î owner ÂÊ¼­.
+	// FStageClearRewardPSSetup Unload ç»° è¶è‚º owner ç‡è¾‘.
 }
 
 UParticleSystemComponent* UB2UIStageClearRewardFx::CreateSingleRewardFx(const FB2Item& InRewardItem, UB2UISlotItem* InMarkerWidget, const FStageClearRewardPSSetup& InPSSetup, FStreamableManager& InTAssetLoadManager, FStageClearRewardPSSetupLoadedRefHolder& InLoadedRefHolder)
@@ -328,17 +328,17 @@ UParticleSystemComponent* UB2UIStageClearRewardFx::CreateSingleRewardFx(const FB
 		UParticleSystemComponent* CreatedFX = UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), InPSSetup.GetPSForItem(InRewardItem, InTAssetLoadManager, InLoadedRefHolder), FTransform(CreateWorldPos));
 		if (CreatedFX)
 		{
-			// Scale Àº °³¼öº°·Î ´Ù¸¦ ¼ö ÀÖ¾î¼­ ¼¼ÆÃÀÌ ¿©±â¿¡ ÀÖ°í Rotation Àº PS ¿¡¼Âº°·Î µé¾î°¥ ¸¸ÇÑ ¼³Á¤.
+			// Scale ç¯® ä¿ºèå–Šè‚º ä¿ƒç”« è ä¹ç»¢è¾‘ æŠ€æ³¼æ å’¯æ‰ä¿Š ä¹ç»Š Rotation ç¯® PS ä¿Šæ‚¸å–Šè‚º ç”¸ç»¢å“ çˆ¶èŒ„ æ±²æ²¥.
 			CreatedFX->SetWorldScale3D(FVector(FxCreateScale, FxCreateScale, FxCreateScale));
 			CreatedFX->SetWorldRotation(InPSSetup.FxCreateRot);
-			// È¤½Ã¶óµµ ÇÊ¿äÇÏ¸é ItemInfo »©¿À´Âµ¥ ÀÏ´ÜÀº InMarkerWidget À» È°¿ë
+			// è¶£çŸ«æ‰¼æ¡£ é˜å¤¸çªæ ItemInfo å“—å·ç»°å• è€çªœç¯® InMarkerWidget é˜‘ åŠä¾©
 			//UB2ItemInfo* ItemInfoTable = StaticFindItemInfo();
 			//FSingleItemInfoData* ThisItemInfoData = ItemInfoTable ? ItemInfoTable->GetInfoData(InRewardItem.ItemRefID) : NULL;
 
-			// ¾ÆÀÌÅÛ material À» ¼Â¾÷ÇÑ´Ù
+			// é…’æè¢ material é˜‘ æ‚¸è¯€èŒ„ä¿ƒ
 			SetupNamedMIDForFxComp(CreatedFX);
 			{
-				// ParticleSystem ¼Â¾÷ÀÌ Grade º°·Î µû·Î µé¾î°£´Ù°í ÇÏ´Ï ÀÌ Background panel ¼Â¾÷Àº ÇÊ¿äÇÏÁö ¾ÊÀ» ¼öµµ.
+				// ParticleSystem æ‚¸è¯€æ Grade å–Šè‚º è¶è‚º ç”¸ç»¢åŸƒä¿ƒç»Š çªèª æ Background panel æ‚¸è¯€ç¯® é˜å¤¸çªç˜¤ è‡¼é˜‘ èæ¡£.
 				UMaterialInstanceDynamic* ItemBGPanelMID = GetFxNamedMID(CreatedFX, Name_FxMID_ItemBGPanel);
 				UMaterialInstanceConstant* ItemBGPanelMIC_Ref = Cast<UMaterialInstanceConstant>(InMarkerWidget->GetActiveItemBGPanelMaterial());
 				SetupMIDNonAtlasParamFromUIMIC(ItemBGPanelMID, ItemBGPanelMIC_Ref);
@@ -366,7 +366,7 @@ UParticleSystemComponent* UB2UIStageClearRewardFx::CreateSingleRewardFx(const FB
 				SetMIDScalarParam(ItemStarIconMID, Name_FxMID_Param_StarTile, (float)InRewardItem.StarGrade);
 				SetMIDScalarParam(ItemStarIconMID, Name_FxMID_Param_StarSize, (float)((InRewardItem.StarGrade - 1) * FxStarSize));
 			} {
-				// Ether Star Number º°°¹¼ö 7°³ ÀÌ»óÀÏ¶§
+				// Ether Star Number å–Šè‚®è 7ä¿º ææƒ‘è€é”­
 				UMaterialInstanceDynamic* ItemStarIconMID = GetFxNamedMID(CreatedFX, Name_FxMID_StarNumer);
 				SetStageResultStar(ItemStarIconMID, InRewardItem.StarGrade);
 			}
@@ -389,7 +389,7 @@ void UB2UIStageClearRewardFx::UpdateFxMove(float DeltaSecond)
 			ToTargetDir.Normalize();
 
 			const float RemainingDist = ThisSet.TotalDistance - ThisSet.FlightDistSoFar;
-			// ¸ñÇ¥ÁöÁ¡±îÁö °Å¸®°¡ ´Ù¸¥ ¾ÆÀÌÅÛµé °£¿¡ ¿òÁ÷ÀÓÀ» Á» ¸ÂÃß±â À§ÇØ ÀÏÁ¾ÀÇ spring ¸ğµ¨¿¡ µû¸¥ scale À» µµÀÔÇÏ¿´Áö¸¸ FxMoveBaseAcceleration º¸´Ù ÀÛÁö´Â ¾Ê°Ô. ¿Ö³Ä¸é ¿ì¸®´Â ¹Ú·ÂÀ» Ãß±¸ÇÏ¹Ç·Î
+			// æ ¼é’ç˜¤ç—¢é³–ç˜¤ èŠ­åºœå•Š ä¿ƒå¼— é…’æè¢ç”¸ åŸƒä¿Š æ¡†æµçƒ™é˜‘ ç²± å˜çœ æ‰ å›°ç§¦ è€è¾†ç‹¼ spring è‘›èƒ†ä¿Š è¶å¼— scale é˜‘ æ¡£æ¶çªçœ‹ç˜¤çˆ¶ FxMoveBaseAcceleration ç„Šä¿ƒ ç´¯ç˜¤ç»° è‡¼éœ¸. æè¡¬æ å¿«åºœç»° å† ä»¿é˜‘ çœ å¤‡çªéª¨è‚º
 			FxMoveFinalAcc = FxMoveBaseAcceleration + (RemainingDist * FxMoveAccAdjustConst);
 
 			ThisSet.CurrentSpeed = FMath::Min(ThisSet.CurrentSpeed + FxMoveFinalAcc * DeltaSecond, FxMoveMaxSpeed);
@@ -398,7 +398,7 @@ void UB2UIStageClearRewardFx::UpdateFxMove(float DeltaSecond)
 			ThisSet.FXComp->SetWorldLocation(FxCompPos + ThisMoveAmount);
 
 			ThisSet.FlightTimeSoFar += DeltaSecond;
-			// Ã³À½ »êÁ¤ÇÑ °Å¸®º¸´Ù ¸Ö¸® °¬´Ù¸é µµÂøÇÑ °É·Î Ä¡°í Å¸°Ù À§Ä¡¿¡ °íÁ¤.
+			// è´¸æ¾œ é­‚æ²¥èŒ„ èŠ­åºœç„Šä¿ƒ é’¢åºœ è‰¾ä¿ƒæ æ¡£é¦’èŒ„ å§è‚º æ‘¹ç»Š é¸¥ç™¾ å›°æ‘¹ä¿Š ç»Šæ²¥.
 			ThisSet.FlightDistSoFar += ThisMoveAmount.Size();
 			if (ThisSet.FlightDistSoFar >= ThisSet.TotalDistance)
 			{
@@ -419,11 +419,11 @@ void UB2UIStageClearRewardFx::OnSingleRewardArriveAtDest(int32 RewardIndex)
 		
 		const float HowEarly = ThisSet.MinOverlayHiddenTime - ThisSet.FlightTimeSoFar;
 		if (HowEarly > 0.0f && TheWorld)
-		{ // ¾ÆÀÌÅÛ overlay ¸¦ º¸¿©µµ µÉ ½Ã°£º¸´Ù ÀÏÂï µµÂøÇßÀ¸¹Ç·Î Å¸ÀÌ¸Ó ¼Â¾÷.
+		{ // é…’æè¢ overlay ç”« ç„Šå’¯æ¡£ çª çŸ«åŸƒç„Šä¿ƒ è€å˜› æ¡£é¦’æ²æ éª¨è‚º é¸¥æèµ£ æ‚¸è¯€.
 			TheWorld->GetTimerManager().SetTimer(ThisSet.ItemOverlayInfoShowTH, FTimerDelegate::CreateUObject(this, &UB2UIStageClearRewardFx::ShowRewardOverlayInfo, RewardIndex), HowEarly, false);
 		}
 		else
-		{ // ¹Ù·Î ¾ÆÀÌÅÛ overlay Á¤º¸¸¦ º¸¿©µµ µÊ.
+		{ // å®˜è‚º é…’æè¢ overlay æ²¥ç„Šç”« ç„Šå’¯æ¡£ å‡³.
 			ShowRewardOverlayInfo(RewardIndex);
 		}
 	}

@@ -11,14 +11,14 @@
 #include "B2UIStarGradePart.h"
 
 //
-// Note : ¾ÆÀÌÅÛ ¾ÆÀÌÄÜ ÀÚÃ¼¸¦ ¹öÆ°À¸·Î »ç¿ëÇÏ±â À§ÇØ ¹Ù´Ú¿¡ ¹öÆ°À» ±ò¾Æ³õ¾ÒÀ» ¼ö ÀÖÀ¸´Ï,
-//		Æ¯º°ÇÑ ÀÌÀ¯°¡ ¾ø´Â ÀÌ»ó Visibility ´Â HitTestInvisible À» »ç¿ë.
+// Note : é…’æè¢ é…’æèƒ½ ç£Šçœ‰ç”« æ»šç“¢æ è‚º è¤ä¾©çªæ‰ å›°ç§¦ å®˜è¹¿ä¿Š æ»šç“¢é˜‘ å½¬é…’åˆç–½é˜‘ è ä¹æ èª,
+//		æ¼‚å–ŠèŒ„ æèœ¡å•Š ç»ç»° ææƒ‘ Visibility ç»° HitTestInvisible é˜‘ è¤ä¾©.
 //
 
 UB2DynItemIcon::UB2DynItemIcon(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
-	NonScaledSize = FVector2D(100.0f, 100.0f); // ½ÇÁ¦ ¸¸µç »çÀÌÁî ´ë·Î ¼³Á¤µÉ ÇÊ¿ä°¡ ÀÖÀ½.
+	NonScaledSize = FVector2D(100.0f, 100.0f); // è§’åŠ› çˆ¶ç”µ è¤æä»¤ æªè‚º æ±²æ²¥çª é˜å¤¸å•Š ä¹æ¾œ.
 
 	BackgroundImageNRef = NULL;
 	MainIconImageNRef = NULL;
@@ -48,14 +48,14 @@ void UB2DynItemIcon::UpdateItemData(const FB2Item& InItem)
 {
 	NativeItemData = InItem;
 
-	// Å¬¶óÀÌ¾ğÆ® ¾ÆÀÌÅÛ ¸®¼Ò½º Å×ÀÌºí
+	// åŠªæ‰¼ææ”«é£˜ é…’æè¢ åºœå®¶èƒ¶ æŠ›æå–‰
 	UB2ItemInfo* AllItemInfo = StaticFindItemInfo();
 	FSingleItemInfoData* ThisItemInfo = AllItemInfo ? AllItemInfo->GetInfoData(NativeItemData.ItemRefID) : NULL;
 	UB2ItemMiscInfo* ItemMiscInfo = StaticFindItemMiscInfo();
 
-	// UMG ÂÊ¿¡ ¹èÄ¡ÇÑ widget µé ¾÷µ¥ÀÌÆ®
+	// UMG ç‡ä¿Š ç¡…æ‘¹èŒ„ widget ç”¸ è¯€å•æé£˜
 
-	// ÀåÂø ¾ÆÀÌÅÛÀÌ³ª Á¤¼ö¸¸ º°¼º¿¡ µû¸¥ Â÷ÀÌ..
+	// å˜é¦’ é…’æè¢æå”± æ²¥èçˆ¶ å–Šå·±ä¿Š è¶å¼— ç’æ..
 	SetBackgroundImageFromGrade((IsEquipmentItem(InItem) || IsEssenceItem(InItem)) ? InItem.StarGrade : 1, (InItem.InventoryType == EItemInvenType::EIIVT_Consumables));
 
 	if (MainIconImageNRef)
@@ -63,7 +63,7 @@ void UB2DynItemIcon::UpdateItemData(const FB2Item& InItem)
 		MainIconImageNRef->SetBrushFromMaterial(ThisItemInfo ? ThisItemInfo->GetIconMaterial(AllItemInfo) : NULL);
 	}
 	if (ItemNameTextBlockNRef)
-	{ // ¾ÆÀÌÅÛ ÀÌ¸§¿¡¼­ Ç°Áú µû·Î Ç¥½ÃÇÒ °Å. GetLocalizedName ¿¡ ¸Å°³º¯¼ö ¾È³Ñ°ÜÁÜ.
+	{ // é…’æè¢ ææŠšä¿Šè¾‘ å‰é¾™ è¶è‚º é’çŸ«ä¸” èŠ­. GetLocalizedName ä¿Š æ¦‚ä¿ºå‡½è æ•‘é€è´¥æ·‹.
 		ItemNameTextBlockNRef->SetText(ThisItemInfo ? ThisItemInfo->GetLocalizedName() : FText::FromString(TEXT("Unknown Item")));
 		if (ItemMiscInfo)
 		{
@@ -81,7 +81,7 @@ void UB2DynItemIcon::UpdateItemData(const FB2Item& InItem)
 		IMG_ExtraSlotEffect->SetVisibility((ThisItemInfo && ThisItemInfo->bHasExtraSlotEffect) ? ESlateVisibility::HitTestInvisible : ESlateVisibility::Hidden);
 	}
 
-	// Widget Blueprint ¼­ °£Æí ¼¼ÆÃÇÒ µî±Ş/Ç°Áú º° ÀÌ¹ÌÁö µî
+	// Widget Blueprint è¾‘ åŸƒç¥ˆ æŠ€æ³¼ä¸” æ®¿é­/å‰é¾™ å–Š æå›ºç˜¤ æ®¿
 	UpdateItemData_BP(NativeItemData.StarGrade, NativeItemData.Quality, (NativeItemData.SurpassCount > 0));
 }
 
@@ -90,7 +90,7 @@ void UB2DynItemIcon::SetBackgroundImageFromGrade(int32 InItemGrade, bool bForCon
 	UB2ItemMiscInfo* ItemMiscInfo = StaticFindItemMiscInfo();
 	if (BackgroundImageNRef)
 	{
-		// ±âº»ÀûÀ¸·Î Simple À» »ç¿ëÇÏ´Âµ¥ ÇÏÀ§ Å¬·¡½º ÂÊ¼­ ¼³Á¤¿¡ µû¶ó ¹Ù²ã¼­ »ç¿ë.
+		// æ‰å¤¯åˆ©æ è‚º Simple é˜‘ è¤ä¾©çªç»°å• çªå›° åŠªè´°èƒ¶ ç‡è¾‘ æ±²æ²¥ä¿Š è¶æ‰¼ å®˜å±‚è¾‘ è¤ä¾©.
 		UMaterialInterface* BGMtrl = ItemMiscInfo ? ItemMiscInfo->GetItemIconBGMtrl(InItemGrade, true, bForConsumables) : NULL;
 		if (BGMtrl)
 		{
@@ -106,19 +106,19 @@ int32 UB2DynItemIcon::GetItemStarGrade() const
 
 UB2LobbyUI_ItemDetail* UB2DynItemIcon::CreateLobbyItemDetailPopupCommon(UObject* WorldContextObject, FB2Item& InItemData, bool bIsForEquippedItem)
 {
-	// º¸°üÇÔ ¾ÆÀÌÅÛ È¤Àº ÀåÂø ¾ÆÀÌÅÛ
+	// ç„ŠåŒ…çªƒ é…’æè¢ è¶£ç¯® å˜é¦’ é…’æè¢
 	const ELobbySubPopups LobbyPopupEnum = bIsForEquippedItem ? ELobbySubPopups::ELSPU_EquippedItemDetail : ELobbySubPopups::ELSPU_StoredItemDetail;
 
 	AB2LobbyGameMode* LobbyGM = Cast<AB2LobbyGameMode>(UGameplayStatics::GetGameMode(WorldContextObject));
 
-	// ÇØ´ç user widget »ı¼º ½ÅÈ£.
-	// »ı¼ºµÈ Popup widget À» UIP Ã³·³ ¹èÄ¡ÇØ ³ÖÀ» ÆĞ³Î Á¤º¸¸¦ ¸¸µé¾îÁØ´Ù.
+	// ç§¦å¯¸ user widget ç§¯å·± è„šé¾‹.
+	// ç§¯å·±ç­‰ Popup widget é˜‘ UIP è´¸çƒ¦ ç¡…æ‘¹ç§¦ æŒé˜‘ è©æ¾„ æ²¥ç„Šç”« çˆ¶ç”¸ç»¢éœ–ä¿ƒ.
 	UB2LobbyUI_InventoryMain* InventoryUI = LobbyGM ? Cast<UB2LobbyUI_InventoryMain>(LobbyGM->DJLegacy_GetCurrLobbyUIPage()) : nullptr;
 	UPanelWidget* PopupAddPanel = InventoryUI ? InventoryUI->GetItemDetailPopupParentPanel(bIsForEquippedItem ? true : false) : nullptr;
 	
 	//DJLegacy_OpenLobbySubPopupClass<ELobbySubPopups, FDJLegacySubpopupAddPanelInfo>::GetInstance().Signal(LobbyPopupEnum, FDJLegacySubpopupAddPanelInfo(InventoryUI, PopupAddPanel));
 
-	// »ı¼ºµÈ user widget À» Ã£¾Æ¼­ ItemData ¸¦ ¾÷µ¥ÀÌÆ®
+	// ç§¯å·±ç­‰ user widget é˜‘ èŒ«é…’è¾‘ ItemData ç”« è¯€å•æé£˜
 	UB2LobbyUI_ItemDetail* CreatedDetailWindow = LobbyGM ? Cast<UB2LobbyUI_ItemDetail>(LobbyGM->DJLegacy_FindLobbySubPopup(LobbyPopupEnum)) : NULL;
 
 	if (CreatedDetailWindow)

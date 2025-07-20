@@ -17,7 +17,7 @@ UB2UIDocEquip::~UB2UIDocEquip()
 
 void UB2UIDocEquip::DoEquip(const FB2Item& InEquipItem)
 {
-	if ((int32)InEquipItem.EquipPlace == EquipPlace) // ´Ù¸¥ °æ¿ì¶ó¸é ÄÄÇ»ÅÍ°¡ Æø¹ßÇÑ´Ù.
+	if ((int32)InEquipItem.EquipPlace == EquipPlace) // ä¿ƒå¼— ç‰ˆå¿«æ‰¼æ å“ªè…”ç£å•Š æ°”æƒ¯èŒ„ä¿ƒ.
 	{
 		SetEquipped(true);
 		SetEquippedItemId(InEquipItem.InstanceUID);
@@ -32,9 +32,9 @@ void UB2UIDocEquip::RemoveEquip()
 
 void UB2UIDocEquip::UpdateData(const FB2Item& InNewData)
 { 
-	if ((int32)InNewData.EquipPlace == EquipPlace) // ´Ù¸¥ °æ¿ì¶ó¸é ÄÄÇ»ÅÍ°¡ Æø¹ßÇÑ´Ù.
+	if ((int32)InNewData.EquipPlace == EquipPlace) // ä¿ƒå¼— ç‰ˆå¿«æ‰¼æ å“ªè…”ç£å•Š æ°”æƒ¯èŒ„ä¿ƒ.
 	{
-		// GetEquipped Ã¼Å©¸¦ ÇÒ ÇÊ¿ä°¡ ÀÖÀ¸·Á³ª..
+		// GetEquipped çœ‰å†œç”« ä¸” é˜å¤¸å•Š ä¹æ å¦¨å”±..
 		SetEquippedItemId(InNewData.InstanceUID);
 		SetEquippedItem(InNewData);
 	}

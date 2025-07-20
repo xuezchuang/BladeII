@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #ifndef SERVER_RESULT_CODE_TABLE
 
@@ -906,21 +906,21 @@ namespace B2ResultCode
 	const int FAILURE_GIVE_UP_QUEST_INVALID_SLOT_TYPE                      =  6714;	// fail give up quest because invalid slot type.
 	
 	//donaiton
-	const int FAILURE_NOT_EXIST_DONATION_STATUS							   = 6800; // ±âºÎ »óÅÂ Á¤º¸°¡ Á¸ÀçÇÏÁö ¾ÊÀ» °æ¿ì
-	const int	FAILURE_DUPLICATED_DONATION_STATUS						   = 6801; //	Áßº¹µÈ ±âºÎ »óÅÂ Á¤º¸°¡ Á¸Àç ÇÒ °æ¿ì
-	const int	FAILURE_NOT_FREE_DONATION_STATE							   = 6802; //	¹«·á±âºÎ ½Ã ¹«·á±âºÎ È½¼ö¸¦ ¸ðµÎ ¼ÒÁøÇß°Å³ª ¹­À½±âºÎÀÇ »óÅÂ¿äÃ»ÀÌ Á¸ÀçÇÒ °æ¿ì
-	const int	FAILURE_NOT_MATCHED_LAST_DONATION_KEY_VALUE				   = 6803; //`ÇÑ¹ø ´õ` ±âºÎ °ËÁõ¿ë Å°°ªÀÌ À¯È¿ÇÏÁö ¾ÊÀ» °æ¿ì
-	const int	FAILURE_UPDATE_DAILY_FREE_COUNT							   = 6804; //ÀÏÀÏ ¹«·á ±âºÎ °³¼ö ¾÷µ¥ÀÌÆ®°¡ ½ÇÆÐÇßÀ» °æ¿ì
-	const int	FAILURE_UPDATE_DONATION_POINT							   = 6805; //	±âºÎ Æ÷ÀÎÆ® ¾÷µ¥ÀÌÆ®°¡ ½ÇÆÐÇßÀ» °æ¿ì
-	const int	FAILURE_UPDATE_LAST_DONATION_KEY_VALUE					   = 6806; //`ÇÑ¹ø ´õ` ±âºÎ °ËÁõ¿ë Å° ¾÷µ¥ÀÌÆ®°¡ ½ÇÆÐÇßÀ» °æ¿ì
-	const int	FAILURE_INVALID_DONATION_ID								   = 6807; //±âºÎ ÀÌº¥Æ® ¾ÆÀÌµð°¡ À¯È¿ÇÏÁö ¾ÊÀº °æ¿ì
-	const int	FAILURE_ALREADY_REWARDED_DONATION_POINT_REWARD		   	   = 6808; //	ÀÌ¹Ì ¼ö·ÉÇÑ ±âºÎ Æ÷ÀÎÆ® º¸»óÀ» ´Ù½Ã ¿äÃ»ÇÑ °æ¿ì
-	const int	FAILURE_UPDATE_DONATION_POINT_REWARD_STATE				   = 6809; //±âºÎ Æ÷ÀÎÆ® º¸»ó »óÅÂ Á¤º¸ ¾÷µ¥ÀÌÆ®°¡ ½ÇÆÐÇßÀ» °æ¿ì
-	const int	FAILURE_NOT_ENOUGH_POINT_RECEIVE_REWARD					   = 6810; //	±âºÎ Æ÷ÀÎÆ® º° º¸»ó ¹Þ±â ½Ã Æ÷ÀÎÆ®°¡ ºÎÁ·ÇÒ °æ¿ì
-	const int	FAILURE_DUPLICATE_DONATION_EVENT_IN_PROGRESS			   = 6813; //	ÁøÇàÁßÀÎ ±âºÎ ÀÌº¥Æ®°¡ 2°³ ÀÌ»óÀÏ °æ¿ì
-	const int	FAILURE_YET_REMAIN_FREE_DONATION_COUNT					   = 6814; //À¯·á±âºÎ ½Ã ¹«·á±âºÎ È½¼ö°¡ ³²¾Æ ÀÖÀ» °æ¿ì
-	const int	FAILURE_THIS_DONATION_EVENT_ALREADY_ENDED				   = 6815; //±âºÎ ½Ã ±âºÎ ÀÌº¥Æ®°¡ ÀÌ¹Ì Á¾·áµÈ °æ¿ì
-	const int	FAILURE_NOT_YET_NEXT_DONATION_TIME						   = 6822;				// ±âºÎ Request 1ÃÊ Á¦ÇÑ
+	const int FAILURE_NOT_EXIST_DONATION_STATUS							   = 6800; // æ‰ä½• æƒ‘æ€• æ²¥ç„Šå•Š ç²®çŠçªç˜¤ è‡¼é˜‘ ç‰ˆå¿«
+	const int	FAILURE_DUPLICATED_DONATION_STATUS						   = 6801; //	åæ±—ç­‰ æ‰ä½• æƒ‘æ€• æ²¥ç„Šå•Š ç²®çŠ ä¸” ç‰ˆå¿«
+	const int	FAILURE_NOT_FREE_DONATION_STATE							   = 6802; //	å…¬ä¸°æ‰ä½• çŸ« å…¬ä¸°æ‰ä½• å†‰èç”« è‘›æ»´ å®¶æŸ³æ²èŠ­å”± å¼“æ¾œæ‰ä½•ç‹¼ æƒ‘æ€•å¤¸æ²¡æž ç²®çŠä¸” ç‰ˆå¿«
+	const int	FAILURE_NOT_MATCHED_LAST_DONATION_KEY_VALUE				   = 6803; //`èŒ„é”… æ­¹` æ‰ä½• å…«åˆ˜ä¾© è™è”¼æž èœ¡ç“¤çªç˜¤ è‡¼é˜‘ ç‰ˆå¿«
+	const int	FAILURE_UPDATE_DAILY_FREE_COUNT							   = 6804; //è€è€ å…¬ä¸° æ‰ä½• ä¿ºè è¯€å•æžé£˜å•Š è§’è©æ²é˜‘ ç‰ˆå¿«
+	const int	FAILURE_UPDATE_DONATION_POINT							   = 6805; //	æ‰ä½• å™¨ç‰¢é£˜ è¯€å•æžé£˜å•Š è§’è©æ²é˜‘ ç‰ˆå¿«
+	const int	FAILURE_UPDATE_LAST_DONATION_KEY_VALUE					   = 6806; //`èŒ„é”… æ­¹` æ‰ä½• å…«åˆ˜ä¾© è™ è¯€å•æžé£˜å•Š è§’è©æ²é˜‘ ç‰ˆå¿«
+	const int	FAILURE_INVALID_DONATION_ID								   = 6807; //æ‰ä½• æžäº¥é£˜ é…’æžå¼å•Š èœ¡ç“¤çªç˜¤ è‡¼ç¯® ç‰ˆå¿«
+	const int	FAILURE_ALREADY_REWARDED_DONATION_POINT_REWARD		   	   = 6808; //	æžå›º èé£žèŒ„ æ‰ä½• å™¨ç‰¢é£˜ ç„Šæƒ‘é˜‘ ä¿ƒçŸ« å¤¸æ²¡èŒ„ ç‰ˆå¿«
+	const int	FAILURE_UPDATE_DONATION_POINT_REWARD_STATE				   = 6809; //æ‰ä½• å™¨ç‰¢é£˜ ç„Šæƒ‘ æƒ‘æ€• æ²¥ç„Š è¯€å•æžé£˜å•Š è§’è©æ²é˜‘ ç‰ˆå¿«
+	const int	FAILURE_NOT_ENOUGH_POINT_RECEIVE_REWARD					   = 6810; //	æ‰ä½• å™¨ç‰¢é£˜ å–Š ç„Šæƒ‘ ç½æ‰ çŸ« å™¨ç‰¢é£˜å•Š ä½•ç»ƒä¸” ç‰ˆå¿«
+	const int	FAILURE_DUPLICATE_DONATION_EVENT_IN_PROGRESS			   = 6813; //	æŸ³é’åç‰¢ æ‰ä½• æžäº¥é£˜å•Š 2ä¿º æžæƒ‘è€ ç‰ˆå¿«
+	const int	FAILURE_YET_REMAIN_FREE_DONATION_COUNT					   = 6814; //èœ¡ä¸°æ‰ä½• çŸ« å…¬ä¸°æ‰ä½• å†‰èå•Š å·¢é…’ ä¹é˜‘ ç‰ˆå¿«
+	const int	FAILURE_THIS_DONATION_EVENT_ALREADY_ENDED				   = 6815; //æ‰ä½• çŸ« æ‰ä½• æžäº¥é£˜å•Š æžå›º è¾†ä¸°ç­‰ ç‰ˆå¿«
+	const int	FAILURE_NOT_YET_NEXT_DONATION_TIME						   = 6822;				// æ‰ä½• Request 1æª¬ åŠ›èŒ„
 	//mission
 	const int FAILURE_PUSH_REWARD_NOT_COMPLETED                            =  7000;	// fail push reward not completed
 	const int FAILURE_PUSH_REWARD_ALREADY_REWARDED                         =  7001;	// fail push reward already rewarded

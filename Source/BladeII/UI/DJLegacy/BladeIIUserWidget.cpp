@@ -41,12 +41,12 @@ void UBladeIIUserWidget::NativeConstruct()
 
 	StartWorldBackgroundBlur();
 
-	// CustomTimeCallback Å¸ÀÌ¸Ó ¼³Ä¡. 
+	// CustomTimeCallback é¸¥æèµ£ æ±²æ‘¹. 
 	SetupWidgetCustomTimer();
-	// CustomTimedHide Å¸ÀÌ¸Ó ¼³Ä¡
+	// CustomTimedHide é¸¥æèµ£ æ±²æ‘¹
 	SetupWidgetCustomHideTimer();
 
-	CacheAssets(); // ÇÊ¿ä¿¡ µû¶ó BP ¿¡ ¹èÄ¡ÇÑ widget µéÀ» ³×ÀÌÆ¼ºê ·¹ÆÛ·±½º¿¡ Ä³½ÌÇÑ´Ù.
+	CacheAssets(); // é˜å¤¸ä¿Š è¶æ‰¼ BP ä¿Š ç¡…æ‘¹èŒ„ widget ç”¸é˜‘ åŒ™æèå® é¥­æ¬ºç¹èƒ¶ä¿Š æŸæ•™èŒ„ä¿ƒ.
 
 	RegisterUIMarkForRedDot();
 	DoMarkRedDot();
@@ -56,14 +56,14 @@ bool UBladeIIUserWidget::StartWorldBackgroundBlur()
 {
 	if (bAllowWorldBackgroundBlur)
 	{
-		// ¾Æ¸¶µµ ÀÌ°É Ã³¸®ÇÒ ABladeIIGameMode::BeginGlobalSceneBlur ¿¡¼­´Â ¼º°ø¿©ºÎ¿¡ µû¶ó ¸®ÅÏ°ªÀ» ÁÖ´Âµ¥ Event ·Î´Â ¸®ÅÏ°ªÀ» ¹Ş¾Æ¿Ã ¼ö ¾ø°í.. °Á ÀÌÂÊµµ ÇÃ·¡±× ¼¼ÆÃ
+		// é…’ä»˜æ¡£ æå§ è´¸åºœä¸” ABladeIIGameMode::BeginGlobalSceneBlur ä¿Šè¾‘ç»° å·±å‚å’¯ä½•ä¿Š è¶æ‰¼ åºœç•”è”¼é˜‘ æ—ç»°å• Event è‚ºç»° åºœç•”è”¼é˜‘ ç½é…’æ£µ è ç»ç»Š.. å‚² æç‡æ¡£ æ•²è´°å¼Š æŠ€æ³¼
 		BeginGlobalSceneBlurClass<float>::GetInstance().Signal(WorldBackgroundBlurScale);
 		bWorldBackgroundBlurOn = true;
 
 		if (bHideInGameHUDForWorldBackgroundBlur)
 		{
-			// ÀÌ°Ô »óÈ²¿¡ µû¶ó ¿Ïº®È÷ ¼û°ÜÁÖÁö´Â ¾Ê´Âµ¥ gbHACKInGameUIHiddenByDevCommand ¸¦ Âü°í. 
-			// ¾Æ¸¶µµ WorldBackgroundBlur ¸¦ ¾²´Â »óÈ²¿¡¼± ±×°Í±îÁö °¨¾ÈÇÒ ÇÊ¿ä°¡ ¾øÁö ¾ÊÀ»±î ÇÔ.
+			// æéœ¸ æƒ‘ç‚”ä¿Š è¶æ‰¼ è‚¯å¯’æ´’ è§è´¥æ—ç˜¤ç»° è‡¼ç»°å• gbHACKInGameUIHiddenByDevCommand ç”« æ›¼ç»Š. 
+			// é…’ä»˜æ¡£ WorldBackgroundBlur ç”« é™ç»° æƒ‘ç‚”ä¿Šæ€¥ å¼Šå·´é³–ç˜¤ çš‘æ•‘ä¸” é˜å¤¸å•Š ç»ç˜¤ è‡¼é˜‘é³– çªƒ.
 			for (TObjectIterator<UB2UIManager_InGameHUDChar> WMIT; WMIT; ++WMIT)
 			{
 				(*WMIT)->HideAll();
@@ -95,8 +95,8 @@ void UBladeIIUserWidget::StopWorldBackgroundBlur()
 
 void UBladeIIUserWidget::SetupWidgetCustomTimer()
 {
-	// ¿ùµå°¡ pause µÇ¾î ÀÖ´Â »óÅÂ¿¡¼­ »ç¿ëµÇ´Â widget ÀÌ¶ó¸é Å¸ÀÌ¸Ó´Â ¸ÔÈ÷Áö ¾ÊÀ» °Í.¿¹¸¦ µé¾î Pause ¸Ş´º³ª StageClear ¸Ş´º °°Àº °Å.
-	// ±×·± °æ¿ì´Â ¾îÂ÷ÇÇ Å¸ÀÌ¸Ó°¡ ÀÛµ¿ÇÏÁø ¾ÊÀ» Å×´Ï NativeTick À» ¾²µçÁö ÇØ¾ß.
+	// å²¿é›å•Š pause ç™»ç»¢ ä¹ç»° æƒ‘æ€•ä¿Šè¾‘ è¤ä¾©ç™»ç»° widget ææ‰¼æ é¸¥æèµ£ç»° å†ˆæ´’ç˜¤ è‡¼é˜‘ å·´.æŠ—ç”« ç”¸ç»¢ Pause çš‹æ˜¥å”± StageClear çš‹æ˜¥ éç¯® èŠ­.
+	// å¼Šç¹ ç‰ˆå¿«ç»° ç»¢ç’ä¹” é¸¥æèµ£å•Š ç´¯æ‚¼çªæŸ³ è‡¼é˜‘ æŠ›èª NativeTick é˜‘ é™ç”µç˜¤ ç§¦å…·.
 	BII_CHECK(GetOwningPlayer());
 	if (GetOwningPlayer())
 	{
@@ -119,7 +119,7 @@ void UBladeIIUserWidget::OriginalCustomTimeCallback(int32 InfoIndex)
 	{
 		GetOwningPlayer()->GetWorldTimerManager().ClearTimer(CustomTimedCallBackInfo[InfoIndex].TimerHandle);
 
-		CustomTimedCallBackInfo[InfoIndex].bIsInvoked = true; // Å¸ÀÌ¸Ó ÀÛµ¿ »óÈ²ÀÌ¶ó¸é ÇÊ¿ä ¾øÁö¸¸ ¿¹ÀÇ»ó ¼¼ÆÃÇÏÀÚ.
+		CustomTimedCallBackInfo[InfoIndex].bIsInvoked = true; // é¸¥æèµ£ ç´¯æ‚¼ æƒ‘ç‚”ææ‰¼æ é˜å¤¸ ç»ç˜¤çˆ¶ æŠ—ç‹¼æƒ‘ æŠ€æ³¼çªç£Š.
 	}
 
 	NativeCustomTimeCallback(InfoIndex);
@@ -133,8 +133,8 @@ void UBladeIIUserWidget::NativeCustomTimeCallback(int32 InfoIndex)
 
 void UBladeIIUserWidget::SetupWidgetCustomHideTimer()
 {
-	// ¿ùµå°¡ pause µÇ¾î ÀÖ´Â »óÅÂ¿¡¼­ »ç¿ëµÇ´Â widget ÀÌ¶ó¸é Å¸ÀÌ¸Ó´Â ¸ÔÈ÷Áö ¾ÊÀ» °Í.¿¹¸¦ µé¾î Pause ¸Ş´º³ª StageClear ¸Ş´º °°Àº °Å.
-	// ±×·± °æ¿ì´Â ¾îÂ÷ÇÇ Å¸ÀÌ¸Ó°¡ ÀÛµ¿ÇÏÁø ¾ÊÀ» Å×´Ï NativeTick À» ¾²µçÁö ÇØ¾ß.
+	// å²¿é›å•Š pause ç™»ç»¢ ä¹ç»° æƒ‘æ€•ä¿Šè¾‘ è¤ä¾©ç™»ç»° widget ææ‰¼æ é¸¥æèµ£ç»° å†ˆæ´’ç˜¤ è‡¼é˜‘ å·´.æŠ—ç”« ç”¸ç»¢ Pause çš‹æ˜¥å”± StageClear çš‹æ˜¥ éç¯® èŠ­.
+	// å¼Šç¹ ç‰ˆå¿«ç»° ç»¢ç’ä¹” é¸¥æèµ£å•Š ç´¯æ‚¼çªæŸ³ è‡¼é˜‘ æŠ›èª NativeTick é˜‘ é™ç”µç˜¤ ç§¦å…·.
 	BII_CHECK(GetOwningPlayer());
 	if (GetOwningPlayer())
 	{
@@ -149,9 +149,9 @@ void UBladeIIUserWidget::SetupWidgetCustomHideTimer()
 				continue;
 			}
 
-			ThisHideInfo.OriginalVisibility = WidgetToHide->GetVisibility(); // Hide ÇÒ ¶§¿¡µµ ¹é¾÷ÇØ ³õÁö¸¸ ¾Æ·¡ ·ÎÁ÷¿¡ µû¶ó HideStop ÀÌ ¸ÕÀú µÉ ¼öµµ ÀÖÀ¸´Ï ¿©±â¼­µµ ÇÑ¹ø.
+			ThisHideInfo.OriginalVisibility = WidgetToHide->GetVisibility(); // Hide ä¸” é”­ä¿Šæ¡£ å½’è¯€ç§¦ åˆç˜¤çˆ¶ é…’è´° è‚ºæµä¿Š è¶æ‰¼ HideStop æ åˆšå† çª èæ¡£ ä¹æ èª å’¯æ‰è¾‘æ¡£ èŒ„é”….
 
-			// HideStopTime ÀÌ HideStartTime º¸´Ù Å«Áö¿¡ ´ëÇÑ È®ÀÎÀº.. ±»ÀÌ ÇÏÁö ¾Ê´Â´Ù.
+			// HideStopTime æ HideStartTime ç„Šä¿ƒ å¥´ç˜¤ä¿Š æªèŒ„ çŠ¬ç‰¢ç¯®.. è¢«æ çªç˜¤ è‡¼ç»°ä¿ƒ.
 
 			if (ThisHideInfo.HideStartTime > 0.0f)
 			{
@@ -161,7 +161,7 @@ void UBladeIIUserWidget::SetupWidgetCustomHideTimer()
 			}
 			else
 			{
-				CustomTimeHideStartCallback(CTI); // ¹Ù·Î Äİ¹é ½ÇÇà
+				CustomTimeHideStartCallback(CTI); // å®˜è‚º å¦®å½’ è§’é’
 			}
 
 			if (ThisHideInfo.HideStopTime > 0.0f)
@@ -172,7 +172,7 @@ void UBladeIIUserWidget::SetupWidgetCustomHideTimer()
 			}
 			else
 			{
-				CustomTimeHideStopCallback(CTI); // ¹Ù·Î Äİ¹é ½ÇÇà. °á±¹ HideStopTime ÀÌ 0 ÀÌÇÏ¸é ¾È ¼û°ÜÁü
+				CustomTimeHideStopCallback(CTI); // å®˜è‚º å¦®å½’ è§’é’. æ¬æƒ« HideStopTime æ 0 æçªæ æ•‘ è§è´¥å’™
 			}
 		}
 	}
@@ -191,7 +191,7 @@ void UBladeIIUserWidget::CustomTimeHideStartCallback(int32 InfoIndex)
 
 		if (WidgetToHide)
 		{
-			ThisHideInfo.OriginalVisibility = WidgetToHide->GetVisibility(); // ÀÏ´Ü ÀÌÀü »óÅÂ¸¦ ¹é¾÷ÇØ ³õ°í ¼û±ä´Ù.
+			ThisHideInfo.OriginalVisibility = WidgetToHide->GetVisibility(); // è€çªœ æå‚ˆ æƒ‘æ€•ç”« å½’è¯€ç§¦ åˆç»Š è§å˜ä¿ƒ.
 			WidgetToHide->SetVisibility(ESlateVisibility::Hidden);
 			ThisHideInfo.bIsHidden = true;
 			ThisHideInfo.bHiddenDoneOnce = true;
@@ -220,14 +220,14 @@ void UBladeIIUserWidget::CustomTimeHideStopCallback(int32 InfoIndex)
 
 void UBladeIIUserWidget::DestroySelf()
 {
-	//StopWorldBackgroundBlur(); // ¸¸ÀÏ ÄÑÁ® ÀÖ´Ù¸é Áß´Ü.
+	//StopWorldBackgroundBlur(); // çˆ¶è€ éš¾å»‰ ä¹ä¿ƒæ åçªœ.
 
-	//// ¿©±â¼­ BeginDestroyed ¿´°Å³ª ÀÌ¹Ì PendingKill ÀÌ¶õ ¾ê±â´Â DestroySelf ¸¦ µÎ¹ø È£ÃâÇß´øÁö, ¾Æ´Ô ¿ùµå°¡ ³»·Á°¡´Â »óÈ²ÀÌµçÁö.. 
+	//// å’¯æ‰è¾‘ BeginDestroyed çœ‹èŠ­å”± æå›º PendingKill æé„‚ å¨Ÿæ‰ç»° DestroySelf ç”« æ»´é”… é¾‹å…æ²å¸¦ç˜¤, é…’ä¸› å²¿é›å•Š éƒ´å¦¨å•Šç»° æƒ‘ç‚”æç”µç˜¤.. 
 	//if (!HasAnyFlags(EObjectFlags::RF_BeginDestroyed) && !IsPendingKillOrUnreachable())
 	//{
 	//	APlayerController* OwningPC = GetOwningPlayer();
 	//	BII_CHECK(OwningPC);
-	//	// CustomTimer µµ ¸ğµÎ Á¦°Å
+	//	// CustomTimer æ¡£ è‘›æ»´ åŠ›èŠ­
 	//	if (OwningPC)
 	//	{
 	//		for (int32 CTI = 0; CTI < CustomTimedCallBackInfo.Num(); ++CTI)

@@ -115,7 +115,7 @@ void UB2LobbyUI_SetupSkillMain::StartFromLobby(class UB2UIManager_Lobby* InUIMan
 	
 	if (UIP_HeroMgmtBase.IsValid())
 	{
-		UIP_HeroMgmtBase->StartFromLobby(InUIManager, InGM); // ÀÌ°Ç LobbyUISwitcher ¿¡¼­ ¸ğ¸£´Ï Á÷Á¢ ÇØ ÁÖ¾î¾ß..
+		UIP_HeroMgmtBase->StartFromLobby(InUIManager, InGM); // ææ‰’ LobbyUISwitcher ä¿Šè¾‘ è‘›ç¦èª æµç«‹ ç§¦ æ—ç»¢å…·..
 		UIP_HeroMgmtBase->SetPresetMode(EInventoryPresetMode::EIPM_Skill);
 	}
 
@@ -128,8 +128,8 @@ void UB2LobbyUI_SetupSkillMain::NativeTick(const FGeometry& MyGeometry, float In
 {
 	Super::NativeTick(MyGeometry, InDeltaTime);
 	
-	// ¿©±â Unity ÆÄÆ®¸¦ µû·Î ±¸¼ºÇß´Âµ¥ ±×ÂÊ ÅÇ ÁøÀÔ½Ã ¼º´ÉÀÌ ¶³¾îÁö´Ï ÀÌ ½ÃÁ¡ºÎÅÍ ·Îµù½ÃÀÛ ¤§¤§.
-	// Init ½ÃÁ¡¿¡´Â async flush ¿ä¼Ò°¡ ÀÖÀ¸¹Ç·Î ºÒ°¡.
+	// å’¯æ‰ Unity é¢‡é£˜ç”« è¶è‚º å¤‡å·±æ²ç»°å• å¼Šç‡ å¾˜ æŸ³æ¶çŸ« å·±ç“·æ å†»ç»¢ç˜¤èª æ çŸ«ç—¢ä½•ç£ è‚ºçˆ¹çŸ«ç´¯ ã‡ã‡.
+	// Init çŸ«ç—¢ä¿Šç»° async flush å¤¸å®¶å•Š ä¹æ éª¨è‚º é˜‚å•Š.
 	RequestAsycLoadUnityPartClass();
 }
 
@@ -211,7 +211,7 @@ void UB2LobbyUI_SetupSkillMain::BindDelegates()
 
 void UB2LobbyUI_SetupSkillMain::BeginDestroy()
 {
-	//Editor »óÈ²¿¡¼­ ¹®Á¦°¡ Á» ÀÖ¾î¼­ ¿©±â¼­µµ unsubscribe
+	//Editor æƒ‘ç‚”ä¿Šè¾‘ å·©åŠ›å•Š ç²± ä¹ç»¢è¾‘ å’¯æ‰è¾‘æ¡£ unsubscribe
 	if (CachedLobbyGM)
 	{
 		ChangeSkillPointClass<>::GetInstance().Unsubscribe(ChangeSkillPointTicket);
@@ -261,7 +261,7 @@ void UB2LobbyUI_SetupSkillMain::CloseWidgetDelegate()
 		UB2LobbyUI_SetupSkillMain* InventoryUI = CachedLobbyGM ? Cast<UB2LobbyUI_SetupSkillMain>(CachedLobbyGM->DJLegacy_GetCurrLobbyUIPage()) : nullptr;
 		if (InventoryUI && InventoryUI->GetVisibility() == ESlateVisibility::HitTestInvisible)
 		{
-			// °á¼Ó ¾Ö´Ï ½ºÅ³ Áß¿¡ ¹é¹öÆ° ¾È¸ÔÈ÷±â À§ÇØ..
+			// æ¬åŠ  å±€èª èƒ¶æ‡¦ åä¿Š å½’æ»šç“¢ æ•‘å†ˆæ´’æ‰ å›°ç§¦..
 			return;
 		}
 	}
@@ -269,7 +269,7 @@ void UB2LobbyUI_SetupSkillMain::CloseWidgetDelegate()
 	if (UB2UIManager* UIManager = UB2UIManager::GetInstance())
 	{
 		EUIScene PrevUIScene = UIManager->GetCurrUIScene();
-		//UIScene History¿¡ ÀÇÇØ ÀÚµ¿À¸·Î BackµÈ´Ù. DJLegacy HeroMgmt ¸ğµåÀÎ °æ¿ìµµ Ã³¸®µÉ °Í.
+		//UIScene Historyä¿Š ç‹¼ç§¦ ç£Šæ‚¼æ è‚º Backç­‰ä¿ƒ. DJLegacy HeroMgmt è‘›é›ç‰¢ ç‰ˆå¿«æ¡£ è´¸åºœçª å·´.
 		UIManager->ChangeUISceneBack();
 	}
 }
@@ -291,7 +291,7 @@ void UB2LobbyUI_SetupSkillMain::OnClickedActiveSkillListBtn()
 	SET_SLOT_VISIBILITY(P_SkillPointSet, ESlateVisibility::SelfHitTestInvisible);
 	SET_SLOT_VISIBILITY(P_SkillListHorizontalBoxTop, ESlateVisibility::SelfHitTestInvisible);
 	SET_SLOT_VISIBILITY(P_SkillListHorizontalBoxBottom, ESlateVisibility::SelfHitTestInvisible);
-	SetUnityTabPartOpen(false); // ¾ÕÀ¸·Î ¹Ù²ğ ±¸¼º.. UnitySkill ÂÊ º°µµ ÆÄÆ®..
+	SetUnityTabPartOpen(false); // èŠæ è‚º å®˜æ‹† å¤‡å·±.. UnitySkill ç‡ å–Šæ¡£ é¢‡é£˜..
 
 	if (UIP_HeroMgmtBase.IsValid()) UIP_HeroMgmtBase->SetPresetMode(EInventoryPresetMode::EIPM_Skill);
 }
@@ -307,7 +307,7 @@ void UB2LobbyUI_SetupSkillMain::OnClickedPassiveSkillListBtn()
 	SET_SLOT_VISIBILITY(P_SkillPointSet, ESlateVisibility::SelfHitTestInvisible);
 	SET_SLOT_VISIBILITY(P_SkillListHorizontalBoxTop, ESlateVisibility::SelfHitTestInvisible);
 	SET_SLOT_VISIBILITY(P_SkillListHorizontalBoxBottom, ESlateVisibility::SelfHitTestInvisible);
-	SetUnityTabPartOpen(false); // ¾ÕÀ¸·Î ¹Ù²ğ ±¸¼º.. UnitySkill ÂÊ º°µµ ÆÄÆ®..
+	SetUnityTabPartOpen(false); // èŠæ è‚º å®˜æ‹† å¤‡å·±.. UnitySkill ç‡ å–Šæ¡£ é¢‡é£˜..
 
 	if (UIP_HeroMgmtBase.IsValid())
 	{
@@ -321,7 +321,7 @@ void UB2LobbyUI_SetupSkillMain::OnClickedUnitySkillBtn()
 	if (CurrentView != EViewSkillList::UnitySkill)
 	{
 		CurrentView = EViewSkillList::UnitySkill;
-		SetUnityTabPartOpen(true); // ¾ÕÀ¸·Î ¹Ù²ğ ±¸¼º.. UnitySkill ÂÊ º°µµ ÆÄÆ®..
+		SetUnityTabPartOpen(true); // èŠæ è‚º å®˜æ‹† å¤‡å·±.. UnitySkill ç‡ å–Šæ¡£ é¢‡é£˜..
 		CreateSkillList();
 	}
 	SET_SLOT_VISIBILITY(P_SkillPointSet, ESlateVisibility::Collapsed);
@@ -349,8 +349,8 @@ void UB2LobbyUI_SetupSkillMain::OnClickedSkillChangeBtn()
 
 void UB2LobbyUI_SetupSkillMain::OnClickedLevelupSkillPoint(int32 SkillID)
 {
-	// ½ºÅ³ Æ÷ÀÎÆ®¸¸ ¿¹¿Ü Ã³¸® (°ñµå´Â HandleServerError911Class ¼­¹ö ¿¡·¯·Î Ã³¸®)
-	if (CurrentSkillPoint < 1) // ½ºÅ³ Æ÷ÀÎÆ®°¡ ÇÏ³ªµµ ¾øÀ»°æ¿ì ¿¹¿ÜÃ³¸®..
+	// èƒ¶æ‡¦ å™¨ç‰¢é£˜çˆ¶ æŠ—å¯‡ è´¸åºœ (æ¦œé›ç»° HandleServerError911Class è¾‘æ»š ä¿ŠçŸ¾è‚º è´¸åºœ)
+	if (CurrentSkillPoint < 1) // èƒ¶æ‡¦ å™¨ç‰¢é£˜å•Š çªå”±æ¡£ ç»é˜‘ç‰ˆå¿« æŠ—å¯‡è´¸åºœ..
 	{
 		UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
 			BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("General_Notification")),
@@ -530,7 +530,7 @@ void UB2LobbyUI_SetupSkillMain::CreateSkillList()
 {
 	if (CurrentView == EViewSkillList::UnitySkill)
 	{
-		// ¾ÕÀ¸·Î ¹Ù²ğ ±¸¼º.. UnitySkill ÂÊ º°µµ ÆÄÆ®..
+		// èŠæ è‚º å®˜æ‹† å¤‡å·±.. UnitySkill ç‡ å–Šæ¡£ é¢‡é£˜..
 		if (CreatedUnityP)
 		{
 			CreatedUnityP->UpdatePanelMain(CurrentPCClass);
@@ -550,7 +550,7 @@ void UB2LobbyUI_SetupSkillMain::CreateSkillList()
 			SkillInfo->SetVisibility(ESlateVisibility::Collapsed);
 	}
 
-	TArray<int32> PassiveIndexArray; // ¾î¶² ½½·ÔÀÌ ºó½½·ÔÀÌ µÇ¾ßÇÏ´ÂÁö ¾Ë±âÀ§ÇØ
+	TArray<int32> PassiveIndexArray; // ç»¢æ« æµ‡å©æ åæµ‡å©æ ç™»å…·çªç»°ç˜¤ èˆ…æ‰å›°ç§¦
 	TArray<FB2SkillInfo> PCSkills;
 	SetPCSkillList(AllSkillInfo, PCSkills);
 
@@ -568,7 +568,7 @@ void UB2LobbyUI_SetupSkillMain::CreateSkillList()
 		{
 			const int32* PassiveIndex = SkillInfoIndexFromPassive.Find(SkillSingleInfo->PassiveType);
 
-			BII_CHECK(PassiveIndex); // EPassiveType ¹× SkillInfoIndexFromPassive¿¡ ÆĞ½Ãºê Ãß°¡µÆ´ÂÁö È®ÀÎ
+			BII_CHECK(PassiveIndex); // EPassiveType æ£º SkillInfoIndexFromPassiveä¿Š è©çŸ«å® çœ å•Šç¯ç»°ç˜¤ çŠ¬ç‰¢
 			if (PassiveIndex)
 			{
 				WidgetIndex = *PassiveIndex;
@@ -588,7 +588,7 @@ void UB2LobbyUI_SetupSkillMain::CreateSkillList()
 		}
 	}
 
-	// ½½·ÔÀº MAX_SKILLINFO_COUNT°³ÀÎµ¥ ½ºÅ³ÀÌ MAX_SKILLINFO_COUNT°³ ¹Ì¸¸ÀÏ¶§ ºó½½·Ô Ã³¸®
+	// æµ‡å©ç¯® MAX_SKILLINFO_COUNTä¿ºç‰¢å• èƒ¶æ‡¦æ MAX_SKILLINFO_COUNTä¿º å›ºçˆ¶è€é”­ åæµ‡å© è´¸åºœ
 	if (PassiveIndexArray.Num() < MAX_SKILLINFO_COUNT)
 	{
 		for (int32 i = 0; i < MAX_SKILLINFO_COUNT; ++i)
@@ -614,13 +614,13 @@ void UB2LobbyUI_SetupSkillMain::SetPCSkillList(const UB2SkillInfo* AllSkillInfo,
 		if (nullptr == SkillSingleInfo)
 			continue;
 
-		// ÆĞ½ÃºêÀÏ¶§
+		// è©çŸ«å®è€é”­
 		if (bIncludeAllSkills || (CurrentView == EViewSkillList::PassiveSkill  && SkillSingleInfo->PassiveType != EPassiveType::EPassiveType_None))
 		{
 			Skills.Add(CharacterSkill);
 		}
 		
-		// ¾×Æ¼ºêÀÏ¶§
+		// å’€èå®è€é”­
 		if (bIncludeAllSkills || (CurrentView == EViewSkillList::ActiveSkill && SkillSingleInfo->PassiveType == EPassiveType::EPassiveType_None))
 		{
 			Skills.Add(CharacterSkill);
@@ -636,7 +636,7 @@ bool UB2LobbyUI_SetupSkillMain::HasSkillLevelUp()
 	{
 		TArray<FB2SkillInfo> PCSkills;
 
-		// ÆĞ½Ãºê ¾×Æ¼ºê µÑ´ÙÆ÷ÇÔÇØ¼­ °Ë»ç
+		// è©çŸ«å® å’€èå® ç¬›ä¿ƒå™¨çªƒç§¦è¾‘ å…«è¤
 		SetPCSkillList(AllSkillInfo, PCSkills, true);
 
 		for (auto& SkillInfo : PCSkills)
@@ -830,7 +830,7 @@ void UB2LobbyUI_SetupSkillMain::OnDelayBuySkillPoint()
 }
 
 void UB2LobbyUI_SetupSkillMain::SetVisibleTouchBlockImage(bool bInVisible)
-{ // ÇÏÀ§ ÆÄÆ®¿¡¼­ »ç¿ëÇÒ ÀÏÀÌ ÀÖÀ» °Í..
+{ // çªå›° é¢‡é£˜ä¿Šè¾‘ è¤ä¾©ä¸” è€æ ä¹é˜‘ å·´..
 	if (IMG_TouchBlock.IsValid())
 		IMG_TouchBlock->SetVisibility(bInVisible ? ESlateVisibility::Visible : ESlateVisibility::Collapsed);
 }
@@ -844,7 +844,7 @@ const FString& UB2LobbyUI_SetupSkillMain::GetUnityPartRequestName()
 void UB2LobbyUI_SetupSkillMain::SetUnityTabPartOpen(bool bInOpen)
 {
 	if (bInOpen)
-	{ // Ã³À½ ÇÑ¹ø µ¿Àû »ı¼º.
+	{ // è´¸æ¾œ èŒ„é”… æ‚¼åˆ© ç§¯å·±.
 		ConditionalCreateUnityTabPart();
 	}
 

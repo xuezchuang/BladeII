@@ -9,8 +9,8 @@
 
 namespace DynItemIconRowMaxCount
 {
-	const int32 DefaultInven = 4;		// ÀÎº¥Åä¸®¿¡¼­ »ç¿ëµÇ´Â ±âº» ½½·Ô °¹¼ö
-	const int32 AutoLevelupResult = 6;	// Àç·á ·¹º§¾÷¿¡ »ç¿ëµÇ´Â ½½·Ô °¹¼ö
+	const int32 DefaultInven = 4;		// ç‰¢äº¥é…åºœä¿Šè¾‘ è¤ä¾©ç™»ç»° æ‰å¤¯ æµ‡å© è‚®è
+	const int32 AutoLevelupResult = 6;	// çŠä¸° é¥­éª‡è¯€ä¿Š è¤ä¾©ç™»ç»° æµ‡å© è‚®è
 }
 
 /**

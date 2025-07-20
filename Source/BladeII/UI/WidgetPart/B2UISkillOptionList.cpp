@@ -1,4 +1,4 @@
-#include "B2UISkillOptionList.h"
+ï»¿#include "B2UISkillOptionList.h"
 #include "B2UISkillOptionText.h"
 #include "B2PCClassInfoBox.h"
 #include "B2SkillInfo.h"
@@ -61,14 +61,14 @@ TArray<FSkillOptionData> UB2UISkillOptionList::GetSkillOptions(int32 SkillId, in
 				for (auto& NewSkillOption : SkillOptionDataArray)
 				{
 					if (NewSkillOption.OptionId == OldSkillOption.OptionId && NewSkillOption.OptionId != (int32)ESkillOption::ESO_IncMotion)
-					{//OptionId´Â °°°í Value°¡ ´Ù¸¥ °æ¿ì, ¸ğ¼ÇÁõ°¡ Á¦¿Ü
+					{//OptionIdç»° éç»Š Valueå•Š ä¿ƒå¼— ç‰ˆå¿«, è‘›è®°åˆ˜å•Š åŠ›å¯‡
 						NewSkillOption.OptionValue -= OldSkillOption.OptionValue;
 					}
 				}
 			}
 		}
 
-		//¸ğ¼ÇÁõ°¡¿¡ ´ëÇÑ ¿¹¿ÜÃ³¸®
+		//è‘›è®°åˆ˜å•Šä¿Š æªèŒ„ æŠ—å¯‡è´¸åºœ
 		for (int32 i = 0; !OnlyNew && i < SkillOptionDataArray.Num(); ++i)
 		{
 			auto& SkillOption = SkillOptionDataArray[i];
@@ -143,7 +143,7 @@ void UB2UISkillOptionList::InitializeMercenaryOptions(int32 NPCID, int32 InLv, E
 	FGuildDataStore& GuildData = BladeIIGameImpl::GetGuildDataStore();
 	FB2GuildMercenaryInfo GuildMasterData = GuildData.GetGuildMercenaryMasterData();
 
-	b2network::B2mdGuildMercenaryMasteryPtr MercenaryMasteries = GuildMasterData.GetMercenaryMasteries(NPCID, InLv);	//·¹º§¾÷À§ÇÑ°æÇèÄ¡, Àü¹®È­±â¼ú ¹¹ÀÖ³ª °¡Á®¿À±â
+	b2network::B2mdGuildMercenaryMasteryPtr MercenaryMasteries = GuildMasterData.GetMercenaryMasteries(NPCID, InLv);	//é¥­éª‡è¯€å›°èŒ„ç‰ˆæ°°æ‘¹, å‚ˆå·©æ‹³æ‰è´± æ„ä¹å”± å•Šå»‰å·æ‰
 
 	check(MercenaryMasteries)
 

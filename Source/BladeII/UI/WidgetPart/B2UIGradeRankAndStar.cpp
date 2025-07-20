@@ -1,4 +1,4 @@
-#include "B2UIGradeRankAndStar.h"
+ï»¿#include "B2UIGradeRankAndStar.h"
 #include "B2UIPVPResult.h"
 #include "B2UIDocHelper.h"
 #include "MovieScene.h"
@@ -30,9 +30,9 @@ void UB2UIGradeRankAndStar::Init()
 
 	SetMaxElementNum(MaxNum);
 
-	IsRankUpAnimation = false; // ¾Ö´Ï¸ŞÀÌ¼ÇÀ» »ç¿ëÇÏ´ÂÁö, ´Ü¼ø º° Ç¥½Ã¸¸ ÇÏ´ÂÁö
-	IsGradeUp		  = false; // µî±Ş ¾÷ ¾Ö´Ï¸ŞÀÌ¼ÇÀ» »ç¿ëÇÏ´ÂÁö
-	IsAfterAdding     = false; // Á¦ÀÚ¸®¿¡¼­ º° ¾Ö´Ï¸ŞÀÌ¼Ç°ú µî±Ş¾÷ ¾Ö´Ï¸ŞÀÌ¼Ç + º° ¾Ö´Ï¸ŞÀÌ¼ÇÀÎÁö ±¸ºĞ
+	IsRankUpAnimation = false; // å±€èªçš‹æè®°é˜‘ è¤ä¾©çªç»°ç˜¤, çªœé‰´ å–Š é’çŸ«çˆ¶ çªç»°ç˜¤
+	IsGradeUp		  = false; // æ®¿é­ è¯€ å±€èªçš‹æè®°é˜‘ è¤ä¾©çªç»°ç˜¤
+	IsAfterAdding     = false; // åŠ›ç£Šåºœä¿Šè¾‘ å–Š å±€èªçš‹æè®°è‹ æ®¿é­è¯€ å±€èªçš‹æè®° + å–Š å±€èªçš‹æè®°ç‰¢ç˜¤ å¤‡ç›’
 	
 	UpGradeAnimationSpeed	= 1.0f;
 	DownGradeAnimationSpeed = 1.0f;
@@ -150,7 +150,7 @@ void UB2UIGradeRankAndStar::StartStarAnimation(int32 BeforeStarNum, int32 StarNu
 		return;
 	}
 
-	if (GradeUp) // µî±Ş ¾÷ ÀÏ¶§
+	if (GradeUp) // æ®¿é­ è¯€ è€é”­
 	{
 		int32 StarGap = BeforeStarNum > StarNum ?
 			StarNum + 3 - BeforeStarNum : StarNum - BeforeStarNum;
@@ -174,7 +174,7 @@ void UB2UIGradeRankAndStar::StartStarAnimation(int32 BeforeStarNum, int32 StarNu
 				NextAnimation = EStateAfterGradeUp::ADD_STAR;
 			}
 		}
-		else if (BeforeStarNum == 1) // ±âÁ¸¿¡ 1°³ÀÏ¶§
+		else if (BeforeStarNum == 1) // æ‰ç²®ä¿Š 1ä¿ºè€é”­
 		{
 			// play 1
 			if (StarGap == 1)
@@ -188,7 +188,7 @@ void UB2UIGradeRankAndStar::StartStarAnimation(int32 BeforeStarNum, int32 StarNu
 				NextAnimation = EStateAfterGradeUp::ADD_STAR;
 			}
 		}
-		else if (BeforeStarNum == 2) // ±âÁ¸¿¡ 2°³ÀÏ¶§
+		else if (BeforeStarNum == 2) // æ‰ç²®ä¿Š 2ä¿ºè€é”­
 		{
 			if (StarGap == 1)
 			{
@@ -197,14 +197,14 @@ void UB2UIGradeRankAndStar::StartStarAnimation(int32 BeforeStarNum, int32 StarNu
 			}
 			if (StarGap == 2)
 			{
-				//µî±Ş¾÷
+				//æ®¿é­è¯€
 				PlayStarAnimation("Star_On_03");
 				NextAnimation = EStateAfterGradeUp::GRADE_ANIM_START;
 			}
 		}
-		else if (BeforeStarNum == 3) // ±âÁ¸¿¡ 3°³ÀÏ¶§ // ¼öÁ¤
+		else if (BeforeStarNum == 3) // æ‰ç²®ä¿Š 3ä¿ºè€é”­ // èæ²¥
 		{
-			//µî±Ş¾÷ È£Ãâ
+			//æ®¿é­è¯€ é¾‹å…
 			StartRankingUpAnimationClass<const EStateAfterGradeUp>::GetInstance().Signal(EStateAfterGradeUp::GRADE_ANIM_START);
 		}
 		else if (BeforeStarNum > 3)
@@ -212,7 +212,7 @@ void UB2UIGradeRankAndStar::StartStarAnimation(int32 BeforeStarNum, int32 StarNu
 			StartRankingUpAnimationClass<const EStateAfterGradeUp>::GetInstance().Signal(EStateAfterGradeUp::STATE_END);
 		}
 	}
-	else // µî±Ş´Ù¿î
+	else // æ®¿é­ä¿ƒæ¬¾
 	{
 		if (BeforeStarNum > 3)
 		{
@@ -245,19 +245,19 @@ void UB2UIGradeRankAndStar::StartRankUpAnimation(int32 BeforeRank, int32 Rank, i
 	PlayStarAnimation(BeforeRank > Rank ? "Number_fx_Anim" : "ANIM_Grade_Lose");
 }
 
-// 0 = ³¡ 1 = 1¹ø¾Ö´Ï 2 = 2¹ø¾Ö´Ï 3 = 3¹ø¾Ö´Ï 4 = 4¹ø¾Ö´Ï 5 = µî±Ş¾÷
+// 0 = åœº 1 = 1é”…å±€èª 2 = 2é”…å±€èª 3 = 3é”…å±€èª 4 = 4é”…å±€èª 5 = æ®¿é­è¯€
 void UB2UIGradeRankAndStar::OnAnimationFinished_Implementation(const UWidgetAnimation* Animation)
 {
 	Super::OnAnimationFinished_Implementation(Animation);
 
 	if (auto* Anim = StarAnims.Find(Animation->GetMovieScene()->GetFName()))
 	{
-		// ´ÙÀ½ ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ ¿¹Á¤µÇ¾îÀÖ´Â °æ¿ì
+		// ä¿ƒæ¾œ å±€èªçš‹æè®°æ æŠ—æ²¥ç™»ç»¢ä¹ç»° ç‰ˆå¿«
 		if (EStateAfterGradeUp::ADD_STAR == NextAnimation)
 		{
 			AddStarAnimation(Anim);
 		}
-		else // ¿¹Á¤ ¾ÈµÈ°æ¿ì
+		else // æŠ—æ²¥ æ•‘ç­‰ç‰ˆå¿«
 		{
 			NoAddStarAnimation(Anim);
 		}
@@ -280,17 +280,17 @@ void UB2UIGradeRankAndStar::AddStarAnimation(FRankAnimInfo* InAnim)
 
 void UB2UIGradeRankAndStar::NoAddStarAnimation(FRankAnimInfo* InAnim)
 {
-	// ½¯µå ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ°í, µî±Ş¾÷ÀÎ°æ¿ì
-	if (InAnim->StarCountAfterAnimation == -1 && IsGradeUp) // ¹æÆĞ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ¸é // ±×¸®°í ¾÷¾Ö´Ï¸ŞÀÌ¼Ç
+	// è’‹é› å±€èªçš‹æè®°æç»Š, æ®¿é­è¯€ç‰¢ç‰ˆå¿«
+	if (InAnim->StarCountAfterAnimation == -1 && IsGradeUp) // è§„è©å±€èªçš‹æè®°ææ // å¼Šåºœç»Š è¯€å±€èªçš‹æè®°
 	{
 		IsGradeUp = false;
-		IsAfterAdding = true; // ¹æÆĞ°¡ ¶°ÀÖ´Â »óÅÂ¿¡¼­ µî±Ş¾÷ ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ÁøÇà
+		IsAfterAdding = true; // è§„è©å•Š æ ‹ä¹ç»° æƒ‘æ€•ä¿Šè¾‘ æ®¿é­è¯€ å±€èªçš‹æè®°é˜‘ æŸ³é’
 		StartStarAnimation(0, UB2UIPVPResult::GetStarCount(GetB2GameModeType(this)), true);
 		return;
 	}
 	else
 	{
-		if (IsAfterAdding) // ¹æÆĞ°¡ ¶°ÀÖ´Â »óÅÂ¿¡¼­ µî±Ş¾÷ ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ÁøÇàÁßÀÎ°æ¿ì
+		if (IsAfterAdding) // è§„è©å•Š æ ‹ä¹ç»° æƒ‘æ€•ä¿Šè¾‘ æ®¿é­è¯€ å±€èªçš‹æè®°é˜‘ æŸ³é’åç‰¢ç‰ˆå¿«
 		{
 			IsAfterAdding = false;
 			StartRankingUpAnimationClass<const EStateAfterGradeUp>::GetInstance().Signal(EStateAfterGradeUp::GRADE_UP_END);

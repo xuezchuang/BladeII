@@ -1,9 +1,11 @@
-
+﻿
 #include "B2BTService_StopStupidAttack.h"
 #include "BladeII.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "BehaviorTree/BehaviorTreeTypes.h"
 #include "BladeIIPlayer.h"
+#include "GameFramework/PlayerController.h"
+
 
 UB2BTService_StopStupidAttack::UB2BTService_StopStupidAttack(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)

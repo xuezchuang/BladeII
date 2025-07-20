@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 //#include "BladeII.h"
@@ -55,103 +55,103 @@ enum class EBuffType : uint8
 {
 	Buff_None = 0,
 
-	//¼Ó¹Ú
+	//åŠ å† 
 	Debuff_Immobilize = 1,
 
-	//ºù°á
+	//è‘«æ¬
 	Debuff_Freezing,
 
-	//½ºÅÏ
+	//èƒ¶ç•”
 	Debuff_Stun,
 
-	//È­¿°
+	//æ‹³å ª
 	Debuff_Burning,
 
-	//Áßµ¶
+	//ååˆ€
 	Debuff_Poison,
 
-	//µµ¹ß
+	//æ¡£æƒ¯
 	Debuff_Taunt,
 
-	//Ä§¹¬
+	//é­”å®«
 	DeBuff_Silent,
 
-	//ºÀÀÎ
+	//è±ªç‰¢
 	Debuff_Seal,
 
-	//±¤ÆøÈ­
+	//å ¡æ°”æ‹³
 	Buff_Fury,
 
-	//Àº½Å
+	//ç¯®è„š
 	Buff_Hide,
 
-	//¹Ş´Âµ¥¹ÌÁö °¨¼Ò
+	//ç½ç»°å•å›ºç˜¤ çš‘å®¶
 	Buff_DecreaseReceiveDamage,
 
-	//µ¥¹ÌÁö ¹İ»ç
+	//å•å›ºç˜¤ é¦†è¤
 	Buff_ReflectDamage,
 
-	//Ã¼·ÂÈí¼ö(°ø°İÇÒ¶§)
+	//çœ‰ä»¿è½¯è(å‚æ‹œä¸”é”­)
 	Buff_HealHPByAttack,
 
-	//½¯µå
+	//è’‹é›
 	Buff_Shield,
 
-	//Ä¡¸íÅ¸È®·ü Áõ°¡
+	//æ‘¹ç–™é¸¥çŠ¬ä¼ åˆ˜å•Š
 	Buff_IncreaseCriticalRate,
 
-	//µğ¹öÇÁ ¸é¿ª
+	//å¼æ»šæ©‡ æå¼€
 	Buff_AbnormalStateImmune,
 
-	//Ä¡¸íÅ¸µ¥¹ÌÁö Áõ°¡
+	//æ‘¹ç–™é¸¥å•å›ºç˜¤ åˆ˜å•Š
 	Buff_IncreaseCriticalDamage,
 
-	//¾Æ¸Ó(´Ù´Ş¸é ÇÇ°İ¸ğ¼Ç ÇÏ´Â°Å) Áõ°¡
+	//é…’èµ£(ä¿ƒå´”æ ä¹”æ‹œè‘›è®° çªç»°èŠ­) åˆ˜å•Š
 	Buff_IncreaseArmor,
 
-	//Èú
+	//é³ƒ
 	Buff_SkillHealHP,
 
-	//¹«Àû
+	//å…¬åˆ©
 	Buff_Unbeatable,
 
-	//µ¥¹ÌÁö Áõ°¡
+	//å•å›ºç˜¤ åˆ˜å•Š
 	Buff_IncreaseAttackDamage,
 
-	//ÀÌµ¿¼Óµµ Áõ°¡
+	//ææ‚¼åŠ æ¡£ åˆ˜å•Š
 	Buff_IncreaseMoveSpeed,
 
-	//°ø°İ¿¡ ºù°áÆÇÁ¤ Ãß°¡
+	//å‚æ‹œä¿Š è‘«æ¬é­„æ²¥ çœ å•Š
 	Buff_AllFreezeAttack,
 
-	//°ø°İ¿¡ ½ºÅÏÆÇÁ¤ Ãß°¡
+	//å‚æ‹œä¿Š èƒ¶ç•”é­„æ²¥ çœ å•Š
 	Buff_AllStunAttack,
 
-	//°ø°İ¿¡ È­¿°ÆÇÁ¤ Ãß°¡
+	//å‚æ‹œä¿Š æ‹³å ªé­„æ²¥ çœ å•Š
 	Buff_AllBurningAttack,
 
-	//°ø°İ¿¡ Áßµ¶ÆÇÁ¤ Ãß°¡
+	//å‚æ‹œä¿Š ååˆ€é­„æ²¥ çœ å•Š
 	Buff_AllPoisonAttack,
 
-	//È÷Æ® ÇÁ¸®Áî
+	//æ´’é£˜ æ©‡åºœä»¤
 	Buff_HitFreeze,
 
-	//Ä³¸¯ÅÍ °­È­(Scale UP, A,D UP)
+	//æŸè…ç£ ç¢æ‹³(Scale UP, A,D UP)
 	Buff_Enhance,
 
-	//¹æ¾î·Â Áõ°¡
+	//è§„ç»¢ä»¿ åˆ˜å•Š
 	Buff_IncreaseDefense,
 
-	//µğ½ºÆç
+	//å¼èƒ¶æ­§
 	Buff_Dispell,
 
 	//Heal
 	Buff_Heal,
 
-	// ¼º¼Ò ¿Àºê ½Àµî½Ã µ¥¹ÌÁö Áõ°¡
+	// å·±å®¶ å·å® åš¼æ®¿çŸ« å•å›ºç˜¤ åˆ˜å•Š
 	Buff_IncreaseAttackDamage_Orb,
 
-	// ¼º¼Ò ¿Àºê ½Àµî½Ã µ¥¹ÌÁö °¨¼Ò
+	// å·±å®¶ å·å® åš¼æ®¿çŸ« å•å›ºç˜¤ çš‘å®¶
 	Buff_DecreaseReceiveDamage_Orb,
 
 	Buff_End
@@ -185,16 +185,16 @@ enum class ETeamBuffType : uint8
 	ETBT_End = 128
 };
 
-//µÚ¿¡ Ãß°¡ ±âÁ¸²¨ ¹Ğ¸²
+//ç¬¬ä¿Š çœ å•Š æ‰ç²®æ³¢ å‰è¦†
 UENUM(BlueprintType, meta = (Bitflags))
 enum class ETargetSelectType : uint8
 {
 	ETST_AddAllyTeam,
 	ETST_AddEnemyTeam,
-	ETST_FilterMercenary,	//¿ëº´¸¸
-	ETST_FilterPlayer,		//ÇÃ·¹ÀÌ¾î¸¸
-	ETST_ExceptSelf,		//ÀÚ½Å »èÁ¦
-	ETST_FilterSelf,		//³ª¸¸ 
+	ETST_FilterMercenary,	//ä¾©æçˆ¶
+	ETST_FilterPlayer,		//æ•²é¥­æç»¢çˆ¶
+	ETST_ExceptSelf,		//ç£Šè„š æ˜åŠ›
+	ETST_FilterSelf,		//å”±çˆ¶ 
 	/////////
 };
 ENUM_CLASS_FLAGS(ETargetSelectType);

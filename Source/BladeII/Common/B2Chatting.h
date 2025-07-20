@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 //#include "BladeII.h"
 #include "EngineMinimal.h"
 #include "CommonStruct.h"
@@ -7,11 +7,11 @@
 UENUM(BlueprintType)
 enum class EB2ChatType : uint8
 {
-	Notice,			// °øÁö
-	Channel,		// Ã¤³Î Ã¤ÆÃ
-	GuildNotice,	// ±æµå °øÁö
-	Guild,			// ±æµå Ã¤ÆÃ
-	OneToOne,		// ±Ó¼Ó¸»
+	Notice,			// å‚ç˜¤
+	Channel,		// ç›²æ¾„ ç›²æ³¼
+	GuildNotice,	// è¾¨é› å‚ç˜¤
+	Guild,			// è¾¨é› ç›²æ³¼
+	OneToOne,		// åº‡åŠ å¯Œ
 	End
 };
 
@@ -34,7 +34,7 @@ enum class EB2ChatNoticeType : uint8
 	GuildSupportComplete,
 	EnhanceItem,
 
-	// ·ÎÄÃ¿¡¼­¸¸ ¾²´Â ¾Ë¸²
+	// è‚ºæ‹¿ä¿Šè¾‘çˆ¶ é™ç»° èˆ…è¦†
 	ChangeChannel = 100,
 	AdminMessage,
 

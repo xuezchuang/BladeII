@@ -1,4 +1,4 @@
-#include "B2UIGuildNPCSkill.h"
+ï»¿#include "B2UIGuildNPCSkill.h"
 #include "B2UIManager.h"
 #include "B2UIDocHelper.h"
 #include "BladeIIMercenaryPlayer.h"
@@ -121,7 +121,7 @@ void UB2UIGuildNPCSkill::SetMercenaryName(const FText & InText)
 
 void UB2UIGuildNPCSkill::SetCooltime(float InValue, float MaxCoolTime)
 {
-	//¼ýÀÚÃ³¸®
+	//ç®­ç£Šè´¸åºœ
 	if (TB_SkillCooltimeNum.IsValid())
 		TB_SkillCooltimeNum->SetText(GetAutoFractionalFormattedText_FirstFracCountOnly(InValue, MaxCoolTime, 1));
 
@@ -130,7 +130,7 @@ void UB2UIGuildNPCSkill::SetCooltime(float InValue, float MaxCoolTime)
 
 void UB2UIGuildNPCSkill::UpdateCooltimeMaterial(float RemainingCooltime, float MaxCoolTime)
 {
-	//ÄðÅ¸ÀÓ ¸ÓÅÍ¸®¾ó Ã³¸®
+	//é…¿é¸¥çƒ™ èµ£ç£åºœå€” è´¸åºœ
 	if (IMG_SkillCooltime.IsValid() && !MID_SkilCooltime)
 		MID_SkilCooltime = IMG_SkillCooltime->GetDynamicMaterial();
 

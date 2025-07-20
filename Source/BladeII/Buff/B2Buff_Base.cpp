@@ -1,8 +1,9 @@
-#include "B2Buff_Base.h"
+ï»¿#include "B2Buff_Base.h"
 #include "BladeIICharacter.h"
 #include "BladeIIPlayer.h"
 #include "B2BuffModeEffectInfo.h"
 #include "B2CharacterBuffManager.h"
+#include "Engine/World.h"
 
 UB2Buff_Base::UB2Buff_Base()
 {
@@ -44,7 +45,7 @@ void UB2Buff_Base::BuffBegin(class UB2CharacterBuffManager* pBuffManager, float 
 	
 	BeginTime = GWorld->TimeSeconds;
 
-	// -1ÀÌ¸é ½Ã°£ ¾ÈÀë. ¿ÜºÎ¿¡¼­ ÇØÁ¦
+	// -1ææ çŸ«åŸƒ æ•‘ç¦». å¯‡ä½•ä¿Šè¾‘ ç§¦åŠ›
 	Duration = fDuration;
 
 	ElapsedSeconds = 0.f;
@@ -95,7 +96,7 @@ void UB2Buff_Base::BuffClear(bool bTimeOut/* = true*/)
 
 	DeactiveBuffEffect();
 	ActiveBuffEndEffect();
-	// ÀÌ ½ÃÁ¡¿¡¼­ Buff End Broadcasting
+	// æ çŸ«ç—¢ä¿Šè¾‘ Buff End Broadcasting
 
 	Deactivate();
 	Duration = 0.f;
@@ -119,13 +120,13 @@ bool UB2Buff_Base::IsLocalBuff()
 
 void UB2Buff_Base::ActiveBuffEffect()
 {
-	// Authority / Remote ¸ğµÎ È£Ãâ
+	// Authority / Remote è‘›æ»´ é¾‹å…
 	BII_CHECK(BuffEffectStore && GetOwnerCharacter());
 
 	if (!m_bUseEffect)
 		return;
 
-	// ±âÁ¸°Å ÀÌÆåÆ® ³²¾ÆÀÖÀ»°Å ´ëºñÇØ¼­ È£Ãâ
+	// æ‰ç²®èŠ­ ææ£‹é£˜ å·¢é…’ä¹é˜‘èŠ­ æªåšç§¦è¾‘ é¾‹å…
 	DeactiveBuffEffect();
 
 	BuffEffectParticle = BuffEffectStore->CharacterBuffEffect(BuffType, GetOwnerCharacter());
@@ -159,7 +160,7 @@ void UB2Buff_Base::ActiveBuffEndEffect()
 
 	if (pPSC && pPSC->Template)
 	{
-		// ¿©±ä ·çÇÎ µé¾î¿À¸é ¾Æ´ÏµÊ.
+		// å’¯å˜ é£ä¿ ç”¸ç»¢å·æ é…’èªå‡³.
 		BII_CHECK(!pPSC->Template->IsLooping());
 		BII_CHECK(!pPSC->Template->IsImmortal());
 	}
@@ -170,13 +171,13 @@ void UB2Buff_Base::ActivateBuffText()
 	if (!m_bUseTextEffect)
 		return;
 
-	// Authority / Remote ¸ğµÎ È£Ãâ
+	// Authority / Remote è‘›æ»´ é¾‹å…
 	BII_CHECK(BuffEffectStore && GetOwnerCharacter());
 
 	BuffEffectStore->SpawnCharacterBuffTextEffect(BuffType, GetOwnerCharacter());
 }
 
-// CC±â Á¡°¨
+// CCæ‰ ç—¢çš‘
 void UB2Buff_Base::CheckCrowdControlCount()
 {
 	if (!BuffManager || Duration <= 0)

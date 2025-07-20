@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "B2LobbySkeletalMeshActorBase.h"
 #include "B2LobbySkeletalMeshActor.generated.h"

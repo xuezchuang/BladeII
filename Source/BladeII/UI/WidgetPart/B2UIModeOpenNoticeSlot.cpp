@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIModeOpenNoticeSlot.h"
 #include "B2UIManager.h"
 #include "B2UILinkManager.h"
@@ -84,7 +84,7 @@ void UB2UIModeOpenNotice::NativeTick(const FGeometry& MyGeometry, float InDeltaT
 
 	CurrentTimeStemp += InDeltaTime;
 
-	if (CurrentTimeStemp > 86400) // ³¯Â¥°¡ ¹Ù²î¾úÀ½.
+	if (CurrentTimeStemp > 86400) // æœæ¥¼å•Š å®˜å·®èŒæ¾œ.
 	{
 		bActiveTick = false;
 		data_trader::Retailer::GetInstance().RequestCheckModeOpen();
@@ -120,7 +120,7 @@ void UB2UIModeOpenNotice::NativeTick(const FGeometry& MyGeometry, float InDeltaT
 
 void UB2UIModeOpenNotice::CreateOrRemoveSlot(TArray<EModeOpenType>& AddModeType, TArray<EModeOpenType>& DeleteModeType)
 {
-	// ½Ã°£ °ªÀÌ 2°³¾¿ ÀÖ¾î ÇÏ³ª´Â ÀÌ¹Ì ³¡³µ°í ÇÏ³ª´Â ¿­·ÁÀÖÀ»¶§ Ã³¸®¸¦ À§ÇØ..
+	// çŸ«åŸƒ è”¼æ 2ä¿ºç©¶ ä¹ç»¢ çªå”±ç»° æå›º åœºè½¦ç»Š çªå”±ç»° å‡¯å¦¨ä¹é˜‘é”­ è´¸åºœç”« å›°ç§¦..
 	for (int32 i = 0; i < AddModeType.Num(); i++) 
 	{
 		if (AddModeType.IsValidIndex(i))
@@ -324,9 +324,9 @@ void UB2UIModeOpenNoticeSlot::DestroySelf(UB2UIManager* InUIManager)
 
 void UB2UIModeOpenNoticeSlot::OnClickBTN_ModeOpen()
 {
-	switch (CurrentOpenType)	//¸µÄ¿¸Å´ÏÀú »ç¿ë, ¾À µî·ÏÇÏ°í »ç¿ë
+	switch (CurrentOpenType)	//å‚…ç›®æ¦‚èªå† è¤ä¾©, çº  æ®¿åºŸçªç»Š è¤ä¾©
 	{
-	case EModeOpenType::EModeOpenType_Raid:	//Æ©Åä¸®¾ó ¿ÀÇÂ(·¹ÀÌµå)
+	case EModeOpenType::EModeOpenType_Raid:	//è­¬é…åºœå€” å·é”¹(é¥­æé›)
 	{
 		if (TutorialManager::GetInstance().IsLockTutorial(TutorialID_Raid, 0) == false)
 		{
@@ -347,7 +347,7 @@ void UB2UIModeOpenNoticeSlot::OnClickBTN_ModeOpen()
 				0.f, true, true, EUIMsgPopupButtonGroup::Confirm);
 		}
 	}break;
-	case EModeOpenType::EModeOpenType_Occupy:	//Æ©Åä¸®¾ó ¿ÀÇÂ(Á¡·ÉÀü)
+	case EModeOpenType::EModeOpenType_Occupy:	//è­¬é…åºœå€” å·é”¹(ç—¢é£å‚ˆ)
 	{
 		if (TutorialManager::GetInstance().IsLockTutorial(TutorialID_Occupy, 0) == false)
 		{
@@ -376,7 +376,7 @@ void UB2UIModeOpenNoticeSlot::OnClickBTN_ModeOpen()
 		{
 			data_trader::Retailer::GetInstance().RequestGuildDetailInfo(0);
 		}
-		else //±æµåÀüÀ» ÀÔÀå ¸øÇÒ½Ã¶óµµ ±æµå¸Ş´ºÃ¢¿¡ µé¾î°¡Áö±â ¶§¹®¿¡ º°µµÀÇ ¿¹¿ÜÃ³¸® ¾øÀ½(±âÈ¹ÀÇµµ)
+		else //è¾¨é›å‚ˆé˜‘ æ¶å˜ ç»™ä¸”çŸ«æ‰¼æ¡£ è¾¨é›çš‹æ˜¥èŠ’ä¿Š ç”¸ç»¢å•Šç˜¤æ‰ é”­å·©ä¿Š å–Šæ¡£ç‹¼ æŠ—å¯‡è´¸åºœ ç»æ¾œ(æ‰è£™ç‹¼æ¡£)
 		{
 		}
 

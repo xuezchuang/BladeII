@@ -25,7 +25,7 @@ void UB2DynText_ItemDetailOption::UpdateOptionTextSet(bool bIsForEquippedItem, i
 
 	if (InDisplayOption)
 	{
-		//ECombatOptionApplyType OptionApplyType = GetCombatOptionApplyType(InDisplayOption->OptionType); ¿©±â¼­ ½á ¸ÔÀ»°Ô ÀÖ³ª..
+		//ECombatOptionApplyType OptionApplyType = GetCombatOptionApplyType(InDisplayOption->OptionType); å’¯æ‰è¾‘ ç»“ å†ˆé˜‘éœ¸ ä¹å”±..
 		if (TB_OptionName.IsValid())
 		{
 			TB_OptionName->SetText(GetLOCTextOfItemOption(InDisplayOption->OptionType, InPCClass));
@@ -34,7 +34,7 @@ void UB2DynText_ItemDetailOption::UpdateOptionTextSet(bool bIsForEquippedItem, i
 		{
 			if (bIsForEquippedItem)
 			{
-				TB_OptionValueL->SetText(FText::FromString(TEXT(""))); // ÀåÂø ÀåºñÀÎ °æ¿ì ÁÂÃøÃ¢¿¡´Â ¾Æ¹«°Íµµ Ç¥½Ã ¾ÈÇÔ.
+				TB_OptionValueL->SetText(FText::FromString(TEXT(""))); // åŽ˜é¦’ åŽ˜åŽšç‰¢ ç‰ˆå¿« è°…èžŸèŠ’ä¿Šç»° é…’å…¬å·´æ¡£ é’ŽçŸ« æ•‘çªƒ.
 			}
 			else
 			{				
@@ -46,20 +46,20 @@ void UB2DynText_ItemDetailOption::UpdateOptionTextSet(bool bIsForEquippedItem, i
 		if (TB_OptionValueR.IsValid())
 		{
 			if (bIsForEquippedItem)
-			{ // ÀåÂø ÀåºñÀÎ °æ¿ì ¿ìÃø Ã¢¿¡ ´É·ÂÄ¡ Ç¥½Ã.
+			{ // åŽ˜é¦’ åŽ˜åŽšç‰¢ ç‰ˆå¿« å¿«èžŸ èŠ’ä¿Š ç“·ä»¿æ‘¹ é’ŽçŸ«.
 				TB_OptionValueR->SetText(
 					GetItemOptionValueDisplayText(InDisplayOption->OptionType, InDisplayOption->RawOptionAmount, true)
 					);
 
 				UScaleBoxSlot* SBSlot = Cast<UScaleBoxSlot>(TB_OptionValueR->Slot);
-				if (SBSlot) // È¥ÀÚ µþ¶û ÀÖÀ¸¹Ç·Î ¿ìÃø align
+				if (SBSlot) // åŽ»ç£Š å å°” ä¹æ éª¨è‚º å¿«èžŸ align
 				{
 					SBSlot->SetHorizontalAlignment(EHorizontalAlignment::HAlign_Right);
 				}
 			}
 			else
 			{
-				if (InEquippedOption) // µ¿ÀÏ À§Ä¡¿¡ ÀåÂøÇÑ °ÍÀÌ °°Àº ¿É¼ÇÀÌ ÀÖ´Ù¸é ºñ±³ÇÔ.
+				if (InEquippedOption) // æ‚¼è€ å›°æ‘¹ä¿Š åŽ˜é¦’èŒ„ å·´æž éžç¯® å¯è®°æž ä¹ä¿ƒæ åŽšèƒŒçªƒ.
 				{
 					const float OptionDeltaToEquipped = InDisplayOption->RawOptionAmount - InEquippedOption->RawOptionAmount;
 					const bool bAreAlmostSame = (FMath::Abs(OptionDeltaToEquipped) < KINDA_SMALL_NUMBER);
@@ -89,7 +89,7 @@ void UB2DynText_ItemDetailOption::UpdateOptionTextSet(bool bIsForEquippedItem, i
 					TB_OptionValueR->SetColorAndOpacity(bAreAlmostSame ? StatSameColor : (OptionDeltaToEquipped > 0.0f ? StatIncColor : StatDecColor));
 
 					UScaleBoxSlot* SBSlot = Cast<UScaleBoxSlot>(TB_OptionValueR->Slot);
-					if (SBSlot) // ÁÂÃø ²¨¶û ¸Â´ëµµ·Ï ÁÂÃø align.
+					if (SBSlot) // è°…èžŸ æ³¢å°” å˜ŽæŽªæ¡£åºŸ è°…èžŸ align.
 					{
 						SBSlot->SetHorizontalAlignment(EHorizontalAlignment::HAlign_Left);
 					}
@@ -110,7 +110,7 @@ void UB2DynText_ItemDetailOption::UpdateOptionTextSet(bool bIsForEquippedItem, i
 		}
 	}
 	else
-	{ // È¤½Ã¶óµµ ¾ø´Ù¸é ºñ¿ö³õ´Â´Ù.
+	{ // è¶£çŸ«æ‰¼æ¡£ ç»ä¿ƒæ åŽšå†µåˆç»°ä¿ƒ.
 		if (TB_OptionName.IsValid())
 		{
 			TB_OptionName->SetText(FText::FromString(TEXT("")));

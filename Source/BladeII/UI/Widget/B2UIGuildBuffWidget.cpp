@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIGuildBuffWidget.h"
 #include "B2UIManager.h"
 
@@ -116,7 +116,7 @@ void UB2UIGuildBuffWidget::UpdateStaticText()
 		TB_Buy->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Guild_Buff_Purchase")));
 
 	if (TB_OneBTNBuy.IsValid())
-		TB_OneBTNBuy->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Guild_Buff_PurchaseAll")));	//GeneralTextÀÛ¾÷ ÇÊ¿ä
+		TB_OneBTNBuy->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Guild_Buff_PurchaseAll")));	//GeneralTextç´¯è¯€ éž˜å¤¸
 }
 
 void UB2UIGuildBuffWidget::OnOpen(bool RightNow /*= false*/)
@@ -201,9 +201,9 @@ void UB2UIGuildBuffWidget::ResponseUpdate(b2network::B2GuildSkillPtr InSkill, in
 	//	SkillMasterData = BladeIIGameImpl::GetClientDataStore().GetGuildSkillInfo(GuildSkillSlotArr[purchasedBuffCount]->GetSkillID(), GuildSkillSlotArr[purchasedBuffCount]->GetSkillLv());
 
 	//	int64 Secs_ = GuildSkillSlotArr[purchasedBuffCount]->GetRemainTime() -2;
-	//	int32 Hr_ = FPlatformMath::FloorToInt(Secs_ / 3600);							//½Ã
-	//	int32 Min_ = FPlatformMath::FloorToInt((Secs_ - (Hr_ * 3600)) / 60);			//ºÐ
-	//	int32 Sec_ = FPlatformMath::FloorToInt(Secs_ - (Hr_ * 3600) - (Min_ * 60));	//ÃÊ
+	//	int32 Hr_ = FPlatformMath::FloorToInt(Secs_ / 3600);							//çŸ«
+	//	int32 Min_ = FPlatformMath::FloorToInt((Secs_ - (Hr_ * 3600)) / 60);			//ç›’
+	//	int32 Sec_ = FPlatformMath::FloorToInt(Secs_ - (Hr_ * 3600) - (Min_ * 60));	//æª¬
 
 	//	if (Hr_ < oneBTNBuyNumber * countAbleHour)
 	//	{
@@ -266,7 +266,7 @@ void UB2UIGuildBuffWidget::OnClickBTN_OneBTNBuy()
 	//}
 	//else
 	//{
-	//	//°ñµå°¡ ºÎÁ·ÇØµµ ´­·¶À» ¶§ °­Á¦·Î °æ°íÃ¢À» ¶ç¿ìµµ·Ï ÇÔ
+	//	//æ¦œé›å•Š ä½•ç»ƒç§¦æ¡£ å–˜èŒƒé˜‘ é”­ ç¢åŠ›è‚º ç‰ˆç»ŠèŠ’é˜‘ å‰å¿«æ¡£åºŸ çªƒ
 	//	HandleServerError911Class<>::GetInstance().Signal();
 	//}
 	//*/
@@ -278,9 +278,9 @@ void UB2UIGuildBuffWidget::OnClickBTN_OneBTNBuy()
 	//	SkillMasterData = BladeIIGameImpl::GetClientDataStore().GetGuildSkillInfo(GuildSkillSlotArr[purchasedBuffCount]->GetSkillID(), GuildSkillSlotArr[purchasedBuffCount]->GetSkillLv());
 
 	//	int64 Secs = GuildSkillSlotArr[purchasedBuffCount]->GetRemainTime();
-	//	int32 Hr = FPlatformMath::FloorToInt(Secs / 3600);							//½Ã
-	//	int32 Min = FPlatformMath::FloorToInt((Secs - (Hr * 3600)) / 60);			//ºÐ
-	//	int32 Sec = FPlatformMath::FloorToInt(Secs - (Hr * 3600) - (Min * 60));	//ÃÊ
+	//	int32 Hr = FPlatformMath::FloorToInt(Secs / 3600);							//çŸ«
+	//	int32 Min = FPlatformMath::FloorToInt((Secs - (Hr * 3600)) / 60);			//ç›’
+	//	int32 Sec = FPlatformMath::FloorToInt(Secs - (Hr * 3600) - (Min * 60));	//æª¬
 
 	//	for (int j = 1; j <= oneBTNBuyNumber; j++)
 	//	{
@@ -410,9 +410,9 @@ int32 UB2UIGuildBuffWidget::GetOneBTNPrice()
 	//		SkillMasterData = BladeIIGameImpl::GetClientDataStore().GetGuildSkillInfo(GuildSkillSlotArr[i]->GetSkillID(), GuildSkillSlotArr[i]->GetSkillLv());
 
 	//		int64 Secs = GuildSkillSlotArr[i]->GetRemainTime();
-	//		int32 Hr = FPlatformMath::FloorToInt(Secs / 3600);							//½Ã
-	//		int32 Min = FPlatformMath::FloorToInt((Secs - (Hr * 3600)) / 60);			//ºÐ
-	//		int32 Sec = FPlatformMath::FloorToInt(Secs - (Hr * 3600) - (Min * 60));	//ÃÊ
+	//		int32 Hr = FPlatformMath::FloorToInt(Secs / 3600);							//çŸ«
+	//		int32 Min = FPlatformMath::FloorToInt((Secs - (Hr * 3600)) / 60);			//ç›’
+	//		int32 Sec = FPlatformMath::FloorToInt(Secs - (Hr * 3600) - (Min * 60));	//æª¬
 
 	//		if (Hr == 0)
 	//		{

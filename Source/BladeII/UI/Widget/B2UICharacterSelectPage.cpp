@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UICharacterSelectPage.h"
 #include "B2UIManager.h"
 
@@ -98,7 +98,7 @@ void UB2UICharacterSelectPageSlot::SetCombatPower(int32 CombatPower)
 
 void UB2UICharacterSelectPageSlot::SlotSelect(int32 State)
 {
-	// 0 : ºñÈ°¼º 1:È°¼º 2:´Â ÃßÈÄ¿¡ »óÅÂ ´ëºñ
+	// 0 : åšåŠå·± 1:åŠå·± 2:ç»° çœ é¥¶ä¿Š æƒ‘æ€• æªåš
 	SelectCharacterStateBP(State);
 }
 
@@ -116,7 +116,7 @@ void UB2UICharacterSelectPageSlot::SetMainHero(bool IsMain)
 {
 	if (TB_CharNumber.IsValid())
 	{
-		TB_CharNumber->SetText(FText::AsNumber(IsMain ? 1 : 2)); //¸ŞÀÎÀÌ¸é 1¹ø ¼­ºê¸é 2¹ø
+		TB_CharNumber->SetText(FText::AsNumber(IsMain ? 1 : 2)); //çš‹ç‰¢ææ 1é”… è¾‘å®æ 2é”…
 		SlotSelect(true);
 	}
 }
@@ -390,7 +390,7 @@ void UB2UICharacterSelectPage::Init()
 			}
 		}
 		
-		// condition¿¡ µû¸¥ Ã¼Å© Ç¥½Ã¸¦ À§ÇØ delegate function À» Á÷Á¢ ºÎ¸§.
+		// conditionä¿Š è¶å¼— çœ‰å†œ é’çŸ«ç”« å›°ç§¦ delegate function é˜‘ æµç«‹ ä½•æŠš.
 		if (CB_AutoBattle.IsValid())
 			CheckAutoBattle(DocBattleStage->GetRepeatBattleLoopOne());
 
@@ -418,7 +418,7 @@ void UB2UICharacterSelectPage::Init()
 
 	SetCharacterInfo();
 
-	// ÀÌ°Ô ÄÑÁø »óÅÂ·Î ¿Â °Ç ÀÌ¹Ì ÃÖ¼ÒÇÑ ÇÑ¹ø ¹İº¹ ÀüÅõ ½ºÅ×ÀÌÁö¸¦ ³¡³»°í ¾ÆÁ÷ ³²Àº »óÅÂ¿¡¼­ ·Îºñ·Î ¿Â °Å.
+	// æéœ¸ éš¾æŸ³ æƒ‘æ€•è‚º æŸ¯ æ‰’ æå›º å¼¥å®¶èŒ„ èŒ„é”… é¦†æ±— å‚ˆæ§ èƒ¶æŠ›æç˜¤ç”« åœºéƒ´ç»Š é…’æµ å·¢ç¯® æƒ‘æ€•ä¿Šè¾‘ è‚ºåšè‚º æŸ¯ èŠ­.
 	SetupOnRepeatBattleStateChange(DocBattleStage->GetRepeatBattleCurrentOn());
 	UpDateHero();
 
@@ -444,11 +444,11 @@ void UB2UICharacterSelectPage::OnOpen(bool RightNow /*= false*/)
 
 	SubscribeEvents();
 
-	// ¿¬Ãâ ²ô±â	
+	// æ¥·å… æºæ‰	
 	UB2UIDocBattleStage* DocBattleStage = UB2UIDocHelper::GetDocBattleStage();
 
-	// Á¤¿¹ ¾Ç¸ùÀº ¹«Á¶°Ç Ã¼Å©, µğ½º¿¡ÀÌºí
-	// ¿¬¼Ó ÀüÅõ ÄÑÁÖÀÚ
+	// æ²¥æŠ— å©æ ¹ç¯® å…¬ç‚¼æ‰’ çœ‰å†œ, å¼èƒ¶ä¿Šæå–‰
+	// æ¥·åŠ  å‚ˆæ§ éš¾æ—ç£Š
 	if (DocBattleStage->GetStageDifficulty() == EStageDifficulty::ESD_Hard
 		|| DocBattleStage->GetStageDifficulty() == EStageDifficulty::ESD_VeryHard
 		|| DocBattleStage->GetStageDifficulty() == EStageDifficulty::ESD_Hell)
@@ -513,11 +513,11 @@ void UB2UICharacterSelectPage::OnSceneOpen(EUIScene InOpenedScene)
 
 	//FSingleStageInfoData* CachedCurrentStageInfoData = StageInfoTable ? StageInfoTable->GetInfoData(ClientStageId, StageDifficulty) : NULL;
 
-	//if (IsSingleSelect) //true¸é Á¡·ÉÀü
+	//if (IsSingleSelect) //trueæ ç—¢é£å‚ˆ
 	//{
 	//	SetLobbyUIHeaderTitle(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("ChallengeMod_ControlMatch")));
 	//}
-	//else if (CachedCurrentStageInfoData && DocBattleStage && (!IsSingleSelect)) // CachedCurrentStageInfoData ¾ò¾î¿Â ½ÃÁ¡ ÀÌÈÄ¿©¾ß
+	//else if (CachedCurrentStageInfoData && DocBattleStage && (!IsSingleSelect)) // CachedCurrentStageInfoData æ˜ç»¢æŸ¯ çŸ«ç—¢ æé¥¶å’¯å…·
 	//{
 	//	FText StageDiffText = FText::FromString(FString::Printf(TEXT("Chapter_DiffColor_%d"), (int32)StageDifficulty));
 	//	FText StageText = FText::Format(BladeIIGetLOCText(B2LOC_CAT_WORLDNAME, StageDiffText.ToString()),
@@ -702,11 +702,11 @@ void UB2UICharacterSelectPage::UpDateHero()
 
 	if (IsSingleSelect && ChangeMainClass == ChangeSubClass)
 	{
-		// ½Ì±Û¼¿·ºÆ®¸é ¼­ºêÅ¬·¡½º ¾È¾²Áö¸¸.. Áßº¹ ¾ÈµÇ°Ô º¯°æ
+		// æ•™è‡‚ä¼æ³›é£˜æ è¾‘å®åŠªè´°èƒ¶ æ•‘é™ç˜¤çˆ¶.. åæ±— æ•‘ç™»éœ¸ å‡½ç‰ˆ
 		ChangeSubClass = (ChangeSubClass + 1) % GetMaxPCClassNum();
 	}
 
-	// ³¯°³ °»½ÅÀÌ ÇÊ¿äÇÑ ÄÉÀÌ½º°¡ ÀÖ´Ù. ¸Ş½¬Á¶ÇÕÃ¼Å©
+	// æœä¿º ç›è„šæ é˜å¤¸èŒ„ çº³æèƒ¶å•Š ä¹ä¿ƒ. çš‹æµ†ç‚¼é’¦çœ‰å†œ
 	LobbyUpdateCharacterPartClass<EPCClass>::GetInstance().Signal(IntToPCClass(ChangeMainClass));
 	LobbyUpdateCharacterPartClass<EPCClass>::GetInstance().Signal(IntToPCClass(ChangeSubClass));
 
@@ -1020,7 +1020,7 @@ void UB2UICharacterSelectPage::CheckStorySkip(bool bCheck)
 		LobbyUpdateCharacterPartClass<EPCClass>::GetInstance().Signal(IntToPCClass(ChangeMainClass));
 		LobbyUpdateCharacterPartClass<EPCClass>::GetInstance().Signal(IntToPCClass(ChangeSubClass));
 
-		// ³¯°³x ¾ÆÀÌÄÜ Ç¥½ÃÁ¦¾î Æ©Åä¸®¾ó ²£À»¶§¸¸(±âº»°ª HiddneÀ¸·Î µÇÀÖÀ½)
+		// æœä¿ºx é…’æèƒ½ é’çŸ«åŠ›ç»¢ è­¬é…åºœå€” ç»é˜‘é”­çˆ¶(æ‰å¤¯è”¼ Hiddneæ è‚º ç™»ä¹æ¾œ)
 		TutorialManager& TutorialManagerInstance = TutorialManager::GetInstance();
 		if (!TutorialManagerInstance.IsLockTutorial(TutorialID_Wing, 0))
 		{
@@ -1038,7 +1038,7 @@ void UB2UICharacterSelectPage::EnabledStorySkip(bool bCheck)
 	if (BTN_ToolTipDisableStorySkip.IsValid())
 		BTN_ToolTipDisableStorySkip->SetVisibility(bCheck ? ESlateVisibility::Hidden : ESlateVisibility::Visible);
 
-	// Ã¼Å©µÈ»óÅÂ¸é ÀÚ¹°¼è ¾Èº¸ÀÓ(Ã¼Å©µÈ»óÅÂ·Î µğ½º¿¡ÀÌºí ½ÃÄÑ´Ş¶ó´Â ÄÉÀÌ½º)
+	// çœ‰å†œç­‰æƒ‘æ€•æ ç£Šæ‹±è‰° æ•‘ç„Šçƒ™(çœ‰å†œç­‰æƒ‘æ€•è‚º å¼èƒ¶ä¿Šæå–‰ çŸ«éš¾å´”æ‰¼ç»° çº³æèƒ¶)
 	if (CB_StoryCheck.IsValid() && IMG_StoryLock.IsValid() && CB_StoryCheck->GetCheckedState() == ECheckBoxState::Checked)
 		IMG_StoryLock->SetVisibility(ESlateVisibility::Hidden);
 
@@ -1123,7 +1123,7 @@ void UB2UICharacterSelectPage::BattleStart()
 	if (CanStartBattle())
 	{
 		CheckControlTutorialNextStep();
-		SetEnableStageGameStarted(true); // ½ÃÀÛ ¹öÆ° Å¬¸¯ ÈÄ Áßº¹ Å¬¸¯ÀÌ ¾ÈµÇµµ·Ï ÇÏ±â À§ÇØ.
+		SetEnableStageGameStarted(true); // çŸ«ç´¯ æ»šç“¢ åŠªè… é¥¶ åæ±— åŠªè…æ æ•‘ç™»æ¡£åºŸ çªæ‰ å›°ç§¦.
 
 		if (auto* GameMode = Cast<AB2LobbyGameMode>(UGameplayStatics::GetGameMode(this)))
 			GameMode->BattleStart();
@@ -1141,7 +1141,7 @@ void UB2UICharacterSelectPage::SetupOnRepeatBattleStateChange(bool bIsOn)
 		StopNextRepeatBattleCountdown();
 	}
 
-	// ¹İº¹ÀüÅõ ¹öÆ°Àº ÇöÀç »óÅÂ¿¡ µû¶ó µ¿ÀÛÀÌ ¹İ´ë·Î ¹Ù²ñ.
+	// é¦†æ±—å‚ˆæ§ æ»šç“¢ç¯® æ³…çŠ æƒ‘æ€•ä¿Š è¶æ‰¼ æ‚¼ç´¯æ é¦†æªè‚º å®˜æŸ´.
 	/*if (TBS_RepeatBattle.IsValid())
 	{
 	TBS_RepeatBattle->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL,
@@ -1188,7 +1188,7 @@ void UB2UICharacterSelectPage::StartNextRepeatBattleCountdown()
 		{
 			UIP_RepeatBattleCountDownP->SetVisibility(ESlateVisibility::Visible);
 			UIP_RepeatBattleCountDownP->StartCountdown(FRepeatBattleCountDownCB::CreateLambda([this]() {
-				StartNextRepeatBattle(); // Ä«¿îÆ®´Ù¿î ´Ù µÇ¸é ½ÃÀÛÇÏ°Ô.
+				StartNextRepeatBattle(); // å¢¨æ¬¾é£˜ä¿ƒæ¬¾ ä¿ƒ ç™»æ çŸ«ç´¯çªéœ¸.
 			}));
 		}
 	}
@@ -1210,7 +1210,7 @@ void UB2UICharacterSelectPage::StartNextRepeatBattle()
 		UIP_RepeatBattleCountDownP->StopCountdown();
 	}
 
-	// ÀÌÀü¿¡ ÀüÅõ¿¡¼­ CachingµÈ Buff´Â ¸ğµÎ ´ã¾ÆÁØ´Ù. ¿©±â±îÁö ¿À¸é Buff »ç¿ë°¡´É ¿©ºÎ´Â È®ÀÎ µÈ »óÅÂ
+	// æå‚ˆä¿Š å‚ˆæ§ä¿Šè¾‘ Cachingç­‰ Buffç»° è‘›æ»´ æ·¬é…’éœ–ä¿ƒ. å’¯æ‰é³–ç˜¤ å·æ Buff è¤ä¾©å•Šç“· å’¯ä½•ç»° çŠ¬ç‰¢ ç­‰ æƒ‘æ€•
 	UB2UIDocBattleStage* DocBS = UB2UIDocHelper::GetDocBattleStage();
 	TArray<EStageBuffType> CurrentBuffList;
 	if (DocBS != nullptr)
@@ -1222,16 +1222,16 @@ void UB2UICharacterSelectPage::StartNextRepeatBattle()
 	StartGameStageFromLobbyClass<int32, EStageDifficulty, const TArray<EStageBuffType>&, bool>::GetInstance().Signal(ClientStageId, StageDifficulty, CurrentBuffList, (DocCon ? DocCon->GetbUserSelectedSkipStory() : false));
 }
 
-void UB2UICharacterSelectPage::OnClickBtnChangeMainSub()							//Main, Sub ±³Ã¼ »ì·ÁµÎ°Ú½À´Ï´Ù...
+void UB2UICharacterSelectPage::OnClickBtnChangeMainSub()							//Main, Sub èƒŒçœ‰ æ··å¦¨æ»´æ‘†åš¼èªä¿ƒ...
 {
-	// UB2UICharacterSelect ¿¡¼­ ÇÏ´Â °Í°ú Áßº¹µÇ±ä ÇÏ´Âµ¥ µû·Î »©±âµµ ¹¹ÇÏ±º..
+	// UB2UICharacterSelect ä¿Šè¾‘ çªç»° å·´è‹ åæ±—ç™»å˜ çªç»°å• è¶è‚º å“—æ‰æ¡£ æ„çªç„™..
 
 	UB2UIDocBattle* DocBattle = UB2UIDocHelper::GetDocBattle();
 	if (DocBattle)
-	{// Main/Sub ¹Ù²ãÄ¡±â
+	{// Main/Sub å®˜å±‚æ‘¹æ‰
 		LobbySetPCSelectionClass<EPCClass, EPCClass>::GetInstance().Signal(IntToPCClass(DocBattle->GetTagPCClass()), IntToPCClass(DocBattle->GetCurPCClass()));
 		Swap(ChangeMainClass, ChangeSubClass);
-		// ¼±ÅÃ Å¬·¡½º°¡ º¯°æµÊ¿¡ µû¶ó ¾Æ¸°ÀÇ Á¶¾ğµµ Ã¼Å©. ÀüÅõ·ÂÀº µÑÀÌ ÇÕÄ¡´Ï ´Ş¶óÁú °Ô ¾ø°ÚÁö¸¸ ½ºÅ³Æ÷ÀÎÆ® °°Àº °Å¿¡ µû¶ó ÀÌµ¿ ½Ã ´©±¸ È­¸éÀ¸·Î °¡´ÂÁö Á¤µµ ´Ş¶óÁö°Ú±º ¤»
+		// æ€¥ç¶ åŠªè´°èƒ¶å•Š å‡½ç‰ˆå‡³ä¿Š è¶æ‰¼ é…’èµ´ç‹¼ ç‚¼æ”«æ¡£ çœ‰å†œ. å‚ˆæ§ä»¿ç¯® ç¬›æ é’¦æ‘¹èª å´”æ‰¼é¾™ éœ¸ ç»æ‘†ç˜¤çˆ¶ èƒ¶æ‡¦å™¨ç‰¢é£˜ éç¯® èŠ­ä¿Š è¶æ‰¼ ææ‚¼ çŸ« ç©¿å¤‡ æ‹³ææ è‚º å•Šç»°ç˜¤ æ²¥æ¡£ å´”æ‰¼ç˜¤æ‘†ç„™ ã›
 		UB2UIDocBattleStage* DocBS = UB2UIDocHelper::GetDocBattleStage();
 		GameStageCheckForArinConsultingClass<FServerStageID>::GetInstance().Signal(DocBS ? DocBS->GetServerStageId() : FServerStageID());
 		PlayChangeChacterAnimBP();
@@ -1263,14 +1263,14 @@ void UB2UICharacterSelectPage::OnChangedRepeatBattleCurrentOn(class UB2UIDocBase
 {
 	if (bCurrentOn != bPrevOn && !StageGameStarted)
 	{
-		// BattleState°¡ Prev On -> Current Off ÀÌ¶ó¸é
+		// BattleStateå•Š Prev On -> Current Off ææ‰¼æ
 		if (bCurrentOn == false)
 		{
 			UB2UIDocBattleStage* DocBS = Cast<UB2UIDocBattleStage>(Sender);
-			// Áß´Ü »çÀ¯°¡ Gold ºÎÁ·ÀÌ¶ó¸é
+			// åçªœ è¤èœ¡å•Š Gold ä½•ç»ƒææ‰¼æ
 			if (DocBS != nullptr && BladeIIGameImpl::GetStageDataStore().IsEnoughGoldToRepeatBattle(ServerStageId) == false)
 			{
-				// Doc¿¡ BuffÁö¿ì°í BuffIconµµ Clear
+				// Docä¿Š Buffç˜¤å¿«ç»Š BuffIconæ¡£ Clear
 				TArray<EStageBuffType> EmptyBuffs;
 				DocBS->SetSelectedStageBuffs(EmptyBuffs);
 				//ClearDisplayBattleStageBuff();
@@ -1375,7 +1375,7 @@ void UB2UICharacterSelectPage::CheckStartButton()
 
 bool UB2UICharacterSelectPage::CheckAbleTime()
 {
-	if (!IsSingleSelect) return true; // IsSingleSelect = true¸é Á¡·ÉÀü
+	if (!IsSingleSelect) return true; // IsSingleSelect = trueæ ç—¢é£å‚ˆ
 
 	auto DocControl = UB2UIDocHelper::GetDocControl();
 	if (DocControl)

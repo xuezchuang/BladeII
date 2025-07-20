@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "BladeIIMercenaryPlayer.h"
 //#include "BladeII.h"
 #include "B2GuildDataStore.h"
@@ -109,7 +109,7 @@ void ABladeIIMercenaryPlayer::InitCombateStatsForParam(const FCombatStatParam & 
 	DefenseLevel = CombatStatEval::GetADLevel(TotalDefense, DefenseCoefficientValue);
 
 	/////////////////////////////////////////////
-	//¿ëº´ ·¹º§º° ´É·ÂÄ¡ Ãß°¡
+	//ä¾©æ é¥­éª‡å–Š ç“·ä»¿æ‘¹ çœ å•Š
 	FB2GuildMercenaryInfo& Infos = BladeIIGameImpl::GetGuildDataStore().GetGuildMercenaryMasterData();
 	b2network::B2mdGuildMercenaryMasteryPtr MasteryPtr = Infos.GetMercenaryMasteries(MercenaryInfo.MercenaryID, MercenaryInfo.MercenaryLevel);
 
@@ -126,7 +126,7 @@ void ABladeIIMercenaryPlayer::InitCombateStatsForParam(const FCombatStatParam & 
 	if (GuildMercenary)
 		MaxArmor = GuildMercenary->max_armor_override;
 
-	//PC¿Í ´Ù¸¥ ¿ëº´Àü¿ëµé Ãß°¡ÇØ¾ß µÊ
+	//PCå®¢ ä¿ƒå¼— ä¾©æå‚ˆä¾©ç”¸ çœ å•Šç§¦å…· å‡³
 	if(CombatStats.Contains(EUnitedCombatOptions::UCO_Health_IncMaxHP))
 		MaxHealth *= (1.0f + CombatStats[EUnitedCombatOptions::UCO_Health_IncMaxHP]);
 
@@ -135,7 +135,7 @@ void ABladeIIMercenaryPlayer::InitCombateStatsForParam(const FCombatStatParam & 
 	CurrentQTEBreakPoint = 0.f;
 
 	///////////////////////////////////////////
-	//GameMode¿¡ µû¸¥ ½ºÅÈº¸Á¤
+	//GameModeä¿Š è¶å¼— èƒ¶æ¹ƒç„Šæ²¥
 	CharacterDamageRate *= CombatStatParam.ModeDamageRate;
 	Health *= CombatStatParam.ModeHealthRate;
 	MaxHealth *= CombatStatParam.ModeHealthRate;
@@ -332,7 +332,7 @@ void ABladeIIMercenaryPlayer::BeginPlay()
 	//	ActionCameraComponent->SetRelativeLocation(FVector(0.f, 0.f, -GetCapsuleComponent()->GetScaledCapsuleHalfHeight()));
 	//}
 
-	//// UpdateCamera** À» ÅëÇØ ¼¼ÆÃÇÒ ¶§¿¡´Â Camera** °ªµéÀÌ °°ÀÌ Ä³½ÌµÊ.
+	//// UpdateCamera** é˜‘ çƒ¹ç§¦ æŠ€æ³¼ä¸” é”­ä¿Šç»° Camera** è”¼ç”¸æ éæ æŸæ•™å‡³.
 	//CameraDistance = CameraBoom->TargetArmLength;
 	//CameraPitch = CameraBoom->RelativeRotation.Pitch;
 	//CameraYaw = CameraBoom->RelativeRotation.Yaw;
@@ -509,7 +509,7 @@ void ABladeIIMercenaryPlayer::OnEndAttackState()
 
 void ABladeIIMercenaryPlayer::OnAnimMobDeadEnd(bool bInUseDeadRagDoll, float InRemainLifeSpan, bool bInUseDeadSink, float InDeadSinkDelayTime, float InDeadSinkZOffset, float InDeadSinkDuration)
 {
-	PreventMovementByStageEvent(); // ¹°¸®¸¦ »ç¿ëÇÏÁö ¾ÊÀ¸¸é¼­ movment stop ±îÁö ÇÏ¸é Á¤¸» Àç¹Ì¾øÀ½.
+	PreventMovementByStageEvent(); // æ‹±åºœç”« è¤ä¾©çªç˜¤ è‡¼æ æè¾‘ movment stop é³–ç˜¤ çªæ æ²¥å¯Œ çŠå›ºç»æ¾œ.
 
 	check(GetCapsuleComponent());
 	GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
@@ -527,7 +527,7 @@ bool ABladeIIMercenaryPlayer::GetAreaDamageTargetLocation(float RandMaxDist, FVe
 	//}
 	//else
 	//{
-	//	//--¹ÌÄ¡°Ú³×
+	//	//--å›ºæ‘¹æ‘†åŒ™
 	//	AB2GuildNPCAIController* NPCController = Cast<AB2GuildNPCAIController>(GetController());
 	//	if (NPCController)
 	//	{
@@ -553,7 +553,7 @@ void ABladeIIMercenaryPlayer::PreDamageAnimation(const FDamageInfo& DamageInfo, 
 {
 	auto ArmorBreakResponse = GetSuitableDamageType(DamageInfo, IsArmorBreak);
 
-	//¾Æ¸Ó ºê·¹ÀÌÅ© ´çÇØ¼­ AttackTypeÀÌ ¼³Á¤µÇ¾úÀ»¶§¸¸ µé¾î°¡µµ·Ï..
+	//é…’èµ£ å®é¥­æå†œ å¯¸ç§¦è¾‘ AttackTypeæ æ±²æ²¥ç™»èŒé˜‘é”­çˆ¶ ç”¸ç»¢å•Šæ¡£åºŸ..
 	if (ArmorBreakResponse == EAttackType::EAT_Default)
 		return;
 
@@ -800,8 +800,8 @@ void ABladeIIMercenaryPlayer::AddStatMercenaryBySkill(EMercenarySkillOption InOp
 
 	CombatStats[CombatOption] = ResultValue;
 
-	//PlayerÀü¿ëÀ¸·Î ¶Ç´Ù¸¥ ¹æ½ÄÀ¸·Î Àû¿ëµÇ¾î¾ßÇÔ ¤Ñ¤Ñ;
-	//primarydataµé
+	//Playerå‚ˆä¾©æ è‚º è‚šä¿ƒå¼— è§„ä¾¥æ è‚º åˆ©ä¾©ç™»ç»¢å…·çªƒ ã±ã±;
+	//primarydataç”¸
 	if (CombatOption == EUnitedCombatOptions::UCO_Health_PerSecRecoverHP)
 		SetRegenerateHPRate(CombatStats[CombatOption], false);
 }
@@ -811,7 +811,7 @@ void ABladeIIMercenaryPlayer::AddSkillStat(EMercenarySkillOption InOption, float
 	if (InOption == EMercenarySkillOption::EMSO_End)
 		return;
 
-	//ÃßÈÄ ½Ã½ºÅÛÈ­ °ú¿¬ ¾ğÁ¦ÇÒÁö?
+	//çœ é¥¶ çŸ«èƒ¶è¢æ‹³ è‹æ¥· æ”«åŠ›ä¸”ç˜¤?
 	if (InOption == EMercenarySkillOption::EMSO_BuffTime ||
 		InOption == EMercenarySkillOption::EMSO_IncMaxNumCharacterBuff
 		)
@@ -884,13 +884,13 @@ UAnimSequenceBase * ABladeIIMercenaryPlayer::GetAnimStateOverrideSequence()
 
 void ABladeIIMercenaryPlayer::OverrideByBaseBP(TSubclassOf<class ABladeIICharacter> BPClassToOverride)
 {
-	//Player²¬·Î ÃÊ±âÈ­ ½ÃÅ´..
+	//Playeré“‚è‚º æª¬æ‰æ‹³ çŸ«ç³¯..
 	UB2SomeInfo* SomeInfo = StaticFindSomeInfo(this);
 	BPClassToOverride = SomeInfo ? SomeInfo->GetDefaultPCClassInfoBaseBPClass() : NULL;
 
 	Super::OverrideByBaseBP(BPClassToOverride);
 
-	//CharacterÆ¯¼ºÀ¸·Î FaceRotation »ç¿ëÇÏ°ÔµÇ¹Ç·Î
+	//Characteræ¼‚å·±æ è‚º FaceRotation è¤ä¾©çªéœ¸ç™»éª¨è‚º
 	GetCharacterMovement()->RotationRate = FRotator(0.f, 4000.f, 0.f);
 	bUseControllerRotationYaw = true;
 }
@@ -1064,11 +1064,11 @@ TSharedPtr<FMercenarySkillData> ABladeIIMercenaryPlayer::GetUseSkillData()
 void ABladeIIMercenaryPlayer::FilterTeamBuffAffectMember(ETeamBuffType TeamBuffType, TArray<class ABladeIICharacter*>& InChracters)
 {
 	/*
-		¿ø·¡ ÀÌ·±°Ç ½ºÅ³ Æ¯¼º¿¡ ÀÖ¾î¾ß ÇÔ... 
-		ÇÏÁö¸¸ AnimationNotify¿¡ ÀÌº¥Æ®¸¸ ÀÖ´Â°Ô ¾Æ´Ï¶ó ·ÎÁ÷±îÁö ½Ï´Ù ¹ÚÇô ÀÖ¾î¼­ 
-		½ºÅ³Æ¯¼ºÀ¸·Î Ã³¸® ÇÒ ¼ö ¾øÀ½....
-		±×¸®°í ¾ÖÃÊ¿¡ Character°¡ ¹º°¡ ÆÇº°·ÎÁ÷À» µé°í ÀÖ´Â°Ô ÀÌ»óÇÔ...½ºÅ³ÀÌ ÇØ¾ßÁö 
-		ÆÀ¹öÇÁ¸¦ ÁÖ´Âµ¥ °¡±î¿î¾ê¸¦ ÁÙÁö ¾Æ´Ï¸é Ã¼·Â ³·Àº ¾ê¸¦ ÁÙÁö ¾î¶² ·ÎÁ÷ÀÌ ¾î¶»°Ô µé¾î°¥ÁÙ ¾Ë°í Ä³¸¯ÅÍ¿¡¼­ ´Ù Ã³¸®ÇÏ´ÂÁö ¸ğ¸£°ÚÀ½
+		ç›”è´° æç¹æ‰’ èƒ¶æ‡¦ æ¼‚å·±ä¿Š ä¹ç»¢å…· çªƒ... 
+		çªç˜¤çˆ¶ AnimationNotifyä¿Š æäº¥é£˜çˆ¶ ä¹ç»°éœ¸ é…’èªæ‰¼ è‚ºæµé³–ç˜¤ è¾ƒä¿ƒ å† å›š ä¹ç»¢è¾‘ 
+		èƒ¶æ‡¦æ¼‚å·±æ è‚º è´¸åºœ ä¸” è ç»æ¾œ....
+		å¼Šåºœç»Š å±€æª¬ä¿Š Characterå•Š è´­å•Š é­„å–Šè‚ºæµé˜‘ ç”¸ç»Š ä¹ç»°éœ¸ ææƒ‘çªƒ...èƒ¶æ‡¦æ ç§¦å…·ç˜¤ 
+		è¯„æ»šæ©‡ç”« æ—ç»°å• å•Šé³–æ¬¾å¨Ÿç”« ä¸´ç˜¤ é…’èªæ çœ‰ä»¿ æ’¤ç¯® å¨Ÿç”« ä¸´ç˜¤ ç»¢æ« è‚ºæµæ ç»¢ç—˜éœ¸ ç”¸ç»¢å“ä¸´ èˆ…ç»Š æŸè…ç£ä¿Šè¾‘ ä¿ƒ è´¸åºœçªç»°ç˜¤ è‘›ç¦æ‘†æ¾œ
 	*/
 	if (TeamBuffType == ETeamBuffType::ETBT_Enhance)
 	{

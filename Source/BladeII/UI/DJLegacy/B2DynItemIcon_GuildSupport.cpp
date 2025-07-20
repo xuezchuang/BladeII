@@ -43,14 +43,14 @@ void UB2DynItemIcon_GuildSupport::UpdateItemData(const FB2Item& InItem)
 {
 	//Super::UpdateItemData(InItem);
 
-	// Å¬¶óÀÌ¾ğÆ® ¾ÆÀÌÅÛ ¸®¼Ò½º Å×ÀÌºí
+	// åŠªæ‰¼ææ”«é£˜ é…’æè¢ åºœå®¶èƒ¶ æŠ›æå–‰
 	UB2ItemInfo* AllItemInfo = StaticFindItemInfo();
 	FSingleItemInfoData* ThisItemInfo = AllItemInfo ? AllItemInfo->GetInfoData(InItem.ItemRefID) : NULL;
 	UB2ItemMiscInfo* ItemMiscInfo = StaticFindItemMiscInfo();
 
-	// UMG ÂÊ¿¡ ¹èÄ¡ÇÑ widget µé ¾÷µ¥ÀÌÆ®
+	// UMG ç‡ä¿Š ç¡…æ‘¹èŒ„ widget ç”¸ è¯€å•æé£˜
 
-	// ÀåÂø ¾ÆÀÌÅÛÀÌ³ª Á¤¼ö¸¸ º°¼º¿¡ µû¸¥ Â÷ÀÌ..
+	// å˜é¦’ é…’æè¢æå”± æ²¥èçˆ¶ å–Šå·±ä¿Š è¶å¼— ç’æ..
 	SetBackgroundImageFromGrade((IsEquipmentItem(InItem) || IsEssenceItem(InItem)) ? InItem.StarGrade : 1, (InItem.InventoryType == EItemInvenType::EIIVT_Consumables));
 
 	if (MainIconImage.IsValid())
@@ -99,7 +99,7 @@ void UB2DynItemIcon_GuildSupport::SetBackgroundStarGrade(int32 InItemGrade, UMat
 
 void UB2DynItemIcon_GuildSupport::SetBackgroundImageFromGrade(int32 InItemGrade, bool bForConsumables)
 {
-	ensure(!bForConsumables); // ¸¸ÀÏ ÀÌ°Ô µé¾î¿Ô´Ù¸é ¼Ò¸ğÇ°À» ÀåÂøÇÏ·Á°í Çß´Ù±âº¸´Ü ¾Æ¸¶µµ ¹º°¡ ´õ¹Ì µ¥ÀÌÅÍ·Î Ç¥½ÃÇÏ·Á´Âµ¥ °ªÀÌ Àß¸ø ¼¼ÆÃµÇ¾î ÀÖ´Ù°Å³ª.. °Á ½Å°æ¾²Áö ¾Ê¾Ò´ø °ªÀÏ µí..?
+	ensure(!bForConsumables); // çˆ¶è€ æéœ¸ ç”¸ç»¢å­ä¿ƒæ å®¶è‘›å‰é˜‘ å˜é¦’çªå¦¨ç»Š æ²ä¿ƒæ‰ç„Šçªœ é…’ä»˜æ¡£ è´­å•Š æ­¹å›º å•æç£è‚º é’çŸ«çªå¦¨ç»°å• è”¼æ è‚‹ç»™ æŠ€æ³¼ç™»ç»¢ ä¹ä¿ƒèŠ­å”±.. å‚² è„šç‰ˆé™ç˜¤ è‡¼ç–½å¸¦ è”¼è€ æ·€..?
 
 	UB2ItemMiscInfo* ItemMiscInfo = StaticFindItemMiscInfo();
 	if (IMG_GradeBG.IsValid())

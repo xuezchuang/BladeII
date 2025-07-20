@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+Ôªø// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIRaidMain.h"
 
 #include "B2UIHeader.h"
@@ -459,7 +459,7 @@ void UB2UIRaidMain::ForcedStartGame(int32 RaidType, int32 RaidStep, ERaidJoinTyp
 
 	LobbyStartMatchClass<bool>::GetInstance().Signal(IsMatchMaking);
 
-	// πˆ∆∞ ∫Ò»∞º∫»≠ π◊ ≈∏¿Ã∏” ºº∆√..
+	// ÊªöÁì¢ ÂéöÂäùÂ∑±Êã≥ Ê£∫ È∏•ÊçûËµ£ ÊäÄÊ≥º..
 	SetButtonEnable(false);
 
 	GetWorld()->GetTimerManager().ClearTimer(ButtonFreeHandle);
@@ -469,7 +469,7 @@ void UB2UIRaidMain::ForcedStartGame(int32 RaidType, int32 RaidStep, ERaidJoinTyp
 
 void UB2UIRaidMain::StartGame(ERaidJoinType JoinType)
 {
-	// ¿œπ›¿˚¿Œ Ω√¿€.
+	// ËÄÅÈ¶ÜÂà©Áâ¢ Áü´Á¥Ø.
 
 	if (!CheckRaidAbleTime())
 	{
@@ -506,7 +506,7 @@ void UB2UIRaidMain::StartGame(ERaidJoinType JoinType)
 
 	LobbyStartMatchClass<bool>::GetInstance().Signal(true);
 
-	// πˆ∆∞ ∫Ò»∞º∫»≠ π◊ ≈∏¿Ã∏” ºº∆√..
+	// ÊªöÁì¢ ÂéöÂäùÂ∑±Êã≥ Ê£∫ È∏•ÊçûËµ£ ÊäÄÊ≥º..
 	SetButtonEnable(false);
 
 	GetWorld()->GetTimerManager().ClearTimer(ButtonFreeHandle);
@@ -558,7 +558,7 @@ int32 UB2UIRaidMain::CheckAbleRaidStep(int32 inStep)
 	const ERaidGotoWhere MatchType = UIDocRaid->GetReturnToPageType();
 	const bool IsRematch = (MatchType == ERaidGotoWhere::Rematch);
 
-	if (!IsRematch) // ∆ƒ∆ºø¯ ¥ŸΩ√«œ±‚øÕ √ ¥Î«œ±‚¥¬ ¡ˆ¡§«ÿ¡ÿ Ω∫≈‹ ±◊¥Î∑Œ.
+	if (!IsRematch) // È¢áËêçÁõî ‰øÉÁü´Á™çÊâÅÂÆ¢ Ê™¨Êé™Á™çÊâÅÁª∞ Áò§Ê≤•Áß¶Èúñ ËÉ∂Ë∑ë ÂºäÊé™ËÇ∫.
 		return inStep;
 
 	int32 RaidStep = inStep;
@@ -575,7 +575,7 @@ int32 UB2UIRaidMain::CheckAbleRaidStep(int32 inStep)
 			{
 				RecommandStep = Ele.RaidStep;
 			}
-			else if (Ele.RaidStep == MaxDifficultyNumber && MyCombat >= Ele.RecommendCombatPoint) // ≥ª ¿¸≈ı∑¬¿Ã MAX¥‹∞Ë∫∏¥Ÿ ≥Ù¿ª∞ÊøÏ MAX¥‹∞Ë∑Œ ∞Ì¡§.
+			else if (Ele.RaidStep == MaxDifficultyNumber && MyCombat >= Ele.RecommendCombatPoint) // ÈÉ¥ ÂÇàÊçß‰ªøÊçû MAXÁ™úÊãåÁÑä‰øÉ Ëá≠ÈòëÁâàÂø´ MAXÁ™úÊãåËÇ∫ ÁªäÊ≤•.
 			{
 				RecommandStep = MaxDifficultyNumber;
 			}
@@ -600,17 +600,17 @@ void UB2UIRaidMain::CheckRaidAble()
 
 	if (SW_ButtonSet.IsValid() && TB_BlockDesc.IsValid())
 	{
-		if (!bIsDayOpen)/// ≥Ø¬• √º≈©
+		if (!bIsDayOpen)/// ÊúùÊ•º ÁúâÂÜú
 		{
 			SW_ButtonSet->SetActiveWidgetIndex(false);
 			TB_BlockDesc->SetText(GetBlockMessageText(ERaidBlockCode::NOT_ABLE_DAY, GetLockedDayText(DayOpens)));
 		}
-		else if(!bAbleCombat)//  ¿¸≈ı∑¬ √º≈©
+		else if(!bAbleCombat)//  ÂÇàÊçß‰ªø ÁúâÂÜú
 		{
 			SW_ButtonSet->SetActiveWidgetIndex(false);
 			TB_BlockDesc->SetText(GetBlockMessageText(ERaidBlockCode::NOT_COMBATPOWER, FText::AsNumber(RecomandCombatPower)));
 		}
-		else // Ω√∞£√º≈©
+		else // Áü´ÂüÉÁúâÂÜú
 		{
 			CheckRaidAbleTime();
 			SW_ButtonSet->SetActiveWidgetIndex(true);
@@ -625,7 +625,7 @@ bool UB2UIRaidMain::CheckRaidPenalty()
 	if (DocRaid)
 	{
 		bool bIsPenalty = DocRaid->IsPanelty();
-		if (bIsPenalty) // ∆–≥Œ∆º ∆Àæ˜ √ﬂ∞°.
+		if (bIsPenalty) // Ëè©ÊæÑËêç ÊâëËØÄ Áú†Âïä.
 		{
 			UB2UIMsgPopupRaidPenalty* pPopupUI = UB2UIManager::GetInstance()->OpenMsgPopup<UB2UIMsgPopupRaidPenalty>(EUIMsgPopup::RaidPenalty,
 				BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("General_Notification")),

@@ -1,4 +1,4 @@
-// Copyright 1998-2014 Epic Games, Inc. All Rights Reserved.
+ï»¿// Copyright 1998-2014 Epic Games, Inc. All Rights Reserved.
 
 
 #include "BladeIIPlayer.h"
@@ -286,7 +286,7 @@ ABladeIIPlayer::ABladeIIPlayer(const FObjectInitializer& ObjectInitializer)
 
 	TopDownCameraDefaultRotator = TopDownCameraComponent->GetRelativeTransform().GetRotation().Rotator();
 	
-	// LightComponent ´Â attachment ¸¦ ´Ù½Ã ¼¼ÆÃÇÏ°Ô µÉ ¼ö ÀÖ´Ù.
+	// LightComponent ç»° attachment ç”« ä¿ƒçŸ« æŠ€æ³¼çªéœ¸ çª è ä¹ä¿ƒ.
 	LightComponent = ObjectInitializer.CreateDefaultSubobject<UPointLightComponent>(this, TEXT("PointLightComponent"));
 	LightComponent->AttachToComponent(RootComponent, FAttachmentTransformRules(EAttachmentRule::KeepRelative, false));
 	LightComponentAttachDistZ = 425.0f;
@@ -295,7 +295,7 @@ ABladeIIPlayer::ABladeIIPlayer(const FObjectInitializer& ObjectInitializer)
 	LightComponent->LightColor = FColor(255, 222, 164);
 	LightComponent->AttenuationRadius = 800.f;
 
-	bHeadPointLightIsFormallyOn = false; // ÀÏ¹İÀûÀÎ °æ·Î·Î ¿ä LightComponent ¸¦ ÄÑ°í ²ø ¶§¿¡´Â bHeadPointLightIsFormallyOn ¸¦ °°ÀÌ ¼¼ÆÃÇØ¾ß ÇÑ´Ù.
+	bHeadPointLightIsFormallyOn = false; // è€é¦†åˆ©ç‰¢ ç‰ˆè‚ºè‚º å¤¸ LightComponent ç”« éš¾ç»Š ç¼  é”­ä¿Šç»° bHeadPointLightIsFormallyOn ç”« éæ æŠ€æ³¼ç§¦å…· èŒ„ä¿ƒ.
 
 	//GetCharacterMovement()->bIgnoreForceDuringRootmotion = true;
 
@@ -345,10 +345,10 @@ ABladeIIPlayer::ABladeIIPlayer(const FObjectInitializer& ObjectInitializer)
 	FloorRingPSC->AttachToComponent(RootComponent, FAttachmentTransformRules(EAttachmentRule::KeepRelative, false));
  	FloorRingPSC->Deactivate();	
 
-	// ½½·Î¿ì, ºù°á¶§µµ Á¦¼Óµµ·Î µ¹°Ô
+	// æµ‡è‚ºå¿«, è‘«æ¬é”­æ¡£ åŠ›åŠ æ¡£è‚º å€’éœ¸
 	//FloorRingPSC->bUseOwnerCustomTimeDilation = false;
 
-	// ÀÌ FloorRing Àº ¿¬ÃâÀå¸é Æ÷ÇÔ½ÃÅ°Áö ¾Êµµ·Ï ºí·¢¸®½ºÆ®¿¡ Ãß°¡ÇÔ.
+	// æ FloorRing ç¯® æ¥·å…å˜æ å™¨çªƒçŸ«è™ç˜¤ è‡¼æ¡£åºŸ å–‰å‘åºœèƒ¶é£˜ä¿Š çœ å•Šçªƒ.
 	EventPuppetSetupBlacklist.Add(FloorRingPSC);
 
 	FloorRingColorMultiplier = 1.f;
@@ -366,16 +366,16 @@ ABladeIIPlayer::ABladeIIPlayer(const FObjectInitializer& ObjectInitializer)
 
 
 	//if (!GMinimalDLCFrontMode)
-	//{ // DLC Front ¸ğµå ¸®¼Ò½º·Îµù ÃÖ´ëÇÑ Á¦°Å
+	//{ // DLC Front è‘›é› åºœå®¶èƒ¶è‚ºçˆ¹ å¼¥æªèŒ„ åŠ›èŠ­
 	//	FString DefaultHiddenMobPointerPSTemplatePath;
 	//	GConfig->GetString(TEXT("/Script/BladeII.BladeIICharacter"), TEXT("DefaultHiddenMobPointerPSTemplate"), DefaultHiddenMobPointerPSTemplatePath, GGameIni);
 	//	HiddenMobPointerPSTemplate = LoadObject<UParticleSystem>(NULL, *DefaultHiddenMobPointerPSTemplatePath);
-	//	BaseBPCopyExcludeProperties.AddUnique(FName(TEXT("HiddenMobPointerPSTemplate"))); // MinimalDLCFrontMode ·Î ÀÎÇØ ºñ¾îÀÖÀ» BaseBP ÂÊ °ªÀ» °¡Á®¿ÀÁö ¾Ê±â À§ÇØ ÀÌ¸§ Ãß°¡
+	//	BaseBPCopyExcludeProperties.AddUnique(FName(TEXT("HiddenMobPointerPSTemplate"))); // MinimalDLCFrontMode è‚º ç‰¢ç§¦ åšç»¢ä¹é˜‘ BaseBP ç‡ è”¼é˜‘ å•Šå»‰å·ç˜¤ è‡¼æ‰ å›°ç§¦ ææŠš çœ å•Š
 
 	//	FString DefaultForceFeedbackPath;
 	//	GConfig->GetString(TEXT("/Script/BladeII.BladeIICharacter"), TEXT("DefaultForceFeedbackPath"), DefaultForceFeedbackPath, GGameIni);
 	//	ForceFeedbackSetting = LoadObject<UForceFeedbackEffect>(NULL, *DefaultForceFeedbackPath);
-	//	BaseBPCopyExcludeProperties.AddUnique(FName(TEXT("ForceFeedbackSetting"))); // MinimalDLCFrontMode ·Î ÀÎÇØ ºñ¾îÀÖÀ» BaseBP ÂÊ °ªÀ» °¡Á®¿ÀÁö ¾Ê±â À§ÇØ ÀÌ¸§ Ãß°¡
+	//	BaseBPCopyExcludeProperties.AddUnique(FName(TEXT("ForceFeedbackSetting"))); // MinimalDLCFrontMode è‚º ç‰¢ç§¦ åšç»¢ä¹é˜‘ BaseBP ç‡ è”¼é˜‘ å•Šå»‰å·ç˜¤ è‡¼æ‰ å›°ç§¦ ææŠš çœ å•Š
 	//}
 
 	//<<< Widget classes specification end
@@ -431,7 +431,7 @@ ABladeIIPlayer::ABladeIIPlayer(const FObjectInitializer& ObjectInitializer)
 	bKeepAttacking = false;
 	bCachedPressedInCinematic = false;
 	LastGuardTime = 0.f;
-	//CachedBaseMaxWalkSpeed = 0.f; // PCClassInfo ¿¡ ¼¼ÆÃµÈ °ªÀÌ µé¾î°¡ ÀÖ¾î¾ß ÇÔ. Elevated to BladeIICharacter
+	//CachedBaseMaxWalkSpeed = 0.f; // PCClassInfo ä¿Š æŠ€æ³¼ç­‰ è”¼æ ç”¸ç»¢å•Š ä¹ç»¢å…· çªƒ. Elevated to BladeIICharacter
 	
 	WeaponSkillPoint = 0;
 	CurrentSkillAnimIdx = ESkillAnimType::ESA_End;
@@ -444,7 +444,7 @@ ABladeIIPlayer::ABladeIIPlayer(const FObjectInitializer& ObjectInitializer)
 	QTENPCClass = ENPCClass::ENC_End;
 	QTEMountRemainingTime = 0.0f;
 
-	// ÇÃ·¹ÀÌ¾î ±âº»¼³Á¤ ·¹µåÆÀ
+	// æ•²é¥­æç»¢ æ‰å¤¯æ±²æ²¥ é¥­é›è¯„
 	SetTeamNum(int32(ETeamType::ETT_Red));
 
 	//CharacterDataStore = NULL;
@@ -468,7 +468,7 @@ ABladeIIPlayer::ABladeIIPlayer(const FObjectInitializer& ObjectInitializer)
 	AbsorbHPAmountRateOnAttack = 0.0f;
 	AdditionalAttackSpeedRatebyPassive = 0.0f;
 	FPlatformMemory::Memzero(IncAttackDamageByPassiveToClass, sizeof(IncAttackDamageByPassiveToClass));
-	FPlatformMemory::Memzero(DecReceiveDamageByPassiveFromClass, sizeof(DecReceiveDamageByPassiveFromClass)); // ±âº»°ª 1 ÀÌ ¸Â±ä ÇÑµ¥ ÃÊ±â°ª ³Ö¾îÁÖ±â Â÷¿øÀÌ´Ï..
+	FPlatformMemory::Memzero(DecReceiveDamageByPassiveFromClass, sizeof(DecReceiveDamageByPassiveFromClass)); // æ‰å¤¯è”¼ 1 æ å˜å˜ èŒ„å• æª¬æ‰è”¼ æŒç»¢æ—æ‰ ç’ç›”æèª..
 
 	InjectedGameMode = nullptr;
 
@@ -624,7 +624,7 @@ ESkillAnimType ABladeIIPlayer::GetCurrentSKillAnimIdx()
 
 ESkillAnimType ABladeIIPlayer::GetCurrentSKillAnimIdx_Native()
 {
-	//[@AKI, 170815] ÀüÅõ ºĞ¼® Áß SkillLOD·Î °¡Á® ¿À´Â ºÎºĞ ÀÎ µí ÇÔ.
+	//[@AKI, 170815] å‚ˆæ§ ç›’ç± å SkillLODè‚º å•Šå»‰ å·ç»° ä½•ç›’ ç‰¢ æ·€ çªƒ.
 	if (SkillLOD != 0 && CurrentSkillAnimIdx >= ESkillAnimType::ESA_Weapon_01)
 	{
 		return static_cast<ESkillAnimType>(static_cast<int32>(ESkillAnimType::ESA_Weapon_Normal_End) + static_cast<int32>(CurrentSkillAnimIdx) - static_cast<int32>(ESkillAnimType::ESA_Weapon_01) + 1);
@@ -637,14 +637,14 @@ void ABladeIIPlayer::BeginPlay()
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_BeginPlay);
 	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIPlayer::BeginPlay"));
 
-	// ÀÌ ½ÃÁ¡¿¡ PlayerController ÀÇ possess °¡ µÇ¾î ÀÖ¾î¾ß ÇÔ. UB2SkillRTManager::DynSpawnNewPlayerCommon ÀÌ³ª ABladeIIGameMode::StaticSpawnPCClassInfoPlayer Âü°í
+	// æ çŸ«ç—¢ä¿Š PlayerController ç‹¼ possess å•Š ç™»ç»¢ ä¹ç»¢å…· çªƒ. UB2SkillRTManager::DynSpawnNewPlayerCommon æå”± ABladeIIGameMode::StaticSpawnPCClassInfoPlayer æ›¼ç»Š
 	//GetSkillRTManager();
-	SetupMeshesMain(); // Àåºñ Á¶ÇÕ¿¡ µû¸¥ ¸Ş½¬ ¼Â¾÷
+	SetupMeshesMain(); // å˜åš ç‚¼é’¦ä¿Š è¶å¼— çš‹æµ† æ‚¸è¯€
 
-	SyncPCCharacterLevelFromExpManager(); // InitializeCombatStats ÀÌÀü¿¡..
+	SyncPCCharacterLevelFromExpManager(); // InitializeCombatStats æå‚ˆä¿Š..
 
-	// Ä¸½¶ ÄÄÆ÷³ÍÆ® ½ºÄÉÀÏÀÌ [ÇÃ·¹ÀÌ¾î ½ºÅ¸Æ®] ½ºÄÉÀÏ°ª¿¡ ¿µÇâÀ» ¹ŞÀ½
-	// ¾ÈÀüÇÏ°Ô ÃÊ±âÈ­
+	// æ¯è•‰ å“ªå™¨æƒ©é£˜ èƒ¶çº³è€æ [æ•²é¥­æç»¢ èƒ¶é¸¥é£˜] èƒ¶çº³è€è”¼ä¿Š åº·æ°¢é˜‘ ç½æ¾œ
+	// æ•‘å‚ˆçªéœ¸ æª¬æ‰æ‹³
 	GetCapsuleComponent()->SetWorldScale3D(FVector(1.0f, 1.0f, 1.0f));
 
 	//if (EtherContainer == nullptr)
@@ -696,7 +696,7 @@ void ABladeIIPlayer::BeginPlay()
 	{
 		if (SKMeshComp->GetSocketByName(B2PLAYER_SHADOW_SOCKET_NAME_LF))
 		{
-			SetupDecalCompForLeftShadowCommon(LeftFootShadow, SKMeshComp); // SetupControlledMatineePuppet ¿¡¼­µµ »ç¿ëÇÏ´Â °øÅë ¼Â¾÷ ºÎºĞ.. ÀÌ¾ú´Âµ¥ °á±¹ ¿©±â¼­¸¸ »ç¿ë
+			SetupDecalCompForLeftShadowCommon(LeftFootShadow, SKMeshComp); // SetupControlledMatineePuppet ä¿Šè¾‘æ¡£ è¤ä¾©çªç»° å‚çƒ¹ æ‚¸è¯€ ä½•ç›’.. æèŒç»°å• æ¬æƒ« å’¯æ‰è¾‘çˆ¶ è¤ä¾©
 
 			LeftFootShadow->ReregisterComponent();
 			LeftFootShadow->SetDecalMaterial(ShadowMaterial);
@@ -704,13 +704,13 @@ void ABladeIIPlayer::BeginPlay()
 		}
 		else
 		{
-			LeftFootShadow->Deactivate(); // ¼ÒÄÏÀÌ ´©¶ôµÇ¾ú´Ù¸é Â÷¶ó¸® ¼û°Ü¾ß ÀÌ»óÇÑ °Ô ¾È ³ª¿È.
+			LeftFootShadow->Deactivate(); // å®¶å—æ ç©¿éç™»èŒä¿ƒæ ç’æ‰¼åºœ è§è´¥å…· ææƒ‘èŒ„ éœ¸ æ•‘ å”±å’³.
 			LeftFootShadow->SetVisibility(false);
 		}
 
 		if (SKMeshComp->GetSocketByName(B2PLAYER_SHADOW_SOCKET_NAME_RF))
 		{
-			SetupDecalCompForRightShadowCommon(RightFootShadow, SKMeshComp);  // SetupControlledMatineePuppet ¿¡¼­µµ »ç¿ëÇÏ´Â °øÅë ¼Â¾÷ ºÎºĞ.. ÀÌ¾ú´Âµ¥ °á±¹ ¿©±â¼­¸¸ »ç¿ë
+			SetupDecalCompForRightShadowCommon(RightFootShadow, SKMeshComp);  // SetupControlledMatineePuppet ä¿Šè¾‘æ¡£ è¤ä¾©çªç»° å‚çƒ¹ æ‚¸è¯€ ä½•ç›’.. æèŒç»°å• æ¬æƒ« å’¯æ‰è¾‘çˆ¶ è¤ä¾©
 
 			RightFootShadow->ReregisterComponent();
 			RightFootShadow->SetDecalMaterial(ShadowMaterial);
@@ -743,13 +743,13 @@ void ABladeIIPlayer::BeginPlay()
 	}
 
 	SetupLightComponentAttachment();
-	// GameRule °í·ÁÇØ¼­ ÄÔ..
+	// GameRule ç»Šå¦¨ç§¦è¾‘ è„‘..
 	FormalSetPointLightOn(true);
 	BII_CHECK(GetInjectedGameRule());
 
 	SubscribeEvents();
 
-	// UpdateCamera** À» ÅëÇØ ¼¼ÆÃÇÒ ¶§¿¡´Â Camera** °ªµéÀÌ °°ÀÌ Ä³½ÌµÊ.
+	// UpdateCamera** é˜‘ çƒ¹ç§¦ æŠ€æ³¼ä¸” é”­ä¿Šç»° Camera** è”¼ç”¸æ éæ æŸæ•™å‡³.
 	CameraDistance = CameraBoom->TargetArmLength;
 	//CameraPitch = CameraBoom->RelativeRotation.Pitch;
 	//CameraYaw = CameraBoom->RelativeRotation.Yaw;
@@ -764,11 +764,11 @@ void ABladeIIPlayer::BeginPlay()
 	CanEvade = true;
 	EvadeTimer = 0.0f;
 
-	InitUpdateUIDoc(); // »óÀ§ Å¬·¡½º¿¡¼­ ºÎ¸£±ä ÇÒ°Çµ¥ ¿©±â¼­ ¶Ç ÇØ¼­ ³ª»Ü °Å ¾øÁö. ±×»õ ¾÷µ¥ÀÌÆ® µÇ´Â °Ô ³ª¿Ã¼öµµ
+	InitUpdateUIDoc(); // æƒ‘å›° åŠªè´°èƒ¶ä¿Šè¾‘ ä½•ç¦å˜ ä¸”æ‰’å• å’¯æ‰è¾‘ è‚š ç§¦è¾‘ å”±å‰ èŠ­ ç»ç˜¤. å¼Šè´§ è¯€å•æé£˜ ç™»ç»° éœ¸ å”±æ£µèæ¡£
 
 
 #if !UE_BUILD_SHIPPING
-	extern bool gUseCharacterDefaultMaterial; // Ä³¸¯ÅÍ default material Å×½ºÆ®
+	extern bool gUseCharacterDefaultMaterial; // æŸè…ç£ default material æŠ›èƒ¶é£˜
 	if (gUseCharacterDefaultMaterial)
 	{
 		USkeletalMeshComponent* MainMeshComp = GetMesh();
@@ -785,9 +785,9 @@ void ABladeIIPlayer::BeginDestroy()
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_BeginDestroy);
 	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIPlayer::BeginDestroy"));
 
-	// Subscribe ¸¦ ÇÑ Player ¸¸.. Unsubscribe ½Ã ÁË´Ù ÇØÁ¦ÇØ¹ö¸².
+	// Subscribe ç”« èŒ„ Player çˆ¶.. Unsubscribe çŸ« äº†ä¿ƒ ç§¦åŠ›ç§¦æ»šè¦†.
 	//ABladeIIPlayer* CurrentLocalB2Player = Cast<ABladeIIPlayer>(UGameplayStatics::GetLocalPlayerCharacter(this));
-	//if ((!CurrentLocalB2Player || CurrentLocalB2Player == this)) // ¿©±â¼­µµ LocalPlayerCharacter °Ë»ç¸¦ ÇÒ ÇÊ¿ä°¡ ÀÖ´Ù. ÅÂ±× °°Àº °æ¿ì »ı¼º/ÆÄ±« ½ÃÁ¡ÀÌ ¾ù°¥·Á¼­ ²¿ÀÏ ¼ö ÀÖÀ½.
+	//if ((!CurrentLocalB2Player || CurrentLocalB2Player == this)) // å’¯æ‰è¾‘æ¡£ LocalPlayerCharacter å…«è¤ç”« ä¸” é˜å¤¸å•Š ä¹ä¿ƒ. æ€•å¼Š éç¯® ç‰ˆå¿« ç§¯å·±/é¢‡é² çŸ«ç—¢æ å‡å“å¦¨è¾‘ éƒ¨è€ è ä¹æ¾œ.
 	//{
 	//	UnsubscribeEvents();
 	//}
@@ -813,10 +813,10 @@ void ABladeIIPlayer::PreSave(FObjectPreSaveContext SaveContext)
 #if WITH_EDITOR
 	if (GIsEditor)
 	{
-		// ¸ğµç Ä³¸¯ÅÍ spawn ¿¡ ¾²ÀÌ´Â º£ÀÌ½º ºí·çÇÁ¸°Æ®¿¡´Â ±âº»°ª ¸®¼Ò½ºµéÀÌ ¹ÚÇô ÀÖ´Âµ¥ ÀÌ°Ô ¹«½ÃÇÏÁö ¸øÇÒ Á¤µµ·Î Å¬ ¼ö ÀÖ´Ù. ÄíÅ· ¼¼ÀÌºê ½Ã Á¦°Å.
+		// è‘›ç”µ æŸè…ç£ spawn ä¿Š é™æç»° æµ·æèƒ¶ å–‰é£æ©‡èµ´é£˜ä¿Šç»° æ‰å¤¯è”¼ åºœå®¶èƒ¶ç”¸æ å† å›š ä¹ç»°å• æéœ¸ å…¬çŸ«çªç˜¤ ç»™ä¸” æ²¥æ¡£è‚º åŠª è ä¹ä¿ƒ. æ»æ¬§ æŠ€æå® çŸ« åŠ›èŠ­.
 		//if (IsSavingForCookingOnPreSave(TargetPlatform) && GetMesh())
 		//{
-		//	// ¿©±â¼­ null ½ÃÅ² °Ç PCClassInfo ¸¦ ÅëÇØ ¼¼ÆÃÀÌ µÇ¾î¾ß.
+		//	// å’¯æ‰è¾‘ null çŸ«æŒª æ‰’ PCClassInfo ç”« çƒ¹ç§¦ æŠ€æ³¼æ ç™»ç»¢å…·.
 		//	FloorRingPS = nullptr;
 		//	ReadyWeaponSkillFX = nullptr;
 		//	HUDInfoClass = nullptr;
@@ -846,7 +846,7 @@ void ABladeIIPlayer::SubscribeEvents()
 	if (bEventsSubscribed)
 		return;
 
-	//// ¸¸ÀÏ ¿©·¯ Player °¡ °¢ÀÚ ÀÌº¥Æ®¸¦ ¹Ş¾Æ¾ß ÇÑ´Ù¸é Subscribe ¸®ÅÏ°ªÀ» ÀúÀåÇß´Ù°¡ Unsubscribe ½Ã »ç¿ë.
+	//// çˆ¶è€ å’¯çŸ¾ Player å•Š é˜¿ç£Š æäº¥é£˜ç”« ç½é…’å…· èŒ„ä¿ƒæ Subscribe åºœç•”è”¼é˜‘ å†å˜æ²ä¿ƒå•Š Unsubscribe çŸ« è¤ä¾©.
 	//CAPTURE_UOBJECT(ABladeIIPlayer);
 
 	//PlayerStartAttackTicket = PlayerStartAttackClass<>::GetInstance().Subscribe(
@@ -942,7 +942,7 @@ void ABladeIIPlayer::FinalizePCClassInfoSpawn(bool bFinalizeWithoutInGameInfo)
 		//	// BladeIIGameMode may set PCClassEnum during its own spawning operation, and it will be picked up here. 
 		//	this->OverrideByPCClassInfo(B2GameMode, nullptr, bFinalizeWithoutInGameInfo);
 		//				
-		//	B2GameMode->FinishSpawnByPCClassInfo(); // ÇÑ¹ø »ç¿ëµÇ°í ³ª¸é ¹Ù·Î ¸®¼Â
+		//	B2GameMode->FinishSpawnByPCClassInfo(); // èŒ„é”… è¤ä¾©ç™»ç»Š å”±æ å®˜è‚º åºœæ‚¸
 
 		//	bFinalizedByPCClassInfo = true;
 
@@ -953,7 +953,7 @@ void ABladeIIPlayer::FinalizePCClassInfoSpawn(bool bFinalizeWithoutInGameInfo)
 
 
 #if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
-/** ·ÎÄÃ Ä³¸¯ÅÍ ÀüÅõ·Â º¸Á¤ Ä¡Æ® */
+/** è‚ºæ‹¿ æŸè…ç£ å‚ˆæ§ä»¿ ç„Šæ²¥ æ‘¹é£˜ */
 float gLocalPCCombatStatScale = -1.0f;
 #endif
 
@@ -962,14 +962,14 @@ void ABladeIIPlayer::InitializeCombatStats()
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_InitializeCombatStats);
 	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIPlayer::InitializeCombatStats"));
 
-	// Super::InitializeCombatStats ¸¦ »ç¿ëÇÏÁö ¾Ê´Â´Ù.
+	// Super::InitializeCombatStats ç”« è¤ä¾©çªç˜¤ è‡¼ç»°ä¿ƒ.
 	
-	// ¿©±â¼± ¾ÆÀÌÅÛÀÌ Àû¿ëµÈ °ÍÀ¸·Î
-	// GetCurrentPlayerClass °¡ Á¦´ë·Î µÈ °ªÀ» ¸®ÅÏÇÏ·Á¸é OverrideByPCClassInfo °¡ Ã³¸®µÈ ÀÌÈÄ¿©¾ß ÇÔ.
+	// å’¯æ‰æ€¥ é…’æè¢æ åˆ©ä¾©ç­‰ å·´æ è‚º
+	// GetCurrentPlayerClass å•Š åŠ›æªè‚º ç­‰ è”¼é˜‘ åºœç•”çªå¦¨æ OverrideByPCClassInfo å•Š è´¸åºœç­‰ æé¥¶å’¯å…· çªƒ.
 //	GetSkillRTManager();
 //	GetCharacterDataStore();
 //
-//	if (CachedSkillRTManager == nullptr || CharacterDataStore == nullptr) //ÀÏ¹İÀûÀÎ ÇÃ·¹ÀÌ¾î°¡ ¾Æ´Ñ º¸¿©ÁÖ±â¿ë(½Â¸®¾À¿¡¼­ÀÇ ÅÂ±×Ä³¸¯ÅÍ..)
+//	if (CachedSkillRTManager == nullptr || CharacterDataStore == nullptr) //è€é¦†åˆ©ç‰¢ æ•²é¥­æç»¢å•Š é…’å›± ç„Šå’¯æ—æ‰ä¾©(é“°åºœçº ä¿Šè¾‘ç‹¼ æ€•å¼ŠæŸè…ç£..)
 //		return; 
 //
 //	LocalizedUserNickName = FText::FromString(CharacterDataStore->GetUserNickName());
@@ -979,7 +979,7 @@ void ABladeIIPlayer::InitializeCombatStats()
 //	TotalAttack = BladeGameMode->GetTotalAttack(GetCharacterDataStore());
 //	TotalDefense = BladeGameMode->GetTotalDefense(GetCharacterDataStore());
 //
-//	//±æµå ¹öÇÁ Àû¿ë Doc¿¡¼­ ºÒ·¯¿Â´Ù
+//	//è¾¨é› æ»šæ©‡ åˆ©ä¾© Docä¿Šè¾‘ é˜‚çŸ¾æŸ¯ä¿ƒ
 //	auto GuildDoc = UB2UIDocHelper::GetDocGuild();
 //
 //	check(GuildDoc)
@@ -991,7 +991,7 @@ void ABladeIIPlayer::InitializeCombatStats()
 //	GuildAttack = TotalAttack * (GuildAttack * 0.01f);
 //	GuildDefense = TotalDefense * (GuildDefense * 0.01f);
 //
-//	// ºÎÈ° ¹öÇÁ Àû¿ë
+//	// ä½•åŠ æ»šæ©‡ åˆ©ä¾©
 //	//TMap<EResurrectBuffType, int32> AppliedResurrectBuff;
 //	//CachedSkillRTManager->GetAppliedResurrectionBuffValues(AppliedResurrectBuff);
 //	int32* AttackBuffIfAny = AppliedResurrectBuff.Find(EResurrectBuffType::RBT_Attack);
@@ -1005,7 +1005,7 @@ void ABladeIIPlayer::InitializeCombatStats()
 //		TotalDefense = TotalDefense + TotalDefense * ((float)(*DefenseBuffIfAny) * 0.01f);
 //	}
 //
-//#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2 // Ä¡Æ®¿¡ µû¸¥ ½ºÅÈ º¸Á¤
+//#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2 // æ‘¹é£˜ä¿Š è¶å¼— èƒ¶æ¹ƒ ç„Šæ²¥
 //	if (gLocalPCCombatStatScale > 0.0f && IsLocalPlayer())
 //	{
 //		TotalAttack *= gLocalPCCombatStatScale;
@@ -1028,15 +1028,15 @@ void ABladeIIPlayer::InitializeCombatStats()
 //	MaxHealth = CombatStatEval::GetPCHealth(GetCurrentPlayerClass(), CharacterDataStore);
 //	MaxHealth += CombatStatEval::GetPCHealthByMod(GetCurrentPlayerClass(), BladeGameMode->GetB2GameModeType(), CharacterDataStore);
 //
-//	// ¸ğµåº° Ã¼·Â±îÁö ÇÕ»ê ÈÄ ±âº» Ã¼·Âº¸´Ù ³·Àº Ã¼·ÂÀÌ µÈ´Ù¸é ±âº» Ã¼·Â±îÁö´Â º¸Á¤ÇØÁØ´Ù.
+//	// è‘›é›å–Š çœ‰ä»¿é³–ç˜¤ é’¦é­‚ é¥¶ æ‰å¤¯ çœ‰ä»¿ç„Šä¿ƒ æ’¤ç¯® çœ‰ä»¿æ ç­‰ä¿ƒæ æ‰å¤¯ çœ‰ä»¿é³–ç˜¤ç»° ç„Šæ²¥ç§¦éœ–ä¿ƒ.
 //	MaxHealth = FMath::Max(static_cast<float>(CombatStatEval::GetPCBaseHealth(CharacterDataStore->GetCharacterLevel(GetCurrentPlayerClass()))), MaxHealth);
 //
-//	GuildHealth = MaxHealth * (GuildHealth * 0.01f);			//±æµå ¹öÇÁ Å¾½Â
+//	GuildHealth = MaxHealth * (GuildHealth * 0.01f);			//è¾¨é› æ»šæ©‡ å•ªé“°
 //
 //	int32* HealthBuffIfAny = AppliedResurrectBuff.Find(EResurrectBuffType::RBT_Health);
 //	if (HealthBuffIfAny && *HealthBuffIfAny > 0)
 //	{
-//		MaxHealth = MaxHealth + MaxHealth * ((float)(*HealthBuffIfAny) * 0.01f); // Ã¼·Â ¹öÇÁ´Â MaxHealth ¿¡? ¾Æ´Ô MaxHealth º¸´Ù Health °¡ Ä¿Áö°Ô?
+//		MaxHealth = MaxHealth + MaxHealth * ((float)(*HealthBuffIfAny) * 0.01f); // çœ‰ä»¿ æ»šæ©‡ç»° MaxHealth ä¿Š? é…’ä¸› MaxHealth ç„Šä¿ƒ Health å•Š ç›®ç˜¤éœ¸?
 //	}
 //
 //	TotalAttack += GuildAttack;
@@ -1047,26 +1047,26 @@ void ABladeIIPlayer::InitializeCombatStats()
 //	// No formula for armor for now
 //	Armor = MaxArmor;
 //
-//	// ºÎÈ° ¹öÇÁ°¡ Á¸ÀçÇÑ´Ù¸é ºÎÈ° »óÈ²ÀÌ¶ó´Â ¶æÀÌ±â ¶§¹®¿¡ ºÎÈ°½Ã¿¡´Â ¿¢½ºÆ®¶ó µ¥ÀÌÅÍ¸¦ °¡Á®¿ÀÁö ¾Ê´Â´Ù.
+//	// ä½•åŠ æ»šæ©‡å•Š ç²®çŠèŒ„ä¿ƒæ ä½•åŠ æƒ‘ç‚”ææ‰¼ç»° èˆµææ‰ é”­å·©ä¿Š ä½•åŠçŸ«ä¿Šç»° ç«£èƒ¶é£˜æ‰¼ å•æç£ç”« å•Šå»‰å·ç˜¤ è‡¼ç»°ä¿ƒ.
 //	if (AB2StageManager::GetCacheStageKeepEssentialData().IsPlayInExtraLevel()
 //		&& AppliedResurrectBuff.Num() == 0)
-//	{ // ExtraMap ÀüÈ¯ ½Ã Ã³¸® ÀÏºÎ ¿©±âµµ..
-//		// Health ´Â ¾Æ¸¶ À¢¸¸ÇØ¼± SkillRTManager ÂÊ¿¡¼­µµ
+//	{ // ExtraMap å‚ˆåˆ¸ çŸ« è´¸åºœ è€ä½• å’¯æ‰æ¡£..
+//		// Health ç»° é…’ä»˜ æ„§çˆ¶ç§¦æ€¥ SkillRTManager ç‡ä¿Šè¾‘æ¡£
 //		AB2StageManager::GetCacheStageKeepEssentialData().SetPostExtraMapLoadB2Player(this);
 //	}
 //		
-//	// ±âº» °ø/¹æ/Ã¼ ÀÌ¿ÜÀÇ ÀüÅõ ¿É¼Ç ¼öÄ¡µé Ä³½Ì.
+//	// æ‰å¤¯ å‚/è§„/çœ‰ æå¯‡ç‹¼ å‚ˆæ§ å¯è®° èæ‘¹ç”¸ æŸæ•™.
 //	InitializeCombatOptionCacheValues();
 //
 //	UCharacterMovementComponent* MovementComp = GetCharacterMovement();
 //	if (MovementComp)
-//	{ // PCClassInfo ¿¡¼­´Â ±âº»°ª¸¸À» ³Ö°í ¾ÆÀÌÅÛÀÌ¶û ½ºÅ³ ¿É¼Ç µîÀÌ ¹İ¿µµÈ walk speed Àû¿ë
+//	{ // PCClassInfo ä¿Šè¾‘ç»° æ‰å¤¯è”¼çˆ¶é˜‘ æŒç»Š é…’æè¢æå°” èƒ¶æ‡¦ å¯è®° æ®¿æ é¦†åº·ç­‰ walk speed åˆ©ä¾©
 //		MovementComp->MaxWalkSpeed = GetStaticOptionAppliedWalkSpeed();
 //	}
 //
-//	TotalApplyAnimRateScale(); // ÀÌÈÄ¿¡µµ AttackState ¿¡ µû¶ó Àû¿ëµÊ.
+//	TotalApplyAnimRateScale(); // æé¥¶ä¿Šæ¡£ AttackState ä¿Š è¶æ‰¼ åˆ©ä¾©å‡³.
 //
-//	//GameMode¿¡ µû¸¥ ½ºÅÈº¸Á¤
+//	//GameModeä¿Š è¶å¼— èƒ¶æ¹ƒç„Šæ²¥
 //	if (BladeGameMode)
 //	{
 //		CharacterDamageRate *= BladeGameMode->GetDamageRateByGameModeType();
@@ -1074,7 +1074,7 @@ void ABladeIIPlayer::InitializeCombatStats()
 //		MaxHealth *= BladeGameMode->GetHealthRateByGameModeType();
 //	}
 //
-//#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2 // Ä¡Æ®¿¡ µû¸¥ ½ºÅÈ º¸Á¤
+//#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2 // æ‘¹é£˜ä¿Š è¶å¼— èƒ¶æ¹ƒ ç„Šæ²¥
 //	if (gLocalPCCombatStatScale > 0.0f && IsLocalPlayer())
 //	{
 //		Health *= gLocalPCCombatStatScale;
@@ -1096,9 +1096,9 @@ void ABladeIIPlayer::InitializeCombatOptionCacheValues()
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_InitializeCombatOptionCacheValues);
 	const EPCClass CurrPCClassEnum = GetCurrentPlayerClass();
-	checkSlow(CharacterDataStore); // ÇöÀç È£Ãâ Å¸ÀÌ¹Ö »ó ÀÌ°É ÀÌ¹Ì ÃÊ±âÈ­ ÇÑ »óÅÂ¿¡ ¾²´Â °É·Î.
+	checkSlow(CharacterDataStore); // æ³…çŠ é¾‹å… é¸¥ææ€ª æƒ‘ æå§ æå›º æª¬æ‰æ‹³ èŒ„ æƒ‘æ€•ä¿Š é™ç»° å§è‚º.
 
-	//// ÀüÅõ ¿É¼Ç ¼öÄ¡µé Ä³½Ì. ½ÇÁ¦ Àû¿ë ½Ã¿¡ Inc** ´Â ´õÇÏ°í Dec** ´Â °öÇÔ. GetEffectiveValueForOptionApplyType Âü°í.
+	//// å‚ˆæ§ å¯è®° èæ‘¹ç”¸ æŸæ•™. è§’åŠ› åˆ©ä¾© çŸ«ä¿Š Inc** ç»° æ­¹çªç»Š Dec** ç»° èšŒçªƒ. GetEffectiveValueForOptionApplyType æ›¼ç»Š.
 
 	//BaseDamageDecreaseRate = CombatStatEval::GetUnitedOptionStatusValue(CurrPCClassEnum, EUnitedCombatOptions::UCO_Defense_DecDamage, CharacterDataStore);
 	//MeleeDamageDecreaseRate = CombatStatEval::GetUnitedOptionStatusValue(CurrPCClassEnum, EUnitedCombatOptions::UCO_Defense_DecMeleeDamage, CharacterDataStore);
@@ -1111,20 +1111,20 @@ void ABladeIIPlayer::InitializeCombatOptionCacheValues()
 	//IncDamageValueByPassive = CombatStatEval::GetUnitedOptionStatusValue(CurrPCClassEnum, EUnitedCombatOptions::UCO_Offense_IncDamage, CharacterDataStore);
 	//IncNormalDamageValueByPassive = CombatStatEval::GetUnitedOptionStatusValue(CurrPCClassEnum, EUnitedCombatOptions::UCO_Offense_IncNormalDamage, CharacterDataStore);
 	//IncSkillDamageValueByPassive = CombatStatEval::GetUnitedOptionStatusValue(CurrPCClassEnum, EUnitedCombatOptions::UCO_Skill_IncSkillDamage, CharacterDataStore);
-	//// ¾Æ·¡´Â µ¿ÀÏÇÑ ID ·Î Æ¯Á¤ ActiveSkill ¿¡¸¸ Àû¿ëµÇ´Â ¿É¼Çµéµµ ÀÖ¾î¼­ ±×°ÍµéÀº Æ¯Á¤ AttackState ¿¡ µû¶ó °ªÀ» µû·Î °¡Á®¿Í¼­ Àû¿ë.
+	//// é…’è´°ç»° æ‚¼è€èŒ„ ID è‚º æ¼‚æ²¥ ActiveSkill ä¿Šçˆ¶ åˆ©ä¾©ç™»ç»° å¯è®°ç”¸æ¡£ ä¹ç»¢è¾‘ å¼Šå·´ç”¸ç¯® æ¼‚æ²¥ AttackState ä¿Š è¶æ‰¼ è”¼é˜‘ è¶è‚º å•Šå»‰å®¢è¾‘ åˆ©ä¾©.
 	//IncCriticalRateValueByPassive = CombatStatEval::GetUnitedOptionStatusValue(CurrPCClassEnum, EUnitedCombatOptions::UCO_Offense_IncCriticalRate, CharacterDataStore);
 	//IncCriticalDamageValueByPassive = CombatStatEval::GetUnitedOptionStatusValue(CurrPCClassEnum, EUnitedCombatOptions::UCO_Offense_IncCriticalDamage, CharacterDataStore);
 	//IncDamageToBossValueByPassive = CombatStatEval::GetUnitedOptionStatusValue(CurrPCClassEnum, EUnitedCombatOptions::UCO_Offense_IncBossDamage, CharacterDataStore);
 	//IncAdditionalDamageValueByPassive = CombatStatEval::GetUnitedOptionStatusValue(CurrPCClassEnum, EUnitedCombatOptions::UCO_Offense_IncAdditionalDamage, CharacterDataStore);
 
-	//// ¾Æ·¡ Heal/Absorb HP ¼öÄ¡µéÀº ÃÖ´ë health °ª ´ëºñ È¸º¹ ºñÀ².
+	//// é…’è´° Heal/Absorb HP èæ‘¹ç”¸ç¯® å¼¥æª health è”¼ æªåš é›€æ±— åšå•¦.
 	//HealHPAmountRateOnCounter = CombatStatEval::GetUnitedOptionStatusValue(CurrPCClassEnum, EUnitedCombatOptions::UCO_Defense_HealHPByCountAttack, CharacterDataStore);;
 	//HealHPAmountRateOnKill = CombatStatEval::GetUnitedOptionStatusValue(CurrPCClassEnum, EUnitedCombatOptions::UCO_Health_ProbableRecoverHP, CharacterDataStore);
 	//AbsorbHPAmountRateOnAttack = CombatStatEval::GetUnitedOptionStatusValue(CurrPCClassEnum, EUnitedCombatOptions::UCO_Health_ProbableHPAbsorption, CharacterDataStore);
 
 	//AdditionalAttackSpeedRatebyPassive = CombatStatEval::GetUnitedOptionStatusValue(CurrPCClassEnum, EUnitedCombatOptions::UCO_Offense_IncAttackSpeed, CharacterDataStore);
 
-	//// PC Å¬·¡½º º°·Î ½Äº°ÀÚ°¡ ±¸ºĞµÇ´Â ¿É¼Çµé.
+	//// PC åŠªè´°èƒ¶ å–Šè‚º ä¾¥å–Šç£Šå•Š å¤‡ç›’ç™»ç»° å¯è®°ç”¸.
 	//int32 AttackDamageByClassBaseIdx = static_cast<int32>(EUnitedCombatOptions::UCO_Offense_IncAttackDamageToGladiator);
 	//int32 ReceiveDamageByClassBaseIdx = static_cast<int32>(EUnitedCombatOptions::UCO_Defense_DecDamageByGladiator);
 	//for (int32 i = 0; i < GetMaxPCClassNum(); ++i)
@@ -1134,7 +1134,7 @@ void ABladeIIPlayer::InitializeCombatOptionCacheValues()
 	//}
 
 	////SetRegenerateHPRate(
-	////	// ÀÌ°Ç ÆÛ¼¾Æ® ¾Æ´Ñ Àı´ë°ª Ãë±ŞÀÓ.
+	////	// ææ‰’ æ¬ºå­£é£˜ é…’å›± ä¾‹æªè”¼ ç§’é­çƒ™.
 	////	CombatStatEval::GetUnitedOptionStatusValue(CurrPCClassEnum, EUnitedCombatOptions::UCO_Health_PerSecRecoverHP, CharacterDataStore),
 	////	false
 	////);
@@ -1200,7 +1200,7 @@ bool ABladeIIPlayer::IsFineToStartAnyNewMoveInputHandling()
 	{
 		return false;
 	}
-	// MoveInput ¸¸ ¸·°í ½ÍÀº °æ¿ì°¡ ÀÖ¾î¼­ Ãß°¡ °Ë»ç
+	// MoveInput çˆ¶ é˜œç»Š é…µç¯® ç‰ˆå¿«å•Š ä¹ç»¢è¾‘ çœ å•Š å…«è¤
 	//ABladeIIPlayerController* B2Controller = Cast<ABladeIIPlayerController>(GetController());
 	//BII_CHECK(B2Controller);
 	//return (IsAlive() && B2Controller != nullptr && B2Controller->IsFineToStartAnyNewMoveInputHandling());
@@ -1211,9 +1211,9 @@ void ABladeIIPlayer::OnStartSkill(EAttackState SkillType)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_OnStartSkill);
 
-	// ¿ø·¡ ÄŞº¸¿£µå¿¡¼­ ÇØÁÖ´Â°Çµ¥ ½ºÅ³½ÃÀÛÇÒ¶§µµ ÇÔ ÇØÁØ´Ù.
-	// ½ºÅ³Áß - ºù°á - »ıÁ¸½ºÅ³
-	// ÀÌ°Ô ¾È³ª°¡¼­..
+	// ç›”è´° éœ“ç„Šæµšé›ä¿Šè¾‘ ç§¦æ—ç»°æ‰’å• èƒ¶æ‡¦çŸ«ç´¯ä¸”é”­æ¡£ çªƒ ç§¦éœ–ä¿ƒ.
+	// èƒ¶æ‡¦å - è‘«æ¬ - ç§¯ç²®èƒ¶æ‡¦
+	// æéœ¸ æ•‘å”±å•Šè¾‘..
 	//GetAnimInstance()->SetComboSkill(false);
 
 	//ClearBuff(EBuffType::Buff_Hide);
@@ -1225,8 +1225,8 @@ void ABladeIIPlayer::OnStartSkill(EAttackState SkillType)
 	//{
 	//	ClearDebuffs();
 
-	//	// ¹öÇÁ Å¬¸®¾î´Ü°è(ºù°á, ½ºÅÏ)¿¡¼­ °­Á¦ ÄŞº¸¿£µå·Î ¼³Á¤ÇÏ´Â°Ô ÀÖ´Ù. ¿©±â¼± Ãë¼Ò.
-	//	// °­Á¦ ÄŞº¸¿£µå ¼³Á¤ÇØ³ë¸é ¾Ö´ÔBP¿¡¼­ ¾îÅÃ½ºÅ×ÀÌÆ® ³íÀ¸·Î ¹Ù²ã¹ö¸°´Ù. ECS_Skill04 ½ºÅ³ÀÌ ¾È³ª°¨.
+	//	// æ»šæ©‡ åŠªåºœç»¢çªœæ‹Œ(è‘«æ¬, èƒ¶ç•”)ä¿Šè¾‘ ç¢åŠ› éœ“ç„Šæµšé›è‚º æ±²æ²¥çªç»°éœ¸ ä¹ä¿ƒ. å’¯æ‰æ€¥ ç§’å®¶.
+	//	// ç¢åŠ› éœ“ç„Šæµšé› æ±²æ²¥ç§¦ç•´æ å±€ä¸›BPä¿Šè¾‘ ç»¢ç¶èƒ¶æŠ›æé£˜ ç¨ æ è‚º å®˜å±‚æ»šèµ´ä¿ƒ. ECS_Skill04 èƒ¶æ‡¦æ æ•‘å”±çš‘.
 	//	ConsumeComboEnd();
 	//	ResetDamageNum();
 	//}
@@ -1238,13 +1238,13 @@ void ABladeIIPlayer::OnStartSkill(EAttackState SkillType)
 
 	//	ClearDebuffs();
 
-	//	// ¹öÇÁ Å¬¸®¾î´Ü°è(ºù°á, ½ºÅÏ)¿¡¼­ °­Á¦ ÄŞº¸¿£µå·Î ¼³Á¤ÇÏ´Â°Ô ÀÖ´Ù. ¿©±â¼± Ãë¼Ò.
-	//	// °­Á¦ ÄŞº¸¿£µå ¼³Á¤ÇØ³ë¸é ¾Ö´ÔBP¿¡¼­ ¾îÅÃ½ºÅ×ÀÌÆ® ³íÀ¸·Î ¹Ù²ã¹ö¸°´Ù. ECS_Skill04 ½ºÅ³ÀÌ ¾È³ª°¨.
+	//	// æ»šæ©‡ åŠªåºœç»¢çªœæ‹Œ(è‘«æ¬, èƒ¶ç•”)ä¿Šè¾‘ ç¢åŠ› éœ“ç„Šæµšé›è‚º æ±²æ²¥çªç»°éœ¸ ä¹ä¿ƒ. å’¯æ‰æ€¥ ç§’å®¶.
+	//	// ç¢åŠ› éœ“ç„Šæµšé› æ±²æ²¥ç§¦ç•´æ å±€ä¸›BPä¿Šè¾‘ ç»¢ç¶èƒ¶æŠ›æé£˜ ç¨ æ è‚º å®˜å±‚æ»šèµ´ä¿ƒ. ECS_Skill04 èƒ¶æ‡¦æ æ•‘å”±çš‘.
 	//	ConsumeComboEnd();
 	//	ResetDamageNum();
 	//
-	//	// Apply Cooltime decrease.. Æ¯¼öÇÑ ÄğÅ¸ÀÓ °¨¼ÒÀÌ¸ç ±âÅ¸ ÄğÅ¸ÀÓ °¨¼Ò ¿É¼ÇµéÀº SkillRTManager ÂÊ¿¡ ±¸ÇöµÇ¾î ÀÖ´Ù.
-	//	// ÇöÀç ECombatOptionApplyType ÀÌ Subtract_Value ÀÎ ±¸ÇöÀ¸·Î OneMinusMultiply ·Î ¹Ù²ğ ¼ö ÀÖ´Ù.
+	//	// Apply Cooltime decrease.. æ¼‚èèŒ„ é…¿é¸¥çƒ™ çš‘å®¶æå“¥ æ‰é¸¥ é…¿é¸¥çƒ™ çš‘å®¶ å¯è®°ç”¸ç¯® SkillRTManager ç‡ä¿Š å¤‡æ³…ç™»ç»¢ ä¹ä¿ƒ.
+	//	// æ³…çŠ ECombatOptionApplyType æ Subtract_Value ç‰¢ å¤‡æ³…æ è‚º OneMinusMultiply è‚º å®˜æ‹† è ä¹ä¿ƒ.
 	//	if (CachedSkillRTManager && Role == ROLE_Authority)
 	//	{
 	//		const auto& SkillOption = CachedSkillRTManager->GetCachedSkillOption();
@@ -1265,7 +1265,7 @@ bool ABladeIIPlayer::IsQTEMounting() const
 bool ABladeIIPlayer::IsQTEMountingAndReadyForAttack() const
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_IsQTEMountingAndReadyForAttack);
-	// ¸¶¿îÆ®¿¡¼­ ½ÇÁ¦ °ø°İ±îÁö ¹Ù·Î °¡´ÉÇÑ »óÅÂ..
+	// ä»˜æ¬¾é£˜ä¿Šè¾‘ è§’åŠ› å‚æ‹œé³–ç˜¤ å®˜è‚º å•Šç“·èŒ„ æƒ‘æ€•..
 	return (IsQTEMounting() && this->QTEStateNum >= 1 && QTEActor->QTEStateNum >= 1);
 }
 
@@ -1283,7 +1283,7 @@ void ABladeIIPlayer::TouchStarted(const ETouchIndex::Type FingerIndex, const FVe
 	}
 	else
 	{
-		/* Cinematic ÀÌÀü¿¡ ´­¸° InputÀº ¹«½Ã */
+		/* Cinematic æå‚ˆä¿Š å–˜èµ´ Inputç¯® å…¬çŸ« */
 		//bCachedPressedInCinematic = true;
 	}
 }
@@ -1377,7 +1377,7 @@ void ABladeIIPlayer::OnInputMovement(const FVector& MoveDirection)
 void ABladeIIPlayer::UpdateCameraPitch(float InPitch)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_UpdateCameraPitch);
-	// CameraZoom µîÀÇ ÀÓ½Ã È¿°ú ÈÄ »óÅÂ º¹¿øÀ» À§ÇÑ default °ªµµ Ä³½Ì
+	// CameraZoom æ®¿ç‹¼ çƒ™çŸ« ç“¤è‹ é¥¶ æƒ‘æ€• æ±—ç›”é˜‘ å›°èŒ„ default è”¼æ¡£ æŸæ•™
 	CameraPitch = InPitch;
 	CameraBoom->SetRelativeRotation(FRotator(CameraPitch, CameraYaw, CameraRoll));
 }
@@ -1385,7 +1385,7 @@ void ABladeIIPlayer::UpdateCameraPitch(float InPitch)
 void ABladeIIPlayer::UpdateCameraYaw(float InYaw)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_UpdateCameraYaw);
-	// CameraZoom µîÀÇ ÀÓ½Ã È¿°ú ÈÄ »óÅÂ º¹¿øÀ» À§ÇÑ default °ªµµ Ä³½Ì
+	// CameraZoom æ®¿ç‹¼ çƒ™çŸ« ç“¤è‹ é¥¶ æƒ‘æ€• æ±—ç›”é˜‘ å›°èŒ„ default è”¼æ¡£ æŸæ•™
 	CameraYaw = InYaw;
 	CameraBoom->SetRelativeRotation(FRotator(CameraPitch, CameraYaw, CameraRoll));
 }
@@ -1393,7 +1393,7 @@ void ABladeIIPlayer::UpdateCameraYaw(float InYaw)
 void ABladeIIPlayer::UpdateCameraRoll(float InRoll)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_UpdateCameraRoll);
-	// CameraZoom µîÀÇ ÀÓ½Ã È¿°ú ÈÄ »óÅÂ º¹¿øÀ» À§ÇÑ default °ªµµ Ä³½Ì
+	// CameraZoom æ®¿ç‹¼ çƒ™çŸ« ç“¤è‹ é¥¶ æƒ‘æ€• æ±—ç›”é˜‘ å›°èŒ„ default è”¼æ¡£ æŸæ•™
 	CameraRoll = InRoll;
 	CameraBoom->SetRelativeRotation(FRotator(CameraPitch, CameraYaw, CameraRoll));
 }
@@ -1419,7 +1419,7 @@ float ABladeIIPlayer::GetCameraRoll() const
 void ABladeIIPlayer::UpdateCameraDistance(float InDistance)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_UpdateCameraDistance);
-	// CameraZoom µîÀÇ ÀÓ½Ã È¿°ú ÈÄ »óÅÂ º¹¿øÀ» À§ÇÑ default °ªµµ Ä³½Ì
+	// CameraZoom æ®¿ç‹¼ çƒ™çŸ« ç“¤è‹ é¥¶ æƒ‘æ€• æ±—ç›”é˜‘ å›°èŒ„ default è”¼æ¡£ æŸæ•™
 	CameraLengthValueForBlending.TargetArmLength = CameraBoom->TargetArmLength = CameraDistance = InDistance;
 }
 
@@ -1519,7 +1519,7 @@ void ABladeIIPlayer::StartAttack()
 	if (!IsFineToStartAnyNewInputHandling() || !GetAbleToControl())
 		return;
 
-	// GuardBreak ¸ğ¼ÇÁß¿¡´Â ¾ÈµÊ
+	// GuardBreak è‘›è®°åä¿Šç»° æ•‘å‡³
 	if (InGuardBreak())
 		return;
 
@@ -1748,7 +1748,7 @@ EAttackState ABladeIIPlayer::StartSkillInner(int32 SkillInputIndex, bool IsPlaye
 //	}
 //	
 //	SetAttackState(FinalAttackState); // Does not actually start by StartSkillByInputIndex call, must set the return value here.
-//	CurrentSkillAnimIdx = CachedSkillRTManager->GetSkillAnimIndex(SkillInputIndex); // AnimBP ¿¡¼­ »ç¿ëÇÏµçÁö, GetAnimStateOverrideSequence ¿¡¼­ »ç¿ëÇÏµçÁö.
+//	CurrentSkillAnimIdx = CachedSkillRTManager->GetSkillAnimIndex(SkillInputIndex); // AnimBP ä¿Šè¾‘ è¤ä¾©çªç”µç˜¤, GetAnimStateOverrideSequence ä¿Šè¾‘ è¤ä¾©çªç”µç˜¤.
 //	bLastInvokedAnySkillAttack = true;
 //
 //	OnStartSkill(FinalAttackState);
@@ -1757,7 +1757,7 @@ EAttackState ABladeIIPlayer::StartSkillInner(int32 SkillInputIndex, bool IsPlaye
 //	if (SkillInputIndex == WEAPON_6STAR_SKILL_INDEX)
 //	{
 //		if (SkillLOD == 0)
-//		{ // ÇÃ·¹ÀÌ¾î¸¦ °¡±îÀÌ¼­ Å¬·ÎÁî¾÷ ÇÏ¹Ç·Î LOD µî ¿¬Ãâ¿ë ¼Â¾÷µé
+//		{ // æ•²é¥­æç»¢ç”« å•Šé³–æè¾‘ åŠªè‚ºä»¤è¯€ çªéª¨è‚º LOD æ®¿ æ¥·å…ä¾© æ‚¸è¯€ç”¸
 //			OnBeginWeaponSkillLOD0();
 //		}
 //
@@ -1766,14 +1766,14 @@ EAttackState ABladeIIPlayer::StartSkillInner(int32 SkillInputIndex, bool IsPlaye
 //
 //	ForceFeedback();
 //
-//	// °ÔÀÓ¸ğµå¿¡ ¾Ë¸²(¸®¸ğÆ® ÇÃ·¹ÀÌ¾î´Â ¿©±â ¾ÈÅ½)
+//	// éœ¸çƒ™è‘›é›ä¿Š èˆ…è¦†(åºœè‘›é£˜ æ•²é¥­æç»¢ç»° å’¯æ‰ æ•‘æ²¤)
 //	GetGameMode()->NotifyPlayerStartSkill(this, FinalAttackState);
 
 	//return FinalAttackState;
 	return EAttackState::ECS_None;
 }
 #if !UE_BUILD_SHIPPING
-// StartSkillInner ¿¡¼­ ÇÊ¿äÇÑ °Íµé ¹ßÃé. Ä¡Æ® ±â´ÉÀÌ´Ï ¸Ó¸®¸¦ Áã¾î¶â¾î°¡¸é¼­ ¶È°°ÀÌ ¸ÂÃâ ÇÊ¿ä±îÁø ¾ø°í.. ÇÏ¸é ÁÁ°í..
+// StartSkillInner ä¿Šè¾‘ é˜å¤¸èŒ„ å·´ç”¸ æƒ¯ç„. æ‘¹é£˜ æ‰ç“·æèª èµ£åºœç”« é›¶ç»¢å›ç»¢å•Šæè¾‘ åº¦éæ å˜å… é˜å¤¸é³–æŸ³ ç»ç»Š.. çªæ äº®ç»Š..
 void ABladeIIPlayer::DevTestStartWeaponSkill(ESkillAnimType WantedAnimType)
 {
 	if (WantedAnimType >= ESkillAnimType::ESA_Weapon_01 && WantedAnimType <= ESkillAnimType::ESA_Weapon_05_LOD)
@@ -1793,7 +1793,7 @@ void ABladeIIPlayer::DevTestStartWeaponSkill(ESkillAnimType WantedAnimType)
 
 		ForceFeedback();
 
-		// °ÔÀÓ¸ğµå¿¡ ¾Ë¸²(¸®¸ğÆ® ÇÃ·¹ÀÌ¾î´Â ¿©±â ¾ÈÅ½)
+		// éœ¸çƒ™è‘›é›ä¿Š èˆ…è¦†(åºœè‘›é£˜ æ•²é¥­æç»¢ç»° å’¯æ‰ æ•‘æ²¤)
 		//GetGameMode()->NotifyPlayerStartSkill(this, EAttackState::ECS_WeaponSkill);
 	}
 }
@@ -1810,13 +1810,13 @@ bool ABladeIIPlayer::IsAvailableStartSkill(EAttackState InAttackState)
 		return false; // For now
 	}
 
-	// ºù°á ¿¹¿ÜÃ³¸®
+	// è‘«æ¬ æŠ—å¯‡è´¸åºœ
 	if (IsBuffActive(EBuffType::Debuff_Freezing) && InAttackState == EAttackState::ECS_Skill04)
 	{
 		return true;
 	}
 
-	// ±âº»ÀûÀ¸·Î °ø°İÁßÀÌ³ª ¹İ°İÁß, »óÅÂÀÌ»óÁß¿¡´Â ½ºÅ³ »ç¿ëÀÌ ºÒ°¡´É
+	// æ‰å¤¯åˆ©æ è‚º å‚æ‹œåæå”± é¦†æ‹œå, æƒ‘æ€•ææƒ‘åä¿Šç»° èƒ¶æ‡¦ è¤ä¾©æ é˜‚å•Šç“·
 	if (IsSkillAttacking())
 	{
 #if FORCE_LOGGING_IN_ANDROID
@@ -1841,7 +1841,7 @@ bool ABladeIIPlayer::IsAvailableStartSkill(EAttackState InAttackState)
 
 	} 
 
-	// ³Ë´Ù¿î or ¹Ğ¸²Áß¿¡µµ ºÒ°¡´É
+	// ä¹˜ä¿ƒæ¬¾ or å‰è¦†åä¿Šæ¡£ é˜‚å•Šç“·
 	if (HadHugeDamaged())
 	{
 #if FORCE_LOGGING_IN_ANDROID
@@ -1851,11 +1851,11 @@ bool ABladeIIPlayer::IsAvailableStartSkill(EAttackState InAttackState)
 	}
 
 
-	// ½ºÅÏ, ºù°áÀº ±âº»ÀûÀ¸·Î ºÒ°¡´ÉÇÏ³ª
+	// èƒ¶ç•”, è‘«æ¬ç¯® æ‰å¤¯åˆ©æ è‚º é˜‚å•Šç“·çªå”±
 	bool bMovableDebuff = IsStunned() || IsFrozen();
 	if (bMovableDebuff)
 	{
-		if (InAttackState == EAttackState::ECS_Skill04 || InAttackState == EAttackState::ECS_WeaponSkill) // »ıÁ¸½ºÅ³Àº »ç¿ë °¡´É
+		if (InAttackState == EAttackState::ECS_Skill04 || InAttackState == EAttackState::ECS_WeaponSkill) // ç§¯ç²®èƒ¶æ‡¦ç¯® è¤ä¾© å•Šç“·
 			return true;
 
 #if FORCE_LOGGING_IN_ANDROID
@@ -1895,13 +1895,13 @@ void ABladeIIPlayer::StartTag()
 	//if (CanTag() == false)
 	//	return;
 
-	//// ¾îÂ÷ÇÇ IsTagPossible ÀÌ ¾Æ´Ï¶ó¸é ¹öÆ°ÀÌ È°¼ºÈ­µÇÁö ¸»¾Æ¾ß ÇÔ.
+	//// ç»¢ç’ä¹” IsTagPossible æ é…’èªæ‰¼æ æ»šç“¢æ åŠå·±æ‹³ç™»ç˜¤ å¯Œé…’å…· çªƒ.
 	//if (CachedSkillRTManager == NULL || CachedSkillRTManager->IsTagPossible() == false || !IsFineToStartAnyNewInputHandling())
 	//	return;
 
 	//if (CachedSkillRTManager->IsTagPossibleButDeferred())
 	//{
-	//	bPendingTag = true; // ´çÀå °¡´ÉÇÏÁö ¾Ê´Ù¸é (ÀüÅõ µ¿ÀÛ Áß) ¿¹¾à¸¸ ÇÑ´Ù.
+	//	bPendingTag = true; // å¯¸å˜ å•Šç“·çªç˜¤ è‡¼ä¿ƒæ (å‚ˆæ§ æ‚¼ç´¯ å) æŠ—è·çˆ¶ èŒ„ä¿ƒ.
 	//}
 	//else
 	//{
@@ -1921,11 +1921,11 @@ void ABladeIIPlayer::StartTagCommon()
 	{
 		auto* DocBattle = GetDocBattle();
 		if (DocBattle)
-		{// ·ÎÄÃ ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍÀÇ ¿¬°è ÅÂ±× ¿©ºÎ¸¦ UIDoc ¿¡ ¼¼ÆÃ. ÅÂ±× ´ç½Ã¿¡ UI ÂÊ¿¡¼­ Âü°í¸¦ ÇÏ°í ÅÂ±× ÈÄ ¸®¼ÂµÉ °Í.
+		{// è‚ºæ‹¿ æ•²é¥­æç»¢ æŸè…ç£ç‹¼ æ¥·æ‹Œ æ€•å¼Š å’¯ä½•ç”« UIDoc ä¿Š æŠ€æ³¼. æ€•å¼Š å¯¸çŸ«ä¿Š UI ç‡ä¿Šè¾‘ æ›¼ç»Šç”« çªç»Š æ€•å¼Š é¥¶ åºœæ‚¸çª å·´.
 			//DocBattle->SetbTagAttackPending(CachedSkillRTManager && CachedSkillRTManager->IsTagAttackSuggested());
 		}
 
-		// ÅÂ±×ÇØµµ ¿¡Å×¸£ ÄğÅ¸ÀÓ À¯Áö
+		// æ€•å¼Šç§¦æ¡£ ä¿ŠæŠ›ç¦ é…¿é¸¥çƒ™ èœ¡ç˜¤
 		/*if (UB2UIDocHero* DocHero = UB2UIDocHelper::GetDocHero(DocBattle->GetCurPCClass()))
 		{
 			UB2EtherSetEffect* OffenseEtherObject = GetEtherSetEffect(EEtherSetType::Offense);
@@ -1949,7 +1949,7 @@ void ABladeIIPlayer::StartTagCommon()
 		AddWeaponSkillPoint(1.0f);
 	}
 
-	// ¿©±â¼­ ¼¼ÆÃÇÏ¸é AnimBlueprint, Animation, B2TagNotify °ÅÃÄ¼­ UB2SkillRTManager::TagToOther ·Î °¥ °Í.
+	// å’¯æ‰è¾‘ æŠ€æ³¼çªæ AnimBlueprint, Animation, B2TagNotify èŠ­åªšè¾‘ UB2SkillRTManager::TagToOther è‚º å“ å·´.
 	SetAttackState(EAttackState::ECS_TagOtherChar);
 	bLastInvokedAnySkillAttack = true;
 
@@ -1961,7 +1961,7 @@ void ABladeIIPlayer::ExecutePendingTag()
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_ExecutePendingTag);
 	//check(CachedSkillRTManager);
 	//if (bPendingTag && CachedSkillRTManager->IsTagPossibleRightNow())
-	//{ // ÀÌ °æ¿ì °ø°İ µµÁß¿¡ tag ¿äÃ»À» ÇßÀ» °Í.
+	//{ // æ ç‰ˆå¿« å‚æ‹œ æ¡£åä¿Š tag å¤¸æ²¡é˜‘ æ²é˜‘ å·´.
 	//	StartTagCommon();
 	//	bPendingTag = false;
 	//}
@@ -1995,7 +1995,7 @@ bool ABladeIIPlayer::IsGuardStartable()
 	return true;
 }
 
-// bFromInput Æ½ÅëÇØ¼­ µé¾î¿Â°Å´Â ±¸¸£±â³ª ¹İ°İÅ¸ÀÌ¸Ó Ã¼Å© ¾ÈÇÒ·Á±¸ Ãß°¡
+// bFromInput å¹³çƒ¹ç§¦è¾‘ ç”¸ç»¢æŸ¯èŠ­ç»° å¤‡ç¦æ‰å”± é¦†æ‹œé¸¥æèµ£ çœ‰å†œ æ•‘ä¸”å¦¨å¤‡ çœ å•Š
 void ABladeIIPlayer::StartGuard(bool bFromInput/* = false*/)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_StartGuard);
@@ -2068,7 +2068,7 @@ void ABladeIIPlayer::StopGuard(bool bForce/* = false*/)
 
 void ABladeIIPlayer::StartQTEByKeyPress()
 {
-	// ¹öÆ°UIÀÖÀ¸¸é ±×°ÅÅëÇØ¼­ ½ÇÇà
+	// æ»šç“¢UIä¹æ æ å¼ŠèŠ­çƒ¹ç§¦è¾‘ è§’é’
 	//UB2UIBattleMain* pBattleMainUI = UB2UIManager::GetInstance()->GetUI<UB2UIBattleMain>(UIFName::BattleMain);
 	//UB2UIBattleQTE* CreatedQTEUIP = pBattleMainUI ? pBattleMainUI->GetCreatedQTEUIP() : nullptr;
 	//	
@@ -2088,7 +2088,7 @@ void ABladeIIPlayer::StartQTE(bool bForce/* = false*/)
 
 	if (IsInQTEState())
 	{
-		// QTE Next (QTE »óÅÂ¿¡¼­ µé¾î°¡´Â 2Â÷ QTE ÀÇ °æ¿ì)
+		// QTE Next (QTE æƒ‘æ€•ä¿Šè¾‘ ç”¸ç»¢å•Šç»° 2ç’ QTE ç‹¼ ç‰ˆå¿«)
 		if (GetQTEEnabled() && QTEActor->IsAlive())
 		{
 			SetQTEEnabled(false);
@@ -2110,7 +2110,7 @@ void ABladeIIPlayer::StartQTE(bool bForce/* = false*/)
 		SetAttackState(EAttackState::ECS_None);
 		// Start QTE Dash
 		StopRepeatingInput();
-		// QTE Dash Á¾·á ½Ã QTEAttack ÀÌ True ·Î ¹Ù²î¾î¾ß ÇÏ´Âµ¥ ±× Àü¿¡ ¹Ì¸® True ·Î µÇ¾îÀÖ´Ù¸é False ·Î ¹Ù²Û´Ù.
+		// QTE Dash è¾†ä¸° çŸ« QTEAttack æ True è‚º å®˜å·®ç»¢å…· çªç»°å• å¼Š å‚ˆä¿Š å›ºåºœ True è‚º ç™»ç»¢ä¹ä¿ƒæ False è‚º å®˜æ§½ä¿ƒ.
 		//if (pQTETargetActor->QTEType == EQTEType::EQT_Mount)
 		//{
 		//	if (auto* AnimInst = GetAnimInstance())
@@ -2153,10 +2153,10 @@ void ABladeIIPlayer::OnQTENext()
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_OnQTENext);
 	//if ((bPendingQTENext || (QTEType == EQTEType::EQT_Mount && QTEStateNum == 0)) && IsInQTEState() && QTEActor && QTEActor->IsAlive())
 	//{
-	//	// EQT_Mount Å¸ÀÌ¸Ó µ¹¸®±â½ÃÀÛÇÏ´Â ½ÃÁ¡. °ÔÀÓ¸ğµå¿¡ ¾Ë¸²
+	//	// EQT_Mount é¸¥æèµ£ å€’åºœæ‰çŸ«ç´¯çªç»° çŸ«ç—¢. éœ¸çƒ™è‘›é›ä¿Š èˆ…è¦†
 	//	if (QTEType == EQTEType::EQT_Mount && QTEStateNum == 0)
 	//	{
-	//		// UI´Â QTE½ÇÇàÀÚ°¡ ·ÎÄÃÇÃ·¹ÀÌ¾îÀÏ¶§¸¸ °»½Å
+	//		// UIç»° QTEè§’é’ç£Šå•Š è‚ºæ‹¿æ•²é¥­æç»¢è€é”­çˆ¶ ç›è„š
 	//		if (IsLocalPlayer())
 	//		{
 	//			auto* DocBattle = GetDocBattle();
@@ -2167,7 +2167,7 @@ void ABladeIIPlayer::OnQTENext()
 	//				const float InvalidMountTIme = -1.0f;
 	//				QTEMountRemainingTime = QTEActor->GetQTELimitEnabled() ? InvalidMountTIme : FinalMountTime;
 
-	//				DocBattle->SetMaxQTEMountTime(FinalMountTime); // MaxQTEMountTIme Àº º¯°æ Äİ¹éÀ» ¹ŞÁö ¾ÊÀ» °ÍÀÌ¹Ç·Î ÀÌ°É ¸ÕÀú ¼¼ÆÃ.
+	//				DocBattle->SetMaxQTEMountTime(FinalMountTime); // MaxQTEMountTIme ç¯® å‡½ç‰ˆ å¦®å½’é˜‘ ç½ç˜¤ è‡¼é˜‘ å·´æéª¨è‚º æå§ åˆšå† æŠ€æ³¼.
 	//				DocBattle->SetRemainingQTEMountTime(QTEMountRemainingTime);
 	//				DocBattle->SetbIsQTEMounted(true);
 	//			}
@@ -2178,8 +2178,8 @@ void ABladeIIPlayer::OnQTENext()
 	//		
 	//		ABladeIIGameMode* pGM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(this));
 
-	//		// ¸¶¿îÆ®¿¡¼­ ¾ÆÀÌµé·Î ¹Ù²¼´Ù.
-	//		// CountQTEMountTime() º¸¸é ¾ÆÀÌµéÀÌ»ó¿¡¼­ Å¸ÀÌ¸Ó °¨¼Ò½ÃÅ´
+	//		// ä»˜æ¬¾é£˜ä¿Šè¾‘ é…’æç”¸è‚º å®˜å¸ƒä¿ƒ.
+	//		// CountQTEMountTime() ç„Šæ é…’æç”¸ææƒ‘ä¿Šè¾‘ é¸¥æèµ£ çš‘å®¶çŸ«ç³¯
 	//		if (pGM)
 	//			pGM->NotifyQTEMountBeginToIdle(this);
 	//	}
@@ -2188,7 +2188,7 @@ void ABladeIIPlayer::OnQTENext()
 	//	QTEStateNum++;
 	//	QTEActor->QTEStateNum++;
 	//	
-	//	// QTE mount ¿¡ ½ÇÁ¦ °ø°İ±îÁö °¡´É ¿©ºÎ°¡ º¯°æµÉ ¼ö ÀÖ´Â Å¸ÀÌ¹ÖÀ¸·Î °£ÁÖ.
+	//	// QTE mount ä¿Š è§’åŠ› å‚æ‹œé³–ç˜¤ å•Šç“· å’¯ä½•å•Š å‡½ç‰ˆçª è ä¹ç»° é¸¥ææ€ªæ è‚º åŸƒæ—.
 	//	auto* DocBattle = GetDocBattle();
 	//	if (DocBattle)
 	//	{
@@ -2228,12 +2228,12 @@ void ABladeIIPlayer::SetQTEState()
 void ABladeIIPlayer::SetQTEStateFlag(bool bInState)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_SetQTEStateFlag);
-	Super::SetQTEStateFlag(bInState); // ´Ü¼ø °ª ¼¼ÆÃ.
+	Super::SetQTEStateFlag(bInState); // çªœé‰´ è”¼ æŠ€æ³¼.
 
 	auto* DocBattle = GetDocBattle();
 
 	if (IsLocalPlayer() && DocBattle)
-	{ // UIDoc ¿¡ »óÅÂ°ª Àü´ŞÇØ ÁÖ·Á°í µû·Î ÀÌ·¸°Ô ¸¸µç °Å.
+	{ // UIDoc ä¿Š æƒ‘æ€•è”¼ å‚ˆå´”ç§¦ æ—å¦¨ç»Š è¶è‚º æçŠ¯éœ¸ çˆ¶ç”µ èŠ­.
 		//DocBattle->SetbIsPlayerInQTEState(IsInQTEState());
 	}
 }
@@ -2244,7 +2244,7 @@ void ABladeIIPlayer::ForcedChangeQTEStepMount()
 	//if (QTEActor && QTEActor->QTEType == EQTEType::EQT_Mount)
 	//{
 	//	OnQTEBegin();
-	//	// ÇØ´ç ·ÎÁ÷À» Å¸Áö ¾Ê´Â ±âÁ¸ BP ( AnimNotify_QTEDashEnd ) ¿Í µ¿ÀÏÇÏ°Ô Àû¿ë
+	//	// ç§¦å¯¸ è‚ºæµé˜‘ é¸¥ç˜¤ è‡¼ç»° æ‰ç²® BP ( AnimNotify_QTEDashEnd ) å®¢ æ‚¼è€çªéœ¸ åˆ©ä¾©
 	//	if (auto* AnimInst = GetAnimInstance())
 	//	{
 	//		AnimInst->SetQTEAttack(true);
@@ -2256,13 +2256,13 @@ void ABladeIIPlayer::ForcedChangeQTEStepMount()
 bool ABladeIIPlayer::IsTimingForSuccessiveQTE() const
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_IsTimingForSuccessiveQTE);
-	// ÀÌ¹Ì QTE ÀÎ »óÅÂ¿¡¼­..
+	// æå›º QTE ç‰¢ æƒ‘æ€•ä¿Šè¾‘..
 	return (QTEActor && QTEActor->IsInQTEState() && this->IsInQTEState() && this->GetQTEEnabled());
 }
 
 void ABladeIIPlayer::OnEvadeEnd()
 {
-	//// Äğµ¹¸°´Ù. ÇÊ¿äÇÏ¸é. °ÔÀÓ¸ğµå¿¡µû¶ó ´Ù¸§.
+	//// é…¿å€’èµ´ä¿ƒ. é˜å¤¸çªæ. éœ¸çƒ™è‘›é›ä¿Šè¶æ‰¼ ä¿ƒæŠš.
 	//if (GetGameMode()->GetGameRule()->IsEvadeCoolTimeCheck() && EvadeTimer == 0.0f)
 	//	SetEvadeTimer();
 }
@@ -2277,12 +2277,12 @@ void ABladeIIPlayer::OnQTEBegin()
 	//	
 	//	// Remove AI during QTE
 	//	QTEActor->SetSignalAttack(false);
-	//	QTEActor->HideFloatingHPBar(true); // Á×Àº ¸ñ¼ûÀÌ³ª ´Ù¸§¾øÀ¸´Ï HP ¹Ù´Â ¾ø¾Ø´Ù.
+	//	QTEActor->HideFloatingHPBar(true); // ç£·ç¯® æ ¼è§æå”± ä¿ƒæŠšç»æ èª HP å®˜ç»° ç»çŸ©ä¿ƒ.
 
 	//	// Start mount timer count
 	//	if (QTEActor->QTEType == EQTEType::EQT_Mount)
 	//	{
-	//		// ÆÀÁ¤º¸ ÀÎ°è
+	//		// è¯„æ²¥ç„Š ç‰¢æ‹Œ
 	//		QTEActor->SetTeamNum(GetTeamNum());
 
 	//		ECollisionChannel PlayerCollisionChannel = GetCapsuleComponent()->GetCollisionObjectType();
@@ -2324,7 +2324,7 @@ void ABladeIIPlayer::SetAttackState(EAttackState InAttackState)
 
 	Super::SetAttackState(InAttackState);
 
-	TotalApplyAnimRateScale(); // ÁÖ·Î AttackState ¿¡ µû¶ó Àû¿ë ¿©ºÎ°¡ ´Ş¶óÁö¹Ç·Î SetAttackState ¿¡¼­ ÇÏ¸é ÀûÀıÇÒ µí.
+	TotalApplyAnimRateScale(); // æ—è‚º AttackState ä¿Š è¶æ‰¼ åˆ©ä¾© å’¯ä½•å•Š å´”æ‰¼ç˜¤éª¨è‚º SetAttackState ä¿Šè¾‘ çªæ åˆ©ä¾‹ä¸” æ·€.
 
 	//if (bGuardStart)
 	//	PlayerGuardStartedClass<>::GetInstance().Signal();
@@ -2369,14 +2369,14 @@ FVector ABladeIIPlayer::GetDirectionToTargetCharacter(FVector& BoneLocation)
 UAnimSequenceBase* ABladeIIPlayer::GetAnimStateOverrideSequence()
 {
 	//
-	// Animation Blueprint ¿¡¼­ AllowSequenceDynamicChange ¸¦ Ã¼Å©ÇÑ ¾Ö´Ô state ·Î ÀÌÀü ½Ã ºÒ¸®°Ô µÊ.
-	// ¿©±â¼­ °ÔÀÓ »óÅÂ¿¡ µû¶ó Æ¯Á¤ AnimSequence ¸¦ ¸®ÅÏÇÏ¸é AnimBP ÀÇ ÇöÀç state ´Â ¿ø·¡ ¹èÄ¡µÈ ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ ¾Æ´Ñ ¿©±â¼­ ¸®ÅÏÇÑ ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ÇÃ·¹ÀÌÇÏ°Ô µÉ °Í.
-	// NULL ¸®ÅÏ ½Ã ±âº»°ª ÇÃ·¹ÀÌ
+	// Animation Blueprint ä¿Šè¾‘ AllowSequenceDynamicChange ç”« çœ‰å†œèŒ„ å±€ä¸› state è‚º æå‚ˆ çŸ« é˜‚åºœéœ¸ å‡³.
+	// å’¯æ‰è¾‘ éœ¸çƒ™ æƒ‘æ€•ä¿Š è¶æ‰¼ æ¼‚æ²¥ AnimSequence ç”« åºœç•”çªæ AnimBP ç‹¼ æ³…çŠ state ç»° ç›”è´° ç¡…æ‘¹ç­‰ å±€èªçš‹æè®°æ é…’å›± å’¯æ‰è¾‘ åºœç•”èŒ„ å±€èªçš‹æè®°é˜‘ æ•²é¥­æçªéœ¸ çª å·´.
+	// NULL åºœç•” çŸ« æ‰å¤¯è”¼ æ•²é¥­æ
 	//
 
-	//ESkillAnimType FinalCurrentSkillAnimType = GetCurrentSKillAnimIdx(); // CurrentSkillAnimIdx ¸»°í GetCurrentSKillAnimIdx ¸¦ ½á¾ß
+	//ESkillAnimType FinalCurrentSkillAnimType = GetCurrentSKillAnimIdx(); // CurrentSkillAnimIdx å¯Œç»Š GetCurrentSKillAnimIdx ç”« ç»“å…·
 	//if (IsSkillAttacking() && FinalCurrentSkillAnimType != ESkillAnimType::ESA_End)
-	//{ // AnimBP °¡ ¾Æ´Ñ º°µµ Å×ÀÌºí¿¡ µî·ÏµÈ skill ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ºÒ·¯µé¿©¼­ AnimBP ¿¡ ¸Ô¿©ÁÜ.
+	//{ // AnimBP å•Š é…’å›± å–Šæ¡£ æŠ›æå–‰ä¿Š æ®¿åºŸç­‰ skill å±€èªçš‹æè®°é˜‘ é˜‚çŸ¾ç”¸å’¯è¾‘ AnimBP ä¿Š å†ˆå’¯æ·‹.
 	//	UB2GameInstance* B2GI = Cast<UB2GameInstance>(UGameplayStatics::GetGameInstance(this));
 	//	UB2SkillAnimInfo* SkillAnimInfo = B2GI ? B2GI->GetSkillAnimInfo() : nullptr;
 	//	UAnimSequenceBase* WantedSkillAnim = SkillAnimInfo ? SkillAnimInfo->GetSingleSkillAnim(GetCurrentPlayerClass(), FinalCurrentSkillAnimType) : nullptr;
@@ -2531,7 +2531,7 @@ bool ABladeIIPlayer::CanPlayerHaveMoveMotion() const
 	//AB2AutoAIController*		AutoAIController	= GetAutoAIController();
 
 	//return (GetHadInput() || 
-	//	// B2StageEventDirector ¿¡¼­ ¸¶Æ¼´Ï ½ÃÀÛ À§Ä¡·ÎÀÇ ½ÌÅ© »óÈ², ActiveCameraActor °æ°è¿¡¼­ÀÇ Ã³¸® »óÈ².
+	//	// B2StageEventDirector ä¿Šè¾‘ ä»˜èèª çŸ«ç´¯ å›°æ‘¹è‚ºç‹¼ æ•™å†œ æƒ‘ç‚”, ActiveCameraActor ç‰ˆæ‹Œä¿Šè¾‘ç‹¼ è´¸åºœ æƒ‘ç‚”.
 	//	(B2PC && B2PC->CanPlayerHaveMoveMotion()) || 
 	//	(AutoAIController && AutoAIController->CanPlayerHaveMoveMotion()));
 	return true;
@@ -2544,11 +2544,11 @@ void ABladeIIPlayer::NotifyPlayerDeadEnd()
 
 	if (GetMesh())
 	{
-		// Dead ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ ³¡³­ »óÅÂ·Î À¯Áö½ÃÅ²´Ù. ºÎÈ°À» ÇÏ°Ç Áß´ÜÀ» ÇÏ°Ç, ¾îÂ÷ÇÇ »õ·Î spawn ÇÏ°Ô µÉ °Í. ¾Æ´Ô ´Ù½Ã »ı°¢ ¤»
+		// Dead å±€èªçš‹æè®°æ åœºæŠ„ æƒ‘æ€•è‚º èœ¡ç˜¤çŸ«æŒªä¿ƒ. ä½•åŠé˜‘ çªæ‰’ åçªœé˜‘ çªæ‰’, ç»¢ç’ä¹” è´§è‚º spawn çªéœ¸ çª å·´. é…’ä¸› ä¿ƒçŸ« ç§¯é˜¿ ã›
 		bReachedAtDeadEnd = true;
 		TotalApplyAnimRateScale();
 
-		// ±×¸®°í.. ÀÌÂë¿¡¼­ ºÎÈ° ¸Ş´º¸¦ ½ÃÀÛÇÏµµ·Ï GameMode ÂÊ¿¡ ½ÅÈ£
+		// å¼Šåºœç»Š.. æç ä¿Šè¾‘ ä½•åŠ çš‹æ˜¥ç”« çŸ«ç´¯çªæ¡£åºŸ GameMode ç‡ä¿Š è„šé¾‹
 		ABladeIIGameMode* B2GM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(this));
 		BII_CHECK(B2GM);
 
@@ -2557,7 +2557,7 @@ void ABladeIIPlayer::NotifyPlayerDeadEnd()
 		//	B2GM->NotifyPlayerDeadEnd(this);
 		//}
 
-		// Á×Àº ½Ã°£(¿¬Ãâ ¿Ï·á) ÀúÀå.
+		// ç£·ç¯® çŸ«åŸƒ(æ¥·å… è‚¯ä¸°) å†å˜.
 		m_fDeadTimeSec = GetWorld()->GetTimeSeconds();
 	}
 }
@@ -2570,10 +2570,10 @@ void ABladeIIPlayer::OnCounterStart()
 	AddWeaponSkillPoint(2.0f);
 	ForceFeedback();
 
-	// ¹İ°İ½Ã HP È¸º¹ ¿É¼ÇÀº ¹İ°İ ¼º°ø ½Ã Å¸°İ µîÀÇ À¯¹«¿Í »ó°ü¾øÀÌ ¹«Á¶°Ç Àû¿ë.
+	// é¦†æ‹œçŸ« HP é›€æ±— å¯è®°ç¯® é¦†æ‹œ å·±å‚ çŸ« é¸¥æ‹œ æ®¿ç‹¼ èœ¡å…¬å®¢ æƒ‘åŒ…ç»æ å…¬ç‚¼æ‰’ åˆ©ä¾©.
 	if (HealHPAmountRateOnCounter > 0.0f) 
 	{
-		// GetUnitedOptionStatusValue ¿¡¼­ ÆÛ¼¾Æ®¸¦ 0.01 ½ºÄÉÀÏÇÑ °ªÀ» ÁÙ °ÍÀÎµ¥ HealingHPByPercent ´Â ÆÛ¼¾Æ®°ªÀ» ¹ŞÀ¸¹Ç·Î ´Ù½Ã 100 °öÇÔ.
+		// GetUnitedOptionStatusValue ä¿Šè¾‘ æ¬ºå­£é£˜ç”« 0.01 èƒ¶çº³è€èŒ„ è”¼é˜‘ ä¸´ å·´ç‰¢å• HealingHPByPercent ç»° æ¬ºå­£é£˜è”¼é˜‘ ç½æ éª¨è‚º ä¿ƒçŸ« 100 èšŒçªƒ.
 		HealingHPByPercent(HealHPAmountRateOnCounter * 100.0f);
 	}
 
@@ -2599,7 +2599,7 @@ bool ABladeIIPlayer::CanTakeDamage(class AActor* DamageCauser, struct FDamageEve
 
 #if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
 	if (Cast<ABladeIITestDummyNPC>(GetAttacker(DamageCauser)))
-	{ // TestDummyNPC ÀÚÃ¼¿¡¼­ Damage ¸¦ Á¦°ÅÇÏµµ·Ï Ã³¸®ÇÏ´Â °Íµµ ÀÖÀ¸³ª ±×°Í¸¸À¸·Î´Â ÇÑ°è°¡ ÀÖÀ½
+	{ // TestDummyNPC ç£Šçœ‰ä¿Šè¾‘ Damage ç”« åŠ›èŠ­çªæ¡£åºŸ è´¸åºœçªç»° å·´æ¡£ ä¹æ å”± å¼Šå·´çˆ¶æ è‚ºç»° èŒ„æ‹Œå•Š ä¹æ¾œ
 		return false;
 	}
 #endif
@@ -2633,7 +2633,7 @@ void ABladeIIPlayer::PreDamageAnimation(const FDamageInfo& DamageInfo, bool IsAr
 {
 	auto ArmorBreakResponse = GetSuitableDamageType(DamageInfo, IsArmorBreak);
 
-	// DashÁß¿¡´Â µ¥¹ÌÁö ¾Ö´Ï¸ŞÀÌ¼Ç ½ÇÇà X
+	// Dashåä¿Šç»° å•å›ºç˜¤ å±€èªçš‹æè®° è§’é’ X
 	if (IsTinyDamage(ArmorBreakResponse) && IsDashAttackState(GetAnimAttackState()))
 		return;
 
@@ -2713,7 +2713,7 @@ void ABladeIIPlayer::Tick_InputAndMovement(float DeltaSeconds)
 		CanEvade = (EvadeTimer == 0.0f);
 	}*/
 
-	if (bPendingTag) // ÀüÅõ µ¿ÀÛ Áß ÅÂ±× ¿¹¾àÇÑ °æ¿ì
+	if (bPendingTag) // å‚ˆæ§ æ‚¼ç´¯ å æ€•å¼Š æŠ—è·èŒ„ ç‰ˆå¿«
 		ExecutePendingTag();
 
 	if (bInWeaponSkillLOD0 && WeaponSkillLOD0SceneLight)
@@ -2779,12 +2779,12 @@ void ABladeIIPlayer::SetActorHiddenInGame(bool bNewHidden)
 
 	//Super::SetActorHiddenInGame(bNewHidden);
 
-	//if (bWasHidden == bNewHidden) // °°Àº Á¶°ÇÀ¸·Î ¿©·¯¹ø ÀÌ°Ô ºÒ¸± ¶§°¡ ÀÖ¾î¼­ ¾Æ·¡ Ãß°¡ ÄÚµåµéÀº È®½ÇÈ÷ º¯°æÀÌ µÇ¾úÀ» ¶§¸¸ ½ÇÇàµÇµµ·Ï
+	//if (bWasHidden == bNewHidden) // éç¯® ç‚¼æ‰’æ è‚º å’¯çŸ¾é”… æéœ¸ é˜‚å‰¯ é”­å•Š ä¹ç»¢è¾‘ é…’è´° çœ å•Š å†…é›ç”¸ç¯® çŠ¬è§’æ´’ å‡½ç‰ˆæ ç™»èŒé˜‘ é”­çˆ¶ è§’é’ç™»æ¡£åºŸ
 	//	return;
 
-	//FormalSetPointLightOn(!bNewHidden); // ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ¸¸ ¼û±â¸é ¿©±â¿¡ ºÙÀÎ ¶óÀÌÆ®°¡ °°ÀÌ ¾È ²¨Á®¼­ ÀÌ·¨¾ú³ª?
+	//FormalSetPointLightOn(!bNewHidden); // æ•²é¥­æç»¢ æŸè…ç£çˆ¶ è§æ‰æ å’¯æ‰ä¿Š å˜¿ç‰¢ æ‰¼æé£˜å•Š éæ æ•‘ æ³¢å»‰è¾‘ ææ³•èŒå”±?
 
-	//// Æ¯È÷ Hidden ÀÌÈÄ¿¡ ´Ù½Ã º¸ÀÌµµ·Ï ÇßÀ» ¶§ Particle ºÙÀÎ °ÍµéÀÌ ¾Èº¸ÀÌ´Â °æ¿ì°¡ ÀÖ¾î¼­.. ÀÌ·¸°Ô ÇØ ÁÖ´Ï Àß ³ª¿À´Âµí ÇÑµ¥..
+	//// æ¼‚æ´’ Hidden æé¥¶ä¿Š ä¿ƒçŸ« ç„Šææ¡£åºŸ æ²é˜‘ é”­ Particle å˜¿ç‰¢ å·´ç”¸æ æ•‘ç„Šæç»° ç‰ˆå¿«å•Š ä¹ç»¢è¾‘.. æçŠ¯éœ¸ ç§¦ æ—èª è‚‹ å”±å·ç»°æ·€ èŒ„å•..
 	//if (!bNewHidden)
 	//{
 	//	EnsureActivateStaticallyAttachedPSCs(this);
@@ -2793,14 +2793,14 @@ void ABladeIIPlayer::SetActorHiddenInGame(bool bNewHidden)
 
 void ABladeIIPlayer::FormalSetPointLightOn(bool bIsOn)
 {
-	// ÀÏ¹İÀûÀÎ °ÔÀÓ ±â´É »óÀÇ ¸ñÀûÀ¸·Î ÇÃ·¹ÀÌ¾î ¸Ó¸® À§ PointLight On/Off ½Ã¿¡´Â ÀÌ°É ¾²µµ·Ï.
-	// ABladeIIPlayer ³»ºÎ¿¡¼­µµ.
+	// è€é¦†åˆ©ç‰¢ éœ¸çƒ™ æ‰ç“· æƒ‘ç‹¼ æ ¼åˆ©æ è‚º æ•²é¥­æç»¢ èµ£åºœ å›° PointLight On/Off çŸ«ä¿Šç»° æå§ é™æ¡£åºŸ.
+	// ABladeIIPlayer éƒ´ä½•ä¿Šè¾‘æ¡£.
 	if (LightComponent) 
 	{
-		// ÀÏºÎ ¸ğµå¿¡¼­ ¸Ó¸® À§ PointLight ¸¦ Çã¿ëÇÏÁö ¾Ê´Â °æ¿ì°¡ ÀÖÀ½.
+		// è€ä½• è‘›é›ä¿Šè¾‘ èµ£åºœ å›° PointLight ç”« å€¾ä¾©çªç˜¤ è‡¼ç»° ç‰ˆå¿«å•Š ä¹æ¾œ.
 		const bool bAllowedByGameRule = (GetInjectedGameRule() && GetInjectedGameRule()->AllowPlayerPointLight());
 
-		// ·ê¿¡ ÀÇÇØ Çã°¡µÇÁö ¾Ê´Â °æ¿ì..
+		// é€¢ä¿Š ç‹¼ç§¦ å€¾å•Šç™»ç˜¤ è‡¼ç»° ç‰ˆå¿«..
 		if (!bAllowedByGameRule || !IsHeadPointLightAllowed())
 		{
 			bHeadPointLightIsFormallyOn = false;
@@ -2822,7 +2822,7 @@ void ABladeIIPlayer::FormalSetPointLightOn(bool bIsOn)
 			{
 				bHeadPointLightIsFormallyOn = false;
 				LightComponent->bAffectsWorld = false;
-				LightComponent->SetVisibility(false); // ²À²À ¼û¾î¶ó ¸Ó¸®Ä«¶ô º¸ÀÏ¶ó?
+				LightComponent->SetVisibility(false); // æ€–æ€– è§ç»¢æ‰¼ èµ£åºœå¢¨é ç„Šè€æ‰¼?
 				LightComponent->UnregisterComponent();
 			}
 
@@ -2830,7 +2830,7 @@ void ABladeIIPlayer::FormalSetPointLightOn(bool bIsOn)
 
 #if !UE_BUILD_SHIPPING
 		extern bool gbTestTurnOffPlayerLight;
-		if (gbTestTurnOffPlayerLight) // Off ÀÇ °æ¿ì¸¸ µû·Î Ã³¸®
+		if (gbTestTurnOffPlayerLight) // Off ç‹¼ ç‰ˆå¿«çˆ¶ è¶è‚º è´¸åºœ
 		{
 			bHeadPointLightIsFormallyOn = false;
 			LightComponent->bAffectsWorld = false;
@@ -2849,12 +2849,12 @@ void ABladeIIPlayer::SetupLightComponentAttachment()
 	if (LightComponent && SKMeshComp)
 	{
 #if !UE_BUILD_SHIPPING
-		extern int32 gTestAttachLightCompMode; // ÀÌ°É ¾îµğ¿¡ ¾î¶»°Ô ºÙ¿©¾ß ÁÁÀ»Áö ¾ÆÁ÷ ¸ô¶ó¼­ Å×½ºÆ® Á¦°ø
-		if (gTestAttachLightCompMode == 2) // 0, 1 ¹øÀº »ı¼ºÀÚ¿¡¼­ ¼¼ÆÃÇÑ ´ë·Î Ä¸½¶ attach À¯Áö
+		extern int32 gTestAttachLightCompMode; // æå§ ç»¢å¼ä¿Š ç»¢ç—˜éœ¸ å˜¿å’¯å…· äº®é˜‘ç˜¤ é…’æµ éš”æ‰¼è¾‘ æŠ›èƒ¶é£˜ åŠ›å‚
+		if (gTestAttachLightCompMode == 2) // 0, 1 é”…ç¯® ç§¯å·±ç£Šä¿Šè¾‘ æŠ€æ³¼èŒ„ æªè‚º æ¯è•‰ attach èœ¡ç˜¤
 		{
 			LightComponent->DetachFromComponent(FDetachmentTransformRules(EDetachmentRule::KeepRelative, true));
 			LightComponent->AttachToComponent(SKMeshComp, FAttachmentTransformRules(EAttachmentRule::KeepRelative, false), B2PLAYER_ROOTBONE_NAME);
-			// ·çÆ®º»Àº Ä³¸¯ÅÍ ÇÏ´Ü Áß½ÉÀÌ°í Ä¸½¶Àº Áß¾ÓÀÌ¶ó Ãß°¡ offset À» °¡ÇÔ
+			// é£é£˜å¤¯ç¯® æŸè…ç£ çªçªœ åç¼´æç»Š æ¯è•‰ç¯® åå±…ææ‰¼ çœ å•Š offset é˜‘ å•Šçªƒ
 			//LightComponent->SetRelativeLocation(FVector(0.0f, 0.0f, LightComponentAttachDistZ + ZOffsetFromMatchingSKActorToBIICharacter(this)));
 		}
 		else
@@ -2868,16 +2868,16 @@ void ABladeIIPlayer::SetupLightComponentAttachment()
 void ABladeIIPlayer::UpdateLightComponentAttachment()
 {
 #if !UE_BUILD_SHIPPING
-	extern int32 gTestAttachLightCompMode; // ¾ÆÁ÷Àº Å×½ºÆ® Áß..
+	extern int32 gTestAttachLightCompMode; // é…’æµç¯® æŠ›èƒ¶é£˜ å..
 	if (gTestAttachLightCompMode == 0)
 #endif
 	{
 		USkeletalMeshComponent* SKMeshComp = GetMesh();
 		if (LightComponent && SKMeshComp)
 		{
-			// ºÙÀÌ´Â °Ç Ä¸½¶ ÄÄÆ÷³ÍÆ®¿¡ ºÙÀÌÁö¸¸ Áß½É(Bip001)º» ¿¡¼­ »ó´ëÀûÀÎ À§Ä¡¿¡ ÀÖµµ·Ï
-			// ÀÌ·¸°Ô ÇØ¼­ Ä³¸¯ÅÍ ¾Ö´Ï¸ŞÀÌ¼Ç¿¡ µû¸¥ ¸Ş½¬ À§Ä¡ offset À» µû¶ó°¡µµ·Ï ÇÑ´Ù. 
-			// ±×³É º»¿¡ ºÙ¿© ¹ö¸®¸é È¸Àü±îÁö µû¶ó°¡°Ô µÇ¾î¼­ °İ·ÄÇÑ ¸ğ¼Ç¿¡¼­ À§Ä¡°¡ Å©°Ô ¿äµ¿ÇÏ°Ô µÇ´Ï º»¿¡ ºÙÀÌÁö´Â ¾Ê°í À§Ä¡¸¸ µû¶ó°¡°Ô ÇØ ÁÜ.
+			// å˜¿æç»° æ‰’ æ¯è•‰ å“ªå™¨æƒ©é£˜ä¿Š å˜¿æç˜¤çˆ¶ åç¼´(Bip001)å¤¯ ä¿Šè¾‘ æƒ‘æªåˆ©ç‰¢ å›°æ‘¹ä¿Š ä¹æ¡£åºŸ
+			// æçŠ¯éœ¸ ç§¦è¾‘ æŸè…ç£ å±€èªçš‹æè®°ä¿Š è¶å¼— çš‹æµ† å›°æ‘¹ offset é˜‘ è¶æ‰¼å•Šæ¡£åºŸ èŒ„ä¿ƒ. 
+			// å¼Šæˆ å¤¯ä¿Š å˜¿å’¯ æ»šåºœæ é›€å‚ˆé³–ç˜¤ è¶æ‰¼å•Šéœ¸ ç™»ç»¢è¾‘ æ‹œçººèŒ„ è‘›è®°ä¿Šè¾‘ å›°æ‘¹å•Š å†œéœ¸ å¤¸æ‚¼çªéœ¸ ç™»èª å¤¯ä¿Š å˜¿æç˜¤ç»° è‡¼ç»Š å›°æ‘¹çˆ¶ è¶æ‰¼å•Šéœ¸ ç§¦ æ·‹.
 			FVector UpdatedLocation = SKMeshComp->GetBoneLocation(B2PLAYER_CENTERBONE_NAME, EBoneSpaces::WorldSpace);
 
 			if (QTEActor && (QTEActor->IsInQTEState() || QTEActor->QTEType == EQTEType::EQT_Mount))
@@ -2894,7 +2894,7 @@ void ABladeIIPlayer::UpdateLightComponentAttachment()
 int32 ABladeIIPlayer::IsInAutoPlay() const
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_IsInAutoPlay);
-	// Áö±İ ´çÀåÀÇ Auto »óÅÂ ¿©ºÎ·Î¼­ GameMode ÂÊÀÇ Maintained »óÅÂ¿Í ´Ş¸® ÀÏ½ÃÀûÀ¸·Î ²¨Áú ¼ö ÀÖÀ½.
+	// ç˜¤é™› å¯¸å˜ç‹¼ Auto æƒ‘æ€• å’¯ä½•è‚ºè¾‘ GameMode ç‡ç‹¼ Maintained æƒ‘æ€•å®¢ å´”åºœ è€çŸ«åˆ©æ è‚º æ³¢é¾™ è ä¹æ¾œ.
 	return InAutoPlay;
 }
 
@@ -2908,8 +2908,8 @@ AB2AutoAIController* ABladeIIPlayer::GetAutoAIController() const
 	return B2PC->GetAutoAIController();
 }
 
-// ÀÌÂÊÀÇ Start/StopAutoPlay ¸¦ Á÷Á¢ »ç¿ëÇÏ´Â °ÍÀº ÀÏ½ÃÀûÀ¸·Î Auto ¸¦ On/Off ÇÏ°Å³ª AI ÇÃ·¹ÀÌ¾îÀÇ °æ¿ìÀÌ°í
-// ÀÏ¹İÀûÀÎ °ÔÀÓ¸ğµå¿¡¼­ Auto ¸¦ On/Off ÇÒ ¶§¿¡´Â GameMode ÂÊ ÀÎÅÍÆäÀÌ½º¸¦ »ç¿ëÇØ¾ß »óÅÂ°¡ À¯ÁöµÈ´Ù.
+// æç‡ç‹¼ Start/StopAutoPlay ç”« æµç«‹ è¤ä¾©çªç»° å·´ç¯® è€çŸ«åˆ©æ è‚º Auto ç”« On/Off çªèŠ­å”± AI æ•²é¥­æç»¢ç‹¼ ç‰ˆå¿«æç»Š
+// è€é¦†åˆ©ç‰¢ éœ¸çƒ™è‘›é›ä¿Šè¾‘ Auto ç”« On/Off ä¸” é”­ä¿Šç»° GameMode ç‡ ç‰¢ç£å…¶æèƒ¶ç”« è¤ä¾©ç§¦å…· æƒ‘æ€•å•Š èœ¡ç˜¤ç­‰ä¿ƒ.
 void ABladeIIPlayer::StartAutoPlay()
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_StartAutoPlay);
@@ -2949,7 +2949,7 @@ void ABladeIIPlayer::StopAutoPlay()
 
 	//AB2StageGameMode* StageGM = Cast<AB2StageGameMode>(UGameplayStatics::GetGameMode(this));
 	//if (StageGM && StageGM->IsRepeatBattleOn()){
-	//	return; // ¹İº¹ÀüÅõ¿¡¼­´Â ÀÚµ¿ »óÅÂ¸¦ ÄÑ³õÀº Ã¤ À¯Áö.
+	//	return; // é¦†æ±—å‚ˆæ§ä¿Šè¾‘ç»° ç£Šæ‚¼ æƒ‘æ€•ç”« éš¾åˆç¯® ç›² èœ¡ç˜¤.
 	//}
 
 	//InAutoPlay = AutoBattleType::NONE;
@@ -2970,8 +2970,8 @@ void ABladeIIPlayer::FinalKillQTETarget()
 	//		QTEActor->Destroy();
 	//	}
 	//	else
-	//	{ // ÀÏ¹İÀûÀÎ °æ¿ì. QTE ¿¡ °É¸° ¸÷Àº ÄÚµå»ó¿¡¼­ Die ¸¦ ÅëÇÏÁö ¾Ê°í ¾Ö´Ï¸ŞÀÌ¼Ç¿¡¼­ DeadEnd ¸¦ ÅëÇÑ Ã³¸®¸¸ µÈ´Ù. (OnAnimMobDeadEnd)
-	//		QTEActor->DieForQTE(); // µû¶ó¼­ °ÔÀÓ ·ÎÁ÷ »ó ÇÊ¿äÇÑ »ç¸Á½Å°í µîÀÇ Ã³¸®¸¦ µû·Î ÇØ ÁØ´Ù.
+	//	{ // è€é¦†åˆ©ç‰¢ ç‰ˆå¿«. QTE ä¿Š å§èµ´ å„ç¯® å†…é›æƒ‘ä¿Šè¾‘ Die ç”« çƒ¹çªç˜¤ è‡¼ç»Š å±€èªçš‹æè®°ä¿Šè¾‘ DeadEnd ç”« çƒ¹èŒ„ è´¸åºœçˆ¶ ç­‰ä¿ƒ. (OnAnimMobDeadEnd)
+	//		QTEActor->DieForQTE(); // è¶æ‰¼è¾‘ éœ¸çƒ™ è‚ºæµ æƒ‘ é˜å¤¸èŒ„ è¤å™¶è„šç»Š æ®¿ç‹¼ è´¸åºœç”« è¶è‚º ç§¦ éœ–ä¿ƒ.
 	//	}
 	//	QTEActor = NULL;
 	//	QTENPCClass = ENPCClass::ENC_End;
@@ -2982,7 +2982,7 @@ void ABladeIIPlayer::FinalKillQTETarget()
 void ABladeIIPlayer::ResetAllQTEUIDocState()
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_ResetAllQTEUIDocState);
-	// ÀüÅõ UI visibility ¸¦ ¹Î°¨ÇÏ°Ô Á¦¾îÇÏ´Â ºÎºĞÀÌ Á» ÀÖ´Âµ¥ ÀÌ·±Àú·± Å¸ÀÌ¹ÖÀÌ¶û ¿«ÀÏ ¶§°¡ ÀÖ´Â °Å °°¾Æ ¸î¸î ±ºµ¥¿¡¼­ È®ÀÎ»ç»ì Â÷ È£ÃâÇÒ ¿ëµµ.
+	// å‚ˆæ§ UI visibility ç”« åˆ®çš‘çªéœ¸ åŠ›ç»¢çªç»° ä½•ç›’æ ç²± ä¹ç»°å• æç¹å†ç¹ é¸¥ææ€ªæå°” æ©è€ é”­å•Š ä¹ç»° èŠ­ éé…’ å‰²å‰² ç„™å•ä¿Šè¾‘ çŠ¬ç‰¢è¤æ·· ç’ é¾‹å…ä¸” ä¾©æ¡£.
 	//auto* DocBattle = GetDocBattle();
 	//if (DocBattle)
 	//{
@@ -3009,7 +3009,7 @@ void ABladeIIPlayer::ReceiveComboEnd(EAttackState InLastAttackState, bool IsAtta
 	//if (InLastAttackState == EAttackState::ECS_Evade)
 	//	OnEvadeEnd();
 
-	//if (!((InLastAttackState >= EAttackState::ECS_Skill01 && InLastAttackState < EAttackState::ECS_GuardStart) // Tag µµ ¿©±â Æ÷ÇÔ½ÃÅ°´Âµ¥ Tag ·Î´Â ¾È¿Ã ¼ö ÀÖ´Ù. ¿©±â Ã³¸®¸¦ ´Ù¸¥ ·çÆ®·Îµµ ÇØ ÁÖµµ·Ï.
+	//if (!((InLastAttackState >= EAttackState::ECS_Skill01 && InLastAttackState < EAttackState::ECS_GuardStart) // Tag æ¡£ å’¯æ‰ å™¨çªƒçŸ«è™ç»°å• Tag è‚ºç»° æ•‘æ£µ è ä¹ä¿ƒ. å’¯æ‰ è´¸åºœç”« ä¿ƒå¼— é£é£˜è‚ºæ¡£ ç§¦ æ—æ¡£åºŸ.
 	//	// Intended to see if this is comboend notification for skill end, but it is not that easy to ensure, so check additional condition.
 	//	// At worst, it could just set the timer in wrong situation, better than not setting it.
 	//	// See StartGuard/StopGuard, we do some to get relevant ComboEnd for skill attack anyway.
@@ -3045,14 +3045,14 @@ void ABladeIIPlayer::OnProcessComboEnd()
 bool ABladeIIPlayer::CanDie(float KillingDamage, FDamageEvent const& DamageEvent, AController* Killer, AActor* DamageCauser) const
 {
 #if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
-	if (bCheatImmortalMode) // Damage ´Â ÀÔÁö¸¸ Á×Áö´Â ¾ÊÀ½.
+	if (bCheatImmortalMode) // Damage ç»° æ¶ç˜¤çˆ¶ ç£·ç˜¤ç»° è‡¼æ¾œ.
 	{
 		return false;
 	}
 #endif
 	//ABladeIIPlayerController* B2PC = Cast<ABladeIIPlayerController>(GetController());
 	//if (B2PC && B2PC->IsStageEndNonCombatState()){
-	//	return false; // ½ºÅ×ÀÌÁö Á¾·á ½ÃÁ¡¿¡¼­ÀÇ ¹«Àû Ã³¸® Ãß°¡·Î.
+	//	return false; // èƒ¶æŠ›æç˜¤ è¾†ä¸° çŸ«ç—¢ä¿Šè¾‘ç‹¼ å…¬åˆ© è´¸åºœ çœ å•Šè‚º.
 	//}
 
 	return Super::CanDie(KillingDamage, DamageEvent, Killer, DamageCauser);
@@ -3062,7 +3062,7 @@ void ABladeIIPlayer::OnDeath(float KillingDamage, struct FDamageEvent const& Dam
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_OnDeath);
 
-	// ºÎ¸ğÇÔ¼ö³ª Àú¾Æ·¡ ÅÂ±×°ÅÄ¡¸é¼­ ·ÎÄÃÇÃ·¹ÀÌ¾î°¡ ¾Æ´Ï°ÔµÊ ¹Ì¸®Ã¼Å©
+	// ä½•è‘›çªƒèå”± å†é…’è´° æ€•å¼ŠèŠ­æ‘¹æè¾‘ è‚ºæ‹¿æ•²é¥­æç»¢å•Š é…’èªéœ¸å‡³ å›ºåºœçœ‰å†œ
 	CheckSendKakaoActionLog_Death();
 
 	ABladeIIPlayer* KillerPlayer = Cast<ABladeIIPlayer>(DamageCauser);
@@ -3073,8 +3073,8 @@ void ABladeIIPlayer::OnDeath(float KillingDamage, struct FDamageEvent const& Dam
 
 	TargetActor = nullptr;
 
-	//// ÅÂ±×°¡ Çã¿ëµÈ °ÔÀÓ¸ğµåÀÌ°í ÅÂ±×°¡ °¡´ÉÇÏ´Ù¸é ÀÚµ¿ÅÂ±×
-	//// ³İ°ÔÀÓ¸ğµå´Â Á¦¿Ü. pvp°ÔÀÓ¸ğµå º¸¸é NotifyCharacterDead ÅëÇØ¼­ ÅÂ±×ÇÏ´Â ·ÎÁ÷ÀÌ ÀÖÀ½
+	//// æ€•å¼Šå•Š å€¾ä¾©ç­‰ éœ¸çƒ™è‘›é›æç»Š æ€•å¼Šå•Š å•Šç“·çªä¿ƒæ ç£Šæ‚¼æ€•å¼Š
+	//// é½¿éœ¸çƒ™è‘›é›ç»° åŠ›å¯‡. pvpéœ¸çƒ™è‘›é› ç„Šæ NotifyCharacterDead çƒ¹ç§¦è¾‘ æ€•å¼Šçªç»° è‚ºæµæ ä¹æ¾œ
 	//AB2NetGameMode* pCastedNetGM = Cast<AB2NetGameMode>(GetGameMode());
 
 	//if (!pCastedNetGM && GetInjectedGameRule()->AllowToTag() && CachedSkillRTManager && CachedSkillRTManager->IsTagPossibleAtDeadMoment())
@@ -3102,7 +3102,7 @@ bool ABladeIIPlayer::IsQTEStartAble()
 
 float ABladeIIPlayer::GetUnitySkillPointDeltaSecondsRate(float DeltaSeconds)
 {
-	// °á¼Ó½ºÅ³ »ç¿ëÁß¿£ ¾ÈÂü
+	// æ¬åŠ èƒ¶æ‡¦ è¤ä¾©åæµš æ•‘æ›¼
 	if (UnitySkillCoolTime != 0 && GetAttackState() != EAttackState::ECS_WeaponSkill)
 	{
 		return (DeltaSeconds / UnitySkillCoolTime) * UnitySkillAddPoint;
@@ -3130,14 +3130,14 @@ float ABladeIIPlayer::TakeDamage(float Damage, struct FDamageEvent const& Damage
 
 //	ABladeIIPlayerController* B2PC = Cast<ABladeIIPlayerController>(GetController());
 //	if (B2PC && B2PC->IsStageEndNonCombatState()){
-//		return 0.0f; // ½ºÅ×ÀÌÁö Á¾·á ½ÃÁ¡¿¡¼­ÀÇ ¹«Àû Ã³¸®. bCanBeDamaged ¸¦ ½áµµ ±â´É¸é¿¡¼­´Â µÉ °Å´Â °°Àºµ¥ È¤ ´Ù¸¥ °Å¶û ¿«ÀÏÁö ¸ğ¸£°Ú±º.
+//		return 0.0f; // èƒ¶æŠ›æç˜¤ è¾†ä¸° çŸ«ç—¢ä¿Šè¾‘ç‹¼ å…¬åˆ© è´¸åºœ. bCanBeDamaged ç”« ç»“æ¡£ æ‰ç“·æä¿Šè¾‘ç»° çª èŠ­ç»° éç¯®å• è¶£ ä¿ƒå¼— èŠ­å°” æ©è€ç˜¤ è‘›ç¦æ‘†ç„™.
 //	}
 //
 //	const FDamageInfo* DamageType = static_cast<const FDamageInfo*>(DamageEvent.DamageInfo);
 //	const FDamageInfo& DamageInfo = *(DamageType);
 //	if (!DamageType) {
 //#if !UE_BUILD_SHIPPING
-//		// ´ëÃ¼·Î DamageType ÀÌ ¾ø´Â »óÈ²Àº ¿¬ÃâÀ» ÅëÇØ ÇÃ·¹ÀÌ µÇ´Â attack ¾Ö´Ï¸ŞÀÌ¼Ç¿¡¼­ damage notify °¡ ³ª°¡´Â °Å. InterpTrackAnimControl ÀÇ SkipDamageNotifiersOnly ¸¦ Ã¼Å©.
+//		// æªçœ‰è‚º DamageType æ ç»ç»° æƒ‘ç‚”ç¯® æ¥·å…é˜‘ çƒ¹ç§¦ æ•²é¥­æ ç™»ç»° attack å±€èªçš‹æè®°ä¿Šè¾‘ damage notify å•Š å”±å•Šç»° èŠ­. InterpTrackAnimControl ç‹¼ SkipDamageNotifiersOnly ç”« çœ‰å†œ.
 //		//UE_LOG(LogBladeII, Warning, TEXT("NULL DamageType is detected of DamageCauser %s"), DamageCauser ? *DamageCauser->GetName() : TEXT("Unknown"));
 //#endif
 //		return 0.0f;
@@ -3148,7 +3148,7 @@ float ABladeIIPlayer::TakeDamage(float Damage, struct FDamageEvent const& Damage
 
 //	CounterCheckTime = DamageType->bCountable ? FMath::Abs(CounterCheckTime) : -FMath::Abs(CounterCheckTime);
 //
-//	// ¹İ°İ ´øÀü¿ë
+//	// é¦†æ‹œ å¸¦å‚ˆä¾©
 //	bCounterCauseStun = DamageType->bStunCountable;
 //
 //	if (ActualDamage > 0.f || GetB2GameModeType(GetWorld()) == EB2GameMode::CounterDungeon)
@@ -3158,7 +3158,7 @@ float ABladeIIPlayer::TakeDamage(float Damage, struct FDamageEvent const& Damage
 //
 //#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
 //	if (bCheatImmortalMode)
-//	{// CanDie ¿¡¼­ return false ÇÏ¿´Áö¸¸ Health °ªÀÌ 0ÀÎÁö °Ë»çÇØ¼­ Á×Àº °Í Ã³·³ Ã³¸®ÇÒ ¼ö ÀÖÀ¸¹Ç·Î 1Àº ³²°ÜµÒ.
+//	{// CanDie ä¿Šè¾‘ return false çªçœ‹ç˜¤çˆ¶ Health è”¼æ 0ç‰¢ç˜¤ å…«è¤ç§¦è¾‘ ç£·ç¯® å·´ è´¸çƒ¦ è´¸åºœä¸” è ä¹æ éª¨è‚º 1ç¯® å·¢è´¥ç‹„.
 //		Health = FMath::Max(Health, 1.0f); 
 //	}
 //#endif
@@ -3173,7 +3173,7 @@ float ABladeIIPlayer::TakeDamage(float Damage, struct FDamageEvent const& Damage
 //		AutoAIController->CachedRangeAttackedMob = ProjectileOwner;
 //	}
 //
-//	// ºó»ç »óÅÂ
+//	// åè¤ æƒ‘æ€•
 //	bIsInCriticalCondition = (Health / MaxHealth <= CriticalConditionHealthRatio) ? true : false;
 
 	return ActualDamage;
@@ -3200,7 +3200,7 @@ void ABladeIIPlayer::NotifyTargetDamaged(class ABladeIICharacter* DamagedTarget,
 	}
 	GetWorldTimerManager().SetTimer(ResetComboNumTimerHandle, this, &ABladeIIPlayer::ResetComboNumTimerCallback, ComboMaintainDuration, false);
 
-	//TargetDamagedClass<ABladeIICharacter*, int32, float>::GetInstance().Signal(this, CurrentComboNum, DamageAmount); // UI ·Î ½ÅÈ£
+	//TargetDamagedClass<ABladeIICharacter*, int32, float>::GetInstance().Signal(this, CurrentComboNum, DamageAmount); // UI è‚º è„šé¾‹
 	UpdateUIDocOnTargetDamaged();
 }
 
@@ -3218,15 +3218,15 @@ void ABladeIIPlayer::ResetComboNumTimerCallback()
 void ABladeIIPlayer::InitUpdateUIDoc()
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_InitUpdateUIDoc);
-	// ¸î°¡Áö Ã³À½¿¡ ¼¼ÆÃµÇ¾î¾ß ÇÒ °Íµé..
+	// å‰²å•Šç˜¤ è´¸æ¾œä¿Š æŠ€æ³¼ç™»ç»¢å…· ä¸” å·´ç”¸..
 	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIPlayer::InitUpdateUIDoc"));
 
 	Super::InitUpdateUIDoc();
 		
-	// ABladeIIPlayer::SpawnOtherAsPuppet °°Àº °É·Î »ı¼ºµÈ °æ¿ì update ¿¡ ³¢¾î µé¾î°¡¼± ¾ÈµÊ.
+	// ABladeIIPlayer::SpawnOtherAsPuppet éç¯® å§è‚º ç§¯å·±ç­‰ ç‰ˆå¿« update ä¿Š å°ç»¢ ç”¸ç»¢å•Šæ€¥ æ•‘å‡³.
 	//if (IsLocalPlayer())
 	//{
-	//	// UIDoc ÀÌ static ÀÌ¹Ç·Î ¸Å Æ½ ¾÷µ¥ÀÌÆ® µÇ´Â °Ô ¾Æ´Ñ ¸¹Àº º¯¼öµé¿¡ ´ëÇØ »óÅÂ¸¦ ÃÊ±âÈ­ÇØ ÁÙ ÇÊ¿ä°¡ ÀÖ´Ù.
+	//	// UIDoc æ static æéª¨è‚º æ¦‚ å¹³ è¯€å•æé£˜ ç™»ç»° éœ¸ é…’å›± è…¹ç¯® å‡½èç”¸ä¿Š æªç§¦ æƒ‘æ€•ç”« æª¬æ‰æ‹³ç§¦ ä¸´ é˜å¤¸å•Š ä¹ä¿ƒ.
 	//	auto* DocBattle = UB2UIDocHelper::GetDocBattle();
 	//	InjectDocBattle(DocBattle);
 
@@ -3235,15 +3235,15 @@ void ABladeIIPlayer::InitUpdateUIDoc()
 	//		DocBattle->SetCurrPCMaxHealth(MaxHealth);
 	//		DocBattle->SetComboNum(CurrentComboNum);
 
-	//		// ÅÂ±× ½ÃÁ¡¿¡µµ °á±¹ ¿©±â·Î ¿Ã °ÍÀÌ¹Ç·Î ÅÂ±× Å¬·¡½º µîÀ» ¿©±â¼­ ¼¼ÆÃ
-	//		// UB2SkillRTManager::DynSpawnNewPlayerCommon Âü°í. ÀÌ ½ÃÁ¡¿¡ TagPlayerClass ¸¦ ¾ò¾î¿Ã ¼ö ÀÖÀ» °Í.
-	//		// ÀÎ°ÔÀÓ¿¡¼­´Â ÇöÀç È°¼º/ºñÈ°¼º Ä³¸¯ÅÍ¿Í ½ÇÁ¦ main/sub ÀÇ ±¸ºĞÀ» ÇØ¾ß ÇÔ. Main ÀÌ È®½ÇÈ÷ ÇöÀç È°¼ºÀÎ °æ¿ì´Â ÅÂ±×¸¦ ¾ÆÁ÷ ÇÏÁö ¾ÊÀº °ÔÀÓ ½ÃÀÛ ÃÊ¹İ»ÓÀÓ.
+	//		// æ€•å¼Š çŸ«ç—¢ä¿Šæ¡£ æ¬æƒ« å’¯æ‰è‚º æ£µ å·´æéª¨è‚º æ€•å¼Š åŠªè´°èƒ¶ æ®¿é˜‘ å’¯æ‰è¾‘ æŠ€æ³¼
+	//		// UB2SkillRTManager::DynSpawnNewPlayerCommon æ›¼ç»Š. æ çŸ«ç—¢ä¿Š TagPlayerClass ç”« æ˜ç»¢æ£µ è ä¹é˜‘ å·´.
+	//		// ç‰¢éœ¸çƒ™ä¿Šè¾‘ç»° æ³…çŠ åŠå·±/åšåŠå·± æŸè…ç£å®¢ è§’åŠ› main/sub ç‹¼ å¤‡ç›’é˜‘ ç§¦å…· çªƒ. Main æ çŠ¬è§’æ´’ æ³…çŠ åŠå·±ç‰¢ ç‰ˆå¿«ç»° æ€•å¼Šç”« é…’æµ çªç˜¤ è‡¼ç¯® éœ¸çƒ™ çŸ«ç´¯ æª¬é¦†æŒ¥çƒ™.
 	//		DocBattle->SetIsCurPCMain(AmIMainCharacter());
 	//		DocBattle->SetCurPCClass((int32)GetCurrentPlayerClass());
 	//		DocBattle->SetTagPCClass((int32)GetTagPlayerClass());
-	//		DocBattle->SetInAutoPlay(IsInAutoPlay()); // AutoPlay ¿©ºÎ´Â Ã³À½¿¡¸¸ ¿©±â¼­ ¼¼ÆÃÇÏ°í ÀÌÈÄ¿¡´Â GameMode ÂÊ¿¡¼­
+	//		DocBattle->SetInAutoPlay(IsInAutoPlay()); // AutoPlay å’¯ä½•ç»° è´¸æ¾œä¿Šçˆ¶ å’¯æ‰è¾‘ æŠ€æ³¼çªç»Š æé¥¶ä¿Šç»° GameMode ç‡ä¿Šè¾‘
 
-	//		DocBattle->SetbTagAttackPending(false); // ÇØ´ç ÇÃ·¡±×´Â ÀÌ¹Ì »ç¿ëµÈ ÈÄÀÏ °ÍÀÌ´Ù.
+	//		DocBattle->SetbTagAttackPending(false); // ç§¦å¯¸ æ•²è´°å¼Šç»° æå›º è¤ä¾©ç­‰ é¥¶è€ å·´æä¿ƒ.
 	//	}
 
 	//	ResetAllQTEUIDocState();
@@ -3270,7 +3270,7 @@ void ABladeIIPlayer::CharacterBuffUpdateUIdoc()
 	//auto* DocBattle = GetDocBattle();
 	//if (DocBattle && IsLocalPlayer())
 	//{
-	//	TArray<FUISkillBuffDisplayInfo_Character> AllCharacterBuffInfo; // ÇöÀç ¹ßµ¿ÇÑ °Íµé¸¸ ³Ö±â
+	//	TArray<FUISkillBuffDisplayInfo_Character> AllCharacterBuffInfo; // æ³…çŠ æƒ¯æ‚¼èŒ„ å·´ç”¸çˆ¶ æŒæ‰
 
 	//	for (UB2Buff_Base* pBuff : *(GetBuffManager()->GetBuffList()))
 	//	{
@@ -3398,7 +3398,7 @@ void ABladeIIPlayer::DestroyPlayerUIManager()
 	//ABladeIIGameMode* B2GM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(this));
 	//if (B2GM && B2GM->GetUIManager_InGameCombat())
 	//{
-	//	B2GM->GetUIManager_InGameCombat()->DestroyHUDForDyingPlayer(this); // ÇÃ·¹ÀÌ¾î Àü¿ë Á¦°Å.
+	//	B2GM->GetUIManager_InGameCombat()->DestroyHUDForDyingPlayer(this); // æ•²é¥­æç»¢ å‚ˆä¾© åŠ›èŠ­.
 	//}
 }
 
@@ -3407,21 +3407,21 @@ UB2SkillRTManager* ABladeIIPlayer::GetSkillRTManager()
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_GetSkillRTManager);
 	//if (CachedSkillRTManager == NULL)
 	//{
-	//	// Controller ¿¡ ÀÇÇØ Possess µÇ¾î¾ß °¡´É
+	//	// Controller ä¿Š ç‹¼ç§¦ Possess ç™»ç»¢å…· å•Šç“·
 	//	auto* B2PC = Cast<ABladeIIPlayerController>(GetController());
 	//	CachedSkillRTManager = B2PC ? B2PC->GetPlayerSkillRTManager() : NULL;
 
 	//	if (CachedSkillRTManager)
 	//		CachedSkillRTManager->InitSkillRTManager(this);
 	//}
-	//BII_CHECK(!Cast<ABladeIIPlayerController>(Controller) || CachedSkillRTManager); // Controller °¡ ¾ø´Â »óÈ²ÀÌ ABladeIIPlayer::SpawnOtherAsPuppet ¿¡¼­ ³ª¿Ã ¼ö ÀÖÀ½.
+	//BII_CHECK(!Cast<ABladeIIPlayerController>(Controller) || CachedSkillRTManager); // Controller å•Š ç»ç»° æƒ‘ç‚”æ ABladeIIPlayer::SpawnOtherAsPuppet ä¿Šè¾‘ å”±æ£µ è ä¹æ¾œ.
 	return CachedSkillRTManager;
 }
 
 ICharacterDataStore* ABladeIIPlayer::GetCharacterDataStore()
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_GetCharacterDataStore);
-	//¿©±â·Î ¿À´Â °ÍÀº Local¿ë Player character·Î °¡Á¤ÇÑ´Ù.
+	//å’¯æ‰è‚º å·ç»° å·´ç¯® Localä¾© Player characterè‚º å•Šæ²¥èŒ„ä¿ƒ.
 	if (CharacterDataStore == nullptr)
 		CharacterDataStore = &BladeIIGameImpl::GetLocalCharacterData();
 
@@ -3440,9 +3440,9 @@ ICharacterDataStore* ABladeIIPlayer::GetCharacterDataStore()
 
 void ABladeIIPlayer::SetupControlledMatineePuppet(ASkeletalMeshActor* InMatineePuppet, bool bSetupLightComponent, USkeletalMesh* OptionalSKMeshToSet)
 {
-	check(!OptionalSKMeshToSet); // Àû¾îµµ ¿©±â ¿ÜºÎ¿¡¼­ ÀÌ°É Á÷Á¢ ³Ö¾îÁÖ´Â °æ¿ì´Â ¾ø´Â °É·Î.. È¤ ÀÖÀ» °Å °°À½ ÀÌ check ¸¦ Á¦°ÅÇÏ´Âµ¥ ¾Æ·¡ ÄÚµå¿Í ¿«ÀÌÁö ¾Ê´ÂÁö Âü°í..
+	check(!OptionalSKMeshToSet); // åˆ©ç»¢æ¡£ å’¯æ‰ å¯‡ä½•ä¿Šè¾‘ æå§ æµç«‹ æŒç»¢æ—ç»° ç‰ˆå¿«ç»° ç»ç»° å§è‚º.. è¶£ ä¹é˜‘ èŠ­ éæ¾œ æ check ç”« åŠ›èŠ­çªç»°å• é…’è´° å†…é›å®¢ æ©æç˜¤ è‡¼ç»°ç˜¤ æ›¼ç»Š..
 
-	//// ¼½¼Ç º´ÇÕ ¸ğµ¨À» »ç¿ëÇÏ´Â °ÔÀÓ¸ğµåÀÎµ¥ ¿¬Ãâ¿¡¼­µµ ±×°É ¿¬¼ÓÀûÀ¸·Î »ç¿ëÇÏ´Â °Ô ¾Æ´Ï¸é »õ·Î ¼½¼Ç ºĞ¸®µÈ ¸ğµ¨ ¼¼ÆÃ
+	//// å†€è®° æé’¦ è‘›èƒ†é˜‘ è¤ä¾©çªç»° éœ¸çƒ™è‘›é›ç‰¢å• æ¥·å…ä¿Šè¾‘æ¡£ å¼Šå§ æ¥·åŠ åˆ©æ è‚º è¤ä¾©çªç»° éœ¸ é…’èªæ è´§è‚º å†€è®° ç›’åºœç­‰ è‘›èƒ† æŠ€æ³¼
 	//USkeletalMesh* ExplicitNonMergedMesh = nullptr;
 	///*if (UB2PCMeshSectionMergeInfo::ShouldUseSectionMergeByGameContext(this) && !UB2PCMeshSectionMergeInfo::ShouldUseSectionMergeForStageEvent(this))
 	//{
@@ -3456,27 +3456,27 @@ void ABladeIIPlayer::SetupControlledMatineePuppet(ASkeletalMeshActor* InMatineeP
 
 	//BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_SetupControlledMatineePuppet);
 	//Super::SetupControlledMatineePuppet(InMatineePuppet, bSetupLightComponent, 
-	//	ExplicitNonMergedMesh ? ExplicitNonMergedMesh : OptionalSKMeshToSet // OptionalSKMeshToSet ÀÎÀÚ¸¦ ¿©±â¼­ ¸¸µé¾î¼­ ³Ñ°ÜÁÖ°Ô µÊ..
+	//	ExplicitNonMergedMesh ? ExplicitNonMergedMesh : OptionalSKMeshToSet // OptionalSKMeshToSet ç‰¢ç£Šç”« å’¯æ‰è¾‘ çˆ¶ç”¸ç»¢è¾‘ é€è´¥æ—éœ¸ å‡³..
 	//);
 
-	//// Àå½Å±¸ °°Àº °Å ºÙÀ¸¸é Ãß°¡·Î ¼¼ÆÃÇØ ÁÖ·Á°í Çß´Âµ¥ À¢¸¸ÇÑ °ÍµéÀº »óÀ§´Ü ÇÔ¼ö¿¡¼­ ±âº» Ã³¸®.
+	//// å˜è„šå¤‡ éç¯® èŠ­ å˜¿æ æ çœ å•Šè‚º æŠ€æ³¼ç§¦ æ—å¦¨ç»Š æ²ç»°å• æ„§çˆ¶èŒ„ å·´ç”¸ç¯® æƒ‘å›°çªœ çªƒèä¿Šè¾‘ æ‰å¤¯ è´¸åºœ.
 	//
 	//if (MyBaseMeshComp && PuppetBaseMeshComp)
 	//{
-	//	// Scalability ÄÁÆ®·ÑÀÇ ÀÏºÎ·Î¼­ ForcedLOD ¸ÔÀÎ °Íµµ Àü´ŞÇØ ÁØ´Ù. »ç½Ç ¿¬Ãâ¿ëÀº 0 ÀÏ°Å¶ó ÇÊ¿ä´Â ¾ø°ÚÁö¸¸ »©¸Ô¾î¼­ ÁÁÀ» ²¨ ¾øÁö.
+	//	// Scalability ç‰§é£˜è´¹ç‹¼ è€ä½•è‚ºè¾‘ ForcedLOD å†ˆç‰¢ å·´æ¡£ å‚ˆå´”ç§¦ éœ–ä¿ƒ. è¤è§’ æ¥·å…ä¾©ç¯® 0 è€èŠ­æ‰¼ é˜å¤¸ç»° ç»æ‘†ç˜¤çˆ¶ å“—å†ˆç»¢è¾‘ äº®é˜‘ æ³¢ ç»ç˜¤.
 	//	PuppetBaseMeshComp->SetForcedLOD(MyBaseMeshComp->ForcedLodModel);
 	//}
 }
 
-/** ´ëÃ¼·Î ¿¬Ãâ ¿ëÀ¸·Î ´õ¹Ì ÅÂ±× Ä³¸¯ÅÍ spawn. ´õ¹Ì¶ó°í ÇØ¼­ Å×½ºÆ® ±â´ÉÀÌ ¾Æ´Ï´Ù.
- * PossessByAIController ´Â AI ¸¦ À§ÇÑ °Ô ¾Æ´Ï¶ó º¸´Ù ±âº»ÀûÀÎ Áß·Â Àû¿ë °°Àº °Å Ã³¸® Â÷¿ø. */
+/** æªçœ‰è‚º æ¥·å… ä¾©æ è‚º æ­¹å›º æ€•å¼Š æŸè…ç£ spawn. æ­¹å›ºæ‰¼ç»Š ç§¦è¾‘ æŠ›èƒ¶é£˜ æ‰ç“·æ é…’èªä¿ƒ.
+ * PossessByAIController ç»° AI ç”« å›°èŒ„ éœ¸ é…’èªæ‰¼ ç„Šä¿ƒ æ‰å¤¯åˆ©ç‰¢ åä»¿ åˆ©ä¾© éç¯® èŠ­ è´¸åºœ ç’ç›”. */
 ABladeIIPlayer* ABladeIIPlayer::SpawnOtherAsPuppet(bool bPossessByAIController /*= true*/, bool bTurnOnPointLight /*= false*/)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_SpawnOtherAsPuppet);
 	BII_CHECK(GetTagPlayerClass() != EPCClass::EPC_End);
 	ABladeIIPlayer* Spawned = SpawnPuppetInternal(GetTagPlayerClass(), bPossessByAIController);
 	if (Spawned)
-	{ // ¸ğ¹ÙÀÏ pointlight Á¦ÇÑµµ ÀÖ°í.. ÅÂ±×ÂÊÀº °¡±ŞÀû ²ôµµ·Ï.. ÀÌ°Ô ÇÊ¿äÇÑ »óÈ²ÀÌ ÀÖÀ¸·Á³ª..
+	{ // è‘›å®˜è€ pointlight åŠ›èŒ„æ¡£ ä¹ç»Š.. æ€•å¼Šç‡ç¯® å•Šé­åˆ© æºæ¡£åºŸ.. æéœ¸ é˜å¤¸èŒ„ æƒ‘ç‚”æ ä¹æ å¦¨å”±..
 		Spawned->FormalSetPointLightOn(bTurnOnPointLight);
 	}
 	return Spawned;
@@ -3498,15 +3498,15 @@ ABladeIIPlayer* ABladeIIPlayer::SpawnPuppetInternal(EPCClass InSpawnClass, bool 
 	//{
 	//	const FTransform& CurrTransform = GetTransform();
 	//	const float AsideDistance = GetCapsuleComponent() ? GetCapsuleComponent()->GetScaledCapsuleRadius() : 50.0f;
-	//	// »ìÂ¦ ¿·¿¡¼­ spawn ½ÃÅ²´Ù. ÀÌ°É ¾²´Â »óÈ²¿¡¼­ ½ÇÁ¦·Î º¸¿©Áö´Â À§Ä¡´Â ¿¬Ãâ Æ®·¢ µîÀ¸·Î º°µµ·Î Á¶ÀıÇØ¾ß ÇÔ.
+	//	// æ··å¨„ ç³ ä¿Šè¾‘ spawn çŸ«æŒªä¿ƒ. æå§ é™ç»° æƒ‘ç‚”ä¿Šè¾‘ è§’åŠ›è‚º ç„Šå’¯ç˜¤ç»° å›°æ‘¹ç»° æ¥·å… é£˜å‘ æ®¿æ è‚º å–Šæ¡£è‚º ç‚¼ä¾‹ç§¦å…· çªƒ.
 	//	FTransform NewTransform(
 	//		CurrTransform.GetRotation(),
 	//		CurrTransform.GetTranslation() + FVector(AsideDistance, AsideDistance, 50.0f),
 	//		CurrTransform.GetScale3D()
 	//	);
 
-	//	// µüÈ÷ ÀÌÀü °É ¾ø¾Ø´ÙµçÁö ÇÒ ÇÊ¿ä ¾øÀÌ ±×´ë·Î ¸®ÅÏ. ¹ŞÀº ÂÊ¿¡¼­ Àß Ã³¸®. 
-	//	// PlayerController ¿¡ possess ÇÏÁö´Â ¾ÊÀ¸´Ï GetLocalPlayerCharacter µîÀÌ ÀÇµµ¿Í ´Ş¸® ¿©±â¼­ »ı¼ºÇÑ °ÍÀ» ¸®ÅÏÇÑ´ÙµçÁö ÇÏ´Â ÀÏÀº ¾øÀ» °Í.
+	//	// è¿­æ´’ æå‚ˆ å§ ç»çŸ©ä¿ƒç”µç˜¤ ä¸” é˜å¤¸ ç»æ å¼Šæªè‚º åºœç•”. ç½ç¯® ç‡ä¿Šè¾‘ è‚‹ è´¸åºœ. 
+	//	// PlayerController ä¿Š possess çªç˜¤ç»° è‡¼æ èª GetLocalPlayerCharacter æ®¿æ ç‹¼æ¡£å®¢ å´”åºœ å’¯æ‰è¾‘ ç§¯å·±èŒ„ å·´é˜‘ åºœç•”èŒ„ä¿ƒç”µç˜¤ çªç»° è€ç¯® ç»é˜‘ å·´.
 	//	return ABladeIIGameMode::SpawnPlayerCharAsPuppet(this, InSpawnClass, NewTransform, bPossessByAIController);
 	//}
 	return nullptr;
@@ -3518,11 +3518,11 @@ void ABladeIIPlayer::SetEvadeTimer()
 	EvadeTimer = EVADE_COOL_TIME;
 }
 
-// ¾Æ·¡ SetupLODInfo~~ ¾¾¸®Áî ¿ë °øÅë ±â´É
+// é…’è´° SetupLODInfo~~ æªåºœä»¤ ä¾© å‚çƒ¹ æ‰ç“·
 static void SetB2PCMergedMeshCompLODInfoInternal(USkeletalMeshComponent* InMeshComp, float InScreenSize_0, float InScreenSize_1)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(Global_SetB2PCMergedMeshCompLODInfoInternal);
-	//// ½ÇÁ¦ ¿¡µğÅÍ¿¡¼­ º¸´Â ¸®¼Ò½º°¡ ¾Æ´Ñ ·±Å¸ÀÓ¿¡ merge µÈ ¸Ş½¬¸¦ »óÁ¤ÇÔ. ¿©±â¼­ Mesh ¸®¼Ò½ºÀÇ ¼Ó¼º°ªÀ» ¹Ù²Ü °ÍÀÌ±â ‹š¹®¿¡ ÀÏ¹İÀûÀ¸·Î ¿¡µğÅÍ¿¡¼­ º¸´Â ±× ¸®¼Ò½º¿©¼­´Â °ï¶õÇÏ´Ù.
+	//// è§’åŠ› ä¿Šå¼ç£ä¿Šè¾‘ ç„Šç»° åºœå®¶èƒ¶å•Š é…’å›± ç¹é¸¥çƒ™ä¿Š merge ç­‰ çš‹æµ†ç”« æƒ‘æ²¥çªƒ. å’¯æ‰è¾‘ Mesh åºœå®¶èƒ¶ç‹¼ åŠ å·±è”¼é˜‘ å®˜æ›¹ å·´ææ‰ å«å·©ä¿Š è€é¦†åˆ©æ è‚º ä¿Šå¼ç£ä¿Šè¾‘ ç„Šç»° å¼Š åºœå®¶èƒ¶å’¯è¾‘ç»° å¸®é„‚çªä¿ƒ.
 	//USkeletalMesh* MeshResource = InMeshComp ? InMeshComp->SkeletalMesh : NULL;
 	////FSkeletalMeshObject* MeshResourceObj = InMeshComp ? InMeshComp->MeshObject : NULL;
 
@@ -3536,7 +3536,7 @@ static void SetB2PCMergedMeshCompLODInfoInternal(USkeletalMeshComponent* InMeshC
 	//	FSkeletalMeshLODInfo& MeshLODInfo = MeshResource->LODInfo[LODIdx];
 	//	const float PrevScreenSize = MeshLODInfo.ScreenSize;
 
-	//	// ÀÏ´ÜÀº 0 °ú 1 ÀÌ»óÀÇ LOD ¸¸ ±¸ºĞ. ±× ÀÌ»óÀº ÇÊ¿ä¿¡ µû¶ó
+	//	// è€çªœç¯® 0 è‹ 1 ææƒ‘ç‹¼ LOD çˆ¶ å¤‡ç›’. å¼Š ææƒ‘ç¯® é˜å¤¸ä¿Š è¶æ‰¼
 	//	MeshLODInfo.ScreenSize = (LODIdx == 0 ? InScreenSize_0 : InScreenSize_1);
 	//	
 	//	if (PrevScreenSize != MeshLODInfo.ScreenSize)
@@ -3546,17 +3546,17 @@ static void SetB2PCMergedMeshCompLODInfoInternal(USkeletalMeshComponent* InMeshC
 	//}
 	//if (bScreenSizeChanged)
 	//{
-	//	InMeshComp->UpdateLODStatus(); // ÀÌ·¸°Ô ÇÑ´Ù°í ¿©±â¼­ ¹Ù·Î º¯°æÀÌ µÉ °Å °°Áö´Â ¾ÊÀºµ¥..
+	//	InMeshComp->UpdateLODStatus(); // æçŠ¯éœ¸ èŒ„ä¿ƒç»Š å’¯æ‰è¾‘ å®˜è‚º å‡½ç‰ˆæ çª èŠ­ éç˜¤ç»° è‡¼ç¯®å•..
 	//	InMeshComp->MarkRenderStateDirty();
 	//}
 }
 
 /** 
- * Scalability ½Ã½ºÅÛÀÇ GameplayOnlyLODQuality ÀÇ ¼¼ºÎ Ç×¸ñÀ¸·Î »ç¿ëÇÏ±â À§ÇÔ. 
- * ÀüÅõ¾À, ¿¬Ãâ¾À (·ÎºñÆ÷ÇÔ) µÎ ºÎ·ù·Î ³ª´²¼­
- * ForceLODLevel ÀÌ¶û ForcedLODLevel ÀÌ 0 ÀÏ ¶§ »ç¿ëÇÒ ScreenSize °¡ ÀÖ´Ù.
- * ±â´É ÀÚÃ¼¸¸ º¼ ¶§¿¡´Â ForceLODLevel ·Î À¢¸¸Å­ Ä¿¹ö °¡´ÉÇÑµ¥ ForceLODLevel ¿¡ ÀÇÁ¸ÇÏ¸é r.SkeletalMeshLODBias ¸¦ ÅëÇÑ Å×½ºÆ®µµ ¾î·Á¿öÁ®¼­ ´ú ¾²°Ô µÊ. 
- * ±×¸®°í °£È¤ ¿¹»óÄ¡ ¸øÇÑ ±Ş°İÇÑ Ä«¸Ş¶óŸp¿¡ ´ëºñÇØ¾ß ÇÒ °Í °°Àº ¶§µµ ÀÖ°í.
+ * Scalability çŸ«èƒ¶è¢ç‹¼ GameplayOnlyLODQuality ç‹¼ æŠ€ä½• äº²æ ¼æ è‚º è¤ä¾©çªæ‰ å›°çªƒ. 
+ * å‚ˆæ§çº , æ¥·å…çº  (è‚ºåšå™¨çªƒ) æ»´ ä½•å¹…è‚º å”±åºŠè¾‘
+ * ForceLODLevel æå°” ForcedLODLevel æ 0 è€ é”­ è¤ä¾©ä¸” ScreenSize å•Š ä¹ä¿ƒ.
+ * æ‰ç“· ç£Šçœ‰çˆ¶ æ­ é”­ä¿Šç»° ForceLODLevel è‚º æ„§çˆ¶æ€’ ç›®æ»š å•Šç“·èŒ„å• ForceLODLevel ä¿Š ç‹¼ç²®çªæ r.SkeletalMeshLODBias ç”« çƒ¹èŒ„ æŠ›èƒ¶é£˜æ¡£ ç»¢å¦¨å†µå»‰è¾‘ ä»£ é™éœ¸ å‡³. 
+ * å¼Šåºœç»Š åŸƒè¶£ æŠ—æƒ‘æ‘¹ ç»™èŒ„ é­æ‹œèŒ„ å¢¨çš‹æ‰¼ç„¢ä¿Š æªåšç§¦å…· ä¸” å·´ éç¯® é”­æ¡£ ä¹ç»Š.
  */
 int32 GB2PlayerCharForcedLODLevelCombat = 0;
 FAutoConsoleVariableRef CVarB2PlayerCharForcedLODLevelCombat(
@@ -3572,7 +3572,7 @@ FAutoConsoleVariableRef CVarB2PlayerCharForcedLODLevelCinematic(
 	TEXT("Forced LOD level for BladeII player character meshes in cinematic scene, intended to be controlled by Scalability system."),
 	ECVF_Scalability
 );
-// ÀüÅõ¿ë LOD 1 ScreenSize ´Â ºñ±³Àû Å« °ªÀ¸·Î ÁØ´Ù. LOD1 ÀÇ Çã¿ë ScreenSize °¡ Ä¿Áú¼ö·Ï ±Ù°Å¸®¿¡¼­ LOD1 ÀÌ Àû¿ë.
+// å‚ˆæ§ä¾© LOD 1 ScreenSize ç»° åšèƒŒåˆ© å¥´ è”¼æ è‚º éœ–ä¿ƒ. LOD1 ç‹¼ å€¾ä¾© ScreenSize å•Š ç›®é¾™èåºŸ è¾ŸèŠ­åºœä¿Šè¾‘ LOD1 æ åˆ©ä¾©.
 float GB2PlayerCharLOD1ScreenSizeCombat = 0.5f;
 FAutoConsoleVariableRef CVarB2PlayerCharLOD1ScreenSizeCombat(
 	TEXT("r.B2PlayerCharLOD1ScreenSizeCombat"),
@@ -3580,7 +3580,7 @@ FAutoConsoleVariableRef CVarB2PlayerCharLOD1ScreenSizeCombat(
 	TEXT("LOD 1 ScreenSize for BladeII player character meshes in combat scene, intended to be controlled by Scalability system."),
 	ECVF_Scalability
 );
-// ¿¬Ãâ¿ë LOD 1 ScreenSize ´Â ºñ±³Àû ÀÛÀº °ªÀ¸·Î ÁØ´Ù. LOD1 ÀÇ Çã¿ë ScreenSize °¡ ÀÛ¾ÆÁú¼ö·Ï ¿ø°Å¸®¿¡¼­ LOD1 ÀÌ Àû¿ë.
+// æ¥·å…ä¾© LOD 1 ScreenSize ç»° åšèƒŒåˆ© ç´¯ç¯® è”¼æ è‚º éœ–ä¿ƒ. LOD1 ç‹¼ å€¾ä¾© ScreenSize å•Š ç´¯é…’é¾™èåºŸ ç›”èŠ­åºœä¿Šè¾‘ LOD1 æ åˆ©ä¾©.
 float GB2PlayerCharLOD1ScreenSizeCinematic = 0.1f;
 FAutoConsoleVariableRef CVarB2PlayerCharLOD1ScreenSizeCinematic(
 	TEXT("r.B2PlayerCharLOD1ScreenSizeCinematic"),
@@ -3594,7 +3594,7 @@ void ABladeIIPlayer::SetupLODInfoForInGame()
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_SetupLODInfoForInGame);
 	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIPlayer::SetupLODInfoForInGame"));
 	
-	// Scalability ½Ã½ºÅÛ¿¡ µû¸¥ LOD ¼³Á¤ Á¶Àı. ForceLOD È¤Àº LODScreenSize
+	// Scalability çŸ«èƒ¶è¢ä¿Š è¶å¼— LOD æ±²æ²¥ ç‚¼ä¾‹. ForceLOD è¶£ç¯® LODScreenSize
 	SetB2PCMergedMeshCompLODInfoInternal(GetBaseMesh(), 0.0f, GB2PlayerCharLOD1ScreenSizeCombat);
 	GetBaseMesh()->SetForcedLOD(GB2PlayerCharForcedLODLevelCombat);
 }
@@ -3604,19 +3604,19 @@ void ABladeIIPlayer::SetupLODInfoForCinematic()
 	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIPlayer::SetupLODInfoForCinematic"));
 
 #if !UE_BUILD_SHIPPING
-	// ÀÌ ÄÚµå ÀÚÃ¼´Â »ç½Ç»ó BladeIIScalabilityOverride ´Â ¾Æ´Ï´Ù.
-	// ´Ü, ¼º°İÀÌ ¾î´À Á¤µµ ºñ½ÁÇÏ°í ¿¬Ãâ ÁøÀÔ ½Ã spike ºĞ¼® µî¿¡µµ ÇÊ¿äÇØ¼­.. ¿©±âµµ bUseBladeIIScalabilityOverride ¿¡ µû¶ó °ÔÀÓÇÃ·¹ÀÌ ¿ë ¸Ş½¬ LOD ¼³Á¤°ú ¸¶Âù°¡Áö·Î °¥ ¼ö ÀÖµµ·Ï ÇÔ.
+	// æ å†…é› ç£Šçœ‰ç»° è¤è§’æƒ‘ BladeIIScalabilityOverride ç»° é…’èªä¿ƒ.
+	// çªœ, å·±æ‹œæ ç»¢è ¢ æ²¥æ¡£ åšæ…çªç»Š æ¥·å… æŸ³æ¶ çŸ« spike ç›’ç± æ®¿ä¿Šæ¡£ é˜å¤¸ç§¦è¾‘.. å’¯æ‰æ¡£ bUseBladeIIScalabilityOverride ä¿Š è¶æ‰¼ éœ¸çƒ™æ•²é¥­æ ä¾© çš‹æµ† LOD æ±²æ²¥è‹ ä»˜è›®å•Šç˜¤è‚º å“ è ä¹æ¡£åºŸ çªƒ.
 	/*if (!B2Scalability::bUseBladeIIScalabilityOverride) {
 		SetupLODInfoForInGame();
 		return;
 	}*/
 #endif
 
-	// SetUseSectionMergedMesh ¼¼ÆÃµµ ¿©±â¿¡ ³¢¿ö³Ö±â ÀûÀıÇØ º¸ÀÏ ¼ö ÀÖÁö¸¸ ±×·¯Áö ¸» °Í.
-	// ±×°Ç »óÈ²¿¡ µû¶ó Á» ´õ ´Ù¸£°Ô µé¾î°£´Ù.
+	// SetUseSectionMergedMesh æŠ€æ³¼æ¡£ å’¯æ‰ä¿Š å°å†µæŒæ‰ åˆ©ä¾‹ç§¦ ç„Šè€ è ä¹ç˜¤çˆ¶ å¼ŠçŸ¾ç˜¤ å¯Œ å·´.
+	// å¼Šæ‰’ æƒ‘ç‚”ä¿Š è¶æ‰¼ ç²± æ­¹ ä¿ƒç¦éœ¸ ç”¸ç»¢åŸƒä¿ƒ.
 
-	// Scalability ½Ã½ºÅÛ¿¡ µû¸¥ LOD ¼³Á¤ Á¶Àı. ForceLOD È¤Àº LODScreenSize
-	// »ç½Ç ¿¬Ãâ¿¡¼­ º¸¿©Áö´Â °Ç ¸Ş½¬ ¸®¼Ò½º´Â ¿©±â ²¬ Àü´ŞÇØ ÁÖ°ÚÁö¸¸ ÄÄÆ÷³ÍÆ®´Â ´Ù¸£´Ï ForceLOD ´Â ±×ÂÊÀ¸·Î Àü´ŞÇØ ÁÖ¾î¾ß ÇÑ´Ù.
+	// Scalability çŸ«èƒ¶è¢ä¿Š è¶å¼— LOD æ±²æ²¥ ç‚¼ä¾‹. ForceLOD è¶£ç¯® LODScreenSize
+	// è¤è§’ æ¥·å…ä¿Šè¾‘ ç„Šå’¯ç˜¤ç»° æ‰’ çš‹æµ† åºœå®¶èƒ¶ç»° å’¯æ‰ é“‚ å‚ˆå´”ç§¦ æ—æ‘†ç˜¤çˆ¶ å“ªå™¨æƒ©é£˜ç»° ä¿ƒç¦èª ForceLOD ç»° å¼Šç‡æ è‚º å‚ˆå´”ç§¦ æ—ç»¢å…· èŒ„ä¿ƒ.
 	SetB2PCMergedMeshCompLODInfoInternal(GetBaseMesh(), 0.0f, GB2PlayerCharLOD1ScreenSizeCinematic);
 	GetBaseMesh()->SetForcedLOD(GB2PlayerCharForcedLODLevelCinematic);
 }
@@ -3627,18 +3627,18 @@ void ABladeIIPlayer::SetupLODInfoForLobbyRepresentative(class ASkeletalMeshActor
 
 	check(InLobbySKActor);
 	//
-	//// ·Îºñ¿¡¼­´Â ÃÊ±â¿¡ Merge º¸´Ù´Â Component ±¸¼ºÀ» »ı°¢ÇÏ°í ÀÖ¾ú±â ¶§¹®¿¡ ¸ğµÎ °¡Á®¿À°Ô Çß´Âµ¥.. °á±¹ ±×·¸°Ô ¾ÈµÉ µí.
-	//// »ç½Ç Component attach ±¸¼ºÀ» ÇÏ°Ô µÇ¸é ¾Æ·¡ SetB2PCMergedMeshCompLODInfoInternal À» »ç¿ëÇÏ±â°¡ °ï¶õÇØÁø´Ù. ·±Å¸ÀÓ »ı¼ºµÈ ¸Ş½¬°¡ ¾Æ´Ï¶ó ÀÓÆ÷Æ® µÈ ¸®¼Ò½º¸¦ °Çµå¸®°Ô µÉ °ÍÀÌ¹Ç·Î.
+	//// è‚ºåšä¿Šè¾‘ç»° æª¬æ‰ä¿Š Merge ç„Šä¿ƒç»° Component å¤‡å·±é˜‘ ç§¯é˜¿çªç»Š ä¹èŒæ‰ é”­å·©ä¿Š è‘›æ»´ å•Šå»‰å·éœ¸ æ²ç»°å•.. æ¬æƒ« å¼ŠçŠ¯éœ¸ æ•‘çª æ·€.
+	//// è¤è§’ Component attach å¤‡å·±é˜‘ çªéœ¸ ç™»æ é…’è´° SetB2PCMergedMeshCompLODInfoInternal é˜‘ è¤ä¾©çªæ‰å•Š å¸®é„‚ç§¦æŸ³ä¿ƒ. ç¹é¸¥çƒ™ ç§¯å·±ç­‰ çš‹æµ†å•Š é…’èªæ‰¼ çƒ™å™¨é£˜ ç­‰ åºœå®¶èƒ¶ç”« æ‰’é›åºœéœ¸ çª å·´æéª¨è‚º.
 	//TArray<UActorComponent*> AllSKComps = InLobbySKActor->GetComponentsByClass(USkeletalMeshComponent::StaticClass());
 
 	//for (UActorComponent* CurrComp : AllSKComps)
 	//{
 	//	USkeletalMeshComponent* CurrSKComp = Cast<USkeletalMeshComponent>(CurrComp);
-	//	// ·Îºñµµ Cinematic ¼³Á¤À» °¡Á®°£´Ù.		
-	//	SetB2PCMergedMeshCompLODInfoInternal(CurrSKComp, 0.0f, GB2PlayerCharLOD1ScreenSizeCinematic); // ForcedLOD 0 ÀÌ¸é Àû¿ë.
+	//	// è‚ºåšæ¡£ Cinematic æ±²æ²¥é˜‘ å•Šå»‰åŸƒä¿ƒ.		
+	//	SetB2PCMergedMeshCompLODInfoInternal(CurrSKComp, 0.0f, GB2PlayerCharLOD1ScreenSizeCinematic); // ForcedLOD 0 ææ åˆ©ä¾©.
 	//	if (CurrSKComp)
 	//	{
-	//		CurrSKComp->SetForcedLOD(GB2PlayerCharForcedLODLevelCinematic); // ·Îºñµµ CinematicLODLevel À» Àû¿ë
+	//		CurrSKComp->SetForcedLOD(GB2PlayerCharForcedLODLevelCinematic); // è‚ºåšæ¡£ CinematicLODLevel é˜‘ åˆ©ä¾©
 	//	}
 	//}
 }
@@ -3646,16 +3646,16 @@ void ABladeIIPlayer::OnBeginWeaponSkillLOD0()
 {
 	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIPlayer::OnBeginWeaponSkillLOD0"));
 
-	checkSlow(IsLocalPlayer()); // ¾Æ´Ñ °æ¿ì ÀÖ´ÂÁö..?
+	checkSlow(IsLocalPlayer()); // é…’å›± ç‰ˆå¿« ä¹ç»°ç˜¤..?
 	//
-	//// ÀÎ°ÔÀÓ ÀüÅõ¿¡¼­´Â ¼½¼Ç º´ÇÕ ¸ğµ¨À» ¾²Áö¸¸ ¿¬Ãâ¿¡¼­´Â ¾Æ´Ñ °æ¿ì.. ÀÏ½ÃÀûÀ¸·Î ¼½¼Ç ºĞ¸® ¸ğµ¨ »ç¿ë ¼¼ÆÃ.
-	//if (/*UB2PCMeshSectionMergeInfo::ShouldUseSectionMergeByGameContext(this) &&*/ // ¿ä Á¶°ÇÀº ¾È º¸±â·Î.. ÈçÄ¡ ¾ÊÀºµ¥ »óÅÂ°¡ ²¿ÀÌ´ÂÁö °á¼Ó½ºÅ³¿¡¼­ º´ÇÕµÈ ¸ğµ¨ÀÌ ³ª¿À´Â °æ¿ì°¡ ÀÖ´Ù.
+	//// ç‰¢éœ¸çƒ™ å‚ˆæ§ä¿Šè¾‘ç»° å†€è®° æé’¦ è‘›èƒ†é˜‘ é™ç˜¤çˆ¶ æ¥·å…ä¿Šè¾‘ç»° é…’å›± ç‰ˆå¿«.. è€çŸ«åˆ©æ è‚º å†€è®° ç›’åºœ è‘›èƒ† è¤ä¾© æŠ€æ³¼.
+	//if (/*UB2PCMeshSectionMergeInfo::ShouldUseSectionMergeByGameContext(this) &&*/ // å¤¸ ç‚¼æ‰’ç¯® æ•‘ ç„Šæ‰è‚º.. å¦‚æ‘¹ è‡¼ç¯®å• æƒ‘æ€•å•Š éƒ¨æç»°ç˜¤ æ¬åŠ èƒ¶æ‡¦ä¿Šè¾‘ æé’¦ç­‰ è‘›èƒ†æ å”±å·ç»° ç‰ˆå¿«å•Š ä¹ä¿ƒ.
 	//	!UB2PCMeshSectionMergeInfo::ShouldUseSectionMergeForStageEvent(this))
 	//{
 	//	SetUseSectionMergedMesh(false);
 	//}
 
-	//SetupLODInfoForCinematic(); // ¿¬Ãâ¿ë LOD ¼Â¾÷Àº ÀÌÀüºÎÅÍ ÇÏ´ø ±âº».
+	//SetupLODInfoForCinematic(); // æ¥·å…ä¾© LOD æ‚¸è¯€ç¯® æå‚ˆä½•ç£ çªå¸¦ æ‰å¤¯.
 	//
 	//DestroyWeaponSkillLOD0SceneLight();
 	//CreateWeaponSkillLOD0SceneLight();
@@ -3664,9 +3664,9 @@ void ABladeIIPlayer::OnBeginWeaponSkillLOD0()
 
 	//FTimerManager& WTM = GetWorldTimerManager();
 	//WTM.ClearTimer(WeaponSkillEndHandlingForceTH);
-	//// ÀÌ·± ÁşÀ» ÇÏÁö ¾Ê¾Æµµ OnEndWeaponSkillLOD0 °¡ ºÒ·Á¾ß ÇÏÁö¸¸ ¸¸ÀÏÀ» À§ÇÑ ¾ÈÀüÀåÄ¡.
+	//// æç¹ çª¿é˜‘ çªç˜¤ è‡¼é…’æ¡£ OnEndWeaponSkillLOD0 å•Š é˜‚å¦¨å…· çªç˜¤çˆ¶ çˆ¶è€é˜‘ å›°èŒ„ æ•‘å‚ˆå˜æ‘¹.
 	//WTM.SetTimer(WeaponSkillEndHandlingForceTH, this, &ABladeIIPlayer::ForceFinishWeaponSkillLOD0SceneSetup
-	//	, 30.0f/*ÀÌ ÀÌ»ó °¡´Â °á¼Ó½ºÅ³ÀÌ ÀÖ´Ù¸é º¯ÅÂ°ÚÁö.*/
+	//	, 30.0f/*æ ææƒ‘ å•Šç»° æ¬åŠ èƒ¶æ‡¦æ ä¹ä¿ƒæ å‡½æ€•æ‘†ç˜¤.*/
 	//	, false);
 }
 void ABladeIIPlayer::OnEndWeaponSkillLOD0()
@@ -3675,9 +3675,9 @@ void ABladeIIPlayer::OnEndWeaponSkillLOD0()
 
 	//bInWeaponSkillLOD0 = false;
 
-	//// ¿¬Ãâ¿ë ¼¼ÆÃµé ¸®¼Â 
+	//// æ¥·å…ä¾© æŠ€æ³¼ç”¸ åºœæ‚¸ 
 	//if (UB2PCMeshSectionMergeInfo::ShouldUseSectionMergeByGameContext(this))
-	//{ // ¿©±ä AnimNotify ¸¦ ÅëÇØ ¹ßµ¿µÇ´Â °÷ÀÌ´Ù º¸´Ï ¹Ù·Î SetUseSectionMergedMesh ÇÏ¸é UpdateAnimation ÀÌ Àç±ÍÈ£Ãâ µÇ¾î¹ö¸®´Â »çÅÂ°¡ ¹ß»ıÇÑ´Ù
+	//{ // å’¯å˜ AnimNotify ç”« çƒ¹ç§¦ æƒ¯æ‚¼ç™»ç»° é•‘æä¿ƒ ç„Šèª å®˜è‚º SetUseSectionMergedMesh çªæ UpdateAnimation æ çŠè“–é¾‹å… ç™»ç»¢æ»šåºœç»° è¤æ€•å•Š æƒ¯ç§¯èŒ„ä¿ƒ
 	//	DeferredSetUseSectionMergedMesh(true);
 	//}
 	//SetupLODInfoForInGame(); 
@@ -3699,9 +3699,9 @@ float GDevTestWeaponSkillLOD0LightRadius = -1.0f;
 void ABladeIIPlayer::CreateWeaponSkillLOD0SceneLight()
 {
 	/* =============================================
-	ÀÌ ÁşÀ» ÇÏ´Â ¸ñÀûÀº °á¼Ó½ºÅ³ ½ÃÀü ½Ã º°µµ ¶óÀÌÆ® ¼¼ÆÃÀ» ÇÏÁö ¾ÊÀ¸¸é
-	¸Ó¸® À§¿¡ ÀÖ´Â PointLight °¡ ¾ó±¼À» À§¿¡¼­ ºñÃß±â ¶§¹®¿¡ Á¤¸» ¹Ùº¸°°Àº Á¶¸í»¡ÀÌ ³ª¿À±â ¶§¹®ÀÌ´Ù.
-	¸Å °á¼Ó½ºÅ³ º°·Î ¼¼¼¼ÇÑ ¼¼ÆÃÀ» Á¦°øÇÏ´Â °Ç ÀÏÀÌ ³Ê¹« Ä¿Áö°í ¾î´À Á¤µµ Àû´çÇÑ Á¶¸íÀÌ ³ª¿Àµµ·Ï ÃÖ¼ÒÇÑÀÇ Ã³¸®¿Í ¼¼ÆÃ Á¦°ø.
+	æ çª¿é˜‘ çªç»° æ ¼åˆ©ç¯® æ¬åŠ èƒ¶æ‡¦ çŸ«å‚ˆ çŸ« å–Šæ¡£ æ‰¼æé£˜ æŠ€æ³¼é˜‘ çªç˜¤ è‡¼æ æ
+	èµ£åºœ å›°ä¿Š ä¹ç»° PointLight å•Š å€”å¥”é˜‘ å›°ä¿Šè¾‘ åšçœ æ‰ é”­å·©ä¿Š æ²¥å¯Œ å®˜ç„Šéç¯® ç‚¼ç–™å¼§æ å”±å·æ‰ é”­å·©æä¿ƒ.
+	æ¦‚ æ¬åŠ èƒ¶æ‡¦ å–Šè‚º æŠ€æŠ€èŒ„ æŠ€æ³¼é˜‘ åŠ›å‚çªç»° æ‰’ è€æ å‘ˆå…¬ ç›®ç˜¤ç»Š ç»¢è ¢ æ²¥æ¡£ åˆ©å¯¸èŒ„ ç‚¼ç–™æ å”±å·æ¡£åºŸ å¼¥å®¶èŒ„ç‹¼ è´¸åºœå®¢ æŠ€æ³¼ åŠ›å‚.
 	============================================= */
 
 	check(IsLocalPlayer());
@@ -3717,7 +3717,7 @@ void ABladeIIPlayer::CreateWeaponSkillLOD0SceneLight()
 	WeaponSkillLOD0SceneLight = NewObject<UPointLightComponent>(this, NAME_None, RF_Transient);
 	if (WeaponSkillLOD0SceneLight)
 	{
-		// ¼¼ÆÃÀ» °ÅÃ¢ÇÏ°Ô Á¦°øÇÒ °Ç ¾Æ´ÏÁö¸¸ ½ºÅ³º°·Î ¸î°¡Áö ¼Ó¼º Á¤µµ´Â Á¦°øÇÏ°Ô µÉ ¼öµµ ÀÖ´Ù.
+		// æŠ€æ³¼é˜‘ èŠ­èŠ’çªéœ¸ åŠ›å‚ä¸” æ‰’ é…’èªç˜¤çˆ¶ èƒ¶æ‡¦å–Šè‚º å‰²å•Šç˜¤ åŠ å·± æ²¥æ¡£ç»° åŠ›å‚çªéœ¸ çª èæ¡£ ä¹ä¿ƒ.
 		WeaponSkillLOD0SceneLight->Intensity = (WeaponSkillLOD0LightIntensity > 0.0f) ? WeaponSkillLOD0LightIntensity : 50000.0f;
 		WeaponSkillLOD0SceneLight->LightColor = FColor(255, 255, 255);
 		WeaponSkillLOD0SceneLight->AttenuationRadius = (WeaponSkillLOD0LightRadius > 0.0f) ? WeaponSkillLOD0LightRadius : 1500.0f;
@@ -3734,8 +3734,8 @@ void ABladeIIPlayer::CreateWeaponSkillLOD0SceneLight()
 		}
 #endif
 
-		// À§Ä¡´Â UpdateWeaponSkillLOD0LightComponentAttachment ¿¡¼­ °»½ÅµÊ.
-		//WeaponSkillLOD0SceneLight->RelativeLocation = FVector(500.0f, 0.0f, 0.0f); // ÀÌ°Ç Tick ¿¡¼­ ´Ù½Ã..
+		// å›°æ‘¹ç»° UpdateWeaponSkillLOD0LightComponentAttachment ä¿Šè¾‘ ç›è„šå‡³.
+		//WeaponSkillLOD0SceneLight->RelativeLocation = FVector(500.0f, 0.0f, 0.0f); // ææ‰’ Tick ä¿Šè¾‘ ä¿ƒçŸ«..
 		WeaponSkillLOD0SceneLight->AttachToComponent(GetMesh(), FAttachmentTransformRules(EAttachmentRule::KeepRelative, true));
 		WeaponSkillLOD0SceneLight->RegisterComponent();
 	}
@@ -3766,8 +3766,8 @@ void ABladeIIPlayer::UpdateWeaponSkillLOD0LightComponentAttachment()
 	USkeletalMeshComponent* SKMeshComp = GetMesh();
 	if (WeaponSkillLOD0SceneLight && SKMeshComp)
 	{
-		// UpdateLightComponentAttachment ¿¡¼­ ÇÏ´Â ±âº» PointLight À§Ä¡ °»½Å°ú ºñ½ÁÇÏ°Ô ¸Å Æ½ Æ¯Á¤ º»À» µû¶ó°¡Áö¸¸ 
-		// º¸´Ù Çö¶õÇÑ ¿òÁ÷ÀÓÀ» ÇÒ ¼ö ÀÖÀ¸¹Ç·Î ´Ü¼øÈ÷ Z °ª¸¸ ³ÖÁö´Â ¾Ê´Â´Ù.
+		// UpdateLightComponentAttachment ä¿Šè¾‘ çªç»° æ‰å¤¯ PointLight å›°æ‘¹ ç›è„šè‹ åšæ…çªéœ¸ æ¦‚ å¹³ æ¼‚æ²¥ å¤¯é˜‘ è¶æ‰¼å•Šç˜¤çˆ¶ 
+		// ç„Šä¿ƒ æ³…é„‚èŒ„ æ¡†æµçƒ™é˜‘ ä¸” è ä¹æ éª¨è‚º çªœé‰´æ´’ Z è”¼çˆ¶ æŒç˜¤ç»° è‡¼ç»°ä¿ƒ.
 
 		const FTransform BaseBoneTransform = SKMeshComp->GetBoneTransform(SKMeshComp->GetBoneIndex(B2PLAYER_CENTERBONE_NAME));
 		const FVector DesiredWorldLoc = BaseBoneTransform.TransformPosition(WeaponSkillLOD0LightRelPos);
@@ -3778,7 +3778,7 @@ void ABladeIIPlayer::UpdateWeaponSkillLOD0LightComponentAttachment()
 EPCClass ABladeIIPlayer::GetTagPlayerClass()
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_GetTagPlayerClass);
-	// SkillRTManager °ªÀ» °¡Á®¿À¹Ç·Î destroy ´ë±â »óÅÂÀÎ ÅÂ±× ÁßÀÇ OldPlayer ¿¡°Ô¼­´Â ÀÇ¹Ì°¡ ¾øÀ½.
+	// SkillRTManager è”¼é˜‘ å•Šå»‰å·éª¨è‚º destroy æªæ‰ æƒ‘æ€•ç‰¢ æ€•å¼Š åç‹¼ OldPlayer ä¿Šéœ¸è¾‘ç»° ç‹¼å›ºå•Š ç»æ¾œ.
 	return /*GetSkillRTManager() ? CachedSkillRTManager->GetTagPlayerClass() :*/ EPCClass::EPC_End;
 }
 
@@ -3793,7 +3793,7 @@ bool ABladeIIPlayer::AmIMainCharacter()
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_AmIMainCharacter);
 	
-	// ±Ùµ¥ ¾îÂ÷ÇÇ possess ¾ÈµÈ »óÅÂ¿¡¼­ GetSkillRTManager °¡ null ÀÌ¸é ´äÀÌ ¾ø±º.. ¤Ì¤Ğ
+	// è¾Ÿå• ç»¢ç’ä¹” possess æ•‘ç­‰ æƒ‘æ€•ä¿Šè¾‘ GetSkillRTManager å•Š null ææ ç¿ æ ç»ç„™.. ã¬ã°
 	//return GetSkillRTManager() ? CachedSkillRTManager->IsMainPlayerCharacter(this) : false;
 	return  false;
 }
@@ -3814,11 +3814,11 @@ void ABladeIIPlayer::NotifyTagSpawn(class ABladeIIPlayer* OldRetiringPlayer)
 
 	TakeOverAutoFromPredecessor(OldRetiringPlayer);
 
-	// °ø°İ µµÁß¿¡ tag ¸¦ Çß´Ù¸é ÀÌ¾î¼­ °ø°İÀ» °è¼Ó ÇÏµµ·Ï ºĞ³ëÁ¶ÀıÀå¾Ö¸¦ À¯¹ß.
+	// å‚æ‹œ æ¡£åä¿Š tag ç”« æ²ä¿ƒæ æç»¢è¾‘ å‚æ‹œé˜‘ æ‹ŒåŠ  çªæ¡£åºŸ ç›’ç•´ç‚¼ä¾‹å˜å±€ç”« èœ¡æƒ¯.
 	if (OldRetiringPlayer->IsKeepAttacking())
 		SetKeepAttacking(true);
 
-	// °ø°İ ¹æ¾î ¹öÆ°»óÅÂ ÀÎ°è
+	// å‚æ‹œ è§„ç»¢ æ»šç“¢æƒ‘æ€• ç‰¢æ‹Œ
 	if (OldRetiringPlayer->IsAttackKeyPressed())
 	{
 		StartAttackFromInput();
@@ -3832,7 +3832,7 @@ void ABladeIIPlayer::NotifyTagSpawn(class ABladeIIPlayer* OldRetiringPlayer)
 	SetTeamNum(OldRetiringPlayer->GetTeamNum());
 
 	//// RAID AspectRatioAdaptiveFOV, 20180716
-	//// Æ¯Á¤ ¸ğµå¿¡¼­ÀÇ ÀüÅõ¸Ê µğÀÚÀÎ »çÁ¤À¸·Î AspectRatioAdaptiveFOV ¸¦ »ç¿ëÇÏ´Â °æ¿ì°¡ ÀÖÀ½.
+	//// æ¼‚æ²¥ è‘›é›ä¿Šè¾‘ç‹¼ å‚ˆæ§ç”˜ å¼ç£Šç‰¢ è¤æ²¥æ è‚º AspectRatioAdaptiveFOV ç”« è¤ä¾©çªç»° ç‰ˆå¿«å•Š ä¹æ¾œ.
 	//if (OldRetiringPlayer->TopDownCameraComponent && OldRetiringPlayer->TopDownCameraComponent->GetAspectRatioAdaptiveFOV())
 	//{
 	//	if (TopDownCameraComponent)
@@ -3841,7 +3841,7 @@ void ABladeIIPlayer::NotifyTagSpawn(class ABladeIIPlayer* OldRetiringPlayer)
 	//	}
 	//}
 
-#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2 // ±âº» Ä¡Æ®µé ´Ù½Ã ÅÂ¾î³ªµµ À¯Áö.. ¸Å¹ø ÃÄÁÖ·Á´Ï ºÒÆíÇÏ±º
+#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2 // æ‰å¤¯ æ‘¹é£˜ç”¸ ä¿ƒçŸ« æ€•ç»¢å”±æ¡£ èœ¡ç˜¤.. æ¦‚é”… åªšæ—å¦¨èª é˜‚ç¥ˆçªç„™
 	this->bCheatImmortalMode = OldRetiringPlayer->bCheatImmortalMode;
 	this->bCheatHeroMode = OldRetiringPlayer->bCheatHeroMode;
 #endif
@@ -3864,8 +3864,8 @@ void ABladeIIPlayer::OnSpawnEnd()
 void ABladeIIPlayer::NotifyBornAgain(class ABladeIIPlayer* PrevLife)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_NotifyBornAgain);
-	// ÀÌ°Ç Tag ¿Í ¸¶Âù°¡ÁöÀÇ UI ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ÀÇµµÇÑ °ÍÀÎµ¥, ¾ÆÁ÷ È®Á¤µÈ ¹Ù´Â ¾øÀ½. ÇâÈÄ Á¤ÇØÁö´Â ¹Ù¿¡ µû¶ó ÀÌ·¸°Ô °¡´øÁö, µ¶ÀÚÀû ±¸ÇöÀ» ÇÏ´øÁö.
-	// NotifyTagSpawn À» Á÷Á¢ ºÒ·¯ÁÖÁö ¾Ê°Ô µÇ¸é ±×ÂÊ¿¡ ±¸ÇöÇÑ °ÍµéÀ» ÇÊ¿ä¿¡ µû¶ó ÀÌÂÊ¿¡µµ
+	// ææ‰’ Tag å®¢ ä»˜è›®å•Šç˜¤ç‹¼ UI å±€èªçš‹æè®°é˜‘ ç‹¼æ¡£èŒ„ å·´ç‰¢å•, é…’æµ çŠ¬æ²¥ç­‰ å®˜ç»° ç»æ¾œ. æ°¢é¥¶ æ²¥ç§¦ç˜¤ç»° å®˜ä¿Š è¶æ‰¼ æçŠ¯éœ¸ å•Šå¸¦ç˜¤, åˆ€ç£Šåˆ© å¤‡æ³…é˜‘ çªå¸¦ç˜¤.
+	// NotifyTagSpawn é˜‘ æµç«‹ é˜‚çŸ¾æ—ç˜¤ è‡¼éœ¸ ç™»æ å¼Šç‡ä¿Š å¤‡æ³…èŒ„ å·´ç”¸é˜‘ é˜å¤¸ä¿Š è¶æ‰¼ æç‡ä¿Šæ¡£
 	NotifyTagSpawn(PrevLife);
 }
 
@@ -3873,7 +3873,7 @@ void ABladeIIPlayer::TakeOverAutoFromPredecessor(class ABladeIIPlayer* InPredece
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_TakeOverAutoFromPredecessor);
 	check(InPredecessor);
-	// ºÎÈ°, ÅÂ±× µîÀÇ »óÈ². ¿©±ä ·Î±òÇÃ·¹ÀÌ¾î »Ó ¾Æ´Ï¶ó ³×¹sÇÃ·¹ÀÌ¾îµµ µé¾î¿À¹Ç·Î GameMode ÂÊ Auto »óÅÂ¸¦ »ç¿ëÇÏ¸é ¾ÈµÊ.
+	// ä½•åŠ, æ€•å¼Š æ®¿ç‹¼ æƒ‘ç‚”. å’¯å˜ è‚ºå½¬æ•²é¥­æç»¢ æŒ¥ é…’èªæ‰¼ åŒ™ç®‚æ•²é¥­æç»¢æ¡£ ç”¸ç»¢å·éª¨è‚º GameMode ç‡ Auto æƒ‘æ€•ç”« è¤ä¾©çªæ æ•‘å‡³.
 	if (InPredecessor->IsInAutoPlay()) 
 	{
 		// Let the new player continue auto play with the same AutoAIController
@@ -3884,13 +3884,13 @@ void ABladeIIPlayer::TakeOverAutoFromPredecessor(class ABladeIIPlayer* InPredece
 EPCSpawnMotionState ABladeIIPlayer::GetSpawnMotionState()
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_GetSpawnMotionState);
-	//// ½ÇÁ¦ »óÅÂ º¯¼ö´Â Spawn Á÷ÈÄ Animation ¾÷µ¥ÀÌÆ® Å¸ÀÌ¹ÖÀ» °í·ÁÇÏ¿© Player Controller ÂÊ¿¡ ÀÖÀ½
+	//// è§’åŠ› æƒ‘æ€• å‡½èç»° Spawn æµé¥¶ Animation è¯€å•æé£˜ é¸¥ææ€ªé˜‘ ç»Šå¦¨çªå’¯ Player Controller ç‡ä¿Š ä¹æ¾œ
 	//ABladeIIPlayerController* B2PC = Cast<ABladeIIPlayerController>(Controller);
 	//if (B2PC == NULL)
 	//{
-	//	// ÀÌ°ÍÀÌ ºÒ¸®´Â ½ÃÁ¡ÀÌ spawn Ã³¸®¸¦ ÇÏ´Â µµÁßÀÌ¶ó ¹ÌÃ³ possess °¡ ¾ÈµÇ¾úÀ» ¼ö ÀÖÀ½. ¾îÂ¿ ¼ö ¾øÀÌ..
-	//	// GetNearestPlayerController ¸¦ ÇÏ¸é ÃÖ¼ÒÇÑ tag ³ª resurrect ½ÃÁ¡¿¡¼­ Á¦°ÅµÇ±â Á÷ÀüÀÇ ÀÌÀü ÇÃ·¹ÀÌ¾î¿¡ possess µÈ °ÍÀ» °¡Á®¿Ã °Í. (B2SkillRTManager ÂÊ Âü°í)
-	//	// ±×·¯³ª ¸¸ÀÏ ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ°¡ ¿©·µÀÎµ¥ ¸Ö¸® ¶³¾îÁø °÷¿¡ ºÎÈ°À» ÇØ¾ß ÇÏ´Â »óÈ² µîÀÌ ¿À¸é ´Ù½Ã »ı°¢ÇØ ºÁ¾ß ÇÔ.
+	//	// æå·´æ é˜‚åºœç»° çŸ«ç—¢æ spawn è´¸åºœç”« çªç»° æ¡£åææ‰¼ å›ºè´¸ possess å•Š æ•‘ç™»èŒé˜‘ è ä¹æ¾œ. ç»¢é©´ è ç»æ..
+	//	// GetNearestPlayerController ç”« çªæ å¼¥å®¶èŒ„ tag å”± resurrect çŸ«ç—¢ä¿Šè¾‘ åŠ›èŠ­ç™»æ‰ æµå‚ˆç‹¼ æå‚ˆ æ•²é¥­æç»¢ä¿Š possess ç­‰ å·´é˜‘ å•Šå»‰æ£µ å·´. (B2SkillRTManager ç‡ æ›¼ç»Š)
+	//	// å¼ŠçŸ¾å”± çˆ¶è€ æ•²é¥­æç»¢ æŸè…ç£å•Š å’¯è¿”ç‰¢å• é’¢åºœ å†»ç»¢æŸ³ é•‘ä¿Š ä½•åŠé˜‘ ç§¦å…· çªç»° æƒ‘ç‚” æ®¿æ å·æ ä¿ƒçŸ« ç§¯é˜¿ç§¦ æ¯«å…· çªƒ.
 	//	B2PC = Cast<ABladeIIPlayerController>(UGameplayStatics::GetNearestPlayerController(this, this->GetActorLocation()));
 	//}
 
@@ -3900,7 +3900,7 @@ EPCSpawnMotionState ABladeIIPlayer::GetSpawnMotionState()
 void ABladeIIPlayer::EndSpawnMotionState()
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_EndSpawnMotionState);
-//	// ½ÇÁ¦ »óÅÂ º¯¼ö´Â Spawn Á÷ÈÄ Animation ¾÷µ¥ÀÌÆ® Å¸ÀÌ¹ÖÀ» °í·ÁÇÏ¿© Player Controller ÂÊ¿¡ ÀÖÀ½
+//	// è§’åŠ› æƒ‘æ€• å‡½èç»° Spawn æµé¥¶ Animation è¯€å•æé£˜ é¸¥ææ€ªé˜‘ ç»Šå¦¨çªå’¯ Player Controller ç‡ä¿Š ä¹æ¾œ
 //	ABladeIIPlayerController* B2PC = Cast<ABladeIIPlayerController>(Controller);
 //	if (B2PC)
 //	{
@@ -3913,9 +3913,9 @@ void ABladeIIPlayer::EndSpawnMotionState()
 void ABladeIIPlayer::OnDeadAnimBegin()
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_OnDeadAnimBegin);
-	// È¦·Î ³²°ÜÁ® °íµ¶ÇÑ ÃÖÈÄ¸¦ ¸ÂÀº ÀÚÀÇ ¼¼·¹¸ğ´Ï. °íÅë°ú ¼öÄ¡·Î °¡µæÂù ÀÌ ½Ã°£ÀÌ Áö³ª°í ³ª¸é »õ·Î¿î ½ÃÀÛÀ» À§ÇÑ ºÎÈ° ¸Ş´º°¡ ¶ã °ÍÀÌ´Ù.
-	// OnDeath ¿¡ ÀÌ°É ºÎ¸£¸é ½ÇÁ¦ ¾Ö´Ï¸ŞÀÌ¼Ç »óÅÂ´Â ÀüÅõ ÁßÀÏ ¼ö ÀÖÀ¸¹Ç·Î Dead ¾Ö´Ï¸ŞÀÌ¼Ç¿¡ notify ¸¦ ÅëÇØ ºÎ¸£µµ·Ï ÇÔ.
-	//UGameplayStatics::SetGlobalTimeDilation(this, OnDeathTimeDilation); // ÀÌ°Ç ÀÏ´Ü »ç¿ë ¾ÈÇÔ.
+	// åœˆè‚º å·¢è´¥å»‰ ç»Šåˆ€èŒ„ å¼¥é¥¶ç”« å˜ç¯® ç£Šç‹¼ æŠ€é¥­è‘›èª. ç»Šçƒ¹è‹ èæ‘¹è‚º å•Šå«è›® æ çŸ«åŸƒæ ç˜¤å”±ç»Š å”±æ è´§è‚ºæ¬¾ çŸ«ç´¯é˜‘ å›°èŒ„ ä½•åŠ çš‹æ˜¥å•Š èº² å·´æä¿ƒ.
+	// OnDeath ä¿Š æå§ ä½•ç¦æ è§’åŠ› å±€èªçš‹æè®° æƒ‘æ€•ç»° å‚ˆæ§ åè€ è ä¹æ éª¨è‚º Dead å±€èªçš‹æè®°ä¿Š notify ç”« çƒ¹ç§¦ ä½•ç¦æ¡£åºŸ çªƒ.
+	//UGameplayStatics::SetGlobalTimeDilation(this, OnDeathTimeDilation); // ææ‰’ è€çªœ è¤ä¾© æ•‘çªƒ.
 	//GetWorldTimerManager().SetTimer(OnDeathTimeDilationTH, this, &ABladeIIPlayer::OnDeathTimeDilationTimerCB, OnDeathTimeDilationLength, false);
 	//APlayerController* PCont = Cast<APlayerController>(Controller);
 	//if (PCont){
@@ -3927,7 +3927,7 @@ void ABladeIIPlayer::OnDeadAnimBegin()
 void ABladeIIPlayer::SuckedDropItem(class AB2DropBase* InSuckedDrop)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_SuckedDropItem);
-	// Anything necessary. °¡´ÉÇÏ¸é °¢ ÇÏÀ§ Drop Å¬·¡½ºÀÇ OnPlayerSuckedMe ¿¡¼­ Ã³¸®.
+	// Anything necessary. å•Šç“·çªæ é˜¿ çªå›° Drop åŠªè´°èƒ¶ç‹¼ OnPlayerSuckedMe ä¿Šè¾‘ è´¸åºœ.
 }
 
 int32 ABladeIIPlayer::GetPlayerLevel()
@@ -3940,7 +3940,7 @@ int32 ABladeIIPlayer::GetPlayerLevel()
 void ABladeIIPlayer::SyncPCCharacterLevelFromExpManager()
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_SyncPCCharacterLevelFromExpManager);
-	// ÃÖ¼ÒÇÑ BeginPlay ½ÃÁ¡¿¡ ÀÌ°Ô ºÒ·Á¾ß ÇÔ. InitializeCombatStats ÀÌÀü¿¡
+	// å¼¥å®¶èŒ„ BeginPlay çŸ«ç—¢ä¿Š æéœ¸ é˜‚å¦¨å…· çªƒ. InitializeCombatStats æå‚ˆä¿Š
 	CharacterLevel = GetPlayerLevel();
 }
 
@@ -3950,7 +3950,7 @@ void ABladeIIPlayer::OnSomeMobTermination(ABladeIICharacter* InMobAboutToDestroy
 	if (QTEActor && QTEActor == InMobAboutToDestroy) 
 	{
 		//UE_LOG(LogBladeII, Warning, TEXT("Calling FinalKillQTETarget on QTE target Actor's termination. This is not a desired path."));
-		// QTE Å¸°Ù ¸÷ »ç¸Á Ã³¸®¸¦ ÀÌÂÊ¼­ ¸ÕÀú ÇØ ÁÖ´Â °Ô ÁÁÀºµ¥ QTE ¸÷ÀÇ DeadEnd °¡ ¸ÕÀú ¿À°í LifeSpan ¸¶Àú ´Ù ÇÑ »óÈ²ÀÌ »ı±â°ï ÇØ¼­.. ¾ÈÀü Â÷¿ø¿¡¼­ Ã³¸®
+		// QTE é¸¥ç™¾ å„ è¤å™¶ è´¸åºœç”« æç‡è¾‘ åˆšå† ç§¦ æ—ç»° éœ¸ äº®ç¯®å• QTE å„ç‹¼ DeadEnd å•Š åˆšå† å·ç»Š LifeSpan ä»˜å† ä¿ƒ èŒ„ æƒ‘ç‚”æ ç§¯æ‰å¸® ç§¦è¾‘.. æ•‘å‚ˆ ç’ç›”ä¿Šè¾‘ è´¸åºœ
 		FinalKillQTETarget();
 	}
 }
@@ -3960,9 +3960,9 @@ void ABladeIIPlayer::SignalStopAttackImmediate()
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_SignalStopAttackImmediate);
 	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIPlayer::SignalStopAttackImmediate"));
 
-	bStopAttackSignal = true; // ÀÌÈÄ AnimBP ¿¡¼­ Ã³¸®µÈ ÈÄ ¸®¼Â.
+	bStopAttackSignal = true; // æé¥¶ AnimBP ä¿Šè¾‘ è´¸åºœç­‰ é¥¶ åºœæ‚¸.
 
-	TryRestoreFromCameraDistZoomNS(); // CameraDistZoom ÀÌ µé¾î°¡°í ÀÖ´ø »óÈ²ÀÌ¶ó¸é ±×°Íµµ Áß´Ü.
+	TryRestoreFromCameraDistZoomNS(); // CameraDistZoom æ ç”¸ç»¢å•Šç»Š ä¹å¸¦ æƒ‘ç‚”ææ‰¼æ å¼Šå·´æ¡£ åçªœ.
 
 	StopRepeatingInput();
 }
@@ -3970,7 +3970,7 @@ void ABladeIIPlayer::SignalStopAttackImmediate()
 bool ABladeIIPlayer::ConsumeAndCheckStopAttackMotion()
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_ConsumeAndCheckStopAttackMotion);
-	// ÇÑ¹ø »ç¿ëÇÏ¸é ¶¯.
+	// èŒ„é”… è¤ä¾©çªæ åŠ¨.
 	bool bRetVal = bStopAttackSignal;
 	bStopAttackSignal = false;
 	return bRetVal;
@@ -3986,9 +3986,9 @@ float ABladeIIPlayer::GetDamageIncreaseRate() const
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_GetDamageIncreaseRate);
 	EPCClass CurrentPlayerClass = GetCurrentPlayerClass();
-	float Ret = Super::GetDamageIncreaseRate() + IncDamageValueByPassive; // °ø°İ »óÅÂ¿¡ ÀÇÁ¸ÇÏÁö ¾Ê´Â ±âº»ÀûÀÎ µ¥¹ÌÁö ¹× Áõ°¡ ¿É¼Ç ¼öÄ¡
+	float Ret = Super::GetDamageIncreaseRate() + IncDamageValueByPassive; // å‚æ‹œ æƒ‘æ€•ä¿Š ç‹¼ç²®çªç˜¤ è‡¼ç»° æ‰å¤¯åˆ©ç‰¢ å•å›ºç˜¤ æ£º åˆ˜å•Š å¯è®° èæ‘¹
 	
-	//// ÇöÀç ½ºÅ³¿¡ µû¶ó ¹İ¿µµÇ´Â Active ½ºÅ³ ¿É¼Ç µ¥¹ÌÁö Áõ°¡ ¼öÄ¡
+	//// æ³…çŠ èƒ¶æ‡¦ä¿Š è¶æ‰¼ é¦†åº·ç™»ç»° Active èƒ¶æ‡¦ å¯è®° å•å›ºç˜¤ åˆ˜å•Š èæ‘¹
 	//if (CachedSkillRTManager)
 	//{
 	//	Ret += IsCounterAttacking() ? CachedSkillRTManager->GetSkillDamageIncreaseRateByActive(EAttackState::ECS_Counter01) :
@@ -3999,7 +3999,7 @@ float ABladeIIPlayer::GetDamageIncreaseRate() const
 	//{
 	//	Ret += IncSkillDamageValueByPassive;
 
-	//	// ÀÌ°ÍµéÀº Æ¯Á¤ ½ºÅ³ ¹øÈ£¿¡ Àû¿ëµÇÁö¸¸ Active ¾Æ´Ñ Passive ¼º°İ..
+	//	// æå·´ç”¸ç¯® æ¼‚æ²¥ èƒ¶æ‡¦ é”…é¾‹ä¿Š åˆ©ä¾©ç™»ç˜¤çˆ¶ Active é…’å›± Passive å·±æ‹œ..
 	//	switch (GetAttackState())
 	//	{
 	//	case EAttackState::ECS_Skill01:
@@ -4019,7 +4019,7 @@ float ABladeIIPlayer::GetDamageIncreaseRate() const
 	//	}
 	//}
 	//else if(!IsCounterAttacking())
-	//{ // ÀÏ¹İ°ø°İ¿¡¸¸ Àû¿ëµÇ´Â µ¥¹ÌÁö Áõ°¡.
+	//{ // è€é¦†å‚æ‹œä¿Šçˆ¶ åˆ©ä¾©ç™»ç»° å•å›ºç˜¤ åˆ˜å•Š.
 	//	Ret += IncNormalDamageValueByPassive;
 	//}
 
@@ -4033,7 +4033,7 @@ float ABladeIIPlayer::GetDamageIncreaseRate() const
 float ABladeIIPlayer::GetBossDamageIncreaseRate() const
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_GetBossDamageIncreaseRate);
-	// Passive + AttackState ¿¡ µû¸¥ Active ¿É¼Ç ¼öÄ¡ ÇÕ.
+	// Passive + AttackState ä¿Š è¶å¼— Active å¯è®° èæ‘¹ é’¦.
 	//return IncDamageToBossValueByPassive + (CachedSkillRTManager ? CachedSkillRTManager->GetBossDamageIncreaseRateByActive(GetAttackState()) : 0.f);
 	return 0.0f;
 }
@@ -4106,7 +4106,7 @@ float ABladeIIPlayer::GetAttackDamageIncreaseRateByClass(EPCClass TargetClass) c
 float ABladeIIPlayer::GetReceiveDamageDecreaseRateByClass(EPCClass AttackerClass) const
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_GetReceiveDamageDecreaseRateByClass);
-	//return (AttackerClass != EPCClass::EPC_End) ? DecReceiveDamageByPassiveFromClass[PCClassToInt(AttackerClass)] : 1.0f; // Dec ¶ó ±âº»°ª 1.0
+	//return (AttackerClass != EPCClass::EPC_End) ? DecReceiveDamageByPassiveFromClass[PCClassToInt(AttackerClass)] : 1.0f; // Dec æ‰¼ æ‰å¤¯è”¼ 1.0
 	return 0.f;
 }
 
@@ -4147,7 +4147,7 @@ float ABladeIIPlayer::GetBonusTeamBuffRate(ETeamBuffType BuffType) const
 float ABladeIIPlayer::GetAdditionalCriticalRateByComboNum() const
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_GetAdditionalCriticalRateByComboNum);
-	// GetCriticalRate ÀÇ ÀÏºÎÀÎµ¥ ÀÌ ¼öÄ¡´Â Æ¯º°È÷ UI ÂÊ¿¡µµ »Ñ·ÁÁÖ¹Ç·Î µû·Î »­
+	// GetCriticalRate ç‹¼ è€ä½•ç‰¢å• æ èæ‘¹ç»° æ¼‚å–Šæ´’ UI ç‡ä¿Šæ¡£ è°å¦¨æ—éª¨è‚º è¶è‚º ç”»
 	return 0.01f * FMath::Min( FMath::Max(0, CurrentComboNum -1) / 10, 3);
 }
 
@@ -4155,13 +4155,13 @@ float ABladeIIPlayer::GetCriticalRate() const
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_GetCriticalRate);
 	//////////////////////////////////////////////////
-	// ! ÀüÅõ ¿É¼Ç ¼öÄ¡ Àû¿ë ½Ã Inc** ´Â ´õÇÏ°í Dec** ´Â °öÇÔ. GetEffectiveValueForOptionApplyType Âü°í.
+	// ! å‚ˆæ§ å¯è®° èæ‘¹ åˆ©ä¾© çŸ« Inc** ç»° æ­¹çªç»Š Dec** ç»° èšŒçªƒ. GetEffectiveValueForOptionApplyType æ›¼ç»Š.
 
 	float CriticalRate = Super::GetCriticalRate();
 
 	//CriticalRate += GetAdditionalCriticalRateByComboNum()
-	//	+ IncCriticalRateValueByPassive // ItemOption ¹× passive SkillOption ¿¡ ÀÇÇÑ ¼öÄ¡
-	//	+ (CachedSkillRTManager ? CachedSkillRTManager->GetCriticalRateByActive(GetAttackState()) : 0.f); // ÇöÀç AttackState ¿¡ µû¸¥ active skill ¿É¼Ç ¼öÄ¡.
+	//	+ IncCriticalRateValueByPassive // ItemOption æ£º passive SkillOption ä¿Š ç‹¼èŒ„ èæ‘¹
+	//	+ (CachedSkillRTManager ? CachedSkillRTManager->GetCriticalRateByActive(GetAttackState()) : 0.f); // æ³…çŠ AttackState ä¿Š è¶å¼— active skill å¯è®° èæ‘¹.
 	//
 	return CriticalRate;
 }
@@ -4173,8 +4173,8 @@ float ABladeIIPlayer::GetCriticalDamageRate() const
 
 	float CriticalDamageRate = Super::GetCriticalDamageRate();
 
-	//CriticalDamageRate += IncCriticalDamageValueByPassive // ItemOption ¹× passive SkillOption ¿¡ ÀÇÇÑ ¼öÄ¡
-	//	+ (CachedSkillRTManager ? CachedSkillRTManager->GetCriticalDamageRateByActive(GetAttackState()) : 0.f); // ÇöÀç AttackState ¿¡ µû¸¥ active skill ¿É¼Ç ¼öÄ¡.
+	//CriticalDamageRate += IncCriticalDamageValueByPassive // ItemOption æ£º passive SkillOption ä¿Š ç‹¼èŒ„ èæ‘¹
+	//	+ (CachedSkillRTManager ? CachedSkillRTManager->GetCriticalDamageRateByActive(GetAttackState()) : 0.f); // æ³…çŠ AttackState ä¿Š è¶å¼— active skill å¯è®° èæ‘¹.
 
 // 	if (CurrentTeamBuffType & static_cast<uint8>(ETeamBuffType::ETBT_IncreaseCriticalDamage))
 // 	{
@@ -4236,7 +4236,7 @@ float ABladeIIPlayer::GetStaticOptionAppliedWalkSpeed() const
 float ABladeIIPlayer::GetOptionStatusValue(EItemOption OptionType) const
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_GetOptionStatusValue);
-	// °¡±ŞÀû SkillOption °ú ÅëÇÕµÈ GetUnitedOptionStatusValue ÀÇ »ç¿ëÀ» °í·Á. Â÷Â÷ ÀüÈ¯..
+	// å•Šé­åˆ© SkillOption è‹ çƒ¹é’¦ç­‰ GetUnitedOptionStatusValue ç‹¼ è¤ä¾©é˜‘ ç»Šå¦¨. ç’ç’ å‚ˆåˆ¸..
 	//return CharacterDataStore->GetOptionStatusValue(GetCurrentPlayerClass(), OptionType);
 	return 0.0f;
 }
@@ -4244,7 +4244,7 @@ float ABladeIIPlayer::GetOptionStatusValue(EItemOption OptionType) const
 float ABladeIIPlayer::GetUnitedOptionStatusValue(EUnitedCombatOptions OptionType) const
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_GetUnitedOptionStatusValue);
-	// °¡±ŞÀû ÀÌ ÇÔ¼öÀÇ È£ÃâÀº Ä³¸¯ÅÍ spawn ÃÊ±âÈ­ ½Ã¿¡ ÇÑÁ¤À».. ÇÊ¿äÇÑ °ªÀº Ä³½ÌÇØ ³õ°í ¾²´Â °É ±ÇÀå.
+	// å•Šé­åˆ© æ çªƒèç‹¼ é¾‹å…ç¯® æŸè…ç£ spawn æª¬æ‰æ‹³ çŸ«ä¿Š èŒ„æ²¥é˜‘.. é˜å¤¸èŒ„ è”¼ç¯® æŸæ•™ç§¦ åˆç»Š é™ç»° å§ é¼»å˜.
 	//return CombatStatEval::GetUnitedOptionStatusValue(GetCurrentPlayerClass(), OptionType, CharacterDataStore);
 	return 0.0f;
 }
@@ -4293,8 +4293,8 @@ void ABladeIIPlayer::TotalApplyAnimRateScale()
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_TotalApplyAnimRateScale);
 	if (GetMesh())
 	{
-		GetMesh()->GlobalAnimRateScale = (bReachedAtDeadEnd ? 0.0f : ( // DeadEnd ¿¡¼­ÀÇ Á¤Áö»óÅÂ
-			IsAttacking() ? (1.0f + AdditionalAttackSpeedRatebyPassive) : // °ø°İ »óÅÂ¿¡¼­¸¸ ¿É¼Ç Àû¿ëµÈ °ªÀ¸·Î. Active ¿É¼ÇÀÌ³ª Buff ¿µÇâµµ ¿©±â¼­ Àû¿ëÇÏ¸é µÉ µí..
+		GetMesh()->GlobalAnimRateScale = (bReachedAtDeadEnd ? 0.0f : ( // DeadEnd ä¿Šè¾‘ç‹¼ æ²¥ç˜¤æƒ‘æ€•
+			IsAttacking() ? (1.0f + AdditionalAttackSpeedRatebyPassive) : // å‚æ‹œ æƒ‘æ€•ä¿Šè¾‘çˆ¶ å¯è®° åˆ©ä¾©ç­‰ è”¼æ è‚º. Active å¯è®°æå”± Buff åº·æ°¢æ¡£ å’¯æ‰è¾‘ åˆ©ä¾©çªæ çª æ·€..
 				1.0f
 			));
 	}
@@ -4309,12 +4309,12 @@ void ABladeIIPlayer::OnDeathTimeDilationTimerCB()
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_OnDeathTimeDilationTimerCB);
 	GetWorldTimerManager().ClearTimer(OnDeathTimeDilationTH);
-	UGameplayStatics::SetGlobalTimeDilation(this, 1.0f); // ±»ÀÌ OnDeathTimeDilation ÁøÀÔ ÀÌÀü °ªÀ» Ä³½ÌÇØ ³õÀ» ÇÊ¿ä´Â ¾øÀ» °Í °°´Ù..
+	UGameplayStatics::SetGlobalTimeDilation(this, 1.0f); // è¢«æ OnDeathTimeDilation æŸ³æ¶ æå‚ˆ è”¼é˜‘ æŸæ•™ç§¦ åˆé˜‘ é˜å¤¸ç»° ç»é˜‘ å·´ éä¿ƒ..
 }
 
 void ABladeIIPlayer::ReserveQTEActorReportMyDeathToBirthplace()
 {
-	// Å¾½Â ¿Ï·á½ÃÁ¡¿¡¼­ ½ºÆùÇ®ÂÊ¿£ Á×À½À¸·Î Ã³¸®
+	// å•ªé“° è‚¯ä¸°çŸ«ç—¢ä¿Šè¾‘ èƒ¶è¿„é’±ç‡æµš ç£·æ¾œæ è‚º è´¸åºœ
 	QTEActor->ConditionalReportMyDeathToBirthplace();
 }
 
@@ -4327,18 +4327,18 @@ void ABladeIIPlayer::OnQTEMountBegin()
 	if (!pQTETarget)
 		return;
 	
-	// Å»°Í Å¸´Âµ¿¾È Äİ¸®Àü¹Ú½º°¡ »ç¶óÁ® EndActiveCamera°¡ È£ÃâµÇ°í ¿ùµåÄ«¸Ş¶ó·Î º¯°æµÊ ±×·¡¼­ °©ÀÚ±â Ä«¸Ş¶ó°¡ ¹Ù²î´Â Çö»ó ¸·±â
+	// å‘•å·´ é¸¥ç»°æ‚¼æ•‘ å¦®åºœå‚ˆå† èƒ¶å•Š è¤æ‰¼å»‰ EndActiveCameraå•Š é¾‹å…ç™»ç»Š å²¿é›å¢¨çš‹æ‰¼è‚º å‡½ç‰ˆå‡³ å¼Šè´°è¾‘ ç™Œç£Šæ‰ å¢¨çš‹æ‰¼å•Š å®˜å·®ç»° æ³…æƒ‘ é˜œæ‰
 	GetCapsuleComponent()->SetCollisionResponseToChannel(ECollisionChannel::ECC_Vehicle, ECollisionResponse::ECR_Overlap);
 	FloorRingPSC->SetHiddenInGame(true);
 
-	// Å¸±â ½ÃÀÛÇßÀ¸¸é QTE´ë±â Á¾·áÄİ¹é Ãë¼Ò.
+	// é¸¥æ‰ çŸ«ç´¯æ²æ æ QTEæªæ‰ è¾†ä¸°å¦®å½’ ç§’å®¶.
 	pQTETarget->CancleQTEEnableEndCB();	
 }
 
 void ABladeIIPlayer::OnQTEMountTargetEnd(const FTransform& QTETransform)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_OnQTEMountTargetEnd);
-	// ¿©±â¼­ StopQTEMount ÇÑ ÈÄ¿¡ mount target ÀÇ AnimNotify ¸¦ ÅëÇØ ¿À´Â °Å.
+	// å’¯æ‰è¾‘ StopQTEMount èŒ„ é¥¶ä¿Š mount target ç‹¼ AnimNotify ç”« çƒ¹ç§¦ å·ç»° èŠ­.
 	// Changed to called in StopQTEMount
 	FVector NewLocation(QTETransform.GetLocation().X, QTETransform.GetLocation().Y, QTEActor->GetMovementComponent()->GetActorFeetLocation().Z + GetCapsuleComponent()->GetScaledCapsuleHalfHeight());
 	GetMesh()->SetRelativeLocationAndRotation(FVector(0.f, 0.f, -GetCapsuleComponent()->GetScaledCapsuleHalfHeight()), FRotator::ZeroRotator);
@@ -4375,7 +4375,7 @@ void ABladeIIPlayer::StopQTEMount()
 	//// SetActorEnableCollision(true);
 	//GetCapsuleComponent()->SetCollisionResponseToChannel(ECollisionChannel::ECC_Vehicle, ECollisionResponse::ECR_Block);
 
-	//// UI¿µÇâÀº ·ÎÄÃÇÃ·¹ÀÌ¾î¸¸
+	//// UIåº·æ°¢ç¯® è‚ºæ‹¿æ•²é¥­æç»¢çˆ¶
 	//if (IsLocalPlayer())
 	//{
 	//	auto* DocBattle = GetDocBattle();
@@ -4390,7 +4390,7 @@ void ABladeIIPlayer::StopQTEMount()
 void ABladeIIPlayer::CountQTEMountTime(float InDeltaSecond)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_CountQTEMountTime);
-	if (QTEMountRemainingTime <= 0.0f) // StopQTEMount ÀÌÈÄ¿¡µµ ¿©±â·Î µé¾î¿À´Â ÄÉÀÌ½º°¡ ÀÖÀ½. ¿©±â¼­ Â¥¸¥´Ù.
+	if (QTEMountRemainingTime <= 0.0f) // StopQTEMount æé¥¶ä¿Šæ¡£ å’¯æ‰è‚º ç”¸ç»¢å·ç»° çº³æèƒ¶å•Š ä¹æ¾œ. å’¯æ‰è¾‘ æ¥¼å¼—ä¿ƒ.
 		return;
 
 	checkSlow(IsInQTEState() && QTEType == EQTEType::EQT_Mount);
@@ -4405,7 +4405,7 @@ void ABladeIIPlayer::CountQTEMountTime(float InDeltaSecond)
 
 	//if (QTEMountRemainingTime <= 0.0f) // Playing time is over.
 	//{
-	//	StopQTEMount(); // ÀÌÀü¿¡ Å¸ÀÌ¸Ó Äİ¹éÀÌ¾úÀ½. ¿©Æ° ÀÌ°É·ç ³¡³½´Ù.
+	//	StopQTEMount(); // æå‚ˆä¿Š é¸¥æèµ£ å¦®å½’æèŒæ¾œ. å’¯ç“¢ æå§é£ åœºè¾°ä¿ƒ.
 	//}
 }
 
@@ -4414,15 +4414,15 @@ void ABladeIIPlayer::SetupDecalCompForLeftShadowCommon(class UDecalComponent* In
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_SetupDecalCompForLeftShadowCommon);
 	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIPlayer::SetupDecalCompForLeftShadowCommon"));
 
-	// ¿ø·¡ BladeIIPlayer ÀÚ½ÅÀÌ¶ó¸é InDecalCompToUse ´Â LeftFootShadow ÀÏ °ÍÀÓ. SetupControlledMatineePuppet ±â´ÉÀ» À§ÇØ ¸Å°³º¯¼ö·Î ¹Ş´Â´Ù. 
-	// ¿©±â¼­ ÄÄÆ÷³ÍÆ® register ±îÁö ÇÏÁö´Â ¾Ê´Â´Ù.
+	// ç›”è´° BladeIIPlayer ç£Šè„šææ‰¼æ InDecalCompToUse ç»° LeftFootShadow è€ å·´çƒ™. SetupControlledMatineePuppet æ‰ç“·é˜‘ å›°ç§¦ æ¦‚ä¿ºå‡½èè‚º ç½ç»°ä¿ƒ. 
+	// å’¯æ‰è¾‘ å“ªå™¨æƒ©é£˜ register é³–ç˜¤ çªç˜¤ç»° è‡¼ç»°ä¿ƒ.
 	if (InDecalCompToUse && AttachParent)
 	{
 		//InDecalCompToUse->SetHiddenInGame(false);
 		InDecalCompToUse->SetRelativeScale3D(FVector(ShadowMaxDistance, ShadowSizeFoot, ShadowSizeFoot));
 
 		InDecalCompToUse->DetachFromComponent(FDetachmentTransformRules(EDetachmentRule::KeepRelative, true));
-		InDecalCompToUse->AttachToComponent(AttachParent, FAttachmentTransformRules(EAttachmentRule::KeepRelative, false), B2PLAYER_SHADOW_SOCKET_NAME_LF); // Àü¿ë socket ÀÌ ÀÖÀ½.
+		InDecalCompToUse->AttachToComponent(AttachParent, FAttachmentTransformRules(EAttachmentRule::KeepRelative, false), B2PLAYER_SHADOW_SOCKET_NAME_LF); // å‚ˆä¾© socket æ ä¹æ¾œ.
 	}
 }
 
@@ -4431,8 +4431,8 @@ void ABladeIIPlayer::SetupDecalCompForRightShadowCommon(class UDecalComponent* I
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_SetupDecalCompForRightShadowCommon);
 	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIPlayer::SetupDecalCompForRightShadowCommon"));
 
-	// ¿ø·¡ BladeIIPlayer ÀÚ½ÅÀÌ¶ó¸é InDecalCompToUse ´Â RightFootShadow ÀÏ °ÍÀÓ. SetupControlledMatineePuppet ±â´ÉÀ» À§ÇØ ¸Å°³º¯¼ö·Î ¹Ş´Â´Ù. 
-	// ¿©±â¼­ ÄÄÆ÷³ÍÆ® register ±îÁö ÇÏÁö´Â ¾Ê´Â´Ù.
+	// ç›”è´° BladeIIPlayer ç£Šè„šææ‰¼æ InDecalCompToUse ç»° RightFootShadow è€ å·´çƒ™. SetupControlledMatineePuppet æ‰ç“·é˜‘ å›°ç§¦ æ¦‚ä¿ºå‡½èè‚º ç½ç»°ä¿ƒ. 
+	// å’¯æ‰è¾‘ å“ªå™¨æƒ©é£˜ register é³–ç˜¤ çªç˜¤ç»° è‡¼ç»°ä¿ƒ.
 
 	if (InDecalCompToUse && AttachParent)
 	{
@@ -4440,7 +4440,7 @@ void ABladeIIPlayer::SetupDecalCompForRightShadowCommon(class UDecalComponent* I
 		InDecalCompToUse->SetRelativeScale3D(FVector(ShadowMaxDistance, ShadowSizeFoot, ShadowSizeFoot));
 
 		InDecalCompToUse->DetachFromComponent(FDetachmentTransformRules(EDetachmentRule::KeepRelative, true));
-		InDecalCompToUse->AttachToComponent(AttachParent, FAttachmentTransformRules(EAttachmentRule::KeepRelative, false), B2PLAYER_SHADOW_SOCKET_NAME_RF); // Àü¿ë socket ÀÌ ÀÖÀ½.
+		InDecalCompToUse->AttachToComponent(AttachParent, FAttachmentTransformRules(EAttachmentRule::KeepRelative, false), B2PLAYER_SHADOW_SOCKET_NAME_RF); // å‚ˆä¾© socket æ ä¹æ¾œ.
 	}
 }
 
@@ -4467,7 +4467,7 @@ void ABladeIIPlayer::UpdateTargetObject()
 	//	{
 	//		if (GetWorld()->GetNavigationSystem()->GetPathLength(GetActorLocation(), ThisOne->GetActorLocation(), CurrDistSQ) == ENavigationQueryResult::Success)
 	//		{
-	//			if (/*CurrDistSQ < 500 && Å¸°ÙÆÃ Á¦ÇÑ°Å¸®*/CurrDistSQ < ClosestDistanceSQ)
+	//			if (/*CurrDistSQ < 500 && é¸¥ç™¾æ³¼ åŠ›èŒ„èŠ­åºœ*/CurrDistSQ < ClosestDistanceSQ)
 	//			{
 	//				ClosestDistanceSQ = CurrDistSQ;
 	//				SelectedOne = ThisOne;
@@ -4536,9 +4536,9 @@ float ABladeIIPlayer::UpdateTarget(bool bInputGuided, bool bOnlyQTEEnabled /* = 
 	//		CandidateDist = Diff.Size2D();
 	//	}
 
-	//	if (/*CandidateDist < 500 && Å¸°ÙÆÃ Á¦ÇÑ°Å¸®*/CandidateDist < TargetDist)
+	//	if (/*CandidateDist < 500 && é¸¥ç™¾æ³¼ åŠ›èŒ„èŠ­åºœ*/CandidateDist < TargetDist)
 	//	{
-	//		/* »ç¹°À» ¶Õ°í °ø°İÇÒ ¼ö ÀÖ´Ù°í ÇØ¼­ ¾Æ·¡ ÄÚµå°¡ ÇÊ¿ä¾ø¾îÁü..
+	//		/* è¤æ‹±é˜‘ å¢©ç»Š å‚æ‹œä¸” è ä¹ä¿ƒç»Š ç§¦è¾‘ é…’è´° å†…é›å•Š é˜å¤¸ç»ç»¢å’™..
 	//		// Line Trace for visibility check
 	//		FVector ViewLoc = GetCapsuleComponent() ? GetActorLocation() + FVector(0.f, 0.f, GetCapsuleComponent()->GetScaledCapsuleHalfHeight()) : GetActorLocation();
 	//		FVector TargetLoc = ch->GetCapsuleComponent() ? ch->GetActorLocation() + FVector(0.f, 0.f, ch->GetCapsuleComponent()->GetScaledCapsuleHalfHeight()) : ch->GetActorLocation();
@@ -4579,15 +4579,15 @@ float ABladeIIPlayer::UpdateTarget(bool bInputGuided, bool bOnlyQTEEnabled /* = 
 
 bool ABladeIIPlayer::CanRotateToTarget()
 {
-	// 1. ±Ùº»ÀûÀ¸·Î Rotate°¡ ºÒ°¡´ÉÇÒ¶§
+	// 1. è¾Ÿå¤¯åˆ©æ è‚º Rotateå•Š é˜‚å•Šç“·ä¸”é”­
 	if (IsStunned() || IsAlive() == false || CustomTimeDilation <= 0.f)
 		return false;
 
-	// 2. ÇÊ¼ö °ª ¼ÂÆÃÀÌ ¾ÈµÇ¾î ÀÖÀ»¶§
+	// 2. é˜è è”¼ æ‚¸æ³¼æ æ•‘ç™»ç»¢ ä¹é˜‘é”­
 	if (BP_ConfigMinDashDistance <= 0.f || BP_ConfigMaxDashDistance <= 0.f)
 		return false;
 
-	// 3. ÀÏ¹İ QTE ÁßÀÏ¶§ (¸¶¿îÆ®´Â Rotating ÇØ¾ßÇÏ¹Ç·Î Á¦¿Ü)
+	// 3. è€é¦† QTE åè€é”­ (ä»˜æ¬¾é£˜ç»° Rotating ç§¦å…·çªéª¨è‚º åŠ›å¯‡)
 	if (IsInQTEState() && IsQTEMounting() == false)
 		return false;
 
@@ -4609,7 +4609,7 @@ void ABladeIIPlayer::RotateToTarget(float DeltaTime, bool ForceRotateForLowFPS)
 
 	//FRotator CurrentRotation = IsQTEMounting() ? QTEActor->GetActorRotation() : GetActorRotation();
 	//float	TargetYaw = CurrentRotation.Yaw;
-	//// poikl2212 ÀÔ·ÂÀÖÀ»¶§¸¸ ÀÔ·Â¹æÇâÀ¸·Î ¼³Á¤. ±âº»°ªÀº ÇöÀç ·ÎÅ×ÀÌ¼ÇÀ¸·ç
+	//// poikl2212 æ¶ä»¿ä¹é˜‘é”­çˆ¶ æ¶ä»¿è§„æ°¢æ è‚º æ±²æ²¥. æ‰å¤¯è”¼ç¯® æ³…çŠ è‚ºæŠ›æè®°æ é£
 	//if (bInputValid)
 	//	TargetYaw = GetLastMovementInputVector().Rotation().Yaw;
 
@@ -4625,7 +4625,7 @@ void ABladeIIPlayer::RotateToTarget(float DeltaTime, bool ForceRotateForLowFPS)
 	//// Find Target Direction (only non normal targeting mode for now)
 	//bool bNeedUpdateTargetDir = GetSignalAttack() && GetAttackState() == EAttackState::ECS_None && TargetingMode != ETargetingMode::ETM_Normal;
 	//
-	////Qte ÁßÀÌ¸é ¹«½Ã..
+	////Qte åææ å…¬çŸ«..
 	//if (!IsQTEMounting() && !bInputValid)
 	//{
 	//	if (CurrentMoveAttackState != EAutoMoveAttackState::AttackTarget)
@@ -4730,7 +4730,7 @@ void ABladeIIPlayer::RotateToTarget(float DeltaTime, bool ForceRotateForLowFPS)
 	//}
 }
 
-// ·ÎÁ÷¾øÀ½ ¹ŞÀº Å¸°ÙÂÊÀ¸·Î È¸Àü
+// è‚ºæµç»æ¾œ ç½ç¯® é¸¥ç™¾ç‡æ è‚º é›€å‚ˆ
 void ABladeIIPlayer::RotateToTarget(class AActor* InTarget)
 {
 	FVector TargetDir = InTarget->GetActorLocation() - GetActorLocation();
@@ -4833,7 +4833,7 @@ void ABladeIIPlayer::HandleComboEndForQTE()
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(ABladeIIPlayer_HandleComboEndForQTE);
 	if (IsInQTEState())
-	{ // QTE »óÅÂ Á¾·á.. 
+	{ // QTE æƒ‘æ€• è¾†ä¸°.. 
 		SetQTEStateFlag(false);
 		bQTERun = false;
 		bPendingQTENext = false;
@@ -4849,11 +4849,11 @@ void ABladeIIPlayer::HandleComboEndForQTE()
 			FloorRingPSC->SetHiddenInGame(false);
 		}
 		if (!LightComponent->bAffectsWorld && !LightComponent->IsRegistered())
-		{ // QTE Mount ½Ã Light ¸¦ ²ô´ø ÀûÀÌ ÀÖ¾ú´Âµ¥ ÀÌÁ¦ ±×·² ÀÏ ¾øÀ¸¸é ÇÊ¿ä¾ø°ÚÁö..
+		{ // QTE Mount çŸ« Light ç”« æºå¸¦ åˆ©æ ä¹èŒç»°å• æåŠ› å¼Šå‡¡ è€ ç»æ æ é˜å¤¸ç»æ‘†ç˜¤..
 			FormalSetPointLightOn(true);
 		}
 
-		// QTEÁ¾·á Äİ¹éµé
+		// QTEè¾†ä¸° å¦®å½’ç”¸
 		for (FQTEOnEnd& QTEOnEndCallBack : arQTEOnEndCallBack)
 		{
 			if (QTEOnEndCallBack.ExecuteIfBound())
@@ -4861,9 +4861,9 @@ void ABladeIIPlayer::HandleComboEndForQTE()
 		}
 
 		arQTEOnEndCallBack.Empty();
-		// QTEÁ¾·á Äİ¹éµé ³¡
+		// QTEè¾†ä¸° å¦®å½’ç”¸ åœº
 
-		ResetAllQTEUIDocState(); // ÀÏ¹İÀûÀÎ »óÈ²ÀÌ¸é ÀÌ ½ÃÁ¡¿¡¼­ UIDoc ¿¡µµ ´Ù ¹İ¿µÀÌ µÇ¾î¾ß ÇÏÁö¸¸ °£È¤ ¾È ±×·² ¶§°¡ ÀÖ´Â °Å °°¾Æ¼­ È®½ÇÈ÷ ¸®¼Â.
+		ResetAllQTEUIDocState(); // è€é¦†åˆ©ç‰¢ æƒ‘ç‚”ææ æ çŸ«ç—¢ä¿Šè¾‘ UIDoc ä¿Šæ¡£ ä¿ƒ é¦†åº·æ ç™»ç»¢å…· çªç˜¤çˆ¶ åŸƒè¶£ æ•‘ å¼Šå‡¡ é”­å•Š ä¹ç»° èŠ­ éé…’è¾‘ çŠ¬è§’æ´’ åºœæ‚¸.
 	}
 }
 
@@ -4871,14 +4871,14 @@ void ABladeIIPlayer::CheckSendKakaoActionLog_Death()
 {
 	//EB2GameMode CurrentGameModeType = GetGameMode()->GetB2GameModeType();
 	
-	// ÆÀ´ëÀüÀº ¹«Á¶°Çº¸³¿, 1:1, Á¡·ÉÀüÀº ·ÎÄÃÇÃ·¹ÀÌ¾î¸¸ º¸³¿
+	// è¯„æªå‚ˆç¯® å…¬ç‚¼æ‰’ç„Šæ™¨, 1:1, ç—¢é£å‚ˆç¯® è‚ºæ‹¿æ•²é¥­æç»¢çˆ¶ ç„Šæ™¨
 	//if ((CurrentGameModeType == EB2GameMode::PVP_Team && GetIsLocalPlayerTeam())
 	//	|| (CurrentGameModeType == EB2GameMode::PVP_Tag && IsLocalPlayer())
 	//	|| (CurrentGameModeType == EB2GameMode::Control && IsLocalPlayer())
 	//	)
 	//{
 	//	//////////////////////////////////////////////////////////////////
-	//	//¾×¼Ç ÁöÇ¥ ·Î±× (ÇÃ·¹ÀÌ¾î Á×À½)
+	//	//å’€è®° ç˜¤é’ è‚ºå¼Š (æ•²é¥­æç»¢ ç£·æ¾œ)
 	//	B2ActionLogSender Sender;
 	//	Sender.setCategory(FString("PLAY"))
 	//		.setAction(FString("DEATH"))
@@ -4892,14 +4892,14 @@ void ABladeIIPlayer::CheckSendKakaoActionLog_Kill()
 {
 	//EB2GameMode CurrentGameModeType = GetGameMode()->GetB2GameModeType();
 
-	//// ÆÀ´ëÀüÀº ¹«Á¶°Çº¸³¿, 1:1, Á¡·ÉÀüÀº ·ÎÄÃÇÃ·¹ÀÌ¾î¸¸ º¸³¿
+	//// è¯„æªå‚ˆç¯® å…¬ç‚¼æ‰’ç„Šæ™¨, 1:1, ç—¢é£å‚ˆç¯® è‚ºæ‹¿æ•²é¥­æç»¢çˆ¶ ç„Šæ™¨
 	//if ((CurrentGameModeType == EB2GameMode::PVP_Team && GetIsLocalPlayerTeam())
 	//	|| (CurrentGameModeType == EB2GameMode::PVP_Tag && IsLocalPlayer())
 	//	|| (CurrentGameModeType == EB2GameMode::Control && IsLocalPlayer())
 	//	)
 	//{
 	//	//////////////////////////////////////////////////////////////////
-	//	//¾×¼Ç ÁöÇ¥ ·Î±× (ÇÃ·¹ÀÌ¾î Å³)
+	//	//å’€è®° ç˜¤é’ è‚ºå¼Š (æ•²é¥­æç»¢ æ‡¦)
 	//	B2ActionLogSender Sender;
 	//	Sender.setCategory(FString("PLAY"))
 	//		.setAction(FString("KILL"))
@@ -5155,7 +5155,7 @@ void ABladeIIPlayer::TryRestoreFromCameraDistZoomNS(bool bForceRestore)
 	//		B2WS->ApplyDefaultPlayerCameraSetting(MyB2PC, 0.1f, VTBlend_Linear, true);
 	//	}
 	//	else
-	//	{// ÀÌ°Íµµ Àú°Íµµ ¾ÈµÇ´Â °æ¿ì¸¸ Ä³½ÌÇØ ³õÀº °É »ç¿ë.
+	//	{// æå·´æ¡£ å†å·´æ¡£ æ•‘ç™»ç»° ç‰ˆå¿«çˆ¶ æŸæ•™ç§¦ åˆç¯® å§ è¤ä¾©.
  //			CameraBoom->SetRelativeRotation(this->CachedOriginalCamBoomRelativeRotation);
  //			CameraBoom->SetRelativeLocation(this->CachedOriginalCamBoomRelativeLocation);
 	//		CameraLengthValueForBlending.TargetArmLength = this->CachedOriginalTargetArmLength;
@@ -5211,9 +5211,9 @@ void ABladeIIPlayer::AffectToAttacker(ABladeIICharacter* Victim, float ActualDam
 
 	if (GetAbsorbHPAmountRateOnAttack() > 0.0f)
 	{
-		if (FMath::FRand() < GetProbableHPAbsorptionProbability())// ¿©±â È®·üÀº °íÁ¤µÈ °ÍÀ¸·Î ¿É¼Ç ¼öÄ¡´Â È¸º¹·®ÀÌÁö È®·üÀÌ ¾Æ´Ô.
+		if (FMath::FRand() < GetProbableHPAbsorptionProbability())// å’¯æ‰ çŠ¬ä¼ç¯® ç»Šæ²¥ç­‰ å·´æ è‚º å¯è®° èæ‘¹ç»° é›€æ±—æ¨Šæç˜¤ çŠ¬ä¼æ é…’ä¸›.
 		{
-			  // GetUnitedOptionStatusValue ¿¡¼­ ÆÛ¼¾Æ®¸¦ 0.01 ½ºÄÉÀÏÇÑ °ªÀ» ÁÙ °ÍÀÎµ¥ HealingHPByPercent ´Â ÆÛ¼¾Æ®°ªÀ» ¹ŞÀ¸¹Ç·Î ´Ù½Ã 100 °öÇÔ.
+			  // GetUnitedOptionStatusValue ä¿Šè¾‘ æ¬ºå­£é£˜ç”« 0.01 èƒ¶çº³è€èŒ„ è”¼é˜‘ ä¸´ å·´ç‰¢å• HealingHPByPercent ç»° æ¬ºå­£é£˜è”¼é˜‘ ç½æ éª¨è‚º ä¿ƒçŸ« 100 èšŒçªƒ.
 			  HealingHPByPercent(GetAbsorbHPAmountRateOnAttack() * 100.0f, true, true);
 		}
 	}
@@ -5225,9 +5225,9 @@ void ABladeIIPlayer::AffectToAttackerAfterVictimDie(ABladeIICharacter* Victim, f
 
 	if (GetHealHPAmountRateOnKill() > 0.0f)
 	{
-		if (FMath::FRand() < GetProbableRecoverHPProbability())// ¿©±â È®·üÀº °íÁ¤µÈ °ÍÀ¸·Î ¿É¼Ç ¼öÄ¡´Â È¸º¹·®ÀÌÁö È®·üÀÌ ¾Æ´Ô.
+		if (FMath::FRand() < GetProbableRecoverHPProbability())// å’¯æ‰ çŠ¬ä¼ç¯® ç»Šæ²¥ç­‰ å·´æ è‚º å¯è®° èæ‘¹ç»° é›€æ±—æ¨Šæç˜¤ çŠ¬ä¼æ é…’ä¸›.
 		{
-			// GetUnitedOptionStatusValue ¿¡¼­ ÆÛ¼¾Æ®¸¦ 0.01 ½ºÄÉÀÏÇÑ °ªÀ» ÁÙ °ÍÀÎµ¥ HealingHPByPercent ´Â ÆÛ¼¾Æ®°ªÀ» ¹ŞÀ¸¹Ç·Î ´Ù½Ã 100 °öÇÔ.
+			// GetUnitedOptionStatusValue ä¿Šè¾‘ æ¬ºå­£é£˜ç”« 0.01 èƒ¶çº³è€èŒ„ è”¼é˜‘ ä¸´ å·´ç‰¢å• HealingHPByPercent ç»° æ¬ºå­£é£˜è”¼é˜‘ ç½æ éª¨è‚º ä¿ƒçŸ« 100 èšŒçªƒ.
 			HealingHPByPercent(GetHealHPAmountRateOnKill() * 100.0f, true, true);
 		}
 	}
@@ -5300,7 +5300,7 @@ class ABladeIICharacter* ABladeIIPlayer::GetRandomTarget(float TargetingRadius, 
 			if (this == ch)
 				continue;
 
-			// Àå¾Ö¹° °Ë»ç
+			// å˜å±€æ‹± å…«è¤
 			FHitResult Result;
 			GetWorld()->LineTraceSingleByChannel(Result, GetActorLocation(), ch->GetActorLocation(), GetCapsuleComponent()->GetCollisionObjectType(), FCollisionQueryParams(NAME_None, false, this));
 	/*		if (!Result.bBlockingHit || Result.Actor != ch)
@@ -5354,7 +5354,7 @@ void ABladeIIPlayer::ResetRandomTarget()
 
 #if !UE_BUILD_SHIPPING // Detailed feature On/Off for performance test
 bool ABladeIIPlayer::bHideAllPCs = false;
-// ¼­¹ö ¾È ºÙÀº »óÈ²¿¡¼­ ´Üµ¶ Å×½ºÆ® ½Ã ¿øÀÎÀ» ¾Ë ¼ö ¾ø°Ô ºü¸£°Ô ¿òÁ÷¿©¼­ ±Ã¿©ÁöÃ¥. ÄíÅ· ¹öÀü¸¸ ±×·³.
+// è¾‘æ»š æ•‘ å˜¿ç¯® æƒ‘ç‚”ä¿Šè¾‘ çªœåˆ€ æŠ›èƒ¶é£˜ çŸ« ç›”ç‰¢é˜‘ èˆ… è ç»éœ¸ ç‹ç¦éœ¸ æ¡†æµå’¯è¾‘ æ³µå’¯ç˜¤æ°“. æ»æ¬§ æ»šå‚ˆçˆ¶ å¼Šçƒ¦.
 void ABladeIIPlayer::DevCalmDown()
 {
 	UCharacterMovementComponent* MovementComp = GetCharacterMovement();

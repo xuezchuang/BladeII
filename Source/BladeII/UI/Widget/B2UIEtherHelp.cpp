@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+Ôªø// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIEtherHelp.h"
 #include "B2UIManager.h"
@@ -35,14 +35,14 @@ void UB2UIEtherHelp::Init()
 			for (int i = 0; i < Types.Num(); ++i)
 			{
 				SlotInfos[i].TypeID = Types[i];
-				b2network::B2mdAetherSetOptionInfoPtr SetOptionPtr = B2EtherManager::GetInstance().GetEtherSetOptionInfoPtrByType(SlotInfos[i].TypeID, 1); //tier¥¬ 1∑Œ »∞øÎ
+				b2network::B2mdAetherSetOptionInfoPtr SetOptionPtr = B2EtherManager::GetInstance().GetEtherSetOptionInfoPtrByType(SlotInfos[i].TypeID, 1); //tierÁª∞ 1ËÇ∫ Âäù‰æ©
 				if (SetOptionPtr != nullptr)
 				{
-					if (SetOptionPtr->min_apply_count == EtherSetCount::DEFENCE) //πÊæÓ ºº∆Æ
+					if (SetOptionPtr->min_apply_count == EtherSetCount::DEFENCE) //ËßÑÁª¢ ÊäÄÈ£ò
 					{
 						SlotInfos[i].SetType = 0;
 					}
-					else if (SetOptionPtr->min_apply_count == EtherSetCount::OFFENCE) // ∞¯∞› ºº∆Æ
+					else if (SetOptionPtr->min_apply_count == EtherSetCount::OFFENCE) // ÂÇçÊãú ÊäÄÈ£ò
 					{
 						SlotInfos[i].SetType = 1;
 					}

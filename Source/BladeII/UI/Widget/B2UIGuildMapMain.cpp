@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIGuildMapMain.h"
 #include "B2UIManager.h"
 #include "B2UIGuildInfoPart.h"
@@ -222,7 +222,7 @@ void UB2UIGuildMapMain::InitOpenGuildMap()
 	auto GuildInfo = BladeIIGameImpl::GetClientDataStore().GetMyGuildBattleInfo();
 	auto OtherGuildInfo = BladeIIGameImpl::GetClientDataStore().GetOtherGuildBattleInfo();
 
-	if (TB_AttackCount.IsValid())			//°ø°İÈ¸¼ö
+	if (TB_AttackCount.IsValid())			//å‚æ‹œé›€è
 	{
 		b2network::B2GuildBattleMemberPtr MyGuildInfo = nullptr;
 		for (auto El : GuildInfo->members)
@@ -330,7 +330,7 @@ void UB2UIGuildMapMain::ScrollSetting(bool MyMap, int32 Member)
 	//	return;
 
 
-	//////ÀÚ±â±æµåÀÎÁö »ó´ë±æµåÀÎÁö ¼³Á¤ÇØ¾ßÇÏ´ÂºÎºĞ
+	//////ç£Šæ‰è¾¨é›ç‰¢ç˜¤ æƒ‘æªè¾¨é›ç‰¢ç˜¤ æ±²æ²¥ç§¦å…·çªç»°ä½•ç›’
 	//SB_MapScroll->ClearChildren();
 	//VB_MapQuipSlot->ClearChildren();
 
@@ -450,7 +450,7 @@ void UB2UIGuildMapMain::MedalMoveUI()
 	if (!MatineeState)
 		return;
 
-	//3DÁÂÇ¥·Î ¿òÁ÷ÀÌ±â
+	//3Dè°…é’è‚º æ¡†æµææ‰
 	TArray<AB2GuildCastleActor*> BeforeFirstCastleInfo;
 	TArray<AB2GuildCastleActor*> FirstCastleInfo;
 	TArray<AB2GuildCastleActor*> ScondCastleInfo;
@@ -995,7 +995,7 @@ void UB2UIGuildMapMain::OnClickBTN_Back()
 
 		//PlaySoundOnBackBtn(PrevUIScene);
 
-		//UIScene History¿¡ ÀÇÇØ ÀÚµ¿À¸·Î BackµÈ´Ù. DJLegacy HeroMgmt ¸ğµåÀÎ °æ¿ìµµ Ã³¸®µÉ °Í.
+		//UIScene Historyä¿Š ç‹¼ç§¦ ç£Šæ‚¼æ è‚º Backç­‰ä¿ƒ. DJLegacy HeroMgmt è‘›é›ç‰¢ ç‰ˆå¿«æ¡£ è´¸åºœçª å·´.
 		data_trader::Retailer::GetInstance().RequestGuildDetailInfo(0);
 		UIManager->ChangeUISceneBack();
 	}

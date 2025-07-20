@@ -1,4 +1,4 @@
-// Copyright 1998-2014 Epic Games, Inc. All Rights Reserved.
+ï»¿// Copyright 1998-2014 Epic Games, Inc. All Rights Reserved.
 
 #pragma once
 
@@ -6,7 +6,7 @@
 
 //#include "EngineMinimal.h"
 //#include "ModuleManager.h"
-//[TO-DO] [@AKI, 170817] BladeII.h°¡ PCH·Î ÀÇ½É µÇ´Â »óÈ²ÀÌ¶ó ÀÌ ¾Æ·¡ ÇØ´õ¿Í °ü·Ã µÈ °ÍµéÀº »õ·Î ¸¸µå´Â°Ô ÁÁÀ»µí.
+//[TO-DO] [@AKI, 170817] BladeII.hê°€ PCHë¡œ ì˜ì‹¬ ë˜ëŠ” ìƒí™©ì´ë¼ ì´ ì•„ë˜ í•´ë”ì™€ ê´€ë ¨ ëœ ê²ƒë“¤ì€ ìƒˆë¡œ ë§Œë“œëŠ”ê²Œ ì¢‹ì„ë“¯.
 //#include "B2ClientDataStore.h"
 
 DECLARE_LOG_CATEGORY_EXTERN(LogBladeII, Log, All);
@@ -24,7 +24,7 @@ DECLARE_LOG_CATEGORY_EXTERN(LogBladeII, Log, All);
 #define B2_NATION_SOFTLANDING		3	//KakaoGames Softlanding
 #endif
 #ifndef B2_NATION_GRANDLANDING
-#define B2_NATION_GRANDLANDING		4	//KakaoGames GrandLading(Á¤½Ä Ãâ½Ã)
+#define B2_NATION_GRANDLANDING		4	//KakaoGames GrandLading(ì •ì‹ ì¶œì‹œ)
 #endif
 #ifndef B2_NATION_CHINA
 #define B2_NATION_CHINA				5

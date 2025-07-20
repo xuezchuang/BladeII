@@ -20,17 +20,17 @@ void UB2LobbyUI_BrevetNodeIcon::InitBrevetNodeIcon(UB2LobbyUI_BrevetMain* pOwner
 	m_pBrevetNodeInfo = BrevetNodeInfo;
 	m_pOwnerUI = pOwnerUI;
 
-	// ÅØ½ºÆ® ¼³Á¤
+	// å’†èƒ¶é£˜ æ±²æ²¥
 	if (m_pBrevetNodeInfo)
 	{
-		// ¾Õ³ëµå È°¼ºÈ­ ÇÊ¿ä ¾Èº¸ÀÌ°ÔÀÏ´Ü
+		// èŠç•´é› åŠå·±æ‹³ éž˜å¤¸ æ•‘ç„Šæžéœ¸è€çªœ
 		if (TB_BeforeNodeNum.IsValid())
 			TB_BeforeNodeNum->SetVisibility(ESlateVisibility::Hidden);
 
 		if (TB_ActiveOpen.IsValid())
 			TB_ActiveOpen->SetVisibility(ESlateVisibility::Hidden);
 
-		// ´É·ÂÄ¡ È¹µæ
+		// ç“·ä»¿æ‘¹ è£™åž«
 		if (TB_GetStatusType.IsValid())
 		{
 			switch (static_cast<EBrevetStatusType>(m_pBrevetNodeInfo->StatusType))
@@ -47,11 +47,11 @@ void UB2LobbyUI_BrevetNodeIcon::InitBrevetNodeIcon(UB2LobbyUI_BrevetMain* pOwner
 			}
 		}
 
-		// È¹µæ °ª
+		// è£™åž« è”¼
 		if (TB_GetStatusValue.IsValid())
 			TB_GetStatusValue->SetText(FText::FromString(TEXT("+") + FString::FromInt(m_pBrevetNodeInfo->StatusValue)));
 
-		// ´É·ÂÄ¡
+		// ç“·ä»¿æ‘¹
 		if (TB_StatusType.IsValid())
 		{
 			switch (static_cast<EBrevetStatusType>(m_pBrevetNodeInfo->StatusType))
@@ -68,11 +68,11 @@ void UB2LobbyUI_BrevetNodeIcon::InitBrevetNodeIcon(UB2LobbyUI_BrevetMain* pOwner
 			}
 		}
 
-		// ´É·ÂÄ¡ °ª
+		// ç“·ä»¿æ‘¹ è”¼
 		if (TB_StatusValue.IsValid())
 			TB_StatusValue->SetText(FText::FromString(TEXT("+") + FString::FromInt(m_pBrevetNodeInfo->StatusValue)));
 
-		// È®·ü °ª 
+		// çŠ¬ä¼ è”¼ 
 		SetSuccessRateText(m_pBrevetNodeInfo->Rate);		
 	}
 
@@ -92,7 +92,7 @@ void UB2LobbyUI_BrevetNodeIcon::InitBrevetNodeIcon(UB2LobbyUI_BrevetMain* pOwner
 		break;
 	}
 
-	// ¿ÀÇÂ ¾Ö´Ï¸ÞÀÌ¼Ç Àç»ý ÇÊ¿äÇÑÁö Ã¼Å©
+	// å·é”¹ å±€èªçš‹æžè®° çŠç§¯ éž˜å¤¸èŒ„ç˜¤ çœ‰å†œ
 	if (m_eBrevetNodeState == EBrevetNodeState::EBNS_UnLocked && m_pOwnerUI)
 	{
 		if (m_pOwnerUI->CheckNeedNodeOpenAnimation())
@@ -185,7 +185,7 @@ EBrevetNodeState UB2LobbyUI_BrevetNodeIcon::GetBrevetNodeState()
 
 void UB2LobbyUI_BrevetNodeIcon::SetNotOpenText(int32 nNodeNum)
 {
-	// Å¬¸®¾î ½ºÅ×ÀÌÁö
+	// åŠªåºœç»¢ èƒ¶æŠ›æžç˜¤
 	if (TB_BeforeNodeNum.IsValid())
 	{
 		TB_BeforeNodeNum->SetVisibility(ESlateVisibility::Visible);

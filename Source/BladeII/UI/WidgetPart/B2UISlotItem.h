@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 // Project BladeII, Action Square
 
 #pragma once
@@ -61,7 +61,7 @@ public:
 	void SetPrimaryPoint(int32 InValue);
 	void SetPrimaryPointType(EItemPrimaryPointType InType);
 
-	//[@AKI, 170617] UIP_Stars ¸¦ º¸¿©ÁÙÁö ¾Èº¸¿© ÁÙÁö. º¸½º Á¶°¢Àº º°µî±ŞÀÌ ¾ø¾î¼­ Collapsed·Î ÇØÁÖ±â À§ÇØ Ãß°¡ ÇÔ
+	//[@AKI, 170617] UIP_Stars ç”« ç„Šå’¯ä¸´ç˜¤ æ•‘ç„Šå’¯ ä¸´ç˜¤. ç„Šèƒ¶ ç‚¼é˜¿ç¯® å–Šæ®¿é­æ ç»ç»¢è¾‘ Collapsedè‚º ç§¦æ—æ‰ å›°ç§¦ çœ å•Š çªƒ
 	void SetVisibleStar(ESlateVisibility _visible);
 	void SetVisibleStageInfoItemIcon(ESlateVisibility _visible, bool isBossItem);
 
@@ -173,7 +173,7 @@ protected:
 	TWeakObjectPtr<UPanelWidget>					O_Selected;
 	
 	TWeakObjectPtr<class UB2UIStarGradePart>	UIP_Stars;
-	// Stage Info ¿¡¼­ »ç¿ë
+	// Stage Info ä¿Šè¾‘ è¤ä¾©
 	TWeakObjectPtr<UImage>							IMG_StarIcon;
 	TWeakObjectPtr<UImage>							IMG_BossItemIcon;
 	TWeakObjectPtr<UTextBlock>						TB_StarCount;

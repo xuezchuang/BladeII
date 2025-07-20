@@ -1,9 +1,10 @@
-#pragma once
+﻿#pragma once
 //#include "BladeII.h"
 #include "B2MessageInfoCommonStruct.h"
 #include "Quest.h"
 #include "EventSubsystem.h"
 #include "QuestManagementData.h"
+#include "../Common/CommonStruct.h"
 
 class IStat;
 

@@ -1,4 +1,4 @@
-#include "B2UIWidget.h"
+﻿#include "B2UIWidget.h"
 #include "B2UIBackWidget.h"
 #include "B2UIDocBindable.h"
 #include "B2UITeamMatchBattle.generated.h"

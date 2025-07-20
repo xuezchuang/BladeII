@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIDiceEventExplain.h"
 
@@ -103,7 +103,7 @@ void UB2UIDiceEventExplain::UpdateRemaningTimeText()
 		}
 		else
 		{
-			//±â°£ ¸¸·á
+			//æ‰åŸƒ çˆ¶ä¸°
 		}
 		
 		TB_RemaningTime->SetText(ftRemainingTime);

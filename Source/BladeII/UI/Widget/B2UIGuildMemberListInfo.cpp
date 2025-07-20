@@ -1,4 +1,4 @@
-#include "B2UIGuildMemberListInfo.h"
+ï»¿#include "B2UIGuildMemberListInfo.h"
 #include "B2UIGuildMemberSlot.h"
 #include "B2UIManager.h"
 #include "B2UIGuildMemberPart.h"
@@ -306,7 +306,7 @@ void UB2UIGuildMemberListInfo::OnClickClose()
 
 void UB2UIGuildMemberListInfo::SendMemberProfile()
 {
-	///ÇÁ·ÎÇÊ ¾ÆÁ÷¾øÀ½
+	///æ©‡è‚ºé˜ é…’æµç»æ¾œ
 }
 
 void UB2UIGuildMemberListInfo::SendSecondMasterDismissal()

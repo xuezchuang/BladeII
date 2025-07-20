@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2DimensionGameMode.h"
@@ -86,7 +86,7 @@ void AB2DimensionGameMode::SetupUIScene()
 
 void AB2DimensionGameMode::BeginDestroy()
 {
-	// BeginDestroy ½ÃÁ¡¿¡¼­ÀÇ UIWidget destroy ´Â ÁÖÀÇÇÒ ÇÊ¿ä°¡ ÀÖÀ½.
+	// BeginDestroy çŸ«ç—¢ä¿Šè¾‘ç‹¼ UIWidget destroy ç»° æ—ç‹¼ä¸” é˜å¤¸å•Š ä¹æ¾œ.
 	CashedSpawnPool = nullptr;
 
 	Super::BeginDestroy();
@@ -143,16 +143,16 @@ void AB2DimensionGameMode::NotifyPlayerDeadEnd(class ABladeIIPlayer* DeadPlayer)
 
 void AB2DimensionGameMode::GoToVillage()
 {	
-	// ¿¡·¯»óÈ²ÀÏ¶§ ¿©±â·Î... ÀÌ°Ç ·Îºñ·Î ÀÌµ¿½ÃÄÑÁÜ
+	// ä¿ŠçŸ¾æƒ‘ç‚”è€é”­ å’¯æ‰è‚º... ææ‰’ è‚ºåšè‚º ææ‚¼çŸ«éš¾æ·‹
 	FLobbySceneManager::DeferredRegistChangeLobbyScene([]() {
-		// ÀüÃ¼ ¾À ÀüÈ¯À» ÇÏ¸é ½Ç ·Îµù ½Ã°£ÀÌ ´Ã¾î³ª¹Ç·Î ¿øÇÏ´Â È­¸é Á÷Àü±îÁö UI History ¸¸ ¸¸µé¾îÁØ´Ù. 
+		// å‚ˆçœ‰ çº  å‚ˆåˆ¸é˜‘ çªæ è§’ è‚ºçˆ¹ çŸ«åŸƒæ ç–µç»¢å”±éª¨è‚º ç›”çªç»° æ‹³æ æµå‚ˆé³–ç˜¤ UI History çˆ¶ çˆ¶ç”¸ç»¢éœ–ä¿ƒ. 
 		UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
 		if (UIMgrInst) {
 			LobbyChangeSceneClass<ELobbyScene>::GetInstance().Signal(ELobbyScene::ELobbyScene_LobbyMain);
 		}
 	});
 
-	OpenBladeIILobbyCommon(this); // ¾À ÀüÈ¯ ¿¹¾à ÈÄ º»°İ ·Îºñ ¸Ê ·Îµù
+	OpenBladeIILobbyCommon(this); // çº  å‚ˆåˆ¸ æŠ—è· é¥¶ å¤¯æ‹œ è‚ºåš ç”˜ è‚ºçˆ¹
 }
 
 void AB2DimensionGameMode::GoToVillageDefeated()
@@ -162,14 +162,14 @@ void AB2DimensionGameMode::GoToVillageDefeated()
 
 void AB2DimensionGameMode::GoToMap()
 {
-	// ÃÖÁ¾ÀûÀ¸·Î µğ¸à¼Ç Á¤º¸ °»½ÅÇÑ´ÙÀ½¿¡ ¸ŞÀÎÀ¸·Î ÁøÀÔ
+	// å¼¥è¾†åˆ©æ è‚º å¼è†è®° æ²¥ç„Š ç›è„šèŒ„ä¿ƒæ¾œä¿Š çš‹ç‰¢æ è‚º æŸ³æ¶
 	data_trader::Retailer::GetInstance().RequestGetDimension();
 }
 
 void AB2DimensionGameMode::GotoDimensionMain()
 {
 	FLobbySceneManager::DeferredRegistChangeLobbyScene([]() {
-		// ÀüÃ¼ ¾À ÀüÈ¯À» ÇÏ¸é ½Ç ·Îµù ½Ã°£ÀÌ ´Ã¾î³ª¹Ç·Î ¿øÇÏ´Â È­¸é Á÷Àü±îÁö UI History ¸¸ ¸¸µé¾îÁØ´Ù. 
+		// å‚ˆçœ‰ çº  å‚ˆåˆ¸é˜‘ çªæ è§’ è‚ºçˆ¹ çŸ«åŸƒæ ç–µç»¢å”±éª¨è‚º ç›”çªç»° æ‹³æ æµå‚ˆé³–ç˜¤ UI History çˆ¶ çˆ¶ç”¸ç»¢éœ–ä¿ƒ. 
 		UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
 		if (UIMgrInst) {
 			UIMgrInst->ArtificialAddUIHistory(EUIScene::LobbyMain);
@@ -178,13 +178,13 @@ void AB2DimensionGameMode::GotoDimensionMain()
 		LobbyChangeSceneClass<ELobbyScene>::GetInstance().Signal(ELobbyScene::ELobbyScene_DimensionMain);
 	});
 
-	OpenBladeIILobbyCommon(this); // ¾À ÀüÈ¯ ¿¹¾à ÈÄ º»°İ ·Îºñ ¸Ê ·Îµù
+	OpenBladeIILobbyCommon(this); // çº  å‚ˆåˆ¸ æŠ—è· é¥¶ å¤¯æ‹œ è‚ºåš ç”˜ è‚ºçˆ¹
 }
 
 void AB2DimensionGameMode::DecideAndSetActiveSpawnPool(bool bFallBackToLowerDifficulty)
 {
-	// ±âº» µ¿ÀÛ°ú´Â ´Ş¸® StageId ¿Í Difficulty ¸¦ °í·ÁÇØ¼­ ¸Â´Â °É °¡Á®¿Â´Ù.
-	// ½ºÅ×ÀÌÁö ½ÃÀÛ ½ÃÁ¡¿¡ ÇÑ¹ø Á¤ÇÏ¸é ¹Ù²îÁö ¾Ê´Â´Ù.
+	// æ‰å¤¯ æ‚¼ç´¯è‹ç»° å´”åºœ StageId å®¢ Difficulty ç”« ç»Šå¦¨ç§¦è¾‘ å˜ç»° å§ å•Šå»‰æŸ¯ä¿ƒ.
+	// èƒ¶æŠ›æç˜¤ çŸ«ç´¯ çŸ«ç—¢ä¿Š èŒ„é”… æ²¥çªæ å®˜å·®ç˜¤ è‡¼ç»°ä¿ƒ.
 	if (StageManager)
 	{
 		auto DocDimension = UB2UIDocHelper::GetDocDimension();
@@ -192,12 +192,12 @@ void AB2DimensionGameMode::DecideAndSetActiveSpawnPool(bool bFallBackToLowerDiff
 			SetForcedPerStageSettings(SpawnPools, DocDimension->GetClientStageID(), static_cast<int32>(EStageDifficulty::ESD_Normal));
 
 		TheActiveSpawnPool = GetDesiredSpawnPoolOfSettingFromList(SpawnPools,
-			// °ÔÀÓÀÌµç, PlayInEditor µç StageManager ÀÇ PreBeginPlay ÀÌÈÄ¶ó¸é StageId ³ª DifficultyLevel µîÀÌ »ç¿ë °¡´ÉÇØ¾ß.
+			// éœ¸çƒ™æç”µ, PlayInEditor ç”µ StageManager ç‹¼ PreBeginPlay æé¥¶æ‰¼æ StageId å”± DifficultyLevel æ®¿æ è¤ä¾© å•Šç“·ç§¦å…·.
 			StageManager->GetCurrentClientStageId(), StageManager->GetStageDifficultyLevel(), bFallBackToLowerDifficulty);
 	}
 	else
 	{
-		Super::DecideAndSetActiveSpawnPool(); // »óÀ§´Ü ±â´ÉÀ¸·Î Æú¹é
+		Super::DecideAndSetActiveSpawnPool(); // æƒ‘å›°çªœ æ‰ç“·æ è‚º å¼ƒå½’
 	}
 }
 
@@ -218,7 +218,7 @@ void AB2DimensionGameMode::NotifySpawnPoolSingleWaveStart(AB2MonsterSpawnPool* S
 	if(CashedSpawnPool)	
 		CashedSpawnPool->GetAllWaveMobList(WaveModeList);
 
-	// ¿©±â¼­ ¸÷Áß¿¡ ½ºÅæÀÌ ÀÖ´Ù¸é buff 
+	// å’¯æ‰è¾‘ å„åä¿Š èƒ¶æ²›æ ä¹ä¿ƒæ buff 
 	for (auto Mob : WaveModeList)
 	{
 		if (Mob && IsValid(Mob) && Mob->IsAlive())
@@ -311,7 +311,7 @@ void AB2DimensionGameMode::SetttingAura_Mob(EBloodStoneType type, float amount)
 		{
 			if (Mob && IsValid(Mob) && Mob->IsAlive())
 			{
-				if (!CheckBloodStone(Mob)) // ºí·¯µå½ºÅæÀÌ ¾Æ´Ñ ÀüÃ¼ ¸÷À» ¹«ÀûÀ¸·Î.
+				if (!CheckBloodStone(Mob)) // å–‰çŸ¾é›èƒ¶æ²›æ é…’å›± å‚ˆçœ‰ å„é˜‘ å…¬åˆ©æ è‚º.
 				{
 					Mob->AddBuff(EBuffType::Buff_Unbeatable, -1);
 				}
@@ -319,7 +319,7 @@ void AB2DimensionGameMode::SetttingAura_Mob(EBloodStoneType type, float amount)
 		}
 	}
 	break;
-	case EBloodStoneType::EBST_AllKill: // ºí·¯µå ½ºÅæÀÌ ÆÄ±«µÉ¶§ ÀüºÎ Å³.
+	case EBloodStoneType::EBST_AllKill: // å–‰çŸ¾é› èƒ¶æ²›æ é¢‡é²çªé”­ å‚ˆä½• æ‡¦.
 		break;
 	}
 }
@@ -349,8 +349,8 @@ void AB2DimensionGameMode::SetttingAura_Me(EBloodStoneType type, EDamageLogicTyp
 
 void AB2DimensionGameMode::ReleaseAura_Mob(EBloodStoneType type)
 {
-	// ºí·¯µå ½ºÅæÀº ÇÑ½ºÆùÇ®¿¡ µ¿ÀÏ Á¸Àç¸¸ ¹èÄ¡µÈ´Ù´Â°ÍÀÌ ÀüÁ¦Á¶°Ç
-	// ºí·¯µå ½ºÅæÀÌ ÇÑ¸¶¸®¶óµµ °°ÀÌ »ì¾ÆÀÖÀ»°æ¿ì ¹öÇÁ À¯Áö
+	// å–‰çŸ¾é› èƒ¶æ²›ç¯® èŒ„èƒ¶è¿„é’±ä¿Š æ‚¼è€ ç²®çŠçˆ¶ ç¡…æ‘¹ç­‰ä¿ƒç»°å·´æ å‚ˆåŠ›ç‚¼æ‰’
+	// å–‰çŸ¾é› èƒ¶æ²›æ èŒ„ä»˜åºœæ‰¼æ¡£ éæ æ··é…’ä¹é˜‘ç‰ˆå¿« æ»šæ©‡ èœ¡ç˜¤
 	if (CheckBloodStoneAlive())
 		return;
 
@@ -375,7 +375,7 @@ void AB2DimensionGameMode::ReleaseAura_Mob(EBloodStoneType type)
 		}
 	}
 		break;
-	case EBloodStoneType::EBST_AllKill: // ºí·¯µå ½ºÅæÀÌ ÆÄ±«µÉ¶§ ÀüºÎ Å³
+	case EBloodStoneType::EBST_AllKill: // å–‰çŸ¾é› èƒ¶æ²›æ é¢‡é²çªé”­ å‚ˆä½• æ‡¦
 	{
 		for (int32 i = 0; i < TempArray.Num(); i++)
 		{
@@ -396,8 +396,8 @@ void AB2DimensionGameMode::ReleaseAura_Mob(EBloodStoneType type)
 
 void AB2DimensionGameMode::ReleaseAura_Me(EBloodStoneType type)
 {
-	// ºí·¯µå ½ºÅæÀº ÇÑ½ºÆùÇ®¿¡ µ¿ÀÏ Á¸Àç¸¸ ¹èÄ¡µÈ´Ù´Â°ÍÀÌ ÀüÁ¦Á¶°Ç
-	// ºí·¯µå ½ºÅæÀÌ ÇÑ¸¶¸®¶óµµ °°ÀÌ »ì¾ÆÀÖÀ»°æ¿ì ¹öÇÁ À¯Áö
+	// å–‰çŸ¾é› èƒ¶æ²›ç¯® èŒ„èƒ¶è¿„é’±ä¿Š æ‚¼è€ ç²®çŠçˆ¶ ç¡…æ‘¹ç­‰ä¿ƒç»°å·´æ å‚ˆåŠ›ç‚¼æ‰’
+	// å–‰çŸ¾é› èƒ¶æ²›æ èŒ„ä»˜åºœæ‰¼æ¡£ éæ æ··é…’ä¹é˜‘ç‰ˆå¿« æ»šæ©‡ èœ¡ç˜¤
 	if (CheckBloodStoneAlive())
 		return;
 
@@ -460,7 +460,7 @@ void AB2DimensionGameMode::CheckAura()
 	if (CashedSpawnPool)
 		CashedSpawnPool->GetAllWaveMobList(WaveModeList);
 
-	// ¿©±â¼­ ¸÷Áß¿¡ ½ºÅæÀÌ ÀÖ´Ù¸é buff 
+	// å’¯æ‰è¾‘ å„åä¿Š èƒ¶æ²›æ ä¹ä¿ƒæ buff 
 	for (auto Mob : WaveModeList)
 	{
 		//if (Mob && !Mob->IsPendingKill() && Mob->IsAlive())

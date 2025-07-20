@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIDonationEvent.h"
 #include "BladeIIUtil.h"
@@ -513,7 +513,7 @@ void UB2UIDonationEvent::InitRankingRewardPopup()
 	if (DocDonation)
 	{
 		bool IsEnd = DocDonation->GetSettled();
-		//ÀÌ À¯Àú´Â ÀÌº¥Æ®¿¡ Âü¿© ÇßÀ½?
+		//æž èœ¡åŽ†ç»° æžäº¥é£˜ä¿Š æ›¼å’¯ æ²æ¾œ?
 		bool IsParticipation = false;
 		if (GConfig)
 		{
@@ -531,7 +531,7 @@ void UB2UIDonationEvent::InitRankingRewardPopup()
 					B2AndroidBackManager::GetInstance()->AddBackWidget(UIP_DonationRankingRewardPopup.Get());
 					UIP_DonationRankingRewardPopup->SetInfo(MyRanking);
 
-					//À¯Àú°¡ ÀÌº¥Æ® Âü¿© ÇÑ°Å È®ÀÎ ÇÔ
+					//èœ¡åŽ†å•Š æžäº¥é£˜ æ›¼å’¯ èŒ„èŠ­ çŠ¬ç‰¢ çªƒ
 					if (GConfig)
 					{
 						GConfig->SetBool(TEXT("DonationEvent"), TEXT("Participation"), false, GB2UserSavedStateIni);

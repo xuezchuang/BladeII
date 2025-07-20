@@ -1,4 +1,4 @@
-// Copyright 1998-2014 Epic Games, Inc. All Rights Reserved.
+ï»¿// Copyright 1998-2014 Epic Games, Inc. All Rights Reserved.
 #pragma once
 #include "BladeII.h"
 #include "GameFramework/GameMode.h"
@@ -297,7 +297,7 @@ public:
 	FOnReserveDeath& OnReserveDeath() { return CharacterDeathEvent; };
 	FOnReserveTakeDamageText& OnReserveTakeDamageText() { return CharacterTakeDamageEvent; };
 
-	////[@AKI, 170815] ³×ÀÌ¹Ö Âü........³×ÀÌ¹Ö ¹Ù²ãÁÖ½ÇºÐ...¤Ð¤Ð
+	////[@AKI, 170815] ë„¤ì´ë° ì°¸........ë„¤ì´ë° ë°”ê¿”ì£¼ì‹¤ë¶„...ã… ã… 
 	void MakeMobUndead();
 	void MakeUndeadMobDeath();
 	
@@ -525,8 +525,8 @@ protected:
 	virtual void SubscribeEvents(); // Events of EventSubsystem
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//DLCGameMode¸¦ Á¦¿ÜÇÑ ¸ðµç GameMode´Â RAII·Î ±¸Çö ÇÒ °Í
-	//UnsubscribeEvents()¸¦ °³º°·Î È£ÃâÇØ¾ß µÉ ÀÏÀÌ ÀÖÀ¸¸é ¾È±¤ÀÍ, ±è±Ô¿­ÆÀÀå´Ô È¤Àº ±Ç¿µTD´Ô¿¡°Ô ¹®ÀÇ ÇÒ °Í
+	//DLCGameModeë¥¼ ì œì™¸í•œ ëª¨ë“  GameModeëŠ” RAIIë¡œ êµ¬í˜„ í•  ê²ƒ
+	//UnsubscribeEvents()ë¥¼ ê°œë³„ë¡œ í˜¸ì¶œí•´ì•¼ ë  ì¼ì´ ìžˆìœ¼ë©´ ì•ˆê´‘ìµ, ê¹€ê·œì—´íŒ€ìž¥ë‹˜ í˜¹ì€ ê¶Œì˜TDë‹˜ì—ê²Œ ë¬¸ì˜ í•  ê²ƒ
 	virtual void UnsubscribeEvents() final; //!!DO NOT Change & Use THIS METHOD!!
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -763,7 +763,7 @@ public:
 	static void HideHUDCenterMessage();
 	
 	static void GetObjectInLevel(ULevel* _level /* GetWorld()->GetCurrentLevel()*/,UClass* _classType/* ASkeletalMeshActor::StaticClass()*/, TArray<AActor*>& _OutWasVisibleSkeletalActorsPool /*Out*/);
-	//B2CameraAnim¿¡¼­ À§¿¡ ¸Þ¼Òµå¸¦ »ç¿ëÇØµµ µÇÁö¸¸ O(2n)ÀÇ ¼Óµµ¸¦ µéÀÌ±â ¶§¹®¿¡ µû·Î ¸Þ¼Òµå¸¦ ¸¸µë(¾Ë°í¸®Áò»ó 2n == nÀÌÁö¸¸ ÃøÃ» ½Ã°£Àº ´Ù¸¦ Å×´Ï....)
+	//B2CameraAnimì—ì„œ ìœ„ì— ë©”ì†Œë“œë¥¼ ì‚¬ìš©í•´ë„ ë˜ì§€ë§Œ O(2n)ì˜ ì†ë„ë¥¼ ë“¤ì´ê¸° ë•Œë¬¸ì— ë”°ë¡œ ë©”ì†Œë“œë¥¼ ë§Œë“¬(ì•Œê³ ë¦¬ì¦˜ìƒ 2n == nì´ì§€ë§Œ ì¸¡ì²­ ì‹œê°„ì€ ë‹¤ë¥¼ í…Œë‹ˆ....)
 	static void GetObjectHiddenInLevel(ULevel* _level /* GetWorld()->GetCurrentLevel()*/, UClass* _classType/* ASkeletalMeshActor::StaticClass()*/, TArray<AActor*>& _OutWasVisibleSkeletalActorsPool /*Out*/);
 	static void GetObjectVisibleInLevel(const TArray<AActor*>& _OutWasVisibleSkeletalActorsPool /*In*/);
 

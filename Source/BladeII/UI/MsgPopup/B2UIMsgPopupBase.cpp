@@ -1,4 +1,4 @@
-#include "B2UIMsgPopupBase.h"
+ï»¿#include "B2UIMsgPopupBase.h"
 #include "B2UIManager.h"
 
 
@@ -29,7 +29,7 @@ void UB2UIMsgPopupBase::BindDelegates()
 
 void UB2UIMsgPopupBase::DestroySelf(UB2UIManager* InUIManager)
 {
-	Super::DestroySelf(NULL); // ¿©±âÀÇ Á¤È®ÇÑ »çÁ¤Àº Àß ¸ð¸£°ÚÀ¸³ª ¾Æ·¡¿¡¼­ UIManager ÂÊ Ã³¸®¸¦ Á» ÇÏ¹Ç·Î ¿©±â¼± NULL À» ³Ñ°ÜÁØ´Ù..
+	Super::DestroySelf(NULL); // å’¯æ‰ç‹¼ æ²¥çŠ¬èŒ„ è¤æ²¥ç¯® è‚‹ è‘›ç¦æ‘†æ å”± é…’è´°ä¿Šè¾‘ UIManager çŽ‡ è´¸åºœç”« ç²± çªéª¨è‚º å’¯æ‰æ€¥ NULL é˜‘ é€žè´¥éœ–ä¿ƒ..
 
 	check(InUIManager);
 	if (InUIManager->IsMsgPopupOpened(GetMsgID()))
@@ -74,7 +74,7 @@ void UB2UIMsgPopupBase::SetModalWindow(bool bModal)
 {
 	bModalWindow = bModal;
 
-	//º°ÀÏ ¾øÀ¸¸é Ç×»ó ±î¸¸ ¸ð´Þ¿¡¾î¸®¾î¸¦ º¸¿©ÁØ´Ù
+	//å–Šè€ ç»æ æ äº²æƒ‘ é³–çˆ¶ è‘›å´”ä¿Šç»¢åºœç»¢ç”« ç„Šå’¯éœ–ä¿ƒ
 	ShowModalArea(bModalWindow);
 }
 
@@ -91,7 +91,7 @@ void UB2UIMsgPopupBase::NativeTick(const FGeometry& MyGeometry, float InDeltaTim
 {
 	Super::NativeTick(MyGeometry, InDeltaTime);
 
-	//¿ÜºÎ¿¡¼­ ¼¼ÆÃµÈ °ªÀÌ ÀÖ¾î¾ß ÀÚµ¿ ´Ý±â°¡ È°¼ºÈ­ µÈ´Ù.
+	//å¯‡ä½•ä¿Šè¾‘ æŠ€æ³¼ç­‰ è”¼æž ä¹ç»¢å…· ç£Šæ‚¼ æ‘§æ‰å•Š åŠå·±æ‹³ ç­‰ä¿ƒ.
 	if (AutoCloseTime > 0.f)
 	{
 		RemainAutoCloseTime -= InDeltaTime;

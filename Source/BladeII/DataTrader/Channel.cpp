@@ -1,4 +1,4 @@
-
+﻿
 #include "Channel.h"
 
 namespace data_trader

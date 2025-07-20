@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIMsgPopupGoTeamMatch.h"
 #include "B2UIManager.h"
@@ -26,7 +26,7 @@ void UB2UIMsgPopupGoTeamMatch::OnGoTeamMatchBtnClick()
 		data_trader::Retailer::GetInstance().RequestGetTeamBattleStatus();
 	}
 	
-	// ¿äÃ»ÇßÀ¸¸é ´İÀÚ
+	// å¤¸æ²¡æ²æ æ æ‘§ç£Š
 	DestroySelf(UB2UIManager::GetInstance());	
 }
 

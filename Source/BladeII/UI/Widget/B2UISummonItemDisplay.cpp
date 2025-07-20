@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UISummonItemDisplay.h"
 #include "B2UIManager.h"
 #include "B2LobbyGameMode.h"
@@ -196,12 +196,12 @@ void UB2UISummonItemDisplaySlot::CreateCard_FrontFX()
 
 	ItemCardFX = UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), ItemCardFXs[ItemInfoData.StarGrade - 1], GetTransform());
 
-	// ¾ÆÀÌÅÛ material À» ¼Â¾÷ÇÑ´Ù
+	// é…’æè¢ material é˜‘ æ‚¸è¯€èŒ„ä¿ƒ
 	SetupNamedMIDForFxComp(ItemCardFX);
 
 	if (UIP_ItemDetail.IsValid())
 	{
-		// ParticleSystem ¼Â¾÷ÀÌ Grade º°·Î µû·Î µé¾î°£´Ù°í ÇÏ´Ï ÀÌ Background panel ¼Â¾÷Àº ÇÊ¿äÇÏÁö ¾ÊÀ» ¼öµµ.
+		// ParticleSystem æ‚¸è¯€æ Grade å–Šè‚º è¶è‚º ç”¸ç»¢åŸƒä¿ƒç»Š çªèª æ Background panel æ‚¸è¯€ç¯® é˜å¤¸çªç˜¤ è‡¼é˜‘ èæ¡£.
 		UMaterialInstanceDynamic* ItemBGPanelMID = GetFxNamedMID(ItemCardFX, Name_FxMID_ItemBGPanel);
 		UMaterialInstanceConstant* ItemBGPanelMIC_Ref = Cast<UMaterialInstanceConstant>(UIP_ItemDetail->GetActiveItemBGPanelMaterial());
 		SetupMIDNonAtlasParamFromUIMIC(ItemBGPanelMID, ItemBGPanelMIC_Ref);
@@ -379,7 +379,7 @@ void UB2UISummonItemDisplay::OnOpen(bool RightNow /*= false*/)
 
 	CAPTURE_UOBJECT(UB2UISummonItemDisplay);
 
-	EnterShopTicket = EnterShopClass<int32>::GetInstance().Subscribe(			//¿µÈ¥Àë ¸ğÀß¶ó¼­ »óÁ¡°¬´Ù°¡ µÚ·Î°¡±âÇßÀ»½Ã ¿À¸éXX ¿¹¿ÜÃ³¸®
+	EnterShopTicket = EnterShopClass<int32>::GetInstance().Subscribe(			//åº·å»ç¦» è‘›è‚‹æ‰¼è¾‘ æƒ‘ç—¢è‰¾ä¿ƒå•Š ç¬¬è‚ºå•Šæ‰æ²é˜‘çŸ« å·æXX æŠ—å¯‡è´¸åºœ
 		USE_CAPTURE_OBJECT(int32 ShopWhere)
 		Capture->EnterShopException();
 	END_CAPTURE_OBJECT()
@@ -487,7 +487,7 @@ void UB2UISummonItemDisplay::OnClickBTN_OpenTouch()
 			}
 			else
 			{
-				for (int32 Idx = 0; Idx < UIP_SummonedItems.Num(); ++Idx)			//¿ì¼± µÎ¹ø¸¸ µ¹µµ·Ï ¼³Á¤
+				for (int32 Idx = 0; Idx < UIP_SummonedItems.Num(); ++Idx)			//å¿«æ€¥ æ»´é”…çˆ¶ å€’æ¡£åºŸ æ±²æ²¥
 				{
 					UIP_SummonedItems[Idx]->DisplaySlotHidden(true);
 				}
@@ -630,14 +630,14 @@ void UB2UISummonItemDisplay::OnClickBTN_SummonOneMore()
 		auto* Data = BladeIIGameImpl::GetClientDataStore().GetSummonItemData(SlotHashKey);
 		if (Data)
 		{
-			// ¿¬¼Ó»Ì±âÀÌ°í 10È¸»Ì±â±ÇÀÌ ÀÖ´Ù¸é 10È¸»Ì±â±ÇÀ» ¿ì¼±À¸·Î ¼Ò¸ğ
+			// æ¥·åŠ æƒ¶æ‰æç»Š 10é›€æƒ¶æ‰é¼»æ ä¹ä¿ƒæ 10é›€æƒ¶æ‰é¼»é˜‘ å¿«æ€¥æ è‚º å®¶è‘›
 			int32 CurrentCostType = static_cast<int32>(Data->GetCostType()) + b2network::B2ShopDrawPriceType::GEM;
 
 			bool IsTenTicket = (BladeIIGameImpl::GetClientDataStore().GetShopTenLotteryTicket() > 0 &&
 				Data->IsMultiple()
 				&& Data->GetCostType() == static_cast<int32>(ESummonItemCost::Gem));
 
-			if (IsTenTicket) // 10È¸ »Ì±â±ÇÀÏ °æ¿ì ¿¹¿ÜÃ³¸®
+			if (IsTenTicket) // 10é›€ æƒ¶æ‰é¼»è€ ç‰ˆå¿« æŠ—å¯‡è´¸åºœ
 				CurrentCostType = b2network::B2ShopDrawPriceType::SHOP_TEN_LOTTERY_TICKET;
 
 			bool bIsSummonItemBuy = true;
@@ -685,7 +685,7 @@ void UB2UISummonItemDisplay::InventoryFullSimplePopup(EPCClass PCClass)
 }
 
 float UB2UISummonItemDisplay::GetCardSlotSizeScale() const
-{ // bCardResult °¡ Å«°Å ÇÏ³ª º¸¿©ÁÙÁö ÀÛÀº °Å ¿©·¯°³ º¸¿©ÁÙ Áö ±×°Ç µí
+{ // bCardResult å•Š å¥´èŠ­ çªå”± ç„Šå’¯ä¸´ç˜¤ ç´¯ç¯® èŠ­ å’¯çŸ¾ä¿º ç„Šå’¯ä¸´ ç˜¤ å¼Šæ‰’ æ·€
 	return bCardResult ? CardSlotSizeScale_Multiple10 : CardSlotSizeScale_Single;
 }
 
@@ -745,14 +745,14 @@ void UB2UISummonItemDisplay::ChangeSummonItemCardMatineeActorToFX(const TArray<F
 	//	if (ThisGroupInst && ThisGroupInst->Group)
 	//	{
 	//		if (ThisGroupInst->Group->GroupName == (OpenCardNumber == 1 ? TEXT("Loot_Card") : TEXT("Loot_Card10")))
-	//			SummonBoxActor = Cast<ASkeletalMeshActor>(ThisGroupInst->GetGroupActor());					// »ÌÈù Ä«µå °¡Á®¿À°í
+	//			SummonBoxActor = Cast<ASkeletalMeshActor>(ThisGroupInst->GetGroupActor());					// æƒ¶è…® å¢¨é› å•Šå»‰å·ç»Š
 
 
 	//		if (ThisGroupInst->Group->GroupName == TEXT("Loot_Card10BG"))
-	//			SummonBoxActorBG = Cast<ASkeletalMeshActor>(ThisGroupInst->GetGroupActor());				//´ë±âÁßÀÎÄ«µåµµ ¾ò¾î¿À°í
+	//			SummonBoxActorBG = Cast<ASkeletalMeshActor>(ThisGroupInst->GetGroupActor());				//æªæ‰åç‰¢å¢¨é›æ¡£ æ˜ç»¢å·ç»Š
 
 	//		if (ThisGroupInst->Group->GroupName == TEXT("Cam01"))
-	//			CameraInfo = Cast<ACameraActor>(ThisGroupInst->GetGroupActor());			//Ä«¸Ş¶ó°¡ °¢µµ°¡ ´Ù¸£´Ù ¤Ğ¤Ğ Ä«¸Ş¶óµµ ¾ò¾î¿ÀÀÚ...
+	//			CameraInfo = Cast<ACameraActor>(ThisGroupInst->GetGroupActor());			//å¢¨çš‹æ‰¼å•Š é˜¿æ¡£å•Š ä¿ƒç¦ä¿ƒ ã°ã° å¢¨çš‹æ‰¼æ¡£ æ˜ç»¢å·ç£Š...
 	//	}
 	//}
 
@@ -769,7 +769,7 @@ void UB2UISummonItemDisplay::ChangeSummonItemCardMatineeActorToFX(const TArray<F
 
 	//UpdateButtonState(!SummonBoxActorBG.Get() ? OpenCardNumber : OpenCardNumber - 1);
 
-	//for (int32 Idx = 0; Idx < UIP_SummonedItems.Num(); ++Idx)			//¿ì¼± µÎ¹ø¸¸ µ¹µµ·Ï ¼³Á¤
+	//for (int32 Idx = 0; Idx < UIP_SummonedItems.Num(); ++Idx)			//å¿«æ€¥ æ»´é”…çˆ¶ å€’æ¡£åºŸ æ±²æ²¥
 	//{
 	//	if (UIP_SummonedItems[Idx].IsValid())
 	//	{
@@ -860,7 +860,7 @@ void UB2UISummonItemDisplay::UpdateLocationSummonItemUIs()
 	//APlayerController* LocalPlayerController = UGameplayStatics::GetLocalPlayerController(GetWorld());
 	//if (LocalPlayerController)
 	//{
-	//	// UMG ¿¡¼­ ¾µ UIPosition °è»ê ½Ã¿¡ ÇöÀç ÇØ»óµµ°¡ ¾Æ´Ñ ±âÁØ ÇØ»óµµ ±âÁØÀ¸·Î ³Ö¾îÁÖ¾î¾ß ÇÏ¹Ç·Î ºä ½ºÄÉÀÏÀÌ ÇÊ¿äÇÔ.
+	//	// UMG ä¿Šè¾‘ é•œ UIPosition æ‹Œé­‚ çŸ«ä¿Š æ³…çŠ ç§¦æƒ‘æ¡£å•Š é…’å›± æ‰éœ– ç§¦æƒ‘æ¡£ æ‰éœ–æ è‚º æŒç»¢æ—ç»¢å…· çªéª¨è‚º è½° èƒ¶çº³è€æ é˜å¤¸çªƒ.
 	//	float DPIScale = UWidgetLayoutLibrary::GetViewportScale(LocalPlayerController);
 
 	//	ULocalPlayer* const LP = LocalPlayerController ? LocalPlayerController->GetLocalPlayer() : nullptr;
@@ -883,24 +883,24 @@ void UB2UISummonItemDisplay::UpdateLocationSummonItemUIs()
 	//				{
 	//					APlayerController* OwningPC = GetOwningPlayer();
 	//					OpenCardMaxNumber == 1 ? BTN_OpenTouch->SetVisibility(ESlateVisibility::Hidden) : BTN_OpenTouch->SetVisibility(ESlateVisibility::Visible);
-	//					// À§Ä¡ Á¶ÀıÀ» À§ÇØ CanvasPanelSlot ¿¡ ¹èÄ¡ÇØ¾ß ÇÔ.
+	//					// å›°æ‘¹ ç‚¼ä¾‹é˜‘ å›°ç§¦ CanvasPanelSlot ä¿Š ç¡…æ‘¹ç§¦å…· çªƒ.
 	//					UCanvasPanelSlot* ThisSlot = Cast<UCanvasPanelSlot>(UIP_SummonedItems[Idx]->Slot);
 	//					if (OwningPC && ThisSlot)
 	//					{
 	//						FVector2D vProjectedLocation(0.f, 0.f);
 	//						OwningPC->ProjectWorldLocationToScreen(UIP_SummonedItems[Idx]->GetWorldLocation(), vProjectedLocation);
 
-	//						// ¿©±â¼­ºÎÅÍ´Â ±âÁØ ÇØ»óµµ »çÀÌÁî·Î..
+	//						// å’¯æ‰è¾‘ä½•ç£ç»° æ‰éœ– ç§¦æƒ‘æ¡£ è¤æä»¤è‚º..
 	//						vProjectedLocation /= (DPIScale > KINDA_SMALL_NUMBER ? DPIScale : 1.0f);
 
-	//						// ½½·Ô »çÀÌÁî¸¸Å­ º¸Á¤. Size to Content ÇßÀ» ½Ã GetDesiredSize ·Î.. 
+	//						// æµ‡å© è¤æä»¤çˆ¶æ€’ ç„Šæ²¥. Size to Content æ²é˜‘ çŸ« GetDesiredSize è‚º.. 
 	//						FVector2D ItemSlotSize = ThisSlot->GetAutoSize() ? UIP_SummonedItems[Idx]->GetDesiredSize() : ThisSlot->GetSize();
-	//						// ½ºÄÉÀÏÀÌ Ãß°¡·Î ÀÖ¾î¼­.. ±Ùµ¥ GetDesiredSize ¸é Scale ÀÌ ¹İ¿µµÇ¾î ÀÖÀ» µí..?
+	//						// èƒ¶çº³è€æ çœ å•Šè‚º ä¹ç»¢è¾‘.. è¾Ÿå• GetDesiredSize æ Scale æ é¦†åº·ç™»ç»¢ ä¹é˜‘ æ·€..?
 	//						ItemSlotSize *= ThisSlot->GetAutoSize() ? 1.0f : GetCardSlotSizeScale();
 	//						vProjectedLocation.X -= (ItemSlotSize.X * 0.5f);
 	//						vProjectedLocation.Y -= (ItemSlotSize.Y * 0.5f);
 
-	//						ThisSlot->SetAnchors(FAnchors(0.f, 0.f)); // ÀÌ·± °Ç ÁøÀÛ¿¡ ¸ÂÃç³õ´Â °É·Î..
+	//						ThisSlot->SetAnchors(FAnchors(0.f, 0.f)); // æç¹ æ‰’ æŸ³ç´¯ä¿Š å˜è‹—åˆç»° å§è‚º..
 	//						ThisSlot->SetPosition(vProjectedLocation);
 	//					}
 	//				}
@@ -1001,14 +1001,14 @@ void UB2UISummonItemDisplay::UpdateButtonState(int32 CardNumber)
 			TB_ItemCount->SetText(FText::FromString(FString::Printf(TEXT("x%d"), RemainCard)));
 		}
 
-		if (bStoreFinish)		//°á°úÃ¢ 10ÀåÂ¥¸®ÀÏ¶§
+		if (bStoreFinish)		//æ¬è‹èŠ’ 10å˜æ¥¼åºœè€é”­
 		{
 			TB_Confirm->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("General_Confirm")));
 			VisibilityButtonState = true;
 		}
 		else
 		{
-			if (OpenCardMaxNumber == 10 && CardNumber >= 0 && !bCardResult) // 10ÀåÂ¥¸® Ã³À½¿¡
+			if (OpenCardMaxNumber == 10 && CardNumber >= 0 && !bCardResult) // 10å˜æ¥¼åºœ è´¸æ¾œä¿Š
 				VisibilityButtonState = true;
 		}
 		CP_Confirm->SetVisibility(VisibilityButtonState ? ESlateVisibility::Visible : ESlateVisibility::Collapsed);
@@ -1057,8 +1057,8 @@ void UB2UISummonItemDisplay::UpdateButtonState(int32 CardNumber)
 		CP_Gem->SetVisibility(bStoreFinish && CostType == EStoreItemCost::Gem ? ESlateVisibility::Visible : ESlateVisibility::Collapsed);
 }
 
-// Tutorial - 300_5 ¼ÒÈ¯ ¾ÆÀÌÅÛ Click½Ã DetailÁ¤º¸°¡ ¶ß´Â°ÍÀ» ¹æÁöÇÏ±â À§ÇÑ ÇÏµåÄÚµù
-TUTORIAL void UB2UISummonItemDisplay::Tutorial_SetSummonSlotFix()
+// Tutorial - 300_5 å®¶åˆ¸ é…’æè¢ ClickçŸ« Detailæ²¥ç„Šå•Š å“†ç»°å·´é˜‘ è§„ç˜¤çªæ‰ å›°èŒ„ çªé›å†…çˆ¹
+/*TUTORIAL*/ void UB2UISummonItemDisplay::Tutorial_SetSummonSlotFix()
 {
 	if (UB2UISummonItemDisplaySlot* SummonSlot = UIP_SummonedItems[0].Get())
 	{

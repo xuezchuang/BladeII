@@ -1,17 +1,18 @@
-#include "BladeIIInteractiveActor.h"
+ï»¿#include "BladeIIInteractiveActor.h"
 #include "Animation/AnimSingleNodeInstance.h"
 //#include "BladeIIPlayer.h"
 //#include "BladeIIUtil.h"
-
+#include "TimerManager.h"
+#include "Engine/CollisionProfile.h"
 // NotifyHit()/TakeDamage()/BeginOverlap() 
-// ¡é
+// ï¿ 
 // Interact() -> BeginInteract() -> InteractAction() -> EndInteract()
 
 // Sets default values
 ABladeIIInteractiveActor::ABladeIIInteractiveActor(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
-	// ÀÌ ¾×ÅÍ´Â µû·Î Æ½À» ¹ÞÀ» ÇÊ¿ä°¡ ¾ø´Ù. ´Ù¸¸, ÀÌº¥Æ® Ã³¸® ¹æ½Ä¿¡ µû¶ó ¹Ù²ã¾ßÇÒÁöµµ ¸ð¸§(Á¢ÃËÇÏ°í ÀÖ´Â µ¿¾È È¿°ú°¡ ¹ß»ýÇØ¾ßÇÑ´ÙµçÁö ÇÒ ¶§ - ±Ùµ¥ ±¸Á¶ºÎÅÍ ¹Ù²ã¾ßÇÒ µí.)
+	// æž å’€ç£ç»° è¶è‚º å¹³é˜‘ ç½é˜‘ éž˜å¤¸å•Š ç»ä¿ƒ. ä¿ƒçˆ¶, æžäº¥é£˜ è´¸åºœ è§„ä¾¥ä¿Š è¶æ‰¼ å®˜å±‚å…·ä¸”ç˜¤æ¡£ è‘›æŠš(ç«‹ç›Ÿçªç»Š ä¹ç»° æ‚¼æ•‘ ç“¤è‹žå•Š æƒ¯ç§¯ç§¦å…·èŒ„ä¿ƒç”µç˜¤ ä¸” é”­ - è¾Ÿå• å¤‡ç‚¼ä½•ç£ å®˜å±‚å…·ä¸” æ·€.)
 	PrimaryActorTick.bCanEverTick = false; 
 
 	TriggerType = EInteractiveTriggeringType::InteractByTriggerVolume;
@@ -28,8 +29,8 @@ void ABladeIIInteractiveActor::BeginPlay()
 	CurrentHP = TriggerType==EInteractiveTriggeringType::InteractByDamaged ? 0 : MaxHP;
 	Phase = EInteractivePhaseType::ReadyPhase;
 
-	// ´ëÃ¼·Î ÀÌ·± Á¾·ù ¾Öµé shadow °¡ modulated shadow Æ¯¼ºÇÏ°í ¸Â¹°·Á¼­ ±×´ÙÁö º¸±â ¾ÈÁÁÀ½.
-	// Modulated shadow ¸¦ ´ëÃ¼ÇÏ´Â ±¦ÂúÀº ¼ö´ÜÀÌ ³ª¿À±â Àü±îÁö´Â ²¨µÐ´Ù.
+	// æŽªçœ‰è‚º æžç¹ è¾†å¹… å±€ç”¸ shadow å•Š modulated shadow æ¼‚å·±çªç»Š å˜Žæ‹±å¦¨è¾‘ å¼Šä¿ƒç˜¤ ç„Šæ‰ æ•‘äº®æ¾œ.
+	// Modulated shadow ç”« æŽªçœ‰çªç»° å®æ»¡ç¯® èçªœæž å”±å·æ‰ å‚ˆé³–ç˜¤ç»° æ³¢æ•Œä¿ƒ.
 	//TurnOffMeshComponentsDyamicShadowForModulated(this);
 }
 
@@ -132,13 +133,13 @@ void ABladeIIInteractiveActor::InteractAction()
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 //
-// ACountinuousInAreaInteractiveActor Æ¯Á¤ º¼·ý ¾È¿¡¼­ Áö¼ÓÀûÀÎ È¿°ú¸¦ ÁÖ´Â »óÈ£ÀÛ¿ë ¾×ÅÍ
+// ACountinuousInAreaInteractiveActor æ¼‚æ²¥ æ­ä¿˜ æ•‘ä¿Šè¾‘ ç˜¤åŠ åˆ©ç‰¢ ç“¤è‹žç”« æž—ç»° æƒ‘é¾‹ç´¯ä¾© å’€ç£
 //
 
 // BeginOverlap() -------------------------------------> EndOverlap()
-// ¡é                                                    ¡é
-// Interact() -> BeginInteract() ¦¨> InteractAction() ¦¤ EndInteract()
-//                               ¦¦<¦¡<¦¡<¦¡<¦¡<¦¡<¦¡<¦¥
+// ï¿                                                     ï¿ 
+// Interact() -> BeginInteract() Î˜> InteractAction() Î” EndInteract()
+//                               Î–<Î‘<Î‘<Î‘<Î‘<Î‘<Î‘<Î•
 
 
 AContinuousInAreaInteractiveActor::AContinuousInAreaInteractiveActor(const FObjectInitializer& ObjectInitializer)
@@ -198,7 +199,7 @@ void AContinuousInAreaInteractiveActor::EndInteract()
 
 	}		
 	else
-		SetPhase(EInteractivePhaseType::FinishPhase); //PeriodSeconds°¡ 0ÀÌÇÏ¶ó´Â °ÍÀº ÇÑ¹ø¸¸ ¹ÝÀÀÇÏ°í ³¡³»´Â °ÍÀ» ÀÇ¹ÌÇÑ´Ù.
+		SetPhase(EInteractivePhaseType::FinishPhase); //PeriodSecondså•Š 0æžçªæ‰¼ç»° å·´ç¯® èŒ„é”…çˆ¶ é¦†è§ˆçªç»Š åœºéƒ´ç»° å·´é˜‘ ç‹¼å›ºèŒ„ä¿ƒ.
 
 	InteractingActor = NULL;
 }
@@ -216,7 +217,7 @@ void AContinuousInAreaInteractiveActor::PostEditChangeProperty(FPropertyChangedE
 
 	//if (PropertyName == Name_TriggerType)
 	//{
-	//	TriggerType = EInteractiveTriggeringType::InteractByTriggerVolume; //Ç×»ó °­Á¦ÇÑ´Ù.
+	//	TriggerType = EInteractiveTriggeringType::InteractByTriggerVolume; //äº²æƒ‘ ç¢åŠ›èŒ„ä¿ƒ.
 	//}
 }
 #endif

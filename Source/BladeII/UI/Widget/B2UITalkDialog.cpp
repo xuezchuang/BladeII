@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UITalkDialog.h"
 #include "B2UITalkPortrait.h"
@@ -44,7 +44,7 @@ void UB2UITalkDialog::OnOpenComplete()
 {
 	Super::OnOpenComplete();
 
-	// ¿ÀÇÂ ÈÄ ¹Ù·Î ÀÏ½ÃÁ¤Áö
+	// å·é”¹ é¥¶ å®˜è‚º è€çŸ«æ²¥ç˜¤
 	SetPause(true);
 }
 
@@ -106,8 +106,8 @@ void UB2UITalkDialog::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
 	if (bBeginShow == false)
 	{
 		ABladeIIGameMode* B2GM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(this));
-		// Pre-render °¡ µ¹¾Æ°¡°í ÀÖ´Â ¿ÍÁß¿¡´Â BeginShow ¸¦ Áö¿¬½ÃÄÑ¾ß°Ú´Ù. »ç¿îµå°¡ µµÁß¿¡ ³ª¿À¸é °ï¶õÇÏ´Ï
-		// AB2StageEventDirector::TemporaryDisableTracksForPreRender ¿Í ¸¶Âù°¡Áö Â÷¿ø
+		// Pre-render å•Š å€’é…’å•Šç»Š ä¹ç»° å®¢åä¿Šç»° BeginShow ç”« ç˜¤æ¥·çŸ«éš¾å…·æ‘†ä¿ƒ. è¤æ¬¾é›å•Š æ¡£åä¿Š å”±å·æ å¸®é„‚çªèª
+		// AB2StageEventDirector::TemporaryDisableTracksForPreRender å®¢ ä»˜è›®å•Šç˜¤ ç’ç›”
 		if (!(B2GM && B2GM->IsInPreRenderPhase()))
 		{
 			UpdateBeginShow(InDeltaTime);
@@ -157,7 +157,7 @@ void UB2UITalkDialog::OnPause(bool Pause)
 
 void UB2UITalkDialog::UpdateBeginShow(float InDeltaTime)
 {
-	// ´ëÈ­ ·Îµù½Ã¿¡ µô·¹ÀÌ¸¦ ÁØ´Ù..
+	// æªæ‹³ è‚ºçˆ¹çŸ«ä¿Š æ‰é¥­æç”« éœ–ä¿ƒ..
 	ShowTimerCounter += InDeltaTime;
 
 	if (ShowTimerCounter > 0.1f)
@@ -176,7 +176,7 @@ void UB2UITalkDialog::UpdateBeginShow(float InDeltaTime)
 			}
 			else
 			{
-				// µ¥ÀÌÅÍ°¡ ¾øÀ¸¸é ±×³É Á¾·á Ã³¸®ÇÔ...
+				// å•æç£å•Š ç»æ æ å¼Šæˆ è¾†ä¸° è´¸åºœçªƒ...
 				OnClickedSkip();
 			}
 		}
@@ -208,7 +208,7 @@ void UB2UITalkDialog::UpdateTalkTimeCounter(float InDeltaTime)
 		TalkLineTimerCounter += InDeltaTime;
 		if (TalkLineTimerTarget <= TalkLineTimerCounter)
 		{
-			// ´ëÈ­ ½Ã°£ ¿Ï·á ÈÄ ´ÙÀ½ ´ëÈ­·Î ³Ñ¾î°£´Ù.
+			// æªæ‹³ çŸ«åŸƒ è‚¯ä¸° é¥¶ ä¿ƒæ¾œ æªæ‹³è‚º é€ç»¢åŸƒä¿ƒ.
 			NextTimerCounter = 0.0f;
 			bSwithTalkLineTimer = false;
 
@@ -224,7 +224,7 @@ void UB2UITalkDialog::UpdateNextTimeCounter(float InDeltaTime)
 		NextTimerCounter += InDeltaTime;
 		if (NextTimerTarget <= NextTimerCounter)
 		{
-			// ´ÙÀ½ ´ëÈ­±îÁö µô·¹ÀÌ ½Ã°£ Ã³¸® ÈÄ ½ÇÇà
+			// ä¿ƒæ¾œ æªæ‹³é³–ç˜¤ æ‰é¥­æ çŸ«åŸƒ è´¸åºœ é¥¶ è§’é’
 			NextTimerCounter = 0.0f;
 			bSwithNextSequenceTimer = false;
 
@@ -315,8 +315,8 @@ void UB2UITalkDialog::SetNextSequence(bool bForced)
 
 	if (!bForced)
 	{
-		if (CompleteLine->DelayToNextLine >= 0.0f) // 0 Àº ÀÏ´Ü ¾È¾²´Â°Ô..
-		{// ´ÙÀ½ ´ëÈ­½Ã±îÁö µô·¹ÀÌ ½Ã°£ÀÌ ÀÖ´Ù¸é..
+		if (CompleteLine->DelayToNextLine >= 0.0f) // 0 ç¯® è€çªœ æ•‘é™ç»°éœ¸..
+		{// ä¿ƒæ¾œ æªæ‹³çŸ«é³–ç˜¤ æ‰é¥­æ çŸ«åŸƒæ ä¹ä¿ƒæ..
 			NextTimerTarget = CompleteLine->DelayToNextLine;
 			NextTimerCounter = 0.0f;
 			bSwithNextSequenceTimer = true;
@@ -476,7 +476,7 @@ void UB2UITalkDialog::SetBackground(const struct FTalkLine &TalkLine)
 		else
 		{
 			SetSelectDefaultBackground(false);
-			// ´ëÈ­¸¶´Ù ±âÁ¸°ú ¹è°æ º¯°æÀÌ  ÀÖÀ» °æ¿ì¿¡¸¸ ¹Ù²Ş.
+			// æªæ‹³ä»˜ä¿ƒ æ‰ç²®è‹ ç¡…ç‰ˆ å‡½ç‰ˆæ  ä¹é˜‘ ç‰ˆå¿«ä¿Šçˆ¶ å®˜å•.
 			if (IMG_Background.IsValid() && LastBackgroundCode != TalkLine.BackgroundCode)
 			{
 				LastBackgroundCode = TalkLine.BackgroundCode;
@@ -490,7 +490,7 @@ void UB2UITalkDialog::SetBackground(const struct FTalkLine &TalkLine)
 
 void UB2UITalkDialog::SetPlaySound(const struct FTalkLine &TalkLine)
 {
-	StopCurrentDialogSound(); // Áß´ÜºÎÅÍ
+	StopCurrentDialogSound(); // åçªœä½•ç£
 
 	USoundCue* DialogSound = GetTalkSound(TalkLine.SpeakerCodeName, TalkLine.TalkSoundCodeName);
 	if (DialogSound)
@@ -624,16 +624,16 @@ ETalkOpeningAnimType UB2UITalkDialog::GetTalkBeginAnim()
 
 ETalkAnimSequenceType UB2UITalkDialog::GetTalkLineAnim(const struct FTalkLine &CompleteLine, const struct FTalkLine &NextLine)
 {
-	const int32 Appeared2 = 2;	// 2ÀÎ È­ÀÚÀÏ °æ¿ì
-	const int32 Appeared3 = 3;	// 3ÀÎ È­ÀÚÀÏ °æ¿ì
-	const int32 Appeared4 = 4;	// 4ÀÎ È­ÀÚÀÏ °æ¿ì
+	const int32 Appeared2 = 2;	// 2ç‰¢ æ‹³ç£Šè€ ç‰ˆå¿«
+	const int32 Appeared3 = 3;	// 3ç‰¢ æ‹³ç£Šè€ ç‰ˆå¿«
+	const int32 Appeared4 = 4;	// 4ç‰¢ æ‹³ç£Šè€ ç‰ˆå¿«
 
 	int32 AppearCount = GetShowedPortraitCount();
 	ETalkAnimBehaviorType BehaviorType = GetTalkBehaviorType(CompleteLine, NextLine);
 	switch (BehaviorType)
 	{
 	case ETalkAnimBehaviorType::Appear:
-		{	// È­ÀÚ°¡ Ãß°¡µÉ¶§
+		{	// æ‹³ç£Šå•Š çœ å•Šçªé”­
 			if (AppearCount == Appeared3)
 			{
 				if (NextLine.PortraitPosition == EPortraitPosition::Position_3)
@@ -651,7 +651,7 @@ ETalkAnimSequenceType UB2UITalkDialog::GetTalkLineAnim(const struct FTalkLine &C
 		}
 		break;
 	case ETalkAnimBehaviorType::Disappear:
-		{	// È­ÀÚ°¡ ºüÁú¶§
+		{	// æ‹³ç£Šå•Š ç‹é¾™é”­
 			if (AppearCount == Appeared2)
 			{
 				if (CompleteLine.PortraitPosition == EPortraitPosition::Position_1)
@@ -673,7 +673,7 @@ ETalkAnimSequenceType UB2UITalkDialog::GetTalkLineAnim(const struct FTalkLine &C
 		}
 		break;
 	case ETalkAnimBehaviorType::AppearAndDisappear:
-		{	// È­ÀÚ°¡ Ãß°¡µÇ°í ºüÁú¶§
+		{	// æ‹³ç£Šå•Š çœ å•Šç™»ç»Š ç‹é¾™é”­
 			if (CompleteLine.PortraitPosition == EPortraitPosition::Position_3
 				&& NextLine.PortraitPosition == EPortraitPosition::Position_4)
 			{
@@ -698,17 +698,17 @@ ETalkAnimBehaviorType UB2UITalkDialog::GetTalkBehaviorType(const struct FTalkLin
 {
 	if (CompleteLine.SpeakerLeave == false
 		&& NextLine.AppearType == EPortraitAppearType::OnTime)
-	{	// È­ÀÚ°¡ Ãß°¡µÉ¶§
+	{	// æ‹³ç£Šå•Š çœ å•Šçªé”­
 		return ETalkAnimBehaviorType::Appear;
 	}
 	else if (CompleteLine.SpeakerLeave == true
 		&& NextLine.AppearType == EPortraitAppearType::Default)
-	{	// È­ÀÚ°¡ ºüÁú¶§
+	{	// æ‹³ç£Šå•Š ç‹é¾™é”­
 		return ETalkAnimBehaviorType::Disappear;
 	}
 	else  if (CompleteLine.SpeakerLeave == true
 		&& NextLine.AppearType == EPortraitAppearType::OnTime)
-	{	// È­ÀÚ°¡ Ãß°¡µÇ°í ºüÁú¶§
+	{	// æ‹³ç£Šå•Š çœ å•Šç™»ç»Š ç‹é¾™é”­
 		return ETalkAnimBehaviorType::AppearAndDisappear;
 	}
 	

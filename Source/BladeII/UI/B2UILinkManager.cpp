@@ -1,4 +1,4 @@
-
+ï»¿
 #include "B2UILinkManager.h"
 #include "B2UIManager.h"
 #include "B2UIDocHelper.h"
@@ -52,8 +52,8 @@ bool FB2UILinkManager::LinkUIScene(EUIScene UIScene, int32 Optional1 /*= 0*/, in
 
 void FB2UILinkManager::ExcuteUIScene()
 { 
-	// ¾ÀÀüÈ¯Àü¿¡ Á¤º¸°ª °»½ÅÀÌ ÇÊ¿äÇÑ °æ¿ì¿¡ »ç¿ë.
-	// Á¤º¸°ª °»½ÅÀÌ µû·Î ÇÊ¿ä¾øÀ» °æ¿ì¿£ °¢¾ÀÀÇ LinkUIScene()¿¡¼­ CurrentLinkerSceneÀ» MAX·Î ÃÊ±âÈ­ÇØÁÖ¾î¾ßÇÔ. 
+	// çº å‚ˆåˆ¸å‚ˆä¿Š æ²¥ç„Šè”¼ ç›è„šæ é˜å¤¸èŒ„ ç‰ˆå¿«ä¿Š è¤ä¾©.
+	// æ²¥ç„Šè”¼ ç›è„šæ è¶è‚º é˜å¤¸ç»é˜‘ ç‰ˆå¿«æµš é˜¿çº ç‹¼ LinkUIScene()ä¿Šè¾‘ CurrentLinkerSceneé˜‘ MAXè‚º æª¬æ‰æ‹³ç§¦æ—ç»¢å…·çªƒ. 
 	if (FB2UILinkBase* LinkInfo = GetInstance().GetUILinkInfo(CurrentLinkerScene))
 	{
 		LinkInfo->ExcuteUIScene();
@@ -120,14 +120,14 @@ void FB2UILink_Chapter::LinkUIScene_Chapter(int32 Optional1, int32 Optional2)
 	int32 ChapterNum = StageDataStore.GetActIdByClientStageId(StageDataStore.GetClientStageId(ServerStageID));
 	EStageDifficulty Difficulty = StageDataStore.GetStageDifficulty(ServerStageID);
 
-	if (ServerStageID == INDEX_NONE)	// ÃÖ±Ù ÇÃ·¹ÀÌ ÇÑ ¸¶Áö¸· ½ºÅ×ÀÌÁö
+	if (ServerStageID == INDEX_NONE)	// å¼¥è¾Ÿ æ•²é¥­æ èŒ„ ä»˜ç˜¤é˜œ èƒ¶æŠ›æç˜¤
 	{
-		//ÃÖ±Ù ÇÃ·¹ÀÌÇÑ ½ºÅ×ÀÌÁö Á¤º¸
+		//å¼¥è¾Ÿ æ•²é¥­æèŒ„ èƒ¶æŠ›æç˜¤ æ²¥ç„Š
 		ServerStageID = StageDataStore.GetLastPlayedServerStageId();
 		int32 ChapterNumber = StageDataStore.GetActIdByClientStageId(StageDataStore.GetClientStageId(ServerStageID));
 		EStageDifficulty StageDifficulty = StageDataStore.GetStageDifficulty(ServerStageID);
 
-		if (ServerStageID == 0) // ¼­¹ö¿¡ ÀúÀåµÈ ÃÖ±Ù ÇÃ·¹ÀÌ Á¤º¸°¡ 0 ÀÏ¶§. °­Á¦·Î 1-1·Î ¼¼ÆÃ
+		if (ServerStageID == 0) // è¾‘æ»šä¿Š å†å˜ç­‰ å¼¥è¾Ÿ æ•²é¥­æ æ²¥ç„Šå•Š 0 è€é”­. ç¢åŠ›è‚º 1-1è‚º æŠ€æ³¼
 		{
 			ChapterNumber = 1;
 			StageDifficulty = EStageDifficulty::ESD_Normal;
@@ -183,7 +183,7 @@ void FB2UILink_BattleStageInfo::LinkUIScene_BattleStageInfo(int32 Optional1, int
 	//if ((RequestDifficuly >= LastDifficulty && LastClearClientStageID + 1 < RequestClientStageID)
 	//	|| bSixChapterOrMore)
 	//{
-	//	// ¾ÕÀ¸·Î Å¬¸®¾î ÇÒ Stageº¸´Ù ³ôÀº ´Ü°è Stage¸¦ RequestÇÒ °æ¿ì
+	//	// èŠæ è‚º åŠªåºœç»¢ ä¸” Stageç„Šä¿ƒ è‡­ç¯® çªœæ‹Œ Stageç”« Requestä¸” ç‰ˆå¿«
 	//	UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
 	//		BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_Notification")),
 	//		BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("NeedToClearStage")),
@@ -305,16 +305,16 @@ void FB2UILink_Inventory::LinkUIScene_Inventory(int32 Optional1, int32 Optional2
 {
 	//FB2UILinkManager::GetInstance().SetCurrentLinkScene(EUIScene::Max);
 
-	//// Áö±İÀº ±×³É UIScene ¸¸ °¡Áö°í ½á¸Ô¾îµµ µÉ µí?
+	//// ç˜¤é™›ç¯® å¼Šæˆ UIScene çˆ¶ å•Šç˜¤ç»Š ç»“å†ˆç»¢æ¡£ çª æ·€?
 	//EHeroMgmtSubMode UISceneToDJLegacyMapping = UISceneToDJLegacyHeroMgmt(UIScene);
 
-	//// Optional1 Àº EUIScene::Inventory ÀÌ¿ÜÀÇ °ÍµéÀÌ Ãß°¡µÇ±â Àü¿¡ ÇÊ¿äÇß´ø °Å.. Inventory ÀÌ¿Ü¿¡´Â UISceneToDJLegacyHeroMgmt °á°ú·Î ÃæºĞ.
+	//// Optional1 ç¯® EUIScene::Inventory æå¯‡ç‹¼ å·´ç”¸æ çœ å•Šç™»æ‰ å‚ˆä¿Š é˜å¤¸æ²å¸¦ èŠ­.. Inventory æå¯‡ä¿Šç»° UISceneToDJLegacyHeroMgmt æ¬è‹è‚º é¢ç›’.
 	//EHeroMgmtSubMode MgmtMode = (UISceneToDJLegacyMapping == EHeroMgmtSubMode::EHMSM_Inventory) ?
 	//	static_cast<EHeroMgmtSubMode>(Optional1) : UISceneToDJLegacyMapping;
 
 	//if (Optional2 > 0)
 	//{
-	//	EPCClass PCClass = IntToPCClass(Optional2 - 1); // 1:°ËÅõ»ç 2:¾Ï»ìÀÚ 3:¸¶¹ı»ç 4:°İÅõ°¡
+	//	EPCClass PCClass = IntToPCClass(Optional2 - 1); // 1:å…«æ§è¤ 2:é æ··ç£Š 3:ä»˜è¿‡è¤ 4:æ‹œæ§å•Š
 	//	LobbyHeroMgmtSelectClass<EPCClass>::GetInstance().Signal(PCClass);
 	//}
 	//LobbyEnterHeroMgmtModeClass<EHeroMgmtSubMode>::GetInstance().Signal(MgmtMode);
@@ -329,16 +329,16 @@ void FB2UILink_Skill::LinkUIScene_Skill(int32 Optional1, int32 Optional2)
 {
 	//FB2UILinkManager::GetInstance().SetCurrentLinkScene(EUIScene::Max);
 
-	//// Áö±İÀº ±×³É UIScene ¸¸ °¡Áö°í ½á¸Ô¾îµµ µÉ µí?
+	//// ç˜¤é™›ç¯® å¼Šæˆ UIScene çˆ¶ å•Šç˜¤ç»Š ç»“å†ˆç»¢æ¡£ çª æ·€?
 	//EHeroMgmtSubMode UISceneToDJLegacyMapping = UISceneToDJLegacyHeroMgmt(UIScene);
 
-	//// Optional1 Àº EUIScene::Inventory ÀÌ¿ÜÀÇ °ÍµéÀÌ Ãß°¡µÇ±â Àü¿¡ ÇÊ¿äÇß´ø °Å.. Inventory ÀÌ¿Ü¿¡´Â UISceneToDJLegacyHeroMgmt °á°ú·Î ÃæºĞ.
+	//// Optional1 ç¯® EUIScene::Inventory æå¯‡ç‹¼ å·´ç”¸æ çœ å•Šç™»æ‰ å‚ˆä¿Š é˜å¤¸æ²å¸¦ èŠ­.. Inventory æå¯‡ä¿Šç»° UISceneToDJLegacyHeroMgmt æ¬è‹è‚º é¢ç›’.
 	//EHeroMgmtSubMode MgmtMode = (UISceneToDJLegacyMapping == EHeroMgmtSubMode::EHMSM_Inventory) ?
 	//	static_cast<EHeroMgmtSubMode>(Optional1) : UISceneToDJLegacyMapping;
 
 	//if (Optional2 > 0)
 	//{
-	//	EPCClass PCClass = IntToPCClass(Optional2 - 1); // 1:°ËÅõ»ç 2:¾Ï»ìÀÚ 3:¸¶¹ı»ç 4:°İÅõ°¡
+	//	EPCClass PCClass = IntToPCClass(Optional2 - 1); // 1:å…«æ§è¤ 2:é æ··ç£Š 3:ä»˜è¿‡è¤ 4:æ‹œæ§å•Š
 	//	LobbyHeroMgmtSelectClass<EPCClass>::GetInstance().Signal(PCClass);
 	//}
 	//LobbyEnterHeroMgmtModeClass<EHeroMgmtSubMode>::GetInstance().Signal(MgmtMode);
@@ -353,16 +353,16 @@ void FB2UILink_Brevet::LinkUIScene_Brevet(int32 Optional1, int32 Optional2)
 {
 	//FB2UILinkManager::GetInstance().SetCurrentLinkScene(EUIScene::Max);
 
-	//// Áö±İÀº ±×³É UIScene ¸¸ °¡Áö°í ½á¸Ô¾îµµ µÉ µí?
+	//// ç˜¤é™›ç¯® å¼Šæˆ UIScene çˆ¶ å•Šç˜¤ç»Š ç»“å†ˆç»¢æ¡£ çª æ·€?
 	//EHeroMgmtSubMode UISceneToDJLegacyMapping = UISceneToDJLegacyHeroMgmt(UIScene);
 
-	//// Optional1 Àº EUIScene::Inventory ÀÌ¿ÜÀÇ °ÍµéÀÌ Ãß°¡µÇ±â Àü¿¡ ÇÊ¿äÇß´ø °Å.. Inventory ÀÌ¿Ü¿¡´Â UISceneToDJLegacyHeroMgmt °á°ú·Î ÃæºĞ.
+	//// Optional1 ç¯® EUIScene::Inventory æå¯‡ç‹¼ å·´ç”¸æ çœ å•Šç™»æ‰ å‚ˆä¿Š é˜å¤¸æ²å¸¦ èŠ­.. Inventory æå¯‡ä¿Šç»° UISceneToDJLegacyHeroMgmt æ¬è‹è‚º é¢ç›’.
 	//EHeroMgmtSubMode MgmtMode = (UISceneToDJLegacyMapping == EHeroMgmtSubMode::EHMSM_Inventory) ?
 	//	static_cast<EHeroMgmtSubMode>(Optional1) : UISceneToDJLegacyMapping;
 
 	//if (Optional2 > 0)
 	//{
-	//	EPCClass PCClass = IntToPCClass(Optional2 - 1); // 1:°ËÅõ»ç 2:¾Ï»ìÀÚ 3:¸¶¹ı»ç 4:°İÅõ°¡
+	//	EPCClass PCClass = IntToPCClass(Optional2 - 1); // 1:å…«æ§è¤ 2:é æ··ç£Š 3:ä»˜è¿‡è¤ 4:æ‹œæ§å•Š
 	//	LobbyHeroMgmtSelectClass<EPCClass>::GetInstance().Signal(PCClass);
 	//}
 
@@ -378,16 +378,16 @@ void FB2UILink_Wing::LinkUIScene_Wing(int32 Optional1, int32 Optional2)
 {
 //	FB2UILinkManager::GetInstance().SetCurrentLinkScene(EUIScene::Max);
 //
-//	// Áö±İÀº ±×³É UIScene ¸¸ °¡Áö°í ½á¸Ô¾îµµ µÉ µí?
+//	// ç˜¤é™›ç¯® å¼Šæˆ UIScene çˆ¶ å•Šç˜¤ç»Š ç»“å†ˆç»¢æ¡£ çª æ·€?
 //	EHeroMgmtSubMode UISceneToDJLegacyMapping = UISceneToDJLegacyHeroMgmt(UIScene);
 //
-//	// Optional1 Àº EUIScene::Inventory ÀÌ¿ÜÀÇ °ÍµéÀÌ Ãß°¡µÇ±â Àü¿¡ ÇÊ¿äÇß´ø °Å.. Inventory ÀÌ¿Ü¿¡´Â UISceneToDJLegacyHeroMgmt °á°ú·Î ÃæºĞ.
+//	// Optional1 ç¯® EUIScene::Inventory æå¯‡ç‹¼ å·´ç”¸æ çœ å•Šç™»æ‰ å‚ˆä¿Š é˜å¤¸æ²å¸¦ èŠ­.. Inventory æå¯‡ä¿Šç»° UISceneToDJLegacyHeroMgmt æ¬è‹è‚º é¢ç›’.
 //	EHeroMgmtSubMode MgmtMode = (UISceneToDJLegacyMapping == EHeroMgmtSubMode::EHMSM_Inventory) ?
 //		static_cast<EHeroMgmtSubMode>(Optional1) : UISceneToDJLegacyMapping;
 //
 //	if (Optional2 > 0)
 //	{
-//		EPCClass PCClass = IntToPCClass(Optional2 - 1); // 1:°ËÅõ»ç 2:¾Ï»ìÀÚ 3:¸¶¹ı»ç 4:°İÅõ°¡
+//		EPCClass PCClass = IntToPCClass(Optional2 - 1); // 1:å…«æ§è¤ 2:é æ··ç£Š 3:ä»˜è¿‡è¤ 4:æ‹œæ§å•Š
 //		LobbyHeroMgmtSelectClass<EPCClass>::GetInstance().Signal(PCClass);
 //	}
 //
@@ -403,16 +403,16 @@ void FB2UILink_Relic::LinkUIScene_Relic(int32 Optional1, int32 Optional2)
 {
 	//FB2UILinkManager::GetInstance().SetCurrentLinkScene(EUIScene::Max);
 
-	//// Áö±İÀº ±×³É UIScene ¸¸ °¡Áö°í ½á¸Ô¾îµµ µÉ µí?
+	//// ç˜¤é™›ç¯® å¼Šæˆ UIScene çˆ¶ å•Šç˜¤ç»Š ç»“å†ˆç»¢æ¡£ çª æ·€?
 	//EHeroMgmtSubMode UISceneToDJLegacyMapping = UISceneToDJLegacyHeroMgmt(UIScene);
 
-	//// Optional1 Àº EUIScene::Inventory ÀÌ¿ÜÀÇ °ÍµéÀÌ Ãß°¡µÇ±â Àü¿¡ ÇÊ¿äÇß´ø °Å.. Inventory ÀÌ¿Ü¿¡´Â UISceneToDJLegacyHeroMgmt °á°ú·Î ÃæºĞ.
+	//// Optional1 ç¯® EUIScene::Inventory æå¯‡ç‹¼ å·´ç”¸æ çœ å•Šç™»æ‰ å‚ˆä¿Š é˜å¤¸æ²å¸¦ èŠ­.. Inventory æå¯‡ä¿Šç»° UISceneToDJLegacyHeroMgmt æ¬è‹è‚º é¢ç›’.
 	//EHeroMgmtSubMode MgmtMode = (UISceneToDJLegacyMapping == EHeroMgmtSubMode::EHMSM_Inventory) ?
 	//	static_cast<EHeroMgmtSubMode>(Optional1) : UISceneToDJLegacyMapping;
 
 	//if (Optional2 > 0)
 	//{
-	//	EPCClass PCClass = IntToPCClass(Optional2 - 1); // 1:°ËÅõ»ç 2:¾Ï»ìÀÚ 3:¸¶¹ı»ç 4:°İÅõ°¡
+	//	EPCClass PCClass = IntToPCClass(Optional2 - 1); // 1:å…«æ§è¤ 2:é æ··ç£Š 3:ä»˜è¿‡è¤ 4:æ‹œæ§å•Š
 	//	LobbyHeroMgmtSelectClass<EPCClass>::GetInstance().Signal(PCClass);
 	//}
 
@@ -444,7 +444,7 @@ void FB2UILink_GuildMain::ExcuteUIScene_GuildMain()
 void FB2UILink_RaidMain::LinkUIScene_RaidMain(int32 Optional1, int32 Optional2)
 {
 	data_trader::Retailer::GetInstance().RequestGetChallengeModeInfo();
-	data_trader::Retailer::GetInstance().RequestGetRaid(); // ÆĞ³ÎÆ¼Å¸ÀÓ ¹Ş¾Æ¿À±â¿ë..
+	data_trader::Retailer::GetInstance().RequestGetRaid(); // è©æ¾„èé¸¥çƒ™ ç½é…’å·æ‰ä¾©..
 }
 
 void FB2UILink_RaidMain::ExcuteUIScene_RaidMain()
@@ -517,7 +517,7 @@ void FB2UILink_LotteryStore::LinkUIScene_LotteryStore(int32 Optional1, int32 Opt
 
 	//UB2UIManager* const UIMgr = UB2UIManager::GetInstance();
 	//if (UIMgr)
-	//{ // ÀÚÀßÇÑ ÆË¾÷ÀÌ ¶á »óÅÂ¿¡¼­ »óÁ¡ ÁøÀÔÇÏ´Â °æ¿ì°¡ »ı±æ ¼ö ÀÖ¾î¼­ ±×°Å Ã³¸®.
+	//{ // ç£Šè‚‹èŒ„ æ‰‘è¯€æ å¤º æƒ‘æ€•ä¿Šè¾‘ æƒ‘ç—¢ æŸ³æ¶çªç»° ç‰ˆå¿«å•Š ç§¯è¾¨ è ä¹ç»¢è¾‘ å¼ŠèŠ­ è´¸åºœ.
 	//	UIMgr->CloseAllStandaloneUIs();
 	//}
 
@@ -555,7 +555,7 @@ void FB2UILink_EtherMain::LinkUIScene_EtherMain(int32 Optional1, int32 Optional2
 
 	//if (Optional2 > 0)
 	//{
-	//	EPCClass PCClass = IntToPCClass(Optional2 - 1); // 1:°ËÅõ»ç 2:¾Ï»ìÀÚ 3:¸¶¹ı»ç 4:°İÅõ°¡
+	//	EPCClass PCClass = IntToPCClass(Optional2 - 1); // 1:å…«æ§è¤ 2:é æ··ç£Š 3:ä»˜è¿‡è¤ 4:æ‹œæ§å•Š
 	//	UB2UIManager* const UIMgr = UB2UIManager::GetInstance();
 	//	if (UIMgr)
 	//	{
@@ -640,7 +640,7 @@ void FB2UILink_PackageStore::LinkUIScene_PackageStore(int32 Optional1, int32 Opt
 
 	UB2UIManager* UIMgr = UB2UIManager::GetInstance();
 	if (UIMgr)
-	{ // ÀÚÀßÇÑ ÆË¾÷ÀÌ ¶á »óÅÂ¿¡¼­ »óÁ¡ ÁøÀÔÇÏ´Â °æ¿ì°¡ »ı±æ ¼ö ÀÖ¾î¼­ ±×°Å Ã³¸®.
+	{ // ç£Šè‚‹èŒ„ æ‰‘è¯€æ å¤º æƒ‘æ€•ä¿Šè¾‘ æƒ‘ç—¢ æŸ³æ¶çªç»° ç‰ˆå¿«å•Š ç§¯è¾¨ è ä¹ç»¢è¾‘ å¼ŠèŠ­ è´¸åºœ.
 		UIMgr->CloseAllStandaloneUIs();
 		DocStore->SetPackageTabToOpen(Optional1);
 	}
@@ -665,16 +665,16 @@ void FB2UILink_DimensionMain::ExcuteUIScene_DimensionMain()
 
 void FB2UILink_Totem::LinkUIScene_Totem(int32 Optional1, int32 Optional2)
 {
-	//// Áö±İÀº ±×³É UIScene ¸¸ °¡Áö°í ½á¸Ô¾îµµ µÉ µí?
+	//// ç˜¤é™›ç¯® å¼Šæˆ UIScene çˆ¶ å•Šç˜¤ç»Š ç»“å†ˆç»¢æ¡£ çª æ·€?
 	//EHeroMgmtSubMode UISceneToDJLegacyMapping = UISceneToDJLegacyHeroMgmt(UIScene);
 
-	//// Optional1 Àº EUIScene::Inventory ÀÌ¿ÜÀÇ °ÍµéÀÌ Ãß°¡µÇ±â Àü¿¡ ÇÊ¿äÇß´ø °Å.. Inventory ÀÌ¿Ü¿¡´Â UISceneToDJLegacyHeroMgmt °á°ú·Î ÃæºĞ.
+	//// Optional1 ç¯® EUIScene::Inventory æå¯‡ç‹¼ å·´ç”¸æ çœ å•Šç™»æ‰ å‚ˆä¿Š é˜å¤¸æ²å¸¦ èŠ­.. Inventory æå¯‡ä¿Šç»° UISceneToDJLegacyHeroMgmt æ¬è‹è‚º é¢ç›’.
 	//EHeroMgmtSubMode MgmtMode = (UISceneToDJLegacyMapping == EHeroMgmtSubMode::EHMSM_Inventory) ?
 	//	static_cast<EHeroMgmtSubMode>(Optional1) : UISceneToDJLegacyMapping;
 
 	//if (Optional2 > 0)
 	//{
-	//	EPCClass PCClass = IntToPCClass(Optional2 - 1); // 1:°ËÅõ»ç 2:¾Ï»ìÀÚ 3:¸¶¹ı»ç 4:°İÅõ°¡
+	//	EPCClass PCClass = IntToPCClass(Optional2 - 1); // 1:å…«æ§è¤ 2:é æ··ç£Š 3:ä»˜è¿‡è¤ 4:æ‹œæ§å•Š
 	//	LobbyHeroMgmtSelectClass<EPCClass>::GetInstance().Signal(PCClass);
 	//}
 

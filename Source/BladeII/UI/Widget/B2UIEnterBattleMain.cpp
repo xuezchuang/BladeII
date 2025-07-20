@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIEnterBattleMain.h"
 #include "B2UIManager.h"
 #include "B2UIHeader.h"
@@ -123,7 +123,7 @@ void UB2UIEnterBattleMain::OnSceneOpen(EUIScene InOpenedScene)
 {
 	Super::OnSceneOpen(InOpenedScene);
 
-	// UIHeader ¿Í °°ÀÌ Scene À¸·Î ±¸¼ºÇÏ´Â °æ¿ì Init ½ÃÁ¡¿¡ ÇÏ¸é Scene ¿¡ Æ÷ÇÔµÈ header °¡ »ý¼ºÀÌ ¾ÈµÈ »óÈ²ÀÏ ¼ö ÀÖÀ½.
+	// UIHeader å®¢ éžæž Scene æ è‚º å¤‡å·±çªç»° ç‰ˆå¿« Init çŸ«ç—¢ä¿Š çªæ Scene ä¿Š å™¨çªƒç­‰ header å•Š ç§¯å·±æž æ•‘ç­‰ æƒ‘ç‚”è€ è ä¹æ¾œ.
 	SetLobbyUIHeaderTitleByGeneralTextTableKey(TEXT("LobbyMain_Battle"));
 
 	UpdateBattleSlot();
@@ -156,7 +156,7 @@ void UB2UIEnterBattleMain::UpdateBattleSlot()
 		{
 			UIP_PVPMatch->SetCountInfo(DocPvp->GetMatchPoint(), BladeIIGameImpl::GetClientDataStore().GetMaxPvpMatchPoint());
 
-			// Á¡°Ë Á¤»ê ºí·ÏUI ÇØ´ç¸ðµå Æ©Åä¸®¾ó ³¡³ÂÀ»¶§¸¸ Ç¥½Ã
+			// ç—¢å…« æ²¥é­‚ å–‰åºŸUI ç§¦å¯¸è‘›é› è­¬é…åºœå€” åœºé™ˆé˜‘é”­çˆ¶ é’ŽçŸ«
 			if (TutorialManager::GetInstance().IsFinishTutorial(TutorialID_PvPOneAndOne))
 				UIP_PVPMatch->SetModeState(DocMode->GetContentsModeState(b2network::B2ContentsMode::PVP_DUEL));
 			else
@@ -168,7 +168,7 @@ void UB2UIEnterBattleMain::UpdateBattleSlot()
 		{
 			UIP_TeamMatch->SetCountInfo(DocTeam->GetTeamMatchPoint(), BladeIIGameImpl::GetClientDataStore().GetMaxTeamMatchPoint());
 
-			// Á¡°Ë Á¤»ê ºí·ÏUI ÇØ´ç¸ðµå Æ©Åä¸®¾ó ³¡³ÂÀ»¶§¸¸ Ç¥½Ã
+			// ç—¢å…« æ²¥é­‚ å–‰åºŸUI ç§¦å¯¸è‘›é› è­¬é…åºœå€” åœºé™ˆé˜‘é”­çˆ¶ é’ŽçŸ«
 			if (TutorialManager::GetInstance().IsFinishTutorial(TutorialID_PvPTeam))
 				UIP_TeamMatch->SetModeState(DocMode->GetContentsModeState(b2network::B2ContentsMode::PVP_TEAM));
 			else
@@ -180,7 +180,7 @@ void UB2UIEnterBattleMain::UpdateBattleSlot()
 		{
 			UIP_Control->SetCountInfo(0, 0);
 
-			// Á¡°Ë Á¤»ê ºí·ÏUI ÇØ´ç¸ðµå Æ©Åä¸®¾ó ³¡³ÂÀ»¶§¸¸ Ç¥½Ã
+			// ç—¢å…« æ²¥é­‚ å–‰åºŸUI ç§¦å¯¸è‘›é› è­¬é…åºœå€” åœºé™ˆé˜‘é”­çˆ¶ é’ŽçŸ«
 			if (TutorialManager::GetInstance().IsFinishTutorial(TutorialID_Occupy))
 				UIP_Control->SetModeState(DocMode->GetContentsModeState(b2network::B2ContentsMode::ASSAULT));
 			else
@@ -188,7 +188,7 @@ void UB2UIEnterBattleMain::UpdateBattleSlot()
 
 			UIP_Control->SetModeText(b2network::B2ContentsMode::ASSAULT);
 
-			// ÀÔÀå°¡´É ½Ã°£´ë Ã¼Å©´Â ¸ðµå ¿­·ÁÀÖÀ»¶§¸¸ÇÑ´Ù.
+			// æ¶åŽ˜å•Šç“· çŸ«åŸƒæŽª çœ‰å†œç»° è‘›é› å‡¯å¦¨ä¹é˜‘é”­çˆ¶èŒ„ä¿ƒ.
 			if (UIP_Control->IsModeStateCurrentOpen() && !IsActiveControlTutorial())
 			{
 				FText LockedTimeText = GetLockedTimeText();

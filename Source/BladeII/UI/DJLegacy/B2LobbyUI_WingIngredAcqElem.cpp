@@ -77,34 +77,34 @@ void UB2LobbyUI_WingIngredAcqElem::OnClickBtnGo()
 {
 	if (CachedLobbyGM && CachedLobbyGM->IsHeroMgmtMode())
 	{
-		LobbyQuitHeroMgmtModeClass<>::GetInstance().Signal(); // ¾î¶² °æ¿ìµç ¿µ¿õ°ü¸® ¸ğµå ³ª°¡°Ô µÇ´Â °Å..?
+		LobbyQuitHeroMgmtModeClass<>::GetInstance().Signal(); // ç»¢æ« ç‰ˆå¿«ç”µ åº·æ—·åŒ…åºœ è‘›é› å”±å•Šéœ¸ ç™»ç»° èŠ­..?
 	}
 
-	// °¢ Àç·áº°·Î ½ÀµæÇÒ ¼ö ÀÖ´Â °÷À¸·Î ÀÌµ¿ÇÏ´Â ½ÇÁúÀûÀÎ ºÎºĞÀÌ ¿©±â°¡ µÇ°Ú´Ù.
+	// é˜¿ çŠä¸°å–Šè‚º åš¼å«ä¸” è ä¹ç»° é•‘æ è‚º ææ‚¼çªç»° è§’é¾™åˆ©ç‰¢ ä½•ç›’æ å’¯æ‰å•Š ç™»æ‘†ä¿ƒ.
 	switch (MyType)
 	{
-	case EWingIngredAcqElemType::WAET_EnhanceIngred: // »óÁ¡À¸·Î
+	case EWingIngredAcqElemType::WAET_EnhanceIngred: // æƒ‘ç—¢æ è‚º
 		
-		// PopupGoToShopForGoldMessage ¸¦ Âü°í. »çÀü¿¡ Æ¯Á¤ À§Ä¡·Î StoreTab À» ¼¼ÆÃÇØ¾ß ÇÒ ¼ö ÀÖ´Ù.
+		// PopupGoToShopForGoldMessage ç”« æ›¼ç»Š. è¤å‚ˆä¿Š æ¼‚æ²¥ å›°æ‘¹è‚º StoreTab é˜‘ æŠ€æ³¼ç§¦å…· ä¸” è ä¹ä¿ƒ.
 		EnterShopClass<int32>::GetInstance().Signal(static_cast<int32>(EStorePageWhere::Store));
 
 		break;
 
-	case EWingIngredAcqElemType::WAET_EvolveIngred: // ¹İ°İ´øÀü
+	case EWingIngredAcqElemType::WAET_EvolveIngred: // é¦†æ‹œå¸¦å‚ˆ
 
-		// UIModSelect ¿¡¼­ ¹İ°İ´øÀü ´©¸£¸é ½ÇÇàµÇ´Â °É·Î
+		// UIModSelect ä¿Šè¾‘ é¦†æ‹œå¸¦å‚ˆ ç©¿ç¦æ è§’é’ç™»ç»° å§è‚º
 		data_trader::Retailer::GetInstance().RequestGetCounterDungeon();
 
 		break;
 
-	case EWingIngredAcqElemType::WAET_PropOptionIngred: // ÆÀ´ëÀü
+	case EWingIngredAcqElemType::WAET_PropOptionIngred: // è¯„æªå‚ˆ
 
-		// UIModSelect ¿¡¼­ ÆÀ´ëÀü ´©¸£¸é ½ÇÇàµÇ´Â °É·Î
+		// UIModSelect ä¿Šè¾‘ è¯„æªå‚ˆ ç©¿ç¦æ è§’é’ç™»ç»° å§è‚º
 		data_trader::Retailer::GetInstance().RequestGetTeamBattleStatus();
 
 		break;
 	}
 
-	// ±×¸®°í ÆË¾÷ ÂÊ¿¡µµ ½ÅÈ£..
+	// å¼Šåºœç»Š æ‰‘è¯€ ç‡ä¿Šæ¡£ è„šé¾‹..
 	OnGoBtnClickDelegate.ExecuteIfBound(this);
 }

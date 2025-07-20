@@ -1,4 +1,4 @@
-//// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿//// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIItemQualityChange.h"
 //
 //#include "B2UIManager.h"
@@ -225,7 +225,7 @@
 //			const EItemClass& ItemClass = CachedItem.ItemClass;
 //
 //			AppliedOption.Add(ItemClass);
-//			// Àå½Å±¸¿¡¼­ °­È­ ·¹º§¿¡ µû¸¥ Á¦°öÀ» Á¦°ÅÇÏ±â À§ÇÑ ¿ëµµ·Î °­È­ ¾ÈµÈ ¾ÆÀÌÅÛ¿¡¸¸ -1À» ÇÔ
+//			// å˜è„šå¤‡ä¿Šè¾‘ ç¢æ‹³ é¥­éª‡ä¿Š è¶å¼— åŠ›èšŒé˜‘ åŠ›èŠ­çªæ‰ å›°èŒ„ ä¾©æ¡£è‚º ç¢æ‹³ æ•‘ç­‰ é…’æè¢ä¿Šçˆ¶ -1é˜‘ çªƒ
 //			if(ItemClass == EItemClass::EIC_Belt || ItemClass == EItemClass::EIC_Necklace || ItemClass == EItemClass::EIC_Ring)
 //				if (previewItem.EnhanceLevel == 0) previewItem.SetPrimaryPoint(previewItem.GetPrimaryPoint() - 1);
 //			UIP_ChangedOption->SetCompareQualityText(ItemClass, CachedItem.GetPrimaryPoint(), previewItem.GetPrimaryPoint());
@@ -322,18 +322,18 @@
 //		CachedApplyItemQualityForAnimation = previewItem;
 //
 //
-//		// UI°»½Å - NewOption »èÁ¦
+//		// UIç›è„š - NewOption æ˜åŠ›
 //		if (UIP_ChangedOption.IsValid())
 //			UIP_ChangedOption->ClearQualityTextList();
 //
-//		bItemQualityApplied = true; // ItemOptionChange UI Close ÈÄ InventoryUI °»½Å
+//		bItemQualityApplied = true; // ItemOptionChange UI Close é¥¶ InventoryUI ç›è„š
 //
-//								   // ApplyµÇ¸é Datastore¿¡ ÀúÀåµÈ °ª »èÁ¦ÇØ¹ö·Á
+//								   // Applyç™»æ Datastoreä¿Š å†å˜ç­‰ è”¼ æ˜åŠ›ç§¦æ»šå¦¨
 //		BladeIIGameImpl::GetClientDataStore().ClearUnappliedItemQualityInfo();
 //
 //		OnItemQualityApplied_BP();
 //
-//		// ÀüÅõ·Â °»½Å
+//		// å‚ˆæ§ä»¿ ç›è„š
 //		UpdateCombatPowerClass<EPCClass, bool>::GetInstance().Signal(IntToPCClass(AppliedItem.AllowedPCClass), false);
 //	}
 //}
@@ -371,7 +371,7 @@
 //		const EItemClass& ItemClass = TargetItem.ItemClass;
 //
 //		AppliedOption.Add(ItemClass);
-//		// °­È­ ·¹º§¿¡ µû¸¥ Á¦°öÀ» Á¦°ÅÇÏ±â À§ÇÑ ¿ëµµ·Î °­È­ ¾ÈµÈ ¾ÆÀÌÅÛ¿¡¸¸ -1À» ÇÔ
+//		// ç¢æ‹³ é¥­éª‡ä¿Š è¶å¼— åŠ›èšŒé˜‘ åŠ›èŠ­çªæ‰ å›°èŒ„ ä¾©æ¡£è‚º ç¢æ‹³ æ•‘ç­‰ é…’æè¢ä¿Šçˆ¶ -1é˜‘ çªƒ
 //		if (ItemClass == EItemClass::EIC_Belt || ItemClass == EItemClass::EIC_Necklace || ItemClass == EItemClass::EIC_Ring)
 //			if (previewItem.EnhanceLevel == 0) previewItem.SetPrimaryPoint(previewItem.GetPrimaryPoint() - 1);
 //		UIP_ResultOptionDetail->SetOptionText(ItemClass, previewItem.GetPrimaryPoint());
@@ -393,7 +393,7 @@
 //	if (UIP_OriginalOption.IsValid())
 //	{
 //		//const int32 OptionCount = TargetItem.RandomOptions.Num();
-//		//const EPCClass OwnerPCClass = IntToPCClass(TargetItem.AllowedPCClass);	// Server°ª ¾Æ´Ô -> ¹Ù·Î Casting ÇØ¼­ ¾²°íÀÖÀ½
+//		//const EPCClass OwnerPCClass = IntToPCClass(TargetItem.AllowedPCClass);	// Serverè”¼ é…’ä¸› -> å®˜è‚º Casting ç§¦è¾‘ é™ç»Šä¹æ¾œ
 //
 //		//ItemOwnerPCClass = OwnerPCClass;
 //		OriginOption.Empty();
@@ -401,7 +401,7 @@
 //		const EItemClass& ItemClass = TargetItem.ItemClass;
 //
 //		OriginOption.Add(ItemClass);
-//		// FItemOption ÃÊ±â°ª EItemOption::EIO_End ·Î ¾ø´Â optionÀÌ µé¾î°¡¸é ¿É¼Ç Text¸¦ ÀÚµ¿ Collapsed Ã³¸®
+//		// FItemOption æª¬æ‰è”¼ EItemOption::EIO_End è‚º ç»ç»° optionæ ç”¸ç»¢å•Šæ å¯è®° Textç”« ç£Šæ‚¼ Collapsed è´¸åºœ
 //		UIP_OriginalOption->SetOptionText(ItemClass, TargetItem.GetPrimaryPoint());
 //
 //
@@ -622,7 +622,7 @@
 //
 //void UB2UIItemQualityChange::OnItemQualityApplyAnimEnd()
 //{
-//	// ¾Ö´Ï¸ŞÀÌ¼Ç ¿¬Ãâ ÈÄ º¯°æµÈ ¿É¼ÇÀº ResetÇÏ°í ÇöÀç¿É¼ÇÃ¢À» º¯°æµÈ ¿É¼ÇÀ¸·Î ±³Ã¼ÇÏ´Â ÀÛ¾÷
+//	// å±€èªçš‹æè®° æ¥·å… é¥¶ å‡½ç‰ˆç­‰ å¯è®°ç¯® Resetçªç»Š æ³…çŠå¯è®°èŠ’é˜‘ å‡½ç‰ˆç­‰ å¯è®°æ è‚º èƒŒçœ‰çªç»° ç´¯è¯€
 //	if (UIP_OriginalOption.IsValid()) {
 //		//UIP_OriginalOption->OnItemQualityGenerated_BP(OriginalOptionCount);
 //	}
@@ -632,19 +632,19 @@
 //
 //void UB2UIItemQualityChange::CreateLobbyHammerChangePopup(UObject* WorldContextObject, FB2Item& InItemData)
 //{
-//	//¾î¶°ÇÑ ¸ÁÄ¡¸¦ ¾µ°ÇÁö ¼±ÅÃÇÏ´Â UI¸¦ ¶ç¿ì´Â ÇÔ¼ö
-//	//¾ÆÁ÷ ±×ÂÊ °ü·ÃÀ¸·Î ¾î¶°ÇÑ ÁøÇàµµ µÇÁö ¾Ê¾Ò´Ù. ±×³É Æ²¸¸ ÀÖÀ¸¸ç ¾ÕÀ¸·ÎÀÇ ÁøÇà ¹æ¹ı¿¡ ´ëÇØ Ãß°¡ ¿¬±¸ ÇÊ¿ä.
+//	//ç»¢æ ‹èŒ„ å™¶æ‘¹ç”« é•œæ‰’ç˜¤ æ€¥ç¶çªç»° UIç”« å‰å¿«ç»° çªƒè
+//	//é…’æµ å¼Šç‡ åŒ…è®¿æ è‚º ç»¢æ ‹èŒ„ æŸ³é’æ¡£ ç™»ç˜¤ è‡¼ç–½ä¿ƒ. å¼Šæˆ æ’‡çˆ¶ ä¹æ å“¥ èŠæ è‚ºç‹¼ æŸ³é’ è§„è¿‡ä¿Š æªç§¦ çœ å•Š æ¥·å¤‡ é˜å¤¸.
 //
-//	// º¸°üÇÔ ¾ÆÀÌÅÛ È¤Àº ÀåÂø ¾ÆÀÌÅÛ
+//	// ç„ŠåŒ…çªƒ é…’æè¢ è¶£ç¯® å˜é¦’ é…’æè¢
 //	const ELobbySubPopups LobbyPopupEnum = ELobbySubPopups::ELSPU_ItemAfterOpiton;
 //
 //	AB2LobbyGameMode* LobbyGM = Cast<AB2LobbyGameMode>(UGameplayStatics::GetGameMode(WorldContextObject));
 //
-//	// ÇØ´ç user widget »ı¼º ½ÅÈ£.
-//	// »ı¼ºµÈ Popup widget À» UIP Ã³·³ ¹èÄ¡ÇØ ³ÖÀ» ÆĞ³Î Á¤º¸¸¦ ¸¸µé¾îÁØ´Ù.
+//	// ç§¦å¯¸ user widget ç§¯å·± è„šé¾‹.
+//	// ç§¯å·±ç­‰ Popup widget é˜‘ UIP è´¸çƒ¦ ç¡…æ‘¹ç§¦ æŒé˜‘ è©æ¾„ æ²¥ç„Šç”« çˆ¶ç”¸ç»¢éœ–ä¿ƒ.
 //	DJLegacy_OpenLobbySubPopupClass<ELobbySubPopups, FDJLegacySubpopupAddPanelInfo>::GetInstance().Signal(LobbyPopupEnum, FDJLegacySubpopupAddPanelInfo(this, X_HammerChangePopup.Get()));
 //
-//	// »ı¼ºµÈ user widget À» Ã£¾Æ¼­ ItemData ¸¦ ¾÷µ¥ÀÌÆ®
+//	// ç§¯å·±ç­‰ user widget é˜‘ èŒ«é…’è¾‘ ItemData ç”« è¯€å•æé£˜
 //	UB2LobbyUI_ItemAfterOption* CreatedDetailWindow = LobbyGM ? Cast<UB2LobbyUI_ItemAfterOption>(LobbyGM->DJLegacy_FindLobbySubPopup(LobbyPopupEnum)) : NULL;
 //
 //	/*
@@ -731,7 +731,7 @@
 //{
 //	if (HasRemainUnAppliedQuality())
 //	{
-//		// º¯°æ ÈÄ Àû¿ëÇÏÁö ¾ÊÀº ¿É¼ÇÀÌ ÀÖ´Ù¸é
+//		// å‡½ç‰ˆ é¥¶ åˆ©ä¾©çªç˜¤ è‡¼ç¯® å¯è®°æ ä¹ä¿ƒæ
 //		ment2Close = true;
 //		UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
 //			BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("General_Notification")),
@@ -760,16 +760,16 @@
 //void UB2UIItemQualityChange::CreateHammerPopup(UObject* WorldContextObject, FB2Item& InItemData)
 //{
 //	/*
-//	// º¸°üÇÔ ¾ÆÀÌÅÛ È¤Àº ÀåÂø ¾ÆÀÌÅÛ
+//	// ç„ŠåŒ…çªƒ é…’æè¢ è¶£ç¯® å˜é¦’ é…’æè¢
 //	const ELobbySubPopups LobbyPopupEnum = ELobbySubPopups::ELSPU_QualityChangeHammerSelect;
 //
 //	AB2LobbyGameMode* LobbyGM = Cast<AB2LobbyGameMode>(UGameplayStatics::GetGameMode(WorldContextObject));
 //
-//	// ÇØ´ç user widget »ı¼º ½ÅÈ£.
-//	// »ı¼ºµÈ Popup widget À» UIP Ã³·³ ¹èÄ¡ÇØ ³ÖÀ» ÆĞ³Î Á¤º¸¸¦ ¸¸µé¾îÁØ´Ù.
+//	// ç§¦å¯¸ user widget ç§¯å·± è„šé¾‹.
+//	// ç§¯å·±ç­‰ Popup widget é˜‘ UIP è´¸çƒ¦ ç¡…æ‘¹ç§¦ æŒé˜‘ è©æ¾„ æ²¥ç„Šç”« çˆ¶ç”¸ç»¢éœ–ä¿ƒ.
 //	DJLegacy_OpenLobbySubPopupClass<ELobbySubPopups, FDJLegacySubpopupAddPanelInfo>::GetInstance().Signal(LobbyPopupEnum, FDJLegacySubpopupAddPanelInfo(this, X_HammerChangePopup.Get()));
 //
-//	// »ı¼ºµÈ user widget À» Ã£¾Æ¼­ ItemData ¸¦ ¾÷µ¥ÀÌÆ®
+//	// ç§¯å·±ç­‰ user widget é˜‘ èŒ«é…’è¾‘ ItemData ç”« è¯€å•æé£˜
 //	UB2UIQualityHammerSelectPopup* CreatedDetailWindow = LobbyGM ? Cast<UB2UIQualityHammerSelectPopup>(LobbyGM->DJLegacy_FindLobbySubPopup(LobbyPopupEnum)) : NULL;
 //
 //	
@@ -883,7 +883,7 @@
 //
 //	float CompareValue = afterValue - beforeValue;
 //	CompareValueText = FText::FromString(FString::FromInt((int32)CompareValue));
-//	// »ö±ò
+//	// ç¥¸å½¬
 //
 //
 //	FText OptionText;

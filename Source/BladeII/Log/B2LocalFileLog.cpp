@@ -1,8 +1,8 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2LocalFileLog.h"
 //#include "BladeII.h"
 
-//#include "Misc/FileHelper.h"
+#include "Misc/FileHelper.h"
 
 B2LocalFileLog::B2LocalFileLog()
 {

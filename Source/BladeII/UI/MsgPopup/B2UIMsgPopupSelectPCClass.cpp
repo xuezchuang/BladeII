@@ -1,4 +1,4 @@
-#include "B2UIMsgPopupSelectPCClass.h"
+ï»¿#include "B2UIMsgPopupSelectPCClass.h"
 #include "B2UICharacterSelectPage.h"
 #include "B2UIDocHelper.h"
 #include "B2UIDocHero.h"
@@ -94,8 +94,8 @@ void UB2UIMsgPopupSelectPCClass::OnClickSelectSlotEntry(EPCClass PCClass)
 
 void UB2UIMsgPopupSelectPCClass::ResponseStartRaid()
 {
-	// RequestRaidStart ÀÌ¸§Àº ·¹ÀÌµå ½ÃÀÛÀÌÁö¸¸, ¼­¹öÆÀ¿¡¼­ ÇÁ·ÎÅäÄİ Àç»ç¿ëÀ¸·Î
-	// ·¹ÀÌµå ÃÊ´ë½Ã¿¡ ¾î¶² Ä³¸¯ÅÍ¸¦ ¼±ÅÃÇß´ÂÁö ¾Ë¸®°í, ¸®½ºÆù½º¸¦ ¹ŞÀº ÈÄ¿¡ ·ëÁ¶ÀÎ.
+	// RequestRaidStart ææŠšç¯® é¥­æé› çŸ«ç´¯æç˜¤çˆ¶, è¾‘æ»šè¯„ä¿Šè¾‘ æ©‡è‚ºé…å¦® çŠè¤ä¾©æ è‚º
+	// é¥­æé› æª¬æªçŸ«ä¿Š ç»¢æ« æŸè…ç£ç”« æ€¥ç¶æ²ç»°ç˜¤ èˆ…åºœç»Š, åºœèƒ¶è¿„èƒ¶ç”« ç½ç¯® é¥¶ä¿Š å†¯ç‚¼ç‰¢.
 	auto* DocRaid = UB2UIDocHelper::GetDocRaid();
 	if (DocRaid)
 	{

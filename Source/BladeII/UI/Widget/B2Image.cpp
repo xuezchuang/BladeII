@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2Image.h"
@@ -20,9 +20,9 @@ void UB2Image::TransferColorToMIDParam()
 	UMaterialInstanceDynamic* BrushMID = GetDynamicMaterial();
 	if (BrushMID)
 	{
-		//// ÀÌ°ÍÀº ColorAndOpacity ¸¦ Animation ÇÑ´Ù´Â °¡Á¤ÇÏ¿¡ »ç¿ëÇÏ´Â °Í. Animation µµÁß¿¡ ÇØ´ç º¯¼ö°ªÀº ¸Å ÇÁ·¹ÀÓ »õ·Î ¼¼ÆÃµÈ´Ù.
-		//// ±×·¸°Ô Animation À» ÅëÇØ ¼¼ÆÃµÈ °ªÀ» MID ÆÄ¶ó¹ÌÅÍ·Î Àü´ÞÇÏ°í ColorAndOpacity º»·¡ °ªÀº 1.0 À¸·Î.
-		//// ColorToMIDParamMap_* ÀÌ ¼¼ÆÃµÈ Ã¤³Î¿¡ ÇÑÇØ¼­¸¸.
+		//// æžå·´ç¯® ColorAndOpacity ç”« Animation èŒ„ä¿ƒç»° å•Šæ²¥çªä¿Š è¤ä¾©çªç»° å·´. Animation æ¡£åä¿Š ç§¦å¯¸ å‡½èè”¼ç¯® æ¦‚ æ©‡é¥­çƒ™ è´§è‚º æŠ€æ³¼ç­‰ä¿ƒ.
+		//// å¼ŠçŠ¯éœ¸ Animation é˜‘ çƒ¹ç§¦ æŠ€æ³¼ç­‰ è”¼é˜‘ MID é¢‡æ‰¼å›ºç£è‚º å‚ˆå´”çªç»Š ColorAndOpacity å¤¯è´° è”¼ç¯® 1.0 æ è‚º.
+		//// ColorToMIDParamMap_* æž æŠ€æ³¼ç­‰ ç›²æ¾„ä¿Š èŒ„ç§¦è¾‘çˆ¶.
 		//if (ColorToMIDParamMap_R != NAME_None)
 		//{
 		//	BrushMID->SetScalarParameterValue(ColorToMIDParamMap_R, GetColorAndOpacity().R);

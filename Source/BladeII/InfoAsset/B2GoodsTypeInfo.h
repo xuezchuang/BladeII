@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 //#include "BladeII.h"
@@ -23,7 +23,7 @@ struct FUB2GoodsShortcutButtonInfo
 	int32 ShortcutScene_Option2;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	int32 ShortcutUIPStringID; //¹Ù·Î°¡±â UIP¿¡ µé¾î°¥ ¼³¸í ½ºÆ®¸µ
+	int32 ShortcutUIPStringID; //å®˜è‚ºå•Šæ‰ UIPä¿Š ç”¸ç»¢å“ æ±²ç–™ èƒ¶é£˜å‚…
 };
 /**
 * The actual data composing UB2GoodsTypeInfo.
@@ -42,14 +42,14 @@ struct FSingleGoodsTypeInfoData : public FTableRowBase
 	FName FGoodsType;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	int32 GoodsInfoStringID;	//ÀçÈ­°¡ ¼³¸í ÆË¾÷¿¡ µé¾î°¥ ½ºÆ®¸µ
+	int32 GoodsInfoStringID;	//çŠæ‹³å•Š æ±²ç–™ æ‰‘è¯€ä¿Š ç”¸ç»¢å“ èƒ¶é£˜å‚…
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	int32 ShortageInfoStringID; //ÀçÈ­°¡ ºÎÁ·ÇÒ¶§ ¶ß´Â ÆË¾÷¿¡ µé¾î°¥ ½ºÆ®¸µ
+	int32 ShortageInfoStringID; //çŠæ‹³å•Š ä½•ç»ƒä¸”é”­ å“†ç»° æ‰‘è¯€ä¿Š ç”¸ç»¢å“ èƒ¶é£˜å‚…
 
-	//ItemInfo°¡ Á×Áö ¾Ê°í »ì¾Æ ÀÖ´Ù´Â °¡Á¤ÇÏ¿¡ iteminfoÀÇ ID¸¦ °¡Á®¿ÈÀ¸·Î ¿©±â¼­´Â ´õÀÌ»ó ÇÊ¿ä ÇÏÁö ¾ÊÀ½
+	//ItemInfoå•Š ç£·ç˜¤ è‡¼ç»Š æ··é…’ ä¹ä¿ƒç»° å•Šæ²¥çªä¿Š iteminfoç‹¼ IDç”« å•Šå»‰å’³æ è‚º å’¯æ‰è¾‘ç»° æ­¹ææƒ‘ é˜å¤¸ çªç˜¤ è‡¼æ¾œ
 	//UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	//int32 ItemInfoDataTableID; //iconÀ» °¡Á®¿Ã ¾ÆÀÌÅÛ µ¥ÀÌÅÍ Å×ÀÌºíÀÇ LocalizeNameKey
+	//int32 ItemInfoDataTableID; //iconé˜‘ å•Šå»‰æ£µ é…’æè¢ å•æç£ æŠ›æå–‰ç‹¼ LocalizeNameKey
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TArray<FUB2GoodsShortcutButtonInfo> ShortcutInfo;
@@ -58,7 +58,7 @@ struct FSingleGoodsTypeInfoData : public FTableRowBase
 	FUB2GoodsShortcutButtonInfo UseShortcutInfo;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	int32 LockTutorialID;		//¾ÆÀÌÅÛ »ç¿ëÃ³ Æ©Åä¸®¾ó ¾ÆÀÌµğ
+	int32 LockTutorialID;		//é…’æè¢ è¤ä¾©è´¸ è­¬é…åºœå€” é…’æå¼
 };
 /**
  * 

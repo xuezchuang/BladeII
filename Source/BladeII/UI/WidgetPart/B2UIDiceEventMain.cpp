@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIDiceEventMain.h"
 
@@ -48,7 +48,7 @@ void UB2UIDiceEventMain::BindDelegates()
 
 void UB2UIDiceEventMain::OnClickBTN_DiceRoll()
 {
-	// ¹öÆ° ÀÌ¹ÌÁö °»½Å ÀÌ½´°¡ ÀÖ¾î µô·¹ÀÌ ÈÄ ·ÎÁ÷ Ã³¸®..
+	// æ»šç“¢ æå›ºç˜¤ ç›è„š æé…±å•Š ä¹ç»¢ æ‰é¥­æ é¥¶ è‚ºæµ è´¸åºœ..
 	UGameplayStatics::GetGameMode(this)->GetWorldTimerManager().ClearTimer(DelayCallbackTH);
 	UGameplayStatics::GetGameMode(this)->GetWorldTimerManager().SetTimer(DelayCallbackTH, this, &UB2UIDiceEventMain::OnDelayDiceRollCallback, 0.1f, false);
 }
@@ -70,28 +70,28 @@ void UB2UIDiceEventMain::UpdateDiceEventMain(int32 iEventID, int32 iFreeDiceCoun
 
 void UB2UIDiceEventMain::UpdateDynamicText(int32 iGetDicePoint, int32 iRolledDiceCount, int32 iFinishCount)
 {
-	if (TB_RolledDiceCount.IsValid())		//´øÁø ´©Àû ÁÖ»çÀ§ ¼ö
+	if (TB_RolledDiceCount.IsValid())		//å¸¦æŸ³ ç©¿åˆ© æ—è¤å›° è
 	{
 		FText ftRolledDiceCount = FText::FromString(FString::Printf(TEXT("%d"), iRolledDiceCount));
 
 		TB_RolledDiceCount->SetText(ftRolledDiceCount);
 	}
 
-	if (TB_ProgressGetDicePoint.IsValid())	//ÁÖ»çÀ§ È¹µæ Æ÷ÀÎÆ®/ÃÖ´ë Æ÷ÀÎÆ®
+	if (TB_ProgressGetDicePoint.IsValid())	//æ—è¤å›° è£™å« å™¨ç‰¢é£˜/å¼¥æª å™¨ç‰¢é£˜
 	{
 		FText ftProgressGetDicePoint = FText::FromString(FString::Printf(TEXT("%d/%d"), GetProgressGetDicePoint(), GetDicePointMax()));
 
 		TB_ProgressGetDicePoint->SetText(ftProgressGetDicePoint);
 	}
 
-	if (TB_PossessionDiceCount.IsValid())	//º¸À¯ ÁÖ»çÀ§ ¼ö
+	if (TB_PossessionDiceCount.IsValid())	//ç„Šèœ¡ æ—è¤å›° è
 	{
 		FText ftPossessionDiceCount = FText::FromString(FString::Printf(TEXT("%d"), GetPossessionDiceCount()));
 
 		TB_PossessionDiceCount->SetText(ftPossessionDiceCount);
 	}
 
-	if (TB_FinishCount.IsValid())	//¿ÏÁÖ È½¼ö
+	if (TB_FinishCount.IsValid())	//è‚¯æ— å†‰è
 	{
 		FText ftFinishText = BladeIIGetLOCText(B2LOC_CAT_EVENT, TEXT("DiceEvent_FinishTitle"));
 		FText ftCountText = FText::FromString(FString::Printf(TEXT(" : %d"), iFinishCount));

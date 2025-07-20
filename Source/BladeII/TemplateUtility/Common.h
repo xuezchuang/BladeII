@@ -1,6 +1,7 @@
-#pragma once
+﻿#pragma once
 
 #include <sstream>
+#include "CoreMinimal.h"
 
 namespace TU
 {

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIDonationResultPopup.h"
 #include "B2UIDocHelper.h"
@@ -238,7 +238,7 @@ void UB2UIDonationResultPopup::GetResultItems(OUT TArray<FB2Item>& OutItem)
 		RewardPresents.Empty();
 		DocDonation->GetDonationPresents(RewardPresents);
 
-		//Àåºñ ¾ÆÀÌÅÛÀ» Á¦¿ÜÇÑ ³ª¸ÓÁö
+		//å˜åš é…’æè¢é˜‘ åŠ›å¯‡èŒ„ å”±èµ£ç˜¤
 		for (int i = 0; i < RewardPresents.Num(); i++)
 		{
 			if (RewardPresents[i].DonationConsumableType != b2network::B2DonationConsumableType::UNDEFINED)
@@ -249,7 +249,7 @@ void UB2UIDonationResultPopup::GetResultItems(OUT TArray<FB2Item>& OutItem)
 			}
 		}
 
-		//Àåºñ ¾ÆÀÌÅÛ
+		//å˜åš é…’æè¢
 		TArray<FB2Item> RewardItems;
 		RewardItems.Empty();
 		DocDonation->GetDonationRewardItem(RewardItems);

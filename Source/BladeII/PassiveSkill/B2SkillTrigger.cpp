@@ -1,4 +1,4 @@
-#include "B2SkillTrigger.h"
+﻿#include "B2SkillTrigger.h"
 #include "Event.h"
 
 #include "B2PassiveSkill.h"

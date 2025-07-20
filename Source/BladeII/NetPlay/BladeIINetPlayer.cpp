@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "BladeIINetPlayer.h"
@@ -86,12 +86,12 @@ void ABladeIINetPlayer::BeginPlay()
 	//		*GetName(), GetNetId(), PCClassToInt(GetCurrentPlayerClass()), AnimStateIndexInfos.Num());
 	//	for (int i = 0; i < AnimStateIndexInfos.Num(); i++)
 	//	{
-	//		//ÆĞÅ¶Àº ¼øÂ÷ ÀûÀ¸·Î ½×ÀÎ´Ù.
+	//		//è©å“¦ç¯® é‰´ç’ åˆ©æ è‚º é˜¶ç‰¢ä¿ƒ.
 	//		SetSyncedAnimInfo(AnimStateIndexInfos[i]);
 	//	}
 	//}
 
-	//FormalSetPointLightOn(false);  // ¾îÂ÷ÇÇ IsHeadPointLightAllowed() °¡ false ¿©¾ß..
+	//FormalSetPointLightOn(false);  // ç»¢ç’ä¹” IsHeadPointLightAllowed() å•Š false å’¯å…·..
 
 	//SubscribeEvents();
 
@@ -147,7 +147,7 @@ void ABladeIINetPlayer::Tick(float DeltaSeconds)
 //		NetSendUpdateLocation();
 //	}
 //	
-//	// Ai¸¶½ºÅÍ °ÔÀÓ¸ğµå¿¡ ºÎÈ°Ã¼Å©
+//	// Aiä»˜èƒ¶ç£ éœ¸çƒ™è‘›é›ä¿Š ä½•åŠçœ‰å†œ
 //	if (GetNetStatus() == NET_AIMASTER)
 //	{
 //		GetNetGameMode()->CheckNetAIPlayerResurrect(this);
@@ -251,19 +251,19 @@ float ABladeIINetPlayer::TakeDamage(float Damage, struct FDamageEvent const& Dam
 	//	SendMessage(encoded_string);
 	//	UE_LOG(LogBladeII, Log, TEXT("NetPlayer %d - Send [TakeDamage] DamageHash : %f"), GetNetId(), DamageHash);
 
-	//	// Damage 0ÀÏ¶§ È®ÀÎ¿ë Log - (Á¡·ÉÀü ¹«Àû)
+	//	// Damage 0è€é”­ çŠ¬ç‰¢ä¾© Log - (ç—¢é£å‚ˆ å…¬åˆ©)
 	//	if (ActualDamage == 0.f)
 	//	{
 	//		const bool IsValidDamageType = DamageInfo != nullptr;
 
-	//		// ActualDamage ¸¦ 0À¸·Î °íÁ¤½ÃÅ³ ¼ö ÀÖ´Â ¿ä¼Òµé
+	//		// ActualDamage ç”« 0æ è‚º ç»Šæ²¥çŸ«æ‡¦ è ä¹ç»° å¤¸å®¶ç”¸
 
 	//		const bool IsValidEnemy			= GetAttacker(DamageCauser) != nullptr;
 	//		const bool HasSuperArmor		= IsBuffActive(EBuffType::Buff_Unbeatable);
-	//		const bool InvinsibleVariable	= bInvincible; // ¹«Àû¹öÇÁ + @ (Æ¯Á¤ ¸ğµåÀÇ ¿¬Ãâ »óÈ²)À¸·Î ¹«Àû»óÅÂÀÇ ÃÑ°ı°³³ä
+	//		const bool InvinsibleVariable	= bInvincible; // å…¬åˆ©æ»šæ©‡ + @ (æ¼‚æ²¥ è‘›é›ç‹¼ æ¥·å… æƒ‘ç‚”)æ è‚º å…¬åˆ©æƒ‘æ€•ç‹¼ é†šè¤’ä¿ºå……
 
-	//		// 1. °ø°İÀÚ¸¦ Ã£À» ¼ö ¾øÀ»°æ¿ì  
-	//		// 2. ¹«Àû ¹öÇÁ°¡ ¾ø´Âµ¥ InvinsibleÀÎ °æ¿ì(ÀÇµµÇÑ »óÈ²ÀÏ ¼ö ÀÖÀ¸³ª È®·üÀÌ ³·À¸¹Ç·Î ÀÏ´Ü Logº¸³¿)
+	//		// 1. å‚æ‹œç£Šç”« èŒ«é˜‘ è ç»é˜‘ç‰ˆå¿«  
+	//		// 2. å…¬åˆ© æ»šæ©‡å•Š ç»ç»°å• Invinsibleç‰¢ ç‰ˆå¿«(ç‹¼æ¡£èŒ„ æƒ‘ç‚”è€ è ä¹æ å”± çŠ¬ä¼æ æ’¤æ éª¨è‚º è€çªœ Logç„Šæ™¨)
 	//		const bool IsUnexpectedZeroDamage = (IsValidEnemy == false) || (InvinsibleVariable && !HasSuperArmor);
 	//		if (IsUnexpectedZeroDamage)
 	//		{
@@ -411,8 +411,8 @@ void ABladeIINetPlayer::OnDeath(float KillingDamage, struct FDamageEvent const& 
 	//	
 	//	break;
 	//}
-	//case EB2GameMode::Control: //ÄÁÆ®·ÑÀº ÇÊ¿ä½Ã µû·Î ±¸Çö
-	//default: //[@AKI, 170629] Raid, Tag, Control Á¦¿ÜÇÏ°í ÇöÀç BladeIINetPlayer¸¦ »ç¿ëÇÏ´Â °æ¿ì°¡ ¾ø´Â °É·Î ¾Ë°í ÀÖÀ½
+	//case EB2GameMode::Control: //ç‰§é£˜è´¹ç¯® é˜å¤¸çŸ« è¶è‚º å¤‡æ³…
+	//default: //[@AKI, 170629] Raid, Tag, Control åŠ›å¯‡çªç»Š æ³…çŠ BladeIINetPlayerç”« è¤ä¾©çªç»° ç‰ˆå¿«å•Š ç»ç»° å§è‚º èˆ…ç»Š ä¹æ¾œ
 	//	break;
 	//}
 }
@@ -443,8 +443,8 @@ void ABladeIINetPlayer::SetHealth(float NewHealth, bool bReceivedFromHost /*= fa
 
 bool ABladeIINetPlayer::RequestDamage(const float Damage, const FDamageInfo* DamageInfo, ABladeIICharacter* DamageCauser, bool NetBroadcast)
 {
-	// !!!Áß¿ä!!!!! this == Victim
-	// °ø°İÀÚµµ ÇÇÇØÀÚµµ AuthorityÀÏ °æ¿ì´Â ±»ÀÌ broadcasting ÇÒ ÇÊ¿ä ¾øÀ½
+	// !!!åå¤¸!!!!! this == Victim
+	// å‚æ‹œç£Šæ¡£ ä¹”ç§¦ç£Šæ¡£ Authorityè€ ç‰ˆå¿«ç»° è¢«æ broadcasting ä¸” é˜å¤¸ ç»æ¾œ
 
 	bool bCanHandleDamage = Super::RequestDamage(Damage, DamageInfo, DamageCauser);
 	if(bCanHandleDamage == false)
@@ -461,7 +461,7 @@ bool ABladeIINetPlayer::RequestDamage(const float Damage, const FDamageInfo* Dam
 		//SendMessage(encoded_string);
 		UE_LOG(LogBladeII, Log, TEXT("NetPlayer %d - Send [RequestDamage] DamageHash : %f"), GetNetId(), DamageHash);
 
-		// ¿©±â¿À´Â°Ô ¿ÀÈ÷·Á false ¸®ÅÏÀÓ ( ÇÇ°İ ÁÖÃ¼°¡ LocalÀÌ ¾Æ´Ï¶ó Damage handlingÀÌ ¾ÈµÈ´Ù´Â ¶æ )
+		// å’¯æ‰å·ç»°éœ¸ å·æ´’å¦¨ false åºœç•”çƒ™ ( ä¹”æ‹œ æ—çœ‰å•Š Localæ é…’èªæ‰¼ Damage handlingæ æ•‘ç­‰ä¿ƒç»° èˆµ )
 		return false;
 	}
 
@@ -1024,7 +1024,7 @@ void ABladeIINetPlayer::SetAttackState(EAttackState InAttackState)
 {
 	check(GetNetStatus() != NET_NONE);
 
-	// ComboEnd¿¡ ÀÇÇØ¼­ Á¤»óÀûÀ¸·Î »óÅÂ°¡ Á¾·áµÇ´Â ÄÉÀÌ½º¿¡¼­´Â ECS_None »óÅÂ·Î ¹Ù²ã Áà¾ßÇÑ´Ù
+	// ComboEndä¿Š ç‹¼ç§¦è¾‘ æ²¥æƒ‘åˆ©æ è‚º æƒ‘æ€•å•Š è¾†ä¸°ç™»ç»° çº³æèƒ¶ä¿Šè¾‘ç»° ECS_None æƒ‘æ€•è‚º å®˜å±‚ æ‹å…·èŒ„ä¿ƒ
 	if (InAttackState != EAttackState::ECS_None)
 	{
 		if (GetNetStatus() == NET_SLAVE)
@@ -1058,8 +1058,8 @@ void ABladeIINetPlayer::OnEnterAnimState(const FName& NewState)
 	//if (Role == ROLE_Authority)
 	//{
 	//	/*
-	//	// B2BUG-1616 - Packet ÃÖÀûÈ­.
-	//	// Animation Simulate µ¿±âÈ­ ¶§¹®¿¡ ³ÖÀº ±â´ÉÀÌ³ª ¾²Áö ¾ÊÀ¸¹Ç·Î ÆĞÅ¶ ¼Û½Å X
+	//	// B2BUG-1616 - Packet å¼¥åˆ©æ‹³.
+	//	// Animation Simulate æ‚¼æ‰æ‹³ é”­å·©ä¿Š æŒç¯® æ‰ç“·æå”± é™ç˜¤ è‡¼æ éª¨è‚º è©å“¦ ä»·è„š X
 
 	//	FString CurrAnimState = NewState.ToString();
 	//	
@@ -1111,7 +1111,7 @@ void ABladeIINetPlayer::SendAnimStateIndex(int32 NewStateIndex)
 
 	//	packet::ByteStream payload;
 
-	//	// ¾Ö´Ô½ÌÅ©Á¤º¸ struct FNetSyncAnimInfo ¸ğ¾ç
+	//	// å±€ä¸›æ•™å†œæ²¥ç„Š struct FNetSyncAnimInfo è‘›å‰§
 	//	
 	//	uint8 eTargetPCClass = static_cast<uint8>(GetCurrentPlayerClass());
 	//	
@@ -1143,7 +1143,7 @@ void ABladeIINetPlayer::SendAnimStateIndex(int32 NewStateIndex)
 	//	payload << eSkillAnimType;
 	//	payload << nQTEStateNum;
 
-	//	// À§Ä¡Á¤º¸
+	//	// å›°æ‘¹æ²¥ç„Š
 	//	packet::PackingHelper(payload, location);
 	//	packet::PackingHelper(payload, velocity);
 	//	packet::PackingHelper(payload, rotation);
@@ -1213,11 +1213,11 @@ void ABladeIINetPlayer::UpdateLocation(FVector pos, FVector vel, FRotator rot, f
 {
 	//UE_LOG(LogBladeII, Log, TEXT("NetPlayer %d - Receive [MOVE]"), GetNetId());
 //
-//	// Á¡·ÉÀü¿¡¼­ QTEÇã°¡´Â È£½ºÆ®°¡ÇÏ°í, QTEÁÖÃ¼µµ È£½ºÆ® Çã°¡¸¦ ¹Ş°í QTEÁøÀÔÇÑ´Ù.
-//	// ÀÌ µÑ ÀÌ¿ÜÀÇ ÇÃ·¹ÀÌ¾î´Â QTEÇÃ·¹ÀÌ¾î°¡ QTEÁøÀÔÈÄ¿¡ ÀÌµ¿ÆĞÅ¶À» ¹ŞÀ»¼öµµ ÀÖÀ½.
-//	// ex) ÇÃ·¹ÀÌ¾î1 ±â±â QTE¿äÃ» - È£½ºÆ® Çã°¡ - ³ª¸ÓÁö ¸ğµç ±â±â ÇÃ·¹ÀÌ¾î1 QTE½ÇÇà
-//	// - ÇÃ·¹ÀÌ¾î1 ±â±â ³×Æ®¿öÅ© Áö¿¬À¸·Î QTE½ÇÇà¾ÈÇÏ±¸ ÀÌµ¿ÆĞÅ¶ Àü¼ÛÈÄ QTE½ÇÇà 
-//	// - ³ª¸ÓÁöÇÃ·¹ÀÌ¾î ±â±â ÇÃ·¹ÀÌ¾î1 QTE½ÇÇàÈÄ ÀÌµ¿¹× ·ÎÅ×ÀÌ¼Ç Àû¿ë
+//	// ç—¢é£å‚ˆä¿Šè¾‘ QTEå€¾å•Šç»° é¾‹èƒ¶é£˜å•Šçªç»Š, QTEæ—çœ‰æ¡£ é¾‹èƒ¶é£˜ å€¾å•Šç”« ç½ç»Š QTEæŸ³æ¶èŒ„ä¿ƒ.
+//	// æ ç¬› æå¯‡ç‹¼ æ•²é¥­æç»¢ç»° QTEæ•²é¥­æç»¢å•Š QTEæŸ³æ¶é¥¶ä¿Š ææ‚¼è©å“¦é˜‘ ç½é˜‘èæ¡£ ä¹æ¾œ.
+//	// ex) æ•²é¥­æç»¢1 æ‰æ‰ QTEå¤¸æ²¡ - é¾‹èƒ¶é£˜ å€¾å•Š - å”±èµ£ç˜¤ è‘›ç”µ æ‰æ‰ æ•²é¥­æç»¢1 QTEè§’é’
+//	// - æ•²é¥­æç»¢1 æ‰æ‰ åŒ™é£˜å†µå†œ ç˜¤æ¥·æ è‚º QTEè§’é’æ•‘çªå¤‡ ææ‚¼è©å“¦ å‚ˆä»·é¥¶ QTEè§’é’ 
+//	// - å”±èµ£ç˜¤æ•²é¥­æç»¢ æ‰æ‰ æ•²é¥­æç»¢1 QTEè§’é’é¥¶ ææ‚¼æ£º è‚ºæŠ›æè®° åˆ©ä¾©
 //	if (IsInQTEState())
 //		return;
 //
@@ -1239,7 +1239,7 @@ void ABladeIINetPlayer::UpdateLocation(FVector pos, FVector vel, FRotator rot, f
 //
 //	GetAnimInstance()->SetCurrentSpeed(fCurrentSpeed);
 //
-//	// ¸®¸ğÆ®´Â Àü¹æ ºí·ÎÅ· º¸Á¤¿ë º¯¼öµµ Ã¤³ÎÅëÇØ ¹ŞÀº°É·Î ¼ÂÆÃ
+//	// åºœè‘›é£˜ç»° å‚ˆè§„ å–‰è‚ºæ¬§ ç„Šæ²¥ä¾© å‡½èæ¡£ ç›²æ¾„çƒ¹ç§¦ ç½ç¯®å§è‚º æ‚¸æ³¼
 //	m_vCachedLocationForRootMotionBlock = pos;
 }
 
@@ -1287,13 +1287,13 @@ void ABladeIINetPlayer::RemoteStopAttack(FVector pos, FRotator rot)
 // 	check(GetNetStatus() == NET_SLAVE);
 // 	//SyncLocationAndRotation(pos, rot);
 // 
-// 	// ABladeIIPlayer::StartGuard() ÀÌ¿ëÇÏÁö ¾Ê°í °ª¸¸ ¼³Á¤ÇØÁØ´Ù.
+// 	// ABladeIIPlayer::StartGuard() æä¾©çªç˜¤ è‡¼ç»Š è”¼çˆ¶ æ±²æ²¥ç§¦éœ–ä¿ƒ.
 // 	bSkillCancel		= SkillCancel;
 // 	bNeedUpdateTarget	= NeedUpdateTarget;
 // 	LastGuardBreakType	= static_cast<EGuardBreakLogicType>(GuardBreak);
 // 	SetAttackState(static_cast<EAttackState>(attackState));
 // 
-// 	// °¡µå ½ºÅ¸Æ®¸é ¸ÓÅÍ¸®¾ó º¯Á¶
+// 	// å•Šé› èƒ¶é¸¥é£˜æ èµ£ç£åºœå€” å‡½ç‚¼
 // // 	if (static_cast<EAttackState>(attackState) == EAttackState::ECS_GuardStart)
 // // 	{
 // // 		UB2BuffModeEffectInfo* BuffModeEffectInfo = GetBuffModeEffectInfo();
@@ -1331,7 +1331,7 @@ void ABladeIINetPlayer::RemoteSkillAttack(uint8 state, uint8 anim_index, FVector
 
 	OnStartSkill(RemoteAttackState);
 
-	// ½ºÅ³->½ºÅ³ ½ºÅ×ÀÌÆ®ÀüÈ¯¾øÀÌ ¿¬°áµÇ´Â ÄÉÀÌ½º »ı±â¸é ¿ä°Å ÁÖ¼®Ç®±â
+	// èƒ¶æ‡¦->èƒ¶æ‡¦ èƒ¶æŠ›æé£˜å‚ˆåˆ¸ç»æ æ¥·æ¬ç™»ç»° çº³æèƒ¶ ç§¯æ‰æ å¤¸èŠ­ æ—ç±é’±æ‰
 	//GetAnimInstance()->SetAnimAttackState(RemoteAttackState);
 }
 
@@ -1346,8 +1346,8 @@ void ABladeIINetPlayer::RemoteStartTag(ETagAttackMode state, EPCClass CharClass,
 
 	if (GetTagPlayerClass() != CharClass)
 	{
-		//¾î´À ¼ø°£ ÅÂ±×Ä³¸¯ÅÍ°¡ ²¿ÀÎ »óÅÂ...
-		//ÀÌ ¸í·ÉÀ» ¹«½ÃÇÑ´Ù.
+		//ç»¢è ¢ é‰´åŸƒ æ€•å¼ŠæŸè…ç£å•Š éƒ¨ç‰¢ æƒ‘æ€•...
+		//æ ç–™é£é˜‘ å…¬çŸ«èŒ„ä¿ƒ.
 
 		check(this->CurrentPlayingClass == CharClass);
 		return;
@@ -1356,9 +1356,9 @@ void ABladeIINetPlayer::RemoteStartTag(ETagAttackMode state, EPCClass CharClass,
 	TagAttackMode = state;
 	StartTagCommon();
 
-	// ¾Ö´Ô½ºÅ×ÀÌÆ® ¼ÂÆÃ. ½ºÅ³½ºÅ×ÀÌÆ®¿¡¼­ ½ºÅ×ÀÌÆ® º¯°æ¾øÀÌ ÇÃ·¡±×¸¸ º¯°æµÇ´Â ÄÉÀÌ½º°¡ ÀÖ´Ù.
-	// »ó´ëÂÊ ·ÎÄÃÇÃ·¹ÀÌ¾î¿¡¼­ SendAnimStateIndex¸¦ ¸ø½÷ÁÖ´Ï ÇÃ·¡±×¶óµµ ¼ÂÆÃÇØÁÜ.
-	// Á¤»óÀûÀ¸·Î ½ºÅ×ÀÌÆ®º¯°æÀ¸·ÎÀÎÇØ ÅÂ±×(½ºÅ³ ½ºÅ×ÀÌÆ®) AnimStateIndex¸¦ ¹ŞÀ¸¸é ¾Æ·¡Á¤º¸´Â µ¤¾î¾µ°ÅÀÓ
+	// å±€ä¸›èƒ¶æŠ›æé£˜ æ‚¸æ³¼. èƒ¶æ‡¦èƒ¶æŠ›æé£˜ä¿Šè¾‘ èƒ¶æŠ›æé£˜ å‡½ç‰ˆç»æ æ•²è´°å¼Šçˆ¶ å‡½ç‰ˆç™»ç»° çº³æèƒ¶å•Š ä¹ä¿ƒ.
+	// æƒ‘æªç‡ è‚ºæ‹¿æ•²é¥­æç»¢ä¿Šè¾‘ SendAnimStateIndexç”« ç»™è°¨æ—èª æ•²è´°å¼Šæ‰¼æ¡£ æ‚¸æ³¼ç§¦æ·‹.
+	// æ²¥æƒ‘åˆ©æ è‚º èƒ¶æŠ›æé£˜å‡½ç‰ˆæ è‚ºç‰¢ç§¦ æ€•å¼Š(èƒ¶æ‡¦ èƒ¶æŠ›æé£˜) AnimStateIndexç”« ç½æ æ é…’è´°æ²¥ç„Šç»° ä¸¹ç»¢é•œèŠ­çƒ™
 	//GetAnimInstance()->SetAnimAttackState(EAttackState::ECS_TagOtherChar);
 }
 
@@ -1459,12 +1459,12 @@ void ABladeIINetPlayer::RemoteResurrect(FVector pos, FRotator rot, TMap<EResurre
 
 void ABladeIINetPlayer::RemoteEtherActivated(uint32 EtherOwnerNetId, uint32 EtherCauserNetId, int32 EtherSetID)
 {
-	////if (EtherOwnerNetId == GetNetId() && GetEtherContainer())	// EtherOwner°¡ this¶ó¸é ( Authority/simulated »ó°ü¾øÀ½ )
+	////if (EtherOwnerNetId == GetNetId() && GetEtherContainer())	// EtherOwnerå•Š thisæ‰¼æ ( Authority/simulated æƒ‘åŒ…ç»æ¾œ )
 	//{
 	//	if (UB2EtherSetEffect* EtherObject = GetEtherContainer()->GetEtherSetEffect(EtherSetID))
 	//	{
-	//		// ex - Offense : Thunder Ether [ EtherCauser == LocalPawn(Authority), EtherOwner == this(Simulated) ] °¡ µÈ´Ù.
-	//		// ex - Defense : Burning Ether [ EtherCauser == this(Simulated), EtherOwner == LocalPawn(Authority) ] °¡ µÈ´Ù.
+	//		// ex - Offense : Thunder Ether [ EtherCauser == LocalPawn(Authority), EtherOwner == this(Simulated) ] å•Š ç­‰ä¿ƒ.
+	//		// ex - Defense : Burning Ether [ EtherCauser == this(Simulated), EtherOwner == LocalPawn(Authority) ] å•Š ç­‰ä¿ƒ.
 	//		 
 	//		ABladeIICharacter* EtherCauser = Cast<ABladeIICharacter>(GetNetGameMode()->FindPawnByNetId(EtherCauserNetId));
 	//		EtherObject->ActivateEther(EtherCauser);
@@ -1576,7 +1576,7 @@ void ABladeIINetPlayer::NotifyTagSpawn(class ABladeIIPlayer* OldRetiringPlayer)
 
 void ABladeIINetPlayer::OnSpawnEnd()
 {
-	//// ¸®¸ğÆ® Ä³¸¯ÅÍ´Â ³ëÆ¼ÆÄÀÌ°¡ È®·ü·Î µé¾î¿Â´Ù. ·ÎÄÃÀÌ Ã¤³ÎÅëÇØ¼­ ¾Ë·ÁÁÖÀÚ.
+	//// åºœè‘›é£˜ æŸè…ç£ç»° ç•´èé¢‡æå•Š çŠ¬ä¼è‚º ç”¸ç»¢æŸ¯ä¿ƒ. è‚ºæ‹¿æ ç›²æ¾„çƒ¹ç§¦è¾‘ èˆ…å¦¨æ—ç£Š.
 	//if (GetNetStatus() == NET_MASTER || GetNetStatus() == NET_AIMASTER)
 	//{
 	//	FString encoded_string = ToMessageHelper::SpawnEndMessage(this, GetNetId(), 0, packet::ALLBUTME);
@@ -1596,7 +1596,7 @@ void ABladeIINetPlayer::NotifyBornAgain(class ABladeIIPlayer* PrevLife)
 	if (ABladeIINetPlayer* PrevNetPlayer = Cast<ABladeIINetPlayer>(PrevLife))
 		ResurrectionCount = PrevNetPlayer->GetResurrectionCount() + 1;
 
-	//// NetGameMode ¸ğµå¸¶´Ù ABladeIIPlayer*¸¦ °¡Áö°íÀÖÀ» °æ¿ì ÀÌ ÀÌº¥Æ®·Î º¯°æÀ» ¾Ë·ÁÁØ´Ù.
+	//// NetGameMode è‘›é›ä»˜ä¿ƒ ABladeIIPlayer*ç”« å•Šç˜¤ç»Šä¹é˜‘ ç‰ˆå¿« æ æäº¥é£˜è‚º å‡½ç‰ˆé˜‘ èˆ…å¦¨éœ–ä¿ƒ.
 	//BornAgainChangedPlayerClass<int32, ABladeIIPlayer*, ABladeIIPlayer*>::GetInstance().Signal(GetNetId(), PrevLife, this);
 
 	//if (SpawnResurrectionZoneTimer.IsValid())
@@ -1612,7 +1612,7 @@ void ABladeIINetPlayer::NotifyBornAgain(class ABladeIIPlayer* PrevLife)
 	//FString encoded_string = ToMessageHelper::ResurrectMessage(this, GetNetId(), 0, packet::ALLBUTME);
 	//SendMessage(encoded_string);
 
-	////AI¸é ÄÑÁØ´Ù.
+	////AIæ éš¾éœ–ä¿ƒ.
 	//if (GetNetStatus() == NET_AIMASTER)
 	//{
 	//	auto* MyController = Cast<ABladeIIPlayerAIController>(GetController());
@@ -1621,14 +1621,14 @@ void ABladeIINetPlayer::NotifyBornAgain(class ABladeIIPlayer* PrevLife)
 	//		MyController->BeginAutoPlay();
 	//}
 	//else
-	//{ // ¾Æ´Ñ °æ¿ìµµ Auto ¸¦ Ä×À» ¼ö ÀÖÀ¸¹Ç·Î ¹°·ÁÁÜ.
+	//{ // é…’å›± ç‰ˆå¿«æ¡£ Auto ç”« æ·–é˜‘ è ä¹æ éª¨è‚º æ‹±å¦¨æ·‹.
 	//	TakeOverAutoFromPredecessor(PrevLife);
 	//}
 
 	//SetTeamNum(PrevLife->GetTeamNum());
 
 	//// RAID AspectRatioAdaptiveFOV, 20180716
-	//// Æ¯Á¤ ¸ğµå¿¡¼­ÀÇ ÀüÅõ¸Ê µğÀÚÀÎ »çÁ¤À¸·Î AspectRatioAdaptiveFOV ¸¦ »ç¿ëÇÏ´Â °æ¿ì°¡ ÀÖÀ½.
+	//// æ¼‚æ²¥ è‘›é›ä¿Šè¾‘ç‹¼ å‚ˆæ§ç”˜ å¼ç£Šç‰¢ è¤æ²¥æ è‚º AspectRatioAdaptiveFOV ç”« è¤ä¾©çªç»° ç‰ˆå¿«å•Š ä¹æ¾œ.
 	//if (PrevLife->TopDownCameraComponent && PrevLife->TopDownCameraComponent->GetAspectRatioAdaptiveFOV())
 	//{
 	//	if (TopDownCameraComponent)
@@ -1707,7 +1707,7 @@ void ABladeIINetPlayer::SetDamagedNum(int32 NewDamageNum)
 
 void ABladeIINetPlayer::RotateToTarget(float DeltaTime, bool ForceRotateForLowFPS /*= false*/)
 {
-	// ½½·¹ÀÌºê´Â È¸Àü·ÎÁ÷ ¹«½Ã. ³İ½ÌÅ©·Î Ä«¹ÙÇØº»´Ù.(AIÁ¦¿Ü)
+	// æµ‡é¥­æå®ç»° é›€å‚ˆè‚ºæµ å…¬çŸ«. é½¿æ•™å†œè‚º å¢¨å®˜ç§¦å¤¯ä¿ƒ.(AIåŠ›å¯‡)
 	if (!IsAIControlled() && GetNetStatus() == NET_SLAVE)
 		return;
 
@@ -1807,13 +1807,13 @@ void ABladeIINetPlayer::DestroyResurrectionZoneActor()
 }
 
 int32 ABladeIINetPlayer::GetGameEntryID() const
-{// °ÔÀÓ ·¹º§ ¾È¿¡¼­ º» Ä³¸¯ÅÍ¸¦ ½Äº° °¡´ÉÇÏ°Ô ÇÒ ID °¡ µÊ. NetID ¸¦ ¹İ¿µÇÑ´Ù.
-	// »ç¿ëÀÚ°¡ Á¶ÀÛÇÏ´Â ·ÎÄÃ ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ¶ó¸é NetId ¸¦ ¹İ¿µÇÏÁö ¾Ê´Âµ¥ NetId °¡ ¾ø´Â »óÈ²¿¡¼­µµ ½Äº°ÀÌ ÇÊ¿äÇÑ °æ¿ì°¡ ÀÖ¾î¼­.
+{// éœ¸çƒ™ é¥­éª‡ æ•‘ä¿Šè¾‘ å¤¯ æŸè…ç£ç”« ä¾¥å–Š å•Šç“·çªéœ¸ ä¸” ID å•Š å‡³. NetID ç”« é¦†åº·èŒ„ä¿ƒ.
+	// è¤ä¾©ç£Šå•Š ç‚¼ç´¯çªç»° è‚ºæ‹¿ æ•²é¥­æç»¢ æŸè…ç£æ‰¼æ NetId ç”« é¦†åº·çªç˜¤ è‡¼ç»°å• NetId å•Š ç»ç»° æƒ‘ç‚”ä¿Šè¾‘æ¡£ ä¾¥å–Šæ é˜å¤¸èŒ„ ç‰ˆå¿«å•Š ä¹ç»¢è¾‘.
 	return IsLocalPlayer() ? PCClassToInt(GetCurrentPlayerClass()) : ((NetId * 10) + PCClassToInt(GetCurrentPlayerClass()));
 }
 bool ABladeIINetPlayer::HasValidGameEntryID() const
 {
-	return IsLocalPlayer() || (NetId != 0); // ¿ø°İ Ä³¸¯ÅÍ´Â ¾ÆÁ÷ NetId ¸¦ ºÎ¿©¹ŞÁö ¸øÇÑ »óÈ²¿¡¼­´Â GameEntryID ¸¦ ¾²¸é ¾ÈµÊ.
+	return IsLocalPlayer() || (NetId != 0); // ç›”æ‹œ æŸè…ç£ç»° é…’æµ NetId ç”« ä½•å’¯ç½ç˜¤ ç»™èŒ„ æƒ‘ç‚”ä¿Šè¾‘ç»° GameEntryID ç”« é™æ æ•‘å‡³.
 }
 
 void ABladeIINetPlayer::SyncLocationAndRotation(FVector pos, FRotator rot)
@@ -1906,7 +1906,7 @@ void ABladeIINetPlayer::AdjustRootMotionBlock()
 {
 	//EAttackState CurrentAttackState = GetAnimInstance()->GetAnimAttackState();
 
-	//// Ã¼Å©ÄÉÀÌ½º - ¹İ°İÀÌ ¹®Á¦´Ï ¹İ°İµé¸¸ Ã¼Å©ÇÔ
+	//// çœ‰å†œçº³æèƒ¶ - é¦†æ‹œæ å·©åŠ›èª é¦†æ‹œç”¸çˆ¶ çœ‰å†œçªƒ
 	//bool bNeedCheck = CurrentAttackState == EAttackState::ECS_Counter01
 	//	|| CurrentAttackState == EAttackState::ECS_Counter01Dash
 	//	|| CurrentAttackState == EAttackState::ECS_Counter02
@@ -1936,7 +1936,7 @@ void ABladeIINetPlayer::AdjustRootMotionBlock()
 
 	//bool bHadBlockingHit = false;
 
-	//// Ä³¸¯ÅÍÇÑÅ× ¸·Èù°æ¿ì¸¸ Ã³¸®
+	//// æŸè…ç£èŒ„æŠ› é˜œè…®ç‰ˆå¿«çˆ¶ è´¸åºœ
 	//for (int nCnt = 0; nCnt < HitResults.Num(); ++nCnt)
 	//{
 	//	if (HitResults[nCnt].bBlockingHit && HitResults[nCnt].GetActor())

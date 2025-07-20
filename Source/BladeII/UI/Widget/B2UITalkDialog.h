@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -115,7 +115,7 @@ private:
 	ETalkAnimSequenceType GetTalkLineAnim(const struct FTalkLine &CompleteLine, const struct FTalkLine &NextLine);
 	ETalkAnimBehaviorType GetTalkBehaviorType(const struct FTalkLine &CompleteLine, const struct FTalkLine &NextLine);
 protected:
-	//*~~~~~~~~~ TAsset º¯°æ ¿¹Á¤
+	//*~~~~~~~~~ TAsset å‡½ç‰ˆ æŠ—æ²¥
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = BladeII)
 	TArray<TSoftObjectPtr<UTexture2D>> BackgroundImages;
 

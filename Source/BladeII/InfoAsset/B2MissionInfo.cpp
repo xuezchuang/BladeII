@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 //#include "MissionManager.h"
@@ -43,7 +43,7 @@ FMissionInfo* UB2MissionInfo::GetMissionInfo(int32 MissionID, int32 OptionalStep
 #if WITH_EDITOR
 void UB2MissionInfo::EditorLoadAll()
 {
-	// DataTable ÀÌ¶ó redirector Ã³¸®¸¦ È®½ÇÈ÷ ÇÏ±â À§ÇØ ¿¡µğÅÍ¿¡¼­ TAsset ÀÇ full load °¡ ÇÊ¿ä.
+	// DataTable ææ‰¼ redirector è´¸åºœç”« çŠ¬è§’æ´’ çªæ‰ å›°ç§¦ ä¿Šå¼ç£ä¿Šè¾‘ TAsset ç‹¼ full load å•Š é˜å¤¸.
 	if (MissionInfoTable)
 	{
 		EditorAllLoadedTAssetHolder.Empty();
@@ -58,7 +58,7 @@ void UB2MissionInfo::EditorLoadAll()
 				FMissionInfoLoadedRefHolder SingleRefHolder;
 				SingleRefHolder.LoadedMissionIcon = ThisMissionInfo->MissionIcon.LoadSynchronous();
 				if (SingleRefHolder.LoadedMissionIcon)
-				{ // ±×³É ³Ö±â¸¸ ÇÑ´Ù. GC ¾ÈµÇµµ·Ï.
+				{ // å¼Šæˆ æŒæ‰çˆ¶ èŒ„ä¿ƒ. GC æ•‘ç™»æ¡£åºŸ.
 					EditorAllLoadedTAssetHolder.Add(SingleRefHolder);
 				}
 			}

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIItemForgeIngredientList.h"
 
 #include "B2UIManager.h"
@@ -34,7 +34,7 @@ void UB2UIItemForgeIngredientList::CacheAssets()
 
 	GET_SLOT(UTextBlock, TB_Select);
 	GET_SLOT(UB2Button, BTN_Select);
-	GET_SLOT(UHorizontalBox, HB_ButtonBox);	//µðÀÚÀÎÂÊ¿¡¼­ ¹öÆ° ¾È¿¡´Ù°¡ ¾È³Ö´Â ¹Ù¶÷¿¡ µû·Î »«°É Á¶ÀÛÇÏ´Â°É·Î ÇÔ.
+	GET_SLOT(UHorizontalBox, HB_ButtonBox);	//å¼ç£Šç‰¢çŽ‡ä¿Šè¾‘ æ»šç“¢ æ•‘ä¿Šä¿ƒå•Š æ•‘æŒç»° å®˜æ©ä¿Š è¶è‚º çŒ¾å§ ç‚¼ç´¯çªç»°å§è‚º çªƒ.
 
 	GET_SLOT(UB2Button, BTN_Confirm);
 }
@@ -170,7 +170,7 @@ void UB2UIItemForgeIngredientList::SetOwnerItemForgeUI(class UB2UIItemForge* Own
 			SetIconMaterial(IconMtrl);
 			int32 starGrade = FItemRefIDHelper::ExtractItemStarGradeFromRefID(materialID_);
 			FB2Item dummyItem;
-			SetStarGrade(starGrade, requiredItemLevel>dummyItem.ItemNormalMaxLevel ? true : false);	//¿µ¿øÀÇ Àå½Å±¸ÀÇ °æ¿ìµµ ±×³É 30 ³Ñ¾î°¡¸é ÃÊ¿ù º°·Î ¶ç¿ì°Ô µÊ.
+			SetStarGrade(starGrade, requiredItemLevel>dummyItem.ItemNormalMaxLevel ? true : false);	//åº·ç›”ç‹¼ åŽ˜è„šå¤‡ç‹¼ ç‰ˆå¿«æ¡£ å¼Šæˆ 30 é€žç»¢å•Šæ æª¬å²¿ å–Šè‚º å‰å¿«éœ¸ å‡³.
 
 			if (starGrade == 0)
 			{
@@ -595,7 +595,7 @@ void UB2UIItemForgeIngredientList::RecalculateQuantity(int32 thisMuchPlease, boo
 		}
 		else
 		{
-			if(SelectedItem.AllowedPCClass == 4)	//°ø¿ëÇÔ ¾ÆÀÌÅÛÀÏ °æ¿ì¿¡¸¸
+			if(SelectedItem.AllowedPCClass == 4)	//å‚ä¾©çªƒ é…’æžè¢è€ ç‰ˆå¿«ä¿Šçˆ¶
 				TB_Quantity->SetText(FText::FromString(FString::FromInt(SelectedItem.ConsumingAmount) + " / " + FString::FromInt(requiredQuantity)));
 		}
 	}

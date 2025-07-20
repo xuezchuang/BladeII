@@ -1,4 +1,4 @@
-#include "B2UITeamMatchBattle.h"
+ï»¿#include "B2UITeamMatchBattle.h"
 #include "B2UITeamMatchBattleNickName.h"
 #include "B2UITeamMatchBattleSlot.h"
 #include "B2TMGameMode.h"
@@ -62,7 +62,7 @@ void UB2UITeamMatchBattle::BindDocAuto()
 		{
 			SkillAssets.Add(SkillAsset);
 			SkillAsset->Init();
-			SkillAsset->SetIndex(Cnt);	//SkillRTÂÊ¿¡¼­´Â 1º£ÀÌ½º·Î ÀÛ¾÷ÇÑ µí
+			SkillAsset->SetIndex(Cnt);	//SkillRTç‡ä¿Šè¾‘ç»° 1æµ·æèƒ¶è‚º ç´¯è¯€èŒ„ æ·€
 			SkillAsset->OnBattleSkillClicked.BindDynamic(this, &UB2UITeamMatchBattle::OnPressedSkillBtn);
 		}
 	}
@@ -351,11 +351,11 @@ void UB2UITeamMatchBattle::SetDamagePercent(bool IsMyTeam, const TArray<float>& 
 
 void UB2UITeamMatchBattle::ShowResultImage(const ENetMatchResult& result)
 {
-	//[@AKI, 170821] [B2CLT-1888] ¸ğµåº° ½ÂÆĞ ¿¬Ãâ ÅëÀÏ °³¼±
+	//[@AKI, 170821] [B2CLT-1888] è‘›é›å–Š é“°è© æ¥·å… çƒ¹è€ ä¿ºæ€¥
 	PlayAnimationEvent_AnimResultAction(result);
 	//PlayAnimationEvent_AnimResultAction(result == ENetMatchResult::LocalWin);
 	/*
-	//È¤½Ã ¸ğ¸£´Ï ÀÏ´Ü ÀüºÎ ´Ù ²û
+	//è¶£çŸ« è‘›ç¦èª è€çªœ å‚ˆä½• ä¿ƒ é˜
 	if (IMG_Victory.IsValid())
 	{
 		IMG_Victory->SetVisibility(ESlateVisibility::Collapsed);
@@ -368,7 +368,7 @@ void UB2UITeamMatchBattle::ShowResultImage(const ENetMatchResult& result)
 	{
 		IMG_Draw->SetVisibility(ESlateVisibility::Collapsed);
 	}
-	//´Ù ¾Èº¸ÀÌ°Ô ÇÑ »óÅÂ¿¡¼­ º¸¿©¾ß ÇÒ °Í¸¸ Ã£¾Æ¼­ º¸¿©ÁÜ
+	//ä¿ƒ æ•‘ç„Šæéœ¸ èŒ„ æƒ‘æ€•ä¿Šè¾‘ ç„Šå’¯å…· ä¸” å·´çˆ¶ èŒ«é…’è¾‘ ç„Šå’¯æ·‹
 	if (result == ENetMatchResult::LocalWin)
 	{
 		if (IMG_Victory.IsValid())
@@ -385,7 +385,7 @@ void UB2UITeamMatchBattle::ShowResultImage(const ENetMatchResult& result)
 			PlayResultImage_BP();
 		}
 	}
-	else //Draw½Ã¿¡´Â ¾çÂÊ´Ù
+	else //DrawçŸ«ä¿Šç»° å‰§ç‡ä¿ƒ
 	{
 		if (IMG_Draw.IsValid())
 		{

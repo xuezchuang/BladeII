@@ -1,4 +1,4 @@
-#include "B2UIStageBegin.h"
+ï»¿#include "B2UIStageBegin.h"
 #include "B2UIManager.h"
 #include "B2UIDocHelper.h"
 #include "B2StageInfo.h"
@@ -21,7 +21,7 @@ void UB2UIStageBegin::CacheAssets()
 
 void UB2UIStageBegin::UpdateStaticText()
 {
-	//¹¹¾øÀ½
+	//æ„ç»æ¾œ
 }
 
 void UB2UIStageBegin::BindDelegates()

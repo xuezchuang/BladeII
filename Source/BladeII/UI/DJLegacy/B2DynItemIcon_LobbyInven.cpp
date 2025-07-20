@@ -43,7 +43,7 @@ void UB2DynItemIcon_LobbyInven::CacheAssets()
 {
 	Super::CacheAssets();
 
-	// ¾î¶² °Ç ºí·çÇÁ¸°Æ®¼­ ³×ÀÌÆ¼ºê ·¹ÆÛ·±½º ¼¼ÆÃÀ» ÇÏ´Âµ¥ °Á ±âÁ¸ ¹æ½ÄÇÏ°í »õ·Î¿î ¹æ½ÄÀÌ È¥ÀçÇÏ´Â °Í. ´ÜÁö ±×¶© ÀÌ·± ¹æ½ÄÀ» ¸ô¶ú´ø °ÍÀÏ »Ó ±âÅ¸ ´Ù¸¥ ÀÌÀ¯´Â ¾ø´Ù.
+	// ç»¢æ« æ‰’ å–‰é£æ©‡èµ´é£˜è¾‘ åŒ™æèå® é¥­æ¬ºç¹èƒ¶ æŠ€æ³¼é˜‘ çªç»°å• å‚² æ‰ç²® è§„ä¾¥çªç»Š è´§è‚ºæ¬¾ è§„ä¾¥æ å»çŠçªç»° å·´. çªœç˜¤ å¼Šè®¢ æç¹ è§„ä¾¥é˜‘ éš”è€³å¸¦ å·´è€ æŒ¥ æ‰é¸¥ ä¿ƒå¼— æèœ¡ç»° ç»ä¿ƒ.
 	GET_SLOT(UB2Button, BTN_Area);
 	GET_SLOT(UB2UIWidgetBase, UIP_RedDot);
 	GET_SLOT(UPanelWidget, P_EquipInfo);
@@ -51,7 +51,7 @@ void UB2DynItemIcon_LobbyInven::CacheAssets()
 	GET_SLOT(UTextBlock, TB_Preset);
 	GET_SLOT(UImage, IMG_EquippedCheck);
 
-	GET_SLOT(UPanelWidget, P_DevUI); // ÀÌ°Ç È¤½Ã ¸ô¶ó¼­ È®½ÇÈ÷ ¼û±â±â À§ÇØ ¹èÆ÷ÆÇ¿¡¼­µµ Ä³½Ì
+	GET_SLOT(UPanelWidget, P_DevUI); // ææ‰’ è¶£çŸ« éš”æ‰¼è¾‘ çŠ¬è§’æ´’ è§æ‰æ‰ å›°ç§¦ ç¡…å™¨é­„ä¿Šè¾‘æ¡£ æŸæ•™
 	GET_SLOT(UPanelWidget, P_StarGradeDisplayPanel);
 #if !UE_BUILD_SHIPPING
 	GET_SLOT(UTextBlock, TB_ItemRefId_Dev);
@@ -64,13 +64,13 @@ void UB2DynItemIcon_LobbyInven::CacheAssets()
 	
 	if (BTN_Area.IsValid())
 	{
-		// ¾Æ·¡Ã³·³ ¹ÙÀÎµå¸¦ °ÉÁö ¾Ê´Â´Ù. ¿ì¸®ÀÇ ¸ñÀûÀº NativeOn** À» ¹Ş´Â °Í. °Å±â¼­ On**SenderBTNArea ¸¦ ÅëÇØ ¿Ã °ÍÀÓ.
+		// é…’è´°è´¸çƒ¦ å®˜ç‰¢é›ç”« å§ç˜¤ è‡¼ç»°ä¿ƒ. å¿«åºœç‹¼ æ ¼åˆ©ç¯® NativeOn** é˜‘ ç½ç»° å·´. èŠ­æ‰è¾‘ On**SenderBTNArea ç”« çƒ¹ç§¦ æ£µ å·´çƒ™.
 		//BIND_CLICK_FUNC_TO_BTN(BTN_Area, &UB2DynItemIcon_LobbyInven::OnClickedBTNArea);
 		//BIND_PRESS_FUNC_TO_BTN(BTN_Area, &UB2DynItemIcon_LobbyInven::OnPressedBTNArea);
 		//BIND_RELEASE_FUNC_TO_BTN(BTN_Area, &UB2DynItemIcon_LobbyInven::OnReleasedBTNArea);
 		BTN_Area->SetVisibility(ESlateVisibility::HitTestInvisible); 
 	}
-	this->SetVisibility(ESlateVisibility::Visible); // BTN_Area ´Â Åë°úÇÏ°í ³ª´Â ÀÔ·ÂÀ» ¹Şµµ·Ï. NativeOn** ¾¾¸®Áî°¡ µé¾î¿Àµµ·Ï ÇÔ.
+	this->SetVisibility(ESlateVisibility::Visible); // BTN_Area ç»° çƒ¹è‹çªç»Š å”±ç»° æ¶ä»¿é˜‘ ç½æ¡£åºŸ. NativeOn** æªåºœä»¤å•Š ç”¸ç»¢å·æ¡£åºŸ çªƒ.
 	GET_SLOT(UB2UIStarGradePart, StarGradePart);
 	if (StarGradePart.IsValid())
 	{
@@ -91,8 +91,8 @@ void UB2DynItemIcon_LobbyInven::UpdateItemData(const FB2Item& InItem)
 	const bool bIsCostumeItem = IsCostumeItem(InItem);
 	const bool bIsAnvilItem = IsAnvilItem(InItem);
 
-	// ¹èÄ¡ÇØµĞ widget µéÀÇ native reference µéÀÌ valid ÇÑ ´ë·Î ¾÷µ¥ÀÌÆ®.
-	// ¼³·É NativeItemData ÀÚÃ¼°¡ ¹Ù²îÁö ¾Ê´õ¶óµµ ÇöÀç ÀåÂø Àåºñ°¡ ¹Ù²ğ ¶§ µî ¿©·¯ »óÈ²¿¡¼­ ¾÷µ¥ÀÌÆ®°¡ ÇÊ¿äÇÒ °Í. ¸Å¹ø »õ·Î »ı¼ºÇÑ´Ù¸é ¾îÂ÷ÇÇ ÇÊ¿ä ¾ø°ÚÁö¸¸
+	// ç¡…æ‘¹ç§¦æ•Œ widget ç”¸ç‹¼ native reference ç”¸æ valid èŒ„ æªè‚º è¯€å•æé£˜.
+	// æ±²é£ NativeItemData ç£Šçœ‰å•Š å®˜å·®ç˜¤ è‡¼æ­¹æ‰¼æ¡£ æ³…çŠ å˜é¦’ å˜åšå•Š å®˜æ‹† é”­ æ®¿ å’¯çŸ¾ æƒ‘ç‚”ä¿Šè¾‘ è¯€å•æé£˜å•Š é˜å¤¸ä¸” å·´. æ¦‚é”… è´§è‚º ç§¯å·±èŒ„ä¿ƒæ ç»¢ç’ä¹” é˜å¤¸ ç»æ‘†ç˜¤çˆ¶
 	if (ItemLevelTextBlockNRef)
 		ItemLevelTextBlockNRef->SetText(GetItemLevelText());
 
@@ -201,7 +201,7 @@ void UB2DynItemIcon_LobbyInven::UpdateItemData(const FB2Item& InItem)
 		UIP_RedDot->SetVisibility(InItem.IsNew ? ESlateVisibility::Visible : ESlateVisibility::Hidden);
 	}
 
-	//º»¾ÆÀÌÅÛÀº New»óÅÂ¸¦ ¹Ù²ãÁİ´Ï´Ù
+	//å¤¯é…’æè¢ç¯® Newæƒ‘æ€•ç”« å®˜å±‚å‡›èªä¿ƒ
 	FB2Item InventoryItem;
 	if (UB2LobbyInventory::FindStoredItem(InventoryItem, InItem.InstanceUID))
 		InventoryItem.SetNewItemState();
@@ -221,7 +221,7 @@ void UB2DynItemIcon_LobbyInven::SetBackgroundImageFromGrade(int32 InItemGrade, b
 	UB2ItemMiscInfo* ItemMiscInfo = StaticFindItemMiscInfo();
 	if (BackgroundImageNRef && ItemMiscInfo)
 	{
-		// Á¾·ù¿¡ µû¶ó Simple À» »ç¿ëÇÏ´Â °Ô ÀÖ°í ¾Æ´Ñ °Ô ÀÖÀ½.
+		// è¾†å¹…ä¿Š è¶æ‰¼ Simple é˜‘ è¤ä¾©çªç»° éœ¸ ä¹ç»Š é…’å›± éœ¸ ä¹æ¾œ.
 		UMaterialInterface* BGMtrl = ItemMiscInfo->GetItemIconBGMtrl(InItemGrade, 
 			(IconUsageType == ELobbyInvenItemIconUsage::EEIIT_ComposeOrSurpassIngredient) ? true : false,
 			bForConsumables
@@ -241,16 +241,16 @@ void UB2DynItemIcon_LobbyInven::SetIconUsageType(ELobbyInvenItemIconUsage InUsag
 	IconUsageType = InUsageType;
 
 	if (BTN_Area.IsValid())
-		BTN_Area->SetIsEnabled(IconUsageType == ELobbyInvenItemIconUsage::EEIIT_LobbyInven); // ÀÏ´ÜÀº ¸ŞÀÎ º¸°üÇÔ ºä¿¡¼­¸¸ »ç¿ë.
+		BTN_Area->SetIsEnabled(IconUsageType == ELobbyInvenItemIconUsage::EEIIT_LobbyInven); // è€çªœç¯® çš‹ç‰¢ ç„ŠåŒ…çªƒ è½°ä¿Šè¾‘çˆ¶ è¤ä¾©.
 
-	// ¾ÆÀÌÅÛ µ¥ÀÌÅÍ°¡ ÀÌ¹Ì µé¾î°¡ ÀÖ¾ú´Ù¸é Ç¥½Ãµµ °»½ÅÇØ¾ß ÇÒ µí. ÀÏ¹İÀûÀÎ °æ¿ì´Â UpdateItemData ¸¦ ÇÏ±â Àü¿¡ SetIconUsageType À» ¸ÕÀú ÇÏ´Â °Í.
+	// é…’æè¢ å•æç£å•Š æå›º ç”¸ç»¢å•Š ä¹èŒä¿ƒæ é’çŸ«æ¡£ ç›è„šç§¦å…· ä¸” æ·€. è€é¦†åˆ©ç‰¢ ç‰ˆå¿«ç»° UpdateItemData ç”« çªæ‰ å‚ˆä¿Š SetIconUsageType é˜‘ åˆšå† çªç»° å·´.
 	if (NativeItemData.ItemRefID > 0)
 		UpdateItemData(NativeItemData);
 
 	if (InUsageType == ELobbyInvenItemIconUsage::EEIIT_AutoEnhanceResult ||
 		InUsageType == ELobbyInvenItemIconUsage::EEIIT_MailAllReceiveResult)
-	{ // ÀÚµ¿ °­È­ °á°úÃ¢¿¡¼­´Â ¾ÆÀÌÄÜ ÀÚ½ÅÀº ÀÔ·Â ¹ŞÀ» ÇÊ¿ä ¾øÀÌ ÀÚ½ÅÀÌ À§Ä¡ÇÑ ¹é±×¶ó¿îµå ½ºÅ©·Ñ¹Ú½º°¡ ½ºÅ©·Ñ¸¸ µÇ¸é µÊ.
-		// ºü¸¥ »Ì±â¿¡¼­µµ µ¿ÀÏÇÏ°Ô ÀÛµ¿ ÇØ¾ßÇÔ ÇÏÁö¸¸ ³ª´®
+	{ // ç£Šæ‚¼ ç¢æ‹³ æ¬è‹èŠ’ä¿Šè¾‘ç»° é…’æèƒ½ ç£Šè„šç¯® æ¶ä»¿ ç½é˜‘ é˜å¤¸ ç»æ ç£Šè„šæ å›°æ‘¹èŒ„ å½’å¼Šæ‰¼æ¬¾é› èƒ¶å†œè´¹å† èƒ¶å•Š èƒ¶å†œè´¹çˆ¶ ç™»æ å‡³.
+		// ç‹å¼— æƒ¶æ‰ä¿Šè¾‘æ¡£ æ‚¼è€çªéœ¸ ç´¯æ‚¼ ç§¦å…·çªƒ çªç˜¤çˆ¶ å”±ä¸²
 		this->SetVisibility(ESlateVisibility::HitTestInvisible);
 	}
 }
@@ -264,7 +264,7 @@ FText UB2DynItemIcon_LobbyInven::GetItemLevelText() const
 {
 	if (IconUsageType != ELobbyInvenItemIconUsage::EEIIT_ItemLevelupMenuIngredient && !IsEssenceItem(NativeItemData) && 
 		NativeItemData.InventoryType != EItemInvenType::EIIVT_Consumables && !IsCostumeItem(NativeItemData) && !IsAnvilItem(NativeItemData))
-	{	// °­È­ Àç·á ¾ÆÀÌÄÜÀº ¸¹¾Æ¼­ ÀÛÀ¸´Ï±î ·¹º§ Ç¥½Ã¸¦ ÇÏÁö ¾Ê´Â´Ù. Á¤¼ö ¾ÆÀÌÅÛÀº ·¹º§ÀÌ ¾ø´Â °É·Î Ä¡°í..		
+	{	// ç¢æ‹³ çŠä¸° é…’æèƒ½ç¯® è…¹é…’è¾‘ ç´¯æ èªé³– é¥­éª‡ é’çŸ«ç”« çªç˜¤ è‡¼ç»°ä¿ƒ. æ²¥è é…’æè¢ç¯® é¥­éª‡æ ç»ç»° å§è‚º æ‘¹ç»Š..		
 		return FText::Format(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("General_Stat_Level_Abbrev")), FText::FromString(FString::FromInt(NativeItemData.Level)));
 	}
 
@@ -275,7 +275,7 @@ FText UB2DynItemIcon_LobbyInven::GetItemAmountText() const
 {
 	if (IconUsageType != ELobbyInvenItemIconUsage::EEIIT_ItemLevelupMenuIngredient && !IsEssenceItem(NativeItemData) && 
 		NativeItemData.InventoryType == EItemInvenType::EIIVT_Consumables && !IsAnvilItem(NativeItemData))
-	{ // °­È­ Àç·á ¾ÆÀÌÄÜÀº ¸¹¾Æ¼­ ÀÛÀ¸´Ï±î ·¹º§ Ç¥½Ã¸¦ ÇÏÁö ¾Ê´Â´Ù. Á¤¼ö ¾ÆÀÌÅÛÀº ·¹º§ÀÌ ¾ø´Â °É·Î Ä¡°í..		
+	{ // ç¢æ‹³ çŠä¸° é…’æèƒ½ç¯® è…¹é…’è¾‘ ç´¯æ èªé³– é¥­éª‡ é’çŸ«ç”« çªç˜¤ è‡¼ç»°ä¿ƒ. æ²¥è é…’æè¢ç¯® é¥­éª‡æ ç»ç»° å§è‚º æ‘¹ç»Š..		
 		if (NativeItemData.ConsumingAmount >= 10000)
 			return FText::FromString(TEXT("9999+"));
 
@@ -329,7 +329,7 @@ void UB2DynItemIcon_LobbyInven::SetupStatIncInfo()
 	ESlateVisibility StatIncCommonVisibility = ESlateVisibility::Hidden;
 	int32 StatIncAmount = 0;
 
-	// ¾Æ¸¶µµ ¸ŞÀÎ º¸°üÇÔ Ã¢¿¡¼­¸¸ º¸ÀÌ°Ô µÉ µí.
+	// é…’ä»˜æ¡£ çš‹ç‰¢ ç„ŠåŒ…çªƒ èŠ’ä¿Šè¾‘çˆ¶ ç„Šæéœ¸ çª æ·€.
 	if (IconUsageType == ELobbyInvenItemIconUsage::EEIIT_LobbyInven)
 	{
 		AB2LobbyGameMode* LobbyGM = Cast<AB2LobbyGameMode>(UGameplayStatics::GetGameMode(GetOwningPlayer()));
@@ -338,8 +338,8 @@ void UB2DynItemIcon_LobbyInven::SetupStatIncInfo()
 		if (LobbyInven)
 		{
 			FB2Item EquippedAtThisPos;
-			if (LobbyInven->GetEquippedItemAtPlace(EquippedAtThisPos, NativeItemData.EquipPlace)) // °°Àº À§Ä¡¿¡ ÀåÂøµÈ °É Ã£¾Æ¼­ ºñ±³.
-			{	// True ¸®ÅÏÀÌ¾î¾ß Á¦´ë·Î Ã£Àº °Í. Àå½Å±¸¸é PrimaryPointType ÀÌ ´Ù¸¦ ¼ö ÀÖÀ½.
+			if (LobbyInven->GetEquippedItemAtPlace(EquippedAtThisPos, NativeItemData.EquipPlace)) // éç¯® å›°æ‘¹ä¿Š å˜é¦’ç­‰ å§ èŒ«é…’è¾‘ åšèƒŒ.
+			{	// True åºœç•”æç»¢å…· åŠ›æªè‚º èŒ«ç¯® å·´. å˜è„šå¤‡æ PrimaryPointType æ ä¿ƒç”« è ä¹æ¾œ.
 				if (NativeItemData.PrimaryPointType == EquippedAtThisPos.PrimaryPointType ) 
 				{
 					StatIncAmount = (int32)(NativeItemData.GetPrimaryPoint() - EquippedAtThisPos.GetPrimaryPoint());
@@ -367,40 +367,40 @@ void UB2DynItemIcon_LobbyInven::SetupStatIncInfo()
 }
 
 ESlateVisibility UB2DynItemIcon_LobbyInven::GetItemLockedImageVisibility_Store() const
-{ // º¸°üÇÔ ¿ë
+{ // ç„ŠåŒ…çªƒ ä¾©
 	return (NativeItemData.bIsLocked && IsEquipmentItem(NativeItemData) && (IconUsageType == ELobbyInvenItemIconUsage::EEIIT_LobbyInven)) ? ESlateVisibility::HitTestInvisible : ESlateVisibility::Hidden;
 }
 
 ESlateVisibility UB2DynItemIcon_LobbyInven::GetItemLockedImageVisibility_Detail() const
-{ // ¼¼ºÎÃ¢ ¿ë
+{ // æŠ€ä½•èŠ’ ä¾©
 	return (NativeItemData.bIsLocked && IsEquipmentItem(NativeItemData) && (IconUsageType == ELobbyInvenItemIconUsage::EEIIT_ItemDetailWindow || IconUsageType == ELobbyInvenItemIconUsage::EEIIT_ItemOpModeMenuTarget)) ? ESlateVisibility::HitTestInvisible : ESlateVisibility::Hidden;
 }
 
 void UB2DynItemIcon_LobbyInven::OnClickedSenderBTNArea()
-{ // ManualScrollBox ±â´ÉÀÇ ÀÏºÎ·Î ºÒ¸®´Â ÀÎÅÍÆäÀÌ½º
+{ // ManualScrollBox æ‰ç“·ç‹¼ è€ä½•è‚º é˜‚åºœç»° ç‰¢ç£å…¶æèƒ¶
 	Super::OnClickedSenderBTNArea();
 
 	if (IsBtnAreaUsed())
 	{
-		OnClickedBTNArea(); // ½ÇÁ¦ Å¬¸¯ ÇÚµé¸µ
+		OnClickedBTNArea(); // è§’åŠ› åŠªè… å‹¤ç”¸å‚…
 	}
 }
 void UB2DynItemIcon_LobbyInven::OnPressedSenderBTNArea()
-{// ManualScrollBox ±â´ÉÀÇ ÀÏºÎ·Î ºÒ¸®´Â ÀÎÅÍÆäÀÌ½º
+{// ManualScrollBox æ‰ç“·ç‹¼ è€ä½•è‚º é˜‚åºœç»° ç‰¢ç£å…¶æèƒ¶
 	Super::OnPressedSenderBTNArea();
 
 	if (IsBtnAreaUsed())
 	{
-		OnPressedBTNArea(); // ½ÇÁ¦ Å¬¸¯ ÇÚµé¸µ
+		OnPressedBTNArea(); // è§’åŠ› åŠªè… å‹¤ç”¸å‚…
 	}
 }
 void UB2DynItemIcon_LobbyInven::OnReleasedSenderBTNArea()
-{// ManualScrollBox ±â´ÉÀÇ ÀÏºÎ·Î ºÒ¸®´Â ÀÎÅÍÆäÀÌ½º
+{// ManualScrollBox æ‰ç“·ç‹¼ è€ä½•è‚º é˜‚åºœç»° ç‰¢ç£å…¶æèƒ¶
 	Super::OnReleasedSenderBTNArea();
 
 	if (IsBtnAreaUsed())
 	{
-		OnReleasedBTNArea(); // ½ÇÁ¦ Å¬¸¯ ÇÚµé¸µ
+		OnReleasedBTNArea(); // è§’åŠ› åŠªè… å‹¤ç”¸å‚…
 	}
 }
 
@@ -408,7 +408,7 @@ bool UB2DynItemIcon_LobbyInven::OnClickBTNForLevelup(UB2LobbyInventory* LobbyInv
 {
 	bool bHandledClickSoundPlay = false;
 
-	//// ¼±ÅÃ »óÅÂ º¯°æÇØ ÁÖ°í ¾ÆÀÌÄÜ ¾÷µ¥ÀÌÆ®µµ ¹Ù·Î ÇÑ´Ù.
+	//// æ€¥ç¶ æƒ‘æ€• å‡½ç‰ˆç§¦ æ—ç»Š é…’æèƒ½ è¯€å•æé£˜æ¡£ å®˜è‚º èŒ„ä¿ƒ.
 	//if (NativeItemData.bSelectedAsIngred)
 	//{
 	//	UnSelectForItemLevelupIngredClass<int64>::GetInstance().Signal(NativeItemData.InstanceUID);
@@ -420,17 +420,17 @@ bool UB2DynItemIcon_LobbyInven::OnClickBTNForLevelup(UB2LobbyInventory* LobbyInv
 	//		AskForUnlockItemPopupCommon(ELobbyInvenItemOpMode::EIVIOP_Levelup);
 	//	}
 	//	else if (LobbyInven->IsIngredsFull())
-	//	{ // ¼±ÅÃÀÌ ¾ÈµÇ°í ¸Ş½ÃÁö »Ñ¸²
+	//	{ // æ€¥ç¶æ æ•‘ç™»ç»Š çš‹çŸ«ç˜¤ è°è¦†
 	//		ABladeIIGameMode::SetHUDCenterMessage(
 	//			FText::Format(BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("LobbyInvenText_AlreadySelectedMaxEnhanceIngred"))), FText::AsNumber(LobbyInven->GetItemLevelupIngredLimit())),
-	//			3.0f // ÀÌ·± ÀÚÁú±¸·¹ÇÑ °Í±îÁö ¼³Á¤ÇÏ°Ô ÇÒ °Ç ¾Æ´Ñ °Å °°°í ÀÓÀÇ·Î Àû´çÈ÷ ½Ã°£À» ÁØ´Ù.
+	//			3.0f // æç¹ ç£Šé¾™å¤‡é¥­èŒ„ å·´é³–ç˜¤ æ±²æ²¥çªéœ¸ ä¸” æ‰’ é…’å›± èŠ­ éç»Š çƒ™ç‹¼è‚º åˆ©å¯¸æ´’ çŸ«åŸƒé˜‘ éœ–ä¿ƒ.
 	//		);
 	//	}
 	//	else if (LobbyInven->IsMaxItemLevelUpExpectedByCurrentSelection())
-	//	{ // ¼±ÅÃÀÌ ¾ÈµÇ°í ¸Ş½ÃÁö »Ñ¸²
+	//	{ // æ€¥ç¶æ æ•‘ç™»ç»Š çš‹çŸ«ç˜¤ è°è¦†
 	//		ABladeIIGameMode::SetHUDCenterMessage(
 	//			BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("LobbyInvenText_AlreadyExpectedMaxEnhanceLevel"))),
-	//			3.0f // ÀÌ·± ÀÚÁú±¸·¹ÇÑ °Í±îÁö ¼³Á¤ÇÏ°Ô ÇÒ °Ç ¾Æ´Ñ °Å °°°í ÀÓÀÇ·Î Àû´çÈ÷ ½Ã°£À» ÁØ´Ù.
+	//			3.0f // æç¹ ç£Šé¾™å¤‡é¥­èŒ„ å·´é³–ç˜¤ æ±²æ²¥çªéœ¸ ä¸” æ‰’ é…’å›± èŠ­ éç»Š çƒ™ç‹¼è‚º åˆ©å¯¸æ´’ çŸ«åŸƒé˜‘ éœ–ä¿ƒ.
 	//		);
 	//	}
 	//	else if (NativeItemData.EnhanceLevel > 0)
@@ -457,7 +457,7 @@ bool UB2DynItemIcon_LobbyInven::OnClickBTNForLevelup(UB2LobbyInventory* LobbyInv
 	//	}
 	//	else if (LobbyInven->IsHigherGradeThanEnhanceTarget(NativeItemData))
 	//	{
-	//		//// ¹Ù·Î ¼±ÅÃÇÏÁö ¾Ê°í °æ°í ¸Ş½ÃÁö¸¦ ¶ç¿ò.
+	//		//// å®˜è‚º æ€¥ç¶çªç˜¤ è‡¼ç»Š ç‰ˆç»Š çš‹çŸ«ç˜¤ç”« å‰æ¡†.
 	//		//UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
 	//		//	BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("SensitiveNoti_Notification"))),
 	//		//	BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("LobbyInven_HigherGradeThanEnhanceTarget"))),
@@ -473,11 +473,11 @@ bool UB2DynItemIcon_LobbyInven::OnClickBTNForLevelup(UB2LobbyInventory* LobbyInv
 	//		//bHandledClickSoundPlay = true;
 	//	}
 	//	else
-	//	{ // SelectForItemLevelupIngredClass ÀÌº¥Æ® Ã³¸®ÇÏ´Â °÷¿¡¼­µµ ÇöÀç Å¸°Ù°ú °°Àº ¾ÆÀÌÅÛÀÎÁö, µ¿Á¾ÀÎÁö µîÀÇ Ã³¸®¸¦ ÇÔ. ÀÌ°É º¸³Â´Ù°í ÇØ¼­ ¹Ù·Î ¼±ÅÃµÇ´Â °Ç ¾Æ´Ô.
+	//	{ // SelectForItemLevelupIngredClass æäº¥é£˜ è´¸åºœçªç»° é•‘ä¿Šè¾‘æ¡£ æ³…çŠ é¸¥ç™¾è‹ éç¯® é…’æè¢ç‰¢ç˜¤, æ‚¼è¾†ç‰¢ç˜¤ æ®¿ç‹¼ è´¸åºœç”« çªƒ. æå§ ç„Šé™ˆä¿ƒç»Š ç§¦è¾‘ å®˜è‚º æ€¥ç¶ç™»ç»° æ‰’ é…’ä¸›.
 	//		//SelectForItemLevelupIngredClass<int64>::GetInstance().Signal(NativeItemData.InstanceUID);
 	//		//PlayLevelupIngredSelectedSound();
 	//		//bHandledClickSoundPlay = true;
-	//		////¸ğµç ¹öÆ°·ù´Â ´­¸±¶§ ÇÑ¹ø Æ©Åä¸®¾ó ½Ã±×³ÎÀ» Ã¼Å©ÇØ¾ßµÇ¼­ ÆË¾÷Ã¢ÀÌ ¶¸À»¶§ °­Á¦ È£Ãâ																			
+	//		////è‘›ç”µ æ»šç“¢å¹…ç»° å–˜å‰¯é”­ èŒ„é”… è­¬é…åºœå€” çŸ«å¼Šæ¾„é˜‘ çœ‰å†œç§¦å…·ç™»è¾‘ æ‰‘è¯€èŠ’æ é™¡é˜‘é”­ ç¢åŠ› é¾‹å…																			
 	//		//if (BTN_Area.IsValid())
 	//		//{
 	//		//	BTN_Area->TutorialButtonSignal();
@@ -492,7 +492,7 @@ bool UB2DynItemIcon_LobbyInven::OnClickBTNForHammer(UB2LobbyInventory* LobbyInve
 {
 	bool bHandledClickSoundPlay = false;
 
-	//// ¼±ÅÃ »óÅÂ º¯°æÇØ ÁÖ°í ¾ÆÀÌÄÜ ¾÷µ¥ÀÌÆ®µµ ¹Ù·Î ÇÑ´Ù.
+	//// æ€¥ç¶ æƒ‘æ€• å‡½ç‰ˆç§¦ æ—ç»Š é…’æèƒ½ è¯€å•æé£˜æ¡£ å®˜è‚º èŒ„ä¿ƒ.
 	//if (NativeItemData.bSelectedAsIngred)
 	//{
 	//	UnSelectForItemHammerClass<int64>::GetInstance().Signal(NativeItemData.InstanceUID);
@@ -502,7 +502,7 @@ bool UB2DynItemIcon_LobbyInven::OnClickBTNForHammer(UB2LobbyInventory* LobbyInve
 	//	SelectForItemHammerClass<int64>::GetInstance().Signal(NativeItemData.InstanceUID);
 	//	PlayLevelupIngredSelectedSound();
 	//	bHandledClickSoundPlay = true;
-	//	//¸ğµç ¹öÆ°·ù´Â ´­¸±¶§ ÇÑ¹ø Æ©Åä¸®¾ó ½Ã±×³ÎÀ» Ã¼Å©ÇØ¾ßµÇ¼­ ÆË¾÷Ã¢ÀÌ ¶¸À»¶§ °­Á¦ È£Ãâ																			
+	//	//è‘›ç”µ æ»šç“¢å¹…ç»° å–˜å‰¯é”­ èŒ„é”… è­¬é…åºœå€” çŸ«å¼Šæ¾„é˜‘ çœ‰å†œç§¦å…·ç™»è¾‘ æ‰‘è¯€èŠ’æ é™¡é˜‘é”­ ç¢åŠ› é¾‹å…																			
 	//	if (BTN_Area.IsValid())
 	//	{
 	//		BTN_Area->TutorialButtonSignal();
@@ -676,10 +676,10 @@ bool UB2DynItemIcon_LobbyInven::OnClickBTNForEnhanceChange(UB2LobbyInventory* Lo
 		else
 		{
 			FB2Item TargetItem;
-			// ÀÌ ½ÃÁ¡¿¡ Inventory ÀÇ TargetItemID ´Â ¼¼ÆÃµÇ¾î ÀÖ¾î¾ß ÇÔ. (UB2LobbyInventory::EnterItemOpMode)
+			// æ çŸ«ç—¢ä¿Š Inventory ç‹¼ TargetItemID ç»° æŠ€æ³¼ç™»ç»¢ ä¹ç»¢å…· çªƒ. (UB2LobbyInventory::EnterItemOpMode)
 			if (LobbyInven->GetItemOPTargetItemData(TargetItem) && LobbyInven->GetItemOpMode() == ELobbyInvenItemOpMode::EIVIOP_EnhancementChange)
 			{
-				// °­È­ ·¹º§ÀÌ °°À»¶§
+				// ç¢æ‹³ é¥­éª‡æ éé˜‘é”­
 				if (TargetItem.EnhanceLevel == NativeItemData.EnhanceLevel)
 				{
 					UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
@@ -706,14 +706,14 @@ bool UB2DynItemIcon_LobbyInven::OnClickBTNForEnhanceChange(UB2LobbyInventory* Lo
 
 void UB2DynItemIcon_LobbyInven::OnClickedBTNArea()
 {
-	if (IconUsageType != ELobbyInvenItemIconUsage::EEIIT_LobbyInven) // ÀÌ¹Ì º¸°üÇÔ Ã¢ÀÌ ¾Æ´Ï¸é Ã·ºÎÅÍ ´­¸®Áö ¸»¾Æ¾ß ³¥³¥
+	if (IconUsageType != ELobbyInvenItemIconUsage::EEIIT_LobbyInven) // æå›º ç„ŠåŒ…çªƒ èŠ’æ é…’èªæ æ¢…ä½•ç£ å–˜åºœç˜¤ å¯Œé…’å…· å¿å¿
 	{
 		return;
 	}
 
-	bool bHandledClickSoundPlay = false; // ³¡±îÁö false ÀÌ¸é ±âº» »ç¿îµå ÇÃ·¹ÀÌ
+	bool bHandledClickSoundPlay = false; // åœºé³–ç˜¤ false ææ æ‰å¤¯ è¤æ¬¾é› æ•²é¥­æ
 
-	// ÇöÀç NativeItemData ¸¦ »ç¿ëÇØ¼­ ¼¼ºÎ Á¤º¸Ã¢ ÆË¾÷... ¸¸ÀÌ ¾Æ´Ï¶ó °­È­ ¸ğµåÀÏ ¶§´Â ¼±ÅÃÀ» ÇØ¾ß.
+	// æ³…çŠ NativeItemData ç”« è¤ä¾©ç§¦è¾‘ æŠ€ä½• æ²¥ç„ŠèŠ’ æ‰‘è¯€... çˆ¶æ é…’èªæ‰¼ ç¢æ‹³ è‘›é›è€ é”­ç»° æ€¥ç¶é˜‘ ç§¦å…·.
 	AB2LobbyGameMode* LobbyGM = Cast<AB2LobbyGameMode>(UGameplayStatics::GetGameMode(GetOwningPlayer()));
 	UB2LobbyInventory* LobbyInven = LobbyGM ? LobbyGM->GetLobbyInventory() : NULL;
 
@@ -737,12 +737,12 @@ void UB2DynItemIcon_LobbyInven::OnClickedBTNArea()
 	{
 		bHandledClickSoundPlay = OnClickBTNForEnhanceChange(LobbyInven);
 	}
-	// ½Â±Ş¿¡¼­´Â Àç·á ¾ÆÀÌÅÛÀÌ¶õ °Ô ¾ø´Âµ¥ ±×³É ±âº»À¸·Î detail Ã¢ ¶ç¿ì°í °Å±â¼­ ±× ¾ÆÀÌÅÛÀ¸·Î ½Â±ŞÃ¢À» ´Ù½Ã ¶ç¿ï ¼ö ÀÖ´Ù.
+	// é“°é­ä¿Šè¾‘ç»° çŠä¸° é…’æè¢æé„‚ éœ¸ ç»ç»°å• å¼Šæˆ æ‰å¤¯æ è‚º detail èŠ’ å‰å¿«ç»Š èŠ­æ‰è¾‘ å¼Š é…’æè¢æ è‚º é“°é­èŠ’é˜‘ ä¿ƒçŸ« å‰åŒ¡ è ä¹ä¿ƒ.
 	else
 	{
-		CreateLobbyItemDetailPopupCommon(GetOwningPlayer(), NativeItemData, false); // Inventory (stored) ¿ëÀ¸·Î detail Ã¢ »ı¼º
+		CreateLobbyItemDetailPopupCommon(GetOwningPlayer(), NativeItemData, false); // Inventory (stored) ä¾©æ è‚º detail èŠ’ ç§¯å·±
 
-		//¸ğµç ¹öÆ°·ù´Â ´­¸±¶§ ÇÑ¹ø Æ©Åä¸®¾ó ½Ã±×³ÎÀ» Ã¼Å©ÇØ¾ßµÇ¼­ ÆË¾÷Ã¢ÀÌ ¶¸À»¶§ °­Á¦ È£Ãâ		
+		//è‘›ç”µ æ»šç“¢å¹…ç»° å–˜å‰¯é”­ èŒ„é”… è­¬é…åºœå€” çŸ«å¼Šæ¾„é˜‘ çœ‰å†œç§¦å…·ç™»è¾‘ æ‰‘è¯€èŠ’æ é™¡é˜‘é”­ ç¢åŠ› é¾‹å…		
 		if(BTN_Area.IsValid())
 		{ BTN_Area->TutorialButtonSignal(); }		
 	}
@@ -752,7 +752,7 @@ void UB2DynItemIcon_LobbyInven::OnClickedBTNArea()
 		PlayCommonIconClickSound();
 	}
 
-	OnClickedBTNArea_BP(); // ºí·çÇÁ¸°Æ® ÇÚµé¸µ
+	OnClickedBTNArea_BP(); // å–‰é£æ©‡èµ´é£˜ å‹¤ç”¸å‚…
 
 	UpdateLobbyInventoryControlClass<>::GetInstance().Signal();
 }
@@ -784,7 +784,7 @@ void UB2DynItemIcon_LobbyInven::AskForUnEquipItemPopupCommon()
 }
 
 void UB2DynItemIcon_LobbyInven::AskForUnlockItemPopupCommon(ELobbyInvenItemOpMode InModeForUnlock)
-{ // °­È­ ÇÕ¼º ÃÊ¿ù Àç·á·Î »ç¿ëÇÏ±â À§ÇØ ¼±ÅÃ Å¬¸¯ ½Ã Àá±İ ÇØÁ¦ÇÏ°Ú´Â°¡ ÇÏ´Â ÆË¾÷.
+{ // ç¢æ‹³ é’¦å·± æª¬å²¿ çŠä¸°è‚º è¤ä¾©çªæ‰ å›°ç§¦ æ€¥ç¶ åŠªè… çŸ« æ³ªé™› ç§¦åŠ›çªæ‘†ç»°å•Š çªç»° æ‰‘è¯€.
 	FString PopupStringKey;
 	switch (InModeForUnlock)
 	{
@@ -810,12 +810,12 @@ void UB2DynItemIcon_LobbyInven::AskForUnlockItemPopupCommon(ELobbyInvenItemOpMod
 
 void UB2DynItemIcon_LobbyInven::OnPressedBTNArea()
 {
-	OnPressedBTNArea_BP(); // ºí·çÇÁ¸°Æ® ÇÚµé¸µ
+	OnPressedBTNArea_BP(); // å–‰é£æ©‡èµ´é£˜ å‹¤ç”¸å‚…
 }
 
 void UB2DynItemIcon_LobbyInven::OnReleasedBTNArea()
 {
-	OnReleasedBTNArea_BP(); // ºí·çÇÁ¸°Æ® ÇÚµé¸µ
+	OnReleasedBTNArea_BP(); // å–‰é£æ©‡èµ´é£˜ å‹¤ç”¸å‚…
 }
 
 void UB2DynItemIcon_LobbyInven::OnPressedBTNItemUid()
@@ -849,10 +849,10 @@ bool UB2DynItemIcon_LobbyInven::ShouldShowDevUI() const
 
 ESlateVisibility UB2DynItemIcon_LobbyInven::GetDisabledSlotImageVisibility() const
 {
-	// ¾ÆÀÌÅÛ°­È­ º¸È£¼® Ã¼Å©
+	// é…’æè¢ç¢æ‹³ ç„Šé¾‹ç± çœ‰å†œ
 	if (NativeItemData.ItemClass == EItemClass::EIC_ProtectionScroll)
 	{
-		// ÇöÀç NativeItemData ¸¦ »ç¿ëÇØ¼­ ¼¼ºÎ Á¤º¸Ã¢ ÆË¾÷... ¸¸ÀÌ ¾Æ´Ï¶ó °­È­ ¸ğµåÀÏ ¶§´Â ¼±ÅÃÀ» ÇØ¾ß.
+		// æ³…çŠ NativeItemData ç”« è¤ä¾©ç§¦è¾‘ æŠ€ä½• æ²¥ç„ŠèŠ’ æ‰‘è¯€... çˆ¶æ é…’èªæ‰¼ ç¢æ‹³ è‘›é›è€ é”­ç»° æ€¥ç¶é˜‘ ç§¦å…·.
 		AB2LobbyGameMode* LobbyGM = Cast<AB2LobbyGameMode>(UGameplayStatics::GetGameMode(GetOwningPlayer()));
 		UB2LobbyInventory* LobbyInven = LobbyGM ? LobbyGM->GetLobbyInventory() : NULL;
 		if (LobbyInven && LobbyInven->GetItemOpMode() == ELobbyInvenItemOpMode::EIVIOP_Enhancement)
@@ -864,7 +864,7 @@ ESlateVisibility UB2DynItemIcon_LobbyInven::GetDisabledSlotImageVisibility() con
 
 void UB2DynItemIcon_LobbyInven::SetShowOverlayInfoOnly(bool IsVisibleBGImg /*= false*/, bool IsVisibleGrade /*= false*/)
 {
-	// ÀÌ°Å ´ëÃ¼·Î ÇÕ¼º ¿¬Ãâ¿¡¼­ 3D ·Î Ç¥½ÃÇÑ ¸Ş½¬ À§¿¡ UI ·Î¸¸ »Ñ¸± ¼ö ÀÖ´Â °Íµé¸¸ ³²±â·Á´Â °ÅÀÓ.
+	// æèŠ­ æªçœ‰è‚º é’¦å·± æ¥·å…ä¿Šè¾‘ 3D è‚º é’çŸ«èŒ„ çš‹æµ† å›°ä¿Š UI è‚ºçˆ¶ è°å‰¯ è ä¹ç»° å·´ç”¸çˆ¶ å·¢æ‰å¦¨ç»° èŠ­çƒ™.
 	if (BackgroundImageNRef)
 	{
 		BackgroundImageNRef->SetVisibility(IsVisibleBGImg ? ESlateVisibility::HitTestInvisible : ESlateVisibility::Hidden);

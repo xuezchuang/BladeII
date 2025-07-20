@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2UITMCharacterSelectItem.h"
@@ -21,7 +21,7 @@ void UB2UITMCharacterSelectItem::BindDoc(class UB2UIDocHero* DocHero)
 		if (TB_SelectHeroName.IsValid())
 			TB_SelectHeroName->SetText(Name);
 
-		//[@SameLine, 180612] explevelinfo doc, datastore -> datastore °³¼±
+		//[@SameLine, 180612] explevelinfo doc, datastore -> datastore ä¿ºæ€¥
 		//int32 Level = DocHero->GetCurrentLevel();
 		FLocalCharacterData& CharacterDataStore = BladeIIGameImpl::GetClientDataStore().GetLocalCharacterData();
 		int32 Level = CharacterDataStore.GetCharacterLevel(pcClass);

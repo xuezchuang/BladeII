@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "BladeIIControlNetCharacter.h"
@@ -16,21 +16,21 @@ void ABladeIIControlNetCharacter::SetHealth(float NewHealth, bool bReceivedFromH
 {
 	Super::SetHealth(NewHealth, bReceivedFromHost);
 
-	// Á×ÀÌÁö ¾Ê´Â´Ù.
+	// ì£½ì´ì§€ ì•ŠëŠ”ë‹¤.
 	if (Health <= 0)
 		Health = 1;
 }
 
 void ABladeIIControlNetCharacter::ReserveQTEEnableEndCB()
 {
-	// Á¾·á ¿¹¾àÀº È£½ºÆ®¸¸ÇÑ´Ù.
+	// ì¢…ë£Œ ì˜ˆì•½ì€ í˜¸ìŠ¤íŠ¸ë§Œí•œë‹¤.
 	if (GetNetStatus() == NET_MASTER)
 		Super::ReserveQTEEnableEndCB();
 }
 
 void ABladeIIControlNetCharacter::OnNetReceiveQTEEnableEnd()
 {
-	// ºÎ¸ğ²¨ È£ÃâÇØÁÖ°í ³ª´Â Á×À½.
+	// ë¶€ëª¨êº¼ í˜¸ì¶œí•´ì£¼ê³  ë‚˜ëŠ” ì£½ìŒ.
 	Super::OnQTEEnableEndCB();
 
 	SetRemoteDyingSignal();
@@ -41,7 +41,7 @@ void ABladeIIControlNetCharacter::OnNetReceiveQTEEnableEnd()
 
 void ABladeIIControlNetCharacter::OnQTEEnableEndCB()
 {
-	// È£½ºÆ®°¡ Á¶°Ç(Å»°Í Çã¶ô¾ÈÇßÀ»¶§) Ã¼Å©ÇØ¼­ ¹æ¼Û. ³ªµµ ¹Ş°íÃ³¸®.
+	// í˜¸ìŠ¤íŠ¸ê°€ ì¡°ê±´(íƒˆê²ƒ í—ˆë½ì•ˆí–ˆì„ë•Œ) ì²´í¬í•´ì„œ ë°©ì†¡. ë‚˜ë„ ë°›ê³ ì²˜ë¦¬.
 	if (!bAllowedMount)
 	{
 		AB2ControlGameMode* pGM = Cast<AB2ControlGameMode>(UGameplayStatics::GetGameMode(this));

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "GameFramework/Actor.h"
 #include "B2HomePoint.generated.h"

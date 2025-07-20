@@ -1,4 +1,4 @@
-#include "B2UIRepeatBattleCountDown.h"
+ï»¿#include "B2UIRepeatBattleCountDown.h"
 #include "B2UIManager.h"
 #include "B2CommonSoundInfo.h"
 #include "BladeIIGameMode.h"
@@ -70,7 +70,7 @@ void UB2UIRepeatBattleCountDown::NativeTick(const FGeometry& MyGeometry, float I
 {
 	Super::NativeTick(MyGeometry, InDeltaTime);
 
-	// Tick ¿¡¼­ Á÷Á¢ Ä«¿îÆ® ÇÑ´Ù. Pause »óÅÂ¿¡¼­µµ »ç¿ëÇÏ±â À§ÇØ.
+	// Tick ä¿Šè¾‘ æµç«‹ å¢¨æ¬¾é£˜ èŒ„ä¿ƒ. Pause æƒ‘æ€•ä¿Šè¾‘æ¡£ è¤ä¾©çªæ‰ å›°ç§¦.
 	CountdownTick(InDeltaTime);
 }
 
@@ -92,7 +92,7 @@ void UB2UIRepeatBattleCountDown::StartCountdown(FRepeatBattleCountDownCB InAllCo
 		CountDownNumber = WholeCountTime;
 
 		if (TB_RepeatBattleCountDownNumber.IsValid())
-		{ // UI Ç¥½Ã ³Ñ¹ö ¾÷µ¥ÀÌÆ®
+		{ // UI é’çŸ« é€æ»š è¯€å•æé£˜
 			TB_RepeatBattleCountDownNumber->SetText(FText::AsNumber(CountDownNumber));
 		}
 
@@ -110,7 +110,7 @@ void UB2UIRepeatBattleCountDown::StartCountdown(FRepeatBattleCountDownCB InAllCo
 
 void UB2UIRepeatBattleCountDown::BattleCountDownSetVisibility(ESlateVisibility InVisibility)
 {
-	this->SetVisibility(ESlateVisibility::SelfHitTestInvisible); // NativeTick À» »ç¿ëÇÏ·Á¸é ÀüÃ¼¸¦ Hidden ½ÃÅ°¸é ¾ÈµÈ´Ù.
+	this->SetVisibility(ESlateVisibility::SelfHitTestInvisible); // NativeTick é˜‘ è¤ä¾©çªå¦¨æ å‚ˆçœ‰ç”« Hidden çŸ«è™æ æ•‘ç­‰ä¿ƒ.
 
 	if (CP_RepeatBattleInfoSet.IsValid())
 		CP_RepeatBattleInfoSet->SetVisibility(InVisibility);
@@ -181,7 +181,7 @@ void UB2UIRepeatBattleCountDown::CountdownTick(float InDeltaTime)
 		CountDownNumber -= InDeltaTime;
 		if (CountDownNumber <= 0)
 		{
-			// Ä«¿îÅÍ ´Ù ¼ÃÀ½.
+			// å¢¨æ¬¾ç£ ä¿ƒ æµæ¾œ.
 			if (auto* B2GameMode = Cast<ABladeIIGameMode>(TheWorld->GetAuthGameMode()))
 				B2GameMode->PlayAMBByCommonSoundID(ECommonSoundID::ECSID_AMB_BattleCountDown_Last);
 
@@ -195,7 +195,7 @@ void UB2UIRepeatBattleCountDown::CountdownTick(float InDeltaTime)
 				B2GameMode->PlayAMBByCommonSoundID(ECommonSoundID::ECSID_AMB_BattleCountDown);
 
 			if (TB_RepeatBattleCountDownNumber.IsValid())
-			{ // UI Ç¥½Ã ³Ñ¹ö ¾÷µ¥ÀÌÆ®
+			{ // UI é’çŸ« é€æ»š è¯€å•æé£˜
 				TB_RepeatBattleCountDownNumber->SetText(FText::AsNumber(FMath::CeilToFloat(CountDownNumber)));
 			}
 		}
@@ -237,7 +237,7 @@ void PopUpRepeatBattleStopMsg(class APlayerController* InPC)
 		return;
 	}
 
-	UGameplayStatics::SetGamePaused(InPC, true); // Ä«¿îÆ®´Ù¿îÀ» ÇÏ´Â »óÈ²ÀÌ Á¾Á¾ ÀÖÀ¸¹Ç·Î ÀÏ½ÃÁ¤Áö.
+	UGameplayStatics::SetGamePaused(InPC, true); // å¢¨æ¬¾é£˜ä¿ƒæ¬¾é˜‘ çªç»° æƒ‘ç‚”æ è¾†è¾† ä¹æ éª¨è‚º è€çŸ«æ²¥ç˜¤.
 
 	auto BattleDoc = UB2UIDocHelper::GetDocBattleStage();
 

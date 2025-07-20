@@ -1,4 +1,4 @@
-
+ï»¿
 #include "B2UnitedWidgetBase.h"
 #include "BladeIIUtil.h"
 #include "Templates/SubclassOf.h"
@@ -21,9 +21,9 @@
 const FVector2D UB2UnitedWidgetBase::WrongScreenPosition = FVector2D(FLT_MAX, FLT_MAX);
 
 /** 
- * UI Widget Á¦ÀÛ ½Ã »ç¿ëµÇ´Â ·¹ÆÛ·±½º Å©±â. °ø½ÄÀûÀ¸·Î Áö¿øµÇÁö ¾Ê´Â widget ½ºÅ©¸° ÁÂÇ¥ °è»ê¿¡ ÇÊ¿ä. 
- * UI DPI ½ºÄÉÀÏ¿¡¼­ ÀÌ Áß ÇÑº¯¿¡ ´ëÇÑ °ªÀº 1.0 À¸·Î ¾²±ä ÇÏÁö¸¸ µÎ °ªÀÌ ¸ğµÎ ¹ÚÇôÀÖ´Â °Ç ¾Æ´Ï´Ù.
- * DPI Ä¿ºê Æ¯¼º¿¡ µû¶ó µÑ Áß ÇÏ³ª´Â ¹«½ÃÇØ¾ß..
+ * UI Widget ì œì‘ ì‹œ ì‚¬ìš©ë˜ëŠ” ë ˆí¼ëŸ°ìŠ¤ í¬ê¸°. ê³µì‹ì ìœ¼ë¡œ ì§€ì›ë˜ì§€ ì•ŠëŠ” widget ìŠ¤í¬ë¦° ì¢Œí‘œ ê³„ì‚°ì— í•„ìš”. 
+ * UI DPI ìŠ¤ì¼€ì¼ì—ì„œ ì´ ì¤‘ í•œë³€ì— ëŒ€í•œ ê°’ì€ 1.0 ìœ¼ë¡œ ì“°ê¸´ í•˜ì§€ë§Œ ë‘ ê°’ì´ ëª¨ë‘ ë°•í˜€ìˆëŠ” ê±´ ì•„ë‹ˆë‹¤.
+ * DPI ì»¤ë¸Œ íŠ¹ì„±ì— ë”°ë¼ ë‘˜ ì¤‘ í•˜ë‚˜ëŠ” ë¬´ì‹œí•´ì•¼..
  */
 const FVector2D UB2UnitedWidgetBase::DesignedRefViewSize = FVector2D(1280.0f, 720.0f); 
 bool UB2UnitedWidgetBase::bUseButtonStunForDuration = true;
@@ -48,7 +48,7 @@ UB2UnitedWidgetBase::UB2UnitedWidgetBase(const FObjectInitializer& ObjectInitial
 //	bCurrentlyRentAsPooledObject = false;
 //
 //	if (GConfig)
-//	{ // ¿©·¯ ¹ø °ªÀ» °¡Á®¿À°Ô µÉ °Í.. ±×³É °¨¾ÈÇÏ°í ¿©±â¿¡ µÒ.
+//	{ // ì—¬ëŸ¬ ë²ˆ ê°’ì„ ê°€ì ¸ì˜¤ê²Œ ë  ê²ƒ.. ê·¸ëƒ¥ ê°ì•ˆí•˜ê³  ì—¬ê¸°ì— ë‘ .
 //		GConfig->GetBool(TEXT("/Script/BladeII"), TEXT("UseButtonStunForDuration"), bUseButtonStunForDuration, GGameIni);
 //	}
 }
@@ -66,7 +66,7 @@ void UB2UnitedWidgetBase::NativeConstruct()
 //
 //		WidgetTree->ForEachWidget([&](UWidget* Widget) {
 //			if (UB2Image* CastedB2Image = Cast<UB2Image>(Widget))
-//			{ // ColorToMIDParamMapping ¸®½ºÆ® ÃëÇÕ
+//			{ // ColorToMIDParamMapping ë¦¬ìŠ¤íŠ¸ ì·¨í•©
 //				if (CastedB2Image->IsUsingColorToMIDParamMapping())
 //				{
 //					ColorToMIDParamMappedImages.AddUnique(CastedB2Image);
@@ -93,7 +93,7 @@ void UB2UnitedWidgetBase::NativeTick(const FGeometry& MyGeometry, float InDeltaT
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2UnitedWidgetBase_NativeTick);
 	Super::NativeTick(MyGeometry, InDeltaTime);
 	//	
-	//if (IsPlayingAnimation()) // PlayingAnimation µµÁß¿¡¸¸ TransferColorToMIDParam ¸¦ »ç¿ë.
+	//if (IsPlayingAnimation()) // PlayingAnimation ë„ì¤‘ì—ë§Œ TransferColorToMIDParam ë¥¼ ì‚¬ìš©.
 	//{
 	//	for (UB2Image* CurrImage : ColorToMIDParamMappedImages)
 	//	{
@@ -112,7 +112,7 @@ void UB2UnitedWidgetBase::NativeTick(const FGeometry& MyGeometry, float InDeltaT
 	//	}
 	//}
 
-	//if (bHasStunnedButtons) // ÇÏ³ª¶óµµ ³²¾Æ ÀÖÀ¸¸é
+	//if (bHasStunnedButtons) // í•˜ë‚˜ë¼ë„ ë‚¨ì•„ ìˆìœ¼ë©´
 	//{
 	//	RestoreButtonsFromStun();
 	//}
@@ -172,17 +172,17 @@ TWeakObjectPtr<UWidgetAnimation> UB2UnitedWidgetBase::GetAnimation(const UObject
 FText UB2UnitedWidgetBase::GetTimeTextFromSecond(int32 nSecond)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2UnitedWidgetBase_GetTimeTextFromSecond);
-	//ºĞÀÌ¶û ÃÊ±îÁö ±¸Çö
+	//ë¶„ì´ë‘ ì´ˆê¹Œì§€ êµ¬í˜„
 	FString strTime = TEXT("");
 
-	// ºĞ
+	// ë¶„
 	if (nSecond >= 60)
 	{
 		strTime += FText::Format(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Time_NM")), FText::AsNumber(nSecond / 60)).ToString();
 		strTime += TEXT(" ");
 	}
 
-	// ÃÊ
+	// ì´ˆ
 	strTime += FText::Format(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Time_NS")), FText::AsNumber(nSecond % 60)).ToString();
 
 	return FText::FromString(strTime);
@@ -193,11 +193,11 @@ UWidget* UB2UnitedWidgetBase::GetSlotInternal(FName SlotName, UClass* TargetClas
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2UnitedWidgetBase_GetSlotInternal_FName);
 	if (!CurrWidget) return nullptr;
 
-	// ¸ÕÀú ÇöÀç WidgetÀÚ½Å°ú ºñ±³
+	// ë¨¼ì € í˜„ì¬ Widgetìì‹ ê³¼ ë¹„êµ
 	if (CurrWidget->GetFName() == SlotName && CurrWidget->IsA(TargetClass))
 		return CurrWidget;
 
-	// CurrWidgetÀÇ ³»ºÎ Elementµé°ú ºñ±³
+	// CurrWidgetì˜ ë‚´ë¶€ Elementë“¤ê³¼ ë¹„êµ
 	if (auto NamedSlotHost = Cast<INamedSlotInterface>(CurrWidget))
 	{
 		TArray<FName> SlotNames;
@@ -224,7 +224,7 @@ UWidget* UB2UnitedWidgetBase::GetSlotInternal(FName SlotName, UClass* TargetClas
 		}
 	}
 
-	// CurrWidgetÀÇ ÀÚ½ÄÀ¸·Î Àç±Í È£Ãâ
+	// CurrWidgetì˜ ìì‹ìœ¼ë¡œ ì¬ê·€ í˜¸ì¶œ
 	if (auto NamedSlotHost = Cast<INamedSlotInterface>(CurrWidget))
 	{
 		TArray<FName> SlotNames;
@@ -292,7 +292,7 @@ void UB2UnitedWidgetBase::GetSlotInternal(UWidget* CurrentWidget)
 		}
 	}
 
-	// CurrWidgetÀÇ ÀÚ½ÄÀ¸·Î Àç±Í È£Ãâ
+	// CurrWidgetì˜ ìì‹ìœ¼ë¡œ ì¬ê·€ í˜¸ì¶œ
 	if (auto NamedSlotHost = Cast<INamedSlotInterface>(CurrentWidget))
 	{
 		TArray<FName> SlotNames;
@@ -331,15 +331,15 @@ void UB2UnitedWidgetBase::GetSlotInternal(UWidget* CurrentWidget)
 	}
 }
 
-#if 0 // ÀÌ ±â´É ÀÖÀ¸¸é ³ª»Ü °Å ¾ø´Âµ¥.. È¤½Ã ¾Æ´Â »ç¶÷ ÀÖÀ¸¸é ±¸Çö ½Ãµµ¸¦..
+#if 0 // ì´ ê¸°ëŠ¥ ìˆìœ¼ë©´ ë‚˜ì  ê±° ì—†ëŠ”ë°.. í˜¹ì‹œ ì•„ëŠ” ì‚¬ëŒ ìˆìœ¼ë©´ êµ¬í˜„ ì‹œë„ë¥¼..
 UWidgetAnimation* UB2UnitedWidgetBase::GetAnimation(FString AnimName, UWidget* BaseWidget)
 {
-	// ÇöÀç ÀÌ ±â´ÉÀº Á¦´ë·Î µ¿ÀÛÇÏÁö ¾ÊÀ¸¸ç »ç¿ëÇÏÁö ¸» °Í.
-	// ¾Æ·¡ WidgetAnim ÀÇ Outer ´Â WidgetBlueprint ÀÌÁö UserWidget ÀÌ ¾Æ´Ï´Ù.
-	// °Ô´Ù°¡ WidgetBlueprint °¡ Editor ¿ë ¿ÀºêÁ§Æ®¶õ °Ç ´ı.
-	// ¹°·Ğ ÀÌ·¸°Ô ObjectIterator ¸¦ µµ´Â °Íµµ º°·Î ÁÁ¾Æº¸ÀÌÁö ¾ÊÀ½.
+	// í˜„ì¬ ì´ ê¸°ëŠ¥ì€ ì œëŒ€ë¡œ ë™ì‘í•˜ì§€ ì•Šìœ¼ë©° ì‚¬ìš©í•˜ì§€ ë§ ê²ƒ.
+	// ì•„ë˜ WidgetAnim ì˜ Outer ëŠ” WidgetBlueprint ì´ì§€ UserWidget ì´ ì•„ë‹ˆë‹¤.
+	// ê²Œë‹¤ê°€ WidgetBlueprint ê°€ Editor ìš© ì˜¤ë¸Œì íŠ¸ë€ ê±´ ë¤.
+	// ë¬¼ë¡  ì´ë ‡ê²Œ ObjectIterator ë¥¼ ë„ëŠ” ê²ƒë„ ë³„ë¡œ ì¢‹ì•„ë³´ì´ì§€ ì•ŠìŒ.
 
-	// check ¸¦ °É°í ½ÍÁö¸¸ ºôµå ¾ÈÁ¤¼ºÀ» À§ÇØ Áö±İ ´çÀå ¸±¸®Áî Å©·¡½¬´Â ³»Áö ¾Ê´Â´Ù.
+	// check ë¥¼ ê±¸ê³  ì‹¶ì§€ë§Œ ë¹Œë“œ ì•ˆì •ì„±ì„ ìœ„í•´ ì§€ê¸ˆ ë‹¹ì¥ ë¦´ë¦¬ì¦ˆ í¬ë˜ì‰¬ëŠ” ë‚´ì§€ ì•ŠëŠ”ë‹¤.
 	//checkSlow(0);
 
 	//for (TObjectIterator<UWidgetAnimation> It; It; ++It)
@@ -402,7 +402,7 @@ void UB2UnitedWidgetBase::DoMarkRedDot()
 //		if (RedDotCondition.RedDotWidget)
 //		{
 //			bool bShowRedDot = false;
-//			checkSlow(RedDotCondition.ConditionCheckHandler.IsBound()); // ÀÌÀü ±¸Çö¿¡ ¹Ù·Î RedDotCondition.ConditionCheckHandler.Execute ÄİÀ» Çß´ø °É º¼ ¶§ ±âº» °¡Á¤Àº Bound µÇ¾î¾ß ÇÏ´Â °ÍÀÎµí..
+//			checkSlow(RedDotCondition.ConditionCheckHandler.IsBound()); // ì´ì „ êµ¬í˜„ì— ë°”ë¡œ RedDotCondition.ConditionCheckHandler.Execute ì½œì„ í–ˆë˜ ê±¸ ë³¼ ë•Œ ê¸°ë³¸ ê°€ì •ì€ Bound ë˜ì–´ì•¼ í•˜ëŠ” ê²ƒì¸ë“¯..
 //			bShowRedDot = RedDotCondition.ConditionCheckHandler.IsBound() ? RedDotCondition.ConditionCheckHandler.Execute() : false;
 //			RedDotCondition.RedDotWidget->SetVisibility(bShowRedDot ? ESlateVisibility::SelfHitTestInvisible : ESlateVisibility::Hidden);
 //			RedDotCondition.OnRedDotNotify.ExecuteIfBound(bShowRedDot);
@@ -427,33 +427,33 @@ void UB2UnitedWidgetBase::ForceMarkRedDot(bool bShow)
 //{
 	//BLADE2_SCOPE_CYCLE_COUNTER(UB2UnitedWidgetBase_RestoreButtonsFromSingleTickDisable);
 	//if (bButtonsStunnedThisTick || !bUseButtonStunForDuration) {
-	//	// Slate ¿¡¼­ Ã³¸®ÇÏ´Â °Í¿¡ µû¶ó ÇÑ Æ½¿¡ ÀÌ°Ô ¿©·¯¹ø µé¾î¿Ã ¼ö ÀÖÀ»Áöµµ. °Á Á© ¸ÕÀú µé¾î¿Â °Í¿¡ ´ëÇØ¼­¸¸ ¹İÀÀ..
-	//	return; // ±Ùµ¥ ½ÇÁ¦·Î ±×·± »óÈ²ÀÌ¶ó¸é ÀÌ ÄÚµå°¡ ¹«¿ëÁö¹°ÀÎ °Å ¾Æ´Ñ°¡.. ¿©·µ µé¾î¿Ã ¼ö ÀÖ´Ù´Â °Å ÀÚÃ¼°¡..
+	//	// Slate ì—ì„œ ì²˜ë¦¬í•˜ëŠ” ê²ƒì— ë”°ë¼ í•œ í‹±ì— ì´ê²Œ ì—¬ëŸ¬ë²ˆ ë“¤ì–´ì˜¬ ìˆ˜ ìˆì„ì§€ë„. ê± ì ¤ ë¨¼ì € ë“¤ì–´ì˜¨ ê²ƒì— ëŒ€í•´ì„œë§Œ ë°˜ì‘..
+	//	return; // ê·¼ë° ì‹¤ì œë¡œ ê·¸ëŸ° ìƒí™©ì´ë¼ë©´ ì´ ì½”ë“œê°€ ë¬´ìš©ì§€ë¬¼ì¸ ê±° ì•„ë‹Œê°€.. ì—¬ëŸ¿ ë“¤ì–´ì˜¬ ìˆ˜ ìˆë‹¤ëŠ” ê±° ìì²´ê°€..
 	//}
 
 	//for (UB2Button* ThisBtn : AllB2Buttons)
 	//{
 	//	if (ThisBtn 
-	//		// ÀÌ¹Ì Stun »óÅÂÀÎ °ÍÀ» Áßº¹ È£ÃâÇÏ¸é ½Ã°£ Ä«¿îÆ®°¡ ¸®¼ÂµÇ¾î¼­ ´õ ±ä ½Ã°£ stun ÀÌ µÇ´Âµ¥.. Áßº¹ È£ÃâÇÏ´Â °Ô ¸Â³ª ¾Æ´Ô ½ºÅµÇÏ´Â °Ô ³ªÀº°¡..
+	//		// ì´ë¯¸ Stun ìƒíƒœì¸ ê²ƒì„ ì¤‘ë³µ í˜¸ì¶œí•˜ë©´ ì‹œê°„ ì¹´ìš´íŠ¸ê°€ ë¦¬ì…‹ë˜ì–´ì„œ ë” ê¸´ ì‹œê°„ stun ì´ ë˜ëŠ”ë°.. ì¤‘ë³µ í˜¸ì¶œí•˜ëŠ” ê²Œ ë§ë‚˜ ì•„ë‹˜ ìŠ¤í‚µí•˜ëŠ” ê²Œ ë‚˜ì€ê°€..
 	//		&& !ThisBtn->IsStunned()
-	//		// ÀÌ°É È£ÃâÇÑ ´ç»çÀÚ°¡ ´ÜÀÏ tick ¸¸ stun °É¸®´Â ¹öÆ°ÀÌ¶ó¸é ÀÚ½ÅÀº stun ÇÏÁö ¾Ê°í, ÀÏÁ¤ ½Ã°£ stun ÀÌ¶ó¸é ÀÚ½Åµµ stun.
-	//		// ´ÜÀÏ tick stun Àº Àû¾îµµ ÀÚÁÖ ´­¸®°í ºü¸¥ ¹İÀÀÀÌ ÇÊ¿äÇÒ ¼ö ÀÖ´Â ¹öÆ°À¸·Î °£ÁÖÇÏ°í, ÀÏÁ¤ ½Ã°£ stun Àº ±× ÀÚÃ¼·Î¼­ ÀÚ½Åµµ stun ÇØ¾ß ¸Â´Â °Í.
+	//		// ì´ê±¸ í˜¸ì¶œí•œ ë‹¹ì‚¬ìê°€ ë‹¨ì¼ tick ë§Œ stun ê±¸ë¦¬ëŠ” ë²„íŠ¼ì´ë¼ë©´ ìì‹ ì€ stun í•˜ì§€ ì•Šê³ , ì¼ì • ì‹œê°„ stun ì´ë¼ë©´ ìì‹ ë„ stun.
+	//		// ë‹¨ì¼ tick stun ì€ ì ì–´ë„ ìì£¼ ëˆŒë¦¬ê³  ë¹ ë¥¸ ë°˜ì‘ì´ í•„ìš”í•  ìˆ˜ ìˆëŠ” ë²„íŠ¼ìœ¼ë¡œ ê°„ì£¼í•˜ê³ , ì¼ì • ì‹œê°„ stun ì€ ê·¸ ìì²´ë¡œì„œ ìì‹ ë„ stun í•´ì•¼ ë§ëŠ” ê²ƒ.
 	//		&& (!InJustPressedButton || !InJustPressedButton->ShouldStunSingleTickOnly() || (ThisBtn != InJustPressedButton))
 	//		) 
 	//	{ 
-	//		// SetIsEnabled ´ë½Å µû·Î ¸¶·ÃÇÑ °É »ç¿ë. SetIsEnabled Àº ±âÅ¸ ´Ù¸¥ ¸ñÀûÀ¸·Î »ç¿ëµÉ ¼ö ÀÖ±â ¶§¹®.
+	//		// SetIsEnabled ëŒ€ì‹  ë”°ë¡œ ë§ˆë ¨í•œ ê±¸ ì‚¬ìš©. SetIsEnabled ì€ ê¸°íƒ€ ë‹¤ë¥¸ ëª©ì ìœ¼ë¡œ ì‚¬ìš©ë  ìˆ˜ ìˆê¸° ë•Œë¬¸.
 	//		ThisBtn->StunForDuration();
 	//	}
 	//}
-	//bButtonsStunnedThisTick = true; // ÀÌ°Ç ´ÜÁö ÇÑ Æ½ À¯Áö ÈÄ ¸®¼ÂµÉ °Í.
-	//bHasStunnedButtons = true; // ÀÌ°Ç ¸ğµÎ ÇØÁ¦µÉ ¶§±îÁö true
+	//bButtonsStunnedThisTick = true; // ì´ê±´ ë‹¨ì§€ í•œ í‹± ìœ ì§€ í›„ ë¦¬ì…‹ë  ê²ƒ.
+	//bHasStunnedButtons = true; // ì´ê±´ ëª¨ë‘ í•´ì œë  ë•Œê¹Œì§€ true
 //}
 
 void UB2UnitedWidgetBase::RestoreButtonsFromStun()
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2UnitedWidgetBase_RestoreButtonsFromSingleTickDisable);
 
-	//bButtonsStunnedThisTick = false; // ÀÌ°Ç ¹Ù·Î ¸®¼Â
+	//bButtonsStunnedThisTick = false; // ì´ê±´ ë°”ë¡œ ë¦¬ì…‹
 	//int32 StunnedButtonCount = 0;
 	//for (UB2Button* ThisBtn : AllB2Buttons)
 	//{
@@ -468,7 +468,7 @@ void UB2UnitedWidgetBase::RestoreButtonsFromStun()
 
 	//if (StunnedButtonCount == 0)
 	//{
-	//	bHasStunnedButtons = false; // ÀÌÈÄ ´Ù½Ã SetButtonsStunForDuration È£Ãâ½Ã±îÁö ÀÌ ·çÆ¾À» ½¬°Ô µÈ´Ù.
+	//	bHasStunnedButtons = false; // ì´í›„ ë‹¤ì‹œ SetButtonsStunForDuration í˜¸ì¶œì‹œê¹Œì§€ ì´ ë£¨í‹´ì„ ì‰¬ê²Œ ëœë‹¤.
 	//}
 }
 
@@ -481,11 +481,11 @@ void UB2UnitedWidgetBase::ForceHide()
 	//	UWidget* RootWidget = GetRootWidget();
 	//	if (RootWidget)
 	//	{
-	//		VisibilityBeforeForceHidden = RootWidget->GetVisibility();	//·çÆ®À§Á¬ÀÇ Visibility¸¦ Á¶ÀıÇÏÁö ¾Ê°í, ÃÖÁ¾ÄÁÅ×ÀÌ³ÊÀÇ Visibility¸¦ Á¶ÀıÇÏ¸é Open/Close ´ÜÀÇ ¼û±èÃ³¸®¿Í ¾ûÅ´
+	//		VisibilityBeforeForceHidden = RootWidget->GetVisibility();	//ë£¨íŠ¸ìœ„ì ¯ì˜ Visibilityë¥¼ ì¡°ì ˆí•˜ì§€ ì•Šê³ , ìµœì¢…ì»¨í…Œì´ë„ˆì˜ Visibilityë¥¼ ì¡°ì ˆí•˜ë©´ Open/Close ë‹¨ì˜ ìˆ¨ê¹€ì²˜ë¦¬ì™€ ì—‰í‚´
 	//		RootWidget->SetVisibility(ESlateVisibility::Hidden);
 	//	}
 
-	//	// ImpulseRing À» ¾²´Â ¾ÖµéÀº TickableButtons ¿¡ Æ÷ÇÔµÇ¹Ç·Î Hide ½Ã Stop ÇØ ÁÜ. ¾Æ¸¶ hide ÀÌÈÄ¿¡ Release ½ÅÈ£ ¸ø¹Ş´Â µí.
+	//	// ImpulseRing ì„ ì“°ëŠ” ì• ë“¤ì€ TickableButtons ì— í¬í•¨ë˜ë¯€ë¡œ Hide ì‹œ Stop í•´ ì¤Œ. ì•„ë§ˆ hide ì´í›„ì— Release ì‹ í˜¸ ëª»ë°›ëŠ” ë“¯.
 	//	for (UB2Button* CurrBtn : TickableButtons)
 	//	{
 	//		if (CurrBtn)
@@ -502,10 +502,10 @@ void UB2UnitedWidgetBase::RestoreFromForceHidden()
 	if (bForceHidden == true)
 	{
 		bForceHidden = false;
-		// ¸¶Áö¸· ForceHide ÀÌÈÄ¿¡ SetVisibility ¸¦ Çß´Ù¸é ¹«½ÃµÊ.
+		// ë§ˆì§€ë§‰ ForceHide ì´í›„ì— SetVisibility ë¥¼ í–ˆë‹¤ë©´ ë¬´ì‹œë¨.
 		UWidget* RootWidget = GetRootWidget();
 		if (RootWidget && 
-			!ShouldBeHiddenAsPooledObject() // PooledObject ÀÇ visibility Ã³¸®´Â ¶ÇÇÑ ÇÊ¿ä¿¡ µû¶ó Á÷Á¢ ²«¹ÙÀÌ²«À¸·Îµµ..
+			!ShouldBeHiddenAsPooledObject() // PooledObject ì˜ visibility ì²˜ë¦¬ëŠ” ë˜í•œ í•„ìš”ì— ë”°ë¼ ì§ì ‘ ê»€ë°”ì´ê»€ìœ¼ë¡œë„..
 			)
 		{
 			RootWidget->SetVisibility(VisibilityBeforeForceHidden);
@@ -518,7 +518,7 @@ FVector2D UB2UnitedWidgetBase::GetDesignToCurrentViewScale(class APlayerControll
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2UnitedWidgetBase_GetDesignToCurrentViewScale);
 
 	const UUserInterfaceSettings* UISettings = GetDefault<UUserInterfaceSettings>(UUserInterfaceSettings::StaticClass());
-	// LongestSide ³ª Horizontal ÀÌ¸é Y ¹æÇâ ÇØ»óµµ º¯È­¿¡ µû¸¥ stretch ´Â ¾øÀ» °Í.
+	// LongestSide ë‚˜ Horizontal ì´ë©´ Y ë°©í–¥ í•´ìƒë„ ë³€í™”ì— ë”°ë¥¸ stretch ëŠ” ì—†ì„ ê²ƒ.
 	const bool bIgnoreY = (UISettings && (UISettings->UIScaleRule == EUIScalingRule::LongestSide || UISettings->UIScaleRule == EUIScalingRule::Horizontal));
 
 	FVector2D RetScale(1.0f, 1.0f);
@@ -526,7 +526,7 @@ FVector2D UB2UnitedWidgetBase::GetDesignToCurrentViewScale(class APlayerControll
 	{
 		int32 ViewSizeX, ViewSizeY;
 		InPlayerController->GetViewportSize(ViewSizeX, ViewSizeY);
-		// UIScaleRule ¿¡ µû¶ó ½ÇÁ¦·Î stretch µÇÁö ¾Ê´Â ¹æÇâÀ¸·Î´Â scale À» ¹«½Ã
+		// UIScaleRule ì— ë”°ë¼ ì‹¤ì œë¡œ stretch ë˜ì§€ ì•ŠëŠ” ë°©í–¥ìœ¼ë¡œëŠ” scale ì„ ë¬´ì‹œ
 		if (bIgnoreY)
 		{
 			RetScale = FVector2D((float)ViewSizeX / DesignedRefViewSize.X, bIgnoreNonScaledSide ? 1.0f : ((float)ViewSizeY / DesignedRefViewSize.Y));
@@ -554,14 +554,14 @@ bool UB2UnitedWidgetBase::HACKGetWidgetScreenCoord(UWidget* InWidget, APlayerCon
 	}
 
 	//================================================================================
-	//		»ç¿ë Àü ÇÊµ¶ !
+	//		ì‚¬ìš© ì „ í•„ë… !
 	//
-	// °ø½ÄÀûÀ¸·Î slate widget ÀÇ ½ºÅ©¸° °ø°£ ÁÂÇ¥¸¦ ¾Ë¾Æ³»´Â ±â´ÉÀº Áö¿øµÇÁö ¾Ê´Â´Ù.
-	// ¿©±â¼­´Â ¸î°¡Áö °¡Á¤À» ±â¹İÀ¸·Î ÁÂÇ¥¸¦ °è»êÇØ ³»´Âµ¥, 
-	// ½ºÅ©¸° ÀüÃ¼ Å©±âÀÇ CanvasPanel »ó¿¡ ÇÑÂÊÀ¸·Î strech µÇ´Â ¾ŞÄ¿¸¦ »ç¿ëÇÏÁö ¾Êµµ·Ï ¹èÄ¡ÇÑ °æ¿ì °¡´É.
-	// ¾î¶² Á¶°ÇÀº ÄÚµå »óÀ¸·Î ¾Ë¾Æ³»°í return false ÇÒ ¼ö ¾øÀ¸¹Ç·Î °¡Á¤°ú ¾î±ß³­ widget À» ÀÎÀÚ·Î ³Ö¾îÁÖ¾úÀ» ¶§ Àß¸øµÈ °á°ú¸¦ ¸®ÅÏÇÒ ¼ö ÀÖÀ½.
-	// ¶ÇÇÑ Ã³À½¿£ Àß µÇ´Ù°¡µµ UMG »ó¿¡¼­ ¹èÄ¡ ±¸¼ºÀ» ¹Ù²Ù¸é ÀÇµµÇÑ °ªÀ» ¸®ÅÏÇÏÁö ¾ÊÀ» ¼ö ÀÖÀ¸¹Ç·Î ÁÖÀÇÇØ¾ß ÇÑ´Ù.
-	// Ãß°¡·Î Æ¯Á¤ Å©±â·Î (DesignedRefViewSize) UMG ÀÛ¾÷ÀÌ µÇ¾ú´Ù´Â °¡Á¤ÀÌ ÀÖ´Âµ¥ ÀÌ°Ç Àü¿ªÀûÀÎ °¡Á¤ÀÌ¶ó ½±°Ô ¹Ù²îÁø ¾ÊÀ» °Í.
+	// ê³µì‹ì ìœ¼ë¡œ slate widget ì˜ ìŠ¤í¬ë¦° ê³µê°„ ì¢Œí‘œë¥¼ ì•Œì•„ë‚´ëŠ” ê¸°ëŠ¥ì€ ì§€ì›ë˜ì§€ ì•ŠëŠ”ë‹¤.
+	// ì—¬ê¸°ì„œëŠ” ëª‡ê°€ì§€ ê°€ì •ì„ ê¸°ë°˜ìœ¼ë¡œ ì¢Œí‘œë¥¼ ê³„ì‚°í•´ ë‚´ëŠ”ë°, 
+	// ìŠ¤í¬ë¦° ì „ì²´ í¬ê¸°ì˜ CanvasPanel ìƒì— í•œìª½ìœ¼ë¡œ strech ë˜ëŠ” ì•µì»¤ë¥¼ ì‚¬ìš©í•˜ì§€ ì•Šë„ë¡ ë°°ì¹˜í•œ ê²½ìš° ê°€ëŠ¥.
+	// ì–´ë–¤ ì¡°ê±´ì€ ì½”ë“œ ìƒìœ¼ë¡œ ì•Œì•„ë‚´ê³  return false í•  ìˆ˜ ì—†ìœ¼ë¯€ë¡œ ê°€ì •ê³¼ ì–´ê¸‹ë‚œ widget ì„ ì¸ìë¡œ ë„£ì–´ì£¼ì—ˆì„ ë•Œ ì˜ëª»ëœ ê²°ê³¼ë¥¼ ë¦¬í„´í•  ìˆ˜ ìˆìŒ.
+	// ë˜í•œ ì²˜ìŒì—” ì˜ ë˜ë‹¤ê°€ë„ UMG ìƒì—ì„œ ë°°ì¹˜ êµ¬ì„±ì„ ë°”ê¾¸ë©´ ì˜ë„í•œ ê°’ì„ ë¦¬í„´í•˜ì§€ ì•Šì„ ìˆ˜ ìˆìœ¼ë¯€ë¡œ ì£¼ì˜í•´ì•¼ í•œë‹¤.
+	// ì¶”ê°€ë¡œ íŠ¹ì • í¬ê¸°ë¡œ (DesignedRefViewSize) UMG ì‘ì—…ì´ ë˜ì—ˆë‹¤ëŠ” ê°€ì •ì´ ìˆëŠ”ë° ì´ê±´ ì „ì—­ì ì¸ ê°€ì •ì´ë¼ ì‰½ê²Œ ë°”ë€Œì§„ ì•Šì„ ê²ƒ.
 	//================================================================================
 
 	UCanvasPanelSlot* CPSlot = Cast<UCanvasPanelSlot>(InWidget->Slot);
@@ -574,21 +574,21 @@ bool UB2UnitedWidgetBase::HACKGetWidgetScreenCoord(UWidget* InWidget, APlayerCon
 		return false;
 	}
 
-	// Anchor ÀÇ Min °ª°ú Max °ªÀÌ ´Ù¸¥ °É °É·¯³»¹Ç·Î ÀÌÇÏ µÑ Áß ¾Æ¹«°Å³ª ÇÏ³ª »ç¿ë.
-	// ¿©±â¿¡ ±âº» ¾ŞÄ¿ °ªÀº 0.0 ~ 1.0 ½ºÄÉÀÏµÈ °ªÀ» »ç¿ëÇÏ´Âµ¥, °è»êÀ» À§ÇØ ·¹ÆÛ·±½º ºä »çÀÌÁî·Î ½ºÄÉÀÏÇÑ´Ù.
+	// Anchor ì˜ Min ê°’ê³¼ Max ê°’ì´ ë‹¤ë¥¸ ê±¸ ê±¸ëŸ¬ë‚´ë¯€ë¡œ ì´í•˜ ë‘˜ ì¤‘ ì•„ë¬´ê±°ë‚˜ í•˜ë‚˜ ì‚¬ìš©.
+	// ì—¬ê¸°ì— ê¸°ë³¸ ì•µì»¤ ê°’ì€ 0.0 ~ 1.0 ìŠ¤ì¼€ì¼ëœ ê°’ì„ ì‚¬ìš©í•˜ëŠ”ë°, ê³„ì‚°ì„ ìœ„í•´ ë ˆí¼ëŸ°ìŠ¤ ë·° ì‚¬ì´ì¦ˆë¡œ ìŠ¤ì¼€ì¼í•œë‹¤.
 	const FVector2D RefScaledAnchor = SlotAnchor.Minimum * DesignedRefViewSize;
 
-	// CanvasPanelSlot ÀÌ µé°í ÀÖ´Â ÁÂÇ¥ °ªÀ» ¾ŞÄ¿¿¡ µû¶ó º¸Á¤. Stretch µÈ ¾ŞÄ¿ÀÇ °æ¿ìµµ °ªÀÌ ÇÊ¿äÇÑ »óÈ²ÀÌ µÈ´Ù¸é Ãß°¡ °è»ê ÇÊ¿ä.
+	// CanvasPanelSlot ì´ ë“¤ê³  ìˆëŠ” ì¢Œí‘œ ê°’ì„ ì•µì»¤ì— ë”°ë¼ ë³´ì •. Stretch ëœ ì•µì»¤ì˜ ê²½ìš°ë„ ê°’ì´ í•„ìš”í•œ ìƒí™©ì´ ëœë‹¤ë©´ ì¶”ê°€ ê³„ì‚° í•„ìš”.
 	FVector2D NonScaledCoord = CPSlot->GetPosition();
 	NonScaledCoord.X += RefScaledAnchor.X;
 	NonScaledCoord.Y += RefScaledAnchor.Y;
 
 	if (bWidgetCenterCoord)
 	{
-		NonScaledCoord += (CPSlot->GetSize() * 0.5f); // ±âº»ÀûÀ¸·Î´Â ÁÂ»ó´Ü ±âÁØ ÁÂÇ¥ÀÓ.
+		NonScaledCoord += (CPSlot->GetSize() * 0.5f); // ê¸°ë³¸ì ìœ¼ë¡œëŠ” ì¢Œìƒë‹¨ ê¸°ì¤€ ì¢Œí‘œì„.
 	}
 
-	OutResultCoord = NonScaledCoord * GetDesignToCurrentViewScale(InPC, bIgnoreNonScaledSide); // ÃÖÁ¾ÀûÀ¸·Î ÇöÀç ºäÆ÷Æ® »çÀÌÁî·Î ½ºÄÉÀÏ.
+	OutResultCoord = NonScaledCoord * GetDesignToCurrentViewScale(InPC, bIgnoreNonScaledSide); // ìµœì¢…ì ìœ¼ë¡œ í˜„ì¬ ë·°í¬íŠ¸ ì‚¬ì´ì¦ˆë¡œ ìŠ¤ì¼€ì¼.
 
 	return true;
 #endif
@@ -602,15 +602,15 @@ FVector UB2UnitedWidgetBase::GetWorldPosBeneathScreen(APlayerController* InPC, F
 		int32 ViewSizeX, ViewSizeY;
 		InPC->GetViewportSize(ViewSizeX, ViewSizeY);
 		FVector ScreenCenterWorldPos;
-		FVector ScreenCenterWorldDir(0.0f, 1.0f, 0.0f); // ÀÌ¹ø Deproject ¿¡¼± ÀÌ°Í¸¸ ÇÊ¿ä
+		FVector ScreenCenterWorldDir(0.0f, 1.0f, 0.0f); // ì´ë²ˆ Deproject ì—ì„  ì´ê²ƒë§Œ í•„ìš”
 		const bool bScreenCenterProjRes = bDeprojectFromScreenCenter ?
 			InPC->DeprojectScreenPositionToWorld((float)ViewSizeX * 0.5f, (float)ViewSizeY * 0.5f, ScreenCenterWorldPos, ScreenCenterWorldDir) :
 			false;
 
-		FVector ResWorldPos; // ¿©±â¼± Pos °¡ ÇÊ¿ä.
-		FVector ResWorldDir; // bDeprojectFromScreenCenter °¡ false ÀÏ ¶§ ³»Áö´Â Æú¹é¿ë. ±Ùµ¥ ÀÌ°Ô ´õ Àß¸ÔÈ÷´Â °Å °°Àºµ¥..
+		FVector ResWorldPos; // ì—¬ê¸°ì„  Pos ê°€ í•„ìš”.
+		FVector ResWorldDir; // bDeprojectFromScreenCenter ê°€ false ì¼ ë•Œ ë‚´ì§€ëŠ” í´ë°±ìš©. ê·¼ë° ì´ê²Œ ë” ì˜ë¨¹íˆëŠ” ê±° ê°™ì€ë°..
 		if (InPC->DeprojectScreenPositionToWorld(InScreenCoord.X, InScreenCoord.Y, ResWorldPos, ResWorldDir))
-		{ // DepthFromScreen ¸¸Å­ È­¸é ¾ÈÂÊÀ¸·Î. ¹°·Ğ ÀÌ°Ô ¸ÔÈ÷·Á¸é depth ´Â ³Ê¹« Ä¿¼± ¾ÈµÊ.
+		{ // DepthFromScreen ë§Œí¼ í™”ë©´ ì•ˆìª½ìœ¼ë¡œ. ë¬¼ë¡  ì´ê²Œ ë¨¹íˆë ¤ë©´ depth ëŠ” ë„ˆë¬´ ì»¤ì„  ì•ˆë¨.
 			return ResWorldPos + ((bScreenCenterProjRes ? ScreenCenterWorldDir : ResWorldDir) * DepthFromScreen);
 		}
 	}
@@ -620,8 +620,8 @@ FVector UB2UnitedWidgetBase::GetWorldPosBeneathScreen(APlayerController* InPC, F
 UB2UnitedWidgetBase* UB2UnitedWidgetBase::DynCreateInCanvasPanel(TSubclassOf<UB2UnitedWidgetBase> InClass, UB2UnitedWidgetBase* OwnerUserWidget, class UCanvasPanel* ParentPanel,
 	FVector2D NonScaledSize, FVector2D FinalSlotSize, FVector2D RelPosInPanel, int ZOrderInPanel /*= 0*/, bool bPivotAtCenter /*= false*/)
 {
-	//[FIXME][@AKI, 171009] ÀÌ°Ô ÀåºñÇÔ ·ÎµùÇÏ´Â ½Ã°£À» ¸¹ÀÌ ¼Ò¿ä ÇÏ°í ÀÖÀ½
-	// -> [FIXING] B2CLT-1893 .. WidgetPool À» »ç¿ëÇØ¼­ µ¿Àû »ı¼º ÀÚÃ¼¸¦ ´ú ÇÏµµ·Ï..
+	//[FIXME][@AKI, 171009] ì´ê²Œ ì¥ë¹„í•¨ ë¡œë”©í•˜ëŠ” ì‹œê°„ì„ ë§ì´ ì†Œìš” í•˜ê³  ìˆìŒ
+	// -> [FIXING] B2CLT-1893 .. WidgetPool ì„ ì‚¬ìš©í•´ì„œ ë™ì  ìƒì„± ìì²´ë¥¼ ëœ í•˜ë„ë¡..
 
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2UnitedWidgetBase_DynCreateInCanvasPanel);
 	if (InClass == NULL || OwnerUserWidget == NULL || ParentPanel == NULL){
@@ -633,7 +633,7 @@ UB2UnitedWidgetBase* UB2UnitedWidgetBase::DynCreateInCanvasPanel(TSubclassOf<UB2
 		return NULL;
 	}
 	
-	// ¿©±â¼­ CreateWidget ¾È ÇÏ°í ¹Û¿¡¼­ ÇÑ´ÙÀ½ CanvasPanel ¿¡¸¸ Ãß°¡ÇÏ´Â ·çÆ¾ÀÌ ÇÊ¿äÇØ¼­ µû·Î »© ³õÀ½.
+	// ì—¬ê¸°ì„œ CreateWidget ì•ˆ í•˜ê³  ë°–ì—ì„œ í•œë‹¤ìŒ CanvasPanel ì—ë§Œ ì¶”ê°€í•˜ëŠ” ë£¨í‹´ì´ í•„ìš”í•´ì„œ ë”°ë¡œ ë¹¼ ë†“ìŒ.
 	if (PutWidgetInCanvasPanel(OwnerUserWidget, CreatedWidget, ParentPanel, NonScaledSize, FinalSlotSize, RelPosInPanel, ZOrderInPanel, bPivotAtCenter))
 	{
 		return CreatedWidget;
@@ -645,15 +645,15 @@ bool UB2UnitedWidgetBase::PutWidgetInCanvasPanel(UB2UnitedWidgetBase* OwnerUserW
 	FVector2D NonScaledSize, FVector2D FinalSlotSize, FVector2D RelPosInPanel, int ZOrderInPanel /*= 0*/, bool bPivotAtCenter /*= false*/)
 {
 	//
-	// ½ÇÁúÀûÀ¸·Î´Â DynCreateInCanvasPanel ÀÇ ÀÏºÎÀÎµ¥ WidgetPool ±¸ÇöÇÏ¸é¼­
-	// CreateWidget ÇÏ´Â °Å¶û ¿©±â¼­ CanvasPanel ¿¡ ³Ö´Â °Å¶û µû·Î ¾µ ÀÏÀÌ ÀÖ¾î¼­ ±¸ºĞÇÔ.
+	// ì‹¤ì§ˆì ìœ¼ë¡œëŠ” DynCreateInCanvasPanel ì˜ ì¼ë¶€ì¸ë° WidgetPool êµ¬í˜„í•˜ë©´ì„œ
+	// CreateWidget í•˜ëŠ” ê±°ë‘ ì—¬ê¸°ì„œ CanvasPanel ì— ë„£ëŠ” ê±°ë‘ ë”°ë¡œ ì“¸ ì¼ì´ ìˆì–´ì„œ êµ¬ë¶„í•¨.
 	//
 
 	if (TargetWidget == NULL || OwnerUserWidget == NULL || ParentPanel == NULL) {
 		return false;
 	}
 
-	// ParentPanel Å©±â¿¡ µû¸¥ ½ºÄÉÀÏ Á¶ÀıÀ» À§ÇØ ScaleBox ¾È¿¡ »ı¼ºÇÑ´Ù.
+	// ParentPanel í¬ê¸°ì— ë”°ë¥¸ ìŠ¤ì¼€ì¼ ì¡°ì ˆì„ ìœ„í•´ ScaleBox ì•ˆì— ìƒì„±í•œë‹¤.
 	UScaleBox* OuterSB = NewObject<UScaleBox>(OwnerUserWidget, NAME_None, RF_Transient);
 	if (!OuterSB) {
 		return false;
@@ -661,9 +661,9 @@ bool UB2UnitedWidgetBase::PutWidgetInCanvasPanel(UB2UnitedWidgetBase* OwnerUserW
 
 	UScaleBoxSlot* AddedSBSlot = Cast<UScaleBoxSlot>(OuterSB->AddChild(TargetWidget));
 	if (AddedSBSlot)
-	{ // Å©±â´Â ScaleBox Á¶Àı·Î ÇÏ°í ScaleBox ¾È¿¡´Â ²Ë Ã¤¿ì´Â °É·Î.
+	{ // í¬ê¸°ëŠ” ScaleBox ì¡°ì ˆë¡œ í•˜ê³  ScaleBox ì•ˆì—ëŠ” ê½‰ ì±„ìš°ëŠ” ê±¸ë¡œ.
 
-		if (NonScaledSize.X > NonScaledSize.Y) // ScaleBox »ç¿ëÇÏ¸é NonScaledSize °¡ ÇÊ¿ä¾ø¾îÁú ÁÙ ¾Ë¾Ò´õ´Ï Alignment Àû´çÈ÷ ¸ÂÃß·Á¸é Á» ÇÊ¿äÇÏ±º ¤»
+		if (NonScaledSize.X > NonScaledSize.Y) // ScaleBox ì‚¬ìš©í•˜ë©´ NonScaledSize ê°€ í•„ìš”ì—†ì–´ì§ˆ ì¤„ ì•Œì•˜ë”ë‹ˆ Alignment ì ë‹¹íˆ ë§ì¶”ë ¤ë©´ ì¢€ í•„ìš”í•˜êµ° ã…‹
 		{
 			AddedSBSlot->SetHorizontalAlignment(HAlign_Fill);
 			AddedSBSlot->SetVerticalAlignment(VAlign_Center);
@@ -679,13 +679,13 @@ bool UB2UnitedWidgetBase::PutWidgetInCanvasPanel(UB2UnitedWidgetBase* OwnerUserW
 			AddedSBSlot->SetVerticalAlignment(VAlign_Fill);
 		}
 
-		TargetWidget->SetDynCreatedDummyParent(OuterSB); // CreatedWidget À» Á¦°ÅÇÒ ¶§ OuterSB µµ °°ÀÌ Á¦°ÅµÇµµ·Ï µî·Ï.
+		TargetWidget->SetDynCreatedDummyParent(OuterSB); // CreatedWidget ì„ ì œê±°í•  ë•Œ OuterSB ë„ ê°™ì´ ì œê±°ë˜ë„ë¡ ë“±ë¡.
 	}
 
 	UCanvasPanelSlot* AddedCPSlot = Cast<UCanvasPanelSlot>(ParentPanel->AddChild(OuterSB));
 	if (AddedCPSlot)
 	{
-		// CanvasPanelSlot ÀÌ ÀÖ¾î¾ß À§Ä¡, »çÀÌÁî Á¶Á¤ µîÀÌ µÊ.
+		// CanvasPanelSlot ì´ ìˆì–´ì•¼ ìœ„ì¹˜, ì‚¬ì´ì¦ˆ ì¡°ì • ë“±ì´ ë¨.
 
 		OuterSB->SetRenderTransformPivot(bPivotAtCenter ? FVector2D(0.5f, 0.5f) : FVector2D(0.0f, 0.0f));
 		AddedCPSlot->SetSize(FinalSlotSize);
@@ -698,8 +698,8 @@ bool UB2UnitedWidgetBase::PutWidgetInCanvasPanel(UB2UnitedWidgetBase* OwnerUserW
 
 UB2UnitedWidgetBase* UB2UnitedWidgetBase::DynCreateInCanvasPanelFull(TSubclassOf<UB2UnitedWidgetBase> InClass, UB2UnitedWidgetBase* OwnerUserWidget, UCanvasPanel* ParentPanel)
 {
-	// ÀüÃ¼ È­¸é Å©±â·Î UIP »ı¼º ½Ã »ç¿ë. WidgetBP ¿¡ ±×³É ¹èÄ¡ÇØ¼­ ±âº» ·Îµù ½Ã°£À» ¸Ô´Â ´ë½Å on-demand ·Î dynamic ÇÏ°Ô »ı¼ºÇØ¼­ »ç¿ëÇÏ´Â µîÀÇ °æ¿ì.. 
-	// ÀÌ·¸°Ô ¾²´Â ´ë½Å º°µµ ID (UIEnum) ·Î µî·ÏÇØ¼­ »ç¿ëÇÏ°í ½ÍÀº °æ¿ìµµ ÀÖÀ» °Çµ¥ ±×°Ç »óÈ²¿¡ µû¶ó..
+	// ì „ì²´ í™”ë©´ í¬ê¸°ë¡œ UIP ìƒì„± ì‹œ ì‚¬ìš©. WidgetBP ì— ê·¸ëƒ¥ ë°°ì¹˜í•´ì„œ ê¸°ë³¸ ë¡œë”© ì‹œê°„ì„ ë¨¹ëŠ” ëŒ€ì‹  on-demand ë¡œ dynamic í•˜ê²Œ ìƒì„±í•´ì„œ ì‚¬ìš©í•˜ëŠ” ë“±ì˜ ê²½ìš°.. 
+	// ì´ë ‡ê²Œ ì“°ëŠ” ëŒ€ì‹  ë³„ë„ ID (UIEnum) ë¡œ ë“±ë¡í•´ì„œ ì‚¬ìš©í•˜ê³  ì‹¶ì€ ê²½ìš°ë„ ìˆì„ ê±´ë° ê·¸ê±´ ìƒí™©ì— ë”°ë¼..
 	if (InClass && OwnerUserWidget && ParentPanel)
 	{
 		UB2UnitedWidgetBase* NewCreated = CreateWidget<UB2UnitedWidgetBase>(OwnerUserWidget->GetOwningPlayer(), InClass);
@@ -708,7 +708,7 @@ UB2UnitedWidgetBase* UB2UnitedWidgetBase::DynCreateInCanvasPanelFull(TSubclassOf
 			UCanvasPanelSlot* AddedSlot = Cast<UCanvasPanelSlot>(ParentPanel->AddChild(NewCreated));
 			if (AddedSlot)
 			{
-				// »óÇÏÁÂ¿ì ²Ë Ã¤¿ò.
+				// ìƒí•˜ì¢Œìš° ê½‰ ì±„ì›€.
 				AddedSlot->SetAnchors(FAnchors(0.0f, 0.0f, 1.0f, 1.0f));
 				AddedSlot->SetOffsets(FMargin(0.0f, 0.0f, 0.0f, 0.0f));
 			}
@@ -735,7 +735,7 @@ UB2UnitedWidgetBase* UB2UnitedWidgetBase::DynCreateInVerticalBox(TSubclassOf<UB2
 	UVerticalBoxSlot* AddedSlot = Cast<UVerticalBoxSlot>(ParentVB->AddChild(CreatedWidget));
 	if (AddedSlot)
 	{
-		AddedSlot->SetPadding(InPlacementMargin); // Vertical box °¡ °Á À§¿¡¼­ºÎÅÍ ¼ø¼­´ë·Î Ã¤¿ì´Â °Å¶ó.. ¸î°¡Áö ¿É¼ÇÀÌ ´õ ÀÖ±ä ÇÑµ¥ »ç½Ç»ó padding ¸»°í´Â µüÈ÷ ¾øÀ»µí?
+		AddedSlot->SetPadding(InPlacementMargin); // Vertical box ê°€ ê± ìœ„ì—ì„œë¶€í„° ìˆœì„œëŒ€ë¡œ ì±„ìš°ëŠ” ê±°ë¼.. ëª‡ê°€ì§€ ì˜µì…˜ì´ ë” ìˆê¸´ í•œë° ì‚¬ì‹¤ìƒ padding ë§ê³ ëŠ” ë”±íˆ ì—†ì„ë“¯?
 	}
 
 	return CreatedWidget;
@@ -752,7 +752,7 @@ UB2UnitedWidgetBase* UB2UnitedWidgetBase::DynCreateInHorizontalBox(TSubclassOf<U
 	USizeBox* OptionalOuterSizeBox = NULL;
 	if (InElementSize.X > 0.0f && InElementSize.Y > 0.0f)
 	{
-		// ÀÌ °æ¿ì ÁöÁ¤µÈ »çÀÌÁî¸¦ ¸ÂÃß±â À§ÇØ SizeBox ¸¦ »ı¼º.
+		// ì´ ê²½ìš° ì§€ì •ëœ ì‚¬ì´ì¦ˆë¥¼ ë§ì¶”ê¸° ìœ„í•´ SizeBox ë¥¼ ìƒì„±.
 		OptionalOuterSizeBox = NewObject<USizeBox>(OwnerUserWidget, NAME_None, RF_Transient);
 		if (OptionalOuterSizeBox)
 		{
@@ -771,11 +771,11 @@ UB2UnitedWidgetBase* UB2UnitedWidgetBase::DynCreateInHorizontalBox(TSubclassOf<U
 
 	if (OptionalOuterSizeBox)
 	{
-		// SizeBox ¸¦ »ı¼ºÇÑ °æ¿ì ÇÑ´Ü°è ´õ..
+		// SizeBox ë¥¼ ìƒì„±í•œ ê²½ìš° í•œë‹¨ê³„ ë”..
 		USizeBoxSlot* AddedSizeBoxSlot = Cast<USizeBoxSlot>(OptionalOuterSizeBox->AddChild(CreatedWidget));
 		AddedHBSlot = Cast<UHorizontalBoxSlot>(ParentHB->AddChild(OptionalOuterSizeBox));
 
-		CreatedWidget->SetDynCreatedDummyParent(OptionalOuterSizeBox); // CreatedWidget À» Á¦°ÅÇÒ ¶§ OptionalOuterSizeBox µµ °°ÀÌ Á¦°ÅµÇµµ·Ï µî·Ï.
+		CreatedWidget->SetDynCreatedDummyParent(OptionalOuterSizeBox); // CreatedWidget ì„ ì œê±°í•  ë•Œ OptionalOuterSizeBox ë„ ê°™ì´ ì œê±°ë˜ë„ë¡ ë“±ë¡.
 	}
 	else
 	{
@@ -801,7 +801,7 @@ UB2UnitedWidgetBase* UB2UnitedWidgetBase::DynCreateInWrapBox(TSubclassOf<UB2Unit
 	USizeBox* OptionalOuterSizeBox = NULL;
 	if (InElementSize.X > 0.0f && InElementSize.Y > 0.0f)
 	{
-		// ÀÌ °æ¿ì ÁöÁ¤µÈ »çÀÌÁî¸¦ ¸ÂÃß±â À§ÇØ SizeBox ¸¦ »ı¼º.
+		// ì´ ê²½ìš° ì§€ì •ëœ ì‚¬ì´ì¦ˆë¥¼ ë§ì¶”ê¸° ìœ„í•´ SizeBox ë¥¼ ìƒì„±.
 		OptionalOuterSizeBox = NewObject<USizeBox>(OwnerUserWidget, NAME_None, RF_Transient);
 		if (OptionalOuterSizeBox)
 		{
@@ -819,11 +819,11 @@ UB2UnitedWidgetBase* UB2UnitedWidgetBase::DynCreateInWrapBox(TSubclassOf<UB2Unit
 	UWrapBoxSlot* AddedWrapBoxSlot = NULL;
 	if (OptionalOuterSizeBox)
 	{
-		// SizeBox ¸¦ »ı¼ºÇÑ °æ¿ì ÇÑ´Ü°è ´õ..
+		// SizeBox ë¥¼ ìƒì„±í•œ ê²½ìš° í•œë‹¨ê³„ ë”..
 		USizeBoxSlot* AddedSizeBoxSlot = Cast<USizeBoxSlot>(OptionalOuterSizeBox->AddChild(CreatedWidget));
 		AddedWrapBoxSlot = Cast<UWrapBoxSlot>(ParentWB->AddChild(OptionalOuterSizeBox));
 
-		CreatedWidget->SetDynCreatedDummyParent(OptionalOuterSizeBox); // CreatedWidget À» Á¦°ÅÇÒ ¶§ OptionalOuterSizeBox µµ °°ÀÌ Á¦°ÅµÇµµ·Ï µî·Ï.
+		CreatedWidget->SetDynCreatedDummyParent(OptionalOuterSizeBox); // CreatedWidget ì„ ì œê±°í•  ë•Œ OptionalOuterSizeBox ë„ ê°™ì´ ì œê±°ë˜ë„ë¡ ë“±ë¡.
 	}
 	else
 	{
@@ -841,12 +841,12 @@ void UB2UnitedWidgetBase::SetDynCreatedDummyParent(UPanelWidget* InWidget)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2UnitedWidgetBase_SetDynCreatedDummyParent);
 	ConditionalClearDynCreatedDummyParent();
-	DynCreatedDummyParent = InWidget; // ´ëÃ¼·Î ScaleBox ³ª SizeBox ·ù..
+	DynCreatedDummyParent = InWidget; // ëŒ€ì²´ë¡œ ScaleBox ë‚˜ SizeBox ë¥˜..
 }
 void UB2UnitedWidgetBase::ConditionalClearDynCreatedDummyParent()
 {
 	//if (DynCreatedDummyParent && GetParent() == DynCreatedDummyParent)
-	//{ // DynCreatedDummyParent °¡ ÀÖ´Ù¸é ÀÌ°Íµµ °°ÀÌ ¾ø¾ÖÁÖ¾î¾ß ÇÏ´Âµ¥.. ÀÌ°Ô ¸¸¾à child °¡ ¿©·¯°³°¡ ÀÖ´Ù¸é °ï¶õ.. ±×·± ½ÄÀ¸·Î »ı¼ºÇØ¼­ »ç¿ëÇÏÁö´Â ¸»ÀÚ.
+	//{ // DynCreatedDummyParent ê°€ ìˆë‹¤ë©´ ì´ê²ƒë„ ê°™ì´ ì—†ì• ì£¼ì–´ì•¼ í•˜ëŠ”ë°.. ì´ê²Œ ë§Œì•½ child ê°€ ì—¬ëŸ¬ê°œê°€ ìˆë‹¤ë©´ ê³¤ë€.. ê·¸ëŸ° ì‹ìœ¼ë¡œ ìƒì„±í•´ì„œ ì‚¬ìš©í•˜ì§€ëŠ” ë§ì.
 	//	checkSlow(DynCreatedDummyParent->GetChildrenCount() == 1);
 	//	this->RemoveFromParent();
 	//	DynCreatedDummyParent->RemoveFromParent();
@@ -904,11 +904,11 @@ void UB2UnitedWidgetBase::AddActiveHighlight(FVector2D fv2Size)
 // Manual Scroll-Box handling. 
 
 void UB2UnitedWidgetBase::SetupManualScrollBoxSender_byReceiver(UB2UnitedWidgetBase* InReceiver, UB2ScrollBox* HandlingScrollBox)
-{ // Receiver ÂÊ¿¡¼­ ºÒ·¯ÁÜ. Sender ´Â º¸Åë Receiver ¾È¿¡ ÀÖ´Â ÇÏÀ§ ÆÄÆ®ÀÏ °ÍÀÌ¹Ç·Î.
+{ // Receiver ìª½ì—ì„œ ë¶ˆëŸ¬ì¤Œ. Sender ëŠ” ë³´í†µ Receiver ì•ˆì— ìˆëŠ” í•˜ìœ„ íŒŒíŠ¸ì¼ ê²ƒì´ë¯€ë¡œ.
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2UnitedWidgetBase_SetupManualScrollBoxSender_byReceiver);
 	//if (InReceiver && HandlingScrollBox)
 	//{
-	//	// Sender ÂÊ Visibility ¼¼ÆÃÀº ÇÊ¿ä¿¡ µû¶ó ÀûÀıÈ÷..
+	//	// Sender ìª½ Visibility ì„¸íŒ…ì€ í•„ìš”ì— ë”°ë¼ ì ì ˆíˆ..
 	//	this->bManualScrollBoxHandling_Sender = true;
 	//	InReceiver->bManualScrollBoxHandling_Receiver = true;
 
@@ -932,9 +932,9 @@ FReply UB2UnitedWidgetBase::NativeOnMouseButtonDown(const FGeometry& InGeometry,
 
 	//if (bManualScrollBoxHandling_Sender)
 	//{
-	//	if (InMouseEvent.GetEffectingButton() == EKeys::LeftMouseButton) // ¸¶¿ì½º ¹öÆ° ÇÚµé¸µÀº °³¹ß¹öÀü ¿ë
+	//	if (InMouseEvent.GetEffectingButton() == EKeys::LeftMouseButton) // ë§ˆìš°ìŠ¤ ë²„íŠ¼ í•¸ë“¤ë§ì€ ê°œë°œë²„ì „ ìš©
 	//	{
-	//		OnPressedSenderBTNArea(); // Area ¹öÆ°ÀÌ ÀÖ´Ù¸é ¿©±â¼­ ÀÔ·Â ÇÚµé¸µÀ»
+	//		OnPressedSenderBTNArea(); // Area ë²„íŠ¼ì´ ìˆë‹¤ë©´ ì—¬ê¸°ì„œ ì…ë ¥ í•¸ë“¤ë§ì„
 
 	//		bSenderBtnAreaPressed = true;
 	//		TimeSenderBtnAreaPressStarted = FApp::GetCurrentTime();
@@ -955,10 +955,10 @@ FReply UB2UnitedWidgetBase::NativeOnMouseButtonUp(const FGeometry& InGeometry, c
 
 	//if (bManualScrollBoxHandling_Sender)
 	//{
-	//	OnReleasedSenderBTNArea(); // Area ¹öÆ°ÀÌ ÀÖ´Ù¸é ¿©±â¼­ ÀÔ·Â ÇÚµé¸µÀ»
+	//	OnReleasedSenderBTNArea(); // Area ë²„íŠ¼ì´ ìˆë‹¤ë©´ ì—¬ê¸°ì„œ ì…ë ¥ í•¸ë“¤ë§ì„
 	//	if (bSenderBtnAreaPressed && InMouseEvent.GetEffectingButton() == EKeys::LeftMouseButton && (FApp::GetCurrentTime() - TimeSenderBtnAreaPressStarted) <= GetTimeToDecideInputClickOrTab())
 	//	{
-	//		OnClickedSenderBTNArea(); // Area ¹öÆ°ÀÌ ÀÖ´Ù¸é ¿©±â¼­ ÀÔ·Â ÇÚµé¸µÀ»
+	//		OnClickedSenderBTNArea(); // Area ë²„íŠ¼ì´ ìˆë‹¤ë©´ ì—¬ê¸°ì„œ ì…ë ¥ í•¸ë“¤ë§ì„
 	//	}
 
 	//	bSenderBtnAreaPressed = false;
@@ -993,9 +993,9 @@ void UB2UnitedWidgetBase::NativeOnMouseLeave(const FPointerEvent& InMouseEvent)
 
 	//if (bManualScrollBoxHandling_Sender)
 	//{
-	//	OnReleasedSenderBTNArea(); // Area ¹öÆ°ÀÌ ÀÖ´Ù¸é ¿©±â¼­ ÀÔ·Â ÇÚµé¸µÀ»
+	//	OnReleasedSenderBTNArea(); // Area ë²„íŠ¼ì´ ìˆë‹¤ë©´ ì—¬ê¸°ì„œ ì…ë ¥ í•¸ë“¤ë§ì„
 
-	//	// ¸¶¿ì½º È£Ãâ ¼ø¼­ º¸ÀåÀÌ ¾ÈµÇ¾î ÀÓ½Ã·Î ¸·¾ÆµÒ..
+	//	// ë§ˆìš°ìŠ¤ í˜¸ì¶œ ìˆœì„œ ë³´ì¥ì´ ì•ˆë˜ì–´ ì„ì‹œë¡œ ë§‰ì•„ë‘ ..
 	//	//bSenderBtnAreaPressed = false;
 
 	//	if (MyManualScrollBoxHandlingReceiver.IsValid() && MyManualScrollBox.IsValid())
@@ -1011,7 +1011,7 @@ FReply UB2UnitedWidgetBase::NativeOnTouchStarted(const FGeometry& InGeometry, co
 
 	//if (bManualScrollBoxHandling_Sender)
 	//{
-	//	OnPressedSenderBTNArea(); // Area ¹öÆ°ÀÌ ÀÖ´Ù¸é ¿©±â¼­ ÀÔ·Â ÇÚµé¸µÀ»
+	//	OnPressedSenderBTNArea(); // Area ë²„íŠ¼ì´ ìˆë‹¤ë©´ ì—¬ê¸°ì„œ ì…ë ¥ í•¸ë“¤ë§ì„
 	//	bSenderBtnAreaPressed = true;
 	//	TimeSenderBtnAreaPressStarted = FApp::GetCurrentTime();
 
@@ -1045,10 +1045,10 @@ FReply UB2UnitedWidgetBase::NativeOnTouchEnded(const FGeometry& InGeometry, cons
 
 	//if (bManualScrollBoxHandling_Sender)
 	//{
-	//	OnReleasedSenderBTNArea(); // Area ¹öÆ°ÀÌ ÀÖ´Ù¸é ¿©±â¼­ ÀÔ·Â ÇÚµé¸µÀ»
+	//	OnReleasedSenderBTNArea(); // Area ë²„íŠ¼ì´ ìˆë‹¤ë©´ ì—¬ê¸°ì„œ ì…ë ¥ í•¸ë“¤ë§ì„
 	//	if (bSenderBtnAreaPressed && (FApp::GetCurrentTime() - TimeSenderBtnAreaPressStarted) <= GetTimeToDecideInputClickOrTab())
 	//	{
-	//		OnClickedSenderBTNArea(); // Area ¹öÆ°ÀÌ ÀÖ´Ù¸é ¿©±â¼­ ÀÔ·Â ÇÚµé¸µÀ»
+	//		OnClickedSenderBTNArea(); // Area ë²„íŠ¼ì´ ìˆë‹¤ë©´ ì—¬ê¸°ì„œ ì…ë ¥ í•¸ë“¤ë§ì„
 	//	}
 
 	//	bSenderBtnAreaPressed = false;
@@ -1147,7 +1147,7 @@ void UB2UnitedWidgetBase::OnSBMouseLeaveFromSender(UB2ScrollBox* InScrollBox, co
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2UnitedWidgetBase_OnSBMouseLeaveFromSender);
 	Super::NativeOnMouseLeave(InMouseEvent);
 
-	// ÀÌ°Ç ±»ÀÌ Àü´Ş ¾ÈÇØµÎ µÉµí.. ¾ÆÀÌÅÛ ¿µ¿ªÀ» ³ª°£°ÅÁö ½ºÅ©·Ñ¿µ¿ªÀ» ³ª°£°Ô ¾Æ´Ô
+	// ì´ê±´ êµ³ì´ ì „ë‹¬ ì•ˆí•´ë‘ ë ë“¯.. ì•„ì´í…œ ì˜ì—­ì„ ë‚˜ê°„ê±°ì§€ ìŠ¤í¬ë¡¤ì˜ì—­ì„ ë‚˜ê°„ê²Œ ì•„ë‹˜
 	//if (InScrollBox && bManualScrollBoxHandling_Receiver)
 	//{
 	//	InScrollBox->OnSBMouseLeaveFromSender(InMouseEvent);
@@ -1226,10 +1226,10 @@ void FProgressAnimateUtil::Tick()
 	{
 		if (AnimType == EProgressAnimType::PRAT_SpringDamp)
 		{
-			// ¿ë¼öÃ¶ ¸ğµ¨. ·¹º§ÀÌ ÇÑ¹ø¿¡ ¿©·¯ ´Ü°è¸¦ ¶Ù¾î¾ß ÇÏ´Â °æ¿ì¿¡ µî¼Óµµ·Î ÇÏ¸é ´Ù¾çÇÑ ±¸°£ Â÷ÀÌ¸¦ Ä¿¹öÇÒ ¼ö ÀÖ´Â Àû´çÇÑ ¼Óµµ¸¦ Ã£±â°¡ ¾î·Á¿ï ¶§°¡ ÀÖ¾î¼­ ¿ë¼öÃ¶ ¸ğµ¨À» ¾²¸é ÁÁÀ½.
+			// ìš©ìˆ˜ì²  ëª¨ë¸. ë ˆë²¨ì´ í•œë²ˆì— ì—¬ëŸ¬ ë‹¨ê³„ë¥¼ ë›°ì–´ì•¼ í•˜ëŠ” ê²½ìš°ì— ë“±ì†ë„ë¡œ í•˜ë©´ ë‹¤ì–‘í•œ êµ¬ê°„ ì°¨ì´ë¥¼ ì»¤ë²„í•  ìˆ˜ ìˆëŠ” ì ë‹¹í•œ ì†ë„ë¥¼ ì°¾ê¸°ê°€ ì–´ë ¤ìš¸ ë•Œê°€ ìˆì–´ì„œ ìš©ìˆ˜ì²  ëª¨ë¸ì„ ì“°ë©´ ì¢‹ìŒ.
 			CurrentSpeed += DistToTarget * SpringConst * TickDelta;
 			CurrentSpeed -= CurrentSpeed * DampConst * TickDelta;
-			// ÀÌ °æ¿ì¿¡µµ ÃÖ¼ÒÇÑÀÇ ¼Óµµ´Â ³ª¿À°Ô ÇÔ.
+			// ì´ ê²½ìš°ì—ë„ ìµœì†Œí•œì˜ ì†ë„ëŠ” ë‚˜ì˜¤ê²Œ í•¨.
 			CurrentSpeed = FMath::Max(CurrentSpeed, BaseSpeed);
 		}
 		else
@@ -1238,7 +1238,7 @@ void FProgressAnimateUtil::Tick()
 		}
 
 		CurrentAnimatedPercent += CurrentSpeed * TickDelta;
-		if (CurrentAnimatedPercent >= 1.0f) // ·¹º§ ¿Ã¶ó°¡´Â »óÈ².
+		if (CurrentAnimatedPercent >= 1.0f) // ë ˆë²¨ ì˜¬ë¼ê°€ëŠ” ìƒí™©.
 		{
 			float AnimatedPctOver = CurrentAnimatedPercent - 1.0f;
 
@@ -1251,9 +1251,9 @@ void FProgressAnimateUtil::Tick()
 		OnPrecentChanged.Broadcast(CurrentAnimatedPercent);
 	}
 
-	// ´Ù½Ã±İ ¸ñÇ¥°ª¿¡ µµ´ŞÇß´ÂÁö Ã¼Å©ÇÏ°í Å¬·¥ÇÁ
+	// ë‹¤ì‹œê¸ˆ ëª©í‘œê°’ì— ë„ë‹¬í–ˆëŠ”ì§€ ì²´í¬í•˜ê³  í´ë¨í”„
 	if (GetUnitDistanceToTargetValue() <= 0.0f)
-	{ // ¸ñÇ¥°ª¿¡ µµ´ŞÇÑ »óÅÂ
+	{ // ëª©í‘œê°’ì— ë„ë‹¬í•œ ìƒíƒœ
 		SyncToTargetValues();
 		ClearCustomTimerTick();
 
@@ -1263,7 +1263,7 @@ void FProgressAnimateUtil::Tick()
 
 void FProgressAnimateUtil::ManualTick(float InDeltaSecond)
 {
-	// ApplyCustomTimerTick Àº ÇÊ¿äÇÒ ¶§¸¸ Tick ÀÌ ºÒ¸®°Ô ÇÏ°íÀÚ ÇÏ¸é »ç¿ëÇÏ°í.. ²À ±×·² ÇÊ¿ä ¾øÀ¸¸é ÀÌ·¸°Ô
+	// ApplyCustomTimerTick ì€ í•„ìš”í•  ë•Œë§Œ Tick ì´ ë¶ˆë¦¬ê²Œ í•˜ê³ ì í•˜ë©´ ì‚¬ìš©í•˜ê³ .. ê¼­ ê·¸ëŸ´ í•„ìš” ì—†ìœ¼ë©´ ì´ë ‡ê²Œ
 	TickDelta = InDeltaSecond;
 	Tick();
 }
@@ -1298,7 +1298,7 @@ float FProgressAnimateUtil::GetUnitDistanceToTargetValue()
 	const float PctDifference = TargetPercentScale - CurrentAnimatedPercent;
 
 	if (LevelDifference < 0 || (LevelDifference == 0 && PctDifference <= 0.0f))
-	{// ¸ñÇ¥°ª¿¡ µµ´ŞÇÑ »óÅÂ
+	{// ëª©í‘œê°’ì— ë„ë‹¬í•œ ìƒíƒœ
 		return 0.0f;
 	}
 
@@ -1346,7 +1346,7 @@ void FProgressiveTextBuilder::SetWholeText(const FString& InString, float InTota
 			}
 			else
 			{
-				//²©¼èÂ¦ÀÌ ¾È¸Â¾Æ..
+				//êº½ì‡ ì§ì´ ì•ˆë§ì•„..
 				BII_CHECK(false);
 				break;
 			}			
@@ -1360,23 +1360,23 @@ void FProgressiveTextBuilder::SetWholeText(const FString& InString, float InTota
 	} while (ToParseOriginText.Len() != 0);
 
 
-	CurrentTextString.Empty(); // ÀÌ°Ç ºñ¿ì°í Ã·ºÎÅÍ ½ÃÀÛ
+	CurrentTextString.Empty(); // ì´ê±´ ë¹„ìš°ê³  ì²¨ë¶€í„° ì‹œì‘
 
 	TotalShowingTime = InTotalTime;
 	MaxCharShowInterval = InMaxCharShowInterval;
 	
-	// ½ÇÁ¦ °è»ê¿¡¼­ »ç¿ëµÉ ShowInterval
+	// ì‹¤ì œ ê³„ì‚°ì—ì„œ ì‚¬ìš©ë  ShowInterval
 	CharShowInterval = (TotalShowingTime > 0.0f) ?
 		FMath::Min(TotalShowingTime / (float)FMath::Max(WholeTextString.Len(), 1), MaxCharShowInterval) : MaxCharShowInterval;
 
-	// Ã³À½ ¼¼ÆÃ½Ã¿¡´Â 0¹øÂ° ±ÛÀÚºÎÅÍ º¸¿©ÁÖ´Â °É·Î ½ÃÀÛ.
+	// ì²˜ìŒ ì„¸íŒ…ì‹œì—ëŠ” 0ë²ˆì§¸ ê¸€ìë¶€í„° ë³´ì—¬ì£¼ëŠ” ê±¸ë¡œ ì‹œì‘.
 	ApplyStringProgress(0);
 }
 
 void FProgressiveTextBuilder::SetTotalShowingTime(float InNewTime)
 {
 	TotalShowingTime = InNewTime;
-	// Ãß°¡ Ã³¸® ¾ÈÇØÁàµµ µÊ?
+	// ì¶”ê°€ ì²˜ë¦¬ ì•ˆí•´ì¤˜ë„ ë¨?
 }
 
 bool FProgressiveTextBuilder::Tick(float InThisRealTime, float InDeltaSec, bool& OutIsLastChar)
@@ -1390,7 +1390,7 @@ bool FProgressiveTextBuilder::Tick(float InThisRealTime, float InDeltaSec, bool&
 
 	if (ThisTimeShowCharacterNum > 0 && CurrentCharShowIndex < WholeTextString.Len() - 1)
 	{
-		ApplyStringProgress(CurrentCharShowIndex + ThisTimeShowCharacterNum); // ¾È¿¡¼­ LastCharUpdatedTime °»½Å.
+		ApplyStringProgress(CurrentCharShowIndex + ThisTimeShowCharacterNum); // ì•ˆì—ì„œ LastCharUpdatedTime ê°±ì‹ .
 		OutIsLastChar = IsStringFilledUp();
 		return true;
 	}
@@ -1404,18 +1404,18 @@ void FProgressiveTextBuilder::ApplyStringProgress(int32 InNewCharacterIndex)
 	InNewCharacterIndex = FMath::Clamp(InNewCharacterIndex, 0, WholeTextString.Len() - 1);
 
 	if (InNewCharacterIndex == 0 || (InNewCharacterIndex <= CurrentCharShowIndex) || (InNewCharacterIndex - CurrentCharShowIndex > 2))
-	{ // »õ·Î ½ÃÀÛÇÏ´øÁö, Append ÇÒ ±ÛÀÚ°¡ Á» ¸¹´øÁö, ¾Æ´Ô ¹º°¡ ¿¹»ó°ú ´Ù¸¥ °æ¿ì. °Á ´Ù½Ã ¼¼ÆÃ.
+	{ // ìƒˆë¡œ ì‹œì‘í•˜ë˜ì§€, Append í•  ê¸€ìê°€ ì¢€ ë§ë˜ì§€, ì•„ë‹˜ ë­”ê°€ ì˜ˆìƒê³¼ ë‹¤ë¥¸ ê²½ìš°. ê± ë‹¤ì‹œ ì„¸íŒ….
 		CurrentTextString = WholeTextString.LeftChop(WholeTextString.Len() - (InNewCharacterIndex + 1));
 	}
 	else
-	{ // ÀÌÀü ²¨¿¡ Append. ÀÌ°Ô ¸Å¹ø Chop ÇÏ´Â °Íº¸´Ù ºü¸¦ °Å¶ó´Â ±â´ë·Î..
+	{ // ì´ì „ êº¼ì— Append. ì´ê²Œ ë§¤ë²ˆ Chop í•˜ëŠ” ê²ƒë³´ë‹¤ ë¹ ë¥¼ ê±°ë¼ëŠ” ê¸°ëŒ€ë¡œ..
 		for (int32 ThisIndex = CurrentCharShowIndex + 1; ThisIndex <= InNewCharacterIndex; ++ThisIndex)
 		{
 			CurrentTextString += WholeTextString[ThisIndex];
 		}
 	}
 
-	// ´ÙÀ½ ¹ø Apply ¸¦ À§ÇØ ±â·ÏÇØ µĞ´Ù.
+	// ë‹¤ìŒ ë²ˆ Apply ë¥¼ ìœ„í•´ ê¸°ë¡í•´ ë‘”ë‹¤.
 	CurrentCharShowIndex = InNewCharacterIndex;
 	LastCharUpdatedTime = LastRealTime;
 }
@@ -1461,7 +1461,7 @@ void ReplaceSubWidgetClass(UWidgetBlueprint* BasePage, TSubclassOf<UPanelWidget>
 	//}
 
 	//if (!bSilent && FB2ErrorMessage::Open(EAppMsgType::OkCancel, FText::FromString(
-	//	FString::Printf(TEXT("ÇØ´ç ±â´É »ç¿ë µµÁß¿¡ ÄÄÇ»ÅÍ°¡ Æø¹ßÇÒ ¼ö ÀÖÀ½. ¹ÌÃ³ ÀúÀåÇÏÁö ¸øÇÑ ÀÛ¾÷¹°ÀÌ ÀÖ´Ù¸é Áö±İ Ãë¼ÒÇÑ ÈÄ ´Ù½Ã ½ÃµµÇÏ½Ã¿À."))
+	//	FString::Printf(TEXT("í•´ë‹¹ ê¸°ëŠ¥ ì‚¬ìš© ë„ì¤‘ì— ì»´í“¨í„°ê°€ í­ë°œí•  ìˆ˜ ìˆìŒ. ë¯¸ì²˜ ì €ì¥í•˜ì§€ ëª»í•œ ì‘ì—…ë¬¼ì´ ìˆë‹¤ë©´ ì§€ê¸ˆ ì·¨ì†Œí•œ í›„ ë‹¤ì‹œ ì‹œë„í•˜ì‹œì˜¤."))
 	//	)) == EAppReturnType::Cancel)
 	//{
 	//	return;
@@ -1472,7 +1472,7 @@ void ReplaceSubWidgetClass(UWidgetBlueprint* BasePage, TSubclassOf<UPanelWidget>
 
 	//TArray<FString> AllChangedWidgetNames;
 
-	//// FWidgetBlueprintEditorUtils::ReplaceWidgets Âü°í
+	//// FWidgetBlueprintEditorUtils::ReplaceWidgets ì°¸ê³ 
 
 	//BasePage->WidgetTree->ForEachWidget([&](UWidget* CurrWidget) {
 
@@ -1493,10 +1493,10 @@ void ReplaceSubWidgetClass(UWidgetBlueprint* BasePage, TSubclassOf<UPanelWidget>
 	//			}
 	//			else
 	//			{
-	//				check(0); // ·çÆ®¸¦ °¥¾ÆÄ¡¿ì·Á´Â °æ¿ì?
+	//				check(0); // ë£¨íŠ¸ë¥¼ ê°ˆì•„ì¹˜ìš°ë ¤ëŠ” ê²½ìš°?
 	//			}
 
-	//			while (CastedExistingPW->GetChildrenCount() > 0) // ÀÚ½Äµéµµ »õ ¾ö¸¶¿¡°Ô
+	//			while (CastedExistingPW->GetChildrenCount() > 0) // ìì‹ë“¤ë„ ìƒˆ ì—„ë§ˆì—ê²Œ
 	//			{
 	//				UWidget* Widget = CastedExistingPW->GetChildAt(0);
 	//				Widget->Modify();
@@ -1504,7 +1504,7 @@ void ReplaceSubWidgetClass(UWidgetBlueprint* BasePage, TSubclassOf<UPanelWidget>
 	//				UPanelSlot* OldSlot = Widget->Slot;
 	//				UPanelSlot* NewAddedSlot = NewReplacement->AddChild(Widget);
 
-	//				// ¹Ù²Ù·Á´Â ¹öÆ° ¾Æ·¡¿¡ ¿À¹ö·¹ÀÌ¸¦ ±î´Â °æ¿ì°¡ ÀÖ¾î¼­ ¼Ó¼º°ª Á» Àü´Ş. ¿©Å¸ ´Ù¸¥ °æ¿ìµµ ¸¹°ÚÁö¸¸.
+	//				// ë°”ê¾¸ë ¤ëŠ” ë²„íŠ¼ ì•„ë˜ì— ì˜¤ë²„ë ˆì´ë¥¼ ê¹ŒëŠ” ê²½ìš°ê°€ ìˆì–´ì„œ ì†ì„±ê°’ ì¢€ ì „ë‹¬. ì—¬íƒ€ ë‹¤ë¥¸ ê²½ìš°ë„ ë§ê² ì§€ë§Œ.
 	//				UButtonSlot* NewAddedButtonSlot = Cast<UButtonSlot>(NewAddedSlot);
 	//				UButtonSlot* OldButtonSlot = Cast<UButtonSlot>(OldSlot);
 	//				if (NewAddedButtonSlot && OldButtonSlot)
@@ -1515,7 +1515,7 @@ void ReplaceSubWidgetClass(UWidgetBlueprint* BasePage, TSubclassOf<UPanelWidget>
 	//				}
 	//			}
 
-	//			// FWidgetBlueprintEditorUtils::ReplaceWidgets ÂÊ¿¡µµ ÇØ ³õÀº º¯°æµé. ¸î°¡Áö ÆíÀÇ »çÇ×
+	//			// FWidgetBlueprintEditorUtils::ReplaceWidgets ìª½ì—ë„ í•´ ë†“ì€ ë³€ê²½ë“¤. ëª‡ê°€ì§€ í¸ì˜ ì‚¬í•­
 
 	//			FString ExistingPanelName = CastedExistingPW->GetName();
 	//			UObject* ExistingPanelOuter = CastedExistingPW->GetOuter();
@@ -1526,13 +1526,13 @@ void ReplaceSubWidgetClass(UWidgetBlueprint* BasePage, TSubclassOf<UPanelWidget>
 
 	//			AllChangedWidgetNames.Add(ExistingPanelName);
 
-	//			// ¼Ó¼ºµé µÇ´Â´ë·Î ¸ÂÃçÁÖ±â. ±âº» Å©±â, ¾ŞÄ¿ µîÀº Slot ¼³Á¤ÀÌ¶ó ÇÒ ÇÊ¿ä ¾øÀ½.
+	//			// ì†ì„±ë“¤ ë˜ëŠ”ëŒ€ë¡œ ë§ì¶°ì£¼ê¸°. ê¸°ë³¸ í¬ê¸°, ì•µì»¤ ë“±ì€ Slot ì„¤ì •ì´ë¼ í•  í•„ìš” ì—†ìŒ.
 	//			NewReplacement->SetVisibility(CastedExistingPW->GetVisibility());
 	//			NewReplacement->SetIsEnabled(CastedExistingPW->GetIsEnabled());
 	//			NewReplacement->SetRenderTransform(CastedExistingPW->RenderTransform);
 	//			NewReplacement->SetRenderTransformPivot(CastedExistingPW->RenderTransformPivot);
 
-	//			// B2Button ±³Ã¼ special. For faster UBtton to UB2Button replacement
+	//			// B2Button êµì²´ special. For faster UBtton to UB2Button replacement
 	//			UButton* CastedExistingButton = Cast<UButton>(CastedExistingPW);
 	//			UButton* CastedNewButton = Cast<UButton>(NewReplacement);
 	//			if (CastedExistingButton && CastedNewButton)
@@ -1551,7 +1551,7 @@ void ReplaceSubWidgetClass(UWidgetBlueprint* BasePage, TSubclassOf<UPanelWidget>
 	//{
 	//	FBlueprintEditorUtils::MarkBlueprintAsStructurallyModified(BasePage);
 
-	//	ResultMessage += FString::Printf(TEXT("%s ¿¡ ¹èÄ¡µÈ %d °³ÀÇ %s µéÀ» %s (À¸)·Î º¯°æ\n\n"), *BasePage->GetName(), AllReplacedNum, *ClassTobeRemoved->GetName(), *ClassToReplace->GetName());
+	//	ResultMessage += FString::Printf(TEXT("%s ì— ë°°ì¹˜ëœ %d ê°œì˜ %s ë“¤ì„ %s (ìœ¼)ë¡œ ë³€ê²½\n\n"), *BasePage->GetName(), AllReplacedNum, *ClassTobeRemoved->GetName(), *ClassToReplace->GetName());
 
 	//	for (int32 NI = 0; NI < AllChangedWidgetNames.Num(); ++NI)
 	//	{
@@ -1564,11 +1564,11 @@ void ReplaceSubWidgetClass(UWidgetBlueprint* BasePage, TSubclassOf<UPanelWidget>
 	//		}
 	//	}
 
-	//	ResultMessage += TEXT("¸ğµç ¼³Á¤µéÀÌ º¹»çµÇ´Â °ÍÀº ¾Æ´Ï¹Ç·Î ¹Ù²ï widget µéÀÇ ¼¼ºÎ ¼³Á¤µéÀ» Á÷Á¢ È®ÀÎÇØ º¸½Ã±â ¹Ù¶ø´Ï´Ù.");
+	//	ResultMessage += TEXT("ëª¨ë“  ì„¤ì •ë“¤ì´ ë³µì‚¬ë˜ëŠ” ê²ƒì€ ì•„ë‹ˆë¯€ë¡œ ë°”ë€ widget ë“¤ì˜ ì„¸ë¶€ ì„¤ì •ë“¤ì„ ì§ì ‘ í™•ì¸í•´ ë³´ì‹œê¸° ë°”ëë‹ˆë‹¤.");
 	//}
 	//else
 	//{
-	//	ResultMessage = FString::Printf(TEXT("%s ¿¡¼­ ¹Ù²ï widget ÀÌ ¾ø½À´Ï´Ù."), *BasePage->GetName());
+	//	ResultMessage = FString::Printf(TEXT("%s ì—ì„œ ë°”ë€ widget ì´ ì—†ìŠµë‹ˆë‹¤."), *BasePage->GetName());
 	//}
 	//if (bSilent)
 	//{
@@ -1605,7 +1605,7 @@ void ForceSetButtonClickSoundIndex(class UWidgetBlueprint* BasePage, int32 InSou
 	//{
 	//	FBlueprintEditorUtils::MarkBlueprintAsStructurallyModified(BasePage);
 
-	//	//ResultMessage += FString::Printf(TEXT("%s ¿¡ ¹èÄ¡µÈ %d °³ÀÇ B2Button µéÀÇ DefaultOnClickSoundIndex °ªÀ» %d (À¸)·Î º¯°æ\n\n"), *BasePage->GetName(), AllSetNum, InSoundIndex);
+	//	//ResultMessage += FString::Printf(TEXT("%s ì— ë°°ì¹˜ëœ %d ê°œì˜ B2Button ë“¤ì˜ DefaultOnClickSoundIndex ê°’ì„ %d (ìœ¼)ë¡œ ë³€ê²½\n\n"), *BasePage->GetName(), AllSetNum, InSoundIndex);
 
 	//	for (int32 NI = 0; NI < AllChangedButtonNames.Num(); ++NI)
 	//	{
@@ -1617,7 +1617,7 @@ void ForceSetButtonClickSoundIndex(class UWidgetBlueprint* BasePage, int32 InSou
 	//}
 	//else
 	//{
-	//	ResultMessage = FString::Printf(TEXT("%s ¿¡¼­ ¹Ù²ï widget ÀÌ ¾ø½À´Ï´Ù."), *BasePage->GetName());
+	//	ResultMessage = FString::Printf(TEXT("%s ì—ì„œ ë°”ë€ widget ì´ ì—†ìŠµë‹ˆë‹¤."), *BasePage->GetName());
 	//}
 	//if (bSilent)
 	//{
@@ -1630,10 +1630,10 @@ void ForceSetButtonClickSoundIndex(class UWidgetBlueprint* BasePage, int32 InSou
 }
 #endif
 
-//SWidgetÀÇ À§Ä¡ Á¤º¸´Â FGeomety¿¡ ´ã°ÜÁ®ÀÖÀ½.
-//WidgetÀÇ Left - TopÀÇ Screen À§Ä¡¸¦ °¡Áö°í ¿À¸ç,
-//¾Æ·¡ÀÇ ÇÔ¼ö´Â UWidgetÀÇ FGeometry¸¦ Ã£±â À§ÇÑ Àç±ÍÇÔ¼ö·Î
-//°³¼±ÀÇ ¿©Áö°¡ ÀÖ´Ù¸é ¸¶À½²¯ °³¼±ÇÏ±â ¹Ù¶÷.
+//SWidgetì˜ ìœ„ì¹˜ ì •ë³´ëŠ” FGeometyì— ë‹´ê²¨ì ¸ìˆìŒ.
+//Widgetì˜ Left - Topì˜ Screen ìœ„ì¹˜ë¥¼ ê°€ì§€ê³  ì˜¤ë©°,
+//ì•„ë˜ì˜ í•¨ìˆ˜ëŠ” UWidgetì˜ FGeometryë¥¼ ì°¾ê¸° ìœ„í•œ ì¬ê·€í•¨ìˆ˜ë¡œ
+//ê°œì„ ì˜ ì—¬ì§€ê°€ ìˆë‹¤ë©´ ë§ˆìŒê» ê°œì„ í•˜ê¸° ë°”ëŒ.
 FVector2D RecursiveFindWidgetPositionInArrangeChildren(const TSharedRef<SWidget>& Widget, const FGeometry& AllottedGeometry, UWidget* WidgetToFind, const FVector2D& SpotInWidgetSpace)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(RecursiveFindWidgetPositionInArrangeChildren);
@@ -1672,8 +1672,8 @@ FVector2D UB2UnitedWidgetBase::GetWidgetScreenPos(UWidget* InWidget, const FVect
 		
 	if (bForce)
 	{
-		//Paint°¡ ºÒ¸°ÀûÀÌ ¾ø´Ù¸é Á¦´ë·Î ³ª¿ÀÁö ¾ÊÀ½.
-		//°æ¿ì¿¡ µû¶ó ¾Æ·¡ÀÇ ÇÔ¼ö¸¦ È£ÃâÇØµµ Á¦´ë·Î ³ª¿ÀÁö ¾Ê´Â °æ¿ì°¡ ÀÖ´Âµ¥, RenderThread°¡ µ¿ÀÛÇÏÁö ¾Ê´Â ¼ø°£ÀÎµí? 
+		//Paintê°€ ë¶ˆë¦°ì ì´ ì—†ë‹¤ë©´ ì œëŒ€ë¡œ ë‚˜ì˜¤ì§€ ì•ŠìŒ.
+		//ê²½ìš°ì— ë”°ë¼ ì•„ë˜ì˜ í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•´ë„ ì œëŒ€ë¡œ ë‚˜ì˜¤ì§€ ì•ŠëŠ” ê²½ìš°ê°€ ìˆëŠ”ë°, RenderThreadê°€ ë™ì‘í•˜ì§€ ì•ŠëŠ” ìˆœê°„ì¸ë“¯? 
 		FSlateApplication::Get().ForceRedrawWindow(SlateWindow.ToSharedRef());
 	}	
 	
@@ -1718,12 +1718,12 @@ void UB2UnitedWidgetBase::ClearUITabList()
 
 bool UB2UnitedWidgetBase::ShouldBeHiddenAsPooledObject() const
 { 
-	// ½ÇÁ¦ hidden µ¿ÀÛÀº ÄÉÀÌ½ºº°·Îµµ ÇØ¾ß ÇÒ µí.. ¿©±â¼­ ÀÏ¹İÀûÀÎ ·çÆ¾À¸·Î Ã³¸®ÇÏ´Â °Ç ÇÑ°è°¡ ÀÖÀ» µí ÇÏ´Ù.
+	// ì‹¤ì œ hidden ë™ì‘ì€ ì¼€ì´ìŠ¤ë³„ë¡œë„ í•´ì•¼ í•  ë“¯.. ì—¬ê¸°ì„œ ì¼ë°˜ì ì¸ ë£¨í‹´ìœ¼ë¡œ ì²˜ë¦¬í•˜ëŠ” ê±´ í•œê³„ê°€ ìˆì„ ë“¯ í•˜ë‹¤.
 	return (bIsPooledObject && !bCurrentlyRentAsPooledObject); 
 }
 
-/** PooledObject ·Î »ı¼ºÇÏ°í¼­..
- * ÀûÀıÇÑ pool managing ¿ÀºêÁ§Æ®(FWidgetPoolBase extension)°¡ ÄİÇØ¾ß ÇÔ. ±×³É ÀÌ°Å ÄİÇÑ´Ù°í pooling µÇ´Â °Å ¾Æ´Ô. */
+/** PooledObject ë¡œ ìƒì„±í•˜ê³ ì„œ..
+ * ì ì ˆí•œ pool managing ì˜¤ë¸Œì íŠ¸(FWidgetPoolBase extension)ê°€ ì½œí•´ì•¼ í•¨. ê·¸ëƒ¥ ì´ê±° ì½œí•œë‹¤ê³  pooling ë˜ëŠ” ê±° ì•„ë‹˜. */
 void UB2UnitedWidgetBase::SetAsPooledObject()
 {
 	bIsPooledObject = true;
@@ -1741,8 +1741,8 @@ void UB2UnitedWidgetBase::SetCurrentlyRent(bool bInRent, UObject* InRenter)
 		}
 		else
 		{
-			// ÇöÀç Rent µÈ »óÅÂ¿¡¼­´Â °¢ ÇÏÀ§ widget class ¿¡¼­ »óÈ²¿¡ µû¶ó ¾Ë¸Â°Ô Visibility Á¦¾î¸¦ ÇÏµµ·Ï ÇÏ°í ¹İ³³ÇÑ °æ¿ì¸¸ ¼û°ÜµÒ.
-			// Visibility Á¦¾î´Â °³º° widget class º°·Î Á» ½Å°æÀ» ½áÁÖ¾î¾ß ÇÒ °Í. ¿©±â¿¡´Â ÃÖ¼ÒÇÑÀÇ ÀÎÅÍÆäÀÌ½º¸¸ °®Ãã.
+			// í˜„ì¬ Rent ëœ ìƒíƒœì—ì„œëŠ” ê° í•˜ìœ„ widget class ì—ì„œ ìƒí™©ì— ë”°ë¼ ì•Œë§ê²Œ Visibility ì œì–´ë¥¼ í•˜ë„ë¡ í•˜ê³  ë°˜ë‚©í•œ ê²½ìš°ë§Œ ìˆ¨ê²¨ë‘ .
+			// Visibility ì œì–´ëŠ” ê°œë³„ widget class ë³„ë¡œ ì¢€ ì‹ ê²½ì„ ì¨ì£¼ì–´ì•¼ í•  ê²ƒ. ì—¬ê¸°ì—ëŠ” ìµœì†Œí•œì˜ ì¸í„°í˜ì´ìŠ¤ë§Œ ê°–ì¶¤.
 			SetVisibility(ESlateVisibility::Hidden);
 			OnPooledObjectTurnInBP();
 		}
@@ -1752,7 +1752,7 @@ void UB2UnitedWidgetBase::SetCurrentlyRent(bool bInRent, UObject* InRenter)
 #if UE_BUILD_DEBUG
 void DebugCheckOnLoadSynchronousUse(UObject* WorldContextObject)
 {
-	// ·Îºñ°¡ ¾Æ´Ñ ÀÎ°ÔÀÓ »óÈ²¼­ »ç¿ëÇÏ¸é °ï¶õÇÒ ¼ö ÀÖ´Â ±â´É¿¡ ´ëÇÑ assert ¸ñÀû.
+	// ë¡œë¹„ê°€ ì•„ë‹Œ ì¸ê²Œì„ ìƒí™©ì„œ ì‚¬ìš©í•˜ë©´ ê³¤ë€í•  ìˆ˜ ìˆëŠ” ê¸°ëŠ¥ì— ëŒ€í•œ assert ëª©ì .
 	ABladeIIGameMode* CurrGM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(WorldContextObject));
 	checkSlow(CurrGM && CurrGM->GetB2GameModeType() == EB2GameMode::Lobby);
 }

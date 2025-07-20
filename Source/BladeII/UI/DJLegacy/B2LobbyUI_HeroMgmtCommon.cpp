@@ -29,7 +29,7 @@ void UB2LobbyUI_HeroMgmtCommon::SelectPcClass(EPCClass pc_class)
 {
 	SelectedHeroMgmtPCClass = pc_class;
 
-	// ·Îºñ GM ÂÊÀ¸·Î ÅëÁöÇÏ¸é °Å±â¼­µµ ´Ù¸¥ UI (ÀÎº¥Åä¸® ¶ó´øÁö..) ÂÊÀ¸·Î º¯°æÅëÁö ÇÒ °Í.
+	// è‚ºåš GM ç‡æ è‚º çƒ¹ç˜¤çªæ èŠ­æ‰è¾‘æ¡£ ä¿ƒå¼— UI (ç‰¢äº¥é…åºœ æ‰¼å¸¦ç˜¤..) ç‡æ è‚º å‡½ç‰ˆçƒ¹ç˜¤ ä¸” å·´.
 	LobbySetHeroMgmtModePCSelectionClass<EPCClass>::GetInstance().Signal(SelectedHeroMgmtPCClass);
 
 	OnHeroPCChanged(SelectedHeroMgmtPCClass);
@@ -37,17 +37,17 @@ void UB2LobbyUI_HeroMgmtCommon::SelectPcClass(EPCClass pc_class)
 
 void UB2LobbyUI_HeroMgmtCommon::OnHeroPCChanged(EPCClass NewClass)
 {
-	// È¤½Ã¶óµµ ¾ÆÀÌÅÛ »ó¼¼ Ã¢ÀÌ ³ª¿ÍÀÖ´Â »óÅÂ¶ó¸é ´İ´Â´Ù.
+	// è¶£çŸ«æ‰¼æ¡£ é…’æè¢ æƒ‘æŠ€ èŠ’æ å”±å®¢ä¹ç»° æƒ‘æ€•æ‰¼æ æ‘§ç»°ä¿ƒ.
 	DJLegacy_CloseLobbySubPopupClass<ELobbySubPopups>::GetInstance().Signal(ELobbySubPopups::ELSPU_StoredItemDetail);
 	DJLegacy_CloseLobbySubPopupClass<ELobbySubPopups>::GetInstance().Signal(ELobbySubPopups::ELSPU_EquippedItemDetail);
 	DJLegacy_CloseLobbySubPopupClass<ELobbySubPopups>::GetInstance().Signal(ELobbySubPopups::ELSPU_CharStatDetail);
 
-	// °ø/¹æ/Ã¼ ÀüÅõ·Â ¼öÄ¡ÀÇ UI ¹İ¿µÀÎµ¥ È¤½Ã ³õÄ¡´Â ºÎºĞÀÌ ÀÖÀ»±î ½Í¾î¼­ ¿µ¿õ°ü¸® Ã¢ Ä³¸¯ÅÍ ¹Ù²ğ ¶§ ÇÑ¹ø ÇØ ÁÖ´Â °Å.
+	// å‚/è§„/çœ‰ å‚ˆæ§ä»¿ èæ‘¹ç‹¼ UI é¦†åº·ç‰¢å• è¶£çŸ« åˆæ‘¹ç»° ä½•ç›’æ ä¹é˜‘é³– é…µç»¢è¾‘ åº·æ—·åŒ…åºœ èŠ’ æŸè…ç£ å®˜æ‹† é”­ èŒ„é”… ç§¦ æ—ç»° èŠ­.
 	UpdateCombatPowerClass<EPCClass, bool>::GetInstance().Signal(SelectedHeroMgmtPCClass, false);
 
 	SetCharacterTextColor(SelectedHeroMgmtPCClass);
 
-	EventChangedHeroMgmtPCClass(SelectedHeroMgmtPCClass);// ³ª¸ÓÁö BP ÂÊ Ã³¸®.
+	EventChangedHeroMgmtPCClass(SelectedHeroMgmtPCClass);// å”±èµ£ç˜¤ BP ç‡ è´¸åºœ.
 
 	if (UIP_ShowWingSet.IsValid()) {
 		UIP_ShowWingSet->UpdateShowWingBtnImage();
@@ -59,7 +59,7 @@ void UB2LobbyUI_HeroMgmtCommon::OnHeroPCChanged(EPCClass NewClass)
 
 void UB2LobbyUI_HeroMgmtCommon::CyclePCSelection(bool bForward)
 {
-	// Á¤ÇØÁø ¼ø¼­°¡ ÀÖÀ½. °ËÅõ»ç - ¾î½Ø½Å - ¸¶¹ı»ç - °İÅõ°¡.
+	// æ²¥ç§¦æŸ³ é‰´è¾‘å•Š ä¹æ¾œ. å…«æ§è¤ - ç»¢æˆªè„š - ä»˜è¿‡è¤ - æ‹œæ§å•Š.
 
 	if (bForward)
 	{
@@ -86,10 +86,10 @@ void UB2LobbyUI_HeroMgmtCommon::CyclePCSelection(bool bForward)
 
 	DEV_CHECK_FOR_POSSIBLE_NEW_PCCLASS();
 	
-	// ·Îºñ GM ÂÊÀ¸·Î ÅëÁöÇÏ¸é °Å±â¼­µµ ´Ù¸¥ UI (ÀÎº¥Åä¸® ¶ó´øÁö..) ÂÊÀ¸·Î º¯°æÅëÁö ÇÒ °Í.
+	// è‚ºåš GM ç‡æ è‚º çƒ¹ç˜¤çªæ èŠ­æ‰è¾‘æ¡£ ä¿ƒå¼— UI (ç‰¢äº¥é…åºœ æ‰¼å¸¦ç˜¤..) ç‡æ è‚º å‡½ç‰ˆçƒ¹ç˜¤ ä¸” å·´.
 	LobbySetHeroMgmtModePCSelectionClass<EPCClass>::GetInstance().Signal(SelectedHeroMgmtPCClass);
 
-	// È¤½Ã¶óµµ ¾ÆÀÌÅÛ »ó¼¼ Ã¢ÀÌ ³ª¿ÍÀÖ´Â »óÅÂ¶ó¸é ´İ´Â´Ù.
+	// è¶£çŸ«æ‰¼æ¡£ é…’æè¢ æƒ‘æŠ€ èŠ’æ å”±å®¢ä¹ç»° æƒ‘æ€•æ‰¼æ æ‘§ç»°ä¿ƒ.
 	DJLegacy_CloseLobbySubPopupClass<ELobbySubPopups>::GetInstance().Signal(ELobbySubPopups::ELSPU_StoredItemDetail);
 	DJLegacy_CloseLobbySubPopupClass<ELobbySubPopups>::GetInstance().Signal(ELobbySubPopups::ELSPU_EquippedItemDetail);
 }
@@ -120,7 +120,7 @@ void UB2LobbyUI_HeroMgmtCommon::StartFromLobby(class UB2UIManager_Lobby* InUIMan
 	
 	SubscribeEvents();
 
-	SelectedHeroMgmtPCClass = CachedLobbyGM->GetHeroMgmtModePCClass(); // Ã³À½¿¡ ÇÑ¹øÀº ÇÊ¿äÇÏ±º ¤Ñ.¤Ñ °á±¹ ´Ù¸¥ ½ÄÀ¸·Î °ªÀ» ¾ò¾î¿À°Ô µÇ°ÚÁö¸¸ 
+	SelectedHeroMgmtPCClass = CachedLobbyGM->GetHeroMgmtModePCClass(); // è´¸æ¾œä¿Š èŒ„é”…ç¯® é˜å¤¸çªç„™ ã±.ã± æ¬æƒ« ä¿ƒå¼— ä¾¥æ è‚º è”¼é˜‘ æ˜ç»¢å·éœ¸ ç™»æ‘†ç˜¤çˆ¶ 
 	if (SelectedHeroMgmtPCClass == EPCClass::EPC_End)
 		SelectedHeroMgmtPCClass = EPCClass::EPC_Gladiator;
 
@@ -138,7 +138,7 @@ void UB2LobbyUI_HeroMgmtCommon::StartFromLobby(class UB2UIManager_Lobby* InUIMan
 	}
 	if (UIP_ShowWingSet.IsValid())
 	{
-		UIP_ShowWingSet->StartFromLobby(InUIManager, InGM); // ÀÌ°Ç LobbyUISwitcher ¿¡¼­ ¸ğ¸£´Ï Á÷Á¢ ÇØ ÁÖ¾î¾ß..
+		UIP_ShowWingSet->StartFromLobby(InUIManager, InGM); // ææ‰’ LobbyUISwitcher ä¿Šè¾‘ è‘›ç¦èª æµç«‹ ç§¦ æ—ç»¢å…·..
 	}
 
 	UpdateStaticTexts();
@@ -168,7 +168,7 @@ void UB2LobbyUI_HeroMgmtCommon::CacheAssets()
 	if (UIP_CommonHeader.IsValid())
 	{		
 		UIP_CommonHeader->Init();
-		UIP_CommonHeader->SetIsInDJLegacyHeroMgmt(true, EHeroMgmtSubMode::EHMSM_Inventory); // ¿©±â¼± ´ëÇ¥°İ Inventory ·Î ³Ö¾îÁÜ
+		UIP_CommonHeader->SetIsInDJLegacyHeroMgmt(true, EHeroMgmtSubMode::EHMSM_Inventory); // å’¯æ‰æ€¥ æªé’æ‹œ Inventory è‚º æŒç»¢æ·‹
 		UIP_CommonHeader->BindDocAuto();
 	}
 
@@ -306,7 +306,7 @@ void UB2LobbyUI_HeroMgmtCommon::NativeTick(const FGeometry& MyGeometry, float In
 {
 	Super::NativeTick(MyGeometry, InDeltaTime);
 
-	// ¹Ù²î¾î¾ß ÇÏ´Â °æ¿ì°¡ »ó´çÈ÷ ÀÖ¾î¼­ ¸Å ÇÁ·¹ÀÓ ´ÜÀ§·Î.. »õ·Î¿î ±¸Á¶¿¡¼­´Â ´Ù¸£°Ô º¯°æÇØ¾ß ÇÔ.
+	// å®˜å·®ç»¢å…· çªç»° ç‰ˆå¿«å•Š æƒ‘å¯¸æ´’ ä¹ç»¢è¾‘ æ¦‚ æ©‡é¥­çƒ™ çªœå›°è‚º.. è´§è‚ºæ¬¾ å¤‡ç‚¼ä¿Šè¾‘ç»° ä¿ƒç¦éœ¸ å‡½ç‰ˆç§¦å…· çªƒ.
 	UpdateDynamicTexts();
 }
 
@@ -316,7 +316,7 @@ void UB2LobbyUI_HeroMgmtCommon::DestroySelf()
 	{
 		UIP_CommonHeader->UnbindDoc();
 		B2AndroidBackManager::GetInstance()->RemoveBackWidget(UIP_CommonHeader.Get(), FName(TEXT("Header")));
-		UIP_CommonHeader->DestroySelf(NULL); // ¿©±â¼± UIManager ¿Í »ó°ü¾øÀÌ »ç¿ëÀ» ÇÏ°Ô µÇ¹Ç·Î NULL À» Àü´Ş.
+		UIP_CommonHeader->DestroySelf(NULL); // å’¯æ‰æ€¥ UIManager å®¢ æƒ‘åŒ…ç»æ è¤ä¾©é˜‘ çªéœ¸ ç™»éª¨è‚º NULL é˜‘ å‚ˆå´”.
 	}
 	if (UIP_ShowWingSet.IsValid())
 	{
@@ -374,7 +374,7 @@ void UB2LobbyUI_HeroMgmtCommon::UpdateDynamicTexts()
 
 	if (DocHero)
 	{
-		//[@SameLine, 180612] explevelinfo doc, datastore -> datastore °³¼±
+		//[@SameLine, 180612] explevelinfo doc, datastore -> datastore ä¿ºæ€¥
 		FLocalCharacterData& CharacterDataStore = BladeIIGameImpl::GetClientDataStore().GetLocalCharacterData();
 		float fSelectCharExpPercent = CharacterDataStore.GetCharacterExpPercent(SelectedHeroMgmtPCClass);
 		int32 iSelectCharLatestLevel = CharacterDataStore.GetCharacterLevel(SelectedHeroMgmtPCClass);
@@ -446,7 +446,7 @@ void UB2LobbyUI_HeroMgmtCommon::OnDetailedInfoButtonPressed()
 
 	GetDetailPopupWidgetInfo(CurrentHeroMgmtSubMode, &OwnerUI, &PopupAddPanel);
 
-	// ¼¼ºÎ ½ºÅÈ pop-up
+	// æŠ€ä½• èƒ¶æ¹ƒ pop-up
 	DJLegacy_OpenLobbySubPopupClass<ELobbySubPopups, FDJLegacySubpopupAddPanelInfo>::GetInstance().Signal(ELobbySubPopups::ELSPU_CharStatDetail, FDJLegacySubpopupAddPanelInfo(OwnerUI, PopupAddPanel));
 }
 
@@ -794,13 +794,13 @@ void UB2LobbyUI_HeroMgmtCommon::ShowDetailedInfoExtraButtons(bool bShow)
 
 void UB2LobbyUI_HeroMgmtCommon::SetExtraDisableButtons(bool bInDisable)
 {
-	// °³º° ¹öÆ° ´ÜÀ§·Î ²ô°í ÄÓ ¼öµµ ÀÖÁö¸¸ ÀÏ´ÜÀº ´Ü¼øÇÏ°Ô °¡ÀÚ..
+	// ä¿ºå–Š æ»šç“¢ çªœå›°è‚º æºç»Š æŒ  èæ¡£ ä¹ç˜¤çˆ¶ è€çªœç¯® çªœé‰´çªéœ¸ å•Šç£Š..
 	this->SetVisibility(bInDisable ? ESlateVisibility::HitTestInvisible : ESlateVisibility::SelfHitTestInvisible);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // UB2LobbyUI_HeroMgmtShowWingSet
-// ÇÏÀ§ ¸ğµåº°·Î Á¦°¢°¢ µé¾î°¥ ÁÙ ¾Ë°í µû·Î ÆÄÆ®È­ Çß´Âµ¥ Áö±İÀº °Á ¿µ¿õ°ü¸® °øÅë ÆÄÆ®¿¡¸¸ ÀÖ¾î¼­.. ÀÌ·² ÇÊ¿ä±îÁø ¾ø¾ú´Ù. ÇÏÁö¸¸ ¾î¶»°Ô µÉÁö È¤½Ã ¶Ç ¸ğ¸£Áö
+// çªå›° è‘›é›å–Šè‚º åŠ›é˜¿é˜¿ ç”¸ç»¢å“ ä¸´ èˆ…ç»Š è¶è‚º é¢‡é£˜æ‹³ æ²ç»°å• ç˜¤é™›ç¯® å‚² åº·æ—·åŒ…åºœ å‚çƒ¹ é¢‡é£˜ä¿Šçˆ¶ ä¹ç»¢è¾‘.. æå‡¡ é˜å¤¸é³–æŸ³ ç»èŒä¿ƒ. çªç˜¤çˆ¶ ç»¢ç—˜éœ¸ çªç˜¤ è¶£çŸ« è‚š è‘›ç¦ç˜¤
 ////////////////////////////////////////////////////////////////////////////////
 
 UB2LobbyUI_HeroMgmtShowWingSet::UB2LobbyUI_HeroMgmtShowWingSet(const FObjectInitializer& ObjectInitializer)
@@ -830,7 +830,7 @@ void UB2LobbyUI_HeroMgmtShowWingSet::CacheAssets()
 
 void UB2LobbyUI_HeroMgmtShowWingSet::DestroySelf()
 {
-	UB2Airport::FlushPendingWingVisibilityReq(); // ³¯°³ visibility on/off ÇÑ °Å ¸ğ¾Æ¼­ ¼­¹ö·Î ¿äÃ». È¤ ¿©±â·Î ¾È¿Ã±î ½Í¾î¼­ AB2LobbyGameMode::OnQuitHeroMgmtSubModeCommon ¿¡¼­µµ.
+	UB2Airport::FlushPendingWingVisibilityReq(); // æœä¿º visibility on/off èŒ„ èŠ­ è‘›é…’è¾‘ è¾‘æ»šè‚º å¤¸æ²¡. è¶£ å’¯æ‰è‚º æ•‘æ£µé³– é…µç»¢è¾‘ AB2LobbyGameMode::OnQuitHeroMgmtSubModeCommon ä¿Šè¾‘æ¡£.
 
 	Super::DestroySelf();
 }
@@ -843,7 +843,7 @@ void UB2LobbyUI_HeroMgmtShowWingSet::OnClickedShowWingBtn()
 
 	if (bGotValidWingData)
 	{
-		// ¹öÆ°À» ÀÚÁÖ On/Off ÇÒ ¼ö ÀÖÀ¸¹Ç·Î ¼­¹ö·Î º¸³»´Â ÆĞÅ¶À» ÃÖ¼ÒÈ­ÇÏ±â À§ÇØ ¿©±â¼­´Â ¹Ù·Î ¼­¹ö¿¡ request ¸¦ ³¯¸®Áö ¾Ê°í ¿µ¿õ°ü¸® ¸ğµå¸¦ ³ª°¥ ¶§ ³¯¸°´Ù.
+		// æ»šç“¢é˜‘ ç£Šæ— On/Off ä¸” è ä¹æ éª¨è‚º è¾‘æ»šè‚º ç„Šéƒ´ç»° è©å“¦é˜‘ å¼¥å®¶æ‹³çªæ‰ å›°ç§¦ å’¯æ‰è¾‘ç»° å®˜è‚º è¾‘æ»šä¿Š request ç”« æœåºœç˜¤ è‡¼ç»Š åº·æ—·åŒ…åºœ è‘›é›ç”« å”±å“ é”­ æœèµ´ä¿ƒ.
 		UB2Airport::SetWingVisibility(SelectedPCClass, !CurrentWingData.bShouldBeVisible, false);
 
 		UpdateShowWingBtnImage();

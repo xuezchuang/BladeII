@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 
@@ -73,6 +73,26 @@ void FB2AsyncRequest::ExecuteCompleteCallback()
 	}
 }
 
+UB2AssetLoader* UB2AssetLoader::Get()
+{
+	static UB2AssetLoader* AssetLoader = nullptr;
+
+	if (AssetLoader == nullptr)
+	{
+		if (UPackage* TransientPkg = GetTransientPackage())
+		{
+			//AssetLoader = NewObject<UB2AssetLoader>(GetTransientPackage(), FName(TEXT("B2AssetLoader")), RF_MarkAsRootSet);
+			AssetLoader = NewObject<UB2AssetLoader>(GetTransientPackage(), UB2AssetLoader::StaticClass(), FName(TEXT("B2AssetLoader")), RF_MarkAsRootSet);
+
+			if (AssetLoader)
+				AssetLoader->GlobalFlushHandle = FCoreDelegates::OnAsyncLoadingFlush.AddUObject(AssetLoader, &UB2AssetLoader::OnAsyncLoadFlush);
+		}
+	}
+
+	BII_CHECK(AssetLoader);
+	return AssetLoader;
+}
+
 UObject* UB2AssetLoader::LoadSynchronous(const FSoftObjectPath& StringAsset, float AsyncWaiting)
 {
 	if (StringAsset.IsValid() == false)
@@ -81,7 +101,7 @@ UObject* UB2AssetLoader::LoadSynchronous(const FSoftObjectPath& StringAsset, flo
 	if (UObject* ExistObj = StringAsset.ResolveObject())
 		return ExistObj;
 
-	// ÀÌ¹Ì AsyncLoadingÁßÀÎ AssetÀÌ ÀÖ´Ù¸é
+	// æå›º AsyncLoadingåç‰¢ Assetæ ä¹ä¿ƒæ
 	TSharedPtr<FStreamableHandle> AsyncHandle = GetAsyncHandle(StringAsset);
 	if (AsyncHandle.IsValid() && AsyncWaiting >= 0.f)
 	{
@@ -122,7 +142,7 @@ ELoadingState UB2AssetLoader::RequestAsyncLoad(const FString& RequestName, const
 	AsyncLoadRequestMap.Add(RequestName, Request);
 
 	//if (bBlocking)
-	//{ // ÀÔ·ÂÀ» ¸·°í ·ÎµùÁßÀÓÀ» º¸¿©ÁÖ´Â UI. ¸ŞÀÎ¾²·¹µå Blocking ÀÇ ÀÇ¹Ì°¡ ¾Æ´Ñ ÀÔ·Â Blocking ÀÇ ÀÇ¹Ì.
+	//{ // æ¶ä»¿é˜‘ é˜œç»Š è‚ºçˆ¹åçƒ™é˜‘ ç„Šå’¯æ—ç»° UI. çš‹ç‰¢é™é¥­é› Blocking ç‹¼ ç‹¼å›ºå•Š é…’å›± æ¶ä»¿ Blocking ç‹¼ ç‹¼å›º.
 	//	ShowMiscLoadingIconClass<bool>::GetInstance().Signal(true);
 	//	BlockingRequestCount++;
 	//}
@@ -143,7 +163,7 @@ void UB2AssetLoader::FlushAll()
 		{
 			FB2AsyncRequest& RequestInfo = It.Value();
 			if (RequestInfo.AsyncHandle.IsValid())
-				RequestInfo.AsyncHandle->CancelHandle();	// LoadComplete ½Ã¿¡´Â ReleaseHandle ¿ªÇÒµµ
+				RequestInfo.AsyncHandle->CancelHandle();	// LoadComplete çŸ«ä¿Šç»° ReleaseHandle å¼€ä¸”æ¡£
 		}
 	}
 
@@ -155,7 +175,7 @@ void UB2AssetLoader::ReleaseRequest(const FString& RequestName)
 	if (FB2AsyncRequest* FindedRequest = AsyncLoadRequestMap.Find(RequestName))
 	{
 		if (FindedRequest->AsyncHandle.IsValid())
-			FindedRequest->AsyncHandle->CancelHandle();	// LoadComplete ½Ã¿¡´Â ReleaseHandle ¿ªÇÒµµ
+			FindedRequest->AsyncHandle->CancelHandle();	// LoadComplete çŸ«ä¿Šç»° ReleaseHandle å¼€ä¸”æ¡£
 
 		AsyncLoadRequestMap.Remove(RequestName);
 	}
@@ -174,21 +194,21 @@ void UB2AssetLoader::UnloadAsset(const FSoftObjectPath& StringAsset)
 
 void UB2AssetLoader::OnCompleteAsyncLoad()
 {
-	//for (TMap<FString, FB2AsyncRequest>::TIterator It(AsyncLoadRequestMap); It; ++It)
-	//{
-	//	FB2AsyncRequest& RequestInfo = It.Value();
-	//	if (RequestInfo.IsLoadingComplete() && RequestInfo.IsCompleteNotify() == false)
-	//	{
-	//		if (RequestInfo.bBlockUI == true)
-	//		{
-	//			BlockingRequestCount--;
-	//			if (BlockingRequestCount == 0)
-	//				ShowMiscLoadingIconClass<bool>::GetInstance().Signal(false);
-	//		}
+	for (TMap<FString, FB2AsyncRequest>::TIterator It(AsyncLoadRequestMap); It; ++It)
+	{
+		FB2AsyncRequest& RequestInfo = It.Value();
+		if (RequestInfo.IsLoadingComplete() && RequestInfo.IsCompleteNotify() == false)
+		{
+			if (RequestInfo.bBlockUI == true)
+			{
+				BlockingRequestCount--;
+				if (BlockingRequestCount == 0)
+					ShowMiscLoadingIconClass<bool>::GetInstance().Signal(false);
+			}
 
-	//		RequestInfo.ExecuteCompleteCallback();
-	//	}
-	//}
+			RequestInfo.ExecuteCompleteCallback();
+		}
+	}
 }
 
 TSharedPtr<FStreamableHandle> UB2AssetLoader::GetAsyncHandle(const FString& RequestName)
@@ -234,19 +254,19 @@ void UB2AssetLoader::OnAsyncLoadFlush()
 	}
 #endif
 
-	//B2_SCOPED_TRACK_LOG(FString::Printf(TEXT("UB2AssetLoader::AsyncLoad Flush!! (while %d asset requests are ongoing)"), TotalAsyncRequestAssetNum));
+	B2_SCOPED_TRACK_LOG(FString::Printf(TEXT("UB2AssetLoader::AsyncLoad Flush!! (while %d asset requests are ongoing)"), TotalAsyncRequestAssetNum));
 
-//#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
-//	if (bEnableDevLog)
-//	{
-//		// Flush ½ÃÁ¡¿¡ Async ·Îµù ÁßÀÎ °Ô ÀÖÀ¸¸é È­¸é¿¡ ·Î±× ¶ç¿ò.
-//		if (TotalAsyncRequestAssetNum > 0)
-//		{
-//			BII_SCREEN_LOG(FString::Printf(TEXT("[B2AssetLoader] FlushAsyncLoading while %d asset requests are not completed."), TotalAsyncRequestAssetNum),
-//				FLinearColor(0.0, 1.0f, 0.0f, 1.0f), 16, 8.0f);
-//		}
-//	}
-//#endif
+#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
+	if (bEnableDevLog)
+	{
+		// Flush çŸ«ç—¢ä¿Š Async è‚ºçˆ¹ åç‰¢ éœ¸ ä¹æ æ æ‹³æä¿Š è‚ºå¼Š å‰æ¡†.
+		if (TotalAsyncRequestAssetNum > 0)
+		{
+			BII_SCREEN_LOG(FString::Printf(TEXT("[B2AssetLoader] FlushAsyncLoading while %d asset requests are not completed."), TotalAsyncRequestAssetNum),
+				FLinearColor(0.0, 1.0f, 0.0f, 1.0f), 16, 8.0f);
+		}
+	}
+#endif
 }
 
 const FB2AsyncRequest* UB2AssetLoader::GetAsyncRequest(const FString& RequestName)
@@ -285,9 +305,9 @@ bool UB2AssetLoader::WaitUntilLoadComplete(const FString& RequestName)
 	return false;
 }
 
-//#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
-//bool UB2AssetLoader::bEnableDevLog = false;
-//#endif
+#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
+bool UB2AssetLoader::bEnableDevLog = false;
+#endif
 
 
 // ---------------------------- Load Interface ---------------------------- //
@@ -337,7 +357,7 @@ void IB2AsyncInterface::TryAsyncLoad(const FString& RequestName, const TArray<FB
 
 	if(GetAsyncRequest(RequestName) == nullptr && RequestList.Num() > 0)
 	{
-		// Request Á¤º¸ ÀÓ½Ã Caching
+		// Request æ²¥ç„Š çƒ™çŸ« Caching
 		TemporaryRequestList.Add(RequestName, RequestList);
 	
 		TArray<FSoftObjectPath> StringAssets;

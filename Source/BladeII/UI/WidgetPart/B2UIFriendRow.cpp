@@ -1,4 +1,4 @@
-#include "B2UIFriendRow.h"
+ï»¿#include "B2UIFriendRow.h"
 #include "Retailer.h"
 #include "B2UIFriend.h"
 
@@ -19,7 +19,7 @@ void UB2UIFriendRow::Init()
 	m_nSendPointTime = 0;
 }
 
-// Ä£±¸Á¤º¸ ¼¼ÆÃ ÀÌÈÄ¿¡ È£ÃâÇØ¾ßÇÔ
+// æ¨¡å¤‡æ²¥ç„Š æŠ€æ³¼ æžé¥¶ä¿Š é¾‹å…ç§¦å…·çªƒ
 void UB2UIFriendRow::SetOwnerUI(UB2UIFriend* pOwner)
 {
 	m_pOwnerUI = pOwner;
@@ -103,7 +103,7 @@ void UB2UIFriendRow::CheckSocialPointSendTime()
 {
 	if (IsSocialPointSendable())
 	{
-		// º¸³¾¼ö ÀÖÀ½
+		// ç„Šå°˜è ä¹æ¾œ
 		BTN_SendPoint->SetVisibility(ESlateVisibility::Visible);
 	}
 	else
@@ -116,7 +116,7 @@ void UB2UIFriendRow::CheckSocialPointSendTime()
 
 		int32 CooltimeForSendSocialPoint = BladeIIGameImpl::GetClientDataStore().GetCooltimeForSendSocialPoint();
 
-		// ¸øº¸³¿ ³²Àº½Ã°£ Ç¥±â
+		// ç»™ç„Šæ™¨ å·¢ç¯®çŸ«åŸƒ é’Žæ‰
 		BTN_SendPointTime->SetVisibility(ESlateVisibility::Visible);
 
 		FTimespan timeRemain = FTimespan::FromHours(CooltimeForSendSocialPoint) - timeElapse;
@@ -129,7 +129,7 @@ void UB2UIFriendRow::CheckSocialPointSendTime()
 
 void UB2UIFriendRow::CheckButtonState()
 {
-	// ¹öÆ° »óÅÂ
+	// æ»šç“¢ æƒ‘æ€•
 	BTN_Ask->SetVisibility(ESlateVisibility::Hidden);
 	BTN_SendPoint->SetVisibility(ESlateVisibility::Hidden);
 	BTN_SendPointTime->SetVisibility(ESlateVisibility::Hidden);
@@ -146,7 +146,7 @@ void UB2UIFriendRow::CheckButtonState()
 	switch (m_pOwnerUI->GetSubState())
 	{
 	case EFriendUISubState::EFUSS_MF_MyGameFriendListView:
-		// »èÁ¦¸ðµå
+		// æ˜åŠ›è‘›é›
 		if (m_pOwnerUI->IsFriendDeleteMode())
 			BTN_Delete->SetVisibility(ESlateVisibility::Visible);
 		else
@@ -187,7 +187,7 @@ void UB2UIFriendRow::SetSendPointTime(int64 nUnixTimeSec)
 
 void UB2UIFriendRow::OnWholeAreaBtnClick()
 {
-	// Ä£±¸ ¹æ¹®À¸·Î ¿¬°á
+	// æ¨¡å¤‡ è§„å·©æ è‚º æ¥·æ¬
 	/*UB2UIManager* pUIManager = UB2UIManager::GetInstance();
 
 	if (pUIManager)
@@ -210,7 +210,7 @@ void UB2UIFriendRow::SetFriendContent(FB2FriendPtr ptrFriend)
 	
 	SetFriendContent(ptrFriend->user);
 
-	// »õÄ£±¸
+	// è´§æ¨¡å¤‡
 	if (UIP_Reddot_NewFriend.IsValid())
 		UIP_Reddot_NewFriend->SetVisibility(ptrFriend->is_new ? ESlateVisibility::HitTestInvisible : ESlateVisibility::Collapsed);
 }
@@ -220,7 +220,7 @@ void UB2UIFriendRow::SetFriendContent(FB2UserPtr ptrUser)
 	if (ptrUser.get() == nullptr)
 		return;
 
-	// FB2UserPtr¿¡¸¸ ÀÖ´Â Á¤º¸ ¼¼ÆÃ
+	// FB2UserPträ¿Šçˆ¶ ä¹ç»° æ²¥ç„Š æŠ€æ³¼
 	FString szTest = ptrUser->guild_name;
 
 	TB_Guild->SetText(FText::FromString(szTest));
@@ -235,11 +235,11 @@ void UB2UIFriendRow::SetFriendContent(FB2CharacterSummaryPtr ptrCharacterSummary
 	if (ptrCharacterSummary.get() == nullptr)
 		return;
 
-	// FB2CharacterSummaryPtr¿¡ ÀÖ´ÂÁ¤º¸ ¼¼ÆÃ
-	// ¿©±ä µû·Î »¬ÇÊ¿ä ¾øÁö¸¸.. È¤½Ã¸ð¸£´Ï ºÐ¸®
+	// FB2CharacterSummaryPträ¿Š ä¹ç»°æ²¥ç„Š æŠ€æ³¼
+	// å’¯å˜ è¶è‚º æ»‘éž˜å¤¸ ç»ç˜¤çˆ¶.. è¶£çŸ«è‘›ç¦èª ç›’åºœ
 	m_nAccountId = ptrCharacterSummary->account_id;
 
-	//ÃÊ»óÈ­
+	//æª¬æƒ‘æ‹³
 	UB2GameInstance* B2GI = Cast<UB2GameInstance>(UGameplayStatics::GetGameInstance(this));
 
 	if (B2GI)
@@ -253,16 +253,16 @@ void UB2UIFriendRow::SetFriendContent(FB2CharacterSummaryPtr ptrCharacterSummary
 		}
 	}
 
-	//·¹º§
+	//é¥­éª‡
 	FText txtLevel = FText::Format(FText::FromString(TEXT("LV.{0}")), FText::AsNumber(ptrCharacterSummary->character_level));
 	TB_PlayerLevel->SetText(txtLevel);
 
-	//ÀÌ¸§
+	//æžæŠš
 	TB_PlayerName->SetText(FText::FromString(ptrCharacterSummary->account_name));
 
-	// ÃÖÁ¾ Á¢¼Ó½Ã°£ ¹Ì±¸Çö
+	// å¼¥è¾† ç«‹åŠ çŸ«åŸƒ å›ºå¤‡æ³…
 
-	// ±æµå ¹Ì±¸Çö
+	// è¾¨é› å›ºå¤‡æ³…
 }
 
 void UB2UIFriendRow::SetLastLogOutTime(int64 LogOutTime)
@@ -289,7 +289,7 @@ void UB2UIFriendRow::OnSendPointBtnClick()
 	ar_account_id.AddDefaulted(1);
 	ar_account_id[0] = m_nAccountId;
 
-	// ÇÏ³ªº¸³»±â ¾î·¹ÀÌ¿¡ º»ÀÎ²¨¸¸ ³Ê¼­º¸³»¸é ´ï
+	// çªå”±ç„Šéƒ´æ‰ ç»¢é¥­æžä¿Š å¤¯ç‰¢æ³¢çˆ¶ å‘ˆè¾‘ç„Šéƒ´æ è¾¾
 	data_trader::Retailer::GetInstance().RequestSendSocialPoint(ar_account_id);
 }
 
@@ -301,22 +301,22 @@ void UB2UIFriendRow::OnDeleteBtnClick()
 	{
 		int32 nMaxDeleteCount = BladeIIGameImpl::GetClientDataStore().GetMaxDeleteFriendCountForDay();
 
-		// Ä£±¸ ÇØÁö´Â ÇÏ·ç¿¡ 10¸í±îÁö¸¸ °¡´ÉÇÕ´Ï´Ù ¿À´Ã³²ÀºÄ£±¸ÇØÁöÈ½¼ö:0È¸
+		// æ¨¡å¤‡ ç§¦ç˜¤ç»° çªé£Žä¿Š 10ç–™é³–ç˜¤çˆ¶ å•Šç“·é’¦èªä¿ƒ å·ç–µå·¢ç¯®æ¨¡å¤‡ç§¦ç˜¤å†‰è:0é›€
 		UB2UIManager* pUIManager = UB2UIManager::GetInstance();
 		UB2UIMsgPopupSimpleAddComment* pPopupUI = pUIManager->OpenMsgPopup<UB2UIMsgPopupSimpleAddComment>(EUIMsgPopup::SimpleAddComment,
 			BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_Notification")),
 			FText::Format(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("NotifyFriendDeleteLimit")), FText::AsNumber(nMaxDeleteCount)));
 		
-		// Ãß°¡ÄÚ¸àÆ®
+		// çœ å•Šå†…è†é£˜
 		pPopupUI->SetAddComment(FText::Format(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("TodayFriendDeleteCountRedNum")), FText::AsNumber(nRemainDeleteCount)));
 
 		return;
 	}
 	else
 	{
-		//Ä£±¸¸¦ ÇØÁöÇÏ½Ã°Ú½À´Ï±î? Ãë¼Ò/È®ÀÎ
-		//OnConfirmDelete µ¨¸®°ÔÀÌÆ®·Î ³ÊÁà¾ßÇÔ
-		//À§Á¬ÀÛ¾÷ÀÌ ¾ÈµÇ¼­ ½ÉÇÃ·Î ÀÏ´Ü
+		//æ¨¡å¤‡ç”« ç§¦ç˜¤çªçŸ«æ‘†åš¼èªé³–? ç§’å®¶/çŠ¬ç‰¢
+		//OnConfirmDelete èƒ†åºœéœ¸æžé£˜è‚º å‘ˆæ‹Žå…·çªƒ
+		//å›°è¿žç´¯è¯€æž æ•‘ç™»è¾‘ ç¼´æ•²è‚º è€çªœ
 		UB2UIManager* pUIManager = UB2UIManager::GetInstance();
 		UB2UIMsgPopupUserInfo* pPopupUI = pUIManager->OpenMsgPopup<UB2UIMsgPopupUserInfo>(EUIMsgPopup::UserInfo,
 			BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_Notification")),
@@ -332,11 +332,11 @@ void UB2UIFriendRow::OnDeleteBtnClick()
 		})
 			);
 
-		// À¯ÀúÁ¤º¸ ¼¼ÆÃ
+		// èœ¡åŽ†æ²¥ç„Š æŠ€æ³¼
 		pPopupUI->SetUserInfo(Cast<UMaterialInstance>(IMG_Character->GetDynamicMaterial()),
 			TB_PlayerName->GetText(), TB_PlayerLevel->GetText(), TB_Guild->GetText());
 		
-		// Ãß°¡ÄÚ¸àÆ®
+		// çœ å•Šå†…è†é£˜
 		pPopupUI->SetAddComment(FText::Format(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("TodayFriendDeleteCountGreenNum")), FText::AsNumber(nRemainDeleteCount)));
 
 		return;

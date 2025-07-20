@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIMissionList.h"
 #include "MissionManager.h"
@@ -217,7 +217,7 @@ void UB2UIMissionList::OnReceiveMissionReward(const FB2ReceiveMissionReward& Mis
 	//		}
 	//		StartTimerReceiveMissionReward();
 	//	}
-	//	// ÀüÃ¼ º¸»ó¹Ş±â¸¦ ´­·¶´Ù¸é ¸ğµç º¸»óÀÌ ¿Ï·áµÉ ¶§ ±îÁö UI °»½ÅÇÏÁö ¾ÊÀ½
+	//	// å‚ˆçœ‰ ç„Šæƒ‘ç½æ‰ç”« å–˜èŒƒä¿ƒæ è‘›ç”µ ç„Šæƒ‘æ è‚¯ä¸°çª é”­ é³–ç˜¤ UI ç›è„šçªç˜¤ è‡¼æ¾œ
 	//	else
 	//	{
 	//		if (bRequestRewardAllCompleteMission && RewardList == false)
@@ -225,7 +225,7 @@ void UB2UIMissionList::OnReceiveMissionReward(const FB2ReceiveMissionReward& Mis
 	//			UB2UIManager::GetInstance()->CloseUI(UIFName::ClientIndicator);
 	//			bRequestRewardAllCompleteMission = false;
 
-	//			// ÀÏ¹İÀÓ¹« ÀüºÎ´Ù¹Ş±â¸¦ ÁøÇà ÁßÀÏ °æ¿ì ¸ñ·Ï °»½ÅÀ» ÇÏ¿© Àçº¸»óÀ» ¹ŞÀ»°Ô ÀÖ´ÂÁö ´Ù½Ã È®ÀÎ
+	//			// è€é¦†çƒ™å…¬ å‚ˆä½•ä¿ƒç½æ‰ç”« æŸ³é’ åè€ ç‰ˆå¿« æ ¼åºŸ ç›è„šé˜‘ çªå’¯ çŠç„Šæƒ‘é˜‘ ç½é˜‘éœ¸ ä¹ç»°ç˜¤ ä¿ƒçŸ« çŠ¬ç‰¢
 	//			if (bLoopReceiveSerialRewards == true)
 	//			{
 	//				data_trader::Retailer::GetInstance().RequestGetMission(0);
@@ -274,7 +274,7 @@ void UB2UIMissionList::OnReceiveMissionPointReward(const FB2ReceiveCompleteMissi
 	//	CachedReceiveRewards.Append(ServerRewards);
 	//}
 
-	//if (bRequestRewardAllCompleteMission && RewardPointIndex > 0)				//¸ğµÎ¹Ş±âÇÏ°í º¸»óÀÌ ³²¾ÆÀÖÀ»°æ¿ì
+	//if (bRequestRewardAllCompleteMission && RewardPointIndex > 0)				//è‘›æ»´ç½æ‰çªç»Š ç„Šæƒ‘æ å·¢é…’ä¹é˜‘ç‰ˆå¿«
 	//{
 	//	if (GetWorld())
 	//	{
@@ -364,7 +364,7 @@ class UB2UIMsgPopupReward* UB2UIMissionList::OpenRewardDialog(const TArray<b2net
 
 void UB2UIMissionList::OnClickGetRewardMsgPopup()
 {
-	SetAllRewardButtonDisable(false); // ¸·Àº º¸»ó¹Ş±â ¹öÆ°À» Ç®¾î
+	SetAllRewardButtonDisable(false); // é˜œç¯® ç„Šæƒ‘ç½æ‰ æ»šç“¢é˜‘ é’±ç»¢
 	bLoopReceiveSerialRewards = false;
 	data_trader::Retailer::GetInstance().RequestGetMission(0);
 }
@@ -441,7 +441,7 @@ void UB2UIMissionList::EndTimerReceiveMissionReward()
 	}
 	else if(SelectedMissionType != EMissionType::Serial)
 	{
-		int32 PointRewardIndex = CheckMissionPointReward(SelectedMissionType);															//ÇÑ¹ø´õ °Ë»ç
+		int32 PointRewardIndex = CheckMissionPointReward(SelectedMissionType);															//èŒ„é”…æ­¹ å…«è¤
 		int32 ServerMissionType = ConvertMissionType(SelectedMissionType);
 		data_trader::Retailer::GetInstance().RequestReceiveCompleteMissionReward(ServerMissionType, PointRewardIndex);
 	}

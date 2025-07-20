@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -85,9 +85,9 @@ private:
 private:
 	struct LotteryMailInfo
 	{
-		int64 MailID;// ¸ŞÀÏ id ¼±ÅÃÇÑ Ä³¸¯ÅÍ ¹İÈ¯!
+		int64 MailID;// çš‹è€ id æ€¥ç¶èŒ„ æŸè…ç£ é¦†åˆ¸!
 		int32 LotteryIDs;
-		MailGiftType GiftType; //MailGiftType::LotteryTicket, MailGiftType::Fixed_Grade_Lottey È®ÀÎ °¡´É
+		MailGiftType GiftType; //MailGiftType::LotteryTicket, MailGiftType::Fixed_Grade_Lottey çŠ¬ç‰¢ å•Šç“·
 	};
 
 	UPROPERTY(EditAnywhere, Category = "LotteryMail")

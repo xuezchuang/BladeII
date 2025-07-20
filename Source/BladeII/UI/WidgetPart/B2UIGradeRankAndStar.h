@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "B2UIRepeatableElements.h"
 #include "../../Common/Event.h"

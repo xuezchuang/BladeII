@@ -1,4 +1,4 @@
-
+ï»¿
 #include "B2BTTask_ExecuteAttack.h"
 //#include "BladeII.h"
 #include "AIController.h"
@@ -53,7 +53,7 @@ EBTNodeResult::Type UB2BTTask_ExecuteAttack::PerformTask(UBehaviorTreeComponent&
 		//*
 		Player->StartAnySkill();
 		/*/
-		if (Player->TargetActor == nullptr) return RetResult; //targetÀÌ ¾øÀ¸¸é ¾Æ·¡¸¦ ¼öÇàÇÒ ÇÊ¿ä°¡ ¾øÀ½
+		if (Player->TargetActor == nullptr) return RetResult; //targetæ ç»æ æ é…’è´°ç”« èé’ä¸” é˜å¤¸å•Š ç»æ¾œ
 
 		TArray<int32> UsableSkills;
 

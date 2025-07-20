@@ -56,7 +56,7 @@ void UB2LobbyUI_ItemDetailSetEffect::CacheAssets()
 
 void UB2LobbyUI_ItemDetailSetEffect::UpdateItemData(const FB2Item& InItem)
 {
-	// ¿©±â¼­ ÇÊ¿ä Á¤º¸ °¡Á®¿Í¼­ ¼¼ÆÃ.
+	// ì—¬ê¸°ì„œ í•„ìš” ì •ë³´ ê°€ì ¸ì™€ì„œ ì„¸íŒ….
 
 	FClientDataStore& DataStore = BladeIIGameImpl::GetClientDataStore();
 	const FMD_ItemSingleElem* ItemMasterInfo = DataStore.GetItemMasterDetailInfo(InItem.ItemRefID);
@@ -83,13 +83,13 @@ void UB2LobbyUI_ItemDetailSetEffect::InitSetOptionPanel(int32 InSetUniqueKey, EP
 
 	//if (SetItemInfo && DisplaySetOptionID)
 	//{
-	//	// »ó´Ü SetItem 
+	//	// ìƒë‹¨ SetItem 
 	//	if (TB_SetOptionTitle.IsValid())
 	//	{
 	//		TB_SetOptionTitle->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("LobbyInvenText_SetEffectTitle")));
 	//	}
 
-	//	// ¹æ¾î±¸, Àå½Å±¸ Icon ¹× TextLine °¹¼ö º¯°æ
+	//	// ë°©ì–´êµ¬, ìž¥ì‹ êµ¬ Icon ë° TextLine ê°¯ìˆ˜ ë³€ê²½
 	//	ESlateVisibility LastSetVisibility = (InItemInvenType == EItemInvenType::EIIVT_Accessory) ? ESlateVisibility::Hidden : ESlateVisibility::SelfHitTestInvisible;
 	//	if (O_SetItem4.IsValid())
 	//		O_SetItem4->SetVisibility(LastSetVisibility);
@@ -188,7 +188,7 @@ void UB2LobbyUI_ItemDetailSetEffect::InitSetOptionPanel(int32 InSetUniqueKey, EP
 	//		}
 	//	}
 
-	//	// ¼¼Æ® ¾ÆÀÌÅÛ Á¤º¸ Ãâ·Â.
+	//	// ì„¸íŠ¸ ì•„ì´í…œ ì •ë³´ ì¶œë ¥.
 	//	if (P_PreFix.IsValid())
 	//		P_PreFix->SetVisibility(ESlateVisibility::HitTestInvisible);
 

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -72,7 +72,7 @@ struct FMissionTab
 	{
 		if (bVisible)
 		{
-			SetTabSelected(false); // ÀÏ´Ü ¼±ÅÃ ¾ÈµÈ»óÅÂ·Î Visible
+			SetTabSelected(false); // è€çªœ æ€¥ç¶ æ•‘ç­‰æƒ‘æ€•è‚º Visible
 		}
 		else
 		{

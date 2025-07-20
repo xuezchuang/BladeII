@@ -124,7 +124,7 @@ void UB2LobbyUI_UnitySkillWakePopup::Init(EPCClass pcclass)
 
 void UB2LobbyUI_UnitySkillWakePopup::BeginDestroy()
 {
-	//Editor »óÈ²¿¡¼­ ¹®Á¦°¡ Á» ÀÖ¾î¼­ ¿©±â¼­µµ unsubscribe
+	//Editor æƒ‘ç‚”ä¿Šè¾‘ å·©åŠ›å•Š ç²± ä¹ç»¢è¾‘ å’¯æ‰è¾‘æ¡£ unsubscribe
 	if (CachedLobbyGM)
 	{
 		UnsubscribeEvents();
@@ -204,8 +204,8 @@ void UB2LobbyUI_UnitySkillWakePopup::OnClick_SelectSoul(int32 nStep)
 
 int32 UB2LobbyUI_UnitySkillWakePopup::GetUnitySkillID(EPCClass InPCClass)
 {
-	// ·ÎÄÃÄÉ¸¯ÅÍµ¥ÀÌÅÍ¿¡¼­ °¡Á®¿À±â°¡ ¾Ö¸Å..
-	// °¢¼º½ºÅ³Àº µü Æ¯Á¤ ½ºÅ³ÀÌ¾î¼­ ±×³É ÇÏµåÄÚµùÀÌ ³ªÀº°Í°°À½.
+	// è‚ºæ‹¿çº³è…ç£å•æžç£ä¿Šè¾‘ å•Šå»‰å·æ‰å•Š å±€æ¦‚..
+	// é˜¿å·±èƒ¶æ‡¦ç¯® è¿­ æ¼‚æ²¥ èƒ¶æ‡¦æžç»¢è¾‘ å¼Šæˆ çªé›å†…çˆ¹æž å”±ç¯®å·´éžæ¾œ.
 
 	return (PCClassToInt(InPCClass) + 1) * 100 + 3;
 }
@@ -271,7 +271,7 @@ void UB2LobbyUI_UnitySkillWakePopup::SetAwakeMissionInfo(int32 Step)
 
 	//			UMaterialInterface* ItemMat = nullptr;
 
-	//			// ÇÊ¿äÀçÈ­°¡ °ñµåÀÓ
+	//			// éž˜å¤¸çŠæ‹³å•Š æ¦œé›çƒ™
 	//			if (MissionItem->req_gold > 0)
 	//			{
 	//				HaveCount = BladeIIGameImpl::GetClientDataStore().GetGoldAmount();
@@ -314,11 +314,11 @@ void UB2LobbyUI_UnitySkillWakePopup::OnReceiveAwakeSkillInfo(const FB2ResponseAw
 
 	//data_trader::Retailer::GetInstance().RequestUnitySkillMissions(CliToSvrPCClassType(CurrentPC));
 
-	//// °ñµå °»½Å
+	//// æ¦œé› ç›Žè„š
 	//if(data->current_money < BladeIIGameImpl::GetClientDataStore().GetGoldAmount())
 	//	BladeIIGameImpl::GetClientDataStore().ReplaceUserDataWithDoc(EDocUserDataType::Gold, data->current_money);
 
-	//// ¾ÆÀÌÅÛ °»½Å
+	//// é…’æžè¢ ç›Žè„š
 	//if (data->changed_material_items.Num() > 0)
 	//{
 	//	BladeIIGameImpl::GetClientDataStore().OnResponseConsumableAmountDecrease(data->changed_material_items[0]->template_id, -1, data->changed_material_items, data->deleted_item_ids);
@@ -328,13 +328,13 @@ void UB2LobbyUI_UnitySkillWakePopup::OnReceiveAwakeSkillInfo(const FB2ResponseAw
 	//	BladeIIGameImpl::GetClientDataStore().OnResponseConsumableAmountDecrease(data->deleted_item_ids[0], -1, data->changed_material_items, data->deleted_item_ids);
 	//}
 
-	//// ¹Ì¼Ç°»½Å 
+	//// å›ºè®°ç›Žè„š 
 	//BladeIIGameImpl::GetLocalCharacterData().SetUnitySkillAwakenMission(CurrentPC, data->awaken_mission->mission_id, data->awaken_mission->completed, data->awaken_mission->try_count);
 	//
-	//// UI °»½Å	
+	//// UI ç›Žè„š	
 	//UpdateAwakeSkillInfo();
 
-	//// ¾Ö´Ï¸ÞÀÌ¼Ç Ãâ·Â
+	//// å±€èªçš‹æžè®° å…ä»¿
 	//OnStartGetSoulResultAnimation_BP(data->awaken_mission->completed);
 
 	//if (CachedLobbyGM->GetLobbyInventory())

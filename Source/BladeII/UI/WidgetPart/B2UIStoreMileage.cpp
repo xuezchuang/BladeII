@@ -1,4 +1,4 @@
-#include "B2UIStoreMileage.h"
+ï»¿#include "B2UIStoreMileage.h"
 #include "B2UIDocHelper.h"
 #include "BladeIIGameImpl.h"
 #include "BladeIIUtil.h"
@@ -105,7 +105,7 @@ void UB2UIStoreMileage::SetMileageData(int32 MileageType)
 		if (PB_Mileage.IsValid())
 			PB_Mileage->SetPercent(CurrentMileagePoint / (float)SMaxMileagePoint);
 
-		// Box À§Ä¡ º¯°æ
+		// Box å›°æ‘¹ å‡½ç‰ˆ
 		UHorizontalBoxSlot* MileageSBoxSlot = Cast<UHorizontalBoxSlot>(O_MileageS->Slot);
 		UHorizontalBoxSlot* MileageABoxSlot = Cast<UHorizontalBoxSlot>(O_MileageA->Slot);
 		UHorizontalBoxSlot* MileageBBoxSlot = Cast<UHorizontalBoxSlot>(O_MileageB->Slot);

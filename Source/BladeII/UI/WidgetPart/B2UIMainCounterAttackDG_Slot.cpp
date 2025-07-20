@@ -1,4 +1,4 @@
-#include "B2UIMainCounterAttackDG_Slot.h"
+ï»¿#include "B2UIMainCounterAttackDG_Slot.h"
 #include "B2UIManager.h"
 #include "B2UIHeader.h"
 #include "B2UIDocHelper.h"
@@ -154,7 +154,7 @@ void UB2UIMainCounterAttackDG_Slot::SetDayType(int32 type , FString DungeonName)
 	for (auto& Ele : *PeriodData)
 	{
 		DayTypeArr.Add(static_cast<EUICounterDayType>(Ele.DayOfWeek));
-		/*BeginHour = Ele.BeginHour;		//½Ã°£Ç¥½Ã ÇÊ¿ä¾ø¾î¼­ »èÁ¦
+		/*BeginHour = Ele.BeginHour;		//çŸ«åŸƒé’çŸ« é˜å¤¸ç»ç»¢è¾‘ æ˜åŠ›
 		BeginMin = Ele.BeginMin;
 		EndHour = Ele.EndHour;
 		EndMin = Ele.EndMin;*/

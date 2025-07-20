@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIAdventureDifficultySlot.h"
 
 #include "B2UIDocHelper.h"
@@ -36,13 +36,13 @@ void UB2UIAdventureDifficultySlot::InitDifficulty(EStageDifficulty CurStageDiffi
 		CurStageDifficulty = EStageDifficulty::ESD_Hard;
 
 	SlotDifficulty = CurStageDifficulty;
-	SetDifficulty_BP(FMath::Max((int32)SlotDifficulty - 2, 0));	// ºí·çÇÁ¸°Æ®¿¡¼­´Â ÀÎµ¦½º°¡ 0ºÎÅÍ ½ÃÀÛÇÏ¹Ç·Î °ªÀ» ÀÓÀÇ·Î º¯°æÇØÁØ´Ù.
+	SetDifficulty_BP(FMath::Max((int32)SlotDifficulty - 2, 0));	// å–‰é£Žæ©‡èµ´é£˜ä¿Šè¾‘ç»° ç‰¢éƒ¸èƒ¶å•Š 0ä½•ç£ çŸ«ç´¯çªéª¨è‚º è”¼é˜‘ çƒ™ç‹¼è‚º å‡½ç‰ˆç§¦éœ–ä¿ƒ.
 	SetUnlock((MaxStageDifficulty >= SlotDifficulty), false);
 }
 
 void UB2UIAdventureDifficultySlot::SetUnlock(bool isUnLock, bool isAnimation)
 {
-	// ¶ô ÀÌ¹ÌÁö Á¦°Å ¹× ¼±ÅÃ¿µ¿ª È°¼ºÈ­
+	// é æžå›ºç˜¤ åŠ›èŠ­ æ£º æ€¥ç¶åº·å¼€ åŠå·±æ‹³
 	if (O_LockOverlay.IsValid())
 		O_LockOverlay->SetVisibility(isUnLock ? ESlateVisibility::Hidden : ESlateVisibility::Visible);
 

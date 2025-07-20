@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIHallOfFamePlayerInfo.h"
 #include "B2UIManager.h"
 
@@ -315,7 +315,7 @@ void UB2UIHallOfFamePlayerInfo::NativeTick(const FGeometry& MyGeometry, float In
 {
 	Super::NativeTick(MyGeometry, InDeltaTime);
 
-	// À§Ä¡ ¾÷µ¥ÀÌÆ®
+	// å›°æ‘¹ è¯€å•æé£˜
 
 	//APlayerController* PC = UGameplayStatics::GetLocalPlayerController(this);
 
@@ -329,7 +329,7 @@ void UB2UIHallOfFamePlayerInfo::NativeTick(const FGeometry& MyGeometry, float In
 	//	vUIPos.X -= (GetDesiredSize().X * UWidgetLayoutLibrary::GetViewportScale(this)) / 2;
 	//	vUIPos.Y -= GetDesiredSize().Y * UWidgetLayoutLibrary::GetViewportScale(this);
 
-	//	// BP¿¡¼­ ÀÔ·ÂÇÏ´Â º¸Á¤°ª
+	//	// BPä¿Šè¾‘ æ¶ä»¿çªç»° ç„Šæ²¥è”¼
 	//	vUIPos.X += AdjustPosition.X * UWidgetLayoutLibrary::GetViewportScale(this);
 	//	vUIPos.Y += AdjustPosition.Y * UWidgetLayoutLibrary::GetViewportScale(this);
 

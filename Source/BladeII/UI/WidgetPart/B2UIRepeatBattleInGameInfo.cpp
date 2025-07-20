@@ -1,4 +1,4 @@
-#include "B2UIRepeatBattleInGameInfo.h"
+ï»¿#include "B2UIRepeatBattleInGameInfo.h"
 #include "B2UIRepeatBattleCountDown.h"
 #include "B2UIManager.h"
 #include "B2UIDocHelper.h"
@@ -26,11 +26,11 @@ void UB2UIRepeatBattleInGameInfo::Init()
 		m_DocBattleStage = TWeakObjectPtr<UB2UIDocBattleStage>(DocBattle);
 	}
 
-	BindDocAuto(); // ½ÇÁ¦ UIDocBindable ÀÎÅÍÆäÀÌ½º ´ë·Î µ¿ÀÛÇÏ´Â °Ç ¾Æ´Ï¹Ç·Î ÀÌ°Ç Á÷Á¢ ºÒ·¯ÁÜ. °Á ¸ð¾ç»õ¸¸ ³»´Â °Å
+	BindDocAuto(); // è§’åŠ› UIDocBindable ç‰¢ç£å…¶æžèƒ¶ æŽªè‚º æ‚¼ç´¯çªç»° æ‰’ é…’èªéª¨è‚º æžæ‰’ æµç«‹ é˜‚çŸ¾æ·‹. å‚² è‘›å‰§è´§çˆ¶ éƒ´ç»° èŠ­
 
 	if (GetB2GameModeType(this) == EB2GameMode::Scenario)
 	{
-		UpdateDynamicWidgets();		// Ã³À½ ÇÑ¹øÀº ÇÊ¿äÇÏ°ÚÁö.
+		UpdateDynamicWidgets();		// è´¸æ¾œ èŒ„é”…ç¯® éž˜å¤¸çªæ‘†ç˜¤.
 	}
 }
 
@@ -99,7 +99,7 @@ void UB2UIRepeatBattleInGameInfo::UpdateDynamicWidgets()
 {
 	if (GetB2GameModeType(this) == EB2GameMode::Scenario && m_DocBattleStage.IsValid())
 	{
-		// ¼û±â´Â °Å ÀÚÃ¼ Ã³¸®
+		// è§æ‰ç»° èŠ­ ç£Šçœ‰ è´¸åºœ
 		if (m_DocBattleStage->GetRepeatBattleCurrentOn())
 		{
 			this->SetVisibility(ESlateVisibility::Visible);
@@ -119,7 +119,7 @@ void UB2UIRepeatBattleInGameInfo::UpdateDynamicWidgets()
 		{
 			if (UIManager && (EUIScene::StageClear == UIManager->GetCurrUIScene() || EUIScene::StageResult == UIManager->GetCurrUIScene()))
 			{
-				if(m_DocBattleStage->GetRepeatBattleBoostOn() && m_DocBattleStage->GetRepeatBattleCurrentOn())		//¹Ýº¹ÀüÅõ 3¹è¸ðÇèÀÌ ´ÙÄÑÁ® ÀÖÀ»°æ¿ì´Â °á°úÈ­¸é¿¡¼­µµ ´Ùº¸¿©´Þ¶ó°í ÇÔ...
+				if(m_DocBattleStage->GetRepeatBattleBoostOn() && m_DocBattleStage->GetRepeatBattleCurrentOn())		//é¦†æ±—å‚ˆæ§ 3ç¡…è‘›æ°°æž ä¿ƒéš¾å»‰ ä¹é˜‘ç‰ˆå¿«ç»° æ¬è‹žæ‹³æä¿Šè¾‘æ¡£ ä¿ƒç„Šå’¯å´”æ‰¼ç»Š çªƒ...
 					CV_3TimesInfo->SetVisibility(ESlateVisibility::HitTestInvisible);
 				else
 					CV_3TimesInfo->SetVisibility(ESlateVisibility::Collapsed);

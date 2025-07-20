@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIConnectReward.h"
 #include "B2UIManager.h"
 #include "B2UIConnectRewardPart.h"
@@ -112,13 +112,13 @@ void UB2UIConnectReward::DestroySelf(UB2UIManager* InUIManager)
 }
 
 /*
- º¸»ó¸¶´Ù ½Ã°£ °£°İÀÌ ÀÏÁ¤ÇÏ¸é ÇöÀç½Ã°£ / ÃÖÁ¾½Ã°£ = Progress¹ÙÀÇ ½ºÄÉÀÏ·Î ÇÏ¸éµÇ´Âµ¥
- Á¢¼Ó º¸»óÀÇ ¼±¹°ÀÌ 6°³¶ó°í Ä¡¸é, °¢ º¸»ó¸¶´ÙÀÇ ½Ã°£ °£°İÀÌ ´Ş¶ó¼­ Ã³¸®¸¦ µû·Î ÇØÁà¾ßÇÑ´Ù.
- Ã¹¹øÂ°´Â 3ºĞ¿¡ 1/6ÀÌ Â÷¾ßÇÏ°í, ¸¶Áö¸·Àº 60ºĞµ¿¾È 1/6ÀÌ Â÷¾ßÇÑ´Ù.
-  º¸»óÀÌ 6°³¶ó°í °¡Á¤ÇÏ°í ¸¶Áö¸· 60ºĞÀ» Ã¤¿î´Ù°í ÇÏ¸é
- ProgressBar = 5/6 + ((5¹øÀçºÎÅÍ ½ÃÀÛÇÑ ´©Àû½Ã°£ / 5¹øÂ°~6¹øÂ° °£°İ) * 1/6)
- º¸»óÀÌ 6°³¶ó°í °¡Á¤ÇÏ°í Ã³À½ 3ºĞÀ» Ã¤¿î´Ù°í ÇÏ¸é
- ProgressBar = 0/6 + ((0¹øÀçºÎÅÍ ½ÃÀÛÇÑ ´©Àû½Ã°£ / 0¹øÂ°~1¹øÂ° °£°İ) * 1/6)
+ ç„Šæƒ‘ä»˜ä¿ƒ çŸ«åŸƒ åŸƒæ‹œæ è€æ²¥çªæ æ³…çŠçŸ«åŸƒ / å¼¥è¾†çŸ«åŸƒ = Progresså®˜ç‹¼ èƒ¶çº³è€è‚º çªæç™»ç»°å•
+ ç«‹åŠ  ç„Šæƒ‘ç‹¼ æ€¥æ‹±æ 6ä¿ºæ‰¼ç»Š æ‘¹æ, é˜¿ ç„Šæƒ‘ä»˜ä¿ƒç‹¼ çŸ«åŸƒ åŸƒæ‹œæ å´”æ‰¼è¾‘ è´¸åºœç”« è¶è‚º ç§¦æ‹å…·èŒ„ä¿ƒ.
+ éœ‰é”…æ³ç»° 3ç›’ä¿Š 1/6æ ç’å…·çªç»Š, ä»˜ç˜¤é˜œç¯® 60ç›’æ‚¼æ•‘ 1/6æ ç’å…·èŒ„ä¿ƒ.
+  ç„Šæƒ‘æ 6ä¿ºæ‰¼ç»Š å•Šæ²¥çªç»Š ä»˜ç˜¤é˜œ 60ç›’é˜‘ ç›²æ¬¾ä¿ƒç»Š çªæ
+ ProgressBar = 5/6 + ((5é”…çŠä½•ç£ çŸ«ç´¯èŒ„ ç©¿åˆ©çŸ«åŸƒ / 5é”…æ³~6é”…æ³ åŸƒæ‹œ) * 1/6)
+ ç„Šæƒ‘æ 6ä¿ºæ‰¼ç»Š å•Šæ²¥çªç»Š è´¸æ¾œ 3ç›’é˜‘ ç›²æ¬¾ä¿ƒç»Š çªæ
+ ProgressBar = 0/6 + ((0é”…çŠä½•ç£ çŸ«ç´¯èŒ„ ç©¿åˆ©çŸ«åŸƒ / 0é”…æ³~1é”…æ³ åŸƒæ‹œ) * 1/6)
 */
 void UB2UIConnectReward::RenderProgressBar(const float PlayTime)
 {
@@ -127,9 +127,9 @@ void UB2UIConnectReward::RenderProgressBar(const float PlayTime)
 
 	if (MaxRewardPlayTime * 60.0f > PlayTime)
 	{
-		auto AddProgressRatio = 1.0f;       //  6°³Áß 5¹øÂ° º¸»ó ÁßÀÌ¸é 4 / 6
-		auto GoalTime = 0.0f;               //  ÀÌÀü ±îÁö ÇÕ»ê ÇÑ ½Ã°£À» Á¦¿Ü ÇÏ°í, Áö±İ Ä­¿¡¼­ 1ÀÌ µÇ±â À§ÇÑ ½Ã°£
-		auto CalculatedPlayTime = PlayTime; //  ÃÑ½Ã°£ - ÀÌÀüÄ­ ±îÁöÀÇ ½Ã°£
+		auto AddProgressRatio = 1.0f;       //  6ä¿ºå 5é”…æ³ ç„Šæƒ‘ åææ 4 / 6
+		auto GoalTime = 0.0f;               //  æå‚ˆ é³–ç˜¤ é’¦é­‚ èŒ„ çŸ«åŸƒé˜‘ åŠ›å¯‡ çªç»Š, ç˜¤é™› æ²«ä¿Šè¾‘ 1æ ç™»æ‰ å›°èŒ„ çŸ«åŸƒ
+		auto CalculatedPlayTime = PlayTime; //  é†šçŸ«åŸƒ - æå‚ˆæ²« é³–ç˜¤ç‹¼ çŸ«åŸƒ
 
 		const auto ONE_MINUTE = 60.0f;
 		const auto RewardCount = ConnectRewardParts.Num();
@@ -260,7 +260,7 @@ void UB2UIConnectReward::PopUpConnectReward(const TArray<b2network::B2RewardPtr>
 TWeakObjectPtr<UB2UIConnectRewardPart>* UB2UIConnectReward::FindRewardItem(const b2network::B2RewardPtr& RewardItem)
 {
 	return ConnectRewardParts.FindByPredicate([&RewardItem](TWeakObjectPtr<UB2UIConnectRewardPart>& RewardPart)
-	{    // ¾È¹ŞÀº »óÅÂ°í, ¼ø¼­°¡ °°°í(1¹øÂ°, 3¹øÂ°°¡ °°Àº º¸»óÀÏ °æ¿ì Ã³¸®), ¾ÆÀÌÅÛ Index°¡ °°À» ¶§
+	{    // æ•‘ç½ç¯® æƒ‘æ€•ç»Š, é‰´è¾‘å•Š éç»Š(1é”…æ³, 3é”…æ³å•Š éç¯® ç„Šæƒ‘è€ ç‰ˆå¿« è´¸åºœ), é…’æè¢ Indexå•Š éé˜‘ é”­
 		if (!RewardPart->GetReward() && RewardPart->GetRewardItemIndex() == RewardItem->raw_reward->id)
 			return true;
 		return false;
@@ -318,13 +318,13 @@ void UB2UIConnectReward::OnClickBTN_Recieve()
 		return;
 
 	IsWatingReward = true;
-	// µ¿±âÈ­ÇÑÁö ¿À·¡µÆÀ¸¸é ½Ã°£ µ¿±âÈ­ ¿äÃ»ºÎÅÍ
+	// æ‚¼æ‰æ‹³èŒ„ç˜¤ å·è´°ç¯æ æ çŸ«åŸƒ æ‚¼æ‰æ‹³ å¤¸æ²¡ä½•ç£
 	if ((UB2GameInstance::GetUTCNow() - UB2GameInstance::GetPlayTimeAfterRequest()).GetTotalSeconds() > 1.1)
 	{
 		BladeIIGameImpl::GetClientDataStore().SetConnectRewardButtonPush(true);
 		UB2GameInstance::RequestUpdateDailyPlayTime();
 	}
-	// ¾Æ´Ï¸é ¹Ù·Î Reward¿äÃ»
+	// é…’èªæ å®˜è‚º Rewardå¤¸æ²¡
 	else
 	{
 		data_trader::Retailer::GetInstance().RequestReceiveDailyPlayTimeReward();

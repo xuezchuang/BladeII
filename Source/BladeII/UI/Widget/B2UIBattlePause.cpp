@@ -1,4 +1,4 @@
-#include "B2UIBattlePause.h"
+ï»¿#include "B2UIBattlePause.h"
 #include "EventSubsystem.h"
 #include "B2UIManager.h"
 #include "B2UIDocHelper.h"
@@ -49,7 +49,7 @@ void UB2UIBattlePause::CacheAssets()
 
 void UB2UIBattlePause::UpdateStaticText()
 {
-	//±ÍÂúÀº°Ç BP¿¡¼­ Ã³¸®
+	//ê·€ì°®ì€ê±´ BPì—ì„œ ì²˜ë¦¬
 }
 
 void UB2UIBattlePause::BindDelegates()
@@ -126,13 +126,13 @@ void UB2UIBattlePause::CloseWidgetDelegate()
 void UB2UIBattlePause::OnClickBtnContinue()
 {
 	UB2UIManager::GetInstance()->CloseUI(UIFName::BattlePause);
-	UGameplayStatics::SetGamePaused(this->GetOwningPlayer(), false); // ¹«Á¶°Ç pause ¿¡¼­ º¹±Í.
+	UGameplayStatics::SetGamePaused(this->GetOwningPlayer(), false); // ë¬´ì¡°ê±´ pause ì—ì„œ ë³µê·€.
 
 CollectGarbage(GARBAGE_COLLECTION_KEEPFLAGS);
 
-	// ÀÌÈÄ Ã³¸®´Â ABladeIIGameMode::ClearPause ¿¡¼­
+	// ì´í›„ ì²˜ë¦¬ëŠ” ABladeIIGameMode::ClearPause ì—ì„œ
 	
-	// pvp¿¡¼­¸¸ »ç¿ë
+	// pvpì—ì„œë§Œ ì‚¬ìš©
 	if (GetB2GameModeType(this) == EB2GameMode::PVP_Tag)
 	{
 		StopPauseMenuClass<>::GetInstance().Signal();
@@ -154,7 +154,7 @@ void UB2UIBattlePause::OnClickBtnRaid()
 	if (UB2UIDocRaid* DocRaid = UB2UIDocHelper::GetDocRaid())
 	{
 		if (DocRaid->GetAlreadyExitUser())
-			msg = BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Raid_NonPenaltyNotice")); // ÀÌ¹Ì Å»ÁÖÇÑ »ç¶÷ÀÖÀ½.
+			msg = BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Raid_NonPenaltyNotice")); // ì´ë¯¸ íƒˆì£¼í•œ ì‚¬ëŒìˆìŒ.
 
 		DocRaid->SetReturnToPageType(ERaidGotoWhere::RaidMain);
 	}
@@ -204,7 +204,7 @@ void UB2UIBattlePause::OnClickBtnVillage()
 			true,
 			EUIMsgPopupButtonGroup::YesOrNo,
 			FMsgPopupOnClick::CreateLambda([](){
-				CancelOrStopRepeatBattleClass<>::GetInstance().Signal(); // ¹İº¹ÀüÅõ µµÁßÀÌ¾ú´Ù¸é Pause ¸Ş´º ÅëÇØ ·Îºñ·Î ³ª°¥ ¶§ ÇØÁ¦.
+				CancelOrStopRepeatBattleClass<>::GetInstance().Signal(); // ë°˜ë³µì „íˆ¬ ë„ì¤‘ì´ì—ˆë‹¤ë©´ Pause ë©”ë‰´ í†µí•´ ë¡œë¹„ë¡œ ë‚˜ê°ˆ ë•Œ í•´ì œ.
 				UB2UIManager::GetInstance()->CloseUI(UIFName::BattlePause);
 				GoToVillageClass<>::GetInstance().Signal();
 			})
@@ -222,7 +222,7 @@ void UB2UIBattlePause::OnClickBtnWorldMap()
 			EUIMsgPopupButtonGroup::YesOrNo,
 			FMsgPopupOnClick::CreateLambda([](){
 				GiveUpGameClass<>::GetInstance().Signal();
-				CancelOrStopRepeatBattleClass<>::GetInstance().Signal(); // ¹İº¹ÀüÅõ µµÁßÀÌ¾ú´Ù¸é Pause ¸Ş´º ÅëÇØ ·Îºñ·Î ³ª°¥ ¶§ ÇØÁ¦.
+				CancelOrStopRepeatBattleClass<>::GetInstance().Signal(); // ë°˜ë³µì „íˆ¬ ë„ì¤‘ì´ì—ˆë‹¤ë©´ Pause ë©”ë‰´ í†µí•´ ë¡œë¹„ë¡œ ë‚˜ê°ˆ ë•Œ í•´ì œ.
 				ChangeStaminaChargeTimeClass<>::GetInstance().Signal();
 				UB2UIManager::GetInstance()->CloseUI(UIFName::BattlePause);
 				GoToMapClass<>::GetInstance().Signal();

@@ -73,7 +73,7 @@ void UB2AcqItemEquipSuggest::UpdateData(bool bWasEqiupped, const FB2Item& Curren
 
 		UB2DynItemIcon_LobbyInven* DynIconCDO = Cast<UB2DynItemIcon_LobbyInven>(ItemIconWidgetClass->GetDefaultObject());
 
-		// ItemIconPanelNRef À§¿¡ ÃÖÁ¾ÀûÀÎ ¾ÆÀÌÅÛ ¾ÆÀÌÄÜ widget »ı¼º
+		// ItemIconPanelNRef ìœ„ì— ìµœì¢…ì ì¸ ì•„ì´í…œ ì•„ì´ì½˜ widget ìƒì„±
 		CreatedItemIcon = Cast<UB2DynItemIcon_LobbyInven>(DynCreateInCanvasPanel(
 			ItemIconWidgetClass, this, CP_ItemIcon.Get(), DynIconCDO ? DynIconCDO->GetNonScaledSize() : FVector2D(100.0f, 100.0f), AllowedIconSize,
 			FVector2D(0.0f, 0.0f), 0, false
@@ -89,7 +89,7 @@ void UB2AcqItemEquipSuggest::UpdateData(bool bWasEqiupped, const FB2Item& Curren
 	UB2ItemInfo* AllItemInfo = StaticFindItemInfo();
 	FSingleItemInfoData* ThisItemInfo = AllItemInfo ? AllItemInfo->GetInfoData(EquipSuggestedItem.ItemRefID) : NULL;
 
-	// ¾ÆÀÌÅÛ¿¡ µû¶ó °»½ÅµÇ´Â ¼öÄ¡µé
+	// ì•„ì´í…œì— ë”°ë¼ ê°±ì‹ ë˜ëŠ” ìˆ˜ì¹˜ë“¤
 	if (TB_PrimPointType.IsValid())
 	{
 		TB_PrimPointType->SetText(GetLOCTextOfPrimPointType(EquipSuggestedItem.PrimaryPointType));
@@ -117,9 +117,9 @@ void UB2AcqItemEquipSuggest::OnClickedEquipBtn()
 	ReqIDs.Add(EquipSuggestedItem.InstanceUID);
 	LobbyReqEquipItemsClass<const TArray<int64>&>::GetInstance().Signal(ReqIDs);
 
-	// ÀÌ UI ´Â ½Å±Ô È¹µæ Àåºñ¿¡ ´ëÇØ ½ÇÇàµÇ´Â °ÍÀÎµ¥ ºĞ¸í ÀÌ Àåºñ·Î ÀÎÇØ °ü·Ã ÅÇ¿¡´Â »õ ¾ÆÀÌÅÛ Ã¼Å© ¾Ë¸²ÀÌ ÀÖÀ» °Í.
-	// ±×·±µ¥ ÀåÂøÀ» ÇÏ°Ô µÈ´Ù¸é ÀÌ ¾ÆÀÌÅÛÀ¸·Î ÀÎÇÑ ½Å±Ô È¹µæ ¾Ë¸²Àº Á¦°ÅÇØ¾ß ÇÑ´Ù.
-	// ¾ÆÁ÷ ÀåÂø ÀÀ´äÀÌ ¿Â »óÈ²Àº ¾Æ´Ï±ä ÇÏÁö¸¸ ¿©ÇÏ°£ Ã¼Å©´Â ÇÑ ¼ÀÀÌ´Ï ¤»	
+	// ì´ UI ëŠ” ì‹ ê·œ íšë“ ì¥ë¹„ì— ëŒ€í•´ ì‹¤í–‰ë˜ëŠ” ê²ƒì¸ë° ë¶„ëª… ì´ ì¥ë¹„ë¡œ ì¸í•´ ê´€ë ¨ íƒ­ì—ëŠ” ìƒˆ ì•„ì´í…œ ì²´í¬ ì•Œë¦¼ì´ ìˆì„ ê²ƒ.
+	// ê·¸ëŸ°ë° ì¥ì°©ì„ í•˜ê²Œ ëœë‹¤ë©´ ì´ ì•„ì´í…œìœ¼ë¡œ ì¸í•œ ì‹ ê·œ íšë“ ì•Œë¦¼ì€ ì œê±°í•´ì•¼ í•œë‹¤.
+	// ì•„ì§ ì¥ì°© ì‘ë‹µì´ ì˜¨ ìƒí™©ì€ ì•„ë‹ˆê¸´ í•˜ì§€ë§Œ ì—¬í•˜ê°„ ì²´í¬ëŠ” í•œ ì…ˆì´ë‹ˆ ã…‹	
 //	BladeIIGameImpl::GetRedDotManager().RemoveNewItem(EquipSuggestedItem);
 
 	CloseMe();

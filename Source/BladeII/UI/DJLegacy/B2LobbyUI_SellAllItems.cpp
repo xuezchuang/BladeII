@@ -106,7 +106,7 @@ void UB2LobbyUI_SellAllItems::OnCloseButtonClicked()
 
 void UB2LobbyUI_SellAllItems::OnSellButtonClicked()
 {
-	// º»°İ µ¿ÀÛ
+	// å¤¯æ‹œ æ‚¼ç´¯
 	TArray<FB2Item> AllTargetItems;
 	if (!GetAllTargetItems(AllTargetItems))
 		return;
@@ -116,11 +116,11 @@ void UB2LobbyUI_SellAllItems::OnSellButtonClicked()
 	{
 		AllTargetItemIDs.AddUnique(CurTarget.InstanceUID);
 
-		// ÀÎº¥Åä¸® ÅÇ È®ÀÎ ¾øÀÌ º¸°üÇÔ¿¡¼­ Á¦°ÅµÉ ¼ö ÀÖ´Â °ÍÀÎ ¸¸Å­ ½Å±Ô È¹µæ Ç¥½Ã ¸®½ºÆ®¿¡¼­µµ Á¦°Å. º¸´Ù È®½ÇÇÏ°Ô´Â ÀÀ´äÀÌ ¿ÔÀ» ¶§ ÇØ¾ß µÇ±ä ÇÔ. ±×·¸°Ô±îÁö Ã¶ÀúÇÏ°Ô ÇØ¾ß µÉ ÇÊ¿ä±îÁø ¾øÀ» °Å °°°í..
+		// ç‰¢äº¥é…åºœ å¾˜ çŠ¬ç‰¢ ç»æ ç„ŠåŒ…çªƒä¿Šè¾‘ åŠ›èŠ­çª è ä¹ç»° å·´ç‰¢ çˆ¶æ€’ è„šç—¹ è£™å« é’çŸ« åºœèƒ¶é£˜ä¿Šè¾‘æ¡£ åŠ›èŠ­. ç„Šä¿ƒ çŠ¬è§’çªéœ¸ç»° è§ˆç¿ æ å­é˜‘ é”­ ç§¦å…· ç™»å˜ çªƒ. å¼ŠçŠ¯éœ¸é³–ç˜¤ æšå†çªéœ¸ ç§¦å…· çª é˜å¤¸é³–æŸ³ ç»é˜‘ èŠ­ éç»Š..
 		//BladeIIGameImpl::GetRedDotManager().RemoveNewItem(CurTarget);
 	}
 	UB2UIManager::GetInstance()->OpenUI(UIFName::ClientIndicator);
-	// ¸Å response ¸¶´Ù ¾ÆÀÌÄÜµé ¾÷µ¥ÀÌÆ®ÇÏ¸é Á» ´À¸®°Ú´Âµ¥.. ¤§¤§
+	// æ¦‚ response ä»˜ä¿ƒ é…’æèƒ½ç”¸ è¯€å•æé£˜çªæ ç²± è ¢åºœæ‘†ç»°å•.. ã‡ã‡
 	LobbyReqSellItemsClass<const TArray<int64>&, bool>::GetInstance().Signal(AllTargetItemIDs, false);
 
 	if (UIP_InventoryFilter.IsValid())
@@ -138,7 +138,7 @@ void UB2LobbyUI_SellAllItems::OnAnyItemFilterCBChanged(bool InCheck)
 }
 
 void UB2LobbyUI_SellAllItems::UpdateGoldToAcquireText()
-{// ÇöÀç filter ¼±ÅÃ¿¡ µû¶ó ¾ÆÀÌÅÛµé ÃëÇÕÇØ¼­ ¾×¼ö °è»ê
+{// æ³…çŠ filter æ€¥ç¶ä¿Š è¶æ‰¼ é…’æè¢ç”¸ ç§’é’¦ç§¦è¾‘ å’€è æ‹Œé­‚
 	int32 SellPrice = 0, SellItemCount = 0;
 	GetAllTargetItemSellingPrice(SellItemCount, SellPrice);
 

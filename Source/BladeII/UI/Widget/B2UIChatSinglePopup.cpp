@@ -1,4 +1,4 @@
-#include "B2UIChatSinglePopup.h"
+ï»¿#include "B2UIChatSinglePopup.h"
 #include "B2UIManager.h"
 
 UB2UIChatSinglePopup::UB2UIChatSinglePopup(const FObjectInitializer& ObjectInitializer)
@@ -37,7 +37,7 @@ void UB2UIChatSinglePopup::NativeTick(const FGeometry& MyGeometry, float InDelta
 	
 	UE_LOG(LogBladeII, Log, TEXT("UB2UIChatSinglePopup::NativeTick"));
 
-	// Å¸ÀÌ¸Ó´Â GameTime ¾²´Â ´ë½Å ¿©±â¼­ Á÷Á¢ Ä«¿îÆ®
+	// é¸¥æžèµ£ç»° GameTime é™ç»° æŽªè„š å’¯æ‰è¾‘ æµç«‹ å¢¨æ¬¾é£˜
 	const float ThisTime = GetWorld()->GetTimeSeconds();
 	if (ThisTime - LastUpdatedTime >= DisplayTime)
 	{
@@ -57,12 +57,12 @@ void UB2UIChatSinglePopup::UpdateWithNewChatMessage(const FB2ChatMessage& InMess
 	if (CheckDisplayCoolTime())
 		return;
 
-	// ¸¸ÀÏ ÇöÀç Ã¤ÆÃ Ã¢ÀÌ È°¼ºÈ­ µÇ¾î ÀÖ´Ù¸é ÀÌ°É ¿­¾î¼± ¾ÈµÈ´Ù. Ã¤ÆÃ Ã¢ÀÌ ¾øÀ» ¶§ º¸¿©ÁÖ±â À§ÇÑ °ÍÀÌ¹Ç·Î.
-	// ±×·¸Áö¸¸ ¿©±â¼­ ±×°É Ã¼Å©ÇÏÁö´Â ¾Ê´Â °É·Î..
+	// çˆ¶è€ æ³…çŠ ç›²æ³¼ èŠ’æž åŠå·±æ‹³ ç™»ç»¢ ä¹ä¿ƒæ æžå§ å‡¯ç»¢æ€¥ æ•‘ç­‰ä¿ƒ. ç›²æ³¼ èŠ’æž ç»é˜‘ é”­ ç„Šå’¯æž—æ‰ å›°èŒ„ å·´æžéª¨è‚º.
+	// å¼ŠçŠ¯ç˜¤çˆ¶ å’¯æ‰è¾‘ å¼Šå§ çœ‰å†œçªç˜¤ç»° è‡¼ç»° å§è‚º..
 	
 	if (TB_Message.IsValid())
 	{
-		// ÇÑÁÙ Ã¤ÆÃ ²¨³õÀ½. °øÁö»çÇ×ÀÌ¶û Ã¤ÆÃ ¸Þ½ÃÁö, ¾î¶² »óÈ²¿¡¼­ Ç¥½ÃÇÏ°í ¾ÈÇÏ°í µîÀÌ È®½ÇÈ÷ µÈ ÈÄ¿¡ ´Ù½Ã ¿­¾î º¸µµ·Ï.
+		// èŒ„ä¸´ ç›²æ³¼ æ³¢åˆæ¾œ. å‚ç˜¤è¤äº²æžå°” ç›²æ³¼ çš‹çŸ«ç˜¤, ç»¢æ« æƒ‘ç‚”ä¿Šè¾‘ é’ŽçŸ«çªç»Š æ•‘çªç»Š æ®¿æž çŠ¬è§’æ´’ ç­‰ é¥¶ä¿Š ä¿ƒçŸ« å‡¯ç»¢ ç„Šæ¡£åºŸ.
 		this->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
 
 		TB_Message->SetText(InMessage.MessageText);
@@ -89,7 +89,7 @@ FText UB2UIChatSinglePopup::GetMessageHeader(const FB2ChatMessage& InMessage)
 
 void UB2UIChatSinglePopup::CloseMe()
 {
-	// ÀÎ°ÔÀÓ¿¡¼­ ¾ðÁ¦µç ¶ã ¼ö ÀÖÀ¸¹Ç·Î °Á ¼û°ÜµÎ´Â °Ô ³ªÀ»Áöµµ ¸ð¸£°Ú´Ù.
+	// ç‰¢éœ¸çƒ™ä¿Šè¾‘ æ”«åŠ›ç”µ èº² è ä¹æ éª¨è‚º å‚² è§è´¥æ»´ç»° éœ¸ å”±é˜‘ç˜¤æ¡£ è‘›ç¦æ‘†ä¿ƒ.
 	this->SetVisibility(ESlateVisibility::Collapsed);
 
 	CahcedDisplayCoolTime = 0.f;

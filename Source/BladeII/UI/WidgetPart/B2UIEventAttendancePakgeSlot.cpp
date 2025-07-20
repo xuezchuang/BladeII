@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIEventAttendancePakgeSlot.h"
 #include "B2UIStore.h"
@@ -36,10 +36,10 @@ void UB2UIEventAttendancePakgeSlot::BindDelegates()
 
 void UB2UIEventAttendancePakgeSlot::UpdateStaticText()
 {
-	if (RTB_PossibleBuy.IsValid())	//±¸¸Å °¡´É
+	if (RTB_PossibleBuy.IsValid())	//å¤‡æ¦‚ å•Šç“·
 		RTB_PossibleBuy->SetText(BladeIIGetLOCText(B2LOC_CAT_EVENT, TEXT("Attendance_AvailableForPurchase")));
 
-	if (RTB_CompleteBuy.IsValid())	//Àû¿ë Áß
+	if (RTB_CompleteBuy.IsValid())	//åˆ©ä¾© å
 		RTB_CompleteBuy->SetText(BladeIIGetLOCText(B2LOC_CAT_EVENT, TEXT("Attendance_Active")));
 }
 

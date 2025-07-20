@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "BladeIIPlayer.h"
 #include "../BladeII/B2SkillRTManager.h"
@@ -42,7 +42,7 @@ public:
 	//UFUNCTION(BlueprintCallable, Category = "BladeIIGame")
 	virtual void NotifyPlayerDeadEnd()override;
 
-	virtual int32 GetSkillLOD() const final { return 1; } //[@AKI, 170815][M20]6¼º ½ºÅ³ °³¼± NetMode¿¡¼­´Â ¹«Á¶°Ç LOD ÇÏ°Ô º¯°æ
+	virtual int32 GetSkillLOD() const final { return 1; } //[@AKI, 170815][M20]6ì„± ìŠ¤í‚¬ ê°œì„  NetModeì—ì„œëŠ” ë¬´ì¡°ê±´ LOD í•˜ê²Œ ë³€ê²½
 	//virtual int32 GetSkillLOD() const final { return (GetTeamNum() != 0) ? 1 : 0; }
 
 

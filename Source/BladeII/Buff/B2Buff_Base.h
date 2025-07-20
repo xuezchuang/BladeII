@@ -1,5 +1,7 @@
-#pragma once
+ï»¿#pragma once
 //#include "BladeII.h"
+#include "BladeIIDamageType.h"
+#include "Particles/ParticleSystemComponent.h"
 #include "B2Buff_Base.generated.h"
 
 UCLASS()
@@ -83,7 +85,7 @@ protected:
 
 	bool		bDebuff;
 
-	// CCÁ¡°¨ »ç¿ë¿©ºÎ
+	// CCç—¢çš‘ è¤ä¾©å’¯ä½•
 	bool		bUseCrowdControlCount;
 
 // Effect

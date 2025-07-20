@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2ResurrectionZone.h"
@@ -111,7 +111,7 @@ AB2ResurrectionZone* AB2ResurrectionZone::SpawnHelpAreaActor(TSubclassOf<AB2Resu
 	if (OwnerMesh == nullptr)
 		return nullptr;
 
-	// ÇöÀç Ä³¸¯ÅÍ À§Ä¡¿¡ Z°ªÀº ¶¥À¸·Î ¼ÂÆÃ
+	// æ³…çŠ æŸè…ç£ å›°æ‘¹ä¿Š Zè”¼ç¯® é¡¶æ è‚º æ‚¸æ³¼
 	FVector  OwnerLocation (Owner->GetActorLocation());
 	OwnerLocation.Z = OwnerMesh->GetBoneLocation(B2PLAYER_ROOTBONE_NAME).Z;
 	FTransform SpawnTransform(FRotator::ZeroRotator, OwnerLocation);

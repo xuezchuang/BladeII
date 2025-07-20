@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2LobbyInventory.h"
 //#include "BladeII.h"
 
@@ -139,7 +139,7 @@ bool FInvenPCItemAccessor::FindEquippedItemByID(FB2Item& OutFound, int64 Instanc
 
 	for (int32 EI = 0; EI < (int32)EItemEquipPlace::EIEP_End; ++EI)
 	{
-		// ¼³·É InstanceUID °¡ ¸Â´Ù°í ÇÏ´õ¶óµµ Equipped µÇÁö ¾ÊÀº »óÅÂ¶ó¸é valid ÇÏÁö ¾ÊÀ» °Í.
+		// æ±²é£ InstanceUID å•Š å˜ä¿ƒç»Š çªæ­¹æ‰¼æ¡£ Equipped ç™»ç˜¤ è‡¼ç¯® æƒ‘æ€•æ‰¼æ valid çªç˜¤ è‡¼é˜‘ å·´.
 		if (AllEuippedInfo[EI].EquippedItem.InstanceUID == InstanceUID && AllEuippedInfo[EI].bIsEquipped)
 		{
 			OutFound = AllEuippedInfo[EI].EquippedItem;
@@ -157,7 +157,7 @@ FB2Item* FInvenPCItemAccessor::FindEquippedItemPtrByID(int64 InstanceUID)
 
 	for (int32 EI = 0; EI < (int32)EItemEquipPlace::EIEP_End; ++EI)
 	{
-		// ¼³·É InstanceUID °¡ ¸Â´Ù°í ÇÏ´õ¶óµµ Equipped µÇÁö ¾ÊÀº »óÅÂ¶ó¸é valid ÇÏÁö ¾ÊÀ» °Í.
+		// æ±²é£ InstanceUID å•Š å˜ä¿ƒç»Š çªæ­¹æ‰¼æ¡£ Equipped ç™»ç˜¤ è‡¼ç¯® æƒ‘æ€•æ‰¼æ valid çªç˜¤ è‡¼é˜‘ å·´.
 		if (AllEuippedInfo[EI].EquippedItem.InstanceUID == InstanceUID && AllEuippedInfo[EI].bIsEquipped)
 		{
 			return &(AllEuippedInfo[EI].EquippedItem);
@@ -230,7 +230,7 @@ void FInvenPCItemAccessor::GetAllEquippedCostumeItems(TArray<FB2Item>& OutList)
 
 AB2LobbyGameMode* UB2LobbyInventory::TransientLobbyGM = NULL;
 TArray<FInvenPCItemAccessor> UB2LobbyInventory::PCItems;
-int32 UB2LobbyInventory::ItemLevelupIngredLimit = 20; // @TODO BII_SERVER °Á Á¤ÇØÁø °ªÀÎµ¥ ¼­¹ö¿¡¼­ ¿À°Å³ª..
+int32 UB2LobbyInventory::ItemLevelupIngredLimit = 20; // @TODO BII_SERVER å‚² æ²¥ç§¦æŸ³ è”¼ç‰¢å• è¾‘æ»šä¿Šè¾‘ å·èŠ­å”±..
 
 UB2LobbyInventory::UB2LobbyInventory(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
@@ -266,7 +266,7 @@ void UB2LobbyInventory::BeginDestroy()
 {
 	TransientLobbyGM = NULL;
 
-	ResetAllIngredsList(); // ÀÏ¹İÀûÀÎ °ÔÀÓ ÇÃ·Î¿ì¶ó¸é ÇÊ¿ä´Â ¾øÀ» °Çµ¥ ¿¡µğÅÍÀÇ °æ¿ìµî È®½ÇÈ÷ ºñ¿öÁÖ¸é ÁÁÀ» °Í.
+	ResetAllIngredsList(); // è€é¦†åˆ©ç‰¢ éœ¸çƒ™ æ•²è‚ºå¿«æ‰¼æ é˜å¤¸ç»° ç»é˜‘ æ‰’å• ä¿Šå¼ç£ç‹¼ ç‰ˆå¿«æ®¿ çŠ¬è§’æ´’ åšå†µæ—æ äº®é˜‘ å·´.
 	ResetEnhanceItemDatas();
 	GhostItemOpIngreds.Empty();
 
@@ -279,14 +279,14 @@ void UB2LobbyInventory::StaticInit()
 {
 	for (int32 PCI = 0; PCI < GetMaxPCClassNum(); ++PCI)
 	{
-		PCItems.Add(FInvenPCItemAccessor(IntToPCClass(PCI))); // °¢ PC º°·Î DataStore ¿¡ Á¢±ÙÇÏ´Â °´Ã¼¸¦ ¸¸µé¾î µÎ¾î¾ß ÇÔ.
+		PCItems.Add(FInvenPCItemAccessor(IntToPCClass(PCI))); // é˜¿ PC å–Šè‚º DataStore ä¿Š ç«‹è¾Ÿçªç»° æŒ‰çœ‰ç”« çˆ¶ç”¸ç»¢ æ»´ç»¢å…· çªƒ.
 	}
 }
 
 void UB2LobbyInventory::InitLobbyInventory(class AB2LobbyGameMode* InLobbyGM)
 {
 	TransientLobbyGM = InLobbyGM;
-	check(TransientLobbyGM); // °´Ã¼ »ı¼ºÀº LobbyGameMode ¿¡¼­¸¸
+	check(TransientLobbyGM); // æŒ‰çœ‰ ç§¯å·±ç¯® LobbyGameMode ä¿Šè¾‘çˆ¶
 
 	SubscribeEvents();
 }
@@ -298,7 +298,7 @@ void UB2LobbyInventory::SubscribeEvents()
 
 	CAPTURE_UOBJECT(UB2LobbyInventory);
 
-	// ¼­¹ö ¿äÃ» ÀÌº¥Æ®µé..
+	// è¾‘æ»š å¤¸æ²¡ æäº¥é£˜ç”¸..
 	LobbyReqEquipItemsTicket = LobbyReqEquipItemsClass<const TArray<int64>&>::GetInstance().Subscribe(
 		USE_CAPTURE_OBJECT_AND_TICKET(LobbyReqEquipItems, const TArray<int64>& i)
 			Capture->ReqForEquipItems(i);
@@ -390,7 +390,7 @@ void UB2LobbyInventory::SubscribeEvents()
 	END_CAPTURE_OBJECT()
 	);
 
-	// ¼­¹ö¿¡¼­ ¿Â ÀÀ´äÀ» ÀÌ°÷ÀÌ ¾Æ´Ñ ClientDataStore ¿¡¼­ Á÷Á¢ Ã³¸®ÇÒ ¶§ ¿©±â·Î º¸³»´Â ÀÌº¥Æ®
+	// è¾‘æ»šä¿Šè¾‘ æŸ¯ è§ˆç¿ é˜‘ æé•‘æ é…’å›± ClientDataStore ä¿Šè¾‘ æµç«‹ è´¸åºœä¸” é”­ å’¯æ‰è‚º ç„Šéƒ´ç»° æäº¥é£˜
 	LobbyAllItemsAddedTicket= LobbyAllItemsAddedClass<>::GetInstance().Subscribe(
 		USE_CAPTURE_OBJECT_AND_TICKET(LobbyAllItemsAdded)
 			Capture->OnAllItemsAddedAtStore();
@@ -423,7 +423,7 @@ void UB2LobbyInventory::SubscribeEvents()
 	);
 	EnterItemEnhanceModeTicket = EnterItemEnhanceModeClass<int64>::GetInstance().Subscribe(
 		USE_CAPTURE_OBJECT_AND_TICKET(EnterItemEnhanceMode, int64 i)
-		// BackupÀ» ÇØÁØ´Ù.
+		// Backupé˜‘ ç§¦éœ–ä¿ƒ.
 		Capture->EnterItemOpMode(ELobbyInvenItemOpMode::EIVIOP_Enhancement, i, EItemInvenType::EIIVT_Consumables, true);
 		END_CAPTURE_OBJECT()
 		);
@@ -830,12 +830,12 @@ void UB2LobbyInventory::UnsubscribeEvents()
 
 void UB2LobbyInventory::OnLobbyInventoryViewOpenUp()
 {
-	// UI lobby inventory ÆäÀÌÁö ¿ÀÇÂ ½Ã Ã³¸®ÇÒ °Íµé. Init ¶§¿Í´Â ´Ù¸£´Ù.
+	// UI lobby inventory å…¶æç˜¤ å·é”¹ çŸ« è´¸åºœä¸” å·´ç”¸. Init é”­å®¢ç»° ä¿ƒç¦ä¿ƒ.
 }
 
 void UB2LobbyInventory::OnLobbyInventoryViewClose()
 {
-	// UI lobby inventory ÆäÀÌÁö ´İÀ» ½Ã Ã³¸®ÇÒ °Íµé. Destroy ¶§¿Í´Â ´Ù¸£´Ù.
+	// UI lobby inventory å…¶æç˜¤ æ‘§é˜‘ çŸ« è´¸åºœä¸” å·´ç”¸. Destroy é”­å®¢ç»° ä¿ƒç¦ä¿ƒ.
 
 	QuitItemOpMode(false);
 }
@@ -843,17 +843,17 @@ void UB2LobbyInventory::OnLobbyInventoryViewClose()
 void UB2LobbyInventory::OnAllItemsAddedAtStore()
 { 
 #if WITH_EDITOR
-	// ºñ¾î ÀÖÀ» °æ¿ì Å×½ºÆ®¿¡ ÆíÇÏµµ·Ï ´õ¹Ì µ¥ÀÌÅÍ »ı¼ºÇØÁÖ´Â ´ëÈ­Ã¢À» ¿­¾îÁÜ.
-	//CheckForGenerateDummyDataSuggestion(); ¾Æ µÆ´Ù. ¼­¹ö ÃÊ±âÈ­°¡ ÀÚÁÖ µÇ¾î¼­ Àº±Ù ºÒÆí. ÇÊ¿äÇÏ¸é ¾Ë¾Æ¼­ Ä¡Æ®Å° ¹®ÀÇÇØ¼­ ¾²´øÁö ÇÏ°ÚÁö..
+	// åšç»¢ ä¹é˜‘ ç‰ˆå¿« æŠ›èƒ¶é£˜ä¿Š ç¥ˆçªæ¡£åºŸ æ­¹å›º å•æç£ ç§¯å·±ç§¦æ—ç»° æªæ‹³èŠ’é˜‘ å‡¯ç»¢æ·‹.
+	//CheckForGenerateDummyDataSuggestion(); é…’ ç¯ä¿ƒ. è¾‘æ»š æª¬æ‰æ‹³å•Š ç£Šæ— ç™»ç»¢è¾‘ ç¯®è¾Ÿ é˜‚ç¥ˆ. é˜å¤¸çªæ èˆ…é…’è¾‘ æ‘¹é£˜è™ å·©ç‹¼ç§¦è¾‘ é™å¸¦ç˜¤ çªæ‘†ç˜¤..
 #endif
-	// ÀÌ °æ¿ì µ¥ÀÌÅÍ ÇÚµé¸µÀº ClientDataStore ¿¡¼­ µÈ »óÅÂ·Î ¿©±â¼­´Â UI ÂÊ ¾÷µ¥ÀÌÆ® ½ÅÈ£¸¸ ³¯·ÁÁØ´Ù.
+	// æ ç‰ˆå¿« å•æç£ å‹¤ç”¸å‚…ç¯® ClientDataStore ä¿Šè¾‘ ç­‰ æƒ‘æ€•è‚º å’¯æ‰è¾‘ç»° UI ç‡ è¯€å•æé£˜ è„šé¾‹çˆ¶ æœå¦¨éœ–ä¿ƒ.
 	LobbyUpdateAllItemIconsClass<>::GetInstance().Signal();
 }
 
 void UB2LobbyInventory::OnItemsAddedAtStore(const FB2AddedItems& AddedItems)
 {
-	// ÀÌ °æ¿ì µ¥ÀÌÅÍ ÇÚµé¸µÀº ClientDataStore ¿¡¼­ µÈ »óÅÂ·Î ¿©±â¼­´Â UI ÂÊ ¾÷µ¥ÀÌÆ® ½ÅÈ£¸¸ ³¯·ÁÁØ´Ù.
-	// °³º° ¾ÆÀÌÅÛ ¾÷µ¥ÀÌÆ® ½ÅÈ£´Â ÀÖÀ¸³ª Ãß°¡ÇÏ´Â °Í¿¡ ´ëÇØ¼­´Â ¾Æ´Ô. ¸ğµÎ ¾÷µ¥ÀÌÆ®.
+	// æ ç‰ˆå¿« å•æç£ å‹¤ç”¸å‚…ç¯® ClientDataStore ä¿Šè¾‘ ç­‰ æƒ‘æ€•è‚º å’¯æ‰è¾‘ç»° UI ç‡ è¯€å•æé£˜ è„šé¾‹çˆ¶ æœå¦¨éœ–ä¿ƒ.
+	// ä¿ºå–Š é…’æè¢ è¯€å•æé£˜ è„šé¾‹ç»° ä¹æ å”± çœ å•Šçªç»° å·´ä¿Š æªç§¦è¾‘ç»° é…’ä¸›. è‘›æ»´ è¯€å•æé£˜.
 	LobbyUpdateAllItemIconsClass<>::GetInstance().Signal();
 }
 
@@ -870,7 +870,7 @@ bool UB2LobbyInventory::IsIngredsAllItemEquiped(EPCClass PCClass, EItemInvenType
 	InvenTypeFilter.Add(InvenType);
 
 	TArray<FB2Item> OutFilteredList;
-	// ÀåÂø, Àá±İ, ÇÁ¸®¼Â µÇ¾î ÀÖ´Â°Å Á¦¿Ü.
+	// å˜é¦’, æ³ªé™›, æ©‡åºœæ‚¸ ç™»ç»¢ ä¹ç»°èŠ­ åŠ›å¯‡.
 	GetFilteredItemList(OutFilteredList, false, false, false, InvenTypeFilter, StarGradeFilter);
 
 	return OutFilteredList.Num() < 1;
@@ -889,7 +889,7 @@ bool UB2LobbyInventory::IsIngredsAllItemLock(EPCClass PCClass, EItemInvenType In
 	InvenTypeFilter.Add(InvenType);
 
 	TArray<FB2Item> OutFilteredList;
-	// Àá±İ, ÇÁ¸®¼Â µÇ¾î ÀÖ´Â°Å Á¦¿Ü.
+	// æ³ªé™›, æ©‡åºœæ‚¸ ç™»ç»¢ ä¹ç»°èŠ­ åŠ›å¯‡.
 	GetFilteredItemList(OutFilteredList, false, false, false, InvenTypeFilter, StarGradeFilter);
 
 	return OutFilteredList.Num() < 1;
@@ -907,7 +907,7 @@ bool UB2LobbyInventory::HasIngredsSameGrade(EPCClass PCClass, EItemInvenType Inv
 		StarGradeFilter.Add(Grade);
 
 		TArray<FB2Item> OutFilteredList;
-		// ÀåÂø ¹× Àá±İ, ÇÁ¸®¼Â µÇ¾î ÀÖ´Â°Å Á¦¿Ü.
+		// å˜é¦’ æ£º æ³ªé™›, æ©‡åºœæ‚¸ ç™»ç»¢ ä¹ç»°èŠ­ åŠ›å¯‡.
 		GetFilteredItemList(OutFilteredList, false, false, false, InvenTypeFilter, StarGradeFilter);
 
 		if (OutFilteredList.Num() > 1)
@@ -930,7 +930,7 @@ bool UB2LobbyInventory::HasPossibleLevelupItem(EPCClass PCClass, EItemInvenType 
 	InvenTypeFilter.Add(InvenType);
 
 	TArray<FB2Item> OutFilteredList;
-	// ÀåÂø ¹× Àá±İ, ÇÁ¸®¼Â µÇ¾î ÀÖ´Â°Å Á¦¿Ü.
+	// å˜é¦’ æ£º æ³ªé™›, æ©‡åºœæ‚¸ ç™»ç»¢ ä¹ç»°èŠ­ åŠ›å¯‡.
 	GetFilteredItemList(OutFilteredList, false, false, false, InvenTypeFilter, StarGradeFilter);
 
 	return OutFilteredList.Num() > 0;
@@ -949,7 +949,7 @@ bool UB2LobbyInventory::IsIngredsAllMaxLevel(EPCClass PCClass, EItemInvenType In
 	InvenTypeFilter.Add(InvenType);
 
 	TArray<FB2Item> OutFilteredList;
-	// ÀåÂø ¹× Àá±İ, ÇÁ¸®¼Â µÇ¾î ÀÖ´Â°Å Á¦¿Ü.
+	// å˜é¦’ æ£º æ³ªé™›, æ©‡åºœæ‚¸ ç™»ç»¢ ä¹ç»°èŠ­ åŠ›å¯‡.
 	GetFilteredItemList(OutFilteredList, false, false, false, InvenTypeFilter, StarGradeFilter);
 
 	for (const FB2Item &Each : OutFilteredList)
@@ -995,18 +995,18 @@ int32 UB2LobbyInventory::HowMannyHammer(int64 HammerID) const
 #if !UE_BUILD_SHIPPING
 void UB2LobbyInventory::DevOnlyGenerateDummyItemData(bool bRequestToServer)
 {
-	// ±âÁ¸¿¡ ¿©±â¿¡ Ãß°¡Çß´ø bRequestToServer °¡ ´õ ÀÌ»ó ¾È¸ÔÈ÷´Â °ü°è·Î DevOnlyRequestDummyItems ¸¦ ´ë½Å »ç¿ë
+	// æ‰ç²®ä¿Š å’¯æ‰ä¿Š çœ å•Šæ²å¸¦ bRequestToServer å•Š æ­¹ ææƒ‘ æ•‘å†ˆæ´’ç»° åŒ…æ‹Œè‚º DevOnlyRequestDummyItems ç”« æªè„š è¤ä¾©
 	if (bRequestToServer)
 	{
 		DevOnlyRequestDummyItems(30, 1000100, 0.3f);
 		return;
 	}
 
-	if (!bRequestToServer) // Å¬¶óÀÌ¾ğÆ® Àü¿ë ±â´ÉÀÇ °æ¿ì, ÀÎº¥Åä¸® ±â´É È®ÀÎ Â÷¿øÀÌ´Ï ±âÁ¸ °Íµé ºñ¿ìÀÚ.
+	if (!bRequestToServer) // åŠªæ‰¼ææ”«é£˜ å‚ˆä¾© æ‰ç“·ç‹¼ ç‰ˆå¿«, ç‰¢äº¥é…åºœ æ‰ç“· çŠ¬ç‰¢ ç’ç›”æèª æ‰ç²® å·´ç”¸ åšå¿«ç£Š.
 	{
 		for (int32 IPI = 0; IPI < GetMaxPCClassNum(); ++IPI)
 		{
-			// ½ÇÁ¦ ClientDataStore ¿¡ ÀÖ´Â µ¥ÀÌÅÍ¸¦ Á¦°ÅÇÏ´Â °ÍÀ¸·Î¼­ ½ÇÁ¦ ±â´É¿¡´Â ÀÌ·± ÄÚµå¸¦ ³ÖÀ¸¸é ¾ÈµÊ.
+			// è§’åŠ› ClientDataStore ä¿Š ä¹ç»° å•æç£ç”« åŠ›èŠ­çªç»° å·´æ è‚ºè¾‘ è§’åŠ› æ‰ç“·ä¿Šç»° æç¹ å†…é›ç”« æŒæ æ æ•‘å‡³.
 			TMap<int64, FB2Item>* WeaponMap = PCItems[IPI].GetItemMapForInvenType(EItemInvenType::EIIVT_Weapon);
 			if (WeaponMap)
 				WeaponMap->Empty();
@@ -1022,46 +1022,46 @@ void UB2LobbyInventory::DevOnlyGenerateDummyItemData(bool bRequestToServer)
 
 	for (int32 IPI = 0; IPI < GetMaxPCClassNum(); ++IPI)
 	{
-		// ±¸Áú±¸ÁúÇÏÁö¸¸ Å×½ºÆ® ±â´ÉÀÌ´Ï ±×³É °£´Ù.
+		// å¤‡é¾™å¤‡é¾™çªç˜¤çˆ¶ æŠ›èƒ¶é£˜ æ‰ç“·æèª å¼Šæˆ åŸƒä¿ƒ.
 		EPCClass CurrPCClass = ItemAllowedPCClassEnum(IPI);
 
-		// ¿©±â¼­ ItemRefID ¼ıÀÚ Ã¤¿ö³Ö´Â ·ÎÁ÷Àº ´Ü¼øÈ÷ ±¸Çö ´ç½Ã ´õ¹Ì µ¥ÀÌÅÍ¿¡ ¸ÂÃá °ÍÀÓ.
+		// å’¯æ‰è¾‘ ItemRefID ç®­ç£Š ç›²å†µæŒç»° è‚ºæµç¯® çªœé‰´æ´’ å¤‡æ³… å¯¸çŸ« æ­¹å›º å•æç£ä¿Š å˜å†• å·´çƒ™.
 
-		// ¾Æ·¡ ´õÇÒ ¾ÆÀÌÅÛ Áß¿¡¼­ ÀåÂøÇÒ °Å ¸î°³¸¦ ¹«ÀÛÀ§·Î »© ¿Â´Ù. ¼­¹ö¿¡ ¿äÃ»ÇÏ´Â »óÈ²ÀÌ¸é ¾ÈµÉ °Í.
+		// é…’è´° æ­¹ä¸” é…’æè¢ åä¿Šè¾‘ å˜é¦’ä¸” èŠ­ å‰²ä¿ºç”« å…¬ç´¯å›°è‚º å“— æŸ¯ä¿ƒ. è¾‘æ»šä¿Š å¤¸æ²¡çªç»° æƒ‘ç‚”ææ æ•‘çª å·´.
 		TArray<int64> IDsToEquip;
 
-		const int WeaponNum = FMath::RandRange(24, 36); // ÀüÃ¼ °³¼ö
-		const int WeaponEquipIndex = FMath::RandRange(0, WeaponNum - 1); // ±× Áß ÀåÂøÇÒ °Å ÀÎµ¦½º
+		const int WeaponNum = FMath::RandRange(24, 36); // å‚ˆçœ‰ ä¿ºè
+		const int WeaponEquipIndex = FMath::RandRange(0, WeaponNum - 1); // å¼Š å å˜é¦’ä¸” èŠ­ ç‰¢éƒ¸èƒ¶
 		for (int32 NI = 0; NI < WeaponNum; ++NI)
 		{
 			const int32 StarGrade = (NI % 3) + 1;
 
 			FB2Item NewWeapon;
-			NewWeapon.InstanceUID = 1230000 + IPI * 1000 + NI; // »ç¿ëµÇ´Â »óÈ²¿¡¼­ ´Ù¸¥ ¾ÆÀÌÅÛÀº ¾øÀ» °ÍÀÌ¹Ç·Î ¿©±â¼­¸¸ÀÌ¶óµµ °ãÄ¡Áö ¾Ê°Ô Àû´çÈ÷ ³Ö¾îÁÜ
-			// ÀÚ¸®¼ö º°·Î ÀÇ¹Ì°¡ ÀÖÀ½. ¾îÂ÷ÇÇ Áö±İÀº ´õ¹Ì µ¥ÀÌÅÍÁö¸¸ ¸ÂÃçº»´Ù.
+			NewWeapon.InstanceUID = 1230000 + IPI * 1000 + NI; // è¤ä¾©ç™»ç»° æƒ‘ç‚”ä¿Šè¾‘ ä¿ƒå¼— é…’æè¢ç¯® ç»é˜‘ å·´æéª¨è‚º å’¯æ‰è¾‘çˆ¶ææ‰¼æ¡£ èˆ¬æ‘¹ç˜¤ è‡¼éœ¸ åˆ©å¯¸æ´’ æŒç»¢æ·‹
+			// ç£Šåºœè å–Šè‚º ç‹¼å›ºå•Š ä¹æ¾œ. ç»¢ç’ä¹” ç˜¤é™›ç¯® æ­¹å›º å•æç£ç˜¤çˆ¶ å˜è‹—å¤¯ä¿ƒ.
 			NewWeapon.ItemRefID = 1000000 + 100000 * IPI + 0 + 100 * StarGrade;
 
-			if (bRequestToServer) // ¼­¹ö¿¡ ¿äÃ»ÇÑ´Ù¸é Áö±İ±îÁö Á¤º¸·Î ÃæºĞÇÔ. ¼­¹ö Å×½ºÆ® Ä¿¸Çµå »ç¿ë.
+			if (bRequestToServer) // è¾‘æ»šä¿Š å¤¸æ²¡èŒ„ä¿ƒæ ç˜¤é™›é³–ç˜¤ æ²¥ç„Šè‚º é¢ç›’çªƒ. è¾‘æ»š æŠ›èƒ¶é£˜ ç›®ç›–é› è¤ä¾©.
 			{
 				data_trader::ExecHandler::GetInstance().ExecuteShellCommand(*FString::Printf(TEXT("AddItem %d %d"), NewWeapon.ItemRefID, StarGrade));
 				continue;
 			}
 
-			// ÀÌÇÏ´Â ÁøÂ¥ °¡¶ó µ¥ÀÌÅÍ ³¥³¥
+			// æçªç»° æŸ³æ¥¼ å•Šæ‰¼ å•æç£ å¿å¿
 			DevOnlyLoadItemClientTestData(NewWeapon);
 			NewWeapon.PrimaryPointType = EItemPrimaryPointType::EIPP_Attack;
 			NewWeapon.SetPrimaryPoint((float)StarGrade * 100.0f + FMath::FRandRange(0.0f, 100.0f));
-			NewWeapon.Level = FMath::RandRange(1, NewWeapon.MaxLevel - 1); // °­È­ ·¹º§Àº º¸¿©Áö´Â Áß¿ä Á¤º¸ Áß ÇÏ³ªÀÌ´Ï ¹«ÀÛÀ§·Î ³Ö¾îÁÖÀÚ ¤»
-			NewWeapon.Quality = FMath::RandRange(1, MAX_ITEM_QUALITY); // Ç°Áúµµ º¸¿©Áö´Â Á¤º¸.
+			NewWeapon.Level = FMath::RandRange(1, NewWeapon.MaxLevel - 1); // ç¢æ‹³ é¥­éª‡ç¯® ç„Šå’¯ç˜¤ç»° åå¤¸ æ²¥ç„Š å çªå”±æèª å…¬ç´¯å›°è‚º æŒç»¢æ—ç£Š ã›
+			NewWeapon.Quality = FMath::RandRange(1, MAX_ITEM_QUALITY); // å‰é¾™æ¡£ ç„Šå’¯ç˜¤ç»° æ²¥ç„Š.
 			
-			// Æ¯Á¤ Á¶°Ç¿¡¼­¸¸ »ç¿ë °¡´ÉÇÑ ÇÕ¼º, ½Â±Ş, ÃÊ¿ù Å×½ºÆ®¸¦ À§ÇØ Æ¯º° ¼öÄ¡ ¼¼ÆÃ.
+			// æ¼‚æ²¥ ç‚¼æ‰’ä¿Šè¾‘çˆ¶ è¤ä¾© å•Šç“·èŒ„ é’¦å·±, é“°é­, æª¬å²¿ æŠ›èƒ¶é£˜ç”« å›°ç§¦ æ¼‚å–Š èæ‘¹ æŠ€æ³¼.
 			if (FMath::RandRange(1, 10) == 1)
 			{
 				NewWeapon.StarGrade = FItemGradeInfo::MAX_NORMAL_ITEM_STAR_GRADE;
 				NewWeapon.Level = NewWeapon.MaxLevel;
 			}
 			else if (FMath::RandRange(1, 10) == 1)
-			{ // ÃÊ¿ù Àç·á
+			{ // æª¬å²¿ çŠä¸°
 				NewWeapon.StarGrade = FItemGradeInfo::MAX_NORMAL_ITEM_STAR_GRADE;
 				NewWeapon.Level = 1;
 			}
@@ -1070,7 +1070,7 @@ void UB2LobbyInventory::DevOnlyGenerateDummyItemData(bool bRequestToServer)
 				NewWeapon.Level = NewWeapon.MaxLevel;
 			}
 
-			// ´É·ÂÄ¡ ¿É¼Ç Àû´çÈ÷ ³Ö¾îÁÜ ¤»
+			// ç“·ä»¿æ‘¹ å¯è®° åˆ©å¯¸æ´’ æŒç»¢æ·‹ ã›
 			int32 IntrinsicOptionNum = FMath::RandRange(0, MAX_ITEM_INTRINSIC_OPTION);
 			int32 AllOptionRange = (int32)EItemOption::EIO_Skill_IncSkill5Damage - (int32)EItemOption::EIO_Offense_IncAttack;
 			for (int32 AI = 0; AI < IntrinsicOptionNum; ++AI)
@@ -1099,19 +1099,19 @@ void UB2LobbyInventory::DevOnlyGenerateDummyItemData(bool bRequestToServer)
 			}
 		}
 
-		// ¹æ¾î±¸µé
-		const int ProtectionNum = FMath::RandRange(36, 48); // ÀüÃ¼ °³¼ö
-		const int ProtectionEquipIndex = FMath::RandRange(0, ProtectionNum - 1); // ±× Áß ÀåÂøÇÒ °Å ÀÎµ¦½º
+		// è§„ç»¢å¤‡ç”¸
+		const int ProtectionNum = FMath::RandRange(36, 48); // å‚ˆçœ‰ ä¿ºè
+		const int ProtectionEquipIndex = FMath::RandRange(0, ProtectionNum - 1); // å¼Š å å˜é¦’ä¸” èŠ­ ç‰¢éƒ¸èƒ¶
 		for (int32 NI = 0; NI < ProtectionNum; ++NI)
 		{
-			const int32 ItemClassID = (NI % 3) + 1; // ¹æ¾î±¸ Á¾·ù
+			const int32 ItemClassID = (NI % 3) + 1; // è§„ç»¢å¤‡ è¾†å¹…
 			const int32 StarGrade = (NI % 3) + 1;
 
 			FB2Item NewProtection;
 			NewProtection.InstanceUID = 56340000 + IPI * 1000 + NI;
 			NewProtection.ItemRefID = 1000000 + 100000 * IPI + 1000 * ItemClassID + 100 * StarGrade;
 
-			if (bRequestToServer) // ¼­¹ö¿¡ ¿äÃ»ÇÑ´Ù¸é Áö±İ±îÁö Á¤º¸·Î ÃæºĞÇÔ. ¼­¹ö Å×½ºÆ® Ä¿¸Çµå »ç¿ë.
+			if (bRequestToServer) // è¾‘æ»šä¿Š å¤¸æ²¡èŒ„ä¿ƒæ ç˜¤é™›é³–ç˜¤ æ²¥ç„Šè‚º é¢ç›’çªƒ. è¾‘æ»š æŠ›èƒ¶é£˜ ç›®ç›–é› è¤ä¾©.
 			{
 				data_trader::ExecHandler::GetInstance().ExecuteShellCommand(*FString::Printf(TEXT("AddItem %d %d"), NewProtection.ItemRefID, StarGrade));
 				continue;
@@ -1120,17 +1120,17 @@ void UB2LobbyInventory::DevOnlyGenerateDummyItemData(bool bRequestToServer)
 			DevOnlyLoadItemClientTestData(NewProtection);
 			NewProtection.PrimaryPointType = EItemPrimaryPointType::EIPP_Defense;
 			NewProtection.SetPrimaryPoint((float)StarGrade * 100.0f + FMath::FRandRange(0.0f, 100.0f));
-			NewProtection.Level = FMath::RandRange(1, NewProtection.MaxLevel - 1); // °­È­ ·¹º§Àº º¸¿©Áö´Â Áß¿ä Á¤º¸ Áß ÇÏ³ªÀÌ´Ï ¹«ÀÛÀ§·Î ³Ö¾îÁÖÀÚ ¤»
-			NewProtection.Quality = FMath::RandRange(1, MAX_ITEM_QUALITY); // Ç°Áúµµ º¸¿©Áö´Â Á¤º¸.
+			NewProtection.Level = FMath::RandRange(1, NewProtection.MaxLevel - 1); // ç¢æ‹³ é¥­éª‡ç¯® ç„Šå’¯ç˜¤ç»° åå¤¸ æ²¥ç„Š å çªå”±æèª å…¬ç´¯å›°è‚º æŒç»¢æ—ç£Š ã›
+			NewProtection.Quality = FMath::RandRange(1, MAX_ITEM_QUALITY); // å‰é¾™æ¡£ ç„Šå’¯ç˜¤ç»° æ²¥ç„Š.
 			
-			// Æ¯Á¤ Á¶°Ç¿¡¼­¸¸ »ç¿ë °¡´ÉÇÑ ÇÕ¼º, ½Â±Ş, ÃÊ¿ù Å×½ºÆ®¸¦ À§ÇØ Æ¯º° ¼öÄ¡ ¼¼ÆÃ.
+			// æ¼‚æ²¥ ç‚¼æ‰’ä¿Šè¾‘çˆ¶ è¤ä¾© å•Šç“·èŒ„ é’¦å·±, é“°é­, æª¬å²¿ æŠ›èƒ¶é£˜ç”« å›°ç§¦ æ¼‚å–Š èæ‘¹ æŠ€æ³¼.
 			if (FMath::RandRange(1, 10) == 1)
 			{
 				NewProtection.StarGrade = FItemGradeInfo::MAX_NORMAL_ITEM_STAR_GRADE;
 				NewProtection.Level = NewProtection.MaxLevel;
 			}
 			else if (FMath::RandRange(1, 10) == 1)
-			{ // ÃÊ¿ù Àç·á
+			{ // æª¬å²¿ çŠä¸°
 				NewProtection.StarGrade = FItemGradeInfo::MAX_NORMAL_ITEM_STAR_GRADE;
 				NewProtection.Level = 1;
 			}
@@ -1139,7 +1139,7 @@ void UB2LobbyInventory::DevOnlyGenerateDummyItemData(bool bRequestToServer)
 				NewProtection.Level = NewProtection.MaxLevel;
 			}
 
-			// ´É·ÂÄ¡ ¿É¼Ç Àû´çÈ÷ ³Ö¾îÁÜ ¤»
+			// ç“·ä»¿æ‘¹ å¯è®° åˆ©å¯¸æ´’ æŒç»¢æ·‹ ã›
 			int32 IntrinsicOptionNum = FMath::RandRange(0, MAX_ITEM_INTRINSIC_OPTION);
 			int32 AllOptionRange = (int32)EItemOption::EIO_Defense_ResistCritical - (int32)EItemOption::EIO_Health_ProbableHPAbsorption;
 			for (int32 AI = 0; AI < IntrinsicOptionNum; ++AI)
@@ -1168,38 +1168,38 @@ void UB2LobbyInventory::DevOnlyGenerateDummyItemData(bool bRequestToServer)
 			}
 		}
 
-		// Àå½Å±¸µé
-		const int AccessoryNum = FMath::RandRange(36, 48); // ÀüÃ¼ °³¼ö
-		const int AccessoryEquipIndex = FMath::RandRange(0, AccessoryNum - 1); // ±× Áß ÀåÂøÇÒ °Å ÀÎµ¦½º
+		// å˜è„šå¤‡ç”¸
+		const int AccessoryNum = FMath::RandRange(36, 48); // å‚ˆçœ‰ ä¿ºè
+		const int AccessoryEquipIndex = FMath::RandRange(0, AccessoryNum - 1); // å¼Š å å˜é¦’ä¸” èŠ­ ç‰¢éƒ¸èƒ¶
 		for (int32 NI = 0; NI < AccessoryNum; ++NI)
 		{
-			const int32 ItemClassID = (NI % 3) + 5; // Àå½Å±¸ Á¾·ù
+			const int32 ItemClassID = (NI % 3) + 5; // å˜è„šå¤‡ è¾†å¹…
 			const int32 StarGrade = (NI % 3) + 1;
 
 			FB2Item NewAccessory;
 			NewAccessory.InstanceUID = 98230000 + IPI * 1000 + NI;
 			NewAccessory.ItemRefID = 1000000 + 100000 * IPI + 1000 * ItemClassID + 100 * StarGrade;
 
-			if (bRequestToServer) // ¼­¹ö¿¡ ¿äÃ»ÇÑ´Ù¸é Áö±İ±îÁö Á¤º¸·Î ÃæºĞÇÔ. ¼­¹ö Å×½ºÆ® Ä¿¸Çµå »ç¿ë.
+			if (bRequestToServer) // è¾‘æ»šä¿Š å¤¸æ²¡èŒ„ä¿ƒæ ç˜¤é™›é³–ç˜¤ æ²¥ç„Šè‚º é¢ç›’çªƒ. è¾‘æ»š æŠ›èƒ¶é£˜ ç›®ç›–é› è¤ä¾©.
 			{
 				data_trader::ExecHandler::GetInstance().ExecuteShellCommand(*FString::Printf(TEXT("AddItem %d %d"), NewAccessory.ItemRefID, StarGrade));
 				continue;
 			}
 
 			DevOnlyLoadItemClientTestData(NewAccessory);
-			NewAccessory.PrimaryPointType = EItemPrimaryPointType::EIPP_Health; // Àå½Å±¸´Â ±âº» ´É·ÂÄ¡°¡ Ã¼·ÂÀÎ°Ç°¡.
+			NewAccessory.PrimaryPointType = EItemPrimaryPointType::EIPP_Health; // å˜è„šå¤‡ç»° æ‰å¤¯ ç“·ä»¿æ‘¹å•Š çœ‰ä»¿ç‰¢æ‰’å•Š.
 			NewAccessory.SetPrimaryPoint((float)StarGrade * 100.0f + FMath::FRandRange(0.0f, 100.0f));
-			NewAccessory.Level = FMath::RandRange(1, NewAccessory.MaxLevel - 1); // °­È­ ·¹º§Àº º¸¿©Áö´Â Áß¿ä Á¤º¸ Áß ÇÏ³ªÀÌ´Ï ¹«ÀÛÀ§·Î ³Ö¾îÁÖÀÚ ¤»
-			NewAccessory.Quality = FMath::RandRange(1, MAX_ITEM_QUALITY); // Ç°Áúµµ º¸¿©Áö´Â Á¤º¸.
+			NewAccessory.Level = FMath::RandRange(1, NewAccessory.MaxLevel - 1); // ç¢æ‹³ é¥­éª‡ç¯® ç„Šå’¯ç˜¤ç»° åå¤¸ æ²¥ç„Š å çªå”±æèª å…¬ç´¯å›°è‚º æŒç»¢æ—ç£Š ã›
+			NewAccessory.Quality = FMath::RandRange(1, MAX_ITEM_QUALITY); // å‰é¾™æ¡£ ç„Šå’¯ç˜¤ç»° æ²¥ç„Š.
 			
-			// Æ¯Á¤ Á¶°Ç¿¡¼­¸¸ »ç¿ë °¡´ÉÇÑ ÇÕ¼º, ½Â±Ş, ÃÊ¿ù Å×½ºÆ®¸¦ À§ÇØ Æ¯º° ¼öÄ¡ ¼¼ÆÃ.
+			// æ¼‚æ²¥ ç‚¼æ‰’ä¿Šè¾‘çˆ¶ è¤ä¾© å•Šç“·èŒ„ é’¦å·±, é“°é­, æª¬å²¿ æŠ›èƒ¶é£˜ç”« å›°ç§¦ æ¼‚å–Š èæ‘¹ æŠ€æ³¼.
 			if (FMath::RandRange(1, 10) == 1)
 			{
 				NewAccessory.StarGrade = FItemGradeInfo::MAX_NORMAL_ITEM_STAR_GRADE;
 				NewAccessory.Level = NewAccessory.MaxLevel;
 			}
 			else if (FMath::RandRange(1, 10) == 1)
-			{ // ÃÊ¿ù Àç·á
+			{ // æª¬å²¿ çŠä¸°
 				NewAccessory.StarGrade = FItemGradeInfo::MAX_NORMAL_ITEM_STAR_GRADE;
 				NewAccessory.Level = 1;
 			}
@@ -1208,7 +1208,7 @@ void UB2LobbyInventory::DevOnlyGenerateDummyItemData(bool bRequestToServer)
 				NewAccessory.Level = NewAccessory.MaxLevel;
 			}
 
-			// ´É·ÂÄ¡ ¿É¼Ç Àû´çÈ÷ ³Ö¾îÁÜ ¤»
+			// ç“·ä»¿æ‘¹ å¯è®° åˆ©å¯¸æ´’ æŒç»¢æ·‹ ã›
 			int32 IntrinsicOptionNum = FMath::RandRange(0, MAX_ITEM_INTRINSIC_OPTION);
 			int32 AllOptionRange = (int32)EItemOption::EIO_Misc_DecTagCooltime - (int32)EItemOption::EIO_Offense_IncAttack;
 			for (int32 AI = 0; AI < IntrinsicOptionNum; ++AI)
@@ -1237,15 +1237,15 @@ void UB2LobbyInventory::DevOnlyGenerateDummyItemData(bool bRequestToServer)
 			}
 		}
 
-		// Á¤¼ö ¾ÆÀÌÅÛµµ
+		// æ²¥è é…’æè¢æ¡£
 		int32 WeaponEssenceNum = 4;
 		for (int32 WEI = 0; WEI < WeaponEssenceNum; ++WEI)
 		{
 			const int32 StarGrade = WEI + 2;
 
 			FB2Item NewWeaponEssence;
-			NewWeaponEssence.InstanceUID = 7349579324000 + IPI * 1000 + WEI; // »ç¿ëµÇ´Â »óÈ²¿¡¼­ ´Ù¸¥ ¾ÆÀÌÅÛÀº ¾øÀ» °ÍÀÌ¹Ç·Î ¿©±â¼­¸¸ÀÌ¶óµµ °ãÄ¡Áö ¾Ê°Ô Àû´çÈ÷ ³Ö¾îÁÜ
-			// Á¤¼ö ¾ÆÀÌÅÛÀº 2000000 ¹ø´ë
+			NewWeaponEssence.InstanceUID = 7349579324000 + IPI * 1000 + WEI; // è¤ä¾©ç™»ç»° æƒ‘ç‚”ä¿Šè¾‘ ä¿ƒå¼— é…’æè¢ç¯® ç»é˜‘ å·´æéª¨è‚º å’¯æ‰è¾‘çˆ¶ææ‰¼æ¡£ èˆ¬æ‘¹ç˜¤ è‡¼éœ¸ åˆ©å¯¸æ´’ æŒç»¢æ·‹
+			// æ²¥è é…’æè¢ç¯® 2000000 é”…æª
 			NewWeaponEssence.ItemRefID = 2000000 + (100000 * IPI) + (0 * 1000) + (StarGrade * 100);
 
 			if (bRequestToServer)
@@ -1287,10 +1287,10 @@ void UB2LobbyInventory::DevOnlyGenerateDummyItemData(bool bRequestToServer)
 			ReAddStoredItem(NewAccessoryEssence, true, CurrPCClass, false);
 		}
 
-		// À§¿¡¼­ °¢ Á¾·ùº° ¹«ÀÛÀ§·Î °í¸¥ °ÍµéÀ» ÀåÂøÇÏ´Âµ¥ ¼­¹ö¿¡¼­ ¿äÃ»ÇÏ´Â »óÈ²ÀÌ¸é ÀÌ ½ÃÁ¡¿¡ Ã³¸®°¡ ¾Æ¸¶µµ ¾ÈµÇ¾úÀ»Å×´Ï ÀåÂø±îÁö´Â ¾ÈÇÔ ¤»
+		// å›°ä¿Šè¾‘ é˜¿ è¾†å¹…å–Š å…¬ç´¯å›°è‚º ç»Šå¼— å·´ç”¸é˜‘ å˜é¦’çªç»°å• è¾‘æ»šä¿Šè¾‘ å¤¸æ²¡çªç»° æƒ‘ç‚”ææ æ çŸ«ç—¢ä¿Š è´¸åºœå•Š é…’ä»˜æ¡£ æ•‘ç™»èŒé˜‘æŠ›èª å˜é¦’é³–ç˜¤ç»° æ•‘çªƒ ã›
 		if (!bRequestToServer)
 		{
-			// TODO ¾ÆÀÌÅÛ ÇÁ¸®¼Â (ÀÏ´Ü 0¹ø ÇÁ¸®¼Â »ç¿ë)
+			// TODO é…’æè¢ æ©‡åºœæ‚¸ (è€çªœ 0é”… æ©‡åºœæ‚¸ è¤ä¾©)
 			BladeIIGameImpl::GetLocalCharacterData().GetUserAllItems().EquipItems(IDsToEquip, true, 0);
 		}
 	}
@@ -1302,7 +1302,7 @@ void UB2LobbyInventory::DevOnlyGenerateDummyItemData(bool bRequestToServer)
 
 void UB2LobbyInventory::ReqForEquipItems(const TArray<int64>& UIDsToEquip)
 {
-	// TODO ¾ÆÀÌÅÛ ÇÁ¸®¼Â
+	// TODO é…’æè¢ æ©‡åºœæ‚¸
 	auto ePCClass = GetInventorySelectedPCClass();
 	int32 currentItemPresetId = BladeIIGameImpl::GetLocalCharacterData().GetUserAllItems().GetCurrentItemPresetID(ePCClass);
 
@@ -1311,7 +1311,7 @@ void UB2LobbyInventory::ReqForEquipItems(const TArray<int64>& UIDsToEquip)
 
 void UB2LobbyInventory::ReqForUnEquipItems(const TArray<int64>& UIDsToUnEquip)
 {
-	// TODO ¾ÆÀÌÅÛ ÇÁ¸®¼Â
+	// TODO é…’æè¢ æ©‡åºœæ‚¸
 	auto ePCClass = GetInventorySelectedPCClass();
 	int32 currentItemPresetId = BladeIIGameImpl::GetLocalCharacterData().GetUserAllItems().GetCurrentItemPresetID(ePCClass);
 
@@ -1486,12 +1486,12 @@ void UB2LobbyInventory::ReqForToggleTotemLock(int64 TotemInstanceUID, bool bLock
 
 void UB2LobbyInventory::OnReqForItemOpCommon()
 {
-	GhostItemOpIngreds.Empty(); // ¸®½ºÆ® ºñ¿öÁö±â Àü¿¡ UI ¿¬Ãâ¿¡ ¾²±â À§ÇØ Àç·á Á¤º¸¸¸ ½½Â½ ÀúÀå
+	GhostItemOpIngreds.Empty(); // åºœèƒ¶é£˜ åšå†µç˜¤æ‰ å‚ˆä¿Š UI æ¥·å…ä¿Š é™æ‰ å›°ç§¦ çŠä¸° æ²¥ç„Šçˆ¶ æµ‡é™† å†å˜
 	GetAllSelectedItemOpIngreds(GhostItemOpIngreds);
-	//ResetAllIngredsList(); -> ¿©±â¼­ Àç·á ¸¶Å© ¾ø¾Ö´Â °Ô ¾ÈÀüÇÏ±ä ÇÑµ¥ UI ¿¬Ãâ °ü·Ã ¿äÃ»ÀÌ ÀÖ¾î¼­ ÇÏÁö ¾Ê´Â´Ù.
+	//ResetAllIngredsList(); -> å’¯æ‰è¾‘ çŠä¸° ä»˜å†œ ç»å±€ç»° éœ¸ æ•‘å‚ˆçªå˜ èŒ„å• UI æ¥·å… åŒ…è®¿ å¤¸æ²¡æ ä¹ç»¢è¾‘ çªç˜¤ è‡¼ç»°ä¿ƒ.
 
-	// Request ¸¦ º¸³»°í ³ª¼­¾ß CachedItemOpTargetData ¸¦ Ä³½ÌÇØ ³õ´Â´Ù. ÀÌÀü±îÁö´Â CachedItemOpTargetData ¸¦ »ç¿ëÇÏ¸é ¾ÈµÊ.
-	GetItemOPTargetItemData(CachedItemOpTargetData, false); // ¿©±â¼­ true ¸¦ ÁÖ¸é CachedItemOpTargetData ¸¦ CachedItemOpTargetData ¿¡ ³ÖÀ¸·Á°í ÇÏ°ÚÁö ¤»
+	// Request ç”« ç„Šéƒ´ç»Š å”±è¾‘å…· CachedItemOpTargetData ç”« æŸæ•™ç§¦ åˆç»°ä¿ƒ. æå‚ˆé³–ç˜¤ç»° CachedItemOpTargetData ç”« è¤ä¾©çªæ æ•‘å‡³.
+	GetItemOPTargetItemData(CachedItemOpTargetData, false); // å’¯æ‰è¾‘ true ç”« æ—æ CachedItemOpTargetData ç”« CachedItemOpTargetData ä¿Š æŒæ å¦¨ç»Š çªæ‘†ç˜¤ ã›
 }
 
 void UB2LobbyInventory::ReqForExtendInventory(EPCClass InPCClass, EItemInvenType InvenType, int32 ExtendCount)
@@ -1514,12 +1514,12 @@ void UB2LobbyInventory::ReqForExtendInventory(EPCClass InPCClass, EItemInvenType
 EPCClass UB2LobbyInventory::GetInventorySelectedPCClass() 
 {	
 	if (TransientLobbyGM)
-	{// ·Îºñ¿¡¼± ÀÎº¥Åä¸®´Â ¿µ¿õ°ü¸® Ã¢ ¼±ÅÃ PC ¸¦ ±âº»À¸·Î. ¹°·Ğ ¾îµğ±îÁö³ª ±âº»°ª
+	{// è‚ºåšä¿Šæ€¥ ç‰¢äº¥é…åºœç»° åº·æ—·åŒ…åºœ èŠ’ æ€¥ç¶ PC ç”« æ‰å¤¯æ è‚º. æ‹±æ²¸ ç»¢å¼é³–ç˜¤å”± æ‰å¤¯è”¼
 		return TransientLobbyGM->GetHeroMgmtModePCClass();
 	}
 
-	// GetLocalPlayerCharacter ¸¦ »ç¿ëÇÒ ¼ö ÀÖ´Ù¸é ÀÎ°ÔÀÓ¿¡¼­ BladeIIPlayer ÀÇ GetCurrentPlayerClass ¸¦ »ç¿ëÇØ º¼ ¼öµµ.
-	// ¿©ÇÏ°£ ÀÌ°Ô »ç¿ëµÇ´Â »óÈ²¿¡¼­´Â PCClass ¸¦ Á÷Á¢ ÁöÁ¤ÇØ ÁÙ ¼ö ÀÖÀ» Å×´Ï °¡±ŞÀû Á÷Á¢ ÁöÁ¤À»..
+	// GetLocalPlayerCharacter ç”« è¤ä¾©ä¸” è ä¹ä¿ƒæ ç‰¢éœ¸çƒ™ä¿Šè¾‘ BladeIIPlayer ç‹¼ GetCurrentPlayerClass ç”« è¤ä¾©ç§¦ æ­ èæ¡£.
+	// å’¯çªåŸƒ æéœ¸ è¤ä¾©ç™»ç»° æƒ‘ç‚”ä¿Šè¾‘ç»° PCClass ç”« æµç«‹ ç˜¤æ²¥ç§¦ ä¸´ è ä¹é˜‘ æŠ›èª å•Šé­åˆ© æµç«‹ ç˜¤æ²¥é˜‘..
 
 	return EPCClass::EPC_End;
 }
@@ -1532,11 +1532,11 @@ FInvenPCItemAccessor* UB2LobbyInventory::GetPCItemAccessor(EPCClass InPCClass)
 
 TMap<int64, FB2Item>* UB2LobbyInventory::GetStoredItemMapPtr(EItemInvenType InItemInvenType, EPCClass InPCClass)
 {
-	const EPCClass FinalPCClass = (InPCClass == EPCClass::EPC_End) ? GetInventorySelectedPCClass() : InPCClass; // EPC_End ÁöÁ¤ ½Ã ÇöÀç ¼±ÅÃµÈ °É·Î.
+	const EPCClass FinalPCClass = (InPCClass == EPCClass::EPC_End) ? GetInventorySelectedPCClass() : InPCClass; // EPC_End ç˜¤æ²¥ çŸ« æ³…çŠ æ€¥ç¶ç­‰ å§è‚º.
 
 	TMap<int64, FB2Item>* RetList = NULL;
 
-	if (InItemInvenType == EItemInvenType::EIIVT_Consumables) // ¼Ò¸ğÇ°Àº ¸ğµç PC °£¿¡ °øÀ¯µÊ.
+	if (InItemInvenType == EItemInvenType::EIIVT_Consumables) // å®¶è‘›å‰ç¯® è‘›ç”µ PC åŸƒä¿Š å‚èœ¡å‡³.
 	{
 		RetList = &GetConsumablesList();
 	}
@@ -1552,7 +1552,7 @@ TMap<int64, FB2Item>* UB2LobbyInventory::GetStoredItemMapPtr(EItemInvenType InIt
 void UB2LobbyInventory::GetStoredItemList(TArray<FB2Item>& OutResult, EItemInvenType InItemInvenType, EPCClass InPCClass, bool bSort, int32 Grade)
 {
 	TMap<int64, FB2Item>* InternalMap = GetStoredItemMapPtr(InItemInvenType, InPCClass);
-	// UI µî¿¡¼­ ´Ü¼ø ¸®½ºÆ®·Î »ç¿ëÇÏ±â À§ÇØ TArray ¿¡ ³Ö¾îÁÖ´Â ±â´ÉÀÓ
+	// UI æ®¿ä¿Šè¾‘ çªœé‰´ åºœèƒ¶é£˜è‚º è¤ä¾©çªæ‰ å›°ç§¦ TArray ä¿Š æŒç»¢æ—ç»° æ‰ç“·çƒ™
 	if (InternalMap)
 	{
 		for (auto& CurrPair : *InternalMap)
@@ -1580,16 +1580,16 @@ void UB2LobbyInventory::SortItemListForStoredItemView(EItemInvenType InInvenType
 {
 #if UE_BUILD_DEBUG
 	for (const FB2Item& ThisItemCheck : InOutList)
-	{// InOutList °¢ element µéÀÇ InventoryType ÀÌ ÀÏÄ¡ÇØ¾ß ÇÔ.
+	{// InOutList é˜¿ element ç”¸ç‹¼ InventoryType æ è€æ‘¹ç§¦å…· çªƒ.
 		checkSlow(ThisItemCheck.InventoryType == InInvenType);
 	}
 #endif
 
 	if (InInvenType != EItemInvenType::EIIVT_Consumables) 
 	{
-		// ÀÎº¥Åä¸®¿¡ Áø¿­ÇÏ±â À§ÇÑ ¼ÒÆÃ.
-		// °­È­ < ·¹º§ < º°µî±Ş < Àá±İ < (ÀÏ½ÃÀû)»õ°Å ¼ø
-		// ¸í½ÃÀû ¿ä±¸»çÇ×Àº ¾Æ´Ï¾úÁö¸¸ À§ Á¶°ÇµéÀÌ ¸ğµÎ °°Àº °æ¿ì¸¦ À§ÇØ ÅäÅ» ÀüÅõ·ÂÀ» º£ÀÌ½º·Î..
+		// ç‰¢äº¥é…åºœä¿Š æŸ³å‡¯çªæ‰ å›°èŒ„ å®¶æ³¼.
+		// ç¢æ‹³ < é¥­éª‡ < å–Šæ®¿é­ < æ³ªé™› < (è€çŸ«åˆ©)è´§èŠ­ é‰´
+		// ç–™çŸ«åˆ© å¤¸å¤‡è¤äº²ç¯® é…’èªèŒç˜¤çˆ¶ å›° ç‚¼æ‰’ç”¸æ è‘›æ»´ éç¯® ç‰ˆå¿«ç”« å›°ç§¦ é…å‘• å‚ˆæ§ä»¿é˜‘ æµ·æèƒ¶è‚º..
 		struct FInvItemCombatPowerSorter
 		{
 			bool operator()(const FB2Item& A, const FB2Item& B) const
@@ -1597,7 +1597,7 @@ void UB2LobbyInventory::SortItemListForStoredItemView(EItemInvenType InInvenType
 				return A.Power > B.Power;
 			}
 		};
-		InOutList.StableSort(FInvItemCombatPowerSorter()); // ÀÌ¾îÁö´Â ¾Æ·¡ ¼ÒÆÃ¿¡¼­µµ ÀÌÀü ¼ÒÆÃÀ» º¸Á¸ÇÏ±â À§ÇØ StableSort ·Î.
+		InOutList.StableSort(FInvItemCombatPowerSorter()); // æç»¢ç˜¤ç»° é…’è´° å®¶æ³¼ä¿Šè¾‘æ¡£ æå‚ˆ å®¶æ³¼é˜‘ ç„Šç²®çªæ‰ å›°ç§¦ StableSort è‚º.
 
 		struct FInvItemEnhanceLevelSorter
 		{
@@ -1635,7 +1635,7 @@ void UB2LobbyInventory::SortItemListForStoredItemView(EItemInvenType InInvenType
 		};
 		InOutList.StableSort(FInvItemLockSorter());
 		
-		// ±×¸®°í »õ·Î ¾òÀº ¾ÆÀÌÅÛÀ» ÀÏ½ÃÀûÀ¸·Î Á¦ÀÏ ¾Õ¿¡ ³õ¾ÆÁÖ¾î¾ß ÇÑ´Ù´Âµ¥..
+		// å¼Šåºœç»Š è´§è‚º æ˜ç¯® é…’æè¢é˜‘ è€çŸ«åˆ©æ è‚º åŠ›è€ èŠä¿Š åˆé…’æ—ç»¢å…· èŒ„ä¿ƒç»°å•..
 		struct FInvItemNewSorter
 		{
 			bool operator()(const FB2Item& A, const FB2Item& B) const
@@ -1646,7 +1646,7 @@ void UB2LobbyInventory::SortItemListForStoredItemView(EItemInvenType InInvenType
 		InOutList.StableSort(FInvItemNewSorter());
 		
 
-		// Å« Å¸ÀÔ¿¡ µû¸¥ Á¤·Äµµ ÇÏ´Âµ¥ º¸°üÇÔ¿¡ ÀåÂø ¾ÆÀÌÅÛ ¿Ü¿¡ Á¤¼ö ¾ÆÀÌÅÛµµ µé¾î¿À±â ¶§¹®. ÀÌ°Ç »õ·Î µé¾î¿À´õ¶óµµ µÚ¿¡ ³Ö¾îÁÙ±î³ª..
+		// å¥´ é¸¥æ¶ä¿Š è¶å¼— æ²¥çººæ¡£ çªç»°å• ç„ŠåŒ…çªƒä¿Š å˜é¦’ é…’æè¢ å¯‡ä¿Š æ²¥è é…’æè¢æ¡£ ç”¸ç»¢å·æ‰ é”­å·©. ææ‰’ è´§è‚º ç”¸ç»¢å·æ­¹æ‰¼æ¡£ ç¬¬ä¿Š æŒç»¢ä¸´é³–å”±..
 		struct FInvItemTypeSorter
 		{
 			bool operator()(const FB2Item& A, const FB2Item& B) const
@@ -1656,7 +1656,7 @@ void UB2LobbyInventory::SortItemListForStoredItemView(EItemInvenType InInvenType
 		};
 		InOutList.StableSort(FInvItemTypeSorter());
 
-		//InstanceUID´Â ¾ÆÀÌÅÛÀÌ Áö±ŞµÈ ¼ø¼­·Î Æ©Åä¸®¾ó¿ë ¾ÆÀÌÅÛÀÌ °¡Àå ³ªÁß¿¡ Áö±ŞµÇ±â ¶§¹®¿¡ ÇØ´ç Á¶°ÇÀ¸·Î Á¤·Ä
+		//InstanceUIDç»° é…’æè¢æ ç˜¤é­ç­‰ é‰´è¾‘è‚º è­¬é…åºœå€”ä¾© é…’æè¢æ å•Šå˜ å”±åä¿Š ç˜¤é­ç™»æ‰ é”­å·©ä¿Š ç§¦å¯¸ ç‚¼æ‰’æ è‚º æ²¥çºº
 		if (TutorialManager::GetInstance().HasAnyTutorial())
 		{
 			struct FInvItemTypeSorter
@@ -1671,11 +1671,11 @@ void UB2LobbyInventory::SortItemListForStoredItemView(EItemInvenType InInvenType
 
 	}
 	else
-	{ // ¼Ò¸ğÇ°Àº Á» ´Ù¸¥ ±âÁØÀ¸·Î, ÀüÅõ·ÂÀÌ´Ï ·¹º§ÀÌ´Ï ÀÌ·± °Å ¾øÀ¸´Ï.. ´ëÃ¼·Î Å¸ÀÔ¿¡ µû¶ó Á¤ÇØÁü.
+	{ // å®¶è‘›å‰ç¯® ç²± ä¿ƒå¼— æ‰éœ–æ è‚º, å‚ˆæ§ä»¿æèª é¥­éª‡æèª æç¹ èŠ­ ç»æ èª.. æªçœ‰è‚º é¸¥æ¶ä¿Š è¶æ‰¼ æ²¥ç§¦å’™.
 
-		// ¾Æ·¡¿¡ ÀÌ·¯Áú Å¸ÀÔ Á¤·Äµµ ±×·¸Áö¸¸ °¡Àå ±âº»Àº Å×ÀÌºí¿¡ µî·ÏµÈ RefID ¼øÀÌ´Ù. 
-		// Å¸ÀÔº° Á¤·Ä¿¡¼­µµ ¹«±â/¹æ¾î±¸/Àå½Å±¸ Áß ¾îµğ¿¡ Àû¿ëµÇ´Â Àç·á³Ä¿¡ µû¶ó Á¤·ÄÀÌ µÇ¾î¾ß ÇÏ´Âµ¥ ¸ğµÎ ÀÏÀÏÀÌ ¸í½ÃÇÏÁö ¸øÇÏ°í RefID ·Î ÇÑ´Ù. 
-		// ¹°·Ğ Á¤·Ä ¼ø¼­¿¡ µû¶ó RefID °¡ Á¤ÇØÁ® ÀÖ¾î¾ß ÇÑ´Ù.
+		// é…’è´°ä¿Š æçŸ¾é¾™ é¸¥æ¶ æ²¥çººæ¡£ å¼ŠçŠ¯ç˜¤çˆ¶ å•Šå˜ æ‰å¤¯ç¯® æŠ›æå–‰ä¿Š æ®¿åºŸç­‰ RefID é‰´æä¿ƒ. 
+		// é¸¥æ¶å–Š æ²¥çººä¿Šè¾‘æ¡£ å…¬æ‰/è§„ç»¢å¤‡/å˜è„šå¤‡ å ç»¢å¼ä¿Š åˆ©ä¾©ç™»ç»° çŠä¸°è¡¬ä¿Š è¶æ‰¼ æ²¥çººæ ç™»ç»¢å…· çªç»°å• è‘›æ»´ è€è€æ ç–™çŸ«çªç˜¤ ç»™çªç»Š RefID è‚º èŒ„ä¿ƒ. 
+		// æ‹±æ²¸ æ²¥çºº é‰´è¾‘ä¿Š è¶æ‰¼ RefID å•Š æ²¥ç§¦å»‰ ä¹ç»¢å…· èŒ„ä¿ƒ.
 		struct FConsumablesTypeSorter_RefID
 		{
 			bool operator()(const FB2Item& A, const FB2Item& B) const
@@ -1683,7 +1683,7 @@ void UB2LobbyInventory::SortItemListForStoredItemView(EItemInvenType InInvenType
 				return (A.ItemRefID < B.ItemRefID);
 			}
 		};
-		InOutList.StableSort(FConsumablesTypeSorter_RefID());  // ÀÌ¾îÁö´Â ¾Æ·¡ ¼ÒÆÃ¿¡¼­µµ ÀÌÀü ¼ÒÆÃÀ» º¸Á¸ÇÏ±â À§ÇØ StableSort ·Î.
+		InOutList.StableSort(FConsumablesTypeSorter_RefID());  // æç»¢ç˜¤ç»° é…’è´° å®¶æ³¼ä¿Šè¾‘æ¡£ æå‚ˆ å®¶æ³¼é˜‘ ç„Šç²®çªæ‰ å›°ç§¦ StableSort è‚º.
 
 		struct FConsumablesTypeSorter_SortValue
 		{
@@ -1700,8 +1700,8 @@ void UB2LobbyInventory::SortItemListForStoredItemView(EItemInvenType InInvenType
 				int32 ASortValue = ItemSortInfo->GetItemSortValue(A.ItemRefID);
 				int32 BSortValue = ItemSortInfo->GetItemSortValue(B.ItemRefID);
 
-				//2°¡Áö °æ¿ì A sort value > 0ÀÌ°í B°¡ -1 ÀÎ°æ¿ì
-				//µÑ´Ù ÀÖ´Â °æ¿ì A.SortValue > B.SortValue
+				//2å•Šç˜¤ ç‰ˆå¿« A sort value > 0æç»Š Bå•Š -1 ç‰¢ç‰ˆå¿«
+				//ç¬›ä¿ƒ ä¹ç»° ç‰ˆå¿« A.SortValue > B.SortValue
 
 				if (ASortValue > 0 && BSortValue == INDEX_NONE)
 					return true;
@@ -1738,28 +1738,28 @@ void UB2LobbyInventory::GetStoredItemList_ItemOpModeFilter(TArray<FB2Item>& OutR
 		const FB2Item& CurrCheck = OutResult[II];
 		bool bRemoveCurrentCheck = false;
 
-		// IsEnable** µé¿¡¼­ UID Ã¼Å©¸¦ ÇÏ±ä ÇÒ°Çµ¥, Upgrade ÀÇ °æ¿ì ÀÚ½ÅÀ» º¸¿©ÁÖ°Ô µÇ´ÂÁö´Â ¸ğ¸£°Ú´Ù. ÀÏ´Ü ¾î´À °æ¿ìµç ÀÚ½ÅÀº ¾È ³ª¿Àµµ·Ï.
+		// IsEnable** ç”¸ä¿Šè¾‘ UID çœ‰å†œç”« çªå˜ ä¸”æ‰’å•, Upgrade ç‹¼ ç‰ˆå¿« ç£Šè„šé˜‘ ç„Šå’¯æ—éœ¸ ç™»ç»°ç˜¤ç»° è‘›ç¦æ‘†ä¿ƒ. è€çªœ ç»¢è ¢ ç‰ˆå¿«ç”µ ç£Šè„šç¯® æ•‘ å”±å·æ¡£åºŸ.
 		bRemoveCurrentCheck = (CurrCheck.InstanceUID == OpTarget.InstanceUID);
 
 		switch (CurrentItemOpMode)
 		{
 		case ELobbyInvenItemOpMode::EIVIOP_Levelup:
-			bRemoveCurrentCheck |= !IsEnableItemLevelupIngred(CurrCheck); // ¼±ÅÃ °¡´ÉÇÑ °Í¸¸ º¸¿©ÁÖ±â.
+			bRemoveCurrentCheck |= !IsEnableItemLevelupIngred(CurrCheck); // æ€¥ç¶ å•Šç“·èŒ„ å·´çˆ¶ ç„Šå’¯æ—æ‰.
 			break;
 		case ELobbyInvenItemOpMode::EIVIOP_Upgrade:
-			bRemoveCurrentCheck |= !(IsItemUpgradeAllowed(CurrCheck) || IsItemAllowedCompositeAndSurpass(CurrCheck)); // ½Â±ŞÀÇ °æ¿ì´Â Á¶±İ Æ¯ÀÌÇÑµ¥, ½Â±Ş Àç·á¶õ °Ç ¾ø°í, ½Â±Ş Å¸°ÙÀÌ µÉ ¼ö ÀÖ´Â ¾Öµé¸¸ º¸¿©ÁØ´Ù.
+			bRemoveCurrentCheck |= !(IsItemUpgradeAllowed(CurrCheck) || IsItemAllowedCompositeAndSurpass(CurrCheck)); // é“°é­ç‹¼ ç‰ˆå¿«ç»° ç‚¼é™› æ¼‚æèŒ„å•, é“°é­ çŠä¸°é„‚ æ‰’ ç»ç»Š, é“°é­ é¸¥ç™¾æ çª è ä¹ç»° å±€ç”¸çˆ¶ ç„Šå’¯éœ–ä¿ƒ.
 			break;
 		case ELobbyInvenItemOpMode::EIVIOP_Composition:
-			bRemoveCurrentCheck |= !IsEnableComposeIngred(CurrCheck); // ¼±ÅÃ °¡´ÉÇÑ °Í¸¸ º¸¿©ÁÖ±â.
+			bRemoveCurrentCheck |= !IsEnableComposeIngred(CurrCheck); // æ€¥ç¶ å•Šç“·èŒ„ å·´çˆ¶ ç„Šå’¯æ—æ‰.
 			break;
 		case ELobbyInvenItemOpMode::EIVIOP_Surpass:
-			bRemoveCurrentCheck |= !IsEnableSurpassIngred(CurrCheck); // ¼±ÅÃ °¡´ÉÇÑ °Í¸¸ º¸¿©ÁÖ±â.
+			bRemoveCurrentCheck |= !IsEnableSurpassIngred(CurrCheck); // æ€¥ç¶ å•Šç“·èŒ„ å·´çˆ¶ ç„Šå’¯æ—æ‰.
 			break;
 		case ELobbyInvenItemOpMode::EIVIOP_Enhancement:
-			bRemoveCurrentCheck |= !IsVisibilityEhanceIngred(CurrCheck); // ¼±ÅÃ °¡´ÉÇÑ °Í¸¸ º¸¿©ÁÖ±â.
+			bRemoveCurrentCheck |= !IsVisibilityEhanceIngred(CurrCheck); // æ€¥ç¶ å•Šç“·èŒ„ å·´çˆ¶ ç„Šå’¯æ—æ‰.
 			break;			
 		case ELobbyInvenItemOpMode::EIVIOP_EnhancementChange:
-			bRemoveCurrentCheck |= !IsEnableEhanceChangeIngred(CurrCheck); // ¼±ÅÃ °¡´ÉÇÑ °Í¸¸ º¸¿©ÁÖ±â.
+			bRemoveCurrentCheck |= !IsEnableEhanceChangeIngred(CurrCheck); // æ€¥ç¶ å•Šç“·èŒ„ å·´çˆ¶ ç„Šå’¯æ—æ‰.
 			break;
 		case ELobbyInvenItemOpMode::EIVIOP_HeroChange:
 			bRemoveCurrentCheck = false;
@@ -1776,12 +1776,12 @@ void UB2LobbyInventory::GetStoredItemList_ItemOpModeFilter(TArray<FB2Item>& OutR
 
 void UB2LobbyInventory::GetMergedItemList(TArray<FB2Item>& OutResult, bool bIncludeEquipped, EPCClass InPCClass)
 {
-	const EPCClass FinalPCClass = (InPCClass == EPCClass::EPC_End) ? GetInventorySelectedPCClass() : InPCClass; // EPC_End ÁöÁ¤ ½Ã ÇöÀç ¼±ÅÃµÈ °É·Î.
+	const EPCClass FinalPCClass = (InPCClass == EPCClass::EPC_End) ? GetInventorySelectedPCClass() : InPCClass; // EPC_End ç˜¤æ²¥ çŸ« æ³…çŠ æ€¥ç¶ç­‰ å§è‚º.
 
 	for (int32 ITI = 0; ITI < (int32)EItemInvenType::EIIVT_End; ++ITI)
 	{
 		TArray<FB2Item> CurrList; 
-		GetStoredItemList(CurrList, (EItemInvenType)ITI, FinalPCClass, false); // ¿©±â¼­ ¼ÒÆÃÇØ ºÁ¾ß ¾îÂ÷ÇÇ ´õÇÒ °Å ÇÊ¿ä°¡ ¾øÁö.
+		GetStoredItemList(CurrList, (EItemInvenType)ITI, FinalPCClass, false); // å’¯æ‰è¾‘ å®¶æ³¼ç§¦ æ¯«å…· ç»¢ç’ä¹” æ­¹ä¸” èŠ­ é˜å¤¸å•Š ç»ç˜¤.
 		OutResult.Append(CurrList);
 	}
 
@@ -1800,18 +1800,18 @@ void UB2LobbyInventory::GetMergedItemList(TArray<FB2Item>& OutResult, bool bIncl
 void UB2LobbyInventory::GetFilteredItemList(TArray<FB2Item>& OutResult, bool bIncludeEquipped, bool bIncludeLocked, bool bIncludeEquippedPreset, TArray<EItemInvenType>& InvenTypeFilter, 
 											TArray<int32>& StarGradeFilter, EPCClass InPCClass, bool bIncludeLevelUp, bool bIncludeEnhanced, bool bIncludeEssence, bool bIncludeAnvil)
 {
-	const EPCClass FinalPCClass = (InPCClass == EPCClass::EPC_End) ? GetInventorySelectedPCClass() : InPCClass; // EPC_End ÁöÁ¤ ½Ã ÇöÀç ¼±ÅÃµÈ °É·Î.
+	const EPCClass FinalPCClass = (InPCClass == EPCClass::EPC_End) ? GetInventorySelectedPCClass() : InPCClass; // EPC_End ç˜¤æ²¥ çŸ« æ³…çŠ æ€¥ç¶ç­‰ å§è‚º.
 
 	TArray<FB2Item> MergedList;
-	GetMergedItemList(MergedList, bIncludeEquipped, FinalPCClass); // ÀÏ´Ü filter ¿ÜÀÇ Á¶°Ç¿¡¼­ ÀüÃ¼ ÇÕÃÄÁø ¾ÆÀÌÅÛ ¸ñ·Ï.
+	GetMergedItemList(MergedList, bIncludeEquipped, FinalPCClass); // è€çªœ filter å¯‡ç‹¼ ç‚¼æ‰’ä¿Šè¾‘ å‚ˆçœ‰ é’¦åªšæŸ³ é…’æè¢ æ ¼åºŸ.
 
-	//TArray ¾²¸é Resize ÀÏ¾î³¯¶§ Lambda ¹ŞÀº std::functionÀÌ ¸Ş¸ğ¸® ±úÁü
+	//TArray é™æ Resize è€ç»¢æœé”­ Lambda ç½ç¯® std::functionæ çš‹è‘›åºœ æŸ„å’™
 	std::list<std::function<bool(FB2Item)>> FIlters;
-	// Â÷·Ê´ë·Î ÇÊÅÍ Ãß°¡
+	// ç’è‚¥æªè‚º é˜ç£ çœ å•Š
 	FIlters.emplace_back(
 		[&InvenTypeFilter](FB2Item CurrItem)
 	{
-		for (EItemInvenType CurrInvenType : InvenTypeFilter) // InvenTypeFilter ¿¡ ÀÖ´Â element Áß ¾î´À ÇÏ³ª¿Í ÀÏÄ¡ÇÏ¸é Æ÷ÇÔ.
+		for (EItemInvenType CurrInvenType : InvenTypeFilter) // InvenTypeFilter ä¿Š ä¹ç»° element å ç»¢è ¢ çªå”±å®¢ è€æ‘¹çªæ å™¨çªƒ.
 		{
 			if (CurrItem.InventoryType == CurrInvenType)
 			{
@@ -1824,7 +1824,7 @@ void UB2LobbyInventory::GetFilteredItemList(TArray<FB2Item>& OutResult, bool bIn
 	FIlters.emplace_back(
 		[&StarGradeFilter](FB2Item CurrItem)
 	{
-		for (int32 CurrStarGrade : StarGradeFilter) // StarGradeFilter ¿¡ ÀÖ´Â element Áß ¾î´À ÇÏ³ª¿Í ÀÏÄ¡ÇÏ¸é Æ÷ÇÔ.
+		for (int32 CurrStarGrade : StarGradeFilter) // StarGradeFilter ä¿Š ä¹ç»° element å ç»¢è ¢ çªå”±å®¢ è€æ‘¹çªæ å™¨çªƒ.
 		{
 			if (CurrItem.StarGrade == CurrStarGrade)
 			{
@@ -1834,7 +1834,7 @@ void UB2LobbyInventory::GetFilteredItemList(TArray<FB2Item>& OutResult, bool bIn
 		return false;
 	});
 	
-	// Lock µÈ °ÍÀ» °É·¯³»´Â °ÍÀº ÀÚµ¿ÆÇ¸Å³ª ÀÚµ¿°­È­ °°Àº ±â´É¿¡¼­ »ç¿ë.
+	// Lock ç­‰ å·´é˜‘ å§çŸ¾éƒ´ç»° å·´ç¯® ç£Šæ‚¼é­„æ¦‚å”± ç£Šæ‚¼ç¢æ‹³ éç¯® æ‰ç“·ä¿Šè¾‘ è¤ä¾©.
 	if (!bIncludeLocked)
 	{
 		FIlters.emplace_back(
@@ -1893,7 +1893,7 @@ void UB2LobbyInventory::GetFilteredItemList(TArray<FB2Item>& OutResult, bool bIn
 		});
 	}
 
-	// ÃÊ¿ùÀç·á(¸ğ·ç) ¿¹¿ÜÃ³¸®
+	// æª¬å²¿çŠä¸°(è‘›é£) æŠ—å¯‡è´¸åºœ
 	if (!bIncludeAnvil)
 	{
 		FIlters.emplace_back(
@@ -1910,21 +1910,21 @@ void UB2LobbyInventory::GetFilteredItemList(TArray<FB2Item>& OutResult, bool bIn
 		MergedList = MergedList.FilterByPredicate(Filter);
 	}
 	
-	OutResult = MergedList; // °á°ú ¸®½ºÆ®·Î Àü´Ş.
+	OutResult = MergedList; // æ¬è‹ åºœèƒ¶é£˜è‚º å‚ˆå´”.
 }
 
 void UB2LobbyInventory::GetStoredItemListForEquipPlace(TArray<FB2Item>& OutResult, EItemEquipPlace InEquipPlace, EPCClass InPCClass /*= EPCClass::EPC_End*/)
 {
-	const EPCClass FinalPCClass = (InPCClass == EPCClass::EPC_End) ? GetInventorySelectedPCClass() : InPCClass; // EPC_End ÁöÁ¤ ½Ã ÇöÀç ¼±ÅÃµÈ °É·Î.
+	const EPCClass FinalPCClass = (InPCClass == EPCClass::EPC_End) ? GetInventorySelectedPCClass() : InPCClass; // EPC_End ç˜¤æ²¥ çŸ« æ³…çŠ æ€¥ç¶ç­‰ å§è‚º.
 
 	TArray<FB2Item> MergedList;
-	GetMergedItemList(MergedList, false, FinalPCClass); // InEquipPlace ¿¡ µû¶ó InvenType ÀÌ ÀÖ±ä ÇÑµ¥.. Å¬¶ó¿¡ ±×°É ¸ÊÇÎÇÏ´Â ÇÔ¼ö¸¦ µÎ´Â °Íµµ ¹¹ÇÏ°í ÇØ¼­ °Á ÀÏ´Ü MergedList ¾ò¾î¿Â ÈÄ¿¡..
+	GetMergedItemList(MergedList, false, FinalPCClass); // InEquipPlace ä¿Š è¶æ‰¼ InvenType æ ä¹å˜ èŒ„å•.. åŠªæ‰¼ä¿Š å¼Šå§ ç”˜ä¿çªç»° çªƒèç”« æ»´ç»° å·´æ¡£ æ„çªç»Š ç§¦è¾‘ å‚² è€çªœ MergedList æ˜ç»¢æŸ¯ é¥¶ä¿Š..
 
 	if (MergedList.Num() > 0)
 	{
-		OutResult = MergedList.FilterByPredicate( // InEquipPlace ¿Í ÀÏÄ¡ÇÏ´Â °É·Î¸¸ °ñ¶ó³½´Ù.
+		OutResult = MergedList.FilterByPredicate( // InEquipPlace å®¢ è€æ‘¹çªç»° å§è‚ºçˆ¶ æ¦œæ‰¼è¾°ä¿ƒ.
 			[&InEquipPlace](FB2Item CurrItem)
-			{ // Á¤¼ö, ÃÊ¿ùÀç·á(¸ğ·ç) ¿¹¿ÜÃ³¸®
+			{ // æ²¥è, æª¬å²¿çŠä¸°(è‘›é£) æŠ—å¯‡è´¸åºœ
 				if (CurrItem.EquipPlace == InEquipPlace && !IsEssenceItem(CurrItem) && !IsAnvilItem(CurrItem))
 				{
 					return true;
@@ -1937,21 +1937,21 @@ void UB2LobbyInventory::GetStoredItemListForEquipPlace(TArray<FB2Item>& OutResul
 
 int32 UB2LobbyInventory::GetItemContainerSize(EItemInvenType InItemInvenType, EPCClass InPCClass)
 {
-	const EPCClass FinalPCClass = (InPCClass == EPCClass::EPC_End) ? GetInventorySelectedPCClass() : InPCClass; // EPC_End ÁöÁ¤ ½Ã ÇöÀç ¼±ÅÃµÈ °É·Î.
+	const EPCClass FinalPCClass = (InPCClass == EPCClass::EPC_End) ? GetInventorySelectedPCClass() : InPCClass; // EPC_End ç˜¤æ²¥ çŸ« æ³…çŠ æ€¥ç¶ç­‰ å§è‚º.
 
 	int32 RetSlotCount = BladeIIGameImpl::GetClientDataStore().GetCharacterInvenSlotCount(FinalPCClass, InItemInvenType);
 	
 	return RetSlotCount;
 }
 
-/* Ä³¸¯ÅÍ ºÎÀ§º° ÀÎº¥Åä¸® */
+/* æŸè…ç£ ä½•å›°å–Š ç‰¢äº¥é…åºœ */
 int32 UB2LobbyInventory::GetStoredItemNumInSharedSlot(EItemInvenType InItemInvenType, EPCClass InPCClass)
 {
-	const EPCClass FinalPCClass = (InPCClass == EPCClass::EPC_End) ? GetInventorySelectedPCClass() : InPCClass; // EPC_End ÁöÁ¤ ½Ã ÇöÀç ¼±ÅÃµÈ °É·Î.
+	const EPCClass FinalPCClass = (InPCClass == EPCClass::EPC_End) ? GetInventorySelectedPCClass() : InPCClass; // EPC_End ç˜¤æ²¥ çŸ« æ³…çŠ æ€¥ç¶ç­‰ å§è‚º.
 
 	if (InItemInvenType == EItemInvenType::EIIVT_Consumables)
 	{
-		return GetConsumablesList().Num(); // PCClass °£ °øÀ¯.
+		return GetConsumablesList().Num(); // PCClass åŸƒ å‚èœ¡.
 	}
 	else if (InItemInvenType != EItemInvenType::EIIVT_End)
 	{
@@ -1961,7 +1961,7 @@ int32 UB2LobbyInventory::GetStoredItemNumInSharedSlot(EItemInvenType InItemInven
 			FInvenPCItemAccessor& PCList = PCItems[InvenPCIdx];
 			TMap<int64, FB2Item>* ItemMap = PCList.GetItemMapForInvenType(InItemInvenType);
 
-			// ÀåÂøÁßÀÎ Àåºñµµ Æ÷ÇÔ.
+			// å˜é¦’åç‰¢ å˜åšæ¡£ å™¨çªƒ.
 			TArray<FB2Item> EquippedList;
 			PCList.GetAllEquippedItems(EquippedList, InItemInvenType);
 
@@ -1974,14 +1974,14 @@ int32 UB2LobbyInventory::GetStoredItemNumInSharedSlot(EItemInvenType InItemInven
 	return 0;
 }
 
-/* Ä³¸¯ÅÍ ÅëÇÕ ÀÎº¥Åä¸® */
+/* æŸè…ç£ çƒ¹é’¦ ç‰¢äº¥é…åºœ */
 int UB2LobbyInventory::GetStoredItemNumInUnitedSlot(EItemInvenType InItemInvenType, EPCClass InPCClass)
 {
-	const EPCClass FinalPCClass = (InPCClass == EPCClass::EPC_End) ? GetInventorySelectedPCClass() : InPCClass; // EPC_End ÁöÁ¤ ½Ã ÇöÀç ¼±ÅÃµÈ °É·Î.
+	const EPCClass FinalPCClass = (InPCClass == EPCClass::EPC_End) ? GetInventorySelectedPCClass() : InPCClass; // EPC_End ç˜¤æ²¥ çŸ« æ³…çŠ æ€¥ç¶ç­‰ å§è‚º.
 
 	if (InItemInvenType == EItemInvenType::EIIVT_Consumables)
 	{
-		return GetConsumablesList().Num(); // PCClass °£ °øÀ¯.
+		return GetConsumablesList().Num(); // PCClass åŸƒ å‚èœ¡.
 	}
 	else if (InItemInvenType != EItemInvenType::EIIVT_End)
 	{
@@ -1991,7 +1991,7 @@ int UB2LobbyInventory::GetStoredItemNumInUnitedSlot(EItemInvenType InItemInvenTy
 			FInvenPCItemAccessor& PCList = PCItems[InvenPCIdx];
 			int32 ItemCount = PCList.GetAllItemMapCount();
 
-			// ÀåÂøÁßÀÎ Àåºñµµ Æ÷ÇÔ.
+			// å˜é¦’åç‰¢ å˜åšæ¡£ å™¨çªƒ.
 			TArray<FB2Item> EquippedList;
 			PCList.GetAllEquippedItems(EquippedList);
 
@@ -2020,7 +2020,7 @@ int UB2LobbyInventory::GetStoredCostomeItemNumInUnitedSlot(EPCClass InPCClass)
 		FInvenPCItemAccessor& PCList = PCItems[InvenPCIdx];
 		int32 ItemCount = PCList.GetAllItemMapCount();
 
-		// ÀåÂøÁßÀÎ Àåºñµµ Æ÷ÇÔ.
+		// å˜é¦’åç‰¢ å˜åšæ¡£ å™¨çªƒ.
 		TArray<FB2Item> EquippedList;
 		PCList.GetAllEquippedCostumeItems(EquippedList);
 		HasCount += EquippedList.Num();
@@ -2072,14 +2072,14 @@ void UB2LobbyInventory::GetUnEquippedTotemList(TArray<FB2Totem>& OutResult)
 
 bool UB2LobbyInventory::NewAddStoredItem(FB2Item& InNewItem, bool bForceAdd, EPCClass InPCClass)
 {
-	InNewItem.bNewlyAddedForEquipSuggest = true; // °ÅÀÇ ÀÌ°Ô ¸ñÀûÀÏ µí..
+	InNewItem.bNewlyAddedForEquipSuggest = true; // èŠ­ç‹¼ æéœ¸ æ ¼åˆ©è€ æ·€..
 
-	return ReAddStoredItem(InNewItem, bForceAdd, InPCClass, true); // ±â´É»ó ¿©±â¼­´Â OptionalInsertIndex ´Â ÇÊ¿ä¾ø°Ú´Ù.
+	return ReAddStoredItem(InNewItem, bForceAdd, InPCClass, true); // æ‰ç“·æƒ‘ å’¯æ‰è¾‘ç»° OptionalInsertIndex ç»° é˜å¤¸ç»æ‘†ä¿ƒ.
 }
 
 bool UB2LobbyInventory::ReAddStoredItem(FB2Item& InNewItem, bool bForceAdd, EPCClass InPCClass, bool bUpdateUIDocImmediately /*= true*/)
-{ // ¿©±â¿¡ InPCClass ÀÎÀÚ°¡ °ú¿¬ ÇÊ¿äÇÒ±î. InNewItem.AllowedPCClass ¸¦ »ç¿ëÇÒ¼öµµ
-	const EPCClass FinalPCClass = (InPCClass == EPCClass::EPC_End) ? GetInventorySelectedPCClass() : InPCClass; // EPC_End ÁöÁ¤ ½Ã ÇöÀç ¼±ÅÃµÈ °É·Î.
+{ // å’¯æ‰ä¿Š InPCClass ç‰¢ç£Šå•Š è‹æ¥· é˜å¤¸ä¸”é³–. InNewItem.AllowedPCClass ç”« è¤ä¾©ä¸”èæ¡£
+	const EPCClass FinalPCClass = (InPCClass == EPCClass::EPC_End) ? GetInventorySelectedPCClass() : InPCClass; // EPC_End ç˜¤æ²¥ çŸ« æ³…çŠ æ€¥ç¶ç­‰ å§è‚º.
 
 	if (InNewItem.InventoryType == EItemInvenType::EIIVT_End)
 	{
@@ -2092,17 +2092,17 @@ bool UB2LobbyInventory::ReAddStoredItem(FB2Item& InNewItem, bool bForceAdd, EPCC
 	}
 
 	bool bRetAdded = false;
-	// ÇöÀç ¼³Á¤¿¡¼­ÀÇ ¸®½ºÆ®¸¦ °¡Á®¿Í¼­ ´õÇÔ.
+	// æ³…çŠ æ±²æ²¥ä¿Šè¾‘ç‹¼ åºœèƒ¶é£˜ç”« å•Šå»‰å®¢è¾‘ æ­¹çªƒ.
 	TMap<int64, FB2Item>* MapToAdd = GetStoredItemMapPtr(InNewItem.InventoryType, FinalPCClass);
 	if (MapToAdd)
 	{
-		InNewItem.bCurrentlyEquipped = false; // ¿©±â´Ù ³Ö´Â´Ù´Â °Ç Àû¾îµµ ÀåÂøÇÏÁö´Â ¾Ê´Â °Í.
+		InNewItem.bCurrentlyEquipped = false; // å’¯æ‰ä¿ƒ æŒç»°ä¿ƒç»° æ‰’ åˆ©ç»¢æ¡£ å˜é¦’çªç˜¤ç»° è‡¼ç»° å·´.
 		MapToAdd->Add(InNewItem.InstanceUID, InNewItem);
 		bRetAdded = true;
 	}
 
 	if (bUpdateUIDocImmediately)
-	{ // °ü·Ã UI Doc µ¥ÀÌÅÍ ¾÷µ¥ÀÌÆ®.. ¸¦ ÇÏÁö ¾Ê´Â °æ¿ì´Â ReAdd ¸¦ »ç¿ëÇÑ ´Ù¸¥ µ¿ÀÛ
+	{ // åŒ…è®¿ UI Doc å•æç£ è¯€å•æé£˜.. ç”« çªç˜¤ è‡¼ç»° ç‰ˆå¿«ç»° ReAdd ç”« è¤ä¾©èŒ„ ä¿ƒå¼— æ‚¼ç´¯
 		LobbyUpdateAllItemIconsClass<>::GetInstance().Signal();
 	}
 
@@ -2111,14 +2111,14 @@ bool UB2LobbyInventory::ReAddStoredItem(FB2Item& InNewItem, bool bForceAdd, EPCC
 
 bool UB2LobbyInventory::InternalIsInventoryFull(bool IsOver, EItemInvenType InItemInvenType, EPCClass InPCClass)
 {
-	const EPCClass FinalPCClass = (InPCClass == EPCClass::EPC_End) ? GetInventorySelectedPCClass() : InPCClass; // EPC_End ÁöÁ¤ ½Ã ÇöÀç ¼±ÅÃµÈ °É·Î.
+	const EPCClass FinalPCClass = (InPCClass == EPCClass::EPC_End) ? GetInventorySelectedPCClass() : InPCClass; // EPC_End ç˜¤æ²¥ çŸ« æ³…çŠ æ€¥ç¶ç­‰ å§è‚º.
 
 	if (InItemInvenType == EItemInvenType::EIIVT_End)
 	{
 		return true;
 	}
 
-	// ÇöÀç Å¸ÀÔ¿¡¼­ °¡´ÉÇÑ ¾ÆÀÌÅÛ º¸°üÇÔ °³¼ö¿Í ½ÇÁ¦ ¾ÆÀÌÅÛ °³¼ö
+	// æ³…çŠ é¸¥æ¶ä¿Šè¾‘ å•Šç“·èŒ„ é…’æè¢ ç„ŠåŒ…çªƒ ä¿ºèå®¢ è§’åŠ› é…’æè¢ ä¿ºè
 	int32 ContainerSize = GetItemContainerSize(InItemInvenType, FinalPCClass);
 	int32 ItemNumInCurrentSlot = GetStoredItemNumInUnitedSlot(InItemInvenType, FinalPCClass);
 
@@ -2138,7 +2138,7 @@ bool UB2LobbyInventory::InternalIsInventoryFull(bool IsOver, EItemInvenType InIt
 
 void UB2LobbyInventory::GetSharedConsumableOfType(TArray<FB2Item>& OutResult, int32 InRefID)
 {
-	// Sort ´Â ¾Æ¸¶ ÀÇ¹Ì°¡ ¾øÀ» µí ÇÏÁö¸¸.. ¾Æ´Ô ¼Ò¸ğÇ° Àü¿ëÀ¸·Î sort ±âÁØÀ» ¼¼¿ö¼­ Ã³¸®ÇÏ°Ô µÉ ¼öµµ. -> ConsumingAmount ·Î ÇÏ¸é µÉ µí.
+	// Sort ç»° é…’ä»˜ ç‹¼å›ºå•Š ç»é˜‘ æ·€ çªç˜¤çˆ¶.. é…’ä¸› å®¶è‘›å‰ å‚ˆä¾©æ è‚º sort æ‰éœ–é˜‘ æŠ€å†µè¾‘ è´¸åºœçªéœ¸ çª èæ¡£. -> ConsumingAmount è‚º çªæ çª æ·€.
 	BladeIIGameImpl::GetLocalCharacterData().GetUserAllItems().FindConsumablesOfType(InRefID, OutResult);
 }
 
@@ -2161,7 +2161,7 @@ void UB2LobbyInventory::DevOnlyGenerateDummyConsumable(int32 InRefID, int32 InAm
 		return;
 	}
 
-	// 1000°³´ç ÇÏ³ª¾¿ ¸¸µé¾îº¸ÀÚ.. ¾ÆÀÌÅÛº°·Î ´Ù¸¥Áö´Â ¸ğ¸£°ÚÁö¸¸..
+	// 1000ä¿ºå¯¸ çªå”±ç©¶ çˆ¶ç”¸ç»¢ç„Šç£Š.. é…’æè¢å–Šè‚º ä¿ƒå¼—ç˜¤ç»° è‘›ç¦æ‘†ç˜¤çˆ¶..
 	const int32 AllowedAmountPerSingleItem = 1000;
 	int32 GenerateItemNum = ((InAmount + AllowedAmountPerSingleItem-1) / AllowedAmountPerSingleItem);
 	TArray<FB2Item> GeneratedData;
@@ -2171,7 +2171,7 @@ void UB2LobbyInventory::DevOnlyGenerateDummyConsumable(int32 InRefID, int32 InAm
 		int32 ThisAmount = FMath::Min(RemainingAmount, AllowedAmountPerSingleItem);
 		RemainingAmount = FMath::Max(0, RemainingAmount - ThisAmount);
 		FB2Item NewConsumableData;
-		// UID °ãÄ¡¸é ¾ÈµÇ´Âµ¥ ¾îÂ÷ÇÇ Ä¡Æ®±â´ÉÀÌ´Ï ¤»
+		// UID èˆ¬æ‘¹æ æ•‘ç™»ç»°å• ç»¢ç’ä¹” æ‘¹é£˜æ‰ç“·æèª ã›
 		NewConsumableData.InstanceUID = 438402842 + FMath::RandRange(1, INT_MAX) + FMath::RandRange(1, INT_MAX); 
 		NewConsumableData.ItemRefID = InRefID;
 		NewConsumableData.InventoryType = EItemInvenType::EIIVT_Consumables;
@@ -2181,7 +2181,7 @@ void UB2LobbyInventory::DevOnlyGenerateDummyConsumable(int32 InRefID, int32 InAm
 	}
 
 	for (FB2Item& ThisToAdd : GeneratedData)
-	{ // Á¤½ÄÀ¸·Î ÇÒ °Å °°À¸¸é ±âÁ¸¿¡ ÀÖ´Â °Å¿¡ ¼ö·® °°ÀÌ ÇÕÃ¼ÇØ¾ß ÇÒ ¼öµµ.. ±×°Ç ¾îÂ÷ÇÇ ¼­¹ö¿¡¼­ ¿À´Â °Å¿£ Ã³¸®°¡ µÇ³ª..
+	{ // æ²¥ä¾¥æ è‚º ä¸” èŠ­ éæ æ æ‰ç²®ä¿Š ä¹ç»° èŠ­ä¿Š èæ¨Š éæ é’¦çœ‰ç§¦å…· ä¸” èæ¡£.. å¼Šæ‰’ ç»¢ç’ä¹” è¾‘æ»šä¿Šè¾‘ å·ç»° èŠ­æµš è´¸åºœå•Š ç™»å”±..
 		ReAddStoredItem(ThisToAdd, true, EPCClass::EPC_End, false);
 	}
 	LobbyUpdateAllItemIconsClass<>::GetInstance().Signal();
@@ -2241,7 +2241,7 @@ void UB2LobbyInventory::SetChangeNewItemTofalseTap(EPCClass PCClass, EItemInvenT
 
 void UB2LobbyInventory::SetChangeNewItemTofalse(int64 ItemInstanceUID)
 {
-	//¾ÆÀÌÅÛ NewÁ¤º¸ false·Î º¯°æ
+	//é…’æè¢ Newæ²¥ç„Š falseè‚º å‡½ç‰ˆ
 	FB2Item* FoundPtr = FindFromAllPtr(ItemInstanceUID);
 	if (FoundPtr)
 	{
@@ -2319,10 +2319,10 @@ int32 UB2LobbyInventory::GetAvailableAutoSelectItemCount(int32 StarGrade)
 	StarGradeFilter.Add(StarGrade);
 
 	TArray<FB2Item> AllTargetItems;
-	// ÀåÂø ¹× Àá±İ, ÇÁ¸®¼Â ÀÖ´Â°Å Á¦¿Ü.
+	// å˜é¦’ æ£º æ³ªé™›, æ©‡åºœæ‚¸ ä¹ç»°èŠ­ åŠ›å¯‡.
 	UB2LobbyInventory::GetFilteredItemList(AllTargetItems, false, false, false, InvenTypeFilter, StarGradeFilter);
 
-	// ÇöÀç ·¹º§ ¾÷ ´ë»óÀÌ µÇ´Â ¾ÆÀÌÅÛ¸¸ ÀÖÀ» °æ¿ì..
+	// æ³…çŠ é¥­éª‡ è¯€ æªæƒ‘æ ç™»ç»° é…’æè¢çˆ¶ ä¹é˜‘ ç‰ˆå¿«..
 	if(EnhanceTargetItem.StarGrade == StarGrade && AllTargetItems.Num() == 1)
 		return 0;
 	return AllTargetItems.Num();
@@ -2332,30 +2332,30 @@ bool UB2LobbyInventory::UpdateSingleItemData(int64 ItemInstanceUID, FB2Item& InD
 {
 	FB2Item* FoundItemPtr = FindFromAllPtr(ItemInstanceUID);
 	if (!FoundItemPtr)
-		return false; // ÇØ´ç ¾ÆÀÌÅÛ ¸øÃ£À½.
+		return false; // ç§¦å¯¸ é…’æè¢ ç»™èŒ«æ¾œ.
 
-	// InDataToUpdate ´Â »ç½Ç»ó ´É·ÂÄ¡ µîÀÇ µ¥ÀÌÅÍ¸¸ »ç¿ëÇÏ±â À§ÇÔÀ¸·Î, ¾ÆÀÌÅÛÀÇ ±âÃÊÀûÀÎ Á¤º¸´Â ÀÏÄ¡ÇØ¾ß ÇÔ.
+	// InDataToUpdate ç»° è¤è§’æƒ‘ ç“·ä»¿æ‘¹ æ®¿ç‹¼ å•æç£çˆ¶ è¤ä¾©çªæ‰ å›°çªƒæ è‚º, é…’æè¢ç‹¼ æ‰æª¬åˆ©ç‰¢ æ²¥ç„Šç»° è€æ‘¹ç§¦å…· çªƒ.
 	if (InDataToUpdate.InstanceUID != FoundItemPtr->InstanceUID || InDataToUpdate.ItemRefID != FoundItemPtr->ItemRefID || InDataToUpdate.ItemClass != FoundItemPtr->ItemClass
 		|| InDataToUpdate.AllowedPCClass != FoundItemPtr->AllowedPCClass || InDataToUpdate.InventoryType != FoundItemPtr->InventoryType || InDataToUpdate.EquipPlace != FoundItemPtr->EquipPlace)
 	{
 		return false;
 	}
 
-	bool bWasEquipped = FoundItemPtr->bCurrentlyEquipped; // ÀåÂø »óÅÂµµ ¿©±â¼­ º¯°æ´ë»óÀº ¾Æ´Ô. ÀÌ°Ç return false ±îÁö ÇÏÁø ¾Ê´Â´Ù.
+	bool bWasEquipped = FoundItemPtr->bCurrentlyEquipped; // å˜é¦’ æƒ‘æ€•æ¡£ å’¯æ‰è¾‘ å‡½ç‰ˆæªæƒ‘ç¯® é…’ä¸›. ææ‰’ return false é³–ç˜¤ çªæŸ³ è‡¼ç»°ä¿ƒ.
 
 	*FoundItemPtr = InDataToUpdate;
-	FoundItemPtr->bCurrentlyEquipped = bWasEquipped; // ¾Æ¸¶µµ ¸¶Âù°¡Áö¿©¾ß°ÚÁö¸¸ ¤»
+	FoundItemPtr->bCurrentlyEquipped = bWasEquipped; // é…’ä»˜æ¡£ ä»˜è›®å•Šç˜¤å’¯å…·æ‘†ç˜¤çˆ¶ ã›
 
 	if (FoundItemPtr->bCurrentlyEquipped)
 	{
-		// °ü·Ã UI Doc µ¥ÀÌÅÍ ¾÷µ¥ÀÌÆ®. ¾ÆÁ÷Àº ÀåÂøµÈ °Í¿¡ ´ëÇØ¼­¸¸ ÀÖÀ½.
+		// åŒ…è®¿ UI Doc å•æç£ è¯€å•æé£˜. é…’æµç¯® å˜é¦’ç­‰ å·´ä¿Š æªç§¦è¾‘çˆ¶ ä¹æ¾œ.
 		UB2UIDocEquip* DocEquip = UB2UIDocHelper::GetDocEquip(FoundItemPtr->AllowedPCClass, (int32)FoundItemPtr->EquipPlace);
 		if (DocEquip)
 		{
 			DocEquip->UpdateData(InDataToUpdate);
 		}
 	}
-	LobbyTryUpdateSingleItemIconClass<int64>::GetInstance().Signal(ItemInstanceUID); // º¯°æµÈ ÇÏ³ª¸¸ Âó¾î¼­ ¾÷µ¥ÀÌÆ®. Ãß°¡³ª Á¦°Å½Ã¿¡´Â ÀÌ°É »ç¿ëÇÏÁö ¾Ê´Â´Ù.
+	LobbyTryUpdateSingleItemIconClass<int64>::GetInstance().Signal(ItemInstanceUID); // å‡½ç‰ˆç­‰ çªå”±çˆ¶ éº¦ç»¢è¾‘ è¯€å•æé£˜. çœ å•Šå”± åŠ›èŠ­çŸ«ä¿Šç»° æå§ è¤ä¾©çªç˜¤ è‡¼ç»°ä¿ƒ.
 
 	return true;
 }
@@ -2370,8 +2370,8 @@ void UB2LobbyInventory::EquippedItems(const FB2EquippedItems& InEquippedItems)
 
 void UB2LobbyInventory::EquippedItems(const int32& PresetID, const TArray<int64>& EquipedItems, const TArray<int64>& UnequipedItems, bool UpdateBattleScore)
 {
-	//TArray<EPCClass> PCPartUpdateSignalClass; // ¿Ü°ü»óÀ¸·Î º¯°æµÇ´Â ¾ÆÀÌÅÛÀ» ÀåÂøÇÑ PC Å¬·¡½ºµé ¸ğµÎ ¸ğÀ½. °¢ Å¬·¡½º¿¡´Ù ½ÅÈ£¸¦ º¸³»±â À§ÇØ
-	//TArray<EPCClass> AnyEquipStateChangedClass; // ¿Ü°ü ÀåÂø ÆÄÆ® º¯°æµÇ´Â °æ¿ì°¡ ¾Æ´Ï¶óµµ ÀüÅõ·Â ¹İ¿µÀº µÉ ¼ö ÀÖÀ¸´Ï Å¬·¡½º µû·Î ¸ğÀ½
+	//TArray<EPCClass> PCPartUpdateSignalClass; // å¯‡åŒ…æƒ‘æ è‚º å‡½ç‰ˆç™»ç»° é…’æè¢é˜‘ å˜é¦’èŒ„ PC åŠªè´°èƒ¶ç”¸ è‘›æ»´ è‘›æ¾œ. é˜¿ åŠªè´°èƒ¶ä¿Šä¿ƒ è„šé¾‹ç”« ç„Šéƒ´æ‰ å›°ç§¦
+	//TArray<EPCClass> AnyEquipStateChangedClass; // å¯‡åŒ… å˜é¦’ é¢‡é£˜ å‡½ç‰ˆç™»ç»° ç‰ˆå¿«å•Š é…’èªæ‰¼æ¡£ å‚ˆæ§ä»¿ é¦†åº·ç¯® çª è ä¹æ èª åŠªè´°èƒ¶ è¶è‚º è‘›æ¾œ
 	//bool bIsCostumeItem = false;
 
 	//TArray<const FB2Item*> B2ItemPtrArray;
@@ -2383,9 +2383,9 @@ void UB2LobbyInventory::EquippedItems(const int32& PresetID, const TArray<int64>
 	//		B2ItemPtrArray.Emplace(EquippedItem);
 
 	//		if (GetPCPartForItemEquipPlace(EquippedItem->EquipPlace) != EPCPart::EPCPT_End)
-	//		{ // 3D ¸Ş½¬ ¾÷µ¥ÀÌÆ® ½Ã±×³ÎÀ» À§ÇÑ °ÍÀÌ´Ï ÀåÂøÇÑ °ÍÀÌ PC ÆÄÆ® Áß ÇÏ³ªÀÎ °Í¿¡ ÇÑÇØ.
+	//		{ // 3D çš‹æµ† è¯€å•æé£˜ çŸ«å¼Šæ¾„é˜‘ å›°èŒ„ å·´æèª å˜é¦’èŒ„ å·´æ PC é¢‡é£˜ å çªå”±ç‰¢ å·´ä¿Š èŒ„ç§¦.
 	//			if (ItemAllowedPCClassEnum(EquippedItem->AllowedPCClass) == EPCClass::EPC_End) {
-	//				// EPC_End ¸é ÀåÂøÇØµµ Ç¥½Ã°¡ ¾ÈµÇ´Â ¾ÆÀÌÅÛÀÌ°Å³ª ÇÒ ÅÙµ¥ ÀÏ´Ü ¸ğ¸£´Ï ¸ğµç Å¬·¡½º¸¦ µ¹µµ·Ï ÇÏÀÚ.
+	//				// EPC_End æ å˜é¦’ç§¦æ¡£ é’çŸ«å•Š æ•‘ç™»ç»° é…’æè¢æèŠ­å”± ä¸” åˆ¨å• è€çªœ è‘›ç¦èª è‘›ç”µ åŠªè´°èƒ¶ç”« å€’æ¡£åºŸ çªç£Š.
 	//				for (int32 PCI = 0; PCI < GetMaxPCClassNum(); ++PCI) {
 	//					PCPartUpdateSignalClass.AddUnique(IntToPCClass(PCI));
 	//				}
@@ -2428,7 +2428,7 @@ void UB2LobbyInventory::EquippedItems(const int32& PresetID, const TArray<int64>
 	//{
 	//	if (const FB2Item* EquippedItem = FindFromAllPtr(EquippedItemUID))
 	//	{
-	//		// °ü·Ã UI Doc µ¥ÀÌÅÍ ¾÷µ¥ÀÌÆ®.
+	//		// åŒ…è®¿ UI Doc å•æç£ è¯€å•æé£˜.
 	//		if (UB2UIDocEquip* DocEquip = UB2UIDocHelper::GetDocEquip(EquippedItem->AllowedPCClass, static_cast<int32>(EquippedItem->EquipPlace)))
 	//			DocEquip->DoEquip(*EquippedItem);
 
@@ -2439,13 +2439,13 @@ void UB2LobbyInventory::EquippedItems(const int32& PresetID, const TArray<int64>
 	//	}
 	//}
 
-	//// ÀåÂø ¾ÆÀÌÅÛ ¼¼ºÎ Á¤º¸ Ã¢ÀÌ ¿­·Á ÀÖ´Ù¸é ÀåÂø Àåºñ ºä¸¦ ¸·À» °ÍÀÌ¹Ç·Î ´İ´Â´Ù.
+	//// å˜é¦’ é…’æè¢ æŠ€ä½• æ²¥ç„Š èŠ’æ å‡¯å¦¨ ä¹ä¿ƒæ å˜é¦’ å˜åš è½°ç”« é˜œé˜‘ å·´æéª¨è‚º æ‘§ç»°ä¿ƒ.
 	//DJLegacy_CloseLobbySubPopupClass<ELobbySubPopups>::GetInstance().Signal(ELobbySubPopups::ELSPU_EquippedItemDetail);
 
 	//LobbyUpdateAllItemIconsClass<>::GetInstance().Signal();
 
 	//for (EPCClass& CurrUpdateClass : PCPartUpdateSignalClass)
-	//{ // ÇØ´ç Å¬·¡½ºÀÇ 3D ¸Ş½¬¸¦ »õ·Î¿î ÀåÂø »óÅÂ ¹İ¿µÇØ¼­ ¾÷µ¥ÀÌÆ®
+	//{ // ç§¦å¯¸ åŠªè´°èƒ¶ç‹¼ 3D çš‹æµ†ç”« è´§è‚ºæ¬¾ å˜é¦’ æƒ‘æ€• é¦†åº·ç§¦è¾‘ è¯€å•æé£˜
 	//	LobbyUpdateCharacterPartClass<EPCClass>::GetInstance().Signal(CurrUpdateClass);
 	//}
 	///*for (EPCClass& CurrUpdateClass : AnyEquipStateChangedClass)
@@ -2463,15 +2463,15 @@ void UB2LobbyInventory::EquippedItems(const int32& PresetID, const TArray<int64>
 	//	}
 	//}
 
-	////¸Ş½Ã ¾÷µ¥ÀÌÆ® ÈÄ, ¾Ö´Ï¸ŞÀÌ¼ÇÇÃ·¹ÀÌ.
+	////çš‹çŸ« è¯€å•æé£˜ é¥¶, å±€èªçš‹æè®°æ•²é¥­æ.
 	//for (auto EquippedItem : B2ItemPtrArray)
 	//{
 	//	EItemEquipPlace eItemEquipPlace = EquippedItem->EquipPlace;
 
-	//	// ÀåÂø ½½·Ô UI effect µµ
+	//	// å˜é¦’ æµ‡å© UI effect æ¡£
 	//	LobbyPlayUIEquipEffectClass<EItemEquipPlace>::GetInstance().Signal(eItemEquipPlace);
 
-	//	//ÄÚ½ºÆ¬ ºÎÀ§ÀÏ °æ¿ì ¾Ö´Ï¸ŞÀÌ¼Ç Àç»ı ºÎÀ§ ÁöÁ¤
+	//	//å†…èƒ¶ç‰‡ ä½•å›°è€ ç‰ˆå¿« å±€èªçš‹æè®° çŠç§¯ ä½•å›° ç˜¤æ²¥
 	//	if (IsCostumeEquipPlace(EquippedItem->CostumeEquipPlace))
 	//	{
 	//		if (EquippedItem->CostumeEquipPlace == ECostumeEquipPlace::ECEP_Weapon)
@@ -2506,8 +2506,8 @@ void UB2LobbyInventory::UnEquippedItems(const FB2UnequippedItems& UnEquippedItem
 
 void UB2LobbyInventory::UnEquippedItems_New(const TArray<int64>& ArrayUnEquipItemID, const int32 iPresetID /*= -1*/)
 {
-	//TArray<EPCClass> PCPartUpdateSignalClass; // ¿Ü°ü»óÀ¸·Î º¯°æµÇ´Â ¾ÆÀÌÅÛÀ» ÀåÂøÇÑ PC Å¬·¡½ºµé ¸ğµÎ ¸ğÀ½. °¢ Å¬·¡½º¿¡´Ù ½ÅÈ£¸¦ º¸³»±â À§ÇØ
-	//TArray<EPCClass> AnyEquipStateChangedClass; // ¿Ü°ü ÀåÂø ÆÄÆ® º¯°æµÇ´Â °æ¿ì°¡ ¾Æ´Ï¶óµµ ÀüÅõ·Â ¹İ¿µÀº µÉ ¼ö ÀÖÀ¸´Ï Å¬·¡½º µû·Î ¸ğÀ½
+	//TArray<EPCClass> PCPartUpdateSignalClass; // å¯‡åŒ…æƒ‘æ è‚º å‡½ç‰ˆç™»ç»° é…’æè¢é˜‘ å˜é¦’èŒ„ PC åŠªè´°èƒ¶ç”¸ è‘›æ»´ è‘›æ¾œ. é˜¿ åŠªè´°èƒ¶ä¿Šä¿ƒ è„šé¾‹ç”« ç„Šéƒ´æ‰ å›°ç§¦
+	//TArray<EPCClass> AnyEquipStateChangedClass; // å¯‡åŒ… å˜é¦’ é¢‡é£˜ å‡½ç‰ˆç™»ç»° ç‰ˆå¿«å•Š é…’èªæ‰¼æ¡£ å‚ˆæ§ä»¿ é¦†åº·ç¯® çª è ä¹æ èª åŠªè´°èƒ¶ è¶è‚º è‘›æ¾œ
 	//bool bIsCostumeItem = false;
 
 	//for (auto UnequippedItemUID : ArrayUnEquipItemID)
@@ -2516,9 +2516,9 @@ void UB2LobbyInventory::UnEquippedItems_New(const TArray<int64>& ArrayUnEquipIte
 	//	if (UnequippedItem != nullptr)
 	//	{
 	//		if (GetPCPartForItemEquipPlace(UnequippedItem->EquipPlace) != EPCPart::EPCPT_End)
-	//		{ // 3D ¸Ş½¬ ¾÷µ¥ÀÌÆ® ½Ã±×³ÎÀ» À§ÇÑ °ÍÀÌ´Ï ÀåÂøÇÑ °ÍÀÌ PC ÆÄÆ® Áß ÇÏ³ªÀÎ °Í¿¡ ÇÑÇØ.
+	//		{ // 3D çš‹æµ† è¯€å•æé£˜ çŸ«å¼Šæ¾„é˜‘ å›°èŒ„ å·´æèª å˜é¦’èŒ„ å·´æ PC é¢‡é£˜ å çªå”±ç‰¢ å·´ä¿Š èŒ„ç§¦.
 	//			if (ItemAllowedPCClassEnum(UnequippedItem->AllowedPCClass) == EPCClass::EPC_End) {
-	//				// EPC_End ¸é ÀåÂøÇØµµ Ç¥½Ã°¡ ¾ÈµÇ´Â ¾ÆÀÌÅÛÀÌ°Å³ª ÇÒ ÅÙµ¥ ÀÏ´Ü ¸ğ¸£´Ï ¸ğµç Å¬·¡½º¸¦ µ¹µµ·Ï ÇÏÀÚ.
+	//				// EPC_End æ å˜é¦’ç§¦æ¡£ é’çŸ«å•Š æ•‘ç™»ç»° é…’æè¢æèŠ­å”± ä¸” åˆ¨å• è€çªœ è‘›ç¦èª è‘›ç”µ åŠªè´°èƒ¶ç”« å€’æ¡£åºŸ çªç£Š.
 	//				for (int32 PCI = 0; PCI < GetMaxPCClassNum(); ++PCI) {
 	//					PCPartUpdateSignalClass.AddUnique(IntToPCClass(PCI));
 	//				}
@@ -2548,7 +2548,7 @@ void UB2LobbyInventory::UnEquippedItems_New(const TArray<int64>& ArrayUnEquipIte
 	//for (EPCClass& CurrUpdateClass : AnyEquipStateChangedClass)
 	//	BladeIIGameImpl::GetClientDataStore().GetLocalCharacterData().GetSetItemValue(CurrUpdateClass, BeforeSetItemCounts[CurrUpdateClass]);
 
-	//// UnEquipItems!! ¸®´º¾ó ¿¹Á¤
+	//// UnEquipItems!! åºœæ˜¥å€” æŠ—æ²¥
 	//BladeIIGameImpl::GetClientDataStore().UnEquipItems(ArrayUnEquipItemID, iPresetID);
 
 	//for (EPCClass& CurrUpdateClass : AnyEquipStateChangedClass)
@@ -2558,7 +2558,7 @@ void UB2LobbyInventory::UnEquippedItems_New(const TArray<int64>& ArrayUnEquipIte
 	//{
 	//	if (const FB2Item* UnequippedItem = FindFromAllPtr(UnequippedItemUID))
 	//	{
-	//		// °ü·Ã UI Doc µ¥ÀÌÅÍ¾÷µ¥ÀÌÆ®.
+	//		// åŒ…è®¿ UI Doc å•æç£è¯€å•æé£˜.
 	//		if (UB2UIDocEquip* DocEquip = UB2UIDocHelper::GetDocEquip(UnequippedItem->AllowedPCClass, static_cast<int32>(UnequippedItem->EquipPlace)))
 	//			DocEquip->RemoveEquip();
 	//	}
@@ -2567,7 +2567,7 @@ void UB2LobbyInventory::UnEquippedItems_New(const TArray<int64>& ArrayUnEquipIte
 	//LobbyUpdateAllItemIconsClass<>::GetInstance().Signal();
 
 	//for (EPCClass& CurrUpdateClass : PCPartUpdateSignalClass)
-	//{ // ÇØ´ç Å¬·¡½ºÀÇ 3D ¸Ş½¬¸¦ »õ·Î¿î ÀåÂø »óÅÂ ¹İ¿µÇØ¼­ ¾÷µ¥ÀÌÆ®
+	//{ // ç§¦å¯¸ åŠªè´°èƒ¶ç‹¼ 3D çš‹æµ†ç”« è´§è‚ºæ¬¾ å˜é¦’ æƒ‘æ€• é¦†åº·ç§¦è¾‘ è¯€å•æé£˜
 	//	LobbyUpdateCharacterPartClass<EPCClass>::GetInstance().Signal(CurrUpdateClass);
 	//}
 	///*for (EPCClass& CurrUpdateClass : AnyEquipStateChangedClass)
@@ -2593,7 +2593,7 @@ void UB2LobbyInventory::UnEquippedItems_New(const TArray<int64>& ArrayUnEquipIte
 
 bool UB2LobbyInventory::GetEquippedItemAtPlace(FB2Item& OutFoundItem, EItemEquipPlace InEquipPlace, EPCClass InPCClass)
 {
-	const EPCClass FinalPCClass = (InPCClass == EPCClass::EPC_End) ? GetInventorySelectedPCClass() : InPCClass; // EPC_End ÁöÁ¤ ½Ã ÇöÀç ¼±ÅÃµÈ °É·Î.
+	const EPCClass FinalPCClass = (InPCClass == EPCClass::EPC_End) ? GetInventorySelectedPCClass() : InPCClass; // EPC_End ç˜¤æ²¥ çŸ« æ³…çŠ æ€¥ç¶ç­‰ å§è‚º.
 
 	FInvenPCItemAccessor* CurrPCItemAccessor = GetPCItemAccessor(FinalPCClass);
 	if (CurrPCItemAccessor)
@@ -2605,7 +2605,7 @@ bool UB2LobbyInventory::GetEquippedItemAtPlace(FB2Item& OutFoundItem, EItemEquip
 
 bool UB2LobbyInventory::GetEquippedCostumeAtPlace(FB2Item& OutFoundItem, ECostumeEquipPlace InEquipPlace, EPCClass InPCClass)
 {
-	const EPCClass FinalPCClass = (InPCClass == EPCClass::EPC_End) ? GetInventorySelectedPCClass() : InPCClass; // EPC_End ÁöÁ¤ ½Ã ÇöÀç ¼±ÅÃµÈ °É·Î.
+	const EPCClass FinalPCClass = (InPCClass == EPCClass::EPC_End) ? GetInventorySelectedPCClass() : InPCClass; // EPC_End ç˜¤æ²¥ çŸ« æ³…çŠ æ€¥ç¶ç­‰ å§è‚º.
 
 	FInvenPCItemAccessor* CurrPCItemAccessor = GetPCItemAccessor(FinalPCClass);
 	if (CurrPCItemAccessor)
@@ -2617,7 +2617,7 @@ bool UB2LobbyInventory::GetEquippedCostumeAtPlace(FB2Item& OutFoundItem, ECostum
 
 void UB2LobbyInventory::GetAllEquippedItem(TArray<FB2Item>& OutList, EPCClass InPCClass)
 {
-	const EPCClass FinalPCClass = (InPCClass == EPCClass::EPC_End) ? GetInventorySelectedPCClass() : InPCClass; // EPC_End ÁöÁ¤ ½Ã ÇöÀç ¼±ÅÃµÈ °É·Î.
+	const EPCClass FinalPCClass = (InPCClass == EPCClass::EPC_End) ? GetInventorySelectedPCClass() : InPCClass; // EPC_End ç˜¤æ²¥ çŸ« æ³…çŠ æ€¥ç¶ç­‰ å§è‚º.
 
 	FInvenPCItemAccessor* CurrPCItemAccessor = GetPCItemAccessor(FinalPCClass);
 
@@ -2629,7 +2629,7 @@ void UB2LobbyInventory::GetAllEquippedItem(TArray<FB2Item>& OutList, EPCClass In
 
 void UB2LobbyInventory::GetAllEquippedCostumeItem(TArray<FB2Item>& OutList, EPCClass InPCClass /*= EPCClass::EPC_End*/)
 {
-	const EPCClass FinalPCClass = (InPCClass == EPCClass::EPC_End) ? GetInventorySelectedPCClass() : InPCClass; // EPC_End ÁöÁ¤ ½Ã ÇöÀç ¼±ÅÃµÈ °É·Î.
+	const EPCClass FinalPCClass = (InPCClass == EPCClass::EPC_End) ? GetInventorySelectedPCClass() : InPCClass; // EPC_End ç˜¤æ²¥ çŸ« æ³…çŠ æ€¥ç¶ç­‰ å§è‚º.
 
 	FInvenPCItemAccessor* CurrPCItemAccessor = GetPCItemAccessor(FinalPCClass);
 
@@ -2643,8 +2643,8 @@ void UB2LobbyInventory::ConditionalCheckForBetterEquipSuggest()
 {
 	//bool bIgnoreSuggest = false;
 
-	//// 1. ¹İº¹ ÀüÅõ µµÁß¿¡´Â »õ·Î ¾òÀº ¾ÆÀÌÅÛ¿¡ ´ëÇÑ ÀåÂø±ÇÀåÀ» ¹«½Ã
-	//// 2. TutorialµµÁß¿¡´Â ÀåÂø±ÇÀå ¹«½Ã
+	//// 1. é¦†æ±— å‚ˆæ§ æ¡£åä¿Šç»° è´§è‚º æ˜ç¯® é…’æè¢ä¿Š æªèŒ„ å˜é¦’é¼»å˜é˜‘ å…¬çŸ«
+	//// 2. Tutorialæ¡£åä¿Šç»° å˜é¦’é¼»å˜ å…¬çŸ«
 	//if (TransientLobbyGM && TransientLobbyGM->GetRepeatBattleRequestState().bIsOn ||
 	//	TutorialManager::GetInstance().HasAnyTutorial())
 	//	bIgnoreSuggest = true;
@@ -2667,7 +2667,7 @@ void UB2LobbyInventory::CheckForBetterEquipSuggest()
 		for (int32 EQI = 0; EQI < (int32)EItemEquipPlace::EIEP_End; ++EQI)
 		{
 			if (CheckForBetterEquipSuggestInner(static_cast<EItemEquipPlace>(EQI), IntToPCClass(PCI)))
-			{ // ÀÌ¹ø CheckForBetterEquipSuggestInner ¿¡¼­ ÁÁÀº Àåºñ°¡ ÀÖ¾î¼­ ±ÇÀå ´ëÈ­»óÀÚ¸¦ ¿­¾ú´Ù¸é ´ëÈ­»óÀÚ Áßº¹ÇØ¼­ ¿­Áö ¾Ê°Ô ¸®ÅÏ. ±×ÂÊ¿¡¼­ ´Ù½Ã ¿©±æ call ÇÒ °Í. 
+			{ // æé”… CheckForBetterEquipSuggestInner ä¿Šè¾‘ äº®ç¯® å˜åšå•Š ä¹ç»¢è¾‘ é¼»å˜ æªæ‹³æƒ‘ç£Šç”« å‡¯èŒä¿ƒæ æªæ‹³æƒ‘ç£Š åæ±—ç§¦è¾‘ å‡¯ç˜¤ è‡¼éœ¸ åºœç•”. å¼Šç‡ä¿Šè¾‘ ä¿ƒçŸ« å’¯è¾¨ call ä¸” å·´. 
 				return;
 			}
 		}
@@ -2679,14 +2679,14 @@ bool UB2LobbyInventory::CheckForBetterEquipSuggestInner(EItemEquipPlace InEquipP
 	//FB2Item EquippedOne;
 	//const bool bHadEquipped = GetEquippedItemAtPlace(EquippedOne, InEquipPlace, InPCClass);
 	////if (!bHadEquipped)
-	////{ // ¸¸ÀÏ ±âÁ¸ ÀåÂøµÈ °Ô ¾Æ¿¹ ¾ø´Ù¸é ±ÇÀåÀ» ¾ÈÇÒ ¼öµµ ÀÖ°í.. °Á Á© Á¸°É·Î ±ÇÀåÇÒ ¼öµµ.
-	////	return false; // ÀÌ·¸°Ô ÇÏ¸é ±ÇÀå ¾È ÇÏ´Â °É·Î.
+	////{ // çˆ¶è€ æ‰ç²® å˜é¦’ç­‰ éœ¸ é…’æŠ— ç»ä¿ƒæ é¼»å˜é˜‘ æ•‘ä¸” èæ¡£ ä¹ç»Š.. å‚² ä¿© ç²®å§è‚º é¼»å˜ä¸” èæ¡£.
+	////	return false; // æçŠ¯éœ¸ çªæ é¼»å˜ æ•‘ çªç»° å§è‚º.
 	////}
 
 	//TArray<FB2Item> StoredList;
 	//GetStoredItemListForEquipPlace(StoredList, InEquipPlace, InPCClass);
 	//
-	//// bNewlyAddedForEquipSuggest Ã¼Å©µÈ °É·Î¸¸ ´Ù½Ã ÇÊÅÍ¸µ
+	//// bNewlyAddedForEquipSuggest çœ‰å†œç­‰ å§è‚ºçˆ¶ ä¿ƒçŸ« é˜ç£å‚…
 	//TArray<FB2Item> NewlyAddedList = StoredList.FilterByPredicate( 
 	//	[](FB2Item CurrItem)
 	//	{
@@ -2697,7 +2697,7 @@ bool UB2LobbyInventory::CheckForBetterEquipSuggestInner(EItemEquipPlace InEquipP
 	//	}
 	//);
 	//
-	//struct FItemStarGradeSorter // ÀÏÂ÷ÀûÀ¸·Î PrimaryPoint ·Î ºñ±³ÇÒ °ÅÁö¸¸ È¤½Ã¶óµµ µ¿ÀÏÇÑ °Ô ÀÖÀ» ¶§ ±âº»ÀûÀÎ StarGrade ¶óµµ º¼ ¼ö ÀÖ°Ô ±âÁØÀ» Á» ´õ µÎÀÚ..
+	//struct FItemStarGradeSorter // è€ç’åˆ©æ è‚º PrimaryPoint è‚º åšèƒŒä¸” èŠ­ç˜¤çˆ¶ è¶£çŸ«æ‰¼æ¡£ æ‚¼è€èŒ„ éœ¸ ä¹é˜‘ é”­ æ‰å¤¯åˆ©ç‰¢ StarGrade æ‰¼æ¡£ æ­ è ä¹éœ¸ æ‰éœ–é˜‘ ç²± æ­¹ æ»´ç£Š..
 	//{
 	//	bool operator()(const FB2Item& A, const FB2Item& B) const
 	//	{
@@ -2705,7 +2705,7 @@ bool UB2LobbyInventory::CheckForBetterEquipSuggestInner(EItemEquipPlace InEquipP
 	//	}
 	//};
 	//NewlyAddedList.StableSort(FItemStarGradeSorter());
-	//struct FPrimaryPointSorter // PrimaryPoint Á© Á¸ °Å ¼ø¼­´ë·Î ºñ±³ÇÏ±â À§ÇØ ¼ÒÆÃ.
+	//struct FPrimaryPointSorter // PrimaryPoint ä¿© ç²® èŠ­ é‰´è¾‘æªè‚º åšèƒŒçªæ‰ å›°ç§¦ å®¶æ³¼.
 	//{
 	//	bool operator()(const FB2Item& A, const FB2Item& B) const
 	//	{
@@ -2719,19 +2719,19 @@ bool UB2LobbyInventory::CheckForBetterEquipSuggestInner(EItemEquipPlace InEquipP
 	//	bool bOpenedDialog = false;
 
 	//	for (FB2Item& CurrCadid : NewlyAddedList)
-	//	{ // PrimaryPoint ¼øÀ¸·Î ¼ÒÆÃÇÏ¿´À¸´Ï °¡Àå ¾Õ¿¡²¨ »ç¿ëÇÏ¸é µÊ. ´Ü, Type ±îÁö ºñ±³¸¦.. ÇÏ´Â °Ô ÁÁ°ÚÁö..?
+	//	{ // PrimaryPoint é‰´æ è‚º å®¶æ³¼çªçœ‹æ èª å•Šå˜ èŠä¿Šæ³¢ è¤ä¾©çªæ å‡³. çªœ, Type é³–ç˜¤ åšèƒŒç”«.. çªç»° éœ¸ äº®æ‘†ç˜¤..?
 	//		if (!bHadEquipped || (CurrCadid.PrimaryPointType == EquippedOne.PrimaryPointType 
 	//			&& (B2UIUtil::DifferenceItemPrimaryPoint(CurrCadid, EquippedOne) >= 1)))
 	//		{
 	//			DJLegacy_OpenLobbySubPopupClass<ELobbySubPopups, FDJLegacySubpopupAddPanelInfo>::GetInstance().Signal(ELobbySubPopups::ELSPU_AcqItemEquipSuggest, FDJLegacySubpopupAddPanelInfo());
 
-	//			check(TransientLobbyGM); // ¾øÀ¸¸é ¹Ùº¸.
+	//			check(TransientLobbyGM); // ç»æ æ å®˜ç„Š.
 	//			UB2AcqItemEquipSuggest* AcqItemEquipSuggestPopup = Cast<UB2AcqItemEquipSuggest>(TransientLobbyGM->DJLegacy_FindLobbySubPopup(ELobbySubPopups::ELSPU_AcqItemEquipSuggest));
 	//							
 	//			if (AcqItemEquipSuggestPopup)
 	//			{
 	//				AcqItemEquipSuggestPopup->UpdateData(bHadEquipped, EquippedOne, CurrCadid,
-	//					// ¼±ÅÃ ÀÌÈÄ CheckForBetterEquipSuggest ¸¦ ´Ù½Ã ÄİÇÒ ¼ö ÀÖµµ·Ï.
+	//					// æ€¥ç¶ æé¥¶ CheckForBetterEquipSuggest ç”« ä¿ƒçŸ« å¦®ä¸” è ä¹æ¡£åºŸ.
 	//					[this](){CheckForBetterEquipSuggest(); }
 	//				);
 	//			}
@@ -2742,12 +2742,12 @@ bool UB2LobbyInventory::CheckForBetterEquipSuggestInner(EItemEquipPlace InEquipP
 	//	}
 
 	//	for (FB2Item& CurrNew : NewlyAddedList)
-	//	{ // ´õ ÁÁÀº °Ô ÀÖ¾úµç ¾ø¾úµç Ã¼Å©´Â ÇÏ¿´À¸´Ï ÀÌ¹ø ¸®½ºÆ®¿¡¼­´Â bNewlyAddedForEquipSuggest ¸¦ ¸ğµÎ reset
+	//	{ // æ­¹ äº®ç¯® éœ¸ ä¹èŒç”µ ç»èŒç”µ çœ‰å†œç»° çªçœ‹æ èª æé”… åºœèƒ¶é£˜ä¿Šè¾‘ç»° bNewlyAddedForEquipSuggest ç”« è‘›æ»´ reset
 	//		CurrNew.bNewlyAddedForEquipSuggest = false;
 	//		UpdateSingleItemData(CurrNew.InstanceUID, CurrNew);
 	//	}
 	//			
-	//	return bOpenedDialog; // ÀÌ¹ø¿¡ ´ëÈ­»óÀÚ¸¦ ¿­¾ú´Ù¸é true ¸¦ ¸®ÅÏÇØ¼­ »óÀ§´Ü¿¡¼­ Áßº¹ÇØ¼­ ¿­Áö ¾Ê°Ô ÇÑ´Ù. ¾îÂ÷ÇÇ Ã¼Å©´Â ´Ù ÇÒ °ÍÀÓ.
+	//	return bOpenedDialog; // æé”…ä¿Š æªæ‹³æƒ‘ç£Šç”« å‡¯èŒä¿ƒæ true ç”« åºœç•”ç§¦è¾‘ æƒ‘å›°çªœä¿Šè¾‘ åæ±—ç§¦è¾‘ å‡¯ç˜¤ è‡¼éœ¸ èŒ„ä¿ƒ. ç»¢ç’ä¹” çœ‰å†œç»° ä¿ƒ ä¸” å·´çƒ™.
 	//}
 
 	return false;
@@ -2756,7 +2756,7 @@ bool UB2LobbyInventory::CheckForBetterEquipSuggestInner(EItemEquipPlace InEquipP
 void UB2LobbyInventory::IgnoreBetterEquipSuggest()
 {
 	for (int32 PCI = 0; PCI < GetMaxPCClassNum(); ++PCI)
-	{// °Á ¸ğµç ¾ÆÀÌÅÛ µ¹¸é¼­ bNewlyAddedForEquipSuggest ¸®¼Â..
+	{// å‚² è‘›ç”µ é…’æè¢ å€’æè¾‘ bNewlyAddedForEquipSuggest åºœæ‚¸..
 		TArray<FB2Item> ThisList;
 		GetMergedItemList(ThisList, true, IntToPCClass(PCI));
 		for (FB2Item& ThisItem : ThisList)
@@ -2772,14 +2772,14 @@ void UB2LobbyInventory::IgnoreBetterEquipSuggest()
 
 void UB2LobbyInventory::GetEquipSuggestion(TArray<int64>& OutSuggestedIDs, EPCClass InPCClass)
 {
-	const EPCClass FinalPCClass = (InPCClass == EPCClass::EPC_End) ? GetInventorySelectedPCClass() : InPCClass; // EPC_End ÁöÁ¤ ½Ã ÇöÀç ¼±ÅÃµÈ °É·Î.
+	const EPCClass FinalPCClass = (InPCClass == EPCClass::EPC_End) ? GetInventorySelectedPCClass() : InPCClass; // EPC_End ç˜¤æ²¥ çŸ« æ³…çŠ æ€¥ç¶ç­‰ å§è‚º.
 
 	for (int32 EQI = 0; EQI < (int32)EItemEquipPlace::EIEP_End; ++EQI)
-	{ // ÀåÂøµÇÁö ¾ÊÀº °÷¿¡ ´ëÇØ¼­µµ °Ë»öÀ».
+	{ // å˜é¦’ç™»ç˜¤ è‡¼ç¯® é•‘ä¿Š æªç§¦è¾‘æ¡£ å…«ç¥¸é˜‘.
 		FB2Item EquippedOne;
 		const bool bHadEquipped = GetEquippedItemAtPlace(EquippedOne, static_cast<EItemEquipPlace>(EQI), FinalPCClass);
 
-		// µ¿ÀÏ À§Ä¡¿¡¼­ ´õ ³ªÀº Æ÷ÀÎÆ®¸¦ ¿Ã¸± ¼ö ÀÖ´Â °ÍÀ» Ã£´Â´Ù.
+		// æ‚¼è€ å›°æ‘¹ä¿Šè¾‘ æ­¹ å”±ç¯® å™¨ç‰¢é£˜ç”« æ£µå‰¯ è ä¹ç»° å·´é˜‘ èŒ«ç»°ä¿ƒ.
 		TArray<FB2Item> StoredListAtPlace;
 		GetStoredItemListForEquipPlace(StoredListAtPlace, static_cast<EItemEquipPlace>(EQI), FinalPCClass);
 		
@@ -2787,7 +2787,7 @@ void UB2LobbyInventory::GetEquipSuggestion(TArray<int64>& OutSuggestedIDs, EPCCl
 		int64 CurrentBestUID = 0;
 		for (FB2Item& CurrStored : StoredListAtPlace)
 		{
-			if ((!bHadEquipped || (B2UIUtil::DifferenceItemPrimaryPoint(CurrStored, EquippedOne) >= 1)) && // ÀåÂøµÈ °ÍÀÌ ¾ø´Ù¸é ´Ü¼øÈ÷ Á© ½ë °É·Î.
+			if ((!bHadEquipped || (B2UIUtil::DifferenceItemPrimaryPoint(CurrStored, EquippedOne) >= 1)) && // å˜é¦’ç­‰ å·´æ ç»ä¿ƒæ çªœé‰´æ´’ ä¿© è¯« å§è‚º.
 				(!bHadEquipped || CurrStored.PrimaryPointType == EquippedOne.PrimaryPointType) &&
 				CurrStored.GetPrimaryPoint() > BestScoreSoFar)
 			{
@@ -2796,7 +2796,7 @@ void UB2LobbyInventory::GetEquipSuggestion(TArray<int64>& OutSuggestedIDs, EPCCl
 			}
 		}
 
-		if (CurrentBestUID > 0) // ÀÌ¹ø À§Ä¡¿¡ ÀåÂøµÈ °Íº¸´Ù (È¤Àº ºñ¾îÀÖ´Â Ä­¿¡) ´õ ÁÁÀº °ÍÀ» Ã£À½.
+		if (CurrentBestUID > 0) // æé”… å›°æ‘¹ä¿Š å˜é¦’ç­‰ å·´ç„Šä¿ƒ (è¶£ç¯® åšç»¢ä¹ç»° æ²«ä¿Š) æ­¹ äº®ç¯® å·´é˜‘ èŒ«æ¾œ.
 		{
 			OutSuggestedIDs.Add(CurrentBestUID);
 		}
@@ -2816,13 +2816,13 @@ void UB2LobbyInventory::GetEquipSuggestion(TArray<int64>& OutSuggestedIDs, EPCCl
 //		const FB2Item& CurrCheck = InItemList[II];
 //
 //		if (CurrCheck.PrimaryPointType == InPrimPointType){
-//			AllGathered += CurrCheck.GetPrimaryPoint(); // ±âº» prim point ´õÇÔ. ¿©±â¼­ ¿É¼Ç°ª±îÁö Ä«¿îÆ®ÇÏÁö´Â ¾Ê´Â´Ù. ±âº» PrimaryPointType ÀÌ InPrimPointType °ú ´Ù¸¥ °æ¿ì ¾îÂ÷ÇÇ ¾Æ·¡ ¿É¼Ç°ª ÃëÇÕÀÌ ÇÊ¿äÇÏ±â ¶§¹®¿¡.
+//			AllGathered += CurrCheck.GetPrimaryPoint(); // æ‰å¤¯ prim point æ­¹çªƒ. å’¯æ‰è¾‘ å¯è®°è”¼é³–ç˜¤ å¢¨æ¬¾é£˜çªç˜¤ç»° è‡¼ç»°ä¿ƒ. æ‰å¤¯ PrimaryPointType æ InPrimPointType è‹ ä¿ƒå¼— ç‰ˆå¿« ç»¢ç’ä¹” é…’è´° å¯è®°è”¼ ç§’é’¦æ é˜å¤¸çªæ‰ é”­å·©ä¿Š.
 //		}
 //
-//		// ÇØ´ç prim point ÀÇ Áõ°¡¿É¼ÇÀÌ ÀÖ´Ù¸é ±×°Íµµ ´õÇÑ´Ù.
-//		// AllGathered += FMath::Max(GetEffectiveItemOptionValue(AssociatedOption, CurrCheck), 0.0f); // ´Ü¼ø Áõ°¡ ¿É¼Ç. ´õÇÔ. ±Ùµ¥ À½¼ö°¡ ³ª¿À´Â °æ¿ìµµ ÀÖ³ª..?
+//		// ç§¦å¯¸ prim point ç‹¼ åˆ˜å•Šå¯è®°æ ä¹ä¿ƒæ å¼Šå·´æ¡£ æ­¹èŒ„ä¿ƒ.
+//		// AllGathered += FMath::Max(GetEffectiveItemOptionValue(AssociatedOption, CurrCheck), 0.0f); // çªœé‰´ åˆ˜å•Š å¯è®°. æ­¹çªƒ. è¾Ÿå• æ¾œèå•Š å”±å·ç»° ç‰ˆå¿«æ¡£ ä¹å”±..?
 //	}
-//	// Wing µµ ¿©±â¼­ Ãß°¡.
+//	// Wing æ¡£ å’¯æ‰è¾‘ çœ å•Š.
 //	float AdditionalWingValue = 0.0f;
 //	if (InWing)
 //	{
@@ -2835,12 +2835,12 @@ void UB2LobbyInventory::GetEquipSuggestion(TArray<int64>& OutSuggestedIDs, EPCCl
 
 //float UB2LobbyInventory::GetEquippedPrimPointLocalPlayer(EItemPrimaryPointType InPrimPointType, EPCClass InPCClass)
 //{
-//	const EPCClass FinalPCClass = (InPCClass == EPCClass::EPC_End) ? GetInventorySelectedPCClass() : InPCClass; // EPC_End ÁöÁ¤ ½Ã ÇöÀç ¼±ÅÃµÈ °É·Î.
+//	const EPCClass FinalPCClass = (InPCClass == EPCClass::EPC_End) ? GetInventorySelectedPCClass() : InPCClass; // EPC_End ç˜¤æ²¥ çŸ« æ³…çŠ æ€¥ç¶ç­‰ å§è‚º.
 //
 //	TArray<FB2Item> AllEquipped;
 //	GetAllEquippedItem(AllEquipped, FinalPCClass);
 //
-//	// Wing µµ ¾ÆÀÌÅÛ°ú À¯»çÇÑ ½Ã½ºÅÛÀÌ°í ¿É¼Ç Å¸ÀÔÀÌ °°´Ù º¸´Ï ¿©±â¼­ Ã³¸®.
+//	// Wing æ¡£ é…’æè¢è‹ èœ¡è¤èŒ„ çŸ«èƒ¶è¢æç»Š å¯è®° é¸¥æ¶æ éä¿ƒ ç„Šèª å’¯æ‰è¾‘ è´¸åºœ.
 //	bool bFoundWingData = false;
 //	FB2Wing AdditionalWingData;
 //	bFoundWingData = BladeIIGameImpl::GetLocalCharacterData().GetCharacterWing(FinalPCClass, AdditionalWingData);
@@ -2850,12 +2850,12 @@ void UB2LobbyInventory::GetEquipSuggestion(TArray<int64>& OutSuggestedIDs, EPCCl
 
 //void UB2LobbyInventory::GetAllEquippedPrimPointsLocalPlayer(TMap<EItemPrimaryPointType, float>& OutAllPrimPoints, EPCClass InPCClass)
 //{
-//	const EPCClass FinalPCClass = (InPCClass == EPCClass::EPC_End) ? GetInventorySelectedPCClass() : InPCClass; // EPC_End ÁöÁ¤ ½Ã ÇöÀç ¼±ÅÃµÈ °É·Î.
+//	const EPCClass FinalPCClass = (InPCClass == EPCClass::EPC_End) ? GetInventorySelectedPCClass() : InPCClass; // EPC_End ç˜¤æ²¥ çŸ« æ³…çŠ æ€¥ç¶ç­‰ å§è‚º.
 //
 //	for (int32 PTI = 0; PTI < (int32)EItemPrimaryPointType::EIPP_End; ++PTI)
 //	{
 //		float ThisTypePoint = GetEquippedPrimPointLocalPlayer((EItemPrimaryPointType)PTI, FinalPCClass);
-//		if (ThisTypePoint > 0.0f) // 0 ÀÌÇÏ¸é ÇöÀç ÀåÂø¿¡¼± ¾ø´Â °Å
+//		if (ThisTypePoint > 0.0f) // 0 æçªæ æ³…çŠ å˜é¦’ä¿Šæ€¥ ç»ç»° èŠ­
 //		{
 //			OutAllPrimPoints.Add((EItemPrimaryPointType)PTI, ThisTypePoint);
 //		}
@@ -2864,12 +2864,12 @@ void UB2LobbyInventory::GetEquipSuggestion(TArray<int64>& OutSuggestedIDs, EPCCl
 
 //float UB2LobbyInventory::GetEquippedOptionPointLocalPlayer(EItemOption InOptionToCheck, EPCClass InPCClass)
 //{
-//	const EPCClass FinalPCClass = (InPCClass == EPCClass::EPC_End) ? GetInventorySelectedPCClass() : InPCClass; // EPC_End ÁöÁ¤ ½Ã ÇöÀç ¼±ÅÃµÈ °É·Î.
+//	const EPCClass FinalPCClass = (InPCClass == EPCClass::EPC_End) ? GetInventorySelectedPCClass() : InPCClass; // EPC_End ç˜¤æ²¥ çŸ« æ³…çŠ æ€¥ç¶ç­‰ å§è‚º.
 //
 //	TArray<FB2Item> AllEquipped;
 //	GetAllEquippedItem(AllEquipped, FinalPCClass);
 //
-//	// Wing µµ ¾ÆÀÌÅÛ°ú À¯»çÇÑ ½Ã½ºÅÛÀÌ°í ¿É¼Ç Å¸ÀÔÀÌ °°´Ù º¸´Ï ¿©±â¼­ Ã³¸®.
+//	// Wing æ¡£ é…’æè¢è‹ èœ¡è¤èŒ„ çŸ«èƒ¶è¢æç»Š å¯è®° é¸¥æ¶æ éä¿ƒ ç„Šèª å’¯æ‰è¾‘ è´¸åºœ.
 //	bool bFoundWingData = false;
 //	FB2Wing AdditionalWingData;
 //	bFoundWingData = BladeIIGameImpl::GetLocalCharacterData().GetCharacterWing(FinalPCClass, AdditionalWingData);
@@ -2881,7 +2881,7 @@ void UB2LobbyInventory::GetEquipSuggestion(TArray<int64>& OutSuggestedIDs, EPCCl
 //{
 //	TArray<float> AllFoundRawValues;
 //	for (auto& CurrEquip : AllEquipped)
-//	{ // °íÀ¯ ¿É¼ÇÀÌµç ±â³É ¿É¼ÇÀÌµç ¸ğµÎ.
+//	{ // ç»Šèœ¡ å¯è®°æç”µ æ‰æˆ å¯è®°æç”µ è‘›æ»´.
 //		for (auto& CurrOption : CurrEquip.IntrinsicOptions)
 //		{
 //			if (CurrOption.OptionType == InOptionToCheck)
@@ -2898,7 +2898,7 @@ void UB2LobbyInventory::GetEquipSuggestion(TArray<int64>& OutSuggestedIDs, EPCCl
 //		}
 //	}
 //
-//	// Wing µµ ¾ÆÀÌÅÛ°ú À¯»çÇÑ ½Ã½ºÅÛÀÌ°í ¿É¼Ç Å¸ÀÔÀÌ °°´Ù º¸´Ï ¿©±â¼­ Ã³¸®.
+//	// Wing æ¡£ é…’æè¢è‹ èœ¡è¤èŒ„ çŸ«èƒ¶è¢æç»Š å¯è®° é¸¥æ¶æ éä¿ƒ ç„Šèª å’¯æ‰è¾‘ è´¸åºœ.
 //	if (InWing)
 //	{
 //		const FWingPropOption* ThisPropOption = InWing->GetPropOptionPtr(InOptionToCheck); 
@@ -2908,29 +2908,29 @@ void UB2LobbyInventory::GetEquipSuggestion(TArray<int64>& OutSuggestedIDs, EPCCl
 //		}
 //	}
 //	
-//	// AllFoundRawValues °¡ ¾ø´õ¶óµµ GetEffectiveItemOptionValue ·Î ³Ñ±ä´Ù. ¾ø´Â °æ¿ì¿¡ ´ëÇÑ ±âº»°ªÀ» ¿É¼Ç Å¸ÀÔ¿¡ µû¶ó ¸®ÅÏÇØ ÁÙ °Í.
+//	// AllFoundRawValues å•Š ç»æ­¹æ‰¼æ¡£ GetEffectiveItemOptionValue è‚º é€å˜ä¿ƒ. ç»ç»° ç‰ˆå¿«ä¿Š æªèŒ„ æ‰å¤¯è”¼é˜‘ å¯è®° é¸¥æ¶ä¿Š è¶æ‰¼ åºœç•”ç§¦ ä¸´ å·´.
 //	return GetEffectiveItemOptionValue(InOptionToCheck, AllFoundRawValues);
 //}
 
-/* Á» º¹ÀâÇØÁ®¼­ ÀÏ´Ü ¾ø¾Ö°í.. È¤½Ã ÇÊ¿äÇØÁö¸é Wing µ¥ÀÌÅÍµµ °í·ÁÇÏµµ·Ï.
+/* ç²± æ±—æ£±ç§¦å»‰è¾‘ è€çªœ ç»å±€ç»Š.. è¶£çŸ« é˜å¤¸ç§¦ç˜¤æ Wing å•æç£æ¡£ ç»Šå¦¨çªæ¡£åºŸ.
 void UB2LobbyInventory::GetAllEquippedOptionPointsLocalPlayer(TMap<EItemOption, float>& OutAllOptions, EPCClass InPCClass)
 {
-	const EPCClass FinalPCClass = (InPCClass == EPCClass::EPC_End) ? GetInventorySelectedPCClass() : InPCClass; // EPC_End ÁöÁ¤ ½Ã ÇöÀç ¼±ÅÃµÈ °É·Î.
+	const EPCClass FinalPCClass = (InPCClass == EPCClass::EPC_End) ? GetInventorySelectedPCClass() : InPCClass; // EPC_End ç˜¤æ²¥ çŸ« æ³…çŠ æ€¥ç¶ç­‰ å§è‚º.
 
 	TArray<FB2Item> AllEquipped;
 	GetAllEquippedItem(AllEquipped, FinalPCClass);
 
-	// Á¾·ùº° Option µé Áß°£ ÃëÇÕ
+	// è¾†å¹…å–Š Option ç”¸ ååŸƒ ç§’é’¦
 	TMap<EItemOption, TArray<float>> IntermOptionMap;
 
 	for (FB2Item& CurrEquip : AllEquipped)
-	{ // °íÀ¯ ¿É¼ÇÀÌµç ±â³É ¿É¼ÇÀÌµç ¸ğµÎ.
+	{ // ç»Šèœ¡ å¯è®°æç”µ æ‰æˆ å¯è®°æç”µ è‘›æ»´.
 		for (FItemOption& CurrOption : CurrEquip.IntrinsicOptions)
 		{
 			float NewValue = CurrOption.RawOptionAmount;
 			TArray<float>* ExistingValueArray = IntermOptionMap.Find(CurrOption.OptionType);
 			if (ExistingValueArray)
-			{ // ¿©±â¼± ´Ü¼øÈ÷ °ªÀ» ³Ö±â¸¸ ÇÏ°í ¸ğµÎ ¸ğÀº ÈÄ ÃÖÁ¾ÀûÀÎ °ªÀ¸·Î ´Ù½Ã °¡°øÇÒ °Í.
+			{ // å’¯æ‰æ€¥ çªœé‰´æ´’ è”¼é˜‘ æŒæ‰çˆ¶ çªç»Š è‘›æ»´ è‘›ç¯® é¥¶ å¼¥è¾†åˆ©ç‰¢ è”¼æ è‚º ä¿ƒçŸ« å•Šå‚ä¸” å·´.
 				ExistingValueArray->Add(NewValue);
 			}
 			else
@@ -2945,7 +2945,7 @@ void UB2LobbyInventory::GetAllEquippedOptionPointsLocalPlayer(TMap<EItemOption, 
 			float NewValue = CurrOption.RawOptionAmount;
 			TArray<float>* ExistingValueArray = IntermOptionMap.Find(CurrOption.OptionType);
 			if (ExistingValueArray)
-			{ // ¿©±â¼± ´Ü¼øÈ÷ °ªÀ» ³Ö±â¸¸ ÇÏ°í ¸ğµÎ ¸ğÀº ÈÄ ÃÖÁ¾ÀûÀÎ °ªÀ¸·Î ´Ù½Ã °¡°øÇÒ °Í.
+			{ // å’¯æ‰æ€¥ çªœé‰´æ´’ è”¼é˜‘ æŒæ‰çˆ¶ çªç»Š è‘›æ»´ è‘›ç¯® é¥¶ å¼¥è¾†åˆ©ç‰¢ è”¼æ è‚º ä¿ƒçŸ« å•Šå‚ä¸” å·´.
 				ExistingValueArray->Add(NewValue);
 			}
 			else
@@ -2958,7 +2958,7 @@ void UB2LobbyInventory::GetAllEquippedOptionPointsLocalPlayer(TMap<EItemOption, 
 	}
 
 	for (auto& IntermElem : IntermOptionMap)
-	{ // ¸ğ¾Æ³õÀº °É·Î ÃÖÁ¾ÀûÀÎ °¡°ø.
+	{ // è‘›é…’åˆç¯® å§è‚º å¼¥è¾†åˆ©ç‰¢ å•Šå‚.
 		float FinalScaled = GetEffectiveItemOptionValue(IntermElem.Key, IntermElem.Value);
 		OutAllOptions.Add(IntermElem.Key, FinalScaled);
 	}
@@ -2971,11 +2971,11 @@ void UB2LobbyInventory::EnterItemOpMode(ELobbyInvenItemOpMode InMode, int64 Targ
 		return;
 	}
 
-	//ResetAllIngredsList(); // È®½ÇÈ÷..
+	//ResetAllIngredsList(); // çŠ¬è§’æ´’..
 	//ResetEnhanceItemDatas();
 
 	//GhostItemOpIngreds.Empty();
-	//CachedItemOpTargetData = FB2Item(); // ¼­¹ö·Î ¿äÃ» º¸³½ ÀÌÈÄ¿¡³ª Ä³½Ì µÊ.
+	//CachedItemOpTargetData = FB2Item(); // è¾‘æ»šè‚º å¤¸æ²¡ ç„Šè¾° æé¥¶ä¿Šå”± æŸæ•™ å‡³.
 	//OnCommitItemOpHeroMgmtPCBackup = EPCClass::EPC_End;
 	//OnCommitItemOpInvenPageTabBackup = EItemInvenType::EIIVT_End;
 	//CurrentItemOpMode = InMode;
@@ -2985,13 +2985,13 @@ void UB2LobbyInventory::EnterItemOpMode(ELobbyInvenItemOpMode InMode, int64 Targ
 	//if (IsBackupRollBackInventoryTab && TransientLobbyGM && TransientLobbyGM->DJLegacy_GetLobbyUIManager())
 	//	CustomBackupInvenPageTab = TransientLobbyGM->DJLegacy_GetLobbyUIManager()->GetInventoryTabSelection();
 
-	//// »ı¼ºµÈ Popup widget À» UIP Ã³·³ ¹èÄ¡ÇØ ³ÖÀ» ÆĞ³Î Á¤º¸¸¦ ¸¸µé¾îÁØ´Ù.
+	//// ç§¯å·±ç­‰ Popup widget é˜‘ UIP è´¸çƒ¦ ç¡…æ‘¹ç§¦ æŒé˜‘ è©æ¾„ æ²¥ç„Šç”« çˆ¶ç”¸ç»¢éœ–ä¿ƒ.
 	//UB2LobbyUI_InventoryMain* InventoryUI = TransientLobbyGM ? Cast<UB2LobbyUI_InventoryMain>(TransientLobbyGM->DJLegacy_GetCurrLobbyUIPage()) : nullptr;
 	//UPanelWidget* PopupAddPanel = InventoryUI ? InventoryUI->GetItemDetailPopupParentPanel(true) : nullptr;
 	//
-	//// ±âÅ¸ ³ª¸ÓÁö ¸ğµåÀÇ Àç·á ¼±ÅÃ »óÅÂµµ.
+	//// æ‰é¸¥ å”±èµ£ç˜¤ è‘›é›ç‹¼ çŠä¸° æ€¥ç¶ æƒ‘æ€•æ¡£.
 
-	//// Mode ¶û TargetID µî ¼¼ÆÃºÎÅÍ ÇÏ°í UI ¸¦ ¿­¾î¾ß ÇÔ.
+	//// Mode å°” TargetID æ®¿ æŠ€æ³¼ä½•ç£ çªç»Š UI ç”« å‡¯ç»¢å…· çªƒ.
 	//switch (CurrentItemOpMode)
 	//{
 	//case ELobbyInvenItemOpMode::EIVIOP_None: 
@@ -3070,7 +3070,7 @@ void UB2LobbyInventory::EnterItemOpMode(ELobbyInvenItemOpMode InMode, int64 Targ
 	//			CurrentItemOpMode = ELobbyInvenItemOpMode::EIVIOP_None;
 	//	}
 
-	//	return; //ÀüÃ¼ ÆË¾÷ÀÌ¶ó µÚ¿¡ ¹Ù²ãÁÙÇÊ¿ä¾ø´Ù
+	//	return; //å‚ˆçœ‰ æ‰‘è¯€ææ‰¼ ç¬¬ä¿Š å®˜å±‚ä¸´é˜å¤¸ç»ä¿ƒ
 	//	//DJLegacy_OpenLobbySubPopupClass<ELobbySubPopups, FDJLegacySubpopupAddPanelInfo>::GetInstance().Signal(ELobbySubPopups::ELSPU_ItemHeroChangeMain, FDJLegacySubpopupAddPanelInfo(InventoryUI, PopupAddPanel));
 	//}
 	//break;
@@ -3085,11 +3085,11 @@ void UB2LobbyInventory::EnterItemOpMode(ELobbyInvenItemOpMode InMode, int64 Targ
 	//		UB2UIItemChangePopupMode* PopUpUI = UB2UIManager::GetInstance()->OpenUI<UB2UIItemChangePopupMode>(UIFName::MsgEnhancementChangeMode);
 	//		check(PopUpUI)
 	//		PopUpUI->ItemSlotSetting(TargetItemData);
-	//		//°­È­ÀüÈ¯
+	//		//ç¢æ‹³å‚ˆåˆ¸
 	//		PopUpUI->AddHandler(EUIItemChangePopupMode::Enhance, FItemChangePopupMode::CreateLambda([this]()
 	//		{	this->EnterItemOpMode(ELobbyInvenItemOpMode::EIVIOP_EnhancementChange, ItemOpTargetItemID); }));
 
-	//		//¿É¼Ç º¯°æ
+	//		//å¯è®° å‡½ç‰ˆ
 	//		PopUpUI->AddHandler(EUIItemChangePopupMode::Option, FItemChangePopupMode::CreateLambda([TargetItemData]()
 	//		{	UB2UIItemOptionChange* ItemOptionChangeWidget = UB2UIManager::GetInstance()->OpenUI<UB2UIItemOptionChange>(UIFName::ItemOptionChange);
 	//		if (ItemOptionChangeWidget)
@@ -3098,7 +3098,7 @@ void UB2LobbyInventory::EnterItemOpMode(ELobbyInvenItemOpMode InMode, int64 Targ
 	//		}
 	//		}));
 	//		
-	//		//¿µ¿õÀüÈ¯
+	//		//åº·æ—·å‚ˆåˆ¸
 	//		PopUpUI->AddHandler(EUIItemChangePopupMode::Hero, FItemChangePopupMode::CreateLambda([this, TargetItemData]()
 	//		{	
 	//			if (TargetItemData.bIsLocked)
@@ -3114,11 +3114,11 @@ void UB2LobbyInventory::EnterItemOpMode(ELobbyInvenItemOpMode InMode, int64 Targ
 	//		}));
 
 	//		
-	//		//µî±Ş º¯°æ
+	//		//æ®¿é­ å‡½ç‰ˆ
 	//		PopUpUI->AddHandler(EUIItemChangePopupMode::Quality, FItemChangePopupMode::CreateLambda([TargetItemData]()
 	//		{
 	//			DJLegacy_OpenLobbySubPopupClass<ELobbySubPopups, FDJLegacySubpopupAddPanelInfo>::GetInstance().Signal(ELobbySubPopups::ELSPU_QualityChange, FDJLegacySubpopupAddPanelInfo());
-	//			check(TransientLobbyGM); // ¾øÀ¸¸é ¹Ùº¸.
+	//			check(TransientLobbyGM); // ç»æ æ å®˜ç„Š.
 	//			UB2UIItemQualityChange* ItemQualityChangeWidget = Cast<UB2UIItemQualityChange>(TransientLobbyGM->DJLegacy_FindLobbySubPopup(ELobbySubPopups::ELSPU_QualityChange));
 	//			if (ItemQualityChangeWidget)
 	//			{
@@ -3155,15 +3155,15 @@ void UB2LobbyInventory::EnterItemOpMode(ELobbyInvenItemOpMode InMode, int64 Targ
 	//	//DJLegacy_OpenLobbySubPopupClass<ELobbySubPopups, FDJLegacySubpopupAddPanelInfo>::GetInstance().Signal(ELobbySubPopups::ELSPU_ItemEnhanceMain, FDJLegacySubpopupAddPanelInfo(InventoryUI, PopupAddPanel));
 	//}
 	//break;
-	//	// Note :	ÀÌÁ¦ºÎÅÍ´Â °­È­ ºñ¿ë(Cost)°ü·ÃÇØ¼­ ¼­¹ö¿¡ ¿äÃ»ÇÏÁö¾Ê°í, ±âÁ¸¿¡ ¹Ş¾ÆµÎ¾ú´ø ¸¶½ºÅÍµ¥ÀÌÅÍ¿¡¼­ ÂüÁ¶ÇÏµµ·Ï º¯°æ (2017-04)
-	//	//			±âÁ¸ °Íµµ ¼­¹ö/Å¬¶ó ÀÛ¾÷ÀÚ°¡ ³¯Àâ°í ÇÑ¹ø¿¡ º¯°æÇÏ¸é ÁÁ°Ú´Âµ¥....
+	//	// Note :	æåŠ›ä½•ç£ç»° ç¢æ‹³ åšä¾©(Cost)åŒ…è®¿ç§¦è¾‘ è¾‘æ»šä¿Š å¤¸æ²¡çªç˜¤è‡¼ç»Š, æ‰ç²®ä¿Š ç½é…’æ»´èŒå¸¦ ä»˜èƒ¶ç£å•æç£ä¿Šè¾‘ æ›¼ç‚¼çªæ¡£åºŸ å‡½ç‰ˆ (2017-04)
+	//	//			æ‰ç²® å·´æ¡£ è¾‘æ»š/åŠªæ‰¼ ç´¯è¯€ç£Šå•Š æœæ£±ç»Š èŒ„é”…ä¿Š å‡½ç‰ˆçªæ äº®æ‘†ç»°å•....
 	//}
 
 
 	//if (OpenInventoryType == EItemInvenType::EIIVT_End)
 	//{
-	//	// Å¸°Ù ¾ÆÀÌÅÛ°ú °°Àº Å¸ÀÔÀÇ ÅÇÀ¸·Î °­Á¦ ¼±ÅÃ. 
-	//	// QuitItemOpMode ¿¡¼­µµ ºñ½ÁÇÑ µ¿ÀÛÀ» ÇÏ´Âµ¥ ¿©±â¼­ ÅÇ¼±ÅÃ ÀÚÃ¼¸¦ Àá±Ù °Ç Ç®¾îÁÖ¾î¾ß ÇÑ´Ù.
+	//	// é¸¥ç™¾ é…’æè¢è‹ éç¯® é¸¥æ¶ç‹¼ å¾˜æ è‚º ç¢åŠ› æ€¥ç¶. 
+	//	// QuitItemOpMode ä¿Šè¾‘æ¡£ åšæ…èŒ„ æ‚¼ç´¯é˜‘ çªç»°å• å’¯æ‰è¾‘ å¾˜æ€¥ç¶ ç£Šçœ‰ç”« æ³ªè¾Ÿ æ‰’ é’±ç»¢æ—ç»¢å…· èŒ„ä¿ƒ.
 	//	FB2Item TargetItemData;
 	//	if (FindFromAll(TargetItemData, ItemOpTargetItemID))
 	//	{
@@ -3175,19 +3175,19 @@ void UB2LobbyInventory::EnterItemOpMode(ELobbyInvenItemOpMode InMode, int64 Targ
 	//	LobbyExternalSetInventoryTabClass<EItemInvenType, bool>::GetInstance().Signal(OpenInventoryType, true);
 	//}
 
-	//// º¸°üÇÔ ¾ÆÀÌÅÛ ¼¼ºÎ Á¤º¸ Ã¢ÀÌ ¿­·Á ÀÖ´Ù¸é ´İ´Â´Ù. º¸°üÇÔ¿¡¼­ Àç·á¸¦ ²¨³»¾ß ÇÏ±â ¶§¹®¿¡.
-	//// ÀüÈ¯¸ğµå(ÀüÃ¼ ÆË¾÷ Ã¢)ÀÏ °æ¿ì ´İ¾ÆÁÖÁö ¾Ê´Â´Ù
+	//// ç„ŠåŒ…çªƒ é…’æè¢ æŠ€ä½• æ²¥ç„Š èŠ’æ å‡¯å¦¨ ä¹ä¿ƒæ æ‘§ç»°ä¿ƒ. ç„ŠåŒ…çªƒä¿Šè¾‘ çŠä¸°ç”« æ³¢éƒ´å…· çªæ‰ é”­å·©ä¿Š.
+	//// å‚ˆåˆ¸è‘›é›(å‚ˆçœ‰ æ‰‘è¯€ èŠ’)è€ ç‰ˆå¿« æ‘§é…’æ—ç˜¤ è‡¼ç»°ä¿ƒ
 	//
 	//DJLegacy_CloseLobbySubPopupClass<ELobbySubPopups>::GetInstance().Signal(ELobbySubPopups::ELSPU_StoredItemDetail);
 	//DJLegacy_CloseLobbySubPopupClass<ELobbySubPopups>::GetInstance().Signal(ELobbySubPopups::ELSPU_EquippedItemDetail);
 	//ChangeInvenItemOpModeClass<ELobbyInvenItemOpMode>::GetInstance().Signal(CurrentItemOpMode);
-	//LobbyUpdateAllItemIconsClass<>::GetInstance().Signal(); // ÀÎº¥Åä¸® º¸°üÇÔ ºä ¾÷µ¥ÀÌÆ® ½Ã¿¡´Â Target ¾ÆÀÌÅÛÀº º¸ÀÌÁö ¾Ê°Ô µÉ °Í.
+	//LobbyUpdateAllItemIconsClass<>::GetInstance().Signal(); // ç‰¢äº¥é…åºœ ç„ŠåŒ…çªƒ è½° è¯€å•æé£˜ çŸ«ä¿Šç»° Target é…’æè¢ç¯® ç„Šæç˜¤ è‡¼éœ¸ çª å·´.
 	//
 }
 
 void UB2LobbyInventory::QuitItemOpMode(bool bQuitFromOpSuccess)
 {
-//	// ¸ğµå¸¦ Á¾·áÇÏ±â Àü, ÀÌÀü Op ¸ğµå ¼º°ø ÀÌÈÄ¶ó¸é ¿¬´Ş¾Æ¼­ Op ¸ğµå¸¦ Áö¼ÓÇÒ ¼ö ÀÖÀ¸¹Ç·Î ¾÷±×·¹ÀÌµå µÈ ¾ÆÀÌÅÛ µ¥ÀÌÅÍ µîÀ» º¸°üÇØ µĞ´Ù.
+//	// è‘›é›ç”« è¾†ä¸°çªæ‰ å‚ˆ, æå‚ˆ Op è‘›é› å·±å‚ æé¥¶æ‰¼æ æ¥·å´”é…’è¾‘ Op è‘›é›ç”« ç˜¤åŠ ä¸” è ä¹æ éª¨è‚º è¯€å¼Šé¥­æé› ç­‰ é…’æè¢ å•æç£ æ®¿é˜‘ ç„ŠåŒ…ç§¦ æ•Œä¿ƒ.
 //	FB2Item PrevSuccessTargetData;
 //	const bool bGotPrevItemOpTarget = GetItemOPTargetItemData(PrevSuccessTargetData, false);
 //	const ELobbyInvenItemOpMode JustFinishedOpMode = CurrentItemOpMode;
@@ -3201,7 +3201,7 @@ void UB2LobbyInventory::QuitItemOpMode(bool bQuitFromOpSuccess)
 //	ItemOpTargetItemID = 0;
 //	bFreezeitemOpModeIngredSelection = false;
 //	CurrentBaseItemOpGoldCost = 0;
-//	GhostItemOpIngreds.Empty(); // GhostItemOpIngreds ´Â µû·Î ºñ¿ò Ã³¸®
+//	GhostItemOpIngreds.Empty(); // GhostItemOpIngreds ç»° è¶è‚º åšæ¡† è´¸åºœ
 //	CachedItemOpTargetData = FB2Item();
 //#if WITH_EDITOR
 //	bItemOpProgressSceneTestMode = false;
@@ -3210,7 +3210,7 @@ void UB2LobbyInventory::QuitItemOpMode(bool bQuitFromOpSuccess)
 //	ResetAllIngredsList();
 //	ResetEnhanceItemDatas();
 //
-//	// ¿­·Á ÀÖÀ»Áö ¸ğ¸¦ ¾ÆÀÌÅÛ °­È­ °ü·Ã ¸Ş´ºµéÀ» ¸ğµÎ ´İ´Â´Ù. (¹Ù·Î ¾Æ·¡¿¡¼­ ´Ù½Ã ¿­¸± ¼öµµ ÀÖÁö¸¸ ¤»)
+//	// å‡¯å¦¨ ä¹é˜‘ç˜¤ è‘›ç”« é…’æè¢ ç¢æ‹³ åŒ…è®¿ çš‹æ˜¥ç”¸é˜‘ è‘›æ»´ æ‘§ç»°ä¿ƒ. (å®˜è‚º é…’è´°ä¿Šè¾‘ ä¿ƒçŸ« å‡¯å‰¯ èæ¡£ ä¹ç˜¤çˆ¶ ã›)
 //	DJLegacy_CloseLobbySubPopupClass<ELobbySubPopups>::GetInstance().Signal(ELobbySubPopups::ELSPU_ItemLevelUpMain);
 //	DJLegacy_CloseLobbySubPopupClass<ELobbySubPopups>::GetInstance().Signal(ELobbySubPopups::ELSPU_ItemUpgradeMain);
 //	DJLegacy_CloseLobbySubPopupClass<ELobbySubPopups>::GetInstance().Signal(ELobbySubPopups::ELSPU_ItemComposeMain);
@@ -3219,14 +3219,14 @@ void UB2LobbyInventory::QuitItemOpMode(bool bQuitFromOpSuccess)
 //	DJLegacy_CloseLobbySubPopupClass<ELobbySubPopups>::GetInstance().Signal(ELobbySubPopups::ELSPU_ItemEnhanceChangeMain);
 //	DJLegacy_CloseLobbySubPopupClass<ELobbySubPopups>::GetInstance().Signal(ELobbySubPopups::ELSPU_ItemHeroChangeMain);
 //		
-//	LobbyInvenHideItemOpModeGuideTextClass<>::GetInstance().Signal(); // °¡ÀÌµå ÅØ½ºÆ®µµ Ç¥½ÃµÇ¾î ÀÖÀ» ¼ö ÀÖÀ¸¹Ç·Î ´İÀ½.
+//	LobbyInvenHideItemOpModeGuideTextClass<>::GetInstance().Signal(); // å•Šæé› å’†èƒ¶é£˜æ¡£ é’çŸ«ç™»ç»¢ ä¹é˜‘ è ä¹æ éª¨è‚º æ‘§æ¾œ.
 //
-//	if (bQuitFromOpSuccess && // ±×³É È®ÀÎÂ÷¿ø¿¡¼­ QuitItemOpMode ¸¦ ÄİÇÏ´Â °æ¿ìµµ ÀÖÀ½. ½ÇÁ¦ Op mode ¼º°ø ½Ã ºÒ¸®´Â °æ¿ìÀÇ Ã³¸®µé.
+//	if (bQuitFromOpSuccess && // å¼Šæˆ çŠ¬ç‰¢ç’ç›”ä¿Šè¾‘ QuitItemOpMode ç”« å¦®çªç»° ç‰ˆå¿«æ¡£ ä¹æ¾œ. è§’åŠ› Op mode å·±å‚ çŸ« é˜‚åºœç»° ç‰ˆå¿«ç‹¼ è´¸åºœç”¸.
 //		TransientLobbyGM && TransientLobbyGM->IsValidObj() && TransientLobbyGM->IsHeroMgmtMode()) 
 //	{
-//		// °­È­ ¿¬Ãâ ¹× ¼º°ø ÆäÀÌÁö µîÀÌ popup ÀÌ ¾Æ´Ñ º°µµ ÆäÀÌÁö·Î µÇ¾î ÀÖÀ¸¹Ç·Î ÀÎº¥Åä¸®·Î µ¹¾Æ¿È.
-//		// ¾ğÁ¦³ª ÇÏ´õ¶óµµ µüÈ÷ ¹®Á¦´Â ¾ÈµÇ´Âµ¥ ÇÊ¿ä ¾øÀ»¶§¿¡µµ °è¼Ó ÀÌ°Ô ½ÇÇàµÇ¸é º¸±â »ç³ª¿ò ¤»
-//		// ¿µ¿õ°ü¸® ¸ğµå°¡ ¾Æ´Ï¶ó¸é ÀÌ¹Ì DJLegacy UI page ´Â ´İÈù »óÅÂ·Î ¸ŞÀÎ ·ÎºñÃ¢À¸·Î ³ª¿Í ÀÖÀ» °ÍÀÌ¹Ç·Î ´Ù½Ã ÁøÀÔÇÏ¸é ¾ÈµÊ.
+//		// ç¢æ‹³ æ¥·å… æ£º å·±å‚ å…¶æç˜¤ æ®¿æ popup æ é…’å›± å–Šæ¡£ å…¶æç˜¤è‚º ç™»ç»¢ ä¹æ éª¨è‚º ç‰¢äº¥é…åºœè‚º å€’é…’å’³.
+//		// æ”«åŠ›å”± çªæ­¹æ‰¼æ¡£ è¿­æ´’ å·©åŠ›ç»° æ•‘ç™»ç»°å• é˜å¤¸ ç»é˜‘é”­ä¿Šæ¡£ æ‹ŒåŠ  æéœ¸ è§’é’ç™»æ ç„Šæ‰ è¤å”±æ¡† ã›
+//		// åº·æ—·åŒ…åºœ è‘›é›å•Š é…’èªæ‰¼æ æå›º DJLegacy UI page ç»° æ‘§è…® æƒ‘æ€•è‚º çš‹ç‰¢ è‚ºåšèŠ’æ è‚º å”±å®¢ ä¹é˜‘ å·´æéª¨è‚º ä¿ƒçŸ« æŸ³æ¶çªæ æ•‘å‡³.
 //
 //		ELobbyUIPages NextPage;
 //		switch (JustFinishedOpMode)
@@ -3244,28 +3244,28 @@ void UB2LobbyInventory::QuitItemOpMode(bool bQuitFromOpSuccess)
 //
 //		DJLegacy_ChangeLobbyUIPageClass<ELobbyUIPages>::GetInstance().Signal(NextPage);
 //
-//		// LobbyGM ÂÊ ¿¬Ãâ¿ë ºä ¼¼ÆÃµµ Á¾·á. 
+//		// LobbyGM ç‡ æ¥·å…ä¾© è½° æŠ€æ³¼æ¡£ è¾†ä¸°. 
 //		LobbyQuitItemOpDirectingViewClass<>::GetInstance().Signal();
 //		
-//		// ÀÎº¥Åä¸® UI¸¦ »õ·Î ¿©´Âµ¥ ÀÌÀü ÅÇÀ» À¯ÁöÇÏ°Ô Á» Ã³¸®.
+//		// ç‰¢äº¥é…åºœ UIç”« è´§è‚º å’¯ç»°å• æå‚ˆ å¾˜é˜‘ èœ¡ç˜¤çªéœ¸ ç²± è´¸åºœ.
 //		if (OnCommitItemOpHeroMgmtPCBackup != EPCClass::EPC_End)
 //			TransientLobbyGM->SetHeroMgmtModePCSelection(OnCommitItemOpHeroMgmtPCBackup);
 //
 //		//if (OnCommitItemOpInvenPageTabBackup != EItemInvenType::EIIVT_End)
-//		{// EnterItemOpMode ½Ã ÅÇ¼±ÅÃ Àá±Ù °Å Ç®¾îÁÖ´Â °Íµµ Æ÷ÇÔ. µû¶ó¼­ ¼³·É OnCommitItemOpInvenPageTabBackup ÀÌ ¿¹»ó°ú ´Ù¸£°Ô µé¾î°¡ ÀÖ¾îµµ ÀÌ°Ç bool ÀÎÀÚ¸¦ false ·Î ÇØ¼­ ²À ºÒ·¯ÁØ´Ù.
+//		{// EnterItemOpMode çŸ« å¾˜æ€¥ç¶ æ³ªè¾Ÿ èŠ­ é’±ç»¢æ—ç»° å·´æ¡£ å™¨çªƒ. è¶æ‰¼è¾‘ æ±²é£ OnCommitItemOpInvenPageTabBackup æ æŠ—æƒ‘è‹ ä¿ƒç¦éœ¸ ç”¸ç»¢å•Š ä¹ç»¢æ¡£ ææ‰’ bool ç‰¢ç£Šç”« false è‚º ç§¦è¾‘ æ€– é˜‚çŸ¾éœ–ä¿ƒ.
 //			LobbyExternalSetInventoryTabClass<EItemInvenType, bool>::GetInstance().Signal(OnCommitItemOpInvenPageTabBackup, false);
 //		}
 //
 //		if (IsReturnTotemInventory)
 //		{
-//			// ÅäÅÛ¿¡¼­ µ¹¾Æ¿Â »óÅÂ¶ó¸é ´Ù½Ã Ã¢À» ¶ç¿öÁÖµµ·Ï ÇÏÀÚ.
+//			// é…è¢ä¿Šè¾‘ å€’é…’æŸ¯ æƒ‘æ€•æ‰¼æ ä¿ƒçŸ« èŠ’é˜‘ å‰å†µæ—æ¡£åºŸ çªç£Š.
 //			ReturnTotemInventoryClass<int64>::GetInstance().Signal(PrevSuccessTargetData.InstanceUID);
 //		}
 //		else
 //		{
 //			if (bGotPrevItemOpTarget)
 //			{
-//				// °­È­/·¹º§¾÷ÀÌ °è¼Ó °¡´ÉÇÏ´Ù¸é Ã¢À» ¶ç¿öÁÖµµ·Ï ÇÏÀÚ.
+//				// ç¢æ‹³/é¥­éª‡è¯€æ æ‹ŒåŠ  å•Šç“·çªä¿ƒæ èŠ’é˜‘ å‰å†µæ—æ¡£åºŸ çªç£Š.
 //
 //				if (JustFinishedOpMode == ELobbyInvenItemOpMode::EIVIOP_Levelup && IsItemLevelupAllowed(PrevSuccessTargetData))
 //				{
@@ -3273,12 +3273,12 @@ void UB2LobbyInventory::QuitItemOpMode(bool bQuitFromOpSuccess)
 //				}
 //				else if (JustFinishedOpMode == ELobbyInvenItemOpMode::EIVIOP_Enhancement && IsItemEnhanceAllowed(PrevSuccessTargetData))
 //				{
-//					// °­È­ÀÇ °æ¿ì Àç·áµéµµ ¹Ì¸® ³Ö¾îÁØ´Ù. 
+//					// ç¢æ‹³ç‹¼ ç‰ˆå¿« çŠä¸°ç”¸æ¡£ å›ºåºœ æŒç»¢éœ–ä¿ƒ. 
 //					EnterItemOpMode(ELobbyInvenItemOpMode::EIVIOP_Enhancement, PrevSuccessTargetData.InstanceUID, EItemInvenType::EIIVT_Consumables);
 //
 //					if (PrevSelectedIngredItems.Num() > 0)
 //					{
-//						// 999°³°¡ ³ÑÀ¸¸é ¾ÆÀÌÅÛ InstanceUID°¡ ¿©·¯°³ÀÏ¼ö ÀÖÀ¸¹Ç·Î RefID±âÁØÀ¸·Î ´Ù½Ã °è»êÀ» ÇØÁØ´Ù.
+//						// 999ä¿ºå•Š é€æ æ é…’æè¢ InstanceUIDå•Š å’¯çŸ¾ä¿ºè€è ä¹æ éª¨è‚º RefIDæ‰éœ–æ è‚º ä¿ƒçŸ« æ‹Œé­‚é˜‘ ç§¦éœ–ä¿ƒ.
 //						const int32 EnhanceIngredRefId = PrevSelectedIngredItems[0].ItemRefID;
 //						if (GetSharedConsumableAmountOfType(EnhanceIngredRefId) > 0)
 //						{
@@ -3295,7 +3295,7 @@ void UB2LobbyInventory::QuitItemOpMode(bool bQuitFromOpSuccess)
 //					OnCallBackEnhanceCostumeInvenPageClass<const FB2Item&>::GetInstance().Signal(PrevSuccessTargetData);
 //				}
 //				else
-//				{ // ±âÅ¸ ´Ù¸¥ °æ¿ì¶ó¸é °Á ¼¼ºÎ Á¤º¸ Ã¢ ´Ù½Ã ¶ç¿ì´Â °É·Î. ÇÕ¼ºÀÌ³ª ½Â±ŞÀ» ÇØ¾ß ÇÒ »óÈ²ÀÌ¶óµµ µÑ Áß ÇÏ³ª¸¦ ¼±ÅÃÇØ¾ß ÇÏ´Ï °Á ¼¼ºÎÃ¢À¸·Î ¤»
+//				{ // æ‰é¸¥ ä¿ƒå¼— ç‰ˆå¿«æ‰¼æ å‚² æŠ€ä½• æ²¥ç„Š èŠ’ ä¿ƒçŸ« å‰å¿«ç»° å§è‚º. é’¦å·±æå”± é“°é­é˜‘ ç§¦å…· ä¸” æƒ‘ç‚”ææ‰¼æ¡£ ç¬› å çªå”±ç”« æ€¥ç¶ç§¦å…· çªèª å‚² æŠ€ä½•èŠ’æ è‚º ã›
 //					UB2DynItemIcon::CreateLobbyItemDetailPopupCommon(TransientLobbyGM, PrevSuccessTargetData, PrevSuccessTargetData.bCurrentlyEquipped);
 //				}
 //			}
@@ -3303,7 +3303,7 @@ void UB2LobbyInventory::QuitItemOpMode(bool bQuitFromOpSuccess)
 //	}
 //	else
 //	{	
-//		// ÅÇ¼±ÅÃ Àá±ä °Å Ç®¾îÁÖ´Â °Ç ¾î¶² »óÈ²¿¡¼­µç
+//		// å¾˜æ€¥ç¶ æ³ªå˜ èŠ­ é’±ç»¢æ—ç»° æ‰’ ç»¢æ« æƒ‘ç‚”ä¿Šè¾‘ç”µ
 //		LobbyExternalSetInventoryTabClass<EItemInvenType, bool>::GetInstance().Signal(CustomBackupInvenPageTab, false);
 //		CustomBackupInvenPageTab = EItemInvenType::EIIVT_End;
 //	}
@@ -3322,7 +3322,7 @@ bool UB2LobbyInventory::GetItemOPTargetItemData(FB2Item& OutData, bool bGetCache
 	}
 
 	if (bGetCachedNonUpdatedData)
-	{ // Item OP req µ¿ÀÛ ÀÚÃ¼´Â ÇÑ »óÈ²¿¡¼­ ¾÷µ¥ÀÌÆ® ÇÏ±â ÀÌÀü °ª °¡Á®¿È.
+	{ // Item OP req æ‚¼ç´¯ ç£Šçœ‰ç»° èŒ„ æƒ‘ç‚”ä¿Šè¾‘ è¯€å•æé£˜ çªæ‰ æå‚ˆ è”¼ å•Šå»‰å’³.
 		if (CachedItemOpTargetData.ItemRefID > 0 && CachedItemOpTargetData.InstanceUID > 0)
 		{
 			OutData = CachedItemOpTargetData;
@@ -3344,7 +3344,7 @@ bool UB2LobbyInventory::GetItemOPTargetItemData(FB2Item& OutData, bool bGetCache
 		}
 		else
 		{
-			if (FindFromAll(OutData, ItemOpTargetItemID)) // °­È­ ¹× ½Â±Ş µîÀÇ Å¸°ÙÀº ÀåÂø ¾ÆÀÌÅÛÀÏ ¼öµµ ÀÖ´Ù.
+			if (FindFromAll(OutData, ItemOpTargetItemID)) // ç¢æ‹³ æ£º é“°é­ æ®¿ç‹¼ é¸¥ç™¾ç¯® å˜é¦’ é…’æè¢è€ èæ¡£ ä¹ä¿ƒ.
 			{
 				return true;
 			}
@@ -3388,7 +3388,7 @@ int32 UB2LobbyInventory::GetCurrentItemLevelUpGoldCost() const
 
 int32 UB2LobbyInventory::GetCurrentItemOpGoldCost() const
 { 
-	// ·¹º§¾÷¿¡¼­´Â Àç·á ·¹º§º°·Î °è»êµÊ.
+	// é¥­éª‡è¯€ä¿Šè¾‘ç»° çŠä¸° é¥­éª‡å–Šè‚º æ‹Œé­‚å‡³.
 	if (CurrentItemOpMode == ELobbyInvenItemOpMode::EIVIOP_Levelup)
 	{
 		return GetCurrentItemLevelUpGoldCost();
@@ -3398,7 +3398,7 @@ int32 UB2LobbyInventory::GetCurrentItemOpGoldCost() const
 }
 
 bool UB2LobbyInventory::CanAffordCurrentItemOp() const
-{ // ±İÀüÀûÀÎ ºÎºĞÀ» º¸´Â °Å. °­È­ ¸Ş´º µî¿¡¼­ ÀÌ°Ô false ÀÎ °æ¿ì ½ÇÇà ¹öÆ° Å¬¸¯Àº °¡´ÉÇÏÁö¸¸ »ç¿ëÀÚ ÇöÁú À¯µµ ÆË¾÷À» ¶ç¿ï °ÍÀÓ.
+{ // é™›å‚ˆåˆ©ç‰¢ ä½•ç›’é˜‘ ç„Šç»° èŠ­. ç¢æ‹³ çš‹æ˜¥ æ®¿ä¿Šè¾‘ æéœ¸ false ç‰¢ ç‰ˆå¿« è§’é’ æ»šç“¢ åŠªè…ç¯® å•Šç“·çªç˜¤çˆ¶ è¤ä¾©ç£Š æ³…é¾™ èœ¡æ¡£ æ‰‘è¯€é˜‘ å‰åŒ¡ å·´çƒ™.
 	return (
 		CurrentItemOpMode != ELobbyInvenItemOpMode::EIVIOP_None &&
 		BladeIIGameImpl::GetClientDataStore().GetGoldAmount() >= GetCurrentItemOpGoldCost()
@@ -3410,7 +3410,7 @@ bool UB2LobbyInventory::IsMaxItemLevelUpExpectedByCurrentSelection()
 	FB2Item EnhanceTargetItem;
 	if (GetItemOPTargetItemData(EnhanceTargetItem))
 	{
-		// ÀÌ°Ç Å¬¶óÀÌ¾ğÆ® °è»êÀÓ. ¹°·Ğ ÃÖÁ¾ÀûÀ¸·Î´Â ¼­¹ö¿¡¼­ °­È­¸¦ ÇØ¼­ ³»·ÁÁÙ °ÍÀÌÁö¸¸ ÀÌ°Ç Å¬¶óÀÌ¾ğÆ®¿¡¼­ ÇÒ ÇÊ¿ä°¡ Á» ÀÖÀ½.
+		// ææ‰’ åŠªæ‰¼ææ”«é£˜ æ‹Œé­‚çƒ™. æ‹±æ²¸ å¼¥è¾†åˆ©æ è‚ºç»° è¾‘æ»šä¿Šè¾‘ ç¢æ‹³ç”« ç§¦è¾‘ éƒ´å¦¨ä¸´ å·´æç˜¤çˆ¶ ææ‰’ åŠªæ‰¼ææ”«é£˜ä¿Šè¾‘ ä¸” é˜å¤¸å•Š ç²± ä¹æ¾œ.
 		int32 NewLevel = GetLevel_PreviewItemLevelup(EnhanceTargetItem.Exp, EnhanceTargetItem, PendingSelectItemOpIngreds, true);
 
 		if (NewLevel >= EnhanceTargetItem.MaxLevel)
@@ -3424,7 +3424,7 @@ int32 UB2LobbyInventory::GetOpTargetItemLevel()
 	FB2Item EnhanceTargetItem;
 	if (GetItemOPTargetItemData(EnhanceTargetItem))
 	{
-		// ÀÌ°Ç Å¬¶óÀÌ¾ğÆ® °è»êÀÓ. ¹°·Ğ ÃÖÁ¾ÀûÀ¸·Î´Â ¼­¹ö¿¡¼­ °­È­¸¦ ÇØ¼­ ³»·ÁÁÙ °ÍÀÌÁö¸¸ ÀÌ°Ç Å¬¶óÀÌ¾ğÆ®¿¡¼­ ÇÒ ÇÊ¿ä°¡ Á» ÀÖÀ½.
+		// ææ‰’ åŠªæ‰¼ææ”«é£˜ æ‹Œé­‚çƒ™. æ‹±æ²¸ å¼¥è¾†åˆ©æ è‚ºç»° è¾‘æ»šä¿Šè¾‘ ç¢æ‹³ç”« ç§¦è¾‘ éƒ´å¦¨ä¸´ å·´æç˜¤çˆ¶ ææ‰’ åŠªæ‰¼ææ”«é£˜ä¿Šè¾‘ ä¸” é˜å¤¸å•Š ç²± ä¹æ¾œ.
 		return GetLevel_PreviewItemLevelup(EnhanceTargetItem.Exp, EnhanceTargetItem, PendingSelectItemOpIngreds, true);
 	}
 	return 0;
@@ -3456,7 +3456,7 @@ bool UB2LobbyInventory::IsEnableItemLevelupIngred(const FB2Item& IngredCandidate
 {
 	FB2Item EnhanceTargetItem;
 	if (GetItemOPTargetItemData(EnhanceTargetItem))
-	{ // ·¹º§¾÷½Ã ¸ğ·ç ¿¹¿ÜÃ³¸®
+	{ // é¥­éª‡è¯€çŸ« è‘›é£ æŠ—å¯‡è´¸åºœ
 		if (IngredCandidate.ItemClass == EItemClass::EIC_WeaponSurpassAnvil ||
 			IngredCandidate.ItemClass == EItemClass::EIC_ArmorSurpassAnvil ||
 			IngredCandidate.ItemClass == EItemClass::EIC_AccessorySurpassAnvil)
@@ -3495,20 +3495,20 @@ bool UB2LobbyInventory::IsEnableAutoSelectLevelupItem(const FB2Item& IngredCandi
 bool UB2LobbyInventory::IsPossibleItemLevelupIngred(const FB2Item& EnhanceTarget, const FB2Item& IngredCandidate)
 {
 	return (EnhanceTarget.InstanceUID != IngredCandidate.InstanceUID &&
-		EnhanceTarget.InventoryType == IngredCandidate.InventoryType /*&& !IngredCandidate.bIsLocked*/); // Àá±ä °Íµµ Àç·á°¡ µÇ´Â °Ç ¾Æ´Ñµ¥, ÃÖ¼ÒÇÑ ¼±ÅÃ ½Ãµµ´Â µÇ¾î¾ß ÇÔ. (¸Ş½ÃÁö ¹Ú½º°¡ ¶ßµµ·Ï.)
+		EnhanceTarget.InventoryType == IngredCandidate.InventoryType /*&& !IngredCandidate.bIsLocked*/); // æ³ªå˜ å·´æ¡£ çŠä¸°å•Š ç™»ç»° æ‰’ é…’å›±å•, å¼¥å®¶èŒ„ æ€¥ç¶ çŸ«æ¡£ç»° ç™»ç»¢å…· çªƒ. (çš‹çŸ«ç˜¤ å† èƒ¶å•Š å“†æ¡£åºŸ.)
 }
 
 bool UB2LobbyInventory::SelectForIngred(int64 ItemInstanceUID, ELobbyInvenItemOpMode ItemOpMode, bool InForceMenuUpdate)
 {
-	//if (bFreezeitemOpModeIngredSelection || CurrentItemOpMode != ItemOpMode || ItemInstanceUID == ItemOpTargetItemID) // ÇöÀç Å¸°ÙÀº ingredient °¡ µÇ¾î¼± ¾ÈµÇ°ÚÁö
+	//if (bFreezeitemOpModeIngredSelection || CurrentItemOpMode != ItemOpMode || ItemInstanceUID == ItemOpTargetItemID) // æ³…çŠ é¸¥ç™¾ç¯® ingredient å•Š ç™»ç»¢æ€¥ æ•‘ç™»æ‘†ç˜¤
 	//	return false;
 
-	//// ÀåÂø Àåºñ°¡ ¾Æ´Ñ º¸°üÇÔ¿¡¼­¸¸ Ã£´Â´Ù.
+	//// å˜é¦’ å˜åšå•Š é…’å›± ç„ŠåŒ…çªƒä¿Šè¾‘çˆ¶ èŒ«ç»°ä¿ƒ.
 	//FB2Item FoundItem;
 	//if (!FindStoredItem(FoundItem, ItemInstanceUID))
 	//	return false;
 
-	//if (// ¸ğµåº° ÇÕ´çÇÑ Àç·áÀÎÁö Ã¼Å©
+	//if (// è‘›é›å–Š é’¦å¯¸èŒ„ çŠä¸°ç‰¢ç˜¤ çœ‰å†œ
 	//	(CurrentItemOpMode == ELobbyInvenItemOpMode::EIVIOP_Levelup && !IsEnableItemLevelupIngred(FoundItem)) ||
 	//	(CurrentItemOpMode == ELobbyInvenItemOpMode::EIVIOP_Composition && !IsEnableComposeIngred(FoundItem)) ||
 	//	(CurrentItemOpMode == ELobbyInvenItemOpMode::EIVIOP_Surpass && !IsEnableSurpassIngred(FoundItem)) ||
@@ -3519,7 +3519,7 @@ bool UB2LobbyInventory::SelectForIngred(int64 ItemInstanceUID, ELobbyInvenItemOp
 	//	return false;
 	//}
 
-	//// ¼±ÅÃµÈ°ÍÀÌ ÀÖÀ¸¸é SwapÇÒ°ÍÀÎÁö Ãß°¡ ¼±ÅÃÀ» ¸·À»°ÍÀÎÁö °áÁ¤
+	//// æ€¥ç¶ç­‰å·´æ ä¹æ æ Swapä¸”å·´ç‰¢ç˜¤ çœ å•Š æ€¥ç¶é˜‘ é˜œé˜‘å·´ç‰¢ç˜¤ æ¬æ²¥
 	//switch (ItemOpMode)
 	//{
 	//	// Swap SelectItem
@@ -3528,7 +3528,7 @@ bool UB2LobbyInventory::SelectForIngred(int64 ItemInstanceUID, ELobbyInvenItemOp
 	//case ELobbyInvenItemOpMode::EIVIOP_Enhancement:
 	//case ELobbyInvenItemOpMode::EIVIOP_EnhancementChange:
 	//	{
-	//		// ±âÁ¸¿¡ ¼±ÅÃÇÑ °ÍÀº Áö¿öÁØ´Ù.
+	//		// æ‰ç²®ä¿Š æ€¥ç¶èŒ„ å·´ç¯® ç˜¤å†µéœ–ä¿ƒ.
 	//		if (PendingSelectItemOpIngreds.Num() > 0)
 	//			UnSelectForIngred(PendingSelectItemOpIngreds[0].InstanceUID, ItemOpMode);
 	//	}
@@ -3544,12 +3544,12 @@ bool UB2LobbyInventory::SelectForIngred(int64 ItemInstanceUID, ELobbyInvenItemOp
 	//FoundItem.bSelectedAsIngred = true;
 	//PendingSelectItemOpIngreds.Add(FoundItem);
 
-	//// µ¥ÀÌÅÍ °»½Å
-	//UpdateSingleItemData(ItemInstanceUID, FoundItem); // ³»ºÎ¿¡¼­ UI ÂÊ µ¥ÀÌÅÍ °»½Å ¿äÃ»µµ ÇÒ °Í.
+	//// å•æç£ ç›è„š
+	//UpdateSingleItemData(ItemInstanceUID, FoundItem); // éƒ´ä½•ä¿Šè¾‘ UI ç‡ å•æç£ ç›è„š å¤¸æ²¡æ¡£ ä¸” å·´.
 
 	//if (InForceMenuUpdate)
 	//{
-	//	LobbyTryUpdateItemOPMainMenuClass<>::GetInstance().Signal(); // °­È­Ã¢Àº µû·Î ¾÷µ¥ÀÌÆ®	
+	//	LobbyTryUpdateItemOPMainMenuClass<>::GetInstance().Signal(); // ç¢æ‹³èŠ’ç¯® è¶è‚º è¯€å•æé£˜	
 	//}
 	return true;
 }
@@ -3560,12 +3560,12 @@ void UB2LobbyInventory::UnSelectForIngred(int64 ItemInstanceUID, ELobbyInvenItem
 	//	return;
 
 	//FB2Item FoundItem;
-	//// ÀåÂø Àåºñ°¡ ¾Æ´Ñ º¸°üÇÔ¿¡¼­¸¸ Ã£´Â´Ù.
+	//// å˜é¦’ å˜åšå•Š é…’å›± ç„ŠåŒ…çªƒä¿Šè¾‘çˆ¶ èŒ«ç»°ä¿ƒ.
 	//if (FindStoredItem(FoundItem, ItemInstanceUID))
 	//{
 	//	FoundItem.bSelectedAsIngred = false;
 
-	//	// ¸®½ºÆ®¿¡¼­ Á¦°Å
+	//	// åºœèƒ¶é£˜ä¿Šè¾‘ åŠ›èŠ­
 	//	for (int32 RI = 0; RI < PendingSelectItemOpIngreds.Num(); ++RI)
 	//	{
 	//		if (PendingSelectItemOpIngreds[RI].InstanceUID == ItemInstanceUID)
@@ -3575,10 +3575,10 @@ void UB2LobbyInventory::UnSelectForIngred(int64 ItemInstanceUID, ELobbyInvenItem
 	//		}
 	//	}
 
-	//	// µ¥ÀÌÅÍ °»½Å
-	//	UpdateSingleItemData(ItemInstanceUID, FoundItem);  // ³»ºÎ¿¡¼­ UI ÂÊ µ¥ÀÌÅÍ °»½Å ¿äÃ»µµ ÇÒ °Í.
+	//	// å•æç£ ç›è„š
+	//	UpdateSingleItemData(ItemInstanceUID, FoundItem);  // éƒ´ä½•ä¿Šè¾‘ UI ç‡ å•æç£ ç›è„š å¤¸æ²¡æ¡£ ä¸” å·´.
 
-	//	LobbyTryUpdateItemOPMainMenuClass<>::GetInstance().Signal(); // °­È­Ã¢Àº µû·Î ¾÷µ¥ÀÌÆ®
+	//	LobbyTryUpdateItemOPMainMenuClass<>::GetInstance().Signal(); // ç¢æ‹³èŠ’ç¯® è¶è‚º è¯€å•æé£˜
 	//}
 }
 
@@ -3590,12 +3590,12 @@ void UB2LobbyInventory::UnSelectForIngred(const TArray<int64>& InInstanceUID, EL
 	for (int32 i = 0; i < InInstanceUID.Num(); ++i)
 	{
 		FB2Item FoundItem;
-		// ÀåÂø Àåºñ°¡ ¾Æ´Ñ º¸°üÇÔ¿¡¼­¸¸ Ã£´Â´Ù.
+		// å˜é¦’ å˜åšå•Š é…’å›± ç„ŠåŒ…çªƒä¿Šè¾‘çˆ¶ èŒ«ç»°ä¿ƒ.
 		if (FindStoredItem(FoundItem, InInstanceUID[i]))
 		{
 			FoundItem.bSelectedAsIngred = false;
 
-			// ¸®½ºÆ®¿¡¼­ Á¦°Å
+			// åºœèƒ¶é£˜ä¿Šè¾‘ åŠ›èŠ­
 			for (int32 RI = 0; RI < PendingSelectItemOpIngreds.Num(); ++RI)
 			{
 				if (PendingSelectItemOpIngreds[RI].InstanceUID == InInstanceUID[i])
@@ -3605,11 +3605,11 @@ void UB2LobbyInventory::UnSelectForIngred(const TArray<int64>& InInstanceUID, EL
 				}
 			}
 
-			// µ¥ÀÌÅÍ °»½Å
-			UpdateSingleItemData(InInstanceUID[i], FoundItem);  // ³»ºÎ¿¡¼­ UI ÂÊ µ¥ÀÌÅÍ °»½Å ¿äÃ»µµ ÇÒ °Í.
+			// å•æç£ ç›è„š
+			UpdateSingleItemData(InInstanceUID[i], FoundItem);  // éƒ´ä½•ä¿Šè¾‘ UI ç‡ å•æç£ ç›è„š å¤¸æ²¡æ¡£ ä¸” å·´.
 		}
 	}
-	//LobbyTryUpdateItemOPMainMenuClass<>::GetInstance().Signal(); // °­È­Ã¢Àº µû·Î ¾÷µ¥ÀÌÆ®
+	//LobbyTryUpdateItemOPMainMenuClass<>::GetInstance().Signal(); // ç¢æ‹³èŠ’ç¯® è¶è‚º è¯€å•æé£˜
 }
 
 void UB2LobbyInventory::AutoItemUnselect(int64 InGrade)
@@ -3656,10 +3656,10 @@ void UB2LobbyInventory::GetAvailableHammers(FB2Item& TargetItem, TArray<int64>& 
 
 void UB2LobbyInventory::ResetAllIngredsList()
 {
-	//PendingSelectItemOpIngreds.Empty(); // ¸®½ºÆ®´Â ºñ¿ì°í.
+	//PendingSelectItemOpIngreds.Empty(); // åºœèƒ¶é£˜ç»° åšå¿«ç»Š.
 
 	//for (int32 PCI = 0; PCI < GetMaxPCClassNum(); ++PCI)
-	//{ // ÀÌ°Ô Á» ´À·ÁÁø´Ù ½ÍÀ¸¸é PendingSelectItemOpIngreds ºñ¿ì±â Àü¿¡ ÇØ´ç ID ¸¸ Ã£¾Æ¼­ ¸®¼ÂÇÏ´Â °É ÇØº¼ ¼öµµ.. ±×°Ô ´õ ´À¸®·Á³ª ¤§¤§
+	//{ // æéœ¸ ç²± è ¢å¦¨æŸ³ä¿ƒ é…µæ æ PendingSelectItemOpIngreds åšå¿«æ‰ å‚ˆä¿Š ç§¦å¯¸ ID çˆ¶ èŒ«é…’è¾‘ åºœæ‚¸çªç»° å§ ç§¦æ­ èæ¡£.. å¼Šéœ¸ æ­¹ è ¢åºœå¦¨å”± ã‡ã‡
 	//	FInvenPCItemAccessor* CurrPCItemAccessor = GetPCItemAccessor(IntToPCClass(PCI));
 	//	if (!CurrPCItemAccessor)
 	//		continue;
@@ -3695,10 +3695,10 @@ void UB2LobbyInventory::ResetAllIngredsList()
 	//	CurrConsumables.Value.bSelectedAsIngred = false;
 	//}
 
-	//if (TransientLobbyGM) // ÀÌ°É °Ë»çÇÏ´Â ÀÌÀ¯´Â BeginDestroy ½ÃÁ¡¿¡ ºÒ¸® ¶§¿¡ UI ´Ü ¾÷µ¥ÀÌÆ®¸¦ ¸·±â À§ÇØ¼­ÀÓ. ÀÏ¹İÀûÀÎ °æ·Î´Â ¾Æ´ÏÁö¸¸ ¿©Æ° À§ÇèÇÔ.
-	//{ // °ü·Ã UI Doc µ¥ÀÌÅÍ ¾÷µ¥ÀÌÆ®.
+	//if (TransientLobbyGM) // æå§ å…«è¤çªç»° æèœ¡ç»° BeginDestroy çŸ«ç—¢ä¿Š é˜‚åºœ é”­ä¿Š UI çªœ è¯€å•æé£˜ç”« é˜œæ‰ å›°ç§¦è¾‘çƒ™. è€é¦†åˆ©ç‰¢ ç‰ˆè‚ºç»° é…’èªç˜¤çˆ¶ å’¯ç“¢ å›°æ°°çªƒ.
+	//{ // åŒ…è®¿ UI Doc å•æç£ è¯€å•æé£˜.
 	//	LobbyUpdateAllItemIconsClass<>::GetInstance().Signal();
-	//	LobbyTryUpdateItemOPMainMenuClass<>::GetInstance().Signal(); // ·¹º§¾÷Ã¢µµ ¿­·Á ÀÖ´Ù¸é..
+	//	LobbyTryUpdateItemOPMainMenuClass<>::GetInstance().Signal(); // é¥­éª‡è¯€èŠ’æ¡£ å‡¯å¦¨ ä¹ä¿ƒæ..
 	//}
 }
 
@@ -3743,7 +3743,7 @@ bool UB2LobbyInventory::GetSelectEnhanceProtectionItem(FB2Item& OutData)
 
 int32 UB2LobbyInventory::GetEnhanceProtectionItemCount()
 {
-	return GetSharedConsumableAmountOfType(FItemRefIDHelper::GetEnhanceProtectionItemRefId()); // º¸È£±Ç Å¸ÀÔ Ãß°¡¿¡ µû¶ó ÃßÈÄ ´Ù½Ã..
+	return GetSharedConsumableAmountOfType(FItemRefIDHelper::GetEnhanceProtectionItemRefId()); // ç„Šé¾‹é¼» é¸¥æ¶ çœ å•Šä¿Š è¶æ‰¼ çœ é¥¶ ä¿ƒçŸ«..
 }
 
 void UB2LobbyInventory::GetAllGhostIngreds(TArray<FB2Item>& OutGhostData)
@@ -3793,7 +3793,7 @@ bool UB2LobbyInventory::IsEnableComposeIngred(const FB2Item& Ingred)
 		return (ComposeTargetItem.InstanceUID != Ingred.InstanceUID && 
 			ComposeTargetItem.InventoryType == Ingred.InventoryType &&
 			ComposeTargetItem.StarGrade == Ingred.StarGrade && 
-			// ·¹º§ÀÌ °°°Å³ª // ÃÊ¿ùÀÌ°Å³ª(ÇöÀç6¼º)
+			// é¥­éª‡æ éèŠ­å”± // æª¬å²¿æèŠ­å”±(æ³…çŠ6å·±)
 			(ComposeTargetItem.Level == Ingred.Level || IsItemAllowedCompositeAndSurpass(Ingred))
 			);
 	}
@@ -3806,7 +3806,7 @@ bool UB2LobbyInventory::IsEnableSurpassIngred(const FB2Item& Ingred)
 
 	if (GetItemOPTargetItemData(SurpassTargetItem))
 	{ 
-		//È²±İ¸ğ·ç ¿¹¿ÜÃ³¸®
+		//ç‚”é™›è‘›é£ æŠ—å¯‡è´¸åºœ
 		if (Ingred.ItemClass == EItemClass::EIC_WeaponSurpassAnvil ||
 			Ingred.ItemClass == EItemClass::EIC_ArmorSurpassAnvil ||
 			Ingred.ItemClass == EItemClass::EIC_AccessorySurpassAnvil
@@ -3818,15 +3818,15 @@ bool UB2LobbyInventory::IsEnableSurpassIngred(const FB2Item& Ingred)
 				);
 		}
 		
-		// 11¼º ÀÌ»óÀÇ Àåºñ´Â 11¼º ÀÌ»óÀ¸·Î ¸¸ ÃÊ¿ùÇÏ°í
-		// ÀÌÇÏ´Â ÀÌÀüÀÇ 6¼º ºÎÅÍ ÇÊÅÍ¸µ ÇÒ ¼ö ÀÖµµ·Ï Á¦ÇÑ Ãß°¡
+		// 11å·± ææƒ‘ç‹¼ å˜åšç»° 11å·± ææƒ‘æ è‚º çˆ¶ æª¬å²¿çªç»Š
+		// æçªç»° æå‚ˆç‹¼ 6å·± ä½•ç£ é˜ç£å‚… ä¸” è ä¹æ¡£åºŸ åŠ›èŒ„ çœ å•Š
 		uint16 Minimum_Surpass_Star_Grade = (SurpassTargetItem.StarGrade >= FItemGradeInfo::MINIMUM_ADVANCED_SURPASS_STAR_GRADE ?
 			FItemGradeInfo::MINIMUM_ADVANCED_SURPASS_STAR_GRADE : FItemGradeInfo::MINIMUM_SURPASS_STAR_GRADE);		
 
 		return (SurpassTargetItem.InstanceUID != Ingred.InstanceUID &&
-			Ingred.StarGrade >= Minimum_Surpass_Star_Grade &&			// º¯¼ö Ãß°¡ÇÏ¿© ±³Ã¼
-			SurpassTargetItem.ItemClass == Ingred.ItemClass && // Item SlotÀ¸·Î ÃßÁ¤. Å« ºĞ·ù¸¸ÀÌ ¾Æ´Ñ ±¸Ã¼ Å¬·¡½º±îÁö ÀÏÄ¡ÇÔ.
-			(FItemRefIDHelper::ExtractItemVariationFromRefID(SurpassTargetItem.ItemRefID) == FItemRefIDHelper::ExtractItemVariationFromRefID(Ingred.ItemRefID)) // ¸¶Áö¸·À¸·Î µ¿ÀÏ °è¿­ variation ÀÌ¾î¾ß.
+			Ingred.StarGrade >= Minimum_Surpass_Star_Grade &&			// å‡½è çœ å•Šçªå’¯ èƒŒçœ‰
+			SurpassTargetItem.ItemClass == Ingred.ItemClass && // Item Slotæ è‚º çœ æ²¥. å¥´ ç›’å¹…çˆ¶æ é…’å›± å¤‡çœ‰ åŠªè´°èƒ¶é³–ç˜¤ è€æ‘¹çªƒ.
+			(FItemRefIDHelper::ExtractItemVariationFromRefID(SurpassTargetItem.ItemRefID) == FItemRefIDHelper::ExtractItemVariationFromRefID(Ingred.ItemRefID)) // ä»˜ç˜¤é˜œæ è‚º æ‚¼è€ æ‹Œå‡¯ variation æç»¢å…·.
 			);
 		
 	}
@@ -3849,7 +3849,7 @@ bool UB2LobbyInventory::IsVisibilityEhanceIngred(const FB2Item& Ingred)
 			Ingred.ItemClass != EItemClass::EIC_ProtectionScroll)
 			return false;
 
-		// todo : ÃßÈÄ¿¡ ½ºÅ©·ÑÀÌ ¿©·¯°³°¡ µÇ¸é Å¸ÀÔÀ¸·Î »©µµ·Ï ÇÏÀÚ! 
+		// todo : çœ é¥¶ä¿Š èƒ¶å†œè´¹æ å’¯çŸ¾ä¿ºå•Š ç™»æ é¸¥æ¶æ è‚º å“—æ¡£åºŸ çªç£Š! 
 		int32 ScrollRefId = FItemRefIDHelper::GetEnhanceScrollRefId(EnhanceTargetItem);
 		int32 BlessScrollRefId = FItemRefIDHelper::GetBlessEnhanceScrollRefId(EnhanceTargetItem);
 
@@ -3874,7 +3874,7 @@ bool UB2LobbyInventory::IsEnableEhanceIngred(const FB2Item& Ingred)
 			Ingred.ItemClass != EItemClass::EIC_BlessedEnhanceScroll)
 			return false;
 
-		// todo : ÃßÈÄ¿¡ ½ºÅ©·ÑÀÌ ¿©·¯°³°¡ µÇ¸é Å¸ÀÔÀ¸·Î »©µµ·Ï ÇÏÀÚ! 
+		// todo : çœ é¥¶ä¿Š èƒ¶å†œè´¹æ å’¯çŸ¾ä¿ºå•Š ç™»æ é¸¥æ¶æ è‚º å“—æ¡£åºŸ çªç£Š! 
 		int32 ScrollRefId = FItemRefIDHelper::GetEnhanceScrollRefId(EnhanceTargetItem);
 		int32 BlessScrollRefId = FItemRefIDHelper::GetBlessEnhanceScrollRefId(EnhanceTargetItem);
 
@@ -3959,7 +3959,7 @@ void UB2LobbyInventory::UpgradedItem(const FB2UpgradeItem& UpgradedItemInfo)
 
 void UB2LobbyInventory::ComposedItem(const FB2ComposeItem& ComposedItemInfo)
 {
-	//ÇÕ¼ºµÈ ¾ÆÀÌÅÛÀ» ¾ø¾Ö±â Àü¿¡ ¾î¶² ÇÁ¸®¼Â¿¡ ÀåÂøµÇ¾î ÀÖ´ÂÁö Ã¼Å©ÇÑ´Ù
+	//é’¦å·±ç­‰ é…’æè¢é˜‘ ç»å±€æ‰ å‚ˆä¿Š ç»¢æ« æ©‡åºœæ‚¸ä¿Š å˜é¦’ç™»ç»¢ ä¹ç»°ç˜¤ çœ‰å†œèŒ„ä¿ƒ
 	//FB2Item NewItem;
 	//NewItem = GET_TUPLE_DATA(FB2ResponseComposeItem::new_composed_item_index, ComposedItemInfo);
 	//int64 MainItemInstanceUID = GET_TUPLE_DATA(FB2ResponseComposeItem::deleted_main_item_id_index, ComposedItemInfo);
@@ -3970,9 +3970,9 @@ void UB2LobbyInventory::ComposedItem(const FB2ComposeItem& ComposedItemInfo)
 	//if(PrevMainItem)
 	//	PrevPresetID = ItemContainer.GetContainsItemPresetID(IntToPCClass(PrevMainItem->AllowedPCClass), PrevMainItem->InstanceUID);
 
-	//ItemOpTargetItemID = BladeIIGameImpl::GetClientDataStore().ComposeItem(ComposedItemInfo); // ÇÕ¼ºÀº ¾ÆÀÌÅÛÀÌ ¾Æ½Î¸® ¹Ù²ï´Ù. ¸ğµå Á¾·á Àü±îÁö´Â TargetItemID °¡ ÇÊ¿äÇÏ´Ï »õ·Î ¹Ù²ï °É·Î °»½Å.
+	//ItemOpTargetItemID = BladeIIGameImpl::GetClientDataStore().ComposeItem(ComposedItemInfo); // é’¦å·±ç¯® é…’æè¢æ é…’è½¿åºœ å®˜è¯§ä¿ƒ. è‘›é› è¾†ä¸° å‚ˆé³–ç˜¤ç»° TargetItemID å•Š é˜å¤¸çªèª è´§è‚º å®˜è¯§ å§è‚º ç›è„š.
 
-	////ÀåÂøÇÑ ¼ÂÆ®°¡ ÀÖ¾ú´Ù¸é ¼­¹ö¿¡¼­´Â ÀÌ¹Ì ÀåÂøµÈ »óÅÂÀÌ¹Ç·Î Å¬¶ó¸¸ ¾÷µ¥ÀÌÆ® ÇØÁØ´Ù.
+	////å˜é¦’èŒ„ æ‚¸é£˜å•Š ä¹èŒä¿ƒæ è¾‘æ»šä¿Šè¾‘ç»° æå›º å˜é¦’ç­‰ æƒ‘æ€•æéª¨è‚º åŠªæ‰¼çˆ¶ è¯€å•æé£˜ ç§¦éœ–ä¿ƒ.
 	//if (PrevPresetID >= 0)
 	//{
 	//	TArray<int64> EquippedItem;
@@ -4030,61 +4030,61 @@ void UB2LobbyInventory::ResponseAddTotemToInventory(const FB2AddTotemToInventory
 
 void UB2LobbyInventory::OnItemOpResponseCommon(ELobbyInvenItemOpMode InOpMode)
 {
-	//// ¼­¹öÂÊ¿¡ °­È­/ÇÕ¼º µî Req º¸³»°í Response ¿Â »óÈ².
+	//// è¾‘æ»šç‡ä¿Š ç¢æ‹³/é’¦å·± æ®¿ Req ç„Šéƒ´ç»Š Response æŸ¯ æƒ‘ç‚”.
 
-	//// ÀÎº¥Åä¸® UI ÆäÀÌÁö¿¡¼­ Àá½Ã ºüÁö´Âµ¥ ¿¬Ãâ ³¡³ª°í µ¹¾Æ¿Ã ¶§¸¦ À§ÇØ ÅÇ ¼±ÅÃÀ» ¹é¾÷ÇØ µĞ´Ù.
+	//// ç‰¢äº¥é…åºœ UI å…¶æç˜¤ä¿Šè¾‘ æ³ªçŸ« ç‹ç˜¤ç»°å• æ¥·å… åœºå”±ç»Š å€’é…’æ£µ é”­ç”« å›°ç§¦ å¾˜ æ€¥ç¶é˜‘ å½’è¯€ç§¦ æ•Œä¿ƒ.
 	//OnCommitItemOpHeroMgmtPCBackup = TransientLobbyGM ? TransientLobbyGM->GetHeroMgmtModePCClass() : EPCClass::EPC_End;
 	//UB2UIManager_Lobby* LobbyUIManager = TransientLobbyGM ? TransientLobbyGM->DJLegacy_GetLobbyUIManager() : NULL;
 	//OnCommitItemOpInvenPageTabBackup = LobbyUIManager ? LobbyUIManager->GetInventoryTabSelection() : EItemInvenType::EIIVT_End;
 
 	//ResetAllIngredsList();
 
-	//// ¸ğµåº°·Î °¢ÀÚÀÇ ¸ŞÀÎ Ã¢À» ´İ°í ¿¬ÃâÀ» ½ÃÀÛÇÑ´Ù. ¿¬Ãâ Ã¢ºÎÅÍ´Â pop-up ÀÌ ¾Æ´Ñ µ¶ÀÚ ÆäÀÌÁö·Î. (µû¶ó¼­ ¿¬Ãâ¿¡¼­ µ¹¾Æ¿ÔÀ» ¶§¸¦ À§ÇØ À§¿¡¼­ PC ¼±ÅÃÀÌ¶û ÅÇµîÀ» ¹é¾÷ÇØ ³õ´Â°Å)
+	//// è‘›é›å–Šè‚º é˜¿ç£Šç‹¼ çš‹ç‰¢ èŠ’é˜‘ æ‘§ç»Š æ¥·å…é˜‘ çŸ«ç´¯èŒ„ä¿ƒ. æ¥·å… èŠ’ä½•ç£ç»° pop-up æ é…’å›± åˆ€ç£Š å…¶æç˜¤è‚º. (è¶æ‰¼è¾‘ æ¥·å…ä¿Šè¾‘ å€’é…’å­é˜‘ é”­ç”« å›°ç§¦ å›°ä¿Šè¾‘ PC æ€¥ç¶æå°” å¾˜æ®¿é˜‘ å½’è¯€ç§¦ åˆç»°èŠ­)
 	//switch (InOpMode)
 	//{
 	//case ELobbyInvenItemOpMode::EIVIOP_Levelup:
 	//	DJLegacy_CloseLobbySubPopupClass<ELobbySubPopups>::GetInstance().Signal(ELobbySubPopups::ELSPU_ItemLevelUpMain);
-	//	// ChangeLobbyUIPage Àü¿¡ View ºÎÅÍ ¸ÕÀú ¼Â¾÷ÇØ¾ß ÇÑ´Ù. ¿¬Ãâ UI Widget ¾È¿¡¼­ Ä«¸Ş¶ó¿¡ Á¢±ÙÇÏ´Â °Ô ÀÖÀ½.
+	//	// ChangeLobbyUIPage å‚ˆä¿Š View ä½•ç£ åˆšå† æ‚¸è¯€ç§¦å…· èŒ„ä¿ƒ. æ¥·å… UI Widget æ•‘ä¿Šè¾‘ å¢¨çš‹æ‰¼ä¿Š ç«‹è¾Ÿçªç»° éœ¸ ä¹æ¾œ.
 	//	LobbyEnterItemOpDirectingViewClass<ELobbyInvenItemOpMode>::GetInstance().Signal(ELobbyInvenItemOpMode::EIVIOP_Levelup);
 	//	DJLegacy_ChangeLobbyUIPageClass<ELobbyUIPages>::GetInstance().Signal(ELobbyUIPages::ELUP_ItemLevelUpProgress);
 	//	break;
 	//case ELobbyInvenItemOpMode::EIVIOP_Upgrade:
 	//	DJLegacy_CloseLobbySubPopupClass<ELobbySubPopups>::GetInstance().Signal(ELobbySubPopups::ELSPU_ItemUpgradeMain);
-	//	// ChangeLobbyUIPage Àü¿¡ View ºÎÅÍ ¸ÕÀú ¼Â¾÷ÇØ¾ß ÇÑ´Ù. ¿¬Ãâ UI Widget ¾È¿¡¼­ Ä«¸Ş¶ó¿¡ Á¢±ÙÇÏ´Â °Ô ÀÖÀ½.
+	//	// ChangeLobbyUIPage å‚ˆä¿Š View ä½•ç£ åˆšå† æ‚¸è¯€ç§¦å…· èŒ„ä¿ƒ. æ¥·å… UI Widget æ•‘ä¿Šè¾‘ å¢¨çš‹æ‰¼ä¿Š ç«‹è¾Ÿçªç»° éœ¸ ä¹æ¾œ.
 	//	LobbyEnterItemOpDirectingViewClass<ELobbyInvenItemOpMode>::GetInstance().Signal(ELobbyInvenItemOpMode::EIVIOP_Upgrade);
 	//	DJLegacy_ChangeLobbyUIPageClass<ELobbyUIPages>::GetInstance().Signal(ELobbyUIPages::ELUP_ItemUpgradeProgress);
 	//	break;
 	//case ELobbyInvenItemOpMode::EIVIOP_Composition:
 	//	DJLegacy_CloseLobbySubPopupClass<ELobbySubPopups>::GetInstance().Signal(ELobbySubPopups::ELSPU_ItemComposeMain);
-	//	// ChangeLobbyUIPage Àü¿¡ View ºÎÅÍ ¸ÕÀú ¼Â¾÷ÇØ¾ß ÇÑ´Ù. ¿¬Ãâ UI Widget ¾È¿¡¼­ Ä«¸Ş¶ó¿¡ Á¢±ÙÇÏ´Â °Ô ÀÖÀ½.
+	//	// ChangeLobbyUIPage å‚ˆä¿Š View ä½•ç£ åˆšå† æ‚¸è¯€ç§¦å…· èŒ„ä¿ƒ. æ¥·å… UI Widget æ•‘ä¿Šè¾‘ å¢¨çš‹æ‰¼ä¿Š ç«‹è¾Ÿçªç»° éœ¸ ä¹æ¾œ.
 	//	LobbyEnterItemOpDirectingViewClass<ELobbyInvenItemOpMode>::GetInstance().Signal(ELobbyInvenItemOpMode::EIVIOP_Composition);
 	//	DJLegacy_ChangeLobbyUIPageClass<ELobbyUIPages>::GetInstance().Signal(ELobbyUIPages::ELUP_ItemComposeProgress);
 	//	break;
 	//case ELobbyInvenItemOpMode::EIVIOP_Surpass:
 	//	DJLegacy_CloseLobbySubPopupClass<ELobbySubPopups>::GetInstance().Signal(ELobbySubPopups::ELSPU_ItemSurpassMain);
-	//	// ChangeLobbyUIPage Àü¿¡ View ºÎÅÍ ¸ÕÀú ¼Â¾÷ÇØ¾ß ÇÑ´Ù. ¿¬Ãâ UI Widget ¾È¿¡¼­ Ä«¸Ş¶ó¿¡ Á¢±ÙÇÏ´Â °Ô ÀÖÀ½.
+	//	// ChangeLobbyUIPage å‚ˆä¿Š View ä½•ç£ åˆšå† æ‚¸è¯€ç§¦å…· èŒ„ä¿ƒ. æ¥·å… UI Widget æ•‘ä¿Šè¾‘ å¢¨çš‹æ‰¼ä¿Š ç«‹è¾Ÿçªç»° éœ¸ ä¹æ¾œ.
 	//	LobbyEnterItemOpDirectingViewClass<ELobbyInvenItemOpMode>::GetInstance().Signal(ELobbyInvenItemOpMode::EIVIOP_Surpass);
 	//	DJLegacy_ChangeLobbyUIPageClass<ELobbyUIPages>::GetInstance().Signal(ELobbyUIPages::ELUP_ItemSurpassProgress);
 	//	break;
 	//case ELobbyInvenItemOpMode::EIVIOP_Enhancement:
 	//	DJLegacy_CloseLobbySubPopupClass<ELobbySubPopups>::GetInstance().Signal(ELobbySubPopups::ELSPU_ItemEnhanceMain);
-	//	// ChangeLobbyUIPage Àü¿¡ View ºÎÅÍ ¸ÕÀú ¼Â¾÷ÇØ¾ß ÇÑ´Ù. ¿¬Ãâ UI Widget ¾È¿¡¼­ Ä«¸Ş¶ó¿¡ Á¢±ÙÇÏ´Â °Ô ÀÖÀ½.
+	//	// ChangeLobbyUIPage å‚ˆä¿Š View ä½•ç£ åˆšå† æ‚¸è¯€ç§¦å…· èŒ„ä¿ƒ. æ¥·å… UI Widget æ•‘ä¿Šè¾‘ å¢¨çš‹æ‰¼ä¿Š ç«‹è¾Ÿçªç»° éœ¸ ä¹æ¾œ.
 	//	LobbyEnterItemOpDirectingViewClass<ELobbyInvenItemOpMode>::GetInstance().Signal(ELobbyInvenItemOpMode::EIVIOP_Enhancement);
 	//	DJLegacy_ChangeLobbyUIPageClass<ELobbyUIPages>::GetInstance().Signal(ELobbyUIPages::ELUP_ItemEnhanceProgress);
 	//	break;
 	//case ELobbyInvenItemOpMode::EIVIOP_TotemSmelting:
-	//	// ChangeLobbyUIPage Àü¿¡ View ºÎÅÍ ¸ÕÀú ¼Â¾÷ÇØ¾ß ÇÑ´Ù. ¿¬Ãâ UI Widget ¾È¿¡¼­ Ä«¸Ş¶ó¿¡ Á¢±ÙÇÏ´Â °Ô ÀÖÀ½.
+	//	// ChangeLobbyUIPage å‚ˆä¿Š View ä½•ç£ åˆšå† æ‚¸è¯€ç§¦å…· èŒ„ä¿ƒ. æ¥·å… UI Widget æ•‘ä¿Šè¾‘ å¢¨çš‹æ‰¼ä¿Š ç«‹è¾Ÿçªç»° éœ¸ ä¹æ¾œ.
 	//	LobbyEnterItemOpDirectingViewClass<ELobbyInvenItemOpMode>::GetInstance().Signal(ELobbyInvenItemOpMode::EIVIOP_TotemSmelting);
 	//	DJLegacy_ChangeLobbyUIPageClass<ELobbyUIPages>::GetInstance().Signal(ELobbyUIPages::ELUP_TotemSmeltingProgress);
 	//	break;
 	//case ELobbyInvenItemOpMode::EIVIOP_EnhancementCostume:
-	//	// ChangeLobbyUIPage Àü¿¡ View ºÎÅÍ ¸ÕÀú ¼Â¾÷ÇØ¾ß ÇÑ´Ù. ¿¬Ãâ UI Widget ¾È¿¡¼­ Ä«¸Ş¶ó¿¡ Á¢±ÙÇÏ´Â °Ô ÀÖÀ½.
+	//	// ChangeLobbyUIPage å‚ˆä¿Š View ä½•ç£ åˆšå† æ‚¸è¯€ç§¦å…· èŒ„ä¿ƒ. æ¥·å… UI Widget æ•‘ä¿Šè¾‘ å¢¨çš‹æ‰¼ä¿Š ç«‹è¾Ÿçªç»° éœ¸ ä¹æ¾œ.
 	//	LobbyEnterItemOpDirectingViewClass<ELobbyInvenItemOpMode>::GetInstance().Signal(ELobbyInvenItemOpMode::EIVIOP_EnhancementCostume);
 	//	DJLegacy_ChangeLobbyUIPageClass<ELobbyUIPages>::GetInstance().Signal(ELobbyUIPages::ELUP_ItemLevelUpProgress);
 	//	break;
 	//}
 
-	//LobbyUpdateCharacterPartClass<EPCClass>::GetInstance().Signal(OnCommitItemOpHeroMgmtPCBackup); // ¾ÆÀÌÅÛ ¿Ü°üÀÌ ¹Ù²ğ ¼ö ÀÖÀ¸¹Ç·Î Àåºñ ÀåÂø »óÅÂµµ ¾÷µ¥ÀÌÆ®¸¦..
+	//LobbyUpdateCharacterPartClass<EPCClass>::GetInstance().Signal(OnCommitItemOpHeroMgmtPCBackup); // é…’æè¢ å¯‡åŒ…æ å®˜æ‹† è ä¹æ éª¨è‚º å˜åš å˜é¦’ æƒ‘æ€•æ¡£ è¯€å•æé£˜ç”«..
 	//UpdateCombatPowerClass<EPCClass, bool>::GetInstance().Signal(OnCommitItemOpHeroMgmtPCBackup, false);
 }
 
@@ -4092,7 +4092,7 @@ void UB2LobbyInventory::ItemUpgradeCostDelivered(const FB2GetItemUpgradeCost& Up
 {
 //	CurrentBaseItemOpGoldCost = GET_TUPLE_DATA(FB2ResponseItemUpgradeCost::need_gold_index, UpgradeCost);
 //	CurrentUpgradeStoneCost = GET_TUPLE_DATA(FB2ResponseItemUpgradeCost::need_upgrade_stone_count_index, UpgradeCost);
-//	// ¿ä°Ç Á¤ÇØ³õ°í »ç¿ëÇÏ´Ï Ã¼Å©¸¸..
+//	// å¤¸æ‰’ æ²¥ç§¦åˆç»Š è¤ä¾©çªèª çœ‰å†œçˆ¶..
 //	int32 UpgradeStoneID = GET_TUPLE_DATA(FB2ResponseItemUpgradeCost::need_upgrade_stone_template_id_index, UpgradeCost);
 //	b2network::B2ItemServerInfoPtr ServerNextUpgradeItem = GET_TUPLE_DATA(FB2ResponseItemUpgradeCost::next_item_index, UpgradeCost);
 //	NextUpgradeItem = ServerNextUpgradeItem;
@@ -4100,26 +4100,26 @@ void UB2LobbyInventory::ItemUpgradeCostDelivered(const FB2GetItemUpgradeCost& Up
 //#if !UE_BUILD_SHIPPING
 //	FB2Item UpgradeTargetItem;
 //	GetItemOPTargetItemData(UpgradeTargetItem, false);
-//	// Á¦´ë·Î ¾È ¿À´Â ¸ğ¾çÀÎµ¥..
+//	// åŠ›æªè‚º æ•‘ å·ç»° è‘›å‰§ç‰¢å•..
 //	//checkSlow(UpgradeStoneID == FItemRefIDHelper::GetUpgradeStoneIDForUpgradeTarget(UpgradeTargetItem));
 //#endif
 //	EnterItemUpgradeModeClass<int64>::GetInstance().Signal(BeforeUpgradeItem.InstanceUID);
 //	UpdateLobbyInventoryControlClass<>::GetInstance().Signal();
-//	LobbyTryUpdateItemOPMainMenuClass<>::GetInstance().Signal(); // UI µµ ¾÷µ¥ÀÌÆ®
+//	LobbyTryUpdateItemOPMainMenuClass<>::GetInstance().Signal(); // UI æ¡£ è¯€å•æé£˜
 }
 
 void UB2LobbyInventory::ItemComposeCostDelivered(const FB2GetItemComposeCost& ComposeCost)
 {
 	//CurrentBaseItemOpGoldCost = GET_TUPLE_DATA(FB2ResponseItemComposeCost::need_gold_index, ComposeCost);
 
-	//LobbyTryUpdateItemOPMainMenuClass<>::GetInstance().Signal(); // UI µµ ¾÷µ¥ÀÌÆ®
+	//LobbyTryUpdateItemOPMainMenuClass<>::GetInstance().Signal(); // UI æ¡£ è¯€å•æé£˜
 }
 
 void UB2LobbyInventory::ItemSurpassCostDelivered(const FB2GetItemSurpassCost& SurpassCost)
 {
 	//CurrentBaseItemOpGoldCost = GET_TUPLE_DATA(FB2ResponseItemSurpassCost::need_gold_index, SurpassCost);
 
-	//LobbyTryUpdateItemOPMainMenuClass<>::GetInstance().Signal(); // UI µµ ¾÷µ¥ÀÌÆ®
+	//LobbyTryUpdateItemOPMainMenuClass<>::GetInstance().Signal(); // UI æ¡£ è¯€å•æé£˜
 }
 
 void UB2LobbyInventory::SetCurEnhanceItemData(const int64 TargetItemID)
@@ -4133,7 +4133,7 @@ void UB2LobbyInventory::SetCurEnhanceItemData(const int64 TargetItemID)
 	//CurrentEnhanceItemScrollCost = BladeIIGameImpl::GetClientDataStore().GetEnhanceItem_NextStepScrollCost(OpTarget.EnhanceLevel);
 	//CurrentEnhanceItemProtectionScrollCost = BladeIIGameImpl::GetClientDataStore().GetEnhanceItem_NextStepProtectionScrollCost(OpTarget.EnhanceLevel);
 
-	//LobbyTryUpdateItemOPMainMenuClass<>::GetInstance().Signal(); // UI µµ ¾÷µ¥ÀÌÆ®
+	//LobbyTryUpdateItemOPMainMenuClass<>::GetInstance().Signal(); // UI æ¡£ è¯€å•æé£˜
 }
 
 void UB2LobbyInventory::BeginAutoSelectGradeItems(const int32 StarGrade)
@@ -4191,7 +4191,7 @@ void UB2LobbyInventory::AutoSelectGradeItems(const int32 StarGrade)
 	//	if (SelectForIngred(Each.InstanceUID, ELobbyInvenItemOpMode::EIVIOP_Levelup, false) == false)
 	//		continue;
 	//}
-	//LobbyTryUpdateItemOPMainMenuClass<>::GetInstance().Signal(); // °­È­Ã¢Àº µû·Î ¾÷µ¥ÀÌÆ®	
+	//LobbyTryUpdateItemOPMainMenuClass<>::GetInstance().Signal(); // ç¢æ‹³èŠ’ç¯® è¶è‚º è¯€å•æé£˜	
 }
 
 void UB2LobbyInventory::AutoSelectGradeItemsForConditions(const int32 StarGrade)
@@ -4243,15 +4243,15 @@ void UB2LobbyInventory::BeginAutoLevelupItem(const TArray<FB2Item>& AllBulkList,
 		return;
 	}
 
-	// SortedAutoItemLevelupList ÀÇ Á¶°Ç¿¡ µû¶ó ÀÚµ¿·¹º§¾÷ ÁøÇà..
+	// SortedAutoItemLevelupList ç‹¼ ç‚¼æ‰’ä¿Š è¶æ‰¼ ç£Šæ‚¼é¥­éª‡è¯€ æŸ³é’..
 	BeginReqAutoItemLevelupCostWithSortedList(SortedAutoItemLevelupList);
 }
 
 void UB2LobbyInventory::SortAutoLevelupItemList(const TArray<FB2Item>& AllBulkList, TArray<FAutoItemLevelupSingleSet>& OutSortedList)
 {
-	// ¸î¸î ÇÊÅÍ¸¦ °¡Áö°í ¸¶±¸ ¸ğ¾Æ³õÀº ¸®½ºÆ®¿¡¼­ ¾î¶² °É Å¸°ÙÀ¸·Î ÇÏ°í ¾î¶² °É Àç·á·Î ÇÒÁö µîÀ» Á¤ÇØ¼­ OutSortedList ·Î ³Ñ±ä´Ù.
+	// å‰²å‰² é˜ç£ç”« å•Šç˜¤ç»Š ä»˜å¤‡ è‘›é…’åˆç¯® åºœèƒ¶é£˜ä¿Šè¾‘ ç»¢æ« å§ é¸¥ç™¾æ è‚º çªç»Š ç»¢æ« å§ çŠä¸°è‚º ä¸”ç˜¤ æ®¿é˜‘ æ²¥ç§¦è¾‘ OutSortedList è‚º é€å˜ä¿ƒ.
 
-	// ÀÏ´Ü ¼­·Î Å¸°Ù/Àç·á°¡ µÉ ¼ö ÀÖ´Â µ¿ÀÏÇÑ Á¾·ù³¢¸® ¹­´Â´Ù. ¿©±â¿¡ Ãß°¡·Î µ¿ÀÏ µî±Ş±îÁö Àû¿ë
+	// è€çªœ è¾‘è‚º é¸¥ç™¾/çŠä¸°å•Š çª è ä¹ç»° æ‚¼è€èŒ„ è¾†å¹…å°åºœ å¼“ç»°ä¿ƒ. å’¯æ‰ä¿Š çœ å•Šè‚º æ‚¼è€ æ®¿é­é³–ç˜¤ åˆ©ä¾©
 	TArray<FAutoItemLevelupPossibleSet> AllPossibleSet;
 	
 	for (int32 BLI = 0; BLI < AllBulkList.Num(); ++BLI)
@@ -4259,12 +4259,12 @@ void UB2LobbyInventory::SortAutoLevelupItemList(const TArray<FB2Item>& AllBulkLi
 		const FB2Item& ThisBulkOne = AllBulkList[BLI];
 		bool bFoundExistingSet = false;
 
-		BII_CHECK(!ThisBulkOne.bIsLocked); // Àá°Ü ÀÖ´Ù¸é ÁøÀÛ¿¡ ¿©±â ¸®½ºÆ®·Î µé¾î¿Í¼± ¾ÈµÊ.
+		BII_CHECK(!ThisBulkOne.bIsLocked); // æ³ªè´¥ ä¹ä¿ƒæ æŸ³ç´¯ä¿Š å’¯æ‰ åºœèƒ¶é£˜è‚º ç”¸ç»¢å®¢æ€¥ æ•‘å‡³.
 		if (ThisBulkOne.bIsLocked){
 			continue;
 		}
 
-		if (!IsEssenceItem(ThisBulkOne) && !IsItemLevelupAllowed(ThisBulkOne)){ // ÃÖ´ë °­È­ÇÑµµ¿¡ µµ´ŞÇß´Ù°Å³ª ÇØ¼­ °­È­ Çã¿ë ¾ÈµÇ´Â ¾ÖµéÀº UI ¿¡¼­ ÇÊÅÍ¸µ ¾ÈµÇ¾î ÀÖÀ» ¼ö ÀÖÀ¸´Ï ¿©±â¼­ °Å¸¥´Ù.
+		if (!IsEssenceItem(ThisBulkOne) && !IsItemLevelupAllowed(ThisBulkOne)){ // å¼¥æª ç¢æ‹³èŒ„æ¡£ä¿Š æ¡£å´”æ²ä¿ƒèŠ­å”± ç§¦è¾‘ ç¢æ‹³ å€¾ä¾© æ•‘ç™»ç»° å±€ç”¸ç¯® UI ä¿Šè¾‘ é˜ç£å‚… æ•‘ç™»ç»¢ ä¹é˜‘ è ä¹æ èª å’¯æ‰è¾‘ èŠ­å¼—ä¿ƒ.
 			continue;
 		}
 
@@ -4272,13 +4272,13 @@ void UB2LobbyInventory::SortAutoLevelupItemList(const TArray<FB2Item>& AllBulkLi
 		{
 			FAutoItemLevelupPossibleSet& ThisPossibleSet = AllPossibleSet[API];
 			if (ThisPossibleSet.ItemsList.Num() > 0)
-			{ // ÇöÀç PossibleSet ¿¡¼­ Ã¹¹øÂ° ¿ä¼Ò¸¸À¸·Î °°Àº ºÎ·ù·Î ¼ÓÇÒ ¼ö ÀÖ´Â °ÍÀÎÁö °Ë»çÇÑ´Ù.
+			{ // æ³…çŠ PossibleSet ä¿Šè¾‘ éœ‰é”…æ³ å¤¸å®¶çˆ¶æ è‚º éç¯® ä½•å¹…è‚º åŠ ä¸” è ä¹ç»° å·´ç‰¢ç˜¤ å…«è¤èŒ„ä¿ƒ.
 				if (
-					// ÇÏ³ª¸¦ target À¸·Î »óÁ¤ÇØ¼­ Àç·á°¡ µÉ ¼ö ÀÖ´Ù¸é ¼­·Î °°ÀÌ ´Ù¸¥ Å¸°ÙÀÇ Àç·áµµ µÉ ¼ö ÀÖ´Â °Å
+					// çªå”±ç”« target æ è‚º æƒ‘æ²¥ç§¦è¾‘ çŠä¸°å•Š çª è ä¹ä¿ƒæ è¾‘è‚º éæ ä¿ƒå¼— é¸¥ç™¾ç‹¼ çŠä¸°æ¡£ çª è ä¹ç»° èŠ­
 					IsPossibleItemLevelupIngred(ThisPossibleSet.ItemsList[0], ThisBulkOne) &&
-					// Ãß°¡·Î µ¿ÀÏ µî±Ş³¢¸® ¹­±â.
+					// çœ å•Šè‚º æ‚¼è€ æ®¿é­å°åºœ å¼“æ‰.
 					(ThisPossibleSet.ItemsList[0].StarGrade == ThisBulkOne.StarGrade) &&
-					// Çã¿ë PC Class ´Â ÀÌ°É »ç¿ëÇÒ UI »ó ¾îÁö°£ÇØ¼± ¿©±â·Î µé¾î¿À´Â ¾ÖµéÀº °°¾Æ¾ß ÇÏ´Âµ¥.. È¤ ¸ğ¸£´Ï °Ë»çÇØ¼­ ³ª»Ü °Å ¾øÁö.
+					// å€¾ä¾© PC Class ç»° æå§ è¤ä¾©ä¸” UI æƒ‘ ç»¢ç˜¤åŸƒç§¦æ€¥ å’¯æ‰è‚º ç”¸ç»¢å·ç»° å±€ç”¸ç¯® éé…’å…· çªç»°å•.. è¶£ è‘›ç¦èª å…«è¤ç§¦è¾‘ å”±å‰ èŠ­ ç»ç˜¤.
 					(ThisPossibleSet.ItemsList[0].AllowedPCClass == ThisBulkOne.AllowedPCClass)
 					) 
 				{
@@ -4293,7 +4293,7 @@ void UB2LobbyInventory::SortAutoLevelupItemList(const TArray<FB2Item>& AllBulkLi
 		}
 
 		if (!bFoundExistingSet)
-		{ // ±âÁ¸¿¡¼­ ¸ø Ã£¾Ò´Ù¸é º»ÀÎÀÇ ¹®ÆÄ Ã¢¼³
+		{ // æ‰ç²®ä¿Šè¾‘ ç»™ èŒ«ç–½ä¿ƒæ å¤¯ç‰¢ç‹¼ å·©é¢‡ èŠ’æ±²
 			FAutoItemLevelupPossibleSet NewSet;
 			if (!IsEssenceItem(ThisBulkOne))
 				NewSet.ItemsList.Add(ThisBulkOne);
@@ -4303,7 +4303,7 @@ void UB2LobbyInventory::SortAutoLevelupItemList(const TArray<FB2Item>& AllBulkLi
 		}
 	}
 
-	// °¢ PossibleSet ³»¿¡¼­ ·¹º§ ´ÜÀ§·Î ¼ÒÆÃ. ³ôÀº ·¹º§À» ¿ì¼±ÀûÀ¸·Î °­È­ÇÒ °Å¶ó.
+	// é˜¿ PossibleSet éƒ´ä¿Šè¾‘ é¥­éª‡ çªœå›°è‚º å®¶æ³¼. è‡­ç¯® é¥­éª‡é˜‘ å¿«æ€¥åˆ©æ è‚º ç¢æ‹³ä¸” èŠ­æ‰¼.
 	struct FAutoEnhanceListPrioritySorter
 	{
 		bool operator()(const FB2Item& A, const FB2Item& B) const
@@ -4319,7 +4319,7 @@ void UB2LobbyInventory::SortAutoLevelupItemList(const TArray<FB2Item>& AllBulkLi
 
 	const int MAXINGREDIENTCOUNT = 10;
 	
-	// ¸¶Áö¸·À¸·Î 30·¹º§ ¹× ±âÅ¸ ÇÑµµ¿¡ °É¸®´Â ´ÜÀ§·Î Àß¶ó¼­ ÃÖÁ¾ ¸®½ºÆ®¸¦ »©³½´Ù.
+	// ä»˜ç˜¤é˜œæ è‚º 30é¥­éª‡ æ£º æ‰é¸¥ èŒ„æ¡£ä¿Š å§åºœç»° çªœå›°è‚º è‚‹æ‰¼è¾‘ å¼¥è¾† åºœèƒ¶é£˜ç”« å“—è¾°ä¿ƒ.
 	for (int32 API = 0; API < AllPossibleSet.Num(); ++API)
 	{
 		TArray<FB2Item> ThisPossibleSetList = AllPossibleSet[API].ItemsList;
@@ -4330,10 +4330,10 @@ void UB2LobbyInventory::SortAutoLevelupItemList(const TArray<FB2Item>& AllBulkLi
 		else if (ThisPossibleSetList.Num() == 1 && ThisEssenceItemList.Num() == 0)
 			continue;
 
-		//List ÇÕ
+		//List é’¦
 		ThisPossibleSetList.Append(ThisEssenceItemList);
 
-		// ¾Õ¿¡°É (³ôÀº ·¹º§) ¿ì¼±ÀûÀ¸·Î Å¸°ÙÀ¸·Î »ï°í µÚ¿¡°É (³·Àº ·¹º§) ¿ì¼±ÀûÀ¸·Î Àç·á·Î »ï´Â´Ù.
+		// èŠä¿Šå§ (è‡­ç¯® é¥­éª‡) å¿«æ€¥åˆ©æ è‚º é¸¥ç™¾æ è‚º ä¼™ç»Š ç¬¬ä¿Šå§ (æ’¤ç¯® é¥­éª‡) å¿«æ€¥åˆ©æ è‚º çŠä¸°è‚º ä¼™ç»°ä¿ƒ.
 		int32 IdxF = 0; // from Front
 		int32 IdxR = ThisPossibleSetList.Num() - 1; // from Rear
 		for (; IdxF < IdxR; ++IdxF)
@@ -4342,27 +4342,27 @@ void UB2LobbyInventory::SortAutoLevelupItemList(const TArray<FB2Item>& AllBulkLi
 				break;
 
 			FAutoItemLevelupSingleSet NewFinalSet;
-			FB2Item EnhancePreviewCheckTarget = ThisPossibleSetList[IdxF]; // Å¸°ÙÀº ¾Õ¿¡¼­ºÎÅÍ
+			FB2Item EnhancePreviewCheckTarget = ThisPossibleSetList[IdxF]; // é¸¥ç™¾ç¯® èŠä¿Šè¾‘ä½•ç£
 			NewFinalSet.TargetItemID = ThisPossibleSetList[IdxF].InstanceUID;
 			
 			TArray<FB2Item> EnhancePreviewCheckIngreds;
 
 			for (; IdxR > IdxF; --IdxR)
 			{
-				FB2Item ThisPreviewCheckIngred = ThisPossibleSetList[IdxR]; // Àç·á´Â µÚ¿¡¼­ºÎÅÍ
+				FB2Item ThisPreviewCheckIngred = ThisPossibleSetList[IdxR]; // çŠä¸°ç»° ç¬¬ä¿Šè¾‘ä½•ç£
 				EnhancePreviewCheckIngreds.Add(ThisPreviewCheckIngred);
 				NewFinalSet.IngredientsID.Add(ThisPossibleSetList[IdxR].InstanceUID);
 
-				// Àç·á°³¼ö Á¦ÇÑ
+				// çŠä¸°ä¿ºè åŠ›èŒ„
 				if (NewFinalSet.IngredientsID.Num() >= MAXINGREDIENTCOUNT && NewFinalSet.TargetItemID > 0 && NewFinalSet.IngredientsID.Num() > 0)
 				{
 					OutSortedList.Add(NewFinalSet);
 					NewFinalSet.IngredientsID.Empty();
 				}
 
-				// ÇöÀç NewFinalSet ¿¡¼­ ÃÖ°í ±â´ë ·¹º§¿¡ ¿¹ÃøÄ¡¿¡ µµ´ŞÇÏ¸é IdxR ÇÏ³ª °¨¼Ò½ÃÅ°°í ¿©±â¼± ±×¸¸. ´ÙÀ½ IdxF ·Î ³Ñ¾î°¡µµ·Ï.
-				// ÀÚµ¿ °­È­ ¸®½ºÆ®¿¡¼± Àç·á °³¼ö Á¦ÇÑÀ» µÎÁö ¾Ê´Â´Ù. ReqForSingleAutoItemLevelupList ¿¡¼­ ¼­¹ö ÂÊÀ¸·Î Req ³¯¸± ¶§ ÀÎÀÚ°¡ ´Ù¸£°Ô µé¾î°¨.
-				// ÀÚµ¿ °­È­¿¡¼­ Àç·á °³¼ö Á¦ÇÑÀÌ µé¾î°¡¸é ÃÖ´ë °­È­ ·¹º§À» ¸ÂÃß±â°¡ ¸Å¿ì ¾î·Á¿öÁü.
+				// æ³…çŠ NewFinalSet ä¿Šè¾‘ å¼¥ç»Š æ‰æª é¥­éª‡ä¿Š æŠ—èŸæ‘¹ä¿Š æ¡£å´”çªæ IdxR çªå”± çš‘å®¶çŸ«è™ç»Š å’¯æ‰æ€¥ å¼Šçˆ¶. ä¿ƒæ¾œ IdxF è‚º é€ç»¢å•Šæ¡£åºŸ.
+				// ç£Šæ‚¼ ç¢æ‹³ åºœèƒ¶é£˜ä¿Šæ€¥ çŠä¸° ä¿ºè åŠ›èŒ„é˜‘ æ»´ç˜¤ è‡¼ç»°ä¿ƒ. ReqForSingleAutoItemLevelupList ä¿Šè¾‘ è¾‘æ»š ç‡æ è‚º Req æœå‰¯ é”­ ç‰¢ç£Šå•Š ä¿ƒç¦éœ¸ ç”¸ç»¢çš‘.
+				// ç£Šæ‚¼ ç¢æ‹³ä¿Šè¾‘ çŠä¸° ä¿ºè åŠ›èŒ„æ ç”¸ç»¢å•Šæ å¼¥æª ç¢æ‹³ é¥­éª‡é˜‘ å˜çœ æ‰å•Š æ¦‚å¿« ç»¢å¦¨å†µå’™.
 				float ExpectedPostExp = 0.0f;
 				int32 PreviewLevel = GetLevel_PreviewItemLevelup(ExpectedPostExp, EnhancePreviewCheckTarget, EnhancePreviewCheckIngreds, false);
 				if (PreviewLevel >= EnhancePreviewCheckTarget.MaxLevel)
@@ -4372,8 +4372,8 @@ void UB2LobbyInventory::SortAutoLevelupItemList(const TArray<FB2Item>& AllBulkLi
 				}
 			}
 
-			// ÃÖÁ¾ ¸®½ºÆ®¿¡ Æ÷ÇÔ½ÃÅ°±â Àü¿¡ ¸¶Áö¸· °Ë»ç¶óµµ..
-			// Àç·á °³¼ö°¡ 10°³ÀÏ °æ¿ì ¿¹¿Ü Ã³¸®
+			// å¼¥è¾† åºœèƒ¶é£˜ä¿Š å™¨çªƒçŸ«è™æ‰ å‚ˆä¿Š ä»˜ç˜¤é˜œ å…«è¤æ‰¼æ¡£..
+			// çŠä¸° ä¿ºèå•Š 10ä¿ºè€ ç‰ˆå¿« æŠ—å¯‡ è´¸åºœ
 			if (NewFinalSet.TargetItemID > 0 && NewFinalSet.IngredientsID.Num() > 0)
 			{
 				OutSortedList.Add(NewFinalSet);
@@ -4387,7 +4387,7 @@ void UB2LobbyInventory::BeginReqAutoItemLevelupCostWithSortedList(const TArray<F
 	CopiedAutoItemLevelupCostReqList.Empty();
 	CopiedAutoItemLevelupCostReqList.Append(InSortedList);
 
-	if (CopiedAutoItemLevelupCostReqList.Num() > 0) // CopiedAutoItemLevelupCostReqList ¸¦ °¡Áö°í ÇÏ´Â °Å¶ó ÀÌ°Ô ¾øÀ¸¸é ¾ÈµÊ.
+	if (CopiedAutoItemLevelupCostReqList.Num() > 0) // CopiedAutoItemLevelupCostReqList ç”« å•Šç˜¤ç»Š çªç»° èŠ­æ‰¼ æéœ¸ ç»æ æ æ•‘å‡³.
 	{
 		OnCheckAllAutoItemLevelupCost();
 	}
@@ -4400,9 +4400,9 @@ void UB2LobbyInventory::OnCheckAllAutoItemLevelupCost()
 	//	BeginReqAutoItemLevelupWithSortedList(SortedAutoItemLevelupList);
 	//}
 	//else
-	//{ // Çö ¿ä±¸»çÇ×¿¡ µû¶ó ºñ¿ëÀÌ ¸ğÀÚ¶ó´õ¶óµµ ½ÇÇà ¹öÆ° Å¬¸¯Àº ÇÒ ¼ö ÀÖÀ¸¹Ç·Î ¿©±â·Î ¿Ã ¼ö ÀÖÀ½. ´Ü, ¾È³» ¸Ş½ÃÁö¸¦ ¶ç¿î´Ù.
+	//{ // æ³… å¤¸å¤‡è¤äº²ä¿Š è¶æ‰¼ åšä¾©æ è‘›ç£Šæ‰¼æ­¹æ‰¼æ¡£ è§’é’ æ»šç“¢ åŠªè…ç¯® ä¸” è ä¹æ éª¨è‚º å’¯æ‰è‚º æ£µ è ä¹æ¾œ. çªœ, æ•‘éƒ´ çš‹çŸ«ç˜¤ç”« å‰æ¬¾ä¿ƒ.
 	//	ShortageMGR->PopupGoToShopForGoldMessage();
-	//	// ºñ¿ëÀ» ÃëÇÕÇØ ºÃ´õ´Ï ¸ğÀÚ¶ó¼­ Áß´ÜÀÌÁö¸¸ UI ´Â ´İÁö ¾Êµµ·Ï.
+	//	// åšä¾©é˜‘ ç§’é’¦ç§¦ å¥½æ­¹èª è‘›ç£Šæ‰¼è¾‘ åçªœæç˜¤çˆ¶ UI ç»° æ‘§ç˜¤ è‡¼æ¡£åºŸ.
 	//	EndAutoItemLevelup(true, false);
 	//}
 }
@@ -4411,10 +4411,10 @@ void UB2LobbyInventory::BeginReqAutoItemLevelupWithSortedList(const TArray<FAuto
 {
 	CopiedAutoItemLevelupMainReqList.Empty();
 	CopiedAutoItemLevelupMainReqList.Append(InSortedList);
-	if (CopiedAutoItemLevelupMainReqList.Num() > 0) // CopiedAutoItemLevelupMainReqList ¸¦ °¡Áö°í ÇÏ´Â °Å¶ó ÀÌ°Ô ¾øÀ¸¸é ¾ÈµÊ.
+	if (CopiedAutoItemLevelupMainReqList.Num() > 0) // CopiedAutoItemLevelupMainReqList ç”« å•Šç˜¤ç»Š çªç»° èŠ­æ‰¼ æéœ¸ ç»æ æ æ•‘å‡³.
 	{
 		AutoItemLevelupPhase = EAutoItemLevelupPhase::AEPhase_RequestingEnhancement;
-		ReqForSingleAutoItemLevelupList(); // º»°İ ÀÚµ¿ °­È­ ¿äÃ» Å±¿ÀÇÁ. ´Ù ³¡³ª¸é ¾Ë¾Æ¼­ EndAutoItemLevelup °¡ ºÒ¸± °Í. Cost ¿äÃ»ÀÌ ÀÖ´Ù¸é ¿©±â¼­ ½ÃÀÛÀ» ÇÏÁö ¾Ê°Ô µÉ °Í.
+		ReqForSingleAutoItemLevelupList(); // å¤¯æ‹œ ç£Šæ‚¼ ç¢æ‹³ å¤¸æ²¡ ç–Ÿå·æ©‡. ä¿ƒ åœºå”±æ èˆ…é…’è¾‘ EndAutoItemLevelup å•Š é˜‚å‰¯ å·´. Cost å¤¸æ²¡æ ä¹ä¿ƒæ å’¯æ‰è¾‘ çŸ«ç´¯é˜‘ çªç˜¤ è‡¼éœ¸ çª å·´.
 	}
 }
 
@@ -4423,28 +4423,28 @@ void UB2LobbyInventory::ReqForSingleAutoItemLevelupList()
 	BII_CHECK(AutoItemLevelupPhase == EAutoItemLevelupPhase::AEPhase_RequestingEnhancement);
 	BII_CHECK(CopiedAutoItemLevelupMainReqList.Num() > 0);
 
-	// ÇöÀç ±¸ÇöÀ¸·Î´Â ¿äÃ»¿¡ ´ëÇØ ÀÀ´äÀÌ ¿Â ÈÄ¿¡¾ß ´ÙÀ½ ¿äÃ»À» º¸³¾ ¼ö ÀÖÀ¸¹Ç·Î CopiedAutoItemLevelupMainReqList ¿¡¼­ ÇÏ³ª¾¿ ¿äÃ»À» ÁøÇàÇÑ´Ù.
+	// æ³…çŠ å¤‡æ³…æ è‚ºç»° å¤¸æ²¡ä¿Š æªç§¦ è§ˆç¿ æ æŸ¯ é¥¶ä¿Šå…· ä¿ƒæ¾œ å¤¸æ²¡é˜‘ ç„Šå°˜ è ä¹æ éª¨è‚º CopiedAutoItemLevelupMainReqList ä¿Šè¾‘ çªå”±ç©¶ å¤¸æ²¡é˜‘ æŸ³é’èŒ„ä¿ƒ.
 
-	for (int32 SI = CopiedAutoItemLevelupMainReqList.Num() - 1; SI >= 0; --SI) // µŞ¹øÈ£ºÎÅÍ ÇØ¼­.
+	for (int32 SI = CopiedAutoItemLevelupMainReqList.Num() - 1; SI >= 0; --SI) // ç¼”é”…é¾‹ä½•ç£ ç§¦è¾‘.
 	{
-		// ¿©±â¼­ for ¹®À» µµ´Â °Ç ÃÖÁ¾ °Ë»ç¿¡¼­ ÀûÀıÇÏÁö ¾ÊÀº ¸®½ºÆ®¶óµµ ÀÖÀ» °æ¿ì ½ºÅµÇÏ±â À§ÇØ¼­ÀÓ. ¿äÃ» ÀÚÃ¼´Â ÇÑ¹ø¿¡ ÇÏ³ª¸¸ ³¯¸°´Ù.
+		// å’¯æ‰è¾‘ for å·©é˜‘ æ¡£ç»° æ‰’ å¼¥è¾† å…«è¤ä¿Šè¾‘ åˆ©ä¾‹çªç˜¤ è‡¼ç¯® åºœèƒ¶é£˜æ‰¼æ¡£ ä¹é˜‘ ç‰ˆå¿« èƒ¶è¯ºçªæ‰ å›°ç§¦è¾‘çƒ™. å¤¸æ²¡ ç£Šçœ‰ç»° èŒ„é”…ä¿Š çªå”±çˆ¶ æœèµ´ä¿ƒ.
 		FAutoItemLevelupSingleSet& ThisSet = CopiedAutoItemLevelupMainReqList[SI];
 		if (ThisSet.TargetItemID <= 0 || ThisSet.IngredientsID.Num() == 0){
 			CopiedAutoItemLevelupMainReqList.Pop();
 			continue;
 		}
 
-		data_trader::Retailer::GetInstance().RequestLevelupItem(ThisSet.TargetItemID, ThisSet.IngredientsID, true); // ÀÚµ¿°­È­¿¡¼­ÀÇ °­È­ ¿äÃ»Àº ÀÏ¹İ °­È­¿Í ¸¶Âù°¡Áö ÇÁ·ÎÅäÄİÀÌÁö¸¸ ÀÎÀÚ¸¦ ´Ù¸£°Ô ÁÜ.
+		data_trader::Retailer::GetInstance().RequestLevelupItem(ThisSet.TargetItemID, ThisSet.IngredientsID, true); // ç£Šæ‚¼ç¢æ‹³ä¿Šè¾‘ç‹¼ ç¢æ‹³ å¤¸æ²¡ç¯® è€é¦† ç¢æ‹³å®¢ ä»˜è›®å•Šç˜¤ æ©‡è‚ºé…å¦®æç˜¤çˆ¶ ç‰¢ç£Šç”« ä¿ƒç¦éœ¸ æ·‹.
 		break;
 	}
 
-	if (CopiedAutoItemLevelupMainReqList.Num() == 0) // Á¤»óÀûÀÎ °æ¿ì´Â ¾Æ´ÏÁö¸¸ ´ëºñÇÒ ÇÊ¿ä´Â ÀÖÁö.
+	if (CopiedAutoItemLevelupMainReqList.Num() == 0) // æ²¥æƒ‘åˆ©ç‰¢ ç‰ˆå¿«ç»° é…’èªç˜¤çˆ¶ æªåšä¸” é˜å¤¸ç»° ä¹ç˜¤.
 	{
 		EndAutoItemLevelup(false, false);
 	}
 	else
 	{
-		// ÀÌ °æ¿ì¿¡µµ ¹İµå½Ã Response °¡ ¿Â´Ù´Â º¸ÀåÀº ¾øÀ¸´Ï, ÃÖÈÄÀÇ Å¸ÀÌ¸Ó¶óµµ ¼³Ä¡ÇØ ³õ´Â°Ô ÁÁÀ» µí?
+		// æ ç‰ˆå¿«ä¿Šæ¡£ é¦†é›çŸ« Response å•Š æŸ¯ä¿ƒç»° ç„Šå˜ç¯® ç»æ èª, å¼¥é¥¶ç‹¼ é¸¥æèµ£æ‰¼æ¡£ æ±²æ‘¹ç§¦ åˆç»°éœ¸ äº®é˜‘ æ·€?
 		if (TransientLobbyGM)
 		{
 			TransientLobbyGM->GetWorldTimerManager().SetTimer(AutoItemLevelupResponseWaitTH, this, &UB2LobbyInventory::ForceEndAutoItemLevelupTimerCB, 7.0f, false);
@@ -4462,16 +4462,16 @@ void UB2LobbyInventory::OnResponseOfSingleAutoItemLevelupList(const FB2LevelupIt
 	//	TransientLobbyGM->GetWorldTimerManager().ClearTimer(AutoItemLevelupResponseWaitTH);
 	//}
 
-	//// GET_TUPLE_DATA ÇØ¼­ ID ¸Â´ÂÁö¶óµµ È®ÀÎÇØ º¼±î..
+	//// GET_TUPLE_DATA ç§¦è¾‘ ID å˜ç»°ç˜¤æ‰¼æ¡£ çŠ¬ç‰¢ç§¦ æ­é³–..
 
 	//FB2Item JustEnhancedTarget;
 	//JustEnhancedTarget = GET_TUPLE_DATA(FB2ResponseLevelupItem::main_item_index, EnhancedItemInfo);
 	//FAutoItemLevelupSingleSet RearSet = CopiedAutoItemLevelupMainReqList.Pop();
-	//BII_CHECK(JustEnhancedTarget.InstanceUID == RearSet.TargetItemID); // Á÷Àü¿¡ ReqForSingleAutoItemLevelupList ·Î ¿äÃ»À» º¸³½ °Í¿¡ ´ëÇÑ ÀÀ´äÀÌ ¸Â´ÂÁö Ã¼Å©
+	//BII_CHECK(JustEnhancedTarget.InstanceUID == RearSet.TargetItemID); // æµå‚ˆä¿Š ReqForSingleAutoItemLevelupList è‚º å¤¸æ²¡é˜‘ ç„Šè¾° å·´ä¿Š æªèŒ„ è§ˆç¿ æ å˜ç»°ç˜¤ çœ‰å†œ
 	//
-	//CachedAutoItemLevelupResultItems.Add(JustEnhancedTarget.InstanceUID, JustEnhancedTarget); // °á°ú UI ¿¡ »Ñ¸± µ¥ÀÌÅÍ Ä³½Ì.
+	//CachedAutoItemLevelupResultItems.Add(JustEnhancedTarget.InstanceUID, JustEnhancedTarget); // æ¬è‹ UI ä¿Š è°å‰¯ å•æç£ æŸæ•™.
 	//
-	//// ¿©ÀüÈ÷ ³²¾Æ ÀÖ´ÂÁö ¿©ºÎ¿¡ µû¶ó °è¼Ó ÁøÇà È¤Àº Á¾·á.
+	//// å’¯å‚ˆæ´’ å·¢é…’ ä¹ç»°ç˜¤ å’¯ä½•ä¿Š è¶æ‰¼ æ‹ŒåŠ  æŸ³é’ è¶£ç¯® è¾†ä¸°.
 	//if (CopiedAutoItemLevelupMainReqList.Num() > 0)
 	//{
 	//	ReqForSingleAutoItemLevelupList();
@@ -4500,11 +4500,11 @@ void UB2LobbyInventory::EndAutoItemLevelup(bool bEndOfCostRequestOnly, bool bEnd
 	//	TransientLobbyGM->GetWorldTimerManager().ClearTimer(AutoItemLevelupResponseWaitTH);
 	//}
 
-	//// ÀÌÈÄ ½ºÅÜÀº ½ÇÁ¦ ÀÚµ¿°­È­ ¿äÃ»ÀÌ ³¡³­ °æ¿ì¿¡¸¸..
+	//// æé¥¶ èƒ¶è·‘ç¯® è§’åŠ› ç£Šæ‚¼ç¢æ‹³ å¤¸æ²¡æ åœºæŠ„ ç‰ˆå¿«ä¿Šçˆ¶..
 	//if (!bEndOfCostRequestOnly)
 	//{
 	//	LobbyUpdateAllItemIconsClass<>::GetInstance().Signal();
-	//	// ÀÚµ¿ °­È­ ÆË¾÷ÀÌ ¿­·Á ÀÖ´Ù¸é ¿©±â¼­ ´İ°í °á°úÃ¢À» ¶ç¿î´Ù.
+	//	// ç£Šæ‚¼ ç¢æ‹³ æ‰‘è¯€æ å‡¯å¦¨ ä¹ä¿ƒæ å’¯æ‰è¾‘ æ‘§ç»Š æ¬è‹èŠ’é˜‘ å‰æ¬¾ä¿ƒ.
 	//	DJLegacy_CloseLobbySubPopupClass<ELobbySubPopups>::GetInstance().Signal(ELobbySubPopups::ELSPU_AutoItemLevelup);
 	//	if (bEndOnOperationSuccess)
 	//	{
@@ -4512,7 +4512,7 @@ void UB2LobbyInventory::EndAutoItemLevelup(bool bEndOfCostRequestOnly, bool bEnd
 	//	}
 	//}
 
-	//CachedAutoItemLevelupResultItems.Empty(); // ¿ä°Ç ÃÖ¼ÒÇÑ ÀÚµ¿°­È­ °á°úÃ¢ ÂÊ¿¡¼­ (»ı¼º ½Ã) »ç¿ëÇÑ ÈÄ¿¡ ºñ¿î´Ù.
+	//CachedAutoItemLevelupResultItems.Empty(); // å¤¸æ‰’ å¼¥å®¶èŒ„ ç£Šæ‚¼ç¢æ‹³ æ¬è‹èŠ’ ç‡ä¿Šè¾‘ (ç§¯å·± çŸ«) è¤ä¾©èŒ„ é¥¶ä¿Š åšæ¬¾ä¿ƒ.
 }
 
 void UB2LobbyInventory::ResponseEquipCostumeItems(const FB2EquipCostumePtr& EquipCostumePtr)
@@ -4732,7 +4732,7 @@ void UB2LobbyInventory::GetCachedAutoItemLevelupResultItems(TArray<FB2Item>& Out
 
 void UB2LobbyInventory::GetAutoItemLevelupPreviewInfo(const TArray<FB2Item>& AllBulkList, int32& Cost, int32& LvUpItemCount, int32& IngredItemCount)
 { 
-	// UI ÇÁ¸®ºä ¿ëµµÀÓ. ¸®½ºÆ® ¼ÒÆÃÇÏ°í ºñ¿ë °è»ê±îÁö¸¸ ÇÏ°í ¼Õ ¾ÄÀ½.
+	// UI æ©‡åºœè½° ä¾©æ¡£çƒ™. åºœèƒ¶é£˜ å®¶æ³¼çªç»Š åšä¾© æ‹Œé­‚é³–ç˜¤çˆ¶ çªç»Š é¢Š ç¸æ¾œ.
 
 	TArray<FAutoItemLevelupSingleSet> LocalSortedList;
 	
@@ -4742,7 +4742,7 @@ void UB2LobbyInventory::GetAutoItemLevelupPreviewInfo(const TArray<FB2Item>& All
 
 	for (const FAutoItemLevelupSingleSet& ThisSet : LocalSortedList)
 	{
-		// FAutoItemLevelupSingleSet ¿£ UID ¸¸ µé¾îÀÖ¾î¼­ ´Ù½Ã Ã£¾Æ¿È.. ¹Ùº¸°°±º
+		// FAutoItemLevelupSingleSet æµš UID çˆ¶ ç”¸ç»¢ä¹ç»¢è¾‘ ä¿ƒçŸ« èŒ«é…’å’³.. å®˜ç„Šéç„™
 		FB2Item ThisTargetItem;
 		if (!FindFromAll(ThisTargetItem, ThisSet.TargetItemID)){
 			continue;
@@ -4771,9 +4771,9 @@ void UB2LobbyInventory::LockedItems(const FB2LockedItems& LockedItems)
 	//GetB2ItemArray(FB2ResponseLockItem::locked_items_index, LockedItems);
 	//for (auto Item : B2ItemArray)
 	//{
-	//	LobbyTryUpdateSingleItemIconClass<int64>::GetInstance().Signal(Item.InstanceUID); // ¿­·Á ÀÖÀ» ¼¼ºÎ Á¤º¸Ã¢ ¾÷µ¥ÀÌÆ®¸¦ À§ÇØ..
+	//	LobbyTryUpdateSingleItemIconClass<int64>::GetInstance().Signal(Item.InstanceUID); // å‡¯å¦¨ ä¹é˜‘ æŠ€ä½• æ²¥ç„ŠèŠ’ è¯€å•æé£˜ç”« å›°ç§¦..
 	//}
-	//LobbyUpdateAllItemIconsClass<>::GetInstance().Signal(); // Àá±İ »óÅÂ¿¡ µû¶ó Á¤·Äµµ ´Ù½Ã ÇØ¾ß ÇÏ¹Ç·Î ´ÜÀÏ ¾ÆÀÌÅÛ¸¸ ¾÷µ¥ÀÌÆ® ÇÏ´Â °Ô ¾Æ´Ï¶ó ÀüÃ¼ ¾÷µ¥ÀÌÆ® ÇØ ÁØ´Ù.
+	//LobbyUpdateAllItemIconsClass<>::GetInstance().Signal(); // æ³ªé™› æƒ‘æ€•ä¿Š è¶æ‰¼ æ²¥çººæ¡£ ä¿ƒçŸ« ç§¦å…· çªéª¨è‚º çªœè€ é…’æè¢çˆ¶ è¯€å•æé£˜ çªç»° éœ¸ é…’èªæ‰¼ å‚ˆçœ‰ è¯€å•æé£˜ ç§¦ éœ–ä¿ƒ.
 }
 
 void UB2LobbyInventory::UnlockedItems(const FB2UnlockedItems& UnlockedItems)
@@ -4783,9 +4783,9 @@ void UB2LobbyInventory::UnlockedItems(const FB2UnlockedItems& UnlockedItems)
 	//GetB2ItemArray(FB2ResponseUnlockItem::unlocked_items_index, UnlockedItems);
 	//for (auto Item : B2ItemArray)
 	//{
-	//	LobbyTryUpdateSingleItemIconClass<int64>::GetInstance().Signal(Item.InstanceUID); // ¿­·Á ÀÖÀ» ¼¼ºÎ Á¤º¸Ã¢ ¾÷µ¥ÀÌÆ®¸¦ À§ÇØ..
+	//	LobbyTryUpdateSingleItemIconClass<int64>::GetInstance().Signal(Item.InstanceUID); // å‡¯å¦¨ ä¹é˜‘ æŠ€ä½• æ²¥ç„ŠèŠ’ è¯€å•æé£˜ç”« å›°ç§¦..
 	//}
-	//LobbyUpdateAllItemIconsClass<>::GetInstance().Signal(); // Àá±İ »óÅÂ¿¡ µû¶ó Á¤·Äµµ ´Ù½Ã ÇØ¾ß ÇÏ¹Ç·Î ´ÜÀÏ ¾ÆÀÌÅÛ¸¸ ¾÷µ¥ÀÌÆ® ÇÏ´Â °Ô ¾Æ´Ï¶ó ÀüÃ¼ ¾÷µ¥ÀÌÆ® ÇØ ÁØ´Ù.
+	//LobbyUpdateAllItemIconsClass<>::GetInstance().Signal(); // æ³ªé™› æƒ‘æ€•ä¿Š è¶æ‰¼ æ²¥çººæ¡£ ä¿ƒçŸ« ç§¦å…· çªéª¨è‚º çªœè€ é…’æè¢çˆ¶ è¯€å•æé£˜ çªç»° éœ¸ é…’èªæ‰¼ å‚ˆçœ‰ è¯€å•æé£˜ ç§¦ éœ–ä¿ƒ.
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -4896,8 +4896,8 @@ void UB2LobbyInventory::SellConsumableItem(const FB2SellConsumableItem& SellCons
 // Item Convert
 void UB2LobbyInventory::SendConvertData()
 {
-	//¾î¶² ¾ÆÀÌÅÛÀ» ÇÒ²«Áö ¼­¹ö·Î µ¥ÀÌÅÍ¸¦ º¸³»°Ù ²û ÇØ¾ß ÇÔ.
-	//º¯È¯ÇÒ ¾ÆÀÌÅÛ ID¸¦ ¼­¹ö·Î º¸³¾ ¿¹Á¤. ¹Ø¿¡¼­ ¶È°°ÀÌ id¸¦ ¹Ş°í ÇÊ¿äÇÑ Å×ÀÌºíÀ» Á¶È¸ÇÏµµ·Ï ÇØ¾ß ÇÔ
+	//ç»¢æ« é…’æè¢é˜‘ ä¸”æç˜¤ è¾‘æ»šè‚º å•æç£ç”« ç„Šéƒ´ç™¾ é˜ ç§¦å…· çªƒ.
+	//å‡½åˆ¸ä¸” é…’æè¢ IDç”« è¾‘æ»šè‚º ç„Šå°˜ æŠ—æ²¥. å…³ä¿Šè¾‘ åº¦éæ idç”« ç½ç»Š é˜å¤¸èŒ„ æŠ›æå–‰é˜‘ ç‚¼é›€çªæ¡£åºŸ ç§¦å…· çªƒ
 	data_trader::Retailer::GetInstance().RequestConvertData(templateId);
 }
 void UB2LobbyInventory::ResponseConvertData(const FB2ConvertData& ConvertData)
@@ -4909,7 +4909,7 @@ void UB2LobbyInventory::ResponseConvertData(const FB2ConvertData& ConvertData)
 	//	return;
 	//}
 	//DJLegacy_OpenLobbySubPopupClass<ELobbySubPopups, FDJLegacySubpopupAddPanelInfo>::GetInstance().Signal(ELobbySubPopups::ELSPU_ConvertItemPopup, FDJLegacySubpopupAddPanelInfo());
-	//check(TransientLobbyGM); // ¾øÀ¸¸é ¹Ùº¸.
+	//check(TransientLobbyGM); // ç»æ æ å®˜ç„Š.
 	//ConvertPopupPointer = Cast<UB2LobbyUI_ConvertItemPopup>(TransientLobbyGM->DJLegacy_FindLobbySubPopup(ELobbySubPopups::ELSPU_ConvertItemPopup));
 
 	//ConvertPopupPointer->PopupMain(templateUID, GET_TUPLE_DATA(FB2ResponseConvertData::exchange_remain_count_gold_index, ConvertData), GET_TUPLE_DATA(FB2ResponseConvertData::exchange_remain_count_gem_index, ConvertData), FConvertItemPopupOnClick::CreateLambda([this]() {}));
@@ -5068,7 +5068,7 @@ void UB2LobbyInventory::DismantleItemsEndLoop()
 
 #if !UE_BUILD_SHIPPING
 bool UB2LobbyInventory::IsInventoryTotallyEmpty()
-{ // °³¹ß ¿ëµµ ÀÌ¿Ü¿¡µµ ÇÊ¿äÇÏ°Ô µÇ¸é !UE_BUILD_SHIPPING Á¦°ÅÇÏ°í »ç¿ëÇÏµµ·Ï.
+{ // ä¿ºæƒ¯ ä¾©æ¡£ æå¯‡ä¿Šæ¡£ é˜å¤¸çªéœ¸ ç™»æ !UE_BUILD_SHIPPING åŠ›èŠ­çªç»Š è¤ä¾©çªæ¡£åºŸ.
 	for (int32 IPI = 0; IPI < GetMaxPCClassNum(); ++IPI)
 	{
 		TMap<int64, FB2Item>* WeaponMap = PCItems[IPI].GetItemMapForInvenType(EItemInvenType::EIIVT_Weapon);
@@ -5107,7 +5107,7 @@ void UB2LobbyInventory::DevOnlyRequestDummyItems(int32 RemainingNum, int32 ItemR
 	//{		
 	//	data_trader::ExecHandler::GetInstance().ExecuteShellCommand(*FString::Printf(TEXT("AddItem %d %d"), ItemRefID, FItemRefIDHelper::ExtractItemStarGradeFromRefID(ItemRefID)));
 	//	
-	//	// RemainingNum À» ÇÏ³ª ÁÙÀÎ Ã¤·Î ´ÙÀ½ ¿äÃ»À» ±â¾àÇÑ´Ù.
+	//	// RemainingNum é˜‘ çªå”± ä¸´ç‰¢ ç›²è‚º ä¿ƒæ¾œ å¤¸æ²¡é˜‘ æ‰è·èŒ„ä¿ƒ.
 	//	if (TransientLobbyGM && TransientLobbyGM->IsValidObj())
 	//	{
 	//		TransientLobbyGM->GetWorldTimerManager().SetTimer(RequestDummyItemsTH, 
@@ -5123,7 +5123,7 @@ void UB2LobbyInventory::DevOnlyRequestDummyItems(int32 RemainingNum, int32 ItemR
 }
 
 void UB2LobbyInventory::DevOnlyReplaceEquippedOptions(EPCClass InLocalCharClass, EItemEquipPlace InEquipPlace, const TArray<FItemOption>& InOptionsToReplace, bool bMaintainCurrentOptions)
-{ // ÀüÅõ ¹ë·±½º Å×½ºÆ® ¿ë. Æ¯Á¤ Ä³¸¯ÅÍÀÇ Æ¯Á¤ ÀåÂøÇÑ ¾ÆÀÌÅÛÀÇ ¿É¼Ç ¹Ù²ãÄ¡±â.
+{ // å‚ˆæ§ é—ºç¹èƒ¶ æŠ›èƒ¶é£˜ ä¾©. æ¼‚æ²¥ æŸè…ç£ç‹¼ æ¼‚æ²¥ å˜é¦’èŒ„ é…’æè¢ç‹¼ å¯è®° å®˜å±‚æ‘¹æ‰.
 	FB2Item FoundEquipItem;
 	if (GetEquippedItemAtPlace(FoundEquipItem, InEquipPlace, InLocalCharClass))
 	{
@@ -5136,7 +5136,7 @@ void UB2LobbyInventory::DevOnlyReplaceEquippedOptions(EPCClass InLocalCharClass,
 		TArray<FItemOption> RemainingOptionsToReplace = InOptionsToReplace;
 
 		if (bMaintainCurrentOptions)
-		{ // ±âÁ¸ ²¨ À¯ÁöÇÏ´Â °æ¿ì ±âÁ¸¿¡ ÀÖ´Â °Å Ã£°í ¾÷µ¥ÀÌÆ®ºÎÅÍ ½Ãµµ.
+		{ // æ‰ç²® æ³¢ èœ¡ç˜¤çªç»° ç‰ˆå¿« æ‰ç²®ä¿Š ä¹ç»° èŠ­ èŒ«ç»Š è¯€å•æé£˜ä½•ç£ çŸ«æ¡£.
 			for (int32 ROI = 0; ROI < RemainingOptionsToReplace.Num(); ++ROI)
 			{
 				FItemOption& ThisToReplace = RemainingOptionsToReplace[ROI];
@@ -5145,18 +5145,18 @@ void UB2LobbyInventory::DevOnlyReplaceEquippedOptions(EPCClass InLocalCharClass,
 				{
 					if (ThisExisting.OptionType == ThisToReplace.OptionType)
 					{
-						ThisExisting.RawOptionAmount = ThisToReplace.RawOptionAmount; // º¯°æ.
+						ThisExisting.RawOptionAmount = ThisToReplace.RawOptionAmount; // å‡½ç‰ˆ.
 						bFoundAndUpdated = true;
 						break;
 					}
 				}
-				if (!bFoundAndUpdated) // ¸ø Ã£¾Ò´Ù¸é ·£´ı¿É¼Ç °Ë»ö ½Ãµµ
+				if (!bFoundAndUpdated) // ç»™ èŒ«ç–½ä¿ƒæ ç½šå¾…å¯è®° å…«ç¥¸ çŸ«æ¡£
 				{
 					for (FItemOption& ThisExisting : FoundEquipItem.RandomOptions)
 					{
 						if (ThisExisting.OptionType == ThisToReplace.OptionType)
 						{
-							ThisExisting.RawOptionAmount = ThisToReplace.RawOptionAmount; // º¯°æ.
+							ThisExisting.RawOptionAmount = ThisToReplace.RawOptionAmount; // å‡½ç‰ˆ.
 							bFoundAndUpdated = true;
 							break;
 						}
@@ -5170,23 +5170,23 @@ void UB2LobbyInventory::DevOnlyReplaceEquippedOptions(EPCClass InLocalCharClass,
 			}
 		}
 
-		// ¾ÆÁ÷ ³²Àº °ÍµéÀº ±âÁ¸¿¡ ¾ø´ø ¿É¼ÇÀÌ´Ï °íÀ¯¿É¼Ç, ·£´ı¿É¼Ç °¡¸®Áö´Â ¾Ê°í ¼ø¼­´ë·Î °¡´ÉÇÒ ¶§±îÁö Ã¤¿ö³Ö±â¸¸ ÇÑ´Ù.
-		// ¿É¼Çº°·Î °¡´ÉÇÑ ¼öÄ¡´Â °³¹ß¿ë ±â´ÉÀÌ¶ó Æ²·Á¼­ Å«ÀÏ³¯ °Ç ¾øÀ¸´Ï ¿©±â¿¡ ÇÏµåÄÚµùÇÔ. Å¬¶óÀÌ¾ğÆ®¿¡¼­´Â ¿É¼Ç µ¥ÀÌÅÍ¸¦ ¹Ş±â¸¸ ÇØ¼­ ¼öÄ¡ Á¦ÇÑÀ» °ü¸®ÇÏÁö´Â ¾Ê´Â´Ù.
+		// é…’æµ å·¢ç¯® å·´ç”¸ç¯® æ‰ç²®ä¿Š ç»å¸¦ å¯è®°æèª ç»Šèœ¡å¯è®°, ç½šå¾…å¯è®° å•Šåºœç˜¤ç»° è‡¼ç»Š é‰´è¾‘æªè‚º å•Šç“·ä¸” é”­é³–ç˜¤ ç›²å†µæŒæ‰çˆ¶ èŒ„ä¿ƒ.
+		// å¯è®°å–Šè‚º å•Šç“·èŒ„ èæ‘¹ç»° ä¿ºæƒ¯ä¾© æ‰ç“·ææ‰¼ æ’‡å¦¨è¾‘ å¥´è€æœ æ‰’ ç»æ èª å’¯æ‰ä¿Š çªé›å†…çˆ¹çªƒ. åŠªæ‰¼ææ”«é£˜ä¿Šè¾‘ç»° å¯è®° å•æç£ç”« ç½æ‰çˆ¶ ç§¦è¾‘ èæ‘¹ åŠ›èŒ„é˜‘ åŒ…åºœçªç˜¤ç»° è‡¼ç»°ä¿ƒ.
 		
 		while (RemainingOptionsToReplace.Num() > 0 && FoundEquipItem.IntrinsicOptions.Num() < 4)
 		{
-			FItemOption ThisToReplace = RemainingOptionsToReplace[0]; // ¾Õ¿¡¼­ºÎÅÍ..
-			FoundEquipItem.IntrinsicOptions.Add(ThisToReplace); // ±âÁ¸²¨¶û Áßº¹µÉ °¡´É¼ºÀÌ ¿©ÀüÈ÷ ÀÖ±â´Â ÇÏÁö¸¸ ±×°Ç InOptionsToReplace ¸¦ ¾Ë¾Æ¼­ Àß ÁÖ´Â °É·Î.			
+			FItemOption ThisToReplace = RemainingOptionsToReplace[0]; // èŠä¿Šè¾‘ä½•ç£..
+			FoundEquipItem.IntrinsicOptions.Add(ThisToReplace); // æ‰ç²®æ³¢å°” åæ±—çª å•Šç“·å·±æ å’¯å‚ˆæ´’ ä¹æ‰ç»° çªç˜¤çˆ¶ å¼Šæ‰’ InOptionsToReplace ç”« èˆ…é…’è¾‘ è‚‹ æ—ç»° å§è‚º.			
 			RemainingOptionsToReplace.RemoveAt(0);
 		}
 		while (RemainingOptionsToReplace.Num() > 0 && FoundEquipItem.RandomOptions.Num() < 3)
-		{ // ¸¶Âù°¡Áö·Î.
+		{ // ä»˜è›®å•Šç˜¤è‚º.
 			FItemOption ThisToReplace = RemainingOptionsToReplace[0];
 			FoundEquipItem.RandomOptions.Add(ThisToReplace);
 			RemainingOptionsToReplace.RemoveAt(0);
 		}
 
-		UpdateSingleItemData(FoundEquipItem.InstanceUID, FoundEquipItem); // ÃÖÁ¾ÀûÀ¸·Î º¯°æµÈ µ¥ÀÌÅÍ¸¦ Àû¿ë.
+		UpdateSingleItemData(FoundEquipItem.InstanceUID, FoundEquipItem); // å¼¥è¾†åˆ©æ è‚º å‡½ç‰ˆç­‰ å•æç£ç”« åˆ©ä¾©.
 	}
 }
 
@@ -5199,13 +5199,13 @@ void UB2LobbyInventory::CheckForGenerateDummyDataSuggestion()
 	if (!bSelectedNoForDummyDataSuggestion && IsInventoryTotallyEmpty())
 	{
 		if (FB2ErrorMessage::Open(EAppMsgType::YesNo, FText::FromString(
-			FString::Printf(TEXT("[¾È³»] ÀÎº¥Åä¸®°¡ ºñ¾îÀÖ½À´Ï´Ù.\n\"¿¹(Yes)\"¸¦ ¼±ÅÃÇÏ½Ã¸é Å×½ºÆ® ¿ë ¾ÆÀÌÅÛµéÀ» Ã¤¿öµå¸³´Ï´Ù.\n\n"))
+			FString::Printf(TEXT("[æ•‘éƒ´] ç‰¢äº¥é…åºœå•Š åšç»¢ä¹åš¼èªä¿ƒ.\n\"æŠ—(Yes)\"ç”« æ€¥ç¶çªçŸ«æ æŠ›èƒ¶é£˜ ä¾© é…’æè¢ç”¸é˜‘ ç›²å†µé›èµ‹èªä¿ƒ.\n\n"))
 			)) == EAppReturnType::Yes)
 		{
 			data_trader::ExecHandler::GetInstance().ExecuteShellCommand(TEXT("AddDemoItem"));
 		}
 		else
-		{ // ÇÑ¹ø No ¸¦ ¼±ÅÃÇßÀ¸¸é ÇöÀç ·¹º§¿¡¼­´Â ´õ ¹°¾îº¸Áö ¾Ê°Ô.
+		{ // èŒ„é”… No ç”« æ€¥ç¶æ²æ æ æ³…çŠ é¥­éª‡ä¿Šè¾‘ç»° æ­¹ æ‹±ç»¢ç„Šç˜¤ è‡¼éœ¸.
 			bSelectedNoForDummyDataSuggestion = true;
 		}
 	}
@@ -5214,26 +5214,26 @@ void UB2LobbyInventory::CheckForGenerateDummyDataSuggestion()
 
 void UB2LobbyInventory::DevOnlyItemLevelupProgressSceneTest(int32 IngredNum)
 {
-	// ±âº»ÀûÀÎ ºä ÀüÈ¯ °°Àº °Ç ÇÏÁö¸¸ ÀÎº¥Åä¸® ÆäÀÌÁö°¡ ¾Æ´Ï¸é Àß ¾È¸ÔÈú ¼ö ÀÖÀ½. 
-	//if (TransientLobbyGM && TransientLobbyGM->IsValidObj() && CurrentItemOpMode == ELobbyInvenItemOpMode::EIVIOP_None) // °¡´ÉÇÑ ItemOp ¸ğµå°¡ ¾Æ´Ñ »óÅÂ°¡ ÁÁÀ» µí..
+	// æ‰å¤¯åˆ©ç‰¢ è½° å‚ˆåˆ¸ éç¯® æ‰’ çªç˜¤çˆ¶ ç‰¢äº¥é…åºœ å…¶æç˜¤å•Š é…’èªæ è‚‹ æ•‘å†ˆé³ƒ è ä¹æ¾œ. 
+	//if (TransientLobbyGM && TransientLobbyGM->IsValidObj() && CurrentItemOpMode == ELobbyInvenItemOpMode::EIVIOP_None) // å•Šç“·èŒ„ ItemOp è‘›é›å•Š é…’å›± æƒ‘æ€•å•Š äº®é˜‘ æ·€..
 	//{
 	//	bItemOpProgressSceneTestMode = true;
 
-	//	// °­È­¿¬Ãâ¿¡¼± ItemOpTargetItemID ¸¦ ¼¼ÆÃÇØºÁ¾ß ¼Ò¿ëÀÌ ¾ø´Ù. Å×½ºÆ® ÇÔ¼ö¶ó ¾î¶² ¾ÆÀÌÅÛÀÌ ÀÖ´ÂÁö Á¶»çÇØ¼­ ¼¼ÆÃÇÒ ¼öµµ ¾ø´Â ³ë¸©ÀÌ°í
-	//	// ¾÷µ¥ÀÌÆ® ÀüÀÇ Ä³½ÌµÇ´Â Å¸°Ù ¾ÆÀÌÅÛ µ¥ÀÌÅÍ¸¦ ¼¼ÆÃ.
+	//	// ç¢æ‹³æ¥·å…ä¿Šæ€¥ ItemOpTargetItemID ç”« æŠ€æ³¼ç§¦æ¯«å…· å®¶ä¾©æ ç»ä¿ƒ. æŠ›èƒ¶é£˜ çªƒèæ‰¼ ç»¢æ« é…’æè¢æ ä¹ç»°ç˜¤ ç‚¼è¤ç§¦è¾‘ æŠ€æ³¼ä¸” èæ¡£ ç»ç»° ç•´ä¿¯æç»Š
+	//	// è¯€å•æé£˜ å‚ˆç‹¼ æŸæ•™ç™»ç»° é¸¥ç™¾ é…’æè¢ å•æç£ç”« æŠ€æ³¼.
 	//	CachedItemOpTargetData = FB2Item();
-	//	CachedItemOpTargetData.ItemRefID = 1000100; // ½ÇÁ¦·Î ItemInfo ¿¡ ÀÖ´Â RefID ¸¦ ³Ö¾îÁÙ ÇÊ¿ä°¡ ÀÖ´Ù.
-	//	CachedItemOpTargetData.InstanceUID = 32423243; // UID µµ ¹º°¡ °ªÀ» ³Ö¾îÁÖ±ä ÇØ¾ß ÇÔ.
+	//	CachedItemOpTargetData.ItemRefID = 1000100; // è§’åŠ›è‚º ItemInfo ä¿Š ä¹ç»° RefID ç”« æŒç»¢ä¸´ é˜å¤¸å•Š ä¹ä¿ƒ.
+	//	CachedItemOpTargetData.InstanceUID = 32423243; // UID æ¡£ è´­å•Š è”¼é˜‘ æŒç»¢æ—å˜ ç§¦å…· çªƒ.
 	//	DevOnlyLoadItemClientTestData(CachedItemOpTargetData);
 	//	CachedItemOpTargetData.PrimaryPointType = EItemPrimaryPointType::EIPP_Attack;
 
 	//	IngredNum = FMath::Clamp(IngredNum, 1, ItemLevelupIngredLimit);
 
-	//	GhostItemOpIngreds.Empty(); // °­È­ ¿¬Ãâ Ã¢¿¡¼­ »ç¿ëÇÒ Àç·á ¾ÆÀÌÅÛ µ¥ÀÌÅÍ.
+	//	GhostItemOpIngreds.Empty(); // ç¢æ‹³ æ¥·å… èŠ’ä¿Šè¾‘ è¤ä¾©ä¸” çŠä¸° é…’æè¢ å•æç£.
 	//	for (int32 GI = 0; GI < IngredNum; ++GI)
 	//	{
 	//		FB2Item NewIngred;
-	//		NewIngred.ItemRefID = 1000100; // ½ÇÁ¦·Î ItemInfo ¿¡ ÀÖ´Â RefID ¸¦ ³Ö¾îÁÙ ÇÊ¿ä°¡ ÀÖ´Ù.
+	//		NewIngred.ItemRefID = 1000100; // è§’åŠ›è‚º ItemInfo ä¿Š ä¹ç»° RefID ç”« æŒç»¢ä¸´ é˜å¤¸å•Š ä¹ä¿ƒ.
 	//		NewIngred.InstanceUID = 4820942398429 + GI;
 
 	//		DevOnlyLoadItemClientTestData(NewIngred);
@@ -5243,7 +5243,7 @@ void UB2LobbyInventory::DevOnlyItemLevelupProgressSceneTest(int32 IngredNum)
 	//	}
 
 	//	CurrentItemOpMode = ELobbyInvenItemOpMode::EIVIOP_Levelup;		
-	//	// ChangeLobbyUIPage Àü¿¡ View ºÎÅÍ ¸ÕÀú ¼Â¾÷ÇØ¾ß ÇÑ´Ù. ¿¬Ãâ UI Widget ¾È¿¡¼­ Ä«¸Ş¶ó¿¡ Á¢±ÙÇÏ´Â °Ô ÀÖÀ½.
+	//	// ChangeLobbyUIPage å‚ˆä¿Š View ä½•ç£ åˆšå† æ‚¸è¯€ç§¦å…· èŒ„ä¿ƒ. æ¥·å… UI Widget æ•‘ä¿Šè¾‘ å¢¨çš‹æ‰¼ä¿Š ç«‹è¾Ÿçªç»° éœ¸ ä¹æ¾œ.
 	//	LobbyEnterItemOpDirectingViewClass<ELobbyInvenItemOpMode>::GetInstance().Signal(ELobbyInvenItemOpMode::EIVIOP_Levelup);
 	//	DJLegacy_ChangeLobbyUIPageClass<ELobbyUIPages>::GetInstance().Signal(ELobbyUIPages::ELUP_ItemLevelUpProgress);
 	//}
@@ -5251,27 +5251,27 @@ void UB2LobbyInventory::DevOnlyItemLevelupProgressSceneTest(int32 IngredNum)
 
 void UB2LobbyInventory::DevOnlyItemEnhanceProgressSceneTest(int32 IngredNum)
 {
-	// ±âº»ÀûÀÎ ºä ÀüÈ¯ °°Àº °Ç ÇÏÁö¸¸ ÀÎº¥Åä¸® ÆäÀÌÁö°¡ ¾Æ´Ï¸é Àß ¾È¸ÔÈú ¼ö ÀÖÀ½. 
-	//if (TransientLobbyGM && TransientLobbyGM->IsValidObj() && CurrentItemOpMode == ELobbyInvenItemOpMode::EIVIOP_None) // °¡´ÉÇÑ ItemOp ¸ğµå°¡ ¾Æ´Ñ »óÅÂ°¡ ÁÁÀ» µí..
+	// æ‰å¤¯åˆ©ç‰¢ è½° å‚ˆåˆ¸ éç¯® æ‰’ çªç˜¤çˆ¶ ç‰¢äº¥é…åºœ å…¶æç˜¤å•Š é…’èªæ è‚‹ æ•‘å†ˆé³ƒ è ä¹æ¾œ. 
+	//if (TransientLobbyGM && TransientLobbyGM->IsValidObj() && CurrentItemOpMode == ELobbyInvenItemOpMode::EIVIOP_None) // å•Šç“·èŒ„ ItemOp è‘›é›å•Š é…’å›± æƒ‘æ€•å•Š äº®é˜‘ æ·€..
 	//{
 	//	bItemOpProgressSceneTestMode = true;
 
-	//	// °­È­¿¬Ãâ¿¡¼± ItemOpTargetItemID ¸¦ ¼¼ÆÃÇØºÁ¾ß ¼Ò¿ëÀÌ ¾ø´Ù. Å×½ºÆ® ÇÔ¼ö¶ó ¾î¶² ¾ÆÀÌÅÛÀÌ ÀÖ´ÂÁö Á¶»çÇØ¼­ ¼¼ÆÃÇÒ ¼öµµ ¾ø´Â ³ë¸©ÀÌ°í
-	//	// ¾÷µ¥ÀÌÆ® ÀüÀÇ Ä³½ÌµÇ´Â Å¸°Ù ¾ÆÀÌÅÛ µ¥ÀÌÅÍ¸¦ ¼¼ÆÃ.
+	//	// ç¢æ‹³æ¥·å…ä¿Šæ€¥ ItemOpTargetItemID ç”« æŠ€æ³¼ç§¦æ¯«å…· å®¶ä¾©æ ç»ä¿ƒ. æŠ›èƒ¶é£˜ çªƒèæ‰¼ ç»¢æ« é…’æè¢æ ä¹ç»°ç˜¤ ç‚¼è¤ç§¦è¾‘ æŠ€æ³¼ä¸” èæ¡£ ç»ç»° ç•´ä¿¯æç»Š
+	//	// è¯€å•æé£˜ å‚ˆç‹¼ æŸæ•™ç™»ç»° é¸¥ç™¾ é…’æè¢ å•æç£ç”« æŠ€æ³¼.
 	//	CachedItemOpTargetData = FB2Item();
-	//	CachedItemOpTargetData.ItemRefID = 1000100; // ½ÇÁ¦·Î ItemInfo ¿¡ ÀÖ´Â RefID ¸¦ ³Ö¾îÁÙ ÇÊ¿ä°¡ ÀÖ´Ù.
-	//	CachedItemOpTargetData.InstanceUID = 32423243; // UID µµ ¹º°¡ °ªÀ» ³Ö¾îÁÖ±ä ÇØ¾ß ÇÔ.
+	//	CachedItemOpTargetData.ItemRefID = 1000100; // è§’åŠ›è‚º ItemInfo ä¿Š ä¹ç»° RefID ç”« æŒç»¢ä¸´ é˜å¤¸å•Š ä¹ä¿ƒ.
+	//	CachedItemOpTargetData.InstanceUID = 32423243; // UID æ¡£ è´­å•Š è”¼é˜‘ æŒç»¢æ—å˜ ç§¦å…· çªƒ.
 
 	//	DevOnlyLoadItemClientTestData(CachedItemOpTargetData);
 	//	CachedItemOpTargetData.PrimaryPointType = EItemPrimaryPointType::EIPP_Attack;
 
 	//	IngredNum = FMath::Clamp(IngredNum, 1, ItemLevelupIngredLimit);
 
-	//	GhostItemOpIngreds.Empty(); // °­È­ ¿¬Ãâ Ã¢¿¡¼­ »ç¿ëÇÒ Àç·á ¾ÆÀÌÅÛ µ¥ÀÌÅÍ.
+	//	GhostItemOpIngreds.Empty(); // ç¢æ‹³ æ¥·å… èŠ’ä¿Šè¾‘ è¤ä¾©ä¸” çŠä¸° é…’æè¢ å•æç£.
 	//	for (int32 GI = 0; GI < IngredNum; ++GI)
 	//	{
 	//		FB2Item NewIngred;
-	//		NewIngred.ItemRefID = 1000100; // ½ÇÁ¦·Î ItemInfo ¿¡ ÀÖ´Â RefID ¸¦ ³Ö¾îÁÙ ÇÊ¿ä°¡ ÀÖ´Ù.
+	//		NewIngred.ItemRefID = 1000100; // è§’åŠ›è‚º ItemInfo ä¿Š ä¹ç»° RefID ç”« æŒç»¢ä¸´ é˜å¤¸å•Š ä¹ä¿ƒ.
 	//		NewIngred.InstanceUID = 4820942398429 + GI;
 
 	//		DevOnlyLoadItemClientTestData(NewIngred);
@@ -5281,7 +5281,7 @@ void UB2LobbyInventory::DevOnlyItemEnhanceProgressSceneTest(int32 IngredNum)
 	//	}
 
 	//	CurrentItemOpMode = ELobbyInvenItemOpMode::EIVIOP_Enhancement;
-	//	// ChangeLobbyUIPage Àü¿¡ View ºÎÅÍ ¸ÕÀú ¼Â¾÷ÇØ¾ß ÇÑ´Ù. ¿¬Ãâ UI Widget ¾È¿¡¼­ Ä«¸Ş¶ó¿¡ Á¢±ÙÇÏ´Â °Ô ÀÖÀ½.
+	//	// ChangeLobbyUIPage å‚ˆä¿Š View ä½•ç£ åˆšå† æ‚¸è¯€ç§¦å…· èŒ„ä¿ƒ. æ¥·å… UI Widget æ•‘ä¿Šè¾‘ å¢¨çš‹æ‰¼ä¿Š ç«‹è¾Ÿçªç»° éœ¸ ä¹æ¾œ.
 	//	LobbyEnterItemOpDirectingViewClass<ELobbyInvenItemOpMode>::GetInstance().Signal(ELobbyInvenItemOpMode::EIVIOP_Enhancement);
 	//	DJLegacy_ChangeLobbyUIPageClass<ELobbyUIPages>::GetInstance().Signal(ELobbyUIPages::ELUP_ItemEnhanceProgress);
 	//}
@@ -5290,39 +5290,39 @@ void UB2LobbyInventory::DevOnlyItemEnhanceProgressSceneTest(int32 IngredNum)
 void UB2LobbyInventory::DevOnlyItemCUSProgressSceneTest(ELobbyInvenItemOpMode InOpMode)
 {	
 	//if (InOpMode == ELobbyInvenItemOpMode::EIVIOP_None || InOpMode == ELobbyInvenItemOpMode::EIVIOP_Levelup){
-	//	return; // °­È­´Â ¿©±â¼­ Ã³¸® ¾È ÇÔ.
+	//	return; // ç¢æ‹³ç»° å’¯æ‰è¾‘ è´¸åºœ æ•‘ çªƒ.
 	//}
 
-	//// ±âº»ÀûÀÎ ºä ÀüÈ¯ °°Àº °Ç ÇÏÁö¸¸ ÀÎº¥Åä¸® ÆäÀÌÁö°¡ ¾Æ´Ï¸é Àß ¾È¸ÔÈú ¼ö ÀÖÀ½. 
-	//if (TransientLobbyGM && TransientLobbyGM->IsValidObj() && CurrentItemOpMode == ELobbyInvenItemOpMode::EIVIOP_None) // °¡´ÉÇÑ ItemOp ¸ğµå°¡ ¾Æ´Ñ »óÅÂ°¡ ÁÁÀ» µí..
+	//// æ‰å¤¯åˆ©ç‰¢ è½° å‚ˆåˆ¸ éç¯® æ‰’ çªç˜¤çˆ¶ ç‰¢äº¥é…åºœ å…¶æç˜¤å•Š é…’èªæ è‚‹ æ•‘å†ˆé³ƒ è ä¹æ¾œ. 
+	//if (TransientLobbyGM && TransientLobbyGM->IsValidObj() && CurrentItemOpMode == ELobbyInvenItemOpMode::EIVIOP_None) // å•Šç“·èŒ„ ItemOp è‘›é›å•Š é…’å›± æƒ‘æ€•å•Š äº®é˜‘ æ·€..
 	//{
 	//	bItemOpProgressSceneTestMode = true;
 
-	//	// Å¸°Ù ¾ÆÀÌÅÛ µ¥ÀÌÅÍ.
+	//	// é¸¥ç™¾ é…’æè¢ å•æç£.
 	//	CachedItemOpTargetData = FB2Item();
-	//	// ½ÇÁ¦·Î ItemInfo ¿¡ ÀÖ´Â RefID ¸¦ ³Ö¾îÁÙ ÇÊ¿ä°¡ ÀÖ´Ù. ÃÊ¿ùÀÌ¸é 6¼º Àåºñ ²¬·Î´Ù°¡
+	//	// è§’åŠ›è‚º ItemInfo ä¿Š ä¹ç»° RefID ç”« æŒç»¢ä¸´ é˜å¤¸å•Š ä¹ä¿ƒ. æª¬å²¿ææ 6å·± å˜åš é“‚è‚ºä¿ƒå•Š
 	//	CachedItemOpTargetData.ItemRefID = InOpMode == ELobbyInvenItemOpMode::EIVIOP_Surpass ? 1000600 : 1000100; 
-	//	CachedItemOpTargetData.InstanceUID = 32423243; // UID µµ ¹º°¡ °ªÀ» ³Ö¾îÁÖ±ä ÇØ¾ß ÇÔ.
+	//	CachedItemOpTargetData.InstanceUID = 32423243; // UID æ¡£ è´­å•Š è”¼é˜‘ æŒç»¢æ—å˜ ç§¦å…· çªƒ.
 	//	DevOnlyLoadItemClientTestData(CachedItemOpTargetData);
 	//	CachedItemOpTargetData.PrimaryPointType = EItemPrimaryPointType::EIPP_Attack;
-	//	CachedItemOpTargetData.Level = 30; // ÇÕ¼º½Â±Ş µîÀº Æ¯º°È÷ Level À» ¸ÂÃçÁà¾ß ÇÔ.
+	//	CachedItemOpTargetData.Level = 30; // é’¦å·±é“°é­ æ®¿ç¯® æ¼‚å–Šæ´’ Level é˜‘ å˜è‹—æ‹å…· çªƒ.
 
 	//	GhostItemOpIngreds.Empty();
 	//	if (InOpMode == ELobbyInvenItemOpMode::EIVIOP_Composition || InOpMode == ELobbyInvenItemOpMode::EIVIOP_Surpass)
-	//	{ // Àç·á ¾ÆÀÌÅÛ µ¥ÀÌÅÍ¸¦ ÇÊ¿ä·Î ÇÏ´Â ¸ğµå
+	//	{ // çŠä¸° é…’æè¢ å•æç£ç”« é˜å¤¸è‚º çªç»° è‘›é›
 	//		FB2Item NewIngred;
-	//		// ½ÇÁ¦·Î ItemInfo ¿¡ ÀÖ´Â RefID ¸¦ ³Ö¾îÁÙ ÇÊ¿ä°¡ ÀÖ´Ù. ÃÊ¿ùÀÌ¸é 6¼º Àåºñ ²¬·Î´Ù°¡
+	//		// è§’åŠ›è‚º ItemInfo ä¿Š ä¹ç»° RefID ç”« æŒç»¢ä¸´ é˜å¤¸å•Š ä¹ä¿ƒ. æª¬å²¿ææ 6å·± å˜åš é“‚è‚ºä¿ƒå•Š
 	//		NewIngred.ItemRefID = InOpMode == ELobbyInvenItemOpMode::EIVIOP_Surpass ? 1000600 : 1000100;
 	//		NewIngred.InstanceUID = 4820942398429;
 	//		DevOnlyLoadItemClientTestData(NewIngred);
 	//		NewIngred.PrimaryPointType = EItemPrimaryPointType::EIPP_Attack;
-	//		NewIngred.Level = 30; // ¸¶Âù°¡Áö·Î Àç·áµµ 30·¹º§ ¸ÂÃçÁÜ
+	//		NewIngred.Level = 30; // ä»˜è›®å•Šç˜¤è‚º çŠä¸°æ¡£ 30é¥­éª‡ å˜è‹—æ·‹
 	//		GhostItemOpIngreds.Add(NewIngred);
 	//	}
 
 	//	CurrentItemOpMode = InOpMode;
 
-	//	// ChangeLobbyUIPage Àü¿¡ View ºÎÅÍ ¸ÕÀú ¼Â¾÷ÇØ¾ß ÇÑ´Ù. ¿¬Ãâ UI Widget ¾È¿¡¼­ Ä«¸Ş¶ó¿¡ Á¢±ÙÇÏ´Â °Ô ÀÖÀ½.
+	//	// ChangeLobbyUIPage å‚ˆä¿Š View ä½•ç£ åˆšå† æ‚¸è¯€ç§¦å…· èŒ„ä¿ƒ. æ¥·å… UI Widget æ•‘ä¿Šè¾‘ å¢¨çš‹æ‰¼ä¿Š ç«‹è¾Ÿçªç»° éœ¸ ä¹æ¾œ.
 	//	LobbyEnterItemOpDirectingViewClass<ELobbyInvenItemOpMode>::GetInstance().Signal(InOpMode);
 	//	DJLegacy_ChangeLobbyUIPageClass<ELobbyUIPages>::GetInstance().Signal(
 	//		(InOpMode == ELobbyInvenItemOpMode::EIVIOP_Composition) ? ELobbyUIPages::ELUP_ItemComposeProgress :
@@ -5341,10 +5341,10 @@ void UB2LobbyInventory::ChangePreset(const EPCClass InPCClass, const EItemPreset
 	//int32 PrePresetID = ItemContainer.GetCurrentItemPresetID(InPCClass);
 	//if (PrePresetID != (int32)PresetSlot)
 	//{
-	//	TArray<EPCClass> PCPartUpdateSignalClass; // ¿Ü°ü»óÀ¸·Î º¯°æµÇ´Â ¾ÆÀÌÅÛÀ» ÀåÂøÇÑ PC Å¬·¡½ºµé ¸ğµÎ ¸ğÀ½. °¢ Å¬·¡½º¿¡´Ù ½ÅÈ£¸¦ º¸³»±â À§ÇØ
-	//	TArray<EPCClass> AnyEquipStateChangedClass; // ¿Ü°ü ÀåÂø ÆÄÆ® º¯°æµÇ´Â °æ¿ì°¡ ¾Æ´Ï¶óµµ ÀüÅõ·Â ¹İ¿µÀº µÉ ¼ö ÀÖÀ¸´Ï Å¬·¡½º µû·Î ¸ğÀ½
+	//	TArray<EPCClass> PCPartUpdateSignalClass; // å¯‡åŒ…æƒ‘æ è‚º å‡½ç‰ˆç™»ç»° é…’æè¢é˜‘ å˜é¦’èŒ„ PC åŠªè´°èƒ¶ç”¸ è‘›æ»´ è‘›æ¾œ. é˜¿ åŠªè´°èƒ¶ä¿Šä¿ƒ è„šé¾‹ç”« ç„Šéƒ´æ‰ å›°ç§¦
+	//	TArray<EPCClass> AnyEquipStateChangedClass; // å¯‡åŒ… å˜é¦’ é¢‡é£˜ å‡½ç‰ˆç™»ç»° ç‰ˆå¿«å•Š é…’èªæ‰¼æ¡£ å‚ˆæ§ä»¿ é¦†åº·ç¯® çª è ä¹æ èª åŠªè´°èƒ¶ è¶è‚º è‘›æ¾œ
 	//					
-	//	//  UIDoc ¸®¼Â
+	//	//  UIDoc åºœæ‚¸
 	//	for (int32 i = (int32)EItemEquipPlace::EIEP_Weapon; i < (int32)EItemEquipPlace::EIEP_End; ++i)
 	//	{
 	//		UB2UIDocEquip* DocEquip = UB2UIDocHelper::GetDocEquip((int32)InPCClass, i);
@@ -5358,7 +5358,7 @@ void UB2LobbyInventory::ChangePreset(const EPCClass InPCClass, const EItemPreset
 
 	//	TArray<FB2Item> MergedList;
 	//	TArray<int64> EquipList;
-	//	GetMergedItemList(MergedList, true, InPCClass); // ÀÏ´Ü filter ¿ÜÀÇ Á¶°Ç¿¡¼­ ÀüÃ¼ ÇÕÃÄÁø ¾ÆÀÌÅÛ ¸ñ·Ï.
+	//	GetMergedItemList(MergedList, true, InPCClass); // è€çªœ filter å¯‡ç‹¼ ç‚¼æ‰’ä¿Šè¾‘ å‚ˆçœ‰ é’¦åªšæŸ³ é…’æè¢ æ ¼åºŸ.
 
 	//	for (const auto &Each : MergedList)
 	//	{
@@ -5415,11 +5415,11 @@ void UB2LobbyInventory::NoticeSetItemEffect(const TMap<int32, int32>& PreSetItem
 	//	}
 	//}
 
-	//// ¾È³»¹® ¿ì¼±¼øÀ§ => º¯°æ > Ãß°¡/ÇØÃ¼
-	//// 1. ¼¼Æ®È¿°ú°¡ Ãß°¡/»èÁ¦µÈ°Ô ÀÖ´Â °æ¿ì => ¼¼Æ®È¿°ú º¯°æ
-	//// 2. ¼¼Æ®È¿°ú Áõ/°¨µÈ°Ô ÀÖ´Â °æ¿ì => ¼¼Æ®È¿°ú º¯°æ
-	//// 3. ¼¼Æ®È¿°ú°¡ Ãß°¡µÈ°Ô ÀÖ´Â °æ¿ì => ¼¼Æ®È¿°ú Ãß°¡
-	//// 4. ¼¼Æ®È¿°ú°¡ ÇØÁ¦µÈ°Ô ÀÖ´Â °æ¿ì => ¼¼Æ®È¿°ú ÇØÁ¦
+	//// æ•‘éƒ´å·© å¿«æ€¥é‰´å›° => å‡½ç‰ˆ > çœ å•Š/ç§¦çœ‰
+	//// 1. æŠ€é£˜ç“¤è‹å•Š çœ å•Š/æ˜åŠ›ç­‰éœ¸ ä¹ç»° ç‰ˆå¿« => æŠ€é£˜ç“¤è‹ å‡½ç‰ˆ
+	//// 2. æŠ€é£˜ç“¤è‹ åˆ˜/çš‘ç­‰éœ¸ ä¹ç»° ç‰ˆå¿« => æŠ€é£˜ç“¤è‹ å‡½ç‰ˆ
+	//// 3. æŠ€é£˜ç“¤è‹å•Š çœ å•Šç­‰éœ¸ ä¹ç»° ç‰ˆå¿« => æŠ€é£˜ç“¤è‹ çœ å•Š
+	//// 4. æŠ€é£˜ç“¤è‹å•Š ç§¦åŠ›ç­‰éœ¸ ä¹ç»° ç‰ˆå¿« => æŠ€é£˜ç“¤è‹ ç§¦åŠ›
 
 	//ESetItemEffectNotify SetEffectType = ESetItemEffectNotify::SIEN_None;
 	//if (AddSetIds.Num() != 0 && RemoveSetIds.Num() != 0)
@@ -5491,7 +5491,7 @@ void UB2LobbyInventory::ResponseUnsealBox(const FB2ResponseUnsealBoxPtr& UnsealB
 
 	////UnsealBoxPtr
 	///*
-	////3D ¿¬Ãâ ÀÖ´Â (¾Æ´Ô ±×³É ÆÄÆ¼Å¬ ½Ã½ºÅÛÀ» »ç¿ëÇÏ´Â ¿¬Ãâ ÂÊ
+	////3D æ¥·å… ä¹ç»° (é…’ä¸› å¼Šæˆ é¢‡èåŠª çŸ«èƒ¶è¢é˜‘ è¤ä¾©çªç»° æ¥·å… ç‡
 	//LobbyChangeSceneByUISceneClass<EUIScene>::GetInstance().Signal(EUIScene::SealBoxResult);
 	//UB2UISealBoxResult* UISealBoxResult = UB2UIManager::GetInstance()->OpenUI<UB2UISealBoxResult>(UIFName::SealBoxResult);
 	//if (UISealBoxResult)
@@ -5501,7 +5501,7 @@ void UB2LobbyInventory::ResponseUnsealBox(const FB2ResponseUnsealBoxPtr& UnsealB
 	//}
 	//*/
 	//
-	////Á¦ÀÛ¼Ò¶û µ¿ÀÏÇÑ ¹æ¹ıÀ¸·Î ¿¬ÃâÇÏ´Â ÂÊ
+	////åŠ›ç´¯å®¶å°” æ‚¼è€èŒ„ è§„è¿‡æ è‚º æ¥·å…çªç»° ç‡
 	//UB2UISealBoxResultSimple* UISealBoxResultSimple = UB2UIManager::GetInstance()->OpenUI<UB2UISealBoxResultSimple>(UIFName::SealBoxResultSimple);
 	//if (UISealBoxResultSimple)
 	//{
@@ -5516,7 +5516,7 @@ void UB2LobbyInventory::ResponseSealBoxSelectChar(int32 PCClass)
 	SealBoxClass = PCClass;
 }
 
-//SummonItem ºÎºĞ¿¡¼­ º¹»çÇØ¼­ °¡Á®¿Â ºÎºĞ. ÅØ½ºÆ®³ª ¹öÆ° Á¶ÀÛ, °¡°İ Ç¥½Ã ºÎºĞ¿¡ Á¶ÀÛÀÌ °¡ÇØÁø »óÅÂ.
+//SummonItem ä½•ç›’ä¿Šè¾‘ æ±—è¤ç§¦è¾‘ å•Šå»‰æŸ¯ ä½•ç›’. å’†èƒ¶é£˜å”± æ»šç“¢ ç‚¼ç´¯, å•Šæ‹œ é’çŸ« ä½•ç›’ä¿Š ç‚¼ç´¯æ å•Šç§¦æŸ³ æƒ‘æ€•.
 void UB2LobbyInventory::ConditionalCreateCharSelectPopup()
 {
 //	//if (!CreatedUIP_CharSelectPopup && X_CP_UIP_CharSelectPopupPanel.IsValid())
@@ -5530,8 +5530,8 @@ void UB2LobbyInventory::ConditionalCreateCharSelectPopup()
 //			CreatedUIP_CharSelectPopup->Init();
 //			CreatedUIP_CharSelectPopup->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
 //
-//			// ÀÌ Á¤µµ¸é º°µµÀÇ Widget part Å¬·¡½º°¡ µÇ¾î¾ß ÇÒ °Í °°Àºµ¥ ¿ÏÀü ºí·çÇÁ¸°Æ®·Î ÄÚµùÀÌ µÇ¾î ÀÖÀ½.
-//			// ÆÄÆ®¿¡¼­ °¡Á®¿À´Â°Ô »ó´çÈ÷ ¸¹´Ù.. ¤Ñ¤Ñ
+//			// æ æ²¥æ¡£æ å–Šæ¡£ç‹¼ Widget part åŠªè´°èƒ¶å•Š ç™»ç»¢å…· ä¸” å·´ éç¯®å• è‚¯å‚ˆ å–‰é£æ©‡èµ´é£˜è‚º å†…çˆ¹æ ç™»ç»¢ ä¹æ¾œ.
+//			// é¢‡é£˜ä¿Šè¾‘ å•Šå»‰å·ç»°éœ¸ æƒ‘å¯¸æ´’ è…¹ä¿ƒ.. ã±ã±
 //
 //			TB_CharSelectTitle = CreatedUIP_CharSelectPopup->GetSlot<UTextBlock>(FName(TEXT("TB_CharSelectTitle")));
 //			TB_CharSelectFullText = CreatedUIP_CharSelectPopup->GetSlot<UTextBlock>(FName(TEXT("TB_CharSelectFullText")));
@@ -5577,7 +5577,7 @@ void UB2LobbyInventory::ConditionalCreateCharSelectPopup()
 //
 //			UIP_CharSelectPopupCosts.Empty();
 //
-//			// Ä³¸¯ÅÍ enum ¼ø¼­¿Í ÀÏÄ¡..?
+//			// æŸè…ç£ enum é‰´è¾‘å®¢ è€æ‘¹..?
 //			TWeakObjectPtr<UB2UIStoreProductCost> UIP_CharSelectPopupCost1 = CreatedUIP_CharSelectPopup->GetSlot<UB2UIStoreProductCost>(FName(TEXT("UIP_Cost1")));
 //			if (UIP_CharSelectPopupCost1.IsValid())
 //			{
@@ -5623,8 +5623,8 @@ void UB2LobbyInventory::OnClickSelectConfirm()
 
 	CloseSelectCharacterPopupWindow();
 
-	//¼­¹ö·Î ºÀÀÎÇÔ ÇØÁ¦ ¿äÃ»ÇÏ´Â °÷
-	//ÇÑ¹ø¿¡ ¸î°³ ¿­¶ó´Â ³»¿ëÀº ±âÈ¹¿¡ ¾ø¾î¼­ ÇÑ¹ø¿¡ 1°³¾¿ ¿­µµ·Ï ÇÏµåÄÚµù µÊ
+	//è¾‘æ»šè‚º è±ªç‰¢çªƒ ç§¦åŠ› å¤¸æ²¡çªç»° é•‘
+	//èŒ„é”…ä¿Š å‰²ä¿º å‡¯æ‰¼ç»° éƒ´ä¾©ç¯® æ‰è£™ä¿Š ç»ç»¢è¾‘ èŒ„é”…ä¿Š 1ä¿ºç©¶ å‡¯æ¡£åºŸ çªé›å†…çˆ¹ å‡³
 	data_trader::Retailer::GetInstance().RequestUnsealBox(SealBoxUID, SealBoxClass, 1);
 }
 

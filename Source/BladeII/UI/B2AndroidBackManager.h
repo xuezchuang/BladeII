@@ -1,9 +1,12 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
 #include "CoreMinimal.h"
 #include "EventSubsystem.h"
+#include "UObject/WeakObjectPtr.h"
+
+
 
 /**
 *
@@ -55,7 +58,7 @@ private:
 	EBackWidgetType						GetBackWidgetType(FName& UIName);
 
 	TArray<TWeakObjectPtr<UObject>>		BackWidgetHistory;
-	//¾À¿¡ ÇÏ³ª¸¸ ÀÖ¾î¾ß ÇÔ
+	//çº ä¿Š çªå”±çˆ¶ ä¹ç»¢å…· çªƒ
 	TWeakObjectPtr<UObject>					HeaderWidget;
 	TWeakObjectPtr<UObject>					BattleMainWidget;
 	TWeakObjectPtr<UObject>					CombineMenuWidget;

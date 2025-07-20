@@ -1,4 +1,4 @@
-#include "B2UIQuestDialog.h"
+ï»¿#include "B2UIQuestDialog.h"
 #include "B2RichTextBlock.h"
 #include "QuestDataTable.h"
 #include "QuestManager.h"
@@ -196,9 +196,9 @@ void UB2UIQuestDialog::OpenRewardDialog(const class Quest& QuestRef, const TArra
 	DivisionTable = QuestRef.GetType();
 	DivisionStat = QuestRef.GetState();
 
-	// MainQuest´Â ¼­¹ö¿¡¼­ º°´Ù¸¥ ¿Ï·áÃ³¸® ¾øÀÌ ¹Ù·Î ´ÙÀ½Äù½ºÆ®¸¦ ÀÌ¾îº¸³»ÁØ´Ù.
-	// ¿©±â±îÁö µé¾î¿Â QuestRef´Â ½ÇÁ¦·Î ¼­¹ö¿¡¼­ ¿Ï·áµÆ´Ù ÇÏ´õ¶óµµ EQS_PROGRESS »óÅÂ
-	// µû¶ó¼­ UI Flag¸¸ EQS_COMPLETED·Î º¯°æ ÇØ ÁØ´Ù.
+	// MainQuestç»° è¾‘æ»šä¿Šè¾‘ å–Šä¿ƒå¼— è‚¯ä¸°è´¸åºœ ç»æ å®˜è‚º ä¿ƒæ¾œæ¶…èƒ¶é£˜ç”« æç»¢ç„Šéƒ´éœ–ä¿ƒ.
+	// å’¯æ‰é³–ç˜¤ ç”¸ç»¢æŸ¯ QuestRefç»° è§’åŠ›è‚º è¾‘æ»šä¿Šè¾‘ è‚¯ä¸°ç¯ä¿ƒ çªæ­¹æ‰¼æ¡£ EQS_PROGRESS æƒ‘æ€•
+	// è¶æ‰¼è¾‘ UI Flagçˆ¶ EQS_COMPLETEDè‚º å‡½ç‰ˆ ç§¦ éœ–ä¿ƒ.
 	if (QuestType == MAIN_QUEST && QuestRef.GetState() == EQS_PROGRESS)
 		DivisionStat = EQS_COMPLETED;
 
@@ -266,7 +266,7 @@ void UB2UIQuestDialog::SetMissionDialogText(int32 InMissionID)
 
 		FText QuestTitleText;
 
-		// Note : ±âº» TitleÀ» °Ë»öÇØº¸°í ¾ø´Ù¸é StepÀ» ³Ö¾î¼­ ÇÑ¹ø ´õ Ã£¾ÆÁØ´Ù.
+		// Note : æ‰å¤¯ Titleé˜‘ å…«ç¥¸ç§¦ç„Šç»Š ç»ä¿ƒæ Stepé˜‘ æŒç»¢è¾‘ èŒ„é”… æ­¹ èŒ«é…’éœ–ä¿ƒ.
 		if (FText::FindText(B2LOC_CAT_MISSIONTEXT, GetMissionTitleKey(InMissionID), QuestTitleText, nullptr) == false)
 			QuestTitleText = MissionManager::GetInstance().GetMissionTitle(InMissionID, Mission->CurrentStep);
 
@@ -459,8 +459,8 @@ void UB2UIQuestDialog::SetDialogText(int32 index)
 {
 	DialogArr.Empty();
 	PageCount = 0;
-	// ÆäÀÌÁö³Ñ±è Å°¿öµå /page
-	FString str = BladeIIGetLOCText(B2LOC_CAT_QUESTTEXT, FString::FromInt(index)).ToString();///ÀÓ½Ã ½ºÆ®¸µ
+	// å…¶æç˜¤é€è¾« è™å†µé› /page
+	FString str = BladeIIGetLOCText(B2LOC_CAT_QUESTTEXT, FString::FromInt(index)).ToString();///çƒ™çŸ« èƒ¶é£˜å‚…
 	FText OrgText = BladeIIGetLOCText(B2LOC_CAT_QUESTTEXT, FString::FromInt(index));
 	TArray<FText> ParsedTextList;
 
@@ -476,7 +476,7 @@ void UB2UIQuestDialog::SetNpc(int32 index)
 {
 	if (IMG_Npc.IsValid())
 	{
-		//¿£ÇÇ¾¾´Â 10¸¸¹ø´ëºÎÅÍ ½ÃÀÛÀÌ¶ó... ¿ì¼±Àº ÀÌ·¸°Ô...
+		//æµšä¹”æªç»° 10çˆ¶é”…æªä½•ç£ çŸ«ç´¯ææ‰¼... å¿«æ€¥ç¯® æçŠ¯éœ¸...
 		int32 NPCImageIndex = index % 100000;
 		UTexture2D* LoadedNPCImage = GetNPCImageTexture(NPCImageIndex);
 		if (LoadedNPCImage)
@@ -491,11 +491,11 @@ void UB2UIQuestDialog::SetNpc(int32 index)
 
 void UB2UIQuestDialog::SetRewardItem()
 {
-	// ÃÊ±âÈ­
-	SetRewardButtonType(EQuestRewardButtonType::Max); // º¸»ó ¹Ş±â ¹öÆ°Àº ÃÊ±âÈ­ ÈÄ ¾Æ·¡¿¡¼­ º¯°æÇÏµµ·Ï ÇÏÀÚ.
+	// æª¬æ‰æ‹³
+	SetRewardButtonType(EQuestRewardButtonType::Max); // ç„Šæƒ‘ ç½æ‰ æ»šç“¢ç¯® æª¬æ‰æ‹³ é¥¶ é…’è´°ä¿Šè¾‘ å‡½ç‰ˆçªæ¡£åºŸ çªç£Š.
 	SetVisibilityRewardButtonType(EQuestRewardButtonType::Max);
 
-	// ¾÷µ¥ÀÌÆ®
+	// è¯€å•æé£˜
 	UpdateRewardItem(DialogType);
 }
 
@@ -687,7 +687,7 @@ void UB2UIQuestDialog::FinalApplyDialogText(bool IsStringFilledUp)
 
 	//if (CheckIsVisibleBtnNext)
 	//{
-	//	// ¸¶Áö¸· ÆäÀÌÁöÀÇ ¸¶Áö¸· ±ÛÀÚ¸é NextÇ¥½Ã¸¦ Áö¿öÁØ´Ù.
+	//	// ä»˜ç˜¤é˜œ å…¶æç˜¤ç‹¼ ä»˜ç˜¤é˜œ è‡‚ç£Šæ Nexté’çŸ«ç”« ç˜¤å†µéœ–ä¿ƒ.
 	//	if ((DialogArr.Num() - 1 == PageCount))
 	//	{
 	//		if (BTN_Dialogue_Next.IsValid())
@@ -718,7 +718,7 @@ void UB2UIQuestDialog::OpenDialog(bool CheckCompleteQuestNotice)
 
 void UB2UIQuestDialog::OnClickDialogueNext()
 {
-	// ±ÛÀÌ ³¡³ªÁö ¾Ê¾ÒÀ»¶§´Â Ç®ÅØ½ºÆ®¸¦ º¸¿©ÁÖÀÚ.
+	// è‡‚æ åœºå”±ç˜¤ è‡¼ç–½é˜‘é”­ç»° é’±å’†èƒ¶é£˜ç”« ç„Šå’¯æ—ç£Š.
 	if (!ProgressiveDialogText.IsStringFilledUp())
 	{
 		ProgressiveDialogText.ApplyToWholeString();
@@ -753,8 +753,8 @@ void UB2UIQuestDialog::OnClickConfirm()
 		{
 			if (QuestType != MAIN_QUEST)
 			{
-				// MainQuestÀÇ °æ¿ì DivisionStatÀ» °­Á¦·Î EQS_COMPLETED·Î µ¹¸®¸ç
-				// ¼­¹ö¿¡ º¸»ó ¿äÃ»À» ÇÒ ÇÊ¿äµµ ¾ø´Ù.
+				// MainQuestç‹¼ ç‰ˆå¿« DivisionStaté˜‘ ç¢åŠ›è‚º EQS_COMPLETEDè‚º å€’åºœå“¥
+				// è¾‘æ»šä¿Š ç„Šæƒ‘ å¤¸æ²¡é˜‘ ä¸” é˜å¤¸æ¡£ ç»ä¿ƒ.
 				bCloseQuestDialog = false;
 				StopCurrentDialogSound();
 				data_trader::Retailer::GetInstance().RequestReceiveQuestReward(QuestSlotIndex); 
@@ -798,7 +798,7 @@ void UB2UIQuestDialog::OnClickConfirm()
 					OpenAutoClearQuest();
 					return;
 				}
-				else if (IsInStageMode)	// Stage Result »óÈ²¿¡¼­ MainQuest ¹Ù·Î°¡±â
+				else if (IsInStageMode)	// Stage Result æƒ‘ç‚”ä¿Šè¾‘ MainQuest å®˜è‚ºå•Šæ‰
 				{
 					if (TutorialManager::GetInstance().HasContentOpenTutorial() == false)
 					{
@@ -821,7 +821,7 @@ void UB2UIQuestDialog::OnClickConfirm()
 						bCloseQuestDialog = false;
 					}
 				}
-				else // Lobby »óÈ²¿¡¼­ ¹Ù·Î°¡±â
+				else // Lobby æƒ‘ç‚”ä¿Šè¾‘ å®˜è‚ºå•Šæ‰
 				{
 					FB2UILinkManager::LinkUIScene(QuestCommonInfo->LinkScene, QuestCommonInfo->Optional1, QuestCommonInfo->Optional2);
 				}
@@ -838,7 +838,7 @@ void UB2UIQuestDialog::OnClickConfirm()
 			{
 				MissionType = static_cast<int32>(Mission->MissionType);
 
-				auto MissionUI = UB2UIManager::GetInstance()->GetUI<UB2UIMission>(UIFName::Mission);		//¹Ì¼Ç ¾È¿¡¼­ ÅÇÀ» ¹Ù²ã¾ß ÇÏ´Â°æ¿ì
+				auto MissionUI = UB2UIManager::GetInstance()->GetUI<UB2UIMission>(UIFName::Mission);		//å›ºè®° æ•‘ä¿Šè¾‘ å¾˜é˜‘ å®˜å±‚å…· çªç»°ç‰ˆå¿«
 				if (MissionUI)
 				{
 					MissionUI->ChangeTapShortcut(Mission->MissionType);
@@ -916,16 +916,16 @@ void UB2UIQuestDialog::OnClickClose()
 
 void UB2UIQuestDialog::OnClickSkip()
 {
-	// ´ÙÀÌ¾ó·Î±× ²¨ÁÖ°í, º¸»óÃ¢ ÄÑÁÖÀÚ.
+	// ä¿ƒæå€”è‚ºå¼Š æ³¢æ—ç»Š, ç„Šæƒ‘èŠ’ éš¾æ—ç£Š.
 	O_Dialog->SetVisibility(ESlateVisibility::Hidden);
 	BTN_Dialogue_Next->SetVisibility(ESlateVisibility::Collapsed);
 	O_Reward->SetVisibility(ESlateVisibility::Visible);
 	HB_QuestName->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
 
-	// Å¸ÀÌÆ²¸í º¯°æ
+	// é¸¥ææ’‡ç–™ å‡½ç‰ˆ
 	SetToggleQuestTitleWidget(false);
 
-	// º¸»ó¹Ş±â/¹Ù·Î°¡±â ¹öÆ° ÄÑÁÖÀÚ.
+	// ç„Šæƒ‘ç½æ‰/å®˜è‚ºå•Šæ‰ æ»šç“¢ éš¾æ—ç£Š.
 	SetVisibilityRewardButtonType(CurRewardButtonType);
 }
 
@@ -966,7 +966,7 @@ void UB2UIQuestDialog::OnClickMsgReward()
 
 void UB2UIQuestDialog::SetPlaySound(bool IsStartMode)
 {
-	StopCurrentDialogSound(); // Áß´ÜºÎÅÍ
+	StopCurrentDialogSound(); // åçªœä½•ç£
 
 	UB2QuestInfoTable* QuestInfoTable = StaticFindQuestTable();
 	UB2QuestNPCSoundInfo *QuestSoundInfoTable = StaticFindQuestNPCSoundTable();
@@ -992,7 +992,7 @@ void UB2UIQuestDialog::SetPlaySound(bool IsStartMode)
 
 USoundCue* UB2UIQuestDialog::GetNpcSound(bool IsStartMode)
 {
-	// Äù½ºÆ®¸¸ »ç¿îµå Ãâ·Â
+	// æ¶…èƒ¶é£˜çˆ¶ è¤æ¬¾é› å…ä»¿
 	if (DialogType == EDialogType::Quest)
 	{
 		UB2QuestInfoTable* QuestInfoTable = StaticFindQuestTable();

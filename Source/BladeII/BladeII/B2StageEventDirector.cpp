@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 // Project BladeII, Action Square
 #include "B2StageEventDirector.h"
 
@@ -65,14 +65,14 @@
 //#include "FB2ErrorMessage.h"
 //#include "BladeIIBlockToSyncNetwork.h"
 
-// ±×³É CachedStageManager ¸¦ Ã¼Å©ÇÏ¸é StageManager °¡ ¾ø´Â °ÔÀÓ¸ğµå¿¡¼­ ¹Ù·Î °É¸²
+// å¼Šæˆ CachedStageManager ç”« çœ‰å†œçªæ StageManager å•Š ç»ç»° éœ¸çƒ™è‘›é›ä¿Šè¾‘ å®˜è‚º å§è¦†
 #define SAFE_STAGEMANAGER_CHECK BII_CHECK( !(Cast<AB2StageGameMode>(UGameplayStatics::GetGameMode(this))) || CachedStageManager );
 
 ABladeIICharacter* FPlayActorShowRuntimeState::GetPlayActor(class AB2StageEventDirector* OwnerSED)
-{// LocalPlayerCharacter ¸¦ Ä³½ÌÇØ¼­ ¾²´Ù°¡ ¹®Á¦°¡ µÈ ÀûÀÌ Á» ÀÖ¾î¼­ ¾ÈÀü Â÷¿ø¿¡¼­.. ±Ùµ¥ ´Ù¸¥ PlayActor µµ ±×·² ¼ö ÀÖÀ» ¹ı ÇÑµ¥.. Ã¼Å©¶óµµ °É¾îº¼±î³ª..
+{// LocalPlayerCharacter ç”« æŸæ•™ç§¦è¾‘ é™ä¿ƒå•Š å·©åŠ›å•Š ç­‰ åˆ©æ ç²± ä¹ç»¢è¾‘ æ•‘å‚ˆ ç’ç›”ä¿Šè¾‘.. è¾Ÿå• ä¿ƒå¼— PlayActor æ¡£ å¼Šå‡¡ è ä¹é˜‘ è¿‡ èŒ„å•.. çœ‰å†œæ‰¼æ¡£ å§ç»¢æ­é³–å”±..
 	ABladeIICharacter* RetChar = NULL;// bIsForLocalPlayerCharacter ? Cast<ABladeIICharacter>(UGameplayStatics::GetLocalPlayerCharacter(OwnerSED)) : ThePlayActor;
-	// PlayActor ´Â NULL ÀÏ ¼ö ÀÖ´Ù. ¿¹¸¦ µé¾î ´Ù¼öÀÇ ½ºÅ×ÀÌÁö¸¦ À§ÇÑ ShowSetting ÀÎµ¥ SpawnPool ¿¡¼­´Â ¾î¶² ½ºÅ×ÀÌÁö¿¡¼­ ¸÷ÀÌ ´ú ³ª¿Â´Ù°Å³ª ÇÏ´Â °æ¿ì. µû¶ó¼­ validity Ã¼Å©¸¸ ÇÏµµ·Ï.
-	//ensure(!RetChar || RetChar->IsValidObj()); // ¿¬Ãâ µµÁß¿¡ Directed °¡ ¾Æ´Ñ (PlayActorStateMode) PlayActor °¡ destroy µÇ¾î¹ö¸°´Ù¸é IsValidObj °¡ ¾Æ´Ò ¼ö ÀÖ´Ù. ÇöÀç·Î¼± ¼¼ÆÃ¿¡ µû¶ó °¡´É¼ºÀÌ ÀÖ±ä ÇÔ..
+	// PlayActor ç»° NULL è€ è ä¹ä¿ƒ. æŠ—ç”« ç”¸ç»¢ ä¿ƒèç‹¼ èƒ¶æŠ›æç˜¤ç”« å›°èŒ„ ShowSetting ç‰¢å• SpawnPool ä¿Šè¾‘ç»° ç»¢æ« èƒ¶æŠ›æç˜¤ä¿Šè¾‘ å„æ ä»£ å”±æŸ¯ä¿ƒèŠ­å”± çªç»° ç‰ˆå¿«. è¶æ‰¼è¾‘ validity çœ‰å†œçˆ¶ çªæ¡£åºŸ.
+	//ensure(!RetChar || RetChar->IsValidObj()); // æ¥·å… æ¡£åä¿Š Directed å•Š é…’å›± (PlayActorStateMode) PlayActor å•Š destroy ç™»ç»¢æ»šèµ´ä¿ƒæ IsValidObj å•Š é…’åŒ† è ä¹ä¿ƒ. æ³…çŠè‚ºæ€¥ æŠ€æ³¼ä¿Š è¶æ‰¼ å•Šç“·å·±æ ä¹å˜ çªƒ..
 	return (IsValid(RetChar) ? RetChar : NULL);
 }
 
@@ -86,7 +86,7 @@ void FPlayActorShowRuntimeState::SetPlayActor(class ABladeIICharacter* InPlayAct
 void FDelayedDyingMobCache::SetDyingMobCache(class ABladeIICharacter* InDyingMob, int32 InWaveIndex, int32 InObjIndex)
 {
 	if (IsValid(InDyingMob))
-	{// Á×¾î°¡´Â ¾Ö¶óµµ IsValidObj ¿©¾ß..
+	{// ç£·ç»¢å•Šç»° å±€æ‰¼æ¡£ IsValidObj å’¯å…·..
 		TheDyingMob = InDyingMob;
 		WaveIndex = InWaveIndex;
 		ObjIndex = InObjIndex;
@@ -99,7 +99,7 @@ void FDelayedDyingMobCache::ForgetIt()
 	ObjIndex = -1;
 }
 void FDelayedDyingMobCache::ForgetIfMatch(class ABladeIICharacter* InMobToForget)
-{ // ÀØ°íÀÚ ÇÏ´Â °Å´Ï ±»ÀÌ valid °Ë»ç±îÁö´Â ¤»
+{ // é•­ç»Šç£Š çªç»° èŠ­èª è¢«æ valid å…«è¤é³–ç˜¤ç»° ã›
 	if (InMobToForget == TheDyingMob)
 	{
 		ForgetIt();
@@ -108,7 +108,7 @@ void FDelayedDyingMobCache::ForgetIfMatch(class ABladeIICharacter* InMobToForget
 ABladeIICharacter* FDelayedDyingMobCache::GetIfMatch(int32 InWaveIndex, int32 InObjIndex)
 {
 	if (IsValid(TheDyingMob ) && InWaveIndex == WaveIndex && InObjIndex == ObjIndex) 
-	{ // Á×¾î°¡´Â ¾Ö¶óµµ IsValidObj ¿©¾ß..
+	{ // ç£·ç»¢å•Šç»° å±€æ‰¼æ¡£ IsValidObj å’¯å…·..
 		return TheDyingMob;
 	}
 	return NULL;
@@ -120,7 +120,7 @@ ABladeIIGameMode* AB2StageEventDirector::GetB2GameMode()
 	//{
 	//	CachedGameMode = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(this));
 	//}
-	//// ¿¡µğÅÍ¿¡¼­ ¸Ê ¿­ ¶§ ¿©±â·Î ¿À´Â °æ¿ì°¡ ÀÖ¾î¼­ ¿¡µğÅÍ´Â check ½ºÅµ
+	//// ä¿Šå¼ç£ä¿Šè¾‘ ç”˜ å‡¯ é”­ å’¯æ‰è‚º å·ç»° ç‰ˆå¿«å•Š ä¹ç»¢è¾‘ ä¿Šå¼ç£ç»° check èƒ¶è¯º
 	//BII_CHECK(GIsEditor || (CachedGameMode && CachedGameMode->IsValidObj()));
 	return CachedGameMode;
 }
@@ -150,7 +150,7 @@ AB2StageEventDirector::AB2StageEventDirector(const FObjectInitializer& ObjectIni
 			FName ID_B2StageEventDirector;
 			FText NAME_B2StageEventDirector;
 			FConstructorStatics()
-				: SpriteTexture(TEXT("/Engine/EditorResources/SceneManager")) // SceneManager ÅØ½ºÃÄ°¡ ¹º°¡ ¿¬Ãâ½º·´°Ô »ı±è ¤§¤§
+				: SpriteTexture(TEXT("/Engine/EditorResources/SceneManager")) // SceneManager å’†èƒ¶åªšå•Š è´­å•Š æ¥·å…èƒ¶åéœ¸ ç§¯è¾« ã‡ã‡
 				, ID_B2StageEventDirector(TEXT("B2StageEventDirector"))
 				, NAME_B2StageEventDirector(FText::FromString(TEXT("B2StageEventDirectorEditorSprite")))
 			{
@@ -229,16 +229,16 @@ AB2StageEventDirector::AB2StageEventDirector(const FObjectInitializer& ObjectIni
 	bStopAllMobsWhilePlaying			= false;
 	MatineeFirstSkipFrames				= 0;
 
-	// ManualCameraSettings ÇÏ³ª´Â ±âº»À¸·Î ³Ö¾îÁØ´Ù.
+	// ManualCameraSettings çªå”±ç»° æ‰å¤¯æ è‚º æŒç»¢éœ–ä¿ƒ.
 	ManualCameraSettings.Add(FManualCameraSingleSetting());
 
-	// Ä«¸Ş¶ó »ı¼º. »ó¼¼ÇÑ À§Ä¡ µîÀÇ Á¶ÀıÀº ÇÏÀ§ BP Å¬·¡½º ºäÆ÷Æ®³ª ·¹º§ ºäÆ÷Æ®¿¡¼­ ÇÏ±á
+	// å¢¨çš‹æ‰¼ ç§¯å·±. æƒ‘æŠ€èŒ„ å›°æ‘¹ æ®¿ç‹¼ ç‚¼ä¾‹ç¯® çªå›° BP åŠªè´°èƒ¶ è½°å™¨é£˜å”± é¥­éª‡ è½°å™¨é£˜ä¿Šè¾‘ çªè´¬
 	DirectorCamera_0 = CreateDefaultSubobject<UCameraComponent>(TEXT("DirectorCamera_0"));
 	DirectorCamera_0->AttachToComponent(DefaultRootComponent, FAttachmentTransformRules(EAttachmentRule::KeepRelative, false));
 	DirectorCamera_0->bAutoActivate = false;
 	DirectorCamera_0->SetRelativeLocation(FVector(50.0f, -100.0f, 100.0f));
 	DirectorCamera_0->SetRelativeRotation(FRotator(0.0f, 90.0f, 0.0f));
-	DirectorCamArrayRef[0] = DirectorCamera_0; // ´ÜÁö Ã³À½ºÎÅÍ array ·Î ¼±¾ğÇÏ°í ¿¡µğÅÍ¿¡¼­ ÆíÁıÇÏµµ·Ï ³ëÃâÀÌ ¾ÈµÅ¼­ ÀÌ·¸°Ô ÇÔ.
+	DirectorCamArrayRef[0] = DirectorCamera_0; // çªœç˜¤ è´¸æ¾œä½•ç£ array è‚º æ€¥æ”«çªç»Š ä¿Šå¼ç£ä¿Šè¾‘ ç¥ˆç¬¼çªæ¡£åºŸ ç•´å…æ æ•‘è¹¬è¾‘ æçŠ¯éœ¸ çªƒ.
 	
 	DirectorCamera_1 = CreateDefaultSubobject<UCameraComponent>(TEXT("DirectorCamera_1"));
 	DirectorCamera_1->AttachToComponent(DefaultRootComponent, FAttachmentTransformRules(EAttachmentRule::KeepRelative, false));
@@ -287,7 +287,7 @@ void AB2StageEventDirector::PostLoad()
 //#if WITH_EDITOR
 //	SetEditConditionProperties();
 //
-//	// È¤½Ã¶óµµ ·¹º§ ÀÌ¸§ ¹Ù²Ù¸é redirector Ã³¸®°¡ ¾ÈµÇ¹Ç·Î ¿©±â¼­µµ °Ë»ç.
+//	// è¶£çŸ«æ‰¼æ¡£ é¥­éª‡ ææŠš å®˜æ“æ redirector è´¸åºœå•Š æ•‘ç™»éª¨è‚º å’¯æ‰è¾‘æ¡£ å…«è¤.
 //	UWorld* TheWorld = GetWorld();
 //	LevelStreamingOnBegin.EditorCheckForProperSetting(TheWorld);
 //	LevelStreamingOnEnd.EditorCheckForProperSetting(TheWorld);
@@ -300,7 +300,7 @@ void AB2StageEventDirector::PostRegisterAllComponents()
 {
 	Super::PostRegisterAllComponents();
 #if WITH_EDITOR
-	// Ã³À½¿¡ ÀÌ°É PostLoad ¿¡¼­ ÇÏ·Á°í Çß´Âµ¥ Preview ¿ë ÄÄÆ÷³ÍÆ®µéÀÇ ¶¥¹Ù´Ú ½º³ÀÇÎÀÌ ·Îµù Á÷ÈÄ¿¡ ¾È¸ÔÇô¼­ ¿©±â´Ù ³ÖÀ½.
+	// è´¸æ¾œä¿Š æå§ PostLoad ä¿Šè¾‘ çªå¦¨ç»Š æ²ç»°å• Preview ä¾© å“ªå™¨æƒ©é£˜ç”¸ç‹¼ é¡¶å®˜è¹¿ èƒ¶å¿±ä¿æ è‚ºçˆ¹ æµé¥¶ä¿Š æ•‘å†ˆå›šè¾‘ å’¯æ‰ä¿ƒ æŒæ¾œ.
 	if (GIsEditor)
 	{
 		RefreshPreviewSKComps();
@@ -321,7 +321,7 @@ void AB2StageEventDirector::PostRegisterAllComponents()
 	//			break;
 	//		}
 	//	}
-	//	// MAX_DIRECTOR_CAMERA ÁÙÀÌ¸é¼­ ÀÌÀü¿¡ ±âº» »ı¼ºµÇ¾î ÀÖ´ø °Å Á¦°Å.
+	//	// MAX_DIRECTOR_CAMERA ä¸´ææè¾‘ æå‚ˆä¿Š æ‰å¤¯ ç§¯å·±ç™»ç»¢ ä¹å¸¦ èŠ­ åŠ›èŠ­.
 	//	if (!bOneOfInstalledCam){
 	//		ThisCamComp->DetachFromComponent(FDetachmentTransformRules(EDetachmentRule::KeepRelative, true));
 	//		ThisCamComp->ConditionalBeginDestroy();
@@ -339,9 +339,9 @@ void AB2StageEventDirector::BeginPlay()
 
 	//Super::BeginPlay();
 
-	//// ¼³Á¤¿¡ µû¶ó (WaveMob »ç¿ëÇÏ´Â °æ¿ì) ÀÌ°Ô ºÒ¸®±â Àü¿¡ BeginShow °¡ µÉ ¼öµµ ÀÖÀ½À» ¸í½É.
+	//// æ±²æ²¥ä¿Š è¶æ‰¼ (WaveMob è¤ä¾©çªç»° ç‰ˆå¿«) æéœ¸ é˜‚åºœæ‰ å‚ˆä¿Š BeginShow å•Š çª èæ¡£ ä¹æ¾œé˜‘ ç–™ç¼´.
 
-	//// ESEV_ComponentTrigger ¿ëÀ¸·Î ÁöÁ¤ÇÑ ÄÄÆ÷³ÍÆ®ÀÇ BeginOverlap µî·Ï
+	//// ESEV_ComponentTrigger ä¾©æ è‚º ç˜¤æ²¥èŒ„ å“ªå™¨æƒ©é£˜ç‹¼ BeginOverlap æ®¿åºŸ
 	//if (DirectingEvent == EStageEvent::ESEV_ComponentTrigger && TriggerComponentName != NAME_None)
 	//{
 	//	UPrimitiveComponent* PrimComp = Cast<UPrimitiveComponent>(FindComponentByName(TriggerComponentName));
@@ -352,26 +352,26 @@ void AB2StageEventDirector::BeginPlay()
 	//}
 
 	//if (OverallMode == EStageEventDirectorOverallMode::ESEDOM_ControlledMatinee && HasDirectedFromBeginningTrack() && MatineeActor && 
-	//	!bCurrentlyPlaying)// Ã³À½ºÎÅÍ ÇÃ·¹ÀÌÇÏ´Â °Å¶ó¸é ÀÌ·± Ã³¸®°¡ ÇÊ¿äÇÏÁöµµ ¾Ê°ÚÁö..
+	//	!bCurrentlyPlaying)// è´¸æ¾œä½•ç£ æ•²é¥­æçªç»° èŠ­æ‰¼æ æç¹ è´¸åºœå•Š é˜å¤¸çªç˜¤æ¡£ è‡¼æ‘†ç˜¤..
 	//{
-	//	MatineeActor->InitInterp(); // GetGroupActorOfGroupName ÀÌÀü¿¡ ÇÊ¿ä..
+	//	MatineeActor->InitInterp(); // GetGroupActorOfGroupName æå‚ˆä¿Š é˜å¤¸..
 	//	for (int32 SI = 0; SI < ShowSettings.Num(); ++SI)
 	//	{
 	//		FPlayActorShowSettings& CurrSS = ShowSettings[SI];
 	//		if (CurrSS.PlayActorStateMode == EPlayActorStateMode::EPASM_DirectedFromBeginning &&
-	//			// ·ÎÄÃ ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ ¿ë Æ®·¢ÀÌ¸é ÀÌ·¸°Ô Ã³À½ºÎÅÍ °íÁ¤µÈ À§Ä¡¿¡ Á¸ÀçÇÏµµ·Ï ÇÏ´Â °Ô ¸»ÀÌ µÇÁö ¾Ê°í..
-	//			// ±âÅ¸ ´Ù¸¥ Å¸ÀÔÀÇ ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ¶ó¸é ÀÌ ½ÃÁ¡¿¡¼­´Â °¡´ÉÇÑ ÀÌ¸§ Á¶ÇÕÀ» ¸ğµÎ Ã£¾Æ³»¾ß ÇÒ °Í. PlayActor °¡ ÀÖ´Â ½ÃÁ¡ÀÌ ¾Æ´Ï¹Ç·Î.
-	//			// ¿©ÇÏ°£ Áö±İÀº ±×·± °æ¿ì Áö¿ø ºÒ°¡.
+	//			// è‚ºæ‹¿ æ•²é¥­æç»¢ æŸè…ç£ ä¾© é£˜å‘ææ æçŠ¯éœ¸ è´¸æ¾œä½•ç£ ç»Šæ²¥ç­‰ å›°æ‘¹ä¿Š ç²®çŠçªæ¡£åºŸ çªç»° éœ¸ å¯Œæ ç™»ç˜¤ è‡¼ç»Š..
+	//			// æ‰é¸¥ ä¿ƒå¼— é¸¥æ¶ç‹¼ æ•²é¥­æç»¢ æŸè…ç£æ‰¼æ æ çŸ«ç—¢ä¿Šè¾‘ç»° å•Šç“·èŒ„ ææŠš ç‚¼é’¦é˜‘ è‘›æ»´ èŒ«é…’éƒ´å…· ä¸” å·´. PlayActor å•Š ä¹ç»° çŸ«ç—¢æ é…’èªéª¨è‚º.
+	//			// å’¯çªåŸƒ ç˜¤é™›ç¯® å¼Šç¹ ç‰ˆå¿« ç˜¤ç›” é˜‚å•Š.
 	//			!IsPlayActorTypeForPlayerCharacter(CurrSS.PlayActorType)
 	//			)
 	//		{
-	//			// ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ°¡ ¾Æ´Ï´Ï MatchingInterpGroupName À» ±×´ë·Î »ç¿ë.
+	//			// æ•²é¥­æç»¢ æŸè…ç£å•Š é…’èªèª MatchingInterpGroupName é˜‘ å¼Šæªè‚º è¤ä¾©.
 	//			ASkeletalMeshActor* ThisGroupSKActor = Cast<ASkeletalMeshActor>(GetGroupActorOfGroupName(CurrSS.MatchingInterpGroupName));
 	//			USkeletalMeshComponent* SKMeshComp = ThisGroupSKActor->GetSkeletalMeshComponent();
 	//			if (ThisGroupSKActor && SKMeshComp)
-	//			{ // Ã³À½ºÎÅÍ º¸ÀÌµµ·Ï ÄÑ ÁØ´Ù. ¾Ö´Ï¸ŞÀÌ¼Çµµ ¾Æ¸¶ ÇÃ·¹ÀÌ »óÅÂ¿©¾ß°ÚÁö..? ±×°Ô ¾Æ´Ñ °æ¿ì±îÁö ÀÖ´Ù¸é °á±¹ Ãß°¡ ¿É¼ÇÀ» ÁÖ¾î¾ß.
+	//			{ // è´¸æ¾œä½•ç£ ç„Šææ¡£åºŸ éš¾ éœ–ä¿ƒ. å±€èªçš‹æè®°æ¡£ é…’ä»˜ æ•²é¥­æ æƒ‘æ€•å’¯å…·æ‘†ç˜¤..? å¼Šéœ¸ é…’å›± ç‰ˆå¿«é³–ç˜¤ ä¹ä¿ƒæ æ¬æƒ« çœ å•Š å¯è®°é˜‘ æ—ç»¢å…·.
 	//				if (SKMeshComp->AnimationData.AnimToPlay){
-	//					// AnimToPlay ¼¼ÆÃµÈ °É »ç¿ëÇÏ´Ï AnimToPlay ¸¦ ºñ¿ìÁö ¸øÇÏ°Ú´Âµ¥..
+	//					// AnimToPlay æŠ€æ³¼ç­‰ å§ è¤ä¾©çªèª AnimToPlay ç”« åšå¿«ç˜¤ ç»™çªæ‘†ç»°å•..
 	//					SKMeshComp->PlayAnimation(SKMeshComp->AnimationData.AnimToPlay, true);
 	//				}
 	//				SKMeshComp->SetVisibility(true);
@@ -387,18 +387,18 @@ void AB2StageEventDirector::BeginPlay()
 
 void AB2StageEventDirector::EssentialBeginHandlingCommon()
 {
-	// Áßº¹ÇØ¼­ ºÒ¸± ¼ö ÀÖ´Ù.
+	// åæ±—ç§¦è¾‘ é˜‚å‰¯ è ä¹ä¿ƒ.
 
 	SAFE_STAGEMANAGER_CHECK
 	if (CachedStageManager)
 	{
-		// ÀÌ ½ÃÁ¡¿¡¼­ StageManager ´Â ÇÊ¿äÇÑ °ªÀ» µé°í ÀÖ¾î¾ß ÇÑ´Ù. (¾Æ¸¶µµ ABladeIIGameMode::PreBeginPlay ½ÃÁ¡¿¡)
+		// æ çŸ«ç—¢ä¿Šè¾‘ StageManager ç»° é˜å¤¸èŒ„ è”¼é˜‘ ç”¸ç»Š ä¹ç»¢å…· èŒ„ä¿ƒ. (é…’ä»˜æ¡£ ABladeIIGameMode::PreBeginPlay çŸ«ç—¢ä¿Š)
 		CurrentStageId = CachedStageManager->GetCurrentClientStageId();
 		CurrentStageDifficulty = CachedStageManager->GetStageDifficultyLevel();
 	}
 
 //#if ENABLE_LOCAL_CUTSCENE_SAVED_STATE
-//	// ÀÎ½ºÅÏ½º ¹× ½ºÅ×ÀÌÁö º° save state ÀĞ¾îµéÀÓ. ÀĞ¾îµéÀÎ º¯¼ö¿Í »ç¿ëÀÚ ¼³Á¤¿¡ µû¶ó skip À» »ç¿ëÇÏ°Ô µÉ ¼ö ÀÖ´Ù.
+//	// ç‰¢èƒ¶ç•”èƒ¶ æ£º èƒ¶æŠ›æç˜¤ å–Š save state ä½¬ç»¢ç”¸çƒ™. ä½¬ç»¢ç”¸ç‰¢ å‡½èå®¢ è¤ä¾©ç£Š æ±²æ²¥ä¿Š è¶æ‰¼ skip é˜‘ è¤ä¾©çªéœ¸ çª è ä¹ä¿ƒ.
 //	GConfig->GetBool(*GetPlayedAtLeastOnceSectionString(), *GetPlayedAtLeastOnceKeyString(CurrentStageId), bPlayedAtLeastOnce, GB2LocalCutSceneSavedStateIni);
 //#endif
 }
@@ -407,8 +407,8 @@ int32 AB2StageEventDirector::GetAllowedMatineeTrackPointLightNum() const
 {
 	TConsoleVariableData<int32>* MobileNumDynamicPointLightsCVar = IConsoleManager::Get().FindTConsoleVariableDataInt(TEXT("r.MobileNumDynamicPointLights"));
 	const int32 MobileNumDynamicPointLights = MobileNumDynamicPointLightsCVar ? MobileNumDynamicPointLightsCVar->GetValueOnGameThread() : 2;
-	// ÇÃ·¹ÀÌ¾î point light ¸¦ »ç¿ëÇÒ²¨¸é ±×°Å »©¾ß.
-	// ¿©±â¼­ bAllowOtherPlayerPointLight °¡ Ãß°¡·Î µé¾î°¥ ²«µ¥.. ±×°Íµµ ÀÏ´Ü 1 ·Î Ä¡ÀÚ..
+	// æ•²é¥­æç»¢ point light ç”« è¤ä¾©ä¸”æ³¢æ å¼ŠèŠ­ å“—å…·.
+	// å’¯æ‰è¾‘ bAllowOtherPlayerPointLight å•Š çœ å•Šè‚º ç”¸ç»¢å“ æå•.. å¼Šå·´æ¡£ è€çªœ 1 è‚º æ‘¹ç£Š..
 	return bHidePlayerPointLight ? MobileNumDynamicPointLights : (bAllowOtherPlayerPointLight ? (MobileNumDynamicPointLights - 2) : (MobileNumDynamicPointLights - 1));
 }
 
@@ -420,9 +420,9 @@ void AB2StageEventDirector::PreSave(FObjectPreSaveContext SaveContext)
 	
 	if (GIsEditor && GIsPlayInEditorWorld == false)
 	{
-		SafetyProcessMatineeSkActors(); // BeginPlay ¿¡¼­ ÇÏ´À´Ï ¿¡µğÅÍ Àü¿ëÀ¸·Î ¿©±â¼­ ÇÏ´Â °Ô ³´°ÚÁö..?
+		SafetyProcessMatineeSkActors(); // BeginPlay ä¿Šè¾‘ çªè ¢èª ä¿Šå¼ç£ å‚ˆä¾©æ è‚º å’¯æ‰è¾‘ çªç»° éœ¸ ç‚’æ‘†ç˜¤..?
 
-		SyncFromPreviewSKCompPlacement(); // ÇÁ¸®ºä ÄÄÆ÷³ÍÆ®·Î ÆíÁıÇÑ À§Ä¡ ½ÌÅ©
+		SyncFromPreviewSKCompPlacement(); // æ©‡åºœè½° å“ªå™¨æƒ©é£˜è‚º ç¥ˆç¬¼èŒ„ å›°æ‘¹ æ•™å†œ
 	}
 #endif
 }
@@ -433,7 +433,7 @@ void AB2StageEventDirector::BeginDestroy()
 
 	Super::BeginDestroy();
 
-	// ESEV_ComponentTrigger ¿ëÀ¸·Î ÁöÁ¤ÇÑ ÄÄÆ÷³ÍÆ®ÀÇ BeginOverlap µî·Ï ÇØÁ¦
+	// ESEV_ComponentTrigger ä¾©æ è‚º ç˜¤æ²¥èŒ„ å“ªå™¨æƒ©é£˜ç‹¼ BeginOverlap æ®¿åºŸ ç§¦åŠ›
 	if (DirectingEvent == EStageEvent::ESEV_ComponentTrigger && TriggerComponentName != NAME_None)
 	{
 		UPrimitiveComponent* PrimComp = Cast<UPrimitiveComponent>(FindComponentByName(TriggerComponentName));
@@ -455,7 +455,7 @@ void AB2StageEventDirector::Tick( float DeltaTime )
 {
 	Super::Tick( DeltaTime );
 	
-	// °á±¹ µ¶ÀÚÀûÀÎ Tick ·çÆ¾À¸·Î..
+	// æ¬æƒ« åˆ€ç£Šåˆ©ç‰¢ Tick é£å‡­æ è‚º..
 	if (IsPlayingShow())
 	{
 		if (OverallMode == EStageEventDirectorOverallMode::ESEDOM_ManualCamera)
@@ -465,15 +465,15 @@ void AB2StageEventDirector::Tick( float DeltaTime )
 				FPlayActorShowSettings& CurrShowSetting = ShowSettings[EI];
 				FPlayActorShowRuntimeState& CurrShowState = ShowStates[EI];
 
-				// BeginSingleShow ¿¡¼­ ÇÏ´Â ÀÏºÎ ¹İº¹.
+				// BeginSingleShow ä¿Šè¾‘ çªç»° è€ä½• é¦†æ±—.
 				if (CurrShowSetting.PlayActorPlacement == EPlayActorPlacement::EPAP_ContinuouslyAdjustToPlayActor)
 				{
-					// Position ¸¸ µû¶ó°¡µµ·Ï.. ÇÏ·Á°í Çß´Âµ¥ ¹º°¡ Àß ¾ÈµÇ´Â±º
+					// Position çˆ¶ è¶æ‰¼å•Šæ¡£åºŸ.. çªå¦¨ç»Š æ²ç»°å• è´­å•Š è‚‹ æ•‘ç™»ç»°ç„™
 					AdjustSelfPlacementToPlayActor(CurrShowState.GetPlayActor(this), CurrShowSetting.ManualRelativeLocation, CurrShowSetting.ManualRelativeRotation);
 
-					// ExportedCamera ¸ğµå¿¡¼­´Â ExportedEventScene ¿¡ ´ÜÁö ÃÊ±â À§Ä¡¸¸ ÀÖÀ¸¹Ç·Î SetSESCameraMovementFromPlayActor ¸¦ ¸Å ÇÁ·¹ÀÓ ÇÑ´Ù°í ÇØµµ ÀÇ¹Ì ¾øÀ½.
+					// ExportedCamera è‘›é›ä¿Šè¾‘ç»° ExportedEventScene ä¿Š çªœç˜¤ æª¬æ‰ å›°æ‘¹çˆ¶ ä¹æ éª¨è‚º SetSESCameraMovementFromPlayActor ç”« æ¦‚ æ©‡é¥­çƒ™ èŒ„ä¿ƒç»Š ç§¦æ¡£ ç‹¼å›º ç»æ¾œ.
 
-					break; // ÇÏ³ª¸¸ Ã³¸®ÇÑ´Ù. ¿©·¯°³ ¼¼ÆÃÀÌ ÀÖ´Â °Ç PostEditChangeProperty ¿¡¼­ °æ°íÇÔ
+					break; // çªå”±çˆ¶ è´¸åºœèŒ„ä¿ƒ. å’¯çŸ¾ä¿º æŠ€æ³¼æ ä¹ç»° æ‰’ PostEditChangeProperty ä¿Šè¾‘ ç‰ˆç»Šçªƒ
 				}
 			}
 		}
@@ -495,10 +495,10 @@ void AB2StageEventDirector::SelectedComponentTriggerBeginOverlapCB(UPrimitiveCom
 	//	bTargetIsLocalCharacter = Cast<ABladeIIPlayer>(OtherActor) == pPlayer;
 
 
-	//// DirectingEvent °¡ ESEV_ComponentTrigger ÀÎ °æ¿ì ½ÃÀÛ Ã³¸®.
-	//// ±»ÀÌ °Ë»ç¸¦ ¾È ÇØµµ µÇ°ÚÁö¸¸ ¿¹ÀÇ»ó
+	//// DirectingEvent å•Š ESEV_ComponentTrigger ç‰¢ ç‰ˆå¿« çŸ«ç´¯ è´¸åºœ.
+	//// è¢«æ å…«è¤ç”« æ•‘ ç§¦æ¡£ ç™»æ‘†ç˜¤çˆ¶ æŠ—ç‹¼æƒ‘
 	//if (DirectingEvent == EStageEvent::ESEV_ComponentTrigger && TriggerComponentName != NAME_None &&
-	//	bTargetIsLocalCharacter && // ¹°·Ğ ÇöÀç ÇÃ·¹ÀÌÇÏ´Â Ä³¸¯ÅÍ¿¡ ´ëÇØ¼­¸¸ + Å¾½ÂÁßÀÌ¸é Å»°ÍÀ¸·Î ºñ±³
+	//	bTargetIsLocalCharacter && // æ‹±æ²¸ æ³…çŠ æ•²é¥­æçªç»° æŸè…ç£ä¿Š æªç§¦è¾‘çˆ¶ + å•ªé“°åææ å‘•å·´æ è‚º åšèƒŒ
 	//	SweepResult.GetComponent() == Cast<UPrimitiveComponent>(FindComponentByName(TriggerComponentName)) &&
 	//	!bDirectingEventConditionMet)
 	//{
@@ -509,17 +509,17 @@ void AB2StageEventDirector::SelectedComponentTriggerBeginOverlapCB(UPrimitiveCom
 
 void AB2StageEventDirector::CustomBeginShow()
 {
-	BeginShow(); // ÀÏ´ÜÀº ´Ü¼ø call. Á¶°ÇÀÌ¶ó¸é.. BeginPlay ÀÌÈÄ¿¡¸¸ °¡´É ¤»
+	BeginShow(); // è€çªœç¯® çªœé‰´ call. ç‚¼æ‰’ææ‰¼æ.. BeginPlay æé¥¶ä¿Šçˆ¶ å•Šç“· ã›
 }
 
 void AB2StageEventDirector::CustomFinishShow()
 {
 	B2_SCOPED_TRACK_LOG(TEXT("AB2StageEventDirector::CustomFinishShow"));
 
-	//// ÇöÀç ÇÃ·¹ÀÌ µµÁßÀÎÁö »ó°ü¾øÀÌ ºÒ¸± ¼ö ÀÖ¾î¾ß ÇÔ. FinishShow ¿¡¼­ Ã³¸®ÇÏ´Â °Íµµ Á» ÀÖÀ½.
+	//// æ³…çŠ æ•²é¥­æ æ¡£åç‰¢ç˜¤ æƒ‘åŒ…ç»æ é˜‚å‰¯ è ä¹ç»¢å…· çªƒ. FinishShow ä¿Šè¾‘ è´¸åºœçªç»° å·´æ¡£ ç²± ä¹æ¾œ.
 
 	//if (OverallMode == EStageEventDirectorOverallMode::ESEDOM_ControlledMatinee && bPCSyncToMatineeStart && bCurrentPCSyncToMatineeStart)
-	//{// ¸¶Æ¼´Ï PCSync µµÁßÀÌ¶ó¸é ½ÇÁúÀûÀÎ ½ÃÀÛÁ¶Â÷ ÇÏÁö ¾ÊÀº °ÍÀÌ¶ó ½ÃÀÛÀ» ÇØ ³õ¾Æ¾ß ÇÔ.
+	//{// ä»˜èèª PCSync æ¡£åææ‰¼æ è§’é¾™åˆ©ç‰¢ çŸ«ç´¯ç‚¼ç’ çªç˜¤ è‡¼ç¯® å·´ææ‰¼ çŸ«ç´¯é˜‘ ç§¦ åˆé…’å…· çªƒ.
 	//	BeginMatineeFromPCSyncToMatineeStart();
 	//}
 
@@ -529,17 +529,17 @@ void AB2StageEventDirector::CustomFinishShow()
 	//	
 	//	if (CurrState.bShowStarted == false)
 	//	{
-	//		// ½ÃÀÛ ´ë±â Å¸ÀÌ¸Ó°¡ ÄÑÁø »óÅÂÀÏ ¼ö ÀÖÀ¸¹Ç·Î Á¦°Å
+	//		// çŸ«ç´¯ æªæ‰ é¸¥æèµ£å•Š éš¾æŸ³ æƒ‘æ€•è€ è ä¹æ éª¨è‚º åŠ›èŠ­
 	//		GetWorldTimerManager().ClearTimer(CurrState.ShowStartDelayTimerHandle);
 	//	}
 	//}
 
-	//// ±âº»ÀûÀ¸·Î´Â ÀÚµ¿À¸·Î Stop ÀÌ ºÒ¸².
+	//// æ‰å¤¯åˆ©æ è‚ºç»° ç£Šæ‚¼æ è‚º Stop æ é˜‚è¦†.
 	//if (OverallMode == EStageEventDirectorOverallMode::ESEDOM_ControlledMatinee && MatineeActor)
 	//{
 	//	if (MatineeActor->bIsPlaying)
 	//	{
-	//		MatineeActor->Stop(); // µµÁß¿¡ °­Á¦Á¾·áÇÏ´Â °Å¶ó¸é ÀÌ°É ÅëÇØ¼­ ¶Ç´Ù½Ã CustomFinishShow °¡ ½ÇÇàµÉ °Í.
+	//		MatineeActor->Stop(); // æ¡£åä¿Š ç¢åŠ›è¾†ä¸°çªç»° èŠ­æ‰¼æ æå§ çƒ¹ç§¦è¾‘ è‚šä¿ƒçŸ« CustomFinishShow å•Š è§’é’çª å·´.
 	//		return;
 	//	}
 	//}
@@ -550,7 +550,7 @@ void AB2StageEventDirector::CustomFinishShow()
 	//	CamManager->StopAllCameraAnims();
 	//}
 
-	//// ¸¶Æ¼´ÏÀÇ °æ¿ì µµÁß¿¡ ³¡³¯ ¼öµµ ÀÖÀ¸´Ï ÇÃ·¹ÀÌ¸¦ ³¡À¸·Î ¼¼ÆÃÇØ¼­ À§Ä¡ ½ÌÅ© °°Àº °ÍÀÌ ÀÇµµÇÑ ´ë·Î µ¿ÀÛÇÏµµ·Ï ÇÔ.
+	//// ä»˜èèªç‹¼ ç‰ˆå¿« æ¡£åä¿Š åœºæœ èæ¡£ ä¹æ èª æ•²é¥­æç”« åœºæ è‚º æŠ€æ³¼ç§¦è¾‘ å›°æ‘¹ æ•™å†œ éç¯® å·´æ ç‹¼æ¡£èŒ„ æªè‚º æ‚¼ç´¯çªæ¡£åºŸ çªƒ.
 	//if (OverallMode == EStageEventDirectorOverallMode::ESEDOM_ControlledMatinee && MatineeActor && MatineeActor->MatineeData && 
 	//	MatineeActor->InterpPosition < MatineeActor->MatineeData->InterpLength)
 	//{
@@ -564,13 +564,13 @@ bool AB2StageEventDirector::CanPlayShow()
 {
 //#if !UE_BUILD_SHIPPING
 //	extern bool GCheat_CompleteIgnoreEventScene;
-//	if (GCheat_CompleteIgnoreEventScene) // ÀÌ°Ç ¾Æ¿¹ ½ÃÀÛÁ¶Â÷ ÇÏÁö ¾Ê´Â Ä¡Æ®ÀÌ´Ù. °ÔÀÓ ÇÃ·¹ÀÌ¿¡ ÁöÀåÀÌ °¥ ¼ö ÀÖÀ¸¸ç Æ¯º°ÇÑ Å×½ºÆ®¸¦ À§ÇØ »ç¿ëÇÑ´Ù. ÀÏ¹İÀûÀÎ ¿¬Ãâ Àå¸é Åë°ú´Â GCheat_SkipEventSceneCount À» Âü°í.
+//	if (GCheat_CompleteIgnoreEventScene) // ææ‰’ é…’æŠ— çŸ«ç´¯ç‚¼ç’ çªç˜¤ è‡¼ç»° æ‘¹é£˜æä¿ƒ. éœ¸çƒ™ æ•²é¥­æä¿Š ç˜¤å˜æ å“ è ä¹æ å“¥ æ¼‚å–ŠèŒ„ æŠ›èƒ¶é£˜ç”« å›°ç§¦ è¤ä¾©èŒ„ä¿ƒ. è€é¦†åˆ©ç‰¢ æ¥·å… å˜æ çƒ¹è‹ç»° GCheat_SkipEventSceneCount é˜‘ æ›¼ç»Š.
 //	{
 //		return false;
 //	}
 //#endif
 //
-//	// Àß¸øµÈ ¼¼ÆÃÀÇ °æ¿ì
+//	// è‚‹ç»™ç­‰ æŠ€æ³¼ç‹¼ ç‰ˆå¿«
 //	if ((OverallMode == EStageEventDirectorOverallMode::ESEDOM_ControlledMatinee && MatineeActor == NULL) ||
 //		(OverallMode == EStageEventDirectorOverallMode::ESEDOM_ExportedCamera && CameraAnim == NULL))
 //	{
@@ -578,17 +578,17 @@ bool AB2StageEventDirector::CanPlayShow()
 //		if (GIsEditor)
 //		{
 //			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-//				FString::Printf(TEXT("[Warning] %s ¿¡ ÇöÀç Overall Mode ¿¡ ¸Â´Â ÀûÀıÇÑ ¸ŞÀÎ ¿¡¼ÂÀÌ ¼³Á¤µÇ¾î ÀÖÁö ¾Ê½À´Ï´Ù. Stage Event ¸¦ ½ÇÇàÇÏÁö ¾Ê½À´Ï´Ù."), *this->GetName())
+//				FString::Printf(TEXT("[Warning] %s ä¿Š æ³…çŠ Overall Mode ä¿Š å˜ç»° åˆ©ä¾‹èŒ„ çš‹ç‰¢ ä¿Šæ‚¸æ æ±²æ²¥ç™»ç»¢ ä¹ç˜¤ è‡¼åš¼èªä¿ƒ. Stage Event ç”« è§’é’çªç˜¤ è‡¼åš¼èªä¿ƒ."), *this->GetName())
 //				));
 //		}
 //#endif
 //		return false;
 //	}
 //	/*
-//	// ¿¬°áÀÌ ²÷±ä °æ¿ì
+//	// æ¥·æ¬æ è°—å˜ ç‰ˆå¿«
 //	if (!FBladeIIBlockToSyncNetwork::GetInstance().IsConnectedToServer()
 //#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
-//		&& !(CachedStageManager && CachedStageManager->DevOnlyIsStandalonePlay()) // ¿¡µğÅÍ ÇÁ¸®ºä ÇÃ·¹ÀÌ, ¸í½ÃÀûÀ¸·Î Standalone ¸ğµå·Î ÇÃ·¹ÀÌÇÏ´Â °æ¿ì µî. ¿¬°á ¿©ºÎ »ó°ü¾øÀÌ Áö¼Ó.
+//		&& !(CachedStageManager && CachedStageManager->DevOnlyIsStandalonePlay()) // ä¿Šå¼ç£ æ©‡åºœè½° æ•²é¥­æ, ç–™çŸ«åˆ©æ è‚º Standalone è‘›é›è‚º æ•²é¥­æçªç»° ç‰ˆå¿« æ®¿. æ¥·æ¬ å’¯ä½• æƒ‘åŒ…ç»æ ç˜¤åŠ .
 //#endif
 //		)
 //	{
@@ -596,8 +596,8 @@ bool AB2StageEventDirector::CanPlayShow()
 //	}
 //	*/
 //
-//	// ManageModeLeastSkip Àº Çö °èÈ¹»ó ¾ø´Ù. Skip ÇÏ´Â °Ô ¾Æ´Ï¶ó ±×³É ½ß±î´Â °Í¸¸.
-//	if (CheckSkipForManageMode(this, ManageMode, false /*bManageModeLeastSkip*/) == EStageEventSkipType::SEST_CompleteIgnore){ // ¿©±æ Åë°úÇØµµ ´Ù½Ã °Ë»çÇÏ°Ô µÉ °Í.
+//	// ManageModeLeastSkip ç¯® æ³… æ‹Œè£™æƒ‘ ç»ä¿ƒ. Skip çªç»° éœ¸ é…’èªæ‰¼ å¼Šæˆ ç«­é³–ç»° å·´çˆ¶.
+//	if (CheckSkipForManageMode(this, ManageMode, false /*bManageModeLeastSkip*/) == EStageEventSkipType::SEST_CompleteIgnore){ // å’¯è¾¨ çƒ¹è‹ç§¦æ¡£ ä¿ƒçŸ« å…«è¤çªéœ¸ çª å·´.
 //		return false;
 //	}
 //
@@ -605,23 +605,23 @@ bool AB2StageEventDirector::CanPlayShow()
 //		return false;
 //	}
 //	
-//	if (bPlayedOnceForThisStage){ // ¾î¶»°Ô ÇÏ¸é ÇÑ ½ºÅ×ÀÌÁö ¾È¿¡¼­ ¿©·¯¹ø ÇÃ·¹ÀÌ°¡ °¡´ÉÇÒÁöµµ ¸ğ¸£°ÚÁö¸¸ ±»ÀÌ ±×·² ÇÊ¿ä°¡.. ±¦È÷ À§ÇèÇÒ ¼öµµ ÀÖÀ¸´Ï ¿øÃµ ºÀ¼â.
+//	if (bPlayedOnceForThisStage){ // ç»¢ç—˜éœ¸ çªæ èŒ„ èƒ¶æŠ›æç˜¤ æ•‘ä¿Šè¾‘ å’¯çŸ¾é”… æ•²é¥­æå•Š å•Šç“·ä¸”ç˜¤æ¡£ è‘›ç¦æ‘†ç˜¤çˆ¶ è¢«æ å¼Šå‡¡ é˜å¤¸å•Š.. å®æ´’ å›°æ°°ä¸” èæ¡£ ä¹æ èª ç›”ç« è±ªå°–.
 //		return false;
 //	}
 //
-//	// ¿É¼Ç¿¡ µû¸¥ skip °°Àº °Ç ¿©±â¼­ return false ÇÏ´Â ½ÄÀ¸·Î Ã³¸®ÇÏÁö ¾Ê´Â´Ù. BeginShow Á÷ÈÄ ¹Ù·Î CustomFinishShow ¸¦ ÇÏ´Â ½ÄÀ¸·Î Ã³¸®ÇØ¾ß ÇÒ °Í.
+//	// å¯è®°ä¿Š è¶å¼— skip éç¯® æ‰’ å’¯æ‰è¾‘ return false çªç»° ä¾¥æ è‚º è´¸åºœçªç˜¤ è‡¼ç»°ä¿ƒ. BeginShow æµé¥¶ å®˜è‚º CustomFinishShow ç”« çªç»° ä¾¥æ è‚º è´¸åºœç§¦å…· ä¸” å·´.
 //
 //	return true;
 //}
 //
-//// ¿ùµå Àç·Îµù ¾øÀÌ Event Àå¸éÀ» ´Ù½Ã ÇÃ·¹ÀÌ °¡´ÉÇÏµµ·Ï. ¸ğµÎ µ¿ÀÏÇÑ ³×ÀÌ¹Ö.
+//// å²¿é› çŠè‚ºçˆ¹ ç»æ Event å˜æé˜‘ ä¿ƒçŸ« æ•²é¥­æ å•Šç“·çªæ¡£åºŸ. è‘›æ»´ æ‚¼è€èŒ„ åŒ™ææ€ª.
 //void AB2StageEventDirector::ResetAssumeNoWorldLoading()
 //{
 //#if !UE_BUILD_SHIPPING
 //	CheckResetAssumeNoWorldLoadingCondition(this);
 //#endif
 //
-//	// ¾ÆÁ÷ ÇÃ·¹ÀÌ ¾È µÈ °É ±»ÀÌ ±Ü¾î ºÎ½º·³ ¸¸µé ÇÊ¿ä ¾øÁö. ½ÇÁ¦·Î Á» ºÎÀÛ¿ëÀÌ ¹ß°ßµÇ¾úÀ½.
+//	// é…’æµ æ•²é¥­æ æ•‘ ç­‰ å§ è¢«æ é¿ç»¢ ä½•èƒ¶çƒ¦ çˆ¶ç”¸ é˜å¤¸ ç»ç˜¤. è§’åŠ›è‚º ç²± ä½•ç´¯ä¾©æ æƒ¯æ–‘ç™»èŒæ¾œ.
 //	if (!bPlayedOnceForThisStage) {
 //		return;
 //	}
@@ -636,12 +636,12 @@ bool AB2StageEventDirector::CanPlayShow()
 //		CustomFinishShow();
 //	}	
 //
-//	// ÇÃ·¹ÀÌ ¾È µÈ °É SetPosition(0) ÇßÀ» ¶§ °£È¤ ºÎÀÛ¿ëÀÌ ÀÖ´ø °É·Î ºÁ¼­ ÀÌ°Å ÀÚÃ¼°¡ ¿Ïº®ÇÑ ¸®¼Â ¼ö´ÜÀº ¾Æ´Ñ µí ÇÏÁö¸¸ ´ëÃ¼·Î ¸ÔÈû.
+//	// æ•²é¥­æ æ•‘ ç­‰ å§ SetPosition(0) æ²é˜‘ é”­ åŸƒè¶£ ä½•ç´¯ä¾©æ ä¹å¸¦ å§è‚º æ¯«è¾‘ æèŠ­ ç£Šçœ‰å•Š è‚¯å¯’èŒ„ åºœæ‚¸ èçªœç¯® é…’å›± æ·€ çªç˜¤çˆ¶ æªçœ‰è‚º å†ˆå¡.
 //	if (OverallMode == EStageEventDirectorOverallMode::ESEDOM_ControlledMatinee && MatineeActor && MatineeActor->MatineeData)
 //	{
 //		MatineeActor->SetPosition(0.0f);
 //
-//		// ¼±ÅÃÀûÀ¸·Î µîÀŞÇÏ´Â Æ®·¢ÀÇ °æ¿ì ºñÈ°¼ºÈ­µÈ °ÍÀÌ ÀÖÀ» °ÍÀÌ¹Ç·Î ¸ğµÎ enable .. ÇÏ¸é Ã³À½ºÎÅÍ disable ÇÑ °Íµµ enable µÇ°ÚÁö? ÀÌ ±â´ÉÀ» ¾²´Â ·¹º§¿¡¼± Á¶½ÉÇØ¼­ »ç¿ëÇØ¾ß..
+//		// æ€¥ç¶åˆ©æ è‚º æ®¿æ“‚çªç»° é£˜å‘ç‹¼ ç‰ˆå¿« åšåŠå·±æ‹³ç­‰ å·´æ ä¹é˜‘ å·´æéª¨è‚º è‘›æ»´ enable .. çªæ è´¸æ¾œä½•ç£ disable èŒ„ å·´æ¡£ enable ç™»æ‘†ç˜¤? æ æ‰ç“·é˜‘ é™ç»° é¥­éª‡ä¿Šæ€¥ ç‚¼ç¼´ç§¦è¾‘ è¤ä¾©ç§¦å…·..
 //		for (UInterpGroup* ThisInterpGroup : MatineeActor->MatineeData->InterpGroups)
 //		{
 //			if (ThisInterpGroup)
@@ -679,8 +679,8 @@ EStageEventSkipType AB2StageEventDirector::CheckSkipForManageMode(UObject* World
 	//	}
 	//}
 
-	//// bLeastSkip ¿¡ µû¸¥ ºĞ±â´Â StageEventDirector ÀÇ ³»ºÎÀûÀÎ µ¿ÀÛ Â÷ÀÌ. º» ±â´ÉÀÌ ÀÛµ¿ÇÏÁö ¾Ê´Â °Ç ¸¶Âù°¡Áö. ´Ù¸¥ °÷¿¡¼­ »ç¿ëÇÒ ¶§ ºñ½ÁÇÑ Æ¯º°ÇÑ »çÁ¤ÀÌ ÀÖÁö ¾ÊÀº ÀÌ»ó º° ÀÇ¹Ì´Â ¾øÀ» °Í.
-	//// -> 2017.03 ±âÁØ ±âÈ¹À¸·Î´Â LeastSkip Àº ¾ø°í »ç¿ë ¾ÈµÇ´Â °Å´Â CompleteIgnore ÀÏ »Ó. ³²°Ü¸¸ µÒ.
+	//// bLeastSkip ä¿Š è¶å¼— ç›’æ‰ç»° StageEventDirector ç‹¼ éƒ´ä½•åˆ©ç‰¢ æ‚¼ç´¯ ç’æ. å¤¯ æ‰ç“·æ ç´¯æ‚¼çªç˜¤ è‡¼ç»° æ‰’ ä»˜è›®å•Šç˜¤. ä¿ƒå¼— é•‘ä¿Šè¾‘ è¤ä¾©ä¸” é”­ åšæ…èŒ„ æ¼‚å–ŠèŒ„ è¤æ²¥æ ä¹ç˜¤ è‡¼ç¯® ææƒ‘ å–Š ç‹¼å›ºç»° ç»é˜‘ å·´.
+	//// -> 2017.03 æ‰éœ– æ‰è£™æ è‚ºç»° LeastSkip ç¯® ç»ç»Š è¤ä¾© æ•‘ç™»ç»° èŠ­ç»° CompleteIgnore è€ æŒ¥. å·¢è´¥çˆ¶ ç‹„.
 	//return bLeastSkip ? EStageEventSkipType::SEST_LeastSkip : EStageEventSkipType::SEST_CompleteIgnore;
 	return EStageEventSkipType::SEST_Play;
 }
@@ -689,7 +689,7 @@ bool AB2StageEventDirector::IsAdventureModeGame(UObject* WorldContextObject)
 {
 	//AGameMode* CurentGM = Cast<AGameMode>(UGameplayStatics::GetGameMode(WorldContextObject));
 
-	//// ÃßÈÄ StageGameMode ¿¡¼­ »ó¼Ó¹ŞÀº ´Ù¸¥ °ÔÀÓ¸ğµå°¡ µé¾î¿ÔÀ» ¶§ Ãß°¡ °Ë»ç. ÀÏ¹İ ½ºÅ×ÀÌÁö ÇÃ·¹ÀÌ, Áï "¸ğÇè" ¸ğµå ¿©ºÎ¸¦ º¸°íÀÚ ÇÔ.
+	//// çœ é¥¶ StageGameMode ä¿Šè¾‘ æƒ‘åŠ ç½ç¯® ä¿ƒå¼— éœ¸çƒ™è‘›é›å•Š ç”¸ç»¢å­é˜‘ é”­ çœ å•Š å…«è¤. è€é¦† èƒ¶æŠ›æç˜¤ æ•²é¥­æ, æºœ "è‘›æ°°" è‘›é› å’¯ä½•ç”« ç„Šç»Šç£Š çªƒ.
 	//return (Cast<AB2StageGameMode>(CurentGM) != NULL);
 	return false;
 }
@@ -712,13 +712,13 @@ void AB2StageEventDirector::SetVisibilityMatineePuppetPointLight(bool bVislble)
 }
 
 bool AB2StageEventDirector::IsExpectedForGameMode(class ABladeIIGameMode* InB2GM)
-{ // °ÔÀÓ¸ğµå ÇÃ·¹ÀÌ µµÁß ½ÇÁ¦ ÇÃ·¹ÀÌ°¡ ¿¹»óµÇ´ÂÁö ¿©ºÎ.
+{ // éœ¸çƒ™è‘›é› æ•²é¥­æ æ¡£å è§’åŠ› æ•²é¥­æå•Š æŠ—æƒ‘ç™»ç»°ç˜¤ å’¯ä½•.
 	//return IsStageSupportedForGameMode(InB2GM) && (CheckSkipForManageMode(InB2GM, ManageMode, false) == EStageEventSkipType::SEST_Play);
 	return false;
 }
 bool AB2StageEventDirector::IsStageSupportedForGameMode(class ABladeIIGameMode* InB2GM) const
 {
-	// ÀÌ°Ô True ¿©µµ ½ÇÁ¦ ÇÃ·¹ÀÌ´Â ¾È µÉ ¼ö ÀÖ´Ù. ±× °¡´É¼ºÀ» º¸´Ù È®½ÇÇÏ°Ô Ã¼Å©ÇÏ·Á¸é IsExpectedForGameMode ¸¦ ºÁ¾ß.
+	// æéœ¸ True å’¯æ¡£ è§’åŠ› æ•²é¥­æç»° æ•‘ çª è ä¹ä¿ƒ. å¼Š å•Šç“·å·±é˜‘ ç„Šä¿ƒ çŠ¬è§’çªéœ¸ çœ‰å†œçªå¦¨æ IsExpectedForGameMode ç”« æ¯«å…·.
 
 	//AB2StageGameModeBase* CastedSGM = Cast<AB2StageGameModeBase>(InB2GM);
 	//AB2StageManager* StageManagerIfAny = CastedSGM ? CastedSGM->GetStageManager() : NULL;
@@ -726,7 +726,7 @@ bool AB2StageEventDirector::IsStageSupportedForGameMode(class ABladeIIGameMode* 
 	//{
 	//	return IsStageSupported(StageManagerIfAny->GetCurrentClientStageId(), StageManagerIfAny->GetStageDifficultyLevel());
 	//}
-	return true; // StageGameMode °¡ ¾Æ´Ñ °æ¿ì´Â ±âº» Áö¿øµÇ´Â °É·Î º»´Ù. º°µµ ½ºÅ×ÀÌÁö °³³äÀÌ ¾øÀÌ ±âº» µ¿ÀÛ Ãë±ŞÀÎ °Í.
+	return true; // StageGameMode å•Š é…’å›± ç‰ˆå¿«ç»° æ‰å¤¯ ç˜¤ç›”ç™»ç»° å§è‚º å¤¯ä¿ƒ. å–Šæ¡£ èƒ¶æŠ›æç˜¤ ä¿ºå……æ ç»æ æ‰å¤¯ æ‚¼ç´¯ ç§’é­ç‰¢ å·´.
 }
 bool AB2StageEventDirector::IsStageSupported(int32 InStageId, EStageDifficulty InDifficulty) const
 {
@@ -737,7 +737,7 @@ bool AB2StageEventDirector::IsStageNumSupported(int32 InStageId) const
 {
 	if (SupportedStages.Num() == 0)
 	{
-		return true; // ºñ¾î ÀÖ´Â °æ¿ì ±âº»À¸·Î ¸ğµç ½ºÅ×ÀÌÁö Áö¿ø
+		return true; // åšç»¢ ä¹ç»° ç‰ˆå¿« æ‰å¤¯æ è‚º è‘›ç”µ èƒ¶æŠ›æç˜¤ ç˜¤ç›”
 	}
 	for (int32 CurrStage : SupportedStages)
 	{
@@ -752,9 +752,9 @@ bool AB2StageEventDirector::IsStageDifficultySupported(EStageDifficulty InDiffic
 {
 	if (SupportedDifficulties.Num() == 0)
 	{
-		return true; // ºñ¾î ÀÖ´Â °æ¿ì ±âº»À¸·Î ¸ğµç ³­ÀÌµµ Áö¿ø
+		return true; // åšç»¢ ä¹ç»° ç‰ˆå¿« æ‰å¤¯æ è‚º è‘›ç”µ æŠ„ææ¡£ ç˜¤ç›”
 	}
-	const int32 TestDifficultyInt = static_cast<int32>(InDifficulty); // ¿Ö ¾îµğ¼± EStageDifficulty ¸¦ ¾¾°í ¾îµğ¼± Int ¸¦ ¾²°í Çß´ÂÁö Àß ±â¾ïÀÌ ¾È³². °Á Á¤½Å¾ø¾î¼­ ±×·± µí
+	const int32 TestDifficultyInt = static_cast<int32>(InDifficulty); // æ ç»¢å¼æ€¥ EStageDifficulty ç”« æªç»Š ç»¢å¼æ€¥ Int ç”« é™ç»Š æ²ç»°ç˜¤ è‚‹ æ‰æ’…æ æ•‘å·¢. å‚² æ²¥è„šç»ç»¢è¾‘ å¼Šç¹ æ·€
 	for (int32 CurrDifficulty : SupportedDifficulties)
 	{
 		if (CurrDifficulty == TestDifficultyInt)
@@ -773,9 +773,9 @@ bool AB2StageEventDirector::IsPossibleAdventureModeBeginEvent()
 	//	IsAdventureModeGame(this) &&
 	//	(
 	//		DirectingEvent == EStageEvent::ESEV_Begin || 
-	//		// ½ÇÁúÀûÀ¸·Î ½ºÅ×ÀÌÁö ½ÃÀÛ ¿¬ÃâÀ» MobAppear ·Î ÇÏ´ÂÁö¶ó ÀÌ°É ÆÇº°ÇÒ ¼ö ÀÖ´Â°Ô EventWidgetType ÀÓ ¤Ñ.¤Ñ;
+	//		// è§’é¾™åˆ©æ è‚º èƒ¶æŠ›æç˜¤ çŸ«ç´¯ æ¥·å…é˜‘ MobAppear è‚º çªç»°ç˜¤æ‰¼ æå§ é­„å–Šä¸” è ä¹ç»°éœ¸ EventWidgetType çƒ™ ã±.ã±;
 	//		(DirectingEvent == EStageEvent::ESEV_MobAppear && EventWidgetType == EStageEventWidgetType::StageBegin) || 
-	//		// ±Ùµ¥ ÀÌÁ¨ °Á Ã³À½À¸·Î ³ª¿À´Â ÀÌº¥Æ® ¾ÀÀÎÁö ¿©ºÎ·Î..¤»
+	//		// è¾Ÿå• æå“© å‚² è´¸æ¾œæ è‚º å”±å·ç»° æäº¥é£˜ çº ç‰¢ç˜¤ å’¯ä½•è‚º..ã›
 	//		(B2GM && !B2GM->HasAnyStageEventScenePlayed())
 	//	)
 	//	);
@@ -795,7 +795,7 @@ void AB2StageEventDirector::BeginShow()
 //	
 //	if (bisInTutorialGameMode)
 //	{
-//		// Æ©Åä¸®¾ó¶§ QTE »óÅÂ·Î ¹Ù·Î ¸¶Æ¼´Ï ÁøÇà
+//		// è­¬é…åºœå€”é”­ QTE æƒ‘æ€•è‚º å®˜è‚º ä»˜èèª æŸ³é’
 //		ABladeIIPlayer* pPlayer = Cast<ABladeIIPlayer>(UGameplayStatics::GetLocalPlayerController(this)->GetPawn());
 //
 //		if (pPlayer && pPlayer->IsInQTEState())
@@ -809,21 +809,21 @@ void AB2StageEventDirector::BeginShow()
 //	}
 //	else
 //	{
-//		// <--QTEÁßÀÌ¸é Äİ¹é ¿¹¾àÇÏ°í ¸®ÅÏ
+//		// <--QTEåææ å¦®å½’ æŠ—è·çªç»Š åºœç•”
 //		ABladeIIPlayer* pPlayer = Cast<ABladeIIPlayer>(UGameplayStatics::GetLocalPlayerController(this)->GetPawn());
 //
 //		if (pPlayer && pPlayer->IsInQTEState())
 //		{
 //			pPlayer->AddQTEOnEndCallBack(FQTEOnEnd::CreateLambda([this]() { this->BeginShow(); }));
 //
-//			// Å»°Í QTE¸é ³»¸®±â
+//			// å‘•å·´ QTEæ éƒ´åºœæ‰
 //			if (pPlayer->QTEType == EQTEType::EQT_Mount)
 //				pPlayer->StopQTEMount();
 //
-//			// ¿¹¿ÜÃ³¸® ¼î¼¼ÆÃ ±â¹İÀ¸·Î ¼û±â´Â°Ç ¹Ì¸® ÇÑ¹ø ÇØÁÜ.
+//			// æŠ—å¯‡è´¸åºœ ç¢±æŠ€æ³¼ æ‰é¦†æ è‚º è§æ‰ç»°æ‰’ å›ºåºœ èŒ„é”… ç§¦æ·‹.
 //			if (DirectingEvent == EStageEvent::ESEV_MobAppear)
 //			{
-//				// Settings ¿Í RuntimeState ¼ıÀÚ¸¦ ¸ÂÃçÁØ´Ù.
+//				// Settings å®¢ RuntimeState ç®­ç£Šç”« å˜è‹—éœ–ä¿ƒ.
 //				ShowStates.Empty();
 //				for (int32 SI = 0; SI < ShowSettings.Num(); ++SI)
 //				{
@@ -837,21 +837,21 @@ void AB2StageEventDirector::BeginShow()
 //
 //				EnsureHidePlayActorsForControlledMatinee();
 //
-//				// ÇÃ·¹ÀÌ¾î´Â ¾È¼û±è
+//				// æ•²é¥­æç»¢ç»° æ•‘è§è¾«
 //				pPlayer->SetHideFromEventDirector(false);
 //			}
 //
 //			return;
 //		}
 //
-//		// -->QTEÁßÀÌ¸é Äİ¹é ¿¹¾àÇÏ°í ¸®ÅÏ ³¡
+//		// -->QTEåææ å¦®å½’ æŠ—è·çªç»Š åºœç•” åœº
 //	}
 //	
 //	B2_SCOPED_TIME_LOG(FString::Printf(TEXT("AB2StageEventDirector::BeginShow %s"), *GetName()));
 //
 //	bEnterCinematicMode = false;
 //
-//	// ³ª»©°í ´Ù ½ºÅé!
+//	// å”±å“—ç»Š ä¿ƒ èƒ¶ç °!
 //	ABladeIIGameMode* B2GM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(this));
 //	if (B2GM)
 //	{
@@ -863,7 +863,7 @@ void AB2StageEventDirector::BeginShow()
 //		RandomlySetMatineeGroupNum = FMath::RandRange(1, RandomMatineeGroupNum);
 //	}
 //
-//	// BP ¿¡¼­ Æ¯º°È÷ ÀÌº¥Æ®¸¦ ¹Ş¾Æ¼­ Ã³¸®ÇÏ°íÀÚ ÇÑ´Ù¸é..
+//	// BP ä¿Šè¾‘ æ¼‚å–Šæ´’ æäº¥é£˜ç”« ç½é…’è¾‘ è´¸åºœçªç»Šç£Š èŒ„ä¿ƒæ..
 //	if (ShowBeginEventName != NAME_None)
 //	{
 //		GEngine->HandleCeCommand(GetWorld(), *(ShowBeginEventName.ToString()), *GLog);
@@ -874,20 +874,20 @@ void AB2StageEventDirector::BeginShow()
 //
 //	if (DirectingEvent == EStageEvent::ESEV_Clear && ClearEventPhase == EStageClearEventPhase::ESCE_Phase1 && Cast<AB2StageGameMode>(GetB2GameMode()))
 //	{
-//		// StageClear UI °¡ µÑ·Î ³ª´µ°í ±âÁ¸ Clear ¿¡¼­ÀÇ ½Â¸®Æ÷Áî ¿¬ÃâÀº UIStageClear ÈÄÀÇ UIStageResult ¿Í ÇÔ²² ÁøÇàµÇ¹Ç·Î Ã³À½¿¡´Â BeginShow ´ë½Å º°µµ Ã³¸®¸¦ À§ÇÑ ½ÅÈ£¸¦ º¸³½´Ù.
-//		// ÀÌ Phase1 µµ º°µµÀÇ EStageEvent ·Î ÇÒ ¼öµµ ÀÖÁö¸¸ °ÅÀÇ UI À§ÁÖÀÌ¹Ç·Î µû·Î Ã³¸®ÇØ º¸°í Çö ±â´ÉÀ¸·Î ¿ä±¸»çÇ× °¨´çÀÌ ¾ÈµÈ´Ù¸é ÃßÈÄ EStageEvent µµ ¸¶Âù°¡Áö·Î µÑ·Î ³ª´²º¼ ¼ö ÀÖ´Ù.
+//		// StageClear UI å•Š ç¬›è‚º å”±å¹ç»Š æ‰ç²® Clear ä¿Šè¾‘ç‹¼ é“°åºœå™¨ä»¤ æ¥·å…ç¯® UIStageClear é¥¶ç‹¼ UIStageResult å®¢ çªƒè†Š æŸ³é’ç™»éª¨è‚º è´¸æ¾œä¿Šç»° BeginShow æªè„š å–Šæ¡£ è´¸åºœç”« å›°èŒ„ è„šé¾‹ç”« ç„Šè¾°ä¿ƒ.
+//		// æ Phase1 æ¡£ å–Šæ¡£ç‹¼ EStageEvent è‚º ä¸” èæ¡£ ä¹ç˜¤çˆ¶ èŠ­ç‹¼ UI å›°æ—æéª¨è‚º è¶è‚º è´¸åºœç§¦ ç„Šç»Š æ³… æ‰ç“·æ è‚º å¤¸å¤‡è¤äº² çš‘å¯¸æ æ•‘ç­‰ä¿ƒæ çœ é¥¶ EStageEvent æ¡£ ä»˜è›®å•Šç˜¤è‚º ç¬›è‚º å”±åºŠæ­ è ä¹ä¿ƒ.
 //		
-//		MyRelevantUIName = UIFName::StageClear; // ÀÌ°Ç EventWidgetType Ã¼Å© ¾øÀÌ Á» Æ¯¼öÇÏ°Ô ¼¼ÆÃµÇ´Âµ¥ Phase1 ÀÚÃ¼°¡ »ç½Ç»ó StageClear UI ·Î¸¸ ÀÌ·ç¾îÁö´Â °É °¨¾È.
+//		MyRelevantUIName = UIFName::StageClear; // ææ‰’ EventWidgetType çœ‰å†œ ç»æ ç²± æ¼‚èçªéœ¸ æŠ€æ³¼ç™»ç»°å• Phase1 ç£Šçœ‰å•Š è¤è§’æƒ‘ StageClear UI è‚ºçˆ¶ æé£ç»¢ç˜¤ç»° å§ çš‘æ•‘.
 //		BeginStageClearScene_Phase1Class<>::GetInstance().Signal();
 //
 //		ApplyStageEventTimeDilation();
 //		
-//		// ¿©±æ ÅëÇØ ¼¼ÆÃÇÑ ½ÇÁúÀûÀÎ ÃÖÁ¾ Á¾·á(½Â¸®) ¿¬Ãâ ¹ßµ¿Àº AB2StageManager::BeginStageClearScene_Phase2 Âü°í.
-//		// ´Ù½Ã µé¾î¿Ã ¶§´Â BeginShow ¸¦ ÇÏµµ·Ï ClearEventPhase ¼¼ÆÃ.
+//		// å’¯è¾¨ çƒ¹ç§¦ æŠ€æ³¼èŒ„ è§’é¾™åˆ©ç‰¢ å¼¥è¾† è¾†ä¸°(é“°åºœ) æ¥·å… æƒ¯æ‚¼ç¯® AB2StageManager::BeginStageClearScene_Phase2 æ›¼ç»Š.
+//		// ä¿ƒçŸ« ç”¸ç»¢æ£µ é”­ç»° BeginShow ç”« çªæ¡£åºŸ ClearEventPhase æŠ€æ³¼.
 //		ClearEventPhase = EStageClearEventPhase::ESCE_Phase2;
 //
 //		if (LocalB2Player)
-//		{ // bForceStopPlayerAttackState ¿¡¼­ ÇÏ´Â Ã³¸®ÀÎµ¥ ¸®ÅÏÀ» ÇØ ¹ö¸®´Ï ¿©±â¼­ µû·Î.. ¤Ñ¤Ñ
+//		{ // bForceStopPlayerAttackState ä¿Šè¾‘ çªç»° è´¸åºœç‰¢å• åºœç•”é˜‘ ç§¦ æ»šåºœèª å’¯æ‰è¾‘ è¶è‚º.. ã±ã±
 //			LocalB2Player->SignalStopAttackImmediate();
 //		}
 //
@@ -897,12 +897,12 @@ void AB2StageEventDirector::BeginShow()
 //	if (ShouldApplyCinematicScalabilityDuringShow())
 //	{
 //		if (LocalB2Player) {
-//			LocalB2Player->SetupLODInfoForCinematic(); // ·ÎÄÃ ÇÃ·¹ÀÌ¾î´Â ¿¬Ãâ Àå¸é ÀÏºÎ°¡ ¾Æ´Ï´õ¶óµµ Ä«¸Ş¶ó¿öÅ©¿¡ ÀÇÇØ ½ºÃÄ°¥ ¼öµµ ÀÖÀ¸´Ï ±âº» cinematic ¿ëÀ¸·Î ¼¼ÆÃ
+//			LocalB2Player->SetupLODInfoForCinematic(); // è‚ºæ‹¿ æ•²é¥­æç»¢ç»° æ¥·å… å˜æ è€ä½•å•Š é…’èªæ­¹æ‰¼æ¡£ å¢¨çš‹æ‰¼å†µå†œä¿Š ç‹¼ç§¦ èƒ¶åªšå“ èæ¡£ ä¹æ èª æ‰å¤¯ cinematic ä¾©æ è‚º æŠ€æ³¼
 //		}
-//		B2Scalability::ApplyStageEventSpecificScalabilitySetting(this, true); // ·ÎÄÃ ÇÃ·¹ÀÌ¾î LOD ¼¼ÆÃ°ú ¸¶Âù°¡Áö·Î ¿¬Ãâ ¿ë Æ¯º° scalability ÄÁÆ®·Ñ Àû¿ë
+//		B2Scalability::ApplyStageEventSpecificScalabilitySetting(this, true); // è‚ºæ‹¿ æ•²é¥­æç»¢ LOD æŠ€æ³¼è‹ ä»˜è›®å•Šç˜¤è‚º æ¥·å… ä¾© æ¼‚å–Š scalability ç‰§é£˜è´¹ åˆ©ä¾©
 //	}
 //
-//	// Settings ¿Í RuntimeState ¼ıÀÚ¸¦ ¸ÂÃçÁØ´Ù.
+//	// Settings å®¢ RuntimeState ç®­ç£Šç”« å˜è‹—éœ–ä¿ƒ.
 //	ShowStates.Empty();
 //	for (int32 SI = 0; SI < ShowSettings.Num(); ++SI)
 //	{
@@ -913,13 +913,13 @@ void AB2StageEventDirector::BeginShow()
 //	
 //	if (LocalB2Player)
 //	{
-//		CurrentActiveCamera = LocalB2Player->TopDownCameraComponent; // ¾Æ¸¶µµ ÀÌ°É À¯ÁöÇÏÁö´Â ¾ÊÀ» °ÍÀÌ´Ù..
+//		CurrentActiveCamera = LocalB2Player->TopDownCameraComponent; // é…’ä»˜æ¡£ æå§ èœ¡ç˜¤çªç˜¤ç»° è‡¼é˜‘ å·´æä¿ƒ..
 //
 //		if ((DirectingEvent != EStageEvent::ESEV_MobDying && DirectingEvent != EStageEvent::ESEV_FinishAttack))
 //		{
 //			/*
-//			// ¿¬Ãâ Àü °ø°İÁßÀÌ¶óµµ ¿¬Ãâ ³¡ ½ÃÁ¡¿¡ °ø°İÀ» ÀÌ¾î°¡Áö ¾Ê¾Æ¾ß ÇÔ
-//			if (LocalB2Player->IsKeepAttacking() && bForceStopPlayerAttackState) // bForceStopPlayerAttackState Á¶°ÇÀ» Ãß°¡·Î °Ë»ç.. ¿ø·¡ ÀÌÂÊ ¸ñÀûÀÌ ¾Æ´Ñ±ä Çß´Âµ¥ ´ë·« ¸Â´Â´Ù.
+//			// æ¥·å… å‚ˆ å‚æ‹œåææ‰¼æ¡£ æ¥·å… åœº çŸ«ç—¢ä¿Š å‚æ‹œé˜‘ æç»¢å•Šç˜¤ è‡¼é…’å…· çªƒ
+//			if (LocalB2Player->IsKeepAttacking() && bForceStopPlayerAttackState) // bForceStopPlayerAttackState ç‚¼æ‰’é˜‘ çœ å•Šè‚º å…«è¤.. ç›”è´° æç‡ æ ¼åˆ©æ é…’å›±å˜ æ²ç»°å• æªå¸† å˜ç»°ä¿ƒ.
 //			{
 //				bWasPlayerAttacking = true;
 //				LocalB2Player->bCachedPressedInCinematic = true;
@@ -948,20 +948,20 @@ void AB2StageEventDirector::BeginShow()
 //	bControlledMatineeFinished = false;
 //	bRelevantUIOpenComplete = false;
 //
-//	// Ä«¸Ş¶ó ¼¼ÆÃºÎÅÍ
+//	// å¢¨çš‹æ‰¼ æŠ€æ³¼ä½•ç£
 //	if (OverallMode == EStageEventDirectorOverallMode::ESEDOM_ExportedCamera)
 //	{
 //		APlayerCameraManager* CamManager = UGameplayStatics::GetLocalPlayerCameraManager(this);
 //		if (CamManager && CameraAnim)
 //		{
-//			// ÀÏ´Ü ¸ğµÎ deactivate ¸¦ ÇØ ³õ°í..
+//			// è€çªœ è‘›æ»´ deactivate ç”« ç§¦ åˆç»Š..
 //			DeactivateAllManualCams();
 //			
-//			// ÀÌÀü¿¡ È°¼ºÈ­ µÈ °ÍÀÌ ÀÖ´Ù¸é ¸ğµÎ Á¾·á. ±×·±µ¥ »ç½Ç ÀÌ·¸°Ô ÇØµµ show µµÁß¿¡ ÇÃ·¹ÀÌ ÇÏ´Â ¾Ö´Ï¸ŞÀÌ¼Ç¿¡ Ä«¸Ş¶ó ¾Ö´ÔÀÌ ºÙ¾î ÀÖ´Ù¸é ±×°Ô Àû¿ëÀÌ µÉ ¼ö ÀÖÀ½.
-//			// µû¶ó¼­ SetStageEventShowState ¿¡ ÀÇÇØ µé¾î°¡´Â AnimBP ÀÇ ÇØ´ç ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ÀûÀıÈ÷ ¼¼ÆÃÇØ¾ß ÇÔ.
+//			// æå‚ˆä¿Š åŠå·±æ‹³ ç­‰ å·´æ ä¹ä¿ƒæ è‘›æ»´ è¾†ä¸°. å¼Šç¹å• è¤è§’ æçŠ¯éœ¸ ç§¦æ¡£ show æ¡£åä¿Š æ•²é¥­æ çªç»° å±€èªçš‹æè®°ä¿Š å¢¨çš‹æ‰¼ å±€ä¸›æ å˜¿ç»¢ ä¹ä¿ƒæ å¼Šéœ¸ åˆ©ä¾©æ çª è ä¹æ¾œ.
+//			// è¶æ‰¼è¾‘ SetStageEventShowState ä¿Š ç‹¼ç§¦ ç”¸ç»¢å•Šç»° AnimBP ç‹¼ ç§¦å¯¸ å±€èªçš‹æè®°é˜‘ åˆ©ä¾‹æ´’ æŠ€æ³¼ç§¦å…· çªƒ.
 //			CamManager->StopAllCameraAnims(true); 
 //
-//			// CameraAnimApplyCamIndex ¿¡ µû¶ó ±âº» Ä«¸Ş¶ó ¹× view target ¾×ÅÍ ¼±ÅÃ
+//			// CameraAnimApplyCamIndex ä¿Š è¶æ‰¼ æ‰å¤¯ å¢¨çš‹æ‰¼ æ£º view target å’€ç£ æ€¥ç¶
 //			AActor* CameraAnimViewTarget = this;
 //			if (CameraAnimApplyCamIndex >= 0 && CameraAnimApplyCamIndex < MAX_DIRECTOR_CAMERA)
 //			{
@@ -977,7 +977,7 @@ void AB2StageEventDirector::BeginShow()
 //			}
 //			CurrentActiveCamera->Activate();
 //
-//			// ÀÇµµ°¡ ÇÃ·¹ÀÌ¾î ÂÊ¿¡¼­ºÎÅÍ ºí·»µù µÇ´Â °Å¶ó¸é ´Ù½Ã ÄÑÁÖ±ä ÇØ¾ß ÇÔ.
+//			// ç‹¼æ¡£å•Š æ•²é¥­æç»¢ ç‡ä¿Šè¾‘ä½•ç£ å–‰åŠçˆ¹ ç™»ç»° èŠ­æ‰¼æ ä¿ƒçŸ« éš¾æ—å˜ ç§¦å…· çªƒ.
 //			if (CameraAnimInitialBlendingTime > 0.0f)
 //			{
 //				if (LocalB2Player && LocalB2PC)
@@ -988,78 +988,78 @@ void AB2StageEventDirector::BeginShow()
 //			}
 //
 //			if (LocalB2PC)
-//				LocalB2PC->SetViewTargetWithBlend(CameraAnimViewTarget, CameraAnimInitialBlendingTime, EViewTargetBlendFunction::VTBlend_Linear); // BlendFunction ÇÊ¿äÇÏ¸é ¼³Á¤ÇÏ°Ô..
+//				LocalB2PC->SetViewTargetWithBlend(CameraAnimViewTarget, CameraAnimInitialBlendingTime, EViewTargetBlendFunction::VTBlend_Linear); // BlendFunction é˜å¤¸çªæ æ±²æ²¥çªéœ¸..
 //
-//			// ÇÊ¿äÇÏ¸é CameraAnimInst ¸¦ Ä³½ÌÇØ¼­ »ç¿ë.
+//			// é˜å¤¸çªæ CameraAnimInst ç”« æŸæ•™ç§¦è¾‘ è¤ä¾©.
 //			UCameraAnimInst* CamAnimInst = CamManager->PlayCameraAnim(CameraAnim);
 //			if (CamAnimInst)
 //			{
 //				if (bStandbyAtTheEnd)
 //				{
-//					CamAnimInst->bStayAtEnd = true; // Ä«¸Ş¶ó ¾Ö´Ï¸ŞÀÌ¼Ç Á¾·á »óÅÂ¿¡¼­ À¯ÁöÇÏ°Ô µÉ °Í. ÀÌ °æ¿ì ³¡³»´Â °Ç CustomFinishShow ¸¦ »ç¿ë.
+//					CamAnimInst->bStayAtEnd = true; // å¢¨çš‹æ‰¼ å±€èªçš‹æè®° è¾†ä¸° æƒ‘æ€•ä¿Šè¾‘ èœ¡ç˜¤çªéœ¸ çª å·´. æ ç‰ˆå¿« åœºéƒ´ç»° æ‰’ CustomFinishShow ç”« è¤ä¾©.
 //				}
-//				CamAnimInst->AddCustomNotifyActor(this); // Á¾·á ÅëÁö¸¦ ¹Ş±â À§ÇÑ µî·Ï. Á¾·á ½Ã NotifyActorCustomEvent ·Î.
+//				CamAnimInst->AddCustomNotifyActor(this); // è¾†ä¸° çƒ¹ç˜¤ç”« ç½æ‰ å›°èŒ„ æ®¿åºŸ. è¾†ä¸° çŸ« NotifyActorCustomEvent è‚º.
 //			}
 //		}
 //	}
 //	else if (OverallMode == EStageEventDirectorOverallMode::ESEDOM_ControlledMatinee)
 //	{
-//		// Controlled Matinee ÀÇ °æ¿ì´Â ÇÏ´Ü BeginSingleShow ¸¦ delay ¾øÀÌ Ã³¸®ÇÑ ÈÄ¿¡ Play ¸¦ ÇÒ °Í.
+//		// Controlled Matinee ç‹¼ ç‰ˆå¿«ç»° çªçªœ BeginSingleShow ç”« delay ç»æ è´¸åºœèŒ„ é¥¶ä¿Š Play ç”« ä¸” å·´.
 //
 //		if (MatineeActor)
 //		{
-//			// MatineeActor ¿ÍÀÇ Ã¹ Á¶¿ì. ÀÌÂÊ¿¡ ¼³Á¤ÇÑ º¯¼öµéÀ» ³Ñ°ÜÁÜ
+//			// MatineeActor å®¢ç‹¼ éœ‰ ç‚¼å¿«. æç‡ä¿Š æ±²æ²¥èŒ„ å‡½èç”¸é˜‘ é€è´¥æ·‹
 //			MatineeActor->FirstSkipFrameNum = MatineeFirstSkipFrames;
-//			MatineeActor->bStayAtEnd = bStandbyAtTheEnd; // StandbyAtTheEnd ¿¡¼­´Â ¸¶Æ¼´Ï Á¾·á »óÅÂ¿¡¼­ À¯ÁöÇÏ°Ô µÉ °Í. ÀÌ °æ¿ì ³¡³»´Â °Ç CustomFinishShow ¸¦ »ç¿ë.
-//			MatineeActor->bNoCinematicModeControl = true; // StageEventDirector ¿¡ ¿¬°áÇÑ ÀÌ»ó CinematicMode ´Â ¿©±â¼­ Á¶ÀıÇÔ.
-//			MatineeActor->SetPosition(0.0f, true); // ÀÏºÎ ÀçÈ°¿ëÇÏ´Â ¸¶Æ¼´Ï ¾ÀÀÌ ÀÖÀ½. MatineeActor ÂÊÀÇ bForceStartPos ¸¦ Ã¼Å©ÇÏ¸é µÇ´Â °Å±ä ÇÔ.
-//			MatineeActor->InitInterp(); // BeginSingleShow ¸¦ ÅëÇØ ±×·ì actor µé¿¡ Á¢±ÙÇÏ±â Àü¿¡ Init À» ¼öµ¿À¸·Î ÇÑ¹ø ÇØ¾ß ÇÏ´Â µí.
+//			MatineeActor->bStayAtEnd = bStandbyAtTheEnd; // StandbyAtTheEnd ä¿Šè¾‘ç»° ä»˜èèª è¾†ä¸° æƒ‘æ€•ä¿Šè¾‘ èœ¡ç˜¤çªéœ¸ çª å·´. æ ç‰ˆå¿« åœºéƒ´ç»° æ‰’ CustomFinishShow ç”« è¤ä¾©.
+//			MatineeActor->bNoCinematicModeControl = true; // StageEventDirector ä¿Š æ¥·æ¬èŒ„ ææƒ‘ CinematicMode ç»° å’¯æ‰è¾‘ ç‚¼ä¾‹çªƒ.
+//			MatineeActor->SetPosition(0.0f, true); // è€ä½• çŠåŠä¾©çªç»° ä»˜èèª çº æ ä¹æ¾œ. MatineeActor ç‡ç‹¼ bForceStartPos ç”« çœ‰å†œçªæ ç™»ç»° èŠ­å˜ çªƒ.
+//			MatineeActor->InitInterp(); // BeginSingleShow ç”« çƒ¹ç§¦ å¼Šç¼ actor ç”¸ä¿Š ç«‹è¾Ÿçªæ‰ å‚ˆä¿Š Init é˜‘ èæ‚¼æ è‚º èŒ„é”… ç§¦å…· çªç»° æ·€.
 //
 //#if !UE_BUILD_SHIPPING // Detailed feature On/Off for performance test
-//			if (bDisableStageEventLights) // µğ¹ÙÀÌ½º¿¡¼­ÀÇ ¼º´É Å×½ºÆ® ¿ëµµÀÓ. ¾Æ¸¶µµ ÀÎ°ÔÀÓ¿¡¼­ °ÅÀÇ À¯ÀÏÇÏ°Ô º°µµÀÇ µ¿Àû ¶óÀÌÆ®¸¦ »ç¿ëÇÏ´Â ºÎºĞÀÏ µí?
+//			if (bDisableStageEventLights) // å¼å®˜æèƒ¶ä¿Šè¾‘ç‹¼ å·±ç“· æŠ›èƒ¶é£˜ ä¾©æ¡£çƒ™. é…’ä»˜æ¡£ ç‰¢éœ¸çƒ™ä¿Šè¾‘ èŠ­ç‹¼ èœ¡è€çªéœ¸ å–Šæ¡£ç‹¼ æ‚¼åˆ© æ‰¼æé£˜ç”« è¤ä¾©çªç»° ä½•ç›’è€ æ·€?
 //			{
 //				SetAllPointLightGroupAffectWorld(false);
 //			}
 //			else
 //#endif
 //			{
-//				// ¶óÀÌÆ® ¼¼ÆÃºÎÅÍ ÄÑ ³õ°í.. ´Ù½Ã ÇÊ¿ä¾ø´Â °Ç ²¨¾ß ÇÔ.
+//				// æ‰¼æé£˜ æŠ€æ³¼ä½•ç£ éš¾ åˆç»Š.. ä¿ƒçŸ« é˜å¤¸ç»ç»° æ‰’ æ³¢å…· çªƒ.
 //				SetAllPointLightGroupAffectWorld(true);
 //			}
 //
-//			SelectFinalDirectorTrack(); // bPCDependentDirectorTrack ÀÌ°Å³ª Random ÀÎ °æ¿ì µî¿¡¼­ ¿©·¯ Director track µéÀÌ ÀÖÀ» ¶§ ÀûÀıÇÑ ÇÏ³ª¸¦ ¼±ÅÃ.
+//			SelectFinalDirectorTrack(); // bPCDependentDirectorTrack æèŠ­å”± Random ç‰¢ ç‰ˆå¿« æ®¿ä¿Šè¾‘ å’¯çŸ¾ Director track ç”¸æ ä¹é˜‘ é”­ åˆ©ä¾‹èŒ„ çªå”±ç”« æ€¥ç¶.
 //		}
 //	}
 //	else if (OverallMode == EStageEventDirectorOverallMode::ESEDOM_ManualCamera)
 //	{
-//		check(ManualCameraSettings.Num() > 0); // Àû¾îµµ ÇÏ³ª´Â ³²µµ·Ï Ã³¸®ÇÔ.
+//		check(ManualCameraSettings.Num() > 0); // åˆ©ç»¢æ¡£ çªå”±ç»° å·¢æ¡£åºŸ è´¸åºœçªƒ.
 //
-//		// ÀÏ´Ü ¸ğµÎ deactivate ¸¦ ÇØ ³õ°í..
+//		// è€çªœ è‘›æ»´ deactivate ç”« ç§¦ åˆç»Š..
 //		DeactivateAllManualCams();
 //
 //		if (LocalB2Player && LocalB2PC)
 //		{
-//			// ¿©±âµµ »ç½Ç»ó ÇÃ·¹ÀÌ¾î ÂÊ¿¡¼­ºÎÅÍ ºí·»µù µÉ °ÍÀÌ¹Ç·Î È®½ÇÈ÷ ÄÑ ÁÖÀÚ.
+//			// å’¯æ‰æ¡£ è¤è§’æƒ‘ æ•²é¥­æç»¢ ç‡ä¿Šè¾‘ä½•ç£ å–‰åŠçˆ¹ çª å·´æéª¨è‚º çŠ¬è§’æ´’ éš¾ æ—ç£Š.
 //			LocalB2Player->TopDownCameraComponent->Activate();
 //			LocalB2PC->SetViewTargetWithBlend(LocalB2Player, 0.0f);
 //		}
 //
-//		// Ã¹¹øÂ° ¼³Á¤ÇÑ Ä«¸Ş¶ó·Î ÀÌµ¿.		
+//		// éœ‰é”…æ³ æ±²æ²¥èŒ„ å¢¨çš‹æ‰¼è‚º ææ‚¼.		
 //		BeginTargetToManualCamera(0);
 //	}
 //
-//	// BeginSingleShow ¿¡¼­ SimpleEventScene ¼¼ÆÃ ½Ã »ç¿ë.
-//	// -> Director camera component µéÀº ¿òÁ÷ÀÌÁö ¾Ê´Â °É·Î Ä£´Ù. ±×·¸°Ô °¡Á¤ÇØ¾ß ÇÏ´Â »óÈ²ÀÓ. µû¶ó¼­ À§Ä¡°ªÀ» Ä³½ÌÇÏÁö ¾ÊÀ½.
+//	// BeginSingleShow ä¿Šè¾‘ SimpleEventScene æŠ€æ³¼ çŸ« è¤ä¾©.
+//	// -> Director camera component ç”¸ç¯® æ¡†æµæç˜¤ è‡¼ç»° å§è‚º æ¨¡ä¿ƒ. å¼ŠçŠ¯éœ¸ å•Šæ²¥ç§¦å…· çªç»° æƒ‘ç‚”çƒ™. è¶æ‰¼è¾‘ å›°æ‘¹è”¼é˜‘ æŸæ•™çªç˜¤ è‡¼æ¾œ.
 //	//CachedInitialActiveCamLocation = CurrentActiveCamera->GetComponentLocation();
 //	//CachedInitialActiveCamRotation = CurrentActiveCamera->GetComponentRotation();
 //	
-//	// °³º° play actor º° show ½ÃÀÛ
+//	// ä¿ºå–Š play actor å–Š show çŸ«ç´¯
 //	for (int32 EI = 0; EI < ShowSettings.Num(); ++EI)
 //	{
 //		FPlayActorShowSettings& CurrShowSetting = ShowSettings[EI];
 //		FPlayActorShowRuntimeState& CurrShowState = ShowStates[EI];
 //
-//		// ControlledMatinee ¿¡¼­´Â StartDelay ¾øÀ½.
+//		// ControlledMatinee ä¿Šè¾‘ç»° StartDelay ç»æ¾œ.
 //		if (CurrShowSetting.StartDelay > 0.0f && OverallMode != EStageEventDirectorOverallMode::ESEDOM_ControlledMatinee)
 //		{
 //			GetWorldTimerManager().SetTimer(CurrShowState.ShowStartDelayTimerHandle,
@@ -1068,28 +1068,28 @@ void AB2StageEventDirector::BeginShow()
 //		}
 //		else
 //		{
-//			// Áï¼®¿¡¼­ ½ÃÀÛ
+//			// æºœç±ä¿Šè¾‘ çŸ«ç´¯
 //			BeginSingleShow(EI);
 //		}
 //	}
 //
-//	// ControlledMatinee ´Â BeginSingleShow Ã³¸® ÈÄ Play ¹Ù·Î ½ÃÀÛ.. Àº ¾Æ´Ï°í Ãß°¡·Î ÇÃ·¹ÀÌ¾î ½ÌÅ©¸¦ °Ë»ç.
+//	// ControlledMatinee ç»° BeginSingleShow è´¸åºœ é¥¶ Play å®˜è‚º çŸ«ç´¯.. ç¯® é…’èªç»Š çœ å•Šè‚º æ•²é¥­æç»¢ æ•™å†œç”« å…«è¤.
 //	if (OverallMode == EStageEventDirectorOverallMode::ESEDOM_ControlledMatinee)
 //	{
-//		// ·±Å¸ÀÓ »óÈ²¿¡ ÀÇÇØ º¸ÀÌÁö ¸»¾Æ¾ß ÇÒ GroupActor ÀÇ °æ¿ì, º¸ÀÌÁö ¾Ê´Âµ¥µµ ºÒ±¸ÇÏ°í ¼Ò¸®°¡ ³ª°Å³ª ÇÒ ¼ö ÀÖÀ¸¹Ç·Î Á¦°Å.
-//		// ¿¹¸¦ µé¾î ¸¸µé¾î´Â ³õ¾ÒÀ¸³ª ÇöÀç ÇÃ·¹ÀÌ¾î Å¬·¡½º¿Í ´Ù¸£¹Ç·Î ³ª¿ÀÁö ¸»¾Æ¾ß ÇÒ ±×·ì.
+//		// ç¹é¸¥çƒ™ æƒ‘ç‚”ä¿Š ç‹¼ç§¦ ç„Šæç˜¤ å¯Œé…’å…· ä¸” GroupActor ç‹¼ ç‰ˆå¿«, ç„Šæç˜¤ è‡¼ç»°å•æ¡£ é˜‚å¤‡çªç»Š å®¶åºœå•Š å”±èŠ­å”± ä¸” è ä¹æ éª¨è‚º åŠ›èŠ­.
+//		// æŠ—ç”« ç”¸ç»¢ çˆ¶ç”¸ç»¢ç»° åˆç–½æ å”± æ³…çŠ æ•²é¥­æç»¢ åŠªè´°èƒ¶å®¢ ä¿ƒç¦éª¨è‚º å”±å·ç˜¤ å¯Œé…’å…· ä¸” å¼Šç¼.
 //		RuntimeRemoveNonDesiredGroup();
-//		// RuntimeRemoveNonDesiredGroup ÇÏ¸é¼­ »ç¿ëµÇÁö ¾ÊÀ» PointLight ²ô´Â °Ô.. ¿¹Àü¿¡ ÀÌ·¸°Ô ¾ÈÇßÀ» ¶§ µ¿ÀÛÇÏ´ø ¼Â¾÷ÀÌ ÀÖ¾î¼­ ÇÏ³ª´Â »ì·ÁµÎ´Â ÀÇ¹Ì·Î.
+//		// RuntimeRemoveNonDesiredGroup çªæè¾‘ è¤ä¾©ç™»ç˜¤ è‡¼é˜‘ PointLight æºç»° éœ¸.. æŠ—å‚ˆä¿Š æçŠ¯éœ¸ æ•‘æ²é˜‘ é”­ æ‚¼ç´¯çªå¸¦ æ‚¸è¯€æ ä¹ç»¢è¾‘ çªå”±ç»° æ··å¦¨æ»´ç»° ç‹¼å›ºè‚º.
 //		HackSpareLeastPointLight();
 //
-//		if (CheckForPCSyncToMatineeStart() == false) // true ¶ó¸é Player sync ÈÄ¿¡ ½ÃÀÛÇÒ °Í.
+//		if (CheckForPCSyncToMatineeStart() == false) // true æ‰¼æ Player sync é¥¶ä¿Š çŸ«ç´¯ä¸” å·´.
 //		{
 //			FinalBeginMatineePlay();
 //		}
 //
 //	}
 //
-//	// Widget µî Ãß°¡ÀûÀÎ Ã³¸®°¡ ÀÖ´Âµ¥ ÀÌ°ÍµéÀº Matinee PCSync »ç¿ë½Ã¿¡´Â º»°İ Matinee play ½ÃÀÛ ÈÄ¿¡ Ã³¸®µÇ¾î¾ß ÇÔ.
+//	// Widget æ®¿ çœ å•Šåˆ©ç‰¢ è´¸åºœå•Š ä¹ç»°å• æå·´ç”¸ç¯® Matinee PCSync è¤ä¾©çŸ«ä¿Šç»° å¤¯æ‹œ Matinee play çŸ«ç´¯ é¥¶ä¿Š è´¸åºœç™»ç»¢å…· çªƒ.
 //	if (bCurrentPCSyncToMatineeStart == false)
 //	{
 //		DeferredBeginShowHandlingForMatineePCSync();
@@ -1097,24 +1097,24 @@ void AB2StageEventDirector::BeginShow()
 //
 //	if (bForceStopPlayerAttackState)
 //	{
-//		// ÇöÀç ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ°¡ °ÔÀÓ»óÅÂ¸¦ À¯ÁöÇÏµµ·Ï ¸í½ÃµÈ °æ¿ì¸é ¹°·Ğ ÇØ¼± ¾ÈµÇÁö.
+//		// æ³…çŠ æ•²é¥­æç»¢ æŸè…ç£å•Š éœ¸çƒ™æƒ‘æ€•ç”« èœ¡ç˜¤çªæ¡£åºŸ ç–™çŸ«ç­‰ ç‰ˆå¿«æ æ‹±æ²¸ ç§¦æ€¥ æ•‘ç™»ç˜¤.
 //		if (ShouldMaintainPlayerCharacterState() == false)
 //		{
 //			if (LocalB2Player)
-//				LocalB2Player->SignalStopAttackImmediate(); // ÀÌÈÄ AnimBP ¿¡ ÀÇÇØ Ã³¸®µÉ °Í.
+//				LocalB2Player->SignalStopAttackImmediate(); // æé¥¶ AnimBP ä¿Š ç‹¼ç§¦ è´¸åºœçª å·´.
 //		}
 //	}
 //
 //	SAFE_STAGEMANAGER_CHECK
 //	if (bStopAllMobsWhilePlaying && CachedStageManager)
 //	{
-//		CachedStageManager->StopOrRestoreAllWorldMobs(true); // ¿©±â¿¡ Æ÷ÇÔµÈ PlayActor »Ó ¾Æ´Ï¶ó ¸ğµÎ Á¤Áö.
+//		CachedStageManager->StopOrRestoreAllWorldMobs(true); // å’¯æ‰ä¿Š å™¨çªƒç­‰ PlayActor æŒ¥ é…’èªæ‰¼ è‘›æ»´ æ²¥ç˜¤.
 //		if (bForceCancelAttackMotionAllMob)
 //			CachedStageManager->ForceCancelAttackAllWorldMobs();
 //	}
 //
 //	if (B2GM)
-//	{// Auto ´Â Àá½Ã Áß´Ü½ÃÅ°°í Finish ¿¡¼­ º¹±¸
+//	{// Auto ç»° æ³ªçŸ« åçªœçŸ«è™ç»Š Finish ä¿Šè¾‘ æ±—å¤‡
 //		if (ShouldStopAutoDuringShow() && B2GM->IsLocalPlayerAutoBattle()){
 //			B2GM->TemporaryStopLocalPlayerAuto();
 //		}
@@ -1128,30 +1128,30 @@ void AB2StageEventDirector::BeginShow()
 //		if (LocalB2PC)
 //		{
 //			bool bHiddenPlayer = LocalB2PC->GetPawn() && LocalB2PC->GetPawn()->bHidden;
-//			// Matinee ¸ğµå°¡ ¾Æ´Ñ °æ¿ìÀÇ CinematicMode ¼¼ÆÃ. ¸¶Æ¼´Ï¿¡¼± Á» Æ¯º° °ü¸®. 4¹øÂ° ÀÎÀÚ´Â MovementInput ¿¡ ´ëÇÑ °ÅÁö¸¸ ÇöÀç·Î¼­´Â ÀüÃ¼ ÀÔ·Â¿¡ ´ëÇØ ¿µÇâ.
+//			// Matinee è‘›é›å•Š é…’å›± ç‰ˆå¿«ç‹¼ CinematicMode æŠ€æ³¼. ä»˜èèªä¿Šæ€¥ ç²± æ¼‚å–Š åŒ…åºœ. 4é”…æ³ ç‰¢ç£Šç»° MovementInput ä¿Š æªèŒ„ èŠ­ç˜¤çˆ¶ æ³…çŠè‚ºè¾‘ç»° å‚ˆçœ‰ æ¶ä»¿ä¿Š æªç§¦ åº·æ°¢.
 //			LocalB2PC->SetCinematicMode(true, bHiddenPlayer, bHideHud, bDisableInput, true);
 //		}
 //		if(!bForceNoHidePlayer)
 //			SetAllPlayerHiddenInGame(true);
 //	}
 //
-//	// ½ÃÀÛ ¿¬ÃâÀÎ °æ¿ì ¿©±â¿¡ °É¸± ¼ö ÀÖ´Ù. Slomo °É°í Â÷¾ç¸· °¡¸®´Â µ¿¾È »ç¿îµå ¹ßµ¿À» ²û
-//	// RuntimeRemoveNonDesiredGroup ÀÌÈÄ¿¡ µé¾î°¡¾ß ÇÔ. ´Ù¸¥ ÀÌÀ¯·Î disable µÈ °ÍµéÀ» °É·¯³»¾ß ÇØ¼­
+//	// çŸ«ç´¯ æ¥·å…ç‰¢ ç‰ˆå¿« å’¯æ‰ä¿Š å§å‰¯ è ä¹ä¿ƒ. Slomo å§ç»Š ç’å‰§é˜œ å•Šåºœç»° æ‚¼æ•‘ è¤æ¬¾é› æƒ¯æ‚¼é˜‘ é˜
+//	// RuntimeRemoveNonDesiredGroup æé¥¶ä¿Š ç”¸ç»¢å•Šå…· çªƒ. ä¿ƒå¼— æèœ¡è‚º disable ç­‰ å·´ç”¸é˜‘ å§çŸ¾éƒ´å…· ç§¦è¾‘
 //	if (B2GM && B2GM->IsInPreRenderPhase() && OverallMode == EStageEventDirectorOverallMode::ESEDOM_ControlledMatinee)
 //	{
-//		TemporaryDisableTracksForPreRender(); // º¹±¸ÇÏ´Â °Ç FinishShow ¿¡¼­ ÇÏ´Â °Ô ¾Æ´Ï¶ó GameMode ³ª PreRender ÂÊ¿¡¼­ Ã³¸®ÇØ¾ß.
+//		TemporaryDisableTracksForPreRender(); // æ±—å¤‡çªç»° æ‰’ FinishShow ä¿Šè¾‘ çªç»° éœ¸ é…’èªæ‰¼ GameMode å”± PreRender ç‡ä¿Šè¾‘ è´¸åºœç§¦å…·.
 //	}
 //
 //	LevelStreamingOnBegin.ExecuteStreaming(GetWorld(), LevelStreamingOnBeginFlushTH, FTimerDelegate::CreateUObject(this, &AB2StageEventDirector::LevelStreamingOnBeginFlushCB));
 //	
-//	// ÇÃ·¹ÀÌ µµÁß ·ÎµùÀ¸·Î ºí·ÎÅ· °É¸± ¼ö ÀÖ´Â ²¨¸®¸¦ ÀûÀıÇÑ ½ÃÁ¡¿¡ ½½Â½ ·ÎµùÇØ º¸°íÀÚ ÇÔ.
+//	// æ•²é¥­æ æ¡£å è‚ºçˆ¹æ è‚º å–‰è‚ºæ¬§ å§å‰¯ è ä¹ç»° æ³¢åºœç”« åˆ©ä¾‹èŒ„ çŸ«ç—¢ä¿Š æµ‡é™† è‚ºçˆ¹ç§¦ ç„Šç»Šç£Š çªƒ.
 //	if (IsPossibleAdventureModeBeginEvent())
 //	{
 //		UB2UIManager::GetInstance()->ReqAsyncLoadAsset(UIFName::BossStatus);
 //		UB2UIManager::GetInstance()->ReqAsyncLoadAsset(UIFName::ScenarioDialog);
 //	}
 //
-//	// ±âÅ¸ ´Ù¸¥ °÷¿¡¼­ÀÇ Ã³¸®¸¦ À§ÇØ (StageManager)
+//	// æ‰é¸¥ ä¿ƒå¼— é•‘ä¿Šè¾‘ç‹¼ è´¸åºœç”« å›°ç§¦ (StageManager)
 //	StageEventSceneBeginClass<AB2StageEventDirector*, EStageEvent>::GetInstance().Signal(this, DirectingEvent);
 //
 //#if BII_STATS
@@ -1159,17 +1159,17 @@ void AB2StageEventDirector::BeginShow()
 //#endif
 //
 //	if(bCheckPlayOne)
-//		bPlayedOnceForThisStage = true; // BeginShow ¸¸ ÇØµµ ÇÑ¹ø ÇÃ·¹ÀÌ ÇÑ °É·Î Ä£´Ù.
+//		bPlayedOnceForThisStage = true; // BeginShow çˆ¶ ç§¦æ¡£ èŒ„é”… æ•²é¥­æ èŒ„ å§è‚º æ¨¡ä¿ƒ.
 //	bCurrentlyPlaying = true;
 //
 //	//
-//	// Á¤½Ä ½ÃÀÛ ÀıÂ÷´Â ³¡³µ°í, ¾Æ·¡´Â ½ºÅµÀÌ ÇÊ¿äÇÑ °æ¿ì.
+//	// æ²¥ä¾¥ çŸ«ç´¯ ä¾‹ç’ç»° åœºè½¦ç»Š, é…’è´°ç»° èƒ¶è¯ºæ é˜å¤¸èŒ„ ç‰ˆå¿«.
 //	//
 //
 //	bool bShowSkipped = false;
 //
-//	// Á¤½Ä ½ºÅµÀ» ÇÏ·Á¸é ÃÖ¼ÒÇÑ BeginShow ´Â ÇÑ ÈÄ¿¡ CustomFinshShow ¸¦ ÇØ¾ß ÇÔ. ¿¬Ãâ Àå¸é Á¾·á ÈÄ À§Ä¡ ½ÌÅ©°¡ ÇÊ¿äÇÑ °æ¿ì ¶§¹®¿¡.
-//	// -> ÀÏ´Ü ÀÌ °æ·Î·Î °¡°Ô µÉ ÀÏÀº ¾øÀ» °Í.
+//	// æ²¥ä¾¥ èƒ¶è¯ºé˜‘ çªå¦¨æ å¼¥å®¶èŒ„ BeginShow ç»° èŒ„ é¥¶ä¿Š CustomFinshShow ç”« ç§¦å…· çªƒ. æ¥·å… å˜æ è¾†ä¸° é¥¶ å›°æ‘¹ æ•™å†œå•Š é˜å¤¸èŒ„ ç‰ˆå¿« é”­å·©ä¿Š.
+//	// -> è€çªœ æ ç‰ˆè‚ºè‚º å•Šéœ¸ çª è€ç¯® ç»é˜‘ å·´.
 //	if (CheckSkipForManageMode(this, ManageMode, false/*bManageModeLeastSkip*/) == EStageEventSkipType::SEST_LeastSkip){
 //		CustomFinishShow();
 //		bShowSkipped = true;
@@ -1178,7 +1178,7 @@ void AB2StageEventDirector::BeginShow()
 //#if !UE_BUILD_SHIPPING
 //	extern int32 GCheat_SkipEventSceneCount;
 //	if (GCheat_SkipEventSceneCount > 0 && !bShowSkipped){
-//		if (DirectingEvent != EStageEvent::ESEV_Clear){ // Clear ÀÌº¥Æ®´Â °ÔÀÓ Á¾·á ¸Ş´º¸¦ À§ÇØ ÇÊ¿äÇÏ´Ù º¸´Ï.. ±×·¡µµ UI ¸Ş´º¸¸ ¹Ù·Î º¸¿©ÁÙ ¼ö ÀÖ´Â ¹æ¹ıÀ» »ı°¢ÇØ º¸ÀÚ..
+//		if (DirectingEvent != EStageEvent::ESEV_Clear){ // Clear æäº¥é£˜ç»° éœ¸çƒ™ è¾†ä¸° çš‹æ˜¥ç”« å›°ç§¦ é˜å¤¸çªä¿ƒ ç„Šèª.. å¼Šè´°æ¡£ UI çš‹æ˜¥çˆ¶ å®˜è‚º ç„Šå’¯ä¸´ è ä¹ç»° è§„è¿‡é˜‘ ç§¯é˜¿ç§¦ ç„Šç£Š..
 //			CustomFinishShow();
 //			--GCheat_SkipEventSceneCount;
 //		}
@@ -1191,14 +1191,14 @@ void AB2StageEventDirector::DeferredBeginShowHandlingForMatineePCSync()
 	// Widget.
 	StartEventWidgetOrStartCountdown();
 
-	// ÀüÃ¼ ½Ã°£ÀÌ ÁöÁ¤µÇ¾ú´Ù¸é Á¾·á Å¸ÀÌ¸Ó on. Controlled Matinee ÀÇ °æ¿ìµµ Àû¿ëÀº µÇ°ÚÁö¸¸ ¸¶Æ¼´Ï ÀüÃ¼ ±æÀÌº¸´Ù ±æ¸é ¾îÂ÷ÇÇ ¼Ò¿ë ¾øÀ» °Í.
+	// å‚ˆçœ‰ çŸ«åŸƒæ ç˜¤æ²¥ç™»èŒä¿ƒæ è¾†ä¸° é¸¥æèµ£ on. Controlled Matinee ç‹¼ ç‰ˆå¿«æ¡£ åˆ©ä¾©ç¯® ç™»æ‘†ç˜¤çˆ¶ ä»˜èèª å‚ˆçœ‰ è¾¨æç„Šä¿ƒ è¾¨æ ç»¢ç’ä¹” å®¶ä¾© ç»é˜‘ å·´.
 	if (IsOverallLengthConstrainted())
 	{
 		GetWorldTimerManager().SetTimer(OverallLengthTimerHandle, this, &AB2StageEventDirector::OverallLengthTimerCB, SpecifiedOverallLength, false);
 	}
 
 	//ABladeIIGameMode* B2GM = GetB2GameMode();
-	//if (B2GM && !B2GM->IsInPreRenderPhase()) // PreRender »óÈ²¿¡¼­´Â ¸Å¿ì ÀûÀº TimeDilation À» °¡ÇÏ°í PreRender ³¡³¯ ¶§ ÀÌÂÊ TimeDilation À» º¹±¸ÇÒ °Í
+	//if (B2GM && !B2GM->IsInPreRenderPhase()) // PreRender æƒ‘ç‚”ä¿Šè¾‘ç»° æ¦‚å¿« åˆ©ç¯® TimeDilation é˜‘ å•Šçªç»Š PreRender åœºæœ é”­ æç‡ TimeDilation é˜‘ æ±—å¤‡ä¸” å·´
 	//{
 	//	ApplyStageEventTimeDilation();
 	//}
@@ -1206,18 +1206,18 @@ void AB2StageEventDirector::DeferredBeginShowHandlingForMatineePCSync()
 
 void AB2StageEventDirector::ApplyStageEventTimeDilation()
 {
-	//float FinalPlayRate = GlobalTimeDilation; // TODO ¿©±â¿¡ »ç¿ëÀÚ°¡ ¼±ÅÃÇÑ play rate °¡ °öÇØÁú ¼ö ÀÖÀ½.
-	//UGameplayStatics::SetGlobalTimeDilation(this, FinalPlayRate, true); // ¿©±â¼­´Â FinalPlayRate ¸¦ ¿©Å¸ ´Ù¸¥ ¿ä¼Ò¸¦ °¨¾ÈÇÏÁö ¾ÊÀº ½ÇÁú TimeDilation À¸·Î Ãë±Ş.
+	//float FinalPlayRate = GlobalTimeDilation; // TODO å’¯æ‰ä¿Š è¤ä¾©ç£Šå•Š æ€¥ç¶èŒ„ play rate å•Š èšŒç§¦é¾™ è ä¹æ¾œ.
+	//UGameplayStatics::SetGlobalTimeDilation(this, FinalPlayRate, true); // å’¯æ‰è¾‘ç»° FinalPlayRate ç”« å’¯é¸¥ ä¿ƒå¼— å¤¸å®¶ç”« çš‘æ•‘çªç˜¤ è‡¼ç¯® è§’é¾™ TimeDilation æ è‚º ç§’é­.
 }
 
 void AB2StageEventDirector::BeginShowOrBeginCountDown()
 {
-	//if (bDirectingEventConditionMet == false) // ±âº»ÀûÀÎ Á¶°Ç
+	//if (bDirectingEventConditionMet == false) // æ‰å¤¯åˆ©ç‰¢ ç‚¼æ‰’
 	//{
 	//	return;
 	//}
 
-	//// [°ÔÀÓÇÃ·¹ÀÌ¾×ÅÍ] ¿¡¼­ [¸¶Æ¼´Ï¾×ÅÍ] ·Î ÀüÈ¯µÇ±â Àü, ¸¶Å· Ã³¸®ÇÒ ¿şÀÌÆ÷ÀÎÆ®°¡ ÀÖ´Ù¸é, µî·ÏµÈ ÂüÁ¶¸¦ ÀÌ¿ëÇÏ¿© Ã³¸®.
+	//// [éœ¸çƒ™æ•²é¥­æå’€ç£] ä¿Šè¾‘ [ä»˜èèªå’€ç£] è‚º å‚ˆåˆ¸ç™»æ‰ å‚ˆ, ä»˜æ¬§ è´¸åºœä¸” å‚€æå™¨ç‰¢é£˜å•Š ä¹ä¿ƒæ, æ®¿åºŸç­‰ æ›¼ç‚¼ç”« æä¾©çªå’¯ è´¸åºœ.
 	//if ( ForcedMarkPassedWaypoint )
 	//{
 	//	ForcedMarkPassedWaypoint->ForceMarkByJumpEvent( nullptr, Cast< ABladeIIPlayer >( UGameplayStatics::GetLocalPlayerController( this )->GetPawn() ) );
@@ -1227,7 +1227,7 @@ void AB2StageEventDirector::BeginShowOrBeginCountDown()
 	//	}
 	//}
 
-	//// DependentDirectorActor °¡ ¼³Á¤µÈ °æ¿ì¿¡ ´ëÇÑ Ãß°¡ Á¶°Ç °Ë»ç
+	//// DependentDirectorActor å•Š æ±²æ²¥ç­‰ ç‰ˆå¿«ä¿Š æªèŒ„ çœ å•Š ç‚¼æ‰’ å…«è¤
 	//if (HasValidDependentDirectorActorSetting() && bDependentDirectorActorMet == false)
 	//{
 	//	return;
@@ -1249,7 +1249,7 @@ bool AB2StageEventDirector::HasValidDependentDirectorActorSetting()
 	{
 		if (CurrSED)
 		{
-			return true; // ´Ü ÇÏ³ª¸¸ µé¾î°¡ ÀÖ¾îµµ Åë°ú
+			return true; // çªœ çªå”±çˆ¶ ç”¸ç»¢å•Š ä¹ç»¢æ¡£ çƒ¹è‹
 		}
 	}
 	return false;
@@ -1302,14 +1302,14 @@ void AB2StageEventDirector::NotifyFinishAttack(ABladeIICharacter* Inflictor)
 {
 	//if (DirectingEvent == EStageEvent::ESEV_FinishAttack)
 	//{
-	//	// ¸·Å¸ Áøµ¿. ½ºÅ×ÀÌÁö ¸ğµå º¸½º¸÷ Áøµ¿Àº ¾Æ¸¶ µû·Î µé¾î°¥ µí.
+	//	// é˜œé¸¥ æŸ³æ‚¼. èƒ¶æŠ›æç˜¤ è‘›é› ç„Šèƒ¶å„ æŸ³æ‚¼ç¯® é…’ä»˜ è¶è‚º ç”¸ç»¢å“ æ·€.
 	//	ABladeIIPlayer* B2Player = Cast<ABladeIIPlayer>(UGameplayStatics::GetLocalPlayerCharacter(this));
 	//	if (B2Player)
 	//	{
 	//		B2Player->ForceFeedback();
 	//	}
 
-	//	// °¡ÇØÀÚ¸¦ ´ë»óÀ¸·Î »ó´ëÁÂÇ¥ ¸¶Æ¼´Ï ¿¬Ãâ ½ÃÀÛ
+	//	// å•Šç§¦ç£Šç”« æªæƒ‘æ è‚º æƒ‘æªè°…é’ ä»˜èèª æ¥·å… çŸ«ç´¯
 	//	SetUpOutSideCharacter = Inflictor;
 	//	BeginShow();
 	//}
@@ -1317,7 +1317,7 @@ void AB2StageEventDirector::NotifyFinishAttack(ABladeIICharacter* Inflictor)
 
 void AB2StageEventDirector::NotifySpawnPoolSingleWaveStart(int32 WaveNum)
 {
-	// ´ÜÀÏ ·¹º§ ³»¿¡¼­ »ç¿ëµÇ´Â SpawnPool Àº ÀÏÁ¤ÇÏ¸ç GameMode ¿¡¼­ ¾Ë°í ÀÖÀ¸¸é µÊ. ¿©±â¿¡ SpawnPool Á¤º¸¸¦ º¸³»Áö ¾Ê´Â °É·Î ÇÔ.
+	// çªœè€ é¥­éª‡ éƒ´ä¿Šè¾‘ è¤ä¾©ç™»ç»° SpawnPool ç¯® è€æ²¥çªå“¥ GameMode ä¿Šè¾‘ èˆ…ç»Š ä¹æ æ å‡³. å’¯æ‰ä¿Š SpawnPool æ²¥ç„Šç”« ç„Šéƒ´ç˜¤ è‡¼ç»° å§è‚º çªƒ.
 
 	//int32 ParsedWaveNum = 0;
 	//int32 ParsedMobIndex = 0;
@@ -1325,7 +1325,7 @@ void AB2StageEventDirector::NotifySpawnPoolSingleWaveStart(int32 WaveNum)
 	//
 	//if (DirectingEvent == EStageEvent::ESEV_MobAppear && WaveNum == ParsedWaveNum)
 	//{
-	//	EssentialBeginHandlingCommon();	// ½ºÅ×ÀÌÁö ½ÃÀÛ°ú ÇÔ²²ÇÏ´Â Ã¹ wave ¶ó¸é BeginPlay ÀÌÀü¿¡ ÀÌ°Ô ½ÇÇàµÉ °Í.
+	//	EssentialBeginHandlingCommon();	// èƒ¶æŠ›æç˜¤ çŸ«ç´¯è‹ çªƒè†Šçªç»° éœ‰ wave æ‰¼æ BeginPlay æå‚ˆä¿Š æéœ¸ è§’é’çª å·´.
 	//	
 	//	TArray<ABladeIICharacter*> SpawnedMobList;
 	//	ABladeIIGameMode* B2GM = GetB2GameMode();
@@ -1345,12 +1345,12 @@ void AB2StageEventDirector::NotifySpawnPoolSingleWaveStart(int32 WaveNum)
 
 	//	if (PossibleEventTriggeringMob == NULL && SpawnedMobList.Num() > 0)
 	//	{
-	//		PossibleEventTriggeringMob = SpawnedMobList[0]; // È¤½Ã¶óµµ Àß¸øµÈ ¼³Á¤ÀÌ³ª ÇÑ °æ¿ìÀÇ Æú¹é..
+	//		PossibleEventTriggeringMob = SpawnedMobList[0]; // è¶£çŸ«æ‰¼æ¡£ è‚‹ç»™ç­‰ æ±²æ²¥æå”± èŒ„ ç‰ˆå¿«ç‹¼ å¼ƒå½’..
 	//	}
 
 	//	BII_CHECK(!PossibleEventTriggeringMob || PossibleEventTriggeringMob->IsValidObj());
 
-	//	if (PossibleEventTriggeringMob && CanPlayShow()) // BeginShow ¿¡¼­µµ CanPlayShow °Ë»ç¸¦ ÇÏ´Âµ¥ UIDoc ¼¼ÆÃÀ» ¿©±â¼­ ÇØ¾ß ÇØ¼­ ¹Ì¸® °Ë»ç.
+	//	if (PossibleEventTriggeringMob && CanPlayShow()) // BeginShow ä¿Šè¾‘æ¡£ CanPlayShow å…«è¤ç”« çªç»°å• UIDoc æŠ€æ³¼é˜‘ å’¯æ‰è¾‘ ç§¦å…· ç§¦è¾‘ å›ºåºœ å…«è¤.
 	//	{
 	//		SyncDataToUIDoc(PossibleEventTriggeringMob);
 	//		bDirectingEventConditionMet = true;
@@ -1361,7 +1361,7 @@ void AB2StageEventDirector::NotifySpawnPoolSingleWaveStart(int32 WaveNum)
 
 void AB2StageEventDirector::NotifySpawnPoolSingleWaveComplete(int32 WaveNum)
 {
-	//// ¿şÀÌºê ¹øÈ£¸¸ »ç¿ë
+	//// å‚€æå® é”…é¾‹çˆ¶ è¤ä¾©
 	//int32 ParsedWaveNum = 0;
 	//int32 ParsedMobIndex = 0;
 	//ParseForWaveMobSelectKeyword(MobEventMobSelectKeyword, ParsedWaveNum, ParsedMobIndex);
@@ -1375,7 +1375,7 @@ void AB2StageEventDirector::NotifySpawnPoolSingleWaveComplete(int32 WaveNum)
 
 void AB2StageEventDirector::NotifySpawnPoolSingleMobDead(class ABladeIICharacter* DyingMob, int32 WaveNum, int32 MobObjIndex)
 {
-	// ´ÜÀÏ ·¹º§ ³»¿¡¼­ »ç¿ëµÇ´Â SpawnPool Àº ÀÏÁ¤ÇÏ¸ç GameMode ¿¡¼­ ¾Ë°í ÀÖÀ¸¸é µÊ. ¿©±â¿¡ SpawnPool Á¤º¸¸¦ º¸³»Áö ¾Ê´Â °É·Î ÇÔ.
+	// çªœè€ é¥­éª‡ éƒ´ä¿Šè¾‘ è¤ä¾©ç™»ç»° SpawnPool ç¯® è€æ²¥çªå“¥ GameMode ä¿Šè¾‘ èˆ…ç»Š ä¹æ æ å‡³. å’¯æ‰ä¿Š SpawnPool æ²¥ç„Šç”« ç„Šéƒ´ç˜¤ è‡¼ç»° å§è‚º çªƒ.
 	//
 	//int32 ParsedWaveNum = 0;
 	//int32 ParsedMobIndex = 0;
@@ -1383,15 +1383,15 @@ void AB2StageEventDirector::NotifySpawnPoolSingleMobDead(class ABladeIICharacter
 
 	//if (DirectingEvent == EStageEvent::ESEV_MobDying && DyingMob && WaveNum == ParsedWaveNum && MobObjIndex == ParsedMobIndex)
 	//{		
-	//	if (CanPlayShow()) // BeginShow ¿¡¼­µµ ÇÏ´Â °Ë»çÀÎµ¥ UIDoc ¼¼ÆÃÀ» ¿©±â¼­ ÇØ¾ß ÇØ¼­ ¹Ì¸® °Ë»ç.
+	//	if (CanPlayShow()) // BeginShow ä¿Šè¾‘æ¡£ çªç»° å…«è¤ç‰¢å• UIDoc æŠ€æ³¼é˜‘ å’¯æ‰è¾‘ ç§¦å…· ç§¦è¾‘ å›ºåºœ å…«è¤.
 	//	{
 	//		BII_CHECK(!DyingMob || DyingMob->IsValidObj());
 	//		SyncDataToUIDoc(DyingMob);
 	//		bDirectingEventConditionMet = true;
 
-	//		// BeginShow Ã³¸® µµÁß BeginSingleShow ¿¡¼­ GetPlayActor ¸¦ ÅëÇØ DyingMob À» °¡Á®¿À´Â »óÈ²ÀÌ ÀÖÀ» °ÍÀÎµ¥, 
-	//		// ¸¸ÀÏ BeginShow ¸¦ Áö¿¬½ÃÅ²´Ù°Å³ª ÇÏ¸é WaveMobSelectKeyword ¸¸ °¡Áö°í´Â ºÒ°¡´É ÇÒ °Í. MonsterSpawnPool ÂÊ¿¡¼­ ÀÌ Notify Á÷ÈÄ DyingMob À» ¸ñ·Ï¿¡¼­ Á¦°ÅÇÒ °ÍÀÌ¹Ç·Î.
-	//		// ±×·± °Ô ÇÊ¿äÇÒÁö ¸ô¶ó¼­ ¿©±â·Î ³Ñ¾î¿À´Â DyingMob À» WaveNum °ú MobObjIndex ¿Í ÇÔ²² Ä³½ÌÇØ µÎ¾ú´Ù°¡ ²¨³»¿Ã ¼ö ÀÖµµ·Ï ÇÔ..
+	//		// BeginShow è´¸åºœ æ¡£å BeginSingleShow ä¿Šè¾‘ GetPlayActor ç”« çƒ¹ç§¦ DyingMob é˜‘ å•Šå»‰å·ç»° æƒ‘ç‚”æ ä¹é˜‘ å·´ç‰¢å•, 
+	//		// çˆ¶è€ BeginShow ç”« ç˜¤æ¥·çŸ«æŒªä¿ƒèŠ­å”± çªæ WaveMobSelectKeyword çˆ¶ å•Šç˜¤ç»Šç»° é˜‚å•Šç“· ä¸” å·´. MonsterSpawnPool ç‡ä¿Šè¾‘ æ Notify æµé¥¶ DyingMob é˜‘ æ ¼åºŸä¿Šè¾‘ åŠ›èŠ­ä¸” å·´æéª¨è‚º.
+	//		// å¼Šç¹ éœ¸ é˜å¤¸ä¸”ç˜¤ éš”æ‰¼è¾‘ å’¯æ‰è‚º é€ç»¢å·ç»° DyingMob é˜‘ WaveNum è‹ MobObjIndex å®¢ çªƒè†Š æŸæ•™ç§¦ æ»´èŒä¿ƒå•Š æ³¢éƒ´æ£µ è ä¹æ¡£åºŸ çªƒ..
 	//		if (NeedDelayedDyingMobCache())
 	//		{
 	//			DelayedDyingMobCache.SetDyingMobCache(DyingMob, WaveNum, MobObjIndex);
@@ -1412,19 +1412,19 @@ void AB2StageEventDirector::NotifySpawnPoolSingleMobPhaseChange(class ABladeIICh
 
 	//if (DirectingEvent == EStageEvent::ESEV_MobPhase && WaveNum == ParsedWaveNum && MobObjIndex == ParsedMobIndex)
 	//{
-	//	if (CanPlayShow()) // BeginShow ¿¡¼­µµ ÇÏ´Â °Ë»çÀÎµ¥ UIDoc ¼¼ÆÃÀ» ¿©±â¼­ ÇØ¾ß ÇØ¼­ ¹Ì¸® °Ë»ç.
+	//	if (CanPlayShow()) // BeginShow ä¿Šè¾‘æ¡£ çªç»° å…«è¤ç‰¢å• UIDoc æŠ€æ³¼é˜‘ å’¯æ‰è¾‘ ç§¦å…· ç§¦è¾‘ å›ºåºœ å…«è¤.
 	//	{			
 	//		SyncDataToUIDoc(ChangedMob);
 	//		bDirectingEventConditionMet = true;
 	//		BeginShowOrBeginCountDown();
 
-	//		//ChangedMobÀÇ Stun/Freeze »óÅÂ ÇØÁ¦
+	//		//ChangedMobç‹¼ Stun/Freeze æƒ‘æ€• ç§¦åŠ›
 	//		ChangedMob->ClearDebuffs();
 	//	}
 	//}
 
-	//// ¿¬Ãâ µµÁß PlayActor Áß ÇÏ³ª°¡ (Re-spawn À» µ¿¹İÇÏ´Â) Phase º¯È­¸¦ °ÅÄ¡´Â »óÈ². °¡´ÉÇÑÁö´Â ¸ğ¸£°ÚÁö¸¸ ´ëºñ´Â ÇØ µÑ ÇÊ¿ä°¡ ÀÖ°Ú´Ù.
-	//// ÀÌ DestroyedPrevRef ´Â valid ÇÏÁö ¾ÊÀ» °ÍÀÌ´Ù. PlayActor Áß¿¡ ÀÌ°É µé°í ÀÖ´Ù¸é ChangedMob À¸·Î ¹Ù²ãÁØ´Ù.
+	//// æ¥·å… æ¡£å PlayActor å çªå”±å•Š (Re-spawn é˜‘ æ‚¼é¦†çªç»°) Phase å‡½æ‹³ç”« èŠ­æ‘¹ç»° æƒ‘ç‚”. å•Šç“·èŒ„ç˜¤ç»° è‘›ç¦æ‘†ç˜¤çˆ¶ æªåšç»° ç§¦ ç¬› é˜å¤¸å•Š ä¹æ‘†ä¿ƒ.
+	//// æ DestroyedPrevRef ç»° valid çªç˜¤ è‡¼é˜‘ å·´æä¿ƒ. PlayActor åä¿Š æå§ ç”¸ç»Š ä¹ä¿ƒæ ChangedMob æ è‚º å®˜å±‚éœ–ä¿ƒ.
 	//if (DestroyedPrevRef)
 	//{
 	//	for (int32 EI = 0; EI < ShowStates.Num(); ++EI)
@@ -1440,7 +1440,7 @@ void AB2StageEventDirector::NotifySpawnPoolSingleMobPhaseChange(class ABladeIICh
 
 void AB2StageEventDirector::NotifyForgetACharacter(class ABladeIICharacter* CharacterAboutToBeDestroyed)
 {
-	// CharacterAboutToBeDestroyed ´Â ½Ã½ºÅÛ¿¡¼­ Á¦°ÅµÇ±â Á÷ÀüÀÓ. È¤½Ã¶óµµ ¿©±â¿¡ ·¹ÆÛ·±½º°¡ ÀÖ´Ù¸é ³¯¸°´Ù.
+	// CharacterAboutToBeDestroyed ç»° çŸ«èƒ¶è¢ä¿Šè¾‘ åŠ›èŠ­ç™»æ‰ æµå‚ˆçƒ™. è¶£çŸ«æ‰¼æ¡£ å’¯æ‰ä¿Š é¥­æ¬ºç¹èƒ¶å•Š ä¹ä¿ƒæ æœèµ´ä¿ƒ.
 	//BII_CHECK(CharacterAboutToBeDestroyed && CharacterAboutToBeDestroyed->IsValidObj())
 	//if (bCurrentlyPlaying)
 	//{
@@ -1451,19 +1451,19 @@ void AB2StageEventDirector::NotifyForgetACharacter(class ABladeIICharacter* Char
 	//			CurrState.SetPlayActor(NULL);
 	//		}
 	//	}
-	//	DelayedDyingMobCache.ForgetIfMatch(CharacterAboutToBeDestroyed); // ÀÌÂÊµµ µé°í ÀÖÀ» ¼ö ÀÖ´Ù.
+	//	DelayedDyingMobCache.ForgetIfMatch(CharacterAboutToBeDestroyed); // æç‡æ¡£ ç”¸ç»Š ä¹é˜‘ è ä¹ä¿ƒ.
 	//}
 }
 
 void AB2StageEventDirector::NotifyStageEventUIOpenComplete(FName InOpenedUI)
 {
-	if (InOpenedUI != NAME_None && InOpenedUI == MyRelevantUIName) // MyRelevantUIName Àº ½ÇÁ¦ »ç¿ë½Ã¿¡³ª ¼¼ÆÃµÉ °Í.
+	if (InOpenedUI != NAME_None && InOpenedUI == MyRelevantUIName) // MyRelevantUIName ç¯® è§’åŠ› è¤ä¾©çŸ«ä¿Šå”± æŠ€æ³¼çª å·´.
 	{
 		bRelevantUIOpenComplete = true;
 
-		// bRelevantUIOpenComplete Á¶°ÇÀ¸·Î ÀÎÇØ ³¡³»Áö ¸øÇÑ °ÍÀÌ ÀÖ´Ù¸é ´Ù½Ã °Ë»ç.
+		// bRelevantUIOpenComplete ç‚¼æ‰’æ è‚º ç‰¢ç§¦ åœºéƒ´ç˜¤ ç»™èŒ„ å·´æ ä¹ä¿ƒæ ä¿ƒçŸ« å…«è¤.
 		CheckShowEndCountDown();
-		CheckShowEndCountDown_ControlledMatinee(bStandbyAtTheEnd); // bStandbyAtTheEnd ¸é StandByNoti ¶ó°í ¹ÏÀ» ¼ö ¹Û¿¡..?
+		CheckShowEndCountDown_ControlledMatinee(bStandbyAtTheEnd); // bStandbyAtTheEnd æ StandByNoti æ‰¼ç»Š ç“œé˜‘ è è§‚ä¿Š..?
 	}
 }
 
@@ -1480,12 +1480,12 @@ void AB2StageEventDirector::AdjustSelfPlacementToPlayActor(class ABladeIICharact
 {
 	if (InPlayActor)
 	{
-		// PlayActorRelativeTransform Àº ³ª¸¦ ±âÁØÀ¸·Î ÇÑ ÇÃ·¹ÀÌ¾îÀÇ Relative ÀÎµ¥, ±× ¹İ´ë°¡ ÇÊ¿äÇÏ¹Ç·Î inverse
+		// PlayActorRelativeTransform ç¯® å”±ç”« æ‰éœ–æ è‚º èŒ„ æ•²é¥­æç»¢ç‹¼ Relative ç‰¢å•, å¼Š é¦†æªå•Š é˜å¤¸çªéª¨è‚º inverse
 		const FTransform InvRelativeTransform = FTransform(InPlayActorRelativeRotation, InPlayActorRelativeLocation).Inverse();
 		const FTransform AdjustTransform = InvRelativeTransform * InPlayActor->GetTransform();
 
 		this->SetActorLocation(AdjustTransform.GetTranslation());
-		// °¡²û Position ¸¸ µû¶ó°¡°í ½ÍÀ» ¶§°¡ ÀÖÀ½.
+		// å•Šé˜ Position çˆ¶ è¶æ‰¼å•Šç»Š é…µé˜‘ é”­å•Š ä¹æ¾œ.
 		if (bInPositionOnly == false)
 		{
 			this->SetActorRotation(AdjustTransform.GetRotation().Rotator());
@@ -1506,7 +1506,7 @@ bool AB2StageEventDirector::BeginSingleShow(int32 PlayActorIdx)
 
 	//	if (ThisState.bShowStarted == false)
 	//	{
-	//		// ¿ì¼±, Type ¿¡ µû¶ó Ä³¸¯ÅÍ¸¦ °¡Á®¿È
+	//		// å¿«æ€¥, Type ä¿Š è¶æ‰¼ æŸè…ç£ç”« å•Šå»‰å’³
 	//		ThisState.SetPlayActor(GetRelevantPlayActor(ThisSetting.PlayActorType, ThisSetting.WaveMobSelectKeyword, ThisSetting.PlayActorIndex));
 	//		ABladeIICharacter* ThisPlayActor = ThisState.GetPlayActor(this);
 	//		ABladeIIPlayer* CastedPlayActorPC = Cast<ABladeIIPlayer>(ThisPlayActor);
@@ -1522,82 +1522,82 @@ bool AB2StageEventDirector::BeginSingleShow(int32 PlayActorIdx)
 	//				break;
 	//			}
 	//			
-	//			// BeginShow ¿¡¼­ LocalPC¿¡ ´ëÇØ¼­´Â ÇÏ´Âµ¥ ÅÂ±×Ä³¸¯ÅÍ³ª ³×Æ®Ÿp ÇÃ·¹ÀÌ¾î°¡ µé¾î°¥ ¼öµµ ÀÖÀ¸´Ï ¿©±â¼­µµ ÇÑ¹ø.
+	//			// BeginShow ä¿Šè¾‘ LocalPCä¿Š æªç§¦è¾‘ç»° çªç»°å• æ€•å¼ŠæŸè…ç£å”± åŒ™é£˜ç„¢ æ•²é¥­æç»¢å•Š ç”¸ç»¢å“ èæ¡£ ä¹æ èª å’¯æ‰è¾‘æ¡£ èŒ„é”….
 	//			CastedPlayActorPC->SetupLODInfoForCinematic();
 	//		}
 
 	//		if (ThisPlayActor && ThisPlayActor->IsValidObj())
 	//		{
-	//			// ÀÌ°Ô ¼¼ÆÃµÇ¸é Dying ÀÎ °æ¿ì¶óµµ ½ÇÁ¦ dead anim °ú destroy Ã³¸®°¡ Áö¿¬µÉ °Í. ±×¸®°í ±×·± °æ¿ì´Â ÀÌ ¿¬ÃâÀÌ ³¡³­ ÈÄ¿¡ »óÅÂ º¹±¸ ½Ã ²¨ ¹ö¸®µçÁö Á¦°ÅÇÏµçÁö ÇÏ°Ô µÉ °Í (RestorePlayActorForCtrlMatineeEnd)
+	//			// æéœ¸ æŠ€æ³¼ç™»æ Dying ç‰¢ ç‰ˆå¿«æ‰¼æ¡£ è§’åŠ› dead anim è‹ destroy è´¸åºœå•Š ç˜¤æ¥·çª å·´. å¼Šåºœç»Š å¼Šç¹ ç‰ˆå¿«ç»° æ æ¥·å…æ åœºæŠ„ é¥¶ä¿Š æƒ‘æ€• æ±—å¤‡ çŸ« æ³¢ æ»šåºœç”µç˜¤ åŠ›èŠ­çªç”µç˜¤ çªéœ¸ çª å·´ (RestorePlayActorForCtrlMatineeEnd)
 	//			ThisPlayActor->SetPlayingDirectedStageEvent(ThisSetting.IsDirectedMode()); 
 
-	//			// Spawn ½Ã ¾à°£ ¶ß°Ô µÇ¹Ç·Î Snap ºÎÅÍ ¼öÇàÇÏ¸ç ¸¸ÀÏ ½ÇÁ¦·Î ¶° ÀÖ´Â Àå¸é µîÀÌ ÇÊ¿äÇÏ´Ù¸é »ı°¢ÇØ º¸ÀÚ..
+	//			// Spawn çŸ« è·åŸƒ å“†éœ¸ ç™»éª¨è‚º Snap ä½•ç£ èé’çªå“¥ çˆ¶è€ è§’åŠ›è‚º æ ‹ ä¹ç»° å˜æ æ®¿æ é˜å¤¸çªä¿ƒæ ç§¯é˜¿ç§¦ ç„Šç£Š..
 	//			SnapBladeIICharacterToGround(ThisPlayActor);
 
-	//			// ¿É¼Ç¿¡ µû¶ó ¿Ï·á ÈÄ º¹¿øÇÒ ¼ö ÀÖµµ·Ï À§Ä¡/È¸Àü°ªÀ» ¹é¾÷ÇØ µĞ´Ù.
+	//			// å¯è®°ä¿Š è¶æ‰¼ è‚¯ä¸° é¥¶ æ±—ç›”ä¸” è ä¹æ¡£åºŸ å›°æ‘¹/é›€å‚ˆè”¼é˜‘ å½’è¯€ç§¦ æ•Œä¿ƒ.
 	//			ThisState.BackupWorldLocation = ThisPlayActor->GetActorLocation();
 	//			ThisState.BackupWorldRotation = ThisPlayActor->GetActorRotation();
 
 	//			if (OverallMode == EStageEventDirectorOverallMode::ESEDOM_ExportedCamera || OverallMode == EStageEventDirectorOverallMode::ESEDOM_ManualCamera)
 	//			{
-	//				// Ä³¸¯ÅÍÀÇ Location, Rotation Á÷Á¢ ¼¼ÆÃ
+	//				// æŸè…ç£ç‹¼ Location, Rotation æµç«‹ æŠ€æ³¼
 	//				if (ThisSetting.PlayActorPlacement == EPlayActorPlacement::EPAP_BringPlayActor)
 	//				{
-	//					// EPAP_BringPlayActor ÀÌ¸é ExportedCamera µç, ManualCamera µç °¡¸®Áö ¾Ê°í À§Ä¡ Á÷Á¢ ¼¼ÆÃ
+	//					// EPAP_BringPlayActor ææ ExportedCamera ç”µ, ManualCamera ç”µ å•Šåºœç˜¤ è‡¼ç»Š å›°æ‘¹ æµç«‹ æŠ€æ³¼
 	//					const FTransform RelativeTransform(ThisSetting.ManualRelativeRotation, ThisSetting.ManualRelativeLocation);
 	//					const FTransform ParentToWorld = this->GetTransform();
 	//					const FTransform BroughtTransform = RelativeTransform * ParentToWorld;
 
-	//					ThisPlayActor->SetActorLocation(BroughtTransform.GetTranslation()); // Transform À» »ç¿ëÇÑ °Ç ÈÑÀÌÅ©¿´´Ù.
+	//					ThisPlayActor->SetActorLocation(BroughtTransform.GetTranslation()); // Transform é˜‘ è¤ä¾©èŒ„ æ‰’ å¦Šæå†œçœ‹ä¿ƒ.
 	//					ThisPlayActor->SetActorRotation(BroughtTransform.GetRotation().Rotator());
 
-	//					SnapBladeIICharacterToGround(ThisPlayActor); // À½.. °á±¹ snap Àº ÇØ Áà¾ß ÇÏ·Á³ª..
+	//					SnapBladeIICharacterToGround(ThisPlayActor); // æ¾œ.. æ¬æƒ« snap ç¯® ç§¦ æ‹å…· çªå¦¨å”±..
 	//				}
 	//				else if (OverallMode == EStageEventDirectorOverallMode::ESEDOM_ManualCamera)
 	//				{
 	//					if (ThisSetting.PlayActorPlacement == EPlayActorPlacement::EPAP_AdjustToPlayActor || ThisSetting.PlayActorPlacement == EPlayActorPlacement::EPAP_ContinuouslyAdjustToPlayActor)
 	//					{
-	//						// ManualCamera ¸ğµå¿¡¼­ÀÇ AdjustToPlayActor ´Â ¾×ÅÍ ÀüÃ¼¸¦ ¾Æ½Î¸® ÇÃ·¹ÀÌ¾î Áß½ÉÀ¸·Î À§Ä¡½ÃÅ²´Ù. 
-	//						// ¹Ù·Î ¾Æ·¡ ExportedCamera ¿¡¼­ÀÇ AdjustToPlayActor ´Â CameraAnimApplyCamIndex ¿¡ µû¶ó »ç¿ëµÇ´Â ÄÄÆ÷³ÍÆ® ÇÏ³ª¸¸ Á¶Á¤.
-	//						// ContinuouslyAdjustToPlayActor ¿¡¼­´Â Tick ¿¡¼­µµ ÀÌ°É Ã³¸®.
+	//						// ManualCamera è‘›é›ä¿Šè¾‘ç‹¼ AdjustToPlayActor ç»° å’€ç£ å‚ˆçœ‰ç”« é…’è½¿åºœ æ•²é¥­æç»¢ åç¼´æ è‚º å›°æ‘¹çŸ«æŒªä¿ƒ. 
+	//						// å®˜è‚º é…’è´° ExportedCamera ä¿Šè¾‘ç‹¼ AdjustToPlayActor ç»° CameraAnimApplyCamIndex ä¿Š è¶æ‰¼ è¤ä¾©ç™»ç»° å“ªå™¨æƒ©é£˜ çªå”±çˆ¶ ç‚¼æ²¥.
+	//						// ContinuouslyAdjustToPlayActor ä¿Šè¾‘ç»° Tick ä¿Šè¾‘æ¡£ æå§ è´¸åºœ.
 	//						AdjustSelfPlacementToPlayActor(ThisPlayActor, ThisSetting.ManualRelativeLocation, ThisSetting.ManualRelativeRotation);
 	//					}
 	//				}
 	//				else if (OverallMode == EStageEventDirectorOverallMode::ESEDOM_ExportedCamera)
 	//				{
-	//					// ¾Æ·¡ »ç¿ëÇÏ´Â MoveKeyFrames µéÀº ÃßÈÄ È®Àå °¡´É¼ºÀ» À§ÇØ KeyFrame À¸·Î ÇßÀ¸¸ç ÀÏ´ÜÀº ±×³É ÃÊ±â À§Ä¡ °¡Á®¿À±â À§ÇÔ.
+	//					// é…’è´° è¤ä¾©çªç»° MoveKeyFrames ç”¸ç¯® çœ é¥¶ çŠ¬å˜ å•Šç“·å·±é˜‘ å›°ç§¦ KeyFrame æ è‚º æ²æ å“¥ è€çªœç¯® å¼Šæˆ æª¬æ‰ å›°æ‘¹ å•Šå»‰å·æ‰ å›°çªƒ.
 	//					if (IsExportedEventSceneValid(ThisSetting.ExportedEventScene))
 	//					{
 	//						if (ThisSetting.PlayActorPlacement != EPlayActorPlacement::EPAP_AdjustToPlayActor && ThisSetting.PlayActorPlacement != EPlayActorPlacement::EPAP_ContinuouslyAdjustToPlayActor)
 	//						{
-	//							// PlayActor ¸¦ Ä«¸Ş¶ó ±âÁØÀ¸·Î À§Ä¡½ÃÅ²´Ù.
+	//							// PlayActor ç”« å¢¨çš‹æ‰¼ æ‰éœ–æ è‚º å›°æ‘¹çŸ«æŒªä¿ƒ.
 	//							FSimpleEventSceneMoveKeyData& FirstKeyData = ThisSetting.ExportedEventScene->SimpleMoveKeyFrames[0];
 	//							SetSESPlayActorMovementFromCamera(FirstKeyData, ThisPlayActor);
-	//							// Ä«¸Ş¶ó°¡ ¶° ÀÖÀ» ¼ö ÀÖÀ¸¹Ç·Î ´Ù½Ã Snap.. ¤Ñ.¤Ñ
+	//							// å¢¨çš‹æ‰¼å•Š æ ‹ ä¹é˜‘ è ä¹æ éª¨è‚º ä¿ƒçŸ« Snap.. ã±.ã±
 	//							SnapBladeIICharacterToGround(ThisPlayActor);
 	//						}
 
-	//						// AdjustToPlayActor ÀÎ °æ¿ì Ä«¸Ş¶ó¸¦ PlayActor ±âÁØÀ¸·Î À§Ä¡½ÃÅ°¸ç
-	//						// ±×°Ô ¾Æ´Ï´õ¶óµµ ³ôÀÌ ¸ÂÃß±â Â÷¿ø¿¡¼­ Ä«¸Ş¶ó À§Ä¡ Á¶Á¤. ¾Æ´Ñ °æ¿ì´Â ÀÌ¹Ì ÇÃ·¹ÀÌ¾î°¡ Ä«¸Ş¶ó Áß½ÉÀ¸·Î À§Ä¡ÇßÀ» °Í.
+	//						// AdjustToPlayActor ç‰¢ ç‰ˆå¿« å¢¨çš‹æ‰¼ç”« PlayActor æ‰éœ–æ è‚º å›°æ‘¹çŸ«è™å“¥
+	//						// å¼Šéœ¸ é…’èªæ­¹æ‰¼æ¡£ è‡­æ å˜çœ æ‰ ç’ç›”ä¿Šè¾‘ å¢¨çš‹æ‰¼ å›°æ‘¹ ç‚¼æ²¥. é…’å›± ç‰ˆå¿«ç»° æå›º æ•²é¥­æç»¢å•Š å¢¨çš‹æ‰¼ åç¼´æ è‚º å›°æ‘¹æ²é˜‘ å·´.
 	//						SetSESCameraMovementFromPlayActor(ThisSetting.ExportedEventScene->InvSimpleMoveKeyFrames[0], ThisPlayActor);
 	//					}
 	//				}
 	//			}
 	//			else if (OverallMode == EStageEventDirectorOverallMode::ESEDOM_ControlledMatinee)
 	//			{
-	//				// ¿©±â¼± ThePlayActor ¸¦ ¼Â¾÷ÇÏ´Â ´ë½Å ±âÁ¸¿¡ ¼³Ä¡ÇØµĞ ¸¶Æ¼´Ï ±×·ì actor ¸¦ PlayActor ¿Í ºñ½ÁÇÏ°Ô ¼Â¾÷ÇÒ °ÍÀÓ. ±æ¾îÁö´Ï µû·Î »«´Ù.
+	//				// å’¯æ‰æ€¥ ThePlayActor ç”« æ‚¸è¯€çªç»° æªè„š æ‰ç²®ä¿Š æ±²æ‘¹ç§¦æ•Œ ä»˜èèª å¼Šç¼ actor ç”« PlayActor å®¢ åšæ…çªéœ¸ æ‚¸è¯€ä¸” å·´çƒ™. è¾¨ç»¢ç˜¤èª è¶è‚º çŒ¾ä¿ƒ.
 	//				bool bSetupMatineeGroupRes = SetupSingleShowMatineeGroup(ThisSetting, ThisState);
-	//				if (ThisSetting.IsDirectedMode() && !bSetupMatineeGroupRes) // InGame ¸ğµå¸é ¸¶Æ¼´Ï Æ®·¢ÀÌ ÇÊ¿ä¾ø´Â °Å¶ó SetupSingleShowMatineeGroup ÀÌ ½ÇÆĞÇÒ ¼ö ÀÖ´Âµ¥, ±×·¸´Ù°í ¿©±â¼­ ½ÇÆĞÃ³¸®¸¦ ÇÒ °Ç ¾øÁö.
+	//				if (ThisSetting.IsDirectedMode() && !bSetupMatineeGroupRes) // InGame è‘›é›æ ä»˜èèª é£˜å‘æ é˜å¤¸ç»ç»° èŠ­æ‰¼ SetupSingleShowMatineeGroup æ è§’è©ä¸” è ä¹ç»°å•, å¼ŠçŠ¯ä¿ƒç»Š å’¯æ‰è¾‘ è§’è©è´¸åºœç”« ä¸” æ‰’ ç»ç˜¤.
 	//				{
 	//					return false;
 	//				}
 	//			}
 
-	//			// Input ÀÌ °¡´ÉÇÑ »óÅÂ¿¡¼­ Player Character ´Â °ÔÀÓ »óÅÂ¸¦ ±×´ë·Î °¡Á®°¡¾ß ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ ³ª¿ÀµçÁö ÇÏ°ÚÁö ³¥³¥
+	//			// Input æ å•Šç“·èŒ„ æƒ‘æ€•ä¿Šè¾‘ Player Character ç»° éœ¸çƒ™ æƒ‘æ€•ç”« å¼Šæªè‚º å•Šå»‰å•Šå…· å±€èªçš‹æè®°æ å”±å·ç”µç˜¤ çªæ‘†ç˜¤ å¿å¿
 	//			if (bDisableInput == true || (ThisPlayActor != GetB2LocalPlayerChar() && ThisPlayActor != GetB2MatchOpponent()))
 	//			{
 	//				if (ThisSetting.IsDirectedMode())
-	//				{// StageEventShowState ¸¦ ¼¼ÆÃÇÏ´Âµ¥ ÀÌ°Ç ÀÌÀü ExportedCamera ¶û ManualCamera ¿¡¼­ »ç¿ëÇÏ´ø °Å. AnimMontage ¸¦ ÇÃ·¹ÀÌ ÇÏ¸é¼­ ÀüÅõ¸¦ ¸·´Â ¿ªÇÒµµ ÇßÀ¸³ª Áö±İÀº °ÅÀÇ state Ç¥½Ã ¼öÁØÀ¸·Î Á¦°ÅµÉ ¼ö ÀÖÀ½.
+	//				{// StageEventShowState ç”« æŠ€æ³¼çªç»°å• ææ‰’ æå‚ˆ ExportedCamera å°” ManualCamera ä¿Šè¾‘ è¤ä¾©çªå¸¦ èŠ­. AnimMontage ç”« æ•²é¥­æ çªæè¾‘ å‚ˆæ§ç”« é˜œç»° å¼€ä¸”æ¡£ æ²æ å”± ç˜¤é™›ç¯® èŠ­ç‹¼ state é’çŸ« èéœ–æ è‚º åŠ›èŠ­çª è ä¹æ¾œ.
 	//					EStageEventShowState FinalSES =
 	//						(ThisSetting.StageEventStateOverride == EStageEventShowState::ESES_None || OverallMode == EStageEventDirectorOverallMode::ESEDOM_ControlledMatinee) ?
 	//						GetDefaultDesiredPlayActorSESState(DirectingEvent, ThisSetting.PlayActorType) : ThisSetting.StageEventStateOverride;
@@ -1605,7 +1605,7 @@ bool AB2StageEventDirector::BeginSingleShow(int32 PlayActorIdx)
 	//				}
 	//				if (ThisSetting.PlayActorStateMode != EPlayActorStateMode::EPASM_MaintainInGame)
 	//				{
-	//					ThisPlayActor->PreventMovementByStageEvent(); // ¼ûÀº ¿ÍÁß, È¤Àº ¿¬Ãâ µµÁß¿¡ spawn µÇ¾ú´õ¶óµµ ÇÃ·¹ÀÌ¾î ÂÑ¾Æ¿ÀÁö ¾Ê°Ô. PreventMovement ÇÏ¸é °ø°İµµ ¸øÇÔ. °³²Ü
+	//					ThisPlayActor->PreventMovementByStageEvent(); // è§ç¯® å®¢å, è¶£ç¯® æ¥·å… æ¡£åä¿Š spawn ç™»èŒæ­¹æ‰¼æ¡£ æ•²é¥­æç»¢ åµé…’å·ç˜¤ è‡¼éœ¸. PreventMovement çªæ å‚æ‹œæ¡£ ç»™çªƒ. ä¿ºæ›¹
 
 	//					ABladeIIPlayer* ThisPlayActorCastToPlayer = Cast<ABladeIIPlayer>(ThisPlayActor);
 
@@ -1633,62 +1633,62 @@ bool AB2StageEventDirector::SetupSingleShowMatineeGroup(FPlayActorShowSettings& 
 	ABladeIICharacter* ThisPlayActor = InStateForThis.GetPlayActor(this);
 	//if (MatineeActor && MatineeActor->MatineeData && ThisPlayActor)
 	//{
-	//	// ¸¶Æ¼´Ï ¸ğµå¿¡¼­ AdjustToPlayActor µµ »ç¿ë °¡´ÉÇÏµµ·Ï »ó´ëÁÂÇ¥ ±â´ÉÀ» Á» È°¿ë. ¼³·É ¸¶Æ¼´Ï¿¡¼­ Ã£Áö ¸øÇÑ Æ®·¢ÀÌ¶óµµ ±âÁØÀ¸·Î »ïÀ» ¼ö´Â ÀÖµµ·Ï ÇÔ. ±×·± °æ¿ì´Â ´ëÃ¼·Î PlayActorStateMode ¸¦ InGame À¸·Î ³õÀ» µí.
+	//	// ä»˜èèª è‘›é›ä¿Šè¾‘ AdjustToPlayActor æ¡£ è¤ä¾© å•Šç“·çªæ¡£åºŸ æƒ‘æªè°…é’ æ‰ç“·é˜‘ ç²± åŠä¾©. æ±²é£ ä»˜èèªä¿Šè¾‘ èŒ«ç˜¤ ç»™èŒ„ é£˜å‘ææ‰¼æ¡£ æ‰éœ–æ è‚º ä¼™é˜‘ èç»° ä¹æ¡£åºŸ çªƒ. å¼Šç¹ ç‰ˆå¿«ç»° æªçœ‰è‚º PlayActorStateMode ç”« InGame æ è‚º åˆé˜‘ æ·€.
 	//	if (InSettingForThis.IsOneOfAdjustToPlayActorPlacement())
 	//	{
 	//		MatineeActor->SetDynamicRelativeMoveTrackBaseActor(ThisPlayActor,
-	//			FVector(0.0f, 0.0f, -1.0f * ZOffsetFromMatchingSKActorToBIICharacter(ThisPlayActor)), // ¿©±âµµ ¿¡µğÅÍ ºäÆ÷Æ®¿¡¼± SkeletalMeshActor ·Î º¸°ÚÁö¸¸ ÀÎ°ÔÀÓ¿¡¼± BladeIICharacter ÀÌ´Ï ¿ÀÇÁ¼Â ¸ÂÃçÁÜ.
-	//			(InSettingForThis.PlayActorPlacement == EPlayActorPlacement::EPAP_AdjustToPlayActorLocationOnly)); // LocationOnly ¿É¼Ç µÎ¹øÂ° ÀÎÀÚ·Î..
+	//			FVector(0.0f, 0.0f, -1.0f * ZOffsetFromMatchingSKActorToBIICharacter(ThisPlayActor)), // å’¯æ‰æ¡£ ä¿Šå¼ç£ è½°å™¨é£˜ä¿Šæ€¥ SkeletalMeshActor è‚º ç„Šæ‘†ç˜¤çˆ¶ ç‰¢éœ¸çƒ™ä¿Šæ€¥ BladeIICharacter æèª å·æ©‡æ‚¸ å˜è‹—æ·‹.
+	//			(InSettingForThis.PlayActorPlacement == EPlayActorPlacement::EPAP_AdjustToPlayActorLocationOnly)); // LocationOnly å¯è®° æ»´é”…æ³ ç‰¢ç£Šè‚º..
 	//	}
 
-	//	// ¼³Á¤ ¹× ÇÃ·¹ÀÌ »óÈ²¿¡ µû¸¥ ÃÖÁ¾ÀûÀÎ InterpGroup ÀÌ¸§.
+	//	// æ±²æ²¥ æ£º æ•²é¥­æ æƒ‘ç‚”ä¿Š è¶å¼— å¼¥è¾†åˆ©ç‰¢ InterpGroup ææŠš.
 	//	const FName FinalMatchingGroupName(*GetFinalMatchingInterpGroupName(ThisPlayActor, InSettingForThis.MatchingInterpGroupName.ToString(), false));
 
 	//	ASkeletalMeshActor* FoundGroupSKActor = Cast<ASkeletalMeshActor>(GetGroupActorOfGroupName(FinalMatchingGroupName));
 
 	//	if (FoundGroupSKActor)
 	//	{
-	//		// ¸¶Æ¼´Ï¿¡ »ç¿ëµÉ ½ºÄÌ¿¢ÅÍµéÀº µ¥Ä®¾È¸Ô°Ô ÇØÁØ´Ù.
+	//		// ä»˜èèªä¿Š è¤ä¾©çª èƒ¶å¥¶ç«£ç£ç”¸ç¯® å•æ¼ æ•‘å†ˆéœ¸ ç§¦éœ–ä¿ƒ.
 	//		UPrimitiveComponent* pPrimitiveComponent = Cast<UPrimitiveComponent>(FoundGroupSKActor->GetRootComponent());
 	//		pPrimitiveComponent->bReceivesDecals = false;
 
 	//		InStateForThis.CtrlMatineePuppet = FoundGroupSKActor;
 
-	//		// CtrlMatineePuppet À» PlayActor ¿Í ¸¶Âù°¡Áö·Î ºĞÀå
-	//		// Àå½Å±¸°¡ Ãß°¡µÇ°Å³ª ÇØ¼­ Ãß°¡·Î ¿Ü°üÀ» ¸ÂÃçÁÙ ÇÊ¿ä°¡ ÀÖÀ» ¶§¿¡´Â ¾Æ·¡ SetupControlledMatineePuppet ÂÊ¿¡ ÀÛ¾÷À» ÇÒ °Í.
+	//		// CtrlMatineePuppet é˜‘ PlayActor å®¢ ä»˜è›®å•Šç˜¤è‚º ç›’å˜
+	//		// å˜è„šå¤‡å•Š çœ å•Šç™»èŠ­å”± ç§¦è¾‘ çœ å•Šè‚º å¯‡åŒ…é˜‘ å˜è‹—ä¸´ é˜å¤¸å•Š ä¹é˜‘ é”­ä¿Šç»° é…’è´° SetupControlledMatineePuppet ç‡ä¿Š ç´¯è¯€é˜‘ ä¸” å·´.
 	//		ThisPlayActor->SetupControlledMatineePuppet(InStateForThis.CtrlMatineePuppet, 
-	//			// bHidePlayerPointLight ¿¡ µû¶ó puppet ÂÊ¿¡ ¸¶Âù°¡Áö PointLight ¸¦ ¼Â¾÷ÇÏ°Ô ÇÔ. ¿É¼Ç¿¡ µû¶ó ·ÎÄÃ ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ·Î ÇÑÁ¤µÇ´Âµ¥ ¸ğ¹ÙÀÏ dynamic point light °³¼ö Á¦ÇÑÀÌ ÀÖ±â ¶§¹®¿¡ ÁÖÀÇÇÏ´Â °Í.
+	//			// bHidePlayerPointLight ä¿Š è¶æ‰¼ puppet ç‡ä¿Š ä»˜è›®å•Šç˜¤ PointLight ç”« æ‚¸è¯€çªéœ¸ çªƒ. å¯è®°ä¿Š è¶æ‰¼ è‚ºæ‹¿ æ•²é¥­æç»¢ æŸè…ç£è‚º èŒ„æ²¥ç™»ç»°å• è‘›å®˜è€ dynamic point light ä¿ºè åŠ›èŒ„æ ä¹æ‰ é”­å·©ä¿Š æ—ç‹¼çªç»° å·´.
 	//			(!bHidePlayerPointLight && 					
 	//				(InStateForThis.IsForLocalPlayerCharacter() || (bAllowOtherPlayerPointLight && Cast<ABladeIIPlayer>(InStateForThis.GetPlayActor(this))))
 	//				)
 	//		); 
 
 	//		if (InSettingForThis.ActorScaleOverride > 0.0f)
-	//		{ // SetupControlledMatineePuppet ¿¡¼­ ThisPlayActor scale À» Àû¿ëÇßÀ» °Çµ¥ µû·Î Á÷Á¢ ÁöÁ¤ÇÏ°í ½ÍÀ» °æ¿ì. ÀÏ´Ü uniform scale ·Î´Ù°¡.
+	//		{ // SetupControlledMatineePuppet ä¿Šè¾‘ ThisPlayActor scale é˜‘ åˆ©ä¾©æ²é˜‘ æ‰’å• è¶è‚º æµç«‹ ç˜¤æ²¥çªç»Š é…µé˜‘ ç‰ˆå¿«. è€çªœ uniform scale è‚ºä¿ƒå•Š.
 	//			InStateForThis.CtrlMatineePuppet->GetSkeletalMeshComponent()->SetWorldScale3D(FVector(InSettingForThis.ActorScaleOverride, InSettingForThis.ActorScaleOverride, InSettingForThis.ActorScaleOverride));
 	//		}
 
-	//		// SetupControlledMatineePuppet ¿¡¼­ °¢ component µéÀÇ visibility »óÅÂ¸¦ Ã¼Å©ÇÒ ¼ö ÀÖÀ¸¹Ç·Î SetVisibility ³ª SetActorHiddenInGame µîÀº ±× ÀÌÈÄ¿¡ Ã³¸®.
+	//		// SetupControlledMatineePuppet ä¿Šè¾‘ é˜¿ component ç”¸ç‹¼ visibility æƒ‘æ€•ç”« çœ‰å†œä¸” è ä¹æ éª¨è‚º SetVisibility å”± SetActorHiddenInGame æ®¿ç¯® å¼Š æé¥¶ä¿Š è´¸åºœ.
 
-	//		if (InSettingForThis.IsDirectedMode()) // InGameStateMode ¸é ¸¶Æ¼´Ï anim track »ç¿ëÇÏÁö ¾Ê´Â °Í. ±Ùµ¥ ±×·± °æ¿ì¿¡ ¸¶Æ¼´Ï track À» ÁØºñÇÒ ÇÊ¿ä°¡ ÀÖ³ª..?
+	//		if (InSettingForThis.IsDirectedMode()) // InGameStateMode æ ä»˜èèª anim track è¤ä¾©çªç˜¤ è‡¼ç»° å·´. è¾Ÿå• å¼Šç¹ ç‰ˆå¿«ä¿Š ä»˜èèª track é˜‘ éœ–åšä¸” é˜å¤¸å•Š ä¹å”±..?
 	//		{
-	//			// ±âº»ÀûÀ¸·Î ¼û°Ü³õ¾Ò´Ù°í °¡Á¤ÇÏ°í.. Àá±ñ ÄÑ ³ù´Ù°¡ Á¾·á ÈÄ ´Ù½Ã ¼û°Ü³õÀ½. ÀÌ°É·Î µî·ÏÇÑ °Ô ¾Æ´Ô Visibility Æ®·¢À¸·Î ÇØ¾ß ÇÒ µí.
+	//			// æ‰å¤¯åˆ©æ è‚º è§è´¥åˆç–½ä¿ƒç»Š å•Šæ²¥çªç»Š.. æ³ªç˜ª éš¾ èº‡ä¿ƒå•Š è¾†ä¸° é¥¶ ä¿ƒçŸ« è§è´¥åˆæ¾œ. æå§è‚º æ®¿åºŸèŒ„ éœ¸ é…’ä¸› Visibility é£˜å‘æ è‚º ç§¦å…· ä¸” æ·€.
 	//			SetVisibilityOfMatineePuppet(InStateForThis.CtrlMatineePuppet, InStateForThis.GetPlayActor(this), true);
 
-	//			// °£È¤ »óÇÏ ÀÌµ¿ÀÌ ½ÉÇÑ ¾Ö´Ï¸ŞÀÌ¼ÇÀÇ °æ¿ì AlwaysTickPoseAndRefreshBones °¡ ÇÊ¿äÇÑ °æ¿ì°¡ ÀÖ´Ù. ¹°·Ğ ¿¬Ãâ Á¾·á ÈÄ¿£ Á© ¾÷µ¥ÀÌÆ® ºóµµ ³·Àº °É·Î º¹±¸
-	//			InStateForThis.CtrlMatineePuppet->SetActorTickEnabled(true); // ±âº» Æ½µµ ¿©±â¼­ È°¼ºÈ­¸¦.
+	//			// åŸƒè¶£ æƒ‘çª ææ‚¼æ ç¼´èŒ„ å±€èªçš‹æè®°ç‹¼ ç‰ˆå¿« AlwaysTickPoseAndRefreshBones å•Š é˜å¤¸èŒ„ ç‰ˆå¿«å•Š ä¹ä¿ƒ. æ‹±æ²¸ æ¥·å… è¾†ä¸° é¥¶æµš ä¿© è¯€å•æé£˜ åæ¡£ æ’¤ç¯® å§è‚º æ±—å¤‡
+	//			InStateForThis.CtrlMatineePuppet->SetActorTickEnabled(true); // æ‰å¤¯ å¹³æ¡£ å’¯æ‰è¾‘ åŠå·±æ‹³ç”«.
 	//			InStateForThis.CtrlMatineePuppet->GetSkeletalMeshComponent()->MeshComponentUpdateFlag = EMeshComponentUpdateFlag::AlwaysTickPoseAndRefreshBones;
-	//			// ThePlayActor ¸¦ ¼û°Ü³õÀ» °¡Àå ±âº»Àû Àå¼ÒÀÎµ¥, PCSync µîÀÇ °ÇÀ¸·Î ÀÎÇØ µû·Î ÀÌÈÄ¿¡ Ã³¸®
+	//			// ThePlayActor ç”« è§è´¥åˆé˜‘ å•Šå˜ æ‰å¤¯åˆ© å˜å®¶ç‰¢å•, PCSync æ®¿ç‹¼ æ‰’æ è‚º ç‰¢ç§¦ è¶è‚º æé¥¶ä¿Š è´¸åºœ
 	//			//TryHidePlayActorForMatineeInternal(ThisPlayActor, true);
 	//			if (ThisPlayActor->bNeedSpawnCheck)
-	//			{// NPCClassInfo ÀÇ bUsePreSpawnState ¿¡ µû¶ó ¼¼ÆÃÀÌ µÇ´Âµ¥, ¿¬Ãâ Àå¸éÀ» °ÅÄ£´Ù´Â °Å ÀÚÃ¼°¡ PreSpawnState ¸¦ Áö³ª´Â °ÍÀ¸·Î °£ÁÖÇÒ ¼ö ÀÖ°í, ¿ÀÈ÷·Á ¿¬Ãâ ÀÌÈÄ¿¡ spawn ÀÌ ´Ù½Ã µÇ¾î¹ö¸®´Ï ¹®Á¦°¡ µÊ. µû¶ó¼­ false ·Î µ¹·Á³õÀ½.
+	//			{// NPCClassInfo ç‹¼ bUsePreSpawnState ä¿Š è¶æ‰¼ æŠ€æ³¼æ ç™»ç»°å•, æ¥·å… å˜æé˜‘ èŠ­æ¨¡ä¿ƒç»° èŠ­ ç£Šçœ‰å•Š PreSpawnState ç”« ç˜¤å”±ç»° å·´æ è‚º åŸƒæ—ä¸” è ä¹ç»Š, å·æ´’å¦¨ æ¥·å… æé¥¶ä¿Š spawn æ ä¿ƒçŸ« ç™»ç»¢æ»šåºœèª å·©åŠ›å•Š å‡³. è¶æ‰¼è¾‘ false è‚º å€’å¦¨åˆæ¾œ.
 	//				ThisPlayActor->bNeedSpawnCheck = false; 
-	//				// ±×¸®°í MeshComponentUpdateFlag ¸¦ ¼¼ÆÃÇØ ÁÖ¾î¾ß ½ÇÁ¦·Î »óÅÂ°¡ ¹Ù²ï´Ù.. ¿¬Ãâ ³¡³ª¸é µµ·Î µÇµ¹¸².
+	//				// å¼Šåºœç»Š MeshComponentUpdateFlag ç”« æŠ€æ³¼ç§¦ æ—ç»¢å…· è§’åŠ›è‚º æƒ‘æ€•å•Š å®˜è¯§ä¿ƒ.. æ¥·å… åœºå”±æ æ¡£è‚º ç™»å€’è¦†.
 	//				ThisPlayActor->TemporarySetMeshComponentUpdateFlag(EMeshComponentUpdateFlag::AlwaysTickPoseAndRefreshBones);
 	//			}
 	//		}
 
-	//		// ¾êµéÀÌ ÀÎ°øÁö´É ±æÀ» ¸·³×..? Ã¶ÀúÇÏ°Ô off ½ÃÅ°ÀÚ. ÀÌ°Ç ¿ø·¡ ¹èÄ¡´Ü°è¿¡¼­ ºÎÅÍ ÇØ¾ß µÇ´Â °ÍÀ¸·Î º¹±¸ÇÏÁö ¾Ê´Â´Ù.
+	//		// å¨Ÿç”¸æ ç‰¢å‚ç˜¤ç“· è¾¨é˜‘ é˜œåŒ™..? æšå†çªéœ¸ off çŸ«è™ç£Š. ææ‰’ ç›”è´° ç¡…æ‘¹çªœæ‹Œä¿Šè¾‘ ä½•ç£ ç§¦å…· ç™»ç»° å·´æ è‚º æ±—å¤‡çªç˜¤ è‡¼ç»°ä¿ƒ.
 	//		InStateForThis.CtrlMatineePuppet->SetActorEnableCollision(false);
 	//		InStateForThis.CtrlMatineePuppet->GetSkeletalMeshComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 
@@ -1708,10 +1708,10 @@ void AB2StageEventDirector::SetVisibilityOfMatineePuppet(ASkeletalMeshActor* InP
 
 	if (bVisible)
 	{
-		InPuppet->GetSkeletalMeshComponent()->SetVisibility(true, true); // ÆíÁı ¸ñÀûÀ¸·Î ¿ÏÀüÈ÷ ¼û°Ü³õ¾Ò´Ù°¡ ±î¸ÔÀ» ¼öµµ ÀÖÀ¸´Ï ¤»
-		InPuppet->SetActorHiddenInGame(false); // ÀÌ°Ô ÇÙ½ÉÀÎµ¥ ÀÌ°Í¸¸ °¡Áö°í ´Ù µÇÁö ¾ÊÀ» ¶§°¡ ÀÖ¾î¼­ ÇÔ¼ö µû·Î »© ³õÀº °Å..
+		InPuppet->GetSkeletalMeshComponent()->SetVisibility(true, true); // ç¥ˆç¬¼ æ ¼åˆ©æ è‚º è‚¯å‚ˆæ´’ è§è´¥åˆç–½ä¿ƒå•Š é³–å†ˆé˜‘ èæ¡£ ä¹æ èª ã›
+		InPuppet->SetActorHiddenInGame(false); // æéœ¸ ç´ç¼´ç‰¢å• æå·´çˆ¶ å•Šç˜¤ç»Š ä¿ƒ ç™»ç˜¤ è‡¼é˜‘ é”­å•Š ä¹ç»¢è¾‘ çªƒè è¶è‚º å“— åˆç¯® èŠ­..
 
-		ActivateMatineePuppetPSCs(InPuppet, InRelevantPlayActor); // ½ÇÀº °ÅÀÇ ¿ä°Å ÇÏ·Á°í µû·Î »°À½.
+		ActivateMatineePuppetPSCs(InPuppet, InRelevantPlayActor); // è§’ç¯® èŠ­ç‹¼ å¤¸èŠ­ çªå¦¨ç»Š è¶è‚º è¯æ¾œ.
 	}
 	else
 	{
@@ -1721,360 +1721,361 @@ void AB2StageEventDirector::SetVisibilityOfMatineePuppet(ASkeletalMeshActor* InP
 
 void AB2StageEventDirector::ActivateMatineePuppetPSCs(ASkeletalMeshActor* InPuppet, ABladeIICharacter* InRelevantPlayActor)
 {
-	// ¹º°¡ Owner Actor °¡ ¼û¾îÀÖ´Â µ¿¾È¿¡ Particle System Component µéÀÌ Deactivate °¡ µÇ´Â µíÇØ¼­ µû·Î Activate ½ÃÅ°±â À§ÇØ ¸¸µé¾î³õÀ½.
-	// Àü¿ª À¯Æ¿·Î ¸¶Âù°¡Áö ¸Æ¶ôÀÇ ±â´ÉÀÌ EnsureActivateStaticallyAttachedPSCs ·Î Á¦°øµÊ..
-	//if (InPuppet)
-	//{
-	//	ABladeIIPlayer* CastedPlayActorPlayer = Cast<ABladeIIPlayer>(InRelevantPlayActor);
-	//	TArray<UActorComponent*> AllPSC = InPuppet->GetComponentsByClass(UParticleSystemComponent::StaticClass());
-	//	for (UActorComponent* ThisComp : AllPSC)
-	//	{
-	//		UParticleSystemComponent* ThisPSComp = Cast<UParticleSystemComponent>(ThisComp);
-	//		if (ThisPSComp)
-	//		{
-	//			if (bHideHud && CastedPlayActorPlayer && CastedPlayActorPlayer->FloorRingPS == ThisPSComp->Template/* && GetB2GameModeType(GetWorld()) != EB2GameMode::PVP_Tag*/)
-	//			{ // HUD ¼û±â´Â °æ¿ì¶ó¸é FloorRing Àº ¿©ÇÏ°£ º¸ÀÌÁö ¾Ê°Ô..
-	//				// Áö±İ ¿¹»óÀ¸·Î ¿©±â¿£ µé¾î¿Í¼± ¾ÈµÈ´Ù. 
-	//				// FloorRingPS ¸¦ EventPuppetSetupBlacklist ¿¡ Ãß°¡ÇØ¼­ ¾Æ¿¹ Puppet ¿¡ ºÙÀÌÁö ¾Ê°Ô ÇÏ¿´À½.
-	//				// ÀÌ ÄÚµå´Â ¿¾³¯ ¿¾Àû ¶«Áú ÄÚµåÀÓ.
-	//				checkSlow(0); 
-	//				ThisPSComp->Deactivate();
-	//				ThisPSComp->SetHiddenInGame(true);
-	//			}
-	//			else
-	//			{
-	//				EnsureActivatePSCInternal(ThisPSComp);
-	//			}
-	//		}
-	//	}
-	//}
+	// è´­å•Š Owner Actor å•Š è§ç»¢ä¹ç»° æ‚¼æ•‘ä¿Š Particle System Component ç”¸æ Deactivate å•Š ç™»ç»° æ·€ç§¦è¾‘ è¶è‚º Activate çŸ«è™æ‰ å›°ç§¦ çˆ¶ç”¸ç»¢åˆæ¾œ.
+	// å‚ˆå¼€ èœ¡ç“¶è‚º ä»˜è›®å•Šç˜¤ é’™éç‹¼ æ‰ç“·æ EnsureActivateStaticallyAttachedPSCs è‚º åŠ›å‚å‡³..
+	if (InPuppet)
+	{
+		ABladeIIPlayer* CastedPlayActorPlayer = Cast<ABladeIIPlayer>(InRelevantPlayActor);
+		TArray<UActorComponent*> AllPSC;
+		InPuppet->GetComponents(AllPSC);
+		for (UActorComponent* ThisComp : AllPSC)
+		{
+			UParticleSystemComponent* ThisPSComp = Cast<UParticleSystemComponent>(ThisComp);
+			if (ThisPSComp)
+			{
+				if (bHideHud && CastedPlayActorPlayer && CastedPlayActorPlayer->FloorRingPS == ThisPSComp->Template/* && GetB2GameModeType(GetWorld()) != EB2GameMode::PVP_Tag*/)
+				{ // HUD è§æ‰ç»° ç‰ˆå¿«æ‰¼æ FloorRing ç¯® å’¯çªåŸƒ ç„Šæç˜¤ è‡¼éœ¸..
+					// ç˜¤é™› æŠ—æƒ‘æ è‚º å’¯æ‰æµš ç”¸ç»¢å®¢æ€¥ æ•‘ç­‰ä¿ƒ. 
+					// FloorRingPS ç”« EventPuppetSetupBlacklist ä¿Š çœ å•Šç§¦è¾‘ é…’æŠ— Puppet ä¿Š å˜¿æç˜¤ è‡¼éœ¸ çªçœ‹æ¾œ.
+					// æ å†…é›ç»° çƒ¤æœ çƒ¤åˆ© ä¸œé¾™ å†…é›çƒ™.
+					checkSlow(0); 
+					ThisPSComp->Deactivate();
+					ThisPSComp->SetHiddenInGame(true);
+				}
+				else
+				{
+					EnsureActivatePSCInternal(ThisPSComp);
+				}
+			}
+		}
+	}
 }
 
 AActor* AB2StageEventDirector::GetGroupActorOfGroupName(const FName& InGroupName)
 {
-	//if (!MatineeActor || !MatineeActor->MatineeData){
-	//	return NULL;
-	//}
+	if (!MatineeActor || !MatineeActor->MatineeData){
+		return NULL;
+	}
 
-	//for (int32 GI = 0; GI < MatineeActor->MatineeData->InterpGroups.Num(); ++GI)
-	//{
-	//	UInterpGroup* CurrGroup = MatineeActor->MatineeData->InterpGroups[GI];
+	for (int32 GI = 0; GI < MatineeActor->MatineeData->InterpGroups.Num(); ++GI)
+	{
+		UInterpGroup* CurrGroup = MatineeActor->MatineeData->InterpGroups[GI];
 
-	//	if (CurrGroup->GroupName == InGroupName)
-	//	{
-	//		// ¼³Á¤ÇÑ ÀÌ¸§°ú ÀÏÄ¡ÇÏ´Â ±×·ìÀ» Ã£Àº ÈÄ¿¡´Â ±×·ì ÀÎ½ºÅÏ½º¸¦..
-	//		UInterpGroupInst* FoundGI = NULL;
-	//		for (int32 GII = 0; GII < MatineeActor->GroupInst.Num(); ++GII)
-	//		{
-	//			if (MatineeActor->GroupInst[GII]->Group == CurrGroup) // °á±¹ ÀÎµ¦½º°¡ °°À¸·Á³ª?
-	//			{
-	//				FoundGI = MatineeActor->GroupInst[GII];
-	//				return FoundGI ? FoundGI->GroupActor : NULL;
-	//			}
-	//		}
-	//	}
-	//}
+		if (CurrGroup->GroupName == InGroupName)
+		{
+			// æ±²æ²¥èŒ„ ææŠšè‹ è€æ‘¹çªç»° å¼Šç¼é˜‘ èŒ«ç¯® é¥¶ä¿Šç»° å¼Šç¼ ç‰¢èƒ¶ç•”èƒ¶ç”«..
+			UInterpGroupInst* FoundGI = NULL;
+			for (int32 GII = 0; GII < MatineeActor->GroupInst.Num(); ++GII)
+			{
+				if (MatineeActor->GroupInst[GII]->Group == CurrGroup) // æ¬æƒ« ç‰¢éƒ¸èƒ¶å•Š éæ å¦¨å”±?
+				{
+					FoundGI = MatineeActor->GroupInst[GII];
+					return FoundGI ? FoundGI->GroupActor : NULL;
+				}
+			}
+		}
+	}
 	return NULL;
 }
 
 void AB2StageEventDirector::SelectFinalDirectorTrack()
 {
-	//if (OverallMode != EStageEventDirectorOverallMode::ESEDOM_ControlledMatinee || MatineeActor == NULL || MatineeActor->MatineeData == NULL)
-	//{
-	//	return;
-	//}
+	if (OverallMode != EStageEventDirectorOverallMode::ESEDOM_ControlledMatinee || MatineeActor == NULL || MatineeActor->MatineeData == NULL)
+	{
+		return;
+	}
 
-	//UInterpGroupDirector* TheDirGroup = MatineeActor->MatineeData->FindDirectorGroup(); // Director Group Àº Æ¯º°ÇÏ´Ï ¹Ù·Î ¾ò¾î¿Ã ¼ö ÀÖ±º ¤»
-	//if (TheDirGroup == NULL)
-	//{
-	//	return;
-	//}
+	UInterpGroupDirector* TheDirGroup = MatineeActor->MatineeData->FindDirectorGroup(); // Director Group ç¯® æ¼‚å–Šçªèª å®˜è‚º æ˜ç»¢æ£µ è ä¹ç„™ ã›
+	if (TheDirGroup == NULL)
+	{
+		return;
+	}
 
-	//if (TheDirGroup->InterpTracks.Num() <= 1 || (bPCDependentDirectorTrack == false && !IsValidRandomMatineeGroupNumSet()))
-	//{
-	//	// ÀÌ °æ¿ì, °Á Ã³À½ °É·Î´Ù°¡ Enable ÇØ ¹ö¸± ¼öµµ ÀÖ°ÚÁö¸¸, Director Track À» ¾Æ½Î¸® ¾²Áö ¾Ê´Â °æ¿ìµµ »ı°¢ÇØ º¼ ¼ö ÀÖ°ÚÀ¸´Ï ±×³É ¸®ÅÏ.
-	//	return;
-	//}
+	if (TheDirGroup->InterpTracks.Num() <= 1 || (bPCDependentDirectorTrack == false && !IsValidRandomMatineeGroupNumSet()))
+	{
+		// æ ç‰ˆå¿«, å‚² è´¸æ¾œ å§è‚ºä¿ƒå•Š Enable ç§¦ æ»šå‰¯ èæ¡£ ä¹æ‘†ç˜¤çˆ¶, Director Track é˜‘ é…’è½¿åºœ é™ç˜¤ è‡¼ç»° ç‰ˆå¿«æ¡£ ç§¯é˜¿ç§¦ æ­ è ä¹æ‘†æ èª å¼Šæˆ åºœç•”.
+		return;
+	}
 
-	//// Æ¯Á¤ ShowSetting ¿¡ ¹ÙÀÎµù µÈ PlayActor °¡ ¾Æ´Ñ ÇöÀç ÁÖ¿¬°İÀ¸·Î ³ª¿À´Â Player Character ¿¡ µû¶ó¼­ÀÓ.
-	//ABladeIIPlayer* PossibleHighlightedPlayer = GetShowHeroPlayerIfAny();
-	//if (bPCDependentDirectorTrack && !PossibleHighlightedPlayer)
-	//{ // ´ëÃ¼·Î ÀÌ event °¡ ÀÌ·± ¼º°İ¿¡ ¸ÂÁö ¾Ê´Â °æ¿ìÀÏ °Í. ¹°·Ğ ¾Æ´Ò ¼öµµ ÀÖ´Âµ¥ ±×·± °æ¿ì°¡ »ı±â¸é GetShowHeroPlayerIfAny ¸¦ ¼ÕÁú.
-	//	return;
-	//}
-	//BII_CHECK(!PossibleHighlightedPlayer || PossibleHighlightedPlayer->IsValidObj());
+	// æ¼‚æ²¥ ShowSetting ä¿Š å®˜ç‰¢çˆ¹ ç­‰ PlayActor å•Š é…’å›± æ³…çŠ æ—æ¥·æ‹œæ è‚º å”±å·ç»° Player Character ä¿Š è¶æ‰¼è¾‘çƒ™.
+	ABladeIIPlayer* PossibleHighlightedPlayer = GetShowHeroPlayerIfAny();
+	if (bPCDependentDirectorTrack && !PossibleHighlightedPlayer)
+	{ // æªçœ‰è‚º æ event å•Š æç¹ å·±æ‹œä¿Š å˜ç˜¤ è‡¼ç»° ç‰ˆå¿«è€ å·´. æ‹±æ²¸ é…’åŒ† èæ¡£ ä¹ç»°å• å¼Šç¹ ç‰ˆå¿«å•Š ç§¯æ‰æ GetShowHeroPlayerIfAny ç”« é¢Šé¾™.
+		return;
+	}
+	BII_CHECK(!PossibleHighlightedPlayer || PossibleHighlightedPlayer->IsValidObj());
 
-	//FString DesiredPostFix;
-	//if (bPCDependentDirectorTrack && PossibleHighlightedPlayer)
-	//{ // FinalMatchingInterpGroupName ÀÌ¶ó´Â ÀÇ¹Ì¿Í´Â ¾à°£ ´Ù¸£°í ¸¶Âù°¡Áö ±Ô¾àÀ» Àû¿ëÇÑ postfix ¸¸ °¡Á®¿À·Á´Â °Å
-	//	DesiredPostFix = GetFinalMatchingInterpGroupNamePC(TEXT(""), PossibleHighlightedPlayer->GetTrimmedNameFromPCClassEnum(), EPCInterpGroupNetType::PCIGNT_Local, false);
-	//}
-	//else if (IsValidRandomMatineeGroupNumSet())
-	//{// FinalMatchingInterpGroupName ÀÌ¶ó´Â ÀÇ¹Ì¿Í´Â ¾à°£ ´Ù¸£°í ¸¶Âù°¡Áö ±Ô¾àÀ» Àû¿ëÇÑ postfix ¸¸ °¡Á®¿À·Á´Â °Å
-	//	DesiredPostFix = GetFinalMatchingInterpGroupNameRandom(TEXT(""), RandomlySetMatineeGroupNum, false);
-	//}
-	//
-	//// ÇöÀç PlayerCharacter ¿¡ ¸Â´Â postfix ¸¦ °¡Áø °ÍÀ¸·Î ¼±ÅÃ.
-	//for (int32 DI = 0; DI < TheDirGroup->InterpTracks.Num(); ++DI)
-	//{
-	//	UInterpTrackDirector* CurrDirTrack = Cast<UInterpTrackDirector>(TheDirGroup->InterpTracks[DI]);
-	//	if (CurrDirTrack == NULL)
-	//	{
-	//		continue;
-	//	}
+	FString DesiredPostFix;
+	if (bPCDependentDirectorTrack && PossibleHighlightedPlayer)
+	{ // FinalMatchingInterpGroupName ææ‰¼ç»° ç‹¼å›ºå®¢ç»° è·åŸƒ ä¿ƒç¦ç»Š ä»˜è›®å•Šç˜¤ ç—¹è·é˜‘ åˆ©ä¾©èŒ„ postfix çˆ¶ å•Šå»‰å·å¦¨ç»° èŠ­
+		DesiredPostFix = GetFinalMatchingInterpGroupNamePC(TEXT(""), PossibleHighlightedPlayer->GetTrimmedNameFromPCClassEnum(), EPCInterpGroupNetType::PCIGNT_Local, false);
+	}
+	else if (IsValidRandomMatineeGroupNumSet())
+	{// FinalMatchingInterpGroupName ææ‰¼ç»° ç‹¼å›ºå®¢ç»° è·åŸƒ ä¿ƒç¦ç»Š ä»˜è›®å•Šç˜¤ ç—¹è·é˜‘ åˆ©ä¾©èŒ„ postfix çˆ¶ å•Šå»‰å·å¦¨ç»° èŠ­
+		DesiredPostFix = GetFinalMatchingInterpGroupNameRandom(TEXT(""), RandomlySetMatineeGroupNum, false);
+	}
+	
+	// æ³…çŠ PlayerCharacter ä¿Š å˜ç»° postfix ç”« å•ŠæŸ³ å·´æ è‚º æ€¥ç¶.
+	for (int32 DI = 0; DI < TheDirGroup->InterpTracks.Num(); ++DI)
+	{
+		UInterpTrackDirector* CurrDirTrack = Cast<UInterpTrackDirector>(TheDirGroup->InterpTracks[DI]);
+		if (CurrDirTrack == NULL)
+		{
+			continue;
+		}
 
-	//	if (CurrDirTrack->TrackTitle.EndsWith(DesiredPostFix)) // Postfix ¸¸ ¸ÂÃß¸é µÊ. °øÅë prefix °°Àº °Å ¾øÀ½.
-	//	{
-	//		CurrDirTrack->EnableTrack(true);
-	//	}
-	//	else
-	//	{
-	//		CurrDirTrack->EnableTrack(false); // ¿©Å¸ ³ª¸ÓÁö´Â ²ö´Ù. ¾îÂ÷ÇÇ DirectorTrack Àº ÇÏ³ª¹Û¿¡ ¸ø ¾¸.
-	//	}
-	//}
+		if (CurrDirTrack->TrackTitle.EndsWith(DesiredPostFix)) // Postfix çˆ¶ å˜çœ æ å‡³. å‚çƒ¹ prefix éç¯® èŠ­ ç»æ¾œ.
+		{
+			CurrDirTrack->EnableTrack(true);
+		}
+		else
+		{
+			CurrDirTrack->EnableTrack(false); // å’¯é¸¥ å”±èµ£ç˜¤ç»° é¦‹ä¿ƒ. ç»¢ç’ä¹” DirectorTrack ç¯® çªå”±è§‚ä¿Š ç»™ é–.
+		}
+	}
 
-	// È¤½Ã¶óµµ À§¿¡¼­ Enable µÈ °ÍÀÌ ¾ø¾ú´Ù¸é °Á Ã¹¹øÂ° °ÍÀ¸·Î.. ÇÒ ¼öµµ ÀÖ°ÚÁö¸¸ ±×³É µÎÀÚ.
+	// è¶£çŸ«æ‰¼æ¡£ å›°ä¿Šè¾‘ Enable ç­‰ å·´æ ç»èŒä¿ƒæ å‚² éœ‰é”…æ³ å·´æ è‚º.. ä¸” èæ¡£ ä¹æ‘†ç˜¤çˆ¶ å¼Šæˆ æ»´ç£Š.
 }
 
 void AB2StageEventDirector::RuntimeRemoveNonDesiredGroup()
 {
 	B2_SCOPED_TRACK_LOG(TEXT("AB2StageEventDirector::RuntimeRemoveNonDesiredGroup"));
 
-	//TArray<FString> AllTrimmedPCClassEnumName;
-	//ABladeIIPlayer::GetAllTrimmedNameFromPCClassEnum(AllTrimmedPCClassEnumName);
+	TArray<FString> AllTrimmedPCClassEnumName;
+	ABladeIIPlayer::GetAllTrimmedNameFromPCClassEnum(AllTrimmedPCClassEnumName);
 
-	//for (int32 GI = 0; GI < MatineeActor->MatineeData->InterpGroups.Num(); ++GI)
-	//{
-	//	UInterpGroup* CurrGroup = MatineeActor->MatineeData->InterpGroups[GI];
+	for (int32 GI = 0; GI < MatineeActor->MatineeData->InterpGroups.Num(); ++GI)
+	{
+		UInterpGroup* CurrGroup = MatineeActor->MatineeData->InterpGroups[GI];
 
-	//	bool bFoundMatchingOne = false;
-	//	for (int32 EI = 0; EI < ShowSettings.Num(); ++EI)
-	//	{
-	//		FPlayActorShowSettings& CurrShowSetting = ShowSettings[EI];
-	//		FPlayActorShowRuntimeState& CurrShowState = ShowStates[EI];
+		bool bFoundMatchingOne = false;
+		for (int32 EI = 0; EI < ShowSettings.Num(); ++EI)
+		{
+			FPlayActorShowSettings& CurrShowSetting = ShowSettings[EI];
+			FPlayActorShowRuntimeState& CurrShowState = ShowStates[EI];
 
-	//		// ÇöÀç ShowSetting °ú ¿¬°áµÈ Matinee InterpGroup È¤Àº Folder ÀÌ¸§
-	//		const FName FinalMatchingGroupName(*GetFinalMatchingInterpGroupName(CurrShowState.GetPlayActor(this), CurrShowSetting.MatchingInterpGroupName.ToString(), false));
-	//		const FName FinalMatchingGroupNameForFolder(*GetFinalMatchingInterpGroupName(CurrShowState.GetPlayActor(this), CurrShowSetting.MatchingInterpGroupName.ToString(), true));
+			// æ³…çŠ ShowSetting è‹ æ¥·æ¬ç­‰ Matinee InterpGroup è¶£ç¯® Folder ææŠš
+			const FName FinalMatchingGroupName(*GetFinalMatchingInterpGroupName(CurrShowState.GetPlayActor(this), CurrShowSetting.MatchingInterpGroupName.ToString(), false));
+			const FName FinalMatchingGroupNameForFolder(*GetFinalMatchingInterpGroupName(CurrShowState.GetPlayActor(this), CurrShowSetting.MatchingInterpGroupName.ToString(), true));
 
-	//		if (CurrGroup->GroupName == FinalMatchingGroupName || 
-	//			CurrGroup->GroupName == FinalMatchingGroupNameForFolder)
-	//		{
-	//			bFoundMatchingOne = true; // ¹Ù·Î ¸Â´Â °Ô ÀÖÀ¸¹Ç·Î ÀÌ°Ç Åë°úÇÔ.
-	//			break;
-	//		}
-	//	}
+			if (CurrGroup->GroupName == FinalMatchingGroupName || 
+				CurrGroup->GroupName == FinalMatchingGroupNameForFolder)
+			{
+				bFoundMatchingOne = true; // å®˜è‚º å˜ç»° éœ¸ ä¹æ éª¨è‚º ææ‰’ çƒ¹è‹çªƒ.
+				break;
+			}
+		}
 
-	//	if (bFoundMatchingOne){
-	//		continue;
-	//	}
+		if (bFoundMatchingOne){
+			continue;
+		}
 
-	//	bool bNotDesiredGroup = false;
+		bool bNotDesiredGroup = false;
 
-	//	// ¿©±â·Î ¿ÔÀ¸¸é ShowSetting À» ÅëÇØ ±×·ì ÀÌ¸§À» ³ÖÁö ¾Ê¾Ò°Å³ª, ÇöÀç °ÔÀÓ »óÈ²¿¡ ¸ÂÁö ¾Ê°Å³ª ÇÑ °æ¿ì µî. 
-	//	// Á¤ÇØÁø ³×ÀÌ¹Ö ±Ô¾à¿¡ ÀÇÇØ È®½ÇÈ÷ ³ª¿ÀÁö ¸»¾Æ¾ß ÇÏ´Â °æ¿ìÀÎÁö ÇÑ¹ø ´õ Ã¼Å©ÇØ¼­ ºñÈ°¼ºÈ­ ´Ü°è·Î (RuntimeDisableInterpGroup)
-	//	// ±×·ì ÀÌ¸§ÀÌ Á¤ÇØÁø ³×ÀÌ¹Ö ±ÔÄ¢°ú ¾Æ¿¹ °ü·ÃÀÌ ¾ø´Ù¸é ¿©±â¼­ ºñÈ°¼ºÈ­ ÇÒ ´ë»óÀÌ ¾Æ´Ï´Ù.
+		// å’¯æ‰è‚º å­æ æ ShowSetting é˜‘ çƒ¹ç§¦ å¼Šç¼ ææŠšé˜‘ æŒç˜¤ è‡¼ç–½èŠ­å”±, æ³…çŠ éœ¸çƒ™ æƒ‘ç‚”ä¿Š å˜ç˜¤ è‡¼èŠ­å”± èŒ„ ç‰ˆå¿« æ®¿. 
+		// æ²¥ç§¦æŸ³ åŒ™ææ€ª ç—¹è·ä¿Š ç‹¼ç§¦ çŠ¬è§’æ´’ å”±å·ç˜¤ å¯Œé…’å…· çªç»° ç‰ˆå¿«ç‰¢ç˜¤ èŒ„é”… æ­¹ çœ‰å†œç§¦è¾‘ åšåŠå·±æ‹³ çªœæ‹Œè‚º (RuntimeDisableInterpGroup)
+		// å¼Šç¼ ææŠšæ æ²¥ç§¦æŸ³ åŒ™ææ€ª ç—¹è˜‘è‹ é…’æŠ— åŒ…è®¿æ ç»ä¿ƒæ å’¯æ‰è¾‘ åšåŠå·±æ‹³ ä¸” æªæƒ‘æ é…’èªä¿ƒ.
 
-	//	for (int32 EI = 0; EI < ShowSettings.Num(); ++EI)
-	//	{
-	//		FPlayActorShowSettings& CurrShowSetting = ShowSettings[EI];
-	//		FPlayActorShowRuntimeState& CurrShowState = ShowStates[EI];
+		for (int32 EI = 0; EI < ShowSettings.Num(); ++EI)
+		{
+			FPlayActorShowSettings& CurrShowSetting = ShowSettings[EI];
+			FPlayActorShowRuntimeState& CurrShowState = ShowStates[EI];
 
-	//		// ¿©±â¼­ ThePlayActor ¸¦ °Ë»çÇÏ´Â °Ç ´ÜÁö ÀÌ ¼¼ÆÃÀÌ BladeIIPlayer ¿ëÀÎÁö º¸±â À§ÇÔ. ½ÇÁ¦·Î °Ë»çÇÏ´Â ThePlayActor ¿Í ¿¬°üµÈ ±×·ìÀÌ¶ó¸é Á¦°ÅÇØ¼± ¾ÈµÊ.
-	//		if (Cast<ABladeIIPlayer>(CurrShowState.GetPlayActor(this))) 
-	//		{
-	//			for (int32 PCI = 0; PCI < AllTrimmedPCClassEnumName.Num(); ++PCI)
-	//			{
-	//				for (int32 NTI = 0; NTI < (int32)EPCInterpGroupNetType::PCIGNT_End; ++NTI)
-	//				{
-	//					// ÀÌ ShowSetting °ú PCClass ¿¡ µû¶ó ±Ô¾à¿¡ µé¾î°¡´Â Group È¤Àº Æú´õ ÀÌ¸§
-	//					// Iteration µµÁß¿¡ ½ÇÁ¦·Î »ç¿ëµÉ ÀÌ¸§µµ ³ª¿À°ÚÁö¸¸.. °Å±â¿¡ ¸ÅÄªµÇ´Â InterpGroup Àº ÀÌ¹Ì ¿©±â·Î ¿ÀÁö ¾Ê°í ¿©±â·Î ¿Â °ÍµéÀº ºñÈ°¼ºÈ­ ÈÄº¸.
-	//					const FName PossiblePCGroupName(*GetFinalMatchingInterpGroupNamePC(CurrShowSetting.MatchingInterpGroupName.ToString(), AllTrimmedPCClassEnumName[PCI], static_cast<EPCInterpGroupNetType>(NTI), false));
-	//					const FName PossiblePCGroupNameForFolder(*GetFinalMatchingInterpGroupNamePC(CurrShowSetting.MatchingInterpGroupName.ToString(), AllTrimmedPCClassEnumName[PCI], static_cast<EPCInterpGroupNetType>(NTI), true));
+			// å’¯æ‰è¾‘ ThePlayActor ç”« å…«è¤çªç»° æ‰’ çªœç˜¤ æ æŠ€æ³¼æ BladeIIPlayer ä¾©ç‰¢ç˜¤ ç„Šæ‰ å›°çªƒ. è§’åŠ›è‚º å…«è¤çªç»° ThePlayActor å®¢ æ¥·åŒ…ç­‰ å¼Šç¼ææ‰¼æ åŠ›èŠ­ç§¦æ€¥ æ•‘å‡³.
+			if (Cast<ABladeIIPlayer>(CurrShowState.GetPlayActor(this))) 
+			{
+				for (int32 PCI = 0; PCI < AllTrimmedPCClassEnumName.Num(); ++PCI)
+				{
+					for (int32 NTI = 0; NTI < (int32)EPCInterpGroupNetType::PCIGNT_End; ++NTI)
+					{
+						// æ ShowSetting è‹ PCClass ä¿Š è¶æ‰¼ ç—¹è·ä¿Š ç”¸ç»¢å•Šç»° Group è¶£ç¯® å¼ƒæ­¹ ææŠš
+						// Iteration æ¡£åä¿Š è§’åŠ›è‚º è¤ä¾©çª ææŠšæ¡£ å”±å·æ‘†ç˜¤çˆ¶.. èŠ­æ‰ä¿Š æ¦‚è«ç™»ç»° InterpGroup ç¯® æå›º å’¯æ‰è‚º å·ç˜¤ è‡¼ç»Š å’¯æ‰è‚º æŸ¯ å·´ç”¸ç¯® åšåŠå·±æ‹³ é¥¶ç„Š.
+						const FName PossiblePCGroupName(*GetFinalMatchingInterpGroupNamePC(CurrShowSetting.MatchingInterpGroupName.ToString(), AllTrimmedPCClassEnumName[PCI], static_cast<EPCInterpGroupNetType>(NTI), false));
+						const FName PossiblePCGroupNameForFolder(*GetFinalMatchingInterpGroupNamePC(CurrShowSetting.MatchingInterpGroupName.ToString(), AllTrimmedPCClassEnumName[PCI], static_cast<EPCInterpGroupNetType>(NTI), true));
 
-	//					// ÇöÀç ShowSetting ¿¡¼­ÀÇ MatchingInterpGroupName À» º£ÀÌ½º·Î ÇÏ°í ÀÖÁö¸¸ ÇöÀç °ÔÀÓ¿¡¼­ ¼±ÅÃµÇ¾î ÀÖÁö´Â ¾Ê´Ù.
-	//					if (CurrGroup->GroupName == PossiblePCGroupName ||
-	//						CurrGroup->GroupName == PossiblePCGroupNameForFolder)
-	//					{
-	//						bNotDesiredGroup = true;
-	//						break;
-	//					}
-	//				}
-	//			}
-	//		}
-	//		else if (IsValidRandomMatineeGroupNumSet())
-	//		{ // ·£´ı ±×·ì ¼±ÅÃÀÌ ÀÖ´Â °æ¿ì, ¼±ÅÃµÇÁö ¸øÇÑ ·£´ı ±×·ìÀ» Á¦°Å. ÀÌ°Ç Player ´Â ¾Æ´Ï°í ¸÷ ¿¬Ãâ.
-	//			for (int32 RNI = 1; RNI <= RandomMatineeGroupNum; ++RNI)
-	//			{ 
-	//				if (RNI == RandomlySetMatineeGroupNum){
-	//					continue; // ÀÌ¹ø ·£´ı ¼±ÅÃµÈ °ÅÀÓ. ¾îÂ÷ÇÇ ¾Æ·¡¿¡¼­ bNotDesiredGroup ¼±ÅÃÀÌ µÇÁö ¾Ê°ÚÁö¸¸ ¹Ì¸® °É·¯³¿.
-	//				}
-	//				// °¢ ·£´ı º°·Î Æú´õ ±¸¼ºÇß´Ù Ä¡°í ±×°Í¸¸ Ã³¸®ÇÏÀÚ. ¹°·Ğ ÀÌ°Í°ú º°°³·Î ÇÏÀ§ ±×·ìµéµµ ³×ÀÌ¹ÖÀ» ¸ÂÃçÁÖ±ä ÇØ¾ß ÇÔ.
-	//				const FName PossibleRandFolderName(*GetFinalMatchingInterpGroupNameRandom(CurrShowSetting.MatchingInterpGroupName.ToString(), RNI, true));
-	//				if (CurrGroup->GroupName == PossibleRandFolderName)
-	//				{
-	//					bNotDesiredGroup = true;
-	//					break;
-	//				}
-	//			}
-	//		}
+						// æ³…çŠ ShowSetting ä¿Šè¾‘ç‹¼ MatchingInterpGroupName é˜‘ æµ·æèƒ¶è‚º çªç»Š ä¹ç˜¤çˆ¶ æ³…çŠ éœ¸çƒ™ä¿Šè¾‘ æ€¥ç¶ç™»ç»¢ ä¹ç˜¤ç»° è‡¼ä¿ƒ.
+						if (CurrGroup->GroupName == PossiblePCGroupName ||
+							CurrGroup->GroupName == PossiblePCGroupNameForFolder)
+						{
+							bNotDesiredGroup = true;
+							break;
+						}
+					}
+				}
+			}
+			else if (IsValidRandomMatineeGroupNumSet())
+			{ // ç½šå¾… å¼Šç¼ æ€¥ç¶æ ä¹ç»° ç‰ˆå¿«, æ€¥ç¶ç™»ç˜¤ ç»™èŒ„ ç½šå¾… å¼Šç¼é˜‘ åŠ›èŠ­. ææ‰’ Player ç»° é…’èªç»Š å„ æ¥·å….
+				for (int32 RNI = 1; RNI <= RandomMatineeGroupNum; ++RNI)
+				{ 
+					if (RNI == RandomlySetMatineeGroupNum){
+						continue; // æé”… ç½šå¾… æ€¥ç¶ç­‰ èŠ­çƒ™. ç»¢ç’ä¹” é…’è´°ä¿Šè¾‘ bNotDesiredGroup æ€¥ç¶æ ç™»ç˜¤ è‡¼æ‘†ç˜¤çˆ¶ å›ºåºœ å§çŸ¾æ™¨.
+					}
+					// é˜¿ ç½šå¾… å–Šè‚º å¼ƒæ­¹ å¤‡å·±æ²ä¿ƒ æ‘¹ç»Š å¼Šå·´çˆ¶ è´¸åºœçªç£Š. æ‹±æ²¸ æå·´è‹ å–Šä¿ºè‚º çªå›° å¼Šç¼ç”¸æ¡£ åŒ™ææ€ªé˜‘ å˜è‹—æ—å˜ ç§¦å…· çªƒ.
+					const FName PossibleRandFolderName(*GetFinalMatchingInterpGroupNameRandom(CurrShowSetting.MatchingInterpGroupName.ToString(), RNI, true));
+					if (CurrGroup->GroupName == PossibleRandFolderName)
+					{
+						bNotDesiredGroup = true;
+						break;
+					}
+				}
+			}
 
-	//		if (bNotDesiredGroup)
-	//		{
-	//			break;
-	//		}
-	//	}
+			if (bNotDesiredGroup)
+			{
+				break;
+			}
+		}
 
-	//	// ±âÅ¸ ´Ù¸¥ °æ¿ì Ãß°¡µÇ¸é..
+		// æ‰é¸¥ ä¿ƒå¼— ç‰ˆå¿« çœ å•Šç™»æ..
 
-	//	if (bNotDesiredGroup)
-	//	{// ÇØ´ç ±×·ìÀ» ºñÈ°¼ºÈ­
-	//		RuntimeDisableInterpGroup(CurrGroup, MatineeActor);
-	//	}
-	//}
+		if (bNotDesiredGroup)
+		{// ç§¦å¯¸ å¼Šç¼é˜‘ åšåŠå·±æ‹³
+			RuntimeDisableInterpGroup(CurrGroup, MatineeActor);
+		}
+	}
 }
 
 void AB2StageEventDirector::RuntimeDisableInterpGroup(class UInterpGroup* GroupToDisable, class ALevelSequenceActor * OwnerMatinee)
 {
 	B2_SCOPED_TRACK_LOG(TEXT("AB2StageEventDirector::RuntimeRemoveGroupActorFromInterpGroup"));
 
-//	if (GroupToDisable && OwnerMatinee)
-//	{
-//		TArray<UInterpGroupInst*> arMatchingGI;
-//		// ±×·ì°ú ÀÏÄ¡ÇÏ´Â ±×·ì ÀÎ½ºÅÏ½º¸¦ Ã£´Â´Ù.
-//		for (int32 GII = 0; GII < OwnerMatinee->GroupInst.Num(); ++GII)
-//		{
-//			// Disable ÇÏ°íÀÚ ÇÏ´Â °ÍÀÌ ÀÚ±â ÀÚ½ÅÀÌµçÁö ¾Æ´Ï¸é ÀÚ½ÅÀ» Æ÷ÇÔÇÏ´Â Æú´õ ±×·ìÀÌµçÁö
-//			UInterpGroup* ParentFolder = FindParentGroupFolder(OwnerMatinee->GroupInst[GII]->Group, OwnerMatinee);
-//
-//			if ( (ParentFolder && ParentFolder == GroupToDisable)
-//				 || (OwnerMatinee->GroupInst[GII]->Group == GroupToDisable) )
-//			{
-//				arMatchingGI.Add(OwnerMatinee->GroupInst[GII]);
-//			}
-//		}
-//
-//		for (int32 GII = 0; GII < arMatchingGI.Num(); ++GII)
-//		{
-//			UInterpGroupInst* ThisGI = arMatchingGI[GII];
-//			if (ThisGI) 
-//			{
-//				// ÀÌ°Å Á» ³¶ºñÀÌ±ä ÇÑµ¥.. ¿¡µğÅÍ ¸Ê ÀúÀå ½Ã ShowSetting ¿¡ µî·ÏµÇÁö ¾ÊÀº ¾Öµéµµ visibility ¸¦ ²¨ÁÖ·Á´Ù º¸´Ï Matinee InitInterp ½Ã SkeletalMeshActor µéÀ» ÄÑÁÖ´Â ÄÚµå°¡ Ãß°¡µÇ¾ú°í.. ±Ùµ¥ ¿©±â¼­ ¾µ¸ğ¾ø´Ù°í °£ÁÖµÇ´Â ¾ÖµéÀº ´Ù½Ã ²¨ÁÖ¾î¾ß ¤»
-//				ASkeletalMeshActor* ThisGroupSKActor = Cast<ASkeletalMeshActor>(ThisGI->GetGroupActor());
-//				if (ThisGroupSKActor)
-//				{
-//					ThisGroupSKActor->SetActorHiddenInGame(true);
-//				}
-//				// PC º°·Î ¶óÀÌÆ® Æ®·¢µé ¸¸µé¾î ³õÀº °æ¿ìµµ º°µµ Ã³¸®°¡ ÇÊ¿ä. SetAllPointLightGroupAffectWorld ·Î´Â Ã³¸® ¸øÇÔ.
-//				ALight* ThisGroupLightActor = Cast<ALight>(ThisGI->GetGroupActor());
-//				UPointLightComponent* PLComp = ThisGroupLightActor ? Cast<UPointLightComponent>(ThisGroupLightActor->GetLightComponent()) : nullptr;
-//				if (PLComp
-//#if 0
-//					// ÀÇµµÇÏÁö ¾ÊÀº Àß¸øµÈ ±â´É ÇÏ¿¡¼­ ¼Â¾÷ µÇ¾ú´ø ¶óÀÌÆÃÀ» ¸Ş²Ù±â À§ÇØ ³Ö¾ú´ø ÀÓ½Ã ÇÃ·¡±×..
-//					// ¼Â¾÷ ¼öÁ¤ÀÌ ¿Ï·áµÇ¸é bHackMyPerPCClassLightingSetupDone À» Ã¼Å©ÇÏ´Â ½ÄÀÌ¾úÀ½.
-//					// ¼Â¾÷ ¿Ï·áµÇ¾ú´Ù°í ÇÏ¿© DEPRECATED ¸¶Å©ÇÏ°í ±â´ÉÀº Á¦°Å.. È¤ ¸ğ¸£´Ï ¿ÏÀüÈ÷ Á¦°ÅÇÏÁö´Â ¾ÊÀ½.
-//					&& bHackMyPerPCClassLightingSetupDone_DEPRECATED 
-//#endif				
-//					)
-//				{
-//					PLComp->bAffectsWorld = false;
-//					PLComp->MarkRenderStateDirty();
-//				}
-//
-//				// ¿¹Àü¿¡ GroupActor ¸¦ Á¦°ÅÇÏ°í Çß¾ú´Âµ¥ °Á ÇÏÀ§ Æ®·¢ Disable ·Î µÇÁö ¾Ê³ª ½Í´Ù. ÀÏ´Ü ¿µ¿õÀÇ Å¾ ·Îµù¾ø´Â Àç½ÃÀÛÀ» ÇÏ·Á¸é GroupActor ´Â Á¦°ÅÇØ¼± ¾ÈµÊ.
-//				for (UInterpTrack* CurrTrack : ThisGI->Group->InterpTracks)
-//				{
-//					if (CurrTrack)
-//					{
-//						CurrTrack->EnableTrack(false);
-//					}
-//				}
-//			}
-//		}
-//
-//		// ¹º°¡ Folder µé¾î°¡¸é¼­ºÎÅÍÀÎÁö.. À§ ÄÚµå°¡ ¾È¸ÔÈú ¶§°¡ ÀÖ´Ù. ´Ù½Ã ÀÌ°É·Îµµ..
-//		for (UInterpTrack* CurrTrack : GroupToDisable->InterpTracks)
-//		{
-//			if (CurrTrack)
-//			{
-//				CurrTrack->EnableTrack(false);
-//			}
-//		}
-//	}
+	if (GroupToDisable && OwnerMatinee)
+	{
+		TArray<UInterpGroupInst*> arMatchingGI;
+		// å¼Šç¼è‹ è€æ‘¹çªç»° å¼Šç¼ ç‰¢èƒ¶ç•”èƒ¶ç”« èŒ«ç»°ä¿ƒ.
+		for (int32 GII = 0; GII < OwnerMatinee->GroupInst.Num(); ++GII)
+		{
+			// Disable çªç»Šç£Š çªç»° å·´æ ç£Šæ‰ ç£Šè„šæç”µç˜¤ é…’èªæ ç£Šè„šé˜‘ å™¨çªƒçªç»° å¼ƒæ­¹ å¼Šç¼æç”µç˜¤
+			UInterpGroup* ParentFolder = FindParentGroupFolder(OwnerMatinee->GroupInst[GII]->Group, OwnerMatinee);
+
+			if ( (ParentFolder && ParentFolder == GroupToDisable)
+				 || (OwnerMatinee->GroupInst[GII]->Group == GroupToDisable) )
+			{
+				arMatchingGI.Add(OwnerMatinee->GroupInst[GII]);
+			}
+		}
+
+		for (int32 GII = 0; GII < arMatchingGI.Num(); ++GII)
+		{
+			UInterpGroupInst* ThisGI = arMatchingGI[GII];
+			if (ThisGI) 
+			{
+				// æèŠ­ ç²± æ‰¯åšæå˜ èŒ„å•.. ä¿Šå¼ç£ ç”˜ å†å˜ çŸ« ShowSetting ä¿Š æ®¿åºŸç™»ç˜¤ è‡¼ç¯® å±€ç”¸æ¡£ visibility ç”« æ³¢æ—å¦¨ä¿ƒ ç„Šèª Matinee InitInterp çŸ« SkeletalMeshActor ç”¸é˜‘ éš¾æ—ç»° å†…é›å•Š çœ å•Šç™»èŒç»Š.. è¾Ÿå• å’¯æ‰è¾‘ é•œè‘›ç»ä¿ƒç»Š åŸƒæ—ç™»ç»° å±€ç”¸ç¯® ä¿ƒçŸ« æ³¢æ—ç»¢å…· ã›
+				ASkeletalMeshActor* ThisGroupSKActor = Cast<ASkeletalMeshActor>(ThisGI->GetGroupActor());
+				if (ThisGroupSKActor)
+				{
+					ThisGroupSKActor->SetActorHiddenInGame(true);
+				}
+				// PC å–Šè‚º æ‰¼æé£˜ é£˜å‘ç”¸ çˆ¶ç”¸ç»¢ åˆç¯® ç‰ˆå¿«æ¡£ å–Šæ¡£ è´¸åºœå•Š é˜å¤¸. SetAllPointLightGroupAffectWorld è‚ºç»° è´¸åºœ ç»™çªƒ.
+				ALight* ThisGroupLightActor = Cast<ALight>(ThisGI->GetGroupActor());
+				UPointLightComponent* PLComp = ThisGroupLightActor ? Cast<UPointLightComponent>(ThisGroupLightActor->GetLightComponent()) : nullptr;
+				if (PLComp
+#if 0
+					// ç‹¼æ¡£çªç˜¤ è‡¼ç¯® è‚‹ç»™ç­‰ æ‰ç“· çªä¿Šè¾‘ æ‚¸è¯€ ç™»èŒå¸¦ æ‰¼ææ³¼é˜‘ çš‹æ“æ‰ å›°ç§¦ æŒèŒå¸¦ çƒ™çŸ« æ•²è´°å¼Š..
+					// æ‚¸è¯€ èæ²¥æ è‚¯ä¸°ç™»æ bHackMyPerPCClassLightingSetupDone é˜‘ çœ‰å†œçªç»° ä¾¥æèŒæ¾œ.
+					// æ‚¸è¯€ è‚¯ä¸°ç™»èŒä¿ƒç»Š çªå’¯ DEPRECATED ä»˜å†œçªç»Š æ‰ç“·ç¯® åŠ›èŠ­.. è¶£ è‘›ç¦èª è‚¯å‚ˆæ´’ åŠ›èŠ­çªç˜¤ç»° è‡¼æ¾œ.
+					&& bHackMyPerPCClassLightingSetupDone_DEPRECATED 
+#endif				
+					)
+				{
+					PLComp->bAffectsWorld = false;
+					PLComp->MarkRenderStateDirty();
+				}
+
+				// æŠ—å‚ˆä¿Š GroupActor ç”« åŠ›èŠ­çªç»Š æ²èŒç»°å• å‚² çªå›° é£˜å‘ Disable è‚º ç™»ç˜¤ è‡¼å”± é…µä¿ƒ. è€çªœ åº·æ—·ç‹¼ å•ª è‚ºçˆ¹ç»ç»° çŠçŸ«ç´¯é˜‘ çªå¦¨æ GroupActor ç»° åŠ›èŠ­ç§¦æ€¥ æ•‘å‡³.
+				for (UInterpTrack* CurrTrack : ThisGI->Group->InterpTracks)
+				{
+					if (CurrTrack)
+					{
+						CurrTrack->EnableTrack(false);
+					}
+				}
+			}
+		}
+
+		// è´­å•Š Folder ç”¸ç»¢å•Šæè¾‘ä½•ç£ç‰¢ç˜¤.. å›° å†…é›å•Š æ•‘å†ˆé³ƒ é”­å•Š ä¹ä¿ƒ. ä¿ƒçŸ« æå§è‚ºæ¡£..
+		for (UInterpTrack* CurrTrack : GroupToDisable->InterpTracks)
+		{
+			if (CurrTrack)
+			{
+				CurrTrack->EnableTrack(false);
+			}
+		}
+	}
 }
 
-//UInterpGroup* AB2StageEventDirector::FindParentGroupFolder(UInterpGroup* ChildGroup, class ALevelSequenceActor * OwnerMatinee) const
-//{ // ½Ç ±¸ÇöºÎ¸¦ MatineeActor ÂÊÀ¸·Î ¿Å°Ü³õÀ½.
-//	if (OwnerMatinee)
-//	{
-//		return OwnerMatinee->FindParentGroupFolder(ChildGroup);
-//	}
-//	return NULL;
-//}
+UInterpGroup* AB2StageEventDirector::FindParentGroupFolder(UInterpGroup* ChildGroup, class ALevelSequenceActor * OwnerMatinee) const
+{ // è§’ å¤‡æ³…ä½•ç”« MatineeActor ç‡æ è‚º é¢—è´¥åˆæ¾œ.
+	if (OwnerMatinee)
+	{
+		return OwnerMatinee->FindParentGroupFolder(ChildGroup);
+	}
+	return NULL;
+}
 
 FString AB2StageEventDirector::GetFinalMatchingInterpGroupName(class ABladeIICharacter* InPlayActor, FString RawInterpGroupName, bool bForFolderGroup)
 {
-//	ABladeIIPlayer* CastedPlayer = Cast<ABladeIIPlayer>(InPlayActor);
-//	if (CastedPlayer) // ±âÅ¸ NPC µéÀÇ °æ¿ì InterpGroup ÀÌ¸§À» º¯°æÇØ¼­ °Ë»öÇÒ °æ¿ì°¡ ¹ß»ıÇÒ±î?
-//	{
-//		EPCInterpGroupNetType NetType = EPCInterpGroupNetType::PCIGNT_Local;
-//
-//		AB2NetGameMode* NetGM = Cast<AB2NetGameMode>(GetB2GameMode());
-//		if (NetGM && DirectingEvent == EStageEvent::ESEV_Begin) // ÇöÀç·Î¼± NetGameMode ÀÇ »çÀÌµå°¡ ¹®Á¦°¡ µÇ´Â °æ¿ì´Â ½ÃÀÛ»Ó.
-//		{
-//			ABladeIINetPlayer* CastedNetPlayer = Cast<ABladeIINetPlayer>(CastedPlayer);
-//
-//			NetType = (
-//				((NetGM->GetPeerType() != PEER_RESTRICTED && CastedNetPlayer->GetNetStatus() == ABladeIINetPlayer::NET_MASTER) || (NetGM->GetPeerType() == PEER_RESTRICTED && CastedNetPlayer->GetNetStatus() == ABladeIINetPlayer::NET_SLAVE)) ?
-//				EPCInterpGroupNetType::PCIGNT_SuperPeer : EPCInterpGroupNetType::PCIGNT_CommonPeer
-//			);
-//		}
-//
-//		// PC ´Â Å¬·¡½º ¼±ÅÃ, Net °ÔÀÓ peer Å¸ÀÔ µî¿¡ µû¶ó ´Ş¶óÁü.
-//		return GetFinalMatchingInterpGroupNamePC(RawInterpGroupName, CastedPlayer->GetTrimmedNameFromPCClassEnum(), NetType, bForFolderGroup);
-//	}
-//	else if (IsValidRandomMatineeGroupNumSet()) 
-//	{// ÇöÀç flow ·Î´Â Player ¿ë Æ®·¢Àº Random selection ÀÌ ¾È µÉ °Í.
-//		// Player ±×·ìÀº ÀÌ¹Ì º°µµÀÇ suffix °¡ ºÙ´Âµ¥´Ù°¡ ½ÇÁ¦ ¿ä±¸»çÇ×µµ ¸÷ÀÌ ³ª¿À´Â ¿¬ÃâÀ» ·£´ıÇÏ°Ô ÇÏÀÚ´Â °ÍÀÓ.
-//		return GetFinalMatchingInterpGroupNameRandom(RawInterpGroupName, RandomlySetMatineeGroupNum, bForFolderGroup);
-//	}
+	ABladeIIPlayer* CastedPlayer = Cast<ABladeIIPlayer>(InPlayActor);
+	if (CastedPlayer) // æ‰é¸¥ NPC ç”¸ç‹¼ ç‰ˆå¿« InterpGroup ææŠšé˜‘ å‡½ç‰ˆç§¦è¾‘ å…«ç¥¸ä¸” ç‰ˆå¿«å•Š æƒ¯ç§¯ä¸”é³–?
+	{
+		EPCInterpGroupNetType NetType = EPCInterpGroupNetType::PCIGNT_Local;
+
+		AB2NetGameMode* NetGM = Cast<AB2NetGameMode>(GetB2GameMode());
+		if (NetGM && DirectingEvent == EStageEvent::ESEV_Begin) // æ³…çŠè‚ºæ€¥ NetGameMode ç‹¼ è¤æé›å•Š å·©åŠ›å•Š ç™»ç»° ç‰ˆå¿«ç»° çŸ«ç´¯æŒ¥.
+		{
+			ABladeIINetPlayer* CastedNetPlayer = Cast<ABladeIINetPlayer>(CastedPlayer);
+
+			NetType = (
+				((NetGM->GetPeerType() != PEER_RESTRICTED && CastedNetPlayer->GetNetStatus() == ABladeIINetPlayer::NET_MASTER) || (NetGM->GetPeerType() == PEER_RESTRICTED && CastedNetPlayer->GetNetStatus() == ABladeIINetPlayer::NET_SLAVE)) ?
+				EPCInterpGroupNetType::PCIGNT_SuperPeer : EPCInterpGroupNetType::PCIGNT_CommonPeer
+			);
+		}
+
+		// PC ç»° åŠªè´°èƒ¶ æ€¥ç¶, Net éœ¸çƒ™ peer é¸¥æ¶ æ®¿ä¿Š è¶æ‰¼ å´”æ‰¼å’™.
+		return GetFinalMatchingInterpGroupNamePC(RawInterpGroupName, CastedPlayer->GetTrimmedNameFromPCClassEnum(), NetType, bForFolderGroup);
+	}
+	else if (IsValidRandomMatineeGroupNumSet()) 
+	{// æ³…çŠ flow è‚ºç»° Player ä¾© é£˜å‘ç¯® Random selection æ æ•‘ çª å·´.
+		// Player å¼Šç¼ç¯® æå›º å–Šæ¡£ç‹¼ suffix å•Š å˜¿ç»°å•ä¿ƒå•Š è§’åŠ› å¤¸å¤‡è¤äº²æ¡£ å„æ å”±å·ç»° æ¥·å…é˜‘ ç½šå¾…çªéœ¸ çªç£Šç»° å·´çƒ™.
+		return GetFinalMatchingInterpGroupNameRandom(RawInterpGroupName, RandomlySetMatineeGroupNum, bForFolderGroup);
+	}
 
 	return RawInterpGroupName;
 }
 
 FString AB2StageEventDirector::GetFinalMatchingInterpGroupNamePC(FString RawInterpGroupName, FString TrimmedPCClassEnumName, EPCInterpGroupNetType NetType, bool bForFolderGroup)
 {
-	// ·ê¿¡ ¸ÂÃç ±×·ì ÀÌ¸§À» ³Öµµ·Ï ÇØ¾ß.. ¿¹¸¦ µé¾î "MainPCGroup_Gladiator", "SubPCGroup_Assassin" ÇÏ´Â ½ÄÀÌ µÇ°Ú´Ù.
+	// é€¢ä¿Š å˜è‹— å¼Šç¼ ææŠšé˜‘ æŒæ¡£åºŸ ç§¦å…·.. æŠ—ç”« ç”¸ç»¢ "MainPCGroup_Gladiator", "SubPCGroup_Assassin" çªç»° ä¾¥æ ç™»æ‘†ä¿ƒ.
 	FString RetName = RawInterpGroupName + TEXT("_") + TrimmedPCClassEnumName;
 
-	//// ÀÌ ·êÀº ÀÏ´Ü PVP¿¡¼­¸¸ ¾²´Â°É·Î ÇÑ´Ù. (ÃßÈÄ¿¡ ÀÌ°Ç ¿É¼ÇÀ¸·Î »©µµ·Ï ÇÏÀÚ)
-	//if (AB2PVPGameMode* PVPGM = Cast<AB2PVPGameMode>(GetB2GameMode()))
-	//{
-	//	if (NetType == EPCInterpGroupNetType::PCIGNT_SuperPeer){
-	//		RetName += FString(TEXT("_")) + FString(INTERPGROUP_SUFFIX_SUPERPEER);
-	//	}
-	//	else if (NetType == EPCInterpGroupNetType::PCIGNT_CommonPeer){
-	//		RetName += FString(TEXT("_")) + FString(INTERPGROUP_SUFFIX_COMMONPEER);
-	//	}
-	//}
-	//
-	//if (bForFolderGroup)
-	//{
-	//	RetName = FOLDERGROUP_PREFIX + RetName;
-	//}
+	// æ é€¢ç¯® è€çªœ PVPä¿Šè¾‘çˆ¶ é™ç»°å§è‚º èŒ„ä¿ƒ. (çœ é¥¶ä¿Š ææ‰’ å¯è®°æ è‚º å“—æ¡£åºŸ çªç£Š)
+	if (AB2PVPGameMode* PVPGM = Cast<AB2PVPGameMode>(GetB2GameMode()))
+	{
+		if (NetType == EPCInterpGroupNetType::PCIGNT_SuperPeer){
+			RetName += FString(TEXT("_")) + FString(INTERPGROUP_SUFFIX_SUPERPEER);
+		}
+		else if (NetType == EPCInterpGroupNetType::PCIGNT_CommonPeer){
+			RetName += FString(TEXT("_")) + FString(INTERPGROUP_SUFFIX_COMMONPEER);
+		}
+	}
+	
+	if (bForFolderGroup)
+	{
+		RetName = FOLDERGROUP_PREFIX + RetName;
+	}
 	return RetName;
 }
 
 FString AB2StageEventDirector::GetFinalMatchingInterpGroupNameRandom(FString RawInterpGroupName, int32 RandNum, bool bForFolderGroup)
-{ // µğ·ºÅÍ±×·ìµµ ÀÌ°É ¾µ °ÍÀÓ.
+{ // å¼æ³›ç£å¼Šç¼æ¡£ æå§ é•œ å·´çƒ™.
 	FString RandPostFix = FString::Printf(INTERPGROUP_SUFFIX_RAND, RandNum);
-	// Folder ÀÌ¸§ÀÎ °æ¿ì ±×³É Á¤ÇØÁø prefix ¿Í postfix ¸¸ ºÙ¿©¼­ »ç¿ë.
+	// Folder ææŠšç‰¢ ç‰ˆå¿« å¼Šæˆ æ²¥ç§¦æŸ³ prefix å®¢ postfix çˆ¶ å˜¿å’¯è¾‘ è¤ä¾©.
 	return bForFolderGroup ? (FOLDERGROUP_PREFIX + RandPostFix) : (RawInterpGroupName + TEXT("_") + RandPostFix);
 }
 
 #if WITH_EDITOR
 bool AB2StageEventDirector::IsPossibleInterpGroupNameForPC(const FString& InCheckName) const
-{ // GetFinalMatchingInterpGroupNamePC ·Î ³ª¿Ã ¼ö ÀÖ´Â ÀÌ¸§ÀÎÁö Ã¼Å©.. true ¸®ÅÏÀÌ¶ó°í ÇØµµ ¾Æ´Ò ¼ö´Â ÀÖÁö¸¸ false ¸®ÅÏÀÌ¸é È®½ÇÈ÷ ¾Æ´Ñ °Å.
+{ // GetFinalMatchingInterpGroupNamePC è‚º å”±æ£µ è ä¹ç»° ææŠšç‰¢ç˜¤ çœ‰å†œ.. true åºœç•”ææ‰¼ç»Š ç§¦æ¡£ é…’åŒ† èç»° ä¹ç˜¤çˆ¶ false åºœç•”ææ çŠ¬è§’æ´’ é…’å›± èŠ­.
 
 	TArray<FString> AllPCClassTrimmedName;
 	ABladeIIPlayer::GetAllTrimmedNameFromPCClassEnum(AllPCClassTrimmedName);
@@ -2082,7 +2083,7 @@ bool AB2StageEventDirector::IsPossibleInterpGroupNameForPC(const FString& InChec
 	bool bHasAtLeastOnePCName = false;
 	for (const FString& ThisPCName : AllPCClassTrimmedName)
 	{
-		if (InCheckName.EndsWith(ThisPCName)) // GetFinalMatchingInterpGroupNamePC ±¸Çö¿¡ µû¶ó.. PCClass ÀÌ¸§ÀÌ ³¡¿¡ ºÙÀ½.
+		if (InCheckName.EndsWith(ThisPCName)) // GetFinalMatchingInterpGroupNamePC å¤‡æ³…ä¿Š è¶æ‰¼.. PCClass ææŠšæ åœºä¿Š å˜¿æ¾œ.
 		{
 			bHasAtLeastOnePCName = true;
 			break;
@@ -2094,7 +2095,7 @@ bool AB2StageEventDirector::IsPossibleInterpGroupNameForPC(const FString& InChec
 		return false;
 	}
 
-	// ShowSettings ÀÇ MatchingInterpGroupName ±îÁö º¸°í´Â ½ÍÁö¸¸..
+	// ShowSettings ç‹¼ MatchingInterpGroupName é³–ç˜¤ ç„Šç»Šç»° é…µç˜¤çˆ¶..
 
 	return true;
 }
@@ -2102,45 +2103,45 @@ bool AB2StageEventDirector::IsPossibleInterpGroupNameForPC(const FString& InChec
 
 void AB2StageEventDirector::SetAllPointLightGroupAffectWorld(bool bAffectWorld)
 {
-	//if (!MatineeActor)
-	//	return;
-	//
-	//const int32 AllowedMatineeTrackPointLightNum = GetAllowedMatineeTrackPointLightNum();
+	if (!MatineeActor)
+		return;
+	
+	const int32 AllowedMatineeTrackPointLightNum = GetAllowedMatineeTrackPointLightNum();
 
-	//// ¸ğ¹ÙÀÏ ·»´õ·¯ °³¼ö Á¦ÇÑ °í·ÁÇØ¾ß ÇÏ´Âµ¥.. ¿©±â¼­ ÇÏÁö ¸øÇÔ.
-	//// ¿Ö³ÄÇÏ¸é Group º°·Î ¼±ÅÃÀûÀ¸·Î »ç¿ëÇØ¾ß ÇÏ´Â °æ¿ì°¡ ÀÖ±â ¶§¹®¿¡
-	//// ¿©±â¼­´Â ÀÏ°ıÀûÀ¸·Î On/Off ÇÏ°í °³º° ±×·ìº° ÇÊ¿ä¾ø´Â °Å ²ô´Â °Ç RuntimeDisableInterpGroup ¿¡¼­
-	//int32 UsedLightCount = 0;
-	//for (int32 GII = 0; GII < MatineeActor->GroupInst.Num(); ++GII)
-	//{
-	//	ALight* pLight = Cast<ALight>(MatineeActor->GroupInst[GII]->GroupActor);		
-	//	ULightComponent* TheLightComp = pLight ? pLight->GetLightComponent() : nullptr;
-	//	if (TheLightComp)
-	//	{
-	//		const bool bPrevAffectsWorld = TheLightComp->bAffectsWorld;
-	//		if (UsedLightCount < AllowedMatineeTrackPointLightNum) {
-	//			TheLightComp->bAffectsWorld = bAffectWorld;
-	//		}
-	//		else { // Á¦ÇÑ ³Ñ¾î°¡¸é Çã¿ë ¾È.. ÇÏ°í ½Í¾ú´Âµ¥ ±×·ìº°·Î ÁöÁ¤ÇØ ³õÀº °Ô ÀÖ¾î¼­ ºÒ°¡ÇÔ. ¤Ñ¤Ñ
-	//			TheLightComp->bAffectsWorld = bAffectWorld;
-	//		}
+	// è‘›å®˜è€ åŠæ­¹çŸ¾ ä¿ºè åŠ›èŒ„ ç»Šå¦¨ç§¦å…· çªç»°å•.. å’¯æ‰è¾‘ çªç˜¤ ç»™çªƒ.
+	// æè¡¬çªæ Group å–Šè‚º æ€¥ç¶åˆ©æ è‚º è¤ä¾©ç§¦å…· çªç»° ç‰ˆå¿«å•Š ä¹æ‰ é”­å·©ä¿Š
+	// å’¯æ‰è¾‘ç»° è€è¤’åˆ©æ è‚º On/Off çªç»Š ä¿ºå–Š å¼Šç¼å–Š é˜å¤¸ç»ç»° èŠ­ æºç»° æ‰’ RuntimeDisableInterpGroup ä¿Šè¾‘
+	int32 UsedLightCount = 0;
+	for (int32 GII = 0; GII < MatineeActor->GroupInst.Num(); ++GII)
+	{
+		ALight* pLight = Cast<ALight>(MatineeActor->GroupInst[GII]->GroupActor);		
+		ULightComponent* TheLightComp = pLight ? pLight->GetLightComponent() : nullptr;
+		if (TheLightComp)
+		{
+			const bool bPrevAffectsWorld = TheLightComp->bAffectsWorld;
+			if (UsedLightCount < AllowedMatineeTrackPointLightNum) {
+				TheLightComp->bAffectsWorld = bAffectWorld;
+			}
+			else { // åŠ›èŒ„ é€ç»¢å•Šæ å€¾ä¾© æ•‘.. çªç»Š é…µèŒç»°å• å¼Šç¼å–Šè‚º ç˜¤æ²¥ç§¦ åˆç¯® éœ¸ ä¹ç»¢è¾‘ é˜‚å•Šçªƒ. ã±ã±
+				TheLightComp->bAffectsWorld = bAffectWorld;
+			}
 
-	//		if (bPrevAffectsWorld != TheLightComp->bAffectsWorld){
-	//			TheLightComp->MarkRenderStateDirty();
-	//		}
+			if (bPrevAffectsWorld != TheLightComp->bAffectsWorld){
+				TheLightComp->MarkRenderStateDirty();
+			}
 
-	//		++UsedLightCount;
-	//	}
-	//}
+			++UsedLightCount;
+		}
+	}
 }
 
 void AB2StageEventDirector::HackSpareLeastPointLight()
 {
-	// ¸ğ¹ÙÀÏ ·»´õ¸µÀÇ dynamic point light °³¼ö Á¦ÇÑÀ» ¸ÂÃß±â À§ÇÑ ÀûÀıÇÑ Light On/Offf ÄÁÆ®·ÑÀ» ¹Ì½ºÇÏ´ø ½ÃÀı¿¡
-	// Àß¸ø ¼³Á¤µÇ¾î ¹ö¸° ÀÏºÎ ¿¬Ãâ ¼Â¾÷À» ¸Ş²Ù±â À§ÇÔ..
-	// RuntimeDisableInterpGroup ¿¡¼­ ºñÈ°¼ºÈ­ ½ÃÄÑ¾ß ÇÒ Æ®·¢ÀÇ point light ¸¦ ²ô°Ô µÇ´Âµ¥ ÀÌ°É °í·ÁÇÏÁö ¸øÇÑ ¼Â¾÷À¸·Î ÀÎÇØ point light °¡ ÇÏ³ªµµ ³ª¿ÀÁö ¾Ê´Â »óÈ²ÀÌ¶ó¸é ÇÏ³ª´Â »ì¸®µµ·Ï..
+	// è‘›å®˜è€ åŠæ­¹å‚…ç‹¼ dynamic point light ä¿ºè åŠ›èŒ„é˜‘ å˜çœ æ‰ å›°èŒ„ åˆ©ä¾‹èŒ„ Light On/Offf ç‰§é£˜è´¹é˜‘ å›ºèƒ¶çªå¸¦ çŸ«ä¾‹ä¿Š
+	// è‚‹ç»™ æ±²æ²¥ç™»ç»¢ æ»šèµ´ è€ä½• æ¥·å… æ‚¸è¯€é˜‘ çš‹æ“æ‰ å›°çªƒ..
+	// RuntimeDisableInterpGroup ä¿Šè¾‘ åšåŠå·±æ‹³ çŸ«éš¾å…· ä¸” é£˜å‘ç‹¼ point light ç”« æºéœ¸ ç™»ç»°å• æå§ ç»Šå¦¨çªç˜¤ ç»™èŒ„ æ‚¸è¯€æ è‚º ç‰¢ç§¦ point light å•Š çªå”±æ¡£ å”±å·ç˜¤ è‡¼ç»° æƒ‘ç‚”ææ‰¼æ çªå”±ç»° æ··åºœæ¡£åºŸ..
 	
-//	if (bHidePlayerPointLight && MatineeActor) // bHidePlayerPointLight °¡ ¾Æ´Ï¶ó¸é ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ ¶óÀÌÆ®¸¦ Àü´ŞÇØ ÁÖ¾úÀ» Å×´Ï ÇÏ³ª´Â ÀÖÀ» °Í.
+//	if (bHidePlayerPointLight && MatineeActor) // bHidePlayerPointLight å•Š é…’èªæ‰¼æ æ•²é¥­æç»¢ æŸè…ç£ æ‰¼æé£˜ç”« å‚ˆå´”ç§¦ æ—èŒé˜‘ æŠ›èª çªå”±ç»° ä¹é˜‘ å·´.
 //	{
 //		bool bAtLeastOneTurnedOn = false;
 //		UPointLightComponent* TheFirstEncounteredPLComp = nullptr;
@@ -2155,10 +2156,10 @@ void AB2StageEventDirector::HackSpareLeastPointLight()
 //				if (PLComp && PLComp->Mobility == EComponentMobility::Movable)
 //				{
 //					if (PLComp->bAffectsWorld) {
-//						bAtLeastOneTurnedOn = true; // ÇÏ³ª´Â »ì¾Æ ÀÖÀ¸´Ï ´õ º¼ ÇÊ¿ä ¾øÀ½.
+//						bAtLeastOneTurnedOn = true; // çªå”±ç»° æ··é…’ ä¹æ èª æ­¹ æ­ é˜å¤¸ ç»æ¾œ.
 //						break;
 //					}
-//					if (!TheFirstEncounteredPLComp) { // ¾Æ¹«µµ ¾È »ì¾Æ ÀÖ´Â °æ¿ì¸¦ À§ÇØ Ã³À½²¬ Ä³½ÌÇØ µĞ´Ù.
+//					if (!TheFirstEncounteredPLComp) { // é…’å…¬æ¡£ æ•‘ æ··é…’ ä¹ç»° ç‰ˆå¿«ç”« å›°ç§¦ è´¸æ¾œé“‚ æŸæ•™ç§¦ æ•Œä¿ƒ.
 //						TheFirstEncounteredPLComp = PLComp;
 //					}
 //				}
@@ -2171,7 +2172,7 @@ void AB2StageEventDirector::HackSpareLeastPointLight()
 //
 //		if (!bAtLeastOneTurnedOn && TheFirstEncounteredPLComp)
 //		{
-//#if !UE_BUILD_SHIPPING // ¹º°¡ ÇÏ³ª ÄÑ±ä ÇÏÁö¸¸ °æ°í ´ë»ó.
+//#if !UE_BUILD_SHIPPING // è´­å•Š çªå”± éš¾å˜ çªç˜¤çˆ¶ ç‰ˆç»Š æªæƒ‘.
 //			UE_LOG(LogBladeII, Warning, TEXT("Unconditionally turning on the first point light.. just because of possible false event scene light setup.. of %s"), *GetName());
 //#endif
 //			TheFirstEncounteredPLComp->bAffectsWorld = true;
@@ -2200,9 +2201,9 @@ void AB2StageEventDirector::GetAllSupposedInterpGroupNamesForSetting(TArray<FNam
 	}
 	else
 	{
-		OutGroupNames.Add(InSetting.MatchingInterpGroupName); // PC °¡ ¾Æ´Ï¶ó¸é MatchingInterpGroupName À¸·Î ¹Ù·Î.
+		OutGroupNames.Add(InSetting.MatchingInterpGroupName); // PC å•Š é…’èªæ‰¼æ MatchingInterpGroupName æ è‚º å®˜è‚º.
 
-		if (RandomMatineeGroupNum > 1) // ·£´ı ±×·ì ÀÌ¸§Àº Ãß°¡·Î ³Ö´Â °É·Î. ¾Æ¸¶µµ ÀÌ°Ô ÀÖ´Ù¸é ¿ø·¡ ÀÌ¸§Àº ¾È ¾µ °Å °°Áö¸¸.
+		if (RandomMatineeGroupNum > 1) // ç½šå¾… å¼Šç¼ ææŠšç¯® çœ å•Šè‚º æŒç»° å§è‚º. é…’ä»˜æ¡£ æéœ¸ ä¹ä¿ƒæ ç›”è´° ææŠšç¯® æ•‘ é•œ èŠ­ éç˜¤çˆ¶.
 		{
 			for (int32 RI = 1; RI <= RandomMatineeGroupNum; ++RI)
 			{
@@ -2223,23 +2224,23 @@ void AB2StageEventDirector::FinalBeginMatineePlay()
 	//	EnsureHidePlayActorsForControlledMatinee();
 	//	
 	//	MatineeActor->Play();
-	//	MatineeActor->AddCustomNotifyActor(this); // Stop notification À» ¹Ş±â À§ÇØ µî·Ï. Play ÀÌÀü¿¡ ³ÖÀ¸¸é TermInterp ¿¡¼­ ºüÁü.
+	//	MatineeActor->AddCustomNotifyActor(this); // Stop notification é˜‘ ç½æ‰ å›°ç§¦ æ®¿åºŸ. Play æå‚ˆä¿Š æŒæ æ TermInterp ä¿Šè¾‘ ç‹å’™.
 	//	if (!GIsEditor) 
-	//	{ // ¿ä SetCloseBattleMainUIClass ÀÌº¥Æ®¸¦ ¿¡µğÅÍ¿¡¼­ Init-Destroy ½Ã¿¡ Subscribe/Unsubcribe ÇÏ´Âµ¥ ¿¡µğÅÍ¿¡¼­ Unsubscribe °¡ ºüÁö±â ½¬¿ò. ¤Ğ¤Ğ
-	//		// ±×¸®°í ¾Æ¸¶ ¿¡µğÅÍ¿¡¼± ÇÊ¿äÇÏÁöµµ ¾ÊÀ» µí.
+	//	{ // å¤¸ SetCloseBattleMainUIClass æäº¥é£˜ç”« ä¿Šå¼ç£ä¿Šè¾‘ Init-Destroy çŸ«ä¿Š Subscribe/Unsubcribe çªç»°å• ä¿Šå¼ç£ä¿Šè¾‘ Unsubscribe å•Š ç‹ç˜¤æ‰ æµ†æ¡†. ã°ã°
+	//		// å¼Šåºœç»Š é…’ä»˜ ä¿Šå¼ç£ä¿Šæ€¥ é˜å¤¸çªç˜¤æ¡£ è‡¼é˜‘ æ·€.
 	//		SetCloseBattleMainUIClass<bool>::GetInstance().Signal(false);
 	//	}
-	//	EnterCinematicModeForControlledMatinee(); // CinematicMode ÁøÀÔÇØ¾ß ½ÇÁúÀûÀ¸·Î ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ visibility °¡ ¼¼ÆÃµÉ °Í.
+	//	EnterCinematicModeForControlledMatinee(); // CinematicMode æŸ³æ¶ç§¦å…· è§’é¾™åˆ©æ è‚º æ•²é¥­æç»¢ æŸè…ç£ visibility å•Š æŠ€æ³¼çª å·´.
 	//}
 
-	//// SetVisibilityOfMatineePuppet À» ÅëÇØ¼­ È£ÃâÇÔ¿¡µµ ºÒ±¸ÇÏ°í ¿©±â¼­µµ ¶Ç ÇÊ¿äÇÑµí.. ±×¸®°í ÀÌ°É·Îµµ ¾È¸ÔÈú ¶§°¡ ÀÖÀ½. ¹º°¡ ¹Ì¹¦ÇÑ Å¸ÀÌ¹Ö ¹®Á¦°¡ ÀÖ´Â µí ÇÑµ¥..
+	//// SetVisibilityOfMatineePuppet é˜‘ çƒ¹ç§¦è¾‘ é¾‹å…çªƒä¿Šæ¡£ é˜‚å¤‡çªç»Š å’¯æ‰è¾‘æ¡£ è‚š é˜å¤¸èŒ„æ·€.. å¼Šåºœç»Š æå§è‚ºæ¡£ æ•‘å†ˆé³ƒ é”­å•Š ä¹æ¾œ. è´­å•Š å›ºåŠŸèŒ„ é¸¥ææ€ª å·©åŠ›å•Š ä¹ç»° æ·€ èŒ„å•..
 	//for (int32 EI = 0; EI < ShowStates.Num(); ++EI)
 	//{
 	//	ActivateMatineePuppetPSCs(ShowStates[EI].CtrlMatineePuppet, ShowStates[EI].GetPlayActor(this));
 	//}
 
-	//// LocalPlayerSwitching À» ¿©±â¼­ ÇÑ´Ù. PCSyncToMatineeStart °¡ ÀÖ´õ¶óµµ ÀÌ ½ÃÁ¡¿¡´Â ¸¶Æ¼´Ï ÇÃ·¹ÀÌ°¡ ÁøÇàµÉ °ÍÀÌ¹Ç·Î. (ÇöÀç ´º Æ©Åä¸®¾ó¿¡¼­ »ç¿ë)
-	//// ActivateMatineePuppetPSCs ÀÌÀü¿¡ ¸øÇÏ´Â °Ç ¾Æ·¡ Switching À» °ÅÄ¡¸é¼­ PlayActor °¡ ³¯¾Æ°¡´Â °æ¿ì°¡ ÀÖ¾î¼­ Hide µ¿ÀÛ¿¡ ÀÏºÎ ¹®Á¦°¡ ¹ß»ıÇÏ¹Ç·Î..
+	//// LocalPlayerSwitching é˜‘ å’¯æ‰è¾‘ èŒ„ä¿ƒ. PCSyncToMatineeStart å•Š ä¹æ­¹æ‰¼æ¡£ æ çŸ«ç—¢ä¿Šç»° ä»˜èèª æ•²é¥­æå•Š æŸ³é’çª å·´æéª¨è‚º. (æ³…çŠ æ˜¥ è­¬é…åºœå€”ä¿Šè¾‘ è¤ä¾©)
+	//// ActivateMatineePuppetPSCs æå‚ˆä¿Š ç»™çªç»° æ‰’ é…’è´° Switching é˜‘ èŠ­æ‘¹æè¾‘ PlayActor å•Š æœé…’å•Šç»° ç‰ˆå¿«å•Š ä¹ç»¢è¾‘ Hide æ‚¼ç´¯ä¿Š è€ä½• å·©åŠ›å•Š æƒ¯ç§¯çªéª¨è‚º..
 	//if (bLocalPlayerSwitching) {
 	//	SwitchingLastRenderingPlayer();
 	//}
@@ -2248,14 +2249,14 @@ void AB2StageEventDirector::FinalBeginMatineePlay()
 void AB2StageEventDirector::SwitchingLastRenderingPlayer()
 {
 	///* ----------------------------------------------------
-	// !! ÁÖÀÇ !!
+	// !! æ—ç‹¼ !!
 	// 
-	// ¿¬Ãâ ±â´É¿¡ °ÔÀÓ flow °¡ Á¾¼ÓµÇ´Â »ç·Ê¶ó ÀÏ¹İ ¸ğÇè ½ºÅ×ÀÌÁöÀÇ °æ¿ì ¿¬Ãâ ½ºÅµ ¿©ºÎ¿¡ µû¶ó ÀÎ°ÔÀÓ flow °¡ ¹Ù²î´Â ¹ö±× ¹ß»ı ¼ÒÁö°¡ ÀÖÀ½.
-	// ÀÌ¹Ì ±×·± ½ÄÀÇ »ç¿ëÀÌ ¾øÁöµµ ¾Ê°í ÀÌ ±â´ÉÀ» »ç¿ëÇÏ´Â ¿¬Ãâ ¼º°İ »ó °ÔÀÓ flow °¡ ¿¬Ãâ¿¡ Á¾¼ÓµÇ´Â °Ô »ç½ÇÀÌ±âµµ ÇÑµ¥..
+	// æ¥·å… æ‰ç“·ä¿Š éœ¸çƒ™ flow å•Š è¾†åŠ ç™»ç»° è¤è‚¥æ‰¼ è€é¦† è‘›æ°° èƒ¶æŠ›æç˜¤ç‹¼ ç‰ˆå¿« æ¥·å… èƒ¶è¯º å’¯ä½•ä¿Š è¶æ‰¼ ç‰¢éœ¸çƒ™ flow å•Š å®˜å·®ç»° æ»šå¼Š æƒ¯ç§¯ å®¶ç˜¤å•Š ä¹æ¾œ.
+	// æå›º å¼Šç¹ ä¾¥ç‹¼ è¤ä¾©æ ç»ç˜¤æ¡£ è‡¼ç»Š æ æ‰ç“·é˜‘ è¤ä¾©çªç»° æ¥·å… å·±æ‹œ æƒ‘ éœ¸çƒ™ flow å•Š æ¥·å…ä¿Š è¾†åŠ ç™»ç»° éœ¸ è¤è§’ææ‰æ¡£ èŒ„å•..
 	//
-	// ´çÀåÀº Æ©Åä¸®¾ó ¿ÜÀÇ ¸ğµå¿¡¼­ »ç¿ëÀ» ÇÏÁö ¾Êµµ·Ï ÇÏ°í,
-	// ÀÏ¹İ ¸ğÇè ½ºÅ×ÀÌÁö¿¡¼­ »ç¿ë ÇÊ¿ä¼ºÀÌ »ı±â¸é »ç¿ë Á¶°ÇÀ» ManageMode ³ª SupportedStages ¿©ºÎ µî¿¡ µû¶ó ÇÑÁ¤Áş°í
-	// Æ¯È÷ EStageEventSkipType::SEST_LeastSkip ÀÌ »ç¿ëµÇ¾î¾ß ÇÑ´Ù¸é LeastSkip ½Ã¿¡ ÀÌ µ¿ÀÛÀ» ºü¶ß¸®Áö ¾Êµµ·Ï ÇÒ ÇÊ¿ä°¡ ÀÖÀ½.
+	// å¯¸å˜ç¯® è­¬é…åºœå€” å¯‡ç‹¼ è‘›é›ä¿Šè¾‘ è¤ä¾©é˜‘ çªç˜¤ è‡¼æ¡£åºŸ çªç»Š,
+	// è€é¦† è‘›æ°° èƒ¶æŠ›æç˜¤ä¿Šè¾‘ è¤ä¾© é˜å¤¸å·±æ ç§¯æ‰æ è¤ä¾© ç‚¼æ‰’é˜‘ ManageMode å”± SupportedStages å’¯ä½• æ®¿ä¿Š è¶æ‰¼ èŒ„æ²¥çª¿ç»Š
+	// æ¼‚æ´’ EStageEventSkipType::SEST_LeastSkip æ è¤ä¾©ç™»ç»¢å…· èŒ„ä¿ƒæ LeastSkip çŸ«ä¿Š æ æ‚¼ç´¯é˜‘ ç‹å“†åºœç˜¤ è‡¼æ¡£åºŸ ä¸” é˜å¤¸å•Š ä¹æ¾œ.
 	//---------------------------------------------------- */
 	//bool bisInTutorialGameMode = (Cast<AB2TutorialGameMode>(UGameplayStatics::GetGameMode(this)) != nullptr);
 	//checkSlow(bisInTutorialGameMode);
@@ -2265,29 +2266,29 @@ void AB2StageEventDirector::SwitchingLastRenderingPlayer()
 	//////////////////////////////////////////////////////////
 
 	//TArray<FPlayActorShowRuntimeState*> AllStatesOfPlayerChar;
-	//GetShowStatesOfPlayerChar(AllStatesOfPlayerChar); // ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍµéÀÇ ShowState ¸¸ ¼±º°ÇØ¼­ °¡Á®¿È.
+	//GetShowStatesOfPlayerChar(AllStatesOfPlayerChar); // æ•²é¥­æç»¢ æŸè…ç£ç”¸ç‹¼ ShowState çˆ¶ æ€¥å–Šç§¦è¾‘ å•Šå»‰å’³.
 
 	//checkSlow(ShowStates.Num() >= 2);
 	//if (ShowStates.Num() < 2) {
-	//	return; // µÑ ÀÌ»óÀÌ¾î¾ß ¹Ù²ÙµçÁö ÇÏÁö..
+	//	return; // ç¬› ææƒ‘æç»¢å…· å®˜æ“ç”µç˜¤ çªç˜¤..
 	//}
 
-	//// AllStatesOfPlayerChar ¾È¿¡¼­ÀÇ ÀÎµ¦½º
-	//int32 CurrentLocalPlayerIndex = INDEX_NONE; // ±³Ã¼ Àü State ÀÎµ¦½º
-	//int32 NewLocalPlayerIndex = INDEX_NONE; // ±³Ã¼ ÈÄ State ÀÎµ¦½º
+	//// AllStatesOfPlayerChar æ•‘ä¿Šè¾‘ç‹¼ ç‰¢éƒ¸èƒ¶
+	//int32 CurrentLocalPlayerIndex = INDEX_NONE; // èƒŒçœ‰ å‚ˆ State ç‰¢éƒ¸èƒ¶
+	//int32 NewLocalPlayerIndex = INDEX_NONE; // èƒŒçœ‰ é¥¶ State ç‰¢éƒ¸èƒ¶
 
 	//for (int32 SI = 0; SI < AllStatesOfPlayerChar.Num(); ++SI)
 	//{
 	//	FPlayActorShowRuntimeState* ThisState = AllStatesOfPlayerChar[SI];
-	//	// IsForLocalPlayerCharacter ¿¡ ÇØ´çÇÏ´Â °Ç ´Ü ÇÏ³ª¸¸ ÀÖ¾î¾ß ÇÑ´Ù
+	//	// IsForLocalPlayerCharacter ä¿Š ç§¦å¯¸çªç»° æ‰’ çªœ çªå”±çˆ¶ ä¹ç»¢å…· èŒ„ä¿ƒ
 	//	if (ThisState->IsForLocalPlayerCharacter())
 	//	{
 	//		CurrentLocalPlayerIndex = SI;
 	//		break;
 	//	}
 	//}
-	//// ±³Ã¼ÇÒ ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ´Â µÚºÎÅÍ ÇØ¼­ ÇöÀç Local ÀÌ ¾Æ´Ñ °É·Î. ¸¸ÀÏ 3 ÀÌ»óÀÇ Æ®·¢ÀÌ ÀÖ´Ù¸é µÚÂÊ ÀÎµ¦½º°¡ ¿ì¼± ¼øÀ§.
-	//// ¹ü¿ëÀûÀÎ Á¤½Ä »ç¿ëÀ¸·Î ±¸ÇöÇÏ°íÀÚ ÇÑ´Ù¸é ShowSetting ¿¡ switching ¿©ºÎ¸¦ Ç¥½ÃÇÏ´øÁö ÇØ¾ß°ÚÁö¸¸ ±×·² ÇÊ¿ä±îÁö ÀÖ´Â ±â´ÉÀÎ °Í °°Áö´Â ¾Ê´Ù.
+	//// èƒŒçœ‰ä¸” æ•²é¥­æç»¢ æŸè…ç£ç»° ç¬¬ä½•ç£ ç§¦è¾‘ æ³…çŠ Local æ é…’å›± å§è‚º. çˆ¶è€ 3 ææƒ‘ç‹¼ é£˜å‘æ ä¹ä¿ƒæ ç¬¬ç‡ ç‰¢éƒ¸èƒ¶å•Š å¿«æ€¥ é‰´å›°.
+	//// è£¹ä¾©åˆ©ç‰¢ æ²¥ä¾¥ è¤ä¾©æ è‚º å¤‡æ³…çªç»Šç£Š èŒ„ä¿ƒæ ShowSetting ä¿Š switching å’¯ä½•ç”« é’çŸ«çªå¸¦ç˜¤ ç§¦å…·æ‘†ç˜¤çˆ¶ å¼Šå‡¡ é˜å¤¸é³–ç˜¤ ä¹ç»° æ‰ç“·ç‰¢ å·´ éç˜¤ç»° è‡¼ä¿ƒ.
 	//for (int32 SI = AllStatesOfPlayerChar.Num() - 1; SI >= 0; --SI)
 	//{
 	//	FPlayActorShowRuntimeState* ThisState = AllStatesOfPlayerChar[SI];
@@ -2299,32 +2300,32 @@ void AB2StageEventDirector::SwitchingLastRenderingPlayer()
 	//}
 	//checkSlow(CurrentLocalPlayerIndex != INDEX_NONE && NewLocalPlayerIndex != INDEX_NONE);
 	//if (CurrentLocalPlayerIndex == INDEX_NONE || NewLocalPlayerIndex == INDEX_NONE) {
-	//	return; // ÀÌ·± °æ¿ì ¿ª½Ã³ª ´õ ÀÌ»ó ÁøÇà ºÒ°¡
+	//	return; // æç¹ ç‰ˆå¿« å¼€çŸ«å”± æ­¹ ææƒ‘ æŸ³é’ é˜‚å•Š
 	//}
 
 	//FPlayActorShowRuntimeState* ShowStateToSwitch = AllStatesOfPlayerChar[NewLocalPlayerIndex];
 	//FPlayActorShowRuntimeState* ShowStateOfOldLocalPlayer = AllStatesOfPlayerChar[CurrentLocalPlayerIndex];
-	//// PlayActorAboutTobeSwitched ´Â ´ëÃ¼·Î Dummy ·Î spawn ÇÑ ¾×ÅÍ°¡ µÉ °ÍÀÌ´Ù.
+	//// PlayActorAboutTobeSwitched ç»° æªçœ‰è‚º Dummy è‚º spawn èŒ„ å’€ç£å•Š çª å·´æä¿ƒ.
 	//ABladeIIPlayer* PlayActorAboutTobeSwitched = Cast<ABladeIIPlayer>(ShowStateToSwitch->GetPlayActor(this));
-	//// °ğ ÅğÀåÇÒ ÇöÀç ·ÎÄÃ ÇÃ·¹ÀÌ¾î Ä³¸¯..
+	//// æ¢† ç¡¼å˜ä¸” æ³…çŠ è‚ºæ‹¿ æ•²é¥­æç»¢ æŸè…..
 	//ABladeIIPlayer* CurrentLocalB2Player = Cast<ABladeIIPlayer>(UGameplayStatics::GetLocalPlayerCharacter(this));
 	//UB2SkillRTManager* SkillRTManager = CurrentLocalB2Player ? CurrentLocalB2Player->GetSkillRTManager() : nullptr;
 	//if (PlayActorAboutTobeSwitched && CurrentLocalB2Player && SkillRTManager)
 	//{
-	//	// ´õ¹Ì¶óµµ Ä³¸¯ÅÍ Class ´Â ¼¼ÆÃµÇ¾î ÀÖ´Â °Å..
+	//	// æ­¹å›ºæ‰¼æ¡£ æŸè…ç£ Class ç»° æŠ€æ³¼ç™»ç»¢ ä¹ç»° èŠ­..
 	//	const EPCClass NewPCClassEnum = PlayActorAboutTobeSwitched->GetCurrentPlayerClass();
 	//	const EPCClass OldPCClassEnum = CurrentLocalB2Player->GetCurrentPlayerClass();
 	//	if (SkillRTManager->LocalPlayerSwitching(NewPCClassEnum))
 	//	{
-	//		// Ä³¸¯ÅÍ ¹Ù²Ù¸é¼­ TutorialGameMode¿¡ MarkBeginAsyncLoadNextPCClass¿¡ ÀÌº¥Æ® ³¯¸²
+	//		// æŸè…ç£ å®˜æ“æè¾‘ TutorialGameModeä¿Š MarkBeginAsyncLoadNextPCClassä¿Š æäº¥é£˜ æœè¦†
 	//		MarkBeginAsyncLoadClass<>::GetInstance().Signal();
-	//		// »õ·Î spawn ¼º°ø.. ÀÌÁ¦ º»°İ ShowState ¹Ù²ãÄ¡±â.
+	//		// è´§è‚º spawn å·±å‚.. æåŠ› å¤¯æ‹œ ShowState å®˜å±‚æ‘¹æ‰.
 	//		ABladeIIPlayer* NewLocalB2Player = Cast<ABladeIIPlayer>(UGameplayStatics::GetLocalPlayerCharacter(this));
 	//		ShowStateToSwitch->SetPlayActor(NewLocalB2Player);
-	//		// ´Ù¸¥ visibility ¼¼ÆÃÀÌ ´Ù ³¡³­ ÀÌÈÄ¿¡ ÇØ¾ß ÇØ¼­.. ¾îÂ¿ ¼ö ¾øÀÌ ¹æ±İ spawn ÇÑ Ä³¸¯ÅÍ Hidden Ã³¸®.
+	//		// ä¿ƒå¼— visibility æŠ€æ³¼æ ä¿ƒ åœºæŠ„ æé¥¶ä¿Š ç§¦å…· ç§¦è¾‘.. ç»¢é©´ è ç»æ è§„é™› spawn èŒ„ æŸè…ç£ Hidden è´¸åºœ.
 	//		NewLocalB2Player->SetHideFromEventDirector(true);
 	//		
-	//		// ForgetACharacter ÀÇ °æ¿ì¸¦ Âü°í. ½ÇÁ¦·Î ÀÌÀü±îÁö ¿¬°áµÇ¾î ÀÖ´ø PlayActor ´Â Á¦°ÅµÇ´Â »óÈ²ÀÌ¶ó null-out ÇÏ´Â °Ô ÀûÀıÇÔ.
+	//		// ForgetACharacter ç‹¼ ç‰ˆå¿«ç”« æ›¼ç»Š. è§’åŠ›è‚º æå‚ˆé³–ç˜¤ æ¥·æ¬ç™»ç»¢ ä¹å¸¦ PlayActor ç»° åŠ›èŠ­ç™»ç»° æƒ‘ç‚”ææ‰¼ null-out çªç»° éœ¸ åˆ©ä¾‹çªƒ.
 	//		ShowStateOfOldLocalPlayer->SetPlayActor(nullptr);			
 	//	}
 	//}
@@ -2343,9 +2344,9 @@ void AB2StageEventDirector::GetShowStatesOfPlayerChar(TArray<FPlayActorShowRunti
 
 void AB2StageEventDirector::EnsureHidePlayActorsForControlledMatinee()
 {
-	// SetupSingleShowMatineeGroup µî ´Ù¸¥ °÷¿¡¼­µµ ¼¼ÆÃÇÏÁö¸¸ Á¾Á¾ ²¿¿©¼­ ¸¶Áö¸·¿¡ ´Ù½Ã ÇØ ÁÖ¾î¾ß ÇÒ ¶§°¡ ÀÖÀ½..
+	// SetupSingleShowMatineeGroup æ®¿ ä¿ƒå¼— é•‘ä¿Šè¾‘æ¡£ æŠ€æ³¼çªç˜¤çˆ¶ è¾†è¾† éƒ¨å’¯è¾‘ ä»˜ç˜¤é˜œä¿Š ä¿ƒçŸ« ç§¦ æ—ç»¢å…· ä¸” é”­å•Š ä¹æ¾œ..
 
-	// Controlled Matinee ¸ğµåÀÇ PlayActor ¸¦ ¼û±âÁö ¾Ê¾Æ¾ß ÇÒ °æ¿ì°¡ ÀÖÀ¸·Á³ª
+	// Controlled Matinee è‘›é›ç‹¼ PlayActor ç”« è§æ‰ç˜¤ è‡¼é…’å…· ä¸” ç‰ˆå¿«å•Š ä¹æ å¦¨å”±
 	if (OverallMode == EStageEventDirectorOverallMode::ESEDOM_ControlledMatinee)
 	{
 		for (int32 EI = 0; EI < ShowSettings.Num(); ++EI)
@@ -2367,7 +2368,7 @@ void AB2StageEventDirector::EnsureHidePlayActorsForControlledMatinee()
 
 void AB2StageEventDirector::EnterCinematicModeForControlledMatinee()
 {
-	//// ¿©±ä ¿©·¯¹øºÒ·Áµµ ÇÑ¹ø¸¸ Å¸°ÔÇÑ´Ù.
+	//// å’¯å˜ å’¯çŸ¾é”…é˜‚å¦¨æ¡£ èŒ„é”…çˆ¶ é¸¥éœ¸èŒ„ä¿ƒ.
 	//if (bEnterCinematicMode)
 	//	return;
 
@@ -2378,14 +2379,14 @@ void AB2StageEventDirector::EnterCinematicModeForControlledMatinee()
 	//{
 	//	bool bHiddenPlayer = LocalB2PC->GetPawn() && LocalB2PC->GetPawn()->bHidden;
 	//	
-	//	// MatineeActor ÂÊ¿¡´Â bNoCinematicModeControl À» ¼¼ÆÃÇØ ³õ°í CinematicMode ÄÁÆ®·ÑÀ» Á÷Á¢ ÇÑ´Ù.
+	//	// MatineeActor ç‡ä¿Šç»° bNoCinematicModeControl é˜‘ æŠ€æ³¼ç§¦ åˆç»Š CinematicMode ç‰§é£˜è´¹é˜‘ æµç«‹ èŒ„ä¿ƒ.
 	//	LocalB2PC->SetCinematicMode(true, bHiddenPlayer, bHideHud, bDisableInput, true);
 	//}
 	//if(!bForceNoHidePlayer)
 	//	SetAllPlayerHiddenInGame(true);
 }
 
-// bTryHidePlayer·Î ¼û±æÁö ¸»Áö °áÁ¤
+// bTryHidePlayerè‚º è§è¾¨ç˜¤ å¯Œç˜¤ æ¬æ²¥
 void AB2StageEventDirector::SetAllPlayerHiddenInGame(bool bForceHide)
 {
 	//for (FConstPawnIterator Iterator = GetWorld()->GetPawnIterator(); Iterator; ++Iterator)
@@ -2415,13 +2416,13 @@ bool AB2StageEventDirector::CheckForPCSyncToMatineeStart()
 	//		FPlayActorShowSettings& CurrShowSetting = ShowSettings[EI];
 	//		FPlayActorShowRuntimeState& CurrShowState = ShowStates[EI];
 
-	//		// CurrentPlayer°Ç MainPlayer°Ç SubPlayer°Ç ÇöÀç ÇÃ·¹ÀÌÇÏ°í ÀÖ´Â Ä³¸¯ÅÍ¿Í ÀÏÄ¡ÇÏ¸é ½ÌÅ© ´ë»ó
+	//		// CurrentPlayeræ‰’ MainPlayeræ‰’ SubPlayeræ‰’ æ³…çŠ æ•²é¥­æçªç»Š ä¹ç»° æŸè…ç£å®¢ è€æ‘¹çªæ æ•™å†œ æªæƒ‘
 	//		if (CurrShowState.IsForLocalPlayerCharacter())
 	//		{
-	//			// ÇöÀç ¼¼ÆÃ¿¡¼­ÀÇ move Æ®·¢À» Ã£¾Æ¼­ Ã¹ Å°ÇÁ·¹ÀÓÀ» ¸ñÇ¥ ÁöÁ¡À¸·Î
+	//			// æ³…çŠ æŠ€æ³¼ä¿Šè¾‘ç‹¼ move é£˜å‘é˜‘ èŒ«é…’è¾‘ éœ‰ è™æ©‡é¥­çƒ™é˜‘ æ ¼é’ ç˜¤ç—¢æ è‚º
 	//			
 	//			const FName FinalMatchingGroupName(*GetFinalMatchingInterpGroupName(LocalB2Player, CurrShowSetting.MatchingInterpGroupName.ToString(), false));
-	//			UInterpGroupInst* CurrGroupInst = MatineeActor->FindFirstGroupInstByName(FinalMatchingGroupName.ToString()); // ¿ä°Ç ÀÌ¸§À¸·Î ¹Ù·Î Ã£À» ¼ö ÀÖ´Â µí.
+	//			UInterpGroupInst* CurrGroupInst = MatineeActor->FindFirstGroupInstByName(FinalMatchingGroupName.ToString()); // å¤¸æ‰’ ææŠšæ è‚º å®˜è‚º èŒ«é˜‘ è ä¹ç»° æ·€.
 	//			
 	//			if (CurrGroupInst && CurrGroupInst->Group)
 	//			{
@@ -2431,33 +2432,33 @@ bool AB2StageEventDirector::CheckForPCSyncToMatineeStart()
 	//					
 	//					if (MoveTrack && CurrGroupInst->TrackInst.Num() > TI)
 	//					{
-	//						// UInterpGroup::UpdateGroup º¸¸é InterpTracks °ú TrackInst ÀÎµ¦½º ÀÏÄ¡½ÃÄÑ¼­ »ç¿ë.
+	//						// UInterpGroup::UpdateGroup ç„Šæ InterpTracks è‹ TrackInst ç‰¢éƒ¸èƒ¶ è€æ‘¹çŸ«éš¾è¾‘ è¤ä¾©.
 
-	//						// Ã¹ Å° ÇÁ·¹ÀÓ °ª »©¿È.
+	//						// éœ‰ è™ æ©‡é¥­çƒ™ è”¼ å“—å’³.
 	//						float KeyTime;
 	//						FVector FirstKeyPosition;
 	//						MoveTrack->ExternalGetKeyframePosition(CurrGroupInst->TrackInst[TI], 0, KeyTime, FirstKeyPosition, NULL, NULL);
-	//						// È¸Àü°ªÀº ±âº» ±â´ÉÀ¸·Î´Â ¸ø¸ÂÃçÁÙ µí..
+	//						// é›€å‚ˆè”¼ç¯® æ‰å¤¯ æ‰ç“·æ è‚ºç»° ç»™å˜è‹—ä¸´ æ·€..
 	//						//FVector FirstKeyRotEuler;
 	//						//MoveTrack->ExternalGetKeyframeRotation(CurrGroupInst->TrackInst[TI], 0, KeyTime, FirstKeyRotEuler, NULL, NULL);
 
-	//						// NavigationSystem ºô·Á¼­ ÀÌµ¿. ´ÙÇàÈ÷ PlayerController ·Îµµ ÀÛµ¿ÇÏ´Â±º ¤»
+	//						// NavigationSystem å‘¼å¦¨è¾‘ ææ‚¼. ä¿ƒé’æ´’ PlayerController è‚ºæ¡£ ç´¯æ‚¼çªç»°ç„™ ã›
 	//						UNavigationSystem::SimpleMoveToLocation(LocalB2Player->Controller, FirstKeyPosition);
-	//						// PathFind Á¾·á Äİ¹é µî·Ï.
+	//						// PathFind è¾†ä¸° å¦®å½’ æ®¿åºŸ.
 	//						UPathFollowingComponent* PFComp = LocalB2Player->Controller->FindComponentByClass<UPathFollowingComponent>();
 	//						if (PFComp)
 	//						{
-	//							// SimpleMoveToLocation ¿¡¼­ ÇÑ¹ø Ã¼Å©ÇÏ´Âµ¥ ±× ¶§¿¡´Â Äİ¹éÀÌ ¾ÈºÒ¸°´Ù. µî·Ïµµ ¾ÈÇÑ »óÅÂ°í ´Ù¸¥ ¹®Á¦µµ ÀÖ°í. ¾îÂ÷ÇÇ ÀÌ¹Ì µµ´ŞÇßÀ¸¸é ±»ÀÌ Sync ÇÒ ÇÊ¿ä°¡ ¾øÀ½.
+	//							// SimpleMoveToLocation ä¿Šè¾‘ èŒ„é”… çœ‰å†œçªç»°å• å¼Š é”­ä¿Šç»° å¦®å½’æ æ•‘é˜‚èµ´ä¿ƒ. æ®¿åºŸæ¡£ æ•‘èŒ„ æƒ‘æ€•ç»Š ä¿ƒå¼— å·©åŠ›æ¡£ ä¹ç»Š. ç»¢ç’ä¹” æå›º æ¡£å´”æ²æ æ è¢«æ Sync ä¸” é˜å¤¸å•Š ç»æ¾œ.
 	//							if (PFComp->HasReached(FirstKeyPosition, EPathFollowingReachMode::OverlapAgent) == false)
 	//							{
 	//								PFComp->OnRequestFinished.AddUObject(this, &AB2StageEventDirector::OnPCSyncToMatineeStartCompleted);
-	//								// Sync Áß Ç¥½Ã. ÀÌ°Ô ³¡³ª¸é º»°İ ¸¶Æ¼´Ï ÇÃ·¹ÀÌ ½ÃÀÛ.
+	//								// Sync å é’çŸ«. æéœ¸ åœºå”±æ å¤¯æ‹œ ä»˜èèª æ•²é¥­æ çŸ«ç´¯.
 	//								bCurrentPCSyncToMatineeStart = true;
 	//							}
 	//						}
 
-	//						// ¸¶Áö¸·À¸·Î.. Æ¯Á¤ ½Ã°£ÀÌ Áö³ª¸é ¹«Á¶°Ç ½ÃÀÛÇÏµµ·Ï ÇÑ´Ù. ³Ê¹« ¸Ö¸®¼­ ¿À°Ô µÇ¸é µµÁß¿¡ ²÷±â°ÚÁö¸¸, ¾îµò°¡¿¡ ¸·Çô¼­ ´õ ÀÌ»ó ÁøÇàÀÌ µÇÁö ¾Ê´Â °Íº¸´Ü ³´°ÚÁö. 
-	//						// ÇÊ¿ä¿¡ µû¶ó º¯¼ö·Î ³ëÃâ..
+	//						// ä»˜ç˜¤é˜œæ è‚º.. æ¼‚æ²¥ çŸ«åŸƒæ ç˜¤å”±æ å…¬ç‚¼æ‰’ çŸ«ç´¯çªæ¡£åºŸ èŒ„ä¿ƒ. å‘ˆå…¬ é’¢åºœè¾‘ å·éœ¸ ç™»æ æ¡£åä¿Š è°—æ‰æ‘†ç˜¤çˆ¶, ç»¢å‡‹å•Šä¿Š é˜œå›šè¾‘ æ­¹ ææƒ‘ æŸ³é’æ ç™»ç˜¤ è‡¼ç»° å·´ç„Šçªœ ç‚’æ‘†ç˜¤. 
+	//						// é˜å¤¸ä¿Š è¶æ‰¼ å‡½èè‚º ç•´å…..
 	//						const float PCSyncFallBackTimerTime = 10.0f; 
 	//						GetWorldTimerManager().SetTimer(PCSyncToMatineeStartFallbackTimerHandle, this, &AB2StageEventDirector::PCSyncToMatineeStartFallbackTimerCB, PCSyncFallBackTimerTime, false);
 
@@ -2469,20 +2470,20 @@ bool AB2StageEventDirector::CheckForPCSyncToMatineeStart()
 	//	}
 	//}
 
-	//// ½ÇÁ¦ ÇÃ·¹ÀÌÇÏ±â Àü±îÁö ÀÎ°ÔÀÓ »óÅÂ·Î µÇµ¹·Á ³õ´Â´Ù. SetupSingleShowMatineeGroup ¿¡¼­ ÇÑ ÀÏºÎ¸¦ µÇµ¹·Á ³õÀ½.
+	//// è§’åŠ› æ•²é¥­æçªæ‰ å‚ˆé³–ç˜¤ ç‰¢éœ¸çƒ™ æƒ‘æ€•è‚º ç™»å€’å¦¨ åˆç»°ä¿ƒ. SetupSingleShowMatineeGroup ä¿Šè¾‘ èŒ„ è€ä½•ç”« ç™»å€’å¦¨ åˆæ¾œ.
 	//if (bCurrentPCSyncToMatineeStart)
 	//{
 	//	for (int32 EI = 0; EI < ShowSettings.Num(); ++EI)
 	//	{
 	//		FPlayActorShowSettings& CurrShowSetting = ShowSettings[EI];
-	//		// ÀÌ °æ¿ì SkeletalMeshActor µéÀº Ã³À½ºÎÅÍ º¸¿©Áú Å×´Ï ¼û°Ü¼­µµ ¾ÈµÇ°ÚÁö.
+	//		// æ ç‰ˆå¿« SkeletalMeshActor ç”¸ç¯® è´¸æ¾œä½•ç£ ç„Šå’¯é¾™ æŠ›èª è§è´¥è¾‘æ¡£ æ•‘ç™»æ‘†ç˜¤.
 	//		const bool bVisibleFromFirstPlace = (CurrShowSetting.PlayActorStateMode == EPlayActorStateMode::EPASM_DirectedFromBeginning);
 
 	//		FPlayActorShowRuntimeState& CurrShowState = ShowStates[EI];
 	//		ABladeIICharacter* ThisPlayActor = CurrShowState.GetPlayActor(this);
 	//		if (ThisPlayActor)
 	//		{
-	//			// SetupSingleShowMatineeGroup ¿¡¼­ ¼û°Ü³õÀº °ÍµéÀ» ´Ù½Ã Àá½Ã º¸ÀÌµµ·Ï. 
+	//			// SetupSingleShowMatineeGroup ä¿Šè¾‘ è§è´¥åˆç¯® å·´ç”¸é˜‘ ä¿ƒçŸ« æ³ªçŸ« ç„Šææ¡£åºŸ. 
 
 	//			bool bOneOfTempSpawnedPuppet = false;
 	//			for (int32 TPI = 0; TPI < TempSpawnedPuppets.Num(); ++TPI)
@@ -2493,16 +2494,16 @@ bool AB2StageEventDirector::CheckForPCSyncToMatineeStart()
 	//				}
 	//			}
 
-	//			// TempSpawnedPuppet Àº ¾îÂ÷ÇÇ º¸¿©ÁÖ¸é ¾ÈµÊ. ¶ÇÇÑ SetStageEventShowState µµ SetupSingleShowMatineeGroup ¿¡¼­ ¼¼ÆÃÇÑ ±×´ë·Î ³öµÖ¾ß ¼û°ÜÁø Ã¤·Î spawn ¸ğ¼Ç °°Àº °Ô ÇÃ·¹ÀÌ µÇÁö ¾ÊÀ» °Í.
+	//			// TempSpawnedPuppet ç¯® ç»¢ç’ä¹” ç„Šå’¯æ—æ æ•‘å‡³. è‚šèŒ„ SetStageEventShowState æ¡£ SetupSingleShowMatineeGroup ä¿Šè¾‘ æŠ€æ³¼èŒ„ å¼Šæªè‚º å‡ºæŠµå…· è§è´¥æŸ³ ç›²è‚º spawn è‘›è®° éç¯® éœ¸ æ•²é¥­æ ç™»ç˜¤ è‡¼é˜‘ å·´.
 	//			if (bOneOfTempSpawnedPuppet || bVisibleFromFirstPlace)
 	//			{
 	//				ThisPlayActor->SetHideFromEventDirector(true);
 	//			}
 	//			else
 	//			{
-	//				ThisPlayActor->SetHideFromEventDirector(false); // ³ª¸ÓÁö´Â ÀÎ°ÔÀÓ »óÅÂ´ë·Î..
+	//				ThisPlayActor->SetHideFromEventDirector(false); // å”±èµ£ç˜¤ç»° ç‰¢éœ¸çƒ™ æƒ‘æ€•æªè‚º..
 
-	//				// BeginSingleShow ¿¡¼­ ÀÌ°Ô ±âº»À¸·Î µé¾î°¡ ÀÖ¾î¼­ ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ ³ª¿ÀÁö ¾Ê´Âµ¥ ¸¶Æ¼´Ï ¸ğµå¿¡¼± StageEventShowState ¼¼ÆÃÀÌ Áß¿äÇÑ °Ô ¾Æ´Ô ¤»
+	//				// BeginSingleShow ä¿Šè¾‘ æéœ¸ æ‰å¤¯æ è‚º ç”¸ç»¢å•Š ä¹ç»¢è¾‘ å±€èªçš‹æè®°æ å”±å·ç˜¤ è‡¼ç»°å• ä»˜èèª è‘›é›ä¿Šæ€¥ StageEventShowState æŠ€æ³¼æ åå¤¸èŒ„ éœ¸ é…’ä¸› ã›
 	//				ThisPlayActor->SetStageEventShowState(EStageEventShowState::ESES_None, NULL);
 	//			}
 	//		}
@@ -2512,7 +2513,7 @@ bool AB2StageEventDirector::CheckForPCSyncToMatineeStart()
 	//		}
 	//	}
 
-	//	// ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ´Â º¸ÀÌ´õ¶óµµ FinalBeginMatineePlay ÇÏ±â Àü¿¡ ¿©±â¼­µµ CinematicMode ÁøÀÔÀÌ ÇÊ¿ä.
+	//	// æ•²é¥­æç»¢ æŸè…ç£ç»° ç„Šææ­¹æ‰¼æ¡£ FinalBeginMatineePlay çªæ‰ å‚ˆä¿Š å’¯æ‰è¾‘æ¡£ CinematicMode æŸ³æ¶æ é˜å¤¸.
 	//	EnterCinematicModeForControlledMatinee();
 
 	//	return true;
@@ -2529,7 +2530,7 @@ void AB2StageEventDirector::BeginMatineeFromPCSyncToMatineeStart()
 	//{
 	//	bCurrentPCSyncToMatineeStart = false;
 
-	//	// CheckForPCSyncToMatineeStart ¿¡¼­ ¼¼ÆÃÇÑ °Å ´Ù½Ã ¸¶Æ¼´Ï ÇÃ·¹ÀÌ¸¦ À§ÇØ µ¹·Á³õ´Â´Ù. ´Ù½Ã SetupSingleShowMatineeGroup ¿¡¼­ ÇØ ³õÀº »óÅÂ·Î
+	//	// CheckForPCSyncToMatineeStart ä¿Šè¾‘ æŠ€æ³¼èŒ„ èŠ­ ä¿ƒçŸ« ä»˜èèª æ•²é¥­æç”« å›°ç§¦ å€’å¦¨åˆç»°ä¿ƒ. ä¿ƒçŸ« SetupSingleShowMatineeGroup ä¿Šè¾‘ ç§¦ åˆç¯® æƒ‘æ€•è‚º
 	//	for (int32 EI = 0; EI < ShowStates.Num(); ++EI)
 	//	{
 	//		FPlayActorShowSettings& CurrShowSetting = ShowSettings[EI];
@@ -2543,10 +2544,10 @@ void AB2StageEventDirector::BeginMatineeFromPCSyncToMatineeStart()
 	//		ABladeIICharacter* ThisPlayActor = CurrShowState.GetPlayActor(this);
 	//		if (IsValid(ThisPlayActor))
 	//		{
-	//			// º°·Î Áß¿äÇÑ °Ç ¾Æ´Ñµ¥.. ESES_None À¸·Î ³õÀº StageEventShowState µµ ³ª¸§ ÀÇ¹ÌÀÖ´Â °ªÀ¸·Î ´Ù½Ã ¼¼ÆÃÇØ ³õÀÚ. »ç½Ç ¸¶Æ¼´Ï ¸ğµå¿¡¼± Å« ÀÇ¹Ì´Â ¾ø´Ù..
+	//			// å–Šè‚º åå¤¸èŒ„ æ‰’ é…’å›±å•.. ESES_None æ è‚º åˆç¯® StageEventShowState æ¡£ å”±æŠš ç‹¼å›ºä¹ç»° è”¼æ è‚º ä¿ƒçŸ« æŠ€æ³¼ç§¦ åˆç£Š. è¤è§’ ä»˜èèª è‘›é›ä¿Šæ€¥ å¥´ ç‹¼å›ºç»° ç»ä¿ƒ..
 	//			ThisPlayActor->SetStageEventShowState(GetDefaultDesiredPlayActorSESState(DirectingEvent, CurrShowSetting.PlayActorType), this);
 	//			
-	//			// PlayActor µé ¼û±â´Â °Ç ¾Æ·¡ FinalBeginMatineePlay ¿¡¼­
+	//			// PlayActor ç”¸ è§æ‰ç»° æ‰’ é…’è´° FinalBeginMatineePlay ä¿Šè¾‘
 	//		}
 	//		if (CurrShowState.CtrlMatineePuppet)
 	//		{
@@ -2554,9 +2555,9 @@ void AB2StageEventDirector::BeginMatineeFromPCSyncToMatineeStart()
 	//		}
 	//	}
 
-	//	FinalBeginMatineePlay(); // ½ÃÀÛ
+	//	FinalBeginMatineePlay(); // çŸ«ç´¯
 
-	//	DeferredBeginShowHandlingForMatineePCSync(); // BeginShow ¿¡¼­ Ã³¸® ¸øÇß´ø °Íµé ¸¶Àú Ã³¸®.
+	//	DeferredBeginShowHandlingForMatineePCSync(); // BeginShow ä¿Šè¾‘ è´¸åºœ ç»™æ²å¸¦ å·´ç”¸ ä»˜å† è´¸åºœ.
 	//}
 }
 
@@ -2568,7 +2569,7 @@ void AB2StageEventDirector::OnPCSyncToMatineeStartCompleted(FAIRequestID Request
 void AB2StageEventDirector::PCSyncToMatineeStartFallbackTimerCB()
 {
 	GetWorldTimerManager().ClearTimer(PCSyncToMatineeStartFallbackTimerHandle);
-	BeginMatineeFromPCSyncToMatineeStart(); // ´ëÃ¼·Î ÀÌ¹Ì BeginMatineeFromPCSyncToMatineeStart °¡ Ã³¸®µÇ¾úÀ» °ÍÀÎµ¥ ±×·± °æ¿ì¸é ¾Æ¹« ÀÏ ¾ÈÀÏ¾î³¯ °Í.
+	BeginMatineeFromPCSyncToMatineeStart(); // æªçœ‰è‚º æå›º BeginMatineeFromPCSyncToMatineeStart å•Š è´¸åºœç™»èŒé˜‘ å·´ç‰¢å• å¼Šç¹ ç‰ˆå¿«æ é…’å…¬ è€ æ•‘è€ç»¢æœ å·´.
 }
 
 ABladeIICharacter* AB2StageEventDirector::GetRelevantPlayActor(EStageEventPlayActor InType, FString& WaveMobSelectKeyword, int32 PlayerIndex)
@@ -2580,7 +2581,7 @@ ABladeIICharacter* AB2StageEventDirector::GetRelevantPlayActor(EStageEventPlayAc
 	//if (InType == EStageEventPlayActor::ESEE_CurrentPlayer)
 	//{
 	//	if (LocalB2Player)
-	//	{ // Á×°íÀÖ´Â °Å¶ó¸é ¿¬Ãâ ÈÄ¿¡ sync ¸¦ ÇÒ ÇÊ¿äµµ ¾ø°Ú°í.. ¿©ÇÏ°£ À§ÇèÇÒ ¼ö ÀÖÀ¸´Ï puppet À¸·Î?
+	//	{ // ç£·ç»Šä¹ç»° èŠ­æ‰¼æ æ¥·å… é¥¶ä¿Š sync ç”« ä¸” é˜å¤¸æ¡£ ç»æ‘†ç»Š.. å’¯çªåŸƒ å›°æ°°ä¸” è ä¹æ èª puppet æ è‚º?
 	//		return LocalB2Player->IsAlive() ? LocalB2Player : LocalB2Player->SpawnMyselfAsPuppet();
 	//	}
 	//}
@@ -2596,13 +2597,13 @@ ABladeIICharacter* AB2StageEventDirector::GetRelevantPlayActor(EStageEventPlayAc
 	//		(InType == EStageEventPlayActor::ESEE_SubPlayer && LocalB2Player->AmIMainCharacter() == false))
 	//		)
 	//	{
-	//		// ÇöÀç ÇÃ·¹ÀÌÇÏ°í ÀÖ´Â Ä³¸¯ÅÍ¶ó¸é »õ·Î spawn ÇÏ°Å³ª ÇÒ ÇÊ¿ä¾øÀÌ ±×´ë·Î °¡Á®¿Í¼­ »ç¿ë.
-	//		// ±×·¸Áö¸¸ Á×°íÀÖ´Â °Å¶ó¸é ¿¬Ãâ ÈÄ¿¡ sync ¸¦ ÇÒ ÇÊ¿äµµ ¾ø°Ú°í.. ¿©ÇÏ°£ À§ÇèÇÒ ¼ö ÀÖÀ¸´Ï puppet À¸·Î?
+	//		// æ³…çŠ æ•²é¥­æçªç»Š ä¹ç»° æŸè…ç£æ‰¼æ è´§è‚º spawn çªèŠ­å”± ä¸” é˜å¤¸ç»æ å¼Šæªè‚º å•Šå»‰å®¢è¾‘ è¤ä¾©.
+	//		// å¼ŠçŠ¯ç˜¤çˆ¶ ç£·ç»Šä¹ç»° èŠ­æ‰¼æ æ¥·å… é¥¶ä¿Š sync ç”« ä¸” é˜å¤¸æ¡£ ç»æ‘†ç»Š.. å’¯çªåŸƒ å›°æ°°ä¸” è ä¹æ èª puppet æ è‚º?
 	//		return LocalB2Player->IsAlive() ? LocalB2Player : LocalB2Player->SpawnMyselfAsPuppet();
 	//	}
 	//	else
 	//	{
-	//		// ¾Æ´Ï¸é »ó´ëÂÊÀ» player controller ¿¡ possess µÇÁö ¾ÊÀº Ã¤·Î spawn ÇØ¼­ »ç¿ë.
+	//		// é…’èªæ æƒ‘æªç‡é˜‘ player controller ä¿Š possess ç™»ç˜¤ è‡¼ç¯® ç›²è‚º spawn ç§¦è¾‘ è¤ä¾©.
 	//		return GetOtherTagClassPuppet();
 	//	}
 	//}
@@ -2614,13 +2615,13 @@ ABladeIICharacter* AB2StageEventDirector::GetRelevantPlayActor(EStageEventPlayAc
 	//		(bCurrentOne ? LocalB2Player : GetOtherTagClassPuppet()) :
 	//		(bCurrentOne ? GetB2MatchOpponent() : GetRemoteOtherTagClassPuppet());
 	//}
-	//else if (InType == EStageEventPlayActor::ESEE_RemoteOpponent_Current) // RemoteOpponent_Other ´Â ÇÊ¿äÇØÁö¸é Ãß°¡. ESEE_WinningPlayer_Other Âü°íÇØ¼­
+	//else if (InType == EStageEventPlayActor::ESEE_RemoteOpponent_Current) // RemoteOpponent_Other ç»° é˜å¤¸ç§¦ç˜¤æ çœ å•Š. ESEE_WinningPlayer_Other æ›¼ç»Šç§¦è¾‘
 	//{
 	//	return GetB2MatchOpponent();
 	//}
 	//else if (InType == EStageEventPlayActor::ESEE_TeamAllyPlayer || InType == EStageEventPlayActor::ESEE_TeamEnemyPlayer)
 	//{
-	//	return GetTeamPlayer(InType == EStageEventPlayActor::ESEE_TeamAllyPlayer, PlayerIndex, false, true); // Áö´Â °æ¿ì¿¡ ÀÌ°É »ç¿ëÇÏ·Á¸é live ¸¸ °¡Á®¿À¸é ¾Æ¹«µµ ¾øÀ» °Í. Á×Àº ¾Ö´Â ²®µ¥±â¶óµµ Á»ºñÃ³·³ ºÎÈ°½ÃÄÑ¼­ µ¥·Á¿Â´Ù.
+	//	return GetTeamPlayer(InType == EStageEventPlayActor::ESEE_TeamAllyPlayer, PlayerIndex, false, true); // ç˜¤ç»° ç‰ˆå¿«ä¿Š æå§ è¤ä¾©çªå¦¨æ live çˆ¶ å•Šå»‰å·æ é…’å…¬æ¡£ ç»é˜‘ å·´. ç£·ç¯® å±€ç»° ä¼¯å•æ‰æ‰¼æ¡£ ç²±åšè´¸çƒ¦ ä½•åŠçŸ«éš¾è¾‘ å•å¦¨æŸ¯ä¿ƒ.
 	//}
 	//else if (InType == EStageEventPlayActor::ESEE_TeamWinningPlayer)
 	//{
@@ -2641,23 +2642,23 @@ ABladeIICharacter* AB2StageEventDirector::GetRelevantPlayActor(EStageEventPlayAc
 	//	//{
 	//	//	int32 WaveNum = 0;
 	//	//	int32 MobIndex = 0;
-	//	//	ParseForWaveMobSelectKeyword(WaveMobSelectKeyword, WaveNum, MobIndex); // ¹®ÀÚ¿­·Î ÁöÁ¤ÇÑ ¿É¼Ç¿¡¼­ ¹øÈ£µé »©¿È.
+	//	//	ParseForWaveMobSelectKeyword(WaveMobSelectKeyword, WaveNum, MobIndex); // å·©ç£Šå‡¯è‚º ç˜¤æ²¥èŒ„ å¯è®°ä¿Šè¾‘ é”…é¾‹ç”¸ å“—å’³.
 
 	//	//	TArray<ABladeIICharacter*> InterestedWaveMobs;
-	//	//	B2GM->GetSingleWaveMobList(WaveNum, InterestedWaveMobs, false); // Á×¾î°¡´Â ³à¼®µµ Æ÷ÇÔÇØ¼­ °¡Á®¿È. ¹°·Ğ ±×°Ô °¡´ÉÇÑ Å¸ÀÌ¹ÖÀÌ¾î¾ß ÇÔ. ¾Æ´Ñ °æ¿ì ¾Æ·¡ DelayedDyingMobCache Âù½º°¡ ÀÖ±ä ÇÏ´Ù.
+	//	//	B2GM->GetSingleWaveMobList(WaveNum, InterestedWaveMobs, false); // ç£·ç»¢å•Šç»° èµ¤ç±æ¡£ å™¨çªƒç§¦è¾‘ å•Šå»‰å’³. æ‹±æ²¸ å¼Šéœ¸ å•Šç“·èŒ„ é¸¥ææ€ªæç»¢å…· çªƒ. é…’å›± ç‰ˆå¿« é…’è´° DelayedDyingMobCache è›®èƒ¶å•Š ä¹å˜ çªä¿ƒ.
 
 	//	//	for (int32 WMI = 0; WMI < InterestedWaveMobs.Num(); ++WMI)
 	//	//	{
 	//	//		ABladeIICharacter* CurrMob = InterestedWaveMobs[WMI];
 	//	//		if (CurrMob)
 	//	//		{
-	//	//			if (CurrMob->GetSpawnPoolWaveObjIndex() == MobIndex) // »ç½Ç»ó Wave °¡ ½ÃÀÛµÈ »óÈ²ÀÌ ¾Æ´Ï¸é Ã£´Â ÀÎµ¦½ºÀÇ mob ÀÌ ¾øÀ» ¼öµµ ÀÖ´Ù.
+	//	//			if (CurrMob->GetSpawnPoolWaveObjIndex() == MobIndex) // è¤è§’æƒ‘ Wave å•Š çŸ«ç´¯ç­‰ æƒ‘ç‚”æ é…’èªæ èŒ«ç»° ç‰¢éƒ¸èƒ¶ç‹¼ mob æ ç»é˜‘ èæ¡£ ä¹ä¿ƒ.
 	//	//			{
 	//	//				return CurrMob;
 	//	//			}
 	//	//		}
 	//	//	}
-	//	//	// À§¿¡¼­ ¸®ÅÏÀ» ÇÏÁö ¾Ê¾Ò´Ù¸é MobDying ¿¡¼­ delay ¸¦ ÁØ °æ¿ìÀÏ ¼ö ÀÖ´Ù. ¸ğµç dying mob ÀÌ °¡´ÉÇÑ °Ç ¾Æ´ÏÁö¸¸ Æ®¸®°Å¸¦ À¯¹ßÇÑ dying mob ±îÁö´Â ¾Æ·¡Ã³·³ °¡Á®¿Ã ¼ö ÀÖÀ½..
+	//	//	// å›°ä¿Šè¾‘ åºœç•”é˜‘ çªç˜¤ è‡¼ç–½ä¿ƒæ MobDying ä¿Šè¾‘ delay ç”« éœ– ç‰ˆå¿«è€ è ä¹ä¿ƒ. è‘›ç”µ dying mob æ å•Šç“·èŒ„ æ‰’ é…’èªç˜¤çˆ¶ é£˜åºœèŠ­ç”« èœ¡æƒ¯èŒ„ dying mob é³–ç˜¤ç»° é…’è´°è´¸çƒ¦ å•Šå»‰æ£µ è ä¹æ¾œ..
 	//	//	if (NeedDelayedDyingMobCache())
 	//	//	{
 	//	//		return DelayedDyingMobCache.GetIfMatch(WaveNum, MobIndex);
@@ -2689,33 +2690,33 @@ ABladeIIPlayer* AB2StageEventDirector::GetTutorialPlayActor(EStageEventPlayActor
 		return nullptr;
 	}
 //
-//	// ÇöÀç ·ÎÄÃ Ä³¸¯ÅÍºÎÅÍ Ã¼Å©. ¿©ÀüÈ÷ (PendingKill ÀÌ ¾Æ´Ñ) ·ÎÄÃ Ä³¸¯ÅÍ¿Í ÀÏÄ¡ÇÑ´Ù¸é ±×°É °¡Á®´Ù ¾´´Ù.
+//	// æ³…çŠ è‚ºæ‹¿ æŸè…ç£ä½•ç£ çœ‰å†œ. å’¯å‚ˆæ´’ (PendingKill æ é…’å›±) è‚ºæ‹¿ æŸè…ç£å®¢ è€æ‘¹èŒ„ä¿ƒæ å¼Šå§ å•Šå»‰ä¿ƒ æ•¬ä¿ƒ.
 //	ABladeIIPlayer* LocalB2Player = GetB2LocalPlayerChar();
 //	if (LocalB2Player && LocalB2Player->IsValidObj() && LocalB2Player->GetCurrentPlayerClass() == PCClassEnum) {
 //		return LocalB2Player;
 //	}
 //
-//	// Æ©Åä¸®¾ó °ÔÀÓ¸ğµå¶ó¸é ¹Ì¸® ÀÌ ¸ñÀûÀ¸·Î »ı¼ºÇØ³õÀº FallbackPuppet µéÀ» »ç¿ë
+//	// è­¬é…åºœå€” éœ¸çƒ™è‘›é›æ‰¼æ å›ºåºœ æ æ ¼åˆ©æ è‚º ç§¯å·±ç§¦åˆç¯® FallbackPuppet ç”¸é˜‘ è¤ä¾©
 //	AB2TutorialGameMode* TutorialGM = Cast<AB2TutorialGameMode>(UGameplayStatics::GetGameMode(this));
 //	if (TutorialGM)
 //	{
 //		return TutorialGM->GetFallbackPuppetPlayer(PCClassEnum);
 //	}
 //#if WITH_EDITOR
-//	// ¿¡µğÅÍ¶ó¸é ¾ÆÁ÷ TutorialGameMode ¼³Á¤ÇÏÁö ¾ÊÀº »óÅÂ¿¡¼­ ±â´É Á¡°ËÀÌ ÇÊ¿äÇÏ¹Ç·Î..
-//	// ÀÌ°É ÀÏ¹İÀûÀÎ °ÔÀÓ¸ğµå Â÷¿øÀ¸·Î È®ÀåÇÏ´Â °Ç °ï¶õÇÏ´Ù. 
-//	// ±â´É ÀÚÃ¼¾ß µ¿ÀÛÇÏ°ÚÁö¸¸ Àß »ç¿ëÇÏÁöµµ ¾ÊÀ» ÀÌ·± ±â´É¶§¹®¿¡ FallbackPuppet µéÀ» »ı¼ºÇØ ³õ¾Æ¾ß ÇÏ´Â °Ô ³¶ºñ.
+//	// ä¿Šå¼ç£æ‰¼æ é…’æµ TutorialGameMode æ±²æ²¥çªç˜¤ è‡¼ç¯® æƒ‘æ€•ä¿Šè¾‘ æ‰ç“· ç—¢å…«æ é˜å¤¸çªéª¨è‚º..
+//	// æå§ è€é¦†åˆ©ç‰¢ éœ¸çƒ™è‘›é› ç’ç›”æ è‚º çŠ¬å˜çªç»° æ‰’ å¸®é„‚çªä¿ƒ. 
+//	// æ‰ç“· ç£Šçœ‰å…· æ‚¼ç´¯çªæ‘†ç˜¤çˆ¶ è‚‹ è¤ä¾©çªç˜¤æ¡£ è‡¼é˜‘ æç¹ æ‰ç“·é”­å·©ä¿Š FallbackPuppet ç”¸é˜‘ ç§¯å·±ç§¦ åˆé…’å…· çªç»° éœ¸ æ‰¯åš.
 //	else if (GIsEditor)
 //	{
 //		//
-//		// °³¹ß¿ë ÀÓ½ÃÄÚµåÀÌ¹Ç·Î Å©°Ô ½Å°æ¾²Áö ¾Ê°í ¿©±â¿¡ ±×³É ¸· Â¥´Â °Å.
+//		// ä¿ºæƒ¯ä¾© çƒ™çŸ«å†…é›æéª¨è‚º å†œéœ¸ è„šç‰ˆé™ç˜¤ è‡¼ç»Š å’¯æ‰ä¿Š å¼Šæˆ é˜œ æ¥¼ç»° èŠ­.
 //		//
 //
 //		ABladeIIGameMode* B2GM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(this));
 //		if (B2GM)
 //		{
 //			TSubclassOf<APawn> DefaultPawnClassBackup = B2GM->DefaultPawnClass;
-//			// ´õ¹Ìµé spawn ½ÃÄÑ¾ß ÇØ¼­ Àá±ñ µı Å¬·¡½º·Î ¹Ù²ã³õ°í..
+//			// æ­¹å›ºç”¸ spawn çŸ«éš¾å…· ç§¦è¾‘ æ³ªç˜ª è° åŠªè´°èƒ¶è‚º å®˜å±‚åˆç»Š..
 //			B2GM->DefaultPawnClass = ABladeIITutorialFallbackPuppetPlayer::StaticClass();
 //
 //			FTransform NewSpawnTransform(FVector(100000.0f * FMath::FRandRange(0.1f, 2.0f), 100000.0f * FMath::FRandRange(0.1f, 2.0f), 100000.0f * FMath::FRandRange(0.1f, 2.0f)));
@@ -2739,9 +2740,9 @@ ABladeIIPlayer* AB2StageEventDirector::GetOtherTagClassPuppet()
 		
 	if (LocalB2Player)
 	{
-		// ÀÌ ¶§ spawn animation Àº ¾øµµ·Ï ÇÒ ÇÊ¿ä°¡ ÀÖÀ» °Å °°À½.. Àû¾îµµ ÀÌ°Ô ºÒ¸®´Â °Ô ½ÃÀÛ »óÈ²Àº ¾Æ´Ò µíÇÔ.
+		// æ é”­ spawn animation ç¯® ç»æ¡£åºŸ ä¸” é˜å¤¸å•Š ä¹é˜‘ èŠ­ éæ¾œ.. åˆ©ç»¢æ¡£ æéœ¸ é˜‚åºœç»° éœ¸ çŸ«ç´¯ æƒ‘ç‚”ç¯® é…’åŒ† æ·€çªƒ.
 		ABladeIIPlayer* NewPuppet = LocalB2Player->SpawnOtherAsPuppet(true,
-			false // ÅÂ±× Ä³¸¯ÅÍ ÂÊ puppet ÀÇ point light °¡ ÄÑÁ®¾ß ÇÑ´Ù¸é Ãß°¡ ÀÎÀÚ¸¦..
+			false // æ€•å¼Š æŸè…ç£ ç‡ puppet ç‹¼ point light å•Š éš¾å»‰å…· èŒ„ä¿ƒæ çœ å•Š ç‰¢ç£Šç”«..
 		); 
 		if (NewPuppet)
 		{
@@ -2758,7 +2759,7 @@ ABladeIIPlayer* AB2StageEventDirector::GetRemoteOtherTagClassPuppet()
 	B2_SCOPED_TRACK_LOG(TEXT("AB2StageEventDirector::GetRemoteOtherTagClassPuppet"));
 
 	//AB2PVPGameMode* PVPGM = Cast<AB2PVPGameMode>(GetB2GameMode());
-	//// ÇöÀç´Â PVP ¸ğµå opponent ¸¸
+	//// æ³…çŠç»° PVP è‘›é› opponent çˆ¶
 	//ABladeIIPlayer* NewPuppet = PVPGM ? PVPGM->SpawnRemoteTagAsPuppet() : NULL;
 	//
 	//if (NewPuppet)
@@ -2780,7 +2781,7 @@ class UCameraComponent* AB2StageEventDirector::GetManualCameraFromSetting(FManua
 			return DirectorCamArrayRef[InSetting.CameraIndex];
 		}
 
-		// TODO : ´Ù¸¥ Ä«¸Ş¶ó set. ÇÊ¿äÇÏ·Á³ª ¸ğ¸£°ÚÁö¸¸..
+		// TODO : ä¿ƒå¼— å¢¨çš‹æ‰¼ set. é˜å¤¸çªå¦¨å”± è‘›ç¦æ‘†ç˜¤çˆ¶..
 	}
 
 	return NULL;
@@ -2788,17 +2789,17 @@ class UCameraComponent* AB2StageEventDirector::GetManualCameraFromSetting(FManua
 
 void AB2StageEventDirector::CheckShowEndCountDown()
 {
-	if (IsOverallLengthConstrainted()) // OverallLengthConstrainted ¶ó¸é µû·Î ¼³Ä¡ÇÑ Å¸ÀÌ¸Ó¿¡ ÀÇÇØ Á¾·áµÉ °Í.
+	if (IsOverallLengthConstrainted()) // OverallLengthConstrainted æ‰¼æ è¶è‚º æ±²æ‘¹èŒ„ é¸¥æèµ£ä¿Š ç‹¼ç§¦ è¾†ä¸°çª å·´.
 	{
 		return;
 	}
 
-	if (OverallMode == EStageEventDirectorOverallMode::ESEDOM_ControlledMatinee) // Controlled Matinee ´Â ´Ù¸¥ °æ·Î¸¦ ÅëÇØ Á¾·á Ã¼Å©
+	if (OverallMode == EStageEventDirectorOverallMode::ESEDOM_ControlledMatinee) // Controlled Matinee ç»° ä¿ƒå¼— ç‰ˆè‚ºç”« çƒ¹ç§¦ è¾†ä¸° çœ‰å†œ
 	{
 		return;
 	}
 
-	// ÀüÃ¼ show °¡ Á¾·áµÇ´Â Á¶°ÇµéÀ» °Ë»çÇÑ´Ù.
+	// å‚ˆçœ‰ show å•Š è¾†ä¸°ç™»ç»° ç‚¼æ‰’ç”¸é˜‘ å…«è¤èŒ„ä¿ƒ.
 
 	if (OverallMode == EStageEventDirectorOverallMode::ESEDOM_ManualCamera && bAllManualCameraEnded == false){
 		return;
@@ -2814,14 +2815,14 @@ void AB2StageEventDirector::CheckShowEndCountDown()
 
 	for (int32 SI = 0; SI < ShowStates.Num(); ++SI)
 	{
-		// FinishCheck °¡ ÇÊ¿ä¾ø´Â ¼¼ÆÃÀÌ ÀÖÀ½.
+		// FinishCheck å•Š é˜å¤¸ç»ç»° æŠ€æ³¼æ ä¹æ¾œ.
 		if (DoesShowRequireFinishCheck(SI) == true && ShowStates[SI].bShowFinished == false)
 		{
 			return;
 		}
 	}
 
-	// ¸¶Áö¸·À¸·Î bStandbyAtTheEnd ¸¦ Ã¼Å©.. ÀÌ °æ¿ì´Â ¹°·Ğ CustomFinishShow ¸¦ ÇØ¾ß
+	// ä»˜ç˜¤é˜œæ è‚º bStandbyAtTheEnd ç”« çœ‰å†œ.. æ ç‰ˆå¿«ç»° æ‹±æ²¸ CustomFinishShow ç”« ç§¦å…·
 	if (bStandbyAtTheEnd){
 		OnStartStandbyAtTheEnd();
 	}
@@ -2847,7 +2848,7 @@ void AB2StageEventDirector::CheckShowEndCountDown_ControlledMatinee(bool bForSta
 		OnStartStandbyAtTheEnd();
 	}
 	else{
-		CustomFinishShow(); // ¿©±â±îÁö ¿Ô´Ù¸é ³¡. FinishShow °¡ ¾Æ´Ñ CustomFinishShow ·Î ³¡³½´Ù.
+		CustomFinishShow(); // å’¯æ‰é³–ç˜¤ å­ä¿ƒæ åœº. FinishShow å•Š é…’å›± CustomFinishShow è‚º åœºè¾°ä¿ƒ.
 	}	
 }
 
@@ -2860,9 +2861,9 @@ bool AB2StageEventDirector::DoesShowRequireFinishCheck(int32 ShowIndex)
 		ABladeIICharacter* PlayActor = CurrState.GetPlayActor(this);
 
 		if (
-			CurrSetting.IsDirectedMode() && // InGame State ±×´ë·Î¸é µüÈ÷ ½Ã°£ µîÀÇ ´Ù¸¥ Á¶°ÇÀ» ÁÖÁö ¾Ê´Â ÀÌ»ó Á¾·á Ã¼Å©¸¦ ÇÒ ¼ö°¡ ¾øÀ½.
+			CurrSetting.IsDirectedMode() && // InGame State å¼Šæªè‚ºæ è¿­æ´’ çŸ«åŸƒ æ®¿ç‹¼ ä¿ƒå¼— ç‚¼æ‰’é˜‘ æ—ç˜¤ è‡¼ç»° ææƒ‘ è¾†ä¸° çœ‰å†œç”« ä¸” èå•Š ç»æ¾œ.
 			PlayActor && PlayActor->GetStageEventShowState() != EStageEventShowState::ESES_None &&
-			PlayActor->GetStageEventShowState() != EStageEventShowState::ESES_Extra // Extra ´Â ¾Æ¸¶µµ SESEndNotify ¾øÀÌ ´Ü¼øÈ÷ Idle À» µ¹¸®°Ô µÉ °Í..
+			PlayActor->GetStageEventShowState() != EStageEventShowState::ESES_Extra // Extra ç»° é…’ä»˜æ¡£ SESEndNotify ç»æ çªœé‰´æ´’ Idle é˜‘ å€’åºœéœ¸ çª å·´..
 			)
 		{
 			return true;
@@ -2875,11 +2876,11 @@ void AB2StageEventDirector::FinishShow()
 {
 	B2_SCOPED_TRACK_LOG(TEXT("AB2StageEventDirector::FinishShow"));
 //
-//	if (!bCurrentlyPlaying){ // Áßº¹Ã³¸®°¡ µÉ ¼ö ÀÖÀ½.
+//	if (!bCurrentlyPlaying){ // åæ±—è´¸åºœå•Š çª è ä¹æ¾œ.
 //		return;
 //	}
 //
-//	// CustomFinishShow °°Àº »óÈ²ÀÌ¸é ¹ÌÃ³ Ã³¸®°¡ ¾ÈµÈ »óÈ²ÀÏ ¼ö ÀÖ¾î¼­ Å¸ÀÌ¸ÓµéÀ» ´Ù½Ã ÇÑ¹ø È®½ÇÈ÷ Å¬¸®¾î ÇÑ´Ù.
+//	// CustomFinishShow éç¯® æƒ‘ç‚”ææ å›ºè´¸ è´¸åºœå•Š æ•‘ç­‰ æƒ‘ç‚”è€ è ä¹ç»¢è¾‘ é¸¥æèµ£ç”¸é˜‘ ä¿ƒçŸ« èŒ„é”… çŠ¬è§’æ´’ åŠªåºœç»¢ èŒ„ä¿ƒ.
 //	FTimerManager& WorldTimerManager = GetWorldTimerManager();
 //	if (OverallStartDelayTimerHandle.IsValid()) {
 //		WorldTimerManager.ClearTimer(OverallStartDelayTimerHandle);
@@ -2897,7 +2898,7 @@ void AB2StageEventDirector::FinishShow()
 //		WorldTimerManager.ClearTimer(FinishEventWidgetTimerHandle);
 //	}
 //	if (PCSyncToMatineeStartFallbackTimerHandle.IsValid()) {
-//		WorldTimerManager.ClearTimer(PCSyncToMatineeStartFallbackTimerHandle); // ¾ê´Â ½ÇÁ¦ ¿¬Ãâ ±â´ÉÇÏ°í µû·Î µµ´Â Å¸ÀÌ¸Ó¶ó ´õ´õ¿í ÀÌ·¸°Ô ²¨ÁÖ¾î¾ß ÇÔ
+//		WorldTimerManager.ClearTimer(PCSyncToMatineeStartFallbackTimerHandle); // å¨Ÿç»° è§’åŠ› æ¥·å… æ‰ç“·çªç»Š è¶è‚º æ¡£ç»° é¸¥æèµ£æ‰¼ æ­¹æ­¹å®½ æçŠ¯éœ¸ æ³¢æ—ç»¢å…· çªƒ
 //	}
 //	if(LevelStreamingOnBeginFlushTH.IsValid()){
 //		WorldTimerManager.ClearTimer(LevelStreamingOnBeginFlushTH);
@@ -2908,9 +2909,9 @@ void AB2StageEventDirector::FinishShow()
 //
 //	ABladeIIGameMode* B2GM = GetB2GameMode();
 //	
-//	//if (IsUsingMobileRendering(GetWorld())) // Ä¸ÃÄ ¿µ»ó ¸¸µé ¶§ ¶óÀÌÆ® ²ôÁö ¾ÊÀ¸·Á°í ÀÌ·± Ã¼Å©°¡ ÇÊ¿äÇÑ °Í °°Àºµ¥ StageEventDirector ´Â ÀÎ°ÔÀÓ ±â´ÉÀÌ¶ó ÀÌ·± Ã¼Å©°¡ ÇÊ¿äÇÒ±î ½Í±âµµ.
+//	//if (IsUsingMobileRendering(GetWorld())) // æ¯åªš åº·æƒ‘ çˆ¶ç”¸ é”­ æ‰¼æé£˜ æºç˜¤ è‡¼æ å¦¨ç»Š æç¹ çœ‰å†œå•Š é˜å¤¸èŒ„ å·´ éç¯®å• StageEventDirector ç»° ç‰¢éœ¸çƒ™ æ‰ç“·ææ‰¼ æç¹ çœ‰å†œå•Š é˜å¤¸ä¸”é³– é…µæ‰æ¡£.
 //	//{
-//	//	// ¸ğ¹ÙÀÏ ·»´õ·¯¿¡¼­ dynamic point light °³¼ö Á¦ÇÑÀ» À§ÇØ. ¿¬Ãâ µ¿¾È »ç¿ëÇÑ °Ô ÀÖÀ» ²¨¶ó Á¾·áÇÏ¸é¼­ È®½ÇÈ÷ ²¨µÎ´Â °Å. ÇÊ¿äÇÑ °Ç ´ÙÀ½ ¿¬Ãâ µé¾î°¥ ¶§ ´Ù½Ã ÄÑÁú °Í.
+//	//	// è‘›å®˜è€ åŠæ­¹çŸ¾ä¿Šè¾‘ dynamic point light ä¿ºè åŠ›èŒ„é˜‘ å›°ç§¦. æ¥·å… æ‚¼æ•‘ è¤ä¾©èŒ„ éœ¸ ä¹é˜‘ æ³¢æ‰¼ è¾†ä¸°çªæè¾‘ çŠ¬è§’æ´’ æ³¢æ»´ç»° èŠ­. é˜å¤¸èŒ„ æ‰’ ä¿ƒæ¾œ æ¥·å… ç”¸ç»¢å“ é”­ ä¿ƒçŸ« éš¾é¾™ å·´.
 //	//	if (B2GM)
 //	//		B2GM->DeactivateWorldMovablePointLight();
 //	//}
@@ -2918,13 +2919,13 @@ void AB2StageEventDirector::FinishShow()
 //	ABladeIIPlayer* LocalB2Player = GetB2LocalPlayerChar();
 //	ABladeIIPlayerController* LocalB2PC = GetB2LocalPlayerCon();
 //
-//	// bStandbyPause ¿¡ ÀÇÇØ pause µÈ »óÅÂ¸¦ µ¹·ÁÁÜ
+//	// bStandbyPause ä¿Š ç‹¼ç§¦ pause ç­‰ æƒ‘æ€•ç”« å€’å¦¨æ·‹
 //	if (bStandbyAtTheEnd && bStandbyPause && UGameplayStatics::IsGamePaused(this))
 //	{
 //		UGameplayStatics::SetGamePaused(this, false);
 //	}
 //		
-//	// ³×ÀÌÆ¼ºê¿¡¼­´Â ÀÌÁ¦ ÀÌ·¸°Ô ÀÌº¥Æ®¸¦..
+//	// åŒ™æèå®ä¿Šè¾‘ç»° æåŠ› æçŠ¯éœ¸ æäº¥é£˜ç”«..
 //	StageEventSceneEndClass<AB2StageEventDirector*>::GetInstance().Signal(this);
 //
 //	check(ShowStates.Num() == ShowSettings.Num());
@@ -2937,7 +2938,7 @@ void AB2StageEventDirector::FinishShow()
 //		
 //		if (OverallMode == EStageEventDirectorOverallMode::ESEDOM_ControlledMatinee)
 //		{
-//			// ¿©±æ °ÅÄ¡¸é¼­ ThisState ÀÇ PlayActor °¡ Á¦°ÅµÉ ¼ö ÀÖ´Ù.
+//			// å’¯è¾¨ èŠ­æ‘¹æè¾‘ ThisState ç‹¼ PlayActor å•Š åŠ›èŠ­çª è ä¹ä¿ƒ.
 //			if(ThisSetting.PlayActorType != EStageEventPlayActor::ESEE_SetUpOutside)
 //				RestorePlayActorForCtrlMatineeEnd(ThisSetting, ThisState);
 //		}
@@ -2945,28 +2946,28 @@ void AB2StageEventDirector::FinishShow()
 //		ABladeIICharacter* ThisPlayActor = ThisState.GetPlayActor(this);
 //		if (ThisPlayActor)
 //		{
-//			ThisPlayActor->AllowMovementByStageEvent(); // PreventMovement ÇÏ´Â ÄÉÀÌ½º°¡ ÀÖ´Âµ¥ °Á ¸ğµÎ º¹±¸.
+//			ThisPlayActor->AllowMovementByStageEvent(); // PreventMovement çªç»° çº³æèƒ¶å•Š ä¹ç»°å• å‚² è‘›æ»´ æ±—å¤‡.
 //
 //			if (ThisSetting.EndActionPlayActorAdjustType == EEndActionPlayActorAdjustType::EAPAAT_BackToOriginal)
 //			{
-//				// PlayActor ÀÇ À§Ä¡ ¹× È¸Àü°ªÀ» º¹¿ø½ÃÅ´.
+//				// PlayActor ç‹¼ å›°æ‘¹ æ£º é›€å‚ˆè”¼é˜‘ æ±—ç›”çŸ«ç³¯.
 //				ThisPlayActor->SetActorLocation(ThisState.BackupWorldLocation);
 //				ThisPlayActor->SetActorRotation(ThisState.BackupWorldRotation);
 //			}
 //
-//			// CustomFinish È¤Àº Extra ÀÎ °æ¿ì NotifyStageEventShowEnd °¡ ½ÇÇàµÇÁö ¾Ê¾ÒÀ» °Í. 
-//			// ÀÌÂÊÀ¸·ÎÀÇ Á¾·á notify ¾øÀÌ »óÅÂ¸¸ Á¾·á. bStandbyAtTheEnd ÀÎ °æ¿ìµµ ´Ù½Ã Extra ·Î µÇµ¹¸®´Ï ÇÊ¿ä..
+//			// CustomFinish è¶£ç¯® Extra ç‰¢ ç‰ˆå¿« NotifyStageEventShowEnd å•Š è§’é’ç™»ç˜¤ è‡¼ç–½é˜‘ å·´. 
+//			// æç‡æ è‚ºç‹¼ è¾†ä¸° notify ç»æ æƒ‘æ€•çˆ¶ è¾†ä¸°. bStandbyAtTheEnd ç‰¢ ç‰ˆå¿«æ¡£ ä¿ƒçŸ« Extra è‚º ç™»å€’åºœèª é˜å¤¸..
 //			ThisPlayActor->SetStageEventShowState(EStageEventShowState::ESES_None, NULL);
 //			ThisPlayActor->SetPlayingDirectedStageEvent(false);
 //		}
 //
-//		ThisState.bShowFinished = true; // È®½ÇÇÑ ¸¶Å©
-//		ThisState.SetPlayActor(NULL); // ÅğÀå ¤»
+//		ThisState.bShowFinished = true; // çŠ¬è§’èŒ„ ä»˜å†œ
+//		ThisState.SetPlayActor(NULL); // ç¡¼å˜ ã›
 //	}
 //	ShowStates.Empty();
 //	DelayedDyingMobCache.ForgetIt();
 //
-//	// ¾êµéÀº Á÷Á¢ Á¦°ÅÇØ ÁÖ¾î¾ß ÇÔ.
+//	// å¨Ÿç”¸ç¯® æµç«‹ åŠ›èŠ­ç§¦ æ—ç»¢å…· çªƒ.
 //	if (GetWorld())
 //	{
 //		B2_SCOPED_TRACK_LOG_L2(TEXT("AB2StageEventDirector::FinishShow TempSpawnedPuppets Destroy"));
@@ -2981,26 +2982,26 @@ void AB2StageEventDirector::FinishShow()
 //	}
 //	TempSpawnedPuppets.Empty();
 //	
-//	FinishEventWidget(); // EventWidgetEndTime ¼¼ÆÃÀÇ °æ¿ì ÀÌ¹Ì Á¾·áµÇ¾úÀ» ¼ö ÀÖ´Ù.
+//	FinishEventWidget(); // EventWidgetEndTime æŠ€æ³¼ç‹¼ ç‰ˆå¿« æå›º è¾†ä¸°ç™»èŒé˜‘ è ä¹ä¿ƒ.
 //
 //	if (bStopAllMobsWhilePlaying && CachedStageManager)
-//	{ // BeginShow ¿¡¼­ Stop ½ÃÄ×´ø °Íµé ´Ù½Ã µÇ»ì¸².
+//	{ // BeginShow ä¿Šè¾‘ Stop çŸ«æ·–å¸¦ å·´ç”¸ ä¿ƒçŸ« ç™»æ··è¦†.
 //		CachedStageManager->StopOrRestoreAllWorldMobs(false);
 //	}
 //
 //	if (LocalB2PC)
 //	{
-//		// CinematicMode Á¾·á. ¾Æ·¡ NotifyShowOverFromDependentDirectorActor ÀÌÈÄ¿¡ µé¾î°¡¸é °³°ï¶õ
+//		// CinematicMode è¾†ä¸°. é…’è´° NotifyShowOverFromDependentDirectorActor æé¥¶ä¿Š ç”¸ç»¢å•Šæ ä¿ºå¸®é„‚
 //		LocalB2PC->SetCinematicMode(false, false, true, true, true);
 //	}
-//	// ¼û°å´ø ºí·¹ÀÌ¾î º¸ÀÌ°Ô
+//	// è§æ¿å¸¦ å–‰é¥­æç»¢ ç„Šæéœ¸
 //	if(!bForceNoHidePlayer)
 //		SetAllPlayerHiddenInGame(false);
 //
-//	// ÀüÅõ UI ¿ÀÇÁ´× ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ÇÃ·¹ÀÌÇÒ ÇÊ¿ä°¡ Á» ÀÖ¾î¼­ ÀÌ·± »¹ÁşÀ» ÇÔ.
+//	// å‚ˆæ§ UI å·æ©‡é†‹ å±€èªçš‹æè®°é˜‘ æ•²é¥­æä¸” é˜å¤¸å•Š ç²± ä¹ç»¢è¾‘ æç¹ è¿˜çª¿é˜‘ çªƒ.
 //	if (IsPossibleAdventureModeBeginEvent())
 //	{
-//		// todo : ¿ä±â ÇÏµåÄÚµù ºÎºĞ ¹Ù²ÜÇÊ¿ä°¡ ÀÖÀ½¿ä =¤·= (»ó¼Ó ÇüÅÂ·Î)
+//		// todo : å¤¸æ‰ çªé›å†…çˆ¹ ä½•ç›’ å®˜æ›¹é˜å¤¸å•Š ä¹æ¾œå¤¸ =ã—= (æƒ‘åŠ  å±ˆæ€•è‚º)
 //		UB2UIBattleMain* BattleMainUI = nullptr;
 //		if (GetB2GameModeType(this->GetWorld()) == EB2GameMode::CounterDungeon)
 //			BattleMainUI = UB2UIManager::GetInstance()->GetUI<UB2UIBattleMain>(UIFName::CounterDGBattleMain);
@@ -3014,7 +3015,7 @@ void AB2StageEventDirector::FinishShow()
 //	}
 //	else if (DirectingEvent == EStageEvent::ESEV_Begin && MyRelevantUIName == UIFName::PVPBegin)
 //	{
-//		// todo : ¿ä±â ÇÏµåÄÚµù ºÎºĞ ¹Ù²ÜÇÊ¿ä°¡ ÀÖÀ½¿ä =¤·= (»ó¼Ó ÇüÅÂ·Î)
+//		// todo : å¤¸æ‰ çªé›å†…çˆ¹ ä½•ç›’ å®˜æ›¹é˜å¤¸å•Š ä¹æ¾œå¤¸ =ã—= (æƒ‘åŠ  å±ˆæ€•è‚º)
 //
 //		// pvpUI
 //		UB2UIPVP1on1BattleMain* PVPBattleMainUI = UB2UIManager::GetInstance()->GetUI<UB2UIPVP1on1BattleMain>(UIFName::PVPOneOnOneBattleMain);
@@ -3023,7 +3024,7 @@ void AB2StageEventDirector::FinishShow()
 //			PVPBattleMainUI->OnPVPBeginEventSceneEnd();
 //		}
 //
-//		// ÆÀ´ëÀüUI - ÀÌ°Íµµ µ¿ÀÏÇÑ UIName À» »ç¿ëÇÔ.
+//		// è¯„æªå‚ˆUI - æå·´æ¡£ æ‚¼è€èŒ„ UIName é˜‘ è¤ä¾©çªƒ.
 //		UB2UITeamMatchBattle* TMBattleMainUI = UB2UIManager::GetInstance()->GetUI<UB2UITeamMatchBattle>(UIFName::TeamMatchBattle);
 //		if (TMBattleMainUI)
 //		{
@@ -3034,16 +3035,16 @@ void AB2StageEventDirector::FinishShow()
 //			RaidBattleUI->OnStageEventDirectorEndScene_BP();
 //	}
 //
-//	// ÀÌÀü¿¡ ´Ù¸£°Ô µé¾î°¬À» ¼öµµ ÀÖÁö¸¸ Á¤»óÀ¸·Î µ¹·ÁÁØ´Ù Ä¡ÀÚ.
+//	// æå‚ˆä¿Š ä¿ƒç¦éœ¸ ç”¸ç»¢è‰¾é˜‘ èæ¡£ ä¹ç˜¤çˆ¶ æ²¥æƒ‘æ è‚º å€’å¦¨éœ–ä¿ƒ æ‘¹ç£Š.
 //	UGameplayStatics::SetGlobalTimeDilation(this, 1.0f);
 //
-//	// ÇÃ·¹ÀÌ¾î TopDown Ä«¸Ş¶ó ³»Áö´Â ActiveCamera ·Î..
+//	// æ•²é¥­æç»¢ TopDown å¢¨çš‹æ‰¼ éƒ´ç˜¤ç»° ActiveCamera è‚º..
 //	ReturnToGamePlayCamera();
 //
 //	LevelStreamingOnEnd.ExecuteStreaming(GetWorld(), LevelStreamingOnEndFlushTH, FTimerDelegate::CreateUObject(this, &AB2StageEventDirector::LevelStreamingOnEndFlushCB));
 //
-//	// Auto »óÅÂ º¹±¸
-//	if (ShouldStopAutoDuringShow() && B2GM && B2GM->IsLocalPlayerAutoBattle()) // ¼³·É ½ÃÀÛÇÒ ¶§¿¡´Â Auto °¡ ¾Æ´Ï¾ú´Ù ÇÏ´õ¶óµµ Áß°£¿¡ ¾î¶² »çÀ¯·Îµç ¹Ù²î¸é Auto ¸¦ º¹±¸ÇØÁØ´Ù.
+//	// Auto æƒ‘æ€• æ±—å¤‡
+//	if (ShouldStopAutoDuringShow() && B2GM && B2GM->IsLocalPlayerAutoBattle()) // æ±²é£ çŸ«ç´¯ä¸” é”­ä¿Šç»° Auto å•Š é…’èªèŒä¿ƒ çªæ­¹æ‰¼æ¡£ ååŸƒä¿Š ç»¢æ« è¤èœ¡è‚ºç”µ å®˜å·®æ Auto ç”« æ±—å¤‡ç§¦éœ–ä¿ƒ.
 //	{
 //		B2GM->RestoreLocalPlayerAuto();
 //	}
@@ -3051,18 +3052,18 @@ void AB2StageEventDirector::FinishShow()
 //#if ENABLE_LOCAL_CUTSCENE_SAVED_STATE
 //	if (bPlayedAtLeastOnce == false)
 //	{			
-//		bPlayedAtLeastOnce = true; // ÀÌ¹ø ½ºÅ×ÀÌÁö¿¡¼­ ÃÖ¼ÒÇÑ ÇÑ¹ø ÇÃ·¹ÀÌ ÇÏ¿´À½.
+//		bPlayedAtLeastOnce = true; // æé”… èƒ¶æŠ›æç˜¤ä¿Šè¾‘ å¼¥å®¶èŒ„ èŒ„é”… æ•²é¥­æ çªçœ‹æ¾œ.
 //		GConfig->SetBool(*GetPlayedAtLeastOnceSectionString(), *GetPlayedAtLeastOnceKeyString(CurrentStageId), bPlayedAtLeastOnce, GB2LocalCutSceneSavedStateIni);
 //		GConfig->Flush(false, GB2LocalCutSceneSavedStateIni);
 //	}
 //#endif
 //
 //	if (LocalB2Player) 
-//	{ // ±âÅ¸ µîµî..
-//		LocalB2Player->SetupLODInfoForInGame(); // ·ÎÄÃ ÇÃ·¹ÀÌ¾î´Â ¿¬Ãâ Âü¿© ¿©ºÎ »ó°ü¾øÀÌ ¹«Á¶°Ç CinematicLOD ¼³Á¤ÇÏ´Ï µÇµ¹¸².
+//	{ // æ‰é¸¥ æ®¿æ®¿..
+//		LocalB2Player->SetupLODInfoForInGame(); // è‚ºæ‹¿ æ•²é¥­æç»¢ç»° æ¥·å… æ›¼å’¯ å’¯ä½• æƒ‘åŒ…ç»æ å…¬ç‚¼æ‰’ CinematicLOD æ±²æ²¥çªèª ç™»å€’è¦†.
 //		LocalB2Player->SetInvincibleByStageEvent(false);
 //	}
-//	B2Scalability::ApplyStageEventSpecificScalabilitySetting(this, false); // ·ÎÄÃ ÇÃ·¹ÀÌ¾î LOD ¼¼ÆÃ°ú ¸¶Âù°¡Áö·Î ¿¬Ãâ ¿ë Æ¯º° scalability ÄÁÆ®·Ñ Àû¿ë ¸®¼Â
+//	B2Scalability::ApplyStageEventSpecificScalabilitySetting(this, false); // è‚ºæ‹¿ æ•²é¥­æç»¢ LOD æŠ€æ³¼è‹ ä»˜è›®å•Šç˜¤è‚º æ¥·å… ä¾© æ¼‚å–Š scalability ç‰§é£˜è´¹ åˆ©ä¾© åºœæ‚¸
 //
 //	if (bWasPlayerAttacking && LocalB2Player && LocalB2Player->bCachedPressedInCinematic && LocalB2Player->bEnableNormalAttack)
 //		LocalB2Player->SetKeepAttacking(true);
@@ -3083,21 +3084,21 @@ void AB2StageEventDirector::FinishShow()
 
 void AB2StageEventDirector::PostFinishShow()
 {
-	checkSlow(!bCurrentlyPlaying); // È®½ÇÈ÷ ³¡³­ ÇÃ·¡±× µé¾î¿Â ÈÄ¿¡ ÀÛµ¿ °¡´ÉÇÑ °Íµé..
+	checkSlow(!bCurrentlyPlaying); // çŠ¬è§’æ´’ åœºæŠ„ æ•²è´°å¼Š ç”¸ç»¢æŸ¯ é¥¶ä¿Š ç´¯æ‚¼ å•Šç“·èŒ„ å·´ç”¸..
 
-	//// BP ¿¡¼­ Æ¯º°È÷ ÀÌº¥Æ®¸¦ ¹Ş¾Æ¼­ Ã³¸®ÇÏ°íÀÚ ÇÑ´Ù¸é..
+	//// BP ä¿Šè¾‘ æ¼‚å–Šæ´’ æäº¥é£˜ç”« ç½é…’è¾‘ è´¸åºœçªç»Šç£Š èŒ„ä¿ƒæ..
 	//if (ShowOverEventName != NAME_None)
 	//{
 	//	GEngine->HandleCeCommand(GetWorld(), *(ShowOverEventName.ToString()), *GLog);
 	//}
 
 	//if (IsPossibleAdventureModeBeginEvent())
-	//{ // BeginShow ¿¡¼­µµ Async ¿äÃ»ÇÏ´Â °Ô ÀÖ´Âµ¥ ÀÌ°Íµµ º¸½º µîÀå ½Ã hitch ¸¦ À¯¹ßÇÏ´Ï Àû´çÇÑ ½ÃÁ¡¿¡..
+	//{ // BeginShow ä¿Šè¾‘æ¡£ Async å¤¸æ²¡çªç»° éœ¸ ä¹ç»°å• æå·´æ¡£ ç„Šèƒ¶ æ®¿å˜ çŸ« hitch ç”« èœ¡æƒ¯çªèª åˆ©å¯¸èŒ„ çŸ«ç—¢ä¿Š..
 
 	//	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11
-	//	// ¿©±â¼­ÀÇ Async ·Îµù ¿äÃ»Àº ÁÖÀÇÇÒ ÇÊ¿ä°¡ ÀÖ´Âµ¥ ¿©±â¼­ ¿äÃ»À» ÇÏ¸é ÀÎ°ÔÀÓ ÀüÅõ°¡ µ¹¾Æ°¡´Â ¿ÍÁß¿¡ ·ÎµùÀÌ µ¹¾Æ°¥ °ÍÀÌ´Ù.
-	//	// ÀÌ¶© ±×°Í±îÁö »ı°¢À» ¸ø Çß°í ÀÌ Á¤µµ´Â Á¤¸» ÀÛÀº °ÍÀÌ´Ï ±×³É ºÁÁØ´Ù. 
-	//	// ÀÌ·± Å¸ÀÌ¹Ö¿¡ async ·Îµù ¿äÃ»ÀÌ ´õ Ãß°¡µÇ¸é °ï¶õÇÒ °ÍÀÌ´Ù.
+	//	// å’¯æ‰è¾‘ç‹¼ Async è‚ºçˆ¹ å¤¸æ²¡ç¯® æ—ç‹¼ä¸” é˜å¤¸å•Š ä¹ç»°å• å’¯æ‰è¾‘ å¤¸æ²¡é˜‘ çªæ ç‰¢éœ¸çƒ™ å‚ˆæ§å•Š å€’é…’å•Šç»° å®¢åä¿Š è‚ºçˆ¹æ å€’é…’å“ å·´æä¿ƒ.
+	//	// æè®¢ å¼Šå·´é³–ç˜¤ ç§¯é˜¿é˜‘ ç»™ æ²ç»Š æ æ²¥æ¡£ç»° æ²¥å¯Œ ç´¯ç¯® å·´æèª å¼Šæˆ æ¯«éœ–ä¿ƒ. 
+	//	// æç¹ é¸¥ææ€ªä¿Š async è‚ºçˆ¹ å¤¸æ²¡æ æ­¹ çœ å•Šç™»æ å¸®é„‚ä¸” å·´æä¿ƒ.
 	//	UB2UIManager::GetInstance()->ReqAsyncLoadAsset(UIFName::MobAppearBossStage);
 	//}
 
@@ -3106,13 +3107,13 @@ void AB2StageEventDirector::PostFinishShow()
 	//{		
 	//	if (DirectingEvent == EStageEvent::ESEV_Begin && 
 	//		(B2GM->GetB2GameModeType() == EB2GameMode::PVP_Tag || B2GM->GetB2GameModeType() == EB2GameMode::PVP_Team || B2GM->GetB2GameModeType() == EB2GameMode::Guild))
-	//	{// MatchGameStartEventSceneEnd ½Ã±×³Î Àû¿ë ´ë»ó °ÔÀÓ¸ğµåµé ¸ğµÎ..
+	//	{// MatchGameStartEventSceneEnd çŸ«å¼Šæ¾„ åˆ©ä¾© æªæƒ‘ éœ¸çƒ™è‘›é›ç”¸ è‘›æ»´..
 	//		MatchGameStartEventSceneEndClass<>::GetInstance().Signal();
 	//	}
 
-	//	B2GM->MarkAnyStageEventPlayedOnce(); // ¾îÂ·µç ÃÖ¼Ò ÇÏ³ª ÇÃ·¹ÀÌ µÊ. ¤»
+	//	B2GM->MarkAnyStageEventPlayedOnce(); // ç»¢è·¯ç”µ å¼¥å®¶ çªå”± æ•²é¥­æ å‡³. ã›
 
-	//	// ³»°¡ ³¡³ª±æ ±â´Ù¸®°í ÀÖ´Â ´Ù¸¥ DirectorActor °¡ ÀÖ´Ù¸é Notify ¸¦ ³¯¸°´Ù. ´Ù¸¥ °÷¿¡¼­ ¹Ù·Î ½ÃÀÛÀÌ µÉ ¼ö ÀÖÀ¸¹Ç·Î ¿©±âÀÇ Á¾·áÃ³¸®¿Í ÁßÃ¸µÇÁö ¾Êµµ·Ï ³¡¿¡ °¡¼­.
+	//	// éƒ´å•Š åœºå”±è¾¨ æ‰ä¿ƒåºœç»Š ä¹ç»° ä¿ƒå¼— DirectorActor å•Š ä¹ä¿ƒæ Notify ç”« æœèµ´ä¿ƒ. ä¿ƒå¼— é•‘ä¿Šè¾‘ å®˜è‚º çŸ«ç´¯æ çª è ä¹æ éª¨è‚º å’¯æ‰ç‹¼ è¾†ä¸°è´¸åºœå®¢ åé…¶ç™»ç˜¤ è‡¼æ¡£åºŸ åœºä¿Š å•Šè¾‘.
 	//	const TArray<AB2StageEventDirector*>& AllSEDs = B2GM->GetEventDirectorArray();
 
 	//	for (AB2StageEventDirector* CurrSED : AllSEDs)
@@ -3130,20 +3131,20 @@ void AB2StageEventDirector::RestorePlayActorForCtrlMatineeEnd(FPlayActorShowSett
 	//ABladeIICharacter* ThisPlayActor = InStateForThis.GetPlayActor(this);
 	//if (ThisPlayActor)
 	//{
-	//	// SetupSingleShowMatineeGroup, EnsureHidePlayActorsForControlledMatinee µî¿¡¼­ ¼û°Ü³õÀº °Å º¹±¸.
+	//	// SetupSingleShowMatineeGroup, EnsureHidePlayActorsForControlledMatinee æ®¿ä¿Šè¾‘ è§è´¥åˆç¯® èŠ­ æ±—å¤‡.
 	//	if (ThisPlayActor->bIsDying && InSettingForThis.IsDirectedMode())
-	//	{ // ´Ü, ¸¶Æ¼´Ï·Î Á×´Â ¿¬ÃâÀÌ ³ª¿À´Â ¾Ö´Â ¾Èº¸ÀÌ°Ô Á» Ã³¸®ÇØ ÁÖ¾î¾ß ÇÑ´Ù.
+	//	{ // çªœ, ä»˜èèªè‚º ç£·ç»° æ¥·å…æ å”±å·ç»° å±€ç»° æ•‘ç„Šæéœ¸ ç²± è´¸åºœç§¦ æ—ç»¢å…· èŒ„ä¿ƒ.
 	//		
-	//		// °Á Destroy ·Î Á¦°ÅÇØ ¹ö¸®¸é °£´ÜÇÑµ¥ ÀÌ°Å ÀÌÈÄ¿¡ SpawnPool ¿¡¼­ Ã³¸®ÇØ¾ß ÇÏ´Â »óÈ²ÀÌ ³ª¿Ã ¼ö ÀÖ¾î¼­.. Á» À§ÇèÇÔ. ¾ÖÃÊ¿¡ Destroy ¶ó¸é ±âº»ÀûÀÎ ·çÆ® ÀÌ¿Ü¿¡´Â Á¶½ÉÇØ¾ß°Ú´Ù.
+	//		// å‚² Destroy è‚º åŠ›èŠ­ç§¦ æ»šåºœæ åŸƒçªœèŒ„å• æèŠ­ æé¥¶ä¿Š SpawnPool ä¿Šè¾‘ è´¸åºœç§¦å…· çªç»° æƒ‘ç‚”æ å”±æ£µ è ä¹ç»¢è¾‘.. ç²± å›°æ°°çªƒ. å±€æª¬ä¿Š Destroy æ‰¼æ æ‰å¤¯åˆ©ç‰¢ é£é£˜ æå¯‡ä¿Šç»° ç‚¼ç¼´ç§¦å…·æ‘†ä¿ƒ.
 	//		
 	//		ThisPlayActor->SetHideFromEventDirector(true);
 	//		if (ThisPlayActor->GetMesh()){				
-	//			ThisPlayActor->GetMesh()->GlobalAnimRateScale = 0.0f; // ÀÌ·¸°Ô ÇÏ¸é ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ¿ÏÀüÈ÷ Áß´Ü½ÃÅ³ ¼ö ÀÖ´Ù.
-	//			// ±Ùµ¥ ÀÌ·¸°Ô ÇÏ¸é OnAnimMobDeadEnd ·Î °¡Áö ¾Ê°Ô µÇ¾î Destroy °¡ ¾ÈµÈ´Ù. ¾Æ¸¶ ÀÌ°Ô ³ª¿À´Â »óÈ²Àº ½ºÅ×ÀÌÁö Á¾·á »óÈ²ÀÏ °Å¶ó ¾î¶»°Ô ÇÏµç Å« ¹®Á¦´Â ¾øÀ» °Å °°Àºµ¥.. ¹Ù·Î Destroy ¸¸ ÇÏÁö ¾Ê´Â °É·Î..
+	//			ThisPlayActor->GetMesh()->GlobalAnimRateScale = 0.0f; // æçŠ¯éœ¸ çªæ å±€èªçš‹æè®°é˜‘ è‚¯å‚ˆæ´’ åçªœçŸ«æ‡¦ è ä¹ä¿ƒ.
+	//			// è¾Ÿå• æçŠ¯éœ¸ çªæ OnAnimMobDeadEnd è‚º å•Šç˜¤ è‡¼éœ¸ ç™»ç»¢ Destroy å•Š æ•‘ç­‰ä¿ƒ. é…’ä»˜ æéœ¸ å”±å·ç»° æƒ‘ç‚”ç¯® èƒ¶æŠ›æç˜¤ è¾†ä¸° æƒ‘ç‚”è€ èŠ­æ‰¼ ç»¢ç—˜éœ¸ çªç”µ å¥´ å·©åŠ›ç»° ç»é˜‘ èŠ­ éç¯®å•.. å®˜è‚º Destroy çˆ¶ çªç˜¤ è‡¼ç»° å§è‚º..
 	//			ThisPlayActor->SetLifeSpan(1.0f);
 	//		}
 
-	//		// ´Ù¸¥ ¹æ¹ıÀ¸·Î´Â LobbySkeletalMeshActor ÂÊ¿¡ ÇÑ °Í Ã³·³ AnimNotify ¸¸ Á¦°ÅÇÏ´Â ¹æ¹ıÀÌ ÀÖÀ½. °¡Àå ¿ø¸¸ÇÑ ÇØ°áÃ¥ÀÌ µÉ °Çµ¥ ±¸ÇöÀ» Á» ÇØ ÁÖ±ä ÇØ¾ß..
+	//		// ä¿ƒå¼— è§„è¿‡æ è‚ºç»° LobbySkeletalMeshActor ç‡ä¿Š èŒ„ å·´ è´¸çƒ¦ AnimNotify çˆ¶ åŠ›èŠ­çªç»° è§„è¿‡æ ä¹æ¾œ. å•Šå˜ ç›”çˆ¶èŒ„ ç§¦æ¬æ°“æ çª æ‰’å• å¤‡æ³…é˜‘ ç²± ç§¦ æ—å˜ ç§¦å…·..
 	//					
 	//		InStateForThis.SetPlayActor(NULL);
 	//	}
@@ -3153,42 +3154,42 @@ void AB2StageEventDirector::RestorePlayActorForCtrlMatineeEnd(FPlayActorShowSett
 	//		if (CastedPlayerPlayActor) 
 	//		{
 	//			if (UB2PCMeshSectionMergeInfo::ShouldUseSectionMergeByGameContext(this))
-	//			{ // ¼½¼Ç º´ÇÕ ¸ğµ¨À» »ç¿ëÇÏ´Â ¸ğµå¿¡¼­´Â ¿¬Ãâ ³¡³ª°í ´Ù½Ã±İ ¼½¼Ç º´ÇÕµÈ ¹öÀüÀ¸·Î µ¹·Á³õ´Â´Ù.
+	//			{ // å†€è®° æé’¦ è‘›èƒ†é˜‘ è¤ä¾©çªç»° è‘›é›ä¿Šè¾‘ç»° æ¥·å… åœºå”±ç»Š ä¿ƒçŸ«é™› å†€è®° æé’¦ç­‰ æ»šå‚ˆæ è‚º å€’å¦¨åˆç»°ä¿ƒ.
 	//				CastedPlayerPlayActor->SetUseSectionMergedMesh(true);
 	//			}
 
-	//			CastedPlayerPlayActor->SetupLODInfoForInGame(); // ·ÎÄÃ ÇÃ·¹ÀÌ¾î¸¸ ¾Æ´Ï¶ó ³×Æ®¿öÅ© ÇÃ·¹ÀÌ¾î³ª ÅÂ±× ÇÃ·¹ÀÌ¾îµµ ÀÖÀ¸´Ï ´Ù LODInfo ¸®¼Â
+	//			CastedPlayerPlayActor->SetupLODInfoForInGame(); // è‚ºæ‹¿ æ•²é¥­æç»¢çˆ¶ é…’èªæ‰¼ åŒ™é£˜å†µå†œ æ•²é¥­æç»¢å”± æ€•å¼Š æ•²é¥­æç»¢æ¡£ ä¹æ èª ä¿ƒ LODInfo åºœæ‚¸
 	//		}
 
 	//		ThisPlayActor->SetHideFromEventDirector(false);
-	//		ThisPlayActor->RestoreTemporaryMeshComponentUpdateFlag(); // NeedSpawnCheck ÇØÁ¦ÇÏ¸é¼­ TickPose °­Á¦Çß´ø °Å ÇØÁ¦. ¼º´É»ó.
+	//		ThisPlayActor->RestoreTemporaryMeshComponentUpdateFlag(); // NeedSpawnCheck ç§¦åŠ›çªæè¾‘ TickPose ç¢åŠ›æ²å¸¦ èŠ­ ç§¦åŠ›. å·±ç“·æƒ‘.
 	//	}
 
-	//	if (InSettingForThis.EndActionPlayActorAdjustType == EEndActionPlayActorAdjustType::EAPAAT_AdjustToPuppet && InStateForThis.CtrlMatineePuppet) // bPutPlayActorBackToOriginalLocation ÀÌ ¾Æ´Ï¶õ ¾ê±â´Â Matinee Á¾·á À§Ä¡·Î ½ÌÅ©
+	//	if (InSettingForThis.EndActionPlayActorAdjustType == EEndActionPlayActorAdjustType::EAPAAT_AdjustToPuppet && InStateForThis.CtrlMatineePuppet) // bPutPlayActorBackToOriginalLocation æ é…’èªé„‚ å¨Ÿæ‰ç»° Matinee è¾†ä¸° å›°æ‘¹è‚º æ•™å†œ
 	//	{
 	//		const float B2CharHeightOffset = ZOffsetFromMatchingSKActorToBIICharacter(ThisPlayActor);
 
 	//		ThisPlayActor->SetActorLocation(InStateForThis.CtrlMatineePuppet->GetActorLocation() + FVector(0.0f, 0.0f, B2CharHeightOffset));
 	//		if (Cast<ABladeIIPlayer>(ThisPlayActor))
-	//		{ // ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ¶ó¸é È¸Àü°ªÀº yaw ¸¸ °¡Á®¿Â´Ù.
+	//		{ // æ•²é¥­æç»¢ æŸè…ç£æ‰¼æ é›€å‚ˆè”¼ç¯® yaw çˆ¶ å•Šå»‰æŸ¯ä¿ƒ.
 	//			ThisPlayActor->SetActorRotation(FRotator(0.0f, InStateForThis.CtrlMatineePuppet->GetActorRotation().Yaw, 0.0f));
 	//		}
 	//		else
-	//		{ // ÀÏ¹İ ¸÷ÀÌ¶ó¸é roll ÀÌ³ª pitch µµ ¿¬Ãâ¿¡¼­ ¿¬¼ÓÀûÀ¸·Î non-zero °ªÀ» ¾µ ÀÏÀÌ ÀÖÀ»Áöµµ?
+	//		{ // è€é¦† å„ææ‰¼æ roll æå”± pitch æ¡£ æ¥·å…ä¿Šè¾‘ æ¥·åŠ åˆ©æ è‚º non-zero è”¼é˜‘ é•œ è€æ ä¹é˜‘ç˜¤æ¡£?
 	//			ThisPlayActor->SetActorRotation(InStateForThis.CtrlMatineePuppet->GetActorRotation());
 	//		}
 	//	}
 	//}
 
-	//// Matinee ¸¦ À§ÇØ ¸Ê¿¡ ¹èÄ¡µÈ ¾Öµé·Î¼­ º¸ÀÌÁö¸¸ ¾Ê°Ô µÒ. Á¦°Å´Â ÇÏÁö ¸»°í.
-	//// ¸¸ÀÏ ¾êµéÀ» Á¦°ÅÇÏ·Á¸é Matinee ÂÊ¿¡¼­ ÃÖ¼ÒÇÑ TermInterp °¡ Ã³¸®µÈ ´ÙÀ½ÀÌ¾î¾ß ÇÑ´Ù. ±âº»ÀûÀÎ »ç¿ë¿¡¼­ ALevelSequenceActor ::Stop ¿¡¼­ ÀÌÂÊÀ¸·ÎÀÇ notify °¡ ¿Â ÈÄ¿¡ TermInterp °¡ Ã³¸®µÇ¹Ç·Î Á¦°ÅÇÏ°í ½Í´õ¶óµµ ÀÌ ½ÃÁ¡¿¡¼­´Â ¾ÈµÊ
-	//// -> MatineePuppet (Áï ±×·ì¾×ÅÍ) µéÀ» ÀçÈ°¿ë ÇÏ±â À§ÇØ Á¦°ÅÇÏÁö ¾Ê´Â´Ù. ÀçÈ°¿ëÀ» °¡´ÉÇÏ°Ô ÇÏ±â À§ÇÑ Ã³¸®°¡ ABladeIICharacter::DoesMatineePuppetSetupFor** µéÀÓ.
+	//// Matinee ç”« å›°ç§¦ ç”˜ä¿Š ç¡…æ‘¹ç­‰ å±€ç”¸è‚ºè¾‘ ç„Šæç˜¤çˆ¶ è‡¼éœ¸ ç‹„. åŠ›èŠ­ç»° çªç˜¤ å¯Œç»Š.
+	//// çˆ¶è€ å¨Ÿç”¸é˜‘ åŠ›èŠ­çªå¦¨æ Matinee ç‡ä¿Šè¾‘ å¼¥å®¶èŒ„ TermInterp å•Š è´¸åºœç­‰ ä¿ƒæ¾œæç»¢å…· èŒ„ä¿ƒ. æ‰å¤¯åˆ©ç‰¢ è¤ä¾©ä¿Šè¾‘ ALevelSequenceActor ::Stop ä¿Šè¾‘ æç‡æ è‚ºç‹¼ notify å•Š æŸ¯ é¥¶ä¿Š TermInterp å•Š è´¸åºœç™»éª¨è‚º åŠ›èŠ­çªç»Š é…µæ­¹æ‰¼æ¡£ æ çŸ«ç—¢ä¿Šè¾‘ç»° æ•‘å‡³
+	//// -> MatineePuppet (æºœ å¼Šç¼å’€ç£) ç”¸é˜‘ çŠåŠä¾© çªæ‰ å›°ç§¦ åŠ›èŠ­çªç˜¤ è‡¼ç»°ä¿ƒ. çŠåŠä¾©é˜‘ å•Šç“·çªéœ¸ çªæ‰ å›°èŒ„ è´¸åºœå•Š ABladeIICharacter::DoesMatineePuppetSetupFor** ç”¸çƒ™.
 	//if (InStateForThis.CtrlMatineePuppet)
 	//{
 	//	if (InSettingForThis.PlayActorStateMode != EPlayActorStateMode::EPASM_DirectedAfterFinish)
 	//	{
 	//		if (ThisPlayActor)
-	//		{ // ¶óÀÌÆ® ²¨ÁÖ°í ±âÅ¸ PlayActor ¿¡ µû¶ó Setup Çß´ø °Å clear			
+	//		{ // æ‰¼æé£˜ æ³¢æ—ç»Š æ‰é¸¥ PlayActor ä¿Š è¶æ‰¼ Setup æ²å¸¦ èŠ­ clear			
 	//			ThisPlayActor->SetVisibilityMatineePuppetPointLight(InStateForThis.CtrlMatineePuppet, false);
 	//			ThisPlayActor->ClearControlledMatineePuppet(InStateForThis.CtrlMatineePuppet);
 	//		}
@@ -3220,15 +3221,15 @@ void AB2StageEventDirector::OnSingleStageEventShowOver(int32 ActorShowIndex)
 		CurrShowState.bShowFinished = true;
 	}
 
-	CheckShowEndCountDown(); // ÀüÃ¼ÀûÀÎ Á¾·á Á¶°Ç °Ë»ç.
+	CheckShowEndCountDown(); // å‚ˆçœ‰åˆ©ç‰¢ è¾†ä¸° ç‚¼æ‰’ å…«è¤.
 }
 
 void AB2StageEventDirector::OnControlledMatineeStop(bool bStandByNoti)
 {
 	//bControlledMatineeFinished = true;
-	//CheckShowEndCountDown_ControlledMatinee(bStandByNoti); // Ãß°¡ °Ë»çÇÒ Á¶°ÇÀÌ ÀÖÀ½.
+	//CheckShowEndCountDown_ControlledMatinee(bStandByNoti); // çœ å•Š å…«è¤ä¸” ç‚¼æ‰’æ ä¹æ¾œ.
 	//if (!GIsEditor)
-	//{ // ¿ä SetCloseBattleMainUIClass ÀÌº¥Æ®¸¦ ¿¡µğÅÍ¿¡¼­ Init-Destroy ½Ã¿¡ Subscribe/Unsubcribe ÇÏ´Âµ¥ ¿¡µğÅÍ¿¡¼­ Unsubscribe °¡ ºüÁö±â ½¬¿ò. ¤Ğ¤Ğ
+	//{ // å¤¸ SetCloseBattleMainUIClass æäº¥é£˜ç”« ä¿Šå¼ç£ä¿Šè¾‘ Init-Destroy çŸ«ä¿Š Subscribe/Unsubcribe çªç»°å• ä¿Šå¼ç£ä¿Šè¾‘ Unsubscribe å•Š ç‹ç˜¤æ‰ æµ†æ¡†. ã°ã°
 	//	SetCloseBattleMainUIClass<bool>::GetInstance().Signal(true);
 	//}
 }
@@ -3236,13 +3237,13 @@ void AB2StageEventDirector::OnControlledMatineeStop(bool bStandByNoti)
 void AB2StageEventDirector::OnExportedCameraAnimStop()
 {
 	bCameraAnimFinished = true;
-	CheckShowEndCountDown(); // ÀüÃ¼ÀûÀÎ Á¾·á Á¶°Ç °Ë»ç.
+	CheckShowEndCountDown(); // å‚ˆçœ‰åˆ©ç‰¢ è¾†ä¸° ç‚¼æ‰’ å…«è¤.
 }
 
 void AB2StageEventDirector::OnAllManualCameraOver()
 {
 	bAllManualCameraEnded = true;
-	CheckShowEndCountDown(); // ÀüÃ¼ÀûÀÎ Á¾·á Á¶°Ç °Ë»ç.
+	CheckShowEndCountDown(); // å‚ˆçœ‰åˆ©ç‰¢ è¾†ä¸° ç‚¼æ‰’ å…«è¤.
 }
 
 void AB2StageEventDirector::ReturnToGamePlayCamera(bool bDeactivateOtherCams /*= false*/)
@@ -3252,8 +3253,8 @@ void AB2StageEventDirector::ReturnToGamePlayCamera(bool bDeactivateOtherCams /*=
 	//ABladeIIPlayer* LocalB2Player = GetB2LocalPlayerChar();
 	//ABladeIIPlayerController* LocalB2PC = GetB2LocalPlayerCon();
 
-	//// ¿©±â¼­ ÇÃ·¹ÀÌ¾î Ä«¸Ş¶ó ÂÊÀ¸·Î blending out À» Á¦´ë·Î ¸ÔÀÌ·Á¸é DeactivateAllManualCams ¸¦ ÇØ¼± ¾ÈµÊ. 
-	//// ±×·¯¸é ÀÌÂÊ¿¡¼­ active ÇÑ camera component °¡ ¾ø¾î¼­ AActor::CalcCamera ¿¡¼­ ´Ü¼øÈ÷ ¾×ÅÍ À§Ä¡¸¦ »ç¿ëÇÏ°Ô µÉ °Í.
+	//// å’¯æ‰è¾‘ æ•²é¥­æç»¢ å¢¨çš‹æ‰¼ ç‡æ è‚º blending out é˜‘ åŠ›æªè‚º å†ˆæå¦¨æ DeactivateAllManualCams ç”« ç§¦æ€¥ æ•‘å‡³. 
+	//// å¼ŠçŸ¾æ æç‡ä¿Šè¾‘ active èŒ„ camera component å•Š ç»ç»¢è¾‘ AActor::CalcCamera ä¿Šè¾‘ çªœé‰´æ´’ å’€ç£ å›°æ‘¹ç”« è¤ä¾©çªéœ¸ çª å·´.
 	//if (bDeactivateOtherCams)
 	//{
 	//	DeactivateAllManualCams();
@@ -3261,28 +3262,28 @@ void AB2StageEventDirector::ReturnToGamePlayCamera(bool bDeactivateOtherCams /*=
 
 	//CurrentActiveCamera = NULL;
 
-	//// ¸¶Æ¼´Ï »ç¿ë ½ÃÀÇ Ä«¸Ş¶ó º¹±Í ±¸ÇöÀº ´Ù¸¦ ¼ö ÀÖÀ»... ±î?
+	//// ä»˜èèª è¤ä¾© çŸ«ç‹¼ å¢¨çš‹æ‰¼ æ±—è“– å¤‡æ³…ç¯® ä¿ƒç”« è ä¹é˜‘... é³–?
 
 	//if (LocalB2Player)
 	//	LocalB2Player->TopDownCameraComponent->Activate();
 
 	//if (ActiveCameraForceOnFinish)
-	//{// ¿µ¿ª ¾ÈÀÌ ¾Æ´Ï¾îµµ Àû¿ë. ÀÌ·± »ç¿ëÀÌ ÇÊ¿äÇÏ°Ô µÉ ¼öµµ..
-	//	// ±×·¸´Ù°í ÇØ¼­ ¿µ¿ª ¾È¿¡ ´Ù¸¥ Ä«¸Ş¶ó°¡ ÀÖ´Âµ¥ ActiveCameraForceOnFinish ·Î °­Á¦ÇÏ±â À§ÇÑ ¸ñÀûÀº ¾Æ´Ï´Ù. ´ëÃ¼·Î ¿µ¿ªÀ¸·Î Àû¿ëÇÏ±â °ï¶õÇÒ¸¸ÇÑ °æ¿ì¿¡ È®½ÇÇÏ°Ô Àû¿ëÇÏ±â À§ÇÑ ¸ñÀû.
+	//{// åº·å¼€ æ•‘æ é…’èªç»¢æ¡£ åˆ©ä¾©. æç¹ è¤ä¾©æ é˜å¤¸çªéœ¸ çª èæ¡£..
+	//	// å¼ŠçŠ¯ä¿ƒç»Š ç§¦è¾‘ åº·å¼€ æ•‘ä¿Š ä¿ƒå¼— å¢¨çš‹æ‰¼å•Š ä¹ç»°å• ActiveCameraForceOnFinish è‚º ç¢åŠ›çªæ‰ å›°èŒ„ æ ¼åˆ©ç¯® é…’èªä¿ƒ. æªçœ‰è‚º åº·å¼€æ è‚º åˆ©ä¾©çªæ‰ å¸®é„‚ä¸”çˆ¶èŒ„ ç‰ˆå¿«ä¿Š çŠ¬è§’çªéœ¸ åˆ©ä¾©çªæ‰ å›°èŒ„ æ ¼åˆ©.
 	//	ActiveCameraForceOnFinish->ForceBeginActiveCamera(FinalCameraRestoreBlendTime); 
 	//}
 	//else
 	//{
-	//	// ActiveCameraForceOnFinish º¸´Ù´Â ¿©±â·Î ¿À´Â °Ô ´ëÃ¼·Î ´õ ¹Ù¶÷Á÷ÇÏ°í ÀÚ¿¬(?)½º·´´Ù.
-	//	// ¿©±â¼­µµ FinalCameraRestoreBlendTime ÀÌ ¸ÔÈ÷µµ·Ï ApplyActiveCameraIfAny ¿¡ blend time ¿À¹ö¶óÀÌµù °¡´ÉÇÏµµ·Ï ÇÔ. ¿¬Ãâ¿¡¼­ ActiveCamera ·Î µ¹¾Æ°¥ ¶§ÀÇ ºí·»µùÀº ¿¬ÃâÂÊ ¼³Á¤À¸·Î.
+	//	// ActiveCameraForceOnFinish ç„Šä¿ƒç»° å’¯æ‰è‚º å·ç»° éœ¸ æªçœ‰è‚º æ­¹ å®˜æ©æµçªç»Š ç£Šæ¥·(?)èƒ¶åä¿ƒ.
+	//	// å’¯æ‰è¾‘æ¡£ FinalCameraRestoreBlendTime æ å†ˆæ´’æ¡£åºŸ ApplyActiveCameraIfAny ä¿Š blend time å·æ»šæ‰¼æçˆ¹ å•Šç“·çªæ¡£åºŸ çªƒ. æ¥·å…ä¿Šè¾‘ ActiveCamera è‚º å€’é…’å“ é”­ç‹¼ å–‰åŠçˆ¹ç¯® æ¥·å…ç‡ æ±²æ²¥æ è‚º.
 	//	ApplyNormallyExpectedInGameCamera(GetB2GameMode(), LocalB2PC, FinalCameraRestoreBlendTime);
 	//}
 
 	//if (LocalB2PC && LocalB2PC->PlayerCameraManager)
 	//{
-	//	//°­Á¦·Î Ä«¸Ş¶ó ¾÷µ¥ÀÌÆ® -> »ç½Ç APlayerCameraManager::SetViewTarget()À» È£ÃâÇÏ°Ô µÇ¸é,
-	//	//APlayerCameraManager::TransformComponentÀÇ AttachedChild À§Ä¡°¡ ¾È¸Â´Â ¹®Á¦°¡ ÀÖ¾î¼­(Ä«¸Ş¶óÀ§Ä¡¶û TransformComponent À§Ä¡°¡ Æ²¾îÁü.) APlayerCameraManager::SetViewTarget()¿¡¼­ ÇÏ·Á°í Çß´Âµ¥
-	//	//¾î¶² »çÀÌµåÀÌÆåÆ®°¡ »ı±æÁö ¸ô¶ó¼­ ÀÌ°÷¿¡ Áı¾î³Ö´Â´Ù.
+	//	//ç¢åŠ›è‚º å¢¨çš‹æ‰¼ è¯€å•æé£˜ -> è¤è§’ APlayerCameraManager::SetViewTarget()é˜‘ é¾‹å…çªéœ¸ ç™»æ,
+	//	//APlayerCameraManager::TransformComponentç‹¼ AttachedChild å›°æ‘¹å•Š æ•‘å˜ç»° å·©åŠ›å•Š ä¹ç»¢è¾‘(å¢¨çš‹æ‰¼å›°æ‘¹å°” TransformComponent å›°æ‘¹å•Š æ’‡ç»¢å’™.) APlayerCameraManager::SetViewTarget()ä¿Šè¾‘ çªå¦¨ç»Š æ²ç»°å•
+	//	//ç»¢æ« è¤æé›ææ£‹é£˜å•Š ç§¯è¾¨ç˜¤ éš”æ‰¼è¾‘ æé•‘ä¿Š ç¬¼ç»¢æŒç»°ä¿ƒ.
 	//	LocalB2PC->PlayerCameraManager->UpdateCamera(0.f);
 	//}
 }
@@ -3294,7 +3295,7 @@ void AB2StageEventDirector::DeactivateAllManualCams()
 		DirectorCamArrayRef[CI]->Deactivate();
 	}
 
-	// TODO ´Ù¸¥ ¾×ÅÍÂÊ¿¡ ¼³Ä¡ÇÒ Ä«¸Ş¶óµéµµ -> ¾øÀ» °Å °°´Ù.
+	// TODO ä¿ƒå¼— å’€ç£ç‡ä¿Š æ±²æ‘¹ä¸” å¢¨çš‹æ‰¼ç”¸æ¡£ -> ç»é˜‘ èŠ­ éä¿ƒ.
 }
 
 void AB2StageEventDirector::BeginTargetToManualCamera(int32 CamSettingIndex)
@@ -3310,28 +3311,28 @@ void AB2StageEventDirector::BeginTargetToManualCamera(int32 CamSettingIndex)
 	//	FManualCameraSingleSetting& CurrCamSetting = ManualCameraSettings[CamSettingIndex];
 	//	UCameraComponent* NextCamera = GetManualCameraFromSetting(CurrCamSetting);
 
-	//	if (NextCamera) // ¸¸ÀÏ NextCamera ¸¦ Ã£Áö ¸øÇÏ¸é Á¾·á°¡ µÇ±â Àü±îÁö´Â Çö»óÅÂ°¡ À¯ÁöµÉ °Í.
+	//	if (NextCamera) // çˆ¶è€ NextCamera ç”« èŒ«ç˜¤ ç»™çªæ è¾†ä¸°å•Š ç™»æ‰ å‚ˆé³–ç˜¤ç»° æ³…æƒ‘æ€•å•Š èœ¡ç˜¤çª å·´.
 	//	{
 	//		if (CurrentActiveCamera && CurrentActiveCamera != LocalB2Player->TopDownCameraComponent)
 	//		{
-	//			// ÀÌ°É Deactivate ÇØ¾ß ÇÏ´Â »óÈ²Àº °°Àº actor ¾ÈÀÇ ´Ù¸¥ Ä«¸Ş¶ó ÄÄÆ÷³ÍÆ®µé °£¿¡ ºí·»µù ÇÏ´Â °æ¿ìÀÓ.
-	//			// µû¶ó¼­ ¿©±â µé¾î¿À´Â Á¶°Ç¿¡ CurrentActiveCamera °¡ ÇÃ·¹ÀÌ¾îÀÇ TopDownCamera ¶ó¸é deactivate ¸¦ ÇÏÁö ¾Ê´Â´Ù.
-	//			// ´Ù¸¥ °æ¿ì°¡ ¶Ç ÀÖ´Ù¸é Ãß°¡ °Ë»ç¸¦ ÇÏ´øÁö, outer °Ë»ç¸¦ ÇÏ´øÁö ÇÏ´Â ½ÄÀ¸·Î..
+	//			// æå§ Deactivate ç§¦å…· çªç»° æƒ‘ç‚”ç¯® éç¯® actor æ•‘ç‹¼ ä¿ƒå¼— å¢¨çš‹æ‰¼ å“ªå™¨æƒ©é£˜ç”¸ åŸƒä¿Š å–‰åŠçˆ¹ çªç»° ç‰ˆå¿«çƒ™.
+	//			// è¶æ‰¼è¾‘ å’¯æ‰ ç”¸ç»¢å·ç»° ç‚¼æ‰’ä¿Š CurrentActiveCamera å•Š æ•²é¥­æç»¢ç‹¼ TopDownCamera æ‰¼æ deactivate ç”« çªç˜¤ è‡¼ç»°ä¿ƒ.
+	//			// ä¿ƒå¼— ç‰ˆå¿«å•Š è‚š ä¹ä¿ƒæ çœ å•Š å…«è¤ç”« çªå¸¦ç˜¤, outer å…«è¤ç”« çªå¸¦ç˜¤ çªç»° ä¾¥æ è‚º..
 	//			CurrentActiveCamera->Deactivate();
 	//		}
 	//		CurrentActiveCamera = NextCamera;
 	//		CurrentActiveCamera->Activate();
 	//		LocalB2PC->SetViewTargetWithBlend(this, CurrCamSetting.BlendTimeFromPrev, CurrCamSetting.BlendFunction);
 
-	//		// BlendTime ¿¡ ¸ÂÃç¼­ ManualCameraBlendCB Å¸ÀÌ¸Ó ¼³Ä¡.
-	//		// SetViewTargetWithBlend ¿¡ ´ëÇÑ ¿Ï·á Äİ¹éÀÌ ÀÖ´ÂÁö ¸ğ¸£°Ú´Âµ¥.. ½Ã°£ ¸ÂÃç¼­ Å¸ÀÌ¸Ó ¼¼ÆÃÇÔ. (SetViewTargetWithBlend ¿¡ ´ëÇÑ Äİ¹éÀÌ ÀÖ´Â °Å¶ó¸é »¹Áş ¤§¤§) 
+	//		// BlendTime ä¿Š å˜è‹—è¾‘ ManualCameraBlendCB é¸¥æèµ£ æ±²æ‘¹.
+	//		// SetViewTargetWithBlend ä¿Š æªèŒ„ è‚¯ä¸° å¦®å½’æ ä¹ç»°ç˜¤ è‘›ç¦æ‘†ç»°å•.. çŸ«åŸƒ å˜è‹—è¾‘ é¸¥æèµ£ æŠ€æ³¼çªƒ. (SetViewTargetWithBlend ä¿Š æªèŒ„ å¦®å½’æ ä¹ç»° èŠ­æ‰¼æ è¿˜çª¿ ã‡ã‡) 
 	//		if (CurrCamSetting.BlendTimeFromPrev > 0.0f)
 	//		{
 	//			GetWorldTimerManager().SetTimer(ManualCameraBlendTimerHandle, FTimerDelegate::CreateUObject(this, &AB2StageEventDirector::ManualCameraBlendCB, CamSettingIndex), CurrCamSetting.BlendTimeFromPrev, false);
 	//		}
 	//		else
 	//		{
-	//			ManualCameraBlendCB(CamSettingIndex); // °¡±ŞÀû ÀÌ·¸°Ô ¾²°í ½ÍÁö´Â ¾Ê¾ÒÁö¸¸..
+	//			ManualCameraBlendCB(CamSettingIndex); // å•Šé­åˆ© æçŠ¯éœ¸ é™ç»Š é…µç˜¤ç»° è‡¼ç–½ç˜¤çˆ¶..
 	//		}
 	//	}
 	//	else
@@ -3346,7 +3347,7 @@ void AB2StageEventDirector::BeginTargetToManualCamera(int32 CamSettingIndex)
 
 	//if (bNoMoreCameraWork)
 	//{
-	//	// bStandbyAtTheEnd »ó°ü¾øÀÌ ½ÅÈ£¸¦ º¸³½´Ù. CheckShowEndCountDown ¿¡¼­ bStandbyAtTheEnd ¿¡ µû¸¥ Ã³¸®¸¦ ÇÒ °Í.
+	//	// bStandbyAtTheEnd æƒ‘åŒ…ç»æ è„šé¾‹ç”« ç„Šè¾°ä¿ƒ. CheckShowEndCountDown ä¿Šè¾‘ bStandbyAtTheEnd ä¿Š è¶å¼— è´¸åºœç”« ä¸” å·´.
 	//	OnAllManualCameraOver();
 	//}
 }
@@ -3360,7 +3361,7 @@ void AB2StageEventDirector::OverallStartDelayTimerCB()
 void AB2StageEventDirector::OverallLengthTimerCB()
 {
 	GetWorldTimerManager().ClearTimer(OverallLengthTimerHandle);
-	CustomFinishShow(); // °­Á¦ Á¾·á.
+	CustomFinishShow(); // ç¢åŠ› è¾†ä¸°.
 }
 
 void AB2StageEventDirector::ManualCameraBlendCB(int32 CamSettingIndex)
@@ -3373,12 +3374,12 @@ void AB2StageEventDirector::ManualCameraBlendCB(int32 CamSettingIndex)
 
 		if (CurrCamSetting.StayTime > 0.0f)
 		{
-			// ÀÌ °æ¿ì´Â ÀÎµ¦½º¸¦ À¯ÁöÇÑ Ã¤ Á» ´õ ¸Ó¹®´Ù.
+			// æ ç‰ˆå¿«ç»° ç‰¢éƒ¸èƒ¶ç”« èœ¡ç˜¤èŒ„ ç›² ç²± æ­¹ èµ£å·©ä¿ƒ.
 			GetWorldTimerManager().SetTimer(ManualCameraBlendTimerHandle, FTimerDelegate::CreateUObject(this, &AB2StageEventDirector::ManualCameraBlendStayCB, CamSettingIndex), CurrCamSetting.StayTime, false);
 		}
 		else
 		{
-			// ´ÙÀ½ Ä«¸Ş¶ó·Î. ¸¸ÀÏ ´ÙÀ½ Ä«¸Ş¶ó°¡ ¾ø´Ù¸é Ä«¸Ş¶ó ¿öÅ©´Â Á¾·á Ã³¸®°¡ µÉ °Í.
+			// ä¿ƒæ¾œ å¢¨çš‹æ‰¼è‚º. çˆ¶è€ ä¿ƒæ¾œ å¢¨çš‹æ‰¼å•Š ç»ä¿ƒæ å¢¨çš‹æ‰¼ å†µå†œç»° è¾†ä¸° è´¸åºœå•Š çª å·´.
 			BeginTargetToManualCamera(CamSettingIndex + 1);
 		}
 	}
@@ -3388,7 +3389,7 @@ void AB2StageEventDirector::ManualCameraBlendStayCB(int32 CamSettingIndex)
 {
 	GetWorldTimerManager().ClearTimer(ManualCameraBlendTimerHandle);
 
-	// ´ÙÀ½ Ä«¸Ş¶ó·Î. ¸¸ÀÏ ´ÙÀ½ Ä«¸Ş¶ó°¡ ¾ø´Ù¸é Ä«¸Ş¶ó ¿öÅ©´Â Á¾·á Ã³¸®°¡ µÉ °Í.
+	// ä¿ƒæ¾œ å¢¨çš‹æ‰¼è‚º. çˆ¶è€ ä¿ƒæ¾œ å¢¨çš‹æ‰¼å•Š ç»ä¿ƒæ å¢¨çš‹æ‰¼ å†µå†œç»° è¾†ä¸° è´¸åºœå•Š çª å·´.
 	BeginTargetToManualCamera(CamSettingIndex + 1);
 }
 //
@@ -3396,12 +3397,12 @@ void AB2StageEventDirector::ManualCameraBlendStayCB(int32 CamSettingIndex)
 //{
 //	if (InPlayActor && CameraAnimApplyCamIndex >= 0 && CameraAnimApplyCamIndex < MAX_DIRECTOR_CAMERA)
 //	{
-//		// UB2SimpleEventScene::CreateFromInterpTrack Âü°í
+//		// UB2SimpleEventScene::CreateFromInterpTrack æ›¼ç»Š
 //
 //		UCameraComponent* BaseCamComp = DirectorCamArrayRef[CameraAnimApplyCamIndex];
 //		
-//		// SimpleEventScene ÀÇ Å°°ªÀ» CameraAnim ÀÌ Àû¿ëµÇ´Â Ä«¸Ş¶ó¸¦ ±âÁØÀ¸·Î ÇÑ »ó´ëÁÂÇ¥·Î °£ÁÖ.
-//		// ´Ü, SimpleEventScene À» ÂïÀ» ¶§´Â ÇÇ¹şÀÌ ÇÏ´Ü¿¡ ÀÖ´Â SkeletalMeshActor ¸¦ »ç¿ëÇßÀ» °ÍÀÌ¹Ç·Î Ä¸½¶ ÄÄÆ÷³ÍÆ®ÀÇ Àı¹İ¸¸Å­ ¿Ã·ÁÁØ´Ù.
+//		// SimpleEventScene ç‹¼ è™è”¼é˜‘ CameraAnim æ åˆ©ä¾©ç™»ç»° å¢¨çš‹æ‰¼ç”« æ‰éœ–æ è‚º èŒ„ æƒ‘æªè°…é’è‚º åŸƒæ—.
+//		// çªœ, SimpleEventScene é˜‘ å˜›é˜‘ é”­ç»° ä¹”å“ˆæ çªçªœä¿Š ä¹ç»° SkeletalMeshActor ç”« è¤ä¾©æ²é˜‘ å·´æéª¨è‚º æ¯è•‰ å“ªå™¨æƒ©é£˜ç‹¼ ä¾‹é¦†çˆ¶æ€’ æ£µå¦¨éœ–ä¿ƒ.
 //		float B2CharHeightOffset = ZOffsetFromMatchingSKActorToBIICharacter(InPlayActor);
 //		const FTransform MutlpliedTransform = 
 //			FTransform(InMoveKey.RotKey, InMoveKey.PosKey + FVector(0.0f, 0.0f, B2CharHeightOffset)) * BaseCamComp->GetComponentTransform();
@@ -3415,12 +3416,12 @@ void AB2StageEventDirector::ManualCameraBlendStayCB(int32 CamSettingIndex)
 //{
 //	if (InPlayActor && CameraAnimApplyCamIndex >= 0 && CameraAnimApplyCamIndex < MAX_DIRECTOR_CAMERA)
 //	{
-//		// UB2SimpleEventScene::CreateFromInterpTrack Âü°í
+//		// UB2SimpleEventScene::CreateFromInterpTrack æ›¼ç»Š
 //
 //		UCameraComponent* BaseCamComp = DirectorCamArrayRef[CameraAnimApplyCamIndex];
 //
-//		// SetSESPlayActorMovementFromCamera ¿Í´Â ¹İ´ë·Î InPlayActor ¸¦ ±âÁØÀ¸·Î Ä«¸Ş¶ó À§Ä¡ ¼¼ÆÃ
-//		// Ä¸½¶ ÄÄÆ÷³ÍÆ® offset Àº ¸¶Âù°¡Áö·Î °¨¾ÈÇØ¾ß ÇÔ.
+//		// SetSESPlayActorMovementFromCamera å®¢ç»° é¦†æªè‚º InPlayActor ç”« æ‰éœ–æ è‚º å¢¨çš‹æ‰¼ å›°æ‘¹ æŠ€æ³¼
+//		// æ¯è•‰ å“ªå™¨æƒ©é£˜ offset ç¯® ä»˜è›®å•Šç˜¤è‚º çš‘æ•‘ç§¦å…· çªƒ.
 //		float B2CharHeightOffset = ZOffsetFromMatchingSKActorToBIICharacter(InPlayActor);
 //		const FTransform MutlpliedTransform =
 //			FTransform(InInvMoveKey.RotKey, InInvMoveKey.PosKey - FVector(0.0f, 0.0f, B2CharHeightOffset)) * InPlayActor->GetTransform();
@@ -3438,11 +3439,11 @@ bool AB2StageEventDirector::IsExportedEventSceneValid(class UB2SimpleEventScene*
 
 EStageEventShowState AB2StageEventDirector::GetDefaultDesiredPlayActorSESState(EStageEvent InEvent, EStageEventPlayActor InPlayActorType)
 {
-	//// ¿©±â¼­ return ÇÏ´Â °Ç ÀÏ¹İÀûÀÎ »ç¿ë¿¡¼­ ¿¹»óµÇ´Â °ªÀÌ°í StageEventStateOverride °¡ ESES_None ÀÌ ¾Æ´Ï¸é ¿À¹ö¶óÀÌµù µÉ °Í.
+	//// å’¯æ‰è¾‘ return çªç»° æ‰’ è€é¦†åˆ©ç‰¢ è¤ä¾©ä¿Šè¾‘ æŠ—æƒ‘ç™»ç»° è”¼æç»Š StageEventStateOverride å•Š ESES_None æ é…’èªæ å·æ»šæ‰¼æçˆ¹ çª å·´.
 
 	//if (InEvent == EStageEvent::ESEV_Begin)
 	//{
-	//	return EStageEventShowState::ESES_Appearing; // PlayActor Á¾·ù¿¡ »ó°ü¾øÀÌ °øÅëÀÏ µí
+	//	return EStageEventShowState::ESES_Appearing; // PlayActor è¾†å¹…ä¿Š æƒ‘åŒ…ç»æ å‚çƒ¹è€ æ·€
 	//}
 	//else if (InEvent == EStageEvent::ESEV_MobAppear)
 	//{
@@ -3452,18 +3453,18 @@ EStageEventShowState AB2StageEventDirector::GetDefaultDesiredPlayActorSESState(E
 	//	}
 	//	else if (IsPlayActorTypeForPlayerCharacter(InPlayActorType))
 	//	{
-	//		return EStageEventShowState::ESES_Extra; // ÀÌ °æ¿ì ÇÃ·¹ÀÌ¾î°¡ º¸ÀÌÁö ¾Ê´õ¶óµµ ´Ù¸¥ µ¿ÀÛÀ¸·Î Ä«¸Ş¶ó ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ¸ÁÄ£´Ù°Å³ª ÇÏÁö ¾Ê°Ô.. Extra ÀÎ ¼¼ÆÃÀº µû·Î Á¾·áÃ¼Å©¸¦ ÇÏÁö ¾Ê´Â´Ù. ´Ù¸¥ °Ô ³¡³ª¸é °°ÀÌ ³¡³².
+	//		return EStageEventShowState::ESES_Extra; // æ ç‰ˆå¿« æ•²é¥­æç»¢å•Š ç„Šæç˜¤ è‡¼æ­¹æ‰¼æ¡£ ä¿ƒå¼— æ‚¼ç´¯æ è‚º å¢¨çš‹æ‰¼ å±€èªçš‹æè®°é˜‘ å™¶æ¨¡ä¿ƒèŠ­å”± çªç˜¤ è‡¼éœ¸.. Extra ç‰¢ æŠ€æ³¼ç¯® è¶è‚º è¾†ä¸°çœ‰å†œç”« çªç˜¤ è‡¼ç»°ä¿ƒ. ä¿ƒå¼— éœ¸ åœºå”±æ éæ åœºå·¢.
 	//	}
 	//}
 	//else if (InEvent == EStageEvent::ESEV_MobDying)
 	//{
 	//	if (InPlayActorType == EStageEventPlayActor::ESEE_WaveMob)
 	//	{
-	//		return EStageEventShowState::ESES_Dead; // MobDying ÀÌ¶ó°í ÇØµµ ´Ù¸¥ Setting ÀÇ ¸÷ÀÌ Á×´Â °ÍÀÏ ¼ö ÀÖ´Ù. ±×·± °æ¿ì StageEventStateOverride ·Î Á÷Á¢ state ¸¦ ÁöÁ¤.
+	//		return EStageEventShowState::ESES_Dead; // MobDying ææ‰¼ç»Š ç§¦æ¡£ ä¿ƒå¼— Setting ç‹¼ å„æ ç£·ç»° å·´è€ è ä¹ä¿ƒ. å¼Šç¹ ç‰ˆå¿« StageEventStateOverride è‚º æµç«‹ state ç”« ç˜¤æ²¥.
 	//	}
 	//	else if (IsPlayActorTypeForPlayerCharacter(InPlayActorType))
 	//	{
-	//		return EStageEventShowState::ESES_Extra; // ¸¶Âù°¡Áö·Î ÀÌ °æ¿ì ÇÃ·¹ÀÌ¾î°¡ º¸ÀÌÁö ¾Ê´õ¶óµµ ´Ù¸¥ µ¿ÀÛÀ¸·Î Ä«¸Ş¶ó ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ¸ÁÄ£´Ù°Å³ª ÇÏÁö ¾Ê°Ô.
+	//		return EStageEventShowState::ESES_Extra; // ä»˜è›®å•Šç˜¤è‚º æ ç‰ˆå¿« æ•²é¥­æç»¢å•Š ç„Šæç˜¤ è‡¼æ­¹æ‰¼æ¡£ ä¿ƒå¼— æ‚¼ç´¯æ è‚º å¢¨çš‹æ‰¼ å±€èªçš‹æè®°é˜‘ å™¶æ¨¡ä¿ƒèŠ­å”± çªç˜¤ è‡¼éœ¸.
 	//	}
 	//}
 	//else if (InEvent == EStageEvent::ESEV_Clear)
@@ -3478,17 +3479,17 @@ EStageEventShowState AB2StageEventDirector::GetDefaultDesiredPlayActorSESState(E
 	//	}
 	//	else if (InPlayActorType == EStageEventPlayActor::ESEE_WaveMob)
 	//	{
-	//		return EStageEventShowState::ESES_Dead; // ÀÌ·± °æ¿ì°¡ ¿¹»óµÇÁö´Â ¾ÊÁö¸¸..
+	//		return EStageEventShowState::ESES_Dead; // æç¹ ç‰ˆå¿«å•Š æŠ—æƒ‘ç™»ç˜¤ç»° è‡¼ç˜¤çˆ¶..
 	//	}
 	//}
 
-	//// StageEvent ³ª PlayActor Å¸ÀÔ¿¡ µû¶ó Ãß°¡..
+	//// StageEvent å”± PlayActor é¸¥æ¶ä¿Š è¶æ‰¼ çœ å•Š..
 
 	return EStageEventShowState::ESES_None;
 }
 
 void AB2StageEventDirector::SyncDataToUIDoc(ABladeIICharacter* InEventTriggeringMob)
-{// UI ¿¡¼­ ¾µ µ¥ÀÌÅÍµé ¼¼ÆÃ.
+{// UI ä¿Šè¾‘ é•œ å•æç£ç”¸ æŠ€æ³¼.
 	//BII_CHECK(!InEventTriggeringMob || InEventTriggeringMob->IsValidObj());
 	//UB2UIDocBattleStage* DocBS = UB2UIDocHelper::GetDocBattleStage();	
 	//if (DocBS && InEventTriggeringMob && InEventTriggeringMob->IsValidObj())
@@ -3498,7 +3499,7 @@ void AB2StageEventDirector::SyncDataToUIDoc(ABladeIICharacter* InEventTriggering
 	//	DocBS->SetCurAppearedMobName(EventTriggerMobInfo ? EventTriggerMobInfo->GetLocalizedName() : FText::FromString(TEXT("")));
 	//	DocBS->SetCurAppearedMobNickName(EventTriggerMobInfo ? EventTriggerMobInfo->GetLocalizedNickName() : FText::FromString(TEXT("")));
 
-	//	// ±âÅ¸ ÇÊ¿äÇÑ °Íµé Ãß°¡µÇ¸é.. 
+	//	// æ‰é¸¥ é˜å¤¸èŒ„ å·´ç”¸ çœ å•Šç™»æ.. 
 	//}
 }
 
@@ -3512,7 +3513,7 @@ bool AB2StageEventDirector::IsStageEventRelatedUI(FName InUI)
 
 void AB2StageEventDirector::StartEventWidgetOrStartCountdown()
 {
-	// StartEventWidget ¸ŞÀÎ °İ.
+	// StartEventWidget çš‹ç‰¢ æ‹œ.
 
 	if (EventWidgetType > EStageEventWidgetType::None)
 	{
@@ -3522,7 +3523,7 @@ void AB2StageEventDirector::StartEventWidgetOrStartCountdown()
 		}
 		else
 		{
-			StartEventWidget(); // ¹Ù·Î ½ÃÀÛ
+			StartEventWidget(); // å®˜è‚º çŸ«ç´¯
 		}
 	}
 }
@@ -3534,19 +3535,19 @@ void AB2StageEventDirector::StartEventWidget()
 	//switch (EventWidgetType)
 	//{
 	//	//
-	//	// ¿©±â¼­ ¿­¸®´Â UI µéÀº IsStageEventRelatedUI ÂÊ¿¡¼­ return true Ã³¸®ÇØ ÁÖµµ·Ï.
+	//	// å’¯æ‰è¾‘ å‡¯åºœç»° UI ç”¸ç¯® IsStageEventRelatedUI ç‡ä¿Šè¾‘ return true è´¸åºœç§¦ æ—æ¡£åºŸ.
 	//	//
 
 	//	case EStageEventWidgetType::StageBegin:	
 	//		{
 	//			if (CachedStageManager && CachedStageManager->GetIsShowTalkDialog())
 	//			{
-	//				// ´ëÈ­¼³Á¤ÀÌ ÀÖÀ¸¸é ´ëÈ­ ½Ã½ºÅÛºÎÅÍ ³ëÃâÇÔ.
+	//				// æªæ‹³æ±²æ²¥æ ä¹æ æ æªæ‹³ çŸ«èƒ¶è¢ä½•ç£ ç•´å…çªƒ.
 	//				AB2StageGameMode* StageGM = Cast<AB2StageGameMode>(UGameplayStatics::GetGameMode(this));
 	//				if (StageGM && StageGM->GetActiveSpawnPool())
 	//				{
 	//					int32 GroupID = 0;
-	//					MyRelevantUIName = UIFName::StageBegin; // MyRelevantUIName À» OpenUI ÀÌÀü¿¡ ¼¼ÆÃÇÒ °Í. ÀÏºÎ Æ¯¼öÄÉÀÌ½º¸¦ Á¦¿ÜÇÏ¸é OpenComplete ÀÌº¥Æ®°¡ Open °ú µ¿½Ã¿¡ ³¯¾Æ¿Ã °ÍÀÌ´Ù.
+	//					MyRelevantUIName = UIFName::StageBegin; // MyRelevantUIName é˜‘ OpenUI æå‚ˆä¿Š æŠ€æ³¼ä¸” å·´. è€ä½• æ¼‚èçº³æèƒ¶ç”« åŠ›å¯‡çªæ OpenComplete æäº¥é£˜å•Š Open è‹ æ‚¼çŸ«ä¿Š æœé…’æ£µ å·´æä¿ƒ.
 	//					if(StageGM->GetActiveSpawnPool()->TryGetStartTalkSetting(GroupID))
 	//						StageEventTalkStartClass<int32, bool>::GetInstance().Signal(GroupID, false);
 	//					else 
@@ -3555,21 +3556,21 @@ void AB2StageEventDirector::StartEventWidget()
 	//			}
 	//			else
 	//			{
-	//				MyRelevantUIName = UIFName::StageBegin; // MyRelevantUIName À» OpenUI ÀÌÀü¿¡ ¼¼ÆÃÇÒ °Í. ÀÏºÎ Æ¯¼öÄÉÀÌ½º¸¦ Á¦¿ÜÇÏ¸é OpenComplete ÀÌº¥Æ®°¡ Open °ú µ¿½Ã¿¡ ³¯¾Æ¿Ã °ÍÀÌ´Ù.
+	//				MyRelevantUIName = UIFName::StageBegin; // MyRelevantUIName é˜‘ OpenUI æå‚ˆä¿Š æŠ€æ³¼ä¸” å·´. è€ä½• æ¼‚èçº³æèƒ¶ç”« åŠ›å¯‡çªæ OpenComplete æäº¥é£˜å•Š Open è‹ æ‚¼çŸ«ä¿Š æœé…’æ£µ å·´æä¿ƒ.
 	//				UB2UIManager::GetInstance()->OpenUI(UIFName::StageBegin);
 	//			}
 	//		}
 	//		break;
 	//	case EStageEventWidgetType::StageClear:
 	//		{
-	//			// StageClear ¸¸ Á» Æ¯º°ÇÏ°Ô Ãë±ŞÇØ¼­ UIScene À¸·Î °£´Ù.
-	//			// Stage Á¾·á UI °¡ µÑ·Î ³ª´µ¸é¼­ ¿©±â¼­´Â UIStageClear ´ë½Å UIStageResult ¸¦ ¿¬´Ù. UIStageClear ´Â ¾à°£ ´Ù¸£°Ô µé¾î°¨. AB2StageEventDirector::BeginShow, AB2StageManager::BeginStageClearScene_Phase2 Âü°í.
+	//			// StageClear çˆ¶ ç²± æ¼‚å–Šçªéœ¸ ç§’é­ç§¦è¾‘ UIScene æ è‚º åŸƒä¿ƒ.
+	//			// Stage è¾†ä¸° UI å•Š ç¬›è‚º å”±å¹æè¾‘ å’¯æ‰è¾‘ç»° UIStageClear æªè„š UIStageResult ç”« æ¥·ä¿ƒ. UIStageClear ç»° è·åŸƒ ä¿ƒç¦éœ¸ ç”¸ç»¢çš‘. AB2StageEventDirector::BeginShow, AB2StageManager::BeginStageClearScene_Phase2 æ›¼ç»Š.
 	//			if (GetB2GameModeType(this) == EB2GameMode::Scenario)
 	//			{					
 	//				MyRelevantUIName = UIFName::StageResult;
 	//				UB2UIManager::GetInstance()->ChangeUIScene(EUIScene::StageResult);
 	//			} 		
-	//			else if (GetB2GameModeType(this) == EB2GameMode::CounterDungeon) //EStageEventWidgetTypeÀ» µû·Î Ãß°¡ÇÒ±î..
+	//			else if (GetB2GameModeType(this) == EB2GameMode::CounterDungeon) //EStageEventWidgetTypeé˜‘ è¶è‚º çœ å•Šä¸”é³–..
 	//			{
 	//				MyRelevantUIName = UIFName::CounterAttackDGResult;
 	//				UB2UIManager::GetInstance()->ChangeUIScene(EUIScene::CounterAttackDGResult);
@@ -3643,8 +3644,8 @@ void AB2StageEventDirector::StartEventWidget()
 	//		break;
 
 	//	case EStageEventWidgetType::PVPResult:
-	//		MyRelevantUIName = UIFName::PVPResult; // ¿©±âµµ.. °á±¹ ½Â¸®Ã¢ UI ´Â UIScene À¸·Î
-	//		//[@AKI, 170613] ¾à ³×Æ®¿öÅ©¿¡¼­ °á°ú¸¦ ¼­¹ö¿¡¼­ ¹ŞÁö ¾ÊÀº »óÅÂ¿¡¼­ °á°úÈ­¸é º¸¿©ÁÖÁö ¾Ê°Ô º¯°æ
+	//		MyRelevantUIName = UIFName::PVPResult; // å’¯æ‰æ¡£.. æ¬æƒ« é“°åºœèŠ’ UI ç»° UIScene æ è‚º
+	//		//[@AKI, 170613] è· åŒ™é£˜å†µå†œä¿Šè¾‘ æ¬è‹ç”« è¾‘æ»šä¿Šè¾‘ ç½ç˜¤ è‡¼ç¯® æƒ‘æ€•ä¿Šè¾‘ æ¬è‹æ‹³æ ç„Šå’¯æ—ç˜¤ è‡¼éœ¸ å‡½ç‰ˆ
 	//		//UB2UIManager::GetInstance()->ChangeUIScene(EUIScene::PVPResult);
 	//		break;
 	//	case EStageEventWidgetType::RaidResult:
@@ -3669,13 +3670,13 @@ void AB2StageEventDirector::StartEventWidget()
 	//{
 	//	if (EventWidgetEndTime > EventWidgetStartTime)
 	//	{
-	//		// Á¾·á Å¸ÀÌ¸Ó¸¦ ¼³Ä¡ÇÏÁö ¾ÊÀº °æ¿ì´Â FinishShow ¿¡¼­ ÆÄ±«
+	//		// è¾†ä¸° é¸¥æèµ£ç”« æ±²æ‘¹çªç˜¤ è‡¼ç¯® ç‰ˆå¿«ç»° FinishShow ä¿Šè¾‘ é¢‡é²
 	//		GetWorldTimerManager().SetTimer(FinishEventWidgetTimerHandle, this, &AB2StageEventDirector::FinishEventWidgetTimerCB,
 	//			EventWidgetEndTime - FMath::Max(EventWidgetStartTime, 0.0f), false);
 	//	}
 	//	else
 	//	{
-	//		// ÀÌ °æ¿ì´Â ¹Ù·Î Á¦°ÅÇØ¾ß ¸»ÀÌ µÉ µí ¤Ñ.¤Ñ;
+	//		// æ ç‰ˆå¿«ç»° å®˜è‚º åŠ›èŠ­ç§¦å…· å¯Œæ çª æ·€ ã±.ã±;
 	//		FinishEventWidget();
 	//	}
 	//}
@@ -3694,11 +3695,11 @@ void AB2StageEventDirector::FinishEventWidget()
 	//	case EStageEventWidgetType::PVPBegin:
 	//	case EStageEventWidgetType::RaidBegin:
 	//	case EStageEventWidgetType::GuildBegin:
-	//		//Fight PSC·Î ÀÎÇØ¼­ ¿©±â¼­ ´İÁö ¾Ê´Â´Ù.
+	//		//Fight PSCè‚º ç‰¢ç§¦è¾‘ å’¯æ‰è¾‘ æ‘§ç˜¤ è‡¼ç»°ä¿ƒ.
 	//		//UB2UIManager::GetInstance()->CloseUI(UIFName::PVPBegin); 
 	//		break;
-	//		// StageClear ¸¸ Á» Æ¯º°ÇÏ°Ô Ãë±ŞÇØ¼­ UIScene À¸·Î °£´Ù. ½ÇÁúÀûÀ¸·Î StageClear ¶ó¸é ¸ÊÀÌ ´Ù½Ã ·ÎµùµÈ´Ù°Å³ª ÇÒ °ÍÀÌ¹Ç·Î ¿©±â·Î ¿ÀÁö´Â ¾ÊÀ» µí?
-	//		// ¿ä°Íµµ UIScene ÀÌ¶ó None À¸·Î..
+	//		// StageClear çˆ¶ ç²± æ¼‚å–Šçªéœ¸ ç§’é­ç§¦è¾‘ UIScene æ è‚º åŸƒä¿ƒ. è§’é¾™åˆ©æ è‚º StageClear æ‰¼æ ç”˜æ ä¿ƒçŸ« è‚ºçˆ¹ç­‰ä¿ƒèŠ­å”± ä¸” å·´æéª¨è‚º å’¯æ‰è‚º å·ç˜¤ç»° è‡¼é˜‘ æ·€?
+	//		// å¤¸å·´æ¡£ UIScene ææ‰¼ None æ è‚º..
 	//	case EStageEventWidgetType::StageClear:
 	//	case EStageEventWidgetType::PVPResult:				
 	//	case EStageEventWidgetType::RaidResult:
@@ -3770,12 +3771,12 @@ EPCClass AB2StageEventDirector::TutorialPlayActorTypeToPCClass(EStageEventPlayAc
 
 bool AB2StageEventDirector::DoesThisSettingRequireManualPlacement(FPlayActorShowSettings& InSetting)
 {
-	// BeginSingleShow ¿¡¼­ »ç¿ëÇÏ´Â »óÈ²°ú ÀÏÄ¡ÇØ¾ß°Ú´Ù..
+	// BeginSingleShow ä¿Šè¾‘ è¤ä¾©çªç»° æƒ‘ç‚”è‹ è€æ‘¹ç§¦å…·æ‘†ä¿ƒ..
 	if (OverallMode == EStageEventDirectorOverallMode::ESEDOM_ExportedCamera || OverallMode == EStageEventDirectorOverallMode::ESEDOM_ManualCamera)
 	{		
 		if (
 			InSetting.PlayActorPlacement == EPlayActorPlacement::EPAP_BringPlayActor ||
-			// ManualCamera ÀÎ °æ¿ì NoAdjust ¸¸ ¾Æ´Ï¸é Á÷Á¢ ¼¼ÆÃ.
+			// ManualCamera ç‰¢ ç‰ˆå¿« NoAdjust çˆ¶ é…’èªæ æµç«‹ æŠ€æ³¼.
 			(OverallMode == EStageEventDirectorOverallMode::ESEDOM_ManualCamera && InSetting.PlayActorPlacement != EPlayActorPlacement::EPAP_NoAdjust)
 			)
 		{
@@ -3796,13 +3797,13 @@ bool AB2StageEventDirector::DoesThisSettingHaveNoFixedPlacement(FPlayActorShowSe
 	//if (OverallMode == EStageEventDirectorOverallMode::ESEDOM_ExportedCamera && InSetting.PlayActorPlacement != EPlayActorPlacement::EPAP_BringPlayActor &&
 	//	IsExportedEventSceneValid(InSetting.ExportedEventScene) == false)
 	//{
-	//	// ExportedEventScene ¼¼ÆÃÀ» ±î¸Ô¾úµçÁö, ¾Æ´Ï¸é ±×³É Ä«¸Ş¶ó¿öÅ©¸¸ ÃßÃâÇØ¼­ »ç¿ëÇÏ±â À§ÇØ ÀÇµµÇÑ °É ¼öµµ ÀÖÀ½.
+	//	// ExportedEventScene æŠ€æ³¼é˜‘ é³–å†ˆèŒç”µç˜¤, é…’èªæ å¼Šæˆ å¢¨çš‹æ‰¼å†µå†œçˆ¶ çœ å…ç§¦è¾‘ è¤ä¾©çªæ‰ å›°ç§¦ ç‹¼æ¡£èŒ„ å§ èæ¡£ ä¹æ¾œ.
 	//	return true;
 	//}
 
 	//if (OverallMode == EStageEventDirectorOverallMode::ESEDOM_ManualCamera && InSetting.PlayActorPlacement == EPlayActorPlacement::EPAP_NoAdjust)
 	//{
-	//	// °£´ÜÇÑ ÀÎ°ÔÀÓ »óÈ² Ä«¸Ş¶ó¿¡ ÀÌ·± ¼³Á¤À» »ç¿ëÇØ º¼ ¼öµµ ÀÖ°Ú´Ù.. ¸÷ µîÀÛ Á÷ÈÄ¸é °ÅÀÇ À§Ä¡°¡ °íÁ¤µÇ¾î ÀÖ±âµµ ÇÒÅ×°í..
+	//	// åŸƒçªœèŒ„ ç‰¢éœ¸çƒ™ æƒ‘ç‚” å¢¨çš‹æ‰¼ä¿Š æç¹ æ±²æ²¥é˜‘ è¤ä¾©ç§¦ æ­ èæ¡£ ä¹æ‘†ä¿ƒ.. å„ æ®¿ç´¯ æµé¥¶æ èŠ­ç‹¼ å›°æ‘¹å•Š ç»Šæ²¥ç™»ç»¢ ä¹æ‰æ¡£ ä¸”æŠ›ç»Š..
 	//	return true;
 	//}
 
@@ -3811,12 +3812,12 @@ bool AB2StageEventDirector::DoesThisSettingHaveNoFixedPlacement(FPlayActorShowSe
 
 void AB2StageEventDirector::NotifyStageEventShowOver(class ABladeIICharacter* PlayActorJustOver)
 {
-	// SESEndNotify °¡ »ç¿ëµÇ´Â »óÈ²¿¡¼­¸¸ ÀÇ¹Ì°¡ ÀÖÀ½. Controlled Matinee ¸ğµå¿¡¼­´Â ¾Æ¸¶ ºÒ¸®Áö ¾ÊÀ» °Í. (´ë½Å NotifyActorCustomEvent)
+	// SESEndNotify å•Š è¤ä¾©ç™»ç»° æƒ‘ç‚”ä¿Šè¾‘çˆ¶ ç‹¼å›ºå•Š ä¹æ¾œ. Controlled Matinee è‘›é›ä¿Šè¾‘ç»° é…’ä»˜ é˜‚åºœç˜¤ è‡¼é˜‘ å·´. (æªè„š NotifyActorCustomEvent)
 
 	if (bStandbyAtTheEnd && PlayActorJustOver)
 	{
-		// ÀÌ °æ¿ì ¾îÂ÷ÇÇ ³¡±îÁö ´ë±âÇÏ°í ÀÖ¾î¾ß ÇÏ´Ï ¾µµ¥¾øÀÌ AnimBP ¿¡¼­ Ä«¸Ş¶ó Anim Áß´Ü °°Àº °Å ÇÏÁö ¾Êµµ·Ï Extra ·Î SES State ¸¦ À¯ÁöÇÑ´Ù.
-		// ControlledMatinee ÀÇ °æ¿ì ¹°·Ğ ÀÌ°Ô ¸ÔÈ÷Áö ¾ÊÀ» °Å¶ó ±×³É ¸ØÃç ¹ö¸®´Âµ¥.. ¹¹ ¹æ¹ı ÀÖÀ¸·Á³ª..
+		// æ ç‰ˆå¿« ç»¢ç’ä¹” åœºé³–ç˜¤ æªæ‰çªç»Š ä¹ç»¢å…· çªèª é•œå•ç»æ AnimBP ä¿Šè¾‘ å¢¨çš‹æ‰¼ Anim åçªœ éç¯® èŠ­ çªç˜¤ è‡¼æ¡£åºŸ Extra è‚º SES State ç”« èœ¡ç˜¤èŒ„ä¿ƒ.
+		// ControlledMatinee ç‹¼ ç‰ˆå¿« æ‹±æ²¸ æéœ¸ å†ˆæ´’ç˜¤ è‡¼é˜‘ èŠ­æ‰¼ å¼Šæˆ è‚›è‹— æ»šåºœç»°å•.. æ„ è§„è¿‡ ä¹æ å¦¨å”±..
 		PlayActorJustOver->SetStageEventShowState(EStageEventShowState::ESES_Extra, this);
 	}
 	else
@@ -3826,14 +3827,14 @@ void AB2StageEventDirector::NotifyStageEventShowOver(class ABladeIICharacter* Pl
 			if (ShowStates[SI].GetPlayActor(this) == PlayActorJustOver && ShowStates[SI].bShowFinished == false)
 			{
 				OnSingleStageEventShowOver(SI);
-				// ÀÏÄ¡ÇÏ´Â °Ô ÇÏ³ª¸¸ ÀÖ¾î¾ß Á¤»óÀÌ°ÚÁö¸¸ È¤ ¸ğ¸£´Ï break ¾øÀÌ ´Ù µ¹°í º»´Ù.
+				// è€æ‘¹çªç»° éœ¸ çªå”±çˆ¶ ä¹ç»¢å…· æ²¥æƒ‘ææ‘†ç˜¤çˆ¶ è¶£ è‘›ç¦èª break ç»æ ä¿ƒ å€’ç»Š å¤¯ä¿ƒ.
 			}
 		}
 	}
 }
 
 static bool CheckAndGetMatineeScenarioDialogEventName(FString& InOutEventString)
-{ // ALevelSequenceActor ::NotifyEventTriggered ¿¡¼­ º¸³½ ScenarioDialog ÀÌº¥Æ® ±Ô¾à¿¡ ¸Â´ÂÁö Ã¼Å©ÇÏ´Â °Í. 
+{ // ALevelSequenceActor ::NotifyEventTriggered ä¿Šè¾‘ ç„Šè¾° ScenarioDialog æäº¥é£˜ ç—¹è·ä¿Š å˜ç»°ç˜¤ çœ‰å†œçªç»° å·´. 
 	//if (InOutEventString.RemoveFromStart(MATINEE_OPEN_SCENARIO_DIALOG_EVENT_PREFIX))
 	//{
 	//	return true;
@@ -3848,14 +3849,14 @@ void AB2StageEventDirector::NotifyActorCustomEvent(FName OptionalEventName, UObj
 
 	//if (OptionalEventName == MATINEE_STOP_ACTOR_CUSTOM_EVENT)
 	//{
-	//	if (OverallMode == EStageEventDirectorOverallMode::ESEDOM_ControlledMatinee) // ÀÌ°Ô ¾Æ´Ñ °æ¿ì¶ó¸é.. ¹º°¡ Àß¸øµÈ °ÍÀÏ µí
+	//	if (OverallMode == EStageEventDirectorOverallMode::ESEDOM_ControlledMatinee) // æéœ¸ é…’å›± ç‰ˆå¿«æ‰¼æ.. è´­å•Š è‚‹ç»™ç­‰ å·´è€ æ·€
 	//	{
 	//		OnControlledMatineeStop(false);
 	//	}
 	//}
 	//else if (OptionalEventName == MATINEE_DONE_STAY_ACTOR_CUSTOM_EVENT)
 	//{
-	//	// ¹æ±İ Àå¸é Á¾·áÇßÀ¸³ª ÀÌ »óÅÂ·Î stay.
+	//	// è§„é™› å˜æ è¾†ä¸°æ²æ å”± æ æƒ‘æ€•è‚º stay.
 	//	if (OverallMode == EStageEventDirectorOverallMode::ESEDOM_ControlledMatinee && bStandbyAtTheEnd)
 	//	{
 	//		OnControlledMatineeStop(true);
@@ -3863,7 +3864,7 @@ void AB2StageEventDirector::NotifyActorCustomEvent(FName OptionalEventName, UObj
 	//}
 	//else if (OptionalEventName == CAMERAANIM_STOP_ACTOR_CUSTOM_EVENT)
 	//{
-	//	if (OverallMode == EStageEventDirectorOverallMode::ESEDOM_ExportedCamera) // ¸¶Âù°¡Áö·Î ÀÌ°Ô ¾Æ´Ï¶ó¸é ¹º°¡ Àß¸ø..
+	//	if (OverallMode == EStageEventDirectorOverallMode::ESEDOM_ExportedCamera) // ä»˜è›®å•Šç˜¤è‚º æéœ¸ é…’èªæ‰¼æ è´­å•Š è‚‹ç»™..
 	//	{
 	//		OnExportedCameraAnimStop();
 	//	}
@@ -3872,7 +3873,7 @@ void AB2StageEventDirector::NotifyActorCustomEvent(FName OptionalEventName, UObj
 	//{
 	//	if (OverallMode == EStageEventDirectorOverallMode::ESEDOM_ExportedCamera && bStandbyAtTheEnd)
 	//	{
-	//		// ÀÏ´Ü Stop notification À» º¸³½´Ù. CheckShowEndCountDown ¿¡¼­ bStandbyAtTheEnd ¿¡ ´ëÇÑ Ãß°¡ Ã¼Å©¸¦ ÇÒ °Í.
+	//		// è€çªœ Stop notification é˜‘ ç„Šè¾°ä¿ƒ. CheckShowEndCountDown ä¿Šè¾‘ bStandbyAtTheEnd ä¿Š æªèŒ„ çœ å•Š çœ‰å†œç”« ä¸” å·´.
 	//		OnExportedCameraAnimStop();
 	//	}
 	//}
@@ -3881,20 +3882,20 @@ void AB2StageEventDirector::NotifyActorCustomEvent(FName OptionalEventName, UObj
 	//	
 	//	FString EventNameString = OptionalEventName.ToString();
 	//	if (CheckAndGetMatineeScenarioDialogEventName(EventNameString))
-	//	{ // EventNameString ¿¡¼­ Æ¯Á¤ prefix °¡ ºüÁ® ÀÖÀ» °Í.
-	//		OpenDialogClass<FName, bool>::GetInstance().Signal(FName(*EventNameString), false); // CinematicMode ¿¡ µû¸¥ BattleUI ¼û±â±â°¡ ÀÛµ¿ÇÒ °ÍÀÌ¹Ç·Î ¿©±â¼± MaintainBattleUI ¸¦ ½Å°æ¾µ ¾ø´Ù.
+	//	{ // EventNameString ä¿Šè¾‘ æ¼‚æ²¥ prefix å•Š ç‹å»‰ ä¹é˜‘ å·´.
+	//		OpenDialogClass<FName, bool>::GetInstance().Signal(FName(*EventNameString), false); // CinematicMode ä¿Š è¶å¼— BattleUI è§æ‰æ‰å•Š ç´¯æ‚¼ä¸” å·´æéª¨è‚º å’¯æ‰æ€¥ MaintainBattleUI ç”« è„šç‰ˆé•œ ç»ä¿ƒ.
 	//	}
 	//}
 }
 
 void AB2StageEventDirector::NotifyShowOverFromDependentDirectorActor()
 {
-	if (HasValidDependentDirectorActorSetting()) // ÀÌ°Ô ¼¼ÆÃÀÌ ¾ÈµÇ¾î ÀÖÀ¸¸é ºÒ¸®Áö ¾Ê¾Æ¾ß ÇÔ.
+	if (HasValidDependentDirectorActorSetting()) // æéœ¸ æŠ€æ³¼æ æ•‘ç™»ç»¢ ä¹æ æ é˜‚åºœç˜¤ è‡¼é…’å…· çªƒ.
 	{
-		if (bDependentDirectorActorMet == false) // ¸¸¿¡ ÇÏ³ª Áßº¹ È£Ãâ ¹æÁö..?
+		if (bDependentDirectorActorMet == false) // çˆ¶ä¿Š çªå”± åæ±— é¾‹å… è§„ç˜¤..?
 		{
 			//////////
-			bDependentDirectorActorMet = true; // ´Ù¸¥ °÷¿¡¼­´Â bDirectingEventConditionMet À» ¼¼ÆÃÇÏ´Âµ¥ ¿©±â¸¸ ÀÌ°É ¼¼ÆÃÇÑ´Ù.
+			bDependentDirectorActorMet = true; // ä¿ƒå¼— é•‘ä¿Šè¾‘ç»° bDirectingEventConditionMet é˜‘ æŠ€æ³¼çªç»°å• å’¯æ‰çˆ¶ æå§ æŠ€æ³¼èŒ„ä¿ƒ.
 			//////////
 			BeginShowOrBeginCountDown();
 		}
@@ -3926,7 +3927,7 @@ void AB2StageEventDirector::LevelStreamingOnEndFlushCB()
 
 void AB2StageEventDirector::OnStartStandbyAtTheEnd()
 {
-	// ¿©±â·Î ¿Ô´Ù¸é bStandbyAtTheEnd »ç¿ëÇÏ´Â »óÈ²¿¡¼­ ½ÇÁúÀûÀÎ Àå¸éµéÀÌ ¹æ±İ ³¡³­ »óÅÂ
+	// å’¯æ‰è‚º å­ä¿ƒæ bStandbyAtTheEnd è¤ä¾©çªç»° æƒ‘ç‚”ä¿Šè¾‘ è§’é¾™åˆ©ç‰¢ å˜æç”¸æ è§„é™› åœºæŠ„ æƒ‘æ€•
 	if (bStandbyPause)
 	{
 		UGameplayStatics::SetGamePaused(this, true);
@@ -3939,7 +3940,7 @@ bool AB2StageEventDirector::IsPlayerCharacterOneOfPlayActor()
 
 	//if (LocalPlayerCharacter == NULL)
 	//{
-	//	//BII_CHECK(0); //TMGameMode¿¡¼­ LocalPlayerCharacter´Â ¾øÀ½. SpectatorPawnÀÓ.
+	//	//BII_CHECK(0); //TMGameModeä¿Šè¾‘ LocalPlayerCharacterç»° ç»æ¾œ. SpectatorPawnçƒ™.
 	//	return false;
 	//}
 
@@ -3959,7 +3960,7 @@ bool AB2StageEventDirector::ShouldMaintainPlayerCharacterState()
 	//ABladeIIPlayer* LocalPlayerCharacter = Cast<ABladeIIPlayer>(UGameplayStatics::GetLocalPlayerCharacter(this));
 
 	//if (LocalPlayerCharacter == NULL)
-	//{ // TMGameMode ¿¡¼± ¾øÀ» ¼ö ÀÖ´Ù.
+	//{ // TMGameMode ä¿Šæ€¥ ç»é˜‘ è ä¹ä¿ƒ.
 	//	return false;
 	//}
 
@@ -3978,19 +3979,19 @@ bool AB2StageEventDirector::ShouldMaintainPlayerCharacterState()
 
 bool AB2StageEventDirector::ShouldStopAutoDuringShow() const
 {
-	// bDisableInput ÀÌ ¾Æ´Ï¸é ¹º°¡ ÇÃ·¹ÀÌÀÇ ¿¬¼ÓÀÏ °¡´É¼ºÀÌ ³ôÀ¸¹Ç·Î Auto ¸¦ À¯Áö. 
-	// Á¶°ÇÀÌ Á» ´õ refine µÉ ¼ö ÀÖ´Ù. ´Ù¸¥ Á¶°Ç °Ë»ç ³»Áö´Â Æ¯Á¤ ¼Ó¼º°ª¿¡ µû¶ó¼­ µî.
+	// bDisableInput æ é…’èªæ è´­å•Š æ•²é¥­æç‹¼ æ¥·åŠ è€ å•Šç“·å·±æ è‡­æ éª¨è‚º Auto ç”« èœ¡ç˜¤. 
+	// ç‚¼æ‰’æ ç²± æ­¹ refine çª è ä¹ä¿ƒ. ä¿ƒå¼— ç‚¼æ‰’ å…«è¤ éƒ´ç˜¤ç»° æ¼‚æ²¥ åŠ å·±è”¼ä¿Š è¶æ‰¼è¾‘ æ®¿.
 	return bDisableInput;
 }
 
 bool AB2StageEventDirector::ShouldApplyCinematicScalabilityDuringShow() const
-{ // ¿©±â¼­ false ¸¦ ¸®ÅÏÇÏ´Â »óÈ²Àº »ç½Ç»ó °ÔÀÓ ÇÃ·¹ÀÌÀÇ ¿¬¼ÓÀ¸·Î ¸÷ÀÌ³ª NPC ÀÇ Æ¯Á¤ ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ÇÃ·¹ÀÌÇÏ±â À§ÇÔÀÏ °Í.
+{ // å’¯æ‰è¾‘ false ç”« åºœç•”çªç»° æƒ‘ç‚”ç¯® è¤è§’æƒ‘ éœ¸çƒ™ æ•²é¥­æç‹¼ æ¥·åŠ æ è‚º å„æå”± NPC ç‹¼ æ¼‚æ²¥ å±€èªçš‹æè®°é˜‘ æ•²é¥­æçªæ‰ å›°çªƒè€ å·´.
 	return (bDisableInput || bHideHud);
 }
 
 bool AB2StageEventDirector::ShouldBeInvincibleDuringShow() const
 {
-	return bDisableInput; // ¿©±âµµ ¸¶Âù°¡Áö·Î ÀÔ·Â °¡´ÉÇÑ ÀÌº¥Æ® ¾ÀÀÌ¶ó¸é ÇÃ·¹ÀÌÀÇ ¿¬¼ÓÀÏ °ÍÀÌ¹Ç·Î ¹«Àû »óÅÂ·Î µé¾î°¡Áö ¾Ê°Ô..
+	return bDisableInput; // å’¯æ‰æ¡£ ä»˜è›®å•Šç˜¤è‚º æ¶ä»¿ å•Šç“·èŒ„ æäº¥é£˜ çº ææ‰¼æ æ•²é¥­æç‹¼ æ¥·åŠ è€ å·´æéª¨è‚º å…¬åˆ© æƒ‘æ€•è‚º ç”¸ç»¢å•Šç˜¤ è‡¼éœ¸..
 }
 
 bool AB2StageEventDirector::HasDirectedFromBeginningTrack()
@@ -4008,26 +4009,26 @@ void AB2StageEventDirector::SetupPreRenderSKMeshActor(class ASkeletalMeshActor* 
 {
 	B2_SCOPED_TRACK_LOG(TEXT("AB2StageEventDirector::SetupPreRenderSKMeshActor"));
 
-	//if (!InOutDefaultSKActorToSetup) { // DefaultSKActorToSetup Àº GameMode ÂÊ¿¡¼­ »ı¼ºÇØ¼­ ÁØ´Ù. 
+	//if (!InOutDefaultSKActorToSetup) { // DefaultSKActorToSetup ç¯® GameMode ç‡ä¿Šè¾‘ ç§¯å·±ç§¦è¾‘ éœ–ä¿ƒ. 
 	//	return;
 	//}
 	//if (OverallMode != EStageEventDirectorOverallMode::ESEDOM_ControlledMatinee || !MatineeActor || !MatineeActor->MatineeData) {
 	//	return;
 	//}
 
-	//// ¿©±â¼­´Â ±âÅ¸ »ç¿ëÇÏ´Â ParticleSystemEffect µéÀ» ±Ü¾î¼­ ÄÄÆ÷³ÍÆ®·Î »ı¼º. ³Ñ¾î¿Â DefaultSKActorToSetup ¿¡ ºÙ¿© ÁÜ.
+	//// å’¯æ‰è¾‘ç»° æ‰é¸¥ è¤ä¾©çªç»° ParticleSystemEffect ç”¸é˜‘ é¿ç»¢è¾‘ å“ªå™¨æƒ©é£˜è‚º ç§¯å·±. é€ç»¢æŸ¯ DefaultSKActorToSetup ä¿Š å˜¿å’¯ æ·‹.
 	//TArray<AActor*> AllGroupActors;
 	//MatineeActor->GetControlledActors(AllGroupActors);
-	//TMap<FName, UParticleSystem*> AllFoundPSList; // ¶È°°Àº ¸®¼Ò½º Áßº¹ »ı¼º ¾ÈÇÏ°Ô.. ¿©±â¿¡ ±Ü¾î¸ğÀ½.
+	//TMap<FName, UParticleSystem*> AllFoundPSList; // åº¦éç¯® åºœå®¶èƒ¶ åæ±— ç§¯å·± æ•‘çªéœ¸.. å’¯æ‰ä¿Š é¿ç»¢è‘›æ¾œ.
 	//for (int32 AI = 0; AI < AllGroupActors.Num(); ++AI)
 	//{
-	//	// º¸ÅëÀº ·¹º§¿¡ ¼³Ä¡ÇØ µĞ Emitter ¾×ÅÍ¸¦ GroupActor ·Î ÇØ¼­ On/Off ÇØ °¡¸ç »ç¿ëÇÔ.
+	//	// ç„Šçƒ¹ç¯® é¥­éª‡ä¿Š æ±²æ‘¹ç§¦ æ•Œ Emitter å’€ç£ç”« GroupActor è‚º ç§¦è¾‘ On/Off ç§¦ å•Šå“¥ è¤ä¾©çªƒ.
 	//	
 	//	AEmitter* CastedEmitterActor = Cast<AEmitter>(AllGroupActors[AI]); 
 	//	UParticleSystem* EmitterFxResouce = (CastedEmitterActor && CastedEmitterActor->GetParticleSystemComponent()) ? CastedEmitterActor->GetParticleSystemComponent()->Template : NULL;
 
-	//	// EmitterActor ÀÇ visibility ¸¦ Á¦¾îÇÏ·Á¸é ²¿ÀÌ±âµµ ½±°í (¿©±â¼­ Ä×´Ù°¡ ¹Ù·Î ²¨ÁÖ´Â °Íµµ ¾Æ´Ï°í ¸î ÇÁ·¹ÀÓ ÀÌÈÄ¿¡ ²¨ÁÖ´Â °Çµ¥ ±×·¯´Ù º¸¸é ±× »õ ½ÃÀÛµÈ ¿¬Ãâ¿¡¼­ ½ÇÁ¦·Î ÄÑÁú ¼öµµ ÀÖ°í.. °ñÄ¡ ¾ÆÇÄ)
-	//	// °Á ¶È°°Àº ParticleSystem ¸®¼Ò½º·Î´Ù ÄÄÆ÷³ÍÆ® »ı¼ºÇØ ÁÜ.
+	//	// EmitterActor ç‹¼ visibility ç”« åŠ›ç»¢çªå¦¨æ éƒ¨ææ‰æ¡£ å¥–ç»Š (å’¯æ‰è¾‘ æ·–ä¿ƒå•Š å®˜è‚º æ³¢æ—ç»° å·´æ¡£ é…’èªç»Š å‰² æ©‡é¥­çƒ™ æé¥¶ä¿Š æ³¢æ—ç»° æ‰’å• å¼ŠçŸ¾ä¿ƒ ç„Šæ å¼Š è´§ çŸ«ç´¯ç­‰ æ¥·å…ä¿Šè¾‘ è§’åŠ›è‚º éš¾é¾™ èæ¡£ ä¹ç»Š.. æ¦œæ‘¹ é…’æ‚„)
+	//	// å‚² åº¦éç¯® ParticleSystem åºœå®¶èƒ¶è‚ºä¿ƒ å“ªå™¨æƒ©é£˜ ç§¯å·±ç§¦ æ·‹.
 	//	if (EmitterFxResouce)
 	//	{
 	//		FName ThisPSKey(*EmitterFxResouce->GetPathName());
@@ -4038,9 +4039,9 @@ void AB2StageEventDirector::SetupPreRenderSKMeshActor(class ASkeletalMeshActor* 
 	//	}
 	//}
 
-	//// AnimControl Track À¸·Î µé¾î°£ ¾Ö´Ï¸ŞÀÌ¼ÇµéÀÇ AnimNotify µéµµ..
+	//// AnimControl Track æ è‚º ç”¸ç»¢åŸƒ å±€èªçš‹æè®°ç”¸ç‹¼ AnimNotify ç”¸æ¡£..
 	//for (UInterpGroup* ThisGroup : MatineeActor->MatineeData->InterpGroups)
-	//{ // Group > Track > AnimSeq > Notify ¸¶±¸¸¶±¸ µé¾î°¡´Â±º ¤Ğ.¤Ğ
+	//{ // Group > Track > AnimSeq > Notify ä»˜å¤‡ä»˜å¤‡ ç”¸ç»¢å•Šç»°ç„™ ã°.ã°
 	//	if (!ThisGroup) {
 	//		continue;
 	//	}
@@ -4056,12 +4057,12 @@ void AB2StageEventDirector::SetupPreRenderSKMeshActor(class ASkeletalMeshActor* 
 	//			if (!ThisAnimSeq) {
 	//				continue;
 	//			}
-	//			// ¸¶Áö¸· for ¹® ¤§¤§
+	//			// ä»˜ç˜¤é˜œ for å·© ã‡ã‡
 	//			for (FAnimNotifyEvent& NotifyEvt : ThisAnimSeq->Notifies)
 	//			{
 	//				UParticleSystem* FoundPS = CheckNotifyEventForParticleSystemUse(NotifyEvt);
 	//				if (FoundPS)
-	//				{ // »õ·Î¿î °Å¸é Ãß°¡
+	//				{ // è´§è‚ºæ¬¾ èŠ­æ çœ å•Š
 	//					FName ThisPSKey(*FoundPS->GetPathName());
 	//					UParticleSystem** FoundOne = AllFoundPSList.Find(ThisPSKey);
 	//					if (!FoundOne){
@@ -4073,14 +4074,14 @@ void AB2StageEventDirector::SetupPreRenderSKMeshActor(class ASkeletalMeshActor* 
 	//	}
 	//}
 
-	//// ±Ü¾î¸ğÀº °É·Î pre-render ¿ë ÄÄÆ÷³ÍÆ® »ı¼º
+	//// é¿ç»¢è‘›ç¯® å§è‚º pre-render ä¾© å“ªå™¨æƒ©é£˜ ç§¯å·±
 	//for (TMap<FName, UParticleSystem*>::TIterator FoundPSIt(AllFoundPSList); FoundPSIt; ++FoundPSIt)
 	//{
 	//	UParticleSystem* ThisPS = FoundPSIt.Value();
 	//	UParticleSystemComponent* SpawnedFxComp = UB2PreRenderer::SpawnDummyPSCForPreRender(ThisPS, InOutDefaultSKActorToSetup->GetRootComponent());
 	//}
 	//
-	//// SkeletalMeshActor µéÀº ShowSettings ¿¡ ¿¬°áµÇÁö ¾ÊÀº ¾Ö¸¸ µû·Î Ã³¸®ÇØ ÁÜ. ShowSetting ¿¡ ¿¬°áµÈ ¾ÖµéÀº BladeIIGameMode ÂÊ¿¡¼­ PC, NPC Á¤º¸ ±Ü¾î¿À¸é¼­ Prerender ¼Â¾÷ÇÒ ¶§ Ã³¸®µÉ °ÍÀÌ±â ¶§¹®.
+	//// SkeletalMeshActor ç”¸ç¯® ShowSettings ä¿Š æ¥·æ¬ç™»ç˜¤ è‡¼ç¯® å±€çˆ¶ è¶è‚º è´¸åºœç§¦ æ·‹. ShowSetting ä¿Š æ¥·æ¬ç­‰ å±€ç”¸ç¯® BladeIIGameMode ç‡ä¿Šè¾‘ PC, NPC æ²¥ç„Š é¿ç»¢å·æè¾‘ Prerender æ‚¸è¯€ä¸” é”­ è´¸åºœçª å·´ææ‰ é”­å·©.
 	//TArray<AActor*> NotBoundActors;
 	//GetMatineeGroupActorsNotBoundtoShowSetting(NotBoundActors);
 	//UWorld* TheWorld = GetWorld();
@@ -4089,7 +4090,7 @@ void AB2StageEventDirector::SetupPreRenderSKMeshActor(class ASkeletalMeshActor* 
 	//	ASkeletalMeshActor* CastedNotBoundSKActor = Cast<ASkeletalMeshActor>(ThisNotBound);
 	//	if (CastedNotBoundSKActor && CastedNotBoundSKActor->GetSkeletalMeshComponent())
 	//	{
-	//		// ¿©±â¿¡ ¼³Ä¡µÈ SkeletalMeshActor ¸¦ ¾²´Â °Ô ¾Æ´Ï¶ó »õ·Î »ı¼ºÇÑ´Ù. Visibility ¸¦ º°µµ·Î Á¦¾îÇØ¾ß ÇÏ¹Ç·Î..
+	//		// å’¯æ‰ä¿Š æ±²æ‘¹ç­‰ SkeletalMeshActor ç”« é™ç»° éœ¸ é…’èªæ‰¼ è´§è‚º ç§¯å·±èŒ„ä¿ƒ. Visibility ç”« å–Šæ¡£è‚º åŠ›ç»¢ç§¦å…· çªéª¨è‚º..
 	//		ASkeletalMeshActor* NewCreated = UB2PreRenderer::SpawnPreRenderMeshCommon(TheWorld);
 	//		if (NewCreated)
 	//		{
@@ -4102,10 +4103,10 @@ void AB2StageEventDirector::SetupPreRenderSKMeshActor(class ASkeletalMeshActor* 
 
 void AB2StageEventDirector::TemporaryDisableTracksForPreRender()
 {
-	// Pre-render °¡ µ¹¾Æ°¡´Â ¿ÍÁß¿¡ ¿ùµå Å¸ÀÓ ½ºÄÉÀÏ(slomoe)ÀÌ Àû¿ëÀÌ µÈ Ã¤·Î È­¸éÀÌ ±î¸Ä°Ô °¡·ÁÁö´Âµ¥
-	// »ç¿îµå Æ®·¢ °°Àº °æ¿ì´Â slomo ÀÇ ¿µÇâÀ» ¹ŞÁö ¾Ê´Âµ¥´Ù°¡ (¹Ş¾Æµµ ÀÌ»óÇÒ µí) ¾Æ½Î¸® 0 ÃÊºÎÅÍ ½ÃÀÛÀÌ µÇ¸é È­¸éÀº °¡·ÁÁø »óÅÂ¿¡¼­ »ç¿îµå¸¸ ¸ÕÀú ³ª¿Í ¹ö¸®´Â ºñ±ØÀÌ ¹ß»ıÇÏ°Ô µÈ´Ù.
-	// ÀÌ¸¦ ¸·±â À§ÇÔ
-	// UB2UITalkDialog ¿¡µµ ¸¶Âù°¡Áö ¸ñÀûÀÇ Ã³¸®¸¦ ÇÏ¿´À½
+	// Pre-render å•Š å€’é…’å•Šç»° å®¢åä¿Š å²¿é› é¸¥çƒ™ èƒ¶çº³è€(slomoe)æ åˆ©ä¾©æ ç­‰ ç›²è‚º æ‹³ææ é³–æ”¹éœ¸ å•Šå¦¨ç˜¤ç»°å•
+	// è¤æ¬¾é› é£˜å‘ éç¯® ç‰ˆå¿«ç»° slomo ç‹¼ åº·æ°¢é˜‘ ç½ç˜¤ è‡¼ç»°å•ä¿ƒå•Š (ç½é…’æ¡£ ææƒ‘ä¸” æ·€) é…’è½¿åºœ 0 æª¬ä½•ç£ çŸ«ç´¯æ ç™»æ æ‹³æç¯® å•Šå¦¨æŸ³ æƒ‘æ€•ä¿Šè¾‘ è¤æ¬¾é›çˆ¶ åˆšå† å”±å®¢ æ»šåºœç»° åšå¿…æ æƒ¯ç§¯çªéœ¸ ç­‰ä¿ƒ.
+	// æç”« é˜œæ‰ å›°çªƒ
+	// UB2UITalkDialog ä¿Šæ¡£ ä»˜è›®å•Šç˜¤ æ ¼åˆ©ç‹¼ è´¸åºœç”« çªçœ‹æ¾œ
 
 	//if (!MatineeActor || !MatineeActor->MatineeData) {
 	//	return;
@@ -4117,9 +4118,9 @@ void AB2StageEventDirector::TemporaryDisableTracksForPreRender()
 	//	{
 	//		for (UInterpTrack* ThisTrack : ThisInterpGroup->InterpTracks)
 	//		{
-	//			// ÀÏ´Ü ´ë»óÀº sound track
+	//			// è€çªœ æªæƒ‘ç¯® sound track
 	//			UInterpTrackSound* CastedSoundTrack = Cast<UInterpTrackSound>(ThisTrack);
-	//			if (CastedSoundTrack && !CastedSoundTrack->IsDisabled()) // ´Ù¸¥ ÀÌÀ¯·Î disable µÈ °ÍµéÀÌ ÀÖÀ» Å×´Ï ±×°Ç °Å¸£°í
+	//			if (CastedSoundTrack && !CastedSoundTrack->IsDisabled()) // ä¿ƒå¼— æèœ¡è‚º disable ç­‰ å·´ç”¸æ ä¹é˜‘ æŠ›èª å¼Šæ‰’ èŠ­ç¦ç»Š
 	//			{
 	//				TracksToRestoreForPreRender.Add(CastedSoundTrack);
 	//				CastedSoundTrack->EnableTrack(false);
@@ -4138,12 +4139,12 @@ void AB2StageEventDirector::RestoreTracksAfterPreRender()
 	//}
 	//TracksToRestoreForPreRender.Empty();
 
-	//ForceSetMatineePlayingPosScale(0.0f); // Ã·ºÎÅÍ ´Ù½Ã ½ÃÀÛ.
+	//ForceSetMatineePlayingPosScale(0.0f); // æ¢…ä½•ç£ ä¿ƒçŸ« çŸ«ç´¯.
 }
 void AB2StageEventDirector::ForceSetMatineePlayingPosScale(float InPositionScale)
 {
-	//// Matinee ¸¦ »ç¿ëÇÏ´Â °æ¿ì Æ¯Á¤ À§Ä¡ (0.0 ~ 1.0 ½ºÄÉÀÏ·Î) ·Î °­Á¦ ÀÌµ¿ÇÏ´Âµ¥..
-	//// ´Ù¼Ò°£ Æ¯¼ö ¸ñÀûÀ¸·Î ¸¸µé¾úÀ½À» ¸í½Ã..
+	//// Matinee ç”« è¤ä¾©çªç»° ç‰ˆå¿« æ¼‚æ²¥ å›°æ‘¹ (0.0 ~ 1.0 èƒ¶çº³è€è‚º) è‚º ç¢åŠ› ææ‚¼çªç»°å•..
+	//// ä¿ƒå®¶åŸƒ æ¼‚è æ ¼åˆ©æ è‚º çˆ¶ç”¸èŒæ¾œé˜‘ ç–™çŸ«..
 	//checkSlow(InPositionScale == 0.0f || (GetB2GameMode() && GetB2GameMode()->IsInPreRenderPhase()));
 
 	//if (OverallMode == EStageEventDirectorOverallMode::ESEDOM_ControlledMatinee && MatineeActor && MatineeActor->MatineeData)
@@ -4167,11 +4168,11 @@ void AB2StageEventDirector::GetMatineeGroupActorsNotBoundtoShowSetting(TArray<AA
 	//	return;
 	//}
 
-	//TMap<FName, FName> AllPossibleGroupNameMap; // °Á °Ë»öÀ» Á» ÇØ¾ß ÇØ¼­ TMap À¸·Î ±¸¼ºÇÔ.
+	//TMap<FName, FName> AllPossibleGroupNameMap; // å‚² å…«ç¥¸é˜‘ ç²± ç§¦å…· ç§¦è¾‘ TMap æ è‚º å¤‡å·±çªƒ.
 	//for (FPlayActorShowSettings& ThisShowSetting : ShowSettings)
 	//{
 	//	TArray<FName> AllSupposedNameThis;
-	//	// PC ÀÇ °æ¿ì Á¾·ùº°·Î ÇØ¼­ ÇÏ³ªÀÇ ShowSetting ÀÌ ¿©·¯ Matinee Group ¿¡ ¿¬°áµÇ¾î ÀÖÀ» ¼ö ÀÖÀ¸´Ï °¡´ÉÇÑ °ÍµéÀ» ¸ğµÎ °Ë»ç.
+	//	// PC ç‹¼ ç‰ˆå¿« è¾†å¹…å–Šè‚º ç§¦è¾‘ çªå”±ç‹¼ ShowSetting æ å’¯çŸ¾ Matinee Group ä¿Š æ¥·æ¬ç™»ç»¢ ä¹é˜‘ è ä¹æ èª å•Šç“·èŒ„ å·´ç”¸é˜‘ è‘›æ»´ å…«è¤.
 	//	GetAllSupposedInterpGroupNamesForSetting(AllSupposedNameThis, ThisShowSetting);
 	//	for (FName& ThisFoundName : AllSupposedNameThis)
 	//	{
@@ -4179,14 +4180,14 @@ void AB2StageEventDirector::GetMatineeGroupActorsNotBoundtoShowSetting(TArray<AA
 	//	}
 	//}
 
-	//TArray<UInterpGroup*> AllFoundGroupNotBoundShowSetting; // ¾î¶² ShowSetting °úµµ ¿¬°áµÇÁö ¾ÊÀº InterpGroup ¸ñ·Ï
+	//TArray<UInterpGroup*> AllFoundGroupNotBoundShowSetting; // ç»¢æ« ShowSetting è‹æ¡£ æ¥·æ¬ç™»ç˜¤ è‡¼ç¯® InterpGroup æ ¼åºŸ
 	//for (int32 GAI = 0; GAI < MatineeActor->MatineeData->InterpGroups.Num(); ++GAI)
 	//{
 	//	UInterpGroup* CurrGroup = MatineeActor->MatineeData->InterpGroups[GAI];
 	//	if (!CurrGroup || AllPossibleGroupNameMap.Find(CurrGroup->GroupName)){
-	//		continue; // Æ¯Á¤ ShowSettings °ú ¿¬°áµÈ ±×·ìÀº ½ºÅµ
+	//		continue; // æ¼‚æ²¥ ShowSettings è‹ æ¥·æ¬ç­‰ å¼Šç¼ç¯® èƒ¶è¯º
 	//	}
-	//	// ¿©±â±îÁö Åë°úÇÑ InterpGroup¿¡¼­ GroupActor µéÀ» »Ì¾Æ¿Â´Ù. GroupActorInfos ¸¦ ÅëÇØ ±×·ì¿¡ ¿¬°áµÈ ¾×ÅÍµéÀ» Ã£¾Æ¿Ã ¼ö ÀÖÀ½
+	//	// å’¯æ‰é³–ç˜¤ çƒ¹è‹èŒ„ InterpGroupä¿Šè¾‘ GroupActor ç”¸é˜‘ æƒ¶é…’æŸ¯ä¿ƒ. GroupActorInfos ç”« çƒ¹ç§¦ å¼Šç¼ä¿Š æ¥·æ¬ç­‰ å’€ç£ç”¸é˜‘ èŒ«é…’æ£µ è ä¹æ¾œ
 	//	TArray<class AActor*> CurrGroupActors;
 	//	for (int32 GAI2 = 0; GAI2 < MatineeActor->GroupActorInfos.Num(); ++GAI2)
 	//	{
@@ -4201,7 +4202,7 @@ void AB2StageEventDirector::GetMatineeGroupActorsNotBoundtoShowSetting(TArray<AA
 
 void AB2StageEventDirector::GetAllExpectedDialogCodeNames(TArray<FName>& OutAllDlgCode)
 {
-	// Matinee Event Æ®·¢¿¡ ScenarioDialogEvent ·Î µî·ÏµÈ ÀÌº¥Æ® ÀÌ¸§µéÀ» ±Ü¾î¿À´Â °Í.
+	// Matinee Event é£˜å‘ä¿Š ScenarioDialogEvent è‚º æ®¿åºŸç­‰ æäº¥é£˜ ææŠšç”¸é˜‘ é¿ç»¢å·ç»° å·´.
 	//if (OverallMode == EStageEventDirectorOverallMode::ESEDOM_ControlledMatinee && MatineeActor && MatineeActor->MatineeData)
 	//{
 	//	for (UInterpGroup* ThisGroup : MatineeActor->MatineeData->InterpGroups)
@@ -4213,10 +4214,10 @@ void AB2StageEventDirector::GetAllExpectedDialogCodeNames(TArray<FName>& OutAllD
 	//			{
 	//				for (FEventTrackKey& ThisEventKey : CastedEventTrack->EventTrack)
 	//				{
-	//					// NotifyActorCustomEvent ¸¦ ÅëÇØ ¿Ã ¶§¿¡´Â ScenarioDialogEvent ¿ëµµÀÎÁö ±¸ºĞÇÏ±â À§ÇÑ prefix °¡ ºÙ°Ô µÇÁö¸¸ 
-	//					// ±×³É ÀÌ »óÅÂ¿¡¼­´Â EventName ÀÌ ¹Ù·Î DialogCode °¡ µÊ.
+	//					// NotifyActorCustomEvent ç”« çƒ¹ç§¦ æ£µ é”­ä¿Šç»° ScenarioDialogEvent ä¾©æ¡£ç‰¢ç˜¤ å¤‡ç›’çªæ‰ å›°èŒ„ prefix å•Š å˜¿éœ¸ ç™»ç˜¤çˆ¶ 
+	//					// å¼Šæˆ æ æƒ‘æ€•ä¿Šè¾‘ç»° EventName æ å®˜è‚º DialogCode å•Š å‡³.
 	//					
-	//					// »ç¿ëÇÏ´Â »óÈ²¿¡¼­ ´Ù¸¥ µ¥¿¡¼­ ±Ü¾î¿Â °ÍµéÀ» ÇÑµ¥ ÇÕÄ¥ ¼ö ÀÖÀ¸¹Ç·Î AddUnique ÇÔ.
+	//					// è¤ä¾©çªç»° æƒ‘ç‚”ä¿Šè¾‘ ä¿ƒå¼— å•ä¿Šè¾‘ é¿ç»¢æŸ¯ å·´ç”¸é˜‘ èŒ„å• é’¦ç£¨ è ä¹æ éª¨è‚º AddUnique çªƒ.
 	//					OutAllDlgCode.AddUnique(ThisEventKey.EventName);
 	//				}
 	//			}
@@ -4228,13 +4229,13 @@ void AB2StageEventDirector::GetAllExpectedDialogCodeNames(TArray<FName>& OutAllD
 UActorComponent* AB2StageEventDirector::FindComponentByClass(const TSubclassOf<UActorComponent> ComponentClass) const
 {
 #if WITH_EDITOR
-	//// ¿¡µğÅÍ ºäÆ÷Æ®¿¡ ÀÛ°Ô ³ª¿À´Â ÇÁ¸®ºä Ã¢¿¡ ¼±ÅÃÇÑ Ä«¸Ş¶ó ÄÄÆ÷³ÍÆ® ºä¸¦ º¸ÀÌ±â À§ÇÔ. ±âº» ±â´ÉÀ¸·Î´Â ±×³É Ã¹¹øÂ° °Í¸¸ ³ª¿È.
+	//// ä¿Šå¼ç£ è½°å™¨é£˜ä¿Š ç´¯éœ¸ å”±å·ç»° æ©‡åºœè½° èŠ’ä¿Š æ€¥ç¶èŒ„ å¢¨çš‹æ‰¼ å“ªå™¨æƒ©é£˜ è½°ç”« ç„Šææ‰ å›°çªƒ. æ‰å¤¯ æ‰ç“·æ è‚ºç»° å¼Šæˆ éœ‰é”…æ³ å·´çˆ¶ å”±å’³.
 	//if(GIsEditor && ComponentClass == UCameraComponent::StaticClass())
 	//{
 	//	TArray<UCameraComponent*> SelectedCameraComps;
 	//	UCameraComponent* SelectedCameraComponent = NULL;
 
-	//	// ¼±ÅÃµÈ Ä«¸Ş¶ó ÄÄÆ÷³ÍÆ®°¡ ÀÖ´ÂÁö °Ë»ç
+	//	// æ€¥ç¶ç­‰ å¢¨çš‹æ‰¼ å“ªå™¨æƒ©é£˜å•Š ä¹ç»°ç˜¤ å…«è¤
 	//	USelection* ComponentSelection = GEditor->GetSelectedComponents();
 	//	if(ComponentSelection)
 	//	{
@@ -4245,7 +4246,7 @@ UActorComponent* AB2StageEventDirector::FindComponentByClass(const TSubclassOf<U
 	//		SelectedCameraComponent = SelectedCameraComps[0];
 	//	}
 
-	//	// ¿ø·¡ ±â´É¿¡¼­´Â ±×³É Ã³À½ °ÍÀ» ¸®ÅÏÇÏ´Âµ¥ ¼±ÅÃÇÑ °Í°ú °°Àº °ÍÀÎÁö Ãß°¡ °Ë»ç
+	//	// ç›”è´° æ‰ç“·ä¿Šè¾‘ç»° å¼Šæˆ è´¸æ¾œ å·´é˜‘ åºœç•”çªç»°å• æ€¥ç¶èŒ„ å·´è‹ éç¯® å·´ç‰¢ç˜¤ çœ å•Š å…«è¤
 	//	UActorComponent* FoundComponent = NULL;
 	//	for (UActorComponent* Component : GetComponents())
 	//	{
@@ -4256,7 +4257,7 @@ UActorComponent* AB2StageEventDirector::FindComponentByClass(const TSubclassOf<U
 	//		}
 	//	}
 
-	//	if(FoundComponent == NULL) // Æú¹é
+	//	if(FoundComponent == NULL) // å¼ƒå½’
 	//	{
 	//		return Super::FindComponentByClass(ComponentClass);
 	//	}
@@ -4298,7 +4299,7 @@ ABladeIIPlayerController* AB2StageEventDirector::GetB2LocalPlayerCon()
 }
 ABladeIINetPlayer* AB2StageEventDirector::GetB2MatchOpponent()
 {
-	// ¿©Å¸ ´Ù¸¥ NetGameMode ¿¡¼­ÀÇ Opponent °¡ Ãß°¡µÉ ¼ö ÀÖÀ½.
+	// å’¯é¸¥ ä¿ƒå¼— NetGameMode ä¿Šè¾‘ç‹¼ Opponent å•Š çœ å•Šçª è ä¹æ¾œ.
 	//AB2PVPGameMode* PVPGM = Cast<AB2PVPGameMode>(GetB2GameMode());
 	//return PVPGM ? PVPGM->GetOpponent() : NULL;
 	return NULL;
@@ -4307,7 +4308,7 @@ ABladeIINetPlayer* AB2StageEventDirector::GetB2MatchOpponent()
 ABladeIIPlayer* AB2StageEventDirector::GetTeamPlayer(bool bAllyTeam, int32 nPlayerIndex, bool bLiveOnly, bool bSpawnPuppetForDead)
 {
 	//if (AB2AsyncGameMode* AsyncGM = Cast<AB2AsyncGameMode>(GetB2GameMode()))
-	//	return AsyncGM->GetTeamPlayer(bAllyTeam, nPlayerIndex, bLiveOnly, bSpawnPuppetForDead); // bSpawnPuppetForDead ¸¦ true ·Î ³Ñ°ÜÁÖ¸é Á×Àº ¾Öµµ ¿¬Ãâ ¿ëÀ¸·Î µ¥·Á¿Ã ¼ö ÀÖ´Ù.
+	//	return AsyncGM->GetTeamPlayer(bAllyTeam, nPlayerIndex, bLiveOnly, bSpawnPuppetForDead); // bSpawnPuppetForDead ç”« true è‚º é€è´¥æ—æ ç£·ç¯® å±€æ¡£ æ¥·å… ä¾©æ è‚º å•å¦¨æ£µ è ä¹ä¿ƒ.
 
 	return NULL;
 }
@@ -4322,11 +4323,11 @@ ABladeIIPlayer* AB2StageEventDirector::GetRaidPlayer(int32 nPlayerIndex, bool bL
 
 ABladeIIPlayer* AB2StageEventDirector::GetShowHeroPlayerIfAny()
 {
-	//// ÇöÀç ¼³Á¤¿¡ µû¶ó Ä«¸Ş¶ó ÇÏÀÌ¶óÀÌÆ®¸¦ ¹ŞÀ» ¸¸ÇÑ ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ¸¦ ¸®ÅÏÇÏ´Â °ÍÀÓ. ¹°·Ğ ±×°Ô ¹İµå½Ã º¸ÀåµÇ´Â °Ç ¾Æ´Ï´Ù.
+	//// æ³…çŠ æ±²æ²¥ä¿Š è¶æ‰¼ å¢¨çš‹æ‰¼ çªææ‰¼æé£˜ç”« ç½é˜‘ çˆ¶èŒ„ æ•²é¥­æç»¢ æŸè…ç£ç”« åºœç•”çªç»° å·´çƒ™. æ‹±æ²¸ å¼Šéœ¸ é¦†é›çŸ« ç„Šå˜ç™»ç»° æ‰’ é…’èªä¿ƒ.
 	//if (DirectingEvent == EStageEvent::ESEV_MatchResult)
 	//{
 	//	if (AB2TMGameMode* TMGM = Cast<AB2TMGameMode>(GetB2GameMode()))
-	//		return TMGM->GetTeamPlayer(bMatchResultEventAsWinner, 0, false, true); // ¿©±â¼­µµ dead ÀÎ Ä³¸¯ÅÍ¸¦ dummy spawn ÇØ¾ß ÇÏ³ª..
+	//		return TMGM->GetTeamPlayer(bMatchResultEventAsWinner, 0, false, true); // å’¯æ‰è¾‘æ¡£ dead ç‰¢ æŸè…ç£ç”« dummy spawn ç§¦å…· çªå”±..
 	//	
 	//	return bMatchResultEventAsWinner ? GetB2LocalPlayerChar() : GetB2MatchOpponent();		
 	//}
@@ -4339,18 +4340,18 @@ ABladeIIPlayer* AB2StageEventDirector::GetShowHeroPlayerIfAny()
 	//	return GetB2LocalPlayerChar();
 	//}
 
-	return GetB2LocalPlayerChar(); // À½.. °á±¹Àº MobAppear ÀÌº¥Æ®¿¡¼­ ÇÊ¿äÇÏ°Ô µÇ¾ú±º.
+	return GetB2LocalPlayerChar(); // æ¾œ.. æ¬æƒ«ç¯® MobAppear æäº¥é£˜ä¿Šè¾‘ é˜å¤¸çªéœ¸ ç™»èŒç„™.
 }
 
 #if WITH_EDITOR
 
 void AB2StageEventDirector::RefreshPreviewSKComps(bool bRegenerateSKComp /*= true*/)
 {
-	//// ±âÁ¸¿¡ ¸¸µç °Íµé ´ëºÎºĞÀ» Á¦°ÅÇÏ°í »õ·Î »ı¼º.
+	//// æ‰ç²®ä¿Š çˆ¶ç”µ å·´ç”¸ æªä½•ç›’é˜‘ åŠ›èŠ­çªç»Š è´§è‚º ç§¯å·±.
 	//DestroyPreviewComponents(bRegenerateSKComp);
 
 	//UPackage* OutermostPkg = GetOutermost();
-	//// ¸ÊÀÎ °æ¿ì¸¸ »ı¼ºÇØ¾ß ÇÔ. ºí·çÇÁ¸°Æ®·Î ÀúÀåÇÑ ¾Öµµ Ã³À½¿£ ¸ÊÀ¸·Î ÀÎ½ÄµÉ °Í.
+	//// ç”˜ç‰¢ ç‰ˆå¿«çˆ¶ ç§¯å·±ç§¦å…· çªƒ. å–‰é£æ©‡èµ´é£˜è‚º å†å˜èŒ„ å±€æ¡£ è´¸æ¾œæµš ç”˜æ è‚º ç‰¢ä¾¥çª å·´.
 	//if(OutermostPkg == NULL || FEditorFileUtils::IsMapPackageAsset(OutermostPkg->GetName()) == false)
 	//{
 	//	return;
@@ -4367,7 +4368,7 @@ void AB2StageEventDirector::RefreshPreviewSKComps(bool bRegenerateSKComp /*= tru
 	//	ActorNameDisplayText->SetHorizontalAlignment(EHTA_Center);
 	//	ActorNameDisplayText->SetWorldSize(35.0f);
 	//	ActorNameDisplayText->SetWorldScale3D(FVector(1.0f, 1.0f, 1.0f));
-	//	ActorNameDisplayText->SetRelativeLocation(FVector(0.0f,0.0f,100.0f)); // Á» ³ô¿©¼­
+	//	ActorNameDisplayText->SetRelativeLocation(FVector(0.0f,0.0f,100.0f)); // ç²± è‡­å’¯è¾‘
 	//	ActorNameDisplayText->SetText(FText::FromString( this->GetName() ));
 	//	ActorNameDisplayText->SetTextRenderColor(FColor(255,255,0));
 	//}
@@ -4390,7 +4391,7 @@ void AB2StageEventDirector::RefreshPreviewSKComps(bool bRegenerateSKComp /*= tru
 	//	NewInfoTextComp->SetHorizontalAlignment(EHTA_Center);
 	//	NewInfoTextComp->SetWorldSize(30.0f);
 	//	NewInfoTextComp->SetWorldScale3D(FVector(1.0f, 1.0f, 1.0f));
-	//	NewInfoTextComp->SetRelativeLocation(FVector(0.0f, 0.0f, 50.0f)); // À§Ä¡´Â Àû´çÈ÷ ¸ÂÃçÁØ´Ù
+	//	NewInfoTextComp->SetRelativeLocation(FVector(0.0f, 0.0f, 50.0f)); // å›°æ‘¹ç»° åˆ©å¯¸æ´’ å˜è‹—éœ–ä¿ƒ
 	//	NewInfoTextComp->SetText(FText::FromString(CurrSC->GetName()));
 	//	NewInfoTextComp->SetTextRenderColor(FColor(255, 0, 0));
 
@@ -4399,12 +4400,12 @@ void AB2StageEventDirector::RefreshPreviewSKComps(bool bRegenerateSKComp /*= tru
 
 	//if(OverallMode == EStageEventDirectorOverallMode::ESEDOM_ControlledMatinee)
 	//{
-	//	// Controlled Matinee ¿¡¼± Preview ¿ë SkeletalMeshComponent µéÀ» »ı¼ºÇÏ´Â ´ë½Å ´ëÃ¼·Î ÀÌ¹Ì ¹èÄ¡µÈ SkeletalMeshActor µé°ú °ü·ÃÇÑ Ãß°¡ÀûÀÎ Ã³¸®..
+	//	// Controlled Matinee ä¿Šæ€¥ Preview ä¾© SkeletalMeshComponent ç”¸é˜‘ ç§¯å·±çªç»° æªè„š æªçœ‰è‚º æå›º ç¡…æ‘¹ç­‰ SkeletalMeshActor ç”¸è‹ åŒ…è®¿èŒ„ çœ å•Šåˆ©ç‰¢ è´¸åºœ..
 	//	SetupPreviewForControlledMatinee();
 	//	return;
 	//}
 
-	//// ÀÌÇÏ´Â Controlled Matinee ¸ğµå¿¡¼­´Â ÇÊ¿ä¾ø´Â °Íµé¸¸ ³Ö´Â´Ù.
+	//// æçªç»° Controlled Matinee è‘›é›ä¿Šè¾‘ç»° é˜å¤¸ç»ç»° å·´ç”¸çˆ¶ æŒç»°ä¿ƒ.
 
 	//for(int32 SI = 0; SI < ShowSettings.Num(); ++SI)
 	//{
@@ -4413,9 +4414,9 @@ void AB2StageEventDirector::RefreshPreviewSKComps(bool bRegenerateSKComp /*= tru
 	//	USkeletalMesh* PreviewSKMesh = NULL;
 	//	if(GetEssentialPreviewInfoForSetting(ThisSetting, NULL, PreviewSKMesh, PreviewCompTransform))
 	//	{
-	//		// ¼º°øÇßÀ¸¸é PreviewSKMesh ¿Í PreviewCompTransform ÀÌ ¼¼ÆÃµÇ¾úÀ» °Í.
+	//		// å·±å‚æ²æ æ PreviewSKMesh å®¢ PreviewCompTransform æ æŠ€æ³¼ç™»èŒé˜‘ å·´.
 
-	//		// bRegenerateSKComp °¡ ¾Æ´Ï¶óµµ ±âÁ¸¿¡ ¾ø´Â »óÈ²ÀÌ¶ó¸é »õ·Î »ı¼ºÇÑ´Ù.
+	//		// bRegenerateSKComp å•Š é…’èªæ‰¼æ¡£ æ‰ç²®ä¿Š ç»ç»° æƒ‘ç‚”ææ‰¼æ è´§è‚º ç§¯å·±èŒ„ä¿ƒ.
 	//		USkeletalMeshComponent* NewSKComp = (bRegenerateSKComp == false && PreviewSKComps.Num() > SI) ?
 	//			PreviewSKComps[SI] : NewObject<USkeletalMeshComponent>(this, *GetPreviewSKCompNameForSetting(SI), RF_Transient);
 
@@ -4424,19 +4425,19 @@ void AB2StageEventDirector::RefreshPreviewSKComps(bool bRegenerateSKComp /*= tru
 	//			NewSKComp->AttachToComponent(GetRootComponent(), FAttachmentTransformRules(EAttachmentRule::KeepRelative, false));
 	//			NewSKComp->RegisterComponent();
 	//			NewSKComp->SetVisibility(true);
-	//			// ¾îÂ÷ÇÇ °ÔÀÓ¿¡¼± »ı±âÁöµµ ¾ÊÀ» ¾ÖµéÀÌÁö¸¸ 
+	//			// ç»¢ç’ä¹” éœ¸çƒ™ä¿Šæ€¥ ç§¯æ‰ç˜¤æ¡£ è‡¼é˜‘ å±€ç”¸æç˜¤çˆ¶ 
 	//			NewSKComp->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	//			NewSKComp->SetHiddenInGame(true);
 	//				
 	//			NewSKComp->SetSkeletalMesh(PreviewSKMesh);
 	//			const float ZOffsetForCharacter = NewSKComp->Bounds.BoxExtent.Z;
-	//			// SetWorldTransform À» ÇÏ±â Àü¿¡ SkeletalMesh ¿Í BladeIICharacter °£ pivot Â÷ÀÌ·Î ÀÎÇÑ offset À» ¹İ¿µÇÑ´Ù. SyncFromPreviewSKCompPlacement ¿¡¼­ ÇÏ´Â °ÍÀÇ ¹İ´ë
+	//			// SetWorldTransform é˜‘ çªæ‰ å‚ˆä¿Š SkeletalMesh å®¢ BladeIICharacter åŸƒ pivot ç’æè‚º ç‰¢èŒ„ offset é˜‘ é¦†åº·èŒ„ä¿ƒ. SyncFromPreviewSKCompPlacement ä¿Šè¾‘ çªç»° å·´ç‹¼ é¦†æª
 	//			if(DoesThisSettingRequireManualPlacement(ThisSetting))
 	//			{						
 	//				PreviewCompTransform.SetTranslation(PreviewCompTransform.GetTranslation() + FVector(0.0f, 0.0f, -1.0f * ZOffsetForCharacter));
 	//			}
 	//			NewSKComp->SetWorldTransform(PreviewCompTransform);
-	//			// ·±Å¸ÀÓ PlayActor µµ Snapping À» ÇÏ´Ï ¾êµµ snapping. ±Ùµ¥ PostLoad ½ÃÁ¡¿¡¼­´Â ¾ÆÁ÷ ·ÎµùµÇÁö ¾ÊÀº ¿ùµå ¿ÀºêÁ§Æ®°¡ ÀÖ¾î¼­ ±×·±Áö ¾È¸ÔÈû.
+	//			// ç¹é¸¥çƒ™ PlayActor æ¡£ Snapping é˜‘ çªèª å¨Ÿæ¡£ snapping. è¾Ÿå• PostLoad çŸ«ç—¢ä¿Šè¾‘ç»° é…’æµ è‚ºçˆ¹ç™»ç˜¤ è‡¼ç¯® å²¿é› å·å®ç’ƒé£˜å•Š ä¹ç»¢è¾‘ å¼Šç¹ç˜¤ æ•‘å†ˆå¡.
 	//			SnapSkeletalMeshComponentToGround(NewSKComp);
 
 	//			if(DoesThisSettingRequireManualPlacement(ThisSetting))
@@ -4445,41 +4446,41 @@ void AB2StageEventDirector::RefreshPreviewSKComps(bool bRegenerateSKComp /*= tru
 
 	//				if(FMath::Abs(FirstSnapZTranslation) < KINDA_SMALL_NUMBER)
 	//				{
-	//					// ¿©±â·Î ¿Ô´Ù¸é ¹Ù·Î ¾ÕÀÇ SnapSkeletalMeshComponentToGround °¡ ¾È¸ÔÇû´Ü ¾ê±äµ¥
-	//					// ¾Õ¼­ PreviewCompTransform ¿¡ ZOffsetForCharacter ¸¦ - ·Î °¡ÇßÀ¸¹Ç·Î ±âº» À§Ä¡°¡ ³·À¸¸é ¶¥¿¡ ÆÄ¹¯ÇûÀ» °¡´É¼ºÀÌ ²Ï ÀÖ´Ù.
-	//					// ÀÎ°ÔÀÓ¿¡¼­´Â ¾î´À Á¤µµ±îÁö ÆÄ¹¯Èù °Ç Ãæµ¹ Ã³¸®·Î ÀÎÇØ À§·Î ¿Ã¶ó¿À°Ô µÇÁö¸¸ ¿¡µğÅÍ ÀÛ¾÷¿¡ È¥¼±À» ÁÙ ¼öµµ ÀÖÀ¸´Ï À§·Î ¾à°£ ¿Ã·Á¼­ ´Ù½Ã snap À» ½Ãµµ.
-	//					// ´Ù¸¸, ÀÌ ¶§¿¡ snap ÀüÈÄ º¯È­°¡ ¾ø´Ù¸é ¿©ÀüÈ÷ ¶¥¿¡ ¹¯ÇôÀÖµçÁö ÇÏ´Â °æ¿ìÀÌ¹Ç·Î ÀÌÀü °ªÀ¸·Î ´Ù½Ã µ¹·Á³õÀ½.
+	//					// å’¯æ‰è‚º å­ä¿ƒæ å®˜è‚º èŠç‹¼ SnapSkeletalMeshComponentToGround å•Š æ•‘å†ˆèº¯çªœ å¨Ÿå˜å•
+	//					// èŠè¾‘ PreviewCompTransform ä¿Š ZOffsetForCharacter ç”« - è‚º å•Šæ²æ éª¨è‚º æ‰å¤¯ å›°æ‘¹å•Š æ’¤æ æ é¡¶ä¿Š é¢‡æ±èº¯é˜‘ å•Šç“·å·±æ èš• ä¹ä¿ƒ.
+	//					// ç‰¢éœ¸çƒ™ä¿Šè¾‘ç»° ç»¢è ¢ æ²¥æ¡£é³–ç˜¤ é¢‡æ±è…® æ‰’ é¢å€’ è´¸åºœè‚º ç‰¢ç§¦ å›°è‚º æ£µæ‰¼å·éœ¸ ç™»ç˜¤çˆ¶ ä¿Šå¼ç£ ç´¯è¯€ä¿Š å»æ€¥é˜‘ ä¸´ èæ¡£ ä¹æ èª å›°è‚º è·åŸƒ æ£µå¦¨è¾‘ ä¿ƒçŸ« snap é˜‘ çŸ«æ¡£.
+	//					// ä¿ƒçˆ¶, æ é”­ä¿Š snap å‚ˆé¥¶ å‡½æ‹³å•Š ç»ä¿ƒæ å’¯å‚ˆæ´’ é¡¶ä¿Š æ±å›šä¹ç”µç˜¤ çªç»° ç‰ˆå¿«æéª¨è‚º æå‚ˆ è”¼æ è‚º ä¿ƒçŸ« å€’å¦¨åˆæ¾œ.
 
-	//					const FVector LocationBeforeAddtionalSnap = NewSKComp->GetComponentLocation(); // ³ªÁß¿¡ µÇµ¹¸± ¶§ »ç¿ëÀ» À§ÇØ ¹é¾÷
+	//					const FVector LocationBeforeAddtionalSnap = NewSKComp->GetComponentLocation(); // å”±åä¿Š ç™»å€’å‰¯ é”­ è¤ä¾©é˜‘ å›°ç§¦ å½’è¯€
 
 	//					PreviewCompTransform.SetTranslation(PreviewCompTransform.GetTranslation() + FVector(0.0f, 0.0f, 1.0f * ZOffsetForCharacter));
 	//					const FVector RaisedLocationBeforeSnap = PreviewCompTransform.GetTranslation();
 
 	//					NewSKComp->SetWorldLocation(PreviewCompTransform.GetTranslation());
-	//					SnapSkeletalMeshComponentToGround(NewSKComp); // »õ·Î snap µÈ location ¿¡ ¹º°¡ º¯È­°¡ ÀÖ´Ù¸é ¿©±â¼­ÀÇ À§Ä¡¸¦ À¯ÁöÇÏ°Ô µÉ °Í.
+	//					SnapSkeletalMeshComponentToGround(NewSKComp); // è´§è‚º snap ç­‰ location ä¿Š è´­å•Š å‡½æ‹³å•Š ä¹ä¿ƒæ å’¯æ‰è¾‘ç‹¼ å›°æ‘¹ç”« èœ¡ç˜¤çªéœ¸ çª å·´.
 
 	//					const FVector RaisedAndSnappedLocation = NewSKComp->GetComponentLocation();
 
 	//					if(FMath::Abs(RaisedAndSnappedLocation.Z - RaisedLocationBeforeSnap.Z) < KINDA_SMALL_NUMBER)
 	//					{
-	//						// »õ·Î snap À» ÇØµµ ½ÅÅëÄ¡ ¾ÊÀ¸´Ï ´Ù½Ã µÇµ¹¸°´Ù.
+	//						// è´§è‚º snap é˜‘ ç§¦æ¡£ è„šçƒ¹æ‘¹ è‡¼æ èª ä¿ƒçŸ« ç™»å€’èµ´ä¿ƒ.
 	//						NewSKComp->SetWorldLocation(LocationBeforeAddtionalSnap);
 	//					}
 	//				}
 	//			}
 
-	//			if(bRegenerateSKComp == true || PreviewSKComps.Num() <= SI) // À§¿¡¼­ ÄÄÆ÷³ÍÆ®¸¦ »õ·Î »ı¼ºÇÏ´Â Á¶°Ç.
+	//			if(bRegenerateSKComp == true || PreviewSKComps.Num() <= SI) // å›°ä¿Šè¾‘ å“ªå™¨æƒ©é£˜ç”« è´§è‚º ç§¯å·±çªç»° ç‚¼æ‰’.
 	//			{
 	//				PreviewSKComps.Add(NewSKComp);
 	//			}
 
-	//			// ÇÁ¸®ºä comp ¿¡¼­ À§Ä¡¸¦ ¿ªÀ¸·Î sync ÇÏ±â À§ÇÑ ¸ÊÇÎ info.
+	//			// æ©‡åºœè½° comp ä¿Šè¾‘ å›°æ‘¹ç”« å¼€æ è‚º sync çªæ‰ å›°èŒ„ ç”˜ä¿ info.
 	//			FSEDPreviewCompInfo NewMappingInfo;
 	//			NewMappingInfo.SKComp = NewSKComp;
 	//			NewMappingInfo.ShowSettingIndex = SI;
 	//			PreviewMapping.Add(NewMappingInfo);
 	//				
-	//			// ¾È³»¿ë ÅØ½ºÆ®. ¿ª½Ã³ª B2SpawnPoolEditingActor Ç¥Àı
+	//			// æ•‘éƒ´ä¾© å’†èƒ¶é£˜. å¼€çŸ«å”± B2SpawnPoolEditingActor é’ä¾‹
 	//			UTextRenderComponent* NewInfoTextComp = NewObject<UTextRenderComponent>(this, *GetPreviewInfoTextCompNameForSetting(SI), RF_Transient);
 	//			if(NewInfoTextComp)
 	//			{
@@ -4491,22 +4492,22 @@ void AB2StageEventDirector::RefreshPreviewSKComps(bool bRegenerateSKComp /*= tru
 	//				NewInfoTextComp->SetHorizontalAlignment(EHTA_Center);
 	//				NewInfoTextComp->SetWorldSize(20.0f);
 
-	//				// SpawnPoolEditingActor ÂÊ¿¡¼± Å©±â À¯ÁöÇÏ·Á°í ºÎ¸ğ MeshComp µû¶ó »õ·Î °è»êÇØ¼­ RelativeScale ·Î ¸Ô¿´´Âµ¥ ±×³É WorldScale ·Î ¸ÔÀÌ¸é µÇ´Â °Å ¾Æ´Ñ°¡? ¤§¤§
+	//				// SpawnPoolEditingActor ç‡ä¿Šæ€¥ å†œæ‰ èœ¡ç˜¤çªå¦¨ç»Š ä½•è‘› MeshComp è¶æ‰¼ è´§è‚º æ‹Œé­‚ç§¦è¾‘ RelativeScale è‚º å†ˆçœ‹ç»°å• å¼Šæˆ WorldScale è‚º å†ˆææ ç™»ç»° èŠ­ é…’å›±å•Š? ã‡ã‡
 	//				NewInfoTextComp->SetWorldScale3D(FVector(1.0f, 1.0f, 1.0f));
 
 	//				// Most SkeletalMesh assets have their root at their feet, so multiply the box extent by 2.
 	//				// Relative location takes a value before scaling, so give InvMeshScale.
-	//				const float TextRenderZOffset = (NewSKComp->Bounds.BoxExtent.Z * 2.0f); // ¿©±â¿¡ NewSKComp ÂÊ scale ±îÁö ¸ÔÀÏ ÇÊ¿ä°¡ ÀÖÀ¸·Á³ª..
+	//				const float TextRenderZOffset = (NewSKComp->Bounds.BoxExtent.Z * 2.0f); // å’¯æ‰ä¿Š NewSKComp ç‡ scale é³–ç˜¤ å†ˆè€ é˜å¤¸å•Š ä¹æ å¦¨å”±..
 	//				FVector TextRelativeLocation = NewInfoTextComp->GetRelativeTransform().GetLocation();
 	//				TextRelativeLocation.Z = TextRenderZOffset;
 	//				NewInfoTextComp->SetRelativeLocation( TextRelativeLocation );
 	//					
 	//				FColor InfoTextRenderColor = FColor(0,255,255);
 
-	//				// ¸¶Áö¸·À¸·Î ¾È³»¹®±¸.
-	//				// Directing event ¿¡ µû¸¥ ¾È³» ¹®ÀÚ
+	//				// ä»˜ç˜¤é˜œæ è‚º æ•‘éƒ´å·©å¤‡.
+	//				// Directing event ä¿Š è¶å¼— æ•‘éƒ´ å·©ç£Š
 	//				FString DirectingEventString;
-	//				switch (DirectingEvent) // ¿©±â¼­ ±»ÀÌ GetTrimmedNameFromPCClassEnum °°Àº ÁşÀ» ÇÒ ÇÊ¿ä±îÁø ¾ø°ÚÁö.
+	//				switch (DirectingEvent) // å’¯æ‰è¾‘ è¢«æ GetTrimmedNameFromPCClassEnum éç¯® çª¿é˜‘ ä¸” é˜å¤¸é³–æŸ³ ç»æ‘†ç˜¤.
 	//				{
 	//				case EStageEvent::ESEV_Begin: DirectingEventString = TEXT("Begin"); break;
 	//				case EStageEvent::ESEV_MobAppear: DirectingEventString = TEXT("MobAppear"); break;
@@ -4515,7 +4516,7 @@ void AB2StageEventDirector::RefreshPreviewSKComps(bool bRegenerateSKComp /*= tru
 	//				case EStageEvent::ESEV_Custom: DirectingEventString = TEXT("Custom"); break;
 	//				}
 
-	//				// PlayActor ¿¡ µû¸¥ ¾È³»¹®ÀÚ
+	//				// PlayActor ä¿Š è¶å¼— æ•‘éƒ´å·©ç£Š
 	//				FString PlayActorString;
 	//				switch (ThisSetting.PlayActorType)
 	//				{
@@ -4524,7 +4525,7 @@ void AB2StageEventDirector::RefreshPreviewSKComps(bool bRegenerateSKComp /*= tru
 	//				case EStageEventPlayActor::ESEE_MainPlayer: PlayActorString = TEXT("MainPlayer"); break;
 	//				case EStageEventPlayActor::ESEE_SubPlayer: PlayActorString = TEXT("SubPlayer"); break;
 	//				case EStageEventPlayActor::ESEE_WaveMob: {
-	//					// ¿©±â±îÁö ¿Â °Å¸é À¯È¿ÇÑ ¼³Á¤ÀÏ °Í.
+	//					// å’¯æ‰é³–ç˜¤ æŸ¯ èŠ­æ èœ¡ç“¤èŒ„ æ±²æ²¥è€ å·´.
 	//					int32 WaveNum = 0;
 	//					int32 MobIndex = 0;
 	//					ParseForWaveMobSelectKeyword(ThisSetting.WaveMobSelectKeyword, WaveNum, MobIndex);
@@ -4537,12 +4538,12 @@ void AB2StageEventDirector::RefreshPreviewSKComps(bool bRegenerateSKComp /*= tru
 	//				if(DoesThisSettingHaveNoFixedPlacement(ThisSetting))
 	//				{
 	//					InfoTextString = TEXT("NOT FIXED!\n") + InfoTextString;
-	//					InfoTextRenderColor = FColor(127,255,127); // BÃ¤³Î ´ë½Å RÃ¤³ÎÀÌ µé¾î°¬À¸´Ï »ìÂ¦ ´õ ¹à±â´Â ÇÒ µí?
+	//					InfoTextRenderColor = FColor(127,255,127); // Bç›²æ¾„ æªè„š Rç›²æ¾„æ ç”¸ç»¢è‰¾æ èª æ··å¨„ æ­¹ çŒæ‰ç»° ä¸” æ·€?
 	//				}
 	//				else if(DoesThisSettingRequireManualPlacement(ThisSetting) == false)
 	//				{
 	//					InfoTextString += TEXT("\nPreview only");
-	//					InfoTextRenderColor = FColor(0,127,127); // º¸´Ù ¾îµÓ°Ô.
+	//					InfoTextRenderColor = FColor(0,127,127); // ç„Šä¿ƒ ç»¢æ¶¤éœ¸.
 	//				}						
 
 	//				NewInfoTextComp->SetText(FText::FromString(InfoTextString));
@@ -4553,7 +4554,7 @@ void AB2StageEventDirector::RefreshPreviewSKComps(bool bRegenerateSKComp /*= tru
 	//	}
 	//}
 
-	//// Director Ä«¸Ş¶ó »ó´ÜÀÇ ¹øÈ£µµ »Ñ·Áº¸ÀÚ.
+	//// Director å¢¨çš‹æ‰¼ æƒ‘çªœç‹¼ é”…é¾‹æ¡£ è°å¦¨ç„Šç£Š.
 	//for(int32 DI = 0; DI < MAX_DIRECTOR_CAMERA; ++DI)
 	//{
 	//	UCameraComponent* CurrDirectorCam = DirectorCamArrayRef[DI];
@@ -4569,7 +4570,7 @@ void AB2StageEventDirector::RefreshPreviewSKComps(bool bRegenerateSKComp /*= tru
 	//		NewInfoTextComp->SetHorizontalAlignment(EHTA_Center);
 	//		NewInfoTextComp->SetWorldSize(25.0f);
 	//		NewInfoTextComp->SetWorldScale3D(FVector(1.0f, 1.0f, 1.0f));
-	//		NewInfoTextComp->SetRelativeLocation(FVector(0.0f,-10.0f,20.0f)); // À§Ä¡´Â Àû´çÈ÷ ¸ÂÃçÁØ´Ù
+	//		NewInfoTextComp->SetRelativeLocation(FVector(0.0f,-10.0f,20.0f)); // å›°æ‘¹ç»° åˆ©å¯¸æ´’ å˜è‹—éœ–ä¿ƒ
 	//		NewInfoTextComp->SetText(FText::FromString(FString::FromInt(DI)));
 	//		NewInfoTextComp->SetTextRenderColor(FColor(255,0,0));
 	//		DirectorCameraNumberText.Add(NewInfoTextComp);
@@ -4589,7 +4590,7 @@ void AB2StageEventDirector::SetupPreviewForControlledMatinee()
 	//{
 	//	FPlayActorShowSettings& ThisSetting = ShowSettings[SI];
 	//	TArray<class AActor*> GroupActorsForThisSetting;
-	//	// ThisSetting °ú ¿¬°áµÈ ±×·ì¾×ÅÍµé ¸ğµÎ ¸ğÀ½. PC °¡ ¾Æ´Ï¶ó¸é À¢¸¸ÇÏ¸é ÇÏ³ªÀÏ °Í.
+	//	// ThisSetting è‹ æ¥·æ¬ç­‰ å¼Šç¼å’€ç£ç”¸ è‘›æ»´ è‘›æ¾œ. PC å•Š é…’èªæ‰¼æ æ„§çˆ¶çªæ çªå”±è€ å·´.
 	//	EditorGetMatineeGroupActorsFromShowSetting(ThisSetting, GroupActorsForThisSetting);		
 
 	//	for (int32 GAI = 0; GAI < GroupActorsForThisSetting.Num(); ++GAI)
@@ -4600,16 +4601,16 @@ void AB2StageEventDirector::SetupPreviewForControlledMatinee()
 	//			continue;
 	//		}
 
-	//		// ÀÌÁ¦ ÁØºñ°¡ µÇ¾úÀ¸´Ï ThisSetting ¿¡ ÇØ´çÇÏ´Â ÀûÀıÇÑ ½ºÄÉÀÏÀ» Ã£¾Æ¼­ CurrGroupSKActor ¿¡ ¼³Á¤.
+	//		// æåŠ› éœ–åšå•Š ç™»èŒæ èª ThisSetting ä¿Š ç§¦å¯¸çªç»° åˆ©ä¾‹èŒ„ èƒ¶çº³è€é˜‘ èŒ«é…’è¾‘ CurrGroupSKActor ä¿Š æ±²æ²¥.
 
 	//		FTransform PreviewCompTransform;
 	//		USkeletalMesh* PreviewSKMesh = NULL;
-	//		// µÎ¹øÂ° ÀÎÀÚ·Î ±×·ì SkeletalMesh ¸¦ ³Ñ°Ü¼­ PC ÀÇ °æ¿ì ThisSetting ¸¸ °¡Áö°í´Â ¾Ë ¼ö ¾ø´Â Æ¯Á¤ Å¬·¡½º¿¡ ´ëÇÑ Á¤º¸¸¦ ¾ò¾î¿Àµµ·Ï ÇÔ.
+	//		// æ»´é”…æ³ ç‰¢ç£Šè‚º å¼Šç¼ SkeletalMesh ç”« é€è´¥è¾‘ PC ç‹¼ ç‰ˆå¿« ThisSetting çˆ¶ å•Šç˜¤ç»Šç»° èˆ… è ç»ç»° æ¼‚æ²¥ åŠªè´°èƒ¶ä¿Š æªèŒ„ æ²¥ç„Šç”« æ˜ç»¢å·æ¡£åºŸ çªƒ.
 	//		if (GetEssentialPreviewInfoForSetting(ThisSetting, CurrGroupSKActor->GetSkeletalMeshComponent()->SkeletalMesh, PreviewSKMesh, PreviewCompTransform) == false)
 	//		{
 	//			continue;
 	//		}
-	//		// ÀÏ´Ü ¿©±â¼­´Â Scale ¸¸ ¼¼ÆÃÀ».. »ç½Ç ¾Ë°íº¸¸é ABladeIICharacter::SetupControlledMatineePuppet ¿¡¼­ ÇÏ´Â °Í°ú ¸¶Âù°¡Áö..
+	//		// è€çªœ å’¯æ‰è¾‘ç»° Scale çˆ¶ æŠ€æ³¼é˜‘.. è¤è§’ èˆ…ç»Šç„Šæ ABladeIICharacter::SetupControlledMatineePuppet ä¿Šè¾‘ çªç»° å·´è‹ ä»˜è›®å•Šç˜¤..
 	//		CurrGroupSKActor->GetSkeletalMeshComponent()->SetWorldScale3D(PreviewCompTransform.GetScale3D());
 	//	}
 	//}
@@ -4623,7 +4624,7 @@ void AB2StageEventDirector::EditorGetMatineeGroupActorsFromShowSetting(FPlayActo
 	//}
 
 	//TArray<FName> AllSupposedIGNames;
-	//// PC ÀÇ °æ¿ì Á¾·ùº°·Î ÇØ¼­ ÇÏ³ªÀÇ ShowSetting ÀÌ ¿©·¯ Matinee Group ¿¡ ¿¬°áµÇ¾î ÀÖÀ» ¼ö ÀÖÀ¸´Ï °¡´ÉÇÑ °ÍµéÀ» ¸ğµÎ °Ë»ç.
+	//// PC ç‹¼ ç‰ˆå¿« è¾†å¹…å–Šè‚º ç§¦è¾‘ çªå”±ç‹¼ ShowSetting æ å’¯çŸ¾ Matinee Group ä¿Š æ¥·æ¬ç™»ç»¢ ä¹é˜‘ è ä¹æ èª å•Šç“·èŒ„ å·´ç”¸é˜‘ è‘›æ»´ å…«è¤.
 	//GetAllSupposedInterpGroupNamesForSetting(AllSupposedIGNames, InSetting); 
 
 	//for (int32 GAI = 0; GAI < MatineeActor->MatineeData->InterpGroups.Num(); ++GAI)
@@ -4642,16 +4643,16 @@ void AB2StageEventDirector::EditorGetMatineeGroupActorsFromShowSetting(FPlayActo
 
 	//	if (bIsOneOfTargetGroup == false)
 	//	{
-	//		continue;; // InSetting °ú ¿¬°áµÈ Group Àº ¾Æ´Ô.
+	//		continue;; // InSetting è‹ æ¥·æ¬ç­‰ Group ç¯® é…’ä¸›.
 	//	}
 
 	//	TArray<class AActor*> CurrGroupActors;
-	//	// ¿¡µğÅÍ¿¡¼­´Â GroupActorInfos ¸¦ ÅëÇØ ±×·ì¿¡ ¿¬°áµÈ ¾×ÅÍµéÀ» Ã£¾Æ¿Ã ¼ö ÀÖÀ½. -> ¾Æ´Ï ¿¡µğÅÍ ¸»°í ±×³É °ÔÀÓ¿¡¼­µµ µÇ´Â °Å ¾Æ´Ñ°¡..?
+	//	// ä¿Šå¼ç£ä¿Šè¾‘ç»° GroupActorInfos ç”« çƒ¹ç§¦ å¼Šç¼ä¿Š æ¥·æ¬ç­‰ å’€ç£ç”¸é˜‘ èŒ«é…’æ£µ è ä¹æ¾œ. -> é…’èª ä¿Šå¼ç£ å¯Œç»Š å¼Šæˆ éœ¸çƒ™ä¿Šè¾‘æ¡£ ç™»ç»° èŠ­ é…’å›±å•Š..?
 	//	for (int32 GAI2 = 0; GAI2 < MatineeActor->GroupActorInfos.Num(); ++GAI2)
 	//	{
 	//		if (MatineeActor->GroupActorInfos[GAI2].ObjectName == FName(*CurrGroup->GetName()))
 	//		{
-	//			// OutGroupActors ¿¡ ´õÇÑ´Ù. ÇÏ³ªÀÇ ±×·ì¿¡ ¿©·¯ Actor °¡ µî·ÏµÈ »óÈ²ÀÌ ¾ó¸¶³ª ÀÖ³ª?
+	//			// OutGroupActors ä¿Š æ­¹èŒ„ä¿ƒ. çªå”±ç‹¼ å¼Šç¼ä¿Š å’¯çŸ¾ Actor å•Š æ®¿åºŸç­‰ æƒ‘ç‚”æ å€”ä»˜å”± ä¹å”±?
 	//			OutGroupActors += MatineeActor->GroupActorInfos[GAI2].Actors;
 	//			break;
 	//		}
@@ -4661,7 +4662,7 @@ void AB2StageEventDirector::EditorGetMatineeGroupActorsFromShowSetting(FPlayActo
 
 void AB2StageEventDirector::SyncFromPreviewSKCompPlacement()
 {
-	// PreviewMapping À» ÅëÇØ °¢ preview component º°·Î ShowSetting À» Ã£¾Æ¼­ Placement µîÀÇ ¼³Á¤¿¡ µû¶ó ÇÊ¿äÇÏ¸é °ªÀ» ¼¼ÆÃÇÑ´Ù.
+	// PreviewMapping é˜‘ çƒ¹ç§¦ é˜¿ preview component å–Šè‚º ShowSetting é˜‘ èŒ«é…’è¾‘ Placement æ®¿ç‹¼ æ±²æ²¥ä¿Š è¶æ‰¼ é˜å¤¸çªæ è”¼é˜‘ æŠ€æ³¼èŒ„ä¿ƒ.
 
 	for(int32 PCI = 0; PCI < PreviewSKComps.Num(); ++PCI)
 	{
@@ -4670,7 +4671,7 @@ void AB2StageEventDirector::SyncFromPreviewSKCompPlacement()
 
 		for(int32 PMI = 0; PMI < PreviewMapping.Num(); ++PMI)
 		{
-			if(PreviewMapping[PMI].SKComp == CurrSKComp) // ¾Æ¸¶ PCI ¶û PMI °¡ ÀÏÄ¡ÇÒ °Í
+			if(PreviewMapping[PMI].SKComp == CurrSKComp) // é…’ä»˜ PCI å°” PMI å•Š è€æ‘¹ä¸” å·´
 			{
 				ShowSettingIndex = PreviewMapping[PMI].ShowSettingIndex;
 				break;
@@ -4683,13 +4684,13 @@ void AB2StageEventDirector::SyncFromPreviewSKCompPlacement()
 
 			if(DoesThisSettingRequireManualPlacement(CurrSetting))
 			{
-				// ÇÁ¸®ºä´Â ÀÌ°Ô ¾Æ´Ñ »óÈ²¿¡¼­µµ ³ª¿Ã ¼ö ÀÖÁö¸¸ Sync ´Â ÀÌ °æ¿ì¸¸.
+				// æ©‡åºœè½°ç»° æéœ¸ é…’å›± æƒ‘ç‚”ä¿Šè¾‘æ¡£ å”±æ£µ è ä¹ç˜¤çˆ¶ Sync ç»° æ ç‰ˆå¿«çˆ¶.
 
-				// ¿©±â¼­ »©³½ °ªÀº BladeIICharacter ¿ëÀÌ µÉ °ÍÀÌ¹Ç·Î Z offset À» Á» °¨¾ÈÇØ¾ß°Ú´Ù. ÀÌ·¡Àú·¡ Á» ¹Ì½º¸ÅÄ¡°¡ ÀÖ°Ú´Âµ¥..
+				// å’¯æ‰è¾‘ å“—è¾° è”¼ç¯® BladeIICharacter ä¾©æ çª å·´æéª¨è‚º Z offset é˜‘ ç²± çš‘æ•‘ç§¦å…·æ‘†ä¿ƒ. æè´°å†è´° ç²± å›ºèƒ¶æ¦‚æ‘¹å•Š ä¹æ‘†ç»°å•..
 				float ZOffsetForCharacter = CurrSKComp->Bounds.BoxExtent.Z;
 
-				// Áö±İ±îÁöÀÇ »ç¿ë¿¡¼­ ManualRelativeLocation/Rotation Àº ÀÌ ¾×ÅÍÀÇ ·çÆ® ±âÁØÀÌ¹Ç·Î °Á ´Ü¼øÈ÷ GetRelativeTransform ÇÏ¸é µÇ°Ú´Ù.
-				// ¾Æ´Ñ °æ¿ì°¡ »ı±â¸é, GetComponentTransform Çß´Ù°¡ ÇÊ¿äÇÑ ±âÁØ transform À» »©µµ·Ï.
+				// ç˜¤é™›é³–ç˜¤ç‹¼ è¤ä¾©ä¿Šè¾‘ ManualRelativeLocation/Rotation ç¯® æ å’€ç£ç‹¼ é£é£˜ æ‰éœ–æéª¨è‚º å‚² çªœé‰´æ´’ GetRelativeTransform çªæ ç™»æ‘†ä¿ƒ.
+				// é…’å›± ç‰ˆå¿«å•Š ç§¯æ‰æ, GetComponentTransform æ²ä¿ƒå•Š é˜å¤¸èŒ„ æ‰éœ– transform é˜‘ å“—æ¡£åºŸ.
 				CurrSetting.ManualRelativeLocation = CurrSKComp->GetRelativeTransform().GetTranslation() + FVector(0.0f,0.0f,ZOffsetForCharacter);
 				CurrSetting.ManualRelativeRotation = CurrSKComp->GetRelativeTransform().Rotator();
 			}
@@ -4714,8 +4715,8 @@ UB2PCClassInfo* AB2StageEventDirector::GetPCClassInfoForPlayActorType(EStageEven
 	//	UB2PCClassInfoBox* PCClassInfoBox = StaticFindPCClassInfoBox();
 	//	if(PCClassInfoBox)
 	//	{
-	//		// Å¬·¡½º¸¦ Á¤ÇØ³õ°í °¡Á®¿È. ¹°·Ğ WorldSetting ¿¡ ¼³Á¤ÇÑ GameMode ¸¦ º¼ ¼öµµ ÀÖ°ÚÁö¸¸ ±»ÀÌ ±×·² ÇÊ¿ä°¡..
-	//		// Main ÀÌ³ª Current ¸é Gladiator ·Î, ¾Æ´Ï¸é Assassin
+	//		// åŠªè´°èƒ¶ç”« æ²¥ç§¦åˆç»Š å•Šå»‰å’³. æ‹±æ²¸ WorldSetting ä¿Š æ±²æ²¥èŒ„ GameMode ç”« æ­ èæ¡£ ä¹æ‘†ç˜¤çˆ¶ è¢«æ å¼Šå‡¡ é˜å¤¸å•Š..
+	//		// Main æå”± Current æ Gladiator è‚º, é…’èªæ Assassin
 	//		EPCClass PCClassType = EPCClass::EPC_End;
 	//		switch (InType)
 	//		{
@@ -4756,25 +4757,25 @@ bool AB2StageEventDirector::GetEssentialPreviewInfoForSetting(FPlayActorShowSett
 
 	//if(DoesThisSettingHaveNoFixedPlacement(InSetting))
 	//{
-	//	// ÀÎ°ÔÀÓ À§Ä¡¸¦ »ç¿ëÇÏ´Â °æ¿ì µî Á¤ÇØÁø À§Ä¡°¡ ¾ø´Ù¸é ÇÁ¸®ºä »óÀ¸·Î´Â Àû´çÇÑ À§Ä¡¿¡ ³õ´Â´Ù. Default ·Î ¼¼ÆÃÇÑ Ä«¸Ş¶ó¿Í ¸¶ÁÖº¸°Ô?
+	//	// ç‰¢éœ¸çƒ™ å›°æ‘¹ç”« è¤ä¾©çªç»° ç‰ˆå¿« æ®¿ æ²¥ç§¦æŸ³ å›°æ‘¹å•Š ç»ä¿ƒæ æ©‡åºœè½° æƒ‘æ è‚ºç»° åˆ©å¯¸èŒ„ å›°æ‘¹ä¿Š åˆç»°ä¿ƒ. Default è‚º æŠ€æ³¼èŒ„ å¢¨çš‹æ‰¼å®¢ ä»˜æ—ç„Šéœ¸?
 	//	OutTransform = FTransform(FRotator(0.0f,-90.0f,0.0f), FVector(0.0f,100.0f,0.0f)) * this->GetTransform();
 	//	bGotTransform = true;
 	//}
-	//else if (DoesThisSettingRequireManualPlacement(InSetting)) // ÀÏ¹İÀûÀÎ ¼öµ¿ ¼³Á¤ »óÈ²
+	//else if (DoesThisSettingRequireManualPlacement(InSetting)) // è€é¦†åˆ©ç‰¢ èæ‚¼ æ±²æ²¥ æƒ‘ç‚”
 	//{
 	//	const FTransform RelativeTransform(InSetting.ManualRelativeRotation, InSetting.ManualRelativeLocation);
 	//	OutTransform = RelativeTransform * this->GetTransform();
-	//	bGotTransform = true; // ÀÏ´Ü ¼º°ø
+	//	bGotTransform = true; // è€çªœ å·±å‚
 	//}
 	//else if(OverallMode == EStageEventDirectorOverallMode::ESEDOM_ExportedCamera)
 	//{
-	//	// SimpleEventScene À» »ç¿ëÇÏ´Â °æ¿ì°¡ µÇ°Ú´Ù. ¿ª½Ã³ª AdjustToPlayActor ´Â ¹«½ÃÇÏ°í CameraAnimApplyCamIndex ·Î ¼±ÅÃÇÑ Ä«¸Ş¶ó¿¡ ¸ÂÃç¼­ ExportedEventScene ÀÇ Ã¹ Å°°ªÀ¸·Î À§Ä¡ »êÁ¤.
-	//	// ¿©±ä ±×³É ÇÁ¸®ºä·Î¸¸.
+	//	// SimpleEventScene é˜‘ è¤ä¾©çªç»° ç‰ˆå¿«å•Š ç™»æ‘†ä¿ƒ. å¼€çŸ«å”± AdjustToPlayActor ç»° å…¬çŸ«çªç»Š CameraAnimApplyCamIndex è‚º æ€¥ç¶èŒ„ å¢¨çš‹æ‰¼ä¿Š å˜è‹—è¾‘ ExportedEventScene ç‹¼ éœ‰ è™è”¼æ è‚º å›°æ‘¹ é­‚æ²¥.
+	//	// å’¯å˜ å¼Šæˆ æ©‡åºœè½°è‚ºçˆ¶.
 	//	if (IsExportedEventSceneValid(InSetting.ExportedEventScene) && CameraAnimApplyCamIndex >= 0 && CameraAnimApplyCamIndex < MAX_DIRECTOR_CAMERA)
 	//	{
 	//		FSimpleEventSceneMoveKeyData& FirstKeyData = InSetting.ExportedEventScene->SimpleMoveKeyFrames[0];
 
-	//		// SetSESPlayActorMovementFromCamera Âü°í. ½ÉÇÃÇÏ°Ô ÇÊ¿äÇÑ ÇÙ½É¸¸.
+	//		// SetSESPlayActorMovementFromCamera æ›¼ç»Š. ç¼´æ•²çªéœ¸ é˜å¤¸èŒ„ ç´ç¼´çˆ¶.
 	//		UCameraComponent* BaseCamComp = DirectorCamArrayRef[CameraAnimApplyCamIndex];
 	//		OutTransform = FTransform(FirstKeyData.RotKey, FirstKeyData.PosKey) * BaseCamComp->GetComponentTransform();
 	//		bGotTransform = true;
@@ -4782,7 +4783,7 @@ bool AB2StageEventDirector::GetEssentialPreviewInfoForSetting(FPlayActorShowSett
 	//}
 	//else if (OverallMode == EStageEventDirectorOverallMode::ESEDOM_ControlledMatinee)
 	//{
-	//	// ControlledMatinee ¿¡¼­ SkeletalMeshActor ½ºÄÉÀÏ ¸ÂÃçº¸±â À§ÇØ Åë°ú½ÃÅ´. ¿©±â¼­µµ ¹°·Ğ ÇÊ¿äÇÏ´Ù¸é ÇØ´ç ±×·ì¾×ÅÍ Ã£¾Æ¼­ ¹èÄ¡µÈ Transform À» ³Ö´Â´Ù°Å³ª ÇØº¼ ¼ö ÀÖ°Ú´Ù.
+	//	// ControlledMatinee ä¿Šè¾‘ SkeletalMeshActor èƒ¶çº³è€ å˜è‹—ç„Šæ‰ å›°ç§¦ çƒ¹è‹çŸ«ç³¯. å’¯æ‰è¾‘æ¡£ æ‹±æ²¸ é˜å¤¸çªä¿ƒæ ç§¦å¯¸ å¼Šç¼å’€ç£ èŒ«é…’è¾‘ ç¡…æ‘¹ç­‰ Transform é˜‘ æŒç»°ä¿ƒèŠ­å”± ç§¦æ­ è ä¹æ‘†ä¿ƒ.
 	//	OutTransform = FTransform();
 	//	bGotTransform = true;
 	//}
@@ -4792,15 +4793,15 @@ bool AB2StageEventDirector::GetEssentialPreviewInfoForSetting(FPlayActorShowSett
 	//	return false;
 	//}
 
-	//// Ç¥½ÃÇÒ transform ÀÌ »ı°åÀ¸´Ï SkeletalMesh ¸ğµ¨ »Ì¾Æ¿À±â.	
+	//// é’çŸ«ä¸” transform æ ç§¯æ¿æ èª SkeletalMesh è‘›èƒ† æƒ¶é…’å·æ‰.	
 	//if( IsPlayActorTypeForPlayerCharacter(InSetting.PlayActorType) )
 	//{
-	//	UB2PCClassInfo* PCClassInfo = GetPCClassInfoForPlayActorType(InSetting.PlayActorType); // ¿©±â¼­´Â ¾Æ¿¹ Á¤ÇØÁø Å¸ÀÔÀÇ PCClass ¸¦ °¡Á®¿Ã °Í. ¾îÂ÷ÇÇ ¿¡µğÅÍ¶ó ¾î¶² Å¬·¡½º°¡ ³ª¿ÃÁö ¸ğ¸£´Â ÀÏÀÌ¹Ç·Î.
+	//	UB2PCClassInfo* PCClassInfo = GetPCClassInfoForPlayActorType(InSetting.PlayActorType); // å’¯æ‰è¾‘ç»° é…’æŠ— æ²¥ç§¦æŸ³ é¸¥æ¶ç‹¼ PCClass ç”« å•Šå»‰æ£µ å·´. ç»¢ç’ä¹” ä¿Šå¼ç£æ‰¼ ç»¢æ« åŠªè´°èƒ¶å•Š å”±æ£µç˜¤ è‘›ç¦ç»° è€æéª¨è‚º.
 
 	//	if (OptionalSpecificPCClassMesh)
 	//	{
-	//		// ÀÌ °æ¿ì Player Character ÀÌ¸é¼­ ¸Ş½¬¸¦ ÁöÁ¤ÇÏ¿´À¸´Ï ±× Mesh ¸¦ »ç¿ëÇÏ´Â PCClassInfo ¿¡¼­ Á¤º¸¸¦ °¡Á®¿È.
-	//		// ÀÌ°Ç »ç½Ç»ó Å¬·¡½ºº°·Î Æ®·¢À» ¸¸µé¾î¾ß ÇÏ´Â Controlled Matinee ¿ëÀÓ.
+	//		// æ ç‰ˆå¿« Player Character ææè¾‘ çš‹æµ†ç”« ç˜¤æ²¥çªçœ‹æ èª å¼Š Mesh ç”« è¤ä¾©çªç»° PCClassInfo ä¿Šè¾‘ æ²¥ç„Šç”« å•Šå»‰å’³.
+	//		// ææ‰’ è¤è§’æƒ‘ åŠªè´°èƒ¶å–Šè‚º é£˜å‘é˜‘ çˆ¶ç”¸ç»¢å…· çªç»° Controlled Matinee ä¾©çƒ™.
 	//		UB2PCClassInfoBox* PCClassInfoBox = StaticFindPCClassInfoBox();
 	//		if (PCClassInfoBox)
 	//		{
@@ -4812,18 +4813,18 @@ bool AB2StageEventDirector::GetEssentialPreviewInfoForSetting(FPlayActorShowSett
 	//		}
 	//	}
 	//	
-	//	// ¿©±â±îÁö Ã£Àº PCClassInfo ¿¡ ¼¼ÆÃÇÑ °É·Î..
+	//	// å’¯æ‰é³–ç˜¤ èŒ«ç¯® PCClassInfo ä¿Š æŠ€æ³¼èŒ„ å§è‚º..
 	//	if(PCClassInfo)
 	//	{
 	//		OutSKMesh = PCClassInfo->BaseMeshAsset;
 
-	//		// PCClassInfo ¸¦ ±â¹İÀ¸·Î ½ºÄÉÀÏµµ ¸ÂÃç º¸ÀÚ.
+	//		// PCClassInfo ç”« æ‰é¦†æ è‚º èƒ¶çº³è€æ¡£ å˜è‹— ç„Šç£Š.
 	//		if(PCClassInfo->GetBaseBPClass(this))
 	//		{
 	//			ABladeIIPlayer* DefaultPlayerBPObject = Cast<ABladeIIPlayer>(PCClassInfo->GetBaseBPClass(this)->GetDefaultObject());
 	//			if(DefaultPlayerBPObject && DefaultPlayerBPObject->GetMesh())
 	//			{
-	//				// ¿©±â¼± GetMesh()->GetComponentScale ·Î´Â ¿¹»óÇÏ´Â °ªÀÌ ¾È³ª¿È. RootComponent ºÎÅÍ ÇØ¼­ relative scale À» °¡Á®´Ù °öÇÑ´Ù.
+	//				// å’¯æ‰æ€¥ GetMesh()->GetComponentScale è‚ºç»° æŠ—æƒ‘çªç»° è”¼æ æ•‘å”±å’³. RootComponent ä½•ç£ ç§¦è¾‘ relative scale é˜‘ å•Šå»‰ä¿ƒ èšŒèŒ„ä¿ƒ.
 	//				FVector CompScale = 
 	//					DefaultPlayerBPObject->GetRootComponent()->RelativeScale3D *
 	//					(
@@ -4848,32 +4849,32 @@ bool AB2StageEventDirector::GetEssentialPreviewInfoForSetting(FPlayActorShowSett
 	//	const int32 EditorStageDifficulty = B2WS ? B2WS->GetEditorStageDifficulty() : 1;
 
 	//	AB2MonsterSpawnPool* RelevantEditorSpawnPool = EditorGetCurrentActiveSpawnPool();
-	//	if (RelevantEditorSpawnPool && IsStageSupported(EditorStageNum, EditorStageDifficulty)) // WorldSettings ¿¡ ¼³Á¤ÇÑ EditorStageNum ÀÌ Áö¿øµÇ´Â ¼³Á¤¿¡¼­¸¸.
+	//	if (RelevantEditorSpawnPool && IsStageSupported(EditorStageNum, EditorStageDifficulty)) // WorldSettings ä¿Š æ±²æ²¥èŒ„ EditorStageNum æ ç˜¤ç›”ç™»ç»° æ±²æ²¥ä¿Šè¾‘çˆ¶.
 	//	{
-	//		// NPCClass enum È¤Àº ABladeIICharacter ºí·çÇÁ¸°Æ® Å¬·¡½º µÑ Áß ÇÏ³ª.
+	//		// NPCClass enum è¶£ç¯® ABladeIICharacter å–‰é£æ©‡èµ´é£˜ åŠªè´°èƒ¶ ç¬› å çªå”±.
 	//		ENPCClass NPCClassEnum = ENPCClass::ENC_End;
 	//		ENPCClassVariation NPCClassVariation = ENPCClassVariation::ENCV_Normal;
 	//		TSubclassOf<ABladeIICharacter> NPCClassBP = NULL;
 	//		RelevantEditorSpawnPool->EditorGetSpawnClassOfWaveMob(NPCClassEnum, NPCClassVariation, NPCClassBP, WaveNum, MobIndex);
 
-	//		// AB2MonsterSpawnPool::SpawnWave ¿Í ¸¶Âù°¡Áö ¿ì¼±¼øÀ§·Î..
+	//		// AB2MonsterSpawnPool::SpawnWave å®¢ ä»˜è›®å•Šç˜¤ å¿«æ€¥é‰´å›°è‚º..
 	//		if(NPCClassEnum != ENPCClass::ENC_End)
 	//		{
 	//			UB2NPCClassInfoBox* MobClassInfoBox = StaticFindMobClassInfoBox();
 	//			if(MobClassInfoBox)
 	//			{
 	//				UB2NPCClassInfoBox::NPCClassPreviewAssetInfo PreviewAssetInfo = MobClassInfoBox->GetPreviewAssetInfoFromClass(NPCClassEnum, NPCClassVariation);
-	//				// PreviewAssetInfo ¿¡ MaterialOverride µµ ³ª¿À±ä ÇÏ´Âµ¥ ¿©±â¿¡µµ ¹İ¿µÀ» ÇÒ±î ¸»±î..
+	//				// PreviewAssetInfo ä¿Š MaterialOverride æ¡£ å”±å·å˜ çªç»°å• å’¯æ‰ä¿Šæ¡£ é¦†åº·é˜‘ ä¸”é³– å¯Œé³–..
 	//				OutSKMesh = PreviewAssetInfo.SKMesh;
 
-	//				// ¿©±âµµ NPCClassInfo ¸¦ ±â¹İÀ¸·Î ½ºÄÉÀÏ ¸ÂÃß±â.
+	//				// å’¯æ‰æ¡£ NPCClassInfo ç”« æ‰é¦†æ è‚º èƒ¶çº³è€ å˜çœ æ‰.
 	//				UB2NPCSingleClassInfo* SingleMobInfo = MobClassInfoBox->GetNPCSingleClassInfo(NPCClassEnum, NPCClassVariation);
 	//				if(SingleMobInfo && SingleMobInfo->GetBaseBPClass(this))
 	//				{
 	//					ABladeIICharacter* DefaultBPObject = Cast<ABladeIICharacter>(SingleMobInfo->GetBaseBPClass(this)->GetDefaultObject());
 	//					if(DefaultBPObject && DefaultBPObject->GetMesh())
 	//					{
-	//						// ¿©±â¼± GetMesh()->GetComponentScale ·Î´Â ¿¹»óÇÏ´Â °ªÀÌ ¾È³ª¿È. RootComponent ºÎÅÍ ÇØ¼­ relative scale À» °¡Á®´Ù °öÇÑ´Ù.
+	//						// å’¯æ‰æ€¥ GetMesh()->GetComponentScale è‚ºç»° æŠ—æƒ‘çªç»° è”¼æ æ•‘å”±å’³. RootComponent ä½•ç£ ç§¦è¾‘ relative scale é˜‘ å•Šå»‰ä¿ƒ èšŒèŒ„ä¿ƒ.
 	//						FVector CompScale = 
 	//							DefaultBPObject->GetRootComponent()->RelativeScale3D *
 	//							(
@@ -4912,7 +4913,7 @@ bool AB2StageEventDirector::GetEssentialPreviewInfoForSetting(FPlayActorShowSett
 
 void AB2StageEventDirector::DestroyPreviewComponents(bool bDestroyAll)
 {
-	if(bDestroyAll) // ÀÌ°Ô false ÀÎ °ÍÀº ´Ü¼ø À§Ä¡ ÀÌµ¿ ½Ã refresh ¿¡ »ç¿ëÇÏ±â À§ÇÔ.
+	if(bDestroyAll) // æéœ¸ false ç‰¢ å·´ç¯® çªœé‰´ å›°æ‘¹ ææ‚¼ çŸ« refresh ä¿Š è¤ä¾©çªæ‰ å›°çªƒ.
 	{
 		for(int32 PCI = 0; PCI < PreviewSKComps.Num(); ++PCI)
 		{
@@ -4965,7 +4966,7 @@ void AB2StageEventDirector::SafetyProcessMatineeSkActors()
 
 	//const bool bHasAnyDirectedFromBeginningSetup = HasAnyDirectedFromBeginningTrackInCurrentWorld(GetWorld());
 
-	//// ¸¶Æ¼´Ï ±×·ì ¾×ÅÍ·Î µî·ÏµÈ ASkeletalMeshActor µéÀº ShowSettings µî·Ï ¿©ºÎ¿¡ »ó°ü¾øÀÌ collision ¹«Á¶°Ç ²¨ ³õÀ½. ¼³¸¶ ÇÊ¿äÇÑ °æ¿ì°¡ ÀÖÀ»±î?
+	//// ä»˜èèª å¼Šç¼ å’€ç£è‚º æ®¿åºŸç­‰ ASkeletalMeshActor ç”¸ç¯® ShowSettings æ®¿åºŸ å’¯ä½•ä¿Š æƒ‘åŒ…ç»æ collision å…¬ç‚¼æ‰’ æ³¢ åˆæ¾œ. æ±²ä»˜ é˜å¤¸èŒ„ ç‰ˆå¿«å•Š ä¹é˜‘é³–?
 	//for (int32 GAI = 0; GAI < MatineeActor->GroupActorInfos.Num(); ++GAI)
 	//{
 	//	for (AActor* CurrGA : MatineeActor->GroupActorInfos[GAI].Actors)
@@ -4977,18 +4978,18 @@ void AB2StageEventDirector::SafetyProcessMatineeSkActors()
 	//			SKActor->SetActorEnableCollision(false);
 	//			SKActorComp->SetCollisionProfileName(UCollisionProfile::NoCollision_ProfileName);
 
-	//			// ActorHiddenIngame ¼³Á¤ ‰çÀ»¶§¸¸
+	//			// ActorHiddenIngame æ±²æ²¥ å¤Œé˜‘é”­çˆ¶
 	//			if (SKActor->bHidden)
 	//			{
-	//				// ¶ÇÇÑ, °£È¤ ÀÇµµÄ¡ ¾Ê°Ô º¸ÀÌÁö ¾Ê´Â »óÅÂ·Î ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ ÇÃ·¹ÀÌµÇ°í ÀÖ¾î¼­ ¹®Á¦°¡ µÇ´Â °æ¿ì°¡ ÀÖÀ½. (AnimNotify ¹ß»ı) µû¶ó¼­ ÀÌ°Íµéµµ ¾ø¾Ö ÁÜ. DirectedFromBeginning ÀÌ¸é ½ÃÀÛ ½Ã ¾Ö´Ï¸ŞÀÌ¼Ç Á÷Á¢ Àç»ı.
+	//				// è‚šèŒ„, åŸƒè¶£ ç‹¼æ¡£æ‘¹ è‡¼éœ¸ ç„Šæç˜¤ è‡¼ç»° æƒ‘æ€•è‚º å±€èªçš‹æè®°æ æ•²é¥­æç™»ç»Š ä¹ç»¢è¾‘ å·©åŠ›å•Š ç™»ç»° ç‰ˆå¿«å•Š ä¹æ¾œ. (AnimNotify æƒ¯ç§¯) è¶æ‰¼è¾‘ æå·´ç”¸æ¡£ ç»å±€ æ·‹. DirectedFromBeginning ææ çŸ«ç´¯ çŸ« å±€èªçš‹æè®° æµç«‹ çŠç§¯.
 	//				SKActorComp->AnimationData.bSavedPlaying = false;
 	//				SKActorComp->AnimationData.bSavedLooping = false;
 	//				if (!bHasAnyDirectedFromBeginningSetup)
 	//				{
-	//					// AnimToPlay ·¹ÆÛ·±½º´Â Æ¯È÷³ª ¿¬Ãâ ¿ë µ¥ÀÌÅÍÀÇ ¼±º° ·ÎµùÀ» ÇÏ°Ô µÇ¸é ÇÊ¿ä¾ø´Â ·ÎµùÀ» À¯¹ßÇÏ¹Ç·Î ÃÖÀûÈ­ °¡´É¼º ¸é¿¡¼­¶óµµ ¾ø¾ÖÁÖ´Â °Ô ÁÁÀºµ¥
-	//					// DirectedFromBeginning ¼¼ÆÃ°ú ¾ôÈù °æ¿ì´Â ¾ø¾Ö¼± ¾È µÈ´Ù.
-	//					// ÀÌ SkeletalMeshActor °¡ ÀüÃ¼ StageEventDirector Áß ¾î´À ÇÏ³ªÇÏ°í¶óµµ DirectedFromBeginning À¸·Î ¿«¾ú´ÂÁö °Ë»çÇÏ·Á´Ï Á» ¹ö°Ì°í ÇØ¼­ 
-	//					// ±×³É ÀüÃ¼ ¿ùµå¿¡ ±×·± ¼¼ÆÃÀÌ ¾ø´Â °æ¿ì¸¸ ºñ¿ò. ±×·¸°Ô ¸¹ÀÌ »ç¿ëÇÏ´Â °Ç ¾Æ´Ï¶ó¼­..
+	//					// AnimToPlay é¥­æ¬ºç¹èƒ¶ç»° æ¼‚æ´’å”± æ¥·å… ä¾© å•æç£ç‹¼ æ€¥å–Š è‚ºçˆ¹é˜‘ çªéœ¸ ç™»æ é˜å¤¸ç»ç»° è‚ºçˆ¹é˜‘ èœ¡æƒ¯çªéª¨è‚º å¼¥åˆ©æ‹³ å•Šç“·å·± æä¿Šè¾‘æ‰¼æ¡£ ç»å±€æ—ç»° éœ¸ äº®ç¯®å•
+	//					// DirectedFromBeginning æŠ€æ³¼è‹ çˆµè…® ç‰ˆå¿«ç»° ç»å±€æ€¥ æ•‘ ç­‰ä¿ƒ.
+	//					// æ SkeletalMeshActor å•Š å‚ˆçœ‰ StageEventDirector å ç»¢è ¢ çªå”±çªç»Šæ‰¼æ¡£ DirectedFromBeginning æ è‚º æ©èŒç»°ç˜¤ å…«è¤çªå¦¨èª ç²± æ»šç–¤ç»Š ç§¦è¾‘ 
+	//					// å¼Šæˆ å‚ˆçœ‰ å²¿é›ä¿Š å¼Šç¹ æŠ€æ³¼æ ç»ç»° ç‰ˆå¿«çˆ¶ åšæ¡†. å¼ŠçŠ¯éœ¸ è…¹æ è¤ä¾©çªç»° æ‰’ é…’èªæ‰¼è¾‘..
 	//					SKActorComp->AnimationData.AnimToPlay = nullptr;
 	//				}
 	//			}
@@ -4996,12 +4997,12 @@ void AB2StageEventDirector::SafetyProcessMatineeSkActors()
 	//	}
 	//}
 
-	//// ShowSetting ÀÌ¶û ¿¬°áÀÌ µÇ¾îÀÖ´Â SkeletalMeshActor µéÀº visibility µîÀÇ Ãß°¡ ¼¼ÆÃ±îÁö ÇØ ³õÀ½.
+	//// ShowSetting æå°” æ¥·æ¬æ ç™»ç»¢ä¹ç»° SkeletalMeshActor ç”¸ç¯® visibility æ®¿ç‹¼ çœ å•Š æŠ€æ³¼é³–ç˜¤ ç§¦ åˆæ¾œ.
 	//for (int32 SI = 0; SI < ShowSettings.Num(); ++SI)
 	//{
 	//	FPlayActorShowSettings& ThisSetting = ShowSettings[SI];
 	//	TArray<class AActor*> GroupActorsForThisSetting;
-	//	// ThisSetting °ú ¿¬°áµÈ ±×·ì¾×ÅÍµé ¸ğµÎ ¸ğÀ½. PC °¡ ¾Æ´Ï¶ó¸é À¢¸¸ÇÏ¸é ÇÏ³ªÀÏ °Í.
+	//	// ThisSetting è‹ æ¥·æ¬ç­‰ å¼Šç¼å’€ç£ç”¸ è‘›æ»´ è‘›æ¾œ. PC å•Š é…’èªæ‰¼æ æ„§çˆ¶çªæ çªå”±è€ å·´.
 	//	EditorGetMatineeGroupActorsFromShowSetting(ThisSetting, GroupActorsForThisSetting);
 
 	//	for (int32 GAI = 0; GAI < GroupActorsForThisSetting.Num(); ++GAI)
@@ -5014,10 +5015,10 @@ void AB2StageEventDirector::SafetyProcessMatineeSkActors()
 
 	//		CurrGroupSKActor->SetActorHiddenInGame(true);
 	//		USkeletalMeshComponent* ThisSKComp = CurrGroupSKActor->GetSkeletalMeshComponent();
-	//		ThisSKComp->MeshComponentUpdateFlag = EMeshComponentUpdateFlag::OnlyTickPoseWhenRendered; // ÀÌ°Íµµ ¿¬Ãâ µµÁß¿¡´Â È°¹ßÈ÷ ¾÷µ¥ÀÌÆ®ÇÏµµ·Ï °ªÀ» ¹Ù²ãÁÖ´Ï ±âº»°ªÀº ¶³¾î¶ß·Á ³õµµ·Ï.
+	//		ThisSKComp->MeshComponentUpdateFlag = EMeshComponentUpdateFlag::OnlyTickPoseWhenRendered; // æå·´æ¡£ æ¥·å… æ¡£åä¿Šç»° åŠæƒ¯æ´’ è¯€å•æé£˜çªæ¡£åºŸ è”¼é˜‘ å®˜å±‚æ—èª æ‰å¤¯è”¼ç¯® å†»ç»¢å“†å¦¨ åˆæ¡£åºŸ.
 
-	//		// Ãß°¡·Î MaterialInstanceDynamic ÀÌ overriding µÇ¾î ÀÖ´Ù¸é ³¯·ÁÁØ´Ù. ClearControlledMatineePuppet ¿¡¼­ ÇÏ·Á´Â °Çµ¥ ¹º°¡ Àß ¾È¸ÔÇô¼­ ¿©±â¼­ º¸´Ù È®½ÇÇÏ°Ô..
-	//		// MID ¶õ °Ô Ã³À½ºÎÅÍ ÀúÀåÀ» ÇÏ±â À§ÇÑ °Ô ¾Æ´Ï´Ù.
+	//		// çœ å•Šè‚º MaterialInstanceDynamic æ overriding ç™»ç»¢ ä¹ä¿ƒæ æœå¦¨éœ–ä¿ƒ. ClearControlledMatineePuppet ä¿Šè¾‘ çªå¦¨ç»° æ‰’å• è´­å•Š è‚‹ æ•‘å†ˆå›šè¾‘ å’¯æ‰è¾‘ ç„Šä¿ƒ çŠ¬è§’çªéœ¸..
+	//		// MID é„‚ éœ¸ è´¸æ¾œä½•ç£ å†å˜é˜‘ çªæ‰ å›°èŒ„ éœ¸ é…’èªä¿ƒ.
 	//		for (int32 MI = 0; MI < ThisSKComp->OverrideMaterials.Num(); ++MI)
 	//		{
 	//			UMaterialInstanceDynamic* OverriddenMID = Cast<UMaterialInstanceDynamic>(ThisSKComp->OverrideMaterials[MI]);
@@ -5058,7 +5059,7 @@ void AB2StageEventDirector::PostEditChangeProperty(FPropertyChangedEvent& Proper
 	const FName Name_OverallStartDelay = GET_MEMBER_NAME_CHECKED(AB2StageEventDirector, OverallStartDelay);
 	const FName Name_bLocalPlayerSwitching = GET_MEMBER_NAME_CHECKED(AB2StageEventDirector, bLocalPlayerSwitching);
 
-	// ³ª¸ÓÁö ÀÌ¸§ ¶È°°¾ÆÁöµµ·Ï È®ÀÎÂ÷¿ø
+	// å”±èµ£ç˜¤ ææŠš åº¦éé…’ç˜¤æ¡£åºŸ çŠ¬ç‰¢ç’ç›”
 	GET_MEMBER_NAME_CHECKED(FPlayActorShowSettings, bOverallMode_ExportedCamera);
 	GET_MEMBER_NAME_CHECKED(FPlayActorShowSettings, bOverallMode_ControlledMatinee);
 	GET_MEMBER_NAME_CHECKED(FPlayActorShowSettings, bOverallMode_ManualCamera);
@@ -5069,7 +5070,7 @@ void AB2StageEventDirector::PostEditChangeProperty(FPropertyChangedEvent& Proper
 //
 //	if (PropertyName == Name_ManualCameraSettings)
 //	{
-//		// Àû¾îµµ ÇÏ³ª´Â ÀÖµµ·Ï ÇÔ.
+//		// åˆ©ç»¢æ¡£ çªå”±ç»° ä¹æ¡£åºŸ çªƒ.
 //		if (ManualCameraSettings.Num() == 0)
 //		{
 //			ManualCameraSettings.Add(FManualCameraSingleSetting());
@@ -5086,7 +5087,7 @@ void AB2StageEventDirector::PostEditChangeProperty(FPropertyChangedEvent& Proper
 //
 //	if (PropertyName == Name_PlayActorType)
 //	{
-//		// MainPlayer ³ª SubPlayer °¡ µÑ¾¿ ³ª¿ÀÁö ¾Ê°Ô Ã¼Å© ¹× °æ°í
+//		// MainPlayer å”± SubPlayer å•Š ç¬›ç©¶ å”±å·ç˜¤ è‡¼éœ¸ çœ‰å†œ æ£º ç‰ˆç»Š
 //		for (int32 IA = 0; IA < ShowSettings.Num(); ++IA)
 //		{
 //			EStageEventPlayActor CurrType = ShowSettings[IA].PlayActorType;
@@ -5102,7 +5103,7 @@ void AB2StageEventDirector::PostEditChangeProperty(FPropertyChangedEvent& Proper
 //				{
 //#if !PLATFORM_MAC
 //					FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-//						FString::Printf(TEXT("[Warning] µ¿ÀÏÇÑ ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍÀÇ PlayActorType ÀÌ Áßº¹µÇ¾î ³ªÅ¸³µ½À´Ï´Ù.\nIndex %d and %d"), IA, IB)
+//						FString::Printf(TEXT("[Warning] æ‚¼è€èŒ„ æ•²é¥­æç»¢ æŸè…ç£ç‹¼ PlayActorType æ åæ±—ç™»ç»¢ å”±é¸¥è½¦åš¼èªä¿ƒ.\nIndex %d and %d"), IA, IB)
 //						));
 //#endif
 //				}
@@ -5115,14 +5116,14 @@ void AB2StageEventDirector::PostEditChangeProperty(FPropertyChangedEvent& Proper
 //		if (DirectingEvent != EStageEvent::ESEV_MobAppear && DirectingEvent != EStageEvent::ESEV_MobDying && DirectingEvent != EStageEvent::ESEV_MobPhase)
 //		{
 //#if !PLATFORM_MAC
-//			FString WarnMsg = TEXT("ÇöÀç Directing Event ¼³Á¤¿¡¼­´Â Mob ÀÌ µîÀåÇÏÁö ¾ÊÀº »óÅÂ¿¡¼­ ¿¬Ãâ Àå¸éÀÌ ½ÃÀÛµÉ À§ÇèÀÌ ÀÖ½À´Ï´Ù. Æ¯º°ÇÑ ÀÌÀ¯°¡ ¾Æ´Ï¸é Mob Appear/Dying/Phase ¸¦ »ç¿ëÇÏ°Å³ª Show Settings ¿¡¼­ Wave Mob À» ¾ø¾ÖÁÖ¼¼¿ä.\n\n");
+//			FString WarnMsg = TEXT("æ³…çŠ Directing Event æ±²æ²¥ä¿Šè¾‘ç»° Mob æ æ®¿å˜çªç˜¤ è‡¼ç¯® æƒ‘æ€•ä¿Šè¾‘ æ¥·å… å˜ææ çŸ«ç´¯çª å›°æ°°æ ä¹åš¼èªä¿ƒ. æ¼‚å–ŠèŒ„ æèœ¡å•Š é…’èªæ Mob Appear/Dying/Phase ç”« è¤ä¾©çªèŠ­å”± Show Settings ä¿Šè¾‘ Wave Mob é˜‘ ç»å±€æ—æŠ€å¤¸.\n\n");
 //			
 //			if (DirectingEvent == EStageEvent::ESEV_ComponentTrigger)
 //			{
-//				WarnMsg += TEXT("Æ¯È÷ ComponentTrigger ÀÚÁÖ ½Ç¼öÇÏ´Â ¼³Á¤ÀÌ´Ï È®½ÇÈ÷ ¹®Á¦¾ø°í ÇÊ¿äÇÑ °÷¿¡¸¸ È®ÀÎÇÏ°í »ç¿ëÇÏ¼¼¿ä!\n\n");
+//				WarnMsg += TEXT("æ¼‚æ´’ ComponentTrigger ç£Šæ— è§’èçªç»° æ±²æ²¥æèª çŠ¬è§’æ´’ å·©åŠ›ç»ç»Š é˜å¤¸èŒ„ é•‘ä¿Šçˆ¶ çŠ¬ç‰¢çªç»Š è¤ä¾©çªæŠ€å¤¸!\n\n");
 //			}
 //
-//			WarnMsg += TEXT("Mob ÀÌ µîÀåÇÏ´Â Show Setting ¹øÈ£ : ");
+//			WarnMsg += TEXT("Mob æ æ®¿å˜çªç»° Show Setting é”…é¾‹ : ");
 //			bool bFoundNoneDesiredSetting = false;
 //			for (int32 SI = 0; SI < ShowSettings.Num(); ++SI)
 //			{
@@ -5146,7 +5147,7 @@ void AB2StageEventDirector::PostEditChangeProperty(FPropertyChangedEvent& Proper
 //		{
 //#if !PLATFORM_MAC
 //			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-//				FString::Printf(TEXT("[Warning] MobDying ÀÌº¥Æ®¿¡ StartDelay %.2f (ÀÌ)°¡ ¼³Á¤µÇ¾î ÀÖ½À´Ï´Ù.\n±âº» Áö¿øÀº µÇÁö¸¸ Dying Mob ÀÌ µîÀåÇÏ´Â °æ¿ì StartDelay °¡ ±æ¼ö·Ï µ¿ÀÛÀÌ º¸ÀåµÇÁö ¾ÊÀ» °¡´É¼ºÀÌ ³ô½À´Ï´Ù.\n°¡±ŞÀû ´Ù¸¥ ¹æ¹ıÀ» Ã£°Å³ª È®½ÇÇÑ Å×½ºÆ®¸¦ °ÅÄ¡´Â °ÍÀÌ ÁÁ½À´Ï´Ù."), OverallStartDelay)
+//				FString::Printf(TEXT("[Warning] MobDying æäº¥é£˜ä¿Š StartDelay %.2f (æ)å•Š æ±²æ²¥ç™»ç»¢ ä¹åš¼èªä¿ƒ.\næ‰å¤¯ ç˜¤ç›”ç¯® ç™»ç˜¤çˆ¶ Dying Mob æ æ®¿å˜çªç»° ç‰ˆå¿« StartDelay å•Š è¾¨èåºŸ æ‚¼ç´¯æ ç„Šå˜ç™»ç˜¤ è‡¼é˜‘ å•Šç“·å·±æ è‡­åš¼èªä¿ƒ.\nå•Šé­åˆ© ä¿ƒå¼— è§„è¿‡é˜‘ èŒ«èŠ­å”± çŠ¬è§’èŒ„ æŠ›èƒ¶é£˜ç”« èŠ­æ‘¹ç»° å·´æ äº®åš¼èªä¿ƒ."), OverallStartDelay)
 //				));
 //#endif
 //		}
@@ -5168,15 +5169,15 @@ void AB2StageEventDirector::PostEditChangeProperty(FPropertyChangedEvent& Proper
 //			{
 //				bFoundSpawnPool = true;
 //
-//				// ½ÇÁ¦ ÀÖ´Â Wave Num À» ½è´ÂÁö È®ÀÎ
+//				// è§’åŠ› ä¹ç»° Wave Num é˜‘ å€Ÿç»°ç˜¤ çŠ¬ç‰¢
 //				for (int32 SI = 0; SI < ThisSP->GetStageSettingsNum(); ++SI)
 //				{
-//					// SpawnPool ÀÇ TargetDifficulty ´Â ³·À»¼ö·Ï ½ÇÁ¦ »ç¿ë°¡´ÉÇÑ ³­ÀÌµµ°¡ ¸¹¾ÆÁø´Ù. 
-//					// ±×°É °¨¾ÈÇÏÀÚ¸é ÀÌ¹ø ¼¼ÆÃÀÇ TargetDifficulty º¸´Ù ³ôÀº ³­ÀÌµµ·Î °¡¸é¼­ Ã¼Å©ÇØº¼ ÇÊ¿ä´Â ÀÖ´Âµ¥ ±×·¸°Ô ÇÏÀÚ¸é ¿©·¯ »óÈ²À» Ã¼Å©ÇØ¾ß ÇØ¼­.. °Á ¾Æ·¡ ¸Ş½ÃÁö¸¦ º¸°­ÇÏ´Â Á¤µµ¸¸.
+//					// SpawnPool ç‹¼ TargetDifficulty ç»° æ’¤é˜‘èåºŸ è§’åŠ› è¤ä¾©å•Šç“·èŒ„ æŠ„ææ¡£å•Š è…¹é…’æŸ³ä¿ƒ. 
+//					// å¼Šå§ çš‘æ•‘çªç£Šæ æé”… æŠ€æ³¼ç‹¼ TargetDifficulty ç„Šä¿ƒ è‡­ç¯® æŠ„ææ¡£è‚º å•Šæè¾‘ çœ‰å†œç§¦æ­ é˜å¤¸ç»° ä¹ç»°å• å¼ŠçŠ¯éœ¸ çªç£Šæ å’¯çŸ¾ æƒ‘ç‚”é˜‘ çœ‰å†œç§¦å…· ç§¦è¾‘.. å‚² é…’è´° çš‹çŸ«ç˜¤ç”« ç„Šç¢çªç»° æ²¥æ¡£çˆ¶.
 //					int32 ThisSPSettingDifficultyLevel = ThisSP->GetTargetDifficultyLevelBySettingIndex(SI);
 //					if (IsStageSupported(ThisSP->GetTargetStageIdBySettingIndex(SI), ThisSPSettingDifficultyLevel) == false)
 //					{
-//						continue; // Áö¿øµÇ´Â ½ºÅ×ÀÌÁö ¼¼ÆÃ¸¸.
+//						continue; // ç˜¤ç›”ç™»ç»° èƒ¶æŠ›æç˜¤ æŠ€æ³¼çˆ¶.
 //					}
 //					
 //					if (ParsedWaveNum >= 0 && ParsedWaveNum < ThisSP->GetStageWaveNumBySettingIndex(SI))
@@ -5192,7 +5193,7 @@ void AB2StageEventDirector::PostEditChangeProperty(FPropertyChangedEvent& Proper
 //		{
 //#if !PLATFORM_MAC
 //			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-//				FString::Printf(TEXT("[Warning] Mob Event »ç¿ëÀ» À§ÇÑ Spawn Pool ¾×ÅÍ°¡ ¹ß°ßµÇÁö ¾Ê¾Ò½À´Ï´Ù."))
+//				FString::Printf(TEXT("[Warning] Mob Event è¤ä¾©é˜‘ å›°èŒ„ Spawn Pool å’€ç£å•Š æƒ¯æ–‘ç™»ç˜¤ è‡¼ç–½åš¼èªä¿ƒ."))
 //				));
 //#endif
 //		}
@@ -5200,7 +5201,7 @@ void AB2StageEventDirector::PostEditChangeProperty(FPropertyChangedEvent& Proper
 //		{
 //#if !PLATFORM_MAC
 //			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-//				FString::Printf(TEXT("[WARNING!] ¿ùµå¿¡ Á¸ÀçÇÏ´Â Monster Spawn Pool ¾×ÅÍ¿¡¼­ ÁöÁ¤ÇÑ ½ºÅ×ÀÌÁö/³­ÀÌµµ¿Í ÁöÁ¤ÇÑ %d ¹øÈ£ÀÇ Wave Setting À» Ã£À» ¼ö ¾ø½À´Ï´Ù.\n\n³­ÀÌµµÀÇ °æ¿ì SpawnPool ¿¡¼­´Â ³·Àº ³­ÀÌµµ ¼³Á¤ÀÌ ³ôÀº ³­ÀÌµµ¸¦ ´ë½ÅÇÒ ¼ö ÀÖÀ¸¹Ç·Î ½ÇÁ¦·Î´Â »ç¿ë °¡´ÉÇÒ ¼öµµ ÀÖ½À´Ï´Ù."),
+//				FString::Printf(TEXT("[WARNING!] å²¿é›ä¿Š ç²®çŠçªç»° Monster Spawn Pool å’€ç£ä¿Šè¾‘ ç˜¤æ²¥èŒ„ èƒ¶æŠ›æç˜¤/æŠ„ææ¡£å®¢ ç˜¤æ²¥èŒ„ %d é”…é¾‹ç‹¼ Wave Setting é˜‘ èŒ«é˜‘ è ç»åš¼èªä¿ƒ.\n\næŠ„ææ¡£ç‹¼ ç‰ˆå¿« SpawnPool ä¿Šè¾‘ç»° æ’¤ç¯® æŠ„ææ¡£ æ±²æ²¥æ è‡­ç¯® æŠ„ææ¡£ç”« æªè„šä¸” è ä¹æ éª¨è‚º è§’åŠ›è‚ºç»° è¤ä¾© å•Šç“·ä¸” èæ¡£ ä¹åš¼èªä¿ƒ."),
 //					ParsedWaveNum)
 //			));
 //#endif
@@ -5212,7 +5213,7 @@ void AB2StageEventDirector::PostEditChangeProperty(FPropertyChangedEvent& Proper
 //		int32 TotalCount = 0;
 //		for (int32 SI = 0; SI < ShowSettings.Num(); ++SI)
 //		{
-//			// PlayActor ±âÁØÀ¸·Î À§Ä¡¸¦ ¼¼ÆÃÇÏ´Â °Å¶ó¸é ¹°·Ğ ±× PlayActor´Â ÇÏ³ª¸¸ ÀÖ¾î¾ß°Ú±á.
+//			// PlayActor æ‰éœ–æ è‚º å›°æ‘¹ç”« æŠ€æ³¼çªç»° èŠ­æ‰¼æ æ‹±æ²¸ å¼Š PlayActorç»° çªå”±çˆ¶ ä¹ç»¢å…·æ‘†è´¬.
 //			if (ShowSettings[SI].IsOneOfAdjustToPlayActorPlacement())
 //			{
 //				++TotalCount;
@@ -5222,7 +5223,7 @@ void AB2StageEventDirector::PostEditChangeProperty(FPropertyChangedEvent& Proper
 //		{
 //#if !PLATFORM_MAC
 //			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-//				FString::Printf(TEXT("[Warning] %d °³ÀÇ AdjustToPlayActor °è¿­ ¼¼ÆÃÀÌ ¹ß°ßµÇ¾ú½À´Ï´Ù.\nÇÏ³ª¸¸ ÄÑµÎ´Â °ÍÀ» ±ÇÀåÇÕ´Ï´Ù."), TotalCount)
+//				FString::Printf(TEXT("[Warning] %d ä¿ºç‹¼ AdjustToPlayActor æ‹Œå‡¯ æŠ€æ³¼æ æƒ¯æ–‘ç™»èŒåš¼èªä¿ƒ.\nçªå”±çˆ¶ éš¾æ»´ç»° å·´é˜‘ é¼»å˜é’¦èªä¿ƒ."), TotalCount)
 //				));
 //#endif
 //		}
@@ -5249,7 +5250,7 @@ void AB2StageEventDirector::PostEditChangeProperty(FPropertyChangedEvent& Proper
 //		{
 //#if !PLATFORM_MAC
 //			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-//				FString::Printf(TEXT("[ÁÖÀÇ] MatineeFirstSkipFrames ¼³Á¤¸¸Å­ Ã¹ %d ÇÁ·¹ÀÓÀÌ ½ºÅµµË´Ï´Ù.\n\n¿¡µğÅÍ¿¡¼­ º¸´Â ¸ğ½À°ú ÃÖÁ¾ ¸±¸®Áî¿¡¼­ º¸´Â ¸ğ½À°ú´Â ´Ù¸¦ ¼öµµ ÀÖÀ¸¹Ç·Î ³Ê¹« Å« °ªÀº »ç¿ëÇÏÁö ¾Ê´Â °ÍÀÌ ÁÁ½À´Ï´Ù."), MatineeFirstSkipFrames)
+//				FString::Printf(TEXT("[æ—ç‹¼] MatineeFirstSkipFrames æ±²æ²¥çˆ¶æ€’ éœ‰ %d æ©‡é¥­çƒ™æ èƒ¶è¯ºé‚“èªä¿ƒ.\n\nä¿Šå¼ç£ä¿Šè¾‘ ç„Šç»° è‘›åš¼è‹ å¼¥è¾† å‰¯åºœä»¤ä¿Šè¾‘ ç„Šç»° è‘›åš¼è‹ç»° ä¿ƒç”« èæ¡£ ä¹æ éª¨è‚º å‘ˆå…¬ å¥´ è”¼ç¯® è¤ä¾©çªç˜¤ è‡¼ç»° å·´æ äº®åš¼èªä¿ƒ."), MatineeFirstSkipFrames)
 //				));
 //#endif
 //		}
@@ -5266,7 +5267,7 @@ void AB2StageEventDirector::PostEditChangeProperty(FPropertyChangedEvent& Proper
 //		{
 //#if !PLATFORM_MAC
 //			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-//				FString::Printf(TEXT("Clear ÀÌº¥Æ®°¡ ³ª¿Í¾ß ÇÒ »óÈ²¿¡¼­ ½ºÅµµÉ ¼ÒÁö°¡ ÀÖ´Â ManageMode ·Î ¼³Á¤ÀÌ µÇ¾ú½À´Ï´Ù."))
+//				FString::Printf(TEXT("Clear æäº¥é£˜å•Š å”±å®¢å…· ä¸” æƒ‘ç‚”ä¿Šè¾‘ èƒ¶è¯ºçª å®¶ç˜¤å•Š ä¹ç»° ManageMode è‚º æ±²æ²¥æ ç™»èŒåš¼èªä¿ƒ."))
 //				));
 //#endif
 //		}
@@ -5275,16 +5276,16 @@ void AB2StageEventDirector::PostEditChangeProperty(FPropertyChangedEvent& Proper
 //	if (PropertyName == Name_RandomMatineeGroupNum)
 //	{
 //#if !PLATFORM_MAC
-//		if(RandomMatineeGroupNum == 1) // 1 ÀÌ¸é ½ÇÁ¦·Î´Â ·£´ı µ¿ÀÛÀ» ÇÏÁö ¾Ê´Â °ÍÀÎµ¥ È¤ ·£´ı µ¿ÀÛÀ» ÀÇµµÇÏ°í ³Ö¾úÀ»Áöµµ ¸ğ¸£´Ï.
+//		if(RandomMatineeGroupNum == 1) // 1 ææ è§’åŠ›è‚ºç»° ç½šå¾… æ‚¼ç´¯é˜‘ çªç˜¤ è‡¼ç»° å·´ç‰¢å• è¶£ ç½šå¾… æ‚¼ç´¯é˜‘ ç‹¼æ¡£çªç»Š æŒèŒé˜‘ç˜¤æ¡£ è‘›ç¦èª.
 //		{
 //			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-//				FString::Printf(TEXT("RandomMatineeGroupNum 1 ¼³Á¤¿¡¼­´Â ½ÇÁ¦·Î ·£´ı ¿¬Ãâ ±â´ÉÀÌ ÀÛµ¿ÇÏÁö ¾Ê½À´Ï´Ù.\n¸¸ÀÏ ·£´ı ¿¬Ãâ ±â´ÉÀ» ÀÇµµÇß´Ù¸é 2º¸´Ù Å« °ªÀ¸·Î ¼³Á¤ÇØ ÁÖ¼¼¿ä."))
+//				FString::Printf(TEXT("RandomMatineeGroupNum 1 æ±²æ²¥ä¿Šè¾‘ç»° è§’åŠ›è‚º ç½šå¾… æ¥·å… æ‰ç“·æ ç´¯æ‚¼çªç˜¤ è‡¼åš¼èªä¿ƒ.\nçˆ¶è€ ç½šå¾… æ¥·å… æ‰ç“·é˜‘ ç‹¼æ¡£æ²ä¿ƒæ 2ç„Šä¿ƒ å¥´ è”¼æ è‚º æ±²æ²¥ç§¦ æ—æŠ€å¤¸."))
 //				));
 //		}
 //		else if (RandomMatineeGroupNum >= 2)
 //		{
 //			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-//				FString::Printf(TEXT("RandomMatineeGroupNum À» %d (À¸)·Î ¼³Á¤Çß½À´Ï´Ù.\n½ÇÁ¦ ·£´ı ¿¬Ãâ ±â´ÉÀ» À§ÇØ¼­´Â »ç¿ëÇÏ´Â Matinee ÀÇ °¢ ±×·ìµéÀ» ¿©±â¿¡ ¸ÂÃç ÀûÀıÇÑ Rand ³×ÀÌ¹ÖÀ¸·Î ¼³Á¤ÇØ¾ß ÇÕ´Ï´Ù.\nÀÚ¼¼ÇÑ »çÇ×Àº °ü·Ã ¸Å´º¾óÀ» Âü°íÇÏ¼¼¿ä."),
+//				FString::Printf(TEXT("RandomMatineeGroupNum é˜‘ %d (æ )è‚º æ±²æ²¥æ²åš¼èªä¿ƒ.\nè§’åŠ› ç½šå¾… æ¥·å… æ‰ç“·é˜‘ å›°ç§¦è¾‘ç»° è¤ä¾©çªç»° Matinee ç‹¼ é˜¿ å¼Šç¼ç”¸é˜‘ å’¯æ‰ä¿Š å˜è‹— åˆ©ä¾‹èŒ„ Rand åŒ™ææ€ªæ è‚º æ±²æ²¥ç§¦å…· é’¦èªä¿ƒ.\nç£ŠæŠ€èŒ„ è¤äº²ç¯® åŒ…è®¿ æ¦‚æ˜¥å€”é˜‘ æ›¼ç»ŠçªæŠ€å¤¸."),
 //					RandomMatineeGroupNum)
 //				));
 //		}
@@ -5304,7 +5305,7 @@ void AB2StageEventDirector::PostEditChangeProperty(FPropertyChangedEvent& Proper
 //		{
 //#if !PLATFORM_MAC
 //			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-//				FString::Printf(TEXT("LocalPlayerSwitching À» ÄÕ´Ï´Ù. Matinee Àç»ı½Ã ½ÃÀÛÇÏ´Â Ä³¸¯ÅÍ¿Í ³¡³ª´Â Ä³¸¯ÅÍ°¡ ´Ù¸¥°æ¿ì ¸¶Áö¸· ¿¬Ãâ Ä³¸¯ÅÍ·Î ·ÎÄÃÄ³¸¯ÅÍ¸¦ ½ºÀ§Äª ½ÃÅµ´Ï´Ù.\n\nÁÖÀÇ : ¿¬Ãâ¿¡ ÀÇÇØ °ÔÀÓ flow °¡ Á¦¾îµË´Ï´Ù. ±â´É °³¹ß¿¡ µû¶ó ÀÛµ¿ÇÏ´Â Á¶°ÇÀÌ³ª °ÔÀÓ¸ğµå°¡ ÇÑÁ¤µÉ ¼ö ÀÖ½À´Ï´Ù."))
+//				FString::Printf(TEXT("LocalPlayerSwitching é˜‘ æ¼èªä¿ƒ. Matinee çŠç§¯çŸ« çŸ«ç´¯çªç»° æŸè…ç£å®¢ åœºå”±ç»° æŸè…ç£å•Š ä¿ƒå¼—ç‰ˆå¿« ä»˜ç˜¤é˜œ æ¥·å… æŸè…ç£è‚º è‚ºæ‹¿æŸè…ç£ç”« èƒ¶å›°è« çŸ«è¯ºèªä¿ƒ.\n\næ—ç‹¼ : æ¥·å…ä¿Š ç‹¼ç§¦ éœ¸çƒ™ flow å•Š åŠ›ç»¢é‚“èªä¿ƒ. æ‰ç“· ä¿ºæƒ¯ä¿Š è¶æ‰¼ ç´¯æ‚¼çªç»° ç‚¼æ‰’æå”± éœ¸çƒ™è‘›é›å•Š èŒ„æ²¥çª è ä¹åš¼èªä¿ƒ."))
 //			));
 //#endif
 //		}
@@ -5313,16 +5314,16 @@ void AB2StageEventDirector::PostEditChangeProperty(FPropertyChangedEvent& Proper
 //	CheckAndWarnForLightSetup();
 //
 //	//if (
-//	//	PropertyName == Name_OverallMode || PropertyName == Name_ShowSettings || // ShowSettings Ãß°¡½Ã¿¡µµ ÀÛµ¿ÇÏµµ·Ï
+//	//	PropertyName == Name_OverallMode || PropertyName == Name_ShowSettings || // ShowSettings çœ å•ŠçŸ«ä¿Šæ¡£ ç´¯æ‚¼çªæ¡£åºŸ
 //	//	PropertyName == Name_bOverallMode_ExportedCamera || PropertyName == Name_bOverallMode_ControlledMatinee ||
 //	//	PropertyName == Name_bOverallMode_ManualCamera || PropertyName == Name_bOverallMode_ExportedOrManualCamera
 //	//	) 
-//	// °Á ¾ğÁ¦³ª ÀÛµ¿ÇÏµµ·Ï ÇØ¾ß ÇÒ µí.
+//	// å‚² æ”«åŠ›å”± ç´¯æ‚¼çªæ¡£åºŸ ç§¦å…· ä¸” æ·€.
 //	{
 //		SetEditConditionProperties();
 //	}
 
-	// ÇöÀç »óÈ²À¸·Î´Â ÇÁ¸®ºä ÄÄÆ÷³ÍÆ®ÀÇ À§Ä¡°ªÀ» ¼Ó¼ºÃ¢¿¡¼­ º¯°æÇØ¼­ ¿À´Â notify °¡ ¾øÀ¸¹Ç·Î ¿©±â¼­ Sync ´Â ¸øÇÏ°í Refresh ¸¸..
+	// æ³…çŠ æƒ‘ç‚”æ è‚ºç»° æ©‡åºœè½° å“ªå™¨æƒ©é£˜ç‹¼ å›°æ‘¹è”¼é˜‘ åŠ å·±èŠ’ä¿Šè¾‘ å‡½ç‰ˆç§¦è¾‘ å·ç»° notify å•Š ç»æ éª¨è‚º å’¯æ‰è¾‘ Sync ç»° ç»™çªç»Š Refresh çˆ¶..
 	RefreshPreviewSKComps();
 }
 
@@ -5333,7 +5334,7 @@ void AB2StageEventDirector::SetEditConditionProperties()
 	bOverallMode_ManualCamera = false;
 	bOverallMode_ExportedOrManualCamera = false;
 
-	// OverallMode ¼±ÅÃ¿¡ µû¶ó ³ª¸ÓÁö´Â ÀÏ°ıÀûÀ¸·Î
+	// OverallMode æ€¥ç¶ä¿Š è¶æ‰¼ å”±èµ£ç˜¤ç»° è€è¤’åˆ©æ è‚º
 	switch (OverallMode)
 	{
 	case EStageEventDirectorOverallMode::ESEDOM_ExportedCamera:
@@ -5378,7 +5379,7 @@ void AB2StageEventDirector::SetEditConditionProperties()
 		CurrSetting.bUsePlayActorIndex = (CurrSetting.IsTeamPlayActorType() || CurrSetting.IsRaidPlayActorType());
 	}
 
-	// ÀÌ°Íµµ ¿©±â ³¢¿ö³Ö±á.
+	// æå·´æ¡£ å’¯æ‰ å°å†µæŒè´¬.
 	bDirectingEvent_MobEvent = ((DirectingEvent == EStageEvent::ESEV_MobAppear) || (DirectingEvent == EStageEvent::ESEV_MobDying));
 	bDirectingEvent_MobDying = (DirectingEvent == EStageEvent::ESEV_MobDying);
 	bDirectingEvent_MobPhase = (DirectingEvent == EStageEvent::ESEV_MobPhase);
@@ -5395,9 +5396,9 @@ void AB2StageEventDirector::PostEditMove(bool bFinished)
 
 	if (bFinished)
 	{
-		// Preview ÄÄÆ÷³ÍÆ®¸¦ ÀÌµ¿½ÃÄ×À» ¼ö ÀÖÀ¸´Ï À§Ä¡ºÎÅÍ ½ÌÅ©
+		// Preview å“ªå™¨æƒ©é£˜ç”« ææ‚¼çŸ«æ·–é˜‘ è ä¹æ èª å›°æ‘¹ä½•ç£ æ•™å†œ
 		SyncFromPreviewSKCompPlacement();
-		// ¿©±â¼­´Â RegenerateSKComp ¸¦ ÇÏÁö ¾Ê´Â´Ù. PostEditMove »óÈ²¿¡¼­´Â µüÈ÷ regenerate ¸¦ ÇÒ ÇÊ¿äµµ ¾ø°í, ¹«¾ùº¸´Ù ¸Å ÀÌµ¿½Ã¸¶´Ù ¼±ÅÃ Æ÷Ä¿½º¸¦ ÀÒ¾î¹ö¸®¸é ºÒÆíÇÏ±â ¶§¹®.
+		// å’¯æ‰è¾‘ç»° RegenerateSKComp ç”« çªç˜¤ è‡¼ç»°ä¿ƒ. PostEditMove æƒ‘ç‚”ä¿Šè¾‘ç»° è¿­æ´’ regenerate ç”« ä¸” é˜å¤¸æ¡£ ç»ç»Š, å…¬å‡ç„Šä¿ƒ æ¦‚ ææ‚¼çŸ«ä»˜ä¿ƒ æ€¥ç¶ å™¨ç›®èƒ¶ç”« é…ªç»¢æ»šåºœæ é˜‚ç¥ˆçªæ‰ é”­å·©.
 		RefreshPreviewSKComps(false);
 	}
 }
@@ -5422,12 +5423,12 @@ void AB2StageEventDirector::CheckAndWarnForLightSetup()
 //				pLight->GetLightComponent()->bAffectsWorld)
 //			{
 //				UInterpGroup* GroupOfThisInfo = GetInterpGroupOfObjectName(ThisGAI.ObjectName);
-//				// ½ÇÁúÀûÀ¸·Î Light ¸¦ µî·ÏÇÑ InterpGroup Àº ºÎ¸ğ Folder Group ³×ÀÌ¹ÖÀ¸·Î On/Off ¸¦ ÇÑ´Ù.
+//				// è§’é¾™åˆ©æ è‚º Light ç”« æ®¿åºŸèŒ„ InterpGroup ç¯® ä½•è‘› Folder Group åŒ™ææ€ªæ è‚º On/Off ç”« èŒ„ä¿ƒ.
 //				UInterpGroup* ParentFolderGroup = FindParentGroupFolder(GroupOfThisInfo, MatineeActor);
 //
 //				if (ParentFolderGroup && IsPossibleInterpGroupNameForPC(ParentFolderGroup->GroupName.ToString()))
 //				{
-//					++LightCount_PossibleManagedGroup; // ÀÌ°É·Î ´õÇØÁø °Íµé Áß¿¡´Â ¾Æ¸¶ ´Ü ÇÏ³ª¸¸ ÄÑÁú °ÍÀ¸·Î ¿¹»ó..
+//					++LightCount_PossibleManagedGroup; // æå§è‚º æ­¹ç§¦æŸ³ å·´ç”¸ åä¿Šç»° é…’ä»˜ çªœ çªå”±çˆ¶ éš¾é¾™ å·´æ è‚º æŠ—æƒ‘..
 //				}
 //				else
 //				{
@@ -5437,24 +5438,24 @@ void AB2StageEventDirector::CheckAndWarnForLightSetup()
 //		}
 //	}
 //	const int32 TotalLightCount = LightCount_NoneManagedGroup + LightCount_PossibleManagedGroup;
-//	// LightCount_PossibleManagedGroup µµ ¼¼ÆÃ¿¡ µû¶ó¼­ ¾û¶×ÇÏ°Ô ¼¼ÆÃµÇ¸é µÑ ÀÌ»ó ÄÑÁú ¼ö ÀÖ´Âµ¥.. ±×°Í±îÁö´Â ´õ ÀÌ»ó ¸øÇÏ°Ú°í..
+//	// LightCount_PossibleManagedGroup æ¡£ æŠ€æ³¼ä¿Š è¶æ‰¼è¾‘ é’§è¹²çªéœ¸ æŠ€æ³¼ç™»æ ç¬› ææƒ‘ éš¾é¾™ è ä¹ç»°å•.. å¼Šå·´é³–ç˜¤ç»° æ­¹ ææƒ‘ ç»™çªæ‘†ç»Š..
 //	const int32 TotalLightCount_TurnOnTogether = (LightCount_NoneManagedGroup + (LightCount_PossibleManagedGroup > 0 ? 1 : 0));
 //
 //	if (TotalLightCount > AllowedMatineeTrackPointLightNum)
 //	{
 //		if (TotalLightCount_TurnOnTogether > AllowedMatineeTrackPointLightNum)
 //		{
-//			// ½ÇÁ¦·Î ¹®Á¦°¡ µÉ¸¸ÇÑ »óÈ².
+//			// è§’åŠ›è‚º å·©åŠ›å•Š çªçˆ¶èŒ„ æƒ‘ç‚”.
 //#if !PLATFORM_MAC
 //			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
 //				FString::Printf(
-//					TEXT("%s ¿¡¼­ Á¦¾îÇÏ´Â PointLight °¡ ¸ğ¹ÙÀÏ ·»´õ¸µÀÇ ÀüÃ¼ Á¦ÇÑÀ» ³Ñ±æ °ÍÀ¸·Î ¿¹»óµË´Ï´Ù. ´ÙÀ½ ¼³Á¤µéÀ» È®ÀÎÇØ ÁÖ¼¼¿ä.\r\n\r\n")
+//					TEXT("%s ä¿Šè¾‘ åŠ›ç»¢çªç»° PointLight å•Š è‘›å®˜è€ åŠæ­¹å‚…ç‹¼ å‚ˆçœ‰ åŠ›èŒ„é˜‘ é€è¾¨ å·´æ è‚º æŠ—æƒ‘é‚“èªä¿ƒ. ä¿ƒæ¾œ æ±²æ²¥ç”¸é˜‘ çŠ¬ç‰¢ç§¦ æ—æŠ€å¤¸.\r\n\r\n")
 //					TEXT("1. HidePlayerPointLight : %d %s\r\n")
 //					TEXT("2. AllowOtherPlayerPointLight : %d\r\n")
-//					TEXT("3. Matinee ¿¡ µî·ÏÇÑ PointLight Æ®·¢ÀÌ ÀÇµµ´ë·Î Á¦¾îµÇ´ÂÁö È®ÀÎÇØ ÁÖ¼¼¿ä.\r\n")
-//					TEXT("  - ¼±º°Àû On/Off Á¦¾î°¡ µÇ´Â ±×·ì¿¡ µî·ÏµÈ PointLight °³¼ö  : %d\r\n")
-//					TEXT("  - ¼±º°Àû On/Off Á¦¾î°¡ ¾È µÇ´Â ±×·ì¿¡ µî·ÏµÈ PointLight °³¼ö : %d"),
-//					*GetName(), bHidePlayerPointLight, (bHidePlayerPointLight ? TEXT("") : TEXT("(Æ¯È÷ ÀÌ °ªÀÌ 0 ÀÌ¸é¼­ ÀÌ °æ°í°¡ ¶ß¸é À§ÇèÇÕ´Ï´Ù)")), 
+//					TEXT("3. Matinee ä¿Š æ®¿åºŸèŒ„ PointLight é£˜å‘æ ç‹¼æ¡£æªè‚º åŠ›ç»¢ç™»ç»°ç˜¤ çŠ¬ç‰¢ç§¦ æ—æŠ€å¤¸.\r\n")
+//					TEXT("  - æ€¥å–Šåˆ© On/Off åŠ›ç»¢å•Š ç™»ç»° å¼Šç¼ä¿Š æ®¿åºŸç­‰ PointLight ä¿ºè  : %d\r\n")
+//					TEXT("  - æ€¥å–Šåˆ© On/Off åŠ›ç»¢å•Š æ•‘ ç™»ç»° å¼Šç¼ä¿Š æ®¿åºŸç­‰ PointLight ä¿ºè : %d"),
+//					*GetName(), bHidePlayerPointLight, (bHidePlayerPointLight ? TEXT("") : TEXT("(æ¼‚æ´’ æ è”¼æ 0 ææè¾‘ æ ç‰ˆç»Šå•Š å“†æ å›°æ°°é’¦èªä¿ƒ)")), 
 //					bAllowOtherPlayerPointLight, LightCount_PossibleManagedGroup, LightCount_NoneManagedGroup)
 //			));
 //#endif
@@ -5464,7 +5465,7 @@ void AB2StageEventDirector::CheckAndWarnForLightSetup()
 //
 //UInterpGroup* AB2StageEventDirector::GetInterpGroupOfObjectName(FName InFindGroupObjectName)
 //{
-//	// FInterpGroupActorInfo ÀÇ ObjectName À» °¡Áö°í Ã£°íÀÚ ÇÏ´Â °Å.
+//	// FInterpGroupActorInfo ç‹¼ ObjectName é˜‘ å•Šç˜¤ç»Š èŒ«ç»Šç£Š çªç»° èŠ­.
 //	if (MatineeActor && MatineeActor->MatineeData)
 //	{
 //		for (UInterpGroup* ThisGroup : MatineeActor->MatineeData->InterpGroups)
@@ -5484,8 +5485,8 @@ void AB2StageEventDirector::CheckAndWarnForComponentTriggerSetup(UWorld* InWorld
 //		return;
 //	}
 //
-//	// Æ¯È÷ ÀÚÁÖ ½Ç¼öÇØ¼­ ¹ö±×¸¦ ¾ß±âÇÏ´Â ¼³Á¤ÀÌ¶ó Æ¯º°È÷.. ÀüÃ¼ StageEventDirector µ¹¸é¼­ ¹®Á¦ ¼³Á¤ ¸ğ¾Æ¼­ °æ°í ¶ç¿ò.
-//	// ¸÷ÀÌ µîÀåÇØµµ ComponentTrigger ·Î »ç¿ë °¡´ÉÇÑ °æ¿ì°¡ ÀÖ±ä ÇÒ²«µ¥ ±×°Íº¸´Ü ½Ç¼ö°¡ ³Ñ ¸¹³×..
+//	// æ¼‚æ´’ ç£Šæ— è§’èç§¦è¾‘ æ»šå¼Šç”« å…·æ‰çªç»° æ±²æ²¥ææ‰¼ æ¼‚å–Šæ´’.. å‚ˆçœ‰ StageEventDirector å€’æè¾‘ å·©åŠ› æ±²æ²¥ è‘›é…’è¾‘ ç‰ˆç»Š å‰æ¡†.
+//	// å„æ æ®¿å˜ç§¦æ¡£ ComponentTrigger è‚º è¤ä¾© å•Šç“·èŒ„ ç‰ˆå¿«å•Š ä¹å˜ ä¸”æå• å¼Šå·´ç„Šçªœ è§’èå•Š é€ è…¹åŒ™..
 //	
 //	TArray<AB2StageEventDirector*> FoundProblematicSED;
 //
@@ -5514,7 +5515,7 @@ void AB2StageEventDirector::CheckAndWarnForComponentTriggerSetup(UWorld* InWorld
 //	if (FoundProblematicSED.Num() > 0)
 //	{
 //#if !PLATFORM_MAC
-//		//FString WarnMsg = TEXT("Wave ¸÷ÀÌ µîÀåÇÏ´Â ´ÙÀ½ StageEventDirector ¾×ÅÍµé¿¡ ComponentTrigger ½ÃÀÛ ¼³Á¤ÀÌ µÇ¾î ÀÖ½À´Ï´Ù. ÀÌ·± ¼³Á¤Àº ºó¹øÇÏ°Ô °Ş´Â ½ºÅ×ÀÌÁö ¿¬Ãâ ÁøÇà ¹ö±×¸¦ ¾ß±âÇÕ´Ï´Ù. ¿¬Ãâ ½ÃÀÛ À§Ä¡´Â ±âÈ¹ÀÚ¿ÍÀÇ ÇùÀÇ ÇÏ¿¡ SpawnPool À» ÅëÇØ Á¦¾îÇÏ°Å³ª PCSyncToMatineeStart ±â´ÉÀ» È°¿ëÇÏ¼¼¿ä.\r\n\r\n");
+//		//FString WarnMsg = TEXT("Wave å„æ æ®¿å˜çªç»° ä¿ƒæ¾œ StageEventDirector å’€ç£ç”¸ä¿Š ComponentTrigger çŸ«ç´¯ æ±²æ²¥æ ç™»ç»¢ ä¹åš¼èªä¿ƒ. æç¹ æ±²æ²¥ç¯® åé”…çªéœ¸ ç¨—ç»° èƒ¶æŠ›æç˜¤ æ¥·å… æŸ³é’ æ»šå¼Šç”« å…·æ‰é’¦èªä¿ƒ. æ¥·å… çŸ«ç´¯ å›°æ‘¹ç»° æ‰è£™ç£Šå®¢ç‹¼ è›†ç‹¼ çªä¿Š SpawnPool é˜‘ çƒ¹ç§¦ åŠ›ç»¢çªèŠ­å”± PCSyncToMatineeStart æ‰ç“·é˜‘ åŠä¾©çªæŠ€å¤¸.\r\n\r\n");
 //		FString WarnMsg = TEXT("Wave");
 //		
 //		for (int32 SI = 0; SI < FoundProblematicSED.Num(); ++SI)

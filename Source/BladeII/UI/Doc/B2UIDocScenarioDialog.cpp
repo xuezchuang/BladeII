@@ -27,6 +27,6 @@ void UB2UIDocScenarioDialog::Init()
 }
 
 void UB2UIDocScenarioDialog::ReleaseResources()
-{ // ·¹º§ ¾ğ·Îµù ½ÃÁ¡¿¡ »ç¿ëÇÒ ÀÇµµ.
+{ // é¥­éª‡ æ”«è‚ºçˆ¹ çŸ«ç—¢ä¿Š è¤ä¾©ä¸” ç‹¼æ¡£.
 	SpeakerPortrait = NULL;
 }

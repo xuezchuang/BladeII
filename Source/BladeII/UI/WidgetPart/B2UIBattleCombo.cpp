@@ -1,4 +1,4 @@
-#include "B2UIBattleCombo.h"
+ï»¿#include "B2UIBattleCombo.h"
 #include "B2UIManager.h"
 #include "B2UIDocHelper.h"
 #include "B2UIDocBattle.h"
@@ -57,7 +57,7 @@ void UB2UIBattleCombo::BindDoc(UB2UIDocBattle* BattleDoc)
 
 	BattleDoc->OnComboNumChanged.AddUObject(this, &UB2UIBattleCombo::OnChangedComboNum);
 	BattleDoc->OnComboExpireProgressChanged.AddUObject(this, &UB2UIBattleCombo::OnChangedComboExpireProgress);
-	BattleDoc->OnCriticalRateByComboNumChanged.AddUObject(this, &UB2UIBattleCombo::OnChangedCriticalRateByComboNum); // OnChangedComboNum ÀÌ¶û »ç½Ç»ó ¸¶Âù°¡ÁöÀÎµ¥ ±×°Å¶û °°ÀÌ ¾²·Á¸é UI Doc ¾÷µ¥ÀÌÆ® ¼ø¼­¸¦ ½Å°æ½áÁà¾ß ÇØ¼­ µû·Î °¨
+	BattleDoc->OnCriticalRateByComboNumChanged.AddUObject(this, &UB2UIBattleCombo::OnChangedCriticalRateByComboNum); // OnChangedComboNum æå°” è¤è§’æƒ‘ ä»˜è›®å•Šç˜¤ç‰¢å• å¼ŠèŠ­å°” éæ é™å¦¨æ UI Doc è¯€å•æé£˜ é‰´è¾‘ç”« è„šç‰ˆç»“æ‹å…· ç§¦è¾‘ è¶è‚º çš‘
 
 	BattleDoc->OnIncCounterDamageComboChanged.AddUObject(this, &UB2UIBattleCombo::OnChangedIncCounterDamageCombo);
 }
@@ -72,7 +72,7 @@ void UB2UIBattleCombo::BindDoc(UB2UIDocPVP1on1Rival* BattleDoc)
 	
 	BattleDoc->OnComboNumChanged.AddUObject(this, &UB2UIBattleCombo::OnChangedComboNum);
 	BattleDoc->OnComboExpireProgressChanged.AddUObject(this, &UB2UIBattleCombo::OnChangedComboExpireProgress);
-	BattleDoc->OnCriticalRateByComboNumChanged.AddUObject(this, &UB2UIBattleCombo::OnChangedCriticalRateByComboNum); // OnChangedComboNum ÀÌ¶û »ç½Ç»ó ¸¶Âù°¡ÁöÀÎµ¥ ±×°Å¶û °°ÀÌ ¾²·Á¸é UI Doc ¾÷µ¥ÀÌÆ® ¼ø¼­¸¦ ½Å°æ½áÁà¾ß ÇØ¼­ µû·Î °¨
+	BattleDoc->OnCriticalRateByComboNumChanged.AddUObject(this, &UB2UIBattleCombo::OnChangedCriticalRateByComboNum); // OnChangedComboNum æå°” è¤è§’æƒ‘ ä»˜è›®å•Šç˜¤ç‰¢å• å¼ŠèŠ­å°” éæ é™å¦¨æ UI Doc è¯€å•æé£˜ é‰´è¾‘ç”« è„šç‰ˆç»“æ‹å…· ç§¦è¾‘ è¶è‚º çš‘
 }
 
 
@@ -111,9 +111,9 @@ void UB2UIBattleCombo::SetCombo(int32 SuccessiveComboNum)
 	const int32 ComboNumSubtractMinLevel = SuccessiveComboNum - ComboPraiseTextMinLevel;
 	if (ComboNumSubtractMinLevel >= 0 && SuccessiveComboNum <= ComboPraiseTextMaxLevel)
 	{
-		// Çö ±¸°£¿¡¼­ ¾î¶² ¹®±¸¸¦ º¸¿©ÁÙÁö¿¡ ´ëÇÑ ÀÎµ¦½º
+		// æ³… å¤‡åŸƒä¿Šè¾‘ ç»¢æ« å·©å¤‡ç”« ç„Šå’¯ä¸´ç˜¤ä¿Š æªèŒ„ ç‰¢éƒ¸èƒ¶
 		const int32 PraiseTextIndex = ComboNumSubtractMinLevel / ComboPraiseTextSwitchInterval;
-		// ¹®±¸°¡ ¹Ù²ğ Å¸ÀÌ¹ÖÀÎÁö ¿©ºÎ.
+		// å·©å¤‡å•Š å®˜æ‹† é¸¥ææ€ªç‰¢ç˜¤ å’¯ä½•.
 		const bool bTimeToSwitch = ((ComboNumSubtractMinLevel % ComboPraiseTextSwitchInterval) == 0);
 
 		if (WS_ComboPraiseTextImage.IsValid())
@@ -123,12 +123,12 @@ void UB2UIBattleCombo::SetCombo(int32 SuccessiveComboNum)
 
 		if (bTimeToSwitch)
 		{
-			// ÀÌ ½ÃÁ¡ºÎÅÍ ÀÏÁ¤ ½Ã°£µ¿¾È º¸ÀÌµµ·Ï.
+			// æ çŸ«ç—¢ä½•ç£ è€æ²¥ çŸ«åŸƒæ‚¼æ•‘ ç„Šææ¡£åºŸ.
 			APlayerController* OwningPC = GetOwningPlayer();
 			if (OwningPC)
 			{
 				bComboPraiseTextVisibility = true;
-				// ÀÌÀü ±¸°£ ½ÃÀÛ ½Ã ¼³Ä¡ÇÑ Å¸ÀÌ¸Ó°¡ ¾ÆÁ÷ ¹ßµ¿ÇÏÁö ¾ÊÀº »óÅÂ¿¡¼­ ´Ù½Ã µé¾î¿Ã ¼ö ÀÖÀ¸´Ï ÀÌÀü °Ç ÀÏ´Ü ²ö´Ù.
+				// æå‚ˆ å¤‡åŸƒ çŸ«ç´¯ çŸ« æ±²æ‘¹èŒ„ é¸¥æèµ£å•Š é…’æµ æƒ¯æ‚¼çªç˜¤ è‡¼ç¯® æƒ‘æ€•ä¿Šè¾‘ ä¿ƒçŸ« ç”¸ç»¢æ£µ è ä¹æ èª æå‚ˆ æ‰’ è€çªœ é¦‹ä¿ƒ.
 				OwningPC->GetWorldTimerManager().ClearTimer(ComboPraiseTextShowTimerHandle);
 				OwningPC->GetWorldTimerManager().SetTimer(ComboPraiseTextShowTimerHandle, this, &UB2UIBattleCombo::ComboPraiseTextShowTimerCB, ComboPraiseTextShowDuration, false);
 
@@ -137,7 +137,7 @@ void UB2UIBattleCombo::SetCombo(int32 SuccessiveComboNum)
 		}
 	}
 
-	// WidgetBP ÂÊ¿¡µµ.
+	// WidgetBP ç‡ä¿Šæ¡£.
 	SetCombo_BP(SuccessiveComboNum, bIsCounterGameMode);
 }
 
@@ -176,11 +176,11 @@ void UB2UIBattleCombo::OnChangedCriticalRateByComboNum(class UB2UIDocBase* Sende
 {
 	if (TB_AddCriticalRateByCombo.IsValid())
 	{
-		int32 CastedRate = (int32)(NewAdditionalRate * 100.0f); // Int % ·Î È¯»êÇÑ °ª
+		int32 CastedRate = (int32)(NewAdditionalRate * 100.0f); // Int % è‚º åˆ¸é­‚èŒ„ è”¼
 		if (CastedRate > 0)
 		{
 			TB_AddCriticalRateByCombo->SetText(FText::Format(
-				// InGameHUD_CriticalRateIncByCombo ¿¡ ÇØ´çÇÏ´Â ¹®ÀÚ¿­¿¡ {0} Æ÷ÇÔ.
+				// InGameHUD_CriticalRateIncByCombo ä¿Š ç§¦å¯¸çªç»° å·©ç£Šå‡¯ä¿Š {0} å™¨çªƒ.
 				BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("InGameHUD_CriticalRateIncByCombo"))), FText::AsNumber(CastedRate)
 				));
 
@@ -195,14 +195,14 @@ void UB2UIBattleCombo::OnChangedCriticalRateByComboNum(class UB2UIDocBase* Sende
 
 void UB2UIBattleCombo::OnChangedIncCounterDamageCombo(class UB2UIDocBase* Sender, float NewIncCounterDamageCombo, float PrevIncCounterDamageCombo)
 {
-	//CriticalRateByComboNum°ú °°Àº Text widgetÀ» »ç¿ëÇÑ´Ù.
+	//CriticalRateByComboNumè‹ éç¯® Text widgeté˜‘ è¤ä¾©èŒ„ä¿ƒ.
 	if (TB_AddCriticalRateByCombo.IsValid())
 	{
-		int32 CastedRate = (int32)(NewIncCounterDamageCombo * 100.0f); // Int % ·Î È¯»êÇÑ °ª
+		int32 CastedRate = (int32)(NewIncCounterDamageCombo * 100.0f); // Int % è‚º åˆ¸é­‚èŒ„ è”¼
 		if (CastedRate > 0)
 		{
 			TB_AddCriticalRateByCombo->SetText(FText::Format(
-				// InGameHUD_CriticalRateIncByCombo ¿¡ ÇØ´çÇÏ´Â ¹®ÀÚ¿­¿¡ {0} Æ÷ÇÔ.
+				// InGameHUD_CriticalRateIncByCombo ä¿Š ç§¦å¯¸çªç»° å·©ç£Šå‡¯ä¿Š {0} å™¨çªƒ.
 				BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("InGameHUD_CounterDamageIncByCombo"))), FText::AsNumber(CastedRate)
 				));
 

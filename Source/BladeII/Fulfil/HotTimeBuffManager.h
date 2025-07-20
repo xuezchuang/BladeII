@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 //#include "BladeII.h"
@@ -7,6 +7,7 @@
 #include "B2UIEnum.h"
 #include "EventSubsystem.h"
 #include "Misc/ScopeLock.h"
+#include "../DataStore/B2ClientDataStore.h"
 
 /**
  * 
@@ -92,17 +93,17 @@ public:
 	FORCEINLINE const bool HasProductData() const { return HaveEventData; }
 
 private:
-	//2½Ã°£ -> 1½Ã°£
+	//2çŸ«åŸƒ -> 1çŸ«åŸƒ
 	const int32 REFRESH_TIME = 60 * 60 * 1;
 
 	bool HaveEventData;
 	bool HaveProductData;
 
-	//¿øµ¥ÀÌÅÍ
+	//ç›”å•æç£
 	TArray<FEventInfo> HotTimeEventInfos;
 	TArray<FHotTimeProductBuffInfo> HotTimeProductBuffInfo;
 	
-	//°¡°øµ¥ÀÌÅÍ
+	//å•Šå‚å•æç£
 	TMap<int32, TArray<FHotTimeEventDetailInfo>> HotTimeEventDetailInfoMap;
 
 	FTimerHandle RefreshHotTimeHandler;

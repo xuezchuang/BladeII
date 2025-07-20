@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2ActiveCameraActor.h"
 //#include "BladeII.h"
 #if WITH_EDITOR
@@ -52,7 +52,7 @@ AB2ActiveCameraActor::AB2ActiveCameraActor(const FObjectInitializer& ObjectIniti
 			FName ID_B2ActiveCameraActor;
 			FText NAME_B2ActiveCameraActor;
 			FConstructorStatics()
-				: SpriteTexture(TEXT("/Engine/EditorResources/S_SceneCaptureIcon")) // µü Ä«¸Ş¶ó ¸ğ¾ç ¾ÆÀÌÄÜÀÌ ÀÖ±º.
+				: SpriteTexture(TEXT("/Engine/EditorResources/S_SceneCaptureIcon")) // è¿­ å¢¨çš‹æ‰¼ è‘›å‰§ é…’æèƒ½æ ä¹ç„™.
 				, ID_B2ActiveCameraActor(TEXT("B2ActiveCameraActor"))
 				, NAME_B2ActiveCameraActor(FText::FromString(TEXT("B2ActiveCameraActorEditorSprite")))
 			{
@@ -72,7 +72,7 @@ AB2ActiveCameraActor::AB2ActiveCameraActor(const FObjectInitializer& ObjectIniti
 	CameraMovementMode = EActiveCameraMovementMode::EACMM_FollowPlayer;
 	CameraTargetingMode = EActiveCameraTargetingMode::EACTM_Player;
 
-	// »ó´Ü¿¡ CameraMovementMode ¶û CameraTargetingMode ¼³Á¤ ¹× SetEditConditionProperties µû¶ó ÀûÀıÇÏ°Ô
+	// æƒ‘çªœä¿Š CameraMovementMode å°” CameraTargetingMode æ±²æ²¥ æ£º SetEditConditionProperties è¶æ‰¼ åˆ©ä¾‹çªéœ¸
 	bDualCameraBlending_Inverse = true;
 	bCameraMovementMode_ScaledFollowingPlayer = false;
 	bCameraTargetingMode_Mob = false;
@@ -145,7 +145,7 @@ void AB2ActiveCameraActor::PostLoad()
 	{
 #if !PLATFORM_MAC
 		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-			FString::Printf(TEXT("[°æ°í] ActiveCameraActor %s ¿¡ DualCameraBlending ÀÌ ¼³Á¤µÇ¾úÀ¸³ª ÀÌ¸¦ À§ÇÑ Ãß°¡ Ä«¸Ş¶ó ÄÄÆ÷³ÍÆ®°¡ Á¦´ë·Î ¼³Ä¡ È¤Àº ¼³Á¤µÇ¾î ÀÖÁö ¾Ê½À´Ï´Ù."), *GetName())
+			FString::Printf(TEXT("[ç‰ˆç»Š] ActiveCameraActor %s ä¿Š DualCameraBlending æ æ±²æ²¥ç™»èŒæ å”± æç”« å›°èŒ„ çœ å•Š å¢¨çš‹æ‰¼ å“ªå™¨æƒ©é£˜å•Š åŠ›æªè‚º æ±²æ‘¹ è¶£ç¯® æ±²æ²¥ç™»ç»¢ ä¹ç˜¤ è‡¼åš¼èªä¿ƒ."), *GetName())
 			));
 #endif
 	}
@@ -170,7 +170,7 @@ void AB2ActiveCameraActor::PreSave(FObjectPreSaveContext SaveContext)
 #if WITH_EDITOR && WITH_EDITORONLY_DATA
 	if (GIsEditor && GIsPlayInEditorWorld == false)
 	{
-		SyncFromEditingCompPlacement(); // ÇÁ¸®ºä ÄÄÆ÷³ÍÆ®·Î ÆíÁıÇÑ À§Ä¡ ½ÌÅ©
+		SyncFromEditingCompPlacement(); // æ©‡åºœè½° å“ªå™¨æƒ©é£˜è‚º ç¥ˆç¬¼èŒ„ å›°æ‘¹ æ•™å†œ
 	}
 #endif
 }
@@ -179,7 +179,7 @@ void AB2ActiveCameraActor::BeginDestroy()
 {
 	Super::BeginDestroy();
 
-	RemoveComponentOverlapCallback(); // ²À ÇÒ ÇÊ¿ä°¡ ÀÖ³ª..?
+	RemoveComponentOverlapCallback(); // æ€– ä¸” é˜å¤¸å•Š ä¹å”±..?
 
 #if WITH_EDITOR
 	// Need to manually destroy them..?
@@ -193,7 +193,7 @@ void AB2ActiveCameraActor::BeginPlay()
 	Super::BeginPlay();
 	
 	check(ActiveCameraSpringArm && ActiveCameraComp);
-	// ¿¡µğÅÍ¿¡¼­ ¹èÄ¡ÇÑ ±âÁØ À§Ä¡·Î¼­.. Fixed ³ª ScaledFollowPlayer ¿¡¼­ »ç¿ë.
+	// ä¿Šå¼ç£ä¿Šè¾‘ ç¡…æ‘¹èŒ„ æ‰éœ– å›°æ‘¹è‚ºè¾‘.. Fixed å”± ScaledFollowPlayer ä¿Šè¾‘ è¤ä¾©.
 	InitialActiveCameraSpringArmTransform = ActiveCameraSpringArm->GetComponentTransform();
 
 	RegisterComponentOverlapCallback();
@@ -204,7 +204,7 @@ void AB2ActiveCameraActor::BeginPlay()
 	if (TriggerMode == EActiveCameraTriggerMode::EACTRG_BeginStage)
 		ForceBeginActiveCamera();
 	else
-		// ½ÃÀÛºÎÅÍ ÇÃ·¹ÀÌ¾î¿Í Á¢ÃËÇÑ °æ¿ì ¹Ù·Î ½ÃÀÛ. ÀÌ ÀÌÈÄ¿¡ ABladeIIWorldSettings::BeginPlay °¡ ºÒ¸°´Ù¸é ApplyDefaultPlayerCameraSetting ¸¦ ÇÏÁö ¾ÊÀ» °Í.
+		// çŸ«ç´¯ä½•ç£ æ•²é¥­æç»¢å®¢ ç«‹ç›ŸèŒ„ ç‰ˆå¿« å®˜è‚º çŸ«ç´¯. æ æé¥¶ä¿Š ABladeIIWorldSettings::BeginPlay å•Š é˜‚èµ´ä¿ƒæ ApplyDefaultPlayerCameraSetting ç”« çªç˜¤ è‡¼é˜‘ å·´.
 		ManualTestBeginActiveCamera();
 }
 
@@ -224,7 +224,7 @@ void AB2ActiveCameraActor::CalcCamera(float DeltaTime, struct FMinimalViewInfo& 
 {
 	if (bDualCameraBlending)
 	{		
-		// °íÁ¤ Ä«¸Ş¶ó ÀÌ¿ë
+		// ç»Šæ²¥ å¢¨çš‹æ‰¼ æä¾©
 		if (CameraMovementMode == EActiveCameraMovementMode::EACMM_Fixed)
 		{
 			UCameraComponent* CamA = ActiveCameraComp;
@@ -236,19 +236,19 @@ void AB2ActiveCameraActor::CalcCamera(float DeltaTime, struct FMinimalViewInfo& 
 			}
 			else
 			{
-				// DualCameraBlending ÀÇ ½ÇÁúÀûÀÎ ±â´É.
+				// DualCameraBlending ç‹¼ è§’é¾™åˆ©ç‰¢ æ‰ç“·.
 
 				FMinimalViewInfo ViewInfoA;
 				CamA->GetCameraView(DeltaTime, ViewInfoA);
 				FMinimalViewInfo ViewInfoB;
 				CamB->GetCameraView(DeltaTime, ViewInfoB);
 
-				const float BlendWeight = GetDualCameraBlendingWeight(); // B ·ÎÀÇ weight °¡ µÇ°Ú´Ù.
-				// OutResult ¿¡´Â ViewInfoA ¿Í ViewInfoB ¸¦ ¼¯À½.
+				const float BlendWeight = GetDualCameraBlendingWeight(); // B è‚ºç‹¼ weight å•Š ç™»æ‘†ä¿ƒ.
+				// OutResult ä¿Šç»° ViewInfoA å®¢ ViewInfoB ç”« é›†æ¾œ.
 				OutResult = ViewInfoA;
 				OutResult.BlendViewInfo(ViewInfoB, BlendWeight);
 
-				CachedDualCameraBlendedYaw = OutResult.Rotation.Yaw; // ÀÌ°Ç ÀÔ·Â ÇÚµé¸µÀ» À§ÇØ..
+				CachedDualCameraBlendedYaw = OutResult.Rotation.Yaw; // ææ‰’ æ¶ä»¿ å‹¤ç”¸å‚…é˜‘ å›°ç§¦..
 			}
 		}
 	}
@@ -262,7 +262,7 @@ void AB2ActiveCameraActor::NotifyActorBeginOverlap(AActor* OtherActor)
 {
 	Super::NotifyActorBeginOverlap(OtherActor);
 
-	// ÇöÀç ¾×Æ¼ºêÄ«¸Ş¶ó ¼öµ¿È°¼ºÈ­µÈ°Å¸é ¿À¹ö·¦ ¹«½Ã
+	// æ³…çŠ å’€èå®å¢¨çš‹æ‰¼ èæ‚¼åŠå·±æ‹³ç­‰èŠ­æ å·æ»šä¹ å…¬çŸ«
 	ABladeIIGameMode* pGM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(this));
 	if (pGM)
 	{
@@ -275,7 +275,7 @@ void AB2ActiveCameraActor::NotifyActorBeginOverlap(AActor* OtherActor)
 	ABladeIIPlayer* B2Player = Cast<ABladeIIPlayer>(OtherActor);
 	ABladeIIPlayerController* B2PC = Cast<ABladeIIPlayerController>(GetWorld()->GetFirstPlayerController());
 
-	// ÇÃ·¹ÀÌ¾î overlap ¿¡¼­ ¹ßµ¿.
+	// æ•²é¥­æç»¢ overlap ä¿Šè¾‘ æƒ¯æ‚¼.
 	if (TriggerMode == EActiveCameraTriggerMode::EACTRG_ActorArea && B2PC &&
 		B2Player && B2Player == GetWorld()->GetFirstPlayerController()->GetCharacter())
 	{
@@ -287,7 +287,7 @@ void AB2ActiveCameraActor::NotifyActorEndOverlap(AActor* OtherActor)
 {
 	Super::NotifyActorEndOverlap(OtherActor);
 
-	// ÇöÀç ¾×Æ¼ºêÄ«¸Ş¶ó ¼öµ¿È°¼ºÈ­µÈ°Å¸é ¿À¹ö·¦ ¹«½Ã
+	// æ³…çŠ å’€èå®å¢¨çš‹æ‰¼ èæ‚¼åŠå·±æ‹³ç­‰èŠ­æ å·æ»šä¹ å…¬çŸ«
 	ABladeIIGameMode* pGM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(this));
 	if (pGM)
 	{
@@ -299,7 +299,7 @@ void AB2ActiveCameraActor::NotifyActorEndOverlap(AActor* OtherActor)
 
 	ABladeIIPlayer* B2Player = Cast<ABladeIIPlayer>(OtherActor);
 	ABladeIIPlayer* B2LocalPlayer = Cast<ABladeIIPlayer>(GetWorld()->GetFirstPlayerController()->GetCharacter());
-	// ÇÃ·¹ÀÌ¾î°¡ ¶°³ª¸é Áß´Ü.
+	// æ•²é¥­æç»¢å•Š æ ‹å”±æ åçªœ.
 	if (TriggerMode == EActiveCameraTriggerMode::EACTRG_ActorArea &&
 		B2Player && B2LocalPlayer && B2Player == B2LocalPlayer)
 	{
@@ -316,7 +316,7 @@ void AB2ActiveCameraActor::OnComponentBeginOverlapCallback(UPrimitiveComponent* 
 	if (TriggerMode == EActiveCameraTriggerMode::EACTRG_ToggleByComponent &&
 		B2PC && B2Player && B2LocalPlayer && B2Player == B2LocalPlayer)
 	{
-		// BeginComponent/EndComponent Áß ¾î´À °ÍÀ¸·Î µî·ÏÇÑ °Í¿¡ overlap Çß´ÂÁö ¿©ºÎ¿¡ µû¶ó.
+		// BeginComponent/EndComponent å ç»¢è ¢ å·´æ è‚º æ®¿åºŸèŒ„ å·´ä¿Š overlap æ²ç»°ç˜¤ å’¯ä½•ä¿Š è¶æ‰¼.
 		if (IsCurrentlyActive())
 		{
 			UShapeComponent* SweepComp = Cast<UShapeComponent>(SweepResult.GetComponent());
@@ -345,27 +345,28 @@ void AB2ActiveCameraActor::OnComponentEndOverlapCallback(UPrimitiveComponent* Ov
 	if (TriggerMode == EActiveCameraTriggerMode::EACTRG_ToggleByComponent &&
 		B2Player && B2LocalPlayer && B2Player == B2LocalPlayer)
 	{
-		// ¿©±â¼± µüÈ÷ Ã³¸® ¾ÈÇØµµ µÉ µí.
+		// å’¯æ‰æ€¥ è¿­æ´’ è´¸åºœ æ•‘ç§¦æ¡£ çª æ·€.
 	}
 }
 
 void AB2ActiveCameraActor::RegisterComponentOverlapCallback()
 {
-	//// ShapeComponent ¸¸ Overlap callback ¿¡ µî·Ï
-	//TArray<UActorComponent*> AllComps = GetComponentsByClass(UShapeComponent::StaticClass());
-	//for (int32 CI = 0; CI < AllComps.Num(); ++CI)
-	//{
-	//	UShapeComponent* CurrComp = Cast<UShapeComponent>(AllComps[CI]);
-	//	if (CurrComp)
-	//	{
-	//		CurrComp->OnComponentBeginOverlap.AddDynamic(this, &AB2ActiveCameraActor::OnComponentBeginOverlapCallback);
-	//		CurrComp->OnComponentEndOverlap.AddDynamic(this, &AB2ActiveCameraActor::OnComponentEndOverlapCallback);
-	//	}
-	//}
+	// ShapeComponent çˆ¶ Overlap callback ä¿Š æ®¿åºŸ
+	TArray<UActorComponent*> AllComps;
+	GetComponents(AllComps);
+	for (int32 CI = 0; CI < AllComps.Num(); ++CI)
+	{
+		UShapeComponent* CurrComp = Cast<UShapeComponent>(AllComps[CI]);
+		if (CurrComp)
+		{
+			CurrComp->OnComponentBeginOverlap.AddDynamic(this, &AB2ActiveCameraActor::OnComponentBeginOverlapCallback);
+			CurrComp->OnComponentEndOverlap.AddDynamic(this, &AB2ActiveCameraActor::OnComponentEndOverlapCallback);
+		}
+	}
 }
 void AB2ActiveCameraActor::RemoveComponentOverlapCallback()
 {
-	// ShapeComponent ¸¸
+	// ShapeComponent çˆ¶
 	TArray<UActorComponent*> AllComps;
 	GetComponents(AllComps);
 	for (int32 CI = 0; CI < AllComps.Num(); ++CI)
@@ -390,15 +391,15 @@ bool AB2ActiveCameraActor::ManualTestBeginActiveCamera(float BlendInTimeOverride
 		return true;
 	}
 
-	// ±âÅ¸ Á¶°ÇÀÌ Ãß°¡µÉ ¼ö ÀÖ´Ù. TriggerMode °¡ EACTRG_ToggleByComponent ÀÎ °æ¿ì¿¡ ´ëÇØ? 
-	// ÇÏÁö¸¸ ±×°Ç Áö¼ÓÀûÀÎ overlap ÀÌ ¾Æ´Ñ ¼ø°£ÀÇ touch ¿¡ ÀÇÇØ toggle µÇ´Â °ÍÀÎµ¥ ÀÓÀÇÀÇ ½ÃÁ¡¿¡ ¾î¶»°Ô ÆÇ´ÜÇÏÁö?
+	// æ‰é¸¥ ç‚¼æ‰’æ çœ å•Šçª è ä¹ä¿ƒ. TriggerMode å•Š EACTRG_ToggleByComponent ç‰¢ ç‰ˆå¿«ä¿Š æªç§¦? 
+	// çªç˜¤çˆ¶ å¼Šæ‰’ ç˜¤åŠ åˆ©ç‰¢ overlap æ é…’å›± é‰´åŸƒç‹¼ touch ä¿Š ç‹¼ç§¦ toggle ç™»ç»° å·´ç‰¢å• çƒ™ç‹¼ç‹¼ çŸ«ç—¢ä¿Š ç»¢ç—˜éœ¸ é­„çªœçªç˜¤?
 
 	return false;
 }
 
 void AB2ActiveCameraActor::ForceBeginActiveCamera(float BlendInTimeOverride /*= -1.0f*/, AController* InOptionalInteractingController /*= NULL*/, bool bUseConditionalBeginTransitionInputDisable /*= true*/)
 {
-	// ¿©Å¸ Á¶°Ç °Ë»ç ¾øÀÌ ±×³É ½ÃÀÛ. ¹°·Ğ Æ¯º°ÇÑ °æ¿ì¿¡¸¸ »ç¿ëÇØ¾ß°Ú´Ù.
+	// å’¯é¸¥ ç‚¼æ‰’ å…«è¤ ç»æ å¼Šæˆ çŸ«ç´¯. æ‹±æ²¸ æ¼‚å–ŠèŒ„ ç‰ˆå¿«ä¿Šçˆ¶ è¤ä¾©ç§¦å…·æ‘†ä¿ƒ.
 	ABladeIIPlayerController* B2LocalPC = Cast<ABladeIIPlayerController>(GetWorld()->GetFirstPlayerController());
 	if (B2LocalPC)
 	{
@@ -408,7 +409,7 @@ void AB2ActiveCameraActor::ForceBeginActiveCamera(float BlendInTimeOverride /*= 
 
 void AB2ActiveCameraActor::CustomEndActiveCamera()
 {
-	EndActiveCamera(); // ÀÏ´Ü º°´Ù¸¦ °Ç ¾ø±º.
+	EndActiveCamera(); // è€çªœ å–Šä¿ƒç”« æ‰’ ç»ç„™.
 }
 
 bool AB2ActiveCameraActor::IsBaseActiveCamera()
@@ -421,7 +422,7 @@ void AB2ActiveCameraActor::BeginActiveCamera(class ABladeIIPlayerController* InL
 	check(ActiveCameraSpringArm && ActiveCameraComp);
 	check(InLocalPC);
 		
-	// ¿ì¼±, ±âÁ¸¿¡ È°¼ºÈ­ µÈ °ÍÀÌ ÀÖ´Ù¸é Á¾·á. ±×·¡¾ß Ä«¸Ş¶ó ºí·»µùÀÌ ¾È ²¿ÀÓ.
+	// å¿«æ€¥, æ‰ç²®ä¿Š åŠå·±æ‹³ ç­‰ å·´æ ä¹ä¿ƒæ è¾†ä¸°. å¼Šè´°å…· å¢¨çš‹æ‰¼ å–‰åŠçˆ¹æ æ•‘ éƒ¨çƒ™.
 	ABladeIIGameMode* B2GM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(this));
 
 	if (B2GM && !B2GM->IsAllowCameraWorking())
@@ -432,7 +433,7 @@ void AB2ActiveCameraActor::BeginActiveCamera(class ABladeIIPlayerController* InL
 		B2GM->GetCurrentActiveActiveCameraActor()->CustomEndActiveCamera();
 	}
 
-	// ¿©±â ÀÎÀÚ¸¦ ÅëÇØ¼­ BlendInTime À» override ÇÒ ¼ö ÀÖ´Âµ¥ ´ëÃ¼·Î ¿¬Ãâ Á¾·á¿Í °°Àº °æ¿ì ¿ÜºÎ¿¡¼­ Á÷Á¢ Àû¿ë ½Ãµµ¸¦ ÇÒ ¶§¿¡ »ç¿ëÇÒ ÀÇµµ.
+	// å’¯æ‰ ç‰¢ç£Šç”« çƒ¹ç§¦è¾‘ BlendInTime é˜‘ override ä¸” è ä¹ç»°å• æªçœ‰è‚º æ¥·å… è¾†ä¸°å®¢ éç¯® ç‰ˆå¿« å¯‡ä½•ä¿Šè¾‘ æµç«‹ åˆ©ä¾© çŸ«æ¡£ç”« ä¸” é”­ä¿Š è¤ä¾©ä¸” ç‹¼æ¡£.
 	const float FinalBlendTime = BlendInTimeOverride >= 0.0f ? BlendInTimeOverride : BlendInTime;
 
 	BeginForNewInteractionCommon(InLocalPC, FinalBlendTime, InOptionalInteractingController);
@@ -442,7 +443,7 @@ void AB2ActiveCameraActor::BeginActiveCamera(class ABladeIIPlayerController* InL
 
 	bIsActivated = true;
 
-	// GameMode ¿¡ µî·Ï
+	// GameMode ä¿Š æ®¿åºŸ
 	if (B2GM)
 	{
 		B2GM->SetCurrentActiveActiveCameraActor(this);
@@ -452,12 +453,12 @@ void AB2ActiveCameraActor::BeginActiveCamera(class ABladeIIPlayerController* InL
 void AB2ActiveCameraActor::BeginForNewInteractionCommon(class ABladeIIPlayerController* InLocalPC, float FinalBlendInTime, class AController* InOptionalInteractingController /*= NULL*/)
 {
 	check(InLocalPC);
-	// InOptionalInteractingController ´Â LocalPC Ã³·³ ·¹º§ ·ÎµùµÈ ³»³» À¯ÁöµÇ´Â ¾Ö°¡ ¾Æ´Ï¶ó¼­ invalid ÇÒ °¡´É¼ºÀÌ »ó´çÈ÷ Á¸ÀçÇÔ.
+	// InOptionalInteractingController ç»° LocalPC è´¸çƒ¦ é¥­éª‡ è‚ºçˆ¹ç­‰ éƒ´éƒ´ èœ¡ç˜¤ç™»ç»° å±€å•Š é…’èªæ‰¼è¾‘ invalid ä¸” å•Šç“·å·±æ æƒ‘å¯¸æ´’ ç²®çŠçªƒ.
 	checkSlow(!InOptionalInteractingController);
 
 	CachedLocalPC = InLocalPC;
-	CachedInteractingController = InOptionalInteractingController ? InOptionalInteractingController : CachedLocalPC; // Stage °ÔÀÓ ¸ğµå¿¡¼­´Â CachedLocalPC ¿Í CachedInteractingController °¡ °°À» °Í..
-	LastInteractBeginPlayer = Cast<ABladeIIPlayer>(CachedInteractingController->GetPawn()); // ÀÌ·¸°Ô Ä³½ÌÇØ¼­ ³ªÁß¿¡ Ã¼Å©¸¸ ÇÏ°í ½ÇÁ¦ »ç¿ëÀº ÇÏÁö ¾Ê´Â´Ù.
+	CachedInteractingController = InOptionalInteractingController ? InOptionalInteractingController : CachedLocalPC; // Stage éœ¸çƒ™ è‘›é›ä¿Šè¾‘ç»° CachedLocalPC å®¢ CachedInteractingController å•Š éé˜‘ å·´..
+	LastInteractBeginPlayer = Cast<ABladeIIPlayer>(CachedInteractingController->GetPawn()); // æçŠ¯éœ¸ æŸæ•™ç§¦è¾‘ å”±åä¿Š çœ‰å†œçˆ¶ çªç»Š è§’åŠ› è¤ä¾©ç¯® çªç˜¤ è‡¼ç»°ä¿ƒ.
 	
 	if (bDualCameraBlending && CameraMovementMode == EActiveCameraMovementMode::EACMM_Fixed)
 	{
@@ -465,36 +466,36 @@ void AB2ActiveCameraActor::BeginForNewInteractionCommon(class ABladeIIPlayerCont
 		UCameraComponent* CamB = FindExtraCamCompForDualCameraBlending();
 		if (CamA && CamB)
 		{
-			// ±×³É ActiveCameraComp ¸¸ Fixed ·Î »ç¿ëÇÏ´Â °Å¶û ºñ½ÁÇÒ ¼ö ÀÖ´Âµ¥ ¼³Á¤ Àü´ŞÇÏ°í ÇÏ´Ù º¸¸é ´Ù¸¥ ÇÏ³ª°¡ ´©¶ôµÇµçÁö ÇÒ ¼öµµ ÀÖ¾î¼­ Æ¯º°ÇÑ ¿äÃ»ÀÌ ¾Æ´Ñ ÇÑÀº ±×³É µÒ.
-			// ÀÌ°Íµµ ForceFromLastView¸¦ ÇØ¾ß Á¦´ë·Î ¸ÔÈ÷³×¿ä.
+			// å¼Šæˆ ActiveCameraComp çˆ¶ Fixed è‚º è¤ä¾©çªç»° èŠ­å°” åšæ…ä¸” è ä¹ç»°å• æ±²æ²¥ å‚ˆå´”çªç»Š çªä¿ƒ ç„Šæ ä¿ƒå¼— çªå”±å•Š ç©¿éç™»ç”µç˜¤ ä¸” èæ¡£ ä¹ç»¢è¾‘ æ¼‚å–ŠèŒ„ å¤¸æ²¡æ é…’å›± èŒ„ç¯® å¼Šæˆ ç‹„.
+			// æå·´æ¡£ ForceFromLastViewç”« ç§¦å…· åŠ›æªè‚º å†ˆæ´’åŒ™å¤¸.
 			InLocalPC->SetViewTargetWithBlend(this, FinalBlendInTime, EViewTargetBlendFunction::VTBlend_Cubic, 0, false);
-			// ±âÅ¸ Dual Blending ÀÇ ÇÙ½É ÀÛµ¿Àº CalcCamera ¿¡¼­.
+			// æ‰é¸¥ Dual Blending ç‹¼ ç´ç¼´ ç´¯æ‚¼ç¯® CalcCamera ä¿Šè¾‘.
 		}
 	}
 	else
 	{
 		if (CameraMovementMode == EActiveCameraMovementMode::EACMM_Fixed)
 		{
-			// CameraTargetingMode µµ Fixed °¡ ¾Æ´Ï¶ó¸é rotation Àº ¹Ù²ğ ¼ö ÀÖ´Ù.
+			// CameraTargetingMode æ¡£ Fixed å•Š é…’èªæ‰¼æ rotation ç¯® å®˜æ‹† è ä¹ä¿ƒ.
 			ActiveCameraSpringArm->SetWorldTransform(InitialActiveCameraSpringArmTransform);
 		}
 		if (CameraTargetingMode == EActiveCameraTargetingMode::EACTM_Fixed)
 		{
-			// FixedCameraTargetPosition Àº relative ·Î Ãë±Ş.
+			// FixedCameraTargetPosition ç¯® relative è‚º ç§’é­.
 			FTransform FixedTargetWorldTransform = FTransform(FixedCameraTargetPosition) * this->GetTransform();
 			SetActiveCameraRotationToTarget(FixedTargetWorldTransform.GetTranslation());
 		}
 
 		if (CameraMovementMode == EActiveCameraMovementMode::EACMM_FollowPlayer && CameraTargetingMode == EActiveCameraTargetingMode::EACTM_Player)
 		{
-			// ±âº»ÀûÀÎ player top-down Ä«¸Ş¶ó¸¦ ¼³Á¤¸¸ ¹Ù²ã¼­ »ç¿ëÇÏ´Â ¸ğµå°¡ µÊ. °ÅÀÇ Ã³À½¿¡¸¸ ¼¼ÆÃ.
+			// æ‰å¤¯åˆ©ç‰¢ player top-down å¢¨çš‹æ‰¼ç”« æ±²æ²¥çˆ¶ å®˜å±‚è¾‘ è¤ä¾©çªç»° è‘›é›å•Š å‡³. èŠ­ç‹¼ è´¸æ¾œä¿Šçˆ¶ æŠ€æ³¼.
 			SetupForConsistentPlayerTopDownCamera();
 		}
 
 		UCameraComponent* FinalCameraComponent = NULL;
 		if (IsUsingActiveCameraComponent())
 		{
-			// ¹¹°¡ ¹®Á¨Áö Àß ¸ğ¸£°Ú´Âµ¥ °á±¹ ForceFromLastView ¸¦ ÇØ¾ß Á¦´ë·Î ¸ÔÈ÷´Â±º
+			// æ„å•Š å·©å“©ç˜¤ è‚‹ è‘›ç¦æ‘†ç»°å• æ¬æƒ« ForceFromLastView ç”« ç§¦å…· åŠ›æªè‚º å†ˆæ´’ç»°ç„™
 			CachedLocalPC->SetViewTargetWithBlend(this, FinalBlendInTime, EViewTargetBlendFunction::VTBlend_Cubic, 0, false);
 			FinalCameraComponent = ActiveCameraComp;
 		}
@@ -502,7 +503,7 @@ void AB2ActiveCameraActor::BeginForNewInteractionCommon(class ABladeIIPlayerCont
 		{
 			if (LastInteractBeginPlayer)
 			{
-				// ¾Æ´Ï¶ó¸é ÇÃ·¹ÀÌ¾î top-down Ä«¸Ş¶ó¸¦ »ç¿ëÇÑ´Ù´Â ¶æÀÌ µÇ´Âµ¥ °°Àº ViewTarget °£ÀÇ ºí·»µùÀÌ¸é PlayerCameraManager ³»¿¡¼­ Æ¯¼öÇÏ°Ô Ã³¸®ÇØ¼­ ºí·»µù ÇÒ °Í.
+				// é…’èªæ‰¼æ æ•²é¥­æç»¢ top-down å¢¨çš‹æ‰¼ç”« è¤ä¾©èŒ„ä¿ƒç»° èˆµæ ç™»ç»°å• éç¯® ViewTarget åŸƒç‹¼ å–‰åŠçˆ¹ææ PlayerCameraManager éƒ´ä¿Šè¾‘ æ¼‚èçªéœ¸ è´¸åºœç§¦è¾‘ å–‰åŠçˆ¹ ä¸” å·´.
 				CachedLocalPC->SetViewTargetWithBlend(LastInteractBeginPlayer, FinalBlendInTime, EViewTargetBlendFunction::VTBlend_Cubic);
 				
 				if (LastInteractBeginPlayer->HasActorBegunPlay())
@@ -512,7 +513,7 @@ void AB2ActiveCameraActor::BeginForNewInteractionCommon(class ABladeIIPlayerCont
 			}
 		}
 
-		if (bOverrideFOVAngle && FinalCameraComponent) // ÃÖÁ¾ÀûÀ¸·Î »ç¿ëµÇ´Â CameraComponent ¿¡´Ù°¡ FOV °¢µµ override. EndActiveCamera ¿¡¼­ µ¹·Á³õÀ» °Í.
+		if (bOverrideFOVAngle && FinalCameraComponent) // å¼¥è¾†åˆ©æ è‚º è¤ä¾©ç™»ç»° CameraComponent ä¿Šä¿ƒå•Š FOV é˜¿æ¡£ override. EndActiveCamera ä¿Šè¾‘ å€’å¦¨åˆé˜‘ å·´.
 		{
 			FinalCameraComponent->FieldOfView = FOV_Override;
 		}
@@ -528,22 +529,22 @@ void AB2ActiveCameraActor::EndActiveCamera()
 		return;
 	
 	ABladeIIPlayer* InteractLocalPlayer = GetInteractPlayerCharacter();
-	if (CachedLocalPC && InteractLocalPlayer) // NULL ÀÌ¸é ÀÌ¹Ì End Ã³¸® µÇ¾ú°Å³ª ¾Æ´Ô ¹º°¡ Àß¸øµÇ¾ú°Å³ª. µÎ¹ø ºÒ¸± ¼ö´Â ÀÖÀ¸¹Ç·Î Áßº¹ Ã³¸®ÇÏÁö ¾Êµµ·Ï.
+	if (CachedLocalPC && InteractLocalPlayer) // NULL ææ æå›º End è´¸åºœ ç™»èŒèŠ­å”± é…’ä¸› è´­å•Š è‚‹ç»™ç™»èŒèŠ­å”±. æ»´é”… é˜‚å‰¯ èç»° ä¹æ éª¨è‚º åæ±— è´¸åºœçªç˜¤ è‡¼æ¡£åºŸ.
 	{
 		if (bRestoreCamera)
 		{
-			// ÇÃ·¹ÀÌ¾î ±âº» Ä«¸Ş¶ó·Î back
-			// Cubic ÀÌ¿ÜÀÇ ¿É¼ÇÀÌ ÇÊ¿äÇÏ´Ù¸é º¯¼ö·Î ³ëÃâ
+			// æ•²é¥­æç»¢ æ‰å¤¯ å¢¨çš‹æ‰¼è‚º back
+			// Cubic æå¯‡ç‹¼ å¯è®°æ é˜å¤¸çªä¿ƒæ å‡½èè‚º ç•´å…
 			if (bOverrideFOVAngle)
 			{
-				// Beginplay ¶§ Ä³½ÌÇØ ³õÀº °ªÀ¸·Î µ¹¾Æ°¨.
+				// Beginplay é”­ æŸæ•™ç§¦ åˆç¯® è”¼æ è‚º å€’é…’çš‘.
 				InteractLocalPlayer->GetTopDownCameraComponent()->FieldOfView = InteractLocalPlayer->GetTopDownCamIntialFOV();
 			}
 			RestoreSpringArmSettings();
 			CachedLocalPC->ApplyWorldDefaultCamera(BlendOutTime, EViewTargetBlendFunction::VTBlend_Cubic);
 		}
 
-		// GameMode µî·Ï ÇØÁ¦
+		// GameMode æ®¿åºŸ ç§¦åŠ›
 		if (B2GM && B2GM->GetCurrentActiveActiveCameraActor() == this)
 		{
 			B2GM->SetCurrentActiveActiveCameraActor(NULL);
@@ -596,7 +597,7 @@ void AB2ActiveCameraActor::OverrideSpringArmSettings()
 		{
 			ABladeIIPlayer* InteractLocalPlayer = GetInteractPlayerCharacter();
 			if (InteractLocalPlayer)
-			{// ÇÃ·¹ÀÌ¾î top-down Ä«¸Ş¶óÀÇ °æ¿ì´Â ÃßÈÄ ¼Ó¼º°ªµéÀ» µÇµ¹¸®±â À§ÇØ ÇöÀç °ªÀ» Ä³½ÌÇØ µĞ´Ù.
+			{// æ•²é¥­æç»¢ top-down å¢¨çš‹æ‰¼ç‹¼ ç‰ˆå¿«ç»° çœ é¥¶ åŠ å·±è”¼ç”¸é˜‘ ç™»å€’åºœæ‰ å›°ç§¦ æ³…çŠ è”¼é˜‘ æŸæ•™ç§¦ æ•Œä¿ƒ.
 				CopyFromSpringArmComponentToSelectedSettings(InteractLocalPlayer->GetCameraBoom(), PlayerCameraBoomSettingBackup);
 				CopyFromSelectedSettingsToSpringArmComponent(SpringArmSettings, InteractLocalPlayer->GetCameraBoom());
 			}
@@ -606,7 +607,7 @@ void AB2ActiveCameraActor::OverrideSpringArmSettings()
 void AB2ActiveCameraActor::RestoreSpringArmSettings()
 {
 	ABladeIIPlayer* InteractLocalPlayer = GetInteractPlayerCharacter();
-	// ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ¿¡ ´Ş¸° Top-down Ä«¸Ş¶ó¸¸ ´ë»óÀÓ. ¿©±â¿¡¼­ º¸À¯ÇÏ°í ÀÖ´Â ActiveCameraComp ´Â ±»ÀÌ µÇµ¹¸± ÇÊ¿ä°¡ ¾øÁö..
+	// æ•²é¥­æç»¢ æŸè…ç£ä¿Š å´”èµ´ Top-down å¢¨çš‹æ‰¼çˆ¶ æªæƒ‘çƒ™. å’¯æ‰ä¿Šè¾‘ ç„Šèœ¡çªç»Š ä¹ç»° ActiveCameraComp ç»° è¢«æ ç™»å€’å‰¯ é˜å¤¸å•Š ç»ç˜¤..
 	if (bOverrideSpringArmSettings && IsUsingActiveCameraComponent() == false && InteractLocalPlayer)
 	{
 		CopyFromSelectedSettingsToSpringArmComponent(PlayerCameraBoomSettingBackup, InteractLocalPlayer->GetCameraBoom());
@@ -618,9 +619,9 @@ void AB2ActiveCameraActor::CheckForOutdatedInteraction()
 	ABladeIIPlayer* InteractLocalPlayer = GetInteractPlayerCharacter();
 	if (InteractLocalPlayer && InteractLocalPlayer != LastInteractBeginPlayer)
 	{
-		// ÀÌ°Ç ´ë·« ¾î¶² °æ¿ì³Ä¸é, ActiveCamera ¿µ¿ª ¾È¿¡¼­ ÅÂ±×¸¦ Çß´Ù°Å³ª ÇØ¼­ ÀÌ°É Æ®¸®°ÅÇÑ BladeIIPlayer °¡ Destroy µÇ°í »õ·Î spawn µÈ °æ¿ì.
-		// ±×°Íµµ ½ÇÁúÀûÀ¸·Î ActorArea·Î Æ®¸®°Å ÇÏ´Â °æ¿ì¶ó¸é Overlap °¨Áö·Î ÀÎÇØ BeginActiveCamera °¡ µÇ¾úÀ» °Å°í ToggleByComponent ·Î Æ®¸®°Å ÇÏ´Â °æ¿ì ¿©±â·Î ¿À°Ô µÉ °Í.
-		// ActorArea ·Î Æ®¸®°Å ÇÏ´Â °æ¿ìµµ ÀÌ°É·Î Ã³¸®ÇÒ ¼ö ÀÖ´Ù¸é ±×°Ô ´õ ÁÁ±ä ÇÔ.
+		// ææ‰’ æªå¸† ç»¢æ« ç‰ˆå¿«è¡¬æ, ActiveCamera åº·å¼€ æ•‘ä¿Šè¾‘ æ€•å¼Šç”« æ²ä¿ƒèŠ­å”± ç§¦è¾‘ æå§ é£˜åºœèŠ­èŒ„ BladeIIPlayer å•Š Destroy ç™»ç»Š è´§è‚º spawn ç­‰ ç‰ˆå¿«.
+		// å¼Šå·´æ¡£ è§’é¾™åˆ©æ è‚º ActorAreaè‚º é£˜åºœèŠ­ çªç»° ç‰ˆå¿«æ‰¼æ Overlap çš‘ç˜¤è‚º ç‰¢ç§¦ BeginActiveCamera å•Š ç™»èŒé˜‘ èŠ­ç»Š ToggleByComponent è‚º é£˜åºœèŠ­ çªç»° ç‰ˆå¿« å’¯æ‰è‚º å·éœ¸ çª å·´.
+		// ActorArea è‚º é£˜åºœèŠ­ çªç»° ç‰ˆå¿«æ¡£ æå§è‚º è´¸åºœä¸” è ä¹ä¿ƒæ å¼Šéœ¸ æ­¹ äº®å˜ çªƒ.
 		BeginForNewInteractionCommon(CachedLocalPC, 0.0f, CachedInteractingController);
 	}
 }
@@ -630,16 +631,16 @@ void AB2ActiveCameraActor::UpdateActiveCamera(float DeltaSeconds)
 	ABladeIIPlayer* InteractLocalPlayer = GetInteractPlayerCharacter();
 	if (InteractLocalPlayer && CachedLocalPC)
 	{
-		bool bFallbackToWorldDefault = false; // °è»ê µµÁß ±¸¸®¸é ÀÌ°É true ·Î ¼¼ÆÃ.
+		bool bFallbackToWorldDefault = false; // æ‹Œé­‚ æ¡£å å¤‡åºœæ æå§ true è‚º æŠ€æ³¼.
 
 		if (IsUsingActiveCameraComponent())
 		{
-			float ExpectedPlayerInputHandlingYaw = ActiveCameraSpringArm->GetComponentRotation().Yaw; // ÀÏ¹İÀûÀÎ ActiveCameraComponent »ç¿ëÇÏ´Â »óÈ²¿¡¼­ÀÇ ÀÔ·Â ÇÚµé¸µ ±âº»Ãà °ª.
+			float ExpectedPlayerInputHandlingYaw = ActiveCameraSpringArm->GetComponentRotation().Yaw; // è€é¦†åˆ©ç‰¢ ActiveCameraComponent è¤ä¾©çªç»° æƒ‘ç‚”ä¿Šè¾‘ç‹¼ æ¶ä»¿ å‹¤ç”¸å‚… æ‰å¤¯ç»µ è”¼.
 			
 			if (bDualCameraBlending)
 			{
 				ExpectedPlayerInputHandlingYaw = CachedDualCameraBlendedYaw;
-				// ±âÅ¸ µüÈ÷ ¿©±â¼­ ÇÊ¿äÇÑ °Ç ¾øÀ» µí.. Ä«¸Ş¶ó ÀÚÃ¼´Â °Á °íÁ¤ÀÌ¶ó.
+				// æ‰é¸¥ è¿­æ´’ å’¯æ‰è¾‘ é˜å¤¸èŒ„ æ‰’ ç»é˜‘ æ·€.. å¢¨çš‹æ‰¼ ç£Šçœ‰ç»° å‚² ç»Šæ²¥ææ‰¼.
 			}
 			else
 			{
@@ -649,11 +650,11 @@ void AB2ActiveCameraActor::UpdateActiveCamera(float DeltaSeconds)
 					float PlayerToBaseDistance = BasePosToPlayer.Size();
 					BasePosToPlayer.Normalize();
 
-					// CameraPlayerFollowingScale ¸¸Å­ ½ºÄÉÀÏÇØ¼­ ÇÃ·¹ÀÌ¾î À§Ä¡¸¦ µû¶ó°¡µµ·Ï
+					// CameraPlayerFollowingScale çˆ¶æ€’ èƒ¶çº³è€ç§¦è¾‘ æ•²é¥­æç»¢ å›°æ‘¹ç”« è¶æ‰¼å•Šæ¡£åºŸ
 					FVector ScaledCameraLocation = InitialActiveCameraSpringArmTransform.GetTranslation() + BasePosToPlayer * CameraPlayerFollowingScale * PlayerToBaseDistance;
 					ActiveCameraSpringArm->SetWorldLocation(ScaledCameraLocation);
 				}
-				// CameraMovementMode °¡ FollowPlayer ÀÌ°Å³ª Fixed ¸é ¿©±â¼­ Ã³¸® ¾È ÇÔ.
+				// CameraMovementMode å•Š FollowPlayer æèŠ­å”± Fixed æ å’¯æ‰è¾‘ è´¸åºœ æ•‘ çªƒ.
 
 				if (CameraTargetingMode == EActiveCameraTargetingMode::EACTM_Player)
 				{
@@ -661,7 +662,7 @@ void AB2ActiveCameraActor::UpdateActiveCamera(float DeltaSeconds)
 				}
 				else if (CameraTargetingMode == EActiveCameraTargetingMode::EACTM_Mob)
 				{
-					if (CachedTargetMob == NULL) // Begin ½ÃÁ¡¿¡ ¾øÀ» ¼öµµ ÀÖÀ¸¹Ç·Î Update ¿¡¼­ °Ë»ç
+					if (CachedTargetMob == NULL) // Begin çŸ«ç—¢ä¿Š ç»é˜‘ èæ¡£ ä¹æ éª¨è‚º Update ä¿Šè¾‘ å…«è¤
 					{
 						CachedTargetMob = GetDesiredCameraTargetWaveMob();
 					}
@@ -671,41 +672,41 @@ void AB2ActiveCameraActor::UpdateActiveCamera(float DeltaSeconds)
 					}
 					else
 					{
-						// ¸÷ÀÌ ¾ø´Â »óÈ²ÀÌ¶ó¸é ±âº» Ä«¸Ş¶ó·Î Æú¹é.
+						// å„æ ç»ç»° æƒ‘ç‚”ææ‰¼æ æ‰å¤¯ å¢¨çš‹æ‰¼è‚º å¼ƒå½’.
 						bFallbackToWorldDefault = true;
 					}
 				}
 				else if (CameraTargetingMode == EActiveCameraTargetingMode::EACTM_Fixed)
 				{
-					// FixedCameraTargetPosition Àº relative ·Î Ãë±Ş.
+					// FixedCameraTargetPosition ç¯® relative è‚º ç§’é­.
 					FTransform FixedTargetWorldTransform = FTransform(FixedCameraTargetPosition) * this->GetTransform();
 					SetActiveCameraRotationToTarget(FixedTargetWorldTransform.GetTranslation());
 				}
 			}
 
-			// ÇÃ·¹ÀÌ¾î movement ÀÔ·Â Ã³¸®¸¦ À§ÇØ CameraBoom À» ¿©ÇÏ°£ È¸Àü½ÃÅ²´Ù. ABladeIIPlayer::MoveForward/MoveRight Âü°í
-			// ActiveCameraComp ÀÇ Yaw ¸¦ Á÷»§À¸·Î ´ëÀÔÇÏ¸é yaw °¡ ±Ş°İÇÏ°Ô º¯ÇÏ´Â ÀÏºÎ »óÈ²¿¡¼­ ¹®Á¦°¡ µÇ¹Ç·Î º¸°£À» Á» ÇÏ´Âµ¥ PlayerMoveInputAdjustBoomSyncAlpha °ªÀÌ ³·À» ¼ö·Ï ¸ñÇ¥°ª¿¡¼­ ¸Ö¾îÁú °ÍÀÓ.
-			// ±×¸®°í °¡²ûÀº °¢µµ°¡ »ç½Ç»ó º¯ÇÏÁö ¾Ê´Â »óÈ²¿¡¼­ ¾µµ¥¾øÀÌ º¸°£À» ÇÏ±âµµ ÇØ¼­.. °¡´ÉÇÏ¸é PlayerMoveInputAdjustBoomSyncAlpha ¸¦ 1.0 À¸·Î..
+			// æ•²é¥­æç»¢ movement æ¶ä»¿ è´¸åºœç”« å›°ç§¦ CameraBoom é˜‘ å’¯çªåŸƒ é›€å‚ˆçŸ«æŒªä¿ƒ. ABladeIIPlayer::MoveForward/MoveRight æ›¼ç»Š
+			// ActiveCameraComp ç‹¼ Yaw ç”« æµæˆ·æ è‚º æªæ¶çªæ yaw å•Š é­æ‹œçªéœ¸ å‡½çªç»° è€ä½• æƒ‘ç‚”ä¿Šè¾‘ å·©åŠ›å•Š ç™»éª¨è‚º ç„ŠåŸƒé˜‘ ç²± çªç»°å• PlayerMoveInputAdjustBoomSyncAlpha è”¼æ æ’¤é˜‘ èåºŸ æ ¼é’è”¼ä¿Šè¾‘ é’¢ç»¢é¾™ å·´çƒ™.
+			// å¼Šåºœç»Š å•Šé˜ç¯® é˜¿æ¡£å•Š è¤è§’æƒ‘ å‡½çªç˜¤ è‡¼ç»° æƒ‘ç‚”ä¿Šè¾‘ é•œå•ç»æ ç„ŠåŸƒé˜‘ çªæ‰æ¡£ ç§¦è¾‘.. å•Šç“·çªæ PlayerMoveInputAdjustBoomSyncAlpha ç”« 1.0 æ è‚º..
 			float InterpolatedYaw = 
-				bUsePlacedActiveCamYawAsInputBase ? InitialActiveCameraSpringArmTransform.Rotator().Yaw : // ±×·¡¼­.. yaw °¡ ±Ş°İÇÏ°Ô º¯ÇÏ´Â »óÈ²¿¡ ´ëÇÑ °íÀ°ÁöÃ¥.
+				bUsePlacedActiveCamYawAsInputBase ? InitialActiveCameraSpringArmTransform.Rotator().Yaw : // å¼Šè´°è¾‘.. yaw å•Š é­æ‹œçªéœ¸ å‡½çªç»° æƒ‘ç‚”ä¿Š æªèŒ„ ç»Šè…Šç˜¤æ°“.
 				FMath::Lerp(InteractLocalPlayer->
 				GetCameraYaw(), ExpectedPlayerInputHandlingYaw, PlayerMoveInputAdjustBoomSyncAlpha);
 			InteractLocalPlayer->UpdateCameraYaw(InterpolatedYaw);
 		}
 		else
 		{
-			// ÇÃ·¹ÀÌ¾î top-down Ä«¸Ş¶óÀÇ CameraBoom À» Á¶ÀÛ. BladeIIPlayerController ÂÊ¿¡ ±¸ºñÇØ µĞ ÀÎÅÍÆäÀÌ½º¸¦ ÅëÇØ¼­.
-			// CameraMovementMode ´Â ¾îÂ÷ÇÇ FollowPlayer ÀÏ Å×°í (Áï, °Çµå¸± ÇÊ¿ä ¾øÀ½) CameraTarget ¿¡ µû¶ó CameraBoom ÀÇ rotation À» Á¶ÀÛÇÑ´Ù.
+			// æ•²é¥­æç»¢ top-down å¢¨çš‹æ‰¼ç‹¼ CameraBoom é˜‘ ç‚¼ç´¯. BladeIIPlayerController ç‡ä¿Š å¤‡åšç§¦ æ•Œ ç‰¢ç£å…¶æèƒ¶ç”« çƒ¹ç§¦è¾‘.
+			// CameraMovementMode ç»° ç»¢ç’ä¹” FollowPlayer è€ æŠ›ç»Š (æºœ, æ‰’é›å‰¯ é˜å¤¸ ç»æ¾œ) CameraTarget ä¿Š è¶æ‰¼ CameraBoom ç‹¼ rotation é˜‘ ç‚¼ç´¯èŒ„ä¿ƒ.
 			if (CameraTargetingMode == EActiveCameraTargetingMode::EACTM_Player)
 			{
-				// ÀÌ °æ¿ì´Â °ÅÀÇ ±âÁ¸ top-down Ä«¸Ş¶ó¿Í Â÷ÀÌ°¡ ¾øÀ» °ÍÀÎµ¥, PlayerTopDownCameraSettings ¿¡ ÀÇÇÑ ÃÊ±â ¼¼ÆÃ »Ó?
+				// æ ç‰ˆå¿«ç»° èŠ­ç‹¼ æ‰ç²® top-down å¢¨çš‹æ‰¼å®¢ ç’æå•Š ç»é˜‘ å·´ç‰¢å•, PlayerTopDownCameraSettings ä¿Š ç‹¼èŒ„ æª¬æ‰ æŠ€æ³¼ æŒ¥?
 
-				// Å¾´Ù¿î Ä«¸Ş¶ó ÀÌ¿ëÇÑ µà¾óºí·»µù½Ã
+				// å•ªä¿ƒæ¬¾ å¢¨çš‹æ‰¼ æä¾©èŒ„ æ‚å€”å–‰åŠçˆ¹çŸ«
 				if (bDualCameraBlending)
 				{
 					if (CachedLocalPC)
 					{
-						// PlayerTopDownCameraSettings ÀÇ °¢ ¿ä¼Òº°·Î override ÇÑ °Í¸¸ Àû¿ë
+						// PlayerTopDownCameraSettings ç‹¼ é˜¿ å¤¸å®¶å–Šè‚º override èŒ„ å·´çˆ¶ åˆ©ä¾©
 						if (PlayerTopDownCameraSettings.bOverrideCameraBoomPitch)
 						{
 							float fPitchA = PlayerTopDownCameraSettings.CameraBoomPitch;
@@ -757,7 +758,7 @@ void AB2ActiveCameraActor::UpdateActiveCamera(float DeltaSeconds)
 								pPlayer->GetTopDownCameraComponent()->FieldOfView = fBlendedFov;
 						}
 
-						// Ä«¸Ş¶ó ·ÎÅ×ÀÌ¼Ç Á¶ÀÛ
+						// å¢¨çš‹æ‰¼ è‚ºæŠ›æè®° ç‚¼ç´¯
 						FRotator CamRotation = InteractLocalPlayer->TopDownCameraComponent->GetRelativeTransform().GetRotation().Rotator();
 
 						if (PlayerTopDownCameraSettings.bOverrideCameraPitch)
@@ -782,7 +783,7 @@ void AB2ActiveCameraActor::UpdateActiveCamera(float DeltaSeconds)
 			}
 			else if (CameraTargetingMode == EActiveCameraTargetingMode::EACTM_Mob)
 			{
-				if (CachedTargetMob == NULL) // Begin ½ÃÁ¡¿¡ ¾øÀ» ¼öµµ ÀÖÀ¸¹Ç·Î Update ¿¡¼­ °Ë»ç
+				if (CachedTargetMob == NULL) // Begin çŸ«ç—¢ä¿Š ç»é˜‘ èæ¡£ ä¹æ éª¨è‚º Update ä¿Šè¾‘ å…«è¤
 				{
 					CachedTargetMob = GetDesiredCameraTargetWaveMob();
 				}
@@ -791,14 +792,14 @@ void AB2ActiveCameraActor::UpdateActiveCamera(float DeltaSeconds)
 				{
 					SetPlayerCameraBoomRotationToTarget(
 						CachedTargetMob->GetActorLocation() + TargetMobCameraAdjustSettings.TargetLocationOffset,
-						// ¿©±â¿£ °³º° ÆÄ¶ó¹ÌÅÍ¿¡ ´ëÇÑ offset °ú overriding ÀÌ Á» ÀÖÀ½.
+						// å’¯æ‰æµš ä¿ºå–Š é¢‡æ‰¼å›ºç£ä¿Š æªèŒ„ offset è‹ overriding æ ç²± ä¹æ¾œ.
 						TargetMobCameraAdjustSettings.BoomRotOffsetPitch, TargetMobCameraAdjustSettings.BoomRotOffsetYaw,
 						(TargetMobCameraAdjustSettings.bOverrideCameraBoomArmLength ? 
 							GetExtraAppliedCameraDistance(TargetMobCameraAdjustSettings.CameraBoomArmLength, TargetMobCameraAdjustSettings.CameraBoomArmLength_Extra)
 							: 0.0f)
 						);
 
-					// ¸÷ ÃÄ´Ùº¸°Ô..
+					// å„ åªšä¿ƒç„Šéœ¸..
 					SetPlayerCameraRotationToTarget(
 						CachedTargetMob->GetActorLocation() + TargetMobCameraAdjustSettings.TargetLocationOffset,
 						TargetMobCameraAdjustSettings.CamRotOffsetPitch, TargetMobCameraAdjustSettings.CamRotOffsetYaw
@@ -807,18 +808,18 @@ void AB2ActiveCameraActor::UpdateActiveCamera(float DeltaSeconds)
 				}
 				else
 				{
-					// ¸÷ÀÌ ¾ø´Â »óÈ²ÀÌ¶ó¸é ±âº» Ä«¸Ş¶ó·Î Æú¹é.
+					// å„æ ç»ç»° æƒ‘ç‚”ææ‰¼æ æ‰å¤¯ å¢¨çš‹æ‰¼è‚º å¼ƒå½’.
 					//bFallbackToWorldDefault = true;
 				}
 			}
 			else if (CameraTargetingMode == EActiveCameraTargetingMode::EACTM_Fixed)
 			{
-				// FixedCameraTargetPosition Àº relative ·Î Ãë±Ş.
+				// FixedCameraTargetPosition ç¯® relative è‚º ç§’é­.
 				FTransform FixedTargetWorldTransform = FTransform(FixedCameraTargetPosition) * this->GetTransform();
 				SetPlayerCameraBoomRotationToTarget(FixedTargetWorldTransform.GetTranslation());
 
-				// CameraMovementMode °¡ FollowPlayer ¸é¼­ TargetingMode °¡ Fixed ÀÎ °æ¿ì FixedCameraTargetPosition À§Ä¡¿¡ ÇÃ·¹ÀÌ¾î°¡ ÀÖÀ» °æ¿ì Ä«¸Ş¶ó°¡ ºÒ¾ÈÁ¤ÇÏ°Ô µÊ.
-				// ¾Æ¿¹ ÇØ´ç Á¶ÇÕÀ» »ç¿ëÇÏÁö ¾Ê´Â °É·Î ÇÒ ¼öµµ ÀÖÁö¸¸, FixedCameraTargetPosition À» Àß ¼¼ÆÃÇØ¼­ »ç¿ëÇØ º¼ ¼öµµ.
+				// CameraMovementMode å•Š FollowPlayer æè¾‘ TargetingMode å•Š Fixed ç‰¢ ç‰ˆå¿« FixedCameraTargetPosition å›°æ‘¹ä¿Š æ•²é¥­æç»¢å•Š ä¹é˜‘ ç‰ˆå¿« å¢¨çš‹æ‰¼å•Š é˜‚æ•‘æ²¥çªéœ¸ å‡³.
+				// é…’æŠ— ç§¦å¯¸ ç‚¼é’¦é˜‘ è¤ä¾©çªç˜¤ è‡¼ç»° å§è‚º ä¸” èæ¡£ ä¹ç˜¤çˆ¶, FixedCameraTargetPosition é˜‘ è‚‹ æŠ€æ³¼ç§¦è¾‘ è¤ä¾©ç§¦ æ­ èæ¡£.
 			}
 		}
 
@@ -833,7 +834,7 @@ void AB2ActiveCameraActor::SetupForConsistentPlayerTopDownCamera()
 {
 	if (CachedLocalPC)
 	{
-		// PlayerTopDownCameraSettings ÀÇ °¢ ¿ä¼Òº°·Î override ÇÑ °Í¸¸ Àû¿ë
+		// PlayerTopDownCameraSettings ç‹¼ é˜¿ å¤¸å®¶å–Šè‚º override èŒ„ å·´çˆ¶ åˆ©ä¾©
 		CachedLocalPC->SetCameraBoomLockedViewTarget(PlayerTopDownCameraSettings.bCameraBoomLockedViewTarget);
 
 		if (PlayerTopDownCameraSettings.bOverrideCameraBoomPitch)
@@ -863,7 +864,7 @@ void AB2ActiveCameraActor::SetupForConsistentPlayerTopDownCamera()
 		}
 
 		
-		// Ä«¸Ş¶ó ·ÎÅ×ÀÌ¼Ç Á¶ÀÛ
+		// å¢¨çš‹æ‰¼ è‚ºæŠ›æè®° ç‚¼ç´¯
 		if (ABladeIIPlayer* InteractLocalPlayer = GetInteractPlayerCharacter())
 		{
 			FRotator CamRotation = InteractLocalPlayer->TopDownCameraComponent->GetRelativeTransform().GetRotation().Rotator();
@@ -877,7 +878,7 @@ void AB2ActiveCameraActor::SetupForConsistentPlayerTopDownCamera()
 			//ActiveCameraSpringArm->SetWorldRotation(CamRotation);
 			InteractLocalPlayer->TopDownCameraComponent->SetRelativeRotation(CamRotation);
 
-			// SetViewTargetWithBlend ´Â ÀÌ ÀÌÈÄ¿¡ µû·Î ºÒ·Á¾ß ÇÔ.
+			// SetViewTargetWithBlend ç»° æ æé¥¶ä¿Š è¶è‚º é˜‚å¦¨å…· çªƒ.
 		}
 	}
 }
@@ -886,7 +887,7 @@ bool AB2ActiveCameraActor::IsUsingActiveCameraComponent()
 {
 	if (CameraMovementMode == EActiveCameraMovementMode::EACMM_FollowPlayer)
 	{
-		// ÀÏ´Ü, FollowPlayer ¸ğµå¿¡¼­´Â ÇÃ·¹ÀÌ¾î top-down Ä«¸Ş¶ó¸¦ »ç¿ëÇÑ´Ù´Â °¡Á¤ÀÎµ¥, ¸¸µé¸é¼­ ¹Ù²ğ ¼öµµ ÀÖ´Ù.
+		// è€çªœ, FollowPlayer è‘›é›ä¿Šè¾‘ç»° æ•²é¥­æç»¢ top-down å¢¨çš‹æ‰¼ç”« è¤ä¾©èŒ„ä¿ƒç»° å•Šæ²¥ç‰¢å•, çˆ¶ç”¸æè¾‘ å®˜æ‹† èæ¡£ ä¹ä¿ƒ.
 		return false;
 	}
 	return true;
@@ -896,7 +897,7 @@ void AB2ActiveCameraActor::SetActiveCameraRotationToTarget(FVector InViewTargetL
 {
 	FVector ToTarget = (InViewTargetLocation - ActiveCameraSpringArm->GetComponentLocation());
 	ToTarget.Normalize();
-	// ½ÇÁ¦·Î´Â SpringArm À» Á¶Àı.
+	// è§’åŠ›è‚ºç»° SpringArm é˜‘ ç‚¼ä¾‹.
 	ActiveCameraSpringArm->SetWorldRotation(ToTarget.Rotation());
 }
 
@@ -909,16 +910,16 @@ void AB2ActiveCameraActor::SetPlayerCameraBoomRotationToTarget(FVector InViewTar
 		ToTarget.Normalize();
 		FRotator CamBoomRotation = ToTarget.Rotation();
 
-		// RotOffset Àº ±×³É °¡ÇÔ
+		// RotOffset ç¯® å¼Šæˆ å•Šçªƒ
 		CamBoomRotation.Pitch = CamBoomRotation.Pitch + RotOffsetPitch;
 
-		// Boom Ptich »óÇ×¼± ÇÏÇÑ¼±
+		// Boom Ptich æƒ‘äº²æ€¥ çªèŒ„æ€¥
 		if (bUseCameraBoomRotationClamp)
 			CamBoomRotation.Pitch = FMath::Clamp<float>(CamBoomRotation.Pitch, MinCameraBoomRotationClamp, MaxCameraBoomRotationClamp);
 		
 		InteractLocalPlayer->UpdateCameraPitch(CamBoomRotation.Pitch);
 		InteractLocalPlayer->UpdateCameraYaw(CamBoomRotation.Yaw + RotOffsetYaw);
-		if (ArmLengthOverride > 0.0f) // ArmLengthOverride ´Â 0 º¸´Ù Å¬ ¶§¸¸
+		if (ArmLengthOverride > 0.0f) // ArmLengthOverride ç»° 0 ç„Šä¿ƒ åŠª é”­çˆ¶
 		{
 			InteractLocalPlayer->UpdateCameraDistance(ArmLengthOverride);
 		}
@@ -947,23 +948,23 @@ void AB2ActiveCameraActor::SetPlayerCameraRotationToTarget(FVector InViewTargetL
 ABladeIICharacter* AB2ActiveCameraActor::GetDesiredCameraTargetWaveMob()
 {
 	ABladeIIGameMode* B2GM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(this));
-	AB2MonsterSpawnPool* TargetMobSP = B2GM ? B2GM->GetActiveSpawnPool() : NULL; // ·¹º§ ½ÃÀÛ ½Ã Á¤ÇØÁü.
+	AB2MonsterSpawnPool* TargetMobSP = B2GM ? B2GM->GetActiveSpawnPool() : NULL; // é¥­éª‡ çŸ«ç´¯ çŸ« æ²¥ç§¦å’™.
 
 	if (TargetMobSP)
 	{
 		int32 WaveNum = 0;
 		int32 MobIndex = 0;
-		ParseForWaveMobSelectKeyword(TargetMobSelectKeyword, WaveNum, MobIndex); // ¹®ÀÚ¿­·Î ÁöÁ¤ÇÑ ¿É¼Ç¿¡¼­ ¹øÈ£µé »©¿È.
+		ParseForWaveMobSelectKeyword(TargetMobSelectKeyword, WaveNum, MobIndex); // å·©ç£Šå‡¯è‚º ç˜¤æ²¥èŒ„ å¯è®°ä¿Šè¾‘ é”…é¾‹ç”¸ å“—å’³.
 
 		TArray<ABladeIICharacter*> InterestedWaveMobs;
-		TargetMobSP->GetWaveMobList(WaveNum, InterestedWaveMobs, false); // Á×¾î°¡´Â ³à¼®µµ Æ÷ÇÔÇØ¼­ °¡Á®¿ÀÁö¸¸ ¿©±â¼­ È£ÃâÇÏ´Â Å¸ÀÌ¹Ö¿¡ ±×°Ô µÉ±î..?
+		TargetMobSP->GetWaveMobList(WaveNum, InterestedWaveMobs, false); // ç£·ç»¢å•Šç»° èµ¤ç±æ¡£ å™¨çªƒç§¦è¾‘ å•Šå»‰å·ç˜¤çˆ¶ å’¯æ‰è¾‘ é¾‹å…çªç»° é¸¥ææ€ªä¿Š å¼Šéœ¸ çªé³–..?
 
 		for (int32 WMI = 0; WMI < InterestedWaveMobs.Num(); ++WMI)
 		{
 			ABladeIICharacter* CurrMob = InterestedWaveMobs[WMI];
 			if (CurrMob)
 			{
-				if (CurrMob->GetSpawnPoolWaveObjIndex() == MobIndex) // »ç½Ç»ó Wave °¡ ½ÃÀÛµÈ »óÈ²ÀÌ ¾Æ´Ï¸é Ã£´Â ÀÎµ¦½ºÀÇ mob ÀÌ ¾øÀ» ¼öµµ ÀÖ´Ù.
+				if (CurrMob->GetSpawnPoolWaveObjIndex() == MobIndex) // è¤è§’æƒ‘ Wave å•Š çŸ«ç´¯ç­‰ æƒ‘ç‚”æ é…’èªæ èŒ«ç»° ç‰¢éƒ¸èƒ¶ç‹¼ mob æ ç»é˜‘ èæ¡£ ä¹ä¿ƒ.
 				{
 					return CurrMob;
 				}
@@ -977,9 +978,9 @@ void AB2ActiveCameraActor::ConditionalBeginTransitionInputDisable(bool bTransitI
 {
 	ABladeIIPlayer* InteractLocalPlayer = GetInteractPlayerCharacter();
 
-	// Ä«¸Ş¶ó ¿öÅ© º¯µ¿¿¡ µû¶ó ÇÃ·¹ÀÌ¾î ÀÌµ¿ ÀÔ·Â¿¡ È¥¼±ÀÌ ¿Ã ¼ö ÀÖÀ¸¹Ç·Î ÀÏÁ¤ ½Ã°£ µ¿¾È ÀÔ·ÂÀ» ¸·´Â´Ù.
-	// ÇÃ·¹ÀÌ¾î Top-down Ä«¸Ş¶ó¸¦ »ç¿ëÇÏ´Â ¸ğµå¿¡¼± ÇÊ¿ä¾øÀ» µí.. Çß´Âµ¥ movement, target ¸ğµÎ player °¡ ¾Æ´Ñ ÀÌ»óÀº ÇÊ¿äÇÒ µí.
-	// µà¾óÄ«¸Ş¶ó ¸ğµå¿¡¼­´Â »ç¿ë
+	// å¢¨çš‹æ‰¼ å†µå†œ å‡½æ‚¼ä¿Š è¶æ‰¼ æ•²é¥­æç»¢ ææ‚¼ æ¶ä»¿ä¿Š å»æ€¥æ æ£µ è ä¹æ éª¨è‚º è€æ²¥ çŸ«åŸƒ æ‚¼æ•‘ æ¶ä»¿é˜‘ é˜œç»°ä¿ƒ.
+	// æ•²é¥­æç»¢ Top-down å¢¨çš‹æ‰¼ç”« è¤ä¾©çªç»° è‘›é›ä¿Šæ€¥ é˜å¤¸ç»é˜‘ æ·€.. æ²ç»°å• movement, target è‘›æ»´ player å•Š é…’å›± ææƒ‘ç¯® é˜å¤¸ä¸” æ·€.
+	// æ‚å€”å¢¨çš‹æ‰¼ è‘›é›ä¿Šè¾‘ç»° è¤ä¾©
 	if ((bDualCameraBlending || CameraMovementMode != EActiveCameraMovementMode::EACMM_FollowPlayer || CameraTargetingMode != EActiveCameraTargetingMode::EACTM_Player) &&
 		TransitionInputDisableTime > 0.0f && CachedLocalPC && InteractLocalPlayer)
 	{
@@ -991,7 +992,7 @@ void AB2ActiveCameraActor::ConditionalBeginTransitionInputDisable(bool bTransitI
 
 			if (TransitionAutoMoveScale > 0.0f)
 			{
-				// ÀÔ·ÂÀÌ ºñÈ°¼ºÈ­ µÈ µ¿¾È ÇöÀç À§Ä¡¿¡¼­ ¾à°£ ¾ÕÀ¸·Î ÀÌµ¿½ÃÅ²´Ù. °æ°è¿¡¼­ Á» ¸Ö¾îÁöµµ·Ï ¤»
+				// æ¶ä»¿æ åšåŠå·±æ‹³ ç­‰ æ‚¼æ•‘ æ³…çŠ å›°æ‘¹ä¿Šè¾‘ è·åŸƒ èŠæ è‚º ææ‚¼çŸ«æŒªä¿ƒ. ç‰ˆæ‹Œä¿Šè¾‘ ç²± é’¢ç»¢ç˜¤æ¡£åºŸ ã›
 								
 				const float MoveDistance = InteractLocalPlayer->GetDefaultHalfHeight() * 2.0f * TransitionAutoMoveScale;
 				const FVector MoveTargetLocation = InteractLocalPlayer->GetActorLocation() + (InteractLocalPlayer->GetVelocity().GetSafeNormal() * MoveDistance);
@@ -1001,7 +1002,7 @@ void AB2ActiveCameraActor::ConditionalBeginTransitionInputDisable(bool bTransitI
 		}
 		else
 		{
-			// È¤½Ã¶óµµ TransitIn µµÁßÀÌ¶ó¸é Áß´Ü
+			// è¶£çŸ«æ‰¼æ¡£ TransitIn æ¡£åææ‰¼æ åçªœ
 			if (bTransitInInputDisabled)
 			{
 				GetWorldTimerManager().ClearTimer(TransitInTimeTimerHandle);
@@ -1018,7 +1019,7 @@ void AB2ActiveCameraActor::ConditionalBeginTransitionInputDisable(bool bTransitI
 void AB2ActiveCameraActor::TransitInTimerCB()
 {
 	GetWorldTimerManager().ClearTimer(TransitInTimeTimerHandle);
-	// CachedLocalPC °¡ ¾ø´õ¶óµµ ¿©ÇÏ°£ bDisableMoveInput Àº Ã³¸®ÇØ¾ß..
+	// CachedLocalPC å•Š ç»æ­¹æ‰¼æ¡£ å’¯çªåŸƒ bDisableMoveInput ç¯® è´¸åºœç§¦å…·..
 	ABladeIIPlayerController* B2PC = Cast<ABladeIIPlayerController>(GetWorld()->GetFirstPlayerController());
 	if (B2PC)
 	{
@@ -1030,7 +1031,7 @@ void AB2ActiveCameraActor::TransitInTimerCB()
 void AB2ActiveCameraActor::TransitOutTimerCB()
 {
 	GetWorldTimerManager().ClearTimer(TransitOutTimeTimerHandle);
-	// CachedLocalPC °¡ ¾ø´õ¶óµµ ¿©ÇÏ°£ bDisableMoveInput Àº Ã³¸®ÇØ¾ß..
+	// CachedLocalPC å•Š ç»æ­¹æ‰¼æ¡£ å’¯çªåŸƒ bDisableMoveInput ç¯® è´¸åºœç§¦å…·..
 	ABladeIIPlayerController* B2PC = Cast<ABladeIIPlayerController>(GetWorld()->GetFirstPlayerController());
 	if (B2PC)
 	{
@@ -1125,12 +1126,12 @@ float AB2ActiveCameraActor::GetDualCameraBlendingWeight()
 		if (DCBExtraFlagName != NAME_None)
 			FlagB = FindSceneComponentForDualCameraBlending(DCBExtraFlagName);
 		
-		//º¸°£ ½ÃÀÛ ±âÁØÁ¡
+		//ç„ŠåŸƒ çŸ«ç´¯ æ‰éœ–ç—¢
 		FVector vPointA;
-		//º¸°£ Á¾·á ±âÁØÁ¡
+		//ç„ŠåŸƒ è¾†ä¸° æ‰éœ–ç—¢
 		FVector vPointB;
 
-		// ÇÃ·¡±× ¼³Á¤µÇ¾úÀ¸¸é ±×À§Ä¡·Î ÇÏ°í ¾Æ´Ï¸é Ä«¸Ş¶óÀ§Ä¡ ÀÌ¿ëÇÔ
+		// æ•²è´°å¼Š æ±²æ²¥ç™»èŒæ æ å¼Šå›°æ‘¹è‚º çªç»Š é…’èªæ å¢¨çš‹æ‰¼å›°æ‘¹ æä¾©çªƒ
 		if (FlagA)
 			vPointA = FlagA->GetComponentLocation();
 		else
@@ -1141,19 +1142,19 @@ float AB2ActiveCameraActor::GetDualCameraBlendingWeight()
 		else
 			vPointB = CamB->GetComponentLocation();
 
-		// ºÎÀÚ¿¬½º·¯¿ö¼­ ÄÉ¸¯ÅÍ À§Ä¡°ªÀ» A, B µÎ ÁöÁ¡»çÀÌ·Î º¸Á¤ÇÑ´Ù(³»Àû ÀÌ¿ë).
+		// ä½•ç£Šæ¥·èƒ¶çŸ¾å†µè¾‘ çº³è…ç£ å›°æ‘¹è”¼é˜‘ A, B æ»´ ç˜¤ç—¢è¤æè‚º ç„Šæ²¥èŒ„ä¿ƒ(éƒ´åˆ© æä¾©).
 		FVector vGoalPos = vPointB - vPointA;
 		FVector vCurPos = InteractLocalPlayer->GetActorLocation() - vPointA;
 
-		// º¸Á¤µÈ ÇöÀçÀ§Ä¡ º¤ÅÍ »çÀÌÁî
+		// ç„Šæ²¥ç­‰ æ³…çŠå›°æ‘¹ æ°¦ç£ è¤æä»¤
 		float fCurPosSize = FVector::DotProduct(vGoalPos.GetSafeNormal(KINDA_SMALL_NUMBER), vCurPos);
 				
 		float fWeight = fCurPosSize / vGoalPos.Size();
 
-		if (fWeight < KINDA_SMALL_NUMBER) // ÈçÇÑ ¼³Á¤¿¡¼­ ³ªÅ¸³¯ ¼ö ÀÖ´Â »óÈ²Àº ¾Æ´Ï°ÚÁö¸¸..
+		if (fWeight < KINDA_SMALL_NUMBER) // å¦‚èŒ„ æ±²æ²¥ä¿Šè¾‘ å”±é¸¥æœ è ä¹ç»° æƒ‘ç‚”ç¯® é…’èªæ‘†ç˜¤çˆ¶..
 			return 0.0f;
 
-		if (fWeight >= 1.0f) // È¤½Ã 1³Ñ´Â°Ô ÇÊ¿äÇÏ¸é ±×¶§ Á¦°Å
+		if (fWeight >= 1.0f) // è¶£çŸ« 1é€ç»°éœ¸ é˜å¤¸çªæ å¼Šé”­ åŠ›èŠ­
 			return 1.0f;
 
 		return fWeight;
@@ -1191,7 +1192,7 @@ void AB2ActiveCameraActor::ChangeCameraOwnerPlayer(ABladeIIPlayer* targetPlayer,
 				targetPlayer->UpdateCameraTargetFocusOffset(PlayerTopDownCameraSettings.CameraTargetFocusOffset);
 		}
 
-		//È°¼ºÈ­ ÇÑ¹ø ÇØÁÜ
+		//åŠå·±æ‹³ èŒ„é”… ç§¦æ·‹
 		ForceBeginActiveCamera();
 		float LastBlendingTime = OverrideBlendingTime >= 0.0f ? OverrideBlendingTime : BlendInTime;
 		B2PC->SetViewTargetWithBlend(targetPlayer, LastBlendingTime, EViewTargetBlendFunction::VTBlend_Cubic, 0, true);
@@ -1211,7 +1212,7 @@ void AB2ActiveCameraActor::RefreshEditingComp(bool bRegenerateStaticComp /*= tru
 		{
 			UStaticMeshComponent* EditingComp = NULL;
 
-			// »õ·Î »ı¼ºÇÏ´Â ¿É¼ÇÀÌ ¾Æ´Ï¶ó¸é ±âÁ¸ °Å »ç¿ë
+			// è´§è‚º ç§¯å·±çªç»° å¯è®°æ é…’èªæ‰¼æ æ‰ç²® èŠ­ è¤ä¾©
 			if(TargetPositionEditingComp.Num() == 0)
 			{
 				EditingComp = NewObject<UStaticMeshComponent>(this, FName(TEXT("TargetPositionEditingComp")), RF_Transient);
@@ -1227,16 +1228,16 @@ void AB2ActiveCameraActor::RefreshEditingComp(bool bRegenerateStaticComp /*= tru
 
 			if(EditingComp)
 			{
-				EditingComp->AttachToComponent(GetRootComponent(), FAttachmentTransformRules(EAttachmentRule::KeepRelative, false)); // EditingComp ÀÇ RelativeLocation À» »ç¿ëÇÒ °ÍÀÌ¹Ç·Î ¹İµå½Ã root ¿¡ attach
+				EditingComp->AttachToComponent(GetRootComponent(), FAttachmentTransformRules(EAttachmentRule::KeepRelative, false)); // EditingComp ç‹¼ RelativeLocation é˜‘ è¤ä¾©ä¸” å·´æéª¨è‚º é¦†é›çŸ« root ä¿Š attach
 				EditingComp->RegisterComponent();
 				EditingComp->SetStaticMesh(EditingCompMesh);
 				EditingComp->SetVisibility(true);
-				// ¾îÂ÷ÇÇ °ÔÀÓ¿¡¼± »ı±âÁöµµ ¾ÊÀ» ¾ÖµéÀÌÁö¸¸ 
+				// ç»¢ç’ä¹” éœ¸çƒ™ä¿Šæ€¥ ç§¯æ‰ç˜¤æ¡£ è‡¼é˜‘ å±€ç”¸æç˜¤çˆ¶ 
 				EditingComp->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 				EditingComp->SetHiddenInGame(true);
 				EditingComp->SetMaterial(0, LoadObject<UMaterial>(nullptr, TEXT("/Engine/BasicShapes/BasicShapeMaterial.BasicShapeMaterial")));
 				
-				// Movement, Target ¸ğµÎ Fixed ÀÌ¸é ±»ÀÌ µû·Î CameraTargetPosition À» ÁÙ °Å ¾øÀÌ ActiveCameraComp ÀÇ ¹èÄ¡µÈ À§Ä¡ ¹× È¸Àü°ªÀ» ±×´ë·Î »ç¿ëÇÏ¸é µÇ°ÚÁö..
+				// Movement, Target è‘›æ»´ Fixed ææ è¢«æ è¶è‚º CameraTargetPosition é˜‘ ä¸´ èŠ­ ç»æ ActiveCameraComp ç‹¼ ç¡…æ‘¹ç­‰ å›°æ‘¹ æ£º é›€å‚ˆè”¼é˜‘ å¼Šæªè‚º è¤ä¾©çªæ ç™»æ‘†ç˜¤..
 				if(CameraMovementMode == EActiveCameraMovementMode::EACMM_Fixed)
 				{					
 					EditingComp->SetWorldLocation(ActiveCameraSpringArm->GetComponentTransform().TransformPosition(FVector(300.0f, 0.0f, 0.0f)));
@@ -1244,13 +1245,13 @@ void AB2ActiveCameraActor::RefreshEditingComp(bool bRegenerateStaticComp /*= tru
 				}
 				else
 				{
-					EditingComp->SetRelativeLocation(FixedCameraTargetPosition); // FixedCameraTargetPosition Àº relative Ãë±Ş
+					EditingComp->SetRelativeLocation(FixedCameraTargetPosition); // FixedCameraTargetPosition ç¯® relative ç§’é­
 				}
 			}
 		}
 	}
 
-	// ShapeComponent µé¿¡ ´ëÇÑ ¾È³»ÅØ½ºÆ®µé »ı¼º. ToggleMode_BeginComponents, ToggleMode_EndComponents ¿¡ µî·ÏÇÑ °ÍµéÀº Æ¯º°È÷ Ãß°¡ Á¤º¸..
+	// ShapeComponent ç”¸ä¿Š æªèŒ„ æ•‘éƒ´å’†èƒ¶é£˜ç”¸ ç§¯å·±. ToggleMode_BeginComponents, ToggleMode_EndComponents ä¿Š æ®¿åºŸèŒ„ å·´ç”¸ç¯® æ¼‚å–Šæ´’ çœ å•Š æ²¥ç„Š..
 	TArray<UActorComponent*> ShapeComps;
 	GetComponents(ShapeComps);
 	for (int32 SCI = 0; SCI < ShapeComps.Num(); ++SCI)
@@ -1275,12 +1276,12 @@ void AB2ActiveCameraActor::RefreshEditingComp(bool bRegenerateStaticComp /*= tru
 		NewInfoTextComp->SetHorizontalAlignment(EHTA_Center);
 		NewInfoTextComp->SetWorldSize(30.0f);
 		NewInfoTextComp->SetWorldScale3D(FVector(1.0f, 1.0f, 1.0f));
-		NewInfoTextComp->SetRelativeLocation(FVector(0.0f, 0.0f, 50.0f)); // À§Ä¡´Â Àû´çÈ÷ ¸ÂÃçÁØ´Ù
+		NewInfoTextComp->SetRelativeLocation(FVector(0.0f, 0.0f, 50.0f)); // å›°æ‘¹ç»° åˆ©å¯¸æ´’ å˜è‹—éœ–ä¿ƒ
 		
 		const bool bIsOneOfBeginToggleComp = IsOneOfBeginToggleComp(CurrShapeComp);
 		const bool bIsOneOfEndToggleComp = IsOneOfEndToggleComp(CurrShapeComp);
 
-		// Component ¿ëµµ µû¶ó ´Ù¸£°Ô Ç¥ÇöÇÒ Á¤º¸µé.
+		// Component ä¾©æ¡£ è¶æ‰¼ ä¿ƒç¦éœ¸ é’æ³…ä¸” æ²¥ç„Šç”¸.
 		FColor CompTextColor(255, 0, 0);
 		FString CompInfoStr = CurrShapeComp->GetName() + TEXT("\n");
 
@@ -1288,7 +1289,7 @@ void AB2ActiveCameraActor::RefreshEditingComp(bool bRegenerateStaticComp /*= tru
 		{
 			if (bIsOneOfBeginToggleComp && bIsOneOfEndToggleComp)
 			{
-				CompInfoStr += TEXT("WRONG Setting!!"); // Begin/End µÑ ´Ù µ¿½Ã¿¡ ¼¼ÆÃµÈ °Ç Àß¸øÀÓ.
+				CompInfoStr += TEXT("WRONG Setting!!"); // Begin/End ç¬› ä¿ƒ æ‚¼çŸ«ä¿Š æŠ€æ³¼ç­‰ æ‰’ è‚‹ç»™çƒ™.
 				CompTextColor = FColor(255, 0, 127);
 			}
 			else
@@ -1354,7 +1355,7 @@ void AB2ActiveCameraActor::DestroyEditingComponents(bool bDestroyStaticCompToo)
 	}
 	ShapeCompInfoText.Empty();
 
-	// ±âÅ¸ ÄÄÆ÷³ÍÆ®°¡ È¤½Ã Ãß°¡°¡ µÇ¸é..
+	// æ‰é¸¥ å“ªå™¨æƒ©é£˜å•Š è¶£çŸ« çœ å•Šå•Š ç™»æ..
 }
 
 void AB2ActiveCameraActor::PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent)
@@ -1372,7 +1373,7 @@ void AB2ActiveCameraActor::PostEditChangeProperty(FPropertyChangedEvent& Propert
 
 	if (PropertyName == Name_ToggleMode_BeginComponents || PropertyName == Name_ToggleMode_EndComponents)
 	{
-		// ¾ç´Ù¸® ±İÁö ¤§¤§
+		// å‰§ä¿ƒåºœ é™›ç˜¤ ã‡ã‡
 		bool bCompNameExistForBothBeginAndEnd = false;
 		for (int32 BCI = 0; BCI < ToggleMode_BeginComponents.Num(); ++BCI)
 		{
@@ -1391,7 +1392,7 @@ void AB2ActiveCameraActor::PostEditChangeProperty(FPropertyChangedEvent& Propert
 		{
 #if !PLATFORM_MAC
 			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-				FString::Printf(TEXT("[°æ°í] ToggleMode_BeginComponents ¿Í ToggleMode_EndComponents ¿¡ µ¿½Ã¿¡ µî·ÏµÈ ÄÄÆ÷³ÍÆ®°¡ ÀÖ½À´Ï´Ù."))
+				FString::Printf(TEXT("[ç‰ˆç»Š] ToggleMode_BeginComponents å®¢ ToggleMode_EndComponents ä¿Š æ‚¼çŸ«ä¿Š æ®¿åºŸç­‰ å“ªå™¨æƒ©é£˜å•Š ä¹åš¼èªä¿ƒ."))
 				));
 #endif
 		}
@@ -1399,10 +1400,10 @@ void AB2ActiveCameraActor::PostEditChangeProperty(FPropertyChangedEvent& Propert
 
 		TArray<UActorComponent*> AllShapeComps;
 		GetComponents(AllShapeComps);
-		// ½ÇÁ¦·Î ¾ø´Â ÄÄÆ÷³ÍÆ® ÀÌ¸§À» ³Ö¾ú´ÂÁö °Ë»ç.
+		// è§’åŠ›è‚º ç»ç»° å“ªå™¨æƒ©é£˜ ææŠšé˜‘ æŒèŒç»°ç˜¤ å…«è¤.
 		for (int32 BCI = 0; BCI < ToggleMode_BeginComponents.Num(); ++BCI)
 		{
-			if (ToggleMode_BeginComponents[BCI] == NAME_None) // ¾ÆÁ÷ ¼¼ÆÃÇÏÁö ¾ÊÀº °Ç ÆĞ½º.
+			if (ToggleMode_BeginComponents[BCI] == NAME_None) // é…’æµ æŠ€æ³¼çªç˜¤ è‡¼ç¯® æ‰’ è©èƒ¶.
 			{
 				continue;
 			}
@@ -1420,7 +1421,7 @@ void AB2ActiveCameraActor::PostEditChangeProperty(FPropertyChangedEvent& Propert
 			{
 #if !PLATFORM_MAC
 				FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-					FString::Printf(TEXT("[°æ°í] %s (ÀÌ)¶ó´Â ÀÌ¸§ÀÇ Shape (Collision) Component °¡ ¾ø½À´Ï´Ù."), *(ToggleMode_BeginComponents[BCI].ToString()))
+					FString::Printf(TEXT("[ç‰ˆç»Š] %s (æ)æ‰¼ç»° ææŠšç‹¼ Shape (Collision) Component å•Š ç»åš¼èªä¿ƒ."), *(ToggleMode_BeginComponents[BCI].ToString()))
 					));
 #endif
 			}
@@ -1428,7 +1429,7 @@ void AB2ActiveCameraActor::PostEditChangeProperty(FPropertyChangedEvent& Propert
 
 		for (int32 BCI = 0; BCI < ToggleMode_EndComponents.Num(); ++BCI)
 		{
-			if (ToggleMode_EndComponents[BCI] == NAME_None) // ¾ÆÁ÷ ¼¼ÆÃÇÏÁö ¾ÊÀº °Ç ÆĞ½º.
+			if (ToggleMode_EndComponents[BCI] == NAME_None) // é…’æµ æŠ€æ³¼çªç˜¤ è‡¼ç¯® æ‰’ è©èƒ¶.
 			{
 				continue;
 			}
@@ -1446,7 +1447,7 @@ void AB2ActiveCameraActor::PostEditChangeProperty(FPropertyChangedEvent& Propert
 			{
 #if !PLATFORM_MAC
 				FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-					FString::Printf(TEXT("[°æ°í] %s (ÀÌ)¶ó´Â ÀÌ¸§ÀÇ Shape (Collision) Component °¡ ¾ø½À´Ï´Ù."), *(ToggleMode_EndComponents[BCI].ToString()))
+					FString::Printf(TEXT("[ç‰ˆç»Š] %s (æ)æ‰¼ç»° ææŠšç‹¼ Shape (Collision) Component å•Š ç»åš¼èªä¿ƒ."), *(ToggleMode_EndComponents[BCI].ToString()))
 					));
 #endif
 			}
@@ -1464,11 +1465,11 @@ void AB2ActiveCameraActor::PostEditMove(bool bFinished)
 
 	if (bFinished)
 	{
-		// ActiveCameraComp ´ë½Å SpringArm À» Á¦¾îÇØ¾ß ÇÔ.
-		// ±×·¡µµ ActiveCameraComp °¡ Å¬¸¯ÇÏ±â¿¡´Â ÁÁÀ¸´Ï ActiveCameraComp ¿¡µğÆ®°¡ SpringArm ¿¡µğÆ®·Î µÇµµ·Ï °ªÀ» ¸ÂÃçÁÖµµ·Ï ÇÏÀÚ.
+		// ActiveCameraComp æªè„š SpringArm é˜‘ åŠ›ç»¢ç§¦å…· çªƒ.
+		// å¼Šè´°æ¡£ ActiveCameraComp å•Š åŠªè…çªæ‰ä¿Šç»° äº®æ èª ActiveCameraComp ä¿Šå¼é£˜å•Š SpringArm ä¿Šå¼é£˜è‚º ç™»æ¡£åºŸ è”¼é˜‘ å˜è‹—æ—æ¡£åºŸ çªç£Š.
 		if(ActiveCameraComp->GetRelativeLocation() != FVector(0.0f,0.0f,0.0f))
 		{
-			// Á¤½ÄÀ¸·Î´Â SocketOffset °ú TargetOffset µµ ¸ÂÃçÁÖ¾î¾ß ÇÏÁö¸¸ ±»ÀÌ ±×·¸°Ô±îÁö..
+			// æ²¥ä¾¥æ è‚ºç»° SocketOffset è‹ TargetOffset æ¡£ å˜è‹—æ—ç»¢å…· çªç˜¤çˆ¶ è¢«æ å¼ŠçŠ¯éœ¸é³–ç˜¤..
 			FTransform SupposedSpringArmTransform = FTransform(FVector(ActiveCameraSpringArm->TargetArmLength, 0.0f, 0.0f)) * ActiveCameraComp->GetComponentTransform();
 			ActiveCameraSpringArm->SetWorldLocation(SupposedSpringArmTransform.GetTranslation());
 			ActiveCameraComp->SetRelativeLocation(FVector(0.0f, 0.0f, 0.0f));
@@ -1479,9 +1480,9 @@ void AB2ActiveCameraActor::PostEditMove(bool bFinished)
 			ActiveCameraComp->SetRelativeRotation(FRotator(0.0f, 0.0f, 0.0f));
 		}
 
-		// À§Ä¡ ½ÌÅ© ÈÄ Refresh
+		// å›°æ‘¹ æ•™å†œ é¥¶ Refresh
 		SyncFromEditingCompPlacement();
-		// Regenerate ¾øÀÌ À§Ä¡¸¸ ½ÌÅ©ÇÏ´Â ¿É¼ÇÀ¸·Î call. ¼º´É ¶§¹®ÀÌ ¾Æ´Ï¶ó ÀÌ·¸°Ô ÇÏÁö ¾ÊÀ¸¸é ¸Å ÀÌµ¿¸¶´Ù ¼±ÅÃ Æ÷Ä¿½º¸¦ ÀÒ¾î¹ö·Á¼­ Á¸³ª ºÒÆíÇÔ.
+		// Regenerate ç»æ å›°æ‘¹çˆ¶ æ•™å†œçªç»° å¯è®°æ è‚º call. å·±ç“· é”­å·©æ é…’èªæ‰¼ æçŠ¯éœ¸ çªç˜¤ è‡¼æ æ æ¦‚ ææ‚¼ä»˜ä¿ƒ æ€¥ç¶ å™¨ç›®èƒ¶ç”« é…ªç»¢æ»šå¦¨è¾‘ ç²®å”± é˜‚ç¥ˆçªƒ.
 		RefreshEditingComp(false);
 	}
 }

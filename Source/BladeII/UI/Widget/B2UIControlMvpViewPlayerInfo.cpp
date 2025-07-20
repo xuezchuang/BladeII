@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIControlMvpViewPlayerInfo.h"
 #include "BladeIINetPlayer.h"
@@ -7,7 +7,7 @@
 #include "Blueprint/WidgetLayoutLibrary.h"
 #include "B2UIDocHelper.h"
 #include "B2UIDocControl.h"
-
+#include "BladeIILocText.h"
 
 
 UB2UIControlMvpViewPlayerInfo::UB2UIControlMvpViewPlayerInfo(const FObjectInitializer& ObjectInitializer)
@@ -49,8 +49,8 @@ void UB2UIControlMvpViewPlayerInfo::BindDelegates()
 
 void UB2UIControlMvpViewPlayerInfo::OnClickAskFriend()
 {
-	// Ä£±¸ ½ÅÃ»
-	// ¿äÃ»º¸³»±¸ ¹öÆ° ÇÏÀÌµå.
+	// æ¨¡å¤‡ è„šæ²¡
+	// å¤¸æ²¡ç„Šéƒ´å¤‡ æ»šç“¢ çªæé›.
 	AB2NetGameMode* pGM = Cast<AB2NetGameMode>(UGameplayStatics::GetGameMode(this));
 	
 	if (pGM && m_nPlayerNetId != 0)
@@ -68,7 +68,7 @@ void UB2UIControlMvpViewPlayerInfo::OnClickAskFriend()
 
 void UB2UIControlMvpViewPlayerInfo::SetPlayer(class ABladeIIPlayer* pPlayer)
 {
-	// ÇÃ·¹ÀÌ¾î Á¤º¸ ¼ÂÆÃ
+	// æ•²é¥­æç»¢ æ²¥ç„Š æ‚¸æ³¼
 	EPCClass PcClass = pPlayer->GetCharacterDataStore()->GetMainPlayerClass();
 	int32 nLevel = pPlayer->GetCharacterDataStore()->GetCharacterLevel(PcClass);
 	FString strName = pPlayer->GetCharacterDataStore()->GetUserNickName();
@@ -131,7 +131,7 @@ void UB2UIControlMvpViewPlayerInfo::NativeTick(const FGeometry& MyGeometry, floa
 {
 	//Super::NativeTick(MyGeometry, InDeltaTime);
 
-	//// À§Ä¡ ¾÷µ¥ÀÌÆ®
+	//// å›°æ‘¹ è¯€å•æé£˜
 
 	//APlayerController* PC = UGameplayStatics::GetLocalPlayerController(this);
 
@@ -145,7 +145,7 @@ void UB2UIControlMvpViewPlayerInfo::NativeTick(const FGeometry& MyGeometry, floa
 	//	vUIPos.X -= (GetDesiredSize().X * UWidgetLayoutLibrary::GetViewportScale(this)) / 2;
 	//	vUIPos.Y -= GetDesiredSize().Y * UWidgetLayoutLibrary::GetViewportScale(this);
 
-	//	// BP¿¡¼­ ÀÔ·ÂÇÏ´Â º¸Á¤°ª
+	//	// BPä¿Šè¾‘ æ¶ä»¿çªç»° ç„Šæ²¥è”¼
 	//	vUIPos.X += AdjustPosition.X * UWidgetLayoutLibrary::GetViewportScale(this);
 	//	vUIPos.Y += AdjustPosition.Y * UWidgetLayoutLibrary::GetViewportScale(this);
 

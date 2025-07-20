@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2UITMFormationSelectButton.h"
@@ -53,7 +53,7 @@ void UB2UITMFormationSelectButton::UpdateStaticText()
 {
 	if (TB_Enhance.IsValid())
 	{
-		TB_Enhance->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Teamformation_Upgrade"))); //��ȭ
+		TB_Enhance->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Teamformation_Upgrade"))); //碍拳
 	}
 }
 

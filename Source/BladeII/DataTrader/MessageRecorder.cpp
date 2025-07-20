@@ -1,4 +1,4 @@
-
+﻿
 #include "MessageRecorder.h"
 #include "Event.h"
 #include "ChannelManager.h"

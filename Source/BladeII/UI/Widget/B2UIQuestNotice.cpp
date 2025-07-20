@@ -1,4 +1,4 @@
-#include "B2UIQuestNotice.h"
+ï»¿#include "B2UIQuestNotice.h"
 
 #include "B2UIManager.h"
 #include "B2UIQuestSlot.h"
@@ -193,7 +193,7 @@ void UB2UIQuestCompleteNotify::CloseCompleteNotify()
 	if (ProgressQuestSlots.IsEmpty() == false)
 	{
 		if (GetOwningPlayer())
-		{//Å¸ÀÌ¸Ó
+		{//é¸¥æèµ£
 			FTimerManager& TimerManager = GetOwningPlayer()->GetWorldTimerManager();
 			if (TimerManager.IsTimerActive(AutoGapTimerHandle))
 			{
@@ -276,7 +276,7 @@ void FQuestNotifySlot::SetQuestCompleteNotify(bool bVisible, int32 QuestSlot)
 				TB_QuestComplete->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Quest_CompleteNotifyDesc")));
 			}
 
-			// IconÀº ¾îÂîµÉÁö ¸ğ¸£¹Ç·Î..
+			// Iconç¯® ç»¢éª‚çªç˜¤ è‘›ç¦éª¨è‚º..
 		}
 	}
 }

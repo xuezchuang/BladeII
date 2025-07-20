@@ -53,14 +53,14 @@ void UB2LobbyUI_ItemSurpassMain::StartFromLobby(class UB2UIManager_Lobby* InUIMa
 {
 	Super::StartFromLobby(InUIManager, InGM);
 
-	// ´Ü¼øÈ÷ ¾ÆÀÌÅÛ Á¤º¸¸¸ ¾ò¾î¿À·Á¸é Inventory ÀÎ½ºÅÏ½º ¾øÀÌ static À¸·Î ¾ò¾î¿Ã ¼ö ÀÖÀ¸³ª ÇÕ¼º µîÀÇ ±â´ÉÀº ÀÎº¥Åä¸®°¡ ¶° ÀÖ´Â »óÅÂ¿¡¼­ µ¿ÀÛ.
+	// çªœé‰´æ´’ é…’æè¢ æ²¥ç„Šçˆ¶ æ˜ç»¢å·å¦¨æ Inventory ç‰¢èƒ¶ç•”èƒ¶ ç»æ static æ è‚º æ˜ç»¢æ£µ è ä¹æ å”± é’¦å·± æ®¿ç‹¼ æ‰ç“·ç¯® ç‰¢äº¥é…åºœå•Š æ ‹ ä¹ç»° æƒ‘æ€•ä¿Šè¾‘ æ‚¼ç´¯.
 	CachedInventory = CachedLobbyGM->GetLobbyInventory();
 	check(CachedInventory);
 
-	// ÀÌ ½ÃÁ¡¿¡ Inventory ÀÇ TargetItemID ´Â ¼¼ÆÃµÇ¾î ÀÖ¾î¾ß ÇÔ. (UB2LobbyInventory::EnterItemOpMode)
+	// æ çŸ«ç—¢ä¿Š Inventory ç‹¼ TargetItemID ç»° æŠ€æ³¼ç™»ç»¢ ä¹ç»¢å…· çªƒ. (UB2LobbyInventory::EnterItemOpMode)
 	if (!CachedInventory->GetItemOPTargetItemData(NativeSurpassTargetData) || CachedInventory->GetItemOpMode() != ELobbyInvenItemOpMode::EIVIOP_Surpass)
 	{
-		CloseAndQuitItemOpMode(); // ¸¸¿¡ ÇÏ³ª ½ÇÆĞÇÑ´Ù¸é.. ¾îÂ¿ ¼ö ¾øÁö.
+		CloseAndQuitItemOpMode(); // çˆ¶ä¿Š çªå”± è§’è©èŒ„ä¿ƒæ.. ç»¢é©´ è ç»ç˜¤.
 		return;
 	}
 
@@ -118,7 +118,7 @@ void UB2LobbyUI_ItemSurpassMain::UpdateStaticTexts()
 	if (TB_SurpassDescription.IsValid())
 	{
 		TB_SurpassDescription->SetText(FText::Format(
-			BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("LobbyInvenText_SurpassNote")), FText::AsNumber(1) // 1 ÀÌ»ó ¿Ã¶ó°¥ ÀÏÀÌ ÀÖ³ª? ¤» : ÀÖ³×!
+			BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("LobbyInvenText_SurpassNote")), FText::AsNumber(1) // 1 ææƒ‘ æ£µæ‰¼å“ è€æ ä¹å”±? ã› : ä¹åŒ™!
 			));
 	}
 	if (TB_SurpassUnselectDescription.IsValid())
@@ -135,18 +135,18 @@ void UB2LobbyUI_ItemSurpassMain::UpdateDynamicWidgets()
 {
 	check(CachedInventory);
 
-	if (TB_SurpassCostNum.IsValid()) // ÃÊ¿ù ºñ¿ëÀÌ ÀÏÁ¤ÇÏ´õ¶óµµ ÀÌ ÆäÀÌÁö¸¦ ¿­°í ³­ ÈÄ ¼­¹ö¿¡¼­ ÀÀ´äÀ» ¹Ş°Ô µÇ¸é Á¦´ë·Î ¼¼ÆÃÇÏ°Ô µÉ °Í.
+	if (TB_SurpassCostNum.IsValid()) // æª¬å²¿ åšä¾©æ è€æ²¥çªæ­¹æ‰¼æ¡£ æ å…¶æç˜¤ç”« å‡¯ç»Š æŠ„ é¥¶ è¾‘æ»šä¿Šè¾‘ è§ˆç¿ é˜‘ ç½éœ¸ ç™»æ åŠ›æªè‚º æŠ€æ³¼çªéœ¸ çª å·´.
 	{
 		TB_SurpassCostNum->SetText(FText::FromString(FString::FromInt(CachedInventory ? CachedInventory->GetCurrentItemOpGoldCost() : 0)));
 	}
 
-	// ÇöÀç ÃÊ¿ù Àç·á·Î »ç¿ë °¡´ÉÇÑ Àåºñ°¡ º¸°üÇÔ¿¡ ´õ ÀÌ»ó ¾ø´Ù¸é ¸Ş½ÃÁö¸¦ »Ñ·ÁÁØ´Ù.
+	// æ³…çŠ æª¬å²¿ çŠä¸°è‚º è¤ä¾© å•Šç“·èŒ„ å˜åšå•Š ç„ŠåŒ…çªƒä¿Š æ­¹ ææƒ‘ ç»ä¿ƒæ çš‹çŸ«ç˜¤ç”« è°å¦¨éœ–ä¿ƒ.
 	TArray<FB2Item> CurrPCItemList;
 	CachedInventory->GetStoredItemList_ItemOpModeFilter(CurrPCItemList, CachedInventory->GetMainInvenViewCurrentTab(), EPCClass::EPC_End, true);
 	if (CurrPCItemList.Num() == 0)
 	{
-		const wchar_t* GuideText;	// Ãâ·ÂµÅ¾ß µÇ´Â ¹®±¸ Å°°ªÀ» ÀúÀåÇÒ º¯¼ö.
-		if (NativeSurpassTargetData.StarGrade >= FItemGradeInfo::MINIMUM_ADVANCED_SURPASS_STAR_GRADE)	// 11¼º ÀÌ»óÀÏ °æ¿ì
+		const wchar_t* GuideText;	// å…ä»¿è¹¬å…· ç™»ç»° å·©å¤‡ è™è”¼é˜‘ å†å˜ä¸” å‡½è.
+		if (NativeSurpassTargetData.StarGrade >= FItemGradeInfo::MINIMUM_ADVANCED_SURPASS_STAR_GRADE)	// 11å·± ææƒ‘è€ ç‰ˆå¿«
 		{
 			GuideText = TEXT("LobbyInvenText_No11StarSurpassIngredInStoreMessage");
 		}
@@ -163,7 +163,7 @@ void UB2LobbyUI_ItemSurpassMain::UpdateDynamicWidgets()
 		LobbyInvenHideItemOpModeGuideTextClass<>::GetInstance().Signal();
 	}
 
-	// Àç·á ¼±ÅÃ »óÅÂ¿¡ µû¸¥ visibility..
+	// çŠä¸° æ€¥ç¶ æƒ‘æ€•ä¿Š è¶å¼— visibility..
 	if (TB_NoIngredMessage.IsValid())
 	{
 		TB_NoIngredMessage->SetVisibility(IsAnyIngredSelected() ? ESlateVisibility::Hidden : ESlateVisibility::Visible);
@@ -188,18 +188,18 @@ void UB2LobbyUI_ItemSurpassMain::UpdateDynamicWidgets()
 	if (IsAnyIngredSelected())
 	{
 
-		// Surpass Á¤º¸
+		// Surpass æ²¥ç„Š
 
 		FItemSurpassLevel InSurpassInfo = BladeIIGameImpl::GetClientDataStore().GetSurpassLevelData(SumSurpassData.StarGrade);
 		FItemSurpassLevel InCurrentItemSurpassInfo = BladeIIGameImpl::GetClientDataStore().GetSurpassLevelData(NativeSurpassTargetData.StarGrade);
 		
-		// ´ëÃ¼·Î P_Selected ¾Æ·¡¿¡ ¹èÄ¡µÈ °Íµé.
+		// æªçœ‰è‚º P_Selected é…’è´°ä¿Š ç¡…æ‘¹ç­‰ å·´ç”¸.
 
-		// ÃÊ¿ù ÀÌÈÄ Á¤º¸´Â ÀÌ ½ÃÁ¡¿£ ¾øÀ» °ÍÀÓ. ¾îÂ÷ÇÇ ÃÖ´ë °­È­·¹º§ ÇÏ³ª Áõ°¡ÇÏ´Â °Å.
-		const int32 LimitLevel = FB2Item::ItemNormalMaxLevel + InCurrentItemSurpassInfo.MaxSurpassLevel; // ¾ÆÀÌÅÛº° ÃÖ´ë ÃÊ¿ù·¹º§
+		// æª¬å²¿ æé¥¶ æ²¥ç„Šç»° æ çŸ«ç—¢æµš ç»é˜‘ å·´çƒ™. ç»¢ç’ä¹” å¼¥æª ç¢æ‹³é¥­éª‡ çªå”± åˆ˜å•Šçªç»° èŠ­.
+		const int32 LimitLevel = FB2Item::ItemNormalMaxLevel + InCurrentItemSurpassInfo.MaxSurpassLevel; // é…’æè¢å–Š å¼¥æª æª¬å²¿é¥­éª‡
 		const int32 CurrLevel = NativeSurpassTargetData.Level;
 		const int32 CurrMaxLevel = NativeSurpassTargetData.MaxLevel;
-		const int32 NextSurpassStep = NativeSurpassTargetData.SurpassCount + InSurpassInfo.IncreaseLevel; // ´ÙÀ½ ÃÊ¿ù ·¹º§
+		const int32 NextSurpassStep = NativeSurpassTargetData.SurpassCount + InSurpassInfo.IncreaseLevel; // ä¿ƒæ¾œ æª¬å²¿ é¥­éª‡
 
 		int32 PostSurpassMaxEnhanceLevel = NativeSurpassTargetData.MaxLevel + InSurpassInfo.IncreaseLevel;
 
@@ -217,7 +217,7 @@ void UB2LobbyUI_ItemSurpassMain::UpdateDynamicWidgets()
 
 		if (TB_CurrMaxLevelLabel.IsValid())
 		{
-			TB_CurrMaxLevelLabel->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("LobbyInvenText_SurpassMaxLevelLabel"))); // °Á °íÁ¤ ÅØ½ºÆ®.
+			TB_CurrMaxLevelLabel->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("LobbyInvenText_SurpassMaxLevelLabel"))); // å‚² ç»Šæ²¥ å’†èƒ¶é£˜.
 		}
 		if (TB_CurrMaxLevel.IsValid())
 		{
@@ -225,7 +225,7 @@ void UB2LobbyUI_ItemSurpassMain::UpdateDynamicWidgets()
 		}
 		if (TB_PostSurpassMaxLevelLabel.IsValid())
 		{
-			TB_PostSurpassMaxLevelLabel->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("LobbyInvenText_SurpassMaxLevelLabel"))); // °Á °íÁ¤ ÅØ½ºÆ®.
+			TB_PostSurpassMaxLevelLabel->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("LobbyInvenText_SurpassMaxLevelLabel"))); // å‚² ç»Šæ²¥ å’†èƒ¶é£˜.
 		}
 
 		if (TB_PostSurpassMaxLevel.IsValid())
@@ -249,13 +249,13 @@ void UB2LobbyUI_ItemSurpassMain::UpdateTargetItemIcon()
 		return;
 	}
 
-	// Anchor ¼³Á¤¿¡ µû¶ó GetSize ´Â ¿øÇÏ´Â °ªÀÌ ¾È ³ª¿Ã °ÍÀÌ¹Ç·Î ÁÖÀÇ.
+	// Anchor æ±²æ²¥ä¿Š è¶æ‰¼ GetSize ç»° ç›”çªç»° è”¼æ æ•‘ å”±æ£µ å·´æéª¨è‚º æ—ç‹¼.
 	UCanvasPanelSlot* MainPanelSlot = Cast<UCanvasPanelSlot>(CP_TargetItemIconSet->Slot);
 	FVector2D AllowedIconSize = MainPanelSlot ? MainPanelSlot->GetSize() : FVector2D(0.0f, 0.0f);
 
 	UB2DynItemIcon* DynIconCDO = Cast<UB2DynItemIcon>(ItemIconWidgetClass->GetDefaultObject());
 
-	// ItemIconPanelNRef À§¿¡ ÃÖÁ¾ÀûÀÎ ¾ÆÀÌÅÛ ¾ÆÀÌÄÜ widget »ı¼º
+	// ItemIconPanelNRef å›°ä¿Š å¼¥è¾†åˆ©ç‰¢ é…’æè¢ é…’æèƒ½ widget ç§¯å·±
 	CreatedTargetItemIcon = Cast<UB2DynItemIcon_LobbyInven>(DynCreateInCanvasPanel(
 		ItemIconWidgetClass, this, CP_TargetItemIconSet.Get(), DynIconCDO ? DynIconCDO->GetNonScaledSize() : FVector2D(100.0f, 100.0f), AllowedIconSize,
 		FVector2D(0.0f, 0.0f), 0, false
@@ -279,7 +279,7 @@ void UB2LobbyUI_ItemSurpassMain::UpdateIngredItemIcon()
 		FVector2D AllowedIconSize = MainPanelSlot ? MainPanelSlot->GetSize() : FVector2D(0.0f, 0.0f);
 		UB2DynItemIcon* DynIconCDO = Cast<UB2DynItemIcon>(ItemIconWidgetClass->GetDefaultObject());
 
-		// MainPanelNativeRef À§¿¡ ÃÖÁ¾ÀûÀÎ ¾ÆÀÌÅÛ ¾ÆÀÌÄÜ widget »ı¼º
+		// MainPanelNativeRef å›°ä¿Š å¼¥è¾†åˆ©ç‰¢ é…’æè¢ é…’æèƒ½ widget ç§¯å·±
 		CreatedIngredItemIcon = Cast<UB2DynItemIcon_LobbyInven>(DynCreateInCanvasPanel(
 			ItemIconWidgetClass, this, CP_IngredItemIconSet.Get(), DynIconCDO ? DynIconCDO->GetNonScaledSize() : FVector2D(100.0f, 100.0f), AllowedIconSize,
 			FVector2D(0.0f, 0.0f), 0, false
@@ -287,7 +287,7 @@ void UB2LobbyUI_ItemSurpassMain::UpdateIngredItemIcon()
 		if (CreatedIngredItemIcon)
 		{
 			CreatedIngredItemIcon->SetIconUsageType(ELobbyInvenItemIconUsage::EEIIT_ComposeOrSurpassIngredient);
-			CreatedIngredItemIcon->UpdateItemData(SumSurpassData); // °³º° ¾ÆÀÌÅÛ Á¤º¸¸¦ ³Ñ°ÜÁØ´Ù.
+			CreatedIngredItemIcon->UpdateItemData(SumSurpassData); // ä¿ºå–Š é…’æè¢ æ²¥ç„Šç”« é€è´¥éœ–ä¿ƒ.
 		}
 	}
 
@@ -300,7 +300,7 @@ void UB2LobbyUI_ItemSurpassMain::UpdateSurpassCommitBtnState()
 	{
 		BTN_SurpassCommit->SetIsEnabled(
 			IsAnyIngredSelected()
-			// µ·µµ Ã¼Å©ÇØ¾ß ÇÔ. -> Ã¼Å©ÇÏÁö ¾Ê´Â´Ù. Å¬¸¯Àº °¡´ÉÇÏµµ·Ï ÇØ¼­ »ç¿ëÀÚ ÇöÁúÀ» À¯µµÇÑ´Ù.
+			// æ£æ¡£ çœ‰å†œç§¦å…· çªƒ. -> çœ‰å†œçªç˜¤ è‡¼ç»°ä¿ƒ. åŠªè…ç¯® å•Šç“·çªæ¡£åºŸ ç§¦è¾‘ è¤ä¾©ç£Š æ³…é¾™é˜‘ èœ¡æ¡£èŒ„ä¿ƒ.
 			//&& CachedInventory->CanAffordCurrentItemOp()
 			);
 	}
@@ -332,21 +332,21 @@ bool UB2LobbyUI_ItemSurpassMain::IsAnyIngredSelected()
 void UB2LobbyUI_ItemSurpassMain::OnSurpassCommit()
 {
 	if (CachedInventory && !CachedInventory->CanAffordCurrentItemOp())
-	{ // °ñµå ºÎÁ·ÀÇ °æ¿ì ¿©±æ Å¬¸¯ÇÒ ¼ö´Â ÀÖÀ¸³ª ½ÇÁ¦ ½ÃÀÛÀº ¾ÈÇÏ°í »ç¿ëÀÚ ÇöÁúÀ» À¯µµ
+	{ // æ¦œé› ä½•ç»ƒç‹¼ ç‰ˆå¿« å’¯è¾¨ åŠªè…ä¸” èç»° ä¹æ å”± è§’åŠ› çŸ«ç´¯ç¯® æ•‘çªç»Š è¤ä¾©ç£Š æ³…é¾™é˜‘ èœ¡æ¡£
 		ShortageMGR->PopupGoToShopForGoldMessage();
 	}
 	else
 	{
-		// ¾Ö´Ï¸ŞÀÌ¼Ç ½ÅÈ£ºÎÅÍ.
+		// å±€èªçš‹æè®° è„šé¾‹ä½•ç£.
 		BeginSurpassCommitAnim();
 
 		if (CachedInventory)
-		{// ¿¬ÃâµÇ´Â µ¿¾È ¿©ÀüÈ÷ Àç·á ¼±ÅÃ µîÀ» ÇÏ°Ô µÉ ¼ö ÀÖ¾î¼­ ¸·´Â´Ù.
+		{// æ¥·å…ç™»ç»° æ‚¼æ•‘ å’¯å‚ˆæ´’ çŠä¸° æ€¥ç¶ æ®¿é˜‘ çªéœ¸ çª è ä¹ç»¢è¾‘ é˜œç»°ä¿ƒ.
 			CachedInventory->SetFreezeitemOpModeIngredSelection(true);
 		}
 		if (BTN_SurpassCommit.IsValid())
 		{
-			BTN_SurpassCommit->SetIsEnabled(false); // ¾êµµ °è¼Ó Å¬¸¯ÀÌ µÉ ¼ö ÀÖ¾î¼­ ¸·À½.
+			BTN_SurpassCommit->SetIsEnabled(false); // å¨Ÿæ¡£ æ‹ŒåŠ  åŠªè…æ çª è ä¹ç»¢è¾‘ é˜œæ¾œ.
 		}
 
 		APlayerController* OwningPC = GetOwningPlayer();
@@ -377,7 +377,7 @@ void UB2LobbyUI_ItemSurpassMain::OnClickIngredUnselectBtn()
 	{
 		TArray<int64> IngredIDs;
 		CachedInventory->GetAllSelectedItemOpIngreds(IngredIDs);
-		// ¹°·Ğ ¿©±â¼± IngredIDs ´Â ÇÏ³ª¿©¾ß
+		// æ‹±æ²¸ å’¯æ‰æ€¥ IngredIDs ç»° çªå”±å’¯å…·
 		if (IngredIDs.Num() > 0)
 		{
 			UnSelectForSurpassIngredClass<int64>::GetInstance().Signal(IngredIDs[0]);
@@ -398,6 +398,6 @@ void UB2LobbyUI_ItemSurpassMain::FinalSurpassCommit()
 		OwningPC->GetWorldTimerManager().ClearTimer(SurpassCommintTH);
 	}
 
-	// º»°İ µ¿ÀÛ. ÀÌÈÄ ¿¬ÃâÀÌ³ª °á°ú µîÀÇ flow ´Â ¼­¹ö ÀÀ´ä¿¡ µû¶ó º°µµ UI Ã¢¿¡¼­ ÁøÇà.
+	// å¤¯æ‹œ æ‚¼ç´¯. æé¥¶ æ¥·å…æå”± æ¬è‹ æ®¿ç‹¼ flow ç»° è¾‘æ»š è§ˆç¿ ä¿Š è¶æ‰¼ å–Šæ¡£ UI èŠ’ä¿Šè¾‘ æŸ³é’.
 	LobbyReqSurpassItemWithCurrentSelectionClass<>::GetInstance().Signal();
 }

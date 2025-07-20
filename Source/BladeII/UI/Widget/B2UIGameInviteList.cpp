@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIGameInviteList.h"
 #include "B2UIManager.h"
@@ -65,7 +65,7 @@ void UB2UIGameInviteList::DestroySelf(class UB2UIManager* InUIManager)
 
 	UnSubscribeEvent();
 
-	// ½ºÅ©·Ñ¹Ú½º ºñ¿öÁÖÀÚ
+	// èƒ¶å†œè´¹å† èƒ¶ åšå†µæ—ç£Š
 	for (int32 i = 0; i < InviteSlots.Num(); ++i)
 	{
 		if (InviteSlots[i].IsValid())
@@ -286,7 +286,7 @@ void UB2UIGameInviteList::CreateInviteSlots(TArray<FB2FriendPtr>& FriendList)
 		InsertSlotIndex = CreateInviteSlotCommon(InsertSlotIndex, CharSummaryPtr, FriendList[i]->raid_penalty_remove_time);
 	}
 
-	// »ç¿ëÇÏÁö ¾Ê´Â SlotÀº ¾Èº¸ÀÌ°Ô Ã³¸®
+	// è¤ä¾©çªç˜¤ è‡¼ç»° Slotç¯® æ•‘ç„Šæéœ¸ è´¸åºœ
 	SetDisibleSlotList(InsertSlotIndex);
 }
 
@@ -299,7 +299,7 @@ void UB2UIGameInviteList::CreateInviteSlots(TArray<FB2GuildMemberPtr> CharList)
 		InsertSlotIndex = CreateInviteSlotCommon(InsertSlotIndex, CharSummaryPtr, CharList[i]->raid_penalty_remove_time);
 	}
 
-	// »ç¿ëÇÏÁö ¾Ê´Â SlotÀº ¾Èº¸ÀÌ°Ô Ã³¸®
+	// è¤ä¾©çªç˜¤ è‡¼ç»° Slotç¯® æ•‘ç„Šæéœ¸ è´¸åºœ
 	SetDisibleSlotList(InsertSlotIndex);
 }
 
@@ -329,7 +329,7 @@ bool UB2UIGameInviteList::CanUserJoin(const FString& AccountName)
 {
 	if (auto* RaidDoc = Cast<UB2UIDocRaid>(GetDoc()))
 	{
-		// ÀÌ¹Ì ÆÄÆ¼ Âü¼®ÀÌ ¿Ï·áµÈ À¯Àú´Â ÆĞ½º
+		// æå›º é¢‡è æ›¼ç±æ è‚¯ä¸°ç­‰ èœ¡å†ç»° è©èƒ¶
 		if (RaidDoc->IsJoinedUser(FText::FromString(AccountName)))
 			return false;
 	}
@@ -400,11 +400,11 @@ int32 UB2UIGameInviteList::CreateInviteSlotCommon(int32 SlotIndex, FB2CharacterS
 	const FString& AccountName = CharSummaryPtr->account_name;
 	const FString& MyNickName = BladeIIGameImpl::GetLocalCharacterData().GetUserNickName();
 
-	// ÀÌ¹Ì ÆÄÆ¼ Âü¼®ÀÌ ¿Ï·áµÈ À¯Àú´Â ÆĞ½º
+	// æå›º é¢‡è æ›¼ç±æ è‚¯ä¸°ç­‰ èœ¡å†ç»° è©èƒ¶
 	if (CanUserJoin(AccountName) == false || AccountName == MyNickName)
 		return SlotIndex;
 
-	// ±âÁ¸¿¡ »ç¿ëµÈ À§Á¬ÀÌ ÀÖ´Ù¸é ÀçÈ°¿ë, ¾øÀ¸¸é »ı¼º
+	// æ‰ç²®ä¿Š è¤ä¾©ç­‰ å›°è¿æ ä¹ä¿ƒæ çŠåŠä¾©, ç»æ æ ç§¯å·±
 	auto InviteSlotWidget = CreateOrGetSlot(SlotIndex);
 
 	BII_CHECK(InviteSlotWidget.IsValid());
@@ -443,10 +443,10 @@ void UB2UIGameInviteList::ProcRefreshTime()
 	FTimespan timeRemain = FTimespan::FromSeconds(5.5f) - timeElapse;
 	bool IsRefreshRemainTime = (timeRemain > 1);
 
-	// Widget-Visibility´Â BluePrint¿¡¼­ Ã³¸®
+	// Widget-Visibilityç»° BluePrintä¿Šè¾‘ è´¸åºœ
 	SetRefreshTimer_BP(IsRefreshRemainTime);
 
-	// »õ·Î°íÄ§ ½Ã°£ÀÌ ³²¾ÆÀÖ´Ù¸é Àç±ÍÈ£Ãâ
+	// è´§è‚ºç»Šé­” çŸ«åŸƒæ å·¢é…’ä¹ä¿ƒæ çŠè“–é¾‹å…
 	if (IsRefreshRemainTime)
 	{
 		if (TB_RefreshTime.IsValid())

@@ -119,17 +119,17 @@ void UB2LobbyUI_HeroMgmtCostume::OnShowCostume_AmorButtonPressed(bool IsCheck)
 
 void UB2LobbyUI_HeroMgmtCostume::OnClickBTN_HeroInfo()
 {
-	// ÆË¾÷ Ãß°¡ÇÒ panel Á¤º¸.. ÀÌ ÆÄÆ®¸¦ »ç¿ëÇÏ´Â UI ÆäÀÌÁö ÀÚÃ¼ÀûÀ¸·Î ÀÖ´Â °æ¿ì.
+	// æ‰‘è¯€ çœ å•Šä¸” panel æ²¥ç„Š.. æ é¢‡é£˜ç”« è¤ä¾©çªç»° UI å…¶æç˜¤ ç£Šçœ‰åˆ©æ è‚º ä¹ç»° ç‰ˆå¿«.
 	UB2UILobby_CostumeMain* OwnerAsInvenUI = CachedLobbyGM ? Cast<UB2UILobby_CostumeMain>(CachedLobbyGM->DJLegacy_GetCurrLobbyUIPage()) : nullptr;
 	UB2LobbyUserWidget* OwnerUI = OwnerAsInvenUI;
 	UPanelWidget* PopupAddPanel = OwnerAsInvenUI ? OwnerAsInvenUI->GetDetailPopupParentPanel(true) : nullptr;
 	if (!OwnerUI)
-	{ // º°µµ·Î ÁöÁ¤µÈ °Å ¾øÀ½ ÀÌÂÊ¿¡ ¼³Ä¡µÈ ÆĞ³Î¿¡
+	{ // å–Šæ¡£è‚º ç˜¤æ²¥ç­‰ èŠ­ ç»æ¾œ æç‡ä¿Š æ±²æ‘¹ç­‰ è©æ¾„ä¿Š
 		OwnerUI = this;
 		PopupAddPanel = GetInfoPopupParentPanel(true);
 	}
 
-	// ¼¼ºÎ ½ºÅÈ pop-up
+	// æŠ€ä½• èƒ¶æ¹ƒ pop-up
 	DJLegacy_OpenLobbySubPopupClass<ELobbySubPopups, FDJLegacySubpopupAddPanelInfo>::GetInstance().Signal(ELobbySubPopups::ELSPU_CharStatDetail, FDJLegacySubpopupAddPanelInfo(OwnerUI, PopupAddPanel));
 }
 

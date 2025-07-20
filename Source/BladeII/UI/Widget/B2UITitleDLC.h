@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "B2UIDLCFrontBase.h"
 #include "B2UIBackWidget.h"

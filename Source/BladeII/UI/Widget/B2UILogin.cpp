@@ -1,4 +1,4 @@
-#include "B2UILogin.h"
+ï»¿#include "B2UILogin.h"
 #include "B2UIManager.h"
 #include "B2UIDocHelper.h"
 #include "B2UIMsgPopupSimple.h"
@@ -52,7 +52,7 @@ void UB2UILogin::EndCreateAccountMenu()
 void UB2UILogin::OnClickBtnSimpleRun()
 {
 	LobbyChangeSceneByUISceneClass<EUIScene>::GetInstance().Signal(EUIScene::CharacterIntro);
-	//UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple, FText::FromString(TEXT("Å¸ÀÌÆ²µ¥½º")), FText::FromString(TEXT("ÄÁÅÙÃ÷µ¥½º¿ä~~\nÄÁÅÙÃ÷´Ù¿ä")));
+	//UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple, FText::FromString(TEXT("é¸¥ææ’‡å•èƒ¶")), FText::FromString(TEXT("ç‰§åˆ¨æ˜å•èƒ¶å¤¸~~\nç‰§åˆ¨æ˜ä¿ƒå¤¸")));
 
 	/*
 	UB2UIMsgPopupInput* InputPopup = UB2UIManager::GetInstance()->OpenMsgPopup<UB2UIMsgPopupInput>(EUIMsgPopup::Input, FText::FromString(TEXT("Title")), FText::FromString(TEXT("This is Content~~\nContent~~")), 0.f, true, true, EUIMsgPopupButtonGroup::YesOrNo);
@@ -71,7 +71,7 @@ void UB2UILogin::OnClickBtnSimpleRun()
 }
 void UB2UILogin::OnClickBtnGameStart()
 {
-	// °ÔÀÓ ÄÚµå ÂÊÀ¸·ÎÀÇ µ¿ÀÛ ÅëÁö
+	// éœ¸çƒ™ å†…é› ç‡æ è‚ºç‹¼ æ‚¼ç´¯ çƒ¹ç˜¤
 	if (ETB_ID.IsValid() && ETB_PW.IsValid())
 		LobbyLoginAndStartGameClass<const FString&, const FString&>::GetInstance().Signal(ETB_ID->GetText().ToString(), ETB_PW->GetText().ToString());
 }
@@ -86,12 +86,12 @@ void UB2UILogin::OnClickBtnCreateAccount()
 		if (EditedNewAccountID.Len() > 0)
 		{
 			data_trader::Retailer::GetInstance().RequestSetNickName(EditedNewAccountID);
-			EndCreateAccountMenu(); // °Á ¿©±â¼­ ¹Ù·Î ³¡³¿. ¹°·Ğ Áßº¹ ID °Ë»ç °°Àº °Ô ÀÖ¾î¾ß ÇÔ. Áö±İÀº ÀÓ½Ã ±â´É.
+			EndCreateAccountMenu(); // å‚² å’¯æ‰è¾‘ å®˜è‚º åœºæ™¨. æ‹±æ²¸ åæ±— ID å…«è¤ éç¯® éœ¸ ä¹ç»¢å…· çªƒ. ç˜¤é™›ç¯® çƒ™çŸ« æ‰ç“·.
 		}
 		else
 		{
 #if WITH_EDITOR && !PLATFORM_MAC
-			//FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(TEXT("ID ¸¦ ÀÔ·ÂÇÏ¼¼¿ä.")));
+			//FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(TEXT("ID ç”« æ¶ä»¿çªæŠ€å¤¸.")));
 #endif
 		}
 	}

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIActClear.h"
 
 #include "B2UIManager.h"
@@ -69,7 +69,7 @@ void UB2UIActClear::SetTextData(int32 nChapterNum)
 	//FString sTemp = FString::Printf(TEXT("ActClear_Title_%d"), nChapterNum);
 	//FString sTempDoc = FString::Printf(TEXT("ActClear_Desc_%d"), nChapterNum);
 
-	//// Note : GDCÀÓ½Ã ÄÚµå (GDCÁö³ª¸é Áö¿öÁÖÀÚ~~~ by spivy)
+	//// Note : GDCçƒ™çŸ« å†…é› (GDCç˜¤å”±æ ç˜¤å†µæ—ç£Š~~~ by spivy)
 	//{
 	//	if (ShouldShowGDCVersionContent())
 	//	{

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+Ôªø// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIMission.h"
 #include "Retailer.h"
@@ -148,10 +148,10 @@ void UB2UIMission::Init()
 	if (SomeDoc)
 	{
 		InitMissionType = ConvertTabType(static_cast<EMissionType>(SomeDoc->GetCompleteMissionType()));
-		SomeDoc->SetCompleteMissionType(static_cast<int32>(EMissionType::Daily)); // Daily∑Œ ¥ŸΩ√ √ ±‚»≠
+		SomeDoc->SetCompleteMissionType(static_cast<int32>(EMissionType::Daily)); // DailyËÇ∫ ‰øÉÁü´ Ê™¨ÊâÅÊã≥
 	}
 
-	ChangeTab(InitMissionType, true); // Default Daily∑Œ √ ±‚ º¬∆√ - Mission øœ∑· √¢ πŸ∑Œ∞°±‚∑Œ ø‘¥Ÿ∏È SomeDoc»∞øÎ
+	ChangeTab(InitMissionType, true); // Default DailyËÇ∫ Ê™¨ÊâÅ ÊÇ∏Ê≥º - Mission ËÇØ‰∏∞ Ëäí ÂÆòËÇ∫ÂïäÊâÅËÇ∫ Âê≠‰øÉÊêÅ SomeDocÂäù‰æ©
 	RefreshTabs();
 }
 
@@ -159,7 +159,7 @@ void UB2UIMission::OnSceneOpen(EUIScene InOpenedScene)
 {
 	Super::OnSceneOpen(InOpenedScene);
 
-	// UIHeader øÕ ∞∞¿Ã Scene ¿∏∑Œ ±∏º∫«œ¥¬ ∞ÊøÏ Init Ω√¡°ø° «œ∏È Scene ø° ∆˜«‘µ» header ∞° ª˝º∫¿Ã æ»µ» ªÛ»≤¿œ ºˆ ¿÷¿Ω.
+	// UIHeader ÂÆ¢ ÈûçÊçû Scene Ê†èËÇ∫ Â§áÂ∑±Á™çÁª∞ ÁâàÂø´ Init Áü´Áó¢‰øä Á™çÊêÅ Scene ‰øä Âô®Á™ÉÁ≠â header Âïä ÁßØÂ∑±Êçû ÊïëÁ≠â ÊÉëÁÇîËÄÅ Ëçê ‰πêÊæú.
 	SetLobbyUIHeaderTitleByGeneralTextTableKey(TEXT("Mission"));
 }
 
@@ -231,7 +231,7 @@ void UB2UIMission::RefreshTabs()
 			bDisplayNew = MissionManager::GetInstance().IsReadyforReaward(MissionType);
 		}
 
-		Tab.Value.SetTabNewIcon(bDisplayNew);	// Complete∞° ¿÷¥Ÿ∏È New«•Ω√
+		Tab.Value.SetTabNewIcon(bDisplayNew);	// CompleteÂïä ‰πê‰øÉÊêÅ NewÈíéÁü´
 	}
 }
 
@@ -318,7 +318,7 @@ void UB2UIMission::ChangeTapShortcut(EMissionType type)
 	ETabType TabType = ConvertTabType(type);
 	if (TabType != ETabType::None)
 	{
-		ChangeTab(TabType, true); // Default Daily∑Œ √ ±‚ º¬∆√ - Mission øœ∑· √¢ πŸ∑Œ∞°±‚∑Œ ø‘¥Ÿ∏È SomeDoc»∞øÎ
+		ChangeTab(TabType, true); // Default DailyËÇ∫ Ê™¨ÊâÅ ÊÇ∏Ê≥º - Mission ËÇØ‰∏∞ Ëäí ÂÆòËÇ∫ÂïäÊâÅËÇ∫ Âê≠‰øÉÊêÅ SomeDocÂäù‰æ©
 		RefreshTabs();
 	}
 }
@@ -362,16 +362,16 @@ void UB2UIMission::OnReceiveMissionData(const FB2GetMission& MissionData)
 {
 	if (SelectedTabType == ETabType::Serial && this->UIP_MissionList.IsValid() && this->UIP_MissionList->IsLoopReceiveSerialRewards())
 	{
-		// ¿œπ› ¿”π´ø°º≠ ∏µŒπﬁ±‚∞° ¡¯«‡ ¡ﬂ¿œ ∞ÊøÏ øœ∑· ø©∫Œ »Æ¿Œ
+		// ËÄÅÈ¶Ü ÁÉôÂÖ¨‰øäËæë ËëõÊª¥ÁΩêÊâÅÂïä Êü≥Èùí ÂêùËÄÅ ÁâàÂø´ ËÇØ‰∏∞ ÂíØ‰Ωï Áä¨Áâ¢
 		this->UIP_MissionList->CheckDoneReceiveSerialRewards();
 		return;
 	}
-	ChangeTab(SelectedTabType, false); // «ˆ¿Á Tab ∞ªΩ≈
+	ChangeTab(SelectedTabType, false); // Ê≥ÖÁäÅ Tab ÁõéËÑö
 }
 
 void UB2UIMission::OnReceiveMissionPointReward(const FB2ReceiveCompleteMissionReward& CompleteReward)
 {
-	RefreshTabs();	// Tab NewIcon ∞ªΩ≈
+	RefreshTabs();	// Tab NewIcon ÁõéËÑö
 }
 
 void UB2UIMission::OnClickDailyTab()

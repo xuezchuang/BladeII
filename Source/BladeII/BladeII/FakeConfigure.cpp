@@ -1,6 +1,7 @@
-
+﻿
 
 #include "FakeConfigure.h"
+#include "Misc/CommandLine.h"
 
 #if !UE_BUILD_SHIPPING
 NetFakeConfigure& NetFakeConfigure::GetInstance()

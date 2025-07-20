@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2SomeInfo.h"
@@ -256,7 +256,7 @@ UMaterialInterface* UB2SomeInfo::GetPCIntroFlipbookMtrl(EPCClass InPCClass)
 }
 void UB2SomeInfo::UnloadAllPCIntroFlipbookMtrl()
 {
-	// PCClass º°·Î ¾ğ·ÎµùÇÏ·Á¸é LoadedPCIntroFlipbookMtrls ¿¡ ÀÎµ¦½º ¸ÂÃç ³Ö¾î¾ß ÇØ¼­ ÀÏ´Ü ÀÏ°ı ¾ğ·Îµù. ±»ÀÌ ÇÊ¿äµµ ¾øÀ» °Å °°°í.
+	// PCClass å–Šè‚º æ”«è‚ºçˆ¹çªå¦¨æ LoadedPCIntroFlipbookMtrls ä¿Š ç‰¢éƒ¸èƒ¶ å˜è‹— æŒç»¢å…· ç§¦è¾‘ è€çªœ è€è¤’ æ”«è‚ºçˆ¹. è¢«æ é˜å¤¸æ¡£ ç»é˜‘ èŠ­ éç»Š.
 	LoadedPCIntroFlipbookMtrls.Empty();
 	for (int32 PCI = 0; PCI < GetMaxPCClassNum(); ++PCI)
 	{
@@ -265,23 +265,23 @@ void UB2SomeInfo::UnloadAllPCIntroFlipbookMtrl()
 	}
 }
 
-// Ãß°¡µÇ´Â °Íµé ¸¶Âù°¡Áö·Î..
+// çœ å•Šç™»ç»° å·´ç”¸ ä»˜è›®å•Šç˜¤è‚º..
 
 
-// ¾Æ·¡ LoadAndConsume~~ ¾îÂ¼±¸´Â Á» Æ¯º°ÇÑ »ç¿¬ÀÌ´Ù. ÀÏ¹İÀûÀÎ °ÔÀÓ ±â´ÉÀ» À§ÇÑ ÄÚµå°¡ ¾Æ´Ô
+// é…’è´° LoadAndConsume~~ ç»¢å½•å¤‡ç»° ç²± æ¼‚å–ŠèŒ„ è¤æ¥·æä¿ƒ. è€é¦†åˆ©ç‰¢ éœ¸çƒ™ æ‰ç“·é˜‘ å›°èŒ„ å†…é›å•Š é…’ä¸›
 void UB2SomeInfo::LoadAndConsumeUniquePreRenderPS(TArray<class UParticleSystem*>& OutLoaded)
 {
 	for (TSoftObjectPtr<UParticleSystem>& ThisToLoad : UniquePreRenderParticleSystems)
 	{
-		UParticleSystem* ThisLoaded = ThisToLoad.LoadSynchronous(); // Á¦ÇÑÀûÀÎ »óÈ²¿¡¼­ »ç¿ëÇÏ¹Ç·Î ÀÌ°Ç ´Ü¼ø LoadSynchronous
+		UParticleSystem* ThisLoaded = ThisToLoad.LoadSynchronous(); // åŠ›èŒ„åˆ©ç‰¢ æƒ‘ç‚”ä¿Šè¾‘ è¤ä¾©çªéª¨è‚º ææ‰’ çªœé‰´ LoadSynchronous
 		if (ThisLoaded)
 		{
 			OutLoaded.Add(ThisLoaded);
 		}
 	}
 
-	// ·ÎµùÇÑ °É ÀÌÂÊ¿¡ µû·Î Ä³½ÌÇÏ´Â °Íµµ ¾Æ´Ï°í Unload Ã³¸®¸¦ ¸í½ÃÀûÀ¸·Î ÇÏÁö ¾Ê´Â´Ù. ´ÜÁö ÇÑ¹ø ¾²°í ¸» °ÍÀÓÀ» ¸íÈ®È÷ ÇÏ±â À§ÇØ ºñ¿ò. 
-	// ¿¡µğÅÍ¶ó¸é ¹°·Ğ ºñ¿ö¼­´Â ¾ÈµÇ°Ú´Ù.
+	// è‚ºçˆ¹èŒ„ å§ æç‡ä¿Š è¶è‚º æŸæ•™çªç»° å·´æ¡£ é…’èªç»Š Unload è´¸åºœç”« ç–™çŸ«åˆ©æ è‚º çªç˜¤ è‡¼ç»°ä¿ƒ. çªœç˜¤ èŒ„é”… é™ç»Š å¯Œ å·´çƒ™é˜‘ ç–™çŠ¬æ´’ çªæ‰ å›°ç§¦ åšæ¡†. 
+	// ä¿Šå¼ç£æ‰¼æ æ‹±æ²¸ åšå†µè¾‘ç»° æ•‘ç™»æ‘†ä¿ƒ.
 	if (!GIsEditor)
 	{
 		UniquePreRenderParticleSystems.Empty();
@@ -291,14 +291,14 @@ void UB2SomeInfo::LoadAndConsumeUniquePreRenderNPCClass(TArray<TSubclassOf<class
 {
 	for (TSoftClassPtr<UB2NPCSingleClassInfo>& ThisToLoad : UniquePreRenderNPCClass)
 	{
-		TSubclassOf<class UB2NPCSingleClassInfo> ThisLoaded = ThisToLoad.LoadSynchronous(); // Á¦ÇÑÀûÀÎ »óÈ²¿¡¼­ »ç¿ëÇÏ¹Ç·Î ÀÌ°Ç ´Ü¼ø LoadSynchronous
+		TSubclassOf<class UB2NPCSingleClassInfo> ThisLoaded = ThisToLoad.LoadSynchronous(); // åŠ›èŒ„åˆ©ç‰¢ æƒ‘ç‚”ä¿Šè¾‘ è¤ä¾©çªéª¨è‚º ææ‰’ çªœé‰´ LoadSynchronous
 		if (ThisLoaded)
 		{
 			OutLoaded.Add(ThisLoaded);
 		}
 	}
-	// ·ÎµùÇÑ °É ÀÌÂÊ¿¡ µû·Î Ä³½ÌÇÏ´Â °Íµµ ¾Æ´Ï°í Unload Ã³¸®¸¦ ¸í½ÃÀûÀ¸·Î ÇÏÁö ¾Ê´Â´Ù. ´ÜÁö ÇÑ¹ø ¾²°í ¸» °ÍÀÓÀ» ¸íÈ®È÷ ÇÏ±â À§ÇØ ºñ¿ò. 
-	// ¿¡µğÅÍ¶ó¸é ¹°·Ğ ºñ¿ö¼­´Â ¾ÈµÇ°Ú´Ù.
+	// è‚ºçˆ¹èŒ„ å§ æç‡ä¿Š è¶è‚º æŸæ•™çªç»° å·´æ¡£ é…’èªç»Š Unload è´¸åºœç”« ç–™çŸ«åˆ©æ è‚º çªç˜¤ è‡¼ç»°ä¿ƒ. çªœç˜¤ èŒ„é”… é™ç»Š å¯Œ å·´çƒ™é˜‘ ç–™çŠ¬æ´’ çªæ‰ å›°ç§¦ åšæ¡†. 
+	// ä¿Šå¼ç£æ‰¼æ æ‹±æ²¸ åšå†µè¾‘ç»° æ•‘ç™»æ‘†ä¿ƒ.
 	if (!GIsEditor)
 	{
 		UniquePreRenderNPCClass.Empty();
@@ -308,15 +308,15 @@ void UB2SomeInfo::LoadAndConsumeUniquePreRenderSKMesh(TArray<class USkeletalMesh
 {
 	for (TSoftObjectPtr<USkeletalMesh>& ThisToLoad : UniquePreRenderSkMeshes)
 	{
-		USkeletalMesh* ThisLoaded = ThisToLoad.LoadSynchronous(); // Á¦ÇÑÀûÀÎ »óÈ²¿¡¼­ »ç¿ëÇÏ¹Ç·Î ÀÌ°Ç ´Ü¼ø LoadSynchronous
+		USkeletalMesh* ThisLoaded = ThisToLoad.LoadSynchronous(); // åŠ›èŒ„åˆ©ç‰¢ æƒ‘ç‚”ä¿Šè¾‘ è¤ä¾©çªéª¨è‚º ææ‰’ çªœé‰´ LoadSynchronous
 		if (ThisLoaded)
 		{
 			OutLoaded.Add(ThisLoaded);
 		}
 	}
 
-	// ·ÎµùÇÑ °É ÀÌÂÊ¿¡ µû·Î Ä³½ÌÇÏ´Â °Íµµ ¾Æ´Ï°í Unload Ã³¸®¸¦ ¸í½ÃÀûÀ¸·Î ÇÏÁö ¾Ê´Â´Ù. ´ÜÁö ÇÑ¹ø ¾²°í ¸» °ÍÀÓÀ» ¸íÈ®È÷ ÇÏ±â À§ÇØ ºñ¿ò. 
-	// ¿¡µğÅÍ¶ó¸é ¹°·Ğ ºñ¿ö¼­´Â ¾ÈµÇ°Ú´Ù.
+	// è‚ºçˆ¹èŒ„ å§ æç‡ä¿Š è¶è‚º æŸæ•™çªç»° å·´æ¡£ é…’èªç»Š Unload è´¸åºœç”« ç–™çŸ«åˆ©æ è‚º çªç˜¤ è‡¼ç»°ä¿ƒ. çªœç˜¤ èŒ„é”… é™ç»Š å¯Œ å·´çƒ™é˜‘ ç–™çŠ¬æ´’ çªæ‰ å›°ç§¦ åšæ¡†. 
+	// ä¿Šå¼ç£æ‰¼æ æ‹±æ²¸ åšå†µè¾‘ç»° æ•‘ç™»æ‘†ä¿ƒ.
 	if (!GIsEditor)
 	{
 		UniquePreRenderSkMeshes.Empty();
@@ -347,7 +347,7 @@ void UB2SomeInfo::UnloadAll()
 	UnloadSurviveSkillRestoreEffect();
 	UnloadAllPCIntroFlipbookMtrl();
 
-	// UniquePreRenderParticleSystems ´Â Æ÷ÇÔ ´ë»óÀÌ ¾Æ´Ô
+	// UniquePreRenderParticleSystems ç»° å™¨çªƒ æªæƒ‘æ é…’ä¸›
 }
 
 #if WITH_EDITOR
@@ -357,7 +357,7 @@ void UB2SomeInfo::EditorLoadAll()
 		return;
 	}
 
-	// ÇÑ¹ø ¹Ì¸® ºÒ·¯ÁÖ¸é AssetPtr ÀÌ valid ÇØ Áú °Í. ¹°·Ğ ÀÌ ¿ÍÁß¿¡ ¸Ş¸ğ¸®´Â ¿ÕÃ¢ ¸Ô°ÚÁö.
+	// èŒ„é”… å›ºåºœ é˜‚çŸ¾æ—æ AssetPtr æ valid ç§¦ é¾™ å·´. æ‹±æ²¸ æ å®¢åä¿Š çš‹è‘›åºœç»° ç©ºèŠ’ å†ˆæ‘†ç˜¤.
 	GetStageClearWingFxTemplate();
 	GetStageClearGemFxTemplate();
 	GetStageClearBGFxTemplate();
@@ -384,11 +384,11 @@ void UB2SomeInfo::EditorLoadAll()
 		GetPCIntroFlipbookMtrl(IntToPCClass(PCI));
 	}
 
-	// UniquePreRenderParticleSystems ´Â ¿©±â¼­µµ »©ÀÚ..
+	// UniquePreRenderParticleSystems ç»° å’¯æ‰è¾‘æ¡£ å“—ç£Š..
 }
 #endif
 
-// TAsset lazy-loading À» »ç¿ëÇÏ´Â Blueprint InfoAsset ÀÇ ¿Àµ¿ÀÛ ¹®Á¦¸¦ Á¤½ÄÀ¸·Î ÇØ°áÇÏ±â Àü±îÁöÀÇ ÀÓ½Ã ¶«Áú.
+// TAsset lazy-loading é˜‘ è¤ä¾©çªç»° Blueprint InfoAsset ç‹¼ å·æ‚¼ç´¯ å·©åŠ›ç”« æ²¥ä¾¥æ è‚º ç§¦æ¬çªæ‰ å‚ˆé³–ç˜¤ç‹¼ çƒ™çŸ« ä¸œé¾™.
 #if TEMP_LAZYLOADING_MISHANDLING_CLEANUP
 void UB2SomeInfo::CleanupOnPreSave()
 {
@@ -409,7 +409,7 @@ void UB2SomeInfo::PreSave(FObjectPreSaveContext SaveContext)
 {
 	Super::PreSave(SaveContext);
 
-	// ÀÇµµÄ¡ ¾Ê°Ô ÀúÀåµÈ ·¹ÆÛ·±½º¸¦ ³¯·ÁÁØ´Ù.
+	// ç‹¼æ¡£æ‘¹ è‡¼éœ¸ å†å˜ç­‰ é¥­æ¬ºç¹èƒ¶ç”« æœå¦¨éœ–ä¿ƒ.
 	CleanupOnPreSave();
 }
 #endif

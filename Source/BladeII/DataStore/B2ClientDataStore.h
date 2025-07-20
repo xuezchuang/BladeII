@@ -1,4 +1,4 @@
-#ifndef __B2_CLIENT_DATA_STORE_H__
+ï»¿#ifndef __B2_CLIENT_DATA_STORE_H__
 #define __B2_CLIENT_DATA_STORE_H__
 //#include "BladeII.h"
 #include "EngineMinimal.h"
@@ -81,9 +81,9 @@ public:
 
 enum class EResurrectGameModeType : uint8	// ServerData Sync.
 {
-	EResurrectType_OnlyClientMode = 0,		// Å¬¶óÀÌ¾ðÆ®¿¡¼­¸¸ ºÎÈ°ÇÏ´Â ¸ðµå  (Á¡·ÉÀü)
-	EResurrectType_Stage = 1,				// ½ºÅ×ÀÌÁö ºÎÈ°¸ðµå				 (Default, Stage)
-	EResurrectType_Raid = 2,				// ·¹ÀÌµå ºÎÈ°¸ðµå Å¸ÀÔ			 (Raid)
+	EResurrectType_OnlyClientMode = 0,		// åŠªæ‰¼æžæ”«é£˜ä¿Šè¾‘çˆ¶ ä½•åŠçªç»° è‘›é›  (ç—¢é£žå‚ˆ)
+	EResurrectType_Stage = 1,				// èƒ¶æŠ›æžç˜¤ ä½•åŠè‘›é›				 (Default, Stage)
+	EResurrectType_Raid = 2,				// é¥­æžé› ä½•åŠè‘›é› é¸¥æ¶			 (Raid)
 	EResurrectType_Max,
 };
 
@@ -1293,13 +1293,13 @@ struct FItemEnhanceEffectInfo
 
 struct FStageFixedDropsInfo
 {
-	//int32 stage_idx; //stage_idx´Â TMapÀÇ Å°·Î »ç¿ëÁß
+	//int32 stage_idx; //stage_idxç»° TMapç‹¼ è™è‚º è¤ä¾©å
 	int32 Iteminfo_idx;
 	int32 Min_Gain;
 	int32 Max_Gain;
 	int32 Rate;
 
-	int32 idx; //»ç¿ë ¾ÈÇÏ°í ÀÖÀ½
+	int32 idx; //è¤ä¾© æ•‘çªç»Š ä¹æ¾œ
 
 	FStageFixedDropsInfo() : Iteminfo_idx(0), Min_Gain(0), Max_Gain(0), Rate(0), idx(0) {}
 
@@ -1476,7 +1476,7 @@ struct FQualityTransRateInfo
 	int32 transCondQuality;
 };
 
-//¾ÆÀÌÅÛ Á¦ÀÛ¼Ò ¾ÆÀÌÅÛ Á¤º¸
+//é…’æžè¢ åŠ›ç´¯å®¶ é…’æžè¢ æ²¥ç„Š
 struct FItemForgeInfo
 {
 	int32 forgeID;
@@ -2076,7 +2076,7 @@ public:
 	FORCEINLINE int32 GetStageBuffIncreaseGamseSpeedRate() { return ConfigData ? ConfigData->stage_buff_rate_for_boost_game_speed : 0; };
 	FORCEINLINE int32 GetGuildSetupGoldCost() { return ConfigData ? ConfigData->guild_set_up_gold_cost : 0; };
 	FORCEINLINE int32 GetGuildMaxInviteCount() { return ConfigData ? ConfigData->max_invite_guild_count_for_account : 0; };
-	FORCEINLINE int32 GetMaxBoostCount() { return 0;	/*3¹è ¸ðÇè ÀÌ¿ë±Ç ¹Ý¿µ¿¡ µû¸¥ ÀÓ½Ã ¼öÁ¤*/ };
+	FORCEINLINE int32 GetMaxBoostCount() { return 0;	/*3ç¡… è‘›æ°° æžä¾©é¼» é¦†åº·ä¿Š è¶å¼— çƒ™çŸ« èæ²¥*/ };
 	FORCEINLINE int32 GetMaxPvpMatchPoint() { return ConfigData ? ConfigData->pvp_match_point_max : 0; };
 	FORCEINLINE int32 GetMaxTeamMatchPoint() { return ConfigData ? ConfigData->team_match_point_max : 0; };
 	FORCEINLINE int32 GetItemOptionChangeDarkCrystalCost() { return ConfigData ? ConfigData->item_random_option_change_cost_dark_crystal : 0; };

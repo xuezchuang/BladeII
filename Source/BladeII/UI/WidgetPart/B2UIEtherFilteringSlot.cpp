@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIEtherFilteringSlot.h"
 #include "B2UIEther.h"
@@ -24,15 +24,15 @@ void UB2UIEtherFilteringSlot::SetIcon(int32 InType)
 			X_IMG_Type->SetBrushFromMaterial(StaticFindEtherInfoTable()->GetEtherIcon(SlotType));
 		}
 
-		b2network::B2mdAetherSetOptionInfoPtr SetOptionPtr = B2EtherManager::GetInstance().GetEtherSetOptionInfoPtrByType(InType, 1); //tier´Â 1·Î È°¿ë
+		b2network::B2mdAetherSetOptionInfoPtr SetOptionPtr = B2EtherManager::GetInstance().GetEtherSetOptionInfoPtrByType(InType, 1); //tierç»° 1è‚º åŠä¾©
 		if (SetOptionPtr != nullptr && X_iMG_DefenseBG.IsValid() && X_IMG_OffenseBG.IsValid())
 		{
-			if (SetOptionPtr->min_apply_count == EtherSetCount::DEFENCE) //¹æ¾î ¼¼Æ®
+			if (SetOptionPtr->min_apply_count == EtherSetCount::DEFENCE) //è§„ç»¢ æŠ€é£˜
 			{
 				X_iMG_DefenseBG->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
 				X_IMG_OffenseBG->SetVisibility(ESlateVisibility::Collapsed);
 			}
-			else if (SetOptionPtr->min_apply_count == EtherSetCount::OFFENCE) // °ø°İ ¼¼Æ®
+			else if (SetOptionPtr->min_apply_count == EtherSetCount::OFFENCE) // å‚æ‹œ æŠ€é£˜
 			{
 				X_iMG_DefenseBG->SetVisibility(ESlateVisibility::Collapsed);
 				X_IMG_OffenseBG->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
@@ -51,7 +51,7 @@ void UB2UIEtherFilteringSlot::SetIcon(int32 InType)
 
 void UB2UIEtherFilteringSlot::SetCount(int32 InType)
 {
-	const int32 MAXCOUNT = 99; // °¹¼ö°¡ 99°³°¡ ³ÑÀ¸¸é Ç¥½Ã¸¦ ´Ù¸£°Ô ÇØ¾ßÇÑ´Ù
+	const int32 MAXCOUNT = 99; // è‚®èå•Š 99ä¿ºå•Š é€æ æ é’çŸ«ç”« ä¿ƒç¦éœ¸ ç§¦å…·èŒ„ä¿ƒ
 	SlotType = InType;
 	if (X_TB_Count.IsValid())
 	{

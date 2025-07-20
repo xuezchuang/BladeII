@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIPMissionSlot.h"
 #include "B2UIRewardEventSet.h"
@@ -90,7 +90,7 @@ void UB2UIPMissionSlot::UpdateMissionSlot(MissionPtr Mission)
 	}
 }
 
-// Master Data ¸¸À¸·Îµµ Setting °¡´É ÇÑ °Íµé
+// Master Data çˆ¶æ è‚ºæ¡£ Setting å•Šç“· èŒ„ å·´ç”¸
 void UB2UIPMissionSlot::UpdateMissionSlotDefault(MissionPtr Mission)
 {
 	if (Mission != nullptr)
@@ -110,7 +110,7 @@ void UB2UIPMissionSlot::UpdateMissionSlotDefault(MissionPtr Mission)
 	}
 }
 
-// MissionÀÇ »óÅÂ¸¦ Server¿¡¼­ ¹Ş¾Æ¾ß¸¸ Update °¡´É ÇÑ °Íµé
+// Missionç‹¼ æƒ‘æ€•ç”« Serverä¿Šè¾‘ ç½é…’å…·çˆ¶ Update å•Šç“· èŒ„ å·´ç”¸
 void UB2UIPMissionSlot::UpdateMissionSlotDynamic(MissionPtr Mission)
 {
 	if (Mission != nullptr)
@@ -349,7 +349,7 @@ void UB2UIPMissionSlot::UpdateBtn_Link(MissionPtr Mission)
 		if (LinkScene != EUIScene::None && LinkScene != EUIScene::Max)
 		{
 			bDisplayLinkBtn = true;
-			// Clear ÇÏÁö ¸øÇÑ Stage´Â ¹Ù·Î°¡±â ¾Èº¸¿©ÁÜ
+			// Clear çªç˜¤ ç»™èŒ„ Stageç»° å®˜è‚ºå•Šæ‰ æ•‘ç„Šå’¯æ·‹
 			/*
 			if (LinkScene == EUIScene::BattleStageInfo)
 			{
@@ -386,7 +386,7 @@ void UB2UIPMissionSlot::UpdateStaticText_TitleDesc(MissionPtr Mission)
 
 		if (FText::FindText(B2LOC_CAT_MISSIONTEXT, TitleKey, TitleText, nullptr) == false)
 		{
-			// GoalCount°¡ ¾Æ´Ñ conditionÀÌ º¯°æµÈ ¿¬¼Ó¹Ì¼ÇÀÌ¶ó¸é Title(MissionID_Step) °ú °°Àº Æ÷¸ËÀÇ Å°°ªÀ» °®´Â´Ù. - Descµ¿ÀÏ
+			// GoalCountå•Š é…’å›± conditionæ å‡½ç‰ˆç­‰ æ¥·åŠ å›ºè®°ææ‰¼æ Title(MissionID_Step) è‹ éç¯® å™¨æ†ç‹¼ è™è”¼é˜‘ çˆ±ç»°ä¿ƒ. - Descæ‚¼è€
 			TitleKey = GetMissionTitleKey(Mission->MissionID, Step);
 			TitleText = BladeIIGetLOCText(B2LOC_CAT_MISSIONTEXT, TitleKey);
 		}
@@ -406,7 +406,7 @@ void UB2UIPMissionSlot::UpdateStaticText_TitleDesc(MissionPtr Mission)
 
 		if (RTB_MissionDesc.IsValid())
 		{
-			/*ÇÏµåÄÚµù 13008 ~ 13010 ºÎºĞÀº  Condition1°ªÀ» ÀÌ¿ëÇØ¾ßÇÑ´Ù.. ¾ÆÁ÷Àº µüÈ÷ ¹æ¹ıÀÌ ¾ø½À´Ï´Ù*/
+			/*çªé›å†…çˆ¹ 13008 ~ 13010 ä½•ç›’ç¯®  Condition1è”¼é˜‘ æä¾©ç§¦å…·èŒ„ä¿ƒ.. é…’æµç¯® è¿­æ´’ è§„è¿‡æ ç»åš¼èªä¿ƒ*/
 
 			int32 StringCount = 0;
 
@@ -510,7 +510,7 @@ void UB2UIPMissionSlot::OnClickGetRewardButton()
 		if (CurrentMission->ProgressCount >= CurrentMission->GoalCount &&
 			CurrentMission->MissionState == EMissionState::Complete)
 		{
-			SetAllRewardButtonDisableClass<const bool>::GetInstance().Signal(true); // Receive ¹Ş±âÀü±îÁö Reward ¸ø´©¸£°Ô ¸·ÀÚ
+			SetAllRewardButtonDisableClass<const bool>::GetInstance().Signal(true); // Receive ç½æ‰å‚ˆé³–ç˜¤ Reward ç»™ç©¿ç¦éœ¸ é˜œç£Š
 
 			data_trader::Retailer::GetInstance().RequestReceiveMissionReward(MissionID);
 		}

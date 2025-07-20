@@ -1,4 +1,4 @@
-#include "UnitySkillManager.h"
+ï»¿#include "UnitySkillManager.h"
 
 #include "Event.h"
 #include "InternalEvents.h"
@@ -107,14 +107,14 @@ bool UnitySkillManager::CheckStateUnitySkillMission(EPCClass PCClass, EPCClass S
 	{
 		if (MissionItem.SubClass == SubPCClass)
 		{
-			if (MissionItem.nState != 1) return false; // ¿Ï·á »óÅÂ¿¡¼­´Â ¹«Á¶°Ç ¾Ë¸² ¸¶Å© ²¨ÁØ´Ù.
+			if (MissionItem.nState != 1) return false; // è‚¯ä¸° æƒ‘æ€•ä¿Šè¾‘ç»° å…¬ç‚¼æ‰’ èˆ…è¦† ä»˜å†œ æ³¢éœ–ä¿ƒ.
 
 			nStep = MissionItem.nStep;
 			break;
 		}
 	}
 
-	//¹Ì¼ÇÀÌ ¾øÀ¸¸é ¾Ë¸²¸¶Å© ÀÚÃ¼¸¦ ¶ç¿ï ÇÊ¿ä°¡ ¾øÀ½
+	//å›ºè®°æ ç»æ æ èˆ…è¦†ä»˜å†œ ç£Šçœ‰ç”« å‰åŒ¡ é˜å¤¸å•Š ç»æ¾œ
 	if (MissionInfos.Num() == 0)
 		return false;
 
@@ -174,7 +174,7 @@ bool UnitySkillManager::CheckStateUnitySkillMissionByIndex(EPCClass pcClass, EPC
 			break;
 
 		case b2network::B2UnitySkillEventType::REACH_LEVEL:
-			return CheckStateCurrentLevel(subPCClass, Info->goal_count); // ·¹º§Àº Goal_count »ç¿ë
+			return CheckStateCurrentLevel(subPCClass, Info->goal_count); // é¥­éª‡ç¯® Goal_count è¤ä¾©
 		}
 	}
 
@@ -183,7 +183,7 @@ bool UnitySkillManager::CheckStateUnitySkillMissionByIndex(EPCClass pcClass, EPC
 
 bool UnitySkillManager::CheckStateCurrentLevel(EPCClass PCClass, int32 Level)
 {
-	//[@SameLine, 180612] explevelinfo doc, datastore -> datastore °³¼±
+	//[@SameLine, 180612] explevelinfo doc, datastore -> datastore ä¿ºæ€¥
 	//auto* DocHero = UB2UIDocHelper::GetDocHero(PCClassToInt(PCClass));
 
 	//if (DocHero)
@@ -361,13 +361,13 @@ const FUnitySkillOption UnitySkillManager::GetUnitySkillOptionInfo(EPCClass Main
 			NewOption.MainClass = MainChar;
 			NewOption.SubClass = SubChar;
 
-			if (bIsNextStep) // ´ÙÀ½ ½ºÅÜ Á¤º¸°¡ ÇÊ¿äÇÒ¶§.
+			if (bIsNextStep) // ä¿ƒæ¾œ èƒ¶è·‘ æ²¥ç„Šå•Š é˜å¤¸ä¸”é”­.
 			{
 				NewOption.Step = MissionItem.nStep;
 			}
-			else // ÇöÀç ½ºÅÜÀÇ ½ºÅ³ ¿É¼Ç Á¤º¸°¡ ÇÊ¿äÇÒ¶§.
+			else // æ³…çŠ èƒ¶è·‘ç‹¼ èƒ¶æ‡¦ å¯è®° æ²¥ç„Šå•Š é˜å¤¸ä¸”é”­.
 			{
-				if (MissionItem.nState != b2network::B2MissionStateType::PROGRESS) // ´Ü°è ÀüºÎ ¿Ï·á»óÅÂ
+				if (MissionItem.nState != b2network::B2MissionStateType::PROGRESS) // çªœæ‹Œ å‚ˆä½• è‚¯ä¸°æƒ‘æ€•
 				{
 					NewOption.Step = MissionItem.nStep;
 				}
@@ -391,7 +391,7 @@ double UnitySkillManager::GetUnitySkillPower(const FUnitySkillMission& UnityInfo
 	double SkillPower = 0;
 	int32 UnityStep = 0;
 
-	if (UnityInfo.nState != b2network::B2MissionStateType::PROGRESS) // ´Ü°è ÀüºÎ ¿Ï·á»óÅÂ
+	if (UnityInfo.nState != b2network::B2MissionStateType::PROGRESS) // çªœæ‹Œ å‚ˆä½• è‚¯ä¸°æƒ‘æ€•
 	{
 		UnityStep = UnityInfo.nStep;
 	}

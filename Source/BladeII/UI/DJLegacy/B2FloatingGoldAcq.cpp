@@ -22,10 +22,10 @@ void UB2FloatingGoldAcq::NotifyPlayerSuckedGold(int32 AcquiredAmount)
 		{
 			OwningPC->GetWorldTimerManager().ClearTimer(VisibilityTimerHandle);
 		}
-		// Set the timer to turn the visibility off. -> ÀÌ°Ç Manager ÂÊ¿¡¼­ °°Àº ½Ã°£À¸·Î Á¦°Å Å¸ÀÌ¸Ó¸¦ ¼³Ä¡ÇÏ´Ï ¾ø¾Ø´Ù. 
+		// Set the timer to turn the visibility off. -> ææ‰’ Manager ç‡ä¿Šè¾‘ éç¯® çŸ«åŸƒæ è‚º åŠ›èŠ­ é¸¥æèµ£ç”« æ±²æ‘¹çªèª ç»çŸ©ä¿ƒ. 
 		//OwningPC->GetWorldTimerManager().SetTimer(VisibilityTimerHandle, this, &UB2FloatingGoldAcq::SuckedGoldTimerCB, VisibleDuration, false);
 
-		// ¸Å¹ø ¾à°£¾¿ ´Ù¸¥ À§Ä¡¿¡ »Ñ¸®±â À§ÇØ LocOffsetFromOwner ¸¦ Á» Á¶Á¤.
+		// æ¦‚é”… è·åŸƒç©¶ ä¿ƒå¼— å›°æ‘¹ä¿Š è°åºœæ‰ å›°ç§¦ LocOffsetFromOwner ç”« ç²± ç‚¼æ²¥.
 
 		float RandDirX = FMath::FRandRange(-1.0f, 1.0f);
 		float RandDirY = FMath::FRandRange(-1.0f, 1.0f);

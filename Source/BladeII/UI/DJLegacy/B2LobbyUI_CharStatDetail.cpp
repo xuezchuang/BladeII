@@ -87,9 +87,9 @@ void UB2LobbyUI_CharStatDetail::StartFromLobby(class UB2UIManager_Lobby* InUIMan
 	Super::StartFromLobby(InUIManager, InGM);
 		
 	CurPCClass = EPCClass::EPC_End;
-	SetPositionInViewport(FVector2D(0.0f, 0.0f)); // È­¸é ÁÂÃø¿¡ ºÙÀÎ´Ù.
+	SetPositionInViewport(FVector2D(0.0f, 0.0f)); // æ‹³æ è°…èŸä¿Š å˜¿ç‰¢ä¿ƒ.
 
-	UpdateStats(); // »ç½Ç»ó ÀÌ°Ô ¿­·Á ÀÖ´Â µ¿¾È Ã³À½ ¿­¸± ¶§ ¸»°í´Â ºÒ¸± ÀÏ ¾øÀ» µí. -> ¾ÆÀÌÅÛ °¥¾ÆÀÔ´Â °Ô ÀÖ´Ù ¤§¤§
+	UpdateStats(); // è¤è§’æƒ‘ æéœ¸ å‡¯å¦¨ ä¹ç»° æ‚¼æ•‘ è´¸æ¾œ å‡¯å‰¯ é”­ å¯Œç»Šç»° é˜‚å‰¯ è€ ç»é˜‘ æ·€. -> é…’æè¢ å“é…’æ¶ç»° éœ¸ ä¹ä¿ƒ ã‡ã‡
 }
 
 void UB2LobbyUI_CharStatDetail::DestroySelf()
@@ -125,7 +125,7 @@ void UB2LobbyUI_CharStatDetail::UpdateStaticTexts()
 
 void UB2LobbyUI_CharStatDetail::UpdateStats()
 {
-	EPCClass DisplayPCClass = CachedLobbyGM ? CachedLobbyGM->GetHeroMgmtModePCClass() : EPCClass::EPC_End; // ¿µ¿õ°ü¸® Ã¢¿¡¼­ ¶ß°Ô µÉ °Í.
+	EPCClass DisplayPCClass = CachedLobbyGM ? CachedLobbyGM->GetHeroMgmtModePCClass() : EPCClass::EPC_End; // åº·æ—·åŒ…åºœ èŠ’ä¿Šè¾‘ å“†éœ¸ çª å·´.
 	
 	UpdateStats(DisplayPCClass);
 }
@@ -148,12 +148,12 @@ void UB2LobbyUI_CharStatDetail::UpdateStats(EPCClass DisplayPCClass, bool bFindA
 		}
 	}
 
-	// Ä³¸¯ÅÍ¿¡ Àû¿ëµÈ °ªÀ» °¡Á®¿À´Â °Ô ÀÖ°í ¾ÆÀÌÅÛ ¿É¼Ç ¼öÄ¡¸¦ Á÷Á¢ º¸´Â °Ô ÀÖÀ½
+	// æŸè…ç£ä¿Š åˆ©ä¾©ç­‰ è”¼é˜‘ å•Šå»‰å·ç»° éœ¸ ä¹ç»Š é…’æè¢ å¯è®° èæ‘¹ç”« æµç«‹ ç„Šç»° éœ¸ ä¹æ¾œ
 	CurPCClass = DisplayPCClass;
 
 	FB2ModPlayerInfo& OtherPlayer = BladeIIGameImpl::GetClientDataStore().GetOtherUserInfo();
 
-	// Á¾·ùº°·Î ÇØ¼­ ³ª¿­ÇÏ´Â ¼ø¼­°¡ ÀÖÀ½.
+	// è¾†å¹…å–Šè‚º ç§¦è¾‘ å”±å‡¯çªç»° é‰´è¾‘å•Š ä¹æ¾œ.
 	int32 RowIndex = 0;
 	{
 		CreateSingleStatBasicPoint(VB_OffensiveStats.Get(), RowIndex, EItemPrimaryPointType::EIPP_Attack,
@@ -237,7 +237,7 @@ void UB2LobbyUI_CharStatDetail::UpdateStats(EPCClass DisplayPCClass, bool bFindA
 	}
 
 	{
-		// ¸ğÇè °ü·Ã ±âº» ¼öÄ¡´Â ¾øÀ½.
+		// è‘›æ°° åŒ…è®¿ æ‰å¤¯ èæ‘¹ç»° ç»æ¾œ.
 		CreateSingleStatItemOption(VB_AdventureStats.Get(), RowIndex, EUnitedCombatOptions::UCO_Misc_IncMoveSpeed, DisplayPCClass, bFindAccountInfo);
 		++RowIndex;
 
@@ -257,7 +257,7 @@ void UB2LobbyUI_CharStatDetail::CreateSingleStatBasicPoint(class UVerticalBox* V
 	UB2DynText_Multiple* ThisCreated = Cast<UB2DynText_Multiple>(DynCreateInVerticalBox(StatTextDisplayClass, this, VBToCreateIn, FMargin()));
 	if (ThisCreated)
 	{
-		ThisCreated->SetDynText(RowIndexInVB, InStatLabelText, FText::FromString(FString::Printf(TEXT("%d"), InStatValue))); // °Á Á¤¼ö Ç¥Çö.
+		ThisCreated->SetDynText(RowIndexInVB, InStatLabelText, FText::FromString(FString::Printf(TEXT("%d"), InStatValue))); // å‚² æ²¥è é’æ³….
 		if (InStatValue == 0)
 			ThisCreated->SetChangeEmptyValueColor(1);
 		ThisCreated->SetVisibility_BtnSelect(true);
@@ -269,8 +269,8 @@ void UB2LobbyUI_CharStatDetail::CreateSingleStatBasicPoint(class UVerticalBox* V
 
 void UB2LobbyUI_CharStatDetail::CreateSingleStatItemOption(class UVerticalBox* VBToCreateIn, int32 RowIndexInVB, EUnitedCombatOptions InUnitedOptionType, EPCClass InDisplayPCClas, bool bFindAccountInfo)
 {
-	// ´Ù¸¥ À¯Àú Á¤º¸ È¤Àº ³ªÀÇ ·ÎÄÃ Ä³¸¯ÅÍ Á¤º¸
-	ICharacterDataStore* DisplayCharDataStore = NULL; // ¿©±ä ¹Ù·Î »ïÇ×¿¬»êÀÚ°¡ ¾È ¸ÔÈû.
+	// ä¿ƒå¼— èœ¡å† æ²¥ç„Š è¶£ç¯® å”±ç‹¼ è‚ºæ‹¿ æŸè…ç£ æ²¥ç„Š
+	ICharacterDataStore* DisplayCharDataStore = NULL; // å’¯å˜ å®˜è‚º ä¼™äº²æ¥·é­‚ç£Šå•Š æ•‘ å†ˆå¡.
 	if (bFindAccountInfo)
 	{
 		DisplayCharDataStore = &BladeIIGameImpl::GetClientDataStore().GetOtherUserInfo();
@@ -283,9 +283,9 @@ void UB2LobbyUI_CharStatDetail::CreateSingleStatItemOption(class UVerticalBox* V
 	UB2DynText_Multiple* ThisCreated = Cast<UB2DynText_Multiple>(DynCreateInVerticalBox(StatTextDisplayClass, this, VBToCreateIn, FMargin()));
 	if (ThisCreated)
 	{
-		// ¿©±â¼­ ¸®ÅÏÇÏ´Â °ªÀº ½ÇÁ¦ Àû¿ëµÇ´Â °ªÀÌ°í Ç¥½ÃÇÏ´Â °ª°ú´Â ´Ù¸¦ ¼ö ÀÖ´Ù.		
+		// å’¯æ‰è¾‘ åºœç•”çªç»° è”¼ç¯® è§’åŠ› åˆ©ä¾©ç™»ç»° è”¼æç»Š é’çŸ«çªç»° è”¼è‹ç»° ä¿ƒç”« è ä¹ä¿ƒ.		
 		EItemOption MapppedItemOption = CombatStatEval::GetItemOptionOfUnitedOption(InUnitedOptionType);
-		checkSlow(MapppedItemOption != EItemOption::EIO_End); // Àû¾îµµ EItemOption ¿¡´Â ¸ÊÇÎÀÌ µÇ´Â ¿É¼ÇÀÌ¾î¾ß ÇÑ´Ù. SkillOption ¿¡¸¸ ¸ÊÇÎµÇ´Â ¿É¼ÇÀº ¿©±â¼­ Ç¥½ÃÇÏÁö ¾Ê´Â´Ù.
+		checkSlow(MapppedItemOption != EItemOption::EIO_End); // åˆ©ç»¢æ¡£ EItemOption ä¿Šç»° ç”˜ä¿æ ç™»ç»° å¯è®°æç»¢å…· èŒ„ä¿ƒ. SkillOption ä¿Šçˆ¶ ç”˜ä¿ç™»ç»° å¯è®°ç¯® å’¯æ‰è¾‘ é’çŸ«çªç˜¤ è‡¼ç»°ä¿ƒ.
 
 		float EffectiveValue = CombatStatEval::GetUnitedOptionStatusValue(InDisplayPCClas, InUnitedOptionType, DisplayCharDataStore);
 		ThisCreated->SetDynText(RowIndexInVB,GetLOCTextOfItemOption(MapppedItemOption, InDisplayPCClas), GetItemOptionValueDisplayText(MapppedItemOption, EffectiveValue, false));
@@ -319,7 +319,7 @@ void UB2LobbyUI_CharStatDetail::OnClickedStatSlot(int32 InSlotNum, FVector2D Cli
 	if (StatTextInfo.GetIsEmptyOption())
 		return;
 		
-	DJLegacy_OpenLobbySubPopupClass<ELobbySubPopups, FDJLegacySubpopupAddPanelInfo>::GetInstance().Signal(ELobbySubPopups::ELSPU_CharStatDetailPopup, FDJLegacySubpopupAddPanelInfo()); // ¼¼ºÎÀÇ ¼¼ºÎ ½ºÅÈ pop-up
+	DJLegacy_OpenLobbySubPopupClass<ELobbySubPopups, FDJLegacySubpopupAddPanelInfo>::GetInstance().Signal(ELobbySubPopups::ELSPU_CharStatDetailPopup, FDJLegacySubpopupAddPanelInfo()); // æŠ€ä½•ç‹¼ æŠ€ä½• èƒ¶æ¹ƒ pop-up
 
 	if (UB2LobbyUI_CharStatDetailPopup* DetailPopup = Cast<UB2LobbyUI_CharStatDetailPopup>(CachedLobbyGM->DJLegacy_FindLobbySubPopup(ELobbySubPopups::ELSPU_CharStatDetailPopup)))
 	{	
@@ -374,13 +374,13 @@ void UB2LobbyUI_CharStatDetail::OnCloseButtonClicked()
 	DJLegacy_CloseLobbySubPopupClass<ELobbySubPopups>::GetInstance().Signal(ELobbySubPopups::ELSPU_CharStatDetail);
 }
 
-// Å×½ºÆ® ¿ëµµ·Î ÀÎ°ÔÀÓ ÀüÅõ È­¸é¿¡¼­ ¸¶Âù°¡Áö ¿É¼Ç ¼¼Æ®µéÀ» »Ñ¸®´Â ±â´É
+// æŠ›èƒ¶é£˜ ä¾©æ¡£è‚º ç‰¢éœ¸çƒ™ å‚ˆæ§ æ‹³æä¿Šè¾‘ ä»˜è›®å•Šç˜¤ å¯è®° æŠ€é£˜ç”¸é˜‘ è°åºœç»° æ‰ç“·
 #if !UE_BUILD_SHIPPING
 int32 UB2LobbyUI_CharStatDetail::DebugDrawPlayerStatMode = 0;
 EPCClass UB2LobbyUI_CharStatDetail::DebugDrawPlayerStatClass = EPCClass::EPC_End;
 void UB2LobbyUI_CharStatDetail::DebugDrawPlayerPrimStatOnScreen(EPCClass InLocalMainCharClass, EPCClass InLocalSubCharClass, EItemPrimaryPointType InPrimPointType, float InStartX, float InStartY)
 {
-	// ·ÎÄÃ Ä³¸¯ÅÍ ¿ëµµ¸¸..
+	// è‚ºæ‹¿ æŸè…ç£ ä¾©æ¡£çˆ¶..
 	ICharacterDataStore* LocalCDS = &BladeIIGameImpl::GetClientDataStore().GetLocalCharacterData();
 	float MainCharStatValue = 0.0f;
 	float SubCharStatValue = 0.0f;
@@ -401,7 +401,7 @@ void UB2LobbyUI_CharStatDetail::DebugDrawPlayerPrimStatOnScreen(EPCClass InLocal
 	else if (InPrimPointType == EItemPrimaryPointType::EIPP_Health)
 	{
 		MainCharStatValue = CombatStatEval::GetPCHealth(InLocalMainCharClass, LocalCDS);
-		//SubCharStatValue = CombatStatEval::GetPCHealth(InLocalSubCharClass, LocalCDS); // Ã¼·ÂÀº µüÈ÷ ¼­ºê Ä³¸¯ÅÍ ¼öÄ¡°¡ ÇÊ¿ä´Â ¾øÀ» °Í.
+		//SubCharStatValue = CombatStatEval::GetPCHealth(InLocalSubCharClass, LocalCDS); // çœ‰ä»¿ç¯® è¿­æ´’ è¾‘å® æŸè…ç£ èæ‘¹å•Š é˜å¤¸ç»° ç»é˜‘ å·´.
 		PrimPointTypeLabel = BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("LobbyStatText_Health")).ToString();
 	}
 	
@@ -410,13 +410,13 @@ void UB2LobbyUI_CharStatDetail::DebugDrawPlayerPrimStatOnScreen(EPCClass InLocal
 	{
 		DisplayString = FString::Printf(TEXT("%s : %d"), *PrimPointTypeLabel, (int32)MainCharStatValue);
 		if (InLocalSubCharClass != EPCClass::EPC_End)
-		{ // ½ÇÁúÀûÀ¸·Î´Â ¸ŞÀÎ°ú ÅÂ±× Ä³¸¯ÅÍ ÇÕÄ£ ¼öÄ¡°¡ ÇÊ¿äÇÒ °Í. ÆÀ´ëÀüÀÌ¸é ¼ÂÀ» ÇÕÃÄ¾ß µÇ´Âµ¥ ±×°Ç ÇÊ¿äÇØÁö¸é Ãß°¡·Î..
+		{ // è§’é¾™åˆ©æ è‚ºç»° çš‹ç‰¢è‹ æ€•å¼Š æŸè…ç£ é’¦æ¨¡ èæ‘¹å•Š é˜å¤¸ä¸” å·´. è¯„æªå‚ˆææ æ‚¸é˜‘ é’¦åªšå…· ç™»ç»°å• å¼Šæ‰’ é˜å¤¸ç§¦ç˜¤æ çœ å•Šè‚º..
 			DisplayString += FString::Printf(TEXT(" (Main+Tag United : %d)"), (int32)MainCharStatValue + (int32)SubCharStatValue);
 		}
 	}
 	else
 	{
-		// Ã¼·ÂÀÇ °æ¿ì ÇöÀç Ã¼·Â ¼öÄ¡µµ Ç¥½ÃÇÏ´Âµ¥ Àû´çÈ÷ UIDoc ¿¡¼­ »©¿È. ´ëÃ¼·Î ¸ŞÀÎ Ä³¸¯ÅÍ ¼öÄ¡¸¦ º¸ÀÌ¸é µÇ±ä ÇÒ²«µ¥ ¿©±â·Î ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ¸¦ ³Ñ°ÜÁÖ´Â °Ô ³ªÀ¸·Á³ª ¤Ñ¤Ñ
+		// çœ‰ä»¿ç‹¼ ç‰ˆå¿« æ³…çŠ çœ‰ä»¿ èæ‘¹æ¡£ é’çŸ«çªç»°å• åˆ©å¯¸æ´’ UIDoc ä¿Šè¾‘ å“—å’³. æªçœ‰è‚º çš‹ç‰¢ æŸè…ç£ èæ‘¹ç”« ç„Šææ ç™»å˜ ä¸”æå• å’¯æ‰è‚º æ•²é¥­æç»¢ æŸè…ç£ç”« é€è´¥æ—ç»° éœ¸ å”±æ å¦¨å”± ã±ã±
 		UB2UIDocBattle* DocBattle = UB2UIDocHelper::GetDocBattle();
 		int32 CurrPCHealth = 0.0f;
 		if (DocBattle)
@@ -430,51 +430,51 @@ void UB2LobbyUI_CharStatDetail::DebugDrawPlayerPrimStatOnScreen(EPCClass InLocal
 				CurrPCHealth = DocBattle->GetTagPCHealth();
 			}
 		}
-		// Ã¼·ÂÀº ¸ŞÀÎ ÅÂ±× ÇÕÃÄ¼­ »ç¿ë ¾ÈÇÔ.
+		// çœ‰ä»¿ç¯® çš‹ç‰¢ æ€•å¼Š é’¦åªšè¾‘ è¤ä¾© æ•‘çªƒ.
 		DisplayString = FString::Printf(TEXT("%s : %d/%d"), *PrimPointTypeLabel, (int32)CurrPCHealth, (int32)MainCharStatValue);
 	}
 
-	DrawDebugText(InStartX, InStartY, DisplayString, FLinearColor::Yellow, 20); // ÆùÆ®ÄÃ·¯¶û Å©±â´Â ¿©±â¼­ ÀÓÀÇ·Î´Ù°¡.
+	DrawDebugText(InStartX, InStartY, DisplayString, FLinearColor::Yellow, 20); // è¿„é£˜æ‹¿çŸ¾å°” å†œæ‰ç»° å’¯æ‰è¾‘ çƒ™ç‹¼è‚ºä¿ƒå•Š.
 }
 void UB2LobbyUI_CharStatDetail::DebugDrawPlayerSingleOptionOnScreen(EPCClass InLocalCharClass, EUnitedCombatOptions DisplayOption, float InStartX, float InStartY)
 {
-	// ·ÎÄÃ Ä³¸¯ÅÍ ¿ëµµ¸¸..
+	// è‚ºæ‹¿ æŸè…ç£ ä¾©æ¡£çˆ¶..
 	ICharacterDataStore* LocalCDS = &BladeIIGameImpl::GetClientDataStore().GetLocalCharacterData();
-	// ¿©±â¼­ ¸®ÅÏÇÏ´Â °ªÀº ½ÇÁ¦ Àû¿ëµÇ´Â °ªÀÌ°í Ç¥½ÃÇÏ´Â °ª°ú´Â ´Ù¸¦ ¼ö ÀÖ´Ù.
+	// å’¯æ‰è¾‘ åºœç•”çªç»° è”¼ç¯® è§’åŠ› åˆ©ä¾©ç™»ç»° è”¼æç»Š é’çŸ«çªç»° è”¼è‹ç»° ä¿ƒç”« è ä¹ä¿ƒ.
 	float EffectiveValue = CombatStatEval::GetUnitedOptionStatusValue(InLocalCharClass, DisplayOption, LocalCDS);
 
 	EItemOption MapppedItemOption = CombatStatEval::GetItemOptionOfUnitedOption(DisplayOption);
-	checkSlow(MapppedItemOption != EItemOption::EIO_End); // Àû¾îµµ EItemOption ¿¡´Â ¸ÊÇÎÀÌ µÇ´Â ¿É¼ÇÀÌ¾î¾ß ÇÑ´Ù. SkillOption ¿¡¸¸ ¸ÊÇÎµÇ´Â ¿É¼ÇÀº ¿©±â¼­ Ç¥½ÃÇÏÁö ¾Ê´Â´Ù.
+	checkSlow(MapppedItemOption != EItemOption::EIO_End); // åˆ©ç»¢æ¡£ EItemOption ä¿Šç»° ç”˜ä¿æ ç™»ç»° å¯è®°æç»¢å…· èŒ„ä¿ƒ. SkillOption ä¿Šçˆ¶ ç”˜ä¿ç™»ç»° å¯è®°ç¯® å’¯æ‰è¾‘ é’çŸ«çªç˜¤ è‡¼ç»°ä¿ƒ.
 	
 	FString DisplayString = FString::Printf(TEXT("%s : %s"),
 		*(GetLOCTextOfItemOption(MapppedItemOption, InLocalCharClass).ToString()),
 		*(GetItemOptionValueDisplayText(MapppedItemOption, EffectiveValue, false).ToString()));
 
-	DrawDebugText(InStartX, InStartY, DisplayString, FLinearColor::Green, 18); // ÆùÆ®ÄÃ·¯¶û Å©±â´Â ¿©±â¼­ ÀÓÀÇ·Î´Ù°¡.
+	DrawDebugText(InStartX, InStartY, DisplayString, FLinearColor::Green, 18); // è¿„é£˜æ‹¿çŸ¾å°” å†œæ‰ç»° å’¯æ‰è¾‘ çƒ™ç‹¼è‚ºä¿ƒå•Š.
 }
 void UB2LobbyUI_CharStatDetail::DebugDrawPlayerStatOnScreen(EPCClass InMainCharClassOverride, EPCClass InSubCharClass)
 {
 	if (DebugDrawPlayerStatMode <= 0) {
 		extern bool gIsDevUI;
 		if (gIsDevUI)
-		{ // ¾È³» ¹®±¸ È¤ ±¦Âú´Ù ½ÍÀ¸¸é º¹±¸.
+		{ // æ•‘éƒ´ å·©å¤‡ è¶£ å®æ»¡ä¿ƒ é…µæ æ æ±—å¤‡.
 		//	DrawDebugText(10.0f, 10.0f, TEXT("Cmd \"PlayerOptionDisplay #SetNum\" to show player stats."), FLinearColor::Green, 14);
 		}
 		return;
 	}
 
-	// ¸ŞÀÎ Å¬·¡½º ÀÎÀÚ´Â ¿©±â¼­ º¯¼ö·Î µé°í ÀÖ´Â °É ¿À¹ö¶óÀÌµå, ¼­ºê Å¬·¡½º´Â ±×³É ÁöÁ¤. Á¤ºñ°¡ Á» ´ú µÇ¾î¼­ ±×·± °Çµ¥ ¼¼¸¶¸®°¡ Ãâµ¿ÇÏ´Â ÆÀ ´ëÀü ¾Æ´Ï¸é µüÈ÷ ¹Ù²Ü ÇÊ¿æ ¾øÀ» µíµµ.
+	// çš‹ç‰¢ åŠªè´°èƒ¶ ç‰¢ç£Šç»° å’¯æ‰è¾‘ å‡½èè‚º ç”¸ç»Š ä¹ç»° å§ å·æ»šæ‰¼æé›, è¾‘å® åŠªè´°èƒ¶ç»° å¼Šæˆ ç˜¤æ²¥. æ²¥åšå•Š ç²± ä»£ ç™»ç»¢è¾‘ å¼Šç¹ æ‰’å• æŠ€ä»˜åºœå•Š å…æ‚¼çªç»° è¯„ æªå‚ˆ é…’èªæ è¿­æ´’ å®˜æ›¹ é˜æŒ ç»é˜‘ æ·€æ¡£.
 	const EPCClass FinalDisplayMainClass = (InMainCharClassOverride != EPCClass::EPC_End) ? InMainCharClassOverride : DebugDrawPlayerStatClass;
 
-	const float CommonDrawX = 40.0f; // ÀÏ´Ü °íÁ¤. ÇÑ¹ø¿¡ ¼¼Æ® ÇÏ³ª¾¿¸¸ ±×¸®´Â ÀÌ»ó..
+	const float CommonDrawX = 40.0f; // è€çªœ ç»Šæ²¥. èŒ„é”…ä¿Š æŠ€é£˜ çªå”±ç©¶çˆ¶ å¼Šåºœç»° ææƒ‘..
 	const float CommonDrawXPrimStat = 30.0f;
-	float DrawY = 50.0f; // ÀÌ°Ç ¸Å ÁÙ ´ÜÀ§·Î Áõ°¡
-	const float DrawLineHeight = 35.0f; // ÆùÆ® Å©±â °¨¾ÈÇØ¼­ Àû´çÈ÷..
+	float DrawY = 50.0f; // ææ‰’ æ¦‚ ä¸´ çªœå›°è‚º åˆ˜å•Š
+	const float DrawLineHeight = 35.0f; // è¿„é£˜ å†œæ‰ çš‘æ•‘ç§¦è¾‘ åˆ©å¯¸æ´’..
 
-	// ÇÑ¹ø¿¡ ÇÏ³ªÀÇ ¼¼Æ®¸¸ draw ÇÑ´Ù.
-	if (DebugDrawPlayerStatMode == 1) // °ø°İ °ü·Ã stat
+	// èŒ„é”…ä¿Š çªå”±ç‹¼ æŠ€é£˜çˆ¶ draw èŒ„ä¿ƒ.
+	if (DebugDrawPlayerStatMode == 1) // å‚æ‹œ åŒ…è®¿ stat
 	{
-		// ÁÖ¿ä ¼öÄ¡´Â ÀÎµ§Æ®µµ ³Ö°í ÁÙ°£°İµµ ´Ã·Á¼­
+		// æ—å¤¸ èæ‘¹ç»° ç‰¢æ¸é£˜æ¡£ æŒç»Š ä¸´åŸƒæ‹œæ¡£ ç–µå¦¨è¾‘
 		DebugDrawPlayerPrimStatOnScreen(FinalDisplayMainClass, InSubCharClass, EItemPrimaryPointType::EIPP_Attack, CommonDrawXPrimStat, DrawY);
 		DrawY += DrawLineHeight * 1.2f; 
 		DebugDrawPlayerSingleOptionOnScreen(FinalDisplayMainClass, EUnitedCombatOptions::UCO_Offense_IncDamage, CommonDrawX, DrawY);
@@ -493,7 +493,7 @@ void UB2LobbyUI_CharStatDetail::DebugDrawPlayerStatOnScreen(EPCClass InMainCharC
 		/*DrawY += DrawLineHeight;
 		DebugDrawPlayerSingleOptionOnScreen(FinalDisplayMainClass, EUnitedCombatOptions::UCO_Misc_LastNormalAttackKnockbackRate, CommonDrawX, DrawY);*/
 	}
-	else if (DebugDrawPlayerStatMode == 2) // ¹æ¾î °ü·Ã stat
+	else if (DebugDrawPlayerStatMode == 2) // è§„ç»¢ åŒ…è®¿ stat
 	{
 		DebugDrawPlayerPrimStatOnScreen(FinalDisplayMainClass, InSubCharClass, EItemPrimaryPointType::EIPP_Defense, CommonDrawXPrimStat, DrawY);
 		DrawY += DrawLineHeight * 1.2f;
@@ -509,18 +509,18 @@ void UB2LobbyUI_CharStatDetail::DebugDrawPlayerStatOnScreen(EPCClass InMainCharC
 		DrawY += DrawLineHeight;
 		DebugDrawPlayerSingleOptionOnScreen(FinalDisplayMainClass, EUnitedCombatOptions::UCO_Defense_ResistCritical, CommonDrawX, DrawY);
 	}
-	else if (DebugDrawPlayerStatMode == 3) // Ã¼·Â °ü·Ã stat
+	else if (DebugDrawPlayerStatMode == 3) // çœ‰ä»¿ åŒ…è®¿ stat
 	{
 		DebugDrawPlayerPrimStatOnScreen(FinalDisplayMainClass, InSubCharClass, EItemPrimaryPointType::EIPP_Health, CommonDrawXPrimStat, DrawY);
 		DrawY += DrawLineHeight * 1.2f;
 		DebugDrawPlayerSingleOptionOnScreen(FinalDisplayMainClass, EUnitedCombatOptions::UCO_Health_ProbableHPAbsorption, CommonDrawX, DrawY);
 		DrawY += DrawLineHeight;
-		// ÀÌ°Ç È®½ÇÈ÷ ÀÇµµÇÑ Ç×¸ñÀÎÁö ¸ğ¸£°Ú´Ù..
+		// ææ‰’ çŠ¬è§’æ´’ ç‹¼æ¡£èŒ„ äº²æ ¼ç‰¢ç˜¤ è‘›ç¦æ‘†ä¿ƒ..
 		DebugDrawPlayerSingleOptionOnScreen(FinalDisplayMainClass, EUnitedCombatOptions::UCO_Health_ProbableRecoverHP, CommonDrawX, DrawY);
 		DrawY += DrawLineHeight;
 		DebugDrawPlayerSingleOptionOnScreen(FinalDisplayMainClass, EUnitedCombatOptions::UCO_Health_PerSecRecoverHP, CommonDrawX, DrawY);
 	}
-	else if(DebugDrawPlayerStatMode == 4) // ±âÅ¸.
+	else if(DebugDrawPlayerStatMode == 4) // æ‰é¸¥.
 	{
  		DebugDrawPlayerSingleOptionOnScreen(FinalDisplayMainClass, EUnitedCombatOptions::UCO_Misc_AdditionalExp, CommonDrawX, DrawY);
  		DrawY += DrawLineHeight;

@@ -165,7 +165,7 @@ bool UB2UIDocFriend::IsFriendAskable(int64 AccountId)
 	if (AccountId == BladeIIGameImpl::GetClientDataStore().GetAccountId())
 		return false;
 
-	// ³»Ä£±¸ ¸ñ·Ï¿¡ ¾ø°í, º¸³½Ä£±¸½ÅÃ», ¹ŞÀºÄ£±¸½ÅÃ»¿¡ ¾ø¾î¾ßÇÔ.
+	// éƒ´æ¨¡å¤‡ æ ¼åºŸä¿Š ç»ç»Š, ç„Šè¾°æ¨¡å¤‡è„šæ²¡, ç½ç¯®æ¨¡å¤‡è„šæ²¡ä¿Š ç»ç»¢å…·çªƒ.
 	return GetFriendInfo(AccountId) == NULL
 		&& GetFriendSendInfo(AccountId) == NULL
 		&& GetReceiveAskFriendInfo(AccountId) == NULL;
@@ -288,7 +288,7 @@ void UB2UIDocFriend::SetKakaoFriendInfoData()
 #if WITH_EDITOR && BII_SHIPPING_ALLOWED_DEV_FEATURE_LV1
 	if (m_KakaoFriendInfoList.Num() > 1)
 		m_KakaoFriendInfoList.Empty();
-	// ´õ¹Ì µ¥ÀÌÅÍ
+	// æ­¹å›º å•æç£
 	for (int32 i = 0; i < 100; ++i)
 	{
 		FB2KakaoFriendInfo Row;
@@ -317,7 +317,7 @@ void UB2UIDocFriend::SetKakaoFriendInfoData()
 		{
 			sKakaoTemp.sKakaoUserID = json_parse_obj->GetStringField("serviceUserId");
 #if PLATFORM_ANDROID
-			sKakaoTemp.sKakaoNickName = B2P_GetKakaoFriendNickName(i);// ÇÑ±Û ±úÁü ¶§¹®¿¡ µû·Î
+			sKakaoTemp.sKakaoNickName = B2P_GetKakaoFriendNickName(i);// èŒ„è‡‚ æŸ„å’™ é”­å·©ä¿Š è¶è‚º
 #else
 			sKakaoTemp.sKakaoNickName = json_parse_obj->GetStringField("nickname");
 #endif
@@ -381,9 +381,9 @@ void UB2UIDocFriend::GetKakaoFriendEventList(TArray<FB2KakaoFriendEventInfo> &Ou
 {
 	OutList.Empty();
 #if WITH_EDITOR && BII_SHIPPING_ALLOWED_DEV_FEATURE_LV1
-	// ¿¡µğÅÍ¿ë ´õ¹Ì µ¥ÀÌÅÍ
+	// ä¿Šå¼ç£ä¾© æ­¹å›º å•æç£
 	FB2KakaoFriendEventInfo Info;
-	// ios ·Î±×
+	// ios è‚ºå¼Š
 	// <KGKakaoInvitationEvent : eventId(153), isEventCardEnabled(NO), startTime(1517466098000), finishTime(2531646041000), maxHostRewardCount(50), hostRewardCode(10001), joinRewardCode(10001), invitationUrl(http://kko.to/PgOAWUH60), totalJoinerCount(0)>
 	Info.EventID = DEFAULT_INVITE_EVENT_ID;
 	Info.IsEventCardEnabled = false;
@@ -431,7 +431,7 @@ FB2KakaoFriendEventInfo UB2UIDocFriend::GetRecentlyKakaoEvent()
 bool  UB2UIDocFriend::HasKakaoEvent()
 {
 #if WITH_EDITOR
-	// ¿¡µğÅÍ¿¡¼­´Â Å×½ºÆ®¸¦ À§ÇØ ÀÖ´Ù°í ÅüÄ§
+	// ä¿Šå¼ç£ä¿Šè¾‘ç»° æŠ›èƒ¶é£˜ç”« å›°ç§¦ ä¹ä¿ƒç»Š åŠˆé­”
 	return 1;
 #endif
 	return m_KakaoFriendEventInfoList.Num() > 0;
@@ -522,8 +522,8 @@ void UB2UIDocFriend::AddInviteKakaoFriend(const int32 TargetIndex)
 	//FString SaveDataInfo = FString::Printf(TEXT("%s##%s"), *UserID, *DateNow.ToString());
 	//m_KakaoInvietedInfoList.Add(SaveDataInfo);
 
-	//// Ä³½Ì ÇØ µÎ°í ¾À ÀüÈ¯½Ã ÀÏ°ıÀûÀ¸·Î ÀúÀåÀ» ÇÏ¸é
-	//// ¾ÛÀ» °­Á¦ Á¾·áÇÒ °æ¿ì ÀúÀåÀÌ ¾ÈµÇ¾î Ä£±¸ÃÊ´ë ¸¶´Ù ÀúÀåÇÏµµ·Ï ÇÔ.
+	//// æŸæ•™ ç§¦ æ»´ç»Š çº  å‚ˆåˆ¸çŸ« è€è¤’åˆ©æ è‚º å†å˜é˜‘ çªæ
+	//// èšé˜‘ ç¢åŠ› è¾†ä¸°ä¸” ç‰ˆå¿« å†å˜æ æ•‘ç™»ç»¢ æ¨¡å¤‡æª¬æª ä»˜ä¿ƒ å†å˜çªæ¡£åºŸ çªƒ.
 	//SaveLocalInvitedFriends();
 }
 
@@ -567,7 +567,7 @@ void UB2UIDocFriend::LoadLocalInvitedFriends()
 	//	FString AVStr_Right;
 
 	//	FDateTime DateNow = UB2GameInstance::GetKoreaTimeNow();
-	//	//FDateTime::Parse(TEXT("2018.08.01-00.00.01"), DateNow); // Å×½ºÆ®¿ë
+	//	//FDateTime::Parse(TEXT("2018.08.01-00.00.01"), DateNow); // æŠ›èƒ¶é£˜ä¾©
 
 	//	const int32 InviteDayCondition = 31;
 	//	for (FString Each : TempArray)
@@ -577,7 +577,7 @@ void UB2UIDocFriend::LoadLocalInvitedFriends()
 	//			if (m_KakaoInvitedSet.Contains(AVStr_Left))
 	//				continue;
 
-	//			// 31ÀÏ ÀÌÈÄ´Â Á¶°Ç¹®¿¡¼­ ¾Èµé¾î°¡ ÀÚµ¿À¸·Î ºüÁü
+	//			// 31è€ æé¥¶ç»° ç‚¼æ‰’å·©ä¿Šè¾‘ æ•‘ç”¸ç»¢å•Š ç£Šæ‚¼æ è‚º ç‹å’™
 	//			if(GetDistanceInvitedDay(AVStr_Right, DateNow) < InviteDayCondition)
 	//			{
 	//				m_KakaoInvitedSet.Add(AVStr_Left);

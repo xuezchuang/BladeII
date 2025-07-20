@@ -72,11 +72,11 @@ void UB2LobbyUI_AutoItemLevelup::OnClickAutoLevelUpCommit()
 		UIP_InventoryFilter->SaveFilterInfo(TEXT("AutoItemLevelup"));
 	}
 
-	// ÀÌ ½ÃÁ¡¿¡¼­ Ã¢À» ´ÝÀ¸¸é °ï¶õÇÒ °Å °°´Ù. ÀÚµ¿ °­È­´Â ¼­¹ö¿Í ÆÐÅ¶À» ¿©·¯Â÷·Ê ±³È¯ÇÏ¹Ç·Î ÃÖÁ¾ ÀÀ´äÀÌ ¿Â ÈÄ¿¡ ÀÌ°É ´Ý°í °á°úÃ¢À¸·Î ÀüÈ¯ÇÏµµ·Ï. 
+	// æž çŸ«ç—¢ä¿Šè¾‘ èŠ’é˜‘ æ‘§æ æ å¸®é„‚ä¸” èŠ­ éžä¿ƒ. ç£Šæ‚¼ ç¢æ‹³ç»° è¾‘æ»šå®¢ è©å“¦é˜‘ å’¯çŸ¾çž’è‚¥ èƒŒåˆ¸çªéª¨è‚º å¼¥è¾† è§ˆç¿ æž æŸ¯ é¥¶ä¿Š æžå§ æ‘§ç»Š æ¬è‹žèŠ’æ è‚º å‚ˆåˆ¸çªæ¡£åºŸ. 
 
 	if (Btn_AutoLevelupCommit.IsValid())
 	{
-		Btn_AutoLevelupCommit->SetIsEnabled(false); // È¤½Ã ¸ð¸£´Ï ½ÇÇà ¹öÆ°Àº ºñÈ°¼ºÈ­..
+		Btn_AutoLevelupCommit->SetIsEnabled(false); // è¶£çŸ« è‘›ç¦èª è§’é’ æ»šç“¢ç¯® åŽšåŠå·±æ‹³..
 	}
 }
 
@@ -157,19 +157,19 @@ void UB2LobbyUI_AutoItemLevelup::StartFromLobby(class UB2UIManager_Lobby* InUIMa
 }
 
 void UB2LobbyUI_AutoItemLevelup::CloseMe()
-{ // ÀÌ°Ç ´Ü¼øÈ÷ ÆË¾÷Ã¢¸¸À» ´ÝÀ¸¹Ç·Î ¾î¶² ½ÄÀ¸·Îµç ÀÚµ¿ °­È­°¡ ÁøÇàÁßÀÎ »óÅÂ¿¡¼­´Â ÀÌ·± ½ÄÀ¸·Î ´ÝÀ¸¸é ¾È µÊ. ±×·± °æ¿ì°¡ ÇÊ¿äÇÏ¸é UB2LobbyInventory::EndAutoItemLevelup ¸¦ »ç¿ëÇØ¾ß.
+{ // æžæ‰’ çªœé‰´æ´’ æ‰‘è¯€èŠ’çˆ¶é˜‘ æ‘§æ éª¨è‚º ç»¢æ« ä¾¥æ è‚ºç”µ ç£Šæ‚¼ ç¢æ‹³å•Š æŸ³é’åç‰¢ æƒ‘æ€•ä¿Šè¾‘ç»° æžç¹ ä¾¥æ è‚º æ‘§æ æ æ•‘ å‡³. å¼Šç¹ ç‰ˆå¿«å•Š éž˜å¤¸çªæ UB2LobbyInventory::EndAutoItemLevelup ç”« è¤ä¾©ç§¦å…·.
 	//DJLegacy_CloseLobbySubPopupClass<ELobbySubPopups>::GetInstance().Signal(ELobbySubPopups::ELSPU_AutoItemLevelup);
 }
 
 void UB2LobbyUI_AutoItemLevelup::UpdateWidgets()
 {
-	// ¸®½ºÆ®°¡ ¹Ù²î¾úÀ» ¶§ ÇöÀç ¸®½ºÆ®¿¡ ´ëÇÑ ÀÚµ¿ °­È­ ¿¹»ó ºñ¿ëÀ» ¿äÃ»ÇØ¾ß ÇÏ´Âµ¥ ¿©±â¼­ ¹Ù·Î ºí·ÎÅ·À¸·Î´Â ¾ÈµÇ´Ï 
-	// ¹öÆ° µîÀÇ UI ¸¦ disable ½ÃÅ² Ã¤ ¿äÃ»¸¸ ³¯¸®°í ÀÀ´äÀº µû·Î Ã³¸®.
-	// ³»Áö´Â ±Ý¾× °è»êÀ» Å¬¶óÀÌ¾ðÆ®¿¡¼­ Ã³¸®ÇÏ°Ô µÉ ¼öµµ ÀÖÀ½.
+	// åºœèƒ¶é£˜å•Š å®˜å·®èŒé˜‘ é”­ æ³…çŠ åºœèƒ¶é£˜ä¿Š æŽªèŒ„ ç£Šæ‚¼ ç¢æ‹³ æŠ—æƒ‘ åŽšä¾©é˜‘ å¤¸æ²¡ç§¦å…· çªç»°å• å’¯æ‰è¾‘ å®˜è‚º å–‰è‚ºæ¬§æ è‚ºç»° æ•‘ç™»èª 
+	// æ»šç“¢ æ®¿ç‹¼ UI ç”« disable çŸ«æŒª ç›² å¤¸æ²¡çˆ¶ æœåºœç»Š è§ˆç¿ ç¯® è¶è‚º è´¸åºœ.
+	// éƒ´ç˜¤ç»° é™›å’€ æ‹Œé­‚é˜‘ åŠªæ‰¼æžæ”«é£˜ä¿Šè¾‘ è´¸åºœçªéœ¸ çžª èæ¡£ ä¹æ¾œ.
 	TArray<FB2Item> AllTargetItems;
 	GetItemListByFilter(AllTargetItems);
 
-	// ºñ¿ë °è»êÇØ¼­ °ü·Ã UI µé ¼¼ÆÃ.
+	// åŽšä¾© æ‹Œé­‚ç§¦è¾‘ åŒ…è®¿ UI ç”¸ æŠ€æ³¼.
 	UB2LobbyInventory* LobbyInvenObj = CachedLobbyGM ? CachedLobbyGM->GetLobbyInventory() : NULL;
 	int32 PreviewAutoLevelupCost = 0;
 	int32 PreviewAutoLevelupItemCount = 0;

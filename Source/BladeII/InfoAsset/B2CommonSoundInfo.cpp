@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2CommonSoundInfo.h"
@@ -11,7 +11,7 @@
 
 USoundCue* FSingleCommonSoundInfoMap::GetSoundCue(FStreamableManager& InLoadManager, int32 MyArrayIndex, TMap<int32, FSingleCommonSoundInfoLoadedRefHolder>& LoadedPtrMap)
 {
-	// ÀÏ´Ü ·ÎµùµÈ ¿¡¼Â Ä³½Ì ±¸Á¶Ã¼ºÎÅÍ È®ÀÎ.
+	// è€çªœ è‚ºçˆ¹ç­‰ ä¿Šæ‚¸ æŸæ•™ å¤‡ç‚¼çœ‰ä½•ç£ çŠ¬ç‰¢.
 	FSingleCommonSoundInfoLoadedRefHolder& FoundOrAddEntry = LoadedPtrMap.FindOrAdd(MyArrayIndex);
 	return GetSomeLazyLoadedAssetCommon<USoundCue>(InLoadManager, AssetPtr, &(FoundOrAddEntry.LoadedSoundPtr), TEXT("CommonSoundInfo"));
 }
@@ -20,7 +20,7 @@ void FSingleCommonSoundInfoMap::Unload(FStreamableManager& InLoadManager, int32 
 {
 	LoadedPtrMap.Remove(MyArrayIndex);
 
-	USoundCue* DummyLoadePtr = NULL; // ´ÜÁö UnloadSomeLazyLoadedClassAssetCommon ¿¡ ³Ñ°ÜÁÖ±â À§ÇÔ. ¿©±â¼± À§¿¡¼­ ºñ¿ì°í ½ÃÀÛ.
+	USoundCue* DummyLoadePtr = NULL; // çªœç˜¤ UnloadSomeLazyLoadedClassAssetCommon ä¿Š é€è´¥æ—æ‰ å›°çªƒ. å’¯æ‰æ€¥ å›°ä¿Šè¾‘ åšå¿«ç»Š çŸ«ç´¯.
 	UnloadSomeLazyLoadedAssetCommon<USoundCue>(InLoadManager, AssetPtr, &DummyLoadePtr);
 }
 
@@ -37,7 +37,7 @@ bool FSingleCommonSoundInfoMap_Stage::IsSupportedStageCombatContext(EStageCombat
 
 void FSingleStageMiddleBossBGM::Unload(FStreamableManager& InLoadManager)
 {
-	USoundWave* DummyLoadePtr = NULL; // ´ÜÁö UnloadSomeLazyLoadedClassAssetCommon ¿¡ ³Ñ°ÜÁÖ±â À§ÇÔ. ¿©±â¼± À§¿¡¼­ ºñ¿ì°í ½ÃÀÛ.
+	USoundWave* DummyLoadePtr = NULL; // çªœç˜¤ UnloadSomeLazyLoadedClassAssetCommon ä¿Š é€è´¥æ—æ‰ å›°çªƒ. å’¯æ‰æ€¥ å›°ä¿Šè¾‘ åšå¿«ç»Š çŸ«ç´¯.
 	UnloadSomeLazyLoadedAssetCommon<USoundWave>(InLoadManager, AssetPtr, &DummyLoadePtr);
 }
 
@@ -108,7 +108,7 @@ USoundCue* UB2CommonSoundInfo::GetSoundByID(ECommonSoundID InID)
 	if (FoundData)
 	{
 		checkSlow(FoundData->SoundID == InID);
-		// ¿©±ä Ä³½Ì Å° °ªÀ» ¹Û¿¡¼­ ¸Ô¿©ÁÙ ÇÊ¿ä°¡ ¾øÁö¸¸ ´Ù¸¥ »óÈ²¿¡¼­µµ »ç¿ëÇÏ´Ï ±×³É ÀÌ·¸°Ô µÒ.
+		// å’¯å˜ æŸæ•™ è™ è”¼é˜‘ è§‚ä¿Šè¾‘ å†ˆå’¯ä¸´ é˜å¤¸å•Š ç»ç˜¤çˆ¶ ä¿ƒå¼— æƒ‘ç‚”ä¿Šè¾‘æ¡£ è¤ä¾©çªèª å¼Šæˆ æçŠ¯éœ¸ ç‹„.
 		return FoundData->GetSoundCue(InfoLoadManager, CommonSoundIDToInt(InID), LoadedMainInfoPtrMap);
 	}
 	return NULL;
@@ -142,7 +142,7 @@ USoundCue* UB2CommonSoundInfo::GetBGMSoundOfStageCombat(int32 InStageId, bool bI
 	bool IsMiddleBoss = (IsBossCombat == true && bIsExtraMap == false);
 	
 	OutFadeInOutDuration = 0.0f;
-	// ¹Ìµé º¸½º BGM µû·Î Ã³¸®
+	// å›ºç”¸ ç„Šèƒ¶ BGM è¶è‚º è´¸åºœ
 	if (IsMiddleBoss)
 	{
 		return GetMissleBossStageBGM(OutFadeInOutDuration);
@@ -198,33 +198,33 @@ USoundCue* UB2CommonSoundInfo::GetNormalOrBossStageBGM(int32 InStageId, bool bIs
 {
 	B2_SCOPED_TRACK_LOG(FString::Printf(TEXT("UB2CommonSoundInfo::GetNormalOrBossStageBGM Stage%d"), InStageId));
 
-	// ¿©±ä InfoArray_StageBGM ¿ä¼Ò¸¦ RelevantStageKeyStr ¿Ü¿¡ º°µµ·Î ½Äº°ÇÒ ¼ö ÀÖ´Â ±âÁØÀ¸·Î ³ª´©Áö ¸øÇÏ¸é Â©¾øÀÌ ¸ğµç ¿ä¼Ò¿¡ ´ëÇØ iteration À» µ¹¾Æ¾ß ÇÔ.
-	// ´ëÃ¼·Î ±×°Íº¸´Ü ¸®¼Ò½º ·ÎµùÀÌ ½Ã°£À» ´õ Àâ¾Æ¸Ô°ÚÁö¸¸. 
+	// å’¯å˜ InfoArray_StageBGM å¤¸å®¶ç”« RelevantStageKeyStr å¯‡ä¿Š å–Šæ¡£è‚º ä¾¥å–Šä¸” è ä¹ç»° æ‰éœ–æ è‚º å”±ç©¿ç˜¤ ç»™çªæ æ¼ç»æ è‘›ç”µ å¤¸å®¶ä¿Š æªç§¦ iteration é˜‘ å€’é…’å…· çªƒ.
+	// æªçœ‰è‚º å¼Šå·´ç„Šçªœ åºœå®¶èƒ¶ è‚ºçˆ¹æ çŸ«åŸƒé˜‘ æ­¹ æ£±é…’å†ˆæ‘†ç˜¤çˆ¶. 
 	for (int32 SII = 0; SII < InfoArray_StageBGM.Num(); ++SII)
 	{
 		FSingleCommonSoundInfoMap_Stage& CurrInfo = InfoArray_StageBGM[SII];
 
-		// ¿©±â¼± SoundID ´ë½Å StageId ¿Í »óÈ²À» °Ë»ç. 
+		// å’¯æ‰æ€¥ SoundID æªè„š StageId å®¢ æƒ‘ç‚”é˜‘ å…«è¤. 
 
-		// º¸´Ù ºü¸¥ °Ë»çºÎÅÍ ¸ÕÀú.
+		// ç„Šä¿ƒ ç‹å¼— å…«è¤ä½•ç£ åˆšå†.
 		if (CurrInfo.bForExtraMap == bIsExtraMap && CurrInfo.IsSupportedStageCombatContext(InStageContext))
 		{
 			if (CurrInfo.CachedSupportedStageList.Num() == 0)
-			{ // ÇÑ¹ø ÆÄ½ÌÇÏ°í ³­ ÈÄ¿¡´Â ´ÙÀ½¿¡ ½á¸Ô°Ô Ä³½ÌÇØµĞ´Ù. ·±Å¸ÀÓ¿¡´Â ºÎ´ã½º·¯¿ï ¼öµµ ÀÖ´Â ¹®ÀÚ¿­ ÆÄ½ÌÀÎµ¥´Ù°¡ °á°ú CachedSupportedStageList »çÀÌÁî°¡ ¸Å¿ì Å« °æ¿ìµµ ÀÖ´Ù.
+			{ // èŒ„é”… é¢‡æ•™çªç»Š æŠ„ é¥¶ä¿Šç»° ä¿ƒæ¾œä¿Š ç»“å†ˆéœ¸ æŸæ•™ç§¦æ•Œä¿ƒ. ç¹é¸¥çƒ™ä¿Šç»° ä½•æ·¬èƒ¶çŸ¾åŒ¡ èæ¡£ ä¹ç»° å·©ç£Šå‡¯ é¢‡æ•™ç‰¢å•ä¿ƒå•Š æ¬è‹ CachedSupportedStageList è¤æä»¤å•Š æ¦‚å¿« å¥´ ç‰ˆå¿«æ¡£ ä¹ä¿ƒ.
 				ParseStageKeyStr(CurrInfo.CachedSupportedStageList, CurrInfo.RelevantStageKeyStr);
 			}
 
-			// CachedSupportedStageList ´Â ¼³Á¤¿¡ µû¶ó¼­ ÇÑµÎ°³ Á¤µµ »ÓÀÏ ¼öµµ ÀÖÁö¸¸ ¼ö¹é ÀÌ»óÀÇ ¸Å¿ì ¸¹Àº element ¸¦ °¡Áö°Ô µÉ ¼öµµ ÀÖ´Ù. µû¶ó¼­ TMap À¸·Î »ç¿ë.
+			// CachedSupportedStageList ç»° æ±²æ²¥ä¿Š è¶æ‰¼è¾‘ èŒ„æ»´ä¿º æ²¥æ¡£ æŒ¥è€ èæ¡£ ä¹ç˜¤çˆ¶ èå½’ ææƒ‘ç‹¼ æ¦‚å¿« è…¹ç¯® element ç”« å•Šç˜¤éœ¸ çª èæ¡£ ä¹ä¿ƒ. è¶æ‰¼è¾‘ TMap æ è‚º è¤ä¾©.
 			const bool bStageIDMatch = (CurrInfo.CachedSupportedStageList.Find(InStageId) != nullptr);
 
 #if WITH_EDITOR
 			if (GIsEditor)
-			{ // ¿¡µğÅÍ¿¡¼± RelevantStageKeyStr ÀÌ ÆíÁıµÉ ¼ö ÀÖÀ¸´Ï ¸Å¹ø ºñ¿ì°í »õ·Î °è»ê.
+			{ // ä¿Šå¼ç£ä¿Šæ€¥ RelevantStageKeyStr æ ç¥ˆç¬¼çª è ä¹æ èª æ¦‚é”… åšå¿«ç»Š è´§è‚º æ‹Œé­‚.
 				CurrInfo.CachedSupportedStageList.Empty();
 			}
 #endif
 			if (bStageIDMatch)
-			{ // ¾Æ¹«¸® À§¿¡¼­ ¹®ÀÚ¿­ ÆÄ½ÌÇÏ°í Áö¶öÀ» ÇØµµ ¾îÁö°£ÇØ¼± ½ÇÁ¦·Î ½Ã°£À» ¸Ô´Â °Ç ÀÌ°Å ¤»
+			{ // é…’å…¬åºœ å›°ä¿Šè¾‘ å·©ç£Šå‡¯ é¢‡æ•™çªç»Š ç˜¤é¥¿é˜‘ ç§¦æ¡£ ç»¢ç˜¤åŸƒç§¦æ€¥ è§’åŠ›è‚º çŸ«åŸƒé˜‘ å†ˆç»° æ‰’ æèŠ­ ã›
 
 				
 				OutFadeInOutDuration = CurrInfo.FadeInOutDuration;
@@ -240,7 +240,7 @@ USoundCue* UB2CommonSoundInfo::GetNormalOrBossStageBGM(int32 InStageId, bool bIs
 
 USoundCue* UB2CommonSoundInfo::GetButtonClickDefSound(int32 InIndex)
 {
-	// ButtonClickDefSoundArray ´Â int ÀÎµ¦½º¸¦ Å°·Î »ç¿ëÇÏ±â·Î ÇÏ¿´À½.
+	// ButtonClickDefSoundArray ç»° int ç‰¢éƒ¸èƒ¶ç”« è™è‚º è¤ä¾©çªæ‰è‚º çªçœ‹æ¾œ.
 	if (ButtonClickDefSoundArray.IsValidIndex(InIndex))
 	{
 		return ButtonClickDefSoundArray[InIndex].AssetPtr;
@@ -250,36 +250,36 @@ USoundCue* UB2CommonSoundInfo::GetButtonClickDefSound(int32 InIndex)
 
 void UB2CommonSoundInfo::ParseStageKeyStr(TMap<int32, bool>& OutStages, const FString& InKeyStr)
 {
-	// ¿¹¸¦ µé¾î "5,8-10" ÀÌ¸é OutStages ¿¡ 5,8,9,10 ÀÌ µé¾î°¡¾ß ÇÔ.
+	// æŠ—ç”« ç”¸ç»¢ "5,8-10" ææ OutStages ä¿Š 5,8,9,10 æ ç”¸ç»¢å•Šå…· çªƒ.
 
-	check(OutStages.Num() == 0); // ºñ¾îÀÖ´Â °É ³Ö¾îÁÙ °Í.
+	check(OutStages.Num() == 0); // åšç»¢ä¹ç»° å§ æŒç»¢ä¸´ å·´.
 
 	TArray<FString> CommaSeparated;
-	// ÀÏ´Ü ½°Ç¥ ±âÁØÀ¸·Î ³ª´«´Ù.
+	// è€çªœ æ¡¨é’ æ‰éœ–æ è‚º å”±ä¼ ä¿ƒ.
 	InKeyStr.ParseIntoArray(CommaSeparated, TEXT(","));
 
 	for (FString& CurrCommaSeparated : CommaSeparated)
 	{
-		// °¢ ºĞ¸®µÈ ÅäÅ« ³»¿¡¼­´Â - À¸·Î ¹üÀ§ ÁöÁ¤.
+		// é˜¿ ç›’åºœç­‰ é…å¥´ éƒ´ä¿Šè¾‘ç»° - æ è‚º è£¹å›° ç˜¤æ²¥.
 		TArray<FString> HypenSeparated;
 
 		CurrCommaSeparated.ParseIntoArray(HypenSeparated, TEXT("-"));
 
-		if (HypenSeparated.Num() == 1) // ¹üÀ§ ÁöÁ¤ ¾øÀÌ ÇÏ³ª¸¸ ÁöÁ¤ÇÑ °æ¿ì
+		if (HypenSeparated.Num() == 1) // è£¹å›° ç˜¤æ²¥ ç»æ çªå”±çˆ¶ ç˜¤æ²¥èŒ„ ç‰ˆå¿«
 		{
 			int32 ThisParsedStage = FCString::Atoi(*HypenSeparated[0]);
 			if (ThisParsedStage > 0){
-				OutStages.Add(ThisParsedStage, true); // Å°°ª¸¸ ÀÇ¹Ì°¡ ÀÖ´Ù. Value ´Â Àû´çÈ÷ ³Ö¾îÁÖ´Â °Å.
+				OutStages.Add(ThisParsedStage, true); // è™è”¼çˆ¶ ç‹¼å›ºå•Š ä¹ä¿ƒ. Value ç»° åˆ©å¯¸æ´’ æŒç»¢æ—ç»° èŠ­.
 			}
 		}
-		else if (HypenSeparated.Num() > 1) // ÀÏ¹İÀûÀÎ ¹üÀ§ ÁöÁ¤.
+		else if (HypenSeparated.Num() > 1) // è€é¦†åˆ©ç‰¢ è£¹å›° ç˜¤æ²¥.
 		{
 			int32 ParsedMinStage = FCString::Atoi(*HypenSeparated[0]);
 			int32 ParsedMaxStage = FCString::Atoi(*HypenSeparated[1]);
 			if (ParsedMinStage > 0 && ParsedMaxStage > 0 && ParsedMaxStage >= ParsedMinStage){
-				// Min ~ Max »çÀÌ°¡ ³Ñ ¹ú¾îÁö¸é ÀÚÄ© ³Ê¹« ¸¹ÀÌ µé¾î°¥ ¼öµµ ÀÖ°Ú´Ù..
+				// Min ~ Max è¤æå•Š é€ å›½ç»¢ç˜¤æ ç£Šæœ« å‘ˆå…¬ è…¹æ ç”¸ç»¢å“ èæ¡£ ä¹æ‘†ä¿ƒ..
 				for (int32 SupportStage = ParsedMinStage; SupportStage <= ParsedMaxStage; ++SupportStage){
-					OutStages.Add(SupportStage, true); // Å°°ª¸¸ ÀÇ¹Ì°¡ ÀÖ´Ù. Value ´Â Àû´çÈ÷ ³Ö¾îÁÖ´Â °Å.
+					OutStages.Add(SupportStage, true); // è™è”¼çˆ¶ ç‹¼å›ºå•Š ä¹ä¿ƒ. Value ç»° åˆ©å¯¸æ´’ æŒç»¢æ—ç»° èŠ­.
 				}
 			}
 		}
@@ -290,11 +290,11 @@ void UB2CommonSoundInfo::PreloadClassAssets(const TArray<ECommonSoundID>& InIDs)
 {
 	for (ECommonSoundID ThisID : InIDs)
 	{
-		// AssetPtr ÀÌ valid ÇÏÁö ¾Ê´Ù¸é ¹Ì¸® ÁØºñÇØ ³õ°Ô µÉ °Í.
+		// AssetPtr æ valid çªç˜¤ è‡¼ä¿ƒæ å›ºåºœ éœ–åšç§¦ åˆéœ¸ çª å·´.
 		GetSoundByID(ThisID);
 	}
 
-	// ²À ÇÊ¿äÇÏ¸é Ãß°¡.. ÀÌ°Ô ÇÊ¼öÀûÀÏ °Í±îÁö´Â ¾Æ´Ñ µí.
+	// æ€– é˜å¤¸çªæ çœ å•Š.. æéœ¸ é˜èåˆ©è€ å·´é³–ç˜¤ç»° é…’å›± æ·€.
 }
 
 void UB2CommonSoundInfo::UnloadAll()
@@ -303,12 +303,12 @@ void UB2CommonSoundInfo::UnloadAll()
 	//{
 	//	InfoMapIt.Value().Unload(InfoLoadManager, CommonSoundIDToInt(InfoMapIt.Key()), LoadedMainInfoPtrMap);
 	//}
-	//LoadedMainInfoPtrMap.Empty(); // È®ÀÎ»ç»ì
+	//LoadedMainInfoPtrMap.Empty(); // çŠ¬ç‰¢è¤æ··
 	//for (int32 CII = 0; CII < InfoArray_StageBGM.Num(); ++CII)
 	//{
 	//	InfoArray_StageBGM[CII].Unload(InfoLoadManager, CII, LoadedStageBGMPtrMap);
 	//}
-	//LoadedStageBGMPtrMap.Empty(); // È®ÀÎ»ç»ì
+	//LoadedStageBGMPtrMap.Empty(); // çŠ¬ç‰¢è¤æ··
 
 	//for (TMap<EUIScene, FSingleCommonSoundInfoMap_UIScene>::TIterator InfoMapIt(UISceneMap); InfoMapIt; ++InfoMapIt)
 	//{
@@ -318,7 +318,7 @@ void UB2CommonSoundInfo::UnloadAll()
 
 	//StageMiddleBGM.UnloadAll(InfoLoadManager, LoadedMiddleStageBGMPtrMap);
 	//LoadedMiddleStageBGMPtrMap.Empty();
-	//// ButtonClickDefSoundArray ´Â ´ë»ó ¾Æ´Ô.
+	//// ButtonClickDefSoundArray ç»° æªæƒ‘ é…’ä¸›.
 }
 
 #if WITH_EDITOR
@@ -329,7 +329,7 @@ void UB2CommonSoundInfo::EditorLoadAll()
 		return;
 	}
 
-	// ÇÑ¹ø ¹Ì¸® ºÒ·¯ÁÖ¸é AssetPtr ÀÌ valid ÇØ Áú °Í. ¹°·Ğ ÀÌ ¿ÍÁß¿¡ ¸Ş¸ğ¸®´Â ¿ÕÃ¢ ¸Ô°ÚÁö.
+	// èŒ„é”… å›ºåºœ é˜‚çŸ¾æ—æ AssetPtr æ valid ç§¦ é¾™ å·´. æ‹±æ²¸ æ å®¢åä¿Š çš‹è‘›åºœç»° ç©ºèŠ’ å†ˆæ‘†ç˜¤.
 	for (TMap<ECommonSoundID, FSingleCommonSoundInfoMap>::TIterator InfoMapIt(MainInfoMap); InfoMapIt; ++InfoMapIt)
 	{
 		InfoMapIt.Value().GetSoundCue(InfoLoadManager, CommonSoundIDToInt(InfoMapIt.Key()), LoadedMainInfoPtrMap);
@@ -344,7 +344,7 @@ void UB2CommonSoundInfo::EditorLoadAll()
 		InfoMapIt.Value().GetSoundCue(InfoLoadManager, static_cast<int32>(InfoMapIt.Key()), LoadedUISceneBGMPtrMap);
 	}
 
-	// ButtonClickDefSoundArray ´Â ´ë»ó ¾Æ´Ô.
+	// ButtonClickDefSoundArray ç»° æªæƒ‘ é…’ä¸›.
 }
 
 void UB2CommonSoundInfo::PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent)
@@ -366,7 +366,7 @@ void UB2CommonSoundInfo::PostEditChangeProperty(FPropertyChangedEvent& PropertyC
 #if !PLATFORM_MAC
 	if (PropertyName == Name_RelevantStageKeyStr)
 	{
-		//FString WarnMsg = TEXT("´ÙÀ½ StageBGM Ç×¸ñÀÇ RelevantStageKeyStr ÀÌ ³Ê¹« ¸¹Àº ½ºÅ×ÀÌÁö¸¦ Æ÷ÇÔÇÏ°í ÀÖ½À´Ï´Ù. ÀÌ´Â ÀáÀçÀûÀÎ ¼º´É ÀúÇÏ ¿ä¼Ò°¡ µÇ¹Ç·Î ´ã´ç ÇÁ·Î±×·¡¸Ó¿¡°Ô ÀûÀıÇÑ ¼³Á¤¿¡ ´ëÇØ ¹®ÀÇÇÏ¼¼¿ä.\r\n\r\n");
+		//FString WarnMsg = TEXT("ä¿ƒæ¾œ StageBGM äº²æ ¼ç‹¼ RelevantStageKeyStr æ å‘ˆå…¬ è…¹ç¯® èƒ¶æŠ›æç˜¤ç”« å™¨çªƒçªç»Š ä¹åš¼èªä¿ƒ. æç»° æ³ªçŠåˆ©ç‰¢ å·±ç“· å†çª å¤¸å®¶å•Š ç™»éª¨è‚º æ·¬å¯¸ æ©‡è‚ºå¼Šè´°èµ£ä¿Šéœ¸ åˆ©ä¾‹èŒ„ æ±²æ²¥ä¿Š æªç§¦ å·©ç‹¼çªæŠ€å¤¸.\r\n\r\n");
 		FString WarnMsg = TEXT("StageBGM RelevantStageKeyStr \r\n");
 		int32 FoundCount = 0;
 		for (int32 SII = 0; SII < InfoArray_StageBGM.Num(); ++SII)
@@ -394,7 +394,7 @@ void UB2CommonSoundInfo::EnsureDataIntegrity()
 	{
 		ECommonSoundID ThisKey = InfoMapIt.Key();
 		FSingleCommonSoundInfoMap& ThisInfoData = InfoMapIt.Value();
-		// °¢ FSingleCommonSoundInfoMap ¿ä¼ÒÀÇ SoundID ´Â µî·ÏµÈ ¸Ê Å°°ª¿¡¼­ °¡Á®¿È.
+		// é˜¿ FSingleCommonSoundInfoMap å¤¸å®¶ç‹¼ SoundID ç»° æ®¿åºŸç­‰ ç”˜ è™è”¼ä¿Šè¾‘ å•Šå»‰å’³.
 		if (ThisInfoData.SoundID != ThisKey)
 		{
 			MarkPackageDirty();
@@ -404,7 +404,7 @@ void UB2CommonSoundInfo::EnsureDataIntegrity()
 }
 #endif
 
-// TAsset lazy-loading À» »ç¿ëÇÏ´Â Blueprint InfoAsset ÀÇ ¿Àµ¿ÀÛ ¹®Á¦¸¦ Á¤½ÄÀ¸·Î ÇØ°áÇÏ±â Àü±îÁöÀÇ ÀÓ½Ã ¶«Áú.
+// TAsset lazy-loading é˜‘ è¤ä¾©çªç»° Blueprint InfoAsset ç‹¼ å·æ‚¼ç´¯ å·©åŠ›ç”« æ²¥ä¾¥æ è‚º ç§¦æ¬çªæ‰ å‚ˆé³–ç˜¤ç‹¼ çƒ™çŸ« ä¸œé¾™.
 #if TEMP_LAZYLOADING_MISHANDLING_CLEANUP
 void UB2CommonSoundInfo::CleanupOnPreSave()
 {
@@ -417,7 +417,7 @@ void UB2CommonSoundInfo::PreSave(FObjectPreSaveContext SaveContext)
 {
 	Super::PreSave(SaveContext);
 
-	// ÀÇµµÄ¡ ¾Ê°Ô ÀúÀåµÈ ·¹ÆÛ·±½º¸¦ ³¯·ÁÁØ´Ù.
+	// ç‹¼æ¡£æ‘¹ è‡¼éœ¸ å†å˜ç­‰ é¥­æ¬ºç¹èƒ¶ç”« æœå¦¨éœ–ä¿ƒ.
 	CleanupOnPreSave();
 }
 #endif

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UITutorialLockContents.h"
 
 #include "B2UIManager.h"
@@ -154,7 +154,7 @@ void UB2UITutorialLockContents::UpdateLockImage()
 
 void UB2UITutorialLockContents::CheckDestroySelfByOpenedTutorial()
 {
-	//[@AKI 171113, ¿¡µğÅÍÀÏ °æ¿ì´Â ¶ôÀ» ¾ÈÇÏ°Ô ÇØ¾ß µÉ°Í °°Àºµ¥ ¿¡µğÅÍ ¸ğµå¿¡¼­´Â ¶ôÀ» Ç×»ó °É°Ô µÇ¾î ÀÖ¾î ÁÖ¼® Ã³¸®ÇÔ.
+	//[@AKI 171113, ä¿Šå¼ç£è€ ç‰ˆå¿«ç»° éé˜‘ æ•‘çªéœ¸ ç§¦å…· çªå·´ éç¯®å• ä¿Šå¼ç£ è‘›é›ä¿Šè¾‘ç»° éé˜‘ äº²æƒ‘ å§éœ¸ ç™»ç»¢ ä¹ç»¢ æ—ç± è´¸åºœçªƒ.
 /*
 #if WITH_EDITOR
 	if (FApp::IsGame() == false)

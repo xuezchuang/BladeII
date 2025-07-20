@@ -1,4 +1,4 @@
-#include "B2UILobbyMain.h"
+ï»¿#include "B2UILobbyMain.h"
 #include "B2UIManager.h"
 #include "B2UIDocHelper.h"
 #include "B2UIDocUser.h"
@@ -77,29 +77,29 @@ void UB2UILobbyMain::OnOpen(bool RightNow)
 
 	if (RightNow)
 	{
-		//¿©±â¼­ ¿ÀÇÂ ¾Ö´ÔÀ» ¸¶Áö¸·¿¡¼­ ²÷¾î Àç»ıÇØÁØ´Ù
+		//å’¯æ‰è¾‘ å·é”¹ å±€ä¸›é˜‘ ä»˜ç˜¤é˜œä¿Šè¾‘ è°—ç»¢ çŠç§¯ç§¦éœ–ä¿ƒ
 		OnOpenComplete();
 	}
 	else
 	{
 		SetOpenState(EUIOpenState::OnOpening);
 
-		// GetAnimation Á¦´ë·Î ÀÛµ¿ ¾È ÇÔ.
+		// GetAnimation åŠ›æªè‚º ç´¯æ‚¼ æ•‘ çªƒ.
 		//UWidgetAnimation* OpenCloseAnim = GetAnimation(TEXT("ANIM_OpenClose"), this);
 		//if (OpenCloseAnim)
 		//{
-		//	//¿©±â¼­ ¿ÀÇÂ ¾Ö´ÔÀ» Àç»ıÇØÁØ´Ù.
+		//	//å’¯æ‰è¾‘ å·é”¹ å±€ä¸›é˜‘ çŠç§¯ç§¦éœ–ä¿ƒ.
 
-		//	//ÇöÀç ¿ÀÇÂ ¾Ö´Ô °ü·Ã ÀÛ¾÷ ¾ÈÇßÀ¸´Ï ¿­¸°°É·Î
+		//	//æ³…çŠ å·é”¹ å±€ä¸› åŒ…è®¿ ç´¯è¯€ æ•‘æ²æ èª å‡¯èµ´å§è‚º
 		//	OnOpenComplete();
 		//}
 		//else
-		//¾Ö´ÔÀÌ ¾øÀ¸¸é ¿­¸°°É·Î
+		//å±€ä¸›æ ç»æ æ å‡¯èµ´å§è‚º
 		OnOpenComplete();
 
-		//UB2UIWidget::OnOpen(bool RightNow) ¿¡¼­´Â ÀÌ Scope¹Û¿¡ ÀÖ´Âµ¥, »ç½Ç OnOpen_BP()°¡ ¿ÀÇÂ ¿¬ÃâÀ» ´ã´çÇÏ°í ÀÖ±â ¶§¹®¿¡ ·ÎÁ÷»ó ¿©±â¿¡ ÀÖ´Â °ÍÀÌ ¹Ù¶÷Á÷ÇÔ.
-		//Çã³ª BaseClassÀÇ °ÍÀÌ¶ó »çÀÌµåÀÌÆåÆ®°¡ ¿°·ÁµÇ¾î ¿ì¼± ÀÌ°÷¸¸ ¹Ù²Û´Ù. 
-		//RightNow°¡ trueÀÎ °æ¿ì°¡ ÀÌ°÷¸¸ ³ª¿Ãµí.
+		//UB2UIWidget::OnOpen(bool RightNow) ä¿Šè¾‘ç»° æ Scopeè§‚ä¿Š ä¹ç»°å•, è¤è§’ OnOpen_BP()å•Š å·é”¹ æ¥·å…é˜‘ æ·¬å¯¸çªç»Š ä¹æ‰ é”­å·©ä¿Š è‚ºæµæƒ‘ å’¯æ‰ä¿Š ä¹ç»° å·´æ å®˜æ©æµçªƒ.
+		//å€¾å”± BaseClassç‹¼ å·´ææ‰¼ è¤æé›ææ£‹é£˜å•Š å ªå¦¨ç™»ç»¢ å¿«æ€¥ æé•‘çˆ¶ å®˜æ§½ä¿ƒ. 
+		//RightNowå•Š trueç‰¢ ç‰ˆå¿«å•Š æé•‘çˆ¶ å”±æ£µæ·€.
 		OnOpen_BP();
 	}
 
@@ -132,7 +132,7 @@ void UB2UILobbyMain::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
 
 	//		ElapsedTimeNoInput = 0.f;
 	//	}
-	//	if (!DocUICondition->GetHideAllLobbyMainUIs() && ElapsedTimeNoInput >= AutoHideInterval) // ÀÏÁ¤ ½Ã°£ ÀÎÇ²ÀÌ ¾øÀ» ½Ã ¸ŞÀÎ UI ¸¦ A ¿·À¸·Î ¼û±ä´Ù.
+	//	if (!DocUICondition->GetHideAllLobbyMainUIs() && ElapsedTimeNoInput >= AutoHideInterval) // è€æ²¥ çŸ«åŸƒ ç‰¢é£æ ç»é˜‘ çŸ« çš‹ç‰¢ UI ç”« æ¿§ ç³ æ è‚º è§å˜ä¿ƒ.
 	//	{
 	//		if (CheckOtherPopupVisible())
 	//			ElapsedTimeNoInput = 0.f;
@@ -143,7 +143,7 @@ void UB2UILobbyMain::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
 	//}
 
 	//if (bWaitingForPreFetchedActInfo)
-	//{ // Ã©ÅÍ ºä ÁøÀÔÇÏ·Á°í ¼­¹ö µ¥ÀÌÅÍ ¹Ì¸® ¿äÃ»ÇØ ³ù´Âµ¥ UI ¾Ö´Ï¸ŞÀÌ¼Ç ³¡³¯ ¶§±îÁö ¾ÆÁ÷ ÀÀ´ä ¾È ¿Â »óÈ².
+	//{ // èŒ…ç£ è½° æŸ³æ¶çªå¦¨ç»Š è¾‘æ»š å•æç£ å›ºåºœ å¤¸æ²¡ç§¦ èº‡ç»°å• UI å±€èªçš‹æè®° åœºæœ é”­é³–ç˜¤ é…’æµ è§ˆç¿  æ•‘ æŸ¯ æƒ‘ç‚”.
 	//	CheckAnGoToChapterView();
 	//}
 }
@@ -190,12 +190,12 @@ void UB2UILobbyMain::CacheAssets()
 		if (QuestSlot.IsValid())
 		{
 			QuestSlot->Init();
-			QuestSlot->SetVisibility(ESlateVisibility::Collapsed); // Ã³À½Àº ¾Èº¸ÀÌ°Ô ¼³Á¤
+			QuestSlot->SetVisibility(ESlateVisibility::Collapsed); // è´¸æ¾œç¯® æ•‘ç„Šæéœ¸ æ±²æ²¥
 		}
 	}
 
 	BTN_SlideButtons.AddUninitialized(MaxSlideButtonCount);
-	GET_SLOT_BYNAME(UButton, BTN_SlideButtons[0], BTN_SlideButton0);	 // °¢ ¹öÆ°µé ±â´ÉÀÌ °áÁ¤µÇ¸é ÀÌ¸§ º¯°æ
+	GET_SLOT_BYNAME(UButton, BTN_SlideButtons[0], BTN_SlideButton0);	 // é˜¿ æ»šç“¢ç”¸ æ‰ç“·æ æ¬æ²¥ç™»æ ææŠš å‡½ç‰ˆ
 	GET_SLOT_BYNAME(UButton, BTN_SlideButtons[1], B2Button_2);
 	GET_SLOT_BYNAME(UButton, BTN_SlideButtons[2], BTN_SlideButton2);
 	GET_SLOT_BYNAME(UButton, BTN_SlideButtons[3], BTN_SlideButton3);
@@ -402,7 +402,7 @@ void UB2UILobbyMain::OnCloseComplete()
 
 	for (int32 i = 0; i < GetMaxPCClassNum(); ++i)
 	{
-		// ¾ÆÀÌÅÛ ÀÎº¥Åä¸®¿¡¼­ ¹Ş¾Ò´Âµ¥ º¸°üÇÔ°³¼ö°¡ ÇÊ¿äÇØ¼­ ·Îºñ³ª°¥¶§ ¹Ş½À´Ï´Ù
+		// é…’æè¢ ç‰¢äº¥é…åºœä¿Šè¾‘ ç½ç–½ç»°å• ç„ŠåŒ…çªƒä¿ºèå•Š é˜å¤¸ç§¦è¾‘ è‚ºåšå”±å“é”­ ç½åš¼èªä¿ƒ
 		BladeIIGameImpl::GetClientDataStore().SyncingInventoryData(IntToPCClass(i));
 	}
 
@@ -553,7 +553,7 @@ void UB2UILobbyMain::OpenUnappliedItemOptionChangeUI()
 		}
 	}
 
-	LobbyEnterHeroMgmtModeClass<EHeroMgmtSubMode>::GetInstance().Signal(EHeroMgmtSubMode::EHMSM_Inventory); // GameMode ÂÊ ½ÅÈ£
+	LobbyEnterHeroMgmtModeClass<EHeroMgmtSubMode>::GetInstance().Signal(EHeroMgmtSubMode::EHMSM_Inventory); // GameMode ç‡ è„šé¾‹
 }
 
 void UB2UILobbyMain::OnReceiveCheckRedDot(FB2MessageInfoResponseCheckRedDotPtr LobbyRedDotInfo)
@@ -562,7 +562,7 @@ void UB2UILobbyMain::OnReceiveCheckRedDot(FB2MessageInfoResponseCheckRedDotPtr L
 
 	// bHasUnappliedItem = GET_TUPLE_DATA(FB2ResponseCheckRedDot::has_item_random_option_change_index, LobbyRedDotInfo);
 	bool bHasUnappliedItem = false;
-	if (bHasUnappliedItem)	// Àû¿ë ¾ÈÇÑ ¾ÆÀÌÅÛÀÌ ÀÖ´Ù Á¤µµ¸¸ È®ÀÎµÇ¸é »ó¼¼½ºÆå ¿äÃ»
+	if (bHasUnappliedItem)	// åˆ©ä¾© æ•‘èŒ„ é…’æè¢æ ä¹ä¿ƒ æ²¥æ¡£çˆ¶ çŠ¬ç‰¢ç™»æ æƒ‘æŠ€èƒ¶æ£‹ å¤¸æ²¡
 	{
 		data_trader::Retailer::GetInstance().RequestGetItemRandomOption();
 	}
@@ -594,8 +594,8 @@ void UB2UILobbyMain::ResponseDailyAttendance(const FB2ReceiveDailyAttendance& At
 			ClientDataStore.SetAttendanceOpenDailyOnce(true);
 			bAttendanceOpenCheck = true;
 
-			// ·Îºñ ¸ŞÀÎ Ã¹ ÁøÀÔ ¿¬Ãâ ÇÃ·¡±× ¼¼ÆÃÀ» ÀÌ°Å Àü¿¡ (FLobbyTitleScene) ÇÑ¹ø ÇÏ±ä ÇÏ´Âµ¥, 
-			// ±× ÀÌÈÄ Ãâ¼® ÀÀ´ä ¿À±â Àü±îÁö ÀÌ¹Ì ÇÑ ¹ø º¸¿©ÁÖ°Ô µÇ¾î¼­ Ãâ¼® ´İÀº ÈÄ ¶Ç ÇÃ·¹ÀÌÇÏ±â À§ÇØ ¿©±â¼­ ¸®¼Â.
+			// è‚ºåš çš‹ç‰¢ éœ‰ æŸ³æ¶ æ¥·å… æ•²è´°å¼Š æŠ€æ³¼é˜‘ æèŠ­ å‚ˆä¿Š (FLobbyTitleScene) èŒ„é”… çªå˜ çªç»°å•, 
+			// å¼Š æé¥¶ å…ç± è§ˆç¿  å·æ‰ å‚ˆé³–ç˜¤ æå›º èŒ„ é”… ç„Šå’¯æ—éœ¸ ç™»ç»¢è¾‘ å…ç± æ‘§ç¯® é¥¶ è‚š æ•²é¥­æçªæ‰ å›°ç§¦ å’¯æ‰è¾‘ åºœæ‚¸.
 			if (AB2LobbyGameMode* LobbyGM = Cast<AB2LobbyGameMode>(UGameplayStatics::GetGameMode(GetWorld())))
 			{
 				LobbyGM->ResetPlayBeginActionState();
@@ -616,7 +616,7 @@ void UB2UILobbyMain::ResponseGetPeriodPackageState(FB2ResponseGetPeriodPackageSt
 {
 	if (auto* DocStore = UB2UIDocHelper::GetDocStore())
 	{
-		// ±â°£Á¦ ³²Àº ½Ã°£
+		// æ‰åŸƒåŠ› å·¢ç¯® çŸ«åŸƒ
 		for (auto PeridicItem : ReciveGetPeriodPackageState->periodic_package_states)
 		{
 			DocStore->SetReceivedPeriodicPackageLeftTime(PeridicItem->package_id, PeridicItem->end_pay_time);
@@ -671,7 +671,7 @@ void UB2UILobbyMain::UpdateLobbyContentOpenSlots()
 		int32 TutorialID = DisplayTutorialIDs.IsValidIndex(Index) ? DisplayTutorialIDs[Index] : INDEX_NONE;
 		ContentOpenSlot.SetContentOpenSlot(TutorialID);
 
-		if (Index == 1)	// ¾Ë¸² ½½·ÔÀÌ 2°³ ÀÌ»óÀÏ °æ¿ì ¸¶Áö¸· ÀÌÆåÆ®´Â ²û
+		if (Index == 1)	// èˆ…è¦† æµ‡å©æ 2ä¿º ææƒ‘è€ ç‰ˆå¿« ä»˜ç˜¤é˜œ ææ£‹é£˜ç»° é˜
 		{
 			ContentOpenSlot.IMG_EffetContentOpen->SetVisibility(ESlateVisibility::Collapsed);
 		}
@@ -685,13 +685,13 @@ void UB2UILobbyMain::OnOpenComplete_RequestToServer()
 	static int32 CurrentDay = -1;
 	data_trader::Retailer& RetailerInst = data_trader::Retailer::GetInstance();
 
-	// Æ©Åä¸®¾ó ÁøÇà Áß Äù½ºÆ® ¿äÃ»Àº ³»ºÎ¿¡¼­ Slot¸¸ È°¼ºÈ­ÇÏ°í ÆË¾÷Àº È°¼ºÈ­X
+	// è­¬é…åºœå€” æŸ³é’ å æ¶…èƒ¶é£˜ å¤¸æ²¡ç¯® éƒ´ä½•ä¿Šè¾‘ Slotçˆ¶ åŠå·±æ‹³çªç»Š æ‰‘è¯€ç¯® åŠå·±æ‹³X
 	RetailerInst.RequestGetQuest();
 	RetailerInst.RequestGetFriendList();
 	RetailerInst.RequestGetAllReceiveAskFriend();
 	RetailerInst.RequestGetAllSendAskFriend();
 
-	RetailerInst.RequestCheckRedDot();						// LobbyMain New °»½Å
+	RetailerInst.RequestCheckRedDot();						// LobbyMain New ç›è„š
 
 	UB2GameInstance::RequestUpdateDailyPlayTime();
 
@@ -715,12 +715,12 @@ void UB2UILobbyMain::OnOpenComplete_RequestToServer()
 	if (B2P_IsGoogleLogin())
 		RetailerInst.RequestGetFeaturedMission();
 #endif
-	// Æ©Åä¸®¾ó Àá±İ À§Á¬ ·ÎºñÁøÀÔ½Ã ¹«Á¶°Ç ÇÑ¹ø ¸®ÇÁ·¹½Ã
+	// è­¬é…åºœå€” æ³ªé™› å›°è¿ è‚ºåšæŸ³æ¶çŸ« å…¬ç‚¼æ‰’ èŒ„é”… åºœæ©‡é¥­çŸ«
 	if (TutorialManager::GetInstance().IsTutorialAvailable())
 		TutorialManager::GetInstance().RefreshContentLockUI();
 
 #if !PLATFORM_MAC
-	// ÀÎ¾Û°áÁ¦ ÃÊ±âÈ­
+	// ç‰¢èšæ¬åŠ› æª¬æ‰æ‹³
 	//B2InAppPurchase::IB2IAPGenericPlatform::GetInstance()->RequestGetMarketProduct_Once();
 #endif
 }
@@ -766,7 +766,7 @@ void UB2UILobbyMain::OnChangedLobbyFocusClass(class UB2UIDocBase* Sender, EPCCla
 
 	if (ExpProgressBar.IsValid() && ExpProgressBar_Max.IsValid())
 	{
-	// ¸¸·¦ÀÌ¸é ¶ç¿ìÁÜ.
+	// çˆ¶ä¹ææ å‰å¿«æ·‹.
 	bool IsMax = CharacterMaxLevel <= FocusPCLevel;
 	ExpProgressBar->SetPercent(IsMax ? 0.0f : ExpPercent);
 	ExpProgressBar->SetVisibility(IsMax ? ESlateVisibility::Collapsed : ESlateVisibility::SelfHitTestInvisible);
@@ -862,10 +862,10 @@ void UB2UILobbyMain::ExecutePendingDungeonScene()
 	ExecutePendingDungeonSceneInner();
 }
 
-// ÆĞÅ¶ ¹ŞÀ»¶§¶û ¹öÆ°Å¸ÀÌ¸Ó µ¹¾ÒÀ»¶§ µÑ´Ù È£ÃâÇÔ.
+// è©å“¦ ç½é˜‘é”­å°” æ»šç“¢é¸¥æèµ£ å€’ç–½é˜‘é”­ ç¬›ä¿ƒ é¾‹å…çªƒ.
 void UB2UILobbyMain::ExecutePendingDungeonSceneInner()
 {
-	// Å¸¹Ì¾îµµ µ¹±¸ ÆĞÅ¶µµ ¹Ş¾Æ¾ß ½ÇÇà
+	// é¸¥å›ºç»¢æ¡£ å€’å¤‡ è©å“¦æ¡£ ç½é…’å…· è§’é’
 	if (!bReceiveGetChallengeMode || !bExecutePendingDungeonScene)
 		return;
 
@@ -884,10 +884,10 @@ void UB2UILobbyMain::ExecutePendingPVPScene()
 	ExecutePendingPVPSceneInner();
 }
 
-// ÆĞÅ¶ ¹ŞÀ»¶§¶û ¹öÆ°Å¸ÀÌ¸Ó µ¹¾ÒÀ»¶§ µÑ´Ù È£ÃâÇÔ.
+// è©å“¦ ç½é˜‘é”­å°” æ»šç“¢é¸¥æèµ£ å€’ç–½é˜‘é”­ ç¬›ä¿ƒ é¾‹å…çªƒ.
 void UB2UILobbyMain::ExecutePendingPVPSceneInner()
 {
-	// Å¸¹Ì¾îµµ µ¹±¸ ÆĞÅ¶µµ ¹Ş¾Æ¾ß ½ÇÇà
+	// é¸¥å›ºç»¢æ¡£ å€’å¤‡ è©å“¦æ¡£ ç½é…’å…· è§’é’
 	if (!bReceiveGetDuelModeInfo || !bExecutePendingPVPScene)
 		return;
 
@@ -914,19 +914,19 @@ void UB2UILobbyMain::CheckAnGoToChapterView()
 {
 	if (BladeIIGameImpl::GetStageDataStore().IsActInfoRequestPending())
 	{
-		// PreFetchAdventureSceneInfo ¸¦ ÇÑ »óÈ²¿¡¼­ ¾ÆÁ÷ ÀÀ´äÀÌ ¿ÀÁö ¾ÊÀº °Å..
+		// PreFetchAdventureSceneInfo ç”« èŒ„ æƒ‘ç‚”ä¿Šè¾‘ é…’æµ è§ˆç¿ æ å·ç˜¤ è‡¼ç¯® èŠ­..
 		bWaitingForPreFetchedActInfo = true;
 	}
 	else
 	{
-		// ÃÖ±Ù ÇÃ·¹ÀÌÇÑ ½ºÅ×ÀÌÁö Á¤º¸
+		// å¼¥è¾Ÿ æ•²é¥­æèŒ„ èƒ¶æŠ›æç˜¤ æ²¥ç„Š
 		FStageDataStore& StageStore = BladeIIGameImpl::GetStageDataStore();
 
 		FServerStageID ServerStageID = StageStore.GetLastPlayedServerStageId();
 		int32 ChapterNumber = StageStore.GetActIdByClientStageId(StageStore.GetClientStageId(ServerStageID));
 		EStageDifficulty StageDifficulty = StageStore.GetStageDifficulty(ServerStageID);
 
-		if (ServerStageID == 0)	// ¼­¹ö¿¡ ÀúÀåµÈ ÃÖ±Ù ÇÃ·¹ÀÌ Á¤º¸°¡ 0 ÀÏ¶§. °­Á¦·Î 1-1·Î ¼¼ÆÃ
+		if (ServerStageID == 0)	// è¾‘æ»šä¿Š å†å˜ç­‰ å¼¥è¾Ÿ æ•²é¥­æ æ²¥ç„Šå•Š 0 è€é”­. ç¢åŠ›è‚º 1-1è‚º æŠ€æ³¼
 		{
 			ChapterNumber = 1;
 			StageDifficulty = EStageDifficulty::ESD_Normal;
@@ -937,32 +937,32 @@ void UB2UILobbyMain::CheckAnGoToChapterView()
 			StageDifficulty = EStageDifficulty::ESD_Hell;
 		}
 
-		// PreFetchAdventureSceneInfo ¸¦ Çß´Ù¸é ¹Ù·Î Ã©ÅÍ ºä·Î ³Ñ¾î°¥ ²¨°í ¾Æ´Ï¸é ¿©±â¼­ ¼­¹ö Á¤º¸ ¿äÃ»À» ÇÏ°Ô µÉ ²¨.
+		// PreFetchAdventureSceneInfo ç”« æ²ä¿ƒæ å®˜è‚º èŒ…ç£ è½°è‚º é€ç»¢å“ æ³¢ç»Š é…’èªæ å’¯æ‰è¾‘ è¾‘æ»š æ²¥ç„Š å¤¸æ²¡é˜‘ çªéœ¸ çª æ³¢.
 		LobbyChangeSceneByUISceneClass<EUIScene>::GetInstance().Signal(EUIScene::AdventureEnterBattleMain);
 		// BladeIIGameImpl::GetStageDataStore().RequestGetActInfoAndChangeChapter(ChapterNumber, StageDifficulty);
 
-		bWaitingForPreFetchedActInfo = false; // UI Àå¸é ³Ñ¾î°¡°ÚÁö¸¸ ±×·¡µµ ¸¶Å©.
+		bWaitingForPreFetchedActInfo = false; // UI å˜æ é€ç»¢å•Šæ‘†ç˜¤çˆ¶ å¼Šè´°æ¡£ ä»˜å†œ.
 	}
 }
 void UB2UILobbyMain::PreFetchAdventureSceneInfo()
 {
-	// Ã©ÅÍ¸Ê ºä ÁøÀÔ ÀÌÀü¿¡ UI ¾Ö´Ï¸ŞÀÌ¼ÇÀ» À§ÇØ Pending À» ½ÃÅ°°í ¾ÆÁ÷ µ¥ÀÌÅÍ¸¦ ¾È ¹ŞÀº »óÈ²ÀÌ¸é ¼­¹ö¿¡ µ¥ÀÌÅÍ¸¦ ¿äÃ»±îÁö ÇÏ´Âµ¥ 
-	// ÀÌ°Ô ½Ã°£ ³¶ºñ¶ó UI ¾Ö´Ï¸ŞÀÌ¼Ç ÇÏ´Â ¿ÍÁß¿¡ ¼­¹ö¿¡ µ¥ÀÌÅÍ ¿äÃ»À» ¹Ì¸® ÇØ µÎ´Â ÀÇ¹Ì.
+	// èŒ…ç£ç”˜ è½° æŸ³æ¶ æå‚ˆä¿Š UI å±€èªçš‹æè®°é˜‘ å›°ç§¦ Pending é˜‘ çŸ«è™ç»Š é…’æµ å•æç£ç”« æ•‘ ç½ç¯® æƒ‘ç‚”ææ è¾‘æ»šä¿Š å•æç£ç”« å¤¸æ²¡é³–ç˜¤ çªç»°å• 
+	// æéœ¸ çŸ«åŸƒ æ‰¯åšæ‰¼ UI å±€èªçš‹æè®° çªç»° å®¢åä¿Š è¾‘æ»šä¿Š å•æç£ å¤¸æ²¡é˜‘ å›ºåºœ ç§¦ æ»´ç»° ç‹¼å›º.
 
-	// CheckAnGoToChapterView ¿¡¼­ ¿äÃ»ÇÒ Á¤º¸¿Í ¸¶Âù°¡Áö¿©¾ß. ±×·¸Áö¸¸ ¸¸ÀÏ ¾Æ´Ï¶ó°í ÇØµµ Å«ÀÏ³ª´Â °Ç ¾Æ´Ô.
+	// CheckAnGoToChapterView ä¿Šè¾‘ å¤¸æ²¡ä¸” æ²¥ç„Šå®¢ ä»˜è›®å•Šç˜¤å’¯å…·. å¼ŠçŠ¯ç˜¤çˆ¶ çˆ¶è€ é…’èªæ‰¼ç»Š ç§¦æ¡£ å¥´è€å”±ç»° æ‰’ é…’ä¸›.
 	FStageDataStore& StageStore = BladeIIGameImpl::GetStageDataStore();
 
 	FServerStageID ServerStageID = StageStore.GetLastPlayedServerStageId();
 	int32 ChapterNumber = StageStore.GetActIdByClientStageId(StageStore.GetClientStageId(ServerStageID));
 	EStageDifficulty StageDifficulty = StageStore.GetStageDifficulty(ServerStageID);
 
-	if (ServerStageID == 0)// ¼­¹ö¿¡ ÀúÀåµÈ ÃÖ±Ù ÇÃ·¹ÀÌ Á¤º¸°¡ 0 ÀÏ¶§. °­Á¦·Î 1-1·Î ¼¼ÆÃ
+	if (ServerStageID == 0)// è¾‘æ»šä¿Š å†å˜ç­‰ å¼¥è¾Ÿ æ•²é¥­æ æ²¥ç„Šå•Š 0 è€é”­. ç¢åŠ›è‚º 1-1è‚º æŠ€æ³¼
 	{
 		ChapterNumber = 1;
 		StageDifficulty = EStageDifficulty::ESD_Normal;
 	}
 
-	// RequestGetActInfo ¸¸ ÇÏ°í ÀÀ´ä½Ã Ã©ÅÍ ºä·Î °¡´Â °Ç ¾Æ´Ô. ±×°Ç RequestGetActInfoAndChangeChapter ¿¡¼­..
+	// RequestGetActInfo çˆ¶ çªç»Š è§ˆç¿ çŸ« èŒ…ç£ è½°è‚º å•Šç»° æ‰’ é…’ä¸›. å¼Šæ‰’ RequestGetActInfoAndChangeChapter ä¿Šè¾‘..
 	BladeIIGameImpl::GetStageDataStore().ConditionalRequestGetActInfo(ChapterNumber, StageDifficulty);
 }
 
@@ -1041,13 +1041,13 @@ bool UB2UILobbyMain::HasAttendanceNotice()
 //====================================================================================
 void UB2UILobbyMain::OnClickBtnDungeon()
 {
-	// Widget Anim ÇÃ·¹ÀÌ ÈÄ¿¡ ½ÇÁ¦ Challenge È­¸é¿¡ ÁøÀÔÇÏµµ·Ï ¿¹¾à¸¸ ÇØ µĞ´Ù.
+	// Widget Anim æ•²é¥­æ é¥¶ä¿Š è§’åŠ› Challenge æ‹³æä¿Š æŸ³æ¶çªæ¡£åºŸ æŠ—è·çˆ¶ ç§¦ æ•Œä¿ƒ.
 	if (!bPendingEnterGameSelection)
 	{
 		UWorld* TheWorld = GetWorld();
 		if (TheWorld)
 		{
-			// µµÀü ¸ğµåÀÎÆ÷ ¿äÃ»
+			// æ¡£å‚ˆ è‘›é›ç‰¢å™¨ å¤¸æ²¡
 			data_trader::Retailer::GetInstance().RequestGetChallengeModeInfo();
 
 			TheWorld->GetTimerManager().SetTimer(EnterGameSelectionTH, this, &UB2UILobbyMain::ExecutePendingDungeonScene, EnterGameSelectionDelayTime, false);
@@ -1075,13 +1075,13 @@ void UB2UILobbyMain::OnClickBtnDungeon()
 
 void UB2UILobbyMain::OnClickBtnPVP()
 {
-	// Widget Anim ÇÃ·¹ÀÌ ÈÄ¿¡ ½ÇÁ¦ Challenge È­¸é¿¡ ÁøÀÔÇÏµµ·Ï ¿¹¾à¸¸ ÇØ µĞ´Ù.
+	// Widget Anim æ•²é¥­æ é¥¶ä¿Š è§’åŠ› Challenge æ‹³æä¿Š æŸ³æ¶çªæ¡£åºŸ æŠ—è·çˆ¶ ç§¦ æ•Œä¿ƒ.
 	if (!bPendingEnterGameSelection)
 	{
 		UWorld* TheWorld = GetWorld();
 		if (TheWorld)
 		{
-			// °áÅõ ¸ğµåÀÎÆ÷ ¿äÃ»
+			// æ¬æ§ è‘›é›ç‰¢å™¨ å¤¸æ²¡
 			data_trader::Retailer::GetInstance().RequestGetDuelModeInfo();
 
 			TheWorld->GetTimerManager().SetTimer(EnterGameSelectionTH, this, &UB2UILobbyMain::ExecutePendingPVPScene, EnterGameSelectionDelayTime, false);
@@ -1096,7 +1096,7 @@ void UB2UILobbyMain::OnClickBtnPVP()
 void UB2UILobbyMain::OnClickBtnAdventure()
 {
 	// LobbyChangeSceneByUISceneClass<EUIScene>::GetInstance().Signal(EUIScene::AdventureEnterBattleMain);
-	// Widget Anim ÇÃ·¹ÀÌ ÈÄ¿¡ ½ÇÁ¦ Adventure È­¸é¿¡ ÁøÀÔÇÏµµ·Ï ¿¹¾à¸¸ ÇØ µĞ´Ù.
+	// Widget Anim æ•²é¥­æ é¥¶ä¿Š è§’åŠ› Adventure æ‹³æä¿Š æŸ³æ¶çªæ¡£åºŸ æŠ—è·çˆ¶ ç§¦ æ•Œä¿ƒ.
 	if (!bPendingEnterGameSelection)
 	{
 		UWorld* TheWorld = GetWorld();
@@ -1105,8 +1105,8 @@ void UB2UILobbyMain::OnClickBtnAdventure()
 			UB2UIDocChapter* DocChapter = UB2UIDocHelper::GetDocChapter();
 			if (DocChapter && DocChapter->GetCurChapterNum() <= 0)
 			{
-#if WITH_EDITOR && !PLATFORM_MAC// ¾Æ¸ô¶û ¤Ğ¤Ğ
-				//UE_LOG(LogBladeII, Warning, TEXT("ÇöÀç µé¾î°¡°íÀÚ ÇÏ´Â Chapter ¹øÈ£°¡ ÃÊ±âÈ­ µÇÁö ¾ÊÀº »óÅÂ.. ¾ğÁ¦ºÎÅÏ°¡ ·Îºñ¿¡¼­ ¸ğÇè¸Ê Ã³À½ ÁøÀÔÇÏ¸é Chapter ¹øÈ£°¡ 0 ÀÎÃ¤·Î °É¸®±æ·¡.. ¹«½¼ ÀÏÀÌ »ı±ä °ÇÁö.."));
+#if WITH_EDITOR && !PLATFORM_MAC// é…’éš”å°” ã°ã°
+				//UE_LOG(LogBladeII, Warning, TEXT("æ³…çŠ ç”¸ç»¢å•Šç»Šç£Š çªç»° Chapter é”…é¾‹å•Š æª¬æ‰æ‹³ ç™»ç˜¤ è‡¼ç¯® æƒ‘æ€•.. æ”«åŠ›ä½•ç•”å•Š è‚ºåšä¿Šè¾‘ è‘›æ°°ç”˜ è´¸æ¾œ æŸ³æ¶çªæ Chapter é”…é¾‹å•Š 0 ç‰¢ç›²è‚º å§åºœè¾¨è´°.. å…¬éƒŠ è€æ ç§¯å˜ æ‰’ç˜¤.."));
 #else
 				//UE_LOG(LogBladeII, Warning, TEXT("Trying to open Chapter scene while chapter data is not initialized.. Update it on demand but it doesn't look so fine."));
 #endif
@@ -1116,7 +1116,7 @@ void UB2UILobbyMain::OnClickBtnAdventure()
 				}
 			}
 
-			PreFetchAdventureSceneInfo(); // ExecutePendingAdventureScene ±îÁö ½Ã°£ÀÌ ÀÖÀ¸¹Ç·Î ±× »õ ActInfo µ¥ÀÌÅÍ¸¦ ¹Ì¸® ¿äÃ»ÇØ µÒ
+			PreFetchAdventureSceneInfo(); // ExecutePendingAdventureScene é³–ç˜¤ çŸ«åŸƒæ ä¹æ éª¨è‚º å¼Š è´§ ActInfo å•æç£ç”« å›ºåºœ å¤¸æ²¡ç§¦ ç‹„
 			TheWorld->GetTimerManager().SetTimer(EnterGameSelectionTH, this, &UB2UILobbyMain::ExecutePendingAdventureScene, EnterGameSelectionDelayTime, false);
 			bPendingEnterGameSelection = true;
 		}
@@ -1125,7 +1125,7 @@ void UB2UILobbyMain::OnClickBtnAdventure()
 
 void UB2UILobbyMain::ChangeChaperScene(int32 ChapterNum)
 {
-	// LobbyChangeSceneByUISceneClass ´ë½Å Ã©ÅÍ ¹øÈ£¸¦ ¸í½ÃÇÏ´Â Ã©ÅÍ Àü¿ë ÀÌº¥Æ®¸¦ ³¯¸°´Ù.
+	// LobbyChangeSceneByUISceneClass æªè„š èŒ…ç£ é”…é¾‹ç”« ç–™çŸ«çªç»° èŒ…ç£ å‚ˆä¾© æäº¥é£˜ç”« æœèµ´ä¿ƒ.
 	LobbyChangeToChapterSceneByUISceneClass<int32>::GetInstance().Signal(ChapterNum);
 }
 
@@ -1139,7 +1139,7 @@ void UB2UILobbyMain::OnClickBtnInventory()
 		return;
 	}
 
-	//Æ©Åä¸®¾ó ÁøÇà Áß ÀÎº¥Åä¸® ÁøÀÔ½Ã MainPCº¯°æÀ» °¡Àå ¸¶Áö¸·¿¡ È£ÃâÇÏ´Â ºÎºĞ ³ªÁß¿¡ º¯°æ µÉ ¼ö µµ ÀÖ´Ù.
+	//è­¬é…åºœå€” æŸ³é’ å ç‰¢äº¥é…åºœ æŸ³æ¶çŸ« MainPCå‡½ç‰ˆé˜‘ å•Šå˜ ä»˜ç˜¤é˜œä¿Š é¾‹å…çªç»° ä½•ç›’ å”±åä¿Š å‡½ç‰ˆ çª è æ¡£ ä¹ä¿ƒ.
 	if (TutorialManager::GetInstance().HasAnyTutorial())
 	{
 		LobbyHeroMgmtSelectClass<EPCClass>::GetInstance().Signal(
@@ -1266,7 +1266,7 @@ void UB2UILobbyMain::OnClickBtnUIOnOff()
 //====================================================================================
 void UB2UILobbyMain::OnChangedHideAllLobbyMainUIs(class UB2UIDocBase* Sender, bool HideAllLobbyMainUIs, bool PrevHideAllLobbyMainUIs)
 {
-	//·Îºñ¿¡¼­ 10ÃÊ°£, ¾Æ¹« Çàµ¿µµ ÇÏÁö ¾ÊÀ¸¸é ¸ğµç UI¸¦ ¼û±â¶ó°í ÇÑ´Ù.
+	//è‚ºåšä¿Šè¾‘ 10æª¬åŸƒ, é…’å…¬ é’æ‚¼æ¡£ çªç˜¤ è‡¼æ æ è‘›ç”µ UIç”« è§æ‰æ‰¼ç»Š èŒ„ä¿ƒ.
 	HideAllMenus(HideAllLobbyMainUIs);
 
 	if (HideAllLobbyMainUIs)
@@ -1361,14 +1361,14 @@ void UB2UILobbyMain::DoMarkCombineRedDot(bool CheckVisible)
 }
 //void UB2UILobbyMain::CheckConnectRewardRedDot(const AB2LobbyGameMode* LobbyGameMode)
 //{
-//	static int IndexAfterCallRedDot = -1; // ¹«ÇÑ °»½Å ¹æÁö
+//	static int IndexAfterCallRedDot = -1; // å…¬èŒ„ ç›è„š è§„ç˜¤
 //
 //	const auto& PlayTimeStatus = BladeIIGameImpl::GetClientDataStore().GetPlayTimeStatus();
 //	const auto& RewardInfo = BladeIIGameImpl::GetClientDataStore().GetPlayTimeRewardData();
 //
-//	if (IndexAfterCallRedDot != PlayTimeStatus.daily_play_time_reward_index // ÃÖ±Ù¿¡ È£ÃâÇÑ ÀÎµ¦½º¿Í °°À¸¸é ¿¬»ê x
-//		&& PlayTimeStatus.daily_play_time_reward_index > 0 // ¹ŞÀ»°Ô ÀÖ°í
-//		&& RewardInfo.Num() > PlayTimeStatus.daily_play_time_reward_index // ´Ù ¹ŞÁö ¾Ê¾Ò°í
+//	if (IndexAfterCallRedDot != PlayTimeStatus.daily_play_time_reward_index // å¼¥è¾Ÿä¿Š é¾‹å…èŒ„ ç‰¢éƒ¸èƒ¶å®¢ éæ æ æ¥·é­‚ x
+//		&& PlayTimeStatus.daily_play_time_reward_index > 0 // ç½é˜‘éœ¸ ä¹ç»Š
+//		&& RewardInfo.Num() > PlayTimeStatus.daily_play_time_reward_index // ä¿ƒ ç½ç˜¤ è‡¼ç–½ç»Š
 //		&& RewardInfo.IsValidIndex(PlayTimeStatus.daily_play_time_reward_index))
 //	{
 //		bool IsNewConnectReward = RewardInfo[PlayTimeStatus.daily_play_time_reward_index].play_time_inmin * 60 < UB2GameInstance::GetPlayTime();
@@ -1478,7 +1478,7 @@ void FContentOpenSlot::SetVisibile(bool bVisible)
 
 void UB2UILobbyMain::OnClickBtnContentOpenSlots(int32 iArrayIndex)
 {
-	// ´ÙÀ½ Æ©Åä¸®¾ó ¿ÀÇÂ Á¶°ÇÀÌ±â¿¡ ½ºÅÜ 0À¸·Î Ã¼Å©ÇØµµ ¹«¹æÇÏ´Ù.
+	// ä¿ƒæ¾œ è­¬é…åºœå€” å·é”¹ ç‚¼æ‰’ææ‰ä¿Š èƒ¶è·‘ 0æ è‚º çœ‰å†œç§¦æ¡£ å…¬è§„çªä¿ƒ.
 	TutorialManager::OpenLockContentPopup(ContentOpenSlots[iArrayIndex].m_iTutorialID, 0);
 }
 
@@ -1567,13 +1567,13 @@ void UB2UILobbyMain::CheckSurvey()
 		FStageDataStore& StageDataStore = BladeIIGameImpl::GetStageDataStore();
 		const FServerStageID RequireServerStageID = FServerStageID(RequireSurveyStageID);
 
-		// Lobby¿¡¼­ È®ÀÎ
+		// Lobbyä¿Šè¾‘ çŠ¬ç‰¢
 		if (StageDataStore.IsStageClearedOnce(RequireServerStageID) || RequireServerStageID == 0)
 		{
 			CheckValue = true;
 		}
 
-		// StageClear UI (In Game) ¿¡¼­ È®ÀÎ
+		// StageClear UI (In Game) ä¿Šè¾‘ çŠ¬ç‰¢
 		FServerStageID CurrClearStageID = AB2StageManager::GetCacheStageKeepEssentialData().GetServerStageID();
 		CurrClearStageID = BladeIIGameImpl::GetStageDataStore().GetServerStageID(CurrClearStageID.Id % 100, EStageDifficulty(CurrClearStageID.Id / 1000));
 		if ((RequireServerStageID < CurrClearStageID) || RequireServerStageID == CurrClearStageID)
@@ -1581,7 +1581,7 @@ void UB2UILobbyMain::CheckSurvey()
 			CheckValue = true;
 		}
 
-		// CachedActData°¡ ¾øÀ»¼öµµ ÀÖÀ¸´Ï AccountInfo¿¡¼­ È®ÀÎ
+		// CachedActDataå•Š ç»é˜‘èæ¡£ ä¹æ èª AccountInfoä¿Šè¾‘ çŠ¬ç‰¢
 		FServerStageID LastClearStageID = StageDataStore.GetLastClearServerStageIdByLastPlayedStageDifficulty();
 		LastClearStageID = BladeIIGameImpl::GetStageDataStore().GetServerStageID(LastClearStageID.Id % 100, EStageDifficulty(LastClearStageID.Id / 1000));
 		if ((RequireServerStageID < LastClearStageID) || RequireServerStageID == LastClearStageID)

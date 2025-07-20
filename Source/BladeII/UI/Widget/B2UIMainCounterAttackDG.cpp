@@ -1,4 +1,4 @@
-#include "B2UIMainCounterAttackDG.h"
+ï»¿#include "B2UIMainCounterAttackDG.h"
 #include "B2UIManager.h"
 #include "B2UIHeader.h"
 #include "B2UIMainCounterAttackDG_Slot.h"
@@ -50,7 +50,7 @@ void UB2UIMainCounterAttackDG::OnSceneOpen(EUIScene InOpenedScene)
 {
 	Super::OnSceneOpen(InOpenedScene);
 
-	// UIHeader ¿Í °°ÀÌ Scene À¸·Î ±¸¼ºÇÏ´Â °æ¿ì Init ½ÃÁ¡¿¡ ÇÏ¸é Scene ¿¡ Æ÷ÇÔµÈ header °¡ »ý¼ºÀÌ ¾ÈµÈ »óÈ²ÀÏ ¼ö ÀÖÀ½.
+	// UIHeader å®¢ éžæž Scene æ è‚º å¤‡å·±çªç»° ç‰ˆå¿« Init çŸ«ç—¢ä¿Š çªæ Scene ä¿Š å™¨çªƒç­‰ header å•Š ç§¯å·±æž æ•‘ç­‰ æƒ‘ç‚”è€ è ä¹æ¾œ.
 	SetLobbyUIHeaderTitleByGeneralTextTableKey(TEXT("CounterAttack_Title"));
 }
 
@@ -126,7 +126,7 @@ void UB2UIMainCounterAttackDG::OnClickBtnStarRewardBox(class UB2UIChapterStarRew
 
 	for (auto& Ele : ClientRewardData[ClickedReward->GetRewardIndex()].RewardItem)
 	{
-		//[@AKI, 170605] Goods¸¦ ¼³Á¤ÇÏ±â À§ÇØ IconÀ» ³Ö´Â ¹æ½Ä¿¡¼­ Index¸¦ ³Ö´Â ¹æ½ÄÀ¸·Î º¯°æ
+		//[@AKI, 170605] Goodsç”« æ±²æ²¥çªæ‰ å›°ç§¦ Iconé˜‘ æŒç»° è§„ä¾¥ä¿Šè¾‘ Indexç”« æŒç»° è§„ä¾¥æ è‚º å‡½ç‰ˆ
 		UIP_ChapterStarRewardPreview->CreateRewardIconCommon(Ele.Id, FText::AsNumber(Ele.Count));
 		//UIP_ChapterStarRewardPreview->CreateRewardIconCommon(BladeIIGameImpl::GetClientDataStore().GetRewardIconMaterial(Ele.Id),
 		//	FText::AsNumber(Ele.Count));
@@ -158,7 +158,7 @@ void UB2UIMainCounterAttackDG::SetRewardInfo()
 	//	int32 ReceiveBoxNumber = StaticCast<int32>(FMath::Pow(10, i + 1));
 	//	UIP_ChapterStarReward[i]->SetJoinMaxNum(Ele.RequireCount);
 
-	//	// Ã¹¹øÂ°ÀÚ¸® 1ÀÌ¸é  Ã¹»óÀÚ  µÎ¹øÂ°ÀÚ¸® 1ÀÌ¸é µÎ¹øÂ°»óÀÚ ¼¼¹øÂ°ÀÚ¸® 1ÀÌ¸é ¼¼¹øÂ°±îÁö ¿­¾ú´Ù´Â°Å 111
+	//	// éœ‰é”…æŽ³ç£Šåºœ 1æžæ  éœ‰æƒ‘ç£Š  æ»´é”…æŽ³ç£Šåºœ 1æžæ æ»´é”…æŽ³æƒ‘ç£Š æŠ€é”…æŽ³ç£Šåºœ 1æžæ æŠ€é”…æŽ³é³–ç˜¤ å‡¯èŒä¿ƒç»°èŠ­ 111
 	//	if (i == 0)
 	//		UIP_ChapterStarReward[i]->SetRewarded(1 == (ReceivedWeeklyReward % 100) % 10);
 	//	else if (i == 1)

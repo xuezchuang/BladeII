@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+Ôªø// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "BladeIIAIController.h"
@@ -26,7 +26,7 @@ ABladeIIAIController::ABladeIIAIController(const FObjectInitializer& ObjectIniti
 //	ABladeIICharacter* B2Char = Cast<ABladeIICharacter>(InPawn);
 //	
 //	UBehaviorTree* BTtoRun = NULL;
-//	// NPCClassInfo ∏¶ ≈Î«ÿ spawn µ» ∞Õ¿Ã∂Û∏È SpawnNPCClassInfoCharacter ø°º≠ æÓ∂≤ Ωƒ¿∏∑ŒµÁ BehaviorTree ∞° ºº∆√¿Ã µ«æÓ¥¬ ¿÷¿ª ∞Õ.
+//	// NPCClassInfo Áî´ ÁÉπÁß¶ spawn Á≠â Â∑¥ÊçûÊâºÊêÅ SpawnNPCClassInfoCharacter ‰øäËæë Áª¢ÊÅ´ ‰æ•Ê†èËÇ∫Áîµ BehaviorTree Âïä ÊäÄÊ≥ºÊçû ÁôªÁª¢Áª∞ ‰πêÈòë Â∑¥.
 //	if (B2Char && B2Char->BehaviorTree)
 //	{
 //		BTtoRun = B2Char->BehaviorTree;
@@ -41,7 +41,7 @@ ABladeIIAIController::ABladeIIAIController(const FObjectInitializer& ObjectIniti
 //	RunBehaviorTree(BTtoRun);
 //
 //	//
-//	// ±‚¡∏ BP ø°º≠ «œ¥¯ BT ºº∆√ ∫Œ∫–¿∫ ¡¶∞≈.
+//	// ÊâÅÁ≤Æ BP ‰øäËæë Á™çÂ∏¶ BT ÊäÄÊ≥º ‰ΩïÁõíÁØÆ ÂäõËä≠.
 //	//
 //}
 
@@ -52,7 +52,7 @@ void ABladeIIAIController::ToNextPhase()
 
 	if (B2Char && B2Char->PhaseDataArray.Num() > CurrentPhaseNum)
 	{
-		// ø¯«œ¥¬ Phase π¯»£ -1 ¿Ã PhaseDataArray ¿Œµ¶Ω∫. 0 ø°º≠¥¬ PhaseDataArray ∏¶ ªÁøÎ«œ¡ˆ æ ¿∏π«∑Œ.
+		// ÁõîÁ™çÁª∞ Phase ÈîÖÈæã -1 Êçû PhaseDataArray Áâ¢ÈÉ∏ËÉ∂. 0 ‰øäËæëÁª∞ PhaseDataArray Áî´ Ëç§‰æ©Á™çÁò§ ËáºÊ†èÈ™®ËÇ∫.
 		const FAIPhaseData& ThisPhaseData = B2Char->PhaseDataArray[CurrentPhaseNum];
 		++CurrentPhaseNum;
 
@@ -64,16 +64,16 @@ void ABladeIIAIController::PhaseChange(int32 ToPhaseNum, const FAIPhaseData& ToP
 {
 	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIAIController::PhaseChange"));
 
-	//// Phase 0 ¿∏∑Œ ∞°¥¬ ∞« æ¯¿Ω.
+	//// Phase 0 Ê†èËÇ∫ ÂïäÁª∞ Êâí ÁªùÊæú.
 	//BII_CHECK(ToPhaseNum >= 1);
 	//ABladeIICharacter* CurrChar = Cast<ABladeIICharacter>(GetPawn());
 	//BII_CHECK(CurrChar && CurrChar->IsValidObj());
 
-	//ABladeIICharacter* PrevDestroyRef = NULL; // Re-spawn ¿ª ºˆπ›«œ¥¬ ∞ÊøÏ ∆ƒ±´µ» CurrChar ∏¶ µÈ∞Ì ¿÷∞‘ µ… ∞Õ. 
+	//ABladeIICharacter* PrevDestroyRef = NULL; // Re-spawn Èòë ËçêÈ¶ÜÁ™çÁª∞ ÁâàÂø´ È¢áÈ≤çÁ≠â CurrChar Áî´ Áî∏Áªä ‰πêÈú∏ Áû™ Â∑¥. 
 
 	//CurrentPhaseNum = ToPhaseNum;
 
-	//// ƒ≥∏Ø≈Õ ¿⁄√º∏¶ πŸ≤„ƒ°±‚«œ¥¬ ∞… ∏’¿˙ √≥∏Æ«ÿæﬂ ø©≈∏ ¥Ÿ∏• phase »ø∞˙µÈ¿Ã ∞∞¿Ã ¿˚øÎµ… ºˆ ¿÷¥Ÿ.
+	//// ÊüêËÖêÁ£ê Á£äÁúâÁî´ ÂÆòÂ±ÇÊëπÊâÅÁ™çÁª∞ Âêß ÂàöÂéÜ Ë¥∏Â∫úÁß¶ÂÖ∑ ÂíØÈ∏• ‰øÉÂºó phase Áì§ËãûÁî∏Êçû ÈûçÊçû Âà©‰æ©Áû™ Ëçê ‰πê‰øÉ.
 	//if (ToPhaseData.BladeIICharacterClass != ENPCClass::ENC_End)
 	//{
 	//	// Spawn new character...
@@ -91,7 +91,7 @@ void ABladeIIAIController::PhaseChange(int32 ToPhaseNum, const FAIPhaseData& ToP
 	//	ABladeIICharacter* NewCharacter = NULL;
 	//	if (ClassInfoBox)
 	//	{
-	//		// PhaseDataArray ∞∞¿∫ ∞« SpawnNPCClassInfoCharacter ø°º≠ √§øˆ¡Ÿ ∞Õ. ±‚≈∏ « ø‰«— ∑±≈∏¿” ªÛ≈¬¥¬ ø©±‚º≠ √§øÓ¥Ÿ.
+	//		// PhaseDataArray ÈûçÁØÆ Êâí SpawnNPCClassInfoCharacter ‰øäËæë Áõ≤ÂÜµ‰∏¥ Â∑¥. ÊâÅÈ∏• ÈûòÂ§∏ËåÑ ÁπÅÈ∏•ÁÉô ÊÉëÊÄïÁª∞ ÂíØÊâÅËæë Áõ≤Ê¨æ‰øÉ.
 	//		NewCharacter = ClassInfoBox->SpawnNPCClassInfoCharacter(GetWorld(), ToPhaseData.BladeIICharacterClass, ToPhaseData.CharacterClassVariation, SpawnTransform, SpawnInfo);
 	//	}
 
@@ -99,33 +99,33 @@ void ABladeIIAIController::PhaseChange(int32 ToPhaseNum, const FAIPhaseData& ToP
 
 	//	if (NewCharacter != NULL)
 	//	{
-	//		// ±‚¡∏ø° SpawnPool ø° µÓ∑œµ«æÓ ¿÷¥¯ ∏˜¿Ã∂Û∏È πŸ≤„ƒ°±‚ «ÿ ¡ÿ¥Ÿ. SetBirthPlace √≥∏Æµµ µ… ∞Õ.
-	//		if (CurrChar->GetBirthPlace()) // StageManager ∏¶ ∞≈ƒ°¡ˆ æ ¥¬ ¡˜¡¢ √≥∏Æ¿Œµ•, ¿œ¥‹ ±◊≥… µŒ∞Ì »§Ω√ « ø‰«œ∞‘ µ«∏È ±≥√º.
+	//		// ÊâÅÁ≤Æ‰øä SpawnPool ‰øä ÊÆøÂ∫üÁôªÁª¢ ‰πêÂ∏¶ ÂêÑÊçûÊâºÊêÅ ÂÆòÂ±ÇÊëπÊâÅ Áß¶ Èúñ‰øÉ. SetBirthPlace Ë¥∏Â∫úÊ°£ Áû™ Â∑¥.
+	//		if (CurrChar->GetBirthPlace()) // StageManager Áî´ Ëä≠ÊëπÁò§ ËáºÁª∞ ÊµÅÁ´ã Ë¥∏Â∫úÁâ¢Âçï, ËÄÅÁ™ú ÂºäÊàê Êª¥Áªä Ë∂£Áü´ ÈûòÂ§∏Á™çÈú∏ ÁôªÊêÅ ËÉåÁúâ.
 	//		{
 	//			CurrChar->GetBirthPlace()->SwapMonsterForPhaseSpawn(CurrChar, NewCharacter);
 	//		}
 
-	//		NewCharacter->AutoPossessAI = EAutoPossessAI::Disabled; // ≥ª∫Œ¿˚¿∏∑Œ AIController ∏¶ ª˝º∫«œ∞Ì possess «œµµ∑œ ≥ªπˆ∑¡µŒ¥¬ ¥ÎΩ≈ ¡ˆ±› ¿Ã AIController ∑Œ ¡˜¡¢ ¥ŸΩ√ possess.
+	//		NewCharacter->AutoPossessAI = EAutoPossessAI::Disabled; // ÈÉ¥‰ΩïÂà©Ê†èËÇ∫ AIController Áî´ ÁßØÂ∑±Á™çÁªä possess Á™çÊ°£Â∫ü ÈÉ¥ÊªöÂ¶®Êª¥Áª∞ Êé™ËÑö Áò§Èôõ Êçû AIController ËÇ∫ ÊµÅÁ´ã ‰øÉÁü´ possess.
 	//		NewCharacter->FinishSpawning(SpawnTransform);
 
 	//		////////////////////////////////////////////////////////////////////////////////
-	//		// NPCClassInfo ≥™ InitializeCombatStats µÓ¿ª ≈Î«ÿ ∞ËªÍµ«¥¬ µ•¿Ã≈ÕµÈ ø‹ø° «ˆ¿Á ªÛ≈¬µÓ¿∫ ∫πªÁ«ÿ ¡÷æÓæﬂ «‘.
+	//		// NPCClassInfo Âî± InitializeCombatStats ÊÆøÈòë ÁÉπÁß¶ ÊãåÈ≠ÇÁôªÁª∞ ÂçïÊçûÁ£êÁî∏ ÂØá‰øä Ê≥ÖÁäÅ ÊÉëÊÄïÊÆøÁØÆ Ê±óËç§Áß¶ ÊûóÁª¢ÂÖ∑ Á™É.
 	//		NewCharacter->Health = CurrChar->Health;
 	//		NewCharacter->MaxHealth = CurrChar->MaxHealth;
 	//		NewCharacter->Armor = CurrChar->Armor;
 	//		NewCharacter->MaxArmor = CurrChar->MaxArmor;
-	//		NewCharacter->PhaseDataArray = CurrChar->PhaseDataArray; // ¿Ã∞« NPCClassInfo ø°º≠ ø¿±‰ «œ¥¬µ•.. √÷√  PhaseData ∏¶ ¿Ø¡ˆ«ÿæﬂ «œ¥¬¡ˆ, æ∆¥‘ µ˚∑Œ ºº∆√«— ∞…∑Œ «œ¥¬ ∞‘ ∏¬¥¬¡ˆ.. CurrentPhaseNum ¿∫ ∞Ëº” ¿ÃæÓπﬁ¿∏π«∑Œ √≥¿Ω ∞… ¿Ø¡ˆ«—¥Ÿ ƒ°¿⁄.
+	//		NewCharacter->PhaseDataArray = CurrChar->PhaseDataArray; // ÊçûÊâí NPCClassInfo ‰øäËæë Âù∑Âèò Á™çÁª∞Âçï.. Âº•Ê™¨ PhaseData Áî´ Ëú°Áò§Áß¶ÂÖ∑ Á™çÁª∞Áò§, ÈÖí‰∏õ Ëù∂ËÇ∫ ÊäÄÊ≥ºËåÑ ÂêßËÇ∫ Á™çÁª∞ Èú∏ ÂòéÁª∞Áò§.. CurrentPhaseNum ÁØÆ ÊãåÂä† ÊçûÁª¢ÁΩêÊ†èÈ™®ËÇ∫ Ë¥∏Êæú Âêß Ëú°Áò§ËåÑ‰øÉ ÊëπÁ£ä.
 
-	//		NewCharacter->bHadChangedPhase = true; // ¿”Ω√ «√∑°±Ÿµ• ø©±‚º≠ ºº∆√«ÿ ¡÷¿⁄.
+	//		NewCharacter->bHadChangedPhase = true; // ÁÉôÁü´ Êï≤Ë¥∞ËæüÂçï ÂíØÊâÅËæë ÊäÄÊ≥ºÁß¶ ÊûóÁ£ä.
 	//		////////////////////////////////////////////////////////////////////////////////
 	//		
-	//		// ±‚¡∏ ∞« ∂ºæÓ≥ª∞Ì ∆ƒ±´.
+	//		// ÊâÅÁ≤Æ Êâí ÈÉΩÁª¢ÈÉ¥Áªä È¢áÈ≤ç.
 	//		UnPossess();
-	//		PrevDestroyRef = CurrChar; // æÓµø° ¿¸¥ﬁ¿ª «ÿ ¡Ÿ ∞«µ• ∞¡ ∫Ò±≥∏∏ «ÿæﬂ «‘. ªÁøÎ«œ¡ˆ¥¬ ∏ª∞Ì §ª§ª
+	//		PrevDestroyRef = CurrChar; // Áª¢Âèº‰øä ÂÇàÂ¥îÈòë Áß¶ ‰∏¥ ÊâíÂçï ÂÇ≤ ÂéöËÉåÁà∂ Áß¶ÂÖ∑ Á™É. Ëç§‰æ©Á™çÁò§Áª∞ ÂØåÁªä „Åõ„Åõ
 	//		CurrChar->Destroy();
 	//		CurrChar = NULL;
 
-	//		// ªı∑ŒøÓ ƒ≥∏Ø≈Õ∏¶ possess.
+	//		// Ë¥ßËÇ∫Ê¨æ ÊüêËÖêÁ£êÁî´ possess.
 
 	//		Possess(NewCharacter);
 	//		CurrChar = Cast<ABladeIICharacter>(GetPawn());
@@ -170,10 +170,10 @@ void ABladeIIAIController::PhaseChange(int32 ToPhaseNum, const FAIPhaseData& ToP
 
 	//if (ToPhaseData.DialogCodeNameOnPhaseChanged != NAME_None)
 	//{
-	//	OpenDialogClass<FName, bool>::GetInstance().Signal(ToPhaseData.DialogCodeNameOnPhaseChanged, false); // « ø‰«œ∏È MaintainBattleUI º≥¡§¿ª √ﬂ∞°«ÿº≠ ≥—∞‹¡‹.
+	//	OpenDialogClass<FName, bool>::GetInstance().Signal(ToPhaseData.DialogCodeNameOnPhaseChanged, false); // ÈûòÂ§∏Á™çÊêÅ MaintainBattleUI Ê±≤Ê≤•Èòë Áú†ÂïäÁß¶Ëæë ÈÄûË¥•Ê∑ã.
 	//}
 
-	//// SpawnPool wave mob ¿« ∞ÊøÏ phase ∫Ø»≠ø° ¥Î«— ¿Ã∫•∆Æ Ω√±◊≥Œ
+	//// SpawnPool wave mob Áãº ÁâàÂø´ phase ÂáΩÊã≥‰øä Êé™ËåÑ Êçû‰∫•È£ò Áü´ÂºäÊæÑ
 	//if (CurrChar->GetBirthPlace() && !CurrChar->IsSummonedMob())
 	//{
 	//	SpawnPoolWaveMobPhaseChangeClass<AB2MonsterSpawnPool*, ABladeIICharacter*, ABladeIICharacter*, int32, int32, int32>::GetInstance().Signal(

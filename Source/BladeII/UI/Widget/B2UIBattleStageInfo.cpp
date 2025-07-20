@@ -1,4 +1,4 @@
-#include "B2UIBattleStageInfo.h"
+ï»¿#include "B2UIBattleStageInfo.h"
 #include "B2UISlotItem.h"
 #include "B2UIManager.h"
 #include "B2UIDocHelper.h"
@@ -62,7 +62,7 @@ void UB2UIBattleStageInfo::CacheAssets()
 
 void UB2UIBattleStageInfo::UpdateStaticText()
 {
-	// ÀÌ°Å StaticText ¼¼ÆÃ ºí·çÇÁ¸°Æ®¿¡ ¸¹ÀÌ ÀÖÀ½.
+	// æèŠ­ StaticText æŠ€æ³¼ å–‰é£æ©‡èµ´é£˜ä¿Š è…¹æ ä¹æ¾œ.
 
 }
 
@@ -116,7 +116,7 @@ void UB2UIBattleStageInfo::UnsubscribeEvent()
 void UB2UIBattleStageInfo::SetHeaderTitleAsChapterNum()
 {
 	UB2UIDocBattleStage* DocBattleStage = UB2UIDocHelper::GetDocBattleStage();
-	if (CachedCurrentStageInfoData && DocBattleStage) // CachedCurrentStageInfoData ¾ò¾î¿Â ½ÃÁ¡ ÀÌÈÄ¿©¾ß
+	if (CachedCurrentStageInfoData && DocBattleStage) // CachedCurrentStageInfoData æ˜ç»¢æŸ¯ çŸ«ç—¢ æé¥¶å’¯å…·
 	{
 		FText StageDiffText = FText::FromString(FString::Printf(TEXT("Chapter_DiffColor_%d"), (int32)StageDifficulty));
 		FText StageText = FText::Format(BladeIIGetLOCText(B2LOC_CAT_WORLDNAME, StageDiffText.ToString()), CachedCurrentStageInfoData->GetLocalizedStageName());
@@ -159,7 +159,7 @@ void UB2UIBattleStageInfo::BindDocAuto()
 		
 		CachedCurrentStageInfoData = StageInfoTable ? StageInfoTable->GetInfoData(ClientStageId, StageDifficulty) : NULL;
 
-		SetHeaderTitleAsChapterNum(); // CachedCurrentStageInfoData ¾ò¾î¿Â ÀÌÈÄ..
+		SetHeaderTitleAsChapterNum(); // CachedCurrentStageInfoData æ˜ç»¢æŸ¯ æé¥¶..
 		SetStageDiffulty();
 
 		if (CachedCurrentStageInfoData)
@@ -169,22 +169,22 @@ void UB2UIBattleStageInfo::BindDocAuto()
 			SetNPCTexture(CachedCurrentStageInfoData->GetNPCTexture());
 		}
 
-		// º¸½º Á¶°¢ÀÌ º¸»ó ¾ÆÀÌÅÛ º¸´Ù ¸ÕÀú ³ª¿Í¾ß µÇ¼­ ¾Õ¿¡ Ãß°¡ ÇÔ
+		// ç„Šèƒ¶ ç‚¼é˜¿æ ç„Šæƒ‘ é…’æè¢ ç„Šä¿ƒ åˆšå† å”±å®¢å…· ç™»è¾‘ èŠä¿Š çœ å•Š çªƒ
 		FStageFixedDropsInfo* const BossPiece = DocBattleStage->GetBossDropItemsList();
 		AddBossPieceRewardItem(BossPiece);
-		// Àåºñº¸´Ù ¿¡Å×¸£ Á¶°¢ÀÌ ¸ÕÀú
+		// å˜åšç„Šä¿ƒ ä¿ŠæŠ›ç¦ ç‚¼é˜¿æ åˆšå†
 		const TArray<FB2AetherItemPreviewInfo>& AetherItems = DocBattleStage->GetAetherItemList();
 		for (int AetherCnt = 0; AetherCnt < AetherItems.Num(); ++AetherCnt)
 		{
 			AddAetherItem(AetherItems[AetherCnt]);
 		}
-		// Àç·á ¾ÆÀÌÅÛ Preview
+		// çŠä¸° é…’æè¢ Preview
 		const TArray<FB2MaterialItemPreviewInfo>& MaterialItems = DocBattleStage->GetMaterialItemList();
 		for (int MaterialCnt = 0; MaterialCnt < MaterialItems.Num(); ++MaterialCnt)
 		{
 			AddMaterialItem(MaterialItems[MaterialCnt]);
 		}
-		// º¸»ó¾ÆÀÌÅÛ Ã³¸®. ¹Ù²ğÀÏ ¾øÀ¸¹Ç·Î DelegateÃ³¸® ÇÊ¿ä¾øÀ½
+		// ç„Šæƒ‘é…’æè¢ è´¸åºœ. å®˜æ‹†è€ ç»æ éª¨è‚º Delegateè´¸åºœ é˜å¤¸ç»æ¾œ
 		const TArray<FB2RewardItemPreviewInfo>& RewardItems = DocBattleStage->GetRewardItemList();
 		for (int RewardCnt = 0; RewardCnt < RewardItems.Num(); ++RewardCnt)
 		{
@@ -195,7 +195,7 @@ void UB2UIBattleStageInfo::BindDocAuto()
 
 		SetStageGradeInfo(DocBattleStage->GetStageClearConditions());
 
-		// ÃÊ±âÁøÀÔÀº ¹«Á¶°Ç ÃÊ±âÈ­
+		// æª¬æ‰æŸ³æ¶ç¯® å…¬ç‚¼æ‰’ æª¬æ‰æ‹³
 		TArray<EStageBuffType> StageBuffs;
 		DocBattleStage->SetSelectedStageBuffs(StageBuffs);
 	}
@@ -203,11 +203,11 @@ void UB2UIBattleStageInfo::BindDocAuto()
 	auto DocBattle = UB2UIDocHelper::GetDocBattle();
 	if (DocBattle)
 	{
-		//¸ŞÀÎ¿µ¿õ°ú ¼·¿µ¿õÀÇ µ¥ÀÌÅÍ¸¦ °¡Á®¿È
+		//çš‹ç‰¢åº·æ—·è‹ æŒ¤åº·æ—·ç‹¼ å•æç£ç”« å•Šå»‰å’³
 		MainHeroDoc = UB2UIDocHelper::GetDocHero(DocBattle->GetCurPCClass());
 		SubHeroDoc = UB2UIDocHelper::GetDocHero(DocBattle->GetTagPCClass());
 		
-		//¸ŞÀÎ¿µ¿õ°ú ¼·¿µ¿ìÀÌ ¹Ù²î¾úÀ»¶§ Ã³¸®
+		//çš‹ç‰¢åº·æ—·è‹ æŒ¤åº·å¿«æ å®˜å·®èŒé˜‘é”­ è´¸åºœ
 		DocBattle->OnCurPCClassChanged.AddUObject(this, &UB2UIBattleStageInfo::OnChangedCurPCClass);
 		DocBattle->OnTagPCClassChanged.AddUObject(this, &UB2UIBattleStageInfo::OnChangedTagPCClass);
 
@@ -293,13 +293,13 @@ void UB2UIBattleStageInfo::OnSceneOpen(EUIScene InOpenedScene)
 {
 	Super::OnSceneOpen(InOpenedScene);
 
-	// UIHeader ¿Í °°ÀÌ Scene À¸·Î ±¸¼ºÇÏ´Â °æ¿ì Init ½ÃÁ¡¿¡ ÇÏ¸é Scene ¿¡ Æ÷ÇÔµÈ header °¡ »ı¼ºÀÌ ¾ÈµÈ »óÈ²ÀÏ ¼ö ÀÖÀ½.
+	// UIHeader å®¢ éæ Scene æ è‚º å¤‡å·±çªç»° ç‰ˆå¿« Init çŸ«ç—¢ä¿Š çªæ Scene ä¿Š å™¨çªƒç­‰ header å•Š ç§¯å·±æ æ•‘ç­‰ æƒ‘ç‚”è€ è ä¹æ¾œ.
 	SetHeaderTitleAsChapterNum();
 }
 
 void UB2UIBattleStageInfo::AddBossPieceRewardItem(const FStageFixedDropsInfo* _BossPieceData)
 {
-	//º¸½º Á¶°¢ÀÌ ³ª¿ÀÁö ¾Ê´Â Stage¿¡¼­´Â nullptr·Î ÇØÁÖ°í ÀÖ¾î¼­ returnÇÔ
+	//ç„Šèƒ¶ ç‚¼é˜¿æ å”±å·ç˜¤ è‡¼ç»° Stageä¿Šè¾‘ç»° nullptrè‚º ç§¦æ—ç»Š ä¹ç»¢è¾‘ returnçªƒ
 	if (!_BossPieceData) return;
 
 	UB2UISlotItem* NewRewardItem = CreateRewardItem();
@@ -315,18 +315,18 @@ void UB2UIBattleStageInfo::AddBossPieceRewardItem(const FStageFixedDropsInfo* _B
 		NewRewardItem->SetVisibleStageInfoItemIcon(ESlateVisibility::HitTestInvisible, true);
 		NewRewardItem->SetStageInfoStarGrade(_BossPieceData->Min_Gain, _BossPieceData->Max_Gain);
 
-		// ½ºÅ×ÀÌÁö º¸»ó ¾ÆÀÌÅÛ Ãß°¡ Á¤º¸¸¦ ³Ö¾îÁÜ
+		// èƒ¶æŠ›æç˜¤ ç„Šæƒ‘ é…’æè¢ çœ å•Š æ²¥ç„Šç”« æŒç»¢æ·‹
 		FB2UISlotItemStageRewardInfo ExtraStageRewardInfo;
 		ExtraStageRewardInfo.PrimPointMaxValue = _BossPieceData->Max_Gain;
 		ExtraStageRewardInfo.PrimPointMinValue = _BossPieceData->Min_Gain;
 		int convert_itemidx = FItemRefIDHelper::GetRelicIDFromBossPieceRefID(_BossPieceData->Iteminfo_idx);
-		ExtraStageRewardInfo.RandomOptionCount = convert_itemidx;//¿©±â´Â ½ºÆ®¸µ µé¾î°¥ ÀÚ¸®. ÀÚ¸®¸¦ ¾ïÁö·Î ¸¸µç ´À³¦ÀÌ ÀÖ±ä ÇÏ´Ù...
+		ExtraStageRewardInfo.RandomOptionCount = convert_itemidx;//å’¯æ‰ç»° èƒ¶é£˜å‚… ç”¸ç»¢å“ ç£Šåºœ. ç£Šåºœç”« æ’…ç˜¤è‚º çˆ¶ç”µ è ¢è‚ æ ä¹å˜ çªä¿ƒ...
 		NewRewardItem->SetExtraStageRewardInfo(ExtraStageRewardInfo);
 
 		NewRewardItem->ShowCount(false);
 		NewRewardItem->OnSlotItemClickDelgate.BindDynamic(this, &UB2UIBattleStageInfo::OnClickBtnBossPieceItem);
 
-		// ÀÌ SlotItem µéÀ» µé°í ÀÖ´Â ScrollBox ¿¡ ÀÔ·ÂÀ» º¸³»±â À§ÇÑ ¼Â¾÷
+		// æ SlotItem ç”¸é˜‘ ç”¸ç»Š ä¹ç»° ScrollBox ä¿Š æ¶ä»¿é˜‘ ç„Šéƒ´æ‰ å›°èŒ„ æ‚¸è¯€
 		NewRewardItem->SetupManualScrollBoxSender_byReceiver(this, SB_RewardItems.Get());
 	}
 }
@@ -342,7 +342,7 @@ void UB2UIBattleStageInfo::AddRewardItem(const FB2RewardItemPreviewInfo& InItemD
 		NewRewardItem->SetVisibleStar(ESlateVisibility::Collapsed);
 		NewRewardItem->SetVisibleStageInfoItemIcon(ESlateVisibility::HitTestInvisible, false);
 
-		// ½ºÅ×ÀÌÁö º¸»ó ¾ÆÀÌÅÛ Ãß°¡ Á¤º¸¸¦ ³Ö¾îÁÜ
+		// èƒ¶æŠ›æç˜¤ ç„Šæƒ‘ é…’æè¢ çœ å•Š æ²¥ç„Šç”« æŒç»¢æ·‹
 		FB2UISlotItemStageRewardInfo ExtraStageRewardInfo;
 		ExtraStageRewardInfo.PrimPointMaxValue = InItemData.PrimPointMaxValue;
 		ExtraStageRewardInfo.PrimPointMinValue = InItemData.PrimPointMinValue;
@@ -352,7 +352,7 @@ void UB2UIBattleStageInfo::AddRewardItem(const FB2RewardItemPreviewInfo& InItemD
 		NewRewardItem->ShowCount(false);
 		NewRewardItem->OnSlotItemClickDelgate.BindDynamic(this, &UB2UIBattleStageInfo::OnClickBtnRewardItem);
 
-		// ÀÌ SlotItem µéÀ» µé°í ÀÖ´Â ScrollBox ¿¡ ÀÔ·ÂÀ» º¸³»±â À§ÇÑ ¼Â¾÷
+		// æ SlotItem ç”¸é˜‘ ç”¸ç»Š ä¹ç»° ScrollBox ä¿Š æ¶ä»¿é˜‘ ç„Šéƒ´æ‰ å›°èŒ„ æ‚¸è¯€
 		NewRewardItem->SetupManualScrollBoxSender_byReceiver(this, SB_RewardItems.Get());
 	}
 }
@@ -371,7 +371,7 @@ void UB2UIBattleStageInfo::AddAetherItem(const FB2AetherItemPreviewInfo& InItemD
 		NewRewardItem->ShowCount(false);
 		NewRewardItem->OnSlotItemClickDelgate.BindDynamic(this, &UB2UIBattleStageInfo::OnClickBtnEtherItem);
 
-		// ÀÌ SlotItem µéÀ» µé°í ÀÖ´Â ScrollBox ¿¡ ÀÔ·ÂÀ» º¸³»±â À§ÇÑ ¼Â¾÷
+		// æ SlotItem ç”¸é˜‘ ç”¸ç»Š ä¹ç»° ScrollBox ä¿Š æ¶ä»¿é˜‘ ç„Šéƒ´æ‰ å›°èŒ„ æ‚¸è¯€
 		NewRewardItem->SetupManualScrollBoxSender_byReceiver(this, SB_RewardItems.Get());
 	}
 }
@@ -397,7 +397,7 @@ void UB2UIBattleStageInfo::AddMaterialItem(const FB2MaterialItemPreviewInfo& InI
 		NewRewardItem->ShowCount(false);
 		NewRewardItem->OnSlotItemClickDelgate.BindDynamic(this, &UB2UIBattleStageInfo::OnClickBtnMaterialItem);
 
-		// ÀÌ SlotItem µéÀ» µé°í ÀÖ´Â ScrollBox ¿¡ ÀÔ·ÂÀ» º¸³»±â À§ÇÑ ¼Â¾÷
+		// æ SlotItem ç”¸é˜‘ ç”¸ç»Š ä¹ç»° ScrollBox ä¿Š æ¶ä»¿é˜‘ ç„Šéƒ´æ‰ å›°èŒ„ æ‚¸è¯€
 		NewRewardItem->SetupManualScrollBoxSender_byReceiver(this, SB_RewardItems.Get());
 	}
 }
@@ -420,7 +420,7 @@ void UB2UIBattleStageInfo::ArinCheck()
 	if (StageGameStarted)
 		return;
 
-	//if (!CheckAndInvokeArinConsulting()) // ¸¶Áö¸·À¸·Î Arin ÀÇ Á¶¾ğ Ã¼Å©
+	//if (!CheckAndInvokeArinConsulting()) // ä»˜ç˜¤é˜œæ è‚º Arin ç‹¼ ç‚¼æ”« çœ‰å†œ
 	//{
 	//	UIP_StartBT->StartCloseAni();
 	//}
@@ -456,19 +456,19 @@ void UB2UIBattleStageInfo::SetStageStory(FText StageStory)
 
 bool UB2UIBattleStageInfo::CheckAndInvokeArinConsulting()
 {
-	// ½ºÅ×ÀÌÁö ½ÃÀÛ ¹öÆ° ´­·¶À» ¶§ ºÒ¸®´Â °Å °¡Á¤.
+	// èƒ¶æŠ›æç˜¤ çŸ«ç´¯ æ»šç“¢ å–˜èŒƒé˜‘ é”­ é˜‚åºœç»° èŠ­ å•Šæ²¥.
 	
-	// ÀÏÁ¤ È½¼ö ÀÌÀü¿¡ ¹«½ÃÇß´ø °æ¿ì. ÀÌ°É ±âº»ÀûÀÎ Arin ÀÇ Á¶¾ğ »óÅÂ Ã¼Å© ÀÌÀü¿¡ ½ÇÇàÇØ¼­ ½ºÅµ È½¼ö Â÷°¨ÀÌ ¸Å¹ø ½ÇÇàµÇµµ·Ï ÇÔ.
-	// Arin ÀÇ Á¶¾ğÀÌ ¹ßµ¿ÇÏ´Â »óÈ²¿¡¼­¸¸ ÀÌ°É °Ë»çÇÒ °æ¿ì ÀÚÄ© ³Ê¹« ¿À·¡ Arin ÀÇ Á¶¾ğÀ» ¸ø º¸°Ô µÉ ¼öµµ ÀÖ´Ù.
+	// è€æ²¥ å†‰è æå‚ˆä¿Š å…¬çŸ«æ²å¸¦ ç‰ˆå¿«. æå§ æ‰å¤¯åˆ©ç‰¢ Arin ç‹¼ ç‚¼æ”« æƒ‘æ€• çœ‰å†œ æå‚ˆä¿Š è§’é’ç§¦è¾‘ èƒ¶è¯º å†‰è ç’çš‘æ æ¦‚é”… è§’é’ç™»æ¡£åºŸ çªƒ.
+	// Arin ç‹¼ ç‚¼æ”«æ æƒ¯æ‚¼çªç»° æƒ‘ç‚”ä¿Šè¾‘çˆ¶ æå§ å…«è¤ä¸” ç‰ˆå¿« ç£Šæœ« å‘ˆå…¬ å·è´° Arin ç‹¼ ç‚¼æ”«é˜‘ ç»™ ç„Šéœ¸ çª èæ¡£ ä¹ä¿ƒ.
 	UB2UIDocUICondition* DocCondition = UB2UIDocHelper::GetDocUICondition();
 	if (DocCondition && DocCondition->ShouldIgnorePreCombatArinConsulting())
-	{ // ÇÏ³ª Â÷°¨ÇÏ°í ÀÌ¹ø¿£ ½ºÅµ
+	{ // çªå”± ç’çš‘çªç»Š æé”…æµš èƒ¶è¯º
 		DocCondition->SetPreCombatArinConsultIgnoreCount(DocCondition->GetPreCombatArinConsultIgnoreCount() - 1);
 		return false;
 	}
 
 	UB2UIDocBattleStage* DocBS = UB2UIDocHelper::GetDocBattleStage();
-	// ArinConsultingSubject ´Â ÀÌ ÆäÀÌÁö µé¾î¿Ã¶§ ³»Áö´Â ¿µ¿õ°ü¸®³ª Ä³¸¯ÅÍ ¼±ÅÃÇÏ¸é¼­ ¼¼ÆÃµÇ¾î¾ß ÇÔ.
+	// ArinConsultingSubject ç»° æ å…¶æç˜¤ ç”¸ç»¢æ£µé”­ éƒ´ç˜¤ç»° åº·æ—·åŒ…åºœå”± æŸè…ç£ æ€¥ç¶çªæè¾‘ æŠ€æ³¼ç™»ç»¢å…· çªƒ.
 	EArinConsultPreCombat_MainSubject ArinConsultSubject = DocBS ? DocBS->GetArinConsultingSubject() : EArinConsultPreCombat_MainSubject::ARCPCMS_None;
 
 	if (ArinConsultSubject != EArinConsultPreCombat_MainSubject::ARCPCMS_None)
@@ -538,16 +538,16 @@ void UB2UIBattleStageInfo::OnCloseComplete()
 //									Click Handler
 //====================================================================================
 
-void UB2UIBattleStageInfo::OnClickBtnChangeMainSub()							//Main, Sub ±³Ã¼ »ì·ÁµÎ°Ú½À´Ï´Ù...
+void UB2UIBattleStageInfo::OnClickBtnChangeMainSub()							//Main, Sub èƒŒçœ‰ æ··å¦¨æ»´æ‘†åš¼èªä¿ƒ...
 {
-	// UB2UICharacterSelect ¿¡¼­ ÇÏ´Â °Í°ú Áßº¹µÇ±ä ÇÏ´Âµ¥ µû·Î »©±âµµ ¹¹ÇÏ±º..
+	// UB2UICharacterSelect ä¿Šè¾‘ çªç»° å·´è‹ åæ±—ç™»å˜ çªç»°å• è¶è‚º å“—æ‰æ¡£ æ„çªç„™..
 
 	UB2UIDocBattle* DocBattle = UB2UIDocHelper::GetDocBattle();
 	if (DocBattle)
-	{// Main/Sub ¹Ù²ãÄ¡±â
+	{// Main/Sub å®˜å±‚æ‘¹æ‰
 		LobbySetPCSelectionClass<EPCClass, EPCClass>::GetInstance().Signal(IntToPCClass(DocBattle->GetTagPCClass()), IntToPCClass(DocBattle->GetCurPCClass()));
 
-		// ¼±ÅÃ Å¬·¡½º°¡ º¯°æµÊ¿¡ µû¶ó ¾Æ¸°ÀÇ Á¶¾ğµµ Ã¼Å©. ÀüÅõ·ÂÀº µÑÀÌ ÇÕÄ¡´Ï ´Ş¶óÁú °Ô ¾ø°ÚÁö¸¸ ½ºÅ³Æ÷ÀÎÆ® °°Àº °Å¿¡ µû¶ó ÀÌµ¿ ½Ã ´©±¸ È­¸éÀ¸·Î °¡´ÂÁö Á¤µµ ´Ş¶óÁö°Ú±º ¤»
+		// æ€¥ç¶ åŠªè´°èƒ¶å•Š å‡½ç‰ˆå‡³ä¿Š è¶æ‰¼ é…’èµ´ç‹¼ ç‚¼æ”«æ¡£ çœ‰å†œ. å‚ˆæ§ä»¿ç¯® ç¬›æ é’¦æ‘¹èª å´”æ‰¼é¾™ éœ¸ ç»æ‘†ç˜¤çˆ¶ èƒ¶æ‡¦å™¨ç‰¢é£˜ éç¯® èŠ­ä¿Š è¶æ‰¼ ææ‚¼ çŸ« ç©¿å¤‡ æ‹³ææ è‚º å•Šç»°ç˜¤ æ²¥æ¡£ å´”æ‰¼ç˜¤æ‘†ç„™ ã›
 		UB2UIDocBattleStage* DocBS = UB2UIDocHelper::GetDocBattleStage();
 		GameStageCheckForArinConsultingClass<FServerStageID>::GetInstance().Signal(DocBS ? DocBS->GetServerStageId() : FServerStageID());
 		PlayChangeChacterAnimBP();
@@ -624,9 +624,9 @@ void UB2UIBattleStageInfo::OnChangedTagPCClass(class UB2UIDocBase* Sender, int32
 
 void UB2UIBattleStageInfo::MarkStageGameStarted()
 {
-	StageGameStarted = true; // ½ºÅ×ÀÌÁö ½ÃÀÛ ¹öÆ° °°Àº °É Å¬¸¯ ½Ã ¿©±æ Åë°úÇÏ°Ô ÇØ¼­ ¸î¸î Áß¿äÇÑ ¹öÆ°µéÀÌ ¹İº¹ Å¬¸¯µÇÁö ¾Êµµ·Ï ÇÑ´Ù.
+	StageGameStarted = true; // èƒ¶æŠ›æç˜¤ çŸ«ç´¯ æ»šç“¢ éç¯® å§ åŠªè… çŸ« å’¯è¾¨ çƒ¹è‹çªéœ¸ ç§¦è¾‘ å‰²å‰² åå¤¸èŒ„ æ»šç“¢ç”¸æ é¦†æ±— åŠªè…ç™»ç˜¤ è‡¼æ¡£åºŸ èŒ„ä¿ƒ.
 
-	// ´Ü, °£È¤ Æ¯¼öÇÑ »çÁ¤À¸·Î (¼­¹öÃø »çÁ¤) ½ÇÁ¦·Î ½ºÅ×ÀÌÁö ·±ÄªÀÌ ¾ÈµÉ ¼ö ÀÖÀ¸´Ï ¾î´À Á¤µµ ½Ã°£ÀÌ Èå¸¥ ÈÄ¿¡´Â ¸®¼Â½ÃÅ°µµ·Ï.
+	// çªœ, åŸƒè¶£ æ¼‚èèŒ„ è¤æ²¥æ è‚º (è¾‘æ»šèŸ è¤æ²¥) è§’åŠ›è‚º èƒ¶æŠ›æç˜¤ ç¹è«æ æ•‘çª è ä¹æ èª ç»¢è ¢ æ²¥æ¡£ çŸ«åŸƒæ å„’å¼— é¥¶ä¿Šç»° åºœæ‚¸çŸ«è™æ¡£åºŸ.
 	UWorld* TheWorld = GetWorld();
 	if (TheWorld)
 	{

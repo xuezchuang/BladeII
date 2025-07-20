@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2NetGameMode.h"
@@ -35,7 +35,7 @@ namespace NetMatchState
 	const FName RequestMatchMaking		= FName(TEXT("RequestMatchMaking"));
 	const FName WaitMatchMaking			= FName(TEXT("WaitMatchMaking"));
 	const FName StartResult				= FName(TEXT("StartResult"));
-	const FName FinishBattle			= FName(TEXT("FinishBattle"));	//´õÀÌ»ó ÀüÅõ ÇÒ¼ö ¾ø´Â »óÅÂ(°á°ú°¡ ³ª¿Â »óÈ²)¿Í °á°úÃâ·ÂÃ¢ »çÀÌÀÇ State°¡ ¾ø¾î¼­ Ãß°¡
+	const FName FinishBattle			= FName(TEXT("FinishBattle"));	//æ­¹ææƒ‘ å‚ˆæ§ ä¸”è ç»ç»° æƒ‘æ€•(æ¬è‹å•Š å”±æŸ¯ æƒ‘ç‚”)å®¢ æ¬è‹å…ä»¿èŠ’ è¤æç‹¼ Stateå•Š ç»ç»¢è¾‘ çœ å•Š
 	const FName LobbyMatchToGameMode	= FName(TEXT("LobbyMatchToGameMode"));
 	const FName FinishLobbyMatch = FName(TEXT("FinishLobbyMatch"));
 
@@ -208,22 +208,22 @@ void AB2MatchGameModeBase::ResponseSendRoomPlayerClass(TArray<FB2NetMatchPeerInf
 {
 	B2_SCOPED_TRACK_LOG(TEXT("AB2MatchGameModeBase::ResponseSendRoomPlayerClass"));	
 	
-	// ·ëÀÌ ¼ÂÆÃµÈ ´ÙÀ½¿¡ ÇØ´ç ÆĞÅ¶ÀÌ Àü´ŞµÇ¾î¾ß Á¤»óµ¿ÀÛÀÌÁö¸¸..
-	// °æ¿ì(µğ¹ÙÀÌ½º »óÈ² µîµî)¿¡ µû¶ó¼­ ·ëÀÌ ¼ÂÆÃµÇ±âÀü¿¡ È£ÃâµÇ´Â °æ¿ìµµ ¹ß»ıÇÏ±â¿¡ ¿¹¿ÜÃ³¸®
+	// å†¯æ æ‚¸æ³¼ç­‰ ä¿ƒæ¾œä¿Š ç§¦å¯¸ è©å“¦æ å‚ˆå´”ç™»ç»¢å…· æ²¥æƒ‘æ‚¼ç´¯æç˜¤çˆ¶..
+	// ç‰ˆå¿«(å¼å®˜æèƒ¶ æƒ‘ç‚” æ®¿æ®¿)ä¿Š è¶æ‰¼è¾‘ å†¯æ æ‚¸æ³¼ç™»æ‰å‚ˆä¿Š é¾‹å…ç™»ç»° ç‰ˆå¿«æ¡£ æƒ¯ç§¯çªæ‰ä¿Š æŠ—å¯‡è´¸åºœ
 	if (IsSuccessRoomMatching() == false)
 	{
 		ReservedPlayerClasses = PeerInfos;
 		return;
 	}
 
-	// ±âÁ¸ À¯Àúµé µ¿±âÈ­
+	// æ‰ç²® èœ¡å†ç”¸ æ‚¼æ‰æ‹³
 	for (auto& PeerInfo : PeerInfos)
 	{
 		if (PeerInfo.NetId != GetMyNetId())
 			SetRemotePlayerClass(PeerInfo.NetId, IntToPCClass(PeerInfo.Class));
 	}
 
-	// ÆÄÆ¼¿øµé¿¡°Ô ³» PCClass µ¿±âÈ­
+	// é¢‡èç›”ç”¸ä¿Šéœ¸ éƒ´ PCClass æ‚¼æ‰æ‹³
 	//packet::ByteStream	payload;
 	//payload << GetMyNetId() << BladeIIGameImpl::GetLocalCharacterData().GetMainPlayerClass();
 	//FString encoded_string = packet::FinalizePacket(packet::ACK_SEND_ROOM_PLAYERCLASS, GetMyNetId(), 0, packet::ALLBUTME, payload);
@@ -246,7 +246,7 @@ void AB2MatchGameModeBase::ResponsePrerequisiteToStart(int32 RoomType, const FSt
 	if (GetPeerType() == PEER_SUPER)
 		return;
 
-	// ·ë Å¬·ÎÁîÇÏ¸é¼­ ÅäÅ« Àç¼³Á¤Àº ·¹ÀÌµå¿¡¼­¸¸.
+	// å†¯ åŠªè‚ºä»¤çªæè¾‘ é…å¥´ çŠæ±²æ²¥ç¯® é¥­æé›ä¿Šè¾‘çˆ¶.
 	if(RoomType == b2network::B2RoomType::BRT_Raid)
 		SetToken(RoomToken);
 
@@ -282,7 +282,7 @@ void AB2MatchGameModeBase::ResponseAckPrerequisiteToStart(uint32 NetId)
 
 	//UE_LOG(LogBladeII, Log, TEXT("AB2MatchGameModeBase::ResponseAckPrerequisiteToStart SendMessage PREPARE_TO_START"));
 
-	//// PEER_SUPERÀÏ °æ¿ì ÁØºñ°¡ ´ÙµÇ¾úÀ¸¸é ¼­¹ö·Î ÆĞÅ¶ Àü¼Û
+	//// PEER_SUPERè€ ç‰ˆå¿« éœ–åšå•Š ä¿ƒç™»èŒæ æ è¾‘æ»šè‚º è©å“¦ å‚ˆä»·
 	//packet::ByteStream	payload;
 	//payload << bAlreadyStarted;
 	//FString encoded_string = packet::FinalizePacket(packet::PREPARE_TO_START, GetMyNetId(), 0, packet::ALL, payload);
@@ -308,8 +308,8 @@ bool AB2MatchGameModeBase::CanStartInGame()
 
 void AB2MatchGameModeBase::OnPlatFormPauseCase()
 {
-	// ÇÃ·§Æû Pause »óÅÂÀÏ¶§ µé¾î¿À´Â ÇÔ¼ö
-	// ÀÌ¶§ ÀÏ¹İÀûÀÎ °æ¿ì Ã¤³Î Á¾·á¸¦ ½ÃÅ´.
+	// æ•²é˜€æ±½ Pause æƒ‘æ€•è€é”­ ç”¸ç»¢å·ç»° çªƒè
+	// æé”­ è€é¦†åˆ©ç‰¢ ç‰ˆå¿« ç›²æ¾„ è¾†ä¸°ç”« çŸ«ç³¯.
 	ShutdownChannelIfStillExist();
 }
 
@@ -715,7 +715,7 @@ void AB2MatchGameModeBase::SendRequestRoomClose(ERoomCloseReasonType RoomCloseRe
 	if (CanRequestRoomCloseReason(RoomCloseReason) == false)
 		return;
 
-	// ¼­¹ö·Î ´õ ÀÌ»ó µé¾î¿ÀÁö ¸øÇÏ°ÔÇÏ´Â ÆĞÅ¶À» Àü¼Û
+	// è¾‘æ»šè‚º æ­¹ ææƒ‘ ç”¸ç»¢å·ç˜¤ ç»™çªéœ¸çªç»° è©å“¦é˜‘ å‚ˆä»·
 	data_trader::Retailer::GetInstance().RequestRoomClose(GetRoomId(), MapId, RoomCloseReason);
 }
 
@@ -736,7 +736,7 @@ void AB2MatchGameModeBase::SetRemotePlayerInfoData(uint32 NetId, int64 AccountId
 {
 	B2_SCOPED_TRACK_LOG(TEXT("AB2MatchGameModeBase::SetMyPlayerInfoData"));
 
-	//[@AKI 180102], ÀÌ°Ç Contain ¾ÈÇØµµ µÊ
+	//[@AKI 180102], ææ‰’ Contain æ•‘ç§¦æ¡£ å‡³
 	RemotePlayerInfoData.Emplace(NetId).SetModPlayerInfo(OtherPlayerInfo);
 	RemotePlayerInfoData[NetId].SetAccountId(AccountId);
 }
@@ -745,7 +745,7 @@ void AB2MatchGameModeBase::PostRemotePlayerInfoData()
 {
 	B2_SCOPED_TRACK_LOG(TEXT("AB2MatchGameModeBase::PostRemotePlayerInfoData"));
 
-	// ·ë¼ÂÆÃÀü¿¡ È£½ºÆ®·ÎºÎÅÍ ÆĞÅ¶À» ¹Ì¸® ¹Ş¾ÒÀ¸¸é À¯Àúµé¿¡°Ô ³» Á¤º¸µµ Àü´Ş
+	// å†¯æ‚¸æ³¼å‚ˆä¿Š é¾‹èƒ¶é£˜è‚ºä½•ç£ è©å“¦é˜‘ å›ºåºœ ç½ç–½æ æ èœ¡å†ç”¸ä¿Šéœ¸ éƒ´ æ²¥ç„Šæ¡£ å‚ˆå´”
 	if (GetPeerType() != PEER_SUPER && ReservedPlayerClasses.Num() > 0)
 	{
 		ResponseSendRoomPlayerClass(ReservedPlayerClasses);
@@ -845,8 +845,8 @@ void AB2MatchGameModeBase::ApplyReservedDecodePacket()
 	if (ReservedDecodePacketInfos.Num() == 0)
 		return;
 
-	// º¹»çÇÏ±¸ ºñ¿ò. Àú ¾Æ·¡ µğÄÚµå¾È¿¡¼­ ¸Ş¼¼Áö º¸³»´Â ÄÉÀÌ½ºµµ ÀÖ´Â°Å°°´Ù.
-	// ±×³É ¾²¸é ¹İº¹¹®¾È¿¡¼­ ¹è¿­¿ä¼Ò Ãß°¡µÉ¼öÀÖÀ½.
+	// æ±—è¤çªå¤‡ åšæ¡†. å† é…’è´° å¼å†…é›æ•‘ä¿Šè¾‘ çš‹æŠ€ç˜¤ ç„Šéƒ´ç»° çº³æèƒ¶æ¡£ ä¹ç»°èŠ­éä¿ƒ.
+	// å¼Šæˆ é™æ é¦†æ±—å·©æ•‘ä¿Šè¾‘ ç¡…å‡¯å¤¸å®¶ çœ å•Šçªèä¹æ¾œ.
 	TArray<FReservedDecodePacketInfo> TempReservedDecodePacketInfos = ReservedDecodePacketInfos;
 	ReservedDecodePacketInfos.Empty();
 
@@ -887,7 +887,7 @@ void AB2MatchGameModeBase::SetGameInvitationInfo(int32 InvitationType, const FSt
 	//{
 	//	const FString MyNickName = BladeIIGameImpl::GetLocalCharacterData().GetUserNickName();
 	//	
-	//	// ÇöÀç ÃÊ´ë ¼ö¶ô´ë±â ÁßÀÌ¸é »õ·Î ¿Â ÃÊ´ë´Â °ÅÀıÃ³¸®
+	//	// æ³…çŠ æª¬æª èéæªæ‰ åææ è´§è‚º æŸ¯ æª¬æªç»° èŠ­ä¾‹è´¸åºœ
 	//	const bool HasPrevInvitation = DocLobbyMatch->HasValidInvitation() && DocLobbyMatch->GetInvitationState() != EInvitationState::None;
 
 	//	DocLobbyMatch->SetInvitationInfo(InvitationType, Inviter, MyNickName, InvitationRef, RoomInfoPtr, false);
@@ -967,7 +967,7 @@ void AB2MatchGameModeBase::RequestDeclineInvitation(EB2GameMode GameModeType)
 	//			InvitationInfo.InvitationInfo,
 	//			InvitationInfo.Invitee);
 
-	//		// RequestÂÊÀº Notify°¡ ¿ÀÁö¾Ê±â¶§¹®¿¡ Á÷Á¢ È£ÃâÇØÁØ´Ù
+	//		// Requestç‡ç¯® Notifyå•Š å·ç˜¤è‡¼æ‰é”­å·©ä¿Š æµç«‹ é¾‹å…ç§¦éœ–ä¿ƒ
 	//		const FString MyNickName = BladeIIGameImpl::GetLocalCharacterData().GetUserNickName();
 	//		OnNotifyDeclineInviation(InvitationInfo.InvitationType, MyNickName, InvitationInfo.InvitationInfo);
 	//	}
@@ -984,15 +984,15 @@ bool AB2MatchGameModeBase::CanReceiveGameInvite(const FString& Inviter, EB2GameM
 {
 	//if (GameModeType == EB2GameMode::PVP_Tag || GameModeType == EB2GameMode::Raid)
 	//{
-	//	// Ä£¼±Àü È®ÀÎ
+	//	// æ¨¡æ€¥å‚ˆ çŠ¬ç‰¢
 	//	auto* DocLobbyMatch = UB2UIDocHelper::GetDocLobbyMatch();
 	//	const bool CanReceivePVP = DocLobbyMatch && DocLobbyMatch->GetInvitationState() == EInvitationState::None;
 
-	//	// ·¹ÀÌµå È®ÀÎ
+	//	// é¥­æé› çŠ¬ç‰¢
 	//	auto* DocRaid = UB2UIDocHelper::GetDocRaid();
 	//	const bool CanReceiveRaid = DocRaid && DocRaid->HasRaidInvitationInfo() == false;
 
-	//	// µÑ´Ù ÃÊ´ë¹ŞÁö ¾ÊÀº »óÅÂ¿¡¼­¸¸ ÃÊ´ë¸¦ ¹ŞÀ» ¼ö ÀÖÀ½ ex) ·¹ÀÌµå ÃÊ´ëÁß PVPÃÊ´ë ºÒ°¡
+	//	// ç¬›ä¿ƒ æª¬æªç½ç˜¤ è‡¼ç¯® æƒ‘æ€•ä¿Šè¾‘çˆ¶ æª¬æªç”« ç½é˜‘ è ä¹æ¾œ ex) é¥­æé› æª¬æªå PVPæª¬æª é˜‚å•Š
 	//	return CanReceivePVP && CanReceiveRaid;
 	//}
 
@@ -1043,7 +1043,7 @@ void AB2MatchGameModeBase::ClearInvitationGameInfo(EB2GameMode GameModeType)
 
 bool AB2MatchGameModeBase::IsSuccessRoomMatching()
 {
-	// Á¡·ÉÀü Æ©Åä¸®¾ó¿¡¼± ·ëÀß¸¸µé¾îÁ³´Ù Ä¡ÀÚ.
+	// ç—¢é£å‚ˆ è­¬é…åºœå€”ä¿Šæ€¥ å†¯è‚‹çˆ¶ç”¸ç»¢è„¸ä¿ƒ æ‘¹ç£Š.
 	/*if (IsActiveControlTutorial())
 	{
 		return true;
@@ -1101,13 +1101,13 @@ void AB2NetGameMode::HandleMatchIsWaitingToStart()
 //	SetLocalController(UGameplayStatics::GetLocalPlayerController(this));
 //	BII_CHECK(GetLocalController());
 //
-//	// B2NetGameMode°ÔÀÓÀÇ °æ¿ì ¹Ù·Î ¸ÅÄªÀ» È£ÃâÇØÁØ´Ù.
+//	// B2NetGameModeéœ¸çƒ™ç‹¼ ç‰ˆå¿« å®˜è‚º æ¦‚è«é˜‘ é¾‹å…ç§¦éœ–ä¿ƒ.
 //	SetMatchState(NetMatchState::RequestMatchMaking);
 //
-//	//WorldÀÇ BeginPlay½ÃÁ¡ÀÌ µÚ¿¡¼­ ½ÃÀÛµÊ¿¡ µû¶ó
-//	//ÆÄÆ¼Å¬ »ı¼ºÀÌ Áö¿¬µÇ´Â ¹®Á¦°¡ ÀÖ´Ù.
-//	//Çö B2NetGameModeÀÇ ±¸Á¶¿Í °ü·ÃÀÌ ÀÖ¾î
-//	//¾Æ·¡Ã³·³ °£´ÜÈ÷ Ã³¸®ÇÏ³ª, ´Ù¸¥ ¾×ÅÍ¿¡µµ ¹®Á¦°¡ ÀÖ´Ù¸é ±¸Á¶¸¦ ¹Ù²ã¾ßÇÒ µí.
+//	//Worldç‹¼ BeginPlayçŸ«ç—¢æ ç¬¬ä¿Šè¾‘ çŸ«ç´¯å‡³ä¿Š è¶æ‰¼
+//	//é¢‡èåŠª ç§¯å·±æ ç˜¤æ¥·ç™»ç»° å·©åŠ›å•Š ä¹ä¿ƒ.
+//	//æ³… B2NetGameModeç‹¼ å¤‡ç‚¼å®¢ åŒ…è®¿æ ä¹ç»¢
+//	//é…’è´°è´¸çƒ¦ åŸƒçªœæ´’ è´¸åºœçªå”±, ä¿ƒå¼— å’€ç£ä¿Šæ¡£ å·©åŠ›å•Š ä¹ä¿ƒæ å¤‡ç‚¼ç”« å®˜å±‚å…·ä¸” æ·€.
 //	for (TActorIterator<AEmitter> It(GetWorld()); It; ++It)
 //	{
 //		// Actors that have traveled seamlessly from other levels already had BeginPlay called in that level
@@ -1144,7 +1144,7 @@ void AB2NetGameMode::HandleMatchHasStarted()
 	// Then fire off match started
 	GetWorldSettings()->NotifyMatchStarted();
 
-#if BII_STATS // PerfStat Àº MatchStart ½ÃÁ¡ºÎÅÍ ¸ğÀ¸±â ½ÃÀÛ.
+#if BII_STATS // PerfStat ç¯® MatchStart çŸ«ç—¢ä½•ç£ è‘›æ æ‰ çŸ«ç´¯.
 	PerfStatCollector.OnBegin(this);
 #endif
 	
@@ -1204,7 +1204,7 @@ void AB2NetGameMode::NotifyPlayerDeadEnd(class ABladeIIPlayer* DeadGuy)
 
 void AB2NetGameMode::RealtimeUpdateUIDoc()
 {
-	//MobÀÏ °æ¿ì´Â ¾øÀ» ¼öµµ ÀÖÀ¸´Ï±î
+	//Mobè€ ç‰ˆå¿«ç»° ç»é˜‘ èæ¡£ ä¹æ èªé³–
 	//BII_CHECK(GetLocalController());
 	//auto const B2Player = GetLocalController() ? Cast<ABladeIINetPlayer>(GetLocalController()->GetPawn()) : nullptr;
 //	Super::RealtimeUpdateUIDocSkill(B2Player);
@@ -1385,7 +1385,7 @@ void AB2NetGameMode::HandleCharacterDead(ABladeIICharacter* DeadGuy, uint32 NetI
 
 void AB2NetGameMode::PreloadAnyNecessaryInfo(bool bAboutToPlayLoadingMovie)
 {
-	////Synchronous ·ÎµùÀÇ Async ·Îµù flush ¿©ºÎ¿¡ µû¶ó.. ÀÌ°É ´Ù¸¥ async request º¸´Ù ¸ÕÀú È¤Àº ÀÌÈÄ¿¡..
+	////Synchronous è‚ºçˆ¹ç‹¼ Async è‚ºçˆ¹ flush å’¯ä½•ä¿Š è¶æ‰¼.. æå§ ä¿ƒå¼— async request ç„Šä¿ƒ åˆšå† è¶£ç¯® æé¥¶ä¿Š..
 	//PreloadInGameInfoAsset_SynchronousOnly(bAboutToPlayLoadingMovie);
 
 	//Super::PreloadAnyNecessaryInfo(bAboutToPlayLoadingMovie);
@@ -1396,8 +1396,8 @@ void AB2NetGameMode::PreloadAnyNecessaryInfo(bool bAboutToPlayLoadingMovie)
 TArray<EPCClass> AB2NetGameMode::GetAllNetGameMatchedPCClasses()
 {
 	TArray<EPCClass> RetArray;
-	//// ÅÂ±×°¡ ¾ø´Â °ÔÀÓ¸ğµå¶ó¸é ¹Ì¸® ·ÎµùÇÏÁö ¾Ê¾Æµµ ÀÏ´Ü »ı¼º ½Ã ºí·ÎÅ·ÀÌ °É¸®Áö´Â ¾ÊÀ¸³ª °á±¹ Pre-render ¸¦ ÅëÇØ ¼ÎÀÌ´õ Ä³½ÌÀ» ÇÏ·Á¸é ÇÊ¿äÇÔ. ±×¸®°í Skill Anim µµ µû·Î ºĞ¸®µÇ°í..
-	//// »ó´ë Á¤º¸°¡ Preload ½ÃÁ¡ ÀÌÈÄ¿¡ µé¾î¿À°Å³ª, ÅÂ±×°¡ ÀÖ°Å³ª ÇÏ¸é ÀÌ°É override ÇØ¾ß ÇÔ.
+	//// æ€•å¼Šå•Š ç»ç»° éœ¸çƒ™è‘›é›æ‰¼æ å›ºåºœ è‚ºçˆ¹çªç˜¤ è‡¼é…’æ¡£ è€çªœ ç§¯å·± çŸ« å–‰è‚ºæ¬§æ å§åºœç˜¤ç»° è‡¼æ å”± æ¬æƒ« Pre-render ç”« çƒ¹ç§¦ å˜‰ææ­¹ æŸæ•™é˜‘ çªå¦¨æ é˜å¤¸çªƒ. å¼Šåºœç»Š Skill Anim æ¡£ è¶è‚º ç›’åºœç™»ç»Š..
+	//// æƒ‘æª æ²¥ç„Šå•Š Preload çŸ«ç—¢ æé¥¶ä¿Š ç”¸ç»¢å·èŠ­å”±, æ€•å¼Šå•Š ä¹èŠ­å”± çªæ æå§ override ç§¦å…· çªƒ.
 	//if (UB2UIDocLobbyMatch* DocLobbyMatch = UB2UIDocHelper::GetDocLobbyMatch())
 	//{
 	//	for (int32 i = 0; i < DocLobbyMatch->GetRemotePlayerInfoDataCount(); ++i)
@@ -1405,7 +1405,7 @@ TArray<EPCClass> AB2NetGameMode::GetAllNetGameMatchedPCClasses()
 	//		RetArray.AddUnique(DocLobbyMatch->GetReservedRemotePCClassByIndex(i));
 	//	}
 	//}
-	//// ¸ÂÀ¸·Á³ª..
+	//// å˜æ å¦¨å”±..
 	//RetArray.AddUnique(BladeIIGameImpl::GetLocalCharacterData().GetMainPlayerClass());
 
 	return RetArray;
@@ -1420,7 +1420,7 @@ TArray<EPCClass> AB2NetGameMode::GetPCClassesToPreLoad()
 //{
 //#if WITH_EDITOR
 //	if (GIsEditor)
-//	{ // ¿¡µğÅÍ¿¡¼± ¸ğµç skill ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ·ÎµùÇÏµµ·Ï ÇÏ´Â »óÀ§ Å¬·¡½º ±â´ÉÀ» »ç¿ë
+//	{ // ä¿Šå¼ç£ä¿Šæ€¥ è‘›ç”µ skill å±€èªçš‹æè®°é˜‘ è‚ºçˆ¹çªæ¡£åºŸ çªç»° æƒ‘å›° åŠªè´°èƒ¶ æ‰ç“·é˜‘ è¤ä¾©
 //		return ABladeIIGameMode::GetPCSkillAnimsToPreLoad();
 //	}
 //#endif
@@ -1511,14 +1511,14 @@ void AB2NetGameMode::PrepareSlaveNetGame(uint32 NetId)
 
 void AB2NetGameMode::ForceResurrectLocalPlayer()
 {
-	// ¼­¹öÃ¼Å©¾øÀÌ (ÀçÈ­¸¦ »ç¿ëÇÏÁö¾Ê°í) °­Á¦ ºÎÈ°ÇÏ´Â °æ¿ì
+	// è¾‘æ»šçœ‰å†œç»æ (çŠæ‹³ç”« è¤ä¾©çªç˜¤è‡¼ç»Š) ç¢åŠ› ä½•åŠçªç»° ç‰ˆå¿«
 	B2_SCOPED_TRACK_LOG(TEXT("AB2NetGameMode::ForceResurrectLocalPlayer"));
 	
 	//if (ABladeIINetPlayer* pPlayer = Cast<ABladeIINetPlayer>(GetLocalController()->GetPawn()))
 	//{
 	//	pPlayer->GetSkillRTManager()->ResurrectPlayer(GetResurrectGameModeType());
 
-	//	// ºÎÈ°ÂÊ¿¡¼­ ±³Ã¼µÇ¾ú´Ù. ´Ù½Ã¾ò¾î¿Í¾ßÇÔ
+	//	// ä½•åŠç‡ä¿Šè¾‘ èƒŒçœ‰ç™»èŒä¿ƒ. ä¿ƒçŸ«æ˜ç»¢å®¢å…·çªƒ
 	//	pPlayer = Cast<ABladeIINetPlayer>(GetLocalController()->GetPawn());
 	//	if(pPlayer)
 	//		SetPlayerCollisionType(pPlayer);
@@ -1531,7 +1531,7 @@ void AB2NetGameMode::ForceResurrectAIPlayer(class ABladeIINetPlayer* pPlayer)
 
 	//if (pPlayer)
 	//{
-	//	// ºÎÈ°½Ã »ì¾Æ³¯ À§Ä¡¸¦ ÀçÁ¶Á¤ÇØÁØ´Ù.
+	//	// ä½•åŠçŸ« æ··é…’æœ å›°æ‘¹ç”« çŠç‚¼æ²¥ç§¦éœ–ä¿ƒ.
 	//	SetResurrectPlayerPosition(pPlayer);
 
 	//	ABladeIIPlayerAIController* B2AC = Cast<ABladeIIPlayerAIController>(pPlayer->GetController());
@@ -1541,7 +1541,7 @@ void AB2NetGameMode::ForceResurrectAIPlayer(class ABladeIINetPlayer* pPlayer)
 
 	//	pPlayer->GetSkillRTManager()->BornAgain(false);
 
-	//	// ºÎÈ°ÂÊ¿¡¼­ ±³Ã¼µÇ¾ú´Ù. ´Ù½Ã¾ò¾î¿Í¾ßÇÔ
+	//	// ä½•åŠç‡ä¿Šè¾‘ èƒŒçœ‰ç™»èŒä¿ƒ. ä¿ƒçŸ«æ˜ç»¢å®¢å…·çªƒ
 	//	pPlayer = Cast<ABladeIINetPlayer>(B2AC->GetPawn());
 
 	//	if (pPlayer)
@@ -1617,7 +1617,7 @@ uint32 AB2NetGameMode::FindNetIdByDamageCauser(AController* InInstigator, AActor
 
 APawn* AB2NetGameMode::FindPawnByNetId(uint32 NetId)
 {
-	// ·Î±×°¡ ³Ê¹« ¸¹ÀÌ¶ä ÁÖ¼®
+	// è‚ºå¼Šå•Š å‘ˆå…¬ è…¹ææœµ æ—ç±
 	//B2_SCOPED_TRACK_LOG(TEXT("AB2NetGameMode::FindPawnByNetId"));
 
 	//for (FConstPawnIterator Iterator = GetWorld()->GetPawnIterator(); Iterator; ++Iterator)
@@ -1668,7 +1668,7 @@ ABladeIIPlayer* AB2NetGameMode::SpawnRemotePlayer(class UWorld* SpawnWorld, EPCC
 	B2_SCOPED_TRACK_LOG(TEXT("AB2NetGameMode::SpawnRemotePlayer"));
 
 	//FActorSpawnParameters FinalSpawnParameter(SpawnParameters);
-	//FinalSpawnParameter.bDeferPostSpawnInitialize = true; // bDeferConstruction °ü·Ã Ã³¸®´Â ¹Û¿¡¼­ ÇÏÁö¸¸ bDeferPostSpawnInitialize ´Â ¿©±â¼± ¹«Á¶°Ç »ç¿ëÇØ¾ß. 
+	//FinalSpawnParameter.bDeferPostSpawnInitialize = true; // bDeferConstruction åŒ…è®¿ è´¸åºœç»° è§‚ä¿Šè¾‘ çªç˜¤çˆ¶ bDeferPostSpawnInitialize ç»° å’¯æ‰æ€¥ å…¬ç‚¼æ‰’ è¤ä¾©ç§¦å…·. 
 
 	//BII_CHECK(SpawnWorld);
 	//BII_CHECK(InClass != EPCClass::EPC_End);
@@ -1691,7 +1691,7 @@ ABladeIIPlayer* AB2NetGameMode::SpawnRemotePlayer(class UWorld* SpawnWorld, EPCC
 
 	//SpawnedActor->FinalizePCClassInfoSpawn();
 
-	//SpawnWorld->ManualPostSpawnInitialize(SpawnedActor, SpawnTransform, FinalSpawnParameter); // bDeferPostSpawnInitialize ¿¡ µû¸¥ Ã³¸®.
+	//SpawnWorld->ManualPostSpawnInitialize(SpawnedActor, SpawnTransform, FinalSpawnParameter); // bDeferPostSpawnInitialize ä¿Š è¶å¼— è´¸åºœ.
 	//return SpawnedActor;
 	return NULL;
 }
@@ -1724,7 +1724,7 @@ void AB2NetGameMode::ReceiveAnimStateIndex(uint32 RemoteNetId, FNetSyncAnimInfo&
 		SyncedAnimStateIndexByNetId.Add(RemoteNetId);
 	}
 	//
-	////¸ğµç ÆĞÅ¶À» ´Ù ÀúÀå ÇÒ ¼ö ¾øÀ¸¹Ç·Î Á¤ÇØÁø °¹¼ö ÀÌ»óÀÌ¸é »èÁ¦
+	////è‘›ç”µ è©å“¦é˜‘ ä¿ƒ å†å˜ ä¸” è ç»æ éª¨è‚º æ²¥ç§¦æŸ³ è‚®è ææƒ‘ææ æ˜åŠ›
 	//if (SyncedAnimStateIndexByNetId[RemoteNetId].Num() >= MAXSYNCANIM)
 	//{
 	//	SyncedAnimStateIndexByNetId[RemoteNetId].Empty();

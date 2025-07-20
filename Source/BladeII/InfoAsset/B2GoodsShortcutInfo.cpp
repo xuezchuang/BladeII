@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2GoodsShortcutInfo.h"
@@ -22,9 +22,9 @@ void UB2GoodsShortcutInfo::PostLoad()
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////
-//[@AKI, 170331] ÀÌ ¾Æ·¡ °ÍµéÀº B2SomeInfo°ÍÀ» °¡Áö°í ¿Â °ÍÀÓ.
+//[@AKI, 170331] æ é…’è´° å·´ç”¸ç¯® B2SomeInfoå·´é˜‘ å•Šç˜¤ç»Š æŸ¯ å·´çƒ™.
 
-// Ãß°¡µÇ´Â °Íµé ¸¶Âù°¡Áö·Î..
+// çœ å•Šç™»ç»° å·´ç”¸ ä»˜è›®å•Šç˜¤è‚º..
 
 void UB2GoodsShortcutInfo::UnloadAll()
 {
@@ -38,7 +38,7 @@ void UB2GoodsShortcutInfo::EditorLoadAll()
 		return;
 	}
 
-	// ÇÑ¹ø ¹Ì¸® ºÒ·¯ÁÖ¸é AssetPtr ÀÌ valid ÇØ Áú °Í. ¹°·Ğ ÀÌ ¿ÍÁß¿¡ ¸Ş¸ğ¸®´Â ¿ÕÃ¢ ¸Ô°ÚÁö.
+	// èŒ„é”… å›ºåºœ é˜‚çŸ¾æ—æ AssetPtr æ valid ç§¦ é¾™ å·´. æ‹±æ²¸ æ å®¢åä¿Š çš‹è‘›åºœç»° ç©ºèŠ’ å†ˆæ‘†ç˜¤.
 	//GetStageClearWingFxTemplate();
 	
 	//for (int32 PCI = 0; PCI < GetMaxPCClassNum(); ++PCI)
@@ -48,7 +48,7 @@ void UB2GoodsShortcutInfo::EditorLoadAll()
 }
 #endif
 
-// TAsset lazy-loading À» »ç¿ëÇÏ´Â Blueprint InfoAsset ÀÇ ¿Àµ¿ÀÛ ¹®Á¦¸¦ Á¤½ÄÀ¸·Î ÇØ°áÇÏ±â Àü±îÁöÀÇ ÀÓ½Ã ¶«Áú.
+// TAsset lazy-loading é˜‘ è¤ä¾©çªç»° Blueprint InfoAsset ç‹¼ å·æ‚¼ç´¯ å·©åŠ›ç”« æ²¥ä¾¥æ è‚º ç§¦æ¬çªæ‰ å‚ˆé³–ç˜¤ç‹¼ çƒ™çŸ« ä¸œé¾™.
 #if TEMP_LAZYLOADING_MISHANDLING_CLEANUP
 void UB2GoodsShortcutInfo::CleanupOnPreSave()
 {
@@ -60,7 +60,7 @@ void UB2GoodsShortcutInfo::PreSave(FObjectPreSaveContext SaveContext)
 {
 	Super::PreSave(SaveContext);
 
-	// ÀÇµµÄ¡ ¾Ê°Ô ÀúÀåµÈ ·¹ÆÛ·±½º¸¦ ³¯·ÁÁØ´Ù.
+	// ç‹¼æ¡£æ‘¹ è‡¼éœ¸ å†å˜ç­‰ é¥­æ¬ºç¹èƒ¶ç”« æœå¦¨éœ–ä¿ƒ.
 	//CleanupOnPreSave();
 }
 #endif

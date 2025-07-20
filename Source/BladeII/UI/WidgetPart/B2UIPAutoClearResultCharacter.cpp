@@ -1,8 +1,9 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIPAutoClearResultCharacter.h"
 #include "B2UIDocHelper.h"
 #include "BladeIIGameImpl.h"
+#include "BladeIILocText.h"
 
 
 void UB2UIPAutoClearResultCharacter::SetInfo(b2network::B2CharacterServerInfoPtr InCharacterInfo, bool IsLevelUP)

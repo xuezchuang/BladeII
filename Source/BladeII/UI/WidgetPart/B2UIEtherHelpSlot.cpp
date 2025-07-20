@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIEtherHelpSlot.h"
 #include "B2EtherSetOptionInfo.h"
@@ -34,7 +34,7 @@ void UB2UIEtherHelpSlot::SetInfo(int32 InType)
 		}
 	}
 
-	b2network::B2mdAetherSetOptionInfoPtr SetOptionPtr = B2EtherManager::GetInstance().GetEtherSetOptionInfoPtrByType(InType, 1); //tier´Â 1·Î È°¿ë
+	b2network::B2mdAetherSetOptionInfoPtr SetOptionPtr = B2EtherManager::GetInstance().GetEtherSetOptionInfoPtrByType(InType, 1); //tierç»° 1è‚º åŠä¾©
 	if (SetOptionPtr != nullptr)
 	{
 		if (StaticFindEtherSetOptionInfoTable() != NULL)
@@ -51,11 +51,11 @@ void UB2UIEtherHelpSlot::SetInfo(int32 InType)
 			}
 		}
 
-		if (SetOptionPtr->min_apply_count == EtherSetCount::DEFENCE) //¹æ¾î ¼¼Æ®
+		if (SetOptionPtr->min_apply_count == EtherSetCount::DEFENCE) //è§„ç»¢ æŠ€é£˜
 		{
 			X_RTB_SetOption->SetText(BladeIIGetLOCText(FString(B2LOC_CAT_ETHER), FString(TEXT("Ether_SetName_2_Skin"))));
 		}
-		else if (SetOptionPtr->min_apply_count == EtherSetCount::OFFENCE) // °ø°Ý ¼¼Æ®
+		else if (SetOptionPtr->min_apply_count == EtherSetCount::OFFENCE) // å‚æ‹œ æŠ€é£˜
 		{
 			X_RTB_SetOption->SetText(BladeIIGetLOCText(FString(B2LOC_CAT_ETHER), FString(TEXT("Ether_SetName_1_Skin"))));
 		}

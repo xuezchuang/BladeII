@@ -1,11 +1,11 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIPMIssionCompleteProgress.h"
 #include "B2UIChapterStarRewardBox.h"
 #include "BladeIILocText.h"
 #include "B2UIPMissionPointRewardPreview.h"
 #include "B2UIMission.h"
-
+#include "Event.h"
 
 void UB2UIPMIssionCompleteProgress::Init()
 {
@@ -52,7 +52,7 @@ void UB2UIPMIssionCompleteProgress::UpdateInfo(FMissionTab& MissionTab, EMission
 		CP_ProgressParts->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
 		CP_CompleteProgress->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
 
-		if (TB_CompleteProgress.IsValid())	// XX ¾÷Àû ´Ş¼º·ü ÅØ½ºÆ® Ç¥½Ã
+		if (TB_CompleteProgress.IsValid())	// XX è¯€åˆ© å´”å·±ä¼ å’†èƒ¶é£˜ é’çŸ«
 		{
 			FText PrevString = BladeIIGetLOCText(B2LOC_CAT_GENERAL, MissionTab.TabTextKeyString);
 
@@ -89,7 +89,7 @@ void UB2UIPMIssionCompleteProgress::UpdateInfo(FMissionTab& MissionTab, EMission
 
 		if (UIP_RewardBox2.IsValid())
 		{
-			// 1,3¹ø ProgressText Ç¥½Ã ¾ÈÇÏ°í 2¹ø¿¡¸¸ Ç¥½Ã
+			// 1,3é”… ProgressText é’çŸ« æ•‘çªç»Š 2é”…ä¿Šçˆ¶ é’çŸ«
 			UIP_RewardBox2->SetForceProgressText(CurMissionPoint, MaxMissionPoint);
 			UIP_RewardBox2->ShowProgressText(true);
 		}
@@ -261,24 +261,24 @@ void UB2UIPMIssionCompleteProgress::UpdateRewardBoxInfo(TWeakObjectPtr<UB2UIChap
 
 		RewardWidget->SetRewardIndex(RewardPtr->RewardIndex);
 		RewardWidget->SetMissionBox(CurrentPoint, RewardPtr->RequirePoint, RewardPtr->bRewarded);
-		RewardWidget->ShowProgressText(false);	// ProgressBar¸¸ º¸¿©ÁÖ´Â°É·Î
+		RewardWidget->ShowProgressText(false);	// ProgressBarçˆ¶ ç„Šå’¯æ—ç»°å§è‚º
 
-		if (PrevWidget.IsValid() == false)	// Ã¹ Box¸é
+		if (PrevWidget.IsValid() == false)	// éœ‰ Boxæ
 		{
 			RewardWidget->SetForceProgressBar(CurrentPoint, RewardPtr->RequirePoint);
 		}
-		else // 2,3¹øÂ°
+		else // 2,3é”…æ³
 		{
 			if (PrevWidget->GetGoalReachedState() == EUIChapterStarRewardState::NotReached)
 			{
-				RewardWidget->SetForceProgressBar(0, RewardPtr->RequirePoint);	// Progress Bar´Â 0ºÎÅÍ·Î Ç¥½ÃÇØ¾ßÇÔ
+				RewardWidget->SetForceProgressBar(0, RewardPtr->RequirePoint);	// Progress Barç»° 0ä½•ç£è‚º é’çŸ«ç§¦å…·çªƒ
 			}
-			else // ÀÌÀüÀº µµ´ŞÇÏ°í ÇöÀç ÀÚ½ÅÀÇ Progress ¿µ¿ªÀÏ °æ¿ì
+			else // æå‚ˆç¯® æ¡£å´”çªç»Š æ³…çŠ ç£Šè„šç‹¼ Progress åº·å¼€è€ ç‰ˆå¿«
 			{
 				const int32 ProgMaxPoint = FMath::Clamp<int32>(RewardPtr->RequirePoint - PrevRequirePoint, 0, RewardPtr->RequirePoint);
 				const int32 ProgCurPoint = FMath::Clamp<int32>(CurrentPoint - PrevRequirePoint, 0, ProgMaxPoint);
 
-				// Bar·Î Ç¥½ÃÇÏ´Â ¹éºĞ·ü°ú Text´Â ¼­·Î ´Ù¸¥ °ªÀÌ µé¾î°£´Ù. - ¿¬¼ÓµÈ ¼¼°³ÀÇ Progress Bar¸¦ ÇÏ³ªÀÇ ÅëÇÕµÈ Bar·Î º¸ÀÌ±â À§ÇÔ
+				// Barè‚º é’çŸ«çªç»° å½’ç›’ä¼è‹ Textç»° è¾‘è‚º ä¿ƒå¼— è”¼æ ç”¸ç»¢åŸƒä¿ƒ. - æ¥·åŠ ç­‰ æŠ€ä¿ºç‹¼ Progress Barç”« çªå”±ç‹¼ çƒ¹é’¦ç­‰ Barè‚º ç„Šææ‰ å›°çªƒ
 				RewardWidget->SetForceProgressBar(ProgCurPoint, ProgMaxPoint);
 			}
 		}

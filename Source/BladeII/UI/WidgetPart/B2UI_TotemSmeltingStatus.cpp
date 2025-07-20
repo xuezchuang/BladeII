@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2UI_TotemSmeltingStatus.h"
@@ -81,9 +81,9 @@ void UB2UI_TotemSmeltingStatus::UpdateTotemSmeltingStatus(const FB2Totem& InTote
 			UIP_TotemSmeltingSlotBPs[i]->UpdateIndexIcon(IconIndex);
 
 			FB2TotemInfo TotemInfo;
-			// ¸¶½ºÅÍµ¥ÀÌÅÍ¿¡¼­ ¾òÀº ÃÖ´ë Á¦·Ã È½¼ö
+			// ä»˜èƒ¶ç£å•æžç£ä¿Šè¾‘ æŽ˜ç¯® å¼¥æŽª åŠ›è®¿ å†‰è
 			const int32 MaxSmeltingCount = (BladeIIGameImpl::GetTotemDataStore().GetTotemInfo(InTotem.RefID, TotemInfo) ? TotemInfo.RefineLimitCounts[i] : 0);
-			// Á¦·ÃÀ» ½ÃµµÇÑ È½¼ö = ¼­ºê ¿É¼Ç¿¡ µé¾îÀÖ´Â Á¦·Ã »óÅÂ°¡ NONE ÀÌ ¾Æ´Ñ È½¼ö
+			// åŠ›è®¿é˜‘ çŸ«æ¡£èŒ„ å†‰è = è¾‘å® å¯è®°ä¿Š ç”¸ç»¢ä¹ç»° åŠ›è®¿ æƒ‘æ€•å•Š NONE æž é…’å›± å†‰è
 			int32 SmeltingTryCount = 0;
 			for (int j = 0; j < InTotem.SubOptionDetails[i].RefineStates.Num(); ++j)
 			{
@@ -92,14 +92,14 @@ void UB2UI_TotemSmeltingStatus::UpdateTotemSmeltingStatus(const FB2Totem& InTote
 					++SmeltingTryCount;
 				}
 			}
-			// ³²Àº Á¦·Ã È½¼ö = ÃÖ´ë Á¦·Ã È½¼ö - Á¦·ÃÀ» ½ÃµµÇÑ È½¼ö
+			// å·¢ç¯® åŠ›è®¿ å†‰è = å¼¥æŽª åŠ›è®¿ å†‰è - åŠ›è®¿é˜‘ çŸ«æ¡£èŒ„ å†‰è
 			const int32 SmeltingChance = FMath::Max(MaxSmeltingCount - SmeltingTryCount, 0);
 			UIP_TotemSmeltingSlotBPs[i]->UpdateOptionText(InTotem.SubOptionDetails[i].SubOption, SubOptionType[i],SmeltingChance);
 			UIP_TotemSmeltingSlotBPs[i]->UpdateWidgetVisible(SmeltingChance);
 			UIP_TotemSmeltingSlotBPs[i]->UpdateSlotHole(MaxSmeltingCount, InTotem.SubOptionDetails[i]);
 
-			// ¾÷µ¥ÀÌÆ® ½Ã Àá±Ý ÇØÁ¦
-			// Á¦·ÃÀ» ¿äÃ» ½Ã Àá±ÝÀÌ °É¸®¸ç ÀÀ´äÀÌ ¿Í¼­ ¾÷µ¥ÀÌÆ®°¡ µÇ¸é¼­ Àá±ÝÀÌ ÇØÁ¦µÇ´Â ¹æ½Ä
+			// è¯€å•æžé£˜ çŸ« æ³ªé™› ç§¦åŠ›
+			// åŠ›è®¿é˜‘ å¤¸æ²¡ çŸ« æ³ªé™›æž å§åºœå“¥ è§ˆç¿ æž å®¢è¾‘ è¯€å•æžé£˜å•Š ç™»æè¾‘ æ³ªé™›æž ç§¦åŠ›ç™»ç»° è§„ä¾¥
 			IsLockSmelting = false;
 		}
 	}

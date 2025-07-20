@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "EngineMinimal.h"
 #include "CommonStruct.h"
@@ -53,11 +53,11 @@ struct FB2GuildMercenaryInfo
 
 	void AddMercenaryDonations(b2network::B2mdGuildMercenaryDonationPtr InMercenaries)
 	{
-		//¹¹ÇÏ´Â¾ÖÀÎÁö È®ÀÎÇØ¾ßÇÒµí
-		/* B2mdGuildMercenaryDonation Å¸ÀÔ ±î¸ÔÀ»±îºÁ	donation_type (±âºÎÅ¸ÀÔ ex °ñµåº¸¼®)
-														item_template_id (¶Ç´Ù¸¥ Å¸ÀÔ¾ÆÀÌÅÛ È¤½Ã³ªÇÏ´Â ´ëºñ)
-														donation_amount	(1¹ø ±âºÎÇÒ¶§ µå´Â °³¼ö ex º¸¼®100°³)
-														exp_increment	(ÇÑ¹ø ±âºÎÇÒ¶§ exp Áõ°¡·®)*/
+		//ë­í•˜ëŠ”ì• ì¸ì§€ í™•ì¸í•´ì•¼í• ë“¯
+		/* B2mdGuildMercenaryDonation íƒ€ìž… ê¹Œë¨¹ì„ê¹Œë´	donation_type (ê¸°ë¶€íƒ€ìž… ex ê³¨ë“œë³´ì„)
+														item_template_id (ë˜ë‹¤ë¥¸ íƒ€ìž…ì•„ì´í…œ í˜¹ì‹œë‚˜í•˜ëŠ” ëŒ€ë¹„)
+														donation_amount	(1ë²ˆ ê¸°ë¶€í• ë•Œ ë“œëŠ” ê°œìˆ˜ ex ë³´ì„100ê°œ)
+														exp_increment	(í•œë²ˆ ê¸°ë¶€í• ë•Œ exp ì¦ê°€ëŸ‰)*/
 
 
 		GuildMercenaryDonations.Add(InMercenaries->donation_type, InMercenaries);

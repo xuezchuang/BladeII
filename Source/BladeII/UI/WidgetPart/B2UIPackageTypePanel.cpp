@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIPackageTypePanel.h"
 #include "B2UIManager.h"
 #include "B2UIStoreItemSlot.h"
@@ -105,7 +105,7 @@ static UB2UIStoreProductCost* GetCostToBuyUIP(UB2UIWidgetBase* InCostToBuyOwnerU
 {
 	if (InCostToBuyOwnerUIP)
 	{
-		// ³×ÀÌÆ¼ºê UIWidgetBase Å¬·¡½º·Î ±×³É ¸¸µé¾î¼­ ¾²´Â °Ô ÀÖÀ½.. ¤Ñ¤Ñ
+		// åŒ™æèå® UIWidgetBase åŠªè´°èƒ¶è‚º å¼Šæˆ çˆ¶ç”¸ç»¢è¾‘ é™ç»° éœ¸ ä¹æ¾œ.. ã±ã±
 		return InCostToBuyOwnerUIP->GetSlot<UB2UIStoreProductCost>(TEXT("UIP_CostToBuy"));
 	}
 	return nullptr;
@@ -166,7 +166,7 @@ void UB2UIPackageTypePanel_Basic::InitPanelInfo(int32 nType)
 
 void UB2UIPackageTypePanel_Basic::UpdatePanelInfo()
 {
-	// ¿©±â¼­ Æ÷Áö¼Ç°ª.. ¹Ì¸® ¼Â
+	// å’¯æ‰è¾‘ å™¨ç˜¤è®°è”¼.. å›ºåºœ æ‚¸
 	if (HB_ItemList.IsValid())
 	{
 		HB_ItemList->ClearChildren();
@@ -217,7 +217,7 @@ void UB2UIPackageTypePanel_Basic::UpdatePanelInfo()
 				// Product Mark
 				CreatedWidget->SetPackageProductMark(Elem.StoreProductId);
 
-				// Period - ºÎ½ºÆ® ÆĞÅ°Áö Àü¿ë. ³²Àº±â°£ Ç¥½Ã.
+				// Period - ä½•èƒ¶é£˜ è©è™ç˜¤ å‚ˆä¾©. å·¢ç¯®æ‰åŸƒ é’çŸ«.
 				CreatedWidget->SetPeriodData(PackageID);
 
 				// Cost
@@ -228,7 +228,7 @@ void UB2UIPackageTypePanel_Basic::UpdatePanelInfo()
 			}
 		}
 	}
-	// Æ÷Áö¼Ç°ª º¹±¸
+	// å™¨ç˜¤è®°è”¼ æ±—å¤‡
 
 	SetBannerInfo();
 }
@@ -264,7 +264,7 @@ void UB2UIPackageTypePanel_Flatrate::Init()
 	});
 
 	if(WS_Info.IsValid())
-		WS_Info->SetVisibility(B2P_IsInReview() ? ESlateVisibility::Hidden : ESlateVisibility::Visible);	//IOS °Ë¼öÀÏ¶§ ¼û°ÜÁÜ
+		WS_Info->SetVisibility(B2P_IsInReview() ? ESlateVisibility::Hidden : ESlateVisibility::Visible);	//IOS å…«èè€é”­ è§è´¥æ·‹
 }
 
 void UB2UIPackageTypePanel_Flatrate::DestroySelf(UB2UIManager* InUIManager)
@@ -409,7 +409,7 @@ void UB2UIPackageTypePanel_Flatrate::UpdatePanelInfo()
 			}
 		}
 
-		// ±â°£ÆĞÅ°Áö°¡ 2°³°¡ ¾Æ´Ò¶§ °¡À§Á¬À» ¸¸µé¾î¼­ ¿Í²Ù¸ÂÃçÁÜ.
+		// æ‰åŸƒè©è™ç˜¤å•Š 2ä¿ºå•Š é…’åŒ†é”­ å•Šå›°è¿é˜‘ çˆ¶ç”¸ç»¢è¾‘ å®¢æ“å˜è‹—æ·‹.
 		if (ProductList.Num() < 2)
 		{
 			for (int32 i = 0; i < (2 - ProductList.Num()); i++)
@@ -509,7 +509,7 @@ void UB2UIPackageTypePanel_Flatrate::SetRewardButton()
 	{
 		FPackageFlatrateBonusState BonusState = DocStore->GetReceivedFlatratePackageBonusState();
 
-		// º¸»ó ¹ŞÀ½
+		// ç„Šæƒ‘ ç½æ¾œ
 		if (BonusState.RewardState)
 		{
 			if (BTN_GetReward.IsValid())
@@ -519,7 +519,7 @@ void UB2UIPackageTypePanel_Flatrate::SetRewardButton()
 		}
 		else
 		{
-			// º¸»ó ¹ŞÀ» ¼ö ÀÖÀ½
+			// ç„Šæƒ‘ ç½é˜‘ è ä¹æ¾œ
 			if (BonusState.WeeklyState && BonusState.MonthlyState)
 			{
 				if (BTN_GetReward.IsValid())
@@ -530,7 +530,7 @@ void UB2UIPackageTypePanel_Flatrate::SetRewardButton()
 			}
 			else
 			{
-				// º¸»ó ¹ŞÀ» ¼ö ¾øÀ½
+				// ç„Šæƒ‘ ç½é˜‘ è ç»æ¾œ
 				if (BTN_GetReward.IsValid())
 					BTN_GetReward->SetIsEnabled(false);
 			}
@@ -555,7 +555,7 @@ void UB2UIPackageTypePanel_Flatrate::OnReciveRewardFlatRatePackageBonus(FB2Respo
 			{
 				RewardPopup->AddSingleRewardItem(Ptr->received_reward);
 
-				// RewardPopup¿¡¼­ ClientDataStore::AccountInfo¿¡ º¸»ó °­Á¦ Àû¿ë
+				// RewardPopupä¿Šè¾‘ ClientDataStore::AccountInfoä¿Š ç„Šæƒ‘ ç¢åŠ› åˆ©ä¾©
 				RewardPopup->ShowRewardPopup(true);
 				RewardPopup->ShowMailDescription(false);
 			}
@@ -1333,20 +1333,20 @@ void UB2UIPackageTypePanel_Level::SetReachRewardState()
 		{
 			switch (RewardState)
 			{
-			case EREWARD_STATE::Impossible:	// ±¸¸ÅÇßÁö¸¸ º¸»ó ¹ŞÀ» ¼ö ¾øÀ½
-			case EREWARD_STATE::Possible:	// º¸»ó ¹ŞÀ» ¼ö ÀÖÀ½
+			case EREWARD_STATE::Impossible:	// å¤‡æ¦‚æ²ç˜¤çˆ¶ ç„Šæƒ‘ ç½é˜‘ è ç»æ¾œ
+			case EREWARD_STATE::Possible:	// ç„Šæƒ‘ ç½é˜‘ è ä¹æ¾œ
 				WS_Mission_RewardState->SetActiveWidgetIndex(1);
 				break;
 
-			case EREWARD_STATE::Rewarded:	// º¸»ó ¹ŞÀ½
+			case EREWARD_STATE::Rewarded:	// ç„Šæƒ‘ ç½æ¾œ
 				WS_Mission_RewardState->SetActiveWidgetIndex(2);
 				break;
 
-			case EREWARD_STATE::Fail:		// ¹Ì¼Ç ½ÇÆĞ
+			case EREWARD_STATE::Fail:		// å›ºè®° è§’è©
 				WS_Mission_RewardState->SetActiveWidgetIndex(3);
 				break;
 
-			default:						// ±¸¸Å ¾ÈÇÔ
+			default:						// å¤‡æ¦‚ æ•‘çªƒ
 				WS_Mission_RewardState->SetActiveWidgetIndex(0);
 				break;
 			}
@@ -1370,7 +1370,7 @@ void UB2UIPackageTypePanel_Level::OnReciveLevelupReward(FB2ResponseRewardLevelUp
 	{
 		RewardPopup->AddSingleRewardItem(RewardPtr->received_reward);
 
-		// RewardPopup¿¡¼­ ClientDataStore::AccountInfo¿¡ º¸»ó °­Á¦ Àû¿ë
+		// RewardPopupä¿Šè¾‘ ClientDataStore::AccountInfoä¿Š ç„Šæƒ‘ ç¢åŠ› åˆ©ä¾©
 		RewardPopup->ShowRewardPopup(true);
 		RewardPopup->ShowMailDescription(false);
 	}
@@ -1390,7 +1390,7 @@ void UB2UIPackageTypePanel_Level::OnReciveReachLevelReward(FB2ResponseRewardReac
 	{
 		RewardPopup->AddSingleRewardItem(RewardPtr->received_reward);
 
-		// RewardPopup¿¡¼­ ClientDataStore::AccountInfo¿¡ º¸»ó °­Á¦ Àû¿ë
+		// RewardPopupä¿Šè¾‘ ClientDataStore::AccountInfoä¿Š ç„Šæƒ‘ ç¢åŠ› åˆ©ä¾©
 		RewardPopup->ShowRewardPopup(true);
 		RewardPopup->ShowMailDescription(false);
 	}
@@ -1560,7 +1560,7 @@ void UB2UIPacakgeLevelupListPart::UpdateVisibleState()
 
 	switch (RewardState)
 	{
-	case EREWARD_STATE::Impossible:	// ±¸¸ÅÇßÁö¸¸ ºÒ°¡´É
+	case EREWARD_STATE::Impossible:	// å¤‡æ¦‚æ²ç˜¤çˆ¶ é˜‚å•Šç“·
 	{
 		if (BTN_GetReward.IsValid())
 			BTN_GetReward->SetIsEnabled(false);
@@ -1569,7 +1569,7 @@ void UB2UIPacakgeLevelupListPart::UpdateVisibleState()
 			WS_ButtonState->SetActiveWidgetIndex(1);
 	}
 	break;
-	case EREWARD_STATE::Possible:	//°¡´É
+	case EREWARD_STATE::Possible:	//å•Šç“·
 	{
 		if (BTN_GetReward.IsValid())
 			BTN_GetReward->SetIsEnabled(true);
@@ -1580,7 +1580,7 @@ void UB2UIPacakgeLevelupListPart::UpdateVisibleState()
 		bPossible = true;
 	}
 	break;
-	case EREWARD_STATE::Rewarded:	//¿Ï·á
+	case EREWARD_STATE::Rewarded:	//è‚¯ä¸°
 	{
 		if (WS_ButtonState.IsValid())
 			WS_ButtonState->SetActiveWidgetIndex(2);
@@ -1588,7 +1588,7 @@ void UB2UIPacakgeLevelupListPart::UpdateVisibleState()
 	break;
 	default: // EREWARD_STATE::NotBuy
 	{
-		// »óÇ° ±¸¸ÅÈÄ ¼ö·É °¡´É.
+		// æƒ‘å‰ å¤‡æ¦‚é¥¶ èé£ å•Šç“·.
 		if (WS_ButtonState.IsValid())
 			WS_ButtonState->SetActiveWidgetIndex(0);
 	}
@@ -1761,7 +1761,7 @@ void UB2UIPacakgeFlatrateItem::SetFlatrateItemData(FStoreProductData StoreData, 
 	}
 	
 	/*
-	// ¹ØÀÇ ³»¿ëÀº À§ÀÇ ³»¿ëÀÌ ÇÏµåÄÚµù µÇ¾îÀÖ´Â°É ¿ÏÀüÈ÷ Ç®¾úÀ» ¶§ÀÇ ÄÚµåÀÌ´Ù. ¾ÆÁ÷ "¸ÅÀÏ ÇıÅÃ ÆĞÅ°Áö" ¿ÜÀÇ Ç×¸ñ°ú "ÁÖ°£ ÇıÅÃ"¿¡ ´ëÇØ¼± °ËÁõÀÌ µÇÁö ¾Ê¾Æ¼­ ÇÊ¿äÇÑ ºÎºĞ¿¡¸¸ Àû¿ëÇØ¼­ »ç¿ëÇÏ´Â ¹æÇâÀ¸·Î ÀÛ¼ºµÇ¾î ÀÖ´Ù.
+	// å…³ç‹¼ éƒ´ä¾©ç¯® å›°ç‹¼ éƒ´ä¾©æ çªé›å†…çˆ¹ ç™»ç»¢ä¹ç»°å§ è‚¯å‚ˆæ´’ é’±èŒé˜‘ é”­ç‹¼ å†…é›æä¿ƒ. é…’æµ "æ¦‚è€ é©±ç¶ è©è™ç˜¤" å¯‡ç‹¼ äº²æ ¼è‹ "æ—åŸƒ é©±ç¶"ä¿Š æªç§¦æ€¥ å…«åˆ˜æ ç™»ç˜¤ è‡¼é…’è¾‘ é˜å¤¸èŒ„ ä½•ç›’ä¿Šçˆ¶ åˆ©ä¾©ç§¦è¾‘ è¤ä¾©çªç»° è§„æ°¢æ è‚º ç´¯å·±ç™»ç»¢ ä¹ä¿ƒ.
 	if (TB_FlatrateItemTitle.IsValid())
 	{
 		TB_FlatrateItemTitle->SetText(BladeIIGetLOCText(B2LOC_CAT_STORE, TEXT(stringBuffer)));

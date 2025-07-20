@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2PreRenderGameMode.h"
 #include "B2PreRenderer.h"
 
@@ -19,13 +19,13 @@
 
 int32 AB2PreRenderGameMode::GetTotalContentTypePassNum() const
 { 
-	// 2 °³ÀÇ ContentPass ´Â ½ÇÁ¦·Î´Â PCClassNum ¸¸Å­ÀÓ.
+	// 2 ê°œì˜ ContentPass ëŠ” ì‹¤ì œë¡œëŠ” PCClassNum ë§Œí¼ì„.
 	return (((int32)EPRGMContentTypePass::CTP_End - 3) + (GetMaxPCClassNum() * 2)); 
 }
 
 float AB2PreRenderGameMode::GetTotalWeightedPassNum() const
 {
-	// ¶óÀÌÆ® ÆĞ½º Áß ÇÏ³ª´Â °¡ÁßÄ¡ °öÇØ¼­..
+	// ë¼ì´íŠ¸ íŒ¨ìŠ¤ ì¤‘ í•˜ë‚˜ëŠ” ê°€ì¤‘ì¹˜ ê³±í•´ì„œ..
 	return (
 		(GetFistLightPassProgressWeight() * (float)GetTotalContentTypePassNum()) +
 		((GetTotalLightPassNum() - 1) * (float)GetTotalContentTypePassNum())
@@ -63,12 +63,12 @@ void AB2PreRenderGameMode::PreBeginPlay()
 
 void AB2PreRenderGameMode::BeginPlay()
 {
-	//// ¿©±â¼­ ³ª¸§´ë·Î Ç¥½ÃÇÏ´Â Progress ¸»°í ÀÌ PreRender ·¹º§À» ·ÎµùÇÏ´Â progress ÀÌÂë¼­ ¸¸¶¥.
+	//// ì—¬ê¸°ì„œ ë‚˜ë¦„ëŒ€ë¡œ í‘œì‹œí•˜ëŠ” Progress ë§ê³  ì´ PreRender ë ˆë²¨ì„ ë¡œë”©í•˜ëŠ” progress ì´ì¯¤ì„œ ë§Œë•….
 	//B2GMLoadingProgCollector::StepToMax();
 
 	//Super::BeginPlay();
 	//
-	//// Virtual joystick ¾ø¾Ö±â.
+	//// Virtual joystick ì—†ì• ê¸°.
 	//APlayerController* LocalPCon = UGameplayStatics::GetLocalPlayerController(this);
 	//if (LocalPCon)
 	//	LocalPCon->ActivateTouchInterface(nullptr);
@@ -77,7 +77,7 @@ void AB2PreRenderGameMode::BeginPlay()
 void AB2PreRenderGameMode::SetupNextGameLoadingScreen()
 {
 	if (!AB2DLCFrontGameMode::GetSelectedFrontTitleMovieName().IsEmpty())
-	{ // DLCFront ¸¦ ÅëÇØ ¿Ô´Ù¸é ¸Ç Ã³À½ ÇÃ·¹ÀÌÇß´ø Å¸ÀÌÆ² µ¿¿µ»óÀ» ·Îµù È­¸éÀ¸·Î ´Ù½Ã ¶ç¿î´Ù.
+	{ // DLCFront ë¥¼ í†µí•´ ì™”ë‹¤ë©´ ë§¨ ì²˜ìŒ í”Œë ˆì´í–ˆë˜ íƒ€ì´í‹€ ë™ì˜ìƒì„ ë¡œë”© í™”ë©´ìœ¼ë¡œ ë‹¤ì‹œ ë„ìš´ë‹¤.
 		AB2DLCFrontGameMode::TrySetupLoadingScreenWithInitialTitleMovie(this);
 	}
 	else
@@ -90,27 +90,27 @@ void AB2PreRenderGameMode::Tick(float DeltaSecond)
 {
 	Super::Tick(DeltaSecond);
 
-	// UpdateForPreRenderObjects ´Â »óÀ§´Ü¿¡¼­ ºÎ¸£°Ô µÊ.
+	// UpdateForPreRenderObjects ëŠ” ìƒìœ„ë‹¨ì—ì„œ ë¶€ë¥´ê²Œ ë¨.
 
 	TimeSinceLastPassBegin += DeltaSecond;
 	++CurrentPassTickCount;
 
-	// °¢ ÇÏÀ§ ÆĞ½º ¾È¿¡¼­µµ dynamic point light Á¶ÀıÀ» Á» ÇÑ´Ù. ¿©±â¿¡ µû¶ó ¼ÎÀÌ´õ ÄÄÆÄÀÏ ¿µÇâÀ» Á» ¹Ş´Â µí.
+	// ê° í•˜ìœ„ íŒ¨ìŠ¤ ì•ˆì—ì„œë„ dynamic point light ì¡°ì ˆì„ ì¢€ í•œë‹¤. ì—¬ê¸°ì— ë”°ë¼ ì…°ì´ë” ì»´íŒŒì¼ ì˜í–¥ì„ ì¢€ ë°›ëŠ” ë“¯.
 	if (PreRenderer)
 	{
 		if (CurrentPassTickCount >= InternalLit1PassTickLimit + InternalLit2PassTickLimit)
 		{
 			if (CurrentPassTickCount == InternalLit1PassTickLimit + InternalLit2PassTickLimit)
 			{
-				// µÑ ´Ù ²û. PointLight 0 °³ ¼ÎÀÌ´õµµ ³ª¸§ ÇÊ¿ä..
+				// ë‘˜ ë‹¤ ë”. PointLight 0 ê°œ ì…°ì´ë”ë„ ë‚˜ë¦„ í•„ìš”..
 				PreRenderer->ConditionalRestoreFromPreRenderLightEnvForDynPL(false);
-				// ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ Head Light ÀÇ °æ¿ì´Â ¹İ°æÀ» ±ØÈ÷ Á¼°Ô Àâ¾Æ¼­ »ç½Ç»ó ²¨Áöµµ·Ï ÇÑ´Ù. ¾Æ½Î¸® ²¨ ¹ö¸®·Á¸é Á» ´õ º¹ÀâÇÏ°í.. ¤Ñ¤Ñ;
+				// í”Œë ˆì´ì–´ ìºë¦­í„° Head Light ì˜ ê²½ìš°ëŠ” ë°˜ê²½ì„ ê·¹íˆ ì¢ê²Œ ì¡ì•„ì„œ ì‚¬ì‹¤ìƒ êº¼ì§€ë„ë¡ í•œë‹¤. ì•„ì‹¸ë¦¬ êº¼ ë²„ë¦¬ë ¤ë©´ ì¢€ ë” ë³µì¡í•˜ê³ .. ã…¡ã…¡;
 				PreRenderer->MinimizePlayerPointLight();
 			}
 		}
 		else if (CurrentPassTickCount > InternalLit2PassTickLimit)
 		{
-			PreRenderer->ConditionalRestoreFromPreRenderLightEnvForDynPL(false); // ÇÏ³ª ³²±â±â
+			PreRenderer->ConditionalRestoreFromPreRenderLightEnvForDynPL(false); // í•˜ë‚˜ ë‚¨ê¸°ê¸°
 		}
 	}
 }
@@ -118,7 +118,7 @@ void AB2PreRenderGameMode::Tick(float DeltaSecond)
 TArray<EPCClass> AB2PreRenderGameMode::GetPCClassesToPreLoad()
 {
 	TArray<EPCClass> RetArray;
-	// ±âº» ±â´É ·çÆ®¸¦ ÅëÇØ ¹«ÀÛÁ¤ ·ÎµùµÇÁö ¾Êµµ·Ï.. ÇÊ¿äÇÒ ¶§ ±×¶§±×¶§ ·ÎµùÇÒ °Í.
+	// ê¸°ë³¸ ê¸°ëŠ¥ ë£¨íŠ¸ë¥¼ í†µí•´ ë¬´ì‘ì • ë¡œë”©ë˜ì§€ ì•Šë„ë¡.. í•„ìš”í•  ë•Œ ê·¸ë•Œê·¸ë•Œ ë¡œë”©í•  ê²ƒ.
 	/*for (int32 PCI = 0; PCI < GetMaxPCClassNum(); ++PCI)
 	{
 		RetArray.Add(IntToPCClass((PCI)));
@@ -130,7 +130,7 @@ TArray<FCombinedPCSkillAnimID> AB2PreRenderGameMode::GetPCSkillAnimsToPreLoad()
 {
 	TArray<FCombinedPCSkillAnimID> RetArray;
 
-	// ±âº» ±â´É ·çÆ®¸¦ ÅëÇØ ¹«ÀÛÁ¤ ·ÎµùµÇÁö ¾Êµµ·Ï.. ÇÊ¿äÇÒ ¶§ ±×¶§±×¶§ ·ÎµùÇÒ °Í.
+	// ê¸°ë³¸ ê¸°ëŠ¥ ë£¨íŠ¸ë¥¼ í†µí•´ ë¬´ì‘ì • ë¡œë”©ë˜ì§€ ì•Šë„ë¡.. í•„ìš”í•  ë•Œ ê·¸ë•Œê·¸ë•Œ ë¡œë”©í•  ê²ƒ.
 
 	return RetArray;
 }
@@ -142,11 +142,11 @@ void AB2PreRenderGameMode::SetupPreRenderObjects()
 	check(PreRenderer);
 	PreRenderer->InitForPreRenderGameMode(this);
 
-	UB2PreRenderer::LoadSettings_PreRenderGM(); // Àü¿ë ¼³Á¤ µû·Î ·Îµù. ³¡³ª°í µÇµ¹·Á¾ß ÇÔ.
+	UB2PreRenderer::LoadSettings_PreRenderGM(); // ì „ìš© ì„¤ì • ë”°ë¡œ ë¡œë”©. ëë‚˜ê³  ë˜ëŒë ¤ì•¼ í•¨.
 //
-//	// Pre-render ¼Â¾÷ Ã¹ ÁøÀÔÁ¡.
+//	// Pre-render ì…‹ì—… ì²« ì§„ì…ì .
 //
-//	// °¡Àå Ã¹ ¶óÀÌÆ® ÆĞ½ººÎÅÍ ÇØ¼­ ½ÃÀÛ.
+//	// ê°€ì¥ ì²« ë¼ì´íŠ¸ íŒ¨ìŠ¤ë¶€í„° í•´ì„œ ì‹œì‘.
 //	SetupForLightPass(GetFirstLightPass());
 //	TimeSinceLastPassBegin = 0.0f;
 //	CurrentPassTickCount = 0;
@@ -154,31 +154,31 @@ void AB2PreRenderGameMode::SetupPreRenderObjects()
 //	OpenPreLoadingScreen(EPreLoadingScreenType::PLST_PreRender_First);
 //	check(CreatedPreLoadingScreen_PreRender);
 //	if (CreatedPreLoadingScreen_PreRender)
-//	{ // PreRenderGameMode ¿ë ÅØ½ºÆ® ¸ğµå·Î ¼¼ÆÃ. ÁøÇàµµ´Â ÅØ½ºÆ® ¸»°í ÇÁ·Î±×·¹½º ¹Ù·Î Ç¥½ÃÇØ º¸ÀÚ..
+//	{ // PreRenderGameMode ìš© í…ìŠ¤íŠ¸ ëª¨ë“œë¡œ ì„¸íŒ…. ì§„í–‰ë„ëŠ” í…ìŠ¤íŠ¸ ë§ê³  í”„ë¡œê·¸ë ˆìŠ¤ ë°”ë¡œ í‘œì‹œí•´ ë³´ì..
 //		CreatedPreLoadingScreen_PreRender->SetupPreRenderProgress(true, false, true);
 //	}
 //
-//	WeightedPassSumSoFar = 0.5f; // Ã³À½¿¡ ¾à°£ Ã¤¿ö³õ°í ½ÃÀÛ ¤»
+//	WeightedPassSumSoFar = 0.5f; // ì²˜ìŒì— ì•½ê°„ ì±„ì›Œë†“ê³  ì‹œì‘ ã…‹
 //	UpdateProgressDisplay();	
 //
-//	// ±âº» °ÔÀÓ¸ğµå¿¡¼­ ¼öÇàÇÏ´Â prerender ´Â °ÔÀÓ ·ÎÁ÷°ú ¾ôÈ÷Áö ¾Êµµ·Ï ÀÌ°É ¸Å¿ì ÀÛ°Ô ÁÖ¾î¾ß ÇÏ´Âµ¥ ¿©±â¼± ±×·² ÇÊ¿ä°¡ ¾ø´Ù.
-//	// ¿ÀÈ÷·Á ÆÄÆ¼Å¬ ÀÌÆåÆ® °°Àº °ÍµéÀÌ »¡¸® µğ½ºÇÃ·¹ÀÌ µÇ¾î¼­ ·»´õ¸µÀÌ ÃÖ´ëÇÑ ¸¹ÀÌ µÇµµ·Ï TimeScale À» ¾à°£ Å°¿ï ¼öµµ..
+//	// ê¸°ë³¸ ê²Œì„ëª¨ë“œì—ì„œ ìˆ˜í–‰í•˜ëŠ” prerender ëŠ” ê²Œì„ ë¡œì§ê³¼ ì–½íˆì§€ ì•Šë„ë¡ ì´ê±¸ ë§¤ìš° ì‘ê²Œ ì£¼ì–´ì•¼ í•˜ëŠ”ë° ì—¬ê¸°ì„  ê·¸ëŸ´ í•„ìš”ê°€ ì—†ë‹¤.
+//	// ì˜¤íˆë ¤ íŒŒí‹°í´ ì´í™íŠ¸ ê°™ì€ ê²ƒë“¤ì´ ë¹¨ë¦¬ ë””ìŠ¤í”Œë ˆì´ ë˜ì–´ì„œ ë Œë”ë§ì´ ìµœëŒ€í•œ ë§ì´ ë˜ë„ë¡ TimeScale ì„ ì•½ê°„ í‚¤ìš¸ ìˆ˜ë„..
 //	SetWholeGameTimeScale(
-//#if PLATFORM_WINDOWS // ¿©±ä ÀÇ¹Ì°¡ ¾ø°í ±×³É ±â´É È®ÀÎ Â÷¿øÀÌ¹Ç·Î Å¸ÀÓ ½ºÄÉÀÏÀ» Å©°Ô ÁÖ¾î¼­ »¡¸® ³Ñ¾î°¡µµ·Ï
+//#if PLATFORM_WINDOWS // ì—¬ê¸´ ì˜ë¯¸ê°€ ì—†ê³  ê·¸ëƒ¥ ê¸°ëŠ¥ í™•ì¸ ì°¨ì›ì´ë¯€ë¡œ íƒ€ì„ ìŠ¤ì¼€ì¼ì„ í¬ê²Œ ì£¼ì–´ì„œ ë¹¨ë¦¬ ë„˜ì–´ê°€ë„ë¡
 //		PreRenderTimeScale * 10.0f
 //#else
 //		PreRenderTimeScale
 //#endif
 //	);
 	
-	B2GMLoadingProgCollector::StepCustom(0.7f); // ¿©±â¼­ ³ª¸§´ë·Î Ç¥½ÃÇÏ´Â Progress ¸»°í ÀÌ PreRender ·¹º§À» ·ÎµùÇÏ´Â progress.
+	B2GMLoadingProgCollector::StepCustom(0.7f); // ì—¬ê¸°ì„œ ë‚˜ë¦„ëŒ€ë¡œ í‘œì‹œí•˜ëŠ” Progress ë§ê³  ì´ PreRender ë ˆë²¨ì„ ë¡œë”©í•˜ëŠ” progress.
 }
 
 bool AB2PreRenderGameMode::IsInPreRenderPhase() const
 {
 	return (CurrentLightPass != EPRGMLightPass::LP_None && CurrentLightPass != EPRGMLightPass::LP_End &&
 		CurrentContentTypePass != EPRGMContentTypePass::CTP_None && CurrentContentTypePass != EPRGMContentTypePass::CTP_End);
-	// ¿©±â¼­ CurrentPCClassPass ´Â Ã¼Å©ÇÏÁö ¾Ê´Â´Ù.
+	// ì—¬ê¸°ì„œ CurrentPCClassPass ëŠ” ì²´í¬í•˜ì§€ ì•ŠëŠ”ë‹¤.
 }
 
 void AB2PreRenderGameMode::UpdateForPreRenderObjects()
@@ -188,25 +188,25 @@ void AB2PreRenderGameMode::UpdateForPreRenderObjects()
 	if (PreRenderer)
 	{
 		const bool LeastTimeMet = (TimeSinceLastPassBegin >= SinglePassLeastTime);
-		// ³»ºÎ¿¡¼­´Â tick Ä«¿îÆ®µµ ÇÏ°í ¿©±â¼± ³Ñ¾î°¡±â À§ÇÑ ÃÖ¼Ò ½Ã°£µµ ÃøÁ¤
+		// ë‚´ë¶€ì—ì„œëŠ” tick ì¹´ìš´íŠ¸ë„ í•˜ê³  ì—¬ê¸°ì„  ë„˜ì–´ê°€ê¸° ìœ„í•œ ìµœì†Œ ì‹œê°„ë„ ì¸¡ì •
 		PreRenderer->UpdateForPreRenderObjects(!LeastTimeMet);
 
 		if (LeastTimeMet && !PreRenderer->HasPreRenderDummyToProcess())
 		{
-			ProceedToNextPass(); // ´ÙÀ½ ´Ü°è·Î ³Ñ¾î°¡µçÁö È¤Àº Á¾·á.
+			ProceedToNextPass(); // ë‹¤ìŒ ë‹¨ê³„ë¡œ ë„˜ì–´ê°€ë“ ì§€ í˜¹ì€ ì¢…ë£Œ.
 		}
 	}
 }
 
 void AB2PreRenderGameMode::ProceedToNextPass()
 {
-	// Çö Pass °¡ ³¡³­ ½ÃÁ¡¿¡ ´ÙÀ½ Pass ·Î ³Ñ¾î°¡µçÁö, È¤Àº ÀÌ¹øÀÌ ¿ÏÀü ¸¶Áö¸· pass ÀÌ¸é Á¾·á.
-	// PreRenderPhase ´Â ¾²Áö ¾Ê°í ´ë½Å CurrentLightPass ¿Í CurrentContentTypePass ¸¦ »ç¿ë.
+	// í˜„ Pass ê°€ ëë‚œ ì‹œì ì— ë‹¤ìŒ Pass ë¡œ ë„˜ì–´ê°€ë“ ì§€, í˜¹ì€ ì´ë²ˆì´ ì™„ì „ ë§ˆì§€ë§‰ pass ì´ë©´ ì¢…ë£Œ.
+	// PreRenderPhase ëŠ” ì“°ì§€ ì•Šê³  ëŒ€ì‹  CurrentLightPass ì™€ CurrentContentTypePass ë¥¼ ì‚¬ìš©.
 
 	CollectGarbage(GARBAGE_COLLECTION_KEEPFLAGS);
 
 	if (PreRenderer) {
-		PreRenderer->EnsureSaveCaches(); // È¤¿©³ª ¸ğ¸¦ Å©·¡½¬¸¦ ´ëºñÇÑ ¼¼ÀÌºê?
+		PreRenderer->EnsureSaveCaches(); // í˜¹ì—¬ë‚˜ ëª¨ë¥¼ í¬ë˜ì‰¬ë¥¼ ëŒ€ë¹„í•œ ì„¸ì´ë¸Œ?
 	}
 
 	if (IsLastLightPass(CurrentLightPass) && IsLastContentTypePass(CurrentContentTypePass))
@@ -219,7 +219,7 @@ void AB2PreRenderGameMode::ProceedToNextPass()
 	}
 	else
 	{
-		// ContentTypePass ¸¦ ³Ñ°Ü¾ß ÇÏ´Â °æ¿ìÀÎµ¥ PC ³ª PCSkillAnim ÀÇ °æ¿ì ÇÏÀ§ pass °¡ ¶Ç ÀÖÀ¸´Ï ±×°É Ã¼Å©
+		// ContentTypePass ë¥¼ ë„˜ê²¨ì•¼ í•˜ëŠ” ê²½ìš°ì¸ë° PC ë‚˜ PCSkillAnim ì˜ ê²½ìš° í•˜ìœ„ pass ê°€ ë˜ ìˆìœ¼ë‹ˆ ê·¸ê±¸ ì²´í¬
 		if (CurrentContentTypePass == EPRGMContentTypePass::CTP_PC && !IsLastPCClassPass(CurrentPCClassPass))
 		{
 			SetupForPCClassPass(IntToPCClass(PCClassToInt(CurrentPCClassPass) + 1));
@@ -234,7 +234,7 @@ void AB2PreRenderGameMode::ProceedToNextPass()
 		}
 	}
 
-	// ¿øÄ¢´ë·Î¶ó¸é SetupForLightPass ÀÇ ÀÏºÎ°¡ µÇ¾î¾ß ÇÏ´Âµ¥ ¿¹¿Ü ÄÉÀÌ½º°¡ Á» ÀÖ¾î¼­.. ¹Ùº¸°°Áö¸¸ dynamic point light ¼Â¾÷À» ¿©±â¼­ ´Ù½Ã ¤Ñ¤Ñ
+	// ì›ì¹™ëŒ€ë¡œë¼ë©´ SetupForLightPass ì˜ ì¼ë¶€ê°€ ë˜ì–´ì•¼ í•˜ëŠ”ë° ì˜ˆì™¸ ì¼€ì´ìŠ¤ê°€ ì¢€ ìˆì–´ì„œ.. ë°”ë³´ê°™ì§€ë§Œ dynamic point light ì…‹ì—…ì„ ì—¬ê¸°ì„œ ë‹¤ì‹œ ã…¡ã…¡
 	if (PreRenderer)
 	{
 		PreRenderer->ConditionalRestoreFromPreRenderLightEnvForDynPL();
@@ -244,7 +244,7 @@ void AB2PreRenderGameMode::ProceedToNextPass()
 	TimeSinceLastPassBegin = 0.0f;
 	CurrentPassTickCount = 0;
 	
-	// Pass ³Ñ¾î°¥ ¶§ ÁøÇàµµ ¾÷µ¥ÀÌÆ®
+	// Pass ë„˜ì–´ê°ˆ ë•Œ ì§„í–‰ë„ ì—…ë°ì´íŠ¸
 	WeightedPassSumSoFar += ((CurrentLightPass == GetFirstLightPass()) ? GetFistLightPassProgressWeight() : 1.0f);
 	UpdateProgressDisplay();
 }
@@ -257,32 +257,32 @@ void AB2PreRenderGameMode::SetupForLightPass(EPRGMLightPass InSetupLightPass)
 	CurrentLightPass = InSetupLightPass;
 	
 	if (PreRenderer)
-	{ // ¶óÀÌÆÃ ¼Â¾÷ÇÏ±â Àü¿¡ ¸®¼ÂºÎÅÍ.
+	{ // ë¼ì´íŒ… ì…‹ì—…í•˜ê¸° ì „ì— ë¦¬ì…‹ë¶€í„°.
 		PreRenderer->ConditionalRestoreFromPreRenderLightEnvForDynPL();
 		PreRenderer->ConditionalRestoreFromPreRenderLightEnvForDirL();
 	}
 
 	switch (CurrentLightPass)
 	{
-		// ³Ê¹« ¸¹Àº Á¾·ùÀÇ light pass ´Â Áö¾ç.. Ã³À½¿¡ ¿©±â¿¡ ³Ê¹« ¸¹Àº ½Ã°£À» µéÀÌ´Â °Íµµ ¹®Á¦°¡ µÉ ¼ö ÀÖ°í, ¾î¶² °ÍµéÀº ½ÇÁúÀûÀÎ È¿¿ë¼ºÀÌ ÀÇ½ÉµÇ±âµµ ÇÏ°í..
+		// ë„ˆë¬´ ë§ì€ ì¢…ë¥˜ì˜ light pass ëŠ” ì§€ì–‘.. ì²˜ìŒì— ì—¬ê¸°ì— ë„ˆë¬´ ë§ì€ ì‹œê°„ì„ ë“¤ì´ëŠ” ê²ƒë„ ë¬¸ì œê°€ ë  ìˆ˜ ìˆê³ , ì–´ë–¤ ê²ƒë“¤ì€ ì‹¤ì§ˆì ì¸ íš¨ìš©ì„±ì´ ì˜ì‹¬ë˜ê¸°ë„ í•˜ê³ ..
 
 	case EPRGMLightPass::LP_StationaryDirectionalLight:
 		if (PreRenderer) {
 			PreRenderer->ConditionalSetupPreRenderLightEnvForDirL(EComponentMobility::Stationary, true);
-			PreRenderer->ConditionalSetupPreRenderLightEnvForDynPL(true); // DirectionalLight ÆĞ½º¿¡¼­´Â PointLight µµ °°ÀÌ ¼Â¾÷.. ¿ì¸® ½ÇÁ¦ Á¶¸í È¯°æÀ¸·Î
+			PreRenderer->ConditionalSetupPreRenderLightEnvForDynPL(true); // DirectionalLight íŒ¨ìŠ¤ì—ì„œëŠ” PointLight ë„ ê°™ì´ ì…‹ì—….. ìš°ë¦¬ ì‹¤ì œ ì¡°ëª… í™˜ê²½ìœ¼ë¡œ
 		}
 		break;
 #if _PRE_RENDER_GM_MORE_LIGHT_PASS && !_PRE_RENDER_GM_MOVABLE_EXTRA_ONLY
 	case EPRGMLightPass::LP_MovableDirectionalLight:
 		if (PreRenderer) {
 			PreRenderer->ConditionalSetupPreRenderLightEnvForDirL(EComponentMobility::Movable, true);
-			PreRenderer->ConditionalSetupPreRenderLightEnvForDynPL(true); // DirectionalLight ÆĞ½º¿¡¼­´Â PointLight µµ °°ÀÌ ¼Â¾÷.. ¿ì¸® ½ÇÁ¦ Á¶¸í È¯°æÀ¸·Î
+			PreRenderer->ConditionalSetupPreRenderLightEnvForDynPL(true); // DirectionalLight íŒ¨ìŠ¤ì—ì„œëŠ” PointLight ë„ ê°™ì´ ì…‹ì—….. ìš°ë¦¬ ì‹¤ì œ ì¡°ëª… í™˜ê²½ìœ¼ë¡œ
 		}
 		break;
 #endif
 	}
 	
-	// LightPass ´Â ContentTypePass º¸´Ù ¹Ù±ùÀÌ±â ¶§¹®¿¡ ContentTypePass ¸¦ Ã³À½ºÎÅÍ ½ÃÀÛÇÑ´Ù.
+	// LightPass ëŠ” ContentTypePass ë³´ë‹¤ ë°”ê¹¥ì´ê¸° ë•Œë¬¸ì— ContentTypePass ë¥¼ ì²˜ìŒë¶€í„° ì‹œì‘í•œë‹¤.
 	SetupForContentTypePass(GetFirstContentTypePass());
 }
 
@@ -301,12 +301,12 @@ void AB2PreRenderGameMode::SetupForContentTypePass(EPRGMContentTypePass InConten
 		}
 		break;
 	case EPRGMContentTypePass::CTP_PC:
-		// PC Pass ÀÇ °æ¿ì °¢ Å¬·¡½º º° ÇÏÀ§ ÆĞ½º°¡ ÀÖÀ¸¸ç ±× Ã¹ PCClass ÆĞ½º¸¦ ½ÃÀÛ.
+		// PC Pass ì˜ ê²½ìš° ê° í´ë˜ìŠ¤ ë³„ í•˜ìœ„ íŒ¨ìŠ¤ê°€ ìˆìœ¼ë©° ê·¸ ì²« PCClass íŒ¨ìŠ¤ë¥¼ ì‹œì‘.
 		SetupForPCClassPass(GetFirstPCClassPass());
 
 		break;
 	case EPRGMContentTypePass::CTP_PC_SkillAnim:
-		// PC SkillAnim Pass µµ °æ¿ì °¢ Å¬·¡½º º° ÇÏÀ§ ÆĞ½º Áß Ã¹ PCClass ÆĞ½º¸¦ ½ÃÀÛ.
+		// PC SkillAnim Pass ë„ ê²½ìš° ê° í´ë˜ìŠ¤ ë³„ í•˜ìœ„ íŒ¨ìŠ¤ ì¤‘ ì²« PCClass íŒ¨ìŠ¤ë¥¼ ì‹œì‘.
 		SetupForPCSkillAnimPass(GetFirstPCClassPass());
 		break;
 	case EPRGMContentTypePass::CTP_Extra_NPC:
@@ -329,7 +329,7 @@ void AB2PreRenderGameMode::SetupForContentTypePass(EPRGMContentTypePass InConten
 
 	if ((int32)CurrentContentTypePass >= (int32)EPRGMContentTypePass::CTP_Extra_NPC)
 	{
-		// ¿ÏÀü ³¡±îÁö´Â ¾Æ´Ï´õ¶óµµ Àû´çÈ÷ ÈÄ¹İºÎ¿¡¼­ ¿Ï·á ¸¶Å©.
+		// ì™„ì „ ëê¹Œì§€ëŠ” ì•„ë‹ˆë”ë¼ë„ ì ë‹¹íˆ í›„ë°˜ë¶€ì—ì„œ ì™„ë£Œ ë§ˆí¬.
 		UB2PreRenderer::MarkPreRenderLevelGoneThrough();
 		UB2PreRenderer::SaveCompleteState();
 	}
@@ -337,7 +337,7 @@ void AB2PreRenderGameMode::SetupForContentTypePass(EPRGMContentTypePass InConten
 
 void AB2PreRenderGameMode::SetupForPCClassPass(EPCClass InPCClass)
 {
-	// EPRGMContentTypePass Áß CTP_PC ÇÏÀ§ ÆĞ½º
+	// EPRGMContentTypePass ì¤‘ CTP_PC í•˜ìœ„ íŒ¨ìŠ¤
 
 	B2_SCOPED_TRACK_LOG(FString::Printf(TEXT("AB2PreRenderGameMode::SetupForPCClass %d"), PCClassToInt(InPCClass)));
 
@@ -352,7 +352,7 @@ void AB2PreRenderGameMode::SetupForPCClassPass(EPCClass InPCClass)
 
 void AB2PreRenderGameMode::SetupForPCSkillAnimPass(EPCClass InPCClass)
 {
-	// EPRGMContentTypePass Áß CTP_PC_SkillAnim ÇÏÀ§ ÆĞ½º
+	// EPRGMContentTypePass ì¤‘ CTP_PC_SkillAnim í•˜ìœ„ íŒ¨ìŠ¤
 
 	B2_SCOPED_TRACK_LOG(FString::Printf(TEXT("AB2PreRenderGameMode::SetupForPCSkillAnimPass %d"), PCClassToInt(InPCClass)));
 
@@ -368,15 +368,15 @@ void AB2PreRenderGameMode::SetupForPCSkillAnimPass(EPCClass InPCClass)
 void AB2PreRenderGameMode::SetupForExtraCSMPass()
 {
 	if (PreRenderer 
-		&& ShouldDoExtraCSMPass() // ½ºÅµÇÏ°Ô µÇ¸é ±×³É ¾Æ¹«°Íµµ ¾ø´Â Ã¤·Î ½Ã°£ÀÌ Áö³ª¸é ´ÙÀ½ ÆĞ½º·Î ³Ñ¾î°¡°Ô µÊ.
+		&& ShouldDoExtraCSMPass() // ìŠ¤í‚µí•˜ê²Œ ë˜ë©´ ê·¸ëƒ¥ ì•„ë¬´ê²ƒë„ ì—†ëŠ” ì±„ë¡œ ì‹œê°„ì´ ì§€ë‚˜ë©´ ë‹¤ìŒ íŒ¨ìŠ¤ë¡œ ë„˜ì–´ê°€ê²Œ ë¨.
 		)
-	{ // LightPass Ã³·³ ¶óÀÌÆÃ È¯°æÀ» ¼Â¾÷ÇÏ´Âµ¥ ContentTypePass ÀÇ ÀÏºÎ¸¸ »ç¿ëÇÏ¹Ç·Î LightPass ¿¡ ³Ö±âµµ ¾Ö¸ÅÇÏ°í ÇØ¼­..
+	{ // LightPass ì²˜ëŸ¼ ë¼ì´íŒ… í™˜ê²½ì„ ì…‹ì—…í•˜ëŠ”ë° ContentTypePass ì˜ ì¼ë¶€ë§Œ ì‚¬ìš©í•˜ë¯€ë¡œ LightPass ì— ë„£ê¸°ë„ ì• ë§¤í•˜ê³  í•´ì„œ..
 		PreRenderer->ConditionalRestoreFromPreRenderLightEnvForDynPL();
 		PreRenderer->ConditionalRestoreFromPreRenderLightEnvForDirL();
 		PreRenderer->ConditionalSetupPreRenderLightEnvForDirL(EComponentMobility::Stationary, true, true);
 		PreRenderer->ConditionalSetupPreRenderLightEnvForDynPL(true);
 
-		// PCClass ÇÏ³ª¶û NPCClass ¼Â¾÷
+		// PCClass í•˜ë‚˜ë‘ NPCClass ì…‹ì—…
 		PreRenderer->SetupForPreRenderGM_PCClassPass(EPCClass::EPC_Assassin);
 		PreRenderer->SetupForPreRenderGM_Extra(true, false, false);
 	}
@@ -386,21 +386,21 @@ void AB2PreRenderGameMode::SetupForExtraFxAndOtherPass()
 {
 	check(CurrentContentTypePass == EPRGMContentTypePass::CTP_Extra_FX);
 
-	//if (PreRenderer && ShouldDoExtraFxPass()/*ShouldDoExtraFxPass ´Â ExtraFX ¿¡¸¸ ¿µÇâ. Others ´Â ±×³É ÇÏ°í ¤»*/) 
+	//if (PreRenderer && ShouldDoExtraFxPass()/*ShouldDoExtraFxPass ëŠ” ExtraFX ì—ë§Œ ì˜í–¥. Others ëŠ” ê·¸ëƒ¥ í•˜ê³  ã…‹*/) 
 	//{
 	//	PreRenderer->SetupForPreRenderGM_Extra(false, true, true);
 	//}
 
 	//{
-	//	// Ã¹ ÀüÅõ¿¡¼­ ½½Â½ ²÷±èÀ» À¯¹ßÇÏ´Â DamageNum ÀÎµ¥ ¿©±â¿¡ ²Å»ç¸® ³¢¿ö³ÖÀ½
-	//	// BuffModeEffectInfo µµ ÇÏ¸é ÁÁÀ¸·Á³ª
+	//	// ì²« ì „íˆ¬ì—ì„œ ìŠ¬ì© ëŠê¹€ì„ ìœ ë°œí•˜ëŠ” DamageNum ì¸ë° ì—¬ê¸°ì— ê¼½ì‚¬ë¦¬ ë¼ì›Œë„£ìŒ
+	//	// BuffModeEffectInfo ë„ í•˜ë©´ ì¢‹ìœ¼ë ¤ë‚˜
 	//	ABladeIIPlayer* LocalB2Player = Cast<ABladeIIPlayer>(UGameplayStatics::GetLocalPlayerCharacter(this));
 	//	if (LocalB2Player)
 	//	{
 	//		CharacterTakeDamageClass<ABladeIICharacter*, float, bool>::GetInstance().Signal(LocalB2Player, 1000.0f, true);
 	//	}
 
-	//	// Á¤È®È÷ Extra ÆĞ½º¿Í °ü·ÃµÈ °Ç ¾Æ´Ñµ¥ ÀÌÂë¿¡¼­ Pre-render ·¹º§¿¡ ¼³Ä¡ÇÑ ¿ÀºêÁ§Æ®µéÀÇ ·»´õ¸µÀÌ º¸´Ù È®½ÇÈ÷ µé¾î°¡µµ·Ï ÇÏ±â À§ÇÑ ¼Â¾÷À» ÇØ º½.
+	//	// ì •í™•íˆ Extra íŒ¨ìŠ¤ì™€ ê´€ë ¨ëœ ê±´ ì•„ë‹Œë° ì´ì¯¤ì—ì„œ Pre-render ë ˆë²¨ì— ì„¤ì¹˜í•œ ì˜¤ë¸Œì íŠ¸ë“¤ì˜ ë Œë”ë§ì´ ë³´ë‹¤ í™•ì‹¤íˆ ë“¤ì–´ê°€ë„ë¡ í•˜ê¸° ìœ„í•œ ì…‹ì—…ì„ í•´ ë´„.
 	//	for (TObjectIterator<UPrimitiveComponent> It; It; ++It)
 	//	{
 	//		UPrimitiveComponent* ThisPrimComp = *It;
@@ -421,29 +421,29 @@ void AB2PreRenderGameMode::SetupForMovableLightExtraOnlyPass()
 {
 	check(CurrentContentTypePass == EPRGMContentTypePass::CTP_Extra_MovableDirLight);
 
-	// MovableDirLight °¡ ½ÇÁ¦·Î »ç¿ëµÇ´Â È¯°æÀÌ ·Îºñ»ÓÀÌ´Ù º¸´Ï MovableDirLight ÆĞ½º¸¦ ÀüÃ¼ÀûÀ¸·Î ÇÏÁö ¾Ê°í Æ¯Á¤ ´ë»óµé¿¡ ´ëÇØ¼­¸¸ ½ÃµµÇÏ´Â °Å.
+	// MovableDirLight ê°€ ì‹¤ì œë¡œ ì‚¬ìš©ë˜ëŠ” í™˜ê²½ì´ ë¡œë¹„ë¿ì´ë‹¤ ë³´ë‹ˆ MovableDirLight íŒ¨ìŠ¤ë¥¼ ì „ì²´ì ìœ¼ë¡œ í•˜ì§€ ì•Šê³  íŠ¹ì • ëŒ€ìƒë“¤ì— ëŒ€í•´ì„œë§Œ ì‹œë„í•˜ëŠ” ê±°.
 	if (PreRenderer && ShouldDoMovableLightExtraOnlyPass())
 	{
-		// ´Ü, ÀÌ °æ¿ì ¿©±â¼­ ¶óÀÌÆ® È¯°æÀ» ¹Ù²Ù¹Ç·Î.. ContentTypePass ¿¡¼­´Â ¸¶Áö¸·ÀÏ ÇÊ¿ä°¡ ÀÖ´Ù. ¾È ±×·³ ²¿ÀÓ.
+		// ë‹¨, ì´ ê²½ìš° ì—¬ê¸°ì„œ ë¼ì´íŠ¸ í™˜ê²½ì„ ë°”ê¾¸ë¯€ë¡œ.. ContentTypePass ì—ì„œëŠ” ë§ˆì§€ë§‰ì¼ í•„ìš”ê°€ ìˆë‹¤. ì•ˆ ê·¸ëŸ¼ ê¼¬ì„.
 		check(IsLastContentTypePass(EPRGMContentTypePass::CTP_Extra_MovableDirLight));
 		PreRenderer->ConditionalRestoreFromPreRenderLightEnvForDirL();
 		PreRenderer->ConditionalSetupPreRenderLightEnvForDirL(EComponentMobility::Movable, true);
 				
-		PreRenderer->SetupForPreRenderGM_Extra(false, false, true); // Extra Other ¸¸..
+		PreRenderer->SetupForPreRenderGM_Extra(false, false, true); // Extra Other ë§Œ..
 	}
 }
 #endif
 
 bool AB2PreRenderGameMode::ShouldDoExtraCSMPass() const
 {
-	// Scalability ¼³Á¤ÀÌ¾ß »ç¿ëÀÚ ¼±ÅÃ¿¡ ÀÇÇØ ¹Ù²ğ ¼öµµ ÀÖÁö¸¸ PreRenderGameMode °¡ Ã³À½ ½ÇÇà¿¡ »ç¿ëµÇ´Â °ÍÀÓÀ» »ı°¢ÇÏ¸é ±âº»¼³Á¤¿¡¼­ shadow °¡ »ç¿ëµÇÁö ¾ÊÀ» Àú»ç¾ç¿¡¼± ½ºÅµ.
+	// Scalability ì„¤ì •ì´ì•¼ ì‚¬ìš©ì ì„ íƒì— ì˜í•´ ë°”ë€” ìˆ˜ë„ ìˆì§€ë§Œ PreRenderGameMode ê°€ ì²˜ìŒ ì‹¤í–‰ì— ì‚¬ìš©ë˜ëŠ” ê²ƒì„ì„ ìƒê°í•˜ë©´ ê¸°ë³¸ì„¤ì •ì—ì„œ shadow ê°€ ì‚¬ìš©ë˜ì§€ ì•Šì„ ì €ì‚¬ì–‘ì—ì„  ìŠ¤í‚µ.
 	static IConsoleVariable* ShadowQualityCVar = IConsoleManager::Get().FindConsoleVariable(TEXT("r.ShadowQuality"));
 	check(ShadowQualityCVar);
 	return (ShadowQualityCVar && ShadowQualityCVar->GetInt() > 0);
 }
 bool AB2PreRenderGameMode::ShouldDoExtraFxPass() const
 {
-	//// Effect quality ·¹º§ÀÌ ³·´Ù°í ÇØ¼­ ¼ÎÀÌ´õ pre-compile ÀÌ ÇÊ¿ä¾ø´Â °Ç ¾Æ´ÏÁö¸¸ pre-render ÀÇ ºÎ´ãÀÌ Å¬ ¼ö ÀÖÀ¸¹Ç·Î ½ºÅµ
+	//// Effect quality ë ˆë²¨ì´ ë‚®ë‹¤ê³  í•´ì„œ ì…°ì´ë” pre-compile ì´ í•„ìš”ì—†ëŠ” ê±´ ì•„ë‹ˆì§€ë§Œ pre-render ì˜ ë¶€ë‹´ì´ í´ ìˆ˜ ìˆìœ¼ë¯€ë¡œ ìŠ¤í‚µ
 	//return (Scalability::GetQualityLevels_Effects() > 0);
 	return true;
 }
@@ -451,7 +451,7 @@ bool AB2PreRenderGameMode::ShouldDoExtraFxPass() const
 #if _PRE_RENDER_GM_MOVABLE_EXTRA_ONLY
 bool AB2PreRenderGameMode::ShouldDoMovableLightExtraOnlyPass() const
 {
-	return ShouldDoExtraCSMPass(); // Àû´çÈ÷ ½Ã½ºÅÛ »ç¾ç ºÁ °¡¸é¼­ µ¿ÀÏÇÑ ±âÁØÀ» Àû¿ëÇÏ·Á´Â °Å.
+	return ShouldDoExtraCSMPass(); // ì ë‹¹íˆ ì‹œìŠ¤í…œ ì‚¬ì–‘ ë´ ê°€ë©´ì„œ ë™ì¼í•œ ê¸°ì¤€ì„ ì ìš©í•˜ë ¤ëŠ” ê±°.
 }
 #endif
 
@@ -462,14 +462,14 @@ void AB2PreRenderGameMode::OnCompleteAll()
 	//check(PreRenderer);
 	//if (PreRenderer) 
 	//{
-	//	// ÇöÀç ·¹º§¿¡¼­ Pre-render °¡ ÇÑ¹ø ¿Ï·áµÈ °ÍÀ¸·Î ±â·Ï.. ÇÏ´Â °Ô º°·Î ÀÇ¹Ì´Â ¾ø´Ù. ½ÇÁ¦·Î´Â ·Îºñ¸ÊÀÌ¶û °¢ Å¸ÀÔµé¿¡ ´ëÇØ ¸¶Å©°¡ µÇ¾î¾ß ÇÒ Å×´Ï. ±×·¡µµ ¾È ÇØÁÙ ÀÌÀ¯´Â ¾øÁö.
+	//	// í˜„ì¬ ë ˆë²¨ì—ì„œ Pre-render ê°€ í•œë²ˆ ì™„ë£Œëœ ê²ƒìœ¼ë¡œ ê¸°ë¡.. í•˜ëŠ” ê²Œ ë³„ë¡œ ì˜ë¯¸ëŠ” ì—†ë‹¤. ì‹¤ì œë¡œëŠ” ë¡œë¹„ë§µì´ë‘ ê° íƒ€ì…ë“¤ì— ëŒ€í•´ ë§ˆí¬ê°€ ë˜ì–´ì•¼ í•  í…Œë‹ˆ. ê·¸ë˜ë„ ì•ˆ í•´ì¤„ ì´ìœ ëŠ” ì—†ì§€.
 	//	PreRenderer->MarkCurrentWorldLevelPreRendered();
 	//	PreRenderer->OnPreRenderComplete();
-	//	PreRenderer->ConditionalBeginDestroy(); // ¹º°¡ »¡¸® Á¦°Å ¸¶Å©¶óµµ ÇØ ÁÖ¾î¾ß ¾È½ÉÀÌ µÉ µíÇÑ ±âºĞ
+	//	PreRenderer->ConditionalBeginDestroy(); // ë­”ê°€ ë¹¨ë¦¬ ì œê±° ë§ˆí¬ë¼ë„ í•´ ì£¼ì–´ì•¼ ì•ˆì‹¬ì´ ë  ë“¯í•œ ê¸°ë¶„
 	//}
 	//PreRenderer = nullptr;
 
-	//// ·¹º§¿¡ ¹èÄ¡µÈ °ÍµéÀÌ¾ß ÀÌ°É ¸®¼Â ¾ÈÇØµµ µÇÁö¸¸ ·çÆ®¼Â ¿ÀºêÁ§Æ®µµ ÀÖ°í ÇØ¼­.. ¿©ÇÏ°£ ExcessiveRenderProcessing Àº »ç¿ë ¸ñÀûÀÌ ³¡³ª¸é ¹Ù·Î ¸®¼ÂÇØ¾ß.
+	//// ë ˆë²¨ì— ë°°ì¹˜ëœ ê²ƒë“¤ì´ì•¼ ì´ê±¸ ë¦¬ì…‹ ì•ˆí•´ë„ ë˜ì§€ë§Œ ë£¨íŠ¸ì…‹ ì˜¤ë¸Œì íŠ¸ë„ ìˆê³  í•´ì„œ.. ì—¬í•˜ê°„ ExcessiveRenderProcessing ì€ ì‚¬ìš© ëª©ì ì´ ëë‚˜ë©´ ë°”ë¡œ ë¦¬ì…‹í•´ì•¼.
 	//for (TObjectIterator<UPrimitiveComponent> It; It; ++It)
 	//{
 	//	UPrimitiveComponent* ThisPrimComp = *It;
@@ -482,15 +482,15 @@ void AB2PreRenderGameMode::OnCompleteAll()
 	//CurrentLightPass = EPRGMLightPass::LP_End;
 	//CurrentContentTypePass = EPRGMContentTypePass::CTP_End;
 
-	//// ¿©±â¼­ ´İÀ¸·Á°í Çß´õ´Ï ÇÑ ÇÁ·¹ÀÓ »ìÂ¦ µå·¯³². ¾îÂ÷ÇÇ ÀÌ·¸°Ô ¾È ÇØµµ Á¦°ÅµÉ °Í.
+	//// ì—¬ê¸°ì„œ ë‹«ìœ¼ë ¤ê³  í–ˆë”ë‹ˆ í•œ í”„ë ˆì„ ì‚´ì§ ë“œëŸ¬ë‚¨. ì–´ì°¨í”¼ ì´ë ‡ê²Œ ì•ˆ í•´ë„ ì œê±°ë  ê²ƒ.
 	////ClosePreLoadingScreen(EPreLoadingScreenType::PLST_PreRender_First);
 
-	//UB2PreRenderer::LoadSettings(); // PreRenderGM ¹öÀüÀ¸·Î º°µµ ¼³Á¤ ·ÎµùÇß´ø °Å µÇµ¹¸² 
+	//UB2PreRenderer::LoadSettings(); // PreRenderGM ë²„ì „ìœ¼ë¡œ ë³„ë„ ì„¤ì • ë¡œë”©í–ˆë˜ ê±° ë˜ëŒë¦¼ 
 
-	//// ¸ğµç ÁØºñ´Â ³¡³µ¾î. °¡ÀÚ, ºí·¹ÀÌµåII ÀÇ ¼¼»óÀ¸·Î.
+	//// ëª¨ë“  ì¤€ë¹„ëŠ” ëë‚¬ì–´. ê°€ì, ë¸”ë ˆì´ë“œII ì˜ ì„¸ìƒìœ¼ë¡œ.
 
-	//// ½ÇÁ¦ À¯Àú ·çÆ®·Î¼­´Â ÀÌ°Ç ¼³Ä¡ ÈÄ Ã³À½ Á¢ÇÏ°Ô µÉ ·çÆ®ÀÌÁö¸¸ ±×·¸´Ù°í ¿©±â¼­ Æ©Åä¸®¾ó ¸ÊÀ» ·ÎµùÇÏ¸é ÀÚÄ© ´Ù¸¥ »óÈ²¿¡¼­ ²¿ÀÏ ¼ö ÀÖ´Ù.. 
-	//// ÀÏ´Ü ·Îºñ·Î °¬´Ù°¡ °Å±â¼­ Æ©Åä¸®¾ó ¸ÊÀ¸·Î °¡´Â °É·Î.
+	//// ì‹¤ì œ ìœ ì € ë£¨íŠ¸ë¡œì„œëŠ” ì´ê±´ ì„¤ì¹˜ í›„ ì²˜ìŒ ì ‘í•˜ê²Œ ë  ë£¨íŠ¸ì´ì§€ë§Œ ê·¸ë ‡ë‹¤ê³  ì—¬ê¸°ì„œ íŠœí† ë¦¬ì–¼ ë§µì„ ë¡œë”©í•˜ë©´ ìì¹« ë‹¤ë¥¸ ìƒí™©ì—ì„œ ê¼¬ì¼ ìˆ˜ ìˆë‹¤.. 
+	//// ì¼ë‹¨ ë¡œë¹„ë¡œ ê°”ë‹¤ê°€ ê±°ê¸°ì„œ íŠœí† ë¦¬ì–¼ ë§µìœ¼ë¡œ ê°€ëŠ” ê±¸ë¡œ.
 	//OpenBladeIILobbyCommon(this);
 }
 
@@ -499,7 +499,7 @@ void AB2PreRenderGameMode::UpdateProgressDisplay()
 	//float ProgressScale = FMath::Clamp( WeightedPassSumSoFar / (float)GetTotalWeightedPassNum(), 0.0f, 1.0f);
 
 	//if (CreatedPreLoadingScreen_PreRender)
-	//{ // UB2PreLoadingScreen ¾È¿¡¼­µµ ÀÚÃ¼ ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ µ¹¾Æ°¥ °Í.
+	//{ // UB2PreLoadingScreen ì•ˆì—ì„œë„ ìì²´ ì• ë‹ˆë©”ì´ì…˜ì´ ëŒì•„ê°ˆ ê²ƒ.
 	//	CreatedPreLoadingScreen_PreRender->UpdatePreRenderProgressScale(ProgressScale);
 	//}
 }
@@ -514,7 +514,7 @@ bool CheckBladeIIPreRenderGameAvailability()
 		return false;
 	}
 
-	// ½ÇÁ¦ ¸ÊÀ» ¸øÃ£À¸¸é ´Ù¸¥ ½ÄÀ¸·Î ÇÚµé¸µÀ» ÇÏµµ·Ï false ¸®ÅÏ.
+	// ì‹¤ì œ ë§µì„ ëª»ì°¾ìœ¼ë©´ ë‹¤ë¥¸ ì‹ìœ¼ë¡œ í•¸ë“¤ë§ì„ í•˜ë„ë¡ false ë¦¬í„´.
 	if (!GEngine->MakeSureMapNameIsValid(PreRenderMapName)) {
 		return false;
 	}
@@ -532,10 +532,10 @@ bool StartBladeIIPreRenderGame(class AGameMode* InCurrentGameMode)
 		return false;
 	}
 
-	// ÀÌ°Å ÇÊ¿äÇÑ°¡..
+	// ì´ê±° í•„ìš”í•œê°€..
 	OpenPreLoadingScreenClass<EPreLoadingScreenType, EB2GameMode>::GetInstance().Signal(EPreLoadingScreenType::PLST_StageBegin, EB2GameMode::Lobby);
 
-	// ¼ø¼ö ¸Ê ·Îµù¸¸ÀÇ ¿¹»ó ÁöºĞ ¼¼ÆÃ.
+	// ìˆœìˆ˜ ë§µ ë¡œë”©ë§Œì˜ ì˜ˆìƒ ì§€ë¶„ ì„¸íŒ….
 	B2GMLoadingProgCollector::PrepareWithPureMapLoadShareForGM(InCurrentGameMode, EB2GameMode::PreRender);
 
 	UGameplayStatics::OpenLevel(InCurrentGameMode, FName(*PreRenderMapName), true);

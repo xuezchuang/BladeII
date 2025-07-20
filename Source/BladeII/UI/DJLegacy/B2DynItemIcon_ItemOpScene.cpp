@@ -39,12 +39,12 @@ void UB2DynItemIcon_ItemOpScene::UpdateEnhanceTargetBlinkingMIDParam(float InDel
 
 void UB2DynItemIcon_ItemOpScene::ResetEnhanceTargetBlinkingMIDParam()
 {
-	EnhanceTargetBlinkMIDParam = 1.0f; // 0 ÀÌ ¾Æ´Ï¶ó 1.0 À¸·Î ¶ç¿ö¼­ ´«¿¡ ¶ç°Ô ÇÏ´Â °Å.
+	EnhanceTargetBlinkMIDParam = 1.0f; // 0 æ é…’èªæ‰¼ 1.0 æ è‚º å‰å†µè¾‘ ä¼ ä¿Š å‰éœ¸ çªç»° èŠ­.
 }
 
 void UB2DynItemIcon_ItemOpScene::UpdateItemData(const FB2Item& InItem)
 {
-	Super::UpdateItemData(InItem); // Super º¸´Ù´Â CommonPart ¿¡¼­ Ã³¸®ÇÏ´Â °Ô ¸¹À» °ÍÀÓ.
+	Super::UpdateItemData(InItem); // Super ç„Šä¿ƒç»° CommonPart ä¿Šè¾‘ è´¸åºœçªç»° éœ¸ è…¹é˜‘ å·´çƒ™.
 
 	if (ItemIconCommonPart_NRef)
 	{
@@ -81,10 +81,10 @@ void UB2DynItemIcon_ItemOpScene::OnTargetItemBeginSucking(int32 IngredIndex)
 {
 	if (IngredIndex == 0)
 	{
-		// ¸Ç Ã³À½ ½ÃÀÛ½Ã EnhanceTargetProgressiveParam À» Á» ¼¼ÆÃÇØ ÁÜ.
-		// ¹°·Ğ TotalEnhanceIngredNum ÀÌ ¼¼ÆÃµÇ¾î ÀÖ¾î¾ß ÇÔ.
+		// ç›– è´¸æ¾œ çŸ«ç´¯çŸ« EnhanceTargetProgressiveParam é˜‘ ç²± æŠ€æ³¼ç§¦ æ·‹.
+		// æ‹±æ²¸ TotalEnhanceIngredNum æ æŠ€æ³¼ç™»ç»¢ ä¹ç»¢å…· çªƒ.
 		EnhanceTargetProgressiveParam = EnhanceTargetProgressiveBaseValue;
-		// ¸¶Áö¸· Àç·á¿¡¼± 1 ÀÌ µÇµµ·Ï.
+		// ä»˜ç˜¤é˜œ çŠä¸°ä¿Šæ€¥ 1 æ ç™»æ¡£åºŸ.
 		EnhanceTargetProgressiveParamRate = (1.0f - EnhanceTargetProgressiveBaseValue) / FMath::Max(TotalEnhanceIngredNum, 1);
 	}
 

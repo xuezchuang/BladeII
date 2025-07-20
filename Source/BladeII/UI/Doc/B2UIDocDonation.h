@@ -65,7 +65,7 @@ struct FDonationPointStepRewardInfo
 	{
 	}
 
-	int32 TemplateID; // donationid°¡ ¾Æ´Ô
+	int32 TemplateID; // donationidå•Š é…’ä¸›
 	int32 Step;
 	int32 RewardPoint;
 	int32 RewardID1;
@@ -85,7 +85,7 @@ struct FDonationPointRankingRewardInfo
 	{
 	}
 
-	int32 TemplateID; // donationid°¡ ¾Æ´Ô
+	int32 TemplateID; // donationidå•Š é…’ä¸›
 	int32 Rank;
 	int32 RewardID1;
 	int32 RewardCount1;
@@ -114,7 +114,7 @@ struct FDonationBundleFixedRewardInfo
 	{
 	}
 
-	int32 TemplateID; // donationid°¡ ¾Æ´Ô
+	int32 TemplateID; // donationidå•Š é…’ä¸›
 	int32 RewardID;
 	int32 MinAmount;
 	int32 MaxAmount;
@@ -155,17 +155,17 @@ struct FDonationEventInfo
 
 enum class EDonationPointStepState : uint8
 {
-	Reward = 0,			//º¸»ó ÀÖÀ½
-	Completion = 1,		// ¿Ï·á
-	Incompletion = 2			//  ¹Ì¿Ï·á
+	Reward = 0,			//ç„Šæƒ‘ ä¹æ¾œ
+	Completion = 1,		// è‚¯ä¸°
+	Incompletion = 2			//  å›ºè‚¯ä¸°
 };
 
 enum class EDonationEventState : uint8
 {
-	Ongoing = 0,			//ÁøÇàÁß
-	NotOngoing = 1,		//ÁøÇà ~ ¸¸·á »çÀÌ
-	Expiration = 2,			// ¸¸·á ~ ´ÙÀ½ÀÌº¥Æ® »çÀÌ
-	None = 3				// ¸¸·á ~ ¾Æ¹«°Íµµ ¾øÀ½
+	Ongoing = 0,			//æŸ³é’å
+	NotOngoing = 1,		//æŸ³é’ ~ çˆ¶ä¸° è¤æ
+	Expiration = 2,			// çˆ¶ä¸° ~ ä¿ƒæ¾œæäº¥é£˜ è¤æ
+	None = 3				// çˆ¶ä¸° ~ é…’å…¬å·´æ¡£ ç»æ¾œ
 };
 
 /**

@@ -1,16 +1,16 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2SelectiveEtherLottery.h"
 #include "FB2ErrorMessage.h"
-
+#include "Misc/ConfigCacheIni.h"
 
 
 UB2SelectiveEtherLottery::UB2SelectiveEtherLottery(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer), TheData(nullptr)
 {
 	if (HasAnyFlags(RF_ClassDefaultObject) == false)
 	{
-		// Á¤ÇØÁø ÇÏ³ª¸¦ ·Îµù
+		// æ²¥ç§¦æŸ³ çªå”±ç”« è‚ºçˆ¹
 		FString SelectiveEtherLotteryTablePath;
 		GConfig->GetString(TEXT("/Script/BladeII.B2SelectiveEtherLottery"), TEXT("SelectiveEtherLotteryTable"), SelectiveEtherLotteryTablePath, GGameIni);
 
@@ -32,7 +32,7 @@ void UB2SelectiveEtherLottery::CheckInfoDataIntegrity()
 		bool bHasRowKeyLessThan0 = false;
 		bool bHasNonSequentialRowKey = false;
 
-		// DataTable ÀÇ ¸ğµç row ¸¦ iterate ÇÏ´Â ¹æ¹ıÀÎµí.
+		// DataTable ç‹¼ è‘›ç”µ row ç”« iterate çªç»° è§„è¿‡ç‰¢æ·€.
 		TArray<FName> RowKeys = TheData->GetRowNames();
 		for (int32 RI = 0; RI < RowKeys.Num(); ++RI)
 		{
@@ -42,13 +42,13 @@ void UB2SelectiveEtherLottery::CheckInfoDataIntegrity()
 			{
 				bHasRowKeyLessThan0 = true;
 			}
-			if (RI + 1 != RowKeyNumber) // bHasRowKeyLessThan0 ÀÌ¸é °á±¹ ¿©±âµµ..
+			if (RI + 1 != RowKeyNumber) // bHasRowKeyLessThan0 ææ æ¬æƒ« å’¯æ‰æ¡£..
 			{
 				bHasNonSequentialRowKey = true;
 			}
 		}
 
-		if (bHasRowKeyLessThan0 /*|| bHasNonSequentialRowKey*/) // ¼ø¼­´ë·ÎÀÏ ÇÊ¿ä´Â ¾øÀ» °Í °°´Ù. ÀÏ´Ü ÀÌ°Ç °æ°í¿¡¼­ Á¦°Å.
+		if (bHasRowKeyLessThan0 /*|| bHasNonSequentialRowKey*/) // é‰´è¾‘æªè‚ºè€ é˜å¤¸ç»° ç»é˜‘ å·´ éä¿ƒ. è€çªœ ææ‰’ ç‰ˆç»Šä¿Šè¾‘ åŠ›èŠ­.
 		{
 #if !PLATFORM_MAC
 			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(

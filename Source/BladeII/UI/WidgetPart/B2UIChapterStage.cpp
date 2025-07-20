@@ -1,4 +1,4 @@
-#include "B2UIChapterStage.h"
+ï»¿#include "B2UIChapterStage.h"
 #include "B2UIManager.h"
 #include "B2UIDocHelper.h"
 #include "B2UIDocBattle.h"
@@ -86,7 +86,7 @@ void UB2UIChapterStage::BindDelegates()
 	
 }
 
-void UB2UIChapterStage::BindDoc(/*const FStage¾îÂ¼°í& InStageData*/)
+void UB2UIChapterStage::BindDoc(/*const FStageç»¢å½•ç»Š& InStageData*/)
 {
 	UnbindDoc();
 
@@ -101,7 +101,7 @@ void UB2UIChapterStage::BindDoc(/*const FStage¾îÂ¼°í& InStageData*/)
 	FSingleStageInfoData* ThisStageInfoData = StageInfoTable->GetInfoData(ClientStageId);
 	SetCinemaIconVisible(ThisStageInfoData ? ThisStageInfoData->HasScenarioMovie() : false);
 
-	// ³­ÀÌµµ¿¡ µû¸¥ StageID Àç°è»ê
+	// æŠ„ææ¡£ä¿Š è¶å¼— StageID çŠæ‹Œé­‚
 	auto& StageDataStore = BladeIIGameImpl::GetStageDataStore();
 	ServerStageNum = StageDataStore.GetServerStageID(ClientStageId, StageDifficulty);
 	LastClearClientStageId = StageDataStore.GetLastClearClientId(StageDifficulty);
@@ -125,9 +125,9 @@ void UB2UIChapterStage::BindDoc(/*const FStage¾îÂ¼°í& InStageData*/)
 	else
 	{
 
-		int32 BeforeChapterNum = ChapterNum - 1;										//ÀÌÀü Ã©ÅÍ Áö¿Á±îÁö ²¢´ÂÁö °³»ê
-		FServerStageID  LastClearClientStageIdHell = StageDataStore.GetLastClearServerStageId(EStageDifficulty::ESD_Hell);					//¸¶Áö¸· ±ü serverStageID
-		FServerStageID	ServerStageLastNum = StageDataStore.GetServerStageID(BeforeChapterNum * 10, EStageDifficulty::ESD_Hell);			//ÀÌÀüÃ©ÅÍ Hell¸¶Áö¸· ½ºÅ×ÀÌÁö ¾ÆÀÌµğ
+		int32 BeforeChapterNum = ChapterNum - 1;										//æå‚ˆ èŒ…ç£ ç˜¤è‹›é³–ç˜¤ å¹¶ç»°ç˜¤ ä¿ºé­‚
+		FServerStageID  LastClearClientStageIdHell = StageDataStore.GetLastClearServerStageId(EStageDifficulty::ESD_Hell);					//ä»˜ç˜¤é˜œ ç§‰ serverStageID
+		FServerStageID	ServerStageLastNum = StageDataStore.GetServerStageID(BeforeChapterNum * 10, EStageDifficulty::ESD_Hell);			//æå‚ˆèŒ…ç£ Hellä»˜ç˜¤é˜œ èƒ¶æŠ›æç˜¤ é…’æå¼
 
 		if (ServerStageLastNum.Id <= LastClearClientStageIdHell.Id)
 		{
@@ -236,11 +236,11 @@ void UB2UIChapterStage::SetStageState(EUIChapterStageState InStateState)
 			break;
 	}
 
-	//Å¬¸®¾î ¾ÈÇÏ¸é º° º¸ÀÌ¸é ¾ÈµÊ
+	//åŠªåºœç»¢ æ•‘çªæ å–Š ç„Šææ æ•‘å‡³
 	if (UIP_Stars.IsValid())
 		bStarVisible ? UIP_Stars->SetVisibility(ESlateVisibility::HitTestInvisible) : UIP_Stars->SetVisibility(ESlateVisibility::Hidden);
 
-	//ÆùÆ®º¯°æ
+	//è¿„é£˜å‡½ç‰ˆ
 	if (TB_StageNum.IsValid())
 	{
 		TB_StageNum->SetFont(Font);
@@ -265,7 +265,7 @@ void UB2UIChapterStage::SetStageState(EUIChapterStageState InStateState)
 //====================================================================================
 void UB2UIChapterStage::OnClickBtnArea()
 {
-	//¾È ±ü°Ç ÀÔÀå ¸øÇÏ°Ô
+	//æ•‘ ç§‰æ‰’ æ¶å˜ ç»™çªéœ¸
 	if (LastClearClientStageId + 1 >= ClientStageId)
 	{
 		BladeIIGameImpl::GetStageDataStore().RequestGetStageInfo(ServerStageNum, true);
@@ -390,7 +390,7 @@ void UB2UIChapterStage::UpdateChapterBossFlipbookMID()
 
 	if (CurrCharIntroFlipbookMID)
 	{
-		// ÇØ´ç material ÀÌ ExternalTime À» »ç¿ëÇÏµµ·Ï ¼¼ÆÃµÇ¾î ÀÖ¾î¾ß ÀÛµ¿ÇÒ °Í. ±×°Ô ¾Æ´Ï¸é material ³»ºÎÀûÀ¸·Î ½Ã°£ÀÌ ÀÚµ¿ ¾÷µ¥ÀÌÆ® µÉ °ÍÀÌ´Ù.
+		// ç§¦å¯¸ material æ ExternalTime é˜‘ è¤ä¾©çªæ¡£åºŸ æŠ€æ³¼ç™»ç»¢ ä¹ç»¢å…· ç´¯æ‚¼ä¸” å·´. å¼Šéœ¸ é…’èªæ material éƒ´ä½•åˆ©æ è‚º çŸ«åŸƒæ ç£Šæ‚¼ è¯€å•æé£˜ çª å·´æä¿ƒ.
 		CurrCharIntroFlipbookMID->SetScalarParameterValue(FName(TEXT("ExternalTime")), GetWorld()->GetRealTimeSeconds() - BossFlipbookMIDTimeSync);
 	}
 }

@@ -35,7 +35,7 @@ void UB2WingUIP_PropOptionDetail::CacheAssets()
 
 	GET_SLOT(UB2WingUIP_PropOptionIcon, UIP_PropOptionIcon);
 	if (UIP_PropOptionIcon.IsValid())
-	{ // ¿©±â¼± ¹öÆ° ´­¸²ÀÌ¶óµçÁö ¾øµµ·Ï.
+	{ // å’¯æ‰æ€¥ æ»šç“¢ å–˜è¦†ææ‰¼ç”µç˜¤ ç»æ¡£åºŸ.
 		UIP_PropOptionIcon->SetUsageType(EWingPropOptionUIPUsage::WPOUU_PropOptionEnhance);
 	}
 
@@ -83,7 +83,7 @@ void UB2WingUIP_PropOptionDetail::SetMyOptionInfo(int32 InMyOptionIndex, const F
 void UB2WingUIP_PropOptionDetail::UpdateWidgets()
 {
 	const bool bAtMaxLevel = (CachedOptionData.OptionLevel >= CachedOptionData.MaxOptionLevel);
-	// bAtMaxLevel ÀÌ¸é ¾Æ¸¶µµ º°´Ù¸¥ °ªÀ» ¾ò¾î¿ÀÁö ¸øÇÒ µí.
+	// bAtMaxLevel ææ é…’ä»˜æ¡£ å–Šä¿ƒå¼— è”¼é˜‘ æ˜ç»¢å·ç˜¤ ç»™ä¸” æ·€.
 	int32 RequiredFeatherNum = 0;
 	int32 CurrentFeatherNum = 0;
 	const bool bCanAffordEnhance = GetEnhanceRequirementAndFeasibility(RequiredFeatherNum, CurrentFeatherNum);
@@ -134,18 +134,18 @@ void UB2WingUIP_PropOptionDetail::UpdateWidgets()
 		}
 	}
 
-	// OV_EnhanceBtnSet °ú OV_AtMaxLevelSet Àº WS_PerOptionStateSet ÀÇ ÀÏºÎ°¡ µÉ ¼öµµ..
+	// OV_EnhanceBtnSet è‹ OV_AtMaxLevelSet ç¯® WS_PerOptionStateSet ç‹¼ è€ä½•å•Š çª èæ¡£..
 
 	if (OV_EnhanceBtnSet.IsValid())
 	{
 		OV_EnhanceBtnSet->SetVisibility((!bAtMaxLevel && CachedOptionData.bIsOpen) ? ESlateVisibility::SelfHitTestInvisible : ESlateVisibility::Collapsed);
 	}
 	if (BTN_Enhance.IsValid())
-	{// ¾Æ¸¶ OV_EnhanceBtnSet ÀÇ ÀÏºÎ°ÚÁö¸¸ È®½ÇÈ÷..
+	{// é…’ä»˜ OV_EnhanceBtnSet ç‹¼ è€ä½•æ‘†ç˜¤çˆ¶ çŠ¬è§’æ´’..
 		BTN_Enhance->SetVisibility((!bAtMaxLevel && CachedOptionData.bIsOpen) ? ESlateVisibility::Visible : ESlateVisibility::Collapsed);
 
 		if (!bAtMaxLevel && !bCanAffordEnhance)
-		{ // ´ÜÁö Àç·á ¸ğÀÚ¶ó¼­ °­È­ ¸øÇÏ´Â »óÈ²ÀÌ¸é disable.. ÀÌ ¾Æ´Ï°í ÇöÁúÀ¯µµ ÆË¾÷À» ¶ç¿ï °Í.
+		{ // çªœç˜¤ çŠä¸° è‘›ç£Šæ‰¼è¾‘ ç¢æ‹³ ç»™çªç»° æƒ‘ç‚”ææ disable.. æ é…’èªç»Š æ³…é¾™èœ¡æ¡£ æ‰‘è¯€é˜‘ å‰åŒ¡ å·´.
 			//BTN_Enhance->SetIsEnabled(false);
 		}
 	}
@@ -197,7 +197,7 @@ void UB2WingUIP_PropOptionDetail::UpdateWidgets()
 		if (TB_RequiredFeatherNum.IsValid())
 		{
 			TB_RequiredFeatherNum->SetText(FText::AsNumber(RequiredFeatherNum));
-			// Àç·á ¸ğÀÚ¶õ °æ¿ì »¡°£»öÀ¸·Î ÇÏ´Âµ¥ ÀÏ´Ü »ö»óÀº »·ÇØ º¸ÀÌ´Ï ÇÏµåÄÚµù..
+			// çŠä¸° è‘›ç£Šé„‚ ç‰ˆå¿« å¼§åŸƒç¥¸æ è‚º çªç»°å• è€çªœ ç¥¸æƒ‘ç¯® ç¯ç§¦ ç„Šæèª çªé›å†…çˆ¹..
 			TB_RequiredFeatherNum->SetColorAndOpacity(bCanAffordEnhance ? FSlateColor(FLinearColor(1.0f, 1.0f, 1.0f)) : FSlateColor(FLinearColor(1.0f, 0.0f, 0.0f)));
 		}
 		if (OV_AtMaxLevelSet.IsValid())
@@ -233,23 +233,23 @@ void UB2WingUIP_PropOptionDetail::UpdateWidgets()
 
 bool UB2WingUIP_PropOptionDetail::GetEnhanceRequirementAndFeasibility(int32& OutRequiredFeatherNum, int32& OutCurrentFeatherNum)
 {
-	// CachedWingData ¿Í CachedOptionIndex ´Â ¾÷µ¥ÀÌÆ® µÈ »óÅÂ¿©¾ß
+	// CachedWingData å®¢ CachedOptionIndex ç»° è¯€å•æé£˜ ç­‰ æƒ‘æ€•å’¯å…·
 	const FWingMD_PropOptionSingleElem* PropOptionMD = BladeIIGameImpl::GetClientDataStore().GetWingMD_PropOption(CachedWingData, CachedOptionIndex);
 	if (PropOptionMD){
 		OutRequiredFeatherNum = PropOptionMD->RequiredItemCount;
 	}
 	OutCurrentFeatherNum = UB2LobbyInventory::GetSharedConsumableAmountOfType(FItemRefIDHelper::GetWingPropOptionEnhanceResourceRefID());
-	return (OutCurrentFeatherNum >= OutRequiredFeatherNum); // ¸¶Áö¸·À¸·Î °¡´É ¿©ºÎ ¸®ÅÏ
+	return (OutCurrentFeatherNum >= OutRequiredFeatherNum); // ä»˜ç˜¤é˜œæ è‚º å•Šç“· å’¯ä½• åºœç•”
 }
 
 void UB2WingUIP_PropOptionDetail::OnClickedEnhanceBtn()
 {
 	if (!UB2Airport::HasEnoughGoldForWingOptionEnhanceLocalPlayer(IntToPCClass(CachedWingData.OwnerPCClass), CachedOptionIndex)){
-		// ¼Ó¼º ¿É¼Ç °­È­¿¡ µ·ÀÌ ÇÊ¿ä¾ø´Â ÇÑ ¿©±â·Î ¿Ã ÀÏÀº ¾øÀ» °Í..
+		// åŠ å·± å¯è®° ç¢æ‹³ä¿Š æ£æ é˜å¤¸ç»ç»° èŒ„ å’¯æ‰è‚º æ£µ è€ç¯® ç»é˜‘ å·´..
 		ShortageMGR->PopupGoToShopForGoldMessage();
 	}
 	else if (!UB2Airport::HasEnoughIngredForWingOptionEnhanceLocalPlayer(IntToPCClass(CachedWingData.OwnerPCClass), CachedOptionIndex)){
-		// Àç·á È¹µæ °æ·Î ÆË¾÷.
+		// çŠä¸° è£™å« ç‰ˆè‚º æ‰‘è¯€.
 		OpenWingIngredAcqPathPopup(EWingIngredAcqElemType::WAET_PropOptionIngred);
 	}
 	else

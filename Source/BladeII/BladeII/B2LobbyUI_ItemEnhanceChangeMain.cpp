@@ -1,4 +1,4 @@
-//// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿//// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2LobbyUI_ItemEnhanceChangeMain.h"
 ////#include "BladeII.h"
 //
@@ -83,10 +83,10 @@
 //	CachedInventory = CachedLobbyGM->GetLobbyInventory();
 //	check(CachedInventory);
 //
-//	// ÀÌ ½ÃÁ¡¿¡ Inventory ÀÇ TargetItemID ´Â ¼¼ÆÃµÇ¾î ÀÖ¾î¾ß ÇÔ. (UB2LobbyInventory::EnterItemOpMode)
+//	// æ çŸ«ç—¢ä¿Š Inventory ç‹¼ TargetItemID ç»° æŠ€æ³¼ç™»ç»¢ ä¹ç»¢å…· çªƒ. (UB2LobbyInventory::EnterItemOpMode)
 //	if (!CachedInventory->GetItemOPTargetItemData(TargetItem) || CachedInventory->GetItemOpMode() != ELobbyInvenItemOpMode::EIVIOP_EnhancementChange)
 //	{
-//		CloseAndQuitItemOpMode(); // ¸¸¿¡ ÇÏ³ª ½ÇÆĞÇÑ´Ù¸é.. ¾îÂ¿ ¼ö ¾øÁö.
+//		CloseAndQuitItemOpMode(); // çˆ¶ä¿Š çªå”± è§’è©èŒ„ä¿ƒæ.. ç»¢é©´ è ç»ç˜¤.
 //		return;
 //	}
 //
@@ -157,8 +157,8 @@
 //		TB_CurrentAttack->SetText(GetLOCTextOfPrimPointType(TargetItem.PrimaryPointType));
 //	}
 //
-//	// ÀçÈ­ ¾ÆÀÌÄÜ, ÇöÀç´Â ´ÙÅ©Å©¸®½ºÅ» °íÁ¤
-//	// RequestExchangeItemEnhanceLevel°ú ¾ÆÀÌÄÜ ¼öÁ¤ÇÏ¸é È®Àå¿Ï·á
+//	// çŠæ‹³ é…’æèƒ½, æ³…çŠç»° ä¿ƒå†œå†œåºœèƒ¶å‘• ç»Šæ²¥
+//	// RequestExchangeItemEnhanceLevelè‹ é…’æèƒ½ èæ²¥çªæ çŠ¬å˜è‚¯ä¸°
 //	if (IMG_EnhanceChangeIcon.IsValid())
 //	{
 //		auto* ItemInfoTable = StaticFindItemInfo();
@@ -183,7 +183,7 @@
 //	{
 //		TArray<int64> IngredIDs;
 //		CachedInventory->GetAllSelectedItemOpIngreds(IngredIDs);
-//		// ¹°·Ğ ¿©±â¼± IngredIDs ´Â ÇÏ³ª¿©¾ß
+//		// æ‹±æ²¸ å’¯æ‰æ€¥ IngredIDs ç»° çªå”±å’¯å…·
 //		if (IngredIDs.Num() > 0)
 //		{
 //			UnSelectForEnhanceChangeIngredClass<int64>::GetInstance().Signal(IngredIDs[0]);
@@ -257,13 +257,13 @@
 //		return;
 //	}
 //
-//	// Anchor ¼³Á¤¿¡ µû¶ó GetSize ´Â ¿øÇÏ´Â °ªÀÌ ¾È ³ª¿Ã °ÍÀÌ¹Ç·Î ÁÖÀÇ.
+//	// Anchor æ±²æ²¥ä¿Š è¶æ‰¼ GetSize ç»° ç›”çªç»° è”¼æ æ•‘ å”±æ£µ å·´æéª¨è‚º æ—ç‹¼.
 //	UCanvasPanelSlot* MainPanelSlot = Cast<UCanvasPanelSlot>(CP_TargetItemIconSet->Slot);
 //	FVector2D AllowedIconSize = MainPanelSlot ? MainPanelSlot->GetSize() : FVector2D(0.0f, 0.0f);
 //
 //	UB2DynItemIcon* DynIconCDO = Cast<UB2DynItemIcon>(ItemIconWidgetClass->GetDefaultObject());
 //
-//	// ItemIconPanelNRef À§¿¡ ÃÖÁ¾ÀûÀÎ ¾ÆÀÌÅÛ ¾ÆÀÌÄÜItemIconWidgetClass widget »ı¼º
+//	// ItemIconPanelNRef å›°ä¿Š å¼¥è¾†åˆ©ç‰¢ é…’æè¢ é…’æèƒ½ItemIconWidgetClass widget ç§¯å·±
 //	CreatedTargetItemIcon = Cast<UB2DynItemIcon_LobbyInven>(DynCreateInCanvasPanel(
 //		ItemIconWidgetClass, this, CP_TargetItemIconSet.Get(), DynIconCDO ? DynIconCDO->GetNonScaledSize() : FVector2D(100.0f, 100.0f), AllowedIconSize,
 //		FVector2D(0.0f, 0.0f), 0, false
@@ -528,7 +528,7 @@
 //		FVector2D AllowedIconSize = MainPanelSlot ? MainPanelSlot->GetSize() : FVector2D(0.0f, 0.0f);
 //		UB2DynItemIcon* DynIconCDO = Cast<UB2DynItemIcon>(ItemIconWidgetClass->GetDefaultObject());
 //
-//		// MainPanelNativeRef À§¿¡ ÃÖÁ¾ÀûÀÎ ¾ÆÀÌÅÛ ¾ÆÀÌÄÜ widget »ı¼º
+//		// MainPanelNativeRef å›°ä¿Š å¼¥è¾†åˆ©ç‰¢ é…’æè¢ é…’æèƒ½ widget ç§¯å·±
 //		CreatedIngredItemIcon = Cast<UB2DynItemIcon_LobbyInven>(DynCreateInCanvasPanel(
 //			ItemIconWidgetClass, this, CP_IngredItemIconSet.Get(), DynIconCDO ? DynIconCDO->GetNonScaledSize() : FVector2D(100.0f, 100.0f), AllowedIconSize,
 //			FVector2D(0.0f, 0.0f), 0, false
@@ -536,7 +536,7 @@
 //		if (CreatedIngredItemIcon)
 //		{
 //			CreatedIngredItemIcon->SetIconUsageType(ELobbyInvenItemIconUsage::EEIIT_ComposeOrSurpassIngredient);
-//			CreatedIngredItemIcon->UpdateItemData(SourceItem); // °³º° ¾ÆÀÌÅÛ Á¤º¸¸¦ ³Ñ°ÜÁØ´Ù.
+//			CreatedIngredItemIcon->UpdateItemData(SourceItem); // ä¿ºå–Š é…’æè¢ æ²¥ç„Šç”« é€è´¥éœ–ä¿ƒ.
 //		}
 //	}
 //	else

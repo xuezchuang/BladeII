@@ -1,12 +1,14 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Fill out your copyright notice in the Description page of Project Settings.
 #pragma once
 
 #include "B2UIWidget.h"
 #include "B2DynItemIcon_LobbyInven.h"
 #include "B2LobbyUI_ItemDetailPostOp.h"
 #include "B2UIBackWidget.h"
-#include "../../BladeII.h"
+#include "BladeII.h"
 #include "B2UISummonItemDisplay.generated.h"
+
+
 
 DECLARE_DELEGATE(FOnFlipped)
 DECLARE_DELEGATE_OneParam(FOnViewDetailItem, const FB2Item&);
@@ -154,7 +156,7 @@ public:
 
 	void UpdateButtonState(int32 CardNumber);
 
-	TUTORIAL void Tutorial_SetSummonSlotFix();
+	/*TUTORIAL*/ void Tutorial_SetSummonSlotFix();
 
 	void InventoryFullSimplePopup(EPCClass PCClass);
 

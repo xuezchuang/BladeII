@@ -83,7 +83,7 @@ FStarEffectInfo* UB2LobbyUI_ItemCusProgBase::GetStarEffectInfo(const int32 InGra
 	}
 	else if (InGrade > FItemGradeInfo::MINIMUM_SURPASS_STAR_GRADE && InGrade <= FItemGradeInfo::MAX_NORMAL_ITEM_STAR_GRADE)
 	{
-		// 7¼ºÀÌ¸é 1 8¼ºÀÌ¸é2 9¼ºÀÌ¸é 3...
+		// 7å·±ææ 1 8å·±ææ2 9å·±ææ 3...
 		int32 StarContainerIndex = InGrade - FItemGradeInfo::MINIMUM_SURPASS_STAR_GRADE;
 		if (StarsInfo.IsValidIndex(StarContainerIndex))
 		{
@@ -125,11 +125,11 @@ void UB2LobbyUI_ItemCusProgBase::StartFromLobby(class UB2UIManager_Lobby* InUIMa
 
 	TargetOpMode = CachedInventory->GetItemOpMode();
 
-	// ¾÷µ¥ÀÌÆ® µÇ±â Àü Å¸°Ù ¾ÆÀÌÅÛ µ¥ÀÌÅÍ°¡ ÇÊ¿ä (UB2LobbyInventory::OnReqForItemOpCommon ¿¡¼­ ¹é¾÷) 
-	if (!CachedInventory->GetItemOPTargetItemData(NativeItemData_Target, true) || // Result µ¥ÀÌÅÍ´Â ¿©±â¼­ °¡Á®¿ÀÁö ¾Ê´Â´Ù. ¾Æ¸¶ response °¡ ¿Â »óÈ²ÀÏ °ÅÁö¸¸ È¤ ¸ğ¸£´Ï..
+	// è¯€å•æé£˜ ç™»æ‰ å‚ˆ é¸¥ç™¾ é…’æè¢ å•æç£å•Š é˜å¤¸ (UB2LobbyInventory::OnReqForItemOpCommon ä¿Šè¾‘ å½’è¯€) 
+	if (!CachedInventory->GetItemOPTargetItemData(NativeItemData_Target, true) || // Result å•æç£ç»° å’¯æ‰è¾‘ å•Šå»‰å·ç˜¤ è‡¼ç»°ä¿ƒ. é…’ä»˜ response å•Š æŸ¯ æƒ‘ç‚”è€ èŠ­ç˜¤çˆ¶ è¶£ è‘›ç¦èª..
 		!IsSupportedOpMode(TargetOpMode))
 	{
-		FinishAndProceedToResult(); // ¸¸¿¡ ÇÏ³ª ½ÇÆĞÇÑ´Ù¸é.. ¾îÂ¿ ¼ö ¾øÁö.
+		FinishAndProceedToResult(); // çˆ¶ä¿Š çªå”± è§’è©èŒ„ä¿ƒæ.. ç»¢é©´ è ç»ç˜¤.
 		return;
 	}
 
@@ -139,10 +139,10 @@ void UB2LobbyUI_ItemCusProgBase::StartFromLobby(class UB2UIManager_Lobby* InUIMa
 
 	SetItemData_Target(NativeItemData_Target);
 
-	// ¾÷µ¥ÀÌÆ® µÈ °á°ú ¾ÆÀÌÅÛ µ¥ÀÌÅÍ¸¦ °¡Á®¿À±â À§ÇÔ. ¾ÆÁ÷ ¾ÆÀÌÄÜ ¼¼ÆÃÀº ÇÏÁö ¾Ê´Â´Ù.
-	// ¾ÆÁ÷ response °¡ ¿ÀÁö ¾ÊÀº Å¸ÀÌ¹ÖÀÌ¶ó¸é ÇÊ¿äÇÒ ¶§ ´Ù½Ã °¡Á®¿Ã °Í.
+	// è¯€å•æé£˜ ç­‰ æ¬è‹ é…’æè¢ å•æç£ç”« å•Šå»‰å·æ‰ å›°çªƒ. é…’æµ é…’æèƒ½ æŠ€æ³¼ç¯® çªç˜¤ è‡¼ç»°ä¿ƒ.
+	// é…’æµ response å•Š å·ç˜¤ è‡¼ç¯® é¸¥ææ€ªææ‰¼æ é˜å¤¸ä¸” é”­ ä¿ƒçŸ« å•Šå»‰æ£µ å·´.
 	if (!CachedInventory->GetItemOPTargetItemData(NativeItemData_Result, false)){
-		// ¾î¶² ÀÌÀ¯·Îµç °á°ú¸¦ °¡Á®¿ÀÁö ¸øÇÑ´Ù¸é request ÀÌÀüÀÇ Ä³½ÌµÈ Å¸°Ù µ¥ÀÌÅÍ¸¦ ³Ö´Â´Ù.
+		// ç»¢æ« æèœ¡è‚ºç”µ æ¬è‹ç”« å•Šå»‰å·ç˜¤ ç»™èŒ„ä¿ƒæ request æå‚ˆç‹¼ æŸæ•™ç­‰ é¸¥ç™¾ å•æç£ç”« æŒç»°ä¿ƒ.
 		NativeItemData_Result = NativeItemData_Target;
 	}
 
@@ -172,48 +172,48 @@ void UB2LobbyUI_ItemCusProgBase::UpdateStaticWidgets()
 
 void UB2LobbyUI_ItemCusProgBase::StartResultGradeStarFx()
 {
-	DestroyResultGradeStarFx(); // ¿©±â¼­ DestroyAllFx ÇÏ¸é ¾ÈµÇÁö·Õ.
+	DestroyResultGradeStarFx(); // å’¯æ‰è¾‘ DestroyAllFx çªæ æ•‘ç™»ç˜¤æ°›.
 
 	if (!GetResultGradeStarPS(NativeItemData_Result)){
 		return;
 	}
 	
 	check(CachedInventory);
-	CachedInventory->GetItemOPTargetItemData(NativeItemData_Result, false); // ±»ÀÌ ÇÊ¿äÇÒ±î ½Í±ä ÇÏÁö¸¸.
+	CachedInventory->GetItemOPTargetItemData(NativeItemData_Result, false); // è¢«æ é˜å¤¸ä¸”é³– é…µå˜ çªç˜¤çˆ¶.
 	
 	auto* StarEffectInfo = GetStarEffectInfo(NativeItemData_Result);
 	auto* OwningPC = GetOwningPlayer();
 
-	FVector FxCreateRefPos(0.0f,0.0f,0.0f); // ¸Ç Ã³À½ º°À» »ı¼ºÇÏ´Â Á© ÁÂÃø ÁÂÇ¥.
-	FVector FxCreatePosOffsetDir(1.0f, 0.0f, 0.0f); // ¿ùµå °ø°£¿¡¼­ÀÇ È­¸é °¡·Î ¹æÇâ. º°µéÀ» »ı¼ºÇÒ ¶§ ÀÌ ¹æÇâÀ¸·Î ¿É¼ÂÀ» ÁÙ °Í.
+	FVector FxCreateRefPos(0.0f,0.0f,0.0f); // ç›– è´¸æ¾œ å–Šé˜‘ ç§¯å·±çªç»° ä¿© è°…èŸ è°…é’.
+	FVector FxCreatePosOffsetDir(1.0f, 0.0f, 0.0f); // å²¿é› å‚åŸƒä¿Šè¾‘ç‹¼ æ‹³æ å•Šè‚º è§„æ°¢. å–Šç”¸é˜‘ ç§¯å·±ä¸” é”­ æ è§„æ°¢æ è‚º å¯æ‚¸é˜‘ ä¸´ å·´.
 
 	if (OwningPC && StarEffectInfo)
 	{
-		StarEffectInfo->ResultGradeStarCenterPos.X = FMath::Clamp(StarEffectInfo->ResultGradeStarCenterPos.X, 0.0f, 0.9f); // ÀÌ°Åº¸´Ù ¾à°£ ¿À¸¥ÂÊ¿¡¼­µµ À§Ä¡¸¦ ±¸ÇÒ °Å¶ó X ÁÂÇ¥ Á¦ÇÑÀÌ Á» ÀÖÀ½. ´ëÃ¼·Î È­¸é Áß¾ÓÀÌ°ÚÁö¸¸.
+		StarEffectInfo->ResultGradeStarCenterPos.X = FMath::Clamp(StarEffectInfo->ResultGradeStarCenterPos.X, 0.0f, 0.9f); // æèŠ­ç„Šä¿ƒ è·åŸƒ å·å¼—ç‡ä¿Šè¾‘æ¡£ å›°æ‘¹ç”« å¤‡ä¸” èŠ­æ‰¼ X è°…é’ åŠ›èŒ„æ ç²± ä¹æ¾œ. æªçœ‰è‚º æ‹³æ åå±…ææ‘†ç˜¤çˆ¶.
 
-		// ResultGradeStarCenterPos ´Â 0 ~ 1 »çÀÌ normalized µÈ °ªÀ¸·Î ÇÏ°í ½ºÅ©¸° »çÀÌÁî·Î ½ºÄÉÀÏ ÇØ¼­ ÇØ´ç ½ºÅ©¸° À§Ä¡ ¾Æ·¡ ¿ùµå ÁÂÇ¥¸¦ ±¸ÇÑ´Ù.
+		// ResultGradeStarCenterPos ç»° 0 ~ 1 è¤æ normalized ç­‰ è”¼æ è‚º çªç»Š èƒ¶å†œèµ´ è¤æä»¤è‚º èƒ¶çº³è€ ç§¦è¾‘ ç§¦å¯¸ èƒ¶å†œèµ´ å›°æ‘¹ é…’è´° å²¿é› è°…é’ç”« å¤‡èŒ„ä¿ƒ.
 
 		int32 CurrViewSizeX, CurrViewSizeY;
 		OwningPC->GetViewportSize(CurrViewSizeX, CurrViewSizeY);
 
-		// Y À§Ä¡ ¼±Á¤¿¡ ·¹ÆÛ·±½º ÇØ»óµµ ºñÀ² ´ëºñ ÇöÀç ÇØ»óµµ ºñÀ²À» °í·ÁÇÒ ÇÊ¿ä..
+		// Y å›°æ‘¹ æ€¥æ²¥ä¿Š é¥­æ¬ºç¹èƒ¶ ç§¦æƒ‘æ¡£ åšå•¦ æªåš æ³…çŠ ç§¦æƒ‘æ¡£ åšå•¦é˜‘ ç»Šå¦¨ä¸” é˜å¤¸..
 		int32 RefViewSizeX = (int32)UB2UnitedWidgetBase::DesignedRefViewSize.X;
 		int32 RefViewSizeY = (int32)UB2UnitedWidgetBase::DesignedRefViewSize.Y;
-		// ±âÁØ ÇØ»óµµ ºñÀ²(¾Æ¸¶µµ 16:9) ´ëºñ ¾ó¸¶³ª Á¾È¾ºñ°¡ Å«Áö..
+		// æ‰éœ– ç§¦æƒ‘æ¡£ åšå•¦(é…’ä»˜æ¡£ 16:9) æªåš å€”ä»˜å”± è¾†æŸ“åšå•Š å¥´ç˜¤..
 		const float RelativeAspectRatio =
 			(CurrViewSizeX > 0 && CurrViewSizeY > 0 && RefViewSizeX > 0 && RefViewSizeY > 0) ?
 			(((float)CurrViewSizeX / (float)CurrViewSizeY) / ((float)RefViewSizeX / (float)RefViewSizeY)) : 1.0f;
 
 		float FinalGradeStarCenterPosX = StarEffectInfo->ResultGradeStarCenterPos.X;
-		// È­¸é Áß¾Ó ±âÁØÀ¸·Î º¯È¯ -> ·¹ÆÛ·±½º ÇØ»óµµ¿Í ÇöÀç ÇØ»óµµ ºñÀ²¸¸Å­ Á¶Á¤ -> ´Ù½Ã È­¸é »ó´Ü ±âÁØÀ¸·Î
+		// æ‹³æ åå±… æ‰éœ–æ è‚º å‡½åˆ¸ -> é¥­æ¬ºç¹èƒ¶ ç§¦æƒ‘æ¡£å®¢ æ³…çŠ ç§¦æƒ‘æ¡£ åšå•¦çˆ¶æ€’ ç‚¼æ²¥ -> ä¿ƒçŸ« æ‹³æ æƒ‘çªœ æ‰éœ–æ è‚º
 		float FinalGradeStarCenterPosY = ( (StarEffectInfo->ResultGradeStarCenterPos.Y - 0.5f) * RelativeAspectRatio ) + 0.5f;
 
-		// ÀÌ ½ÃÁ¡¿¡¼­´Â º° 6°³ ¸¸¶¥ Ã¡À» ¶§ÀÇ Áß½É ÁÂÇ¥ÀÌ´Ù.
+		// æ çŸ«ç—¢ä¿Šè¾‘ç»° å–Š 6ä¿º çˆ¶é¡¶ è°©é˜‘ é”­ç‹¼ åç¼´ è°…é’æä¿ƒ.
 		FxCreateRefPos = GetWorldPosBeneathScreen(OwningPC,
 			FVector2D((float)CurrViewSizeX * FinalGradeStarCenterPosX, (float)CurrViewSizeY * FinalGradeStarCenterPosY),
 			StarEffectInfo->FxCreatingDepth, true);
 
-		// ¾à°£ ¿À¸¥ÂÊ¿¡ »ı¼ºÇØ¼­ ½ºÅ©¸° X ÃàÀÇ ¿ùµå ¹æÇâÀ» ¾Ë¾Æ³»´Âµ¥¿¡ »ç¿ë.
+		// è·åŸƒ å·å¼—ç‡ä¿Š ç§¯å·±ç§¦è¾‘ èƒ¶å†œèµ´ X ç»µç‹¼ å²¿é› è§„æ°¢é˜‘ èˆ…é…’éƒ´ç»°å•ä¿Š è¤ä¾©.
 		FVector FxCreateOffsetPos = GetWorldPosBeneathScreen(OwningPC,
 			FVector2D((float)CurrViewSizeX * FMath::Min(1.0f, FinalGradeStarCenterPosX + 0.1f), (float)CurrViewSizeY * FinalGradeStarCenterPosY), StarEffectInfo->FxCreatingDepth, true);
 
@@ -223,9 +223,9 @@ void UB2LobbyUI_ItemCusProgBase::StartResultGradeStarFx()
 
 	if (NativeItemData_Result.StarGrade > FItemGradeInfo::MINIMUM_SURPASS_STAR_GRADE)
 	{
-		// Á© ÁÂÃøÀÇ Ã¹ º°À» »ı¼ºÇÒ À§Ä¡ µÇ°Ú´Ù.
+		// ä¿© è°…èŸç‹¼ éœ‰ å–Šé˜‘ ç§¯å·±ä¸” å›°æ‘¹ ç™»æ‘†ä¿ƒ.
 		FxCreateRefPos = FxCreateRefPos - (FxCreatePosOffsetDir * StarEffectInfo->ResultGradeStarListingOffset * 0.5f);
-		FxCreateRefPos.Y += 1.0f; // À§Ä¡ º¸Á¤°ª
+		FxCreateRefPos.Y += 1.0f; // å›°æ‘¹ ç„Šæ²¥è”¼
 
 		FTransform FXCreateTransform(FxCreateRefPos + FxCreatePosOffsetDir);
 		UParticleSystemComponent* ThisFxComp = UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), GetResultGradeStarPS(NativeItemData_Result), FXCreateTransform);
@@ -237,10 +237,10 @@ void UB2LobbyUI_ItemCusProgBase::StartResultGradeStarFx()
 	}
 	else
 	{
-		// Á© ÁÂÃøÀÇ Ã¹ º°À» »ı¼ºÇÒ À§Ä¡ µÇ°Ú´Ù.
+		// ä¿© è°…èŸç‹¼ éœ‰ å–Šé˜‘ ç§¯å·±ä¸” å›°æ‘¹ ç™»æ‘†ä¿ƒ.
 		FxCreateRefPos = FxCreateRefPos - (FxCreatePosOffsetDir * StarEffectInfo->ResultGradeStarListingOffset * (float)(/*FItemGradeInfo::MAX_NORMAL_ITEM_STAR_GRADE*/ NativeItemData_Result.StarGrade - 1) * 0.5f);
 
-		// º°µî±Ş °³¼ö¸¸Å­ ÁÂÃøºÎÅÍ ÇØ¼­ »ı¼º.
+		// å–Šæ®¿é­ ä¿ºèçˆ¶æ€’ è°…èŸä½•ç£ ç§¦è¾‘ ç§¯å·±.
 		for (int32 SI = 0; SI < NativeItemData_Result.StarGrade; ++SI)
 		{
 			FTransform FXCreateTransform(FxCreateRefPos + (FxCreatePosOffsetDir * GetResultListingOffsetForStar(NativeItemData_Result) * (float)SI));
@@ -264,7 +264,7 @@ void UB2LobbyUI_ItemCusProgBase::StartShowResultItemIcon()
 	if (CreatedItemIcon_Result)
 	{
 		CreatedItemIcon_Result->SetVisibility(ESlateVisibility::Visible);
-		CreatedItemIcon_Result->SetShowOverlayInfoOnly(true, true); // ÇÏÁö¸¸ ½ÇÁ¦·Î´Â ÀÌ¸§°ú ·¹º§ Á¤µµ¸¸ UI ´Ü¿¡¼­ º¸ÀÌ°Ô ÇÏ´Â °É·Î. ³ª¸ÓÁö´Â Fx 3D ¸Ş½¬·Î.
+		CreatedItemIcon_Result->SetShowOverlayInfoOnly(true, true); // çªç˜¤çˆ¶ è§’åŠ›è‚ºç»° ææŠšè‹ é¥­éª‡ æ²¥æ¡£çˆ¶ UI çªœä¿Šè¾‘ ç„Šæéœ¸ çªç»° å§è‚º. å”±èµ£ç˜¤ç»° Fx 3D çš‹æµ†è‚º.
 		CreatedItemIcon_Result->ForceLayoutPrepass();
 	}
 }
@@ -276,7 +276,7 @@ void UB2LobbyUI_ItemCusProgBase::ShowFinalResultPage()
 		UIP_FinalResultPageP->SetVisibility(ESlateVisibility::Visible);
 	}
 
-	// ÀÌ°Ô ÃÖÁ¾ °á°ú È­¸é¿¡µµ »ç¿ëµÇ´Â °æ¿ì°¡ ÀÖ´Âµ¥ ±×·² ¶© µŞºÎºĞ 3D ÀÌÆåÆ® ¾øÀÌ º¸¿©Á®¾ß ÇØ¼­ Overlay ¸¸ º¸ÀÌ°Ô ÇÑ °Å Ãë¼ÒÇÔ.
+	// æéœ¸ å¼¥è¾† æ¬è‹ æ‹³æä¿Šæ¡£ è¤ä¾©ç™»ç»° ç‰ˆå¿«å•Š ä¹ç»°å• å¼Šå‡¡ è®¢ ç¼”ä½•ç›’ 3D ææ£‹é£˜ ç»æ ç„Šå’¯å»‰å…· ç§¦è¾‘ Overlay çˆ¶ ç„Šæéœ¸ èŒ„ èŠ­ ç§’å®¶çªƒ.
 	if (CreatedItemIcon_Result)
 	{
 		CreatedItemIcon_Result->SetVisibility(ESlateVisibility::Visible);
@@ -286,11 +286,11 @@ void UB2LobbyUI_ItemCusProgBase::ShowFinalResultPage()
 
 void UB2LobbyUI_ItemCusProgBase::InitFinalResultPage(class UB2UIManager_Lobby* InUIManager, class AB2LobbyGameMode* InGM)
 {
-	if (UIP_FinalResultPageP.IsValid()) // ÀÌ°Ç µ¿Àû »ı¼ºÀº ¾Æ´Ï´Ù. ´Ü, ¸î°¡Áö´Â Á÷Á¢ ÇØ ÁÖ¾î¾ß.
+	if (UIP_FinalResultPageP.IsValid()) // ææ‰’ æ‚¼åˆ© ç§¯å·±ç¯® é…’èªä¿ƒ. çªœ, å‰²å•Šç˜¤ç»° æµç«‹ ç§¦ æ—ç»¢å…·.
 	{
 		UIP_FinalResultPageP->StartFromLobby(InUIManager, InGM);
-		UIP_FinalResultPageP->UpdateItemData(NativeItemData_Target, NativeItemData_Result);	// Ã³À½¿¡´Â ¸®ÀıÆ®°¡ ¾øÀ½.
-		UIP_FinalResultPageP->ClosePopup(); // Ã³À½¿¡´Â ¼û°Ü³õÀ½. ¿¬Ãâ ÃÖÁ¾ ´Ü°è·Î¼­ º¸¿©Áø´Ù.
+		UIP_FinalResultPageP->UpdateItemData(NativeItemData_Target, NativeItemData_Result);	// è´¸æ¾œä¿Šç»° åºœä¾‹é£˜å•Š ç»æ¾œ.
+		UIP_FinalResultPageP->ClosePopup(); // è´¸æ¾œä¿Šç»° è§è´¥åˆæ¾œ. æ¥·å… å¼¥è¾† çªœæ‹Œè‚ºè¾‘ ç„Šå’¯æŸ³ä¿ƒ.
 	}
 }
 
@@ -299,13 +299,13 @@ void UB2LobbyUI_ItemCusProgBase::ApplyCameraAdaptiveFOV()
 	checkSlow(CachedLobbyGM && CachedLobbyGM->IsInItemOpDirectingView());
 
 	APlayerController* OwningPC = GetOwningPlayer();
-	// ÀÌ Àå¸é ¼Â¾÷¿¡¼­ Àü¿ë Ä«¸Ş¶ó ¾×ÅÍ°¡ ViewTarget À¸·Î ¼¼ÆÃµÇ¾î ÀÖ¾î¾ß ÇÔ.
+	// æ å˜æ æ‚¸è¯€ä¿Šè¾‘ å‚ˆä¾© å¢¨çš‹æ‰¼ å’€ç£å•Š ViewTarget æ è‚º æŠ€æ³¼ç™»ç»¢ ä¹ç»¢å…· çªƒ.
 	ACameraActor* ViewTargetCam = OwningPC ? Cast<ACameraActor>(OwningPC->GetViewTarget()) : nullptr;
 	checkSlow(ViewTargetCam);
 	if (ViewTargetCam && ViewTargetCam->GetCameraComponent())
-	{ // AspectRatioAdaptiveFOV ¸¦ »ç¿ëÇÏ¸é ±âÁØ ÇØ»óµµ ºñÀ²º¸´Ù Å« È­¸é ºñÀ²¿¡¼­ Àå¸éÀÌ Àß¸®´Â °É ÇÇÇÒ ¼ö ÀÖÁö¸¸
-	  // ´ë½Å ³Ğ¾îÁø ½Ã¾ß·Î ÀÎÇØ °¨Ãß¾ú´ø °Ô ³ëÃâµÇ´Â ÀÏÀÌ ¹ß»ıÇÒ ¼ö ÀÖ´Ù. »óÈ²¿¡ µû¶ó ÀûÀıÇÏ°Ô..
-		// ¶ÇÇÑ 2D-3D ¿ä¼Ò°£ Á¤·ÄÀÌ ¾î±ß³ª°Ô µÉ ¼öµµ ÀÖ´Ù. ÀÌ°Ç Æ¯È÷ ´Ù¾çÇÑ ÇØ»óµµ ºñÀ²¿¡¼­ Å×½ºÆ® ÇÊ¿ä.
+	{ // AspectRatioAdaptiveFOV ç”« è¤ä¾©çªæ æ‰éœ– ç§¦æƒ‘æ¡£ åšå•¦ç„Šä¿ƒ å¥´ æ‹³æ åšå•¦ä¿Šè¾‘ å˜ææ è‚‹åºœç»° å§ ä¹”ä¸” è ä¹ç˜¤çˆ¶
+	  // æªè„š æ‰¿ç»¢æŸ³ çŸ«å…·è‚º ç‰¢ç§¦ çš‘çœ èŒå¸¦ éœ¸ ç•´å…ç™»ç»° è€æ æƒ¯ç§¯ä¸” è ä¹ä¿ƒ. æƒ‘ç‚”ä¿Š è¶æ‰¼ åˆ©ä¾‹çªéœ¸..
+		// è‚šèŒ„ 2D-3D å¤¸å®¶åŸƒ æ²¥çººæ ç»¢è¾¹å”±éœ¸ çª èæ¡£ ä¹ä¿ƒ. ææ‰’ æ¼‚æ´’ ä¿ƒå‰§èŒ„ ç§¦æƒ‘æ¡£ åšå•¦ä¿Šè¾‘ æŠ›èƒ¶é£˜ é˜å¤¸.
 		//ViewTargetCam->GetCameraComponent()->SetAspectRatioAdaptiveFOV(bUseCameraAdaptiveFOV);
 		//ViewTargetCam->GetCameraComponent()->SetAdaptiveFOVScale(AdaptiveFOVScale);
 	}
@@ -348,7 +348,7 @@ UB2DynItemIcon_ItemOpScene* UB2LobbyUI_ItemCusProgBase::CreateItemIconCommon(UCa
 		return NULL;
 	}
 
-	// Anchor ¼³Á¤¿¡ µû¶ó GetSize ´Â ¿øÇÏ´Â °ªÀÌ ¾È ³ª¿Ã °ÍÀÌ¹Ç·Î ÁÖÀÇ.
+	// Anchor æ±²æ²¥ä¿Š è¶æ‰¼ GetSize ç»° ç›”çªç»° è”¼æ æ•‘ å”±æ£µ å·´æéª¨è‚º æ—ç‹¼.
 	UCanvasPanelSlot* MainPanelSlot = Cast<UCanvasPanelSlot>(ParentCP->Slot);
 	FVector2D AllowedIconSize = MainPanelSlot ? MainPanelSlot->GetSize() : FVector2D(0.0f, 0.0f);
 	UB2DynItemIcon* DynIconCDO = Cast<UB2DynItemIcon>(ItemIconWidgetClass->GetDefaultObject());
@@ -400,8 +400,8 @@ void UB2LobbyUI_ItemCusProgBase::DestroyResultGradeStarFx()
 
 void UB2LobbyUI_ItemCusProgBase::FinishAndProceedToResult()
 {
-	UGameplayStatics::SetGlobalTimeDilation(CachedLobbyGM, 1.0f); // OverallPlayRate ¿¡ µû¶ó º¯°æÇß´ø °Å º¹±¸.
-	QuitItemOpModeClass<bool>::GetInstance().Signal(true); // ½ÇÁ¦·Î´Â °á°úÃ¢ÀÌ ³ª¿Í¾ß ÇÔ. °Å±â¼­ Quit À» ÇÏ°Ô µÉ °Í.
+	UGameplayStatics::SetGlobalTimeDilation(CachedLobbyGM, 1.0f); // OverallPlayRate ä¿Š è¶æ‰¼ å‡½ç‰ˆæ²å¸¦ èŠ­ æ±—å¤‡.
+	QuitItemOpModeClass<bool>::GetInstance().Signal(true); // è§’åŠ›è‚ºç»° æ¬è‹èŠ’æ å”±å®¢å…· çªƒ. èŠ­æ‰è¾‘ Quit é˜‘ çªéœ¸ çª å·´.
 }
 
 #if WITH_EDITOR
@@ -414,8 +414,8 @@ void UB2LobbyUI_ItemCusProgBase::PostEditChangeProperty(FPropertyChangedEvent& P
 	FProperty* PropertyThatChanged = PropertyChangedEvent.Property;
 	FName PropertyName = PropertyThatChanged != NULL ? PropertyThatChanged->GetFName() : NAME_None;
 
-	//if (PropertyName == Name_ResultGradeStarCenterPos) // ÀÌ ÀÌ¸§À¸·Î ¾È µé¾î¿À°í X, Y ·Î µé¾î¿È ¤»¤» °Á ¾ğÁ¦³ª Ã¼Å©
-	{ // StartResultGradeStarFx ¿¡¼­ ResultGradeStarCenterPos ¾à°£ ¿À¸¥ÂÊ À§Ä¡¸¦ »ç¿ëÇÏ´Â °Ô ÀÖ¾î¼­ X ÁÂÇ¥´Â 1.0 ÀÌ ¾Æ´Ñ 0.9±îÁö¸¸ Çã¿ë.
+	//if (PropertyName == Name_ResultGradeStarCenterPos) // æ ææŠšæ è‚º æ•‘ ç”¸ç»¢å·ç»Š X, Y è‚º ç”¸ç»¢å’³ ã›ã› å‚² æ”«åŠ›å”± çœ‰å†œ
+	{ // StartResultGradeStarFx ä¿Šè¾‘ ResultGradeStarCenterPos è·åŸƒ å·å¼—ç‡ å›°æ‘¹ç”« è¤ä¾©çªç»° éœ¸ ä¹ç»¢è¾‘ X è°…é’ç»° 1.0 æ é…’å›± 0.9é³–ç˜¤çˆ¶ å€¾ä¾©.
 
 		auto* StarEffectInfo = GetStarEffectInfo(NativeItemData_Result);
 

@@ -49,7 +49,7 @@ void UB2LobbyUI_ItemEnhUpgCommon::StartFromLobby(class UB2UIManager_Lobby* InUIM
 	CachedInventory = CachedLobbyGM->GetLobbyInventory();
 	check(CachedInventory);
 
-	UpdateStaticTexts(); // NativeTargetData ¾øÀÌµµ °¡´ÉÇÑ °Í.
+	UpdateStaticTexts(); // NativeTargetData ç»ææ¡£ å•Šç“·èŒ„ å·´.
 }
 
 void UB2LobbyUI_ItemEnhUpgCommon::SetItemOpTargetData(FB2Item& InItem, bool bInIsForEnhanceMenu)
@@ -58,7 +58,7 @@ void UB2LobbyUI_ItemEnhUpgCommon::SetItemOpTargetData(FB2Item& InItem, bool bInI
 	bIsForEnhanceMenu = bInIsForEnhanceMenu;
 
 	UpdateStaticTexts();
-	UpdateTargetItemIcon(); // Target Item °ü·ÃÇÑ °ÍµéÀº Ã³À½¿¡ ÇÑ¹ø »ı¼ºÇÏ¸é µÊ.
+	UpdateTargetItemIcon(); // Target Item åŒ…è®¿èŒ„ å·´ç”¸ç¯® è´¸æ¾œä¿Š èŒ„é”… ç§¯å·±çªæ å‡³.
 	UpdateOptionStatTexts();
 }
 
@@ -85,13 +85,13 @@ void UB2LobbyUI_ItemEnhUpgCommon::UpdateTargetItemIcon()
 		return;
 	}
 
-	// Anchor ¼³Á¤¿¡ µû¶ó GetSize ´Â ¿øÇÏ´Â °ªÀÌ ¾È ³ª¿Ã °ÍÀÌ¹Ç·Î ÁÖÀÇ.
+	// Anchor æ±²æ²¥ä¿Š è¶æ‰¼ GetSize ç»° ç›”çªç»° è”¼æ æ•‘ å”±æ£µ å·´æéª¨è‚º æ—ç‹¼.
 	UCanvasPanelSlot* MainPanelSlot = Cast<UCanvasPanelSlot>(X_CP_ItemIconSet->Slot);
 	FVector2D AllowedIconSize = MainPanelSlot ? MainPanelSlot->GetSize() : FVector2D(0.0f, 0.0f);
 
 	UB2DynItemIcon* DynIconCDO = Cast<UB2DynItemIcon>(ItemIconWidgetClass->GetDefaultObject());
 
-	// ItemIconPanelNRef À§¿¡ ÃÖÁ¾ÀûÀÎ ¾ÆÀÌÅÛ ¾ÆÀÌÄÜ widget »ı¼º
+	// ItemIconPanelNRef å›°ä¿Š å¼¥è¾†åˆ©ç‰¢ é…’æè¢ é…’æèƒ½ widget ç§¯å·±
 	CreatedTargetItemIcon = Cast<UB2DynItemIcon_LobbyInven>(DynCreateInCanvasPanel(
 		ItemIconWidgetClass, this, X_CP_ItemIconSet.Get(), DynIconCDO ? DynIconCDO->GetNonScaledSize() : FVector2D(100.0f, 100.0f), AllowedIconSize,
 		FVector2D(0.0f, 0.0f), 0, false
@@ -99,7 +99,7 @@ void UB2LobbyUI_ItemEnhUpgCommon::UpdateTargetItemIcon()
 
 	if (CreatedTargetItemIcon)
 	{
-		CreatedTargetItemIcon->SetIconUsageType(ELobbyInvenItemIconUsage::EEIIT_ItemOpModeMenuTarget); // °­È­/½Â±Ş ¸¶Âù°¡Áö
+		CreatedTargetItemIcon->SetIconUsageType(ELobbyInvenItemIconUsage::EEIIT_ItemOpModeMenuTarget); // ç¢æ‹³/é“°é­ ä»˜è›®å•Šç˜¤
 		CreatedTargetItemIcon->UpdateItemData(NativeTargetData);
 	}
 }
@@ -109,7 +109,7 @@ void UB2LobbyUI_ItemEnhUpgCommon::UpdateOptionStatTexts()
 	DestroyOptionStatTexts();
 
 	//////////
-	// °­È­ È¤Àº ½Â±Ş ÈÄ ´É·ÂÄ¡ °è»ê.
+	// ç¢æ‹³ è¶£ç¯® é“°é­ é¥¶ ç“·ä»¿æ‘¹ æ‹Œé­‚.
 	FB2Item PostOpItemData = NativeTargetData;
 
 	if (bIsForEnhanceMenu)
@@ -138,10 +138,10 @@ void UB2LobbyUI_ItemEnhUpgCommon::UpdateOptionStatTexts()
 
 	if (!bIsForEnhanceMenu)
 	{
-		const int32 IntrinsicOptionNum = PostOpItemData.IntrinsicOptions.Num(); // µÑÀÌ °°¾Æ¾ß ÇÒ °Í.
-		if (IntrinsicOptionNum > 0) // ÇÏ³ª¶óµµ ÀÖ¾î¾ß Å¸ÀÌÆ²À» ¶ç¿ìµµ·Ï
+		const int32 IntrinsicOptionNum = PostOpItemData.IntrinsicOptions.Num(); // ç¬›æ éé…’å…· ä¸” å·´.
+		if (IntrinsicOptionNum > 0) // çªå”±æ‰¼æ¡£ ä¹ç»¢å…· é¸¥ææ’‡é˜‘ å‰å¿«æ¡£åºŸ
 		{
-			// °íÀ¯ ¿É¼ÇÀº ½Â±Ş ¸Ş´ºÀÎ °æ¿ì¸¸
+			// ç»Šèœ¡ å¯è®°ç¯® é“°é­ çš‹æ˜¥ç‰¢ ç‰ˆå¿«çˆ¶
 			CreatedIntrinsicOptionTitle = Cast<UB2DynText_Multiple>(DynCreateInVerticalBox(IntrinsicOptionTitleClass, this, (bIsForEnhanceMenu ? VB_OptionStats : VB_OptionStats_Upgrade).Get(), FMargin()));
 			if (CreatedIntrinsicOptionTitle)
 				CreatedIntrinsicOptionTitle->SetDynText(0, BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("LobbyItemDetail_IntrinsicOptionPanelTitle"))));
@@ -163,8 +163,8 @@ void UB2LobbyUI_ItemEnhUpgCommon::UpdateOptionStatTexts()
 		}
 	}
 
-	// ·£´ı ¿É¼ÇÀº µÑ ´Ù. 
-	const int32 MinRandomOptionNum = FMath::Min(NativeTargetData.RandomOptions.Num(), PostOpItemData.RandomOptions.Num()); // µÑÀÌ °°¾Æ¾ß ÇÒ °Í.
+	// ç½šå¾… å¯è®°ç¯® ç¬› ä¿ƒ. 
+	const int32 MinRandomOptionNum = FMath::Min(NativeTargetData.RandomOptions.Num(), PostOpItemData.RandomOptions.Num()); // ç¬›æ éé…’å…· ä¸” å·´.
 	if (MinRandomOptionNum > 0)
 	{
 		CreatedRandomOptionTitle = Cast<UB2DynText_Multiple>(DynCreateInVerticalBox(RandomOptionTitleClass, this, (bIsForEnhanceMenu ? VB_OptionStats : VB_OptionStats_Upgrade).Get(), FMargin()));
@@ -280,19 +280,19 @@ void UB2LobbyUI_ItemEnhUpgCommon::OnClickedOptionInfo()
 
 void UB2LobbyUI_ItemEnhUpgCommon::CreateLobbyItemAfterOptionPopup(UObject* WorldContextObject, FB2Item& InItemData)
 {
-	// º¸°üÇÔ ¾ÆÀÌÅÛ È¤Àº ÀåÂø ¾ÆÀÌÅÛ
+	// ç„ŠåŒ…çªƒ é…’æè¢ è¶£ç¯® å˜é¦’ é…’æè¢
 	const ELobbySubPopups LobbyPopupEnum = ELobbySubPopups::ELSPU_ItemAfterOpiton;
 
 	AB2LobbyGameMode* LobbyGM = Cast<AB2LobbyGameMode>(UGameplayStatics::GetGameMode(WorldContextObject));
 
-	// ÇØ´ç user widget »ı¼º ½ÅÈ£.
-	// »ı¼ºµÈ Popup widget À» UIP Ã³·³ ¹èÄ¡ÇØ ³ÖÀ» ÆĞ³Î Á¤º¸¸¦ ¸¸µé¾îÁØ´Ù.
+	// ç§¦å¯¸ user widget ç§¯å·± è„šé¾‹.
+	// ç§¯å·±ç­‰ Popup widget é˜‘ UIP è´¸çƒ¦ ç¡…æ‘¹ç§¦ æŒé˜‘ è©æ¾„ æ²¥ç„Šç”« çˆ¶ç”¸ç»¢éœ–ä¿ƒ.
 	UB2LobbyUI_InventoryMain* InventoryUI = LobbyGM ? Cast<UB2LobbyUI_InventoryMain>(LobbyGM->DJLegacy_GetCurrLobbyUIPage()) : nullptr;
 	UPanelWidget* PopupAddPanel = InventoryUI ? InventoryUI->GetItemDetailPopupParentPanel(false) : nullptr;
 
 	DJLegacy_OpenLobbySubPopupClass<ELobbySubPopups, FDJLegacySubpopupAddPanelInfo>::GetInstance().Signal(LobbyPopupEnum, FDJLegacySubpopupAddPanelInfo(InventoryUI, PopupAddPanel));
 
-	// »ı¼ºµÈ user widget À» Ã£¾Æ¼­ ItemData ¸¦ ¾÷µ¥ÀÌÆ®
+	// ç§¯å·±ç­‰ user widget é˜‘ èŒ«é…’è¾‘ ItemData ç”« è¯€å•æé£˜
 	UB2LobbyUI_ItemAfterOption* CreatedDetailWindow = LobbyGM ? Cast<UB2LobbyUI_ItemAfterOption>(LobbyGM->DJLegacy_FindLobbySubPopup(LobbyPopupEnum)) : NULL;
 
 	if (CreatedDetailWindow)

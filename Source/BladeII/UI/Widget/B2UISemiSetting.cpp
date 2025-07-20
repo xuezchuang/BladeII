@@ -1,4 +1,4 @@
-#include "B2UISemiSetting.h"
+﻿#include "B2UISemiSetting.h"
 #include "B2UIManager.h"
 #include "UnrealEngine.h"
 #include "BladeIIGameMode.h"

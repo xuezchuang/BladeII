@@ -27,7 +27,7 @@ void UB2WingUIP_EvolveGradeStar::CacheAssets()
 		UImage* ThisFoundImage = GetSlot<UImage>(FName(*ThisStarName));
 		if (ThisFoundImage)
 		{
-			ThisFoundImage->SetVisibility(ESlateVisibility::Collapsed); // ÀÏ´Ü ¼û°Ü³õ°í µî±Ş¸¸Å­ º¸ÀÌ°Ô.
+			ThisFoundImage->SetVisibility(ESlateVisibility::Collapsed); // è€çªœ è§è´¥åˆç»Š æ®¿é­çˆ¶æ€’ ç„Šæéœ¸.
 			AllStarImages.Add(ThisFoundImage);
 		}
 	}
@@ -61,7 +61,7 @@ void UB2WingUIP_EvolveGradeStar::CacheAssets()
 void UB2WingUIP_EvolveGradeStar::SetCurrentGrade(int32 InGrade, bool bInShowNextGradeExpectation)
 {
 	bool GradeDivision = InGrade <= MAX_WING_NUMBERIMAGE ?
-		(InGrade == MAX_WING_NUMBERIMAGE && bInShowNextGradeExpectation ? false : true)			//6¼ºÀÇ ¹Ì¸®º¸°íÀÌ¸é ÀÌ¹ÌÁö·Î µé¾î°¡¾ßÇÏ´Âµ¥ ±×Á¶°Ç
+		(InGrade == MAX_WING_NUMBERIMAGE && bInShowNextGradeExpectation ? false : true)			//6å·±ç‹¼ å›ºåºœç„Šç»Šææ æå›ºç˜¤è‚º ç”¸ç»¢å•Šå…·çªç»°å• å¼Šç‚¼æ‰’
 		: false;
 
 
@@ -112,7 +112,7 @@ void UB2WingUIP_EvolveGradeStar::SetCurrentGrade(int32 InGrade, bool bInShowNext
 			SB_GradeStarNum->SetVisibility(ESlateVisibility::Visible);
 
 
-		if (bInShowNextGradeExpectation)									//6¼ºÀÏ°æ¿ì ±×³É 7·Î ¸¸µé¾îÁØ´Ù ¿¹¿ÜÃ³¸®
+		if (bInShowNextGradeExpectation)									//6å·±è€ç‰ˆå¿« å¼Šæˆ 7è‚º çˆ¶ç”¸ç»¢éœ–ä¿ƒ æŠ—å¯‡è´¸åºœ
 			++InGrade;
 		int32 GradeDiversion = InGrade % (MAX_WING_NUMBERIMAGE + 1);
 

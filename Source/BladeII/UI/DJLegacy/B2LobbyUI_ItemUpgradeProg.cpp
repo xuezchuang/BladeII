@@ -31,7 +31,7 @@ void UB2LobbyUI_ItemUpgradeProg::StartFromLobby(class UB2UIManager_Lobby* InUIMa
 {
 	Super::StartFromLobby(InUIManager, InGM);
 
-	// ¾ÆÁ÷ ½Â±Ş ¿¬Ãâ¿¡¼­´Â ½Â±Ş ÀüÀÇ ¾ÆÀÌÅÛ Ç¥½Ã°¡ ¾øÀ¸¹Ç·Î ¼û°Ü³õ´Â´Ù.
+	// é…’æµ é“°é­ æ¥·å…ä¿Šè¾‘ç»° é“°é­ å‚ˆç‹¼ é…’æè¢ é’çŸ«å•Š ç»æ éª¨è‚º è§è´¥åˆç»°ä¿ƒ.
 	if (CreatedItemIcon_Target)
 	{
 		CreatedItemIcon_Target->SetVisibility(ESlateVisibility::Collapsed);
@@ -50,17 +50,17 @@ void UB2LobbyUI_ItemUpgradeProg::UpdateStaticWidgets()
 	Super::UpdateStaticWidgets();
 }
 
-// ¾Æ·¡ ÀÌ¸§µéÀº Æ¯Á¤ Particle System ¸®¼Ò½ºÀÇ Named Material Slots ¿¡ Á¤ÀÇµÇ¸ç ¶ÇÇÑ Required ¸ğµâÀÇ Named Material Override ¿¡¼­ »ç¿ë.
+// é…’è´° ææŠšç”¸ç¯® æ¼‚æ²¥ Particle System åºœå®¶èƒ¶ç‹¼ Named Material Slots ä¿Š æ²¥ç‹¼ç™»å“¥ è‚šèŒ„ Required è‘›ç¢˜ç‹¼ Named Material Override ä¿Šè¾‘ è¤ä¾©.
 const FName UB2LobbyUI_ItemUpgradeProg::Name_FxMID_TargetBGPanel(TEXT("MAT_ItemBGPanel"));
 const FName UB2LobbyUI_ItemUpgradeProg::Name_FxMID_TargetItemIcon(TEXT("MAT_ItemIcon"));
-//const FName UB2LobbyUI_ItemUpgradeProg::Name_FxMID_IngredBGPanel(TEXT("MAT_ItemBGPanel_Right")); ÀÌ°Ç Ç¥½Ã¸¦ ÇÏ°Ô µÉ¼öµµ ¾È ÇÏ°Ô µÉ ¼öµµ..
+//const FName UB2LobbyUI_ItemUpgradeProg::Name_FxMID_IngredBGPanel(TEXT("MAT_ItemBGPanel_Right")); ææ‰’ é’çŸ«ç”« çªéœ¸ çªèæ¡£ æ•‘ çªéœ¸ çª èæ¡£..
 //const FName UB2LobbyUI_ItemUpgradeProg::Name_FxMID_IngredItemIcon(TEXT("MAT_ItemIcon_Right"));
 const FName UB2LobbyUI_ItemUpgradeProg::Name_FxMID_UpgradeBGPanel(TEXT("MAT_ItemBGPanel"));
 const FName UB2LobbyUI_ItemUpgradeProg::Name_FxMID_UpgradeItemIcon(TEXT("MAT_ItemIcon"));
 
 void UB2LobbyUI_ItemUpgradeProg::StartBeginUpgradeScene()
 {
-	DestroyAllFx(); // ¸¸ÀÏ ÀÌÀü°ÍÀÌ ³²¾ÆÀÖ¾î¾ß ÇÑ´Ù¸é ¹Ù²Ü °Í.
+	DestroyAllFx(); // çˆ¶è€ æå‚ˆå·´æ å·¢é…’ä¹ç»¢å…· èŒ„ä¿ƒæ å®˜æ›¹ å·´.
 
 	if (BeginUpgradePS)
 	{
@@ -70,12 +70,12 @@ void UB2LobbyUI_ItemUpgradeProg::StartBeginUpgradeScene()
 		{
 			CreatedBeginUpgradeFx->SetWorldScale3D(BeginUpgradeFxScale);
 
-			SetupNamedMIDForFxComp(CreatedBeginUpgradeFx); // ÇÊ¿äÇÑ MIC µé¿¡¼­ MID ¸¦ ¸¸µé¾î¼­ »ç¿ë °¡´ÉÇÏµµ·Ï ¼¼ÆÃ.
+			SetupNamedMIDForFxComp(CreatedBeginUpgradeFx); // é˜å¤¸èŒ„ MIC ç”¸ä¿Šè¾‘ MID ç”« çˆ¶ç”¸ç»¢è¾‘ è¤ä¾© å•Šç“·çªæ¡£åºŸ æŠ€æ³¼.
 
-			// Fx ÂÊ¿¡ MID ±îÁö ÁØºñ°¡ µÇ¾ú´Ù¸é ÆÄÆ®º°·Î ÆÄ¶ó¹ÌÅÍ °ªÀ» °¡Á®¿Ã UI ÂÊÀÇ MIC ¸¦ °¡Á®¿Í¼­ MID ¿¡ ÆÄ¶ó¹ÌÅÍ¸¦ ¼¼ÆÃ.
+			// Fx ç‡ä¿Š MID é³–ç˜¤ éœ–åšå•Š ç™»èŒä¿ƒæ é¢‡é£˜å–Šè‚º é¢‡æ‰¼å›ºç£ è”¼é˜‘ å•Šå»‰æ£µ UI ç‡ç‹¼ MIC ç”« å•Šå»‰å®¢è¾‘ MID ä¿Š é¢‡æ‰¼å›ºç£ç”« æŠ€æ³¼.
 
 
-			// Fx ÂÊ¿¡ MID ±îÁö ÁØºñ°¡ µÇ¾ú´Ù¸é ÆÄÆ®º°·Î ÆÄ¶ó¹ÌÅÍ °ªÀ» °¡Á®¿Ã UI ÂÊÀÇ MIC ¸¦ °¡Á®¿Í¼­ MID ¿¡ ÆÄ¶ó¹ÌÅÍ¸¦ ¼¼ÆÃ.
+			// Fx ç‡ä¿Š MID é³–ç˜¤ éœ–åšå•Š ç™»èŒä¿ƒæ é¢‡é£˜å–Šè‚º é¢‡æ‰¼å›ºç£ è”¼é˜‘ å•Šå»‰æ£µ UI ç‡ç‹¼ MIC ç”« å•Šå»‰å®¢è¾‘ MID ä¿Š é¢‡æ‰¼å›ºç£ç”« æŠ€æ³¼.
 			{
 				UMaterialInstanceDynamic* TargetBGPanelMID = GetFxNamedMID(CreatedBeginUpgradeFx, Name_FxMID_TargetBGPanel);
 				UMaterialInstanceConstant* TargetBGPanelMIC_Ref = CreatedItemIcon_Target ? CreatedItemIcon_Target->GetBGPanelMIC() : NULL;
@@ -93,15 +93,15 @@ void UB2LobbyUI_ItemUpgradeProg::StartBeginUpgradeScene()
 
 void UB2LobbyUI_ItemUpgradeProg::StartCompleteUpgradeScene()
 {
-	DestroyAllFx(); // ¸¸ÀÏ ³²¾ÆÀÖ¾î¾ß ÇÒ ÀÌÀü °ÍÀÌ ÀÖ´Ù¸é ¹Ù²Ü °Í.
+	DestroyAllFx(); // çˆ¶è€ å·¢é…’ä¹ç»¢å…· ä¸” æå‚ˆ å·´æ ä¹ä¿ƒæ å®˜æ›¹ å·´.
 
 	check(CachedInventory);
-	CachedInventory->GetItemOPTargetItemData(NativeItemData_Result, false); // °á°ú ¾ÆÀÌÅÛ µ¥ÀÌÅÍ¸¦ ´Ù½Ã ÇÑ¹ø °¡Á®¿È.
+	CachedInventory->GetItemOPTargetItemData(NativeItemData_Result, false); // æ¬è‹ é…’æè¢ å•æç£ç”« ä¿ƒçŸ« èŒ„é”… å•Šå»‰å’³.
 
-	SetItemData_Result(NativeItemData_Result); // °á°ú ¾ÆÀÌÅÛ ¾ÆÀÌÄÜÀ» ÇöÀç º¸ÀÌ°Ç ¾È º¸ÀÌ°Ç ÀÏ´Ü »ı¼ºÀ» ÇØ¾ß ÇÔ. ±×·¡¾ß ¹Ù·Î ¾Æ·¡¿¡¼­ UI material °¡Á®¿Í¼­ Fx ÂÊ¿¡¼­ ÆÄ¶ó¹ÌÅÍ¸¦ ¼¼ÆÃÇÑ´Ù.
+	SetItemData_Result(NativeItemData_Result); // æ¬è‹ é…’æè¢ é…’æèƒ½é˜‘ æ³…çŠ ç„Šææ‰’ æ•‘ ç„Šææ‰’ è€çªœ ç§¯å·±é˜‘ ç§¦å…· çªƒ. å¼Šè´°å…· å®˜è‚º é…’è´°ä¿Šè¾‘ UI material å•Šå»‰å®¢è¾‘ Fx ç‡ä¿Šè¾‘ é¢‡æ‰¼å›ºç£ç”« æŠ€æ³¼èŒ„ä¿ƒ.
 	if (CreatedItemIcon_Result)
 	{
-		CreatedItemIcon_Result->SetVisibility(ESlateVisibility::Hidden); // ¾î¶² °æ¿ìµç ÀÏ´Ü ¼û°Ü³õ°Ô µÉ °ÍÀÌ´Ù. Áö±İÀº 3D È¿°ú°¡ ³ª¿Í¾ß ÇÒ ½ÃÁ¡.
+		CreatedItemIcon_Result->SetVisibility(ESlateVisibility::Hidden); // ç»¢æ« ç‰ˆå¿«ç”µ è€çªœ è§è´¥åˆéœ¸ çª å·´æä¿ƒ. ç˜¤é™›ç¯® 3D ç“¤è‹å•Š å”±å®¢å…· ä¸” çŸ«ç—¢.
 	}
 	
 	if (CompleteUpgradePS)
@@ -112,9 +112,9 @@ void UB2LobbyUI_ItemUpgradeProg::StartCompleteUpgradeScene()
 		{
 			CreatedCompleteUpgradeFx->SetWorldScale3D(CompleteUpgradeFxScale);
 
-			SetupNamedMIDForFxComp(CreatedCompleteUpgradeFx); // ÇÊ¿äÇÑ MIC µé¿¡¼­ MID ¸¦ ¸¸µé¾î¼­ »ç¿ë °¡´ÉÇÏµµ·Ï ¼¼ÆÃ.
+			SetupNamedMIDForFxComp(CreatedCompleteUpgradeFx); // é˜å¤¸èŒ„ MIC ç”¸ä¿Šè¾‘ MID ç”« çˆ¶ç”¸ç»¢è¾‘ è¤ä¾© å•Šç“·çªæ¡£åºŸ æŠ€æ³¼.
 
-			// Fx ÂÊ¿¡ MID ±îÁö ÁØºñ°¡ µÇ¾ú´Ù¸é ÆÄÆ®º°·Î ÆÄ¶ó¹ÌÅÍ °ªÀ» °¡Á®¿Ã UI ÂÊÀÇ MIC ¸¦ °¡Á®¿Í¼­ MID ¿¡ ÆÄ¶ó¹ÌÅÍ¸¦ ¼¼ÆÃ.
+			// Fx ç‡ä¿Š MID é³–ç˜¤ éœ–åšå•Š ç™»èŒä¿ƒæ é¢‡é£˜å–Šè‚º é¢‡æ‰¼å›ºç£ è”¼é˜‘ å•Šå»‰æ£µ UI ç‡ç‹¼ MIC ç”« å•Šå»‰å®¢è¾‘ MID ä¿Š é¢‡æ‰¼å›ºç£ç”« æŠ€æ³¼.
 			{
 				UMaterialInstanceDynamic* UpgradeBGPanelMID = GetFxNamedMID(CreatedCompleteUpgradeFx, Name_FxMID_UpgradeBGPanel);
 				UMaterialInstanceConstant* UpgradeBGPanelMIC_Ref = CreatedItemIcon_Result ? CreatedItemIcon_Result->GetBGPanelMIC() : NULL;
@@ -153,7 +153,7 @@ void UB2LobbyUI_ItemUpgradeProg::DestroyCompleteUpgradeFx()
 }
 
 void UB2LobbyUI_ItemUpgradeProg::ShowBattleScorePopup()
-{// ¾Ö´Ï¸ŞÀÌ¼Ç ¿¬Ãâ Á¾·á½Ã È£ÃâµÇ´Â ÀüÅõ·Â °ü·Ã ÆË¾÷ 
+{// å±€èªçš‹æè®° æ¥·å… è¾†ä¸°çŸ« é¾‹å…ç™»ç»° å‚ˆæ§ä»¿ åŒ…è®¿ æ‰‘è¯€ 
 	ShowBattleScoreNotifyClass<EPCClass>::GetInstance().Signal(IntToPCClass(NativeItemData_Target.AllowedPCClass));
 }
 

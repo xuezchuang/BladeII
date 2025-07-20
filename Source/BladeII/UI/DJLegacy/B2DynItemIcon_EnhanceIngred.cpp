@@ -42,8 +42,8 @@ void UB2DynItemIcon_EnhanceIngred::OnClickedBTNArea()
 }
 
 void UB2DynItemIcon_EnhanceIngred::OnClickedSenderBTNArea()
-{ // ManualScrollBox ±â´ÉÀÇ ÀÏºÎ·Î ºÒ¸®´Â ÀÎÅÍÆäÀÌ½º
+{ // ManualScrollBox æ‰ç“·ç‹¼ è€ä½•è‚º é˜‚åºœç»° ç‰¢ç£å…¶æèƒ¶
 	Super::OnClickedSenderBTNArea();
 
-	OnClickedBTNArea(); // ½ÇÁ¦ Å¬¸¯ ÇÚµé¸µ
+	OnClickedBTNArea(); // è§’åŠ› åŠªè… å‹¤ç”¸å‚…
 }

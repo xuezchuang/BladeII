@@ -1,4 +1,4 @@
-#include "BladeIIPointCharger.h"
+ï»¿#include "BladeIIPointCharger.h"
 //#include "Event.h"
 ////#include "Retailer.h"
 //#include "B2UIDocHelper.h"
@@ -52,7 +52,7 @@
 //
 //void FBladeIIChargeBladePointCharger::ResponseCheckChargePoints(const FB2CheckChargePointsPtr& InChargePoints)
 //{
-//	//¿äÃ»ÇÑ °ªÀÌ ¾Æ´Ï¸é -9999
+//	//å¤¸æ²¡èŒ„ è”¼æ é…’èªæ -9999
 //	//switch(PointType)
 //	//{
 //	//	case EPointChargeType::EPointChargeType_BladePoint:

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 //#include "BladeII.h"
 #include "Interfaces/IHttpRequest.h"
@@ -6,6 +6,10 @@
 #include "Interfaces/IBuildPatchServicesModule.h"
 #include "Interfaces/IBuildManifest.h"
 #include "BuildPatchState.h"
+#include "Engine/CollisionProfile.h"
+#include "HAL/PlatformFile.h"
+#include "Misc/Paths.h"
+
 
 class UB2UIPatch;
 

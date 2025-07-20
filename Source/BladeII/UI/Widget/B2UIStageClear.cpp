@@ -1,4 +1,4 @@
-#include "B2UIStageClear.h"
+ï»¿#include "B2UIStageClear.h"
 #include "B2UISlotItem.h"
 #include "B2UIDocHelper.h"
 #include "B2UIDocBattleStage.h"
@@ -23,7 +23,7 @@ void UB2UIStageClear::CacheAssets()
 	{
 		UIP_RepeatBattleCountDownP->Init();
 		UIP_RepeatBattleCountDownP->SetPauseAble(true);
-		UIP_RepeatBattleCountDownP->SetVisibility(ESlateVisibility::Hidden); // ¿©±â¼± ´ÜÁö ³»ºÎÀûÀÎ Ä«¿îÆ®´Ù¿î ±â´ÉÀ» À§ÇØ ¾´´Ù. ÀÏ´Ü ¼û°Ü³õÀ½
+		UIP_RepeatBattleCountDownP->SetVisibility(ESlateVisibility::Hidden); // å’¯æ‰æ€¥ çªœç˜¤ éƒ´ä½•åˆ©ç‰¢ å¢¨æ¬¾é£˜ä¿ƒæ¬¾ æ‰ç“·é˜‘ å›°ç§¦ æ•¬ä¿ƒ. è€çªœ è§è´¥åˆæ¾œ
 	}
 	GET_SLOT(UB2UIRepeatBattleInGameInfo, UIP_RepeatBattleInGameInfoP)
 	if (UIP_RepeatBattleInGameInfoP.IsValid())
@@ -46,7 +46,7 @@ void UB2UIStageClear::GatherRewardItemData()
 	UB2UIDocBattleStage* DocBS = UB2UIDocHelper::GetDocBattleStage();
 	if (DocBS)
 	{
-		//½ºÅ×ÀÌÁö Å¬¸®¾î º¸»ó¾ÆÀÌÅÛ Ã³¸®. ¹Ù²ğÀÏ ¾øÀ¸¹Ç·Î DelegateÃ³¸® ÇÊ¿ä¾øÀ½
+		//èƒ¶æŠ›æç˜¤ åŠªåºœç»¢ ç„Šæƒ‘é…’æè¢ è´¸åºœ. å®˜æ‹†è€ ç»æ éª¨è‚º Delegateè´¸åºœ é˜å¤¸ç»æ¾œ
 		const TArray<FB2Item>& RewardItems = DocBS->GetStageClearRewardItemList();
 		const TArray<FB2Item>& EtherItems = DocBS->GetStageClearEtherItemsList();
 		const TArray<FB2Item>& MaterialItems = DocBS->GetStageClearMaterialItemsList();
@@ -59,8 +59,8 @@ void UB2UIStageClear::GatherRewardItemData()
 		for (const FB2Item& Elem : RewardItems)
 		{
 			FB2Item RewardItem = Elem;
-			// ¿¹Àü¿£ °°Àº Àåºñ´Â °ãÃÄ¼­ º¸¿©ÁáÁö¸¸ ÀÌÁ¦ ºĞ¸®ÇØ¼­ º¸¿©ÁÖ±â¶§¹®¿¡
-			// ¾ÆÀÌÅÛ(Àåºñ)´Â Multiple Value(= 1 or 3¹è ¸ğµå)·Î °ñµå´Â ConsumingAmount·Î º¸¿©ÁØ´Ù
+			// æŠ—å‚ˆæµš éç¯® å˜åšç»° èˆ¬åªšè¾‘ ç„Šå’¯ç²ç˜¤çˆ¶ æåŠ› ç›’åºœç§¦è¾‘ ç„Šå’¯æ—æ‰é”­å·©ä¿Š
+			// é…’æè¢(å˜åš)ç»° Multiple Value(= 1 or 3ç¡… è‘›é›)è‚º æ¦œé›ç»° ConsumingAmountè‚º ç„Šå’¯éœ–ä¿ƒ
 			RewardItem.ConsumingAmount = (RewardItem.ItemClass == EItemClass::EIC_Gold) ? FMath::Max(1, RewardItem.ConsumingAmount) : FMath::Max(1, MultipleValue);
 			RewardItemData.Add(RewardItem);
 		}
@@ -108,7 +108,7 @@ void UB2UIStageClear::Init()
 {
 	Super::Init();
 	
-#if WITH_EDITOR // ¾Æ¿¹ ¸ğµâ ·Îµù½Ã¿¡ ÇØ ÁÖ´Â °Ô ´õ ÁÁ±ä ÇÔ. ÀÛÀº °Å´Ï °Á ÀÌ°É·Î ¸¸Á·ÇÏÀÚ.
+#if WITH_EDITOR // é…’æŠ— è‘›ç¢˜ è‚ºçˆ¹çŸ«ä¿Š ç§¦ æ—ç»° éœ¸ æ­¹ äº®å˜ çªƒ. ç´¯ç¯® èŠ­èª å‚² æå§è‚º çˆ¶ç»ƒçªç£Š.
 	if (GIsEditor)
 	{
 		RewardPSSetup.EditorLoadAll();
@@ -137,13 +137,13 @@ void UB2UIStageClear::BindDocAuto()
 	
 	GatherRewardItemData();
 
-	RewardPSSetup.PreloadForItems(RewardItemData, UB2AssetLoader::GetStreamableManager(), LoadedRewardPSHolder); // ÀÌ°Ç Á» ¹Ì¸® ·ÎµùÇØ µÑ ÇÊ¿ä°¡ ÀÖ±º.. ¿¬Ãâ ³ª¿Ã ¶§ ÁöÀåÀÌ Á» ÀÖÀ½.
+	RewardPSSetup.PreloadForItems(RewardItemData, UB2AssetLoader::GetStreamableManager(), LoadedRewardPSHolder); // ææ‰’ ç²± å›ºåºœ è‚ºçˆ¹ç§¦ ç¬› é˜å¤¸å•Š ä¹ç„™.. æ¥·å… å”±æ£µ é”­ ç˜¤å˜æ ç²± ä¹æ¾œ.
 	if (RewardItemData.Num() > 0)
 	{
-		GetRewardPartForRewardNum(RewardItemData.Num()); // ÀÌ°Íµµ ¹Ì¸® ¸¸µé¾î³ö¾ß ¾²°Î´Ù.. ¾ÆÀÌÅÛ ³ª¿À´Â ¼ø°£¿¡ »ı¼ºÇÏ·Á¸é µ¨Å¸Å¸ÀÓÀÌ ¸¹ÀÌ Æ¢´Âµ¥ ÀÌÆåÆ® ÀÚÃ¼ Å¸ÀÌ¹Ö°ú ºÒÀÏÄ¡°¡ »ı±â´Â µí.
+		GetRewardPartForRewardNum(RewardItemData.Num()); // æå·´æ¡£ å›ºåºœ çˆ¶ç”¸ç»¢å‡ºå…· é™æ‹”ä¿ƒ.. é…’æè¢ å”±å·ç»° é‰´åŸƒä¿Š ç§¯å·±çªå¦¨æ èƒ†é¸¥é¸¥çƒ™æ è…¹æ è„¾ç»°å• ææ£‹é£˜ ç£Šçœ‰ é¸¥ææ€ªè‹ é˜‚è€æ‘¹å•Š ç§¯æ‰ç»° æ·€.
 	}
 
-	// Gold ´Ù½Ã Effect ·Î ³Ö°Ô µÇ¸é Âü°í. È¤ ¿©±âµµ 2D Overlay ÇÊ¿äÇÒÁö ¸ğ¸£´Ï. ¼ö·®Àº PrimaryPoint º¸´Ü ConsumingAmount °¡ ÀûÀıÇÏ±ä ÇÏÁö¸¸.. ±×·²·¯¸é UISlotItem ÂÊ¿¡µµ ¿¹¿ÜÃ³¸® ÇØ¾ß.
+	// Gold ä¿ƒçŸ« Effect è‚º æŒéœ¸ ç™»æ æ›¼ç»Š. è¶£ å’¯æ‰æ¡£ 2D Overlay é˜å¤¸ä¸”ç˜¤ è‘›ç¦èª. èæ¨Šç¯® PrimaryPoint ç„Šçªœ ConsumingAmount å•Š åˆ©ä¾‹çªå˜ çªç˜¤çˆ¶.. å¼Šå‡¡çŸ¾æ UISlotItem ç‡ä¿Šæ¡£ æŠ—å¯‡è´¸åºœ ç§¦å…·.
 	/*if (UIP_StageClearGold.IsValid())
 	{
 		UB2UIDocUser* DocUser = UB2UIDocHelper::GetDocUser();
@@ -160,7 +160,7 @@ void UB2UIStageClear::BindDocAuto()
 
 void UB2UIStageClear::BeginRewardItemFx()
 {
-	// RewardItemData ´Â »çÀü¿¡ ÁØºñµÇ¾î ÀÖ¾î¾ß ÇÔ.
+	// RewardItemData ç»° è¤å‚ˆä¿Š éœ–åšç™»ç»¢ ä¹ç»¢å…· çªƒ.
 	int32 RewardItemNum = RewardItemData.Num();
 	UB2UIStageClearRewardFx* DesiredFxPart = (RewardItemNum > 0) ? GetRewardPartForRewardNum(RewardItemNum) : NULL;
 	if (DesiredFxPart)
@@ -205,12 +205,12 @@ void UB2UIStageClear::DestroySelf(class UB2UIManager* InUIManager)
 	if(!GIsEditor)
 #endif
 	{
-		// StageClear / Result °¡ ÀÎ°ÔÀÓ ¸Ş¸ğ¸® ÇÇÅ©°¡ µÇ°í ÀÖ±â ¶§¹®¿¡ Clear -> Result ·Î ³Ñ¾î°¡¸é¼­ ¾²Áö ¾ÊÀ» °ÍÀ¸·Î ¿¹»óµÇ´Â µ¥ÀÌÅÍ¸¦ Á» ³¯¸°´Ù. 
+		// StageClear / Result å•Š ç‰¢éœ¸çƒ™ çš‹è‘›åºœ ä¹”å†œå•Š ç™»ç»Š ä¹æ‰ é”­å·©ä¿Š Clear -> Result è‚º é€ç»¢å•Šæè¾‘ é™ç˜¤ è‡¼é˜‘ å·´æ è‚º æŠ—æƒ‘ç™»ç»° å•æç£ç”« ç²± æœèµ´ä¿ƒ. 
 		
-		// ¸®¿öµå ¾ÆÀÌÅÛ ÆÄÆ¼Å¬ ÀÌÆåÆ® ¾ğ·Îµù
+		// åºœå†µé› é…’æè¢ é¢‡èåŠª ææ£‹é£˜ æ”«è‚ºçˆ¹
 		RewardPSSetup.UnloadTAssets(UB2AssetLoader::GetStreamableManager(), LoadedRewardPSHolder);
 
-		// ¸®¿öµå ¾ÆÀÌÅÛ Àü Å¬¸®¾î ¿¬Ãâ¼­ »ç¿ëÇÑ ÁÖ¿ä ÆÄÆ¼Å¬ ÀÌÆåÆ®µé ¾ğ·Îµù.
+		// åºœå†µé› é…’æè¢ å‚ˆ åŠªåºœç»¢ æ¥·å…è¾‘ è¤ä¾©èŒ„ æ—å¤¸ é¢‡èåŠª ææ£‹é£˜ç”¸ æ”«è‚ºçˆ¹.
 		UB2SomeInfo* SomeInfo = StaticFindSomeInfo();
 		if (SomeInfo)
 		{
@@ -220,7 +220,7 @@ void UB2UIStageClear::DestroySelf(class UB2UIManager* InUIManager)
 		}
 		UB2ItemInfo* ItemInfoTable = StaticFindItemInfo();
 		if (ItemInfoTable)
-		{ // Å¬¸®¾î ¿¬Ãâ¿¡¼­ µîÀåÇÏ´Â º¸»ó ¾ÆÀÌÄÜ ÅØ½ºÃÄ°¡ ¸Å¿ì Å¬ °ÍÀÌ¹Ç·Î ³»¸®´Â °Ô ÁÁ°Ú´Ù.
+		{ // åŠªåºœç»¢ æ¥·å…ä¿Šè¾‘ æ®¿å˜çªç»° ç„Šæƒ‘ é…’æèƒ½ å’†èƒ¶åªšå•Š æ¦‚å¿« åŠª å·´æéª¨è‚º éƒ´åºœç»° éœ¸ äº®æ‘†ä¿ƒ.
 			ItemInfoTable->UnloadAllExceptCurrentLocalEquipPartData();
 		}
 
@@ -266,13 +266,13 @@ void UB2UIStageClear::CleanupOnPreSave()
 void UB2UIStageClear::PreSave(FObjectPreSaveContext SaveContext)
 {
 	Super::PreSave(SaveContext);
-	CleanupOnPreSave(); // ÀÇµµÄ¡ ¾Ê°Ô ÀúÀåµÉ ¼ö ÀÖ´Â ·¹ÆÛ·±½º¸¦ ³¯·ÁÁØ´Ù.
+	CleanupOnPreSave(); // ç‹¼æ¡£æ‘¹ è‡¼éœ¸ å†å˜çª è ä¹ç»° é¥­æ¬ºç¹èƒ¶ç”« æœå¦¨éœ–ä¿ƒ.
 }
 #endif
 
 void UB2UIStageClear::SetupWidgetCustomTimer()
 {
-	// Pause »óÅÂ¿¡¼­ ¾µ °ÍÀÌ¹Ç·Î ±âº» Å¸ÀÌ¸Ó ¸ø ¾²°í µû·Î ¼¼ÆÃ
+	// Pause æƒ‘æ€•ä¿Šè¾‘ é•œ å·´æéª¨è‚º æ‰å¤¯ é¸¥æèµ£ ç»™ é™ç»Š è¶è‚º æŠ€æ³¼
 
 	for (int32 CTI = 0; CTI < CustomTimedCallBackInfo.Num(); ++CTI)
 	{
@@ -282,7 +282,7 @@ void UB2UIStageClear::SetupWidgetCustomTimer()
 		}
 		else
 		{
-			CustomTimedCallBackInfo[CTI].bIsInvoked = true; // ÀÌ¹Ì ¹ßµ¿ÇÑ °É·Î °£ÁÖ.
+			CustomTimedCallBackInfo[CTI].bIsInvoked = true; // æå›º æƒ¯æ‚¼èŒ„ å§è‚º åŸƒæ—.
 		}
 	}
 }
@@ -300,18 +300,18 @@ void UB2UIStageClear::SetupWidgetCustomHideTimer()
 			continue;
 		}
 
-		ThisHideInfo.OriginalVisibility = WidgetToHide->GetVisibility(); // Hide ÇÒ ¶§¿¡µµ ¹é¾÷ÇØ ³õÁö¸¸ ¾Æ·¡ ·ÎÁ÷¿¡ µû¶ó HideStop ÀÌ ¸ÕÀú µÉ ¼öµµ ÀÖÀ¸´Ï ¿©±â¼­µµ ÇÑ¹ø.
+		ThisHideInfo.OriginalVisibility = WidgetToHide->GetVisibility(); // Hide ä¸” é”­ä¿Šæ¡£ å½’è¯€ç§¦ åˆç˜¤çˆ¶ é…’è´° è‚ºæµä¿Š è¶æ‰¼ HideStop æ åˆšå† çª èæ¡£ ä¹æ èª å’¯æ‰è¾‘æ¡£ èŒ„é”….
 
-		// HideStopTime ÀÌ HideStartTime º¸´Ù Å«Áö¿¡ ´ëÇÑ È®ÀÎÀº.. ±»ÀÌ ÇÏÁö ¾Ê´Â´Ù.
+		// HideStopTime æ HideStartTime ç„Šä¿ƒ å¥´ç˜¤ä¿Š æªèŒ„ çŠ¬ç‰¢ç¯®.. è¢«æ çªç˜¤ è‡¼ç»°ä¿ƒ.
 
 		if (ThisHideInfo.HideStartTime <= 0.0f)
 		{
-			CustomTimeHideStartCallback(CTI); // ¹Ù·Î Äİ¹é ½ÇÇà
+			CustomTimeHideStartCallback(CTI); // å®˜è‚º å¦®å½’ è§’é’
 		}
 
 		if (ThisHideInfo.HideStopTime <= 0.0f)
 		{
-			CustomTimeHideStopCallback(CTI); // ¹Ù·Î Äİ¹é ½ÇÇà. °á±¹ HideStopTime ÀÌ 0 ÀÌÇÏ¸é ¾È ¼û°ÜÁü
+			CustomTimeHideStopCallback(CTI); // å®˜è‚º å¦®å½’ è§’é’. æ¬æƒ« HideStopTime æ 0 æçªæ æ•‘ è§è´¥å’™
 		}
 	}
 }
@@ -325,7 +325,7 @@ void UB2UIStageClear::UpdateWidgetCustomTimer()
 	}
 
 	const float TimeSinceStart = TheWorld->GetRealTimeSeconds() - CachedWidgetStartTime;
-	// Pause »óÅÂ¿¡¼­µµ Á÷Á¢ µ¹·Á¾²´Â Å¸ÀÌ¸Ó
+	// Pause æƒ‘æ€•ä¿Šè¾‘æ¡£ æµç«‹ å€’å¦¨é™ç»° é¸¥æèµ£
 	for (int32 CTI = 0; CTI < CustomTimedCallBackInfo.Num(); ++CTI)
 	{
 		FB2UIWidgetCustomTimedCallbackInfo& ThisInfo = CustomTimedCallBackInfo[CTI];
@@ -347,7 +347,7 @@ void UB2UIStageClear::UpdateWidgetCustomTimer()
 
 		if (ThisHideInfo.bIsHidden == false)
 		{
-			// ÇÑ¹ø¸¸ HideStart °¡ µÇ°Ô. ¾È ±×·¯¸é ±ô¹ÚÀÏ °Í.
+			// èŒ„é”…çˆ¶ HideStart å•Š ç™»éœ¸. æ•‘ å¼ŠçŸ¾æ æ¿’å† è€ å·´.
 			if (ThisHideInfo.bHiddenDoneOnce == false && ThisHideInfo.HideStartTime <= TimeSinceStart)
 			{
 				CustomTimeHideStartCallback(CTI);
@@ -368,7 +368,7 @@ void UB2UIStageClear::StartRepeatBattleCountdown()
 	//if (UIP_RepeatBattleCountDownP.IsValid())
 	//{
 	//	UIP_RepeatBattleCountDownP->StartCountdown(FRepeatBattleCountDownCB::CreateLambda([this](){
-	//		BeginStageClearScene_Phase2Class<>::GetInstance().Signal(); // Ä«¿îÆ®´Ù¿î ´Ù µÇ¸é °á°ú È­¸éÀ¸·Î ³Ñ¾î°£´Ù. (StageClear Phase 2)
+	//		BeginStageClearScene_Phase2Class<>::GetInstance().Signal(); // å¢¨æ¬¾é£˜ä¿ƒæ¬¾ ä¿ƒ ç™»æ æ¬è‹ æ‹³ææ è‚º é€ç»¢åŸƒä¿ƒ. (StageClear Phase 2)
 	//	}));
 	//}
 }
@@ -385,7 +385,7 @@ void UB2UIStageClear::SetupOnRepeatBattleStateChange(bool bIsOn)
 {
 
 	if (UIP_RepeatBattleCountDownP.IsValid())
-	{// ¿ä±¸»çÇ×¿¡ ÀÇÇØ °á°ú UI ¿¡¼­´Â ÀÌ°Ç ¼û±ä´Ù. ³»ºÎÀûÀ¸·Î Ä«¿îÆ®ÇÏ´Â ¿ëµµ·Î¸¸.
+	{// å¤¸å¤‡è¤äº²ä¿Š ç‹¼ç§¦ æ¬è‹ UI ä¿Šè¾‘ç»° ææ‰’ è§å˜ä¿ƒ. éƒ´ä½•åˆ©æ è‚º å¢¨æ¬¾é£˜çªç»° ä¾©æ¡£è‚ºçˆ¶.
 		UIP_RepeatBattleCountDownP->BattleCountDownSetVisibility(/*bIsOn ? ESlateVisibility::HitTestInvisible :*/ ESlateVisibility::Collapsed);
 	}
 
@@ -407,11 +407,11 @@ UB2UIStageClearRewardFx* UB2UIStageClear::GetRewardPartForRewardNum(int32 InRewa
 {
 	if (!CreatedRewardFxPart && RewardFxPartWidgetClasses.Num() > 0)
 	{
-		// ÀÌº¥Æ®·Î °³¼ö°¡ ´õºíÀÌ µÇ´Â °Ç ¿©±â RewardNum À¸·Î ³Ñ¾î¿ÀÁö ¾Ê´Â °É·Î.. x2 Ç¥½Ã
+		// æäº¥é£˜è‚º ä¿ºèå•Š æ­¹å–‰æ ç™»ç»° æ‰’ å’¯æ‰ RewardNum æ è‚º é€ç»¢å·ç˜¤ è‡¼ç»° å§è‚º.. x2 é’çŸ«
 		int32 SupposedIndex = InRewardNum - 1;
 		if (RewardFxPartWidgetClasses.IsValidIndex(SupposedIndex))
 		{
-			// ºÎ¼Ó ÆÄÆ®¸¦ UMG ¹èÄ¡°¡ ¾Æ´Ñ TAsset À¸·Î Ã³¸®ÇÑ Æ¯¼ö ÄÉÀÌ½º.
+			// ä½•åŠ  é¢‡é£˜ç”« UMG ç¡…æ‘¹å•Š é…’å›± TAsset æ è‚º è´¸åºœèŒ„ æ¼‚è çº³æèƒ¶.
 			TSoftClassPtr<UB2UIStageClearRewardFx> ClassToLoad = RewardFxPartWidgetClasses[SupposedIndex];
 			
 			if (UB2AssetLoader* AssetLoader = UB2AssetLoader::Get())
@@ -420,7 +420,7 @@ UB2UIStageClearRewardFx* UB2UIStageClear::GetRewardPartForRewardNum(int32 InRewa
 
 				CreatedRewardFxPart = CreateWidget<UB2UIStageClearRewardFx>(GetOwningPlayer(), LoadedClass);
 				if (CreatedRewardFxPart)
-				{// UIManager ¿¡¼­ AddChild ÇÏ´Â ¹æ½Ä´ë·Î ¸øÇÏ°Ú¾î¼­.. ¿©±â¼± ÀÌ À§¿¡ ³ª¿Í¾ß ÇÏ´Â °Ô ÀÖ¾î¼­ Z-order ¸¦ ÇÏ³ª ³·Ãá´Ù.
+				{// UIManager ä¿Šè¾‘ AddChild çªç»° è§„ä¾¥æªè‚º ç»™çªæ‘†ç»¢è¾‘.. å’¯æ‰æ€¥ æ å›°ä¿Š å”±å®¢å…· çªç»° éœ¸ ä¹ç»¢è¾‘ Z-order ç”« çªå”± æ’¤å†•ä¿ƒ.
 					CreatedRewardFxPart->AddToViewport(BII_WIDGET_ZORDER_SEPARATE_BELOW_UIMAIN);
 					CreatedRewardFxPart->Init();
 				}
@@ -441,10 +441,10 @@ void UB2UIStageClear::OnClickBtnGoStageResult()
 
 	//if (IsRepeatBattleOn())
 	//{
-	//	PopUpRepeatBattleStopMsg(GetOwningPlayer()); // ¹İº¹ ÀüÅõ »óÅÂ¿¡¼­´Â Áß´Ü ¹öÆ°ÀÇ ¿ªÇÒÀÌ µÊ.
+	//	PopUpRepeatBattleStopMsg(GetOwningPlayer()); // é¦†æ±— å‚ˆæ§ æƒ‘æ€•ä¿Šè¾‘ç»° åçªœ æ»šç“¢ç‹¼ å¼€ä¸”æ å‡³.
 	//}
 	//else
-	//{	// StageEventDirector ÀÇ ½Â¸®Æ÷Áî ¿¬Ãâ°ú ÇÔ²² StageResult UIScene ÀÌ ½ÃÀÛµÉ °ÍÀÌ´Ù. (StageClear Phase 2)
+	//{	// StageEventDirector ç‹¼ é“°åºœå™¨ä»¤ æ¥·å…è‹ çªƒè†Š StageResult UIScene æ çŸ«ç´¯çª å·´æä¿ƒ. (StageClear Phase 2)
 	//	BeginStageClearScene_Phase2Class<>::GetInstance().Signal();
 	//}
 }

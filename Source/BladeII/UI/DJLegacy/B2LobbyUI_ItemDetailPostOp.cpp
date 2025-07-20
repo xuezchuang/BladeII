@@ -44,7 +44,7 @@ void UB2LobbyUI_ItemDetailPostOp::OnUpdateProgressLevel(int32 CurrentLevel)
 
 void UB2LobbyUI_ItemDetailPostOp::OnUpdateProgressPercent(float CurrentPercent)
 {
-	// ÃÖ´ë ·¹º§¿¡¼± ¸¸¶¥ Ã¤¿öÁÖ±â
+	// ìµœëŒ€ ë ˆë²¨ì—ì„  ë§Œë•… ì±„ì›Œì£¼ê¸°
 	const bool bAtMaxLevel = (ExpProgressAnim.GetCurrentAnimatedLevel() == NativeItemData_After.MaxLevel);
 
 	if (PB_ItemJackPotExpProgress.IsValid())
@@ -63,7 +63,7 @@ void UB2LobbyUI_ItemDetailPostOp::OnFinishProgressAnimation()
 {
 	OnBeginJackpotAnimation_BP((CachedInventory && CachedInventory->GetCachedItemLevelupJackpotType() == EItemLevelUpJackpotType::ER_GreateJackpot));
 
-	// jackpotÀ¸·Î ·¹º§¾÷ÀÌ µÇ¾úÀ¸¸é ·¹º§¾÷ ¿¬ÃâÀ» È£Ãâ
+	// jackpotìœ¼ë¡œ ë ˆë²¨ì—…ì´ ë˜ì—ˆìœ¼ë©´ ë ˆë²¨ì—… ì—°ì¶œì„ í˜¸ì¶œ
 	if (IsLevelupDuringJackpot)
 		OnMoveItemIconByJackpotLevelup_BP();
 }
@@ -167,9 +167,9 @@ void UB2LobbyUI_ItemDetailPostOp::UpdateItemData(const FB2Item& InBeforeLevelupI
 	GetPreviewLevelupProgressItem(IsJackpot(), NativeItemData_Before, NativeItemData_After, PreviewItem);
 
 	UpdateItemIcon(PreviewItem);
-	UpdateSubWidgets(NativeItemData_Before, PreviewItem); // º»°İ ¹èÄ¡ÇÑ widget µé ¾÷µ¥ÀÌÆ®
+	UpdateSubWidgets(NativeItemData_Before, PreviewItem); // ë³¸ê²© ë°°ì¹˜í•œ widget ë“¤ ì—…ë°ì´íŠ¸
 	UpdateExpProcess(PreviewItem.Level, PreviewItem.Exp);
-	UpdateItemOptions(); // ¸¹Àº ºÎºĞÀ» Â÷ÁöÇÏ´Â ¿É¼Ç ¸®½ºÆ®.
+	UpdateItemOptions(); // ë§ì€ ë¶€ë¶„ì„ ì°¨ì§€í•˜ëŠ” ì˜µì…˜ ë¦¬ìŠ¤íŠ¸.
 	UpdataItemSetEffect();
 
 	UpdateEssence(InAfterLevelupItem);
@@ -220,15 +220,15 @@ void UB2LobbyUI_ItemDetailPostOp::StartFromRaffle(const FB2Item& ItemInfo)
 
 	if (CreatedItemIcon)
 	{
-		CreatedItemIcon->SetIconUsageType(ELobbyInvenItemIconUsage::EEIIT_ItemRafle); // º¸°üÇÔ¿¡¼­ º¸¿©Áö´ø ¸î°¡Áö Á¤º¸´Â º¸¿©ÁÖÁö ¾Êµµ·Ï Ãß°¡ ¼³Á¤.
-		CreatedItemIcon->UpdateItemData(NativeItemData_After); // ±âº»ÀûÀ¸·Î´Â After Á¤º¸¸¦ ¾´´Ù.
+		CreatedItemIcon->SetIconUsageType(ELobbyInvenItemIconUsage::EEIIT_ItemRafle); // ë³´ê´€í•¨ì—ì„œ ë³´ì—¬ì§€ë˜ ëª‡ê°€ì§€ ì •ë³´ëŠ” ë³´ì—¬ì£¼ì§€ ì•Šë„ë¡ ì¶”ê°€ ì„¤ì •.
+		CreatedItemIcon->UpdateItemData(NativeItemData_After); // ê¸°ë³¸ì ìœ¼ë¡œëŠ” After ì •ë³´ë¥¼ ì“´ë‹¤.
 	}
 	UpdateItemData(NativeItemData_Before, NativeItemData_After);
 }
 
 void UB2LobbyUI_ItemDetailPostOp::OnChangeItemIconByJackpotLevelup()
 {
-	// ÀèÆÌ ¿¬ÃâÀÌ ³¡³ª¸é ½½·ÔÀ» ½ÇÁ¦ ¼ÂÆÃÀ¸·Î º¯°æÇØÁÜ
+	// ì­íŒŸ ì—°ì¶œì´ ëë‚˜ë©´ ìŠ¬ë¡¯ì„ ì‹¤ì œ ì…‹íŒ…ìœ¼ë¡œ ë³€ê²½í•´ì¤Œ
 	UpdateItemIcon(NativeItemData_After);
 	UpdateSubWidgets(NativeItemData_Before, NativeItemData_After, false);
 }
@@ -246,17 +246,17 @@ void UB2LobbyUI_ItemDetailPostOp::UpdateItemIcon(const FB2Item& InItem)
 	// Create ItemIcon
 	if (CreatedItemIcon == nullptr)
 	{
-		// Anchor ¼³Á¤¿¡ µû¶ó GetSize ´Â ¿øÇÏ´Â °ªÀÌ ¾È ³ª¿Ã °ÍÀÌ¹Ç·Î ÁÖÀÇ.
+		// Anchor ì„¤ì •ì— ë”°ë¼ GetSize ëŠ” ì›í•˜ëŠ” ê°’ì´ ì•ˆ ë‚˜ì˜¬ ê²ƒì´ë¯€ë¡œ ì£¼ì˜.
 		UCanvasPanelSlot* MainPanelSlot = Cast<UCanvasPanelSlot>(X_CP_ItemIconPanel->Slot);
 		FVector2D AllowedIconSize = MainPanelSlot ? MainPanelSlot->GetSize() : FVector2D(0.0f, 0.0f);
 		UB2DynItemIcon* DynIconCDO = Cast<UB2DynItemIcon>(ItemIconWidgetClass->GetDefaultObject());
 
-		// ItemIconPanelNRef À§¿¡ ÃÖÁ¾ÀûÀÎ ¾ÆÀÌÅÛ ¾ÆÀÌÄÜ widget »ı¼º
+		// ItemIconPanelNRef ìœ„ì— ìµœì¢…ì ì¸ ì•„ì´í…œ ì•„ì´ì½˜ widget ìƒì„±
 		CreatedItemIcon = Cast<UB2DynItemIcon_LobbyInven>(DynCreateInCanvasPanel(ItemIconWidgetClass, this, X_CP_ItemIconPanel.Get(),
 			DynIconCDO ? DynIconCDO->GetNonScaledSize() : FVector2D(100.0f, 100.0f), AllowedIconSize, FVector2D(0.0f, 0.0f), 0, false));
 
 		if (CreatedItemIcon)
-			CreatedItemIcon->SetIconUsageType(ELobbyInvenItemIconUsage::EEIIT_ItemDetailWindow); // º¸°üÇÔ¿¡¼­ º¸¿©Áö´ø ¸î°¡Áö Á¤º¸´Â º¸¿©ÁÖÁö ¾Êµµ·Ï Ãß°¡ ¼³Á¤.)
+			CreatedItemIcon->SetIconUsageType(ELobbyInvenItemIconUsage::EEIIT_ItemDetailWindow); // ë³´ê´€í•¨ì—ì„œ ë³´ì—¬ì§€ë˜ ëª‡ê°€ì§€ ì •ë³´ëŠ” ë³´ì—¬ì£¼ì§€ ì•Šë„ë¡ ì¶”ê°€ ì„¤ì •.)
 	}
 
 	if (CreatedItemIcon)
@@ -296,7 +296,7 @@ bool UB2LobbyUI_ItemDetailPostOp::IsJackpot()
 		return true;
 #endif
 
-	// ·¹º§¾÷¿¡¼­¸¸ ´ë¹Ú/ÃÊ´ë¹ÚÀÌ ÀÖÀ½.
+	// ë ˆë²¨ì—…ì—ì„œë§Œ ëŒ€ë°•/ì´ˆëŒ€ë°•ì´ ìˆìŒ.
 	if (MyItemOpMode != ELobbyInvenItemOpMode::EIVIOP_Levelup)
 		return false;
 
@@ -313,14 +313,14 @@ void UB2LobbyUI_ItemDetailPostOp::GetPreviewLevelupProgressItem(bool InIsJackpot
 	if (InIsJackpot == false || CachedInventory == nullptr)
 		return;
 
-	// JackpotÀÇ °æ¿ì Preview[±â´ë°ª] À» ¸ÕÀú º¸¿©ÁØ ÈÄ Jackpot ¼öÄ¡¸¸Å­ Ãß°¡·Î Level, Exp¸¦ ¿Ã·ÁÁÖ´Â ¿¬ÃâÀÌ ÇÊ¿ä
+	// Jackpotì˜ ê²½ìš° Preview[ê¸°ëŒ€ê°’] ì„ ë¨¼ì € ë³´ì—¬ì¤€ í›„ Jackpot ìˆ˜ì¹˜ë§Œí¼ ì¶”ê°€ë¡œ Level, Expë¥¼ ì˜¬ë ¤ì£¼ëŠ” ì—°ì¶œì´ í•„ìš”
 	
 	TArray<FB2Item> CachedIngredItems;
 	CachedInventory->GetAllGhostIngreds(CachedIngredItems);
 	if (CachedIngredItems.Num() <= 0)
 		return;
 
-	// jackpot Level,exp´Â Preview[ ¼­¹ö¿Í µ¿ÀÏ °ø½Ä ] °ª°ú ´Ù¸§
+	// jackpot Level,expëŠ” Preview[ ì„œë²„ì™€ ë™ì¼ ê³µì‹ ] ê°’ê³¼ ë‹¤ë¦„
 	GetCalculateItem_PreviewItemLevelup(InBeforeItem, CachedIngredItems, OutPreviewITem, true);
 }
 
@@ -335,7 +335,7 @@ void UB2LobbyUI_ItemDetailPostOp::UpdateSubWidgets(const FB2Item& InBeforeItem, 
 	if (TB_EnhanceLevel.IsValid())
 		TB_EnhanceLevel->SetText(FText::Format(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("General_Stat_EnhanceLevel")), FText::AsNumber(InAfterItem.EnhanceLevel)));
 
-	// ÃÖ´ë ·¹º§¿¡¼± ¸¸¶¥ Ã¤¿öÁÖ±â
+	// ìµœëŒ€ ë ˆë²¨ì—ì„  ë§Œë•… ì±„ì›Œì£¼ê¸°
 	const bool bAtMaxLevel = (InAfterItem.Level == InAfterItem.MaxLevel);
 
 	if (PB_ItemExpProgress.IsValid() && IsChangeExpBar)
@@ -393,7 +393,7 @@ void UB2LobbyUI_ItemDetailPostOp::UpdateSubWidgets(const FB2Item& InBeforeItem, 
 	int32 PrimaryPointDelta = (int32)InAfterItem.GetPrimaryPoint() - (int32)InBeforeItem.GetPrimaryPoint();
 	int32 EnhanceLevelDelta = InAfterItem.EnhanceLevel - InBeforeItem.EnhanceLevel;
 
-	// ±âÁ¸ ¾ÆÀÌÅÛ »ó¼¼ Ã¢¿¡¼­ ±â´ÉÀ» °¡Á®¿Í¼­ ÀÌ·±µ¥ »ç½Ç»ó °­È­ ÈÄ¸é + °¡ ³ª¿À°ÚÁö?	
+	// ê¸°ì¡´ ì•„ì´í…œ ìƒì„¸ ì°½ì—ì„œ ê¸°ëŠ¥ì„ ê°€ì ¸ì™€ì„œ ì´ëŸ°ë° ì‚¬ì‹¤ìƒ ê°•í™” í›„ë©´ + ê°€ ë‚˜ì˜¤ê² ì§€?	
 	FString CombatDeltaString = (CombatDelta == 0) ? TEXT("( - )") : FString::Printf(TEXT("( %s%d )"), (CombatDelta > 0) ? TEXT("+") : TEXT("-"), FMath::Abs(CombatDelta));
 	FString PrimaryDeltaString = (PrimaryPointDelta == 0) ? TEXT("( - )") : FString::Printf(TEXT("( %s%d )"), (PrimaryPointDelta > 0) ? TEXT("+") : TEXT("-"), FMath::Abs(PrimaryPointDelta));
 	FString EnhanceLevelDeltaString = (EnhanceLevelDelta == 0) ? TEXT("( - )") : FString::Printf(TEXT("( %s%d )"), (EnhanceLevelDelta> 0) ? TEXT("+") : TEXT("-"), FMath::Abs(EnhanceLevelDelta));
@@ -422,7 +422,7 @@ void UB2LobbyUI_ItemDetailPostOp::UpdateSubWidgets(const FB2Item& InBeforeItem, 
 
 void UB2LobbyUI_ItemDetailPostOp::UpdateExpProcess(int32 InCurItemLevel, float InCurItemExp)
 {
-	// ÀèÆÌÀÏ °æ¿ì¸¸ °ÔÀÌÁö ¿¬ÃâÀ» ÄÑÁØ´Ù.
+	// ì­íŒŸì¼ ê²½ìš°ë§Œ ê²Œì´ì§€ ì—°ì¶œì„ ì¼œì¤€ë‹¤.
 	if (IsJackpot() == false)
 		return;
 
@@ -468,11 +468,11 @@ void UB2LobbyUI_ItemDetailPostOp::UpdateItemOptions()
 	}
 /*	if (NativeItemData_After.IntrinsicOptions.Num() > 0)
 	{
-		// Padding Àº ÀÏ´Ü ÁÖÁö ¾Ê´Â´Ù.
+		// Padding ì€ ì¼ë‹¨ ì£¼ì§€ ì•ŠëŠ”ë‹¤.
 		CreatedIntrinsicOptionTitle = Cast<UB2DynText_Multiple>(DynCreateInVerticalBox(IntrinsicOptionTitleClass, this, VB_OptionsDisplayPanel.Get(), FMargin()));
 		if (CreatedIntrinsicOptionTitle)
 		{
-			CreatedIntrinsicOptionTitle->SetDynText(0, // °Á Ã¹ÁÙ¸¸ ÀÖÀ½.
+			CreatedIntrinsicOptionTitle->SetDynText(0, // ê± ì²«ì¤„ë§Œ ìˆìŒ.
 				BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("LobbyItemDetail_IntrinsicOptionPanelTitle")))
 				);
 		}
@@ -480,15 +480,15 @@ void UB2LobbyUI_ItemDetailPostOp::UpdateItemOptions()
 		for (int32 AI = 0; AI < NativeItemData_After.IntrinsicOptions.Num(); ++AI)
 		{
 			FItemOption& CurrOption = NativeItemData_After.IntrinsicOptions[AI];
-			FItemOption SameOptionOfBefore; // °­È­ ÀÌÀüÀÇ µ¿ÀÏ ¿É¼Ç ¼öÄ¡
-			bool bFoundSameOptionOfBefore = false; // ¹°·Ğ true ¿©¾ß°ÚÁö? ¾Æ¸¶µµ?
+			FItemOption SameOptionOfBefore; // ê°•í™” ì´ì „ì˜ ë™ì¼ ì˜µì…˜ ìˆ˜ì¹˜
+			bool bFoundSameOptionOfBefore = false; // ë¬¼ë¡  true ì—¬ì•¼ê² ì§€? ì•„ë§ˆë„?
 			
-			// bFoundSameOptionOfBefore °¡ true ÀÌ¸é SameOptionOfEquipped °¡ valid ÇÑ °Í.
+			// bFoundSameOptionOfBefore ê°€ true ì´ë©´ SameOptionOfEquipped ê°€ valid í•œ ê²ƒ.
 			bFoundSameOptionOfBefore = GetItemIntrinsicOptionOfType(NativeItemData_Before, SameOptionOfBefore, CurrOption.OptionType);
 			
 			UB2DynText_ItemDetailOption* CurrCreated = Cast<UB2DynText_ItemDetailOption>(DynCreateInVerticalBox(IntrinsicOptionDisplayClass, this, VB_OptionsDisplayPanel.Get(), FMargin()));
 			if (CurrCreated)
-			{ // SameOptionOfBefore ´Â Ã£Àº °æ¿ì ¾Æ´Ï¸é NULL ·Î. AllowedPCClass ´Â ÀÏºÎ Ä³¸¯ÅÍ º°·Î ´Ù¸£°Ô µé¾î°¡´Â ¿É¼Ç Ç¥½Ã¸¦ À§ÇÔÀÎµ¥, °ø¿ëÀÌ¶ó¸é ±×·± ¿É¼ÇÀÌ ¾ø¾î¾ß°ÚÁö..?
+			{ // SameOptionOfBefore ëŠ” ì°¾ì€ ê²½ìš° ì•„ë‹ˆë©´ NULL ë¡œ. AllowedPCClass ëŠ” ì¼ë¶€ ìºë¦­í„° ë³„ë¡œ ë‹¤ë¥´ê²Œ ë“¤ì–´ê°€ëŠ” ì˜µì…˜ í‘œì‹œë¥¼ ìœ„í•¨ì¸ë°, ê³µìš©ì´ë¼ë©´ ê·¸ëŸ° ì˜µì…˜ì´ ì—†ì–´ì•¼ê² ì§€..?
 				CurrCreated->UpdateOptionTextSet(false, AI, ItemAllowedPCClassEnum(NativeItemData_After.AllowedPCClass), &CurrOption, bFoundSameOptionOfBefore ? &SameOptionOfBefore : NULL, ItemStatIncColor, ItemStatSameColor, ItemStatDecColor, true);
 				CreatedIntrinsicOptionDisplay.Add(CurrCreated);
 			}
@@ -500,7 +500,7 @@ void UB2LobbyUI_ItemDetailPostOp::UpdateItemOptions()
 		CreatedRandomOptionTitle = Cast<UB2DynText_Multiple>(DynCreateInVerticalBox(RandomOptionTitleClass, this, VB_OptionsDisplayPanel.Get(), FMargin()));
 		if (CreatedRandomOptionTitle)
 		{
-			CreatedRandomOptionTitle->SetDynText(0, // °Á Ã¹ÁÙ¸¸ ÀÖÀ½.
+			CreatedRandomOptionTitle->SetDynText(0, // ê± ì²«ì¤„ë§Œ ìˆìŒ.
 				BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("LobbyItemDetail_RandOptionPanelTitle")))
 				);
 		}
@@ -508,14 +508,14 @@ void UB2LobbyUI_ItemDetailPostOp::UpdateItemOptions()
 		for (int32 AI = 0; AI < NativeItemData_After.RandomOptions.Num(); ++AI)
 		{
 			FItemOption& CurrOption = NativeItemData_After.RandomOptions[AI];
-			FItemOption SameOptionOfBefore; // °­È­ ÀÌÀüÀÇ µ¿ÀÏ ¿É¼Ç ¼öÄ¡
-			bool bFoundSameOptionOfBefore = false; // ¹°·Ğ true ¿©¾ß°ÚÁö? ¾Æ¸¶µµ?
-			// bFoundSameOptionOfBefore °¡ true ÀÌ¸é SameOptionOfBefore °¡ valid ÇÑ °Í.
+			FItemOption SameOptionOfBefore; // ê°•í™” ì´ì „ì˜ ë™ì¼ ì˜µì…˜ ìˆ˜ì¹˜
+			bool bFoundSameOptionOfBefore = false; // ë¬¼ë¡  true ì—¬ì•¼ê² ì§€? ì•„ë§ˆë„?
+			// bFoundSameOptionOfBefore ê°€ true ì´ë©´ SameOptionOfBefore ê°€ valid í•œ ê²ƒ.
 			bFoundSameOptionOfBefore = GetItemRandomOptionOfType(NativeItemData_Before, SameOptionOfBefore, CurrOption.OptionType);
 
 			UB2DynText_ItemDetailOption* CurrCreated = Cast<UB2DynText_ItemDetailOption>(DynCreateInVerticalBox(RandomOptionDisplayClass, this, VB_OptionsDisplayPanel.Get(), FMargin()));
 			if (CurrCreated)
-			{ // SameOptionOfBefore ´Â Ã£Àº °æ¿ì ¾Æ´Ï¸é NULL ·Î.
+			{ // SameOptionOfBefore ëŠ” ì°¾ì€ ê²½ìš° ì•„ë‹ˆë©´ NULL ë¡œ.
 				CurrCreated->UpdateOptionTextSet(false, AI, ItemAllowedPCClassEnum(NativeItemData_After.AllowedPCClass), &CurrOption, bFoundSameOptionOfBefore ? &SameOptionOfBefore : NULL, ItemStatIncColor, ItemStatSameColor, ItemStatDecColor);
 				CreatedRandomOptionDisplay.Add(CurrCreated);
 			}
@@ -557,8 +557,8 @@ void UB2LobbyUI_ItemDetailPostOp::ShowBackButton()
 
 void UB2LobbyUI_ItemDetailPostOp::CloseMe()
 {
-	// ÀÌ widget page ¸¸ÀÌ ¾Æ´Ñ ItemOp ¸ğµå¸¦ ´İ´Â °ÍÀÓ.
-	UGameplayStatics::SetGlobalTimeDilation(CachedLobbyGM, 1.0f); // ¿¬Ãâ¿¡¼­ OverallPlayRate ¿¡ µû¶ó º¯°æÇß´ø °Å º¹±¸.
+	// ì´ widget page ë§Œì´ ì•„ë‹Œ ItemOp ëª¨ë“œë¥¼ ë‹«ëŠ” ê²ƒì„.
+	UGameplayStatics::SetGlobalTimeDilation(CachedLobbyGM, 1.0f); // ì—°ì¶œì—ì„œ OverallPlayRate ì— ë”°ë¼ ë³€ê²½í–ˆë˜ ê±° ë³µêµ¬.
 	QuitItemOpModeClass<bool>::GetInstance().Signal(true);
 
 	UpdateLobbyInventoryControlClass<>::GetInstance().Signal();

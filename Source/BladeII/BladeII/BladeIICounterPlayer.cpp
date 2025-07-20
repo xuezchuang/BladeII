@@ -1,4 +1,4 @@
-
+ï»¿
 #include "BladeIICounterPlayer.h"
 #include "B2SkillRTManager.h"
 #include "B2CounterAttackGameMode.h"
@@ -25,7 +25,7 @@ void ABladeIICounterPlayer::InitializeCombatStats()
 {
 	Super::InitializeCombatStats();
 
-	// ¹İ°İ´øÀüÀº 5ÃÊ
+	// é¦†æ‹œå¸¦å‚ˆç¯® 5æª¬
 	ComboMaintainDuration = 5.0f;
 }
 
@@ -33,7 +33,7 @@ void ABladeIICounterPlayer::InitUpdateUIDoc()
 {
 	Super::InitUpdateUIDoc();
 
-	// ±âÁ¸ ÄŞº¸ ÃÊ±âÈ­
+	// æ‰ç²® éœ“ç„Š æª¬æ‰æ‹³
 	ResetComboNumTimerCallback();
 }
 
@@ -72,7 +72,7 @@ void ABladeIICounterPlayer::SetAttackState(EAttackState InAttackState)
 
 void ABladeIICounterPlayer::PreDamageAnimation(const FDamageInfo& DamageInfo, bool IsArmorBreak)
 {
-	// ¹İ°İ´øÀüÀº GuardÁß GuardBreak°¡ ¾ø´Ù
+	// é¦†æ‹œå¸¦å‚ˆç¯® Guardå GuardBreakå•Š ç»ä¿ƒ
 	if (IsGuarding() && IsArmorBreak)
 		IsArmorBreak = false;
 
@@ -115,10 +115,10 @@ float ABladeIICounterPlayer::GetDamageIncreaseRate() const
 	return Ret;
 }
 
-// ¹İ°İ´øÀü SkillÀº StateMachineÀÇ AnimSequence¿¡ °­Á¦·Î ¹ÚÇôÀÖÀ½ ( SkillDoc ¼ÂÆÃ°ú ¹«°üÇÏ°Ô Á¤ÇØÁø ½ºÅ³¸¸ ³ª°¨ ) - UI ½ºÅ³¾ÆÀÌÄÜ¸¸ ±³Ã¼ ÇØ¾ßÇÔ
+// é¦†æ‹œå¸¦å‚ˆ Skillç¯® StateMachineç‹¼ AnimSequenceä¿Š ç¢åŠ›è‚º å† å›šä¹æ¾œ ( SkillDoc æ‚¸æ³¼è‹ å…¬åŒ…çªéœ¸ æ²¥ç§¦æŸ³ èƒ¶æ‡¦çˆ¶ å”±çš‘ ) - UI èƒ¶æ‡¦é…’æèƒ½çˆ¶ èƒŒçœ‰ ç§¦å…·çªƒ
 void ABladeIICounterPlayer::OverrideSkillUIAsset(EPCClass PCClass)
 {
-	// ¾îÂ÷ÇÇ Asset¿¡ ¹ÚÇôÀÖ´Â AnimSequence´Ï±ñ ±×³É ¿©±â¿¡ ÇÏµåÄÚµùÇÔ
+	// ç»¢ç’ä¹” Assetä¿Š å† å›šä¹ç»° AnimSequenceèªç˜ª å¼Šæˆ å’¯æ‰ä¿Š çªé›å†…çˆ¹çªƒ
 	static const int32 BindingSkillIDs[4] = { 10000, 20002, 30000, 40002 };
 
 
@@ -138,7 +138,7 @@ void ABladeIICounterPlayer::EnableNormalAttack()
 
 void ABladeIICounterPlayer::DisableNormalAttack()
 {
-	StopAttackFromInput(); //°­Á¦·Î Á¾·á.
+	StopAttackFromInput(); //ç¢åŠ›è‚º è¾†ä¸°.
 	StopRepeatingInput();
 	SetEnableAttack(false);
 	ModifyInputCommand(false);

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 //#include "BladeII.h"
@@ -47,20 +47,20 @@ public:
 	virtual void ExtraOnHovered() override;
 
 
-	//´Ù¸¥ Çàµ¿À» ¸øÇÏ°Ô ±âÁ¸¿¡ µî·ÏÇÑ Click Delegate»èÁ¦
+	//ä¿ƒå¼— é’æ‚¼é˜‘ ç»™çªéœ¸ æ‰ç²®ä¿Š æ®¿åºŸèŒ„ Click Delegateæ˜åŠ›
 	UFUNCTION()
 	void StopButtonClicked();
-	//´Ù¸¥ Çàµ¿À» ¸øÇÏ°Ô ±âÁ¸¿¡ µî·ÏÇÑ Press Delegate»èÁ¦
+	//ä¿ƒå¼— é’æ‚¼é˜‘ ç»™çªéœ¸ æ‰ç²®ä¿Š æ®¿åºŸèŒ„ Press Delegateæ˜åŠ›
 	UFUNCTION()
 	void StopButtonPressed();
-	//Delay ½ÃÄ×À»¶§ ÀÏÁ¤ DelayÀÌÈÄ¿¡ ¿ø·¡ ÇÏ·Á°í Çß´ø ¹öÆ° ÀÌº¥Æ®¸¦ ¹ß»ı½ÃÅ´
+	//Delay çŸ«æ·–é˜‘é”­ è€æ²¥ Delayæé¥¶ä¿Š ç›”è´° çªå¦¨ç»Š æ²å¸¦ æ»šç“¢ æäº¥é£˜ç”« æƒ¯ç§¯çŸ«ç³¯
 	UFUNCTION()
 	void ClickedBroadCast();
-	////Delay ½ÃÄ×À»¶§ ÀÏÁ¤ DelayÀÌÈÄ¿¡ ¿ø·¡ ÇÏ·Á°í Çß´ø ¹öÆ° ÀÌº¥Æ®¸¦ ¹ß»ı½ÃÅ´
+	////Delay çŸ«æ·–é˜‘é”­ è€æ²¥ Delayæé¥¶ä¿Š ç›”è´° çªå¦¨ç»Š æ²å¸¦ æ»šç“¢ æäº¥é£˜ç”« æƒ¯ç§¯çŸ«ç³¯
 	UFUNCTION()
 	void PressedBroadCast();
 	UFUNCTION()
-	void DelayPressed(bool _DelayPress = false) { m_DelayPress = _DelayPress; }; //Press¸¦ Delay½ÃÅ°±â º¸´Ù´Â ClickÀ» Delay½ÃÅ°´Â °ÍÀ» ÃßÃµ. ÀÌÀ¯´Â È£Ãâ ¼ø¼­¸¦ È®ÀÎ ÇÏ¸é µÊ.
+	void DelayPressed(bool _DelayPress = false) { m_DelayPress = _DelayPress; }; //Pressç”« DelayçŸ«è™æ‰ ç„Šä¿ƒç»° Clické˜‘ DelayçŸ«è™ç»° å·´é˜‘ çœ ç«. æèœ¡ç»° é¾‹å… é‰´è¾‘ç”« çŠ¬ç‰¢ çªæ å‡³.
 	UFUNCTION()
 	void DelayClicked(bool _DelayClick = false) { m_DelayClick = _DelayClick; };
 	UFUNCTION()
@@ -83,8 +83,8 @@ protected:
 	class AB2LobbyGameMode* CachedLobbyGM;
 	
 	TArray<int32> m_ShortcutInfoDocID;
-	//¿ø·¡´Â ShortcutInfo¿¡¼­ °¡Áö°í ÀÖ°Ô ÇÏ°í ½Í¾úÀ¸³ª....Wing°°Àº °æ¿ì °¡Á® ¿Ã·Á¸é PCClass°¡ ÀÖ¾î¾ß µÇ´Âµ¥ PCClass¸¦ Shortcutinfo¿¡¼­ °¡Á®¿Ã ¹æ¹ıÀÌ ¾ø¾î¼­...¿©±â¼­ °¡Áö°í ÀÖÀ½.
-	TMap<uint32, int32> m_GoodsAmountMap;	//uint8 EGoodsType, int32´Â Amount
+	//ç›”è´°ç»° ShortcutInfoä¿Šè¾‘ å•Šç˜¤ç»Š ä¹éœ¸ çªç»Š é…µèŒæ å”±....Wingéç¯® ç‰ˆå¿« å•Šå»‰ æ£µå¦¨æ PCClasså•Š ä¹ç»¢å…· ç™»ç»°å• PCClassç”« Shortcutinfoä¿Šè¾‘ å•Šå»‰æ£µ è§„è¿‡æ ç»ç»¢è¾‘...å’¯æ‰è¾‘ å•Šç˜¤ç»Š ä¹æ¾œ.
+	TMap<uint32, int32> m_GoodsAmountMap;	//uint8 EGoodsType, int32ç»° Amount
 
 	UB2UnitedWidgetBase* m_InOwnerUnitedWidget;
 

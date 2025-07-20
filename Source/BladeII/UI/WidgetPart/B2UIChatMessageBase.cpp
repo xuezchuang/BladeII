@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIChatMessageBase.h"
 #include "BladeIILocText.h"
@@ -30,7 +30,7 @@ void UB2UIChatMessageBase::UpdateMessageTime()
 FText UB2UIChatMessageBase::GetElapsedTime(const int32 ElapsedSec)
 {
 	if (ElapsedSec < 60)
-	{ // Á¤È®ÇÑ ½Ã°£ Ç¥½Ã ¾øÀÌ "¹æ±Ý" Á¤µµ·Î Ç¥½Ã
+	{ // æ²¥çŠ¬èŒ„ çŸ«åŸƒ é’ŽçŸ« ç»æž "è§„é™›" æ²¥æ¡£è‚º é’ŽçŸ«
 		return BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Chatting_ElapsedTimeInfo_Short"));
 	}
 	else
@@ -56,7 +56,7 @@ FText UB2UIChatMessageBase::GetElapsedTime(const FTimespan RemainTime)
 
 	if (RemainMin == 1 && RemainHour == 0 && RemainDay == 0)
 	{
-		// Á¤È®ÇÑ ½Ã°£ Ç¥½Ã ¾øÀÌ "¹æ±Ý" Á¤µµ·Î Ç¥½Ã
+		// æ²¥çŠ¬èŒ„ çŸ«åŸƒ é’ŽçŸ« ç»æž "è§„é™›" æ²¥æ¡£è‚º é’ŽçŸ«
 		return BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Chatting_ElapsedTimeInfo_Short"));
 	}
 

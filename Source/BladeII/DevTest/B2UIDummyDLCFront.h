@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "bladeII.h"
 #include "B2UnitedWidgetBase.h"
 #include "B2UIDummyDLCFront.generated.h"

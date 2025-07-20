@@ -71,7 +71,7 @@ UB2DynItemIcon_ItemOpScene* UB2LobbyUI_TotemSmeltingProg::CreateTotemIcon(UCanva
 		return NULL;
 	}
 
-	// Anchor ¼³Á¤¿¡ µû¶ó GetSize ´Â ¿øÇÏ´Â °ªÀÌ ¾È ³ª¿Ã °ÍÀÌ¹Ç·Î ÁÖÀÇ.
+	// Anchor æ±²æ²¥ä¿Š è¶æ‰¼ GetSize ç»° ç›”çªç»° è”¼æ æ•‘ å”±æ£µ å·´æéª¨è‚º æ—ç‹¼.
 	UCanvasPanelSlot* MainPanelSlot = Cast<UCanvasPanelSlot>(ParentCP->Slot);
 	FVector2D AllowedIconSize = MainPanelSlot ? MainPanelSlot->GetSize() : FVector2D(0.0f, 0.0f);
 	UB2DynItemIcon* DynIconCDO = Cast<UB2DynItemIcon>(ItemIconWidgetClass->GetDefaultObject());
@@ -104,7 +104,7 @@ void UB2LobbyUI_TotemSmeltingProg::StartSmeltingCompleteFx()
 	DestroySmeltingCompleteFx();
 
 	check(CachedInventory);
-	CachedInventory->GetItemOPTargetItemData(NativeItemData_Result, false); // °á°ú ¾ÆÀÌÅÛ µ¥ÀÌÅÍ¸¦ ´Ù½Ã ÇÑ¹ø °¡Á®¿È.
+	CachedInventory->GetItemOPTargetItemData(NativeItemData_Result, false); // æ¬è‹ é…’æè¢ å•æç£ç”« ä¿ƒçŸ« èŒ„é”… å•Šå»‰å’³.
 
 	FB2Totem ResultTotem;
 	TMap<int64, FB2Totem> LocalAlltotemData;
@@ -116,11 +116,11 @@ void UB2LobbyUI_TotemSmeltingProg::StartSmeltingCompleteFx()
 		ResultTotem = LocalAlltotemData[NativeItemData_Result.InstanceUID];
 	}
 
-	SetTotemData_Result(ResultTotem);// °á°ú ¾ÆÀÌÅÛ ¾ÆÀÌÄÜÀ» ÇöÀç º¸ÀÌ°Ç ¾È º¸ÀÌ°Ç ÀÏ´Ü »ı¼ºÀ» ÇØ¾ß ÇÔ. ±×·¡¾ß ¹Ù·Î ¾Æ·¡¿¡¼­ UI material °¡Á®¿Í¼­ Fx ÂÊ¿¡¼­ ÆÄ¶ó¹ÌÅÍ¸¦ ¼¼ÆÃÇÑ´Ù.
+	SetTotemData_Result(ResultTotem);// æ¬è‹ é…’æè¢ é…’æèƒ½é˜‘ æ³…çŠ ç„Šææ‰’ æ•‘ ç„Šææ‰’ è€çªœ ç§¯å·±é˜‘ ç§¦å…· çªƒ. å¼Šè´°å…· å®˜è‚º é…’è´°ä¿Šè¾‘ UI material å•Šå»‰å®¢è¾‘ Fx ç‡ä¿Šè¾‘ é¢‡æ‰¼å›ºç£ç”« æŠ€æ³¼èŒ„ä¿ƒ.
 	
 	if (CreatedItemIcon_Result)
 	{
-		CreatedItemIcon_Result->SetVisibility(ESlateVisibility::Hidden); // ¾î¶² °æ¿ìµç ÀÏ´Ü ¼û°Ü³õ°Ô µÉ °ÍÀÌ´Ù. Áö±İÀº 3D È¿°ú°¡ ³ª¿Í¾ß ÇÒ ½ÃÁ¡.
+		CreatedItemIcon_Result->SetVisibility(ESlateVisibility::Hidden); // ç»¢æ« ç‰ˆå¿«ç”µ è€çªœ è§è´¥åˆéœ¸ çª å·´æä¿ƒ. ç˜¤é™›ç¯® 3D ç“¤è‹å•Š å”±å®¢å…· ä¸” çŸ«ç—¢.
 	}
 
 	if (SmeltingCompletePS)
@@ -131,9 +131,9 @@ void UB2LobbyUI_TotemSmeltingProg::StartSmeltingCompleteFx()
 		{
 			CreatedSmeltingCompleteFx->SetWorldScale3D(SmeltingCompleteFxScale);
 
-			SetupNamedMIDForFxComp(CreatedSmeltingCompleteFx); // ÇÊ¿äÇÑ MIC µé¿¡¼­ MID ¸¦ ¸¸µé¾î¼­ »ç¿ë °¡´ÉÇÏµµ·Ï ¼¼ÆÃ.
+			SetupNamedMIDForFxComp(CreatedSmeltingCompleteFx); // é˜å¤¸èŒ„ MIC ç”¸ä¿Šè¾‘ MID ç”« çˆ¶ç”¸ç»¢è¾‘ è¤ä¾© å•Šç“·çªæ¡£åºŸ æŠ€æ³¼.
 
-			// Fx ÂÊ¿¡ MID ±îÁö ÁØºñ°¡ µÇ¾ú´Ù¸é ÆÄÆ®º°·Î ÆÄ¶ó¹ÌÅÍ °ªÀ» °¡Á®¿Ã UI ÂÊÀÇ MIC ¸¦ °¡Á®¿Í¼­ MID ¿¡ ÆÄ¶ó¹ÌÅÍ¸¦ ¼¼ÆÃ.
+			// Fx ç‡ä¿Š MID é³–ç˜¤ éœ–åšå•Š ç™»èŒä¿ƒæ é¢‡é£˜å–Šè‚º é¢‡æ‰¼å›ºç£ è”¼é˜‘ å•Šå»‰æ£µ UI ç‡ç‹¼ MIC ç”« å•Šå»‰å®¢è¾‘ MID ä¿Š é¢‡æ‰¼å›ºç£ç”« æŠ€æ³¼.
 			{
 				UMaterialInstanceDynamic* SmeltingCompletePSBGPanelMID = GetFxNamedMID(CreatedSmeltingCompleteFx, Name_FxMID_SmeltingCompleteBGPanel);
 				UMaterialInstanceConstant* SmeltingCompletePSBGPanelMIC_Ref = CreatedItemIcon_Result ? CreatedItemIcon_Result->GetBGPanelMIC_Totem() : NULL;
@@ -150,7 +150,7 @@ void UB2LobbyUI_TotemSmeltingProg::StartSmeltingCompleteFx()
 void UB2LobbyUI_TotemSmeltingProg::FinishSmeltingCompleteFx()
 {
 	AB2LobbyGameMode* LobbyGM = Cast<AB2LobbyGameMode>(UGameplayStatics::GetGameMode(GetOwningPlayer()));
-	UGameplayStatics::SetGlobalTimeDilation(LobbyGM, 1.0f); // ¿¬Ãâ¿¡¼­ OverallPlayRate ¿¡ µû¶ó º¯°æÇß´ø °Å º¹±¸.
+	UGameplayStatics::SetGlobalTimeDilation(LobbyGM, 1.0f); // æ¥·å…ä¿Šè¾‘ OverallPlayRate ä¿Š è¶æ‰¼ å‡½ç‰ˆæ²å¸¦ èŠ­ æ±—å¤‡.
 	QuitItemOpModeClass<bool>::GetInstance().Signal(true);
 
 	//UpdateLobbyInventoryControlClass<>::GetInstance().Signal();

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIControlChatPanel.h"
 #include "B2UIControlChatPanelMessage.h"
@@ -16,7 +16,7 @@ void UB2UIControlChatPanel::Init()
 {
 	Super::Init();
 
-	// ÆÐ³Î ³»¿ë¹° ºñ¿ò
+	// è©æ¾„ éƒ´ä¾©æ‹± åŽšæ¡†
 	ResetPanelContents();
 }
 
@@ -59,7 +59,7 @@ void UB2UIControlChatPanel::OnClickBtnEmotionTab()
 
 void UB2UIControlChatPanel::ResetPanelContents()
 {
-	// °¢ ÆÐ³Î¾ÈÀÇ ³»¿ë¹°À» Áö¿ó´Ï´Ù.
+	// é˜¿ è©æ¾„æ•‘ç‹¼ éƒ´ä¾©æ‹±é˜‘ ç˜¤çŸ¿èªä¿ƒ.
 
 	if (VB_ChatText.IsValid())
 	{
@@ -96,7 +96,7 @@ void UB2UIControlChatPanel::SetChatTab(EControlChatType TabType)
 		|| !O_Contents_Emotion.IsValid())
 		return;
 
-	// ÅÇ¿¡ µû¸¥ ºñÁöºí.
+	// å¾˜ä¿Š è¶å¼— åŽšç˜¤å–‰.
 	O_BTN_Msg_DeAct->SetVisibility(ESlateVisibility::Hidden);
 	O_BTN_Msg_Act->SetVisibility(ESlateVisibility::Hidden);
 	O_Contents_Msg->SetVisibility(ESlateVisibility::Hidden);
@@ -160,7 +160,7 @@ void UB2UIControlChatPanel::AddControlChatPanelMessageItem(EControlChatType Type
 			UUniformGridSlot* GridPanelSlot = Cast<UUniformGridSlot>(pUI->Slot);
 			if (GridPanelSlot)
 			{
-				// ¸Þ¼¼Áö ÀÎµ¦½º´Â 1ºÎÅÍ. ±×¸®µåÆÐ³ÎÀº 0ºÎÅÍ½ÃÀÛ
+				// çš‹æŠ€ç˜¤ ç‰¢éƒ¸èƒ¶ç»° 1ä½•ç£. å¼Šåºœé›è©æ¾„ç¯® 0ä½•ç£çŸ«ç´¯
 				GridPanelSlot->SetColumn((Index - 1) % GridPanelColumnCount);
 				GridPanelSlot->SetRow((Index - 1) / GridPanelColumnCount);
 			}			

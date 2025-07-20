@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2UIMailRewardPopUp.h"
@@ -42,7 +42,7 @@ void UB2UIMailRewardPopUp::OnOpen(bool RightNow)
 {
 	Super::OnOpen(RightNow);
 
-	//º¸»ó ÆË¾÷ ¿­¸±¶§ ¸ÅÀÏ ÂÊ °»½Å
+	//ç„Šæƒ‘ æ‰‘è¯€ å‡¯å‰¯é”­ æ¦‚è€ ç‡ ç›è„š
 	FB2RedDotManager::RequestCheckRedDot({ RedDotHint::RED_DOT_MAIL });
 }
 

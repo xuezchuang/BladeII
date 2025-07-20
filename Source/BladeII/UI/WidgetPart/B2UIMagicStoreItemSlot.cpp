@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIMagicStoreItemSlot.h"
 #include "B2UIManager.h"
 #include "B2UIStoreProductCost.h"
@@ -67,19 +67,19 @@ void UB2UIMagicStoreItemSlot::SetData(int32 MagicStoreItemID, bool IsPurchased)
 	{
 		int32 ItemRefID = 0;
 
-		if (MagicProductItem->ProductType == EStoreProductType::ITEM)							// ¾ÆÀÌÅÛ
+		if (MagicProductItem->ProductType == EStoreProductType::ITEM)							// é…’æžè¢
 		{
 			ItemRefID = MagicProductItem->ProductDetail;
 		}
-		else if (MagicProductItem->ProductType == EStoreProductType::GENERAL_LOTTERY)			// ÀÏ¹Ý »Ì±â±Ç
+		else if (MagicProductItem->ProductType == EStoreProductType::GENERAL_LOTTERY)			// è€é¦† æƒ¶æ‰é¼»
 		{
 			ItemRefID = BladeIIGameImpl::GetClientDataStore().GetGeneralLotteryItemTemplateId(MagicProductItem->ProductDetail);
 		}
-		else if (MagicProductItem->ProductType == EStoreProductType::SELECTIVE_LOTTERY)			// ¼±ÅÃ »Ì±â±Ç
+		else if (MagicProductItem->ProductType == EStoreProductType::SELECTIVE_LOTTERY)			// æ€¥ç¶ æƒ¶æ‰é¼»
 		{
 			ItemRefID = BladeIIGameImpl::GetClientDataStore().GetSelectiveLotteryItemTemplateId(MagicProductItem->ProductDetail);
 		}
-		else if (MagicProductItem->ProductType == EStoreProductType::SELECTIVE_AETHER_LOTTERY)	// ¿¡Å×¸£ »Ì±â±Ç
+		else if (MagicProductItem->ProductType == EStoreProductType::SELECTIVE_AETHER_LOTTERY)	// ä¿ŠæŠ›ç¦ æƒ¶æ‰é¼»
 		{
 			ItemRefID = BladeIIGameImpl::GetClientDataStore().GetSelectiveEtherLotteryItemTemplateId(MagicProductItem->ProductDetail);
 		}

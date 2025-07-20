@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -159,7 +159,7 @@ class BLADEII_API UB2LobbyInventory : public UB2Inventory
 	int32 CurrentEnhanceItemSuccessRate;
 	int32 CurrentEnhanceItemScrollCost;
 	int32 CurrentEnhanceItemProtectionScrollCost;
-	int32 DeltaEnhanceLevelForResultPresent;	// °­È­·¹º§À» °á°ú ¿¬Ãâ¿¡ º¸¿©ÁÖ±â À§ÇÑ ¿ëµµ
+	int32 DeltaEnhanceLevelForResultPresent;	// ç¢æ‹³é¥­éª‡é˜‘ æ¬è‹ æ¥·å…ä¿Š ç„Šå’¯æ—æ‰ å›°èŒ„ ä¾©æ¡£
 
 	/** Comes from inventory main UI. It's not supposed to be significant here, just for some reference of other UI. */
 	EItemInvenType MainInvenViewCurrentTab;
@@ -642,7 +642,7 @@ private:
 	void ItemUpgradeCostDelivered(const FB2GetItemUpgradeCost& UpgradeCost);
 	void ItemComposeCostDelivered(const FB2GetItemComposeCost& ComposeCost);
 	void ItemSurpassCostDelivered(const FB2GetItemSurpassCost& SurpassCost);
-	void SetCurEnhanceItemData(const int64 TargetItemID);	// ¼­¹ö·ÎºÎÅÍ ¹ŞÁö ¾Ê´Â´Ù.
+	void SetCurEnhanceItemData(const int64 TargetItemID);	// è¾‘æ»šè‚ºä½•ç£ ç½ç˜¤ è‡¼ç»°ä¿ƒ.
 
 	//////////////////////////////////////////////////////////////////////
 	// Auto Enhancement
@@ -813,7 +813,7 @@ public:
 #endif
 
 protected:
-	//ºÀÀÎÇÔ Å¬·¡½º ¼±ÅÃ ºÎºĞ
+	//è±ªç‰¢çªƒ åŠªè´°èƒ¶ æ€¥ç¶ ä½•ç›’
 	TWeakObjectPtr<UTextBlock> TB_CharSelectTitle;
 	TWeakObjectPtr<UTextBlock> TB_CharSelectFullText;
 

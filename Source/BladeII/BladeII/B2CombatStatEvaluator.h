@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "EngineMinimal.h"
 #include "CommonStruct.h"
@@ -61,7 +61,7 @@ namespace CombatStatEval
 	float GetPCHealth(EPCClass InPCClass, ICharacterDataStore* CharacterData = NULL, int32 SpecifiedLevel = -1, TArray<FB2Item>* SpecifiedEquipData = NULL, bool IsGuildBattle = false);
 	float GetPCCombatPower(EPCClass InPCClass, ICharacterDataStore* CharacterData = NULL, int32 SpecifiedLevel = -1, TArray<FB2Item>* SpecifiedEquipData = NULL);
 	//////////////////////////////////////////////////////////////////////////
-	// ¸ğµåº°·Î µé¾î°¡´Â °ø°İ, ¹æ¾î, Çï½º(ex °í´ëÀ¯¹°)
+	// è‘›é›å–Šè‚º ç”¸ç»¢å•Šç»° å‚æ‹œ, è§„ç»¢, ç§‹èƒ¶(ex ç»Šæªèœ¡æ‹±)
 	float GetPCAttackByMod(	EPCClass InPCClass, EB2GameMode ModeType, ICharacterDataStore* CharacterData = NULL, int32 SpecifiedLevel = -1, TArray<FB2Item>* SpecifiedEquipData = NULL);
 	float GetPCDefenseByMod(EPCClass InPCClass, EB2GameMode ModeType, ICharacterDataStore* CharacterData = NULL, int32 SpecifiedLevel = -1, TArray<FB2Item>* SpecifiedEquipData = NULL);
 	float GetPCHealthByMod(	EPCClass InPCClass, EB2GameMode ModeType, ICharacterDataStore* CharacterData = NULL, int32 SpecifiedLevel = -1, TArray<FB2Item>* SpecifiedEquipData = NULL);
@@ -79,11 +79,11 @@ namespace CombatStatEval
 	bool GetOptionStatusRawValues(EPCClass InPCClass, EItemOption OptionType, CombatStatInfoRawDatas& OutRawValues, ICharacterDataStore* InCharacterData = NULL);
 	bool GetSkillOptionStatusRawValues(EPCClass InPCClass, ESkillOption InOptionType, CombatStatInfoRawDatas& OutRawValues, ICharacterDataStore* InCharacterData = NULL);
 	bool GetUnitedOptionStatusRawValues(EPCClass InPCClass, EUnitedCombatOptions InOptionType, CombatStatInfoRawDatas& OutRawValues, ICharacterDataStore* InCharacterData = NULL);
-	//¸ğµå º°·Î µé¾î °¡´Â °ÍÀ» °è»ê ÇÏ±â À§ÇÑ ÇÔ¼ö. ÇöÀç´Â °í´ëÀ¯¹°¸¸ ±¸ÇöµÇ¾î ÀÖÀ½
+	//è‘›é› å–Šè‚º ç”¸ç»¢ å•Šç»° å·´é˜‘ æ‹Œé­‚ çªæ‰ å›°èŒ„ çªƒè. æ³…çŠç»° ç»Šæªèœ¡æ‹±çˆ¶ å¤‡æ³…ç™»ç»¢ ä¹æ¾œ
 	float GetOptionStatusValueByMod(EPCClass InPCClass, EB2GameMode ModeType, EItemOption OptionType, const TArray<FB2Item>& AllEquipped, const FPCWingContainer& InWingContainer, int32 BrevetRank, int32 BrevetNodeNum, const FAncientRelicArray& RelicInfos, const TMap<int64, FB2Totem>& Totems);
 	bool GetOptionStatusRawValuesByMod(EPCClass InPCClass, EB2GameMode ModeType, EItemOption OptionType, const TArray<FB2Item>& AllEquipped, const FPCWingContainer& InWingContainer, int32 BrevetRank, int32 BrevetNodeNum, const FAncientRelicArray& RelicInfos, const TMap<int64, FB2Totem>& Totems, CombatStatInfoRawDatas& OutRawValues);
 
-	//±æµå ¹öÇÁ
+	//è¾¨é› æ»šæ©‡
 	bool IsActiveGuildBuff(ICharacterDataStore* InCharacterDataStore, EItemOption InItemOption);
 	float GetPCGuildBuffValue(ICharacterDataStore* InCharacterDataStore, bool IsGuildBattle, EItemOption InItemOption);
 	float GetPCAttackGuildBuffValue(ICharacterDataStore* InCharacterDataStore, bool IsGuildBattle = false);
@@ -137,7 +137,7 @@ namespace CombatStatEval
 	EItemOption GetPrimPointIncOption(EItemPrimaryPointType InCheckType);
 	EItemPrimaryPointType ConvertItemOptionToItemPrimaryPointType(EItemOption InCheckType);
 	EItemOption ConvertItemPrimaryPointTypeToItemOptionByPVPMode(EItemPrimaryPointType InCheckType, EB2GameMode ModeType);
-	// ÅäÅÛÀÇ °æ¿ì °¡´É ¿É¼ÇÀÌ PVP ¿Ü¿¡µµ(ex> ¿µ¿õÀÇÅ¾ µî) °¡´ÉÇÏ±â¿¡ º°µµÀÇ Ã¼Å© °úÁ¤À» °ÅÄ£´Ù.
+	// é…è¢ç‹¼ ç‰ˆå¿« å•Šç“· å¯è®°æ PVP å¯‡ä¿Šæ¡£(ex> åº·æ—·ç‹¼å•ª æ®¿) å•Šç“·çªæ‰ä¿Š å–Šæ¡£ç‹¼ çœ‰å†œ è‹æ²¥é˜‘ èŠ­æ¨¡ä¿ƒ.
 	EItemOption ConvertItemPrimaryPointTypeToItemOptionByTotemMode(EItemPrimaryPointType InCheckType, EB2GameMode ModeType);
 
 	void InitCombatStatMap(TMap<EUnitedCombatOptions, float>& InMap);

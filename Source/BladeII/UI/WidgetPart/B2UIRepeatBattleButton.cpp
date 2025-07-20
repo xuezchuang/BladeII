@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIRepeatBattleButton.h"
 #include "B2UIRepeatBattleDetail.h"
@@ -25,7 +25,7 @@ void UB2UIRepeatBattleButton::Init()
 		DocBattleStage->OnRepeatBattleBoostOnChanged.AddUObject(this, &UB2UIRepeatBattleButton::RepeatBattleBoostOnChanged);
 		
 		if (IMG_RB_Lock_Icon.IsValid())
-		{ // Ã³À½ lock ÀÌ Ç®·ÈÀ» ¶§ ¿¬ÃâÀÌ µé¾î°¥ ¼ö ÀÖÀ½.. ¸¸ÀÏ ¿¬Ãâ ½Ã ÀÌ ÀÌ¹ÌÁö¸¦ »ç¿ëÇÑ´Ù¸é »ç¿ëÇÏ´Â ÂÊ¿¡¼­ ÄÑµµ·Ï..
+		{ // è´¸æ¾œ lock æž é’±å•¡é˜‘ é”­ æ¥·å…æž ç”¸ç»¢å“Ž è ä¹æ¾œ.. çˆ¶è€ æ¥·å… çŸ« æž æžå›ºç˜¤ç”« è¤ä¾©èŒ„ä¿ƒæ è¤ä¾©çªç»° çŽ‡ä¿Šè¾‘ éš¾æ¡£åºŸ..
 			IMG_RB_Lock_Icon->SetVisibility(/*BladeIIGameImpl::GetStageDataStore().IsRepeatBattleLocked(DocBattleStage->GetServerStageId()) ? ESlateVisibility::HitTestInvisible : */ESlateVisibility::Collapsed);
 		}
 		BTN_RepeatSetting->SetIsEnabled(true/*!BladeIIGameImpl::GetStageDataStore().IsRepeatBattleLocked(DocBattleStage->GetServerStageId())*/);

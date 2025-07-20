@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 // Project BladeII, Action Square
 
 #pragma once
@@ -58,8 +58,8 @@ struct FSingleSkillInfo
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "SkillInfo")
 	int32 SkillID;
 
-	//[@AKI, 170706] <B2CLT-1705> ÀÚµ¿ÀüÅõ ½Ã, ¿µ¿õÀÌ »ç¿ëÇÏ´Â ½ºÅ³ »ç°Å¸® °³¼±À¸·Î Ãß°¡
-	//±âÈ¹ÂÊ¿¡¼­ º¯°æ½Ã ¼öÁ¤ Àß ÇÏ°Ú´Ù°í ÇÔ.
+	//[@AKI, 170706] <B2CLT-1705> ç£Šæ‚¼å‚ˆæ§ çŸ«, åº·æ—·æ è¤ä¾©çªç»° èƒ¶æ‡¦ è¤èŠ­åºœ ä¿ºæ€¥æ è‚º çœ å•Š
+	//æ‰è£™ç‡ä¿Šè¾‘ å‡½ç‰ˆçŸ« èæ²¥ è‚‹ çªæ‘†ä¿ƒç»Š çªƒ.
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "SkillInfo")
 	float SkillShootingRangeForAI;
 

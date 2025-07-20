@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIHeroTowerResult.h"
 #include "B2StageManager.h"
@@ -79,7 +79,7 @@ void UB2UIHeroTowerResult::NativeConstruct()
 			TB_NFloor->SetText(FText::Format(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("HeroTower_NFloor")), FText::AsNumber(nFloor)));
 		}
 
-		// ÃÖ»óÃşÀÏ¶§ ´ÙÀ½Ãş °¡±â ¹öÆ°Ã³¸®
+		// å¼¥æƒ‘æ‘¸è€é”­ ä¿ƒæ¾œæ‘¸ å•Šæ‰ æ»šç“¢è´¸åºœ
 		if (nFloor == BladeIIGameImpl::GetClientDataStore().GetHeroTowerMaxFloor())
 		{
 			if (O_NextFloor.IsValid())
@@ -105,7 +105,7 @@ void UB2UIHeroTowerResult::NativeConstruct()
 
 		if (HB_Rewards.IsValid())
 		{
-			//Áö¿ì°í
+			//ç˜¤å¿«ç»Š
 			TArray<UPanelSlot*> Slots = HB_Rewards->GetSlots();
 
 			for (UPanelSlot* pSlot : Slots)
@@ -114,7 +114,7 @@ void UB2UIHeroTowerResult::NativeConstruct()
 					HB_Rewards->RemoveChild(pSlot->Content);
 			}
 
-			//¸¸µé°í
+			//çˆ¶ç”¸ç»Š
 			if (pDoc->IsClearHeroTower() && pDoc->m_ptrFinishHeroTower)
 			{
 				for (auto RewardItem : pDoc->m_ptrFinishHeroTower->rewards)
@@ -194,7 +194,7 @@ void UB2UIHeroTowerResult::CloseWidgetDelegate()
 
 void UB2UIHeroTowerResult::OnClickBtnOK()
 {
-	// Å¸ÀÌ¸Ó Á¦°Å
+	// é¸¥æèµ£ åŠ›èŠ­
 	UGameplayStatics::GetGameMode(this)->GetWorldTimerManager().ClearTimer(TimeToAutoMoveStage);
 
 	data_trader::Retailer::GetInstance().RequestGetHeroTower();
@@ -202,14 +202,14 @@ void UB2UIHeroTowerResult::OnClickBtnOK()
 
 void UB2UIHeroTowerResult::OnClickBtnNextFloor()
 {
-	//// Å¸ÀÌ¸Ó Á¦°Å
+	//// é¸¥æèµ£ åŠ›èŠ­
 	//UGameplayStatics::GetGameMode(this)->GetWorldTimerManager().ClearTimer(TimeToAutoMoveStage);
 
-	//// Á¡°Ë Á¤»ê Ã¼Å©
+	//// ç—¢å…« æ²¥é­‚ çœ‰å†œ
 	//if (CheckContentsModeState(b2network::B2ContentsMode::HERO_TOWER))
 	//	return;
 
-	//// ´ÙÀ½Ãş °¡ÀÚ
+	//// ä¿ƒæ¾œæ‘¸ å•Šç£Š
 	//UB2UIDocHeroTower* pDoc = UB2UIDocHelper::GetDocHeroTower();
 
 	//if (!pDoc)
@@ -222,16 +222,16 @@ void UB2UIHeroTowerResult::OnClickBtnNextFloor()
 	//FCacheStageEssentialDataToKeep& StageData = AB2StageManager::GetCacheStageKeepEssentialData();
 	//FLocalCharacterData& CharDataStore = BladeIIGameImpl::GetLocalCharacterData();
 
-	//// ¼­¹ö¿¡¼­ ¹ŞÀºÃş ÀÌ¿ë
+	//// è¾‘æ»šä¿Šè¾‘ ç½ç¯®æ‘¸ æä¾©
 	//int32 nFloor = pDoc->GetNextFloorFromFinishInfo();
 
 	//StageData.SetHeroTowerFloor(nFloor);
 
-	//// colosseum comment : bUseGem Á¦°Å
+	//// colosseum comment : bUseGem åŠ›èŠ­
 	////StageData.RequestStartHeroTower(pGameMode, nFloor, CharDataStore.GetMainPlayerClass(), CharDataStore.GetSubPlayerClass(), false, pDoc->GetPlayTokenFromFinishInfo());
 	//StageData.RequestStartHeroTower(pGameMode, nFloor, CharDataStore.GetMainPlayerClass(), CharDataStore.GetSubPlayerClass(), pDoc->GetPlayTokenFromFinishInfo());
 
-	//ForcedCloseToolTipPopupClass<>::GetInstance().Signal(); // ¾ÆÀÌÅÛ º¸»ó ÅøÆÁ ¶°ÀÖÀ¸¸é Áö¿ò
+	//ForcedCloseToolTipPopupClass<>::GetInstance().Signal(); // é…’æè¢ ç„Šæƒ‘ ç ’å± æ ‹ä¹æ æ ç˜¤æ¡†
 }
 
 void UB2UIHeroTowerResult::UpdateAutoMoveStageTimeSec()
@@ -252,10 +252,10 @@ void UB2UIHeroTowerResult::UpdateAutoMoveStageTimeSec()
 			TB_AutoSceneMoveTime->SetText(FText::Format(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("HeroTower_GotoMainAutoNSec")), FText::AsNumber(m_nRemainAutoMoveStageTimeSec)));
 	}
 
-	// ´ÙÀ½¾÷µ¥ÀÌÆ® ¿À±âÀü¿¡ ¹Ì¸®»©³ğ.
+	// ä¿ƒæ¾œè¯€å•æé£˜ å·æ‰å‚ˆä¿Š å›ºåºœå“—ä»‡.
 	m_nRemainAutoMoveStageTimeSec--;
 
-	// UIÅØ½ºÆ®¿¡ 0À¸·Î Ç¥±âµÇ´Â ¼ø°£ÀÓ
+	// UIå’†èƒ¶é£˜ä¿Š 0æ è‚º é’æ‰ç™»ç»° é‰´åŸƒçƒ™
 	if (m_nRemainAutoMoveStageTimeSec < 0)
 	{
 		if (pDoc->IsClearHeroTower() && nFloor != BladeIIGameImpl::GetClientDataStore().GetHeroTowerMaxFloor())
@@ -269,7 +269,7 @@ void UB2UIHeroTowerResult::OnShowResult()
 {
 	//m_nRemainAutoMoveStageTimeSec = AutoMoveStageTimeSec;
 	//UpdateAutoMoveStageTimeSec();
-	//// Å¸ÀÌ¸Ó µî·Ï		
+	//// é¸¥æèµ£ æ®¿åºŸ		
 	//UGameplayStatics::GetGameMode(this)->GetWorldTimerManager().SetTimer(TimeToAutoMoveStage, this, &UB2UIHeroTowerResult::UpdateAutoMoveStageTimeSec, 1.0f, true);
 	//
 	//auto* GameMode = Cast<AB2HeroTowerGameMode>(UGameplayStatics::GetGameMode(GetWorld()));
@@ -292,7 +292,7 @@ void UB2UIHeroTowerResult::CheckAndOpenLevelUpPart()
 
 	for (auto pcclass : ThisPCClass)
 	{
-		//[@SameLine, 180612] explevelinfo doc, datastore -> datastore °³¼±
+		//[@SameLine, 180612] explevelinfo doc, datastore -> datastore ä¿ºæ€¥
 		//UB2UIDocHero* DocHero = UB2UIDocHelper::GetDocHero(PCClassToInt(pcclass));
 		//bool bCharLevelUp = (FMath::Max(DocHero->GetBasicUpgradeLevel(), DocHero->GetExtraUpgradeLevel()) > DocHero->GetCurrentLevel());
 		const int32 ClearAfterLevel = CharacterDataStore.GetCharacterLevel(pcclass);

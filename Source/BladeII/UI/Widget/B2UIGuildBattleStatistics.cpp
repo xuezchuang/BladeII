@@ -1,4 +1,4 @@
-#include "B2UIGuildBattleStatistics.h"
+ï»¿#include "B2UIGuildBattleStatistics.h"
 #include "B2UIGuildMark.h"
 #include "B2UITeamEntryCharacter.h"
 #include "B2UIGuildInfoPart.h"
@@ -118,7 +118,7 @@ void UB2UIGuildStatistics_UserRecords::AddBattleResult(bool InbAlly, int32 InPow
 		UIP_BattleResults[AddedBattleResult]->SetOpponentUserName(UserName);
 		UIP_BattleResults[AddedBattleResult]->SetNumAcquiredMedals(AcquiredMedalsFromUser);
 		//UIP_BattleResults[AddedBattleResult]->SetBattleNum(AddedBattleResult + 1);
-		UIP_BattleResults[AddedBattleResult]->SetAllyInfoAndPowerIndex(!InbAlly, InPowerIndex);			//¹Ý´ë·Î ³Ö¾îÁÖÀÚ
+		UIP_BattleResults[AddedBattleResult]->SetAllyInfoAndPowerIndex(!InbAlly, InPowerIndex);			//é¦†æŽªè‚º æŒç»¢æž—ç£Š
 		++AddedBattleResult;
 	}
 }
@@ -364,7 +364,7 @@ void UB2UIGuildStatistics_GuildInfos::SetGuildInfo(bool bLeftGuild
 
 	if (UIP.IsValid())
 	{
-		UIP->SetGuildInfo(GuildName,  Point, GuildExp);			//ÃßÈÄ¿¡ °æÇèÄ¡ Ãß°¡ woong
+		UIP->SetGuildInfo(GuildName,  Point, GuildExp);			//çœ é¥¶ä¿Š ç‰ˆæ°°æ‘¹ çœ å•Š woong
 		UIP->SetGuildMark(Pattern, PatternColor, BG, BGColor);
 	}
 }

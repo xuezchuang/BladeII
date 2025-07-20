@@ -1,4 +1,4 @@
-
+ï»¿
 #include "B2UIManager.h"
 #include "EventSubsystem.h"
 #include "GameDelegates.h"
@@ -58,8 +58,8 @@ FName FB2UIWidgetData::GetWidgetAssetName()
 }
 void FB2UIWidgetData::ResetAllCacheMarkForUnload()
 { 
-	// CanUnloadByPolicy ¸¦ true ·Î ¸¸µé¾î¼­ Unload ÄİÀÌ ¸ÔÈ÷µµ·Ï ÇÏ±â À§ÇØ.
-	// ±×·¯³ª ÀÌ·¸°Ô ÇÏ°í Unload ¸¦ ÇØµµ RootSet ÀÌ¶ó¸é ½ÇÁúÀûÀÎ unload °¡ µÇÁö´Â ¾ÊÀ» °Í.
+	// CanUnloadByPolicy ç”« true è‚º çˆ¶ç”¸ç»¢è¾‘ Unload å¦®æ å†ˆæ´’æ¡£åºŸ çªæ‰ å›°ç§¦.
+	// å¼ŠçŸ¾å”± æçŠ¯éœ¸ çªç»Š Unload ç”« ç§¦æ¡£ RootSet ææ‰¼æ è§’é¾™åˆ©ç‰¢ unload å•Š ç™»ç˜¤ç»° è‡¼é˜‘ å·´.
 	bCacheOnLoad = false;
 	bCacheByHistory = false;
 }
@@ -95,7 +95,7 @@ UB2UIManager::UB2UIManager(const class FObjectInitializer& ObjectInitializer)
 	ForceGCOnUISceneCloseInterval = 0;
 	UISceneCloseWithoutGCCount = 0;
 	UIDataCacheHistoryNum = 5;
-	ScreenDebugTextWidget = NULL; // Shipping ºôµå¿¡¼­´Â NULL °ªÀ» À¯ÁöÇÏ°í ÀÖ¾î¾ß.
+	ScreenDebugTextWidget = NULL; // Shipping å‘¼é›ä¿Šè¾‘ç»° NULL è”¼é˜‘ èœ¡ç˜¤çªç»Š ä¹ç»¢å…·.
 
 	ErrorResetPerSecond = 5;
 	IsIndicatorVisible = false;
@@ -103,8 +103,8 @@ UB2UIManager::UB2UIManager(const class FObjectInitializer& ObjectInitializer)
 
 UB2UIManager::~UB2UIManager()
 {
-	// ¾î¶² ¿ÀºêÁ§Æ®°¡ ¾î¶² °æ·Î·Î ¼Ò¸êÀÚ·Î µé¾î¿À´ÂÁö ¾Ë ¼ö ¾øÀ½. Æ¯È÷ ÇÁ·Î¼¼½º Á¾·á½Ã Destroy °¡ ºÒ¸®¸é ¹®Á¦°¡ µÊ. 
-	// ÀÏ¹İÀûÀÎ »óÈ²¿¡¼­ÀÇ Destroy ´Â ABladeIIGameMode::OnPreLoadMap ¿¡¼­ Ã³¸®.
+	// ç»¢æ« å·å®ç’ƒé£˜å•Š ç»¢æ« ç‰ˆè‚ºè‚º å®¶æˆˆç£Šè‚º ç”¸ç»¢å·ç»°ç˜¤ èˆ… è ç»æ¾œ. æ¼‚æ´’ æ©‡è‚ºæŠ€èƒ¶ è¾†ä¸°çŸ« Destroy å•Š é˜‚åºœæ å·©åŠ›å•Š å‡³. 
+	// è€é¦†åˆ©ç‰¢ æƒ‘ç‚”ä¿Šè¾‘ç‹¼ Destroy ç»° ABladeIIGameMode::OnPreLoadMap ä¿Šè¾‘ è´¸åºœ.
 	Destroy();
 	/*if (m_ShortagePopupMGR)
 	{
@@ -155,7 +155,7 @@ void UB2UIManager::SetPlayerContext(const FLocalPlayerContext& InPlayerContext)
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2UIManager_SetPlayerContext);
 	PlayerContext = InPlayerContext;
 
-	//È¤½Ã ¸ğ¸£´Ï±î ÇÏÀ§ À§Á¬µéÀÇ ÄÁÅØ½ºÆ®µµ ¹Ù²ãÁØ´Ù
+	//è¶£çŸ« è‘›ç¦èªé³– çªå›° å›°è¿ç”¸ç‹¼ ç‰§å’†èƒ¶é£˜æ¡£ å®˜å±‚éœ–ä¿ƒ
 	for (TMap<FName, FB2UIWidgetData>::TIterator WDMapIt(AllWidgetData); WDMapIt; ++WDMapIt)
 	{
 		FB2UIWidgetData& ThisWidgetData = WDMapIt.Value();
@@ -170,7 +170,7 @@ UB2UIManager* UB2UIManager::GetInstance()
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2UIManager_GetInstance);
 	if (GMinimalDLCFrontMode) {
-		return NULL; // DLC Front ¸ğµå ¸®¼Ò½º·Îµù ÃÖ´ëÇÑ Á¦°Å
+		return NULL; // DLC Front è‘›é› åºœå®¶èƒ¶è‚ºçˆ¹ å¼¥æªèŒ„ åŠ›èŠ­
 	}
 
 #if WITH_EDITOR // Like other InfoAssets, this must be with BladeIIGameMode (not with StartupModule).
@@ -183,7 +183,7 @@ UB2UIManager* UB2UIManager::GetInstance()
 		GConfig->GetString(TEXT("/Script/BladeII.B2UIManager"), TEXT("B2UIManagerClassName"), UIManagerClassName, GGameIni);
 		UClass *UIManagerClass = LoadClass<UObject>(NULL, *UIManagerClassName, NULL, LOAD_None, NULL);
 		if (UIManagerClass)
-		{ // Init Àº ¹Û¿¡¼­ ºÒ·¯ÁÙ °Í.
+		{ // Init ç¯® è§‚ä¿Šè¾‘ é˜‚çŸ¾ä¸´ å·´.
 			Instance = NewObject<UB2UIManager>(GetTransientPackage(), UIManagerClass);
 			if (Instance)
 			{
@@ -197,7 +197,7 @@ UB2UIManager* UB2UIManager::GetInstance()
 
 #if WITH_EDITOR
 UB2UIManager* UB2UIManager::EditorGetNewInstance()
-{ // ¿¡µğÅÍ¿¡¼­ Destroy °¡ Á¦´ë·Î ¾ÈµÈÃ¤ ¾²·¹±â°ª Instance ¸¦ »ç¿ëÇÏ°Ô µÇ´Â °æ¿ì°¡ ÀÖ¾î¼­ ÁØºñÇÔ.
+{ // ä¿Šå¼ç£ä¿Šè¾‘ Destroy å•Š åŠ›æªè‚º æ•‘ç­‰ç›² é™é¥­æ‰è”¼ Instance ç”« è¤ä¾©çªéœ¸ ç™»ç»° ç‰ˆå¿«å•Š ä¹ç»¢è¾‘ éœ–åšçªƒ.
 	check(GIsEditor);
 	Instance = nullptr;
 	return GetInstance();
@@ -246,7 +246,7 @@ void UB2UIManager::PostEditChangeProperty(struct FPropertyChangedEvent& Property
 		if (WidgetNamesWithStayInViewport.Num() > 0)
 		{
 #if !PLATFORM_MAC
-			//FString WarnMsg = FString::Printf(TEXT("´ÙÀ½ %d °³ÀÇ WidgetData ¿¡ StayInViewport °¡ Ã¼Å©µÇ¾î ÀÖ½À´Ï´Ù. ÀÌ´Â ºÎÀÛ¿ë°ú ¹ö±×¸¦ À¯¹ßÇÒ ¼ö ÀÖÀ¸´Ï ÁÖÀÇÇØ¼­ »ç¿ëÇØ¾ß ÇÕ´Ï´Ù.\nUI ÀüÈ¯ ½ÃÀÇ ºí·ÎÅ·À» ¿ÏÈ­ÇÏ±â À§ÇÑ ¸ñÀûÀÌ¶ó¸é ´ÙÀ½ ÆäÀÌÁö¿¡ ¼Ò°³µÈ ¼³Á¤µéÀ» ¸ÕÀú Âü°íÇØ ÁÖ¼¼¿ä\nhttp://172.168.2.105:8090/pages/viewpage.action?pageId=4827590\n\n"), WidgetNamesWithStayInViewport.Num());
+			//FString WarnMsg = FString::Printf(TEXT("ä¿ƒæ¾œ %d ä¿ºç‹¼ WidgetData ä¿Š StayInViewport å•Š çœ‰å†œç™»ç»¢ ä¹åš¼èªä¿ƒ. æç»° ä½•ç´¯ä¾©è‹ æ»šå¼Šç”« èœ¡æƒ¯ä¸” è ä¹æ èª æ—ç‹¼ç§¦è¾‘ è¤ä¾©ç§¦å…· é’¦èªä¿ƒ.\nUI å‚ˆåˆ¸ çŸ«ç‹¼ å–‰è‚ºæ¬§é˜‘ è‚¯æ‹³çªæ‰ å›°èŒ„ æ ¼åˆ©ææ‰¼æ ä¿ƒæ¾œ å…¶æç˜¤ä¿Š å®¶ä¿ºç­‰ æ±²æ²¥ç”¸é˜‘ åˆšå† æ›¼ç»Šç§¦ æ—æŠ€å¤¸\nhttp://172.168.2.105:8090/pages/viewpage.action?pageId=4827590\n\n"), WidgetNamesWithStayInViewport.Num());
 			FString WarnMsg = FString::Printf(TEXT(" %d "), WidgetNamesWithStayInViewport.Num());
 
 			for (int32 WI = 0; WI < WidgetNamesWithStayInViewport.Num(); ++WI)
@@ -263,7 +263,7 @@ void UB2UIManager::PostEditChangeProperty(struct FPropertyChangedEvent& Property
 
 void UB2UIManager::EditorCheckForWidgetNameIntegrity()
 {
-	// FB2UIWidgetData ÀÇ WidgetFName Àº Á÷Á¢ ¼¼ÆÃÇÏµµ·Ï ÇÏÁö ¾Ê°í º»ÀÎÀÌ µî·ÏµÈ ¸ÊÀÇ Å° °ª¿¡¼­ °¡Á®¿È.
+	// FB2UIWidgetData ç‹¼ WidgetFName ç¯® æµç«‹ æŠ€æ³¼çªæ¡£åºŸ çªç˜¤ è‡¼ç»Š å¤¯ç‰¢æ æ®¿åºŸç­‰ ç”˜ç‹¼ è™ è”¼ä¿Šè¾‘ å•Šå»‰å’³.
 	for (TMap<FName, FB2UIWidgetData>::TIterator NewWidgetDataIt(AllWidgetData); NewWidgetDataIt; ++NewWidgetDataIt)
 	{
 		FB2UIWidgetData& ThisWidgetData = NewWidgetDataIt.Value();
@@ -273,7 +273,7 @@ void UB2UIManager::EditorCheckForWidgetNameIntegrity()
 		}
 	}
 	for (TMap<EUIScene, FB2UISceneData>::TIterator SceneDataIt(AllSceneData); SceneDataIt; ++SceneDataIt)
-	{ // SceneData µµ ¸¶Âù°¡Áö·Î SceneName À» Map ÀÇ Å°°ª¿¡¼­ °¡Á®¿Â´Ù.
+	{ // SceneData æ¡£ ä»˜è›®å•Šç˜¤è‚º SceneName é˜‘ Map ç‹¼ è™è”¼ä¿Šè¾‘ å•Šå»‰æŸ¯ä¿ƒ.
 		FB2UISceneData& ThisSceneData = SceneDataIt.Value();
 		if (ThisSceneData.SceneName != SceneDataIt.Key())
 		{
@@ -282,17 +282,17 @@ void UB2UIManager::EditorCheckForWidgetNameIntegrity()
 	}
 
 #if !PLATFORM_MAC
-	FString NotFoundWidgetNameMsg = TEXT("SceneData ¿¡ ¼³Á¤ÇÑ ´ÙÀ½ WidgetFName ÀÌ AllWidgetData ¿¡¼­ ¹ß°ßµÇÁö ¾Ê¾Ò½À´Ï´Ù.\n\n");
+	FString NotFoundWidgetNameMsg = TEXT("SceneData ä¿Š æ±²æ²¥èŒ„ ä¿ƒæ¾œ WidgetFName æ AllWidgetData ä¿Šè¾‘ æƒ¯æ–‘ç™»ç˜¤ è‡¼ç–½åš¼èªä¿ƒ.\n\n");
 	int32 FoundSomeInvalidCount = 0;
 	for (TMap<EUIScene, FB2UISceneData>::TIterator SceneDataIt(AllSceneData); SceneDataIt; ++SceneDataIt)
 	{
 		FB2UISceneData& ThisSceneData = SceneDataIt.Value();
 		for (FName& ThisSceneWidgetFName : ThisSceneData.WidgetFNames)
 		{
-			// DJLegacy ¿ÍÀÇ ¿¬°á ¿ëÀ¸·Î ´õ¹Ì ¼¼ÆÃÇÑ °Ô ÀÖÀ¸´Ï ±×°Ç °Ë»ç¿¡¼­ Á¦¿Ü.
+			// DJLegacy å®¢ç‹¼ æ¥·æ¬ ä¾©æ è‚º æ­¹å›º æŠ€æ³¼èŒ„ éœ¸ ä¹æ èª å¼Šæ‰’ å…«è¤ä¿Šè¾‘ åŠ›å¯‡.
 			if (!IsDJLegacyUIScene(ThisSceneData.SceneName) && !AllWidgetData.Find(ThisSceneWidgetFName))
 			{
-				NotFoundWidgetNameMsg += FString::Printf(TEXT("SceneData SceneName %d ÀÇ WidgetFName %s\n"), (int32)ThisSceneData.SceneName, *ThisSceneWidgetFName.ToString());
+				NotFoundWidgetNameMsg += FString::Printf(TEXT("SceneData SceneName %d ç‹¼ WidgetFName %s\n"), (int32)ThisSceneData.SceneName, *ThisSceneWidgetFName.ToString());
 				++FoundSomeInvalidCount;
 			}
 		}
@@ -318,7 +318,7 @@ void UB2UIManager::EditorPIEEnd()
 
 #endif // WITH_EDITOR
 
-#if 0 // ÀÌ°É »ç¿ëÇÏ°Ô µÇ¸é °á±¹ ¸Ê ·Îµù ½Ã°£ÀÌ ±æ¾îÁö°Ô µÉ °ÍÀÌ´Ù. Æ®·¹ÀÌµå¿ÀÇÁ°¡ ¸íÈ®ÇÏ¹Ç·Î ´Ü¼ø CacheOnLoad ¸¦ ÇÏ°Å³ª ÀûÀıÇÑ ÁöÁ¡¿¡ AsyncLoad ¸¦ ÇÏ°Å³ª.
+#if 0 // æå§ è¤ä¾©çªéœ¸ ç™»æ æ¬æƒ« ç”˜ è‚ºçˆ¹ çŸ«åŸƒæ è¾¨ç»¢ç˜¤éœ¸ çª å·´æä¿ƒ. é£˜é¥­æé›å·æ©‡å•Š ç–™çŠ¬çªéª¨è‚º çªœé‰´ CacheOnLoad ç”« çªèŠ­å”± åˆ©ä¾‹èŒ„ ç˜¤ç—¢ä¿Š AsyncLoad ç”« çªèŠ­å”±.
 void UB2UIManager::SyncPreloadTAssets(const TArray<FName>& InPreloadUIName)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2UIManager_PreloadTAssets);
@@ -329,8 +329,8 @@ void UB2UIManager::SyncPreloadTAssets(const TArray<FName>& InPreloadUIName)
 		FB2UIWidgetData* FoundWidgetData = GetWidgetData(ThisPreloadName);
 		if (FoundWidgetData)
 		{
-			FoundWidgetData->bCacheOnLoad = true; // CachedWidgetClasses ¿¡µµ Ä³½ÌÇØ ³õ°í OpenUI ÇÒ ¶§¿¡ Unload ÇÏÁö ¾Êµµ·Ï.
-			GetWidgetClass(FoundWidgetData); // TAsset Å¬·¡½º ·Îµù.
+			FoundWidgetData->bCacheOnLoad = true; // CachedWidgetClasses ä¿Šæ¡£ æŸæ•™ç§¦ åˆç»Š OpenUI ä¸” é”­ä¿Š Unload çªç˜¤ è‡¼æ¡£åºŸ.
+			GetWidgetClass(FoundWidgetData); // TAsset åŠªè´°èƒ¶ è‚ºçˆ¹.
 		}
 	}
 }
@@ -346,9 +346,9 @@ void UB2UIManager::ReqAsyncLoadAssets(const TArray<FName>& InLoadUIs)
 {
 	if (BladeIIGameImpl::bAllowUIAsyncLoading == false)
 	{
-		// bAllowUIAsyncLoading ¿¡ µû¸¥ SyncPreload ·ÎÀÇ ÀüÈ¯Àº ¿©±â¼± Á» »ı°¢ÇØ º¼ ÇÊ¿ä°¡ ÀÖ´Ù.
-		// UIManager ÀÇ Async Load ´Â PreLoad Å¸ÀÌ¹ÖÀÇ ¸ÖÆ¼ÄÚ¾î È°¿ëÀÌ ¸ñÀûÀÌ ¾Æ´Ï¶ó ÀÎ°ÔÀÓ ÁøÇà µµÁß ¹é±×¶ó¿îµå ·ÎµùÀÌ ¸ñÀûÀÓ.
-		//SyncPreloadTAssets(InLoadUIs); // µû¶ó¼­ ¿©±â¼± ÇÊ¿äÇÒ ¶§ ·ÎµùÇÏµµ·Ï ±×³É ¸®ÅÏ ¤»
+		// bAllowUIAsyncLoading ä¿Š è¶å¼— SyncPreload è‚ºç‹¼ å‚ˆåˆ¸ç¯® å’¯æ‰æ€¥ ç²± ç§¯é˜¿ç§¦ æ­ é˜å¤¸å•Š ä¹ä¿ƒ.
+		// UIManager ç‹¼ Async Load ç»° PreLoad é¸¥ææ€ªç‹¼ é’¢èå†…ç»¢ åŠä¾©æ æ ¼åˆ©æ é…’èªæ‰¼ ç‰¢éœ¸çƒ™ æŸ³é’ æ¡£å å½’å¼Šæ‰¼æ¬¾é› è‚ºçˆ¹æ æ ¼åˆ©çƒ™.
+		//SyncPreloadTAssets(InLoadUIs); // è¶æ‰¼è¾‘ å’¯æ‰æ€¥ é˜å¤¸ä¸” é”­ è‚ºçˆ¹çªæ¡£åºŸ å¼Šæˆ åºœç•” ã›
 		return;
 	}
 
@@ -356,8 +356,8 @@ void UB2UIManager::ReqAsyncLoadAssets(const TArray<FName>& InLoadUIs)
 	{
 		if (FB2UIWidgetData* WidgetData = GetWidgetData(UIName))
 		{
-			// UIManager::AsyncLoadingÀº 1 RequestName : 1 UI AssetÀ» ¿øÄ¢À¸·Î ÇÑ´Ù. 1 : ´Ù ´Â ¾ÈµÊ
-			WidgetData->bCacheOnLoad = true; // ·Îµù ¿Ï·á ÈÄ Ä³½ÌÀ» ÇØ¾ß ÇÏ´Âµ¥ ¸¶Å©¸¦ µû·Î ¾È Çß´Ù°¡´Â ´Ù¸¥ ÂÊ¿¡¼­ ¾ğ·ÎµùÀ» ÇÏ°Ô µÉ ¼öµµ ÀÖÀ¸´Ï bCacheOnLoad ¸¶Å©.
+			// UIManager::AsyncLoadingç¯® 1 RequestName : 1 UI Asseté˜‘ ç›”è˜‘æ è‚º èŒ„ä¿ƒ. 1 : ä¿ƒ ç»° æ•‘å‡³
+			WidgetData->bCacheOnLoad = true; // è‚ºçˆ¹ è‚¯ä¸° é¥¶ æŸæ•™é˜‘ ç§¦å…· çªç»°å• ä»˜å†œç”« è¶è‚º æ•‘ æ²ä¿ƒå•Šç»° ä¿ƒå¼— ç‡ä¿Šè¾‘ æ”«è‚ºçˆ¹é˜‘ çªéœ¸ çª èæ¡£ ä¹æ èª bCacheOnLoad ä»˜å†œ.
 			const auto& ClassAsset = WidgetData->GetWidgetClassAsset();
 			TryAsyncLoad(UIName.ToString(), TArray<FSoftObjectPath>{ClassAsset.ToSoftObjectPath()});
 		}
@@ -366,21 +366,21 @@ void UB2UIManager::ReqAsyncLoadAssets(const TArray<FName>& InLoadUIs)
 
 void UB2UIManager::OnAsyncLoadComplete(const FString& CompleteRequest, const TArray<FSoftObjectPath>& CompleteRequestList)
 {
-	if (CompleteRequestList.IsValidIndex(0))	// ÇÏ³ªÀÇ Request¿¡ ÇÏ³ªÀÇ UI¸¸
+	if (CompleteRequestList.IsValidIndex(0))	// çªå”±ç‹¼ Requestä¿Š çªå”±ç‹¼ UIçˆ¶
 	{
 		const FSoftObjectPath& LoadedAsset = CompleteRequestList[0];
 		if (UClass* LoadedClassAsset = Cast<UClass>(LoadedAsset.ResolveObject()))
 		{
 			const FName UIName(*CompleteRequest);
-			// Async ·Îµù ´ë»óÀº CanUnloadByPolicy ¸¦ Ã¼Å©ÇÒ ÇÊ¿ä°¡ ¾ø´Ù. ¾ğÁ¦ ¾²ÀÏÁö ¸ğ¸£´Â °Å´Ï ¹«Á¶°Ç Ä³½ÌÇØ µÒ.
-			// ´Ü ¿äÃ» ½ÃÁ¡¿¡ bCacheOnLoad ¸¦ ¼¼ÆÃÇØ ³õÀ» ÇÊ¿ä´Â ÀÖ´Ù. ¾È ±×·¯¸é ´Ù¸¥ °Å ÇÚµé¸µ µµÁß¿¡ ¾ğ·ÎµùÀÌ µÇ¾î ¹ö¸± ¼ÒÁö°¡ ÀÖ´Ù.
+			// Async è‚ºçˆ¹ æªæƒ‘ç¯® CanUnloadByPolicy ç”« çœ‰å†œä¸” é˜å¤¸å•Š ç»ä¿ƒ. æ”«åŠ› é™è€ç˜¤ è‘›ç¦ç»° èŠ­èª å…¬ç‚¼æ‰’ æŸæ•™ç§¦ ç‹„.
+			// çªœ å¤¸æ²¡ çŸ«ç—¢ä¿Š bCacheOnLoad ç”« æŠ€æ³¼ç§¦ åˆé˜‘ é˜å¤¸ç»° ä¹ä¿ƒ. æ•‘ å¼ŠçŸ¾æ ä¿ƒå¼— èŠ­ å‹¤ç”¸å‚… æ¡£åä¿Š æ”«è‚ºçˆ¹æ ç™»ç»¢ æ»šå‰¯ å®¶ç˜¤å•Š ä¹ä¿ƒ.
 			UClass*& FoundOrAddedCache = CachedWidgetClasses.FindOrAdd(UIName);
 			FoundOrAddedCache = LoadedClassAsset;
 		}
 	}
 }
 
-void UB2UIManager::CloseAllUIs() // »ç½Ç»ó PreDestroy °İÀ¸·Î ¸Å ·¹º§ ¾ğ·Îµå ½Ã¿¡ ºÒ¸®¿ö¾ß ÇÔ.
+void UB2UIManager::CloseAllUIs() // è¤è§’æƒ‘ PreDestroy æ‹œæ è‚º æ¦‚ é¥­éª‡ æ”«è‚ºé› çŸ«ä¿Š é˜‚åºœå†µå…· çªƒ.
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2UIManager_CloseAllUIs);
 	CloseAllMsgPopups();
@@ -392,14 +392,14 @@ void UB2UIManager::CloseAllUIs() // »ç½Ç»ó PreDestroy °İÀ¸·Î ¸Å ·¹º§ ¾ğ·Îµå ½Ã¿¡
 		FB2UIWidgetData& ThisWidgetData = WDMapIt.Value();
 		if (ThisWidgetData.Widget)
 		{
-			// bCloseStaticUIs ¸¦ true ·Î ³Ñ°ÜÁÖ¾î¼­ bStayInViewport ÀÎ °Íµéµµ ¸ğµÎ ´İ´Â´Ù.
+			// bCloseStaticUIs ç”« true è‚º é€è´¥æ—ç»¢è¾‘ bStayInViewport ç‰¢ å·´ç”¸æ¡£ è‘›æ»´ æ‘§ç»°ä¿ƒ.
 			CloseUI(ThisWidgetData.WidgetFName, false, true);
 		}
 	}
 }
 
 void UB2UIManager::CloseAllStandaloneUIs()
-{ // UIScene Àº ³²°ÜµÎ°í ±âÅ¸ ÀÚÀßÇÑ ÆË¾÷ÀÌ³ª º°µµ·Î ¿­¸° UI µé¸¸ ¾ø¾Ö·Á´Â °Å.
+{ // UIScene ç¯® å·¢è´¥æ»´ç»Š æ‰é¸¥ ç£Šè‚‹èŒ„ æ‰‘è¯€æå”± å–Šæ¡£è‚º å‡¯èµ´ UI ç”¸çˆ¶ ç»å±€å¦¨ç»° èŠ­.
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2UIManager_CloseAllStandaloneUIs);
 	CloseAllMsgPopups();
 
@@ -412,9 +412,9 @@ void UB2UIManager::CloseAllStandaloneUIs()
 		{
 			if (CurSceneData && CurSceneData->WidgetFNames.Contains(ThisWidgetData.WidgetFName))
 			{
-				continue; // ÇöÀç Scene À¸·Î ¿­·ÁÀÖ´Â °Ç ´İÁö ¾ÊÀ½.
+				continue; // æ³…çŠ Scene æ è‚º å‡¯å¦¨ä¹ç»° æ‰’ æ‘§ç˜¤ è‡¼æ¾œ.
 			}
-			// bCloseStaticUIs ¸¦ true ·Î ³Ñ°ÜÁÖ¾î¼­ bStayInViewport ÀÎ °Íµéµµ ¸ğµÎ ´İ´Â´Ù.
+			// bCloseStaticUIs ç”« true è‚º é€è´¥æ—ç»¢è¾‘ bStayInViewport ç‰¢ å·´ç”¸æ¡£ è‘›æ»´ æ‘§ç»°ä¿ƒ.
 			CloseUI(ThisWidgetData.WidgetFName, false, true);
 		}
 	}
@@ -425,7 +425,7 @@ void UB2UIManager::Destroy()
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2UIManager_Destroy);
 #if WITH_EDITOR
 	if (GIsEditor) {
-		CachedWidgetClasses.Empty(); // ¿¡µğÅÍ¸é Destroy ¸¸ µû·Î ºÒ¸° »óÈ²¿¡¼­ È®½ÇÈ÷ ºñ¿ìµµ·Ï.
+		CachedWidgetClasses.Empty(); // ä¿Šå¼ç£æ Destroy çˆ¶ è¶è‚º é˜‚èµ´ æƒ‘ç‚”ä¿Šè¾‘ çŠ¬è§’æ´’ åšå¿«æ¡£åºŸ.
 	}
 #endif
 
@@ -444,7 +444,7 @@ void UB2UIManager::Destroy()
 	if (MainWidget)
 	{
 #if WITH_EDITOR
-		if (!GIsEditor) { // ¿¡µğÅÍ´Â Á» ´Ù¸§. DestroySelf ÀÚÃ¼°¡ ÇÊ¿ä¾ø¾î º¸ÀÌ±âµµ.
+		if (!GIsEditor) { // ä¿Šå¼ç£ç»° ç²± ä¿ƒæŠš. DestroySelf ç£Šçœ‰å•Š é˜å¤¸ç»ç»¢ ç„Šææ‰æ¡£.
 			MainWidget->DestroySelf(this);
 		}
 #else
@@ -459,12 +459,12 @@ void UB2UIManager::Destroy()
 	//GetWorld()->ForceGarbageCollection(true);
 }
 
-// Level transition ½Ã ÀÌ°É·Î clear..
+// Level transition çŸ« æå§è‚º clear..
 void UB2UIManager::MasterDestroy()
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2UIManager_MasterDestroy);
 	if (!GIsEditor)
-	{ // ´Ù¸¥ TAsset µéÀº ManualUnloadBeforeNewBeginning ¿¡¼­ ÇÏ´Â °Å.
+	{ // ä¿ƒå¼— TAsset ç”¸ç¯® ManualUnloadBeforeNewBeginning ä¿Šè¾‘ çªç»° èŠ­.
 		UnloadAllTAssets();
 	}
 
@@ -494,7 +494,7 @@ void UB2UIManager::Init(const FLocalPlayerContext& InPlayerContext)
 	if (TheWorld && !bInit)
 	{
 #if WITH_EDITOR
-		if (!FGameDelegates::Get().GetEndPlayMapDelegate().IsBoundToObject(this)) //ÁßÃ¸ ¹ÙÀÎµù ¾ÈµÇ°Ô
+		if (!FGameDelegates::Get().GetEndPlayMapDelegate().IsBoundToObject(this)) //åé…¶ å®˜ç‰¢çˆ¹ æ•‘ç™»éœ¸
 			FGameDelegates::Get().GetEndPlayMapDelegate().AddUObject(this, &UB2UIManager::Destroy);
 #endif
 
@@ -502,7 +502,7 @@ void UB2UIManager::Init(const FLocalPlayerContext& InPlayerContext)
 		if (MainWidget)
 		{
 			MainWidget->Init();
-			MainWidget->AddToViewport(BII_WIDGET_ZORDER_NEW_UI_MAIN); // Z-order ¸¦ µû·Î °ü¸®ÇÏ´Â DJLegacy ¿Í °øÁ¸ÇÏ´Â ÇÑ º°µµ z °ªÀ» ³Ö´Â´Ù.
+			MainWidget->AddToViewport(BII_WIDGET_ZORDER_NEW_UI_MAIN); // Z-order ç”« è¶è‚º åŒ…åºœçªç»° DJLegacy å®¢ å‚ç²®çªç»° èŒ„ å–Šæ¡£ z è”¼é˜‘ æŒç»°ä¿ƒ.
 			PrepareUI();
 			bInit = true;
 		}
@@ -516,7 +516,7 @@ void UB2UIManager::Init(const FLocalPlayerContext& InPlayerContext)
 
 	InitNotAddUISceneHistoryList();
 
-	//¹İ´ë·Î ¿ä±â¿¡ µî·ÏÇÑ°Å¸¸ 
+	//é¦†æªè‚º å¤¸æ‰ä¿Š æ®¿åºŸèŒ„èŠ­çˆ¶ 
 	NoCheckErrorCode.Add(B2ResultCode::FAILURE_INTERNAL_ERROR);
 	NoCheckErrorCode.Add(B2ResultCode::FAILURE_INTERNAL_DATABASE_ERROR);
 	NoCheckErrorCode.Add(B2ResultCode::FAILURE_TRY_AGAIN_ERROR);
@@ -558,8 +558,8 @@ void UB2UIManager::PrepareUI()
 		const FB2UIWidgetData& ThisWidgetData = WDMapIt.Value();
 		{
 			//WidgetData->WidgetClassLoaded = WidgetData->GetUserWidgetClass(InfoLoadManager); //Used to be streamable.
-			//ºäÆ÷Æ®¿¡ Ç×»ó ¶ç¿öÁ® ÀÖ¾î¾ß ÇÏ´Â ³à¼®µé. CreateWidgetÀ» ±×¶§±×¶§ ÇÏ¸é¼­ »ı±â´Â ºí·ÎÅ·À» ¹æÁö(ÀÚÁÖ »ç¿ëÇÏ´Â ³à¼®¸¸ »ç¿ëÇÒ °Í~)
-#if 0 // bStayInViewport ¸¦ ±»ÀÌ Ã³À½ºÎÅÍ ¿­Áö´Â ¾Ê°í Ã³À½ ¿¬ ÀÌÈÄ·Î ´İÁö ¾Ê´Â °É·Î ¹Ù²Û´Ù.
+			//è½°å™¨é£˜ä¿Š äº²æƒ‘ å‰å†µå»‰ ä¹ç»¢å…· çªç»° èµ¤ç±ç”¸. CreateWidgeté˜‘ å¼Šé”­å¼Šé”­ çªæè¾‘ ç§¯æ‰ç»° å–‰è‚ºæ¬§é˜‘ è§„ç˜¤(ç£Šæ— è¤ä¾©çªç»° èµ¤ç±çˆ¶ è¤ä¾©ä¸” å·´~)
+#if 0 // bStayInViewport ç”« è¢«æ è´¸æ¾œä½•ç£ å‡¯ç˜¤ç»° è‡¼ç»Š è´¸æ¾œ æ¥· æé¥¶è‚º æ‘§ç˜¤ è‡¼ç»° å§è‚º å®˜æ§½ä¿ƒ.
 			if (WidgetData->bStayInViewport)
 			{
 				UClass* WidgetClass = GetWidgetClass(*WidgetData);
@@ -571,7 +571,7 @@ void UB2UIManager::PrepareUI()
 					PreCreateWidget->MyUIFName = WidgetData->WidgetFName;
 					PreCreateWidget->Init();
 
-					//Ç×»ó ¶ç¿ö³õ´Â UIÀÇ °æ¿ì,OpenµÉ¶§ »Ó ¾Æ´Ï¶ó Á© Ã³À½ »ı¼ºµÉ¶§µµ DocBindÀÇ ±âÈ¸°¡ ÁÖ¾îÁø´Ù. ¿Ö³Ä¸é Ç×»ó ¶°ÀÖÀ¸´Ï±î...
+					//äº²æƒ‘ å‰å†µåˆç»° UIç‹¼ ç‰ˆå¿«,Opençªé”­ æŒ¥ é…’èªæ‰¼ ä¿© è´¸æ¾œ ç§¯å·±çªé”­æ¡£ DocBindç‹¼ æ‰é›€å•Š æ—ç»¢æŸ³ä¿ƒ. æè¡¬æ äº²æƒ‘ æ ‹ä¹æ èªé³–...
 					IB2UIDocBindable* CastDocBindable = Cast<IB2UIDocBindable>(PreCreateWidget);
 					if (CastDocBindable)
 						CastDocBindable->BindDocAuto();
@@ -732,7 +732,7 @@ FB2UIWidgetData* UB2UIManager::GetWidgetData(FName InUIName)
 
 FB2UIWidgetData* UB2UIManager::GetWidgetDataByWidget(UB2UIWidget* Widget)
 {
-	// UIWidget À» ½Äº°ÀÚ·Î ÇØ¼­ Ã£À¸·Á¸é Â©¾øÀÌ ¸ğµÎ iteration ÇØ¾ß ÇÏ´Ï ÀÌ°Ç Æ¯º°ÇÑ °æ¿ì¿¡³ª »ç¿ëÀ».. 
+	// UIWidget é˜‘ ä¾¥å–Šç£Šè‚º ç§¦è¾‘ èŒ«æ å¦¨æ æ¼ç»æ è‘›æ»´ iteration ç§¦å…· çªèª ææ‰’ æ¼‚å–ŠèŒ„ ç‰ˆå¿«ä¿Šå”± è¤ä¾©é˜‘.. 
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2UIManager_GetWidgetDataByWidget);
 	for (TMap<FName, FB2UIWidgetData>::TIterator WDMapIt(AllWidgetData); WDMapIt; ++WDMapIt)
 	{
@@ -794,7 +794,7 @@ void UB2UIManager::CloseUI(FName UIName, bool RightNow, bool bCloseStaticUIs)
 		InternalCloseUI(UIName, Widget, RightNow, bCloseStaticUIs);
 }
 
-TSubclassOf<UB2UIWidget> UB2UIManager::GetWidgetClass(const FB2UIWidgetData* WidgetData) // ´Ü¼ø Get ¸¸ÀÌ ¾Æ´Ñ ·ÎµùÀ» ÇÔ.
+TSubclassOf<UB2UIWidget> UB2UIManager::GetWidgetClass(const FB2UIWidgetData* WidgetData) // çªœé‰´ Get çˆ¶æ é…’å›± è‚ºçˆ¹é˜‘ çªƒ.
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2UIManager_GetWidgetClass);
 
@@ -811,17 +811,17 @@ TSubclassOf<UB2UIWidget> UB2UIManager::GetWidgetClass(const FB2UIWidgetData* Wid
 		UClass* WidgetClass = LoadSynchronous<UB2UIWidget>(WidgetClassAsset, GENERAL_TASSET_ASYNC_LOAD_TIMEOUT);
 		if (WidgetClass != nullptr)
 		{
-			if (!WidgetData->CanUnloadByPolicy()) { // ¾î¶² ½ÄÀ¸·Îµç Cache ¸¶Å©°¡ ÀÖ´Â °æ¿ì, ¾ğ·Îµù ¹æÁö Ä³½Ì
+			if (!WidgetData->CanUnloadByPolicy()) { // ç»¢æ« ä¾¥æ è‚ºç”µ Cache ä»˜å†œå•Š ä¹ç»° ç‰ˆå¿«, æ”«è‚ºçˆ¹ è§„ç˜¤ æŸæ•™
 				UClass*& FoundOrAddedCache = CachedWidgetClasses.FindOrAdd(WidgetFName);
 				FoundOrAddedCache = WidgetClass;
 			}
 
-#if !PLATFORM_IOS // [IOS_SPECIFIC_MEMORY_SAVING] iOS ´Â ¸Ş¸ğ¸® ¿ì·Á·Î ÀÎÇØ ÀÌ·± °Å ÇÏÁö ¾Ê´Â´Ù..
+#if !PLATFORM_IOS // [IOS_SPECIFIC_MEMORY_SAVING] iOS ç»° çš‹è‘›åºœ å¿«å¦¨è‚º ç‰¢ç§¦ æç¹ èŠ­ çªç˜¤ è‡¼ç»°ä¿ƒ..
 
 			if (UB2UIManager::IsRootSetWidgetName(WidgetFName))
 			{
-				// ÀÌ°Ç ¾Æ¿¹ °ÔÀÓ Á¾·á ½ÃÁ¡±îÁö ¾È ³»¸®°Ú´Ù´Â º¸´Ù °­·ÂÇÑ ÀÇ»ç Ç¥¸í.
-				// ·Îµù ½Ã°£ÀÌ ÃæºĞÈ÷ ±æ¸é¼­ ÀÚÁÖ ¾²ÀÌ´Â °Íµé·Î ¼±Á¤.
+				// ææ‰’ é…’æŠ— éœ¸çƒ™ è¾†ä¸° çŸ«ç—¢é³–ç˜¤ æ•‘ éƒ´åºœæ‘†ä¿ƒç»° ç„Šä¿ƒ ç¢ä»¿èŒ„ ç‹¼è¤ é’ç–™.
+				// è‚ºçˆ¹ çŸ«åŸƒæ é¢ç›’æ´’ è¾¨æè¾‘ ç£Šæ— é™æç»° å·´ç”¸è‚º æ€¥æ²¥.
 				WidgetClass->AddToRoot();
 			}
 
@@ -846,7 +846,7 @@ void UB2UIManager::Unload(const FB2UIWidgetData* WidgetData)
 {
 	if (WidgetData != nullptr)
 	{
-		// CacheOnLoad µîÀÇ ¸¶Å©°¡ µÈ °Ç UnloadAllTAssets °°Àº µ¥¼­ ÇÃ·¡±×¸¦ Á¦°ÅÇÑ ÀÌÈÄ¿¡ ÀÌ°É Äİ ÇØ¾ß ÇÑ´Ù.
+		// CacheOnLoad æ®¿ç‹¼ ä»˜å†œå•Š ç­‰ æ‰’ UnloadAllTAssets éç¯® å•è¾‘ æ•²è´°å¼Šç”« åŠ›èŠ­èŒ„ æé¥¶ä¿Š æå§ å¦® ç§¦å…· èŒ„ä¿ƒ.
 		checkSlow(WidgetData->CanUnloadByPolicy());
 
 		CachedWidgetClasses.Remove(WidgetData->WidgetFName);
@@ -862,13 +862,13 @@ void UB2UIManager::InternalOpenUI(FName InUIName, UB2UIWidget* Widget, bool bRig
 	auto WidgetData = GetWidgetData(InUIName);
 	if (!WidgetData || !Widget) return;
 
-	// bStayInViewport ¸¦ ±»ÀÌ Ã³À½ºÎÅÍ ¿­Áö´Â ¾Ê°í Ã³À½ ¿¬ ÀÌÈÄ·Î ´İÁö ¾Ê´Â °É·Î ¹Ù²Û´Ù.
+	// bStayInViewport ç”« è¢«æ è´¸æ¾œä½•ç£ å‡¯ç˜¤ç»° è‡¼ç»Š è´¸æ¾œ æ¥· æé¥¶è‚º æ‘§ç˜¤ è‡¼ç»° å§è‚º å®˜æ§½ä¿ƒ.
 	//if (!WidgetData->bStayInViewport)
 	{
 		// 20180124_YJ
-		// ±âº»ÀûÀ¸·Î ¸¸µå´Â À§Á¬µéÀº MainWidget¿¡ »ı¼º¼ø¼­´ë·Î ºÙ¿©³ÖÁö¸¸,
-		// ¾à³×Æ®¿öÅ©°°Àº ´©µµ¼º ÃÖ»ó´Ü¿¡ À§Ä¡ ÇØ¾ß¸¸ÇÏ´Â ÆË¾÷ÀÇ °æ¿ì¿¡ MainWidgetÀ» ¹«½ÃÇÏ°í
-		// AddToViewport ÀÇ Zoder °ªÀ» 1000À¸·Î ¼¼ÆÃÇÏ¿© ¶ç¿öÁÜ
+		// æ‰å¤¯åˆ©æ è‚º çˆ¶é›ç»° å›°è¿ç”¸ç¯® MainWidgetä¿Š ç§¯å·±é‰´è¾‘æªè‚º å˜¿å’¯æŒç˜¤çˆ¶,
+		// è·åŒ™é£˜å†µå†œéç¯® ç©¿æ¡£å·± å¼¥æƒ‘çªœä¿Š å›°æ‘¹ ç§¦å…·çˆ¶çªç»° æ‰‘è¯€ç‹¼ ç‰ˆå¿«ä¿Š MainWidgeté˜‘ å…¬çŸ«çªç»Š
+		// AddToViewport ç‹¼ Zoder è”¼é˜‘ 1000æ è‚º æŠ€æ³¼çªå’¯ å‰å†µæ·‹
 		if (MainWidget && !bMustTop)
 		{
 			auto MyParent = MainWidget->GetParentLayer(WidgetData->Layer);
@@ -889,7 +889,7 @@ void UB2UIManager::InternalOpenUI(FName InUIName, UB2UIWidget* Widget, bool bRig
 			Widget->AddToViewport(bMustTop ? BII_WIDGET_ZORDER_NEW_UI_MustTop : 0);
 	}
 
-	//¿ÀÇÂ µÉ ¶§ ÀÚµ¿¹ÙÀÎµå ÇØ¾ß µÈ´Ù¸é
+	//å·é”¹ çª é”­ ç£Šæ‚¼å®˜ç‰¢é› ç§¦å…· ç­‰ä¿ƒæ
 	if (WidgetData->bBindDocAutoOnOpen)
 	{
 		IB2UIDocBindable* CastDocBindable = Cast<IB2UIDocBindable>(Widget);
@@ -897,20 +897,20 @@ void UB2UIManager::InternalOpenUI(FName InUIName, UB2UIWidget* Widget, bool bRig
 			CastDocBindable->BindDocAuto();
 	}
 
-	//¿ÀÇÂ µÉ ¶§, ¿ùµå ºí·¯¸¦ ¸Ô¿©¾ß µÈ´Ù¸é
+	//å·é”¹ çª é”­, å²¿é› å–‰çŸ¾ç”« å†ˆå’¯å…· ç­‰ä¿ƒæ
 	if (WidgetData->bAllowWorldBackgroundBlur)
 	{
 		Widget->bWorldBackgroundBlurOn = true;
 		StartWorldBackgroundBlur(WidgetData->WorldBackgroundBlurScale);
 	}
 
-	//±âº»ÀûÀ¸·Î´Â Visibility¸¦ ÄÑÁØ´Ù.
+	//æ‰å¤¯åˆ©æ è‚ºç»° Visibilityç”« éš¾éœ–ä¿ƒ.
 	Widget->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
 
-	//¿ÀÇÂ µÉ ¶§, ÀüÅõ °ü·Ã UI¸¦ ¼û°Ü¾ß ÇÑ´Ù¸é( bHideBattleRelatedWidgets´Â °¢ À§Á¬¿¡¼­ ¼¼ÆÃÀÌ µÇ°í, bHUDHidingCinematicMode´Â ¿ÜºÎ¿¡¼­ ¼¼ÆÃÀÌ µÈ´Ù )
+	//å·é”¹ çª é”­, å‚ˆæ§ åŒ…è®¿ UIç”« è§è´¥å…· èŒ„ä¿ƒæ( bHideBattleRelatedWidgetsç»° é˜¿ å›°è¿ä¿Šè¾‘ æŠ€æ³¼æ ç™»ç»Š, bHUDHidingCinematicModeç»° å¯‡ä½•ä¿Šè¾‘ æŠ€æ³¼æ ç­‰ä¿ƒ )
 	if (
 		(bCinematicMode && bHUDHidingCinematicMode) ||
-		(!bCinematicMode && WidgetData->bHideBattleRelatedWidgets) // ÇöÀç´Â CinematicMode ¼³Á¤ÀÌ ¿ì¼±ÀÓ. CinematicMode ¶ó¸é bHideBattleRelatedWidgets ¼³Á¤À» ¹«½Ã.
+		(!bCinematicMode && WidgetData->bHideBattleRelatedWidgets) // æ³…çŠç»° CinematicMode æ±²æ²¥æ å¿«æ€¥çƒ™. CinematicMode æ‰¼æ bHideBattleRelatedWidgets æ±²æ²¥é˜‘ å…¬çŸ«.
 		)
 	{
 		HideBattleRelatedWidgets(true);
@@ -931,25 +931,25 @@ void UB2UIManager::InternalCloseUI(FName InUIName, class UB2UIWidget* Widget, bo
 	if (!WidgetData || WidgetData->Widget != Widget)
 		return;
 
-	//OpenState°¡ NoneÀÌ¸é ¾Æ¿¹ ¿­¸®Áöµµ ¾Ê¾ÒÀ¸´Ï ´İÀ» ÇÊ¿äµµ ¾ø´Ù.
+	//OpenStateå•Š Noneææ é…’æŠ— å‡¯åºœç˜¤æ¡£ è‡¼ç–½æ èª æ‘§é˜‘ é˜å¤¸æ¡£ ç»ä¿ƒ.
 	if (Widget->GetOpenState() == EUIOpenState::None)return;
 
 
 
-	//UIÂÊ ¿¬ÃâÀÌ ¿Ï·áµÇ¾úÀ¸¸é
+	//UIç‡ æ¥·å…æ è‚¯ä¸°ç™»èŒæ æ
 	if (Widget->GetOpenState() == EUIOpenState::Closed)
 	{
 		Widget->SetVisibility(ESlateVisibility::Hidden);
 		Widget->OpenState = EUIOpenState::None;
 
-		// bStayInViewport ÀÎ °ÍµéÀº bCloseStaticUIs °¡ µé¾î¿Â °æ¿ì¿¡¸¸ ´İ´Â´Ù. (·¹º§ ¾ğ·Îµå ½ÃÁ¡)
+		// bStayInViewport ç‰¢ å·´ç”¸ç¯® bCloseStaticUIs å•Š ç”¸ç»¢æŸ¯ ç‰ˆå¿«ä¿Šçˆ¶ æ‘§ç»°ä¿ƒ. (é¥­éª‡ æ”«è‚ºé› çŸ«ç—¢)
 		if (!WidgetData->bStayInViewport || bCloseStaticUIs)
 		{
 			Widget->DestroySelf(this);
-			WidgetData->Widget = nullptr; // »ó´Ü DestroySelf ¿¡¼­ Ã³¸®µÉ °Í.
+			WidgetData->Widget = nullptr; // æƒ‘çªœ DestroySelf ä¿Šè¾‘ è´¸åºœçª å·´.
 		}
 
-		//¿ÀÇÂ µÉ ¶§ ÀÚµ¿¹ÙÀÎµå Çß´Ù¸é, ÀÚµ¿ ÇØÁ¦
+		//å·é”¹ çª é”­ ç£Šæ‚¼å®˜ç‰¢é› æ²ä¿ƒæ, ç£Šæ‚¼ ç§¦åŠ›
 		if (WidgetData->bBindDocAutoOnOpen)
 		{
 			IB2UIDocBindable* CastDocBindable = Cast<IB2UIDocBindable>(Widget);
@@ -957,16 +957,16 @@ void UB2UIManager::InternalCloseUI(FName InUIName, class UB2UIWidget* Widget, bo
 				CastDocBindable->UnbindDoc();
 		}
 
-		//¿ÀÇÂ µÉ ¶§, ¿ùµå ºí·¯¸¦ ¸Ô¿´´Ù¸é ÇØÁ¦
+		//å·é”¹ çª é”­, å²¿é› å–‰çŸ¾ç”« å†ˆçœ‹ä¿ƒæ ç§¦åŠ›
 		if (WidgetData->bAllowWorldBackgroundBlur && Widget->bWorldBackgroundBlurOn)
 		{
 			Widget->bWorldBackgroundBlurOn = false;
 			StopWorldBackgroundBlur();
 		}
 
-		//¿ÀÇÂ µÉ ¶§, ÀüÅõ °ü·Ã UI¸¦ ¼û±ä °ÍÀ» º¹±¸ ÇØ¾ß ÇÑ´Ù¸é.
-		// Çö ±¸¼ºÀº bHideBattleRelatedWidgets ¼³Á¤µÈ °ÍÀÌ ¿©·¯°³ ¿­·ÁÀÖÀ» ¶§ ¹®Á¦°¡ µÉ °ÍÀÌ´Ù. ±×·± °æ¿ì¿¡ ´ëÇÑ ´ëÃ³°¡ ÇÊ¿äÇÏ´Ù¸é »óÅÂ¸¦ µû·Î ÀúÀåÇØ µÑ ÇÊ¿ä°¡ ÀÖ´Ù.
-		// ±×·¯³ª CinematicMode ¼³Á¤µµ °°ÀÌ °í·ÁÇÒ ÇÊ¿ä°¡ ÀÖÀ» °Í.
+		//å·é”¹ çª é”­, å‚ˆæ§ åŒ…è®¿ UIç”« è§å˜ å·´é˜‘ æ±—å¤‡ ç§¦å…· èŒ„ä¿ƒæ.
+		// æ³… å¤‡å·±ç¯® bHideBattleRelatedWidgets æ±²æ²¥ç­‰ å·´æ å’¯çŸ¾ä¿º å‡¯å¦¨ä¹é˜‘ é”­ å·©åŠ›å•Š çª å·´æä¿ƒ. å¼Šç¹ ç‰ˆå¿«ä¿Š æªèŒ„ æªè´¸å•Š é˜å¤¸çªä¿ƒæ æƒ‘æ€•ç”« è¶è‚º å†å˜ç§¦ ç¬› é˜å¤¸å•Š ä¹ä¿ƒ.
+		// å¼ŠçŸ¾å”± CinematicMode æ±²æ²¥æ¡£ éæ ç»Šå¦¨ä¸” é˜å¤¸å•Š ä¹é˜‘ å·´.
 		if (
 			(bCinematicMode && !bHUDHidingCinematicMode) ||
 			(!bCinematicMode && WidgetData->bHideBattleRelatedWidgets)
@@ -987,20 +987,20 @@ void UB2UIManager::InternalCloseUI(FName InUIName, class UB2UIWidget* Widget, bo
 }
 
 void UB2UIManager::UpdateUIDataCacheHistoryOnOpen(FB2UIWidgetData* InJustOpenedUIData)
-{ // UIDataCacheHistory ±â´É ¸ŞÀÎ
+{ // UIDataCacheHistory æ‰ç“· çš‹ç‰¢
 	if (UIDataCacheHistoryNum > 0 && InJustOpenedUIData
-		// ·çÆ®¼Â Ã³¸®¸¦ ÇÏ´Â °Ç ¿©±â¿¡ Æ÷ÇÔ½ÃÅ°Áö ¾Ê´Â´Ù... bCacheOnLoad ¸¶Å©µÈ °Íµµ ¹«½ÃÇØ ¹ö¸±±î..
+		// é£é£˜æ‚¸ è´¸åºœç”« çªç»° æ‰’ å’¯æ‰ä¿Š å™¨çªƒçŸ«è™ç˜¤ è‡¼ç»°ä¿ƒ... bCacheOnLoad ä»˜å†œç­‰ å·´æ¡£ å…¬çŸ«ç§¦ æ»šå‰¯é³–..
 		&& !IsRootSetWidgetName(InJustOpenedUIData->WidgetFName)
-		&& !PLATFORM_IOS // [IOS_SPECIFIC_MEMORY_SAVING] iOS ¿¡¼­ ÀÌ°É ÇÏ·Á¸é IsRootSetWidgetName À» ¹«½ÃÇÏ´øÁö, ¾Æ´Ô ±× ±â´Éµµ °°ÀÌ »ç¿ëÇÏ´øÁö..
+		&& !PLATFORM_IOS // [IOS_SPECIFIC_MEMORY_SAVING] iOS ä¿Šè¾‘ æå§ çªå¦¨æ IsRootSetWidgetName é˜‘ å…¬çŸ«çªå¸¦ç˜¤, é…’ä¸› å¼Š æ‰ç“·æ¡£ éæ è¤ä¾©çªå¸¦ç˜¤..
 		)
 	{
 		const FName JustOpenedUIName = InJustOpenedUIData->WidgetFName;
-		FName PoppedUIName = NAME_None; // ÀÌ¹ø °Ô history ¿¡ Ãß°¡µÇ´Â °ÍÀ¸·Î ÀÎÇØ ºüÁö´Â °Ô ÀÖ´Ù¸é ÀÌ¸§ÀÌ µé¾î°¡°Ô µÉ °Í.
+		FName PoppedUIName = NAME_None; // æé”… éœ¸ history ä¿Š çœ å•Šç™»ç»° å·´æ è‚º ç‰¢ç§¦ ç‹ç˜¤ç»° éœ¸ ä¹ä¿ƒæ ææŠšæ ç”¸ç»¢å•Šéœ¸ çª å·´.
 
 		int32 ExistingIndex = UIDataCacheHistory.Find(JustOpenedUIName);
 		if (ExistingIndex == INDEX_NONE)
 		{
-			// ±âÁ¸¿¡ ¸®½ºÆ®¿¡ ¾ø´Ù¸é »õ·Î Ãß°¡°¡ µÉ °ÍÀÌ´Ï ±× Àü¿¡ history °¡ ¸¸¶¥ÀÎ »óÅÂ¸é ¸Ç ¾Õ¿¡ °É ¸ÕÀú »©°í..
+			// æ‰ç²®ä¿Š åºœèƒ¶é£˜ä¿Š ç»ä¿ƒæ è´§è‚º çœ å•Šå•Š çª å·´æèª å¼Š å‚ˆä¿Š history å•Š çˆ¶é¡¶ç‰¢ æƒ‘æ€•æ ç›– èŠä¿Š å§ åˆšå† å“—ç»Š..
 			if (UIDataCacheHistory.Num() >= UIDataCacheHistoryNum)
 			{
 				PoppedUIName = UIDataCacheHistory[0];
@@ -1009,21 +1009,21 @@ void UB2UIManager::UpdateUIDataCacheHistoryOnOpen(FB2UIWidgetData* InJustOpenedU
 		}
 		else
 		{
-			// ±âÁ¸¿¡ ¸®½ºÆ®¿¡ ÀÖ´Ù¸é ÀÏ´Ü »«´Ù.
+			// æ‰ç²®ä¿Š åºœèƒ¶é£˜ä¿Š ä¹ä¿ƒæ è€çªœ çŒ¾ä¿ƒ.
 			UIDataCacheHistory.RemoveAt(ExistingIndex);
 		}
 
-		// ¸®½ºÆ®ÀÇ Á¦ÀÏ µÚ¿¡ Ãß°¡.
+		// åºœèƒ¶é£˜ç‹¼ åŠ›è€ ç¬¬ä¿Š çœ å•Š.
 		UIDataCacheHistory.Add(JustOpenedUIName);
 
-		// bCacheByHistory Ã¼Å©.
+		// bCacheByHistory çœ‰å†œ.
 		InJustOpenedUIData->bCacheByHistory = true;
 
 		if (PoppedUIName != NAME_None)
 		{
-			// ÀÌ¹ø¿¡ ºüÁø °Í¿¡ ´ëÇÑ unload Ã³¸®. 
-			// ResetAllCacheMarkForUnload ¸¦ ÇÏ´Â °Ô ¾Æ´Ï¶ó bCacheByHistory ¸¸ ¸®¼ÂÇÑ´Ù.
-			// bCacheByHistory ¿Í º°°³·Î bCacheOnLoad °¡ ¼¼ÆÃµÇ¾î ÀÖ´Ù¸é ¿©ÀüÈ÷ Unload ¸¦ ÇÏÁö ¾ÊÀ½.
+			// æé”…ä¿Š ç‹æŸ³ å·´ä¿Š æªèŒ„ unload è´¸åºœ. 
+			// ResetAllCacheMarkForUnload ç”« çªç»° éœ¸ é…’èªæ‰¼ bCacheByHistory çˆ¶ åºœæ‚¸èŒ„ä¿ƒ.
+			// bCacheByHistory å®¢ å–Šä¿ºè‚º bCacheOnLoad å•Š æŠ€æ³¼ç™»ç»¢ ä¹ä¿ƒæ å’¯å‚ˆæ´’ Unload ç”« çªç˜¤ è‡¼æ¾œ.
 			FB2UIWidgetData* PoppedUIData = GetWidgetData(PoppedUIName);
 			if (PoppedUIData)
 			{
@@ -1055,12 +1055,12 @@ void UB2UIManager::HideBattleRelatedWidgets(bool bHide)
 #endif
 	if (bHide
 #if !UE_BUILD_SHIPPING
-		|| gbHACKInGameUIHiddenByDevCommand // °³¹ß¿ë Ä¿¸Çµå·Î ¼û±ä °æ¿ì.		
+		|| gbHACKInGameUIHiddenByDevCommand // ä¿ºæƒ¯ä¾© ç›®ç›–é›è‚º è§å˜ ç‰ˆå¿«.		
 #endif
 		)
 	{
-		// ÀÌ°Ô »óÈ²¿¡ µû¶ó ¿Ïº®È÷ ¼û°ÜÁÖÁö´Â ¾Ê´Âµ¥ gbHACKInGameUIHiddenByDevCommand ¸¦ Âü°í. 
-		// ¾Æ¸¶µµ WorldBackgroundBlur ¸¦ ¾²´Â »óÈ²¿¡¼± ±×°Í±îÁö °¨¾ÈÇÒ ÇÊ¿ä°¡ ¾øÁö ¾ÊÀ»±î ÇÔ.
+		// æéœ¸ æƒ‘ç‚”ä¿Š è¶æ‰¼ è‚¯å¯’æ´’ è§è´¥æ—ç˜¤ç»° è‡¼ç»°å• gbHACKInGameUIHiddenByDevCommand ç”« æ›¼ç»Š. 
+		// é…’ä»˜æ¡£ WorldBackgroundBlur ç”« é™ç»° æƒ‘ç‚”ä¿Šæ€¥ å¼Šå·´é³–ç˜¤ çš‘æ•‘ä¸” é˜å¤¸å•Š ç»ç˜¤ è‡¼é˜‘é³– çªƒ.
 		for (TObjectIterator<UB2UIManager_InGameHUDChar> WMIT; WMIT; ++WMIT)
 		{
 			(*WMIT)->HideAll();
@@ -1101,7 +1101,7 @@ void UB2UIManager::SetHUDHidingCinematicMode(bool bInCinematicMode, bool bIsHUDH
 	bCinematicMode = bInCinematicMode;
 	bHUDHidingCinematicMode = bIsHUDHiding;
 
-	// Çö ±¸ÇöÀ¸·Î´Â ¿©±â¼­ CinematicMode ³ª°¥ ¶§ ÇöÀç ¿­·ÁÀÖ´Â Widget ÀÇ WidgetData ¿¡ bHideBattleRelatedWidgets °¡ ¼³Á¤µÇ¾î ÀÖ¾îµµ ´Ù½Ã º¸ÀÌ°Ô µÉ °Í.
+	// æ³… å¤‡æ³…æ è‚ºç»° å’¯æ‰è¾‘ CinematicMode å”±å“ é”­ æ³…çŠ å‡¯å¦¨ä¹ç»° Widget ç‹¼ WidgetData ä¿Š bHideBattleRelatedWidgets å•Š æ±²æ²¥ç™»ç»¢ ä¹ç»¢æ¡£ ä¿ƒçŸ« ç„Šæéœ¸ çª å·´.
 	HideBattleRelatedWidgets(bCinematicMode && bHUDHidingCinematicMode);
 }
 
@@ -1214,23 +1214,23 @@ void UB2UIManager::SetErrorTimeStamp(int32 InErrorCode)
 	ErrorTimeStamp.Add(FB2ErrorCode(InErrorCode, UB2GameInstance::GetUTCNow().GetTicks()));
 }
 
-// ÇÑ¹ø »ç¿ëÇÑ ¿¡·¯ÄÚµå´Â 5ÃÊµ¿¾È »ç¿ëÇÒ ¼ö ¾øÀ½
-// NoCheckErrorCode¿¡ ¿¹¿Ü µî·Ï ÇÒ ¼ö ÀÖÀ½
+// èŒ„é”… è¤ä¾©èŒ„ ä¿ŠçŸ¾å†…é›ç»° 5æª¬æ‚¼æ•‘ è¤ä¾©ä¸” è ç»æ¾œ
+// NoCheckErrorCodeä¿Š æŠ—å¯‡ æ®¿åºŸ ä¸” è ä¹æ¾œ
 void UB2UIManager::CheckErrorTimeStamp(float DeltaTime)
 {
 	static float CheckTime = 0.0f;
 	CheckTime += DeltaTime;
 
-	// 0.5ÃÊ¿¡ ÇÑ¹ø Ã¼Å©
+	// 0.5æª¬ä¿Š èŒ„é”… çœ‰å†œ
 	if (CheckTime > 0.5f)
 	{
-		const int64 ErrorCoolTime = ETimespan::TicksPerSecond * ErrorResetPerSecond; // 5ÃÊ¸¶´Ù ¸®¼Â
+		const int64 ErrorCoolTime = ETimespan::TicksPerSecond * ErrorResetPerSecond; // 5æª¬ä»˜ä¿ƒ åºœæ‚¸
 		const int64 CurrentUTCTime = UB2GameInstance::GetUTCNow().GetTicks();
 		CheckTime = 0.0f;
 
 		for (int32 i = 0; i < ErrorTimeStamp.Num(); ++i)
 		{
-			// ÆË¾÷½Ã°£ + ÄğÅ¸ÀÓ < ÇöÀç½Ã°£
+			// æ‰‘è¯€çŸ«åŸƒ + é…¿é¸¥çƒ™ < æ³…çŠçŸ«åŸƒ
 			if (ErrorTimeStamp[i].ErrorTimeStamp + ErrorCoolTime < CurrentUTCTime)
 			{
 				ErrorTimeStamp.RemoveAt(i--);
@@ -1242,17 +1242,17 @@ void UB2UIManager::CheckErrorTimeStamp(float DeltaTime)
 void UB2UIManager::OpenMsgPopupFromErrorCode(int32 nErrorCode)
 {
 	//////////////////////////////////////////////////////////////////////////////
-	//[@AKI, 180111] ¾ÕÀ¸·Î ¼ıÀÚ ³ÖÀ»¶§ ¾Æ·¡ ÁÖ¼Ò Âü°íÇÏ¿© ¿µ¹® ³ÖÀ» °Í
+	//[@AKI, 180111] èŠæ è‚º ç®­ç£Š æŒé˜‘é”­ é…’è´° æ—å®¶ æ›¼ç»Šçªå’¯ åº·å·© æŒé˜‘ å·´
 	//http://172.168.2.106/result_codes.html
 	//////////////////////////////////////////////////////////////////////////////
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2UIManager_OpenMsgPopupFromErrorCode);
 
-	if (CheckErrorCodeContains(nErrorCode)) // Ã¼Å©ÇÏÁö ¾Ê´Â Errorcode´Â ¹Ù·Î ½ÇÇà(»óÁ¡ µî)
+	if (CheckErrorCodeContains(nErrorCode)) // çœ‰å†œçªç˜¤ è‡¼ç»° Errorcodeç»° å®˜è‚º è§’é’(æƒ‘ç—¢ æ®¿)
 	{
-		if (ErrorCodeContains(nErrorCode)) // ´ã°Ü ÀÖÀ¸¸é return
+		if (ErrorCodeContains(nErrorCode)) // æ·¬è´¥ ä¹æ æ return
 			return;
 
-		SetErrorTimeStamp(nErrorCode); // µî·Ï
+		SetErrorTimeStamp(nErrorCode); // æ®¿åºŸ
 	}
 
 	FMsgPopupOnClick ErrorMsgPopuoOnClick = nullptr;
@@ -1265,7 +1265,7 @@ void UB2UIManager::OpenMsgPopupFromErrorCode(int32 nErrorCode)
 	case B2ResultCode::FAILURE_NOT_ENOUGH_STAGE_BOOST_TICKET: // Not Enough stage boost ticket
 		HandleServerError4018Class<>::GetInstance().Signal();
 		break;
-	case B2ResultCode::FAILURE_SOCIALPOINT_UNDERFLOW:	//FAILURE_SOCIALPOINT_UNDERFLOW		SocialPoint is zero.//»óÁ¡¿¡¼­ ¿ìÁ¤Æ÷ÀÎÆ® ºÎÁ·ÇÒ¶§ »òÀ» °æ¿ì
+	case B2ResultCode::FAILURE_SOCIALPOINT_UNDERFLOW:	//FAILURE_SOCIALPOINT_UNDERFLOW		SocialPoint is zero.//æƒ‘ç—¢ä¿Šè¾‘ å¿«æ²¥å™¨ç‰¢é£˜ ä½•ç»ƒä¸”é”­ æˆ–é˜‘ ç‰ˆå¿«
 	{
 		UB2UIManager::GetInstance()->GetShortagePopupMGR()->PopupGotoFriendForFriendShip();
 		return;
@@ -1435,7 +1435,7 @@ void UB2UIManager::OpenMsgPopupFromErrorCode(int32 nErrorCode)
 	}
 	else
 	{
-		// EUIMsgPopup::Simple ÀÌ¿ëÇÒ¶© ¿¡·¯ÄÚµå¹øÈ£µµ º¸¿©ÁÜ
+		// EUIMsgPopup::Simple æä¾©ä¸”è®¢ ä¿ŠçŸ¾å†…é›é”…é¾‹æ¡£ ç„Šå’¯æ·‹
 
 		FSingleErrorCodeInfoData* pErrorCodeData = pErrorCodeInfo->GetInfoData(nErrorCode);
 
@@ -1470,7 +1470,7 @@ void UB2UIManager::CloseMsgPopup(int32 MsgPopupId, bool bRightNow)
 	{
 		MsgPopupMap.Remove(MsgPopupId);
 
-		//OpenUI·Î ¿­¾úÀ¸¸é, CloseUI·Î ´İ¾Æ¾ßÁö... ³ªÁß¿¡ ÆË¾÷ÀÌ n°³ °ãÃÄ¼­ ¶°¾ß µÉ ¼ö ÀÖÀ¸´Ï OpenUI°¡ ¾Æ´Ñ ´Ù¸¥ ·çÆ®·Î ¶ç¿ì´Â ÀÛ¾÷ÀÌ ÇÊ¿äÇÒ µí
+		//OpenUIè‚º å‡¯èŒæ æ, CloseUIè‚º æ‘§é…’å…·ç˜¤... å”±åä¿Š æ‰‘è¯€æ nä¿º èˆ¬åªšè¾‘ æ ‹å…· çª è ä¹æ èª OpenUIå•Š é…’å›± ä¿ƒå¼— é£é£˜è‚º å‰å¿«ç»° ç´¯è¯€æ é˜å¤¸ä¸” æ·€
 		CloseUI(MsgPopup->MyUIFName, bRightNow);
 		//MsgPopup->DestroySelf();
 	}
@@ -1488,7 +1488,7 @@ bool UB2UIManager::IsPopupPriority(EPopUpPriority InIsPriority) const
 	{
 		if (MsgPopup.Value)
 		{
-			// ³×Æ®¿÷ ²÷±è °ü·Ã ÆË¾÷Àº Áö¿ìÁö ¾ÊÀ½
+			// åŒ™é£˜äº è°—è¾« åŒ…è®¿ æ‰‘è¯€ç¯® ç˜¤å¿«ç˜¤ è‡¼æ¾œ
 			if (MsgPopup.Value->GetPriority() == InIsPriority)
 			{
 				return true;
@@ -1499,14 +1499,14 @@ bool UB2UIManager::IsPopupPriority(EPopUpPriority InIsPriority) const
 }
 
 void UB2UIManager::CloseAllMsgPopups(bool bRightNow)
-{ // CloseMsgPopup ¿¡ ³Ö¾îÁÙ ID ³ª MsgPopup ·¹ÆÛ·±½º »ç¿ëÀÌ ºÒ°¡ÇÒ °æ¿ì ¾îÂ¿ ¼ö ¾øÀÌ »ç¿ë. È¤Àº ±âÅ¸ ´Ù¸¥ Æ¯¼öÇÑ °æ¿ì.
+{ // CloseMsgPopup ä¿Š æŒç»¢ä¸´ ID å”± MsgPopup é¥­æ¬ºç¹èƒ¶ è¤ä¾©æ é˜‚å•Šä¸” ç‰ˆå¿« ç»¢é©´ è ç»æ è¤ä¾©. è¶£ç¯® æ‰é¸¥ ä¿ƒå¼— æ¼‚èèŒ„ ç‰ˆå¿«.
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2UIManager_CloseAllMsgPopups);
 
 	for (auto MsgPopup : MsgPopupMap)
 	{
 		if (MsgPopup.Value)
 		{
-			// ³×Æ®¿÷ ²÷±è °ü·Ã ÆË¾÷Àº Áö¿ìÁö ¾ÊÀ½
+			// åŒ™é£˜äº è°—è¾« åŒ…è®¿ æ‰‘è¯€ç¯® ç˜¤å¿«ç˜¤ è‡¼æ¾œ
 			if (MsgPopup.Value->GetPriority() < EPopUpPriority::Server_Message_GoToLobby)
 			{
 				CloseUI(MsgPopup.Value->MyUIFName, bRightNow);
@@ -1711,12 +1711,12 @@ void UB2UIManager::OpenToolTipTextBox(FText& ContextText, UB2UIWidgetBase* Targe
 UB2UIMailRewardPopUp* UB2UIManager::OpenRewardMailPopUp(const b2network::B2RewardPtr RewardItem, bool CheckMailReward)
 {
 	//if (RewardItem == nullptr 
-	//	|| (CheckMailReward && b2network::B2RewardPushType::MAIL != BladeIIGameImpl::GetClientDataStore().GetRewardPushType(RewardItem->id))) //  ¸ŞÀÏÇÔ or °ø¿ëÇÔ Ã¼Å©
+	//	|| (CheckMailReward && b2network::B2RewardPushType::MAIL != BladeIIGameImpl::GetClientDataStore().GetRewardPushType(RewardItem->id))) //  çš‹è€çªƒ or å‚ä¾©çªƒ çœ‰å†œ
 	//	return nullptr;
 
 	//if (RewardItem == nullptr
 	//	|| (CheckMailReward && !CheckRewardPushType(b2network::B2RewardPushType::MAIL, RewardItem->id))
-	//	)//  ¸ŞÀÏÇÔ or °ø¿ëÇÔ Ã¼Å©
+	//	)//  çš‹è€çªƒ or å‚ä¾©çªƒ çœ‰å†œ
 	//	return nullptr;
 
 	//return UB2UIManager::GetInstance()->OpenUI<UB2UIMailRewardPopUp>(UIFName::RewardMailPopup);
@@ -1724,10 +1724,10 @@ UB2UIMailRewardPopUp* UB2UIManager::OpenRewardMailPopUp(const b2network::B2Rewar
 	return RewardItem ? OpenRewardMailPopUp(RewardItem->raw_reward->id, CheckMailReward) : nullptr;
 }
 
-// º¸»óÀ» ¸ŞÀÏ·Î ¹ŞÀ¸¸é true, °ø¿ëÇÔÀ¸·Î ¹ŞÀ¸¸é false
-//  BladeIIGameImpl::GetClientDataStore().GetRewardPushType(RewardItem[0]->id)) ÀÌ ºÎºĞÀº ÇöÀç ±âÈ¹¿¡¼­ ¿©·¯ ¾ÆÀÌÅÛÀ» ¹ŞÀ»¶§, ¸ğµÎ °ø¿ëÇÔ or ¸ğµÎ ¸ŞÀÏ·Î ½ºÅ©¸³Æ® ÀÛ¼ºÀ» ÇÏ±â·ÎÇßÀ½. 2017/07/12
-//  ±×·¡¼­ 0¹øÂ° ÀÎµ¦½º¸¸ °Ë»ç
-//  ÈÄ¿¡ ¼öÁ¤µÈ´Ù¸é ´Ù µ¹¸é¼­ Ã¼Å©
+// ç„Šæƒ‘é˜‘ çš‹è€è‚º ç½æ æ true, å‚ä¾©çªƒæ è‚º ç½æ æ false
+//  BladeIIGameImpl::GetClientDataStore().GetRewardPushType(RewardItem[0]->id)) æ ä½•ç›’ç¯® æ³…çŠ æ‰è£™ä¿Šè¾‘ å’¯çŸ¾ é…’æè¢é˜‘ ç½é˜‘é”­, è‘›æ»´ å‚ä¾©çªƒ or è‘›æ»´ çš‹è€è‚º èƒ¶å†œèµ‹é£˜ ç´¯å·±é˜‘ çªæ‰è‚ºæ²æ¾œ. 2017/07/12
+//  å¼Šè´°è¾‘ 0é”…æ³ ç‰¢éƒ¸èƒ¶çˆ¶ å…«è¤
+//  é¥¶ä¿Š èæ²¥ç­‰ä¿ƒæ ä¿ƒ å€’æè¾‘ çœ‰å†œ
 UB2UIMailRewardPopUp* UB2UIManager::OpenRewardMailPopUp(const TArray<b2network::B2RewardPtr>& RewardItem, bool CheckMailReward /*= true*/)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2UIManager_OpenRewardMailPopUp);
@@ -1752,11 +1752,11 @@ bool UB2UIManager::CheckRewardPushType(int32 PushType, int32 RewardId)
 UB2UIMailRewardPopUp * UB2UIManager::OpenRewardMailPopUp(const int32 RewardId, bool CheckMailReward)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2UIManager_OpenRewardMailPopUp);
-	if ((CheckMailReward && b2network::B2RewardPushType::MAIL != BladeIIGameImpl::GetClientDataStore().GetRewardPushType(RewardId))) //  ¸ŞÀÏÇÔ or °ø¿ëÇÔ Ã¼Å©
+	if ((CheckMailReward && b2network::B2RewardPushType::MAIL != BladeIIGameImpl::GetClientDataStore().GetRewardPushType(RewardId))) //  çš‹è€çªƒ or å‚ä¾©çªƒ çœ‰å†œ
 		return nullptr;
 
 	if ((CheckMailReward && !CheckRewardPushType(b2network::B2RewardPushType::MAIL, RewardId))
-		)//  ¸ŞÀÏÇÔ or °ø¿ëÇÔ Ã¼Å©
+		)//  çš‹è€çªƒ or å‚ä¾©çªƒ çœ‰å†œ
 		return nullptr;
 
 	return UB2UIManager::GetInstance()->OpenUI<UB2UIMailRewardPopUp>(UIFName::RewardMailPopup);
@@ -1777,7 +1777,7 @@ UB2UnitedWidgetBase* UB2UIManager::GetRedDotWidget(UUserWidget* OwnerUserWidget,
 			if (ChildWidget && ChildWidget->IsA(RedDotWidgetClass))
 			{
 				UB2UnitedWidgetBase* AlarmWidget = Cast<UB2UnitedWidgetBase>(ChildWidget);
-				if (ParentWidget == nullptr) // ºÎ¸ğ ¾øÀ¸¸é Ã¹¹øÂ° AlarmWidgetÀ» ¹Ù·Î ¸®ÅÏ
+				if (ParentWidget == nullptr) // ä½•è‘› ç»æ æ éœ‰é”…æ³ AlarmWidgeté˜‘ å®˜è‚º åºœç•”
 					return AlarmWidget;
 
 				else if (ParentWidget && ChildWidget->IsChildOf(ParentWidget))
@@ -1831,12 +1831,12 @@ void UB2UIManager::ChangeUIScene(EUIScene SceneName, EUIChangeUISceneTransitionT
 
 	CloseUI(UIFName::ToolTipTextBox);
 
-	//ÀÌ¹Ì ¿­·Á ÀÖ´Â UISceneÀ¸·Î Ã¼ÀÎÁö´Â ¾ÈµÈ´Ù.
+	//æå›º å‡¯å¦¨ ä¹ç»° UISceneæ è‚º çœ‰ç‰¢ç˜¤ç»° æ•‘ç­‰ä¿ƒ.
 	if (SceneName == CurrUIScene) return;
 
 	B2AndroidBackManager::GetInstance()->RemoveAllPopup();
 
-	//ÀÌ¹Ì ChangeUISceneÀÌ µ¿ÀÛ ÁßÀÌ¶ó´Â ¶æÀÎµ¥, ¶Ç Change°¡ ºÒ¸°°Å´Ù. ÀÏ´Ü ÀüÈÄ»çÁ¤ ºÁÁÖÁö ¸»°í µ¿ÀÛÁßÀÎ UISceneÀº °Á ´İ´Â°É·Î.
+	//æå›º ChangeUISceneæ æ‚¼ç´¯ åææ‰¼ç»° èˆµç‰¢å•, è‚š Changeå•Š é˜‚èµ´èŠ­ä¿ƒ. è€çªœ å‚ˆé¥¶è¤æ²¥ æ¯«æ—ç˜¤ å¯Œç»Š æ‚¼ç´¯åç‰¢ UISceneç¯® å‚² æ‘§ç»°å§è‚º.
 	if (bClosingUIScene || bOpeningUIScene)
 	{
 		ReservedUISceneOpenData.Key = EUIScene::None;
@@ -1846,7 +1846,7 @@ void UB2UIManager::ChangeUIScene(EUIScene SceneName, EUIChangeUISceneTransitionT
 		if (OpeningUIScene != EUIScene::None)
 			CloseUIScene(OpeningUIScene, true, DontCloseSameUIAtReservedUIScene);
 
-		if (ClosingUIScene == EUIScene::None && OpeningUIScene == EUIScene::None && CurrUIScene != EUIScene::None) //RightNow¿´´ø »óÈ². ChangeUIScene ·ÎÁ÷ÀÌ ÀÌ»óÇÏ´Ù..
+		if (ClosingUIScene == EUIScene::None && OpeningUIScene == EUIScene::None && CurrUIScene != EUIScene::None) //RightNowçœ‹å¸¦ æƒ‘ç‚”. ChangeUIScene è‚ºæµæ ææƒ‘çªä¿ƒ..
 			CloseUIScene(CurrUIScene, true, DontCloseSameUIAtReservedUIScene);
 
 		CurrUIScene = EUIScene::None;
@@ -1860,11 +1860,11 @@ void UB2UIManager::ChangeUIScene(EUIScene SceneName, EUIChangeUISceneTransitionT
 	}
 
 	if (!IsDJLegacyUIScene(SceneName))
-	{ // º°µµ ½Ã½ºÅÛÀÎ DJLagacy ÆäÀÌÁö°¡ È¤ ´İÈ÷Áö ¾Ê¾ÒÀ» ¼ö ÀÖÀ½.
+	{ // å–Šæ¡£ çŸ«èƒ¶è¢ç‰¢ DJLagacy å…¶æç˜¤å•Š è¶£ æ‘§æ´’ç˜¤ è‡¼ç–½é˜‘ è ä¹æ¾œ.
 		DJLegacy_ChangeLobbyUIPageClass<ELobbyUIPages>::GetInstance().Signal(ELobbyUIPages::ELUP_End);
 	}
 
-	//´İ±â¸¸ ÇÏ°í, OpenÀº ÇÏÁö ¾Ê´Â´Ù.
+	//æ‘§æ‰çˆ¶ çªç»Š, Openç¯® çªç˜¤ è‡¼ç»°ä¿ƒ.
 	if (SceneName == EUIScene::None)
 	{
 		CloseUIScene(CurrUIScene, TransType == EUIChangeUISceneTransitionType::CANCEL_CLOSE || TransType == EUIChangeUISceneTransitionType::CANCEL_ALL, false);
@@ -1872,23 +1872,23 @@ void UB2UIManager::ChangeUIScene(EUIScene SceneName, EUIChangeUISceneTransitionT
 		return;
 	}
 
-	//ÇöÀç ¾Æ¹« UISceneµµ ¾Æ´Ñ°æ¿ì, Close¾øÀÌ Open¹Ù·Î
+	//æ³…çŠ é…’å…¬ UISceneæ¡£ é…’å›±ç‰ˆå¿«, Closeç»æ Openå®˜è‚º
 	if (CurrUIScene == EUIScene::None)
 	{
 		OpenUIScene(SceneName, UISceneOnOpenDelegate, TransType == EUIChangeUISceneTransitionType::CANCEL_OPEN || TransType == EUIChangeUISceneTransitionType::CANCEL_ALL, false);
 		return;
 	}
 
-	//Áö±İ UISceneÀ» Tick¿¡¼­ ¾Æ´Ñ ¹Ù·Î ´İ¾Æ¾ß µÇ´Â°¡?
+	//ç˜¤é™› UISceneé˜‘ Tickä¿Šè¾‘ é…’å›± å®˜è‚º æ‘§é…’å…· ç™»ç»°å•Š?
 	bool CloseCurUISceneRightNow = (TransType == EUIChangeUISceneTransitionType::CANCEL_CLOSE || TransType == EUIChangeUISceneTransitionType::CANCEL_ALL);
 
-	//1. ÀüÈ¯ ¿¬Ãâ Å¸ÀÔ ÀúÀå
+	//1. å‚ˆåˆ¸ æ¥·å… é¸¥æ¶ å†å˜
 	ChangeUISceneTransitionType = TransType;
-	//2. ¿¹¾àUIScene ÁöÁ¤
+	//2. æŠ—è·UIScene ç˜¤æ²¥
 	ReservedUISceneOpenData.Key = SceneName;
 	ReservedUISceneOpenData.Value = UISceneOnOpenDelegate;
 	bDontCloseSameUIAtReservedUIScene = DontCloseSameUIAtReservedUIScene;
-	//3. Áö±İUIScene ´İ±â
+	//3. ç˜¤é™›UIScene æ‘§æ‰
 	CloseUIScene(CurrUIScene, CloseCurUISceneRightNow, DontCloseSameUIAtReservedUIScene);
 
 	if (CloseCurUISceneRightNow || TransType == EUIChangeUISceneTransitionType::PREOPEN)
@@ -1925,10 +1925,10 @@ void UB2UIManager::ChangeUISceneBack(EUIChangeUISceneTransitionType TransType, c
 
 	if (IsDJLegacyUIScene(TargetBackUIScene))
 	{
-		bOpeningDJLegacyHeroMgmtBySceneHistory = true; // ¿ä°Ç LobbyEnterHeroMgmtModeClass ¿¡ ÀÎÀÚ·Î ³Ö¾îÁÖ´Â °Ô ±ò²ûÇÒ ¼öµµ.. ¹Ù²ã¾ß ÇÒ °÷ÀÌ Á» ¸¹´Ù.
+		bOpeningDJLegacyHeroMgmtBySceneHistory = true; // å¤¸æ‰’ LobbyEnterHeroMgmtModeClass ä¿Š ç‰¢ç£Šè‚º æŒç»¢æ—ç»° éœ¸ å½¬é˜ä¸” èæ¡£.. å®˜å±‚å…· ä¸” é•‘æ ç²± è…¹ä¿ƒ.
 
-													   // ÀÌ UIScene µéÀº ½ÇÁ¦ ÀÌ ½Ã½ºÅÛ¿¡¼­ »ç¿ëµÇÁö ¾Ê´Â´Ù. ½ÇÁ¦·Î´Â DJLegacy ½Ã½ºÅÛÀÌ°í ±×ÂÊ°úÀÇ ¿¬°á°í¸®·Î¼­ ³²°ÜµÑ »Ó.
-													   // °ÅÀÇ µÎ ½Ã½ºÅÛ »çÀÌ°¡ ¿¬°áµÇ´Â ¹é ¹öÆ° ÀÛµ¿À» À§ÇÔ.
+													   // æ UIScene ç”¸ç¯® è§’åŠ› æ çŸ«èƒ¶è¢ä¿Šè¾‘ è¤ä¾©ç™»ç˜¤ è‡¼ç»°ä¿ƒ. è§’åŠ›è‚ºç»° DJLegacy çŸ«èƒ¶è¢æç»Š å¼Šç‡è‹ç‹¼ æ¥·æ¬ç»Šåºœè‚ºè¾‘ å·¢è´¥ç¬› æŒ¥.
+													   // èŠ­ç‹¼ æ»´ çŸ«èƒ¶è¢ è¤æå•Š æ¥·æ¬ç™»ç»° å½’ æ»šç“¢ ç´¯æ‚¼é˜‘ å›°çªƒ.
 		OpenDJLegacyHeroMgmtPageForUIScene(TargetBackUIScene);
 
 		bOpeningDJLegacyHeroMgmtBySceneHistory = false;
@@ -1937,7 +1937,7 @@ void UB2UIManager::ChangeUISceneBack(EUIChangeUISceneTransitionType TransType, c
 	{
 		LobbyChangeSceneByUISceneClass<EUIScene>::GetInstance().Signal(TargetBackUIScene);
 
-		// ¹é¹öÆ°À» ´­·¯ Mail UI ·Î µ¹¾Æ¿Ã °æ¿ì LinkManager¸¦ ÅëÇØ µ¹¾Æ¿Â °ÍÀÌ ¾Æ´Ï±â ¶§¹®¿¡ ¸®½ºÆ® ¾÷µ¥ÀÌÆ®°¡ ÀÌ·ç¾îÁöÁö ¾ÊÀ¸¸ç Á÷Á¢ ¾÷µ¥ÀÌÆ® ÇØÁÖ¾î¾ß ÇÑ´Ù.
+		// å½’æ»šç“¢é˜‘ å–˜çŸ¾ Mail UI è‚º å€’é…’æ£µ ç‰ˆå¿« LinkManagerç”« çƒ¹ç§¦ å€’é…’æŸ¯ å·´æ é…’èªæ‰ é”­å·©ä¿Š åºœèƒ¶é£˜ è¯€å•æé£˜å•Š æé£ç»¢ç˜¤ç˜¤ è‡¼æ å“¥ æµç«‹ è¯€å•æé£˜ ç§¦æ—ç»¢å…· èŒ„ä¿ƒ.
 		if (TargetBackUIScene == EUIScene::Mail)
 		{
 			MailTabIndex RequestTab = MailTabIndex::EMailTab_Gift;
@@ -1945,7 +1945,7 @@ void UB2UIManager::ChangeUISceneBack(EUIChangeUISceneTransitionType TransType, c
 		}
 	}
 
-	// DJLegacy ÀÎ °æ¿ì´Â ¿©±â¼­ UISceneHistory Á¦°Å ¿Ü¿¡ ½ÇÁúÀûÀ¸·Î ¹º°¡´Â ÇÏÁö´Â ¾Ê¾Æ¾ß.
+	// DJLegacy ç‰¢ ç‰ˆå¿«ç»° å’¯æ‰è¾‘ UISceneHistory åŠ›èŠ­ å¯‡ä¿Š è§’é¾™åˆ©æ è‚º è´­å•Šç»° çªç˜¤ç»° è‡¼é…’å…·.
 	ChangeUIScene(TargetBackUIScene, TransType, UISceneOnOpenDelegate, DontCloseSameUIAtReservedUIScene, bPassBattleUIScene);
 }
 
@@ -1954,7 +1954,7 @@ EUIScene UB2UIManager::GetPrevUIScene()
 	return (UISceneHistory.Num() > 1) ? UISceneHistory[UISceneHistory.Num() - 2].Key : EUIScene::None;
 }
 
-//UI¾À È÷½ºÅä¸®¿¡ ÃàÀûµÇ¾î ÀÖ´Â ¾ÀµéÁß¿¡ ÀüÅõ¿¡ °ü°èµÈ ¾ÀÀÌ ÀÖÀ¸¸é °Ç³Ê ¶é¶§ »ç¿ë
+//UIçº  æ´’èƒ¶é…åºœä¿Š ç»µåˆ©ç™»ç»¢ ä¹ç»° çº ç”¸åä¿Š å‚ˆæ§ä¿Š åŒ…æ‹Œç­‰ çº æ ä¹æ æ æ‰’å‘ˆ å •é”­ è¤ä¾©
 EUIScene UB2UIManager::GetPrevUIScenePassedBattle()
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2UIManager_GetPrevUIScenePassedBattle);
@@ -1966,7 +1966,7 @@ EUIScene UB2UIManager::GetPrevUIScenePassedBattle()
 			for (int HistoryCnt = HistoryBackStartIndex; HistoryCnt >= 0; --HistoryCnt)
 			{
 				FB2UISceneData* CurSceneData = GetUISceneData(UISceneHistory[HistoryCnt].Key);
-				if (CurSceneData && CurSceneData->IsBattleRelatedScene) // DJLegacy ¿ÍÀÇ È£È¯À» À§ÇØ ³Ö¾îµĞ ´õ¹Ì ¾À ½Äº°ÀÚÀÇ °æ¿ì ½ÇÁ¦ SceneData ´Â ¾øÀ» ¼ö ÀÖ´Ù.
+				if (CurSceneData && CurSceneData->IsBattleRelatedScene) // DJLegacy å®¢ç‹¼ é¾‹åˆ¸é˜‘ å›°ç§¦ æŒç»¢æ•Œ æ­¹å›º çº  ä¾¥å–Šç£Šç‹¼ ç‰ˆå¿« è§’åŠ› SceneData ç»° ç»é˜‘ è ä¹ä¿ƒ.
 					continue;
 
 				return UISceneHistory[HistoryCnt].Key;
@@ -1994,7 +1994,7 @@ void UB2UIManager::ClearUISceneHistory()
 }
 void UB2UIManager::ArtificialAddUIHistory(EUIScene AddSceneName)
 {
-	// Artifical Add ¶ó´Â °ÍÀº ½ÇÁ¦ Open ¾øÀÌ ´ÜÁö history Â÷¿ø¿¡¼­ ³Ö´Â ¿ëµµ¸¦ ¶æÇÔ.
+	// Artifical Add æ‰¼ç»° å·´ç¯® è§’åŠ› Open ç»æ çªœç˜¤ history ç’ç›”ä¿Šè¾‘ æŒç»° ä¾©æ¡£ç”« èˆµçªƒ.
 	TPair<EUIScene, FB2UISceneOnOpen> HistoryDataPair;
 	HistoryDataPair.Key = AddSceneName;
 	HistoryDataPair.Value = nullptr;
@@ -2014,7 +2014,7 @@ void UB2UIManager::OpenUIScene(EUIScene SceneName, const FB2UISceneOnOpen& UISce
 	auto PrevSceneData = GetUISceneData(PrevUIScene);
 	auto CurSceneData = GetUISceneData(CurrUIScene);
 
-	//¿¹¾à UISceneÀÌ ÀÌÀü È÷½ºÅä¸®¿Í °°´Ù¸é, È÷½ºÅä¸®¿¡¼­ ÆË½ÃÅ°°í ¾Æ´Ï¸é È÷½ºÅä¸®¿¡ ÃàÀûÇÑ´Ù.
+	//æŠ—è· UISceneæ æå‚ˆ æ´’èƒ¶é…åºœå®¢ éä¿ƒæ, æ´’èƒ¶é…åºœä¿Šè¾‘ æ‰‘çŸ«è™ç»Š é…’èªæ æ´’èƒ¶é…åºœä¿Š ç»µåˆ©èŒ„ä¿ƒ.
 	int HistoryLength = UISceneHistory.Num();
 	bool IsBack = UISceneHistory.Num() > 1 && HasUISceneHistory(SceneName);
 
@@ -2034,8 +2034,8 @@ void UB2UIManager::OpenUIScene(EUIScene SceneName, const FB2UISceneOnOpen& UISce
 		OpenDataPair.Key = CurrUIScene;
 		OpenDataPair.Value = UISceneOnOpenDelegate;
 
-		// È÷½ºÅä¸® ´õÇÏ±â Àü¿¡.. ¿µ¿õ°ü¸® ¸ğµå °£ÀÇ Á÷Á¢ÀûÀÎ ÀüÈ¯ ½Ã¿¡´Â ¸¶Áö¸· È÷½ºÅä¸®¸¸ À¯ÁöÇÏµµ·Ï ÇÑ´Ù.
-		// ÀÌ°Ç DJLegacy ½Ã½ºÅÛ°úÀÇ ¿¬°è ¹®Á¦ ¶§¹®Àº ¾Æ´Ï°í ¿µ¿õ°ü¸® UI ÀÎÅÍÆäÀÌ½º »ó Æ¯Â¡ ¶§¹®ÀÎ °É·Î..
+		// æ´’èƒ¶é…åºœ æ­¹çªæ‰ å‚ˆä¿Š.. åº·æ—·åŒ…åºœ è‘›é› åŸƒç‹¼ æµç«‹åˆ©ç‰¢ å‚ˆåˆ¸ çŸ«ä¿Šç»° ä»˜ç˜¤é˜œ æ´’èƒ¶é…åºœçˆ¶ èœ¡ç˜¤çªæ¡£åºŸ èŒ„ä¿ƒ.
+		// ææ‰’ DJLegacy çŸ«èƒ¶è¢è‹ç‹¼ æ¥·æ‹Œ å·©åŠ› é”­å·©ç¯® é…’èªç»Š åº·æ—·åŒ…åºœ UI ç‰¢ç£å…¶æèƒ¶ æƒ‘ æ¼‚éš† é”­å·©ç‰¢ å§è‚º..
 		if (HistoryLength >= 1 && IsDJLegacyUIScene(PrevUIScene) && IsDJLegacyUIScene(CurrUIScene) && PrevUIScene != CurrUIScene)
 		{
 			if (PrevUIScene != EUIScene::Inventory)
@@ -2046,9 +2046,9 @@ void UB2UIManager::OpenUIScene(EUIScene SceneName, const FB2UISceneOnOpen& UISce
 				}
 				else
 				{
-					// °í´ëÀ¯¹°¸Å´ÏÂ¡ÆäÀÌÁö¿¡¼­ °í´ëÀ¯¹°·Î µ¹¾Æ°¥½Ã¿¡¸¸ ¿¹¿Ü..
-					// ´Ü¼ø °í´ëÀ¯¹°¸Å´ÏÂ¡ÆäÀÌÁö->°í´ëÀ¯¹°·Î µ¹¾Æ°¥¶§¿¡´Â °­Á¦ È÷½ºÅä¸® »èÁ¦¸¦ ÇÏÁö¾Ê°í
-					// Å¸ÆäÀÌÁö->°í´ëÀ¯¹°¸Å´ÏÂ¡ÆäÀÌÁö ÀÏ¶§´Â °í´ëÀ¯¹°µµ °°ÀÌ Áö¿öÁØ´Ù.
+					// ç»Šæªèœ¡æ‹±æ¦‚èªéš†å…¶æç˜¤ä¿Šè¾‘ ç»Šæªèœ¡æ‹±è‚º å€’é…’å“çŸ«ä¿Šçˆ¶ æŠ—å¯‡..
+					// çªœé‰´ ç»Šæªèœ¡æ‹±æ¦‚èªéš†å…¶æç˜¤->ç»Šæªèœ¡æ‹±è‚º å€’é…’å“é”­ä¿Šç»° ç¢åŠ› æ´’èƒ¶é…åºœ æ˜åŠ›ç”« çªç˜¤è‡¼ç»Š
+					// é¸¥å…¶æç˜¤->ç»Šæªèœ¡æ‹±æ¦‚èªéš†å…¶æç˜¤ è€é”­ç»° ç»Šæªèœ¡æ‹±æ¡£ éæ ç˜¤å†µéœ–ä¿ƒ.
 					if (PrevUIScene != EUIScene::Relic)
 					{
 						if (HistoryLength >= 1 && PrevUIScene != CurrUIScene)
@@ -2067,7 +2067,7 @@ void UB2UIManager::OpenUIScene(EUIScene SceneName, const FB2UISceneOnOpen& UISce
 		}
 	}
 
-	//for (auto& WidgetData : WidgetDatas) »ì¸®°Ô µÇ¸é AllWidgetData ·Î ±³Ã¼
+	//for (auto& WidgetData : WidgetDatas) æ··åºœéœ¸ ç™»æ AllWidgetData è‚º èƒŒçœ‰
 	//{
 	//	if (PrevSceneData)
 	//	{
@@ -2093,8 +2093,8 @@ void UB2UIManager::OpenUIScene(EUIScene SceneName, const FB2UISceneOnOpen& UISce
 		{
 			if (PrevSceneData && DontOpenSameUIAtReservedUIScene && (PrevSceneData->WidgetFNames.Contains(FoundWidgetData->WidgetFName)))
 			{
-				// ÀÌÀü ½Å¿¡ÀÖÀ¸¸é »õ·Î¾È¿­À½.. ¸¸¾à ¹®Á¦µÉ°Å°°À¸¸é ±×³É ´İ°í»õ·Î¿­¾îµÎ µÉ°Å°°À½
-				// ´İ´Â°Ç ¾Æ·¡ CloseUIScene ¿¡¼­
+				// æå‚ˆ è„šä¿Šä¹æ æ è´§è‚ºæ•‘å‡¯æ¾œ.. çˆ¶è· å·©åŠ›çªèŠ­éæ æ å¼Šæˆ æ‘§ç»Šè´§è‚ºå‡¯ç»¢æ»´ çªèŠ­éæ¾œ
+				// æ‘§ç»°æ‰’ é…’è´° CloseUIScene ä¿Šè¾‘
 			}
 			else {
 				UB2UIWidget* ThisOpenWidget = OpenUI<UB2UIWidget>(FoundWidgetData->WidgetFName, RightNow);
@@ -2112,7 +2112,7 @@ void UB2UIManager::OpenUIScene(EUIScene SceneName, const FB2UISceneOnOpen& UISce
 		}
 	}
 
-	//Doc¿¡ CurUISceneÀ» ³Ö¾îÁÖ°í, UIµé¿¡¼­ CurUIScene¿¡ °É¸Â´Â Ã³¸®¸¦ ÇØ¾ß µÈ´Ù¸é Ã³¸®¸¦ ÇÏ°Ô ÇØÁØ´Ù.
+	//Docä¿Š CurUISceneé˜‘ æŒç»¢æ—ç»Š, UIç”¸ä¿Šè¾‘ CurUISceneä¿Š å§å˜ç»° è´¸åºœç”« ç§¦å…· ç­‰ä¿ƒæ è´¸åºœç”« çªéœ¸ ç§¦éœ–ä¿ƒ.
 	auto DocUICondition = UB2UIDocHelper::GetDocUICondition();
 	if (DocUICondition)
 		DocUICondition->SetCurrUIScene(CurrUIScene);
@@ -2123,7 +2123,7 @@ void UB2UIManager::OpenUIScene(EUIScene SceneName, const FB2UISceneOnOpen& UISce
 void UB2UIManager::CloseUIScene(EUIScene SceneName, bool RightNow, bool DontCloseSameUIAtReservedUIScene)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2UIManager_CloseUIScene);
-	//¸¶Å·ÇÏ°í Tick¿¡¼­ Ã³¸®
+	//ä»˜æ¬§çªç»Š Tickä¿Šè¾‘ è´¸åºœ
 	if (!RightNow)
 	{
 		bClosingUIScene = true;
@@ -2142,7 +2142,7 @@ void UB2UIManager::CloseUIScene(EUIScene SceneName, bool RightNow, bool DontClos
 
 		if (FoundWidgetData && FoundWidgetData->Widget)
 		{
-			//¿¹¾àµÈ UIScene¿¡ ÇöÀç UI°¡ ¿©ÀüÈ÷ Æ÷ÇÔµÇ¾î ÀÖ´Ù¸é ´İÁö ¾Ê´Â´Ù.
+			//æŠ—è·ç­‰ UISceneä¿Š æ³…çŠ UIå•Š å’¯å‚ˆæ´’ å™¨çªƒç™»ç»¢ ä¹ä¿ƒæ æ‘§ç˜¤ è‡¼ç»°ä¿ƒ.
 			if (DontCloseSameUIAtReservedUIScene &&  ReservedSceneData && (ReservedSceneData->WidgetFNames.Contains(FoundWidgetData->WidgetFName)))
 				continue;
 
@@ -2152,7 +2152,7 @@ void UB2UIManager::CloseUIScene(EUIScene SceneName, bool RightNow, bool DontClos
 		}
 	}
 
-	// UIScene ÀüÈ¯½Ã¸¶´Ù °­Á¦ GC µ¹¸®±â.
+	// UIScene å‚ˆåˆ¸çŸ«ä»˜ä¿ƒ ç¢åŠ› GC å€’åºœæ‰.
 	if (bClosedSome && ForceGCOnUISceneCloseInterval > 0)
 	{
 		if (UISceneCloseWithoutGCCount >= ForceGCOnUISceneCloseInterval)
@@ -2168,11 +2168,11 @@ void UB2UIManager::CloseUIScene(EUIScene SceneName, bool RightNow, bool DontClos
 
 void UB2UIManager::CheckClosingCurrUISceneAndChangeToReservedUIScene()
 {
-	// ¼º´É¿¡ Å« ¿µÇâÀ» ¹ÌÄ¥ ¼ÒÁö°¡ ÀÖ¾î¼­ ÀÌ ÄÚµå´Â ºñÈ°¼ºÈ­ ½ÃÄÑ ³õ½À´Ï´Ù.
-	// È¤½Ã ÀÌÀü¿¡ »ç¿ëÇß´ø °÷ÀÌ ÀÖÀ»Áö ¸ô¶ó Âü°í¿ëÀ¸·Î ³öµÓ´Ï´Ù.
-	// UI ÆäÀÌÁö ¿©´İ´Â ¿¬ÃâÀº °³º°ÀûÀ¸·Î ±¸ÇöÀ»..
+	// å·±ç“·ä¿Š å¥´ åº·æ°¢é˜‘ å›ºç£¨ å®¶ç˜¤å•Š ä¹ç»¢è¾‘ æ å†…é›ç»° åšåŠå·±æ‹³ çŸ«éš¾ åˆåš¼èªä¿ƒ.
+	// è¶£çŸ« æå‚ˆä¿Š è¤ä¾©æ²å¸¦ é•‘æ ä¹é˜‘ç˜¤ éš”æ‰¼ æ›¼ç»Šä¾©æ è‚º å‡ºæ¶¤èªä¿ƒ.
+	// UI å…¶æç˜¤ å’¯æ‘§ç»° æ¥·å…ç¯® ä¿ºå–Šåˆ©æ è‚º å¤‡æ³…é˜‘..
 #if 0
-	//UISceneÀÌ ´İÈ÷´Â ÁßÀÌ¸é
+	//UISceneæ æ‘§æ´’ç»° åææ
 	auto CurSceneData = GetUISceneData(CurrUIScene);
 	auto ReservedSceneData = GetUISceneData(ReservedUISceneOpenData.Key);
 
@@ -2182,11 +2182,11 @@ void UB2UIManager::CheckClosingCurrUISceneAndChangeToReservedUIScene()
 	{
 		bool AllReadyClose = true;
 
-		for (auto& WidgetData : WidgetDatas)  ÀÌ°Å ´Ù½Ã »ì¸®°Ô µÇ¸é AllWidgetData ¸¦ »ç¿ëÇÏµµ·Ï ÇØ¾ß.
+		for (auto& WidgetData : WidgetDatas)  æèŠ­ ä¿ƒçŸ« æ··åºœéœ¸ ç™»æ AllWidgetData ç”« è¤ä¾©çªæ¡£åºŸ ç§¦å…·.
 		{
 			if (WidgetData.Widget)
 			{
-				//¿¹¾àµÈ UIScene¿¡ UI°¡ ¿©ÀüÈ÷ Æ÷ÇÔµÇ¾î ÀÖ´Ù¸é ´İÁö ¾Ê´Â´Ù.
+				//æŠ—è·ç­‰ UISceneä¿Š UIå•Š å’¯å‚ˆæ´’ å™¨çªƒç™»ç»¢ ä¹ä¿ƒæ æ‘§ç˜¤ è‡¼ç»°ä¿ƒ.
 				if (bDontCloseSameUIAtReservedUIScene && ReservedSceneData && (ReservedSceneData->WidgetFNames.Contains(WidgetData.WidgetFName)))
 					continue;
 
@@ -2199,7 +2199,7 @@ void UB2UIManager::CheckClosingCurrUISceneAndChangeToReservedUIScene()
 		}
 
 
-		//´İÈ÷´Â ¿¬ÃâÀÌ ³¡³µ´Ù ´ÙÀ½ UISceneÀ» ¿­¾îÁà.
+		//æ‘§æ´’ç»° æ¥·å…æ åœºè½¦ä¿ƒ ä¿ƒæ¾œ UISceneé˜‘ å‡¯ç»¢æ‹.
 		if (AllReadyClose)
 		{
 			if (ChangeUISceneTransitionType != EUIChangeUISceneTransitionType::PREOPEN)
@@ -2207,12 +2207,12 @@ void UB2UIManager::CheckClosingCurrUISceneAndChangeToReservedUIScene()
 		}
 	}
 
-	//UISceneÀÌ ¿­¸®´Â ÁßÀÌ¸é
+	//UISceneæ å‡¯åºœç»° åææ
 	if (bOpeningUIScene)
 	{
 		bool AllReadyOpen = true;
 
-		for (auto& WidgetData : WidgetDatas) ÀÌ°Å ´Ù½Ã »ì¸®°Ô µÇ¸é AllWidgetData ¸¦ »ç¿ëÇÏµµ·Ï ÇØ¾ß.
+		for (auto& WidgetData : WidgetDatas) æèŠ­ ä¿ƒçŸ« æ··åºœéœ¸ ç™»æ AllWidgetData ç”« è¤ä¾©çªæ¡£åºŸ ç§¦å…·.
 		{
 			if (WidgetData.Widget)
 			{
@@ -2224,7 +2224,7 @@ void UB2UIManager::CheckClosingCurrUISceneAndChangeToReservedUIScene()
 			}
 		}
 
-		//¿­¸®´Â ¿¬ÃâÀÌ ³¡³µ´Ù.
+		//å‡¯åºœç»° æ¥·å…æ åœºè½¦ä¿ƒ.
 		if (AllReadyOpen)
 		{
 			OpeningUIScene = EUIScene::None;
@@ -2251,7 +2251,7 @@ void UB2UIManager::OpenNextUIScene()
 	else
 	{
 		CurrUIScene = EUIScene::None;
-		//Doc¿¡ CurUISceneÀ» ³Ö¾îÁÖ°í, UIµé¿¡¼­ CurUIScene¿¡ °É¸Â´Â Ã³¸®¸¦ ÇØ¾ß µÈ´Ù¸é Ã³¸®¸¦ ÇÏ°Ô ÇØÁØ´Ù.
+		//Docä¿Š CurUISceneé˜‘ æŒç»¢æ—ç»Š, UIç”¸ä¿Šè¾‘ CurUISceneä¿Š å§å˜ç»° è´¸åºœç”« ç§¦å…· ç­‰ä¿ƒæ è´¸åºœç”« çªéœ¸ ç§¦éœ–ä¿ƒ.
 		auto DocUICondition = UB2UIDocHelper::GetDocUICondition();
 		if (DocUICondition)
 			DocUICondition->SetCurrUIScene(CurrUIScene);
@@ -2273,7 +2273,7 @@ bool UB2UIManager::HasUISceneHistory(EUIScene SceneName)
 
 void UB2UIManager::InitNotAddUISceneHistoryList()
 {
-	//UISceneHistory¸¦ »ç¿ëÇÑ µÚ·Î°¡±â ¹öÆ° »ç¿ë µÚ·Î °¥½Ã ¾ÆÀÌÅÛ °á°úÃ¢À¸·Î °¥ ÀÏ Àı´ë ¾øÀ½
+	//UISceneHistoryç”« è¤ä¾©èŒ„ ç¬¬è‚ºå•Šæ‰ æ»šç“¢ è¤ä¾© ç¬¬è‚º å“çŸ« é…’æè¢ æ¬è‹èŠ’æ è‚º å“ è€ ä¾‹æª ç»æ¾œ
 	NotAddUISceneHistoryList.Add(EUIScene::SummonItemResult);
 }
 
@@ -2302,7 +2302,7 @@ void UB2UIManager::UnloadAllTAssets()
 	{
 		FB2UIWidgetData& WidgetData = WidgetDataIt.Value();
 
-		// Unload ¾ÈµÇ°Ô ¼¼ÆÃÇß´ø °Å ¸®¼Â. Áï CacheOnLoad ³ª CacheByHistory ¼¼ÆÃµÈ °Íµéµµ UnloadAll ¿¡¼­´Â ¾ğ·Îµù µÈ´Ù. RootSet ÀÎ °æ¿ì´Â ¿©ÇÏ°£ ¿µÇâÀ» ¹ŞÁö ¾Ê°ÚÁö¸¸.
+		// Unload æ•‘ç™»éœ¸ æŠ€æ³¼æ²å¸¦ èŠ­ åºœæ‚¸. æºœ CacheOnLoad å”± CacheByHistory æŠ€æ³¼ç­‰ å·´ç”¸æ¡£ UnloadAll ä¿Šè¾‘ç»° æ”«è‚ºçˆ¹ ç­‰ä¿ƒ. RootSet ç‰¢ ç‰ˆå¿«ç»° å’¯çªåŸƒ åº·æ°¢é˜‘ ç½ç˜¤ è‡¼æ‘†ç˜¤çˆ¶.
 		WidgetData.ResetAllCacheMarkForUnload();
 
 		Unload(&WidgetData);
@@ -2315,18 +2315,18 @@ void UB2UIManager::UnloadAllTAssets()
 void UB2UIManager::EditorLoadAll(SetB2ContentLoadingProgressSplashFnPtr InSplashProgFnPtr, float InStartProgress, float InEndProgress)
 {
 	const float TotalProgRange = FMath::Max(0.0f, InEndProgress - InStartProgress);
-	// InfoAsset ¿¡ µî·ÏµÇ´Â ¾ÖµéÀÌ ¾ó¸¶³ª µÇ´ÂÁö¿¡ µû¶ó ÀûÀıÈ÷ Á¤ÇÏ´Â °Å. ¸î°³ element ·Îµù¸¶´Ù ÇÑ¹ø¾¿ ¾÷µ¥ÀÌÆ® ÇÒ Áö.
+	// InfoAsset ä¿Š æ®¿åºŸç™»ç»° å±€ç”¸æ å€”ä»˜å”± ç™»ç»°ç˜¤ä¿Š è¶æ‰¼ åˆ©ä¾‹æ´’ æ²¥çªç»° èŠ­. å‰²ä¿º element è‚ºçˆ¹ä»˜ä¿ƒ èŒ„é”…ç©¶ è¯€å•æé£˜ ä¸” ç˜¤.
 	const int32 ProgUpdateInterval = 5;
 	const int32 TotalProgUpdateCount = AllWidgetData.Num() / ProgUpdateInterval;
 	const float SingleProgIncAmount = TotalProgRange / (float)TotalProgUpdateCount;
 
 	float CurrProg = InStartProgress;
 
-	int32 CurrLoadingWidgetDataIndex = 0; // ´ÜÁö ·Îµù ÁøÇàµµ Ç¥½Ã¸¦ À§ÇÑ ÀÎµ¦½º Ä«¿îÆ® ¤»
+	int32 CurrLoadingWidgetDataIndex = 0; // çªœç˜¤ è‚ºçˆ¹ æŸ³é’æ¡£ é’çŸ«ç”« å›°èŒ„ ç‰¢éƒ¸èƒ¶ å¢¨æ¬¾é£˜ ã›
 	for (TMap<FName, FB2UIWidgetData>::TIterator WidgetDataIt(AllWidgetData); WidgetDataIt; ++WidgetDataIt)
 	{
 		//////////////////////////////
-		// ÇÙ½ÉÀº ¿ä°Å°í ³ª¸ÓÁö progress °è»êÀº ´ÜÁö »çÁ·.
+		// ç´ç¼´ç¯® å¤¸èŠ­ç»Š å”±èµ£ç˜¤ progress æ‹Œé­‚ç¯® çªœç˜¤ è¤ç»ƒ.
 		FB2UIWidgetData& WidgetData = WidgetDataIt.Value();
 		GetWidgetClass(&WidgetData);
 		//////////////////////////////
@@ -2344,18 +2344,18 @@ void UB2UIManager::EditorLoadAll(SetB2ContentLoadingProgressSplashFnPtr InSplash
 #if TEMP_LAZYLOADING_MISHANDLING_CLEANUP
 void UB2UIManager::CleanupOnPreSave()
 {
-	CachedWidgetClasses.Empty(); // È®½ÇÈ÷ ÇØ ÁÖ´Â °Ô ÁÁÁö..
+	CachedWidgetClasses.Empty(); // çŠ¬è§’æ´’ ç§¦ æ—ç»° éœ¸ äº®ç˜¤..
 }
 void UB2UIManager::PreSave(FObjectPreSaveContext SaveContext)
 {
 	Super::PreSave(SaveContext);
-	// ÀÇµµÄ¡ ¾Ê°Ô ÀúÀåµÈ ·¹ÆÛ·±½º¸¦ ³¯·ÁÁØ´Ù.
+	// ç‹¼æ¡£æ‘¹ è‡¼éœ¸ å†å˜ç­‰ é¥­æ¬ºç¹èƒ¶ç”« æœå¦¨éœ–ä¿ƒ.
 	CleanupOnPreSave();
 }
 #endif
 
 void UB2UIManager::GetAllCreatedUINames(TArray<FName>& OutUINames)
-{ // µğ¹ö±× È®ÀÎ ¿ëµµ µî..
+{ // å¼æ»šå¼Š çŠ¬ç‰¢ ä¾©æ¡£ æ®¿..
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2UIManager_GetAllCreatedUINames);
 	for (TMap<FName, FB2UIWidgetData>::TIterator WidgetDataIt(AllWidgetData); WidgetDataIt; ++WidgetDataIt)
 	{
@@ -2368,7 +2368,7 @@ void UB2UIManager::GetAllCreatedUINames(TArray<FName>& OutUINames)
 }
 
 void UB2UIManager::GetAllCreatedUIWidgetDatas(TArray<FB2UIWidgetData>& OutUIWidgetDatas)
-{ // µğ¹ö±× È®ÀÎ ¿ëµµ µî..
+{ // å¼æ»šå¼Š çŠ¬ç‰¢ ä¾©æ¡£ æ®¿..
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2UIManager_GetAllCreatedUIWidgetDatas);
 	for (TMap<FName, FB2UIWidgetData>::TIterator WidgetDataIt(AllWidgetData); WidgetDataIt; ++WidgetDataIt)
 	{
@@ -2388,10 +2388,10 @@ bool UB2UIManager::GetIsOtherWidgetVisible(TArray<FName> IgnoreWidgetName)
 		FB2UIWidgetData& WidgetData = WidgetDataIt.Value();
 		if (WidgetData.Widget)
 		{
-			if (WidgetData.WidgetFName == UIFName::Header) continue; // Çì´õÁ¦¿Ü
-			if (IgnoreWidgetName.Contains(WidgetData.WidgetFName)) continue; // Ãß°¡ Á¦¿Ü À§Á¬
+			if (WidgetData.WidgetFName == UIFName::Header) continue; // åº†æ­¹åŠ›å¯‡
+			if (IgnoreWidgetName.Contains(WidgetData.WidgetFName)) continue; // çœ å•Š åŠ›å¯‡ å›°è¿
 
-																			 // ´Ù¸¥ À§Á¬ÀÌ ÇöÀç º¸¿©Áö°í ÀÖÀ»°æ¿ì
+																			 // ä¿ƒå¼— å›°è¿æ æ³…çŠ ç„Šå’¯ç˜¤ç»Š ä¹é˜‘ç‰ˆå¿«
 			if (WidgetData.Widget->GetVisibility() != ESlateVisibility::Hidden && WidgetData.Widget->GetVisibility() != ESlateVisibility::Collapsed) return true;
 		}
 	}
@@ -2402,20 +2402,20 @@ TArray<FName> UB2UIManager::WidgetNamesForRootSet;
 TArray<FName> UB2UIManager::WidgetNamesForLoadOnStartup;
 bool UB2UIManager::IsRootSetWidgetName(FName InUIName)
 {
-	// WidgetNamesForRootSet »çÀÌÁî°¡ Ä¿Áö¸é TMap ÀÌ ³´°ÚÁö¸¸ ±×·¸°Ô Ä¿Áö´Â °Ç ´Ù¸¥ ÀÌÀ¯¿¡¼­¶óµµ °ï¶õÇÏ´Ù..
+	// WidgetNamesForRootSet è¤æä»¤å•Š ç›®ç˜¤æ TMap æ ç‚’æ‘†ç˜¤çˆ¶ å¼ŠçŠ¯éœ¸ ç›®ç˜¤ç»° æ‰’ ä¿ƒå¼— æèœ¡ä¿Šè¾‘æ‰¼æ¡£ å¸®é„‚çªä¿ƒ..
 	return (WidgetNamesForRootSet.Contains(InUIName) || WidgetNamesForLoadOnStartup.Contains(InUIName));
 }
 
 void UB2UIManager::SetupCacheOnLoadList()
 {
-#if !PLATFORM_IOS // [IOS_SPECIFIC_MEMORY_SAVING] iOS ¸Ş¸ğ¸® ¿ì·Á·Î ÀÎÇØ..
+#if !PLATFORM_IOS // [IOS_SPECIFIC_MEMORY_SAVING] iOS çš‹è‘›åºœ å¿«å¦¨è‚º ç‰¢ç§¦..
 #if WITH_EDITOR
 	if (GIsEditor) {
-		return; // ¿¡µğÅÍµµ ÀÌ·± °Å ÇÊ¿ä¾øÀ½.
+		return; // ä¿Šå¼ç£æ¡£ æç¹ èŠ­ é˜å¤¸ç»æ¾œ.
 	}
 #endif
 
-	// ¾î¶»°Ô ÇÏ´Ù º¸´Ï±î ÀÌ°Ç Rootset ¸®½ºÆ®¿Í´Â ´Ş¸® ¸Å¹ø Init ½Ã¿¡ °Ë»çÇØ¼­ ÇÃ·¡±×¿¡ ¸¶Å©¸¦ ÇØ ÁÖ´Â ½ÄÀÌ µÊ. ¤Ñ¤Ñ;;
+	// ç»¢ç—˜éœ¸ çªä¿ƒ ç„Šèªé³– ææ‰’ Rootset åºœèƒ¶é£˜å®¢ç»° å´”åºœ æ¦‚é”… Init çŸ«ä¿Š å…«è¤ç§¦è¾‘ æ•²è´°å¼Šä¿Š ä»˜å†œç”« ç§¦ æ—ç»° ä¾¥æ å‡³. ã±ã±;;
 
 	B2_SCOPED_TRACK_LOG(TEXT("UB2UIManager::SetupCacheOnLoadList"));
 
@@ -2430,13 +2430,13 @@ void UB2UIManager::SetupCacheOnLoadList()
 
 	for (const FName ThisCacheOnLoadName : AllCacheOnLoadUINames)
 	{
-		FB2UIWidgetData* FoundWidgetData = GetWidgetData(ThisCacheOnLoadName); // ½ÇÁ¦ UI µ¥ÀÌÅÍ ·ÎµùÀÌ ÀÏ¾î³ª´Â °Å ¾Æ´Ô.
+		FB2UIWidgetData* FoundWidgetData = GetWidgetData(ThisCacheOnLoadName); // è§’åŠ› UI å•æç£ è‚ºçˆ¹æ è€ç»¢å”±ç»° èŠ­ é…’ä¸›.
 		if (FoundWidgetData)
 		{
-			// °á±¹ ¿ä°Å ÇÏ³ª ¼¼ÆÃÇÏÀÚ°í ÀÌ ÁşÀ» ÇÏ´Â °Çµ¥ ÀÌ°Ô ¿Ö UIManager ¿¡¼­ ¼¼ÆÃÇÏ´Â UPROPERTY °¡ ¾Æ´Ï°í ini ¿¡¼­ ÀĞ¾îµéÀÌ´Â °ªÀÎÁö ÀÇ¾ÆÇÒ ¼ö ÀÖ´Ù.
-			// ÀÌÀ¯´Â UIWidgetData ¿¡ ¼¼ÆÃÇÏ´Â °É ´Ã¸®°í ½ÍÁöµµ ¾Ê¾Ò°í ÄÁÅÙÃ÷ Â÷¿øÀÇ µ¥ÀÌÅÍ¶ó±âº¸´Ù´Â ½Ã½ºÅÛÀûÀÎ µ¥ÀÌÅÍ¶ó ÀÌ·± °Íµµ ÀÖ°í µî..
-			// ±×¸®°í »ç½Ç ÀÌ°É·Î¸¸ ¼¼ÆÃµÇ´Â °ªµµ ¾Æ´Ï°í AsyncLoad ¸¦ ÇÑ °æ¿ì¿¡µµ ÀÌ°Ô ¼¼ÆÃÀÌ µÈ´Ù.
-			// ÀÌ°Å¶û ºñ½ÁÇÑ »âÀÇ StayInViewport ´Â Ã³À½ºÎÅÍ µé¾î°¡ ÀÖ´ø ±â´ÉÀÌ¶ó UPROPERTY ¸¦ À¯ÁöÇÏ°í ÀÖ´Âµ¥ »ç½Ç ±×°Ô ´õ À§ÇèÇÏ°í ±×°Íµµ UIWidgetData ¿¡¼­ »©°í ½ÍÀ½.
+			// æ¬æƒ« å¤¸èŠ­ çªå”± æŠ€æ³¼çªç£Šç»Š æ çª¿é˜‘ çªç»° æ‰’å• æéœ¸ æ UIManager ä¿Šè¾‘ æŠ€æ³¼çªç»° UPROPERTY å•Š é…’èªç»Š ini ä¿Šè¾‘ ä½¬ç»¢ç”¸æç»° è”¼ç‰¢ç˜¤ ç‹¼é…’ä¸” è ä¹ä¿ƒ.
+			// æèœ¡ç»° UIWidgetData ä¿Š æŠ€æ³¼çªç»° å§ ç–µåºœç»Š é…µç˜¤æ¡£ è‡¼ç–½ç»Š ç‰§åˆ¨æ˜ ç’ç›”ç‹¼ å•æç£æ‰¼æ‰ç„Šä¿ƒç»° çŸ«èƒ¶è¢åˆ©ç‰¢ å•æç£æ‰¼ æç¹ å·´æ¡£ ä¹ç»Š æ®¿..
+			// å¼Šåºœç»Š è¤è§’ æå§è‚ºçˆ¶ æŠ€æ³¼ç™»ç»° è”¼æ¡£ é…’èªç»Š AsyncLoad ç”« èŒ„ ç‰ˆå¿«ä¿Šæ¡£ æéœ¸ æŠ€æ³¼æ ç­‰ä¿ƒ.
+			// æèŠ­å°” åšæ…èŒ„ çƒ©ç‹¼ StayInViewport ç»° è´¸æ¾œä½•ç£ ç”¸ç»¢å•Š ä¹å¸¦ æ‰ç“·ææ‰¼ UPROPERTY ç”« èœ¡ç˜¤çªç»Š ä¹ç»°å• è¤è§’ å¼Šéœ¸ æ­¹ å›°æ°°çªç»Š å¼Šå·´æ¡£ UIWidgetData ä¿Šè¾‘ å“—ç»Š é…µæ¾œ.
 			FoundWidgetData->bCacheOnLoad = true;
 		}
 	}
@@ -2444,28 +2444,28 @@ void UB2UIManager::SetupCacheOnLoadList()
 }
 void UB2UIManager::SetupRootsetWidgetList()
 {
-#if !PLATFORM_IOS // [IOS_SPECIFIC_MEMORY_SAVING] iOS ´Â ¸Ş¸ğ¸® ¿ì·Á·Î ÀÎÇØ ÀÌ·± °Å ÇÏÁö ¾Ê´Â´Ù..
+#if !PLATFORM_IOS // [IOS_SPECIFIC_MEMORY_SAVING] iOS ç»° çš‹è‘›åºœ å¿«å¦¨è‚º ç‰¢ç§¦ æç¹ èŠ­ çªç˜¤ è‡¼ç»°ä¿ƒ..
 	if (GConfig && WidgetNamesForRootSet.Num() == 0)
-	{ // Æ¯º°È÷ ¼±º°µÈ UIFName ¸®½ºÆ®.. static º¯¼ö¶ó ÇÑ¹ø¸¸ Ã¤¿ò.
+	{ // æ¼‚å–Šæ´’ æ€¥å–Šç­‰ UIFName åºœèƒ¶é£˜.. static å‡½èæ‰¼ èŒ„é”…çˆ¶ ç›²æ¡†.
 		TArray<FString> ParsedWidgetNames;
 		GConfig->GetArray(TEXT("/Script/BladeII.B2UIManager"), TEXT("RootSetOnLoadUI"), ParsedWidgetNames, GGameIni);
 		for (const FString& ThisName : ParsedWidgetNames)
 		{
-			WidgetNamesForRootSet.Add(FName(*ThisName)); // ÀÏ´Ü ¸®½ºÆ® ³Ö¾î³õ±â¸¸ ÇÏ°í ½ÇÁ¦ Àû¿ëÀº °¢ UI ·Îµù ½Ã 
+			WidgetNamesForRootSet.Add(FName(*ThisName)); // è€çªœ åºœèƒ¶é£˜ æŒç»¢åˆæ‰çˆ¶ çªç»Š è§’åŠ› åˆ©ä¾©ç¯® é˜¿ UI è‚ºçˆ¹ çŸ« 
 		}
 	}
 #endif
 }
 void UB2UIManager::SetupLoadOnStartupWidgetList()
 {
-#if PLATFORM_IOS // [IOS_SPECIFIC_MEMORY_SAVING] iOS ´Â ¸Ş¸ğ¸® ¿ì·Á·Î ÀÎÇØ ÀÌ·± °Å ÇÏÁö ¾Ê´Â´Ù..
+#if PLATFORM_IOS // [IOS_SPECIFIC_MEMORY_SAVING] iOS ç»° çš‹è‘›åºœ å¿«å¦¨è‚º ç‰¢ç§¦ æç¹ èŠ­ çªç˜¤ è‡¼ç»°ä¿ƒ..
 	return;
 #endif
 
 
 	if (GConfig && WidgetNamesForLoadOnStartup.Num() == 0)
 	{
-		// Æ¯º°È÷ ¼±º°µÈ UIFName ¸®½ºÆ®.. static º¯¼ö¶ó ÇÑ¹ø¸¸ Ã¤¿ò.
+		// æ¼‚å–Šæ´’ æ€¥å–Šç­‰ UIFName åºœèƒ¶é£˜.. static å‡½èæ‰¼ èŒ„é”…çˆ¶ ç›²æ¡†.
 
 		B2_SCOPED_TRACK_LOG(TEXT("UB2UIManager::SetupLoadOnStartupWidgetList"));
 		TArray<FString> ParsedWidgetNames;
@@ -2475,17 +2475,17 @@ void UB2UIManager::SetupLoadOnStartupWidgetList()
 			WidgetNamesForLoadOnStartup.Add(FName(*ThisName));
 		}
 
-		// Ã¹ ·Îºñ ·Îµù progress ¿¡¼­´Â ÀÌ°É °è»ê¿¡ ³Ö¾î¾ß ÇÑ´Ù.
+		// éœ‰ è‚ºåš è‚ºçˆ¹ progress ä¿Šè¾‘ç»° æå§ æ‹Œé­‚ä¿Š æŒç»¢å…· èŒ„ä¿ƒ.
 		if (WidgetNamesForLoadOnStartup.Num() > 0) {
 			B2GMLoadingProgCollector::SetStepRate(0.4f / (float)WidgetNamesForLoadOnStartup.Num());
 		}
 
-		// ¸®½ºÆ® ³Ö¾î³õ°í¼± Ã·ºÎÅÍ ·ÎµùÇÑ´Ù. Ã³À½ ·Îºñ ·Îµù ½ÃÁ¡ÀÌ µÇ°ÚÁö..
+		// åºœèƒ¶é£˜ æŒç»¢åˆç»Šæ€¥ æ¢…ä½•ç£ è‚ºçˆ¹èŒ„ä¿ƒ. è´¸æ¾œ è‚ºåš è‚ºçˆ¹ çŸ«ç—¢æ ç™»æ‘†ç˜¤..
 		for (FName& ThisName : WidgetNamesForLoadOnStartup)
 		{
 			const FB2UIWidgetData* DataToLoad = GetWidgetData(ThisName);
 			GetWidgetClass(DataToLoad);
-			B2GMLoadingProgCollector::Step(); // ·Îµù ÁøÇàµµ Áõ°¡.
+			B2GMLoadingProgCollector::Step(); // è‚ºçˆ¹ æŸ³é’æ¡£ åˆ˜å•Š.
 		}
 	}
 }
@@ -2523,8 +2523,8 @@ void UB2UIManager::DestroyScreenDebugWidget()
 #if !UE_BUILD_SHIPPING // Detailed feature On/Off for performance test
 bool UB2UIManager::DevIsCombatEventUI(FName InCheckUI) const
 {
-	// StageClear ´Â ¾È Ä¡°í.. ¾È ¶ç¿ï °æ¿ì °ÔÀÓ ÁøÇàÀÌ ¾ÈµÇ´Â °Ç Á¦¿ÜÇÑ´Ù. ¼º´É Å×½ºÆ®¿ë
-	// AB2StageEventDirector::IsStageEventRelatedUI ¿Í °øÀ¯ÇÏ´Â ºÎºĞÀÌ ÀÖÁö¸¸ µ¿ÀÏÇÒ ÀÌÀ¯´Â ¾ø´Ù.
+	// StageClear ç»° æ•‘ æ‘¹ç»Š.. æ•‘ å‰åŒ¡ ç‰ˆå¿« éœ¸çƒ™ æŸ³é’æ æ•‘ç™»ç»° æ‰’ åŠ›å¯‡èŒ„ä¿ƒ. å·±ç“· æŠ›èƒ¶é£˜ä¾©
+	// AB2StageEventDirector::IsStageEventRelatedUI å®¢ å‚èœ¡çªç»° ä½•ç›’æ ä¹ç˜¤çˆ¶ æ‚¼è€ä¸” æèœ¡ç»° ç»ä¿ƒ.
 	return (
 		//InCheckUI == UIFName::StageBegin || 
 		//InCheckUI == UIFName::PVPBegin ||

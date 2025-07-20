@@ -26,7 +26,7 @@ void UB2UIDocHero::Init()
 {
 	Super::Init();
 
-	//InitResources(); ÀÌ°É ¿©±â¼­ ºÎ¸£°Ô ÇÏ¸é »ı¼ºÇÏ¸é¼­ ÀÚµ¿À¸·Î InitResources °¡ µÇ°í PCClassInfo ¸¦ °¡Á®¿À°Ô µÈ´Ù. ½ºÅ×ÀÌÁö¿¡¼­ »ç¿ëÇÏÁö ¾Ê´Â Å¬·¡½º¶ó¸é TAsset Lazy-loading ÀÇ È¿°ú°¡ ¾ø¾îÁü.
+	//InitResources(); æå§ å’¯æ‰è¾‘ ä½•ç¦éœ¸ çªæ ç§¯å·±çªæè¾‘ ç£Šæ‚¼æ è‚º InitResources å•Š ç™»ç»Š PCClassInfo ç”« å•Šå»‰å·éœ¸ ç­‰ä¿ƒ. èƒ¶æŠ›æç˜¤ä¿Šè¾‘ è¤ä¾©çªç˜¤ è‡¼ç»° åŠªè´°èƒ¶æ‰¼æ TAsset Lazy-loading ç‹¼ ç“¤è‹å•Š ç»ç»¢å’™.
 }
 
 void UB2UIDocHero::Destroy()
@@ -36,7 +36,7 @@ void UB2UIDocHero::Destroy()
 
 void UB2UIDocHero::InitResources()
 {
-	////¼³¸í
+	////æ±²ç–™
 	//switch (IntToPCClass(GetDocId()))
 	//{
 	//	case EPCClass::EPC_Gladiator:
@@ -57,10 +57,10 @@ void UB2UIDocHero::InitResources()
 	//TArray<int32> RegistredSkillIDs;
 	////UB2SkillRTManager::GetCharacterRegisteredSkillIDs(IntToPCClass(GetDocId()), GetB2GameModeType(nullptr), RegistredSkillIDs, &BladeIIGameImpl::GetLocalCharacterData());
 
-	////ÀÏ´Ü °¢ Ä³¸¯ÅÍ »ı¼º½Ã ½ºÅ³µµ ³Ö¾îÁØ´Ù.
+	////è€çªœ é˜¿ æŸè…ç£ ç§¯å·±çŸ« èƒ¶æ‡¦æ¡£ æŒç»¢éœ–ä¿ƒ.
 	//SkillDocs.Empty();
 	//UB2UIDocManager* UIDocManager = UB2UIDocManager::GetInstance();
-	//for (int32 i = 0; i < RegistredSkillIDs.Num(); ++i) // ESI_End °¡ ¾Æ´Ñ SkillTag ·Î Ã¼Å©ÇØ¾ß ÇÏ´Â °Ô Á» ±¸Áú±¸ÁúÇÏ±º..
+	//for (int32 i = 0; i < RegistredSkillIDs.Num(); ++i) // ESI_End å•Š é…’å›± SkillTag è‚º çœ‰å†œç§¦å…· çªç»° éœ¸ ç²± å¤‡é¾™å¤‡é¾™çªç„™..
 	//{
 	//	FB2UIDocKey DocKeySkill(EUIDocType::Skill, RegistredSkillIDs[i]);
 	//	auto* DocSkill = UIDocManager ? UIDocManager->GetDoc<UB2UIDocSkill>(DocKeySkill) : NULL;
@@ -72,7 +72,7 @@ void UB2UIDocHero::InitResources()
 	//	AddSkillDoc(DocSkill, RegistredSkillIDs[i], i == WEAPON_6STAR_SKILL_INDEX ? i : INDEX_NONE);
 	//}
 
-	////ÀåÂø¾ÆÀÌÅÛÀº 8°³¾¿
+	////å˜é¦’é…’æè¢ç¯® 8ä¿ºç©¶
 	//EquipDocs.Empty();
 	//for (int32 i = 0; i < static_cast<int32>(EItemEquipPlace::EIEP_End); ++i)
 	//{
@@ -83,13 +83,13 @@ void UB2UIDocHero::InitResources()
 	//		DocEquip = UIDocManager ? UIDocManager->CreateDoc<UB2UIDocEquip>(DocKeyEquip) : NULL;
 	//	}
 
-	//	AddEquipDoc(DocEquip, i); // i ´Â EItemEquipPlace ·Î º¯È¯µÉ °Í..
+	//	AddEquipDoc(DocEquip, i); // i ç»° EItemEquipPlace è‚º å‡½åˆ¸çª å·´..
 	//}
 }
 
 void UB2UIDocHero::ReleaseResources()
 {
-	// PCClassInfo ÀÇ TAsset Lazy-loading À» ¾ÈÀüÇÏ°Ô Ã³¸®ÇÏ±â À§ÇØ ·¹º§ ¾ğ·Îµå½Ã ¸Å HeroDoc Àº ReleaseResources ¸¦ ÇÔ.
+	// PCClassInfo ç‹¼ TAsset Lazy-loading é˜‘ æ•‘å‚ˆçªéœ¸ è´¸åºœçªæ‰ å›°ç§¦ é¥­éª‡ æ”«è‚ºé›çŸ« æ¦‚ HeroDoc ç¯® ReleaseResources ç”« çªƒ.
 	SkillDocs.Empty();
 	EquipDocs.Empty();
 }
@@ -99,7 +99,7 @@ UB2PCClassInfo* UB2UIDocHero::GetRelevantPCClassInfo()
 	//auto ClassInfoBox = StaticFindPCClassInfoBox();
 	//BII_CHECK(ClassInfoBox);
 
-	////ÀÌ¸§
+	////ææŠš
 	//return ClassInfoBox ? ClassInfoBox->GetSingleClassInfo(IntToPCClass(GetDocId())) : NULL;
 	return NULL;
 }
@@ -107,7 +107,7 @@ UB2PCClassInfo* UB2UIDocHero::GetRelevantPCClassInfo()
 //UB2InGameHUDInfo_Player* UB2UIDocHero::GetRelevantHUDInfo()
 //{
 //	UB2PCClassInfo* PCInfo = GetRelevantPCClassInfo();
-//	// ¾îÂ÷ÇÇ override ¸¦ ÇØ¾ß ÇÏ´Â±º..
+//	// ç»¢ç’ä¹” override ç”« ç§¦å…· çªç»°ç„™..
 //	return (PCInfo && PCInfo->HUDInfoClassOverride) ? Cast<UB2InGameHUDInfo_Player>(PCInfo->HUDInfoClassOverride->GetDefaultObject()) : NULL;
 //}
 //
@@ -120,8 +120,8 @@ UB2PCClassInfo* UB2UIDocHero::GetRelevantPCClassInfo()
 
 UMaterialInterface* UB2UIDocHero::GetPlayerPortraitMaterial(UObject* WorldContextObject, EPCClass InPCClass)
 {
-	// ÀÌÀü¿¡ UIDocHero ¿¡¼­ ÃÊ»óÈ­ ºê·¯½¬¸¦ Á÷Á¢ reference ÇÏ´ø ÀûÀÌ ÀÖ´Âµ¥ ±×°Ç ¾ø¾Ö°í ´ë½Å¿¡ ÀÌÀü »ç¿ëÀ» º¸´Ù ½±°Ô ´ëÃ¼ÇÏ±â À§ÇØ ¿©±â¿¡ helper Çü½ÄÀ¸·Î ¸¸µé¾î ³õÀ½.
-	// ½ÇÁ¦·Î UIDoc ¿¡ ¸®¼Ò½º ·¹ÆÛ·±½º¸¦ ¸â¹ö·Î ³ÖÁö ¸»°Í!
+	// æå‚ˆä¿Š UIDocHero ä¿Šè¾‘ æª¬æƒ‘æ‹³ å®çŸ¾æµ†ç”« æµç«‹ reference çªå¸¦ åˆ©æ ä¹ç»°å• å¼Šæ‰’ ç»å±€ç»Š æªè„šä¿Š æå‚ˆ è¤ä¾©é˜‘ ç„Šä¿ƒ å¥–éœ¸ æªçœ‰çªæ‰ å›°ç§¦ å’¯æ‰ä¿Š helper å±ˆä¾¥æ è‚º çˆ¶ç”¸ç»¢ åˆæ¾œ.
+	// è§’åŠ›è‚º UIDoc ä¿Š åºœå®¶èƒ¶ é¥­æ¬ºç¹èƒ¶ç”« ç³•æ»šè‚º æŒç˜¤ å¯Œå·´!
 	//UB2InGameHUDInfo_Player* PlayerHUDInfo = StaticGetRelevantHUDInfo(InPCClass);
 	//return PlayerHUDInfo ? PlayerHUDInfo->GetPlayerPortrait(WorldContextObject) : NULL;
 	return NULL;
@@ -129,8 +129,8 @@ UMaterialInterface* UB2UIDocHero::GetPlayerPortraitMaterial(UObject* WorldContex
 
 UMaterialInterface* UB2UIDocHero::GetPlayerDeathPortraitMaterial(UObject* WorldContextObject, EPCClass InPCClass)
 {
-	// ÀÌÀü¿¡ UIDocHero ¿¡¼­ ÃÊ»óÈ­ ºê·¯½¬¸¦ Á÷Á¢ reference ÇÏ´ø ÀûÀÌ ÀÖ´Âµ¥ ±×°Ç ¾ø¾Ö°í ´ë½Å¿¡ ÀÌÀü »ç¿ëÀ» º¸´Ù ½±°Ô ´ëÃ¼ÇÏ±â À§ÇØ ¿©±â¿¡ helper Çü½ÄÀ¸·Î ¸¸µé¾î ³õÀ½.
-	// ½ÇÁ¦·Î UIDoc ¿¡ ¸®¼Ò½º ·¹ÆÛ·±½º¸¦ ¸â¹ö·Î ³ÖÁö ¸»°Í!
+	// æå‚ˆä¿Š UIDocHero ä¿Šè¾‘ æª¬æƒ‘æ‹³ å®çŸ¾æµ†ç”« æµç«‹ reference çªå¸¦ åˆ©æ ä¹ç»°å• å¼Šæ‰’ ç»å±€ç»Š æªè„šä¿Š æå‚ˆ è¤ä¾©é˜‘ ç„Šä¿ƒ å¥–éœ¸ æªçœ‰çªæ‰ å›°ç§¦ å’¯æ‰ä¿Š helper å±ˆä¾¥æ è‚º çˆ¶ç”¸ç»¢ åˆæ¾œ.
+	// è§’åŠ›è‚º UIDoc ä¿Š åºœå®¶èƒ¶ é¥­æ¬ºç¹èƒ¶ç”« ç³•æ»šè‚º æŒç˜¤ å¯Œå·´!
 	//UB2InGameHUDInfo_Player* PlayerHUDInfo = StaticGetRelevantHUDInfo(InPCClass);
 	//return PlayerHUDInfo ? PlayerHUDInfo->GetPlayerDeathPortrait(WorldContextObject) : NULL;
 	return NULL;
@@ -138,8 +138,8 @@ UMaterialInterface* UB2UIDocHero::GetPlayerDeathPortraitMaterial(UObject* WorldC
 
 UTexture2D* UB2UIDocHero::GetPlayerLargePortraitTexture(EPCClass InPCClass)
 {
-	// ÀÌÀü¿¡ UIDocHero ¿¡¼­ ÃÊ»óÈ­ ºê·¯½¬¸¦ Á÷Á¢ reference ÇÏ´ø ÀûÀÌ ÀÖ´Âµ¥ ±×°Ç ¾ø¾Ö°í ´ë½Å¿¡ ÀÌÀü »ç¿ëÀ» º¸´Ù ½±°Ô ´ëÃ¼ÇÏ±â À§ÇØ ¿©±â¿¡ helper Çü½ÄÀ¸·Î ¸¸µé¾î ³õÀ½.
-	// ½ÇÁ¦·Î UIDoc ¿¡ ¸®¼Ò½º ·¹ÆÛ·±½º¸¦ ¸â¹ö·Î ³ÖÁö ¸»°Í!
+	// æå‚ˆä¿Š UIDocHero ä¿Šè¾‘ æª¬æƒ‘æ‹³ å®çŸ¾æµ†ç”« æµç«‹ reference çªå¸¦ åˆ©æ ä¹ç»°å• å¼Šæ‰’ ç»å±€ç»Š æªè„šä¿Š æå‚ˆ è¤ä¾©é˜‘ ç„Šä¿ƒ å¥–éœ¸ æªçœ‰çªæ‰ å›°ç§¦ å’¯æ‰ä¿Š helper å±ˆä¾¥æ è‚º çˆ¶ç”¸ç»¢ åˆæ¾œ.
+	// è§’åŠ›è‚º UIDoc ä¿Š åºœå®¶èƒ¶ é¥­æ¬ºç¹èƒ¶ç”« ç³•æ»šè‚º æŒç˜¤ å¯Œå·´!
 	//UB2InGameHUDInfo_Player* PlayerHUDInfo = StaticGetRelevantHUDInfo(InPCClass);
 	//return PlayerHUDInfo ? PlayerHUDInfo->GetPlayerLargePortrait() : NULL;
 	return NULL;
@@ -150,7 +150,7 @@ void UB2UIDocHero::AddSkillDoc(UB2UIDocSkill* NewSkillDoc, int32 SkillInfoSkillI
 	if (NewSkillDoc)
 	{
 		NewSkillDoc->SetOwnerHeroDoc(this);
-		NewSkillDoc->SetAndLoadFromSkillID(SkillInfoSkillID); // SkillDoc ¿¡´Â µ¿ÀûÀ¸·Î º¯È­¹«½ÖÇÑ µ¥ÀÌÅÍ´Â ¾Æ¸¶ ¾øÀ» °Å¶ó ±âº»ÀûÀÎ µ¥ÀÌÅÍµéÀº ¿©±â¼­ µé¾î°¥ °Í.
+		NewSkillDoc->SetAndLoadFromSkillID(SkillInfoSkillID); // SkillDoc ä¿Šç»° æ‚¼åˆ©æ è‚º å‡½æ‹³å…¬è¡—èŒ„ å•æç£ç»° é…’ä»˜ ç»é˜‘ èŠ­æ‰¼ æ‰å¤¯åˆ©ç‰¢ å•æç£ç”¸ç¯® å’¯æ‰è¾‘ ç”¸ç»¢å“ å·´.
 
 		if (SkillInfoSkillID != SKILL_INVALID_ID)
 		{
@@ -210,7 +210,7 @@ UB2UIDocSkill* UB2UIDocHero::GetSkillDocByInputIndex(int32 InputIndex)
 //	}
 //}
 
-//[@SameLine, 180612] explevelinfo doc, datastore -> datastore °³¼±
+//[@SameLine, 180612] explevelinfo doc, datastore -> datastore ä¿ºæ€¥
 //void UB2UIDocHero::InitExp()
 //{
 	//EPCClass ThisClass = GetHeroClass();
@@ -228,7 +228,7 @@ UB2UIDocSkill* UB2UIDocHero::GetSkillDocByInputIndex(int32 InputIndex)
 	//SetCurrentLevel(BladeIIGameImpl::GetLocalCharacterData().GetCharacterLevel(ThisClass));
 	//SetCurrentExpPercent(expPercent);
 
-	//SetAttackPower( // ÀüÅõÁß¿¡ ·¹º§¾÷ÀÌ ¾ø´Ù¸é »ç½Ç»ó InitialLevel ·Î »ç¿ë.
+	//SetAttackPower( // å‚ˆæ§åä¿Š é¥­éª‡è¯€æ ç»ä¿ƒæ è¤è§’æƒ‘ InitialLevel è‚º è¤ä¾©.
 	//	CombatStatEval::GetPCAttack(ThisClass, NULL, GetCurrentLevel())
 	//);
 	//SetDefensePower(

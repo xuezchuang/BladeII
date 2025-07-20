@@ -1,4 +1,4 @@
-//Fill out your copyright notice in the Description page of Project Settings.
+ï»¿//Fill out your copyright notice in the Description page of Project Settings.
 //Project BladeII, Action Square
 #include "B2MonsterSpawnPool.h"
 
@@ -45,7 +45,7 @@ const TArray<FMonsterSpawnPoolSummonSettings>* UB2SummonSettingAsset::GetInfoArr
 		int32 CastedDifficultyInt = static_cast<int32>(InDifficulty);
 		const FWrappedSummonSettingsArray* FoundSetting = PerDifficultyInfoMap.Find(CastedDifficultyInt);
 		if (!FoundSetting && InDifficulty != EStageDifficulty::ESD_Normal)
-		{ // Normal ³­ÀÌµµ·Î Æú¹é ½Ãµµ
+		{ // Normal ë‚œì´ë„ë¡œ í´ë°± ì‹œë„
 			FoundSetting = PerDifficultyInfoMap.Find(static_cast<int32>(EStageDifficulty::ESD_Normal));
 		}
 		if (FoundSetting)
@@ -66,7 +66,7 @@ void UB2SummonSettingAsset::PostEditChangeProperty(FPropertyChangedEvent& Proper
 void UB2SummonSettingAsset::CheckDataIntegrity()
 {
 	if (InfoArray_DEPRECATED.Num() > 0 && PerDifficultyInfoMap.Num() == 0)
-	{ // »õ·Î Ãß°¡ÇÑ µ¥ÀÌÅÍ ¾øÀ» ¶§ ±âº» ¼³Á¤Çß´ø °É·Î ¸ğµç ³­ÀÌµµ µ¥ÀÌÅÍ Ã¤¿ö³Ö±â
+	{ // ìƒˆë¡œ ì¶”ê°€í•œ ë°ì´í„° ì—†ì„ ë•Œ ê¸°ë³¸ ì„¤ì •í–ˆë˜ ê±¸ë¡œ ëª¨ë“  ë‚œì´ë„ ë°ì´í„° ì±„ì›Œë„£ê¸°
 		for (int32 SDI = static_cast<int32>(EStageDifficulty::ESD_Normal); SDI < static_cast<int32>(EStageDifficulty::ESD_End); ++SDI)
 		{
 			FWrappedSummonSettingsArray NewSettingArray;
@@ -89,7 +89,7 @@ void UB2SummonSettingAsset::CheckDataIntegrity()
 		}
 		if (WrongKeyWarnStr.Len() > 0)
 		{
-			WrongKeyWarnStr = FString::Printf(TEXT("SummonSettingAsset %s ¿¡ Á¸ÀçÇÏÁö ¾Ê´Â ³­ÀÌµµ ¼ıÀÚ¸¦ Å° °ªÀ¸·Î °®´Â element °¡ ÀÖÀ½\r\nÇØ´ç Å° °ª: "), *this->GetName())
+			WrongKeyWarnStr = FString::Printf(TEXT("SummonSettingAsset %s ì— ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ë‚œì´ë„ ìˆ«ìë¥¼ í‚¤ ê°’ìœ¼ë¡œ ê°–ëŠ” element ê°€ ìˆìŒ\r\ní•´ë‹¹ í‚¤ ê°’: "), *this->GetName())
 				+ WrongKeyWarnStr;
 			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(WrongKeyWarnStr));
 		}
@@ -164,7 +164,7 @@ UBoxComponent* AB2MonsterSpawnPool::GetDefaultCollisionComponent() const { retur
 
 class UB2NPCClassInfoBox* AB2MonsterSpawnPool::GetMobClassInfoBox()
 {
-	// ¿¾³¯ ¿¾Àû¿¡ InfoAsset Á¢±Ù ÄÚµåµéÀÌ Á¤¸® ¾ÈµÇ¾î ÀÖ´ø ½ÃÀı¿¡ ÄÚµå°¡ Á» ´õ ±æ¾ú¾î¼­ ÀÌ·¸°Ô µû·Î ºüÁ® ÀÖ´Â °Å ¤Ñ¤Ñ;
+	// ì˜›ë‚  ì˜›ì ì— InfoAsset ì ‘ê·¼ ì½”ë“œë“¤ì´ ì •ë¦¬ ì•ˆë˜ì–´ ìˆë˜ ì‹œì ˆì— ì½”ë“œê°€ ì¢€ ë” ê¸¸ì—ˆì–´ì„œ ì´ë ‡ê²Œ ë”°ë¡œ ë¹ ì ¸ ìˆëŠ” ê±° ã…¡ã…¡;
 	UB2NPCClassInfoBox* ClassInfoBox = StaticFindMobClassInfoBox(this);
 	BII_CHECK(ClassInfoBox);
 
@@ -191,7 +191,7 @@ void AB2MonsterSpawnPool::PostLoad()
 {
 	Super::PostLoad();
 	#if WITH_EDITOR
-		// È¤½Ã¶óµµ ·¹º§ ÀÌ¸§ ¹Ù²Ù¸é redirector Ã³¸®°¡ ¾ÈµÇ¹Ç·Î ¿©±â¼­µµ °Ë»ç.
+		// í˜¹ì‹œë¼ë„ ë ˆë²¨ ì´ë¦„ ë°”ê¾¸ë©´ redirector ì²˜ë¦¬ê°€ ì•ˆë˜ë¯€ë¡œ ì—¬ê¸°ì„œë„ ê²€ì‚¬.
 		UWorld* TheWorld = GetWorld();
 		for (FMonsterSpawnPoolPerStageSettings& ThisPerStageSet : PerStageSettings)
 		{
@@ -210,9 +210,9 @@ void AB2MonsterSpawnPool::PreSave(FObjectPreSaveContext SaveContext)
 
 const FMonsterSpawnPoolPerStageSettings* AB2MonsterSpawnPool::GetDesiredStageSetting(int32 InClientStageId, EStageDifficulty DifficultyLevel, bool bFallBackToLowerDifficulty)
 {
-	// GetDesiredSpawnPoolOfSettingFromList ¿¡¼­µµ ºñ½ÁÇÑ ±â´ÉÀ» ÇÔ. AB2MonsterSpawnPool ¾×ÅÍ¸¦ ´ë»óÀ¸·Î
+	// GetDesiredSpawnPoolOfSettingFromList ì—ì„œë„ ë¹„ìŠ·í•œ ê¸°ëŠ¥ì„ í•¨. AB2MonsterSpawnPool ì•¡í„°ë¥¼ ëŒ€ìƒìœ¼ë¡œ
 
-	TArray<FMonsterSpawnPoolPerStageSettings*> FoundSettingOfClientStageId; // StageNum ¸¸ ¸Â´Â °Å ¸ÕÀú °É·¯³¿.
+	TArray<FMonsterSpawnPoolPerStageSettings*> FoundSettingOfClientStageId; // StageNum ë§Œ ë§ëŠ” ê±° ë¨¼ì € ê±¸ëŸ¬ëƒ„.
 	for (int32 SI = 0; SI < PerStageSettings.Num(); ++SI)
 	{
 		FMonsterSpawnPoolPerStageSettings& ThisSetting = PerStageSettings[SI];
@@ -223,21 +223,21 @@ const FMonsterSpawnPoolPerStageSettings* AB2MonsterSpawnPool::GetDesiredStageSet
 	}
 	if (FoundSettingOfClientStageId.Num() > 0)
 	{
-		// ³ôÀº ³­ÀÌµµºÎÅÍ iteration ÇÏµµ·Ï Á¤·Ä
+		// ë†’ì€ ë‚œì´ë„ë¶€í„° iteration í•˜ë„ë¡ ì •ë ¬
 		FoundSettingOfClientStageId.Sort([](const FMonsterSpawnPoolPerStageSettings& A, const FMonsterSpawnPoolPerStageSettings& B) { return A.TargetDifficultyLevel > B.TargetDifficultyLevel; });
 
 		for (FMonsterSpawnPoolPerStageSettings* ThisSetting : FoundSettingOfClientStageId)
 		{
 			if (
 				((EStageDifficulty)ThisSetting->TargetDifficultyLevel == DifficultyLevel) ||
-				(bFallBackToLowerDifficulty && (EStageDifficulty)ThisSetting->TargetDifficultyLevel < DifficultyLevel) // Á¤È®È÷ ¶È°°Àº ³­ÀÌµµ ¼¼ÆÃÀÌ ¾øÀ» ¶§ °¡Àå °¡±î¿î º¸´Ù ³·Àº ³­ÀÌµµ·Î Æú¹é.
+				(bFallBackToLowerDifficulty && (EStageDifficulty)ThisSetting->TargetDifficultyLevel < DifficultyLevel) // ì •í™•íˆ ë˜‘ê°™ì€ ë‚œì´ë„ ì„¸íŒ…ì´ ì—†ì„ ë•Œ ê°€ì¥ ê°€ê¹Œìš´ ë³´ë‹¤ ë‚®ì€ ë‚œì´ë„ë¡œ í´ë°±.
 				)
 			{
 				return ThisSetting;
 			}
 		}
-		// ¾ÆÁ÷µµ ¸®ÅÏÀ» ¸øÇß´Ù¸é ´õ ³ôÀº ³­ÀÌµµ ¼¼ÆÃ¸¸ ÀÖ´ø °ÍÀÎµ¥ ±×°É·Î¶óµµ °¡Àå °¡±î¿î °É·Î Æú¹é ½Ãµµ.. ÇÏ´Â °Ç ÀÏ´Ü º¸·ùÇÏÀÚ.. 
-		// Lower ¿¡¸¸ Àû¿ë. ´Ù¸¥ °÷¿¡µµ lower ·Î¸¸ fallback ÇÏ´Â ÄÚµå°¡ ÀÖ±âµµ ÇÏ°í.
+		// ì•„ì§ë„ ë¦¬í„´ì„ ëª»í–ˆë‹¤ë©´ ë” ë†’ì€ ë‚œì´ë„ ì„¸íŒ…ë§Œ ìˆë˜ ê²ƒì¸ë° ê·¸ê±¸ë¡œë¼ë„ ê°€ì¥ ê°€ê¹Œìš´ ê±¸ë¡œ í´ë°± ì‹œë„.. í•˜ëŠ” ê±´ ì¼ë‹¨ ë³´ë¥˜í•˜ì.. 
+		// Lower ì—ë§Œ ì ìš©. ë‹¤ë¥¸ ê³³ì—ë„ lower ë¡œë§Œ fallback í•˜ëŠ” ì½”ë“œê°€ ìˆê¸°ë„ í•˜ê³ .
 		//if (bFallBackToLowerDifficulty)
 		//{
 		//	return FoundSettingOfClientStageId[FoundSettingOfClientStageId.Num() - 1];
@@ -270,7 +270,7 @@ const FMonsterSpawnPoolWaveSettings* AB2MonsterSpawnPool::GetStageWaveSetting(in
 void AB2MonsterSpawnPool::GetAllStageSummonSetting(TArray<FMonsterSpawnPoolSummonSettings>& OutMatchingSettings, int32 InClientStageId, EStageDifficulty DifficultyLevel, int32 SummonIndex)
 {
 	const FMonsterSpawnPoolPerStageSettings* StageSetting = GetDesiredStageSetting(InClientStageId, DifficultyLevel);
-	// ÀÌ¹ø ½ºÅ×ÀÌÁö¿¡¼­ Æ¯º°È÷ ¿À¹ö¶óÀÌµùÇÑ ¼¼ÆÃ ¸ÕÀú
+	// ì´ë²ˆ ìŠ¤í…Œì´ì§€ì—ì„œ íŠ¹ë³„íˆ ì˜¤ë²„ë¼ì´ë”©í•œ ì„¸íŒ… ë¨¼ì €
 	if (StageSetting)
 	{
 		for (int32 SI = 0; SI < StageSetting->SummonSettings.Num(); ++SI)
@@ -278,13 +278,13 @@ void AB2MonsterSpawnPool::GetAllStageSummonSetting(TArray<FMonsterSpawnPoolSummo
 			if (StageSetting->SummonSettings[SI].SummonIndex == SummonIndex)
 			{
 				FMonsterSpawnPoolSummonSettings NewSetting = StageSetting->SummonSettings[SI];
-				NewSetting.TransientMySettingIndex = SI; // ¼ÒÈ¯ ¸÷ ¼ö Á¦ÇÑ¿¡ Á» »ç¿ëÇÒ ÀÏÀÌ ÀÖ¾î¼­ ¼¼ÆÃ ÀÎµ¦½º¸¦ Àá±ñ ÀúÀåÇØ µĞ´Ù..
+				NewSetting.TransientMySettingIndex = SI; // ì†Œí™˜ ëª¹ ìˆ˜ ì œí•œì— ì¢€ ì‚¬ìš©í•  ì¼ì´ ìˆì–´ì„œ ì„¸íŒ… ì¸ë±ìŠ¤ë¥¼ ì ê¹ ì €ì¥í•´ ë‘”ë‹¤..
 				OutMatchingSettings.Add(NewSetting);
 			}
 		}
 	}
 
-	// ¸¸ÀÏ ½ºÅ×ÀÌÁö ¼¼ÆÃ¿¡¼­ Ã£Àº °Ô ¾ø´Ù¸é °øÅë ¿¡¼Â ¼¼ÆÃ¿¡¼­ Ã£´Â´Ù.
+	// ë§Œì¼ ìŠ¤í…Œì´ì§€ ì„¸íŒ…ì—ì„œ ì°¾ì€ ê²Œ ì—†ë‹¤ë©´ ê³µí†µ ì—ì…‹ ì„¸íŒ…ì—ì„œ ì°¾ëŠ”ë‹¤.
 	if (OutMatchingSettings.Num() == 0)
 	{
 		const UB2SummonSettingAsset* SettingAssetObj = SummonSettingAsset ? Cast<UB2SummonSettingAsset>(SummonSettingAsset->GetDefaultObject()) : NULL;
@@ -296,7 +296,7 @@ void AB2MonsterSpawnPool::GetAllStageSummonSetting(TArray<FMonsterSpawnPoolSummo
 				if ((*FinalSettingArrayFromAsset)[SI].SummonIndex == SummonIndex)
 				{
 					FMonsterSpawnPoolSummonSettings NewSetting = (*FinalSettingArrayFromAsset)[SI];
-					NewSetting.TransientMySettingIndex = SI; // ¼ÒÈ¯ ¸÷ ¼ö Á¦ÇÑ¿¡ Á» »ç¿ëÇÒ ÀÏÀÌ ÀÖ¾î¼­ ¼¼ÆÃ ÀÎµ¦½º¸¦ Àá±ñ ÀúÀåÇØ µĞ´Ù..
+					NewSetting.TransientMySettingIndex = SI; // ì†Œí™˜ ëª¹ ìˆ˜ ì œí•œì— ì¢€ ì‚¬ìš©í•  ì¼ì´ ìˆì–´ì„œ ì„¸íŒ… ì¸ë±ìŠ¤ë¥¼ ì ê¹ ì €ì¥í•´ ë‘”ë‹¤..
 					OutMatchingSettings.Add(NewSetting);
 				}
 			}
@@ -306,7 +306,7 @@ void AB2MonsterSpawnPool::GetAllStageSummonSetting(TArray<FMonsterSpawnPoolSummo
 
 int32 AB2MonsterSpawnPool::GetStageWaveNumBySettingIndex(int32 SettingIndex)
 {
-	// °Á ÀÎµ¦½º ¸ÂÃã
+	// ê± ì¸ë±ìŠ¤ ë§ì¶¤
 	if (SettingIndex >= 0 && SettingIndex < PerStageSettings.Num())
 	{
 		return PerStageSettings[SettingIndex].WaveSettings.Num();
@@ -333,7 +333,7 @@ int32 AB2MonsterSpawnPool::GetTargetDifficultyLevelBySettingIndex(int32 SettingI
 
 bool AB2MonsterSpawnPool::HasSetupFor(int32 InTestClientStageId, EStageDifficulty InTestDifficulty) const
 {
-	// Á¤È®È÷ InTestStageNum °ú InTestDifficulty ¿¡ ÇØ´çÇÏ´Â ¼¼ÆÃÀÌ ÀÖ´ÂÁö °Ë»ç
+	// ì •í™•íˆ InTestStageNum ê³¼ InTestDifficulty ì— í•´ë‹¹í•˜ëŠ” ì„¸íŒ…ì´ ìˆëŠ”ì§€ ê²€ì‚¬
 	for (const FMonsterSpawnPoolPerStageSettings& ThisStageSetting : PerStageSettings)
 	{
 		if (ThisStageSetting.TargetStageNum == InTestClientStageId && ThisStageSetting.TargetDifficultyLevel == static_cast<int32>(InTestDifficulty))
@@ -350,7 +350,7 @@ void AB2MonsterSpawnPool::BeginPlay()
 
 	BeginPlaySetup();
 
-	// ¿©±â Ã³À½ spawn ÇÏ¸é¼­ Async ·Îµù ¿Ï·áµÇ´Â °Íµµ ÀÖ°í ÇÒ °Í.
+	// ì—¬ê¸° ì²˜ìŒ spawn í•˜ë©´ì„œ Async ë¡œë”© ì™„ë£Œë˜ëŠ” ê²ƒë„ ìˆê³  í•  ê²ƒ.
 	if (AmIActiveForCurrentWorld())
 	{
 		B2GMLoadingProgCollector::StepCustom(0.5f);
@@ -394,7 +394,7 @@ void AB2MonsterSpawnPool::BeginPlaySetup()
 			}
 		}
 		else
-		{// ÀÌ¹ø ½ºÅ×ÀÌÁö¿¡ ¾²ÀÏ °Å ¾Æ´Ï¸é ¸ğµÎ ºñÈ°¼ºÈ­.
+		{// ì´ë²ˆ ìŠ¤í…Œì´ì§€ì— ì“°ì¼ ê±° ì•„ë‹ˆë©´ ëª¨ë‘ ë¹„í™œì„±í™”.
 			for (int32 CI = 0; CI < AllComps.Num(); ++CI)
 			{
 				UPrimitiveComponent* ThisComp = Cast<UPrimitiveComponent>(AllComps[CI]);
@@ -415,10 +415,10 @@ void AB2MonsterSpawnPool::BeginPlaySetup()
 			const int32 StageWaveNum = GetStageWaveNum(CurrentClientStageId, (EStageDifficulty)CurrentDifficultyLevel);
 			for (int32 WI = 0; WI < StageWaveNum; ++WI)
 			{
-				RuntimeWaveStates.Add(FMonsterSpawnPoolRuntimeWaveState()); //RuntimeWaveStates.Num()ÀÌ GetStageWaveNum()ÀÌ¶û ´Ù¸¦ ¼ö ¾øÀ½. DestroyAllActiveWaves()¿¡¼­ RuntimeWaveStates array¸¦ ÃÊ±âÈ­.
+				RuntimeWaveStates.Add(FMonsterSpawnPoolRuntimeWaveState()); //RuntimeWaveStates.Num()ì´ GetStageWaveNum()ì´ë‘ ë‹¤ë¥¼ ìˆ˜ ì—†ìŒ. DestroyAllActiveWaves()ì—ì„œ RuntimeWaveStates arrayë¥¼ ì´ˆê¸°í™”.
 	
-				//SpawnWave() ¿¡¼­ FinalSpawnNum°ªÀ» °áÁ¤ÇÏ´ø °ÍÀ» ÀÌÂÊ¿¡¼­ ¹Ì¸® ±¸ÇØ ³õ´Â´Ù.
-				//Wave¿¡ µîÀåÇÒ ¸÷ÀÇ ¼ö¸¦ ÆíÇÏ°Ô ±¸ÇÏ±â À§ÇÔ.
+				//SpawnWave() ì—ì„œ FinalSpawnNumê°’ì„ ê²°ì •í•˜ë˜ ê²ƒì„ ì´ìª½ì—ì„œ ë¯¸ë¦¬ êµ¬í•´ ë†“ëŠ”ë‹¤.
+				//Waveì— ë“±ì¥í•  ëª¹ì˜ ìˆ˜ë¥¼ í¸í•˜ê²Œ êµ¬í•˜ê¸° ìœ„í•¨.
 				const FMonsterSpawnPoolWaveSettings* WaveSetting = GetStageWaveSetting(CurrentClientStageId, (EStageDifficulty)CurrentDifficultyLevel, WI);
 				if (WaveSetting)
 				{
@@ -435,12 +435,12 @@ void AB2MonsterSpawnPool::BeginPlaySetup()
 	
 			RegisterComponentOverlapCallback();
 			
-			ConditionalBeginWaveCheck(); // Beginning Á¶°ÇÀÇ wave ½ÃÀÛ. ÀÌ°É º°µµ·Î call ÇÏ°Ô µÇ´Â °æ¿ì BeginPlay ´Â Áö³­ ÈÄ¿¡ ÇØ¾ß.
+			ConditionalBeginWaveCheck(); // Beginning ì¡°ê±´ì˜ wave ì‹œì‘. ì´ê±¸ ë³„ë„ë¡œ call í•˜ê²Œ ë˜ëŠ” ê²½ìš° BeginPlay ëŠ” ì§€ë‚œ í›„ì— í•´ì•¼.
 		}
 }
 
 void AB2MonsterSpawnPool::ConditionalBeginWaveCheck()
-{// ÀÏ¹İÀûÀ¸·Î´Â ±âº»ÀûÀÎ BeginPlay Á÷ÈÄ¿¡ Ã¹ wave ½ÇÇàÀ» °Ë»çÇÏ°Ô µÈ´Ù. ¾îÂ¼´Ù ÇÊ¿äÇÑ ÀûÀÌ ÀÖ¾î¼­ Áßº¹ ÁøÀÔÇÒ ¼ö ÀÖ°Ô ÇØ µÒ.
+{// ì¼ë°˜ì ìœ¼ë¡œëŠ” ê¸°ë³¸ì ì¸ BeginPlay ì§í›„ì— ì²« wave ì‹¤í–‰ì„ ê²€ì‚¬í•˜ê²Œ ëœë‹¤. ì–´ì©Œë‹¤ í•„ìš”í•œ ì ì´ ìˆì–´ì„œ ì¤‘ë³µ ì§„ì…í•  ìˆ˜ ìˆê²Œ í•´ ë‘ .
 	if (AmIActiveForCurrentWorld() && !bCheckedForBeginWave)
 	{
 		bCheckedForBeginWave = true;
@@ -450,7 +450,7 @@ void AB2MonsterSpawnPool::ConditionalBeginWaveCheck()
 
 bool AB2MonsterSpawnPool::AmIActiveForCurrentWorld()
 {
-	// PreBeginPlay ÀÌÈÄ ½ÃÁ¡¿¡ »ç¿ë °¡´É.
+	// PreBeginPlay ì´í›„ ì‹œì ì— ì‚¬ìš© ê°€ëŠ¥.
 	ABladeIIGameMode* B2GM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(this));
 	if (B2GM && B2GM->GetActiveSpawnPool() == this)
 	{
@@ -502,7 +502,7 @@ void AB2MonsterSpawnPool::Destroyed()
 	Super::Destroyed();
 }
 
-void AB2MonsterSpawnPool::DestroyAllActiveWaves() // ForceClearWaves ¿Í´Â ´Ù¸¥ »óÅÂ Reset ¸ñÀûÀ¸·Î »ç¿ëÇÏ´Â °Í.
+void AB2MonsterSpawnPool::DestroyAllActiveWaves() // ForceClearWaves ì™€ëŠ” ë‹¤ë¥¸ ìƒíƒœ Reset ëª©ì ìœ¼ë¡œ ì‚¬ìš©í•˜ëŠ” ê²ƒ.
 {
 	FMobSpawnedBirthplaceInfo NullBirthplaceInfo;
 
@@ -513,7 +513,7 @@ void AB2MonsterSpawnPool::DestroyAllActiveWaves() // ForceClearWaves ¿Í´Â ´Ù¸¥ »
 		{
 			ABladeIICharacter* ThisFellow = CurrState.FellowsInThisWave[FI];
 			if (ThisFellow)
-			{ // ÀÌÂÊÀ¸·Î ½ÅÈ£ ¾È ¿Àµµ·Ï ÇÑ ÈÄ¿¡ Á×ÀÓ.
+			{ // ì´ìª½ìœ¼ë¡œ ì‹ í˜¸ ì•ˆ ì˜¤ë„ë¡ í•œ í›„ì— ì£½ì„.
 				ThisFellow->SetBirthPlace(NullBirthplaceInfo);
 				ThisFellow->Suicide();
 			}
@@ -561,8 +561,8 @@ void AB2MonsterSpawnPool::GetSpawnNPCAssets(const int32 WaveIndex, TArray<FB2Asy
 {
 	TArray<FCombinedNPCClassID> NPCClassIDs;
 
-	// GetAsyncRequestInfoFromNPCIds ¿¡¼­´Â AddUnique ¸¦ ÇÏÁö ¾Ê´Â´Ù. 
-	// ¸¸ÀÏ ÀÌ°É ¹İº¹ »ç¿ëÇÏ¸é¼­ RequestAsset µéÀ» ¸ğÀ¸·Á´Â ÀÇµµÀÌ¸é ÀÌ°É »ç¿ëÇÏ´Â ÂÊ¿¡¼­ Áßº¹µÇÁö ¾Êµµ·Ï °É·¯³»µµ·Ï
+	// GetAsyncRequestInfoFromNPCIds ì—ì„œëŠ” AddUnique ë¥¼ í•˜ì§€ ì•ŠëŠ”ë‹¤. 
+	// ë§Œì¼ ì´ê±¸ ë°˜ë³µ ì‚¬ìš©í•˜ë©´ì„œ RequestAsset ë“¤ì„ ëª¨ìœ¼ë ¤ëŠ” ì˜ë„ì´ë©´ ì´ê±¸ ì‚¬ìš©í•˜ëŠ” ìª½ì—ì„œ ì¤‘ë³µë˜ì§€ ì•Šë„ë¡ ê±¸ëŸ¬ë‚´ë„ë¡
 
 	GetWaveNPCIDs(WaveIndex, NPCClassIDs);
 	if (UB2NPCClassInfoBox* NPCInfoBox = GetMobClassInfoBox())
@@ -571,21 +571,21 @@ void AB2MonsterSpawnPool::GetSpawnNPCAssets(const int32 WaveIndex, TArray<FB2Asy
 	}
 }
 
-/** ·¹º§ ½ÃÀÛ ÀÌÈÄ¿¡ Async ·ÎµùÀ» ÇØµµ µÇ´Â °Í ÀÌ¿ÜÀÇ.. Ã³À½ºÎÅÍ ·ÎµùÇØ¾ß ÇÏ´Â °Å ¸ğÀ½. */
+/** ë ˆë²¨ ì‹œì‘ ì´í›„ì— Async ë¡œë”©ì„ í•´ë„ ë˜ëŠ” ê²ƒ ì´ì™¸ì˜.. ì²˜ìŒë¶€í„° ë¡œë”©í•´ì•¼ í•˜ëŠ” ê±° ëª¨ìŒ. */
 void AB2MonsterSpawnPool::GetEssentialPreloadNPCIDs(TArray<FCombinedNPCClassID>& OutNPCIDs)
 {
 	const EStageDifficulty Difficulty = static_cast<EStageDifficulty>(CurrentDifficultyLevel);
 	const int32 StageWaveNum = GetStageWaveNum(CurrentClientStageId, Difficulty);
 
-	TArray<ECharacterType> AllUsedTypes; // Class Á÷Á¢ ÁöÁ¤ ÀÌ¿ÜÀÇ °Íµé.
+	TArray<ECharacterType> AllUsedTypes; // Class ì§ì ‘ ì§€ì • ì´ì™¸ì˜ ê²ƒë“¤.
 
 	//
-	// °¢ Wave º°·Î Class ¸¦ Á÷Á¢ ¸í½ÃÇÑ °ÍµéÀº °ÔÀÓ ½ÃÀÛ ÀÌÈÄÀÇ Async ·ÎµùÀ» À§ÇØ GetWaveNPCIDs ·Î ¿Å°Ü°£ »óÅÂ.
-	// TypeMap Á¤µµ´Â Æ¯Á¤ Wave ÀÌÈÄÀÇ °ÍÀ» ¸ğÀ» ¼öµµ ÀÖÀ» µí.
-	// SummonSetting Àº Ã³À½ ÇÑÅ¥¿¡ ·ÎµùÇØ¾ß ÇÔ.
+	// ê° Wave ë³„ë¡œ Class ë¥¼ ì§ì ‘ ëª…ì‹œí•œ ê²ƒë“¤ì€ ê²Œì„ ì‹œì‘ ì´í›„ì˜ Async ë¡œë”©ì„ ìœ„í•´ GetWaveNPCIDs ë¡œ ì˜®ê²¨ê°„ ìƒíƒœ.
+	// TypeMap ì •ë„ëŠ” íŠ¹ì • Wave ì´í›„ì˜ ê²ƒì„ ëª¨ì„ ìˆ˜ë„ ìˆì„ ë“¯.
+	// SummonSetting ì€ ì²˜ìŒ í•œíì— ë¡œë”©í•´ì•¼ í•¨.
 	//
 
-	// ¼ÒÈ¯ ¼¼ÆÃÀº Wave ±¸ºĞ ¾øÀ½. ¸ğµÎ Ã¹¹æ¿¡ ·ÎµùÇØ¾ß
+	// ì†Œí™˜ ì„¸íŒ…ì€ Wave êµ¬ë¶„ ì—†ìŒ. ëª¨ë‘ ì²«ë°©ì— ë¡œë”©í•´ì•¼
 	const FMonsterSpawnPoolPerStageSettings* StageSetting = GetDesiredStageSetting(CurrentClientStageId, Difficulty);
 	if (StageSetting)
 	{
@@ -605,14 +605,14 @@ void AB2MonsterSpawnPool::GetEssentialPreloadNPCIDs(TArray<FCombinedNPCClassID>&
 	}
 
 
-	// WaveSettings ¿¡¼­ Type ¸¸ ¸ğÀ½. ½ÇÁ¦ Spawn ¼¼ÆÃ¿¡ »ç¿ëÇÑ Type µéÀ» ±Ü¾î¿À±â À§ÇØ. Type ¿¡ ¸ÊÇÎµÇ´Â Å¬·¡½º´Â ¸¹¾Æµµ Type ÀÚÃ¼´Â ¸¹Áö ¾Ê´Ù.
+	// WaveSettings ì—ì„œ Type ë§Œ ëª¨ìŒ. ì‹¤ì œ Spawn ì„¸íŒ…ì— ì‚¬ìš©í•œ Type ë“¤ì„ ê¸ì–´ì˜¤ê¸° ìœ„í•´. Type ì— ë§µí•‘ë˜ëŠ” í´ë˜ìŠ¤ëŠ” ë§ì•„ë„ Type ìì²´ëŠ” ë§ì§€ ì•Šë‹¤.
 	for (int32 WI = 0; WI < StageWaveNum; ++WI)
 	{
 		TArray<FCombinedNPCClassID> LocalTempIDs;
 		GatherAllClassAndTypesFromSetting(LocalTempIDs, AllUsedTypes, GetStageWaveSetting(CurrentClientStageId, Difficulty, WI), NULL);
 	}
 
-	// ClassEnum ¿Ü¿¡ Type À¸·Î ÁöÁ¤ÇÑ °Íµé¿¡ ´ëÇØ ÇÊ¿äÇÑ °Íµé Ã£¾Æ³»±â.
+	// ClassEnum ì™¸ì— Type ìœ¼ë¡œ ì§€ì •í•œ ê²ƒë“¤ì— ëŒ€í•´ í•„ìš”í•œ ê²ƒë“¤ ì°¾ì•„ë‚´ê¸°.
 	UB2MonsterClassTypeMap* TypeMapAsset = TypeMapClassAsset ? Cast<UB2MonsterClassTypeMap>(TypeMapClassAsset->GetDefaultObject()) : NULL;
 	if (bUseOwnTypeMapInfo || TypeMapAsset)
 	{
@@ -622,7 +622,7 @@ void AB2MonsterSpawnPool::GetEssentialPreloadNPCIDs(TArray<FCombinedNPCClassID>&
 		{
 			FMonsterTypeMapSingleInfo& CurrTypeMapInfo = FinalTypeMapInfoArray[TMI];
 
-			// TypeMap ¿¡ µî·ÏµÈ °Íµé Áß ½ÇÁ¦·Î spawn pool ¿¡ ¼¼ÆÃÈù type ÀÎ °æ¿ì¸¸. TypeMap ¿¡ µî·ÏµÈ ÀüÃ¼¸¦ °¡Á®¿À´Â °Å³ª ´ëÃ¼·Î´Â Â÷ÀÌ ¾ø°ÚÁö¸¸.
+			// TypeMap ì— ë“±ë¡ëœ ê²ƒë“¤ ì¤‘ ì‹¤ì œë¡œ spawn pool ì— ì„¸íŒ…íŒ type ì¸ ê²½ìš°ë§Œ. TypeMap ì— ë“±ë¡ëœ ì „ì²´ë¥¼ ê°€ì ¸ì˜¤ëŠ” ê±°ë‚˜ ëŒ€ì²´ë¡œëŠ” ì°¨ì´ ì—†ê² ì§€ë§Œ.
 			for (int32 UTI = 0; UTI < AllUsedTypes.Num(); ++UTI)
 			{
 				if (CurrTypeMapInfo.CharacterType == AllUsedTypes[UTI])
@@ -635,38 +635,38 @@ void AB2MonsterSpawnPool::GetEssentialPreloadNPCIDs(TArray<FCombinedNPCClassID>&
 	}
 }
 
-/** MonsterSpawnPool À» ÅëÇÑ NPCClass ÀÇ Preload ½ÃÁ¡ ÀÌÈÄ Async ·Îµù °³¼ö Á¦ÇÑ ¼³Á¤.
- * ÀÌ ¼³Á¤À» DeviceProfile ¿¡ ³ÖÀ» ¼ö ÀÖÀ½. */
+/** MonsterSpawnPool ì„ í†µí•œ NPCClass ì˜ Preload ì‹œì  ì´í›„ Async ë¡œë”© ê°œìˆ˜ ì œí•œ ì„¤ì •.
+ * ì´ ì„¤ì •ì„ DeviceProfile ì— ë„£ì„ ìˆ˜ ìˆìŒ. */
 static TAutoConsoleVariable<int32> CVarPostGameLoadNPCAsyncLoadLimit(
 	TEXT("r.PostGameLoadNPCAsyncLoadLimit"),
 	//////////
-	3, // ¼³Á¤¿¡ ´ëÇÑ Å×½ºÆ® °á°ú http://172.168.2.105:8090/pages/viewpage.action?pageId=4822058
+	3, // ì„¤ì •ì— ëŒ€í•œ í…ŒìŠ¤íŠ¸ ê²°ê³¼ http://172.168.2.105:8090/pages/viewpage.action?pageId=4822058
 	//////////
 	TEXT("Limit the maximum number of NPCClass data that can be loaded after world BeginPlay, in asynchronous manner."),
 	ECVF_Default);
 
 void AB2MonsterSpawnPool::PreloadPoolMonsters()
 {
-	// ¸Ê ·Îµù ½ÃÁ¡¿¡ ¹Ì¸® ·ÎµùÇØ ³õÀ» °Íµé.
-	// ¿©±â¼­ ·Îµù ¾È ÇÑ °ÍµéÀº °ÔÀÓ ½ÃÀÛ ÀÌÈÄ ¹é±×¶ó¿îµå ·ÎµùÀ» ÇÏ°íÀÚ ÇÏ´Â ÀÇµµ.
+	// ë§µ ë¡œë”© ì‹œì ì— ë¯¸ë¦¬ ë¡œë”©í•´ ë†“ì„ ê²ƒë“¤.
+	// ì—¬ê¸°ì„œ ë¡œë”© ì•ˆ í•œ ê²ƒë“¤ì€ ê²Œì„ ì‹œì‘ ì´í›„ ë°±ê·¸ë¼ìš´ë“œ ë¡œë”©ì„ í•˜ê³ ì í•˜ëŠ” ì˜ë„.
 
 	TArray<FCombinedNPCClassID> PreloadNPCIDs;
 
 	GetEssentialPreloadNPCIDs(PreloadNPCIDs);
 
-	// Àü¿ª ¼³Á¤À¸·Î Async ·ÎµùÀ» ÇÒ ÃÖ¼Ò wave index ÀÌÀü±îÁö ±Ü¾î¿À°í.. 0 Àº Ã·ºÎÅÍ ÇÊ¿äÇÒ Å×´Ï ±âº» Æ÷ÇÔ
+	// ì „ì—­ ì„¤ì •ìœ¼ë¡œ Async ë¡œë”©ì„ í•  ìµœì†Œ wave index ì´ì „ê¹Œì§€ ê¸ì–´ì˜¤ê³ .. 0 ì€ ì²¨ë¶€í„° í•„ìš”í•  í…Œë‹ˆ ê¸°ë³¸ í¬í•¨
 	const int32 BasicAsyncBeginWave = FMath::Max(GetBasicAsyncLoadBeginWave(), 1);
 	for (int32 Wave = 0; Wave < BasicAsyncBeginWave; Wave++)
 		GetWaveNPCIDs(Wave, PreloadNPCIDs);
 
-	// ¿©±â±îÁö°¡ ±âº»ÀûÀ¸·Î ±Ü¾î¸ğÀº Preload Å¬·¡½ºµé
+	// ì—¬ê¸°ê¹Œì§€ê°€ ê¸°ë³¸ì ìœ¼ë¡œ ê¸ì–´ëª¨ì€ Preload í´ë˜ìŠ¤ë“¤
 	const TArray<FCombinedNPCClassID> BasicAsummedPreloadIDs = PreloadNPCIDs;
 
 	//
-	// Ãß°¡ ±âÁØÀ» ÅëÇØ Async ¹é±×¶ó¿îµå ·ÎµùÀ» ÇØ¾ß ÇÏ´Â °Ô ±âÁØ ÀÌ»óÀ¸·Î ¸¹À¸¸é ±× ÀÌÀü±îÁö´Â Preload ¿¡ Æ÷ÇÔ½ÃÅ²´Ù.
+	// ì¶”ê°€ ê¸°ì¤€ì„ í†µí•´ Async ë°±ê·¸ë¼ìš´ë“œ ë¡œë”©ì„ í•´ì•¼ í•˜ëŠ” ê²Œ ê¸°ì¤€ ì´ìƒìœ¼ë¡œ ë§ìœ¼ë©´ ê·¸ ì´ì „ê¹Œì§€ëŠ” Preload ì— í¬í•¨ì‹œí‚¨ë‹¤.
 	//
 
-	// ÀÏ´Ü ³¡±îÁö ÇÊ¿äÇÑ °Ô ¾ó¸¶³ª µÇ´ÂÁö ±Ü¾î¿È. ÈÄ¹İ wave ¿¡ ÇÊ¿äÇÑ °ÍÀÏ¼ö·Ï ±Ü¾î¿Â ¸®½ºÆ®ÀÇ µÚ¿¡ À§Ä¡.
+	// ì¼ë‹¨ ëê¹Œì§€ í•„ìš”í•œ ê²Œ ì–¼ë§ˆë‚˜ ë˜ëŠ”ì§€ ê¸ì–´ì˜´. í›„ë°˜ wave ì— í•„ìš”í•œ ê²ƒì¼ìˆ˜ë¡ ê¸ì–´ì˜¨ ë¦¬ìŠ¤íŠ¸ì˜ ë’¤ì— ìœ„ì¹˜.
 	const int32 MaxWaveNum = GetStageWaveNum(CurrentClientStageId, static_cast<EStageDifficulty>(CurrentDifficultyLevel));
 	for (int32 Wave = BasicAsyncBeginWave; Wave < MaxWaveNum; Wave++)
 		GetWaveNPCIDs(Wave, PreloadNPCIDs);
@@ -674,17 +674,17 @@ void AB2MonsterSpawnPool::PreloadPoolMonsters()
 	IConsoleVariable* CVarAsyncLoadLimit = IConsoleManager::Get().FindConsoleVariable(TEXT("r.PostGameLoadNPCAsyncLoadLimit"));
 	const int32 AsyncLoadLimit = CVarAsyncLoadLimit ? FMath::Max(CVarAsyncLoadLimit->GetInt(), 0) : 0;
 
-	// CVar Á¦ÇÑ ÀÌÀüÀÇ async ´ë»ó °³¼ö
+	// CVar ì œí•œ ì´ì „ì˜ async ëŒ€ìƒ ê°œìˆ˜
 	const int32 BasicAssumedAsyncNum = PreloadNPCIDs.Num() - BasicAsummedPreloadIDs.Num();
-	// CVar Á¦ÇÑÀÌ °É¸° async ´ë»ó °³¼ö
+	// CVar ì œí•œì´ ê±¸ë¦° async ëŒ€ìƒ ê°œìˆ˜
 	int32 FinalAsyncReserveNum = FMath::Min(BasicAssumedAsyncNum, AsyncLoadLimit);
 
-	// ÀÏ´Ü ·¹ÀÌµå ÁøÀÔÀÌ ¾ÈµÇ´Â ¹®Á¦ ¶§¹®¿¡ ÀÓ½Ã ÁÖ¼®Ã³¸®.
-	// ²À ¹°¾îºÁ¾ßÇÔ.
+	// ì¼ë‹¨ ë ˆì´ë“œ ì§„ì…ì´ ì•ˆë˜ëŠ” ë¬¸ì œ ë•Œë¬¸ì— ì„ì‹œ ì£¼ì„ì²˜ë¦¬.
+	// ê¼­ ë¬¼ì–´ë´ì•¼í•¨.
 	//check(PreloadNPCIDs.Num() > FinalAsyncReserveNum);
 
 	ReservedNPCClassIDsForAsyncLoad.Empty();
-	// Çã°¡µÈ °¹¼ö¸¸Å­ µÚ¿¡¼­ºÎÅÍ Â÷·Ê´ë·Î Reserved ¸®½ºÆ®¿¡ ³Ö´Âµ¥ Ã¹ ¿¬Ãâ µ¹¾Æ°¡´Â ¿ÍÁß¿¡ ¿Ï·á¸¦ ¾î·Æ°Ô ÇÏ´Â (¹«°Å¿î) Blacklist ´Â Á¦¿Ü½ÃÅ²´Ù.
+	// í—ˆê°€ëœ ê°¯ìˆ˜ë§Œí¼ ë’¤ì—ì„œë¶€í„° ì°¨ë¡€ëŒ€ë¡œ Reserved ë¦¬ìŠ¤íŠ¸ì— ë„£ëŠ”ë° ì²« ì—°ì¶œ ëŒì•„ê°€ëŠ” ì™€ì¤‘ì— ì™„ë£Œë¥¼ ì–´ë µê²Œ í•˜ëŠ” (ë¬´ê±°ìš´) Blacklist ëŠ” ì œì™¸ì‹œí‚¨ë‹¤.
 	int32 ReservedCount = 0;
 	for (int32 ChkIdx = PreloadNPCIDs.Num() - 1; ChkIdx >= BasicAsummedPreloadIDs.Num(); --ChkIdx)
 	{
@@ -702,19 +702,19 @@ void AB2MonsterSpawnPool::PreloadPoolMonsters()
 	}
 	check(PreloadNPCIDs.Num() >= BasicAsummedPreloadIDs.Num());
 
-	// ÃÖÁ¾ÀûÀ¸·Î ÃëÇÕµÈ Preload ¸®½ºÆ®·Î ·Îµù ½ÃÀÛ.
+	// ìµœì¢…ì ìœ¼ë¡œ ì·¨í•©ëœ Preload ë¦¬ìŠ¤íŠ¸ë¡œ ë¡œë”© ì‹œì‘.
 	TArray<FB2AsyncRequestInfo> PreloadAssets;
 	if (UB2NPCClassInfoBox* NPCInfoBox = GetMobClassInfoBox())
 	{
 		NPCInfoBox->GetAsyncRequestInfoFromNPCIds(PreloadNPCIDs, PreloadAssets);
-		// TryAsyncLoad ¸¦ ÇÏÁö¸¸ ÀÌ°É »ç¿ëÇÏ´Â °Ô ¸Ê ·Îµù ½ÃÁ¡ÀÌ¶ó °á±¹ Flush ³»Áö´Â ºñ½º¹«¸®ÇÏ°Ô µÇ¾î ½ÃÀÛ Àü¿¡ ·ÎµùµÉ °Í.
+		// TryAsyncLoad ë¥¼ í•˜ì§€ë§Œ ì´ê±¸ ì‚¬ìš©í•˜ëŠ” ê²Œ ë§µ ë¡œë”© ì‹œì ì´ë¼ ê²°êµ­ Flush ë‚´ì§€ëŠ” ë¹„ìŠ¤ë¬´ë¦¬í•˜ê²Œ ë˜ì–´ ì‹œì‘ ì „ì— ë¡œë”©ë  ê²ƒ.
 		NPCInfoBox->TryAsyncLoad(TEXT("MonsterPool Preload"), PreloadAssets);
 	}
 }
 
 void AB2MonsterSpawnPool::TryAsyncLoadReservedMonsters()
 {
-	// PreloadPoolMonsters ¿¡¼­ ·Îµù ¸øÇÑ NPCClass µéÀ» °ÔÀÓ ½ÃÀÛ ÀÌÈÄ¿¡ Async ¿äÃ»ÇÒ ¸ñÀû
+	// PreloadPoolMonsters ì—ì„œ ë¡œë”© ëª»í•œ NPCClass ë“¤ì„ ê²Œì„ ì‹œì‘ ì´í›„ì— Async ìš”ì²­í•  ëª©ì 
 	UB2NPCClassInfoBox* NPCInfoBox = GetMobClassInfoBox();
 	if (NPCInfoBox && ReservedNPCClassIDsForAsyncLoad.Num() > 0)
 	{
@@ -723,7 +723,7 @@ void AB2MonsterSpawnPool::TryAsyncLoadReservedMonsters()
 		const FString RequestName = FString::Printf(TEXT("MonsterPool ReservedAsyncReq %s"), *GetName());
 		NPCInfoBox->TryAsyncLoad(RequestName, AsyncLoadAssets);
 #if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
-		NPCInfoBox->DevTestMarkLastAsyncReqTime(RequestName); // ´Ù¼öÀÇ ¿äÃ»¿¡ ´ëÇØ Á¦°¢°¢ ½Ã°£ ÃøÁ¤À» ÇÏÁö ¸øÇÏ¹Ç·Î ½ÇÁ¦·Î ½Ã°£ ÃøÁ¤À» ÇÏ°íÀÚ ÇÏ´Â ½ºÆÌ¿¡¼­¸¸ »ç¿ë
+		NPCInfoBox->DevTestMarkLastAsyncReqTime(RequestName); // ë‹¤ìˆ˜ì˜ ìš”ì²­ì— ëŒ€í•´ ì œê°ê° ì‹œê°„ ì¸¡ì •ì„ í•˜ì§€ ëª»í•˜ë¯€ë¡œ ì‹¤ì œë¡œ ì‹œê°„ ì¸¡ì •ì„ í•˜ê³ ì í•˜ëŠ” ìŠ¤íŒŸì—ì„œë§Œ ì‚¬ìš©
 #endif
 		ReservedNPCClassIDsForAsyncLoad.Empty();
 	}
@@ -731,7 +731,7 @@ void AB2MonsterSpawnPool::TryAsyncLoadReservedMonsters()
 
 void AB2MonsterSpawnPool::TryAsyncLoadMonsters(int32 BeginWave, int32 EndWave /* = INDEX_NONE (== MaxWave) */)
 {
-	// PostGameLoadNPCAsyncLoadLimit µµÀÔ ÀÌÀüÀÇ ÄÚµåÀÎµ¥, È¤½Ã¶óµµ Wave ¹üÀ§¸¦ ÄÛ Âï¾î¼­ async ·ÎµùÀ» ÇÒ ÇÊ¿ä°¡ »ı±â¸é..
+	// PostGameLoadNPCAsyncLoadLimit ë„ì… ì´ì „ì˜ ì½”ë“œì¸ë°, í˜¹ì‹œë¼ë„ Wave ë²”ìœ„ë¥¼ ì½• ì°ì–´ì„œ async ë¡œë”©ì„ í•  í•„ìš”ê°€ ìƒê¸°ë©´..
 
 	TArray<FSoftObjectPath> MyPoolMonsterAssets;
 	
@@ -746,7 +746,7 @@ void AB2MonsterSpawnPool::TryAsyncLoadMonsters(int32 BeginWave, int32 EndWave /*
 	{
 		TArray<FB2AsyncRequestInfo> LocalAssetList;
 		GetSpawnNPCAssets(Wave, LocalAssetList);
-		// GetSpawnNPCAssets ¼º°İ»ó ±×ÂÊ¼­ AddUnique ÇÏ´Â °Ç ¾Æ´Ñ °Å °°¾Æ ¿©±â¼­ ¸Å Wave ¸¶´Ù AddUnique.
+		// GetSpawnNPCAssets ì„±ê²©ìƒ ê·¸ìª½ì„œ AddUnique í•˜ëŠ” ê±´ ì•„ë‹Œ ê±° ê°™ì•„ ì—¬ê¸°ì„œ ë§¤ Wave ë§ˆë‹¤ AddUnique.
 		for (FB2AsyncRequestInfo& ThisOneToAdd : LocalAssetList)
 		{
 			AsyncLoadInfoList.AddUnique(ThisOneToAdd);
@@ -765,8 +765,8 @@ void AB2MonsterSpawnPool::SetForcedPerStageSettings(int32 InClientStageNum, int3
 
 const int32 AB2MonsterSpawnPool::GetBasicAsyncLoadBeginWave()
 {
-	// ±âº»ÀûÀ¸·Î NPCClass µ¥ÀÌÅÍÀÇ Async ·ÎµùÀ» Àû¿ëÇÏ°íÀÚ ÇÏ´Â ÃÖÃÊ wave ³Ñ¹ö. ÀÌ ÀÌÀü wave ¶û typemap, summon µîÀº ÀÏÂ÷ÀûÀÎ Preload ´ë»óÀÌ µÈ´Ù.
-	// ÀÌ°Í°ú ÀÌÈÄ wave °¡ ¸ğµÎ async ·ÎµùÀÌ µÇ´Â °Ç ¾Æ´Ï°í PostGameLoadNPCAsyncLoadLimit ¿¡ ÀÇÇØ Ãß°¡·Î Preload ¸¦ ÇÏ°í ³²Àº ³ª¸ÓÁö°¡ async ´ë»óÀÌ µÈ´Ù.
+	// ê¸°ë³¸ì ìœ¼ë¡œ NPCClass ë°ì´í„°ì˜ Async ë¡œë”©ì„ ì ìš©í•˜ê³ ì í•˜ëŠ” ìµœì´ˆ wave ë„˜ë²„. ì´ ì´ì „ wave ë‘ typemap, summon ë“±ì€ ì¼ì°¨ì ì¸ Preload ëŒ€ìƒì´ ëœë‹¤.
+	// ì´ê²ƒê³¼ ì´í›„ wave ê°€ ëª¨ë‘ async ë¡œë”©ì´ ë˜ëŠ” ê±´ ì•„ë‹ˆê³  PostGameLoadNPCAsyncLoadLimit ì— ì˜í•´ ì¶”ê°€ë¡œ Preload ë¥¼ í•˜ê³  ë‚¨ì€ ë‚˜ë¨¸ì§€ê°€ async ëŒ€ìƒì´ ëœë‹¤.
 	const int32 AsyncLoadBeginWave = 1;
 
 	return AsyncLoadBeginWave;
@@ -780,7 +780,7 @@ void AB2MonsterSpawnPool::GatherAllClassAndTypesFromSetting(TArray<FCombinedNPCC
 		return;
 	}
 
-	// WaveSetting È¤Àº SummonSetting µÑ Áß ÇÏ³ª¿¡¼­ ÃÖÁ¾ ¼³Á¤µéÀ» °¡Á®¿Â´Ù.
+	// WaveSetting í˜¹ì€ SummonSetting ë‘˜ ì¤‘ í•˜ë‚˜ì—ì„œ ìµœì¢… ì„¤ì •ë“¤ì„ ê°€ì ¸ì˜¨ë‹¤.
 	const TArray<FMonsterSpawnClassInfo>& SpawnClasses = WaveSetting ? WaveSetting->SpawnClasses : SummonSetting->SpawnClasses;
 	const TArray<FMonsterSpawnTypeSpecific>& SpawnTypes = WaveSetting ? WaveSetting->SpawnCharacterTypes : SummonSetting->SpawnCharacterTypes;
 
@@ -789,14 +789,14 @@ void AB2MonsterSpawnPool::GatherAllClassAndTypesFromSetting(TArray<FCombinedNPCC
 		const FMonsterSpawnClassInfo& ThisSpawnClassInfo = SpawnClasses[SI];
 
 		if (ThisSpawnClassInfo.CharacterClassEnum != ENPCClass::ENC_End)
-		{ // CharacterClassEnum ¼³Á¤µÈ °ÍÀº ¹Ù·Î ¸®ÅÏ°ª¿¡ Ãß°¡.
+		{ // CharacterClassEnum ì„¤ì •ëœ ê²ƒì€ ë°”ë¡œ ë¦¬í„´ê°’ì— ì¶”ê°€.
 			OutCombinedIDs.AddUnique(FCombinedNPCClassID(ThisSpawnClassInfo.CharacterClassEnum, ThisSpawnClassInfo.ClassVariation));
 		}
 	}
 
 	if (SpawnClasses.Num() == 0 && SpawnTypes.Num() > 0)
 	{
-		// ÀÌ °æ¿ì TypeMap À» ¾²°Ô µÇ´Âµ¥ »ç¿ëÇÏ´Â Å¸ÀÔÀ» ¸ğµÎ ¸ğ¾Æ³õ´Â´Ù.
+		// ì´ ê²½ìš° TypeMap ì„ ì“°ê²Œ ë˜ëŠ”ë° ì‚¬ìš©í•˜ëŠ” íƒ€ì…ì„ ëª¨ë‘ ëª¨ì•„ë†“ëŠ”ë‹¤.
 		for (int32 TI = 0; TI < SpawnTypes.Num(); ++TI)
 		{
 			OutTypes.AddUnique(SpawnTypes[TI].CharacterType);
@@ -815,7 +815,7 @@ void AB2MonsterSpawnPool::GetAllExpectedDialogCodeNames(TArray<FName>& OutAllDlg
 
 			if (AB2StageEventDirector::CheckSkipForManageMode(this, CurrSetting.ManageMode, false) == EStageEventSkipType::SEST_Play)
 			{
-				// »ç¿ëÇÏ´Â »óÈ²¿¡¼­ ´Ù¸¥ µ¥¿¡¼­ ±Ü¾î¿Â °ÍµéÀ» ÇÑµ¥ ÇÕÄ¥ ¼ö ÀÖÀ¸¹Ç·Î AddUnique ÇÔ.
+				// ì‚¬ìš©í•˜ëŠ” ìƒí™©ì—ì„œ ë‹¤ë¥¸ ë°ì—ì„œ ê¸ì–´ì˜¨ ê²ƒë“¤ì„ í•œë° í•©ì¹  ìˆ˜ ìˆìœ¼ë¯€ë¡œ AddUnique í•¨.
 				OutAllDlgCode.AddUnique(CurrSetting.DialogCodeName);
 			}
 		}
@@ -828,7 +828,7 @@ bool AB2MonsterSpawnPool::CustomSpawnWave(int32 WaveNum)
 	return SpawnWave(WaveNum);
 }
 
-// ¿ùµå Àç·Îµù ¾øÀÌ SpawnPool À» Ã³À½ºÎÅÍ ´Ù½Ã »ç¿ë °¡´ÉÇÏµµ·Ï. ´Ü, ÀÌ°Í¸¸ ÇÑ´Ù°í ÇØ¼­ ·¹º§ ÀüÃ¼°¡ ¸®¼ÂµÇ´Â °Ç ¾Æ´Ô. ´Ù¸¥ °Íµéµµ Ã³¸®ÇØ¾ß ÇÒ °Í.
+// ì›”ë“œ ì¬ë¡œë”© ì—†ì´ SpawnPool ì„ ì²˜ìŒë¶€í„° ë‹¤ì‹œ ì‚¬ìš© ê°€ëŠ¥í•˜ë„ë¡. ë‹¨, ì´ê²ƒë§Œ í•œë‹¤ê³  í•´ì„œ ë ˆë²¨ ì „ì²´ê°€ ë¦¬ì…‹ë˜ëŠ” ê±´ ì•„ë‹˜. ë‹¤ë¥¸ ê²ƒë“¤ë„ ì²˜ë¦¬í•´ì•¼ í•  ê²ƒ.
 void AB2MonsterSpawnPool::ResetAssumeNoWorldLoading()
 {
 #if !UE_BUILD_SHIPPING
@@ -845,7 +845,7 @@ bool AB2MonsterSpawnPool::SummonMobs(class ABladeIICharacter* Summoner, int32 Su
 {
 	B2_SCOPED_TRACK_LOG(TEXT("AB2MonsterSpawnPool::SummonMobs"));
 
-	TArray<FMonsterSpawnPoolSummonSettings> MatchingSettings; // SummonIndex ¿¡ ´ëÇÑ ¸ğµç ¼¼ÆÃ ¸®½ºÆ®
+	TArray<FMonsterSpawnPoolSummonSettings> MatchingSettings; // SummonIndex ì— ëŒ€í•œ ëª¨ë“  ì„¸íŒ… ë¦¬ìŠ¤íŠ¸
 	GetAllStageSummonSetting(MatchingSettings, CurrentClientStageId, (EStageDifficulty)CurrentDifficultyLevel, SummonIndex);
 
 	if (MatchingSettings.Num() == 0 || Summoner == NULL || bAllWaveDoneForCurrentStage)
@@ -856,13 +856,13 @@ bool AB2MonsterSpawnPool::SummonMobs(class ABladeIICharacter* Summoner, int32 Su
 	for (int32 SI = 0; SI < MatchingSettings.Num(); ++SI)
 	{
 		FMonsterSpawnPoolSummonSettings& CurrSetting = MatchingSettings[SI];
-		// TransientMySettingIndex ¿¡ ¿ø·¡ SummonSettings ³»¿¡¼­ÀÇ ÀÎµ¦½º°¡ µé¾î°¡ ÀÖÀ½.
+		// TransientMySettingIndex ì— ì›ë˜ SummonSettings ë‚´ì—ì„œì˜ ì¸ë±ìŠ¤ê°€ ë“¤ì–´ê°€ ìˆìŒ.
 		check(CurrSetting.TransientMySettingIndex >= 0)
 
-		for (int32 MI = 0; MI < CurrSetting.SpawnNum; ++MI) // RandomSlack °°Àº °Ô µé¾î°¥ ¼öµµ..
+		for (int32 MI = 0; MI < CurrSetting.SpawnNum; ++MI) // RandomSlack ê°™ì€ ê²Œ ë“¤ì–´ê°ˆ ìˆ˜ë„..
 		{			
 			if (CountSummonedMobsBySetting(CurrSetting.TransientMySettingIndex) >= CurrSetting.MaxObjectByThisSetting){
-				continue; // Çö ¼¼ÆÃ¿¡¼­ÀÇ ÃÖ´ë summon ÇÑµµ¿¡ µµ´ŞÇÑ °æ¿ì.
+				continue; // í˜„ ì„¸íŒ…ì—ì„œì˜ ìµœëŒ€ summon í•œë„ì— ë„ë‹¬í•œ ê²½ìš°.
 			}
 
 			ABladeIICharacter* NewSummoned = SummonSingleMob(Summoner, CurrSetting, MI, MaxDistance);
@@ -870,17 +870,17 @@ bool AB2MonsterSpawnPool::SummonMobs(class ABladeIICharacter* Summoner, int32 Su
 				continue;
 			}
 
-			// (¾Æ¸¶µµ StageManager ÂÊÀ¸·Î) ÅëÁö. ¼ÒÈ¯µÈ °æ¿ì´Â WaveNum °°Àº °Ô ÀÇ¹Ì¾ø°í bIsSummoned Á¤µµ¸¸. ¹°·Ğ boss ÀÏ¸®µµ ¾ø°ÚÁö. ¤»
+			// (ì•„ë§ˆë„ StageManager ìª½ìœ¼ë¡œ) í†µì§€. ì†Œí™˜ëœ ê²½ìš°ëŠ” WaveNum ê°™ì€ ê²Œ ì˜ë¯¸ì—†ê³  bIsSummoned ì •ë„ë§Œ. ë¬¼ë¡  boss ì¼ë¦¬ë„ ì—†ê² ì§€. ã…‹
 			SpawnPoolMobSpawnClass<ABladeIICharacter*, const FMobSpawnedBirthplaceInfo&>::GetInstance().Signal(NewSummoned, FMobSpawnedBirthplaceInfo(this, -1, -1, false, true));
 
 			FMonsterSpawnPoolSummonedFellowState NewState;
-			NewState.SummonSettingIndex = CurrSetting.TransientMySettingIndex; // ¸î¹ø ¼¼ÆÃ¿¡ ÀÇÇØ spawn µÇ¾ú´ÂÁö ±â·ÏÇØ¼­ ÃßÈÄ summon Á¦ÇÑ ½Ã »ç¿ë.
+			NewState.SummonSettingIndex = CurrSetting.TransientMySettingIndex; // ëª‡ë²ˆ ì„¸íŒ…ì— ì˜í•´ spawn ë˜ì—ˆëŠ”ì§€ ê¸°ë¡í•´ì„œ ì¶”í›„ summon ì œí•œ ì‹œ ì‚¬ìš©.
 			NewState.Summoner = Summoner;
 			NewState.Summonee = NewSummoned;
 			SummonedFellows.Add(NewState);
 			
 			if (!NewSummoned->IsAlive())
-			{ // SpawningNoDamageGuard ¸¦ ÇÔ¿¡µµ ºÒ±¸ÇÏ°í Ãâ»ıµî·Ï ÀÌÀü¿¡ Á×´Â °æ¿ì°¡ ¹ß»ıÇÏ´Â °Å °°À½. ÀÌ ½ÃÁ¡¿¡ Á×¾î ÀÖÀ¸¸é °­Á¦ Á¦°Å.
+			{ // SpawningNoDamageGuard ë¥¼ í•¨ì—ë„ ë¶ˆêµ¬í•˜ê³  ì¶œìƒë“±ë¡ ì´ì „ì— ì£½ëŠ” ê²½ìš°ê°€ ë°œìƒí•˜ëŠ” ê±° ê°™ìŒ. ì´ ì‹œì ì— ì£½ì–´ ìˆìœ¼ë©´ ê°•ì œ ì œê±°.
 				OnSpawnedMonsterDead(NewSummoned, -1, -1, true);
 			}
 		}
@@ -904,17 +904,17 @@ ABladeIICharacter* AB2MonsterSpawnPool::SummonSingleMob(class ABladeIICharacter*
 	FSpawnClassFromSetting_OutParams SpawnClassParam;
 	GetSpawnClassFromSetting(SpawnClassParam, NULL, &InSetting, SummonObjIndex);
 
-	// SummonerLocation ÁÖº¯À¸·Î ¹«ÀÛÀ§ ¹æÇâ¿¡, MaxDistance °Å¸® ÀÌ³»·Î Spawn location À» Á¤ÇÔ.
+	// SummonerLocation ì£¼ë³€ìœ¼ë¡œ ë¬´ì‘ìœ„ ë°©í–¥ì—, MaxDistance ê±°ë¦¬ ì´ë‚´ë¡œ Spawn location ì„ ì •í•¨.
 	FVector2D RandSpawnDir(FMath::FRandRange(-1.0f, 1.0f), FMath::FRandRange(-1.0f, 1.0f));
 	if (FMath::Abs(RandSpawnDir.X) <= KINDA_SMALL_NUMBER && FMath::Abs(RandSpawnDir.Y) <= KINDA_SMALL_NUMBER)
 	{
-		// ÀÌ·± °æ¿ì°¡ ¾ó¸¶³ª ÀÚÁÖ ³ª¿ÃÁö ¸ğ¸£°ÚÁö¸¸ ÈçÇÒ °Å °°Áø ¾ÊÀ¸´Ï Àû´çÈ÷ ¿¹¿ÜÃ³¸®.
+		// ì´ëŸ° ê²½ìš°ê°€ ì–¼ë§ˆë‚˜ ìì£¼ ë‚˜ì˜¬ì§€ ëª¨ë¥´ê² ì§€ë§Œ í”í•  ê±° ê°™ì§„ ì•Šìœ¼ë‹ˆ ì ë‹¹íˆ ì˜ˆì™¸ì²˜ë¦¬.
 		RandSpawnDir.X = FMath::FRandRange(0.1f, 1.0f);
 	}
 	RandSpawnDir.Normalize();
 	RandSpawnDir *= FMath::RandRange(MaxDistance * 0.1f, MaxDistance);
 
-	FTransform SpawnTransform(Summoner->GetActorLocation() + FVector(RandSpawnDir.X, RandSpawnDir.Y, 100.0f)); // È¤½Ã¶óµµ ³¢ÀÏ ¼ÒÁö¸¦ ÁÙÀÌ±â À§ÇØ ¾à°£ ³ô°Ô spawn ½ÃÅ² ÈÄ ¶¥¿¡ snap.
+	FTransform SpawnTransform(Summoner->GetActorLocation() + FVector(RandSpawnDir.X, RandSpawnDir.Y, 100.0f)); // í˜¹ì‹œë¼ë„ ë¼ì¼ ì†Œì§€ë¥¼ ì¤„ì´ê¸° ìœ„í•´ ì•½ê°„ ë†’ê²Œ spawn ì‹œí‚¨ í›„ ë•…ì— snap.
 
 	ABladeIICharacter* NewSummoned = SpawnSingleMonsterCommon(SpawnClassParam, SpawnTransform);
 	if (NewSummoned != nullptr)
@@ -928,7 +928,7 @@ int AB2MonsterSpawnPool::CountSummonedMobsBySetting(int32 SummonSettingIndex)
 	int32 LocalCounted = 0;
 	for (FMonsterSpawnPoolSummonedFellowState& CurrSummonState : SummonedFellows)
 	{
-		// °â»ç°â»ç Ã¼Å©Á»..
+		// ê²¸ì‚¬ê²¸ì‚¬ ì²´í¬ì¢€..
 		checkSlow(CurrSummonState.Summonee && CurrSummonState.Summonee->IsValidObj() && CurrSummonState.Summoner && CurrSummonState.Summoner->IsValidObj());
 
 		if (CurrSummonState.SummonSettingIndex == SummonSettingIndex){
@@ -978,12 +978,12 @@ bool AB2MonsterSpawnPool::SpawnWave(int32 WaveNum, bool bDeferWaveStartCallBack 
 					{
 						if (bDynamicShadowDisallowed)
 						{
-							// ·¹º§ È¯°æ¿¡ µû¶ó µµÀúÈ÷ (modulated) dynamic shadow ¸¦ ¸ø ¾µ È¯°æÀÌ¸é ²¨ ÁØ´Ù.. ¾Æ½±Áö¸¸.
+							// ë ˆë²¨ í™˜ê²½ì— ë”°ë¼ ë„ì €íˆ (modulated) dynamic shadow ë¥¼ ëª» ì“¸ í™˜ê²½ì´ë©´ êº¼ ì¤€ë‹¤.. ì•„ì‰½ì§€ë§Œ.
 							TurnOffMeshComponentsDyamicShadowForModulated(NewMonster);
 						}
 	
-						// (¾Æ¸¶µµ StageManager ÂÊÀ¸·Î) ÅëÁö.
-						// ¿¡µğÅÍ¿¡¼­ º» ¿ÀºêÁ§Æ® ¹øÈ£¸¦ ÀÎ°ÔÀÓ¿ë ¼³Á¤¿¡¼­ »ç¿ëÇÏ´Â »óÈ²À¸·Î ÀÎÇØ ¿¡µğÅÍ¿ë SetRepresentingInfo È£Ãâ½Ã¿Í °°Àº ¼ø¼­ÀÇ spawn object ÀÎµ¦½º¸¦ ³Ö¾îÁÜ.
+						// (ì•„ë§ˆë„ StageManager ìª½ìœ¼ë¡œ) í†µì§€.
+						// ì—ë””í„°ì—ì„œ ë³¸ ì˜¤ë¸Œì íŠ¸ ë²ˆí˜¸ë¥¼ ì¸ê²Œì„ìš© ì„¤ì •ì—ì„œ ì‚¬ìš©í•˜ëŠ” ìƒí™©ìœ¼ë¡œ ì¸í•´ ì—ë””í„°ìš© SetRepresentingInfo í˜¸ì¶œì‹œì™€ ê°™ì€ ìˆœì„œì˜ spawn object ì¸ë±ìŠ¤ë¥¼ ë„£ì–´ì¤Œ.
 						SpawnPoolMobSpawnClass<ABladeIICharacter*, const FMobSpawnedBirthplaceInfo&>::GetInstance().Signal(NewMonster, FMobSpawnedBirthplaceInfo(this, WaveNum, SI, (bool)WaveSetting->bBossWave, false));
 						
 						// In the case of random location, do the final check for navigation.
@@ -1014,7 +1014,7 @@ bool AB2MonsterSpawnPool::SpawnWave(int32 WaveNum, bool bDeferWaveStartCallBack 
 						}
 	
 						if (bInvalidNavLocation == true && !WaveSetting->bBossWave &&
-							// NavMesh °¡ Á¦´ë·Î ºôµåµÇ¾ú´õ¶óµµ ¸÷ÀÌ ³Ê¹« Å©°Å³ª ÇÏ¸é ¿©ÇÏ°£ ½ÇÆĞÇÏ±â ÁÁ´Ù. Áß¿äÇÒ °¡´É¼ºÀÌ ÀÖ´Â ¼³Á¤ÀÌ¶ó¸é spawn À» °è¼Ó.
+							// NavMesh ê°€ ì œëŒ€ë¡œ ë¹Œë“œë˜ì—ˆë”ë¼ë„ ëª¹ì´ ë„ˆë¬´ í¬ê±°ë‚˜ í•˜ë©´ ì—¬í•˜ê°„ ì‹¤íŒ¨í•˜ê¸° ì¢‹ë‹¤. ì¤‘ìš”í•  ê°€ëŠ¥ì„±ì´ ìˆëŠ” ì„¤ì •ì´ë¼ë©´ spawn ì„ ê³„ì†.
 							WaveSetting->WaveCompl_TerminateAll == false && WaveSetting->SpawnNum > 1)
 						{
 							UE_LOG(LogBladeII, Log, TEXT("[MonsterSpawnPool] Cancel spawning %s due to invalid navigation"), *NewMonster->GetName());
@@ -1026,7 +1026,7 @@ bool AB2MonsterSpawnPool::SpawnWave(int32 WaveNum, bool bDeferWaveStartCallBack 
 							CurrRuntimeState.FellowsInThisWave.Add(NewMonster);
 							
 							if (!NewMonster->IsAlive())
-							{ // SpawningNoDamageGuard ¸¦ ÇÔ¿¡µµ ºÒ±¸ÇÏ°í Ãâ»ıµî·Ï ÀÌÀü¿¡ Á×´Â °æ¿ì°¡ ¹ß»ıÇÏ´Â °Å °°À½. ÀÌ ½ÃÁ¡¿¡ Á×¾î ÀÖÀ¸¸é °­Á¦ Á¦°Å.
+							{ // SpawningNoDamageGuard ë¥¼ í•¨ì—ë„ ë¶ˆêµ¬í•˜ê³  ì¶œìƒë“±ë¡ ì´ì „ì— ì£½ëŠ” ê²½ìš°ê°€ ë°œìƒí•˜ëŠ” ê±° ê°™ìŒ. ì´ ì‹œì ì— ì£½ì–´ ìˆìœ¼ë©´ ê°•ì œ ì œê±°.
 								OnSpawnedMonsterDead(NewMonster, WaveNum, SI, false);
 							}
 						}
@@ -1043,7 +1043,7 @@ bool AB2MonsterSpawnPool::SpawnWave(int32 WaveNum, bool bDeferWaveStartCallBack 
 	
 				if (bDeferWaveStartCallBack == false)
 				{
-					// ¿©±â¼­ ÇÏÁö ¾ÊÀ¸¸é ¹Û¿¡¼­ µû·Î È£ÃâÇØ¾ß ÇÔ
+					// ì—¬ê¸°ì„œ í•˜ì§€ ì•Šìœ¼ë©´ ë°–ì—ì„œ ë”°ë¡œ í˜¸ì¶œí•´ì•¼ í•¨
 					OnSingleWaveStarted(WaveNum);
 				}
 	
@@ -1068,7 +1068,7 @@ ABladeIICharacter* AB2MonsterSpawnPool::SpawnSingleMonsterCommon(FSpawnClassFrom
 
 	FActorSpawnParameters SpawnInfo;
 	SpawnInfo.Owner = this;
-	SpawnInfo.bDeferConstruction = true; // Need deferred construction and manually call FinishSpawning. AutoPossessAI ¼³Á¤ ¹× NPCClassInfo Àû¿ëÀ» À§ÇØ DeferConstruction ÀÌ ÇÊ¿ä.
+	SpawnInfo.bDeferConstruction = true; // Need deferred construction and manually call FinishSpawning. AutoPossessAI ì„¤ì • ë° NPCClassInfo ì ìš©ì„ ìœ„í•´ DeferConstruction ì´ í•„ìš”.
 	SpawnInfo.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 	SpawnInfo.ObjectFlags |= RF_Transient;	// We do not want to save them into the map.
 
@@ -1090,14 +1090,14 @@ ABladeIICharacter* AB2MonsterSpawnPool::SpawnSingleMonsterCommon(FSpawnClassFrom
 	// Now, you must know NewMoster is going to be able to be nullptr and it doesn't mean that you're in trouble.
 	if (NewMonster)
 	{
-		NewMonster->BeginSpawningNoDamageGuard(); // ÇÁ·ÎÁ§Å¸ÀÏÀÌ ±× ÀÚ¸®¿¡ ÀÖ´Ù°Å³ª ÇÏ¸é FinishSpawning µµÁß¿¡ ¸Â¾Æ¼­ Á×À» ¼ö ÀÖ°í ±×·¸°Ô µÇ¸é death ½Ã Ã³¸®°¡ ¾ÈµÇ¹Ç·Î ¸·´Â´Ù.
+		NewMonster->BeginSpawningNoDamageGuard(); // í”„ë¡œì íƒ€ì¼ì´ ê·¸ ìë¦¬ì— ìˆë‹¤ê±°ë‚˜ í•˜ë©´ FinishSpawning ë„ì¤‘ì— ë§ì•„ì„œ ì£½ì„ ìˆ˜ ìˆê³  ê·¸ë ‡ê²Œ ë˜ë©´ death ì‹œ ì²˜ë¦¬ê°€ ì•ˆë˜ë¯€ë¡œ ë§‰ëŠ”ë‹¤.
 		if (InClassParam.bOutBossMob)
 		{
-			NewMonster->CharacterType = ECharacterType::ECT_BossMob; // µüÈ÷ ÀÇ¹Ì°¡ ÀÖÀ¸·Á³ª ¸ğ¸£°ÚÁö¸¸ ¤»
+			NewMonster->CharacterType = ECharacterType::ECT_BossMob; // ë”±íˆ ì˜ë¯¸ê°€ ìˆìœ¼ë ¤ë‚˜ ëª¨ë¥´ê² ì§€ë§Œ ã…‹
 		}
 		else if (InClassParam.OutCharacterType != ECharacterType::ECT_End)
 		{
-			// NPCClassInfo ¸¦ ÅëÇØ ¼¼ÆÃÇÑ ±âº» CharacterType °ú MonsterClassTypeMap À» ÅëÇÑ ¸ÊÇÎÀº ´Ù¸¦ ¼ö ÀÖÀ¸¹Ç·Î ÃÖÁ¾ÀûÀ¸·Î spawn ¿¡ »ç¿ëÇÑ MonsterClassTypeMap ¸ÊÇÎ°ªÀ» ÇÒ´ç.
+			// NPCClassInfo ë¥¼ í†µí•´ ì„¸íŒ…í•œ ê¸°ë³¸ CharacterType ê³¼ MonsterClassTypeMap ì„ í†µí•œ ë§µí•‘ì€ ë‹¤ë¥¼ ìˆ˜ ìˆìœ¼ë¯€ë¡œ ìµœì¢…ì ìœ¼ë¡œ spawn ì— ì‚¬ìš©í•œ MonsterClassTypeMap ë§µí•‘ê°’ì„ í• ë‹¹.
 			NewMonster->CharacterType = InClassParam.OutCharacterType;
 		}
 		if (InClassParam.bOutFixedLocation)
@@ -1105,28 +1105,29 @@ ABladeIICharacter* AB2MonsterSpawnPool::SpawnSingleMonsterCommon(FSpawnClassFrom
 			UCharacterMovementComponent* CharMoveComp = NewMonster->GetCharacterMovement();
 			if (CharMoveComp)
 			{
-				// ½ÇÉ«³¯ÏòÓÉ¿ØÖÆÆ÷¿ØÖÆ£¬¶ø²»ÊÇÒÆ¶¯·½Ïò
+				// ì‹¤ ã‚³ï£©è•¨è­šì™ é½¡í¬ì™ é½¡ï¼Œëê¼‡è§’ï¤³ë•¡ë ˜è•¨
 				CharMoveComp->bOrientRotationToMovement = false;
 				NewMonster->bUseControllerRotationYaw = true;
 			}
 		}
 
-		// NPCClassInfo ¿¡¼­µµ ÇÏ´Â °Çµ¥ ¿©±â¼­µµ material override.
+		// NPCClassInfo ì—ì„œë„ í•˜ëŠ” ê±´ë° ì—¬ê¸°ì„œë„ material override.
 		OverrideMaterialForNewSpawned(NewMonster, InClassParam.MaterialOverrides);
 
-		// Need to set this to let SpawnDefaultController be called. Ãß°¡·Î ÀÌ·¸°Ô FinishSpawning À» delay ½ÃÅ´À¸·Î¼­ NPCClassInfo ¼¼ÆÃ ÈÄ BeginPlay °¡ ºÒ¸®´Â È¿°ú°¡ ÀÖÀ½.
+		// Need to set this to let SpawnDefaultController be called. ì¶”ê°€ë¡œ ì´ë ‡ê²Œ FinishSpawning ì„ delay ì‹œí‚´ìœ¼ë¡œì„œ NPCClassInfo ì„¸íŒ… í›„ BeginPlay ê°€ ë¶ˆë¦¬ëŠ” íš¨ê³¼ê°€ ìˆìŒ.
 		NewMonster->AutoPossessAI = EAutoPossessAI::Spawned;
 		NewMonster->FinishSpawning(InSpawnTransform);
 
 		if (InClassParam.bOutBossMob && InClassParam.OutClassEnum != ENPCClass::ENC_End)
-		{// BossMob ¼¼ÆÃÀÎ °æ¿ì´Â UI Doc ¿¡µµ ¾÷µ¥ÀÌÆ® ÇØ ÁÙ °ÍÀÌ Á» ÀÖÀ½.
+		{// BossMob ì„¸íŒ…ì¸ ê²½ìš°ëŠ” UI Doc ì—ë„ ì—…ë°ì´íŠ¸ í•´ ì¤„ ê²ƒì´ ì¢€ ìˆìŒ.
+
 			UB2UIDocBattle* DocBattle = UB2UIDocHelper::GetDocBattle();
 			if (DocBattle)
 			{
-				// SetbCurrentlyBossAppeared ¸¦ ÇÏ±â Àü¿¡ MobClass ¿Í Variation À» ¸ÕÀú ¼¼ÆÃÇØ¾ß ¾û¶×ÇÑ NPCClassInfo ·ÎµùÀ» ÇÏÁö ¾Ê´Â´Ù.
+				// SetbCurrentlyBossAppeared ë¥¼ í•˜ê¸° ì „ì— MobClass ì™€ Variation ì„ ë¨¼ì € ì„¸íŒ…í•´ì•¼ ì—‰ëš±í•œ NPCClassInfo ë¡œë”©ì„ í•˜ì§€ ì•ŠëŠ”ë‹¤.
 				DocBattle->SetBossMobClass(InClassParam.OutClassEnum);
 				DocBattle->SetBossMobClassVariation(InClassParam.OutClassVariation);
-				DocBattle->SetbCurrentlyBossAppeared(true); // Á×À» ¶§ ´Ù½Ã ¸®¼ÂÇØ¾ß ÇÔ.
+				DocBattle->SetbCurrentlyBossAppeared(true); // ì£½ì„ ë•Œ ë‹¤ì‹œ ë¦¬ì…‹í•´ì•¼ í•¨.
 				DocBattle->SetBossHPMax(NewMonster->GetMaxHealth());
 				DocBattle->SetBossHPCurrent(NewMonster->GetHealth());
 
@@ -1156,15 +1157,15 @@ void AB2MonsterSpawnPool::OverrideMaterialForNewSpawned(class ABladeIICharacter*
 #if WITH_EDITOR
 	if (!GIsEditor)
 	{
-		check(!InEditorMeshComp); // ¿À¿ë ¹æÁö.
+		check(!InEditorMeshComp); // ì˜¤ìš© ë°©ì§€.
 	}
 #endif
 
 	USkeletalMeshComponent* MeshComp =
 #if WITH_EDITOR
-		InEditorMeshComp ? InEditorMeshComp : // ¿¡µğÅÍ ÇÁ¸®ºä ¸ñÀûÀ¸·Î Component ¸¦ Á÷Á¢ Àü´ŞÇÏ´Â °æ¿ì ±×°É »ç¿ë.
+		InEditorMeshComp ? InEditorMeshComp : // ì—ë””í„° í”„ë¦¬ë·° ëª©ì ìœ¼ë¡œ Component ë¥¼ ì§ì ‘ ì „ë‹¬í•˜ëŠ” ê²½ìš° ê·¸ê±¸ ì‚¬ìš©.
 #endif
-		(NewSpawned ? NewSpawned->GetBaseMesh() : NULL); // Mob Àº Æ¯¼öÇÑ attachment ¿Ü¿¡ ±× ±âº»ÀÌ multi-component ±¸¼ºÀÌ ¾Æ´Ñ ÇÑÀº BaseMesh ¸¸ »ç¿ë.
+		(NewSpawned ? NewSpawned->GetBaseMesh() : NULL); // Mob ì€ íŠ¹ìˆ˜í•œ attachment ì™¸ì— ê·¸ ê¸°ë³¸ì´ multi-component êµ¬ì„±ì´ ì•„ë‹Œ í•œì€ BaseMesh ë§Œ ì‚¬ìš©.
 
 	if (!MeshComp || MaterialOverrides.Num() == 0)
 		return;
@@ -1174,13 +1175,13 @@ void AB2MonsterSpawnPool::OverrideMaterialForNewSpawned(class ABladeIICharacter*
 	int32 ApplyMIIndex = 0;
 	for (; ApplyMIIndex < FMath::Min(MaterialOverrides.Num(), BaseMeshMaterialNum); ++ApplyMIIndex)
 	{
-		if (MaterialOverrides[ApplyMIIndex]) // Null ¼¼ÆÃÀ» ÅëÇØ Æ¯Á¤ ¼½¼ÇÀ» ¶Ù¾î³ÑÀ» ¼ö ÀÖÀ½.
+		if (MaterialOverrides[ApplyMIIndex]) // Null ì„¸íŒ…ì„ í†µí•´ íŠ¹ì • ì„¹ì…˜ì„ ë›°ì–´ë„˜ì„ ìˆ˜ ìˆìŒ.
 		{
 			MeshComp->SetMaterial(ApplyMIIndex, MaterialOverrides[ApplyMIIndex]);
 		}
 	}
 
-	// ±âº» element °³¼öº¸´Ù MaterialOverrides ¸¦ ¸¹ÀÌ ³Ö¾ú´Ù¸é ¼ø¼­´ë·Î attach µÈ ÄÄÆ÷³ÍÆ®¿¡ Àû¿ë.
+	// ê¸°ë³¸ element ê°œìˆ˜ë³´ë‹¤ MaterialOverrides ë¥¼ ë§ì´ ë„£ì—ˆë‹¤ë©´ ìˆœì„œëŒ€ë¡œ attach ëœ ì»´í¬ë„ŒíŠ¸ì— ì ìš©.
 	if (MaterialOverrides.Num() > ApplyMIIndex)
 	{
 		TArray<USceneComponent*> AllAttached;
@@ -1191,8 +1192,8 @@ void AB2MonsterSpawnPool::OverrideMaterialForNewSpawned(class ABladeIICharacter*
 			if (ThisChildMesh)
 			{
 				if (MaterialOverrides[ApplyMIIndex])
-				{ // ¿ª½Ã³ª NULL ·Î µÎ¸é Æ¯Á¤ attach ´Â ¶Ù¾î³ÑÀ» ¼ö ÀÖÀ½.
-// Attach µÈ °ÍÀº ±»ÀÌ element ÀÎµ¦½º ±îÁö °¡Áö ¾Ê´Â´Ù. ±×°Í±îÁö ÇÊ¿äÇÏ´Ù¸é Áö³ªÄ£ ¿ä±¸ÀÏ µí.
+				{ // ì—­ì‹œë‚˜ NULL ë¡œ ë‘ë©´ íŠ¹ì • attach ëŠ” ë›°ì–´ë„˜ì„ ìˆ˜ ìˆìŒ.
+// Attach ëœ ê²ƒì€ êµ³ì´ element ì¸ë±ìŠ¤ ê¹Œì§€ ê°€ì§€ ì•ŠëŠ”ë‹¤. ê·¸ê²ƒê¹Œì§€ í•„ìš”í•˜ë‹¤ë©´ ì§€ë‚˜ì¹œ ìš”êµ¬ì¼ ë“¯.
 					ThisChildMesh->SetMaterial(0, MaterialOverrides[ApplyMIIndex]);
 				}
 				++ApplyMIIndex;
@@ -1208,21 +1209,21 @@ void AB2MonsterSpawnPool::OverrideMaterialForNewSpawned(class ABladeIICharacter*
 
 bool AB2MonsterSpawnPool::GetSpawnClassFromSetting(FSpawnClassFromSetting_OutParams& OutParams, const FMonsterSpawnPoolWaveSettings* InWaveSetting, const FMonsterSpawnPoolSummonSettings* InSummonSetting, int32 SpawnObjIndex)
 {
-	OutParams.OutCharacterType = ECharacterType::ECT_End; // CharacterType À¸·Î spawn ÇÏµµ·Ï ÇÑ °æ¿ì¿¡¸¸ °ªÀÌ ¼¼ÆÃµÉ °Í.
+	OutParams.OutCharacterType = ECharacterType::ECT_End; // CharacterType ìœ¼ë¡œ spawn í•˜ë„ë¡ í•œ ê²½ìš°ì—ë§Œ ê°’ì´ ì„¸íŒ…ë  ê²ƒ.
 
 	if (InWaveSetting == NULL && InSummonSetting == NULL)
 	{
 		return false;
 	}
 
-	// WaveSetting È¤Àº SummonSetting ¿¡¼­ ¼³Á¤À» »© ¿È. WaveSetting ÀÌ ¿ì¼±.
+	// WaveSetting í˜¹ì€ SummonSetting ì—ì„œ ì„¤ì •ì„ ë¹¼ ì˜´. WaveSetting ì´ ìš°ì„ .
 	const TArray<FMonsterSpawnClassInfo>& SpawnClassSetting = InWaveSetting ? InWaveSetting->SpawnClasses : InSummonSetting->SpawnClasses;
 	const TArray<FMonsterSpawnTypeSpecific>& SpawnTypeSetting = InWaveSetting ? InWaveSetting->SpawnCharacterTypes : InSummonSetting->SpawnCharacterTypes;
 
-	// Àç»ç¿ë °¡´ÉÇÑ wave ÀÎ °æ¿ì, °ñµå¸¦ µå¶øÇÏÁö ¾Ê°ÔÇÑ´Ù. ¼ÒÈ¯ÀÎ °æ¿ìµµ ¸¶Âù°¡Áö.
+	// ì¬ì‚¬ìš© ê°€ëŠ¥í•œ wave ì¸ ê²½ìš°, ê³¨ë“œë¥¼ ë“œëí•˜ì§€ ì•Šê²Œí•œë‹¤. ì†Œí™˜ì¸ ê²½ìš°ë„ ë§ˆì°¬ê°€ì§€.
 	const bool bNonGoldDropSetting = (InWaveSetting && InWaveSetting->bCanReuseWave) || (InWaveSetting == NULL && InSummonSetting != NULL);
 
-	if (SpawnClassSetting.Num()) // Class Á÷Á¢ ÁöÁ¤ÀÌ ¿ì¼±.
+	if (SpawnClassSetting.Num()) // Class ì§ì ‘ ì§€ì •ì´ ìš°ì„ .
 	{
 		const bool bOnlyOneSpawnClassElem = (SpawnClassSetting.Num() == 1);
 		// Filtering by class and index range.
@@ -1247,14 +1248,14 @@ bool AB2MonsterSpawnPool::GetSpawnClassFromSetting(FSpawnClassFromSetting_OutPar
 			OutParams.OutClassEnum = FinalInfo.CharacterClassEnum;
 			OutParams.OutClassVariation = FinalInfo.ClassVariation;
 			OutParams.OutClassBP = FinalInfo.CharacterClassBP;
-			//Àç»ç¿ë °¡´ÉÇÑ ½ºÆùÇ®ÀÎ °æ¿ì, °ñµå¸¦ µå¶øÇÏÁö ¾Ê°ÔÇÑ´Ù. ¼ÒÈ¯ÀÎ °æ¿ìµµ ¸¶Âù°¡Áö.
+			//ì¬ì‚¬ìš© ê°€ëŠ¥í•œ ìŠ¤í°í’€ì¸ ê²½ìš°, ê³¨ë“œë¥¼ ë“œëí•˜ì§€ ì•Šê²Œí•œë‹¤. ì†Œí™˜ì¸ ê²½ìš°ë„ ë§ˆì°¬ê°€ì§€.
 			OutParams.OutWeightRewardGold = bNonGoldDropSetting ? 0 : FinalInfo.RewardGoldWeight;
 			OutParams.OutCanDropItem = FinalInfo.bCanDropItem;
 			OutParams.OutNetPlay = FinalInfo.bNetPlay;
 			OutParams.MaterialOverrides = FinalInfo.MaterialOverrides;
 			OutParams.bOutFixedLocation = FinalInfo.bFixedLocation;
 
-			// ÀÌ°Ç Å¬·¡½º ¼¼ÆÃ¿¡ µé¾î°£ °Ç ¾Æ´Ñµ¥ ¿©ÇÏ°£ ¿©±â¿¡ ³Ö¾îµÎ¸é ½á¸Ô±â ÁÁ¾Æ¼­. ±Ùµ¥ bBossWave ÀÚÃ¼°¡ WaveSetting º¸´Ù´Â Å¬·¡½º ¼¼ÆÃ¿¡ ÀÖ¾î¾ß ¾î¿ï¸± ¸¸ÇÑ ¼º°İÀÌ±âµµ ÇÏ´Ù.
+			// ì´ê±´ í´ë˜ìŠ¤ ì„¸íŒ…ì— ë“¤ì–´ê°„ ê±´ ì•„ë‹Œë° ì—¬í•˜ê°„ ì—¬ê¸°ì— ë„£ì–´ë‘ë©´ ì¨ë¨¹ê¸° ì¢‹ì•„ì„œ. ê·¼ë° bBossWave ìì²´ê°€ WaveSetting ë³´ë‹¤ëŠ” í´ë˜ìŠ¤ ì„¸íŒ…ì— ìˆì–´ì•¼ ì–´ìš¸ë¦´ ë§Œí•œ ì„±ê²©ì´ê¸°ë„ í•˜ë‹¤.
 			OutParams.bOutBossMob = InWaveSetting ? InWaveSetting->bBossWave : false;
 			return true;
 		}
@@ -1302,12 +1303,12 @@ bool AB2MonsterSpawnPool::GetSpawnClassFromSetting(FSpawnClassFromSetting_OutPar
 					// In this case, only class enum is available.
 					OutParams.OutClassEnum = FinalInfo.CharacterClassEnum;
 					OutParams.OutClassVariation = FinalInfo.ClassVariation;
-					OutParams.OutCharacterType = FinalInfo.CharacterType; // Spawn ÈÄ CharacterType °ªÀ» µ¤¾î¾²µµ·Ï °á°ú ÆÄ¶ó¹ÌÅÍ·Î Àü´Ş.
-					//Àç»ç¿ë °¡´ÉÇÑ ½ºÆùÇ®ÀÎ °æ¿ì, °ñµå¸¦ µå¶øÇÏÁö ¾Ê°ÔÇÑ´Ù.
+					OutParams.OutCharacterType = FinalInfo.CharacterType; // Spawn í›„ CharacterType ê°’ì„ ë®ì–´ì“°ë„ë¡ ê²°ê³¼ íŒŒë¼ë¯¸í„°ë¡œ ì „ë‹¬.
+					//ì¬ì‚¬ìš© ê°€ëŠ¥í•œ ìŠ¤í°í’€ì¸ ê²½ìš°, ê³¨ë“œë¥¼ ë“œëí•˜ì§€ ì•Šê²Œí•œë‹¤.
 					OutParams.OutWeightRewardGold = bNonGoldDropSetting ? 0 : SpawnCharacterTypeForThis->RewardGoldWeight;
 					OutParams.OutCanDropItem = SpawnCharacterTypeForThis->bCanDropItem;
 					OutParams.MaterialOverrides = FinalInfo.MaterialOverrides;
-					OutParams.bOutBossMob = InWaveSetting ? InWaveSetting->bBossWave : false; // ÀÌ°Ç Å¬·¡½º ¼¼ÆÃ¿¡ µé¾î°£ °Ç ¾Æ´Ñµ¥ ¿©ÇÏ°£ ¿©±â¿¡ ³Ö¾îµÎ¸é ½á¸Ô±â ÁÁ¾Æ¼­
+					OutParams.bOutBossMob = InWaveSetting ? InWaveSetting->bBossWave : false; // ì´ê±´ í´ë˜ìŠ¤ ì„¸íŒ…ì— ë“¤ì–´ê°„ ê±´ ì•„ë‹Œë° ì—¬í•˜ê°„ ì—¬ê¸°ì— ë„£ì–´ë‘ë©´ ì¨ë¨¹ê¸° ì¢‹ì•„ì„œ
 					return true;
 				}
 			}
@@ -1330,7 +1331,7 @@ FTransform AB2MonsterSpawnPool::GetSpawnTransform(const FMonsterSpawnPoolWaveSet
 	else // Random calculation
 	{
 		// Find specified component for spawn location, if not specified use the root component (default collision)
-		// SpawnArea ´Â ShapeComponent ¿©¾ß ÇÔ.
+		// SpawnArea ëŠ” ShapeComponent ì—¬ì•¼ í•¨.
 		UShapeComponent* SpawnAreaComponent = Cast<UShapeComponent>(FindComponentByName(InWaveSetting->SpawnAreaComponentName));
 		if (SpawnAreaComponent == NULL)
 		{
@@ -1385,9 +1386,9 @@ void AB2MonsterSpawnPool::OnSingleWaveStarted(int32 WaveNum)
 {
 	B2_SCOPED_TRACK_LOG(TEXT("AB2MonsterSpawnPool::OnSingleWaveStarted"));
 
-	ExecuteWaveEventsCommonInternal(WaveNum, EWaveCustomEventTiming::EWCET_WaveStart); // °¢Á¾ ºÎ°¡ ÀÌº¥Æ®µé
+	ExecuteWaveEventsCommonInternal(WaveNum, EWaveCustomEventTiming::EWCET_WaveStart); // ê°ì¢… ë¶€ê°€ ì´ë²¤íŠ¸ë“¤
 
-	// ÇíÇí ¿©±âµµ ÀÌº¥Æ® ÅëÁö
+	// í—¥í—¥ ì—¬ê¸°ë„ ì´ë²¤íŠ¸ í†µì§€
 	SpawnPoolSingleWaveStartClass<AB2MonsterSpawnPool*, int32>::GetInstance().Signal(this, WaveNum);
 
 	ExtraOnSingleWaveStarted_BP(WaveNum);
@@ -1402,21 +1403,21 @@ void AB2MonsterSpawnPool::OnSingleWaveStarted(int32 WaveNum)
 
 			// Handle it like a spawned monster gets destroyed, while there were nobody actually.
 			// It will handle complete check and next wave stuff anyway.
-			// ½ÇÁ¦·Î DyingMonster °¡ ¾ø´Â Æ¯¼ö ÄÉÀÌ½ºÀÌ¹Ç·Î ´Ù¸¥ °÷À» °ÅÄ¡Áö ¾Ê°í OnSpawnedMonsterDead ¸¦ Á÷Á¢ call ÇÏ´Âµ¥ ¸¸ÀÏ ÇÊ¿äÇÏ´Ù¸é SpawnPoolWaveMobDeadClass ¸¦ »ç¿ëÇÏ¿© ÀÌº¥Æ® broadcast ¸¦ ÇÏµµ·Ï.
+			// ì‹¤ì œë¡œ DyingMonster ê°€ ì—†ëŠ” íŠ¹ìˆ˜ ì¼€ì´ìŠ¤ì´ë¯€ë¡œ ë‹¤ë¥¸ ê³³ì„ ê±°ì¹˜ì§€ ì•Šê³  OnSpawnedMonsterDead ë¥¼ ì§ì ‘ call í•˜ëŠ”ë° ë§Œì¼ í•„ìš”í•˜ë‹¤ë©´ SpawnPoolWaveMobDeadClass ë¥¼ ì‚¬ìš©í•˜ì—¬ ì´ë²¤íŠ¸ broadcast ë¥¼ í•˜ë„ë¡.
 			OnSpawnedMonsterDead(NULL, WaveNum, -1, false);
 		}
 	}
 }
 void AB2MonsterSpawnPool::ExecuteWaveEventsCommonInternal(int32 WaveNum, EWaveCustomEventTiming InTiming)
 {
-	// ¼³Á¤ÇÑ Component µé On/Off, ¾×ÅÍ³ª ·¹º§·ÎÀÇ ½ÅÈ£ µî..
-	// Wave ½ÃÀÛ È¤Àº ¿Ï·á ½Ã
+	// ì„¤ì •í•œ Component ë“¤ On/Off, ì•¡í„°ë‚˜ ë ˆë²¨ë¡œì˜ ì‹ í˜¸ ë“±..
+	// Wave ì‹œì‘ í˜¹ì€ ì™„ë£Œ ì‹œ
 
 	TArray<FMonsterSpawnPoolWaveLevelStreamingSettings> LevelStreamingSettings;
 	GetWaveLevelStreamingSettings(LevelStreamingSettings, InTiming, WaveNum);
 	for (FMonsterSpawnPoolWaveLevelStreamingSettings& ThisSetting : LevelStreamingSettings)
 	{
-		// ¼³Á¤¿¡ µû¶ó Áï¼®¿¡¼­ Async ·Îµù Flush °¡ µÉ ¼ö ÀÖÀ½. ¾Æ´Ï¸é WaveLevelStreamingFlushCB ¿¡¼­.
+		// ì„¤ì •ì— ë”°ë¼ ì¦‰ì„ì—ì„œ Async ë¡œë”© Flush ê°€ ë  ìˆ˜ ìˆìŒ. ì•„ë‹ˆë©´ WaveLevelStreamingFlushCB ì—ì„œ.
 		ThisSetting.StreamingSetting.ExecuteStreaming(GetWorld(), ThisSetting.StreamingSettingFlushTH, FTimerDelegate::CreateUObject(this, &AB2MonsterSpawnPool::WaveLevelStreamingFlushCB, ThisSetting.StreamingSettingFlushTH));
 	}
 
@@ -1469,185 +1470,187 @@ void AB2MonsterSpawnPool::ExecuteWaveEventsCommonInternal(int32 WaveNum, EWaveCu
 
 void AB2MonsterSpawnPool::OnSpawnedMonsterDead(ABladeIICharacter* DyingMonster, int32 DeadMobWaveNum, int32 DeadMobObjIndex, bool bIsSummonedMob)
 {
-		checkSlow(!DyingMonster || DyingMonster->IsValidObj());
-	
-		if (bIsSummonedMob)
-		{		
+	checkSlow(!DyingMonster || DyingMonster->IsValidObj());
+
+	if (bIsSummonedMob)
+	{
+		for (int32 SI = 0; SI < SummonedFellows.Num(); ++SI)
+		{
+			FMonsterSpawnPoolSummonedFellowState& CurrState = SummonedFellows[SI];
+
+			if (CurrState.Summonee == DyingMonster)
+			{
+				checkSlow(CurrState.Summonee && CurrState.Summonee->IsValidObj());
+				SummonedFellows.RemoveAt(SI); // ì†Œí™˜ ëª¹ ë¦¬ìŠ¤íŠ¸ëŠ” ë”°ë¡œ. ì‚¬ì‹¤ Summonee ëŠ” unique í•´ì•¼ í•¨.
+				--SI;
+			}
+		}
+	}
+	else
+	{
+#if !UE_BUILD_SHIPPING
+		if (DyingMonster) // DyingMonster ìì²´ëŠ” NULL ì¼ ìˆ˜ ìˆìœ¼ë‹ˆ ê±°ê¸°ì— check ë¥¼ ê±¸ì§€ëŠ” ì•ŠëŠ”ë‹¤.
+		{
+			checkSlow(DyingMonster->IsValidObj());
+			bool bFoundInFellowList = false;
+			for (int32 WI = 0; WI < RuntimeWaveStates.Num(); ++WI)
+			{
+				bFoundInFellowList |= (RuntimeWaveStates[WI].FellowsInThisWave.Find(DyingMonster) != INDEX_NONE);
+			}
+			checkSlow(bFoundInFellowList);
+		}
+#endif
+
+		// DeadMobWaveNum ì„ ë³¼ ìˆ˜ë„ ìˆê² ì§€ë§Œ ëª¨ë‘ ëŒì•„ì£¼ì.
+		for (int32 WI = 0; WI < RuntimeWaveStates.Num(); ++WI)
+		{
+			RuntimeWaveStates[WI].FellowsInThisWave.Remove(DyingMonster);
+		}
+
+		if (DyingMonster)
+		{
+			TArray<ABladeIICharacter*> RelevantSummoneeList; // Summoner ì¤‘ í•˜ë‚˜ê°€ ì£½ì—ˆì„ ë•Œ ê±°ê¸°ì„œ ì†Œí™˜ëœ Summonee ë“¤ì„ ì²˜ë¦¬í•˜ê¸° ìœ„í•œ ë¦¬ìŠ¤íŠ¸. Summonee ì²˜ë¦¬ ë„ì¤‘ SummonedFellows ê°€ ë¹„ì›Œì§ˆ ê²ƒì´ë¯€ë¡œ ë”°ë¡œ ë³µì‚¬.
 			for (int32 SI = 0; SI < SummonedFellows.Num(); ++SI)
 			{
 				FMonsterSpawnPoolSummonedFellowState& CurrState = SummonedFellows[SI];
-	
-				if (CurrState.Summonee == DyingMonster)
+				if (CurrState.Summoner == DyingMonster)
 				{
-					checkSlow(CurrState.Summonee && CurrState.Summonee->IsValidObj());
-					SummonedFellows.RemoveAt(SI); // ¼ÒÈ¯ ¸÷ ¸®½ºÆ®´Â µû·Î. »ç½Ç Summonee ´Â unique ÇØ¾ß ÇÔ.
-					--SI;
+					// í•´ë‹¹ Summoner ì—ì„œ ì†Œí™˜ëœ Summonee ë¦¬ìŠ¤íŠ¸ë¥¼ ë”°ë¡œ ì·¨í•©í•´ì„œ ì œê±°.
+					RelevantSummoneeList.Add(CurrState.Summonee);
+				}
+			}
+
+			for (ABladeIICharacter* CurrSummonee : RelevantSummoneeList)
+			{
+				checkSlow(CurrSummonee && CurrSummonee->IsValidObj());
+				{
+#if !UE_BUILD_SHIPPING
+					UE_LOG(LogBladeII, Log, TEXT("Suicide due to Summoner's death : Summoner %s, Summonee %s"), *(DyingMonster->GetName()), *(CurrSummonee->GetName()));
+#endif
+					CurrSummonee->Suicide(); // ì´ê±¸ í†µí•´ì„œë„ OnSpawnedMonsterDead ê°€ ë¶ˆë¦¬ë©´ì„œ ìƒë‹¨ bIsSummonedMob ìª½ìœ¼ë¡œ ì²˜ë¦¬ë  ê²ƒ.
 				}
 			}
 		}
-		else
+	}
+
+	EnsureCleanFellowList();
+
+	if (DyingMonster && DyingMonster->IsSpawnedAsBossMob())
+	{
+		UB2UIDocBattle* DocBattle = UB2UIDocHelper::GetDocBattle();
+		if (DocBattle) // BossMob ê´€ë ¨ UI Doc ìƒíƒœ ë¦¬ì…‹.
 		{
-	#if !UE_BUILD_SHIPPING
-			if (DyingMonster) // DyingMonster ÀÚÃ¼´Â NULL ÀÏ ¼ö ÀÖÀ¸´Ï °Å±â¿¡ check ¸¦ °ÉÁö´Â ¾Ê´Â´Ù.
-			{
-				checkSlow(DyingMonster->IsValidObj());
-				bool bFoundInFellowList = false;
-				for (int32 WI = 0; WI < RuntimeWaveStates.Num(); ++WI)
-				{
-					bFoundInFellowList |= (RuntimeWaveStates[WI].FellowsInThisWave.Find(DyingMonster) != INDEX_NONE);
-				}
-				checkSlow(bFoundInFellowList);
-			}
-	#endif
-	
-			// DeadMobWaveNum À» º¼ ¼öµµ ÀÖ°ÚÁö¸¸ ¸ğµÎ µ¹¾ÆÁÖÀÚ.
-			for (int32 WI = 0; WI < RuntimeWaveStates.Num(); ++WI)
-			{
-				RuntimeWaveStates[WI].FellowsInThisWave.Remove(DyingMonster);
-			}
-	
-			if (DyingMonster)
-			{
-				TArray<ABladeIICharacter*> RelevantSummoneeList; // Summoner Áß ÇÏ³ª°¡ Á×¾úÀ» ¶§ °Å±â¼­ ¼ÒÈ¯µÈ Summonee µéÀ» Ã³¸®ÇÏ±â À§ÇÑ ¸®½ºÆ®. Summonee Ã³¸® µµÁß SummonedFellows °¡ ºñ¿öÁú °ÍÀÌ¹Ç·Î µû·Î º¹»ç.
-				for (int32 SI = 0; SI < SummonedFellows.Num(); ++SI)
-				{
-					FMonsterSpawnPoolSummonedFellowState& CurrState = SummonedFellows[SI];
-					if (CurrState.Summoner == DyingMonster)
-					{
-						// ÇØ´ç Summoner ¿¡¼­ ¼ÒÈ¯µÈ Summonee ¸®½ºÆ®¸¦ µû·Î ÃëÇÕÇØ¼­ Á¦°Å.
-						RelevantSummoneeList.Add(CurrState.Summonee);
-					}
-				}
-	
-				for (ABladeIICharacter* CurrSummonee : RelevantSummoneeList)
-				{
-					checkSlow(CurrSummonee && CurrSummonee->IsValidObj());
-					{
-	#if !UE_BUILD_SHIPPING
-						UE_LOG(LogBladeII, Log, TEXT("Suicide due to Summoner's death : Summoner %s, Summonee %s"), *(DyingMonster->GetName()), *(CurrSummonee->GetName()));
-	#endif
-						CurrSummonee->Suicide(); // ÀÌ°É ÅëÇØ¼­µµ OnSpawnedMonsterDead °¡ ºÒ¸®¸é¼­ »ó´Ü bIsSummonedMob ÂÊÀ¸·Î Ã³¸®µÉ °Í.
-					}
-				}
-			}
+			DocBattle->SetbCurrentlyBossAppeared(false);
 		}
-	
-		EnsureCleanFellowList();
-	
-		if (DyingMonster && DyingMonster->IsSpawnedAsBossMob())
+	}
+
+	// Don't do the completion check and spawn handling if we are clearing, as that can possibly cause recursive call.
+	// ì†Œí™˜ëœ ëª¹ì˜ ê²½ìš°ë„ CheckWaveCompletion ì„ í•˜ì§€ ì•ŠëŠ”ë°, ì½”ë“œ íŒ¨ì“°ê°€ ë³µì¡í•´ ì§ˆ ìˆ˜ ìˆìŒ. ë”±íˆ ì´ìƒë™ì‘ì„ í•˜ì§€ëŠ” ì•Šì§€ë§Œ ForceClearWaves ê°€ ë¶ˆë¦´ ìƒí™©ì´ë¼ë©´ ì†Œí™˜ëª¹ì„ ì£½ì´ëŠ” ì‹œë„ë¥¼ ë‘ ë²ˆ í•  ìˆ˜ ìˆì–´ì„œ í—·ê°ˆë¦¼.
+	// ì†Œí™˜ìê°€ ì£½ì„ ë•Œ ì†Œí™˜í•œ ëª¹ ì²˜ë¦¬ë¥¼ ë°”ë¡œ ìœ„ì—ì„œ í•˜ë¯€ë¡œ CheckWaveCompletion ì´ ë“¤ì–´ëŠ” ê°ˆ ê²ƒì´ë‹¤.
+	if (!bForceClearing && !bIsSummonedMob)
+	{
+		// Let's see if we have kicked shit out of here, as well as check for new wave start.
+		CheckWaveCompletion();
+	}
+
+#if !UE_BUILD_SHIPPING
+	extern bool GCheat_HeroineMode;
+	if (GCheat_HeroineMode && !bForceClearing)
+	{ // í˜„ì¬ spawn ëœ ëª¨ë“  ëª¹ë“¤ ì£„ë‹¤ ì“¸ê¸°
+
+		// ForceClearWaves ì•ë’¤ë¡œ wave ì‹œì‘ ìƒíƒœë¥¼ ì €ì¥í–ˆë‹¤ê°€ ë³µêµ¬í•œë‹¤. Heroine ëª¨ë“œì˜ ëª©ì ì€ wave ë¥¼ ëë‚´ëŠ” ê²Œ ì•„ë‹ˆë¼ í˜„ì¬ mob ë“¤ì„ ì£½ì´ëŠ” ê²ƒì´ë¯€ë¡œ.
+		TArray<FMonsterSpawnPoolRuntimeWaveState> WaveStateCopy = RuntimeWaveStates;
+		ForceClearWaves(-1, false); // MarkCompleted ë¥¼ í•´ì„  ì•ˆë¨.
+		for (int32 WI = 0; WI < RuntimeWaveStates.Num(); ++WI)
 		{
-			UB2UIDocBattle* DocBattle = UB2UIDocHelper::GetDocBattle();
-			if (DocBattle) // BossMob °ü·Ã UI Doc »óÅÂ ¸®¼Â.
-			{
-				DocBattle->SetbCurrentlyBossAppeared(false);
-			}
+			RuntimeWaveStates[WI].bWaveStarted = WaveStateCopy[WI].bWaveStarted;
 		}
-	
-		// Don't do the completion check and spawn handling if we are clearing, as that can possibly cause recursive call.
-		// ¼ÒÈ¯µÈ ¸÷ÀÇ °æ¿ìµµ CheckWaveCompletion À» ÇÏÁö ¾Ê´Âµ¥, ÄÚµå ÆĞ¾²°¡ º¹ÀâÇØ Áú ¼ö ÀÖÀ½. µüÈ÷ ÀÌ»óµ¿ÀÛÀ» ÇÏÁö´Â ¾ÊÁö¸¸ ForceClearWaves °¡ ºÒ¸± »óÈ²ÀÌ¶ó¸é ¼ÒÈ¯¸÷À» Á×ÀÌ´Â ½Ãµµ¸¦ µÎ ¹ø ÇÒ ¼ö ÀÖ¾î¼­ Çò°¥¸².
-		// ¼ÒÈ¯ÀÚ°¡ Á×À» ¶§ ¼ÒÈ¯ÇÑ ¸÷ Ã³¸®¸¦ ¹Ù·Î À§¿¡¼­ ÇÏ¹Ç·Î CheckWaveCompletion ÀÌ µé¾î´Â °¥ °ÍÀÌ´Ù.
-		if (!bForceClearing && !bIsSummonedMob)
-		{
-			// Let's see if we have kicked shit out of here, as well as check for new wave start.
-			CheckWaveCompletion();
-		}
-	
-	#if !UE_BUILD_SHIPPING
-		extern bool GCheat_HeroineMode;
-		if (GCheat_HeroineMode && !bForceClearing)
-		{ // ÇöÀç spawn µÈ ¸ğµç ¸÷µé ÁË´Ù ¾µ±â
-	
-			// ForceClearWaves ¾ÕµÚ·Î wave ½ÃÀÛ »óÅÂ¸¦ ÀúÀåÇß´Ù°¡ º¹±¸ÇÑ´Ù. Heroine ¸ğµåÀÇ ¸ñÀûÀº wave ¸¦ ³¡³»´Â °Ô ¾Æ´Ï¶ó ÇöÀç mob µéÀ» Á×ÀÌ´Â °ÍÀÌ¹Ç·Î.
-			TArray<FMonsterSpawnPoolRuntimeWaveState> WaveStateCopy = RuntimeWaveStates;
-			ForceClearWaves(-1, false); // MarkCompleted ¸¦ ÇØ¼± ¾ÈµÊ.
-			for (int32 WI = 0; WI < RuntimeWaveStates.Num(); ++WI){
-				RuntimeWaveStates[WI].bWaveStarted = WaveStateCopy[WI].bWaveStarted;
-			}
-			bForceClearing = false;
-			CheckWaveCompletion(); // ³²Àº ¾Öµé ¾µ¾î´ã´Â ¿ÍÁß¿¡´Â CheckWaveCompletion Ã³¸®°¡ ´©¶ôµÉ °Í.
-		}
-	#endif
+		bForceClearing = false;
+		CheckWaveCompletion(); // ë‚¨ì€ ì• ë“¤ ì“¸ì–´ë‹´ëŠ” ì™€ì¤‘ì—ëŠ” CheckWaveCompletion ì²˜ë¦¬ê°€ ëˆ„ë½ë  ê²ƒ.
+	}
+#endif
 }
 
 void AB2MonsterSpawnPool::CheckWaveCompletion()
 {
-		B2_SCOPED_TRACK_LOG(TEXT("AB2MonsterSpawnPool::CheckWaveCompletion"));
-	
-		bool bAllCompleted = true;
-	
-		checkSlow(GetStageWaveNum(CurrentClientStageId, (EStageDifficulty)CurrentDifficultyLevel) == RuntimeWaveStates.Num());
-	
-		for (int32 WI = 0; WI < RuntimeWaveStates.Num(); ++WI)
+	B2_SCOPED_TRACK_LOG(TEXT("AB2MonsterSpawnPool::CheckWaveCompletion"));
+
+	bool bAllCompleted = true;
+
+	checkSlow(GetStageWaveNum(CurrentClientStageId, (EStageDifficulty)CurrentDifficultyLevel) == RuntimeWaveStates.Num());
+
+	for (int32 WI = 0; WI < RuntimeWaveStates.Num(); ++WI)
+	{
+		FMonsterSpawnPoolRuntimeWaveState& CurrState = RuntimeWaveStates[WI];
+		const FMonsterSpawnPoolWaveSettings* WaveSetting = GetStageWaveSetting(CurrentClientStageId, (EStageDifficulty)CurrentDifficultyLevel, WI);
+		checkSlow(WaveSetting);
+
+		if (CurrState.bWaveStarted == false)
 		{
-			FMonsterSpawnPoolRuntimeWaveState& CurrState = RuntimeWaveStates[WI];
-			const FMonsterSpawnPoolWaveSettings* WaveSetting = GetStageWaveSetting(CurrentClientStageId, (EStageDifficulty)CurrentDifficultyLevel, WI);
-			checkSlow(WaveSetting);
-	
-			if (CurrState.bWaveStarted == false)
-			{
-				// If we got any wave not even started, not completed yet.
-				bAllCompleted = false;
-			}
-			else if (CurrState.FellowsInThisWave.Num() > 0)
-			{
-	#if !UE_BUILD_SHIPPING
-				for (ABladeIICharacter* CheckFellow : CurrState.FellowsInThisWave){
-					checkSlow(CheckFellow && CheckFellow->IsValidObj());
-				}
-	#endif
-				// Active now.
-				bAllCompleted = false;
-			}
-			else if (CurrState.bWaveCompleted == false)
-			{
-				OnSingleWaveComplete(WI);
-				
-				if (WaveSetting->bCanReuseWave && bForceClearing == false)
-				{
-					// Let it able to start again.
-					CurrState.bWaveStarted = false;
-					CurrState.bWaveCompleted = false;
-					bAllCompleted = false;
-				}
-				else
-				{
-					CurrState.bWaveCompleted = true;
-				}
-	
-				CheckNewWaveSpawnOtherWaveComplete(WI); // Any new wave depend on completed one?
-			}
-		}
-	
-		if (SummonedFellows.Num() > 0) // ¼ÒÈ¯¸÷µéµµ ¸ğµÎ Ã³¸®ÇØ¾ß ÇÔ. ¤»
-		{
+			// If we got any wave not even started, not completed yet.
 			bAllCompleted = false;
 		}
-		
-		if (bForceClearing) // Special case..
+		else if (CurrState.FellowsInThisWave.Num() > 0)
 		{
-			bAllCompleted = true;
-		}
-	
-		if (bAllCompleted)
-		{
-			// We did really blow this shit up.
-			if (bAllWaveDoneForCurrentStage == false)
-			{			
-				bAllWaveDoneForCurrentStage = true;
-				OnAllWaveComplete();
+#if !UE_BUILD_SHIPPING
+			for (ABladeIICharacter* CheckFellow : CurrState.FellowsInThisWave)
+			{
+				checkSlow(CheckFellow && CheckFellow->IsValidObj());
 			}
+#endif
+			// Active now.
+			bAllCompleted = false;
 		}
+		else if (CurrState.bWaveCompleted == false)
+		{
+			OnSingleWaveComplete(WI);
+
+			if (WaveSetting->bCanReuseWave && bForceClearing == false)
+			{
+				// Let it able to start again.
+				CurrState.bWaveStarted = false;
+				CurrState.bWaveCompleted = false;
+				bAllCompleted = false;
+			}
+			else
+			{
+				CurrState.bWaveCompleted = true;
+			}
+
+			CheckNewWaveSpawnOtherWaveComplete(WI); // Any new wave depend on completed one?
+		}
+	}
+
+	if (SummonedFellows.Num() > 0) // ì†Œí™˜ëª¹ë“¤ë„ ëª¨ë‘ ì²˜ë¦¬í•´ì•¼ í•¨. ã…‹
+	{
+		bAllCompleted = false;
+	}
+
+	if (bForceClearing) // Special case..
+	{
+		bAllCompleted = true;
+	}
+
+	if (bAllCompleted)
+	{
+		// We did really blow this shit up.
+		if (bAllWaveDoneForCurrentStage == false)
+		{
+			bAllWaveDoneForCurrentStage = true;
+			OnAllWaveComplete();
+		}
+	}
 }
 
 void AB2MonsterSpawnPool::EnsureCleanFellowList()
 {
-	// ÈçÇÑ ÀÏÀº ¾Æ´ÏÁö¸¸ °³¹ß µµÁßÀÇ »çÁ¤ È¤Àº Àß ¾ËÁö ¸øÇÏ´Â ¹®Á¦·Î ÀÎÇØ invalid ÇÑ »óÅÂ·Î ¸®½ºÆ®¿¡ ÀÖ´Â °æ¿ì°¡ ÀÖ´Ù..
-	// Assert ¹× ¾ÈÀüÈ®º¸ Â÷¿ø¿¡¼­ ¸®½ºÆ®¿¡¼­ ºñ¿ò.
+	// í”í•œ ì¼ì€ ì•„ë‹ˆì§€ë§Œ ê°œë°œ ë„ì¤‘ì˜ ì‚¬ì • í˜¹ì€ ì˜ ì•Œì§€ ëª»í•˜ëŠ” ë¬¸ì œë¡œ ì¸í•´ invalid í•œ ìƒíƒœë¡œ ë¦¬ìŠ¤íŠ¸ì— ìˆëŠ” ê²½ìš°ê°€ ìˆë‹¤..
+	// Assert ë° ì•ˆì „í™•ë³´ ì°¨ì›ì—ì„œ ë¦¬ìŠ¤íŠ¸ì—ì„œ ë¹„ì›€.
 	for (int32 SI = 0; SI < SummonedFellows.Num(); ++SI)
 	{
 		FMonsterSpawnPoolSummonedFellowState& CurrState = SummonedFellows[SI];
 		if (!IsValid(CurrState.Summonee))
-		{ // ³»ºÎÀûÀ¸·Î´Â ¾Ë ¼ö ÀÖ°Ô.
+		{ // ë‚´ë¶€ì ìœ¼ë¡œëŠ” ì•Œ ìˆ˜ ìˆê²Œ.
 			ensureMsgf(0, TEXT("Invalid Mob has been detected from spawn pool summoned list!"));
 			SummonedFellows.RemoveAt(SI);
 			--SI;
@@ -1677,9 +1680,9 @@ void AB2MonsterSpawnPool::OnSingleWaveComplete(int32 WaveNum)
 	const FMonsterSpawnPoolWaveSettings* CompletedWaveSetting = GetStageWaveSetting(CurrentClientStageId, (EStageDifficulty)CurrentDifficultyLevel, WaveNum);
 	if (CompletedWaveSetting)
 	{
-		ExecuteWaveEventsCommonInternal(WaveNum, EWaveCustomEventTiming::EWCET_WaveComplete); // °¢Á¾ ºÎ°¡ ÀÌº¥Æ®µé
+		ExecuteWaveEventsCommonInternal(WaveNum, EWaveCustomEventTiming::EWCET_WaveComplete); // ê°ì¢… ë¶€ê°€ ì´ë²¤íŠ¸ë“¤
 
-		// ÇíÇí ¿©±âµµ ÀÌº¥Æ® ÅëÁö
+		// í—¥í—¥ ì—¬ê¸°ë„ ì´ë²¤íŠ¸ í†µì§€
 		SpawnPoolSingleWaveCompleteClass<AB2MonsterSpawnPool*, int32>::GetInstance().Signal(this, WaveNum);
 
 		if (CompletedWaveSetting->WaveCompl_TerminateAll)
@@ -1702,19 +1705,19 @@ void AB2MonsterSpawnPool::WaveEnableSingleComponent(FName ComponentName)
 
 	UShapeComponent* CastedShapeComp = Cast<UShapeComponent>(ComponentTobeEnable);
 	UMeshComponent* CastedMeshComp = Cast<UMeshComponent>(ComponentTobeEnable);
-	
+
 	if (CastedShapeComp == NULL)
 	{
-		// MeshComponent ÀÎ °æ¿ì¶ó¸é ´«¿¡ º¸ÀÌ´Â wall ·Î °£ÁÖ
+		// MeshComponent ì¸ ê²½ìš°ë¼ë©´ ëˆˆì— ë³´ì´ëŠ” wall ë¡œ ê°„ì£¼
 		if (CastedMeshComp)
 		{
 			CastedMeshComp->SetCollisionProfileName(CollisionProfileName_BlockAll);
 		}
 
-		ComponentTobeEnable->SetVisibility(true); // ÀÌ °æ¿ì´Â ¸ğµÎ visibility ¸¦ ÄÑ ÁÜ.
-		ComponentTobeEnable->SetHiddenInGame(false); // ÀÌ°Ô ¼¼ÆÃµÇ¾úÀ»¼öµµ ÀÖÀ¸´Ï..
+		ComponentTobeEnable->SetVisibility(true); // ì´ ê²½ìš°ëŠ” ëª¨ë‘ visibility ë¥¼ ì¼œ ì¤Œ.
+		ComponentTobeEnable->SetHiddenInGame(false); // ì´ê²Œ ì„¸íŒ…ë˜ì—ˆì„ìˆ˜ë„ ìˆìœ¼ë‹ˆ..
 	}
-	else // Æ®¸®°Å ¿ë Collision Component ·Î °£ÁÖ.
+	else // íŠ¸ë¦¬ê±° ìš© Collision Component ë¡œ ê°„ì£¼.
 	{
 		ComponentTobeEnable->SetCollisionProfileName(CollisionProfileName_Trigger);
 	}
@@ -1728,7 +1731,7 @@ void AB2MonsterSpawnPool::WaveDisableSingleComponent(FName ComponentName)
 		return;
 	}
 
-	// ÀÏ´Ü °øÅëÀûÀ¸·Î no collision ¿¡ invisible
+	// ì¼ë‹¨ ê³µí†µì ìœ¼ë¡œ no collision ì— invisible
 	ComponentTobeDisable->SetCollisionProfileName(CollisionProfileName_NoCollision);
 	ComponentTobeDisable->SetVisibility(false);
 }
@@ -1736,62 +1739,62 @@ void AB2MonsterSpawnPool::WaveDisableSingleComponent(FName ComponentName)
 void AB2MonsterSpawnPool::ForceClearWaves(int32 DesiredFinishWaveNum /*= -1*/, bool bMarkCompleted /*= true*/)
 {
 	B2_SCOPED_TRACK_LOG(TEXT("AB2MonsterSpawnPool::ForceClearWaves"));
-	
-		checkSlow(GetStageWaveNum(CurrentClientStageId, (EStageDifficulty)CurrentDifficultyLevel) == RuntimeWaveStates.Num());
-	
-		bForceClearing = true;
-	
-		const int32 StageWaveNum = GetStageWaveNum(CurrentClientStageId, (EStageDifficulty)CurrentDifficultyLevel);
-		for (int32 WI = 0; WI < StageWaveNum; ++WI)
+
+	checkSlow(GetStageWaveNum(CurrentClientStageId, (EStageDifficulty)CurrentDifficultyLevel) == RuntimeWaveStates.Num());
+
+	bForceClearing = true;
+
+	const int32 StageWaveNum = GetStageWaveNum(CurrentClientStageId, (EStageDifficulty)CurrentDifficultyLevel);
+	for (int32 WI = 0; WI < StageWaveNum; ++WI)
+	{
+		if (DesiredFinishWaveNum >= 0 && WI > DesiredFinishWaveNum)
 		{
-			if (DesiredFinishWaveNum >= 0 && WI > DesiredFinishWaveNum)
-			{
-				continue;
-			}
-	
-			const FMonsterSpawnPoolWaveSettings* CurrSetting = GetStageWaveSetting(CurrentClientStageId, (EStageDifficulty)CurrentDifficultyLevel, WI);
-			FMonsterSpawnPoolRuntimeWaveState& CurrState = RuntimeWaveStates[WI];
-	
-			// During the Suicide call, the element will be removed from FellowsInThisWave array. So do this on copied array.
-			TArray<class ABladeIICharacter*> FellowsInThisWaveCopy = CurrState.FellowsInThisWave;
-			for (int32 MI = 0; MI < FellowsInThisWaveCopy.Num(); ++MI)
-			{
-				checkSlow(FellowsInThisWaveCopy[MI] && FellowsInThisWaveCopy[MI]->IsValidObj());
-	
-	#if !UE_BUILD_SHIPPING
-				UE_LOG(LogBladeII, Log, TEXT("Suicide by SpawnPool's ForceClearWave : Wave Fellow %s"), *(FellowsInThisWaveCopy[MI]->GetName()));
-	#endif
-				// OnSpawnedMonsterDead will be called by this, but not any more spawn check stuff.
-				FellowsInThisWaveCopy[MI]->Suicide();
-			}
-			checkSlow(CurrState.FellowsInThisWave.Num() == 0); // See OnSpawnedMonsterDead
-			FellowsInThisWaveCopy.Empty();
-	
-			CurrState.bWaveStarted = true;
-			if (bMarkCompleted)
-			{
-				CurrState.bWaveCompleted = true;
-			}
-			// We might want to call OnSingleWaveComplete here if wave is not completed yet, but guess that causes endless recursive call.. and other possible issues..?
+			continue;
 		}
-	
-		// ¼ÒÈ¯¸÷µéÀº DesiredFinishWaveNum °ú´Â »ó°ü¾øÀÌ ¸ğµÎ ³¯¸². DesiredFinishWaveNum ÀÌ »ç½Ç»ó °³¹ß¿ë ±â´ÉÀÌ±âµµ ÇÏ°í, ÀÌÈÄ wave ÀÇ ¼ÒÈ¯¸÷ÀÌ ³ª¿À´Â °Íµµ ¸»ÀÌ ¾ÈµÊ ³¥³¥
-		TArray<FMonsterSpawnPoolSummonedFellowState> SummonedFellowsCopy = SummonedFellows;
-		for (FMonsterSpawnPoolSummonedFellowState& SummonState : SummonedFellowsCopy)
+
+		const FMonsterSpawnPoolWaveSettings* CurrSetting = GetStageWaveSetting(CurrentClientStageId, (EStageDifficulty)CurrentDifficultyLevel, WI);
+		FMonsterSpawnPoolRuntimeWaveState& CurrState = RuntimeWaveStates[WI];
+
+		// During the Suicide call, the element will be removed from FellowsInThisWave array. So do this on copied array.
+		TArray<class ABladeIICharacter*> FellowsInThisWaveCopy = CurrState.FellowsInThisWave;
+		for (int32 MI = 0; MI < FellowsInThisWaveCopy.Num(); ++MI)
 		{
-			if (SummonState.Summonee && SummonState.Summonee->IsAlive())
-			{
-	#if !UE_BUILD_SHIPPING
-				UE_LOG(LogBladeII, Log, TEXT("Suicide by SpawnPool's ForceClearWave : Summonee %s"), *(SummonState.Summonee->GetName()));
-	#endif
-				SummonState.Summonee->Suicide();
-			}
+			checkSlow(FellowsInThisWaveCopy[MI] && FellowsInThisWaveCopy[MI]->IsValidObj());
+
+#if !UE_BUILD_SHIPPING
+			UE_LOG(LogBladeII, Log, TEXT("Suicide by SpawnPool's ForceClearWave : Wave Fellow %s"), *(FellowsInThisWaveCopy[MI]->GetName()));
+#endif
+			// OnSpawnedMonsterDead will be called by this, but not any more spawn check stuff.
+			FellowsInThisWaveCopy[MI]->Suicide();
 		}
-		checkSlow(SummonedFellows.Num() == 0); // Suicide ¿¡¼­ OnSpawnedMonsterDead °ÅÄ¡¸é¼­ ºñ¿öÁ³À» °Í.
-		SummonedFellowsCopy.Empty();
-	
-		// Let this to be set in CheckWaveCompletion
-		//bAllWaveDoneForCurrentStage = true;
+		checkSlow(CurrState.FellowsInThisWave.Num() == 0); // See OnSpawnedMonsterDead
+		FellowsInThisWaveCopy.Empty();
+
+		CurrState.bWaveStarted = true;
+		if (bMarkCompleted)
+		{
+			CurrState.bWaveCompleted = true;
+		}
+		// We might want to call OnSingleWaveComplete here if wave is not completed yet, but guess that causes endless recursive call.. and other possible issues..?
+	}
+
+	// ì†Œí™˜ëª¹ë“¤ì€ DesiredFinishWaveNum ê³¼ëŠ” ìƒê´€ì—†ì´ ëª¨ë‘ ë‚ ë¦¼. DesiredFinishWaveNum ì´ ì‚¬ì‹¤ìƒ ê°œë°œìš© ê¸°ëŠ¥ì´ê¸°ë„ í•˜ê³ , ì´í›„ wave ì˜ ì†Œí™˜ëª¹ì´ ë‚˜ì˜¤ëŠ” ê²ƒë„ ë§ì´ ì•ˆë¨ ë‚„ë‚„
+	TArray<FMonsterSpawnPoolSummonedFellowState> SummonedFellowsCopy = SummonedFellows;
+	for (FMonsterSpawnPoolSummonedFellowState& SummonState : SummonedFellowsCopy)
+	{
+		if (SummonState.Summonee && SummonState.Summonee->IsAlive())
+		{
+#if !UE_BUILD_SHIPPING
+			UE_LOG(LogBladeII, Log, TEXT("Suicide by SpawnPool's ForceClearWave : Summonee %s"), *(SummonState.Summonee->GetName()));
+#endif
+			SummonState.Summonee->Suicide();
+		}
+	}
+	checkSlow(SummonedFellows.Num() == 0); // Suicide ì—ì„œ OnSpawnedMonsterDead ê±°ì¹˜ë©´ì„œ ë¹„ì›Œì¡Œì„ ê²ƒ.
+	SummonedFellowsCopy.Empty();
+
+	// Let this to be set in CheckWaveCompletion
+	//bAllWaveDoneForCurrentStage = true;
 }
 
 void AB2MonsterSpawnPool::GetWaveLevelStreamingSettings(TArray<FMonsterSpawnPoolWaveLevelStreamingSettings>& OutSettings, EWaveCustomEventTiming EventTiming, int32 WaveNum)
@@ -1898,7 +1901,7 @@ void AB2MonsterSpawnPool::WaveLevelStreamingFlushCB(FTimerHandle InUsedTimerHand
 	UWorld* TheWorld = GetWorld();
 	if (TheWorld)
 	{
-		UGameplayStatics::FlushLevelStreaming(this); // ÀÌ°Å ÇÏ·Á°í Å¸ÀÌ¸Ó °É¾î³õÀº °Å.
+		UGameplayStatics::FlushLevelStreaming(this); // ì´ê±° í•˜ë ¤ê³  íƒ€ì´ë¨¸ ê±¸ì–´ë†“ì€ ê±°.
 		TheWorld->GetTimerManager().ClearTimer(InUsedTimerHandle);
 	}
 }
@@ -2024,7 +2027,7 @@ void AB2MonsterSpawnPool::CheckNewWaveSpawnBeginning()
 		{
 			if (InternalSpawnWaveOrDelayCommon(WI, WaveSetting))
 			{
-				// Áï¼®¿¡¼­ SpawnWave ¸¦ ÇÑ °æ¿ì OnSingleWaveStarted ¸¦ ¸ğ¾Æ¼­ Ã³¸®ÇÏ±â À§ÇØ SpawnedWaves ¿¡ ¹øÈ£ Ãß°¡.
+				// ì¦‰ì„ì—ì„œ SpawnWave ë¥¼ í•œ ê²½ìš° OnSingleWaveStarted ë¥¼ ëª¨ì•„ì„œ ì²˜ë¦¬í•˜ê¸° ìœ„í•´ SpawnedWaves ì— ë²ˆí˜¸ ì¶”ê°€.
 				SpawnedWaves.Add(WI);
 			}
 		}
@@ -2032,7 +2035,7 @@ void AB2MonsterSpawnPool::CheckNewWaveSpawnBeginning()
 
 	for (int32 SWI = 0; SWI < SpawnedWaves.Num(); ++SWI)
 	{
-		OnSingleWaveStarted(SpawnedWaves[SWI]); // SpawnWave È£Ãâ½Ã Áö¿¬½ÃÄ×´ø OnSingleWaveStarted ÀÏ°ı Ã³¸®
+		OnSingleWaveStarted(SpawnedWaves[SWI]); // SpawnWave í˜¸ì¶œì‹œ ì§€ì—°ì‹œì¼°ë˜ OnSingleWaveStarted ì¼ê´„ ì²˜ë¦¬
 	}
 }
 
@@ -2054,7 +2057,7 @@ void AB2MonsterSpawnPool::CheckNewWaveSpawnOtherWaveComplete(int32 JustCompleted
 			{
 				if (InternalSpawnWaveOrDelayCommon(WI, CurrSetting))
 				{
-					// Áï¼®¿¡¼­ SpawnWave ¸¦ ÇÑ °æ¿ì OnSingleWaveStarted ¸¦ ¸ğ¾Æ¼­ Ã³¸®ÇÏ±â À§ÇØ SpawnedWaves ¿¡ ¹øÈ£ Ãß°¡.
+					// ì¦‰ì„ì—ì„œ SpawnWave ë¥¼ í•œ ê²½ìš° OnSingleWaveStarted ë¥¼ ëª¨ì•„ì„œ ì²˜ë¦¬í•˜ê¸° ìœ„í•´ SpawnedWaves ì— ë²ˆí˜¸ ì¶”ê°€.
 					SpawnedWaves.Add(WI);
 				}
 			}
@@ -2062,13 +2065,13 @@ void AB2MonsterSpawnPool::CheckNewWaveSpawnOtherWaveComplete(int32 JustCompleted
 	}
 	for (int32 SWI = 0; SWI < SpawnedWaves.Num(); ++SWI)
 	{
-		OnSingleWaveStarted(SpawnedWaves[SWI]); // SpawnWave È£Ãâ½Ã Áö¿¬½ÃÄ×´ø OnSingleWaveStarted ÀÏ°ı Ã³¸®
+		OnSingleWaveStarted(SpawnedWaves[SWI]); // SpawnWave í˜¸ì¶œì‹œ ì§€ì—°ì‹œì¼°ë˜ OnSingleWaveStarted ì¼ê´„ ì²˜ë¦¬
 	}
 }
 
 void AB2MonsterSpawnPool::DelayedNewWaveSpawn(int32 WaveNum)
 {
-	// Å¸ÀÌ¸Ó Å¬¸®¾î
+	// íƒ€ì´ë¨¸ í´ë¦¬ì–´
 	FTimerManager& TheTimerManager = GetWorldTimerManager();
 	FTimerHandle* ExistingTHForThisWave = SpawnWaveDelayTHMap.Find(WaveNum);
 	if (ExistingTHForThisWave)
@@ -2082,15 +2085,15 @@ void AB2MonsterSpawnPool::DelayedNewWaveSpawn(int32 WaveNum)
 }
 
 bool AB2MonsterSpawnPool::InternalSpawnWaveOrDelayCommon(int32 ThisWaveIndex, const FMonsterSpawnPoolWaveSettings* ThisWaveSetting)
-{ // SpawnDelay ¿¡ µû¶ó DelayedNewWaveSpawn ¿¹¾à, È¤Àº SpawnWave È£ÃâÀ» ÇÏ´Â °øÅëµÈ ÄÚµå ºí·Ï.
-	// Áï¼®¿¡¼­ SpawnWave ¸¦ ÇÏ°Ô µÇ¸é return true ÇØ¼­ ÀÌ¹ø WaveIndex ¿¡ ´ëÇØ ¸ğÁ¾ÀÇ Ã³¸®¸¦ ÇÏµµ·Ï ÇÔ.
+{ // SpawnDelay ì— ë”°ë¼ DelayedNewWaveSpawn ì˜ˆì•½, í˜¹ì€ SpawnWave í˜¸ì¶œì„ í•˜ëŠ” ê³µí†µëœ ì½”ë“œ ë¸”ë¡.
+	// ì¦‰ì„ì—ì„œ SpawnWave ë¥¼ í•˜ê²Œ ë˜ë©´ return true í•´ì„œ ì´ë²ˆ WaveIndex ì— ëŒ€í•´ ëª¨ì¢…ì˜ ì²˜ë¦¬ë¥¼ í•˜ë„ë¡ í•¨.
 	if (ThisWaveSetting)
 	{
 		const float EffectiveSpawnDelay = ThisWaveSetting->GetFinalSpawnDelay(CachedStageManager ? CachedStageManager->IsScenarioMode() : false);
 		if (EffectiveSpawnDelay > 0.0f)
 		{
 			FTimerManager& TheTimerManager = GetWorldTimerManager();
-			// ±âÁ¸¿¡ È¤¿©¶óµµ ¼³Ä¡µÇ¾î ÀÖ´Â Å¸ÀÌ¸Ó°¡ ÀÖ´Ù¸é Á¦°Å.
+			// ê¸°ì¡´ì— í˜¹ì—¬ë¼ë„ ì„¤ì¹˜ë˜ì–´ ìˆëŠ” íƒ€ì´ë¨¸ê°€ ìˆë‹¤ë©´ ì œê±°.
 			FTimerHandle* ExistingTHForThisWave = SpawnWaveDelayTHMap.Find(ThisWaveIndex);
 			if (ExistingTHForThisWave)
 			{
@@ -2107,7 +2110,7 @@ bool AB2MonsterSpawnPool::InternalSpawnWaveOrDelayCommon(int32 ThisWaveIndex, co
 		{
 			// Immediate call here.
 			SpawnWave(ThisWaveIndex, true);
-			return true;  // ¸®ÅÏ°ªÀº ´ÜÁö SpawnWave Äİ ½Ã¿¡ WaveIndex µé ¸ğ¾Æ¼­ OnSingleWaveStarted Ã³¸® ÇÏ·Á´Â °Å.
+			return true;  // ë¦¬í„´ê°’ì€ ë‹¨ì§€ SpawnWave ì½œ ì‹œì— WaveIndex ë“¤ ëª¨ì•„ì„œ OnSingleWaveStarted ì²˜ë¦¬ í•˜ë ¤ëŠ” ê±°.
 		}
 	}
 	return false;
@@ -2120,7 +2123,7 @@ void AB2MonsterSpawnPool::CheckNewWaveSpawnCollisionTrigger(AActor* BeginOverlap
 	bool bFromQTEVehicle = false;
 
 	if (OverlappingPlayer == NULL)
-	{		
+	{
 		if (OverlappingChar && OverlappingChar->IsControlledByQTEPlayer())
 		{
 			APlayerController* PC = UGameplayStatics::GetPlayerController(this, 0);
@@ -2138,11 +2141,11 @@ void AB2MonsterSpawnPool::CheckNewWaveSpawnCollisionTrigger(AActor* BeginOverlap
 		// No component information from NotifyActorBeginOverlap, so manually get it here.
 		TArray<UPrimitiveComponent*> PlayerOverlappingComps;
 
-		if(bFromQTEVehicle)
+		if (bFromQTEVehicle)
 			OverlappingChar->GetOverlappingComponents(PlayerOverlappingComps);
 		else
 			OverlappingPlayer->GetOverlappingComponents(PlayerOverlappingComps);
-		
+
 		const int32 StageWaveNum = GetStageWaveNum(CurrentClientStageId, (EStageDifficulty)CurrentDifficultyLevel);
 		checkSlow(StageWaveNum == RuntimeWaveStates.Num());
 
@@ -2164,7 +2167,7 @@ void AB2MonsterSpawnPool::CheckNewWaveSpawnCollisionTrigger(AActor* BeginOverlap
 					{
 						if (InternalSpawnWaveOrDelayCommon(WI, CurrSetting))
 						{
-							// Áï¼®¿¡¼­ SpawnWave ¸¦ ÇÑ °æ¿ì OnSingleWaveStarted ¸¦ ¸ğ¾Æ¼­ Ã³¸®ÇÏ±â À§ÇØ SpawnedWaves ¿¡ ¹øÈ£ Ãß°¡.
+							// ì¦‰ì„ì—ì„œ SpawnWave ë¥¼ í•œ ê²½ìš° OnSingleWaveStarted ë¥¼ ëª¨ì•„ì„œ ì²˜ë¦¬í•˜ê¸° ìœ„í•´ SpawnedWaves ì— ë²ˆí˜¸ ì¶”ê°€.
 							SpawnedWaves.Add(WI);
 						}
 						break;
@@ -2174,7 +2177,7 @@ void AB2MonsterSpawnPool::CheckNewWaveSpawnCollisionTrigger(AActor* BeginOverlap
 		}
 		for (int32 SWI = 0; SWI < SpawnedWaves.Num(); ++SWI)
 		{
-			OnSingleWaveStarted(SpawnedWaves[SWI]); // SpawnWave È£Ãâ½Ã Áö¿¬½ÃÄ×´ø OnSingleWaveStarted ÀÏ°ı Ã³¸®
+			OnSingleWaveStarted(SpawnedWaves[SWI]); // SpawnWave í˜¸ì¶œì‹œ ì§€ì—°ì‹œì¼°ë˜ OnSingleWaveStarted ì¼ê´„ ì²˜ë¦¬
 		}
 	}
 }
@@ -2193,7 +2196,7 @@ class UPrimitiveComponent* AB2MonsterSpawnPool::FindComponentByName(const FName&
 			if (CastedComp)
 			{
 				return CastedComp;
-			}			
+			}
 		}
 	}
 
@@ -2273,7 +2276,7 @@ bool AB2MonsterSpawnPool::IsComponentEnabledLater(UActorComponent* InComp)
 			const FMonsterSpawnPoolWaveComponentOnOffSettings& ThisSetting = StageSetting->WaveCompOnOffSettings[SI];
 
 			if (
-				ThisSetting.bCheckForOnOrOff == true && ThisSetting.ComponentName == FName(*InComp->GetName()) // ÄÑÁöµµ·Ï µÇ¾î ÀÖ´Â °Í¸¸.
+				ThisSetting.bCheckForOnOrOff == true && ThisSetting.ComponentName == FName(*InComp->GetName()) // ì¼œì§€ë„ë¡ ë˜ì–´ ìˆëŠ” ê²ƒë§Œ.
 				)
 			{
 				return true;
@@ -2365,12 +2368,12 @@ void AB2MonsterSpawnPool::GetWaveMobList(int32 WaveNum, TArray<class ABladeIICha
 		for (int32 FI = 0; FI < WaveState->FellowsInThisWave.Num(); ++FI)
 		{
 			ABladeIICharacter* CurrMob = WaveState->FellowsInThisWave[FI];
-			// bOnlyLiveMobs °¡ false ÀÎ °æ¿ì¶óµµ ½ÇÁ¦·Î Dying »óÅÂÀÎ °ÍÀ» °¡Á®¿Ã ¼ö ÀÖ´Â Å¸ÀÌ¹ÖÀº ¸¹Áö ¾Ê´Ù.
-			// OnSpawnedMonsterDead Âü°í.
+			// bOnlyLiveMobs ê°€ false ì¸ ê²½ìš°ë¼ë„ ì‹¤ì œë¡œ Dying ìƒíƒœì¸ ê²ƒì„ ê°€ì ¸ì˜¬ ìˆ˜ ìˆëŠ” íƒ€ì´ë°ì€ ë§ì§€ ì•Šë‹¤.
+			// OnSpawnedMonsterDead ì°¸ê³ .
 			if (IsValid(CurrMob) && (bOnlyLiveMobs == false || CurrMob->IsAlive()))
 			{
 				OutLiveMobs.Add(WaveState->FellowsInThisWave[FI]);
-			}			
+			}
 		}
 	}
 }
@@ -2403,10 +2406,10 @@ void AB2MonsterSpawnPool::SwapMonsterForPhaseSpawn(class ABladeIICharacter* OldO
 {
 	checkSlow(OldOne && NewOne);
 
-	// ¸÷ ¸®½ºÆ®ÀÇ OldOne ¿¡ ÇØ´çÇÏ´Â ¿ä¼Ò¸¦ NewOne À¸·Î ¹Ù²ãÄ§.
+	// ëª¹ ë¦¬ìŠ¤íŠ¸ì˜ OldOne ì— í•´ë‹¹í•˜ëŠ” ìš”ì†Œë¥¼ NewOne ìœ¼ë¡œ ë°”ê¿”ì¹¨.
 	if (OldOne->IsSummonedMob())
 	{
-		// Summoner µç, Summonee µç ´ë»óÀÌ µÉ ¼ö ÀÖ°Ú´Ù.
+		// Summoner ë“ , Summonee ë“  ëŒ€ìƒì´ ë  ìˆ˜ ìˆê² ë‹¤.
 		for (int32 SI = 0; SI < SummonedFellows.Num(); ++SI)
 		{
 			if (SummonedFellows[SI].Summonee == OldOne)
@@ -2431,13 +2434,13 @@ void AB2MonsterSpawnPool::SwapMonsterForPhaseSpawn(class ABladeIICharacter* OldO
 				if (CurrState.FellowsInThisWave[MI] == OldOne)
 				{
 					CurrState.FellowsInThisWave[MI] = NewOne;
-					// ¿©±â¼­ °Á break °É¾î ¹ö·Áµµ µÇ°ÚÁö¸¸..
+					// ì—¬ê¸°ì„œ ê± break ê±¸ì–´ ë²„ë ¤ë„ ë˜ê² ì§€ë§Œ..
 				}
 			}
 		}
 	}
 
-	// Ãß°¡·Î NewOne ¿¡ ´ëÇÑ SetBirthPlace Ã³¸®. StageManager ¸¦ °ÅÄ¡Áö ¾Ê´Â Á÷Á¢ Ã³¸®ÀÎµ¥ ÇÊ¿äÇÏ°Ô µÇ¸é ±³Ã¼..
+	// ì¶”ê°€ë¡œ NewOne ì— ëŒ€í•œ SetBirthPlace ì²˜ë¦¬. StageManager ë¥¼ ê±°ì¹˜ì§€ ì•ŠëŠ” ì§ì ‘ ì²˜ë¦¬ì¸ë° í•„ìš”í•˜ê²Œ ë˜ë©´ êµì²´..
 	NewOne->SetBirthPlace(FMobSpawnedBirthplaceInfo(this, OldOne->GetSpawnPoolWaveNum(), OldOne->GetSpawnPoolWaveObjIndex(), OldOne->IsSpawnedAsBossMob(), OldOne->IsSummonedMob()));
 }
 
@@ -2485,11 +2488,11 @@ int32 AB2MonsterSpawnPool::GetLeftGoldWeight(int32 InClientStageId, EStageDiffic
 		{
 			const FMonsterSpawnPoolRuntimeWaveState& WaveState = RuntimeWaveStates[WI];
 			if (WaveState.bWaveStarted == false)
-			{//GetSpawnClassFromSetting()ÀÇ ·£´ı¼º¿¡ ÀÇÇØ °è»ê°ªÀº ¸Å¹ø ¹Ù²ğ ¼ö ÀÖ´Ù. ¿¹»óÄ¡ ¿ëµµ¶ó¼­ Å« ¹®Á¦´Â ¾øÀ» µí.
+			{//GetSpawnClassFromSetting()ì˜ ëœë¤ì„±ì— ì˜í•´ ê³„ì‚°ê°’ì€ ë§¤ë²ˆ ë°”ë€” ìˆ˜ ìˆë‹¤. ì˜ˆìƒì¹˜ ìš©ë„ë¼ì„œ í° ë¬¸ì œëŠ” ì—†ì„ ë“¯.
 				for (int32 spawnIdx = 0; spawnIdx < WaveState.FinalSpawnNum; ++spawnIdx)
 				{
 					FSpawnClassFromSetting_OutParams OutParams;
-					GetSpawnClassFromSetting(OutParams, WaveSettings, NULL, spawnIdx); //´Ù¸¥ ½¬¿î ÀÎÅÍÆäÀÌ½º´Â? -> ¾ø½À´Ï´Ù °í°´´Ô
+					GetSpawnClassFromSetting(OutParams, WaveSettings, NULL, spawnIdx); //ë‹¤ë¥¸ ì‰¬ìš´ ì¸í„°í˜ì´ìŠ¤ëŠ”? -> ì—†ìŠµë‹ˆë‹¤ ê³ ê°ë‹˜
 					WeightCounter += OutParams.OutWeightRewardGold;
 				}
 			}
@@ -2514,10 +2517,10 @@ void AB2MonsterSpawnPool::Cheat_FinishUpToCertainWave(int32 DesiredFinishWaveNum
 {
 	if (DesiredFinishWaveNum < 0)
 	{
-		return; // ForceClearWaves ¿Í´Â ´Ù¸§.
+		return; // ForceClearWaves ì™€ëŠ” ë‹¤ë¦„.
 	}
 
-	// DesiredFinishWaveNum ±îÁö ½ÃÀÛÇÏÁö ¾ÊÀº wave °¡ ÀÖ´Ù¸é ½ÃÀÛ.
+	// DesiredFinishWaveNum ê¹Œì§€ ì‹œì‘í•˜ì§€ ì•Šì€ wave ê°€ ìˆë‹¤ë©´ ì‹œì‘.
 	const int32 StageWaveNum = GetStageWaveNum(CurrentClientStageId, (EStageDifficulty)CurrentDifficultyLevel);
 	for (int32 WI = 0; WI < StageWaveNum; ++WI)
 	{
@@ -2534,16 +2537,16 @@ void AB2MonsterSpawnPool::Cheat_FinishUpToCertainWave(int32 DesiredFinishWaveNum
 		}
 	}
 
-	// ForceClearWaves ¿¡¼­ ±×³É Á×ÀÌ±â¸¸ ÇÏ°í ¿©Å¸ Ã³¸®µéÀº CheckWaveCompletion À» ÅëÇØ¼­..
+	// ForceClearWaves ì—ì„œ ê·¸ëƒ¥ ì£½ì´ê¸°ë§Œ í•˜ê³  ì—¬íƒ€ ì²˜ë¦¬ë“¤ì€ CheckWaveCompletion ì„ í†µí•´ì„œ..
 	ForceClearWaves(DesiredFinishWaveNum, false);
-	bForceClearing = false; // À¸ÀÌ±¸.. ¿¡µğÅÍ ±â´ÉÀÌ´Ï ÀÌ ÇãÁ¢ÇÔÀ» ³Ñ±ä´Ù..
+	bForceClearing = false; // ìœ¼ì´êµ¬.. ì—ë””í„° ê¸°ëŠ¥ì´ë‹ˆ ì´ í—ˆì ‘í•¨ì„ ë„˜ê¸´ë‹¤..
 
-	CheckWaveCompletion(); // °Á ÀÌ°Å ÇÑ¹ø ºÒ·¯ÁÖ¸é OnSingleWaveComplete Ã³¸®µµ µÉ µí.
+	CheckWaveCompletion(); // ê± ì´ê±° í•œë²ˆ ë¶ˆëŸ¬ì£¼ë©´ OnSingleWaveComplete ì²˜ë¦¬ë„ ë  ë“¯.
 }
 
 void AB2MonsterSpawnPool::ProceedOnEventIgnoringCheat()
-{ // µé¾î¿À´Â »óÈ²Àº ÀÌº¥Æ® ¾øÀÌ ¾ÖµéÀ» µû·Î Á×ÀÎ ´ÙÀ½ wave ³¡³µ´ÂÁö Ã¼Å©ÇÏ±â À§ÇÔ.
-	// OnSpawnedMonsterDead ÀÇ ÇÊ¿ä Ã³¸®¸¦ Á÷Á¢.
+{ // ë“¤ì–´ì˜¤ëŠ” ìƒí™©ì€ ì´ë²¤íŠ¸ ì—†ì´ ì• ë“¤ì„ ë”°ë¡œ ì£½ì¸ ë‹¤ìŒ wave ëë‚¬ëŠ”ì§€ ì²´í¬í•˜ê¸° ìœ„í•¨.
+	// OnSpawnedMonsterDead ì˜ í•„ìš” ì²˜ë¦¬ë¥¼ ì§ì ‘.
 	const int32 StageWaveNum = GetStageWaveNum(CurrentClientStageId, (EStageDifficulty)CurrentDifficultyLevel);
 	for (int32 WI = 0; WI < StageWaveNum; ++WI)
 	{
@@ -2562,7 +2565,7 @@ void AB2MonsterSpawnPool::ProceedOnEventIgnoringCheat()
 		}
 	}
 
-	SummonedFellows.Empty(); // ¼ÒÈ¯ ¸®½ºÆ®´Â °Á ¸ğµÎ ºñ¿ò.
+	SummonedFellows.Empty(); // ì†Œí™˜ ë¦¬ìŠ¤íŠ¸ëŠ” ê± ëª¨ë‘ ë¹„ì›€.
 
 	CheckWaveCompletion();
 }
@@ -2574,7 +2577,7 @@ void AB2MonsterSpawnPool::ProceedOnEventIgnoringCheat()
 void AB2MonsterSpawnPool::RegenerateEditingActors()
 {
 	UPackage* OutermostPkg = GetOutermost();
-	// ¸ÊÀÎ °æ¿ì¸¸ »ı¼ºÇØ¾ß ÇÔ. ºí·çÇÁ¸°Æ®·Î ÀúÀåÇÑ ¾Öµµ Ã³À½¿£ ¸ÊÀ¸·Î ÀÎ½ÄµÉ °Í.
+	// ë§µì¸ ê²½ìš°ë§Œ ìƒì„±í•´ì•¼ í•¨. ë¸”ë£¨í”„ë¦°íŠ¸ë¡œ ì €ì¥í•œ ì• ë„ ì²˜ìŒì—” ë§µìœ¼ë¡œ ì¸ì‹ë  ê²ƒ.
 	if (OutermostPkg == NULL || FEditorFileUtils::IsMapPackageAsset(OutermostPkg->GetName()) == false || !AmICurrentEditorActive(this))
 	{
 		DestroyAllEditingActors();
@@ -2653,7 +2656,7 @@ void AB2MonsterSpawnPool::RegenerateEditingActors()
 			{
 				// Relocating the editing actor is not that necessary, but for the sake of cleanness..
 				// After the root component gets relocated, other child representing sk components will get their location below by SetRepresentingInfo.
-				// SpawnAreaComp ´Â ShapeComponent
+				// SpawnAreaComp ëŠ” ShapeComponent
 				if (UShapeComponent* SpawnAreaComp = Cast<UShapeComponent>(FindComponentByName(CurrSetting->SpawnAreaComponentName)))
 				{
 					CurrEditingActor->SetActorLocation(SpawnAreaComp->GetComponentLocation());
@@ -2723,7 +2726,7 @@ class AB2SpawnPoolEditingActor* AB2MonsterSpawnPool::CreateSingleWaveEditingActo
 		{
 			if (CurrSetting->SpawnAreaComponentName != NAME_None)
 			{
-				// SpawnAreaComp ´Â ShapeComponent
+				// SpawnAreaComp ëŠ” ShapeComponent
 				UShapeComponent* SpawnAreaComp = Cast<UShapeComponent>(FindComponentByName(CurrSetting->SpawnAreaComponentName));
 				if (SpawnAreaComp)
 				{
@@ -2798,16 +2801,16 @@ void AB2MonsterSpawnPool::RegenerateComponentNameDisplay()
 {
 	// Use the first element of WaveEditingActors array for ComponentNameDisplay. Cannot separate the ComponentNameDisplay according to the WaveNum index.
 	// Therefore, no ComponentNameDisplay when there is no wave setting.
-	if(GIsEditor && WaveEditingActors.Num() && WaveEditingActors[0] != NULL) // Double check for GIsEditor.
+	if (GIsEditor && WaveEditingActors.Num() && WaveEditingActors[0] != NULL) // Double check for GIsEditor.
 	{
 		TArray<UActorComponent*> AllComps;
 		GetComponents(AllComps);
 
 		// Before we go on, remove previously created text render components..
 		// For this, it is a little bit harder to remove only unnecessary stuff, so just remove all and recreate..
-		for(int32 EI = 0; EI < WaveEditingActors.Num(); ++EI)
+		for (int32 EI = 0; EI < WaveEditingActors.Num(); ++EI)
 		{
-			if(WaveEditingActors[EI])
+			if (WaveEditingActors[EI])
 			{
 				WaveEditingActors[EI]->RemoveAllComponentDisplay();
 			}
@@ -2822,7 +2825,7 @@ void AB2MonsterSpawnPool::RegenerateComponentNameDisplay()
 
 				if (Cast<UBillboardComponent>(CurrComp))
 				{
-					continue; // ¿¡µğÅÍ ¾ÆÀÌÄÜ ½ºÇÁ¶óÀÌÆ® ÀÌ¸§ ¶ß´Â °Å ÇÊ¿äµµ ¾ø°í ±¦È÷ °Å½½¸².
+					continue; // ì—ë””í„° ì•„ì´ì½˜ ìŠ¤í”„ë¼ì´íŠ¸ ì´ë¦„ ëœ¨ëŠ” ê±° í•„ìš”ë„ ì—†ê³  ê´œíˆ ê±°ìŠ¬ë¦¼.
 				}
 
 				WaveEditingActors[0]->SetComponentToDisplayInfo(CurrComp);
@@ -2833,7 +2836,7 @@ void AB2MonsterSpawnPool::RegenerateComponentNameDisplay()
 
 bool AB2MonsterSpawnPool::EditorGetSpawnClassOfWaveMob(ENPCClass& OutClassEnum, ENPCClassVariation& OutClassVariation, TSubclassOf<class ABladeIICharacter>& OutClassBP, int32 InWaveNum, int32 InObjIndex)
 {
-	// ÀÌ°Ç »ç½Ç»ó ¿¡µğÅÍ ¿ëµµ¶ó EditorStageNumber ¸¦ »ç¿ë
+	// ì´ê±´ ì‚¬ì‹¤ìƒ ì—ë””í„° ìš©ë„ë¼ EditorStageNumber ë¥¼ ì‚¬ìš©
 	ABladeIIWorldSettings* B2WS = Cast<ABladeIIWorldSettings>(GetWorldSettings());
 	const int32 EditorStageNum = B2WS ? B2WS->GetEditorStageNumber() : 1;
 	const EStageDifficulty EditorDifficultyLevel = B2WS ? (EStageDifficulty)B2WS->GetEditorStageDifficulty() : EStageDifficulty::ESD_Normal;
@@ -2847,7 +2850,7 @@ bool AB2MonsterSpawnPool::EditorGetSpawnClassOfWaveMob(ENPCClass& OutClassEnum, 
 
 		if (GetSpawnClassFromSetting(SpawnClassParam, WaveSetting, NULL, InObjIndex))
 		{
-			if (SpawnClassParam.OutClassEnum != ENPCClass::ENC_End || SpawnClassParam.OutClassBP != NULL) // À§¿¡¼­ true ¸®ÅÏÀÌ¸é ÀÌ·¡¾ß ÇÏ°ÚÁö¸¸ ÇÑ¹ø ´õ Ã¼Å©
+			if (SpawnClassParam.OutClassEnum != ENPCClass::ENC_End || SpawnClassParam.OutClassBP != NULL) // ìœ„ì—ì„œ true ë¦¬í„´ì´ë©´ ì´ë˜ì•¼ í•˜ê² ì§€ë§Œ í•œë²ˆ ë” ì²´í¬
 			{
 				OutClassEnum = SpawnClassParam.OutClassEnum;
 				OutClassVariation = SpawnClassParam.OutClassVariation;
@@ -2939,7 +2942,7 @@ void AB2MonsterSpawnPool::PostEditChangeProperty(FPropertyChangedEvent& Property
 		{
 #if !PLATFORM_MAC
 			// Just a note or warning according to the current implementation limit of ForceClearWaves.
-			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(TEXT("[B2MonsterSpawnPool] [NOTE] ÁÖÀÇ»çÇ×:\nWaveCompl_TerminateAll ¿¡ µû¶ó ´Ù¸¥ wave °¡ °­Á¦ Á¾·áµÉ ¶§¿¡´Â wave Á¾·á¿¡ µû¸¥ ÀÌº¥Æ® È£ÃâÀÌ »ı·«µË´Ï´Ù.")));
+			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(TEXT("[B2MonsterSpawnPool] [NOTE] ì£¼ì˜ì‚¬í•­:\nWaveCompl_TerminateAll ì— ë”°ë¼ ë‹¤ë¥¸ wave ê°€ ê°•ì œ ì¢…ë£Œë  ë•Œì—ëŠ” wave ì¢…ë£Œì— ë”°ë¥¸ ì´ë²¤íŠ¸ í˜¸ì¶œì´ ìƒëµë©ë‹ˆë‹¤.")));
 #endif
 		}
 	}
@@ -2949,14 +2952,14 @@ void AB2MonsterSpawnPool::PostEditChangeProperty(FPropertyChangedEvent& Property
 		if (bDisableAllSpawn == true)
 		{
 #if !PLATFORM_MAC
-			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(TEXT("[B2MonsterSpawnPool] DisableAllSpawn Àº Å×½ºÆ® ¿ëµµ·Î Á¦°øµË´Ï´Ù. ÃÖÁ¾ ¹èÆ÷ÆÇ ºôµå¿¡¼­´Â µ¿ÀÛÇÏÁö ¾ÊÀ» °ÍÀÔ´Ï´Ù.")));
+			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(TEXT("[B2MonsterSpawnPool] DisableAllSpawn ì€ í…ŒìŠ¤íŠ¸ ìš©ë„ë¡œ ì œê³µë©ë‹ˆë‹¤. ìµœì¢… ë°°í¬íŒ ë¹Œë“œì—ì„œëŠ” ë™ì‘í•˜ì§€ ì•Šì„ ê²ƒì…ë‹ˆë‹¤.")));
 #endif
 		}
 	}
 
 	if (/*PropertyName == Name_PerStageSettings || */PropertyName == Name_TargetStageNum || PropertyName == Name_TargetDifficultyLevel)
 	{
-		// ³ª¸¦ Á¦¿ÜÇÑ SpawnPool ¸®½ºÆ® ¼öÁı. ´Ù¸¥ ¾Öµé°Íµµ Ã¼Å©ÇØ¾ß.
+		// ë‚˜ë¥¼ ì œì™¸í•œ SpawnPool ë¦¬ìŠ¤íŠ¸ ìˆ˜ì§‘. ë‹¤ë¥¸ ì• ë“¤ê²ƒë„ ì²´í¬í•´ì•¼.
 		UWorld* EditorWorld = GEditor ? GEditor->GetEditorWorldContext().World() : NULL;
 		TArray<AB2MonsterSpawnPool*> AllSPExceptMe;
 		for (FActorIterator ActorIt(EditorWorld); ActorIt; ++ActorIt)
@@ -2970,7 +2973,7 @@ void AB2MonsterSpawnPool::PostEditChangeProperty(FPropertyChangedEvent& Property
 
 #if !PLATFORM_MAC
 		int32 AllFoundDuplicatedNum = 0;
-		FString WarnMsgStr(TEXT("[Warning] Áßº¹µÈ TargetStageNum / DifficultyLevel ¼¼ÆÃ:\n\n"));
+		FString WarnMsgStr(TEXT("[Warning] ì¤‘ë³µëœ TargetStageNum / DifficultyLevel ì„¸íŒ…:\n\n"));
 		for (int32 SIA = 0; SIA < PerStageSettings.Num(); ++SIA)
 		{
 			int32 CurrTargetStageNum = PerStageSettings[SIA].TargetStageNum;
@@ -2980,19 +2983,19 @@ void AB2MonsterSpawnPool::PostEditChangeProperty(FPropertyChangedEvent& Property
 			{
 				if (CurrTargetStageNum == PerStageSettings[SIB].TargetStageNum && CurrDifficultyLevel == PerStageSettings[SIB].TargetDifficultyLevel)
 				{
-					WarnMsgStr += FString::Printf(TEXT("SpawnPool %s, ÀÎµ¦½º %d and %d, TargetStage %d, TargetDifficulty %d\n"), *GetName(), SIA, SIB, CurrTargetStageNum, (int32)CurrDifficultyLevel);
+					WarnMsgStr += FString::Printf(TEXT("SpawnPool %s, ì¸ë±ìŠ¤ %d and %d, TargetStage %d, TargetDifficulty %d\n"), *GetName(), SIA, SIB, CurrTargetStageNum, (int32)CurrDifficultyLevel);
 					++AllFoundDuplicatedNum;
 				}
 			}
 
-			// ±×¸®°í ´Ù¸¥ SpawnPool ¿¡¼­µµ..
+			// ê·¸ë¦¬ê³  ë‹¤ë¥¸ SpawnPool ì—ì„œë„..
 			for (AB2MonsterSpawnPool* OtherOne : AllSPExceptMe)
 			{
 				for (int32 SIB = 0; SIB < OtherOne->PerStageSettings.Num(); ++SIB)
 				{
 					if (CurrTargetStageNum == OtherOne->PerStageSettings[SIB].TargetStageNum && CurrDifficultyLevel == OtherOne->PerStageSettings[SIB].TargetDifficultyLevel)
 					{
-						WarnMsgStr += FString::Printf(TEXT("SpawnPool %s, ÀÎµ¦½º %d and %d, TargetStage %d, TargetDifficulty %d\n"), *OtherOne->GetName(), SIA, SIB, CurrTargetStageNum, (int32)CurrDifficultyLevel);
+						WarnMsgStr += FString::Printf(TEXT("SpawnPool %s, ì¸ë±ìŠ¤ %d and %d, TargetStage %d, TargetDifficulty %d\n"), *OtherOne->GetName(), SIA, SIB, CurrTargetStageNum, (int32)CurrDifficultyLevel);
 						++AllFoundDuplicatedNum;
 					}
 				}
@@ -3010,7 +3013,7 @@ void AB2MonsterSpawnPool::PostEditChangeProperty(FPropertyChangedEvent& Property
 	{
 #if !PLATFORM_MAC
 		int32 AllFoundNotAllowedVariation = 0;
-		FString WarnMsgStr(TEXT("[Warning] Çã¿ëµÇÁö ¾Ê´Â ClassVariation ¼¼ÆÃ:\r\n\r\n"));
+		FString WarnMsgStr(TEXT("[Warning] í—ˆìš©ë˜ì§€ ì•ŠëŠ” ClassVariation ì„¸íŒ…:\r\n\r\n"));
 		for (int32 SIA = 0; SIA < PerStageSettings.Num(); ++SIA)
 		{
 			for (int32 WI = 0; WI < PerStageSettings[SIA].WaveSettings.Num(); ++WI)
@@ -3030,7 +3033,7 @@ void AB2MonsterSpawnPool::PostEditChangeProperty(FPropertyChangedEvent& Property
 							WI);
 					}
 
-					// ÀÏ´Ü CounterDungeon ³ÖÁö ¾Ê°Ô ÇÏ·Á°í ÇÑ °Çµ¥ ±âÅ¸ ´Ù¸¥ °É Ãß°¡ÇÒ ¼öµµ..
+					// ì¼ë‹¨ CounterDungeon ë„£ì§€ ì•Šê²Œ í•˜ë ¤ê³  í•œ ê±´ë° ê¸°íƒ€ ë‹¤ë¥¸ ê±¸ ì¶”ê°€í•  ìˆ˜ë„..
 				}
 			}
 		}
@@ -3046,7 +3049,7 @@ void AB2MonsterSpawnPool::PostEditChangeProperty(FPropertyChangedEvent& Property
 	if (PropertyName == Name_CompOnOffComponentName || PropertyName == Name_CompOnOffCheckForOnOff)
 	{
 #if !PLATFORM_MAC
-		// Wave ½ÃÀÛ/Á¾·á ½Ã ÄÄÆ÷³ÍÆ® Enable ½ÃÅ°´Â ¼³Á¤Àº Á» Á¶½ÉÇØ¾ß ÇÔ. Àß¸øÇÏ¸é ±æÀÌ ¸·È÷±â ¶§¹®. ÀÌ¿¡ µû¸¥ °æ°í
+		// Wave ì‹œì‘/ì¢…ë£Œ ì‹œ ì»´í¬ë„ŒíŠ¸ Enable ì‹œí‚¤ëŠ” ì„¤ì •ì€ ì¢€ ì¡°ì‹¬í•´ì•¼ í•¨. ì˜ëª»í•˜ë©´ ê¸¸ì´ ë§‰íˆê¸° ë•Œë¬¸. ì´ì— ë”°ë¥¸ ê²½ê³ 
 
 		TArray<FString> UndesiredBeginEnableCompsSetting;
 		TArray<FString> UndesiredComplEnableCompsSetting;
@@ -3061,7 +3064,7 @@ void AB2MonsterSpawnPool::PostEditChangeProperty(FPropertyChangedEvent& Property
 
 				UMeshComponent* MeshComp = Cast<UMeshComponent>(FindComponentByName(CurrCompSetting.ComponentName));
 
-				// Wave ½ÃÀÛ½Ã¿¡ MeshComponent ¸¦ ÄÑ´Â ¼³Á¤ÀÌ¶ó¸é WaveExec_TriggerComponent ÇÏ°í¸¸ »ç¿ëµÇ´Â °ÍÀÌ ¹Ù¶÷Á÷ÇÏ´Ù. ±×·¡¾ß wave ½ÃÀÛ ½Ã À§Ä¡¸¦ °­Á¦ÇÒ ¼ö ÀÖÀ¸¹Ç·Î.
+				// Wave ì‹œì‘ì‹œì— MeshComponent ë¥¼ ì¼œëŠ” ì„¤ì •ì´ë¼ë©´ WaveExec_TriggerComponent í•˜ê³ ë§Œ ì‚¬ìš©ë˜ëŠ” ê²ƒì´ ë°”ëŒì§í•˜ë‹¤. ê·¸ë˜ì•¼ wave ì‹œì‘ ì‹œ ìœ„ì¹˜ë¥¼ ê°•ì œí•  ìˆ˜ ìˆìœ¼ë¯€ë¡œ.
 				if (CurrCompSetting.EventTiming == EWaveCustomEventTiming::EWCET_WaveStart && CurrCompSetting.bCheckForOnOrOff == true && MeshComp && TargetWaveSetting &&
 					(TargetWaveSetting->WaveExec_TriggerComponent == NAME_None || TargetWaveSetting->WaveExec_PostCompleteWaveNum >= 0)
 					)
@@ -3069,7 +3072,7 @@ void AB2MonsterSpawnPool::PostEditChangeProperty(FPropertyChangedEvent& Property
 					UndesiredBeginEnableCompsSetting.Add(FString::Printf(TEXT("Stage %d, WaveComp %d"), SI, WI));
 				}
 
-				// ¾î¶² °æ¿ìµç wave Á¾·á ½Ã¿¡ MeshComponent ¸¦ ÄÑµµ·Ï ÁöÁ¤ÇÏ´Â °Ô ¹Ù¶÷Á÷ÇÏÁö ¾Ê´Ù. ¾îµğ¼­ wave °¡ ³¡³¯Áö ¸ğ¸£¹Ç·Î.
+				// ì–´ë–¤ ê²½ìš°ë“  wave ì¢…ë£Œ ì‹œì— MeshComponent ë¥¼ ì¼œë„ë¡ ì§€ì •í•˜ëŠ” ê²Œ ë°”ëŒì§í•˜ì§€ ì•Šë‹¤. ì–´ë””ì„œ wave ê°€ ëë‚ ì§€ ëª¨ë¥´ë¯€ë¡œ.
 				if (CurrCompSetting.EventTiming == EWaveCustomEventTiming::EWCET_WaveComplete && CurrCompSetting.bCheckForOnOrOff == true && MeshComp)
 				{
 					UndesiredComplEnableCompsSetting.Add(FString::Printf(TEXT("Stage %d, WaveComp %d"), SI, WI));
@@ -3079,22 +3082,22 @@ void AB2MonsterSpawnPool::PostEditChangeProperty(FPropertyChangedEvent& Property
 
 		if (UndesiredBeginEnableCompsSetting.Num() > 0)
 		{
-			//FString WarnMessage = TEXT("WaveCompOnOffSettings ¿¡ Àß¸øµÈ ÇÃ·¹ÀÌ¸¦ À¯¹ßÇÒ ¼ö ÀÖ´Â ¼³Á¤ÀÌ ÀÖ½À´Ï´Ù. ¾Æ·¡ ÀÎµ¦½ºÀÇ ¼³Á¤(µé)À» È®ÀÎÇØ ÁÖ¼¼¿ä.\n\n");
+			//FString WarnMessage = TEXT("WaveCompOnOffSettings ì— ì˜ëª»ëœ í”Œë ˆì´ë¥¼ ìœ ë°œí•  ìˆ˜ ìˆëŠ” ì„¤ì •ì´ ìˆìŠµë‹ˆë‹¤. ì•„ë˜ ì¸ë±ìŠ¤ì˜ ì„¤ì •(ë“¤)ì„ í™•ì¸í•´ ì£¼ì„¸ìš”.\n\n");
 			//for (int32 CI = 0; CI < UndesiredBeginEnableCompsSetting.Num(); ++CI)
 			//{
 			//	WarnMessage += UndesiredBeginEnableCompsSetting[CI] + TEXT("\n");
 			//}
-			//WarnMessage += FString(TEXT("\nWave ½ÃÀÛ ½Ã MeshComponent ¸¦ enable ½ÃÅ°´Â ¼³Á¤¿¡¼­´Â WaveExec_TriggerComponent ¸¸ »ç¿ëÇÏ´Â °ÍÀÌ ÁÁ½À´Ï´Ù."));
+			//WarnMessage += FString(TEXT("\nWave ì‹œì‘ ì‹œ MeshComponent ë¥¼ enable ì‹œí‚¤ëŠ” ì„¤ì •ì—ì„œëŠ” WaveExec_TriggerComponent ë§Œ ì‚¬ìš©í•˜ëŠ” ê²ƒì´ ì¢‹ìŠµë‹ˆë‹¤."));
 			//FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(WarnMessage));
 		}
 		if (UndesiredComplEnableCompsSetting.Num() > 0)
 		{
-			//FString WarnMessage = TEXT("WaveCompOnOffSettings ¿¡ Àß¸øµÈ ÇÃ·¹ÀÌ¸¦ À¯¹ßÇÒ ¼ö ÀÖ´Â ¼³Á¤ÀÌ ÀÖ½À´Ï´Ù. ¾Æ·¡ ÀÎµ¦½ºÀÇ ¼³Á¤(µé)À» È®ÀÎÇØ ÁÖ¼¼¿ä.\n\n");
+			//FString WarnMessage = TEXT("WaveCompOnOffSettings ì— ì˜ëª»ëœ í”Œë ˆì´ë¥¼ ìœ ë°œí•  ìˆ˜ ìˆëŠ” ì„¤ì •ì´ ìˆìŠµë‹ˆë‹¤. ì•„ë˜ ì¸ë±ìŠ¤ì˜ ì„¤ì •(ë“¤)ì„ í™•ì¸í•´ ì£¼ì„¸ìš”.\n\n");
 			//for (int32 CI = 0; CI < UndesiredComplEnableCompsSetting.Num(); ++CI)
 			//{
 			//	WarnMessage += UndesiredComplEnableCompsSetting[CI] + TEXT("\n");
 			//}
-			//WarnMessage += FString(TEXT("\nWave Á¾·á ½Ã MeshComponent ¸¦ enable ½ÃÅ°´Â °ÍÀº ÇÃ·¹ÀÌ ·çÆ®¸¦ ¸·À» °¡´É¼ºÀÌ ÀÖ½À´Ï´Ù."));
+			//WarnMessage += FString(TEXT("\nWave ì¢…ë£Œ ì‹œ MeshComponent ë¥¼ enable ì‹œí‚¤ëŠ” ê²ƒì€ í”Œë ˆì´ ë£¨íŠ¸ë¥¼ ë§‰ì„ ê°€ëŠ¥ì„±ì´ ìˆìŠµë‹ˆë‹¤."));
 			//FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(WarnMessage));
 		}
 #endif
@@ -3103,14 +3106,14 @@ void AB2MonsterSpawnPool::PostEditChangeProperty(FPropertyChangedEvent& Property
 	if (PropertyName == Name_SpawnNum || PropertyName == Name_BossWave)
 	{
 #if !PLATFORM_MAC
-		FString BossWaveWarnString = TEXT("BossWave ¼³Á¤À» ÇÑ wave ¿¡´Â ´Ü ÇÏ³ªÀÇ ¸÷¸¸À» spawn ½ÃÄÑ¾ß ÇÕ´Ï´Ù. ´ÙÀ½ wave ¼¼ÆÃµéÀ» È®ÀÎÇÏ¼¼¿ä.\n");
+		FString BossWaveWarnString = TEXT("BossWave ì„¤ì •ì„ í•œ wave ì—ëŠ” ë‹¨ í•˜ë‚˜ì˜ ëª¹ë§Œì„ spawn ì‹œì¼œì•¼ í•©ë‹ˆë‹¤. ë‹¤ìŒ wave ì„¸íŒ…ë“¤ì„ í™•ì¸í•˜ì„¸ìš”.\n");
 		bool bNeedWarning = false;
 		for (int32 SI = 0; SI < PerStageSettings.Num(); ++SI)
 		{
 			for (int32 WI = 0; WI < PerStageSettings[SI].WaveSettings.Num(); ++WI)
 			{
 				FMonsterSpawnPoolWaveSettings& CurrWaveSetting = PerStageSettings[SI].WaveSettings[WI];
-				// BossWave ¿¡ 2¸¶¸® ÀÌ»ó spawn ÇÏ¸é °³°ï¶õ. ¿Ö³Ä¸é BossHUD °¡ ÁßÃ¸µÇ¾î ¶ã °ÍÀÌ±â ¶§¹®.
+				// BossWave ì— 2ë§ˆë¦¬ ì´ìƒ spawn í•˜ë©´ ê°œê³¤ë€. ì™œëƒë©´ BossHUD ê°€ ì¤‘ì²©ë˜ì–´ ëœ° ê²ƒì´ê¸° ë•Œë¬¸.
 				if (CurrWaveSetting.bBossWave && CurrWaveSetting.SpawnNum > 1)
 				{
 					bNeedWarning = true;
@@ -3161,7 +3164,7 @@ void AB2MonsterSpawnPool::PostEditMove(bool bFinished)
 void ParseForWaveMobSelectKeyword(FString InKeyword, int32& OutWaveNum, int32& OutMobIndex)
 {
 	OutWaveNum = -1;
-	OutMobIndex = 0; // MobIndex ´Â ÁöÁ¤ÇÏÁö ¾ÊÀ» °æ¿ì ±âº» 0¹øÀ¸·Î ÇÏµµ·Ï ÇØ º¸ÀÚ..
+	OutMobIndex = 0; // MobIndex ëŠ” ì§€ì •í•˜ì§€ ì•Šì„ ê²½ìš° ê¸°ë³¸ 0ë²ˆìœ¼ë¡œ í•˜ë„ë¡ í•´ ë³´ì..
 
 	const TCHAR* KeywordStr = *InKeyword;
 	FString NextToken;
@@ -3177,10 +3180,10 @@ void ParseForWaveMobSelectKeyword(FString InKeyword, int32& OutWaveNum, int32& O
 }
 
 AB2MonsterSpawnPool* GetDesiredSpawnPoolOfSettingFromList(TArray<AB2MonsterSpawnPool*>& InSPs, int32 InTargetStageNum, EStageDifficulty InTargetDifficulty, bool bFallBackToLowerDifficulty)
-{ // ¿ùµå¿¡ ¹èÄ¡µÈ ¿©·¯°³ÀÇ SpawnPool Áß¿¡¼­ ¿øÇÏ´Â ½ºÅ×ÀÌÁö¿¡ ÇÊ¿äÇÑ ¼¼ÆÃÀ» ´ã°í ÀÖ´Â ÇÏ³ª¸¦ Ã£´Â µ¥¿¡ »ç¿ëµÊ.
+{ // ì›”ë“œì— ë°°ì¹˜ëœ ì—¬ëŸ¬ê°œì˜ SpawnPool ì¤‘ì—ì„œ ì›í•˜ëŠ” ìŠ¤í…Œì´ì§€ì— í•„ìš”í•œ ì„¸íŒ…ì„ ë‹´ê³  ìˆëŠ” í•˜ë‚˜ë¥¼ ì°¾ëŠ” ë°ì— ì‚¬ìš©ë¨.
 	for (AB2MonsterSpawnPool* ThisSP : InSPs)
 	{
-		if (ThisSP && ThisSP->HasSetupFor(InTargetStageNum, InTargetDifficulty)) // ÀÏ´Ü Á¤È®È÷ ÀÏÄ¡ÇÏ´Â ¼¼ÆÃÀÌ ÀÖ´Â °É Ã£´Â´Ù.
+		if (ThisSP && ThisSP->HasSetupFor(InTargetStageNum, InTargetDifficulty)) // ì¼ë‹¨ ì •í™•íˆ ì¼ì¹˜í•˜ëŠ” ì„¸íŒ…ì´ ìˆëŠ” ê±¸ ì°¾ëŠ”ë‹¤.
 		{
 			return ThisSP;
 		}
@@ -3188,7 +3191,7 @@ AB2MonsterSpawnPool* GetDesiredSpawnPoolOfSettingFromList(TArray<AB2MonsterSpawn
 
 	if (bFallBackToLowerDifficulty && InTargetDifficulty > EStageDifficulty::ESD_Normal)
 	{
-		// ³ôÀº ³­ÀÌµµ·Î´Â Æú¹é ¸øÇÏ°í ÇÑ ´Ü°è¾¿ ³·Àº ³­ÀÌµµ·Î Å×½ºÆ®. (AB2MonsterSpawnPool::GetDesiredStageSetting)
+		// ë†’ì€ ë‚œì´ë„ë¡œëŠ” í´ë°± ëª»í•˜ê³  í•œ ë‹¨ê³„ì”© ë‚®ì€ ë‚œì´ë„ë¡œ í…ŒìŠ¤íŠ¸. (AB2MonsterSpawnPool::GetDesiredStageSetting)
 		EStageDifficulty FallbackTestDifficulty = GetOneEasierStageDifficulty(InTargetDifficulty);
 
 		while (true)
@@ -3204,13 +3207,13 @@ AB2MonsterSpawnPool* GetDesiredSpawnPoolOfSettingFromList(TArray<AB2MonsterSpawn
 
 			if (FallbackTestDifficulty <= EStageDifficulty::ESD_Normal)
 			{
-				break; // ÀÌ ÀÌÇÏ´Â ¾øÀ½.
+				break; // ì´ ì´í•˜ëŠ” ì—†ìŒ.
 			}
 
 			FallbackTestDifficulty = GetOneEasierStageDifficulty(FallbackTestDifficulty);
 		}
 	}
-	// Ãß°¡·Î ¿©±â·Î ¿ÔÀ» ¶§ Ã³À½ °ÍÀ» ¸®ÅÏÇÏ´Â ¿É¼Çµµ »ı°¢ÇØ º¼ ¸¸ÇÏ´Ù.
+	// ì¶”ê°€ë¡œ ì—¬ê¸°ë¡œ ì™”ì„ ë•Œ ì²˜ìŒ ê²ƒì„ ë¦¬í„´í•˜ëŠ” ì˜µì…˜ë„ ìƒê°í•´ ë³¼ ë§Œí•˜ë‹¤.
 	return NULL;
 }
 
@@ -3228,7 +3231,7 @@ void SetForcedPerStageSettings(TArray<AB2MonsterSpawnPool*>& InSPs, int32 InClie
 #if WITH_EDITOR
 AB2MonsterSpawnPool* EditorGetCurrentActiveSpawnPool(bool bFallBackToLowerDifficulty)
 {
-	if (GIsEditor == false) // ÀÎ°ÔÀÓ¿¡¼± ´Ù¸¥ ·çÆ®¸¦ ÅëÇÏµµ·Ï. ´ëÃ¼·Î GameMode ÀÇ GetActiveSpawnPool
+	if (GIsEditor == false) // ì¸ê²Œì„ì—ì„  ë‹¤ë¥¸ ë£¨íŠ¸ë¥¼ í†µí•˜ë„ë¡. ëŒ€ì²´ë¡œ GameMode ì˜ GetActiveSpawnPool
 	{
 		return NULL;
 	}
@@ -3238,7 +3241,7 @@ AB2MonsterSpawnPool* EditorGetCurrentActiveSpawnPool(bool bFallBackToLowerDiffic
 
 	if (EditorWorld && B2WS)
 	{
-		// ÀÏ´Ü ¸®½ºÆ®ºÎÅÍ ¼öÁı
+		// ì¼ë‹¨ ë¦¬ìŠ¤íŠ¸ë¶€í„° ìˆ˜ì§‘
 		TArray<AB2MonsterSpawnPool*> AllFoundSP;
 		for (FActorIterator ActorIt(EditorWorld); ActorIt; ++ActorIt)
 		{
@@ -3272,8 +3275,8 @@ void UB2SpawnPoolEditingSKComponent::PostEditChangeProperty(FPropertyChangedEven
 {
 	Super::PostEditChangeProperty(PropertyChangedEvent);
 
-	// EditingActor ³» ´ÜÀÏ ÄÄÆ÷³ÍÆ® ¿òÁ÷ÀÎ´Ù°í EditingActor ÂÊÀ¸·Î ½ÅÈ£°¡ °¡Áö ¾ÊÀ¸¹Ç·Î ÀÌ·¸°Ô ½ÅÈ£¸¦ º¸³»ÁØ´Ù
-	// ±Ùµ¥ ÀÌ°Íµµ ¾îÂ÷ÇÇ ÀÌµ¿ÇÒ ¶© ¾ÈºÒ¸®°í.. »ÏÁ·ÇÑ ¼ö°¡ ¾ø±º. Modify ¸¦ »ç¿ëÇÒ ¼öµµ ÀÖ´Âµ¥ ±×°Ç Á» À§ÇèÇÑ °Å °°´Ù.
+	// EditingActor ë‚´ ë‹¨ì¼ ì»´í¬ë„ŒíŠ¸ ì›€ì§ì¸ë‹¤ê³  EditingActor ìª½ìœ¼ë¡œ ì‹ í˜¸ê°€ ê°€ì§€ ì•Šìœ¼ë¯€ë¡œ ì´ë ‡ê²Œ ì‹ í˜¸ë¥¼ ë³´ë‚´ì¤€ë‹¤
+	// ê·¼ë° ì´ê²ƒë„ ì–´ì°¨í”¼ ì´ë™í•  ë• ì•ˆë¶ˆë¦¬ê³ .. ë¾°ì¡±í•œ ìˆ˜ê°€ ì—†êµ°. Modify ë¥¼ ì‚¬ìš©í•  ìˆ˜ë„ ìˆëŠ”ë° ê·¸ê±´ ì¢€ ìœ„í—˜í•œ ê±° ê°™ë‹¤.
 	if (PropertyChangedEvent.Property &&
 		(PropertyChangedEvent.Property->GetName().Contains(TEXT("Location")) || PropertyChangedEvent.Property->GetName().Contains(TEXT("Rotation")))
 		)
@@ -3305,7 +3308,7 @@ AB2SpawnPoolEditingActor::AB2SpawnPoolEditingActor(const FObjectInitializer& Obj
 	SimpleRootComponent->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 
 #if WITH_EDITOR
-	if (HasAnyFlags(RF_ClassDefaultObject) && GConfig) // ÇÑ¹ø¸¸ ½ÇÇàÇÏµµ·Ï.
+	if (HasAnyFlags(RF_ClassDefaultObject) && GConfig) // í•œë²ˆë§Œ ì‹¤í–‰í•˜ë„ë¡.
 	{
 		GConfig->GetFloat(TEXT("MonsterSpawnPool"), TEXT("EditingActorSizeLimit"), MeshSizeLimit, GEditorIni);
 	}
@@ -3316,6 +3319,11 @@ AB2SpawnPoolEditingActor::AB2SpawnPoolEditingActor(const FObjectInitializer& Obj
 
 	OwnerPool = NULL;
 }
+
+//#include "Components/SkeletalMeshComponent"
+
+
+
 
 void AB2SpawnPoolEditingActor::BeginDestroy()
 {
@@ -3470,7 +3478,7 @@ void AB2SpawnPoolEditingActor::SetRepresentingInfo(int32 InClientStageId, EStage
 
 	// Create a sub component to do the actual job.
 	if (EditingMeshComp == NULL)
-	{ // »ı¼ºÀ» UB2SpawnPoolEditingSKComponent ·Î ÇØ ÁÖ¾î¾ß ÄÄÆ÷³ÍÆ® °³º° ÀÌµ¿ ½Ã ½ÅÈ£°¡ °£´Ù.
+	{ // ìƒì„±ì„ UB2SpawnPoolEditingSKComponent ë¡œ í•´ ì£¼ì–´ì•¼ ì»´í¬ë„ŒíŠ¸ ê°œë³„ ì´ë™ ì‹œ ì‹ í˜¸ê°€ ê°„ë‹¤.
 		EditingMeshComp = NewObject<UB2SpawnPoolEditingSKComponent>(this, *GetEditingSKMeshComponentName(InWaveSettingNum, InSpawnObjNum), RF_Transient);
 	}
 
@@ -3485,7 +3493,7 @@ void AB2SpawnPoolEditingActor::SetRepresentingInfo(int32 InClientStageId, EStage
 		// Mesh component is attached to the root.
 		EditingMeshComp->AttachToComponent(GetRootComponent(), FAttachmentTransformRules(EAttachmentRule::KeepRelative, false));
 		EditingMeshComp->RegisterComponent();
-		EditingMeshComp->SetWorldLocationAndRotation(ObjWorldTransform.GetLocation(), ObjWorldTransform.GetRotation()); // Location Àº Mesh ¶û Å©±â ¼¼ÆÃµÈ ´ÙÀ½ offset ¹İ¿µÇØ¼­ ¾Æ·¡¿¡¼­ ´Ù½Ã.
+		EditingMeshComp->SetWorldLocationAndRotation(ObjWorldTransform.GetLocation(), ObjWorldTransform.GetRotation()); // Location ì€ Mesh ë‘ í¬ê¸° ì„¸íŒ…ëœ ë‹¤ìŒ offset ë°˜ì˜í•´ì„œ ì•„ë˜ì—ì„œ ë‹¤ì‹œ.
 		EditingMeshComp->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 		EditingMeshComp->SetVisibility(true);
 		EditingMeshComp->SetHiddenInGame(true);
@@ -3524,7 +3532,7 @@ void AB2SpawnPoolEditingActor::SetRepresentingInfo(int32 InClientStageId, EStage
 			// Display additional error info for invalid class..
 			if (CharacterClassEnum == ENPCClass::ENC_End && CharacterClassBP == NULL)
 			{
-				// ÇÊ¿ä¿¡ µû¶ó Ãß°¡ Á¤º¸¸¦ È®ÀÎÇÏµçÁö..
+				// í•„ìš”ì— ë”°ë¼ ì¶”ê°€ ì •ë³´ë¥¼ í™•ì¸í•˜ë“ ì§€..
 				ExtraInfoString = TEXT("INVALID CLASS!\n") + ExtraInfoString;
 				ExtraInfoTextComp->SetTextRenderColor(FColor(255, 0, 255));
 			}
@@ -3534,10 +3542,10 @@ void AB2SpawnPoolEditingActor::SetRepresentingInfo(int32 InClientStageId, EStage
 
 		SetRepresentativeMesh(InWaveSettingNum, InSpawnObjNum, CharacterClassEnum, ClassVariation, CharacterClassBP);
 
-		// NPCClassInfo ¿¡ ÀÇÇÑ Mesh ¹× Material ¼¼ÆÃÀº SetRepresentativeMesh ¿¡¼­ Ã³¸®ÇÏ°í SpawnPool ÀÚÃ¼ÀûÀ¸·Î ¼¼ÆÃÇÏ´Â Ãß°¡ material override Ã³¸®.
+		// NPCClassInfo ì— ì˜í•œ Mesh ë° Material ì„¸íŒ…ì€ SetRepresentativeMesh ì—ì„œ ì²˜ë¦¬í•˜ê³  SpawnPool ìì²´ì ìœ¼ë¡œ ì„¸íŒ…í•˜ëŠ” ì¶”ê°€ material override ì²˜ë¦¬.
 		AB2MonsterSpawnPool::OverrideMaterialForNewSpawned(nullptr, InOptionalWaveMtrlOverride, EditingMeshComp);
 
-		// SyncEditingActorLocationToSpawnPool ¿¡¼­ ¹Ù¿îµå Å©±â¸¸Å­ ¿Ã¸° °ªÀ» »ç¿ëÇÏ¹Ç·Î ¿©±â¼­´Â ±×¸¸Å­ ³»·ÁÁØ´Ù.
+		// SyncEditingActorLocationToSpawnPool ì—ì„œ ë°”ìš´ë“œ í¬ê¸°ë§Œí¼ ì˜¬ë¦° ê°’ì„ ì‚¬ìš©í•˜ë¯€ë¡œ ì—¬ê¸°ì„œëŠ” ê·¸ë§Œí¼ ë‚´ë ¤ì¤€ë‹¤.
 		EditingMeshComp->SetWorldLocation(ObjWorldTransform.GetLocation() - GetEditingCompToSpawnLocOffset(EditingMeshComp));
 	}
 }
@@ -3559,7 +3567,7 @@ void AB2SpawnPoolEditingActor::SetRepresentativeMesh(int32 InWaveSettingNum, int
 			{
 				UB2NPCClassInfoBox::NPCClassPreviewAssetInfo PreviewAssetInfo = ClassInfoBox->GetPreviewAssetInfoFromClass(CharacterClassEnum, ClassVariation);
 				SKMeshFromClass = PreviewAssetInfo.SKMesh;
-				MtrlOverrideFromClass = PreviewAssetInfo.MaterialOverrides; // NPCClassInfo ¿¡ ÀÇÇÑ ±âº»ÀûÀÎ MaterialOverride ÀÎµ¥, ÀÌ°Í ÀÌÈÄ¿¡ SpawnPool WaveSetting ¿¡ ÀÇÇÑ Material Override µµ ÀÖÀ» ¼ö ÀÖ´Ù.
+				MtrlOverrideFromClass = PreviewAssetInfo.MaterialOverrides; // NPCClassInfo ì— ì˜í•œ ê¸°ë³¸ì ì¸ MaterialOverride ì¸ë°, ì´ê²ƒ ì´í›„ì— SpawnPool WaveSetting ì— ì˜í•œ Material Override ë„ ìˆì„ ìˆ˜ ìˆë‹¤.
 			}
 		}
 		else if (CharacterClassBP)
@@ -3567,14 +3575,14 @@ void AB2SpawnPoolEditingActor::SetRepresentativeMesh(int32 InWaveSettingNum, int
 			ABladeIICharacter* CharacterObj = Cast<ABladeIICharacter>(CharacterClassBP->GetDefaultObject());
 			if (CharacterObj && CharacterObj->GetMesh())
 			{
-				SKMeshFromClass = CharacterObj->GetMesh()->SkeletalMesh;
+				//SKMeshFromClass = CharacterObj->GetMesh()->Get;
 			}
 		}
 
-		//if (SKMeshFromClass) NULL ÀÌ¸é NULL ·Î ¼¼ÆÃ. ±×·¡¾ß Àß¸øµÈ °É ¾Ë°ÚÁö..
+		//if (SKMeshFromClass) NULL ì´ë©´ NULL ë¡œ ì„¸íŒ…. ê·¸ë˜ì•¼ ì˜ëª»ëœ ê±¸ ì•Œê² ì§€..
 		{
 			for (int32 MI = 0; MI < EditingMeshComp->GetNumMaterials(); ++MI)
-			{ // ÄÄÆ÷³ÍÆ® ÀçÈ°¿ë ÇÒ ¼ö ÀÖÀ¸¹Ç·Î ±âÁ¸ ²¨ Å¬¸®¾î ÇØ¾ß.
+			{ // ì»´í¬ë„ŒíŠ¸ ì¬í™œìš© í•  ìˆ˜ ìˆìœ¼ë¯€ë¡œ ê¸°ì¡´ êº¼ í´ë¦¬ì–´ í•´ì•¼.
 				EditingMeshComp->SetMaterial(MI, nullptr);
 			}
 			EditingMeshComp->SetSkeletalMesh(SKMeshFromClass);
@@ -3619,9 +3627,9 @@ void AB2SpawnPoolEditingActor::SetRepresentativeMesh(int32 InWaveSettingNum, int
 }
 
 FVector AB2SpawnPoolEditingActor::GetEditingCompToSpawnLocOffset(class USkeletalMeshComponent* EditingComp)
-{ // EditingComponent ÀÇ ¹İÂÊ Å©±â¸¦ °¨¾ÈÇÏ´Â °Å.
-	// EditingComponent µéÀº ¿øÁ¡ÀÌ ¹ß¹Ù´ÚÀÎµ¥ ½ÇÁ¦ spawn ÇÒ BladeIICharacter µéÀº ¿øÁ¡ÀÌ Áß½ÉÀÌ¹Ç·Î.. Á¤È®ÇÏÁö´Â ¾ÊÁö¸¸ ¾î´À Á¤µµ °¨¾ÈÇØ¼­ º¸Á¤ÇØ ÁÖ±â À§ÇÔ.
-	// ¾îÂ÷ÇÇ spawn ½Ã ¹Ù´Ú¿¡ snap ½ÃÅ³ °ÍÀÌ¹Ç·Î À§Ä¡¸¦ ¾à°£ ³ô°Ô ¼±Á¤ÇÒ ÇÊ¿ä°¡ ÀÖ´Ù.
+{ // EditingComponent ì˜ ë°˜ìª½ í¬ê¸°ë¥¼ ê°ì•ˆí•˜ëŠ” ê±°.
+	// EditingComponent ë“¤ì€ ì›ì ì´ ë°œë°”ë‹¥ì¸ë° ì‹¤ì œ spawn í•  BladeIICharacter ë“¤ì€ ì›ì ì´ ì¤‘ì‹¬ì´ë¯€ë¡œ.. ì •í™•í•˜ì§€ëŠ” ì•Šì§€ë§Œ ì–´ëŠ ì •ë„ ê°ì•ˆí•´ì„œ ë³´ì •í•´ ì£¼ê¸° ìœ„í•¨.
+	// ì–´ì°¨í”¼ spawn ì‹œ ë°”ë‹¥ì— snap ì‹œí‚¬ ê²ƒì´ë¯€ë¡œ ìœ„ì¹˜ë¥¼ ì•½ê°„ ë†’ê²Œ ì„ ì •í•  í•„ìš”ê°€ ìˆë‹¤.
 	return EditingComp ? FVector(0.0f, 0.0f, EditingComp->Bounds.BoxExtent.Z * EditingComp->BoundsScale) : FVector(0.0f, 0.0f, 0.0f);
 }
 
@@ -3772,7 +3780,7 @@ void AB2SpawnPoolEditingActor::SyncEditingActorLocationToSpawnPool()
 
 			if (SKMeshComp && EditingSimpleInfo[SI].bRandomLocation == false)
 			{
-				// ¿øÁ¡ÀÌ ¹ß¹Ù´ÚÀÎ EditingComponent µé¿¡ ´ëÇØ ¿øÁ¡ÀÌ Áß½ÉÀÎ BladeIICharacter µéÀ» °í·ÁÇØ¼­ Á¶±İÀÌ³ª¸¸ ¿øÁ¡ º¸Á¤À».. ¾îÂ÷ÇÇ spawn ½Ã ¹Ù´Ú¿¡ snap ½ÃÅ°¹Ç·Î Á» ³ô¿©Áàµµ µÊ.
+				// ì›ì ì´ ë°œë°”ë‹¥ì¸ EditingComponent ë“¤ì— ëŒ€í•´ ì›ì ì´ ì¤‘ì‹¬ì¸ BladeIICharacter ë“¤ì„ ê³ ë ¤í•´ì„œ ì¡°ê¸ˆì´ë‚˜ë§Œ ì›ì  ë³´ì •ì„.. ì–´ì°¨í”¼ spawn ì‹œ ë°”ë‹¥ì— snap ì‹œí‚¤ë¯€ë¡œ ì¢€ ë†’ì—¬ì¤˜ë„ ë¨.
 				FVector HeightAdjustedLocation = SKMeshComp->GetComponentLocation() + GetEditingCompToSpawnLocOffset(SKMeshComp);
 
 				OwnerPool->ExplictSetSpawnTransform(CurrEditingClientStageId, CurrEditingDifficultyLevel, EditingSimpleInfo[SI].WaveNum, EditingSimpleInfo[SI].SpawnObjNum,

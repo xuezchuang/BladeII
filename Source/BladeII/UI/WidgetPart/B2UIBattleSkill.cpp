@@ -1,4 +1,4 @@
-#include "B2UIBattleSkill.h"
+ï»¿#include "B2UIBattleSkill.h"
 #include "B2UIManager.h"
 #include "B2UIDocHelper.h"
 #include "B2UIDocSkill.h"
@@ -39,12 +39,12 @@ void UB2UIBattleSkill::UpdateStaticText()
 
 void UB2UIBattleSkill::BindDelegates()
 {
-	//BIND_PRESS_FUNC_TO_BTN(BTN_Area, &UB2UIBattleSkill::OnPressedBtnArea) -> ÀÌ°Ç ±×³É ÀÌ¹ÌÁö ¿ëÀ¸·Î ¾´´Ù.
+	//BIND_PRESS_FUNC_TO_BTN(BTN_Area, &UB2UIBattleSkill::OnPressedBtnArea) -> ææ‰’ å¼Šæˆ æå›ºç˜¤ ä¾©æ è‚º æ•¬ä¿ƒ.
 	BIND_PRESS_FUNC_TO_BTN(BTN_Area2, &UB2UIBattleSkill::OnPressedBtnArea)
 }
 
 void UB2UIBattleSkill::BindDoc(UB2UIDocSkill* SkillDoc)
-{ // ÀÌ°ÍÀÌ ºÒ¸®´Â ½ÃÁ¡¿¡ µû¶ó SkillDoc ÀÇ º¯¼öµéÀº ÀÇµµÇÑ °ªÀÌ ¾Æ´Ò ¼ö ÀÖ´Ù. (¿¹¸¦ µé¾î UB2SkillRTManager::UpdateSkillDocDataOnPCSwap ÀÌ ÀÌ ÀÌÈÄ¿¡ ºÒ¸°´Ù°Å³ª) ±×·± °Í¿¡ ´ëÇØ °ÔÀÓ ÄÚµå ÂÊ¿¡¼­ ´Ù½Ã±İ Á÷Á¢ ¾÷µ¥ÀÌÆ®¸¦.
+{ // æå·´æ é˜‚åºœç»° çŸ«ç—¢ä¿Š è¶æ‰¼ SkillDoc ç‹¼ å‡½èç”¸ç¯® ç‹¼æ¡£èŒ„ è”¼æ é…’åŒ† è ä¹ä¿ƒ. (æŠ—ç”« ç”¸ç»¢ UB2SkillRTManager::UpdateSkillDocDataOnPCSwap æ æ æé¥¶ä¿Š é˜‚èµ´ä¿ƒèŠ­å”±) å¼Šç¹ å·´ä¿Š æªç§¦ éœ¸çƒ™ å†…é› ç‡ä¿Šè¾‘ ä¿ƒçŸ«é™› æµç«‹ è¯€å•æé£˜ç”«.
 	UnbindDoc();
 	SetDoc(SkillDoc);
 	
@@ -64,7 +64,7 @@ void UB2UIBattleSkill::BindDoc(UB2UIDocSkill* SkillDoc)
 	SkillDoc->OnIsSuggestSkillChanged.AddUObject(this, &UB2UIBattleSkill::OnChangedSuggetSkill);
 	SkillDoc->OnIsDisabledByOtherSuggestChanged.AddUObject(this, &UB2UIBattleSkill::OnChangedDisabledByOtherSuggest);
 
-	SkillDoc->SetIsExistingSkill(SkillDoc->GetIsExistingSkill()); // ÀÌ°Ç ¹¹Áö? ±×³É OnChangedIsExistingSkill ºÒ¸®°Ô ÇÏ·Á´Â °Ç°¡..?
+	SkillDoc->SetIsExistingSkill(SkillDoc->GetIsExistingSkill()); // ææ‰’ æ„ç˜¤? å¼Šæˆ OnChangedIsExistingSkill é˜‚åºœéœ¸ çªå¦¨ç»° æ‰’å•Š..?
 
 	SetLevel(SkillDoc->GetSkillLevel());
 	SetName(SkillDoc->GetSkillName());
@@ -122,10 +122,10 @@ void UB2UIBattleSkill::SetName(const FText& InText)
 
 void UB2UIBattleSkill::SetCooltime(float InValue)
 {
-	//¼ıÀÚÃ³¸®
+	//ç®­ç£Šè´¸åºœ
 	if (TB_SkillCooltimeNum.IsValid())
 	{
-		// ÃÖ´ë ÄğÅ¸ÀÓÀÌ ¼Ò¼öÁ¡À¸·Î Á¶Á¤µÈ °æ¿ì¸¦ Ç¥½ÃÇÏ±â À§ÇØ Ã¹ ¼Ò¼öÁ¡À» Ä«¿îÆ®ÇÏ´Â µ¿¾È¿¡´Â ¼Ò¼öÁ¡ Ã¹Â°ÀÚ¸®±îÁö Ç¥½Ã. °è¼Ó Ç¥½ÃÇÏ¸é ¼Ò¼öÁ¡ÀÌ ³ªÅ¸³µ´Ù »ç¶óÁ³´Ù ÇØ¼­ Á¤½Å¾øÀ½.
+		// å¼¥æª é…¿é¸¥çƒ™æ å®¶èç—¢æ è‚º ç‚¼æ²¥ç­‰ ç‰ˆå¿«ç”« é’çŸ«çªæ‰ å›°ç§¦ éœ‰ å®¶èç—¢é˜‘ å¢¨æ¬¾é£˜çªç»° æ‚¼æ•‘ä¿Šç»° å®¶èç—¢ éœ‰æ³ç£Šåºœé³–ç˜¤ é’çŸ«. æ‹ŒåŠ  é’çŸ«çªæ å®¶èç—¢æ å”±é¸¥è½¦ä¿ƒ è¤æ‰¼è„¸ä¿ƒ ç§¦è¾‘ æ²¥è„šç»æ¾œ.
 		UB2UIDocSkill* MySkillDoc = Cast<UB2UIDocSkill>(GetDoc());
 		const float MaxCoolTime = MySkillDoc ? MySkillDoc->GetFinalCooltime() : 0.0f;
 		TB_SkillCooltimeNum->SetText(GetAutoFractionalFormattedText_FirstFracCountOnly(InValue, MaxCoolTime, 1));
@@ -136,7 +136,7 @@ void UB2UIBattleSkill::SetCooltime(float InValue)
 
 void UB2UIBattleSkill::UpdateCooltimeMaterial(float RemainingCooltime)
 {
-	//ÄğÅ¸ÀÓ ¸ÓÅÍ¸®¾ó Ã³¸®
+	//é…¿é¸¥çƒ™ èµ£ç£åºœå€” è´¸åºœ
 	if (IMG_SkillCooltime.IsValid() && !MID_SkilCooltime)
 		MID_SkilCooltime = IMG_SkillCooltime->GetDynamicMaterial();
 
@@ -252,7 +252,7 @@ void UB2UIBattleSkill::OnPressedBtnArea()
 //====================================================================================
 void UB2UIBattleSkill::OnChangedIsCountingCooltime(class UB2UIDocBase* Sender, bool IsCountingCooltime, bool PrevIsCountingCooltime)
 {
-	bIsCountingCooltime = IsCountingCooltime; // bIsCountingCooltime Àº ´Ù¸¥ °÷¿¡¼­µµ ÂüÁ¶.
+	bIsCountingCooltime = IsCountingCooltime; // bIsCountingCooltime ç¯® ä¿ƒå¼— é•‘ä¿Šè¾‘æ¡£ æ›¼ç‚¼.
 
 	SetCooltimeTextColor(bIsCountingCooltime ? SkillCoolTimeTextColor : SkillCoolTimeTextPendingCountColor);
 }
@@ -264,11 +264,11 @@ void UB2UIBattleSkill::OnChangedIsDisabledByCooltime(class UB2UIDocBase* Sender,
 	{
 		if (BTN_Area.IsValid())
 		{
-			BTN_Area->CustomStopOnTouchImpulseRing(); // ¾Æ¸¶µµ ¹öÆ° press ¸¦ ÅëÇØ ½ºÅ³ÀÌ ¹ßµ¿µÈ »óÅÂ¶ó ImpulseRing ÀÌ ÄÑÁ³À» ÅÙµ¥ disable µÇ¸é release °¨Áö¸¦ ¸øÇÏ°Ô µÊ. Á÷Á¢ ²¨ÁØ´Ù.
+			BTN_Area->CustomStopOnTouchImpulseRing(); // é…’ä»˜æ¡£ æ»šç“¢ press ç”« çƒ¹ç§¦ èƒ¶æ‡¦æ æƒ¯æ‚¼ç­‰ æƒ‘æ€•æ‰¼ ImpulseRing æ éš¾è„¸é˜‘ åˆ¨å• disable ç™»æ release çš‘ç˜¤ç”« ç»™çªéœ¸ å‡³. æµç«‹ æ³¢éœ–ä¿ƒ.
 		}
 		if (BTN_Area2.IsValid())
 		{
-			BTN_Area2->CustomStopOnTouchImpulseRing(); // ¾Æ¸¶µµ ¹öÆ° press ¸¦ ÅëÇØ ½ºÅ³ÀÌ ¹ßµ¿µÈ »óÅÂ¶ó ImpulseRing ÀÌ ÄÑÁ³À» ÅÙµ¥ disable µÇ¸é release °¨Áö¸¦ ¸øÇÏ°Ô µÊ. Á÷Á¢ ²¨ÁØ´Ù.
+			BTN_Area2->CustomStopOnTouchImpulseRing(); // é…’ä»˜æ¡£ æ»šç“¢ press ç”« çƒ¹ç§¦ èƒ¶æ‡¦æ æƒ¯æ‚¼ç­‰ æƒ‘æ€•æ‰¼ ImpulseRing æ éš¾è„¸é˜‘ åˆ¨å• disable ç™»æ release çš‘ç˜¤ç”« ç»™çªéœ¸ å‡³. æµç«‹ æ³¢éœ–ä¿ƒ.
 		}
 
 
@@ -297,11 +297,11 @@ void UB2UIBattleSkill::OnChangedIsDisabledByDebuff(class UB2UIDocBase* Sender, b
 {
 	bOwnerHasDebuff = IsDisabledByDebuff;
 
-	// »ıÁ¸½ºÅ³, °á¼Ó½ºÅ³Àº Debuff ¿µÇâ ¹ŞÁö ¾ÊÀ½
+	// ç§¯ç²®èƒ¶æ‡¦, æ¬åŠ èƒ¶æ‡¦ç¯® Debuff åº·æ°¢ ç½ç˜¤ è‡¼æ¾œ
 	if (IsWeaponSkill() || IsSurviveSkill())
 		return;
 
-	// ±âº»ÀûÀ¸·Î Debuff(ºù°á, ½ºÅÏ)°É¸®°Å³ª Cooltime ½Ã¿¡´Â Skill»ç¿ë ºÒ°¡´É
+	// æ‰å¤¯åˆ©æ è‚º Debuff(è‘«æ¬, èƒ¶ç•”)å§åºœèŠ­å”± Cooltime çŸ«ä¿Šç»° Skillè¤ä¾© é˜‚å•Šç“·
 	bool bSkillEnable = bOwnerHasDebuff == false && bInCoolTime == false;
 	SetEnabledBtn(bSkillEnable);
 }

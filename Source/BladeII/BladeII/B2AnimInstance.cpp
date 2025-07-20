@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2AnimInstance.h"
@@ -26,8 +26,8 @@ void UB2AnimInstance::NativeInitializeAnimation()
 
 	//	else
 	//	{
-	//		/* Pre-render ·¹º§¿¡¼­ BladeIIPlayer °¡ ¾Æ´Ñ ´õ¹Ì SkeletalMesh ¿¡ AnimBlueprint ¸¦ ºÙÀÌ´Â °æ¿ì°¡ ÀÖÀ¸¸ç ±×·± °æ¿ì OwnerPlayer ´Â null ÀÌ µÉ °Í.
-	//		* Pre-render ·¹º§ÀÌ ¾Æ´Ñ ÀÏ¹İ Pre-render ½Ã¿¡µµ ±×·¸°Ô µÉ ¼ö ÀÖ´Â ·çÆ®°¡ ÀÖ±ä ÇÏÁö¸¸ ÇöÀç ÀÇµµÇÏ´Â µ¿ÀÛÀ¸·Î´Â °¡´É¼ºÀÌ ³·À½ by djsong */
+	//		/* Pre-render é¥­éª‡ä¿Šè¾‘ BladeIIPlayer å•Š é…’å›± æ­¹å›º SkeletalMesh ä¿Š AnimBlueprint ç”« å˜¿æç»° ç‰ˆå¿«å•Š ä¹æ å“¥ å¼Šç¹ ç‰ˆå¿« OwnerPlayer ç»° null æ çª å·´.
+	//		* Pre-render é¥­éª‡æ é…’å›± è€é¦† Pre-render çŸ«ä¿Šæ¡£ å¼ŠçŠ¯éœ¸ çª è ä¹ç»° é£é£˜å•Š ä¹å˜ çªç˜¤çˆ¶ æ³…çŠ ç‹¼æ¡£çªç»° æ‚¼ç´¯æ è‚ºç»° å•Šç“·å·±æ æ’¤æ¾œ by djsong */
 	//		
 	//		auto* GameMode = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(this));
 	//		if (GameMode && GameMode->IsInPreRenderPhase())
@@ -36,7 +36,7 @@ void UB2AnimInstance::NativeInitializeAnimation()
 	//		if (GIsEditor)
 	//			bExpectedSituation = true;
 
-	//		// À§ »óÈ²Àº OwnerPlayer°¡ nullptrÀÌ¾îµµ Á¤»óÀûÀÎ »óÈ²À¸·Î °£ÁÖ
+	//		// å›° æƒ‘ç‚”ç¯® OwnerPlayerå•Š nullptræç»¢æ¡£ æ²¥æƒ‘åˆ©ç‰¢ æƒ‘ç‚”æ è‚º åŸƒæ—
 	//	}
 
 	//	BII_CHECK(OwnerPlayer || bExpectedSituation);
@@ -74,50 +74,50 @@ void UB2AnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 	//// step1 - Copying SpawnMotionState for state machine use
 	//SpawnMotionState = OwnerPlayer->GetSpawnMotionState();
 
-	//// step2 - Á×¾ú´Ù¸é ´õÀÌ»óÀÇ AnimUpdate ÁøÇàÇÏÁö ¾ÊÀ½ - StateMachine¿¡¼­ ÀÚµ¿ Dead·çÆ®·Î Èê·¯°¨
+	//// step2 - ç£·èŒä¿ƒæ æ­¹ææƒ‘ç‹¼ AnimUpdate æŸ³é’çªç˜¤ è‡¼æ¾œ - StateMachineä¿Šè¾‘ ç£Šæ‚¼ Deadé£é£˜è‚º æ±çŸ¾çš‘
 	//if (ProcessDying() == false)
 	//{
 	//	AttackDir = static_cast<int32>(OwnerPlayer->TargetDirection);
 
-	//	// step3 - AbnormalState »óÅÂ È®ÀÎ
+	//	// step3 - AbnormalState æƒ‘æ€• çŠ¬ç‰¢
 	//	UpdateAbnormalState();
 
-	//	// step4 - QTE »óÅÂ °»½Å
+	//	// step4 - QTE æƒ‘æ€• ç›è„š
 	//	UpdateQTEState();
 
-	//	// step5 - Counter ¿©ºÎ È®ÀÎ
+	//	// step5 - Counter å’¯ä½• çŠ¬ç‰¢
 	//	const bool IsCounter = ProcessCounterHandling();
 	//	if (IsCounter)
 	//		return;
 
-	//	// step5_1 - (Counter ½ÇÆĞ ¹× GuardÁßÀÌ ¾Æ´Ò ¶§ - Update Damage) / (Guard½Ã DamageÈ®ÀÎ X)
+	//	// step5_1 - (Counter è§’è© æ£º Guardåæ é…’åŒ† é”­ - Update Damage) / (GuardçŸ« DamageçŠ¬ç‰¢ X)
 	//	const bool NeedToUpdateDamage = !IsGuarding();
 	//	if (NeedToUpdateDamage)
 	//		UpdateDamageState();
 
-	//	// step6 - ComboEnd ¿©ºÎ È®ÀÎ
+	//	// step6 - ComboEnd å’¯ä½• çŠ¬ç‰¢
 	//	const bool IsComboEnded = ProcessComboEnd();
 
-	//	// step7 - ComboEnd¿Í´Â ¹«°üÇÏ°Ô RunningState ´Â Ç×»ó Update
+	//	// step7 - ComboEndå®¢ç»° å…¬åŒ…çªéœ¸ RunningState ç»° äº²æƒ‘ Update
 	//	UpdateRunning();
 
-	//	if (IsComboEnded) // ComboEndÀÇ °æ¿ì ÀÌÈÄÀÇ Attack(Skill) & Dash/Warp & GuardÀÇ Animation °»½ÅÀÌ ÇÊ¿ä¾øÀ½
+	//	if (IsComboEnded) // ComboEndç‹¼ ç‰ˆå¿« æé¥¶ç‹¼ Attack(Skill) & Dash/Warp & Guardç‹¼ Animation ç›è„šæ é˜å¤¸ç»æ¾œ
 	//		return;
 
-	//	// step8 - Skill »ç¿ëÁßÀÎÁö È®ÀÎ
+	//	// step8 - Skill è¤ä¾©åç‰¢ç˜¤ çŠ¬ç‰¢
 	//	const bool IsSkillPlay = ProcessSkill();
-	//	if (IsSkillPlay) // Skill»ç¿ë ½Ã ÀÌÈÄ Anim°»½Å ÇÊ¿ä¾øÀ½
+	//	if (IsSkillPlay) // Skillè¤ä¾© çŸ« æé¥¶ Animç›è„š é˜å¤¸ç»æ¾œ
 	//		return;
 
-	//	// step9 - Guard or Evade ½Ã ÀÌÈÄ °»½Å ¾ÈÇÔ
+	//	// step9 - Guard or Evade çŸ« æé¥¶ ç›è„š æ•‘çªƒ
 	//	const bool IsGuardState = ProcessGuard();
 	//	if (IsGuardState)
 	//		return;
 
-	//	// step9 - Combo »óÅÂ È®ÀÎ
+	//	// step9 - Combo æƒ‘æ€• çŠ¬ç‰¢
 	//	if (IsComboNext() && !bDamaged)
 	//	{
-	//		// step 9-1 Dash/warp °¡´ÉÇÑÁö °»½Å
+	//		// step 9-1 Dash/warp å•Šç“·èŒ„ç˜¤ ç›è„š
 	//		UpdateDashOrWarpEnable();
 
 	//		// Final
@@ -204,7 +204,7 @@ bool UB2AnimInstance::StartCustomAnim(UAnimSequenceBase * InAnimAsset)
 	if (bStartCustomAnim && InAnimAsset == nullptr)
 		return false;
 
-	//custom animation Ãâ·ÂÀÌ ³¡³­ÈÄ Left State Event¿¡¼­ null·Î ÃÊ±âÈ­ ½ÃÄÑÁÜ
+	//custom animation å…ä»¿æ åœºæŠ„é¥¶ Left State Eventä¿Šè¾‘ nullè‚º æª¬æ‰æ‹³ çŸ«éš¾æ·‹
 	CustomAnimSequence = InAnimAsset;
 	bStartCustomAnim = true;
 
@@ -223,8 +223,8 @@ void UB2AnimInstance::UpdateAbnormalState()
 {
 	const EAttackType CurrDmgAnimType = GetDamageAnimIndex();
 
-	// HugeDamage Áß¿¡´Â StunÀû¿ëÀÌ ¾ÈµÊ
-	// HugeDamageAnimÀÌ ³¡³ª°íµµ Stun ½Ã°£ÀÌ ³²¾ÆÀÖ´Ù¸é Àû¿ë
+	// HugeDamage åä¿Šç»° Stunåˆ©ä¾©æ æ•‘å‡³
+	// HugeDamageAnimæ åœºå”±ç»Šæ¡£ Stun çŸ«åŸƒæ å·¢é…’ä¹ä¿ƒæ åˆ©ä¾©
 
 	if (IsDamaged() && IsHugeDamage(CurrDmgAnimType))
 	{
@@ -274,7 +274,7 @@ void UB2AnimInstance::UpdateDamageState()
 
 		const bool IsAbnormalState = OwnerPlayer->IsFrozen() || IsStunned(); 
 
-		// -1. Huge Damage´Â ¾î¶² »óÅÂ¿¡¼­µµ Ç×»ó Àû¿ë
+		// -1. Huge Damageç»° ç»¢æ« æƒ‘æ€•ä¿Šè¾‘æ¡£ äº²æƒ‘ åˆ©ä¾©
 		if (IsHugeNewDamage)
 		{
 			SetDamageAnimIndex(NewDamageType);
@@ -289,22 +289,22 @@ void UB2AnimInstance::UpdateDamageState()
 #endif
 		}
 
-		// -2. Tiny Damage´Â »óÈ²¿¡ µû¶ó
+		// -2. Tiny Damageç»° æƒ‘ç‚”ä¿Š è¶æ‰¼
 		else if (IsTinyNewDamage)
 		{
-			// 2-1. ºù°á/½ºÅÏ or HugeDamage »óÅÂ´Â TinyDamage ¹«½Ã
+			// 2-1. è‘«æ¬/èƒ¶ç•” or HugeDamage æƒ‘æ€•ç»° TinyDamage å…¬çŸ«
 			const bool IgnoreTinyDamage = IsAbnormalState || IsHugeCurrDamage;
 			if(IgnoreTinyDamage == false)
 			{
-				// 2-2ÇöÀç TinyDamage ÁßÀÌ¸é °°Àº TinyDamage Àç»ı - ex) KnockUp Àç»ı Áß KnockDown ¸Â¾Æµµ Knockup Àç»ı
+				// 2-2æ³…çŠ TinyDamage åææ éç¯® TinyDamage çŠç§¯ - ex) KnockUp çŠç§¯ å KnockDown å˜é…’æ¡£ Knockup çŠç§¯
 				if (IsTinyCurrDamage)
 				{
 					SetDamageAnimIndex(CurrDamageType);
 					SetDamaged(true);
 				}
 
-				// 2-3 Ã³À½ ¸Â´Â Damage¸é ÇÇ°İ DamageAnim Àç»ı
-				else if (IsDamaged() == false)	// ÇÊ¿ä¾øÀ¸³ª ¸íÈ® ÇÏ°Ô ÇÏ±â À§ÇÑ Á¶°Ç¹®
+				// 2-3 è´¸æ¾œ å˜ç»° Damageæ ä¹”æ‹œ DamageAnim çŠç§¯
+				else if (IsDamaged() == false)	// é˜å¤¸ç»æ å”± ç–™çŠ¬ çªéœ¸ çªæ‰ å›°èŒ„ ç‚¼æ‰’å·©
 				{
 					SetDamageAnimIndex(NewDamageType);
 					SetDamaged(true);
@@ -332,7 +332,7 @@ void UB2AnimInstance::UpdateDamageState()
 
 	if (NeedToCancelCombo || bForceCancelCombo)
 	{
-		if (OwnerPlayer->IsFrozen() == false) // FreezingÀº ClearBuff½Ã ÀÚµ¿ È£Ãâ
+		if (OwnerPlayer->IsFrozen() == false) // Freezingç¯® ClearBuffçŸ« ç£Šæ‚¼ é¾‹å…
 		{
 			SetComboEnd(true);
 			OwnerPlayer->ConsumeComboEnd();
@@ -358,14 +358,14 @@ bool UB2AnimInstance::ProcessCounterHandling()
 	const bool IsForceCounter = OwnerPlayer->GetForceCounterAttack();
 
 	/*
-	// ¾ÆÁÖ ¿¹¿ÜÀûÀÎ °æ¿ì¸¦ À§ÇÑ Æ¯¼öÃ³¸®
+	// é…’æ— æŠ—å¯‡åˆ©ç‰¢ ç‰ˆå¿«ç”« å›°èŒ„ æ¼‚èè´¸åºœ
 
-	1. [  n-1  ] Tick::ProcessCounterHandling() ¿¡¼­ GuardStart »óÅÂÀÌ¹Ç·Î AttackState¸¦ ECS_Counter01·Î ¼³Á¤
-	2. [n-1 ~ n] Tick »çÀÌ¿¡ GuardStart AnimSequenceÀÇ ComboNext Notify¹Ş¾Æ bComboNext = true·Î ¼³Á¤
-	3. [   n   ] Tick::UpdateComboNext¿¡¼­ ÇöÀç AttackState°¡ ECS_Counter01ÀÌ¹Ç·Î ECS_Counter02·Î IncreaseAttackState ÇÔ
+	1. [  n-1  ] Tick::ProcessCounterHandling() ä¿Šè¾‘ GuardStart æƒ‘æ€•æéª¨è‚º AttackStateç”« ECS_Counter01è‚º æ±²æ²¥
+	2. [n-1 ~ n] Tick è¤æä¿Š GuardStart AnimSequenceç‹¼ ComboNext Notifyç½é…’ bComboNext = trueè‚º æ±²æ²¥
+	3. [   n   ] Tick::UpdateComboNextä¿Šè¾‘ æ³…çŠ AttackStateå•Š ECS_Counter01æéª¨è‚º ECS_Counter02è‚º IncreaseAttackState çªƒ
 
-	µû¶ó¼­ Guard_Start AnimSequenceÀÇ bComboNext Notify°¡ ¿À±â Àü¿¡ Counter°¡ ¹ß»ı Çß´Ù¸é CounterReserved¸¸ °É¾î ³õ°í
-	½ÇÁ¦ Ä«¿îÅÍ´Â [n] ¹øÂ° TickÀÌ ÁøÇàµÇ¾î Guard_Start -> Guard_loop( EAttackState::ECS_Guard ) »óÅÂ¿¡ µé¾î°¥ ¶§ ¹ßµ¿ÇÏµµ·Ï ÇÑ´Ù.
+	è¶æ‰¼è¾‘ Guard_Start AnimSequenceç‹¼ bComboNext Notifyå•Š å·æ‰ å‚ˆä¿Š Counterå•Š æƒ¯ç§¯ æ²ä¿ƒæ CounterReservedçˆ¶ å§ç»¢ åˆç»Š
+	è§’åŠ› å¢¨æ¬¾ç£ç»° [n] é”…æ³ Tickæ æŸ³é’ç™»ç»¢ Guard_Start -> Guard_loop( EAttackState::ECS_Guard ) æƒ‘æ€•ä¿Š ç”¸ç»¢å“ é”­ æƒ¯æ‚¼çªæ¡£åºŸ èŒ„ä¿ƒ.
 	*/
 
 	if (IsCountable || IsForceCounter || IsCounterReserved())
@@ -419,7 +419,7 @@ bool UB2AnimInstance::ProcessSkill()
 //
 //		if (GetSpawnMotionState() == EPCSpawnMotionState::EPST_Normal)
 //		{
-//			// ÀÌ°ÅÇØÁÖ¸é ·çÆ®³ëµåºÎÅÍ ´Ù½ÃÃ£¾Æ°¨. ½ºÅ³->½ºÅ³ ½ºÅ×ÀÌÆ® ÀüÈ¯ÀÌ ÇÊ¿äÇØ¼­
+//			// æèŠ­ç§¦æ—æ é£é£˜ç•´é›ä½•ç£ ä¿ƒçŸ«èŒ«é…’çš‘. èƒ¶æ‡¦->èƒ¶æ‡¦ èƒ¶æŠ›æé£˜ å‚ˆåˆ¸æ é˜å¤¸ç§¦è¾‘
 //			GetProxyOnGameThread<FAnimInstanceProxy>().InitializeRootNode();
 //		}
 //		
@@ -447,7 +447,7 @@ bool UB2AnimInstance::ProcessSkill()
 
 bool UB2AnimInstance::ProcessGuard()
 {
-	// ------  ÇÑÆ½ÀÇ ¾ÆÁÖ ¿¹¿ÜÀûÀÎ »óÈ²ÀÌ ¹ß»ı... ±Ø´ÜÀûÀÎ ¿¹¿ÜÃ³¸®
+	// ------  èŒ„å¹³ç‹¼ é…’æ— æŠ—å¯‡åˆ©ç‰¢ æƒ‘ç‚”æ æƒ¯ç§¯... å¿…çªœåˆ©ç‰¢ æŠ—å¯‡è´¸åºœ
 	static const FName GuardStart(TEXT("Guard_Start"));
 	if (CurrentAnimState == GuardStart && GetAnimAttackState() == EAttackState::ECS_Combo01)
 	{
@@ -455,12 +455,12 @@ bool UB2AnimInstance::ProcessGuard()
 		OwnerPlayer->SetAttackState(EAttackState::ECS_GuardEnd);
 		SetAnimAttackState(EAttackState::ECS_GuardEnd);
 	}
-	// ------  ÇÑÆ½ÀÇ ¾ÆÁÖ ¿¹¿ÜÀûÀÎ »óÈ²ÀÌ ¹ß»ı... ±Ø´ÜÀûÀÎ ¿¹¿ÜÃ³¸®
+	// ------  èŒ„å¹³ç‹¼ é…’æ— æŠ—å¯‡åˆ©ç‰¢ æƒ‘ç‚”æ æƒ¯ç§¯... å¿…çªœåˆ©ç‰¢ æŠ—å¯‡è´¸åºœ
 
 
 
 
-	// ÀÏ¹İ °ø°İÁß¿¡´Â Guard Enable TimingÀÌ µû·Î ÀÖÀ½
+	// è€é¦† å‚æ‹œåä¿Šç»° Guard Enable Timingæ è¶è‚º ä¹æ¾œ
 	const bool InNormalAttack = GetAnimAttackState() >= EAttackState::ECS_Combo01 && GetAnimAttackState() <= EAttackState::ECS_Combo06;
 	if (InNormalAttack && IsAllowGuardStart() == false)
 		return false;
@@ -473,7 +473,7 @@ bool UB2AnimInstance::ProcessGuard()
 	{
 		const bool InAttackMotion = IsNormalAttackState(GetAnimAttackState());
 		
-		// °ø°İÁß GuardEnable Noti Àü¿¡´Â Cancel ºÒ°¡´É
+		// å‚æ‹œå GuardEnable Noti å‚ˆä¿Šç»° Cancel é˜‚å•Šç“·
 		if (InAttackMotion && IsAllowGuardStart() == false)
 			return false;
 
@@ -488,7 +488,7 @@ bool UB2AnimInstance::ProcessGuard()
 		SetAnimAttackState(EAttackState::ECS_GuardEnd);
 		OwnerPlayer->SetAttackState(EAttackState::ECS_GuardEnd);
 	}
-	else if (IsCounterDungeon() == false && IsEvade)	// Owner->IsAvailableEvade·Î È®ÀÎÇØ¾ßÇÔ
+	else if (IsCounterDungeon() == false && IsEvade)	// Owner->IsAvailableEvadeè‚º çŠ¬ç‰¢ç§¦å…·çªƒ
 	{
 		SetGuarding(false);
 		SetAnimAttackState(EAttackState::ECS_Evade);
@@ -512,7 +512,7 @@ void UB2AnimInstance::SetReplicatedState(const FString& State)
 
 void UB2AnimInstance::SetAnimAttackState(EAttackState State, bool bForce /*= false*/)
 {
-	// hakgu87 test - AttackState Simulating Àû¿ë Àü
+	// hakgu87 test - AttackState Simulating åˆ©ä¾© å‚ˆ
 //	if (IsOwnerAuthority() || bForce)
 	{
 		AttackState = State;
@@ -589,11 +589,11 @@ void UB2AnimInstance::UpdateComboNext()
 	const bool IsAttack = OwnerPlayer->GetSignalAttack() || IsComboReserved();
 	const bool HasComboReserved = IsAvailableNextCombo && IsAttack;
 
-	// Combo °»½ÅÀÌ °¡´ÉÇÑ »óÈ² - ¾à°£º¹ÀâÇÏ´Ù
-	// case 1. Dash Áß
-	// case 2. Idle È¤Àº GuardEnd »óÅÂ
-	// case 3. °ø°İ °¡´ÉÇÑ »óÅÂ¿¡¼­ AttackSignalÀ» ¹Ş¾ÒÀ» ¶§
-	// case 4. Guard Áß
+	// Combo ç›è„šæ å•Šç“·èŒ„ æƒ‘ç‚” - è·åŸƒæ±—æ£±çªä¿ƒ
+	// case 1. Dash å
+	// case 2. Idle è¶£ç¯® GuardEnd æƒ‘æ€•
+	// case 3. å‚æ‹œ å•Šç“·èŒ„ æƒ‘æ€•ä¿Šè¾‘ AttackSignalé˜‘ ç½ç–½é˜‘ é”­
+	// case 4. Guard å
 
 	const bool IsAvailableComboHandling = IsInDash || HasComboReserved || IsGuarding();
 	if (IsAvailableComboHandling == false)
@@ -605,7 +605,7 @@ void UB2AnimInstance::UpdateComboNext()
 			SetAnimAttackState(EAttackState::ECS_Dash);
 
 		else
-			IncreaseAttackState(1); // ÇÑ´Ü°è AttackState »ó½Â
+			IncreaseAttackState(1); // èŒ„çªœæ‹Œ AttackState æƒ‘é“°
 	}
 
 	else
@@ -619,13 +619,13 @@ void UB2AnimInstance::UpdateComboNext()
 			SetAnimAttackState(EAttackState::ECS_Combo01);
 
 		else if (IsCounterWithoutDash)
-			IncreaseAttackState(2); // Counter0xDash¸¦ °Ç³Ê¶ç¾î¾ß ÇÏ¹Ç·Î 2´Ü°è »ó½Â
+			IncreaseAttackState(2); // Counter0xDashç”« æ‰’å‘ˆå‰ç»¢å…· çªéª¨è‚º 2çªœæ‹Œ æƒ‘é“°
 
 		else
-			IncreaseAttackState(1); // À§ÀÇ °æ¿ì¸¦ Á¦¿ÜÇÏ°í 1´Ü°è »ó½Â
+			IncreaseAttackState(1); // å›°ç‹¼ ç‰ˆå¿«ç”« åŠ›å¯‡çªç»Š 1çªœæ‹Œ æƒ‘é“°
 	}
 
-	// ------ ÃÖÁ¾ AnimAttackState°¡ °áÁ¤µÈ »óÅÂ ------ //
+	// ------ å¼¥è¾† AnimAttackStateå•Š æ¬æ²¥ç­‰ æƒ‘æ€• ------ //
 
 	const int32 CastedCounterAttack = static_cast<int32>(EAttackState::ECS_Counter01);
 	const int32 OwnerMotionIncrease = OwnerPlayer->GetCounterMotionIncrease() * 2;
@@ -643,14 +643,14 @@ void UB2AnimInstance::UpdateComboNext()
 	SetComboNextThisFrame(false);
 	SetHadRestartAttack(false);
 
-	// hakgu87 test - AttackState Simulating Àû¿ë Àü
+	// hakgu87 test - AttackState Simulating åˆ©ä¾© å‚ˆ
 	//if (OwnerPlayer->Role == ROLE_Authority)
 		OwnerPlayer->SetAttackState(GetAnimAttackState());
 }
 
 void UB2AnimInstance::UpdateBeginAttack()
 {
-	//// DummyPlayer ¿¹¿ÜÃ³¸®
+	//// DummyPlayer æŠ—å¯‡è´¸åºœ
 	//if (auto* DummyPlayer = Cast<ABladeIITestDummyPlayer>(OwnerPlayer))
 	//{
 	//	SetAnimAttackState(DummyPlayer->GetDirectAttackState());
@@ -704,7 +704,7 @@ void UB2AnimInstance::IncreaseAttackState(int32 IncreaseLevel/*= 1*/)
 		SetAnimAttackState(static_cast<EAttackState>(NewAttackState));
 
 	else
-		SetAnimAttackState(EAttackState::ECS_None);	// AttackState ¹üÀ§¸¦ ³ÑÀ¸¸é noneÀ¸·Î ÃÊ±âÈ­
+		SetAnimAttackState(EAttackState::ECS_None);	// AttackState è£¹å›°ç”« é€æ æ noneæ è‚º æª¬æ‰æ‹³
 }
 
 bool UB2AnimInstance::IsNormalAttackState(EAttackState InAttackState)
@@ -738,11 +738,11 @@ void UB2AnimInstance::OnStateChangeEntry(const struct FAnimNode_StateMachine& Ma
 
 	OnAnimStateChanged(PrevState, NextState);
 	
-	// Àı´ë °ÇµéÁö ¸»°Í
+	// ä¾‹æª æ‰’ç”¸ç˜¤ å¯Œå·´
 	CurrentAnimState = NextState;
-	// Àı´ë °ÇµéÁö ¸»°Í
+	// ä¾‹æª æ‰’ç”¸ç˜¤ å¯Œå·´
 
-	// Authority´Â ReplicatedState »ç¿ëÇÏÁö ¾ÊÀ½(NativeTransition µî·ÏÇÏÁö ¾ÊÀ½) - Console È®ÀÎÂ÷¿øÂ÷
+	// Authorityç»° ReplicatedState è¤ä¾©çªç˜¤ è‡¼æ¾œ(NativeTransition æ®¿åºŸçªç˜¤ è‡¼æ¾œ) - Console çŠ¬ç‰¢ç’ç›”ç’
 	if (IsOwnerAuthority())
 		SetReplicatedState(NextState.ToString());
 }

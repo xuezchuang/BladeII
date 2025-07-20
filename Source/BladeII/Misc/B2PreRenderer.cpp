@@ -1,4 +1,4 @@
-
+ï»¿
 #include "B2PreRenderer.h"
 #include "BladeIIGameImpl.h"
 #include "Components/SkeletalMeshComponent.h"
@@ -30,12 +30,12 @@ bool FB2GMPreRenderDummyInfo::UpdateDummy(bool bForceContinue /*= false*/)
 	//	return false;
 	//}
 
-	bool bNotFinishedCondition = bForceContinue; // ÀÏ´Ü ForceContinue °¡ ÀÖÀ¸¸é ¸ø ³¡³¿.
+	bool bNotFinishedCondition = bForceContinue; // ì¼ë‹¨ ForceContinue ê°€ ìˆìœ¼ë©´ ëª» ëëƒ„.
 
-	//// ·çÆ® ÄÄÆ÷³ÍÆ®¿¡ ´ëÇÑ ±âº» PreRender Ã¼Å©..
+	//// ë£¨íŠ¸ ì»´í¬ë„ŒíŠ¸ì— ëŒ€í•œ ê¸°ë³¸ PreRender ì²´í¬..
 	//USkeletalMeshComponent* ThisDummySKComp = PreRenderDummy->GetSkeletalMeshComponent();
 	//if (ThisDummySKComp) {
-	//	ThisDummySKComp->SetExcessiveRenderProcessing(true);// ¿¹Àü¿¡ ÄÄÆ÷³ÍÆ® ÂÊ¿¡ ÀÌ °ªÀ» ³Ö¾î³õÁö ¾Ê¾ÒÀ» ¶§ ¾ÀÇÁ·Ï½Ã°¡ ¾÷µ¥ÀÌÆ® µÇ±æ·¡ ¸Å¹ø ¼¼ÆÃÇØ Áá¾ú´Âµ¥.. ÀÌÁ¦ ÇÊ¿ä¾øÀ» ¼öµµ.
+	//	ThisDummySKComp->SetExcessiveRenderProcessing(true);// ì˜ˆì „ì— ì»´í¬ë„ŒíŠ¸ ìª½ì— ì´ ê°’ì„ ë„£ì–´ë†“ì§€ ì•Šì•˜ì„ ë•Œ ì”¬í”„ë¡ì‹œê°€ ì—…ë°ì´íŠ¸ ë˜ê¸¸ë˜ ë§¤ë²ˆ ì„¸íŒ…í•´ ì¤¬ì—ˆëŠ”ë°.. ì´ì œ í•„ìš”ì—†ì„ ìˆ˜ë„.
 	//}
 	//if (!ThisDummySKComp || ThisDummySKComp->LastRenderTime <= 0.0f) {
 	//	bNotFinishedCondition = true;
@@ -45,7 +45,7 @@ bool FB2GMPreRenderDummyInfo::UpdateDummy(bool bForceContinue /*= false*/)
 	//	bNotFinishedCondition = true;
 	//}
 
-	//// ·çÆ® SkeletalMeshComponent ¿¡ ºÙÀº Ãß°¡ ParticleSystemComponent µéÀÇ LastRenderTime µµ Ã¼Å©. ÀÌµéÀº Æ¯È÷ EmitterDelay µîÀ¸·Î ÀÎÇØ ½ÇÁ¦·Î´Â ´õ µ¹·Á¾ß µÇ´Â °æ¿ìµµ ÀÖ´Ù.
+	//// ë£¨íŠ¸ SkeletalMeshComponent ì— ë¶™ì€ ì¶”ê°€ ParticleSystemComponent ë“¤ì˜ LastRenderTime ë„ ì²´í¬. ì´ë“¤ì€ íŠ¹íˆ EmitterDelay ë“±ìœ¼ë¡œ ì¸í•´ ì‹¤ì œë¡œëŠ” ë” ëŒë ¤ì•¼ ë˜ëŠ” ê²½ìš°ë„ ìˆë‹¤.
 	//int32 NotRenderedPSCNum = 0;
 	//TArray<UActorComponent*> AllPSC = PreRenderDummy->GetComponentsByClass(UParticleSystemComponent::StaticClass());
 	//for (UActorComponent* ThisAC : AllPSC)
@@ -57,9 +57,9 @@ bool FB2GMPreRenderDummyInfo::UpdateDummy(bool bForceContinue /*= false*/)
 	//			++NotRenderedPSCNum;
 	//		}
 	//		else {
-	//			//ThisPSC->SetVisibility(false); // ÇÑ¹ø µÈ °Ç ¹Ù·Î visibility ²¨ÁÖ·Á°í Çß´Âµ¥.. EmitterDelay °°Àº °Ô ÀÖ¾î¼­.. ÀÏ´Ü Ãë¼Ò.
+	//			//ThisPSC->SetVisibility(false); // í•œë²ˆ ëœ ê±´ ë°”ë¡œ visibility êº¼ì£¼ë ¤ê³  í–ˆëŠ”ë°.. EmitterDelay ê°™ì€ ê²Œ ìˆì–´ì„œ.. ì¼ë‹¨ ì·¨ì†Œ.
 	//		}
-	//		ThisPSC->SetExcessiveRenderProcessing(true); // ¿¹Àü¿¡ ÄÄÆ÷³ÍÆ® ÂÊ¿¡ ÀÌ °ªÀ» ³Ö¾î³õÁö ¾Ê¾ÒÀ» ¶§ ¾ÀÇÁ·Ï½Ã°¡ ¾÷µ¥ÀÌÆ® µÇ±æ·¡ ¸Å¹ø ¼¼ÆÃÇØ Áá¾ú´Âµ¥.. ÀÌÁ¦ ÇÊ¿ä¾øÀ» ¼öµµ.
+	//		ThisPSC->SetExcessiveRenderProcessing(true); // ì˜ˆì „ì— ì»´í¬ë„ŒíŠ¸ ìª½ì— ì´ ê°’ì„ ë„£ì–´ë†“ì§€ ì•Šì•˜ì„ ë•Œ ì”¬í”„ë¡ì‹œê°€ ì—…ë°ì´íŠ¸ ë˜ê¸¸ë˜ ë§¤ë²ˆ ì„¸íŒ…í•´ ì¤¬ì—ˆëŠ”ë°.. ì´ì œ í•„ìš”ì—†ì„ ìˆ˜ë„.
 	//	}
 	//}
 
@@ -83,7 +83,7 @@ bool FPreRenderCompleteState::IsPCClassPreRendered(EPCClass InClass) const
 void FPreRenderCompleteState::MarkSkillAnimPreRendered(FCombinedPCSkillAnimID InCombinedPCSkillAnimId)
 {
 	bool& ValueRef = PreRenderedSkillAnims.FindOrAdd(InCombinedPCSkillAnimId);
-	ValueRef = true; // Key ¸¸ ÀÖÀ¸¸é µÇ¹Ç·Î µüÈ÷ ÇÊ¿ä´Â ¾øÁö¸¸ ÀÇ¹Ì»ó ³Ö¾îÁÜ
+	ValueRef = true; // Key ë§Œ ìˆìœ¼ë©´ ë˜ë¯€ë¡œ ë”±íˆ í•„ìš”ëŠ” ì—†ì§€ë§Œ ì˜ë¯¸ìƒ ë„£ì–´ì¤Œ
 }
 bool FPreRenderCompleteState::IsSkillAnimPreRendered(FCombinedPCSkillAnimID InCombinedPCSkillAnimId) const
 {
@@ -97,7 +97,7 @@ void FPreRenderCompleteState::MarkNPCClassPreRendered(ENPCClass InClass, ENPCCla
 void FPreRenderCompleteState::MarkNPCClassPreRendered(FCombinedNPCClassID InCombinedNPCId)
 {
 	bool& ValueRef = PreRenderedNPCs.FindOrAdd(InCombinedNPCId);
-	ValueRef = true; // Key ¸¸ ÀÖÀ¸¸é µÇ¹Ç·Î µüÈ÷ ÇÊ¿ä´Â ¾øÁö¸¸ ÀÇ¹Ì»ó ³Ö¾îÁÜ
+	ValueRef = true; // Key ë§Œ ìˆìœ¼ë©´ ë˜ë¯€ë¡œ ë”±íˆ í•„ìš”ëŠ” ì—†ì§€ë§Œ ì˜ë¯¸ìƒ ë„£ì–´ì¤Œ
 }
 bool FPreRenderCompleteState::IsNPCClassPreRendered(ENPCClass InClass, ENPCClassVariation InClassVari) const
 {
@@ -113,10 +113,10 @@ void FPreRenderCompleteState::MarkWorldLevelPreRendered(class UWorld* InWorld)
 	UPackage* WorldOuterMost = InWorld ? InWorld->GetOutermost() : nullptr;
 	if (WorldOuterMost)
 	{
-		// ÇöÀç ¿ùµåÀÇ P ·¹º§¿¡ ÇØ´çÇÏ´Â ·¹º§ ÀÌ¸§À¸·Î Pre-render ¿©ºÎ¸¦ ¸¶Å©.
-		// Á¤½Ä ·¹º§ÀÌ¸é ÀÌ¸§ °ãÄ¡´Â °Å ¾ø¾î¾ß ÇÔ.
+		// í˜„ì¬ ì›”ë“œì˜ P ë ˆë²¨ì— í•´ë‹¹í•˜ëŠ” ë ˆë²¨ ì´ë¦„ìœ¼ë¡œ Pre-render ì—¬ë¶€ë¥¼ ë§ˆí¬.
+		// ì •ì‹ ë ˆë²¨ì´ë©´ ì´ë¦„ ê²¹ì¹˜ëŠ” ê±° ì—†ì–´ì•¼ í•¨.
 		bool& ValueRef = PreRenderedLevels.FindOrAdd(WorldOuterMost->GetFName());
-		ValueRef = true; // Key ¸¸ ÀÖÀ¸¸é µÇ¹Ç·Î µüÈ÷ ÇÊ¿ä´Â ¾øÁö¸¸ ÀÇ¹Ì»ó ³Ö¾îÁÜ
+		ValueRef = true; // Key ë§Œ ìˆìœ¼ë©´ ë˜ë¯€ë¡œ ë”±íˆ í•„ìš”ëŠ” ì—†ì§€ë§Œ ì˜ë¯¸ìƒ ë„£ì–´ì¤Œ
 	}
 }
 bool FPreRenderCompleteState::IsWorldLevelPreRendered(class UWorld* InWorld) const
@@ -131,26 +131,26 @@ bool FPreRenderCompleteState::IsWorldLevelPreRendered(class UWorld* InWorld) con
 
 /**
  * ==================================================================
- * Pre-render ÀÇ °á°ú¹°ÀÎ ¼ÎÀÌ´õ Ä³½¬°¡ r.UseProgramBinaryCache ¿¡ ÀÇÇØ Æù¿¡ ÀúÀåµÈ´Ù¸é
- * Pre-render »óÅÂ¸¦ ·ÎÄÃ¿¡ ÀúÀå ¹× ·ÎµåÇÔÀ¸·Î¼­ ´ÙÀ½¹ø ½ÇÇà½Ã¿¡µµ ÇÑ¹ø pre-render ¸¦ °ÅÄ£ °ÍÀ» ¹İº¹ÇÏÁö ¾Êµµ·Ï ÇÑ´Ù.
+ * Pre-render ì˜ ê²°ê³¼ë¬¼ì¸ ì…°ì´ë” ìºì‰¬ê°€ r.UseProgramBinaryCache ì— ì˜í•´ í°ì— ì €ì¥ëœë‹¤ë©´
+ * Pre-render ìƒíƒœë¥¼ ë¡œì»¬ì— ì €ì¥ ë° ë¡œë“œí•¨ìœ¼ë¡œì„œ ë‹¤ìŒë²ˆ ì‹¤í–‰ì‹œì—ë„ í•œë²ˆ pre-render ë¥¼ ê±°ì¹œ ê²ƒì„ ë°˜ë³µí•˜ì§€ ì•Šë„ë¡ í•œë‹¤.
  * ==================================================================
  */
 
 bool FPreRenderCompleteState::CanSavePreRenderState() const
 {
 #if PLATFORM_ANDROID
-	// ¹ÙÀÌ³Ê¸® ¼ÎÀÌ´õ Ä³½¬ ÀúÀå ¿©ºÎ°¡ Áß¿äÇÔ.
+	// ë°”ì´ë„ˆë¦¬ ì…°ì´ë” ìºì‰¬ ì €ì¥ ì—¬ë¶€ê°€ ì¤‘ìš”í•¨.
 	IConsoleVariable* UseProgramBinaryCacheVar = IConsoleManager::Get().FindConsoleVariable(TEXT("r.UseProgramBinaryCache"));
-	return (FAndroidMisc::ShouldUseVulkan() || // Vulkan Àº OpenGL °ú º°µµ·Î ÀúÀåµÇµµ·Ï Ã³¸®µÊ.. FVulkanDynamicRHI::SavePipelineCache
+	return (FAndroidMisc::ShouldUseVulkan() || // Vulkan ì€ OpenGL ê³¼ ë³„ë„ë¡œ ì €ì¥ë˜ë„ë¡ ì²˜ë¦¬ë¨.. FVulkanDynamicRHI::SavePipelineCache
 		(UseProgramBinaryCacheVar && (UseProgramBinaryCacheVar->GetInt() != 0))
-		//FOpenGLES2::SupportsProgramBinary() ÀÌ°É À§ÇÑ include °¡ Àß ¾ÈµÅ¼­.. OpenGL ES ÀÇ SupportsProgramBinary ´Â À¢¸¸Å­ ³°Àº µğ¹ÙÀÌ½º ¾Æ´Ï¸é µÉ ²¨¶ó°í´Â ÇÏ´Âµ¥.. ÀÌ °¡Á¤ÀÌ Æ²¸° °æ¿ì ÇÃ·¹ÀÌ¸¦ ¿©·¯¹ø ÇÏ´Ù º¸¸é ¼ÎÀÌ´õ Ä³½ÌÀÇ ¾Ç¸ùÀÌ ÆîÃÄÁú °Í. 
-		// Á¤ ¹®Á¦°¡ µÇ¸é FOpenGLProgramBinaryCache::Initialize ¿¡¼­ Ä³½Ã Çß´ÂÁö ¿©ºÎ¸¦ Àü¿ªº¯¼ö·Î »© º¸´øÁö..
+		//FOpenGLES2::SupportsProgramBinary() ì´ê±¸ ìœ„í•œ include ê°€ ì˜ ì•ˆë¼ì„œ.. OpenGL ES ì˜ SupportsProgramBinary ëŠ” ì›¬ë§Œí¼ ë‚¡ì€ ë””ë°”ì´ìŠ¤ ì•„ë‹ˆë©´ ë  êº¼ë¼ê³ ëŠ” í•˜ëŠ”ë°.. ì´ ê°€ì •ì´ í‹€ë¦° ê²½ìš° í”Œë ˆì´ë¥¼ ì—¬ëŸ¬ë²ˆ í•˜ë‹¤ ë³´ë©´ ì…°ì´ë” ìºì‹±ì˜ ì•…ëª½ì´ í¼ì³ì§ˆ ê²ƒ. 
+		// ì • ë¬¸ì œê°€ ë˜ë©´ FOpenGLProgramBinaryCache::Initialize ì—ì„œ ìºì‹œ í–ˆëŠ”ì§€ ì—¬ë¶€ë¥¼ ì „ì—­ë³€ìˆ˜ë¡œ ë¹¼ ë³´ë˜ì§€..
 		);
 #elif PLATFORM_IOS
-	// PreRender ÀÏºÎ¸¦ ÇÏ°í FShaderCache ·Î ÀúÀåµµ ÇÔ (FShaderCache::InitShaderCache)
+	// PreRender ì¼ë¶€ë¥¼ í•˜ê³  FShaderCache ë¡œ ì €ì¥ë„ í•¨ (FShaderCache::InitShaderCache)
 	return UB2PreRenderer::ShouldDoPreRenderForIOS();
 #elif PLATFORM_WINDOWS
-	return true; // µ¿ÀÛ Å×½ºÆ®¸¦ À§ÇØ..
+	return true; // ë™ì‘ í…ŒìŠ¤íŠ¸ë¥¼ ìœ„í•´..
 #else
 	return false;
 #endif
@@ -184,7 +184,7 @@ void FPreRenderCompleteState::LoadState()
 }
 void FPreRenderCompleteState::ClearState()
 {
-	// ÈçÈ÷ ¾µ ±â´ÉÀº ¾Æ´Ï°í ¿ø·¡ Å×½ºÆ® ¿ë ±â´ÉÀÎµ¥ È¤ ¼ÎÀÌ´õ Ä³½¬ ¸®¼Â °°Àº »óÈ²¿¡¼­ ÇÊ¿äÇÑ ±â´ÉÀÌ µÉÁöµµ? 
+	// í”íˆ ì“¸ ê¸°ëŠ¥ì€ ì•„ë‹ˆê³  ì›ë˜ í…ŒìŠ¤íŠ¸ ìš© ê¸°ëŠ¥ì¸ë° í˜¹ ì…°ì´ë” ìºì‰¬ ë¦¬ì…‹ ê°™ì€ ìƒí™©ì—ì„œ í•„ìš”í•œ ê¸°ëŠ¥ì´ ë ì§€ë„? 
 
 	PreRenderedPCs.Empty();
 	PreRenderedSkillAnims.Empty();
@@ -314,15 +314,15 @@ bool FPreRenderPerMaterialState::CheckMobilityUsed(EComponentMobility::Type InMo
 }
 const FName FPreRenderMaterialCompleteState::GetMaterialKeyName(class UMaterialInterface* InCheckMtrl) const
 {
-	// ¼ÎÀÌ´õ »ı¼º Â÷¿ø¿¡¼­ material À» ±¸ºĞÇÏÀÚ¸é 
-	// ¿ì¸®·Î¼­´Â StaticSwitch ¸¦ ¹èÁ¦ÇÏ°í ¸ğµç Á¶ÇÕ¸¶´Ù º°µµÀÇ MasterMaterial À» »ç¿ëÇÏ´Â ¹æÇâÀÌ¶ó ºÎ¸ğ material ¸¸ º¸¸é µÉ ¼öµµ ÀÖ´Âµ¥
-	// È®½ÇÈ÷ ¾Æ´Ò ¼öµµ ÀÖ¾î¼­ ÀÏ´Ü ±×³É MaterialInterface ´ÜÀ§·Î Ã¼Å©
-	// ´Ü, MID ´Â ÀÎ°ÔÀÓ µ¿Àû »ı¼ºÀÌ¶ó ¿¹¿Ü·Î..
+	// ì…°ì´ë” ìƒì„± ì°¨ì›ì—ì„œ material ì„ êµ¬ë¶„í•˜ìë©´ 
+	// ìš°ë¦¬ë¡œì„œëŠ” StaticSwitch ë¥¼ ë°°ì œí•˜ê³  ëª¨ë“  ì¡°í•©ë§ˆë‹¤ ë³„ë„ì˜ MasterMaterial ì„ ì‚¬ìš©í•˜ëŠ” ë°©í–¥ì´ë¼ ë¶€ëª¨ material ë§Œ ë³´ë©´ ë  ìˆ˜ë„ ìˆëŠ”ë°
+	// í™•ì‹¤íˆ ì•„ë‹ ìˆ˜ë„ ìˆì–´ì„œ ì¼ë‹¨ ê·¸ëƒ¥ MaterialInterface ë‹¨ìœ„ë¡œ ì²´í¬
+	// ë‹¨, MID ëŠ” ì¸ê²Œì„ ë™ì  ìƒì„±ì´ë¼ ì˜ˆì™¸ë¡œ..
 	UMaterialInterface* RetMtrl = InCheckMtrl;
 	UMaterialInstanceDynamic* CastedMID = Cast<UMaterialInstanceDynamic>(InCheckMtrl);
 	if (CastedMID)
 	{
-		RetMtrl = CastedMID->Parent; // MIC °Å³ª Material ÀÏ ²«µ¥ ±»ÀÌ Ã¼Å©ÇÒ ÇÊ¿ä±îÁö´Â ¾øÀ» °Å °°°í.
+		RetMtrl = CastedMID->Parent; // MIC ê±°ë‚˜ Material ì¼ ê»€ë° êµ³ì´ ì²´í¬í•  í•„ìš”ê¹Œì§€ëŠ” ì—†ì„ ê±° ê°™ê³ .
 	}
 	if (RetMtrl)
 	{
@@ -349,7 +349,7 @@ void FPreRenderMaterialCompleteState::MarkPrimCompMaterials(class UPrimitiveComp
 	}
 }
 bool FPreRenderMaterialCompleteState::ArePrimCompAllMaterialsPreRendered(class UPrimitiveComponent* InPrimComp) const
-{ // InPrimComp °¡ »ç¿ëÇÏ´Â ¸ğµç Material ÀÌ Ã³¸®µÇ¾ú´ÂÁö Ã¼Å©
+{ // InPrimComp ê°€ ì‚¬ìš©í•˜ëŠ” ëª¨ë“  Material ì´ ì²˜ë¦¬ë˜ì—ˆëŠ”ì§€ ì²´í¬
 	if (InPrimComp)
 	{
 		TArray<UMaterialInterface*> AllUsedMtrls;
@@ -362,7 +362,7 @@ bool FPreRenderMaterialCompleteState::ArePrimCompAllMaterialsPreRendered(class U
 			if (ThisMtrlName != NAME_None)
 			{
 				const FPreRenderPerMaterialState* FoundState = AllStates.Find(ThisMtrlName);
-				// ÀÌ Material À» ¾Æ¿¹ Ã³¸®ÇÑ Àû ¾ø°Å³ª, ÀÖ´õ¶óµµ mobility °¡ ´Ş¶ú´Ù¸é.. (±× °æ¿ì ½ÇÁ¦ ¼ÎÀÌ´õ´Â ´Ù¸¦ È®·üÀÌ ³ô´Ù)
+				// ì´ Material ì„ ì•„ì˜ˆ ì²˜ë¦¬í•œ ì  ì—†ê±°ë‚˜, ìˆë”ë¼ë„ mobility ê°€ ë‹¬ëë‹¤ë©´.. (ê·¸ ê²½ìš° ì‹¤ì œ ì…°ì´ë”ëŠ” ë‹¤ë¥¼ í™•ë¥ ì´ ë†’ë‹¤)
 				if (!FoundState || !FoundState->CheckMobilityUsed(InPrimComp->Mobility))
 				{
 					bFoundNonRendered = true;
@@ -370,7 +370,7 @@ bool FPreRenderMaterialCompleteState::ArePrimCompAllMaterialsPreRendered(class U
 				}
 			}
 		}
-		return !bFoundNonRendered; // ¾Æ, ¹°·Ğ material ÀÌ ÀüÇô ¾ø¾îµµ true ¸®ÅÏÀÌ µÇ°Ú´Âµ¥ ÀÌ°Å »ç¿ë ¸ñÀû»ó ±×°Ô ¸Â±ä ÇÏ°Ú´Ù.
+		return !bFoundNonRendered; // ì•„, ë¬¼ë¡  material ì´ ì „í˜€ ì—†ì–´ë„ true ë¦¬í„´ì´ ë˜ê² ëŠ”ë° ì´ê±° ì‚¬ìš© ëª©ì ìƒ ê·¸ê²Œ ë§ê¸´ í•˜ê² ë‹¤.
 	}
 	return false;
 }
@@ -410,7 +410,7 @@ UB2PreRenderer::UB2PreRenderer(const FObjectInitializer& ObjectInitializer)
 	ProgressStepCountForSelectedPhase = 0;
 }
 
-bool UB2PreRenderer::SetupPreRenderObjects(class ABladeIIGameMode* InGM) // ¼ÎÀÌ´õ ÄÄÆÄÀÏÀ» ¹Ì¸® ÇØ ³õÁö ¾Ê´Â ¸ğ¹ÙÀÏ ÇÃ·§Æû¿¡¼­ÀÇ ¼ÎÀÌ´õ ÄÄÆÄÀÏÀ» À§ÇÑ ±â´É. ¿©±â¼­ ³õÄ¡´Â °Ô ÀÖ´Ù°í ¹¹°¡ ÀÛµ¿ ¾ÈÇÏ´Â °Ç ¾Æ´Ï°í °Á Áß°£¿¡ ÇÊ¿äÇØ Áú ¶§ ¹ö¹÷°Å¸².
+bool UB2PreRenderer::SetupPreRenderObjects(class ABladeIIGameMode* InGM) // ì…°ì´ë” ì»´íŒŒì¼ì„ ë¯¸ë¦¬ í•´ ë†“ì§€ ì•ŠëŠ” ëª¨ë°”ì¼ í”Œë«í¼ì—ì„œì˜ ì…°ì´ë” ì»´íŒŒì¼ì„ ìœ„í•œ ê¸°ëŠ¥. ì—¬ê¸°ì„œ ë†“ì¹˜ëŠ” ê²Œ ìˆë‹¤ê³  ë­ê°€ ì‘ë™ ì•ˆí•˜ëŠ” ê±´ ì•„ë‹ˆê³  ê± ì¤‘ê°„ì— í•„ìš”í•´ ì§ˆ ë•Œ ë²„ë²…ê±°ë¦¼.
 {
 	B2_SCOPED_TRACK_LOG(TEXT("UB2PreRenderer::SetupPreRenderObjects"));
 	B2_SCOPED_TIME_LOG(TEXT("UB2PreRenderer::SetupPreRenderObjects"));
@@ -422,8 +422,8 @@ bool UB2PreRenderer::SetupPreRenderObjects(class ABladeIIGameMode* InGM) // ¼ÎÀÌ
 		return false;
 	}
 
-	// ¿øÄ¢ÀûÀ¸·Î ÀÌ Material ´ÜÀ§ Pre-render »óÅÂ Æ®·¢Å·Àº ¿ùµå¸¦ Áö³ª¼­µµ À¯Áö°¡ µÉ ¼ö ÀÖ´Â °ÍÀÌÁö¸¸
-	// ¾ÆÁ÷Àº µ¿ÀÏÇÑ material ÀÌ´õ¶óµµ ´Ù¸¥ Á¶¸í Á¶°Ç ÇÏ¿¡¼­ÀÇ ¼ÎÀÌ´õ ÄÄÆÄÀÏ Ã³¸®°¡ È®½ÇÇÏÁö ¾Ê¾Æ ¸Å ·¹º§¸¶´Ù ¸®¼ÂÇÏ´Â °É·Î ÇÔ.
+	// ì›ì¹™ì ìœ¼ë¡œ ì´ Material ë‹¨ìœ„ Pre-render ìƒíƒœ íŠ¸ë™í‚¹ì€ ì›”ë“œë¥¼ ì§€ë‚˜ì„œë„ ìœ ì§€ê°€ ë  ìˆ˜ ìˆëŠ” ê²ƒì´ì§€ë§Œ
+	// ì•„ì§ì€ ë™ì¼í•œ material ì´ë”ë¼ë„ ë‹¤ë¥¸ ì¡°ëª… ì¡°ê±´ í•˜ì—ì„œì˜ ì…°ì´ë” ì»´íŒŒì¼ ì²˜ë¦¬ê°€ í™•ì‹¤í•˜ì§€ ì•Šì•„ ë§¤ ë ˆë²¨ë§ˆë‹¤ ë¦¬ì…‹í•˜ëŠ” ê±¸ë¡œ í•¨.
 	MaterialBasedCompleteState.ClearState();
 
 	AllPreRenderDummy.Empty();
@@ -431,7 +431,7 @@ bool UB2PreRenderer::SetupPreRenderObjects(class ABladeIIGameMode* InGM) // ¼ÎÀÌ
 
 	if (GetB2GameModeType(OwnerGameMode) == EB2GameMode::Lobby)
 	{
-		// ·Îºñ´Â Æ¯¼ö¼ºÀ¸·Î ÀÎÇØ °ÅÀÇ º°µµ Ã³¸®ÇÔ. »ç½Ç»ó °ÔÀÓ ½ÇÇàÇÏ°í ¸Ç Ã³À½ ÇÑ ¹ø Ã³¸®ÇÏ´Â °Ô µÉ °Í.
+		// ë¡œë¹„ëŠ” íŠ¹ìˆ˜ì„±ìœ¼ë¡œ ì¸í•´ ê±°ì˜ ë³„ë„ ì²˜ë¦¬í•¨. ì‚¬ì‹¤ìƒ ê²Œì„ ì‹¤í–‰í•˜ê³  ë§¨ ì²˜ìŒ í•œ ë²ˆ ì²˜ë¦¬í•˜ëŠ” ê²Œ ë  ê²ƒ.
 		SetupPreRenderObjects_FirstLobby();
 	}
 	else
@@ -441,14 +441,14 @@ bool UB2PreRenderer::SetupPreRenderObjects(class ABladeIIGameMode* InGM) // ¼ÎÀÌ
 #endif
 		{
 			{
-				// PC ±âº» µ¥ÀÌÅÍ´Â »ç½Ç»ó ´ëºÎºĞÀº PreRenderGameMode ¿¡¼­ °ÔÀÓ ¼³Ä¡ ÈÄ Ã³À½ ÇÑ¹ø Ã³¸®°¡ µÉ °ÍÀÌ´Ù.
+				// PC ê¸°ë³¸ ë°ì´í„°ëŠ” ì‚¬ì‹¤ìƒ ëŒ€ë¶€ë¶„ì€ PreRenderGameMode ì—ì„œ ê²Œì„ ì„¤ì¹˜ í›„ ì²˜ìŒ í•œë²ˆ ì²˜ë¦¬ê°€ ë  ê²ƒì´ë‹¤.
 				TArray<EPCClass> PCClassesToLoad = OwnerGameMode->GetPCClassesToPreLoad();
 				for (EPCClass ThisCharClass : PCClassesToLoad)
 				{
 					ConditionalSetupPreRenderObjectForPCClass(ThisCharClass);
 				}
 
-				// PreloadAnyNecessaryInfo ÇÒ ¶§ ±Ü¾î¿Â NPCClass µé·Î prerender ´õ¹Ì »ı¼º
+				// PreloadAnyNecessaryInfo í•  ë•Œ ê¸ì–´ì˜¨ NPCClass ë“¤ë¡œ prerender ë”ë¯¸ ìƒì„±
 				TArray<FCombinedNPCClassID> AllExpectedNPCs;
 				AB2MonsterSpawnPool* ActiveSP = OwnerGameMode->GetActiveSpawnPool();
 				if (ActiveSP)
@@ -460,20 +460,20 @@ bool UB2PreRenderer::SetupPreRenderObjects(class ABladeIIGameMode* InGM) // ¼ÎÀÌ
 					ConditionalSetupPreRenderObjectForNPCClass(ThisMobId);
 				}
 
-				// PCClass µ¥ÀÌÅÍ Áß µ¢Ä¡°¡ Å©°í ÇöÀç PC ¼ºÀå »óÅÂ¿¡ µû¶ó º°µµ °ü¸®°¡ °¡´ÉÇÑ Skill Anim µ¥ÀÌÅÍ..
+				// PCClass ë°ì´í„° ì¤‘ ë©ì¹˜ê°€ í¬ê³  í˜„ì¬ PC ì„±ì¥ ìƒíƒœì— ë”°ë¼ ë³„ë„ ê´€ë¦¬ê°€ ê°€ëŠ¥í•œ Skill Anim ë°ì´í„°..
 				TArray<FCombinedPCSkillAnimID> SkillAnimsToPreLoad = OwnerGameMode->GetPCSkillAnimsToPreLoad();
 				ConditionalSetupPreRenderObjectForPCSkillAnims(SkillAnimsToPreLoad);
 
-				// DamageEffectInfo.. ÀÎ°ÔÀÓ ¼º´É¿¡ ¿µÇâÀ» ²Ï³ª ¹ÌÄ¡´Ù º¸´Ï ¾êµéµµ pre-render ¿¡ Æ÷ÇÔ. ¾êµéµµ Ã³À½ ÇÑ¹ø¸¸ ÇÊ¿äÇÒ µí ÇÑµ¥..
+				// DamageEffectInfo.. ì¸ê²Œì„ ì„±ëŠ¥ì— ì˜í–¥ì„ ê½¤ë‚˜ ë¯¸ì¹˜ë‹¤ ë³´ë‹ˆ ì–˜ë“¤ë„ pre-render ì— í¬í•¨. ì–˜ë“¤ë„ ì²˜ìŒ í•œë²ˆë§Œ í•„ìš”í•  ë“¯ í•œë°..
 				ConditionalSetupPreRenderObjectForDamageEffectInfo();
 			}
 
-			// ¿¬Ãâ ¼Â¾÷¿¡ ´ëÇÑ PreRender ¼Â¾÷. ÇöÀç ¿ùµå¿¡ ´ëÇØ¼­ ÀÌÀü¿¡ pre-render ÇÑÀû ¾øÀ» ¶§¿¡¸¸. 
-			// »ç½Ç ¾Æ·¡ StageEventDirector ´Â °°Àº ·¹º§ÀÌ¶óµµ StageNumber ¿¡ µû¶ó »ç¿ë ¿©ºÎ°¡ ´Ù¸¦ ¼ö ÀÖ¾î¼­ ±×°Í±îÁö Ã¼Å©ÇÏ´Â °Ô È®½ÇÇÏ±ä ÇÏ´Ù.
-			// ½ÇÁ¦·Î´Â ÀÌ°Í±îÁö ºüµæºüµæ pre-render ¸¦ Ã¶ÀúÇÏ°Ô °Å´Â °Ô Å©°Ô È¿°ú°¡ ÀÖ´Â °Í °°Áö´Â ¾Ê¾Æ¼­ StageNumber »ó°ü¾øÀÌ ÇÑ¹ø¸¸ °É¾îµÒ.
+			// ì—°ì¶œ ì…‹ì—…ì— ëŒ€í•œ PreRender ì…‹ì—…. í˜„ì¬ ì›”ë“œì— ëŒ€í•´ì„œ ì´ì „ì— pre-render í•œì  ì—†ì„ ë•Œì—ë§Œ. 
+			// ì‚¬ì‹¤ ì•„ë˜ StageEventDirector ëŠ” ê°™ì€ ë ˆë²¨ì´ë¼ë„ StageNumber ì— ë”°ë¼ ì‚¬ìš© ì—¬ë¶€ê°€ ë‹¤ë¥¼ ìˆ˜ ìˆì–´ì„œ ê·¸ê²ƒê¹Œì§€ ì²´í¬í•˜ëŠ” ê²Œ í™•ì‹¤í•˜ê¸´ í•˜ë‹¤.
+			// ì‹¤ì œë¡œëŠ” ì´ê²ƒê¹Œì§€ ë¹ ë“ë¹ ë“ pre-render ë¥¼ ì² ì €í•˜ê²Œ ê±°ëŠ” ê²Œ í¬ê²Œ íš¨ê³¼ê°€ ìˆëŠ” ê²ƒ ê°™ì§€ëŠ” ì•Šì•„ì„œ StageNumber ìƒê´€ì—†ì´ í•œë²ˆë§Œ ê±¸ì–´ë‘ .
 			if (!IsCurrentWorldLevelPreRendered())
 			{
-				ASkeletalMeshActor* ExtraDummySKActor = GetExtraPrerenderDummySKActor(); // ExtraDummy ´Â ÇÊ¿äÇÑ »óÈ²¿¡¼­¸¸ ²¨³»¿Â´Ù.
+				ASkeletalMeshActor* ExtraDummySKActor = GetExtraPrerenderDummySKActor(); // ExtraDummy ëŠ” í•„ìš”í•œ ìƒí™©ì—ì„œë§Œ êº¼ë‚´ì˜¨ë‹¤.
 				if (ExtraDummySKActor)
 				{
 					for (AB2StageEventDirector* SED : OwnerGameMode->GetEventDirectorArray())
@@ -484,7 +484,7 @@ bool UB2PreRenderer::SetupPreRenderObjects(class ABladeIIGameMode* InGM) // ¼ÎÀÌ
 							SED->SetupPreRenderSKMeshActor(ExtraDummySKActor, ShowSettingUnboundSKActors);
 
 							for (ASkeletalMeshActor* NewSKActor : ShowSettingUnboundSKActors)
-							{ // ShowSettings ¿¡ ¿¬°áµÇÁö ¾ÊÀº ¿¬Ãâ¿¡¸¸ »ç¿ëµÇ´Â SkeletalMeshActor µé »ı¼ºµÈ °Å. ¾êµéµµ PreRenderDummy ·Î..
+							{ // ShowSettings ì— ì—°ê²°ë˜ì§€ ì•Šì€ ì—°ì¶œì—ë§Œ ì‚¬ìš©ë˜ëŠ” SkeletalMeshActor ë“¤ ìƒì„±ëœ ê±°. ì–˜ë“¤ë„ PreRenderDummy ë¡œ..
 								FB2GMPreRenderDummyInfo NewDummyInfo;
 								NewDummyInfo.PreRenderDummy = NewSKActor;
 								AllPreRenderDummy.Add(NewDummyInfo);
@@ -496,23 +496,23 @@ bool UB2PreRenderer::SetupPreRenderObjects(class ABladeIIGameMode* InGM) // ¼ÎÀÌ
 		}
 	}
 
-	// °øÅëÀûÀÎ ÈÄÃ³¸®
+	// ê³µí†µì ì¸ í›„ì²˜ë¦¬
 	PostPreRenderSeupProcess();
 
-	// »ı¼ºµÈ ´õ¹Ì Á¤º¸°¡ ¾ø´õ¶óµµ AllPrimitives ¿É¼ÇÀÌ ÀÖ°Å³ª Àü¿ë ·¹º§ ÁøÀÔ ¿¹Á¤ÀÌ¸é ÀÌÈÄ ÁøÇàÀ» ÇÏ°Ô µÉ ¼ö ÀÖÀ¸´Ï true ¸®ÅÏ
+	// ìƒì„±ëœ ë”ë¯¸ ì •ë³´ê°€ ì—†ë”ë¼ë„ AllPrimitives ì˜µì…˜ì´ ìˆê±°ë‚˜ ì „ìš© ë ˆë²¨ ì§„ì… ì˜ˆì •ì´ë©´ ì´í›„ ì§„í–‰ì„ í•˜ê²Œ ë  ìˆ˜ ìˆìœ¼ë‹ˆ true ë¦¬í„´
 	if (AllPreRenderDummy.Num() > 0 || (bPreRenderAllPrimitives && !IsCurrentWorldLevelPreRendered()) || bPendingForPreRenderGM)
 	{
-		bHadDoneAnyPreRender = true; // ¾ÆÁ÷ ½ÇÁ¦·Î ÇÑ °Ç ¾Æ´ÏÁö¸¸ ÀÌ ÇÃ·¡±× ¸ñÀû »ó ÀÌÂë¿¡¼­ true ¸¶Å©ÇØµµ ÁÁ°Ú´Ù.
+		bHadDoneAnyPreRender = true; // ì•„ì§ ì‹¤ì œë¡œ í•œ ê±´ ì•„ë‹ˆì§€ë§Œ ì´ í”Œë˜ê·¸ ëª©ì  ìƒ ì´ì¯¤ì—ì„œ true ë§ˆí¬í•´ë„ ì¢‹ê² ë‹¤.
 
 		if (!bPendingForPreRenderGM)
-		{ // Pre-render µÇ´Â µ¿¾È È­¸é °¡¸²¸· ¼¼ÆÃ
+		{ // Pre-render ë˜ëŠ” ë™ì•ˆ í™”ë©´ ê°€ë¦¼ë§‰ ì„¸íŒ…
 			SetupDefaultPreRenderScreen();
 		}
 
 		return true;
 	}
 
-	return false; // ¸¸ÀÏ ÇöÀç ±¸¼ºÀÌ ÁË´Ù ÀÌÀü¿¡ Pre-render ¸¦ °ÅÃÆ´Ù¸é ÀÌ·¸°Ô °¡°Ô µÉ µí. ·Îµù ½Ã°£ Æä³ÎÆ¼ ¾øÀ¸´Ï ÁÁÀº °Å.
+	return false; // ë§Œì¼ í˜„ì¬ êµ¬ì„±ì´ ì£„ë‹¤ ì´ì „ì— Pre-render ë¥¼ ê±°ì³¤ë‹¤ë©´ ì´ë ‡ê²Œ ê°€ê²Œ ë  ë“¯. ë¡œë”© ì‹œê°„ í˜ë„í‹° ì—†ìœ¼ë‹ˆ ì¢‹ì€ ê±°.
 }
 
 void UB2PreRenderer::ConditionalSetupPreRenderObjectForPCClass(EPCClass InClass, bool bForceSetup)
@@ -524,9 +524,9 @@ void UB2PreRenderer::ConditionalSetupPreRenderObjectForPCClass(EPCClass InClass,
 
 		FB2GMPreRenderDummyInfo ThisDummyInfo;
 
-		// ·ÎÄÃ Ä³¸¯ÅÍÀÇ ÀåÂø Àåºñ¿Í ³¯°³ Á¤º¸¸¦ °¡Á® ¿À´Âµ¥ À¢¸¸ÇØ¼­´Â Ã³À½¿¡ ÇÑ¹ø µ¹¸± ²¨¸é ±âº» Àåºñµé¸¸ »ç¿ëÇÏ°Ô µÉ µí. 
-		// °°Àº Å¬·¡½º¸é ¼³·É Àåºñ°¡ ´Ş¶óµµ ¾îÁö°£ÇÏ¸é ºÎ¸ğ material ÀÌ¶óµµ °°À» Å×´Ï ¾î¶² Àåºñ¸¦ ÀÔÈ÷µç Å« »ó°üÀº ¾øÀ» °Í °°Àºµ¥.. ¿©ÇÏ°£ º°·Î ÀÇ¹Ì´Â ¾ø´Â ÄÚµå ¤»
-		// ½ÇÁ¦·Î ¿©±â¼­ Áß¿äÇÑ °Ç ¾Ö´Ï¸ŞÀÌ¼Ç¿¡ ºÙÀº ÀÌÆåÆ®µéÀÌ°í ±×°Ç Å¬·¡½º ´ÜÀ§·Î¸¸ º¸¸é µÊ.
+		// ë¡œì»¬ ìºë¦­í„°ì˜ ì¥ì°© ì¥ë¹„ì™€ ë‚ ê°œ ì •ë³´ë¥¼ ê°€ì ¸ ì˜¤ëŠ”ë° ì›¬ë§Œí•´ì„œëŠ” ì²˜ìŒì— í•œë²ˆ ëŒë¦´ êº¼ë©´ ê¸°ë³¸ ì¥ë¹„ë“¤ë§Œ ì‚¬ìš©í•˜ê²Œ ë  ë“¯. 
+		// ê°™ì€ í´ë˜ìŠ¤ë©´ ì„¤ë ¹ ì¥ë¹„ê°€ ë‹¬ë¼ë„ ì–´ì§€ê°„í•˜ë©´ ë¶€ëª¨ material ì´ë¼ë„ ê°™ì„ í…Œë‹ˆ ì–´ë–¤ ì¥ë¹„ë¥¼ ì…íˆë“  í° ìƒê´€ì€ ì—†ì„ ê²ƒ ê°™ì€ë°.. ì—¬í•˜ê°„ ë³„ë¡œ ì˜ë¯¸ëŠ” ì—†ëŠ” ì½”ë“œ ã…‹
+		// ì‹¤ì œë¡œ ì—¬ê¸°ì„œ ì¤‘ìš”í•œ ê±´ ì• ë‹ˆë©”ì´ì…˜ì— ë¶™ì€ ì´í™íŠ¸ë“¤ì´ê³  ê·¸ê±´ í´ë˜ìŠ¤ ë‹¨ìœ„ë¡œë§Œ ë³´ë©´ ë¨.
 		TArray<FB2Item> ThisCharEquipment;
 		FB2Wing ThisCharWing;
 		BladeIIGameImpl::GetLocalCharacterData().GetEquippedItems(InClass, ThisCharEquipment);
@@ -534,17 +534,17 @@ void UB2PreRenderer::ConditionalSetupPreRenderObjectForPCClass(EPCClass InClass,
 		bool bHasWing = BladeIIGameImpl::GetLocalCharacterData().GetCharacterWing(InClass, ThisCharWing);
 		ICharacterDataStore::GetRenderItem(&BladeIIGameImpl::GetLocalCharacterData(), InClass, ThisCharEquipment);
 
-		ThisDummyInfo.PreRenderDummy = SpawnPreRenderMeshCommon(TheWorld); // ±âº» SkeletalMeshActor Spawn
+		ThisDummyInfo.PreRenderDummy = SpawnPreRenderMeshCommon(TheWorld); // ê¸°ë³¸ SkeletalMeshActor Spawn
 
 		if (ThisDummyInfo.PreRenderDummy)
 		{
-			// Mesh merge.. AnimBP ¼¼ÆÃµµ µé¾î°¥ °ÍÀÓ. 
+			// Mesh merge.. AnimBP ì„¸íŒ…ë„ ë“¤ì–´ê°ˆ ê²ƒì„. 
 			SetupDummyPCMeshForPreRender(InClass, NULL, ThisDummyInfo.PreRenderDummy, ThisCharEquipment, bHasWing ? &ThisCharWing : NULL);
-			// AnimBP ¸¦ ÅëÇØ ±Ü¾î¸ğÀº ParticleSystem µéµµ »Ñ·ÁÁØ´Ù.
+			// AnimBP ë¥¼ í†µí•´ ê¸ì–´ëª¨ì€ ParticleSystem ë“¤ë„ ë¿Œë ¤ì¤€ë‹¤.
 			SetupDummyParticleSystemsForPreRender(ThisDummyInfo.PreRenderDummy);
 		}
 
-		TotalCompleteState.MarkPCClassPreRendered(InClass); // ¼Â¾÷¸¸ ÇÏ°í °Á ÇÑ °É·Î ¸¶Å©. Á¤¸» ´Ù Ã³¸® µÈ °ÇÁö ³¡±îÁö ÃßÀûÇÏ·Á¸é ¹ö°Ì±âµµ ÇÏ°í ÃÊ°¡»ï°£ ÅÂ¿ì¸é¼­ ±×·² ÇÊ¿ä±îÁö ÀÖÀ» °Í °°Áöµµ ¾Ê°í..
+		TotalCompleteState.MarkPCClassPreRendered(InClass); // ì…‹ì—…ë§Œ í•˜ê³  ê± í•œ ê±¸ë¡œ ë§ˆí¬. ì •ë§ ë‹¤ ì²˜ë¦¬ ëœ ê±´ì§€ ëê¹Œì§€ ì¶”ì í•˜ë ¤ë©´ ë²„ê²ê¸°ë„ í•˜ê³  ì´ˆê°€ì‚¼ê°„ íƒœìš°ë©´ì„œ ê·¸ëŸ´ í•„ìš”ê¹Œì§€ ìˆì„ ê²ƒ ê°™ì§€ë„ ì•Šê³ ..
 
 		AllPreRenderDummy.Add(ThisDummyInfo);
 	}
@@ -557,23 +557,23 @@ void UB2PreRenderer::ConditionalSetupPreRenderObjectForNPCClass(const FCombinedN
 		UWorld* TheWorld = OwnerGameMode->GetWorld();
 
 		FB2GMPreRenderDummyInfo ThisDummyInfo;
-		ThisDummyInfo.PreRenderDummy = SpawnPreRenderMeshCommon(TheWorld); // ±âº» SkeletalMeshActor Spawn
+		ThisDummyInfo.PreRenderDummy = SpawnPreRenderMeshCommon(TheWorld); // ê¸°ë³¸ SkeletalMeshActor Spawn
 
 		if (ThisDummyInfo.PreRenderDummy)
 		{
 			SetupDummyMobForPreRender(InClassID.GetNPCClassEnum(), InClassID.GetNPCVariationEnum(), NULL, ThisDummyInfo.PreRenderDummy);
-			// AnimBP ¸¦ ÅëÇØ ±Ü¾î¸ğÀº ParticleSystem µéµµ »Ñ·ÁÁØ´Ù.
+			// AnimBP ë¥¼ í†µí•´ ê¸ì–´ëª¨ì€ ParticleSystem ë“¤ë„ ë¿Œë ¤ì¤€ë‹¤.
 			SetupDummyParticleSystemsForPreRender(ThisDummyInfo.PreRenderDummy);
 		}
 
-		TotalCompleteState.MarkNPCClassPreRendered(InClassID); // ¼Â¾÷¸¸ ÇÏ°í °Á ÇÑ °É·Î ¸¶Å©. Á¤¸» ´Ù Ã³¸® µÈ °ÇÁö ³¡±îÁö ÃßÀûÇÏ·Á¸é ¹ö°Ì±âµµ ÇÏ°í ÃÊ°¡»ï°£ ÅÂ¿ì¸é¼­ ±×·² ÇÊ¿ä±îÁö ÀÖÀ» °Í °°Áöµµ ¾Ê°í..
+		TotalCompleteState.MarkNPCClassPreRendered(InClassID); // ì…‹ì—…ë§Œ í•˜ê³  ê± í•œ ê±¸ë¡œ ë§ˆí¬. ì •ë§ ë‹¤ ì²˜ë¦¬ ëœ ê±´ì§€ ëê¹Œì§€ ì¶”ì í•˜ë ¤ë©´ ë²„ê²ê¸°ë„ í•˜ê³  ì´ˆê°€ì‚¼ê°„ íƒœìš°ë©´ì„œ ê·¸ëŸ´ í•„ìš”ê¹Œì§€ ìˆì„ ê²ƒ ê°™ì§€ë„ ì•Šê³ ..
 
 		AllPreRenderDummy.Add(ThisDummyInfo);
 	}
 }
 void UB2PreRenderer::ConditionalSetupPreRenderObjectForPCSkillAnims(const TArray<FCombinedPCSkillAnimID>& InSkillIDs, bool bForceSetup)
 {
-	// »ç¿ë ÆíÀÇ »ó ½ºÅ³¾Ö´Ï¸ŞÀÌ¼Ç ÇÏ³ª¾¿ÀÌ ¾Æ´Ï°í ¿©·¯°³¸¦ ¹Şµµ·Ï ÇÔ.
+	// ì‚¬ìš© í¸ì˜ ìƒ ìŠ¤í‚¬ì• ë‹ˆë©”ì´ì…˜ í•˜ë‚˜ì”©ì´ ì•„ë‹ˆê³  ì—¬ëŸ¬ê°œë¥¼ ë°›ë„ë¡ í•¨.
 
 	UB2SkillAnimInfo* SkillAnimInfo = StaticFindSkillAnimInfo(OwnerGameMode);
 	if (!SkillAnimInfo)
@@ -586,27 +586,27 @@ void UB2PreRenderer::ConditionalSetupPreRenderObjectForPCSkillAnims(const TArray
 	//{
 	//	if (!TotalCompleteState.IsSkillAnimPreRendered(ThisSkillAnimID) || bForceSetup)
 	//	{
-	//		// Async ·ÎµùÀ» ÇÏ´õ¶óµµ »ç½Ç»ó ¿©±â¼­ ÇÊ¿äÇÏ¸é ·ÎµùÀ» ³¡±îÁö ÇÒ °ÍÀÌ´Ù.
+	//		// Async ë¡œë”©ì„ í•˜ë”ë¼ë„ ì‚¬ì‹¤ìƒ ì—¬ê¸°ì„œ í•„ìš”í•˜ë©´ ë¡œë”©ì„ ëê¹Œì§€ í•  ê²ƒì´ë‹¤.
 	//		UAnimSequenceBase* ThisSkillAnim = SkillAnimInfo->GetSingleSkillAnim(ThisSkillAnimID);
 	//		if (!ThisSkillAnim) {
 	//			continue;
 	//		}
-	//		TryGatherAllBoundPSFromAnimSeq(ThisSkillAnim, GatheredPS); // Áßº¹µÇ´Â °Å °¨¾ÈÇØ °¡¸é¼­ ¸ğÀ½.
-	//		// ±¸Á¶»ó ¿©±âµµ ¾ÆÁ÷ ¼Â¾÷ÀÌ ¿Ï·áµÇÁö´Â ¾Ê¾ÒÁö¸¸ °Á ÇÑ °É·Î ¸¶Å©.
+	//		TryGatherAllBoundPSFromAnimSeq(ThisSkillAnim, GatheredPS); // ì¤‘ë³µë˜ëŠ” ê±° ê°ì•ˆí•´ ê°€ë©´ì„œ ëª¨ìŒ.
+	//		// êµ¬ì¡°ìƒ ì—¬ê¸°ë„ ì•„ì§ ì…‹ì—…ì´ ì™„ë£Œë˜ì§€ëŠ” ì•Šì•˜ì§€ë§Œ ê± í•œ ê±¸ë¡œ ë§ˆí¬.
 	//		TotalCompleteState.MarkSkillAnimPreRendered(ThisSkillAnimID);
 	//	}
 	//}
 	//if (GatheredPS.Num() > 0)
 	//{
-	//	// ExtraDummy ´Â ÇÊ¿äÇÑ »óÈ²¿¡¼­¸¸ ²¨³»¿Í¾ß ÇÑ´Ù. ¾È ±×·¯¸é ½ÇÁ¦·Î Pre-render °¡ ÇÊ¿ä¾ø´Âµ¥µµ ÇÑ ÇÁ·¹ÀÓ Á¤µµ Â÷¾ç¸·ÀÌ °¡·ÁÁö´Â ³¶ºñ¸¦ ÇÏ°Ô µÉ ¼ö ÀÖ´Ù.
+	//	// ExtraDummy ëŠ” í•„ìš”í•œ ìƒí™©ì—ì„œë§Œ êº¼ë‚´ì™€ì•¼ í•œë‹¤. ì•ˆ ê·¸ëŸ¬ë©´ ì‹¤ì œë¡œ Pre-render ê°€ í•„ìš”ì—†ëŠ”ë°ë„ í•œ í”„ë ˆì„ ì •ë„ ì°¨ì–‘ë§‰ì´ ê°€ë ¤ì§€ëŠ” ë‚­ë¹„ë¥¼ í•˜ê²Œ ë  ìˆ˜ ìˆë‹¤.
 	//	ASkeletalMeshActor* ExtraDummySKActor = GetExtraPrerenderDummySKActor();
 	//	if (ExtraDummySKActor)
 	//	{
-	//		// ¸ğµç SkillAnimsToPreLoad µéÀÇ particle system µéÀ» ¸ğÀº ÀÌÈÄ¿¡ Prerender ¿ë component ¸¦ spawn ½ÃÅ²´Ù.
+	//		// ëª¨ë“  SkillAnimsToPreLoad ë“¤ì˜ particle system ë“¤ì„ ëª¨ì€ ì´í›„ì— Prerender ìš© component ë¥¼ spawn ì‹œí‚¨ë‹¤.
 	//		for (TMap<FName, UParticleSystem*>::TConstIterator PSIt(GatheredPS); PSIt; ++PSIt)
 	//		{
 	//			UParticleSystem* ThisPS = PSIt.Value();
-	//			// DummySKActor ¿¡ attach ½ÃÅ°°í ÀÌÈÄ´Â DummySKActor¸¦ ÄÁÆ®·Ñ
+	//			// DummySKActor ì— attach ì‹œí‚¤ê³  ì´í›„ëŠ” DummySKActorë¥¼ ì»¨íŠ¸ë¡¤
 	//			UParticleSystemComponent* ThisSpawnedFxComp = SpawnDummyPSCForPreRender(ThisPS, ExtraDummySKActor->GetRootComponent());
 	//		}
 	//	}
@@ -618,7 +618,7 @@ void UB2PreRenderer::ConditionalSetupPreRenderObjectForDamageEffectInfo(bool bFo
 	if ((!TotalCompleteState.IsDamageEffectInfoPreRendered() || bForceSetup)
 		&& DmgFxInfo)
 	{
-		TArray<ASkeletalMeshActor*> DummiesForMtrlOverride; // MaterialOverride ´Â °¢°¢ º°°³ SKActor °¡ ÇÊ¿ä..
+		TArray<ASkeletalMeshActor*> DummiesForMtrlOverride; // MaterialOverride ëŠ” ê°ê° ë³„ê°œ SKActor ê°€ í•„ìš”..
 		int32 DesiredDummyNum = DmgFxInfo->GetDesiredPreRenderDummyNumForMtrlOverride();
 		for (int32 DI = 0; DI < DesiredDummyNum; ++DI)
 		{
@@ -626,25 +626,25 @@ void UB2PreRenderer::ConditionalSetupPreRenderObjectForDamageEffectInfo(bool bFo
 		}
 		DmgFxInfo->SetupPreRenderMaterialOverride(DummiesForMtrlOverride);
 
-		ASkeletalMeshActor* ExtraDummySKActor = GetExtraPrerenderDummySKActor(); // ¾Æ¸¶µµ ¹Ù·Î À§¿¡¼­ ¸¸µç ´õ¹Ì Áß Ã¹¹øÂ° °ÍÀÌ µÉ µí.
+		ASkeletalMeshActor* ExtraDummySKActor = GetExtraPrerenderDummySKActor(); // ì•„ë§ˆë„ ë°”ë¡œ ìœ„ì—ì„œ ë§Œë“  ë”ë¯¸ ì¤‘ ì²«ë²ˆì§¸ ê²ƒì´ ë  ë“¯.
 		if (ExtraDummySKActor)
 		{
 			DmgFxInfo->SetupPreRenderSKMeshActorForFX(ExtraDummySKActor);
 		}
 
-		TotalCompleteState.MarkDamageEffectInfoPreRendered(); // ¼Â¾÷¸¸ ÇÏ°í °Á ÇÑ °É·Î ¸¶Å©.
+		TotalCompleteState.MarkDamageEffectInfoPreRendered(); // ì…‹ì—…ë§Œ í•˜ê³  ê± í•œ ê±¸ë¡œ ë§ˆí¬.
 	}
 }
 void UB2PreRenderer::PostPreRenderSeupProcess()
 {
-	//// AllPrim ÀÌ ¾Æ´Ñ PreRenderDummy ¸¦ »ç¿ëÇÏ´Â ÀÏ¹İ PreRender ¸¦ À§ÇÑ ±âº» ¼Â¾÷ ÀÌÈÄ Ã³¸®.
+	//// AllPrim ì´ ì•„ë‹Œ PreRenderDummy ë¥¼ ì‚¬ìš©í•˜ëŠ” ì¼ë°˜ PreRender ë¥¼ ìœ„í•œ ê¸°ë³¸ ì…‹ì—… ì´í›„ ì²˜ë¦¬.
 	//for (FB2GMPreRenderDummyInfo& ThisPreRenderInfo : AllPreRenderDummy)
 	//{
 	//	if (ThisPreRenderInfo.PreRenderDummy && ThisPreRenderInfo.PreRenderDummy->GetSkeletalMeshComponent())
 	//	{
 	//		ThisPreRenderInfo.PreRenderDummy->SetActorHiddenInGame(false);
 	//		ThisPreRenderInfo.PreRenderDummy->GetSkeletalMeshComponent()->MeshComponentUpdateFlag = EMeshComponentUpdateFlag::AlwaysTickPoseAndRefreshBones;
-	//		ThisPreRenderInfo.PreRenderDummy->GetSkeletalMeshComponent()->TickAnimation(0.01f, false); // ÇÑÆ½¸¸ ·»´õ¸µÇÏ´Â °æ¿ì¸¦ À§ÇØ¼­ ÇÑ¹øÂëÀº TickAnim À» µ¹·ÁÁØ´Ù.
+	//		ThisPreRenderInfo.PreRenderDummy->GetSkeletalMeshComponent()->TickAnimation(0.01f, false); // í•œí‹±ë§Œ ë Œë”ë§í•˜ëŠ” ê²½ìš°ë¥¼ ìœ„í•´ì„œ í•œë²ˆì¯¤ì€ TickAnim ì„ ëŒë ¤ì¤€ë‹¤.
 	//	}
 	//	ThisPreRenderInfo.PreRenderedCount = 0;
 	//}
@@ -653,18 +653,18 @@ void UB2PreRenderer::PostPreRenderSeupProcess()
 	//bCanDoOverallCount = false;
 	//TickCountFromSetup = 0;
 
-	//FlushRenderingCommands(); // ÀÌ·¸°Ô ÇÏ¸é Á» µµ¿òÀÌ µÇ·Á³ª...
+	//FlushRenderingCommands(); // ì´ë ‡ê²Œ í•˜ë©´ ì¢€ ë„ì›€ì´ ë˜ë ¤ë‚˜...
 }
 
 void UB2PreRenderer::SetupPreRenderObjects_FirstLobby()
 {
-	// LobbyGameMode ¸¦ À§ÇÔ. LobbyGameMode ¿¡¼­´Â Æ¯º°È÷ °ÔÀÓ ¼³Ä¡ ÈÄ Ã¹ ½ÇÇà½Ã ÇÑ¹ø pre-rendering À» µ¹¸± ¿ÀºêÁ§Æ®µéÀ» Ã³¸®ÇÑ´Ù. 
-	// ÀÌÈÄ¿¡ ½ºÅ×ÀÌÁö¿¡¼­ µ¹¾Æ¿À°Å³ª ÇÒ ¶§¿¡µµ ½ÇÇàµÇÁö ¾ÊÀ½.
+	// LobbyGameMode ë¥¼ ìœ„í•¨. LobbyGameMode ì—ì„œëŠ” íŠ¹ë³„íˆ ê²Œì„ ì„¤ì¹˜ í›„ ì²« ì‹¤í–‰ì‹œ í•œë²ˆ pre-rendering ì„ ëŒë¦´ ì˜¤ë¸Œì íŠ¸ë“¤ì„ ì²˜ë¦¬í•œë‹¤. 
+	// ì´í›„ì— ìŠ¤í…Œì´ì§€ì—ì„œ ëŒì•„ì˜¤ê±°ë‚˜ í•  ë•Œì—ë„ ì‹¤í–‰ë˜ì§€ ì•ŠìŒ.
 
 	check(OwnerGameMode && Cast<AB2LobbyGameMode>(OwnerGameMode));
 
-	// ÃÖÃÊ pre-render ·¹º§ ÁøÀÔÀÌ ÇÊ¿äÇÏ°í ¶ÇÇÑ °¡´ÉÇÑÁö Ã¼Å©¸¸ ÇÑ´Ù.
-	// ½ÇÁúÀûÀ¸·Î FirstLobby ÀÇ ÀÇ¹Ì·Î´Â ÀÌ ·çÆ®°¡ ±âº»ÀÌ µÉ °Í.
+	// ìµœì´ˆ pre-render ë ˆë²¨ ì§„ì…ì´ í•„ìš”í•˜ê³  ë˜í•œ ê°€ëŠ¥í•œì§€ ì²´í¬ë§Œ í•œë‹¤.
+	// ì‹¤ì§ˆì ìœ¼ë¡œ FirstLobby ì˜ ì˜ë¯¸ë¡œëŠ” ì´ ë£¨íŠ¸ê°€ ê¸°ë³¸ì´ ë  ê²ƒ.
 	if (!IsPreRenderLevelGoneThrough() && CheckBladeIIPreRenderGameAvailability()
 #if PLATFORM_IOS
 		&& ShouldDoPreRenderForIOS_PreRenderGM()
@@ -674,7 +674,7 @@ void UB2PreRenderer::SetupPreRenderObjects_FirstLobby()
 		bPendingForPreRenderGM = true;
 	}
 
-	// ·Îºñ¸Ê ÀÚÃ¼ÀÇ »óÅÂµµ ÀÖÀ½.
+	// ë¡œë¹„ë§µ ìì²´ì˜ ìƒíƒœë„ ìˆìŒ.
 	if (IsCurrentWorldLevelPreRendered())
 	{
 		return;
@@ -684,29 +684,29 @@ void UB2PreRenderer::SetupPreRenderObjects_FirstLobby()
 
 	if (!bPendingForPreRenderGM && !IsPreRenderLevelGoneThrough()
 #if PLATFORM_IOS
-		// ÀÌ°Íµµ »ç½Ç»ó PreRenderGM °ú ºñ½ÁÇÑ ÀÇ¹Ì¶ó¸é ShouldDoPreRenderForIOS_PreRenderGM À¸·Î ¾Æ½Î¸® À­´Ü¿¡¼­ ³Ñ¾î°¡µµ·Ï ÇÏ´Â °Ô ´õ ¸»ÀÌ µÉ¼öµµ ÀÖ´Ù.
+		// ì´ê²ƒë„ ì‚¬ì‹¤ìƒ PreRenderGM ê³¼ ë¹„ìŠ·í•œ ì˜ë¯¸ë¼ë©´ ShouldDoPreRenderForIOS_PreRenderGM ìœ¼ë¡œ ì•„ì‹¸ë¦¬ ìœ—ë‹¨ì—ì„œ ë„˜ì–´ê°€ë„ë¡ í•˜ëŠ” ê²Œ ë” ë§ì´ ë ìˆ˜ë„ ìˆë‹¤.
 		&& ShouldDoPreRenderForIOS_Basic()
 #endif
 		)
 	{
-		// Pre-render ÀüÃ¼¸¦ ´Ù ÇÏ´Â Android ÀÇ °æ¿ì ½ÇÁúÀûÀ¸·Î ÀÌ ·çÆ®·Î µé¾î¿À´Â ÀÏÀº ¾ø¾î¾ß ÇÒ µí. Áö±İÀº ¾ÈÀüÀåÄ¡·Î¼­ÀÇ ÀÇ¹Ì »ÓÀÎ°¡..
+		// Pre-render ì „ì²´ë¥¼ ë‹¤ í•˜ëŠ” Android ì˜ ê²½ìš° ì‹¤ì§ˆì ìœ¼ë¡œ ì´ ë£¨íŠ¸ë¡œ ë“¤ì–´ì˜¤ëŠ” ì¼ì€ ì—†ì–´ì•¼ í•  ë“¯. ì§€ê¸ˆì€ ì•ˆì „ì¥ì¹˜ë¡œì„œì˜ ì˜ë¯¸ ë¿ì¸ê°€..
 
-		// ÁØºñ°¡ ¾ÈµÇ¾ú°Å³ª ¸ÊÀ» Ã£Áö ¸øÇß°Å³ª.. ¾î¶² °æ¿ìµç ·Îºñ¿¡¼­ Á÷Á¢ ½ÇÇàÇÑ´Ù.
-		// ÀÌ ¶§¿¡´Â Extra ¸¸ ½ÇÇàÇÏ´Â °Å. ·Îºñ¿¡¼­ ¾²´Â °ÍµéÀÌ µî·ÏµÈ °Ç Extra »ÓÀÌ´Ï.
-		SetupPreRenderObjects_ExtraNPCClass(); // ExtraNPCClass ´Â ¿©±â¼­ ¾È ÇØµµ ¸Ê ·Îµù ÇÏ¸é¼­ ÇÏ°Ô µÇÁö¸¸ ±×³É ¹Ì¸® ÇØ µÎÁö..
+		// ì¤€ë¹„ê°€ ì•ˆë˜ì—ˆê±°ë‚˜ ë§µì„ ì°¾ì§€ ëª»í–ˆê±°ë‚˜.. ì–´ë–¤ ê²½ìš°ë“  ë¡œë¹„ì—ì„œ ì§ì ‘ ì‹¤í–‰í•œë‹¤.
+		// ì´ ë•Œì—ëŠ” Extra ë§Œ ì‹¤í–‰í•˜ëŠ” ê±°. ë¡œë¹„ì—ì„œ ì“°ëŠ” ê²ƒë“¤ì´ ë“±ë¡ëœ ê±´ Extra ë¿ì´ë‹ˆ.
+		SetupPreRenderObjects_ExtraNPCClass(); // ExtraNPCClass ëŠ” ì—¬ê¸°ì„œ ì•ˆ í•´ë„ ë§µ ë¡œë”© í•˜ë©´ì„œ í•˜ê²Œ ë˜ì§€ë§Œ ê·¸ëƒ¥ ë¯¸ë¦¬ í•´ ë‘ì§€..
 		SetupPreRenderObjects_ExtraFx();
 		SetupPreRenderObjects_ExtraOthers();
 	}
 
-	// ·Îºñ¸¦ À§ÇÑ pre-render °¡ ½ÇÇà µÇ¾ú´Ù´Â ÀÇ¹Ì + AllPrim Ã³¸®¸¦ ¸·±â À§ÇØ¼­¶óµµ Mark
-	// PreRenderGame À» ·ÎµùÇÑ´Ù ÇÏ´õ¶óµµ »ç½Ç»ó ·Îºñ¿¡¼­ ÇÏ·Á´ø °É ÇÏ´Â °Å¶ó ½ÇÇàÀÌ µÇ¾ú´Ù°í ¸¶Å©ÇØ¾ß.
+	// ë¡œë¹„ë¥¼ ìœ„í•œ pre-render ê°€ ì‹¤í–‰ ë˜ì—ˆë‹¤ëŠ” ì˜ë¯¸ + AllPrim ì²˜ë¦¬ë¥¼ ë§‰ê¸° ìœ„í•´ì„œë¼ë„ Mark
+	// PreRenderGame ì„ ë¡œë”©í•œë‹¤ í•˜ë”ë¼ë„ ì‚¬ì‹¤ìƒ ë¡œë¹„ì—ì„œ í•˜ë ¤ë˜ ê±¸ í•˜ëŠ” ê±°ë¼ ì‹¤í–‰ì´ ë˜ì—ˆë‹¤ê³  ë§ˆí¬í•´ì•¼.
 	MarkCurrentWorldLevelPreRendered();
 }
 
 void UB2PreRenderer::SetupPreRenderObjects_ExtraFx()
 {
-	// Æ¯Á¤ ºĞ·ù ¾øÀÌ SomeInfo ¿¡ Pre-render ¿ëÀ¸·Î µî·ÏÇØ ³õÀº ¾Öµé.
-	// ¿ùµå, Ä³¸¯ÅÍ, È¤Àº Æ¯Á¤ InfoAsset ¿¡ ¾ôÇô¼­ ÀÏ°ıÀûÀ¸·Î Ã³¸®µÇ´Â ´ë½Å Æ¯Á¤ÇÏ°Ô Âó¾î¼­ Pre-render Ã³¸®µÇ´Â ÀÌÆåÆ® ¸®¼Ò½º ¸ñ·Ï
+	// íŠ¹ì • ë¶„ë¥˜ ì—†ì´ SomeInfo ì— Pre-render ìš©ìœ¼ë¡œ ë“±ë¡í•´ ë†“ì€ ì• ë“¤.
+	// ì›”ë“œ, ìºë¦­í„°, í˜¹ì€ íŠ¹ì • InfoAsset ì— ì–½í˜€ì„œ ì¼ê´„ì ìœ¼ë¡œ ì²˜ë¦¬ë˜ëŠ” ëŒ€ì‹  íŠ¹ì •í•˜ê²Œ ì°ì–´ì„œ Pre-render ì²˜ë¦¬ë˜ëŠ” ì´í™íŠ¸ ë¦¬ì†ŒìŠ¤ ëª©ë¡
 	UB2SomeInfo* SomeInfo = StaticFindSomeInfo(OwnerGameMode);
 
 	ASkeletalMeshActor* ExtraDummySKActor = GetExtraPrerenderDummySKActor();
@@ -715,7 +715,7 @@ void UB2PreRenderer::SetupPreRenderObjects_ExtraFx()
 		return;
 	}
 
-	if (CachedExtraPreRenderPS.Num() == 0) // SomeInfo ¿¡¼­ ¿©±â¿¡ »ç¿ëÇÒ ¸®½ºÆ®´Â LoadAnd"Consume" À» ÇÏ´Âµ¥ ÀÌÂÊ¿¡¼­´Â PreRenderGameMode ¿¡¼­ ´ÙÁßÀ¸·Î µ¹¸± ¼ö ÀÖÀ¸¹Ç·Î µû·Î Ä³½ÌÇØ ³õÀ½.
+	if (CachedExtraPreRenderPS.Num() == 0) // SomeInfo ì—ì„œ ì—¬ê¸°ì— ì‚¬ìš©í•  ë¦¬ìŠ¤íŠ¸ëŠ” LoadAnd"Consume" ì„ í•˜ëŠ”ë° ì´ìª½ì—ì„œëŠ” PreRenderGameMode ì—ì„œ ë‹¤ì¤‘ìœ¼ë¡œ ëŒë¦´ ìˆ˜ ìˆìœ¼ë¯€ë¡œ ë”°ë¡œ ìºì‹±í•´ ë†“ìŒ.
 	{
 		if (SomeInfo)
 		{
@@ -727,17 +727,17 @@ void UB2PreRenderer::SetupPreRenderObjects_ExtraFx()
 		UParticleSystemComponent* ThisSpawnedFxComp = SpawnDummyPSCForPreRender(ThisPS, ExtraDummySKActor->GetRootComponent());
 	}
 
-	bHadDoneAnyPreRender = true; // ¾ÆÁ÷ ½ÇÁ¦·Î ÇÑ °Ç ¾Æ´ÏÁö¸¸ ÀÌ ÇÃ·¡±× ¸ñÀû »ó ÀÌÂë¿¡¼­ true ¸¶Å©ÇØµµ ÁÁ°Ú´Ù.
+	bHadDoneAnyPreRender = true; // ì•„ì§ ì‹¤ì œë¡œ í•œ ê±´ ì•„ë‹ˆì§€ë§Œ ì´ í”Œë˜ê·¸ ëª©ì  ìƒ ì´ì¯¤ì—ì„œ true ë§ˆí¬í•´ë„ ì¢‹ê² ë‹¤.
 }
 void UB2PreRenderer::SetupPreRenderObjects_ExtraNPCClass()
 {
-	// Æ¯Á¤ ½ºÅ×ÀÌÁö Ã³À½ ÇÃ·¹ÀÌ ½Ã Ã³À½ µîÀåÇÏ´Â NPCClass ¿¡ ´ëÇØ¼­ pre-render °¡ ½ÇÇàµÇ´Âµ¥ ¿©±â¼­ ÇÏ´Â °Ç ±×°Å¶û ¸¶Âù°¡ÁöÀÌ´Ù. 
-	// ´Ü, ÀÌ·¸°Ô SomeInfo ¿¡ µî·ÏÇØ ³õ°í pre-render ¸¦ µû·Î ¼öÇàÇÒ ¼ö ÀÖµµ·Ï ÇÑ°Ç ÀÌ·± °É PreReder ·¹º§¿¡¼­ ¹Ì¸® ÇØ ³õ°í Ã³À½ ÀüÅõ¸Ê ·ÎµùÇÒ ¶§ pre-render ·Î ÀÎÇÑ Æä³ÎÆ¼¸¦ Á» ÁÙÀÌ°íÀÚ ÇÏ±â À§ÇÔ.
-	// ¸ğµç NPCClass µéÀÌ ´Ù ÀÌ°É ÅëÇØ Ã³¸®µÇÁö´Â ¸øÇÑ´Ù. ÀûÀıÈ÷ °ñ¶ó¼­..
+	// íŠ¹ì • ìŠ¤í…Œì´ì§€ ì²˜ìŒ í”Œë ˆì´ ì‹œ ì²˜ìŒ ë“±ì¥í•˜ëŠ” NPCClass ì— ëŒ€í•´ì„œ pre-render ê°€ ì‹¤í–‰ë˜ëŠ”ë° ì—¬ê¸°ì„œ í•˜ëŠ” ê±´ ê·¸ê±°ë‘ ë§ˆì°¬ê°€ì§€ì´ë‹¤. 
+	// ë‹¨, ì´ë ‡ê²Œ SomeInfo ì— ë“±ë¡í•´ ë†“ê³  pre-render ë¥¼ ë”°ë¡œ ìˆ˜í–‰í•  ìˆ˜ ìˆë„ë¡ í•œê±´ ì´ëŸ° ê±¸ PreReder ë ˆë²¨ì—ì„œ ë¯¸ë¦¬ í•´ ë†“ê³  ì²˜ìŒ ì „íˆ¬ë§µ ë¡œë”©í•  ë•Œ pre-render ë¡œ ì¸í•œ í˜ë„í‹°ë¥¼ ì¢€ ì¤„ì´ê³ ì í•˜ê¸° ìœ„í•¨.
+	// ëª¨ë“  NPCClass ë“¤ì´ ë‹¤ ì´ê±¸ í†µí•´ ì²˜ë¦¬ë˜ì§€ëŠ” ëª»í•œë‹¤. ì ì ˆíˆ ê³¨ë¼ì„œ..
 
 	UB2SomeInfo* SomeInfo = StaticFindSomeInfo(OwnerGameMode);
 
-	if (CachedExtraPreRenderNPCClassInfo.Num() == 0) // SomeInfo ¿¡¼­ ¿©±â¿¡ »ç¿ëÇÒ ¸®½ºÆ®´Â LoadAnd"Consume" À» ÇÏ´Âµ¥ ÀÌÂÊ¿¡¼­´Â PreRenderGameMode ¿¡¼­ ´ÙÁßÀ¸·Î µ¹¸± ¼ö ÀÖÀ¸¹Ç·Î µû·Î Ä³½ÌÇØ ³õÀ½.
+	if (CachedExtraPreRenderNPCClassInfo.Num() == 0) // SomeInfo ì—ì„œ ì—¬ê¸°ì— ì‚¬ìš©í•  ë¦¬ìŠ¤íŠ¸ëŠ” LoadAnd"Consume" ì„ í•˜ëŠ”ë° ì´ìª½ì—ì„œëŠ” PreRenderGameMode ì—ì„œ ë‹¤ì¤‘ìœ¼ë¡œ ëŒë¦´ ìˆ˜ ìˆìœ¼ë¯€ë¡œ ë”°ë¡œ ìºì‹±í•´ ë†“ìŒ.
 	{
 		if (SomeInfo)
 		{
@@ -753,15 +753,15 @@ void UB2PreRenderer::SetupPreRenderObjects_ExtraNPCClass()
 		}
 	}
 
-	bHadDoneAnyPreRender = true; // ¾ÆÁ÷ ½ÇÁ¦·Î ÇÑ °Ç ¾Æ´ÏÁö¸¸ ÀÌ ÇÃ·¡±× ¸ñÀû »ó ÀÌÂë¿¡¼­ true ¸¶Å©ÇØµµ ÁÁ°Ú´Ù.
+	bHadDoneAnyPreRender = true; // ì•„ì§ ì‹¤ì œë¡œ í•œ ê±´ ì•„ë‹ˆì§€ë§Œ ì´ í”Œë˜ê·¸ ëª©ì  ìƒ ì´ì¯¤ì—ì„œ true ë§ˆí¬í•´ë„ ì¢‹ê² ë‹¤.
 }
 
 void UB2PreRenderer::SetupPreRenderObjects_ExtraOthers()
 {
-	// Æ¯Á¤ ºĞ·ù ¾øÀÌ SomeInfo ¿¡ Pre-render ¿ëÀ¸·Î µî·ÏÇØ ³õÀº ¾Öµé.. Áß¿¡¼­µµ ³ª¸ÓÁö..
+	// íŠ¹ì • ë¶„ë¥˜ ì—†ì´ SomeInfo ì— Pre-render ìš©ìœ¼ë¡œ ë“±ë¡í•´ ë†“ì€ ì• ë“¤.. ì¤‘ì—ì„œë„ ë‚˜ë¨¸ì§€..
 	UB2SomeInfo* SomeInfo = StaticFindSomeInfo(OwnerGameMode);
 
-	if (CachedExtraPreRenderSKMesh.Num() == 0) // SomeInfo ¿¡¼­ ¿©±â¿¡ »ç¿ëÇÒ ¸®½ºÆ®´Â LoadAnd"Consume" À» ÇÏ´Âµ¥ ÀÌÂÊ¿¡¼­´Â PreRenderGameMode ¿¡¼­ ´ÙÁßÀ¸·Î µ¹¸± ¼ö ÀÖÀ¸¹Ç·Î µû·Î Ä³½ÌÇØ ³õÀ½.
+	if (CachedExtraPreRenderSKMesh.Num() == 0) // SomeInfo ì—ì„œ ì—¬ê¸°ì— ì‚¬ìš©í•  ë¦¬ìŠ¤íŠ¸ëŠ” LoadAnd"Consume" ì„ í•˜ëŠ”ë° ì´ìª½ì—ì„œëŠ” PreRenderGameMode ì—ì„œ ë‹¤ì¤‘ìœ¼ë¡œ ëŒë¦´ ìˆ˜ ìˆìœ¼ë¯€ë¡œ ë”°ë¡œ ìºì‹±í•´ ë†“ìŒ.
 	{
 		if (SomeInfo)
 		{
@@ -791,16 +791,16 @@ void UB2PreRenderer::ConditionalSetupPreRenderLightEnvForDynPL(bool bForceSetup)
 	//{
 	//	AB2StageGameModeBase* CastedSGM = Cast<AB2StageGameModeBase>(OwnerGameMode);
 	//	if (CastedSGM)
-	//	{ // ¿ø·¡ ÀÌ°Å ¸ñÀûÀº ¿¬Ãâ¶§¸¸ ÄÑÁöµµ·Ï ÀÇµµÇØ¼­ ¼³Ä¡ÇØ ³õÀº Dynamic PointLight µéÀ» ÀÏ°ıÀûÀ¸·Î ²¨ ³õ±â À§ÇÔÀÎµ¥ StageGameMode BeginPlay ¶§ ½ÇÇàÀÌ µÈ´Ù.
-	//	  // ¿©±â¼­ ¹Ì¸® ÇÑÂ÷·Ê ÇØ ÁÜ. ¿µÇâÀ» ¹ÌÄ¡´Â PointLight ¸¦ ¿©±â¼­ ¼Â¾÷ÇÏ´Â °É·Î È®½ÇÈ÷ ÇÑÁ¤ÇÏ±â À§ÇØ.
-	//		// ±Ùµ¥ ÀÌ·¸°Ô ÇØµµ °á±¹ PreRender µ¹¾Æ°¡´Â µµÁß¿¡ ¿¬ÃâÀÌ ½ÃÀÛµÇ¸é¼­ ¿¬Ãâ¿¡¼­ »ç¿ëÇÏ´Â PointLight ¸¦ ÄÑ°Ô µÇ´Âµ¥.. AllPrim phase ½ÃÀÛ ½Ã °É·¯³¿.
+	//	{ // ì›ë˜ ì´ê±° ëª©ì ì€ ì—°ì¶œë•Œë§Œ ì¼œì§€ë„ë¡ ì˜ë„í•´ì„œ ì„¤ì¹˜í•´ ë†“ì€ Dynamic PointLight ë“¤ì„ ì¼ê´„ì ìœ¼ë¡œ êº¼ ë†“ê¸° ìœ„í•¨ì¸ë° StageGameMode BeginPlay ë•Œ ì‹¤í–‰ì´ ëœë‹¤.
+	//	  // ì—¬ê¸°ì„œ ë¯¸ë¦¬ í•œì°¨ë¡€ í•´ ì¤Œ. ì˜í–¥ì„ ë¯¸ì¹˜ëŠ” PointLight ë¥¼ ì—¬ê¸°ì„œ ì…‹ì—…í•˜ëŠ” ê±¸ë¡œ í™•ì‹¤íˆ í•œì •í•˜ê¸° ìœ„í•´.
+	//		// ê·¼ë° ì´ë ‡ê²Œ í•´ë„ ê²°êµ­ PreRender ëŒì•„ê°€ëŠ” ë„ì¤‘ì— ì—°ì¶œì´ ì‹œì‘ë˜ë©´ì„œ ì—°ì¶œì—ì„œ ì‚¬ìš©í•˜ëŠ” PointLight ë¥¼ ì¼œê²Œ ë˜ëŠ”ë°.. AllPrim phase ì‹œì‘ ì‹œ ê±¸ëŸ¬ëƒ„.
 	//		CastedSGM->DeactivateWorldMovablePointLight();
 	//	}
 	//}
 
 	//if (bShouldSetupDummyDynPointLight)
 	//{
-	//	// DynamicPointLight ¸¦ Ãß°¡·Î ÇÏ³ª »ı¼º. ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ PointLight ¼³Á¤¸¸À¸·Î´Â ¾È ¸ÔÈú ¶§°¡ ÀÖ´Ù.. ¿ì¸® °ÔÀÓÀº ¸ğ¹ÙÀÏ¿¡¼­ µÎ°³±îÁö °¡´ÉÇÏµµ·Ï ¼³Á¤ÇØ ³õ¾ÒÀ¸´Ï ÀÌ°Í±îÁö.
+	//	// DynamicPointLight ë¥¼ ì¶”ê°€ë¡œ í•˜ë‚˜ ìƒì„±. í”Œë ˆì´ì–´ ìºë¦­í„° PointLight ì„¤ì •ë§Œìœ¼ë¡œëŠ” ì•ˆ ë¨¹í ë•Œê°€ ìˆë‹¤.. ìš°ë¦¬ ê²Œì„ì€ ëª¨ë°”ì¼ì—ì„œ ë‘ê°œê¹Œì§€ ê°€ëŠ¥í•˜ë„ë¡ ì„¤ì •í•´ ë†“ì•˜ìœ¼ë‹ˆ ì´ê²ƒê¹Œì§€.
 	//	UWorld* TheWorld = OwnerGameMode ? OwnerGameMode->GetWorld() : GetWorld();
 	//	if (TheWorld)
 	//	{
@@ -808,7 +808,7 @@ void UB2PreRenderer::ConditionalSetupPreRenderLightEnvForDynPL(bool bForceSetup)
 	//		SpawnInfo.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 	//		SpawnInfo.ObjectFlags |= RF_Transient;
 	//		FTransform SpawnTransform;
-	//		SpawnTransform.SetLocation(GetPreRenderDummyDesiredLocation(TheWorld) + FVector(0.0f,0.0f,10000.0f)); // À§Ä¡¸¦ Á» ³ô¿©º¸ÀÚ. È¤¿©³ª ±âÁ¸ ³ôÀÌ¿¡¼­´Â °¡¸®±â¶óµµ ÇÒ·±Áö.. ¤Ñ¤Ñ;;
+	//		SpawnTransform.SetLocation(GetPreRenderDummyDesiredLocation(TheWorld) + FVector(0.0f,0.0f,10000.0f)); // ìœ„ì¹˜ë¥¼ ì¢€ ë†’ì—¬ë³´ì. í˜¹ì—¬ë‚˜ ê¸°ì¡´ ë†’ì´ì—ì„œëŠ” ê°€ë¦¬ê¸°ë¼ë„ í• ëŸ°ì§€.. ã…¡ã…¡;;
 	//		PreRenderDummyPointLight = TheWorld->SpawnActor<APointLight>(APointLight::StaticClass(), SpawnTransform, SpawnInfo);
 	//		if (PreRenderDummyPointLight)
 	//		{
@@ -829,36 +829,36 @@ void UB2PreRenderer::ConditionalSetupPreRenderLightEnvForDynPL(bool bForceSetup)
 	//	}
 	//}
 
-	//// bLightEnvironmentSetupForDynPointLight ¾ÈÂÊ¿¡ À§Ä¡½ÃÅ³ ¼öµµ ÀÖ±ä ÇÑµ¥.. µû·Î °¡ÀÚ..
+	//// bLightEnvironmentSetupForDynPointLight ì•ˆìª½ì— ìœ„ì¹˜ì‹œí‚¬ ìˆ˜ë„ ìˆê¸´ í•œë°.. ë”°ë¡œ ê°€ì..
 	//if (bShouldSetupPlayerHeadLight)
 	//{
 	//	ABladeIIPlayer* LocalB2Player = Cast<ABladeIIPlayer>(UGameplayStatics::GetLocalPlayerCharacter(OwnerGameMode));
 	//	if (LocalB2Player && LocalB2Player->LightComponent)
 	//	{
-	//		// ¼³·É ÇÃ·¹ÀÌ¾î point light ¸¦ Çã¿ëÇÏÁö ¾Ê´Â °ÔÀÓ¸ğµå¶ó ÇØµµ ¿©±â¼± ÄÒ´Ù. Ä³¸¯ÅÍ º° Pre-render °¡ ÇÑ¹ø¸¸ µ¹¾Æ°¡°Ô µÇ´Âµ¥ ÇÏÇÊ ¶óÀÌÆ® ²¨Áø Ã¤·Î µ¹¾Æ°¡¸é È¿°ú°¡ ¹İ°¨µÇ´Ï..
+	//		// ì„¤ë ¹ í”Œë ˆì´ì–´ point light ë¥¼ í—ˆìš©í•˜ì§€ ì•ŠëŠ” ê²Œì„ëª¨ë“œë¼ í•´ë„ ì—¬ê¸°ì„  ì¼ ë‹¤. ìºë¦­í„° ë³„ Pre-render ê°€ í•œë²ˆë§Œ ëŒì•„ê°€ê²Œ ë˜ëŠ”ë° í•˜í•„ ë¼ì´íŠ¸ êº¼ì§„ ì±„ë¡œ ëŒì•„ê°€ë©´ íš¨ê³¼ê°€ ë°˜ê°ë˜ë‹ˆ..
 
 	//		LastCachedLocalPCLightIntensity = LocalB2Player->LightComponent->Intensity;
 	//		LastCachedLocalPCLightRadius = LocalB2Player->LightComponent->AttenuationRadius;
 
-	//		// ¹İ°æÀ» ¹«Áö ³Ğ°Ô ÇØ¼­ Pre-render ¸¦ °É·Á´Â ¿ùµå ¿ÀºêÁ§Æ®µé¿¡ ¿µÇâÀÌ °¡µµ·Ï ÇÔ.
+	//		// ë°˜ê²½ì„ ë¬´ì§€ ë„“ê²Œ í•´ì„œ Pre-render ë¥¼ ê±¸ë ¤ëŠ” ì›”ë“œ ì˜¤ë¸Œì íŠ¸ë“¤ì— ì˜í–¥ì´ ê°€ë„ë¡ í•¨.
 	//		LocalB2Player->LightComponent->SetAttenuationRadius(1000000.0f);
-	//		LocalB2Player->LightComponent->SetIntensity(1000000.0f); // Intensity ´Â È¤½Ã³ª ÇØ¼­ ¤»
+	//		LocalB2Player->LightComponent->SetIntensity(1000000.0f); // Intensity ëŠ” í˜¹ì‹œë‚˜ í•´ì„œ ã…‹
 
-	//		// ²¨Á® ÀÖÀ» ¼öµµ ÀÖÀ½. »ç½Ç ²¨Á® ÀÖÀ¸¸é Â÷¶ó¸® ÇÏ³ª¸¦ spawn ½ÃÅ°´Â °Ô ³ªÀ» µíµµ. 
-	//		// ¸ğ¹ÙÀÏ¿¡¼­ Dynamic Pointlight °³¼ö Á¦ÇÑÀÌ ÀÖ´Ù º¸´Ï ¹º°¡ ±×°Ô Àß ¾È¸ÔÇô¼­ ±×·¯±ä ÇßÀ½.
-	//		// FormalSetPointLightOn ¸¦ °ÅÄ¡Áö ¾Ê°í Á÷Á¢ (¸ô·¡ ½½Â½) ÄÒ´Ù. Á¶½ÉÇØ¼­ ´Ù·ï¾ß ÇÔ.
-	//		LocalB2Player->LightComponent->bAffectsWorld = true; // bHeadPointLightIsFormallyOn Àº ÀÌÀü °ªÀ» À¯ÁöÇÑ Ã¤·Î bAffectsWorld ¸¸ ÄÔ
+	//		// êº¼ì ¸ ìˆì„ ìˆ˜ë„ ìˆìŒ. ì‚¬ì‹¤ êº¼ì ¸ ìˆìœ¼ë©´ ì°¨ë¼ë¦¬ í•˜ë‚˜ë¥¼ spawn ì‹œí‚¤ëŠ” ê²Œ ë‚˜ì„ ë“¯ë„. 
+	//		// ëª¨ë°”ì¼ì—ì„œ Dynamic Pointlight ê°œìˆ˜ ì œí•œì´ ìˆë‹¤ ë³´ë‹ˆ ë­”ê°€ ê·¸ê²Œ ì˜ ì•ˆë¨¹í˜€ì„œ ê·¸ëŸ¬ê¸´ í–ˆìŒ.
+	//		// FormalSetPointLightOn ë¥¼ ê±°ì¹˜ì§€ ì•Šê³  ì§ì ‘ (ëª°ë˜ ìŠ¬ì©) ì¼ ë‹¤. ì¡°ì‹¬í•´ì„œ ë‹¤ë¤„ì•¼ í•¨.
+	//		LocalB2Player->LightComponent->bAffectsWorld = true; // bHeadPointLightIsFormallyOn ì€ ì´ì „ ê°’ì„ ìœ ì§€í•œ ì±„ë¡œ bAffectsWorld ë§Œ ì¼¬
 	//		LocalB2Player->LightComponent->Activate();
 	//		LocalB2Player->LightComponent->RegisterComponent();
 	//		LocalB2Player->LightComponent->MarkRenderStateDirty();
 
-	//		bLocalPlayerHeadLightModified = true; // bLightEnvironmentSetupForDynPointLight °ú´Â º°µµ·Î »óÅÂ¸¦ ¸¶Å©ÇØµĞ´Ù. È¤¿©³ª Å¸ÀÌ¹Ö ¶§¹®¿¡ ´Ù¸¦ ¼öµµ ÀÖÀ¸¹Ç·Î.
+	//		bLocalPlayerHeadLightModified = true; // bLightEnvironmentSetupForDynPointLight ê³¼ëŠ” ë³„ë„ë¡œ ìƒíƒœë¥¼ ë§ˆí¬í•´ë‘”ë‹¤. í˜¹ì—¬ë‚˜ íƒ€ì´ë° ë•Œë¬¸ì— ë‹¤ë¥¼ ìˆ˜ë„ ìˆìœ¼ë¯€ë¡œ.
 	//	}
 	//}
 }
 void UB2PreRenderer::ConditionalRestoreFromPreRenderLightEnvForDynPL(bool bRestoreAll)
 {
-	//// ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ light µ¹·Á³õÀ½. ÀÌ°Ç RestoreAll À» ÁÙ ¶§¿¡¸¸, Áï, RestoreAll À» ÁÖÁö ¾ÊÀ¸¸é ´õ¹Ì¸¸ µ¹·Á³õ´Â´Ù.
+	//// í”Œë ˆì´ì–´ ìºë¦­í„° light ëŒë ¤ë†“ìŒ. ì´ê±´ RestoreAll ì„ ì¤„ ë•Œì—ë§Œ, ì¦‰, RestoreAll ì„ ì£¼ì§€ ì•Šìœ¼ë©´ ë”ë¯¸ë§Œ ëŒë ¤ë†“ëŠ”ë‹¤.
 	//if (bLocalPlayerHeadLightModified && bRestoreAll)
 	//{
 	//	ABladeIIPlayer* LocalB2Player = Cast<ABladeIIPlayer>(UGameplayStatics::GetLocalPlayerCharacter(OwnerGameMode));
@@ -867,7 +867,7 @@ void UB2PreRenderer::ConditionalRestoreFromPreRenderLightEnvForDynPL(bool bResto
 	//		LocalB2Player->LightComponent->SetIntensity(LastCachedLocalPCLightIntensity);
 	//		LocalB2Player->LightComponent->SetAttenuationRadius(LastCachedLocalPCLightRadius);
 
-	//		// Á¤½Ä ·çÆ®·Î ÄÑÁ® ÀÖ´Â °æ¿ì´Â ÄÑÁø Ã¤ ³öµÎ°í ¾Æ´Ï¸é ²û
+	//		// ì •ì‹ ë£¨íŠ¸ë¡œ ì¼œì ¸ ìˆëŠ” ê²½ìš°ëŠ” ì¼œì§„ ì±„ ë†”ë‘ê³  ì•„ë‹ˆë©´ ë”
 	//		if (!LocalB2Player->IsHeadPointLightAllowed() || !LocalB2Player->IsHeadPointLightFormallyOn())
 	//		{
 	//			LocalB2Player->FormalSetPointLightOn(false);
@@ -875,7 +875,7 @@ void UB2PreRenderer::ConditionalRestoreFromPreRenderLightEnvForDynPL(bool bResto
 	//	}
 	//	bLocalPlayerHeadLightModified = false;
 	//}
-	//// Ãß°¡ ´õ¹Ìµµ ²ô°í
+	//// ì¶”ê°€ ë”ë¯¸ë„ ë„ê³ 
 	//if (bLightEnvironmentSetupForDynPointLight)
 	//{		
 	//	if (PreRenderDummyPointLight && PreRenderDummyPointLight->GetLightComponent())
@@ -894,17 +894,17 @@ void UB2PreRenderer::ConditionalRestoreFromPreRenderLightEnvForDynPL(bool bResto
 
 void UB2PreRenderer::MinimizePlayerPointLight()
 {
-	//// PointLight È¯°æÀ» »ç½Ç»ó 0 °³·Î ¸¸µé°íÀÚ ÇÒ ¶§ ¾´´Ù. 
-	//// ConditionalRestoreFromPreRenderLightEnvForDynPL ¸¸ °¡Áö°í´Â ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ ¶óÀÌÆ®°¡ ¿ÏÀüÈ÷ ²¨ÁöÁö ¾Ê°í ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ·ÎºÎÅÍ ÀÏÁ¤ ¹İ°æ ¾È¿¡¼­´Â ¿©ÀüÈ÷ ÇÑ °³ÀÇ PointLight °¡ ¾²ÀÌ°Ô µÈ´Ù.
-	//// ConditionalSetupPreRenderLightEnvForDynPL À» ÅëÇØ ÀÌ¹Ì ³ĞÀº ¹İ°æÀ¸·Î ¼Â¾÷ÀÌ µÈ »óÈ²¿¡¼­¸¸ »ç¿ëÇÏµµ·Ï ÇÑ´Ù.
-	//// ±×·¡¾ß ConditionalRestoreFromPreRenderLightEnvForDynPL ¿¡¼­ ¿ø·¡´ë·Î µ¹¾Æ°¥ °ÍÀÌ´Ù.
+	//// PointLight í™˜ê²½ì„ ì‚¬ì‹¤ìƒ 0 ê°œë¡œ ë§Œë“¤ê³ ì í•  ë•Œ ì“´ë‹¤. 
+	//// ConditionalRestoreFromPreRenderLightEnvForDynPL ë§Œ ê°€ì§€ê³ ëŠ” í”Œë ˆì´ì–´ ìºë¦­í„° ë¼ì´íŠ¸ê°€ ì™„ì „íˆ êº¼ì§€ì§€ ì•Šê³  í”Œë ˆì´ì–´ ìºë¦­í„°ë¡œë¶€í„° ì¼ì • ë°˜ê²½ ì•ˆì—ì„œëŠ” ì—¬ì „íˆ í•œ ê°œì˜ PointLight ê°€ ì“°ì´ê²Œ ëœë‹¤.
+	//// ConditionalSetupPreRenderLightEnvForDynPL ì„ í†µí•´ ì´ë¯¸ ë„“ì€ ë°˜ê²½ìœ¼ë¡œ ì…‹ì—…ì´ ëœ ìƒí™©ì—ì„œë§Œ ì‚¬ìš©í•˜ë„ë¡ í•œë‹¤.
+	//// ê·¸ë˜ì•¼ ConditionalRestoreFromPreRenderLightEnvForDynPL ì—ì„œ ì›ë˜ëŒ€ë¡œ ëŒì•„ê°ˆ ê²ƒì´ë‹¤.
 	//if (bLocalPlayerHeadLightModified && LastCachedLocalPCLightRadius > 0.0f)
 	//{
 	//	ABladeIIPlayer* LocalB2Player = Cast<ABladeIIPlayer>(UGameplayStatics::GetLocalPlayerCharacter(OwnerGameMode));
 	//	if (LocalB2Player && LocalB2Player->LightComponent && LocalB2Player->LightComponent->bAffectsWorld)
 	//	{
-	//		// LastCachedLocalPCLightRadius ¿¡ ÀÌ¹Ì Á¤»óÀûÀÎ »óÈ²¿¡¼­ÀÇ °ªÀÌ º¹»çµÈ °ÍÀ¸·Î °£ÁÖÇÏ°í ¿©±â¼­ °ªÀ» Ä³½ÌÇÏÁö ¾Ê´Â´Ù.
-	//		// ÀÌ°Ô ¾²ÀÌ´Â »óÈ²¿¡¼­´Â AttenuationRadius °¡ ¾Æ¸¶ ¸Å¿ì Å©°Ô ¼¼ÆÃµÈ »óÈ²ÀÏ °ÍÀÌ´Ù.
+	//		// LastCachedLocalPCLightRadius ì— ì´ë¯¸ ì •ìƒì ì¸ ìƒí™©ì—ì„œì˜ ê°’ì´ ë³µì‚¬ëœ ê²ƒìœ¼ë¡œ ê°„ì£¼í•˜ê³  ì—¬ê¸°ì„œ ê°’ì„ ìºì‹±í•˜ì§€ ì•ŠëŠ”ë‹¤.
+	//		// ì´ê²Œ ì“°ì´ëŠ” ìƒí™©ì—ì„œëŠ” AttenuationRadius ê°€ ì•„ë§ˆ ë§¤ìš° í¬ê²Œ ì„¸íŒ…ëœ ìƒí™©ì¼ ê²ƒì´ë‹¤.
 	//		LocalB2Player->LightComponent->SetAttenuationRadius(0.01f);
 	//	}
 	//}
@@ -912,15 +912,15 @@ void UB2PreRenderer::MinimizePlayerPointLight()
 
 void UB2PreRenderer::ConditionalSetupPreRenderLightEnvForDirL(EComponentMobility::Type LightMobility, bool bForceSetup, bool bSetupForCSM)
 {
-	// DirectionalLight È¯°æÀ» ¹Ù²Ù´Â °Ç »ç½Ç»ó PreRender Àü¿ë °ÔÀÓ¸ğµå ¾Æ´Ï¸é ´Ù·ç±â ±î´Ù·Î¿ï °Í °°´Ù. 
-	// Àû¾îµµ Áö±İ ±¸ÇöÀ¸·Î´Â..
+	// DirectionalLight í™˜ê²½ì„ ë°”ê¾¸ëŠ” ê±´ ì‚¬ì‹¤ìƒ PreRender ì „ìš© ê²Œì„ëª¨ë“œ ì•„ë‹ˆë©´ ë‹¤ë£¨ê¸° ê¹Œë‹¤ë¡œìš¸ ê²ƒ ê°™ë‹¤. 
+	// ì ì–´ë„ ì§€ê¸ˆ êµ¬í˜„ìœ¼ë¡œëŠ”..
 	check(Cast<AB2PreRenderGameMode>(OwnerGameMode));
 
 	if (!bLightEnvironmentSetupForDynDirLight || bForceSetup)
 	{
-		// ÀÏ´Ü ·¹º§¿¡ ¹èÄ¡µÈ °Ô ÀÖ´ÂÁöºÎÅÍ Ã£¾Æº»´Ù.
+		// ì¼ë‹¨ ë ˆë²¨ì— ë°°ì¹˜ëœ ê²Œ ìˆëŠ”ì§€ë¶€í„° ì°¾ì•„ë³¸ë‹¤.
 		PreRenderDirLight = FindDirectionalLighOfMobility(LightMobility);
-		// ¹èÄ¡µÈ °Ô ¾øÀ¸¸é ÇÏ³ª ¸¸µé¾î.
+		// ë°°ì¹˜ëœ ê²Œ ì—†ìœ¼ë©´ í•˜ë‚˜ ë§Œë“¤ì–´.
 		if (!PreRenderDirLight)
 		{
 			UWorld* TheWorld = OwnerGameMode ? OwnerGameMode->GetWorld() : GetWorld();
@@ -929,7 +929,7 @@ void UB2PreRenderer::ConditionalSetupPreRenderLightEnvForDirL(EComponentMobility
 				FActorSpawnParameters SpawnInfo;
 				SpawnInfo.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 				SpawnInfo.ObjectFlags |= RF_Transient;
-				// ¹æÇâ±¤ÀÌ´Ï À§Ä¡¾ß º° »ó°ü¾ø°í.. »ç½Ç ¹æÇâµµ ¾î¶»°Ôµç ºûÀ» ¹Ş±â¸¸ ÇÏ¸é µÇ´Âµ¥ ±×·¡µµ °¡´ÉÇÑ À§¿¡¼­ ¾Æ·¡·Î ÇØ º¸ÀÚ
+				// ë°©í–¥ê´‘ì´ë‹ˆ ìœ„ì¹˜ì•¼ ë³„ ìƒê´€ì—†ê³ .. ì‚¬ì‹¤ ë°©í–¥ë„ ì–´ë–»ê²Œë“  ë¹›ì„ ë°›ê¸°ë§Œ í•˜ë©´ ë˜ëŠ”ë° ê·¸ë˜ë„ ê°€ëŠ¥í•œ ìœ„ì—ì„œ ì•„ë˜ë¡œ í•´ ë³´ì
 				FTransform SpawnTransform(FRotator(-90.0f, 0.0f, 0.0f), FVector(0.0f, 0.0f, 0.0f));
 				PreRenderDirLight = TheWorld->SpawnActor<ADirectionalLight>(ADirectionalLight::StaticClass(), SpawnTransform, SpawnInfo);
 				if (PreRenderDirLight)
@@ -952,7 +952,7 @@ void UB2PreRenderer::ConditionalSetupPreRenderLightEnvForDirL(EComponentMobility
 				DLComp->bAffectsWorld = true;
 
 				if (bSetupForCSM && LightMobility != EComponentMobility::Static)
-				{ // º°µµÀÇ ¼ÎÀÌ´õ ÄÄÆÄÀÏÀÌ ÇÊ¿äÇÑ CascadedShadowMap ¿ë ¼Â¾÷
+				{ // ë³„ë„ì˜ ì…°ì´ë” ì»´íŒŒì¼ì´ í•„ìš”í•œ CascadedShadowMap ìš© ì…‹ì—…
 					DLComp->bCastModulatedShadows = false;
 					if (LightMobility == EComponentMobility::Stationary)
 					{
@@ -965,12 +965,12 @@ void UB2PreRenderer::ConditionalSetupPreRenderLightEnvForDirL(EComponentMobility
 					DLComp->bUseInsetShadowsForMovableObjects = false;
 				}
 				else
-				{ // ¾Æ´Ñ °æ¿ì Modulated shadow ..
+				{ // ì•„ë‹Œ ê²½ìš° Modulated shadow ..
 					DLComp->bCastModulatedShadows = true;
 					DLComp->DynamicShadowDistanceStationaryLight = 0.0f;
 					DLComp->DynamicShadowDistanceMovableLight = 0.0f;
 				}
-				DLComp->UnregisterComponent(); // »ç¿ë È¯°æ¿¡ µû¶ó ÇÑ Â÷·Ê unregister ¸¦ ÇÑ ´ã¿¡ register ¸¦ ÇØ¾ß Scene ¿¡ Á¦´ë·Î add µÇ´Â °æ¿ì°¡ ÀÖÀ½. ±×·¡¼­ ¹Ùº¸ Áş.
+				DLComp->UnregisterComponent(); // ì‚¬ìš© í™˜ê²½ì— ë”°ë¼ í•œ ì°¨ë¡€ unregister ë¥¼ í•œ ë‹´ì— register ë¥¼ í•´ì•¼ Scene ì— ì œëŒ€ë¡œ add ë˜ëŠ” ê²½ìš°ê°€ ìˆìŒ. ê·¸ë˜ì„œ ë°”ë³´ ì§“.
 
 				DLComp->Activate();
 				DLComp->RegisterComponent();
@@ -983,8 +983,8 @@ void UB2PreRenderer::ConditionalSetupPreRenderLightEnvForDirL(EComponentMobility
 }
 void UB2PreRenderer::ConditionalRestoreFromPreRenderLightEnvForDirL()
 {
-	// DirectionalLight È¯°æÀ» ¹Ù²Ù´Â °Ç »ç½Ç»ó PreRender Àü¿ë °ÔÀÓ¸ğµå ¾Æ´Ï¸é ´Ù·ç±â ±î´Ù·Î¿ï °Í °°´Ù. 
-	// Àû¾îµµ Áö±İ ±¸ÇöÀ¸·Î´Â..
+	// DirectionalLight í™˜ê²½ì„ ë°”ê¾¸ëŠ” ê±´ ì‚¬ì‹¤ìƒ PreRender ì „ìš© ê²Œì„ëª¨ë“œ ì•„ë‹ˆë©´ ë‹¤ë£¨ê¸° ê¹Œë‹¤ë¡œìš¸ ê²ƒ ê°™ë‹¤. 
+	// ì ì–´ë„ ì§€ê¸ˆ êµ¬í˜„ìœ¼ë¡œëŠ”..
 	check(Cast<AB2PreRenderGameMode>(OwnerGameMode));
 
 	if (bLightEnvironmentSetupForDynDirLight)
@@ -992,7 +992,7 @@ void UB2PreRenderer::ConditionalRestoreFromPreRenderLightEnvForDirL()
 		if (PreRenderDirLight && PreRenderDirLight->GetLightComponent())
 		{
 			PreRenderDirLight->GetLightComponent()->bAffectsWorld = false;
-			// ·¹º§¿¡ ¼³Ä¡µÈ °ÍÀÏ ¼öµµ ÀÖÀ¸´Ï Destroy ´Â ÇÏÁö ¸»°í.. ±×·¯³ª UnregisterComponent ´Â ÇØ ÁÖ¾î¾ß ¹Ù·Î ´Ù¸¥ directional light ¸¦ ÄÓ ¶§ ·»´õ¾²·¹µå Å¸ÀÌ¹Ö »ó ¹®Á¦°¡ Àû¾îÁø´Ù.
+			// ë ˆë²¨ì— ì„¤ì¹˜ëœ ê²ƒì¼ ìˆ˜ë„ ìˆìœ¼ë‹ˆ Destroy ëŠ” í•˜ì§€ ë§ê³ .. ê·¸ëŸ¬ë‚˜ UnregisterComponent ëŠ” í•´ ì£¼ì–´ì•¼ ë°”ë¡œ ë‹¤ë¥¸ directional light ë¥¼ ì¼¤ ë•Œ ë Œë”ì“°ë ˆë“œ íƒ€ì´ë° ìƒ ë¬¸ì œê°€ ì ì–´ì§„ë‹¤.
 			PreRenderDirLight->GetLightComponent()->UnregisterComponent();
 			PreRenderDirLight->GetLightComponent()->Deactivate();
 			PreRenderDirLight->GetLightComponent()->MarkRenderStateDirty();
@@ -1005,7 +1005,7 @@ void UB2PreRenderer::ConditionalRestoreFromPreRenderLightEnvForDirL()
 }
 ADirectionalLight* UB2PreRenderer::FindDirectionalLighOfMobility(EComponentMobility::Type LightMobility)
 {
-	// ¿ùµå¿¡ ¼³Ä¡µÈ DirectionalLight ¸¦ Ã£´Â °Å. DirectionalLight °¡ ÇÊ¿äÇÑ ¶óÀÌÆÃ ÆĞ½º¿¡¼­ ¼³Ä¡µÈ °Í ºÎÅÍ Ã£¾Æº¸°í ¾øÀ¸¸é spawn ½ÃÅ°·Á°í
+	// ì›”ë“œì— ì„¤ì¹˜ëœ DirectionalLight ë¥¼ ì°¾ëŠ” ê±°. DirectionalLight ê°€ í•„ìš”í•œ ë¼ì´íŒ… íŒ¨ìŠ¤ì—ì„œ ì„¤ì¹˜ëœ ê²ƒ ë¶€í„° ì°¾ì•„ë³´ê³  ì—†ìœ¼ë©´ spawn ì‹œí‚¤ë ¤ê³ 
 
 	UWorld* TheWorld = OwnerGameMode ? OwnerGameMode->GetWorld() : GetWorld();
 	for (FActorIterator ActorIt(TheWorld); ActorIt; ++ActorIt)
@@ -1021,7 +1021,7 @@ ADirectionalLight* UB2PreRenderer::FindDirectionalLighOfMobility(EComponentMobil
 
 void UB2PreRenderer::CompletelyTurnOffAllLights()
 {
-	// È¤¿©³ª ÀÌ·± »óÅÂ¿¡¼­ pre-render °¡ ÇÊ¿äÇÒÁöµµ..
+	// í˜¹ì—¬ë‚˜ ì´ëŸ° ìƒíƒœì—ì„œ pre-render ê°€ í•„ìš”í• ì§€ë„..
 	for (TObjectIterator<ULightComponent> It; It; ++It)
 	{
 		ULightComponent* ThisLightComp = *It;
@@ -1045,9 +1045,9 @@ ASkeletalMeshActor* UB2PreRenderer::SpawnPreRenderMeshCommon(UWorld* InSpawnWorl
 	//	SpawnTransform.SetLocation(GetPreRenderDummyDesiredLocation(InSpawnWorld));
 
 	//	ASkeletalMeshActor* SpawnedSKActor = InSpawnWorld->SpawnActor<ASkeletalMeshActor>(ASkeletalMeshActor::StaticClass(), SpawnTransform, SpawnInfo);
-	//	if (SpawnedSKActor) { // ·»´õ¸µ¸¸ ÇÒ ²¨°í °ãÄ£ ÀÚ¸®¿¡ ´Ù¸¥ °Íµéµµ ÁÙÁÙÀÌ spawn ÇÒ ²¨¶ó collision À» È®½ÇÈ÷ ²ôµµ·Ï.
+	//	if (SpawnedSKActor) { // ë Œë”ë§ë§Œ í•  êº¼ê³  ê²¹ì¹œ ìë¦¬ì— ë‹¤ë¥¸ ê²ƒë“¤ë„ ì¤„ì¤„ì´ spawn í•  êº¼ë¼ collision ì„ í™•ì‹¤íˆ ë„ë„ë¡.
 	//		SpawnedSKActor->SetActorEnableCollision(false);
-	//		// Pre-render °¡ È®½ÇÇÏ°Ô µÇµµ·Ï ÇÏ±â À§ÇØ ·»´õ¾²·¹µå¿¡¼­ ÄÃ¸µµÇÁö ¾Êµµ·Ï ¼³Á¤. Ãß°¡ ¼ÎÀÌ´õ Å¸ÀÔ¿¡ ´ëÇÑ Ã³¸®µµ ÇÔ.
+	//		// Pre-render ê°€ í™•ì‹¤í•˜ê²Œ ë˜ë„ë¡ í•˜ê¸° ìœ„í•´ ë Œë”ì“°ë ˆë“œì—ì„œ ì»¬ë§ë˜ì§€ ì•Šë„ë¡ ì„¤ì •. ì¶”ê°€ ì…°ì´ë” íƒ€ì…ì— ëŒ€í•œ ì²˜ë¦¬ë„ í•¨.
 	//		SpawnedSKActor->GetSkeletalMeshComponent()->SetExcessiveRenderProcessing(true);
 	//	}
 	//	return SpawnedSKActor;
@@ -1059,7 +1059,7 @@ ASkeletalMeshActor* UB2PreRenderer::SpawnPreRenderMeshCommon(UWorld* InSpawnWorl
 FVector UB2PreRenderer::GetPreRenderDummyDesiredLocation(UObject* WorldContextObject)
 {
 	//FVector ViewCenterWorldPos = UB2UnitedWidgetBase::GetWorldPosBeneathScreen(UGameplayStatics::GetLocalPlayerController(WorldContextObject), FVector2D(0.5f, 0.5f), PreRenderSpawnDistFromView);
-	//// »ç½Ç ÀÌ´Â ¸Ö¸® ¶³¾î¶ß·Á ³õ°í È­¸é °¡¸²¸·À» ÇÏÁö ¾ÊÀ¸·Á´Â °Å¿´´Âµ¥ ¾îÂ÷ÇÇ Pre-render °¡ ¹ÌÄ£µíÀÌ ¼º´ÉÀ» Àâ¾Æ¸ÔÀ» ²¨°í TimeScale µµ ÀÛ°Ô ÁÙ°Å´Ï ±×·± ÀÇ¹Ì´Â º°·Î ¾øÀ» µí.
+	//// ì‚¬ì‹¤ ì´ëŠ” ë©€ë¦¬ ë–¨ì–´ëœ¨ë ¤ ë†“ê³  í™”ë©´ ê°€ë¦¼ë§‰ì„ í•˜ì§€ ì•Šìœ¼ë ¤ëŠ” ê±°ì˜€ëŠ”ë° ì–´ì°¨í”¼ Pre-render ê°€ ë¯¸ì¹œë“¯ì´ ì„±ëŠ¥ì„ ì¡ì•„ë¨¹ì„ êº¼ê³  TimeScale ë„ ì‘ê²Œ ì¤„ê±°ë‹ˆ ê·¸ëŸ° ì˜ë¯¸ëŠ” ë³„ë¡œ ì—†ì„ ë“¯.
 	//return bPreRenderAtFarAway ? (ViewCenterWorldPos + FVector(0.0f, 0.0f, -10000.0f)) : ViewCenterWorldPos;
 	return FVector(0.0f, 0.0f, -10000.0f);
 }
@@ -1071,8 +1071,8 @@ UParticleSystemComponent* UB2PreRenderer::SpawnDummyPSCForPreRender(UParticleSys
 		return NULL;
 	}
 
-	//// UGameplayStatics::SpawnEmitterAttached ¾²´Ï±î ¹º°¡ Áï¼®¿¡¼­ SceneProxy °¡ »ı±âÁö ¾Ê¾Æ¼­ Á» ´Ù¸¥ ¹æ½ÄÀ¸·Î spawn ½ÃÅ´
-	//// ±×·¸´Ù°í ÀÏ¹İÀûÀÎ °ÔÀÓÄÚµå¿¡¼­ UGameplayStatics::SpawnEmitterAttached ¸¦ ¾²´Â °Ô ¹®Á¦¸¦ ÀÏÀ¸Å°Áö´Â ¾Ê°í, ´ÜÁö ¿©±â¼± ¹Ù·Î SceneProxy ¿¡ ¹º°¡ ½ÅÈ£¸¦ ³¯¸®·Á°í
+	//// UGameplayStatics::SpawnEmitterAttached ì“°ë‹ˆê¹Œ ë­”ê°€ ì¦‰ì„ì—ì„œ SceneProxy ê°€ ìƒê¸°ì§€ ì•Šì•„ì„œ ì¢€ ë‹¤ë¥¸ ë°©ì‹ìœ¼ë¡œ spawn ì‹œí‚´
+	//// ê·¸ë ‡ë‹¤ê³  ì¼ë°˜ì ì¸ ê²Œì„ì½”ë“œì—ì„œ UGameplayStatics::SpawnEmitterAttached ë¥¼ ì“°ëŠ” ê²Œ ë¬¸ì œë¥¼ ì¼ìœ¼í‚¤ì§€ëŠ” ì•Šê³ , ë‹¨ì§€ ì—¬ê¸°ì„  ë°”ë¡œ SceneProxy ì— ë­”ê°€ ì‹ í˜¸ë¥¼ ë‚ ë¦¬ë ¤ê³ 
 
 	//UParticleSystemComponent* CreatedComp = NewObject<UParticleSystemComponent>(InRootComp->GetOwner(), NAME_None, RF_Transient);
 	//if (CreatedComp)
@@ -1085,8 +1085,8 @@ UParticleSystemComponent* UB2PreRenderer::SpawnDummyPSCForPreRender(UParticleSys
 	//	CreatedComp->RegisterComponent();
 	//	CreatedComp->Activate(true);
 
-	//	// Pre-render ¸ñÀû »ó delay ÃÖ´ëÇÑ ¾øÀÌ »¡¸® ·»´õ¸µ µÇµµ·Ï ÇÑ´Ù.
-	//	// ÆÄÆ¼Å¬ ½Ã½ºÅÛ ¿øº» °ªÀº °Çµå¸®Áö ¸øÇÏ´Ï ÃÖ´ëÇÑ ÀÌ·¸°Ô¶óµµ..
+	//	// Pre-render ëª©ì  ìƒ delay ìµœëŒ€í•œ ì—†ì´ ë¹¨ë¦¬ ë Œë”ë§ ë˜ë„ë¡ í•œë‹¤.
+	//	// íŒŒí‹°í´ ì‹œìŠ¤í…œ ì›ë³¸ ê°’ì€ ê±´ë“œë¦¬ì§€ ëª»í•˜ë‹ˆ ìµœëŒ€í•œ ì´ë ‡ê²Œë¼ë„..
 	//	CreatedComp->EmitterDelay = 0.0f;
 	//	for (FParticleEmitterInstance* EMI : CreatedComp->EmitterInstances)
 	//	{
@@ -1096,7 +1096,7 @@ UParticleSystemComponent* UB2PreRenderer::SpawnDummyPSCForPreRender(UParticleSys
 	//		}
 	//	}
 
-	//	CreatedComp->SetExcessiveRenderProcessing(true); // ·»´õ¾²·¹µå InitView ¿¡¼­ÀÇ SceneVisibility ¸¦ º¸Àå.
+	//	CreatedComp->SetExcessiveRenderProcessing(true); // ë Œë”ì“°ë ˆë“œ InitView ì—ì„œì˜ SceneVisibility ë¥¼ ë³´ì¥.
 
 	//	return CreatedComp;
 	//}
@@ -1105,8 +1105,8 @@ UParticleSystemComponent* UB2PreRenderer::SpawnDummyPSCForPreRender(UParticleSys
 
 FB2GMPreRenderDummyInfo& UB2PreRenderer::GetExtraPrerenderDummyInfo()
 {
-	// PCClass ³ª NPCClass ´ÜÀ§·Î pre-render ¸¦ ÇÒ ¶§¿¡´Â ÇØ´ç Å¬·¡½º¿¡ ±â¹İÇÑ pre-render dummy Actor ¸¦ ¸¸µé¾î¼­ ÇÊ¿äÇÑ ÄÄÆ÷³ÍÆ®µéÀ» °Å±â¿¡ ºÙÀÌÁö¸¸
-	// ±×·¸Áö ¾ÊÀº °æ¿ì´Â ¹Ì¸® ¸¸µé¾îÁø °ÍÀÌ ÀÖÀ¸¸é ±×°É »ç¿ëÇÏ´øÁö ¾Æ´Ï¸é ´õ¹Ì¸¦ ÇÏ³ª spawn ½ÃÅ²´Ù.	
+	// PCClass ë‚˜ NPCClass ë‹¨ìœ„ë¡œ pre-render ë¥¼ í•  ë•Œì—ëŠ” í•´ë‹¹ í´ë˜ìŠ¤ì— ê¸°ë°˜í•œ pre-render dummy Actor ë¥¼ ë§Œë“¤ì–´ì„œ í•„ìš”í•œ ì»´í¬ë„ŒíŠ¸ë“¤ì„ ê±°ê¸°ì— ë¶™ì´ì§€ë§Œ
+	// ê·¸ë ‡ì§€ ì•Šì€ ê²½ìš°ëŠ” ë¯¸ë¦¬ ë§Œë“¤ì–´ì§„ ê²ƒì´ ìˆìœ¼ë©´ ê·¸ê±¸ ì‚¬ìš©í•˜ë˜ì§€ ì•„ë‹ˆë©´ ë”ë¯¸ë¥¼ í•˜ë‚˜ spawn ì‹œí‚¨ë‹¤.	
 	if (AllPreRenderDummy.Num() == 0)
 	{
 		GetAdditionalPrerenderDummyInfo();
@@ -1123,9 +1123,9 @@ ASkeletalMeshActor* UB2PreRenderer::GetExtraPrerenderDummySKActor()
 FB2GMPreRenderDummyInfo& UB2PreRenderer::GetAdditionalPrerenderDummyInfo()
 {
 	FB2GMPreRenderDummyInfo NewExtraDummyInfo;
-	// OwnerGameMode ÀÇ GetWorld °¡ ´õ È®½ÇÇÑ µí ÇÑµ¥..
+	// OwnerGameMode ì˜ GetWorld ê°€ ë” í™•ì‹¤í•œ ë“¯ í•œë°..
 	NewExtraDummyInfo.PreRenderDummy = SpawnPreRenderMeshCommon(OwnerGameMode ? OwnerGameMode->GetWorld() : GetWorld());
-	// Dummy ÀÇ °æ¿ì Å¬·¡½º´Â °¡Àå ±âº»ÀûÀÎ ÇØ°ñ¹Ù°¡Áö º´»ç·Î ¤»
+	// Dummy ì˜ ê²½ìš° í´ë˜ìŠ¤ëŠ” ê°€ì¥ ê¸°ë³¸ì ì¸ í•´ê³¨ë°”ê°€ì§€ ë³‘ì‚¬ë¡œ ã…‹
 	SetupDummyMobForPreRender(ENPCClass::ENC_Mob_Skell_Sword, ENPCClassVariation::ENCV_Normal, NULL, NewExtraDummyInfo.PreRenderDummy);
 	int32 AddedIndex = AllPreRenderDummy.Add(NewExtraDummyInfo);
 	return AllPreRenderDummy[AddedIndex];
@@ -1142,14 +1142,14 @@ void UB2PreRenderer::SetupDummyParticleSystemsForPreRender(ASkeletalMeshActor* I
 	//if (!InDummySKActor) {
 	//	return;
 	//}
-	//// AnimBP ¶û AnimNotify ÅëÇØ¼­ ParticleSystem µéÀ» ÃÖ´ëÇÑ ±Ü¾î¸ğÀº´Ù.
+	//// AnimBP ë‘ AnimNotify í†µí•´ì„œ ParticleSystem ë“¤ì„ ìµœëŒ€í•œ ê¸ì–´ëª¨ì€ë‹¤.
 	//TMap<FName, UParticleSystem*> GatheredPS;
 	//TryGatherAllBoundPSFromSKComp(InDummySKActor->GetSkeletalMeshComponent(), GatheredPS);
 
 	//for (TMap<FName, UParticleSystem*>::TConstIterator PSIt(GatheredPS); PSIt; ++PSIt)
 	//{
 	//	UParticleSystem* ThisPS = PSIt.Value();
-	//	// DummySKActor ¿¡ attach ½ÃÅ°°í ÀÌÈÄ´Â DummySKActor¸¦ ÄÁÆ®·Ñ
+	//	// DummySKActor ì— attach ì‹œí‚¤ê³  ì´í›„ëŠ” DummySKActorë¥¼ ì»¨íŠ¸ë¡¤
 	//	UParticleSystemComponent* ThisSpawnedFxComp = SpawnDummyPSCForPreRender(ThisPS, InDummySKActor->GetRootComponent());
 	//}
 }
@@ -1162,14 +1162,14 @@ void UB2PreRenderer::SetupDummyMobForPreRender(ENPCClass InNPCClass, ENPCClassVa
 	}
 
 	UB2NPCClassInfoBox* MobInfoBox = StaticFindMobClassInfoBox(OwnerGameMode);
-	// MobClassInfo ÀÇ Async ·ÎµùÀ» ¹é±×¶ó¿îµå·Î »ç¿ëÇÏ°í ½ÍÀº »óÈ²ÀÌ¶ó¸é ÀÌ°ÍÀÌ ¹«È¿È­ µÉ µí. ±×³É Async ·ÎµùÀÇ ¸ÖÆ¼ÄÚ¾î È°¿ë¸¸ »ç¿ëÇÏ°Ú´Ù¸é ¸ğ¸£°ÚÁö¸¸.
+	// MobClassInfo ì˜ Async ë¡œë”©ì„ ë°±ê·¸ë¼ìš´ë“œë¡œ ì‚¬ìš©í•˜ê³  ì‹¶ì€ ìƒí™©ì´ë¼ë©´ ì´ê²ƒì´ ë¬´íš¨í™” ë  ë“¯. ê·¸ëƒ¥ Async ë¡œë”©ì˜ ë©€í‹°ì½”ì–´ í™œìš©ë§Œ ì‚¬ìš©í•˜ê² ë‹¤ë©´ ëª¨ë¥´ê² ì§€ë§Œ.
 	UB2NPCSingleClassInfo* ThisClassInfo = MobInfoBox ? MobInfoBox->GetNPCSingleClassInfo(InNPCClass, InVari) : nullptr;
 	if (!ThisClassInfo)
 	{
 		return;
 	}
 
-	// ClassInfo ¿¡¼­ Dummy pre-render ¿¡ ÇÊ¼öÀûÀÎ Á¤º¸¸¸ ¼¼ÆÃ. Attach ÇÏ´Â ¸®¼Ò½º ¼³Á¤µéµµ ÀÖÁö¸¸ ±×´Ú ¸¹Àº °Ç ¾Æ´Ô..
+	// ClassInfo ì—ì„œ Dummy pre-render ì— í•„ìˆ˜ì ì¸ ì •ë³´ë§Œ ì„¸íŒ…. Attach í•˜ëŠ” ë¦¬ì†ŒìŠ¤ ì„¤ì •ë“¤ë„ ìˆì§€ë§Œ ê·¸ë‹¥ ë§ì€ ê±´ ì•„ë‹˜..
 	InDummySKActorForRender->GetSkeletalMeshComponent()->SetSkeletalMesh(ThisClassInfo->MeshAssetOverride);
 	if (ThisClassInfo->AnimBPOverride)
 	{
@@ -1185,7 +1185,7 @@ void UB2PreRenderer::SetupDummyPCMeshForPreRender(EPCClass InCharClass, ABladeII
 		return;
 	}
 
-	//// PCClassInfo ÀÇ Async ·ÎµùÀ» ¹é±×¶ó¿îµå·Î »ç¿ëÇÏ°í ½ÍÀº »óÈ²ÀÌ¶ó¸é ÀÌ°ÍÀÌ ¹«È¿È­ µÉ µí. ±×³É Async ·ÎµùÀÇ ¸ÖÆ¼ÄÚ¾î È°¿ë¸¸ »ç¿ëÇÏ°Ú´Ù¸é ¸ğ¸£°ÚÁö¸¸.
+	//// PCClassInfo ì˜ Async ë¡œë”©ì„ ë°±ê·¸ë¼ìš´ë“œë¡œ ì‚¬ìš©í•˜ê³  ì‹¶ì€ ìƒí™©ì´ë¼ë©´ ì´ê²ƒì´ ë¬´íš¨í™” ë  ë“¯. ê·¸ëƒ¥ Async ë¡œë”©ì˜ ë©€í‹°ì½”ì–´ í™œìš©ë§Œ ì‚¬ìš©í•˜ê² ë‹¤ë©´ ëª¨ë¥´ê² ì§€ë§Œ.
 	//UB2PCClassInfoBox* PCBox = StaticFindPCClassInfoBox(OwnerGameMode);
 	//UB2PCClassInfo* ThisClassInfo = PCBox ? PCBox->GetSingleClassInfo(InCharClass) : NULL;
 	//if (!ThisClassInfo) {
@@ -1193,30 +1193,30 @@ void UB2PreRenderer::SetupDummyPCMeshForPreRender(EPCClass InCharClass, ABladeII
 	//}
 
 	//USkeletalMesh* PrebuiltMeshOrResult = NULL;
-	//{ // PreRender dummy ¿ëÀ¸·Î´Â ¾Æ¸¶µµ InOwnerPlayer °¡ ¾È µé¾î¿Ã °Å¶ó ³×Æ®¿öÅ© ¸ğµå ¿ëÀ¸·Î ±â´É È®Àå ½Ã ¾û¶×ÇÑ ¸ğµ¨À» °¡Á®¿À°Ô µÉ ¼ö ÀÖ´Ù.
+	//{ // PreRender dummy ìš©ìœ¼ë¡œëŠ” ì•„ë§ˆë„ InOwnerPlayer ê°€ ì•ˆ ë“¤ì–´ì˜¬ ê±°ë¼ ë„¤íŠ¸ì›Œí¬ ëª¨ë“œ ìš©ìœ¼ë¡œ ê¸°ëŠ¥ í™•ì¥ ì‹œ ì—‰ëš±í•œ ëª¨ë¸ì„ ê°€ì ¸ì˜¤ê²Œ ë  ìˆ˜ ìˆë‹¤.
 	//  //PrebuiltMeshOrResult = OwnerGameMode->GetCachedCompositeMesh(InCharClass, InOwnerPlayer, InEquippedItems, (InWingData && InWingData->bShouldBeVisible), InWingData, false);
 	//}
 
-	//// ·Îºñ¿¡¼­´Â InGameOnlyInfo ¸¦ ²¨³»¿ÀÁö ¾Êµµ·Ï ÇÑ´Ù. ¾µµ¥¾ø´Â ¸Ş¸ğ¸® ³¶ºñ.
+	//// ë¡œë¹„ì—ì„œëŠ” InGameOnlyInfo ë¥¼ êº¼ë‚´ì˜¤ì§€ ì•Šë„ë¡ í•œë‹¤. ì“¸ë°ì—†ëŠ” ë©”ëª¨ë¦¬ ë‚­ë¹„.
 	//UB2InGameOnlyPCClassInfo* InGameOnlyInfo = (GetB2GameModeType(this) != EB2GameMode::Lobby) ? ThisClassInfo->GetInGameOnlyInfo(this) : NULL;
 
 	//if (UB2PCClassInfo::SetupSKCompForParts(InCharClass, InDummySKActorForRender, InDummySKActorForRender->GetSkeletalMeshComponent(), PrebuiltMeshOrResult,
 	//	ThisClassInfo->BaseMeshAsset, ThisClassInfo->DefaultPartsInfo, InEquippedItems, InWingData, (InGameOnlyInfo ? InGameOnlyInfo->AnimBPOverride : NULL), 
 	//	false, false))
 	//{
-	//	{// PreRender dummy ¿ëÀ¸·Î´Â ¾Æ¸¶µµ InOwnerPlayer °¡ ¾È µé¾î¿Ã °Å¶ó ³×Æ®¿öÅ© ¸ğµå ¿ëÀ¸·Î ±â´É È®Àå ½Ã ¾û¶×ÇÑ ¸ğµ¨À» Ä³½ÌÇÏ°Ô µÉ ¼ö ÀÖ´Ù.
+	//	{// PreRender dummy ìš©ìœ¼ë¡œëŠ” ì•„ë§ˆë„ InOwnerPlayer ê°€ ì•ˆ ë“¤ì–´ì˜¬ ê±°ë¼ ë„¤íŠ¸ì›Œí¬ ëª¨ë“œ ìš©ìœ¼ë¡œ ê¸°ëŠ¥ í™•ì¥ ì‹œ ì—‰ëš±í•œ ëª¨ë¸ì„ ìºì‹±í•˜ê²Œ ë  ìˆ˜ ìˆë‹¤.
 	//	 //OwnerGameMode->SetCachedCompositeMesh(InCharClass, InOwnerPlayer, PrebuiltMeshOrResult, InEquippedItems, (InWingData && InWingData->bShouldBeVisible), InWingData, false);
 	//	}
 	//}
 }
 
-void UB2PreRenderer::UpdateForPreRenderObjects(bool bForceContinue /*= false*/) // Pre-render ÁøÇà µµÁß Tick ¿¡ ÇØ´ç
+void UB2PreRenderer::UpdateForPreRenderObjects(bool bForceContinue /*= false*/) // Pre-render ì§„í–‰ ë„ì¤‘ Tick ì— í•´ë‹¹
 {
 	checkSlow(OwnerGameMode && OwnerGameMode->IsInPreRenderPhase());
 	//
 	//	if (bPendingForPreRenderGM)
 	//	{
-	//		if (StartBladeIIPreRenderGame(OwnerGameMode)) // ·Îºñ¿¡¼­ Á÷Á¢ pre-render ÇÏ´Â ´ë½Å Àü¿ë ·¹º§ ·ÎµùÇÏ´Â °æ¿ì
+	//		if (StartBladeIIPreRenderGame(OwnerGameMode)) // ë¡œë¹„ì—ì„œ ì§ì ‘ pre-render í•˜ëŠ” ëŒ€ì‹  ì „ìš© ë ˆë²¨ ë¡œë”©í•˜ëŠ” ê²½ìš°
 	//		{
 	//			bPendingForPreRenderGM = false;
 	//			return;
@@ -1227,78 +1227,78 @@ void UB2PreRenderer::UpdateForPreRenderObjects(bool bForceContinue /*= false*/) 
 	//	{
 	//		++OverallTickCount;
 	//	}
-	//	// ÀÌ°Ô true ¸é ¼³·É ·»´õ¸µ µÇÁö ¾ÊÀº °Ô ÀÖ´õ¶óµµ Á¦°Å. ¸ğµÎ ´Ù ·»´õ¸µÀÌ µÈ´Ù´Â º¸ÀåÀÌ ¾øÀ¸´Ï.. 
+	//	// ì´ê²Œ true ë©´ ì„¤ë ¹ ë Œë”ë§ ë˜ì§€ ì•Šì€ ê²Œ ìˆë”ë¼ë„ ì œê±°. ëª¨ë‘ ë‹¤ ë Œë”ë§ì´ ëœë‹¤ëŠ” ë³´ì¥ì´ ì—†ìœ¼ë‹ˆ.. 
 	//	const bool bOverallCountDone = (OverallTickCount >= OverallPreRenderLimit);
 	//
-	//	// ¾Æ¹« Á¶°Ç ¾øÀÌ ¼Â¾÷ ÀÌÈÄ·Î Æ¯Á¤ Æ½ Áö³ª¸é Pre-render ¸¦ °­Á¦ Á¾·á. ÀÌ°Ç ÃÖÈÄÀÇ safety ¸¦ À§ÇØ.
+	//	// ì•„ë¬´ ì¡°ê±´ ì—†ì´ ì…‹ì—… ì´í›„ë¡œ íŠ¹ì • í‹± ì§€ë‚˜ë©´ Pre-render ë¥¼ ê°•ì œ ì¢…ë£Œ. ì´ê±´ ìµœí›„ì˜ safety ë¥¼ ìœ„í•´.
 	//	++TickCountFromSetup;
-	//	// ½ÇÁ¦·Î ¿©±â¿¡ °É¸®´Â °Ç ¹Ù¶÷Á÷ÇÑ »óÈ²Àº ¾Æ´Ï´Ù.
+	//	// ì‹¤ì œë¡œ ì—¬ê¸°ì— ê±¸ë¦¬ëŠ” ê±´ ë°”ëŒì§í•œ ìƒí™©ì€ ì•„ë‹ˆë‹¤.
 	//	const bool bHardLimitReached = (TickCountFromSetup >= PreRenderHardLimit);
 	//
 	//	const bool bShouldFinishDummiesBySomeLimit = (bOverallCountDone || bHardLimitReached) && !bForceContinue;
 	//
-	//	const FVector DummyDesiredLocation = GetPreRenderDummyDesiredLocation(OwnerGameMode); // ÇöÀç view ¿¡¼­ °¡Á®¿À°Ô ÇÑ´Ù¸é ¸Å¹ø ¹Ù²ğ °ÍÀÓ.
+	//	const FVector DummyDesiredLocation = GetPreRenderDummyDesiredLocation(OwnerGameMode); // í˜„ì¬ view ì—ì„œ ê°€ì ¸ì˜¤ê²Œ í•œë‹¤ë©´ ë§¤ë²ˆ ë°”ë€” ê²ƒì„.
 	//
 	//#if !UE_BUILD_SHIPPING
 	//	int32 FinishBySomeLimitCount = 0;
 	//	FString FinishBySomeLimitMsg = TEXT("");
 	//#endif
 	//
-	//	// PreRender µÈ °Å Æ½ µ¹¸é¼­ ²¨ ÁÜ.
+	//	// PreRender ëœ ê±° í‹± ëŒë©´ì„œ êº¼ ì¤Œ.
 	//	for (int32 PRDI = 0; PRDI < AllPreRenderDummy.Num(); ++PRDI)
 	//	{
 	//		FB2GMPreRenderDummyInfo& ThisDummyInfo = AllPreRenderDummy[PRDI];
-	//		// ´ëÃ¼·Î ÀÌ SkeletalMeshComponent ±âÁØÀ¸·Î º¸±ä ÇÒ²«µ¥ ÀÌ°Í »Ó¸¸ÀÌ ¾Æ´Ï¶ó ¿©±â¿¡ ÀÌÆåÆ®µéÀÌ ÀÜ¶à ºÙ¾î ÀÖÀ» ¼ö ÀÖ´Ù.
+	//		// ëŒ€ì²´ë¡œ ì´ SkeletalMeshComponent ê¸°ì¤€ìœ¼ë¡œ ë³´ê¸´ í• ê»€ë° ì´ê²ƒ ë¿ë§Œì´ ì•„ë‹ˆë¼ ì—¬ê¸°ì— ì´í™íŠ¸ë“¤ì´ ì”ëœ© ë¶™ì–´ ìˆì„ ìˆ˜ ìˆë‹¤.
 	//		USkeletalMeshComponent* ThisDummySKComp = ThisDummyInfo.PreRenderDummy->GetSkeletalMeshComponent();
 	//
-	//		// ÀÏÁ¤ Ä«¿îÆ® ÀÌ»ó ·»´õ¸µ µÇ¸é ²ö´Ù.. 
+	//		// ì¼ì • ì¹´ìš´íŠ¸ ì´ìƒ ë Œë”ë§ ë˜ë©´ ëˆë‹¤.. 
 	//		if (ThisDummyInfo.PreRenderDummy && !ThisDummyInfo.PreRenderDummy->bHidden)
 	//		{
 	//			if (ThisDummySKComp->LastRenderTime > 0.0f)
 	//			{
-	//				bCanDoOverallCount = true; // OverallCount ´Â Àû¾îµµ ÇÏ³ª¶óµµ ·»´õ¸µ µÈ ÀÌÈÄ¿¡ ½ÃÀÛÇÑ´Ù. 
+	//				bCanDoOverallCount = true; // OverallCount ëŠ” ì ì–´ë„ í•˜ë‚˜ë¼ë„ ë Œë”ë§ ëœ ì´í›„ì— ì‹œì‘í•œë‹¤. 
 	//			}
 	//
 	//			const bool bThisDummyDoneForNormalCondition = ThisDummyInfo.UpdateDummy(bForceContinue);
 	//
 	//			if ((bThisDummyDoneForNormalCondition || bShouldFinishDummiesBySomeLimit) && !bForceContinue)
 	//			{
-	//#if !UE_BUILD_SHIPPING // ½ÇÁ¦ ·»´õ¸µ ½ÅÈ£´Â ¾È ¿Ô´Âµ¥ ±×³É Á¦ÇÑÀÌ Â÷¼­ ³¡³»´Â °Ç ·Î±ëÀ» ÇÔ
+	//#if !UE_BUILD_SHIPPING // ì‹¤ì œ ë Œë”ë§ ì‹ í˜¸ëŠ” ì•ˆ ì™”ëŠ”ë° ê·¸ëƒ¥ ì œí•œì´ ì°¨ì„œ ëë‚´ëŠ” ê±´ ë¡œê¹…ì„ í•¨
 	//				if (!bThisDummyDoneForNormalCondition)
 	//				{
 	//					++FinishBySomeLimitCount;
-	//					// PC ¿ëÀ¸·Î Á¶ÇÕÇÑ °Ç µüÈ÷ ÀÇ¹ÌÀÖ´Â ÀÌ¸§Àº ¾È ³ª¿À°ÚÁö¸¸..
+	//					// PC ìš©ìœ¼ë¡œ ì¡°í•©í•œ ê±´ ë”±íˆ ì˜ë¯¸ìˆëŠ” ì´ë¦„ì€ ì•ˆ ë‚˜ì˜¤ê² ì§€ë§Œ..
 	//					FinishBySomeLimitMsg += FString::Printf(TEXT("%d. Root SkeletalMesh : %s\r\n"), FinishBySomeLimitCount, ThisDummySKComp->SkeletalMesh ? (*ThisDummySKComp->SkeletalMesh->GetName()) : TEXT("NULL"));
 	//				}
 	//#endif
 	//
 	//				ThisDummyInfo.PreRenderDummy->SetActorHiddenInGame(true);
 	//				ThisDummySKComp->MeshComponentUpdateFlag = EMeshComponentUpdateFlag::OnlyTickPoseWhenRendered;
-	//				// ÆÄÆ¼Å¬ ½Ã½ºÅÛµµ ºÙÀº ÀÌ»ó ÆÄ±«ÇØ ÁÖ´Â °Ô ÁÁ°Ú´Ù. ¹è¿­µµ ºñ¿ì°í.. ±×·¡¾ß ´Ù µ¹¾Æ°¬´ÂÁö È®ÀÎÇÏ±âµµ ÁÁ°í.
+	//				// íŒŒí‹°í´ ì‹œìŠ¤í…œë„ ë¶™ì€ ì´ìƒ íŒŒê´´í•´ ì£¼ëŠ” ê²Œ ì¢‹ê² ë‹¤. ë°°ì—´ë„ ë¹„ìš°ê³ .. ê·¸ë˜ì•¼ ë‹¤ ëŒì•„ê°”ëŠ”ì§€ í™•ì¸í•˜ê¸°ë„ ì¢‹ê³ .
 	//				ThisDummyInfo.PreRenderDummy->Destroy();
 	//				ThisDummyInfo.PreRenderDummy = NULL;
 	//				AllPreRenderDummy.RemoveAt(PRDI);
 	//				--PRDI;
 	//			}
 	//			else
-	//			{ // ¾ÆÁ÷ ·»´õ¸µÀÌ ¿ÏÀüÈ÷ ¾ÈµÇ¾ú°Å³ª °­Á¦·Î °è¼ÓÇÏ°Å³ª.. Ä«¸Ş¶ó À§Ä¡°¡ ±Ş°İÈ÷ ¹Ù²î°í ÇÒ ¼ö ÀÖÀ¸´Ï ´Ù½Ã±İ location ¼Â¾÷.
+	//			{ // ì•„ì§ ë Œë”ë§ì´ ì™„ì „íˆ ì•ˆë˜ì—ˆê±°ë‚˜ ê°•ì œë¡œ ê³„ì†í•˜ê±°ë‚˜.. ì¹´ë©”ë¼ ìœ„ì¹˜ê°€ ê¸‰ê²©íˆ ë°”ë€Œê³  í•  ìˆ˜ ìˆìœ¼ë‹ˆ ë‹¤ì‹œê¸ˆ location ì…‹ì—….
 	//				ThisDummyInfo.PreRenderDummy->SetActorLocation(DummyDesiredLocation);
 	//			}
 	//		}
 	//	}
 	//
 	//	if (OwnerGameMode->GetPreRenderPhase() == EPreRenderPhase::EPRP_Selected && ProgressStepCountForSelectedPhase < MaxPreRenderCount)
-	//	{ // ÀÏ¹İ PreRender Selected phase ÀÇ ÁøÇàµµ Áõ°¡.
-	//		// ±âº» Tick Á¦ÇÑ¸¸Å­¸¸ ¿©±â¼­ Ä«¿îÆ® ÇÑ´Ù. Á¤È®ÇÏÁö´Â ¾ÊÁö¸¸ ±×·¸°Ô Á¤È®ÇÒ ÇÊ¿ä±îÁöµµ ¾øÀ½.
+	//	{ // ì¼ë°˜ PreRender Selected phase ì˜ ì§„í–‰ë„ ì¦ê°€.
+	//		// ê¸°ë³¸ Tick ì œí•œë§Œí¼ë§Œ ì—¬ê¸°ì„œ ì¹´ìš´íŠ¸ í•œë‹¤. ì •í™•í•˜ì§€ëŠ” ì•Šì§€ë§Œ ê·¸ë ‡ê²Œ ì •í™•í•  í•„ìš”ê¹Œì§€ë„ ì—†ìŒ.
 	//		StepPreRenderScreenProgress();
 	//		++ProgressStepCountForSelectedPhase;
 	//	}
 	//
-	//	FlushRenderingCommands(); // µµ¿òÀÌ µÉÁöµµ.
+	//	FlushRenderingCommands(); // ë„ì›€ì´ ë ì§€ë„.
 	//
 	//	if (bShouldFinishDummiesBySomeLimit)
 	//	{
-	//		AllPreRenderDummy.Empty(); // È®ÀÎ»ç»ì
+	//		AllPreRenderDummy.Empty(); // í™•ì¸ì‚¬ì‚´
 	//
 	//#if !UE_BUILD_SHIPPING
 	//		FinishBySomeLimitMsg = FString::Printf(TEXT("[PreRender] %d Pre-render info are done by some limitation while not all rendered.\r\n"), FinishBySomeLimitCount) + FinishBySomeLimitMsg;
@@ -1309,25 +1309,25 @@ void UB2PreRenderer::UpdateForPreRenderObjects(bool bForceContinue /*= false*/) 
 
 void UB2PreRenderer::SetupDefaultPreRenderScreen()
 {
-	// Æ¯Á¤ Å¸ÀÌ¹ÖÀÇ ·Îµù ½ºÅ©¸° ±â´ÉÀÌ¾ú´Âµ¥ ÀÌ·± ½ÄÀ¸·Î ÀçÈ°¿ëÇÏ´Â±º ¤»
+	// íŠ¹ì • íƒ€ì´ë°ì˜ ë¡œë”© ìŠ¤í¬ë¦° ê¸°ëŠ¥ì´ì—ˆëŠ”ë° ì´ëŸ° ì‹ìœ¼ë¡œ ì¬í™œìš©í•˜ëŠ”êµ° ã…‹
 	//if (OwnerGameMode)
 	//{
-	//	check(!Cast<AB2PreRenderGameMode>(OwnerGameMode)); // ÀÏ¹İ °ÔÀÓ¸ğµå ¿ë. PreRender Àü¿ë °ÔÀÓ¸ğµå´Â ³ª¸§ÀÇ ¹æ½ÄÀ¸·Î °¡¸²¸· ±¸¼º
+	//	check(!Cast<AB2PreRenderGameMode>(OwnerGameMode)); // ì¼ë°˜ ê²Œì„ëª¨ë“œ ìš©. PreRender ì „ìš© ê²Œì„ëª¨ë“œëŠ” ë‚˜ë¦„ì˜ ë°©ì‹ìœ¼ë¡œ ê°€ë¦¼ë§‰ êµ¬ì„±
 	//	OwnerGameMode->OpenPreLoadingScreen(EPreLoadingScreenType::PLST_PreRender_Default);
 	//	CachedPreLoadingScreen = OwnerGameMode->GetCurrCreatedPreLoadingScreen(EPreLoadingScreenType::PLST_PreRender_Default);
 	//	check(CachedPreLoadingScreen);
 	//	if (CachedPreLoadingScreen)
 	//	{
-	//		// ÀÏ¹İ PreRender ¿¡¼­ÀÇ ÁøÇàµµ ¼Â¾÷.
+	//		// ì¼ë°˜ PreRender ì—ì„œì˜ ì§„í–‰ë„ ì…‹ì—….
 	//		CachedPreLoadingScreen->SetupPreRenderProgress(false, false, true);
 
 	//		EstimatedTotalProgressStep = 0;
-	//		// Selected phase ¿¡ ´ëÇÑ Ã³¸® ¸®½ºÆ®°¡ ÀÖÀ» °æ¿ì ±âº» Æ½ Á¦ÇÑ¸¸Å­ ½ºÅÜ
+	//		// Selected phase ì— ëŒ€í•œ ì²˜ë¦¬ ë¦¬ìŠ¤íŠ¸ê°€ ìˆì„ ê²½ìš° ê¸°ë³¸ í‹± ì œí•œë§Œí¼ ìŠ¤í…
 	//		if (AllPreRenderDummy.Num() > 0)
 	//		{
 	//			EstimatedTotalProgressStep += MaxPreRenderCount;
 	//		}
-	//		// AllPrim Phase Æ½ Á¦ÇÑ¸¸Å­ÀÇ ½ºÅÜ Ãß°¡.
+	//		// AllPrim Phase í‹± ì œí•œë§Œí¼ì˜ ìŠ¤í… ì¶”ê°€.
 	//		if (bPreRenderAllPrimitives && !IsCurrentWorldLevelPreRendered())
 	//		{
 	//			EstimatedTotalProgressStep += GetTotalPreRenderAllPrimTickLimit();
@@ -1335,7 +1335,7 @@ void UB2PreRenderer::SetupDefaultPreRenderScreen()
 
 	//		CurrPrerenderProgressStep = 0;
 	//		ProgressStepCountForSelectedPhase = 0;
-	//		// ¸Ç ³¡±îÁö °¡±â Àü¿¡ 1.0 ÁøÇàµµ¸¦ Ã¤¿ì±â À§ÇØ ½ºÅÜ ÇÏ³ª´Â »­.
+	//		// ë§¨ ëê¹Œì§€ ê°€ê¸° ì „ì— 1.0 ì§„í–‰ë„ë¥¼ ì±„ìš°ê¸° ìœ„í•´ ìŠ¤í… í•˜ë‚˜ëŠ” ëºŒ.
 	//		EstimatedTotalProgressStep = FMath::Max(EstimatedTotalProgressStep - 1, 0);
 	//	}
 	//}
@@ -1347,23 +1347,23 @@ void UB2PreRenderer::StepPreRenderScreenProgress()
 
 	//if (CachedPreLoadingScreen && EstimatedTotalProgressStep > 0)
 	//{
-	//	// ÀÏ¹İ ¸Ê·Îµù progress ³ª PreRenderGameMode progress º¸´Ù´Â ´Ü¼øÇÏ°Ô ÀÌ°Å Äİ ÇÒ¶§¸¶´Ù ÇÑ½ºÅÜ ¾¿ Áõ°¡.
+	//	// ì¼ë°˜ ë§µë¡œë”© progress ë‚˜ PreRenderGameMode progress ë³´ë‹¤ëŠ” ë‹¨ìˆœí•˜ê²Œ ì´ê±° ì½œ í• ë•Œë§ˆë‹¤ í•œìŠ¤í… ì”© ì¦ê°€.
 	//	CurrPrerenderProgressStep = FMath::Min(CurrPrerenderProgressStep + 1, EstimatedTotalProgressStep);
-	//	// ¿©·¯ ÇÁ·¹ÀÓ ºÎµå·´°Ô Èê·¯°¡Áö´Â ¾ÊÀ» °ÍÀÌ¹Ç·Î ÇÑ¹ø °»½ÅÇÒ ¶§ ¹Ù·Î Å¸°Ù °ªÀ» Ã¤¿ìµµ·Ï ÇÑ´Ù.
+	//	// ì—¬ëŸ¬ í”„ë ˆì„ ë¶€ë“œëŸ½ê²Œ í˜ëŸ¬ê°€ì§€ëŠ” ì•Šì„ ê²ƒì´ë¯€ë¡œ í•œë²ˆ ê°±ì‹ í•  ë•Œ ë°”ë¡œ íƒ€ê²Ÿ ê°’ì„ ì±„ìš°ë„ë¡ í•œë‹¤.
 	//	CachedPreLoadingScreen->UpdatePreRenderProgressScale((float)CurrPrerenderProgressStep / (float)EstimatedTotalProgressStep, true);
 	//}
 }
 
 bool UB2PreRenderer::ShouldRenderForAllPrimPhase(UPrimitiveComponent* InCompToCheck) const
 {
-	// PreRenderAll ¿¡¼­´Â ¿ùµå¿¡ ¶° ÀÖ´Â ¸ğµç Primitive ÄÄÆ÷³ÍÆ®µéÀ» °¡Áö°í ·»´õ¸µÀ» µ¹¸®´Âµ¥ ÀÌ°Í±îÁø ³Ñ ³¶ºñÀÏ ¼ö ÀÖ¾î¼­ 
-	// ¿©±â¼± ½ÇÁ¦·Î Áß¿äÇÑ material Â÷¿ø¿¡¼­ÀÇ Ã¼Å©¸¦ Á» ÇÑ´Ù.
+	// PreRenderAll ì—ì„œëŠ” ì›”ë“œì— ë–  ìˆëŠ” ëª¨ë“  Primitive ì»´í¬ë„ŒíŠ¸ë“¤ì„ ê°€ì§€ê³  ë Œë”ë§ì„ ëŒë¦¬ëŠ”ë° ì´ê²ƒê¹Œì§„ ë„˜ ë‚­ë¹„ì¼ ìˆ˜ ìˆì–´ì„œ 
+	// ì—¬ê¸°ì„  ì‹¤ì œë¡œ ì¤‘ìš”í•œ material ì°¨ì›ì—ì„œì˜ ì²´í¬ë¥¼ ì¢€ í•œë‹¤.
 	if (MaterialBasedCompleteState.ArePrimCompAllMaterialsPreRendered(InCompToCheck))
 	{
 		return false;
 	}
 
-	// ¾ÆÁ÷ Å¸ÀÔ ÇÊÅÍ¸µÀÌ ¿ÏÀüÇÏÁö°¡ ¾Ê¾Æ¼­..
+	// ì•„ì§ íƒ€ì… í•„í„°ë§ì´ ì™„ì „í•˜ì§€ê°€ ì•Šì•„ì„œ..
 	return true; // Cast<UMeshComponent>(InCompToCheck) || Cast<UParticleSystemComponent>(InCompToCheck);
 }
 
@@ -1377,8 +1377,8 @@ bool UB2PreRenderer::SetupPreRenderAllPrimPhase()
 	PreRenderAllActorVisbilityCache.Empty();
 	PreRenderAllPLStateCache.Empty();
 
-	// »ç½Ç ÀÌ ±â´ÉÀº ÀÚÃ¼·Î À§Çè¼ºÀÌ ÀÖ´Âµ¥ ¿©±â¼­ ¼¼ÆÃÇÏ°í Á¾·áÇÒ ¶§±îÁö °ÔÀÓ ÄÚµå¿¡ ÀÇÇØ Æ¯Á¤ ¾×ÅÍ³ª ÄÄÆ÷³ÍÆ®ÀÇ visibility °ªÀÌ º¯ÇÏ°Ô µÇ¸é ±×°Ô ¹«¿ëÁö¹°ÀÌ µÉ °ÍÀÌ±â ¶§¹®.
-	// ´ëÃ¼·Î ÀÌ°Ô ½ÇÇàµÇ´Â µ¿¾ÈÀº ½ÃÀÛ ¿¬ÃâÀÌ ÁøÇàÁßÀÏ °Å¶ó ¸¶Æ¼´Ï Æ®·¢¿¡ ÀÇÇÑ Á¶Àı ¿Ü¿¡´Â ±×·² ÀÏÀÌ ¾øÀ» °ÍÀÌ°í Time Delta µµ ¸Å¿ì ÀÛ°Ô ½ºÄÉÀÏ¸µ ÇÏ¿© °¡´É¼ºÀÌ »ó´çÈ÷ ³·±ä ÇÒ °Í.
+	// ì‚¬ì‹¤ ì´ ê¸°ëŠ¥ì€ ìì²´ë¡œ ìœ„í—˜ì„±ì´ ìˆëŠ”ë° ì—¬ê¸°ì„œ ì„¸íŒ…í•˜ê³  ì¢…ë£Œí•  ë•Œê¹Œì§€ ê²Œì„ ì½”ë“œì— ì˜í•´ íŠ¹ì • ì•¡í„°ë‚˜ ì»´í¬ë„ŒíŠ¸ì˜ visibility ê°’ì´ ë³€í•˜ê²Œ ë˜ë©´ ê·¸ê²Œ ë¬´ìš©ì§€ë¬¼ì´ ë  ê²ƒì´ê¸° ë•Œë¬¸.
+	// ëŒ€ì²´ë¡œ ì´ê²Œ ì‹¤í–‰ë˜ëŠ” ë™ì•ˆì€ ì‹œì‘ ì—°ì¶œì´ ì§„í–‰ì¤‘ì¼ ê±°ë¼ ë§ˆí‹°ë‹ˆ íŠ¸ë™ì— ì˜í•œ ì¡°ì ˆ ì™¸ì—ëŠ” ê·¸ëŸ´ ì¼ì´ ì—†ì„ ê²ƒì´ê³  Time Delta ë„ ë§¤ìš° ì‘ê²Œ ìŠ¤ì¼€ì¼ë§ í•˜ì—¬ ê°€ëŠ¥ì„±ì´ ìƒë‹¹íˆ ë‚®ê¸´ í•  ê²ƒ.
 //
 //	if (!IsCurrentWorldLevelPreRendered()
 //#if PLATFORM_IOS
@@ -1391,7 +1391,7 @@ bool UB2PreRenderer::SetupPreRenderAllPrimPhase()
 //			UPrimitiveComponent* ThisPrimComp = *It;
 //			if (ThisPrimComp && ShouldRenderForAllPrimPhase(ThisPrimComp))
 //			{
-//				// »óÅÂ º¯¼ö°¡ µÎ °³°¡ ÀÖ´Âµ¥ ÀÚÄ© Àß¸ø ´Ù·ç¸é ½ÇÁ¦ º¸ÀÌ´Â »óÈ²À» ÇêÂ¤À» ¼ö ÀÖÀ½. ±×·¡¼­ ¹º°¡ ¸¹ÀÌ ÀúÀå.
+//				// ìƒíƒœ ë³€ìˆ˜ê°€ ë‘ ê°œê°€ ìˆëŠ”ë° ìì¹« ì˜ëª» ë‹¤ë£¨ë©´ ì‹¤ì œ ë³´ì´ëŠ” ìƒí™©ì„ í—›ì§šì„ ìˆ˜ ìˆìŒ. ê·¸ë˜ì„œ ë­”ê°€ ë§ì´ ì €ì¥.
 //				FPreRenderPrimCompVisibilityCache ThisPrimVisibleState;
 //				ThisPrimVisibleState.bTotalVisible = ThisPrimComp->IsVisible();
 //				ThisPrimVisibleState.bVisible = ThisPrimComp->bVisible;
@@ -1402,13 +1402,13 @@ bool UB2PreRenderer::SetupPreRenderAllPrimPhase()
 //				ThisPrimComp->SetHiddenInGame(false);
 //				ThisPrimComp->SetExcessiveRenderProcessing(true);
 //
-//				// ¾ÕÀ¸·Î ¸î ÇÁ·¹ÀÓ µ¹·Á¾ß ¿Ï·á°¡ µÇ±ä ÇÒ ²«µ¥ ÀÌÂë¼­ ¸¶Å© ¤»
+//				// ì•ìœ¼ë¡œ ëª‡ í”„ë ˆì„ ëŒë ¤ì•¼ ì™„ë£Œê°€ ë˜ê¸´ í•  ê»€ë° ì´ì¯¤ì„œ ë§ˆí¬ ã…‹
 //				MaterialBasedCompleteState.MarkPrimCompMaterials(ThisPrimComp);
 //			}
 //		}
 //
-//		// Dynamic(Movable)PointLight ¸¦ º°µµ·Î Á¦¾îÇÏ±ä ÇÏÁö¸¸
-//		// ÀÌÂëÀÌ¸é Ã¹ ¿¬Ãâ ½ÃÀÛÇÏ¸é¼­ º°µµ·Î ÄÑÁø PointLight °¡ ÀÖÀ» °Í. ±×°Íµµ ²ö´Ù. »óÅÂ´Â º¸Á¸ÇÏ°í..
+//		// Dynamic(Movable)PointLight ë¥¼ ë³„ë„ë¡œ ì œì–´í•˜ê¸´ í•˜ì§€ë§Œ
+//		// ì´ì¯¤ì´ë©´ ì²« ì—°ì¶œ ì‹œì‘í•˜ë©´ì„œ ë³„ë„ë¡œ ì¼œì§„ PointLight ê°€ ìˆì„ ê²ƒ. ê·¸ê²ƒë„ ëˆë‹¤. ìƒíƒœëŠ” ë³´ì¡´í•˜ê³ ..
 //		for (TObjectIterator<UPointLightComponent> It; It; ++It)
 //		{
 //			UPointLightComponent* ThisPL = *It;
@@ -1420,11 +1420,11 @@ bool UB2PreRenderer::SetupPreRenderAllPrimPhase()
 //								
 //				if (
 //					PLOwnerActor && 
-//					!PlayerOwner &&  // PlayerOwner °¡ ÀÖÀ¸¸é º°µµ·Î °ü¸®ÇÏ´Â ÇÃ·¹ÀÌ¾î »ó´Ü¿¡ ºÙ´Â ¶óÀÌÆ®ÀÌ´Ï Á¦¿Ü
-//					!(PLActorOwner && PLActorOwner == PreRenderDummyPointLight) // ÀÌ °æ¿ìµµ ¿©±â¼­ Æ¯º°È÷ °ü¸®ÇÏ´Â °ÍÀÌ´Ï Á¦¿Ü
+//					!PlayerOwner &&  // PlayerOwner ê°€ ìˆìœ¼ë©´ ë³„ë„ë¡œ ê´€ë¦¬í•˜ëŠ” í”Œë ˆì´ì–´ ìƒë‹¨ì— ë¶™ëŠ” ë¼ì´íŠ¸ì´ë‹ˆ ì œì™¸
+//					!(PLActorOwner && PLActorOwner == PreRenderDummyPointLight) // ì´ ê²½ìš°ë„ ì—¬ê¸°ì„œ íŠ¹ë³„íˆ ê´€ë¦¬í•˜ëŠ” ê²ƒì´ë‹ˆ ì œì™¸
 //					)
 //				{
-//					// ÀÌ°Å ³¡³ª¸é µ¹·Á³ö¾ß µÈ´Ù´Â °É ±â·ÏÇØ ³õ°í Àá½Ã ²¨µĞ´Ù.
+//					// ì´ê±° ëë‚˜ë©´ ëŒë ¤ë†”ì•¼ ëœë‹¤ëŠ” ê±¸ ê¸°ë¡í•´ ë†“ê³  ì ì‹œ êº¼ë‘”ë‹¤.
 //					PreRenderAllPLStateCache.Add(ThisPL, true);
 //					ThisPL->bAffectsWorld = false;
 //					ThisPL->MarkRenderStateDirty();
@@ -1433,7 +1433,7 @@ bool UB2PreRenderer::SetupPreRenderAllPrimPhase()
 //			}
 //		}
 //
-//		// Owner Actor °¡ ÀÖ´Â PrimitiveComponent µéÀº Actor ¸¦ ÄÑÁÖÁö ¾ÊÀ¸¸é ¼Ò¿ëÀÌ ¾ø´Â µí. µû·Î Ã³¸®.
+//		// Owner Actor ê°€ ìˆëŠ” PrimitiveComponent ë“¤ì€ Actor ë¥¼ ì¼œì£¼ì§€ ì•Šìœ¼ë©´ ì†Œìš©ì´ ì—†ëŠ” ë“¯. ë”°ë¡œ ì²˜ë¦¬.
 //		UWorld* TheWorld = OwnerGameMode ? OwnerGameMode->GetWorld() : nullptr;
 //		if (TheWorld)
 //		{
@@ -1449,7 +1449,7 @@ bool UB2PreRenderer::SetupPreRenderAllPrimPhase()
 //			}
 //		}
 //
-//		bHadDoneAnyPreRender = true; // ¾ÆÁ÷ ½ÇÁ¦·Î ÇÑ °Ç ¾Æ´ÏÁö¸¸ ÀÌ ÇÃ·¡±× ¸ñÀû »ó ÀÌÂë¿¡¼­ true ¸¶Å©ÇØµµ ÁÁ°Ú´Ù.
+//		bHadDoneAnyPreRender = true; // ì•„ì§ ì‹¤ì œë¡œ í•œ ê±´ ì•„ë‹ˆì§€ë§Œ ì´ í”Œë˜ê·¸ ëª©ì  ìƒ ì´ì¯¤ì—ì„œ true ë§ˆí¬í•´ë„ ì¢‹ê² ë‹¤.
 //	}
 //
 //	FlushRenderingCommands();
@@ -1466,17 +1466,17 @@ bool UB2PreRenderer::CheckAndFinishPreRenderAllPrimPhase()
 
 	//PreRenderAllPrimTickCount++;
 
-	//StepPreRenderScreenProgress(); // Pre-render ÁøÇàµµ.
+	//StepPreRenderScreenProgress(); // Pre-render ì§„í–‰ë„.
 
-	//// Pre-render µµÁß µ¹¾Æ°¡´Â ¿¬ÃâÀ» °­Á¦ ÁøÇà ÇÏ´Âµ¥ 
-	//// ¿ø·¡ Æ©Åä¸®¾ó Ã¹ ¿¬Ãâ¿¡¼­ Ä«¸Ş¶ó¿öÅ©°¡ ÁøÇàµÇ¸é¼­ ¼ÎÀÌ´õ ÄÄÆÄÀÏ ²÷±èÀÌ ½ÉÇØ¼­ ÀÌ·± ÁşÀ» ÇÏ°Ô µÇ¾úÁö¸¸
-	//// »ó´çÈ÷ È¿°úÀûÀÌ¾ú¾î¼­ º¸´Ù ÀÏ¹İÀûÀ¸·Î Àû¿ëÇØ º½.
+	//// Pre-render ë„ì¤‘ ëŒì•„ê°€ëŠ” ì—°ì¶œì„ ê°•ì œ ì§„í–‰ í•˜ëŠ”ë° 
+	//// ì›ë˜ íŠœí† ë¦¬ì–¼ ì²« ì—°ì¶œì—ì„œ ì¹´ë©”ë¼ì›Œí¬ê°€ ì§„í–‰ë˜ë©´ì„œ ì…°ì´ë” ì»´íŒŒì¼ ëŠê¹€ì´ ì‹¬í•´ì„œ ì´ëŸ° ì§“ì„ í•˜ê²Œ ë˜ì—ˆì§€ë§Œ
+	//// ìƒë‹¹íˆ íš¨ê³¼ì ì´ì—ˆì–´ì„œ ë³´ë‹¤ ì¼ë°˜ì ìœ¼ë¡œ ì ìš©í•´ ë´„.
 	//if (OwnerGameMode && GetTotalPreRenderAllPrimTickLimit() > 0)
 	//{
 	//	AB2StageEventDirector* CurrPlayingEvent = OwnerGameMode->GetCurrentPlayingStageEventDirector();
 	//	if (CurrPlayingEvent)
-	//	{ // È­¸éÀ» °¡¸®°í ÇÃ·¹ÀÌÇÏ¹Ç·Î ·»´õ¸µÀº ¹®Á¦µÉ °Å ¾øÁö¸¸ »ç¿îµå°¡ ÇÃ·¹ÀÌ µÉ ¼ö ÀÖ´Âµ¥
-	//		// PreRender Áß¿¡´Â »ç¿îµå Æ®·¢ ²¨ ³õÀ½ (TemporaryDisableTracksForPreRender)
+	//	{ // í™”ë©´ì„ ê°€ë¦¬ê³  í”Œë ˆì´í•˜ë¯€ë¡œ ë Œë”ë§ì€ ë¬¸ì œë  ê±° ì—†ì§€ë§Œ ì‚¬ìš´ë“œê°€ í”Œë ˆì´ ë  ìˆ˜ ìˆëŠ”ë°
+	//		// PreRender ì¤‘ì—ëŠ” ì‚¬ìš´ë“œ íŠ¸ë™ êº¼ ë†“ìŒ (TemporaryDisableTracksForPreRender)
 	//		CurrPlayingEvent->ForceSetMatineePlayingPosScale(
 	//			(float)PreRenderAllPrimTickCount / (float)(GetTotalPreRenderAllPrimTickLimit()));
 	//	}
@@ -1484,42 +1484,42 @@ bool UB2PreRenderer::CheckAndFinishPreRenderAllPrimPhase()
 
 	//if (PreRenderAllPrimTickCount < GetTotalPreRenderAllPrimTickLimit())
 	//{
-	//	// ÀÌ°Ç LastRenderTime °°Àº °Å ¾È º¸°í µü Á¤ÇØÁø Æ½ ¼ö¸¸ µ·´Ù. ´Ü, ÀÌ°Ô µ¹¾Æ°¡´Â µ¿¾È ¾×ÅÍµéÀÇ Visibility °¡ º¯ÇÏÁö ¾Ê´Â´Ù´Â °¡Á¤ÀÌ ÀÖÀ¸¹Ç·Î ³Ê¹« ¸¹ÀÌ µ¹¾Æ¼± ¾È µÊ.
-	//	// LastRenderTime À¸·Î ½ÇÁ¦ ·»´õ¸µÀÌ µÇ¾ú´ÂÁö º¸·Á´Ï ½ÇÁ¦ ·»´õ¸µÀÌ µé¾î°¡Áö ¾Ê´Â ¾û¶×ÇÑ ÄÄÆ÷³ÍÆ®µéÀÌ Ã¼Å©µÊ.
+	//	// ì´ê±´ LastRenderTime ê°™ì€ ê±° ì•ˆ ë³´ê³  ë”± ì •í•´ì§„ í‹± ìˆ˜ë§Œ ëˆë‹¤. ë‹¨, ì´ê²Œ ëŒì•„ê°€ëŠ” ë™ì•ˆ ì•¡í„°ë“¤ì˜ Visibility ê°€ ë³€í•˜ì§€ ì•ŠëŠ”ë‹¤ëŠ” ê°€ì •ì´ ìˆìœ¼ë¯€ë¡œ ë„ˆë¬´ ë§ì´ ëŒì•„ì„  ì•ˆ ë¨.
+	//	// LastRenderTime ìœ¼ë¡œ ì‹¤ì œ ë Œë”ë§ì´ ë˜ì—ˆëŠ”ì§€ ë³´ë ¤ë‹ˆ ì‹¤ì œ ë Œë”ë§ì´ ë“¤ì–´ê°€ì§€ ì•ŠëŠ” ì—‰ëš±í•œ ì»´í¬ë„ŒíŠ¸ë“¤ì´ ì²´í¬ë¨.
 
-	//	// ¼³Á¤¿¡ µû¶ó ¶óÀÌÆ® È¯°æ ¹Ù²ã¼­µµ µ¹¸°´Ù.
+	//	// ì„¤ì •ì— ë”°ë¼ ë¼ì´íŠ¸ í™˜ê²½ ë°”ê¿”ì„œë„ ëŒë¦°ë‹¤.
 	//	if (PreRenderAllPrimTickCount >= PreRenderAllPrimLit2PassTickLimit + PreRenderAllPrimLit1PassTickLimit)
-	//	{// µÑ ´Ù ²û.
+	//	{// ë‘˜ ë‹¤ ë”.
 	//		ConditionalRestoreFromPreRenderLightEnvForDynPL(false);
-	//		// ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ Head Light ÀÇ °æ¿ì´Â ¹İ°æÀ» ±ØÈ÷ Á¼°Ô Àâ¾Æ¼­ »ç½Ç»ó ²¨Áöµµ·Ï ÇÑ´Ù. ÀÌ·¸°Ô ÇØµµ ¿¬Ãâ¿¡¼­ º°µµÀÇ PointLight ¸¦ »ç¿ëÇÑ´Ù¸é PointLight °¡ ÇÏ³ª´Â ÀÖ°ÚÁö¸¸..
+	//		// í”Œë ˆì´ì–´ ìºë¦­í„° Head Light ì˜ ê²½ìš°ëŠ” ë°˜ê²½ì„ ê·¹íˆ ì¢ê²Œ ì¡ì•„ì„œ ì‚¬ì‹¤ìƒ êº¼ì§€ë„ë¡ í•œë‹¤. ì´ë ‡ê²Œ í•´ë„ ì—°ì¶œì—ì„œ ë³„ë„ì˜ PointLight ë¥¼ ì‚¬ìš©í•œë‹¤ë©´ PointLight ê°€ í•˜ë‚˜ëŠ” ìˆê² ì§€ë§Œ..
 	//		MinimizePlayerPointLight();
 	//	}
 	//	else if (PreRenderAllPrimTickCount >= PreRenderAllPrimLit2PassTickLimit)
 	//	{
-	//		// 2 °³ÀÇ dynamic point light Áß ÇÏ³ª¸¸ ²û
+	//		// 2 ê°œì˜ dynamic point light ì¤‘ í•˜ë‚˜ë§Œ ë”
 	//		ConditionalRestoreFromPreRenderLightEnvForDynPL(false);
 	//	}
 	//	return false; 
 	//}
 
-	//// ¸ğµÎ º¸ÀÌµµ·Ï Çß´ø visibility ¸¦ ¿ø·¡ °ªÀ¸·Î º¹±¸½ÃÄÑÁØ´Ù.
+	//// ëª¨ë‘ ë³´ì´ë„ë¡ í–ˆë˜ visibility ë¥¼ ì›ë˜ ê°’ìœ¼ë¡œ ë³µêµ¬ì‹œì¼œì¤€ë‹¤.
 
 	//for (TObjectIterator<UPrimitiveComponent> It; It; ++It)
 	//{
 	//	UPrimitiveComponent* ThisPrimComp = *It;
 	//	if (ThisPrimComp)
 	//	{
-	//		// »óÅÂ º¯¼ö°¡ µÎ °³°¡ ÀÖ´Âµ¥ ÀÚÄ© Àß¸ø ´Ù·ç¸é ½ÇÁ¦ º¸ÀÌ´Â »óÈ²À» ÇêÂ¤À» ¼ö ÀÖÀ½.
+	//		// ìƒíƒœ ë³€ìˆ˜ê°€ ë‘ ê°œê°€ ìˆëŠ”ë° ìì¹« ì˜ëª» ë‹¤ë£¨ë©´ ì‹¤ì œ ë³´ì´ëŠ” ìƒí™©ì„ í—›ì§šì„ ìˆ˜ ìˆìŒ.
 	//		FPreRenderPrimCompVisibilityCache *ThisPrimVisibleState = PreRenderAllPrimVisbilityCache.Find(ThisPrimComp);
 	//		if (ThisPrimVisibleState)
 	//		{
-	//			// »¹Áş°°¾Æ º¸ÀÌÁö¸¸ »óÅÂ º¯¼ö°¡ µÎ°³°¡ ÀÖ´Ùº¸´Ï ¹º°¡ »óÅÂ°¡ ²¿ÀÌ´Â µí ÇØ¼­ È®½ÇÈ÷ Ã³¸®ÇÏ·Á°í..
-	//			if (!ThisPrimVisibleState->bTotalVisible) { // ÀÌÀü¿¡ ¾î¶² »çÀ¯·Îµç visible ÇÏÁö ¾Ê¾Ò´Ù°í ³ª¿Ô´ø ¾Öµé¸¸ °ªÀ» º¹±¸..
+	//			// ë»˜ì§“ê°™ì•„ ë³´ì´ì§€ë§Œ ìƒíƒœ ë³€ìˆ˜ê°€ ë‘ê°œê°€ ìˆë‹¤ë³´ë‹ˆ ë­”ê°€ ìƒíƒœê°€ ê¼¬ì´ëŠ” ë“¯ í•´ì„œ í™•ì‹¤íˆ ì²˜ë¦¬í•˜ë ¤ê³ ..
+	//			if (!ThisPrimVisibleState->bTotalVisible) { // ì´ì „ì— ì–´ë–¤ ì‚¬ìœ ë¡œë“  visible í•˜ì§€ ì•Šì•˜ë‹¤ê³  ë‚˜ì™”ë˜ ì• ë“¤ë§Œ ê°’ì„ ë³µêµ¬..
 	//				ThisPrimComp->SetVisibility(ThisPrimVisibleState->bVisible);
 	//				ThisPrimComp->SetHiddenInGame(ThisPrimVisibleState->bHiddenInGame);
 	//			}
 	//		}
-	//		ThisPrimComp->SetExcessiveRenderProcessing(false); // ÀÌ°Ç À¯ÁöÇÒ ÀÌÀ¯°¡ ¾øÀ¸°í ±×³É µÎ¸é ¼º´É¿¡ ¾Ç¿µÇâÀ» ³¢Ä¡°Ô µÇ´Ï ¹«Á¶°Ç ²¨ÁÜ.
+	//		ThisPrimComp->SetExcessiveRenderProcessing(false); // ì´ê±´ ìœ ì§€í•  ì´ìœ ê°€ ì—†ìœ¼ê³  ê·¸ëƒ¥ ë‘ë©´ ì„±ëŠ¥ì— ì•…ì˜í–¥ì„ ë¼ì¹˜ê²Œ ë˜ë‹ˆ ë¬´ì¡°ê±´ êº¼ì¤Œ.
 	//	}
 	//}
 
@@ -1528,7 +1528,7 @@ bool UB2PreRenderer::CheckAndFinishPreRenderAllPrimPhase()
 	//	UPointLightComponent* ThisPL = CachedPLIt.Key();
 	//	if (ThisPL)
 	//	{
-	//		ThisPL->bAffectsWorld = CachedPLIt.Value(); // ¾Æ¸¶µµ true °ÚÁö¸¸
+	//		ThisPL->bAffectsWorld = CachedPLIt.Value(); // ì•„ë§ˆë„ true ê² ì§€ë§Œ
 	//		ThisPL->MarkRenderStateDirty();
 	//	}
 	//}
@@ -1544,7 +1544,7 @@ bool UB2PreRenderer::CheckAndFinishPreRenderAllPrimPhase()
 	//		{
 	//			bool* CachedVisibilityValue = PreRenderAllActorVisbilityCache.Find(ThisActor);
 	//			if (CachedVisibilityValue && !(*CachedVisibilityValue)) {
-	//				ThisActor->SetActorHiddenInGame(!(*CachedVisibilityValue)); // ²¨Á® ÀÖ´ø °æ¿ì¸¸ ´Ù½Ã ²¨ÁÜ
+	//				ThisActor->SetActorHiddenInGame(!(*CachedVisibilityValue)); // êº¼ì ¸ ìˆë˜ ê²½ìš°ë§Œ ë‹¤ì‹œ êº¼ì¤Œ
 	//			}
 	//		}
 	//	}
@@ -1561,14 +1561,14 @@ bool UB2PreRenderer::CheckAndFinishPreRenderAllPrimPhase()
 
 void UB2PreRenderer::OnPreRenderComplete()
 {
-	ConditionalRestoreFromPreRenderLightEnvForDynPL(true); // ¿ÏÀü Á¤»óÀ¸·Î µÇµ¹¸²
+	ConditionalRestoreFromPreRenderLightEnvForDynPL(true); // ì™„ì „ ì •ìƒìœ¼ë¡œ ë˜ëŒë¦¼
 	//CachedExtraPreRenderPS.Empty();
 	//CachedExtraPreRenderSKMesh.Empty();
 	//CachedExtraPreRenderNPCClassInfo.Empty();
-	//CachedPreLoadingScreen = nullptr; // ÀÌ°Å Close ´Â GameMode ÂÊ¼­
+	//CachedPreLoadingScreen = nullptr; // ì´ê±° Close ëŠ” GameMode ìª½ì„œ
 	//
-	//// ExcessiveRenderProcessing ¸®¼Â È®½ÇÈ÷.. AllPrimPhase ³¡³¯ ¶§ ¸®¼ÂÇØÁÖ´Â ÁÖ´Â °É·Î´Â ºÎÁ·ÇÒ ¼ö ÀÖ´Âµ¥ 
-	//// AllPrimPhase ¾øÀÌ ´Ù¸¥ pre-render ¸¸ ÇÏ´Â °æ¿ìµµ ÀÖ°í, ±×·± °æ¿ìµµ component °¡ ÇÑµ¿¾È ³²¾ÆÀÖÀ» ¼ö ÀÖ±â ¶§¹®.
+	//// ExcessiveRenderProcessing ë¦¬ì…‹ í™•ì‹¤íˆ.. AllPrimPhase ëë‚  ë•Œ ë¦¬ì…‹í•´ì£¼ëŠ” ì£¼ëŠ” ê±¸ë¡œëŠ” ë¶€ì¡±í•  ìˆ˜ ìˆëŠ”ë° 
+	//// AllPrimPhase ì—†ì´ ë‹¤ë¥¸ pre-render ë§Œ í•˜ëŠ” ê²½ìš°ë„ ìˆê³ , ê·¸ëŸ° ê²½ìš°ë„ component ê°€ í•œë™ì•ˆ ë‚¨ì•„ìˆì„ ìˆ˜ ìˆê¸° ë•Œë¬¸.
 	//for (TObjectIterator<UPrimitiveComponent> It; It; ++It)
 	//{
 	//	UPrimitiveComponent* ThisPrimComp = *It;
@@ -1578,7 +1578,7 @@ void UB2PreRenderer::OnPreRenderComplete()
 	//	}
 	//}
 	//
-	//// ÀÌ¹ø¿¡ ½ÇÁ¦·Î pre-render ¸¦ Çß´Ù¸é.. ¼ÎÀÌ´õ Ä³½¬µµ °»½ÅÀÌ µÇµµ·Ï ÇÑ´Ù.
+	//// ì´ë²ˆì— ì‹¤ì œë¡œ pre-render ë¥¼ í–ˆë‹¤ë©´.. ì…°ì´ë” ìºì‰¬ë„ ê°±ì‹ ì´ ë˜ë„ë¡ í•œë‹¤.
 	//if (bHadDoneAnyPreRender)
 	//{
 	//	EnsureSaveCaches();
@@ -1587,7 +1587,7 @@ void UB2PreRenderer::OnPreRenderComplete()
 
 void UB2PreRenderer::EnsureSaveCaches()
 {
-	//#if PLATFORM_ANDROID // Vulkan ÀÇ °æ¿ìÀÎµ¥.. ÀÌ°Ô ±âº»ÀûÀ¸·Î´Â ¾Û Á¾·á½Ã¿¡¸¸ ¾÷µ¥ÀÌÆ® µÇµµ·Ï ÇØ ³õ¾Æ¼­ È¤¿©³ª Å©·¡½¬¶óµµ °ŞÀ¸¸é PreRender »óÅÂ´Â ÀúÀåµÇÁö¸¸ ¼ÎÀÌ´õ Ä³½¬´Â ¹«¿ëÁö¹°ÀÌ µÊ. ÀÌ·± ¾È½ÀÇÑ »çÅÂ¸¦ ¹æÁöÇÏ°íÀÚ ÀÌÂë¼­µµ ¼ÎÀÌ´õ Ä³½¬ ¾÷µ¥ÀÌÆ®.
+	//#if PLATFORM_ANDROID // Vulkan ì˜ ê²½ìš°ì¸ë°.. ì´ê²Œ ê¸°ë³¸ì ìœ¼ë¡œëŠ” ì•± ì¢…ë£Œì‹œì—ë§Œ ì—…ë°ì´íŠ¸ ë˜ë„ë¡ í•´ ë†“ì•„ì„œ í˜¹ì—¬ë‚˜ í¬ë˜ì‰¬ë¼ë„ ê²ªìœ¼ë©´ PreRender ìƒíƒœëŠ” ì €ì¥ë˜ì§€ë§Œ ì…°ì´ë” ìºì‰¬ëŠ” ë¬´ìš©ì§€ë¬¼ì´ ë¨. ì´ëŸ° ì•ˆìŠµí•œ ì‚¬íƒœë¥¼ ë°©ì§€í•˜ê³ ì ì´ì¯¤ì„œë„ ì…°ì´ë” ìºì‰¬ ì—…ë°ì´íŠ¸.
 	//	if (FAndroidMisc::ShouldUseVulkan())
 	//	{
 	//		const auto& OnSavePipelineCacheCallback = FAndroidMisc::GetOnSavePipelineCache();
@@ -1621,7 +1621,7 @@ bool UB2PreRenderer::IsPreRenderLevelGoneThrough()
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
-// PreRenderGameMode ¸¦ À§ÇÑ ÀÎÅÍÆäÀÌ½ºµé.. ±Ùº»ÀûÀÎ ±â´ÉÀº Á¦ÀÏ ±âº» SetupPreRenderObjects ¿¡¼­ ÇÏ´Â °Å¶û ¸¶Âù°¡Áö. ¾à°£ ´Ù¸£°Ô »ç¿ëÇÒ »Ó.
+// PreRenderGameMode ë¥¼ ìœ„í•œ ì¸í„°í˜ì´ìŠ¤ë“¤.. ê·¼ë³¸ì ì¸ ê¸°ëŠ¥ì€ ì œì¼ ê¸°ë³¸ SetupPreRenderObjects ì—ì„œ í•˜ëŠ” ê±°ë‘ ë§ˆì°¬ê°€ì§€. ì•½ê°„ ë‹¤ë¥´ê²Œ ì‚¬ìš©í•  ë¿.
 
 bool UB2PreRenderer::IsInPreRenderGameMode() const
 {
@@ -1635,15 +1635,15 @@ void UB2PreRenderer::InitForPreRenderGameMode(AB2PreRenderGameMode* InGM)
 }
 void UB2PreRenderer::SetupForPreRenderGM_PCClassPass(EPCClass InPCClass, bool bIncludeSkillAnims)
 {
-	checkSlow(AllPreRenderDummy.Num() == 0); // °¢ ÆĞ½º °£¿¡ PreRenderDummy ¸¦ ÀçÈ°¿ëÇØ¼­ »ç¿ëÇÏ´Â ½ÄÀÌ µÈ´Ù¸é ÀÌ check °¡ ¸ÂÁö ¾Ê°ÚÁö..
+	checkSlow(AllPreRenderDummy.Num() == 0); // ê° íŒ¨ìŠ¤ ê°„ì— PreRenderDummy ë¥¼ ì¬í™œìš©í•´ì„œ ì‚¬ìš©í•˜ëŠ” ì‹ì´ ëœë‹¤ë©´ ì´ check ê°€ ë§ì§€ ì•Šê² ì§€..
 
-	// Pre-render ¸¸À» À§ÇÑ Àü¿ë ¸ğµå¿¡¼­ µ¹¸®´Â °ÍÀÌ¹Ç·Î ForceSetup À» ÁØ´Ù.
-	// ´çÀå ±×·¸°Ô ¾ÈÇÑ´Ù°í ÇØ¼­ ¹®Á¦µÉ °Ç ¾ø°ÚÁö¸¸.. È¤¿©³ª ¼ÎÀÌ´õ Ä³½¬°¡ ³¯¾Æ°£´Ù°Å³ª ÇÏ´Â »óÈ²¿¡¼­ ÀÌ PreRenderGameMode ¸¦ ¹İº¹ÇØ¼­ µ¹¸®´Â µîÀÇ ¿©Áö¸¦ »ı°¢ÇØ¼­ ¤»
+	// Pre-render ë§Œì„ ìœ„í•œ ì „ìš© ëª¨ë“œì—ì„œ ëŒë¦¬ëŠ” ê²ƒì´ë¯€ë¡œ ForceSetup ì„ ì¤€ë‹¤.
+	// ë‹¹ì¥ ê·¸ë ‡ê²Œ ì•ˆí•œë‹¤ê³  í•´ì„œ ë¬¸ì œë  ê±´ ì—†ê² ì§€ë§Œ.. í˜¹ì—¬ë‚˜ ì…°ì´ë” ìºì‰¬ê°€ ë‚ ì•„ê°„ë‹¤ê±°ë‚˜ í•˜ëŠ” ìƒí™©ì—ì„œ ì´ PreRenderGameMode ë¥¼ ë°˜ë³µí•´ì„œ ëŒë¦¬ëŠ” ë“±ì˜ ì—¬ì§€ë¥¼ ìƒê°í•´ì„œ ã…‹
 	ConditionalSetupPreRenderObjectForPCClass(InPCClass, true);
 
 	if (bIncludeSkillAnims)
 	{
-		// ¸í½ÃÇÑ Å¬·¡½ºÀÇ SkillAnim µé. °¢ PCClass º° AnimBP ¿¡ µé¾î°¡ ÀÖ´Â ÀüÅõ ¾Ö´Ï¸ŞÀÌ¼Çµé°ú ±Ùº»ÀûÀ¸·Î ´Ù¸¦ °Í ¾øÀ½. ´ÜÁö ·ÎµùµÇ´Â µ¥ÀÌÅÍ Àı°¨ ¸é¿¡¼­ µû·Î ¶¼¼­ °ü¸®ÇÏ´Â °Å.
+		// ëª…ì‹œí•œ í´ë˜ìŠ¤ì˜ SkillAnim ë“¤. ê° PCClass ë³„ AnimBP ì— ë“¤ì–´ê°€ ìˆëŠ” ì „íˆ¬ ì• ë‹ˆë©”ì´ì…˜ë“¤ê³¼ ê·¼ë³¸ì ìœ¼ë¡œ ë‹¤ë¥¼ ê²ƒ ì—†ìŒ. ë‹¨ì§€ ë¡œë”©ë˜ëŠ” ë°ì´í„° ì ˆê° ë©´ì—ì„œ ë”°ë¡œ ë–¼ì„œ ê´€ë¦¬í•˜ëŠ” ê±°.
 		const TArray<FCombinedPCSkillAnimID> SkillAnimsToPreLoad = ABladeIIGameMode::GetAllPCSkillAnimsOfClass(InPCClass);
 		ConditionalSetupPreRenderObjectForPCSkillAnims(SkillAnimsToPreLoad, true);
 	}
@@ -1651,41 +1651,41 @@ void UB2PreRenderer::SetupForPreRenderGM_PCClassPass(EPCClass InPCClass, bool bI
 	PostPreRenderSeupProcess();
 	if (AllPreRenderDummy.Num() > 0)
 	{
-		bHadDoneAnyPreRender = true; // ¾ÆÁ÷ ½ÇÁ¦·Î ÇÑ °Ç ¾Æ´ÏÁö¸¸ ÀÌ ÇÃ·¡±× ¸ñÀû »ó ÀÌÂë¼­ true ¸¶Å©
+		bHadDoneAnyPreRender = true; // ì•„ì§ ì‹¤ì œë¡œ í•œ ê±´ ì•„ë‹ˆì§€ë§Œ ì´ í”Œë˜ê·¸ ëª©ì  ìƒ ì´ì¯¤ì„œ true ë§ˆí¬
 	}
 }
 
 void UB2PreRenderer::SetupForPreRenderGM_PCSkillAnimPass(EPCClass InPCClass)
 {
-	checkSlow(AllPreRenderDummy.Num() == 0); // °¢ ÆĞ½º °£¿¡ PreRenderDummy ¸¦ ÀçÈ°¿ëÇØ¼­ »ç¿ëÇÏ´Â ½ÄÀÌ µÈ´Ù¸é ÀÌ check °¡ ¸ÂÁö ¾Ê°ÚÁö..
+	checkSlow(AllPreRenderDummy.Num() == 0); // ê° íŒ¨ìŠ¤ ê°„ì— PreRenderDummy ë¥¼ ì¬í™œìš©í•´ì„œ ì‚¬ìš©í•˜ëŠ” ì‹ì´ ëœë‹¤ë©´ ì´ check ê°€ ë§ì§€ ì•Šê² ì§€..
 
 	const TArray<FCombinedPCSkillAnimID> SkillAnimsToPreLoad = ABladeIIGameMode::GetAllPCSkillAnimsOfClass(InPCClass);
-	ConditionalSetupPreRenderObjectForPCSkillAnims(SkillAnimsToPreLoad, true); // ¿©±âµµ ForceSetup
+	ConditionalSetupPreRenderObjectForPCSkillAnims(SkillAnimsToPreLoad, true); // ì—¬ê¸°ë„ ForceSetup
 
 	PostPreRenderSeupProcess();
 	if (AllPreRenderDummy.Num() > 0)
 	{
-		bHadDoneAnyPreRender = true; // ¾ÆÁ÷ ½ÇÁ¦·Î ÇÑ °Ç ¾Æ´ÏÁö¸¸ ÀÌ ÇÃ·¡±× ¸ñÀû »ó ÀÌÂë¼­ true ¸¶Å©
+		bHadDoneAnyPreRender = true; // ì•„ì§ ì‹¤ì œë¡œ í•œ ê±´ ì•„ë‹ˆì§€ë§Œ ì´ í”Œë˜ê·¸ ëª©ì  ìƒ ì´ì¯¤ì„œ true ë§ˆí¬
 	}
 }
 
 void UB2PreRenderer::SetupForPreRenderGM_DamageEffectInfo()
 {
-	checkSlow(AllPreRenderDummy.Num() == 0); // °¢ ÆĞ½º °£¿¡ PreRenderDummy ¸¦ ÀçÈ°¿ëÇØ¼­ »ç¿ëÇÏ´Â ½ÄÀÌ µÈ´Ù¸é ÀÌ check °¡ ¸ÂÁö ¾Ê°ÚÁö..
+	checkSlow(AllPreRenderDummy.Num() == 0); // ê° íŒ¨ìŠ¤ ê°„ì— PreRenderDummy ë¥¼ ì¬í™œìš©í•´ì„œ ì‚¬ìš©í•˜ëŠ” ì‹ì´ ëœë‹¤ë©´ ì´ check ê°€ ë§ì§€ ì•Šê² ì§€..
 
 	ConditionalSetupPreRenderObjectForDamageEffectInfo(true);
 
 	PostPreRenderSeupProcess();
 	if (AllPreRenderDummy.Num() > 0)
 	{
-		bHadDoneAnyPreRender = true; // ¾ÆÁ÷ ½ÇÁ¦·Î ÇÑ °Ç ¾Æ´ÏÁö¸¸ ÀÌ ÇÃ·¡±× ¸ñÀû »ó ÀÌÂë¼­ true ¸¶Å©
+		bHadDoneAnyPreRender = true; // ì•„ì§ ì‹¤ì œë¡œ í•œ ê±´ ì•„ë‹ˆì§€ë§Œ ì´ í”Œë˜ê·¸ ëª©ì  ìƒ ì´ì¯¤ì„œ true ë§ˆí¬
 	}
 }
 void UB2PreRenderer::SetupForPreRenderGM_Extra(bool bForNPCClass, bool bForFx, bool bForOther)
 {
-	//checkSlow(AllPreRenderDummy.Num() == 0); ÀÌ°Å ¹Ù·Î ¾Õ¿¡ ´Ù¸¥ PreRender ¸¦ ¼¼ÆÃÇÏ´Â »ç¿ë »ç·Ê°¡ ÀÖ¾î¼­ °É¸². µüÈ÷ Áß¿äÇÑ check ´Â ¾Æ´Ô.
+	//checkSlow(AllPreRenderDummy.Num() == 0); ì´ê±° ë°”ë¡œ ì•ì— ë‹¤ë¥¸ PreRender ë¥¼ ì„¸íŒ…í•˜ëŠ” ì‚¬ìš© ì‚¬ë¡€ê°€ ìˆì–´ì„œ ê±¸ë¦¼. ë”±íˆ ì¤‘ìš”í•œ check ëŠ” ì•„ë‹˜.
 
-	// ExtraNPCClass ¿Í Other ¸¦ Fx º¸´Ù ¸ÕÀú ÇÏ´Âµ¥ Fx ÆĞ½º ¼Â¾÷ÇÒ ¶§ÀÇ ´õ¹Ì°¡ »ı°Ü¼­ ±»ÀÌ ÀÏºÎ·¯ ÇÏ³ª »ı¼ºÇÒ ÇÊ¿ä°¡ ¾ø¾îÁö°Ô µÇ±â ¶§¹®.
+	// ExtraNPCClass ì™€ Other ë¥¼ Fx ë³´ë‹¤ ë¨¼ì € í•˜ëŠ”ë° Fx íŒ¨ìŠ¤ ì…‹ì—…í•  ë•Œì˜ ë”ë¯¸ê°€ ìƒê²¨ì„œ êµ³ì´ ì¼ë¶€ëŸ¬ í•˜ë‚˜ ìƒì„±í•  í•„ìš”ê°€ ì—†ì–´ì§€ê²Œ ë˜ê¸° ë•Œë¬¸.
 	if (bForNPCClass)
 	{
 		SetupPreRenderObjects_ExtraNPCClass();
@@ -1702,30 +1702,30 @@ void UB2PreRenderer::SetupForPreRenderGM_Extra(bool bForNPCClass, bool bForFx, b
 	PostPreRenderSeupProcess();
 	if (AllPreRenderDummy.Num() > 0)
 	{
-		bHadDoneAnyPreRender = true; // ¾ÆÁ÷ ½ÇÁ¦·Î ÇÑ °Ç ¾Æ´ÏÁö¸¸ ÀÌ ÇÃ·¡±× ¸ñÀû »ó ÀÌÂë¼­ true ¸¶Å©
+		bHadDoneAnyPreRender = true; // ì•„ì§ ì‹¤ì œë¡œ í•œ ê±´ ì•„ë‹ˆì§€ë§Œ ì´ í”Œë˜ê·¸ ëª©ì  ìƒ ì´ì¯¤ì„œ true ë§ˆí¬
 	}
 }
 
 #if PLATFORM_IOS // [IOS_SPECIFIC_MEMORY_SAVING] 
 /*
- * iOS ¿¡¼± ¼ÎÀÌ´õ ÄÄÆÄÀÏ ¼º´ÉÀÌ ÁÁÀº ÆíÀÌ°í Pre-render ÀÇ ¸Ş¸ğ¸® ¼Ò¸ğ°¡ ´õ ¹®Á¦°¡ µÉ ¼ö ÀÖ¾î¼­ µû·Î Á¶°ÇÀ» °Ç´Ù.
- * »óÈ²¿¡ µû¶ó ÀÏºÎ¸¸ ¿¬´Ù°Å³ª ÇÒ ¼ö ÀÖ´Ù.
+ * iOS ì—ì„  ì…°ì´ë” ì»´íŒŒì¼ ì„±ëŠ¥ì´ ì¢‹ì€ í¸ì´ê³  Pre-render ì˜ ë©”ëª¨ë¦¬ ì†Œëª¨ê°€ ë” ë¬¸ì œê°€ ë  ìˆ˜ ìˆì–´ì„œ ë”°ë¡œ ì¡°ê±´ì„ ê±´ë‹¤.
+ * ìƒí™©ì— ë”°ë¼ ì¼ë¶€ë§Œ ì—°ë‹¤ê±°ë‚˜ í•  ìˆ˜ ìˆë‹¤.
  */
 bool UB2PreRenderer::ShouldDoPreRenderForIOS()
-{ // ÀÌ°Ô return true ¶ó°í ÇØ¼­ ¸ğµç °É ¶È°°ÀÌ ÇÏ°Ô µÇ´Â °Ç ¾Æ´Ï´Ù.
+{ // ì´ê²Œ return true ë¼ê³  í•´ì„œ ëª¨ë“  ê±¸ ë˜‘ê°™ì´ í•˜ê²Œ ë˜ëŠ” ê±´ ì•„ë‹ˆë‹¤.
 	return ShouldDoPreRenderForIOS_Basic() ||
 		ShouldDoPreRenderForIOS_AllPrim() ||
 		ShouldDoPreRenderForIOS_PreRenderGM();
 }
 bool UB2PreRenderer::ShouldDoPreRenderForIOS_Basic()
 {
-	// ÀÌ¸§Àº Basic ÀÌÁö¸¸ ShouldDoPreRenderForIOS_PreRenderGM ÀÌ false ÀÌ°í ÀÌ°Ô true ÀÌ¸é ´õ¿í´õ Å« ºÎ´ãÀ¸·Î ¶È°°Àº °É Ã³¸®ÇÏ°Ô µÉ ¼ö ÀÖ´Ù.
-	// »ç½Ç»ó ¸í¸ñ»óÀ¸·Î ÀÖ´Â °Å°í ´Ù¸¥ sub-condition ÀÌ true ÀÏ ¼ö´Â ÀÖ¾îµµ ÀÌ°É true ·Î ÇÏ±â´Â ¾î·Á¿ï °ÍÀÌ´Ù.
+	// ì´ë¦„ì€ Basic ì´ì§€ë§Œ ShouldDoPreRenderForIOS_PreRenderGM ì´ false ì´ê³  ì´ê²Œ true ì´ë©´ ë”ìš±ë” í° ë¶€ë‹´ìœ¼ë¡œ ë˜‘ê°™ì€ ê±¸ ì²˜ë¦¬í•˜ê²Œ ë  ìˆ˜ ìˆë‹¤.
+	// ì‚¬ì‹¤ìƒ ëª…ëª©ìƒìœ¼ë¡œ ìˆëŠ” ê±°ê³  ë‹¤ë¥¸ sub-condition ì´ true ì¼ ìˆ˜ëŠ” ìˆì–´ë„ ì´ê±¸ true ë¡œ í•˜ê¸°ëŠ” ì–´ë ¤ìš¸ ê²ƒì´ë‹¤.
 	return false;
 }
 bool UB2PreRenderer::ShouldDoPreRenderForIOS_AllPrim()
 {
-	return true; // Å×½ºÆ®¸¦ ÇØ º¸´Ï ÀÌ°Å Á¤µµ´Â ÇÊ¿äÇÒ °Å °°´Ù.
+	return true; // í…ŒìŠ¤íŠ¸ë¥¼ í•´ ë³´ë‹ˆ ì´ê±° ì •ë„ëŠ” í•„ìš”í•  ê±° ê°™ë‹¤.
 }
 bool UB2PreRenderer::ShouldDoPreRenderForIOS_PreRenderGM()
 {
@@ -1735,8 +1735,8 @@ bool UB2PreRenderer::ShouldDoPreRenderForIOS_PreRenderGM()
 
 ///////////////////////////////////////////////////////////////////////////////////
 
-int32 UB2PreRenderer::MaxPreRenderCount = 1; // 1º¸´Ù Å©°Ô ÇÒ ÀÌÀ¯´Â °ÅÀÇ ¾ø´Ù. 1 È¤Àº 0.
-int32 UB2PreRenderer::OverallPreRenderLimit = 10; // ÇÏ³ª¶óµµ Ã³À½ ·»´õ¸µÀÌ µÈ ÀÌÈÄ¿¡ ³ª¸ÓÁö ¾Öµé ·»´õ¸µ µÉ ¶§±îÁö ±â´Ù¸®´Â Æ½ ¼ö.
+int32 UB2PreRenderer::MaxPreRenderCount = 1; // 1ë³´ë‹¤ í¬ê²Œ í•  ì´ìœ ëŠ” ê±°ì˜ ì—†ë‹¤. 1 í˜¹ì€ 0.
+int32 UB2PreRenderer::OverallPreRenderLimit = 10; // í•˜ë‚˜ë¼ë„ ì²˜ìŒ ë Œë”ë§ì´ ëœ ì´í›„ì— ë‚˜ë¨¸ì§€ ì• ë“¤ ë Œë”ë§ ë  ë•Œê¹Œì§€ ê¸°ë‹¤ë¦¬ëŠ” í‹± ìˆ˜.
 int32 UB2PreRenderer::PreRenderHardLimit = 20;
 float UB2PreRenderer::PreRenderSpawnDistFromView = 100.0f;
 bool UB2PreRenderer::bPreRenderAtFarAway = false;
@@ -1762,7 +1762,7 @@ void UB2PreRenderer::LoadSettings()
 }
 void UB2PreRenderer::LoadSettings_PreRenderGM()
 {
-	// Pre-render Àü¿ë °ÔÀÓ¸ğµå¿¡¼­ ¼³Á¤À» ´Ù¸£°Ô ¾²·Á°í ÇÔ. Æ¯¼ö ¸ğµåÀÌ¹Ç·Î ±×°Ô °¡´É
+	// Pre-render ì „ìš© ê²Œì„ëª¨ë“œì—ì„œ ì„¤ì •ì„ ë‹¤ë¥´ê²Œ ì“°ë ¤ê³  í•¨. íŠ¹ìˆ˜ ëª¨ë“œì´ë¯€ë¡œ ê·¸ê²Œ ê°€ëŠ¥
 	if (GConfig)
 	{
 		GConfig->GetInt(TEXT("PreRender"), TEXT("MaxPreRenderCount_PreRenderGM"), MaxPreRenderCount, GGameIni);
@@ -1782,6 +1782,6 @@ void UB2PreRenderer::LoadCompleteState()
 }
 void UB2PreRenderer::ClearCompleteState()
 {
-	TotalCompleteState.ClearState(); // ÈçÈ÷ ¾µ ±â´ÉÀº ¾Æ´Ï°í ¿ø·¡ Å×½ºÆ® ¿ë ±â´ÉÀÎµ¥ È¤ ¼ÎÀÌ´õ Ä³½¬ ¸®¼Â °°Àº »óÈ²¿¡¼­ ÇÊ¿äÇÑ ±â´ÉÀÌ µÉÁöµµ? 
+	TotalCompleteState.ClearState(); // í”íˆ ì“¸ ê¸°ëŠ¥ì€ ì•„ë‹ˆê³  ì›ë˜ í…ŒìŠ¤íŠ¸ ìš© ê¸°ëŠ¥ì¸ë° í˜¹ ì…°ì´ë” ìºì‰¬ ë¦¬ì…‹ ê°™ì€ ìƒí™©ì—ì„œ í•„ìš”í•œ ê¸°ëŠ¥ì´ ë ì§€ë„? 
 	MaterialBasedCompleteState.ClearState();
 }

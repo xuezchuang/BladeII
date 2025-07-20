@@ -1,4 +1,4 @@
-#include "B2UIPVPEntryHero.h"
+﻿#include "B2UIPVPEntryHero.h"
 
 
 #include "BladeIIUtil.h"

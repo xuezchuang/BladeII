@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIControlMain.h"
 #include "B2UIDocHelper.h"
@@ -55,7 +55,7 @@ void UB2UIControlMain::OnSceneOpen(EUIScene InOpenedScene)
 {
 	Super::OnSceneOpen(InOpenedScene);
 
-	// UIHeader ¿Í °°ÀÌ Scene À¸·Î ±¸¼ºÇÏ´Â °æ¿ì Init ½ÃÁ¡¿¡ ÇÏ¸é Scene ¿¡ Æ÷ÇÔµÈ header °¡ »ı¼ºÀÌ ¾ÈµÈ »óÈ²ÀÏ ¼ö ÀÖÀ½.
+	// UIHeader å®¢ éæ Scene æ è‚º å¤‡å·±çªç»° ç‰ˆå¿« Init çŸ«ç—¢ä¿Š çªæ Scene ä¿Š å™¨çªƒç­‰ header å•Š ç§¯å·±æ æ•‘ç­‰ æƒ‘ç‚”è€ è ä¹æ¾œ.
 	SetLobbyUIHeaderTitleByGeneralTextTableKey(TEXT("ChallengeMod_ControlMatch"));
 
 	UB2UIDocControl* DocControl = UB2UIDocHelper::GetDocControl();
@@ -108,7 +108,7 @@ void UB2UIControlMain::BindDocAuto()
 	if (TB_CurrentWinNumber.IsValid())
 		TB_CurrentWinNumber->SetText(FText::Format(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("PVPResult_PlayerTopContinuedWins")), FText::AsNumber(iContinueWin)));
 
-	// ³²Àº½Ã°£ ¼³Á¤
+	// å·¢ç¯®çŸ«åŸƒ æ±²æ²¥
 	InitRemainTime();
 }
 
@@ -330,11 +330,11 @@ void UB2UIControlMain::UnsubscribeEvents()
 
 void UB2UIControlMain::OnClickBtnStartGame()
 {
-	// Á¡°Ë Á¤»ê Ã¼Å©
+	// ç—¢å…« æ²¥é­‚ çœ‰å†œ
 	if (TutorialManager::GetInstance().IsFinishTutorial(TutorialID_Occupy) && CheckContentsModeState(b2network::B2ContentsMode::ASSAULT))
 		return;
 
-	// »óÀÚ º¸»ó or Mvpº¸»ó Ã¼Å©
+	// æƒ‘ç£Š ç„Šæƒ‘ or Mvpç„Šæƒ‘ çœ‰å†œ
 	UB2UIDocControl* pDoc = UB2UIDocHelper::GetDocControl();
 
 	if (!pDoc)
@@ -342,10 +342,10 @@ void UB2UIControlMain::OnClickBtnStartGame()
 
 	if (pDoc->GetRewardBoxStatus()
 		&& pDoc->GetRewardBoxStatus()->is_reward_state
-		&& pDoc->GetCanViewModRewardBoxConfirm()/*ÇÑ¹ø¸¸ º¸±â ÇÃ·¡±×*/
+		&& pDoc->GetCanViewModRewardBoxConfirm()/*èŒ„é”…çˆ¶ ç„Šæ‰ æ•²è´°å¼Š*/
 		&& !IsActiveControlTutorial())
 	{
-		// ÆË¾÷Ã¢ ¶ç¿öÁÖ°í ÇÑ¹ø¸¸ º¸±â ÇÃ·¡±× ¿ÀÇÁ
+		// æ‰‘è¯€èŠ’ å‰å†µæ—ç»Š èŒ„é”…çˆ¶ ç„Šæ‰ æ•²è´°å¼Š å·æ©‡
 		UB2UIMsgPopupBoxRewardConfirm* pUI = UB2UIManager::GetInstance()->OpenUI<UB2UIMsgPopupBoxRewardConfirm>(UIFName::MsgPopupBoxRewardConfirm);
 
 		if (pUI)
@@ -364,10 +364,10 @@ void UB2UIControlMain::OnClickBtnStartGame()
 	}
 
 	if (pDoc->GetMVPPoint() >= BladeIIGameImpl::GetClientDataStore().GetAssaultMvpPointToOpenReward()
-		&& pDoc->GetCanViewMvpRewardBoxConfirm()/*ÇÑ¹ø¸¸ º¸±â ÇÃ·¡±×*/
+		&& pDoc->GetCanViewMvpRewardBoxConfirm()/*èŒ„é”…çˆ¶ ç„Šæ‰ æ•²è´°å¼Š*/
 		&& !IsActiveControlTutorial())
 	{
-		// ÆË¾÷Ã¢ ¶ç¿öÁÖ°í ÇÑ¹ø¸¸ º¸±â ÇÃ·¡±× ¿ÀÇÁ
+		// æ‰‘è¯€èŠ’ å‰å†µæ—ç»Š èŒ„é”…çˆ¶ ç„Šæ‰ æ•²è´°å¼Š å·æ©‡
 		UB2UIMsgPopupBoxRewardConfirm* pUI = UB2UIManager::GetInstance()->OpenUI<UB2UIMsgPopupBoxRewardConfirm>(UIFName::MsgPopupBoxRewardConfirm);
 
 		if (pUI)
@@ -386,7 +386,7 @@ void UB2UIControlMain::OnClickBtnStartGame()
 	}
 
 	if (!IsActiveControlTutorial() && !CheckControlAbleTime())
-		return; // Á¡·ÉÀü ÀÔÀå½Ã°£ÀÌ ¾Æ´Ï¸é ÆË¾÷ Ãâ·ÂÈÄ ¸®ÅÏ
+		return; // ç—¢é£å‚ˆ æ¶å˜çŸ«åŸƒæ é…’èªæ æ‰‘è¯€ å…ä»¿é¥¶ åºœç•”
 
 	LobbyChangeSceneByUISceneClass<EUIScene>::GetInstance().Signal(EUIScene::ControlCharacterSelectPage);
 }
@@ -417,7 +417,7 @@ bool UB2UIControlMain::CheckControlAbleTime()
 
 void UB2UIControlMain::OnClickBtnRanking()
 {
-	// ¹öÆ° ¸í¿¹ÀÇ Àü´ç.
+	// æ»šç“¢ ç–™æŠ—ç‹¼ å‚ˆå¯¸.
 	UB2UIManager::GetInstance()->OpenUI(UIFName::ControlRanking);
 }
 
@@ -464,7 +464,7 @@ void UB2UIControlMain::InitRemainTime()
 
 	if (BTN_StartGame.IsValid())
 	{
-		// Á¡·ÉÀü Æ©Åä¸®¾óÀÏ¶© È°¼ºÈ­
+		// ç—¢é£å‚ˆ è­¬é…åºœå€”è€è®¢ åŠå·±æ‹³
 		if (IsActiveControlTutorial())
 		{
 			BTN_StartGame->SetIsEnabled(true);

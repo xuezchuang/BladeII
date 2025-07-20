@@ -1,6 +1,6 @@
-
+ï»¿
 #include "B2BTTask_GuildNPC_UpdateState.h"
-//#include "BladeII.h"
+#include "BladeII.h"
 #include "B2GuildNPCAIController.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "BehaviorTree/Blackboard/BlackboardKeyType_Enum.h"
@@ -36,7 +36,7 @@ EBTNodeResult::Type UB2BTTask_GuildNPC_UpdateState::ExecuteTask(UBehaviorTreeCom
 	BII_CHECK(ControlledCharacter);
 	BII_CHECK(Blackboard);
 
-	// Å¸°Ù ¾øÀ¸¸é... 
+	// é¸¥ç™¾ ç»æ æ... 
 	if (!CurrentTarget || CurrentTarget == ControlledCharacter)
 	{
 		Blackboard->SetValue<UBlackboardKeyType_Enum>(BlackboardKey.SelectedKeyName, static_cast<uint8>(BTTASK_MODE::EBM_DEFENSE));

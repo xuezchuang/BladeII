@@ -1,4 +1,4 @@
-#include "B2UIInvenQuickSlide.h"
+ï»¿#include "B2UIInvenQuickSlide.h"
 #include "B2UIEnum.h"
 #include "Event.h"
 #include "B2UIManager.h"
@@ -117,14 +117,14 @@ void UB2UIInvenQuickSlide::UnRegisterUIMarkForRedDot()
 void UB2UIInvenQuickSlide::GotoInvenScene()
 {
 	SetInvenQuickSlot(true);
-	LobbyEnterHeroMgmtModeClass<EHeroMgmtSubMode>::GetInstance().Signal(EHeroMgmtSubMode::EHMSM_Inventory); // GameMode ÂÊ ½ÅÈ£	
+	LobbyEnterHeroMgmtModeClass<EHeroMgmtSubMode>::GetInstance().Signal(EHeroMgmtSubMode::EHMSM_Inventory); // GameMode çŽ‡ è„šé¾‹	
 }
 
 void UB2UIInvenQuickSlide::GotoSkillScene()
 {
 	SetInvenQuickSlot(true);
 
-	LobbyEnterHeroMgmtModeClass<EHeroMgmtSubMode>::GetInstance().Signal(EHeroMgmtSubMode::EHMSM_Skill); // GameMode ÂÊ ½ÅÈ£
+	LobbyEnterHeroMgmtModeClass<EHeroMgmtSubMode>::GetInstance().Signal(EHeroMgmtSubMode::EHMSM_Skill); // GameMode çŽ‡ è„šé¾‹
 	
 }
 
@@ -138,7 +138,7 @@ void UB2UIInvenQuickSlide::GotoBrevetScene()
 
 	SetInvenQuickSlot(true);
 
-	LobbyEnterHeroMgmtModeClass<EHeroMgmtSubMode>::GetInstance().Signal(EHeroMgmtSubMode::EHMSM_Brevet); // GameMode ÂÊ ½ÅÈ£
+	LobbyEnterHeroMgmtModeClass<EHeroMgmtSubMode>::GetInstance().Signal(EHeroMgmtSubMode::EHMSM_Brevet); // GameMode çŽ‡ è„šé¾‹
 	
 }
 
@@ -151,13 +151,13 @@ void UB2UIInvenQuickSlide::GotoWingScene()
 	}
 	SetInvenQuickSlot(true);
 
-	LobbyEnterHeroMgmtModeClass<EHeroMgmtSubMode>::GetInstance().Signal(EHeroMgmtSubMode::EHMSM_Wing); // GameMode ÂÊ ½ÅÈ£
+	LobbyEnterHeroMgmtModeClass<EHeroMgmtSubMode>::GetInstance().Signal(EHeroMgmtSubMode::EHMSM_Wing); // GameMode çŽ‡ è„šé¾‹
 	
 }
 
 void UB2UIInvenQuickSlide::GotoConstantheroScene()
 {
-	LobbyEnterHeroMgmtModeClass<EHeroMgmtSubMode>::GetInstance().Signal(EHeroMgmtSubMode::EHMSM_Relic); // GameMode ÂÊ ½ÅÈ£
+	LobbyEnterHeroMgmtModeClass<EHeroMgmtSubMode>::GetInstance().Signal(EHeroMgmtSubMode::EHMSM_Relic); // GameMode çŽ‡ è„šé¾‹
 }
 
 bool UB2UIInvenQuickSlide::GetInvenQuickSlide()

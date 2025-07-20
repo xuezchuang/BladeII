@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIGameInviteSlot.h"
 #include "B2UIDocHelper.h"
@@ -111,7 +111,7 @@ void UB2UIGameInviteSlot::UpdateSlotState(const FText& CharName, bool IsOffline,
 {
 	EGameInviteSlotIndex LocalSlotState = EGameInviteSlotIndex::Invitable;
 	
-	// »õ·Î°íÄ§ ´©¸£±âÀü¿¡ ÃÊ´ëÇÏ°íÀÖ´ø »óÈ²ÀÌ¸é ´Ù½Ã ÃÊ´ë »óÅÂ·Î ¸¸µé¾îÁÜ
+	// è´§è‚ºç»Šé­” ç©¿ç¦æ‰å‚ˆä¿Š æª¬æŽªçªç»Šä¹å¸¦ æƒ‘ç‚”æžæ ä¿ƒçŸ« æª¬æŽª æƒ‘æ€•è‚º çˆ¶ç”¸ç»¢æ·‹
 	if (RemainInvitingTime != -1)
 		LocalSlotState = EGameInviteSlotIndex::Inviting;
 
@@ -132,7 +132,7 @@ void UB2UIGameInviteSlot::StartJoinTimer(int32 RemainInvitingTime)
 	CurCountDownNum = (RemainInvitingTime != -1) ? RemainInvitingTime : UB2UIGameInviteSlot::JOINCOUNTDOWN_SECOND;
 
 	SetInviteTimerCount_BP(CurCountDownNum);
-	// ¸Å Å¸ÀÌ¸Ó´Â 1ÃÊ ´ÜÀ§ÀÓ.
+	// æ¦‚ é¸¥æžèµ£ç»° 1æª¬ çªœå›°çƒ™.
 	GetWorld()->GetTimerManager().SetTimer(InviteTimerHandle, this, &UB2UIGameInviteSlot::UpdateJoinTime, 1.0f, false);
 }
 
@@ -178,7 +178,7 @@ void UB2UIGameInviteSlot::UpdateJoinTime()
 
 		if (CurCountDownNum > 0)
 		{
-			// Àç±ÍÀû È£Ãâ
+			// çŠè“–åˆ© é¾‹å…
 			TheWorld->GetTimerManager().SetTimer(InviteTimerHandle, this, &UB2UIGameInviteSlot::UpdateJoinTime, 1.0f, false);
 		}
 		else

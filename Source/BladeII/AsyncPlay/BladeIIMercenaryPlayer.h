@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -80,7 +80,7 @@ public:
 
 	virtual void FilterTeamBuffAffectMember(ETeamBuffType TeamBuffType, TArray<class ABladeIICharacter*>& InChracters) override;
 
-//player Æ¯¼º ¹ö¸²
+//player æ¼‚å·± æ»šè¦†
 	virtual void BeginPlay() override;
 	virtual void BeginDestroy() override;
 	virtual void EnableInput(APlayerController*) override;
@@ -172,7 +172,7 @@ protected:
 
 	void ChangeFloorRingPS(class UParticleSystem* NewFloorRingPS);
 
-//player Æ¯¼º ¹ö¸²
+//player æ¼‚å·± æ»šè¦†
 	virtual bool CanTakeDamage(class AActor* DamageCauser, struct FDamageEvent const& DamageEvent, const struct FDamageInfo* DamageType) override;
 	virtual void ProcessTakeDamageAnimation(const FDamageInfo& DamageInfo, AActor* DamageCauser) override;
 

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIItemForgeTabButton.h"
 #include "BladeIILocText.h"
 
@@ -8,7 +8,7 @@
 
 
 
-// B2UICollectBookIcon¿¡ ±âÃÊÇÏ¿© ¸¸µé¾î Áü
+// B2UICollectBookIconä¿Š æ‰æª¬çªå’¯ çˆ¶ç”¸ç»¢ å’™
 
 void UB2UIItemForgeTabButton::CacheAssets()
 {

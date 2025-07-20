@@ -1,4 +1,4 @@
-
+ï»¿
 #include "BladeIIBlockToSyncNetwork.h"
 #include "B2UIManager.h"
 #include "B2UIMsgPopupCenter.h"
@@ -54,9 +54,9 @@ void FBladeIIBlockToSyncNetwork::Tick(float DeltaTime)
 //	{
 //		case DisconnectResasonType::EDISCONNECT_REASON_RESPONSE:
 //		{
-//			//ÀÌ°Ç º¸È£ ÄÚµå Á¤µµ
+//			//ææ‰’ ç„Šé¾‹ å†…é› æ²¥æ¡£
 //			if (RetryRequest == nullptr)
-//			{//UI Å¬·ÎÂ¡ÀÌ Á¦´ë·Î µÇÁö ¾ÊÀº °æ¿ì ¹ß»ı.
+//			{//UI åŠªè‚ºéš†æ åŠ›æªè‚º ç™»ç˜¤ è‡¼ç¯® ç‰ˆå¿« æƒ¯ç§¯.
 //				SetFree();
 //				return;
 //			}
@@ -100,7 +100,7 @@ void FBladeIIBlockToSyncNetwork::Tick(float DeltaTime)
 //{
 //	BlockingLimitTime = FMath::Max(BlockingLimitTime - DeltaTime, 0.f);
 //
-//	if (BlockingLimitTime < FLT_EPSILON) //== 0º¸´Ù´Â EPSILONÀ» ¾²´Â°Ô ¾ÈÀüÇÏ´Ï...
+//	if (BlockingLimitTime < FLT_EPSILON) //== 0ç„Šä¿ƒç»° EPSILONé˜‘ é™ç»°éœ¸ æ•‘å‚ˆçªèª...
 //	{
 //		ConnectFailUIFunc();
 //	}
@@ -215,7 +215,7 @@ void FBladeIIBlockToSyncNetwork::SessionDisconnetFromServer(int32 _reasonCode)
 			context = BladeIIGetLOCText(B2LOC_CAT_ERROR_CODE, FString::FromInt(B2ResultCode::FAILURE_UPDATE_ACCOUNT_BATTLE_STATUS));
 		}
 		break;
-		// 2: Áßº¹ Á¢¼Ó (°°Àº °èÁ¤À¸·Î ÀÌÁßÀ¸·Î SignIn)
+		// 2: åæ±— ç«‹åŠ  (éç¯® æ‹Œæ²¥æ è‚º æåæ è‚º SignIn)
 		case ESessionClosedNotifyReason::ECLOSEREASON_MultipleAcountAccess:
 		{
 			title = BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_Notification"));
@@ -361,17 +361,17 @@ void FBladeIIBlockToSyncNetwork::Retry()
 
 void FBladeIIBlockToSyncNetwork::GoToTitle()
 {
-	//[@AKI, 180129] VersionÁ¤º¸ request¶§¹®¿¡ ÀÌÂÊÀ¸·Î ¿Å±è
-	//GoToTitleClass Lamda¿¡¼­ ÇÏ·Á°í ÇßÀ¸³ª »ç¿ëÇÏ´Â °÷ÀÌ ¸¹¾Æ¼­ ¾ÈÀüÇÏ°Ô ³×Æ®¿öÅ© Ä¿³Ø¼ÇÀÌ ²÷°åÀ»¶§¸¸ ÇÏ°Ô ÇÔ
+	//[@AKI, 180129] Versionæ²¥ç„Š requesté”­å·©ä¿Š æç‡æ è‚º é¢—è¾«
+	//GoToTitleClass Lamdaä¿Šè¾‘ çªå¦¨ç»Š æ²æ å”± è¤ä¾©çªç»° é•‘æ è…¹é…’è¾‘ æ•‘å‚ˆçªéœ¸ åŒ™é£˜å†µå†œ ç›®æ± è®°æ è°—æ¿é˜‘é”­çˆ¶ çªéœ¸ çªƒ
 	UB2UIManager* UIMgr = UB2UIManager::GetInstance();
 	if (UIMgr)
 	{
-		UIMgr->MasterDestroy(); // ±×³É Destroy ¸»°í MasterDestroy ·Î ÇØ¾ß ÇÔ.
+		UIMgr->MasterDestroy(); // å¼Šæˆ Destroy å¯Œç»Š MasterDestroy è‚º ç§¦å…· çªƒ.
 		UIMgr->ResetRepeatBattle();
 
-		//[@AKI, 180711] AB2MatchGameModeBase::ShutdownChannelIfStillExist() ¿Í °°Àº ¿ªÇÒ ÀÓ.
-		//Request¸¸ Á¦°Å ÇÔ
-		//ChanelManager¿¡¼­ °ü¸® ÇÏ´Â µ¥ÀÌÅÍ »èÁ¦¸¦ ¾ÈÇß¾úÀ½.
+		//[@AKI, 180711] AB2MatchGameModeBase::ShutdownChannelIfStillExist() å®¢ éç¯® å¼€ä¸” çƒ™.
+		//Requestçˆ¶ åŠ›èŠ­ çªƒ
+		//ChanelManagerä¿Šè¾‘ åŒ…åºœ çªç»° å•æç£ æ˜åŠ›ç”« æ•‘æ²èŒæ¾œ.
 		AB2NetGameMode* B2GM = Cast<AB2NetGameMode>(GetBladeIIGameMode(UIMgr));
 		if (B2GM)
 		{
@@ -390,8 +390,8 @@ void FBladeIIBlockToSyncNetwork::GoToTitle()
 
 	SetValueByDefault();
 
-	//[@AKI, 180629][B2BUG-1494] //¹İº¹ÀüÅõÁß ¾à ³×Æ®¿öÅ©·Î ÀÎÇØ Å¸ÀÌÆ²ÀÌ³ª DLCFrontMap·Î µ¹¾Æ°£ ÈÄ ¸ğÇè ÁøÀÔ½Ã ¹İº¹ÀüÅõ°¡ °è¼Ó µÇ´Â ¹ö±× ¼öÁ¤
-	//[TO-DO] ¾à ³×Æ®¿öÅ© »óÈ² ½Ã Å¬¸®¾î ÇØÁÙ µ¥ÀÌÅÍ¸¦ ¸ğ¾Æ ³õ´Â °ÍÀ» ¸¸µé¾î¾ß ÇÔ!!
+	//[@AKI, 180629][B2BUG-1494] //é¦†æ±—å‚ˆæ§å è· åŒ™é£˜å†µå†œè‚º ç‰¢ç§¦ é¸¥ææ’‡æå”± DLCFrontMapè‚º å€’é…’åŸƒ é¥¶ è‘›æ°° æŸ³æ¶çŸ« é¦†æ±—å‚ˆæ§å•Š æ‹ŒåŠ  ç™»ç»° æ»šå¼Š èæ²¥
+	//[TO-DO] è· åŒ™é£˜å†µå†œ æƒ‘ç‚” çŸ« åŠªåºœç»¢ ç§¦ä¸´ å•æç£ç”« è‘›é…’ åˆç»° å·´é˜‘ çˆ¶ç”¸ç»¢å…· çªƒ!!
 	CancelOrStopRepeatBattleClass<>::GetInstance().Signal();
 	GoToTitleClass<>::GetInstance().Signal();
 }
@@ -400,9 +400,9 @@ void FBladeIIBlockToSyncNetwork::GoToLobby() //For Channel Server like PVP
 {
 	SetValueByDefault();
 	
-	//[@AKI, 180711] AB2MatchGameModeBase::ShutdownChannelIfStillExist() ¿Í °°Àº ¿ªÇÒ ÀÓ.
-	//Request¸¸ Á¦°Å ÇÔ
-	//ChanelManager¿¡¼­ °ü¸® ÇÏ´Â µ¥ÀÌÅÍ »èÁ¦¸¦ ¾ÈÇß¾úÀ½.
+	//[@AKI, 180711] AB2MatchGameModeBase::ShutdownChannelIfStillExist() å®¢ éç¯® å¼€ä¸” çƒ™.
+	//Requestçˆ¶ åŠ›èŠ­ çªƒ
+	//ChanelManagerä¿Šè¾‘ åŒ…åºœ çªç»° å•æç£ æ˜åŠ›ç”« æ•‘æ²èŒæ¾œ.
 	UB2UIManager* UIMgr = UB2UIManager::GetInstance();
 	if (UIMgr)
 	{
@@ -431,9 +431,9 @@ void FBladeIIBlockToSyncNetwork::GoToDLCMap()
 {
 	SetValueByDefault();
 
-	//[@AKI, 180711] AB2MatchGameModeBase::ShutdownChannelIfStillExist() ¿Í °°Àº ¿ªÇÒ ÀÓ.
-	//Request¸¸ Á¦°Å ÇÔ
-	//ChanelManager¿¡¼­ °ü¸® ÇÏ´Â µ¥ÀÌÅÍ »èÁ¦¸¦ ¾ÈÇß¾úÀ½.
+	//[@AKI, 180711] AB2MatchGameModeBase::ShutdownChannelIfStillExist() å®¢ éç¯® å¼€ä¸” çƒ™.
+	//Requestçˆ¶ åŠ›èŠ­ çªƒ
+	//ChanelManagerä¿Šè¾‘ åŒ…åºœ çªç»° å•æç£ æ˜åŠ›ç”« æ•‘æ²èŒæ¾œ.
 	UB2UIManager* UIMgr = UB2UIManager::GetInstance();
 	if (UIMgr)
 	{
@@ -491,7 +491,7 @@ bool FBladeIIBlockToSyncNetwork::IsOpenBlockToSyncUI() const
 bool FBladeIIBlockToSyncNetwork::IsEnableRequest(std::function<void(void)> RequestFunc)
 {
 	if (EnableBlockToSync == false
-		// || RequestFunc == nullptr // try-catch·Î ÂÍ´õ Á¤È®ÇÏ°Ô Àâ±â À§ÇØ ÁÖ¼® Ã³¸® ÇÔ
+		// || RequestFunc == nullptr // try-catchè‚º å³¦æ­¹ æ²¥çŠ¬çªéœ¸ æ£±æ‰ å›°ç§¦ æ—ç± è´¸åºœ çªƒ
 #if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
 		|| bIsDevStandaloneMode
 #endif // BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2

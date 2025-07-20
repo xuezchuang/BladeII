@@ -9,7 +9,7 @@
 UB2FloatingAbnormalEffect::UB2FloatingAbnormalEffect(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
-	VisibleDuration = 1.0f; // UIManager_InGameHUD ÂÊ¿¡¼­ »ç¿ë.
+	VisibleDuration = 1.0f; // UIManager_InGameHUD ç‡ä¿Šè¾‘ è¤ä¾©.
 
 	AdditionalZOffset = 100.0f;
 	RandomPlaceDistanceFromOwner = 50.0f;
@@ -40,7 +40,7 @@ void UB2FloatingAbnormalEffect::NotifyAbnormalEffect(const FLoadedFloatingAbnorm
 	APlayerController* OwningPC = GetOwningPlayer();
 	if (OwnerCharacter && OwningPC)
 	{
-		// ¸Å¹ø ¾à°£¾¿ ´Ù¸¥ À§Ä¡¿¡ »Ñ¸®±â À§ÇØ LocOffsetFromOwner ¸¦ Á» Á¶Á¤.
+		// æ¦‚é”… è·åŸƒç©¶ ä¿ƒå¼— å›°æ‘¹ä¿Š è°åºœæ‰ å›°ç§¦ LocOffsetFromOwner ç”« ç²± ç‚¼æ²¥.
 		float RandDirX = FMath::FRandRange(-1.0f, 1.0f);
 		float RandDirY = FMath::FRandRange(-1.0f, 1.0f);
 		FVector2D RandDir(RandDirX, RandDirY);
@@ -49,7 +49,7 @@ void UB2FloatingAbnormalEffect::NotifyAbnormalEffect(const FLoadedFloatingAbnorm
 		LocOffsetFromOwner.X = RandomPlaceDistanceFromOwner * RandDir.X;
 		LocOffsetFromOwner.Y = RandomPlaceDistanceFromOwner * RandDir.Y;
 
-		// ÀÌ ½ÃÁ¡¿¡¼­ ¹Ù·Î ÃÖÁ¾ screen ÁÂÇ¥¸¦ Á¤ÇØ¼­ ¼¼ÆÃÇÑ´Ù. UpdatePosition ¿¡¼­ ¸Å Æ½ OwnerCharacter µû¶ó°¡°Ô Çß´õ´Ï Á» ¶³¸°´Ù´Â ÀÇ°ßÀÌ ÀÖ¾î¼­..
+		// æ çŸ«ç—¢ä¿Šè¾‘ å®˜è‚º å¼¥è¾† screen è°…é’ç”« æ²¥ç§¦è¾‘ æŠ€æ³¼èŒ„ä¿ƒ. UpdatePosition ä¿Šè¾‘ æ¦‚ å¹³ OwnerCharacter è¶æ‰¼å•Šéœ¸ æ²æ­¹èª ç²± å†»èµ´ä¿ƒç»° ç‹¼æ–‘æ ä¹ç»¢è¾‘..
 		FVector WidgetWorldLocation = OwnerCharacter->GetActorLocation() + LocOffsetFromOwner;
 
 		if (OwningPC->ProjectWorldLocationToScreen(WidgetWorldLocation, InitialProjectedLocation))
@@ -60,7 +60,7 @@ void UB2FloatingAbnormalEffect::NotifyAbnormalEffect(const FLoadedFloatingAbnorm
 	}
 
 	if (IMG_AbnormalEffectText.IsValid())
-	{ // °¢ ÀÌ»ó»óÅÂ º° ÅØ½ºÆ® material Àº ¿ÜºÎ Å×ÀÌºí¿¡¼­ ÁÖ¾îÁü.
+	{ // é˜¿ ææƒ‘æƒ‘æ€• å–Š å’†èƒ¶é£˜ material ç¯® å¯‡ä½• æŠ›æå–‰ä¿Šè¾‘ æ—ç»¢å’™.
 		IMG_AbnormalEffectText->SetBrushFromTexture(InEffectSetupInfo.LoadedTextEffectTexture);
 		IMG_AbnormalEffectText->SetVisibility(ESlateVisibility::HitTestInvisible);
 	}
@@ -79,8 +79,8 @@ void UB2FloatingAbnormalEffect::NotifyAbnormalEffect(const FLoadedFloatingAbnorm
 
 	if (InEffectSetupInfo.AdditionalZOffset != 0.0f)
 	{
-		AdditionalZOffset += InEffectSetupInfo.AdditionalZOffset; // Setup ÀÇ AdditionalZOffset Àº ¿©±âÀÇ AdditionalZOffset ¿¡ Ãß°¡·Î ´õÇØÁü.
-		UpdateFloatingOffset(); // ÀÌ°Å ¾Æ¸¶ ¸Å Æ½ ¾ÈºÒ¸± °Å..
+		AdditionalZOffset += InEffectSetupInfo.AdditionalZOffset; // Setup ç‹¼ AdditionalZOffset ç¯® å’¯æ‰ç‹¼ AdditionalZOffset ä¿Š çœ å•Šè‚º æ­¹ç§¦å’™.
+		UpdateFloatingOffset(); // æèŠ­ é…’ä»˜ æ¦‚ å¹³ æ•‘é˜‚å‰¯ èŠ­..
 	}
 
 	NotifyAbnormalEffect_BP(InEffectSetupInfo.ArrowType); // Call the BP event too.

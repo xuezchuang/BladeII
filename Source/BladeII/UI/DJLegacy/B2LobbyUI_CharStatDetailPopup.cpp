@@ -63,7 +63,7 @@ void UB2LobbyUI_CharStatDetailPopup::UpdateStats(EPCClass PCClassToShow, EUnited
 
 int32 UB2LobbyUI_CharStatDetailPopup::CreateItemOptionStat(class UVerticalBox* VBToCreateIn, int32 RowIndexInVB, ECharStatApplyType InPrimaryPointApplyType, EUnitedCombatOptions InUnitedOptionType, EPCClass InPCClass, float EffectiveValue)
 {
-	// ÅäÅÛÀ¸·Î ÀÎÇØ ·£´ı ¿É¼Ç¿¡¼­´Â °¨¼Ò°ª±îÁö Ç¥±â °¡´ÉÇÏ´Ù.
+	// é…è¢æ è‚º ç‰¢ç§¦ ç½šå¾… å¯è®°ä¿Šè¾‘ç»° çš‘å®¶è”¼é³–ç˜¤ é’æ‰ å•Šç“·çªä¿ƒ.
 	if (InPrimaryPointApplyType != ECharStatApplyType::ECSA_RandomOptions)
 	{
 		if (EffectiveValue <= 0)
@@ -131,7 +131,7 @@ int32 UB2LobbyUI_CharStatDetailPopup::CreateStats(class UVerticalBox* VBToCreate
 	EItemPrimaryPointType PrimaryPointType = CombatStatEval::ConvertItemOptionToItemPrimaryPointType(ItemOption);
 	FText TitleName = GetLOCTextOfItemOption(ItemOption, InDisplayPCClass);
 
-	// 1.°ø¹æÃ¼ °Ë»ç
+	// 1.å‚è§„çœ‰ å…«è¤
 	int32 RowIndexInVB = 0;
 	if (PrimaryPointType != EItemPrimaryPointType::EIPP_End)
 	{
@@ -158,7 +158,7 @@ int32 UB2LobbyUI_CharStatDetailPopup::CreateStats(class UVerticalBox* VBToCreate
 		}
 	}	
 
-	// 2. ¿É¼Çµé Ã³¸®
+	// 2. å¯è®°ç”¸ è´¸åºœ
 	CombatStatInfoRawDatas CombatStatInfoData;
 	CombatStatEval::GetUnitedOptionStatusRawValues(InDisplayPCClass, InUnitedOptionType, CombatStatInfoData, DisplayCharDataStore);
 	for (auto PrimaryPointRawData : CombatStatInfoData.PrimaryPointRawValues)
@@ -168,7 +168,7 @@ int32 UB2LobbyUI_CharStatDetailPopup::CreateStats(class UVerticalBox* VBToCreate
 		RowIndexInVB = CreateItemOptionStat(VBToCreateIn, RowIndexInVB, ChatStatApplyType, InUnitedOptionType, InDisplayPCClass, ItemOptionValue);
 	}
 
-	// 3. °­È­ ¼¼Æ® °ü·Ã µ¥ÀÌÅÍ Ãß°¡
+	// 3. ç¢æ‹³ æŠ€é£˜ åŒ…è®¿ å•æç£ çœ å•Š
 	if (PrimaryPointType != EItemPrimaryPointType::EIPP_End)
 	{
 		float EnhanceFactor = LocalCharData->GetEnhanceSetEffectFactor(InDisplayPCClass);
@@ -176,10 +176,10 @@ int32 UB2LobbyUI_CharStatDetailPopup::CreateStats(class UVerticalBox* VBToCreate
 		RowIndexInVB = CreateItemOptionStat(VBToCreateIn, RowIndexInVB, ECharStatApplyType::ECSA_EnhanceSetEffect, EUnitedCombatOptions::UCO_End, InDisplayPCClass, EnhanceFactor);
 	}
 
-	// 4. ±æµå ¹öÇÁ Ãß°¡
+	// 4. è¾¨é› æ»šæ©‡ çœ å•Š
 	FText GuildBuffString = FText::FromString(BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("Guild_BuffBtn"))).ToString());
 
-	if (PrimaryPointType != EItemPrimaryPointType::EIPP_End)				//¸Ç ¹Ø¿¡ Ãß°¡ÇØ¾ßÇÏ´Âµ¥ ½ºÀ§Ä¡¸¦ ¶Ç½á¾ßÇÏ³ª.. ¿ì¼± ±ŞÇÏ°Ô ³Ö½À´Ï´Ù..
+	if (PrimaryPointType != EItemPrimaryPointType::EIPP_End)				//ç›– å…³ä¿Š çœ å•Šç§¦å…·çªç»°å• èƒ¶å›°æ‘¹ç”« è‚šç»“å…·çªå”±.. å¿«æ€¥ é­çªéœ¸ æŒåš¼èªä¿ƒ..
 	{
 		switch (PrimaryPointType)
 		{
@@ -198,7 +198,7 @@ int32 UB2LobbyUI_CharStatDetailPopup::CreateStats(class UVerticalBox* VBToCreate
 
 	
 
-	// Å¸ÀÌÆ² º¯°æ
+	// é¸¥ææ’‡ å‡½ç‰ˆ
 	if (TB_StatDetailTitle.IsValid())
 		TB_StatDetailTitle->SetText(TitleName);
 
@@ -239,7 +239,7 @@ void UB2LobbyUI_CharStatDetailPopup::AdjustWidgetPositionForViewPortSize()
 	if (ViewPortPos.IsZero())
 		return;
 
-	// ÆË¾÷ÀÌ È­¸é ¾Æ·¡·Î ³»·Á°¡Áö¾Ê°Ô º¸Á¤
+	// æ‰‘è¯€æ æ‹³æ é…’è´°è‚º éƒ´å¦¨å•Šç˜¤è‡¼éœ¸ ç„Šæ²¥
 	FVector2D PanelPos = CP_Detail->GetRenderTransform().Translation;
 	FVector2D PanelSize = PanelSlot->GetSize();
 	if ((PanelPos.Y + PanelSize.Y) > ViewPortPos.Y)

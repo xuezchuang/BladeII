@@ -33,7 +33,7 @@ void UB2DynText_Multiple::SetDynText(int32 InRowIndex, const FText& InText1)
 {
 	RowIndex = InRowIndex;
 
-	ModulateBGImageToRowIndex(InRowIndex); // ÁÙ ±¸ºÐ ¿ë.
+	ModulateBGImageToRowIndex(InRowIndex); // ä¸´ å¤‡ç›’ ä¾©.
 
 	if (TB_1.IsValid())
 		TB_1->SetText(InText1);

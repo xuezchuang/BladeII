@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIDimensionBattle.h"
 #include "B2UIManager.h"
 #include "B2UIDocHelper.h"
@@ -43,7 +43,7 @@ void UB2UIDimensionBattle::BindDocAuto()
 {
 	Super::BindDocAuto();
 
-	// UIBattleMain ¿¡¼­ »ç¿ë¾ÈÇÏ´Â °ÍµéÀº ²¨ÁÖÀÚ.
+	// UIBattleMain ä¿Šè¾‘ è¤ä¾©æ•‘çªç»° å·´ç”¸ç¯® æ³¢æ—ç£Š.
 	SetWidgetForDimensionBattle();
 }
 
@@ -99,8 +99,8 @@ void UB2UIDimensionBattle::UpdateStaticText()
 
 UB2UIInGameBuffIcon_DimensionTower* UB2UIDimensionBattle::CreateOrUpdateDimensionBuffIcon(EResurrectBuffType InBuffType)
 {
-	// Â÷¿øÀÇ ±Õ¿­ ¼º¼Ò¿¡¼­ È¹µæÇÏ´Â ¹öÇÁ ÀÌ¹ÌÁö´Â ºÎÈ°¹öÇÁ ÀÌ¹ÌÁö
-	// ÇÏÁö¸¸ Áßº¹ Àû¿ëÀÌ °¡´É...
+	// ç’ç›”ç‹¼ é—­å‡¯ å·±å®¶ä¿Šè¾‘ è£™å«çªç»° æ»šæ©‡ æå›ºç˜¤ç»° ä½•åŠæ»šæ©‡ æå›ºç˜¤
+	// çªç˜¤çˆ¶ åæ±— åˆ©ä¾©æ å•Šç“·...
 	UB2UIInGameBuffIcon_DimensionTower* CreatedOrFound = NULL;
 
 	for (UB2UIInGameBuffIcon* ThisBuffIcon : AllMyBuffIcons_Dimension)

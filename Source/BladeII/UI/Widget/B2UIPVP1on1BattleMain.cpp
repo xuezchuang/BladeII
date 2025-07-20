@@ -1,4 +1,4 @@
-#include "B2UIPVP1on1BattleMain.h"
+ï»¿#include "B2UIPVP1on1BattleMain.h"
 #include "B2UIBattleSkill.h"
 #include "B2UIBattleCombo.h"
 #include "B2UIBattleVignette.h"
@@ -80,13 +80,13 @@ void UB2UIPVP1on1BattleMain::NativeTick(const FGeometry& MyGeometry, float InDel
 
 void UB2UIPVP1on1BattleMain::CacheAssets()
 {
-	//	//¹èÆ²ÄŞº¸
+	//	//ç¡…æ’‡éœ“ç„Š
 	//GET_SLOT(UB2UIBattleCombo, UIP_BattleCombo);
 
-	//	//ºñ³ØÆ®
+	//	//åšæ± é£˜
 	//GET_SLOT(UB2UIBattleVignette, UIP_BattleVignette);
 
-	//	//¹öÆ°µé
+	//	//æ»šç“¢ç”¸
 	//GET_SLOT(UButton, BTN_Pause);
 	//GET_SLOT(UButton, BTN_Attack);
 	//GET_SLOT(UButton, BTN_Guard);
@@ -279,9 +279,9 @@ void UB2UIPVP1on1BattleMain::SetRivalMyBadgeImage(bool _isLocalPlayer)
 
 void UB2UIPVP1on1BattleMain::SetDeathPortrait(const ENetMatchResult& result)
 {
-	//¿¹¿ÜÃ³¸® ³Ê¹« ¸¹ÀÌ ÇØ¼­....¿¹¿ÜÃ³¸® ÆĞ½º...
+	//æŠ—å¯‡è´¸åºœ å‘ˆå…¬ è…¹æ ç§¦è¾‘....æŠ—å¯‡è´¸åºœ è©èƒ¶...
 	UB2UIDocHero* DocHero(nullptr);
-	//PlayAnimationEvent_AnimResultAction(result); ÃÑ ÇÑ¹ø¸¸ È£Ãâ µÇ¾î¾ß ÇÑ´Ù ShowResultImage¿¡¼­ È£Ãâ
+	//PlayAnimationEvent_AnimResultAction(result); é†š èŒ„é”…çˆ¶ é¾‹å… ç™»ç»¢å…· èŒ„ä¿ƒ ShowResultImageä¿Šè¾‘ é¾‹å…
 	if (result == ENetMatchResult::LocalWin)
 	{
 		UB2UIDocPVP1on1Rival* DocPVPRival = UB2UIDocHelper::GetDocPVP1on1Rival();
@@ -300,7 +300,7 @@ void UB2UIPVP1on1BattleMain::SetDeathPortrait(const ENetMatchResult& result)
 			LocalCharAssets->SetPortraitSubHero(UB2UIDocHero::GetPlayerDeathPortraitMaterial(this, IntToPCClass(DocBattle->GetTagPCClass())));
 		}
 	}
-	else //Draw½Ã¿¡´Â ¾çÂÊ´Ù
+	else //DrawçŸ«ä¿Šç»° å‰§ç‡ä¿ƒ
 	{
 		UB2UIDocPVP1on1Rival* DocPVPRival = UB2UIDocHelper::GetDocPVP1on1Rival();
 		if (RivalCharAssets && DocPVPRival)
@@ -333,10 +333,10 @@ void UB2UIPVP1on1BattleMain::SetDeathPortrait(const ENetMatchResult& result)
 
 void UB2UIPVP1on1BattleMain::ShowResultImage(const ENetMatchResult& result)
 {
-	//[@AKI, 170821] [B2CLT-1888] ¸ğµåº° ½ÂÆĞ ¿¬Ãâ ÅëÀÏ °³¼±
+	//[@AKI, 170821] [B2CLT-1888] è‘›é›å–Š é“°è© æ¥·å… çƒ¹è€ ä¿ºæ€¥
 	PlayAnimationEvent_AnimResultAction(result);
 	/*
-	//È¤½Ã ¸ğ¸£´Ï ÀÏ´Ü ÀüºÎ ´Ù ²û
+	//è¶£çŸ« è‘›ç¦èª è€çªœ å‚ˆä½• ä¿ƒ é˜
 	if (IMG_Victory.IsValid())
 	{
 		IMG_Victory->SetVisibility(ESlateVisibility::Collapsed);
@@ -349,7 +349,7 @@ void UB2UIPVP1on1BattleMain::ShowResultImage(const ENetMatchResult& result)
 	{
 		IMG_Draw->SetVisibility(ESlateVisibility::Collapsed);
 	} 
-	//´Ù ¾Èº¸ÀÌ°Ô ÇÑ »óÅÂ¿¡¼­ º¸¿©¾ß ÇÒ °Í¸¸ Ã£¾Æ¼­ º¸¿©ÁÜ
+	//ä¿ƒ æ•‘ç„Šæéœ¸ èŒ„ æƒ‘æ€•ä¿Šè¾‘ ç„Šå’¯å…· ä¸” å·´çˆ¶ èŒ«é…’è¾‘ ç„Šå’¯æ·‹
 	if (result == ENetMatchResult::LocalWin)
 	{
 		if (IMG_Victory.IsValid())
@@ -364,7 +364,7 @@ void UB2UIPVP1on1BattleMain::ShowResultImage(const ENetMatchResult& result)
 			IMG_Lose->SetVisibility(ESlateVisibility::Visible);
 		}
 	}
-	else //Draw½Ã¿¡´Â ¾çÂÊ´Ù
+	else //DrawçŸ«ä¿Šç»° å‰§ç‡ä¿ƒ
 	{
 		if (IMG_Draw.IsValid())
 		{
@@ -396,7 +396,7 @@ void UB2UIPVP1on1BattleMain::InitializeBindDoc(class UB2UIDocBattle* InDocBattle
 	LocalCharAssets->CachedDoc = InDocBattleForLocal;
 	RivalCharAssets->CachedDoc = InDocBattleForRival;
 
-	//½ºÅ³s
+	//èƒ¶æ‡¦s
 	for (uint8 Cnt = 0; Cnt < MAX_SKILL_INPUT; Cnt++)
 	{
 		FString SkillAssetName = PrefixSkillAsset + FString::FromInt(Cnt);
@@ -405,7 +405,7 @@ void UB2UIPVP1on1BattleMain::InitializeBindDoc(class UB2UIDocBattle* InDocBattle
 		{
 			SkillAssets.Add(SkillAsset);
 			SkillAsset->Init();
-			SkillAsset->SetIndex(Cnt);	//SkillRTÂÊ¿¡¼­´Â 1º£ÀÌ½º·Î ÀÛ¾÷ÇÑ µí
+			SkillAsset->SetIndex(Cnt);	//SkillRTç‡ä¿Šè¾‘ç»° 1æµ·æèƒ¶è‚º ç´¯è¯€èŒ„ æ·€
 			SkillAsset->OnBattleSkillClicked.BindDynamic(this, &UB2UIPVP1on1BattleMain::OnPressedSkillBtn);
 		}
 	}
@@ -421,7 +421,7 @@ void UB2UIPVP1on1BattleMain::InitializeBindDoc(class UB2UIDocBattle* InDocBattle
 		SetRivalPlayerGradeStar(InDocBattleForRival->GetTagMatchGrade(), InDocBattleForRival->GetTagMatchGradeStar());
 	}
 
-	SetLocalMyBadgeImage(true); //bIsLeftControlledLocalPlayer ¿´À¸³ª À§¿¡¼­ ÁÂ¿ì¸¦ ¾Ë¾Æ¼­ ¹Ù²ãÁÖ¹Ç·Î ±×³É LocalÀº true·Î ÇÏ¸é µÊ
+	SetLocalMyBadgeImage(true); //bIsLeftControlledLocalPlayer çœ‹æ å”± å›°ä¿Šè¾‘ è°…å¿«ç”« èˆ…é…’è¾‘ å®˜å±‚æ—éª¨è‚º å¼Šæˆ Localç¯® trueè‚º çªæ å‡³
 	SetRivalMyBadgeImage(false); //!bIsLeftControlledLocalPlayer
 
 	if (UIP_BattleCombo.IsValid())
@@ -432,7 +432,7 @@ void UB2UIPVP1on1BattleMain::InitializeBindDoc(class UB2UIDocBattle* InDocBattle
 	if (UIP_BattleVignette.IsValid())
 		UIP_BattleVignette->BindDoc(InDocBattleForLocal);
 
-	//½ÃÀÛ ÇÒ¶§, Main°ú SubÀÇ Å¬·¡½º¸¦ ¼¼ÆÃÇÏ°í CurPCClass³ª TagPCClassÀÇ °ªÀÌ ¹Ù²ğ¶§ µÎ°³¸¦ ½º¿ÒÇØÁØ´Ù.
+	//çŸ«ç´¯ ä¸”é”­, Mainè‹ Subç‹¼ åŠªè´°èƒ¶ç”« æŠ€æ³¼çªç»Š CurPCClasså”± TagPCClassç‹¼ è”¼æ å®˜æ‹†é”­ æ»´ä¿ºç”« èƒ¶æ³ç§¦éœ–ä¿ƒ.
 	BindDocMainChar(UB2UIDocHelper::GetDocHero(InDocBattleForLocal->GetCurPCClass()));
 	BindDocSubChar(UB2UIDocHelper::GetDocHero(InDocBattleForLocal->GetTagPCClass()));
 
@@ -479,12 +479,12 @@ void UB2UIPVP1on1BattleMain::InitializeBindDoc(class UB2UIDocBattle* InDocBattle
 
 void UB2UIPVP1on1BattleMain::BindDocMainChar(UB2UIDocHero* InDocHero)
 {
-	// ·Îºñ¿¡¼­ÀÇ ¸ŞÀÎ Ä³¸¯ÅÍ ¼±ÅÃÀÌ ¾Æ´Ï¶ó ÇöÀç µîÀåÇÑ Ä³¸¯ÅÍ. °ÔÀÓ ½ÃÀÛ Ã³À½¿¡´Â ½ÇÁ¦ ¸ŞÀÎ Ä³¸¯ÅÍÀÓ.
+	// è‚ºåšä¿Šè¾‘ç‹¼ çš‹ç‰¢ æŸè…ç£ æ€¥ç¶æ é…’èªæ‰¼ æ³…çŠ æ®¿å˜èŒ„ æŸè…ç£. éœ¸çƒ™ çŸ«ç´¯ è´¸æ¾œä¿Šç»° è§’åŠ› çš‹ç‰¢ æŸè…ç£çƒ™.
 
 	MainHeroDoc = InDocHero;
 	if (!InDocHero) return;
 
-	//½ºÅ³ Ã³¸®. ±Ùµ¥ ÇöÀç 4°³ÀÇ ½ºÅ³¸¸ Ã³¸®µÇ°í ÀÖ°í "°ø°İ"°ú "¹æ¾î"¹öÆ°Àº ½ºÅ³·Î Ãë±ŞÇÏ°í ÀÖÁö ¾Ê´Âµ¥ ±×·¡µÇ µÇ·Á³ª -..-
+	//èƒ¶æ‡¦ è´¸åºœ. è¾Ÿå• æ³…çŠ 4ä¿ºç‹¼ èƒ¶æ‡¦çˆ¶ è´¸åºœç™»ç»Š ä¹ç»Š "å‚æ‹œ"è‹ "è§„ç»¢"æ»šç“¢ç¯® èƒ¶æ‡¦è‚º ç§’é­çªç»Š ä¹ç˜¤ è‡¼ç»°å• å¼Šè´°ç™» ç™»å¦¨å”± -..-
 	for (int SkillCnt = 0; SkillCnt < SkillAssets.Num(); ++SkillCnt)
 	{
 		UB2UIBattleSkill* SkillAsset = SkillAssets[SkillCnt];
@@ -494,7 +494,7 @@ void UB2UIPVP1on1BattleMain::BindDocMainChar(UB2UIDocHero* InDocHero)
 		BindDocSkill(SkillInputIndex, SkillDoc);
 	}
 
-	//ÃÊ»óÈ­ Ã³¸®
+	//æª¬æƒ‘æ‹³ è´¸åºœ
 	check(LocalCharAssets);
 
 	EPCClass pcClass = InDocHero->GetHeroClass();
@@ -507,7 +507,7 @@ void UB2UIPVP1on1BattleMain::BindDocMainChar(UB2UIDocHero* InDocHero)
 	else
 		LocalCharAssets->SetNameMainChar(BladeIIGameImpl::GetClientDataStore().GetLocalCharClassOrNickName(pcClass));
 
-	//[@SameLine, 180612] explevelinfo doc, datastore -> datastore °³¼±
+	//[@SameLine, 180612] explevelinfo doc, datastore -> datastore ä¿ºæ€¥
 	//LocalCharAssets->SetLevelMainChar(InDocHero->GetCurrentLevel());
 	FLocalCharacterData& CharacterDataStore = BladeIIGameImpl::GetClientDataStore().GetLocalCharacterData();
 	const int32 CharLevel = CharacterDataStore.GetCharacterLevel(pcClass);
@@ -516,13 +516,13 @@ void UB2UIPVP1on1BattleMain::BindDocMainChar(UB2UIDocHero* InDocHero)
 
 void UB2UIPVP1on1BattleMain::BindDocSubChar(UB2UIDocHero* InDocHero)
 {
-	// ·Îºñ¿¡¼­ÀÇ ¼­ºê Ä³¸¯ÅÍ ¼±ÅÃÀÌ ¾Æ´Ï¶ó ÇöÀç ´ë±âÁßÀÎ Ä³¸¯ÅÍ. °ÔÀÓ ½ÃÀÛ Ã³À½¿¡´Â ½ÇÁ¦ ¼­ºê Ä³¸¯ÅÍÀÓ.
+	// è‚ºåšä¿Šè¾‘ç‹¼ è¾‘å® æŸè…ç£ æ€¥ç¶æ é…’èªæ‰¼ æ³…çŠ æªæ‰åç‰¢ æŸè…ç£. éœ¸çƒ™ çŸ«ç´¯ è´¸æ¾œä¿Šç»° è§’åŠ› è¾‘å® æŸè…ç£çƒ™.
 	SubHeroDoc = InDocHero;
 
 	if (!InDocHero)
 		return;
 
-	//ÃÊ»óÈ­ Ã³¸®.
+	//æª¬æƒ‘æ‹³ è´¸åºœ.
 	check(LocalCharAssets);
 
 	LocalCharAssets->SetPortraitSubHero(UB2UIDocHero::GetPlayerPortraitMaterial(this, InDocHero->GetHeroClass()));
@@ -641,7 +641,7 @@ void UB2UIPVP1on1BattleMain::CollectAndSortSkillBuffData(bool& bOutOnlyCountTime
 	UB2UIDocBattle* DocBattle = Cast<UB2UIDocBattle>(GetDoc());
 	if (DocBattle)
 	{
-		TArray<FUISkillBuffDisplayInfo_United> PrevSkillBuffData = AllCollectedSkillBuffData; // OnlyTimeChanged °Ë»ç¸¦ À§ÇØ.
+		TArray<FUISkillBuffDisplayInfo_United> PrevSkillBuffData = AllCollectedSkillBuffData; // OnlyTimeChanged å…«è¤ç”« å›°ç§¦.
 		AllCollectedSkillBuffData.Empty();
 
 		const TArray<FUISkillBuffDisplayInfo_Character>& CharacterSkillBuffInfo = DocBattle->GetCharacterBuffState();
@@ -662,16 +662,16 @@ void UB2UIPVP1on1BattleMain::CollectAndSortSkillBuffData(bool& bOutOnlyCountTime
 			}
 		}
 
-		// ¸¶Áö¸·À¸·Î »ı¼º ½ÃÁ¡¿¡ µû¶ó Á¤·Ä. ¸ÕÀú »ı¼ºµÈ °ÍÀÌ ¾ÕÀ¸·Î ¿Àµµ·Ï.
+		// ä»˜ç˜¤é˜œæ è‚º ç§¯å·± çŸ«ç—¢ä¿Š è¶æ‰¼ æ²¥çºº. åˆšå† ç§¯å·±ç­‰ å·´æ èŠæ è‚º å·æ¡£åºŸ.
 		AllCollectedSkillBuffData.Sort([](const FUISkillBuffDisplayInfo_United& A, const FUISkillBuffDisplayInfo_United& B)->bool
 		{
 			return A.LastStartedTime < B.LastStartedTime;
 		});
 
-		// Ä«¿îÆ® ½Ã°£¸¸ ¹Ù²î¾ú´ÂÁö, Buff Ç×¸ñ ÀÚÃ¼°¡ ¹Ù²ï °Ô ÀÖ´ÂÁö °Ë»ç.
+		// å¢¨æ¬¾é£˜ çŸ«åŸƒçˆ¶ å®˜å·®èŒç»°ç˜¤, Buff äº²æ ¼ ç£Šçœ‰å•Š å®˜è¯§ éœ¸ ä¹ç»°ç˜¤ å…«è¤.
 		bOutOnlyCountTimeChanged = true;
 		if (PrevSkillBuffData.Num() != AllCollectedSkillBuffData.Num())
-		{ // Ç×¸ñ ¼ö°¡ ´Ù¸£¸é ¹°·Ğ ´õ º¼ ÇÊ¿ä ¾ø°í.
+		{ // äº²æ ¼ èå•Š ä¿ƒç¦æ æ‹±æ²¸ æ­¹ æ­ é˜å¤¸ ç»ç»Š.
 			bOutOnlyCountTimeChanged = false;
 		}
 		else
@@ -687,7 +687,7 @@ void UB2UIPVP1on1BattleMain::CollectAndSortSkillBuffData(bool& bOutOnlyCountTime
 					}
 				}
 
-				if (!bFoundSameBuff) // ÇÏ³ª¶óµµ °°Àº °É ¸ø Ã£Àº °Ô ÀÖ´Ù¸é Ä«¿îÆ® Å¸ÀÓ ¿Ü¿¡ ¹Ù²ï °Ô ÀÖ´Â °Å
+				if (!bFoundSameBuff) // çªå”±æ‰¼æ¡£ éç¯® å§ ç»™ èŒ«ç¯® éœ¸ ä¹ä¿ƒæ å¢¨æ¬¾é£˜ é¸¥çƒ™ å¯‡ä¿Š å®˜è¯§ éœ¸ ä¹ç»° èŠ­
 				{
 					bOutOnlyCountTimeChanged = false;
 					break;
@@ -699,11 +699,11 @@ void UB2UIPVP1on1BattleMain::CollectAndSortSkillBuffData(bool& bOutOnlyCountTime
 void UB2UIPVP1on1BattleMain::UpdateSkillBuffIconsByCollectedData(bool bUpdateCountTimeOnly)
 {
 	if (!bUpdateCountTimeOnly)
-	{ // ÀÌ °æ¿ì´Â ÀÏ´Ü ±âÁ¸ °ÍµéÀ» Á¦°Å. ÀÌ°É °ÅÄ¡Áö ¾Ê¾Ò´Ù¸é ±âÁ¸¿¡ ÀÖ´Â °ÍµéÀ» Ã£¾Æ¼­ °ª¸¸ ¹Ù²Ù°Ô µÉ °Í.
+	{ // æ ç‰ˆå¿«ç»° è€çªœ æ‰ç²® å·´ç”¸é˜‘ åŠ›èŠ­. æå§ èŠ­æ‘¹ç˜¤ è‡¼ç–½ä¿ƒæ æ‰ç²®ä¿Š ä¹ç»° å·´ç”¸é˜‘ èŒ«é…’è¾‘ è”¼çˆ¶ å®˜æ“éœ¸ çª å·´.
 		DestroyAllMyBuffIcons_Skill();
 	}
 
-	for (const FUISkillBuffDisplayInfo_United& ThisBuff : AllCollectedSkillBuffData) // LastStartedTime ¿¡ µû¶ó Á¤·ÄµÇ¾î ÀÖ¾î¾ß ÇÔ.
+	for (const FUISkillBuffDisplayInfo_United& ThisBuff : AllCollectedSkillBuffData) // LastStartedTime ä¿Š è¶æ‰¼ æ²¥çººç™»ç»¢ ä¹ç»¢å…· çªƒ.
 	{
 		CreateOrUpdateSkillBuffIcon(ThisBuff.MyType, ThisBuff.RemainingTime);
 	}
@@ -838,7 +838,7 @@ void UB2UIPVP1on1BattleMain::OnAbnormalStateChanged(class UB2UIDocBase* Sender, 
 
 	for (uint8 Cnt = 0; Cnt < MAX_SKILL_INPUT; Cnt++)
 	{
-		// Freezing/Stun »óÅÂ¿¡¼­ ¹ş¾î³ª´Â ¸ñÀûÀÎ SurviveSkillÀº Disable ½ÃÅ°Áö ¾ÊÀ½
+		// Freezing/Stun æƒ‘æ€•ä¿Šè¾‘ å“ˆç»¢å”±ç»° æ ¼åˆ©ç‰¢ SurviveSkillç¯® Disable çŸ«è™ç˜¤ è‡¼æ¾œ
 		if (SkillAssets.IsValidIndex(Cnt) && SkillAssets[Cnt] != nullptr)
 		{
 			auto* SkillAsset = SkillAssets[Cnt];
@@ -963,7 +963,7 @@ void UB2UIPVP1on1BattleMain::OnChangedCurPCClassCommon(int32 CurPCClass, int32 P
 {
 	if (MainHeroDoc && SubHeroDoc)
 	{
-		//¾Ã¾î¾ß µÇ´Â ÄÉÀÌ½º
+		//ä¹…ç»¢å…· ç™»ç»° çº³æèƒ¶
 		if (MainHeroDoc->GetDocId() == CurPCClass/* || SubHeroDoc->GetDocId() == DocBattle->GetTagPCClass()*/)
 			return;
 
@@ -979,7 +979,7 @@ void UB2UIPVP1on1BattleMain::OnChangedCurPCClassCommon(int32 CurPCClass, int32 P
 		bool bIsTagAttack = (DocBattle ? DocBattle->GetbTagAttackPending() : false);
 
 		BeginTagAnim(MainHeroClass, bIsTagAttack);
-		Tag_BP(MainHeroClass, SubHeroClass, bIsTagAttack); // B2UIBattleTagAnim ¿¡¼­ ÅÂ±× ¾Ö´Ï¸ŞÀÌ¼Ç °ü·ÃÇÑ ¸ğµç °É Ã³¸®ÇÏÁö´Â ¾Ê´Â´Ù.
+		Tag_BP(MainHeroClass, SubHeroClass, bIsTagAttack); // B2UIBattleTagAnim ä¿Šè¾‘ æ€•å¼Š å±€èªçš‹æè®° åŒ…è®¿èŒ„ è‘›ç”µ å§ è´¸åºœçªç˜¤ç»° è‡¼ç»°ä¿ƒ.
 	}
 	UpdateAttackButtonStyleToPCClass(IntToPCClass(CurPCClass));
 }
@@ -1106,7 +1106,7 @@ DEFINITION_PVP_ENTRY_FUNC_DOC(UB2UIPVP1on1BattleMain::OnChangedCurrPCShield, flo
 DEFINITION_PVP_ENTRY_FUNC_DOC(UB2UIPVP1on1BattleMain::OnChangedTagPCHealth, float, SetHPSubChar)
 DEFINITION_PVP_ENTRY_FUNC_DOC(UB2UIPVP1on1BattleMain::OnChangedTagPCMaxHealth, float, SetHPSubChar)
 DEFINITION_PVP_ENTRY_FUNC_PARAM(UB2UIPVP1on1BattleMain::OnChangedIsCountingTagCooltime, bool, SetIsCountingTagCooltime)
-// TagDisabledByCooltime ½ÃÁ¡ºÎÅÍ ÄğÅ¸ÀÓ ÅØ½ºÆ®¸¦ º¸ÀÌ±â ½ÃÀÛ. ´çÀå Ä«¿îÆ®´Â ÇÏÁö ¾Ê´õ¶óµµ
+// TagDisabledByCooltime çŸ«ç—¢ä½•ç£ é…¿é¸¥çƒ™ å’†èƒ¶é£˜ç”« ç„Šææ‰ çŸ«ç´¯. å¯¸å˜ å¢¨æ¬¾é£˜ç»° çªç˜¤ è‡¼æ­¹æ‰¼æ¡£
 DEFINITION_PVP_ENTRY_FUNC_PARAM(UB2UIPVP1on1BattleMain::OnChangedIsTagDisabledByCooltime, bool, SetTagCooltimeVisible)
 DEFINITION_PVP_ENTRY_FUNC_PARAM(UB2UIPVP1on1BattleMain::OnChangedIsTagPossible, bool, SetTagPossible)
 DEFINITION_PVP_ENTRY_FUNC_PARAM(UB2UIPVP1on1BattleMain::OnChangedRemainingTagCooltime, float, SetTagCooltime)
@@ -1114,7 +1114,7 @@ DEFINITION_PVP_ENTRY_FUNC_PARAM(UB2UIPVP1on1BattleMain::OnChangedRemainingTagCoo
 void UB2UIPVP1on1BattleMain::OnChangedIsTagSuggested_Left(class UB2UIDocBase* Sender, bool bTagSuggested, bool bPrevTagSuggested)
 {
 	UB2UIDocBattle* DocBattle = UB2UIDocHelper::GetDocBattle();
-	const bool bIsForTagAttack = DocBattle ? DocBattle->GetIsTagAttackSuggested() : false; // ÀÌ°Ô ¾Æ´Ï¸é ÇÃ·¹ÀÌ¾î ÄÁµğ¼Ç (HP) ¿¡ ÀÇÇÑ °Í. IsTagAttackSuggested ¸¦ ¿©±â¼­ Ã¼Å©ÇÒ ¼ö ÀÖµµ·Ï IsTagSuggested º¸´Ù ¸ÕÀú ¼¼ÆÃÇØ¾ß ÇÔ.
+	const bool bIsForTagAttack = DocBattle ? DocBattle->GetIsTagAttackSuggested() : false; // æéœ¸ é…’èªæ æ•²é¥­æç»¢ ç‰§å¼è®° (HP) ä¿Š ç‹¼èŒ„ å·´. IsTagAttackSuggested ç”« å’¯æ‰è¾‘ çœ‰å†œä¸” è ä¹æ¡£åºŸ IsTagSuggested ç„Šä¿ƒ åˆšå† æŠ€æ³¼ç§¦å…· çªƒ.
 	if (bTagSuggested != bPrevTagSuggested)
 	{
 		if (LeftCharAssets.IMG_FX_TagSuggest.IsValid())
@@ -1130,7 +1130,7 @@ void UB2UIPVP1on1BattleMain::OnChangedIsTagSuggested_Left(class UB2UIDocBase* Se
 		else
 		{
 			StopTagSuggestAnim_Left_BP();
-			StopTagSuggestByPlayerConditionAnim_Left_BP(); // ¿©±â¿¡ HP ·Î ÀÎÇÑ ÅÂ±×±ÇÀå »óÅÂÀÓÀ» ¸í½ÃÇÏ´Â Á¶°ÇÀÌ ÀÖ´Ù¸é ¾ê±â°¡ ´Ù¸£±ä ÇÑµ¥..
+			StopTagSuggestByPlayerConditionAnim_Left_BP(); // å’¯æ‰ä¿Š HP è‚º ç‰¢èŒ„ æ€•å¼Šé¼»å˜ æƒ‘æ€•çƒ™é˜‘ ç–™çŸ«çªç»° ç‚¼æ‰’æ ä¹ä¿ƒæ å¨Ÿæ‰å•Š ä¿ƒç¦å˜ èŒ„å•..
 		}
 	}
 }
@@ -1138,7 +1138,7 @@ void UB2UIPVP1on1BattleMain::OnChangedIsTagSuggested_Left(class UB2UIDocBase* Se
 void UB2UIPVP1on1BattleMain::OnChangedIsTagSuggested_Right(class UB2UIDocBase* Sender, bool bTagSuggested, bool bPrevTagSuggested)
 {
 	UB2UIDocBattle* DocBattle = UB2UIDocHelper::GetDocBattle();
-	const bool bIsForTagAttack = DocBattle ? DocBattle->GetIsTagAttackSuggested() : false; // ÀÌ°Ô ¾Æ´Ï¸é ÇÃ·¹ÀÌ¾î ÄÁµğ¼Ç (HP) ¿¡ ÀÇÇÑ °Í. IsTagAttackSuggested ¸¦ ¿©±â¼­ Ã¼Å©ÇÒ ¼ö ÀÖµµ·Ï IsTagSuggested º¸´Ù ¸ÕÀú ¼¼ÆÃÇØ¾ß ÇÔ.
+	const bool bIsForTagAttack = DocBattle ? DocBattle->GetIsTagAttackSuggested() : false; // æéœ¸ é…’èªæ æ•²é¥­æç»¢ ç‰§å¼è®° (HP) ä¿Š ç‹¼èŒ„ å·´. IsTagAttackSuggested ç”« å’¯æ‰è¾‘ çœ‰å†œä¸” è ä¹æ¡£åºŸ IsTagSuggested ç„Šä¿ƒ åˆšå† æŠ€æ³¼ç§¦å…· çªƒ.
 	if (bTagSuggested != bPrevTagSuggested)
 	{
 		if (RightCharAssets.IMG_FX_TagSuggest.IsValid())
@@ -1154,16 +1154,16 @@ void UB2UIPVP1on1BattleMain::OnChangedIsTagSuggested_Right(class UB2UIDocBase* S
 		else
 		{
 			StopTagSuggestAnim_Right_BP();
-			StopTagSuggestByPlayerConditionAnim_Right_BP(); // ¿©±â¿¡ HP ·Î ÀÎÇÑ ÅÂ±×±ÇÀå »óÅÂÀÓÀ» ¸í½ÃÇÏ´Â Á¶°ÇÀÌ ÀÖ´Ù¸é ¾ê±â°¡ ´Ù¸£±ä ÇÑµ¥..
+			StopTagSuggestByPlayerConditionAnim_Right_BP(); // å’¯æ‰ä¿Š HP è‚º ç‰¢èŒ„ æ€•å¼Šé¼»å˜ æƒ‘æ€•çƒ™é˜‘ ç–™çŸ«çªç»° ç‚¼æ‰’æ ä¹ä¿ƒæ å¨Ÿæ‰å•Š ä¿ƒç¦å˜ èŒ„å•..
 		}
 	}
 }
 
 void UB2UIPVP1on1BattleMain::BeginTagAnim(EPCClass NewTaggedClass, bool bIsTagAttack)
 {
-	DestroyTagAnimUIP(false); // Á¤»óÀûÀÎ »óÈ²ÀÌ¸é ÀÌÀü¿¡ ÇÃ·¹ÀÌÇÏ´ø °Ô Á¾·áµÇ°í »ı¼ºÇß´ø °Ç Äİ¹é¹Ş¾Æ ÀÌ¹Ì destroy µÇ¾î ÀÖ¾î¾ß.. ±×·¯³ª destroy ÀÌÀü¿¡ ÅÂ±×¸¦ ¶Ç ÇßÀ» ¼öµµ.
+	DestroyTagAnimUIP(false); // æ²¥æƒ‘åˆ©ç‰¢ æƒ‘ç‚”ææ æå‚ˆä¿Š æ•²é¥­æçªå¸¦ éœ¸ è¾†ä¸°ç™»ç»Š ç§¯å·±æ²å¸¦ æ‰’ å¦®å½’ç½é…’ æå›º destroy ç™»ç»¢ ä¹ç»¢å…·.. å¼ŠçŸ¾å”± destroy æå‚ˆä¿Š æ€•å¼Šç”« è‚š æ²é˜‘ èæ¡£.
 
-	if (bClickedPause || bIsTagAttack) // Pause¸¦ ´­·¶°Å³ª ¿¬°è ÅÂ±×´Â ÀÌ°Å ¾È ÇÔ.
+	if (bClickedPause || bIsTagAttack) // Pauseç”« å–˜èŒƒèŠ­å”± æ¥·æ‹Œ æ€•å¼Šç»° æèŠ­ æ•‘ çªƒ.
 		return;
 
 	CreatedTagAnimUIP = LoadAndBeginTAssetBattleTagAnimUIP<UB2UIPVP1on1BattleMain>(this, TagAnimUIPClass, &LoadedTagAnimUIPClass, NewTaggedClass, bIsTagAttack);
@@ -1195,7 +1195,7 @@ void UB2UIPVP1on1BattleMain::ProcessEvadeCoolTimeUI()
 
 	//	if (pPlayer)
 	//	{
-	//		//ÄğÅ¸ÀÓ ¸ÓÅÍ¸®¾ó Ã³¸®
+	//		//é…¿é¸¥çƒ™ èµ£ç£åºœå€” è´¸åºœ
 	//		UMaterialInstanceDynamic* pMID = IMG_EvadeSkillCooltime->GetDynamicMaterial();
 
 	//		if (pMID)
@@ -1232,7 +1232,7 @@ void UB2UIPVP1on1BattleMain::OnCompleteAsyncLoad(const FString& RequesetName)
 
 
 void UB2UIPVP1on1BattleMain::OnBattleTagAnimUIPExpired(UB2UIBattleTagAnim* ExpiredUIP)
-{// UB2UIBattleTagAnim ÂÊÀ¸·ÎºÎÅÍ ¿À´Â ½ÅÈ£. ¸Ş¸ğ¸® Àı¾àÀ» À§ÇØ ´Ù µÇ¾úÀ¸¸é destroy.. ÇÏ·Á°í Çß´Âµ¥ ÀÌÁ¨ hitch Á¦¾î°¡ ´õ Áß¿äÇØ¼­ ¿ÏÀüÈ÷ ³»¸®Áö´Â ¾Ê´Â´Ù.
+{// UB2UIBattleTagAnim ç‡æ è‚ºä½•ç£ å·ç»° è„šé¾‹. çš‹è‘›åºœ ä¾‹è·é˜‘ å›°ç§¦ ä¿ƒ ç™»èŒæ æ destroy.. çªå¦¨ç»Š æ²ç»°å• æå“© hitch åŠ›ç»¢å•Š æ­¹ åå¤¸ç§¦è¾‘ è‚¯å‚ˆæ´’ éƒ´åºœç˜¤ç»° è‡¼ç»°ä¿ƒ.
 	checkSlow(ExpiredUIP && ExpiredUIP == CreatedTagAnimUIP);
 	DestroyTagAnimUIP(false);
 }
@@ -1260,7 +1260,7 @@ void UB2UIPVP1on1BattleMain::UpdateAttackButtonStyleToPCClass(EPCClass InPCClass
 	if (BTN_Attack.IsValid() && HUDInfo && HUDInfo->bOverrideAttackButtonStyle)
 	{
 		FButtonStyle BtnStyle = HUDInfo->AttackButtonStyle;
-		HUDInfo->ApplyAttackBtnMargin(BtnStyle, GetWorld()); // °ÔÀÓ¸ğµå¿¡ µû¶ó ´Ù¸¥ ¼¼ÆÃÀ» ÇÒ ¼ö ÀÖ´Ù.
+		HUDInfo->ApplyAttackBtnMargin(BtnStyle, GetWorld()); // éœ¸çƒ™è‘›é›ä¿Š è¶æ‰¼ ä¿ƒå¼— æŠ€æ³¼é˜‘ ä¸” è ä¹ä¿ƒ.
 		BTN_Attack->SetStyle(BtnStyle);
 	}
 }
@@ -1380,23 +1380,23 @@ void FB2UIPVP1on1BattleMainCachedAssetPerChar::SetHPSubChar(float CurHP, float M
 
 void FB2UIPVP1on1BattleMainCachedAssetPerChar::SetNameMainChar(UB2UIDocBase* InDoc)
 {
-	//[@AKI 170414] EClass¸¦ °¡Á®¿À´ø °ÍÀ» Docs¿¡ UserNickNameÀ» ¸¸µé¾î¼­ °¡Á®¿À°Ô º¯°æ
+	//[@AKI 170414] EClassç”« å•Šå»‰å·å¸¦ å·´é˜‘ Docsä¿Š UserNickNameé˜‘ çˆ¶ç”¸ç»¢è¾‘ å•Šå»‰å·éœ¸ å‡½ç‰ˆ
 	FText nickName;
-	//³ª
+	//å”±
 	if (InDoc->GetClass()->IsChildOf<UB2UIDocBattle>())
 	{
 		auto* DocForLocal = Cast<UB2UIDocBattle>(InDoc);
-		if (DocForLocal) //À§¿¡¼­ È®ÀÎ ÇßÀ¸´Ï nullÀº ´ç¿¬È÷ ¾Æ´Ï°ÚÁö¸¸ ¾ÈÁ¤¼ºÀ» À§ÇØ
+		if (DocForLocal) //å›°ä¿Šè¾‘ çŠ¬ç‰¢ æ²æ èª nullç¯® å¯¸æ¥·æ´’ é…’èªæ‘†ç˜¤çˆ¶ æ•‘æ²¥å·±é˜‘ å›°ç§¦
 			nickName = FText::FromString(DocForLocal->GetUserNickName());
 	}
-	//»ó´ëÆí
+	//æƒ‘æªç¥ˆ
 	else if (InDoc->GetClass()->IsChildOf<UB2UIDocPVP1on1Rival>())
 	{
 		auto* DocForRival = Cast<UB2UIDocPVP1on1Rival>(InDoc);
-		if (DocForRival) //À§¿¡¼­ È®ÀÎ ÇßÀ¸´Ï nullÀº ´ç¿¬È÷ ¾Æ´Ï°ÚÁö¸¸ ¾ÈÁ¤¼ºÀ» À§ÇØ
+		if (DocForRival) //å›°ä¿Šè¾‘ çŠ¬ç‰¢ æ²æ èª nullç¯® å¯¸æ¥·æ´’ é…’èªæ‘†ç˜¤çˆ¶ æ•‘æ²¥å·±é˜‘ å›°ç§¦
 			nickName = FText::FromString(DocForRival->GetUserNickName());
 	}
-	//¸¸¾à À¯Àú ´Ğ³×ÀÓÀ» °¡Á® ¿ÀÁö ¸øÇÒ °æ¿ì
+	//çˆ¶è· èœ¡å† è‘±åŒ™çƒ™é˜‘ å•Šå»‰ å·ç˜¤ ç»™ä¸” ç‰ˆå¿«
 	if (nickName.IsEmpty())
 	{
 		UB2UIDocHero* DocHero = nullptr;
@@ -1411,7 +1411,7 @@ void FB2UIPVP1on1BattleMainCachedAssetPerChar::SetNameMainChar(UB2UIDocBase* InD
 				DocHero = UB2UIDocHelper::GetDocHero(DocForRival->GetCurPCClass());
 		}
 
-		if (DocHero) // ¿©±æ ClassOrNickName À» ¾µÁö È®ÀÎ ÇÊ¿ä.
+		if (DocHero) // å’¯è¾¨ ClassOrNickName é˜‘ é•œç˜¤ çŠ¬ç‰¢ é˜å¤¸.
 			nickName = BladeIIGameImpl::GetClientDataStore().GetLocalCharClassName(DocHero->GetHeroClass());
 	}
 	SetNameMainChar(nickName);
@@ -1469,7 +1469,7 @@ void FB2UIPVP1on1BattleMainCachedAssetPerChar::SetTagCooltime(float RemainingTag
 	{
 		UB2UIDocBattle* DocBattle = Cast<UB2UIDocBattle>(CachedDoc.Get());
 		const float MaxCoolTime = DocBattle ? DocBattle->GetFinalTagCooltime() : 0.0f;
-		// ½ºÅ³ÄğÅ¸ÀÓÃ³·³ Ã¹ ¼Ò¼öÁ¡À» Ä«¿îÆ®ÇÏ´Â µ¿¾È¿¡´Â ¼Ò¼öÁ¡ Ã¹Â°ÀÚ¸®±îÁö Ç¥½ÃÇÏ´Âµ¥ ¿©±â´Â ÃÊ¹İ¿¡ ¾Ö´Ï¸ŞÀÌ¼ÇÀ¸·Î ÀÎÇØ ÄğÅ¸ÀÓ Ç¥½Ã ÀÚÃ¼°¡ ¾ÈµÇ¾î¼­ µüÈ÷ ´«¿¡´Â ¾È ¶é µí.. ±×·¡µµ ÅÂ±× ÄğÅ¸ÀÓ °¨¼Ò ¿É¼ÇÀÌ ÀÖÀ¸´Ï ±â´ÉÀº ³Ö¾îµĞ´Ù.
+		// èƒ¶æ‡¦é…¿é¸¥çƒ™è´¸çƒ¦ éœ‰ å®¶èç—¢é˜‘ å¢¨æ¬¾é£˜çªç»° æ‚¼æ•‘ä¿Šç»° å®¶èç—¢ éœ‰æ³ç£Šåºœé³–ç˜¤ é’çŸ«çªç»°å• å’¯æ‰ç»° æª¬é¦†ä¿Š å±€èªçš‹æè®°æ è‚º ç‰¢ç§¦ é…¿é¸¥çƒ™ é’çŸ« ç£Šçœ‰å•Š æ•‘ç™»ç»¢è¾‘ è¿­æ´’ ä¼ ä¿Šç»° æ•‘ å • æ·€.. å¼Šè´°æ¡£ æ€•å¼Š é…¿é¸¥çƒ™ çš‘å®¶ å¯è®°æ ä¹æ èª æ‰ç“·ç¯® æŒç»¢æ•Œä¿ƒ.
 		TB_TagCooltimeNum->SetText(GetAutoFractionalFormattedText_FirstFracCountOnly(RemainingTagCooltime, MaxCoolTime, 1));
 	}
 

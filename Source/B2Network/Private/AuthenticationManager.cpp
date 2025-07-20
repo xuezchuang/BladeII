@@ -22,15 +22,15 @@ static auto logger = LogManager::GetLogger("AuthenticationManager");
 #endif
 
 AuthenticationManager::AuthenticationManager(const CredentialInfo& credentialInfo,
-                                             const Endpoint& sessionEndpoint,
-                                             MessageRouter& messageRouter,
-                                             EventDispatcher& eventDispatcher)
-	:m_credentialInfo(credentialInfo),
-	 m_sessionEndpoint(sessionEndpoint),
- 	 m_messageRouter(messageRouter),
-     m_eventDispatcher(eventDispatcher),
-	 m_reconnectingCount(0),
-	 m_sessionServerTimeMs(0)
+	const Endpoint& sessionEndpoint,
+	MessageRouter& messageRouter,
+	EventDispatcher& eventDispatcher)
+	:m_messageRouter(messageRouter),
+	m_eventDispatcher(eventDispatcher),
+	m_credentialInfo(credentialInfo),
+	m_sessionEndpoint(sessionEndpoint),
+	m_reconnectingCount(0),
+	m_sessionServerTimeMs(0)
 {
 	m_sessionHeartbeatPeriod = DEFAULT_SESSION_HEARTBEAT_PERIOD;
 	m_channelHeartbeatPeriod = DEFAULT_CHANNEL_HEARTBEAT_PERIOD;

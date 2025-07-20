@@ -1,4 +1,4 @@
-#include "B2UIMsgPopupSimpleAddComment.h"
+﻿#include "B2UIMsgPopupSimpleAddComment.h"
 
 
 void UB2UIMsgPopupSimpleAddComment::CacheAssets()

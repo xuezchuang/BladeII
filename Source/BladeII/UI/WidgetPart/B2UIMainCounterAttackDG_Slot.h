@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "B2UIWidget.h"
 #include "B2UIDocBindable.h"
@@ -54,7 +54,7 @@ protected:
 	TArray<UMaterialInstance*>					BGTexture;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = BladeII)
-		bool IsHardCoding;				// ÀúÁÖ ¹ŞÀº ¼ºÃ¤ ½Â±Ş¼® Ç¥½Ã...... ¹Ì¾ÈÇÕ´Ï´Ù.
+		bool IsHardCoding;				// å†æ— ç½ç¯® å·±ç›² é“°é­ç± é’çŸ«...... å›ºæ•‘é’¦èªä¿ƒ.
 
 private:
 	EPCClass						AllowedCharClass;

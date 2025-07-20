@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIFilterInventory.h"
 #include "B2LobbyInventory.h"
 #include "B2LobbyGameMode.h"
@@ -39,14 +39,14 @@ void UB2UIFilterInventory::CacheAssets()
 	GradeFilters.Empty();
 	GradeFilters.SetNum(FItemGradeInfo::MAX_NORMAL_ITEM_STAR_GRADE);
 
-	const int32 GradeFilterCount = VisibleMaxStarGrade - MinGradeFilter + 1; // ex) 1ºÎÅÍ8±îÁö¸é MinGradeFilter = 1, VisibleMaxStarGrade = 8 ( 8 - 1 + 1) 8°³
+	const int32 GradeFilterCount = VisibleMaxStarGrade - MinGradeFilter + 1; // ex) 1ä½•ç£8é³–ç˜¤æ MinGradeFilter = 1, VisibleMaxStarGrade = 8 ( 8 - 1 + 1) 8ä¿º
 
 	for (int32 i = 0; i < FItemGradeInfo::MAX_NORMAL_ITEM_STAR_GRADE; i++)
 	{
 		bool IsVisible = false;
 		auto TempGradeFilter = GetCachedWidget<UB2UIFilterCheckBox>(FName(*FString::Printf(TEXT("UIP_GradeFilterCheckBox_%d"), i + 1)));
 
-		// ÃÖ´ë - ÃÖ¼ÒÇØ¼­ ¿øÇÏ´Â °¹¼ö¸¸ Ä³½Ì
+		// å¼¥æª - å¼¥å®¶ç§¦è¾‘ ç›”çªç»° è‚®èçˆ¶ æŸæ•™
 		if (i < GradeFilterCount)
 		{
 			GradeFilters[i] = TempGradeFilter;
@@ -154,7 +154,7 @@ bool UB2UIFilterInventory::GetAllTargetItems(TArray<FB2Item>& OutList, EPCClass 
 	bool IsLVUp, IsEnhance, IsEssence, IsAnvil;
 	GetSelectedFilters(InvenTypeFilter, StarGradeFilter, IsLVUp, IsEnhance, IsEssence, IsAnvil);
 
-	// ÀåÂø ¹× Àá±İ, ÇÁ¸®¼Â¿¡ ÀåÂøµÇ¾î ÀÖ´Â°Å Á¦¿Ü.
+	// å˜é¦’ æ£º æ³ªé™›, æ©‡åºœæ‚¸ä¿Š å˜é¦’ç™»ç»¢ ä¹ç»°èŠ­ åŠ›å¯‡.
 	UB2LobbyInventory::GetFilteredItemList(OutList, false, false, false, InvenTypeFilter, StarGradeFilter, PCClass, IsLVUp, IsEnhance, IsEssence, IsAnvil);
 
 	return OutList.Num() > 0;
@@ -292,7 +292,7 @@ void UB2UIFilterInventory::GetSelectedFilters(TArray<EItemInvenType>& OutInvenTy
 	for (int32 Ccount = 0; Ccount < FItemGradeInfo::MAX_NORMAL_ITEM_STAR_GRADE; ++Ccount)
 	{
 		if (GradeFilters[Ccount].IsValid() && GradeFilters[Ccount]->IsChecked())
-			OutStarGradeFilter.Add(Ccount + MinGradeFilter); // StarGrade ´Â MinGrade ºÎÅÍ ½ÃÀÛ.
+			OutStarGradeFilter.Add(Ccount + MinGradeFilter); // StarGrade ç»° MinGrade ä½•ç£ çŸ«ç´¯.
 	}
 
 	IsLVUp = UIP_LVUp.IsValid() ? UIP_LVUp->IsChecked() : false;

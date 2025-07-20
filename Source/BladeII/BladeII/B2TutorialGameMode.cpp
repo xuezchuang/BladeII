@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2TutorialGameMode.h"
 #include "Event.h"
@@ -57,9 +57,9 @@ AB2TutorialGameMode::AB2TutorialGameMode(const FObjectInitializer& ObjectInitial
 	DefaultPawnClass = ABladeIITutorialPlayer::StaticClass();
 
 	PendingAsyncLoadRequestPCClass = EPCClass::EPC_End;
-	// Async ·Îµù ¼ø¼­ÀÎµ¥ ½ÇÁ¦·Î ÀÌ°Ç Æ©Åä¸®¾ó Èå¸§À» µû¶ó°¡¾ß ÇÔ. 
-	// ÇöÀç SetNextPlayerClass È£Ãâ ½ÃÁ¡ÀÌ Async ·Îµù¿¡ ÇÊ¿äÇÑ ½ÃÁ¡°ú ´Ş¶ó¼­ µû·Î ³Ö°Ô µÇ¾úÀ½.
-	// ÀÌ°Å ¿Ü¿¡ ´Ù¸¥ ½ÄÀ¸·Î ÁöÁ¤ÇÒ °èÈ¹ÀÌ ÀÖÀ¸¸é ÀÌ°Ç Æó±â..
+	// Async è‚ºçˆ¹ é‰´è¾‘ç‰¢å• è§’åŠ›è‚º ææ‰’ è­¬é…åºœå€” å„’æŠšé˜‘ è¶æ‰¼å•Šå…· çªƒ. 
+	// æ³…çŠ SetNextPlayerClass é¾‹å… çŸ«ç—¢æ Async è‚ºçˆ¹ä¿Š é˜å¤¸èŒ„ çŸ«ç—¢è‹ å´”æ‰¼è¾‘ è¶è‚º æŒéœ¸ ç™»èŒæ¾œ.
+	// æèŠ­ å¯‡ä¿Š ä¿ƒå¼— ä¾¥æ è‚º ç˜¤æ²¥ä¸” æ‹Œè£™æ ä¹æ æ ææ‰’ ä¼æ‰..
 	PCClassAsyncLoadOrder.Add(EPCClass::EPC_Wizard);
 	PCClassAsyncLoadOrder.Add(EPCClass::EPC_Fighter);
 	PCClassAsyncLoadOrder.Add(EPCClass::EPC_Assassin);
@@ -81,13 +81,13 @@ void AB2TutorialGameMode::PreBeginPlay()
 
 	Super::PreBeginPlay();
 
-	// PCClassData Áß °¡´ÉÇÑ ºÎºĞÀ» Async ·ÎµùÇÏ¸é¼­ ´Ù¸¥ °ÍµéÀÇ Preload ±îÁö ¸·°Ô µÇ¹Ç·Î (GetPCClassesToPreLoad ¿¡¼­ ¸®ÅÏ ´ë»ó ÁÙÀÓ)
-	// async ·Îµù ´ë»óÀÌ ¾Æ´Ñ °ÍµéÀº ¿©±â¼­ Á÷Á¢ ·ÎµùÇÑ´Ù. Å©Áö´Â ¾Ê°ÚÁö¸¸
+	// PCClassData å å•Šç“·èŒ„ ä½•ç›’é˜‘ Async è‚ºçˆ¹çªæè¾‘ ä¿ƒå¼— å·´ç”¸ç‹¼ Preload é³–ç˜¤ é˜œéœ¸ ç™»éª¨è‚º (GetPCClassesToPreLoad ä¿Šè¾‘ åºœç•” æªæƒ‘ ä¸´çƒ™)
+	// async è‚ºçˆ¹ æªæƒ‘æ é…’å›± å·´ç”¸ç¯® å’¯æ‰è¾‘ æµç«‹ è‚ºçˆ¹èŒ„ä¿ƒ. å†œç˜¤ç»° è‡¼æ‘†ç˜¤çˆ¶
 	UB2PCClassInfoBox* PCBox = StaticFindPCClassInfoBox(this);
 	if (PCBox)
 	{
 		TArray<EPCClass> ClassesToLoad;
-		// ÀÌ°Ç º°·Î ½Ã°£ ¾È ¸ÔÀ» °ÍÀÌ°í PCClassInfo Áß¿¡¼­ µû·Î ¶¼¾î³½ InGameOnlyInfo ¶û SkillAnim ÀÌ ¸¹ÀÌ ¸ÔÀ» ²¨. ±×°É async ·Îµù ÇÒ °ÍÀÓ.
+		// ææ‰’ å–Šè‚º çŸ«åŸƒ æ•‘ å†ˆé˜‘ å·´æç»Š PCClassInfo åä¿Šè¾‘ è¶è‚º éƒ½ç»¢è¾° InGameOnlyInfo å°” SkillAnim æ è…¹æ å†ˆé˜‘ æ³¢. å¼Šå§ async è‚ºçˆ¹ ä¸” å·´çƒ™.
 		for (int32 PCI = 0; PCI < GetMaxPCClassNum(); ++PCI)
 		{
 			ClassesToLoad.Add(IntToPCClass(PCI));
@@ -100,12 +100,12 @@ void AB2TutorialGameMode::PreBeginPlay()
 
 void AB2TutorialGameMode::BeginPlay()
 {
-	// µ¢Ä¡ Å« PCClass ¸¦ Async ·ÎµùÇÏ¹Ç·Î NPC µéÀº Async ´ë»óÀÌ¾ú´ø °Íµéµµ ¸ğµÎ ¹Ì¸® ·ÎµùÇØ µÒ.
+	// è€½æ‘¹ å¥´ PCClass ç”« Async è‚ºçˆ¹çªéª¨è‚º NPC ç”¸ç¯® Async æªæƒ‘æèŒå¸¦ å·´ç”¸æ¡£ è‘›æ»´ å›ºåºœ è‚ºçˆ¹ç§¦ ç‹„.
 	//GameContextAsyncFlush();
 
 	Super::BeginPlay();
 
-	MarkBeginAsyncLoadNextPCClass(); // BeginPlay ¿¡¼­¸é µÎ¹øÂ° ³ª¿Ã Ä³¸¯ÅÍ µ¥ÀÌÅÍ¿¡ ´ëÇÑ ·Îµù ¿äÃ»ÀÌ µÊ. ÀÌÈÄ¿¡´Â °¢°¢ÀÇ ±³Ã¼ ÀÌÈÄ°¡ µÉ °Í..
+	MarkBeginAsyncLoadNextPCClass(); // BeginPlay ä¿Šè¾‘æ æ»´é”…æ³ å”±æ£µ æŸè…ç£ å•æç£ä¿Š æªèŒ„ è‚ºçˆ¹ å¤¸æ²¡æ å‡³. æé¥¶ä¿Šç»° é˜¿é˜¿ç‹¼ èƒŒçœ‰ æé¥¶å•Š çª å·´..
 }
 
 void AB2TutorialGameMode::SetTutorialGameRule(bool bIsQTE)
@@ -233,7 +233,7 @@ void AB2TutorialGameMode::SubscribeEvents()
 
 void AB2TutorialGameMode::SetupUIScene()
 {
-	// BattleMain »ç¿ë X
+	// BattleMain è¤ä¾© X
 	UB2UIManager::GetInstance()->ChangeUIScene(EUIScene::TutorialBattleMain);
 
 	if (BattleMainUI == nullptr)
@@ -252,7 +252,7 @@ void AB2TutorialGameMode::SetupUIScene()
 
 void AB2TutorialGameMode::BeginDestroy()
 {
-	//// BeginDestroy ½ÃÁ¡¿¡¼­ÀÇ UIWidget destroy ´Â ÁÖÀÇÇÒ ÇÊ¿ä°¡ ÀÖÀ½.
+	//// BeginDestroy çŸ«ç—¢ä¿Šè¾‘ç‹¼ UIWidget destroy ç»° æ—ç‹¼ä¸” é˜å¤¸å•Š ä¹æ¾œ.
 	//if (FinishScreenPtr && !FinishScreenPtr->IsPendingKillOrUnreachable() && !FinishScreenPtr->HasAnyFlags(RF_BeginDestroyed))
 	//{
 	//	FinishScreenPtr->DestroySelf();
@@ -407,7 +407,7 @@ void AB2TutorialGameMode::SetFinishTutorial()
 void AB2TutorialGameMode::SendFinishActionLog()
 {
 	////////////////////////////////////////////////////////////////////
-	////¾×¼Ç ÁöÇ¥ ·Î±× (Æ©Åä¸®¾ó ¿Ï·á)
+	////å’€è®° ç˜¤é’ è‚ºå¼Š (è­¬é…åºœå€” è‚¯ä¸°)
 	//B2ActionLogSender Sender;
 	//Sender.setCategory(FString("TUTORIAL"))
 	//	.setAction(FString("COMPLETE"))
@@ -591,7 +591,7 @@ void AB2TutorialGameMode::ActionNextTutorial()
 	//if (OnPhaseClearCallbackList.IsValidIndex(TutorialMainIndex))
 	//	OnPhaseClearCallbackList[TutorialMainIndex].ExecuteIfBound();
 
-	//// Á¶°Ç ¾øÀ¸¸é ¹Ù·Î ´ÙÀ½ ´Ü°è ÁøÇà
+	//// ç‚¼æ‰’ ç»æ æ å®˜è‚º ä¿ƒæ¾œ çªœæ‹Œ æŸ³é’
 	//if (bTutorialPhaseDone == false &&
 	//	CurPhaseData->CompleteConditionType == ETutorialConditionType::None)
 	//	ActionNextTutorial();
@@ -603,7 +603,7 @@ void AB2TutorialGameMode::SetUnitySkillUI()
 	//{
 	//	for (int32 i = 0; i < 3; i++)
 	//	{
-	//		// OpenÇÒ¶§ suggest
+	//		// Openä¸”é”­ suggest
 	//		BattleMainUI->SetSkillEnable(i, false);
 	//	}
 	//}
@@ -773,7 +773,7 @@ void AB2TutorialGameMode::InitSettingTutorialPhase(ETutorialNumber Number)
 	//	}
 	//}
 
-	//// ±¸¿ï Attack
+	//// å¤‡åŒ¡ Attack
 	//else if (Number == ETutorialNumber::Tutorial_2)
 	//{
 	//	if (BattleMainUI)
@@ -783,7 +783,7 @@ void AB2TutorialGameMode::InitSettingTutorialPhase(ETutorialNumber Number)
 	//	}
 	//}
 
-	//// Ä³¸¯ÅÍ ½ºÀ§Äª (°ËÅõ»ç -> ¸¶¹ı»ç)
+	//// æŸè…ç£ èƒ¶å›°è« (å…«æ§è¤ -> ä»˜è¿‡è¤)
 	//else if (Number == ETutorialNumber::Tutorial_3)
 	//{
 	//	if (BattleMainUI)
@@ -803,7 +803,7 @@ void AB2TutorialGameMode::InitSettingTutorialPhase(ETutorialNumber Number)
 	//	SetNextPlayerClass(EPCClass::EPC_Fighter);
 	//}
 
-	//// ¼®»ó ¹İ°İ
+	//// ç±æƒ‘ é¦†æ‹œ
 	//else if (Number == ETutorialNumber::Tutorial_4)
 	//{
 	//	if (BattleMainUI)
@@ -831,7 +831,7 @@ void AB2TutorialGameMode::InitSettingTutorialPhase(ETutorialNumber Number)
 	//	bTutorial4CounterAction = true;
 	//}
 
-	//// Ä³¸¯ÅÍ ½ºÀ§Äª (¸¶¹ı»ç -> °İÅõ°¡)
+	//// æŸè…ç£ èƒ¶å›°è« (ä»˜è¿‡è¤ -> æ‹œæ§å•Š)
 	//else if (Number == ETutorialNumber::Tutorial_5)
 	//{
 	//	if (BattleMainUI)
@@ -858,7 +858,7 @@ void AB2TutorialGameMode::InitSettingTutorialPhase(ETutorialNumber Number)
 	//	}
 	//}
 
-	//// Ä³¸¯ÅÍ ½ºÀ§Äª (°İÅõ°¡ -> ¾Ï»ìÀÚ)
+	//// æŸè…ç£ èƒ¶å›°è« (æ‹œæ§å•Š -> é æ··ç£Š)
 	//else if (Number == ETutorialNumber::Tutorial_7)
 	//{
 	//	if (BattleMainUI)
@@ -879,7 +879,7 @@ void AB2TutorialGameMode::InitSettingTutorialPhase(ETutorialNumber Number)
 	//	bSetMinoZombie = true;
 	//}
 
-	//// ¹Ì³ë QTE ÀÌÈÄ
+	//// å›ºç•´ QTE æé¥¶
 	//else if (Number == ETutorialNumber::Tutorial_8)
 	//{
 	//	if (BattleMainUI)
@@ -1154,7 +1154,7 @@ void AB2TutorialGameMode::OnMobAttackNotify()
 			TutorialPlayer->StopRepeatingInput();
 			TutorialPlayer->SetAttackState(EAttackState::ECS_None);
 
-			SetTutorialPhaseInputControl(false); // InputÀ» Ç®¾î¾ß Guard¸¦ ÇÏÁö
+			SetTutorialPhaseInputControl(false); // Inputé˜‘ é’±ç»¢å…· Guardç”« çªç˜¤
 		}
 
 		if (BattleMainUI)
@@ -1209,7 +1209,7 @@ void AB2TutorialGameMode::SetMinoQTEState(ABladeIICharacter* VictimCharacter)
 			VictimCharacter->SetInvincible(true);
 		}
 
-		// QTE °¡´ÉÇÏ°Ô ÇÏ¸é¼­ Å»¼ö ÀÖ´Â ½Ã°£ ¹«Á¦ÇÑ
+		// QTE å•Šç“·çªéœ¸ çªæè¾‘ å‘•è ä¹ç»° çŸ«åŸƒ å…¬åŠ›èŒ„
 		VictimCharacter->SetQTEEnabled(true);
 		VictimCharacter->SetQTELimitEnabled(true);
 
@@ -1305,7 +1305,7 @@ void AB2TutorialGameMode::OnChangedQTEEnableState(class UB2UIDocBase* Sender, EQ
 	//		BattleMainUI->SetUIEnable(false);
 
 
-	//	SetTutorialPhaseInputControl(true); // InputÀ» LockÇÑ´Ù
+	//	SetTutorialPhaseInputControl(true); // Inputé˜‘ LockèŒ„ä¿ƒ
 	//	ABladeIIPlayer* LocalPlayerChar = Cast<ABladeIIPlayer>(UGameplayStatics::GetLocalPlayerCharacter(this));
 	//	if (LocalPlayerChar)
 	//	{
@@ -1346,7 +1346,7 @@ void AB2TutorialGameMode::OnPlayerAttackStateChange(ABladeIITutorialPlayer* Tuto
 	{
 		if (InAttackState == EAttackState::ECS_None)
 		{
-			// Mob ¸Ó¸®À§¿¡ QTE¸¶Å©°¡ ¶ã¶§±îÁö ±â´Ş¸²
+			// Mob èµ£åºœå›°ä¿Š QTEä»˜å†œå•Š èº²é”­é³–ç˜¤ æ‰å´”è¦†
 			GetWorldTimerManager().SetTimer(QTEPerfectTH, this, &AB2TutorialGameMode::ActiveQTESuggest, 0.2f, false);
 		}
 	}
@@ -1354,9 +1354,9 @@ void AB2TutorialGameMode::OnPlayerAttackStateChange(ABladeIITutorialPlayer* Tuto
 
 void AB2TutorialGameMode::SpawnWaveEnemies()
 {
-	if (GetSpawnPoolArray().Num() > 0 && GetSpawnPoolArray()[0]) // SpawnPool ¿©·¯°³ ¼³Ä¡°¡ °¡´ÉÇÏÁö¸¸ ³­ÀÌµµ º° Æ©Åä¸®¾óÀÌ ÀÖ´Â °Å ¾Æ´Ï¸é ÇÏ³ª¹Û¿¡´Â..
+	if (GetSpawnPoolArray().Num() > 0 && GetSpawnPoolArray()[0]) // SpawnPool å’¯çŸ¾ä¿º æ±²æ‘¹å•Š å•Šç“·çªç˜¤çˆ¶ æŠ„ææ¡£ å–Š è­¬é…åºœå€”æ ä¹ç»° èŠ­ é…’èªæ çªå”±è§‚ä¿Šç»°..
 	{
-		// ÀÓ½Ã ±¸Çö
+		// çƒ™çŸ« å¤‡æ³…
 		GetSpawnPoolArray()[0]->CustomSpawnWave(MinoSpawnWaveNumber);
 	}
 }
@@ -1368,7 +1368,7 @@ void AB2TutorialGameMode::SetMinoRidingMatinee()
 	//	GEngine->HandleCeCommand(GetWorld(), TEXT("MinoRidingMatinee"), *GLog);
 	//}
 
-	//// Å»°ÍÀº ¹Ì¸® ³»¸²
+	//// å‘•å·´ç¯® å›ºåºœ éƒ´è¦†
 	//ABladeIITutorialPlayer* TutorialPlayer = Cast<ABladeIITutorialPlayer>(UGameplayStatics::GetLocalPlayerController(this)->GetPawn());
 	//if (TutorialPlayer && TutorialPlayer->IsInQTEState())
 	//{
@@ -1404,7 +1404,7 @@ void AB2TutorialGameMode::ActiveQTESuggest()
 
 	SetTutorialPhaseInputControl(false);
 
-	// SkillÀº ¸·ÀÚ
+	// Skillç¯® é˜œç£Š
 	if (BattleMainUI)
 		BattleMainUI->SetUIEnable(false);
 
@@ -1417,7 +1417,7 @@ void AB2TutorialGameMode::ActiveQTESuggest()
 
 	TArray<ABladeIICharacter*> AllMobs;
 	GetAllWorldMobList(AllMobs);
-	//°­Á¦·Î ¸ğµç ¸÷ QTE»óÅÂ·Î ¸¸µë
+	//ç¢åŠ›è‚º è‘›ç”µ å„ QTEæƒ‘æ€•è‚º çˆ¶æƒ¦
 	for (ABladeIICharacter* EnemyCharacter : AllMobs)
 		if (EnemyCharacter && EnemyCharacter->IsAlive())
 			EnemyCharacter->SetQTEEnabled(true);
@@ -1517,8 +1517,8 @@ int32 AB2TutorialGameMode::GetStageDifficulty()
 
 void AB2TutorialGameMode::GetFullStackSkillId(EPCClass InCharacterClass, TArray<int32>& OutSkillArray)
 {
-	// ½Å±Ô Æ©Åä¸®¾ó ½ºÅ³ »ç¿ëÇÏ´Â Å¬·¡½º Fighter ¿Í Assassin ¸¸ ½ºÅ³ »ç¿ë.. (?)
-	// ¿©±â¼­ OutSkillArray ¿¡ ´ã¾ÆÁÖ´Â SkillAnim µéÀº ·Îµù ´ë»óÀÌ µÇ¹Ç·Î ÇÊ¿ä¾ø´Â °Ç Á¦¿ÜÇÏ´Â °Ô ÁÁ´Ù.
+	// è„šç—¹ è­¬é…åºœå€” èƒ¶æ‡¦ è¤ä¾©çªç»° åŠªè´°èƒ¶ Fighter å®¢ Assassin çˆ¶ èƒ¶æ‡¦ è¤ä¾©.. (?)
+	// å’¯æ‰è¾‘ OutSkillArray ä¿Š æ·¬é…’æ—ç»° SkillAnim ç”¸ç¯® è‚ºçˆ¹ æªæƒ‘æ ç™»éª¨è‚º é˜å¤¸ç»ç»° æ‰’ åŠ›å¯‡çªç»° éœ¸ äº®ä¿ƒ.
 	if (InCharacterClass == EPCClass::EPC_Fighter || InCharacterClass == EPCClass::EPC_Assassin)
 	{
 		int32 SkillNum1 = -1, SkillNum2 = -1, SkillNum3 = -1, UnitySkillNum = -1;
@@ -1541,18 +1541,18 @@ void AB2TutorialGameMode::GetFullStackSkillId(EPCClass InCharacterClass, TArray<
 
 void AB2TutorialGameMode::GetPCPartsForTutorialPlay(EPCClass InClass, TArray<FB2Item>& OutItemData, FB2Wing& OutWingData)
 {
-	// 6 ¼º ¾ÆÀÌÅÛ ±ò¸ÂÃã
+	// 6 å·± é…’æè¢ å½¬å˜å‹‰
 	if (InClass != EPCClass::EPC_Assassin)
 	{
 		GetStandardDummyPCPartItemData(InClass, 6, OutItemData);
 	}
 	else
 	{
-		// ¾î»õ½ÅÀº °ËÀº»ö Àåºñ
+		// ç»¢è´§è„šç¯® å…«ç¯®ç¥¸ å˜åš
 		GetStandardDummyPCPartItemData(InClass, 6, OutItemData, 1);
 	}
 
-	// ³¯°³ ¾È ¾¸
+	// æœä¿º æ•‘ é–
 	OutWingData = FB2Wing();
 	OutWingData.bShouldBeVisible = false;
 }
@@ -1566,11 +1566,11 @@ ABladeIIPlayer* AB2TutorialGameMode::GetFallbackPuppetPlayer(EPCClass InCharClas
 void AB2TutorialGameMode::PreBuildCharacterMeshes()
 {
 	TSubclassOf<APawn> DefaultPawnClassBackup = DefaultPawnClass;
-	// ´õ¹Ìµé spawn ½ÃÄÑ¾ß ÇØ¼­ Àá±ñ µı Å¬·¡½º·Î ¹Ù²ã³õ°í..
+	// æ­¹å›ºç”¸ spawn çŸ«éš¾å…· ç§¦è¾‘ æ³ªç˜ª è° åŠªè´°èƒ¶è‚º å®˜å±‚åˆç»Š..
 	DefaultPawnClass = ABladeIITutorialFallbackPuppetPlayer::StaticClass();
 
-	// ¸ğµç Ä³¸¯ÅÍ mesh ´Ù ºôµåÇØ ³õÀ½. ¿©±â´Â B2CompositeMeshCache ÀÇ RootSet Ã³¸®¿Í »ó°ü¾øÀÌ 
-	// ÀåÂø Àåºñ°¡ ´Ù¸¦ °ÍÀÌ¹Ç·Î °ÔÀÓ¸ğµå Â÷¿ø¿¡¼­ ¹Ì¸® ºôµå°¡ ÇÊ¿äÇÔ.
+	// è‘›ç”µ æŸè…ç£ mesh ä¿ƒ å‘¼é›ç§¦ åˆæ¾œ. å’¯æ‰ç»° B2CompositeMeshCache ç‹¼ RootSet è´¸åºœå®¢ æƒ‘åŒ…ç»æ 
+	// å˜é¦’ å˜åšå•Š ä¿ƒç”« å·´æéª¨è‚º éœ¸çƒ™è‘›é› ç’ç›”ä¿Šè¾‘ å›ºåºœ å‘¼é›å•Š é˜å¤¸çªƒ.
 	for (int32 PCI = 0; PCI < GetMaxPCClassNum(); ++PCI)
 	{
 		EPCClass ThisCharClass = IntToPCClass(PCI);
@@ -1579,18 +1579,18 @@ void AB2TutorialGameMode::PreBuildCharacterMeshes()
 		FB2Wing ThisCharWing;
 		GetPCPartsForTutorialPlay(ThisCharClass, ThisCharEquipItems, ThisCharWing);
 
-		// ¿©±â¼­ InGameOnlyInfo ¸¦ ·ÎµùÇÏÁö´Â ¾Ê´Â´Ù.
+		// å’¯æ‰è¾‘ InGameOnlyInfo ç”« è‚ºçˆ¹çªç˜¤ç»° è‡¼ç»°ä¿ƒ.
 		PrebuildAndCacheCharMesh(ThisCharClass, ThisCharEquipItems, &ThisCharWing,
-			false // ÀÏ´Ü ±âº»ÀûÀ¸·Î ¼½¼Ç ³ª´²Áø ÀÏ¹İ ¸ğµ¨·Î.
+			false // è€çªœ æ‰å¤¯åˆ©æ è‚º å†€è®° å”±åºŠæŸ³ è€é¦† è‘›èƒ†è‚º.
 		);
 
-		// ¼½¼Ç º´ÇÕµÈ ¸ğµ¨À» »ç¿ëÇÒ °¡´É¼ºÀ» »ı°¢ÇÏ±â´Â ¾î·ÆÁö¸¸.. ÄÚµå´Â °®ÃçµÎ°í.
+		// å†€è®° æé’¦ç­‰ è‘›èƒ†é˜‘ è¤ä¾©ä¸” å•Šç“·å·±é˜‘ ç§¯é˜¿çªæ‰ç»° ç»¢è²ç˜¤çˆ¶.. å†…é›ç»° çˆ±è‹—æ»´ç»Š.
 		if (UB2PCMeshSectionMergeInfo::ShouldUseSectionMergeByGameContext(this))
 		{
 			PrebuildAndCacheCharMesh(ThisCharClass, ThisCharEquipItems, &ThisCharWing, true);
 		}
 
-		// Ãß°¡·Î ¿¬Ãâ ¼Â¾÷ ½Ã »ç¿ëÇÒ ´õ¹Ìµéµµ »ı¼ºÇØ ³õ´Â´Ù. Async ·ÎµùÀ» ÇÒ AnimBP ·ÎµùÀÌ ¾øµµ·Ï ÇÏ´Â °Ô Áß¿ä.
+		// çœ å•Šè‚º æ¥·å… æ‚¸è¯€ çŸ« è¤ä¾©ä¸” æ­¹å›ºç”¸æ¡£ ç§¯å·±ç§¦ åˆç»°ä¿ƒ. Async è‚ºçˆ¹é˜‘ ä¸” AnimBP è‚ºçˆ¹æ ç»æ¡£åºŸ çªç»° éœ¸ åå¤¸.
 		FTransform FallbackPuppetTransform(FVector(100000.0f, 100000.0f, 100.0f * (float)PCI));
 		ABladeIITutorialFallbackPuppetPlayer* SpawnedFallbackPuppet = Cast<ABladeIITutorialFallbackPuppetPlayer>(
 			ABladeIIGameMode::SpawnPlayerCharAsPuppet(this, ThisCharClass, FallbackPuppetTransform, false));
@@ -1602,23 +1602,23 @@ void AB2TutorialGameMode::PreBuildCharacterMeshes()
 
 	DefaultPawnClass = DefaultPawnClassBackup;
 
-	// GameMode ÀÇ ¸â¹ö º¯¼ö·Î Ã³À½ Spawn ½ÃÅ³ PCClass ¸¦ ¸í½ÃÇÏ´Â Á» ¹Ùº¸°°Àº ±¸Á¶ ¶§¹®¿¡ ÀÌ°É ´Ù½Ã ºÒ·¯ÁÖ¾î¾ß ÇÔ.
-	SetDesiredPCClassEnum(); // ¿Ö ÀÌ·¸°Ô ¸¸µé¾ú¾ú´ÂÁö Àß ±â¾ïÀÌ ¾È³ª´Âµ¥ ±¸Á¶°¡ ÀÌ·¸°Ô º¹ÀâÇØÁú ÁÙ ¸ô¶ú°ÚÁö..
+	// GameMode ç‹¼ ç³•æ»š å‡½èè‚º è´¸æ¾œ Spawn çŸ«æ‡¦ PCClass ç”« ç–™çŸ«çªç»° ç²± å®˜ç„Šéç¯® å¤‡ç‚¼ é”­å·©ä¿Š æå§ ä¿ƒçŸ« é˜‚çŸ¾æ—ç»¢å…· çªƒ.
+	SetDesiredPCClassEnum(); // æ æçŠ¯éœ¸ çˆ¶ç”¸èŒèŒç»°ç˜¤ è‚‹ æ‰æ’…æ æ•‘å”±ç»°å• å¤‡ç‚¼å•Š æçŠ¯éœ¸ æ±—æ£±ç§¦é¾™ ä¸´ éš”è€³æ‘†ç˜¤..
 }
 
 void AB2TutorialGameMode::PreBuildTagCharMesh()
 {
-	// »óÀ§ Å¬·¡½ºÀÎ StageGameMode ¿¡¼­ ½ÇÇàµÇ´Â ±â´ÉÀ¸·Î ¿©±â¼­´Â ¾Æ¹«°Íµµ ÇÏÁö ¾Êµµ·Ï ÇØ¾ß ÇÑ´Ù. ´ë½Å PreBuildCharacterMeshes ¿¡¼­ Ã³¸®.
+	// æƒ‘å›° åŠªè´°èƒ¶ç‰¢ StageGameMode ä¿Šè¾‘ è§’é’ç™»ç»° æ‰ç“·æ è‚º å’¯æ‰è¾‘ç»° é…’å…¬å·´æ¡£ çªç˜¤ è‡¼æ¡£åºŸ ç§¦å…· èŒ„ä¿ƒ. æªè„š PreBuildCharacterMeshes ä¿Šè¾‘ è´¸åºœ.
 }
 
 TArray<EPCClass> AB2TutorialGameMode::GetPCClassesToPreLoad()
 {
-	// ±âº» Pre-render ·ÎÁ÷À¸·Î´Â Pre-render Ã³¸®°¡ ¾È µÈ Ã¤·Î ÀüÅõ ÀÌÆåÆ®¸¦ »ç¿ëÇÏ°Ô µÉ ¹®Á¦°¡ ÀÖ´Âµ¥ ÀÌ·± ±¸¼ºÀ» À§ÇØ¼­¶óµµ ÀÌ°Å ½ÃÀÛ Àü¿¡ Pre-render ¸¦ º°µµ·Î Ã³¸®ÇÏ°Ô µÉ °Í.
+	// æ‰å¤¯ Pre-render è‚ºæµæ è‚ºç»° Pre-render è´¸åºœå•Š æ•‘ ç­‰ ç›²è‚º å‚ˆæ§ ææ£‹é£˜ç”« è¤ä¾©çªéœ¸ çª å·©åŠ›å•Š ä¹ç»°å• æç¹ å¤‡å·±é˜‘ å›°ç§¦è¾‘æ‰¼æ¡£ æèŠ­ çŸ«ç´¯ å‚ˆä¿Š Pre-render ç”« å–Šæ¡£è‚º è´¸åºœçªéœ¸ çª å·´.
 	TArray<EPCClass> RetArray;
 	RetArray.Add(BladeIIGameImpl::GetLocalCharacterData().GetMainPlayerClass());
 	return RetArray;
 #if 0
-	// Async ·ÎµùÀ» ¾È ¾²·Á¸é ÀüÃ¼ Å¬·¡½º¸¦ ÇÑ¹ø¿¡ ·ÎµùÇÏµµ·Ï ¿©±â¼­ ¸®ÅÏÇÏ¸é µÊ.
+	// Async è‚ºçˆ¹é˜‘ æ•‘ é™å¦¨æ å‚ˆçœ‰ åŠªè´°èƒ¶ç”« èŒ„é”…ä¿Š è‚ºçˆ¹çªæ¡£åºŸ å’¯æ‰è¾‘ åºœç•”çªæ å‡³.
 	TArray<EPCClass> RetArray;
 	for (int32 PCI = 0; PCI < GetMaxPCClassNum(); ++PCI)
 	{
@@ -1628,7 +1628,7 @@ TArray<EPCClass> AB2TutorialGameMode::GetPCClassesToPreLoad()
 #endif
 }
 TArray<EPCClass> AB2TutorialGameMode::GetPCClassesToMatineePreLoad()
-{ // Ã¹ PCClass ¿Ü¿£ async ·ÎµùÀ» ÇÏ´õ¶óµµ ¿¬Ãâ ¼Â¾÷Àº ¸ğµÎ Preload ÇØ¾ß ÇÑ´Ù. ±âº» GetPCClassesToPreLoad ¿Í ´Ù¸£°Ô °¡´Â °æ¿ì.
+{ // éœ‰ PCClass å¯‡æµš async è‚ºçˆ¹é˜‘ çªæ­¹æ‰¼æ¡£ æ¥·å… æ‚¸è¯€ç¯® è‘›æ»´ Preload ç§¦å…· èŒ„ä¿ƒ. æ‰å¤¯ GetPCClassesToPreLoad å®¢ ä¿ƒç¦éœ¸ å•Šç»° ç‰ˆå¿«.
 	TArray<EPCClass> RetArray;
 	for (int32 PCI = 0; PCI < GetMaxPCClassNum(); ++PCI)
 	{
@@ -1638,13 +1638,13 @@ TArray<EPCClass> AB2TutorialGameMode::GetPCClassesToMatineePreLoad()
 }
 void AB2TutorialGameMode::MarkBeginAsyncLoadNextPCClass()
 {
-	// ´ÙÀ½ Ä³¸¯ÅÍ spawn ¹× ±³Ã¼ ¿¬Ãâ ³ª¿À´Â ½ÃÁ¡¿¡ ±× ´ÙÀ½ Ä³¸¯ÅÍ µ¥ÀÌÅÍ async ·ÎµùÀ» ½ÃÀÛÇÒ ¸ñÀûÀ¸·Î ÀÌ°É ÄİÇÑ´Ù.
+	// ä¿ƒæ¾œ æŸè…ç£ spawn æ£º èƒŒçœ‰ æ¥·å… å”±å·ç»° çŸ«ç—¢ä¿Š å¼Š ä¿ƒæ¾œ æŸè…ç£ å•æç£ async è‚ºçˆ¹é˜‘ çŸ«ç´¯ä¸” æ ¼åˆ©æ è‚º æå§ å¦®èŒ„ä¿ƒ.
 
 	if (PCClassAsyncLoadOrder.Num() > 0)
 	{
-		// SetNextPlayerClass È£Ãâ ½ÃÁ¡ÀÌ Async ·Îµù¿¡ ÇÊ¿äÇÑ ½ÃÁ¡º¸´Ù ´À·Á¼­ º°µµ·Î ¼ø¼­ ÁöÁ¤ÇÏ´Â ¹è¿­À» ¸¸µé¾î¼­ ¿©±â¼­ ³Ö°Ô µÇ¾úÀ½.
-		// ÀÌ°Í ¿Ü¿¡ ´Ù¸¥ ½ÄÀ¸·Î ÁöÁ¤ÇÒ °èÈ¹ÀÌ ÀÖÀ¸¸é ÀÌ°Ç Æó±â..
-		BladeIIGameImpl::GetLocalCharacterData().SetSubPlayerClass(PCClassAsyncLoadOrder[0]); // ±»ÀÌ ÀÌ°É SubPlayerClass ·Î ¼¼ÆÃÇÏ´Â ÀÌÀ¯´Â ÀÇ¹Ì»ó Àû´çÈ÷ ¸»ÀÌ µÇ±âµµ ÇÏÁö¸¸ ÀÌ·¸°Ô ÇØ¾ß ¸¶Áö¸·¿¡ ¾î½Ø½ÅÀÌ ¼¼ÆÃµÇ°í ±âº» ¼±ÅÃ Å¬·¡½º°¡ µÇ±â ¶§¹®ÀÌÁö ³¥³¥
+		// SetNextPlayerClass é¾‹å… çŸ«ç—¢æ Async è‚ºçˆ¹ä¿Š é˜å¤¸èŒ„ çŸ«ç—¢ç„Šä¿ƒ è ¢å¦¨è¾‘ å–Šæ¡£è‚º é‰´è¾‘ ç˜¤æ²¥çªç»° ç¡…å‡¯é˜‘ çˆ¶ç”¸ç»¢è¾‘ å’¯æ‰è¾‘ æŒéœ¸ ç™»èŒæ¾œ.
+		// æå·´ å¯‡ä¿Š ä¿ƒå¼— ä¾¥æ è‚º ç˜¤æ²¥ä¸” æ‹Œè£™æ ä¹æ æ ææ‰’ ä¼æ‰..
+		BladeIIGameImpl::GetLocalCharacterData().SetSubPlayerClass(PCClassAsyncLoadOrder[0]); // è¢«æ æå§ SubPlayerClass è‚º æŠ€æ³¼çªç»° æèœ¡ç»° ç‹¼å›ºæƒ‘ åˆ©å¯¸æ´’ å¯Œæ ç™»æ‰æ¡£ çªç˜¤çˆ¶ æçŠ¯éœ¸ ç§¦å…· ä»˜ç˜¤é˜œä¿Š ç»¢æˆªè„šæ æŠ€æ³¼ç™»ç»Š æ‰å¤¯ æ€¥ç¶ åŠªè´°èƒ¶å•Š ç™»æ‰ é”­å·©æç˜¤ å¿å¿
 		PCClassAsyncLoadOrder.RemoveAt(0);
 
 		PendingAsyncLoadRequestPCClass = BladeIIGameImpl::GetLocalCharacterData().GetSubPlayerClass();
@@ -1654,8 +1654,8 @@ void AB2TutorialGameMode::BeginAsyncLoadNextPCClass()
 {
 	checkSlow(PendingAsyncLoadRequestPCClass != EPCClass::EPC_End);
 
-	// ¸Å¹øÀÇ ´ÙÀ½ Å¬·¡½º ·Îµù Àü¿¡ Áö±İ±îÁö ·ÎµùµÇ¾î ÀÖ´Â °ÍµéÀº ³¯¸®µµ·Ï ÇÑ´Ù. ÇöÀç Ä³¸¯ÅÍ µ¥ÀÌÅÍ´Â ÀÌ¹Ì spawn µÈ ÀÌÈÄ¿¡´Â ÇÊ¿ä¾ø¾î¾ß.
-	// iOS ¸¦ À§ÇØ¼­ÀÌ°í Android ¿¡¼­ ManagedPCClassUnload »ç¿ëÇÏ°í ÀÖÀ¸¸é ·çÆ®¼Â Ã³¸® ¶§¹®¿¡ ¾ğ·Îµù ¾È µÉ µí..
+	// æ¦‚é”…ç‹¼ ä¿ƒæ¾œ åŠªè´°èƒ¶ è‚ºçˆ¹ å‚ˆä¿Š ç˜¤é™›é³–ç˜¤ è‚ºçˆ¹ç™»ç»¢ ä¹ç»° å·´ç”¸ç¯® æœåºœæ¡£åºŸ èŒ„ä¿ƒ. æ³…çŠ æŸè…ç£ å•æç£ç»° æå›º spawn ç­‰ æé¥¶ä¿Šç»° é˜å¤¸ç»ç»¢å…·.
+	// iOS ç”« å›°ç§¦è¾‘æç»Š Android ä¿Šè¾‘ ManagedPCClassUnload è¤ä¾©çªç»Š ä¹æ æ é£é£˜æ‚¸ è´¸åºœ é”­å·©ä¿Š æ”«è‚ºçˆ¹ æ•‘ çª æ·€..
 	UB2PCClassInfoBox* PCBox = StaticFindPCClassInfoBox(this);
 	if (PCBox)
 	{
@@ -1670,14 +1670,14 @@ void AB2TutorialGameMode::BeginAsyncLoadPCClass(EPCClass InClassToReqLoad)
 {
 	//if (InClassToReqLoad != EPCClass::EPC_End)
 	//{
-	//	// FlushAsyncLoading À» À¯¹ßÇÒ ¼ö ÀÖ´Â °ÍµéÀ» ¹Ì¸® ÇØ ³õ¾Æ¾ß ÇÑ´Ù.
+	//	// FlushAsyncLoading é˜‘ èœ¡æƒ¯ä¸” è ä¹ç»° å·´ç”¸é˜‘ å›ºåºœ ç§¦ åˆé…’å…· èŒ„ä¿ƒ.
 	//	StaticFindPCClassInfoBox(this);
 	//	StaticFindSkillAnimInfo(this);
 	//	StaticFindDamageEffectInfo(this);
 
 	//	//
-	//	// ÇöÀç´Â PCClassInfo ÀÇ InGameOnlyInfo (AnimBP) ¿Í SkillAnim µéÀ» Async ·Îµù ¿äÃ»ÇÏ´Âµ¥ 
-	//	// Áß°£¿¡ flush °¡ µÉ ¼öµµ ÀÖ°í ÇØ¼­ ³Ê¹« ¸¹ÀÌ´Â ¸øÇÒ ¼öµµ.
+	//	// æ³…çŠç»° PCClassInfo ç‹¼ InGameOnlyInfo (AnimBP) å®¢ SkillAnim ç”¸é˜‘ Async è‚ºçˆ¹ å¤¸æ²¡çªç»°å• 
+	//	// ååŸƒä¿Š flush å•Š çª èæ¡£ ä¹ç»Š ç§¦è¾‘ å‘ˆå…¬ è…¹æç»° ç»™ä¸” èæ¡£.
 	//	//
 
 	//	UB2PCClassInfoBox* PCBox = StaticFindPCClassInfoBox(this);
@@ -1691,9 +1691,9 @@ void AB2TutorialGameMode::BeginAsyncLoadPCClass(EPCClass InClassToReqLoad)
 	//		CombinedSkillAnimIDToReq.Add(FCombinedPCSkillAnimID(InClassToReqLoad, ThisSkillAnimType));
 	//	}
 
-	//	// ½ÇÁ¦ Async ·Îµù ¿äÃ»Àº ¸Ç ¾Æ·¡¿¡¼­.. ÀÌ·¡µµ ¹°·Ğ Áß°£¿¡ flush °Å¸®°¡ »ı±â¸é µµ·ç¹¬ÀÌ°ÚÁö¸¸.
+	//	// è§’åŠ› Async è‚ºçˆ¹ å¤¸æ²¡ç¯® ç›– é…’è´°ä¿Šè¾‘.. æè´°æ¡£ æ‹±æ²¸ ååŸƒä¿Š flush èŠ­åºœå•Š ç§¯æ‰æ æ¡£é£å®«ææ‘†ç˜¤çˆ¶.
 	//	if (ThisLoadedInfo)
-	//	{ // ÀÌ°Ç ¿ì¼±¼øÀ§¸¦ ³ô°Ô ÁØ´Ù. ´ëÃ¼·Î Ä³¸¯ÅÍ º° µµÀÔºÎ ¿¬Ãâ µµÁß¿¡ ·Îµù ¿Ï·á¸¦ ÀÇµµÇÔ. (±Û½ê Àß µÉ±î..)
+	//	{ // ææ‰’ å¿«æ€¥é‰´å›°ç”« è‡­éœ¸ éœ–ä¿ƒ. æªçœ‰è‚º æŸè…ç£ å–Š æ¡£æ¶ä½• æ¥·å… æ¡£åä¿Š è‚ºçˆ¹ è‚¯ä¸°ç”« ç‹¼æ¡£çªƒ. (è‡‚ç–¥ è‚‹ çªé³–..)
 	//		ThisLoadedInfo->ReqAsyncLoad(this, FStreamableManager::AsyncLoadHighPriority);
 	//	}
 	//	UB2SkillAnimInfo* SkillAnimInfo = StaticFindSkillAnimInfo(this);
@@ -1732,7 +1732,7 @@ void ABladeIITutorialPlayer::InitializeCombatStats()
 
 bool ABladeIITutorialPlayer::CanDie(float KillingDamage, FDamageEvent const& DamageEvent, AController* Killer, AActor* DamageCauser) const
 {
-	return false; // ÀÀ ¾ÈÁ×¾î
+	return false; // è§ˆ æ•‘ç£·ç»¢
 }
 
 float ABladeIITutorialPlayer::GetScaledAttackLevel()
@@ -1849,7 +1849,7 @@ void ABladeIITutorialPlayer::OnTutorialCounterActivated()
 
 void ABladeIITutorialPlayer::SetupComponentsForParts(bool bMergeSections, USkeletalMesh** OutGetBuiltResultOnly)
 {
-	checkSlow(!bMergeSections); /* Tutorial ¿¡ ÀúÄ÷¸®Æ¼ MergeSection ¸ğµ¨À» ¾µ ÀÏÀº ¾Æ¸¶ ¾øÀ» µí ÇØ¼­.. */
+	checkSlow(!bMergeSections); /* Tutorial ä¿Š å†é•Šåºœè MergeSection è‘›èƒ†é˜‘ é•œ è€ç¯® é…’ä»˜ ç»é˜‘ æ·€ ç§¦è¾‘.. */
 
 	TArray<FB2Item> TutorialDummyItems;
 	FB2Wing WingData;
@@ -1862,7 +1862,7 @@ void ABladeIITutorialPlayer::SetupComponentsForParts(bool bMergeSections, USkele
 
 ICharacterDataStore* ABladeIITutorialPlayer::GetCharacterDataStore()
 {
-	//¿©±â·Î ¿À´Â °ÍÀº Local¿ë Player character·Î °¡Á¤ÇÑ´Ù.
+	//å’¯æ‰è‚º å·ç»° å·´ç¯® Localä¾© Player characterè‚º å•Šæ²¥èŒ„ä¿ƒ.
 	if (CharacterDataStore == nullptr)
 		CharacterDataStore = &BladeIIGameImpl::GetTutorialCharacterData();
 
@@ -1878,8 +1878,8 @@ void ABladeIITutorialFallbackPuppetPlayer::BeginPlay()
 {
 	//Super::BeginPlay();
 
-	//// ¸Ö¸® spawn À» ÇØ ³õ±ä ÇßÁö¸¸..
-	//// ·»´õ¸µ¿¡ »ç¿ëÇÒ °Å ¾Æ´Ô ¼º´É¿¡ ¹æÇØ°¡ µÉ ¼ö ÀÖ´Â ¿äÀÎÀº ÃÖ´ëÇÑ Â÷´Ü.
+	//// é’¢åºœ spawn é˜‘ ç§¦ åˆå˜ æ²ç˜¤çˆ¶..
+	//// åŠæ­¹å‚…ä¿Š è¤ä¾©ä¸” èŠ­ é…’ä¸› å·±ç“·ä¿Š è§„ç§¦å•Š çª è ä¹ç»° å¤¸ç‰¢ç¯® å¼¥æªèŒ„ ç’çªœ.
 	//USkeletalMeshComponent* TheMeshComp = GetMesh();
 	//if (TheMeshComp)
 	//{
@@ -1894,29 +1894,29 @@ void ABladeIITutorialFallbackPuppetPlayer::BeginPlay()
 
 	//SetActorEnableCollision(false);
 
-	//// ¿¬ÃâÀ» °ÅÄ¡´Ù º¸¸é Hidden ÀÌ Ç®¸®°Ô µÉ ¼ö ÀÖ´Âµ¥.. ±×·¡µµ SetVisibility µµ Çß°í ±âº» spawn ÀÚÃ¼µµ Àú ¸Ö¸® ³öµ×À¸´Ï ¾îÁö°£ÇØ¼­´Â ±¦ÂúÀ» °Å.
+	//// æ¥·å…é˜‘ èŠ­æ‘¹ä¿ƒ ç„Šæ Hidden æ é’±åºœéœ¸ çª è ä¹ç»°å•.. å¼Šè´°æ¡£ SetVisibility æ¡£ æ²ç»Š æ‰å¤¯ spawn ç£Šçœ‰æ¡£ å† é’¢åºœ å‡ºåº•æ èª ç»¢ç˜¤åŸƒç§¦è¾‘ç»° å®æ»¡é˜‘ èŠ­.
 	//SetActorHiddenInGame(true);
 }
 void ABladeIITutorialFallbackPuppetPlayer::SetupComponentsForParts(bool bMergeSections, USkeletalMesh** OutGetBuiltResultOnly)
 {
-	checkSlow(!bMergeSections); /* Tutorial ¿¡ ÀúÄ÷¸®Æ¼ MergeSection ¸ğµ¨À» ¾µ ÀÏÀº ¾Æ¸¶ ¾øÀ» µí ÇØ¼­.. */
+	checkSlow(!bMergeSections); /* Tutorial ä¿Š å†é•Šåºœè MergeSection è‘›èƒ†é˜‘ é•œ è€ç¯® é…’ä»˜ ç»é˜‘ æ·€ ç§¦è¾‘.. */
 
 	TArray<FB2Item> TutorialDummyItems;
 	FB2Wing WingData;
 
 	EPCClass CurrentPCClass = GetCurrentPlayerClass();
-	// ABladeIITutorialPlayer ¿Í ¸¶Âù°¡Áö Àåºñ¸¦ ÀåÂøÇÏµµ·Ï µ¿ÀÏÇÑ ÇÔ¼ö »ç¿ë.
+	// ABladeIITutorialPlayer å®¢ ä»˜è›®å•Šç˜¤ å˜åšç”« å˜é¦’çªæ¡£åºŸ æ‚¼è€èŒ„ çªƒè è¤ä¾©.
 	AB2TutorialGameMode::GetPCPartsForTutorialPlay(CurrentPCClass, TutorialDummyItems, WingData);
 
 	SetupComponentsForPartsCommon(TutorialDummyItems, &WingData, bMergeSections, false, OutGetBuiltResultOnly);
 }
 void ABladeIITutorialFallbackPuppetPlayer::SubscribeEvents()
 {
-	// ¾Æ¹«°Íµµ ÇÏÁö ¾Êµµ·Ï
+	// é…’å…¬å·´æ¡£ çªç˜¤ è‡¼æ¡£åºŸ
 }
 void ABladeIITutorialFallbackPuppetPlayer::UnsubscribeEvents()
 {
-	// ¾Æ¹«°Íµµ ÇÏÁö ¾Êµµ·Ï
+	// é…’å…¬å·´æ¡£ çªç˜¤ è‡¼æ¡£åºŸ
 }
 bool ABladeIITutorialFallbackPuppetPlayer::CanTakeDamage(class AActor* DamageCauser, struct FDamageEvent const& DamageEvent, const struct FDamageInfo* DamageType)
 {

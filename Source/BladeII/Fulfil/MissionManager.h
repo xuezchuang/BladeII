@@ -1,8 +1,9 @@
-#pragma once
+﻿#pragma once
 
 //#include "BladeII.h"
 #include "B2MessageInfoCommonStruct.h"
 #include "EventSubsystem.h"
+#include "../Common/CommonStruct.h"
 
 enum class EMissionType : uint8
 {

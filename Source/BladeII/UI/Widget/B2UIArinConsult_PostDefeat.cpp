@@ -1,4 +1,4 @@
-#include "B2UIArinConsult_PostDefeat.h"
+ï»¿#include "B2UIArinConsult_PostDefeat.h"
 #include "B2UIManager.h"
 #include "B2UIDocHelper.h"
 #include "Event.h"
@@ -103,7 +103,7 @@ void UB2UIArinConsult_PostDefeat::OnClickBtnItemPurchase()
 {
 	DevShowNotReadyYetMessage();
 
-	//CloseMe(); ±â´É ÁØºñµÇ¸é Close µµ °°ÀÌ µÇµµ·Ï..
+	//CloseMe(); æ‰ç“· éœ–åšç™»æ Close æ¡£ éæ ç™»æ¡£åºŸ..
 }
 
 void UB2UIArinConsult_PostDefeat::CloseMe()

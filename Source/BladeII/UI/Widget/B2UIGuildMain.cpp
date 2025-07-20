@@ -1,4 +1,4 @@
-#include "B2UIGuildMain.h"
+ï»¿#include "B2UIGuildMain.h"
 #include "B2UIManager.h"
 #include "B2UIHeader.h"
 #include "B2UIGuildMark.h"
@@ -28,7 +28,7 @@ void UB2UIGuildMain::OnSceneOpen(EUIScene InOpenedScene)
 {
 	Super::OnSceneOpen(InOpenedScene);
 
-	// UIHeader ¿Í °°ÀÌ Scene À¸·Î ±¸¼ºÇÏ´Â °æ¿ì Init ½ÃÁ¡¿¡ ÇÏ¸é Scene ¿¡ Æ÷ÇÔµÈ header °¡ »ı¼ºÀÌ ¾ÈµÈ »óÈ²ÀÏ ¼ö ÀÖÀ½.
+	// UIHeader å®¢ éæ Scene æ è‚º å¤‡å·±çªç»° ç‰ˆå¿« Init çŸ«ç—¢ä¿Š çªæ Scene ä¿Š å™¨çªƒç­‰ header å•Š ç§¯å·±æ æ•‘ç­‰ æƒ‘ç‚”è€ è ä¹æ¾œ.
 	SetLobbyUIHeaderTitleByGeneralTextTableKey(TEXT("Guild_Guild"));
 	OpenPlayAnimationEvent();
 
@@ -177,7 +177,7 @@ void UB2UIGuildMain::SetGuildMain(EGuildInfoType type, const FGuildInfo& GuildIn
 	}
 
 
-	//UIP_GuildRewardBoxProgress->SetVisibility(ESlateVisibility::Hidden);//CBT ÀÓ½Ã ¸·¾Æ³õ±âwoong
+	//UIP_GuildRewardBoxProgress->SetVisibility(ESlateVisibility::Hidden);//CBT çƒ™çŸ« é˜œé…’åˆæ‰woong
 
 	if (BTN_GuildRank.IsValid() && OV_GuildMemberInfoImage.IsValid())
 	{
@@ -198,13 +198,13 @@ void UB2UIGuildMain::SetGuildMain(EGuildInfoType type, const FGuildInfo& GuildIn
 		BTN_GuildWar->SetVisibility(EGuildInfoType::MyGuild == type ? ESlateVisibility::Visible : ESlateVisibility::Hidden);
 	}
 
-	//CBT ÀÓ½Ã
+	//CBT çƒ™çŸ«
 	BTN_GuildWar->SetIsEnabled(false);
 	//BTN_GuildWarInfo->SetIsEnabled(false);
 	//BTN_GuildWarReady->SetIsEnabled(false);
 	//BTN_GuildRank->SetIsEnabled(false);
 
-	//±æµåÀü µÉ¶§ Ç®¾î¾ßÇÔ
+	//è¾¨é›å‚ˆ çªé”­ é’±ç»¢å…·çªƒ
 	BTN_Mercenary->SetIsEnabled(true);
 	BTN_GuildWarReady->SetIsEnabled(true);
 	BTN_GuildWar->SetIsEnabled(true);
@@ -250,7 +250,7 @@ void UB2UIGuildMain::SetGuildInfo(const FB2ResponseGuildInfoPtr GuildInfo)
 		int32 WinCount = GuildInfo->total_result / b2network::B2GuildBattleResultType::BGBRT_WIN;
 		FText WinCountText = WinCount ? FText::AsNumber(WinCount) : None;
 
-		RTB_WinCount->SetText(FText::Format(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Guild_BattleStatistics_WinCount")), WinCountText));			//ÃßÈÄ¿¡ ¼­¹ö ¿Ï¼ºµÇ¸é ´Ù½Ã Àû¿ë
+		RTB_WinCount->SetText(FText::Format(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Guild_BattleStatistics_WinCount")), WinCountText));			//çœ é¥¶ä¿Š è¾‘æ»š è‚¯å·±ç™»æ ä¿ƒçŸ« åˆ©ä¾©
 	}
 
 	if (TB_GuildCombat.IsValid())
@@ -263,7 +263,7 @@ void UB2UIGuildMain::SetGuildInfo(const FB2ResponseGuildInfoPtr GuildInfo)
 	if (TB_GuildLevel.IsValid())
 		TB_GuildLevel->SetText(FText::Format(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("General_Stat_Level_Abbrev")), FText::AsNumber(GuildInfo->level)));
 
-	//±æµå·¹º§ ÆÛ¼¾Å×ÀÌÁö ±¸ÇÏ±â
+	//è¾¨é›é¥­éª‡ æ¬ºå­£æŠ›æç˜¤ å¤‡çªæ‰
 	int32 GuildMaxExp = BladeIIGameImpl::GetClientDataStore().GetGuildExp(GuildInfo->level);
 	int32 GuildMaxLv = BladeIIGameImpl::GetClientDataStore().GetGuildMaxLev();
 	float GuildExpPercent = GuildInfo->exp ? float(GuildInfo->exp) / float(GuildMaxExp) : 0;
@@ -308,28 +308,28 @@ void UB2UIGuildMain::SetGuildBattleCurrentState()
 	{
 		switch (GuildBattleCurrentState)
 		{
-		case b2network::B2GuildBattleStateType::NONE:					//À¯Àú°¡ ÈŞ½Ä»óÅÂ·Î ¾Ë°íÀÖ´Â»óÅÂ
+		case b2network::B2GuildBattleStateType::NONE:					//èœ¡å†å•Š ç»’ä¾¥æƒ‘æ€•è‚º èˆ…ç»Šä¹ç»°æƒ‘æ€•
 			TB_GuildBattleState->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Guild_Battlebreaktime")));
 			break;
 		case b2network::B2GuildBattleStateType::INIT:
 		case b2network::B2GuildBattleStateType::INITDONE:
 			TB_GuildBattleState->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Guild_BattleRequestReadyState")));
 			break;		
-		case b2network::B2GuildBattleStateType::READY:					//±æµå½ÅÃ» »óÅÂ
+		case b2network::B2GuildBattleStateType::READY:					//è¾¨é›è„šæ²¡ æƒ‘æ€•
 			TB_GuildBattleState->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, JoinState ? TEXT("Guild_BattleRequestCompleteState") : TEXT("Guild_BattleRequestState")));
 			break;
-		case b2network::B2GuildBattleStateType::MATCHING:				//¸ÅÄªÁßÀÏ¶§
+		case b2network::B2GuildBattleStateType::MATCHING:				//æ¦‚è«åè€é”­
 		case b2network::B2GuildBattleStateType::MATCHINGDONE:
 			TB_GuildBattleState->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Guild_BattleReadyState")));
 			break;
-		case b2network::B2GuildBattleStateType::BATTLE:					//±æµåÀü ±â°£
+		case b2network::B2GuildBattleStateType::BATTLE:					//è¾¨é›å‚ˆ æ‰åŸƒ
 			TB_GuildBattleState->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Guild_BattleState")));
 			break;
-		case b2network::B2GuildBattleStateType::SETTLEMENT:				//Á¤»ê±â°£
+		case b2network::B2GuildBattleStateType::SETTLEMENT:				//æ²¥é­‚æ‰åŸƒ
 		case b2network::B2GuildBattleStateType::SETTLEMENTDONE:
 			TB_GuildBattleState->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Guild_BattleEndReadyState")));
 			break;
-		case b2network::B2GuildBattleStateType::RESULT:					//º¸»ó¹ŞÀ»¼ö ÀÖ´Â»óÅÂ
+		case b2network::B2GuildBattleStateType::RESULT:					//ç„Šæƒ‘ç½é˜‘è ä¹ç»°æƒ‘æ€•
 			TB_GuildBattleState->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Guild_CalculateMessage")));
 			break;
 		}
@@ -422,7 +422,7 @@ void UB2UIGuildMain::SetRewardBoxProgress()
 	{
 		UIP_GuildRewardBoxProgress->SetGuildReward(RewardInfoPtr->reward_grade, GuildDoc->GetObtainMedal(), RewardInfoPtr->req_count_max, NextMedal);
 
-		//±æµåº¸»óÀÌ Ã¹¹øÂ°»óÀÚ°¡ ¾Æ´Ï°í º¸»óÀ» ¹ŞÀ»¼ö ÀÖ´Â »óÅÂ°¡ ¾Æ´Ï°í º¸»ó¹ŞÀ»¼öÀÖ´Â ±æµå»óÅÂÀÏ¶§ ¹ŞÀº°É·Î Ç¥½Ã ¾Æ ³Ê¹« º¹ÀâÇÏ±¸³ª ¤Ğ¤Ğ
+		//è¾¨é›ç„Šæƒ‘æ éœ‰é”…æ³æƒ‘ç£Šå•Š é…’èªç»Š ç„Šæƒ‘é˜‘ ç½é˜‘è ä¹ç»° æƒ‘æ€•å•Š é…’èªç»Š ç„Šæƒ‘ç½é˜‘èä¹ç»° è¾¨é›æƒ‘æ€•è€é”­ ç½ç¯®å§è‚º é’çŸ« é…’ å‘ˆå…¬ æ±—æ£±çªå¤‡å”± ã°ã°
 		UIP_GuildRewardBoxProgress->SetRewardComplete((RewardInfoPtr->req_count_min && GuildDoc->GetTurnReward() == false && GuildDoc->GetGuildbattleStateNew().current_state >= b2network::B2GuildBattleStateType::RESULT) ? true : false);
 
 		if (GuildDoc->GetJoinGuildBattlememeber() == false)
@@ -476,7 +476,7 @@ void UB2UIGuildMain::OnClickGuildWarReady()
 	if (GuildBattleCurrentState != b2network::B2GuildBattleStateType::READY)
 	{
 		DevShowNotReadyYetMessage(TEXT("Guild_BattleReadyInfo"));
-		return;			//·¹µğ¾Æ´Ï¸é ¾ÈµÇ°Ô
+		return;			//é¥­å¼é…’èªæ æ•‘ç™»éœ¸
 	}
 
 	//LobbyChangeSceneByUISceneClass<EUIScene>::GetInstance().Signal(EUIScene::GuildBattleReady);
@@ -584,7 +584,7 @@ void UB2UIGuildMain::SendJoinGuild()
 		);
 
 		return;
-	}//Ãß¹æ½Ã°£ °³¼±
+	}//çœ è§„çŸ«åŸƒ ä¿ºæ€¥
 
 
 
@@ -632,7 +632,7 @@ void UB2UIGuildMain::OnClickInvite()
 
 void UB2UIGuildMain::OnClickGuildRanking()
 {
-	//ÀÓ½Ã ¼­¹ö ¹Ş¾Æ¼­ ·©Å·Ã¢ ¿­µµ·Ï ÇØ¾ßÇÔ
+	//çƒ™çŸ« è¾‘æ»š ç½é…’è¾‘ çæ¬§èŠ’ å‡¯æ¡£åºŸ ç§¦å…·çªƒ
 
 	UB2UIManager::GetInstance()->OpenUI(UIFName::GuildRanking);
 }

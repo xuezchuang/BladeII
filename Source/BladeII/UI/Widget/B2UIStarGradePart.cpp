@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIStarGradePart.h"
 #include "B2UIManager.h"
 
@@ -143,7 +143,7 @@ void UB2UIStarGradePart::UpdateStar(const FB2Item& InItem)
 
 void UB2UIStarGradePart::UpdateStar(const int32 InItemGrade, bool InIsSurpass)
 {
-	// ÃÊ¿ùÇÑ ¾ÆÀÌÅÛÀÌ°í, ÃÊ¿ù(À» ¾È¾²´Â °Íµµ ÀÖÀ¸¹Ç·Î)À» »ç¿ëÇÏ±æ ¿øÇÏ¸é
+	// æª¬å²¿èŒ„ é…’æžè¢æžç»Š, æª¬å²¿(é˜‘ æ•‘é™ç»° å·´æ¡£ ä¹æ éª¨è‚º)é˜‘ è¤ä¾©çªè¾¨ ç›”çªæ
 	bool IsSurpass = InIsSurpass && EnbleSurpass;
 	bool IsOver6 = InItemGrade > FItemGradeInfo::MINIMUM_SURPASS_STAR_GRADE;
 

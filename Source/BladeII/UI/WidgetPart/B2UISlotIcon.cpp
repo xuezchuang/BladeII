@@ -1,4 +1,4 @@
-#include "B2UISlotIcon.h"
+ï»¿#include "B2UISlotIcon.h"
 #include "B2UIManager.h"
 
 UB2UISlotIcon::UB2UISlotIcon(const FObjectInitializer& ObjectInitializer)
@@ -67,7 +67,7 @@ void UB2UISlotIcon::SetIconDisable(const bool bDisabled)
 
 void UB2UISlotIcon::SetPreciseClickAndTab(bool bToSetPrecise)
 {
-	////´Ù¸¥ WidgetÀÇ Child
+	////ä¿ƒå¼— Widgetç‹¼ Child
 	//if (BTN_Area.IsValid())
 	//{
 	//	BTN_Area->ClickMethod = bToSetPrecise ? EButtonClickMethod::PreciseClick : DefaultClickMethod;

@@ -1,4 +1,4 @@
-
+ï»¿
 #include "BladeIINetControlObject.h"
 #include "B2UIManager.h"
 #include "B2UIControlBattleSub.h"
@@ -50,7 +50,7 @@ void ABladeIINetControlObject::BeginPlay()
 
 	ControledState	= StateMaps[CONTROL_STATE_NEUTRAL];
 
-	// Á¡·ÉÁö ÀÎ¾Æ¿ô µ¨¸®°ÔÀÌÆ®(ÄÉ¸¯ÅÍ)
+	// ç—¢é£ç˜¤ ç‰¢é…’çœ¶ èƒ†åºœéœ¸æé£˜(çº³è…ç£)
 	//DefaultCollisionComponent->OnComponentBeginOverlap.AddDynamic(this, &ABladeIINetControlObject::OnInCheckConquestArea);
 	//DefaultCollisionComponent->OnComponentEndOverlap.AddDynamic(this, &ABladeIINetControlObject::OnOutCheckConquestArea);
 
@@ -84,7 +84,7 @@ void ABladeIINetControlObject::Tick(float DeltaSeconds)
 	//UE_LOG(LogBladeII, Log, TEXT("Red Point Gage : %f"), m_fControlPointGageRed);
 	//UE_LOG(LogBladeII, Log, TEXT("Blue Point Gage : %f\n"), m_fControlPointGageBlue);
 
-	// °Á Æ½¿¡¼­ Ã¼Å©ÇÔ. Ãæµ¹ µé¾î¿È ³ª°¨À¸·Î Ã¼Å©ÇÏ´Ï ¾È¸Â´Â°æ¿ì°¡ »ı±è.
+	// å‚² å¹³ä¿Šè¾‘ çœ‰å†œçªƒ. é¢å€’ ç”¸ç»¢å’³ å”±çš‘æ è‚º çœ‰å†œçªèª æ•‘å˜ç»°ç‰ˆå¿«å•Š ç§¯è¾«.
 	CheckOverlap();
 
 	CheckToNotifyControlPoint(DeltaSeconds);
@@ -117,12 +117,12 @@ void ABladeIINetControlObject::DeleteInternal()
 
 void ABladeIINetControlObject::ChangeState(uint8 NewStateKey)
 {
-	// È£½ºÆ® ¾Æ´Ï¸é ¸®ÅÏ!
+	// é¾‹èƒ¶é£˜ é…’èªæ åºœç•”!
 	AB2ControlGameMode* pGM = Cast<AB2ControlGameMode>(UGameplayStatics::GetGameMode(this));
-	check(pGM); /** ÀÌ°ÍÀ» »ç¿ëÇÏ´Â °ÔÀÓ¸ğµå°¡ Á¤ÇØÁ® ÀÖÀ½ */
+	check(pGM); /** æå·´é˜‘ è¤ä¾©çªç»° éœ¸çƒ™è‘›é›å•Š æ²¥ç§¦å»‰ ä¹æ¾œ */
 	if (pGM && pGM->GetPeerType() == PEER_SUPER)
 	{
-		// º¸³½°Å ÀÀ´ä ¾È¿ÔÀ¸¸é ¸®ÅÏ
+		// ç„Šè¾°èŠ­ è§ˆç¿  æ•‘å­æ æ åºœç•”
 		if (bWaitSendChangeControlState)
 			return;
 
@@ -131,7 +131,7 @@ void ABladeIINetControlObject::ChangeState(uint8 NewStateKey)
 		pGM->SendChangeControlState(NewStateKey, m_fControlPointGageRed, m_fControlPointGageBlue, true);
 	}
 
-	// º»ÀÎµµ ¹Ş¾Æ¼­ Ã³¸®ÇØº¸ÀÚ.
+	// å¤¯ç‰¢æ¡£ ç½é…’è¾‘ è´¸åºœç§¦ç„Šç£Š.
 	//ApplyChangeState(NewStateKey);
 }
 
@@ -141,7 +141,7 @@ void ABladeIINetControlObject::ApplyChangeState(uint8 NewStateKey, float fContro
 
 	if (bResetConquestGage)
 	{
-		// Á¡·ÉÁö °ÔÀÌÁö ÃÊ±âÈ­(Á¡·É ¿Ï·áÈÄ´Â Á¡·ÉÆÀ °ÔÀÌÁö´Â ÀÇ¹Ì¾øÀ½)
+		// ç—¢é£ç˜¤ éœ¸æç˜¤ æª¬æ‰æ‹³(ç—¢é£ è‚¯ä¸°é¥¶ç»° ç—¢é£è¯„ éœ¸æç˜¤ç»° ç‹¼å›ºç»æ¾œ)
 		m_fConquestGageRed = 0.0f;
 		m_fConquestGageBlue = 0.0f;
 	}
@@ -155,7 +155,7 @@ void ABladeIINetControlObject::ApplyChangeState(uint8 NewStateKey, float fContro
 		m_fControlPointGageRed = fControlPointGageRed;
 		m_fControlPointGageBlue = fControlPointGageBlue;
 
-		// ÀÌº¥Æ® Ãß°¡. º¯ÇÑ »óÅÂ UI¿¡ Àü´Ş
+		// æäº¥é£˜ çœ å•Š. å‡½èŒ„ æƒ‘æ€• UIä¿Š å‚ˆå´”
 		UB2UIControlBattleSub* pUI = UB2UIManager::GetInstance()->GetUI<UB2UIControlBattleSub>(UIFName::ControlBattleSub);
 		if (pUI)
 		{
@@ -165,7 +165,7 @@ void ABladeIINetControlObject::ApplyChangeState(uint8 NewStateKey, float fContro
 		}
 	}
 
-	// Ãß°¡½Ã°£ ÃÊ±âÈ­
+	// çœ å•ŠçŸ«åŸƒ æª¬æ‰æ‹³
 	SetBonusTime(ETeamType::ETT_End);
 }
 
@@ -182,11 +182,11 @@ void ABladeIINetControlObject::ApplyCurrentStateToUI()
 
 void ABladeIINetControlObject::CheckOverlap()
 {
-	// È°¼ºÈ­ ÀüÀÌ¸é ¸®ÅÏ
+	// åŠå·±æ‹³ å‚ˆææ åºœç•”
 	if (!bActiveControlObject)
 		return;
 
-	// È£½ºÆ® ¾Æ´Ï¸é ¸®ÅÏ!
+	// é¾‹èƒ¶é£˜ é…’èªæ åºœç•”!
 	AB2ControlGameMode* pGM = Cast<AB2ControlGameMode>(UGameplayStatics::GetGameMode(this));
 	if (pGM->GetPeerType() != PEER_SUPER)
 		return;
@@ -211,7 +211,7 @@ void ABladeIINetControlObject::CheckOverlap()
 	//	}
 	//}
 
-	// QTEÅ¸¸é Ãæµ¹Ã¼°¡ ¾øÀ½.. °Å¸®·Î Ã¼Å©
+	// QTEé¸¥æ é¢å€’çœ‰å•Š ç»æ¾œ.. èŠ­åºœè‚º çœ‰å†œ
 	/*for (FConstPawnIterator Iterator = GetWorld()->GetPawnIterator(); Iterator; ++Iterator)
 	{
 		ABladeIIPlayer* pPlayer = Cast<ABladeIIPlayer>(*Iterator);
@@ -344,7 +344,7 @@ void ABladeIINetControlObject::SetActiveControlObject(bool NewActive)
 {
 	bActiveControlObject = NewActive;
 
-	// È°¼ºÈ­ ½ÃÄ×À¸¸é ¿À¹ö·¦ ÇÑ¹ø Ã¼Å©
+	// åŠå·±æ‹³ çŸ«æ·–æ æ å·æ»šä¹ èŒ„é”… çœ‰å†œ
 	//if (NewActive)
 	//	CheckOverlap();
 }
@@ -366,7 +366,7 @@ float ABladeIINetControlObject::GetBonusTimeGage()
 
 void ABladeIINetControlObject::AddConquestGage(bool bRed, float fAmount)
 {
-	// Ãß°¡½Ã°£¿£ Á¡·ÉÁö °ÔÀÌÁö ±ïÀÌÁö ¾Ê´Â´Ù.
+	// çœ å•ŠçŸ«åŸƒæµš ç—¢é£ç˜¤ éœ¸æç˜¤ æ†‹æç˜¤ è‡¼ç»°ä¿ƒ.
 	if (fAmount <= 0 && IsinBonusTime())
 		return;
 
@@ -378,13 +378,13 @@ void ABladeIINetControlObject::AddConquestGage(bool bRed, float fAmount)
 
 		if (bUpdateUI)
 		{
-			// ÀÌº¥Æ® Ãß°¡. º¯ÇÑ »óÅÂ UI¿¡ Àü´Ş
+			// æäº¥é£˜ çœ å•Š. å‡½èŒ„ æƒ‘æ€• UIä¿Š å‚ˆå´”
 			UB2UIControlBattleSub* pUI = UB2UIManager::GetInstance()->GetUI<UB2UIControlBattleSub>(UIFName::ControlBattleSub);
 			if (pUI)
 				pUI->SetConquestGageInfo(bRed, m_fConquestGageRed);
 		}
 
-		//Á¡·É ¼º°ø
+		//ç—¢é£ å·±å‚
 		if (m_fConquestGageRed >= 1.0f)
 			ChangeState(CONTROL_STATE_RED);
 	}
@@ -396,13 +396,13 @@ void ABladeIINetControlObject::AddConquestGage(bool bRed, float fAmount)
 
 		if (bUpdateUI)
 		{
-			// ÀÌº¥Æ® Ãß°¡. º¯ÇÑ »óÅÂ UI¿¡ Àü´Ş
+			// æäº¥é£˜ çœ å•Š. å‡½èŒ„ æƒ‘æ€• UIä¿Š å‚ˆå´”
 			UB2UIControlBattleSub* pUI = UB2UIManager::GetInstance()->GetUI<UB2UIControlBattleSub>(UIFName::ControlBattleSub);
 			if (pUI)
 				pUI->SetConquestGageInfo(bRed, m_fConquestGageBlue);
 		}
 
-		//Á¡·É ¼º°ø
+		//ç—¢é£ å·±å‚
 		if (m_fConquestGageBlue >= 1.0f)
 			ChangeState(CONTROL_STATE_BLUE);
 	}
@@ -420,19 +420,19 @@ void ABladeIINetControlObject::AddControlPointGage(bool bRed, float fAmount)
 		m_fControlPointGageRed += fAmount;
 		m_fControlPointGageRed = FMath::Clamp(m_fControlPointGageRed, 0.0f, 1.0f);
 
-		// Æ÷ÀÎÆ®°¡ Ãß°¡½Ã°£ ±âÁØÄ¡º¸´Ù ³ôÀ»¶§
+		// å™¨ç‰¢é£˜å•Š çœ å•ŠçŸ«åŸƒ æ‰éœ–æ‘¹ç„Šä¿ƒ è‡­é˜‘é”­
 		if (m_fControlPointGageRed > LimitControlPointForBonusTimeRed)
 		{
 			if (GetConquestAreaState() == EConquestAreaState::Assault || GetConquestAreaState() == EConquestAreaState::OwnerBlue)
 			{
-				// °İµ¹ÁßÀÌ¸é Ãß°¡½Ã°£!
-				// »ó´ëÆÀ Á¡·ÉÁßÀÌ¾îµµ Ãß°¡½Ã°£!
+				// æ‹œå€’åææ çœ å•ŠçŸ«åŸƒ!
+				// æƒ‘æªè¯„ ç—¢é£åæç»¢æ¡£ çœ å•ŠçŸ«åŸƒ!
 				SetBonusTime(ETeamType::ETT_Red);
 				m_fControlPointGageRed = LimitControlPointForBonusTimeRed;
 			}
 			else
 			{
-				// °İµ¹Áß ¾Æ´Ï¸é ±×³É ¿Ã¸². Ãß°¡½Ã°£ ±âÁØµµ ¿Ã¸².
+				// æ‹œå€’å é…’èªæ å¼Šæˆ æ£µè¦†. çœ å•ŠçŸ«åŸƒ æ‰éœ–æ¡£ æ£µè¦†.
 				LimitControlPointForBonusTimeRed = m_fControlPointGageRed;
 			}
 		}
@@ -445,19 +445,19 @@ void ABladeIINetControlObject::AddControlPointGage(bool bRed, float fAmount)
 		m_fControlPointGageBlue += fAmount;
 		m_fControlPointGageBlue = FMath::Clamp(m_fControlPointGageBlue, 0.0f, 1.0f);
 
-		// Æ÷ÀÎÆ®°¡ Ãß°¡½Ã°£ ±âÁØÄ¡º¸´Ù ³ôÀ»¶§
+		// å™¨ç‰¢é£˜å•Š çœ å•ŠçŸ«åŸƒ æ‰éœ–æ‘¹ç„Šä¿ƒ è‡­é˜‘é”­
 		if (m_fControlPointGageBlue > LimitControlPointForBonusTimeBlue)
 		{
 			if (GetConquestAreaState() == EConquestAreaState::Assault || GetConquestAreaState() == EConquestAreaState::OwnerRed)
 			{
-				// °İµ¹ÁßÀÌ¸é Ãß°¡½Ã°£!
-				// »ó´ëÆÀ Á¡·ÉÁßÀÌ¾îµµ Ãß°¡½Ã°£!
+				// æ‹œå€’åææ çœ å•ŠçŸ«åŸƒ!
+				// æƒ‘æªè¯„ ç—¢é£åæç»¢æ¡£ çœ å•ŠçŸ«åŸƒ!
 				SetBonusTime(ETeamType::ETT_Blue);
 				m_fControlPointGageBlue = LimitControlPointForBonusTimeBlue;
 			}
 			else
 			{
-				// °İµ¹Áß ¾Æ´Ï¸é ±×³É ¿Ã¸². Ãß°¡½Ã°£ ±âÁØµµ ¿Ã¸².
+				// æ‹œå€’å é…’èªæ å¼Šæˆ æ£µè¦†. çœ å•ŠçŸ«åŸƒ æ‰éœ–æ¡£ æ£µè¦†.
 				LimitControlPointForBonusTimeBlue = m_fControlPointGageBlue;
 			}
 		}
@@ -472,7 +472,7 @@ void ABladeIINetControlObject::AddControlPointGage(bool bRed, float fAmount)
 		if (pGM->GetPeerType() == PEER_SUPER)
 		{
 			bEndMatch = true;
-			// °æ±â Á¾·á ¹æ¼Û
+			// ç‰ˆæ‰ è¾†ä¸° è§„ä»·
 			
 			pGM->SendEndMatch(bRed ? ETeamType::ETT_Red : ETeamType::ETT_Blue);
 		}
@@ -487,12 +487,12 @@ void ABladeIINetControlObject::SetConquestAreaState(EConquestAreaState NewState)
 	if (ConquestAreaState == NewState)
 		return;
 
-	// È£½ºÆ®´Â °ÔÀÓ¸ğµå ÅëÇØ¼­ ¹æ¼Û!
+	// é¾‹èƒ¶é£˜ç»° éœ¸çƒ™è‘›é› çƒ¹ç§¦è¾‘ è§„ä»·!
 	AB2ControlGameMode* pGM = Cast<AB2ControlGameMode>(UGameplayStatics::GetGameMode(this));
 	if (pGM->GetPeerType() == PEER_SUPER)
 		pGM->SendChangeConquestAreaState(int32(NewState), m_fConquestGageRed, m_fConquestGageBlue);
 
-	// º»ÀÎµµ ÆĞÅ¶¹Ş¾Æ¼­ Ã³¸®ÇØº½.
+	// å¤¯ç‰¢æ¡£ è©å“¦ç½é…’è¾‘ è´¸åºœç§¦èˆª.
 	//ApplyConquestAreaState();
 
 	bWaitSendSetConquestAreaState = true;
@@ -507,10 +507,10 @@ void ABladeIINetControlObject::ApplyConquestAreaState(uint8 NewState, float fCon
 	ConquestAreaState = EConquestAreaState(NewState);
 }
 
-// ÇöÀçÁ¤º¸ ÇÑ¹ø ¹æ¼Û!
+// æ³…çŠæ²¥ç„Š èŒ„é”… è§„ä»·!
 void ABladeIINetControlObject::BroadCastCurrentState()
 {
-	// Á¡·ÉÁö »óÅÂ
+	// ç—¢é£ç˜¤ æƒ‘æ€•
 	AB2ControlGameMode* pGM = Cast<AB2ControlGameMode>(UGameplayStatics::GetGameMode(this));
 	if (pGM->GetPeerType() == PEER_SUPER)
 	{
@@ -557,7 +557,7 @@ void NeutralState::Tick(ABladeIINetControlObject* CO, float delta)
 	if (!CO->IsObjectUpdateable())
 		return;
 	
-	// dTimeÀ¸·Î °ÔÀÌÁö »©ÁÙ¶§ 0ÀÌÇÏ·Î ¶³¾îÁø°ªÀº ¹«½ÃÇÑ´Ù.(µû·Î ¹İ´ëÆí °ÔÀÌÁö¿¡ ´õÇØÁÖÁö ¾ÊÀ½)
+	// dTimeæ è‚º éœ¸æç˜¤ å“—ä¸´é”­ 0æçªè‚º å†»ç»¢æŸ³è”¼ç¯® å…¬çŸ«èŒ„ä¿ƒ.(è¶è‚º é¦†æªç¥ˆ éœ¸æç˜¤ä¿Š æ­¹ç§¦æ—ç˜¤ è‡¼æ¾œ)
 
 	//if (IsActiveControlTutorial())
 	//{
@@ -567,22 +567,22 @@ void NeutralState::Tick(ABladeIINetControlObject* CO, float delta)
 	//switch (CO->GetConquestAreaState())
 	//{
 	//case EConquestAreaState::Assault:
-	//	// °İµ¹ÁßÀÌ¸é ¾Ï°ÍµÎ ¾ÈÇÔ
+	//	// æ‹œå€’åææ é å·´æ»´ æ•‘çªƒ
 	//	break;
 	//case EConquestAreaState::None:
-	//	// ¾Æ¹«µµ ¾øÀ¸¸é µÑ´Ù »©¹ö¸°´Ù.
+	//	// é…’å…¬æ¡£ ç»æ æ ç¬›ä¿ƒ å“—æ»šèµ´ä¿ƒ.
 	//	CO->AddConquestGage(true, -delta / CO->ConquestGageMaxTime);
 	//	CO->AddConquestGage(false, -delta / CO->ConquestGageMaxTime);
 	//	break;
 	//case EConquestAreaState::OwnerRed:
-	//	// ·¹µåÂÊ Á¡·ÉÀÌ¸é ºí·çºÎÅÍ ´Ù»©ÁÖ°í ·¹µåÁõ°¡.
+	//	// é¥­é›ç‡ ç—¢é£ææ å–‰é£ä½•ç£ ä¿ƒå“—æ—ç»Š é¥­é›åˆ˜å•Š.
 	//	if (CO->GetConquestGage(false) > 0.0f)
 	//		CO->AddConquestGage(false, -delta / CO->ConquestGageMaxTime);
 	//	else
 	//		CO->AddConquestGage(true, delta / CO->ConquestGageMaxTime);
 	//	break;
 	//case EConquestAreaState::OwnerBlue:
-	//	// ºí·çÂÊ Á¡·ÉÀÌ¸é ·¹µåºÎÅÍ ´Ù»©ÁÖ°í ºí·çÁõ°¡.
+	//	// å–‰é£ç‡ ç—¢é£ææ é¥­é›ä½•ç£ ä¿ƒå“—æ—ç»Š å–‰é£åˆ˜å•Š.
 	//	if (CO->GetConquestGage(true) > 0.0f)
 	//		CO->AddConquestGage(true, -delta / CO->ConquestGageMaxTime);
 	//	else
@@ -601,7 +601,7 @@ void NeutralState::Tick(ABladeIINetControlObject* CO, float delta)
 //
 //}
 
-// ·¹µåÆÀ Á¡·ÉÁß Æ½
+// é¥­é›è¯„ ç—¢é£å å¹³
 void RedState::Tick(ABladeIINetControlObject* CO, float delta)
 {
 	if (!CO->IsObjectUpdateable())
@@ -614,31 +614,31 @@ void RedState::Tick(ABladeIINetControlObject* CO, float delta)
 
 	CO->AddControlPointGage(true, delta / CO->ControlPointGageMaxTime);
 
-	// ·¹µåÆÀ Á¡¼ö ¸¸¶¥ÀÌ¸é ¸®ÅÏ(°ÔÀÓ ÀÌ¹ÌÁ¾·á)
+	// é¥­é›è¯„ ç—¢è çˆ¶é¡¶ææ åºœç•”(éœ¸çƒ™ æå›ºè¾†ä¸°)
 	if (CO->GetControlPointGage(true) >= 1.0f)
 		return;
 
 	switch (CO->GetConquestAreaState())
 	{
 	case EConquestAreaState::Assault:
-		// °İµ¹ÁßÀÌ¸é ¾Ï°ÍµÎ ¾ÈÇÔ
+		// æ‹œå€’åææ é å·´æ»´ æ•‘çªƒ
 		break;
 	case EConquestAreaState::None:
-		// ¾Æ¹«µµ ¾øÀ¸¸é ºí·çÆÀ °ÔÀÌÁö °¨¼Ò
+		// é…’å…¬æ¡£ ç»æ æ å–‰é£è¯„ éœ¸æç˜¤ çš‘å®¶
 		CO->AddConquestGage(false, -delta / CO->ConquestGageMaxTime);
 		break;
 	case EConquestAreaState::OwnerRed:
-		// ·¹µåÂÊ Á¡·ÉÀÌ¸é ºí·çÆÀ °ÔÀÌÁö °¨¼Ò
+		// é¥­é›ç‡ ç—¢é£ææ å–‰é£è¯„ éœ¸æç˜¤ çš‘å®¶
 		CO->AddConquestGage(false, -delta / CO->ConquestGageMaxTime);
 		break;
 	case EConquestAreaState::OwnerBlue:
-		// ºí·çÂÊ Á¡·ÉÀÌ¸é ºí·çÆÀ °ÔÀÌÁö Áõ°¡
+		// å–‰é£ç‡ ç—¢é£ææ å–‰é£è¯„ éœ¸æç˜¤ åˆ˜å•Š
 		CO->AddConquestGage(false, delta / CO->ConquestGageMaxTime);
 		break;
 	}
 }
 
-// ºí·çÆÀ Á¡·ÉÁß Æ½
+// å–‰é£è¯„ ç—¢é£å å¹³
 void BlueState::Tick(ABladeIINetControlObject* CO, float delta)
 {
 	if (!CO->IsObjectUpdateable())
@@ -651,25 +651,25 @@ void BlueState::Tick(ABladeIINetControlObject* CO, float delta)
 
 	CO->AddControlPointGage(false, delta / CO->ControlPointGageMaxTime);
 
-	// ºí·çÆÀ Á¡¼ö ¸¸¶¥ÀÌ¸é ¸®ÅÏ(°ÔÀÓ ÀÌ¹ÌÁ¾·á)
+	// å–‰é£è¯„ ç—¢è çˆ¶é¡¶ææ åºœç•”(éœ¸çƒ™ æå›ºè¾†ä¸°)
 	if (CO->GetControlPointGage(false) >= 1.0f)
 		return;
 
 	switch (CO->GetConquestAreaState())
 	{
 	case EConquestAreaState::Assault:
-		// °İµ¹ÁßÀÌ¸é ¾Ï°ÍµÎ ¾ÈÇÔ
+		// æ‹œå€’åææ é å·´æ»´ æ•‘çªƒ
 		break;
 	case EConquestAreaState::None:
-		// ¾Æ¹«µµ ¾øÀ¸¸é ·¹µåÆÀ °ÔÀÌÁö °¨¼Ò
+		// é…’å…¬æ¡£ ç»æ æ é¥­é›è¯„ éœ¸æç˜¤ çš‘å®¶
 		CO->AddConquestGage(true, -delta / CO->ConquestGageMaxTime);
 		break;
 	case EConquestAreaState::OwnerRed:
-		// ·¹µåÂÊ Á¡·ÉÀÌ¸é ·¹µåÆÀ °ÔÀÌÁö Áõ°¡
+		// é¥­é›ç‡ ç—¢é£ææ é¥­é›è¯„ éœ¸æç˜¤ åˆ˜å•Š
 		CO->AddConquestGage(true, delta / CO->ConquestGageMaxTime);
 		break;
 	case EConquestAreaState::OwnerBlue:
-		// ºí·çÂÊ Á¡·ÉÀÌ¸é ·¹µåÆÀ °ÔÀÌÁö °¨¼Ò
+		// å–‰é£ç‡ ç—¢é£ææ é¥­é›è¯„ éœ¸æç˜¤ çš‘å®¶
 		CO->AddConquestGage(true, -delta / CO->ConquestGageMaxTime);
 		break;
 	}

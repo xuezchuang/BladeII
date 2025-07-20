@@ -1,4 +1,4 @@
-#include "B2UIMsgPopupReward.h"
+ï»¿#include "B2UIMsgPopupReward.h"
 #include "B2UIManager.h"
 #include "B2UIQuestDialog.h"
 #include "B2ClientDataStore.h"
@@ -108,7 +108,7 @@ void UB2UIMsgPopupReward::OnClickConfirm()
 
 	if (bOpenNickNamePopup)
 	{
-		// ÀÌ¸§ º¯°æ±Ç»ç¿ëÇÏ±â À§ÇØ ÀÎº¥Åä¸®·Î ÀÌµ¿
+		// ææŠš å‡½ç‰ˆé¼»è¤ä¾©çªæ‰ å›°ç§¦ ç‰¢äº¥é…åºœè‚º ææ‚¼
 		UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
 			BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("SensitiveNoti_Notification"))),
 			BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("NameChange_Link"))),
@@ -145,7 +145,7 @@ void UB2UIMsgPopupReward::ShowNextReward()
 
 void UB2UIMsgPopupReward::ShowMailDescription(bool bVisible)
 {
-	// ÀÏºÎ º¸»óÀº ¿ìÆíÇÔÀ¸·Î Áö±Ş ¹®±¸´Â ¿ìÆíÇÔ¿¡¼­ ¿­¸é ³ª¿ÀÁö ¾Ê°Ô
+	// è€ä½• ç„Šæƒ‘ç¯® å¿«ç¥ˆçªƒæ è‚º ç˜¤é­ å·©å¤‡ç»° å¿«ç¥ˆçªƒä¿Šè¾‘ å‡¯æ å”±å·ç˜¤ è‡¼éœ¸
 
 	if (TB_MailDescription.IsValid() && bVisible == false)
 	{
@@ -310,7 +310,7 @@ void UB2UIMsgPopupReward::AddSingleRewardItem(int32 ItemTemplateId, int32 Count)
 {
 	if (Count > 0)
 	{
-		//RewardInfoTable ¿¡ ÀÖ´Â RewarId°¡ ¾Æ´Ñ key°ªÀ» Id·Î »ç¿ëÇÏ°í ÀÖ¾î¼­ key°ªÀ» ¹Ş¾Æ¿Í¼­ Àû¿ë
+		//RewardInfoTable ä¿Š ä¹ç»° RewarIdå•Š é…’å›± keyè”¼é˜‘ Idè‚º è¤ä¾©çªç»Š ä¹ç»¢è¾‘ keyè”¼é˜‘ ç½é…’å®¢è¾‘ åˆ©ä¾©
 		const int32 RewardID = BladeIIGameImpl::GetClientDataStore().GetRewardIDKeyValue(ItemTemplateId);
 		FCommonRewardInfo SingleRewardInfo(RewardID, Count);
 		AddRewardItem_Internal(SingleRewardInfo);
@@ -346,7 +346,7 @@ void UB2UIMsgPopupReward::ShowRewardPopup(bool bApplyRewardToAccount /* optional
 	bForceApplyRewardToAccount = bApplyRewardToAccount;
 
 	TotalRewardPage = TotalRewardCount / MAX_SHOW_REWARDICON_COUNT;
-	TotalRewardPage += (TotalRewardCount % MAX_SHOW_REWARDICON_COUNT > 0) ? 1 : 0;	// Â¥Åõ¸®°¡ ÀÖÀ¸¸é ÆäÀÌÁö Áõ°¡
+	TotalRewardPage += (TotalRewardCount % MAX_SHOW_REWARDICON_COUNT > 0) ? 1 : 0;	// æ¥¼æ§åºœå•Š ä¹æ æ å…¶æç˜¤ åˆ˜å•Š
 
 	UpdateRewardPage(0);
 	OpenRewardAnimationBP();

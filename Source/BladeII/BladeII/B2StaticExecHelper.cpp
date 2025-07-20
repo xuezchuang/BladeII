@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2StaticExecHelper.h"
@@ -116,14 +116,14 @@ UB2StaticExecHelper::UB2StaticExecHelper(const FObjectInitializer& ObjectInitial
 	: Super(ObjectInitializer)
 {
 #if UE_BUILD_SHIPPING
-	bIsAllowedForShipping = true; // ¿ì¸® Ä¿¸Çµå¸¸ ½±ÇÎºôµå¼­ Çã¿ë.. ¹°·Ğ ¿ÏÀü ÃÖÁ¾ ¿ÀÇÂ¹öÀü¿¡¼­ BII_SHIPPING_ALLOWED_DEV_FEATURE_LV1 µµ 0 À¸·Î µÇ¸é Â©¾øÀÌ ´Ù ºüÁü.
+	bIsAllowedForShipping = true; // å¿«åºœ ç›®ç›–é›çˆ¶ å¥–ä¿å‘¼é›è¾‘ å€¾ä¾©.. æ‹±æ²¸ è‚¯å‚ˆ å¼¥è¾† å·é”¹æ»šå‚ˆä¿Šè¾‘ BII_SHIPPING_ALLOWED_DEV_FEATURE_LV1 æ¡£ 0 æ è‚º ç™»æ æ¼ç»æ ä¿ƒ ç‹å’™.
 #endif
 }
 
 bool UB2StaticExecHelper::Exec(UWorld* Inworld, const TCHAR* Cmd, FOutputDevice& Ar)
 {
 #if B2_BUILD_LEVEL == B2_BUILD_LEVEL_LIVE // B2_BUILD_LEVEL_LIVE
-	// ½±ÇÎ ¹öÀü¿¡¼­ ÄÜ¼ÖÃ¢ÀÌ ³ª°¡´Â °æ¿ì¶óµµ (½Ã¿¬ µî) ÀÌ ÀÌÇÏ·Î ºÙÀº Ä¿¸Çµå´Â ½ÇÇàµÇÁö ¾Êµµ·Ï ÇÑ´Ù. ¿£Áø Ä¿¸Çµå Æ÷ÇÔ.
+	// å¥–ä¿ æ»šå‚ˆä¿Šè¾‘ èƒ½è´¾èŠ’æ å”±å•Šç»° ç‰ˆå¿«æ‰¼æ¡£ (çŸ«æ¥· æ®¿) æ æçªè‚º å˜¿ç¯® ç›®ç›–é›ç»° è§’é’ç™»ç˜¤ è‡¼æ¡£åºŸ èŒ„ä¿ƒ. æµšæŸ³ ç›®ç›–é› å™¨çªƒ.
 	return true;
 #endif
 
@@ -154,7 +154,7 @@ bool UB2StaticExecHelper::Exec(UWorld* Inworld, const TCHAR* Cmd, FOutputDevice&
 #if B2_BUILD_LEVEL < B2_BUILD_LEVEL_QA
 bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputDevice& Ar)
 {
-//	// ¿©±ä °¡²û½Ä shipping ¼º°İÀÇ ºôµå¿¡µµ Æ÷ÇÔµÉ ÇÊ¿ä°¡ ÀÖ´Â º¸´Ù Á¤½Ä ±â´ÉÀ» ±¸ÇöÇÒ ¶§ »ç¿ë.
+//	// å’¯å˜ å•Šé˜ä¾¥ shipping å·±æ‹œç‹¼ å‘¼é›ä¿Šæ¡£ å™¨çªƒçª é˜å¤¸å•Š ä¹ç»° ç„Šä¿ƒ æ²¥ä¾¥ æ‰ç“·é˜‘ å¤‡æ³…ä¸” é”­ è¤ä¾©.
 //#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
 //	FString CultureName;
 //#endif
@@ -164,17 +164,17 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //		return data_trader::ExecHandler::GetInstance().ExecuteShellCommand(Cmd);
 //	}
 //
-//#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2 // ServerCmd ¿Ü¿¡´Â LV2 ·Î °£ÁÖÇÔ
-//	else if (FParse::Command(&Cmd, TEXT("CurrentMemStat")) || FParse::Command(&Cmd, TEXT("CMS"))) // Shipping ºôµå¿¡¼­ Ã¼Å©ÇÒ ÀÏÀÌ ÀÖ¾î¼­ ¿©±â·Î ¿Å°Ü¿Â´Ù.
+//#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2 // ServerCmd å¯‡ä¿Šç»° LV2 è‚º åŸƒæ—çªƒ
+//	else if (FParse::Command(&Cmd, TEXT("CurrentMemStat")) || FParse::Command(&Cmd, TEXT("CMS"))) // Shipping å‘¼é›ä¿Šè¾‘ çœ‰å†œä¸” è€æ ä¹ç»¢è¾‘ å’¯æ‰è‚º é¢—è´¥æŸ¯ä¿ƒ.
 //	{
 //		FGenericPlatformMemory::DumpStats(Ar);
 //
-//		// FGenericPlatformMemory::DumpStats ÄÚµå °¡Á®¿Í¼­ µ¿ÀÏÇÑ Á¤º¸¸¦ È­¸é¿¡µµ »Ñ·ÁÁÜ
+//		// FGenericPlatformMemory::DumpStats å†…é› å•Šå»‰å®¢è¾‘ æ‚¼è€èŒ„ æ²¥ç„Šç”« æ‹³æä¿Šæ¡£ è°å¦¨æ·‹
 //		const float InvMB = 1.0f / 1024.0f / 1024.0f;
 //		FPlatformMemoryStats MemoryStats = FPlatformMemory::GetStats();
 //		const float DrawTextTime = 20.0f;
 //		const int32 FontSize = 14;
-//		// º¸±â ¿øÇÏ´Â ¿ª¼øÀ¸·Î ³Ö´Â´Ù. ÁÙ ±¸ºĞÀ» À§ÇØ ÇÑÁÙ °É·¯¼­ »ö»ó Á» ´Ù¸£°Ô
+//		// ç„Šæ‰ ç›”çªç»° å¼€é‰´æ è‚º æŒç»°ä¿ƒ. ä¸´ å¤‡ç›’é˜‘ å›°ç§¦ èŒ„ä¸´ å§çŸ¾è¾‘ ç¥¸æƒ‘ ç²± ä¿ƒç¦éœ¸
 //		BII_SCREEN_LOG(FString::Printf(TEXT("Virtual Memory: %.2f MB used,  %.2f MB free, %.2f MB total"), (MemoryStats.TotalVirtual - MemoryStats.AvailableVirtual)*InvMB, MemoryStats.AvailablePhysical*InvMB, MemoryStats.TotalVirtual*InvMB), FLinearColor(0.0f, 1.0f, 0.0f), FontSize, DrawTextTime);
 //		BII_SCREEN_LOG(FString::Printf(TEXT("Physical Memory: %.2f MB used,  %.2f MB free, %.2f MB total"), (MemoryStats.TotalPhysical - MemoryStats.AvailablePhysical)*InvMB, MemoryStats.AvailablePhysical*InvMB, MemoryStats.TotalPhysical*InvMB), FLinearColor(0.0f, 0.8f, 0.0f), FontSize, DrawTextTime);
 //		BII_SCREEN_LOG(FString::Printf(TEXT("Process Virtual Memory: %.2f MB used, %.2f MB peak"), MemoryStats.UsedVirtual*InvMB, MemoryStats.PeakUsedVirtual*InvMB), FLinearColor(0.0f, 1.0f, 0.0f), FontSize, DrawTextTime);
@@ -191,7 +191,7 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //		if (FirstToken == TEXT("SkipEvent")) {
 //			FStatisticalPerfStatCollector::bSkipEventCinematics = !FStatisticalPerfStatCollector::bSkipEventCinematics;
 //		}
-//		else { // ¾Æ¹«°Íµµ ÁöÁ¤ ¾ÈÇÏ¸é ±×³É On/Off 
+//		else { // é…’å…¬å·´æ¡£ ç˜¤æ²¥ æ•‘çªæ å¼Šæˆ On/Off 
 //			FStatisticalPerfStatCollector::bDoStatCollecting = !FStatisticalPerfStatCollector::bDoStatCollecting;
 //		}
 //		UE_LOG(LogBladeII, Display, TEXT("FStatisticalPerfStatCollector IsOn : %d, SkipEvent : %d"), (int32)FStatisticalPerfStatCollector::bDoStatCollecting, (int32)FStatisticalPerfStatCollector::bSkipEventCinematics);
@@ -209,22 +209,22 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //
 //		return true;
 //	}
-//	else if (FParse::Command(&Cmd, TEXT("SuperHero"))) // »¡¸®»¡¸® ÃÄºÎ¼ö¸ç Å×½ºÆ®ÇÏ°í ½ÍÀ» ¶§ °£ÆíÇÏ°Ô..
+//	else if (FParse::Command(&Cmd, TEXT("SuperHero"))) // å¼§åºœå¼§åºœ åªšä½•èå“¥ æŠ›èƒ¶é£˜çªç»Š é…µé˜‘ é”­ åŸƒç¥ˆçªéœ¸..
 //	{
 //		//ABladeIIPlayer* B2Player = Cast<ABladeIIPlayer>(UGameplayStatics::GetLocalPlayerCharacter(Inworld));
 //		//if (B2Player)
 //		//{
-//		//	bool bCurrentlyInSuperHero = (B2Player->bCheatHeroMode && B2Player->bCheatImmortalMode); // Zombie ¿Í Hero °¡ µ¿½Ã¿¡ ¼³Á¤µÇ¾î ÀÖÀ¸¸é On »óÅÂÀÎ °É·Î °£ÁÖÇÏ°í ²ö´Ù.
+//		//	bool bCurrentlyInSuperHero = (B2Player->bCheatHeroMode && B2Player->bCheatImmortalMode); // Zombie å®¢ Hero å•Š æ‚¼çŸ«ä¿Š æ±²æ²¥ç™»ç»¢ ä¹æ æ On æƒ‘æ€•ç‰¢ å§è‚º åŸƒæ—çªç»Š é¦‹ä¿ƒ.
 //
 //		//	bCurrentlyInSuperHero = !bCurrentlyInSuperHero;
 //
-//		//	// ¿©±â¼­ºÎÅÍ º»°İ ¼¼ÆÃ. Hero, Zombie, Cooltime ÁË´Ù.
+//		//	// å’¯æ‰è¾‘ä½•ç£ å¤¯æ‹œ æŠ€æ³¼. Hero, Zombie, Cooltime äº†ä¿ƒ.
 //		//	B2Player->bCheatHeroMode = bCurrentlyInSuperHero;
 //		//	B2Player->bCheatImmortalMode = bCurrentlyInSuperHero;
 //
 //		//	UB2SkillRTManager* SkillRTManager = B2Player->GetSkillRTManager();
 //		//	if (SkillRTManager)
-//		//	{ // Ä¡Æ®¸é 1ÃÊ, ¾Æ´Ï¸é ±âº»°ª
+//		//	{ // æ‘¹é£˜æ 1æª¬, é…’èªæ æ‰å¤¯è”¼
 //		//		SkillRTManager->Cheat_ForceSetCooltime(true, bCurrentlyInSuperHero ? 1.0f : -1.0f);
 //		//		SkillRTManager->Cheat_ForceSetCooltime(false, bCurrentlyInSuperHero ? 1.0f : -1.0f);
 //		//	}
@@ -261,14 +261,14 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //		gForcedPlayerDummyPartGrade = FCString::Atoi(*StarGradeStr);
 //
 //		for (int32 PCI = 0; PCI < GetMaxPCClassNum(); ++PCI)
-//		{ // ·Îºñ ¸Ş½¬µé ¸®ÇÁ·¹½¬. ¿ø·¡ LobbyUpdateCharacterPartClass ½Ã±×³ÎÀº °­Á¦ ¾÷µ¥ÀÌÆ®´Â ¾Æ´Ï¹Ç·Î ÀÌ Ä¡Æ®°¡ ¹Ù·Î ¾È ¸ÔÈú ¼ö ÀÖ´Âµ¥ ÀÌ Ä¡Æ® »ç¿ë ½Ã ¾ÈÂÊ¿¡¼­ Ã³¸®ÇÏµµ·Ï ÇÏ¿´À½.
+//		{ // è‚ºåš çš‹æµ†ç”¸ åºœæ©‡é¥­æµ†. ç›”è´° LobbyUpdateCharacterPartClass çŸ«å¼Šæ¾„ç¯® ç¢åŠ› è¯€å•æé£˜ç»° é…’èªéª¨è‚º æ æ‘¹é£˜å•Š å®˜è‚º æ•‘ å†ˆé³ƒ è ä¹ç»°å• æ æ‘¹é£˜ è¤ä¾© çŸ« æ•‘ç‡ä¿Šè¾‘ è´¸åºœçªæ¡£åºŸ çªçœ‹æ¾œ.
 //			LobbyUpdateCharacterPartClass<EPCClass>::GetInstance().Signal(IntToPCClass(PCI));
 //		}
-//		// ÀÎ°ÔÀÓÀÌ¸é ÅÂ±×¸¦ ´Ù½Ã ÇÏ´øÁö.. ¾Æ ¸Ş½¬°¡ Ä³½ÌÀÌ µÇ¾úÀ¸´Ï ±×³É ·¹º§ ´Ù½Ã ·ÎµùÇØ¾ß°Ú´Ù.
+//		// ç‰¢éœ¸çƒ™ææ æ€•å¼Šç”« ä¿ƒçŸ« çªå¸¦ç˜¤.. é…’ çš‹æµ†å•Š æŸæ•™æ ç™»èŒæ èª å¼Šæˆ é¥­éª‡ ä¿ƒçŸ« è‚ºçˆ¹ç§¦å…·æ‘†ä¿ƒ.
 //		return true;
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("CombatStatScale")))
-//	{ // ·ÎÄÃ ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ¿¡¸¸ ¸ÔÈ÷´Â °Å
+//	{ // è‚ºæ‹¿ æ•²é¥­æç»¢ æŸè…ç£ä¿Šçˆ¶ å†ˆæ´’ç»° èŠ­
 //		//extern float gLocalPCCombatStatScale;
 //		//FString ScaleStr;
 //		//FParse::Token(Cmd, ScaleStr, true);
@@ -309,7 +309,7 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //	}
 //#endif
 //	else if (FParse::Command(&Cmd, TEXT("SinglePlayQuick")))
-//	{ // ´Üµ¶ ÇÃ·¹ÀÌ ¸ğµå¸¦ À§ÇÑ Ä¡Æ®Å° ¸ğÀ½
+//	{ // çªœåˆ€ æ•²é¥­æ è‘›é›ç”« å›°èŒ„ æ‘¹é£˜è™ è‘›æ¾œ
 //		//if (!FBladeIIBlockToSyncNetwork::GetInstance().DevIsStandaloneMode())
 //		//{
 //		//	GEngine->DeferredCommands.Add(TEXT("B2Standalone"));
@@ -331,22 +331,22 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //
 //		if (FirstTokenStr == TEXT("Clear"))
 //		{
-//			UB2PreRenderer::ClearCompleteState(); // ´Ù½Ã Pre-render À¯¹ß
+//			UB2PreRenderer::ClearCompleteState(); // ä¿ƒçŸ« Pre-render èœ¡æƒ¯
 //			BII_SCREEN_LOG(FString::Printf(TEXT("PreRenderState Clear")), FLinearColor(0.0, 1.0f, 0.0f, 1.0f), 16, 5.0f);
 //		}
-//		else if (FirstTokenStr == TEXT("FarAway")) // Ã³À½ °É FarAway ·Î ÁÖ¸é °Á ÀÌ°Å¸¸ ¼¼ÆÃ
+//		else if (FirstTokenStr == TEXT("FarAway")) // è´¸æ¾œ å§ FarAway è‚º æ—æ å‚² æèŠ­çˆ¶ æŠ€æ³¼
 //		{
 //			UB2PreRenderer::bPreRenderAtFarAway = !UB2PreRenderer::bPreRenderAtFarAway;
 //			UE_LOG(LogBladeII, Display, TEXT("PreRenderAtFarAway %d"), (int32)UB2PreRenderer::bPreRenderAtFarAway);
 //			BII_SCREEN_LOG(FString::Printf(TEXT("PreRenderAtFarAway %d"), (int32)UB2PreRenderer::bPreRenderAtFarAway), FLinearColor(0.0, 1.0f, 0.0f, 1.0f), 16, 5.0f);
 //		}
-//		else if (FirstTokenStr == TEXT("All")) // ¸ğµç ÇÁ¸®¹ÌÆ¼ºê ÄÄÆ÷³ÍÆ®µéÀ» Pre-render ÇÏ´Â ¿É¼Ç
+//		else if (FirstTokenStr == TEXT("All")) // è‘›ç”µ æ©‡åºœå›ºèå® å“ªå™¨æƒ©é£˜ç”¸é˜‘ Pre-render çªç»° å¯è®°
 //		{
 //			UB2PreRenderer::bPreRenderAllPrimitives = !UB2PreRenderer::bPreRenderAllPrimitives;
 //			UE_LOG(LogBladeII, Display, TEXT("bPreRenderAllPrimitives %d"), (int32)UB2PreRenderer::bPreRenderAllPrimitives);
 //			BII_SCREEN_LOG(FString::Printf(TEXT("bPreRenderAllPrimitives %d"), (int32)UB2PreRenderer::bPreRenderAllPrimitives), FLinearColor(0.0, 1.0f, 0.0f, 1.0f), 16, 5.0f);
 //		}
-//		else if (FirstTokenStr == TEXT("SpawnDist")) // Ã³À½ °É SpawnDist ·Î ÁÖ¸é ´õ¹Ìµé spawn ÇÒ °Å¸® ¼³Á¤
+//		else if (FirstTokenStr == TEXT("SpawnDist")) // è´¸æ¾œ å§ SpawnDist è‚º æ—æ æ­¹å›ºç”¸ spawn ä¸” èŠ­åºœ æ±²æ²¥
 //		{
 //			FString DistStr;
 //			FParse::Token(Cmd, DistStr, true);
@@ -356,7 +356,7 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //		}
 //		else
 //		{
-//			// ¾Æ´Ñ °æ¿ì´Â ÁöÁ¤ÇÑ ¼ıÀÚ´ë·Î ±âÁØ È½¼öµé ¼¼ÆÃ
+//			// é…’å›± ç‰ˆå¿«ç»° ç˜¤æ²¥èŒ„ ç®­ç£Šæªè‚º æ‰éœ– å†‰èç”¸ æŠ€æ³¼
 //			UB2PreRenderer::MaxPreRenderCount = FCString::Atoi(*FirstTokenStr);
 //
 //			FString OverallLimitCountStr;
@@ -425,15 +425,15 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //
 //		return true;
 //	}
-//	else if (FParse::Command(&Cmd, TEXT("PCSectionMerge"))) // Å×½ºÆ® µµÁß¿¡¸¸ Á¦°ø.. ³»Áö´Â Á¤½ÄÀ¸·Î ±¸ÇöµÈ ÀÌÈÄ¿¡µµ ¼º´É Å×½ºÆ®¸¦ À§ÇÑ On/Off ÇÃ·¡±×°¡ µÉ ¼öµµ.
+//	else if (FParse::Command(&Cmd, TEXT("PCSectionMerge"))) // æŠ›èƒ¶é£˜ æ¡£åä¿Šçˆ¶ åŠ›å‚.. éƒ´ç˜¤ç»° æ²¥ä¾¥æ è‚º å¤‡æ³…ç­‰ æé¥¶ä¿Šæ¡£ å·±ç“· æŠ›èƒ¶é£˜ç”« å›°èŒ„ On/Off æ•²è´°å¼Šå•Š çª èæ¡£.
 //	{
-//		++UB2PCMeshSectionMergeInfo::SectionMergeTestFlag; // 1, 2 °¡ °­Á¦ »ç¿ë È¤Àº Off
+//		++UB2PCMeshSectionMergeInfo::SectionMergeTestFlag; // 1, 2 å•Š ç¢åŠ› è¤ä¾© è¶£ç¯® Off
 //		if (UB2PCMeshSectionMergeInfo::SectionMergeTestFlag > 2) {
 //			UB2PCMeshSectionMergeInfo::SectionMergeTestFlag = 0;
 //		}
 //
 //		UB2CompositeMeshCache* MeshCacheManager = StaticFindCompositeMeshCacher();
-//		// ÀÌ Ä¡Æ®°¡ ½ÇÁ¦ Àû¿ëµÇ´Â °Ô Á» ¾ÈÂÊÀÌ¶ó Ä³½¬ »óÅÂ¸¦ ºñ¿ö¾ß ÇÑ´Ù.
+//		// æ æ‘¹é£˜å•Š è§’åŠ› åˆ©ä¾©ç™»ç»° éœ¸ ç²± æ•‘ç‡ææ‰¼ æŸæµ† æƒ‘æ€•ç”« åšå†µå…· èŒ„ä¿ƒ.
 //		if (MeshCacheManager)
 //		{
 //			MeshCacheManager->DevResetCompositMeshCache();
@@ -444,8 +444,8 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //		{
 //			for (int32 PCI = 0; PCI < GetMaxPCClassNum(); ++PCI)
 //			{
-//				// À§¿¡¼­ CompoiteMeshCache ¸¦ ºñ¿ì´Ï LobbyUpdateCharacterPartClass ·Îµµ ¾î´À Á¤µµ±îÁö´Â °­Á¦ ¾÷µ¥ÀÌÆ®°¡ µÇ´Âµ¥ ¾ÈµÉ¶§µµ ÀÖ´Ù.
-//				// ÀÌ·± »óÈ²¿¡¼­ ¾µ ÀÌº¥Æ®¸¦ µû·Î ¸¸µé±â´Â ¹¹ÇÏ´Ï ±×³É LobbyGameMode Á¢±ÙÇØ¼­ ½ÇÇàÇÏÀÚ..
+//				// å›°ä¿Šè¾‘ CompoiteMeshCache ç”« åšå¿«èª LobbyUpdateCharacterPartClass è‚ºæ¡£ ç»¢è ¢ æ²¥æ¡£é³–ç˜¤ç»° ç¢åŠ› è¯€å•æé£˜å•Š ç™»ç»°å• æ•‘çªé”­æ¡£ ä¹ä¿ƒ.
+//				// æç¹ æƒ‘ç‚”ä¿Šè¾‘ é•œ æäº¥é£˜ç”« è¶è‚º çˆ¶ç”¸æ‰ç»° æ„çªèª å¼Šæˆ LobbyGameMode ç«‹è¾Ÿç§¦è¾‘ è§’é’çªç£Š..
 //				//LobbyUpdateCharacterPartClass<EPCClass>::GetInstance().Signal(IntToPCClass(PCI));
 //				if (LobbyGM)
 //				{
@@ -477,7 +477,7 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //			FLinearColor(0.0, 1.0f, 0.0f, 1.0f), 16, 5.0f);
 //		return true;
 //	}
-//	else if (FParse::Command(&Cmd, TEXT("KillAllEnemy"))) // Àû´ÙÁ×ÀÓ
+//	else if (FParse::Command(&Cmd, TEXT("KillAllEnemy"))) // åˆ©ä¿ƒç£·çƒ™
 //	{
 //		ABladeIIGameMode* B2GM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(Inworld));
 //
@@ -541,20 +541,20 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //		//		NewTransform.AddToTranslation(FVector(100.0f, 100.0f, 0.0f));
 //		//	}
 //
-//		//	// ÆÄ½ÌÇÑ ÀÎÀÚµé°ú ÇÔ²² dummy player spawn.
+//		//	// é¢‡æ•™èŒ„ ç‰¢ç£Šç”¸è‹ çªƒè†Š dummy player spawn.
 //		//	ABladeIITestDummyPlayer* SpawnedDummy = ABladeIITestDummyPlayer::SpawnWithStandardEquipment(
 //		//		Inworld, SpawnClass, NewTransform, EquipGrade, ParsedSpawnFloatingInterval, ParsedSpawnDamageFxInterval,
-//		//		bHasWing, MAX_WING_EVOLUTION_GRADE, true // ³¯°³ µî±ŞÀº °Á ¿©±â¼­..
+//		//		bHasWing, MAX_WING_EVOLUTION_GRADE, true // æœä¿º æ®¿é­ç¯® å‚² å’¯æ‰è¾‘..
 //		//	);
 //
 //		//	if (SpawnedDummy)
 //		//	{
 //		//		if (ParsedAnimStateString == TEXT("Rand") || ParsedAnimStateString == TEXT("Random"))
-//		//		{ // ·£´ıÇÏ°Ô ÇÃ·¹ÀÌ
+//		//		{ // ç½šå¾…çªéœ¸ æ•²é¥­æ
 //		//			SpawnedDummy->SetUseRandomAttackState(true);
 //		//		}
 //		//		else
-//		//		{ // Á¤ÇØ³õ°í ÇÏ³ª ÇÃ·¹ÀÌ
+//		//		{ // æ²¥ç§¦åˆç»Š çªå”± æ•²é¥­æ
 //		//			SpawnedDummy->SetUseRandomAttackState(false);
 //		//			SpawnedDummy->SetDirectAttackStateByKeyword(ParsedAnimStateString);
 //		//		}
@@ -571,7 +571,7 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //		FString OnOrOff;
 //		FParse::Token(Cmd, OnOrOff, true);
 //
-//		// Off¶ó°í ¸í½ÃÇÏÁö¾ÊÀ¸¸é ±×³É ÁøÇà
+//		// Offæ‰¼ç»Š ç–™çŸ«çªç˜¤è‡¼æ æ å¼Šæˆ æŸ³é’
 //		bool bTestAvailable = (OnOrOff == TEXT("Off")) ? false : true;
 //		TutorialManager::GetInstance().SetTestTutorialAvailable(bTestAvailable);
 //		TutorialManager::GetInstance().SetTutorialAvailable(bTestAvailable);
@@ -627,7 +627,7 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("SkipCurrentTutorial")) || FParse::Command(&Cmd, TEXT("SkipCurrTtr")))
 //	{
-//		// Ä¡Æ®¸¦ ½á°¡¸é¼­ ÇÃ·¹ÀÌ ÇÏ´Â °ÍÀÇ ¿µÇâÀÎÁö ¸ô¶óµµ ¾î¶»°Ô ÇØµµ Æ©Åä¸®¾ó Ã¢ÀÌ ¾È ´İÈú ¶§°¡ ÀÖ´Ù. ÀÀ±Ş Á¶Ä¡
+//		// æ‘¹é£˜ç”« ç»“å•Šæè¾‘ æ•²é¥­æ çªç»° å·´ç‹¼ åº·æ°¢ç‰¢ç˜¤ éš”æ‰¼æ¡£ ç»¢ç—˜éœ¸ ç§¦æ¡£ è­¬é…åºœå€” èŠ’æ æ•‘ æ‘§é³ƒ é”­å•Š ä¹ä¿ƒ. è§ˆé­ ç‚¼æ‘¹
 //		UB2UITutorial* TutorialUI = UB2UIManager::GetInstance()->GetUI<UB2UITutorial>(UIFName::Tutorial);
 //		if (TutorialUI)
 //		{
@@ -671,7 +671,7 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //	{
 //		FInternationalization::Get().SetCurrentCulture(CultureName);
 //	}
-//	else if (FParse::Command(&Cmd, TEXT("ALLog"))) // AssetLoaderLog È¤Àº AsyncLoadLog ¹¹¶ó°í ÇØ¼®ÇÏµç ¤»
+//	else if (FParse::Command(&Cmd, TEXT("ALLog"))) // AssetLoaderLog è¶£ç¯® AsyncLoadLog æ„æ‰¼ç»Š ç§¦ç±çªç”µ ã›
 //	{
 //		UB2AssetLoader::bEnableDevLog = !UB2AssetLoader::bEnableDevLog;
 //
@@ -679,7 +679,7 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //			FLinearColor(0.0, 1.0f, 0.0f, 1.0f), 16, 5.0f);
 //		return true;
 //	}
-//	else if (FParse::Command(&Cmd, TEXT("NPCAsyncLimit"))) // ÀÌ¹Ì r.PostGameLoadNPCAsyncLoadLimit ÄÜ¼Ö¸í·ÉÀÌÁö¸¸ Shipping ¿¡¼­ Å×½ºÆ®ÇÏ·Á°í.
+//	else if (FParse::Command(&Cmd, TEXT("NPCAsyncLimit"))) // æå›º r.PostGameLoadNPCAsyncLoadLimit èƒ½è´¾ç–™é£æç˜¤çˆ¶ Shipping ä¿Šè¾‘ æŠ›èƒ¶é£˜çªå¦¨ç»Š.
 //	{
 //		IConsoleVariable* CVarAsyncLoadLimit = IConsoleManager::Get().FindConsoleVariable(TEXT("r.PostGameLoadNPCAsyncLoadLimit"));
 //		if (CVarAsyncLoadLimit)
@@ -695,7 +695,7 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //		}
 //		return true;
 //	}
-//	else if (FParse::Command(&Cmd, TEXT("ForcedCSMDist"))) // ÀÌ¹Ì r.Shadow.EnforcedStationaryCSMDistance ÄÜ¼Ö¸í·ÉÀÌÁö¸¸ Shipping ¿¡¼­ Å×½ºÆ®ÇÏ·Á°í. ¹Ù·Î °»½Å ÇÊ¿äµµ ÀÖ°í.
+//	else if (FParse::Command(&Cmd, TEXT("ForcedCSMDist"))) // æå›º r.Shadow.EnforcedStationaryCSMDistance èƒ½è´¾ç–™é£æç˜¤çˆ¶ Shipping ä¿Šè¾‘ æŠ›èƒ¶é£˜çªå¦¨ç»Š. å®˜è‚º ç›è„š é˜å¤¸æ¡£ ä¹ç»Š.
 //	{
 //		IConsoleVariable* CVar = IConsoleManager::Get().FindConsoleVariable(TEXT("r.Shadow.EnforcedStationaryCSMDistance"));
 //		if (CVar)
@@ -706,7 +706,7 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //
 //			CVar->Set(NewDist, ECVF_SetByCommandline);
 //
-//			// ÀÌ°Ô ¹Ù·Î Àû¿ëµÇ·Á¸é DirectionalLightComponent µéÀ» ÇÑÂ÷·Ê ¾÷µ¥ÀÌÆ® ÇØ ÁÖ¾î¾ß..
+//			// æéœ¸ å®˜è‚º åˆ©ä¾©ç™»å¦¨æ DirectionalLightComponent ç”¸é˜‘ èŒ„ç’è‚¥ è¯€å•æé£˜ ç§¦ æ—ç»¢å…·..
 //			for (TObjectIterator<UDirectionalLightComponent> CompIT; CompIT; ++CompIT)
 //			{
 //				UDirectionalLightComponent* ThisComp = Cast<UDirectionalLightComponent>(*CompIT);
@@ -720,7 +720,7 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //		}
 //		return true;
 //	}
-//	else if (FParse::Command(&Cmd, TEXT("TestModShadowColor"))) // ÀÌ°Ç ¸í·É ³Ö°í ¹Ù·Î ¾÷µ¥ÀÌÆ® µÇ´Â °Å º¸·Á°í..
+//	else if (FParse::Command(&Cmd, TEXT("TestModShadowColor"))) // ææ‰’ ç–™é£ æŒç»Š å®˜è‚º è¯€å•æé£˜ ç™»ç»° èŠ­ ç„Šå¦¨ç»Š..
 //	{
 //		IConsoleVariable* CVar = IConsoleManager::Get().FindConsoleVariable(TEXT("r.TestModulatedShadowColorScale"));
 //		if (CVar)
@@ -731,7 +731,7 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //
 //			CVar->Set(NewColorScale, ECVF_SetByCommandline);
 //
-//			// ÀÌ°Ô ¹Ù·Î Àû¿ëµÇ·Á¸é DirectionalLightComponent µéÀ» ÇÑÂ÷·Ê ¾÷µ¥ÀÌÆ® ÇØ ÁÖ¾î¾ß..
+//			// æéœ¸ å®˜è‚º åˆ©ä¾©ç™»å¦¨æ DirectionalLightComponent ç”¸é˜‘ èŒ„ç’è‚¥ è¯€å•æé£˜ ç§¦ æ—ç»¢å…·..
 //			for (TObjectIterator<UDirectionalLightComponent> CompIT; CompIT; ++CompIT)
 //			{
 //				UDirectionalLightComponent* ThisComp = Cast<UDirectionalLightComponent>(*CompIT);
@@ -758,7 +758,7 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("BackToDefaultScalability")))
 //	{
-//		// ±â±â¿¡ µû¶ó °¨ÁöµÈ °ªÀ¸·Î ¼º´É ¿É¼Ç ¼¼ÆÃ
+//		// æ‰æ‰ä¿Š è¶æ‰¼ çš‘ç˜¤ç­‰ è”¼æ è‚º å·±ç“· å¯è®° æŠ€æ³¼
 //		B2Scalability::ResetAllScalabilitySettings();
 //		GConfig->Flush(false, GB2GeneralSavedStateIni);
 //		return true;
@@ -788,7 +788,7 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //#else
 //			false;
 //#endif
-//		// GetActiveProfileName Áß°£ °á°úµéµµ Ãâ·ÂÇÏ¸é º¸´Ù µµ¿òÀÌ µÉ µí.
+//		// GetActiveProfileName ååŸƒ æ¬è‹ç”¸æ¡£ å…ä»¿çªæ ç„Šä¿ƒ æ¡£æ¡†æ çª æ·€.
 //		BII_SCREEN_LOG(FString::Printf(TEXT("ActiveDeviceProfile : %s, EmulDetectHistory %d, ASTC? %d"), 
 //			*DeviceProfileNameStr, (int32)bWasDetectedAsEmulator, (int32)bSupportASTC),
 //			FLinearColor(0.0, 1.0f, 0.0f, 1.0f), 16, 5.0f);
@@ -803,7 +803,7 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //		{
 //			FString GPUFamily = FAndroidMisc::GetGPUFamily();
 //			FString GLVersion = FAndroidMisc::GetGLVersion();
-//			//FString VulkanVersion = FAndroidMisc::GetVulkanVersion(); µÆ°í ¤»
+//			//FString VulkanVersion = FAndroidMisc::GetVulkanVersion(); ç¯ç»Š ã›
 //			FString AndroidVersion = FAndroidMisc::GetAndroidVersion();
 //			FString DeviceMake = FAndroidMisc::GetDeviceMake();
 //			FString DeviceModel = FAndroidMisc::GetDeviceModel();
@@ -818,7 +818,7 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //				FLinearColor(0.0, 1.0f, 0.0f, 1.0f), 16, 10.0f);
 //		}
 //#elif PLATFORM_IOS
-//		// FIOSPlatformMisc ¿¡ ÇÊ¿äÇÑ Á¤º¸°¡ ÀÖÀ» °Å °°Àºµ¥.. ½ÇÁ¦ ½ÇÇà ¹× ±â´É È®ÀÎ ÇÏ±â Àü±îÁö´Â..
+//		// FIOSPlatformMisc ä¿Š é˜å¤¸èŒ„ æ²¥ç„Šå•Š ä¹é˜‘ èŠ­ éç¯®å•.. è§’åŠ› è§’é’ æ£º æ‰ç“· çŠ¬ç‰¢ çªæ‰ å‚ˆé³–ç˜¤ç»°..
 //		BII_SCREEN_LOG(FString::Printf(TEXT("[ShowDeviceInfo] Need implementation on IOS")),
 //			FLinearColor(0.0, 1.0f, 0.0f, 1.0f), 16, 10.0f);
 //#else
@@ -829,8 +829,8 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("LoadTest")))
 //	{
-//		// Á¤ÇØÁø InfoAsset À» ·ÎµùÇÏ´Â ¼º´É Å×½ºÆ®
-//		// ·ÎµùÀÌ ¾È µÈ »óÅÂ¿¡¼­ ÇØ¾ß ÇÔ.
+//		// æ²¥ç§¦æŸ³ InfoAsset é˜‘ è‚ºçˆ¹çªç»° å·±ç“· æŠ›èƒ¶é£˜
+//		// è‚ºçˆ¹æ æ•‘ ç­‰ æƒ‘æ€•ä¿Šè¾‘ ç§¦å…· çªƒ.
 //
 //		FString FirstArg;
 //		FParse::Token(Cmd, FirstArg, true);
@@ -838,11 +838,11 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //		{
 //			UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
 //
-//			//UIMgrInst->UnloadAllTAssets(); ÀÌ°Å ÇÏ°í ¹Ù·Î GC µ¹¸± ¼ö ÀÖÀ¸¸é ÇÏ³ª °¡Áö°í ¿©·¯¹ø ·ÎµùÇÏ´Â ½ÄÀÌ µÉ ¼öµµ..
+//			//UIMgrInst->UnloadAllTAssets(); æèŠ­ çªç»Š å®˜è‚º GC å€’å‰¯ è ä¹æ æ çªå”± å•Šç˜¤ç»Š å’¯çŸ¾é”… è‚ºçˆ¹çªç»° ä¾¥æ çª èæ¡£..
 //
 //			double LoadBeginTime = FPlatformTime::Seconds();
 //
-//			// ·Îµù ÈÄ ·çÆ®¼Â¿¡ ³Ö¾ú´Ù°Å³ª Ä³½ÌÀÌ µÈ °Ç ÀÌ°É·Î Á¤È®ÇÑ Å×½ºÆ®°¡ ºÒ°¡´É. ´ë»óÀº ÀûÀıÈ÷ ¼±Á¤..
+//			// è‚ºçˆ¹ é¥¶ é£é£˜æ‚¸ä¿Š æŒèŒä¿ƒèŠ­å”± æŸæ•™æ ç­‰ æ‰’ æå§è‚º æ²¥çŠ¬èŒ„ æŠ›èƒ¶é£˜å•Š é˜‚å•Šç“·. æªæƒ‘ç¯® åˆ©ä¾‹æ´’ æ€¥æ²¥..
 //			
 //			TArray<FName> AllLoadUIs;
 //			AllLoadUIs.Add(UIFName::StageResult);
@@ -898,13 +898,13 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("NonCBTContent")))
 //	{
-//		/** CBTVersionReady °¡ true ÀÎ »óÅÂ·Î ÄíÅ· Å×½ºÆ®ÇÒ ¶§ ÄÁÅÙÃ÷°¡ ¸·Çô¼­ ´çÈ²½º·¯¿î »óÈ² ´ëºñ. */
+//		/** CBTVersionReady å•Š true ç‰¢ æƒ‘æ€•è‚º æ»æ¬§ æŠ›èƒ¶é£˜ä¸” é”­ ç‰§åˆ¨æ˜å•Š é˜œå›šè¾‘ å¯¸ç‚”èƒ¶çŸ¾æ¬¾ æƒ‘ç‚” æªåš. */
 //		extern bool gbAllowNonCBTVersionContentOverride;
 //		gbAllowNonCBTVersionContentOverride = !gbAllowNonCBTVersionContentOverride;
 //
 //		UB2StageInfo* StageInfoTable = StaticFindStageInfo();
 //		if (StageInfoTable)
-//		{ // °»½ÅÇØ ÁÖ¾î¾ß ÇÏ´Â °Ô ÀÖ¾î¼­..
+//		{ // ç›è„šç§¦ æ—ç»¢å…· çªç»° éœ¸ ä¹ç»¢è¾‘..
 //			StageInfoTable->SetDataByCBTVersionContent();
 //		}
 //
@@ -912,7 +912,7 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //			FLinearColor(0.0, 1.0f, 0.0f, 1.0f), 16, 5.0f);
 //		return true;
 //	}
-//	else if (FParse::Command(&Cmd, TEXT("TAATest"))) // TemporalAA On/Off Å×½ºÆ® ¿ë
+//	else if (FParse::Command(&Cmd, TEXT("TAATest"))) // TemporalAA On/Off æŠ›èƒ¶é£˜ ä¾©
 //	{
 //		static bool bTAAOn = false;
 //		bTAAOn = !bTAAOn;
@@ -932,7 +932,7 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //			FLinearColor(0.0, 1.0f, 0.0f, 1.0f), 16, 5.0f);
 //		return true;
 //	}
-//	else if (FParse::Command(&Cmd, TEXT("FXAATest"))) // FXAA On/Off Å×½ºÆ® ¿ë.. ±Ùµ¥ ÀÌ°Å ¸ğ¹ÙÀÏ¼­ ¾È ¸ÔÈû?
+//	else if (FParse::Command(&Cmd, TEXT("FXAATest"))) // FXAA On/Off æŠ›èƒ¶é£˜ ä¾©.. è¾Ÿå• æèŠ­ è‘›å®˜è€è¾‘ æ•‘ å†ˆå¡?
 //	{
 //		static bool bFXAAOn = false;
 //		bFXAAOn = !bFXAAOn;
@@ -958,7 +958,7 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //		FParse::Token(Cmd, FirstArg, true);
 //		bool bHasFirstArg = !FirstArg.IsEmpty();
 //		
-//		// ÇöÀç ±¸ÇöÀÌ µı °Å ÇÊ¿ä¾øÀÌ r.MobileMSAA ÀÌ°Å ÇÏ³ª·Î ´Ù ¸ÔÈ÷°Ô µÇ¾î ÀÖÀ½.
+//		// æ³…çŠ å¤‡æ³…æ è° èŠ­ é˜å¤¸ç»æ r.MobileMSAA æèŠ­ çªå”±è‚º ä¿ƒ å†ˆæ´’éœ¸ ç™»ç»¢ ä¹æ¾œ.
 //		static IConsoleVariable* _CVarMobileMSAA = IConsoleManager::Get().FindConsoleVariable(TEXT("r.MobileMSAA"));
 //		if (_CVarMobileMSAA)
 //		{
@@ -966,17 +966,17 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //			int32 NewMSAAValue = FCString::Atoi(*FirstArg);
 //			if (!bHasFirstArg)
 //			{
-//				// ÁöÁ¤ÇÏÁö ¾Ê¾Ò´Ù¸é On/Off ¼öÁØÀ¸·Î.. ±âº» »ùÇÃ°ªÀº 4·Î ÇÔ.
+//				// ç˜¤æ²¥çªç˜¤ è‡¼ç–½ä¿ƒæ On/Off èéœ–æ è‚º.. æ‰å¤¯ åŸºæ•²è”¼ç¯® 4è‚º çªƒ.
 //				NewMSAAValue = ((CurMSAAValue <= 1) ? 4 : 1);
 //			}
 //			else if (NewMSAAValue != 1 && NewMSAAValue != 2 && NewMSAAValue != 4 && NewMSAAValue != 8)
-//			{ // ¿¹¿ÜÃ³¸®.
-//				NewMSAAValue = 1; // 1 ÀÌ ²ô´Â °Å.
+//			{ // æŠ—å¯‡è´¸åºœ.
+//				NewMSAAValue = 1; // 1 æ æºç»° èŠ­.
 //			}
 //
 //			// %%%%%%%%%%%%%%%%%%%%%
-//			// ¿©±â¼­ ¼¼ÆÃÇÑ °Ç B2Scalability ÂÊ ÄÁÆ®·Ñ·Î ÀÎÇØ ´ÙÀ½ ·Îµù ¼¼¼Ç ³Ñ¾î¼­±îÁö Áö¼ÓµÇÁö ¾ÊÀ» °ÍÀÌ´Ù.
-//			// ÀÌ Ä¿¸Çµå·Î »ó¼¼ÇÑ Å×½ºÆ®¸¦ ÇÏ·Á¸é B2Scalability ÂÊ¿¡¼­ÀÇ Á¦¾î¸¦ ²¨ ³õµµ·Ï.
+//			// å’¯æ‰è¾‘ æŠ€æ³¼èŒ„ æ‰’ B2Scalability ç‡ ç‰§é£˜è´¹è‚º ç‰¢ç§¦ ä¿ƒæ¾œ è‚ºçˆ¹ æŠ€è®° é€ç»¢è¾‘é³–ç˜¤ ç˜¤åŠ ç™»ç˜¤ è‡¼é˜‘ å·´æä¿ƒ.
+//			// æ ç›®ç›–é›è‚º æƒ‘æŠ€èŒ„ æŠ›èƒ¶é£˜ç”« çªå¦¨æ B2Scalability ç‡ä¿Šè¾‘ç‹¼ åŠ›ç»¢ç”« æ³¢ åˆæ¡£åºŸ.
 //			// %%%%%%%%%%%%%%%%%%%%%
 //
 //			_CVarMobileMSAA->Set(NewMSAAValue);
@@ -989,7 +989,7 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("B2ResLevel")))
 //	{
-//		// EB2ResolutionLevel Àº UI ´ÜÀ» À§ÇÑ ÀÎÅÍÆäÀÌ½ºÀÌ°í EB2GraphicsRQType À» ÇöÀç Çã¿ë ¿©ºÎ °ü°è¾øÀÌ °­Á¦·Î ¼¼ÆÃÇÏ´Â ±â´ÉÀÌ ÀÖÀ¸¸é ÁÁÀ» µí.
+//		// EB2ResolutionLevel ç¯® UI çªœé˜‘ å›°èŒ„ ç‰¢ç£å…¶æèƒ¶æç»Š EB2GraphicsRQType é˜‘ æ³…çŠ å€¾ä¾© å’¯ä½• åŒ…æ‹Œç»æ ç¢åŠ›è‚º æŠ€æ³¼çªç»° æ‰ç“·æ ä¹æ æ äº®é˜‘ æ·€.
 //
 //		FString FirstArg;
 //		FParse::Token(Cmd, FirstArg, true);
@@ -1001,7 +1001,7 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //					(FirstArg == TEXT("Low")) ? EB2ResolutionLevel::Low : EB2ResolutionLevel::Mid
 //					);
 //			
-//			// AdjustScalabilityBySavedUserSelection ¿¡¼­ ÀúÀåÇÑ °ªÀ» ºÒ·¯¿Ã Å×´Ï ÀúÀåÀÌ ÇÊ¿ä..
+//			// AdjustScalabilityBySavedUserSelection ä¿Šè¾‘ å†å˜èŒ„ è”¼é˜‘ é˜‚çŸ¾æ£µ æŠ›èª å†å˜æ é˜å¤¸..
 //			SaveGameSetting_Resolution(B2ResolutionLevelToInt(NewResLevel));
 //
 //			B2Scalability::AdjustScalabilityBySavedUserSelection(Inworld);
@@ -1080,7 +1080,7 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //		FString FirstArg;
 //		FParse::Token(Cmd, FirstArg, true);
 //		int32 NewValue = FCString::Atoi(*FirstArg);
-//		// PC ¹öÀü CVar ´Â µû·Î ÀÖÀ½. ÀÌ°Ç ¸ğ¹ÙÀÏ ½±ÇÎ Å×½ºÆ® ¹èÆ÷¿¡¼­ ¾²±â À§ÇÔ.
+//		// PC æ»šå‚ˆ CVar ç»° è¶è‚º ä¹æ¾œ. ææ‰’ è‘›å®˜è€ å¥–ä¿ æŠ›èƒ¶é£˜ ç¡…å™¨ä¿Šè¾‘ é™æ‰ å›°çªƒ.
 //		static IConsoleVariable* CVarTonemapperF = IConsoleManager::Get().FindConsoleVariable(TEXT("r.Mobile.TonemapperFilm"));
 //		check(CVarTonemapperF);
 //		if (CVarTonemapperF)
@@ -1131,7 +1131,7 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //				CurrCamComp->PostProcessSettings.LensFlareBokehSize = LFTest_BokehSize;
 //			}
 //			if (LFTest_Threshold >= 0.0f)
-//			{ // ¸ğ¹ÙÀÏ¿¡¼± ¿ªÇÒÀ» ¸øÇÒ µí..
+//			{ // è‘›å®˜è€ä¿Šæ€¥ å¼€ä¸”é˜‘ ç»™ä¸” æ·€..
 //				CurrCamComp->PostProcessSettings.bOverride_LensFlareThreshold = true;
 //				CurrCamComp->PostProcessSettings.LensFlareThreshold = LFTest_Threshold;
 //			}
@@ -1168,18 +1168,18 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //		FParse::Token(Cmd, SecondArg, true);
 //		float fSecondValue = FCString::Atof(*SecondArg);
 //
-//		// ¼ıÀÚ µÎ °³ ¸í½ÃÇÏ¸é Lower / Upper ·Î, ÇÑ °³¸¸ ¸í½ÃÇÏ¸é Upper ·Î
+//		// ç®­ç£Š æ»´ ä¿º ç–™çŸ«çªæ Lower / Upper è‚º, èŒ„ ä¿ºçˆ¶ ç–™çŸ«çªæ Upper è‚º
 //		float SpecifiedUpperBound = (fSecondValue > 0.0f) ? fSecondValue : fFirstValue;
 //		float SpecifiedLowerBound = (fSecondValue > 0.0f) ? fFirstValue : 0.0f;
 //
 //		if (GEngine && SpecifiedUpperBound > 0.0f)
 //		{
-//			// Å×½ºÆ® ¿ëÀÌ´Ï ±×³É ´Ù ¶È°°ÀÌ ¹Ù²ãÄ§. ÀÌ·¸°Ô ÇÏ°í ³ª¸é r.CurrentMobileFrameLimitLevel °¡ ÀÇ¹Ì°¡ ¾ø°ÚÁö ¤»
+//			// æŠ›èƒ¶é£˜ ä¾©æèª å¼Šæˆ ä¿ƒ åº¦éæ å®˜å±‚é­”. æçŠ¯éœ¸ çªç»Š å”±æ r.CurrentMobileFrameLimitLevel å•Š ç‹¼å›ºå•Š ç»æ‘†ç˜¤ ã›
 //
-//			// ½ÇÁ¦ ÁØºñµÇ¾î ÀÖ´Â SmoothedFrameRateRange_Mobile ¼¼ÆÃº¸´Ù Å« ÀÎµ¦½º¿¡¼­´Â Á¦ÀÏ Å« °É »ç¿ëÇÏ¹Ç·Î È®Àå °¡´É¼ºÀ» »ı°¢ÇØ¼­ Àû´çÈ÷ Å« ¼ıÀÚ±îÁö iteration ÇÔ.
+//			// è§’åŠ› éœ–åšç™»ç»¢ ä¹ç»° SmoothedFrameRateRange_Mobile æŠ€æ³¼ç„Šä¿ƒ å¥´ ç‰¢éƒ¸èƒ¶ä¿Šè¾‘ç»° åŠ›è€ å¥´ å§ è¤ä¾©çªéª¨è‚º çŠ¬å˜ å•Šç“·å·±é˜‘ ç§¯é˜¿ç§¦è¾‘ åˆ©å¯¸æ´’ å¥´ ç®­ç£Šé³–ç˜¤ iteration çªƒ.
 //			for (int32 SFI = 0; SFI < 10; ++SFI) 
 //			{
-//				// ³»ºÎÀûÀ¸·Î 0 ÀÌ³ª À½¼ö¿¡¼­´Â ÇöÀç °ªÀ» À¯ÁöÇÏ°Ô µÉ °Í.
+//				// éƒ´ä½•åˆ©æ è‚º 0 æå”± æ¾œèä¿Šè¾‘ç»° æ³…çŠ è”¼é˜‘ èœ¡ç˜¤çªéœ¸ çª å·´.
 //				GEngine->SetMobileSmoothFrameRangeOfLimitLevel(SFI, SpecifiedLowerBound, SpecifiedUpperBound);
 //			}
 //		}
@@ -1193,8 +1193,8 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //		return true;
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("FrameLimitLevel")))
-//	{ // GEngine->SmoothedFrameRateRange_Mobile** µéÀÇ °ªÀ» Á÷Á¢ °Çµå¸®Áö ¾Ê°í 
-//		// ½ÇÁ¦ ÀÇµµÇÑ ±â´É´ë·Î SmoothedFrameRateRange_Mobile** Áß ÇÏ³ª¸¦ ¼±ÅÃÇÏ´Â ·¹º§ º¯¼ö¸¦ º¯°æ.
+//	{ // GEngine->SmoothedFrameRateRange_Mobile** ç”¸ç‹¼ è”¼é˜‘ æµç«‹ æ‰’é›åºœç˜¤ è‡¼ç»Š 
+//		// è§’åŠ› ç‹¼æ¡£èŒ„ æ‰ç“·æªè‚º SmoothedFrameRateRange_Mobile** å çªå”±ç”« æ€¥ç¶çªç»° é¥­éª‡ å‡½èç”« å‡½ç‰ˆ.
 //		IConsoleVariable* CVar = IConsoleManager::Get().FindConsoleVariable(TEXT("r.CurrentMobileFrameLimitLevel"));
 //		if (CVar)
 //		{
@@ -1202,7 +1202,7 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //			FParse::Token(Cmd, FirstArg, true);
 //
 //			if (FirstArg == TEXT("Low") || FirstArg == TEXT("Mid") || FirstArg == TEXT("High"))
-//			{ // °ÔÀÓ ¸Ş´º¿¡¼­ »ç¿ëÇÒ ÀÇµµ·Î Á¦°øµÇ´Â »ó´ëÀûÀÎ °ªÀ¸·ÎÀÇ ¼¼ÆÃ ÀÎÅÍÆäÀÌ½º
+//			{ // éœ¸çƒ™ çš‹æ˜¥ä¿Šè¾‘ è¤ä¾©ä¸” ç‹¼æ¡£è‚º åŠ›å‚ç™»ç»° æƒ‘æªåˆ©ç‰¢ è”¼æ è‚ºç‹¼ æŠ€æ³¼ ç‰¢ç£å…¶æèƒ¶
 //				const EB2FrameLimitLevel NewRelativeLevel =
 //					(FirstArg == TEXT("High")) ? EB2FrameLimitLevel::High :
 //					(FirstArg == TEXT("Low") ? EB2FrameLimitLevel::Low : EB2FrameLimitLevel::Mid);
@@ -1214,7 +1214,7 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //					FLinearColor(0.0, 1.0f, 0.0f, 1.0f), 16, 5.0f);
 //			}
 //			else
-//			{ // Á÷Á¢ °ª ¼¼ÆÃ
+//			{ // æµç«‹ è”¼ æŠ€æ³¼
 //				int32 NewValue = FCString::Atoi(*FirstArg);
 //				CVar->Set(NewValue);
 //				BII_SCREEN_LOG(FString::Printf(TEXT("r.CurrentMobileFrameLimitLevel %d"), CVar->GetInt()),
@@ -1225,7 +1225,7 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("ForceRRTHack"))) 
 //	{
-//		// °£È¤ ´«¿¡ ¶ç´Â ¹®Á¦¿¡ ´ëÇÑ Å×½ºÆ® Â÷¿øÀÎµ¥.. ÀÌ°Ô ÇØ°á ¹æ¾ÈÀÌ µÇ´Â °Ô ¸ÂÀ¸¸é Á¤½Ä Ã¤ÅÃ.
+//		// åŸƒè¶£ ä¼ ä¿Š å‰ç»° å·©åŠ›ä¿Š æªèŒ„ æŠ›èƒ¶é£˜ ç’ç›”ç‰¢å•.. æéœ¸ ç§¦æ¬ è§„æ•‘æ ç™»ç»° éœ¸ å˜æ æ æ²¥ä¾¥ ç›²ç¶.
 //		IConsoleVariable* CVarSendSignal = IConsoleManager::Get().FindConsoleVariable(TEXT("r.ReallocateRenderTargetsSignal"));
 //		if (CVarSendSignal)
 //		{
@@ -1238,27 +1238,27 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //		return true;
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("GoToLobbyCharSel")))
-//	{ // ³×Æ®¿öÅ© ¿¬°á ¾ÈµÈ »óÅÂ¿¡¼­ ·Îºñ Æ¯Á¤ Àå¸éÀ¸·Î ÀÌµ¿ÇÏ±â À§ÇØ Á¦°ø.
+//	{ // åŒ™é£˜å†µå†œ æ¥·æ¬ æ•‘ç­‰ æƒ‘æ€•ä¿Šè¾‘ è‚ºåš æ¼‚æ²¥ å˜ææ è‚º ææ‚¼çªæ‰ å›°ç§¦ åŠ›å‚.
 //		LobbyChangeSceneByUISceneClass<EUIScene>::GetInstance().Signal(EUIScene::CharacterSelectPage);
 //		return true;
 //	}	
 //	else if (FParse::Command(&Cmd, TEXT("GoToLobbyMain")))
-//	{ // ³×Æ®¿öÅ© ¿¬°á ¾ÈµÈ »óÅÂ¿¡¼­ ·Îºñ Æ¯Á¤ Àå¸éÀ¸·Î ÀÌµ¿ÇÏ±â À§ÇØ Á¦°ø.
+//	{ // åŒ™é£˜å†µå†œ æ¥·æ¬ æ•‘ç­‰ æƒ‘æ€•ä¿Šè¾‘ è‚ºåš æ¼‚æ²¥ å˜ææ è‚º ææ‚¼çªæ‰ å›°ç§¦ åŠ›å‚.
 //		LobbyChangeSceneByUISceneClass<EUIScene>::GetInstance().Signal(EUIScene::LobbyMain);
 //		return true;
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("GoToLobbyShop")))
-//	{ // ³×Æ®¿öÅ© ¿¬°á ¾ÈµÈ »óÅÂ¿¡¼­ ·Îºñ Æ¯Á¤ Àå¸éÀ¸·Î ÀÌµ¿ÇÏ±â À§ÇØ Á¦°ø.
+//	{ // åŒ™é£˜å†µå†œ æ¥·æ¬ æ•‘ç­‰ æƒ‘æ€•ä¿Šè¾‘ è‚ºåš æ¼‚æ²¥ å˜ææ è‚º ææ‚¼çªæ‰ å›°ç§¦ åŠ›å‚.
 //		LobbyChangeSceneClass<ELobbyScene>::GetInstance().Signal(ELobbyScene::ELobbyScene_SummonItem);
 //		return true;
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("GoToLobbyInventory")))
-//	{ // ³×Æ®¿öÅ© ¿¬°á ¾ÈµÈ »óÅÂ¿¡¼­ ·Îºñ Æ¯Á¤ Àå¸éÀ¸·Î ÀÌµ¿ÇÏ±â À§ÇØ Á¦°ø.
+//	{ // åŒ™é£˜å†µå†œ æ¥·æ¬ æ•‘ç­‰ æƒ‘æ€•ä¿Šè¾‘ è‚ºåš æ¼‚æ²¥ å˜ææ è‚º ææ‚¼çªæ‰ å›°ç§¦ åŠ›å‚.
 //		LobbyEnterHeroMgmtModeClass<EHeroMgmtSubMode>::GetInstance().Signal(EHeroMgmtSubMode::EHMSM_Inventory);
 //		return true;
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("PrepareLobbyHallOfFame")))
-//	{ // ±×³ÉÀº ¸øµé¾î°¡Áö´Âµ¥ Á¤º¸¸¦ Á» Ã¤¿ö³Ö¾î¾ß.. ÀÌ°Ç Å¬¶ó ´Üµ¶Àº ¾Æ´Ï°í ¼­¹ö ºÙÀº »óÈ²¿¡¼­.
+//	{ // å¼Šæˆç¯® ç»™ç”¸ç»¢å•Šç˜¤ç»°å• æ²¥ç„Šç”« ç²± ç›²å†µæŒç»¢å…·.. ææ‰’ åŠªæ‰¼ çªœåˆ€ç¯® é…’èªç»Š è¾‘æ»š å˜¿ç¯® æƒ‘ç‚”ä¿Šè¾‘.
 //		data_trader::ExecHandler::GetInstance().ExecuteShellCommand(TEXT("AddRankingStatus 2 3 10 100"));
 //		data_trader::ExecHandler::GetInstance().ExecuteShellCommand(TEXT("AddRankingStatus 3 3 10 100"));
 //		data_trader::ExecHandler::GetInstance().ExecuteShellCommand(TEXT("AddRankingStatus 5 3 10 100"));
@@ -1268,7 +1268,7 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //		return true;
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("TestStage")))
-//	{ // Standalone ½ºÅ×ÀÌÁö ÇÃ·¹ÀÌ¸¦ Á» ´õ °£ÆíÈ÷ ÇÏ±â À§ÇØ. ¿ÜºÎ Àü´Ş Å×½ºÆ® ºôµå¿¡¼­µµ ÇÊ¿äÇÏ±âµµ ÇÏ°í..
+//	{ // Standalone èƒ¶æŠ›æç˜¤ æ•²é¥­æç”« ç²± æ­¹ åŸƒç¥ˆæ´’ çªæ‰ å›°ç§¦. å¯‡ä½• å‚ˆå´” æŠ›èƒ¶é£˜ å‘¼é›ä¿Šè¾‘æ¡£ é˜å¤¸çªæ‰æ¡£ çªç»Š..
 //		FString FirstArg;
 //		FParse::Token(Cmd, FirstArg, true);
 //		const int32 WantedStageNum = FCString::Atoi(*FirstArg);
@@ -1277,7 +1277,7 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //		FParse::Token(Cmd, SecondArg, true);
 //		const bool bScenarioModeOn = (SecondArg == TEXT("-SM") || SecondArg == TEXT("-Scenario"));
 //
-//		// ScenarioMode ¸¦ ÁöÁ¤ÇÏ¸é ³­ÀÌµµ´Â ¹«Á¶°Ç Normal ÀÌ µÊ. ³­ÀÌµµ¸¦ ÁöÁ¤ÇÏ°í ½ÍÀº °æ¿ìµµ µÎ¹øÂ° ÀÎÀÚ·Î.
+//		// ScenarioMode ç”« ç˜¤æ²¥çªæ æŠ„ææ¡£ç»° å…¬ç‚¼æ‰’ Normal æ å‡³. æŠ„ææ¡£ç”« ç˜¤æ²¥çªç»Š é…µç¯® ç‰ˆå¿«æ¡£ æ»´é”…æ³ ç‰¢ç£Šè‚º.
 //		EStageDifficulty WantedDifficulty = bScenarioModeOn ? EStageDifficulty::ESD_Normal :
 //			(SecondArg == TEXT("-Hard") ? EStageDifficulty::ESD_Hard : 
 //			(SecondArg == TEXT("-VeryHard") ? EStageDifficulty::ESD_VeryHard : 
@@ -1289,7 +1289,7 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //		{
 //			FSingleStageInfoData* WantedStageInfoData = StageInfoTable->GetInfoData(WantedStageNum, WantedDifficulty);
 //			if (WantedStageInfoData)
-//			{ // »ç½Ç»ó Open ¸í·ÉÀ¸·Î ÇÒ ¼öµµ ÀÖ´Ù. ´Ù·ç±â ±ÍÂú°í ±î´Ù·Î¿ö¼­ º¸´Ù °£ÆíÇÑ ¸í·ÉÀ» Á¦°øÇÏ·Á´Â °Å.
+//			{ // è¤è§’æƒ‘ Open ç–™é£æ è‚º ä¸” èæ¡£ ä¹ä¿ƒ. ä¿ƒé£æ‰ è“–æ»¡ç»Š é³–ä¿ƒè‚ºå†µè¾‘ ç„Šä¿ƒ åŸƒç¥ˆèŒ„ ç–™é£é˜‘ åŠ›å‚çªå¦¨ç»° èŠ­.
 //				OpenStageCommand = FString::Printf(TEXT("Open %s?StageNum=%d?SM=%d?DF=%d?Standalone") ,
 //					*WantedStageInfoData->MainMap.ToString(),
 //					WantedStageNum, (int32)bScenarioModeOn, (int32)WantedDifficulty
@@ -1297,7 +1297,7 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //			}
 //		}
 //
-//		GlobalSetPureMapLoadingShareValue(0.5f); // ÀÛÀº ½áºñ½º.
+//		GlobalSetPureMapLoadingShareValue(0.5f); // ç´¯ç¯® ç»“åšèƒ¶.
 //
 //		if (OpenStageCommand.Len() > 0)
 //		{
@@ -1311,7 +1311,7 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //		return true;
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("SetPlayerClass")))
-//	{ // Standalone ÇÃ·¹ÀÌ °°Àº »óÈ²¿¡¼­ Ä³¸¯ÅÍ ¼±ÅÃÇÏ°íÀÚ ÇÒ ¶§
+//	{ // Standalone æ•²é¥­æ éç¯® æƒ‘ç‚”ä¿Šè¾‘ æŸè…ç£ æ€¥ç¶çªç»Šç£Š ä¸” é”­
 //		FString FirstArg;
 //		FParse::Token(Cmd, FirstArg, true);
 //		const EPCClass MainClass = IntToPCClass(FCString::Atoi(*FirstArg));
@@ -1321,7 +1321,7 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //		const EPCClass SubClass = IntToPCClass(FCString::Atoi(*SecondArg));
 //
 //		if (SubClass != EPCClass::EPC_End && SubClass != MainClass) 
-//		{ // Sub ¸¦ ¸ÕÀú ¼¼ÆÃÇÏ´Â ÀÌÀ¯´Â È­¸é¿¡ ·Î±× »Ñ¸± ¶§ ÀÌ°Ô ¾Æ·¡·Î ¹Ğ¸®°Ô ÇÏ·Á°í
+//		{ // Sub ç”« åˆšå† æŠ€æ³¼çªç»° æèœ¡ç»° æ‹³æä¿Š è‚ºå¼Š è°å‰¯ é”­ æéœ¸ é…’è´°è‚º å‰åºœéœ¸ çªå¦¨ç»Š
 //			BladeIIGameImpl::GetLocalCharacterData().SetSubPlayerClass(SubClass);
 //			BII_SCREEN_LOG(FString::Printf(TEXT("Set Sub Class to %s"), *UB2PCClassInfo::GetTrimmedNameOfPCClassEnum(SubClass)),
 //				FLinearColor(0.0, 1.0f, 0.0f, 1.0f), 16, 5.0f);
@@ -1402,7 +1402,7 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("TagCoolTime")))
 //	{
-//		// "SkillCoolTime" °ú ÄÚµå°¡ °ãÄ¡Áö¸¸ °³¹ß Ä¡Æ®ÀÌ°í ¿©±â¿¡ µû·Î ÇÔ¼ö ¸¸µå´Â °Íµµ ±¸Áú±¸ÁúÇÏ´Ï °Á ³Ñ¾î°¡ÀÚ
+//		// "SkillCoolTime" è‹ å†…é›å•Š èˆ¬æ‘¹ç˜¤çˆ¶ ä¿ºæƒ¯ æ‘¹é£˜æç»Š å’¯æ‰ä¿Š è¶è‚º çªƒè çˆ¶é›ç»° å·´æ¡£ å¤‡é¾™å¤‡é¾™çªèª å‚² é€ç»¢å•Šç£Š
 //		FString CoolTimeString;
 //		FParse::Token(Cmd, CoolTimeString, true);
 //
@@ -1413,7 +1413,7 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("FixedSkillMode")))
 //	{
-//		// °ÅÀÇ ¼º´É Å×½ºÆ® ¿ëµµ·Î¼­ ½ºÅ³ Á¾·ù³ª ÄğÅ¸ÀÓ Á¤ÇØ³õ°í °¡´Â °Å.		
+//		// èŠ­ç‹¼ å·±ç“· æŠ›èƒ¶é£˜ ä¾©æ¡£è‚ºè¾‘ èƒ¶æ‡¦ è¾†å¹…å”± é…¿é¸¥çƒ™ æ²¥ç§¦åˆç»Š å•Šç»° èŠ­.		
 //		extern bool gCheatUseDummySkills;
 //		gCheatUseDummySkills = !gCheatUseDummySkills;
 //		
@@ -1459,30 +1459,30 @@ bool UB2StaticExecHelper::ExecFormal(UWorld* Inworld, const TCHAR* Cmd, FOutputD
 #if WITH_EDITOR
 bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOutputDevice& Ar)
 {
-	// °³¹ß¿ë Ä¿¸ÇµåÀÌÁö¸¸ ¸ğ¹ÙÀÏ Å×½ºÆ®¿¡¼­ »ç¿ëÇÒ °Å¶ó¸é ¾Æ·¡ ExecDev ¿¡ ±¸ÇöÇÕ´Ï´Ù.
+	// ä¿ºæƒ¯ä¾© ç›®ç›–é›æç˜¤çˆ¶ è‘›å®˜è€ æŠ›èƒ¶é£˜ä¿Šè¾‘ è¤ä¾©ä¸” èŠ­æ‰¼æ é…’è´° ExecDev ä¿Š å¤‡æ³…é’¦èªä¿ƒ.
 
-	// .paper2dsprites Æ÷¸ËÀÇ ½ºÇÁ¶óÀÌÆ® ¼Ò½º ÆÄÀÏ¿¡¼­ °¢ ½ºÇÁ¶óÀÌÆ® ¿µ¿ª Á¤º¸ °¡Á®¿Í¼­ Á¤ÇØÁø ÀÌ¸§ÀÇ MIC ¿¡ ÀÖ´Â atlas ÆÄ¶ó¹ÌÅÍ¿¡ ³Ö¾î ÁÖ´Â ±â´É.
-	// »ç¿ë ¿¹½Ã : B2UIAtlasParam Sprite=D:\DepotWS\BII-Dev\B2_TexAtlas_InGameHUD_PC.paper2dsprites MICPath=HUD/Materials AtlasTexture=/Game/HUD/Texture/PCHUDAtlas/Textures/B2_TexAtlas_InGameHUD_PC.B2_TexAtlas_InGameHUD_PC 
+	// .paper2dsprites å™¨æ†ç‹¼ èƒ¶æ©‡æ‰¼æé£˜ å®¶èƒ¶ é¢‡è€ä¿Šè¾‘ é˜¿ èƒ¶æ©‡æ‰¼æé£˜ åº·å¼€ æ²¥ç„Š å•Šå»‰å®¢è¾‘ æ²¥ç§¦æŸ³ ææŠšç‹¼ MIC ä¿Š ä¹ç»° atlas é¢‡æ‰¼å›ºç£ä¿Š æŒç»¢ æ—ç»° æ‰ç“·.
+	// è¤ä¾© æŠ—çŸ« : B2UIAtlasParam Sprite=D:\DepotWS\BII-Dev\B2_TexAtlas_InGameHUD_PC.paper2dsprites MICPath=HUD/Materials AtlasTexture=/Game/HUD/Texture/PCHUDAtlas/Textures/B2_TexAtlas_InGameHUD_PC.B2_TexAtlas_InGameHUD_PC 
 	// AtlasTexture_PCPreview=/Game/DevOnly/B2_TexAtlas_InGameHUD_PC_sRGB_PCTemp.B2_TexAtlas_InGameHUD_PC_sRGB_PCTemp
 //	if (FParse::Command(&Cmd, TEXT("B2UIAtlasParam")))
 //	{
 //		FString SpriteName;
-//		if (FParse::Value(Cmd, TEXT("Sprite="), SpriteName)) // ½ºÇÁ¶óÀÌÆ® ¿øº» ¼Ò½º ÆÄÀÏ À§Ä¡. **.paper2dsprites
+//		if (FParse::Value(Cmd, TEXT("Sprite="), SpriteName)) // èƒ¶æ©‡æ‰¼æé£˜ ç›”å¤¯ å®¶èƒ¶ é¢‡è€ å›°æ‘¹. **.paper2dsprites
 //		{
 //			FString MICPath;
-//			FParse::Value(Cmd, TEXT("MICPath="), MICPath); // /Game/.../MICÆÄÀÏÀÌ¸§ »çÀÌÀÇ °æ·Î
+//			FParse::Value(Cmd, TEXT("MICPath="), MICPath); // /Game/.../MICé¢‡è€ææŠš è¤æç‹¼ ç‰ˆè‚º
 //
-//			FString OptionalAtlasTexturePath; // ÅØ½ºÃÄ´Â ±âº» °ªÀ¸·Î µé¾î°£ °É ¾²´øÁö, ¾Æ´Ï¸é µû·Î ³ÖÀ» ¼öµµ ÀÖ°Ú´Ù.
+//			FString OptionalAtlasTexturePath; // å’†èƒ¶åªšç»° æ‰å¤¯ è”¼æ è‚º ç”¸ç»¢åŸƒ å§ é™å¸¦ç˜¤, é…’èªæ è¶è‚º æŒé˜‘ èæ¡£ ä¹æ‘†ä¿ƒ.
 //			FParse::Value(Cmd, TEXT("AtlasTexture="), OptionalAtlasTexturePath);
 //			UTexture2D* OptionalAtlasTexture = LoadObject<UTexture2D>(NULL, *OptionalAtlasTexturePath);
 //
 //			TArray<FString> SpriteFileContent;
-//			FFileHelper::LoadANSITextFileToStrings(*SpriteName, &IFileManager::Get(), SpriteFileContent); // ÁÁÀº À¯Æ¿¸®Æ¼·Î±º ³¥³¥
+//			FFileHelper::LoadANSITextFileToStrings(*SpriteName, &IFileManager::Get(), SpriteFileContent); // äº®ç¯® èœ¡ç“¶åºœèè‚ºç„™ å¿å¿
 //
-//			// ÀüÃ¼ »çÀÌÁîºÎÅÍ
+//			// å‚ˆçœ‰ è¤æä»¤ä½•ç£
 //			int32 TextureWidth = 0;
 //			int32 TextureHeight = 0;
-//			for (int32 FCI = SpriteFileContent.Num() - 1; FCI >= 0; --FCI) // ÀÌ Á¤º¸´Â ¾Æ¸¶µµ ÆÄÀÏ ÇÏ´Ü¿¡ ÀÖÀ» °ÍÀÓ.
+//			for (int32 FCI = SpriteFileContent.Num() - 1; FCI >= 0; --FCI) // æ æ²¥ç„Šç»° é…’ä»˜æ¡£ é¢‡è€ çªçªœä¿Š ä¹é˜‘ å·´çƒ™.
 //			{
 //				FString CurrLine = SpriteFileContent[FCI];
 //				if (CurrLine.StartsWith(TEXT("\t\"size")))
@@ -1495,7 +1495,7 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //
 //			if (TextureWidth > 0 && TextureHeight > 0)
 //			{
-//				// °¢ ½ºÇÁ¶óÀÌÆ® ¿µ¿ªº°·Î ÀÌ¸§ Á¤º¸°¡ ¸ÕÀú ÆÄ½ÌµÇ¾î¾ß ÇÔ.
+//				// é˜¿ èƒ¶æ©‡æ‰¼æé£˜ åº·å¼€å–Šè‚º ææŠš æ²¥ç„Šå•Š åˆšå† é¢‡æ•™ç™»ç»¢å…· çªƒ.
 //				FString CurrSpriteName;
 //				FString CurrMatchingMICName;
 //				FString CurrMatchingMICName2; // For additional naming rule
@@ -1504,7 +1504,7 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //				{
 //					FString CurrLine = SpriteFileContent[FCI];
 //
-//					if (CurrLine.StartsWith(TEXT("\"")) && CurrLine.EndsWith(TEXT("\":"))) // ½ºÇÁ¶óÀÌÆ® ÀÌ¸§ ¶óÀÎÀÇ Æ÷¸Ë
+//					if (CurrLine.StartsWith(TEXT("\"")) && CurrLine.EndsWith(TEXT("\":"))) // èƒ¶æ©‡æ‰¼æé£˜ ææŠš æ‰¼ç‰¢ç‹¼ å™¨æ†
 //					{
 //						CurrSpriteName = CurrLine;
 //						CurrSpriteName.RemoveAt(0, 1); // Remove first "
@@ -1515,7 +1515,7 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //						}
 //
 //						FString ExtRemovedName = CurrSpriteName;
-//						// MIC ÀÌ¸§¿¡¼­´Â µÚÂÊ È®ÀåÀÚ Á¦°ÅÇÏ°í Á¤ÇØÁø Á¢µÎ¾î ¹× ÁöÁ¤µÈ Ãß°¡ °æ·Î¸¦ ºÙÀÎ´Ù.
+//						// MIC ææŠšä¿Šè¾‘ç»° ç¬¬ç‡ çŠ¬å˜ç£Š åŠ›èŠ­çªç»Š æ²¥ç§¦æŸ³ ç«‹æ»´ç»¢ æ£º ç˜¤æ²¥ç­‰ çœ å•Š ç‰ˆè‚ºç”« å˜¿ç‰¢ä¿ƒ.
 //						int32 ExtensionStartIndex = ExtRemovedName.Find(TEXT("."));
 //						if (ExtensionStartIndex != INDEX_NONE)
 //						{
@@ -1524,8 +1524,8 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //						}
 //						// Then, add our naming convention.
 //						CurrMatchingMICName = TEXT("MAT_") + ExtRemovedName;
-//						CurrMatchingMICName2 = TEXT("MAT_S_") + ExtRemovedName; // ±âº»ÀûÀÎ ÀÌ¹ÌÁö »Ñ¸®´Â ÀÌ¿ÜÀÇ ¾à°£ Æ¯¼öÇÑ È¿°ú°¡ µé¾î°£ °ÍµéÀÎµ¥, ÀÌ°ÍµéÀº ´ëÃ¼·Î material ÇÏ³ª´ç MIC ÇÏ³ª¸¸ ¸¸µé¾î¼­ ¾²°Ô µÉ °Í. ÅØ½ºÃÄ »ùÇÃ¸µÀÌ Ãß°¡µÇ´õ¶óµµ ±âº»ÀûÀÎ ¾ÆÆ²¶ó½º ÆÄ¶ó¹ÌÅÍ´Â ÀÏ´Ü ¸¶Âù°¡ÁöÀÏ °Í.
-//						CurrMatchingSpriteName = TEXT("MAT_Spr_") + ExtRemovedName; // Material ÀÇ ÀÏÁ¾À¸·Î Ä¡ÀÚ..
+//						CurrMatchingMICName2 = TEXT("MAT_S_") + ExtRemovedName; // æ‰å¤¯åˆ©ç‰¢ æå›ºç˜¤ è°åºœç»° æå¯‡ç‹¼ è·åŸƒ æ¼‚èèŒ„ ç“¤è‹å•Š ç”¸ç»¢åŸƒ å·´ç”¸ç‰¢å•, æå·´ç”¸ç¯® æªçœ‰è‚º material çªå”±å¯¸ MIC çªå”±çˆ¶ çˆ¶ç”¸ç»¢è¾‘ é™éœ¸ çª å·´. å’†èƒ¶åªš åŸºæ•²å‚…æ çœ å•Šç™»æ­¹æ‰¼æ¡£ æ‰å¤¯åˆ©ç‰¢ é…’æ’‡æ‰¼èƒ¶ é¢‡æ‰¼å›ºç£ç»° è€çªœ ä»˜è›®å•Šç˜¤è€ å·´.
+//						CurrMatchingSpriteName = TEXT("MAT_Spr_") + ExtRemovedName; // Material ç‹¼ è€è¾†æ è‚º æ‘¹ç£Š..
 //						CurrMatchingMICName = TEXT("/Game/") + MICPath + TEXT("/") + CurrMatchingMICName + TEXT(".") + CurrMatchingMICName;
 //						CurrMatchingMICName2 = TEXT("/Game/") + MICPath + TEXT("/") + CurrMatchingMICName2 + TEXT(".") + CurrMatchingMICName2;
 //						CurrMatchingSpriteName = TEXT("/Game/") + MICPath + TEXT("/") + CurrMatchingSpriteName + TEXT(".") + CurrMatchingSpriteName;
@@ -1551,7 +1551,7 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //						{
 //							UMaterialInstanceConstant* CurrMIC = (MII == 0) ? MatchingMIC : MatchingMIC2;
 //
-//							// NoAtlas ¼¼ÆÃÇÑ °Ç ÀÌ Ä¿¸Çµå¿¡¼­ Á¦¿ÜÇØ¾ß ÇÑ´Ù. ³×ÀÌ¹ÖÀÌ Ã³À½ºÎÅÍ ÀÌ·¸°Ô µé¾î°¡ ÀÖÀ¸¸é ¾ÈµÇÁö¸¸.. Atlas - NonAtlas ÀüÈ¯ °úÁ¤¿¡ ÀÖÀ» ¼öµµ ÀÖÀ¸¹Ç·Î Ã¼Å©.
+//							// NoAtlas æŠ€æ³¼èŒ„ æ‰’ æ ç›®ç›–é›ä¿Šè¾‘ åŠ›å¯‡ç§¦å…· èŒ„ä¿ƒ. åŒ™ææ€ªæ è´¸æ¾œä½•ç£ æçŠ¯éœ¸ ç”¸ç»¢å•Š ä¹æ æ æ•‘ç™»ç˜¤çˆ¶.. Atlas - NonAtlas å‚ˆåˆ¸ è‹æ²¥ä¿Š ä¹é˜‘ èæ¡£ ä¹æ éª¨è‚º çœ‰å†œ.
 //							bool bThisMICNoAtlas = false;
 //							FGuid ExpressionGuid;
 //							/*if (CurrMIC && CurrMIC->GetStaticSwitchParameterValue(MtrlStaticParamName_NoAtlas, bThisMICNoAtlas, ExpressionGuid))
@@ -1564,7 +1564,7 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //
 //							//if (CurrMIC && XCoord >= 0 && YCoord >= 0 && SizeX > 0 && SizeY > 0)
 //							//{
-//							//	// UI TexAtlas master material ¿¡ ³Ö¾î³õÀº ÆÄ¶ó¹ÌÅÍ ÀÌ¸§
+//							//	// UI TexAtlas master material ä¿Š æŒç»¢åˆç¯® é¢‡æ‰¼å›ºç£ ææŠš
 //							//	CurrMIC->SetScalarParameterValueEditorOnly(MtrlParamName_UIAtlasSampleX, XCoord);
 //							//	CurrMIC->SetScalarParameterValueEditorOnly(MtrlParamName_UIAtlasSampleY, YCoord);
 //							//	CurrMIC->SetScalarParameterValueEditorOnly(MtrlParamName_UIAtlasSampleWidth, SizeX);
@@ -1580,9 +1580,9 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //							//	CurrMIC->MarkPackageDirty();
 //							//}
 //						}
-//						// 4.14 ÀÌÈÄ.. WrapBox ¾È¿¡¼­ÀÇ ÃÖÀûÈ­¸¦ À§ÇØ Paper2D Sprite µµ Áö¿ø.
+//						// 4.14 æé¥¶.. WrapBox æ•‘ä¿Šè¾‘ç‹¼ å¼¥åˆ©æ‹³ç”« å›°ç§¦ Paper2D Sprite æ¡£ ç˜¤ç›”.
 //						UPaperSprite* MatchingPaperSprite = LoadObject<UPaperSprite>(NULL, *CurrMatchingSpriteName);
-//						// °Á ±âº» ³×ÀÌ¹Öµµ Ã¼Å©ÇØ º¸ÀÚ. ¼ÕÇØº¼ °Ç ¾øÀ¸´Ï
+//						// å‚² æ‰å¤¯ åŒ™ææ€ªæ¡£ çœ‰å†œç§¦ ç„Šç£Š. é¢Šç§¦æ­ æ‰’ ç»æ èª
 //						if (!MatchingPaperSprite)
 //						{
 //							MatchingPaperSprite = LoadObject<UPaperSprite>(NULL, *CurrMatchingMICName);
@@ -1604,25 +1604,25 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //		return true;
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("AutoReplaceAtlasTexture")))
-//	{ // ÀÓ½Ã ±â´ÉÀ¸·Î¼­ ±âÁ¸¿¡ Atlas ÅØ½ºÃÄ·Î »ç¿ëÇÏ´ø °Å °³º°·Î ÂÉ°³Áø ÅØ½ºÃÄ·Î ¹Ù²Ùµµ·Ï ÇÏ·Á°í ÀÏ°ı Ã³¸®. 
-//		// ¿©·¯¹ø »ç¿ëÇÒ ¼öµµ ÀÖ¾î¼­ Âü°í»ï¾Æ ³Ö¾îµÒ.
+//	{ // çƒ™çŸ« æ‰ç“·æ è‚ºè¾‘ æ‰ç²®ä¿Š Atlas å’†èƒ¶åªšè‚º è¤ä¾©çªå¸¦ èŠ­ ä¿ºå–Šè‚º å¾‹ä¿ºæŸ³ å’†èƒ¶åªšè‚º å®˜æ“æ¡£åºŸ çªå¦¨ç»Š è€è¤’ è´¸åºœ. 
+//		// å’¯çŸ¾é”… è¤ä¾©ä¸” èæ¡£ ä¹ç»¢è¾‘ æ›¼ç»Šä¼™é…’ æŒç»¢ç‹„.
 //		FString MICPath;
-//		FParse::Value(Cmd, TEXT("MICPath="), MICPath); // /Game/.../MICÆÄÀÏÀÌ¸§ »çÀÌÀÇ °æ·Î
+//		FParse::Value(Cmd, TEXT("MICPath="), MICPath); // /Game/.../MICé¢‡è€ææŠš è¤æç‹¼ ç‰ˆè‚º
 //		FString MICNameFilter;
 //		FParse::Value(Cmd, TEXT("MICNameFilter="), MICNameFilter);
 //
 //		FString TexturePath;
-//		FParse::Value(Cmd, TEXT("TexturePath="), TexturePath); // /Game/.../MICÆÄÀÏÀÌ¸§ »çÀÌÀÇ °æ·Î
+//		FParse::Value(Cmd, TEXT("TexturePath="), TexturePath); // /Game/.../MICé¢‡è€ææŠš è¤æç‹¼ ç‰ˆè‚º
 //		FString TextureNameFilter;
 //		FParse::Value(Cmd, TEXT("TextureNameFilter="), TextureNameFilter);
 //
 //		TArray<UMaterialInstanceConstant*> AllMICs;
-//		EditorFindAndLoadAssets<UMaterialInstanceConstant>(MICPath, MICNameFilter, AllMICs, false); // ±âÁ¸¿¡ ³ÖÀº °÷¿¡ ÇÏÀ§ Æú´õ°¡ ÀÖ¾î¼­ recursive ÇÏÁö ¾Ê°Ô.. ÇÊ¿ä¿¡ µû¶ó ´Ù¸£°Ô ³Ö´øÁö
+//		EditorFindAndLoadAssets<UMaterialInstanceConstant>(MICPath, MICNameFilter, AllMICs, false); // æ‰ç²®ä¿Š æŒç¯® é•‘ä¿Š çªå›° å¼ƒæ­¹å•Š ä¹ç»¢è¾‘ recursive çªç˜¤ è‡¼éœ¸.. é˜å¤¸ä¿Š è¶æ‰¼ ä¿ƒç¦éœ¸ æŒå¸¦ç˜¤
 //
 //		TArray<UTexture2D*> AllTextures;
 //		EditorFindAndLoadAssets<UTexture2D>(TexturePath, TextureNameFilter, AllTextures, false);
 //
-//		// AllMICs ¶û AllTextures ¶û ¼ö°¡ °°ÀºÁö Á¤µµ.. ¾Æ¹«·¡µµ ´Ù¸¦ °Å °°Àºµ¥..
+//		// AllMICs å°” AllTextures å°” èå•Š éç¯®ç˜¤ æ²¥æ¡£.. é…’å…¬è´°æ¡£ ä¿ƒç”« èŠ­ éç¯®å•..
 //		UE_LOG(LogBladeII, Log, TEXT("Found %d MICs from %s, %d Textures from %s"), AllMICs.Num(), *MICPath, AllTextures.Num(), *TexturePath);
 //
 //		for (int32 MI = 0; MI < AllMICs.Num(); ++MI)
@@ -1631,15 +1631,15 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //			UTexture* MatchingTexture = NULL;
 //			if (ThisMIC)
 //			{
-//				// µ¿ÀÏÇÑ ³×ÀÌ¹ÖÀÇ ÅØ½ºÃÄ¸¦ Ã£¾Æ¼­.. ÀÖÀ¸¸é ÆÄ¶ó¹ÌÅÍ ¼¼ÆÃ. ¾øÀ¸¸é ³Ñ¾î°¡µµ·Ï.
+//				// æ‚¼è€èŒ„ åŒ™ææ€ªç‹¼ å’†èƒ¶åªšç”« èŒ«é…’è¾‘.. ä¹æ æ é¢‡æ‰¼å›ºç£ æŠ€æ³¼. ç»æ æ é€ç»¢å•Šæ¡£åºŸ.
 //
 //				FString ThisName = ThisMIC->GetName();
-//				if (ThisName.StartsWith(TEXT("MAT_"))) // ÀÌ¹Ì MICNameFilter ·Î °É·¯³¾ ¼öµµ ÀÖÁö¸¸.
+//				if (ThisName.StartsWith(TEXT("MAT_"))) // æå›º MICNameFilter è‚º å§çŸ¾å°˜ èæ¡£ ä¹ç˜¤çˆ¶.
 //				{
 //					ThisName.RemoveFromStart(TEXT("MAT_"));
 //					ThisName = TEXT("TEX_") + ThisName;
 //
-//					// ´Ù½Ã LoadObject ÇÒ ¼öµµ ÀÖ°ÚÁö¸¸.. ÀÌ Ä¿¸Çµå »ç¿ë ¸ñÀû »ó Ã£¾Æ³½ °Å¿¡¼­.
+//					// ä¿ƒçŸ« LoadObject ä¸” èæ¡£ ä¹æ‘†ç˜¤çˆ¶.. æ ç›®ç›–é› è¤ä¾© æ ¼åˆ© æƒ‘ èŒ«é…’è¾° èŠ­ä¿Šè¾‘.
 //					for (UTexture* TextureFromList : AllTextures)
 //					{
 //						if (TextureFromList && TextureFromList->GetName() == ThisName)
@@ -1651,7 +1651,7 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //				}
 //
 //				if (MatchingTexture)
-//				{ // º»°İ ¼¼ÆÃ ÀÛ¾÷. StaticSwitchParameter °¡ ÀÌ·¸°Ô¶óµµ º¯°æµÇ´Ï ´ÙÇàÀÎµ¥ µı ÀÎÅÍÆäÀÌ½º ¾ø³ª?
+//				{ // å¤¯æ‹œ æŠ€æ³¼ ç´¯è¯€. StaticSwitchParameter å•Š æçŠ¯éœ¸æ‰¼æ¡£ å‡½ç‰ˆç™»èª ä¿ƒé’ç‰¢å• è° ç‰¢ç£å…¶æèƒ¶ ç»å”±?
 //					FStaticParameterSet TheStaticParamSet;
 //					ThisMIC->GetStaticParameterValues(TheStaticParamSet);
 //					for (FStaticSwitchParameter& SSParam : TheStaticParamSet.StaticSwitchParameters)
@@ -1664,13 +1664,13 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //						}
 //					}
 //					ThisMIC->UpdateStaticPermutation(TheStaticParamSet);
-//					ThisMIC->SetTextureParameterValueEditorOnly(MtrlParamName_UIAtlasTexture, nullptr); // ±âÁ¸ ²¨ ·¹ÆÛ·±½º¸¦ ³¯·Á¾ß°Ú´Ù. ±×·¡¾ß serialize ¸¦ ¾È ÇÏÁö.
+//					ThisMIC->SetTextureParameterValueEditorOnly(MtrlParamName_UIAtlasTexture, nullptr); // æ‰ç²® æ³¢ é¥­æ¬ºç¹èƒ¶ç”« æœå¦¨å…·æ‘†ä¿ƒ. å¼Šè´°å…· serialize ç”« æ•‘ çªç˜¤.
 //					ThisMIC->SetTextureParameterValueEditorOnly(MtrlParamName_NoAtlasSingleTexture, MatchingTexture);
 //					ThisMIC->MarkPackageDirty();
 //				}
 //				else
 //				{
-//					// È®ÀÎÇØ º¼ ÇÊ¿ä°¡ ÀÖ´Ù.. ±Ùµ¥ Á» ¸¹Àºµ¥. ¾ÆÁ÷ ´Ù ¸øÂÉ°µ °Ç°¡
+//					// çŠ¬ç‰¢ç§¦ æ­ é˜å¤¸å•Š ä¹ä¿ƒ.. è¾Ÿå• ç²± è…¹ç¯®å•. é…’æµ ä¿ƒ ç»™å¾‹æš— æ‰’å•Š
 //					UE_LOG(LogBladeII, Warning, TEXT("[AutoReplaceAtlasTexture] Cannot Find matching texture for MIC %s !"), *ThisMIC->GetPathName())
 //				}
 //			}
@@ -1679,9 +1679,9 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //		return true;
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("ProcessImportedUITextures")))
-//	{ // ¹¹ ´ë·®À¸·Î Ã³¸®ÇÏ·Á°í
+//	{ // æ„ æªæ¨Šæ è‚º è´¸åºœçªå¦¨ç»Š
 //		FString TexturePath;
-//		FParse::Value(Cmd, TEXT("TexturePath="), TexturePath); // /Game/.../MICÆÄÀÏÀÌ¸§ »çÀÌÀÇ °æ·Î
+//		FParse::Value(Cmd, TEXT("TexturePath="), TexturePath); // /Game/.../MICé¢‡è€ææŠš è¤æç‹¼ ç‰ˆè‚º
 //		FString TextureNameFilter;
 //		FParse::Value(Cmd, TEXT("TextureNameFilter="), TextureNameFilter);
 //
@@ -1690,13 +1690,13 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //
 //		UE_LOG(LogBladeII, Log, TEXT("Found %d Textures from %s"), AllTextures.Num(), *TexturePath);
 //
-//		// ´Ù½Ã LoadObject ÇÒ ¼öµµ ÀÖ°ÚÁö¸¸.. ÀÌ Ä¿¸Çµå »ç¿ë ¸ñÀû »ó Ã£¾Æ³½ °Å¿¡¼­.
+//		// ä¿ƒçŸ« LoadObject ä¸” èæ¡£ ä¹æ‘†ç˜¤çˆ¶.. æ ç›®ç›–é› è¤ä¾© æ ¼åˆ© æƒ‘ èŒ«é…’è¾° èŠ­ä¿Šè¾‘.
 //		for (UTexture* TextureFromList : AllTextures)
 //		{
 //			if (TextureFromList)
 //			{
 //				TextureFromList->LODGroup = TextureGroup::TEXTUREGROUP_UI;
-//				TextureFromList->MipGenSettings = TextureMipGenSettings::TMGS_NoMipmaps; // UI µµ »ç¾ç µû¶ó¼­ MipLODBias ÁÖ¸é ÁÁ±ä ÇÑµ¥.. ½ºÆ®¸®¹Ö µÇ´Â °Ç ¾Æ´Ï¶ó¼­.. ¸ğ¸£°Ú´Ù.
+//				TextureFromList->MipGenSettings = TextureMipGenSettings::TMGS_NoMipmaps; // UI æ¡£ è¤å‰§ è¶æ‰¼è¾‘ MipLODBias æ—æ äº®å˜ èŒ„å•.. èƒ¶é£˜åºœæ€ª ç™»ç»° æ‰’ é…’èªæ‰¼è¾‘.. è‘›ç¦æ‘†ä¿ƒ.
 //				TextureFromList->CompressionSettings = TextureCompressionSettings::TC_Default;
 //				TextureFromList->MarkPackageDirty();
 //			}
@@ -1721,9 +1721,9 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //			PvPResult->SetCommandRankUp(BeforeGrade, BeforeStarCount, WantedStarCount);
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("ClearUnusedAtlasTextureParam")))
-//	{ // NoAtlas ·Î µµÁß¿¡ ¹Ù²Û °ÍµéÀÌ ¾îÂ÷ÇÇ ±âÁ¸ ·¹ÆÛ·±½º°¡ ³²¾ÆÀÖ´Ù º¸´Ï.. ÀÌ°É Á¦°ÅÇÏÁö ¾ÊÀ¸¸é ¼Ò¿ëÀÌ ¾ø´Ù..
+//	{ // NoAtlas è‚º æ¡£åä¿Š å®˜æ§½ å·´ç”¸æ ç»¢ç’ä¹” æ‰ç²® é¥­æ¬ºç¹èƒ¶å•Š å·¢é…’ä¹ä¿ƒ ç„Šèª.. æå§ åŠ›èŠ­çªç˜¤ è‡¼æ æ å®¶ä¾©æ ç»ä¿ƒ..
 //		FString MICPath;
-//		FParse::Value(Cmd, TEXT("MICPath="), MICPath); // /Game/.../MICÆÄÀÏÀÌ¸§ »çÀÌÀÇ °æ·Î
+//		FParse::Value(Cmd, TEXT("MICPath="), MICPath); // /Game/.../MICé¢‡è€ææŠš è¤æç‹¼ ç‰ˆè‚º
 //		FString MICNameFilter;
 //		FParse::Value(Cmd, TEXT("MICNameFilter="), MICNameFilter);
 //
@@ -1743,13 +1743,13 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //				ThisMIC->GetStaticSwitchParameterValue(MtrlStaticParamName_NoAtlas, bIsNoAtlasOn, NoAtlasParamGuid);
 //				if (bIsNoAtlasOn)
 //				{
-//					UTexture* ExistingAtlasTexParamValue = NULL; // ÀÌ°Ç °Á ·Î±ë¿ë
+//					UTexture* ExistingAtlasTexParamValue = NULL; // ææ‰’ å‚² è‚ºå½ªä¾©
 //					ThisMIC->GetTextureParameterOverrideValue(MtrlParamName_UIAtlasTexture, ExistingAtlasTexParamValue);
 //
 //					if (ExistingAtlasTexParamValue)
 //					{
 //						++ParamChangedCount;
-//						ThisMIC->SetTextureParameterValueEditorOnly(MtrlParamName_UIAtlasTexture, nullptr); // NoAtlas switch °¡ ÄÑÁ® ÀÖÀ¸¸é ¾îÂ÷ÇÇ »ç¿ë ¾ÈÇÏ´Â ÅØ½ºÃÄ°í ¾µµ¥¾øÀÌ ¸Ş¸ğ¸®¸¸ ¸ÔÀ¸´Ï ³¯¸°´Ù.
+//						ThisMIC->SetTextureParameterValueEditorOnly(MtrlParamName_UIAtlasTexture, nullptr); // NoAtlas switch å•Š éš¾å»‰ ä¹æ æ ç»¢ç’ä¹” è¤ä¾© æ•‘çªç»° å’†èƒ¶åªšç»Š é•œå•ç»æ çš‹è‘›åºœçˆ¶ å†ˆæ èª æœèµ´ä¿ƒ.
 //
 //						UE_LOG(LogBladeII, Log, TEXT("%d. NULL-out MIC param %s. from %s (previously set as %s)"), 
 //							ParamChangedCount, *MtrlParamName_UIAtlasTexture.ToString(), *ThisMIC->GetPathName(),
@@ -1767,10 +1767,10 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //	{
 //		if (GIsEditor)
 //		{
-//			// ÀÏºÎ NavMesh ¿¡ ¿µÇâÀ» ¹ÌÄ¡Áö ¸»¾Æ¾ß ÇÒ Å¬·¡½ºµé¿¡ ´ëÇÑ CanEverAffectNavigation ÀÚµ¿ ¼¼ÆÃ Ä¿¸Çµå
+//			// è€ä½• NavMesh ä¿Š åº·æ°¢é˜‘ å›ºæ‘¹ç˜¤ å¯Œé…’å…· ä¸” åŠªè´°èƒ¶ç”¸ä¿Š æªèŒ„ CanEverAffectNavigation ç£Šæ‚¼ æŠ€æ³¼ ç›®ç›–é›
 //			for (FActorIterator ActorIt(Inworld); ActorIt; ++ActorIt)
 //			{
-//				// ¼³Á¤ÀÌ ÇÊ¿äÇÑ Å¬·¡½ºµé. ÇÊ¿äÇÏ¸é Ãß°¡.
+//				// æ±²æ²¥æ é˜å¤¸èŒ„ åŠªè´°èƒ¶ç”¸. é˜å¤¸çªæ çœ å•Š.
 //				if (Cast<AB2MonsterSpawnPool>(*ActorIt) || Cast<AB2DestructibleLevelObjBase>(*ActorIt) || Cast<AB2LevelDoorBase>(*ActorIt))
 //				{
 //					TInlineComponentArray<UPrimitiveComponent*> AllPrimComps;
@@ -1796,7 +1796,7 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("AutoReplaceUButtons")))
 //	{
-//		// B2Button ±³Ã¼¸¦ À§ÇÑ Ä¿¸Çµå
+//		// B2Button èƒŒçœ‰ç”« å›°èŒ„ ç›®ç›–é›
 //		FString WidgetPath;
 //		FParse::Token(Cmd, WidgetPath, true);
 //
@@ -1823,9 +1823,9 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //			{
 //#if !PLATFORM_MAC
 //				FMessageDialog::Open(EAppMsgType::Ok, FText::FromString(FString::Printf(
-//					TEXT("%s ÀÇ SafeZone À» ÀÚµ¿À¸·Î »ı¼ºÇÏ¿´½À´Ï´Ù.\r\n\r\n")
-//					TEXT("Root ¾Æ·¡¿¡ ¹èÄ¡µÇ¾î ÀÖ´ø %d °³ÀÇ widget µéÀÌ »õ·Î »ı¼ºµÈ SafeZone ¾Æ·¡ÀÇ PanelWidgetÀ¸·Î ¿Å°ÜÁ³½À´Ï´Ù.\r\n\r\n")
-//					TEXT("WidgetBP¸¦ ¿­°í ÄÄÆÄÀÏ ÈÄ ·¹ÀÌ¾Æ¿ôÀ» È®ÀÎÇØ º¸¼¼¿ä."),
+//					TEXT("%s ç‹¼ SafeZone é˜‘ ç£Šæ‚¼æ è‚º ç§¯å·±çªçœ‹åš¼èªä¿ƒ.\r\n\r\n")
+//					TEXT("Root é…’è´°ä¿Š ç¡…æ‘¹ç™»ç»¢ ä¹å¸¦ %d ä¿ºç‹¼ widget ç”¸æ è´§è‚º ç§¯å·±ç­‰ SafeZone é…’è´°ç‹¼ PanelWidgetæ è‚º é¢—è´¥è„¸åš¼èªä¿ƒ.\r\n\r\n")
+//					TEXT("WidgetBPç”« å‡¯ç»Š å“ªé¢‡è€ é¥¶ é¥­æé…’çœ¶é˜‘ çŠ¬ç‰¢ç§¦ ç„ŠæŠ€å¤¸."),
 //					*FoundWigetBP->GetPathName(), MovedChildrenNum
 //				)));
 //#endif
@@ -1834,8 +1834,8 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //			{
 //#if !PLATFORM_MAC
 //				FMessageDialog::Open(EAppMsgType::Ok, FText::FromString(FString::Printf(
-//					TEXT("%s ÀÇ SafeZone ÀÚµ¿ »ı¼ºÀÌ ½ÇÆĞÇß½À´Ï´Ù.\r\n\r\n")
-//					TEXT("ÀÌ¹Ì SafeZone ÀÌ ÀÖ°Å³ª, ÃÖ»ó´Ü RootWidget ÀÇ Å¸ÀÔÀÌ Æ¯¼öÇÑ °ÍÀÌ ¿øÀÎÀÏ ¼ö ÀÖ½À´Ï´Ù."),
+//					TEXT("%s ç‹¼ SafeZone ç£Šæ‚¼ ç§¯å·±æ è§’è©æ²åš¼èªä¿ƒ.\r\n\r\n")
+//					TEXT("æå›º SafeZone æ ä¹èŠ­å”±, å¼¥æƒ‘çªœ RootWidget ç‹¼ é¸¥æ¶æ æ¼‚èèŒ„ å·´æ ç›”ç‰¢è€ è ä¹åš¼èªä¿ƒ."),
 //					*FoundWigetBP->GetPathName()
 //				)));
 //#endif
@@ -1846,28 +1846,28 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("AutoReplaceUButtonsDir")))
 //	{
-//		// ReplaceSubWidgetClass ¸¦ Æú´õ Â°·Î. Àı´ë °æ·Î·Î ÁöÁ¤ÇÑ´Ù.
+//		// ReplaceSubWidgetClass ç”« å¼ƒæ­¹ æ³è‚º. ä¾‹æª ç‰ˆè‚ºè‚º ç˜¤æ²¥èŒ„ä¿ƒ.
 //		FString SearchFolder;
 //		FParse::Token(Cmd, SearchFolder, true);
-//		SearchFolder = SearchFolder.Replace(TEXT("\\"), TEXT("/")); // °¡´ÉÇÑ ±×³É ½½·¡½¬¸¦ »ç¿ëÇÏ´Â °Ô ÁÁÀ» °ÍÀÓ.
+//		SearchFolder = SearchFolder.Replace(TEXT("\\"), TEXT("/")); // å•Šç“·èŒ„ å¼Šæˆ æµ‡è´°æµ†ç”« è¤ä¾©çªç»° éœ¸ äº®é˜‘ å·´çƒ™.
 //		FPaths::RemoveDuplicateSlashes(SearchFolder);
 //
 //		TArray<FString> FoundWidgetFiles;
 //		IFileManager::Get().FindFiles(FoundWidgetFiles, *SearchFolder, TEXT(".uasset"));
 //		
-//		// Àı´ë°æ·Î¸¦ °ÔÀÓ °æ·Î·Î ¹Ù²Û´Ù. ÀÌ°Å À¯Æ¿ÀÌ ¾îµğ ÀÖ´ÂÁö ¸ğ¸£°Ú´Âµ¥..
+//		// ä¾‹æªç‰ˆè‚ºç”« éœ¸çƒ™ ç‰ˆè‚ºè‚º å®˜æ§½ä¿ƒ. æèŠ­ èœ¡ç“¶æ ç»¢å¼ ä¹ç»°ç˜¤ è‘›ç¦æ‘†ç»°å•..
 //		FString LoadFolder = EditorGetGameRelativePathFromAbsPath(SearchFolder);
 //
 //		for (FString ThisFile : FoundWidgetFiles)
 //		{
 //			ThisFile.RemoveFromEnd(TEXT(".uasset"));
-//			FString ThisWidgetPath = TEXT("/") + LoadFolder + TEXT("/") + ThisFile + TEXT(".") + ThisFile; // ¿¡¼Â ¾ÆÀÌÄÜ¿¡ Ctrl+C ÇÏ¸é º¹»çµÇ´Â °æ·Î ÄÁº¥¼ÇÀ¸·Î ¸ÂÃß±â.
+//			FString ThisWidgetPath = TEXT("/") + LoadFolder + TEXT("/") + ThisFile + TEXT(".") + ThisFile; // ä¿Šæ‚¸ é…’æèƒ½ä¿Š Ctrl+C çªæ æ±—è¤ç™»ç»° ç‰ˆè‚º ç‰§äº¥è®°æ è‚º å˜çœ æ‰.
 //
 //			UWidgetBlueprint* FoundWigetBP = LoadObject<UWidgetBlueprint>(NULL, *ThisWidgetPath);
 //			if (FoundWigetBP)
 //			{
 //#if !PLATFORM_MAC
-//				ReplaceSubWidgetClass(FoundWigetBP, UButton::StaticClass(), UB2Button::StaticClass(), true); // ÀÌ°Ç ¸Ş½ÃÁö ¹Ú½º ¾È¶ç¿ì°í ½ÇÇà.
+//				ReplaceSubWidgetClass(FoundWigetBP, UButton::StaticClass(), UB2Button::StaticClass(), true); // ææ‰’ çš‹çŸ«ç˜¤ å† èƒ¶ æ•‘å‰å¿«ç»Š è§’é’.
 //#endif
 //			}
 //		}
@@ -1882,19 +1882,19 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //
 //		FString SearchFolder;
 //		FParse::Token(Cmd, SearchFolder, true);
-//		SearchFolder = SearchFolder.Replace(TEXT("\\"), TEXT("/")); // °¡´ÉÇÑ ±×³É ½½·¡½¬¸¦ »ç¿ëÇÏ´Â °Ô ÁÁÀ» °ÍÀÓ.
+//		SearchFolder = SearchFolder.Replace(TEXT("\\"), TEXT("/")); // å•Šç“·èŒ„ å¼Šæˆ æµ‡è´°æµ†ç”« è¤ä¾©çªç»° éœ¸ äº®é˜‘ å·´çƒ™.
 //		FPaths::RemoveDuplicateSlashes(SearchFolder);
 //
 //		TArray<FString> FoundWidgetFiles;
 //		IFileManager::Get().FindFiles(FoundWidgetFiles, *SearchFolder, TEXT(".uasset"));
 //
-//		// Àı´ë°æ·Î¸¦ °ÔÀÓ °æ·Î·Î ¹Ù²Û´Ù. ÀÌ°Å À¯Æ¿ÀÌ ¾îµğ ÀÖ´ÂÁö ¸ğ¸£°Ú´Âµ¥..
+//		// ä¾‹æªç‰ˆè‚ºç”« éœ¸çƒ™ ç‰ˆè‚ºè‚º å®˜æ§½ä¿ƒ. æèŠ­ èœ¡ç“¶æ ç»¢å¼ ä¹ç»°ç˜¤ è‘›ç¦æ‘†ç»°å•..
 //		FString LoadFolder = EditorGetGameRelativePathFromAbsPath(SearchFolder);
 //
 //		for (FString ThisFile : FoundWidgetFiles)
 //		{
 //			ThisFile.RemoveFromEnd(TEXT(".uasset"));
-//			FString ThisWidgetPath = TEXT("/") + LoadFolder + TEXT("/") + ThisFile + TEXT(".") + ThisFile; // ¿¡¼Â ¾ÆÀÌÄÜ¿¡ Ctrl+C ÇÏ¸é º¹»çµÇ´Â °æ·Î ÄÁº¥¼ÇÀ¸·Î ¸ÂÃß±â.
+//			FString ThisWidgetPath = TEXT("/") + LoadFolder + TEXT("/") + ThisFile + TEXT(".") + ThisFile; // ä¿Šæ‚¸ é…’æèƒ½ä¿Š Ctrl+C çªæ æ±—è¤ç™»ç»° ç‰ˆè‚º ç‰§äº¥è®°æ è‚º å˜çœ æ‰.
 //
 //			UWidgetBlueprint* FoundWigetBP = LoadObject<UWidgetBlueprint>(NULL, *ThisWidgetPath);
 //			if (FoundWigetBP)
@@ -1908,16 +1908,16 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //		return true;
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("TryChangeUIResourcePathSpecial")))
-//	{ // ¸Å¿ì Æ¯¼öÇÑ »çÁ¤ ¶§¹®¿¡ ³Ö°Ô µÈ °Í. UI ¸®´º¾ó ÇÏ¸é¼­ µ¿ÀÏÇÑ ÀÌ¸§ÀÇ ¸ÓÆ¼¸®¾óµéÀ» ´Ù¸¥ °æ·Î¿¡ ¸¸µé¾î³õ°í Áö±İ±îÁö ¸¸µç °Íµé ¹Ù²ãÄ¡±â ÇÏ·Á´Â »óÈ²ÀÎµ¥ ÀÌ·¸°Ô ÇÏ·Á´Ï redirector °°Àº Ã³¸®°¡ µÇ´Â °Íµµ ¾Æ´Ï°í..
-//		// °á±¹ ¼öÀÛ¾÷ÀÌ ÇÊ¿äÇÑµ¥ °¡´ÉÇÑ ¼±±îÁö¸¸ ÀÚµ¿À¸·Î Ã³¸® ½Ãµµ.
+//	{ // æ¦‚å¿« æ¼‚èèŒ„ è¤æ²¥ é”­å·©ä¿Š æŒéœ¸ ç­‰ å·´. UI åºœæ˜¥å€” çªæè¾‘ æ‚¼è€èŒ„ ææŠšç‹¼ èµ£èåºœå€”ç”¸é˜‘ ä¿ƒå¼— ç‰ˆè‚ºä¿Š çˆ¶ç”¸ç»¢åˆç»Š ç˜¤é™›é³–ç˜¤ çˆ¶ç”µ å·´ç”¸ å®˜å±‚æ‘¹æ‰ çªå¦¨ç»° æƒ‘ç‚”ç‰¢å• æçŠ¯éœ¸ çªå¦¨èª redirector éç¯® è´¸åºœå•Š ç™»ç»° å·´æ¡£ é…’èªç»Š..
+//		// æ¬æƒ« èç´¯è¯€æ é˜å¤¸èŒ„å• å•Šç“·èŒ„ æ€¥é³–ç˜¤çˆ¶ ç£Šæ‚¼æ è‚º è´¸åºœ çŸ«æ¡£.
 //		FString WidgetSearchPath;
 //		FParse::Value(Cmd, TEXT("WidgetPath="), WidgetSearchPath);
 //		FString WidgetSearchNameFilter;
 //		FParse::Value(Cmd, TEXT("WidgetFilter="), WidgetSearchNameFilter);
 //
-//		FString OldAssetPath; // ´ëÃ¼ÇÏ°íÀÚ ÇÏ´Â ÀÌÀü °æ·Î ¹®ÀÚ
+//		FString OldAssetPath; // æªçœ‰çªç»Šç£Š çªç»° æå‚ˆ ç‰ˆè‚º å·©ç£Š
 //		FParse::Value(Cmd, TEXT("OldPath="), OldAssetPath);
-//		FString NewAssetPath; // OldMaterialPath °¡ ÀÌ°É·Î ´ëÃ¼µÈ ¸®¼Ò½º¸¦ Ã£¾Æ¼­ ¼¼ÆÃÇÒ °ÍÀÓ.
+//		FString NewAssetPath; // OldMaterialPath å•Š æå§è‚º æªçœ‰ç­‰ åºœå®¶èƒ¶ç”« èŒ«é…’è¾‘ æŠ€æ³¼ä¸” å·´çƒ™.
 //		FParse::Value(Cmd, TEXT("NewPath="), NewAssetPath);
 //
 //		TArray<UWidgetBlueprint*> AllFoundWB;
@@ -1933,8 +1933,8 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //#if PLATFORM_MAC
 //			int32 ModifiedCount = 0;
 //#else
-//			// ¾Ë°í ÀÖ´Â Å¸ÀÔÀÇ ¸®¼Ò½º¸¸. ¿©±â¼± »ç½Ç ÅØ½ºÃÄ¶û ¸ÓÆ¼¸®¾ó ¾Æ´Ï¸é.. ÆäÀÌÆÛ ½ºÇÁ¶óÀÌÆ®µµ ÀÖ±º.
-//			// ±×°Íº¸´Ù ReplaceSubWidgetResource ¾È¿¡¼­ Ã³¸®ÇÏ´Â widget type ÀÌ Á¦ÇÑÀûÀÏ °ÍÀÓ. ¾î´À Á¤µµ ¼öÀÛ¾÷Àº ¾îÂ¿ ¼ö ¾ø´Ù.
+//			// èˆ…ç»Š ä¹ç»° é¸¥æ¶ç‹¼ åºœå®¶èƒ¶çˆ¶. å’¯æ‰æ€¥ è¤è§’ å’†èƒ¶åªšå°” èµ£èåºœå€” é…’èªæ.. å…¶ææ¬º èƒ¶æ©‡æ‰¼æé£˜æ¡£ ä¹ç„™.
+//			// å¼Šå·´ç„Šä¿ƒ ReplaceSubWidgetResource æ•‘ä¿Šè¾‘ è´¸åºœçªç»° widget type æ åŠ›èŒ„åˆ©è€ å·´çƒ™. ç»¢è ¢ æ²¥æ¡£ èç´¯è¯€ç¯® ç»¢é©´ è ç»ä¿ƒ.
 //			int32 ModifiedCount = ReplaceSubWidgetResources<UMaterialInterface>(ThisWB, OldAssetPath, NewAssetPath);
 //			ModifiedCount += ReplaceSubWidgetResources<UTexture>(ThisWB, OldAssetPath, NewAssetPath);
 //			ModifiedCount += ReplaceSubWidgetResources<UPaperSprite>(ThisWB, OldAssetPath, NewAssetPath);
@@ -1942,7 +1942,7 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //			if (ModifiedCount > 0)
 //			{
 //#if !PLATFORM_MAC
-//				AllModifiedWidgets.Add(FString::Printf(TEXT("%s, %d °³"), *ThisWB->GetPathName(), ModifiedCount));
+//				AllModifiedWidgets.Add(FString::Printf(TEXT("%s, %d ä¿º"), *ThisWB->GetPathName(), ModifiedCount));
 //#endif
 //				ThisWB->MarkPackageDirty();
 //			}
@@ -1950,7 +1950,7 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //		if (AllModifiedWidgets.Num())
 //		{
 //#if !PLATFORM_MAC
-//			FString MsgStr = TEXT("´ÙÀ½ Widget Blueprint µé¿¡¼­ ¸®¼Ò½ºµéÀ» º¯°æ\r\n¹Ù²ï Widget Blueprint µéÀº ÄÄÆÄÀÏ ¹× ÀúÀåÀ» ÇØ ÁÖ¼¼¿ä!\r\n\r\n");
+//			FString MsgStr = TEXT("ä¿ƒæ¾œ Widget Blueprint ç”¸ä¿Šè¾‘ åºœå®¶èƒ¶ç”¸é˜‘ å‡½ç‰ˆ\r\nå®˜è¯§ Widget Blueprint ç”¸ç¯® å“ªé¢‡è€ æ£º å†å˜é˜‘ ç§¦ æ—æŠ€å¤¸!\r\n\r\n");
 //			for (int32 WI = 0; WI < AllModifiedWidgets.Num(); ++WI)
 //			{
 //				const FString& ThisPath = AllModifiedWidgets[WI];
@@ -1963,7 +1963,7 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //		return true;
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("TestItemLevelupScene")))
-//	{ // ·¹º§¾÷ ¿¬Ãâ Å×½ºÆ® ¼¼ÆÃ.
+//	{ // é¥­éª‡è¯€ æ¥·å… æŠ›èƒ¶é£˜ æŠ€æ³¼.
 //		FString IngredNumStr;
 //		FParse::Token(Cmd, IngredNumStr, true);
 //		int32 IngreNum = FCString::Atoi(*IngredNumStr);
@@ -1976,7 +1976,7 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //		return true;
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("TestItemEnhanceScene")))
-//	{ // °­È­ ¿¬Ãâ Å×½ºÆ® ¼¼ÆÃ.
+//	{ // ç¢æ‹³ æ¥·å… æŠ›èƒ¶é£˜ æŠ€æ³¼.
 //		FString IngredNumStr;
 //		FParse::Token(Cmd, IngredNumStr, true);
 //		int32 IngreNum = FCString::Atoi(*IngredNumStr);
@@ -1989,7 +1989,7 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //		return true;
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("TestItemComposeScene")))
-//	{ // ÇÕ¼º ¿¬Ãâ Å×½ºÆ® ¼¼ÆÃ.
+//	{ // é’¦å·± æ¥·å… æŠ›èƒ¶é£˜ æŠ€æ³¼.
 //		AB2LobbyGameMode* LobbyGM = Cast<AB2LobbyGameMode>(UGameplayStatics::GetGameMode(Inworld));
 //		if (LobbyGM && LobbyGM->GetLobbyInventory())
 //		{
@@ -1998,7 +1998,7 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //		return true;
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("TestItemUpgradeScene")))
-//	{ // ½Â±Ş ¿¬Ãâ Å×½ºÆ® ¼¼ÆÃ.
+//	{ // é“°é­ æ¥·å… æŠ›èƒ¶é£˜ æŠ€æ³¼.
 //		AB2LobbyGameMode* LobbyGM = Cast<AB2LobbyGameMode>(UGameplayStatics::GetGameMode(Inworld));
 //		if (LobbyGM && LobbyGM->GetLobbyInventory())
 //		{
@@ -2007,7 +2007,7 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //		return true;
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("TestItemSurpassScene")))
-//	{ // ÃÊ¿ù ¿¬Ãâ Å×½ºÆ® ¼¼ÆÃ.
+//	{ // æª¬å²¿ æ¥·å… æŠ›èƒ¶é£˜ æŠ€æ³¼.
 //		AB2LobbyGameMode* LobbyGM = Cast<AB2LobbyGameMode>(UGameplayStatics::GetGameMode(Inworld));
 //		if (LobbyGM && LobbyGM->GetLobbyInventory())
 //		{
@@ -2033,12 +2033,12 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //		bool bHasRemoteTagClassStr = FParse::Token(Cmd, RemoteTagClassStr, true);
 //
 //		if (!bHasMyMainClassStr && !bHasMyTagClassStr && !bHasRemoteMainClassStr && !bHasRemoteTagClassStr)
-//		{ // On/Off ½ºÀ§Ä¡´Â ¿©Å¸ ÀÎÀÚ ÁöÁ¤¾ÈÇÑ °æ¿ì¸¸.
+//		{ // On/Off èƒ¶å›°æ‘¹ç»° å’¯é¸¥ ç‰¢ç£Š ç˜¤æ²¥æ•‘èŒ„ ç‰ˆå¿«çˆ¶.
 //			GbEditorPVPGamePreview = !GbEditorPVPGamePreview;
 //		}
 //		else
 //		{
-//			GbEditorPVPGamePreview = true; // ÁöÁ¤ÀÌ µÇ¾ú´Ù¸é ¹«Á¶°Ç ÄÑ´Â °Å
+//			GbEditorPVPGamePreview = true; // ç˜¤æ²¥æ ç™»èŒä¿ƒæ å…¬ç‚¼æ‰’ éš¾ç»° èŠ­
 //
 //			GEditorPVPPreviewMyClassMain = IntToPCClass(FMath::Clamp(FCString::Atoi(*MyMainClassStr), 0, GetMaxPCClassNum() - 1));
 //			GEditorPVPPreviewMyClassTag = IntToPCClass(FMath::Clamp(FCString::Atoi(*MyTagClassStr), 0, GetMaxPCClassNum() - 1));
@@ -2047,14 +2047,14 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //		}
 //
 //#if !PLATFORM_MAC
-//		FString MsgStr = FString::Printf(TEXT("PVP ¸ğµå ¿¡µğÅÍ Àü¿ë ÇÁ¸®ºä %s."), GbEditorPVPGamePreview ? TEXT("ÄÑÁü") : TEXT("²¨Áü"));
+//		FString MsgStr = FString::Printf(TEXT("PVP è‘›é› ä¿Šå¼ç£ å‚ˆä¾© æ©‡åºœè½° %s."), GbEditorPVPGamePreview ? TEXT("éš¾å’™") : TEXT("æ³¢å’™"));
 //		if (GbEditorPVPGamePreview)
 //		{
-//			MsgStr += FString::Printf(TEXT("\n\n·ÎÄÃ ÇÃ·¹ÀÌ¾î ¸ŞÀÎ Ä³¸¯ÅÍ: %d"), (int32)GEditorPVPPreviewMyClassMain);
-//			MsgStr += FString::Printf(TEXT("\n·ÎÄÃ ÇÃ·¹ÀÌ¾î ÅÂ±× Ä³¸¯ÅÍ: %d"), (int32)GEditorPVPPreviewMyClassTag);
-//			MsgStr += FString::Printf(TEXT("\n¿ø°İ»ó´ë ÇÃ·¹ÀÌ¾î ¸ŞÀÎ Ä³¸¯ÅÍ: %d"), (int32)GEditorPVPPreviewRemoteClassMain);
-//			MsgStr += FString::Printf(TEXT("\n¿ø°İ»ó´ë ÇÃ·¹ÀÌ¾î ÅÂ±× Ä³¸¯ÅÍ: %d"), (int32)GEditorPVPPreviewRemoteClassTag);
-//			MsgStr += TEXT("\n\nPVP ¸ğµå ¿¡µğÅÍ ÇÁ¸®ºä´Â ºÒ¾ÈÁ¤ÇÒ ¼ö ÀÖÀ¸´Ï ÇÃ·¹ÀÌ Àü¿¡ ÀÛ¾÷¹°À» ÀúÀåÇØ ÁÖ¼¼¿ä.");
+//			MsgStr += FString::Printf(TEXT("\n\nè‚ºæ‹¿ æ•²é¥­æç»¢ çš‹ç‰¢ æŸè…ç£: %d"), (int32)GEditorPVPPreviewMyClassMain);
+//			MsgStr += FString::Printf(TEXT("\nè‚ºæ‹¿ æ•²é¥­æç»¢ æ€•å¼Š æŸè…ç£: %d"), (int32)GEditorPVPPreviewMyClassTag);
+//			MsgStr += FString::Printf(TEXT("\nç›”æ‹œæƒ‘æª æ•²é¥­æç»¢ çš‹ç‰¢ æŸè…ç£: %d"), (int32)GEditorPVPPreviewRemoteClassMain);
+//			MsgStr += FString::Printf(TEXT("\nç›”æ‹œæƒ‘æª æ•²é¥­æç»¢ æ€•å¼Š æŸè…ç£: %d"), (int32)GEditorPVPPreviewRemoteClassTag);
+//			MsgStr += TEXT("\n\nPVP è‘›é› ä¿Šå¼ç£ æ©‡åºœè½°ç»° é˜‚æ•‘æ²¥ä¸” è ä¹æ èª æ•²é¥­æ å‚ˆä¿Š ç´¯è¯€æ‹±é˜‘ å†å˜ç§¦ æ—æŠ€å¤¸.");
 //		}
 //		
 //		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(MsgStr));
@@ -2074,12 +2074,12 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //
 //		if (!bPCClass_0 && !bPCClass_1 && !bPCClass_2 && !bPCClass_3)
 //		{ 
-//			// ÇÁ¸®ºä ½ºÀ§Äª
+//			// æ©‡åºœè½° èƒ¶å›°è«
 //			g_IsEditorRaidGamePreview = !g_IsEditorRaidGamePreview;
 //		}
 //		else
 //		{
-//			g_IsEditorRaidGamePreview = true; // ÁöÁ¤ÀÌ µÇ¾ú´Ù¸é ¹«Á¶°Ç ÄÑ´Â °Å
+//			g_IsEditorRaidGamePreview = true; // ç˜¤æ²¥æ ç™»èŒä¿ƒæ å…¬ç‚¼æ‰’ éš¾ç»° èŠ­
 //
 //			g_EditorRaidPreviewPCClassMain[0] = IntToPCClass(FMath::Clamp(FCString::Atoi(*PCClassStr_0), 0, GetMaxPCClassNum() - 1));
 //			g_EditorRaidPreviewPCClassMain[1] = IntToPCClass(FMath::Clamp(FCString::Atoi(*PCClassStr_1), 0, GetMaxPCClassNum() - 1));
@@ -2088,14 +2088,14 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //		}
 //
 //#if !PLATFORM_MAC
-//		FString MsgStr = FString::Printf(TEXT("[¿¡µğÅÍ Àü¿ë] ·¹ÀÌµå ÇÁ¸®ºä : %s."), g_IsEditorRaidGamePreview ? TEXT("ÄÑÁü") : TEXT("²¨Áü"));
+//		FString MsgStr = FString::Printf(TEXT("[ä¿Šå¼ç£ å‚ˆä¾©] é¥­æé› æ©‡åºœè½° : %s."), g_IsEditorRaidGamePreview ? TEXT("éš¾å’™") : TEXT("æ³¢å’™"));
 //		if (g_IsEditorRaidGamePreview)
 //		{
-//			MsgStr += FString::Printf(TEXT("\n\n·ÎÄÃ ÇÃ·¹ÀÌ¾î - ¸ŞÀÎ Ä³¸¯ÅÍ: %d"), (int32)g_EditorRaidPreviewPCClassMain[0]);
-//			MsgStr += FString::Printf(TEXT("\n\n·ÎÄÃ ÇÃ·¹ÀÌ¾î - 1¹ø ÆÄÆ¼¿ø Ä³¸¯ÅÍ: %d"), (int32)g_EditorRaidPreviewPCClassMain[1]);
-//			MsgStr += FString::Printf(TEXT("\n\n·ÎÄÃ ÇÃ·¹ÀÌ¾î - 2¹ø ÆÄÆ¼¿ø Ä³¸¯ÅÍ: %d"), (int32)g_EditorRaidPreviewPCClassMain[2]);
-//			MsgStr += FString::Printf(TEXT("\n\n·ÎÄÃ ÇÃ·¹ÀÌ¾î - 3¹ø ÆÄÆ¼¿ø Ä³¸¯ÅÍ: %d"), (int32)g_EditorRaidPreviewPCClassMain[3]);
-//			MsgStr += TEXT("\n\n·¹ÀÌµå ÇÁ¸®ºä ¸ğµå ¿¡µğÅÍ ÇÁ¸®ºä´Â ºÒ¾ÈÁ¤ÇÒ ¼ö ÀÖÀ¸´Ï ÇÃ·¹ÀÌ Àü¿¡ ÀÛ¾÷¹°À» ÀúÀåÇØ ÁÖ¼¼¿ä.");
+//			MsgStr += FString::Printf(TEXT("\n\nè‚ºæ‹¿ æ•²é¥­æç»¢ - çš‹ç‰¢ æŸè…ç£: %d"), (int32)g_EditorRaidPreviewPCClassMain[0]);
+//			MsgStr += FString::Printf(TEXT("\n\nè‚ºæ‹¿ æ•²é¥­æç»¢ - 1é”… é¢‡èç›” æŸè…ç£: %d"), (int32)g_EditorRaidPreviewPCClassMain[1]);
+//			MsgStr += FString::Printf(TEXT("\n\nè‚ºæ‹¿ æ•²é¥­æç»¢ - 2é”… é¢‡èç›” æŸè…ç£: %d"), (int32)g_EditorRaidPreviewPCClassMain[2]);
+//			MsgStr += FString::Printf(TEXT("\n\nè‚ºæ‹¿ æ•²é¥­æç»¢ - 3é”… é¢‡èç›” æŸè…ç£: %d"), (int32)g_EditorRaidPreviewPCClassMain[3]);
+//			MsgStr += TEXT("\n\né¥­æé› æ©‡åºœè½° è‘›é› ä¿Šå¼ç£ æ©‡åºœè½°ç»° é˜‚æ•‘æ²¥ä¸” è ä¹æ èª æ•²é¥­æ å‚ˆä¿Š ç´¯è¯€æ‹±é˜‘ å†å˜ç§¦ æ—æŠ€å¤¸.");
 //		}
 //
 //		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(MsgStr));
@@ -2140,7 +2140,7 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("DJHackFixParticleFreezeProblem")))
 //	{
-//		// ¾î´À ³¯ÀÎ°¡ ¹ß»ıÇÑ ¾Ë ¼ö ¾ø´Â ¹®Á¦Á¡À¸·Î ÀÎÇØ.. ¿µ»ó Âï±â À§ÇÑ °Å¶ó ÀÌ·¸°Ô ÀÓ½Ã ´ëÃ³·Î..
+//		// ç»¢è ¢ æœç‰¢å•Š æƒ¯ç§¯èŒ„ èˆ… è ç»ç»° å·©åŠ›ç—¢æ è‚º ç‰¢ç§¦.. åº·æƒ‘ å˜›æ‰ å›°èŒ„ èŠ­æ‰¼ æçŠ¯éœ¸ çƒ™çŸ« æªè´¸è‚º..
 //		for (TObjectIterator<UParticleSystemComponent> PSCIT; PSCIT; ++PSCIT)
 //		{
 //			UParticleSystemComponent* ThisComp = Cast<UParticleSystemComponent>(*PSCIT);
@@ -2153,7 +2153,7 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //		return true;
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("UIEquipFx")))
-//	{ // °³¹ß °úÁ¤¿¡¼­ÀÇ Å×½ºÆ® Ä¿¸ÇµåÀÓ
+//	{ // ä¿ºæƒ¯ è‹æ²¥ä¿Šè¾‘ç‹¼ æŠ›èƒ¶é£˜ ç›®ç›–é›çƒ™
 //		LobbyPlayUIEquipEffectClass<EItemEquipPlace>::GetInstance().Signal(EItemEquipPlace::EIEP_Helmet);
 //		return true;
 //	}
@@ -2180,7 +2180,7 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //				RefTextures.Sort(TextureResourceSizeSorter());
 //
 //#if !PLATFORM_MAC
-//				FString MsgStr = FString::Printf(TEXT("WidgetBlueprint %s ¿¡¼­ (ÃÖ¼Ò) %d°³ÀÇ ÅØ½ºÃÄ°¡ »ç¿ëµÇ°í ÀÖ½À´Ï´Ù.\n\n"), *FoundWigetBP->GetName(), RefTextures.Num());
+//				FString MsgStr = FString::Printf(TEXT("WidgetBlueprint %s ä¿Šè¾‘ (å¼¥å®¶) %dä¿ºç‹¼ å’†èƒ¶åªšå•Š è¤ä¾©ç™»ç»Š ä¹åš¼èªä¿ƒ.\n\n"), *FoundWigetBP->GetName(), RefTextures.Num());
 //
 //				for (int32 TI = 0; TI < RefTextures.Num(); ++TI)
 //				{
@@ -2207,8 +2207,8 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //		return true;
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("RefreshDialogInfo")))
-//	{ // ¿¡µğÅÍ¿¡¼­ DialogInfo Å×ÀÌºí ÀÛ¾÷ ÈÄ¿¡ ½ÇÁúÀûÀÎ °»½ÅÀÌ ¾ÈµÊ.. ´ë½Å ÀÌ·¸°Ô¶óµµ..,
-//		// ¾Æ, °Á UEditorEngine::PlayInEditor ¿¡¼­ ÀÌ°Å È£ÃâÇÏ°Ô..
+//	{ // ä¿Šå¼ç£ä¿Šè¾‘ DialogInfo æŠ›æå–‰ ç´¯è¯€ é¥¶ä¿Š è§’é¾™åˆ©ç‰¢ ç›è„šæ æ•‘å‡³.. æªè„š æçŠ¯éœ¸æ‰¼æ¡£..,
+//		// é…’, å‚² UEditorEngine::PlayInEditor ä¿Šè¾‘ æèŠ­ é¾‹å…çªéœ¸..
 //		BladeIIGameImpl* B2GameModule = FModuleManager::GetModulePtr<BladeIIGameImpl>(BladeIIGameImpl::GetModuleName());
 //		if (B2GameModule)
 //		{
@@ -2218,14 +2218,14 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //		return true;
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("DummyClearReward")))
-//	{ // ÀÏ¹İ ¿¡µğÅÍ ÇÃ·¹ÀÌ¿¡¼­ Å¬¸®¾î º¸»ó ¾ÆÀÌÅÛ ¿¬Ãâ º¸±â À§ÇØ
+//	{ // è€é¦† ä¿Šå¼ç£ æ•²é¥­æä¿Šè¾‘ åŠªåºœç»¢ ç„Šæƒ‘ é…’æè¢ æ¥·å… ç„Šæ‰ å›°ç§¦
 //		FString RewardNumStr;
 //		FParse::Token(Cmd, RewardNumStr, true);
 //		int32 RewardNum = FCString::Atoi(*RewardNumStr);
 //		
 //		RewardNum = FMath::Clamp(RewardNum, 1, 5);
 //
-//		bool bIsDoubled = (FMath::RandRange(0, 2) == 0);// º¸³Ê½º »óÈ² ¸ğÀÇ
+//		bool bIsDoubled = (FMath::RandRange(0, 2) == 0);// ç„Šå‘ˆèƒ¶ æƒ‘ç‚” è‘›ç‹¼
 //
 //		UB2UIDocBattleStage* DocBS = UB2UIDocHelper::GetDocBattleStage();
 //		if (DocBS)
@@ -2239,11 +2239,11 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //			{
 //				FB2Item ThisItem;
 //
-//				// °³¼öµû¶ó grade ·Î.. ´Ü, ÀÌ°Ô RewardNum Àº 5°³±îÁöÀÏ °Çµ¥ ½ÇÁ¦·Î´Â 6¼º±îÁö È®ÀÎÇØ¾ß ÇØ¼­.. RewardNum ¿¡ µû¶ó Á» Á¶ÀıÇÔ
-//				int32 ThisItemGrade = (RI % FItemGradeInfo::MAX_NORMAL_ITEM_STAR_GRADE); // ÀÌ °ªÀ» ±×´ë·Î ¾²¸é 0 ÀÌ ³ª¿Ã ¼ö ÀÖ¾î¼­ ¾ÈµÇ°í ÃÖ¼ÒÇÑ 1À» ´õÇØ¾ß ÇÑ´Ù.
+//				// ä¿ºèè¶æ‰¼ grade è‚º.. çªœ, æéœ¸ RewardNum ç¯® 5ä¿ºé³–ç˜¤è€ æ‰’å• è§’åŠ›è‚ºç»° 6å·±é³–ç˜¤ çŠ¬ç‰¢ç§¦å…· ç§¦è¾‘.. RewardNum ä¿Š è¶æ‰¼ ç²± ç‚¼ä¾‹çªƒ
+//				int32 ThisItemGrade = (RI % FItemGradeInfo::MAX_NORMAL_ITEM_STAR_GRADE); // æ è”¼é˜‘ å¼Šæªè‚º é™æ 0 æ å”±æ£µ è ä¹ç»¢è¾‘ æ•‘ç™»ç»Š å¼¥å®¶èŒ„ 1é˜‘ æ­¹ç§¦å…· èŒ„ä¿ƒ.
 //				if (RewardNum == 3 || RewardNum == 5)
 //				{
-//					ThisItemGrade += 2; // RewardNum 5 ÀÎ °æ¿ì´Â 2, 3, 4, 5, 6 ÀÌ µÊ.
+//					ThisItemGrade += 2; // RewardNum 5 ç‰¢ ç‰ˆå¿«ç»° 2, 3, 4, 5, 6 æ å‡³.
 //				}
 //				else if (RewardNum == 4)
 //				{
@@ -2255,26 +2255,26 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //				}
 //				ThisItemGrade = FMath::Clamp(ThisItemGrade, 1, FItemGradeInfo::MAX_NORMAL_ITEM_STAR_GRADE);
 //
-//				// Á» ¿¹¿Ü·Î °ñµåµµ º¸¿©ÁÖµµ·Ï ÇØ º¸ÀÚ..
+//				// ç²± æŠ—å¯‡è‚º æ¦œé›æ¡£ ç„Šå’¯æ—æ¡£åºŸ ç§¦ ç„Šç£Š..
 //				if (RewardNum == 5 && ThisItemGrade == 2)
 //				{
 //					GenerateGoldItem(ThisItem, 10000);
 //					AllRewardItem.Add(ThisItem);
 //				}
-//				// ¿¹¿Ü·Î Àç·á ¾ÆÀÌÅÛµµ º¸¿©ÁÖµµ·Ï ÇØº¼±î?
+//				// æŠ—å¯‡è‚º çŠä¸° é…’æè¢æ¡£ ç„Šå’¯æ—æ¡£åºŸ ç§¦æ­é³–?
 //				else if (RewardNum == 5 && ThisItemGrade == 3)
 //				{
 //					int32 RandNum = FMath::RandRange(0, 17);
 //					ThisItem.ItemRefID = 8000000 + RandNum;
 //					ThisItem.InventoryType = EItemInvenType::EIIVT_Consumables;
 //					ThisItem.ItemClass = EItemClass::EIC_End;
-//					ThisItem.InstanceUID = 8252424525250235 + RI; // ÀÌ°Ç Àû´çÈ÷
+//					ThisItem.InstanceUID = 8252424525250235 + RI; // ææ‰’ åˆ©å¯¸æ´’
 //					AllMaterialRewardItem.Add(ThisItem);
 //				}
 //				else
 //				{
 //					ThisItem.ItemRefID = 1000000 + ThisItemGrade * 100;
-//					ThisItem.InstanceUID = 5252424525250235 + RI; // ÀÌ°Ç Àû´çÈ÷
+//					ThisItem.InstanceUID = 5252424525250235 + RI; // ææ‰’ åˆ©å¯¸æ´’
 //
 //					DevOnlyLoadItemClientTestData(ThisItem);
 //					AllRewardItem.Add(ThisItem);
@@ -2283,7 +2283,7 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //				if (bIsDoubled && ThisItem.ItemRefID != FItemRefIDHelper::GetGoodsID_Gold())
 //				{
 //					ThisItem.InstanceUID += 972442;
-//					AllRewardItem.Add(ThisItem); // º¸³Ê½º. ¶È°°Àº RefID ·Î ÇÏ³ª ´õ
+//					AllRewardItem.Add(ThisItem); // ç„Šå‘ˆèƒ¶. åº¦éç¯® RefID è‚º çªå”± æ­¹
 //				}
 //			}
 //
@@ -2296,7 +2296,7 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //	else if (FParse::Command(&Cmd, TEXT("FirstTimeNPCSensitiveInfoConstruction")))
 //	{
 //#if !PLATFORM_MAC
-//		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(TEXT("FirstTimeNPCSensitiveInfoConstruction ±â´ÉÀº Ã¹ »ç¿ë ÈÄ ÇöÀç ºñÈ°¼ºÈ­µÊ. »ç¿ëÀÌ ÇÊ¿äÇÑ °æ¿ì ÇÁ·Î±×·¡¹ÖÆÀ¿¡ ¹®ÀÇ.")));
+//		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(TEXT("FirstTimeNPCSensitiveInfoConstruction æ‰ç“·ç¯® éœ‰ è¤ä¾© é¥¶ æ³…çŠ åšåŠå·±æ‹³å‡³. è¤ä¾©æ é˜å¤¸èŒ„ ç‰ˆå¿« æ©‡è‚ºå¼Šè´°æ€ªè¯„ä¿Š å·©ç‹¼.")));
 //#endif
 //		/*UB2NPCClassInfoBox* MobClassInfoBox = StaticFindMobClassInfoBox();
 //		if (MobClassInfoBox)
@@ -2311,7 +2311,7 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //		if (UIMgr)
 //		{
 //#if !PLATFORM_MAC
-//			FString MsgStr = TEXT("À§Á¬ ÀÌ¸§µé\n\n");
+//			FString MsgStr = TEXT("å›°è¿ ææŠšç”¸\n\n");
 //
 //			TArray<FName> AllCreatedUIs;
 //			UIMgr->GetAllCreatedUINames(AllCreatedUIs);
@@ -2357,11 +2357,11 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("ChangePCCharMIParam")))
 //	{
-//		// Ä³¸¯ÅÍ PC ¿ë MIC µéÀÇ ÆÄ¶ó¹ÌÅÍ¸¦ ÀÏ°ı ¼¼ÆÃÇÏ´Â ¿¡µğÅÍ Ä¿¸Çµå.
-//		// »ç¿ë Æ÷¸ËÀº ¿¹¸¦ µé¾î 
-//		// "ChangePCCharMIParam 1 RoughnessSkinScale 0.4" ¾Ï»ìÀÚ ¿ë MIC µéÀÇ RoughnessSkinScale ÆÄ¶ó¹ÌÅÍ¸¦ 0.4 ·Î ¼¼ÆÃ
-//		// "ChangePCCharMIParam Gl MetalicScale 0.3" °ËÅõ»ç ¿ë MIC µéÀÇ MetalicScale ÆÄ¶ó¹ÌÅÍ¸¦ 0.3 À¸·Î ¼¼ÆÃ.
-//		// PC ÁöÁ¤Àº 0 ~ 3 È¤Àº ¾à¼ÓµÈ ¾à¾î¸¦ »ç¿ëÇÒ ¼ö ÀÖ´Ù.
+//		// æŸè…ç£ PC ä¾© MIC ç”¸ç‹¼ é¢‡æ‰¼å›ºç£ç”« è€è¤’ æŠ€æ³¼çªç»° ä¿Šå¼ç£ ç›®ç›–é›.
+//		// è¤ä¾© å™¨æ†ç¯® æŠ—ç”« ç”¸ç»¢ 
+//		// "ChangePCCharMIParam 1 RoughnessSkinScale 0.4" é æ··ç£Š ä¾© MIC ç”¸ç‹¼ RoughnessSkinScale é¢‡æ‰¼å›ºç£ç”« 0.4 è‚º æŠ€æ³¼
+//		// "ChangePCCharMIParam Gl MetalicScale 0.3" å…«æ§è¤ ä¾© MIC ç”¸ç‹¼ MetalicScale é¢‡æ‰¼å›ºç£ç”« 0.3 æ è‚º æŠ€æ³¼.
+//		// PC ç˜¤æ²¥ç¯® 0 ~ 3 è¶£ç¯® è·åŠ ç­‰ è·ç»¢ç”« è¤ä¾©ä¸” è ä¹ä¿ƒ.
 //
 //		FString PCClassStr;
 //		FParse::Token(Cmd, PCClassStr, true);
@@ -2384,13 +2384,13 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //		}
 //
 //		if (SpecifiedPCClass == EPCClass::EPC_End && (PCClassToInt(EPCClass::EPC_Fighter) + 1 != GetMaxPCClassNum()))
-//		{ // ¾ğÁ¨°¡ ÀÌ ÄÚµå¸¦ Â§ »ç¶÷ÀÌ ¾øÀ» ¶§ ´çÈ²ÇÏÁö ¾Êµµ·Ï.
+//		{ // æ”«å“©å•Š æ å†…é›ç”« æ‚ è¤æ©æ ç»é˜‘ é”­ å¯¸ç‚”çªç˜¤ è‡¼æ¡£åºŸ.
 //#if !PLATFORM_MAC
-//			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(TEXT("ChangePCCharMIParam Ä¿¸Çµå´Â Fighter ±îÁö¸¸ ÁØºñµÇ¾ú½À´Ï´Ù.\n»õ·Î¿î Ä³¸¯ÅÍ¿¡ ´ëÇÑ ÄÚµå´Â Ãß°¡ÇØ¾ß ÇÕ´Ï´Ù.")));
+//			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(TEXT("ChangePCCharMIParam ç›®ç›–é›ç»° Fighter é³–ç˜¤çˆ¶ éœ–åšç™»èŒåš¼èªä¿ƒ.\nè´§è‚ºæ¬¾ æŸè…ç£ä¿Š æªèŒ„ å†…é›ç»° çœ å•Šç§¦å…· é’¦èªä¿ƒ.")));
 //#endif
 //		}
 //
-//		// ¿ì¸® Ä³¸¯ÅÍ ÆÀ¼­ »ç¿ëÇÏ´Â ³×ÀÌ¹Ö¿¡ µû¶ó ÆÄÀÏÀ» ÇÊÅÍ¸µ ÇÏ´Â °Å.
+//		// å¿«åºœ æŸè…ç£ è¯„è¾‘ è¤ä¾©çªç»° åŒ™ææ€ªä¿Š è¶æ‰¼ é¢‡è€é˜‘ é˜ç£å‚… çªç»° èŠ­.
 //		FString FileNameFilter;
 //		if (SpecifiedPCClass == EPCClass::EPC_Gladiator) {
 //			FileNameFilter = TEXT("PC_Gl");
@@ -2418,13 +2418,13 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //			TArray<UMaterialInstanceConstant*> AllFoundMICs;
 //			EditorFindAndLoadAssets<UMaterialInstanceConstant>(TEXT("Character/PC"), FileNameFilter, AllFoundMICs);
 //
-//			TArray<FString> FoundAndProcessedFiles; // °á°ú ¸Ş½ÃÁö ¿ë
+//			TArray<FString> FoundAndProcessedFiles; // æ¬è‹ çš‹çŸ«ç˜¤ ä¾©
 //
 //			for (UMaterialInstanceConstant* ThisMIC : AllFoundMICs)
 //			{
 //				if (ThisMIC)
 //				{
-//					// ÆÄ¶ó¹ÌÅÍ°¡ ÀÖ´ÂÁö ¿©ºÎ Ã¼Å©ÇÏ´Â °Ç °á°ú ¸Ş½ÃÁö¿¡ ¹İ¿µÇÏ±â À§ÇÔ.
+//					// é¢‡æ‰¼å›ºç£å•Š ä¹ç»°ç˜¤ å’¯ä½• çœ‰å†œçªç»° æ‰’ æ¬è‹ çš‹çŸ«ç˜¤ä¿Š é¦†åº·çªæ‰ å›°çªƒ.
 //					float bCurrentParamValue = 0.0f;
 //					const bool bParamExist = ThisMIC->GetScalarParameterValue(WantedParamName, bCurrentParamValue);
 //
@@ -2441,7 +2441,7 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //			FString MessageStr;
 //			if (FoundAndProcessedFiles.Num() > 0)
 //			{
-//				MessageStr = FString::Printf(TEXT("´ÙÀ½ %d °³ MIC µéÀÇ ÆÄ¶ó¹ÌÅÍ %s ÀÌ(°¡) %.3f (À¸)·Î º¯°æµÇ¾ú½À´Ï´Ù. È®ÀÎ ¹× ÀúÀåÇØ ÁÖ¼¼¿ä.\n\n"),
+//				MessageStr = FString::Printf(TEXT("ä¿ƒæ¾œ %d ä¿º MIC ç”¸ç‹¼ é¢‡æ‰¼å›ºç£ %s æ(å•Š) %.3f (æ )è‚º å‡½ç‰ˆç™»èŒåš¼èªä¿ƒ. çŠ¬ç‰¢ æ£º å†å˜ç§¦ æ—æŠ€å¤¸.\n\n"),
 //					FoundAndProcessedFiles.Num(), *WantedParamNameStr, WantedParamValue);
 //				for (int32 FI = 0; FI < FoundAndProcessedFiles.Num(); ++FI)
 //				{
@@ -2450,7 +2450,7 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //			}
 //			else
 //			{
-//				MessageStr = FString::Printf(TEXT("%s ³×ÀÌ¹ÖÀÇ Character MIC µéÀÇ ÆÄ¶ó¹ÌÅÍ %s À»(¸¦) %.3f (À¸)·Î º¯°æÇÏ°íÀÚ ÇÏ¿´À¸³ª ÇÏ³ªµµ ¼º°øÇÏÁö ¸øÇß½À´Ï´Ù. ·ÎÄÃ ¿öÅ©½ºÆäÀÌ½º »óÀÇ ÆÄÀÏ/°æ·Î°¡ º¯°æµÇ¾ú°Å³ª Á¸ÀçÇÏÁö ¾Ê´Â ÆÄ¶ó¹ÌÅÍ¸¦ ÁöÁ¤ÇÏ¿´À» °¡´É¼ºÀÌ ÀÖ½À´Ï´Ù."),
+//				MessageStr = FString::Printf(TEXT("%s åŒ™ææ€ªç‹¼ Character MIC ç”¸ç‹¼ é¢‡æ‰¼å›ºç£ %s é˜‘(ç”«) %.3f (æ )è‚º å‡½ç‰ˆçªç»Šç£Š çªçœ‹æ å”± çªå”±æ¡£ å·±å‚çªç˜¤ ç»™æ²åš¼èªä¿ƒ. è‚ºæ‹¿ å†µå†œèƒ¶å…¶æèƒ¶ æƒ‘ç‹¼ é¢‡è€/ç‰ˆè‚ºå•Š å‡½ç‰ˆç™»èŒèŠ­å”± ç²®çŠçªç˜¤ è‡¼ç»° é¢‡æ‰¼å›ºç£ç”« ç˜¤æ²¥çªçœ‹é˜‘ å•Šç“·å·±æ ä¹åš¼èªä¿ƒ."),
 //					*FileNameFilter, *WantedParamNameStr, WantedParamValue);
 //			}
 //			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(MessageStr));
@@ -2461,24 +2461,24 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("CheckMatineeRef")) || FParse::Command(&Cmd, TEXT("B2MatineeRefCheck")))
 //	{ 
-//		// UB2MatineeRefCheckCommandlet À» ¸¸µé´Ù°¡.. ÀÌ·± ±â´ÉÀÌ Ä¿¸Çµé·¿ È¯°æ¿¡¼­ ºÒ°¡´ÉÇÑ °Íµµ °°°í
-//		// ¾îÂ÷ÇÇ ¿¡µğÅÍ¿¡¼­ »ç¿ëÇÏ´Â °Ô ÆíÇÒ ¼öµµ ÀÖ¾î¼­.. ÀÌ·¡Àú·¡ ¿¡µğÅÍ Ä¿¸Çµå·Î Á¦°ø.
+//		// UB2MatineeRefCheckCommandlet é˜‘ çˆ¶ç”¸ä¿ƒå•Š.. æç¹ æ‰ç“·æ ç›®ç›–ç”¸æˆ¿ åˆ¸ç‰ˆä¿Šè¾‘ é˜‚å•Šç“·èŒ„ å·´æ¡£ éç»Š
+//		// ç»¢ç’ä¹” ä¿Šå¼ç£ä¿Šè¾‘ è¤ä¾©çªç»° éœ¸ ç¥ˆä¸” èæ¡£ ä¹ç»¢è¾‘.. æè´°å†è´° ä¿Šå¼ç£ ç›®ç›–é›è‚º åŠ›å‚.
 //		UB2MatineeRefCheckCommandlet::HandleAsEditorCommand(Cmd, Ar);
 //
 //		return true;
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("B2MaterialParamCheck")))
-//	{ // µ¿ÀÏÇÑ ÀÌ¸§ÀÇ Ä¿¸Çµé·¿À¸·Î »ç¿ëÇÒ ¼ö ÀÖÀ½.
+//	{ // æ‚¼è€èŒ„ ææŠšç‹¼ ç›®ç›–ç”¸æˆ¿æ è‚º è¤ä¾©ä¸” è ä¹æ¾œ.
 //		UB2MaterialParamCheckCommandlet::EditorCommandMain(Cmd, Ar);
 //		return true;
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("B2AssetOptCheck")))
-//	{ // µ¿ÀÏÇÑ ÀÌ¸§ÀÇ Ä¿¸Çµé·¿À¸·Î »ç¿ëÇÒ ¼ö ÀÖÀ½.
+//	{ // æ‚¼è€èŒ„ ææŠšç‹¼ ç›®ç›–ç”¸æˆ¿æ è‚º è¤ä¾©ä¸” è ä¹æ¾œ.
 //		UB2AssetOptCheckCommandlet::EditorCommandMain(Cmd, Ar);
 //		return true;
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("SummarizeMaterialStaticSwitchUse")))
-//	{ // ¹Ù·Î ¾Æ·¡ ReplaceParentMaterialStaticSwitch ¿Í ¿¬°èÇØ¼­ »ç¿ëÇÏ·Á´Â °ÍÀÓ.
+//	{ // å®˜è‚º é…’è´° ReplaceParentMaterialStaticSwitch å®¢ æ¥·æ‹Œç§¦è¾‘ è¤ä¾©çªå¦¨ç»° å·´çƒ™.
 //		FString ParentMaterialName;
 //		FParse::Token(Cmd, ParentMaterialName, true);
 //		UMaterial* LoadedMaterial = LoadObject<UMaterial>(NULL, *ParentMaterialName);
@@ -2491,8 +2491,8 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //		return true;
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("ReplaceParentMaterialStaticSwitch")))
-//	{ // ¹Ù·Î À§ SummarizeMaterialStaticSwitchUse ¿Í ¿¬°èÇØ¼­ »ç¿ëÇÏ·Á´Â °ÍÀÓ.
-//		// Æ¯Á¤ Material À» Parent ·Î ÇÏ¸é¼­ Æ¯Á¤ StaticSwitch ¼ÂÀ» ¼³Á¤ÇÑ MIC µéÀÇ Parent ¸¦ ¹Ù²ãÄ¡´Â ±â´É. ÀÚ¼¼ÇÑ µ¿ÀÛÀº ¾Æ·¡ ÇÔ¼ö¿¡¼­..
+//	{ // å®˜è‚º å›° SummarizeMaterialStaticSwitchUse å®¢ æ¥·æ‹Œç§¦è¾‘ è¤ä¾©çªå¦¨ç»° å·´çƒ™.
+//		// æ¼‚æ²¥ Material é˜‘ Parent è‚º çªæè¾‘ æ¼‚æ²¥ StaticSwitch æ‚¸é˜‘ æ±²æ²¥èŒ„ MIC ç”¸ç‹¼ Parent ç”« å®˜å±‚æ‘¹ç»° æ‰ç“·. ç£ŠæŠ€èŒ„ æ‚¼ç´¯ç¯® é…’è´° çªƒèä¿Šè¾‘..
 //
 //		FString CurrParentMaterialName;
 //		FParse::Token(Cmd, CurrParentMaterialName, true);
@@ -2506,14 +2506,14 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //		FParse::Token(Cmd, ChildMICSearchPath, true);
 //
 //		FString SSParamSetString;
-//		// ÀÌ°É·Î StaticSwitch ±¸¼ºÀ» ¾î¶»°Ô ÁöÁ¤ÇÏ´ÂÁö´Â ¾Æ·¡ º» ÇÔ¼ö¿¡¼­ ÆÄ½Ì.
-//		FParse::Value(Cmd, TEXT("SSParam="), SSParamSetString, false); // ShouldStopOnComma ¸¦ false ·Î. SSParam ±¸¹®¿¡ Comma °¡ µé¾î°¡±â ¶§¹®.
+//		// æå§è‚º StaticSwitch å¤‡å·±é˜‘ ç»¢ç—˜éœ¸ ç˜¤æ²¥çªç»°ç˜¤ç»° é…’è´° å¤¯ çªƒèä¿Šè¾‘ é¢‡æ•™.
+//		FParse::Value(Cmd, TEXT("SSParam="), SSParamSetString, false); // ShouldStopOnComma ç”« false è‚º. SSParam å¤‡å·©ä¿Š Comma å•Š ç”¸ç»¢å•Šæ‰ é”­å·©.
 //
 //		ReplaceParentMaterialOfStaticSwitchParam(CurrParentMaterial, NewMaterial, ChildMICSearchPath, SSParamSetString);
 //
 //		return true;
 //	}
-//	else if (FParse::Command(&Cmd, TEXT("ReplaceParentMaterialOfMIC"))) // ´Ü¼øÇÑ ºÎ¸ğ Material ¹Ù²ãÄ¡±â. Èë¼öÀúÀÇ ±İ¼öÀú ÀçÅº»ı
+//	else if (FParse::Command(&Cmd, TEXT("ReplaceParentMaterialOfMIC"))) // çªœé‰´èŒ„ ä½•è‘› Material å®˜å±‚æ‘¹æ‰. å…¥èå†ç‹¼ é™›èå† çŠè—•ç§¯
 //	{ 
 //		FString CurrParentMaterialName;
 //		FParse::Token(Cmd, CurrParentMaterialName, true);
@@ -2529,7 +2529,7 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //			FParse::Token(Cmd, ChildMICSearchPath, true);
 //
 //			TArray<FString> AllFoundAssets;
-//			// Ã£Àº ÆÄÀÏ Áß MIC ¸¸ ÇÊ¿äÇÏÁö¸¸ ½ÇÁ¦·Î´Â ·ÎµùÀ» ÇØ ºÁ¾ß ¾È´Ù..
+//			// èŒ«ç¯® é¢‡è€ å MIC çˆ¶ é˜å¤¸çªç˜¤çˆ¶ è§’åŠ›è‚ºç»° è‚ºçˆ¹é˜‘ ç§¦ æ¯«å…· æ•‘ä¿ƒ..
 //			EditorFindAssetFileList(AllFoundAssets, ChildMICSearchPath, TEXT(""), false);
 //
 //			TArray<UMaterialInstanceConstant*> ChangedMICs;
@@ -2580,7 +2580,7 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("Replace6StarPCDummy")))
 //	{
-//		// ¿¬Ãâ¿ë SkeletalMeshActor ¼Â¾÷ÇÏ´Âµ¥ ±âº» ´õ¹Ì ¾Æ´Ñ 6¼º ¿ëÀ¸·Î ÇØ ³õÀº °Ô ³Ê¹« ¸¹¾Æ ·¹º§ ´ÜÀ§·Î ÀÏ°ıÃ³¸®¶óµµ ÇÏ°Ô..
+//		// æ¥·å…ä¾© SkeletalMeshActor æ‚¸è¯€çªç»°å• æ‰å¤¯ æ­¹å›º é…’å›± 6å·± ä¾©æ è‚º ç§¦ åˆç¯® éœ¸ å‘ˆå…¬ è…¹é…’ é¥­éª‡ çªœå›°è‚º è€è¤’è´¸åºœæ‰¼æ¡£ çªéœ¸..
 //
 //		UB2PCClassInfoBox* PCInfoBox = StaticFindPCClassInfoBox();
 //		UB2PCClassInfo* Info_Gladiator = PCInfoBox->GetSingleClassInfo(EPCClass::EPC_Gladiator);
@@ -2652,7 +2652,7 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 //		else
 //		{
 //#if !PLATFORM_MAC
-//			FMessageDialog::Open(EAppMsgType::Ok, FText::FromString(TEXT("¹Ù²ï °ÍÀÌ ¾ø½À´Ï´Ù.")));
+//			FMessageDialog::Open(EAppMsgType::Ok, FText::FromString(TEXT("å®˜è¯§ å·´æ ç»åš¼èªä¿ƒ.")));
 //#endif
 //		}
 //
@@ -2679,28 +2679,28 @@ bool UB2StaticExecHelper::ExecEditorOnly(UWorld* Inworld, const TCHAR* Cmd, FOut
 #endif
 
 #if !UE_BUILD_SHIPPING
-bool gbHACKInGameUIHiddenByDevCommand = false; // µµÁß¿¡ »ı¼ºµÇ´Â ¾Öµéµµ Àû¿ëÀÌ µÇ¾î¾ß ÇØ¼­.. ¤Ğ¤Ğ
-bool GCheat_CompleteIgnoreEventScene = false; // ÀÌ°ÍÀ» »ç¿ëÇÏ´Â °æ¿ì´Â ¾Æ¿¹ ¿¬Ãâ ½ÃÀÛÁ¶Â÷ µÇÁö ¾ÊÀ¸¸ç ¸î¸î ¸ÊÀº Á¦´ë·Î ÇÃ·¹ÀÌ°¡ ºÒ°¡´ÉÇÒ ¼öµµ ÀÖÀ½. Æ¯¼öÇÑ »óÈ²ÀÇ Å×½ºÆ®¿ë.
-int32 GCheat_SkipEventSceneCount = -1; // ÀÌ°Ç °ÔÀÓ ÁøÇàÀÌ °¡´ÉÇÑ ¼öÁØ¿¡¼­ ¿¬Ãâ Àå¸éÀ» ½ºÅµ. 0 º¸´Ù Å©¸é ±× ¼ıÀÚ¸¸Å­ÀÇ ¿¬ÃâÀå¸éÀ» ½ºÅµÇÑ´Ù.
-bool GCheat_HeroineMode = false; // Hero ¸ğµå¿Í ºñ½ÁÇÑµ¥ ÇöÀç ¸÷µé Áß ÇÏ³ª¸¸ Á×ÀÌ¸é ³ª¸ÓÁö°¡ ´Ù Á×À½.
-float GCheat_StageDifficultyOverride = 0.0f; // 0.0 ¿¡¼­´Â ±âº»°ª
+bool gbHACKInGameUIHiddenByDevCommand = false; // æ¡£åä¿Š ç§¯å·±ç™»ç»° å±€ç”¸æ¡£ åˆ©ä¾©æ ç™»ç»¢å…· ç§¦è¾‘.. ã°ã°
+bool GCheat_CompleteIgnoreEventScene = false; // æå·´é˜‘ è¤ä¾©çªç»° ç‰ˆå¿«ç»° é…’æŠ— æ¥·å… çŸ«ç´¯ç‚¼ç’ ç™»ç˜¤ è‡¼æ å“¥ å‰²å‰² ç”˜ç¯® åŠ›æªè‚º æ•²é¥­æå•Š é˜‚å•Šç“·ä¸” èæ¡£ ä¹æ¾œ. æ¼‚èèŒ„ æƒ‘ç‚”ç‹¼ æŠ›èƒ¶é£˜ä¾©.
+int32 GCheat_SkipEventSceneCount = -1; // ææ‰’ éœ¸çƒ™ æŸ³é’æ å•Šç“·èŒ„ èéœ–ä¿Šè¾‘ æ¥·å… å˜æé˜‘ èƒ¶è¯º. 0 ç„Šä¿ƒ å†œæ å¼Š ç®­ç£Šçˆ¶æ€’ç‹¼ æ¥·å…å˜æé˜‘ èƒ¶è¯ºèŒ„ä¿ƒ.
+bool GCheat_HeroineMode = false; // Hero è‘›é›å®¢ åšæ…èŒ„å• æ³…çŠ å„ç”¸ å çªå”±çˆ¶ ç£·ææ å”±èµ£ç˜¤å•Š ä¿ƒ ç£·æ¾œ.
+float GCheat_StageDifficultyOverride = 0.0f; // 0.0 ä¿Šè¾‘ç»° æ‰å¤¯è”¼
 bool GCheat_PCPartMergeRemoveExtraBoneInfluence = false;
 int32 GCheat_RepeatBattleCountOverride = 0;
 bool GTest_GenerateDummyChatMessage = false;
-bool GTest_UseNonCompositedRawPCMesh = false; // PC Àåºñ ½Ã½ºÅÛ¿¡ ÀÇÇØ Á¶ÇÕµÇÁö ¾ÊÀº ±âº» ¸Ş½¬ »ç¿ë.
+bool GTest_UseNonCompositedRawPCMesh = false; // PC å˜åš çŸ«èƒ¶è¢ä¿Š ç‹¼ç§¦ ç‚¼é’¦ç™»ç˜¤ è‡¼ç¯® æ‰å¤¯ çš‹æµ† è¤ä¾©.
 bool gIsDevUI = false;
-bool gUseHeroTowerResetNoLoading = true; // ¿µ¿õÀÇ Å¾ ·Îµù ¾øÀÌ Àç½ÃÀÛÇÏ´Â ±â´ÉÀÌ °³¹ß µµÁß ¹ö±×¸¦ ÀÏÀ¸Å³ ¼ÒÁö°¡ ¸¹À¸¹Ç·Î ¹®Á¦ ¹ß»ı½Ã Å×½ºÆ®¸¦ À§ÇØ Á¦°ø.
-bool gDrawPerfMark = false; // ScopedCallTracker ¿¡¼­ Æ¯Á¤ ½Ã°£ ÀÌ»ó ¼Ò¿äµÈ °Å È­¸é¿¡ Ç¥½Ã
-bool gPreloadCombatEffectResources = true; // ¼º´É Å×½ºÆ® ¿ë. ¸î¸î ÀüÅõ¿¡¼­ spawn ÇÏ´Â TAsset À¸·Î µÈ ÀÌÆåÆ® °ü·Ã ¸®¼Ò½ºµéÀ» ¹Ì¸® ·Îµù ¹× Ä³½ÌÇØ ³õÀº °ÍÀ» ÅëÇØ hitch °¡ ¾ó¸¶³ª °³¼±µÇ´ÂÁö º¸±â À§ÇØ.
-bool gDisableInGameFloatingWidgets = false; // ÀüÅõ¿¡¼­ °İ·ÄÇÏ°Ô µîÀåÇÏ´Â DamageNum, AbnormalState, GoldAcq µî ²ô±â. ¼º´É Å×½ºÆ®¿ë.
-bool gDisableCombatEventUI = false; // ÀüÅõµî ÀÌº¥Æ® °İÀ¸·Î µîÀåÇÏ´Â Floating ¿ÜÀÇ °Íµé
-int32 gPCDataPreLoadMaxNum = -1; // ·Îµù½Ã°£ Ã¼Å©¿ë. »ç½Ç»ó Ä³¸¯ÅÍ 4Á¾·ù¿¡¼­´Â 4ÀÌ»óÀÌ±â¸¸ ÇÏ¸é Á¤»óÀÛµ¿. 0, 1 °°Àº ¼ıÀÚ·Î Å×½ºÆ®ÇÏ±â À§ÇÔ.
+bool gUseHeroTowerResetNoLoading = true; // åº·æ—·ç‹¼ å•ª è‚ºçˆ¹ ç»æ çŠçŸ«ç´¯çªç»° æ‰ç“·æ ä¿ºæƒ¯ æ¡£å æ»šå¼Šç”« è€æ æ‡¦ å®¶ç˜¤å•Š è…¹æ éª¨è‚º å·©åŠ› æƒ¯ç§¯çŸ« æŠ›èƒ¶é£˜ç”« å›°ç§¦ åŠ›å‚.
+bool gDrawPerfMark = false; // ScopedCallTracker ä¿Šè¾‘ æ¼‚æ²¥ çŸ«åŸƒ ææƒ‘ å®¶å¤¸ç­‰ èŠ­ æ‹³æä¿Š é’çŸ«
+bool gPreloadCombatEffectResources = true; // å·±ç“· æŠ›èƒ¶é£˜ ä¾©. å‰²å‰² å‚ˆæ§ä¿Šè¾‘ spawn çªç»° TAsset æ è‚º ç­‰ ææ£‹é£˜ åŒ…è®¿ åºœå®¶èƒ¶ç”¸é˜‘ å›ºåºœ è‚ºçˆ¹ æ£º æŸæ•™ç§¦ åˆç¯® å·´é˜‘ çƒ¹ç§¦ hitch å•Š å€”ä»˜å”± ä¿ºæ€¥ç™»ç»°ç˜¤ ç„Šæ‰ å›°ç§¦.
+bool gDisableInGameFloatingWidgets = false; // å‚ˆæ§ä¿Šè¾‘ æ‹œçººçªéœ¸ æ®¿å˜çªç»° DamageNum, AbnormalState, GoldAcq æ®¿ æºæ‰. å·±ç“· æŠ›èƒ¶é£˜ä¾©.
+bool gDisableCombatEventUI = false; // å‚ˆæ§æ®¿ æäº¥é£˜ æ‹œæ è‚º æ®¿å˜çªç»° Floating å¯‡ç‹¼ å·´ç”¸
+int32 gPCDataPreLoadMaxNum = -1; // è‚ºçˆ¹çŸ«åŸƒ çœ‰å†œä¾©. è¤è§’æƒ‘ æŸè…ç£ 4è¾†å¹…ä¿Šè¾‘ç»° 4ææƒ‘ææ‰çˆ¶ çªæ æ²¥æƒ‘ç´¯æ‚¼. 0, 1 éç¯® ç®­ç£Šè‚º æŠ›èƒ¶é£˜çªæ‰ å›°çªƒ.
 bool gNPCDataNoPreLoadMode = false;
-bool gUseCharacterDefaultMaterial = false; // ¼º´É ÃøÁ¤ ¿ë
-int32 gTestAttachLightCompMode = 0; // ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ ¶óÀÌÆ® attach mode
+bool gUseCharacterDefaultMaterial = false; // å·±ç“· èŸæ²¥ ä¾©
+int32 gTestAttachLightCompMode = 0; // æ•²é¥­æç»¢ æŸè…ç£ æ‰¼æé£˜ attach mode
 bool gbTestTurnOffPlayerLight = false;
 
- //ItemInfo Àåºñ ºñµ¿±â ·Îµù ¿Ï·á ÈÄ ÇÃ·¹ÀÌ¾î Ä³¸¯ dummy spawn ±îÁö Å×½ºÆ® ÇÏ±â À§ÇÔ.
+ //ItemInfo å˜åš åšæ‚¼æ‰ è‚ºçˆ¹ è‚¯ä¸° é¥¶ æ•²é¥­æç»¢ æŸè… dummy spawn é³–ç˜¤ æŠ›èƒ¶é£˜ çªæ‰ å›°çªƒ.
 struct FItemInfoAsyncLoadTest
 {
 	FItemInfoAsyncLoadTest()
@@ -2713,7 +2713,7 @@ struct FItemInfoAsyncLoadTest
 	int32 CachedRequestedGrade;
 	FString CachedRequestName;
 
-	 //Å×½ºÆ® Ä¿¸Çµå¿¡¼­ »ç¿ëÇÏ·Á´Â °ÍÀÓ. ±â´ÉÀº Âü°í¸¸.
+	 //æŠ›èƒ¶é£˜ ç›®ç›–é›ä¿Šè¾‘ è¤ä¾©çªå¦¨ç»° å·´çƒ™. æ‰ç“·ç¯® æ›¼ç»Šçˆ¶.
 
 	void MarkAsyncLoadWaiting(EPCClass InRequestedClass, int32 InRequestedPartGrade, const FString& InRequestedName)
 	{
@@ -2731,10 +2731,10 @@ struct FItemInfoAsyncLoadTest
 	{
 		if (InRequestName == CachedRequestName)
 		{
-			// ¿äÃ»ÇÑ Àåºñµé ID ¸¦ °¡Áö°í DummyPlayer spawn À» Á÷Á¢ ÇÏ·Á°í ÇØµµ ABladeIITestDummyPlayer ÂÊ spawn ±â´É¿¡ ¾îÂ÷ÇÇ StandardEquipment °¡Áö°í ÇÏ´Â °Í¸¸ ±¸ºñµÇ¾î ÀÖÀ½.
+			// å¤¸æ²¡èŒ„ å˜åšç”¸ ID ç”« å•Šç˜¤ç»Š DummyPlayer spawn é˜‘ æµç«‹ çªå¦¨ç»Š ç§¦æ¡£ ABladeIITestDummyPlayer ç‡ spawn æ‰ç“·ä¿Š ç»¢ç’ä¹” StandardEquipment å•Šç˜¤ç»Š çªç»° å·´çˆ¶ å¤‡åšç™»ç»¢ ä¹æ¾œ.
 
 			if (GEngine)
-			{ // ·Îµù ¿Ï·áµÈ Àåºñ °¡Áö°í spawn Å×½ºÆ®. ¹°·Ğ ÀÌ·¡µµ PCClassInfo ·Îµù¿¡ ¿À·¡ °É¸± ¼ö ÀÖ´Ù.
+			{ // è‚ºçˆ¹ è‚¯ä¸°ç­‰ å˜åš å•Šç˜¤ç»Š spawn æŠ›èƒ¶é£˜. æ‹±æ²¸ æè´°æ¡£ PCClassInfo è‚ºçˆ¹ä¿Š å·è´° å§å‰¯ è ä¹ä¿ƒ.
 				GEngine->DeferredCommands.Add(FString::Printf(TEXT("SpawnDummyPlayer %d %d"), PCClassToInt(CachedRequestedClass), CachedRequestedGrade));
 			}
 
@@ -2749,11 +2749,11 @@ struct FItemInfoAsyncLoadTest
 		}
 	}
 };
-static FItemInfoAsyncLoadTest ItemInfoAsyncLoadTestObj; // Å×½ºÆ®¿¡ ¿ì·Á¸ÔÀ» °´Ã¼ ÇÏ³ª.
+static FItemInfoAsyncLoadTest ItemInfoAsyncLoadTestObj; // æŠ›èƒ¶é£˜ä¿Š å¿«å¦¨å†ˆé˜‘ æŒ‰çœ‰ çªå”±.
 
 bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevice& Ar)
 {
-	 //¸ğ¹ÙÀÏ Å×½ºÆ® ¹öÀü¿¡¼­´Â »ç¿ëÇÒ Ä¿¸Çµå¸¦ ¿©±â¿¡. ÃÖÁ¾ÆÇ¿¡¼­´Â ¸¶Âù°¡Áö·Î ºüÁö°ÚÁö¸¸.
+	 //è‘›å®˜è€ æŠ›èƒ¶é£˜ æ»šå‚ˆä¿Šè¾‘ç»° è¤ä¾©ä¸” ç›®ç›–é›ç”« å’¯æ‰ä¿Š. å¼¥è¾†é­„ä¿Šè¾‘ç»° ä»˜è›®å•Šç˜¤è‚º ç‹ç˜¤æ‘†ç˜¤çˆ¶.
 //
 //	if (FParse::Command(&Cmd, TEXT("InGameUI")))
 //	{
@@ -2773,11 +2773,11 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //				(*WMIT)->RestoreVisibilityAll();
 //			}
 //		}
-//		UB2UIManager::GetInstance()->HideBattleRelatedWidgets(gbHACKInGameUIHiddenByDevCommand); // ½Å UI
+//		UB2UIManager::GetInstance()->HideBattleRelatedWidgets(gbHACKInGameUIHiddenByDevCommand); // è„š UI
 //
 //		return true;
 //	}
-//	if (FParse::Command(&Cmd, TEXT("ShowUI"))) // "InGameUI" ´Â ¿¾³¯¿¡ ¸¸µç °Å°í.. ÀÌÁ¦´Â °Á ÀÌ·¸°Ô ÇÏ¸é Àß ¸ÔÈ÷´Â µí..
+//	if (FParse::Command(&Cmd, TEXT("ShowUI"))) // "InGameUI" ç»° çƒ¤æœä¿Š çˆ¶ç”µ èŠ­ç»Š.. æåŠ›ç»° å‚² æçŠ¯éœ¸ çªæ è‚‹ å†ˆæ´’ç»° æ·€..
 //	{
 //		gbHACKInGameUIHiddenByDevCommand = !gbHACKInGameUIHiddenByDevCommand;
 //
@@ -2945,7 +2945,7 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //
 //		
 //		int ItemRefID = FCString::Atoi(*ItemIDString);
-//		if (ItemIDString == TEXT("Gold")) // Æ¯¼ö ÄÉÀÌ½º.
+//		if (ItemIDString == TEXT("Gold")) // æ¼‚è çº³æèƒ¶.
 //		{
 //			ItemRefID = FItemRefIDHelper::GetGoodsID_Gold();			
 //		}
@@ -3035,7 +3035,7 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //		return true;
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("RequestDummyItems")) || FParse::Command(&Cmd, TEXT("RequestTestItems")))
-//	{ // ·Îºñ¿¡¼­ ÀÎº¥Åä¸®°¡ ÃÊ±âÈ­µÈ »óÅÂ¿¡¼­ »ç¿ëÇØ¾ß ¸ÔÈû.
+//	{ // è‚ºåšä¿Šè¾‘ ç‰¢äº¥é…åºœå•Š æª¬æ‰æ‹³ç­‰ æƒ‘æ€•ä¿Šè¾‘ è¤ä¾©ç§¦å…· å†ˆå¡.
 //		FString RefIDString;
 //		FParse::Token(Cmd, RefIDString, true);
 //		int32 ParsedRefID = FCString::Atoi(*RefIDString);
@@ -3045,10 +3045,10 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //		int32 CreateNum = FCString::Atoi(*CreateNumString);
 //		if (CreateNum <= 0)
 //		{
-//			CreateNum = 30; // ±âº»°ª
+//			CreateNum = 30; // æ‰å¤¯è”¼
 //		}
 //		if (ParsedRefID < 2000000)
-//		{ // ÀÏ¹İÀûÀÎ ÀåÂø ¾ÆÀÌÅÛÀÌ¶ó¸é ½Ç¼ö·Î ³Ê¹« ¸¹ÀÌ ¿äÃ»ÇÏÁö ¾Ê°Ô..
+//		{ // è€é¦†åˆ©ç‰¢ å˜é¦’ é…’æè¢ææ‰¼æ è§’èè‚º å‘ˆå…¬ è…¹æ å¤¸æ²¡çªç˜¤ è‡¼éœ¸..
 //			CreateNum = FMath::Min(CreateNum, 100);
 //		}
 //
@@ -3061,18 +3061,18 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //				LobbyInven->DevOnlyRequestDummyItems(CreateNum, ParsedRefID, 0.1f);
 //			}
 //			else
-//			{// ÀÌ°Ç Ã·¿¡ ¸¸µé¾ú´ø ±â´ÉÀÎµ¥ °á±¹ ¸¶Âù°¡Áö·Î DevOnlyRequestDummyItems ¸¦ »ç¿ëÇÒ °Í. RefID ´Â ¾È¿¡ ÇÏµåÄÚµù.
+//			{// ææ‰’ æ¢…ä¿Š çˆ¶ç”¸èŒå¸¦ æ‰ç“·ç‰¢å• æ¬æƒ« ä»˜è›®å•Šç˜¤è‚º DevOnlyRequestDummyItems ç”« è¤ä¾©ä¸” å·´. RefID ç»° æ•‘ä¿Š çªé›å†…çˆ¹.
 //				LobbyInven->DevOnlyGenerateDummyItemData(true);
 //			}
 //		}
 //		return true;
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("GenerateClientDummyItems")))
-//	{ // ·Îºñ¿¡¼­ ÀÎº¥Åä¸®°¡ ÃÊ±âÈ­µÈ »óÅÂ¿¡¼­ »ç¿ëÇØ¾ß ¸ÔÈû.
+//	{ // è‚ºåšä¿Šè¾‘ ç‰¢äº¥é…åºœå•Š æª¬æ‰æ‹³ç­‰ æƒ‘æ€•ä¿Šè¾‘ è¤ä¾©ç§¦å…· å†ˆå¡.
 //		AB2LobbyGameMode* LobbyGM = Cast<AB2LobbyGameMode>(UGameplayStatics::GetGameMode(Inworld));
 //		UB2LobbyInventory* LobbyInven = LobbyGM ? LobbyGM->GetLobbyInventory() : NULL;
 //		if (LobbyInven)
-//		{ // ÀÌ °æ¿ì, ¼­¹ö·Î ¿äÃ»ÇÏ´Â ´ë½Å Å¬¶óÀÌ¾ğÆ®¿¡¸¸ Ã¤¿î´Ù.
+//		{ // æ ç‰ˆå¿«, è¾‘æ»šè‚º å¤¸æ²¡çªç»° æªè„š åŠªæ‰¼ææ”«é£˜ä¿Šçˆ¶ ç›²æ¬¾ä¿ƒ.
 //			LobbyInven->DevOnlyGenerateDummyItemData(false);
 //		}
 //		return true;
@@ -3081,7 +3081,7 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //	{
 //		FString ConsumableIDStr;
 //		FParse::Token(Cmd, ConsumableIDStr, true);
-//		int32 ConsumableID = FCString::Atoi(*ConsumableIDStr); // ID ´Â Á¤ÇØÁø °Å ¾Ë¾Æ¼­ ³Ö¾î¾ß ÇÒ µí.
+//		int32 ConsumableID = FCString::Atoi(*ConsumableIDStr); // ID ç»° æ²¥ç§¦æŸ³ èŠ­ èˆ…é…’è¾‘ æŒç»¢å…· ä¸” æ·€.
 //
 //		FString ConsumableAmountStr;
 //		FParse::Token(Cmd, ConsumableAmountStr, true);
@@ -3096,7 +3096,7 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("GenerateClientDummyWings")))
 //	{
-//		// PCClass ÁöÁ¤ÇÏ°Ô ÇÏ·Á°í Çß´Âµ¥ ±¦È÷ Çò°¥¸®±â¸¸ ÇÒ µí. °Á ¸ğµÎ µ¿½Ã »ı¼ºÇÏÀÚ.
+//		// PCClass ç˜¤æ²¥çªéœ¸ çªå¦¨ç»Š æ²ç»°å• å®æ´’ çƒå“åºœæ‰çˆ¶ ä¸” æ·€. å‚² è‘›æ»´ æ‚¼çŸ« ç§¯å·±çªç£Š.
 //		//FString PCClassStr;
 //		//FParse::Token(Cmd, PCClassStr, true);
 //		//EPCClass ParsedPCClass = IntToPCClass(FCString::Atoi(*PCClassStr));
@@ -3113,9 +3113,9 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //			LobbyAP->DevOnlyGenerateDummyWingData(ParsedEvolveGrade, false);
 //		}
 //
-//		LobbyUpdateWingMainUIClass<>::GetInstance().Signal(); // Wing UI ÆäÀÌÁö ¾÷µ¥ÀÌÆ®.
+//		LobbyUpdateWingMainUIClass<>::GetInstance().Signal(); // Wing UI å…¶æç˜¤ è¯€å•æé£˜.
 //
-//		// ·Îºñ ¸Ş½¬ ¾÷µ¥ÀÌÆ®µµ °°ÀÌ
+//		// è‚ºåš çš‹æµ† è¯€å•æé£˜æ¡£ éæ
 //		for (int32 PCI = 0; PCI < GetMaxPCClassNum(); ++PCI)
 //		{
 //			LobbyUpdateCharacterPartClass<EPCClass>::GetInstance().Signal(IntToPCClass(PCI));
@@ -3134,7 +3134,7 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //		return true;
 //	}
 //	/*else if (FParse::Command(&Cmd, TEXT("CheckEquippedStat")))
-//	{ // ÇöÀç ·Îºñ ¼±ÅÃ Ä³¸¯ÅÍÀÇ ÀåÂøÀ¸·Î ÀÎÇØ Áõ°¡µÇ´Â ´É·ÂÄ¡ È®ÀÎ
+//	{ // æ³…çŠ è‚ºåš æ€¥ç¶ æŸè…ç£ç‹¼ å˜é¦’æ è‚º ç‰¢ç§¦ åˆ˜å•Šç™»ç»° ç“·ä»¿æ‘¹ çŠ¬ç‰¢
 //		EPCClass LobbyPCClass = BladeIIGameImpl::GetLocalCharacterData().GetMainPlayerClass();
 //
 //		TMap<EItemPrimaryPointType, float> AllPrimPoints;
@@ -3145,16 +3145,16 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //		}
 //
 //		TMap<EItemOption, float> AllOptions;
-//		UB2LobbyInventory::GetAllEquippedOptionPointsLocalPlayer(AllOptions, LobbyPCClass); // ÃÖÁ¾ÀûÀ¸·Î Àû¿ëµÉ °ªÀÌ ³ª¿Í¾ß ÇÔ.
+//		UB2LobbyInventory::GetAllEquippedOptionPointsLocalPlayer(AllOptions, LobbyPCClass); // å¼¥è¾†åˆ©æ è‚º åˆ©ä¾©çª è”¼æ å”±å®¢å…· çªƒ.
 //		for (auto& ThisOption : AllOptions)
-//		{ // Item Option Àº int ·Î´Â ¼øÂ÷ÀûÀÌÁö´Â ¾ÊÀ» °Í.
+//		{ // Item Option ç¯® int è‚ºç»° é‰´ç’åˆ©æç˜¤ç»° è‡¼é˜‘ å·´.
 //			UE_LOG(LogBladeII, Log, TEXT("OptionType %d, amount %.4f"), (int32)ThisOption.Key, ThisOption.Value);
 //		}
 //		return true;
 //	}*/
 //	else if (FParse::Command(&Cmd, TEXT("SPJump")))
 //	{
-//		// ÇöÀç ¸Ê¿¡¼­ ·ÎµùµÈ SpawnPool µéÀÇ Æ¯Á¤ Wave ±îÁö °­Á¦ ½ÃÀÛ ¹× Á¾·á.
+//		// æ³…çŠ ç”˜ä¿Šè¾‘ è‚ºçˆ¹ç­‰ SpawnPool ç”¸ç‹¼ æ¼‚æ²¥ Wave é³–ç˜¤ ç¢åŠ› çŸ«ç´¯ æ£º è¾†ä¸°.
 //
 //		FString JumpFinishWaveNumStr;
 //		FParse::Token(Cmd, JumpFinishWaveNumStr, true);
@@ -3175,7 +3175,7 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //				AB2StageEventDirector* CurrSED = Cast<AB2StageEventDirector>(*ActorIt);
 //				if (CurrSED && CurrSED->GetDirectingEvent() != EStageEvent::ESEV_Clear)
 //				{
-//					CurrSED->CustomFinishShow(); // À§ °úÁ¤À» °ÅÄ¡¸é¼­ ³ª¿À´Â ¿¬ÃâµéÀº ³¡³»´Â °Ô ÁÁÀ» µí.
+//					CurrSED->CustomFinishShow(); // å›° è‹æ²¥é˜‘ èŠ­æ‘¹æè¾‘ å”±å·ç»° æ¥·å…ç”¸ç¯® åœºéƒ´ç»° éœ¸ äº®é˜‘ æ·€.
 //				}
 //			}
 //		}
@@ -3184,7 +3184,7 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("SpawnGuildNPC")))
 //	{
-//		// ÆÄ¶ó¹ÌÅÍ ÃßÃâ
+//		// é¢‡æ‰¼å›ºç£ çœ å…
 //		FString IDString;
 //		FParse::Token(Cmd, IDString, true);
 //		const int32 MercenaryID = FCString::Atoi(*IDString);
@@ -3195,7 +3195,7 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //
 //		FTransform SpawnTransform;
 //		ABladeIIPlayer* B2Player = Cast<ABladeIIPlayer>(UGameplayStatics::GetLocalPlayerCharacter(Inworld));
-//		if (B2Player) // ÇÃ·¹ÀÌ¾î¿¡¼­ ¾à°£ ºñ²¸³­ À§Ä¡¿¡
+//		if (B2Player) // æ•²é¥­æç»¢ä¿Šè¾‘ è·åŸƒ åšå“ºæŠ„ å›°æ‘¹ä¿Š
 //		{
 //			SpawnTransform = B2Player->GetTransform();
 //			SpawnTransform.AddToTranslation(FVector(100.0f, 0.0f, 100.0f));
@@ -3260,10 +3260,10 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("SpawnNPC")))
 //	{
-//		// NPCClassInfo ¿¡ µî·ÏµÈ NPC spawn. MonsterSpawnPool ¼³Ä¡ ¾øÀÌ Áï¼®¿¡¼­ Ä¿¸Çµå·Î spawn ½ÃÅ°°í ½ÍÀ» ¶§
-//		// "SpawnNPC ClassName VariationName" ClassName °ú VariationName Àº °¢°¢ ENPCClass ¶û ENPCClassVariation Ç×¸ñ¿¡¼­ prefix »« °Å
+//		// NPCClassInfo ä¿Š æ®¿åºŸç­‰ NPC spawn. MonsterSpawnPool æ±²æ‘¹ ç»æ æºœç±ä¿Šè¾‘ ç›®ç›–é›è‚º spawn çŸ«è™ç»Š é…µé˜‘ é”­
+//		// "SpawnNPC ClassName VariationName" ClassName è‹ VariationName ç¯® é˜¿é˜¿ ENPCClass å°” ENPCClassVariation äº²æ ¼ä¿Šè¾‘ prefix çŒ¾ èŠ­
 //
-//		// ÆÄ¶ó¹ÌÅÍ ÃßÃâ
+//		// é¢‡æ‰¼å›ºç£ çœ å…
 //		FString ClassStr;
 //		FParse::Token(Cmd, ClassStr, true);
 //		ENPCClass WantedClass = UB2NPCSingleClassInfo::FindNPCClassEnumFromTrimmedName(ClassStr);
@@ -3272,13 +3272,13 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //		FParse::Token(Cmd, ClassVariStr, true);
 //		ENPCClassVariation WantedClassVariation = UB2NPCSingleClassInfo::FindNPCClassVariEnumFromTrimmedName(ClassVariStr);
 //		
-//		bool bSpawnAsBoss = FParse::Param(Cmd, TEXT("Boss")); // SpawnPool ÀÇ boss °İÀ¸·Î.. ÀÌ°É ÁöÁ¤ÇÏ·Á¸é Variation µµ ÁöÁ¤ÇØ¾ß..
+//		bool bSpawnAsBoss = FParse::Param(Cmd, TEXT("Boss")); // SpawnPool ç‹¼ boss æ‹œæ è‚º.. æå§ ç˜¤æ²¥çªå¦¨æ Variation æ¡£ ç˜¤æ²¥ç§¦å…·..
 //
 //		if (WantedClass != ENPCClass::ENC_End)
 //		{
 //			FTransform SpawnTransform;
 //			ABladeIIPlayer* B2Player = Cast<ABladeIIPlayer>(UGameplayStatics::GetLocalPlayerCharacter(Inworld));
-//			if (B2Player) // ÇÃ·¹ÀÌ¾î¿¡¼­ ¾à°£ ºñ²¸³­ À§Ä¡¿¡
+//			if (B2Player) // æ•²é¥­æç»¢ä¿Šè¾‘ è·åŸƒ åšå“ºæŠ„ å›°æ‘¹ä¿Š
 //			{
 //				SpawnTransform = B2Player->GetTransform();
 //				SpawnTransform.AddToTranslation(FVector(100.0f, 0.0f, 100.0f));
@@ -3286,7 +3286,7 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //
 //			FActorSpawnParameters SpawnInfo;
 //			SpawnInfo.Owner = B2Player;
-//			SpawnInfo.bDeferConstruction = true; // Need deferred construction and manually call FinishSpawning. AutoPossessAI ¼³Á¤ ¹× NPCClassInfo Àû¿ëÀ» À§ÇØ DeferConstruction ÀÌ ÇÊ¿ä.
+//			SpawnInfo.bDeferConstruction = true; // Need deferred construction and manually call FinishSpawning. AutoPossessAI æ±²æ²¥ æ£º NPCClassInfo åˆ©ä¾©é˜‘ å›°ç§¦ DeferConstruction æ é˜å¤¸.
 //			SpawnInfo.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
 //			SpawnInfo.ObjectFlags |= RF_Transient;	// We do not want to save them into the map.
 //
@@ -3300,18 +3300,18 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //				{					
 //					SpawnedNPC->AutoPossessAI = EAutoPossessAI::Spawned;
 //
-//					FMobSpawnedBirthplaceInfo DummyBirthplaceInfo; // ½ÇÁ¦·Î Birthplace ´Â ¾øÁö¸¸..
-//					DummyBirthplaceInfo.bSpawnedAsBossMob = bSpawnAsBoss; // ¿ä°Å Àü´ŞÇÏ·Á°í.
+//					FMobSpawnedBirthplaceInfo DummyBirthplaceInfo; // è§’åŠ›è‚º Birthplace ç»° ç»ç˜¤çˆ¶..
+//					DummyBirthplaceInfo.bSpawnedAsBossMob = bSpawnAsBoss; // å¤¸èŠ­ å‚ˆå´”çªå¦¨ç»Š.
 //					SpawnedNPC->SetBirthPlace(DummyBirthplaceInfo);
 //
 //					SpawnedNPC->FinishSpawning(SpawnTransform);
 //					SnapBladeIICharacterToGround(SpawnedNPC);
 //
-//					// Boss ¸÷ÀÌ¸é UI Å×½ºÆ®°¡ ÇÏ³ªÀÇ ¸ñÀûÀÌ´Ï ¼¼ÆÃÇÒ ¼ö ÀÖ´Â °Íµé ÃÖ´ëÇÑ..
+//					// Boss å„ææ UI æŠ›èƒ¶é£˜å•Š çªå”±ç‹¼ æ ¼åˆ©æèª æŠ€æ³¼ä¸” è ä¹ç»° å·´ç”¸ å¼¥æªèŒ„..
 //					UB2UIDocBattle* DocBattle = UB2UIDocHelper::GetDocBattle();
 //					if (bSpawnAsBoss && DocBattle)
 //					{
-//						DocBattle->SetbCurrentlyBossAppeared(true); // Á×À» ¶§ ´Ù½Ã ¸®¼ÂÇØ¾ß ÇÔ.
+//						DocBattle->SetbCurrentlyBossAppeared(true); // ç£·é˜‘ é”­ ä¿ƒçŸ« åºœæ‚¸ç§¦å…· çªƒ.
 //						DocBattle->SetBossMobClass(WantedClass);
 //						DocBattle->SetBossMobClassVariation(WantedClassVariation);
 //						DocBattle->SetBossHPMax(SpawnedNPC->GetMaxHealth());
@@ -3328,11 +3328,11 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("SpawnDummyNPC")))
 //	{
-//		// NPCClassInfo ¿¡ µî·ÏµÈ NPC ¸¦ dummy ·Î spawn. 
-//		// SpawnNPC ´Â ½ÇÁ¦·Î ÀüÅõ¸¦ ¹úÀÌ´Â NPC ¸¦ spawn ½ÃÅ°Áö¸¸ ÀÌ°Ç SpawnDummyPlayer Ã³·³ ¾Ö´Ï¸ŞÀÌ¼Ç¸¸ ÇÑ´Ù.
-//		// "SpawnDummyNPC ClassName VariationName" ClassName °ú VariationName Àº °¢°¢ ENPCClass ¶û ENPCClassVariation Ç×¸ñ¿¡¼­ prefix »« °Å
+//		// NPCClassInfo ä¿Š æ®¿åºŸç­‰ NPC ç”« dummy è‚º spawn. 
+//		// SpawnNPC ç»° è§’åŠ›è‚º å‚ˆæ§ç”« å›½æç»° NPC ç”« spawn çŸ«è™ç˜¤çˆ¶ ææ‰’ SpawnDummyPlayer è´¸çƒ¦ å±€èªçš‹æè®°çˆ¶ èŒ„ä¿ƒ.
+//		// "SpawnDummyNPC ClassName VariationName" ClassName è‹ VariationName ç¯® é˜¿é˜¿ ENPCClass å°” ENPCClassVariation äº²æ ¼ä¿Šè¾‘ prefix çŒ¾ èŠ­
 //
-//		// ÆÄ¶ó¹ÌÅÍ ÃßÃâ
+//		// é¢‡æ‰¼å›ºç£ çœ å…
 //		FString ClassStr;
 //		FParse::Token(Cmd, ClassStr, true);
 //		ENPCClass WantedClass = UB2NPCSingleClassInfo::FindNPCClassEnumFromTrimmedName(ClassStr);
@@ -3369,13 +3369,13 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //		{
 //			FTransform SpawnTransform;
 //			ABladeIIPlayer* B2Player = Cast<ABladeIIPlayer>(UGameplayStatics::GetLocalPlayerCharacter(Inworld));
-//			if (B2Player) // ÇÃ·¹ÀÌ¾î¿¡¼­ ¾à°£ ºñ²¸³­ À§Ä¡¿¡
+//			if (B2Player) // æ•²é¥­æç»¢ä¿Šè¾‘ è·åŸƒ åšå“ºæŠ„ å›°æ‘¹ä¿Š
 //			{
 //				SpawnTransform = B2Player->GetTransform();
 //				SpawnTransform.AddToTranslation(FVector(200.0f, 0.0f, 200.0f));
 //			}
 //
-//			// iOS ÄÄÆÄÀÏ ¿¡·¯
+//			// iOS å“ªé¢‡è€ ä¿ŠçŸ¾
 //			/*
 //			ABladeIITestDummyNPC* NewSpawned = ABladeIITestDummyNPC::SpawnUtil(Inworld, WantedClass, WantedClassVariation, SpawnTransform,
 //				ParsedSpawnFloatingInterval, ParsedSpawnDamageFxInterval);
@@ -3383,20 +3383,20 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //			if (NewSpawned)
 //			{
 //				if (ParsedAnimStateString == TEXT("Rand") || ParsedAnimStateString == TEXT("Random"))
-//				{ // ·£´ıÇÏ°Ô ÇÃ·¹ÀÌ
+//				{ // ç½šå¾…çªéœ¸ æ•²é¥­æ
 //					NewSpawned->SetUseRandomAttackState(true);
 //				}
 //				else
-//				{ // Á¤ÇØ³õ°í ÇÏ³ª ÇÃ·¹ÀÌ
+//				{ // æ²¥ç§¦åˆç»Š çªå”± æ•²é¥­æ
 //					NewSpawned->SetUseRandomAttackState(false);
 //					NewSpawned->SetDirectAttackStateByKeyword(ParsedAnimStateString);
 //				}
 //
 //				NewSpawned->SetCooltimeBetweenAnim(ParsedAnimCooltime);
 //
-//				// ±âº»ÀûÀ¸·Î´Â ¾È ¿òÁ÷ÀÌ°í Æ¯º°È÷ ÀÎÀÚ¸¦ ÁÖ¸é ÀÌµ¿ÀÌ³ª È¸Àü °¡´ÉÇÏ°Ô
+//				// æ‰å¤¯åˆ©æ è‚ºç»° æ•‘ æ¡†æµæç»Š æ¼‚å–Šæ´’ ç‰¢ç£Šç”« æ—æ ææ‚¼æå”± é›€å‚ˆ å•Šç“·çªéœ¸
 //				if (FParse::Param(Cmd, TEXT("Move"))) {
-//					// È¸Àü¾øÀÌ ÀÌµ¿¸¸ ÇÏ´Â °Ç ¿ì½º²Î½º·¯¿ì´Ï µÑ ´Ù ¤»
+//					// é›€å‚ˆç»æ ææ‚¼çˆ¶ çªç»° æ‰’ å¿«èƒ¶å‚èƒ¶çŸ¾å¿«èª ç¬› ä¿ƒ ã›
 //					NewSpawned->SetMaintainLocation(false);
 //					NewSpawned->SetMaintainRotation(false);
 //				}
@@ -3418,12 +3418,12 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //			B2Player->ForceCounterAttack();
 //		}
 //	}
-//	else if (FParse::Command(&Cmd, TEXT("B2SED"))) // ¿¬Ãâ Àå¸é °­Á¦ ¾ø¾Ö±â. ½ÃÀÛ ÈÄ ½ºÅµÀÌ ¾Æ´Ï¶ó ½ÃÀÛÁ¶Â÷ ÇÏÁö ¾Ê´Â °ÍÀ¸·Î Å©·¡½¬ ÃßÀû µîÀ» À§ÇÑ Å×½ºÆ®¿ë.
+//	else if (FParse::Command(&Cmd, TEXT("B2SED"))) // æ¥·å… å˜æ ç¢åŠ› ç»å±€æ‰. çŸ«ç´¯ é¥¶ èƒ¶è¯ºæ é…’èªæ‰¼ çŸ«ç´¯ç‚¼ç’ çªç˜¤ è‡¼ç»° å·´æ è‚º å†œè´°æµ† çœ åˆ© æ®¿é˜‘ å›°èŒ„ æŠ›èƒ¶é£˜ä¾©.
 //	{
 //		FString OnOffStr;
 //		FParse::Token(Cmd, OnOffStr, true);
 //				
-//		// GCheat_SkipEventSceneCount ¿Í´Â ¹İ´ë.. ¤Ñ.¤Ñ
+//		// GCheat_SkipEventSceneCount å®¢ç»° é¦†æª.. ã±.ã±
 //		if (OnOffStr == TEXT("On") || OnOffStr == TEXT("True") || OnOffStr == TEXT("1"))
 //		{
 //			GCheat_CompleteIgnoreEventScene = false;
@@ -3436,7 +3436,7 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //		if (GCheat_CompleteIgnoreEventScene){
 //			UE_LOG(LogBladeII, Log, TEXT("Stage event scene will be completely off. It might be impossible to play through some stage."));
 //		}
-//		else{ // GCheat_SkipEventSceneCount °¡ ÀÖÀ» ¼ö ÀÖÀ¸´Ï
+//		else{ // GCheat_SkipEventSceneCount å•Š ä¹é˜‘ è ä¹æ èª
 //			UE_LOG(LogBladeII, Log, TEXT("Stage event scene is possible by CompleteIgnore cheat, but could be still off by other cheat."));
 //		}	
 //
@@ -3451,11 +3451,11 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //
 //		if (SecifiedCount > 0)
 //		{
-//			GCheat_SkipEventSceneCount = SecifiedCount; // Á¤ÇØÁø °³¼ö¸¸Å­ÀÇ ¿¬ÃâÀå¸é¸¸ Åë°úÇÒ °Í.
+//			GCheat_SkipEventSceneCount = SecifiedCount; // æ²¥ç§¦æŸ³ ä¿ºèçˆ¶æ€’ç‹¼ æ¥·å…å˜æçˆ¶ çƒ¹è‹ä¸” å·´.
 //		}
 //		else if (OnOffOrCountStr == TEXT("On") || OnOffOrCountStr == TEXT("True"))
 //		{
-//			GCheat_SkipEventSceneCount = 100000000; // ´Ü¼øÇÑ turn-on ÀÌ¸é °Á Á¸³ª Å« ¼ıÀÚ¸¦ Áà¼­ »ç½Ç»ó °è¼Ó ½ºÅµ µÇµµ·Ï. ¾îÂ÷ÇÇ °³¹ß¿ë Ä¡Æ®ÀÌ´Ï.
+//			GCheat_SkipEventSceneCount = 100000000; // çªœé‰´èŒ„ turn-on ææ å‚² ç²®å”± å¥´ ç®­ç£Šç”« æ‹è¾‘ è¤è§’æƒ‘ æ‹ŒåŠ  èƒ¶è¯º ç™»æ¡£åºŸ. ç»¢ç’ä¹” ä¿ºæƒ¯ä¾© æ‘¹é£˜æèª.
 //		}
 //		else if (OnOffOrCountStr == TEXT("Off") || OnOffOrCountStr == TEXT("False") || OnOffOrCountStr == TEXT("0"))
 //		{
@@ -3464,20 +3464,20 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //
 //		if (GCheat_SkipEventSceneCount > 0){
 //			
-//			// Áö±İ ÇÃ·¹ÀÌ µÇ´Â °Ô ÀÖ´Ù¸é ³¡³»ÀÚ.
+//			// ç˜¤é™› æ•²é¥­æ ç™»ç»° éœ¸ ä¹ä¿ƒæ åœºéƒ´ç£Š.
 //			for (FActorIterator ActorIt(Inworld); ActorIt; ++ActorIt)
 //			{
 //				AB2StageEventDirector* CurrSED = Cast<AB2StageEventDirector>(*ActorIt);
 //				if (CurrSED && CurrSED->GetDirectingEvent() != EStageEvent::ESEV_Clear && CurrSED->IsPlayingShow())
 //				{
-//					//--GCheat_SkipEventSceneCount; ÀÌ°Ç Æ÷ÇÔ½ÃÅ°Áö ¸»ÀÚ..
+//					//--GCheat_SkipEventSceneCount; ææ‰’ å™¨çªƒçŸ«è™ç˜¤ å¯Œç£Š..
 //					CurrSED->CustomFinishShow();
 //				}
 //			}
 //
 //			UE_LOG(LogBladeII, Log, TEXT("Stage event scene will be skipped for %d times, but some essential scene will still be played."), GCheat_SkipEventSceneCount);
 //		}
-//		else{ // GCheat_CompleteIgnoreEventScene ÀÌ ÀÖÀ» ¼ö ÀÖÀ¸´Ï
+//		else{ // GCheat_CompleteIgnoreEventScene æ ä¹é˜‘ è ä¹æ èª
 //			UE_LOG(LogBladeII, Log, TEXT("Stage event scene is possible by SkipEventScene cheat, but could be still off by other cheat."));
 //		}
 //
@@ -3501,7 +3501,7 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //		FString DifficultyStr;
 //		FParse::Token(Cmd, DifficultyStr, true);
 //
-//		// 0 º¸´Ù Å©¸é StageManager ÂÊ¿¡¼­ ¿À¹ö¶óÀÌµå ÇØ¼­ »ç¿ëÇÒ °ÍÀÓ.
+//		// 0 ç„Šä¿ƒ å†œæ StageManager ç‡ä¿Šè¾‘ å·æ»šæ‰¼æé› ç§¦è¾‘ è¤ä¾©ä¸” å·´çƒ™.
 //		GCheat_StageDifficultyOverride = FCString::Atof(*DifficultyStr);
 //
 //		AB2StageGameMode* B2SGM = Cast<AB2StageGameMode>(UGameplayStatics::GetGameMode(Inworld));
@@ -3516,8 +3516,8 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //				{
 //					float HealthRatio = CastedCharacter->Health / CastedCharacter->MaxHealth;
 //					CastedCharacter->CharacterLevel = B2SGM->GetCurrentStageDifficultyScale();
-//					CastedCharacter->InitializeCombatStats(); // ÀÌ¹Ì spawn µÈ ¾ÖµéÀº ·¹º§¿¡ µû¶ó ÀüÅõ·Â Àç°è»ê.
-//					CastedCharacter->Health = HealthRatio * CastedCharacter->MaxHealth; // Àç°è»ê ÈÄ¿¡ HP ¸¸¶¥ Â÷¹Ç·Î ºñÀ²¸¸ ¸ÂÃçÁÜ ¤»
+//					CastedCharacter->InitializeCombatStats(); // æå›º spawn ç­‰ å±€ç”¸ç¯® é¥­éª‡ä¿Š è¶æ‰¼ å‚ˆæ§ä»¿ çŠæ‹Œé­‚.
+//					CastedCharacter->Health = HealthRatio * CastedCharacter->MaxHealth; // çŠæ‹Œé­‚ é¥¶ä¿Š HP çˆ¶é¡¶ ç’éª¨è‚º åšå•¦çˆ¶ å˜è‹—æ·‹ ã›
 //				}
 //			}
 //		}
@@ -3526,10 +3526,10 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("PCMerge")))
 //	{
-//		// Mesh merge Å×½ºÆ®. UEngine::HandleMergeMeshCommand Âü°í. ÀÎÀÚ¸¦ ÅëÇØ ¸®¼Ò½º¸¦ ³Ñ°ÜÁÖÁö ¾ÊÀ¸¸é ´Ü¼øÈ÷ ¸ŞÀÎ Ä³¸¯°ú ÅÂ±× Ä³¸¯ ¸Ş½¬¸¦ merge ³¥³¥ 
-//		// ÀÌ°Ç ±æ°Ô ÀÎÀÚ ³Ö¾îÁÖ±â ¾î·Á¿î ¸ğ¹ÙÀÏ È¯°æ ÀÛµ¿ Å×½ºÆ®¸¦ ¿°µÎ¿¡ µĞ °Å
+//		// Mesh merge æŠ›èƒ¶é£˜. UEngine::HandleMergeMeshCommand æ›¼ç»Š. ç‰¢ç£Šç”« çƒ¹ç§¦ åºœå®¶èƒ¶ç”« é€è´¥æ—ç˜¤ è‡¼æ æ çªœé‰´æ´’ çš‹ç‰¢ æŸè…è‹ æ€•å¼Š æŸè… çš‹æµ†ç”« merge å¿å¿ 
+//		// ææ‰’ è¾¨éœ¸ ç‰¢ç£Š æŒç»¢æ—æ‰ ç»¢å¦¨æ¬¾ è‘›å®˜è€ åˆ¸ç‰ˆ ç´¯æ‚¼ æŠ›èƒ¶é£˜ç”« å ªæ»´ä¿Š æ•Œ èŠ­
 //
-//		bool bGenerateNewSkeleton = FParse::Param(Cmd, TEXT("NewSkeleton")); // Skeleton À» »õ·Î ¸¸µé°Å³ª Ã¹¹øÂ° ¼Ò½º ¸Ş½¬ÀÇ skeleton À» Á¶ÇÕµÈ ¸Ş½¬ÀÇ skeleton À¸·Î »ç¿ë.
+//		bool bGenerateNewSkeleton = FParse::Param(Cmd, TEXT("NewSkeleton")); // Skeleton é˜‘ è´§è‚º çˆ¶ç”¸èŠ­å”± éœ‰é”…æ³ å®¶èƒ¶ çš‹æµ†ç‹¼ skeleton é˜‘ ç‚¼é’¦ç­‰ çš‹æµ†ç‹¼ skeleton æ è‚º è¤ä¾©.
 //
 //		// array of source meshes that will be merged
 //		TArray<USkeletalMesh*> SourceMeshList;
@@ -3537,7 +3537,7 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //		TArray<FSkelMeshMergeMtrlOverrideMapping> SrcMtrlOverrides;
 //
 //		ABladeIIPlayer* B2Player = Cast<ABladeIIPlayer>(UGameplayStatics::GetLocalPlayerCharacter(Inworld));
-//		if (!B2Player){ // ÀÌ°Ç ¿©ÇÏ°£ ÇÊ¿ä. °á°ú¹°À» ¿©±â¿¡ ³ÖÀ» °Å¶ó
+//		if (!B2Player){ // ææ‰’ å’¯çªåŸƒ é˜å¤¸. æ¬è‹æ‹±é˜‘ å’¯æ‰ä¿Š æŒé˜‘ èŠ­æ‰¼
 //			return true;
 //		}
 //				 
@@ -3551,7 +3551,7 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //			CmdCopy = CmdCopy.Right(CmdCopy.Len() - Token.Len() - 1);
 //		}
 //		if (Tokens.Num() >= 2)
-//		{ // Ä¿¸Çµå ÀÎÀÚ·Î skeletal mesh ¸¦ ³Ñ°ÜÁØ °æ¿ì.
+//		{ // ç›®ç›–é› ç‰¢ç£Šè‚º skeletal mesh ç”« é€è´¥éœ– ç‰ˆå¿«.
 //			for (int32 I = 0; I < Tokens.Num(); ++I)
 //			{
 //				USkeletalMesh * SrcMesh = LoadObject<USkeletalMesh>(NULL, *Tokens[I], NULL, LOAD_None, NULL);
@@ -3580,13 +3580,13 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //				if (ThisMeshResource && ThisMeshResource->LODModels.Num() > 0)
 //				{
 //					FSkelMeshMergeSectionMapping NewSectionMap;
-//					FSkelMeshMergeMtrlOverrideMapping NewMtrlMap; // ¹°·Ğ ³ªÁß¿¡ section ID Á¢±ÙÇÒ ÇÊ¿ä ¾øÀÌ Çö ½ÃÁ¡¿¡¼­ ¹Ù·Î material override ¸¦..
-//					for (int32 SI = 0; SI < ThisMeshResource->LODModels[0].Sections.Num(); ++SI) // ForceSectionMapping Àº LODModel 0 ¹ø ±âÁØÀ¸·Î ÇÏ¸é µÊ.
+//					FSkelMeshMergeMtrlOverrideMapping NewMtrlMap; // æ‹±æ²¸ å”±åä¿Š section ID ç«‹è¾Ÿä¸” é˜å¤¸ ç»æ æ³… çŸ«ç—¢ä¿Šè¾‘ å®˜è‚º material override ç”«..
+//					for (int32 SI = 0; SI < ThisMeshResource->LODModels[0].Sections.Num(); ++SI) // ForceSectionMapping ç¯® LODModel 0 é”… æ‰éœ–æ è‚º çªæ å‡³.
 //					{
 //						NewSectionMap.SectionIDs.Add(ForceSectionID);
 //
-//						// ¼½¼ÇÀ» ÇÕÄ¡°Ô µÇ¸é ÆÄÆ®º° ¼½¼ÇÀ» ÇÕÃÄ¼­ »ç¿ëÇÏ±â À§ÇØ ÁØºñµÈ º°µµÀÇ material À» »ç¿ëÇÑ´Ù. °°Àº ¼½¼ÇÀÌ¸é µ¿ÀÏÇÑ material À» »ç¿ëÇØ¾ß ÇÔ.
-//						// MergeSections ¿¡¼­µµ ¿©ÀüÈ÷ null ÀÏ ¼ö ÀÖ´Ù. ±×·± °æ¿ì´Â ¿ø·¡ material À» ¾²´Â °Çµ¥ ¿©ÀüÈ÷ ¸í½ÃÀûÀ¸·Î ´ÜÀÏ ¼½¼ÇÀ» ±¸¼ºÇÏ´Â ÆÄÆ®°¡ ÀÖÀ¸¸é ±×·¸°Ô µÉ µí
+//						// å†€è®°é˜‘ é’¦æ‘¹éœ¸ ç™»æ é¢‡é£˜å–Š å†€è®°é˜‘ é’¦åªšè¾‘ è¤ä¾©çªæ‰ å›°ç§¦ éœ–åšç­‰ å–Šæ¡£ç‹¼ material é˜‘ è¤ä¾©èŒ„ä¿ƒ. éç¯® å†€è®°ææ æ‚¼è€èŒ„ material é˜‘ è¤ä¾©ç§¦å…· çªƒ.
+//						// MergeSections ä¿Šè¾‘æ¡£ å’¯å‚ˆæ´’ null è€ è ä¹ä¿ƒ. å¼Šç¹ ç‰ˆå¿«ç»° ç›”è´° material é˜‘ é™ç»° æ‰’å• å’¯å‚ˆæ´’ ç–™çŸ«åˆ©æ è‚º çªœè€ å†€è®°é˜‘ å¤‡å·±çªç»° é¢‡é£˜å•Š ä¹æ æ å¼ŠçŠ¯éœ¸ çª æ·€
 //
 //						NewMtrlMap.SectionMatOverrides.Add(CurrentSkeletalMesh->Materials[ThisMeshResource->LODModels[0].Sections[SI].MaterialIndex].MaterialInterface);
 //						++ForceSectionID;
@@ -3642,7 +3642,7 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //
 //			if (HeroDoc)
 //			{
-//				//Battle UI¾÷µ¥ÀÌÆ®
+//				//Battle UIè¯€å•æé£˜
 //				FB2UIDocKey DocKeySkill(EUIDocType::Skill, SkillId);
 //				UB2UIDocManager* UIDocManager = UB2UIDocManager::GetInstance();
 //				auto* DocSkill = UIDocManager ? UIDocManager->GetDoc<UB2UIDocSkill>(DocKeySkill) : NULL;
@@ -3657,7 +3657,7 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //				if (BattleMainScene)
 //					BattleMainScene->BindDocMainChar(HeroDoc);
 //
-//				//SkillRTManager data¾÷µ¥ÀÌÆ®
+//				//SkillRTManager dataè¯€å•æé£˜
 //				ABladeIIPlayer* B2Player = Cast<ABladeIIPlayer>(UGameplayStatics::GetLocalPlayerCharacter(Inworld));
 //				if (B2Player)
 //				{
@@ -3707,7 +3707,7 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //		UE_LOG(LogBladeII, Log, TEXT("UseNonCompositedRawPCMesh %d"), (int32)GTest_UseNonCompositedRawPCMesh);
 //
 //		for (int32 PCI = 0; PCI < GetMaxPCClassNum(); ++PCI)
-//		{ // ·Îºñ¶ó¸é ¾÷µ¥ÀÌÆ®¸¦..
+//		{ // è‚ºåšæ‰¼æ è¯€å•æé£˜ç”«..
 //			LobbyUpdateCharacterPartClass<EPCClass>::GetInstance().Signal(IntToPCClass(PCI));
 //		}
 //
@@ -3717,10 +3717,10 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //	{
 //		FString BuffCatStr;
 //		FParse::Token(Cmd, BuffCatStr, true);
-//		const int32 BuffCat = FCString::Atoi(*BuffCatStr); // ¼ıÀÚ·Î ÁöÁ¤ÇØ¼­ 0 : ÀÏ¹İBuff, 1 : TeamBuff, 2 : StateAttack, 3 : ResurrectBuff, 4 : Influence
+//		const int32 BuffCat = FCString::Atoi(*BuffCatStr); // ç®­ç£Šè‚º ç˜¤æ²¥ç§¦è¾‘ 0 : è€é¦†Buff, 1 : TeamBuff, 2 : StateAttack, 3 : ResurrectBuff, 4 : Influence
 //		FString BuffTypeStr;
 //		FParse::Token(Cmd, BuffTypeStr, true);
-//		const int32 BuffTypeInt = FCString::Atoi(*BuffTypeStr); // BuffCat ¿¡ µû¶ó ´Ù¸§, 2Áø¼öÀÎ TeamBuff µµ ±×³É ´Ù¸¥ °Å¶û ¸¶Âù°¡Áö·Î Ãë±ŞÇÏÀÚ..
+//		const int32 BuffTypeInt = FCString::Atoi(*BuffTypeStr); // BuffCat ä¿Š è¶æ‰¼ ä¿ƒæŠš, 2æŸ³èç‰¢ TeamBuff æ¡£ å¼Šæˆ ä¿ƒå¼— èŠ­å°” ä»˜è›®å•Šç˜¤è‚º ç§’é­çªç£Š..
 //
 //		ABladeIIPlayer* LocalB2Player = Cast<ABladeIIPlayer>(UGameplayStatics::GetLocalPlayerCharacter(Inworld));
 //		if (LocalB2Player)
@@ -3734,11 +3734,11 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //					BuffEffectInfo->SpawnBreakTextEffect(LocalB2Player);
 //				}break;
 //				case 6: {
-//					// ÀÌ°Ç ÇöÀç FloatingDamageNum ÂÊ¿¡..
+//					// ææ‰’ æ³…çŠ FloatingDamageNum ç‡ä¿Š..
 //					CharacterTakeDamageClass<ABladeIICharacter*, float, bool>::GetInstance().Signal(LocalB2Player, FMath::RandRange(1.0f, 2000.0f), true);
 //				}break;
 //				case 7: {
-//					// ÀÌ°Ç »ç½Ç Text °¡ ¾Æ´Ñ Effect. EndEffect ÀÏÁö ¿©ºÎ´Â ·£´ı.
+//					// ææ‰’ è¤è§’ Text å•Š é…’å›± Effect. EndEffect è€ç˜¤ å’¯ä½•ç»° ç½šå¾….
 //					BuffEffectInfo->CharacterBuffEffect((EBuffType)BuffTypeInt, LocalB2Player, FMath::RandBool());
 //				}break;
 //				default:{
@@ -3871,31 +3871,31 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("TestWingEvolScene")))
 //	{
-//		BeginWingEvolutionSceneClass<EPCClass>::GetInstance().Signal(EPCClass::EPC_End); // ¿ä ÀÌº¥Æ®¸¦ ¹Ş´Â ¿µ¿õ°ü¸® ¸ğµå¿©¾ß.
+//		BeginWingEvolutionSceneClass<EPCClass>::GetInstance().Signal(EPCClass::EPC_End); // å¤¸ æäº¥é£˜ç”« ç½ç»° åº·æ—·åŒ…åºœ è‘›é›å’¯å…·.
 //		return true;
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("STLog")))
-//	{ // B2_SCOPED_TRACK_LOG ¿¡ ÀÇÇÑ ·Î±×°¡ ³Ê¹« ¸¹¾Æ¼­ ´Ù¸¥ µğ¹ö±ë¿¡ ¹æÇØ°¡ µÉ ¶§¿¡ ²ö´Ù.
-//		// ±×³É ÀÌÂÊ ·Î±× Ä«Å×°í¸® µû·Î ¸¸µé¾úÀ¸´Ï ±×°É °¡Áö°í Log LogB2ScopedCallTrack Off ¸í·ÉÀ» ÁÖ¾îµµ µÊ.
+//	{ // B2_SCOPED_TRACK_LOG ä¿Š ç‹¼èŒ„ è‚ºå¼Šå•Š å‘ˆå…¬ è…¹é…’è¾‘ ä¿ƒå¼— å¼æ»šå½ªä¿Š è§„ç§¦å•Š çª é”­ä¿Š é¦‹ä¿ƒ.
+//		// å¼Šæˆ æç‡ è‚ºå¼Š å¢¨æŠ›ç»Šåºœ è¶è‚º çˆ¶ç”¸èŒæ èª å¼Šå§ å•Šç˜¤ç»Š Log LogB2ScopedCallTrack Off ç–™é£é˜‘ æ—ç»¢æ¡£ å‡³.
 //		FB2ScopedCallTracker::bIsOn = !FB2ScopedCallTracker::bIsOn;
 //		UE_LOG(LogBladeII, Log, TEXT("B2ScopedCallTrack Log being turned %s"), FB2ScopedCallTracker::bIsOn ? TEXT("ON") : TEXT("OFF"));
 //		return true;
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("STimeLog")))
-//	{ // ¿©±âµµ µ¶ÀÚÀûÀÎ ·Î±× Ä«Å×°í¸®°¡ ÀÖÀ¸´Ï ±×°É ½áµµ.. LogB2ScopedTimeLog
+//	{ // å’¯æ‰æ¡£ åˆ€ç£Šåˆ©ç‰¢ è‚ºå¼Š å¢¨æŠ›ç»Šåºœå•Š ä¹æ èª å¼Šå§ ç»“æ¡£.. LogB2ScopedTimeLog
 //		FB2ScopedTimeLogger::bIsOn = !FB2ScopedTimeLogger::bIsOn;
 //		UE_LOG(LogBladeII, Log, TEXT("FB2ScopedTimeLogger being turned %s"), FB2ScopedTimeLogger::bIsOn ? TEXT("ON") : TEXT("OFF"));
 //		return true;
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("MissySexy")))
 //	{
-//		// ¼½½ÃÅğÆó¿©Ä³·è¿¡ ºÎ´ã¾ø´Â ÀüÅõ¸¦ À§ÇÑ Àåºñ ±¸¼º. ÀÌ°Íµé¸¸ ÀÔÈ÷°í Àå°© ºÎÃ÷ ´Ù ¹ş±æ°Í. 
-//		data_trader::ExecHandler::GetInstance().ExecuteShellCommand(TEXT("AddItem 1100600 4")); // ServerCmd µéÀÓ
+//		// å†€çŸ«ç¡¼ä¼å’¯æŸç–¯ä¿Š ä½•æ·¬ç»ç»° å‚ˆæ§ç”« å›°èŒ„ å˜åš å¤‡å·±. æå·´ç”¸çˆ¶ æ¶æ´’ç»Š å˜ç™Œ ä½•æ˜ ä¿ƒ å“ˆè¾¨å·´. 
+//		data_trader::ExecHandler::GetInstance().ExecuteShellCommand(TEXT("AddItem 1100600 4")); // ServerCmd ç”¸çƒ™
 //		data_trader::ExecHandler::GetInstance().ExecuteShellCommand(TEXT("AddItem 1102600 4"));
 //		data_trader::ExecHandler::GetInstance().ExecuteShellCommand(TEXT("AddItem 1200600 4"));
 //		data_trader::ExecHandler::GetInstance().ExecuteShellCommand(TEXT("AddItem 1202600 4"));
 //		
-//		// ¾Æ·¡ ¾Ç¼¼»ç¸®´Â °Á Ã¼·Â ´Ã¸®±â ¿ë.
+//		// é…’è´° å©æŠ€è¤åºœç»° å‚² çœ‰ä»¿ ç–µåºœæ‰ ä¾©.
 //		data_trader::ExecHandler::GetInstance().ExecuteShellCommand(TEXT("AddItem 1105600 4"));
 //		data_trader::ExecHandler::GetInstance().ExecuteShellCommand(TEXT("AddItem 1106600 4"));
 //		data_trader::ExecHandler::GetInstance().ExecuteShellCommand(TEXT("AddItem 1107600 4"));
@@ -3903,10 +3903,10 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //		data_trader::ExecHandler::GetInstance().ExecuteShellCommand(TEXT("AddItem 1206600 4"));
 //		data_trader::ExecHandler::GetInstance().ExecuteShellCommand(TEXT("AddItem 1207600 4"));
 //
-//		// °ËÅõ»çÀÇ ¿ì½º²Î½º·¯¿î ·èÀ» À§ÇØ Çï¸ä¸¸ 6¼º¸ÂÃã.
+//		// å…«æ§è¤ç‹¼ å¿«èƒ¶å‚èƒ¶çŸ¾æ¬¾ ç–¯é˜‘ å›°ç§¦ ç§‹é•çˆ¶ 6å·±å˜å‹‰.
 //		data_trader::ExecHandler::GetInstance().ExecuteShellCommand(TEXT("AddItem 1001600 4"));
 //
-//		// ±×¸®°í Ãß°¡·Î ÁÖ¸Ó´Ïµµ ³Ë³ËÇÏ°Ô Ã¤¿öÁÖÀÚ. ÀÌ°ÍµéÀº GetAccount ÇØ ÁÖ¾î¾ß ¹İ¿µµÊ.
+//		// å¼Šåºœç»Š çœ å•Šè‚º æ—èµ£èªæ¡£ ä¹˜ä¹˜çªéœ¸ ç›²å†µæ—ç£Š. æå·´ç”¸ç¯® GetAccount ç§¦ æ—ç»¢å…· é¦†åº·å‡³.
 //		data_trader::ExecHandler::GetInstance().ExecuteShellCommand(TEXT("IncGold 10000000"));
 //		data_trader::ExecHandler::GetInstance().ExecuteShellCommand(TEXT("IncGem 1000000"));
 //		data_trader::ExecHandler::GetInstance().ExecuteShellCommand(TEXT("IncDarkCrystal 1000000"));
@@ -3914,7 +3914,7 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //		data_trader::ExecHandler::GetInstance().ExecuteShellCommand(TEXT("IncSocialPoint 1000"));
 //		data_trader::ExecHandler::GetInstance().ExecuteShellCommand(TEXT("IncHeroPiece 1000"));
 //
-//		// ³¯°³ °­È­ µîÀÇ Àç·á.
+//		// æœä¿º ç¢æ‹³ æ®¿ç‹¼ çŠä¸°.
 //		data_trader::ExecHandler::GetInstance().ExecuteShellCommand(TEXT("AddItem 8000005 1 999"));
 //		data_trader::ExecHandler::GetInstance().ExecuteShellCommand(TEXT("AddItem 8000006 1 999"));
 //		data_trader::ExecHandler::GetInstance().ExecuteShellCommand(TEXT("AddItem 8000007 1 999"));
@@ -3953,7 +3953,7 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //			CastedEquipPlace = static_cast<EItemEquipPlace>((int32)EItemEquipPlace::EIEP_End - 1);
 //		}
 //
-//		// Options= ÀÌÈÄ·Î´Â ID-Value,ID-Value ÀÌ·± ½ÄÀ¸·Î Ãß°¡ÇÏ±â ¿øÇÏ´Â ¼¼ºÎ ¿É¼ÇµéÀ» ÁöÁ¤. ID ´Â ¼­¹ö B2ItemOption ¼ıÀÚ ±âÁØ. ±× ¼ıÀÚ°¡ ±âÈ¹ ¿¢¼¿ ÆÄÀÏ¿¡¼­ º¸´Â °Í°ú ÀÏÄ¡ÇÏ¹Ç·Î
+//		// Options= æé¥¶è‚ºç»° ID-Value,ID-Value æç¹ ä¾¥æ è‚º çœ å•Šçªæ‰ ç›”çªç»° æŠ€ä½• å¯è®°ç”¸é˜‘ ç˜¤æ²¥. ID ç»° è¾‘æ»š B2ItemOption ç®­ç£Š æ‰éœ–. å¼Š ç®­ç£Šå•Š æ‰è£™ ç«£ä¼ é¢‡è€ä¿Šè¾‘ ç„Šç»° å·´è‹ è€æ‘¹çªéª¨è‚º
 //		FString RawOptionString;
 //		FParse::Value(Cmd, TEXT("Options="), RawOptionString, false); // No stop on comma.
 //		TArray<FString> ParsedOptionStringArray;
@@ -3964,11 +3964,11 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //		{
 //			FString OptionIDStr;
 //			FString OptionValueStr;
-//			// ID-Value °¢°¢À» ÇÏÀÌÇÂ ±âÁØÀ¸·Î ¶¼¾î³¿.
+//			// ID-Value é˜¿é˜¿é˜‘ çªæé”¹ æ‰éœ–æ è‚º éƒ½ç»¢æ™¨.
 //			if (ThisParsedStr.Split(TEXT("-"), &OptionIDStr, &OptionValueStr))
 //			{
 //				int32 OptionIDInt = FCString::Atoi(*OptionIDStr);
-//				EItemOption CliItemOption = SvrToCliOptionType(OptionIDInt); // ID ¼ıÀÚ´Â ¼­¹ö Å¸ÀÔ¿¡¼­ »ç¿ëÇÏ´Â °ÍÀ¸·Î Client enum type À¸·Î º¯°æ.
+//				EItemOption CliItemOption = SvrToCliOptionType(OptionIDInt); // ID ç®­ç£Šç»° è¾‘æ»š é¸¥æ¶ä¿Šè¾‘ è¤ä¾©çªç»° å·´æ è‚º Client enum type æ è‚º å‡½ç‰ˆ.
 //				
 //				float OptionValueFloat = FCString::Atof(*OptionValueStr);
 //
@@ -3982,7 +3982,7 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //			}
 //		}
 //
-//		// ÀÏ´ÜÀº ±âÁ¸ °É ³¯¸®´Â ¿É¼ÇÀ¸·Î.. ¿©±â ¸Å°³º¯¼ö·Î ÁÙ ¼öµµ ÀÖ°í..
+//		// è€çªœç¯® æ‰ç²® å§ æœåºœç»° å¯è®°æ è‚º.. å’¯æ‰ æ¦‚ä¿ºå‡½èè‚º ä¸´ èæ¡£ ä¹ç»Š..
 //		UB2LobbyInventory::DevOnlyReplaceEquippedOptions(CastedPCClass, CastedEquipPlace, FinalGatheredOptions);
 //
 //		LobbyUpdateAllItemIconsClass<>::GetInstance().Signal();
@@ -3994,9 +3994,9 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //		FString DisplaySetNumStr;
 //		FParse::Token(Cmd, DisplaySetNumStr, true);
 //		int32 DisplaySetNum = FCString::Atoi(*DisplaySetNumStr);
-//		UB2LobbyUI_CharStatDetail::SetDebugDrawPlayerStatMode(DisplaySetNum); // DisplaySetNum ÀÌ 0 º¸´Ù Å©¸é º¸ÀÌ±â ½ÃÀÛÇÒ °Í.
+//		UB2LobbyUI_CharStatDetail::SetDebugDrawPlayerStatMode(DisplaySetNum); // DisplaySetNum æ 0 ç„Šä¿ƒ å†œæ ç„Šææ‰ çŸ«ç´¯ä¸” å·´.
 //
-//		// ½ºÅ×ÀÌÁö ¸ğµå¶ó¸é ¾îÂ÷ÇÇ ÇöÀç ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ°¡ »ç¿ëµÉ °Í. ÀÌ°Ç ³×Æ®¿öÅ© ¸ğµå ¿ëÀ¸·Î ÀÇµµÇÑ °Í.
+//		// èƒ¶æŠ›æç˜¤ è‘›é›æ‰¼æ ç»¢ç’ä¹” æ³…çŠ æ•²é¥­æç»¢ æŸè…ç£å•Š è¤ä¾©çª å·´. ææ‰’ åŒ™é£˜å†µå†œ è‘›é› ä¾©æ è‚º ç‹¼æ¡£èŒ„ å·´.
 //		int32 PCClassInt = 0;
 //		FParse::Value(Cmd, TEXT("NetPC="), PCClassInt);
 //		EPCClass OverridePCClass = IntToPCClass(PCClassInt);
@@ -4004,7 +4004,7 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //
 //		return true;
 //	}
-//	else if (FParse::Command(&Cmd, TEXT("NumToPlayRaid"))) // ³İ°ÔÀÓ¸ğµå ÇÃ·¹ÀÌ Âü°¡ÀÚ ÁÙÀÌ±â, ·¹ÀÌµå´Â È¥ÀÚÇÏ±â°¡ µÇ¹Ç·Î ¾È¾¸
+//	else if (FParse::Command(&Cmd, TEXT("NumToPlayRaid"))) // é½¿éœ¸çƒ™è‘›é› æ•²é¥­æ æ›¼å•Šç£Š ä¸´ææ‰, é¥­æé›ç»° å»ç£Šçªæ‰å•Š ç™»éª¨è‚º æ•‘é–
 //	{
 //		FString NumStr;
 //		FParse::Token(Cmd, NumStr, true);
@@ -4017,7 +4017,7 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //		return true;
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("ClearLocalSavedState")))
-//	{// Å×½ºÆ®¸¦ À§ÇØ Ä¡Æ®Å°·Î Á¦°ø. Æ¯Á¤ »óÈ²¿¡¼­ Á¶½ÉÇØ¼­ »ç¿ëÇØ¾ß ÇÒ ±â´É.
+//	{// æŠ›èƒ¶é£˜ç”« å›°ç§¦ æ‘¹é£˜è™è‚º åŠ›å‚. æ¼‚æ²¥ æƒ‘ç‚”ä¿Šè¾‘ ç‚¼ç¼´ç§¦è¾‘ è¤ä¾©ç§¦å…· ä¸” æ‰ç“·.
 //		ClearLocalIniSavedState(); 
 //		return true;
 //	}
@@ -4036,7 +4036,7 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //		UE_LOG(LogBladeII, Log, TEXT("Dev UI Mode : %s"), gIsDevUI ? TEXT("ON") : TEXT("OFF"));
 //
 //#if !UE_BUILD_SHIPPING
-//		// ÇÊ¼ö±îÁø ¾Æ´Ï°í ´Ù¸¥ ÆÀ¿¡¼­ Å×½ºÆ® ÇÒ ¶§ µµÁß¿¡ ShowDevUI Ä¡°í ¹Ù·Î ¾÷µ¥ÀÌÆ® ¾ÈµÇ¸é Çì¸á±îºÁ ÆíÀÇ Â÷¿ø¿¡¼­ Á» ¾÷µ¥ÀÌÆ® ÇØ ÁÜ.
+//		// é˜èé³–æŸ³ é…’èªç»Š ä¿ƒå¼— è¯„ä¿Šè¾‘ æŠ›èƒ¶é£˜ ä¸” é”­ æ¡£åä¿Š ShowDevUI æ‘¹ç»Š å®˜è‚º è¯€å•æé£˜ æ•‘ç™»æ åº†ç¾”é³–æ¯« ç¥ˆç‹¼ ç’ç›”ä¿Šè¾‘ ç²± è¯€å•æé£˜ ç§¦ æ·‹.
 //		UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
 //		UB2UIBattleMain* BattleMainUI = UIMgrInst ? UIMgrInst->GetUI<UB2UIBattleMain>(UIFName::BattleMain) : NULL;
 //		if (BattleMainUI)
@@ -4138,7 +4138,7 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //		UKismetSystemLibrary::SetWindowTitle(FText::FromString(TitleStr));
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("TestResetStage")))
-//	{ // Å×½ºÆ® Ä¿¸Çµå Â÷¿ø¿¡¼­ AB2StageGameModeBase ¸¦ °¡Áö°í ÇÏÁö¸¸ ½ÇÁ¦ »ç¿ëÀº ÀÌ°Ô Çã¿ëµÈ Æ¯Á¤ °ÔÀÓ¸ğµå¿¡¼­¸¸ ÇØ¾ß ÇÑ´Ù.
+//	{ // æŠ›èƒ¶é£˜ ç›®ç›–é› ç’ç›”ä¿Šè¾‘ AB2StageGameModeBase ç”« å•Šç˜¤ç»Š çªç˜¤çˆ¶ è§’åŠ› è¤ä¾©ç¯® æéœ¸ å€¾ä¾©ç­‰ æ¼‚æ²¥ éœ¸çƒ™è‘›é›ä¿Šè¾‘çˆ¶ ç§¦å…· èŒ„ä¿ƒ.
 //		AB2StageGameModeBase* SGM = Cast<AB2StageGameModeBase>(UGameplayStatics::GetGameMode(Inworld));
 //		if (SGM)
 //		{
@@ -4211,7 +4211,7 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("Testpoikl2212")))
 //	{
-//		// ±ÇÇõÁß - Å×½ºÆ®¿ëÀ¸·Î ¾²´Â Ä¿¸ÇµåÀÔ´Ï´Ù.
+//		// é¼»é…‹å - æŠ›èƒ¶é£˜ä¾©æ è‚º é™ç»° ç›®ç›–é›æ¶èªä¿ƒ.
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("HeroTowerLoading")))
 //	{
@@ -4219,17 +4219,17 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //		UE_LOG(LogBladeII, Display, TEXT("HeroTowerGameMode restart without world loading %d"), (int32)gUseHeroTowerResetNoLoading);
 //		return true;
 //	}
-//	else if (FParse::Command(&Cmd, TEXT("CharFxLOD")) || FParse::Command(&Cmd, TEXT("CFxLOD"))) // "CFxLOD PC/Mob/Boss #" Ä³¸¯ÅÍ Á¾·ùº°·Î ParticleSystemComponent LOD Àû¿ë
+//	else if (FParse::Command(&Cmd, TEXT("CharFxLOD")) || FParse::Command(&Cmd, TEXT("CFxLOD"))) // "CFxLOD PC/Mob/Boss #" æŸè…ç£ è¾†å¹…å–Šè‚º ParticleSystemComponent LOD åˆ©ä¾©
 //	{
 //		FString TypeStr;
 //		FParse::Token(Cmd, TypeStr, true);
 //
 //		FString ParsedLODLevelStr;
-//		FParse::Token(Cmd, ParsedLODLevelStr, true); // ¾Ï°Íµµ ÁöÁ¤ ¾ÈµÇ¾ú´Ù¸é 0ÀÌ°ÚÁö. ±×·³ 0À¸·Î ¼¼ÆÃÇÏ¸é µÊ.
+//		FParse::Token(Cmd, ParsedLODLevelStr, true); // é å·´æ¡£ ç˜¤æ²¥ æ•‘ç™»èŒä¿ƒæ 0ææ‘†ç˜¤. å¼Šçƒ¦ 0æ è‚º æŠ€æ³¼çªæ å‡³.
 //		const int32 ParsedLODLevel = FCString::Atoi(*ParsedLODLevelStr);
 //
 //		if (TypeStr == TEXT("None")){
-//			// ¸ğµÎ ¸®¼Â
+//			// è‘›æ»´ åºœæ‚¸
 //			GB2CharFxCheatLODLevel_PC = -1;
 //			GB2CharFxCheatLODLevel_Mob = -1;
 //			GB2CharFxCheatLODLevel_Boss = -1;
@@ -4249,7 +4249,7 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //			GB2CharFxCheatLODLevel_Boss = ParsedLODLevel;
 //		}
 //		else{
-//			GB2CharFxCheatLODLevel_PC = -1; // ¹º°¡ ´Ù ¾Æ´Ñ °æ¿ìµµ ¸®¼Â
+//			GB2CharFxCheatLODLevel_PC = -1; // è´­å•Š ä¿ƒ é…’å›± ç‰ˆå¿«æ¡£ åºœæ‚¸
 //			GB2CharFxCheatLODLevel_Mob = -1;
 //			GB2CharFxCheatLODLevel_Boss = -1;
 //		}
@@ -4263,18 +4263,18 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //			if (ThisComp && ThisComp->Template)
 //			{
 //				if (IsB2CharFxCheatLODInUse()){
-//					ThisComp->SetLODLevel(0); // ¿©±â ³Ö¾îÁÖ´Â °ªÀº ÀÇ¹Ì¾ø°í °Á ¾÷µ¥ÀÌÆ® Â÷¿ø..
+//					ThisComp->SetLODLevel(0); // å’¯æ‰ æŒç»¢æ—ç»° è”¼ç¯® ç‹¼å›ºç»ç»Š å‚² è¯€å•æé£˜ ç’ç›”..
 //				}
 //				else {
 //					if (ThisComp->GetWorld()) {
-//						ThisComp->RestoreLODLevelToDesiredValue(); // ÀÌ·¯¸é ¿ø·¡ ¿¹»óµÇ´Â °ªÀ¸·Î µ¹¾Æ°¡·Á³ª
+//						ThisComp->RestoreLODLevelToDesiredValue(); // æçŸ¾æ ç›”è´° æŠ—æƒ‘ç™»ç»° è”¼æ è‚º å€’é…’å•Šå¦¨å”±
 //					}
 //				}
 //			}
 //		}
 //
 //#if !UE_BUILD_SHIPPING
-//		// È¤ Ä¿¸Çµå¸¦ ¾²´õ¶óµµ ¹öÆ° º¯°æµÇµµ·Ï..
+//		// è¶£ ç›®ç›–é›ç”« é™æ­¹æ‰¼æ¡£ æ»šç“¢ å‡½ç‰ˆç™»æ¡£åºŸ..
 //		UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
 //		UB2UIBattleMain* BattleMainUI = UIMgrInst ? UIMgrInst->GetUI<UB2UIBattleMain>(UIFName::BattleMain) : NULL;
 //		if (BattleMainUI)
@@ -4285,7 +4285,7 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //
 //		return true;
 //	}
-//	else if (FParse::Command(&Cmd, TEXT("RTMP"))) // Å×½ºÆ®¿¡ ¾²·Á°í ÂªÀº ¹öÀü..
+//	else if (FParse::Command(&Cmd, TEXT("RTMP"))) // æŠ›èƒ¶é£˜ä¿Š é™å¦¨ç»Š é™‹ç¯® æ»šå‚ˆ..
 //	{
 //		data_trader::ExecHandler::GetInstance().ExecuteShellCommand(TEXT("ResetTeamMatchPoint"));
 //		return true;
@@ -4354,12 +4354,12 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //		FParse::Token(Cmd, Lv2TimeStr, true);
 //
 //		if (Lv1TimeStr.Len() == 0)
-//		{ // ÀÌ °æ¿ì ´Ü¼øÈ÷ »óÅÂ On/Off 
+//		{ // æ ç‰ˆå¿« çªœé‰´æ´’ æƒ‘æ€• On/Off 
 //			gDrawPerfMark = !gDrawPerfMark;
 //		}
 //		else
 //		{
-//			gDrawPerfMark = true; // PerfMark ½Ã°£ ±âÁØ ÁöÁ¤ ½Ã ¹«Á¶°Ç ÄÒ´Ù.
+//			gDrawPerfMark = true; // PerfMark çŸ«åŸƒ æ‰éœ– ç˜¤æ²¥ çŸ« å…¬ç‚¼æ‰’ å›Šä¿ƒ.
 //			FB2ScopedCallTracker::PerfMarkLv1Time = FMath::Max(0.001f, FCString::Atof(*Lv1TimeStr));
 //			FB2ScopedCallTracker::PerfMarkLv2Time = FMath::Max(FB2ScopedCallTracker::PerfMarkLv1Time, FCString::Atof(*Lv2TimeStr));
 //		}
@@ -4390,18 +4390,18 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //			FLinearColor(0.0, 1.0f, 0.0f, 1.0f), 16, 5.0f);
 //		B2Scalability::AdjustScalabilityBySavedUserSelection(Inworld);
 //
-//		// GameplayOnlyLODQuality º¯°æÀÌ ¾ø¾îµµ bUseBladeIIScalabilityOverride ¿¡ µû¶ó ÀÎ°ÔÀÓ ¿¬Ãâ LOD Àû¿ëÀÌ ´Ş¶óÁú ¼ö ÀÖÀ¸´Ï BladeIIPlayer iteration µµ..
+//		// GameplayOnlyLODQuality å‡½ç‰ˆæ ç»ç»¢æ¡£ bUseBladeIIScalabilityOverride ä¿Š è¶æ‰¼ ç‰¢éœ¸çƒ™ æ¥·å… LOD åˆ©ä¾©æ å´”æ‰¼é¾™ è ä¹æ èª BladeIIPlayer iteration æ¡£..
 //		for (FActorIterator ItPlayer(Inworld); ItPlayer; ++ItPlayer)
 //		{
 //			ABladeIIPlayer* CastedPlayer = Cast<ABladeIIPlayer>(*ItPlayer);
 //			if (CastedPlayer)
-//			{ // È¤¿©³ª ¿µ»ó ÇÃ·¹ÀÌ µµÁßÀÌ¶ó ÇÏ´õ¶óµµ.. ¿¬Ãâ µµÁß¿¡´Â ´ëºÎºĞ BladeIIPlayer °¡ ¾Æ´Ñ SkeletalMeshActor °¡ »ç¿ëµÇ¹Ç·Î ÀÌ°ÍÀ» È£ÃâÇÏ´Â °Ô ¿µÇâÀ» ¹ÌÄ¡Áö ¾Ê´Â´Ù. ¾Æ´Ñ °æ¿ì¶ó ÇÏ´õ¶óµµ ¿¬Ãâ µµÁß¿¡ pause ¸Ş´º°¡ ³ª¿ÀÁöµµ ¾Ê°í..
+//			{ // è¶£å’¯å”± åº·æƒ‘ æ•²é¥­æ æ¡£åææ‰¼ çªæ­¹æ‰¼æ¡£.. æ¥·å… æ¡£åä¿Šç»° æªä½•ç›’ BladeIIPlayer å•Š é…’å›± SkeletalMeshActor å•Š è¤ä¾©ç™»éª¨è‚º æå·´é˜‘ é¾‹å…çªç»° éœ¸ åº·æ°¢é˜‘ å›ºæ‘¹ç˜¤ è‡¼ç»°ä¿ƒ. é…’å›± ç‰ˆå¿«æ‰¼ çªæ­¹æ‰¼æ¡£ æ¥·å… æ¡£åä¿Š pause çš‹æ˜¥å•Š å”±å·ç˜¤æ¡£ è‡¼ç»Š..
 //				CastedPlayer->SetupLODInfoForInGame();
 //			}
 //		}
 //		return true;
 //	}
-//	else if (FParse::Command(&Cmd, TEXT("GF"))) // ¿ì¸® °ÔÀÓ È¯°æ¿¡¼­ ÄÁÅÙÃ÷¿Í °áºÎµÈ feature µé On/Off ÇÏ¸é¼­ ¼º´É ÃøÁ¤À» À§ÇØ. ¸ğ¹ÙÀÏ µğ¹ÙÀÌ½º¿¡¼­ °£·«ÇÏ°Ô Ä¿¸Çµå ³ÖÀ» ¼ö ÀÖµµ·Ï Âª°Ô ÇÔ
+//	else if (FParse::Command(&Cmd, TEXT("GF"))) // å¿«åºœ éœ¸çƒ™ åˆ¸ç‰ˆä¿Šè¾‘ ç‰§åˆ¨æ˜å®¢ æ¬ä½•ç­‰ feature ç”¸ On/Off çªæè¾‘ å·±ç“· èŸæ²¥é˜‘ å›°ç§¦. è‘›å®˜è€ å¼å®˜æèƒ¶ä¿Šè¾‘ åŸƒå¸†çªéœ¸ ç›®ç›–é› æŒé˜‘ è ä¹æ¡£åºŸ é™‹éœ¸ çªƒ
 //	{
 //		FString FirstArgStr;
 //		FParse::Token(Cmd, FirstArgStr, true);
@@ -4409,25 +4409,25 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //		if (FirstArgStr == TEXT("FxParticle"))
 //		{
 //			bool bWasDisabled = (UAnimNotifyState_TimedParticleEffect::bDisableTimedParticleEffect || UAnimNotify_PlayParticleEffect::bDisablePlayParticleEffect || UB2DamageEffectInfo::bDisableDamageEffectParticle);
-//			// µÑÀÌ ¶È°°ÀÌ ÄÁÆ®·Ñ µÇµµ·Ï
+//			// ç¬›æ åº¦éæ ç‰§é£˜è´¹ ç™»æ¡£åºŸ
 //			UAnimNotifyState_TimedParticleEffect::bDisableTimedParticleEffect = !bWasDisabled;
 //			UAnimNotify_PlayParticleEffect::bDisablePlayParticleEffect = !bWasDisabled;
-//			UB2DamageEffectInfo::bDisableDamageEffectParticle = !bWasDisabled; // ÀÌ°Íµµ Æ÷ÇÔÀÎµ¥.. µû·Î ¶¼´Â°Ô ÁÁ³ª..
+//			UB2DamageEffectInfo::bDisableDamageEffectParticle = !bWasDisabled; // æå·´æ¡£ å™¨çªƒç‰¢å•.. è¶è‚º éƒ½ç»°éœ¸ äº®å”±..
 //
 //			BII_SCREEN_LOG(FString::Printf(TEXT("Particle from AnimNotify/EffectInfo %s"), bWasDisabled ? TEXT("ON") : TEXT("OFF")),
 //				FLinearColor(0.0, 1.0f, 0.0f, 1.0f), 16, 5.0f);
 //		}
-//		if (FirstArgStr == TEXT("FxNotify")) // FxParticle ÀÇ ÀÏºÎ
+//		if (FirstArgStr == TEXT("FxNotify")) // FxParticle ç‹¼ è€ä½•
 //		{
 //			bool bWasDisabled = (UAnimNotifyState_TimedParticleEffect::bDisableTimedParticleEffect || UAnimNotify_PlayParticleEffect::bDisablePlayParticleEffect);
-//			// µÑÀÌ ¶È°°ÀÌ ÄÁÆ®·Ñ µÇµµ·Ï
+//			// ç¬›æ åº¦éæ ç‰§é£˜è´¹ ç™»æ¡£åºŸ
 //			UAnimNotifyState_TimedParticleEffect::bDisableTimedParticleEffect = !bWasDisabled;
 //			UAnimNotify_PlayParticleEffect::bDisablePlayParticleEffect = !bWasDisabled;
 //
 //			BII_SCREEN_LOG(FString::Printf(TEXT("Particle from AnimNotify/EffectInfo %s"), bWasDisabled ? TEXT("ON") : TEXT("OFF")),
 //				FLinearColor(0.0, 1.0f, 0.0f, 1.0f), 16, 5.0f);
 //		}
-//		if (FirstArgStr == TEXT("DFX")) // FxParticle ÀÇ ÀÏºÎ
+//		if (FirstArgStr == TEXT("DFX")) // FxParticle ç‹¼ è€ä½•
 //		{
 //			UB2DamageEffectInfo::bDisableDamageEffectParticle = !UB2DamageEffectInfo::bDisableDamageEffectParticle;
 //
@@ -4460,12 +4460,12 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //		else if (FirstArgStr == TEXT("PC"))
 //		{
 //			ABladeIIPlayer::bHideAllPCs = !ABladeIIPlayer::bHideAllPCs;
-//			// SetHidden À» ÇØ¾ß Àû¿ëµÊ. ´Ù½Ã ÄÓ ¶§ ½ÇÁ¦·Î ¼û°ÜÁ® ÀÖ¾î¾ß ÇÏ´Â »óÅÂ¶ó¸é ¹®Á¦°¡ µÇ°ÚÁö¸¸.. Å×½ºÆ®ÇÏ´Âµ¥ ÀÌÁ¤µµÂëÀÌ¾ß
+//			// SetHidden é˜‘ ç§¦å…· åˆ©ä¾©å‡³. ä¿ƒçŸ« æŒ  é”­ è§’åŠ›è‚º è§è´¥å»‰ ä¹ç»¢å…· çªç»° æƒ‘æ€•æ‰¼æ å·©åŠ›å•Š ç™»æ‘†ç˜¤çˆ¶.. æŠ›èƒ¶é£˜çªç»°å• ææ²¥æ¡£ç æå…·
 //			for (FActorIterator ActorIt(Inworld); ActorIt; ++ActorIt)
 //			{
 //				ABladeIIPlayer* CastedPC = Cast<ABladeIIPlayer>(*ActorIt);
 //				if (CastedPC)
-//				{ // bHideAllPCs true ÇØ ³õ°í ÇÑ¹ø ¼û±â¸é ´Ù½Ã SetActorHiddenInGame(false) ÇØµµ ¾È ÄÑÁü.
+//				{ // bHideAllPCs true ç§¦ åˆç»Š èŒ„é”… è§æ‰æ ä¿ƒçŸ« SetActorHiddenInGame(false) ç§¦æ¡£ æ•‘ éš¾å’™.
 //					CastedPC->SetActorHiddenInGame(ABladeIIPlayer::bHideAllPCs);
 //				}
 //			}
@@ -4475,13 +4475,13 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //		else if (FirstArgStr == TEXT("NPC"))
 //		{
 //			ABladeIICharacter::bHideAllNPCs = !ABladeIICharacter::bHideAllNPCs;
-//			// SetHidden À» ÇØ¾ß Àû¿ëµÊ. ´Ù½Ã ÄÓ ¶§ ½ÇÁ¦·Î ¼û°ÜÁ® ÀÖ¾î¾ß ÇÏ´Â »óÅÂ¶ó¸é ¹®Á¦°¡ µÇ°ÚÁö¸¸.. Å×½ºÆ®ÇÏ´Âµ¥ ÀÌÁ¤µµÂëÀÌ¾ß
+//			// SetHidden é˜‘ ç§¦å…· åˆ©ä¾©å‡³. ä¿ƒçŸ« æŒ  é”­ è§’åŠ›è‚º è§è´¥å»‰ ä¹ç»¢å…· çªç»° æƒ‘æ€•æ‰¼æ å·©åŠ›å•Š ç™»æ‘†ç˜¤çˆ¶.. æŠ›èƒ¶é£˜çªç»°å• ææ²¥æ¡£ç æå…·
 //			for (FActorIterator ActorIt(Inworld); ActorIt; ++ActorIt)
 //			{
 //				ABladeIIPlayer* CastedPC = Cast<ABladeIIPlayer>(*ActorIt);
 //				ABladeIICharacter* CastedNPC = Cast<ABladeIICharacter>(*ActorIt);
 //				if (CastedNPC && !CastedPC)
-//				{ // bHideAllPCs true ÇØ ³õ°í ÇÑ¹ø ¼û±â¸é ´Ù½Ã SetActorHiddenInGame(false) ÇØµµ ¾È ÄÑÁü.
+//				{ // bHideAllPCs true ç§¦ åˆç»Š èŒ„é”… è§æ‰æ ä¿ƒçŸ« SetActorHiddenInGame(false) ç§¦æ¡£ æ•‘ éš¾å’™.
 //					CastedNPC->SetActorHiddenInGame(ABladeIICharacter::bHideAllNPCs);
 //				}
 //			}
@@ -4498,7 +4498,7 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //		return true;
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("CalmDown")))
-//	{ // ÄíÅ· ¹öÀüÀ¸·Î ¼­¹ö ¾È ºÙÀº »óÅÂ¿¡¼­ ÇÃ·¹ÀÌÇÒ ¶§ ¼Óµµ°¡ ÀÌ»óÇÏ°Ô »¡¶óÁ®¼­ ÀÌ·¸°Ô¶óµµ ±Ã¿©ÁöÃ¥.
+//	{ // æ»æ¬§ æ»šå‚ˆæ è‚º è¾‘æ»š æ•‘ å˜¿ç¯® æƒ‘æ€•ä¿Šè¾‘ æ•²é¥­æä¸” é”­ åŠ æ¡£å•Š ææƒ‘çªéœ¸ å¼§æ‰¼å»‰è¾‘ æçŠ¯éœ¸æ‰¼æ¡£ æ³µå’¯ç˜¤æ°“.
 //		ABladeIIPlayer* LocalB2Player = Cast<ABladeIIPlayer>(UGameplayStatics::GetLocalPlayerCharacter(Inworld));
 //		if (LocalB2Player)
 //		{
@@ -4524,11 +4524,11 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("ManagedInfoUnload")))
 //	{
-//		// ¿©±â¼­ º¯°æÇÏ·Á´Â º¯¼öÀÇ ini Ç×¸ñ ÀĞ¾îµéÀÌ´Â °ÍÀ» µÎ InfoAsset »ı¼ºÀÚ¿¡¼­ ÇÏ¹Ç·Î ¾ÆÁ÷ ÀĞ¾îµéÀÌÁö ¾Ê¾Ò´Ù¸é ¿©±â¼­ ÇØ µÒ.
+//		// å’¯æ‰è¾‘ å‡½ç‰ˆçªå¦¨ç»° å‡½èç‹¼ ini äº²æ ¼ ä½¬ç»¢ç”¸æç»° å·´é˜‘ æ»´ InfoAsset ç§¯å·±ç£Šä¿Šè¾‘ çªéª¨è‚º é…’æµ ä½¬ç»¢ç”¸æç˜¤ è‡¼ç–½ä¿ƒæ å’¯æ‰è¾‘ ç§¦ ç‹„.
 //		StaticFindPCClassInfoBox();
 //		StaticFindSkillAnimInfo();
 //
-//		// µÑÀ» µ¿½Ã¿¡ ¶È°°ÀÌ ¼¼ÆÃÇÒ ¼ö ÀÖµµ·Ï
+//		// ç¬›é˜‘ æ‚¼çŸ«ä¿Š åº¦éæ æŠ€æ³¼ä¸” è ä¹æ¡£åºŸ
 //		const bool bPrevManagedUnload = (!UB2PCClassInfoBox::ShouldUnloadAllPCClassInfoOnLevelTransition() && !UB2SkillAnimInfo::ShouldUnloadAllSkillAnimOnLevelTransition());
 //
 //		UB2PCClassInfoBox::DevSetManagedPCClassUnload(!bPrevManagedUnload);
@@ -4540,7 +4540,7 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //			FLinearColor(0.0, 1.0f, 0.0f, 1.0f), 16, 8.0f);
 //		return true;
 //	}
-//	else if (FParse::Command(&Cmd, TEXT("TestLoadAllPCClass"))) // PCClassInfo ·ÎµùµÇ´Â ¾çÀ» ÁÙÀÌ´Â °Ô ¾ó¸¶³ª µµ¿òÀÌ µÇ´ÂÁö º¸±â À§ÇÔ
+//	else if (FParse::Command(&Cmd, TEXT("TestLoadAllPCClass"))) // PCClassInfo è‚ºçˆ¹ç™»ç»° å‰§é˜‘ ä¸´æç»° éœ¸ å€”ä»˜å”± æ¡£æ¡†æ ç™»ç»°ç˜¤ ç„Šæ‰ å›°çªƒ
 //	{
 //		double fStartTime = FPlatformTime::Seconds();
 //		
@@ -4548,7 +4548,7 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //		int32 FullyLoadedNum = 0;
 //		if (PCClassInfoBox)
 //		{
-//			// ·ÎµùÀÌ ¾È µÇ¾î ÀÖ´Ù´Â °¡Á¤¿¡¼­ ÇÏ´Â °ÍÀÓ.
+//			// è‚ºçˆ¹æ æ•‘ ç™»ç»¢ ä¹ä¿ƒç»° å•Šæ²¥ä¿Šè¾‘ çªç»° å·´çƒ™.
 //			for (int32 PCI = 0; PCI < GetMaxPCClassNum(); ++PCI)
 //			{
 //				EPCClass ThisClassToLoad = IntToPCClass(PCI);
@@ -4556,7 +4556,7 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //				UB2PCClassInfo* LoadedClassInfo = PCClassInfoBox->GetSingleClassInfo(ThisClassToLoad);
 //				if (LoadedClassInfo)
 //				{
-//					if (LoadedClassInfo->GetInGameOnlyInfo(Inworld)) // ½ÇÁ¦·Î´Â InGameOnlyInfo ±îÁö ·ÎµùÇÏ¿©¾ß ÀÇ¹Ì ÀÖ´Â ¾çÀÇ µ¥ÀÌÅÍµéÀÌ ·ÎµùµÈ´Ù.
+//					if (LoadedClassInfo->GetInGameOnlyInfo(Inworld)) // è§’åŠ›è‚ºç»° InGameOnlyInfo é³–ç˜¤ è‚ºçˆ¹çªå’¯å…· ç‹¼å›º ä¹ç»° å‰§ç‹¼ å•æç£ç”¸æ è‚ºçˆ¹ç­‰ä¿ƒ.
 //					{
 //						++FullyLoadedNum;
 //					}
@@ -4569,9 +4569,9 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //			FLinearColor(0.0, 1.0f, 0.0f, 1.0f), 16, 8.0f);
 //		return true;
 //	}
-//	else if (FParse::Command(&Cmd, TEXT("TestLoadSkillAnims"))) // PCClassInfo ÀÇ ÀÏºÎ·Î¼­ ·ÎµùµÇ´ø SkillInfo ·Îµù Å×½ºÆ®
+//	else if (FParse::Command(&Cmd, TEXT("TestLoadSkillAnims"))) // PCClassInfo ç‹¼ è€ä½•è‚ºè¾‘ è‚ºçˆ¹ç™»å¸¦ SkillInfo è‚ºçˆ¹ æŠ›èƒ¶é£˜
 //	{
-//		bool bLoadAll = FParse::Param(Cmd, TEXT("All")); // ¾Æ´Ï¸é ±âº» ¸ğÇè ¸ğµå¿¡ ÇÊ¿äÇÑ °Í¸¸
+//		bool bLoadAll = FParse::Param(Cmd, TEXT("All")); // é…’èªæ æ‰å¤¯ è‘›æ°° è‘›é›ä¿Š é˜å¤¸èŒ„ å·´çˆ¶
 //
 //		double fStartTime = FPlatformTime::Seconds();
 //
@@ -4579,7 +4579,7 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //		UB2SkillAnimInfo* SkillAnimInfo = StaticFindSkillAnimInfo();
 //		if (SkillAnimInfo)
 //		{			
-//			// ·ÎµùÀÌ ¾È µÇ¾î ÀÖ´Ù´Â °¡Á¤¿¡¼­ ÇÏ´Â °ÍÀÓ.
+//			// è‚ºçˆ¹æ æ•‘ ç™»ç»¢ ä¹ä¿ƒç»° å•Šæ²¥ä¿Šè¾‘ çªç»° å·´çƒ™.
 //			for (int32 PCI = 0; PCI < GetMaxPCClassNum(); ++PCI)
 //			{
 //				EPCClass ThisClassToLoad = IntToPCClass(PCI);
@@ -4592,7 +4592,7 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //				}
 //				else
 //				{
-//					// ±âº» ¸ğÇè ¸ğµå¿¡ ÇÊ¿äÇÑ °Í ÀÌ¿Ü¿¡ °É·¯³½´Ù.
+//					// æ‰å¤¯ è‘›æ°° è‘›é›ä¿Š é˜å¤¸èŒ„ å·´ æå¯‡ä¿Š å§çŸ¾è¾°ä¿ƒ.
 //					if (ThisClassToLoad != BladeIIGameImpl::GetLocalCharacterData().GetMainPlayerClass() &&
 //						ThisClassToLoad != BladeIIGameImpl::GetLocalCharacterData().GetSubPlayerClass())
 //					{
@@ -4620,17 +4620,17 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //		BII_SCREEN_LOG(FString::Printf(TEXT("Character Default Material %s"), gUseCharacterDefaultMaterial ? TEXT("ON") : TEXT("OFF")),
 //			FLinearColor(0.0, 1.0f, 0.0f, 1.0f), 16, 5.0f);
 //
-//		// ÀÌÈÄ merge ³ª BeginPlay ½Ã¿¡ DefaultMaterial À» ¼¼ÆÃÇÏ´Âµ¥ Áï¼®¿¡¼­ º¯°æµµ ÇØ ÁÖ°í.. 
+//		// æé¥¶ merge å”± BeginPlay çŸ«ä¿Š DefaultMaterial é˜‘ æŠ€æ³¼çªç»°å• æºœç±ä¿Šè¾‘ å‡½ç‰ˆæ¡£ ç§¦ æ—ç»Š.. 
 //		for (FActorIterator ActorIt(Inworld); ActorIt; ++ActorIt)
 //		{
 //			ABladeIICharacter* CastedChar = Cast<ABladeIICharacter>(*ActorIt);
 //			if (CastedChar && CastedChar->GetMesh())
-//			{ // bHideAllPCs true ÇØ ³õ°í ÇÑ¹ø ¼û±â¸é ´Ù½Ã SetActorHiddenInGame(false) ÇØµµ ¾È ÄÑÁü.
+//			{ // bHideAllPCs true ç§¦ åˆç»Š èŒ„é”… è§æ‰æ ä¿ƒçŸ« SetActorHiddenInGame(false) ç§¦æ¡£ æ•‘ éš¾å’™.
 //				USkeletalMeshComponent* MainMeshComp = CastedChar->GetMesh();
 //				for (int32 MI = 0; MI < MainMeshComp->GetNumMaterials(); ++MI)
 //				{
-//					// ÀÌ°É ²°À» ¶§¿¡´Â Material override ¸¦ Å¬¸®¾î ÇØ ÁÖ´Âµ¥ ¾Æ¸¶ ÀÌ·¸°Ô ÇÏ¸é ¿ø·¡ ±â´ëµÇ´Â °É·Î µ¹¾Æ°¥ °Å °°Áö¸¸ ¾Æ´Ò ¼öµµ ÀÖ´Ù.
-//					// ¿©ÇÏ°£ Å×½ºÆ® ±â´ÉÀÎ ¸¶´ç¿¡ ±×·¸°Ô±îÁö..
+//					// æå§ èˆ¶é˜‘ é”­ä¿Šç»° Material override ç”« åŠªåºœç»¢ ç§¦ æ—ç»°å• é…’ä»˜ æçŠ¯éœ¸ çªæ ç›”è´° æ‰æªç™»ç»° å§è‚º å€’é…’å“ èŠ­ éç˜¤çˆ¶ é…’åŒ† èæ¡£ ä¹ä¿ƒ.
+//					// å’¯çªåŸƒ æŠ›èƒ¶é£˜ æ‰ç“·ç‰¢ ä»˜å¯¸ä¿Š å¼ŠçŠ¯éœ¸é³–ç˜¤..
 //					MainMeshComp->SetMaterial(MI, gUseCharacterDefaultMaterial ? UMaterial::GetDefaultMaterial(MD_Surface) : nullptr);
 //				}
 //			}
@@ -4680,13 +4680,13 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //			B2Player->LightComponent->DetachFromComponent(FDetachmentTransformRules(EDetachmentRule::KeepRelative, true));
 //
 //			if (gTestAttachLightCompMode == 0 || gTestAttachLightCompMode == 1)
-//			{ // Ä¸½¶¿¡ ºÙÀÌ´Âµ¥ 0 ¹øÀº ÀÌÈÄ Æ½¿¡¼­ Ãß°¡ Á¶Àı
+//			{ // æ¯è•‰ä¿Š å˜¿æç»°å• 0 é”…ç¯® æé¥¶ å¹³ä¿Šè¾‘ çœ å•Š ç‚¼ä¾‹
 //				B2Player->LightComponent->SetRelativeLocation(FVector(0.0f, 0.0f, B2Player->LightComponentAttachDistZ));
 //				B2Player->LightComponent->AttachToComponent(B2Player->GetRootComponent(), FAttachmentTransformRules(EAttachmentRule::KeepRelative, false));
 //			}
 //			else if(gTestAttachLightCompMode == 2)
 //			{
-//				// ·çÆ®º»¿¡ ±×³É
+//				// é£é£˜å¤¯ä¿Š å¼Šæˆ
 //				B2Player->LightComponent->SetRelativeLocation(FVector(0.0f, 0.0f, B2Player->LightComponentAttachDistZ + ZOffsetFromMatchingSKActorToBIICharacter(B2Player)));
 //				B2Player->LightComponent->AttachToComponent(B2Player->GetMesh(), FAttachmentTransformRules(EAttachmentRule::KeepRelative, false), B2PLAYER_ROOTBONE_NAME);
 //			}
@@ -4718,12 +4718,12 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //		}
 //		else
 //		{
-//			// Ã¹ ÀÎÀÚ ¾øÀ½ ±×³É On/Off
+//			// éœ‰ ç‰¢ç£Š ç»æ¾œ å¼Šæˆ On/Off
 //			gbTestTurnOffPlayerLight = !gbTestTurnOffPlayerLight;
 //			
 //			if (B2Player)
 //			{
-//				// ±×³É °»½Å »ï¾Æ¼­ Äİ ÇÏ´Â °Å.
+//				// å¼Šæˆ ç›è„š ä¼™é…’è¾‘ å¦® çªç»° èŠ­.
 //				B2Player->FormalSetPointLightOn(!gbTestTurnOffPlayerLight);
 //			}
 //			UE_LOG(LogBladeII, Display, TEXT("LocalPlayerCharacter Light %s"), gbTestTurnOffPlayerLight ? TEXT("Off") : TEXT("On"));
@@ -4753,14 +4753,14 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //		static bool bWasSetAdaptiveFOV = false;
 //
 //		bWasSetAdaptiveFOV = !bWasSetAdaptiveFOV;
-//		// AspectRatioAdaptiveFOV ¿¡ µû¸¥ °£´ÜÇÑ Å×½ºÆ®.
+//		// AspectRatioAdaptiveFOV ä¿Š è¶å¼— åŸƒçªœèŒ„ æŠ›èƒ¶é£˜.
 //		for (TObjectIterator<UCameraComponent> CamIT; CamIT; ++CamIT)
 //		{
 //			UCameraComponent* ThisComp = Cast<UCameraComponent>(*CamIT);
 //			if (ThisComp)
 //			{
 //				if (bWasSetAdaptiveFOV)
-//				{ // AspectRatioAdaptiveFOV ¸¦ »ç¿ëÇÏ·Á¸é ÀÏ´Ü Constraint ¸¦ ÇÏÁö ¾Ê¾Æ¾ß.
+//				{ // AspectRatioAdaptiveFOV ç”« è¤ä¾©çªå¦¨æ è€çªœ Constraint ç”« çªç˜¤ è‡¼é…’å…·.
 //					ThisComp->SetConstraintAspectRatio(false);
 //				}
 //				ThisComp->SetAspectRatioAdaptiveFOV(bWasSetAdaptiveFOV);
@@ -4823,13 +4823,13 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("TexGroupLODBias")))
 //	{
-//		FString FirstArg; // LODGroup ÁöÁ¤
+//		FString FirstArg; // LODGroup ç˜¤æ²¥
 //		FParse::Token(Cmd, FirstArg, true);
-//		FString SecondArg; // LODBias ¸¦ ¾ó¸¶³ª Á¶ÀıÇÒÁö ÁöÁ¤
+//		FString SecondArg; // LODBias ç”« å€”ä»˜å”± ç‚¼ä¾‹ä¸”ç˜¤ ç˜¤æ²¥
 //		FParse::Token(Cmd, SecondArg, true);
 //
 //		TEnumAsByte<enum TextureGroup> WantedLODGroup = TextureGroup::TEXTUREGROUP_MAX;
-//		// UEnum ·Î´Ù°¡ enum ¹®ÀÚ¿­À» ±×´ë·Î ¸ÊÇÎÇÒ ¼öµµ ÀÖ°ÚÁö¸¸ ±×³É Å×½ºÆ® Ä¿¸ÇµåÀÌ´Ï ÇÊ¿äÇÑ °Í¸¸ ´Ü¼øÈ÷...
+//		// UEnum è‚ºä¿ƒå•Š enum å·©ç£Šå‡¯é˜‘ å¼Šæªè‚º ç”˜ä¿ä¸” èæ¡£ ä¹æ‘†ç˜¤çˆ¶ å¼Šæˆ æŠ›èƒ¶é£˜ ç›®ç›–é›æèª é˜å¤¸èŒ„ å·´çˆ¶ çªœé‰´æ´’...
 //		if (FirstArg == TEXT("World")) {
 //			WantedLODGroup = TextureGroup::TEXTUREGROUP_World;
 //		}
@@ -4848,7 +4848,7 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //		else if (FirstArg == TEXT("CharS")) {
 //			WantedLODGroup = TextureGroup::TEXTUREGROUP_CharacterSpecular;
 //		}
-//		// TEXTUREGROUP_MAX ¸é ÀüÃ¼ ´Ù ÇÏ´Â °É·Î?
+//		// TEXTUREGROUP_MAX æ å‚ˆçœ‰ ä¿ƒ çªç»° å§è‚º?
 //
 //		int32 WantedLODBias = FCString::Atoi(*SecondArg);
 //
@@ -4887,7 +4887,7 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("RemielShow")))
 //	{
-//		FString FirstArg; // ¾î¶² ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ÇÒÁö.. ELobbyRelaxingDoumiState ÀÇ int Ä³½ºÆÃ
+//		FString FirstArg; // ç»¢æ« å±€èªçš‹æè®°é˜‘ ä¸”ç˜¤.. ELobbyRelaxingDoumiState ç‹¼ int æŸèƒ¶æ³¼
 //		FParse::Token(Cmd, FirstArg, true);
 //		int32 FirstArgInt = FCString::Atoi(*FirstArg);
 //		ELobbyRelaxingDoumiState WantedAnimState = static_cast<ELobbyRelaxingDoumiState>(FirstArgInt);
@@ -4924,7 +4924,7 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("ShopGirlShow")))
 //	{
-//		FString FirstArg; // ¾î¶² ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ÇÒÁö.. ELobbyShopGirlState ÀÇ int Ä³½ºÆÃ
+//		FString FirstArg; // ç»¢æ« å±€èªçš‹æè®°é˜‘ ä¸”ç˜¤.. ELobbyShopGirlState ç‹¼ int æŸèƒ¶æ³¼
 //		FParse::Token(Cmd, FirstArg, true);
 //		int32 FirstArgInt = FCString::Atoi(*FirstArg);
 //		ELobbyShopGirlState WantedAnimState = static_cast<ELobbyShopGirlState>(FirstArgInt);
@@ -4996,7 +4996,7 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //			FString RequestedName;
 //			if (ItemInfoTable->TryAsyncLoadOfEquipParts(WantedRefIds, RequestedName, true))
 //			{
-//				// ·Îµù ¿Ï·á ÈÄ ÇÚµé¸µ ¿¹¾à.
+//				// è‚ºçˆ¹ è‚¯ä¸° é¥¶ å‹¤ç”¸å‚… æŠ—è·.
 //				ItemInfoAsyncLoadTestObj.MarkAsyncLoadWaiting(WantedClass, WantedGrade, RequestedName);
 //			}
 //		}
@@ -5004,7 +5004,7 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("PLOnOff")))
 //	{
-//		// Æ¯Á¤ ÇÃ·§ÆûÀÇ ·»´õ¸µ ¹®Á¦ Á¶»ç ¿ë.
+//		// æ¼‚æ²¥ æ•²é˜€æ±½ç‹¼ åŠæ­¹å‚… å·©åŠ› ç‚¼è¤ ä¾©.
 //
 //		FString OnOffStr;
 //		FParse::Token(Cmd, OnOffStr, true);
@@ -5035,7 +5035,7 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //	}
 //	else if (FParse::Command(&Cmd, TEXT("DirOnOff")))
 //	{
-//		// Æ¯Á¤ ÇÃ·§ÆûÀÇ ·»´õ¸µ ¹®Á¦ Á¶»ç ¿ë.
+//		// æ¼‚æ²¥ æ•²é˜€æ±½ç‹¼ åŠæ­¹å‚… å·©åŠ› ç‚¼è¤ ä¾©.
 //
 //		FString OnOffStr;
 //		FParse::Token(Cmd, OnOffStr, true);
@@ -5116,7 +5116,7 @@ bool UB2StaticExecHelper::ExecDev(UWorld* Inworld, const TCHAR* Cmd, FOutputDevi
 //				FLinearColor(0.0, 1.0f, 0.0f, 1.0f), 16, 5.0f);
 //
 //
-//			// º°·Î ¿ëÀÇ¼±»ó¿¡ ÀÖÁö´Â ¾ÊÁö¸¸ ±×·¡µµ ¿ä°Íµµ º¯°æ ¿©Áö.
+//			// å–Šè‚º ä¾©ç‹¼æ€¥æƒ‘ä¿Š ä¹ç˜¤ç»° è‡¼ç˜¤çˆ¶ å¼Šè´°æ¡£ å¤¸å·´æ¡£ å‡½ç‰ˆ å’¯ç˜¤.
 //			if (DOFTest_Occlusion >= 0.0f)
 //			{
 //				CurrCamComp->PostProcessSettings.bOverride_DepthOfFieldOcclusion = true;

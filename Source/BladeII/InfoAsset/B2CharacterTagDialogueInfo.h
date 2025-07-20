@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 //#include "BladeII.h"
@@ -6,7 +6,8 @@
 #include "UObject/NoExportTypes.h"
 #include "B2AssetLoader.h"
 #include "Sound/SoundCue.h"
-#include "../Common/CommonStruct.h"
+#include "CommonStruct.h"
+#include "Engine/DataTable.h"  
 #include "B2CharacterTagDialogueInfo.generated.h"
 
 USTRUCT(BlueprintType)

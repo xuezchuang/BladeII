@@ -2,7 +2,7 @@
 #include "B2NetworkPlugin.h"
 
 #include "Config.h"
-
+#include <ctime>
 
 #define ENABLE_B2NETWORK_LOGGING 1
 
@@ -38,8 +38,9 @@ FString Logger::GetLogTime()
 
     const auto now = std::chrono::system_clock::now();
     std::time_t t = std::chrono::system_clock::to_time_t(now);
-    struct tm* timeinfo = std::localtime(&t);
-    std::strftime(buffer, MAX_SIZE, "%F %X", timeinfo);
+	struct tm timeinfo;
+	::localtime_s(&timeinfo ,&t);
+    ::strftime(buffer, MAX_SIZE, "%F %X", &timeinfo);
 
     return FString(buffer);
 }

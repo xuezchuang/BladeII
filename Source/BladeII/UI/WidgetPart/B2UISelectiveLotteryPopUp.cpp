@@ -1,4 +1,4 @@
-#include "B2UISelectiveLotteryPopUp.h"
+ï»¿#include "B2UISelectiveLotteryPopUp.h"
 #include "B2UISlotItem.h"
 #include "B2UICollectBookItemDetail.h"
 #include "B2UICollectBookIcon.h"
@@ -530,13 +530,13 @@ void UB2UISelectiveLotteryConsumItemPopup::SetItemData(const TArray<int32>& Item
 		}		
 	}
 
-	bool bCheck = true;			// ÇÏµå ÄÚµù °í±Ş, ÀÏ¹İ ½Â±Ş¼® ¿¹¿ÜÃ³¸®
+	bool bCheck = true;			// çªé› å†…çˆ¹ ç»Šé­, è€é¦† é“°é­ç± æŠ—å¯‡è´¸åºœ
 
 	for (int32 Index = 0; Index < ItemRefIds.Num(); Index++)
 	{
-		if (ItemRefIds[Index] == FItemRefIDHelper::GetRareWeaponUpgradeStoneID() ||		// °í±Ş ¹«±â ½Â±Ş¼®
-			ItemRefIds[Index] == FItemRefIDHelper::GetRareArmorUpgradeStoneID() ||		// °í±Ş ¹æ¾î±¸ ½Â±Ş¼®
-			ItemRefIds[Index] == FItemRefIDHelper::GetRareAccessoryUpgradeStoneID())		// °í±Ş Àå½Å±¸ ½Â±Ş¼®
+		if (ItemRefIds[Index] == FItemRefIDHelper::GetRareWeaponUpgradeStoneID() ||		// ç»Šé­ å…¬æ‰ é“°é­ç±
+			ItemRefIds[Index] == FItemRefIDHelper::GetRareArmorUpgradeStoneID() ||		// ç»Šé­ è§„ç»¢å¤‡ é“°é­ç±
+			ItemRefIds[Index] == FItemRefIDHelper::GetRareAccessoryUpgradeStoneID())		// ç»Šé­ å˜è„šå¤‡ é“°é­ç±
 		{
 			continue;
 		}

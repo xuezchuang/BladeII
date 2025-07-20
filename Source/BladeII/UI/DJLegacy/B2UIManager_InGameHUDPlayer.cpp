@@ -37,22 +37,22 @@ bool UB2UIManager_InGameHUDPlayer::InitUIManager(class ABladeIICharacter* InOwne
 		return false;
 	}
 	
-	// ÀÌ°Ç ÆÄÆ¼Å¬½Ã½ºÅÛ ±â¹İÀÎµ¥, ¿©ÇÏ°£ Widget °ú °°ÀÌ Ãë±Ş. ÀÌÀü¿£ UserWidget À¸·Î ±¸ÇöµÇ¾î ÀÖ¾úÀ½.
+	// ææ‰’ é¢‡èåŠªçŸ«èƒ¶è¢ æ‰é¦†ç‰¢å•, å’¯çªåŸƒ Widget è‹ éæ ç§’é­. æå‚ˆæµš UserWidget æ è‚º å¤‡æ³…ç™»ç»¢ ä¹èŒæ¾œ.
 	if (OwnerPlayer->HiddenMobPointerPSTemplate != NULL)
 	{
 		HiddenMobPointerPSInst = UGameplayStatics::SpawnEmitterAttached(OwnerPlayer->HiddenMobPointerPSTemplate, OwnerPlayer->GetRootComponent());
 	}
 
-	// Static ÇÏ°Ô Ãß°¡·Î »ı¼ºÇÒ °Ô ÀÖÀ¸¸ç ¿©±â¼­.
+	// Static çªéœ¸ çœ å•Šè‚º ç§¯å·±ä¸” éœ¸ ä¹æ å“¥ å’¯æ‰è¾‘.
 
-	// Ã³À½ºÎÅÍ Cinematic mode ÀÎ °æ¿ì°¡ ÀÖ´Âµ¥ UpdateManual ¿¡¼­ Ä³Ä¡ÇÏÁö ¸øÇÏ¹Ç·Î ÇÑ¹ø Ã¼Å©
+	// è´¸æ¾œä½•ç£ Cinematic mode ç‰¢ ç‰ˆå¿«å•Š ä¹ç»°å• UpdateManual ä¿Šè¾‘ æŸæ‘¹çªç˜¤ ç»™çªéª¨è‚º èŒ„é”… çœ‰å†œ
 	if (bCachedHUDHidingCinematicMode)
 	{
 		HideAll();
 	}
 #if !UE_BUILD_SHIPPING
 	extern bool gbHACKInGameUIHiddenByDevCommand;
-	if (gbHACKInGameUIHiddenByDevCommand) // °³¹ß¿ë Ä¿¸Çµå·Î ¼û±ä °æ¿ì¿¡ ´ëÇØ
+	if (gbHACKInGameUIHiddenByDevCommand) // ä¿ºæƒ¯ä¾© ç›®ç›–é›è‚º è§å˜ ç‰ˆå¿«ä¿Š æªç§¦
 	{
 		HideAll();
 	}
@@ -89,7 +89,7 @@ void UB2UIManager_InGameHUDPlayer::UpdateManual(float DeltaSeconds)
 
 void UB2UIManager_InGameHUDPlayer::DestroyPlayerWidgets()
 {
-	// DestroyUserWidgets Àº ¾Æ¹«°Íµµ ¾ÈÇÏ°í ÀÌ°Ç ´Ù¸¥ Á¶°Ç¿¡¼­ ºÒ¸®°Ô µÉ °Í.
+	// DestroyUserWidgets ç¯® é…’å…¬å·´æ¡£ æ•‘çªç»Š ææ‰’ ä¿ƒå¼— ç‚¼æ‰’ä¿Šè¾‘ é˜‚åºœéœ¸ çª å·´.
 	if (FloatingHPBarWidget)
 	{
 		FloatingHPBarWidget->DestroySelf();
@@ -100,7 +100,7 @@ void UB2UIManager_InGameHUDPlayer::DestroyPlayerWidgets()
 	{
 		UB2FloatingWidget* GoldAcqWidget = GoldAcqWidgetSetArray[GAI].FloatingWidget;
 		if (GoldAcqWidget && MasterUIManager)
-		{	// ¹İ³³
+		{	// é¦†åµ
 			MasterUIManager->TurnInFloatingWidget(EFloatingWidgetPoolClassType::EFWPCT_GoldAcq, GoldAcqWidget);
 		}
 	}
@@ -110,7 +110,7 @@ void UB2UIManager_InGameHUDPlayer::DestroyPlayerWidgets()
 	{
 		UB2FloatingWidget* DamageNumWidget = DamageNumWidgetSetArray[DWI].FloatingWidget;
 		if (DamageNumWidget && MasterUIManager)
-		{	// ¹İ³³
+		{	// é¦†åµ
 			MasterUIManager->TurnInFloatingWidget(EFloatingWidgetPoolClassType::EFWPCT_DamageNum_PC, DamageNumWidget);
 			OwnerCharacter->GetWorldTimerManager().ClearTimer(DamageNumWidgetSetArray[DWI].WidgetDestroyTimerHandle);
 		}
@@ -141,7 +141,7 @@ void UB2UIManager_InGameHUDPlayer::HideAll()
 		HiddenMobPointerPSInst->SetVisibility(false);
 	}
 
-	CachedPlayerController->SetVirtualJoystickVisibility(false); // VirtualJoystick Àº ´Ù¸¥ widget °ú´Â »ìÂ¦ ´Ù¸§.
+	CachedPlayerController->SetVirtualJoystickVisibility(false); // VirtualJoystick ç¯® ä¿ƒå¼— widget è‹ç»° æ··å¨„ ä¿ƒæŠš.
 }
 
 void UB2UIManager_InGameHUDPlayer::RestoreVisibilityAll()
@@ -158,7 +158,7 @@ void UB2UIManager_InGameHUDPlayer::RestoreVisibilityAll()
 	}
 	if (HiddenMobPointerPSInst)
 	{
-		HiddenMobPointerPSInst->SetVisibility(true); // ÀÏ´Ü ÄÑ ÁØ´Ù. ¾îÂ÷ÇÇ bCurrentlyHideAll ÀÌ ¾Æ´Ï¸é ¸ÅÆ½ °Ë»çÇÏ¸é¼­ visibility ¼¼ÆÃÇÏ°Ô µÉ °Í.
+		HiddenMobPointerPSInst->SetVisibility(true); // è€çªœ éš¾ éœ–ä¿ƒ. ç»¢ç’ä¹” bCurrentlyHideAll æ é…’èªæ æ¦‚å¹³ å…«è¤çªæè¾‘ visibility æŠ€æ³¼çªéœ¸ çª å·´.
 	}
 
 	CachedPlayerController->SetVirtualJoystickVisibility(!HiddenVirtualJoystick);
@@ -170,7 +170,7 @@ void UB2UIManager_InGameHUDPlayer::HideMobPointer(bool bInHide)
 
 	if (HiddenMobPointerPSInst)
 	{
-		HiddenMobPointerPSInst->SetVisibility(HiddenMobPointerOnlyVisiblityFlag); // ¾îÂ÷ÇÇ bCurrentlyHideAll ÀÌ ¾Æ´Ï¸é ¸ÅÆ½ °Ë»çÇÏ¸é¼­ visibility ¼¼ÆÃÇÏ°Ô µÉ °Í.
+		HiddenMobPointerPSInst->SetVisibility(HiddenMobPointerOnlyVisiblityFlag); // ç»¢ç’ä¹” bCurrentlyHideAll æ é…’èªæ æ¦‚å¹³ å…«è¤çªæè¾‘ visibility æŠ€æ³¼çªéœ¸ çª å·´.
 	}
 }
 
@@ -215,17 +215,17 @@ UB2FloatingGoldAcq* UB2UIManager_InGameHUDPlayer::CreateSingleGoldAcqWidget(int3
 
 	if (MasterUIManager)
 	{		
-		// ÀÌÁ¦ »ı¼ºÀÌ ¾Æ´Ï¶ó Rent ÀÌ´Ù. »ı¼ºÀÌ µÉ ¼öµµ ÀÖ±ä ÇÏÁö.
+		// æåŠ› ç§¯å·±æ é…’èªæ‰¼ Rent æä¿ƒ. ç§¯å·±æ çª èæ¡£ ä¹å˜ çªç˜¤.
 		UB2FloatingGoldAcq* NewGoldAcqWidget = Cast<UB2FloatingGoldAcq>(MasterUIManager->RentFloatingWidget(
 			EFloatingWidgetPoolClassType::EFWPCT_GoldAcq, CachedPlayerController, OwnerCharacter
 		));
 		if (NewGoldAcqWidget)
 		{			
-			// ¿ø·¡ GoldAcqWidget ÇÏ³ª¸¸ »ı¼ºÇØ¼­ ¸Å SuckedGold ÀÌº¥Æ®¸¶´Ù »õ·Î ÆÄ¶ó¹ÌÅÍ ¼¼ÆÃÇÏ´ø ÀÌÀü ÄÚµå ÀÜÀçÀÎµ¥ ³öµÖ¼­ ¾ÈµÉ °Íµµ ¾ø¾î º¸¿©¼­ ±×´ë·Î ¾¸.
-			// -> ³öµ×±æ·¡ ´ÙÇà.. °á±¹ FloatWidget Pooling À» ÇÏ¸é¼­ ÀÌÀü ¹æ½ÄÀÌ ÇÊ¿äÇØÁü
+			// ç›”è´° GoldAcqWidget çªå”±çˆ¶ ç§¯å·±ç§¦è¾‘ æ¦‚ SuckedGold æäº¥é£˜ä»˜ä¿ƒ è´§è‚º é¢‡æ‰¼å›ºç£ æŠ€æ³¼çªå¸¦ æå‚ˆ å†…é› å„¡çŠç‰¢å• å‡ºæŠµè¾‘ æ•‘çª å·´æ¡£ ç»ç»¢ ç„Šå’¯è¾‘ å¼Šæªè‚º é–.
+			// -> å‡ºåº•è¾¨è´° ä¿ƒé’.. æ¬æƒ« FloatWidget Pooling é˜‘ çªæè¾‘ æå‚ˆ è§„ä¾¥æ é˜å¤¸ç§¦å’™
 			NewGoldAcqWidget->NotifyPlayerSuckedGold(AcquiredAmount);
 
-			if (bCurrentlyHideAll) // µµÁß¿¡ »ı¼ºÇÑ´Ù¸é ¼û±â´Â °É ±î¸Ô¾î¼± ¾ÈµÇ°Ú´Ù.
+			if (bCurrentlyHideAll) // æ¡£åä¿Š ç§¯å·±èŒ„ä¿ƒæ è§æ‰ç»° å§ é³–å†ˆç»¢æ€¥ æ•‘ç™»æ‘†ä¿ƒ.
 			{
 				NewGoldAcqWidget->ForceHide();
 			}
@@ -233,7 +233,7 @@ UB2FloatingGoldAcq* UB2UIManager_InGameHUDPlayer::CreateSingleGoldAcqWidget(int3
 			FDynamicFloatingWidgetSet NewWidgetSet;
 			NewWidgetSet.FloatingWidget = NewGoldAcqWidget;
 
-			// VisibleDuration À¸·Î ÀÛµ¿ÇÏ´Â ÇØÁ¦ Å¸ÀÌ¸Ó ¼³Ä¡
+			// VisibleDuration æ è‚º ç´¯æ‚¼çªç»° ç§¦åŠ› é¸¥æèµ£ æ±²æ‘¹
 			OwnerPlayer->GetWorldTimerManager().SetTimer(NewWidgetSet.WidgetDestroyTimerHandle,
 				FTimerDelegate::CreateUObject(this, &UB2UIManager_InGameHUDPlayer::DestroySingleGoldAcqWidgetTimerCB, NewGoldAcqWidget),
 				NewGoldAcqWidget->GetVisibleDuration(), false);
@@ -256,7 +256,7 @@ void UB2UIManager_InGameHUDPlayer::DestroySingleGoldAcqWidgetTimerCB(class UB2Fl
 			UB2FloatingWidget* CurrDW = GoldAcqWidgetSetArray[GAI].FloatingWidget;
 			if (CurrDW == WidgetToDestroy)
 			{
-				// ÀÌ¸§ÀÌ ¿¾³¯ ÈçÀûÀÌ¶ó Destroy ÀÎµ¥ ½ÇÁ¦·Î ÀÌÁ¦´Â Destroy °¡ ¾Æ´Ï¶ó pool ¿¡ ¹İ³³ÇÑ´Ù.
+				// ææŠšæ çƒ¤æœ å¦‚åˆ©ææ‰¼ Destroy ç‰¢å• è§’åŠ›è‚º æåŠ›ç»° Destroy å•Š é…’èªæ‰¼ pool ä¿Š é¦†åµèŒ„ä¿ƒ.
 				MasterUIManager->TurnInFloatingWidget(EFloatingWidgetPoolClassType::EFWPCT_GoldAcq, WidgetToDestroy);
 				OwnerCharacter->GetWorldTimerManager().ClearTimer(GoldAcqWidgetSetArray[GAI].WidgetDestroyTimerHandle);
 				GoldAcqWidgetSetArray.RemoveAt(GAI);
@@ -307,9 +307,9 @@ void UB2UIManager_InGameHUDPlayer::UpdateHiddenMobPointer()
 		int32 ScreenSizeY = 0;
 		B2PC->GetViewportSize(ScreenSizeX, ScreenSizeY);
 
-#if 0 // Àú ¸Ö¸® ÀÖ´Â target À¸·Î ÀÎÇØ ÀûÀıÈ÷ °»½ÅµÇÁö ¾Ê´Â Ã¤·Î ÀÖ´Â °æ¿ì°¡ ÀÖ¾î¼­ °Á ¸Å ÇÁ·¹ÀÓ »õ·Î Ã£°í ´ë½Å °úÇÏ°Ô FActorIterator ¸¦ µ¹Áö´Â ¾Êµµ·Ï..
+#if 0 // å† é’¢åºœ ä¹ç»° target æ è‚º ç‰¢ç§¦ åˆ©ä¾‹æ´’ ç›è„šç™»ç˜¤ è‡¼ç»° ç›²è‚º ä¹ç»° ç‰ˆå¿«å•Š ä¹ç»¢è¾‘ å‚² æ¦‚ æ©‡é¥­çƒ™ è´§è‚º èŒ«ç»Š æªè„š è‹çªéœ¸ FActorIterator ç”« å€’ç˜¤ç»° è‡¼æ¡£åºŸ..
 		bool bFindNewHMPTarget = false;
-		// CurrentHMPTarget À» À¯ÁöÇÒÁö °Ë»ç. ¸Å¹ø CurrentHMPTarget À» °»½ÅÇÏ±â´Â ºñ½Î´Ù..
+		// CurrentHMPTarget é˜‘ èœ¡ç˜¤ä¸”ç˜¤ å…«è¤. æ¦‚é”… CurrentHMPTarget é˜‘ ç›è„šçªæ‰ç»° åšè½¿ä¿ƒ..
 		//if (CurrentHMPTarget == NULL || CurrentHMPTarget->IsPendingKill() || CurrentHMPTarget->IsAlive() == false)
 		{
 			bFindNewHMPTarget = true;
@@ -322,7 +322,7 @@ void UB2UIManager_InGameHUDPlayer::UpdateHiddenMobPointer()
 				if (CurrentTargetScreenLocation.X >= 0.0f && CurrentTargetScreenLocation.X <= (float)ScreenSizeX &&
 					CurrentTargetScreenLocation.Y >= 0.0f && CurrentTargetScreenLocation.Y <= (float)ScreenSizeY)
 				{
-					bFindNewHMPTarget = true; // È­¸é ¾ÈÀ¸·Î µé¾î¿ÔÀ¸´Ï »õ·Î Ã£´Â´Ù.
+					bFindNewHMPTarget = true; // æ‹³æ æ•‘æ è‚º ç”¸ç»¢å­æ èª è´§è‚º èŒ«ç»°ä¿ƒ.
 				}
 			}
 			else
@@ -334,11 +334,11 @@ void UB2UIManager_InGameHUDPlayer::UpdateHiddenMobPointer()
 		if (bFindNewHMPTarget)
 #endif
 		{
-			CurrentHMPTarget = NULL; // ÀÏ´Ü NULL. ¸øÃ£À¸¸é ¾È »Ñ¸®´Â °Å.
+			CurrentHMPTarget = NULL; // è€çªœ NULL. ç»™èŒ«æ æ æ•‘ è°åºœç»° èŠ­.
 
-			float ClosestOutScreenDistSquared2D = MAX_FLT; // È­¸é ¹Û¿¡ ÀÖ´Â ¸÷ Áß °¡Àå °¡±î¿î °ÍÀÇ °Å¸® Á¦°ö.
+			float ClosestOutScreenDistSquared2D = MAX_FLT; // æ‹³æ è§‚ä¿Š ä¹ç»° å„ å å•Šå˜ å•Šé³–æ¬¾ å·´ç‹¼ èŠ­åºœ åŠ›èšŒ.
 
-														   // FActorIterator ¸¦ µ¹±â´Â ºñ½Î´Ï SpawnPool ¿¡¼­ spawn µÈ ¾Öµé ¸®½ºÆ®¸¸ Ãß·Á¼­ °Ë»ç.
+														   // FActorIterator ç”« å€’æ‰ç»° åšè½¿èª SpawnPool ä¿Šè¾‘ spawn ç­‰ å±€ç”¸ åºœèƒ¶é£˜çˆ¶ çœ å¦¨è¾‘ å…«è¤.
 			TArray<class ABladeIICharacter*> AllWaveMobList;
 			ABladeIIGameMode* B2GM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(OwnerPlayer));
 			if (B2GM)
@@ -355,7 +355,7 @@ void UB2UIManager_InGameHUDPlayer::UpdateHiddenMobPointer()
 					{
 						if (CandidScreenLocation.X < 0.0f || CandidScreenLocation.X >(float)ScreenSizeX || CandidScreenLocation.Y < 0.0f || CandidScreenLocation.Y >(float)ScreenSizeY)
 						{
-							// È­¸é ¹Û¿¡ ÀÖÀ½. XY Æò¸é¿¡¼­ °¡Àå °¡±î¿î °É·Î ¼±ÅÃ.
+							// æ‹³æ è§‚ä¿Š ä¹æ¾œ. XY ä¹æä¿Šè¾‘ å•Šå˜ å•Šé³–æ¬¾ å§è‚º æ€¥ç¶.
 
 							float CurrCandidDistSquared2D = (B2Char->GetActorLocation() - OwnerPlayer->GetActorLocation()).SizeSquared2D();
 
@@ -367,7 +367,7 @@ void UB2UIManager_InGameHUDPlayer::UpdateHiddenMobPointer()
 						}
 						else
 						{
-							CurrentHMPTarget = NULL; // ´Ü ÇÏ³ª¶óµµ ½Ã¾ß¿¡ µé¾î¿Â °ÍÀÌ ÀÖ´Ù¸é »Ñ¸®Áö ¾Ê´Â´Ù.
+							CurrentHMPTarget = NULL; // çªœ çªå”±æ‰¼æ¡£ çŸ«å…·ä¿Š ç”¸ç»¢æŸ¯ å·´æ ä¹ä¿ƒæ è°åºœç˜¤ è‡¼ç»°ä¿ƒ.
 							break;
 						}
 					}
@@ -414,10 +414,10 @@ void UB2UIManager_InGameHUDPlayer::VisiblePointer()
 	if (CurrentHMPTarget)
 	{
 		FVector PlayerToTargetVector = (CurrentHMPTarget->GetActorLocation() - OwnerPlayer->GetActorLocation());
-		PlayerToTargetVector.Z = 0.0f; // Z °ªÀº µû·Î °è»ê
+		PlayerToTargetVector.Z = 0.0f; // Z è”¼ç¯® è¶è‚º æ‹Œé­‚
 		FVector PlayerToHMPVector = PlayerToTargetVector.GetSafeNormal() * HMP_RadiusFromPlayer;
 
-		// Z °ªÀº ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ ¹ß¹Ù´Ú ºÎ±ÙÀ¸·Î. ¾à°£ ¿Ã¸°´Ù.
+		// Z è”¼ç¯® æ•²é¥­æç»¢ æŸè…ç£ æƒ¯å®˜è¹¿ ä½•è¾Ÿæ è‚º. è·åŸƒ æ£µèµ´ä¿ƒ.
 		FVector HMPLocation = OwnerPlayer->GetActorLocation() + PlayerToHMPVector +
 			FVector(0.0f, 0.0f, -1.0f * OwnerPlayer->GetCapsuleComponent()->GetScaledCapsuleHalfHeight() + 1.0f);
 
@@ -439,9 +439,9 @@ void UB2UIManager_InGameHUDPlayer::UpdateConquestAreaPointerForControl()
 	{
 		FVector PlayerToTargetVector = (pGM->GetControlObjectLocation() - OwnerPlayer->GetActorLocation());
 		
-		PlayerToTargetVector.Z = 0.0f; // Z °ªÀº µû·Î °è»ê
+		PlayerToTargetVector.Z = 0.0f; // Z è”¼ç¯® è¶è‚º æ‹Œé­‚
 
-		// ÀÏÁ¤°Å¸® ÀÌÇÏ¸é ¾ÈÇ¥½Ã
+		// è€æ²¥èŠ­åºœ æçªæ æ•‘é’çŸ«
 		if (PlayerToTargetVector.Size() <= pGM->GetControlObjectViewLimitLength())
 		{
 			HiddenMobPointerPSInst->SetVisibility(false);
@@ -450,7 +450,7 @@ void UB2UIManager_InGameHUDPlayer::UpdateConquestAreaPointerForControl()
 
 		FVector PlayerToHMPVector = PlayerToTargetVector.GetSafeNormal() * HMP_RadiusFromPlayer;
 
-		// Z °ªÀº ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ ¹ß¹Ù´Ú ºÎ±ÙÀ¸·Î. ¾à°£ ¿Ã¸°´Ù.
+		// Z è”¼ç¯® æ•²é¥­æç»¢ æŸè…ç£ æƒ¯å®˜è¹¿ ä½•è¾Ÿæ è‚º. è·åŸƒ æ£µèµ´ä¿ƒ.
 		FVector HMPLocation = OwnerPlayer->GetActorLocation() + PlayerToHMPVector +
 			FVector(0.0f, 0.0f, -1.0f * OwnerPlayer->GetCapsuleComponent()->GetScaledCapsuleHalfHeight() + 1.0f);
 

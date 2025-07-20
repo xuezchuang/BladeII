@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIChatMssageNotice.h"
 #include "B2UIManager.h"
@@ -26,7 +26,7 @@ void UB2UIChatMssageNotice::SetChatMessageInfo(const struct FB2ChatMessage& InMe
 	Super::SetChatMessageInfo(InMessageInfo);
 	if (TB_UserName.IsValid())
 	{
-		// ChatType ¿¡ µû¶ó¼­ Á¤ÇØÁø ÀÌ¸§À» ³Ö°Å³ª.. ³»Áö´Â SendUserNick ¿¡ ±×°Ô µé¾î°¡°Å³ª..?
+		// ChatType ä¿Š è¶æ‰¼è¾‘ æ²¥ç§¦æŸ³ æžæŠšé˜‘ æŒèŠ­å”±.. éƒ´ç˜¤ç»° SendUserNick ä¿Š å¼Šéœ¸ ç”¸ç»¢å•ŠèŠ­å”±..?
 		if (InMessageInfo.MessageType == EB2ChatType::Notice || InMessageInfo.MessageType == EB2ChatType::GuildNotice)
 		{
 			TB_UserName->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Chatting_MessageHeader_PublicNoti")));

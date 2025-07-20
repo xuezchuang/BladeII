@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -415,7 +415,7 @@ struct FCostumeReplaceData
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 		TArray<EPCPart> CombineCostumePCPart;
 
-	//1°³ ÀÌ»óÀÌ¸é... ÄÚ½ºÆ¬ ÇÑ ºÎÀ§°¡ ´Ù¸¥ ÆÄÆ® ¿©·¯°³¸¦ Àâ´Â°ÅÀÓ
+	//1ä¿º æžæƒ‘æžæ... å†…èƒ¶ç‰‡ èŒ„ ä½•å›°å•Š ä¿ƒå¼— é¢‡é£˜ å’¯çŸ¾ä¿ºç”« æ£±ç»°èŠ­çƒ™
 	FORCEINLINE bool IsCombineCostumeEquipPlace() { return CombineCostumePCPart.Num() > 1;	}
 };
 
@@ -473,7 +473,7 @@ public:
 	 * assuming that InSectionMergedMesh has materials specially prepared for merged section. */
 	void SetupMergedSectionMaterialParams(bool InHaveCombineCostume, class USkeletalMesh* InSectionMergedMesh, TMap<EPCPart, class UMaterialInterface*>& OriginalNonMergedMaterials);
 
-	//¾Æ¹ÙÅ¸
+	//é…’å®˜é¸¥
 	const FCostumeReplaceData* GetCostumeReplaceData(ECostumeEquipPlace InCostumeEquipPlace) const;
 	void GetReplaceCostumeEquipPlace(ECostumeEquipPlace InCostumeEquipPlace, TArray<EPCPart>& OutPCPartReplace);
 

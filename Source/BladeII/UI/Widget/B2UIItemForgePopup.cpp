@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIItemForgePopup.h"
 #include "B2DynItemIcon_ItemForge.h"
@@ -92,13 +92,13 @@ void UB2UIItemForgePopup::CacheAssets()
 	BIND_CLICK_FUNC_TO_BTN(BTN_Select, &UB2UIItemForgePopup::OnClickBTNSelect);
 	GET_SLOT(UTextBlock, TB_Confirm);
 
-	// Å×ÀÌºí µ¥ÀÌÅÍ ·Îµå
+	// æŠ›æå–‰ å•æç£ è‚ºé›
 	TArray<FItemForgeMaterialTransInfo> MD = BladeIIGameImpl::GetClientDataStore().MD_ItemForgeMaterialTransInfo;
 
-	// Factory ID ¼¼ÆÃ
+	// Factory ID æŠ€æ³¼
 	int32 TempFID = ItemForgeDataSet.FactoryID;
 
-	// Factory ID¸¦ ±â¹İÀ¸·Î ÇÊÅÍ¸µ
+	// Factory IDç”« æ‰é¦†æ è‚º é˜ç£å‚…
 	TArray<FItemForgeMaterialTransInfo> MD_Filtered = MD.FilterByPredicate(
 		[TempFID](FItemForgeMaterialTransInfo master_data)
 	{
@@ -107,14 +107,14 @@ void UB2UIItemForgePopup::CacheAssets()
 	}
 	);
 
-	// Main Item Setting ±âº»ÀûÀ¸·Î Main ItemÀÌ ÇÊ¼öÁö¸¸ Ã¼Å©
+	// Main Item Setting æ‰å¤¯åˆ©æ è‚º Main Itemæ é˜èç˜¤çˆ¶ çœ‰å†œ
 	if (ItemForgeDataSet.MainItemRefID != 0 && ItemForgeDataSet.MainItemCount > 0)
 	{
 		TargetData MainItemData(ItemForgeDataSet.MainItemRefID, ItemForgeDataSet.MainItemCount * ItemForgeDataSet.MakeCount);
 		ItemForgeDataSet.ResourceItem.Add(MainItemData);
 	}
 
-	// ÇÊ¿äÇÑ µ¥ÀÌÅÍ¸¦ Slot ±â¹İÀ¸·Î ÃßÃâ
+	// é˜å¤¸èŒ„ å•æç£ç”« Slot æ‰é¦†æ è‚º çœ å…
 	for (auto& MD_Raw : MD_Filtered)
 	{
 		int32 TempRefID = 0;
@@ -173,14 +173,14 @@ void UB2UIItemForgePopup::CacheAssets()
 
 	if (ItemForgeDataSet.ResourceItem.Num() > 0)
 	{
-		// RefID ±â¹İÀ¸·Î ItemClass ÃßÃâ
+		// RefID æ‰é¦†æ è‚º ItemClass çœ å…
 		EItemClass EIC = FItemRefIDHelper::ExtractItemClassFromRefIDForItemForge(ItemForgeDataSet.ResourceItem.GetData()->RefID);
-		// ItemClass¸¦ ±â¹İÀ¸·Î InvenType ÃßÃâ
+		// ItemClassç”« æ‰é¦†æ è‚º InvenType çœ å…
 		EItemInvenType EIIT = GetItemInvenTypeFromClass(EIC);
 
 		//UE_LOG(LogTemp, Log, TEXT("EIC : %d, EIIT : %d"),(int)EIC,(int)EIIT);
 
-		// IvenTypeÀÌ ¼Ò¸ğÇ°ÀÏ °æ¿ì "´ëÃ¼" ÅØ½ºÆ® ÀåºñÀÏ °æ¿ì "¼±ÅÃ" ÅØ½ºÆ®
+		// IvenTypeæ å®¶è‘›å‰è€ ç‰ˆå¿« "æªçœ‰" å’†èƒ¶é£˜ å˜åšè€ ç‰ˆå¿« "æ€¥ç¶" å’†èƒ¶é£˜
 		if (EIIT == EItemInvenType::EIIVT_Consumables)
 		{
 			TB_Title->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("ItemForgePopUpText_Replacement")));
@@ -204,25 +204,25 @@ void UB2UIItemForgePopup::CacheAssets()
 	}
 	*/
 
-	// Å×ÀÌºíÀÇ ´ëÃ¼ ¾ÆÀÌÅÛ ±â¹İÀ¸·Î Icon »ı¼º
+	// æŠ›æå–‰ç‹¼ æªçœ‰ é…’æè¢ æ‰é¦†æ è‚º Icon ç§¯å·±
 	for (auto& ResourceItemElem : ItemForgeDataSet.ResourceItem)
 	{
 		UB2DynItemIcon_ItemForge* ResourceItemIcon = CreateWidget<UB2DynItemIcon_ItemForge>(GetOwningPlayer(), result);
 		ResourceItemIcon->Initialize();
 		ResourceItemIcon->NativeConstruct();
 
-		// Àç·á·Î º¸¿©ÁÖ´Â ¾ÆÀÌÅÛÀÌ±â ¶§¹®¿¡ EIFI_TargetItemÀ¸·Î ¼³Á¤
+		// çŠä¸°è‚º ç„Šå’¯æ—ç»° é…’æè¢ææ‰ é”­å·©ä¿Š EIFI_TargetItemæ è‚º æ±²æ²¥
 		ResourceItemIcon->InitItemForgeSlot(ItemForgeDataSet.SlotType, EItemForgeItemIconUsage::EIFI_TargetItem, ItemForgeDataSet.FactoryID, requiredItemEnhanceLevel,requiredItemLevel);
 
-		// B2UI¿¡¼­ UpdateItemData¸¦ ¸ÕÀú ½ÇÇàÇÏ±â ¶§¹®¿¡ ¹«Á¶°Ç Init ÈÄ UpdateTargetItemDataÇØ¾ß ÇÔ.
+		// B2UIä¿Šè¾‘ UpdateItemDataç”« åˆšå† è§’é’çªæ‰ é”­å·©ä¿Š å…¬ç‚¼æ‰’ Init é¥¶ UpdateTargetItemDataç§¦å…· çªƒ.
 		ResourceItemIcon->UpdateTargetItemData(ResourceItemElem.RefID, ResourceItemElem.Count);
 		SB_ItemTargets->AddChild(ResourceItemIcon);
 	}
 
-	//Á¦ÀÛ ÁßÀÎ Å¸ÀÔ º°·Î ÀÎº¥ ½ÌÅ©¸¦ ¸ÂÃç Áà¾ß µÊ. »óÀ§ Class¿¡¼­ ¼±¾ğ ÇØÁÖ´Â °ÍÀÌ ´õ ¾ÈÀüÇÏ´Ù°í ÆÇ´ÜÇÏ¿© »óÀ§¿¡¼­ ÁøÇà ÇÔ.
+	//åŠ›ç´¯ åç‰¢ é¸¥æ¶ å–Šè‚º ç‰¢äº¥ æ•™å†œç”« å˜è‹— æ‹å…· å‡³. æƒ‘å›° Classä¿Šè¾‘ æ€¥æ”« ç§¦æ—ç»° å·´æ æ­¹ æ•‘å‚ˆçªä¿ƒç»Š é­„çªœçªå’¯ æƒ‘å›°ä¿Šè¾‘ æŸ³é’ çªƒ.
 	BladeIIGameImpl::GetClientDataStore().SyncingInventoryData(ItemForgeDataSet.CharacterType);
 
-	// ÇöÀç Ä³¸¯ÅÍÀÇ µ¥ÀÌÅÍ ·Îµå
+	// æ³…çŠ æŸè…ç£ç‹¼ å•æç£ è‚ºé›
 	CachedCharacterStore = &BladeIIGameImpl::GetClientDataStore().GetLocalCharacterData();
 
 	if (CachedCharacterStore == nullptr)
@@ -230,18 +230,18 @@ void UB2UIItemForgePopup::CacheAssets()
 		UE_LOG(LogTemp, Error, TEXT("CachedCharacterStroe Error!!!!!!!!!"));
 	}
 
-	// À¯Àú µ¥ÀÌÅÍ ·Îµå
+	// èœ¡å† å•æç£ è‚ºé›
 	FPCItemContainer& UserItmes = CachedCharacterStore->GetUserAllItems();
 
-	// Ä³¸¯ÅÍ Å¸ÀÔ¿¡ µû¶ó ÀÎº¥Åä¸® ·Îµå
+	// æŸè…ç£ é¸¥æ¶ä¿Š è¶æ‰¼ ç‰¢äº¥é…åºœ è‚ºé›
 	auto& UserItemsByChar = UserItmes.CharacterItemContainers[PCClassToInt(ItemForgeDataSet.CharacterType)];
 
 	for (auto& ResourceItemElem : ItemForgeDataSet.ResourceItem)
 	{
-		// ¾ÆÀÌÅÛ Type¿¡ µû¶ó ÀúÀåÇÒ Map
+		// é…’æè¢ Typeä¿Š è¶æ‰¼ å†å˜ä¸” Map
 		TMap<int64, FB2Item>* ItemMap = nullptr;
 
-		// RefID·Î InvenType ÃßÃâ
+		// RefIDè‚º InvenType çœ å…
 		EItemClass EIC = FItemRefIDHelper::ExtractItemClassFromRefIDForItemForge(ResourceItemElem.RefID);
 		EItemInvenType EIIT = GetItemInvenTypeFromClass(EIC);
 		/*UE_LOG(LogTemp, Log, TEXT("HoldList Checking RefID : %d EItemClass: %d EItemInvenType: %d"),
@@ -288,7 +288,7 @@ void UB2UIItemForgePopup::CacheAssets()
 
 		TArray<int32> tempUIDs;
 
-		// ÇöÀç Resource RefID¸¦ ±â¹İÀ¸·Î °°Àº RefID ¸ğµÎ ·Îµå
+		// æ³…çŠ Resource RefIDç”« æ‰é¦†æ è‚º éç¯® RefID è‘›æ»´ è‚ºé›
 		if (ItemMap != nullptr)
 		{
 			for (auto& StoredItemElem : *ItemMap)
@@ -312,9 +312,9 @@ void UB2UIItemForgePopup::CacheAssets()
 		}
 
 
-		// ÀåºñÁßÀÎ ÄÁÅ×ÀÌ³Ê ÇÑ ¹ø È®ÀÎ AllEuippedInfo AllItemPresets
+		// å˜åšåç‰¢ ç‰§æŠ›æå‘ˆ èŒ„ é”… çŠ¬ç‰¢ AllEuippedInfo AllItemPresets
 		// FindItem (UID)
-		// ÇöÀç ÇÁ¸®¼ÂÀÇ ÀåÂøµÈ ¾ÆÀÌÅÛ Áß refid°¡ °°Àº°É Ã£¾Æ¼­ Ãâ·Â ÇÑ´Ù.
+		// æ³…çŠ æ©‡åºœæ‚¸ç‹¼ å˜é¦’ç­‰ é…’æè¢ å refidå•Š éç¯®å§ èŒ«é…’è¾‘ å…ä»¿ èŒ„ä¿ƒ.
 		bool alreadyFound = false;
 		for (auto& elem : UserItemsByChar.AllItemPresets)
 		{
@@ -358,7 +358,7 @@ void UB2UIItemForgePopup::CacheAssets()
 
 	if (!IsConsumableItem)
 	{
-		// ÄÚ½ºÆ¬ ¾ÆÀÌÅÛÀº Á¦¿Ü µÆÀ½. ¸¸¾à Á¦ÀÛ¼Ò¿¡ ÄÚ½ºÆ¬ÀÌ µé¾î°¥ °æ¿ì ÄÚ½ºÆ¬µµ ÀåÂø ¿©ºÎ ÆÄ¾Ç ÇØ¾ß µÊ.
+		// å†…èƒ¶ç‰‡ é…’æè¢ç¯® åŠ›å¯‡ ç¯æ¾œ. çˆ¶è· åŠ›ç´¯å®¶ä¿Š å†…èƒ¶ç‰‡æ ç”¸ç»¢å“ ç‰ˆå¿« å†…èƒ¶ç‰‡æ¡£ å˜é¦’ å’¯ä½• é¢‡å© ç§¦å…· å‡³.
 		TArray<const FB2Item*> EquipedItems;
 		{
 			TArray<int64> UIDs;
@@ -386,7 +386,7 @@ void UB2UIItemForgePopup::CacheAssets()
 	}
 
 
-	// itemforgedataset.holdlist ¸¦ ±â¹İÀ¸·Î add
+	// itemforgedataset.holdlist ç”« æ‰é¦†æ è‚º add
 	for (auto& HoldListElem : ItemForgeDataSet.HoldList)
 	{
 		UB2DynItemIcon_ItemForge* DynItemIconItemForge = CreateWidget<UB2DynItemIcon_ItemForge>(GetOwningPlayer(), result);
@@ -412,9 +412,9 @@ void UB2UIItemForgePopup::BindDelegates()
 void UB2UIItemForgePopup::UpdateStaticText()
 {
 	Super::UpdateStaticText();
-	// ¼±ÅÃ or ´ëÃ¼ ¿©ºÎ ÆÇº° ÇÏ µµ·Ï ¸¸µé¾î¾ßµÊ.
-	//TB_Title->SetText(FText::FromString(TEXT("¼±ÅÃ")));
-	//TB_Confirm->SetText(FText::FromString(TEXT("¼±ÅÃ")));
+	// æ€¥ç¶ or æªçœ‰ å’¯ä½• é­„å–Š çª æ¡£åºŸ çˆ¶ç”¸ç»¢å…·å‡³.
+	//TB_Title->SetText(FText::FromString(TEXT("æ€¥ç¶")));
+	//TB_Confirm->SetText(FText::FromString(TEXT("æ€¥ç¶")));
 	
 }
 
@@ -429,8 +429,8 @@ void UB2UIItemForgePopup::OnClickBTNSelect()
 	//if (!SelectedItem.IsEmpty())
 	//{
 	//	//UE_LOG(LogTemp, Log, TEXT("select btn clicked"));
-	//	// »óÀ§ ÆĞ³Î class¿¡ ³Ö¾îÁÙ ¼±ÅÃÇÑ ¾ÆÀÌÅÛÀÇ ÇÊ¿ä °³¼ö¸¦ ³Ö¾îÁà¾ßµÊÀ¸·Î 
-	//	// ItemForgeDataSet¿¡¼­ TArray ¿¡¼­ perdicateÀ¸·Î ¼±ÅÃÇÑ id¿Í refid°¡ °°Àº °ªÀÇ count°ªÀ» µ¹·Á ÁÖµµ·Ï ÇÒ °Í
+	//	// æƒ‘å›° è©æ¾„ classä¿Š æŒç»¢ä¸´ æ€¥ç¶èŒ„ é…’æè¢ç‹¼ é˜å¤¸ ä¿ºèç”« æŒç»¢æ‹å…·å‡³æ è‚º 
+	//	// ItemForgeDataSetä¿Šè¾‘ TArray ä¿Šè¾‘ perdicateæ è‚º æ€¥ç¶èŒ„ idå®¢ refidå•Š éç¯® è”¼ç‹¼ countè”¼é˜‘ å€’å¦¨ æ—æ¡£åºŸ ä¸” å·´
 
 	//	bool CheckEnd = false;
 	//	int32 Count = -1;
@@ -460,18 +460,18 @@ void UB2UIItemForgePopup::OnClickBTNSelect()
 	//		
 	//		
 	//		// UE_LOG(LogTemp, Log, TEXT("UID : %d, Count : %d"),SelectedItem.InstanceUID,Count);
-	//		// selecteditem°ú count °ª event systemÀ¸·Î ¼¼ÆÃ ÇØ ÁÖ±â.
+	//		// selecteditemè‹ count è”¼ event systemæ è‚º æŠ€æ³¼ ç§¦ æ—æ‰.
 
 	//		ItemForgeIngredientUI->SetAnotherMaterialItem(SelectedItem, Count);
 	//	}
 
 
 
-	//	OnClickBTN_Cancel(); //Áö¿ì±â À§ÇØ
+	//	OnClickBTN_Cancel(); //ç˜¤å¿«æ‰ å›°ç§¦
 	//}
 	//else
 	//{
-	//	// Àç·á¸¦ ¼±ÅÃÇÏ½Ê½Ã¿À ÆË¾÷ ¶ß°Ô
+	//	// çŠä¸°ç”« æ€¥ç¶çªç»çŸ«å· æ‰‘è¯€ å“†éœ¸
 	//}
 	
 }

@@ -1,8 +1,8 @@
-
+﻿
 #ifndef __FB2ERRORMESSAGE_H__
 #define __FB2ERRORMESSAGE_H__
 //#include "BladeII.h"
-
+#include "CoreMinimal.h"
 struct FB2ErrorMessage
 {
 	/**

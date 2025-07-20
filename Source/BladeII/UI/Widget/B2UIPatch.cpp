@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIPatch.h"
 #include "B2UIManager.h"
@@ -470,7 +470,7 @@ void UB2UIPatch::Init()
 #if PLATFORM_ANDROID 
 	FJavaWrapper::OnCheckPermissionResultDelegate.Remove(OnCheckPermissionHandler);
 	OnCheckPermissionHandler = FJavaWrapper::OnCheckPermissionResultDelegate.AddUObject(this, &UB2UIPatch::CheckPermissionDelegate);
-#elif PLATFORM_WINDOWS // PC ÇÃ·§Æû¿¡¼­ patch °¡ µÉ¸® ¾øÀ¸´Ï ´ÙÀ½ ½ºÅÜÀ¸·Î ³Ñ¾î°¨.
+#elif PLATFORM_WINDOWS // PC æ•²é˜€æ±½ä¿Šè¾‘ patch å•Š çžªåºœ ç»æ èª ä¿ƒæ¾œ èƒ¶è·‘æ è‚º é€žç»¢çš‘.
 	GameStart();
 	return;
 #endif
@@ -549,7 +549,7 @@ void UB2UIPatch::InitGameInfo()
 	Version = Settings->VersionInfo;
 	GameId = Settings->BundleIdentifier;
 #else
-	//¿¡µðÅÍ¿¡¼­ Å×½ºÆ® ¸ñÀû.
+	//ä¿Šå¼ç£ä¿Šè¾‘ æŠ›èƒ¶é£˜ æ ¼åˆ©.
 	Version = "0.2.2";
 	GameId = "com.action2quare.blade2test";
 #endif
@@ -596,7 +596,7 @@ void UB2UIPatch::PatchOnResponseReceived(FHttpRequestPtr Request, FHttpResponseP
 {
 	if (!Response.IsValid())
 	{
-		// respos °ªÀÌ ¾Æ¿¡ ¾øÀ» ½Ã Ã³¸® ( 999999 )
+		// respos è”¼æž é…’ä¿Š ç»é˜‘ çŸ« è´¸åºœ ( 999999 )
 		UE_LOG(LogClass, Log, TEXT("####Respons is not vaild!!!!!!!!!!!!!!"));
 		ResponseErrorCodePopup(999999);
 
@@ -704,7 +704,7 @@ void UB2UIPatch::OpenMsgBoxUpdateStart()
 		int64 resumeDataSize = 0;
 		GetResumeDataSize(resumeDataSize);
 
-		// resumeDataSize°¡ Å« °æ¿ì´Â ºñÁ¤»óÀ¸·Î ÆÇ´ÜÇÏ°í ¿ë·®Ã¼Å©¸¦ ¾ÈÇÔ
+		// resumeDataSizeå•Š å¥´ ç‰ˆå¿«ç»° åŽšæ²¥æƒ‘æ è‚º é­„çªœçªç»Š ä¾©æ¨Šçœ‰å†œç”« æ•‘çªƒ
 		if (downloadsize > resumeDataSize)
 		{
 			downloadsize -= resumeDataSize;

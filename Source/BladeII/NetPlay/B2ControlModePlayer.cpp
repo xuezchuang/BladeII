@@ -1,4 +1,4 @@
-
+ï»¿
 #include "B2ControlModePlayer.h"
 
 #include "Event.h"
@@ -26,7 +26,7 @@ void AB2ControlModePlayer::Tick(float delta)
 
 void AB2ControlModePlayer::StartQTE(bool bForce/* = false*/)
 {
-	// °ÔÀÓ¸ðµå ÅëÇØ¼­ È£½ºÆ®ÇÑÅ× ¿äÃ»ÇÏ±¸ Çã°¡¹ÞÀ¸¸é SuperStartQTE() ÀÌ°É·Î ½ÇÇà
+	// éœ¸çƒ™è‘›é› çƒ¹ç§¦è¾‘ é¾‹èƒ¶é£˜èŒ„æŠ› å¤¸æ²¡çªå¤‡ å€¾å•Šç½æ æ SuperStartQTE() æžå§è‚º è§’é’
 	if (IsAlive() && IsQTEStartAble() &&GetNetStatus() == NET_MASTER && !bRequestStartQTE)
 	{
 		GetControlGameMode()->NetSendRequestQTE();
@@ -36,8 +36,8 @@ void AB2ControlModePlayer::StartQTE(bool bForce/* = false*/)
 
 void AB2ControlModePlayer::StopQTEMount()
 {
-	// ³ëÆ¼ÆÄÀÌ·Î ³»¸°´Ù°í ¾Ë¸². ³ªµÎ ³ëÆ¼¹Þ°í ³»¸²
-	// ÀÌ°Ç À¯ÀúÀÔ·ÂÀ¸·Î È£ÃâµÇ´Â°Ô ¾Æ´Ï´Ï±ñ.. Áßº¹ Ã¼Å© ¾ÈÇÔ
+	// ç•´èé¢‡æžè‚º éƒ´èµ´ä¿ƒç»Š èˆ…è¦†. å”±æ»´ ç•´èç½ç»Š éƒ´è¦†
+	// æžæ‰’ èœ¡åŽ†æ¶ä»¿æ è‚º é¾‹å…ç™»ç»°éœ¸ é…’èªèªç˜ª.. åæ±— çœ‰å†œ æ•‘çªƒ
 	if (GetNetStatus() == NET_MASTER)
 	{
 		GetControlGameMode()->NetSendNotifyEndQTE();
@@ -46,13 +46,13 @@ void AB2ControlModePlayer::StopQTEMount()
 
 float AB2ControlModePlayer::GetUnitySkillPointDeltaSecondsRate(float DeltaSeconds)
 {
-	// Á¡·ÉÀüÀº ¾ÈÂù´Ù.
+	// ç—¢é£žå‚ˆç¯® æ•‘è›®ä¿ƒ.
 	return 0.0f;
 }
 
 void AB2ControlModePlayer::AddWeaponSkillPoint(float ToAddPoint)
 {
-	//171206_YJ Á¡·ÉÀü¿¡¼­´Â ½ºÅ³ÀÌ³ª ¹Ý°Ý½èÀ»¶§ Æ÷ÀÎÆ® Ã¤¿öÁöÁö ¾Êµµ·Ï ÇÔ.
+	//171206_YJ ç—¢é£žå‚ˆä¿Šè¾‘ç»° èƒ¶æ‡¦æžå”± é¦†æ‹œå€Ÿé˜‘é”­ å™¨ç‰¢é£˜ ç›²å†µç˜¤ç˜¤ è‡¼æ¡£åºŸ çªƒ.
 }
 
 
@@ -92,7 +92,7 @@ void AB2ControlModePlayer::PromoteNetStatus()
 	//Role = ROLE_Authority;
 	SetNetStatus(NET_AIMASTER);
 
-	// AI ÀüÈ¯ Å×½ºÆ® Off ºÒ°¡
+	// AI å‚ˆåˆ¸ æŠ›èƒ¶é£˜ Off é˜‚å•Š
 	FActorSpawnParameters SpawnInfo;
 	//SpawnInfo.Instigator = Instigator;
 	SpawnInfo.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
@@ -107,7 +107,7 @@ void AB2ControlModePlayer::PromoteNetStatus()
 	MyAIController->Possess(this);
 	MyAIController->BeginAutoPlay();
 
-	// ³ª°£ÇÃ·¹ÀÌ¾î°¡ Å»°ÍÅ¸°íÀÖÀ¸¸é ³»·ÁÁÜ
+	// å”±åŸƒæ•²é¥­æžç»¢å•Š å‘•å·´é¸¥ç»Šä¹æ æ éƒ´å¦¨æ·‹
 	if (IsQTEMounting())
 	{
 		GetControlGameMode()->NetSendNotifyEndQTE(GetNetId());

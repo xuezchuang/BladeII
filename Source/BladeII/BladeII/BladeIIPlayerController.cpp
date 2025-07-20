@@ -1,4 +1,4 @@
-// Copyright 1998-2014 Epic Games, Inc. All Rights Reserved.
+ï»¿// Copyright 1998-2014 Epic Games, Inc. All Rights Reserved.
 
 
 #include "BladeIIPlayerController.h"
@@ -137,14 +137,14 @@ void ABladeIIPlayerController::PlayerTick(float DeltaTime)
 			if (CameraTargetActor != B2Char->TargetActor || Diff == FVector::ZeroVector)
 			{
 				Diff = CameraTargetActor->GetActorLocation() - B2Char->GetActorLocation();
-				//FinalTargetYaw = FRotator::ClampAxis(FMath::Atan2(Diff.Y, Diff.X) * 180 / PI); // FVector::Rotation ¿¡¼­ ÇÏ´Â °Çµ¥.. ¹°·Ğ Yaw ¸¸ ÇÊ¿äÇÏ´Ù¸é ÀÌ·¸°Ô ÇÏ¸é ¼º´É¿¡ µµ¿òÀÌ µÇ°ÚÁö..
+				//FinalTargetYaw = FRotator::ClampAxis(FMath::Atan2(Diff.Y, Diff.X) * 180 / PI); // FVector::Rotation ä¿Šè¾‘ çªç»° æ‰’å•.. æ‹±æ²¸ Yaw çˆ¶ é˜å¤¸çªä¿ƒæ æçŠ¯éœ¸ çªæ å·±ç“·ä¿Š æ¡£æ¡†æ ç™»æ‘†ç˜¤..
 			}
 			FRotator CamBoomRotationToTarget = Diff.Rotation();
 				
 			if (bCameraTargetSetByCameraBoom)
 			{
-				// SetCameraTarget ¿¡¼­ CameraBoom À» »ç¿ëÇÏµµ·Ï Çß´Ù¸é CameraTargetBoomRotOffset ÀÇ Yaw °ªÀ» ¿©±â¼­µµ Àû¿ëÇØ¾ß.
-				// UpdateCameraTransform À» Çß´Ù¸é.. Àß ¸ğ¸£°Ú´Ù ¤§¤§
+				// SetCameraTarget ä¿Šè¾‘ CameraBoom é˜‘ è¤ä¾©çªæ¡£åºŸ æ²ä¿ƒæ CameraTargetBoomRotOffset ç‹¼ Yaw è”¼é˜‘ å’¯æ‰è¾‘æ¡£ åˆ©ä¾©ç§¦å…·.
+				// UpdateCameraTransform é˜‘ æ²ä¿ƒæ.. è‚‹ è‘›ç¦æ‘†ä¿ƒ ã‡ã‡
 				CamBoomRotationToTarget.Yaw += CameraTargetActor->CameraTargetBoomRotOffset.Yaw;
 			}
 				
@@ -152,7 +152,7 @@ void ABladeIIPlayerController::PlayerTick(float DeltaTime)
 
 			if (bCameraTargetFollowPitchToo == true)
 			{
-				// Pitch µµ °»½Å. ÇöÀç·Î¼± CameraTargetSetByCameraBoom ÀÏ ¶§¸¸ À¯È¿ÇÒ µí?
+				// Pitch æ¡£ ç›è„š. æ³…çŠè‚ºæ€¥ CameraTargetSetByCameraBoom è€ é”­çˆ¶ èœ¡ç“¤ä¸” æ·€?
 				CamBoomRotationToTarget.Pitch += CameraTargetActor->CameraTargetBoomRotOffset.Pitch;
 				B2Char->UpdateCameraPitch(CamBoomRotationToTarget.Pitch);
 			}
@@ -163,8 +163,8 @@ void ABladeIIPlayerController::PlayerTick(float DeltaTime)
 		}
 	}
 	
-#if !UE_BUILD_SHIPPING // ÇÏ³ª»ÓÀÎ ·ÎÄÃ ÇÃ·¹ÀÌ¾î ÄÁÆ®·Ñ·¯¿¡ ´ëÇØ ºÒ¸®´Â Tick ÀÌ¹Ç·Î ¿©±â°¡ ÀûÀıÇÒ µí.
-	ABladeIIPlayer* PossedPlayer = Cast<ABladeIIPlayer>(GetPawn()); // ³×¹W¸ğµå¿¡¼± ÀÌ°Ô NULL ÀÏ ¼ö ÀÖ´Ù. ±×·² ¶© µû·Î UB2LobbyUI_CharStatDetail ÂÊ¿¡ ÁöÁ¤ÇÑ °É·Î »ç¿ë. ±Ùµ¥ ±×¶© ¾Æ¿¹ ¿©±â·Î ¾È µé¾î¿Ã ¼öµµ..
+#if !UE_BUILD_SHIPPING // çªå”±æŒ¥ç‰¢ è‚ºæ‹¿ æ•²é¥­æç»¢ ç‰§é£˜è´¹çŸ¾ä¿Š æªç§¦ é˜‚åºœç»° Tick æéª¨è‚º å’¯æ‰å•Š åˆ©ä¾‹ä¸” æ·€.
+	ABladeIIPlayer* PossedPlayer = Cast<ABladeIIPlayer>(GetPawn()); // åŒ™ç­—è‘›é›ä¿Šæ€¥ æéœ¸ NULL è€ è ä¹ä¿ƒ. å¼Šå‡¡ è®¢ è¶è‚º UB2LobbyUI_CharStatDetail ç‡ä¿Š ç˜¤æ²¥èŒ„ å§è‚º è¤ä¾©. è¾Ÿå• å¼Šè®¢ é…’æŠ— å’¯æ‰è‚º æ•‘ ç”¸ç»¢æ£µ èæ¡£..
 	EPCClass CurrentLocalMainPlayerClass = PossedPlayer ? PossedPlayer->GetCurrentPlayerClass() : EPCClass::EPC_End;
 	EPCClass CurrentLocalSubPlayerClass = PossedPlayer ? PossedPlayer->GetTagPlayerClass() : EPCClass::EPC_End;
 	//UB2LobbyUI_CharStatDetail::DebugDrawPlayerStatOnScreen(CurrentLocalMainPlayerClass, CurrentLocalSubPlayerClass);
@@ -188,7 +188,7 @@ void ABladeIIPlayerController::HideViewBlockingObjects()
 			FCollisionObjectQueryParams(FCollisionObjectQueryParams::InitType::AllStaticObjects), FCollisionShape::MakeCapsule(B2Char->CameraCullingRadius, B2Char->GetCapsuleComponent()->GetScaledCapsuleHalfHeight()), CameraParams);
 		//FCollisionShape::MakeSphere(B2Char->GetCapsuleComponent()->GetScaledCapsuleHalfHeight())
 
-		// QTE ÀÎ °æ¿ì Æò¼Ò¿¡ ½Ã¼±Â÷´Ü À§Çè¹° ¼³Á¤ÀÌ ¾ÈµÈ °Íµµ ¼û±æ ¼ö ÀÖµµ·Ï CustomDurationThreshold À» ³·°Ô ÁØ´Ù. -1 ÀÌ¸é DrawInGameCustomDuration ÀÇ ±âº»°ªÀÓ.
+		// QTE ç‰¢ ç‰ˆå¿« ä¹å®¶ä¿Š çŸ«æ€¥ç’çªœ å›°æ°°æ‹± æ±²æ²¥æ æ•‘ç­‰ å·´æ¡£ è§è¾¨ è ä¹æ¡£åºŸ CustomDurationThreshold é˜‘ æ’¤éœ¸ éœ–ä¿ƒ. -1 ææ DrawInGameCustomDuration ç‹¼ æ‰å¤¯è”¼çƒ™.
 		float CustomDurationThreshold = B2Char->IsInQTEState() ? -1.f : 0.f;
 
 		// collate into per-actor list of hit components
@@ -206,7 +206,7 @@ void ABladeIIPlayerController::HideViewBlockingObjects()
 
 void ABladeIIPlayerController::SetCameraTarget(ABladeIICharacter* CameraTarget, bool bSetByCameraBoom, bool bTargetPitchToo)
 {
-	// ·Î±× ³Ê¹«¸¹ÀÌ ¶ä
+	// è‚ºå¼Š å‘ˆå…¬è…¹æ æœµ
 	//B2_SCOPED_TRACK_LOG(TEXT("ABladeIIPlayerController::SetCameraTarget"));
 
 	if (CameraTargetActor != CameraTarget)
@@ -214,34 +214,34 @@ void ABladeIIPlayerController::SetCameraTarget(ABladeIICharacter* CameraTarget, 
 		CameraTargetActor = CameraTarget;
 		if (CameraTargetActor)
 		{
-			bExplicitCameraBoomYawSet = false; // CameraTargetActor °¡ ¼¼ÆÃµÇ¾ú´Ù¸é Àû¾îµµ Yaw ´Â °è¼Ó ±×ÂÊÀ» ÇâÇØ °»½ÅµÉ °ÍÀÌ¹Ç·Î ÀÌ°Ç »ç¿ëÇÏÁö ¾ÊÀ½.
+			bExplicitCameraBoomYawSet = false; // CameraTargetActor å•Š æŠ€æ³¼ç™»èŒä¿ƒæ åˆ©ç»¢æ¡£ Yaw ç»° æ‹ŒåŠ  å¼Šç‡é˜‘ æ°¢ç§¦ ç›è„šçª å·´æéª¨è‚º ææ‰’ è¤ä¾©çªç˜¤ è‡¼æ¾œ.
 			bCameraTargetSetByCameraBoom = bSetByCameraBoom;
-			// ÀÌ°Ç »ç½Ç»ó SetByCameraBoom ÀÏ ¶§¸¸?
+			// ææ‰’ è¤è§’æƒ‘ SetByCameraBoom è€ é”­çˆ¶?
 			bCameraTargetFollowPitchToo = bTargetPitchToo;
 
 			ABladeIIPlayer* B2Player = Cast<ABladeIIPlayer>(GetPawn());
 			if (B2Player)
 			{
-				// ¸ğµå¿¡ µû¶ó ÃÊ±â ¼¼ÆÃÀÌ °¥¸®´Âµ¥ ÀÌÈÄ¿¡´Â PlayerTick ¿¡¼­ ¸¶Âù°¡Áö °è»ê Àû¿ë.
+				// è‘›é›ä¿Š è¶æ‰¼ æª¬æ‰ æŠ€æ³¼æ å“åºœç»°å• æé¥¶ä¿Šç»° PlayerTick ä¿Šè¾‘ ä»˜è›®å•Šç˜¤ æ‹Œé­‚ åˆ©ä¾©.
 				if (bCameraTargetSetByCameraBoom)
 				{
-					// CameraTargetActor ¸¦ ÇâÇÏµµ·Ï CameraBoom À» Á¶Àı. CameraBoom ¿¡ ±â¹İÇÑ Ä«¸Ş¶ó È¿°ú¿Í °°ÀÌ »ç¿ë °¡´É
+					// CameraTargetActor ç”« æ°¢çªæ¡£åºŸ CameraBoom é˜‘ ç‚¼ä¾‹. CameraBoom ä¿Š æ‰é¦†èŒ„ å¢¨çš‹æ‰¼ ç“¤è‹å®¢ éæ è¤ä¾© å•Šç“·
 					FVector TargetToPlayerDir = CameraTargetActor->GetActorLocation() - B2Player->GetActorLocation();
 					TargetToPlayerDir.Normalize();
 
 					FRotator CamBoomRotationToTarget = TargetToPlayerDir.Rotation();
 					if (bCameraTargetFollowPitchToo == false)
 					{
-						CamBoomRotationToTarget.Pitch = 0.0f; // °ÔÀÓ Æ¯¼º»ó yaw ¸¸ µû¶ó°¥ ÇÊ¿ä°¡ ÀÖÀ» °Í.
+						CamBoomRotationToTarget.Pitch = 0.0f; // éœ¸çƒ™ æ¼‚å·±æƒ‘ yaw çˆ¶ è¶æ‰¼å“ é˜å¤¸å•Š ä¹é˜‘ å·´.
 					}
-					CamBoomRotationToTarget += CameraTargetActor->CameraTargetBoomRotOffset; // Character ÂÊ¿¡ ¼³Á¤ÇÑ °ª¿¡ µû¶ó Ãß°¡Á¶Àı.
+					CamBoomRotationToTarget += CameraTargetActor->CameraTargetBoomRotOffset; // Character ç‡ä¿Š æ±²æ²¥èŒ„ è”¼ä¿Š è¶æ‰¼ çœ å•Šç‚¼ä¾‹.
 
 					B2Player->UpdateCameraPitch(CamBoomRotationToTarget.Pitch);
 					B2Player->UpdateCameraYaw(CamBoomRotationToTarget.Yaw);
 				}
 				else
 				{
-					// Top-down Ä«¸Ş¶ó ÄÄÆ÷³ÍÆ® transform À» Á÷Á¢ º¯°æ.
+					// Top-down å¢¨çš‹æ‰¼ å“ªå™¨æƒ©é£˜ transform é˜‘ æµç«‹ å‡½ç‰ˆ.
 					B2Player->UpdateCameraTransform(CameraTargetActor->CameraTargetTransform);
 				}
 			}
@@ -253,7 +253,7 @@ void ABladeIIPlayerController::SetCameraBoomPosture(float InRotPitch, float InRo
 {
 	// All in one.
 	SetCameraBoomPitch(InRotPitch);
-	SetCameraBoomYaw(InRotYaw); // ¿©±â¼± CameraTargetActor °¡ ¹«È¿È­µÉ °Í.
+	SetCameraBoomYaw(InRotYaw); // å’¯æ‰æ€¥ CameraTargetActor å•Š å…¬ç“¤æ‹³çª å·´.
 	SetCameraBoomArmLength(InArmLength);
 }
 
@@ -273,7 +273,7 @@ void ABladeIIPlayerController::SetCameraBoomYaw(float InRotYaw)
 	ABladeIIPlayer* B2Player = Cast<ABladeIIPlayer>(GetPawn());
 	if (B2Player)
 	{
-		SetCameraTarget(NULL); // CameraTarget ÀÌ ÀÖ´Ù¸é ÀÌ°Ô ¾È¸ÔÈ÷´Ï ¹«È¿È­ÇÑ´Ù.
+		SetCameraTarget(NULL); // CameraTarget æ ä¹ä¿ƒæ æéœ¸ æ•‘å†ˆæ´’èª å…¬ç“¤æ‹³èŒ„ä¿ƒ.
 		bExplicitCameraBoomYawSet = true;
 		ExplicitCameraBoomYaw = InRotYaw;
 		B2Player->UpdateCameraYaw(ExplicitCameraBoomYaw);
@@ -285,7 +285,7 @@ void ABladeIIPlayerController::SetCameraBoomRoll(float InRotRoll)
 	ABladeIIPlayer* B2Player = Cast<ABladeIIPlayer>(GetPawn());
 	if (B2Player)
 	{
-		SetCameraTarget(NULL); // CameraTarget ÀÌ ÀÖ´Ù¸é ÀÌ°Ô ¾È¸ÔÈ÷´Ï ¹«È¿È­ÇÑ´Ù.
+		SetCameraTarget(NULL); // CameraTarget æ ä¹ä¿ƒæ æéœ¸ æ•‘å†ˆæ´’èª å…¬ç“¤æ‹³èŒ„ä¿ƒ.
 		bExplicitCameraBoomRollSet = true;
 		ExplicitCameraBoomRoll = InRotRoll;
 		B2Player->UpdateCameraRoll(ExplicitCameraBoomRoll);
@@ -397,7 +397,7 @@ void ABladeIIPlayerController::SetPawn(APawn* InPawn)
 	ABladeIIPlayer* B2Player = Cast<ABladeIIPlayer>(InPawn);
 	if (B2Player)
 	{
-		// ExplicitCameraBoom** ÀÌ ¸ÔÇô ÀÖÁö ¾Ê´Ù¸é ÇöÀç ÇÃ·¹ÀÌ¾î°¡ µé°í ÀÖ´Â °ªÀÌ¶óµµ °¡Á®¿Í º¸ÀÚ.
+		// ExplicitCameraBoom** æ å†ˆå›š ä¹ç˜¤ è‡¼ä¿ƒæ æ³…çŠ æ•²é¥­æç»¢å•Š ç”¸ç»Š ä¹ç»° è”¼ææ‰¼æ¡£ å•Šå»‰å®¢ ç„Šç£Š.
 		if (bExplicitCameraBoomPitchSet == false)
 		{
 			ExplicitCameraBoomPitch = B2Player->GetCameraPitch();
@@ -428,9 +428,9 @@ void ABladeIIPlayerController::SetPawn(APawn* InPawn)
 	Super::SetPawn(InPawn);
 	//////////////////////////////
 
-	SetCameraTarget(CameraTargetBackup); // ÀÌÀü CameraTarget º¹±¸
-	// ÀÌ°Íµéµµ ¸¶Âù°¡Áö·Î ÀÌÀü¿¡ ¼¼ÆÃµÈ ÀûÀÌ ÀÖ´Ù¸é »õ·Î¿î pawn ¿¡µµ ¸¶Âù°¡Áö·Î ¼¼ÆÃÇØ¼­ À¯ÁöµÇµµ·Ï ÇÑ´Ù.
-	// CameraTargetActor °¡ ÀÖ´õ¶óµµ ÀÏºÎ´Â ¸ÔÈú °Í.
+	SetCameraTarget(CameraTargetBackup); // æå‚ˆ CameraTarget æ±—å¤‡
+	// æå·´ç”¸æ¡£ ä»˜è›®å•Šç˜¤è‚º æå‚ˆä¿Š æŠ€æ³¼ç­‰ åˆ©æ ä¹ä¿ƒæ è´§è‚ºæ¬¾ pawn ä¿Šæ¡£ ä»˜è›®å•Šç˜¤è‚º æŠ€æ³¼ç§¦è¾‘ èœ¡ç˜¤ç™»æ¡£åºŸ èŒ„ä¿ƒ.
+	// CameraTargetActor å•Š ä¹æ­¹æ‰¼æ¡£ è€ä½•ç»° å†ˆé³ƒ å·´.
 	ApplyExplicitCameraBoomParams();
 
 	ApplyWorldPlayerLightSetting();
@@ -576,22 +576,22 @@ void ABladeIIPlayerController::SetCinematicMode(bool bInCinematicMode, bool bHid
 {
 	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIPlayerController::SetCinematicMode"));
 
-	//// ½Ã³×¸¶Æ½ ¸ğµå Ä«¿îÆÃ
+	//// çŸ«åŒ™ä»˜å¹³ è‘›é› å¢¨æ¬¾æ³¼
 	//if (bInCinematicMode)
 	//	nCinematicModeCount++;
 	//else
 	//	nCinematicModeCount--;
 
-	//// ½Ã³×¸¶Æ½ Á¾·á´Â Ä«¿îÆ®0ÀÏ¶§¸¸ ½ÇÇà
+	//// çŸ«åŒ™ä»˜å¹³ è¾†ä¸°ç»° å¢¨æ¬¾é£˜0è€é”­çˆ¶ è§’é’
 	//if (!bInCinematicMode && nCinematicModeCount != 0)
 	//	return;
 
-	//// Â¦¾È¸ÂÃß°í Á¾·á¸¸ È£ÃâÇßÀ»±îºÁ.. ÃÊ±âÈ­
+	//// å¨„æ•‘å˜çœ ç»Š è¾†ä¸°çˆ¶ é¾‹å…æ²é˜‘é³–æ¯«.. æª¬æ‰æ‹³
 	//if (nCinematicModeCount < 0)
 	//	nCinematicModeCount = 0;
 
-	//bHUDHidingCinematicMode = (bInCinematicMode && bAffectsHUD); // ÀÌ·¸°Ô µû·Î ¼¼ÆÃÇØ¼­ Widget ÂÊ¿¡¼­ ÂüÁ¶ÇÏµµ·Ï.
-	//bInputDisabledCinematicMode = (bInCinematicMode && bAffectsMovement); // AffectsMovement ½Ã ÀüÃ¼ ÀÔ·Â disable ·Î »ç¿ë
+	//bHUDHidingCinematicMode = (bInCinematicMode && bAffectsHUD); // æçŠ¯éœ¸ è¶è‚º æŠ€æ³¼ç§¦è¾‘ Widget ç‡ä¿Šè¾‘ æ›¼ç‚¼çªæ¡£åºŸ.
+	//bInputDisabledCinematicMode = (bInCinematicMode && bAffectsMovement); // AffectsMovement çŸ« å‚ˆçœ‰ æ¶ä»¿ disable è‚º è¤ä¾©
 
 	//UB2UIManager::GetInstance()->SetHUDHidingCinematicMode(bInCinematicMode, bHUDHidingCinematicMode);
 
@@ -610,7 +610,7 @@ void ABladeIIPlayerController::SetCinematicMode(bool bInCinematicMode, bool bHid
 	//	}
 	//}
 
-	//// FloorRing Àº HUD ¿Í °°ÀÌ ¼û±â´Â ¼º°İÀ¸·Î Ä¡°í.. ¹°·Ğ ¸¶Æ¼´ÏÆ®·¢À¸·Î SkeletalMeshActor ¸¦ ±¸µ¿½ÃÅ°´Â °Å¶ó¸é ±×ÂÊµµ ¼ÕºÁÁà¾ß ÇÑ´Ù. (AB2StageEventDirector::ActivateMatineePuppetPSCs)
+	//// FloorRing ç¯® HUD å®¢ éæ è§æ‰ç»° å·±æ‹œæ è‚º æ‘¹ç»Š.. æ‹±æ²¸ ä»˜èèªé£˜å‘æ è‚º SkeletalMeshActor ç”« å¤‡æ‚¼çŸ«è™ç»° èŠ­æ‰¼æ å¼Šç‡æ¡£ é¢Šæ¯«æ‹å…· èŒ„ä¿ƒ. (AB2StageEventDirector::ActivateMatineePuppetPSCs)
 	//if (MyPlayer && MyPlayer->FloorRingPSC)
 	//{
 	//	if (bHUDHidingCinematicMode){
@@ -623,7 +623,7 @@ void ABladeIIPlayerController::SetCinematicMode(bool bInCinematicMode, bool bHid
 	//	}
 	//}
 
-	//// ÀüÅõ UI º¸ÀÌ±â ¿©ºÎ¿¡ µû¶ó ½Ã³ª¸®¿À ´ëÈ­»óÀÚ À§Ä¡¸¦ ¼¼ÆÃÇØ¾ß ÇØ¼­. CinematicMode ¼³Á¤ÀÌ ±âº» ¼³Á¤º¸´Ù ¿ì¼±½ÃµÇ¹Ç·Î ¿©±â¼­ ¹«Á¶°Ç ¼¼ÆÃ
+	//// å‚ˆæ§ UI ç„Šææ‰ å’¯ä½•ä¿Š è¶æ‰¼ çŸ«å”±åºœå· æªæ‹³æƒ‘ç£Š å›°æ‘¹ç”« æŠ€æ³¼ç§¦å…· ç§¦è¾‘. CinematicMode æ±²æ²¥æ æ‰å¤¯ æ±²æ²¥ç„Šä¿ƒ å¿«æ€¥çŸ«ç™»éª¨è‚º å’¯æ‰è¾‘ å…¬ç‚¼æ‰’ æŠ€æ³¼
 	//UB2UIDocScenarioDialog* DocSDG = UB2UIDocHelper::GetDocScenarioDialog();
 	//if (DocSDG)
 	//{
@@ -642,7 +642,7 @@ void ABladeIIPlayerController::SetCinematicMode(bool bInCinematicMode, bool bHid
 
 void ABladeIIPlayerController::DeactivateVitualJoystick()
 {
-	// ±âº» ÄÚµå¿¡¼­´Â ·¹º§ Á¾·á½Ã ºÒ¸®Áö ¾Ê´Â µíÇÑµ¥, VirtualJoystick Àº ¸Å¹ø »õ·Î »ı¼º. ·¹º§ ³»·Á°¥ ¶§ ÀÌ°É ºÒ·¯ÁÙ ÇÊ¿ä°¡ ÀÖ´Ù. ´Ü ¿©±âÀÇ BeginDestroy ¸»°í.
+	// æ‰å¤¯ å†…é›ä¿Šè¾‘ç»° é¥­éª‡ è¾†ä¸°çŸ« é˜‚åºœç˜¤ è‡¼ç»° æ·€èŒ„å•, VirtualJoystick ç¯® æ¦‚é”… è´§è‚º ç§¯å·±. é¥­éª‡ éƒ´å¦¨å“ é”­ æå§ é˜‚çŸ¾ä¸´ é˜å¤¸å•Š ä¹ä¿ƒ. çªœ å’¯æ‰ç‹¼ BeginDestroy å¯Œç»Š.
 	if (VirtualJoystick.IsValid())
 	{
 		ActivateTouchInterface(nullptr);
@@ -651,7 +651,7 @@ void ABladeIIPlayerController::DeactivateVitualJoystick()
 
 bool ABladeIIPlayerController::InputTouch(uint32 Handle, ETouchType::Type Type, const FVector2D& TouchLocation, float Force, FDateTime DeviceTimestamp, uint32 TouchpadIndex)
 {
-	//ÅÍÄ¡ Began ÀÌº¥Æ® UI¶Õ°í ºäÆ÷Æ®·Î ÀÔ·Â ³Ñ¾î¿Ô³ª.
+	//ç£æ‘¹ Began æäº¥é£˜ UIå¢©ç»Š è½°å™¨é£˜è‚º æ¶ä»¿ é€ç»¢å­å”±.
 	//if (Type == ETouchType::Began)
 	//{
 	//	NotifyInputTouchBeganInViewPortClass<>::GetInstance().Signal();
@@ -711,7 +711,7 @@ void ABladeIIPlayerController::KillAllEnemies()
 
 bool ABladeIIPlayerController::StartAutoPlay(ABladeIIPlayer* avatar)
 {
-	//// ÀÌ ½ÃÁ¡¿¡¼­ ¾ø´Â °æ¿ì°¡ ¹ß°ßµÇ´Âµ¥ (Extra ¸ÊÀ¸·Î ÀÌµ¿ÇØ¼­ ¹Ù·Î Auto ½ÃÀÛ) ÇÃ·§ÆûÀÌ³ª ºôµå ¼³Á¤ µû¶ó BeginPlay Å¸ÀÌ¹ÖÀÌ ´Ù¸¥ °ÇÁöµµ ¸ğ¸£°Ú´Ù.
+	//// æ çŸ«ç—¢ä¿Šè¾‘ ç»ç»° ç‰ˆå¿«å•Š æƒ¯æ–‘ç™»ç»°å• (Extra ç”˜æ è‚º ææ‚¼ç§¦è¾‘ å®˜è‚º Auto çŸ«ç´¯) æ•²é˜€æ±½æå”± å‘¼é› æ±²æ²¥ è¶æ‰¼ BeginPlay é¸¥ææ€ªæ ä¿ƒå¼— æ‰’ç˜¤æ¡£ è‘›ç¦æ‘†ä¿ƒ.
 	//if (!AutoAIController){
 	//	AutoAIController = SpawnAutoAIController(FVector::ZeroVector, FRotator::ZeroRotator);
 	//}

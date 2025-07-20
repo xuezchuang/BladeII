@@ -1,4 +1,4 @@
-#include "B2UIGuildInfoPart.h"
+﻿#include "B2UIGuildInfoPart.h"
 #include "B2UIGuildMark.h"
 #include "B2ItemInfo.h"
 #include "B2UIGuildMemberPart.h"

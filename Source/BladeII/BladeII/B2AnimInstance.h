@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -133,7 +133,7 @@ protected:
 	EQTEType QTEType;
 
 	/*
-		TrueÀÌ¸é °ø°İ ½ÃÀÛ(ECS_Combo1) ·Î ÁøÀÔÀÌ °¡´ÉÇÑ »óÅÂ
+		Trueææ å‚æ‹œ çŸ«ç´¯(ECS_Combo1) è‚º æŸ³æ¶æ å•Šç“·èŒ„ æƒ‘æ€•
 	*/
 	UPROPERTY(BlueprintReadWrite, Category = "AnimState")
 	bool bHadRestartAttack;

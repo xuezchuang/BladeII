@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UICollectBookMain.h"
 #include "B2UIManager.h"
 #include "B2ClientDataStore.h"
@@ -138,7 +138,7 @@ void FCollectionTab::InitTabDefaultTemplate()
 
 void FSelectedIconInfo::UpdateIconInfo(EItemClass InItemClass, UB2UICollectBookIcon* NewIcon)
 {
-	if (IconWidget) // ÀÌÀü Data´Â »èÁ¦
+	if (IconWidget) // æå‚ˆ Dataç»° æ˜åŠ›
 	{
 		SelectedID = 0;
 		ItemClass = EItemClass::EIC_End;
@@ -166,7 +166,7 @@ void UB2UICollectBookMain::CacheAssets()
 {
 	Super::CacheAssets();
 
-	/* ÃÖÁ¾ UI È®½ÇÇÑ °áÁ¤ÀÌ ³ªÁö ¾Ê¾ÒÀ¸¹Ç·Î ÀÏ´Ü ÁÖ¼®Ã³¸® ¹× CollectionTabList °­Á¦ VisibleÃ³¸® */
+	/* å¼¥è¾† UI çŠ¬è§’èŒ„ æ¬æ²¥æ å”±ç˜¤ è‡¼ç–½æ éª¨è‚º è€çªœ æ—ç±è´¸åºœ æ£º CollectionTabList ç¢åŠ› Visibleè´¸åºœ */
 	GET_SLOT(UVerticalBox, VB_CollectionTab);
 	if (VB_CollectionTab.IsValid())
 		ShowCollectionTabButtonList(true);
@@ -362,7 +362,7 @@ void UB2UICollectBookMain::DestroySelf(UB2UIManager* InUIManager)
 
 	FreeupSomeMemory();
 
-	BladeIIGameImpl::GetClientDataStore().RequestSyncToServerShowHead(); //¸Ó¸® Visible °ü·Ã ¼­¹ö µ¿±âÈ­
+	BladeIIGameImpl::GetClientDataStore().RequestSyncToServerShowHead(); //èµ£åºœ Visible åŒ…è®¿ è¾‘æ»š æ‚¼æ‰æ‹³
 	UnSubscribeEvent();
 	Super::DestroySelf(InUIManager);
 }
@@ -398,7 +398,7 @@ void UB2UICollectBookMain::OnClickedItemIcon(class UB2UICollectBookIcon* IconWid
 		bool bRequestReward = (IconWidget->GetCollectionState() == EItemCollectionState::Enhanced);
 		if (bRequestReward)
 		{
-			// º¸»óÀÏ¶§´Â ¿äÃ»¸¸
+			// ç„Šæƒ‘è€é”­ç»° å¤¸æ²¡çˆ¶
 			RequestCollectionReward(CurrentCollectionType, IconWidget->GetSelectedID());
 			return;
 		}
@@ -416,7 +416,7 @@ void UB2UICollectBookMain::OnClickedItemIcon(class UB2UICollectBookIcon* IconWid
 				SetSelectIconInfo(ItemClass, IconWidget);
 			
 			else
-				SetSelectIconInfo(ItemClass, nullptr);	// ÀÌÀü¿¡ ¼±ÅÃÇß´ø ¾ÆÀÌÄÜÀÌ¶ó¸é
+				SetSelectIconInfo(ItemClass, nullptr);	// æå‚ˆä¿Š æ€¥ç¶æ²å¸¦ é…’æèƒ½ææ‰¼æ
 
 			OnUpdateLobbyCharacterView(ItemClass, NewSelectedID, bEquip);
 		}
@@ -504,7 +504,7 @@ void UB2UICollectBookMain::UpdateSingleIconRow(class UB2UICollectBookIconRow* Ic
 		}
 		
 		for (int32 Grade = 1; Grade <= FItemGradeInfo::MAX_NORMAL_ITEM_STAR_GRADE; Grade++)
-			IconRowWidget->ClearCollectBookIcon(Grade);	// ÀÏ´Ü Clear ÈÄ ´Ù½Ã ¼ÂÆÃ
+			IconRowWidget->ClearCollectBookIcon(Grade);	// è€çªœ Clear é¥¶ ä¿ƒçŸ« æ‚¸æ³¼
 
 		for (int32 ID : ItemIDs)
 		{
@@ -659,19 +659,19 @@ void UB2UICollectBookMain::OnChangedCollectionTab(ECollectionType PrevCollection
 void UB2UICollectBookMain::UpdateCollectionTab(ECollectionType CollectionType, EItemClass FocusItemClass)
 {
 	FCollectionTab& NewTab = GetCollectionTab(CollectionType);
-	// 1. CollectionTab New & CollectionCount °»½Å
+	// 1. CollectionTab New & CollectionCount ç›è„š
 	NewTab.InitTabDynamicTemplate(CharacterClass);
 
-	// 2. CollectionTab ¾Æ·¡ °èÃş EquipTypeTab °»½Å
+	// 2. CollectionTab é…’è´° æ‹Œæ‘¸ EquipTypeTab ç›è„š
 	UpdateAllEquipTypeTabs(CollectionType, FocusItemClass);
 }
 
 void UB2UICollectBookMain::UpdateEquipItemByChangeTab(ECollectionType PrevCollection, ECollectionType NewCollection)
 {
-	// ÅÇ ÀÌµ¿°£ Àåºñ Âø¿ë Á¶°ÇÀº ÇÏµåÄÚµù¼º°İÀÌ Â£¾îÁú °¡´É¼ºÀÌ ÀÖÀ¸¹Ç·Î µû·Î °ü¸®
+	// å¾˜ ææ‚¼åŸƒ å˜åš é¦’ä¾© ç‚¼æ‰’ç¯® çªé›å†…çˆ¹å·±æ‹œæ æ‹¢ç»¢é¾™ å•Šç“·å·±æ ä¹æ éª¨è‚º è¶è‚º åŒ…åºœ
 	if (PrevCollection != NewCollection)
 	{
-		// SetTab -> WingTab ÁøÀÔ½Ã¿¡¸¸ SetÀåºñ À¯Áö, ¹«±â/¹æ¾î±¸/Àå½Å±¸ TabÀÌµ¿½Ã ¼¼Æ®Àåºñ ÇØÁ¦
+		// SetTab -> WingTab æŸ³æ¶çŸ«ä¿Šçˆ¶ Setå˜åš èœ¡ç˜¤, å…¬æ‰/è§„ç»¢å¤‡/å˜è„šå¤‡ Tabææ‚¼çŸ« æŠ€é£˜å˜åš ç§¦åŠ›
 		if (PrevCollection == ECollectionType::SetItem && NewCollection != ECollectionType::Wing)
 		{
 			OnUpdateLobbyCharacterView(EItemClass::EIC_SetItem, CurrentEquipSetItemKey, false);
@@ -730,13 +730,13 @@ void UB2UICollectBookMain::UpdateCollectionPage(ECollectionType CollectionType, 
 	TArray<int32> GroupIDs = DataStore.GetItemGroupIDs();
 	TArray<int32> CostumeGroupIDs = DataStore.GetCostumeItemGroupIDs();
 	
-	//Costume Á¦¿Ü
+	//Costume åŠ›å¯‡
 	GroupIDs.RemoveAll([&CostumeGroupIDs](int32 ID) 
 	{
 		return CostumeGroupIDs.Contains(ID);
 	});
 
-	// ÀÓ½Ã ÄÚµå
+	// çƒ™çŸ« å†…é›
 	GroupIDs.Remove(5);
 	GroupIDs.Remove(6);
 
@@ -745,7 +745,7 @@ void UB2UICollectBookMain::UpdateCollectionPage(ECollectionType CollectionType, 
 	
 
 	int32 BlockedRowCount = 0;
-	const int32 IconRowCount = GroupIDs.Num();	//  GroupID¿Í IconRow´Â 1:1¸ÅÄªµÈ´Ù.
+	const int32 IconRowCount = GroupIDs.Num();	//  GroupIDå®¢ IconRowç»° 1:1æ¦‚è«ç­‰ä¿ƒ.
 	for (int32 RowIdx = 0; RowIdx < IconRowCount; RowIdx++)
 	{
 		const int32 GroupID = GroupIDs[RowIdx];
@@ -765,14 +765,14 @@ void UB2UICollectBookMain::UpdateCollectionPage(ECollectionType CollectionType, 
 		}
 	}
 
-	// ÀÌÀü¿¡ »ı¼ºµÇ¾úÀ¸³ª ³²Àº IconRowWidgetÀº Á¢¾î¹ö¸®ÀÚ
+	// æå‚ˆä¿Š ç§¯å·±ç™»èŒæ å”± å·¢ç¯® IconRowWidgetç¯® ç«‹ç»¢æ»šåºœç£Š
 	for (int32 InvisibleIdx = IconRowCount - BlockedRowCount; InvisibleIdx < ItemIconRows.Num(); InvisibleIdx++)
 	{
 		if (ItemIconRows[InvisibleIdx] != nullptr)
 			ItemIconRows[InvisibleIdx]->SetVisibility(ESlateVisibility::Collapsed);
 	}
 
-	// ÀÌÀü¿¡ ¼±ÅÃÇß´ø SetItemÀÌ ÀÖ¾ú´Ù¸é º¹¿ø½ÃÄÑÁÜ
+	// æå‚ˆä¿Š æ€¥ç¶æ²å¸¦ SetItemæ ä¹èŒä¿ƒæ æ±—ç›”çŸ«éš¾æ·‹
 	FSelectedIconInfo SelectedIcon;
 	if (InItemClass == EItemClass::EIC_SetItem && GetSelectIconInfo(InItemClass, SelectedIcon))
 	{
@@ -786,7 +786,7 @@ void UB2UICollectBookMain::UpdateCollectionPage(ECollectionType CollectionType, 
 
 void UB2UICollectBookMain::UpdateWingPage(bool bVisible)
 {
-	if (bVisible) { // Ã·ºÎÅÍ Hide °¡ ¿Ã ¼ö ÀÖ´Âµ¥ ±× °æ¿ì ¾ÆÁ÷ »ı¼ºÇÏÁö ¾Ê¾Ò´Ù ÇØµµ ±»ÀÌ »ı¼ºÇÒ ÇÊ¿ä ¾øÁö.
+	if (bVisible) { // æ¢…ä½•ç£ Hide å•Š æ£µ è ä¹ç»°å• å¼Š ç‰ˆå¿« é…’æµ ç§¯å·±çªç˜¤ è‡¼ç–½ä¿ƒ ç§¦æ¡£ è¢«æ ç§¯å·±ä¸” é˜å¤¸ ç»ç˜¤.
 		ConditionalCreateWingPageUIP();
 	}
 	if (CreatedUIP_WingPage)
@@ -881,7 +881,7 @@ void UB2UICollectBookMain::OnUpdateLobbyCharacterView(EItemClass ItemClass, int3
 	case EItemClass::EIC_Belt:
 	case EItemClass::EIC_Necklace:
 	case EItemClass::EIC_Ring:
-		// ÇöÀç accessoryµéÀº MeshÇ¥ÇöÇÏÁö ¾ÊÀ½
+		// æ³…çŠ accessoryç”¸ç¯® Meshé’æ³…çªç˜¤ è‡¼æ¾œ
 		CachedSurpassLevel = 0;
 		SetCurrentEquipItem(ItemClass, ItemTemplateID, bEquip);
 		return;
@@ -937,7 +937,7 @@ void UB2UICollectBookMain::OnUpdateLobbyCharacterViewWing(int32 WingGrade, bool 
 		SetEquipItems[WingEquipIndex].StarGrade = bEquip ? WingGrade : 0;
 	}
 
-	// ItemEquipPlace´Â ¾Æ¹«°Å³ª ³Ö¾îµµ »ó°ü¾øÀ½
+	// ItemEquipPlaceç»° é…’å…¬èŠ­å”± æŒç»¢æ¡£ æƒ‘åŒ…ç»æ¾œ
 	LobbyCharEquippedItemClass<EPCClass, EItemEquipPlace>::GetInstance().Signal(CharacterClass, EItemEquipPlace::EIEP_Weapon);
 }
 
@@ -1149,7 +1149,7 @@ void UB2UICollectBookMain::UpdateAllEquipTypeTabs(ECollectionType CollectionType
 	ClearUITabList();
 	for (auto& TabInfo : EquipTypeTabs)
 	{
-		TabInfo.SetVisible(false);	// ÀÏ´Ü ´Ù ¾Èº¸ÀÌ°Ô
+		TabInfo.SetVisible(false);	// è€çªœ ä¿ƒ æ•‘ç„Šæéœ¸
 	}
 	
 	int32 EquipTypeCount = GetItemClassTypeCount(CollectionType);
@@ -1197,7 +1197,7 @@ void UB2UICollectBookMain::UpdateEquipTypeTab(ECollectionType CollectionType, EI
 	const int32 UpdateTabIndex = GetEquipTypeTabIndex(InItemClass);
 	if (EquipTypeTabs.IsValidIndex(UpdateTabIndex))
 	{
-		// 1. EquipTypeTab ¾Æ·¡°èÃş Page °»½Å
+		// 1. EquipTypeTab é…’è´°æ‹Œæ‘¸ Page ç›è„š
 		UpdateCollectionPage(CollectionType, InItemClass);
 	}
 }
@@ -1406,7 +1406,7 @@ void UB2UICollectBookMain::UnSubscribeEvent()
 }
 
 /*
-	º¸»óÀº µµ°¨ Page¿¡¼­¸¸ Request / Response °¡´É
+	ç„Šæƒ‘ç¯® æ¡£çš‘ Pageä¿Šè¾‘çˆ¶ Request / Response å•Šç“·
 */
 void UB2UICollectBookMain::OnReceiveRewardCollectionItem(FB2RewardCollectionItemPtr RewardInfo)
 {
@@ -1617,11 +1617,11 @@ void UB2UICollectBookMain::FreeupSomeMemory()
 {
 	B2_SCOPED_TRACK_LOG_L2(TEXT("UB2UICollectBookMain::FreeupSomeMemory"));
 
-	// µµ°¨ ºä¿¡¼­ ÀÌ°ÍÀú°Í ±¸°æÇÏ°í °¥¾Æ³¢¸é¼­ ¼ø½Ä°£¿¡ ¸Ş¸ğ¸®°¡ Áõ°¡ÇÒ ¼ö ÀÖ¾î¼­ Á» ¹«¸®ÇØ¼­¶óµµ ÇÊ¿ä¾ø´Â °ÍµéÀ» ÀÚÁÖ ÇØÁ¦½ÃÅ³ ÇÊ¿ä°¡ ÀÖ´Ù.
+	// æ¡£çš‘ è½°ä¿Šè¾‘ æå·´å†å·´ å¤‡ç‰ˆçªç»Š å“é…’å°æè¾‘ é‰´ä¾¥åŸƒä¿Š çš‹è‘›åºœå•Š åˆ˜å•Šä¸” è ä¹ç»¢è¾‘ ç²± å…¬åºœç§¦è¾‘æ‰¼æ¡£ é˜å¤¸ç»ç»° å·´ç”¸é˜‘ ç£Šæ— ç§¦åŠ›çŸ«æ‡¦ é˜å¤¸å•Š ä¹ä¿ƒ.
 
 	UB2ItemInfo* ItemInfoTable = StaticFindItemInfo();
 	if (ItemInfoTable)
-	{ // ÇöÀç ·ÎÄÃ Ä³¸¯ÅÍ ÀåÂø ºĞ Á¦¿ÜÇÏ°í ´Ù unload mark ÇÏ´Â °Å
+	{ // æ³…çŠ è‚ºæ‹¿ æŸè…ç£ å˜é¦’ ç›’ åŠ›å¯‡çªç»Š ä¿ƒ unload mark çªç»° èŠ­
 		ItemInfoTable->UnloadAllExceptCurrentLocalEquipPartData();
 	}
 
@@ -1685,7 +1685,7 @@ void FEquipTypeTab::DoMarkRedDot()
 	if (CharacterClass == EPCClass::EPC_End || ItemClass == EItemClass::EIC_End)
 		return;
 
-	//ÀÌ°Ç RedDotÀ¸·Î
+	//ææ‰’ RedDotæ è‚º
 	FClientDataStore& DataStore = BladeIIGameImpl::GetClientDataStore();
 	bool bVisibleNew = DataStore.GetEnhancedCollectionItemCount(CharacterClass, ItemClass) > 0 ? true : false;
 

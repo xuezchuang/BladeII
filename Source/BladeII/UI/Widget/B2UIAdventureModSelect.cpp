@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIAdventureModSelect.h"
 #include "Event.h"
@@ -29,7 +29,7 @@ void UB2UIAdventureModSelect::BindDocAuto()
 
 	if (DocChapter)
 	{	
-		// ¼±ÅÃµÈ ÇÏµå ½ºÅ×ÀÌÁö°¡ ¾ø´Ù¸é °¡Àå ³·Àº ¸ğÇè ³­ÀÌµµ·Î ¼³Á¤
+		// æ€¥ç¶ç­‰ çªé› èƒ¶æŠ›æç˜¤å•Š ç»ä¿ƒæ å•Šå˜ æ’¤ç¯® è‘›æ°° æŠ„ææ¡£è‚º æ±²æ²¥
 		if (DocChapter->GetSelectHardStageDifficulty() == EStageDifficulty::ESD_None)
 		{
 			EStageDifficulty MaxOpenedStageDifficulty = DocChapter->GetMaxOpenedStageDifficulty();
@@ -71,7 +71,7 @@ void UB2UIAdventureModSelect::OnSceneOpen(EUIScene InOpenedScene)
 {
 	Super::OnSceneOpen(InOpenedScene);
 
-	// UIHeader ¿Í °°ÀÌ Scene À¸·Î ±¸¼ºÇÏ´Â °æ¿ì Init ½ÃÁ¡¿¡ ÇÏ¸é Scene ¿¡ Æ÷ÇÔµÈ header °¡ »ı¼ºÀÌ ¾ÈµÈ »óÈ²ÀÏ ¼ö ÀÖÀ½.
+	// UIHeader å®¢ éæ Scene æ è‚º å¤‡å·±çªç»° ç‰ˆå¿« Init çŸ«ç—¢ä¿Š çªæ Scene ä¿Š å™¨çªƒç­‰ header å•Š ç§¯å·±æ æ•‘ç­‰ æƒ‘ç‚”è€ è ä¹æ¾œ.
 	SetLobbyUIHeaderTitleByGeneralTextTableKey(TEXT("AdventureMod_AdventureTitle"));
 }
 
@@ -114,7 +114,7 @@ void UB2UIAdventureModSelect::SetAdventureModLock(bool IsUnLock, bool IsUnLockAn
 		CurAdventureSlotMap[EAdventureModeType::Adventure].IsValid() == false)
 		return;
 
-	// ¾ğ¶ô ¾Ö´Ï¸ŞÀÌ¼ÇÀº ¾ÆÁ÷...(IsUnLockAnimation)
+	// æ”«é å±€èªçš‹æè®°ç¯® é…’æµ...(IsUnLockAnimation)
 	CurAdventureSlotMap[EAdventureModeType::Adventure]->SetLockSlot(!IsUnLock);
 	CurAdventureSlotMap[EAdventureModeType::Adventure]->SetVisiblityAdventureDifficultyButton(IsUnLock);
 }
@@ -130,7 +130,7 @@ void UB2UIAdventureModSelect::SetScenarioComplete(bool IsComplete)
 
 void UB2UIAdventureModSelect::UpdateAdventureChapterInfo()
 {
-	//// ¸ğÇè³­ÀÌµµ ¿ÀÇÂ°¡´ÉÇÑ ½ºÅ×ÀÌÁö ¾È³»¹® ¼³Á¤
+	//// è‘›æ°°æŠ„ææ¡£ å·é”¹å•Šç“·èŒ„ èƒ¶æŠ›æç˜¤ æ•‘éƒ´å·© æ±²æ²¥
 	//UB2ChapterInfo* ChapterInfoTable = StaticFindChapterInfo();
 	//UB2StageInfo* StageInfoTable = StaticFindStageInfo();
 	//if (ChapterInfoTable && StageInfoTable)
@@ -251,7 +251,7 @@ bool UB2UIAdventureModSelect::InitAdventureModeSlot_CheckBluePrint()
 	{
 #if WITH_EDITOR && !PLATFORM_MAC
 		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-			FString::Printf(TEXT("UI_AdventureModSelect.uasset ¿¡·¯ ¹ß»ı / ShowAdventureSlotTypes ºí·çÇÁ¸°Æ®¸¦ ¼³Á¤ÇØÁÖ¼¼¿ä.(ÁÖÀÇ : »çÀÌÁî°¡ 2 ¶Ç´Â 3ÀÌ µÇ¾î¾ßÇÔ)"))
+			FString::Printf(TEXT("UI_AdventureModSelect.uasset ä¿ŠçŸ¾ æƒ¯ç§¯ / ShowAdventureSlotTypes å–‰é£æ©‡èµ´é£˜ç”« æ±²æ²¥ç§¦æ—æŠ€å¤¸.(æ—ç‹¼ : è¤æä»¤å•Š 2 è‚šç»° 3æ ç™»ç»¢å…·çªƒ)"))
 			));
 #endif //WITH_EDITOR
 		BII_CHECK(false);
@@ -263,18 +263,18 @@ bool UB2UIAdventureModSelect::InitAdventureModeSlot_CheckBluePrint()
 	{
 //#if WITH_EDITOR && !PLATFORM_MAC
 //		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-//			FString::Printf(TEXT("AdventureModeSlot ºí·çÇÁ¸°ÅÍ µ¥ÀÌÅÍ ¾øÀ½. UI_AdventureModSelect¿¡ µ¥ÀÌÅÍ(AdventureModeTypeDatas)¸¦ Ãß°¡ÇØÁÖ¼¼¿ä."))
+//			FString::Printf(TEXT("AdventureModeSlot å–‰é£æ©‡èµ´ç£ å•æç£ ç»æ¾œ. UI_AdventureModSelectä¿Š å•æç£(AdventureModeTypeDatas)ç”« çœ å•Šç§¦æ—æŠ€å¤¸."))
 //			));
 //#endif //WITH_EDITOR
 		return false;
 	}
 
-	// 3. GDC ¹öÀü ½´ÆÛ ÇÏµåÄÚµù!!!!!! (todo : ÀÌ°Ç ³ªÁß¿¡ ÇÊÈ÷ Áö¿öÁÖµµ·Ï ÇÑ´Ù. È¤½Ã ³»°¡ ±î¸ÔÀ» ¼öµµ ÀÖÀ¸´Ï ³ªÁß¿¡ º¸´Â »ç¶÷ÀÌ ÀÖ´Ù¸é Áö¿öÁÖ½Ã±æ... by spivy)
+	// 3. GDC æ»šå‚ˆ é…±æ¬º çªé›å†…çˆ¹!!!!!! (todo : ææ‰’ å”±åä¿Š é˜æ´’ ç˜¤å†µæ—æ¡£åºŸ èŒ„ä¿ƒ. è¶£çŸ« éƒ´å•Š é³–å†ˆé˜‘ èæ¡£ ä¹æ èª å”±åä¿Š ç„Šç»° è¤æ©æ ä¹ä¿ƒæ ç˜¤å†µæ—çŸ«è¾¨... by spivy)
 	{
 		bool IsGDCVersion = ShouldShowGDCVersionContent(); // [GDC] Feb 2017
 		if (IsGDCVersion)
 		{
-			// GDC¹öÀü¿¡´Â Æ©Åä¸®¾ó°ú ½Ã³ª¸®¿À¸ğµå¸¸ ¿ÀÇÂÇÕ´Ï´Ù¿ä ~
+			// GDCæ»šå‚ˆä¿Šç»° è­¬é…åºœå€”è‹ çŸ«å”±åºœå·è‘›é›çˆ¶ å·é”¹é’¦èªä¿ƒå¤¸ ~
 			ShowAdventureSlotTypes.Empty();
 			ShowAdventureSlotTypes.Emplace(EAdventureModeType::Tutorial);
 			ShowAdventureSlotTypes.Emplace(EAdventureModeType::Scenario);
@@ -286,7 +286,7 @@ bool UB2UIAdventureModSelect::InitAdventureModeSlot_CheckBluePrint()
 
 void UB2UIAdventureModSelect::InitAdventureModeSlot_SetCurAdventureSlot()
 {
-	// Note : ±âÈ¹ ÀÇµµ¿¡ µû¶ó ½½·Ô °³¼ö°¡ ÀÚÁÖ º¯°æµÉ ¼ö°¡ ÀÖ´Ù. (¸¶ÀÏ½ºÅæ, GDC µîµî..)
+	// Note : æ‰è£™ ç‹¼æ¡£ä¿Š è¶æ‰¼ æµ‡å© ä¿ºèå•Š ç£Šæ— å‡½ç‰ˆçª èå•Š ä¹ä¿ƒ. (ä»˜è€èƒ¶æ²›, GDC æ®¿æ®¿..)
 	const int32 MaxShowSlotCount = ShowAdventureSlotTypes.Num();
 
 	TWeakObjectPtr<UCanvasPanel> CurRootObject = nullptr;
@@ -374,7 +374,7 @@ FAdventureModeSetting UB2UIAdventureModSelect::GetAdventureModeSetting(EAdventur
 	if (InAdventureModeType == EAdventureModeType::Max)
 		return FAdventureModeSetting();
 
-	// ¸î°³¾ÈµÇ´Ï±î ÀÌÅÍ·¹ÀÌÆÃ..
+	// å‰²ä¿ºæ•‘ç™»èªé³– æç£é¥­ææ³¼..
 	for (auto AdventureModeSettingData : AdventureModeTypeDatas)
 	{
 		if (AdventureModeSettingData.ModeType == InAdventureModeType)

@@ -1,4 +1,4 @@
-#include "B2UIWidget.h"
+﻿#include "B2UIWidget.h"
 #include "B2UIDocBindable.h"
 #include "B2UIPVPResult.generated.h"
 

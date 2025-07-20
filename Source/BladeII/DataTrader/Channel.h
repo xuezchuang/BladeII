@@ -1,7 +1,7 @@
-#pragma once
+﻿#pragma once
 //#include "BladeII.h"
 #include <memory>
-
+#include "CoreMinimal.h"
 //#include "Array.h"
 
 namespace data_trader

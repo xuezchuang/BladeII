@@ -1,4 +1,4 @@
-
+Ôªø
 #include "PacketInterpreter.h"
 #include "Packet.h"
 #include "PacketMaker.h"
@@ -366,7 +366,7 @@ namespace packet
 		auto	DamageAmount = packet::SliceStream<float>(decoder);
 		auto	DamageInfoHash = packet::SliceStream<uint32>(decoder);
 		auto	OwnerHealth = packet::SliceStream<int32>(decoder);
-		int32	DummyDamagedNum = 0; // «ˆ¿Á æ»æ∏
+		int32	DummyDamagedNum = 0; // Ê≥ÖÁäÅ ÊïëÈùñ
 
 		//B2LOGMANAGER_BLANK(LoggerPacketInterpreter);
 		//B2LOGMANAGER_DEBUG(LoggerPacketInterpreter, "netid : [%d]\n DamageCauserNetId : [%d] DamageAmount : [%d]\n DamageInfoHash : [%d] OwnerHealth : [%d]\n DamageNum : [%d]\n payload : [%s]\n", netid, DamageCauserId, DamageAmount, DamageInfoHash, VictimHealth, DummyDamagedNum, TCHAR_TO_ANSI(*FString(payload)));
@@ -805,7 +805,7 @@ namespace packet
 		B2LOGMANAGER_DEBUG(LoggerPacketInterpreter, "netid : [%d]", netid);
 		B2LOGMANAGER_DEBUG(LoggerPacketInterpreter, "SancIndex : [%d]", SancIndex);
 
-		// ¿Ã∫•∆Æ
+		// Êçû‰∫•È£ò
 		ReceivedConsumeControlSanctuaryClass<int32>::GetInstance().Signal(SancIndex);
 	}
 
@@ -820,7 +820,7 @@ namespace packet
 		B2LOGMANAGER_DEBUG(LoggerPacketInterpreter, "netid : [%d]", netid);
 		B2LOGMANAGER_DEBUG(LoggerPacketInterpreter, "SancIndex : [%d]", SancIndex);
 
-		// ¿Ã∫•∆Æ
+		// Êçû‰∫•È£ò
 		ReceivedRespawnControlSanctuaryClass<int32>::GetInstance().Signal(SancIndex);
 	}
 
@@ -835,7 +835,7 @@ namespace packet
 		B2LOGMANAGER_DEBUG(LoggerPacketInterpreter, "netid : [%d]", netid);
 		B2LOGMANAGER_DEBUG(LoggerPacketInterpreter, "SancIndex : [%d]", SancIndex);
 
-		// ¿Ã∫•∆Æ netid
+		// Êçû‰∫•È£ò netid
 		ReceivedDrinkControlSanctuaryClass<uint32, int32>::GetInstance().Signal(netid, SancIndex);
 	}
 
@@ -862,7 +862,7 @@ namespace packet
 			TeamInfos.Add(TempNetId, TempTeamType);
 		}
 		
-		// ¿Ã∫•∆Æ»£√‚. ∏ ≥÷±‚
+		// Êçû‰∫•È£òÈæãÂÖç. ÁîòÊåÅÊâÅ
 		ReceiveRoomPlayerTeamInfoClass<TMap<uint32, uint8>&>::GetInstance().Signal(TeamInfos);
 	}
 
@@ -955,7 +955,7 @@ namespace packet
 		ReceivedSpawnEndClass<uint32>::GetInstance().Signal(netid);
 	}
 	
-	/////////////////////////////////// µƒ⁄¥ı ≥° ///////////////////////////////////////////////////////////////
+	/////////////////////////////////// ÂèºÂÜÖÊ≠π Âú∫ ///////////////////////////////////////////////////////////////
 
 	void DecodePayload(uint32 type, uint32 netid, ByteStream& payload)
 	{

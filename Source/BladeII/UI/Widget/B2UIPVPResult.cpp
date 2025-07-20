@@ -1,4 +1,4 @@
-#include "B2UIPVPResult.h"
+ï»¿#include "B2UIPVPResult.h"
 #include "B2UIDocHelper.h"
 #include "B2UIGradeRankAndStar.h"
 #include "B2TMGameMode.h"
@@ -79,7 +79,7 @@ void UB2UIPVPResult::Init()
 
 void UB2UIPVPResult::StartRankupAnimation(const EStateAfterGradeUp GradeUpState)
 {
-	if (EStateAfterGradeUp::GRADE_ANIM_START == GradeUpState && ANIM_UP_01.IsValid()) // µî±Ş¾÷
+	if (EStateAfterGradeUp::GRADE_ANIM_START == GradeUpState && ANIM_UP_01.IsValid()) // æ®¿é­è¯€
 	{
 		PlayAnimation(ANIM_UP_01.Get());
 
@@ -97,19 +97,19 @@ void UB2UIPVPResult::StartRankupAnimation(const EStateAfterGradeUp GradeUpState)
 	}
 	else if (EStateAfterGradeUp::GRADE_UP_END == GradeUpState && ANIM_UP_02.IsValid())
 	{
-		ForcedCloseToolTipPopupClass<>::GetInstance().Signal(); // ¾ÆÀÌÅÛ º¸»ó ÅøÆÁ ¶°ÀÖÀ¸¸é Áö¿ò
+		ForcedCloseToolTipPopupClass<>::GetInstance().Signal(); // é…’æè¢ ç„Šæƒ‘ ç ’å± æ ‹ä¹æ æ ç˜¤æ¡†
 		PlayAnimation(ANIM_UP_02.Get());
 	}
 
 	if (!IsAnyAnimationPlaying() && DocSome.IsValid() && DocSome->GetRankingChanged() > 0)
 	{
-		ForcedCloseToolTipPopupClass<>::GetInstance().Signal(); // ¾ÆÀÌÅÛ º¸»ó ÅøÆÁ ¶°ÀÖÀ¸¸é Áö¿ò
+		ForcedCloseToolTipPopupClass<>::GetInstance().Signal(); // é…’æè¢ ç„Šæƒ‘ ç ’å± æ ‹ä¹æ æ ç˜¤æ¡†
 		ShowRankingChanged(DocSome->GetRankingChanged());
 		DocSome->SetRankingChanged(0);
 	}
 	else
 	{
-		ForcedCloseToolTipPopupClass<>::GetInstance().Signal(); // ¾ÆÀÌÅÛ º¸»ó ÅøÆÁ ¶°ÀÖÀ¸¸é Áö¿ò
+		ForcedCloseToolTipPopupClass<>::GetInstance().Signal(); // é…’æè¢ ç„Šæƒ‘ ç ’å± æ ‹ä¹æ æ ç˜¤æ¡†
 		CheckAndOpenLevelUpPart();
 	}
 
@@ -224,7 +224,7 @@ void UB2UIPVPResult::OnOpenAnimEnded()
 {
 	auto GradeUp = GetGrade(GameModeEnum) <= GetGrade(GameModeEnum, false);
 
-	if (GetGrade(GameModeEnum) < GetGrade(GameModeEnum, false)) // µî±Ş¾÷, À¯Áö, µî±Ş´Ù¿î °áÁ¤
+	if (GetGrade(GameModeEnum) < GetGrade(GameModeEnum, false)) // æ®¿é­è¯€, èœ¡ç˜¤, æ®¿é­ä¿ƒæ¬¾ æ¬æ²¥
 	{
 		GradeUp = true;
 	}
@@ -309,7 +309,7 @@ void UB2UIPVPResult::ShowRankingChanged(int32 DiffChangedRanking)
 		UIP_PVPRankingChangedPopup->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
 		UIP_PVPRankingChangedPopup->SetUsingGameMode(GameModeEnum);
 		//UIP_PVPRankingChangedPopup->SetMyRankingData(DocSome->GetMyRankerInfo());
-		//UIP_PVPRankingChangedPopup->SetOtherRankingData(DocSome->GetOtherRankerInfo()); //ÀÓ½Ã
+		//UIP_PVPRankingChangedPopup->SetOtherRankingData(DocSome->GetOtherRankerInfo()); //çƒ™çŸ«
 		UIP_PVPRankingChangedPopup->SetChangedRanking(DiffChangedRanking);
 	}
 }
@@ -370,9 +370,9 @@ void UB2UIPVPResult::BindDocAuto()
 			if (TB_WinningBonus.IsValid())
 			{
 				TB_WinningBonus->SetVisibility(BattleDoc->GetTagMatchCurrContinuousWins() >=
-					BladeIIGameImpl::GetClientDataStore().GetWinCountForBonus() ? ESlateVisibility::Visible : ESlateVisibility::Hidden);	//2¿¬½ÂÀÌ»óÀÏ¶§ ¶ç¿ì±â
+					BladeIIGameImpl::GetClientDataStore().GetWinCountForBonus() ? ESlateVisibility::Visible : ESlateVisibility::Hidden);	//2æ¥·é“°ææƒ‘è€é”­ å‰å¿«æ‰
 
-				// 1µî±ŞÀº ¿¬½Âº¸³Ê½º Ç¥±â ¾ÈÇÑ´Ù.
+				// 1æ®¿é­ç¯® æ¥·é“°ç„Šå‘ˆèƒ¶ é’æ‰ æ•‘èŒ„ä¿ƒ.
 				if (BattleDoc->GetTagMatchBeforeGrade() == 1)
 				{
 					TB_WinningBonus->SetVisibility(ESlateVisibility::Hidden);
@@ -406,9 +406,9 @@ void UB2UIPVPResult::BindDocAuto()
 			if (TB_WinningBonus.IsValid())
 			{
 				TB_WinningBonus->SetVisibility(TeamMatchDoc->GetPCCurrContinuousWins() >=
-					BladeIIGameImpl::GetClientDataStore().GetWinCountForBonus() ? ESlateVisibility::Visible : ESlateVisibility::Hidden); //2¿¬½ÂÀÌ»óÀÏ¶§ ¶ç¿ì±â
+					BladeIIGameImpl::GetClientDataStore().GetWinCountForBonus() ? ESlateVisibility::Visible : ESlateVisibility::Hidden); //2æ¥·é“°ææƒ‘è€é”­ å‰å¿«æ‰
 
-				// 1µî±ŞÀº ¿¬½Âº¸³Ê½º Ç¥±â ¾ÈÇÑ´Ù.																										 // 1µî±ŞÀº ¿¬½Âº¸³Ê½º Ç¥±â ¾ÈÇÑ´Ù.
+				// 1æ®¿é­ç¯® æ¥·é“°ç„Šå‘ˆèƒ¶ é’æ‰ æ•‘èŒ„ä¿ƒ.																										 // 1æ®¿é­ç¯® æ¥·é“°ç„Šå‘ˆèƒ¶ é’æ‰ æ•‘èŒ„ä¿ƒ.
 				if (TeamMatchDoc->GetPCBeforeGrade() == 1)
 				{
 					TB_WinningBonus->SetVisibility(ESlateVisibility::Hidden);
@@ -439,7 +439,7 @@ void UB2UIPVPResult::BindDocAuto()
 
 	if (TB_PVPRankPrevent.IsValid())
 	{
-		if (GetGrade(GameModeEnum, false) == GetGrade(GameModeEnum) &&						//µî±Ş°ú º°°³¼ö°¡ °°À¸¸é ¸àÆ® ¶ç¿ì±â
+		if (GetGrade(GameModeEnum, false) == GetGrade(GameModeEnum) &&						//æ®¿é­è‹ å–Šä¿ºèå•Š éæ æ è†é£˜ å‰å¿«æ‰
 			GetStarCount(GameModeEnum, false) == GetStarCount(GameModeEnum))
 		{
 			TB_PVPRankPrevent->SetVisibility(ESlateVisibility::HitTestInvisible);
@@ -463,7 +463,7 @@ void UB2UIPVPResult::BindDocAuto()
 		OV_WinResult->SetVisibility((DocSome.IsValid() && DocSome->GetLocalPlayerMatchResult() == ENetMatchResult::LocalWin) ? ESlateVisibility::HitTestInvisible : ESlateVisibility::Collapsed);
 	if (OV_LoseResult.IsValid())
 		OV_LoseResult->SetVisibility((DocSome.IsValid() && DocSome->GetLocalPlayerMatchResult() != ENetMatchResult::LocalWin) ? ESlateVisibility::HitTestInvisible : ESlateVisibility::Collapsed);
-	// OV_DrawResult Ãß°¡µÉ ¼ö ÀÖÀ½. ±×·¯¸é ¹«½ÂºÎ »óÈ²¿¡¼± À§¿¡ OV_LoseResult Ç¥½Ã ¾ÈµÇ°Ô
+	// OV_DrawResult çœ å•Šçª è ä¹æ¾œ. å¼ŠçŸ¾æ å…¬é“°ä½• æƒ‘ç‚”ä¿Šæ€¥ å›°ä¿Š OV_LoseResult é’çŸ« æ•‘ç™»éœ¸
 	if (TB_PlayerRank.IsValid())
 	//	TB_PlayerRank->SetText(FText::Format(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("PVPResult_PlayerRank")), FText::AsNumber(DocSome->GetMyRankerInfo().Rank)));
 	//if (TB_SendMail.IsValid())
@@ -656,7 +656,7 @@ void UB2UIPVPResult::OnClickBtnRestart()
 		}
 
 
-		// Á¡°Ë Á¤»ê Ã¼Å©
+		// ç—¢å…« æ²¥é­‚ çœ‰å†œ
 		if (CheckContentsModeState(b2network::B2ContentsMode::PVP_DUEL))
 			return;
 
@@ -671,7 +671,7 @@ void UB2UIPVPResult::OnClickBtnRestart()
 	}
 	else if(GameModeEnum == EB2GameMode::PVP_Team)
 	{
-		// Á¡°Ë Á¤»ê Ã¼Å©
+		// ç—¢å…« æ²¥é­‚ çœ‰å†œ
 		if (CheckContentsModeState(b2network::B2ContentsMode::PVP_TEAM))
 			return;
 
@@ -712,7 +712,7 @@ bool UB2UIPVPResult::OnCheckAdditionalPoint_PvP()
 	check(PvPDoc)
 	if (PvPDoc->GetMatchPoint() == 0)
 	{
-		//Æ¼ÄÏºÎÁ· ¾Ë¸²ÆË¾÷
+		//èå—ä½•ç»ƒ èˆ…è¦†æ‰‘è¯€
 		UB2UIMsgPopupUseResources* MsgUI = UB2UIManager::GetInstance()->OpenMsgPopup<UB2UIMsgPopupUseResources>(EUIMsgPopup::UseGem,
 			BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_Notification")),
 			BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("PVPMatch_BuyTicketTitleMsg")),
@@ -721,7 +721,7 @@ bool UB2UIPVPResult::OnCheckAdditionalPoint_PvP()
 			true,
 			EUIMsgPopupButtonGroup::ConfirmOrCancel,
 			FMsgPopupOnClick::CreateLambda([this](){ OnCheckGemForBuyTicket_PvP(); }),
-			FMsgPopupOnClick::CreateLambda([this]() { BTN_Restart->SetIsEnabled(false); }));// Ãë¼Ò¹öÆ° ´­·¶À»¶§ ¹öÆ° ºñÈ°¼ºÈ­
+			FMsgPopupOnClick::CreateLambda([this]() { BTN_Restart->SetIsEnabled(false); }));// ç§’å®¶æ»šç“¢ å–˜èŒƒé˜‘é”­ æ»šç“¢ åšåŠå·±æ‹³
 
 		if (MsgUI)
 		{
@@ -741,7 +741,7 @@ void UB2UIPVPResult::OnCheckGemForBuyTicket_PvP()
 	{
 		int32 AdditonalCount = PvPBattleDoc->GetAdditionalMatchCount();
 
-		if (BladeIIGameImpl::GetClientDataStore().GetAdditionalMatchPointCost(AdditonalCount) > BladeIIGameImpl::GetClientDataStore().GetGemAmount()) // ÀëºÎÁ·
+		if (BladeIIGameImpl::GetClientDataStore().GetAdditionalMatchPointCost(AdditonalCount) > BladeIIGameImpl::GetClientDataStore().GetGemAmount()) // ç¦»ä½•ç»ƒ
 		{
 			ShortageMGR->PopupGoToShopForGemMessage();
 			BTN_Restart->SetIsEnabled(false);
@@ -769,7 +769,7 @@ bool UB2UIPVPResult::OnCheckAdditionalPoint_Team()
 	check(TeamDoc)
 		if (TeamDoc->GetTeamMatchPoint() == 0)
 		{
-			// Æ¼ÄÏºÎÁ· ¾Ë¸²ÆË¾÷
+			// èå—ä½•ç»ƒ èˆ…è¦†æ‰‘è¯€
 			UB2UIMsgPopupUseResources* MsgUI = UB2UIManager::GetInstance()->OpenMsgPopup<UB2UIMsgPopupUseResources>(EUIMsgPopup::UseGem,
 				BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_Notification")),
 				BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("TeamMatch_BuyTicketTitleMsg")),
@@ -778,7 +778,7 @@ bool UB2UIPVPResult::OnCheckAdditionalPoint_Team()
 				true,
 				EUIMsgPopupButtonGroup::ConfirmOrCancel,
 				FMsgPopupOnClick::CreateLambda([this]() { OnCheckGemForBuyTicket_Team(); }),
-				FMsgPopupOnClick::CreateLambda([this]() {BTN_Restart->SetIsEnabled(false); }));// Ãë¼Ò¹öÆ° ´­·¶À»¶§ ¹öÆ° ºñÈ°¼ºÈ­ // ClickNo Function
+				FMsgPopupOnClick::CreateLambda([this]() {BTN_Restart->SetIsEnabled(false); }));// ç§’å®¶æ»šç“¢ å–˜èŒƒé˜‘é”­ æ»šç“¢ åšåŠå·±æ‹³ // ClickNo Function
 
 			if (MsgUI)
 			{
@@ -799,7 +799,7 @@ void UB2UIPVPResult::OnCheckGemForBuyTicket_Team()
 	{
 		int32 AdditonalCount = TeamBattleDoc->GetTeamAdditionalMatchCount();
 
-		if (BladeIIGameImpl::GetClientDataStore().GetAdditionalMatchPointCost(AdditonalCount) > BladeIIGameImpl::GetClientDataStore().GetGemAmount()) // ÀëºÎÁ·
+		if (BladeIIGameImpl::GetClientDataStore().GetAdditionalMatchPointCost(AdditonalCount) > BladeIIGameImpl::GetClientDataStore().GetGemAmount()) // ç¦»ä½•ç»ƒ
 		{
 			ShortageMGR->PopupGoToShopForGemMessage();
 			BTN_Restart->SetIsEnabled(false);
@@ -850,7 +850,7 @@ void UB2UIPVPResult::CheckAndOpenLevelUpPart()
 {
 	FLocalCharacterData& CharacterDataStore = BladeIIGameImpl::GetClientDataStore().GetLocalCharacterData();
 
-	// ·¹º§¾÷ ÇÏ´ÂÁö ÆÇ´ÜÇÏ´Â ºÎºĞÀº ÃÑ 2°÷. ·©Å·º¯°æÆË¾÷ÀÌÈÄ ¿Í, ·©Å·º¯°æÀÌ ¾øÀ»°æ¿ì ±× ÀÌÀü.
+	// é¥­éª‡è¯€ çªç»°ç˜¤ é­„çªœçªç»° ä½•ç›’ç¯® é†š 2é•‘. çæ¬§å‡½ç‰ˆæ‰‘è¯€æé¥¶ å®¢, çæ¬§å‡½ç‰ˆæ ç»é˜‘ç‰ˆå¿« å¼Š æå‚ˆ.
 	TArray<EPCClass> ThisPCClass;
 
 	if (GameModeEnum == EB2GameMode::PVP_Tag)
@@ -875,7 +875,7 @@ void UB2UIPVPResult::CheckAndOpenLevelUpPart()
 	
 	for (auto pcclass : ThisPCClass)
 	{
-		//[@SameLine, 180612] explevelinfo doc, datastore -> datastore °³¼±
+		//[@SameLine, 180612] explevelinfo doc, datastore -> datastore ä¿ºæ€¥
 		//UB2UIDocHero* DocHero = UB2UIDocHelper::GetDocHero(PCClassToInt(pcclass));
 		//bool bCharLevelUp = (FMath::Max(DocHero->GetBasicUpgradeLevel(), DocHero->GetExtraUpgradeLevel()) > DocHero->GetCurrentLevel());
 		const int32 ClearAfterLevel = CharacterDataStore.GetCharacterLevel(pcclass);

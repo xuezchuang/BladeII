@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIModRewardBox.h"
 #include "B2UIManager.h"
 
@@ -135,10 +135,10 @@ void UB2UIModRewardBox::SetModRewardBoxType(int32 servertype, bool IsMvp)
 	bool bAssault = servertype == b2network::B2DuelMode::DUEL_MODE_ASSAULT;
 
 	if(HB_Defeat.IsValid())
-		HB_Defeat->SetVisibility(IsMvp ? ESlateVisibility::Hidden : ESlateVisibility::Visible);		//Loseǥ�úκ�
+		HB_Defeat->SetVisibility(IsMvp ? ESlateVisibility::Hidden : ESlateVisibility::Visible);		//Lose钎矫何盒
 
 	if(OV_MVPKeyText.IsValid())
-		OV_MVPKeyText->SetVisibility(IsMvp ? ESlateVisibility::Visible : ESlateVisibility::Hidden);	//MVP�϶� �ؽ�Ʈ
+		OV_MVPKeyText->SetVisibility(IsMvp ? ESlateVisibility::Visible : ESlateVisibility::Hidden);	//MVP老锭 咆胶飘
 
 }
 

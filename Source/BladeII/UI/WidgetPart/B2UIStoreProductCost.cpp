@@ -1,4 +1,4 @@
-#include "B2UIStoreProductCost.h"
+ï»¿#include "B2UIStoreProductCost.h"
 #include "B2UISummonItemSlotItem.h"
 #include "B2UIDocHelper.h"
 #include "BladeIILocText.h"
@@ -21,7 +21,7 @@ void UB2UIStoreProductCost::CacheAssets()
 	GET_SLOT(UImage, IMG_Arrow);
 }
 
-// »ì ¼ö ¾ø´Â Á¶°Ç º¯°æ½Ã B2UIUtil::IsSummonItemBuyµµ °°ÀÌ º¯°æ ÇÊ¿ä
+// ì‚´ ìˆ˜ ì—†ëŠ” ì¡°ê±´ ë³€ê²½ì‹œ B2UIUtil::IsSummonItemBuyë„ ê°™ì´ ë³€ê²½ í•„ìš”
 void UB2UIStoreProductCost::SetCost(EStoreItemCost InCostType, int32 InCost, int32 InCalculatedCost)
 {
 	if (OV_PreCost.IsValid())
@@ -114,7 +114,7 @@ void UB2UIStoreProductCost::SetCost(EStoreItemCost InCostType, int32 InCost, int
 				}
 				else if (InCostType == EStoreItemCost::TenLotteryTicket)
 				{
-					TB_Cost->SetText(FText::AsNumber(UserCost)); // 10È¸ »Ì±â±ÇÀº °¡Áö°í ÀÖ´Â °¹¼ö Ãâ·Â
+					TB_Cost->SetText(FText::AsNumber(UserCost)); // 10íšŒ ë½‘ê¸°ê¶Œì€ ê°€ì§€ê³  ìžˆëŠ” ê°¯ìˆ˜ ì¶œë ¥
 					TB_Cost->SetColorAndOpacity(FLinearColor::White);
 					auto* HBSlot = Cast<UHorizontalBoxSlot>(TB_Cost->Slot);
 					if (HBSlot)

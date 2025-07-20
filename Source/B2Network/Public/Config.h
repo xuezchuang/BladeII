@@ -17,6 +17,8 @@
 #include <chrono>
 #include <ctime>
 
+#include "CoreMinimal.h"
+
 #if defined(B2NETWORK_PLATFORM_WINDOWS)
 #include "Windows/AllowWindowsPlatformTypes.h"
 #include <WinSock2.h>

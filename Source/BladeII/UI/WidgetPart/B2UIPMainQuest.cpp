@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIPMainQuest.h"
 #include "QuestManager.h"
@@ -27,7 +27,7 @@ void UB2UIPMainQuest::Init()
 
 	//int32 CurrentActID = GetCurrentActID();
 
-	//for (int32 ActID = 1; ActID <= MaxCount; ActID++) // act´Â 1ºÎÅÍ ½ÃÀÛ
+	//for (int32 ActID = 1; ActID <= MaxCount; ActID++) // actç»° 1ä½•ç£ çŸ«ç´¯
 	//{
 	//	UB2UIPMainQuestTab* NewItem;
 	//	NewItem = CreateWidget<UB2UIPMainQuestTab>(GetWorld(), QuestTabClass);

@@ -1,4 +1,4 @@
-#include "B2UIBattleSkillUnity.h"
+ï»¿#include "B2UIBattleSkillUnity.h"
 #include "BladeIIUtil.h"
 
 
@@ -44,18 +44,18 @@ void UB2UIBattleSkillUnity::UpdateSkillPointStackUI(float InDeltaTime)
 		return;
 	}
 
-	// ½ÇÁ¦ Æ÷ÀÎÆ®¿¡µû¸¥ °ÔÀÌÁö·®
+	// è§’åŠ› å™¨ç‰¢é£˜ä¿Šè¶å¼— éœ¸æç˜¤æ¨Š
 	float fGageRate = m_fCurPointStack / m_fMaxPointStack;
 	
 	fGageRate = FMath::Clamp(fGageRate, 0.0f, 1.0f);
 
-	// ÀÌ¹øÆ½ °¡´Éº¯È­·®
+	// æé”…å¹³ å•Šç“·å‡½æ‹³æ¨Š
 	float fMaxChaangeAmount = (InDeltaTime * GageChangeAllowAmountBySecound) / m_fMaxPointStack;
 
-	// UI¿ë fGageRate¸¦ ¦i¾Æ°£´Ù.
+	// UIä¾© fGageRateç”« î›é…’åŸƒä¿ƒ.
 	m_fPointStackRateForUI = FMath::Clamp(fGageRate, m_fPointStackRateForUI - fMaxChaangeAmount, m_fPointStackRateForUI + fMaxChaangeAmount);
 
-	// »¬¶§´Â ÇÑ¹ø¿¡ »©Áàº»´Ù.
+	// æ»‘é”­ç»° èŒ„é”…ä¿Š å“—æ‹å¤¯ä¿ƒ.
 	if (fGageRate < m_fPointStackRateForUI)
 		m_fPointStackRateForUI = fGageRate;
 	

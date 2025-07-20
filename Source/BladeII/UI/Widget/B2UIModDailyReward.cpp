@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIModDailyReward.h"
 
@@ -38,7 +38,7 @@ void UB2UIModDailyReward::CacheAssets()
 		if (ThisSlot.IsValid())
 		{
 			ThisSlot->Init();
-			ThisSlot->SetVisibility(ESlateVisibility::Hidden); // ÀÏ´Ü ¼û°Ü³õÀ½
+			ThisSlot->SetVisibility(ESlateVisibility::Hidden); // è€çªœ è§è´¥åˆæ¾œ
 		}
 	}
 
@@ -95,8 +95,8 @@ void UB2UIModDailyReward::OpenDailyReward(int32 MatchType)
 	{
 		if (DailyReward.Match_Type == MatchType)
 		{
-			// ÇÔ¼ö È£ÃâÇÑ ¼ø¼­´ë·Î À§ºÎÅÍ Á¤·ÄµÇ¾î 3°³±îÁö¸¸ Ãâ·Â. Ãß°¡ Ãâ·Â½Ã UI Àç µğÀÚÀÎ ÇÊ¿ä
-			// Ãß°¡ ³ëÃâÇÏ°í ½ÍÀº RewardType(ItemGiftType)Àº B2UIRewardSlotÀ» »ó¼Ó¹ŞÀº UIWidget¿¡ RewardDisplayInfo°ªÀ» Ãß°¡ ½ÃÄÑÁÖ¾î¾ß ÇÑ´Ù. - Icon, Loctext°ª
+			// çªƒè é¾‹å…èŒ„ é‰´è¾‘æªè‚º å›°ä½•ç£ æ²¥çººç™»ç»¢ 3ä¿ºé³–ç˜¤çˆ¶ å…ä»¿. çœ å•Š å…ä»¿çŸ« UI çŠ å¼ç£Šç‰¢ é˜å¤¸
+			// çœ å•Š ç•´å…çªç»Š é…µç¯® RewardType(ItemGiftType)ç¯® B2UIRewardSloté˜‘ æƒ‘åŠ ç½ç¯® UIWidgetä¿Š RewardDisplayInfoè”¼é˜‘ çœ å•Š çŸ«éš¾æ—ç»¢å…· èŒ„ä¿ƒ. - Icon, Loctextè”¼
 			
 			SetRewardSlotFromServerData(MailGiftType::Gold, DailyReward);
 			SetRewardSlotFromServerData(MailGiftType::Gem, DailyReward);
@@ -121,7 +121,7 @@ void UB2UIModDailyReward::SetRewardSlotFromServerData(MailGiftType RewardType, c
 		TWeakObjectPtr<UB2UIRewardSlot>& RewardSlot = RewardSlotList[CurrentSlotIndex];
 		if (RewardSlot.IsValid())
 		{
-			RewardSlot->InitRewardSlotTemplate(RewardType); // SlotTemplate[ Icon & Localize Text ] ¼³Á¤
+			RewardSlot->InitRewardSlotTemplate(RewardType); // SlotTemplate[ Icon & Localize Text ] æ±²æ²¥
 			int32 Amount = 0;
 
 			switch (RewardType)
@@ -133,7 +133,7 @@ void UB2UIModDailyReward::SetRewardSlotFromServerData(MailGiftType RewardType, c
 				if (ServerRewardInfo.Reward_ItemId != 0)
 				{
 					RewardSlot->SetRewardSlotItem(ServerRewardInfo.Reward_ItemId);
-					Amount = 1; // ÇöÀç´Â ÇÑ°³·Î °­Á¦°íÁ¤ÇÏ¸ç Item °¹¼öµµ ¼­¹ö¿¡¼­ ¹Ş¾Æ¿Ã ¼ö ÀÖ°ÔµÇ¸é ¼öÁ¤ ÇØ ÁÖÀÚ.
+					Amount = 1; // æ³…çŠç»° èŒ„ä¿ºè‚º ç¢åŠ›ç»Šæ²¥çªå“¥ Item è‚®èæ¡£ è¾‘æ»šä¿Šè¾‘ ç½é…’æ£µ è ä¹éœ¸ç™»æ èæ²¥ ç§¦ æ—ç£Š.
 				}
 				break;
 			}

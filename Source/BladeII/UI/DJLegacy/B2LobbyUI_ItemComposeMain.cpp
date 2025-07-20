@@ -54,14 +54,14 @@ void UB2LobbyUI_ItemComposeMain::StartFromLobby(class UB2UIManager_Lobby* InUIMa
 {
 	Super::StartFromLobby(InUIManager, InGM);
 	
-	// ´Ü¼øÈ÷ ¾ÆÀÌÅÛ Á¤º¸¸¸ ¾ò¾î¿À·Á¸é Inventory ÀÎ½ºÅÏ½º ¾øÀÌ static À¸·Î ¾ò¾î¿Ã ¼ö ÀÖÀ¸³ª ÇÕ¼º µîÀÇ ±â´ÉÀº ÀÎº¥Åä¸®°¡ ¶° ÀÖ´Â »óÅÂ¿¡¼­ µ¿ÀÛ.
+	// çªœé‰´æ´’ é…’æè¢ æ²¥ç„Šçˆ¶ æ˜ç»¢å·å¦¨æ Inventory ç‰¢èƒ¶ç•”èƒ¶ ç»æ static æ è‚º æ˜ç»¢æ£µ è ä¹æ å”± é’¦å·± æ®¿ç‹¼ æ‰ç“·ç¯® ç‰¢äº¥é…åºœå•Š æ ‹ ä¹ç»° æƒ‘æ€•ä¿Šè¾‘ æ‚¼ç´¯.
 	CachedInventory = CachedLobbyGM->GetLobbyInventory();
 	check(CachedInventory);
 
-	// ÀÌ ½ÃÁ¡¿¡ Inventory ÀÇ TargetItemID ´Â ¼¼ÆÃµÇ¾î ÀÖ¾î¾ß ÇÔ. (UB2LobbyInventory::EnterItemOpMode)
+	// æ çŸ«ç—¢ä¿Š Inventory ç‹¼ TargetItemID ç»° æŠ€æ³¼ç™»ç»¢ ä¹ç»¢å…· çªƒ. (UB2LobbyInventory::EnterItemOpMode)
 	if (!CachedInventory->GetItemOPTargetItemData(NativeComposeTargetData) || CachedInventory->GetItemOpMode() != ELobbyInvenItemOpMode::EIVIOP_Composition)
 	{
-		CloseAndQuitItemOpMode(); // ¸¸¿¡ ÇÏ³ª ½ÇÆĞÇÑ´Ù¸é.. ¾îÂ¿ ¼ö ¾øÁö.
+		CloseAndQuitItemOpMode(); // çˆ¶ä¿Š çªå”± è§’è©èŒ„ä¿ƒæ.. ç»¢é©´ è ç»ç˜¤.
 		return;
 	}
 
@@ -122,12 +122,12 @@ void UB2LobbyUI_ItemComposeMain::UpdateDynamicWidgets()
 {
 	check(CachedInventory);
 
-	if (TB_ComposeCostNum.IsValid()) // ÇÕ¼º ºñ¿ëÀÌ ÀÏÁ¤ÇÏ´õ¶óµµ ÀÌ ÆäÀÌÁö¸¦ ¿­°í ³­ ÈÄ ¼­¹ö¿¡¼­ ÀÀ´äÀ» ¹Ş°Ô µÇ¸é Á¦´ë·Î ¼¼ÆÃÇÏ°Ô µÉ °Í.
+	if (TB_ComposeCostNum.IsValid()) // é’¦å·± åšä¾©æ è€æ²¥çªæ­¹æ‰¼æ¡£ æ å…¶æç˜¤ç”« å‡¯ç»Š æŠ„ é¥¶ è¾‘æ»šä¿Šè¾‘ è§ˆç¿ é˜‘ ç½éœ¸ ç™»æ åŠ›æªè‚º æŠ€æ³¼çªéœ¸ çª å·´.
 	{
 		TB_ComposeCostNum->SetText(FText::FromString(FString::FromInt(CachedInventory ? CachedInventory->GetCurrentItemOpGoldCost() : 0)));
 	}
 
-	// ÇöÀç ÇÕ¼º Àç·á·Î »ç¿ë °¡´ÉÇÑ Àåºñ°¡ º¸°üÇÔ¿¡ ´õ ÀÌ»ó ¾ø´Ù¸é ¸Ş½ÃÁö¸¦ »Ñ·ÁÁØ´Ù.
+	// æ³…çŠ é’¦å·± çŠä¸°è‚º è¤ä¾© å•Šç“·èŒ„ å˜åšå•Š ç„ŠåŒ…çªƒä¿Š æ­¹ ææƒ‘ ç»ä¿ƒæ çš‹çŸ«ç˜¤ç”« è°å¦¨éœ–ä¿ƒ.
 	TArray<FB2Item> CurrPCItemList;
 	CachedInventory->GetStoredItemList_ItemOpModeFilter(CurrPCItemList, CachedInventory->GetMainInvenViewCurrentTab(), EPCClass::EPC_End, true);
 	if (CurrPCItemList.Num() == 0)
@@ -146,7 +146,7 @@ void UB2LobbyUI_ItemComposeMain::UpdateDynamicWidgets()
 		TB_NoIngredMessage->SetVisibility(IsAnyIngredSelected() ? ESlateVisibility::Hidden : ESlateVisibility::Visible);
 	}
 
-	// ÀÌ°Ç ÇÏ³ª Áõ°¡ÇÏ´Â °Å´Ï±î ¿©±â¼­ °Á 1 ÇÃ·¯½º ÇØ¼­
+	// ææ‰’ çªå”± åˆ˜å•Šçªç»° èŠ­èªé³– å’¯æ‰è¾‘ å‚² 1 æ•²çŸ¾èƒ¶ ç§¦è¾‘
 	const int32 TargetGrade = NativeComposeTargetData.StarGrade + 1;
 
 	if (TB_ExpectedResult.IsValid())
@@ -175,13 +175,13 @@ void UB2LobbyUI_ItemComposeMain::UpdateTargetItemIcon()
 		return;
 	}
 
-	// Anchor ¼³Á¤¿¡ µû¶ó GetSize ´Â ¿øÇÏ´Â °ªÀÌ ¾È ³ª¿Ã °ÍÀÌ¹Ç·Î ÁÖÀÇ.
+	// Anchor æ±²æ²¥ä¿Š è¶æ‰¼ GetSize ç»° ç›”çªç»° è”¼æ æ•‘ å”±æ£µ å·´æéª¨è‚º æ—ç‹¼.
 	UCanvasPanelSlot* MainPanelSlot = Cast<UCanvasPanelSlot>(CP_TargetItemIconSet->Slot);
 	FVector2D AllowedIconSize = MainPanelSlot ? MainPanelSlot->GetSize() : FVector2D(0.0f, 0.0f);
 
 	UB2DynItemIcon* DynIconCDO = Cast<UB2DynItemIcon>(ItemIconWidgetClass->GetDefaultObject());
 
-	// ItemIconPanelNRef À§¿¡ ÃÖÁ¾ÀûÀÎ ¾ÆÀÌÅÛ ¾ÆÀÌÄÜ widget »ı¼º
+	// ItemIconPanelNRef å›°ä¿Š å¼¥è¾†åˆ©ç‰¢ é…’æè¢ é…’æèƒ½ widget ç§¯å·±
 	CreatedTargetItemIcon = Cast<UB2DynItemIcon_LobbyInven>(DynCreateInCanvasPanel(
 		ItemIconWidgetClass, this, CP_TargetItemIconSet.Get(), DynIconCDO ? DynIconCDO->GetNonScaledSize() : FVector2D(100.0f, 100.0f), AllowedIconSize,
 		FVector2D(0.0f, 0.0f), 0, false
@@ -189,7 +189,7 @@ void UB2LobbyUI_ItemComposeMain::UpdateTargetItemIcon()
 
 	if (CreatedTargetItemIcon)
 	{
-		CreatedTargetItemIcon->SetIconUsageType(ELobbyInvenItemIconUsage::EEIIT_ItemOpModeMenuTarget); // ÇÕ¼ºµµ ¸¶Âù°¡Áö·Î?
+		CreatedTargetItemIcon->SetIconUsageType(ELobbyInvenItemIconUsage::EEIIT_ItemOpModeMenuTarget); // é’¦å·±æ¡£ ä»˜è›®å•Šç˜¤è‚º?
 		CreatedTargetItemIcon->UpdateItemData(NativeComposeTargetData);
 	}
 
@@ -217,7 +217,7 @@ void UB2LobbyUI_ItemComposeMain::UpdateIngredItemIcon()
 		FVector2D AllowedIconSize = MainPanelSlot ? MainPanelSlot->GetSize() : FVector2D(0.0f, 0.0f);
 		UB2DynItemIcon* DynIconCDO = Cast<UB2DynItemIcon>(ItemIconWidgetClass->GetDefaultObject());
 
-		// MainPanelNativeRef À§¿¡ ÃÖÁ¾ÀûÀÎ ¾ÆÀÌÅÛ ¾ÆÀÌÄÜ widget »ı¼º
+		// MainPanelNativeRef å›°ä¿Š å¼¥è¾†åˆ©ç‰¢ é…’æè¢ é…’æèƒ½ widget ç§¯å·±
 		CreatedIngredItemIcon = Cast<UB2DynItemIcon_LobbyInven>(DynCreateInCanvasPanel(
 			ItemIconWidgetClass, this, CP_IngredItemIconSet.Get(), DynIconCDO ? DynIconCDO->GetNonScaledSize() : FVector2D(100.0f, 100.0f), AllowedIconSize,
 			FVector2D(0.0f, 0.0f), false
@@ -225,7 +225,7 @@ void UB2LobbyUI_ItemComposeMain::UpdateIngredItemIcon()
 		if (CreatedIngredItemIcon)
 		{
 			CreatedIngredItemIcon->SetIconUsageType(ELobbyInvenItemIconUsage::EEIIT_ComposeOrSurpassIngredient);
-			CreatedIngredItemIcon->UpdateItemData(ThisIngred); // °³º° ¾ÆÀÌÅÛ Á¤º¸¸¦ ³Ñ°ÜÁØ´Ù.
+			CreatedIngredItemIcon->UpdateItemData(ThisIngred); // ä¿ºå–Š é…’æè¢ æ²¥ç„Šç”« é€è´¥éœ–ä¿ƒ.
 		}
 	}
 }
@@ -236,7 +236,7 @@ void UB2LobbyUI_ItemComposeMain::UpdateComposeCommitBtnState()
 	{
 		BTN_ComposeCommit->SetIsEnabled(
 			IsAnyIngredSelected()
-			// µ·µµ Ã¼Å©ÇØ¾ß ÇÔ. -> Ã¼Å©ÇÏÁö ¾Ê´Â´Ù. Å¬¸¯Àº °¡´ÉÇÏµµ·Ï ÇØ¼­ »ç¿ëÀÚ ÇöÁúÀ» À¯µµÇÑ´Ù.
+			// æ£æ¡£ çœ‰å†œç§¦å…· çªƒ. -> çœ‰å†œçªç˜¤ è‡¼ç»°ä¿ƒ. åŠªè…ç¯® å•Šç“·çªæ¡£åºŸ ç§¦è¾‘ è¤ä¾©ç£Š æ³…é¾™é˜‘ èœ¡æ¡£èŒ„ä¿ƒ.
 			//&& CachedInventory->CanAffordCurrentItemOp()
 			);
 	}
@@ -268,21 +268,21 @@ bool UB2LobbyUI_ItemComposeMain::IsAnyIngredSelected()
 void UB2LobbyUI_ItemComposeMain::OnComposeCommit()
 {
 	if (CachedInventory && !CachedInventory->CanAffordCurrentItemOp())
-	{ // °ñµå ºÎÁ·ÀÇ °æ¿ì ¿©±æ Å¬¸¯ÇÒ ¼ö´Â ÀÖÀ¸³ª ½ÇÁ¦ ½ÃÀÛÀº ¾ÈÇÏ°í »ç¿ëÀÚ ÇöÁúÀ» À¯µµ
+	{ // æ¦œé› ä½•ç»ƒç‹¼ ç‰ˆå¿« å’¯è¾¨ åŠªè…ä¸” èç»° ä¹æ å”± è§’åŠ› çŸ«ç´¯ç¯® æ•‘çªç»Š è¤ä¾©ç£Š æ³…é¾™é˜‘ èœ¡æ¡£
 		ShortageMGR->PopupGoToShopForGoldMessage();
 	}
 	else
 	{
-		// ¾Ö´Ï¸ŞÀÌ¼Ç ½ÅÈ£ºÎÅÍ.
+		// å±€èªçš‹æè®° è„šé¾‹ä½•ç£.
 		BeginComposeCommitAnim();
 
 		if (CachedInventory)
-		{// ¿¬ÃâµÇ´Â µ¿¾È ¿©ÀüÈ÷ Àç·á ¼±ÅÃ µîÀ» ÇÏ°Ô µÉ ¼ö ÀÖ¾î¼­ ¸·´Â´Ù.
+		{// æ¥·å…ç™»ç»° æ‚¼æ•‘ å’¯å‚ˆæ´’ çŠä¸° æ€¥ç¶ æ®¿é˜‘ çªéœ¸ çª è ä¹ç»¢è¾‘ é˜œç»°ä¿ƒ.
 			CachedInventory->SetFreezeitemOpModeIngredSelection(true);
 		}
 		if (BTN_ComposeCommit.IsValid())
 		{
-			BTN_ComposeCommit->SetIsEnabled(false); // ¾êµµ °è¼Ó Å¬¸¯ÀÌ µÉ ¼ö ÀÖ¾î¼­ ¸·À½.
+			BTN_ComposeCommit->SetIsEnabled(false); // å¨Ÿæ¡£ æ‹ŒåŠ  åŠªè…æ çª è ä¹ç»¢è¾‘ é˜œæ¾œ.
 		}
 
 		APlayerController* OwningPC = GetOwningPlayer();
@@ -313,7 +313,7 @@ void UB2LobbyUI_ItemComposeMain::OnClickIngredUnselectBtn()
 	{
 		TArray<int64> IngredIDs;
 		CachedInventory->GetAllSelectedItemOpIngreds(IngredIDs);
-		// ¹°·Ğ ¿©±â¼± IngredIDs ´Â ÇÏ³ª¿©¾ß
+		// æ‹±æ²¸ å’¯æ‰æ€¥ IngredIDs ç»° çªå”±å’¯å…·
 		if (IngredIDs.Num() > 0)
 		{
 			UnSelectForComposeIngredClass<int64>::GetInstance().Signal(IngredIDs[0]);
@@ -335,6 +335,6 @@ void UB2LobbyUI_ItemComposeMain::FinalComposeCommit()
 		OwningPC->GetWorldTimerManager().ClearTimer(ComposeCommintTH);
 	}
 
-	// º»°İ µ¿ÀÛ. ÀÌÈÄ ¿¬ÃâÀÌ³ª °á°ú µîÀÇ flow ´Â ¼­¹ö ÀÀ´ä¿¡ µû¶ó º°µµ UI Ã¢¿¡¼­ ÁøÇà.
+	// å¤¯æ‹œ æ‚¼ç´¯. æé¥¶ æ¥·å…æå”± æ¬è‹ æ®¿ç‹¼ flow ç»° è¾‘æ»š è§ˆç¿ ä¿Š è¶æ‰¼ å–Šæ¡£ UI èŠ’ä¿Šè¾‘ æŸ³é’.
 	LobbyReqComposeItemWithCurrentSelectionClass<>::GetInstance().Signal();
 }

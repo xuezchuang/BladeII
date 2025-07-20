@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+Ôªø// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -27,7 +27,7 @@ protected:
 public:
 	void SetWidgetForRaidBattle();
 	void SetEntry(int32 SlotIdx, EPCClass CharacterClass, int32 Lv);
-	void SetContributionValue(int32 SlotIdx, int32 ContributionValue);		// ±‚ø©µµ ∞™ º≥¡§
+	void SetContributionValue(int32 SlotIdx, int32 ContributionValue);		// ÊâÅÂíØÊ°£ Ëîº Ê±≤Ê≤•
 
 	void OnSlotChangedHealthAndShieldCommon(bool bMyTeam, int32 SlotIdx);
 	void OnSlotChangedOnClickCharacter(bool bMyTeam, int32 SlotIdx);

@@ -1,4 +1,4 @@
-#include "B2UIArinConsult_Common.h"
+ï»¿#include "B2UIArinConsult_Common.h"
 #include "B2UIManager.h"
 #include "B2UIDocHelper.h"
 #include "B2UIArinConsult_PreCombat.h"
@@ -19,7 +19,7 @@ void UB2UIArinConsult_Common::SetSubType(EArinConsultType InType)
 {
 	SubType = InType;
 
-	UpdateStaticText(); // StaticText Áö¸¸ SubType ¼¼ÆÃ ÀÌÈÄÀÇ static..
+	UpdateStaticText(); // StaticText ç˜¤çˆ¶ SubType æŠ€æ³¼ æžé¥¶ç‹¼ static..
 }
 
 void UB2UIArinConsult_Common::CacheAssets()
@@ -56,7 +56,7 @@ void UB2UIArinConsult_Common::OnClickBtnClose()
 	{
 	case EArinConsultType::ARCT_PreCombatConsulting:
 		if (UIMgrInst)
-		{ // ±×³É ´ÝÀ» ¶© ¹«½ÃÇÏ´Â °É·Î Ä¡°í ÇâÈÄ ¸î¹ø ½ºÅµÇÏµµ·Ï Ã³¸®.
+		{ // å¼Šæˆ æ‘§é˜‘ è®¢ å…¬çŸ«çªç»° å§è‚º æ‘¹ç»Š æ°¢é¥¶ å‰²é”… èƒ¶è¯ºçªæ¡£åºŸ è´¸åºœ.
 			UB2UIArinConsult_PreCombat* OwnerUI = UIMgrInst->GetUI<UB2UIArinConsult_PreCombat>(UIFName::ArinConsult_PreCombat);
 			if (OwnerUI)
 			{

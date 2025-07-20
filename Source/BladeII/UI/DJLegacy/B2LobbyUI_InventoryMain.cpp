@@ -65,9 +65,9 @@ UB2LobbyUI_InventoryMain::UB2LobbyUI_InventoryMain(const FObjectInitializer& Obj
 	: Super(ObjectInitializer)
 {
 	CachedInventory = NULL;
-	HeroMgmtBase = NULL; // ºí·çÇÁ¸°Æ®¸¦ ÅëÇØ ¼¼ÆÃ.
-	ItemIconRowWidgetClass = NULL; // Property ¼¼ÆÃ µÇ¾î ÀÖ¾î¾ß ÇÔ.
-	ItemDisplayPanelNativeRef = NULL; // ÀÌ°Ç ºí·çÇÁ¸°Æ®¿¡¼­ ¼¼ÆÃ.
+	HeroMgmtBase = NULL; // å–‰é£æ©‡èµ´é£˜ç”« çƒ¹ç§¦ æŠ€æ³¼.
+	ItemIconRowWidgetClass = NULL; // Property æŠ€æ³¼ ç™»ç»¢ ä¹ç»¢å…· çªƒ.
+	ItemDisplayPanelNativeRef = NULL; // ææ‰’ å–‰é£æ©‡èµ´é£˜ä¿Šè¾‘ æŠ€æ³¼.
 	CurSelectedItemInvenTab = EItemInvenType::EIIVT_Weapon;
 	CachedSelectedItemInvenTab = EItemInvenType::EIIVT_Weapon;
 
@@ -117,7 +117,7 @@ void UB2LobbyUI_InventoryMain::SubscribeEvents()
 	{
 		this->UpdateInvenControlButtonState();
 		//		this->UpdateInvenTabWidgetVisibilityState();
-		//		this->UpdateStoredItemIconsForCurrentSelection();	 // º¸°üÇÔ ¾ÆÀÌÅÛ¸¸ ¸®ÇÁ·¹½¬.
+		//		this->UpdateStoredItemIconsForCurrentSelection();	 // ç„ŠåŒ…çªƒ é…’æè¢çˆ¶ åºœæ©‡é¥­æµ†.
 		this->RedDotCondition_TapState();
 	}
 	));
@@ -237,7 +237,7 @@ void UB2LobbyUI_InventoryMain::StartFromLobby(class UB2UIManager_Lobby* InUIMana
 
 	CurSelectedPCClass = CachedLobbyGM->GetHeroMgmtModePCClass();
 
-	// Ã¹ ºä¿¡¼­ ¼±ÅÃµÈ PC ¾ÆÀÌÅÛ Ã¼Å©. °ø¿ë ¼Ò¸ğÇ°ÀÇ °æ¿ì´Â ¿©±â ¸»°í AccountInfo °¡Á®¿Ã ¶§ ÁîÀ½ ¿äÃ».. ÇÏ·Á°í ÇÏ´Âµ¥ ¹®Á¦°¡ ÀÖ¾î¼­ µû·Î ¿©±â¼­µµ ¿äÃ»ÇØ¾ß ÇÒ ¼ö ÀÖÀ½.
+	// éœ‰ è½°ä¿Šè¾‘ æ€¥ç¶ç­‰ PC é…’æè¢ çœ‰å†œ. å‚ä¾© å®¶è‘›å‰ç‹¼ ç‰ˆå¿«ç»° å’¯æ‰ å¯Œç»Š AccountInfo å•Šå»‰æ£µ é”­ ä»¤æ¾œ å¤¸æ²¡.. çªå¦¨ç»Š çªç»°å• å·©åŠ›å•Š ä¹ç»¢è¾‘ è¶è‚º å’¯æ‰è¾‘æ¡£ å¤¸æ²¡ç§¦å…· ä¸” è ä¹æ¾œ.
 	BladeIIGameImpl::GetClientDataStore().SyncingInventoryData(CurSelectedPCClass);
 
 	CachedInventory = CachedLobbyGM->GetLobbyInventory();
@@ -245,12 +245,12 @@ void UB2LobbyUI_InventoryMain::StartFromLobby(class UB2UIManager_Lobby* InUIMana
 
 	CachedInventory->SetMainInvenViewCurrentTab(CurSelectedItemInvenTab);
 	UpdateInvenTabWidgetVisibilityState();
-	// Ã³À½¿¡ ÇÑ¹ø ÇÏ°í.. ÇöÀç Ä³¸¯ÅÍ³ª Àåºñ ÅÇ º¯°æ, Æ¯Á¤ ¾ÆÀÌÅÛ ÀåÂø/ÇØÁ¦ µîÀÇ »óÈ²¿¡¼­ ´Ù½Ã ºÒ·Á¾ß ÇÔ.
-	// UpdateAllItemIconsForCurrentSelection();	//·¹µå´åÀÌ ²¿ÀÓ ¿ì¼± ¹®Á¦Á¡ÀÌ ¾ø¾î¼­ ºÎ¸£Áö ¾Ê½À´Ï´Ù -woong
+	// è´¸æ¾œä¿Š èŒ„é”… çªç»Š.. æ³…çŠ æŸè…ç£å”± å˜åš å¾˜ å‡½ç‰ˆ, æ¼‚æ²¥ é…’æè¢ å˜é¦’/ç§¦åŠ› æ®¿ç‹¼ æƒ‘ç‚”ä¿Šè¾‘ ä¿ƒçŸ« é˜‚å¦¨å…· çªƒ.
+	// UpdateAllItemIconsForCurrentSelection();	//é¥­é›æ‘æ éƒ¨çƒ™ å¿«æ€¥ å·©åŠ›ç—¢æ ç»ç»¢è¾‘ ä½•ç¦ç˜¤ è‡¼åš¼èªä¿ƒ -woong
 
 	if (HeroMgmtBase)
 	{
-		HeroMgmtBase->StartFromLobby(InUIManager, InGM); // ÀÌ°Ç LobbyUISwitcher ¿¡¼­ ¸ğ¸£´Ï Á÷Á¢ ÇØ ÁÖ¾î¾ß..
+		HeroMgmtBase->StartFromLobby(InUIManager, InGM); // ææ‰’ LobbyUISwitcher ä¿Šè¾‘ è‘›ç¦èª æµç«‹ ç§¦ æ—ç»¢å…·..
 		HeroMgmtBase->SetPresetMode(EInventoryPresetMode::EIPM_Equipment);
 		HeroMgmtBase->ShowEnhanceItemSetButton(true);
 
@@ -294,7 +294,7 @@ void UB2LobbyUI_InventoryMain::CacheAssets()
 	GET_SLOT(UTextBlock, TB_ItemOpModeGuide);
 	HideItemOpModeGuideText();
 
-	// ³ªÁß¿¡ µé¾î¿Â ¾Öµé¸¸ ÀÌ·± ¹æ½ÄÀÌ Àû¿ëµÊ..
+	// å”±åä¿Š ç”¸ç»¢æŸ¯ å±€ç”¸çˆ¶ æç¹ è§„ä¾¥æ åˆ©ä¾©å‡³..
 	GET_SLOT(UPanelWidget, CP_ContainerSizeTextSet);
 	GET_SLOT(UB2Button, BTN_ContainerExpansion);
 	GET_SLOT(UB2Button, BTN_SellAll);
@@ -312,7 +312,7 @@ void UB2LobbyUI_InventoryMain::CacheAssets()
 		TB_AutoSelect->SetText(AutoSelectBtnText);
 	}
 
-	// °¢ ÀåÂø ½½·Ô À§Ä¡¿¡ µû¸¥ widget µéÀ» ³×ÀÌ¹Ö ¸ÂÃç °¡Á®¿È.
+	// é˜¿ å˜é¦’ æµ‡å© å›°æ‘¹ä¿Š è¶å¼— widget ç”¸é˜‘ åŒ™ææ€ª å˜è‹— å•Šå»‰å’³.
 	NoEquipIcons.Empty();
 	NoEquipIcons.AddZeroed(MaxEquipPlace);
 	EquipEffectImgs.Empty();
@@ -334,7 +334,7 @@ void UB2LobbyUI_InventoryMain::CacheAssets()
 			EquipEffectImgs[II]->SetVisibility(ESlateVisibility::Collapsed);
 		}
 
-		FString EquipEffectImgNameStr2 = EquipEffectImgPrefix + GetEquipSlotSuffix(II) + TEXT("2"); // 2±îÁö´Â ÇÏµåÄÚµùÀ¸·Î..
+		FString EquipEffectImgNameStr2 = EquipEffectImgPrefix + GetEquipSlotSuffix(II) + TEXT("2"); // 2é³–ç˜¤ç»° çªé›å†…çˆ¹æ è‚º..
 		EquipEffectImgs2[II] = GetSlot<UImage>(FName(*EquipEffectImgNameStr2));
 		if (EquipEffectImgs2[II])
 		{
@@ -483,14 +483,14 @@ void UB2LobbyUI_InventoryMain::UpdateAllItemIconsForCurrentSelection()
 void UB2LobbyUI_InventoryMain::UpdateStoredItemIconsForCurrentSelection()
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2LobbyUI_InventoryMain_UpdateStoredItemIconsForCurrentSelection);
-	//DestroyAllItemRows(); // ±âÁ¸¿¡ ¸¸µé¾ú´ø °Å Á¦°ÅºÎÅÍ
+	//DestroyAllItemRows(); // æ‰ç²®ä¿Š çˆ¶ç”¸èŒå¸¦ èŠ­ åŠ›èŠ­ä½•ç£
 	//if (ItemIconRowWidgetClass == NULL || ItemDisplayPanelNativeRef == NULL) {
 	//	return;
 	//}
 
 	//TArray<FB2Item> CurrPCItemList;
-	//// °á±¹ static ÀÎ GetStoredItemList ´Â »ç¿ëÇÏÁö ¸øÇÏ°Ú±º.
-	////check(CachedInventory); Ã¼Å©°ÉÁö ¾Ê´Â´Ù. ¿µ¿õ°ü¸® UI ¹Ù²î¸é¼­ ¹ÌÃ³ ÁØºñµÇÁö ¾ÊÀº »óÈ²¿¡¼­ ¿©±â µé¾î¿À°Ô µÉ ¼ö ÀÖÀ½.
+	//// æ¬æƒ« static ç‰¢ GetStoredItemList ç»° è¤ä¾©çªç˜¤ ç»™çªæ‘†ç„™.
+	////check(CachedInventory); çœ‰å†œå§ç˜¤ è‡¼ç»°ä¿ƒ. åº·æ—·åŒ…åºœ UI å®˜å·®æè¾‘ å›ºè´¸ éœ–åšç™»ç˜¤ è‡¼ç¯® æƒ‘ç‚”ä¿Šè¾‘ å’¯æ‰ ç”¸ç»¢å·éœ¸ çª è ä¹æ¾œ.
 	//if (CachedInventory)
 	//{
 	//	CachedInventory->GetStoredItemList_ItemOpModeFilter(CurrPCItemList, CurSelectedItemInvenTab, EPCClass::EPC_End, true);
@@ -514,15 +514,15 @@ void UB2LobbyUI_InventoryMain::UpdateStoredItemIconsForCurrentSelection()
 
 	//	UScrollBoxSlot* AddedRowSlot = Cast<UScrollBoxSlot>(ItemDisplayPanelNativeRef->AddChild(NewItemRow));
 
-	//	// ¿ä PanelSlot ÀÌ ÀÖ¾î¾ß À§Ä¡ µîÀÇ ¼¼ÆÃÀÌ µÇ´Âµ¥.. ScrollBoxSlot ÀÌ¸é ÇÊ¿äÇÑ °Ô µüÈ÷ ¾øÀ»µí..?
+	//	// å¤¸ PanelSlot æ ä¹ç»¢å…· å›°æ‘¹ æ®¿ç‹¼ æŠ€æ³¼æ ç™»ç»°å•.. ScrollBoxSlot ææ é˜å¤¸èŒ„ éœ¸ è¿­æ´’ ç»é˜‘æ·€..?
 	//	if (AddedRowSlot)
 	//	{
 	//	}
 
-	//	// NewItemRow ´Â ¿©ÀüÈ÷ CanvasPanel ¼öÁØÀÌ°í ¿©±â¿¡ ½ÇÁ¦ ¾ÆÀÌÅÛ ¾ÆÀÌÄÜµéÀ» ÃÄ³Ö´Â´Ù.
+	//	// NewItemRow ç»° å’¯å‚ˆæ´’ CanvasPanel èéœ–æç»Š å’¯æ‰ä¿Š è§’åŠ› é…’æè¢ é…’æèƒ½ç”¸é˜‘ åªšæŒç»°ä¿ƒ.
 	//	NewItemRow->UpdateItemIcons(CurrPCItemList, RI * InventoryRowMaxCount, this);
 
-	//	// ÀÌÂÊ ScrollBox ÇÚµé¸µÀ» À§ÇÑ Sender/Receiver µî·Ï
+	//	// æç‡ ScrollBox å‹¤ç”¸å‚…é˜‘ å›°èŒ„ Sender/Receiver æ®¿åºŸ
 	//	TArray<UB2DynItemIcon_LobbyInven*> AllCreatedICons;
 	//	NewItemRow->GetAllCreatedIcons(AllCreatedICons);
 	//	for (UB2DynItemIcon_LobbyInven* ThisIcon : AllCreatedICons)
@@ -545,7 +545,7 @@ void UB2LobbyUI_InventoryMain::UpdateEquipItemIconsForCurrentSelection()
 	DestroyAllEquipItemIcons();
 
 	UB2UIManager_Lobby* DJLegacyUIMgr = CachedLobbyGM ? CachedLobbyGM->DJLegacy_GetLobbyUIManager() : nullptr;
-	// ¿©±â¼­ÀÇ ¾ÆÀÌÅÛ ¾ÆÀÌÄÜ widget class ´Â µıµ¥¼­µµ ÂüÁ¶ÇÒ ÀÏÀÌ ÀÖ¾î¼­ Æ¯º°È÷ B2UIManager_Lobby °ÅÃÄ¼­ °¡Á®¿Â´Ù
+	// å’¯æ‰è¾‘ç‹¼ é…’æè¢ é…’æèƒ½ widget class ç»° è°å•è¾‘æ¡£ æ›¼ç‚¼ä¸” è€æ ä¹ç»¢è¾‘ æ¼‚å–Šæ´’ B2UIManager_Lobby èŠ­åªšè¾‘ å•Šå»‰æŸ¯ä¿ƒ
 	UClass* EquipItemIconWidgetClass = DJLegacyUIMgr ? DJLegacyUIMgr->GetInventoryItemIconClass(true) : nullptr;
 
 	if (EquipItemIconWidgetClass == NULL)
@@ -554,12 +554,12 @@ void UB2LobbyUI_InventoryMain::UpdateEquipItemIconsForCurrentSelection()
 	}
 
 	TArray<FB2Item> CurrPCEquipItemList;
-	// ·Îºñ ÀÎº¥Åä¸®¿¡¼­ ÇöÀç ¼±ÅÃµÈ PC ¿¡ ´ëÇØ °¡Á®¿À±â À§ÇØ EPC_End ¸¦ »ç¿ëÇß´Âµ¥ static ÇÔ¼ö¸¦ »ç¿ëÇÏÁö¸¸ 
-	// »ç½Ç»ó LobbyInventory °¡ »ı¼ºµÇ¾î ÀÖ´Â »óÅÂ¿¡¼­³ª ÇöÀç ¼±ÅÃµÈ PC °¡ Á¦´ë·Î ÀÎ½ÄÀÌ µÉ °Í.
+	// è‚ºåš ç‰¢äº¥é…åºœä¿Šè¾‘ æ³…çŠ æ€¥ç¶ç­‰ PC ä¿Š æªç§¦ å•Šå»‰å·æ‰ å›°ç§¦ EPC_End ç”« è¤ä¾©æ²ç»°å• static çªƒèç”« è¤ä¾©çªç˜¤çˆ¶ 
+	// è¤è§’æƒ‘ LobbyInventory å•Š ç§¯å·±ç™»ç»¢ ä¹ç»° æƒ‘æ€•ä¿Šè¾‘å”± æ³…çŠ æ€¥ç¶ç­‰ PC å•Š åŠ›æªè‚º ç‰¢ä¾¥æ çª å·´.
 	UB2LobbyInventory::GetAllEquippedItem(CurrPCEquipItemList, EPCClass::EPC_End);
 
 	for (UImage* ThisNoEquipIcon : NoEquipIcons)
-	{ // ÀåÂøÇÑ °÷¿¡ ´ëÇØ ¼û±â´Â °Ç ¾Æ·¡¿¡¼­..
+	{ // å˜é¦’èŒ„ é•‘ä¿Š æªç§¦ è§æ‰ç»° æ‰’ é…’è´°ä¿Šè¾‘..
 		if (ThisNoEquipIcon) {
 			ThisNoEquipIcon->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
 		}
@@ -572,27 +572,27 @@ void UB2LobbyUI_InventoryMain::UpdateEquipItemIconsForCurrentSelection()
 
 		UB2DynItemIcon* DynIconCDO = Cast<UB2DynItemIcon>(EquipItemIconWidgetClass->GetDefaultObject());
 
-		// ¼³Ä¡ÇÑ canvas panel À§¿¡ EquipItemIcon À» »ı¼º.
+		// æ±²æ‘¹èŒ„ canvas panel å›°ä¿Š EquipItemIcon é˜‘ ç§¯å·±.
 
-		// MainPanelNativeRef À§¿¡ ÃÖÁ¾ÀûÀÎ ¾ÆÀÌÅÛ ¾ÆÀÌÄÜ widget À» »ı¼ºÇÏ´Âµ¥.. WidgetPool ¿¡¼­ ÀÓ´ëÂ÷ °è¾à
+		// MainPanelNativeRef å›°ä¿Š å¼¥è¾†åˆ©ç‰¢ é…’æè¢ é…’æèƒ½ widget é˜‘ ç§¯å·±çªç»°å•.. WidgetPool ä¿Šè¾‘ çƒ™æªç’ æ‹Œè·
 		if (DJLegacyUIMgr)
 		{
 			UB2DynItemIcon_LobbyEquip* NewIcon =
-				Cast<UB2DynItemIcon_LobbyEquip>(DJLegacyUIMgr->RentInvenDynItemIconWidget(true, OwningPC, this, nullptr)); // ParentPanel À» ¿©±â¼­ ³Ñ°ÜÁÖÁö ¸»°í.. ÀÏ´Ü ÀÓ´ëÂ÷ °è¾à ÈÄ¿¡
+				Cast<UB2DynItemIcon_LobbyEquip>(DJLegacyUIMgr->RentInvenDynItemIconWidget(true, OwningPC, this, nullptr)); // ParentPanel é˜‘ å’¯æ‰è¾‘ é€è´¥æ—ç˜¤ å¯Œç»Š.. è€çªœ çƒ™æªç’ æ‹Œè· é¥¶ä¿Š
 
 			if (NewIcon)
 			{
-				// ÀûÀıÇÑ À§Ä¡¿¡ ¹Ú¾Æ³Ö±â
+				// åˆ©ä¾‹èŒ„ å›°æ‘¹ä¿Š å† é…’æŒæ‰
 				PutWidgetInCanvasPanel(this, NewIcon, GetEquipItemIconPanelNativeRef(CurrEquip.EquipPlace), DynIconCDO ? DynIconCDO->GetNonScaledSize() : FVector2D(100.0f, 100.0f),
 					GetAllowedSingleEquipItemIconSize(CurrEquip.EquipPlace), FVector2D(0.0f, 0.0f), 0, false);
 				NewIcon->SetVisibility(ESlateVisibility::Visible);
 				NewIcon->SetEquipItemIconType(ELobbyEquipItemIconType::EEIIT_LobbyInven);
-				NewIcon->UpdateItemData(CurrEquip); // °³º° ¾ÆÀÌÅÛ Á¤º¸.
+				NewIcon->UpdateItemData(CurrEquip); // ä¿ºå–Š é…’æè¢ æ²¥ç„Š.
 				SetEquipItemIcon(CurrEquip.EquipPlace, NewIcon);
 
 				UImage* NoEquipIconRef = GetNoEquipIconImageForEquipPlace(CurrEquip.EquipPlace);
 				if (NoEquipIconRef) {
-					NoEquipIconRef->SetVisibility(ESlateVisibility::Hidden); // ÀåÂøÇÑ °÷Àº NoEquip »óÅÂ¿¡¼­ ³ª¿À´Â ±âº» ¾ÆÀÌÄÜÀ» ¼û±ä´Ù.
+					NoEquipIconRef->SetVisibility(ESlateVisibility::Hidden); // å˜é¦’èŒ„ é•‘ç¯® NoEquip æƒ‘æ€•ä¿Šè¾‘ å”±å·ç»° æ‰å¤¯ é…’æèƒ½é˜‘ è§å˜ä¿ƒ.
 				}
 			}
 		}
@@ -617,12 +617,12 @@ void UB2LobbyUI_InventoryMain::UpdateEquipItemIconsForCurrentSelection()
 		}
 	}
 
-	//UB2LobbyInventory::SetChangeNewItemTofalse(AllItemsArray[II].InstanceUID);//»Ì¾ÆÁØ¾ÆÀÌÅÛÀº false·Î ¹Ù²ãÁÖÀÚ
+	//UB2LobbyInventory::SetChangeNewItemTofalse(AllItemsArray[II].InstanceUID);//æƒ¶é…’éœ–é…’æè¢ç¯® falseè‚º å®˜å±‚æ—ç£Š
 }
 
 void UB2LobbyUI_InventoryMain::TryUpdateSingleItemIconOfID(int64 ItemInstanceUID)
 {
-	FB2Item FoundItemData; // ItemInstanceUID ¿¡ ÇØ´çÇÏ´Â »õ·Î¿î µ¥ÀÌÅÍ Á¤µµ´Â ¿©±â ÇÔ¼ö ÀÎÀÚ·Î º¸³»ÁÙ ¼öµµ ÀÖÀ» °ÍÀÎµ¥, ±âÁ¸¿¡ ¸¸µç°Í°ú ¸¶Âù°¡Áö·Î ¸¸µé¾î³õÀ½. ÃßÈÄ UI Doc ¿¡ ³Ö°Ô µÇ¸é ¶Ç ´Ù¸¥ ¹æ½ÄÀ¸·Î.
+	FB2Item FoundItemData; // ItemInstanceUID ä¿Š ç§¦å¯¸çªç»° è´§è‚ºæ¬¾ å•æç£ æ²¥æ¡£ç»° å’¯æ‰ çªƒè ç‰¢ç£Šè‚º ç„Šéƒ´ä¸´ èæ¡£ ä¹é˜‘ å·´ç‰¢å•, æ‰ç²®ä¿Š çˆ¶ç”µå·´è‹ ä»˜è›®å•Šç˜¤è‚º çˆ¶ç”¸ç»¢åˆæ¾œ. çœ é¥¶ UI Doc ä¿Š æŒéœ¸ ç™»æ è‚š ä¿ƒå¼— è§„ä¾¥æ è‚º.
 	if (UB2LobbyInventory::FindFromAll(FoundItemData, ItemInstanceUID))
 	{
 		UB2DynItemIcon_LobbyInven* FoundIcon = FindSingleItemIcon(ItemInstanceUID);
@@ -631,7 +631,7 @@ void UB2LobbyUI_InventoryMain::TryUpdateSingleItemIconOfID(int64 ItemInstanceUID
 			FoundIcon->UpdateItemData(FoundItemData);
 		}
 		else
-		{ // ÀåÂøÇÑ °÷µµ µÚÁ®º¸ÀÚ.
+		{ // å˜é¦’èŒ„ é•‘æ¡£ ç¬¬å»‰ç„Šç£Š.
 			UB2DynItemIcon_LobbyEquip* EquippedIcon = GetEquipItemIconOfID(ItemInstanceUID);
 			if (EquippedIcon)
 			{
@@ -652,7 +652,7 @@ UB2DynItemIcon_LobbyInven* UB2LobbyUI_InventoryMain::FindSingleItemIcon(int64 It
 			return FoundIcon;
 		}
 	}
-	return NULL; // ¹°·Ğ ¾øÀ» ¼ö ÀÖ´Ù.
+	return NULL; // æ‹±æ²¸ ç»é˜‘ è ä¹ä¿ƒ.
 }
 
 UB2DynItemIcon_LobbyInven* UB2LobbyUI_InventoryMain::FindSingleItemIconFromIndex(int32 iIndexX, int32 iIndexY)
@@ -712,7 +712,7 @@ FVector2D UB2LobbyUI_InventoryMain::GetAllowedSingleEquipItemIconSize(EItemEquip
 	UCanvasPanelSlot* PanelSlot = PlacePanel ? Cast<UCanvasPanelSlot>(PlacePanel->Slot) : NULL;
 	if (PanelSlot)
 	{
-		return PanelSlot->GetSize(); // ÀüÃ¼ »çÀÌÁî ±×´ë·Î
+		return PanelSlot->GetSize(); // å‚ˆçœ‰ è¤æä»¤ å¼Šæªè‚º
 	}
 	return FVector2D(0.0f, 0.0f);
 }
@@ -721,7 +721,7 @@ void UB2LobbyUI_InventoryMain::DestroySelf()
 {
 	Super::DestroySelf();
 
-	//´İÀ»¶§µµ NewºÃ´Ù°íº¸³»ÁØ´Ù ¹ŞÀ» °÷ÀÌ ¾øÀ¸´Ï ¿©±â¼­ Á÷Á¢ ¹Ù²ãÁØ´Ù
+	//æ‘§é˜‘é”­æ¡£ Newå¥½ä¿ƒç»Šç„Šéƒ´éœ–ä¿ƒ ç½é˜‘ é•‘æ ç»æ èª å’¯æ‰è¾‘ æµç«‹ å®˜å±‚éœ–ä¿ƒ
 	RequestNewItem();
 
 	UnsubscribeEvents();
@@ -735,7 +735,7 @@ void UB2LobbyUI_InventoryMain::DestroySelf()
 
 	UB2ItemInfo* ItemInfoTable = StaticFindItemInfo();
 	if (ItemInfoTable)
-	{ // ÀÎº¥Åä¸® ºä¿¡¼­ µ¥ÀÌÅÍµéÀÌ ¸¹ÀÌ ½×¿´À» ¼ö ÀÖÀ¸´Ï ÀåÂø¿¡ ÇÊ¿äÇÑ °Å Á¦¿ÜÇÏ°í ÀÏ´Ü ¾ğ·Îµå
+	{ // ç‰¢äº¥é…åºœ è½°ä¿Šè¾‘ å•æç£ç”¸æ è…¹æ é˜¶çœ‹é˜‘ è ä¹æ èª å˜é¦’ä¿Š é˜å¤¸èŒ„ èŠ­ åŠ›å¯‡çªç»Š è€çªœ æ”«è‚ºé›
 		ItemInfoTable->UnloadAllExceptCurrentLocalEquipPartData();
 	}
 
@@ -744,7 +744,7 @@ void UB2LobbyUI_InventoryMain::DestroySelf()
 
 	UGameplayStatics::GetGameMode(this)->GetWorldTimerManager().ClearTimer(EquipEffectPlayTH);
 
-	UB2LobbyInventory::SetChangeNewItemTofalseTap(CurSelectedPCClass, CurSelectedItemInvenTab); //Áö±İ º¸°íÀÖ´Â¾ÆÀÌÅÛ newÁ¤º¸ false·Î ±³Ã¼
+	UB2LobbyInventory::SetChangeNewItemTofalseTap(CurSelectedPCClass, CurSelectedItemInvenTab); //ç˜¤é™› ç„Šç»Šä¹ç»°é…’æè¢ newæ²¥ç„Š falseè‚º èƒŒçœ‰
 
 	DestroyAllEquipItemIcons();
 	DestroyAllItemRows();
@@ -772,7 +772,7 @@ void UB2LobbyUI_InventoryMain::OnHeroMgmtPCChanged(EPCClass InSelectedPCClass)
 	//BladeIIGameImpl::GetRedDotManager().RemoveAllNewItemInInvenTab(PrevSelectedPCClass, CurSelectedItemInvenTab);
 	if (bFirstHeroChange == false)
 	{
-		RequestNewItem();			//ÅÇ´­·¯ÁÖ¸é º¸³»ÁÖ°í
+		RequestNewItem();			//å¾˜å–˜çŸ¾æ—æ ç„Šéƒ´æ—ç»Š
 	}
 	else
 	{
@@ -845,15 +845,15 @@ void UB2LobbyUI_InventoryMain::DoMarkRedDot()
 
 void UB2LobbyUI_InventoryMain::UpdateInvenControlButtonState()
 {
-	// ½Å±Ô UI ¿¡¼­´Â ÀÌ·± °æ¿ì UI Doc ¿¡¼­ º¯°æ ÀÌº¥Æ® ¹Ş¾Æ¼­ Ã³¸®ÇÒ ¼ö ÀÖ´Âµ¥ ¿©±â¼± Á÷Á¢ º¯°æ ÀÌº¥Æ®¸¦ ³¯·ÁÁÖ¾î¾ß ÇÔ. 
-	// ¸Å Tick ¿¡¼­ ÀÌ·± Ã³¸®¸¦ Á» ÇÑ´Ù ÇØµµ ¾ğ¸®¾ó ±âº» ¹ÙÀÎµù ±â´ÉÀÌ¶û º°¹İ ´Ù¸¦ °Å ¾øÀ½.
+	// è„šç—¹ UI ä¿Šè¾‘ç»° æç¹ ç‰ˆå¿« UI Doc ä¿Šè¾‘ å‡½ç‰ˆ æäº¥é£˜ ç½é…’è¾‘ è´¸åºœä¸” è ä¹ç»°å• å’¯æ‰æ€¥ æµç«‹ å‡½ç‰ˆ æäº¥é£˜ç”« æœå¦¨æ—ç»¢å…· çªƒ. 
+	// æ¦‚ Tick ä¿Šè¾‘ æç¹ è´¸åºœç”« ç²± èŒ„ä¿ƒ ç§¦æ¡£ æ”«åºœå€” æ‰å¤¯ å®˜ç‰¢çˆ¹ æ‰ç“·æå°” å–Šé¦† ä¿ƒç”« èŠ­ ç»æ¾œ.
 
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2LobbyUI_InventoryMain_UpdateInvenControlButtonState);
 	if (BTN_ContainerExpansion.IsValid())
 	{
 		const bool bPossibleToInvokeContainerExpansionMenu = IsPossibleToInvokeContainerExpansionMenu();
 		BTN_ContainerExpansion->SetIsEnabled(bPossibleToInvokeContainerExpansionMenu);
-		// °á±¹ visibility µµ ²¨ÁÖ±â·Î..
+		// æ¬æƒ« visibility æ¡£ æ³¢æ—æ‰è‚º..
 		BTN_ContainerExpansion->SetVisibility(bPossibleToInvokeContainerExpansionMenu ? ESlateVisibility::Visible : ESlateVisibility::Hidden);
 	}
 
@@ -883,7 +883,7 @@ void UB2LobbyUI_InventoryMain::UpdateInvenControlButtonState()
 	}
 
 	if (CP_ContainerSizeTextSet.IsValid())
-	{	// ¼Ò¸ğÇ° ÅÇ¿¡¼­´Â º¸°ü°³¼ö¶û º¸°üÇÔÅ©±â Ç¥½Ãµµ ÇÏÁö ¾Ê±â·Î ÇÔ.
+	{	// å®¶è‘›å‰ å¾˜ä¿Šè¾‘ç»° ç„ŠåŒ…ä¿ºèå°” ç„ŠåŒ…çªƒå†œæ‰ é’çŸ«æ¡£ çªç˜¤ è‡¼æ‰è‚º çªƒ.
 		CP_ContainerSizeTextSet->SetVisibility(CurSelectedItemInvenTab != EItemInvenType::EIIVT_Consumables ? ESlateVisibility::Visible : ESlateVisibility::Hidden);
 	}
 }
@@ -966,15 +966,15 @@ void UB2LobbyUI_InventoryMain::OnItemInvenTabButtonPressed(EItemInvenType InSele
 
 	if (InSelectedInvenTab != EItemInvenType::EIIVT_End)
 	{
-		RequestNewItem();			//ÅÇ´­·¯ÁÖ¸é º¸³»ÁÖ°í
+		RequestNewItem();			//å¾˜å–˜çŸ¾æ—æ ç„Šéƒ´æ—ç»Š
 
 		CurSelectedItemInvenTab = InSelectedInvenTab;
 		CachedSelectedItemInvenTab = InSelectedInvenTab;
 
 		check(CachedInventory);
-		CachedInventory->SetMainInvenViewCurrentTab(CurSelectedItemInvenTab); // ´Ù¸¥ UI ¿¡¼­ Á» ¾µÀÏÀÌ ÀÖ¾î¼­
+		CachedInventory->SetMainInvenViewCurrentTab(CurSelectedItemInvenTab); // ä¿ƒå¼— UI ä¿Šè¾‘ ç²± é•œè€æ ä¹ç»¢è¾‘
 
-		LobbyTryUpdateItemOPMainMenuClass<>::GetInstance().Signal(); // ÇÕ¼º ½Â±Ş µî ¸ğµå½Ã ÅØ½ºÆ® ¾÷µ¥ÀÌÆ® ÇØ ÁÖ¾î¾ß ÇÒ »óÈ²ÀÌ Á» ÀÖÀ½.
+		LobbyTryUpdateItemOPMainMenuClass<>::GetInstance().Signal(); // é’¦å·± é“°é­ æ®¿ è‘›é›çŸ« å’†èƒ¶é£˜ è¯€å•æé£˜ ç§¦ æ—ç»¢å…· ä¸” æƒ‘ç‚”æ ç²± ä¹æ¾œ.
 		UpdateInvenTabWidgetVisibilityState();
 		UpdateStoredItemIconsForCurrentSelection();
 
@@ -985,13 +985,13 @@ void UB2LobbyUI_InventoryMain::OnItemInvenTabButtonPressed(EItemInvenType InSele
 
 		if (CurSelectedItemInvenTab == EItemInvenType::EIIVT_Consumables)
 		{
-			// ¿ø·¡ ¼Ò¸ğÇ°Àº Ã³À½¿¡ °¡Á®¿Í¾ß ÇÏ´Âµ¥.. Áß°£¿¡ Á» ¹®Á¦°¡ »ı°Ü¼­ ¿©±âµµ È®ÀÎ Â÷..
+			// ç›”è´° å®¶è‘›å‰ç¯® è´¸æ¾œä¿Š å•Šå»‰å®¢å…· çªç»°å•.. ååŸƒä¿Š ç²± å·©åŠ›å•Š ç§¯è´¥è¾‘ å’¯æ‰æ¡£ çŠ¬ç‰¢ ç’..
 			if (HeroMgmtBase)
 			{
 				HeroMgmtBase->SetHidePresetControls();
 			}
 
-			BladeIIGameImpl::GetClientDataStore().SyncingInventoryData(EPCClass::EPC_End); //EPC_End ·Î ÁÖ¸é °ø¿ë ¾ÆÀÌÅÛÀ» ¿äÃ»ÇÒ °Í.
+			BladeIIGameImpl::GetClientDataStore().SyncingInventoryData(EPCClass::EPC_End); //EPC_End è‚º æ—æ å‚ä¾© é…’æè¢é˜‘ å¤¸æ²¡ä¸” å·´.
 		}
 
 		UpdateLobbyInventoryControlClass<>::GetInstance().Signal();
@@ -1001,7 +1001,7 @@ void UB2LobbyUI_InventoryMain::OnItemInvenTabButtonPressed(EItemInvenType InSele
 void UB2LobbyUI_InventoryMain::OnContainerExpansionButtonPressed()
 {
 	if (IsPossibleToInvokeContainerExpansionMenu())
-	{	// º¸°üÇÔ È®Àå ¸Ş´º pop-up
+	{	// ç„ŠåŒ…çªƒ çŠ¬å˜ çš‹æ˜¥ pop-up
 		DJLegacy_OpenLobbySubPopupClass<ELobbySubPopups, FDJLegacySubpopupAddPanelInfo>::GetInstance().Signal(ELobbySubPopups::ELSPU_ExtendInventory, FDJLegacySubpopupAddPanelInfo());
 	}
 }
@@ -1065,7 +1065,7 @@ void UB2LobbyUI_InventoryMain::OnAutoDecompositionButtonPressed()
 void UB2LobbyUI_InventoryMain::OnDelayCallbackSellAll()
 {
 	if (IsPossibleToInvokeSubMenu())
-	{// ¸ğµÎ ÆÈ±â ¸Ş´º pop-up
+	{// è‘›æ»´ è¿«æ‰ çš‹æ˜¥ pop-up
 		DJLegacy_OpenLobbySubPopupClass<ELobbySubPopups, FDJLegacySubpopupAddPanelInfo>::GetInstance().Signal(ELobbySubPopups::ELSPU_SellAllItems, FDJLegacySubpopupAddPanelInfo());
 	}
 }
@@ -1073,7 +1073,7 @@ void UB2LobbyUI_InventoryMain::OnDelayCallbackSellAll()
 void UB2LobbyUI_InventoryMain::OnDelayCallbackAutoEquip()
 {
 	if (IsPossibleToInvokeSubMenu())
-	{// ÀÚµ¿ ÀåÂø ¸Ş´º pop-up
+	{// ç£Šæ‚¼ å˜é¦’ çš‹æ˜¥ pop-up
 		DJLegacy_OpenLobbySubPopupClass<ELobbySubPopups, FDJLegacySubpopupAddPanelInfo>::GetInstance().Signal(ELobbySubPopups::ELSPU_AutoEquip, FDJLegacySubpopupAddPanelInfo());
 	}
 }
@@ -1081,7 +1081,7 @@ void UB2LobbyUI_InventoryMain::OnDelayCallbackAutoEquip()
 void UB2LobbyUI_InventoryMain::OnDelayCallbackAutoLevelUp()
 {
 	if (IsPossibleToInvokeSubMenu())
-	{// ÀÚµ¿ ·¹º§¾÷ ¸Ş´º pop-up
+	{// ç£Šæ‚¼ é¥­éª‡è¯€ çš‹æ˜¥ pop-up
 		DJLegacy_OpenLobbySubPopupClass<ELobbySubPopups, FDJLegacySubpopupAddPanelInfo>::GetInstance().Signal(ELobbySubPopups::ELSPU_AutoItemLevelup, FDJLegacySubpopupAddPanelInfo());
 	}
 }
@@ -1089,7 +1089,7 @@ void UB2LobbyUI_InventoryMain::OnDelayCallbackAutoLevelUp()
 void UB2LobbyUI_InventoryMain::OnDelayCallbackAutoDecomposition()
 {
 	if (IsPossibleToInvokeSubMenu())
-	{// ÀÚµ¿ ºĞÇØ pop-up
+	{// ç£Šæ‚¼ ç›’ç§¦ pop-up
 		DJLegacy_OpenLobbySubPopupClass<ELobbySubPopups, FDJLegacySubpopupAddPanelInfo>::GetInstance().Signal(ELobbySubPopups::ELSPU_DecompositionAllItems, FDJLegacySubpopupAddPanelInfo());
 	}
 }
@@ -1122,7 +1122,7 @@ void UB2LobbyUI_InventoryMain::DeliveryModifyItemNewFlag()
 }
 
 void UB2LobbyUI_InventoryMain::UpdateInvenTabWidgetVisibilityState()
-{ // ÇöÀç ÅÇ ¹öÆ° ¼±ÅÃ »óÈ²¿¡ µû¸¥ ¹öÆ°ÀÌ¶û ÀÌ¹ÌÁö visible »óÅÂ ¾÷µ¥ÀÌÆ®.
+{ // æ³…çŠ å¾˜ æ»šç“¢ æ€¥ç¶ æƒ‘ç‚”ä¿Š è¶å¼— æ»šç“¢æå°” æå›ºç˜¤ visible æƒ‘æ€• è¯€å•æé£˜.
 
 	TAB_Accessory->SetTabSelected(false);
 	TAB_Consumables->SetTabSelected(false);
@@ -1240,7 +1240,7 @@ void UB2LobbyUI_InventoryMain::AllPlayEquipEffect()
 
 void UB2LobbyUI_InventoryMain::PlayEquipEffect(EItemEquipPlace InEquippedPlace)
 {
-	// InEquippedPlace ¿¡ µû¶ó.. ÃÖÁ¾ÀûÀ¸·Î´Â ¹è¿­¿¡¼­ ²¨³»µµ·Ï. Áö±İÀº Å×½ºÆ®·Î Helmet ¿¡ ¹èÄ¡ÇÑ °Í¸¸.
+	// InEquippedPlace ä¿Š è¶æ‰¼.. å¼¥è¾†åˆ©æ è‚ºç»° ç¡…å‡¯ä¿Šè¾‘ æ³¢éƒ´æ¡£åºŸ. ç˜¤é™›ç¯® æŠ›èƒ¶é£˜è‚º Helmet ä¿Š ç¡…æ‘¹èŒ„ å·´çˆ¶.
 
 	UImage* EquipEffectImage = GetEquipEffectImg(InEquippedPlace);
 	if (EquipEffectImage)
@@ -1263,7 +1263,7 @@ void UB2LobbyUI_InventoryMain::PlayEquipEffect(EItemEquipPlace InEquippedPlace)
 		}
 	}
 
-	BeginEquipEffectParamAnimBP(); // ´õ¹Ì image widget ÀÇ animation À» ÇÃ·¹ÀÌÇÏ°Ô µÉ °Í.
+	BeginEquipEffectParamAnimBP(); // æ­¹å›º image widget ç‹¼ animation é˜‘ æ•²é¥­æçªéœ¸ çª å·´.
 
 	UWorld* TheWorld = GetWorld();
 	if (TheWorld)
@@ -1277,7 +1277,7 @@ void UB2LobbyUI_InventoryMain::UpdateEquipEffectParamAnim()
 {
 	if (IMG_EquipEffectParamAnimDummy.IsValid())
 	{
-		// ´õ¹Ì·Î ±ò¾Æ³õÀº image ¿¡¼­ ¾Ö´Ï¸ŞÀÌÆ® µÇ´Â ÄÃ·¯°ªÀ» °¡Á®¿Í¼­ ¼¼ÆÃ. ¸ğµç MID ¿¡ ¶È°°ÀÌ ¼¼ÆÃÇÑ´Ù. ±×°Í±îÁö ´Ù µû·Î ¼³Ä¡ÇÏ±ä Á» ¹«¸®ÀÏ µí.
+		// æ­¹å›ºè‚º å½¬é…’åˆç¯® image ä¿Šè¾‘ å±€èªçš‹æé£˜ ç™»ç»° æ‹¿çŸ¾è”¼é˜‘ å•Šå»‰å®¢è¾‘ æŠ€æ³¼. è‘›ç”µ MID ä¿Š åº¦éæ æŠ€æ³¼èŒ„ä¿ƒ. å¼Šå·´é³–ç˜¤ ä¿ƒ è¶è‚º æ±²æ‘¹çªå˜ ç²± å…¬åºœè€ æ·€.
 		for (auto* ThisMID : CurrentActiveEquipEffectMID)
 		{
 			BLADE2_SCOPE_CYCLE_COUNTER(UB2LobbyUI_InventoryMain_UpdateEquipEffectParamAnim_CurrentActiveEquipEffectMID);
@@ -1307,7 +1307,7 @@ void UB2LobbyUI_InventoryMain::UpdateEquipEffectParamAnim()
 
 void UB2LobbyUI_InventoryMain::StopEquipEffect()
 {
-	// ¸ğµç ÀåÂø ½½·Ô¿¡ ´ëÇØ ÇÑ²¨¹ø¿¡ Áß´Ü½ÃÅ´. Çö ½Ã½ºÅÛÀÇ ÇÑ°èÀÎµ¥ ±»ÀÌ µû·Î µ¹°Ô ÇÒ ÇÊ¿äµµ ¾øÀ» µí.
+	// è‘›ç”µ å˜é¦’ æµ‡å©ä¿Š æªç§¦ èŒ„æ³¢é”…ä¿Š åçªœçŸ«ç³¯. æ³… çŸ«èƒ¶è¢ç‹¼ èŒ„æ‹Œç‰¢å• è¢«æ è¶è‚º å€’éœ¸ ä¸” é˜å¤¸æ¡£ ç»é˜‘ æ·€.
 	for (auto* ThisEquipEffect : EquipEffectImgs)
 	{
 		if (!ThisEquipEffect)
@@ -1324,7 +1324,7 @@ void UB2LobbyUI_InventoryMain::StopEquipEffect()
 		ThisEquipEffect2->SetVisibility(ESlateVisibility::Collapsed);
 	}
 
-	CurrentActiveEquipEffectMID.Empty(); // ÇÑ²¨¹ø¿¡ ºñ¿ì´Â °É·Î. ¾Ö´Ï¸ŞÀÌ¼Çµµ ÇÑ²¨¹ø¿¡..
+	CurrentActiveEquipEffectMID.Empty(); // èŒ„æ³¢é”…ä¿Š åšå¿«ç»° å§è‚º. å±€èªçš‹æè®°æ¡£ èŒ„æ³¢é”…ä¿Š..
 	CurrentActiveEquipEffectMID2.Empty();
 
 	auto* TheWorld = GetWorld();
@@ -1336,7 +1336,7 @@ void UB2LobbyUI_InventoryMain::StopEquipEffect()
 
 void UB2LobbyUI_InventoryMain::RedDotCondition_TapState()
 {
-	for (int32 i = 0; i <= int32(EItemInvenType::EIIVT_Consumables); ++i)		//¼Ò¸ğÇ°Àº ¾È¶ß´Ï 3°³¸¸ µ¹·ÁÁİ´Ï´Ù
+	for (int32 i = 0; i <= int32(EItemInvenType::EIIVT_Consumables); ++i)		//å®¶è‘›å‰ç¯® æ•‘å“†èª 3ä¿ºçˆ¶ å€’å¦¨å‡›èªä¿ƒ
 	{
 		bool IsNew = BladeIIGameImpl::GetRedDotManager().HasLobbyRedDot_HeroMgmt_Inventory(CurSelectedPCClass, static_cast<EItemInvenType>(i));
 
@@ -1400,7 +1400,7 @@ void UB2LobbyUI_InventoryMain::SetEnableOnlyOneTabType(EItemInvenType InEnableTa
 UCanvasPanel* UB2LobbyUI_InventoryMain::GetItemDetailPopupParentPanel(bool bOfLeftSide) const
 {
 	return bOfLeftSide ? X_LeftPopupPanel.Get() :
-		// ¿ìÃøÆË¾÷Àº HeroMgmt °øÅëÆÄÆ®ÀÇ Çì´õÆÄÆ®¿¡¼­ ³ª¿À´Â ¸ğµå ¾Ë¸²À» °¡¸®Áö ¾Êµµ·Ï HeroMgmt ÂÊ Panel À» »ç¿ëÇÑ´Ù.
-		// ¿©±â widget µé ¹èÄ¡ ½Ã ¼ø¼­ ¹× z-order ÁÖÀÇÇØ¾ß ÇÔ.
+		// å¿«èŸæ‰‘è¯€ç¯® HeroMgmt å‚çƒ¹é¢‡é£˜ç‹¼ åº†æ­¹é¢‡é£˜ä¿Šè¾‘ å”±å·ç»° è‘›é› èˆ…è¦†é˜‘ å•Šåºœç˜¤ è‡¼æ¡£åºŸ HeroMgmt ç‡ Panel é˜‘ è¤ä¾©èŒ„ä¿ƒ.
+		// å’¯æ‰ widget ç”¸ ç¡…æ‘¹ çŸ« é‰´è¾‘ æ£º z-order æ—ç‹¼ç§¦å…· çªƒ.
 		(HeroMgmtBase ? HeroMgmtBase->GetInfoPopupParentPanel(bOfLeftSide) : X_RightPopupPanel.Get());
 }

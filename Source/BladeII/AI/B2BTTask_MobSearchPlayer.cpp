@@ -1,9 +1,11 @@
-
+ï»¿
 #include "B2BTTask_MobSearchPlayer.h"
 //#include "BladeII.h"
 #include "AIController.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "BehaviorTree/Blackboard/BlackboardKeyType_Object.h"
+#include "BladeIICharacter.h"
+#include "BladeIIPlayer.h"
 
 UB2BTTask_MobSearchPlayer::UB2BTTask_MobSearchPlayer(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
@@ -24,8 +26,8 @@ EBTNodeResult::Type UB2BTTask_MobSearchPlayer::PerformSearchTask(UBehaviorTreeCo
 	if (ControlledCharacter == nullptr)
 		return EBTNodeResult::Failed;
 	
-	//[@AKI, 170809] [FIXME]¸÷ÀÇ AttackState°¡ ECS_NoneÀÌ ¾Æ´Ï¾î¼­ °ø°Ý ¾ÈÇÏ´Â ÀÌ½´ ¹ß»ýµÊ.
-	//AIController³ª BladeIICharacterÂÊ¿¡ AttackState ²¿ÀÓ Çö»óÀÌ ÀÖ´Â µí
+	//[@AKI, 170809] [FIXME]å„ç‹¼ AttackStateå•Š ECS_Noneæž é…’èªç»¢è¾‘ å‚æ‹œ æ•‘çªç»° æžé…± æƒ¯ç§¯å‡³.
+	//AIControllerå”± BladeIICharacterçŽ‡ä¿Š AttackState éƒ¨çƒ™ æ³…æƒ‘æž ä¹ç»° æ·€
 	if (ControlledCharacter->GetAttackState() != EAttackState::ECS_None || !ControlledCharacter->GetAbleToControl())
 		return ControlledCharacter->bNeedUpdateTarget ? EBTNodeResult::Succeeded : EBTNodeResult::Failed;
 
@@ -41,7 +43,7 @@ EBTNodeResult::Type UB2BTTask_MobSearchPlayer::PerformSearchTask(UBehaviorTreeCo
 	ControlledCharacter->bNeedSpawnCheck = false;
 	
 	if (ControlledCharacter->CustomTimeDilation == 0) 
-		//Spawn animÀÌ ½ÇÇàµÈ´Ù.
+		//Spawn animæž è§’é’ç­‰ä¿ƒ.
 		ControlledCharacter->CustomTimeDilation = 1.f;
 
 	ControlledCharacter->UpdateAIAttackIndex(FMath::Sqrt(TargetDistanceSquared), true);

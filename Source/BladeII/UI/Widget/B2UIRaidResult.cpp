@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIRaidResult.h"
 #include "B2UIManager.h"
@@ -337,8 +337,8 @@ void UB2RaidResult::SetResultSlotInfo(const TArray<FRaidResultRankingInfo> &Rank
 
 	const TArray<FRaidMasterData>* RaidData = BladeIIGameImpl::GetClientDataStore().GetRaidMasterDataList(RaidDoc->GetLastRaidType());
 
-	// ±â¿©µµ°¡ ºÎÁ·ÇÑ »ç¶÷Àº º¸»ó Á¤º¸°¡ ¾øÀ¸¹Ç·Î, rewardptr °ªÀ» ÂüÁ¶ÇÒ ¼ö ¾øÀ½.
-	// ±×·¡¼­ id ¿Í grade °ªÀº ¸¶½ºÅÍ µ¥ÀÌÅÍ¿¡¼­ Ã£¾Æ¿Àµµ·ÏÇÔ.
+	// æ‰å’¯æ¡£å•Š ä½•ç»ƒèŒ„ è¤æ©ç¯® ç„Šæƒ‘ æ²¥ç„Šå•Š ç»æ éª¨è‚º, rewardptr è”¼é˜‘ æ›¼ç‚¼ä¸” è ç»æ¾œ.
+	// å¼Šè´°è¾‘ id å®¢ grade è”¼ç¯® ä»˜èƒ¶ç£ å•æç£ä¿Šè¾‘ èŒ«é…’å·æ¡£åºŸçªƒ.
 	if (RaidData && RaidData->IsValidIndex(RaidDoc->GetLastRaidStep() - 1))
 	{
 		FRaidMasterData RewardInfo = (*RaidData)[RaidDoc->GetLastRaidStep() - 1];
@@ -562,7 +562,7 @@ TArray<FRaidResultRankingInfo> UB2RaidResult::GetRankArrayInfo()
 		RankArray.Add(Rank);
 	}
 
-	// ·¹º§ ³ôÀº»ç¶÷ÀÌ ¿ì¼±.
+	// é¥­éª‡ è‡­ç¯®è¤æ©æ å¿«æ€¥.
 	struct FRaidRaking_LevelSorter
 	{
 		bool operator()(const FRaidResultRankingInfo& A, const FRaidResultRankingInfo& B) const
@@ -572,7 +572,7 @@ TArray<FRaidResultRankingInfo> UB2RaidResult::GetRankArrayInfo()
 	};
 	RankArray.StableSort(FRaidRaking_LevelSorter());
 
-	// °øÇåµµ ³ôÀº»ç¶÷ÀÌ ¿ì¼±
+	// å‚æ¸…æ¡£ è‡­ç¯®è¤æ©æ å¿«æ€¥
 	struct FRaidRaking_ContributionSorter
 	{
 		bool operator()(const FRaidResultRankingInfo& A, const FRaidResultRankingInfo& B) const
@@ -582,7 +582,7 @@ TArray<FRaidResultRankingInfo> UB2RaidResult::GetRankArrayInfo()
 	};
 	RankArray.StableSort(FRaidRaking_ContributionSorter());
 
-	// ±×´ÙÀ½ ³ª°£ »ç¶÷ÀÌ µÚ·Î 
+	// å¼Šä¿ƒæ¾œ å”±åŸƒ è¤æ©æ ç¬¬è‚º 
 	struct FRaidRaking_ExitUserSorter
 	{
 		bool operator()(const FRaidResultRankingInfo& A, const FRaidResultRankingInfo& B) const
@@ -592,7 +592,7 @@ TArray<FRaidResultRankingInfo> UB2RaidResult::GetRankArrayInfo()
 	};
 	RankArray.StableSort(FRaidRaking_ExitUserSorter());
 
-	// ´õ¹Ì¾ÆÀÌµğ´Â Á¦ÀÏ µÚ·Î
+	// æ­¹å›ºé…’æå¼ç»° åŠ›è€ ç¬¬è‚º
 	struct FRaidRaking_DummyIDSorter
 	{
 		bool operator()(const FRaidResultRankingInfo& A, const FRaidResultRankingInfo& B) const
@@ -616,7 +616,7 @@ void UB2RaidResult::CheckAndOpenLevelUpPart()
 
 	for (auto pcclass : ThisPCClass)
 	{
-		//[@SameLine, 180612] explevelinfo doc, datastore -> datastore °³¼±
+		//[@SameLine, 180612] explevelinfo doc, datastore -> datastore ä¿ºæ€¥
 		//UB2UIDocHero* DocHero = UB2UIDocHelper::GetDocHero(PCClassToInt(pcclass));
 		//bool bCharLevelUp = (FMath::Max(DocHero->GetBasicUpgradeLevel(), DocHero->GetExtraUpgradeLevel()) > DocHero->GetCurrentLevel());
 		const int32 ClearAfterLevel = CharacterDataStore.GetCharacterLevel(pcclass);

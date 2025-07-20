@@ -1,4 +1,4 @@
-#include "B2BTDecorator_IfPlayerIsAlive.h"
+﻿#include "B2BTDecorator_IfPlayerIsAlive.h"
 //#include "BladeII.h"
 
 
@@ -8,6 +8,7 @@
 #include "BehaviorTree/Blackboard/BlackboardKeyAllTypes.h"
 #include "BladeIICharacter.h"
 #include "BladeIIPlayerAIController.h"
+#include "BladeIIUtil.h"
 
 UB2BTDecorator_IfPlayerIsAlive::UB2BTDecorator_IfPlayerIsAlive(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)

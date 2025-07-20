@@ -1,9 +1,10 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIDonationProductCost.h"
 #include "B2UIDocHelper.h"
 #include "B2UIDocDonation.h"
-
+#include "BladeII.h"
+#include "BladeIILocText.h"
 
 void UB2UIDonationProductCost::Init()
 {

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #pragma once
 
 #include "B2UIWidget.h"
@@ -39,7 +39,7 @@ public:
 
 	void SetPageBlock(bool bBlock);
 
-	// ÃÊ´ëÇÑ ÂÊ¿¡¼­ »ó´ë¹æ °ÅÀı ½Ã - (ÃÊ´ë¿¡ ÀÀ´ä ¾ø°Å³ª ¸í½ÃÀû °ÅÀı ½Ã)
+	// æª¬æªèŒ„ ç‡ä¿Šè¾‘ æƒ‘æªè§„ èŠ­ä¾‹ çŸ« - (æª¬æªä¿Š è§ˆç¿  ç»èŠ­å”± ç–™çŸ«åˆ© èŠ­ä¾‹ çŸ«)
 	void OnInvitationDeclined();
 
 	void CloseInvitationUI();

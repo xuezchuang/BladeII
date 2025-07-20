@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 // Project BladeII, Action Square
 
 
@@ -11,12 +11,12 @@
 #include "BladeIIUtil.h"
 #include "GameFramework/PlayerController.h"
 
-#define RESTORE_BUFF_MODE_TEXT_EFFECT_3DFX 0 // È¤ ´Ù½Ã ¾ê±â ³ª¿ÃÁö ¸ğ¸£´Ï ³²°ÜµÎ´Â °Å. ÀÌ°Å 1 ·Î ³õ°í Çì´õÂÊ¿¡ ÁÖ¼®ÃÄ ³õÀº °Íµµ º¹±¸½ÃÅ´. ¹°·Ğ ¸®¼Ò½º ¼¼ÆÃµµ.
+#define RESTORE_BUFF_MODE_TEXT_EFFECT_3DFX 0 // è¶£ ä¿ƒçŸ« å¨Ÿæ‰ å”±æ£µç˜¤ è‘›ç¦èª å·¢è´¥æ»´ç»° èŠ­. æèŠ­ 1 è‚º åˆç»Š åº†æ­¹ç‡ä¿Š æ—ç±åªš åˆç¯® å·´æ¡£ æ±—å¤‡çŸ«ç³¯. æ‹±æ²¸ åºœå®¶èƒ¶ æŠ€æ³¼æ¡£.
 
 bool FB2BuffEffectData::MarkLoadedAssetRootSet()
 {
 	bool bAddedAnyone = false;
-	if (ParticleSytem.IsValid()) // ¿©±â¼­ ·ÎµùÀ» ÇÏÁö´Â ¾Ê°í Root ¿¡ ³Ö±â¸¸.
+	if (ParticleSytem.IsValid()) // å’¯æ‰è¾‘ è‚ºçˆ¹é˜‘ çªç˜¤ç»° è‡¼ç»Š Root ä¿Š æŒæ‰çˆ¶.
 	{
 		ParticleSytem->AddToRoot();
 		bAddedAnyone = true;
@@ -35,7 +35,7 @@ FB2LoadedBuffEffectData::FB2LoadedBuffEffectData(FStreamableManager& InLoadManag
 	{
 		InLoadManager.LoadSynchronous(InSetup.ParticleSytem);
 	}
-	// ²À ¿©±â¼­ ·Îµù ¾È ÇØµµ ÀÌ¹Ì Valid ÇÑ »óÅÂ·Î µé¾î¿Ã ¼öµµ ÀÖ´Ù.
+	// æ€– å’¯æ‰è¾‘ è‚ºçˆ¹ æ•‘ ç§¦æ¡£ æå›º Valid èŒ„ æƒ‘æ€•è‚º ç”¸ç»¢æ£µ èæ¡£ ä¹ä¿ƒ.
 	LoadedBasicParticleSytem = InSetup.ParticleSytem.Get();
 	if (bLoadEndPS && !InSetup.EndParticleSytem.IsValid() && !InSetup.EndParticleSytem.IsNull())
 	{
@@ -44,7 +44,7 @@ FB2LoadedBuffEffectData::FB2LoadedBuffEffectData(FStreamableManager& InLoadManag
 	LoadedEndParticleSytem = InSetup.EndParticleSytem.Get();
 }
 
-// Á÷Á¢ ÂüÁ¶ÇÏÁö ¸»°í ShouldUnloadAllAssetOnLevelTransition À¸·Î
+// æµç«‹ æ›¼ç‚¼çªç˜¤ å¯Œç»Š ShouldUnloadAllAssetOnLevelTransition æ è‚º
 bool UB2BuffModeEffectInfo::bRootsetOnLoad = false;
 bool UB2BuffModeEffectInfo::bAssetsRooted = false;
 UB2BuffModeEffectInfo::UB2BuffModeEffectInfo(const FObjectInitializer& ObjectInitializer)
@@ -70,7 +70,7 @@ void UB2BuffModeEffectInfo::PostLoad()
 #if WITH_EDITOR
 void UB2BuffModeEffectInfo::EditorLoadAllTAsset()
 {
-	// LoadEditorData ¿¡¼­ ÇÏ´Â °Í°ú °°Àº ¸Æ¶ô. ÀÌ°Ç Á» ´õ ´Ü¼øÇÑ ±¸Á¶..
+	// LoadEditorData ä¿Šè¾‘ çªç»° å·´è‹ éç¯® é’™é. ææ‰’ ç²± æ­¹ çªœé‰´èŒ„ å¤‡ç‚¼..
 
 	if (!GIsEditor){
 		return;
@@ -87,15 +87,15 @@ void UB2BuffModeEffectInfo::EditorLoadAllTAsset()
 void UB2BuffModeEffectInfo::PreloadAndCacheAllTAsset()
 {
 //#if !UE_BUILD_SHIPPING
-	//extern bool gPreloadCombatEffectResources; // ÀÌ°Ô ¼º´É¿¡ ½ÇÁ¦·Î ¾ó¸¶³ª ±â¿©ÇÏ´ÂÁö Å×½ºÆ®¸¦ À§ÇØ
+	//extern bool gPreloadCombatEffectResources; // æéœ¸ å·±ç“·ä¿Š è§’åŠ›è‚º å€”ä»˜å”± æ‰å’¯çªç»°ç˜¤ æŠ›èƒ¶é£˜ç”« å›°ç§¦
 //	if (!gPreloadCombatEffectResources) {
 //		return;
 //	}
 //#endif
 //
-//#if !PLATFORM_IOS // [IOS_SPECIFIC_MEMORY_SAVING] ÀÏ´Ü iOS ´Â Á¦¿ÜÇÏ°í ´Ù¸¥ ÇÃ·§Æûµé¿¡¼­¸¸
+//#if !PLATFORM_IOS // [IOS_SPECIFIC_MEMORY_SAVING] è€çªœ iOS ç»° åŠ›å¯‡çªç»Š ä¿ƒå¼— æ•²é˜€æ±½ç”¸ä¿Šè¾‘çˆ¶
 //	if (GIsEditor) {
-//		return; // ¿¡µğÅÍ¸é ÇØ¼­ ¾ÈµÉ °Å ¾ø±ä ÇÑµ¥ ·Îµù ½Ã°£ Á¶±İÀÌ¶óµµ ´õ °É¸± Å×´Ï ±×³É ¸®ÅÏ. ±×¸®°í ±¦È÷ LoadedPtr ·Î serialize µÉ ¿©Áö¸¦ Á¶±İÀÌ¶óµµ ´õ È®½ÇÈ÷ Â÷´Ü ¤»
+//		return; // ä¿Šå¼ç£æ ç§¦è¾‘ æ•‘çª èŠ­ ç»å˜ èŒ„å• è‚ºçˆ¹ çŸ«åŸƒ ç‚¼é™›ææ‰¼æ¡£ æ­¹ å§å‰¯ æŠ›èª å¼Šæˆ åºœç•”. å¼Šåºœç»Š å®æ´’ LoadedPtr è‚º serialize çª å’¯ç˜¤ç”« ç‚¼é™›ææ‰¼æ¡£ æ­¹ çŠ¬è§’æ´’ ç’çªœ ã›
 //	}
 //
 //	B2_SCOPED_TRACK_LOG(TEXT("UB2BuffModeEffectInfo::PreloadAndCacheAllTAsset"));
@@ -107,7 +107,7 @@ void UB2BuffModeEffectInfo::PreloadAndCacheAllTAsset()
 //		NewLoadedHolder = FB2LoadedBuffEffectData(InfoLoadManager, ItCharBuffFx.Value(), true, true);
 //	}	
 //
-//	// ResurrectBuffTextUIEffectSetup ÀÌ°Ç ±×´Ú ÇÒ ÇÊ¿ä ¾øÀ» °Å °°¾Æ¼­ ÆĞ½º.. ¤¾;
+//	// ResurrectBuffTextUIEffectSetup ææ‰’ å¼Šè¹¿ ä¸” é˜å¤¸ ç»é˜‘ èŠ­ éé…’è¾‘ è©èƒ¶.. ã;
 //
 //	LoadedBreakTextUIEffectSetup = FLoadedFloatingAbnormalEffectSetupInfo(BreakTextUIEffectSetup, InfoLoadManager);
 //
@@ -123,13 +123,13 @@ void UB2BuffModeEffectInfo::PreloadAndCacheAllTAsset()
 
 void UB2BuffModeEffectInfo::ConditionalUnloadAllOrPreserve()
 {
-	// ÀÌ¸§ºÎÅÍ°¡ Á» Áß±¸³­¹æÀÎµ¥ ±âº»ÀûÀ¸·Î´Â Unload °¡ ÀÇµµÇÑ ±â´ÉÀÓ.
-	// ÇÏ´Ùº¸´Ï ÇÊ¿äÇÑ °ÍÀ» RootSet ¿¡ Æ÷ÇÔ½ÃÅ°´Â °Íµµ.. ¾îÂ÷ÇÇ ÇÊ¿äÇÑ °Íµé ÃÖ´ëÇÑ ·ÎµùµÇ¾î ÀÖÀ» ÀÌÂëÀÌ ÀûÀıÇÒ µíÇØ¼­.
+	// ææŠšä½•ç£å•Š ç²± åå¤‡æŠ„è§„ç‰¢å• æ‰å¤¯åˆ©æ è‚ºç»° Unload å•Š ç‹¼æ¡£èŒ„ æ‰ç“·çƒ™.
+	// çªä¿ƒç„Šèª é˜å¤¸èŒ„ å·´é˜‘ RootSet ä¿Š å™¨çªƒçŸ«è™ç»° å·´æ¡£.. ç»¢ç’ä¹” é˜å¤¸èŒ„ å·´ç”¸ å¼¥æªèŒ„ è‚ºçˆ¹ç™»ç»¢ ä¹é˜‘ æç æ åˆ©ä¾‹ä¸” æ·€ç§¦è¾‘.
 	if (!ShouldUnloadAllAssetOnLevelTransition())
 	{
 		ConditionalMarkLoadedAssetsRootSet();
 	}
-	// ±Ùµ¥ Ä³½¬´Â ¿©ÇÏ°£ ºñ¿î´Ù.. ±×°Ô ¾ÈÀüÇÒ µí. ·çÆ®¼ÂÀÌ¸é ¾îÂ÷ÇÇ ´ÙÀ½¿¡ ´Ù½Ã ·Îµù ¾È ÇÒ °ÍÀÓ.
+	// è¾Ÿå• æŸæµ†ç»° å’¯çªåŸƒ åšæ¬¾ä¿ƒ.. å¼Šéœ¸ æ•‘å‚ˆä¸” æ·€. é£é£˜æ‚¸ææ ç»¢ç’ä¹” ä¿ƒæ¾œä¿Š ä¿ƒçŸ« è‚ºçˆ¹ æ•‘ ä¸” å·´çƒ™.
 	UnloadAllTAssetCache();
 }
 
@@ -145,7 +145,7 @@ void UB2BuffModeEffectInfo::ConditionalMarkLoadedAssetsRootSet()
 {
 	//if (!ShouldUnloadAllAssetOnLevelTransition())
 	//{
-	//	// ¿©±â¼­ ·ÎµùÇÏ´Â °Å ¾Æ´Ô. ·ÎµùµÈ °Í¸¸ ¸¶Å©
+	//	// å’¯æ‰è¾‘ è‚ºçˆ¹çªç»° èŠ­ é…’ä¸›. è‚ºçˆ¹ç­‰ å·´çˆ¶ ä»˜å†œ
 
 	//	int32 AddedCount = 0;
 	//	for (TMap<EBuffType, FB2BuffEffectData>::TIterator CBFIt(CharacterBuffEffects); CBFIt; ++CBFIt)
@@ -176,7 +176,7 @@ void UB2BuffModeEffectInfo::ConditionalMarkLoadedAssetsRootSet()
 	//	}
 
 	//	if (AddedCount > 0)
-	//	{ // º¯¼ö ÀÇ¹ÌºÎÅÍ "¸ğµÎ"ÀÎÁö "ÀÏºÎ" ÀÎÁö µüÈ÷ ÀÖÁö´Â ¾Ê°í ÇÏ³ª¸¸ AddToRoot µÇ¸é ¼¼ÆÃ. ÇöÀç »ç¿ë¸ñÀûÀÌ ±×¸® Ã¶ÀúÇÑ Ä«¿îÆ®°¡ ÇÊ¿äÇÑ °Ç ¾Æ´Ô.
+	//	{ // å‡½è ç‹¼å›ºä½•ç£ "è‘›æ»´"ç‰¢ç˜¤ "è€ä½•" ç‰¢ç˜¤ è¿­æ´’ ä¹ç˜¤ç»° è‡¼ç»Š çªå”±çˆ¶ AddToRoot ç™»æ æŠ€æ³¼. æ³…çŠ è¤ä¾©æ ¼åˆ©æ å¼Šåºœ æšå†èŒ„ å¢¨æ¬¾é£˜å•Š é˜å¤¸èŒ„ æ‰’ é…’ä¸›.
 	//		bAssetsRooted = true;
 	//	}
 	//}
@@ -287,17 +287,17 @@ void UB2BuffModeEffectInfo::SpawnCharacterBuffTextEffect(EBuffType BuffType, cla
 
 void UB2BuffModeEffectInfo::SpawnBreakTextEffect(class ABladeIICharacter* InTarget)
 {
-	//// ÇöÀç´Â º°´Ù¸¥ Ãß°¡ ÆÄ¶ó¹ÌÅÍ°¡ ¾ø´Âµ¥ ´©±¸ÀÇ Break ÀÎ°¡ µî¿¡ µû¸¥ Ãß°¡ ÆÄ¶ó¹ÌÅÍ°¡ »ı±æ ¼öµµ..
+	//// æ³…çŠç»° å–Šä¿ƒå¼— çœ å•Š é¢‡æ‰¼å›ºç£å•Š ç»ç»°å• ç©¿å¤‡ç‹¼ Break ç‰¢å•Š æ®¿ä¿Š è¶å¼— çœ å•Š é¢‡æ‰¼å›ºç£å•Š ç§¯è¾¨ èæ¡£..
 	//if (InTarget == NULL || InTarget->GetMesh() == NULL){
 	//	return;
 	//}	
 	//SpawnTextInner2D(InTarget, BreakTextUIEffectSetup, LoadedBreakTextUIEffectSetup);
 }
 
-// FloatingDamageNum ÂÊÀ¸·Î °¨. ¶Ç º¯°æµÉ Áö ¸ğ¸£´Ï ³²°Ü´Â µĞ´Ù.
+// FloatingDamageNum ç‡æ è‚º çš‘. è‚š å‡½ç‰ˆçª ç˜¤ è‘›ç¦èª å·¢è´¥ç»° æ•Œä¿ƒ.
 //void UB2BuffModeEffectInfo::SpawnCriticalHitTextEffect(class ABladeIICharacter* InTarget)
 //{
-//	// ÇöÀç´Â º°´Ù¸¥ Ãß°¡ ÆÄ¶ó¹ÌÅÍ°¡ ¾ø´Âµ¥ ´©±¸ÀÇ critical hit ÀÎ°¡ µî¿¡ µû¸¥ Ãß°¡ ÆÄ¶ó¹ÌÅÍ°¡ »ı±æ ¼öµµ.. (EDamageNumberType)
+//	// æ³…çŠç»° å–Šä¿ƒå¼— çœ å•Š é¢‡æ‰¼å›ºç£å•Š ç»ç»°å• ç©¿å¤‡ç‹¼ critical hit ç‰¢å•Š æ®¿ä¿Š è¶å¼— çœ å•Š é¢‡æ‰¼å›ºç£å•Š ç§¯è¾¨ èæ¡£.. (EDamageNumberType)
 //
 //	if (InTarget == NULL || InTarget->GetMesh() == NULL)
 //	{
@@ -405,12 +405,12 @@ void UB2BuffModeEffectInfo::SpawnTextInner(class ABladeIICharacter* Target, clas
 
 //void UB2BuffModeEffectInfo::SpawnTextInner2D(class ABladeIICharacter* Target, FFloatingAbnormalEffectSetupInfo& EffectCreateInfo, FLoadedFloatingAbnormalEffectSetupInfo& LoadedHolderRef)
 //{
-//	// ½ÇÁúÀûÀÎ µ¿ÀÛÀº DJLegacy ÀÇ UIManager ¿¡¼­ ÇÏ°Ô µÇ´Âµ¥ ÀÌÀü¿¡ ÀÌÆåÆ® ±â¹İ ±¸ÇöÇÑ °Å ÄÚµåÆĞ¾²¸¦ ±×´ë·Î ¾²±â À§ÇØ ¿©±â¿¡ µÒ.
+//	// è§’é¾™åˆ©ç‰¢ æ‚¼ç´¯ç¯® DJLegacy ç‹¼ UIManager ä¿Šè¾‘ çªéœ¸ ç™»ç»°å• æå‚ˆä¿Š ææ£‹é£˜ æ‰é¦† å¤‡æ³…èŒ„ èŠ­ å†…é›è©é™ç”« å¼Šæªè‚º é™æ‰ å›°ç§¦ å’¯æ‰ä¿Š ç‹„.
 //
-//	// ÀÌ¹Ì ·ÎµùµÇ¾î ÀÖ´ø »óÈ²ÀÌ¸é ¿©±â¼­ ½Ã°£ÀÌ °É¸®Áö´Â ¾ÊÀ» °ÍÀÓ.
+//	// æå›º è‚ºçˆ¹ç™»ç»¢ ä¹å¸¦ æƒ‘ç‚”ææ å’¯æ‰è¾‘ çŸ«åŸƒæ å§åºœç˜¤ç»° è‡¼é˜‘ å·´çƒ™.
 //	LoadedHolderRef = FLoadedFloatingAbnormalEffectSetupInfo(EffectCreateInfo, InfoLoadManager);
 //
-//	if (LoadedHolderRef.LoadedTextEffectTexture) // ºó°ÍµéÀÌ Á» ÀÖ´Âµ¥ ¶á±İ¾øÀÌ Èò ÆÇ¶§±â°¡ µîÀåÇØ¼­ ³î¶÷.
+//	if (LoadedHolderRef.LoadedTextEffectTexture) // åå·´ç”¸æ ç²± ä¹ç»°å• å¤ºé™›ç»æ é—° é­„é”­æ‰å•Š æ®¿å˜ç§¦è¾‘ æ„æ©.
 //	{
 //		CharacterAbnormalEffectClass<ABladeIICharacter*, const FLoadedFloatingAbnormalEffectSetupInfo&>::GetInstance().Signal(Target, LoadedHolderRef);
 //	}
@@ -439,7 +439,7 @@ void UB2BuffModeEffectInfo::SpawnResurrectTextEffect(EResurrectBuffType BuffType
 //		if (ResurrectBuffTextUIEffectSetup.IsValidIndex(InfoIndex))
 //		{
 //			TextEffectSetupInfo = &(ResurrectBuffTextUIEffectSetup[InfoIndex]);
-//			// µ¿ÀÏ ÀÎµ¦½º·Î ¸Ê¿¡ Á¢±Ù.
+//			// æ‚¼è€ ç‰¢éƒ¸èƒ¶è‚º ç”˜ä¿Š ç«‹è¾Ÿ.
 //			LoadedInfoHolder = &LoadedResurrectBuffTextUIEffectSetup.FindOrAdd(InfoIndex);
 //		}
 //		break;

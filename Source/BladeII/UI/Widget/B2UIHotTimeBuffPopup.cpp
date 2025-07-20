@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIHotTimeBuffPopup.h"
 #include "HotTimeBuffManager.h"
@@ -7,7 +7,7 @@
 
 #include "B2GameInstance.h"
 #include "B2PlatformAPI.h"
-
+#include "Event.h"
 
 const FB2HotTimeBuffUIData* FB2HotTimeBuffUIData::GetData(const TArray<FB2HotTimeBuffUIData>& InBuffDatas, EHotTimeEventType InEventType, EHotTimeBuffType InBuffType)
 {
@@ -146,14 +146,14 @@ void UB2UIHotTimeBuffPopup::Init()
 	HotTimePartTypes.Add(TPair<EHotTimeEventType, EHotTimeBuffType>(EHotTimeEventType::Event, EHotTimeBuffType::Gold));
 	HotTimePartTypes.Add(TPair<EHotTimeEventType, EHotTimeBuffType>(EHotTimeEventType::Event, EHotTimeBuffType::Exp));
 
-	//product´Â ¹«Á¶°Ç
+	//productç»° å…¬ç‚¼æ‰’
 	HotTimePartTypes.Add(TPair<EHotTimeEventType, EHotTimeBuffType>(EHotTimeEventType::Product, EHotTimeBuffType::Gold));
 	HotTimePartTypes.Add(TPair<EHotTimeEventType, EHotTimeBuffType>(EHotTimeEventType::Product, EHotTimeBuffType::Exp));
 
 	for (auto & PartType : HotTimePartTypes)
 		SetPartUIData(PartType.Key, PartType.Value);
 
-	//1ÃÊ´ÜÀ§ °»½Å Å¸ÀÌ¸Ó ¼ÂÆÃ
+	//1æª¬çªœå›° ç›Žè„š é¸¥æžèµ£ æ‚¸æ³¼
 	GetWorld()->GetTimerManager().SetTimer(UpdateTimeHandle, this, &UB2UIHotTimeBuffPopup::UpdateUIParts, 1.0f, true);
 
 

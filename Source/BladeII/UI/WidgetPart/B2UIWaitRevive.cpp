@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2UIWaitRevive.h"
@@ -13,7 +13,7 @@ void UB2UIWaitRevive::Init()
 
 	//ResetTimer();
 
-	//// ¹èÆ²¸ŞÀÎUI¼û±è
+	//// ç¡…æ’‡çš‹ç‰¢UIè§è¾«
 	//UUserWidget* pUI = UB2UIManager::GetInstance()->GetUI<UUserWidget>(UIFName::BattleMain);
 	//if (pUI)
 	//{
@@ -21,7 +21,7 @@ void UB2UIWaitRevive::Init()
 	//	pUI->SetVisibility(ESlateVisibility::Hidden);
 	//}
 	//
-	//// ÀÌµ¿ÆĞ³Î¼û±è
+	//// ææ‚¼è©æ¾„è§è¾«
 	//APlayerController* LocalController = UGameplayStatics::GetLocalPlayerController(this);
 	//if (LocalController)
 	//	LocalController->SetVirtualJoystickVisibility(false);
@@ -41,23 +41,23 @@ void UB2UIWaitRevive::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
 	//	{
 	//		ResetTimer();
 
-	//		// ¹èÆ²¸ŞÀÎUIº¸ÀÓ
+	//		// ç¡…æ’‡çš‹ç‰¢UIç„Šçƒ™
 	//		UUserWidget* pUI = UB2UIManager::GetInstance()->GetUI<UUserWidget>(UIFName::BattleMain);
 	//		if (pUI)
 	//		{
 	//			pUI->SetVisibility(BattleMainUiOrgVisibility);
 	//		}
 
-	//		// ÀÌµ¿ÆĞ³Îº¸ÀÓ
+	//		// ææ‚¼è©æ¾„ç„Šçƒ™
 	//		APlayerController* LocalController = UGameplayStatics::GetLocalPlayerController(this);
 	//		if (LocalController)
 	//			LocalController->SetVirtualJoystickVisibility(true);
 
-	//		// Å¬¶óÀÌ¾ğÆ® °­Á¦ ºÎÈ°
+	//		// åŠªæ‰¼ææ”«é£˜ ç¢åŠ› ä½•åŠ
 	//		if (AB2NetGameMode* pGM = Cast<AB2NetGameMode>(UGameplayStatics::GetGameMode(this)))
 	//			pGM->ForceResurrectLocalPlayer();
 
-	//		//Á¡·ÉÀü½Ã »ì¾Æ³µ´Ù°í ¾Ë¸²
+	//		//ç—¢é£å‚ˆçŸ« æ··é…’è½¦ä¿ƒç»Š èˆ…è¦†
 	//		if (AB2ControlGameMode* pGM = Cast<AB2ControlGameMode>(UGameplayStatics::GetGameMode(this)))
 	//		{
 	//			pGM->SetWaitRevive(false);

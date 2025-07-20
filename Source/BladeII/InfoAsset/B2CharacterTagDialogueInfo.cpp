@@ -1,20 +1,20 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2CharacterTagDialogueInfo.h"
-
+#include "Misc/ConfigCacheIni.h"
 
 const FCharacterTagSoundInfoTransientSoundAssetInfo FCharacterTagSoundInfo::GetSoundAssetPtrOfIndex(int32 OuterRowNum, int32 InIndex) const
 {
-	check(OuterRowNum >= 0); // ÀÚ½ÅÀÌ À§Ä¡ÇÑ DataTable »ó¿¡¼­ÀÇ ÁÙ ¹øÈ£°¡ µÉ °Í.
+	check(OuterRowNum >= 0); // ìì‹ ì´ ìœ„ì¹˜í•œ DataTable ìƒì—ì„œì˜ ì¤„ ë²ˆí˜¸ê°€ ë  ê²ƒ.
 
 	FCharacterTagSoundInfoTransientSoundAssetInfo NewInfo(
 		GetCharTagSoundAssetCacheKey(OuterRowNum, InterActionPCClass, InIndex),
 		(TagSound.IsValidIndex(InIndex) ? &TagSound[InIndex] : nullptr)
 		);
 
-	// AssetPtr À» ·ÎµùÇÏ°í¼­ Ä³½ÌÇÒ ¸Ê(LoadedPtrMap)ÀÇ Å°°ªÀÌ µÊ. 
-	// UB2CharacterTagDialogueInfo ¿¡ µî·ÏµÈ ÀüÃ¼ TagSound ¿ä¼Òµé¿¡ °ÉÃÄ¼­ unique ÇÑ °ªÀÌ µÇ¾î¾ß.
+	// AssetPtr ì„ ë¡œë”©í•˜ê³ ì„œ ìºì‹±í•  ë§µ(LoadedPtrMap)ì˜ í‚¤ê°’ì´ ë¨. 
+	// UB2CharacterTagDialogueInfo ì— ë“±ë¡ëœ ì „ì²´ TagSound ìš”ì†Œë“¤ì— ê±¸ì³ì„œ unique í•œ ê°’ì´ ë˜ì–´ì•¼.
 	check(NewInfo.MyCacheMapKey >= 0);
 	
 	return NewInfo;
@@ -25,7 +25,7 @@ const FCharacterTagSoundInfoTransientSoundAssetInfo FCharacterTagSoundInfo::GetR
 	return GetSoundAssetPtrOfIndex(OuterRowNum, RandIndex);
 }
 void FCharacterTagSoundInfo::GatherAllSoundAssetPtr(TArray<TSoftObjectPtr<USoundCue>>& OutSoundAssets)
-{// Valid ÇÑ °Í¸¸ ³Ñ°ÜÁÖ´Â ¿É¼ÇÀÌ ÇÊ¿äÇÒ ¼öµµ..
+{// Valid í•œ ê²ƒë§Œ ë„˜ê²¨ì£¼ëŠ” ì˜µì…˜ì´ í•„ìš”í•  ìˆ˜ë„..
 	OutSoundAssets.Append(TagSound);
 }
 
@@ -35,9 +35,9 @@ void FCharacterTagSoundInfo::EditorLoadAll()
 	const int32 iArrayMax = TagSound.Num();
 	for (int32 idx = 0; idx < iArrayMax; ++idx)
 	{
-		// ¿øÄ¢ÀûÀ¸·Î´Â ·ÎµùÇÑ °ÍÀ» Ä³½ÌÇØ ³õ¾Æ¾ß ÇÑ´Ù.
-		// ÀÎ°ÔÀÓ ÄÚµå¿¡¼­´Â ÀÌ·¸°Ô ·ÎµùÇÏÁö ¾Ê´Â´Ù.
-		// ¿¡µğÅÍ¿¡¼± ÇÑ¹ø¸¸ ÀÌ·¸°Ô ÇØ ÁÖ¾îµµ Redirector Ã³¸®¿¡ ¹®Á¦°¡ ¾øÀ» °ÍÀ¸·Î ¹Ï°í °¡´Â °Å.. ¾ÆÁÖ Å« Å×ÀÌºíÀº ¾Æ´Ò Å×´Ï.
+		// ì›ì¹™ì ìœ¼ë¡œëŠ” ë¡œë”©í•œ ê²ƒì„ ìºì‹±í•´ ë†“ì•„ì•¼ í•œë‹¤.
+		// ì¸ê²Œì„ ì½”ë“œì—ì„œëŠ” ì´ë ‡ê²Œ ë¡œë”©í•˜ì§€ ì•ŠëŠ”ë‹¤.
+		// ì—ë””í„°ì—ì„  í•œë²ˆë§Œ ì´ë ‡ê²Œ í•´ ì£¼ì–´ë„ Redirector ì²˜ë¦¬ì— ë¬¸ì œê°€ ì—†ì„ ê²ƒìœ¼ë¡œ ë¯¿ê³  ê°€ëŠ” ê±°.. ì•„ì£¼ í° í…Œì´ë¸”ì€ ì•„ë‹ í…Œë‹ˆ.
 		if (TagSound.IsValidIndex(idx))
 			TagSound[idx].LoadSynchronous();
 	}
@@ -72,7 +72,7 @@ const FCharacterTagSoundInfoTransientSoundAssetInfo FCharacterTagDialogueInfo::G
 void FCharacterTagDialogueInfo::GatherAllSoundAssetPtr(TArray<TSoftObjectPtr<USoundCue>>& OutSoundAssets)
 {
 	for (FCharacterTagSoundInfo& ThisInfo : TagSound_InterAction)
-	{ // Valid ÇÑ °Í¸¸ ³Ñ°ÜÁÖ´Â ¿É¼ÇÀÌ ÇÊ¿äÇÒ ¼öµµ..
+	{ // Valid í•œ ê²ƒë§Œ ë„˜ê²¨ì£¼ëŠ” ì˜µì…˜ì´ í•„ìš”í•  ìˆ˜ë„..
 		ThisInfo.GatherAllSoundAssetPtr(OutSoundAssets);
 	}
 }
@@ -103,7 +103,7 @@ UB2CharacterTagDialogueInfo::UB2CharacterTagDialogueInfo(const FObjectInitialize
 
 const UDataTable* UB2CharacterTagDialogueInfo::LoadCharacterTagDialogueInfoTable()
 {
-	// Å×ÀÌºí¸¸ ·ÎµùÇÏ´Â °Í. ¿ÍÁß¿¡ ÅØ½ºÆ® µ¥ÀÌÅÍµé °°Àº °Ç °°ÀÌ ·ÎµùµÇÁö¸¸ TAsset À¸·Î ·¹ÆÛ·±½º µÈ ¿¡¼ÂµéÀº ·ÎµùµÇÁö ¾Ê´Â´Ù.
+	// í…Œì´ë¸”ë§Œ ë¡œë”©í•˜ëŠ” ê²ƒ. ì™€ì¤‘ì— í…ìŠ¤íŠ¸ ë°ì´í„°ë“¤ ê°™ì€ ê±´ ê°™ì´ ë¡œë”©ë˜ì§€ë§Œ TAsset ìœ¼ë¡œ ë ˆí¼ëŸ°ìŠ¤ ëœ ì—ì…‹ë“¤ì€ ë¡œë”©ë˜ì§€ ì•ŠëŠ”ë‹¤.
 
 	if (CachedCharacterTagDialogueInfoTable == nullptr)
 	{
@@ -115,7 +115,7 @@ const UDataTable* UB2CharacterTagDialogueInfo::LoadCharacterTagDialogueInfoTable
 
 		if (CachedCharacterTagDialogueInfoTable)
 		{
-			// Å×ÀÌºí Ã³À½ ·ÎµùÇßÀ» ¶§ Ã³¸®ÇÒ °Å..
+			// í…Œì´ë¸” ì²˜ìŒ ë¡œë”©í–ˆì„ ë•Œ ì²˜ë¦¬í•  ê±°..
 			TArray<FName> RowKeys = CachedCharacterTagDialogueInfoTable->GetRowNames();
 
 			const int32 iRowKeyMax = RowKeys.Num();
@@ -124,8 +124,8 @@ const UDataTable* UB2CharacterTagDialogueInfo::LoadCharacterTagDialogueInfoTable
 				FCharacterTagDialogueInfo* CharacterTagDialogueInfo = 
 					CachedCharacterTagDialogueInfoTable->FindRow<FCharacterTagDialogueInfo>(RowKeys[i], TEXT(""));
 
-				// ¾Æ¸¶µµ ÀÌ ÀÎµ¦½º°¡ Å°°ªÇÏ°í ÀÏÄ¡ÇÒ °Å °°Àºµ¥ ±×°Å¶û »ó°ü¾øÀÌ ´Ü¼øÈ÷ °¢ ÁÙ¸¶´ÙÀÇ ÀÏ·Ã¹øÈ£¸¦ ±â·ÏÇØ µĞ´Ù.
-				// ¼ıÀÚ ÀÚÃ¼°¡ ÀÇ¹ÌÀÖ´Â °Ç ¾Æ´Ï°í °¢ row ¸¦ ½Äº°ÇÒ ¼ö ÀÖÀ¸¸é µÊ.
+				// ì•„ë§ˆë„ ì´ ì¸ë±ìŠ¤ê°€ í‚¤ê°’í•˜ê³  ì¼ì¹˜í•  ê±° ê°™ì€ë° ê·¸ê±°ë‘ ìƒê´€ì—†ì´ ë‹¨ìˆœíˆ ê° ì¤„ë§ˆë‹¤ì˜ ì¼ë ¨ë²ˆí˜¸ë¥¼ ê¸°ë¡í•´ ë‘”ë‹¤.
+				// ìˆ«ì ìì²´ê°€ ì˜ë¯¸ìˆëŠ” ê±´ ì•„ë‹ˆê³  ê° row ë¥¼ ì‹ë³„í•  ìˆ˜ ìˆìœ¼ë©´ ë¨.
 				CharacterTagDialogueInfo->MyTableRowNum = i;
 			}
 		}
@@ -230,9 +230,9 @@ USoundCue* UB2CharacterTagDialogueInfo::GetRandomTagSound(EPCClass SoundPlayPCCl
 		if (RandAssetInfo.TheAssetPtr)
 		{ 
 			check(RandAssetInfo.MyCacheMapKey >= 0);
-			// Ã³À½ ·ÎµùÇÏ´Â °Å¸é ·Îµù ÈÄ Ä³½ÌÇØ ³õ°í, ÀÌ¹Ì ·ÎµùÀÌ µÇ¾î ÀÖ´Â °Å¶ó¸é ¸Ê¿¡¼­ Ã£¾Æ ¾´´Ù.
-			// ÀÌ°Ô ÀÌ¹Ì ·Îµù µÈ °ÍÀÇ LoadSynchronous º¸´Ù ¾à°£ÀÌ³ª¸¶ ºü¸£±ä ÇÏ°ÚÁö¸¸ 
-			// ·Îµù ÈÄ Ä³½ÌÇØ ³õ´Â °ÍÀÇ ÀÏÂ÷ÀûÀÎ ¸ñÀûÀº ±×Á¤µµÀÇ ÀÛÀº Çâ»óÀÌ ¾Æ´Ï¶ó µ¿ÀÛÀÇ ¾ÈÁ¤¼ºÀ» À§ÇØ¼­ÀÓ.
+			// ì²˜ìŒ ë¡œë”©í•˜ëŠ” ê±°ë©´ ë¡œë”© í›„ ìºì‹±í•´ ë†“ê³ , ì´ë¯¸ ë¡œë”©ì´ ë˜ì–´ ìˆëŠ” ê±°ë¼ë©´ ë§µì—ì„œ ì°¾ì•„ ì“´ë‹¤.
+			// ì´ê²Œ ì´ë¯¸ ë¡œë”© ëœ ê²ƒì˜ LoadSynchronous ë³´ë‹¤ ì•½ê°„ì´ë‚˜ë§ˆ ë¹ ë¥´ê¸´ í•˜ê² ì§€ë§Œ 
+			// ë¡œë”© í›„ ìºì‹±í•´ ë†“ëŠ” ê²ƒì˜ ì¼ì°¨ì ì¸ ëª©ì ì€ ê·¸ì •ë„ì˜ ì‘ì€ í–¥ìƒì´ ì•„ë‹ˆë¼ ë™ì‘ì˜ ì•ˆì •ì„±ì„ ìœ„í•´ì„œì„.
 			USoundCue*& FoundOrAddCache = LoadedPtrMap.FindOrAdd(RandAssetInfo.MyCacheMapKey);
 			if (!FoundOrAddCache)
 			{
@@ -271,8 +271,8 @@ bool UB2CharacterTagDialogueInfo::ShouldUnloadAllOnLevelTransition()
 
 void UB2CharacterTagDialogueInfo::UnloadAll()
 {
-	// ÀÏ°ı ¾ğ·ÎµùÀÎµ¥ ÇÏ³ª¸¸ ÄÛ Âó¾î¼­ Unload ÇÏ·Á¸é ¿øÇÏ´Â ¾ğ·Îµù ´ë»óÀÇ Å°°ªÀ» °¡Áö°í LoadedPtrMap ¸Ê¿¡¼­ »© ÁÖ´Â °É ÇØ¾ß ÇÑ´Ù.
-	// ¾Æ¸¶µµ ÇÏ³ª¸¸ ÄÛ Âó¾î¼­ Unload ÇÏ´Â °Ô ÇÊ¿äÇÒ °Í °°Áö´Â ¾ÊÁö¸¸ ÁÙ ´ÜÀ§·Î Âó¾î¼­ Unload ÇÏ´Â °Ç ÇÊ¿äÇÒ ¼öµµ ÀÖ´Ù.
+	// ì¼ê´„ ì–¸ë¡œë”©ì¸ë° í•˜ë‚˜ë§Œ ì½• ì°ì–´ì„œ Unload í•˜ë ¤ë©´ ì›í•˜ëŠ” ì–¸ë¡œë”© ëŒ€ìƒì˜ í‚¤ê°’ì„ ê°€ì§€ê³  LoadedPtrMap ë§µì—ì„œ ë¹¼ ì£¼ëŠ” ê±¸ í•´ì•¼ í•œë‹¤.
+	// ì•„ë§ˆë„ í•˜ë‚˜ë§Œ ì½• ì°ì–´ì„œ Unload í•˜ëŠ” ê²Œ í•„ìš”í•  ê²ƒ ê°™ì§€ëŠ” ì•Šì§€ë§Œ ì¤„ ë‹¨ìœ„ë¡œ ì°ì–´ì„œ Unload í•˜ëŠ” ê±´ í•„ìš”í•  ìˆ˜ë„ ìˆë‹¤.
 
 	const UDataTable* TheDataTable = LoadCharacterTagDialogueInfoTable();
 	if(TheDataTable)
@@ -303,12 +303,12 @@ void UB2CharacterTagDialogueInfo::ConditionalUnloadAllOrPreserve()
 		UnloadAll();
 	}
 	else
-	{ // ¾ğ·Îµå ¾È ÇÏ°í ´ë½Å ·¹º§ transition ¿¡µµ ²ô¶±¾ø°Ô Rootset ¿¡ ³Ö¾î³õÀ½.
+	{ // ì–¸ë¡œë“œ ì•ˆ í•˜ê³  ëŒ€ì‹  ë ˆë²¨ transition ì—ë„ ë„ë–¡ì—†ê²Œ Rootset ì— ë„£ì–´ë†“ìŒ.
 		MarkAllLoadedAssetsRootSet();
 	}
 
-	// ´Ù¸¥ °Íµéµµ ÀÌ·± ½ÄÀÎµ¥ Ä³½Ã ¸ÊÀº ¾î¶² °æ¿ì¶óµµ ºñ¿ò. À¢Áö ÂóÂóÇØ¼­. 
-	// ÀÌ·¸°Ô ÇØµµ ·çÆ®¼ÂÀÌ¸é ½ÇÁúÀûÀÎ ·ÎµùÀº ¾È ÇÏ°Ô µÊ.
+	// ë‹¤ë¥¸ ê²ƒë“¤ë„ ì´ëŸ° ì‹ì¸ë° ìºì‹œ ë§µì€ ì–´ë–¤ ê²½ìš°ë¼ë„ ë¹„ì›€. ì›¬ì§€ ì°ì°í•´ì„œ. 
+	// ì´ë ‡ê²Œ í•´ë„ ë£¨íŠ¸ì…‹ì´ë©´ ì‹¤ì§ˆì ì¸ ë¡œë”©ì€ ì•ˆ í•˜ê²Œ ë¨.
 	LoadedPtrMap.Empty();
 }
 void UB2CharacterTagDialogueInfo::MarkAllLoadedAssetsRootSet()
@@ -328,7 +328,7 @@ void UB2CharacterTagDialogueInfo::MarkAllLoadedAssetsRootSet()
 		}
 		for (TSoftObjectPtr<USoundCue>& ThisAsset : AllSoundAssetPtr)
 		{
-			if (ThisAsset.IsValid() && !ThisAsset->IsRooted()) // ·ÎµùµÇ¾î ÀÖ´Â °Í¸¸.
+			if (ThisAsset.IsValid() && !ThisAsset->IsRooted()) // ë¡œë”©ë˜ì–´ ìˆëŠ” ê²ƒë§Œ.
 			{
 				ThisAsset->AddToRoot();
 			}

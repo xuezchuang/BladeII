@@ -2,7 +2,9 @@
 
 #pragma once
 
-#include "UI/Doc/B2UIDocBase.h"
+#include "BladeIICharacter.h"
+#include "B2UIDocBase.h"
+#include "../../DataStore/B2ClientDataStore.h"
 #include "B2UIDocControl.generated.h"
 
 /**

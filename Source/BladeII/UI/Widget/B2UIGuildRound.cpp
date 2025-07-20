@@ -1,4 +1,4 @@
-#include "B2UIGuildRound.h"
+﻿#include "B2UIGuildRound.h"
 #include "B2UIDocHelper.h"
 #include "B2UIManager.h"
 

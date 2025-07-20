@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2DestructibleLevelObjBase.h"
@@ -51,7 +51,7 @@ void AB2DestructibleLevelObjBase::BeginPlay()
 			// Sleep for now, and let it wake up in the event situation.
 			SKMeshComp->PutAllRigidBodiesToSleep();
 		}
-		//°­Á¦ ¼³Á¤.
+		//ç¢åŠ› æ±²æ²¥.
 		SKMeshComp->SetCollisionProfileName(TEXT("Destructible"));
 		//SKMeshComp->bGenerateOverlapEvents = true;
 	}	
@@ -118,7 +118,7 @@ void AB2DestructibleLevelObjBase::Interact(class AActor* InInteractingActor)
 {
 	if (TriggerType == EInteractiveTriggeringType::InteractByHit)
 	{
-		//À½.. BaseClass¸¦ ¹Ù²ã¾ß ÇÏ³ª..
+		//æ¾œ.. BaseClassç”« å®˜å±‚å…· çªå”±..
 		float CalcDamageSquared = (DestructImpulse / DestructParameter.DestructForceMultiplier).SizeSquared();
 		if (MaxHP * MaxHP > CalcDamageSquared)
 			return;
@@ -199,7 +199,7 @@ void AB2DestructibleLevelObjBase::EndInteract()
 
 	SetLifeSpan(DestructParameter.PostDestructLifeSpan);
 
-	// PostDestructLifeSpan µü µÇ¾úÀ» ¶§ Á¦°ÅÇÏ´Â °Ô ÁÁ±ä ÇÑµ¥..
+	// PostDestructLifeSpan è¿­ ç™»èŒé˜‘ é”­ åŠ›èŠ­çªç»° éœ¸ äº®å˜ èŒ„å•..
 	//ABladeIIGameMode* B2GM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(this));
 	//if (B2GM){
 	//	B2GM->RemoveDestructibleObject(this);

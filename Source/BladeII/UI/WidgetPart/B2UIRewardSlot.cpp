@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIRewardSlot.h"
 #include "B2ItemInfo.h"
@@ -62,7 +62,7 @@ void UB2UIRewardSlot::SetRewardSlotDefaultDisplay(const FRewardDisplayInfo& InRe
 
 void UB2UIRewardSlot::SetRewardSlotItem(int32 ItemID)
 {
-	// Å¬¶óÀÌ¾ðÆ® ¾ÆÀÌÅÛ ¸®¼Ò½º Å×ÀÌºí
+	// åŠªæ‰¼æžæ”«é£˜ é…’æžè¢ åºœå®¶èƒ¶ æŠ›æžå–‰
 	UB2ItemInfo* StaticItemTable = StaticFindItemInfo();
 	FSingleItemInfoData* DisplayItemInfo = StaticItemTable ? StaticItemTable->GetInfoData(ItemID) : nullptr;
 

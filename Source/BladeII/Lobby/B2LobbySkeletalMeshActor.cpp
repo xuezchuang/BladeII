@@ -1,4 +1,4 @@
-
+ï»¿
 #include "B2LobbySkeletalMeshActor.h"
 //#include "BladeII.h"
 #include "B2CharPartTouchComponent.h"
@@ -75,7 +75,7 @@ void AB2LobbySkeletalMeshActor::SetCloseUpState(bool bSet, bool bPlaySelectionAn
 	if (bCloseUpState)
 	{
 		if (bPlaySelectionAnim) {
-			PlaySelectAnimation(); // Anim ÇÃ·¹ÀÌ´Â ¼±ÅÃ»çÇ×ÀÌ µÉ ¼ö ÀÖÀ½.
+			PlaySelectAnimation(); // Anim æ•²é¥­æžç»° æ€¥ç¶è¤äº²æž çžª è ä¹æ¾œ.
 		}
 		OnCloseUP();
 	}
@@ -107,7 +107,7 @@ void AB2LobbySkeletalMeshActor::OnTouchedActor()
 	//		return;
 	//	}
 
-	//	//·¹ÀÌ¸¦ ´Ù½Ã ½÷¼­ ÃÖÀûÀÇ TouchComponent¸¦ Ã£ÀÚ.
+	//	//é¥­æžç”« ä¿ƒçŸ« è°¨è¾‘ å¼¥åˆ©ç‹¼ TouchComponentç”« èŒ«ç£Š.
 	//	auto* PlayerController = UGameplayStatics::GetLocalPlayerController(this);
 	//	check(PlayerController);
 
@@ -140,7 +140,7 @@ void AB2LobbySkeletalMeshActor::OnTouchedActor()
 	//					FHitResult Hit;
 	//					
 	//					if(PartTouchComponent->LineTraceComponent(Hit, WorldOrigin, WorldDirection * 1000.f + WorldOrigin, Params))
-	//					{//Priority°¡ ³ô°í SkeletalMeshComponentº¸´Ù ¾Õ¼­ ÀÖ¾î¾ßÇÔ.
+	//					{//Priorityå•Š è‡­ç»Š SkeletalMeshComponentç„Šä¿ƒ èŠè¾‘ ä¹ç»¢å…·çªƒ.
 	//						if (HighestPriorityComponent == nullptr || !(SkelMeshHit.bBlockingHit && Hit.Distance > SkelMeshHit.Distance))
 	//						HighestPriorityComponent = PartTouchComponent;
 	//					}

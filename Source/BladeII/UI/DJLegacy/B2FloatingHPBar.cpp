@@ -35,7 +35,7 @@ void UB2FloatingHPBar::UpdateFloatingOffset()
 		if (OwnerMesh && !OwnerCharacter->IsHPBarAttachedToSocket())
 		{
 			LocOffsetFromOwner.X = LocOffsetFromOwner.Y = 0.0f;
-			// ±âº»ÀûÀ¸·Î ¸Ó¸®¿¡ ºÙÀÌ°í ÇÊ¿ä¿¡ µû¶ó AdditionalZAdjust ¸¸Å­ Ãß°¡ Á¶Àı.
+			// æ‰å¤¯åˆ©æ è‚º èµ£åºœä¿Š å˜¿æç»Š é˜å¤¸ä¿Š è¶æ‰¼ AdditionalZAdjust çˆ¶æ€’ çœ å•Š ç‚¼ä¾‹.
 			LocOffsetFromOwner.Z = 1.0f * (OwnerMesh->Bounds.BoxExtent.Z * OwnerMesh->BoundsScale) + AdditionalZAdjust;
 		}
 	}
@@ -43,6 +43,6 @@ void UB2FloatingHPBar::UpdateFloatingOffset()
 
 void UB2FloatingHPBar::UpdatePosition()
 {
-	UpdateFloatingOffset(); // ÀÌ°Ô Ã¹ ½ÃÁ¡¿¡´Â Bound °ªÀÌ ¿ÏÀüÈ÷ ÃÊ±âÈ­ ¾È µÇ´Â °Å °°´Ù. °á±¹ ¸Å Æ½ °è»êÀ¸·Î..
+	UpdateFloatingOffset(); // æéœ¸ éœ‰ çŸ«ç—¢ä¿Šç»° Bound è”¼æ è‚¯å‚ˆæ´’ æª¬æ‰æ‹³ æ•‘ ç™»ç»° èŠ­ éä¿ƒ. æ¬æƒ« æ¦‚ å¹³ æ‹Œé­‚æ è‚º..
 	Super::UpdatePosition();
 }

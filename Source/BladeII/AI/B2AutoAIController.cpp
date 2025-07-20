@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 // Project BladeII, Action Square
 #include "B2AutoAIController.h"
 //#include "BladeII.h"
@@ -85,7 +85,7 @@ FPathFollowingRequestResult AB2AutoAIController::MoveTo(const FAIMoveRequest& Mo
 	if (pTargetPawn &&
 		(!pTargetPawn->GetMovementComponent() || !pTargetPawn->GetMovementComponent()->IsActive()))
 	{
-		// Å¸°ÙÀÌ À§Ä¡°íÁ¤ÀÌ¸é ¸ñÇ¥¸¦ ¾×ÅÍ°¡¾Æ´Ñ À§Ä¡·Î ÀÌ¿ëÇÑ´Ù. Ä¸½¶Å©±â °í·ÁÇØ¼­
+		// é¸¥ç™¾æ å›°æ‘¹ç»Šæ²¥ææ æ ¼é’ç”« å’€ç£å•Šé…’å›± å›°æ‘¹è‚º æä¾©èŒ„ä¿ƒ. æ¯è•‰å†œæ‰ ç»Šå¦¨ç§¦è¾‘
 		ABladeIICharacter* pOwnerPawn = Cast<ABladeIICharacter>(GetPawn());
 		if (pOwnerPawn)
 		{
@@ -121,16 +121,16 @@ void AB2AutoAIController::Tick(float DeltaTime)
 	}
 
 
-	// ÀÌµ¿ ÀÔ·ÂÀÌ ÀÖ´Ù°¡ ¾ø¾îÁøÆ½
+	// ææ‚¼ æ¶ä»¿æ ä¹ä¿ƒå•Š ç»ç»¢æŸ³å¹³
 	if (bLastPCHadMovementInput && !bPCHadMovementInput)
 	{
 		fLastPCHadMovementInputFalseTime = GetWorld()->GetTimeSeconds();
 	}
 
-	// ¹Ş¾Æ¿Â ÀÌµ¿ ÀÎÇ²»óÈ² ÀúÀå
+	// ç½é…’æŸ¯ ææ‚¼ ç‰¢é£æƒ‘ç‚” å†å˜
 	bLastPCHadMovementInput = bPCHadMovementInput;
 
-	// ÀÌµ¿ ÀÔ·Â ¾ø¾îÁö°íµµ Àá±ñ À¯Áö
+	// ææ‚¼ æ¶ä»¿ ç»ç»¢ç˜¤ç»Šæ¡£ æ³ªç˜ª èœ¡ç˜¤
 	if (GetWorld()->GetTimeSeconds() - fLastPCHadMovementInputFalseTime <= 0.1f)
 	{
 		bPCHadMovementInput = true;
@@ -139,7 +139,7 @@ void AB2AutoAIController::Tick(float DeltaTime)
 	if (!CurrentTargetMob)
 		return;
 
-	// CurrentTargetMob ÂÊ¿¡¼­ Äİ¹éÀ» ºÎ¸£µµ·Ï ¹Ù²Ü.. ¾Æ´Ï ±Ùµ¥ AutoAIController µµ º¸ÀåÀÌ ¾È µÇ´Ï ±×³É ¿©±â¼­ ÇÏ´Â °Ô ¼ÓÆíÇÏ°Ú´Ù.
+	// CurrentTargetMob ç‡ä¿Šè¾‘ å¦®å½’é˜‘ ä½•ç¦æ¡£åºŸ å®˜æ›¹.. é…’èª è¾Ÿå• AutoAIController æ¡£ ç„Šå˜æ æ•‘ ç™»èª å¼Šæˆ å’¯æ‰è¾‘ çªç»° éœ¸ åŠ ç¥ˆçªæ‘†ä¿ƒ.
 	if (CurrentTargetMob->IsAlive() == false)
 	{
 		CurrentTargetMob = NULL;
@@ -459,7 +459,7 @@ bool AB2AutoAIController::ShouldStopAutoDueToCinematicMode()
 	//if (!B2PC)
 	//	return false;
 
-	//// ¸ğµç CinematicMode º¸´Ù´Â ÀÔ·ÂÀÌ ¾È µé¾î¿À´Â °æ¿ì¸¸. ÀÔ·ÂÀÌ ¸ÔÈù´Ù´Â ¾ê±â´Â °ÔÀÓ ÇÃ·¹ÀÌ°¡ À¯ÁöµÉ °ÍÀÌ¶õ ¾ê±âÀÌ¹Ç·Î.
+	//// è‘›ç”µ CinematicMode ç„Šä¿ƒç»° æ¶ä»¿æ æ•‘ ç”¸ç»¢å·ç»° ç‰ˆå¿«çˆ¶. æ¶ä»¿æ å†ˆè…®ä¿ƒç»° å¨Ÿæ‰ç»° éœ¸çƒ™ æ•²é¥­æå•Š èœ¡ç˜¤çª å·´æé„‚ å¨Ÿæ‰æéª¨è‚º.
 	//return B2PC->IsInputDisabledCinematicMode();
 }
 

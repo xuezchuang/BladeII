@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 // Project BladeII, Action Square
 #include "B2AutoWayPoint.h"
 //#include "BladeII.h"
@@ -185,10 +185,10 @@ void AB2AutoWayPoint::NotifyActorBeginOverlap(AActor* OtherActor)
 		return;
 	
 	ABladeIIGameMode* B2GM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(this));
-	if (B2GM && B2GM->IsLocalPlayerAutoBattle() == false) // B2Player->IsInAutoPlay() ·Î °Ë»çÇÏ¸é ¿¬Ãâ µµÁß Åë°ú ½Ã ½ÇÁ¦·Î´Â Auto ¿©µµ Auto°¡ ¾Æ´Ñ °É·Î ÆÇº°µÉ ¼ö ÀÖ´Ù.
+	if (B2GM && B2GM->IsLocalPlayerAutoBattle() == false) // B2Player->IsInAutoPlay() è‚º å…«è¤çªæ æ¥·å… æ¡£å çƒ¹è‹ çŸ« è§’åŠ›è‚ºç»° Auto å’¯æ¡£ Autoå•Š é…’å›± å§è‚º é­„å–Šçª è ä¹ä¿ƒ.
 	{		
 		// See if we can pass here. There could be additional condition.
-		MarkPassed(true, false, NULL); // Auto ¾Æ´Ñ »óÈ²¿¡¼­ Åë°ú½Ã¿¡´Â ÀÌÀü ²¨ ´Ù Åë°úÇÑ °É·Î Ã³¸®.
+		MarkPassed(true, false, NULL); // Auto é…’å›± æƒ‘ç‚”ä¿Šè¾‘ çƒ¹è‹çŸ«ä¿Šç»° æå‚ˆ æ³¢ ä¿ƒ çƒ¹è‹èŒ„ å§è‚º è´¸åºœ.
 	}			
 	// In autoplay mode, let it passed only for the current target.
 	else if (auto* AutoAIController = B2Player->GetAutoAIController())
@@ -203,7 +203,7 @@ void AB2AutoWayPoint::EditorGetAllWayPointsInWorld(class UWorld* InWorld, TArray
 {
 	if (!InWorld || !GIsEditor)
 		return;
-	// Play-in-Editor µµ ¾Æ´Ñ ¿¡µğÅÍ ºäÆ÷Æ® »óÈ²¿¡¼­ »ç¿ëÀ» À§ÇÔ.
+	// Play-in-Editor æ¡£ é…’å›± ä¿Šå¼ç£ è½°å™¨é£˜ æƒ‘ç‚”ä¿Šè¾‘ è¤ä¾©é˜‘ å›°çªƒ.
 	for (FActorIterator It(InWorld); It; ++It)
 	{
 		AB2AutoWayPoint* WP = Cast<AB2AutoWayPoint>(*It);
@@ -342,13 +342,13 @@ float AB2AutoWayPoint::FindNearestMarker(class AB2AutoAIController* AutoControll
 
 void AB2AutoWayPoint::ForceMarkByJumpEvent(class AB2JumpEventZone* JumpActor, class ABladeIIPlayer* TargetPlayer)
 {
-	// °­Á¦ ¸¶Å·Àº, ÇöÀç ¿şÀÌÆ÷ÀÎÆ®ÀÇ Passed ÇÃ·¡±×¿Í »ó°ü¾øÀÌ Ç×»ó ¹ßµ¿À» [º¸Àå] ÇÑ´Ù. (¿ì¼±¼øÀ§¿¡ µû¶ó ÀÇµµÄ¡ ¾ÊÀº °á°ú ¹æÁö)
+	// ç¢åŠ› ä»˜æ¬§ç¯®, æ³…çŠ å‚€æå™¨ç‰¢é£˜ç‹¼ Passed æ•²è´°å¼Šå®¢ æƒ‘åŒ…ç»æ äº²æƒ‘ æƒ¯æ‚¼é˜‘ [ç„Šå˜] èŒ„ä¿ƒ. (å¿«æ€¥é‰´å›°ä¿Š è¶æ‰¼ ç‹¼æ¡£æ‘¹ è‡¼ç¯® æ¬è‹ è§„ç˜¤)
 	if ( TargetPlayer )
 	{
 		auto* AutoAIController = TargetPlayer->GetAutoAIController();
 		if ( AutoAIController && AutoAIController->CurrentTargetWP == this )
 		{
-			// [ÀÚµ¿»ç³É] À¯/¹«¿¡ µû¶ó ´ÙÀ½ ¿şÀÌÆ÷ÀÎÆ® °è»êÀ» Ãß°¡ÀûÀ¸·Î °áÁ¤ (TargetToNextWayPoint)
+			// [ç£Šæ‚¼è¤æˆ] èœ¡/å…¬ä¿Š è¶æ‰¼ ä¿ƒæ¾œ å‚€æå™¨ç‰¢é£˜ æ‹Œé­‚é˜‘ çœ å•Šåˆ©æ è‚º æ¬æ²¥ (TargetToNextWayPoint)
 			MarkPassed( true, AutoAIController != nullptr ? true : false, AutoAIController );
 		}
 	}

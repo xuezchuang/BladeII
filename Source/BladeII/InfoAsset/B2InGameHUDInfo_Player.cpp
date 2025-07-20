@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 // Project BladeII, Action Square
 
 
@@ -16,8 +16,8 @@ UB2InGameHUDInfo_Player::UB2InGameHUDInfo_Player(const FObjectInitializer& Objec
 
 UMaterialInterface* UB2InGameHUDInfo_Player::GetPlayerPortrait(UObject* WorldContextObject)
 {
-	//// ¶È°°ÀÌ »ı°Ü¸ÔÀº ÃÊ»óÈ­Áö¸¸ ¼­·Î ´Ù¸¥ ¾ÆÆ²¶ó½º¿¡ ¼ÓÇØ ÀÖ¾î¼­ ·ÎºñÀÎÁö ÀüÅõ¸ÊÀÎÁö¿¡ µû¶ó ´Ù¸£°Ô »ç¿ë. Æ¯¼öÇÑ ÄÉÀÌ½ºÀÓ. 
-	//// °Á ÃÊ»óÈ­ Á¤µµ´Â ¾ÆÆ²¶ó½º¿¡ ¾È ³Ö°í º°µµ·Î ¾²¸é ÀÌ·² ÇÊ¿ä ¾øÀ» °Å °°Àºµ¥..
+	//// åº¦éæ ç§¯è´¥å†ˆç¯® æª¬æƒ‘æ‹³ç˜¤çˆ¶ è¾‘è‚º ä¿ƒå¼— é…’æ’‡æ‰¼èƒ¶ä¿Š åŠ ç§¦ ä¹ç»¢è¾‘ è‚ºåšç‰¢ç˜¤ å‚ˆæ§ç”˜ç‰¢ç˜¤ä¿Š è¶æ‰¼ ä¿ƒç¦éœ¸ è¤ä¾©. æ¼‚èèŒ„ çº³æèƒ¶çƒ™. 
+	//// å‚² æª¬æƒ‘æ‹³ æ²¥æ¡£ç»° é…’æ’‡æ‰¼èƒ¶ä¿Š æ•‘ æŒç»Š å–Šæ¡£è‚º é™æ æå‡¡ é˜å¤¸ ç»é˜‘ èŠ­ éç¯®å•..
 	//AB2LobbyGameMode* B2LobbyGM = Cast<AB2LobbyGameMode>(UGameplayStatics::GetGameMode(WorldContextObject));
 	//TSoftObjectPtr<UMaterialInterface>& TAssetToLoad = B2LobbyGM ? PlayerPortrait_Lobby : PlayerPortrait_InGameBattle;
 	//return TAssetToLoad.LoadSynchronous();
@@ -26,13 +26,13 @@ UMaterialInterface* UB2InGameHUDInfo_Player::GetPlayerPortrait(UObject* WorldCon
 
 UMaterialInterface* UB2InGameHUDInfo_Player::GetPlayerDeathPortrait(UObject* WorldContextObject)
 {
-	//Á×¾úÀ»¶§´Â Battle ¿Ü¿¡´Â ¾øÀ» °Í °°¾Æ¼­ GetPlayerPortraitÃ³·³ Ã¼Å© ¾ÈÇÔ
+	//ç£·èŒé˜‘é”­ç»° Battle å¯‡ä¿Šç»° ç»é˜‘ å·´ éé…’è¾‘ GetPlayerPortraitè´¸çƒ¦ çœ‰å†œ æ•‘çªƒ
 	TSoftObjectPtr<UMaterialInterface>& TAssetToLoad = PlayerDeathPortrait_InGameBattle;
 	return TAssetToLoad.LoadSynchronous();
 }
 
 UTexture2D* UB2InGameHUDInfo_Player::GetPlayerLargePortrait()
-{ // ÀÌ°Ç ¾Æ½Î¸® º°µµ ÅØ½ºÃÄÀÓ. ·Îºñ ÀüÅõ µû·Î ¾µ ÀÌÀ¯°¡ ¾Ö½Ã´çÃÊ ¾øÀ½. º°µµ ÅØ½ºÃÄ·Î ¾²´Ù º¸´Ï ¸ÓÆ¼¸®¾óµµ ÇÊ¿ä¾ø¾î¼­ UI µğÀÚÀÎ ÂÊ¿¡¼­ ±×³É ÅØ½ºÃÄ·Î ³Ö¾îµ¼.
+{ // ææ‰’ é…’è½¿åºœ å–Šæ¡£ å’†èƒ¶åªšçƒ™. è‚ºåš å‚ˆæ§ è¶è‚º é•œ æèœ¡å•Š å±€çŸ«å¯¸æª¬ ç»æ¾œ. å–Šæ¡£ å’†èƒ¶åªšè‚º é™ä¿ƒ ç„Šèª èµ£èåºœå€”æ¡£ é˜å¤¸ç»ç»¢è¾‘ UI å¼ç£Šç‰¢ ç‡ä¿Šè¾‘ å¼Šæˆ å’†èƒ¶åªšè‚º æŒç»¢å¯¼.
 	return PlayerLargePortrait.LoadSynchronous();
 }
 

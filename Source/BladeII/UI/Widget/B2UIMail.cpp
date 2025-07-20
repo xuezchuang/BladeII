@@ -1,4 +1,4 @@
-#include "B2UIMail.h"
+ï»¿#include "B2UIMail.h"
 #include "B2UIHeader.h"
 #include "B2UIManager.h"
 #include "Event.h"
@@ -154,7 +154,7 @@ void UB2UIMail::OnSceneOpen(EUIScene InOpenedScene)
 
 	BladeIIGameImpl::GetRedDotManager().RequestCheckRedDot({ RedDotHint::RED_DOT_MAIL });
 
-	// UIHeader ¿Í °°ÀÌ Scene À¸·Î ±¸¼ºÇÏ´Â °æ¿ì Init ½ÃÁ¡¿¡ ÇÏ¸é Scene ¿¡ Æ÷ÇÔµÈ header °¡ »ı¼ºÀÌ ¾ÈµÈ »óÈ²ÀÏ ¼ö ÀÖÀ½.
+	// UIHeader å®¢ éæ Scene æ è‚º å¤‡å·±çªç»° ç‰ˆå¿« Init çŸ«ç—¢ä¿Š çªæ Scene ä¿Š å™¨çªƒç­‰ header å•Š ç§¯å·±æ æ•‘ç­‰ æƒ‘ç‚”è€ è ä¹æ¾œ.
 	SetLobbyUIHeaderTitleByGeneralTextTableKey(TEXT("LobbyMain_Mail"));
 }
 
@@ -366,7 +366,7 @@ void UB2UIMail::OpenAllMailUI
 					bOpenNickNameChange = true;
 			}
 		}
-		// RewardPopup¿¡¼­ ClientDataStore::AccountInfo¿¡ º¸»ó °­Á¦ Àû¿ë
+		// RewardPopupä¿Šè¾‘ ClientDataStore::AccountInfoä¿Š ç„Šæƒ‘ ç¢åŠ› åˆ©ä¾©
 
 		if(bOpenNickNameChange)
 			RewardPopup->SetOpenNickNameChangePopup();
@@ -379,7 +379,7 @@ void UB2UIMail::OpenAllMailUI
 
 	if (MailIdArray.Num() == 0 && CurrentTabIndex == MailTabIndex::EMailTab_BladePoint)
 	{
-		//¿µÈ¥°Ë Ä«Å×°í¸®¿¡¼­´Â ¸ŞÀÏID°¡ ³Ñ¾î¿ÀÁö ¾ÊÀ½ -> º¯°æµÉ ¿©Áö ÀÖÀ½.
+		//åº·å»å…« å¢¨æŠ›ç»Šåºœä¿Šè¾‘ç»° çš‹è€IDå•Š é€ç»¢å·ç˜¤ è‡¼æ¾œ -> å‡½ç‰ˆçª å’¯ç˜¤ ä¹æ¾œ.
 		VB_MailList->ClearChildren();
 		MailTabs[ConvertMailIndexToInt32(CurrentTabIndex)].Mails.Empty();
 	}
@@ -399,7 +399,7 @@ void UB2UIMail::SetTouch(bool InTouch)
 	if (BTN_UpgradeStoneReceiveAll.IsValid())
 	{
 		BTN_UpgradeStoneReceiveAll->SetIsEnabled(!InTouch && CheckUpgradeStoneReceiveAllBTN());
-	} // È®ÀÎ ÇÊ¿ä
+	} // çŠ¬ç‰¢ é˜å¤¸
 
 	if (BTN_RareUpgradeStoneReceiveAll.IsValid())
 	{
@@ -419,10 +419,10 @@ void UB2UIMail::OpenMailUI(int64 InMailId, const FB2ResponseOpenMailPtr& InMailI
 		return;
 	}
 
-	//¿­·ÁÀÖ´Â ¸ğµç ¼±ÅÃÆË¾÷µéÀ» ´İ´Â´Ù.
+	//å‡¯å¦¨ä¹ç»° è‘›ç”µ æ€¥ç¶æ‰‘è¯€ç”¸é˜‘ æ‘§ç»°ä¿ƒ.
 	if (CreatedGeneralLotteryPopup) 
 	{
-		CreatedGeneralLotteryPopup->Close(); // ¼û±â±â¸¸ ÇÏ°í »ı¼ºµÈ °Å ÆÄ±«ÇÏ´Â °Ç ¾Æ´Ô.
+		CreatedGeneralLotteryPopup->Close(); // è§æ‰æ‰çˆ¶ çªç»Š ç§¯å·±ç­‰ èŠ­ é¢‡é²çªç»° æ‰’ é…’ä¸›.
 	}
 	if (CreatedSelectiveLotteryPopup) 
 	{
@@ -440,7 +440,7 @@ void UB2UIMail::OpenMailUI(int64 InMailId, const FB2ResponseOpenMailPtr& InMailI
 	{
 		CreatedAllSelectiveLotteryCostumePopup->Close();
 	}
-	// ³ª¸ÓÁö µÑÀº..?
+	// å”±èµ£ç˜¤ ç¬›ç¯®..?
 
 	const int32 TabIndex = ConvertMailIndexToInt32(CurrentTabIndex);
 	if (MailTabs.IsValidIndex(TabIndex))
@@ -600,7 +600,7 @@ void UB2UIMail::UpdateMailList()
 		{
 			BTN_RareUpgradeStoneReceiveAll->SetIsEnabled(CheckRareUpgradeStoneReceiveAllBTN());
 		}
-	}// È®ÀÎ ÇÊ¿ä
+	}// çŠ¬ç‰¢ é˜å¤¸
 
 	DoMarkRedDot();
 	if (UB2UIHeader* HeaderUI = UB2UIManager::GetInstance()->GetUI<UB2UIHeader>(UIFName::Header))
@@ -609,7 +609,7 @@ void UB2UIMail::UpdateMailList()
 
 void UB2UIMail::UpdateMailList(const TArray<int64>& InMailIdArray)
 {
-	// ÆË¾÷UI <-
+	// æ‰‘è¯€UI <-
 	for (int32 Idx = MailTabs[ConvertMailIndexToInt32(CurrentTabIndex)].Mails.Num() - 1; Idx > -1; --Idx)
 	{
 		int32 FoundedIndex = INDEX_NONE;
@@ -654,9 +654,9 @@ void UB2UIMail::OpenPopupReceiveOneMail(MailGiftType GiftType, int32 Amount)
 	{
 		RewardPopup->AddSingleRewardItem(RewardType, Amount);
 
-		// RewardPopup¿¡¼­ ClientDataStore::AccountInfo¿¡ º¸»ó °­Á¦ Àû¿ë
+		// RewardPopupä¿Šè¾‘ ClientDataStore::AccountInfoä¿Š ç„Šæƒ‘ ç¢åŠ› åˆ©ä¾©
 		
-		// ´Ğ³×ÀÓ º¯°æ±Çµµ Å¸ÀÔÀÌ »ı±ä´Ù¸é if ¹® °É¾î¼­..
+		// è‘±åŒ™çƒ™ å‡½ç‰ˆé¼»æ¡£ é¸¥æ¶æ ç§¯å˜ä¿ƒæ if å·© å§ç»¢è¾‘..
 		/*RewardPopup->SetOpenNickNameChangePopup();*/
 
 
@@ -678,18 +678,18 @@ void UB2UIMail::OpenPopupReceiveOneMail(int32 ItemTemplateId, int32 Amount)
 	if (FItemRefIDHelper::GetGoodsID_NicknameChangeTicket() == ItemTemplateId)
 		RewardPopup->SetOpenNickNameChangePopup();
 
-	// RewardPopup¿¡¼­ ClientDataStore::AccountInfo¿¡ º¸»ó °­Á¦ Àû¿ë
+	// RewardPopupä¿Šè¾‘ ClientDataStore::AccountInfoä¿Š ç„Šæƒ‘ ç¢åŠ› åˆ©ä¾©
 	RewardPopup->ShowRewardPopup(true);
 	RewardPopup->ShowMailDescription(false);
 }
 
 //
-// ¾Æ·¡.. ÇÏÀ§ UIP µéÀÇ dynamic on-demand ·Îµù ¹× »ı¼º ÄÚµåµé ÀÌ¾îÁü.
+// é…’è´°.. çªå›° UIP ç”¸ç‹¼ dynamic on-demand è‚ºçˆ¹ æ£º ç§¯å·± å†…é›ç”¸ æç»¢å’™.
 //
 
 void UB2UIMail::OpenGeneralLottery(int64 MailId, const FText& TitleText)
 {
-	ConditionalCreateGeneralLotteryPopup(); // µ¿Àû ·Îµù ¹× »ı¼º
+	ConditionalCreateGeneralLotteryPopup(); // æ‚¼åˆ© è‚ºçˆ¹ æ£º ç§¯å·±
 	BII_CHECK(CreatedGeneralLotteryPopup);
 
 	if (CreatedGeneralLotteryPopup)
@@ -703,7 +703,7 @@ void UB2UIMail::OpenGeneralLottery(int64 MailId, const FText& TitleText)
 
 void UB2UIMail::OpenAllSelectiveLottery(int64 MailId, const TArray<int32>& SelectableItemRefIds, const FText& TitleText)
 {
-	ConditionalCreateAllSelectiveLotteryPopup(); // µ¿Àû ·Îµù ¹× »ı¼º
+	ConditionalCreateAllSelectiveLotteryPopup(); // æ‚¼åˆ© è‚ºçˆ¹ æ£º ç§¯å·±
 	BII_CHECK(CreatedAllSelectiveLotteryResultPopup);
 
 	if (CreatedAllSelectiveLotteryResultPopup)
@@ -724,7 +724,7 @@ void UB2UIMail::OpenAllSelectiveLottery(int64 MailId, const TArray<int32>& Selec
 
 void UB2UIMail::OpenPrefixSelectiveLottery(int64 MailId, const int32 SurpassLevel, const TArray<int32>& SelectableItemRefIds, const FText& TitleText)
 {
-	ConditionalCreateAllSelectiveLotteryPopup(); // µ¿Àû ·Îµù ¹× »ı¼º
+	ConditionalCreateAllSelectiveLotteryPopup(); // æ‚¼åˆ© è‚ºçˆ¹ æ£º ç§¯å·±
 	BII_CHECK(CreatedAllSelectiveLotteryResultPopup);
 
 	if (CreatedAllSelectiveLotteryResultPopup)
@@ -747,7 +747,7 @@ void UB2UIMail::OpenPrefixSelectiveLottery(int64 MailId, const int32 SurpassLeve
 
 void UB2UIMail::OpenPrefixSelectiveLotteryCostume(int64 MailId, const int32 SurpassLevel, const TArray<int32>& SelectableItemRefIds, const FText& TitleText)
 {
-	ConditionalCreateAllSelectiveLotteryCostumePopup(); // µ¿Àû ·Îµù ¹× »ı¼º
+	ConditionalCreateAllSelectiveLotteryCostumePopup(); // æ‚¼åˆ© è‚ºçˆ¹ æ£º ç§¯å·±
 	BII_CHECK(CreatedAllSelectiveLotteryCostumePopup);
 
 	if (CreatedAllSelectiveLotteryCostumePopup)
@@ -768,7 +768,7 @@ void UB2UIMail::OpenPrefixSelectiveLotteryCostume(int64 MailId, const int32 Surp
 
 void UB2UIMail::OpenSelectiveLottery(int64 MailId, const TArray<int32>& SelectableItemRefIds, const FText& TitleText)
 {
-	ConditionalCreateSelectiveLotteryPopup(); // µ¿Àû ·Îµù ¹× »ı¼º
+	ConditionalCreateSelectiveLotteryPopup(); // æ‚¼åˆ© è‚ºçˆ¹ æ£º ç§¯å·±
 	BII_CHECK(CreatedSelectiveLotteryPopup);
 
 	if (CreatedSelectiveLotteryPopup)
@@ -785,7 +785,7 @@ void UB2UIMail::OpenSelectiveLottery(int64 MailId, const TArray<int32>& Selectab
 
 void UB2UIMail::OpenSelectiveLotteryConsumeItem(int64 MailId, const TArray<int32>& SelectableItemRefIds, const TArray<int32>& SelectableItemNums)
 {
-	ConditionalCreateSelectiveLotteryConsumeItemPopup(); // µ¿Àû ·Îµù ¹× »ı¼º
+	ConditionalCreateSelectiveLotteryConsumeItemPopup(); // æ‚¼åˆ© è‚ºçˆ¹ æ£º ç§¯å·±
 	BII_CHECK(CreatedSelectiveLotteryConsumeItemPopup);
 
 	if (CreatedSelectiveLotteryConsumeItemPopup)
@@ -799,7 +799,7 @@ void UB2UIMail::OpenSelectiveLotteryConsumeItem(int64 MailId, const TArray<int32
 
 void UB2UIMail::OpenPopupReceiveSelectiveLotteryConsumeItemResult(int32 ItemRefId, int32 Num)
 {
-	ConditionalCreateSelectiveLotteryConsumeItemResultPopup(); // µ¿Àû ·Îµù ¹× »ı¼º
+	ConditionalCreateSelectiveLotteryConsumeItemResultPopup(); // æ‚¼åˆ© è‚ºçˆ¹ æ£º ç§¯å·±
 	BII_CHECK(CreatedSelectiveLotteryConsumeItemResultPopup);
 
 	if (CreatedSelectiveLotteryConsumeItemResultPopup)
@@ -810,7 +810,7 @@ void UB2UIMail::OpenPopupReceiveSelectiveLotteryConsumeItemResult(int32 ItemRefI
 
 void UB2UIMail::OpenPopupReceiveSelectiveLotteryResult(const FB2Item& ResultItem)
 {
-	ConditionalCreateSelectiveLotteryResultPopup(); // µ¿Àû ·Îµù ¹× »ı¼º
+	ConditionalCreateSelectiveLotteryResultPopup(); // æ‚¼åˆ© è‚ºçˆ¹ æ£º ç§¯å·±
 	BII_CHECK(CreatedSelectiveLotteryResultPopup);
 
 	if (CreatedSelectiveLotteryResultPopup)
@@ -970,7 +970,7 @@ void UB2UIMail::SelectedItemSelectiveLottery(int32 SelectedItemRefId)
 
 void UB2UIMail::ClientDataStoreAddNewAcquiredItem(FB2Item AddItem)
 {
-	// B2UIMail¿¡¼­ ClientDataStore::AccountInfo¿¡ º¸»ó °­Á¦ Àû¿ë
+	// B2UIMailä¿Šè¾‘ ClientDataStore::AccountInfoä¿Š ç„Šæƒ‘ ç¢åŠ› åˆ©ä¾©
 	TArray<FB2Item> AddItemList;
 	AddItemList.Add(AddItem);
 	BladeIIGameImpl::GetClientDataStore().AddNewAcquiredItems(AddItemList);
@@ -1061,7 +1061,7 @@ bool UB2UIMail::CheckUpgradeStoneReceiveAllBTN()
 		for (int32 Idx = MailTabs[ConvertMailIndexToInt32(CurrentTabIndex)].Mails.Num() - 1; Idx > -1; --Idx)
 		{
 			if (MailTabs[ConvertMailIndexToInt32(CurrentTabIndex)].Mails[Idx]->GetGiftType() == MailGiftType::Selective_Item_Lottery &&
-				MailTabs[ConvertMailIndexToInt32(CurrentTabIndex)].Mails[Idx]->GetItemRefId() != 8			// ÇÏµå ÄÚµù °í±Ş ½Â±Ş¼® »Ì±â±Ç ¿¹¿Ü
+				MailTabs[ConvertMailIndexToInt32(CurrentTabIndex)].Mails[Idx]->GetItemRefId() != 8			// çªé› å†…çˆ¹ ç»Šé­ é“°é­ç± æƒ¶æ‰é¼» æŠ—å¯‡
 				)
 			{
 				return true;
@@ -1078,7 +1078,7 @@ bool UB2UIMail::CheckRareUpgradeStoneReceiveAllBTN()
 		for (int32 Idx = MailTabs[ConvertMailIndexToInt32(CurrentTabIndex)].Mails.Num() - 1; Idx > -1; --Idx)
 		{
 			if (MailTabs[ConvertMailIndexToInt32(CurrentTabIndex)].Mails[Idx]->GetGiftType() == MailGiftType::Selective_Item_Lottery &&
-				MailTabs[ConvertMailIndexToInt32(CurrentTabIndex)].Mails[Idx]->GetItemRefId() == 8)			// ÇÏµå ÄÚµù °í±Ş ½Â±Ş¼® »Ì±â±Ç ¿¹¿Ü
+				MailTabs[ConvertMailIndexToInt32(CurrentTabIndex)].Mails[Idx]->GetItemRefId() == 8)			// çªé› å†…çˆ¹ ç»Šé­ é“°é­ç± æƒ¶æ‰é¼» æŠ—å¯‡
 			{
 				return true;
 			}

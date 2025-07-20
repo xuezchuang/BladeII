@@ -1,4 +1,4 @@
-
+ï»¿
 
 #include "PacketMaker.h"
 #include "Packet.h"
@@ -80,7 +80,7 @@ namespace packet
 		B2LOGMANAGER_DEBUG(LoggerPacketMaker, "Type : [%s]\n Sender : [%d]\n payload : [%s]\n", TypeName.c_str(), Sender, TCHAR_TO_ANSI(*FString(payload)));
 #endif
 
-		//[@AKI, 170525] [FIXME] Crash·Î ÀÓ½Ã ¸·À½
+		//[@AKI, 170525] [FIXME] Crashè‚º çƒ™çŸ« é˜œæ¾œ
 		//check(Sender != 0);
 
 		ByteStream	tmp;

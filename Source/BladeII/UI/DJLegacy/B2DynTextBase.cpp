@@ -19,7 +19,7 @@ void UB2DynTextBase::CacheAssets()
 void UB2DynTextBase::ModulateBGImageToRowIndex(int32 RowIndex)
 {
 	if (IMG_BG.IsValid())
-	{ // ÁÙ ±¸ºÐ ½±°Ô ÇÏ±â À§ÇÑ ÄÃ·¯ ³Ö±â
+	{ // ä¸´ å¤‡ç›’ å¥–éœ¸ çªæ‰ å›°èŒ„ æ‹¿çŸ¾ æŒæ‰
 		IMG_BG->SetColorAndOpacity((RowIndex % 2 == 0) ? ModColor_EvenRow : ModColor_OddRow);
 	}
 }

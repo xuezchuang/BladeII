@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIMsgPopupNeedClearStage.h"
 #include "B2UIDocHelper.h"
@@ -22,7 +22,7 @@ void UB2UIMsgPopupNeedClearStage::CacheAssets()
 
 void UB2UIMsgPopupNeedClearStage::OnGoStageSelectBtnClick()
 {
-	// ÀÌ°Ç ¿ØÁö ·Îºñ¸ŞÀÎÀÌ³ª Ã©ÅÍUI°¡ ¾Æ´Ï¸é ÀÛµ¿À» ¾ÈÇÑ´Ù.
+	// ææ‰’ æ§ç˜¤ è‚ºåšçš‹ç‰¢æå”± èŒ…ç£UIå•Š é…’èªæ ç´¯æ‚¼é˜‘ æ•‘èŒ„ä¿ƒ.
 	auto* ChapterUI = UB2UIDocHelper::GetDocChapter();
 	auto& ClientDataStore = BladeIIGameImpl::GetClientDataStore();
 	auto& StageDataStore = BladeIIGameImpl::GetStageDataStore();
@@ -35,7 +35,7 @@ void UB2UIMsgPopupNeedClearStage::OnGoStageSelectBtnClick()
 	if (ChapterNum != 0)
 		StageDataStore.RequestGetActInfoAndChangeChapter(ChapterNum, Difficulty, true, ServerStageNum);
 
-	// ¿äÃ»ÇßÀ¸¸é ´İÀÚ
+	// å¤¸æ²¡æ²æ æ æ‘§ç£Š
 	DestroySelf(UB2UIManager::GetInstance());
 }
 

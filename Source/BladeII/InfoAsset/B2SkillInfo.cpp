@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 // Project BladeII, Action Square
 
 
@@ -24,7 +24,7 @@ FSingleSkillInfo::FSingleSkillInfo()
 
 #if WITH_EDITOR
 void FSingleSkillInfo::EditorOnPostLoad()
-{ // ´Ù¸¥ ¸î¸î TAsset µéÃ³·³ ¿¡µğÅÍ¿¡¼± ´Ù ·ÎµùÇØ ÁÜ..
+{ // ä¿ƒå¼— å‰²å‰² TAsset ç”¸è´¸çƒ¦ ä¿Šå¼ç£ä¿Šæ€¥ ä¿ƒ è‚ºçˆ¹ç§¦ æ·‹..
 	ButtonIcon_Normal.LoadSynchronous();
 	ButtonIcon_Hovered.LoadSynchronous();
 	ButtonIcon_Pressed.LoadSynchronous();
@@ -158,10 +158,10 @@ int32 UB2SkillInfo::GetEnablePlayerLevel(int32 SkillInfoID)
 
 FButtonStyle UB2SkillInfo::GetButtonIconStyle(int32 SkillInfoID)
 {
-	//// LoadSynchronous ÄİÇØ¾ß ÇØ¼­ const Á¦°Å.. ¤Ñ¤Ñ
+	//// LoadSynchronous å¦®ç§¦å…· ç§¦è¾‘ const åŠ›èŠ­.. ã±ã±
 	//FSingleSkillInfo* SingleInfo = const_cast<FSingleSkillInfo*>(GetSingleInfoOfID(SkillInfoID));
 	//const bool bIsWeaponSkill = (SingleInfo && SingleInfo->WeaponSkillType != EWeaponSkillType::EWS_None);
-	//// ±âº»ÀûÀÎ Style ¼³Á¤Àº ÀÏ°ıÀûÀ¸·Î µé¾î°¡°í SingleSkillInfo ¿¡ µû¶ó¼­´Â ¾ÆÀÌÄÜ¸¸.
+	//// æ‰å¤¯åˆ©ç‰¢ Style æ±²æ²¥ç¯® è€è¤’åˆ©æ è‚º ç”¸ç»¢å•Šç»Š SingleSkillInfo ä¿Š è¶æ‰¼è¾‘ç»° é…’æèƒ½çˆ¶.
 	//FButtonStyle RetStyle = bIsWeaponSkill ? CommonButtonStyle_WeaponSkill : CommonButtonStyle_Regular;
 
 	//if (SingleInfo)
@@ -214,8 +214,8 @@ void UB2SkillInfo::PostEditChangeProperty(FPropertyChangedEvent& PropertyChanged
 //
 
 FCombinedPCSkillAnimID FSkillAnimPerPCInfoSet::GetLoadedPtrMapKey(EPCClass InPCClass, ESkillAnimType InSkillAnimType)
-{ // SkillAnim µ¥ÀÌÅÍ¸¦ ÀûÀçÇÏ´Â key ÀÚÃ¼¸¦ FCombinedPCSkillAnimID ·Î ÇÏÁö´Â ¾Ê°í ·ÎµùµÈ Ä³½Ã ¸ÊÀÇ key ·Î¸¸ »ç¿ë.
-	// FCombinedPCSkillAnimID ·Î InfoAsset ¿¡ µî·ÏÇÏ°Ô ÇÏ¸é ±×´ÙÁö º¸±â ÁÁÀ» °Å °°Áö ¾Ê¾Æ¼­. ¾Æ ¹°·Ğ ±×·¯·Á¸é FCombinedPCSkillAnimID ¸¦ BlueprintType À¸·Î ¹Ù²ã¾ß°ÚÁö.
+{ // SkillAnim å•æç£ç”« åˆ©çŠçªç»° key ç£Šçœ‰ç”« FCombinedPCSkillAnimID è‚º çªç˜¤ç»° è‡¼ç»Š è‚ºçˆ¹ç­‰ æŸçŸ« ç”˜ç‹¼ key è‚ºçˆ¶ è¤ä¾©.
+	// FCombinedPCSkillAnimID è‚º InfoAsset ä¿Š æ®¿åºŸçªéœ¸ çªæ å¼Šä¿ƒç˜¤ ç„Šæ‰ äº®é˜‘ èŠ­ éç˜¤ è‡¼é…’è¾‘. é…’ æ‹±æ²¸ å¼ŠçŸ¾å¦¨æ FCombinedPCSkillAnimID ç”« BlueprintType æ è‚º å®˜å±‚å…·æ‘†ç˜¤.
 	return FCombinedPCSkillAnimID(InPCClass, InSkillAnimType);
 }
 
@@ -224,7 +224,7 @@ bool UB2SkillAnimInfo::bManagedSkillAnimUnload = true;
 UB2SkillAnimInfo::UB2SkillAnimInfo(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
-	// ManagedSkillAnimUnload ¿¡ ´ëÇØ PCClassInfo ÀÇ ¸¶Âù°¡Áö ¿ªÇÒÀ» ÇÏ´Â º¯¼ö¿Í µ¿ÀÏÇÑ ini Ç×¸ñÀ» »ç¿ë.
+	// ManagedSkillAnimUnload ä¿Š æªç§¦ PCClassInfo ç‹¼ ä»˜è›®å•Šç˜¤ å¼€ä¸”é˜‘ çªç»° å‡½èå®¢ æ‚¼è€èŒ„ ini äº²æ ¼é˜‘ è¤ä¾©.
 	if (GConfig)
 	{
 		GConfig->GetBool(TEXT("/Script/BladeII.B2PCClassInfo"), TEXT("ManagedPCClassUnload"), bManagedSkillAnimUnload, GGameIni);
@@ -237,7 +237,7 @@ void UB2SkillAnimInfo::PostLoad()
 	EnsureDataIntegrity();
 
 #if WITH_EDITOR 
-	if (GIsEditor) // TMap ÀÇ µî·Ï Æ¯¼º ¶§¹®¿¡ È¤¿©³ª Àß¸øµÉ ¼ö ÀÖ´Â ¼³Á¤ Ã¼Å©
+	if (GIsEditor) // TMap ç‹¼ æ®¿åºŸ æ¼‚å·± é”­å·©ä¿Š è¶£å’¯å”± è‚‹ç»™çª è ä¹ç»° æ±²æ²¥ çœ‰å†œ
 	{
 		int32 PCClassWrongSettingCount = 0;
 		int32 SkillAnimTypeWrongSettingCount = 0;
@@ -259,7 +259,7 @@ void UB2SkillAnimInfo::PostLoad()
 		{
 #if !PLATFORM_MAC
 			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-				FString::Printf(TEXT("[SkillAnimInfo] Àß¸øµÈ PCClass (%d °³) È¤Àº SkillAnimType (%d °³) Å°°ª ¼³Á¤ÀÌ ÀÖ½À´Ï´Ù."), 
+				FString::Printf(TEXT("[SkillAnimInfo] è‚‹ç»™ç­‰ PCClass (%d ä¿º) è¶£ç¯® SkillAnimType (%d ä¿º) è™è”¼ æ±²æ²¥æ ä¹åš¼èªä¿ƒ."), 
 				PCClassWrongSettingCount, SkillAnimTypeWrongSettingCount)));
 #endif
 		}
@@ -269,7 +269,7 @@ void UB2SkillAnimInfo::PostLoad()
 
 bool UB2SkillAnimInfo::ShouldUnloadAllSkillAnimOnLevelTransition()
 {
-#if PLATFORM_IOS // [IOS_SPECIFIC_MEMORY_SAVING] iOS ´Â ¾ÆÁ÷ ¸Ş¸ğ¸® ³ÑÄ¥ °ÍÀÌ ¹«¼­¿ö¼­..
+#if PLATFORM_IOS // [IOS_SPECIFIC_MEMORY_SAVING] iOS ç»° é…’æµ çš‹è‘›åºœ é€ç£¨ å·´æ å…¬è¾‘å†µè¾‘..
 	return true;
 #else
 	return !bManagedSkillAnimUnload;
@@ -292,7 +292,7 @@ UAnimSequenceBase* UB2SkillAnimInfo::GetSingleSkillAnim(const FCombinedPCSkillAn
 	//{
 	//	const auto& Asset = GetAnimationAsset(InCombinedID);
 
-	//	// AnimationÀº AsyncWaitingÀ» ÇÏÁö ¾Ê°í ¹Ù·Î LoadÇÏ´Â°ÍÀÌ Çö¸íÇÑ ÆÇ´ÜÀÌ¶ó »ç·áµÊ
+	//	// Animationç¯® AsyncWaitingé˜‘ çªç˜¤ è‡¼ç»Š å®˜è‚º Loadçªç»°å·´æ æ³…ç–™èŒ„ é­„çªœææ‰¼ è¤ä¸°å‡³
 	//	auto* AnimSequenceAsset = LoadSynchronous<UAnimSequenceBase>(Asset);
 
 	//	if (AnimSequenceAsset != nullptr)
@@ -329,7 +329,7 @@ TSoftObjectPtr<UAnimSequenceBase> UB2SkillAnimInfo::GetAnimationAsset(const FCom
 }
 
 void UB2SkillAnimInfo::SyncPreloadAssets(const TArray<FCombinedPCSkillAnimID>& InLoadAnimIDs)
-{ // ÀÌ¸§¿¡ sync ÀÚ¸¦ ºÙÀÎ °Ç Async ·Îµù ±¸ÇöÀÌ µÉ °ÍÀ¸·Î °í·ÁÇØ¼­ÀÓ.
+{ // ææŠšä¿Š sync ç£Šç”« å˜¿ç‰¢ æ‰’ Async è‚ºçˆ¹ å¤‡æ³…æ çª å·´æ è‚º ç»Šå¦¨ç§¦è¾‘çƒ™.
 	B2_SCOPED_TRACK_LOG(TEXT("UB2SkillAnimInfo::SyncPreloadAssets"));
 	for (const FCombinedPCSkillAnimID& ThisCombinedID : InLoadAnimIDs)
 	{
@@ -344,7 +344,7 @@ void UB2SkillAnimInfo::UnloadAll()
 		if (UObject* Object = AssetIt.Value())
 		{
 			AssetIt.RemoveCurrent();
-			Object->RemoveFromRoot(); // ±âº»ÀûÀ¸·Î ·ÎµùÇÏ¸é¼­ ·çÆ®¼Â Ã³¸®¸¦ ÇÏ±â ¶§¹®¿¡ RemoveFromRoot ÇØ¾ß ÇÔ.
+			Object->RemoveFromRoot(); // æ‰å¤¯åˆ©æ è‚º è‚ºçˆ¹çªæè¾‘ é£é£˜æ‚¸ è´¸åºœç”« çªæ‰ é”­å·©ä¿Š RemoveFromRoot ç§¦å…· çªƒ.
 			UnloadAsset(EstimateStringAsset(Object));
 		}
 	}
@@ -356,7 +356,7 @@ void UB2SkillAnimInfo::UnloadAnimAsset(const FCombinedPCSkillAnimID& CombineID)
 {
 	//if (auto* AnimObj = FindSingleSkillAnim(CombineID))
 	//{
-	//	AnimObj->RemoveFromRoot(); // ±âº»ÀûÀ¸·Î ·ÎµùÇÏ¸é¼­ ·çÆ®¼Â Ã³¸®¸¦ ÇÏ±â ¶§¹®¿¡ RemoveFromRoot ÇØ¾ß ÇÔ.
+	//	AnimObj->RemoveFromRoot(); // æ‰å¤¯åˆ©æ è‚º è‚ºçˆ¹çªæè¾‘ é£é£˜æ‚¸ è´¸åºœç”« çªæ‰ é”­å·©ä¿Š RemoveFromRoot ç§¦å…· çªƒ.
 	//	LoadedPtrMap.Remove(GetTypeHash(CombineID));
 	//}
 
@@ -367,7 +367,7 @@ void UB2SkillAnimInfo::UnloadAnimAsset(const FCombinedPCSkillAnimID& CombineID)
 
 void UB2SkillAnimInfo::UnloadExcept(const TArray<FCombinedPCSkillAnimID>& InExceptIDs)
 {
-	//// ManagedSkillAnimUnload ¿¡¼­ »ç¿ëÀ» À§ÇÔ. ¸î°³´Â ¾ğ·Îµå ¾ÈÇÏ°í ³²°ÜµÎ·Á´Â..
+	//// ManagedSkillAnimUnload ä¿Šè¾‘ è¤ä¾©é˜‘ å›°çªƒ. å‰²ä¿ºç»° æ”«è‚ºé› æ•‘çªç»Š å·¢è´¥æ»´å¦¨ç»°..
 	//for (TMap<EPCClass, FSkillAnimPerPCInfoSet>::TIterator InfoDataIt(InfoData); InfoDataIt; ++InfoDataIt)
 	//{
 	//	FSkillAnimPerPCInfoSet& InfoSet = InfoDataIt.Value();
@@ -380,16 +380,16 @@ void UB2SkillAnimInfo::UnloadExcept(const TArray<FCombinedPCSkillAnimID>& InExce
 	//	}
 	//}
 
-	// Àû¾îµµ ³²°ÜµÎ·Á´Â Å¬·¡½ºº¸´Ù ¸¹ÀÌ ·ÎµùµÈ »óÅÂ¸é ¾ÈµÇ°ÚÁö.
+	// åˆ©ç»¢æ¡£ å·¢è´¥æ»´å¦¨ç»° åŠªè´°èƒ¶ç„Šä¿ƒ è…¹æ è‚ºçˆ¹ç­‰ æƒ‘æ€•æ æ•‘ç™»æ‘†ç˜¤.
 	check(LoadedPtrMap.Num() <= InExceptIDs.Num());
 }
 
 void UB2SkillAnimInfo::UnloadAllOrExceptSelected(UObject* WorldContextObject)
 {
-	// ·¹º§ transition È¤Àº StageClear ½ÃÁ¡¿¡ ºÒ¸². ManagedSkillAnimUnload ¿¡ µû¶ó ¾î¶² °É ¼±º°ÀûÀ¸·Î ³²°ÜµÑÁö ÆÇº°..
+	// é¥­éª‡ transition è¶£ç¯® StageClear çŸ«ç—¢ä¿Š é˜‚è¦†. ManagedSkillAnimUnload ä¿Š è¶æ‰¼ ç»¢æ« å§ æ€¥å–Šåˆ©æ è‚º å·¢è´¥ç¬›ç˜¤ é­„å–Š..
 	if (ShouldUnloadAllSkillAnimOnLevelTransition())
 	{
-		UnloadAll(); // ¾ÈÀüÇÏ°Ô ÁË´Ù ³»¸®Áö¸¸ ´ÙÀ½ ·ÎµùÀÌ ±æ¾îÁö°ÚÁö
+		UnloadAll(); // æ•‘å‚ˆçªéœ¸ äº†ä¿ƒ éƒ´åºœç˜¤çˆ¶ ä¿ƒæ¾œ è‚ºçˆ¹æ è¾¨ç»¢ç˜¤æ‘†ç˜¤
 	}
 	else
 	{
@@ -402,7 +402,7 @@ TArray<FCombinedPCSkillAnimID> UB2SkillAnimInfo::GetCurrentPlayerSkillAnimIDs(UO
 {
 	TArray<FCombinedPCSkillAnimID> CurrentAnimIDs;
 
-	//// ÇöÀç ¼±ÅÃµÈ ·ÎÄÃ ¸ŞÀÎ/ÅÂ±× ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍÀÇ ÀåÂøµÈ ½ºÅ³ ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ³²±ä´Ù. ÀÌ¶§´Â °¡Àå Ç¥ÁØÀÎ ½Ã³ª¸®¿À ¸ğµå ±âÁØÀÌ µÇ¾î¾ß ÇÔ.
+	//// æ³…çŠ æ€¥ç¶ç­‰ è‚ºæ‹¿ çš‹ç‰¢/æ€•å¼Š æ•²é¥­æç»¢ æŸè…ç£ç‹¼ å˜é¦’ç­‰ èƒ¶æ‡¦ å±€èªçš‹æè®°é˜‘ å·¢å˜ä¿ƒ. æé”­ç»° å•Šå˜ é’éœ–ç‰¢ çŸ«å”±åºœå· è‘›é› æ‰éœ–æ ç™»ç»¢å…· çªƒ.
 	//FLocalCharacterData& LocalCDS = BladeIIGameImpl::GetLocalCharacterData();
 	//for (int32 PCI = 0; PCI <= 1; ++PCI)
 	//{
@@ -438,7 +438,7 @@ void UB2SkillAnimInfo::OnAsyncLoadComplete_EachObject(const uint32 AssetKey, UOb
 	{
 		LoadedPtrMap.Add(AssetKey, LoadedAssetObject);
 		if(ShouldUnloadAllSkillAnimOnLevelTransition() == false)
-			LoadedAssetObject->AddToRoot(); // ÀÏ´Ü RootSet ¿¡ ³Ö¾î³õ°í ·¹º§ ³»·Á°¥ ¶§ ÀÏºÎ À¯ÁöÇÒ °ÍµéÀº ³²°Ü³õ°í ³ª¸ÓÁöµéÀº RootSet ¿¡¼­ ´Ù½Ã ¶À.
+			LoadedAssetObject->AddToRoot(); // è€çªœ RootSet ä¿Š æŒç»¢åˆç»Š é¥­éª‡ éƒ´å¦¨å“ é”­ è€ä½• èœ¡ç˜¤ä¸” å·´ç”¸ç¯® å·¢è´¥åˆç»Š å”±èµ£ç˜¤ç”¸ç¯® RootSet ä¿Šè¾‘ ä¿ƒçŸ« ç‹¬.
 	}
 }
 
@@ -461,7 +461,7 @@ TArray<FB2AsyncRequestInfo> UB2SkillAnimInfo::GetAsyncRequestAssetList(const TAr
 
 void UB2SkillAnimInfo::EnsureDataIntegrity()
 {
-	// Á» ¹Ùº¸°°³ª.. ±×³É MyPCClass ¸¦ °ªÀ» ³Ö¾îÁÖ°Ô ÇÒ²¬ ±×·¨³ª...
+	// ç²± å®˜ç„Šéå”±.. å¼Šæˆ MyPCClass ç”« è”¼é˜‘ æŒç»¢æ—éœ¸ ä¸”é“‚ å¼Šæ³•å”±...
 	for (TMap<EPCClass, FSkillAnimPerPCInfoSet>::TIterator InfoDataIt(InfoData); InfoDataIt; ++InfoDataIt)
 	{
 		FSkillAnimPerPCInfoSet& ThisInfoSet = InfoDataIt.Value();
@@ -474,14 +474,14 @@ void UB2SkillAnimInfo::PostEditChangeProperty(FPropertyChangedEvent& PropertyCha
 {
 	Super::PostEditChangeProperty(PropertyChangedEvent);
 
-	EnsureDataIntegrity(); // ÀúÀåµÇ´Â °ªÀ» ³Ö´Â °Ç ¾Æ´ÏÁö¸¸ ¿¡µğÅÍ¿¡¼­ ¹º°¡ Ç×¸ñ Ãß°¡ÇÑ Á÷ÈÄ È®ÀÎÀÌ ÇÊ¿äÇÒ ¼ö ÀÖÀ¸´Ï..
+	EnsureDataIntegrity(); // å†å˜ç™»ç»° è”¼é˜‘ æŒç»° æ‰’ é…’èªç˜¤çˆ¶ ä¿Šå¼ç£ä¿Šè¾‘ è´­å•Š äº²æ ¼ çœ å•ŠèŒ„ æµé¥¶ çŠ¬ç‰¢æ é˜å¤¸ä¸” è ä¹æ èª..
 }
 #endif
 
 #if TEMP_LAZYLOADING_MISHANDLING_CLEANUP /* Doesn't look like "TEMP" anymore.. */
 void UB2SkillAnimInfo::CleanupOnPreSave()
 {
-	LoadedPtrMap.Empty(); // ÀÚÄ© ÀúÀåµÇ¸é ¾ÈÁÁÀ» ¼ö ÀÖ´Â µ¥ÀÌÅÍ È®½ÇÈ÷ ³¯¸².
+	LoadedPtrMap.Empty(); // ç£Šæœ« å†å˜ç™»æ æ•‘äº®é˜‘ è ä¹ç»° å•æç£ çŠ¬è§’æ´’ æœè¦†.
 }
 void UB2SkillAnimInfo::PreSave(FObjectPreSaveContext SaveContext)
 {

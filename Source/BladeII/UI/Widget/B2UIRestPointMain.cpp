@@ -1,4 +1,4 @@
-#include "B2UIRestPointMain.h"
+ï»¿#include "B2UIRestPointMain.h"
 #include "B2UIWidget.h"
 #include "B2UIHeader.h"
 #include "B2UIManager.h"
@@ -23,7 +23,7 @@ void UB2UIRestPointMain::OnSceneOpen(EUIScene InOpenedScene)
 {
 	Super::OnSceneOpen(InOpenedScene);
 
-	// UIHeader ¿Í °°ÀÌ Scene À¸·Î ±¸¼ºÇÏ´Â °æ¿ì Init ½ÃÁ¡¿¡ ÇÏ¸é Scene ¿¡ Æ÷ÇÔµÈ header °¡ »ı¼ºÀÌ ¾ÈµÈ »óÈ²ÀÏ ¼ö ÀÖÀ½.
+	// UIHeader å®¢ éæ Scene æ è‚º å¤‡å·±çªç»° ç‰ˆå¿« Init çŸ«ç—¢ä¿Š çªæ Scene ä¿Š å™¨çªƒç­‰ header å•Š ç§¯å·±æ æ•‘ç­‰ æƒ‘ç‚”è€ è ä¹æ¾œ.
 	SetLobbyUIHeaderTitleByGeneralTextTableKey(TEXT("BreakTime_Reward"));
 
 	SetMyRestInfo();
@@ -195,7 +195,7 @@ void UB2UIRestPointMain::ShowEnoughPointPopup()
 
 void UB2UIRestPointMain::SubscribeEvents()
 {
-	// ¾Æ¸¶µµ.. °ÔÀÓÀ» ²°´Ù°¡ ´Ù½Ã ÄÑ¾ß ¹ŞÀ» ¼ö ÀÖ´Â °ÍÀÏ Å×´Ï Unsubscribe ¸¦ ¾È ÇØµµ ´çÀå ¹®Á¦°¡ ¾ø¾úÀ» µí?
+	// é…’ä»˜æ¡£.. éœ¸çƒ™é˜‘ èˆ¶ä¿ƒå•Š ä¿ƒçŸ« éš¾å…· ç½é˜‘ è ä¹ç»° å·´è€ æŠ›èª Unsubscribe ç”« æ•‘ ç§¦æ¡£ å¯¸å˜ å·©åŠ›å•Š ç»èŒé˜‘ æ·€?
 	DeliveryRestRewardTicket = DeliveryRestRewardClass<FB2ResponseRestRewardPtr>::GetInstance().Subscribe([this](const FB2ResponseRestRewardPtr& msgPtr)
 	{
 		this->OnResponseReward(msgPtr);
@@ -224,13 +224,13 @@ void UB2UIRestPointMain::OnClicked_NormalReward()
 
 	if (selectedInfo.Count_Per_Point < 1 && selectedInfo.Count_Per_Point*BladeIIGameImpl::GetClientDataStore().GetRestPoint() < 1)
 	{
-		//Æ÷ÀÎÆ®ºÎÁ· ¾Ë¸²ÆË¾÷
+		//å™¨ç‰¢é£˜ä½•ç»ƒ èˆ…è¦†æ‰‘è¯€
 		ShowEnoughPointPopup();
 	}
 	else
 	{
 		data_trader::Retailer::GetInstance().RequestReceiveRestReward(selectedInfo.Index, false);
-		bCachedRewardRequestState = ERestPointRewardRequestState::ERPRR_Normal; // ÀÏ¹İ º¸»ó ¿äÃ»ÇßÀ½ ¸¶Å©. ¶ó¹Ì¿¤ÀÌ ¼ö¼öÇÑ À²µ¿À» ÇÏ°Ô µÉ °Í.
+		bCachedRewardRequestState = ERestPointRewardRequestState::ERPRR_Normal; // è€é¦† ç„Šæƒ‘ å¤¸æ²¡æ²æ¾œ ä»˜å†œ. æ‰¼å›ºéƒ¡æ èèèŒ„ å•¦æ‚¼é˜‘ çªéœ¸ çª å·´.
 	}
 }
 
@@ -254,30 +254,30 @@ void UB2UIRestPointMain::OnClicked_DubbleReward()
 	{
 		if (selectedInfo.Count_Per_Point*BladeIIGameImpl::GetClientDataStore().GetRestPoint() < 1)
 		{
-			//Æ÷ÀÎÆ®ºÎÁ· ¾Ë¸²ÆË¾÷
+			//å™¨ç‰¢é£˜ä½•ç»ƒ èˆ…è¦†æ‰‘è¯€
 			ShowEnoughPointPopup();
 			return;
 		}
 
-		if (BladeIIGameImpl::GetClientDataStore().GetGemAmount() < 100) // ÀëºÎÁ·
+		if (BladeIIGameImpl::GetClientDataStore().GetGemAmount() < 100) // ç¦»ä½•ç»ƒ
 		{
-			//ÀëºÎÁ· ¾Ë¸²ÆË¾÷
+			//ç¦»ä½•ç»ƒ èˆ…è¦†æ‰‘è¯€
 			ShortageMGR->PopupGoToShopForGemMessage();
 			return;
 		}
 	}
 	else
 	{
-		if (BladeIIGameImpl::GetClientDataStore().GetGemAmount() < selectedInfo.Count) // ÀëºÎÁ·
+		if (BladeIIGameImpl::GetClientDataStore().GetGemAmount() < selectedInfo.Count) // ç¦»ä½•ç»ƒ
 		{
-			//ÀëºÎÁ· ¾Ë¸²ÆË¾÷
+			//ç¦»ä½•ç»ƒ èˆ…è¦†æ‰‘è¯€
 			ShortageMGR->PopupGoToShopForGemMessage();
 			return;
 		}
 	}
 
 	data_trader::Retailer::GetInstance().RequestReceiveRestReward(selectedInfo.Index, true);
-	bCachedRewardRequestState = ERestPointRewardRequestState::ERPRR_Double; // µûºí º¸»ó ¿äÃ»ÇßÀ½ ¸¶Å©. ¶ó¹Ì¿¤ÀÌ °İÇÑ ´í½º¸¦ Ãß°Ô µÉ °Í.
+	bCachedRewardRequestState = ERestPointRewardRequestState::ERPRR_Double; // è¶å–‰ ç„Šæƒ‘ å¤¸æ²¡æ²æ¾œ ä»˜å†œ. æ‰¼å›ºéƒ¡æ æ‹œèŒ„ é”™èƒ¶ç”« çœ éœ¸ çª å·´.
 }
 
 void UB2UIRestPointMain::OnSelectedReward(FRestRewardInfo RewardInfo)

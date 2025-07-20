@@ -1,4 +1,4 @@
-//// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿//// Fill out your copyright notice in the Description page of Project Settings.
 //#include "TEST_RaidGameMode.h"
 //
 //#include "Engine.h"
@@ -18,7 +18,7 @@
 //	: Super(ObjectInitializer)
 //{
 //	DummyRaidTargetMob = nullptr;
-//	DefaultPCClassEnum = EPCClass::EPC_Assassin; // ³»¸¾
+//	DefaultPCClassEnum = EPCClass::EPC_Assassin; // éƒ´å¦‡
 //
 //	DummyTargetMobClass = ENPCClass::ENC_Boss_Sargon;
 //	DummyTargetMobVariation = ENPCClassVariation::ENCV_Normal;
@@ -26,19 +26,19 @@
 //#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
 //	bTestSessionBegun = false;
 //
-//	TotalTestSessionTime = 600.0f; // ÀÏÂ÷ÀûÀÎ ¿ëµµ°¡ µ¥ÀÌÅÍ »Ì´Â °Ô ¾Æ´Ï¶ó ÇÃ·¹ÀÌ º¸¸é¼­ Á¶ÀıÇÏ´Â °Å¶ó´Ï ±âº» ½Ã°£ ±æ°Ô..
+//	TotalTestSessionTime = 600.0f; // è€ç’åˆ©ç‰¢ ä¾©æ¡£å•Š å•æç£ æƒ¶ç»° éœ¸ é…’èªæ‰¼ æ•²é¥­æ ç„Šæè¾‘ ç‚¼ä¾‹çªç»° èŠ­æ‰¼èª æ‰å¤¯ çŸ«åŸƒ è¾¨éœ¸..
 //	DummyAnimPlayInterval = 0.2f;
 //	DummyEquipGrade = 6;
 //	DummyFloatingUIInterval = 1.0f;
 //	DummyDamageFxInterval = 1.0f;
-//	DummySpawnRandRadius = 100.0f; // °¢ ´õ¹Ì ¾×ÅÍ¸¶´Ù À§Ä¡¸¦ ÁöÁ¤ÇÒ ¼ö ÀÖ°Ô ÇÒ °Å¶ó À§Ä¡ ·£´ı ¹üÀ§´Â Å©Áö ¾Ê°Ô ÇÑ´Ù.
+//	DummySpawnRandRadius = 100.0f; // é˜¿ æ­¹å›º å’€ç£ä»˜ä¿ƒ å›°æ‘¹ç”« ç˜¤æ²¥ä¸” è ä¹éœ¸ ä¸” èŠ­æ‰¼ å›°æ‘¹ ç½šå¾… è£¹å›°ç»° å†œç˜¤ è‡¼éœ¸ èŒ„ä¿ƒ.
 //	CamDistScale = 1.0f;
 //	bWingOn = true;
 //	bGatherPerfStats = false;
 //#endif
 //}
 //
-//#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2 // UFUNCTION ÀÌ¿ÜÀÇ ±¸ÇöÀº ÀÌ ¾ÈÀ¸·Î.
+//#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2 // UFUNCTION æå¯‡ç‹¼ å¤‡æ³…ç¯® æ æ•‘æ è‚º.
 //
 //void ATEST_RaidGameMode::BeginDestroy()
 //{
@@ -64,7 +64,7 @@
 //{
 //	Super::BeginPlay();
 //	
-//	if (!IsInPreRenderPhase()) // Pre-render °¡ µ¹¾Æ°£´Ù¸é ½ÃÀÛÀ» Á» ´Ê°Ô..
+//	if (!IsInPreRenderPhase()) // Pre-render å•Š å€’é…’åŸƒä¿ƒæ çŸ«ç´¯é˜‘ ç²± è¯éœ¸..
 //	{
 //		BeginTestSession();
 //	}
@@ -74,7 +74,7 @@
 //{
 //	Super::Tick(DeltaSecond);
 //
-//	// ¸¸ÀÏ PreRender ·Î ÀÎÇØ Å×½ºÆ® ¼¼¼ÇÀÌ ´ÊÃçÁ³´Ù¸é µÚ´Ê°Ô ½ÃÀÛ.
+//	// çˆ¶è€ PreRender è‚º ç‰¢ç§¦ æŠ›èƒ¶é£˜ æŠ€è®°æ è¯è‹—è„¸ä¿ƒæ ç¬¬è¯éœ¸ çŸ«ç´¯.
 //	if (!bTestSessionBegun && !IsInPreRenderPhase())
 //	{
 //		BeginTestSession();
@@ -83,14 +83,14 @@
 //
 //void ATEST_RaidGameMode::GatherDummyMarkers(ASkeletalMeshActor*& OutDummyTargetMobMarker, TArray<ASkeletalMeshActor*>& OutDummyPlayerMarkers)
 //{
-//	// Ã£¾Æ³½ °ÍµéÀÇ Á¤º¸¸¦ Dummy Actor spawn ¿¡ »ç¿ëÇÒ °Å.
+//	// èŒ«é…’è¾° å·´ç”¸ç‹¼ æ²¥ç„Šç”« Dummy Actor spawn ä¿Š è¤ä¾©ä¸” èŠ­.
 //	UWorld* TheWorld = GetWorld();
 //	if (TheWorld)
 //	{
 //		for (FActorIterator ActorIt(TheWorld); ActorIt; ++ActorIt)
 //		{
 //			ASkeletalMeshActor* ThisSKActor = Cast<ASkeletalMeshActor>(*ActorIt);
-//			// Á¤ÇØ³õÀº ÀÌ¸§À¸·Î ¹èÄ¡ÇÑ °É »ç¿ë.
+//			// æ²¥ç§¦åˆç¯® ææŠšæ è‚º ç¡…æ‘¹èŒ„ å§ è¤ä¾©.
 //			if (ThisSKActor)
 //			{
 //				FString ActorName = ThisSKActor->GetName();
@@ -113,7 +113,7 @@
 //
 //void ATEST_RaidGameMode::BeginTestSession()
 //{
-//	// ÀÌ ¸ÊÀº Open ¸í·ÉÀ¸·Î ¿­°Ô µÉ ²«µ¥ Å×½ºÆ® °ü·Ã ÀÎÀÚ¸¦ ? ·Î ±¸ºĞµÈ ¿É¼ÇÀ¸·Î ³Ö¾îÁØ´Ù.
+//	// æ ç”˜ç¯® Open ç–™é£æ è‚º å‡¯éœ¸ çª æå• æŠ›èƒ¶é£˜ åŒ…è®¿ ç‰¢ç£Šç”« ? è‚º å¤‡ç›’ç­‰ å¯è®°æ è‚º æŒç»¢éœ–ä¿ƒ.
 //	if (GEngine)
 //	{
 //		FWorldContext* TheWorldContext = GEngine->GetWorldContextFromWorld(GetWorld());
@@ -125,7 +125,7 @@
 //				TotalTestSessionTime = FCString::Atof(TimeStr);
 //			}
 //
-//			// ´õ¹Ì ÇÃ·¹ÀÌ¾î ¼¼ºÎ ¿É¼Çµé
+//			// æ­¹å›º æ•²é¥­æç»¢ æŠ€ä½• å¯è®°ç”¸
 //			if (TheWorldContext->LastURL.HasOption(TEXT("Equip"))) 
 //			{
 //				const TCHAR* EquipStr = TheWorldContext->LastURL.GetOption(TEXT("Equip="), TEXT("6"));
@@ -185,24 +185,24 @@
 //
 //void ATEST_RaidGameMode::BeginTestSessionWithOptions(float InTestSessionTime)
 //{
-////	// ½ºÅ×ÀÌÁö ¸ğµå ±â¹İÀÌ¹Ç·Î ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ°¡ ÀÖ´Ù. Å×½ºÆ®¿¡ ¹æÇØµÇÁö ¾Ê´Â ¼Â¾÷µéÀ» ÇÏµµ·Ï.
+////	// èƒ¶æŠ›æç˜¤ è‘›é› æ‰é¦†æéª¨è‚º æ•²é¥­æç»¢ æŸè…ç£å•Š ä¹ä¿ƒ. æŠ›èƒ¶é£˜ä¿Š è§„ç§¦ç™»ç˜¤ è‡¼ç»° æ‚¸è¯€ç”¸é˜‘ çªæ¡£åºŸ.
 ////	ABladeIIPlayer* LocalB2Player = Cast<ABladeIIPlayer>(UGameplayStatics::GetLocalPlayerCharacter(this));
 ////	if (LocalB2Player)
 ////	{
 ////		//LocalB2Player->bCanBeDamaged = true;
-////		// ÄÜ¼Ö Ä¿¸Çµå ÀÔ·ÂÇÏ·Á´Âµ¥ ½Ç¼ö·Î ÅÂ±×¹öÆ° ´©¸¦ ¶§°¡ ¸¹¾Æ¼­ ¤»
+////		// èƒ½è´¾ ç›®ç›–é› æ¶ä»¿çªå¦¨ç»°å• è§’èè‚º æ€•å¼Šæ»šç“¢ ç©¿ç”« é”­å•Š è…¹é…’è¾‘ ã›
 ////		LocalB2Player->SetTagEnable(false);
 ////
-////		LocalB2Player->SetActorHiddenInGame(true); // °Á ¼û±âÀÚ ¤» ±¦È÷ Å×½ºÆ®¿¡ ¹æÇØ¸¸ µÉ µí
+////		LocalB2Player->SetActorHiddenInGame(true); // å‚² è§æ‰ç£Š ã› å®æ´’ æŠ›èƒ¶é£˜ä¿Š è§„ç§¦çˆ¶ çª æ·€
 ////	}
 ////	const FVector DefaultDummyCenterLocation = LocalB2Player ? LocalB2Player->GetActorLocation() : FVector(0.0f, 0.0f, 0.0f);
 ////		
-////	// ¸Ê¿¡ ¹èÄ¡ÇØ ³õÀº SkeletalMeshActor À§Ä¡¸¦ °¡Áö°í ±âÁØ À§Ä¡·Î »ïÀ½. ÀÌ°Ô ¾øÀ¸¸é ·ÎÄÃ ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ À§Ä¡¸¦ ±âÁØÀ¸·Î.
+////	// ç”˜ä¿Š ç¡…æ‘¹ç§¦ åˆç¯® SkeletalMeshActor å›°æ‘¹ç”« å•Šç˜¤ç»Š æ‰éœ– å›°æ‘¹è‚º ä¼™æ¾œ. æéœ¸ ç»æ æ è‚ºæ‹¿ æ•²é¥­æç»¢ æŸè…ç£ å›°æ‘¹ç”« æ‰éœ–æ è‚º.
 ////	ASkeletalMeshActor* TargetMobMarker = nullptr;
 ////	TArray<ASkeletalMeshActor*> DummyPlayerMarkers;
 ////	GatherDummyMarkers(TargetMobMarker, DummyPlayerMarkers);
 ////
-////	// Á¡·ÉÀü Å×½ºÆ®¿¡¼­´Â ÇÃ·¹ÀÌ¾î ¼ö¸¦ º¯°æ½ÃÅ³ ÇÊ¿ä°¡ Á» ÀÖ¾úÁö¸¸ ÀÌ°Ç Â©¾øÀÌ 4¸¶¸®.
+////	// ç—¢é£å‚ˆ æŠ›èƒ¶é£˜ä¿Šè¾‘ç»° æ•²é¥­æç»¢ èç”« å‡½ç‰ˆçŸ«æ‡¦ é˜å¤¸å•Š ç²± ä¹èŒç˜¤çˆ¶ ææ‰’ æ¼ç»æ 4ä»˜åºœ.
 ////	const int32 TotalDummyPlayerNum = 4;
 ////	for (int32 DPI = 0; DPI < TotalDummyPlayerNum; ++DPI)
 ////	{		
@@ -216,7 +216,7 @@
 ////	}
 ////
 ////	DummyRaidTargetMob = SpawnSingleTestMobDummy(
-////		// À§Ä¡¸¦ ¿Ã¸®´Â °Ç ÇÏ´Ü ±âÁØ SkeletalMeshActor ¿ÍÀÇ offset º¸Á¤ÀÎµ¥ Á¤È®ÇÏ°Ô ÇÏÁö´Â ¸øÇÏ°í.. ¾îÂ÷ÇÇ spawn ½Ã ¶¥¹Ù´Ú¿¡ snap µÊ.
+////		// å›°æ‘¹ç”« æ£µåºœç»° æ‰’ çªçªœ æ‰éœ– SkeletalMeshActor å®¢ç‹¼ offset ç„Šæ²¥ç‰¢å• æ²¥çŠ¬çªéœ¸ çªç˜¤ç»° ç»™çªç»Š.. ç»¢ç’ä¹” spawn çŸ« é¡¶å®˜è¹¿ä¿Š snap å‡³.
 ////		TargetMobMarker ? TargetMobMarker->GetActorLocation() + FVector(0.0f,0.0f,500.0f) : DefaultDummyCenterLocation,
 ////		TargetMobMarker ? TargetMobMarker->GetActorRotation() : FRotator(0.f, 0.f, 0.f)
 ////	);
@@ -227,9 +227,9 @@
 ////		ABladeIIWorldSettings* B2WS = Cast<ABladeIIWorldSettings>(TheWorld->GetWorldSettings());
 ////		if (B2WS)
 ////		{
-////			// WorldSetting ÀÇ CameraSetting À» ¾²´Â °¡Á¤. ActiveCameraActor °¡ ÀÖ´Ù¸é ¹«¿ëÁö¹°.
-////			// ¸¸ÀÏ ¸ÊÀÌ ·ÎµùµÈ Ã¤·Î ÀÌ°Ô ¿©·¯¹ø ºÒ¸®¸é ½ºÄÉÀÏÀÌ °è¼Ó ´©ÀûµÇ°ÚÁö..
-////			B2WS->DefaultPlayerCameraSettings.bOverrideCameraBoomArmLength = true; // DefaultPlayerCameraSettings Á¢±ÙÇÏ·Á°í friend class ¼±¾ğÇÔ. Á¤½Ä ±â´ÉÀº ¾Æ´Ï´Ï Àû´çÈ÷..
+////			// WorldSetting ç‹¼ CameraSetting é˜‘ é™ç»° å•Šæ²¥. ActiveCameraActor å•Š ä¹ä¿ƒæ å…¬ä¾©ç˜¤æ‹±.
+////			// çˆ¶è€ ç”˜æ è‚ºçˆ¹ç­‰ ç›²è‚º æéœ¸ å’¯çŸ¾é”… é˜‚åºœæ èƒ¶çº³è€æ æ‹ŒåŠ  ç©¿åˆ©ç™»æ‘†ç˜¤..
+////			B2WS->DefaultPlayerCameraSettings.bOverrideCameraBoomArmLength = true; // DefaultPlayerCameraSettings ç«‹è¾Ÿçªå¦¨ç»Š friend class æ€¥æ”«çªƒ. æ²¥ä¾¥ æ‰ç“·ç¯® é…’èªèª åˆ©å¯¸æ´’..
 ////			B2WS->DefaultPlayerCameraSettings.CameraBoomArmLength *= CamDistScale;
 ////			ApplyNormallyExpectedInGameCamera(this,
 ////				Cast<ABladeIIPlayerController>(UGameplayStatics::GetLocalPlayerController(TheWorld)),
@@ -239,7 +239,7 @@
 ////		TheWorld->GetTimerManager().SetTimer(TestSessionTH, this, &ATEST_RaidGameMode::EndTestSession, InTestSessionTime, false);
 ////	}	
 ////
-////#if BII_STATS // ¼º´É ¼öÁı ¹× Ç¥½Ã.
+////#if BII_STATS // å·±ç“· èç¬¼ æ£º é’çŸ«.
 ////	FStatisticalPerfStatCollector::bDoStatCollecting = bGatherPerfStats;
 ////	if (bGatherPerfStats) {
 ////		PerfStatCollector.OnBegin(this);
@@ -251,11 +251,11 @@
 //
 //ABladeIITestDummyPlayer* ATEST_RaidGameMode::SpawnSingleTestPlayerDummy(int32 InMyIndex, const FVector& InDummyCenterLocation)
 //{
-//	// ¾à°£ÀÇ ·£´ıÀ» °¡ÇÏ´Â °ÍÀÌ ÁÁÀ»±î ¾Æ´Ï¸é ¿ÏÀüÈ÷ ¶È°°Àº °ÍÀÌ ÁÁÀ»±î.. ±×µ¿¾ÈÀÇ ÆÀ´ëÀüÀÌ³ª Á¡·ÉÀü Å×½ºÆ® °æÇè¿¡ ÀÇÇÏ¸é ¾à°£ÀÇ ·£´ıÀÌ Å×½ºÆ® °á°ú¿¡ ¿µÇâÀ» ¹ÌÄ¡Áö´Â ¾ÊÀ» °Í °°´Ù.
+//	// è·åŸƒç‹¼ ç½šå¾…é˜‘ å•Šçªç»° å·´æ äº®é˜‘é³– é…’èªæ è‚¯å‚ˆæ´’ åº¦éç¯® å·´æ äº®é˜‘é³–.. å¼Šæ‚¼æ•‘ç‹¼ è¯„æªå‚ˆæå”± ç—¢é£å‚ˆ æŠ›èƒ¶é£˜ ç‰ˆæ°°ä¿Š ç‹¼çªæ è·åŸƒç‹¼ ç½šå¾…æ æŠ›èƒ¶é£˜ æ¬è‹ä¿Š åº·æ°¢é˜‘ å›ºæ‘¹ç˜¤ç»° è‡¼é˜‘ å·´ éä¿ƒ.
 //
 //
 //	FVector2D SpawnDir(FMath::FRandRange(-1.0f, 1.0f), FMath::FRandRange(-1.0f, 1.0f));
-//	// È¤½Ã¶óµµ ¹ÌÄ£µíÀÌ ÀÛÀº ¼ıÀÚ°¡ ³ª¿À´Â ·Î¶Ç¿¡ ´çÃ·µÇ¸é °ï¶õÇÏ´Ï
+//	// è¶£çŸ«æ‰¼æ¡£ å›ºæ¨¡æ·€æ ç´¯ç¯® ç®­ç£Šå•Š å”±å·ç»° è‚ºè‚šä¿Š å¯¸æ¢…ç™»æ å¸®é„‚çªèª
 //	if (FMath::Abs(SpawnDir.X) < KINDA_SMALL_NUMBER && FMath::Abs(SpawnDir.Y) < KINDA_SMALL_NUMBER)
 //	{
 //		SpawnDir.X = KINDA_SMALL_NUMBER;
@@ -274,10 +274,10 @@
 //
 //	ABladeIITestDummyPlayer* SpawnedDummy = ABladeIITestDummyPlayer::SpawnWithStandardEquipment(
 //		GetWorld(), SpawnClass, SpawnTransform, DummyEquipGrade, DummyFloatingUIInterval, DummyDamageFxInterval,
-//		bWingOn, MAX_WING_EVOLUTION_GRADE, true // ³¯°³ µî±Ş±îÁö´Â Á¤ÇØ³õ°í..
+//		bWingOn, MAX_WING_EVOLUTION_GRADE, true // æœä¿º æ®¿é­é³–ç˜¤ç»° æ²¥ç§¦åˆç»Š..
 //	);
 //
-//	if (SpawnedDummy) // ¾Ö´Ï¸ŞÀÌ¼ÇÀº Á¤ÇØÁø ½Ã°£ °£°İÀ¸·Î ·£´ı.
+//	if (SpawnedDummy) // å±€èªçš‹æè®°ç¯® æ²¥ç§¦æŸ³ çŸ«åŸƒ åŸƒæ‹œæ è‚º ç½šå¾….
 //	{
 //		SpawnedDummy->SetUseRandomAttackState(true);
 //		SpawnedDummy->SetCooltimeBetweenAnim(DummyAnimPlayInterval);
@@ -288,7 +288,7 @@
 //
 //ABladeIITestDummyNPC* ATEST_RaidGameMode::SpawnSingleTestMobDummy(const FVector& InLocation, const FRotator& InRotation)
 //{
-//	// ¿©±â¿£ ·£´ı ¾È ³ÖÀ½. ÁöÁ¤ÇÑ ÁÂÇ¥¿¡ ±×´ë·Î.
+//	// å’¯æ‰æµš ç½šå¾… æ•‘ æŒæ¾œ. ç˜¤æ²¥èŒ„ è°…é’ä¿Š å¼Šæªè‚º.
 //	FTransform SpawnTransform(InRotation, InLocation, FVector(1.0f, 1.0f, 1.0f));
 //	
 //	ABladeIITestDummyNPC* SpawnedDummy = ABladeIITestDummyNPC::SpawnUtil(GetWorld(), 
@@ -300,7 +300,7 @@
 //		SpawnedDummy->SetUseRandomAttackState(true);
 //		SpawnedDummy->SetCooltimeBetweenAnim(DummyAnimPlayInterval);
 //
-//		// È¸Àü¸¸ °¡´ÉÇÏ°Ô ÇÑ °Ç »ç¸£°ïÀ» ¿°µÎ¿¡ µĞ.. 
+//		// é›€å‚ˆçˆ¶ å•Šç“·çªéœ¸ èŒ„ æ‰’ è¤ç¦å¸®é˜‘ å ªæ»´ä¿Š æ•Œ.. 
 //		SpawnedDummy->SetMaintainLocation(true);
 //		SpawnedDummy->SetMaintainRotation(false);
 //	}
@@ -313,7 +313,7 @@
 //#if BII_STATS
 //	if (bGatherPerfStats)
 //	{
-//		PerfStatCollector.OnEnd(this); // ÀÌ¹ø ¼¼¼ÇÀÇ ¼ºÀûÇ¥¸¦ Ãâ·ÂÇØ º¾½Ã´Ù.
+//		PerfStatCollector.OnEnd(this); // æé”… æŠ€è®°ç‹¼ å·±åˆ©é’ç”« å…ä»¿ç§¦ å£•çŸ«ä¿ƒ.
 //	}
 //#endif
 //
@@ -323,7 +323,7 @@
 //		TheWorld->GetTimerManager().ClearTimer(TestSessionTH);
 //	}
 //
-//	// ¾ê´Â ±×³É ¸Ê¿¡ ¹Ú¾Æ³õÀº µ¥ÀÌÅÍ·Î´Ù
+//	// å¨Ÿç»° å¼Šæˆ ç”˜ä¿Š å† é…’åˆç¯® å•æç£è‚ºä¿ƒ
 //	if (DummyRaidTargetMob && DummyRaidTargetMob->IsValidObj())
 //	{
 //		DummyRaidTargetMob->Destroy();

@@ -1,4 +1,4 @@
-#include "B2UIContentsSubMain.h"
+ï»¿#include "B2UIContentsSubMain.h"
 #include "B2UIEnum.h"
 #include "Event.h"
 #include "B2UIManager.h"
@@ -60,27 +60,27 @@ void UB2UIContensSubMain::OnSceneOpen(EUIScene InOpenedScene)
 
 void UB2UIContensSubMain::GotoInvenScene()
 {
-	LobbyEnterHeroMgmtModeClass<EHeroMgmtSubMode>::GetInstance().Signal(EHeroMgmtSubMode::EHMSM_Inventory); // GameMode ÂÊ ½ÅÈ£
+	LobbyEnterHeroMgmtModeClass<EHeroMgmtSubMode>::GetInstance().Signal(EHeroMgmtSubMode::EHMSM_Inventory); // GameMode çŽ‡ è„šé¾‹
 }
 
 void UB2UIContensSubMain::GotoSkillScene()
 {
-	LobbyEnterHeroMgmtModeClass<EHeroMgmtSubMode>::GetInstance().Signal(EHeroMgmtSubMode::EHMSM_Skill); // GameMode ÂÊ ½ÅÈ£
+	LobbyEnterHeroMgmtModeClass<EHeroMgmtSubMode>::GetInstance().Signal(EHeroMgmtSubMode::EHMSM_Skill); // GameMode çŽ‡ è„šé¾‹
 }
 
 void UB2UIContensSubMain::GotoBrevetScene()
 {
-	LobbyEnterHeroMgmtModeClass<EHeroMgmtSubMode>::GetInstance().Signal(EHeroMgmtSubMode::EHMSM_Brevet); // GameMode ÂÊ ½ÅÈ£
+	LobbyEnterHeroMgmtModeClass<EHeroMgmtSubMode>::GetInstance().Signal(EHeroMgmtSubMode::EHMSM_Brevet); // GameMode çŽ‡ è„šé¾‹
 }
 
 void UB2UIContensSubMain::GotoWingScene()
 {
-	LobbyEnterHeroMgmtModeClass<EHeroMgmtSubMode>::GetInstance().Signal(EHeroMgmtSubMode::EHMSM_Wing); // GameMode ÂÊ ½ÅÈ£
+	LobbyEnterHeroMgmtModeClass<EHeroMgmtSubMode>::GetInstance().Signal(EHeroMgmtSubMode::EHMSM_Wing); // GameMode çŽ‡ è„šé¾‹
 }
 
 void UB2UIContensSubMain::GotoConstantheroScene()
 {
-	LobbyEnterHeroMgmtModeClass<EHeroMgmtSubMode>::GetInstance().Signal(EHeroMgmtSubMode::EHMSM_Relic); // GameMode ÂÊ ½ÅÈ£
+	LobbyEnterHeroMgmtModeClass<EHeroMgmtSubMode>::GetInstance().Signal(EHeroMgmtSubMode::EHMSM_Relic); // GameMode çŽ‡ è„šé¾‹
 	//DevShowNotReadyYetMessage();
 }
 

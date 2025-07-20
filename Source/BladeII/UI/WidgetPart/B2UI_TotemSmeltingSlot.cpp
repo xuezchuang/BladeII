@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UI_TotemSmeltingSlot.h"
 
 #include "B2ItemInfo.h"
@@ -256,7 +256,7 @@ FText UB2UI_TotemSmeltingSlot::GetSubOptionTypeText(ETotemSubOptionType InSubOpt
 
 void UB2UI_TotemSmeltingSlot::OnClickBTN_Smelting()
 {
-	// ÆË¾÷ ±âÈ¹ÀÌ Á¦°ÅµÇ°í ¹öÆ°À» Enabled ½ÃÅ°´Â°É·Î º¯°æ
+	// æ‰‘è¯€ æ‰è£™æ åŠ›èŠ­ç™»ç»Š æ»šç“¢é˜‘ Enabled çŸ«è™ç»°å§è‚º å‡½ç‰ˆ
 // 	if (IsEnoughCost == false)
 // 	{
 // 		if (CashedCostType == ETotemRefineCostType::TRC_GOLD)

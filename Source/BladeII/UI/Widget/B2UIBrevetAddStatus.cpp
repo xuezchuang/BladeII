@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIBrevetAddStatus.h"
 #include "B2UIManager.h"
@@ -38,7 +38,7 @@ void UB2UIBrevetAddStatus::InitBrevetAddStatus(UB2LobbyUI_BrevetMain* pOwnerUI, 
 		IMG_Icon->SetBrushFromMaterial(pIconMI);
 	}
 
-	// °ÔÀÌÁö ¼³Á¤..
+	// éœ¸æžç˜¤ æ±²æ²¥..
 	if (IMG_Gauge.IsValid())
 	{
 		UMaterialInstanceDynamic* DynamicMI = IMG_Gauge->GetDynamicMaterial();

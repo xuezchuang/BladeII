@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UICostumeStoreItemSlot.h"
 #include "B2UIStoreProductCost.h"
@@ -159,7 +159,7 @@ void UB2UICostumeStoreItemSlot::SetPackageProductMark(int32 ProductId)
 
 void UB2UICostumeStoreItemSlot::OnClickedSlotButton()
 {
-	//UI Popup + ÄÚ½ºÆ¬ ¹Ì¸®º¸±â
+	//UI Popup + å†…èƒ¶ç‰‡ å›ºåºœç„Šæ‰
 	SelectCostumePackageClass<int32>::GetInstance().Signal(StoreProductId);
 	
 }

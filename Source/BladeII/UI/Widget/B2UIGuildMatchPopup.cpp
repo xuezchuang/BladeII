@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIGuildMatchPopup.h"
 #include "B2UIManager.h"
 
@@ -117,7 +117,7 @@ void UB2UIGuildMatchPopup::OpenPopup(int32 GuildState, int32 GuildPosition)
 			return;
 		}
 
-		if (b2network::B2GuildMemberRank::NORMAL == GuildPosition)		//ºÎ±æ¸¶³ª ±æ¸¶°¡ ¾Æ´Ò¶§ ½ÅÃ»¸øÇÔ
+		if (b2network::B2GuildMemberRank::NORMAL == GuildPosition)		//ä½•è¾¨ä»˜å”± è¾¨ä»˜å•Š é…’åŒ†é”­ è„šæ²¡ç»™çªƒ
 		{
 			GUILDMATCHSTATE(CP_ImpossibleMsg, CP_GuildMatchRequest, CP_GuildMatch);
 			RTB_ImpossibleMsg->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Guild_BattleRequestStatePopupMessageMember")));

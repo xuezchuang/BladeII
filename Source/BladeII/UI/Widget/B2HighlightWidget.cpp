@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2HighlightWidget.h"
@@ -96,7 +96,7 @@ void UB2HighlightWidget::ExtractTutorialInfo(const FString& WidgetName, int32& T
 		const int32 SecondDividePos = WidgetName.Find(DivideChar, ESearchCase::IgnoreCase, ESearchDir::FromStart, StepBeginPos);
 		if (SecondDividePos != INDEX_NONE)
 		{
-			// _dialog Çü½ÄÀÇ Highlight
+			// _dialog å±ˆä¾¥ç‹¼ Highlight
 			StepStrCount = SecondDividePos - StepBeginPos;
 
 			bDialog = true;
@@ -235,7 +235,7 @@ FVector2D UB2HighlightWidget::ConvertPosition(const FGeometry& Geometry)
 
 	FVector2D fv2ConvertPosition;// = RenderInfo.DrawPosition;
 
-#if WITH_EDITOR	//»õ ¿¡µðÅÍ Ã¢¿¡¼­ ½ÇÇà½Ã Å¸ÀÌÆ²¹Ù±îÁö Æ÷ÇÔÇÏ¿© À©µµ¿ì ÁÂÇ¥ °è»êÇØÁÖ´Â°ÍÀ» »­
+#if WITH_EDITOR	//è´§ ä¿Šå¼ç£ èŠ’ä¿Šè¾‘ è§’é’çŸ« é¸¥æžæ’‡å®˜é³–ç˜¤ å™¨çªƒçªå’¯ æ‰©æ¡£å¿« è°…é’Ž æ‹Œé­‚ç§¦æž—ç»°å·´é˜‘ ç”»
 
 	if (CachedTutorialUI.IsValid())
 	{
@@ -247,7 +247,7 @@ FVector2D UB2HighlightWidget::ConvertPosition(const FGeometry& Geometry)
 			{
 				FOptionalSize fSize = Window->GetTitleBarSize();
 
-				if (fSize.Get() > 0.f)	//bCreateTitleBar Ã¼Å©
+				if (fSize.Get() > 0.f)	//bCreateTitleBar çœ‰å†œ
 				{
 					const FVector2D fWindowBezel = FVector2D(5, 30);
 					fv2ConvertPosition -= fWindowBezel;

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIEtherScrollSlot.h"
 #include "B2UIEther.h"
@@ -39,7 +39,7 @@ void UB2UIEtherScrollSlot::CacheAssets()
 	GET_SLOT(UTextBlock, X_TB_EtherName);
 	GET_SLOT(UTextBlock, X_TB_EnhaceLevel);
 	
-	//½ÇÁ¦·Î ´­¸®´Â°Ô ¾Æ´Ñ ½Ã±×³Î È£Ãâ¿ë Æ©Åä¸®¾ó ¹öÆ°
+	//è§’åŠ›è‚º å–˜åºœç»°éœ¸ é…’å›± çŸ«å¼Šæ¾„ é¾‹å…ä¾© è­¬é…åºœå€” æ»šç“¢
 	GET_SLOT(UB2Button, BTN_Tutorial);
 	GET_SLOT(UB2UIStarGradePart, UIP_Star);
 	GET_SLOT(UPanelWidget, X_PW_EquipUI);

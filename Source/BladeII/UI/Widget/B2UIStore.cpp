@@ -1,4 +1,4 @@
-#include "B2UIStore.h"
+Ôªø#include "B2UIStore.h"
 #include "B2UIManager.h"
 #include "B2UIHeader.h"
 #include "B2UIDocHelper.h"
@@ -247,7 +247,7 @@ static UB2UIStoreProductCost* GetCostToBuyUIP(UB2UIWidgetBase* InCostToBuyOwnerU
 {
 	if (InCostToBuyOwnerUIP)
 	{
-		// ≥◊¿Ã∆º∫Í UIWidgetBase ≈¨∑°Ω∫∑Œ ±◊≥… ∏∏µÈæÓº≠ æ≤¥¬ ∞‘ ¿÷¿Ω.. §—§—
+		// ÂåôÊçûËêçÂÆè UIWidgetBase Âä™Ë¥∞ËÉ∂ËÇ∫ ÂºäÊàê Áà∂Áî∏Áª¢Ëæë ÈùôÁª∞ Èú∏ ‰πêÊæú.. „Å±„Å±
 		return InCostToBuyOwnerUIP->GetSlot<UB2UIStoreProductCost>(TEXT("UIP_CostToBuy"));
 	}
 	return nullptr;
@@ -1017,8 +1017,8 @@ void UB2UIStore::SetBonusData_ConfirmBuy(EStoreItemCost CostType, bool bShowBonu
 		ConditionalCreateConfirmToBuyPopup_Gem();
 		if (Created_UIP_ConfirmToBuyPopup_Gem)
 		{
-			// UIWidgetBase ≥◊¿Ã∆º∫Í∑Œ ∫Ì∑Á«¡∏∞∆Æø°∏∏ ¡∏¿Á«œ¥¬ ∞≈∂Û ¿Ã∑∏∞‘ ∞°¡Æø». øæ≥Ø «—∂ß≥™ ¿Ã∑∏∞‘ ∏∏µÈæ˙¥¯ ∞≈ ∞∞¿∫µ•. µ˚∂Û«œ¡ˆ ∏øΩ√¥Ÿ.
-			// ø¯∑° æ∆∑° ƒ⁄µÂ∞° ∫Ì∑Á«¡∏∞∆Æø° ¿÷æ˙¿Ω.
+			// UIWidgetBase ÂåôÊçûËêçÂÆèËÇ∫ ÂñâÈ£éÊ©áËµ¥È£ò‰øäÁà∂ Á≤ÆÁäÅÁ™çÁª∞ Ëä≠Êâº ÊçûÁäØÈú∏ ÂïäÂªâÂí≥. ÁÉ§Êúù ËåÑÈî≠Âî± ÊçûÁäØÈú∏ Áà∂Áî∏ËèåÂ∏¶ Ëä≠ ÈûçÁØÆÂçï. Ëù∂ÊâºÁ™çÁò§ ÁºöÁü´‰øÉ.
+			// ÁõîË¥∞ ÈÖíË¥∞ ÂÜÖÈùõÂïä ÂñâÈ£éÊ©áËµ¥È£ò‰øä ‰πêËèåÊæú.
 			UB2RichTextBlock* TB_Bonus = Created_UIP_ConfirmToBuyPopup_Gem->GetSlot<UB2RichTextBlock>(TEXT("TB_Bonus"));
 			check(TB_Bonus);
 			if (TB_Bonus)
@@ -1125,7 +1125,7 @@ void UB2UIStore::OnMileageChanged()
 
 void UB2UIStore::ClosePopupConfirmToBuyItem()
 {
-	// ¥›¥¬ ∞˜ø°º≠ ConditionalCreate~~ ∏¶ «“ « ø‰∞° æ¯¥Ÿ.. ¿Ã∑± ƒ⁄µÂ¥¬ æ∆¡˜ «ÿ¥Á ∆ƒ∆Æ∞° ªÁøÎ¿Ã æ»µ«¥¬ ªÛ»≤ø°º≠µµ ∫“∏± ºˆ ¿÷¿∏π«∑Œ ª˝º∫¿ª Ω√µµ«œ∏È ≥∂∫Ò∞° µ… ºˆ ¿÷¿Ω.
+	// ÊëßÁª∞ Èïë‰øäËæë ConditionalCreate~~ Áî´ ‰∏î ÈûòÂ§∏Âïä Áªù‰øÉ.. ÊçûÁπÅ ÂÜÖÈùõÁª∞ ÈÖíÊµÅ Áß¶ÂØ∏ È¢áÈ£òÂïä Ëç§‰æ©Êçû ÊïëÁôªÁª∞ ÊÉëÁÇî‰øäËæëÊ°£ ÈòÇÂâØ Ëçê ‰πêÊ†èÈ™®ËÇ∫ ÁßØÂ∑±Èòë Áü´Ê°£Á™çÊêÅ ÊâØÂéöÂïä Áû™ Ëçê ‰πêÊæú.
 
 	if (Created_UIP_ConfirmToBuyPopup_Gem)
 		Created_UIP_ConfirmToBuyPopup_Gem->ClosePopup();
@@ -1270,7 +1270,7 @@ void UB2UIStore::ConditionalCreateMileageRewardPopup()
 	//	if (Created_UIP_MileageRewardPopup)
 	//	{
 	//		if (RewardIconTemplate) {
-	//			Created_UIP_MileageRewardPopup->SetRewardTemplateClass(RewardIconTemplate); // RewardIconTemplate ±Ó¡ˆ¥¬ µø¿˚ ∑Œµ˘¿∫ æ∆¥œ¥Ÿ. 
+	//			Created_UIP_MileageRewardPopup->SetRewardTemplateClass(RewardIconTemplate); // RewardIconTemplate È≥ñÁò§Áª∞ ÊÇºÂà© ËÇ∫ÁàπÁØÆ ÈÖíËÅ™‰øÉ. 
 	//		}
 	//		Created_UIP_MileageRewardPopup->Init();
 	//	}
@@ -1285,7 +1285,7 @@ void UB2UIStore::ConditionalCreateConfirmToBuyPopup_Gem()
 	//	{
 	//		Created_UIP_ConfirmToBuyPopup_Gem->Init();
 
-	//		// BindDelegate µµ ø©±‚º≠
+	//		// BindDelegate Ê°£ ÂíØÊâÅËæë
 	//		BIND_RELEASE_FUNC_TO_BTN(TWeakObjectPtr<UB2Button>(Created_UIP_ConfirmToBuyPopup_Gem->GetSlot<UB2Button>(TEXT("BTN_Negative"))), &UB2UIStore::CloseConfirmToBuyPopupGemPopup);
 	//		BIND_RELEASE_FUNC_TO_BTN(TWeakObjectPtr<UB2Button>(Created_UIP_ConfirmToBuyPopup_Gem->GetSlot<UB2Button>(TEXT("BTN_Positive"))), &UB2UIStore::SubmitConfirmToBuyGem);
 	//		BIND_RELEASE_FUNC_TO_BTN(TWeakObjectPtr<UB2Button>(Created_UIP_ConfirmToBuyPopup_Gem->GetSlot<UB2Button>(TEXT("BTN_Detail"))), &UB2UIStore::DetailConfirmToBuyItem);
@@ -1309,7 +1309,7 @@ void UB2UIStore::ConditionalCreateConfirmToBuyPopup_Normal()
 	//	if (Created_UIP_ConfirmToBuyPopup_Normal)
 	//	{
 	//		Created_UIP_ConfirmToBuyPopup_Normal->Init();
-	//		// BindDelegate µµ ø©±‚º≠
+	//		// BindDelegate Ê°£ ÂíØÊâÅËæë
 	//		BIND_RELEASE_FUNC_TO_BTN(TWeakObjectPtr<UB2Button>(Created_UIP_ConfirmToBuyPopup_Normal->GetSlot<UB2Button>(TEXT("BTN_Negative"))), &UB2UIStore::CloseConfirmToBuyPopupNormalPopup);
 	//		BIND_RELEASE_FUNC_TO_BTN(TWeakObjectPtr<UB2Button>(Created_UIP_ConfirmToBuyPopup_Normal->GetSlot<UB2Button>(TEXT("BTN_Positive"))), &UB2UIStore::SubmitConfirmToBuyItem);
 

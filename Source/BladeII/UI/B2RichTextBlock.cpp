@@ -1,4 +1,4 @@
-
+ï»¿
 #include "B2RichTextBlock.h"
 #include "UMGStyle.h"
 
@@ -37,7 +37,7 @@ UB2RichTextBlock::UB2RichTextBlock(const FObjectInitializer& ObjectInitializer)
 	Color = FLinearColor::White;
 
 	
-	SetVisibility(ESlateVisibility::HitTestInvisible); // ±¦È÷ ¾Æ·¡ °¡¸®Áö ¾Ê°Ô ±âº»°ª HitTestInvisible ·Î.
+	SetVisibility(ESlateVisibility::HitTestInvisible); // å®æ´’ é…’è´° å•Šåºœç˜¤ è‡¼éœ¸ æ‰å¤¯è”¼ HitTestInvisible è‚º.
 }
 
 void UB2RichTextBlock::ReleaseSlateResources(bool bReleaseChildren)
@@ -137,7 +137,7 @@ const FText& UB2RichTextBlock::GetText()
 //{
 	// re4ever UE4 MERGE 4.14. GetEditorIcon is deprecated. 
 	// DEPRECATED(4.12, "GetEditorIcon is deprecated. Please define widget icons in your style set in the form ClassIcon.MyWidget, and register your style through FClassIconFinder::(Un)RegisterIconSource")
-	// FUMGStyle::Create ¿¡ ¹º°¡ µî·ÏÀº ÇØ ³õ¾Ò´Âµ¥ Á¤È®È÷ ÀÌÀü ÀÌ¹ÌÁö·Î ³ª¿ÀÁö´Â ¾Ê°í ÀÖÀ½. ±â³É ÀÌ´ë·Î ½áµµ º° ¹®Á¦´Â ¾øÀ» µí ÇÏÁö¸¸
+	// FUMGStyle::Create ä¿Š è´­å•Š æ®¿åºŸç¯® ç§¦ åˆç–½ç»°å• æ²¥çŠ¬æ´’ æå‚ˆ æå›ºç˜¤è‚º å”±å·ç˜¤ç»° è‡¼ç»Š ä¹æ¾œ. æ‰æˆ ææªè‚º ç»“æ¡£ å–Š å·©åŠ›ç»° ç»é˜‘ æ·€ çªç˜¤çˆ¶
 	//return FUMGStyle::Get().GetBrush("Widget.RichTextBlock");
 //}
 

@@ -1,8 +1,9 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 //#include "BladeII.h"
 #include "UObject/NoExportTypes.h"
+#include "Engine/DataTable.h"
 #include "B2EtherSetOptionInfo.generated.h"
 
 /**
@@ -15,13 +16,13 @@ struct FEtherSetOptionInfoData : public FTableRowBase
 	GENERATED_USTRUCT_BODY()
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	int32 SetOptionID;												//¿¡Å×¸£ ¼¼Æ® ¿É¼Ç ID
+	int32 SetOptionID;												//ä¿ŠæŠ›ç¦ æŠ€é£˜ å¯è®° ID
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	FString EtherSetOptionName;										//¿¡Å×¸£ ¼¼Æ® ¿É¼Ç ÀÌ¸§
+	FString EtherSetOptionName;										//ä¿ŠæŠ›ç¦ æŠ€é£˜ å¯è®° ææŠš
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	FString EtherSetOptionDesc;										//¿¡Å×¸£ ¼¼Æ® ¿É¼Ç ¼³¸í
+	FString EtherSetOptionDesc;										//ä¿ŠæŠ›ç¦ æŠ€é£˜ å¯è®° æ±²ç–™
 };
 
 

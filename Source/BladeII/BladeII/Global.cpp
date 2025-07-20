@@ -1,4 +1,4 @@
-
+ï»¿
 
 #include "Global.h"
 #include "B2NetworkBridge.h"
@@ -34,27 +34,27 @@
 #include "BladeIIScalabilityControl.h"
 
 
-FString GB2NetworkIni; // Default ¼³Á¤ÀÌ ÀÖ´Â ½Ã½ºÅÛ ini ÀÓ. »ç¿ëÀÚ ¼³Á¤ ÀúÀå¿ëÀº ¾Æ´Ò µí.
+FString GB2NetworkIni; // Default æ±²æ²¥æ ä¹ç»° çŸ«èƒ¶è¢ ini çƒ™. è¤ä¾©ç£Š æ±²æ²¥ å†å˜ä¾©ç¯® é…’åŒ† æ·€.
 #if ENABLE_LOCAL_CUTSCENE_SAVED_STATE
-					   // B2StageEventDirector ÀÇ Æ¯Á¤ ÀÌº¥Æ® Àå¸é ÇÃ·¹ÀÌ »óÅÂ ÀúÀå ¿ë.
-					   // ÀÌ°Ô ²Ï³ª ÀĞ°í ¾²´Â ¾çÀÌ ¸¹Àºµ¥ Áö±İÀ¸·Î¼± ÇÃ·¹ÀÌ ¿©ºÎ¿¡ µû¶ó ¹» ÇÏ´Â °Ô ¾øÀ¸´Ï Á¦°ÅÇØ ³õ´Â´Ù.
+					   // B2StageEventDirector ç‹¼ æ¼‚æ²¥ æäº¥é£˜ å˜æ æ•²é¥­æ æƒ‘æ€• å†å˜ ä¾©.
+					   // æéœ¸ èš•å”± ä½¬ç»Š é™ç»° å‰§æ è…¹ç¯®å• ç˜¤é™›æ è‚ºæ€¥ æ•²é¥­æ å’¯ä½•ä¿Š è¶æ‰¼ å¤Ÿ çªç»° éœ¸ ç»æ èª åŠ›èŠ­ç§¦ åˆç»°ä¿ƒ.
 FString GB2LocalCutSceneSavedStateIni;
 #endif
-FString GB2NewAcquireStateIni; // ¾î¶² Á¾·ùµç ÇØ´ç Á¾·ùÀÇ ¾ÆÀÌÅÛÀ» »õ·Î ½Àµæ½Ã new ¸¶Å©¸¦ ¶ç¿ö¾ß ÇÏ´Â °Í¿¡ ´ëÇÑ »óÅÂ ÀúÀå ¿ë. ±Ùµ¥ ÀÌÁ¦ ÇÊ¿ä ¾øÀ¸·Á³ª..
-FString GB2GeneralSavedStateIni; // ±âÅ¸ Àâ´ÙÇÑ, ±»ÀÌ º°µµ ÆÄÀÏ·Î ¶¼¾î³¾ ÇÊ¿ä ¾ø´Â ·ÎÄÃ »óÅÂ ÀúÀå¿ë ini
-FString GB2PreRenderSavedStateIni; // ¸®¼Ò½º Å¸ÀÔ º° Pre-render »óÅÂ ÀúÀå. ¼ÎÀÌ´õ Ä³½¬°¡ (¾Æ¸¶µµ) µÇ¾ú´ÂÁö ¿©ºÎ¿¡ ´ëÇÑ BladeII °ÔÀÓ´ÜÀÇ high-level state. ÁÖÀÇ : ÀÌ »óÅÂ°¡ ½ÇÁ¦ ¼ÎÀÌ´õ Ä³½¬ ¿©ºÎ¸¦ Á÷Á¢ÀûÀ¸·Î ¹İ¿µÇÏ´Â °Ç ¾Æ´Ï´Ù. ´ÜÁö ¿©±â¼­ ÀúÀåÇÏ´Â »óÅÂÀÇ µ¿ÀÛ ¸ñÀûÀÌ ¼ÎÀÌ´õ Ä³½ÌÀÎ °Í.
-FString GB2UserSavedStateIni; //User Á¾¼ÓÀû µ¥ÀÌÅÍ ÀúÀå
+FString GB2NewAcquireStateIni; // ç»¢æ« è¾†å¹…ç”µ ç§¦å¯¸ è¾†å¹…ç‹¼ é…’æè¢é˜‘ è´§è‚º åš¼å«çŸ« new ä»˜å†œç”« å‰å†µå…· çªç»° å·´ä¿Š æªèŒ„ æƒ‘æ€• å†å˜ ä¾©. è¾Ÿå• æåŠ› é˜å¤¸ ç»æ å¦¨å”±..
+FString GB2GeneralSavedStateIni; // æ‰é¸¥ æ£±ä¿ƒèŒ„, è¢«æ å–Šæ¡£ é¢‡è€è‚º éƒ½ç»¢å°˜ é˜å¤¸ ç»ç»° è‚ºæ‹¿ æƒ‘æ€• å†å˜ä¾© ini
+FString GB2PreRenderSavedStateIni; // åºœå®¶èƒ¶ é¸¥æ¶ å–Š Pre-render æƒ‘æ€• å†å˜. å˜‰ææ­¹ æŸæµ†å•Š (é…’ä»˜æ¡£) ç™»èŒç»°ç˜¤ å’¯ä½•ä¿Š æªèŒ„ BladeII éœ¸çƒ™çªœç‹¼ high-level state. æ—ç‹¼ : æ æƒ‘æ€•å•Š è§’åŠ› å˜‰ææ­¹ æŸæµ† å’¯ä½•ç”« æµç«‹åˆ©æ è‚º é¦†åº·çªç»° æ‰’ é…’èªä¿ƒ. çªœç˜¤ å’¯æ‰è¾‘ å†å˜çªç»° æƒ‘æ€•ç‹¼ æ‚¼ç´¯ æ ¼åˆ©æ å˜‰ææ­¹ æŸæ•™ç‰¢ å·´.
+FString GB2UserSavedStateIni; //User è¾†åŠ åˆ© å•æç£ å†å˜
 
-bool GbLocalSavedStateCleared = false; // À§ ini µé Áß ·ÎÄÃ »óÅÂ ÀúÀå¿ë ini µéÀ» Å¬¸®¾î ÇÑ »óÈ²¿¡¼­ ÄÑÁü. (´ëÃ¼·Î °èÁ¤»èÁ¦ µîÀÇ »óÈ²)
+bool GbLocalSavedStateCleared = false; // å›° ini ç”¸ å è‚ºæ‹¿ æƒ‘æ€• å†å˜ä¾© ini ç”¸é˜‘ åŠªåºœç»¢ èŒ„ æƒ‘ç‚”ä¿Šè¾‘ éš¾å’™. (æªçœ‰è‚º æ‹Œæ²¥æ˜åŠ› æ®¿ç‹¼ æƒ‘ç‚”)
 
 void LoadLocalIniStateOnStartup()
-{ // GB2UserSavedStateIni ¿¡¼­ ÀĞ¾îµéÀÌ´Â °Ç ¿©±â¿¡ ³õÀ¸¸é ¾ÈµÊ.
+{ // GB2UserSavedStateIni ä¿Šè¾‘ ä½¬ç»¢ç”¸æç»° æ‰’ å’¯æ‰ä¿Š åˆæ æ æ•‘å‡³.
 	//UB2PreRenderer::LoadCompleteState();
 }
 void LoadLocalIniStateOnNetworkInit()
-{// GB2UserSavedStateIni ¿¡¼­ ÀĞ¾îµéÀÌ´Â °Í.
-	// ÀÌ°Ç ModuleStartup º¸´Ù ´Ê°Ô.. ·Îºñ ·ÎµùµÇ°í ³×Æ®¿öÅ© ÃÊ±âÈ­ µÈ ÀÌÈÄ¿¡ ºÒ¸®°Ô µÇ´Âµ¥ 
-	// ±× Àü¿¡ ÀĞ¾îµéÀÌ ÇÊ¿ä°¡ ÀÖ´Ù¸é GB2UserSavedStateIni ¿¡ ³Ö¾î¼± ¾ÈµÈ´Ù.
+{// GB2UserSavedStateIni ä¿Šè¾‘ ä½¬ç»¢ç”¸æç»° å·´.
+	// ææ‰’ ModuleStartup ç„Šä¿ƒ è¯éœ¸.. è‚ºåš è‚ºçˆ¹ç™»ç»Š åŒ™é£˜å†µå†œ æª¬æ‰æ‹³ ç­‰ æé¥¶ä¿Š é˜‚åºœéœ¸ ç™»ç»°å• 
+	// å¼Š å‚ˆä¿Š ä½¬ç»¢ç”¸æ é˜å¤¸å•Š ä¹ä¿ƒæ GB2UserSavedStateIni ä¿Š æŒç»¢æ€¥ æ•‘ç­‰ä¿ƒ.
 	BladeIIGameImpl::GetClientDataStore().LoadLocalData();
 	UB2Airport::LoadLocalData();
 }
@@ -66,28 +66,28 @@ static void SaveLocalIniStateCommon()
 	//UB2PreRenderer::SaveCompleteState();
 }
 void SaveLocalIniStateOnExit()
-{// ModuleShutdown ½ÃÁ¡Àº Á¤»ó Á¾·á°¡ ¾Æ´Ñ °æ¿ì °ÅÄ¡Áö ¾ÊÀ» ¼ö ÀÖÀ¸¹Ç·Î ´Ù¸¥ °÷ (OnPreLoadMap ¹× ±âÅ¸ °³º°ÀûÀÎ ºÎºĞ) ¿¡¼­µµ ÀúÀåÀ» ÇÒ ÇÊ¿ä°¡ ÀÖ´Ù.
- // ¶ÇÇÑ ·ÎÄÃ µ¥ÀÌÅÍ¸¦ Å¬¸®¾îÇÏ´Â »óÈ²¿¡¼­´Â Á¾·áÇÏ¸é¼­ ´Ù½Ã »óÅÂ°ªÀ» ÀúÀåÇÏ¸é ¾Ö½á Å¬¸®¾î ÇÑ °Ô µµ·ç¹¬ µÇ´Ï ½ºÅµ.
+{// ModuleShutdown çŸ«ç—¢ç¯® æ²¥æƒ‘ è¾†ä¸°å•Š é…’å›± ç‰ˆå¿« èŠ­æ‘¹ç˜¤ è‡¼é˜‘ è ä¹æ éª¨è‚º ä¿ƒå¼— é•‘ (OnPreLoadMap æ£º æ‰é¸¥ ä¿ºå–Šåˆ©ç‰¢ ä½•ç›’) ä¿Šè¾‘æ¡£ å†å˜é˜‘ ä¸” é˜å¤¸å•Š ä¹ä¿ƒ.
+ // è‚šèŒ„ è‚ºæ‹¿ å•æç£ç”« åŠªåºœç»¢çªç»° æƒ‘ç‚”ä¿Šè¾‘ç»° è¾†ä¸°çªæè¾‘ ä¿ƒçŸ« æƒ‘æ€•è”¼é˜‘ å†å˜çªæ å±€ç»“ åŠªåºœç»¢ èŒ„ éœ¸ æ¡£é£å®« ç™»èª èƒ¶è¯º.
 	if (!GbLocalSavedStateCleared)
 	{
 		SaveLocalIniStateCommon();
 	}
 }
 void SaveLocalIniStateOnPreLoadMap()
-{ // º°µµÀÇ ¸Å°³º¯¼ö ¾øÀÌ ÀÏ°ıÀûÀ¸·Î ÀúÀåÀÌ °¡´ÉÇÑ °ÍµéÀº ¿©±â¼­ Ã³¸®
-	// ¹Ùº¸°°Áö¸¸ ~~OnExit ÀÌ¶û ¶È°°Àº Áş..
+{ // å–Šæ¡£ç‹¼ æ¦‚ä¿ºå‡½è ç»æ è€è¤’åˆ©æ è‚º å†å˜æ å•Šç“·èŒ„ å·´ç”¸ç¯® å’¯æ‰è¾‘ è´¸åºœ
+	// å®˜ç„Šéç˜¤çˆ¶ ~~OnExit æå°” åº¦éç¯® çª¿..
 	SaveLocalIniStateCommon();
 }
 void SaveLocalIniStateOnAppBecomeInactive()
 {
-	// ¾Û Á¾·á ÇÚµé¸µÀÌ ¿ÏÀüÄ¡ ¸øÇÒ ¼ö ÀÖ¾î¼­ Ãß°¡µÊ.
-	// ¾Èµå·ÎÀÌµåÀÇ °æ¿ì È¨¹öÆ° È¤Àº ¾Û ¸ñ·Ï ºä·Î ÀüÈ¯ ½Ã ºÒ¸°´Ù.
-	// ºÒ¸®´Â Å¸ÀÌ¹ÖÀº ÇÃ·§Æû º° Ãß°¡°¡ ÇÊ¿äÇÔ.
+	// èš è¾†ä¸° å‹¤ç”¸å‚…æ è‚¯å‚ˆæ‘¹ ç»™ä¸” è ä¹ç»¢è¾‘ çœ å•Šå‡³.
+	// æ•‘é›è‚ºæé›ç‹¼ ç‰ˆå¿« æƒæ»šç“¢ è¶£ç¯® èš æ ¼åºŸ è½°è‚º å‚ˆåˆ¸ çŸ« é˜‚èµ´ä¿ƒ.
+	// é˜‚åºœç»° é¸¥ææ€ªç¯® æ•²é˜€æ±½ å–Š çœ å•Šå•Š é˜å¤¸çªƒ.
 	SaveLocalIniStateCommon();
 }
 
-/** °èÁ¤ ÃÊ±âÈ­ µîÀÇ »óÈ²¿¡¼­ »ç¿ëÇÏ±â À§ÇÑ ¸ñÀûÀ¸·Î, °®°¡Áö »óÅÂ Ä³½Ì ¿ëµµ·Î »ç¿ëÇÑ ·ÎÄÃ ini ¿¡ ÀúÀåµÈ µ¥ÀÌÅÍ¸¦ ³¯¸®´Â ±â´É.
-* ¼­¹ö DB Å¬¸®¾î ¼öÁØÀº ¾Æ´ÏÁö¸¸ Àß¸ø »ç¿ëÇÒ °æ¿ì ¹º°¡ ÀÌ»ó½º·± ¿Àµ¿ÀÛÀÌ ³ª¿Ã ¼ö ÀÖÀ¸¹Ç·Î Á¤ÇØÁø °÷¿¡¼­¸¸ »ç¿ë. */
+/** æ‹Œæ²¥ æª¬æ‰æ‹³ æ®¿ç‹¼ æƒ‘ç‚”ä¿Šè¾‘ è¤ä¾©çªæ‰ å›°èŒ„ æ ¼åˆ©æ è‚º, çˆ±å•Šç˜¤ æƒ‘æ€• æŸæ•™ ä¾©æ¡£è‚º è¤ä¾©èŒ„ è‚ºæ‹¿ ini ä¿Š å†å˜ç­‰ å•æç£ç”« æœåºœç»° æ‰ç“·.
+* è¾‘æ»š DB åŠªåºœç»¢ èéœ–ç¯® é…’èªç˜¤çˆ¶ è‚‹ç»™ è¤ä¾©ä¸” ç‰ˆå¿« è´­å•Š ææƒ‘èƒ¶ç¹ å·æ‚¼ç´¯æ å”±æ£µ è ä¹æ éª¨è‚º æ²¥ç§¦æŸ³ é•‘ä¿Šè¾‘çˆ¶ è¤ä¾©. */
 void ClearLocalIniSavedState()
 {
 //	if (GConfig)
@@ -99,7 +99,7 @@ void ClearLocalIniSavedState()
 //		GConfig->EmptyAll(GB2NewAcquireStateIni);
 //		GConfig->EmptyAll(GB2UserSavedStateIni);
 //
-//		// PreRenderSavedState ´Â ¿©±â¼­ ³¯¸®Áö ¾Ê´Â´Ù. ¿©±â¼­ LocalIni ¸¦ ³¯¸®´Â ¸ñÀûÀº °ÔÀÓ ÁøÇà°ú °ü·ÃÇÑ »óÅÂ¸¦ ³¯¸®±â À§ÇÔÀÎµ¥ Pre-render ´Â ¾Û ¼³Ä¡°¡ À¯ÁöµÇ´Â ÇÑ ÇÃ·¹ÀÌ °èÁ¤ÀÌ ¹Ù²ï´Ù°í ÇØ¼­ ´Ù½Ã ÇÒ ÇÊ¿ä°¡ ¾ø´Ù.
+//		// PreRenderSavedState ç»° å’¯æ‰è¾‘ æœåºœç˜¤ è‡¼ç»°ä¿ƒ. å’¯æ‰è¾‘ LocalIni ç”« æœåºœç»° æ ¼åˆ©ç¯® éœ¸çƒ™ æŸ³é’è‹ åŒ…è®¿èŒ„ æƒ‘æ€•ç”« æœåºœæ‰ å›°çªƒç‰¢å• Pre-render ç»° èš æ±²æ‘¹å•Š èœ¡ç˜¤ç™»ç»° èŒ„ æ•²é¥­æ æ‹Œæ²¥æ å®˜è¯§ä¿ƒç»Š ç§¦è¾‘ ä¿ƒçŸ« ä¸” é˜å¤¸å•Š ç»ä¿ƒ.
 //		//GConfig->EmptyAll(GB2PreRenderSavedStateIni);
 //
 //		GConfig->Flush(false);
@@ -110,7 +110,7 @@ void ClearLocalIniSavedState()
 
 FString GetPreRenderSavedStateIniName()
 {
-	FString RetName(TEXT("B2PreRenderState")); // ±âº» ÀÌ¸§.
+	FString RetName(TEXT("B2PreRenderState")); // æ‰å¤¯ ææŠš.
 	
 #if PLATFORM_ANDROID
 	RetName += TEXT("_Android");
@@ -118,35 +118,35 @@ FString GetPreRenderSavedStateIniName()
 	FString AndroidVersionStr = FAndroidMisc::GetAndroidVersion();
 	FString AVStr_Left;
 	FString AVStr_Right;
-	// ¸ŞÀÌÀú ¹öÀü Á¤º¸¸¸ ¶¼¾î³¿
+	// çš‹æå† æ»šå‚ˆ æ²¥ç„Šçˆ¶ éƒ½ç»¢æ™¨
 	if (AndroidVersionStr.Split(TEXT("."), &AVStr_Left, &AVStr_Right))
 	{
 		RetName += FString::Printf(TEXT("%s"), *AVStr_Left);
 	}
-	// ¿ÀÇÂ ÀÌÈÄ Vulkan »ç¿ë ¿©ºÎ°¡ º¯°æÀÌ µÈ´Ù°Å³ª OpenGLES <-> Vulkan ½ºÀ§ÄªÀ» Á¦°øÇÒ °¡´É¼º µîÀÌ ÀÖÀ¸´Ï Vulkan ¿©ºÎ Ç¥½Ã.
+	// å·é”¹ æé¥¶ Vulkan è¤ä¾© å’¯ä½•å•Š å‡½ç‰ˆæ ç­‰ä¿ƒèŠ­å”± OpenGLES <-> Vulkan èƒ¶å›°è«é˜‘ åŠ›å‚ä¸” å•Šç“·å·± æ®¿æ ä¹æ èª Vulkan å’¯ä½• é’çŸ«.
 	if (FAndroidMisc::ShouldUseVulkan())
 	{
 		RetName += TEXT("_Vulkan");
 	}
 	else
 	{
-		// GL ¹öÀüÀ» ³ÖÀ¸¸é º¸´Ù È®½ÇÇÒ °Í °°Àºµ¥.. ¹®ÀÚ¿­ÀÌ Á» ´õ º¹ÀâÇÏ´Ù. 	
+		// GL æ»šå‚ˆé˜‘ æŒæ æ ç„Šä¿ƒ çŠ¬è§’ä¸” å·´ éç¯®å•.. å·©ç£Šå‡¯æ ç²± æ­¹ æ±—æ£±çªä¿ƒ. 	
 		FString GlVersionStr = FAndroidMisc::GetGLVersion();
 		for (int32 SI = 0; SI < GlVersionStr.Len(); ++SI)
 		{
 			int32 ConvertedNum = FCString::Atoi(&(GlVersionStr[SI]));
 			if (ConvertedNum > 0)
-			{  // Ã³À½À¸·Î ³ª¿À´Â 0 º¸´Ù Å« ¼ıÀÚ¸¦ ¸ŞÀÌÀú ¹öÀüÀ¸·Î °£ÁÖÇÏ´Â °Çµ¥ ÀÏ¹İ ¹®ÀÚ¶ó¸é 0 ÀÌ ³ª¿Ã °Í. 
-				// ±×°Ô ¸ŞÀÌÀú ¹öÀüÀÌ ¾Æ´Ï¶ó°í ÇØµµ ±»ÀÌ ÇØ°¡ µÉ °Ç ¾ø°í..
-				// ±×¸®°í ¹®ÀÚ ÇÏ³ª ´ÜÀ§·Î ÇÏ¸é µÎÀÚ¸® ¼ıÀÚ ¹öÀüÀ» Ã³¸® ¸øÇÏ´Âµ¥ ¿ì¸® °ÔÀÓ ¼­ºñ½ºµÇ´Â µ¿¾È GL ¹öÀüÀÌ ±×·¸°Ô ¿Ã¶ó°¥ ÀÏÀº ¾øÀ» °Í °°°í..
-				// ¿©ÇÏ°£ ÀÇµµ¿Í´Â ´Ù¸¥ Á¤º¸¸¦ ³Ö°Ô µÈ´Ù ÇÏ´õ¶óµµ ÇØ°¡ µÉ °Ç ¾øÀ½.
+			{  // è´¸æ¾œæ è‚º å”±å·ç»° 0 ç„Šä¿ƒ å¥´ ç®­ç£Šç”« çš‹æå† æ»šå‚ˆæ è‚º åŸƒæ—çªç»° æ‰’å• è€é¦† å·©ç£Šæ‰¼æ 0 æ å”±æ£µ å·´. 
+				// å¼Šéœ¸ çš‹æå† æ»šå‚ˆæ é…’èªæ‰¼ç»Š ç§¦æ¡£ è¢«æ ç§¦å•Š çª æ‰’ ç»ç»Š..
+				// å¼Šåºœç»Š å·©ç£Š çªå”± çªœå›°è‚º çªæ æ»´ç£Šåºœ ç®­ç£Š æ»šå‚ˆé˜‘ è´¸åºœ ç»™çªç»°å• å¿«åºœ éœ¸çƒ™ è¾‘åšèƒ¶ç™»ç»° æ‚¼æ•‘ GL æ»šå‚ˆæ å¼ŠçŠ¯éœ¸ æ£µæ‰¼å“ è€ç¯® ç»é˜‘ å·´ éç»Š..
+				// å’¯çªåŸƒ ç‹¼æ¡£å®¢ç»° ä¿ƒå¼— æ²¥ç„Šç”« æŒéœ¸ ç­‰ä¿ƒ çªæ­¹æ‰¼æ¡£ ç§¦å•Š çª æ‰’ ç»æ¾œ.
 				RetName += FString::Printf(TEXT("_Gl%d"), ConvertedNum);
 				break;
 			}
 		}
 	}
 #elif PLATFORM_IOS
-	// ¿©±âµµ ¹öÀüº° °ü¸®°¡ ÀÖÀ¸¸é ÁÁ°Ú´Âµ¥.. ±âº» ¼ÎÀÌ´õ ÄÄÆÄÀÏ ¼º´ÉÀÌ ÁÁ°í PreRender Ã³¸®µµ Àû¾î¼­ Android º¸´Ù´Â ÇÊ¿ä¼ºÀÌ ³·À½.
+	// å’¯æ‰æ¡£ æ»šå‚ˆå–Š åŒ…åºœå•Š ä¹æ æ äº®æ‘†ç»°å•.. æ‰å¤¯ å˜‰ææ­¹ å“ªé¢‡è€ å·±ç“·æ äº®ç»Š PreRender è´¸åºœæ¡£ åˆ©ç»¢è¾‘ Android ç„Šä¿ƒç»° é˜å¤¸å·±æ æ’¤æ¾œ.
 	RetName += TEXT("_IOS");
 #endif
 
@@ -171,7 +171,7 @@ void InitializeB2NetworkModule()
 //#endif
 //
 //
-//#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2 // ¿µ»ó ´ıÇÁ °°Àº »óÈ²¿¡¼­ ¾²±â À§ÇØ Áö¼ÓÀûÀ¸·Î ³×Æ®¿öÅ© ¿¬°á ¹«½ÃÇÏ´Â ½Ì±Û ¸ğµå Ä¿¸Çµå
+//#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2 // åº·æƒ‘ å¾…æ©‡ éç¯® æƒ‘ç‚”ä¿Šè¾‘ é™æ‰ å›°ç§¦ ç˜¤åŠ åˆ©æ è‚º åŒ™é£˜å†µå†œ æ¥·æ¬ å…¬çŸ«çªç»° æ•™è‡‚ è‘›é› ç›®ç›–é›
 //	if (FParse::Param(FCommandLine::Get(), TEXT("B2Standalone")))
 //	{
 //		FBladeIIBlockToSyncNetwork::GetInstance().DevSetStandaloneMode(true);
@@ -185,7 +185,7 @@ void InitializeB2NetworkModule()
 //	{
 //		TArray<FName> CreatedUIs;
 //		UIMgrInst->GetAllCreatedUINames(CreatedUIs);
-//		checkSlow(CreatedUIs.Contains(UIFName::Title)); /* Áö±İ±îÁö °¡Á¤Àº Å¸ÀÌÆ² È­¸é¿¡¼­ »ç¿ëÇÏ´Â °Å */
+//		checkSlow(CreatedUIs.Contains(UIFName::Title)); /* ç˜¤é™›é³–ç˜¤ å•Šæ²¥ç¯® é¸¥ææ’‡ æ‹³æä¿Šè¾‘ è¤ä¾©çªç»° èŠ­ */
 //	}
 //#endif
 //
@@ -197,51 +197,51 @@ void InitializeB2NetworkModule()
 //	//	FNetworkTick::CreateNetworkTick(FB2NetworkBridge::GetInstance());
 //	data_trader::Association::BootStrap();
 //
-//	InitB2GameSubsystemsOnInitB2Network(); // B2Network ¶û Á÷Á¢ÀûÀÎ ¿¬°üÀÌ ÀÖÁö´Â ¾ÊÀº ÇÏÀ§ ¸Å´ÏÀúµé ÃÊ±âÈ­
+//	InitB2GameSubsystemsOnInitB2Network(); // B2Network å°” æµç«‹åˆ©ç‰¢ æ¥·åŒ…æ ä¹ç˜¤ç»° è‡¼ç¯® çªå›° æ¦‚èªå†ç”¸ æª¬æ‰æ‹³
 //
 //	//UBannerManager::GetInstance().SubscribeEvents();
 //	data_trader::ChannelManager::GetInstance();
 //	
 //	Utilities::FConnectionState::GetInstance().Initialize();
 //
-//	//[@AKI, 171220] »ç½Ç ¿©±â À§Ä¡°¡ ÁÁÀº °ÍÀº ¾Æ´ÏÁö¸¸ ¾î´À Flowµç ¿©±â¸¦ Åë°úÇØ¾ß ÇÏ±â ¶§¹®¿¡
-//	// ¿©±â¼­ User Dependency Save FileÀ» ·ÎµåÇÏ°Ô ÇÔ
-//	// ¶ÇÇÑ ¿©±â¸¦ µé¾î ¿À±âÀü¿¡ PlatformUserId¸¦ ¸ÕÀú SetÇØ¼­ ÀÌ°÷¿¡ À§Ä¡ ½ÃÅ´
+//	//[@AKI, 171220] è¤è§’ å’¯æ‰ å›°æ‘¹å•Š äº®ç¯® å·´ç¯® é…’èªç˜¤çˆ¶ ç»¢è ¢ Flowç”µ å’¯æ‰ç”« çƒ¹è‹ç§¦å…· çªæ‰ é”­å·©ä¿Š
+//	// å’¯æ‰è¾‘ User Dependency Save Fileé˜‘ è‚ºé›çªéœ¸ çªƒ
+//	// è‚šèŒ„ å’¯æ‰ç”« ç”¸ç»¢ å·æ‰å‚ˆä¿Š PlatformUserIdç”« åˆšå† Setç§¦è¾‘ æé•‘ä¿Š å›°æ‘¹ çŸ«ç³¯
 //	const FString UserID(FB2AuthInfo::GetInstance().GetPlatformUserId());
 //	FSHAHash Hash;
-//	//Sha1ÀÌ Ãæµ¹ »ç·Ê°¡ ÀÖ´Ù°í ÇÔ....https://security.googleblog.com/2017/02/announcing-first-sha1-collision.html Âü°í ÇÒ °Í
-//	//±Ùµ¥ Ãæµ¹ÀÌ ¹ß»ıÇØ ºÃÀÚ ·ÎÄÃ¿¡ ÀúÀåÇÏ´Â µ¥ÀÌÅÍ´Â À¯ÀúÀÇ ºÒÇÊ¿äÇÑ Á¤º¸ Ãæµ¹ÀÌ´Ï ±¦ÂúÀ» °ÍÀ¸·Î »ı°¢µÊ
+//	//Sha1æ é¢å€’ è¤è‚¥å•Š ä¹ä¿ƒç»Š çªƒ....https://security.googleblog.com/2017/02/announcing-first-sha1-collision.html æ›¼ç»Š ä¸” å·´
+//	//è¾Ÿå• é¢å€’æ æƒ¯ç§¯ç§¦ å¥½ç£Š è‚ºæ‹¿ä¿Š å†å˜çªç»° å•æç£ç»° èœ¡å†ç‹¼ é˜‚é˜å¤¸èŒ„ æ²¥ç„Š é¢å€’æèª å®æ»¡é˜‘ å·´æ è‚º ç§¯é˜¿å‡³
 //	FSHA1::HashBuffer(*UserID, UserID.Len(), Hash.Hash);
 //	const FString UserID_HashResult(Hash.ToString());
 //
 //	FConfigCacheIni::LoadGlobalIniFile(GB2UserSavedStateIni, *FString(TEXT("B2UserSavedStateIni_") + UserID_HashResult));
 //
-//	// GB2UserSavedStateIni ÃÊ±âÈ­ µÇ°í ³ª¼­ Àì½Î°Ô ini ÀúÀåÇÑ °Å ·Îµù.
+//	// GB2UserSavedStateIni æª¬æ‰æ‹³ ç™»ç»Š å”±è¾‘ æ¼“è½¿éœ¸ ini å†å˜èŒ„ èŠ­ è‚ºçˆ¹.
 //	LoadLocalIniStateOnNetworkInit();
 }
 
 void InitB2GameSubsystemsOnStartupModule()
 { 
-	// Å¸ÀÌÆ² È­¸é±îÁö °¡±â Àü¿¡ ÃÊ±âÈ­ µÇ´Â °Íµé.
+	// é¸¥ææ’‡ æ‹³æé³–ç˜¤ å•Šæ‰ å‚ˆä¿Š æª¬æ‰æ‹³ ç™»ç»° å·´ç”¸.
 
 	BladeIIGameImpl::GetChatStore().OnModuleStartup();
 
-	// InitializeAllGameSettingData Àü¿¡ ºÒ·Á¾ß ÇÑ´Ù.
+	// InitializeAllGameSettingData å‚ˆä¿Š é˜‚å¦¨å…· èŒ„ä¿ƒ.
 	//B2Scalability::OnModuleStartup();
 
-	//// ÀÌ ½ÃÁ¡¿¡¼­ÀÇ GameSetting ÃÊ±âÈ­´Â ¿ÏÀüÈ÷ µÇÁö´Â ¾ÊÀ» °Í. ±×·¡µµ ¸î¸î °ªµéÀº ÀÌÂë¼­ ÃÊ±âÈ­ ÇØ µÒ.
+	//// æ çŸ«ç—¢ä¿Šè¾‘ç‹¼ GameSetting æª¬æ‰æ‹³ç»° è‚¯å‚ˆæ´’ ç™»ç˜¤ç»° è‡¼é˜‘ å·´. å¼Šè´°æ¡£ å‰²å‰² è”¼ç”¸ç¯® æç è¾‘ æª¬æ‰æ‹³ ç§¦ ç‹„.
 	//InitializeAllGameSettingData(nullptr,
-	//	true  // ºÒ¿ÏÀüÇÑ ¿£Áø ±â´É¿¡ ´ëÇÑ Workaround ÇÃ·¡±×.. ´ëÃ¼·Î ¿¡¹Ä·¹ÀÌÅÍ¿¡¼­ °íÇØ»óµµ ¾µ ¶§ Ã¹ ·ÎµùÈ­¸é ¾î±ß³ª´Â °Å Àá½Ã ´ëÃ³ÇÏ´Â Â÷¿ø.
+	//	true  // é˜‚è‚¯å‚ˆèŒ„ æµšæŸ³ æ‰ç“·ä¿Š æªèŒ„ Workaround æ•²è´°å¼Š.. æªçœ‰è‚º ä¿Šé¼“é¥­æç£ä¿Šè¾‘ ç»Šç§¦æƒ‘æ¡£ é•œ é”­ éœ‰ è‚ºçˆ¹æ‹³æ ç»¢è¾¹å”±ç»° èŠ­ æ³ªçŸ« æªè´¸çªç»° ç’ç›”.
 	//);
 
 	//UB2LobbyInventory::StaticInit();
 	//UB2Airport::StaticInit();
 	//AB2StageManager::GetCacheStageKeepEssentialData().Initialize();
-	//UB2AssetLoader::Get(); // »ı¼ºÀÌ ÇÑ¹øµµ ¾ÈµÈ Ã¤·Î ShutdownModule ¿¡¼­ Get ÇÏ·Á¸é null ÀÌ ³ª¿À±â ¶§¹®¿¡... ¹Ì¸® »ı¼ºÇØ µÎ´Â°Ô ÁÁÀ»±î.. ¾Æ´Ô ´Ù¸¥ ½ÄÀ¸·Î ¿¹¿ÜÃ³¸®¸¦ ÇÏ´Â °Ô ÁÁÀ»±î..?
+	//UB2AssetLoader::Get(); // ç§¯å·±æ èŒ„é”…æ¡£ æ•‘ç­‰ ç›²è‚º ShutdownModule ä¿Šè¾‘ Get çªå¦¨æ null æ å”±å·æ‰ é”­å·©ä¿Š... å›ºåºœ ç§¯å·±ç§¦ æ»´ç»°éœ¸ äº®é˜‘é³–.. é…’ä¸› ä¿ƒå¼— ä¾¥æ è‚º æŠ—å¯‡è´¸åºœç”« çªç»° éœ¸ äº®é˜‘é³–..?
 }
 void InitB2GameSubsystemsOnInitB2Network()
 {
-	// °ÔÀÓ ¼­¹ö¿¡ ¸· ºÙÀº ½ÃÁ¡. ¼­¹ö ¿¬µ¿°ú Á÷Á¢ÀûÀ¸·Î °ü·ÃµÈ °Íµé ¿Ü¿¡ ÀÌ Å¸ÀÌ¹Ö¿¡ ÃÊ±âÈ­ ÇÏ´Â °Íµé.
+	// éœ¸çƒ™ è¾‘æ»šä¿Š é˜œ å˜¿ç¯® çŸ«ç—¢. è¾‘æ»š æ¥·æ‚¼è‹ æµç«‹åˆ©æ è‚º åŒ…è®¿ç­‰ å·´ç”¸ å¯‡ä¿Š æ é¸¥ææ€ªä¿Š æª¬æ‰æ‹³ çªç»° å·´ç”¸.
 
 	QuestManager::GetInstance().Init();
 	//TutorialManager::GetInstance().Init();
@@ -258,8 +258,8 @@ void InitB2GameSubsystemsOnInitB2Network()
 }
 void CloseB2GameSubsystemsOnShutdown()
 {
-	// InitB2GameSubsystemsOnStartupModule ÀÌ¶û InitB2GameSubsystemsOnInitB2Network ¿¡¼­ ÃÊ±âÈ­ µÈ °Íµé ¿©±â¼­ Á¤¸®.
-	// Init ¸¸ ÀÖ´Â °ÍµéÀÌ ÀÖ¾î¼­ ¿ÏÀü 1:1 ¸ÅÄªÀº ¾Æ´Ï°í..
+	// InitB2GameSubsystemsOnStartupModule æå°” InitB2GameSubsystemsOnInitB2Network ä¿Šè¾‘ æª¬æ‰æ‹³ ç­‰ å·´ç”¸ å’¯æ‰è¾‘ æ²¥åºœ.
+	// Init çˆ¶ ä¹ç»° å·´ç”¸æ ä¹ç»¢è¾‘ è‚¯å‚ˆ 1:1 æ¦‚è«ç¯® é…’èªç»Š..
 		
 	//QuestManager::GetInstance().UnsubscribeEvents();
 	//QuestManager::GetInstance().EmptyQuestsInHand();

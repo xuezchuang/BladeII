@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIGuildSchedule.h"
 #include "B2UIManager.h"
 
@@ -196,7 +196,7 @@ void UB2UIGuildSchedule::SetSchedule(const TArray<b2network::B2mdGuildBattleSche
 	for (auto ScheduleSlot : InSchedule)
 	{
 		if (ScheduleSlot->state != b2network::B2GuildBattleStateType::READY && ScheduleSlot->state != b2network::B2GuildBattleStateType::BATTLE)
-			continue;				//±æµå ÁØºñ»óÅÂ°¡ ¾Æ´Ï°Å³ª ±æµåÀü»óÅÂ°¡ ¾Æ´Ñ°Å´Â °É·¯ÁØ´Ù
+			continue;				//è¾¨é› éœ–åšæƒ‘æ€•å•Š é…’èªèŠ­å”± è¾¨é›å‚ˆæƒ‘æ€•å•Š é…’å›±èŠ­ç»° å§çŸ¾éœ–ä¿ƒ
 
 		UB2UIGuildScheduleSlot* GuildScheduleSlotWidget = CreateWidget<UB2UIGuildScheduleSlot>(GetWorld(), GuildScheduleSlot);
 

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIGuildFormation.h"
 #include "B2UIManager.h"
 
@@ -58,7 +58,7 @@ void UB2UIGuildFormation::DestroySelf(UB2UIManager* InUIManager)
 
 void UB2UIGuildFormation::InitSlotCharacter(int32 SlotNumber, int32 InEntryCode , int32 InLv)
 {
-	int32 SlotNumberRevision = TeamNumber == 2 ? 4 : 0;			//½½·Ô¹øÈ£ º¸Á¤À§ÇØ¼­ 
+	int32 SlotNumberRevision = TeamNumber == 2 ? 4 : 0;			//æµ‡å©é”…é¾‹ ç„Šæ²¥å›°ç§¦è¾‘ 
 
 	if (CharacterSlotArr.Num() >= SlotNumber && SlotNumber - 1 >= 0)
 	{
@@ -207,14 +207,14 @@ void UB2UIGuildFormationSlot::SetSelectType(EGuildEntrySelectType InSelectType)
 
 void UB2UIGuildFormationSlot::OnClickSlot()
 {
-	if (SelectType == EGuildEntrySelectType::Normal)			//Å¬¸¯ÇßÀ»¶§ ÀÏ¹İ»óÅÂ¸é Å¬¸¯ÇÑ »óÅÂ·Î ¹Ù²ãÁØ´Ù
+	if (SelectType == EGuildEntrySelectType::Normal)			//åŠªè…æ²é˜‘é”­ è€é¦†æƒ‘æ€•æ åŠªè…èŒ„ æƒ‘æ€•è‚º å®˜å±‚éœ–ä¿ƒ
 	{
 		SelectType = EGuildEntrySelectType::Select;
 		SelectPlaySound();
-		SlotDelegate.ExecuteIfBound(EGuildEntrySlotType::FormationSlot, SelectType, GuildEntryCode, SlotNumber);					//½½·Ôµé °»½ÅÇØÁØ´Ù
+		SlotDelegate.ExecuteIfBound(EGuildEntrySlotType::FormationSlot, SelectType, GuildEntryCode, SlotNumber);					//æµ‡å©ç”¸ ç›è„šç§¦éœ–ä¿ƒ
 		return;
 	}
-	else if(SelectType == EGuildEntrySelectType::SelectImpossible || SelectType == EGuildEntrySelectType::Select)	//Å¬¸¯ÀÌ ºÒ°¡´ÉÇÑ»óÅÂ³ª, ÀÌ¹ÌÅ¬¸¯ÇÑ»óÅÂ¿¡¼­ ¶È°°Àº ½½·Ô¿¡ µé¾î¿À¸é ´Ù½Ã Normal»óÅÂ·Î ¹Ù²ãÁØ´Ù
+	else if(SelectType == EGuildEntrySelectType::SelectImpossible || SelectType == EGuildEntrySelectType::Select)	//åŠªè…æ é˜‚å•Šç“·èŒ„æƒ‘æ€•å”±, æå›ºåŠªè…èŒ„æƒ‘æ€•ä¿Šè¾‘ åº¦éç¯® æµ‡å©ä¿Š ç”¸ç»¢å·æ ä¿ƒçŸ« Normalæƒ‘æ€•è‚º å®˜å±‚éœ–ä¿ƒ
 		SelectType = EGuildEntrySelectType::Normal;
 	else if (SelectType == EGuildEntrySelectType::SelectPossible)
 	{
@@ -222,7 +222,7 @@ void UB2UIGuildFormationSlot::OnClickSlot()
 	
 	}
 	
-	//½½·Ô ¹Ù²ãÁÖ±â
+	//æµ‡å© å®˜å±‚æ—æ‰
 	SwapDelegate.ExecuteIfBound(EGuildEntrySlotType::FormationSlot, SelectType, GuildEntryCode, SlotNumber);
 }
 
@@ -349,20 +349,20 @@ void UB2UIGuildFormationMercenarySlot::OnClickSlot()
 	/*if (MercenaryCount == 0)
 		return;*/
 
-	if (SelectType == EGuildEntrySelectType::Normal)			//Å¬¸¯ÇßÀ»¶§ ÀÏ¹İ»óÅÂ¸é Å¬¸¯ÇÑ »óÅÂ·Î ¹Ù²ãÁØ´Ù
+	if (SelectType == EGuildEntrySelectType::Normal)			//åŠªè…æ²é˜‘é”­ è€é¦†æƒ‘æ€•æ åŠªè…èŒ„ æƒ‘æ€•è‚º å®˜å±‚éœ–ä¿ƒ
 	{
 		SelectType = EGuildEntrySelectType::Select;
-		SlotDelegate.ExecuteIfBound(EGuildEntrySlotType::MercenaryList, SelectType, GuildEntryCode, 0);					//½½·Ôµé °»½ÅÇØÁØ´Ù
+		SlotDelegate.ExecuteIfBound(EGuildEntrySlotType::MercenaryList, SelectType, GuildEntryCode, 0);					//æµ‡å©ç”¸ ç›è„šç§¦éœ–ä¿ƒ
 		SelectPlaySound();
 		return;
 	}
-	else if (SelectType == EGuildEntrySelectType::SelectImpossible || SelectType == EGuildEntrySelectType::Select)	//Å¬¸¯ÀÌ ºÒ°¡´ÉÇÑ»óÅÂ³ª, ÀÌ¹ÌÅ¬¸¯ÇÑ»óÅÂ¿¡¼­ ¶È°°Àº ½½·Ô¿¡ µé¾î¿À¸é ´Ù½Ã Normal»óÅÂ·Î ¹Ù²ãÁØ´Ù
+	else if (SelectType == EGuildEntrySelectType::SelectImpossible || SelectType == EGuildEntrySelectType::Select)	//åŠªè…æ é˜‚å•Šç“·èŒ„æƒ‘æ€•å”±, æå›ºåŠªè…èŒ„æƒ‘æ€•ä¿Šè¾‘ åº¦éç¯® æµ‡å©ä¿Š ç”¸ç»¢å·æ ä¿ƒçŸ« Normalæƒ‘æ€•è‚º å®˜å±‚éœ–ä¿ƒ
 		SelectType = EGuildEntrySelectType::Normal;
 	else if (SelectType == EGuildEntrySelectType::SelectPossible)
 	{
 		ChangePlaySound();
 	}
 
-	//½½·Ô ¹Ù²ãÁÖ±â
+	//æµ‡å© å®˜å±‚æ—æ‰
 	SwapDelegate.ExecuteIfBound(EGuildEntrySlotType::MercenaryList, SelectType, GuildEntryCode, 0);				
 }

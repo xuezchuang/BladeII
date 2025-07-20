@@ -1,4 +1,4 @@
-#include "B2UIStorePackageDetailPopup.h"
+ï»¿#include "B2UIStorePackageDetailPopup.h"
 #include "B2AndroidBackManager.h"
 #include "B2UIHeader.h"
 #include "B2UIManager.h"
@@ -207,7 +207,7 @@ void UB2UIStorePackageDetailPopup::SetPopupVisible(bool IsVisible)
 	}
 	else if (IsVisible == false && this->GetVisibility() != ESlateVisibility::Collapsed)
 	{
-		this->SetVisibility(ESlateVisibility::Collapsed); // ³»ºÎ ¾ÆÀÌÄÜµéÀº destroy ÇÏÁö¸¸ ÀÚ½ÅÀº ¼û±â±â¸¸ ÇÔ.
+		this->SetVisibility(ESlateVisibility::Collapsed); // éƒ´ä½• é…’æžèƒ½ç”¸ç¯® destroy çªç˜¤çˆ¶ ç£Šè„šç¯® è§æ‰æ‰çˆ¶ çªƒ.
 		B2AndroidBackManager::GetInstance()->RemoveBackWidget(this);
 
 		UB2UIHeader* HeaderUI = UB2UIManager::GetInstance()->GetUI<UB2UIHeader>(UIFName::Header);
@@ -390,9 +390,9 @@ void UB2UIStorePackageDetailPopup::SetBoostListInfo(const FStoreProductData* Pro
 		}
 	}
 
-	// [180417_YJ] ºÎ½ºÆ®¿¡ 7ÀÏ º¸³Ê½º º¸»ó °³³äÀÌ Ãß°¡µÇ¾úÀ½.
-	// ÀÌ °æ¿ì´Â Á¤¸» Æ¯¼öÇÑ °æ¿ì¿©¼­ º¸³Ê½º = º¸»óÀÇ °³³ä ÀÌ¶ó°í ÇÔ.
-	// °í·Î ÀÏ¹ÝÀûÀÎ ¾ÆÀÌÅÛ Å¸ÀÔÀ¸·Î ¾ÆÀÌÅÛÁ¤º¸¸¦ ¾ò¾î¿À´Â°Ô ¾Æ´Ï¶ó.. RewardID °ªÀ¸·Î Á¤º¸¸¦ ¼¼ÆÃÇØÁÖ¾î¾ßÇÔ.
+	// [180417_YJ] ä½•èƒ¶é£˜ä¿Š 7è€ ç„Šå‘ˆèƒ¶ ç„Šæƒ‘ ä¿ºå……æž çœ å•Šç™»èŒæ¾œ.
+	// æž ç‰ˆå¿«ç»° æ²¥å¯Œ æ¼‚èèŒ„ ç‰ˆå¿«å’¯è¾‘ ç„Šå‘ˆèƒ¶ = ç„Šæƒ‘ç‹¼ ä¿ºå…… æžæ‰¼ç»Š çªƒ.
+	// ç»Šè‚º è€é¦†åˆ©ç‰¢ é…’æžè¢ é¸¥æ¶æ è‚º é…’æžè¢æ²¥ç„Šç”« æŽ˜ç»¢å·ç»°éœ¸ é…’èªæ‰¼.. RewardID è”¼æ è‚º æ²¥ç„Šç”« æŠ€æ³¼ç§¦æž—ç»¢å…·çªƒ.
 	if (SlotCount == 1 && PackageData)
 	{
 		if (PackageData->PackagePeriodBonusID != 0)
@@ -407,7 +407,7 @@ void UB2UIStorePackageDetailPopup::SetBoostListInfo(const FStoreProductData* Pro
 
 	if (TB_BoostDesc.IsValid())
 	{
-		FString TempString = TEXT("Store_BoostPackage_Desc") + FString::FormatAsNumber(ProductData->Product.ProductId); // µÞÀÚ¸®´Â ÆÐÅ°Áö ID
+		FString TempString = TEXT("Store_BoostPackage_Desc") + FString::FormatAsNumber(ProductData->Product.ProductId); // ç¼”ç£Šåºœç»° è©è™ç˜¤ ID
 		FText TempText = BladeIIGetLOCText(B2LOC_CAT_STORE, TempString);
 
 		TempText = FText::Format(TempText, BoostItemWidgets[0]->GetTotalProductCount(), BoostItemWidgets[1]->GetTotalProductCount());

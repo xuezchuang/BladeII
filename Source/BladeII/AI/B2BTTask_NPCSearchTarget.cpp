@@ -1,4 +1,4 @@
-
+ï»¿
 #include "B2BTTask_NPCSearchTarget.h"
 //#include "BladeII.h"
 #include "B2GuildNPCAIController.h"
@@ -36,7 +36,7 @@ EBTNodeResult::Type UB2BTTask_NPCSearchTarget::PerformSearchTask(UBehaviorTreeCo
 	//if (TargetCharacter == nullptr)
 	//	return EBTNodeResult::Failed;
 	//
-	////°Å¸® ¾÷µ¥ÀÌÆ®
+	////èŠ­åºœ è¯€å•æžé£˜
 	//float TargetDistance = (TargetCharacter->GetActorLocation() - ControlledCharacter->GetActorLocation()).Size();
 	//ControlledCharacter->UpdateAIAttackIndex(TargetDistance, true);
 

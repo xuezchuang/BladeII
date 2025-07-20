@@ -1,4 +1,4 @@
-
+ï»¿
 // Fill out your copyright notice in the Description page of Project Settings.
 // Project BladeII, Action Square
 
@@ -475,11 +475,11 @@ FORCEINLINE bool IsDJLegacyUIScene(EUIScene InUIScene)
 UENUM(BlueprintType)
 enum class EUIChangeUISceneTransitionType : uint8
 {
-	NO_CANCEL		UMETA(DisplayName = "NoCancel"),	//Ã¼ÀÎÁö½Ã ¸ğµç ¿¬ÃâÀ» Á¤»óÀûÀ¸·Î ÇØÁØ´Ù.
-	CANCEL_CLOSE	UMETA(DisplayName = "CancelClose"),	//Ã¼ÀÎÁö½Ã Å¬·ÎÁî ¿¬Ãâ¸¸ ¾Ã´Â´Ù.
-	CANCEL_OPEN		UMETA(DisplayName = "CancelOpen"),	//Ã¼ÀÎÁö½Ã ¿ÀÇÂ ¿¬Ãâ¸¸ ¾Ã´Â´Ù.
-	CANCEL_ALL		UMETA(DisplayName = "CancelAll"),	//Ã¼ÀÎÁö½Ã ¸ğµç ¿¬ÃâÀ» ¾Ã´Â´Ù.
-	PREOPEN			UMETA(DisplayName = "Preopen"),		//Ã¼ÀÎÁö½Ã ´ÙÀ½¿¡ ¶ã UI¸¦ ¹Ì¸® ¶ç¿ö³õ´Â´Ù. ¸¶Ä¡ ÆË¾÷ÀÎ°Å ¸¶³É
+	NO_CANCEL		UMETA(DisplayName = "NoCancel"),	//çœ‰ç‰¢ç˜¤çŸ« è‘›ç”µ æ¥·å…é˜‘ æ²¥æƒ‘åˆ©æ è‚º ç§¦éœ–ä¿ƒ.
+	CANCEL_CLOSE	UMETA(DisplayName = "CancelClose"),	//çœ‰ç‰¢ç˜¤çŸ« åŠªè‚ºä»¤ æ¥·å…çˆ¶ ä¹…ç»°ä¿ƒ.
+	CANCEL_OPEN		UMETA(DisplayName = "CancelOpen"),	//çœ‰ç‰¢ç˜¤çŸ« å·é”¹ æ¥·å…çˆ¶ ä¹…ç»°ä¿ƒ.
+	CANCEL_ALL		UMETA(DisplayName = "CancelAll"),	//çœ‰ç‰¢ç˜¤çŸ« è‘›ç”µ æ¥·å…é˜‘ ä¹…ç»°ä¿ƒ.
+	PREOPEN			UMETA(DisplayName = "Preopen"),		//çœ‰ç‰¢ç˜¤çŸ« ä¿ƒæ¾œä¿Š èº² UIç”« å›ºåºœ å‰å†µåˆç»°ä¿ƒ. ä»˜æ‘¹ æ‰‘è¯€ç‰¢èŠ­ ä»˜æˆ
 };
 
 
@@ -520,10 +520,10 @@ enum class EUIDocType : uint8
 UENUM(BlueprintType)
 enum class EUISearchType : uint8
 {
-	First			UMETA(DisplayName = "First"),		//Ã·À¸·Î(First)
-	Forward			UMETA(DisplayName = "Forward"),		//¾ÕÀ¸·Î(Next)
-	Reverse			UMETA(DisplayName = "Reverse"),		//µÚ·Î(Prev)
-	End				UMETA(DisplayName = "End"),			//³¡À¸·Î(End)
+	First			UMETA(DisplayName = "First"),		//æ¢…æ è‚º(First)
+	Forward			UMETA(DisplayName = "Forward"),		//èŠæ è‚º(Next)
+	Reverse			UMETA(DisplayName = "Reverse"),		//ç¬¬è‚º(Prev)
+	End				UMETA(DisplayName = "End"),			//åœºæ è‚º(End)
 };
 
 /* Type of StageBonus. */
@@ -812,7 +812,7 @@ namespace GoodsTypeFName
 	DECLARE_B2_GoodsTypeFName(ESSENCE_PROTECTION)
 	DECLARE_B2_GoodsTypeFName(ESSENCE_ACCESSORY)
 
-	//Á¤¼ö »Ì±â±Ç Å¸ÀÔ Ãß°¡
+	//æ²¥è æƒ¶æ‰é¼» é¸¥æ¶ çœ å•Š
 	DECLARE_B2_GoodsTypeFName(SPECIAL_WEAPON_ESSENCE_TICKET)
 	DECLARE_B2_GoodsTypeFName(SPECIAL_ARMOR_ESSENCE_TICKET)
 	DECLARE_B2_GoodsTypeFName(SPECIAL_ACCESSORY_ESSENCE_TICKET)
@@ -835,7 +835,7 @@ namespace GoodsTypeFName
 	DECLARE_B2_GoodsTypeFName(GRADE_5_ARMOR_ESSENCE_TICKET)
 	DECLARE_B2_GoodsTypeFName(GRADE_5_ACCESSORY_ESSENCE_TICKET)
 
-	//Á¤¼ö Ãß°¡
+	//æ²¥è çœ å•Š
 	DECLARE_B2_GoodsTypeFName(GRADE_2_GLADIATOR_WEAPON_ESSECNE)
 	DECLARE_B2_GoodsTypeFName(GRADE_3_GLADIATOR_WEAPON_ESSECNE)
 	DECLARE_B2_GoodsTypeFName(GRADE_4_GLADIATOR_WEAPON_ESSECNE)
@@ -943,7 +943,7 @@ namespace GoodsTypeFName
 	DECLARE_B2_GoodsTypeFName(GRADE_7_SELECT_DUEL_ACCESSORY_TICKET)
 	DECLARE_B2_GoodsTypeFName(GRADE_8_SELECT_DUEL_ACCESSORY_TICKET)
 
-	// Æä¾î¸® ·¹º§¾÷ Àç·á
+	// å…¶ç»¢åºœ é¥­éª‡è¯€ çŠä¸°
 	DECLARE_B2_GoodsTypeFName(FAIRY_LEVELUP_MATERIAL)
 
 	DECLARE_B2_GoodsTypeFName(STAGEAUTOCLEAR)
@@ -952,9 +952,9 @@ namespace GoodsTypeFName
 UENUM(BlueprintType)
 enum class EHotTimeEventType :uint8
 {
-	Event,		//ÀÌº¥Æ®
-	Product,	//±¸¸Å
-	All,		//ÀüÃ¼
+	Event,		//æäº¥é£˜
+	Product,	//å¤‡æ¦‚
+	All,		//å‚ˆçœ‰
 };
 
 UENUM()

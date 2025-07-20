@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UISecession.h"
 #include "B2UIManager.h"
 
@@ -71,13 +71,13 @@ void UB2UISecession::OnClickBTN_Secession()
 {
 	SetVisibility(ESlateVisibility::Hidden);
 
-	// ¹Ø¿¡ TODO
+	// å…³ä¿Š TODO
 	UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
 	if (UIMgrInst)
 	{
 		UIMgrInst->OpenMsgPopup<UB2UIMsgPopupSimple>(EUIMsgPopup::Simple,
 			BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_Notification")),
-			FText::FromString(TEXT("[Temporary] Deleting account...")), // ¹º°¡ °æ°í ¹®ÀÚ°¡ µé¾î°¡°ÚÁö..
+			FText::FromString(TEXT("[Temporary] Deleting account...")), // è´­å•Š ç‰ˆç»Š å·©ç£Šå•Š ç”¸ç»¢å•Šæ‘†ç˜¤..
 			0.f,
 			true,
 			true,
@@ -85,12 +85,12 @@ void UB2UISecession::OnClickBTN_Secession()
 			FMsgPopupOnClick::CreateLambda([]()
 		{
 			//
-			// TODO °èÁ¤ »èÁ¦
+			// TODO æ‹Œæ²¥ æ˜åŠ›
 			//
 
-			ClearLocalIniSavedState(); // ¿©±ä ´ç¿¬È÷ ·ÎÄÃ ÀúÀå »óÅÂ¸¦ ³¯¸².
+			ClearLocalIniSavedState(); // å’¯å˜ å¯¸æ¥·æ´’ è‚ºæ‹¿ å†å˜ æƒ‘æ€•ç”« æœè¦†.
 #if WITH_EDITOR && !PLATFORM_MAC
-			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(TEXT("°³¹ß¹öÀü ¸Ş½ÃÁö: ·ÎÄÃ °ÔÀÓ »óÅÂ ÀúÀå µ¥ÀÌÅÍ´Â ³¯¾Æ°¬À½.")));
+			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(TEXT("ä¿ºæƒ¯æ»šå‚ˆ çš‹çŸ«ç˜¤: è‚ºæ‹¿ éœ¸çƒ™ æƒ‘æ€• å†å˜ å•æç£ç»° æœé…’è‰¾æ¾œ.")));
 #endif
 		}
 			)

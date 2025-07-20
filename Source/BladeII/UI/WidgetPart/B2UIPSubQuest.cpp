@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIPSubQuest.h"
 #include "B2UIPQuestList.h"
@@ -41,7 +41,7 @@ void UB2UIPSubQuest::CurrentTabUpdateScroll()
 }
 
 void UB2UIPSubQuest::UpdateScroll(int32 InTabType)
-{//[TODO] ³Ê¹« ¸¹ÀÌ µé¾î¿È ;;
+{//[TODO] å‘ˆå…¬ è…¹æ ç”¸ç»¢å’³ ;;
 	TabType = InTabType;
 
 	for (TPair<int32, TWeakObjectPtr<UB2UIPSubQuestTab>>& Tab : Tabs)
@@ -126,8 +126,8 @@ void UB2UIPSubQuest::CacheAssets()
 		Tabs[b2network::B2StageDifficulty::HELL]->SetIcon(b2network::B2StageDifficulty::HELL);
 	}
 
-	// [180712_YJ] ³­ÀÌµµ On/OFF±â´É Ãß°¡.
-	// Æ©Åä¸®¾ó °í·Á ¾ÈÇÔ.
+	// [180712_YJ] æŠ„ææ¡£ On/OFFæ‰ç“· çœ å•Š.
+	// è­¬é…åºœå€” ç»Šå¦¨ æ•‘çªƒ.
 	for (auto TabItem : Tabs)
 	{
 		bool bVisible = static_cast<int32>(TabItem.Key) <= BladeIIGameImpl::GetClientDataStore().GetLimitOpenStageDifficulty();

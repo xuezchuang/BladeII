@@ -1,4 +1,4 @@
-//// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿//// Fill out your copyright notice in the Description page of Project Settings.
 //
 //#include "TEST_ControlGameMode.h"
 //#include "Engine.h"
@@ -17,7 +17,7 @@
 //	: Super(ObjectInitializer)
 //{
 //	CachedMinotaur = nullptr;
-//	DefaultPCClassEnum = EPCClass::EPC_Assassin; // ³»¸¾
+//	DefaultPCClassEnum = EPCClass::EPC_Assassin; // éƒ´å¦‡
 //#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
 //	bTestSessionBegun = false;
 //#endif
@@ -28,10 +28,10 @@
 //	CachedMinotaur = InMinotaur;
 //}
 //
-//#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2 // UFUNCTION ÀÌ¿ÜÀÇ ±¸ÇöÀº ÀÌ ¾ÈÀ¸·Î.
+//#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2 // UFUNCTION æå¯‡ç‹¼ å¤‡æ³…ç¯® æ æ•‘æ è‚º.
 //
 //float ATEST_ControlGameMode::TotalTestSessionTime = 20.0f;
-//int32 ATEST_ControlGameMode::TestComplexityLevel = 3; // Å×½ºÆ® Àå¸éÀÌ ¾ó¸¶³ª º¹ÀâÇÑÁö¿¡ ´ëÇØ¼­.. ´ë·« 1,2,3 Á¤µµ »ı°¢
+//int32 ATEST_ControlGameMode::TestComplexityLevel = 3; // æŠ›èƒ¶é£˜ å˜ææ å€”ä»˜å”± æ±—æ£±èŒ„ç˜¤ä¿Š æªç§¦è¾‘.. æªå¸† 1,2,3 æ²¥æ¡£ ç§¯é˜¿
 //
 //float ATEST_ControlGameMode::DummyAnimPlayInterval = 1.0f;
 //int32 ATEST_ControlGameMode::DummyEquipGrade = 6;
@@ -66,7 +66,7 @@
 //	GConfig->GetBool(TEXT("ControlGameProfiling"), TEXT("DummyMobOn"), bDummyMobOn, GGameIni);
 //	GConfig->GetBool(TEXT("ControlGameProfiling"), TEXT("WingOn"), bWingOn, GGameIni);
 //
-//	// ·¹º§ ºí·çÇÁ¸°Æ®¸¦ ÅëÇØ ³Ñ°Ü¹ŞÀ» ¸®¼Ò½º°¡ ÀÖÀ¸¸é ÀÌ ½ÅÈ£¸¦ ¹Şµµ·Ï
+//	// é¥­éª‡ å–‰é£æ©‡èµ´é£˜ç”« çƒ¹ç§¦ é€è´¥ç½é˜‘ åºœå®¶èƒ¶å•Š ä¹æ æ æ è„šé¾‹ç”« ç½æ¡£åºŸ
 //	GEngine->HandleCeCommand(GetWorld(), TEXT("PreBeginPlay"), *GLog);
 //}
 //
@@ -79,7 +79,7 @@
 //{
 //	Super::BeginPlay();
 //	
-//	if (!IsInPreRenderPhase()) // Pre-render °¡ µ¹¾Æ°£´Ù¸é ½ÃÀÛÀ» Á» ´Ê°Ô..
+//	if (!IsInPreRenderPhase()) // Pre-render å•Š å€’é…’åŸƒä¿ƒæ çŸ«ç´¯é˜‘ ç²± è¯éœ¸..
 //	{
 //		BeginTestSession();
 //	}
@@ -89,7 +89,7 @@
 //{
 //	Super::Tick(DeltaSecond);
 //
-//	// ¸¸ÀÏ PreRender ·Î ÀÎÇØ Å×½ºÆ® ¼¼¼ÇÀÌ ´ÊÃçÁ³´Ù¸é µÚ´Ê°Ô ½ÃÀÛ.
+//	// çˆ¶è€ PreRender è‚º ç‰¢ç§¦ æŠ›èƒ¶é£˜ æŠ€è®°æ è¯è‹—è„¸ä¿ƒæ ç¬¬è¯éœ¸ çŸ«ç´¯.
 //	if (!bTestSessionBegun && !IsInPreRenderPhase())
 //	{
 //		BeginTestSession();
@@ -98,7 +98,7 @@
 //
 //void ATEST_ControlGameMode::BeginTestSession()
 //{
-//	// ÀÌ ¸ÊÀº Open ¸í·ÉÀ¸·Î ¿­°Ô µÉ ²«µ¥ Å×½ºÆ® °ü·Ã ÀÎÀÚ¸¦ ? ·Î ±¸ºĞµÈ ¿É¼ÇÀ¸·Î ³Ö¾îÁØ´Ù.
+//	// æ ç”˜ç¯® Open ç–™é£æ è‚º å‡¯éœ¸ çª æå• æŠ›èƒ¶é£˜ åŒ…è®¿ ç‰¢ç£Šç”« ? è‚º å¤‡ç›’ç­‰ å¯è®°æ è‚º æŒç»¢éœ–ä¿ƒ.
 //	if (GEngine)
 //	{
 //		FWorldContext* TheWorldContext = GEngine->GetWorldContextFromWorld(GetWorld());
@@ -114,7 +114,7 @@
 //				const TCHAR* CLStr = TheWorldContext->LastURL.GetOption(TEXT("CL="), TEXT("3"));
 //				TestComplexityLevel = FCString::Atoi(CLStr);
 //			}
-//			// ´õ¹Ì ÇÃ·¹ÀÌ¾î ¼¼ºÎ ¿É¼Çµé
+//			// æ­¹å›º æ•²é¥­æç»¢ æŠ€ä½• å¯è®°ç”¸
 //			if (TheWorldContext->LastURL.HasOption(TEXT("Equip"))) 
 //			{
 //				const TCHAR* EquipStr = TheWorldContext->LastURL.GetOption(TEXT("Equip="), TEXT("6"));
@@ -159,19 +159,19 @@
 //
 //void ATEST_ControlGameMode::BeginTestSessionWithOptions(float InTestSessionTime, int32 InComplexityLevel)
 //{
-//	// ½ºÅ×ÀÌÁö ¸ğµå ±â¹İÀÌ¹Ç·Î ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ°¡ ÀÖ´Ù. Å×½ºÆ®¿¡ ¹æÇØµÇÁö ¾Ê´Â ¼Â¾÷µéÀ» ÇÏµµ·Ï.
+//	// èƒ¶æŠ›æç˜¤ è‘›é› æ‰é¦†æéª¨è‚º æ•²é¥­æç»¢ æŸè…ç£å•Š ä¹ä¿ƒ. æŠ›èƒ¶é£˜ä¿Š è§„ç§¦ç™»ç˜¤ è‡¼ç»° æ‚¸è¯€ç”¸é˜‘ çªæ¡£åºŸ.
 //	ABladeIIPlayer* LocalB2Player = Cast<ABladeIIPlayer>(UGameplayStatics::GetLocalPlayerCharacter(this));
 //	if (LocalB2Player)
 //	{
 //		//LocalB2Player->bCanBeDamaged = true;
-//		// ÄÜ¼Ö Ä¿¸Çµå ÀÔ·ÂÇÏ·Á´Âµ¥ ½Ç¼ö·Î ÅÂ±×¹öÆ° ´©¸¦ ¶§°¡ ¸¹¾Æ¼­ ¤»
+//		// èƒ½è´¾ ç›®ç›–é› æ¶ä»¿çªå¦¨ç»°å• è§’èè‚º æ€•å¼Šæ»šç“¢ ç©¿ç”« é”­å•Š è…¹é…’è¾‘ ã›
 //		LocalB2Player->SetTagEnable(false);
 //
-//		LocalB2Player->SetActorHiddenInGame(true); // °Á ¼û±âÀÚ ¤» ±¦È÷ Å×½ºÆ®¿¡ ¹æÇØ¸¸ µÉ µí
+//		LocalB2Player->SetActorHiddenInGame(true); // å‚² è§æ‰ç£Š ã› å®æ´’ æŠ›èƒ¶é£˜ä¿Š è§„ç§¦çˆ¶ çª æ·€
 //	}
 //	const FVector DummyCenterLocation = LocalB2Player ? LocalB2Player->GetActorLocation() : FVector(0.0f, 0.0f, 0.0f);
 //
-//	// InComplexityLevel ¿¡ µû¶ó spawn ½ÃÅ°´Â ÇÃ·¹ÀÌ¾î ¼ö³ª AnimPlay, Effect µîÀÌ ´Ù¸£´Ù.
+//	// InComplexityLevel ä¿Š è¶æ‰¼ spawn çŸ«è™ç»° æ•²é¥­æç»¢ èå”± AnimPlay, Effect æ®¿æ ä¿ƒç¦ä¿ƒ.
 //	const int32 TotalDummyPlayerNum = (InComplexityLevel <= 1) ? 4 : ((InComplexityLevel == 2) ? 6 : 8);
 //	for (int32 DPI = 0; DPI < TotalDummyPlayerNum; ++DPI)
 //	{		
@@ -182,7 +182,7 @@
 //		}
 //	}
 //
-//	// ¾ê´Â ±×³É ¸Ê¿¡ ¹Ú¾Æ³õÀº µ¥ÀÌÅÍ·Î´Ù
+//	// å¨Ÿç»° å¼Šæˆ ç”˜ä¿Š å† é…’åˆç¯® å•æç£è‚ºä¿ƒ
 //	if (CachedMinotaur && CachedMinotaur->GetSkeletalMeshComponent())
 //	{
 //		if (bDummyMobOn)
@@ -203,7 +203,7 @@
 //		TheWorld->GetTimerManager().SetTimer(TestSessionTH, this, &ATEST_ControlGameMode::EndTestSession, InTestSessionTime, false);
 //	}	
 //
-//#if BII_STATS // ¼º´ÉÀ» ¼öÁıÇÒ ²¨´Ï ÀÌ°Ç ±âº»À¸·Î ÄÒ´Ù. ¸¸ÀÏ ÀÌÀü¿¡ ½ÃÀÛÇß´õ¶óµµ ´Ù½Ã ¸®¼Â.
+//#if BII_STATS // å·±ç“·é˜‘ èç¬¼ä¸” æ³¢èª ææ‰’ æ‰å¤¯æ è‚º å›Šä¿ƒ. çˆ¶è€ æå‚ˆä¿Š çŸ«ç´¯æ²æ­¹æ‰¼æ¡£ ä¿ƒçŸ« åºœæ‚¸.
 //	FStatisticalPerfStatCollector::bDoStatCollecting = true;
 //	PerfStatCollector.OnBegin(this);
 //#endif
@@ -213,13 +213,13 @@
 //
 //ABladeIITestDummyPlayer* ATEST_ControlGameMode::SpawnSingleTestPlayerDummy(int32 InComplexityLevel, int32 InMyIndex, const FVector& InDummyCenterLocation)
 //{
-//	// InComplexityLevel ¿¡ µû¸¥ Ãß°¡ º¸Á¤À» ÇÒ±î³ª? ÀÏ´Ü Spawn °³¼ö¿¡ ¿µÇâÀ» ÁÖ´Â °Çµ¥..
+//	// InComplexityLevel ä¿Š è¶å¼— çœ å•Š ç„Šæ²¥é˜‘ ä¸”é³–å”±? è€çªœ Spawn ä¿ºèä¿Š åº·æ°¢é˜‘ æ—ç»° æ‰’å•..
 //
-//	// ¾à°£ÀÇ ·£´ıÀ» °¡ÇÏ´Â °ÍÀÌ ÁÁÀ»±î ¾Æ´Ï¸é ¿ÏÀüÈ÷ ¶È°°Àº °ÍÀÌ ÁÁÀ»±î.. ÆÀ´ëÀü Å×½ºÆ® °æÇè¿¡ ÀÇÇÏ¸é ¾à°£ÀÇ ·£´ıÀÌ Å×½ºÆ® °á°ú¿¡ ¿µÇâÀ» ¹ÌÄ¡Áö´Â ¾ÊÀ» °Í °°´Ù.
+//	// è·åŸƒç‹¼ ç½šå¾…é˜‘ å•Šçªç»° å·´æ äº®é˜‘é³– é…’èªæ è‚¯å‚ˆæ´’ åº¦éç¯® å·´æ äº®é˜‘é³–.. è¯„æªå‚ˆ æŠ›èƒ¶é£˜ ç‰ˆæ°°ä¿Š ç‹¼çªæ è·åŸƒç‹¼ ç½šå¾…æ æŠ›èƒ¶é£˜ æ¬è‹ä¿Š åº·æ°¢é˜‘ å›ºæ‘¹ç˜¤ç»° è‡¼é˜‘ å·´ éä¿ƒ.
 //
 //
 //	FVector2D SpawnDir(FMath::FRandRange(-1.0f, 1.0f), FMath::FRandRange(-1.0f, 1.0f));
-//	// È¤½Ã¶óµµ ¹ÌÄ£µíÀÌ ÀÛÀº ¼ıÀÚ°¡ ³ª¿À´Â ·Î¶Ç¿¡ ´çÃ·µÇ¸é °ï¶õÇÏ´Ï
+//	// è¶£çŸ«æ‰¼æ¡£ å›ºæ¨¡æ·€æ ç´¯ç¯® ç®­ç£Šå•Š å”±å·ç»° è‚ºè‚šä¿Š å¯¸æ¢…ç™»æ å¸®é„‚çªèª
 //	if (FMath::Abs(SpawnDir.X) < KINDA_SMALL_NUMBER && FMath::Abs(SpawnDir.Y) < KINDA_SMALL_NUMBER)
 //	{
 //		SpawnDir.X = KINDA_SMALL_NUMBER;
@@ -238,10 +238,10 @@
 //
 //	ABladeIITestDummyPlayer* SpawnedDummy = ABladeIITestDummyPlayer::SpawnWithStandardEquipment(
 //		GetWorld(), SpawnClass, SpawnTransform, DummyEquipGrade, DummyFloatingUIInterval, DummyDamageFxInterval,
-//		bWingOn, MAX_WING_EVOLUTION_GRADE, true // ³¯°³ µî±Ş±îÁö´Â Á¤ÇØ³õ°í..
+//		bWingOn, MAX_WING_EVOLUTION_GRADE, true // æœä¿º æ®¿é­é³–ç˜¤ç»° æ²¥ç§¦åˆç»Š..
 //	);
 //
-//	if (SpawnedDummy) // ¾Ö´Ï¸ŞÀÌ¼ÇÀº Á¤ÇØÁø ½Ã°£ °£°İÀ¸·Î ·£´ı.
+//	if (SpawnedDummy) // å±€èªçš‹æè®°ç¯® æ²¥ç§¦æŸ³ çŸ«åŸƒ åŸƒæ‹œæ è‚º ç½šå¾….
 //	{
 //		SpawnedDummy->SetUseRandomAttackState(true);
 //		SpawnedDummy->SetCooltimeBetweenAnim(DummyAnimPlayInterval);
@@ -253,7 +253,7 @@
 //void ATEST_ControlGameMode::EndTestSession()
 //{
 //#if BII_STATS
-//	PerfStatCollector.OnEnd(this); // ÀÌ¹ø ¼¼¼ÇÀÇ ¼ºÀûÇ¥¸¦ Ãâ·ÂÇØ º¾½Ã´Ù.
+//	PerfStatCollector.OnEnd(this); // æé”… æŠ€è®°ç‹¼ å·±åˆ©é’ç”« å…ä»¿ç§¦ å£•çŸ«ä¿ƒ.
 //#endif
 //
 //	UWorld* TheWorld = GetWorld();
@@ -262,7 +262,7 @@
 //		TheWorld->GetTimerManager().ClearTimer(TestSessionTH);
 //	}
 //
-//	// ¾ê´Â ±×³É ¸Ê¿¡ ¹Ú¾Æ³õÀº µ¥ÀÌÅÍ·Î´Ù
+//	// å¨Ÿç»° å¼Šæˆ ç”˜ä¿Š å† é…’åˆç¯® å•æç£è‚ºä¿ƒ
 //	if (CachedMinotaur && CachedMinotaur->GetSkeletalMeshComponent())
 //	{
 //		CachedMinotaur->GetSkeletalMeshComponent()->GlobalAnimRateScale = 0.0f;
@@ -283,8 +283,8 @@
 //{
 //	if (!UB2PCMeshSectionMergeInfo::ShouldForceUseSectionMerge())
 //	{
-//		// ÀÏ¹İÀûÀ¸·Î´Â Á¡·ÉÀü È¯°æÀ» ±×´ë·Î µû¸¥´Ù¸é section merge ¸ğµå¸¦ °­Á¦ÇØ¾ß ÇÏ¹Ç·Î ¾Æ´Ñ °æ¿ì È­¸é¿¡ Ç¥½Ã.
-//		// ¹°·Ğ Å×½ºÆ® ¸ñÀûÀ¸·Î section merge ¸¦ ¾È ÇÏ°í ÇÏ´Â °æ¿ìµµ ÀÖÀ» °Í.
+//		// è€é¦†åˆ©æ è‚ºç»° ç—¢é£å‚ˆ åˆ¸ç‰ˆé˜‘ å¼Šæªè‚º è¶å¼—ä¿ƒæ section merge è‘›é›ç”« ç¢åŠ›ç§¦å…· çªéª¨è‚º é…’å›± ç‰ˆå¿« æ‹³æä¿Š é’çŸ«.
+//		// æ‹±æ²¸ æŠ›èƒ¶é£˜ æ ¼åˆ©æ è‚º section merge ç”« æ•‘ çªç»Š çªç»° ç‰ˆå¿«æ¡£ ä¹é˜‘ å·´.
 //		DrawDebugText(DrawXSoFar, DrawYSoFar, FString::Printf(TEXT("PC Section Merge NOT forced be ON!")), FLinearColor::Red, 24);
 //	}
 //}

@@ -33,7 +33,7 @@ void UB2LobbyUI_ItemAfterOption::StartFromLobby(class UB2UIManager_Lobby* InUIMa
 {
 	Super::StartFromLobby(InUIManager, InGM);
 
-	// ´Ü¼øÈ÷ ¾ÆÀÌÅÛ Á¤º¸¸¸ ¾ò¾î¿À·Á¸é Inventory ÀÎ½ºÅÏ½º ¾øÀÌ static À¸·Î ¾ò¾î¿Ã ¼ö ÀÖÀ¸³ª ÇÕ¼º µîÀÇ ±â´ÉÀº ÀÎº¥Åä¸®°¡ ¶° ÀÖ´Â »óÅÂ¿¡¼­ µ¿ÀÛ.
+	// çªœé‰´æ´’ é…’æè¢ æ²¥ç„Šçˆ¶ æ˜ç»¢å·å¦¨æ Inventory ç‰¢èƒ¶ç•”èƒ¶ ç»æ static æ è‚º æ˜ç»¢æ£µ è ä¹æ å”± é’¦å·± æ®¿ç‹¼ æ‰ç“·ç¯® ç‰¢äº¥é…åºœå•Š æ ‹ ä¹ç»° æƒ‘æ€•ä¿Šè¾‘ æ‚¼ç´¯.
 	CachedInventory = CachedLobbyGM->GetLobbyInventory();
 	check(CachedInventory);
 
@@ -83,9 +83,9 @@ void UB2LobbyUI_ItemAfterOption::UpdateOnInfoStateChange()
 void UB2LobbyUI_ItemAfterOption::UpdateItemData(FB2Item& InItemData, bool bIsOptionChange)
 {
 	FB2Item NextGradeItem = InItemData;
-	NextGradeItem.StarGrade = bIsOptionChange ? InItemData.StarGrade : (InItemData.StarGrade + 1); // ½Â±Ş½Ã¿¡´Â ´ÙÀ½ µî±ŞÀÇ ¼öÄ¡¸¦ º¸¿©ÁÖ±â¶§¹®¿¡ +1
-	NextGradeItem.Level = bIsOptionChange ? InItemData.Level : 1; // ¿É¼Çº¯°æ¶§¿¡´Â ÇöÀç ·¹º§ÀÇ AddValueByLevel ¹İ¿µµÈ °ªÀ» º¸¿©Áà¾ßÇÏ°í, 
-																 // ½Â±Ş½Ã¿¡´Â ´ÙÀ½ µî±ŞÀÇ 1 ·¹º§À» º¸¿©ÁÜ
+	NextGradeItem.StarGrade = bIsOptionChange ? InItemData.StarGrade : (InItemData.StarGrade + 1); // é“°é­çŸ«ä¿Šç»° ä¿ƒæ¾œ æ®¿é­ç‹¼ èæ‘¹ç”« ç„Šå’¯æ—æ‰é”­å·©ä¿Š +1
+	NextGradeItem.Level = bIsOptionChange ? InItemData.Level : 1; // å¯è®°å‡½ç‰ˆé”­ä¿Šç»° æ³…çŠ é¥­éª‡ç‹¼ AddValueByLevel é¦†åº·ç­‰ è”¼é˜‘ ç„Šå’¯æ‹å…·çªç»Š, 
+																 // é“°é­çŸ«ä¿Šç»° ä¿ƒæ¾œ æ®¿é­ç‹¼ 1 é¥­éª‡é˜‘ ç„Šå’¯æ·‹
 
 	const TArray<FSelectItemOption>* OptionArray = BladeIIGameImpl::GetClientDataStore().GetSelectItemOptionData(CliToSvrItemEquipPlace(NextGradeItem.EquipPlace), NextGradeItem.StarGrade);
 	
@@ -99,11 +99,11 @@ void UB2LobbyUI_ItemAfterOption::UpdateItemData(FB2Item& InItemData, bool bIsOpt
 			{
 				FSelectItemOption CurrentOption = (*OptionArray)[i];
 				UB2LobbyUI_ItemAfterOptionSlot* NewItemRow = CreateWidget<UB2LobbyUI_ItemAfterOptionSlot>(GetOwningPlayer(), ItemOptionWidgetClass);
-				if (NewItemRow == NULL || CurrentOption.Prob == 0) // Prob ÀÌ 0 ÀÌ¶ó´Â°ÍÀº ÇØ´çÀåºñ¿¡¼­´Â Àı´ë ¾È³ª¿À´Â ¿É¼ÇÀÓ.
+				if (NewItemRow == NULL || CurrentOption.Prob == 0) // Prob æ 0 ææ‰¼ç»°å·´ç¯® ç§¦å¯¸å˜åšä¿Šè¾‘ç»° ä¾‹æª æ•‘å”±å·ç»° å¯è®°çƒ™.
 					continue;
 
 				float AddValueByLevel = BladeIIGameImpl::GetClientDataStore().GetItemLevelupFactor_PerOptionInc(SvrToCliOptionType(CurrentOption.OptionId));
-				int32 LevelCount = static_cast<int32>(NextGradeItem.Level / 10); // 10·¹º§¸¶´Ù AddValueByLevelÀ» ´õÇØÁÜ.
+				int32 LevelCount = static_cast<int32>(NextGradeItem.Level / 10); // 10é¥­éª‡ä»˜ä¿ƒ AddValueByLevelé˜‘ æ­¹ç§¦æ·‹.
 				float MinByLevel = CurrentOption.MinValue + (static_cast<float>(LevelCount)*AddValueByLevel);
 				float MaxByLevel = CurrentOption.MaxValue + (static_cast<float>(LevelCount)*AddValueByLevel);
 

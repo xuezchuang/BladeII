@@ -1,4 +1,4 @@
-
+ï»¿
 #include "ChannelManager.h"
 
 #include "Channel.h"
@@ -145,10 +145,10 @@ namespace data_trader
 
 	void ChannelManager::SendMessage(int32 id, FString const& Body)
 	{
-		//// Ã¤³Î¿¡ ¾ÈºÙ°í º¸³»·Á´Â ¸Ş¼¼Áö º»ÀÎÇÑÅ× ¹Ù·Î µ¹¾Æ¿À´Â±â´É
+		//// ç›²æ¾„ä¿Š æ•‘å˜¿ç»Š ç„Šéƒ´å¦¨ç»° çš‹æŠ€ç˜¤ å¤¯ç‰¢èŒ„æŠ› å®˜è‚º å€’é…’å·ç»°æ‰ç“·
 		//if (IsActiveFakeChannelMessage())
 		//{
-		//	// Ã¹ÀÎÀÚ´Â º¸³½ÀÌ·Î ÃßÁ¤µÇ´Âµ¥. ÀÌº¥Æ® ¹Ş´Â°÷¿¡¼­ º»ÀÎÀ¸·Î ¹Ù²ãÁØ´Ù.
+		//	// éœ‰ç‰¢ç£Šç»° ç„Šè¾°æè‚º çœ æ²¥ç™»ç»°å•. æäº¥é£˜ ç½ç»°é•‘ä¿Šè¾‘ å¤¯ç‰¢æ è‚º å®˜å±‚éœ–ä¿ƒ.
 		//	BroadcastRoomMessageClass<uint32, const FString&, bool>::GetInstance().Signal(0, Body, true);
 		//	return;
 		//}

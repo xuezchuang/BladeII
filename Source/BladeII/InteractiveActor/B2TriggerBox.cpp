@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2TriggerBox.h"
@@ -19,11 +19,11 @@ void AB2TriggerBox::NotifyActorCustomEvent(FName OptionalEventName, UObject* Opt
 
 	//bool bPrevManagedOverlapEnabled = bManagedOverlapEnabled;
 
-	//// ManagedOverlapEnableType ÀÌ¶û ±âÅ¸ ¼³Á¤¿¡ µû¶ó ÇØ´çÇÏ´Â Event ÀÌ¸é bManagedOverlapEnabled ¼¼ÆÃ..
+	//// ManagedOverlapEnableType æå°” æ‰é¸¥ æ±²æ²¥ä¿Š è¶æ‰¼ ç§¦å¯¸çªç»° Event ææ bManagedOverlapEnabled æŠ€æ³¼..
 	//SetFlagByTriggerEnableTypeCommon(bManagedOverlapEnabled, ManagedOverlapEnableType,
 	//	OptionalEventName, ManagedOverlapEnableEventName, ManagedOverlapDisableEventName);
 
-	//// AB2LevelDoorBase ¿¡¼­µµ ±×·¯´Âµ¥ Æ¯¼ö ÄÉÀÌ½º·Î ÇÃ·¹ÀÌ¾î°¡ ºÙ¾î ÀÖ´Ù¸é ÇÑ¹ø °­Á¦ ½Ã±×³ÎÀ» ³¯¸± ÇÊ¿ä°¡ ÀÖ°Ú´Ù.
+	//// AB2LevelDoorBase ä¿Šè¾‘æ¡£ å¼ŠçŸ¾ç»°å• æ¼‚è çº³æèƒ¶è‚º æ•²é¥­æç»¢å•Š å˜¿ç»¢ ä¹ä¿ƒæ èŒ„é”… ç¢åŠ› çŸ«å¼Šæ¾„é˜‘ æœå‰¯ é˜å¤¸å•Š ä¹æ‘†ä¿ƒ.
 	//if (!bPrevManagedOverlapEnabled && bManagedOverlapEnabled)
 	//{
 	//	ABladeIIPlayer* B2Player = Cast<ABladeIIPlayer>(UGameplayStatics::GetLocalPlayerCharacter(this));
@@ -38,7 +38,7 @@ void AB2TriggerBox::NotifyActorBeginOverlap(AActor* OtherActor)
 {
 	Super::NotifyActorBeginOverlap(OtherActor);
 
-	// ±âº» BeginOverlap ±â´ÉÀº ±×´ë·Î µ¿ÀÛÇÏ°í Ãß°¡·Î..
+	// æ‰å¤¯ BeginOverlap æ‰ç“·ç¯® å¼Šæªè‚º æ‚¼ç´¯çªç»Š çœ å•Šè‚º..
 	if (bManagedOverlapEnabled){
 		OnManagedActorBeginOverlap.Broadcast(this, OtherActor);
 	}
@@ -47,7 +47,7 @@ void AB2TriggerBox::NotifyActorEndOverlap(AActor* OtherActor)
 {
 	Super::NotifyActorEndOverlap(OtherActor);
 
-	// ±âº» EndOverlap ±â´ÉÀº ±×´ë·Î µ¿ÀÛÇÏ°í Ãß°¡·Î..
+	// æ‰å¤¯ EndOverlap æ‰ç“·ç¯® å¼Šæªè‚º æ‚¼ç´¯çªç»Š çœ å•Šè‚º..
 	if (bManagedOverlapEnabled){
 		OnManagedActorEndOverlap.Broadcast(this, OtherActor);
 	}

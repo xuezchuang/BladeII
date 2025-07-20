@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UILobbyCharInfo.h"
 #include "B2UIManager.h"
 #include "B2UIDocHelper.h"
@@ -141,7 +141,7 @@ void UB2UILobbyCharInfo::SetInvetorySlot()
 	{
 		EItemEquipPlace CurrentEquipPlace = static_cast<EItemEquipPlace>(idx);
 
-		{//±âÁ¸ ¾ÆÀÌÄÜ »èÁ¦
+		{//æ‰ç²® é…’æžèƒ½ æ˜åŠ›
 			UB2DynItemIcon_LobbyEquip** DynIcon = DynIcons.Find(CurrentEquipPlace);
 			if (DynIcon)
 			{
@@ -155,7 +155,7 @@ void UB2UILobbyCharInfo::SetInvetorySlot()
 			}			
 		}
 
-		{//½½·Ô ¾ÆÀÌÄÜ »ý¼º
+		{//æµ‡å© é…’æžèƒ½ ç§¯å·±
 			FB2Item* EquippedItem = EquippedItems.Find(CurrentEquipPlace);
 			if (EquippedItem)
 			{
@@ -177,7 +177,7 @@ void UB2UILobbyCharInfo::SetInvetorySlot()
 					ItemIcon->SetEquipItemIconType(ELobbyEquipItemIconType::EEIIT_LobbyInven);
 					ItemIcon->UpdateItemData(*EquippedItem);
 
-					ItemIcon->SetVisibility(ESlateVisibility::HitTestInvisible); //HitÃ³¸®´Â µû·ÎÇÔ.
+					ItemIcon->SetVisibility(ESlateVisibility::HitTestInvisible); //Hitè´¸åºœç»° è¶è‚ºçªƒ.
 
 					DynIcons.Add(CurrentEquipPlace, ItemIcon);
 				}
@@ -325,7 +325,7 @@ void UB2UILobbyCharInfo::ShowPopupCharStat()
 	if (UIP_CharDetail.IsValid())
 	{
 		UIP_CharDetail->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
-		UIP_CharDetail->UpdateStaticTexts(); // Init ½ÃÁ¡ÀÌ¾î¾ß ÇÏÁö¸¸ µüÈ÷ Àû´çÇÑ Àå¼Ò°¡ ¾ø±º. ¿©±â¼­ DJLegacy ¸¦ ¾²·Á´Ï..
+		UIP_CharDetail->UpdateStaticTexts(); // Init çŸ«ç—¢æžç»¢å…· çªç˜¤çˆ¶ è¿­æ´’ åˆ©å¯¸èŒ„ åŽ˜å®¶å•Š ç»ç„™. å’¯æ‰è¾‘ DJLegacy ç”« é™å¦¨èª..
 		UIP_CharDetail->UpdateStats(CurrentPCClass);
 	}		
 

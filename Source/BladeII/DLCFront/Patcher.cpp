@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "Patcher.h"
@@ -30,7 +30,7 @@ FString UCPatcher::GetPatchPath()
 	FString path = "";
 
 //#if 1	
-//	// ¸¸ÀÏ GamePersistentDownloadDir ·Î Ä¿¹ö ¾ÈµÇ´Â °æ¿ì°¡ ¹ß»ýÇÏ¸é FPaths::DLCInstallStageDir È¤Àº FPaths::DLCInstallDir ÀÌÂÊµµ °°ÀÌ ¼öÁ¤ÇÕ´Ï´Ù..
+//	// çˆ¶è€ GamePersistentDownloadDir è‚º ç›®æ»š æ•‘ç™»ç»° ç‰ˆå¿«å•Š æƒ¯ç§¯çªæ FPaths::DLCInstallStageDir è¶£ç¯® FPaths::DLCInstallDir æžçŽ‡æ¡£ éžæž èæ²¥é’¦èªä¿ƒ..
 //	path = FPaths::GamePersistentDownloadDir() + TEXT("/");
 //#else
 //
@@ -117,7 +117,7 @@ void UCPatcher::OnResponseReceived(UB2UIPatch* owner, FHttpResponsePtr response,
 
 	//		//if (IsAccessTerm())
 	//		//{
-	//		// Ä«Ä«¿À°É·Î ´ëÃ¤
+	//		// å¢¨å¢¨å·å§è‚º æŽªç›²
 	//			owner_->GameStart();
 	//	/*	}
 	//		else

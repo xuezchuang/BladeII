@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIBattleTagAnim.h"
 #include "B2UIManager.h"
 
@@ -28,10 +28,10 @@ void FUITagAnimWidgetCollectionPerPCClass::CacheAssetsForChar(UB2UIWidget* InOwn
 {
 	if (InOwnerWidget && InCharClass != EPCClass::EPC_End)
 	{
-		// ¿©±â¼­ ÇÏ´Â °Å¿¡ ³×ÀÌ¹ÖÀ» ¸ÂÃç¾ß ÇÔ.
+		// å’¯æ‰è¾‘ çªç»° èŠ­ä¿Š åŒ™ææ€ªé˜‘ å˜è‹—å…· çªƒ.
 		const FString NamePostfix = GetWidgetNamePostFix(InCharClass);
 
-		// ¾êµéÀº UMG ¿¡¼­´Â material ÇÒ´çÀÌ ¾øÀÌ ºñ¾î ÀÖ¾î¾ß ÇÑ´Ù. ¸Ş¸ğ¸® ¾Æ³¢·Á°í ¿©±â¼­ FUITagAnimSetupPerPCClass ÅëÇØ TAsset ¼Â¾÷ÇÏ´Âµ¥ UMG ¿¡¼­ ¼¼ÆÃÀ» ÇØ ³õÀ¸¸é Ã·ºÎÅÍ ¸Ş¸ğ¸® ·ÎµåµÇ¾î ¼Ò¿ëÀÌ ¾ø´Ù.
+		// å¨Ÿç”¸ç¯® UMG ä¿Šè¾‘ç»° material ä¸”å¯¸æ ç»æ åšç»¢ ä¹ç»¢å…· èŒ„ä¿ƒ. çš‹è‘›åºœ é…’å°å¦¨ç»Š å’¯æ‰è¾‘ FUITagAnimSetupPerPCClass çƒ¹ç§¦ TAsset æ‚¸è¯€çªç»°å• UMG ä¿Šè¾‘ æŠ€æ³¼é˜‘ ç§¦ åˆæ æ æ¢…ä½•ç£ çš‹è‘›åºœ è‚ºé›ç™»ç»¢ å®¶ä¾©æ ç»ä¿ƒ.
 		IMG_Main_01 = InOwnerWidget->GetSlot<UImage>(FName( *FString::Printf(TEXT("IMG_Main_01_%s"), *NamePostfix)));
 		IMG_Main_02 = InOwnerWidget->GetSlot<UImage>(FName(*FString::Printf(TEXT("IMG_Main_02_%s"), *NamePostfix)));
 		TB_CharName = InOwnerWidget->GetSlot<UTextBlock>(FName(*FString::Printf(TEXT("TB_CharName_%s"), *NamePostfix)));
@@ -47,7 +47,7 @@ void FUITagAnimWidgetCollectionPerPCClass::UpdateWidgets(EPCClass InCharClass, F
 		{
 			IMG_Main_01->SetBrushFromMaterial(MtrlForMain01);
 		}
-		// 2 ¹øÀº Ä³¸¯ÅÍ¿¡ µû¶ó ¾øÀ» ¼öµµ ÀÖ´Ù.
+		// 2 é”…ç¯® æŸè…ç£ä¿Š è¶æ‰¼ ç»é˜‘ èæ¡£ ä¹ä¿ƒ.
 		UMaterialInterface* MtrlForMain02 = InResoureSetup->GetMainPic_2();
 		if (IMG_Main_02.IsValid() && MtrlForMain02)
 		{
@@ -86,7 +86,7 @@ FUITagAnimWidgetCollectionPerPCClass* UB2UIBattleTagAnim::GetWidgetSetForChar(EP
 {
 	if (InCharClass != EPCClass::EPC_End)
 	{
-		// CacheAssets ÇÒ ¶§¿¡ ¼ø¼­´ë·Î ÇÔ. ²¨³»¿Ã ¶§µµ ¼ø¼­´ë·Î.
+		// CacheAssets ä¸” é”­ä¿Š é‰´è¾‘æªè‚º çªƒ. æ³¢éƒ´æ£µ é”­æ¡£ é‰´è¾‘æªè‚º.
 		int32 CastedPCClassInt = PCClassToInt(InCharClass);
 		if (CachedWidgetSets.IsValidIndex(CastedPCClassInt))
 		{
@@ -98,7 +98,7 @@ FUITagAnimWidgetCollectionPerPCClass* UB2UIBattleTagAnim::GetWidgetSetForChar(EP
 
 void UB2UIBattleTagAnim::BeginTagAnim(EPCClass InCharClass, bool bIsTagAttack)
 {
-	if (InCharClass != EPCClass::EPC_End && !bIsTagAttack) // bIsTagAttack ¿¬°è ÅÂ±×¿¡¼­´Â ÀÌ°Å ¾ÈÇÔ. ³ªÁß¿¡ ¹Ù²ğ ¼öµµ ÀÖÀ¸´Ï ÀÏ´Ü ÀÎÀÚ·Î´Â ¹Ş¾ÆµÎ°í..
+	if (InCharClass != EPCClass::EPC_End && !bIsTagAttack) // bIsTagAttack æ¥·æ‹Œ æ€•å¼Šä¿Šè¾‘ç»° æèŠ­ æ•‘çªƒ. å”±åä¿Š å®˜æ‹† èæ¡£ ä¹æ èª è€çªœ ç‰¢ç£Šè‚ºç»° ç½é…’æ»´ç»Š..
 	{
 		int32 CastedClassInt = PCClassToInt(InCharClass);
 		if (WS_TagEffectPerPCSet.IsValid())
@@ -106,7 +106,7 @@ void UB2UIBattleTagAnim::BeginTagAnim(EPCClass InCharClass, bool bIsTagAttack)
 			WS_TagEffectPerPCSet->SetActiveWidgetIndex(CastedClassInt);
 		}
 		
-		// Ä³¸¯ÅÍ Å¬·¡½º¿¡ µû¶ó ±âÅ¸ Àâ´ÙÇÑ widget ¸®¼Ò½º ÀûÀıÈ÷ ¼Â¾÷À»..
+		// æŸè…ç£ åŠªè´°èƒ¶ä¿Š è¶æ‰¼ æ‰é¸¥ æ£±ä¿ƒèŒ„ widget åºœå®¶èƒ¶ åˆ©ä¾‹æ´’ æ‚¸è¯€é˜‘..
 		FUITagAnimSetupPerPCClass* DesiredResourceSet = GetResourceSetup(InCharClass);
 		FUITagAnimWidgetCollectionPerPCClass* DesiredWidgetSet = GetWidgetSetForChar(InCharClass);
 		if (DesiredWidgetSet)
@@ -114,7 +114,7 @@ void UB2UIBattleTagAnim::BeginTagAnim(EPCClass InCharClass, bool bIsTagAttack)
 			DesiredWidgetSet->UpdateWidgets(InCharClass, DesiredResourceSet);
 		}
 
-		// ºí·çÇÁ¸°Æ® ÂÊÀÇ ¾Ö´Ï¸ŞÀÌ¼Ç ÇÃ·¹ÀÌ È£Ãâ
+		// å–‰é£æ©‡èµ´é£˜ ç‡ç‹¼ å±€èªçš‹æè®° æ•²é¥­æ é¾‹å…
 		BeginTagAnimBP(InCharClass, bIsTagAttack);
 
 		UWorld* TheWorld = GetWorld();
@@ -124,7 +124,7 @@ void UB2UIBattleTagAnim::BeginTagAnim(EPCClass InCharClass, bool bIsTagAttack)
 		}
 	}
 
-	// ³ëÃâ ½ÃÁ¡¿¡ Ã¤ÆÃ ¶°ÀÖÀ¸¸é È÷µçÃ³¸®
+	// ç•´å… çŸ«ç—¢ä¿Š ç›²æ³¼ æ ‹ä¹æ æ æ´’ç”µè´¸åºœ
 	if (UB2UIManager::GetInstance()->GetUI<UB2UIChatting>(UIFName::Chatting))
 	{
 		SetVisibility(ESlateVisibility::Hidden);
@@ -137,7 +137,7 @@ void UB2UIBattleTagAnim::CacheAssets()
 	
 	GET_SLOT(UWidgetSwitcher, WS_TagEffectPerPCSet);
 
-	// ¼ø¼­¿¡ ¸ÂÃç ³Ö´Â´Ù. GetWidgetSetForChar ¿¡¼­µµ ÀÌ·± °¡Á¤À¸·Î.
+	// é‰´è¾‘ä¿Š å˜è‹— æŒç»°ä¿ƒ. GetWidgetSetForChar ä¿Šè¾‘æ¡£ æç¹ å•Šæ²¥æ è‚º.
 	CachedWidgetSets.Empty();
 	for (int32 PCI = 0; PCI < GetMaxPCClassNum(); ++PCI)
 	{
@@ -218,7 +218,7 @@ void UB2UIBattleTagAnim::UnsubscribeEvents()
 
 void UB2UIBattleTagAnim::OnPause(bool bPaused)
 {
-	// º°µµÀÇ layer ¿¡ µ¿Àû »ı¼ºµÇ´Â ¾Ö¶ó pause µÇ¾îµµ °¡·ÁÁöÁö ¾Ê¾Æ¼­ µû·Î ¼û±æ ÇÊ¿ä°¡ ÀÖ´Ù. ¿©±â¼± ´Ù¸¥ Á¶°ÇÀ¸·Î visibility Á¦¾îÇÏ´Â °Ô ¾øÀ¸´Ï °Á ÀÌ·¸°Ô
+	// å–Šæ¡£ç‹¼ layer ä¿Š æ‚¼åˆ© ç§¯å·±ç™»ç»° å±€æ‰¼ pause ç™»ç»¢æ¡£ å•Šå¦¨ç˜¤ç˜¤ è‡¼é…’è¾‘ è¶è‚º è§è¾¨ é˜å¤¸å•Š ä¹ä¿ƒ. å’¯æ‰æ€¥ ä¿ƒå¼— ç‚¼æ‰’æ è‚º visibility åŠ›ç»¢çªç»° éœ¸ ç»æ èª å‚² æçŠ¯éœ¸
 	this->SetVisibility(bPaused ? ESlateVisibility::Hidden : ESlateVisibility::SelfHitTestInvisible);
 }
 
@@ -226,7 +226,7 @@ void UB2UIBattleTagAnim::NativeTick(const FGeometry& MyGeometry, float InDeltaTi
 {
 	Super::NativeTick(MyGeometry, InDeltaTime);
 	
-	// È¤ Å¸ÀÌ¸Ó Á÷Á¢ µ¹¸± ÀÏ ÀÖÀ¸¸é?
+	// è¶£ é¸¥æèµ£ æµç«‹ å€’å‰¯ è€ ä¹æ æ?
 }
 
 void UB2UIBattleTagAnim::TotalPeriodExpireCB()
@@ -237,6 +237,6 @@ void UB2UIBattleTagAnim::TotalPeriodExpireCB()
 		TheWorld->GetTimerManager().ClearTimer(TotalPeriodExpireTH);
 	}
 
-	// ³ª¸¦ »ı¼ºÇÑ owner ÂÊ¿¡ destroy ½ÅÈ£¸¦ º¸³½´Ù.
+	// å”±ç”« ç§¯å·±èŒ„ owner ç‡ä¿Š destroy è„šé¾‹ç”« ç„Šè¾°ä¿ƒ.
 	OnTotalPeriodExpireDelegate.ExecuteIfBound(this);
 }

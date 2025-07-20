@@ -1,4 +1,4 @@
-
+﻿
 #include "Quest.h"
 
 #include "Stat.h"

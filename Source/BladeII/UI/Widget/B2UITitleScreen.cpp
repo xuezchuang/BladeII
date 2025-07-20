@@ -1,4 +1,4 @@
-#include "B2UITitleScreen.h"
+ï»¿#include "B2UITitleScreen.h"
 #include "B2UIEnum.h"
 #include "Event.h"
 #include "B2UIManager.h"
@@ -9,10 +9,10 @@
 #include "B2LobbyGameMode.h"
 #include "TutorialManager.h"
 
-// kakao ÀÓ½Ã
+// kakao çƒ™çŸ«
 #include "B2PlatformAPI.h"
 #include "B2UITitleDesign.h"
-// ÃÖÁ¾ÀûÀ¸·Î´Â B2UITitleDLC ¿¡ ÀÖ´Â Å¸ÀÌÆ² È­¸é ±â´ÉÀÌ Á¤½Ä Ãë±ŞÀÌ°í ±×ÂÊ °øÅë ±â´ÉÀ» ¿©±â¼­ ¾²´Â °Ô ÀÖÀ½.
+// å¼¥è¾†åˆ©æ è‚ºç»° B2UITitleDLC ä¿Š ä¹ç»° é¸¥ææ’‡ æ‹³æ æ‰ç“·æ æ²¥ä¾¥ ç§’é­æç»Š å¼Šç‡ å‚çƒ¹ æ‰ç“·é˜‘ å’¯æ‰è¾‘ é™ç»° éœ¸ ä¹æ¾œ.
 #include "B2UITitleDLC.h"
 #include "B2DLCFrontGameMode.h"
 
@@ -36,9 +36,9 @@ UB2UITitleScreen::UB2UITitleScreen(const FObjectInitializer& ObjectInitializer)
 {
 	DevDummyDLCFront = nullptr;
 
-	// ÀÌ°É true ·Î ¾²´Â °Ç AccountInfo ·Îµù ½Ã ±×³É Á¤ÇØÁø ÀÌ¹ÌÁö ¾²´Â °Çµ¥
-	// ÀÌ °æ¿ì LoadingImageInfo ÀÇ GetLobbyLoginLoadingImageName ¿¡¼­µµ ¸¶Âù°¡Áö ÀÌ¹ÌÁö °æ·Î¸¦ ¸®ÅÏÇÏµµ·Ï ÇÒ ÇÊ¿ä°¡ ÀÖ´Ù.
-	// ¾È ±×·¯¸é Áß°£¿¡ Àá±ñ ´Ù¸¥ ÀÌ¹ÌÁö°¡ ³ª¿Ã °ÍÀÌ´Ù.
+	// æå§ true è‚º é™ç»° æ‰’ AccountInfo è‚ºçˆ¹ çŸ« å¼Šæˆ æ²¥ç§¦æŸ³ æå›ºç˜¤ é™ç»° æ‰’å•
+	// æ ç‰ˆå¿« LoadingImageInfo ç‹¼ GetLobbyLoginLoadingImageName ä¿Šè¾‘æ¡£ ä»˜è›®å•Šç˜¤ æå›ºç˜¤ ç‰ˆè‚ºç”« åºœç•”çªæ¡£åºŸ ä¸” é˜å¤¸å•Š ä¹ä¿ƒ.
+	// æ•‘ å¼ŠçŸ¾æ ååŸƒä¿Š æ³ªç˜ª ä¿ƒå¼— æå›ºç˜¤å•Š å”±æ£µ å·´æä¿ƒ.
 	bUseAlternativeLoadingImage = false;
 }
 
@@ -64,7 +64,7 @@ void UB2UITitleScreen::Init()
 	m_LoginDelegateCalled.AtomicSet(false);
 	FBladeIIBlockToSyncNetwork::GetInstance().SetIsRequestMasterData(false);
 
-#if PLATFORM_ANDROID // ÁøÂ¥ kakao ·Î±×ÀÎ delegate µî·Ï
+#if PLATFORM_ANDROID // æŸ³æ¥¼ kakao è‚ºå¼Šç‰¢ delegate æ®¿åºŸ
 	FJavaWrapper::OnKakaoLoginResultDelegate.Remove(OnKakaoLoginHandler);
 	OnKakaoLoginHandler = FJavaWrapper::OnKakaoLoginResultDelegate.AddUObject(this, &UB2UITitleScreen::KakaoLoginDelegate);
 #endif
@@ -74,7 +74,7 @@ void UB2UITitleScreen::Init()
 #endif
 
 #if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV1 && !BUILD_STANDALONE_TEST_APK
-	//// ³×Æ®¿öÅ© ÃÊ±âÈ­°¡ ¾È µÈ »óÅÂ¿¡¼­´Â DLC ÀıÂ÷¸¦ »ó±â½ÃÄÑÁÖ´Â ´õ¹Ì¸¦ ¶ç¿ì´Âµ¥ Å¸ ÆÀ ¹èÆ÷¿¡¼­´Â ±¦È÷ È¥¼±¸¸ °¡ÁßµÉ °Å °°À¸´Ï ÀÌ°É ½ºÅµÇÏ´Â ½ÇÇàÀÎÀÚ¸¦ ÁØºñÇÑ´Ù.
+	//// åŒ™é£˜å†µå†œ æª¬æ‰æ‹³å•Š æ•‘ ç­‰ æƒ‘æ€•ä¿Šè¾‘ç»° DLC ä¾‹ç’ç”« æƒ‘æ‰çŸ«éš¾æ—ç»° æ­¹å›ºç”« å‰å¿«ç»°å• é¸¥ è¯„ ç¡…å™¨ä¿Šè¾‘ç»° å®æ´’ å»æ€¥çˆ¶ å•Šåçª èŠ­ éæ èª æå§ èƒ¶è¯ºçªç»° è§’é’ç‰¢ç£Šç”« éœ–åšèŒ„ä¿ƒ.
 	//if (!IsFinalDLCCookRun() 
 	//	&& !FBladeIIBlockToSyncNetwork::GetInstance().GetIsNetworkInit()
 	//	&& !UB2UIDummyDLCFront::bWentThroughRealDLCFront
@@ -88,7 +88,7 @@ void UB2UITitleScreen::Init()
 #if !UE_BUILD_SHIPPING
 	if (CheckAndSetupForTitleMovieCaptureMode())
 	{
-		// Å¸ÀÌÆ² µ¿¿µ»ó Ä¸ÃÄ ¸ğµå·Î Ã³¸®µÊ. ´Ù¸¥ ¼Â¾÷ ÆĞ½º
+		// é¸¥ææ’‡ æ‚¼åº·æƒ‘ æ¯åªš è‘›é›è‚º è´¸åºœå‡³. ä¿ƒå¼— æ‚¸è¯€ è©èƒ¶
 	}
 	else
 #endif
@@ -98,78 +98,78 @@ void UB2UITitleScreen::Init()
 //#endif
 //		)
 //	{
-//		// DLC ·çÆ®¿¡¼­ ¿©±ä Account Info ¿äÃ»ÇÏ°í ·Îºñ ÁøÀÔ ´ë±âÇÏ´Â Àá½Ã Áö³ª°¡´Â °÷ÀÌ µÈ´Ù.
-//		// DLC Front ¿¡¼­ Title À» º¸¿©ÁÖ°Ô µÈ ÈÄ ¿©±â¼­´Â account info ¹Ş´Â µ¿¾ÈÀÇ ÀÏ½ÃÀûÀÎ °¡¸²¸· ¿ªÇÒ.
-//		// º°µµ ÀÌ¹ÌÁö È¤Àº ½ÃÀÛ flow ÀÏ°ü¼ºÀ» À§ÇØ title µ¿¿µ»ó »ç¿ë.
-//		// Tick ÀÌ µ¹¾Æ°¡±âµµ ÇÏ°í, ChangeScene ´ë±âÁßÀÌ¶ó ÇÏ´õ¶óµµ B2GameLoadingScreen À» »ç¿ëÇÒ¸¸ÇÑ È¯°æÀº ¾Æ´Ï´Ù.
-//		// ÇÑ°è°¡ ÀÖÁö¸¸ ¿©±â¼­ UI ·Î ¶ç¿ì´Â °É·Î´Ù °¡¸²¸·À» »ï¾Æ¾ß ÇÑ´Ù.
+//		// DLC é£é£˜ä¿Šè¾‘ å’¯å˜ Account Info å¤¸æ²¡çªç»Š è‚ºåš æŸ³æ¶ æªæ‰çªç»° æ³ªçŸ« ç˜¤å”±å•Šç»° é•‘æ ç­‰ä¿ƒ.
+//		// DLC Front ä¿Šè¾‘ Title é˜‘ ç„Šå’¯æ—éœ¸ ç­‰ é¥¶ å’¯æ‰è¾‘ç»° account info ç½ç»° æ‚¼æ•‘ç‹¼ è€çŸ«åˆ©ç‰¢ å•Šè¦†é˜œ å¼€ä¸”.
+//		// å–Šæ¡£ æå›ºç˜¤ è¶£ç¯® çŸ«ç´¯ flow è€åŒ…å·±é˜‘ å›°ç§¦ title æ‚¼åº·æƒ‘ è¤ä¾©.
+//		// Tick æ å€’é…’å•Šæ‰æ¡£ çªç»Š, ChangeScene æªæ‰åææ‰¼ çªæ­¹æ‰¼æ¡£ B2GameLoadingScreen é˜‘ è¤ä¾©ä¸”çˆ¶èŒ„ åˆ¸ç‰ˆç¯® é…’èªä¿ƒ.
+//		// èŒ„æ‹Œå•Š ä¹ç˜¤çˆ¶ å’¯æ‰è¾‘ UI è‚º å‰å¿«ç»° å§è‚ºä¿ƒ å•Šè¦†é˜œé˜‘ ä¼™é…’å…· èŒ„ä¿ƒ.
 //		
 //		if (bUseAlternativeLoadingImage)
 //		{
 //			ShowAlternativeLoadingScreen();
 //		}
 //		else
-//		{ // ÀÌ °æ¿ì Å¸ÀÌÆ² µ¿¿µ»ó ¿¬Àå. µ¿¿µ»óÀÌ Àß µ¹¾Æ°¡´Â °Ç ¾Æ´Ï°í ¸ØÃá »óÅÂ·Î º¸ÀÏ °Í.
+//		{ // æ ç‰ˆå¿« é¸¥ææ’‡ æ‚¼åº·æƒ‘ æ¥·å˜. æ‚¼åº·æƒ‘æ è‚‹ å€’é…’å•Šç»° æ‰’ é…’èªç»Š è‚›å†• æƒ‘æ€•è‚º ç„Šè€ å·´.
 //			if (IMG_Alternative_LobbyLoading.IsValid())
 //			{
 //				IMG_Alternative_LobbyLoading->SetVisibility(ESlateVisibility::Hidden);
 //			}
 //			if(UIP_TitleDesign.IsValid())
 //			{
-//				// DLCTitle È­¸é¿¡¼­ ·£´ı¼±ÅÃÇÑ Å¬·¡½º·Î µ¿¿µ»óÀ» ¿¬Àå Àç»ı.
-//				// ¿©±â¼­ Æ½À» ¹Ş´Â ½Ã°£Àº ÂªÀ¸¹Ç·Î ±× »çÀÌ¿¡ ¹º°¡ ±×·²½ÎÇÑ ¿Ü°üÀ» º¸¿©ÁÖ·Á¸é Animation ¿ä¼Ò ¾øÀÌ ¹Ù·Î ½ÃÀÛÇØ¾ß.
+//				// DLCTitle æ‹³æä¿Šè¾‘ ç½šå¾…æ€¥ç¶èŒ„ åŠªè´°èƒ¶è‚º æ‚¼åº·æƒ‘é˜‘ æ¥·å˜ çŠç§¯.
+//				// å’¯æ‰è¾‘ å¹³é˜‘ ç½ç»° çŸ«åŸƒç¯® é™‹æ éª¨è‚º å¼Š è¤æä¿Š è´­å•Š å¼Šå‡¡è½¿èŒ„ å¯‡åŒ…é˜‘ ç„Šå’¯æ—å¦¨æ Animation å¤¸å®¶ ç»æ å®˜è‚º çŸ«ç´¯ç§¦å…·.
 //				UIP_TitleDesign->StartMovieImmediate(AB2DLCFrontGameMode::GetSelectedFrontTitleMovieClass());
 //				UIP_TitleDesign->SetVisibility(ESlateVisibility::HitTestInvisible);
-//				// ¿©±â µ¿¿µ»ó Ä¸ÃÄÇÑ ·Îµù ÀÌ¹ÌÁö¿Í ¸ÂÃß´À¶ó ±âÅ¸ CI µé ¾È º¸ÀÌ°Ô Ã³¸®.
+//				// å’¯æ‰ æ‚¼åº·æƒ‘ æ¯åªšèŒ„ è‚ºçˆ¹ æå›ºç˜¤å®¢ å˜çœ è ¢æ‰¼ æ‰é¸¥ CI ç”¸ æ•‘ ç„Šæéœ¸ è´¸åºœ.
 //				UIP_TitleDesign->SetShowOtherCIs(false);
 //			}
 //			ShowExtraLoadingMessage(true);
 //		}		
 //		
-//		// AccountInfo ÀÀ´ä ¹ŞÀ» ¶§±îÁö ´ë±â¸¦ Å¸±ä ÇÏ°ÚÁö¸¸ ÀÌ»óÀûÀÎ »óÈ²ÀÌ¸é ¸Å¿ì ÂªÀ¸¹Ç·Î ¹Ù·Î ¿©±â¼­ GameLobbyStartDirect ¸¦ ÄİÇÏÁö´Â ¾Ê´Â´Ù.
+//		// AccountInfo è§ˆç¿  ç½é˜‘ é”­é³–ç˜¤ æªæ‰ç”« é¸¥å˜ çªæ‘†ç˜¤çˆ¶ ææƒ‘åˆ©ç‰¢ æƒ‘ç‚”ææ æ¦‚å¿« é™‹æ éª¨è‚º å®˜è‚º å’¯æ‰è¾‘ GameLobbyStartDirect ç”« å¦®çªç˜¤ç»° è‡¼ç»°ä¿ƒ.
 //		UWorld* TheWorld = GetWorld();
 //		if (TheWorld)
-//		{ 		// Àû´çÈ÷ ½Ã°£ Áö¿¬ µÎ°í AccountInfo ¹× ·Îºñ ¸ŞÀÎ ÁøÀÔ ½Ãµµ
-//			// ¿©±â ½Ã°£ Áö¿¬ÀÌ Àº±Ù ¹Î°¨ÇÑµ¥, ½Ã°£ Áö¿¬ÀÌ ÀüÇô ¾øÀ¸¸é µ¿ÀÛ¿¡ ¹®Á¦´Â ¾øÁö¸¸ È­¸éÀÌ ½ÃÄ¿¸ÅÁø Ã¤·Î ´ë±âÅ¸°Ô µÇ°í,
-//			// ½Ã°£ Áö¿¬ÀÌ ³Ñ ÂªÀ¸¸é ¼­¹ö ÃÊ±âÈ­ Á÷ÈÄ ¹º°¡¿Í ¾ôÇô¼­ ÀÏ½ÃÀûÀÎ ¼­¹ö ¿¬°á Àå¾Ö Çö»óÀÌ ³ªÅ¸³¯ ¼ö ÀÖ´Ù.
+//		{ 		// åˆ©å¯¸æ´’ çŸ«åŸƒ ç˜¤æ¥· æ»´ç»Š AccountInfo æ£º è‚ºåš çš‹ç‰¢ æŸ³æ¶ çŸ«æ¡£
+//			// å’¯æ‰ çŸ«åŸƒ ç˜¤æ¥·æ ç¯®è¾Ÿ åˆ®çš‘èŒ„å•, çŸ«åŸƒ ç˜¤æ¥·æ å‚ˆå›š ç»æ æ æ‚¼ç´¯ä¿Š å·©åŠ›ç»° ç»ç˜¤çˆ¶ æ‹³ææ çŸ«ç›®æ¦‚æŸ³ ç›²è‚º æªæ‰é¸¥éœ¸ ç™»ç»Š,
+//			// çŸ«åŸƒ ç˜¤æ¥·æ é€ é™‹æ æ è¾‘æ»š æª¬æ‰æ‹³ æµé¥¶ è´­å•Šå®¢ çˆµå›šè¾‘ è€çŸ«åˆ©ç‰¢ è¾‘æ»š æ¥·æ¬ å˜å±€ æ³…æƒ‘æ å”±é¸¥æœ è ä¹ä¿ƒ.
 //			const float TimeDelayToNetworkInitAndGetAccount = 0.5f;
 //			TheWorld->GetTimerManager().SetTimer(DelayedGameLobbyStartTH, this, &UB2UITitleScreen::DelayedGameLobbyStartDirect, 
 //				TimeDelayToNetworkInitAndGetAccount, 
 //				false);
 //		}
 //
-//		// Àû¾îµµ ¸ŞÀÎ¾²·¹µå Æ½ÀÌ µ¹¾Æ°¡´Â ¿ÍÁß¿¡´Â ·Îµù ÁßÀÓÀ» ¾Ë ¼ö ÀÖµµ·Ï ¹¹¶óµµ µ¹¸°´Ù.
+//		// åˆ©ç»¢æ¡£ çš‹ç‰¢é™é¥­é› å¹³æ å€’é…’å•Šç»° å®¢åä¿Šç»° è‚ºçˆ¹ åçƒ™é˜‘ èˆ… è ä¹æ¡£åºŸ æ„æ‰¼æ¡£ å€’èµ´ä¿ƒ.
 //		ShowMiscLoadingIconClass<bool>::GetInstance().Signal(true);
 //		if (TheWorld)
 //		{
-//			// AccountInfo ¿À±â Àü±îÁö ½Ã°£ÀÌ Áö³ª¸é BladeIIBlockToSyncNetwork ÀÇ ³×Æ®¿öÅ© ´ë±â indicator °¡ ¶ã °ÍÀÌ¹Ç·Î
-//			// Àû´çÈ÷ ½Ã°£ ÁÖ°í ¿©±ä ´İµµ·Ï Å¸ÀÌ¸Ó ¼³Ä¡. Å¸ÀÌ¹ÖÀÌ Å©°Ô Áß¿äÇÑ °Ç ¾Æ´Ï´Ï ½Ã°£Àº ¿©±â¼­ ÁöÁ¤.
+//			// AccountInfo å·æ‰ å‚ˆé³–ç˜¤ çŸ«åŸƒæ ç˜¤å”±æ BladeIIBlockToSyncNetwork ç‹¼ åŒ™é£˜å†µå†œ æªæ‰ indicator å•Š èº² å·´æéª¨è‚º
+//			// åˆ©å¯¸æ´’ çŸ«åŸƒ æ—ç»Š å’¯å˜ æ‘§æ¡£åºŸ é¸¥æèµ£ æ±²æ‘¹. é¸¥ææ€ªæ å†œéœ¸ åå¤¸èŒ„ æ‰’ é…’èªèª çŸ«åŸƒç¯® å’¯æ‰è¾‘ ç˜¤æ²¥.
 //			TheWorld->GetTimerManager().SetTimer(CloseMiscLoadingIndicatorTH, this, &UB2UITitleScreen::CloseMiscLoadingIndicator,
 //				2.0f,  false);
 //		}
 //	}
 //	else
 //	{ 
-//		// ÀÌ ·çÆ®´Â °³¹ß¹öÀü ¿ë (³»Áö´Â È¤¿©³ª DLC ¹èÆ÷¸¦ ¾ÈÇÏ°Ô µÉ ¶§?) 
-//		// TitleDLC ¸¦ ÅëÇØ ¶ç¿ìÁö ¸øÇÑ Title È­¸éÀ» ´ë½Å ¿©±â¼­¶óµµ ¶ç¿ò.
+//		// æ é£é£˜ç»° ä¿ºæƒ¯æ»šå‚ˆ ä¾© (éƒ´ç˜¤ç»° è¶£å’¯å”± DLC ç¡…å™¨ç”« æ•‘çªéœ¸ çª é”­?) 
+//		// TitleDLC ç”« çƒ¹ç§¦ å‰å¿«ç˜¤ ç»™èŒ„ Title æ‹³æé˜‘ æªè„š å’¯æ‰è¾‘æ‰¼æ¡£ å‰æ¡†.
 //		if (UIP_TitleDesign.IsValid())
 //		{
-//			UIP_TitleDesign->SetVisibility(ESlateVisibility::Visible); // ÀÌ °æ¿ì ÀÌ°É Visible ·Î ÇØ ÁÖ¾î¾ß ¿©±â¼­ ÇÊ¿äÇÑ ÅÍÄ¡ ½ÅÈ£¸¦ ¹ŞÀ» ¼ö ÀÖÀ½.
+//			UIP_TitleDesign->SetVisibility(ESlateVisibility::Visible); // æ ç‰ˆå¿« æå§ Visible è‚º ç§¦ æ—ç»¢å…· å’¯æ‰è¾‘ é˜å¤¸èŒ„ ç£æ‘¹ è„šé¾‹ç”« ç½é˜‘ è ä¹æ¾œ.
 //			UIP_TitleDesign->StartMovieRandomPick();
 //		}
 //		if (IMG_Alternative_LobbyLoading.IsValid())
-//		{ // ¿©±â¼± AlternativeLoadingImage ¸¦ »ç¿ëÇÏ´Â °æ¿ì¶óµµ ÀÏ´Ü ¼û°ÜµÒ. ÀÌµû°¡ º¸ÀÓ..
+//		{ // å’¯æ‰æ€¥ AlternativeLoadingImage ç”« è¤ä¾©çªç»° ç‰ˆå¿«æ‰¼æ¡£ è€çªœ è§è´¥ç‹„. æè¶å•Š ç„Šçƒ™..
 //			IMG_Alternative_LobbyLoading->SetVisibility(ESlateVisibility::Hidden);
 //		}
 //	}
 
 #if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV1
-	// ÀÌ °³¹ß º¸Á¶¿ë Å×½ºÆ® ÇÃ·¡±×ÀÇ ¿ªÇÒÀº ¿©±â¼­ ´Ù ÇÏ´Â °É·Î Ä§.
+	// æ ä¿ºæƒ¯ ç„Šç‚¼ä¾© æŠ›èƒ¶é£˜ æ•²è´°å¼Šç‹¼ å¼€ä¸”ç¯® å’¯æ‰è¾‘ ä¿ƒ çªç»° å§è‚º é­”.
 	UB2UIDummyDLCFront::bWentThroughRealDLCFront = false;
 #endif
 
 #if !PLATFORM_MAC
-	// ÀÎ¾Û°áÁ¦ ÃÊ±âÈ­
+	// ç‰¢èšæ¬åŠ› æª¬æ‰æ‹³
 	//B2InAppPurchase::IB2IAPGenericPlatform::GetInstance()->Reset();
 #endif
 }
@@ -187,7 +187,7 @@ void UB2UITitleScreen::CacheAssets()
 
 	GET_SLOT(UCanvasPanel, PN_DLC_COOK);
 	if (PN_DLC_COOK.IsValid())
-	{ // Æ¯º°È÷ ÇÊ¿äÇÏ¸é ¶ç¿î´Ù.. À¢¸¸ÇÏ¸é ÀÌ°É·Î µ¤À¸¸é ¾ÈµÉ ²¨ °°Àºµ¥..
+	{ // æ¼‚å–Šæ´’ é˜å¤¸çªæ å‰æ¬¾ä¿ƒ.. æ„§çˆ¶çªæ æå§è‚º ä¸¹æ æ æ•‘çª æ³¢ éç¯®å•..
 		PN_DLC_COOK->SetVisibility(ESlateVisibility::Hidden);
 	}
 
@@ -196,7 +196,7 @@ void UB2UITitleScreen::CacheAssets()
 
 void UB2UITitleScreen::ShowExtraLoadingMessage(bool bShow)
 {
-	// DLC ¹èÆ÷ ºôµå ½ÇÇà ½Ã ·Îºñ ÁøÀÔ Á÷ÀüÀÇ ¸¶Áö¸· °ü¹®¿¡¼­ º¸´Â ¸Ş½ÃÁö°¡ µÊ.
+	// DLC ç¡…å™¨ å‘¼é› è§’é’ çŸ« è‚ºåš æŸ³æ¶ æµå‚ˆç‹¼ ä»˜ç˜¤é˜œ åŒ…å·©ä¿Šè¾‘ ç„Šç»° çš‹çŸ«ç˜¤å•Š å‡³.
 	if (TB_ExtraLoadingMessage.IsValid())
 	{
 		TB_ExtraLoadingMessage->SetVisibility(bShow ? ESlateVisibility::HitTestInvisible : ESlateVisibility::Hidden);
@@ -209,7 +209,7 @@ void UB2UITitleScreen::ShowExtraLoadingMessage(bool bShow)
 
 void UB2UITitleScreen::ShowAlternativeLoadingScreen()
 {
-	// ¹İ´ë·Î ¾²´Â °æ¿ì´Â ÀÇµµÀûÀ¸·Î Á¦°øÇÏÁö ¾ÊÀ½. ±×°Ç »óÈ²¿¡ µû¶ó Á» ´Ş¶ó¼­.
+	// é¦†æªè‚º é™ç»° ç‰ˆå¿«ç»° ç‹¼æ¡£åˆ©æ è‚º åŠ›å‚çªç˜¤ è‡¼æ¾œ. å¼Šæ‰’ æƒ‘ç‚”ä¿Š è¶æ‰¼ ç²± å´”æ‰¼è¾‘.
 	if (IMG_Alternative_LobbyLoading.IsValid())
 	{
 		IMG_Alternative_LobbyLoading->SetVisibility(ESlateVisibility::HitTestInvisible);
@@ -222,11 +222,11 @@ void UB2UITitleScreen::ShowAlternativeLoadingScreen()
 }
 
 #if WITH_EDITOR
-// ¿¡µğÅÍÀÇ °æ¿ì TitleScreen À» ¿©·¯¹ø ¿­¸é¼­ ¿øÄ¡ ¾Ê°Ô AccountInfo ¸¦ ¿©·¯¹ø ¿äÃ»ÇÏ´Ù°¡ ²¿ÀÌ´Â °æ¿ì°¡ Á» ÀÖ¾î¼­.. ÀÌ¹Ì AccountInfo ¸¦ ¹ŞÀº »óÈ²ÀÌ¸é TitleScreen ¿¡¼­ AccountInfo ¸¦ ¿äÃ»ÇÏÁö ¾Êµµ·Ï.
+// ä¿Šå¼ç£ç‹¼ ç‰ˆå¿« TitleScreen é˜‘ å’¯çŸ¾é”… å‡¯æè¾‘ ç›”æ‘¹ è‡¼éœ¸ AccountInfo ç”« å’¯çŸ¾é”… å¤¸æ²¡çªä¿ƒå•Š éƒ¨æç»° ç‰ˆå¿«å•Š ç²± ä¹ç»¢è¾‘.. æå›º AccountInfo ç”« ç½ç¯® æƒ‘ç‚”ææ TitleScreen ä¿Šè¾‘ AccountInfo ç”« å¤¸æ²¡çªç˜¤ è‡¼æ¡£åºŸ.
 bool gbAlreadyGotAccountOnce_ForTitleScreen = false;
 #endif
 
-//[@AKI, 170927][FIXME]Main Thread¿¡¼­ È£ÃâµÇ´Â Çö»óÀÌ ÀÖ¾î ÀÓ½Ã ¹æÆíÀ¸·Î º¯°æ ÇÔ.
+//[@AKI, 170927][FIXME]Main Threadä¿Šè¾‘ é¾‹å…ç™»ç»° æ³…æƒ‘æ ä¹ç»¢ çƒ™çŸ« è§„ç¥ˆæ è‚º å‡½ç‰ˆ çªƒ.
 void UB2UITitleScreen::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
 {
 	Super::NativeTick(MyGeometry, InDeltaTime);
@@ -242,7 +242,7 @@ FReply UB2UITitleScreen::NativeOnTouchStarted(const FGeometry& InGeometry, const
 #if BUILD_STANDALONE_TEST_APK
 	GoToStandaloneTestScene();
 #else
-	//¼­¹ö¿ÍÀÇ Á¢¼ÓÀ» ¸ÕÀúÇØ¾ßµÊ.
+	//è¾‘æ»šå®¢ç‹¼ ç«‹åŠ é˜‘ åˆšå†ç§¦å…·å‡³.
 	PlatformServerConnectionHandling();
 #endif
 
@@ -253,27 +253,27 @@ FReply UB2UITitleScreen::NativeOnMouseButtonDown(const FGeometry& InGeometry, co
 {
 #if BUILD_STANDALONE_TEST_APK
 	GoToStandaloneTestScene();
-#elif !PLATFORM_IOS		// IOS ¿¡¼­´Â Áßº¹ È£ÃâÀÌ ¾ÈµÇ¾î ÀÔ·Â ÇÏ³ª´Â ¸·À½.. Å×½ºÆ® ÈÄ ¾Èµå·ÎÀÌµå¿¡¼­µµ Áßº¹ È£Ãâ½Ã ÇÏ³ª´Â »èÁ¦µÇ¾î¾ß ÇÔ.
-	//¼­¹ö¿ÍÀÇ Á¢¼ÓÀ» ¸ÕÀúÇØ¾ßµÊ.
+#elif !PLATFORM_IOS		// IOS ä¿Šè¾‘ç»° åæ±— é¾‹å…æ æ•‘ç™»ç»¢ æ¶ä»¿ çªå”±ç»° é˜œæ¾œ.. æŠ›èƒ¶é£˜ é¥¶ æ•‘é›è‚ºæé›ä¿Šè¾‘æ¡£ åæ±— é¾‹å…çŸ« çªå”±ç»° æ˜åŠ›ç™»ç»¢å…· çªƒ.
+	//è¾‘æ»šå®¢ç‹¼ ç«‹åŠ é˜‘ åˆšå†ç§¦å…·å‡³.
 	PlatformServerConnectionHandling();
 #endif
 	return Super::NativeOnMouseButtonDown(InGeometry, InMouseEvent);
 }
 
-#if BUILD_STANDALONE_TEST_APK // ÅÍÄ¡ÇÏ¸é ¿ÀÇÁ¶óÀÎ ¸ğµå·Î ±×³É ·Îºñ ¸ŞÀÎ ÁøÀÔÇÏ·Á´Â °Å.. ¸î°¡Áö ±ò¸ÂÃã ÇØ µÎ°í.
+#if BUILD_STANDALONE_TEST_APK // ç£æ‘¹çªæ å·æ©‡æ‰¼ç‰¢ è‘›é›è‚º å¼Šæˆ è‚ºåš çš‹ç‰¢ æŸ³æ¶çªå¦¨ç»° èŠ­.. å‰²å•Šç˜¤ å½¬å˜å‹‰ ç§¦ æ»´ç»Š.
 void UB2UITitleScreen::GoToStandaloneTestScene()
 {
-	// 6¼ºÀåºñ ¸ÂÃã
+	// 6å·±å˜åš å˜å‹‰
 	extern int32 gForcedPlayerDummyPartGrade;
 	gForcedPlayerDummyPartGrade = 6;
 	for (int32 PCI = 0; PCI < GetMaxPCClassNum(); ++PCI)
 	{
 		LobbyUpdateCharacterPartClass<EPCClass>::GetInstance().Signal(IntToPCClass(PCI));
 	}
-	GEngine->DeferredCommands.Add(TEXT("CombatStatScale 100000000")); // À¢¸¸ÇÑ ÀüÅõ¿¡¼­ Á×Áö ¾Ê°Ô ÀüÅõ·Â »½Æ¢±â
-	// ·Îºñ ¸ŞÀÎ È­¸é Á÷Çà. µı µ¥¼± ¼­¹ö ¿¬°á ¾ÈµÇ°Ô ÇÏ°í..
+	GEngine->DeferredCommands.Add(TEXT("CombatStatScale 100000000")); // æ„§çˆ¶èŒ„ å‚ˆæ§ä¿Šè¾‘ ç£·ç˜¤ è‡¼éœ¸ å‚ˆæ§ä»¿ å”¤è„¾æ‰
+	// è‚ºåš çš‹ç‰¢ æ‹³æ æµé’. è° å•æ€¥ è¾‘æ»š æ¥·æ¬ æ•‘ç™»éœ¸ çªç»Š..
 	LobbyChangeSceneByUISceneClass<EUIScene>::GetInstance().Signal(EUIScene::LobbyMain);
-	// ¿©Ä³ »ùÇÃ ³¥³¥
+	// å’¯æŸ åŸºæ•² å¿å¿
 	AB2LobbyGameMode* LobbyGM = Cast<AB2LobbyGameMode>(UGameplayStatics::GetGameMode(this));
 	if (LobbyGM)
 	{
@@ -285,8 +285,8 @@ void UB2UITitleScreen::GoToStandaloneTestScene()
 void UB2UITitleScreen::PlatformServerConnectionHandling()
 {
 	////////////////////////////////////////////
-	// Å¸ÀÌÆ² È­¸é ÅÍÄ¡ÇÏ¸é ºÒ¸®´Â ±âº» ·çÆ¾.
-	// ¿©±â¼­ Á¶°Ç¿¡ µû¶ó ºĞ±â¸¦ ÇÏÁö¸¸ ÃÖÁ¾ÀûÀ¸·Î PostKakaoLoginInit À¸·Î ¼ö·ÅÇÑ´Ù.
+	// é¸¥ææ’‡ æ‹³æ ç£æ‘¹çªæ é˜‚åºœç»° æ‰å¤¯ é£å‡­.
+	// å’¯æ‰è¾‘ ç‚¼æ‰’ä¿Š è¶æ‰¼ ç›’æ‰ç”« çªç˜¤çˆ¶ å¼¥è¾†åˆ©æ è‚º PostKakaoLoginInit æ è‚º èæ”¾èŒ„ä¿ƒ.
 	////////////////////////////////////////////
 #ifdef NONE_KAKAO_SDK_VERSION 
 
@@ -311,7 +311,7 @@ void UB2UITitleScreen::PlatformServerConnectionHandling()
 //	{
 //#if B2_BUILD_LEVEL < B2_BUILD_LEVEL_QA
 //
-//		// °³¹ß Å×½ºÆ® ½Ã ÀÌÂÊÀ» Å¸°Ô ÇÏ°í ¿ÜºÎ ¹öÀüÀº Ä«Ä«¿À ·Î±×ÀÎ ¾øÀÌ ¹Ù·Î ¸¶½ºÅÍ µ¥ÀÌÅÍ È£Ãâ
+//		// ä¿ºæƒ¯ æŠ›èƒ¶é£˜ çŸ« æç‡é˜‘ é¸¥éœ¸ çªç»Š å¯‡ä½• æ»šå‚ˆç¯® å¢¨å¢¨å· è‚ºå¼Šç‰¢ ç»æ å®˜è‚º ä»˜èƒ¶ç£ å•æç£ é¾‹å…
 //		B2P_KakaoLogin();
 //#else
 //		MarkKakaoLogin();
@@ -322,9 +322,9 @@ void UB2UITitleScreen::PlatformServerConnectionHandling()
 //#if WITH_EDITOR
 //		if (GIsEditor && gbAlreadyGotAccountOnce_ForTitleScreen)
 //		{
-//			// ¿¡µğÅÍÀÇ °æ¿ì Å¸ÀÌÆ² È­¸é¿¡ ¿©·¯¹ø Á¢±ÙÀÌ °¡´ÉÇÏ¹Ç·Î ÀÌ¹Ì AccountInfo ¸¦ ¹ŞÀº »óÈ²ÀÌ¶ó¸é ´Ù½Ã ¿äÃ»ÇÏÁö ¾Ê°í ¹Ù·Î ·Îºñ Á÷Çà
+//			// ä¿Šå¼ç£ç‹¼ ç‰ˆå¿« é¸¥ææ’‡ æ‹³æä¿Š å’¯çŸ¾é”… ç«‹è¾Ÿæ å•Šç“·çªéª¨è‚º æå›º AccountInfo ç”« ç½ç¯® æƒ‘ç‚”ææ‰¼æ ä¿ƒçŸ« å¤¸æ²¡çªç˜¤ è‡¼ç»Š å®˜è‚º è‚ºåš æµé’
 //			//CheckNewTutorial();
-//			//ResponseGetTutorial¿¡¼­ LastClearTutorialID¹Ş¾Æ¼­ CheckNewTutorial()½ÇÇà
+//			//ResponseGetTutorialä¿Šè¾‘ LastClearTutorialIDç½é…’è¾‘ CheckNewTutorial()è§’é’
 //
 //			if (!FBladeIIBlockToSyncNetwork::GetInstance().GetIsNetworkInit())
 //			{
@@ -337,8 +337,8 @@ void UB2UITitleScreen::PlatformServerConnectionHandling()
 //		else
 //#endif
 //		{
-//			// ±âÅ¸ °³¹ß¹öÀü ¹× Å×½ºÆ® ÄíÅ·¿¡¼­ÀÇ ·çÆ®
-//			BeginFakeKakaoLogin(); // ½ÇÁúÀûÀ¸·Î ½±ÇÎ¿¡¼­ ¿©±â·Î ¿Ã ÀÏÀÌ ÀÖÀ»Áö ¸ğ¸£°Ú´Âµ¥ ÀÏ¸»ÀÇ °¡´É¼ºÀº ³²°ÜµĞ´Ù.
+//			// æ‰é¸¥ ä¿ºæƒ¯æ»šå‚ˆ æ£º æŠ›èƒ¶é£˜ æ»æ¬§ä¿Šè¾‘ç‹¼ é£é£˜
+//			BeginFakeKakaoLogin(); // è§’é¾™åˆ©æ è‚º å¥–ä¿ä¿Šè¾‘ å’¯æ‰è‚º æ£µ è€æ ä¹é˜‘ç˜¤ è‘›ç¦æ‘†ç»°å• è€å¯Œç‹¼ å•Šç“·å·±ç¯® å·¢è´¥æ•Œä¿ƒ.
 //		}
 //	}
 }
@@ -352,7 +352,7 @@ void UB2UITitleScreen::DestroySelf(class UB2UIManager* InUIManager)
 	DestroyDummyDLCFront();
 #endif
 
-	// »óÈ²¿¡ µû¶ó ÀÌ°É ´İ´Â Å¸ÀÌ¸Ó°¡ ¹ÌÃ³ ÀÛµ¿ÇÏ±â Àü ·Îºñ ¸ŞÀÎ¿¡ ÁøÀÔÇÏ°Ô µÉ ¼öµµ ÀÖÀ½.
+	// æƒ‘ç‚”ä¿Š è¶æ‰¼ æå§ æ‘§ç»° é¸¥æèµ£å•Š å›ºè´¸ ç´¯æ‚¼çªæ‰ å‚ˆ è‚ºåš çš‹ç‰¢ä¿Š æŸ³æ¶çªéœ¸ çª èæ¡£ ä¹æ¾œ.
 	CloseMiscLoadingIndicator();
 
 	if (UIP_TitleDesign.IsValid())
@@ -368,12 +368,12 @@ void UB2UITitleScreen::CheckNewTutorial()
 	B2_SCOPED_TRACK_LOG(TEXT("UB2UITitleScreen::CheckNewTutorial"));
 
 	AB2LobbyGameMode* LobbyGM = Cast<AB2LobbyGameMode>(UGameplayStatics::GetGameMode(GetWorld()));
-	// ¼³Ä¡ ÈÄ Ã³À½ ½ÇÇàµÉ PreRender Àü¿ë ·¹º§À» ¸ÕÀú ½ÇÇàÇÏ°í ¿©±â·Î ´Ù½Ã µ¹¾Æ¿Â ÈÄ¿¡ ·Îºñ È¤Àº Æ©Åä¸®¾ó ÁøÀÔÀ» ÇÏµµ·Ï ÇÑ´Ù.
-	// ´Ü, Á¤»óÀûÀÎ DLC ·çÆ®´ë·Î¶ó¸é DLCFrontGameMode ¿¡¼­ PreRender ·¹º§·Î Á÷ÇàÇÏ¹Ç·Î ¿©±â¼­ PreRenderPending ¿¡ °É¸± ÀÏÀº °ÅÀÇ ¾øÀ» °ÍÀÌ´Ù.
+	// æ±²æ‘¹ é¥¶ è´¸æ¾œ è§’é’çª PreRender å‚ˆä¾© é¥­éª‡é˜‘ åˆšå† è§’é’çªç»Š å’¯æ‰è‚º ä¿ƒçŸ« å€’é…’æŸ¯ é¥¶ä¿Š è‚ºåš è¶£ç¯® è­¬é…åºœå€” æŸ³æ¶é˜‘ çªæ¡£åºŸ èŒ„ä¿ƒ.
+	// çªœ, æ²¥æƒ‘åˆ©ç‰¢ DLC é£é£˜æªè‚ºæ‰¼æ DLCFrontGameMode ä¿Šè¾‘ PreRender é¥­éª‡è‚º æµé’çªéª¨è‚º å’¯æ‰è¾‘ PreRenderPending ä¿Š å§å‰¯ è€ç¯® èŠ­ç‹¼ ç»é˜‘ å·´æä¿ƒ.
 	if (!(LobbyGM && LobbyGM->IsFirstTimePreRenderPending()))
 	{	
-		// ±âÁ¸ : ¼­¹ö¿Í Å¬¶óÀÌ¾ğÆ® µÑ´Ù Ã¼Å©.. µÑÁß¿¡ ÇÏ³ª¶óµµ Å¬¸®¾î ÇßÀ¸¸é Æ©Åä¸®¾ó ¾ÈÇÔ
-		// º¯°æ : B2BUG-1660 ¼­¹ö Á¶°Ç¸¸ Ã¼Å©ÇÏµµ·Ï ¼öÁ¤
+		// æ‰ç²® : è¾‘æ»šå®¢ åŠªæ‰¼ææ”«é£˜ ç¬›ä¿ƒ çœ‰å†œ.. ç¬›åä¿Š çªå”±æ‰¼æ¡£ åŠªåºœç»¢ æ²æ æ è­¬é…åºœå€” æ•‘çªƒ
+		// å‡½ç‰ˆ : B2BUG-1660 è¾‘æ»š ç‚¼æ‰’çˆ¶ çœ‰å†œçªæ¡£åºŸ èæ²¥
 		int32 bServerCheck = TutorialManager::GetInstance().GetLastClearTutorialID();
 		bool bClientCheck = IsClearNewTutorial();
 		if(bServerCheck < 0/* && !bClientCheck*/)
@@ -405,9 +405,9 @@ void UB2UITitleScreen::GoToLobby()
 ///////////////////////////////////////////////////////////////////////////
 // !! KakaoLoginDelegate !!
 //
-// ½ÇÁ¦ KakaoLogin À» ÀÌÁ¦ DLCFront(B2UITitleDLC) ¸¦ ÅëÇØ¼­¸¸ ÇÑ´Ù¸é ¿©±â ±â´ÉÀº ÇÊ¿ä°¡ ¾ø´Ù.
-// ¸¸ÀÏ ¿©±â¼­µµ Á¤½Ä Ä«Ä«¿À ·Î±×ÀÎ ±â´É¿¡ ´ëÇÑ ÇÊ¿ä°¡ ÀÖ´Ù¸é B2UITitleDLC ¿¡ ±¸ÇöµÈ °É °øÀ¯ÇÏµµ·Ï ÇØ¾ß ÇÔ.
-// Áö±İÀº °ú°ÅÀÇ ÈçÀûÀÌ µÉ µí.
+// è§’åŠ› KakaoLogin é˜‘ æåŠ› DLCFront(B2UITitleDLC) ç”« çƒ¹ç§¦è¾‘çˆ¶ èŒ„ä¿ƒæ å’¯æ‰ æ‰ç“·ç¯® é˜å¤¸å•Š ç»ä¿ƒ.
+// çˆ¶è€ å’¯æ‰è¾‘æ¡£ æ²¥ä¾¥ å¢¨å¢¨å· è‚ºå¼Šç‰¢ æ‰ç“·ä¿Š æªèŒ„ é˜å¤¸å•Š ä¹ä¿ƒæ B2UITitleDLC ä¿Š å¤‡æ³…ç­‰ å§ å‚èœ¡çªæ¡£åºŸ ç§¦å…· çªƒ.
+// ç˜¤é™›ç¯® è‹èŠ­ç‹¼ å¦‚åˆ©æ çª æ·€.
 //
 ///////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////
@@ -415,7 +415,7 @@ void UB2UITitleScreen::GoToLobby()
 #if PLATFORM_ANDROID
 void UB2UITitleScreen::KakaoLoginDelegate(JNIEnv *env, jobject thiz, jstring userID, jstring accessToken)
 {
-	// ¿©±ä Dummy °¡ ¾Æ´Ñ ÁøÂ¥ Kakao ·Î±×ÀÎ µÈ °Å.
+	// å’¯å˜ Dummy å•Š é…’å›± æŸ³æ¥¼ Kakao è‚ºå¼Šç‰¢ ç­‰ èŠ­.
 
 	UE_LOG(LogClass, Log, TEXT("####KakaoLoginDelegate !!!!!!!!!!!!!!"));
 	FString KakaoUserID;
@@ -439,7 +439,7 @@ void UB2UITitleScreen::KakaoLoginDelegate(JNIEnv *env, jobject thiz, jstring use
 	FB2AuthInfo::GetInstance().SetAccessToken(KakaoAccessToken);
 	// TODO fill any other value
 
-	MarkKakaoLogin(); // ÁØºñµÇ¾úÀ½. ³×Æ®¿öÅ© ÃÊ±âÈ­ °³½Ã.
+	MarkKakaoLogin(); // éœ–åšç™»èŒæ¾œ. åŒ™é£˜å†µå†œ æª¬æ‰æ‹³ ä¿ºçŸ«.
 }
 #endif
 
@@ -461,13 +461,13 @@ void UB2UITitleScreen::KakaoLoginDelegate(bool IsSuccess, int32 ErrorCode)
 		FB2AuthInfo::GetInstance().SetPlatformUserId(KakaoUserID);
 		FB2AuthInfo::GetInstance().SetAccessToken(KakaoAccessToken);
 
-		MarkKakaoLogin(); // ÁØºñµÇ¾úÀ½. ³×Æ®¿öÅ© ÃÊ±âÈ­ °³½Ã.
+		MarkKakaoLogin(); // éœ–åšç™»èŒæ¾œ. åŒ™é£˜å†µå†œ æª¬æ‰æ‹³ ä¿ºçŸ«.
 	}
 	else
 	{
 		m_LoginDelegateCalled.AtomicSet(false);
 #if PLATFORM_IOS
-		// ³×Æ®¿öÅ© ¿¬°á
+		// åŒ™é£˜å†µå†œ æ¥·æ¬
 		if (AB2DLCFrontGameMode* DLCGameMode = Cast<AB2DLCFrontGameMode>(UGameplayStatics::GetGameMode(this)))
 		{
 			DLCGameMode->ShowKakaoErrorPopup(ErrorCode);
@@ -479,7 +479,7 @@ void UB2UITitleScreen::KakaoLoginDelegate(bool IsSuccess, int32 ErrorCode)
 
 void UB2UITitleScreen::MarkKakaoLogin()
 {
-	// PostKakaoLoginInit ¿¡¼­ÀÇ ³×Æ®¿öÅ© ÃÊ±âÈ­¶û AccountInfo ¿äÃ»À» ÇÏ°íÀÚ ÇÏ´Â °Çµ¥ ´ÜÁö ´Ù¸¥ ¾²·¹µå¿¡¼­ ºÒ¸± ¿ì·Á°¡ ÀÖÀ¸¹Ç·Î ÇÑ´Ü°è¸¦ ´õ °ÅÄ£´Ù.
+	// PostKakaoLoginInit ä¿Šè¾‘ç‹¼ åŒ™é£˜å†µå†œ æª¬æ‰æ‹³å°” AccountInfo å¤¸æ²¡é˜‘ çªç»Šç£Š çªç»° æ‰’å• çªœç˜¤ ä¿ƒå¼— é™é¥­é›ä¿Šè¾‘ é˜‚å‰¯ å¿«å¦¨å•Š ä¹æ éª¨è‚º èŒ„çªœæ‹Œç”« æ­¹ èŠ­æ¨¡ä¿ƒ.
 	m_LoginDelegateCalled.AtomicSet(true);
 }
 
@@ -496,14 +496,14 @@ void UB2UITitleScreen::PostKakaoLoginInit()
 	if (!FBladeIIBlockToSyncNetwork::GetInstance().GetIsNetworkInit())
 	{
 		FB2NetworkBridge::GetInstance()->Shutdown();
-		InitializeB2NetworkModule(); // Á¤½Ä B2network ÃÊ±âÈ­ ½ÃÁ¡.
+		InitializeB2NetworkModule(); // æ²¥ä¾¥ B2network æª¬æ‰æ‹³ çŸ«ç—¢.
 		FBladeIIBlockToSyncNetwork::GetInstance().SetIsNetworkInit(true);
 		//gbNetworkInitialized = true;
 	}
 
 	if (m_firstRequestGetAccount
 #if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV1
-		// DummyDLCFront ¿¡¼­´Â FakeUpdate °¡ ³¡³ª°í DummyDLCFront °¡ Á¦°ÅµÈ ÈÄ¿¡ º»°İ ·Îºñ ÁøÀÔÀ» À§ÇÑ GetAccount ¸¦ ÇÔ.
+		// DummyDLCFront ä¿Šè¾‘ç»° FakeUpdate å•Š åœºå”±ç»Š DummyDLCFront å•Š åŠ›èŠ­ç­‰ é¥¶ä¿Š å¤¯æ‹œ è‚ºåš æŸ³æ¶é˜‘ å›°èŒ„ GetAccount ç”« çªƒ.
 		&& !DevDummyDLCFront
 #endif
 		)
@@ -511,8 +511,8 @@ void UB2UITitleScreen::PostKakaoLoginInit()
 		data_trader::Retailer::GetInstance().RequestGetMasterData();
 		m_firstRequestGetAccount = false;
 
-		// ¸¸ÀÏ DLC ·çÆ®°¡ ¾Æ´Ñ °³¹ß¹öÀü ÀÏ¹İ ·Îºñ¿¡¼­ ½ÃÀÛÇÑ °Å¶ó¸é 
-		// ¿©±â¼­ AccountInfo ¿äÃ»À» ÇÏ°Ô µÇ¸é ±×¶§ºÎÅÍ AlternativeImage ¸¦ º¸ÀÌµµ·Ï ÇÑ´Ù. DLC ·çÆ®¿Í ÃÖ´ëÇÑ ºñ½ÁÇÏ°Ô.
+		// çˆ¶è€ DLC é£é£˜å•Š é…’å›± ä¿ºæƒ¯æ»šå‚ˆ è€é¦† è‚ºåšä¿Šè¾‘ çŸ«ç´¯èŒ„ èŠ­æ‰¼æ 
+		// å’¯æ‰è¾‘ AccountInfo å¤¸æ²¡é˜‘ çªéœ¸ ç™»æ å¼Šé”­ä½•ç£ AlternativeImage ç”« ç„Šææ¡£åºŸ èŒ„ä¿ƒ. DLC é£é£˜å®¢ å¼¥æªèŒ„ åšæ…çªéœ¸.
 		if (bUseAlternativeLoadingImage)
 		{
 			ShowAlternativeLoadingScreen();
@@ -532,11 +532,11 @@ void UB2UITitleScreen::DelayedGameLobbyStartDirect()
 }
 
 void UB2UITitleScreen::GameLobbyStartDirect()
-{ // DLCFront °ÅÃÄ¼­ ¿Ã °æ¿ì ÀÌ¹Ì Kakao ·Î±×ÀÎÀÌ µÈ »óÅÂÀÌ¹Ç·Î ÀÌ·¸°Ô ÇÔ.
-  // ÇÑ¶§´Â Kakao ·Î±×ÀÎ ±â´ÉÀÌ ¿©±â¿¡ ÀÖ´Ù°¡ DLCFront ·Î ¹Ù²î¸é¼­ ÀÌ·¸°Ô µÊ.
+{ // DLCFront èŠ­åªšè¾‘ æ£µ ç‰ˆå¿« æå›º Kakao è‚ºå¼Šç‰¢æ ç­‰ æƒ‘æ€•æéª¨è‚º æçŠ¯éœ¸ çªƒ.
+  // èŒ„é”­ç»° Kakao è‚ºå¼Šç‰¢ æ‰ç“·æ å’¯æ‰ä¿Š ä¹ä¿ƒå•Š DLCFront è‚º å®˜å·®æè¾‘ æçŠ¯éœ¸ å‡³.
 	check(IsInGameThread());
 	MarkKakaoLogin();
-	PostKakaoLoginInit(); // MarkKakaoLogin ÈÄ °ÔÀÓ¾²·¹µå Æ½¿¡¼­ ÇÏ´Â °Å Á÷Á¢ Äİ
+	PostKakaoLoginInit(); // MarkKakaoLogin é¥¶ éœ¸çƒ™é™é¥­é› å¹³ä¿Šè¾‘ çªç»° èŠ­ æµç«‹ å¦®
 }
 void UB2UITitleScreen::CloseMiscLoadingIndicator()
 {
@@ -550,14 +550,14 @@ void UB2UITitleScreen::CloseMiscLoadingIndicator()
 
 //////////////////////////////////////////////////////////////////////////////
 // Fake DLCUpdate and Kakao login handling.
-// °³¹ß¹öÀüÀÌ³ª NonDLCCook µîÀÇ »óÈ²¿¡¼­ ÃÖÁ¾ ¹èÆ÷ ¹öÀüÀÇ ½ÇÇà ÀıÂ÷¿Í ÃÖ´ëÇÑ ºñ½ÁÇÏ°Ô °¡µµ·Ï ÇÏ±â À§ÇØ ¸¸µç ´õ¹Ì ±â´É
-// DLCFront ¿ªÇÒ¸¸ Ä£´Ù¸é »ç½Ç»ó ·Îºñ°¡ ·ÎµùµÈ »óÈ²ÀÌ¶ó ¿ÏÀüÈ÷ °°À» ¼ö´Â ¾øÁö¸¸.
+// ä¿ºæƒ¯æ»šå‚ˆæå”± NonDLCCook æ®¿ç‹¼ æƒ‘ç‚”ä¿Šè¾‘ å¼¥è¾† ç¡…å™¨ æ»šå‚ˆç‹¼ è§’é’ ä¾‹ç’å®¢ å¼¥æªèŒ„ åšæ…çªéœ¸ å•Šæ¡£åºŸ çªæ‰ å›°ç§¦ çˆ¶ç”µ æ­¹å›º æ‰ç“·
+// DLCFront å¼€ä¸”çˆ¶ æ¨¡ä¿ƒæ è¤è§’æƒ‘ è‚ºåšå•Š è‚ºçˆ¹ç­‰ æƒ‘ç‚”ææ‰¼ è‚¯å‚ˆæ´’ éé˜‘ èç»° ç»ç˜¤çˆ¶.
 
 void UB2UITitleScreen::BeginFakeKakaoLogin()
 {
 	//check(!IsFinalDLCCookRun());
 #if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV1
-	// ´õ¹Ì DLCFront ¸¦ ÇÑ ¹ø ´õ ºÒ·¯¿Í¼­ Fake Ä«Ä«¿À ·Î±×ÀÎ ÀıÂ÷¸¦ ½ÇÇà.
+	// æ­¹å›º DLCFront ç”« èŒ„ é”… æ­¹ é˜‚çŸ¾å®¢è¾‘ Fake å¢¨å¢¨å· è‚ºå¼Šç‰¢ ä¾‹ç’ç”« è§’é’.
 	if (DevDummyDLCFront)
 	{
 		DevDummyDLCFront->BeginFakeKakaoLogin();
@@ -565,7 +565,7 @@ void UB2UITitleScreen::BeginFakeKakaoLogin()
 	else
 #endif
 	{
-		// ´õ¹Ì Ä«Ä«¿À ·Î±×ÀÎ ÀıÂ÷¸¦ °ÅÄ¡Áö ¾Ê°í ¹Ù·Î ¼­¹ö Á¢¼Ó Ã³¸®. DummyDLCFront ¸¦ »ı¼ºÇÏÁö ¾Ê´Â °æ¿ì°¡ ÀÖÀ½.
+		// æ­¹å›º å¢¨å¢¨å· è‚ºå¼Šç‰¢ ä¾‹ç’ç”« èŠ­æ‘¹ç˜¤ è‡¼ç»Š å®˜è‚º è¾‘æ»š ç«‹åŠ  è´¸åºœ. DummyDLCFront ç”« ç§¯å·±çªç˜¤ è‡¼ç»° ç‰ˆå¿«å•Š ä¹æ¾œ.
 		MarkKakaoLogin();
 	}
 }
@@ -573,18 +573,18 @@ void UB2UITitleScreen::BeginFakeKakaoLogin()
 void UB2UITitleScreen::OnCompleteDummyDLCFrontFakeDLCUpdate()
 {
 #if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV1
-	DestroyDummyDLCFront(); // Å¸ÀÌÆ² È­¸é Á¢±ÙÀÌ °¡´ÉÇÏµµ·Ï ¿ÏÀüÈ÷ ¹°·¯³². 
+	DestroyDummyDLCFront(); // é¸¥ææ’‡ æ‹³æ ç«‹è¾Ÿæ å•Šç“·çªæ¡£åºŸ è‚¯å‚ˆæ´’ æ‹±çŸ¾å·¢. 
 #endif
 }
 void UB2UITitleScreen::OnCompleteDummyDLCFrontFakeKakaoLogin()
 {
-	// °³¹ß¹öÀü ¹× NonDLCCookRun ÀÇ KakaoLoginDelegate ¿¡ ÇØ´ç
-	// DummyDLCFront ÀÇ FakeKakaoLogin Ã³¸®¿¡ µû¶ó ¹º°¡ ÀÇ¹ÌÀÖ´Â µ¿ÀÛÀÌ µé¾î°¡¸é ¿©±âµµ °°ÀÌ ¹º°¡ µé¾î°¥ ¼ö ÀÖ´Ù.
+	// ä¿ºæƒ¯æ»šå‚ˆ æ£º NonDLCCookRun ç‹¼ KakaoLoginDelegate ä¿Š ç§¦å¯¸
+	// DummyDLCFront ç‹¼ FakeKakaoLogin è´¸åºœä¿Š è¶æ‰¼ è´­å•Š ç‹¼å›ºä¹ç»° æ‚¼ç´¯æ ç”¸ç»¢å•Šæ å’¯æ‰æ¡£ éæ è´­å•Š ç”¸ç»¢å“ è ä¹ä¿ƒ.
 
 #if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV1
-	MarkKakaoLogin(); // Ä«Ä«¿À ·Î±×ÀÎ Çß´Ù Ä¡°í ÀÌÈÄ ¼­¹ö Á¢¼Ó Ã³¸®.
+	MarkKakaoLogin(); // å¢¨å¢¨å· è‚ºå¼Šç‰¢ æ²ä¿ƒ æ‘¹ç»Š æé¥¶ è¾‘æ»š ç«‹åŠ  è´¸åºœ.
 
-	// ±×¸®°í DLCFront ¸¦ °¡Á¤ÇÑ »óÈ²¿¡¼­´Â ¾÷µ¥ÀÌÆ® ¸ğÀÇ È­¸éÀ» ½ÃÀÛ.
+	// å¼Šåºœç»Š DLCFront ç”« å•Šæ²¥èŒ„ æƒ‘ç‚”ä¿Šè¾‘ç»° è¯€å•æé£˜ è‘›ç‹¼ æ‹³æé˜‘ çŸ«ç´¯.
 	if (DevDummyDLCFront)
 	{
 		DevDummyDLCFront->ShowFakeDLCUpdate(true);
@@ -628,11 +628,11 @@ void UB2UITitleScreen::DestroyDummyDLCFront()
 #if !UE_BUILD_SHIPPING
 bool UB2UITitleScreen::CheckAndSetupForTitleMovieCaptureMode()
 {
-	// ¿©±â ·Îµù ½ºÅ©¸° Æ¯Á¤ ´Ü°è¿¡¼­ Å¸ÀÌÆ² µ¿¿µ»ó ÇÃ·¹ÀÌÇÏ´Â Àå¸éÀ» Ä¸ÃÄÇØ¼­ ¾²´Âµ¥ °Å±â¿¡ ¸ÂÃá Àå¸éÀ» Á¦°øÇÏ´Â ¸ğµå. 
+	// å’¯æ‰ è‚ºçˆ¹ èƒ¶å†œèµ´ æ¼‚æ²¥ çªœæ‹Œä¿Šè¾‘ é¸¥ææ’‡ æ‚¼åº·æƒ‘ æ•²é¥­æçªç»° å˜æé˜‘ æ¯åªšç§¦è¾‘ é™ç»°å• èŠ­æ‰ä¿Š å˜å†• å˜æé˜‘ åŠ›å‚çªç»° è‘›é›. 
 
 	if (FParse::Param(FCommandLine::Get(), TEXT("TitleMovieCaptureMode")))
 	{
-		// Æ¯Á¤ ÇØ»óµµ¿¡ ÃÖÀûÀ¸·Î ¸ÂÃá »óÅÂ·Î Ä¸ÃÄÇÑ ÀÌ¹ÌÁö¸¦ »ç¿ë.
+		// æ¼‚æ²¥ ç§¦æƒ‘æ¡£ä¿Š å¼¥åˆ©æ è‚º å˜å†• æƒ‘æ€•è‚º æ¯åªšèŒ„ æå›ºç˜¤ç”« è¤ä¾©.
 		GEngine->DeferredCommands.Add(FString::Printf(TEXT("r.setres %dx%d"), 1480, 720));
 
 		int32 TitleMovieCaptureClassInt = PCClassToInt(EPCClass::EPC_End);
@@ -641,9 +641,9 @@ bool UB2UITitleScreen::CheckAndSetupForTitleMovieCaptureMode()
 
 		if (UIP_TitleDesign.IsValid())
 		{ 
-			// ÅÍÄ¡ ½ÅÈ£ ¾È ¹Ş°Ô ÇÔ. ±¦È÷ ·Îºñ ³Ñ¾î°¡¸é ´õ ±ÍÂú ¤»
+			// ç£æ‘¹ è„šé¾‹ æ•‘ ç½éœ¸ çªƒ. å®æ´’ è‚ºåš é€ç»¢å•Šæ æ­¹ è“–æ»¡ ã›
 			UIP_TitleDesign->SetVisibility(ESlateVisibility::HitTestInvisible);
-			// StartMovieImmediate ¸¦ ÇØ¾ß TouchToStart ¹®±¸°¡ ¾È ³ª¿È.
+			// StartMovieImmediate ç”« ç§¦å…· TouchToStart å·©å¤‡å•Š æ•‘ å”±å’³.
 			if (TitleMovieCaptureClass != EPCClass::EPC_End)
 			{
 				UIP_TitleDesign->StartMovieImmediate(TitleMovieCaptureClass);
@@ -652,7 +652,7 @@ bool UB2UITitleScreen::CheckAndSetupForTitleMovieCaptureMode()
 			{
 				UIP_TitleDesign->StartMovieImmediate(IntToPCClass(FMath::RandRange(0, GetMaxPCClassNum() - 1)));
 			}
-			// ±âÅ¸ Ä¸ÃÄ ÀÌ¹ÌÁö¿¡¼­ ¼û±â±â·Î ÇÑ °Å.
+			// æ‰é¸¥ æ¯åªš æå›ºç˜¤ä¿Šè¾‘ è§æ‰æ‰è‚º èŒ„ èŠ­.
 			UIP_TitleDesign->SetShowOtherCIs(false);
 		}
 		if (IMG_Alternative_LobbyLoading.IsValid())

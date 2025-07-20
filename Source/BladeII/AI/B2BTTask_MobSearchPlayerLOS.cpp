@@ -1,9 +1,13 @@
-
+ï»¿
 #include "B2BTTask_MobSearchPlayerLOS.h"
 #include "AIController.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "BladeII.h"
 #include "BehaviorTree/Blackboard/BlackboardKeyType_Object.h"
+#include "BladeIICharacter.h"
+#include "BladeIIPlayer.h"
+#include "Engine/Engine.h"
+
 
 UB2BTTask_MobSearchPlayerLOS::UB2BTTask_MobSearchPlayerLOS(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
@@ -35,14 +39,14 @@ EBTNodeResult::Type UB2BTTask_MobSearchPlayerLOS::PerformSearchTask(UBehaviorTre
 
 	FVector PlayerCharLocation = PlayerCharacter->GetActorLocation();
 
-	//½Ã¾ß°Å¸®¹üÀ§¿¡¼­ ¸Ö¸é ¸Ö¼ö·Ï ½ÇÆĞÈ®·üÀÌ Ä¿Áöµµ·Ï. ½Ã¾ß°Å¸®ÀÇ 1/2 ÁöÁ¡ ¾È¿¡¼­´Â ¹«Á¶°Ç ¼º°ø
+	//çŸ«å…·èŠ­åºœè£¹å›°ä¿Šè¾‘ é’¢æ é’¢èåºŸ è§’è©çŠ¬ä¼æ ç›®ç˜¤æ¡£åºŸ. çŸ«å…·èŠ­åºœç‹¼ 1/2 ç˜¤ç—¢ æ•‘ä¿Šè¾‘ç»° å…¬ç‚¼æ‰’ å·±å‚
 	float HalfCheckDistanceSquared = FMath::Square(CheckDistance * 0.5f);
 	float TestFailToSearch = FMath::Max(0.f, ((PlayerCharLocation - ControlledCharLocation).SizeSquared() - HalfCheckDistanceSquared) / HalfCheckDistanceSquared);
 	float RandomizeFailureRate = FMath::RandRange(0.f, 1.f);
 	if (RandomizeFailureRate < TestFailToSearch)
 		return EBTNodeResult::Failed;
 
-	//LOS¿¡ °É¸®´Â Áö ÆÇ´Ü
+	//LOSä¿Š å§åºœç»° ç˜¤ é­„çªœ
 	FHitResult Hit;
 	FCollisionQueryParams Params(NAME_None, false, ControlledCharacter);
 	UWorld* World = GEngine->GetWorldFromContextObject(ControlledCharacter, EGetWorldErrorMode::LogAndReturnNull);
@@ -53,7 +57,7 @@ EBTNodeResult::Type UB2BTTask_MobSearchPlayerLOS::PerformSearchTask(UBehaviorTre
 		ControlledCharacter->bNeedSpawnCheck = false;
 
 		if (ControlledCharacter->CustomTimeDilation == 0)
-			//Spawn animÀÌ ½ÇÇàµÈ´Ù.
+			//Spawn animæ è§’é’ç­‰ä¿ƒ.
 			ControlledCharacter->CustomTimeDilation = 1.f;
 	}
 

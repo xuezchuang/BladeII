@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2Inventory.h"
@@ -18,8 +18,8 @@ float FB2Item::GetPrimaryPoint(bool bCountRelevantOption) const
 {
 	float RetPoint = FMath::FloorToFloat(PrimaryPoint);
 	
-	// ¸¸ÀÏ ÀÌ°É·Î ¾ò¾î¿Â °ª¿¡´Ù°¡ Option À¸·Î ÀÎÇÑ Áõ°¡ ¼öÄ¡´Â µû·Î °í·ÁÇÒ °Å¶ó¸é bCountRelevantOption Àº false ·Î ÁÖ¾î¾ß ÇÒ °Í.
-	// ½ÇÁúÀûÀ¸·Î ¿©·¯ »óÈ²¿¡¼­ ¿É¼Ç±îÁö °í·ÁÇÑ´Ù°í ÇØµµ ¿Ïº®ÇÏ°Ô ÇÏ±â´Â ¾î·Á¿ï °Í. ±×³É ´Ü¼øÇÏ°Ô PrimaryPoint ¸¸ Ã¼Å©ÇÏ´Â ¼±¿¡¼­ ²÷´Â°Ô ³ªÀ» ¼ö ÀÖ´Ù.
+	// çˆ¶è€ æå§è‚º æ˜ç»¢æŸ¯ è”¼ä¿Šä¿ƒå•Š Option æ è‚º ç‰¢èŒ„ åˆ˜å•Š èæ‘¹ç»° è¶è‚º ç»Šå¦¨ä¸” èŠ­æ‰¼æ bCountRelevantOption ç¯® false è‚º æ—ç»¢å…· ä¸” å·´.
+	// è§’é¾™åˆ©æ è‚º å’¯çŸ¾ æƒ‘ç‚”ä¿Šè¾‘ å¯è®°é³–ç˜¤ ç»Šå¦¨èŒ„ä¿ƒç»Š ç§¦æ¡£ è‚¯å¯’çªéœ¸ çªæ‰ç»° ç»¢å¦¨åŒ¡ å·´. å¼Šæˆ çªœé‰´çªéœ¸ PrimaryPoint çˆ¶ çœ‰å†œçªç»° æ€¥ä¿Šè¾‘ è°—ç»°éœ¸ å”±é˜‘ è ä¹ä¿ƒ.
 	if (bCountRelevantOption)
 	{
 		const EItemOption RelevantOption = CombatStatEval::GetPrimPointIncOption(PrimaryPointType);
@@ -61,7 +61,7 @@ void FB2Item::UpdatePreviewItemPower()
 
 FB2Item& FB2Item::operator=(const b2network::B2ItemServerInfoPtr rhs)
 {
-	 //¼­¹ö¿¡¼­ ¹ŞÀº °ªÀ¸·Î ¸â¹ö º¯¼ö¿¡ ¼¼ÆÃ
+	 //è¾‘æ»šä¿Šè¾‘ ç½ç¯® è”¼æ è‚º ç³•æ»š å‡½èä¿Š æŠ€æ³¼
 	InstanceUID = rhs->id;
 	ItemRefID = rhs->template_id;
 	
@@ -72,10 +72,10 @@ FB2Item& FB2Item::operator=(const b2network::B2ItemServerInfoPtr rhs)
 	AllowedPCClass = (int32)SvrToCliPCClassType(rhs->character_type);
 
 	InventoryType = SvrToCliItemInvenType(rhs->inventory_type);
-	EquipPlace = SvrToCliItemEquipPlace(rhs->equip_position); // MasterData ÅëÇØ ´Ù½Ã ¼¼ÆÃÇÏ´Âµ¥.. ÀÌÀü¿£ ¼­¹ö equip_position ÀÌ ÀåÂøµÈ ¾ÆÀÌÅÛ¸¸ °ªÀÌ ¼¼ÆÃµÇ¾î ÀÖ´ø °Íµµ °°°í ¿©Æ°..
+	EquipPlace = SvrToCliItemEquipPlace(rhs->equip_position); // MasterData çƒ¹ç§¦ ä¿ƒçŸ« æŠ€æ³¼çªç»°å•.. æå‚ˆæµš è¾‘æ»š equip_position æ å˜é¦’ç­‰ é…’æè¢çˆ¶ è”¼æ æŠ€æ³¼ç™»ç»¢ ä¹å¸¦ å·´æ¡£ éç»Š å’¯ç“¢..
 
-	// ¿ä°Ç ÇöÀç ÀåÂøµÇ¾î ÀÖ´ÂÁö ¿©ºÎ. ¼­¹ö¿Í Ç¥½Ã ¹æ¹ıÀÌ ´Ù¸§.
-	// TODO ÇÁ¸®¼Â Á¤º¸ ÂüÁ¶
+	// å¤¸æ‰’ æ³…çŠ å˜é¦’ç™»ç»¢ ä¹ç»°ç˜¤ å’¯ä½•. è¾‘æ»šå®¢ é’çŸ« è§„è¿‡æ ä¿ƒæŠš.
+	// TODO æ©‡åºœæ‚¸ æ²¥ç„Š æ›¼ç‚¼
 	FClientDataStore& CliDataStore = BladeIIGameImpl::GetClientDataStore();
 	bCurrentlyEquipped = CliDataStore.GetLocalCharacterData().GetUserAllItems().IsInCurrentItemPreset(IntToPCClass(AllowedPCClass), InstanceUID);
 
@@ -114,7 +114,7 @@ FB2Item& FB2Item::operator=(const b2network::B2ItemServerInfoPtr rhs)
 	Power = rhs->power;
 
 	IsNew = rhs->is_new;
-	// ¸¶½ºÅÍ µ¥ÀÌÅÍÀÇ °ªÀ¸·Î ¾÷µ¥ÀÌÆ®
+	// ä»˜èƒ¶ç£ å•æç£ç‹¼ è”¼æ è‚º è¯€å•æé£˜
 	UpdateItemMasterDataOnMD();
 	return *this;
 }
@@ -142,7 +142,7 @@ FB2Item::FB2Item(const b2network::B2AetherServerInfoPtr Ether)
 	AllowedPCClass = (int32)SvrToCliPCClassType(Ether->character_type);
 
 	InventoryType = EItemInvenType::EIIVT_End;
-	EquipPlace = EItemEquipPlace::EIEP_End; // MasterData ÅëÇØ ´Ù½Ã ¼¼ÆÃÇÏ´Âµ¥.. ÀÌÀü¿£ ¼­¹ö equip_position ÀÌ ÀåÂøµÈ ¾ÆÀÌÅÛ¸¸ °ªÀÌ ¼¼ÆÃµÇ¾î ÀÖ´ø °Íµµ °°°í ¿©Æ°..
+	EquipPlace = EItemEquipPlace::EIEP_End; // MasterData çƒ¹ç§¦ ä¿ƒçŸ« æŠ€æ³¼çªç»°å•.. æå‚ˆæµš è¾‘æ»š equip_position æ å˜é¦’ç­‰ é…’æè¢çˆ¶ è”¼æ æŠ€æ³¼ç™»ç»¢ ä¹å¸¦ å·´æ¡£ éç»Š å’¯ç“¢..
 
 	//FClientDataStore& CliDataStore = BladeIIGameImpl::GetClientDataStore();
 	//bCurrentlyEquipped = CliDataStore.GetLocalCharacterData().GetUserAllItems().IsInCurrentItemPreset(IntToPCClass(AllowedPCClass), InstanceUID);
@@ -211,7 +211,7 @@ FB2Item::FB2Item(const b2network::B2CostumeServerInfo& CostumeItemInfo)
 	IsNew				= CostumeItemInfo.is_new;
 	PrimaryPoint		= CostumeItemInfo.md_main_attribute_value;
 
-	//¸¶½ºÅÍ µ¥ÀÌÅÍ¸¦ ±âÁØÀ¸·Î ´Ù½Ã ¼¼ÆÃ µÇ´Â Ç×¸ñ
+	//ä»˜èƒ¶ç£ å•æç£ç”« æ‰éœ–æ è‚º ä¿ƒçŸ« æŠ€æ³¼ ç™»ç»° äº²æ ¼
 	//ItemClass, CostumeEquipPlace, AllowedPCClass, InventoryType, StarGrade
 	UpdateItemMasterDataOnMD();
 
@@ -227,8 +227,8 @@ void FB2Item::UpdateItemMasterDataOnMD()
 	{
 		UpdateByItemMasterData(ItemMDElem);
 
-		// RefID ÀÚ¸®¼ö¿¡ µû¸¥ ±Ô¾àÀ» ÀÌÁ¨ Á¤½ÄÀ¸·Î »ç¿ëÇÏ°Ô µÇ¹Ç·Î È¤½Ã¶óµµ ¿¹»ó°ú ´Ù¸£Áö ¾ÊÀºÁö Ã¼Å©ÇÑ´Ù.
-#if WITH_EDITOR // À½.. ¿¡µğÅÍ¿¡¼­¸¸ ÇÏÀÚ.. ¾ÆÁ÷Àº ºôµå ¹öÀü¿¡¼­ È¤½Ã¶óµµ Âİ³¯±îºÁ °ÆÁ¤µÇ´Â±º
+		// RefID ç£Šåºœèä¿Š è¶å¼— ç—¹è·é˜‘ æå“© æ²¥ä¾¥æ è‚º è¤ä¾©çªéœ¸ ç™»éª¨è‚º è¶£çŸ«æ‰¼æ¡£ æŠ—æƒ‘è‹ ä¿ƒç¦ç˜¤ è‡¼ç¯®ç˜¤ çœ‰å†œèŒ„ä¿ƒ.
+#if WITH_EDITOR // æ¾œ.. ä¿Šå¼ç£ä¿Šè¾‘çˆ¶ çªç£Š.. é…’æµç¯® å‘¼é› æ»šå‚ˆä¿Šè¾‘ è¶£çŸ«æ‰¼æ¡£ èºæœé³–æ¯« æŒæ²¥ç™»ç»°ç„™
 		check(CheckForItemPropertyRule(*this));
 #endif
 	}
@@ -242,8 +242,8 @@ void FB2Item::UpdateByItemMasterData(const FMD_ItemSingleElem* InMasterData)
 		MaxStarGrade = InMasterData->MaxGrade;
 		ItemClass = InMasterData->ItemClass;
 		InventoryType = InMasterData->ItemInvenType;
-		EquipPlace = InMasterData->ItemEquipPlace; // ÀÌ¹Ì ¼¼ÆÃÀÌ µÇ¾î ÀÖ³ª..
-		MaxLevel = InMasterData->MaxLevel + ((SurpassCount > 0) ? SurpassCount : 0); // ÃÊ¿ù·Î ÀÎÇÑ MaxLevel È®ÀåÀº MasterData ¿£ ¾øÀ¸´Ï µû·Î ¹İ¿µ.
+		EquipPlace = InMasterData->ItemEquipPlace; // æå›º æŠ€æ³¼æ ç™»ç»¢ ä¹å”±..
+		MaxLevel = InMasterData->MaxLevel + ((SurpassCount > 0) ? SurpassCount : 0); // æª¬å²¿è‚º ç‰¢èŒ„ MaxLevel çŠ¬å˜ç¯® MasterData æµš ç»æ èª è¶è‚º é¦†åº·.
 		ItemFactorLevel = InMasterData->ItemFactorLevel;
 		PrimaryPointType = InMasterData->PrimaryType;
 
@@ -265,10 +265,10 @@ void FB2Item::UpdateByItemMasterData(const FMD_ItemSingleElem* InMasterData)
 }
 
 //////////////////////////////////////////////////////////////////////
-// FItemRefIDHelper. ItemRefID ´Ù·ç´Â À¯Æ¿µé ¸ğµÎ ¸ğÀ½
-// ÀåÂø ¾ÆÀÌÅÛ RefID ·êÀ» ´Ù·ç´Â À¯Æ¿ÀÌ³ª ÀçÈ­, Áö·á µî Æ¯¼ö ¾ÆÀÌÅÛ RefID µî
-// ItemRefID ¸¦ ÄÚµå¿¡¼­ Á÷Á¢ ÂüÁ¶ÇÏ´Â °ÍÀÌ ¹Ù¶÷Á÷ÇÏÁö ¾ÊÁö¸¸ 
-// DB ¸¶³É ¾Æ¹« ¼Ó¼ºÀÌ³ª Å°·Î ÇØ¼­ query ¸¦ ÇÒ ¼ö ¾ø´Â Å¬¶óÀÌ¾ğÆ® »çÁ¤»ó Á÷Á¢ »ç¿ëÇÏ°Ô µÉ ¼ö¹Û¿¡ ¾øÀ½.
+// FItemRefIDHelper. ItemRefID ä¿ƒé£ç»° èœ¡ç“¶ç”¸ è‘›æ»´ è‘›æ¾œ
+// å˜é¦’ é…’æè¢ RefID é€¢é˜‘ ä¿ƒé£ç»° èœ¡ç“¶æå”± çŠæ‹³, ç˜¤ä¸° æ®¿ æ¼‚è é…’æè¢ RefID æ®¿
+// ItemRefID ç”« å†…é›ä¿Šè¾‘ æµç«‹ æ›¼ç‚¼çªç»° å·´æ å®˜æ©æµçªç˜¤ è‡¼ç˜¤çˆ¶ 
+// DB ä»˜æˆ é…’å…¬ åŠ å·±æå”± è™è‚º ç§¦è¾‘ query ç”« ä¸” è ç»ç»° åŠªæ‰¼ææ”«é£˜ è¤æ²¥æƒ‘ æµç«‹ è¤ä¾©çªéœ¸ çª èè§‚ä¿Š ç»æ¾œ.
 
 bool FItemRefIDHelper::IsGoodsRefID(int32 InID)
 {
@@ -277,7 +277,7 @@ bool FItemRefIDHelper::IsGoodsRefID(int32 InID)
 
 int32 FItemRefIDHelper::GetUpgradeStoneIDForUpgradeTarget(const FB2Item& InUpgradeTarget, const EUpgradeded EUpgraded)
 {
-	// ÀÌ¹Ì ¾÷±×·¹ÀÌµå µÈ °æ¿ì -1À» ÇØ¼­ ±âÁ¸ ¾ÆÀÌÅÛÀÌ »ç¿ëÇÑ ½Â±Ş¼®ÀÌ ¾î¶²°ÇÁú È®ÀÎÇØ¾ß µÇ±â ¶§¹®.
+	// æå›º è¯€å¼Šé¥­æé› ç­‰ ç‰ˆå¿« -1é˜‘ ç§¦è¾‘ æ‰ç²® é…’æè¢æ è¤ä¾©èŒ„ é“°é­ç±æ ç»¢æ«æ‰’é¾™ çŠ¬ç‰¢ç§¦å…· ç™»æ‰ é”­å·©.
 	uint16 StarOffset = (EUpgraded == EUpgradeded::UPGRADE_AFTER ? 1 : 0);
 	bool CheckAdvanced = (InUpgradeTarget.StarGrade - StarOffset >= FItemGradeInfo::MINIMUM_ADVANCED_UPGRADE_STAR_GRADE);
 
@@ -325,7 +325,7 @@ int32 FItemRefIDHelper::GetBlessEnhanceScrollRefId(const FB2Item& InTargetItem)
 
 int32 FItemRefIDHelper::GetEnhanceProtectionItemRefId()
 {
-	return ITEM_REF_ID_ENHANCE_PROTECTION_ITEM; // ÃßÈÄ Å¸ÀÔº°·Î ºĞ·ùµÉ ¼öµµ..
+	return ITEM_REF_ID_ENHANCE_PROTECTION_ITEM; // çœ é¥¶ é¸¥æ¶å–Šè‚º ç›’å¹…çª èæ¡£..
 }
 
 int32 FItemRefIDHelper::GetGeneralLotteryRefID(int32 InRewardID)
@@ -413,12 +413,12 @@ int32 FItemRefIDHelper::GetProductDataItemId(EStoreItemType InStoreItemType, int
 
 int32 FItemRefIDHelper::GetRelicIDFromBossPieceRefID(int32 InRefID)
 {
-	//Áö±İÀº ÀÌ·¸°Ô ÇÏ°í ÀÖÁö¸¸ iteminfo idx¸¦ 2~3¹øÂ° ÀÚ¸®¸¦ ºñÆ®¿¬»ê ÇØ¼­ °¡Á®¿À°Ô º¯°æ ÇÒ ¿¹Á¤
+	//ç˜¤é™›ç¯® æçŠ¯éœ¸ çªç»Š ä¹ç˜¤çˆ¶ iteminfo idxç”« 2~3é”…æ³ ç£Šåºœç”« åšé£˜æ¥·é­‚ ç§¦è¾‘ å•Šå»‰å·éœ¸ å‡½ç‰ˆ ä¸” æŠ—æ²¥
 	return InRefID - ITEM_REF_ID_BOSSPIECE_BEGIN + 1;
 }
 
 int32 FItemRefIDHelper::GetBossPieceRefIDFromRelicID(int32 InRelicID)
-{ //°¢ À¯¹°°ú º¸½ºÁ¶°¢Àº 1:1 ¸ÅÄªÀÌ¹Ç·Î , (À¯¹°¹øÈ£-1)À» ´õÇØÁÜ.
+{ //é˜¿ èœ¡æ‹±è‹ ç„Šèƒ¶ç‚¼é˜¿ç¯® 1:1 æ¦‚è«æéª¨è‚º , (èœ¡æ‹±é”…é¾‹-1)é˜‘ æ­¹ç§¦æ·‹.
 	return ITEM_REF_ID_BOSSPIECE_BEGIN + InRelicID - 1;
 }
 
@@ -430,21 +430,21 @@ int32 FItemRefIDHelper::GetWingResourceRefIDByAcqElemType(EWingIngredAcqElemType
 }
 
 /*================================================================================
-¾ÆÀÌÅÛÀÇ RefID ÀÚ¸´¼ö¿¡¼­ ¸î°¡Áö ±Ô¾à¿¡ µû¸¥ Á¤º¸¸¦ »© ¿À´Â ÇÔ¼öµéÀÎµ¥,
-°¡±ŞÀû ÀÌ°É ¾²±âº¸´Ù´Â FB2Item ÀÚÃ¼ ÇÊµå¸¦ »ç¿ëÇÏ´Â °Ô ÁÁ´Ù.
-±×·¸Áö¸¸ °á±¹ ÀÌ·± »ç¿ëÀÌ ÇÊ¿äÇÑ °÷µéÀÌ ÀÖ¾î¼­ ¾îÂ¿ ¼ö ¾øÀÌ »ç¿ë.
+é…’æè¢ç‹¼ RefID ç£Šå¤èä¿Šè¾‘ å‰²å•Šç˜¤ ç—¹è·ä¿Š è¶å¼— æ²¥ç„Šç”« å“— å·ç»° çªƒèç”¸ç‰¢å•,
+å•Šé­åˆ© æå§ é™æ‰ç„Šä¿ƒç»° FB2Item ç£Šçœ‰ é˜é›ç”« è¤ä¾©çªç»° éœ¸ äº®ä¿ƒ.
+å¼ŠçŠ¯ç˜¤çˆ¶ æ¬æƒ« æç¹ è¤ä¾©æ é˜å¤¸èŒ„ é•‘ç”¸æ ä¹ç»¢è¾‘ ç»¢é©´ è ç»æ è¤ä¾©.
 ================================================================================*/
 EItemClass FItemRefIDHelper::ExtractItemClassFromRefID(int32 InItemRefID)
 {
-	if (InItemRefID == FItemRefIDHelper::GetGoodsID_Gold()) // Æ¯¼öÇÑ °æ¿ì.. ±Ùµ¥ ÀçÈ­³ª Àç·á µî ÀåÂø ¾ÆÀÌÅÛ ¿Ü ±âÅ¸ ¸ğµç °ÍµéÀ» ¿©±â¿¡ ³Ö¾î ÁÖ¾î¾ß ÇÏ´Â °Ç ¾Æ´Ï´Ù.
+	if (InItemRefID == FItemRefIDHelper::GetGoodsID_Gold()) // æ¼‚èèŒ„ ç‰ˆå¿«.. è¾Ÿå• çŠæ‹³å”± çŠä¸° æ®¿ å˜é¦’ é…’æè¢ å¯‡ æ‰é¸¥ è‘›ç”µ å·´ç”¸é˜‘ å’¯æ‰ä¿Š æŒç»¢ æ—ç»¢å…· çªç»° æ‰’ é…’èªä¿ƒ.
 	{
 		return EItemClass::EIC_Gold;
 	}
 
 	const int32 TheBiggestCategoryDigit = ExtractNthDigitR<7>(InItemRefID);
-	if (TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_EQUIPMENT)	// ÀåÂø ¾ÆÀÌÅÛ¸¸ ¾Æ·¡ ±ÔÄ¢ÀÌ ¸ÂÀ½
+	if (TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_EQUIPMENT)	// å˜é¦’ é…’æè¢çˆ¶ é…’è´° ç—¹è˜‘æ å˜æ¾œ
 	{
-		// 4¹øÂ° ÀÚ¸®
+		// 4é”…æ³ ç£Šåºœ
 		int32 FourthDigit = ExtractNthDigitR<4>(InItemRefID);
 		switch (FourthDigit)
 		{
@@ -494,15 +494,15 @@ EItemClass FItemRefIDHelper::ExtractItemClassFromRefID(int32 InItemRefID)
 }
 EItemClass FItemRefIDHelper::ExtractItemClassFromRefIDForItemForge(int32 InItemRefID)
 {
-	if (InItemRefID == FItemRefIDHelper::GetGoodsID_Gold()) // Æ¯¼öÇÑ °æ¿ì.. ±Ùµ¥ ÀçÈ­³ª Àç·á µî ÀåÂø ¾ÆÀÌÅÛ ¿Ü ±âÅ¸ ¸ğµç °ÍµéÀ» ¿©±â¿¡ ³Ö¾î ÁÖ¾î¾ß ÇÏ´Â °Ç ¾Æ´Ï´Ù.
+	if (InItemRefID == FItemRefIDHelper::GetGoodsID_Gold()) // æ¼‚èèŒ„ ç‰ˆå¿«.. è¾Ÿå• çŠæ‹³å”± çŠä¸° æ®¿ å˜é¦’ é…’æè¢ å¯‡ æ‰é¸¥ è‘›ç”µ å·´ç”¸é˜‘ å’¯æ‰ä¿Š æŒç»¢ æ—ç»¢å…· çªç»° æ‰’ é…’èªä¿ƒ.
 	{
 		return EItemClass::EIC_Gold;
 	}
 
 	const int32 TheBiggestCategoryDigit = ExtractNthDigitR<7>(InItemRefID);
-	if (TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_EQUIPMENT)	// ÀåÂø ¾ÆÀÌÅÛ¸¸ ¾Æ·¡ ±ÔÄ¢ÀÌ ¸ÂÀ½
+	if (TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_EQUIPMENT)	// å˜é¦’ é…’æè¢çˆ¶ é…’è´° ç—¹è˜‘æ å˜æ¾œ
 	{
-		// 4¹øÂ° ÀÚ¸®
+		// 4é”…æ³ ç£Šåºœ
 		int32 FourthDigit = ExtractNthDigitR<4>(InItemRefID);
 		switch (FourthDigit)
 		{
@@ -549,7 +549,7 @@ EItemClass FItemRefIDHelper::ExtractItemClassFromRefIDForItemForge(int32 InItemR
 	}
 	else if (TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_Consumable)
 	{
-		// ´õ¹Ì ¸Ç ¾ÕÀÚ¸®°¡ 8ÀÏ °æ¿ì ¼Ò¸ğÇ°À¸·Î Ãâ·Â ÇÊ¿äÇÏ±â ¶§¹®¿¡ ÀÓÀÇ ½Â±Ş¼®À» Ãâ·Â ÇÔ.
+		// æ­¹å›º ç›– èŠç£Šåºœå•Š 8è€ ç‰ˆå¿« å®¶è‘›å‰æ è‚º å…ä»¿ é˜å¤¸çªæ‰ é”­å·©ä¿Š çƒ™ç‹¼ é“°é­ç±é˜‘ å…ä»¿ çªƒ.
 		return EItemClass::EIC_UpgradeStone;
 	}
 
@@ -559,14 +559,14 @@ EItemClass FItemRefIDHelper::ExtractItemClassFromRefIDForItemForge(int32 InItemR
 EPCClass FItemRefIDHelper::ExtractItemAllowedPCClassFromRefID(int32 InItemRefID)
 {
 	const int32 TheBiggestCategoryDigit = ExtractNthDigitR<7>(InItemRefID);
-	// ÀåÂø ¾ÆÀÌÅÛ, Á¤¼ö(Essence), ÄÚ½ºÆ¬ ¾ÆÀÌÅÛ¸¸ ¾Æ·¡ ±ÔÄ¢ÀÌ ¸ÂÀ½
+	// å˜é¦’ é…’æè¢, æ²¥è(Essence), å†…èƒ¶ç‰‡ é…’æè¢çˆ¶ é…’è´° ç—¹è˜‘æ å˜æ¾œ
 	if (TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_EQUIPMENT || 
 		TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_ESSENCE || 
 		TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_COSTUME ||
 		TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_SURPASSANVIL
 		)
 	{
-		// µÚ¿¡¼­ 6¹øÂ° ÀÚ¸®
+		// ç¬¬ä¿Šè¾‘ 6é”…æ³ ç£Šåºœ
 		int32 SixthDigit = ExtractNthDigitR<6>(InItemRefID);
 		return ItemAllowedPCClassEnum(SixthDigit);
 	}
@@ -579,18 +579,18 @@ EPCClass FItemRefIDHelper::ExtractItemAllowedPCClassFromRefID(int32 InItemRefID)
 int32 FItemRefIDHelper::ExtractItemStarGradeFromRefID(int32 InItemRefID)
 {
 	const int32 TheBiggestCategoryDigit = ExtractNthDigitR<7>(InItemRefID);
-	// ÀåÂø ¾ÆÀÌÅÛ, Á¤¼ö(Essence), ÄÚ½ºÆ¬ ¾ÆÀÌÅÛ¸¸ ¾Æ·¡ ±ÔÄ¢ÀÌ ¸ÂÀ½
+	// å˜é¦’ é…’æè¢, æ²¥è(Essence), å†…èƒ¶ç‰‡ é…’æè¢çˆ¶ é…’è´° ç—¹è˜‘æ å˜æ¾œ
 	if (TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_EQUIPMENT ||
 		TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_ESSENCE ||
 		TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_COSTUME ||
 		TheBiggestCategoryDigit == ITEM_REF_ID_LARGEST_DIGIT_SURPASSANVIL
 		)
 	{
-		// µÚ¿¡¼­ 5¹øÂ° ÀÚ¸® ½ÊÀÇÀÚ¸® µî±Ş
+		// ç¬¬ä¿Šè¾‘ 5é”…æ³ ç£Šåºœ ç»ç‹¼ç£Šåºœ æ®¿é­
 		int32 Grade = 0;
 		Grade = (ExtractNthDigitR<ITEM_REF_ID_STAR_TENGRAD_DIGIT_NUMBER>(InItemRefID)) * 10;
 
-		// µÚ¿¡¼­ 3¹øÂ° ÀÚ¸® ÀÏÀÇÀÚ¸® µî±Ş
+		// ç¬¬ä¿Šè¾‘ 3é”…æ³ ç£Šåºœ è€ç‹¼ç£Šåºœ æ®¿é­
 		Grade += ExtractNthDigitR<ITEM_REF_ID_STAR_GRAD_DIGIT_NUMBER>(InItemRefID);
 
 		return Grade;
@@ -603,7 +603,7 @@ int32 FItemRefIDHelper::ExtractItemStarGradeFromRefID(int32 InItemRefID)
 
 int32 FItemRefIDHelper::ExtractItemVariationFromRefID(int32 InItemRefID)
 {
-	// ¸Ç µÚ µÎÀÚ¸®
+	// ç›– ç¬¬ æ»´ç£Šåºœ
 	int32 Digit_1 = ExtractNthDigitR<1>(InItemRefID);
 	int32 Digit_2 = ExtractNthDigitR<2>(InItemRefID);
 
@@ -626,7 +626,7 @@ TArray<int32> FItemRefIDHelper::GetAllGradeItemRefIDs(int32 InItemRefID)
 }
 
 bool FItemRefIDHelper::IsEquipmentItemByRefID(int32 InRefID)
-{ // ÀÏ¹İÀûÀ¸·Î´Â IsEquipmentItem À» »ç¿ë
+{ // è€é¦†åˆ©æ è‚ºç»° IsEquipmentItem é˜‘ è¤ä¾©
 
 	//const int32 IdLargeDigit = ExtractNthDigitR<7>(InRefID);
 	//return IdLargeDigit == ITEM_REF_ID_LARGEST_DIGIT_EQUIPMENT;
@@ -634,12 +634,12 @@ bool FItemRefIDHelper::IsEquipmentItemByRefID(int32 InRefID)
 }
 
 bool FItemRefIDHelper::IsEssenceItemByRefID(int32 InRefID) 
-{ // ÀÏ¹İÀûÀ¸·Î´Â IsEssenceItem À» »ç¿ë
+{ // è€é¦†åˆ©æ è‚ºç»° IsEssenceItem é˜‘ è¤ä¾©
 	return (ExtractNthDigitR<7>(InRefID) == ITEM_REF_ID_LARGEST_DIGIT_ESSENCE); 
 }
 
 bool FItemRefIDHelper::IsAnvilItemByRefID(int32 InRefID)
-{ // ÀÏ¹İÀûÀ¸·Î´Â IsAnvilItem À» »ç¿ë
+{ // è€é¦†åˆ©æ è‚ºç»° IsAnvilItem é˜‘ è¤ä¾©
 	return (ExtractNthDigitR<7>(InRefID) == ITEM_REF_ID_LARGEST_DIGIT_SURPASSANVIL);
 }
 
@@ -650,7 +650,7 @@ bool FItemRefIDHelper::IsCostumeItemByRefID(int32 InRefID)
 
 int32 FItemRefIDHelper::GenerateRewardRepresentativeItemID(int32 InRewardGroupID, int32 InType)
 {
-	// ½ºÅ×ÀÌÁö Á¤º¸¿¡¼­ º¸»ó ¾ÆÀÌÅÛ ´ëÇ¥ ¾ÆÀÌÄÜ¿¡ »ç¿ë. ItemInfo Å×ÀÌºí¿¡ µî·ÏµÈ ¹øÈ£ Ã¼°è.
+	// èƒ¶æŠ›æç˜¤ æ²¥ç„Šä¿Šè¾‘ ç„Šæƒ‘ é…’æè¢ æªé’ é…’æèƒ½ä¿Š è¤ä¾©. ItemInfo æŠ›æå–‰ä¿Š æ®¿åºŸç­‰ é”…é¾‹ çœ‰æ‹Œ.
 	return ITEM_REF_ID_LARGEST_DIGIT_REWARDS * 1000000 + InRewardGroupID * 1000 + InType;
 }
 
@@ -719,7 +719,7 @@ FText GetLOCTextOfPrimPointType(EItemPrimaryPointType InPointType)
 {
 	if (InPointType == EItemPrimaryPointType::EIPP_End)
 	{
-		return FText::FromString(TEXT("")); // ¾Æ¹«°Íµµ Ç¥½Ã ¾ÈÇÏ´Â ¼ö´ÜÀ¸·Î »ç¿ëÇÏ±â À§ÇØ ºó ¹®Àå ¸®ÅÏ.
+		return FText::FromString(TEXT("")); // é…’å…¬å·´æ¡£ é’çŸ« æ•‘çªç»° èçªœæ è‚º è¤ä¾©çªæ‰ å›°ç§¦ å å·©å˜ åºœç•”.
 	}
 
 	//const UEnum* EnumPtr = FindObject<UEnum>(ANY_PACKAGE, TEXT("EItemPrimaryPointType"), true);
@@ -728,12 +728,12 @@ FText GetLOCTextOfPrimPointType(EItemPrimaryPointType InPointType)
 	if (!EnumPtr)
 	{		
 #if WITH_EDITOR && !PLATFORM_MAC
-		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(TEXT("EItemPrimaryPointType Enum ÆĞÅ°Áö¸¦ Ã£À» ¼ö ¾ø´Ù. ÄÄÇ»ÅÍ°¡ °ğ Æø¹ßÇÑ´Ù.")));
+		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(TEXT("EItemPrimaryPointType Enum è©è™ç˜¤ç”« èŒ«é˜‘ è ç»ä¿ƒ. å“ªè…”ç£å•Š æ¢† æ°”æƒ¯èŒ„ä¿ƒ.")));
 #endif
 		return FText::FromString(TEXT("Error"));
 	}
 
-	// Enum name À» ÅØ½ºÆ® Å×ÀÌºíÀÇ Å°·Î »ç¿ë
+	// Enum name é˜‘ å’†èƒ¶é£˜ æŠ›æå–‰ç‹¼ è™è‚º è¤ä¾©
 	FString EnumName = EnumPtr->GetNameStringByIndex(EnumPtr->GetIndexByValue((int32)InPointType));
 	return BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), TEXT("ENUM_") + EnumName);
 	//return FText::GetEmpty();
@@ -743,7 +743,7 @@ FText GetLOCTextOfItemOption(EItemOption InOption, EPCClass InPCClass)
 {
 	if (InOption == EItemOption::EIO_End)
 	{
-		return FText::FromString(TEXT("")); // ¾Æ¹«°Íµµ Ç¥½Ã ¾ÈÇÏ´Â ¼ö´ÜÀ¸·Î »ç¿ëÇÏ±â À§ÇØ ºó ¹®Àå ¸®ÅÏ.
+		return FText::FromString(TEXT("")); // é…’å…¬å·´æ¡£ é’çŸ« æ•‘çªç»° èçªœæ è‚º è¤ä¾©çªæ‰ å›°ç§¦ å å·©å˜ åºœç•”.
 	}
 
 	//const UEnum* EnumPtr = FindObject<UEnum>(ANY_PACKAGE, TEXT("EItemOption"), true);
@@ -752,20 +752,20 @@ FText GetLOCTextOfItemOption(EItemOption InOption, EPCClass InPCClass)
 	if (!EnumPtr)
 	{
 #if WITH_EDITOR && !PLATFORM_MAC
-		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(TEXT("EItemOption Enum ÆĞÅ°Áö¸¦ Ã£À» ¼ö ¾ø´Ù. ÄÄÇ»ÅÍ°¡ °ğ Æø¹ßÇÑ´Ù.")));
+		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(TEXT("EItemOption Enum è©è™ç˜¤ç”« èŒ«é˜‘ è ç»ä¿ƒ. å“ªè…”ç£å•Š æ¢† æ°”æƒ¯èŒ„ä¿ƒ.")));
 #endif
 		return FText::FromString(TEXT("Error"));
 	}
 
-	// Enum name À» ÅØ½ºÆ® Å×ÀÌºíÀÇ Å°·Î »ç¿ë..
+	// Enum name é˜‘ å’†èƒ¶é£˜ æŠ›æå–‰ç‹¼ è™è‚º è¤ä¾©..
 	FString TextKeyName = EnumPtr->GetNameStringByIndex(EnumPtr->GetIndexByValue((int32)InOption));
-	// ..ÇÏ´Âµ¥ Ä³¸¯ÅÍ º°·Î °¡´Â ÀÏºÎ ¿É¼ÇµéÀº Ä³¸¯ÅÍ ÀÌ¸§À» µû·Î ºÙ¿©ÁÜ.
+	// ..çªç»°å• æŸè…ç£ å–Šè‚º å•Šç»° è€ä½• å¯è®°ç”¸ç¯® æŸè…ç£ ææŠšé˜‘ è¶è‚º å˜¿å’¯æ·‹.
 	if (IsItemOptionPerPCClass(InOption))
 	{
 		//TextKeyName += TEXT("_") + UB2PCClassInfo::GetTrimmedNameOfPCClassEnum(InPCClass);
 	}
 
-	TextKeyName = TEXT("ENUM_") + TextKeyName; // ¸¶Áö¸·À¸·Î Á¢µÎ¾î¸¦ Á» ºÙ¿©ÁØ´Ù. ¤»
+	TextKeyName = TEXT("ENUM_") + TextKeyName; // ä»˜ç˜¤é˜œæ è‚º ç«‹æ»´ç»¢ç”« ç²± å˜¿å’¯éœ–ä¿ƒ. ã›
 	return BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), TextKeyName);
 	//return FText::GetEmpty();
 }
@@ -776,7 +776,7 @@ FText GetLOCTextOfItemQuality(int32 ItemQuality)
 	{ 
 		return BladeIIGetLOCText(B2LOC_CAT_GENERAL, FString::Printf(TEXT("ItemQualityPrefix_%d"), ItemQuality));
 	}
-	// À¯È¿ÇÑ Ç°Áú ¹üÀ§°¡ ¾Æ´Ñ °æ¿ì ¾ÆÀÌÅÛ Ç® ³×ÀÓ¿¡ prefix ·Î »ç¿ëÇÏÁö ¸øÇÏµµ·Ï ÁøÀÛ¿¡ ÀÌ°É ÄİÇÏÁö ¾Ê´Â °Ô ³ªÀ» °Í. FSingleItemInfoData::GetLocalizedName Âü°í
+	// èœ¡ç“¤èŒ„ å‰é¾™ è£¹å›°å•Š é…’å›± ç‰ˆå¿« é…’æè¢ é’± åŒ™çƒ™ä¿Š prefix è‚º è¤ä¾©çªç˜¤ ç»™çªæ¡£åºŸ æŸ³ç´¯ä¿Š æå§ å¦®çªç˜¤ è‡¼ç»° éœ¸ å”±é˜‘ å·´. FSingleItemInfoData::GetLocalizedName æ›¼ç»Š
 	return FText::FromString(TEXT(""));
 }
 
@@ -802,7 +802,7 @@ FText GetLOCTextOfPrimaryPointApplyType(ECharStatApplyType InPrimaryPointApplyTy
 {
 	if (InPrimaryPointApplyType == ECharStatApplyType::ECSA_End)
 	{
-		return FText::FromString(TEXT("")); // ¾Æ¹«°Íµµ Ç¥½Ã ¾ÈÇÏ´Â ¼ö´ÜÀ¸·Î »ç¿ëÇÏ±â À§ÇØ ºó ¹®Àå ¸®ÅÏ.
+		return FText::FromString(TEXT("")); // é…’å…¬å·´æ¡£ é’çŸ« æ•‘çªç»° èçªœæ è‚º è¤ä¾©çªæ‰ å›°ç§¦ å å·©å˜ åºœç•”.
 	}
 
 	//const UEnum* EnumPtr = FindObject<UEnum>(ANY_PACKAGE, TEXT("ECharStatApplyType"), true);
@@ -811,12 +811,12 @@ FText GetLOCTextOfPrimaryPointApplyType(ECharStatApplyType InPrimaryPointApplyTy
 	if (!EnumPtr)
 	{
 #if WITH_EDITOR && !PLATFORM_MAC
-		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(TEXT("ECharStatApplyType Enum ÆĞÅ°Áö¸¦ Ã£À» ¼ö ¾ø´Ù. ÄÄÇ»ÅÍ°¡ °ğ Æø¹ßÇÑ´Ù.")));
+		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(TEXT("ECharStatApplyType Enum è©è™ç˜¤ç”« èŒ«é˜‘ è ç»ä¿ƒ. å“ªè…”ç£å•Š æ¢† æ°”æƒ¯èŒ„ä¿ƒ.")));
 #endif
 		return FText::FromString(TEXT("Error"));
 	}
 
-	// Enum name À» ÅØ½ºÆ® Å×ÀÌºíÀÇ Å°·Î »ç¿ë
+	// Enum name é˜‘ å’†èƒ¶é£˜ æŠ›æå–‰ç‹¼ è™è‚º è¤ä¾©
 	FString EnumKey = EnumPtr->GetNameStringByIndex(EnumPtr->GetIndexByValue((int32)InPrimaryPointApplyType));
 	FText EnumString =  FText::Format(BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), (TEXT("ENUM_") + EnumKey)), GetLOCTextOfPrimPointType(InCheckPointType));
 	return (EnumString.IsEmpty() == false) ? EnumString : FText::FromString(EnumKey);
@@ -827,7 +827,7 @@ FText GetLOCTextOfPrimaryPointApplyType(ECharStatApplyType InPrimaryPointApplyTy
 {
 	if (InPrimaryPointApplyType == ECharStatApplyType::ECSA_End || InOption == EItemOption::EIO_End || InPCClass == EPCClass::EPC_End)
 	{
-		return FText::FromString(TEXT("")); // ¾Æ¹«°Íµµ Ç¥½Ã ¾ÈÇÏ´Â ¼ö´ÜÀ¸·Î »ç¿ëÇÏ±â À§ÇØ ºó ¹®Àå ¸®ÅÏ.
+		return FText::FromString(TEXT("")); // é…’å…¬å·´æ¡£ é’çŸ« æ•‘çªç»° èçªœæ è‚º è¤ä¾©çªæ‰ å›°ç§¦ å å·©å˜ åºœç•”.
 	}
 
 	//const UEnum* EnumPtr = FindObject<UEnum>(ANY_PACKAGE, TEXT("ECharStatApplyType"), true);
@@ -835,12 +835,12 @@ FText GetLOCTextOfPrimaryPointApplyType(ECharStatApplyType InPrimaryPointApplyTy
 	if (!EnumPtr)
 	{
 #if WITH_EDITOR && !PLATFORM_MAC
-		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(TEXT("ECharStatApplyType Enum ÆĞÅ°Áö¸¦ Ã£À» ¼ö ¾ø´Ù. ÄÄÇ»ÅÍ°¡ °ğ Æø¹ßÇÑ´Ù.")));
+		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(TEXT("ECharStatApplyType Enum è©è™ç˜¤ç”« èŒ«é˜‘ è ç»ä¿ƒ. å“ªè…”ç£å•Š æ¢† æ°”æƒ¯èŒ„ä¿ƒ.")));
 #endif
 		return FText::FromString(TEXT("Error"));
 	}
 
-	// Enum name À» ÅØ½ºÆ® Å×ÀÌºíÀÇ Å°·Î »ç¿ë
+	// Enum name é˜‘ å’†èƒ¶é£˜ æŠ›æå–‰ç‹¼ è™è‚º è¤ä¾©
 	FString EnumKey = EnumPtr->GetNameStringByIndex(EnumPtr->GetIndexByValue((int32)InPrimaryPointApplyType));
 	FText EnumString = FText::Format(BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), (TEXT("ENUM_") + EnumKey)), GetLOCTextOfItemOption(InOption, InPCClass));
 	return (EnumString.IsEmpty() == false) ? EnumString : FText::FromString(EnumKey);
@@ -858,15 +858,15 @@ EPCClass ItemAllowedPCClassEnum(int32 InPCClassID)
 }
 
 /*
-	@ItemFactorLevel = ¼­¹ö Table¿¡ ÀÖ´Â ¾ÆÀÌÅÛ µî±Ş(1~6¼º) º° °¡ÁßÄ¡ - FMD_ItemSingleElem::ItemLevel
-	@Quality = ÃÖÇÏ±Ş~ ÃÖ»ó±Ş (1 ~ 4)
-	@Level = °­È­·¹º§ 1 ~ 40
+	@ItemFactorLevel = è¾‘æ»š Tableä¿Š ä¹ç»° é…’æè¢ æ®¿é­(1~6å·±) å–Š å•Šåæ‘¹ - FMD_ItemSingleElem::ItemLevel
+	@Quality = å¼¥çªé­~ å¼¥æƒ‘é­ (1 ~ 4)
+	@Level = ç¢æ‹³é¥­éª‡ 1 ~ 40
 */
 float GetPreviewPrimaryPoint(EItemPrimaryPointType PrimaryType, float ItemFactorBase, int32 Quality, int32 FactorLevel)
 {
 	FClientDataStore& ClientDataStore = BladeIIGameImpl::GetClientDataStore();
 
-	// ·¹º§¾÷½Ã ¸¶½ºÅÍ µ¥ÀÌÅÍ ±â¹İÀ¸·Î PrimaryPoint °áÁ¤ ( 0.8 Factor °öÇÏ´Â ¼ö½Ä »ç¶óÁü )
+	// é¥­éª‡è¯€çŸ« ä»˜èƒ¶ç£ å•æç£ æ‰é¦†æ è‚º PrimaryPoint æ¬æ²¥ ( 0.8 Factor èšŒçªç»° èä¾¥ è¤æ‰¼å’™ )
 	const float PrimaryLevelupFactor = ClientDataStore.GetItemLevelupFactor_PrimaryIncrement(FactorLevel);
 	const float ItemLevelForEnhance = ItemFactorBase + PrimaryLevelupFactor;
 	float qualityIncLevel=0;
@@ -884,15 +884,15 @@ float GetPreviewPrimaryPoint(EItemPrimaryPointType PrimaryType, float ItemFactor
 		}
 	}
 
-	// Ç°Áú ÇÑ´Ü°è¸¶´Ù 0.2¾¿ Áõ°¡
-	// Ç°Áú º¯È¯ ¾÷µ¥ÀÌÆ®·Î Ç°Áú¿¡ µû¸¥ ´É·ÂÄ¡°¡ ´«¿¡ ¶ç°Ô Â÷ÀÌ³ª°Ô ¹Ù²ñ
+	// å‰é¾™ èŒ„çªœæ‹Œä»˜ä¿ƒ 0.2ç©¶ åˆ˜å•Š
+	// å‰é¾™ å‡½åˆ¸ è¯€å•æé£˜è‚º å‰é¾™ä¿Š è¶å¼— ç“·ä»¿æ‘¹å•Š ä¼ ä¿Š å‰éœ¸ ç’æå”±éœ¸ å®˜æŸ´
 	//const float CalculatedItemLevel	 = (0.2f * (Quality - 1)) + ItemLevelForEnhance;
 	const float CalculatedItemLevel = (1 + qualityIncLevel) * ItemLevelForEnhance + 0.2f;
 
 	float ReturnValue = 0.f;
 	if (PrimaryType == EItemPrimaryPointType::EIPP_Attack)
 	{
-		// 100 + ( 8 * ¾ÆÀÌÅÛ·¹º§ ) + ( 0.2 * ¾ÆÀÌÅÛ·¹º§  * ¾ÆÀÌÅÛ·¹º§ )
+		// 100 + ( 8 * é…’æè¢é¥­éª‡ ) + ( 0.2 * é…’æè¢é¥­éª‡  * é…’æè¢é¥­éª‡ )
 		float AttackValue = 
 			(100.f + (8.0f * CalculatedItemLevel) + (0.2f * FMath::Pow(CalculatedItemLevel, 2)));
 
@@ -901,7 +901,7 @@ float GetPreviewPrimaryPoint(EItemPrimaryPointType PrimaryType, float ItemFactor
 
 	else if (PrimaryType == EItemPrimaryPointType::EIPP_Defense)
 	{
-		// °ø°İ·Â * 3 / 4
+		// å‚æ‹œä»¿ * 3 / 4
 		float AttackValue =
 			(100.f + (8.f * CalculatedItemLevel) + (0.2f * FMath::Pow(CalculatedItemLevel, 2)));
 
@@ -911,7 +911,7 @@ float GetPreviewPrimaryPoint(EItemPrimaryPointType PrimaryType, float ItemFactor
 	}
 	else if (PrimaryType == EItemPrimaryPointType::EIPP_Health)
 	{
-		// (1 + ( 3 * ¾ÆÀÌÅÛ·¹º§ ) + ( 0.05 * ¾ÆÀÌÅÛ·¹º§ * ¾ÆÀÌÅÛ·¹º§)) / 3
+		// (1 + ( 3 * é…’æè¢é¥­éª‡ ) + ( 0.05 * é…’æè¢é¥­éª‡ * é…’æè¢é¥­éª‡)) / 3
 		ReturnValue =
 			((1.0f + (3.0f * CalculatedItemLevel)) + (0.05f * FMath::Pow(CalculatedItemLevel, 2))) / 3.0f;
 	}
@@ -926,21 +926,21 @@ void GetStandardDummyPCPartItemData(EPCClass InPCClass, int32 InStarGrade, TArra
 	}
 
 	/*================================================================================
-	°³¹ß ¹öÀü ±â´ÉÀº ¾Æ´ÏÁö¸¸ ¸Å¿ì Æ¯¼öÇÑ ±â´ÉÀÓ. 
-	¾ÆÀÌÅÛ RefID ¿¡ µû¸¥ ¼Ó¼º ¸ÊÇÎÀÌ Á» µé¾î°¨.
+	ä¿ºæƒ¯ æ»šå‚ˆ æ‰ç“·ç¯® é…’èªç˜¤çˆ¶ æ¦‚å¿« æ¼‚èèŒ„ æ‰ç“·çƒ™. 
+	é…’æè¢ RefID ä¿Š è¶å¼— åŠ å·± ç”˜ä¿æ ç²± ç”¸ç»¢çš‘.
 	================================================================================*/
 
-	const int32 RefIDPCClassNum = (int32)InPCClass; // ÀÌ ±Ô¾àÀÌ ¹Ù²ï´Ù¸é Ä³¸¯ÅÍ ¼Ò°³ È­¸é¿¡¼­ ¾û¶×ÇÑ ¸Ş½¬µéÀÇ Á¶ÇÕÀÌ ³ª¿Ã Å×´Ï ¾Ë°Ô µÇ°ÚÁö..
+	const int32 RefIDPCClassNum = (int32)InPCClass; // æ ç—¹è·æ å®˜è¯§ä¿ƒæ æŸè…ç£ å®¶ä¿º æ‹³æä¿Šè¾‘ é’§è¹²èŒ„ çš‹æµ†ç”¸ç‹¼ ç‚¼é’¦æ å”±æ£µ æŠ›èª èˆ…éœ¸ ç™»æ‘†ç˜¤..
 
 	for (int32 ECI = 0; ECI < (int32)EItemClass::EIC_End; ++ECI)
 	{
 		EItemClass CurrItemClass = static_cast<EItemClass>(ECI);
 		
-		int32 RefIDItemClassNum = -1; // ÀÌ ±Ô¾àÀÌ ¹Ù²î¾îµµ ¾û¶×ÇÑ ¸Ş½¬µéÀÇ Á¶ÇÕÀÌ ³ª¿À°Ô µÇ°ÚÁö..?
+		int32 RefIDItemClassNum = -1; // æ ç—¹è·æ å®˜å·®ç»¢æ¡£ é’§è¹²èŒ„ çš‹æµ†ç”¸ç‹¼ ç‚¼é’¦æ å”±å·éœ¸ ç™»æ‘†ç˜¤..?
 		EItemEquipPlace CurrEquipPlace = EItemEquipPlace::EIEP_End;
 
-		// ExtractItemClassFromRefID ¶û GetItemEquipPlaceFromClass ¿¡ ÇØ´çÇÏ´Â ³»¿ëÀÎµ¥
-		// ±×°Í°ú ¸ÅÄªÇÏ´ÂÁö ¾Æ·¡¼­ Ã¼Å©
+		// ExtractItemClassFromRefID å°” GetItemEquipPlaceFromClass ä¿Š ç§¦å¯¸çªç»° éƒ´ä¾©ç‰¢å•
+		// å¼Šå·´è‹ æ¦‚è«çªç»°ç˜¤ é…’è´°è¾‘ çœ‰å†œ
 		switch (CurrItemClass)
 		{
 		case EItemClass::EIC_Weapon: 
@@ -964,21 +964,21 @@ void GetStandardDummyPCPartItemData(EPCClass InPCClass, int32 InStarGrade, TArra
 			CurrEquipPlace = EItemEquipPlace::EIEP_Shoes; 
 			break;
 
-		// ÇÔ¼ö ¸ñÀû »ó ¸Ş½¬ Á¶ÇÕ ´ë»óÀÌ ¾Æ´Ñ °Ç Á¦¿ÜÇÑ´Ù. º§Æ®, ¸ñ°ÉÀÌ, ¹İÁö µî
+		// çªƒè æ ¼åˆ© æƒ‘ çš‹æµ† ç‚¼é’¦ æªæƒ‘æ é…’å›± æ‰’ åŠ›å¯‡èŒ„ä¿ƒ. éª‡é£˜, æ ¼å§æ, é¦†ç˜¤ æ®¿
 		
 		}
 
 		if (CurrEquipPlace != EItemEquipPlace::EIEP_End && RefIDItemClassNum >= 0)
 		{
 			FB2Item NewItemData;
-			// RefID ±Ô¾à¿¡ µû¸¥ Á¶ÇÕÀÎµ¥ ÀÌ°Íº¸´Ù´Â ¼­¹ö¿¡¼­ º¸³»ÁÖ´Â ¼Ó¼º°ªÀÌ ¿ì¼±ÀÓ. ¿©±â¼± ÇÊ¿äÇÏ´Ï±î ¾îÂ¿ ¼ö ¾øÀÌ »ç¿ë.
+			// RefID ç—¹è·ä¿Š è¶å¼— ç‚¼é’¦ç‰¢å• æå·´ç„Šä¿ƒç»° è¾‘æ»šä¿Šè¾‘ ç„Šéƒ´æ—ç»° åŠ å·±è”¼æ å¿«æ€¥çƒ™. å’¯æ‰æ€¥ é˜å¤¸çªèªé³– ç»¢é©´ è ç»æ è¤ä¾©.
 			NewItemData.ItemRefID = 1000000 + RefIDPCClassNum * 100000 + RefIDItemClassNum * 1000 + InStarGrade * 100 + InGroupID;
-			// ¸Ş½¬ Á¶ÇÕ¿¡¼­´Â EquipPlace Á¤µµ¸é µÉ °Í. ³ª¸ÓÁö´Â ¿©±â ÀÖ´Â µ¥ÀÌÅÍ´Ï ¿©ÇÏ°£ Ã¤¿öÁÜ.
+			// çš‹æµ† ç‚¼é’¦ä¿Šè¾‘ç»° EquipPlace æ²¥æ¡£æ çª å·´. å”±èµ£ç˜¤ç»° å’¯æ‰ ä¹ç»° å•æç£èª å’¯çªåŸƒ ç›²å†µæ·‹.
 			NewItemData.AllowedPCClass = (int32)InPCClass;
 			NewItemData.ItemClass = CurrItemClass;
 			NewItemData.EquipPlace = CurrEquipPlace;
 
-			// Á¶ÇÕÇÑ °ÍÀÌ ±Ô¾à¿¡ ¸Â´ÂÁö Ã¼Å©.. CheckForItemPropertyRule À» »ç¿ëÇÏ±â Àü¿¡ °Á Ã¼Å©¿¡ ºüÁø µ¥ÀÌÅÍ´Â Ã¤¿öÁØ´Ù.
+			// ç‚¼é’¦èŒ„ å·´æ ç—¹è·ä¿Š å˜ç»°ç˜¤ çœ‰å†œ.. CheckForItemPropertyRule é˜‘ è¤ä¾©çªæ‰ å‚ˆä¿Š å‚² çœ‰å†œä¿Š ç‹æŸ³ å•æç£ç»° ç›²å†µéœ–ä¿ƒ.
 			NewItemData.StarGrade = FItemRefIDHelper::ExtractItemStarGradeFromRefID(NewItemData.ItemRefID);
 			NewItemData.InventoryType = GetItemInvenTypeFromClass(NewItemData.ItemClass);
 			BII_CHECK(CheckForItemPropertyRule(NewItemData));
@@ -989,7 +989,7 @@ void GetStandardDummyPCPartItemData(EPCClass InPCClass, int32 InStarGrade, TArra
 }
 
 bool GetItemIntrinsicOptionOfType(FB2Item& ItemToCheck, FItemOption& OutFoundOption, EItemOption InSearchOption)
-{ // InSearchOption ¿¡ ÇØ´çÇÏ´Â °Ô ÀÖ´ÂÁö Ã£´Â ¿ëµµ
+{ // InSearchOption ä¿Š ç§¦å¯¸çªç»° éœ¸ ä¹ç»°ç˜¤ èŒ«ç»° ä¾©æ¡£
 	for (FItemOption& CurrOption : ItemToCheck.IntrinsicOptions)
 	{
 		if (CurrOption.OptionType == InSearchOption)
@@ -1002,7 +1002,7 @@ bool GetItemIntrinsicOptionOfType(FB2Item& ItemToCheck, FItemOption& OutFoundOpt
 }
 
 bool GetItemRandomOptionOfType(FB2Item& ItemToCheck, FItemOption& OutFoundOption, EItemOption InSearchOption)
-{ // InSearchOption ¿¡ ÇØ´çÇÏ´Â °Ô ÀÖ´ÂÁö Ã£´Â ¿ëµµ
+{ // InSearchOption ä¿Š ç§¦å¯¸çªç»° éœ¸ ä¹ç»°ç˜¤ èŒ«ç»° ä¾©æ¡£
 	for (FItemOption& CurrOption : ItemToCheck.RandomOptions)
 	{
 		if (CurrOption.OptionType == InSearchOption)
@@ -1020,7 +1020,7 @@ bool IsItemOptionPerPCClass(EItemOption InOption)
 		InOption == EItemOption::EIO_Skill_IncSkill2Damage ||
 		InOption == EItemOption::EIO_Skill_IncSkill3Damage ||
 		InOption == EItemOption::EIO_Skill_IncSkill5Damage){
-		return true; // ½ÇÁúÀûÀ¸·Î ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ Á¾·ùº°·Î ±¸ºĞµÇ´Â °ÍµéÀÓ.
+		return true; // è§’é¾™åˆ©æ è‚º æ•²é¥­æç»¢ æŸè…ç£ è¾†å¹…å–Šè‚º å¤‡ç›’ç™»ç»° å·´ç”¸çƒ™.
 	}
 	return false;
 }
@@ -1057,7 +1057,7 @@ FText GetItemOptionValueDisplayText(EItemOption InOption, float InOptionValue, b
 	FText UnitText;
 	switch (InOption)
 	{
-	case EItemOption::EIO_Offense_IncAttack: // °Á ¼öÄ¡¸¸ Ç¥½ÃµÇ´Â ¾Öµé
+	case EItemOption::EIO_Offense_IncAttack: // å‚² èæ‘¹çˆ¶ é’çŸ«ç™»ç»° å±€ç”¸
 	case EItemOption::EIO_Health_IncHealth:
 	case EItemOption::EIO_Defense_IncDefense:
 
@@ -1089,38 +1089,38 @@ FText GetItemOptionValueDisplayText(EItemOption InOption, float InOptionValue, b
 	case EItemOption::EIO_Guild_Health_IncHealth:
 
 		DisplayValue = (InOptionValue >= 0 ? FMath::CeilToFloat(DisplayValue) : FMath::FloorToFloat(DisplayValue));
-		checkSlow(OptionApplyType == ECombatOptionApplyType::ECOAT_Add_Value); // Áö±İ±îÁö ±×·¸´Ù´Â °Å°í ÀÌ °¡Á¤ÀÌ Æ²¸± ¼öµµ ÀÖ´Ù. ¾Æ´Ñ °æ¿ì°¡ ¹ß»ıÇÏ¸é ²«¹ÙÀÌ²« ´ëÃ³.
+		checkSlow(OptionApplyType == ECombatOptionApplyType::ECOAT_Add_Value); // ç˜¤é™›é³–ç˜¤ å¼ŠçŠ¯ä¿ƒç»° èŠ­ç»Š æ å•Šæ²¥æ æ’‡å‰¯ èæ¡£ ä¹ä¿ƒ. é…’å›± ç‰ˆå¿«å•Š æƒ¯ç§¯çªæ æå®˜ææ æªè´¸.
 		break;
 
 	case EItemOption::EIO_Health_PerSecRecoverHP:
-		checkSlow(OptionApplyType == ECombatOptionApplyType::ECOAT_Add_Value); // Áö±İ±îÁö ±×·¸´Ù´Â °Å°í ÀÌ °¡Á¤ÀÌ Æ²¸± ¼öµµ ÀÖ´Ù. ¾Æ´Ñ °æ¿ì°¡ ¹ß»ıÇÏ¸é ²«¹ÙÀÌ²« ´ëÃ³.
+		checkSlow(OptionApplyType == ECombatOptionApplyType::ECOAT_Add_Value); // ç˜¤é™›é³–ç˜¤ å¼ŠçŠ¯ä¿ƒç»° èŠ­ç»Š æ å•Šæ²¥æ æ’‡å‰¯ èæ¡£ ä¹ä¿ƒ. é…’å›± ç‰ˆå¿«å•Š æƒ¯ç§¯çªæ æå®˜ææ æªè´¸.
 		break;
 		
-	case EItemOption::EIO_Skill_DecSkillCooltime: // ½Ã°£ °ü·Ã. ÃÊ´ÜÀ§ Ç¥½Ã
+	case EItemOption::EIO_Skill_DecSkillCooltime: // çŸ«åŸƒ åŒ…è®¿. æª¬çªœå›° é’çŸ«
 	case EItemOption::EIO_Misc_DecTagCooltime:
 		UnitText = BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("TimeUnitSecond"));
 		break;
 
-	// ±âÅ¸ ³ª¸ÓÁö´Â % ·Î
+	// æ‰é¸¥ å”±èµ£ç˜¤ç»° % è‚º
 	default:
-		// OptionApplyType ÀÌ Percent ¼Ó¼ºÀÎ °æ¿ìÀÎµ¥ È¤½Ã¶óµµ ¾Æ´Ñ °æ¿ì°¡ ¹ß»ıÇÏ¸é ²«¹ÙÀÌ²« ´ëÃ³.
+		// OptionApplyType æ Percent åŠ å·±ç‰¢ ç‰ˆå¿«ç‰¢å• è¶£çŸ«æ‰¼æ¡£ é…’å›± ç‰ˆå¿«å•Š æƒ¯ç§¯çªæ æå®˜ææ æªè´¸.
 		checkSlow(OptionApplyType == ECombatOptionApplyType::ECOAT_Add_Percent || OptionApplyType == ECombatOptionApplyType::ECOAT_OneMinusMultiply);
 		UnitText = FText::FromString(TEXT("%"));
 		break;
 	}
 
-	// ¼Ò¼öÁ¡ µÑÂ°ÀÚ¸®±îÁö Çã¿ëÇÏµÇ ³¡ÀÚ¸® 0 Àº À¯È¿¼ıÀÚ·Î ¾È Ä¡°í »ı·«.
+	// å®¶èç—¢ ç¬›æ³ç£Šåºœé³–ç˜¤ å€¾ä¾©çªç™» åœºç£Šåºœ 0 ç¯® èœ¡ç“¤ç®­ç£Šè‚º æ•‘ æ‘¹ç»Š ç§¯å¸†.
 	return FText::Format(FText::FromString(TEXT("{0} {1}")), GetAutoFractionalFormattedText(DisplayValue, 2), UnitText);
 }
 
 FText GetSkillOptionValueDisplayText(ESkillOption InOption, float InOptionValue)
 {
 	ECombatOptionApplyType OptionApplyType = GetCombatOptionApplyType(InOption);
-	// EffectiveOptionValue ´Â GetEffectiveItemOptionValue ¿¡¼­ ¾òÀº °É·Î Ä£´Ù.
+	// EffectiveOptionValue ç»° GetEffectiveItemOptionValue ä¿Šè¾‘ æ˜ç¯® å§è‚º æ¨¡ä¿ƒ.
 	FText TempDisPlayText;
 	FText FinalDisplayText;
 
-	// ¼Ò¼öÁ¡ µÑÂ°ÀÚ¸®±îÁö Çã¿ëÇÏµÇ ³¡ÀÚ¸® 0 Àº À¯È¿¼ıÀÚ·Î ¾È Ä¡°í »ı·«.
+	// å®¶èç—¢ ç¬›æ³ç£Šåºœé³–ç˜¤ å€¾ä¾©çªç™» åœºç£Šåºœ 0 ç¯® èœ¡ç“¤ç®­ç£Šè‚º æ•‘ æ‘¹ç»Š ç§¯å¸†.
 	if (InOptionValue > 0)
 		TempDisPlayText = FText::Format(FText::FromString(TEXT("{0} {1}")), FText::FromString("+"), GetAutoFractionalFormattedText(InOptionValue, 2));
 	else
@@ -1130,11 +1130,11 @@ FText GetSkillOptionValueDisplayText(ESkillOption InOption, float InOptionValue)
 	switch (InOption)
 	{
 
-	// ÃÊ¸¦ ºÙÀÌ´Â ¾Öµé
+	// æª¬ç”« å˜¿æç»° å±€ç”¸
 	case ESkillOption::ESO_DecCoolTime:
 		FinalDisplayText = FText::Format(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("General_Sconds")), TempDisPlayText);
 		break;
-	// ¾Æ¹«°Íµµ ¾ø´Â¾Öµé
+	// é…’å…¬å·´æ¡£ ç»ç»°å±€ç”¸
 	case ESkillOption::ESO_IncMotion:
 	case ESkillOption::ESO_DecCoolTimeOtherSkills:
 	case ESkillOption::ESO_BuffTime:
@@ -1154,7 +1154,7 @@ FText GetSkillOptionValueDisplayText(ESkillOption InOption, float InOptionValue)
 	case ESkillOption::ESO_EnableTagOnBigBounce:
 		FinalDisplayText = FText::FromString("");
 		break;
-	// %¸¦ ºÙÀÌ´Â ¾Öµé
+	// %ç”« å˜¿æç»° å±€ç”¸
 	default:
 		FinalDisplayText = FText::Format(FText::FromString(TEXT("{0} {1}")), TempDisPlayText,FText::FromString("%"));
 		break;
@@ -1166,7 +1166,7 @@ FText GetSkillOptionValueDisplayText(ESkillOption InOption, float InOptionValue)
 float GetEffectiveItemOptionValue(EItemOption InOptionType, const FB2Item& ItemToCheckOption, const double InEnhanceEffectFactor /*= 1.f*/)
 {
 	TArray<FOptionValue> OptionRawValues;
-	for (const FItemOption& CurrOption : ItemToCheckOption.IntrinsicOptions) // ¾Æ¸¶µµ ´ÜÀÏ ¸®½ºÆ®¿¡¼­ °°Àº Å¸ÀÔ ¿É¼ÇÀÌ µÎ°³ ÀÌ»ó ¾È ³ª¿À°ÚÁö..?
+	for (const FItemOption& CurrOption : ItemToCheckOption.IntrinsicOptions) // é…’ä»˜æ¡£ çªœè€ åºœèƒ¶é£˜ä¿Šè¾‘ éç¯® é¸¥æ¶ å¯è®°æ æ»´ä¿º ææƒ‘ æ•‘ å”±å·æ‘†ç˜¤..?
 	{
 		if (CurrOption.OptionType == InOptionType){
 			FOptionValue OptionValue = FOptionValue(CurrOption.RawOptionAmount);
@@ -1181,7 +1181,7 @@ float GetEffectiveItemOptionValue(EItemOption InOptionType, const FB2Item& ItemT
 		}
 	}
 	
-	// °­È­ ¾ÆÀÌÅÛ ¼¼Æ® È¿°ú¸¦ °í·ÁÇÏ´Â ¹öÀüÀ¸·Î Äİ
+	// ç¢æ‹³ é…’æè¢ æŠ€é£˜ ç“¤è‹ç”« ç»Šå¦¨çªç»° æ»šå‚ˆæ è‚º å¦®
 	return GetEffectiveItemOptionValueWithEnhanceSetEffect(InOptionType, OptionRawValues, InEnhanceEffectFactor);
 }
 
@@ -1191,7 +1191,7 @@ void GenerateGoldItem(FB2Item& OutItem, int32 InGoldAmount)
 	OutItem.ItemClass = EItemClass::EIC_Gold;
 	OutItem.InventoryType = EItemInvenType::EIIVT_Consumables;
 	OutItem.ConsumingAmount = InGoldAmount;
-	OutItem.SetPrimaryPoint(InGoldAmount); // ¿¹Àü¿¡ PrimaryPoint ·Î ¾´ °Ô ÀÖ¾î¼­..
+	OutItem.SetPrimaryPoint(InGoldAmount); // æŠ—å‚ˆä¿Š PrimaryPoint è‚º æ•¬ éœ¸ ä¹ç»¢è¾‘..
 }
 
 bool IsEquipmentItemByType(const FB2Item& InCheckItem)
@@ -1210,7 +1210,7 @@ bool IsEquipmentItemByType(const FB2Item& InCheckItem)
 bool IsEquipmentItem(const FB2Item& InCheckItem)
 {
 	const bool bRetVal = IsEquipmentItemByType(InCheckItem)
-		// º¸»ó ´ëÇ¥ ¾ÆÀÌÅÛÀÇ °æ¿ì ItemClass ´Â À§¿¡ °Ë»çÇÏ´Â °ÍÁß ÇÏ³ªÁö¸¸ ¾ÕÀÚ¸®´Â 9¹ø´ë°¡ ³ª¿È. ÀÌ°É ¾î¶»°Ô Ã³·¯ÇØ¾ß ÇÒ±î.. ÀÏ´ÜÀº false ÀÎ °É·Î.
+		// ç„Šæƒ‘ æªé’ é…’æè¢ç‹¼ ç‰ˆå¿« ItemClass ç»° å›°ä¿Š å…«è¤çªç»° å·´å çªå”±ç˜¤çˆ¶ èŠç£Šåºœç»° 9é”…æªå•Š å”±å’³. æå§ ç»¢ç—˜éœ¸ è´¸çŸ¾ç§¦å…· ä¸”é³–.. è€çªœç¯® false ç‰¢ å§è‚º.
 		&& FItemRefIDHelper::IsEquipmentItemByRefID(InCheckItem.ItemRefID);
 
 	return bRetVal;
@@ -1264,26 +1264,26 @@ bool IsCostumeItem(const FB2Item& InCheckItem)
 }
 
 bool IsItemLevelupAllowed(const FB2Item& InItem)
-{// ·¹º§¾÷Àº ´Ù¸¥ °Ô ¾ÈµÉ °æ¿ì °¡Àå ±âº».
-	// ÇÊ¿ä¿¡ µû¶ó B2mdItemInfo ÀÇ is_levelupable À» Å¬¶ó·Î °¡Á®¿Í¼­ Ãß°¡ Ã¼Å©.
+{// é¥­éª‡è¯€ç¯® ä¿ƒå¼— éœ¸ æ•‘çª ç‰ˆå¿« å•Šå˜ æ‰å¤¯.
+	// é˜å¤¸ä¿Š è¶æ‰¼ B2mdItemInfo ç‹¼ is_levelupable é˜‘ åŠªæ‰¼è‚º å•Šå»‰å®¢è¾‘ çœ å•Š çœ‰å†œ.
 	return (IsEquipmentItem(InItem) && !IsItemCompositionAllowed(InItem) && !IsItemUpgradeAllowed(InItem) && !IsItemSurpassAllowed(InItem));
 }
 
 bool IsItemCompositionAllowed(const FB2Item& InItem)
-{ // ÇÕ¼º, ½Â±ŞÀº µ¿ÀÏ Á¶°Ç¿¡¼­ÀÇ ¼±ÅÃ. °¢ µî±Ş º° ÃÖ°í ·¹º§¿¡¼­. 
-  // ÇÊ¿ä¿¡ µû¶ó B2mdItemInfo ÀÇ is_composable À» Å¬¶ó·Î °¡Á®¿Í¼­ Ãß°¡ Ã¼Å©.
+{ // é’¦å·±, é“°é­ç¯® æ‚¼è€ ç‚¼æ‰’ä¿Šè¾‘ç‹¼ æ€¥ç¶. é˜¿ æ®¿é­ å–Š å¼¥ç»Š é¥­éª‡ä¿Šè¾‘. 
+  // é˜å¤¸ä¿Š è¶æ‰¼ B2mdItemInfo ç‹¼ is_composable é˜‘ åŠªæ‰¼è‚º å•Šå»‰å®¢è¾‘ çœ å•Š çœ‰å†œ.
 	return (IsEquipmentItem(InItem) && InItem.Level >= InItem.MaxLevel && !IsItemSurpassAllowed(InItem));
 }
 
 bool IsItemUpgradeAllowed(const FB2Item& InItem)
-{ // ÇÕ¼º, ½Â±ŞÀº µ¿ÀÏ Á¶°Ç¿¡¼­ÀÇ ¼±ÅÃ. °¢ µî±Ş º° ÃÖ°í ·¹º§¿¡¼­
-  // ÇÊ¿ä¿¡ µû¶ó B2mdItemInfo ÀÇ is_upgradable À» Å¬¶ó·Î °¡Á®¿Í¼­ Ãß°¡ Ã¼Å©.
+{ // é’¦å·±, é“°é­ç¯® æ‚¼è€ ç‚¼æ‰’ä¿Šè¾‘ç‹¼ æ€¥ç¶. é˜¿ æ®¿é­ å–Š å¼¥ç»Š é¥­éª‡ä¿Šè¾‘
+  // é˜å¤¸ä¿Š è¶æ‰¼ B2mdItemInfo ç‹¼ is_upgradable é˜‘ åŠªæ‰¼è‚º å•Šå»‰å®¢è¾‘ çœ å•Š çœ‰å†œ.
 	return (IsEquipmentItem(InItem) && InItem.Level >= InItem.MaxLevel && !IsItemSurpassAllowed(InItem));
 }
 
 bool IsItemSurpassAllowed(const FB2Item& InItem)
-{ // ÃÖÁ¾ ·¹º§¿¡¼­ ÃÊ¿ùÀÌ Çã¿ëµÈ´Ù.
-  // ÇÊ¿ä¿¡ µû¶ó B2mdItemInfo ÀÇ is_surpassable À» Å¬¶ó·Î °¡Á®¿Í¼­ Ãß°¡ Ã¼Å©.
+{ // å¼¥è¾† é¥­éª‡ä¿Šè¾‘ æª¬å²¿æ å€¾ä¾©ç­‰ä¿ƒ.
+  // é˜å¤¸ä¿Š è¶æ‰¼ B2mdItemInfo ç‹¼ is_surpassable é˜‘ åŠªæ‰¼è‚º å•Šå»‰å®¢è¾‘ çœ å•Š çœ‰å†œ.
 	return (IsEquipmentItem(InItem) && InItem.StarGrade >= FItemGradeInfo::MINIMUM_SURPASS_STAR_GRADE && InItem.Level >= InItem.MaxLevel);
 }
 
@@ -1292,9 +1292,9 @@ bool IsItemEnhanceAllowed(const FB2Item& InItem)
 	return (IsEquipmentItem(InItem) && InItem.EnhanceLevel < MAX_ENHANCE_ITEM_LEVEL);
 }
 
-// ÃÊ¿ùÀÌ 6¼º¿¡¼­ 7¼ºÀ¸·Î ´Ã¾î³²¿¡ µû¶ó(¾ÕÀ¸·Îµµ 8¼º,9¼º)
-// 6¼º¿¡¼­´Â ÇÕ¼º°ú ½Â±Ş ÃÊ¿ùÀÌ ÇÑ¹ø¿¡ º¸¿©Áö´Â ÀÏÀÌ »ı±è
-// ±× µî±Ş ±¸°£ Ã¼Å© (ÇöÀç 6¼º)
+// æª¬å²¿æ 6å·±ä¿Šè¾‘ 7å·±æ è‚º ç–µç»¢å·¢ä¿Š è¶æ‰¼(èŠæ è‚ºæ¡£ 8å·±,9å·±)
+// 6å·±ä¿Šè¾‘ç»° é’¦å·±è‹ é“°é­ æª¬å²¿æ èŒ„é”…ä¿Š ç„Šå’¯ç˜¤ç»° è€æ ç§¯è¾«
+// å¼Š æ®¿é­ å¤‡åŸƒ çœ‰å†œ (æ³…çŠ 6å·±)
 bool IsItemAllowedCompositeAndSurpass(const FB2Item& InItem)
 {
 	return (IsEquipmentItem(InItem) && InItem.Level >= 30 &&
@@ -1340,7 +1340,7 @@ bool IsItemDecompostionAllowed(const FB2Item& InCheckItem)
 	FClientDataStore& CliDataStore = BladeIIGameImpl::GetClientDataStore();
 	bool bEnableDismantle = CliDataStore.GetItemDismantleInfoData(InCheckItem.InventoryType, InCheckItem.StarGrade, DismantleInfo);
 
-	// º¸»ó ´ëÇ¥ ¾ÆÀÌÅÛÀÇ °æ¿ì ItemClass ´Â À§¿¡ °Ë»çÇÏ´Â °ÍÁß ÇÏ³ªÁö¸¸ ¾ÕÀÚ¸®´Â 9¹ø´ë°¡ ³ª¿È. ÀÌ°É ¾î¶»°Ô Ã³·¯ÇØ¾ß ÇÒ±î.. ÀÏ´ÜÀº false ÀÎ °É·Î.
+	// ç„Šæƒ‘ æªé’ é…’æè¢ç‹¼ ç‰ˆå¿« ItemClass ç»° å›°ä¿Š å…«è¤çªç»° å·´å çªå”±ç˜¤çˆ¶ èŠç£Šåºœç»° 9é”…æªå•Š å”±å’³. æå§ ç»¢ç—˜éœ¸ è´¸çŸ¾ç§¦å…· ä¸”é³–.. è€çªœç¯® false ç‰¢ å§è‚º.
 	const bool bRetVal = IsEquipmentItemByType(InCheckItem) && 
 		FItemRefIDHelper::IsEquipmentItemByRefID(InCheckItem.ItemRefID) && 
 		bEnableDismantle;
@@ -1361,31 +1361,31 @@ int32 GetLevel_PreviewItemLevelup(float& OutNewExp, const FB2Item& TargetItem, c
 		const FB2Item& ThisIngred = ItemLevelupIngredients[II];
 
 		float IngredFactor1 = CliDataStore.GetItemLevelupFactor_IngredItemGrade(ThisIngred.StarGrade);
-		float IngredFactor2 = CliDataStore.GetItemLevelupFactor_IngredItemEquipPlace(ThisIngred.EquipPlace); // Á¤¼ö ¾ÆÀÌÅÛµµ EquipPlace °¡ ÀÖ´Ù.
+		float IngredFactor2 = CliDataStore.GetItemLevelupFactor_IngredItemEquipPlace(ThisIngred.EquipPlace); // æ²¥è é…’æè¢æ¡£ EquipPlace å•Š ä¹ä¿ƒ.
 		float IngredFactor3 = CliDataStore.GetItemLevelupFactor_IngredItemEnhLv(ThisIngred.Level);
 		float IngredFactor4 = CliDataStore.GetItemLevelupFactor_IngredItemSurpCount(ThisIngred.SurpassCount);
-		// ¸Å ¾ÆÀÌÅÛ ·¹º§¾÷ Àç·á¸¶´Ù TargetFactor µµ °öÇÑ´Ù.
+		// æ¦‚ é…’æè¢ é¥­éª‡è¯€ çŠä¸°ä»˜ä¿ƒ TargetFactor æ¡£ èšŒèŒ„ä¿ƒ.
 		float ThisIngredTotalFactor = TargetFactor * IngredFactor1 * IngredFactor2 * IngredFactor3 * IngredFactor4;
 
-		if (IsEssenceItem(ThisIngred)) { // Á¤¼ö ¾ÆÀÌÅÛÀº Àı¹İ È¿À².
+		if (IsEssenceItem(ThisIngred)) { // æ²¥è é…’æè¢ç¯® ä¾‹é¦† ç“¤å•¦.
 			ThisIngredTotalFactor *= 0.5f;
 		}
 
-		TotalFactor += ThisIngredTotalFactor; // ÃÖÁ¾ÀûÀ¸·Î´Â ¸Å Àç·á¿¡ ´ëÇÑ factor °è»ê°ªµéÀ» ´õÇÔ.
+		TotalFactor += ThisIngredTotalFactor; // å¼¥è¾†åˆ©æ è‚ºç»° æ¦‚ çŠä¸°ä¿Š æªèŒ„ factor æ‹Œé­‚è”¼ç”¸é˜‘ æ­¹çªƒ.
 	}
 
-	// ÀÏ´Ü ·¹º§ÀÌ ¾ó¸¶³ª ¿À¸¦Áö ½Å°æ¾²Áö ¾Ê°í °æÇèÄ¡¿¡ ´Ü¼øÈ÷ ´õÇÑ´Ù.
+	// è€çªœ é¥­éª‡æ å€”ä»˜å”± å·ç”«ç˜¤ è„šç‰ˆé™ç˜¤ è‡¼ç»Š ç‰ˆæ°°æ‘¹ä¿Š çªœé‰´æ´’ æ­¹èŒ„ä¿ƒ.
 	const float SimpleAddedExp = TargetItem.Exp + TotalFactor;
 
 	const int32 SimpleAddedExp_Floor = FMath::FloorToInt(SimpleAddedExp);
-	//const float SimpleAddedExp_Frac = FMath::Frac(SimpleAddedExp); ÀÌ°Ç ÇÊ¿ä¾øÀ» µí.
+	//const float SimpleAddedExp_Frac = FMath::Frac(SimpleAddedExp); ææ‰’ é˜å¤¸ç»é˜‘ æ·€.
 
-	// ·¹º§ »ó½ÂÀº ¾ÕÀÚ¸® ¼ö¸¸Å­.
+	// é¥­éª‡ æƒ‘é“°ç¯® èŠç£Šåºœ èçˆ¶æ€’.
 	const int32 LevelToIncrease = SimpleAddedExp_Floor / 100;
-	int32 RetLevel = TargetItem.Level + LevelToIncrease; // ÀÌ ½ÃÁ¡¿¡¼­´Â MaxLevel ·Î Å¬·¥ÇÁµÇÁö ¾ÊÀº °ª
+	int32 RetLevel = TargetItem.Level + LevelToIncrease; // æ çŸ«ç—¢ä¿Šè¾‘ç»° MaxLevel è‚º åŠªä¼æ©‡ç™»ç˜¤ è‡¼ç¯® è”¼
 
-	// ÀüÃ¼ °æÇèÄ¡ »ó½ÂºĞ¿¡¼­ µÎÀÚ¸´¼ö ÀÌÇÏ¸¸ ³²±è.
-	OutNewExp = SimpleAddedExp - ((float)LevelToIncrease * 100.0f); // ¿©±â¼­µµ Á¤¹Ğµµ ¹®Á¦°¡ µÉ ¼ö ÀÖ³ª..
+	// å‚ˆçœ‰ ç‰ˆæ°°æ‘¹ æƒ‘é“°ç›’ä¿Šè¾‘ æ»´ç£Šå¤è æçªçˆ¶ å·¢è¾«.
+	OutNewExp = SimpleAddedExp - ((float)LevelToIncrease * 100.0f); // å’¯æ‰è¾‘æ¡£ æ²¥å‰æ¡£ å·©åŠ›å•Š çª è ä¹å”±..
 
 	if (bClampResultToMaxValue && RetLevel >= TargetItem.MaxLevel)
 	{
@@ -1396,9 +1396,9 @@ int32 GetLevel_PreviewItemLevelup(float& OutNewExp, const FB2Item& TargetItem, c
 	return RetLevel;
 }
 
-/** ·¹º§, °æÇèÄ¡ µî ±âº»ÀûÀÎ °ªµé Ã¤¿ö³ÖÀ¸¸é ½ÇÁ¦ °á°ú ¼öÄ¡¶ó ÇÒ ¼ö ÀÖ´Â ¿É¼Ç°ªµé Ã¤¿ö³Ö´Â ÇÔ¼ö. ÇÁ¸®ºä ¿ë. */
+/** é¥­éª‡, ç‰ˆæ°°æ‘¹ æ®¿ æ‰å¤¯åˆ©ç‰¢ è”¼ç”¸ ç›²å†µæŒæ æ è§’åŠ› æ¬è‹ èæ‘¹æ‰¼ ä¸” è ä¹ç»° å¯è®°è”¼ç”¸ ç›²å†µæŒç»° çªƒè. æ©‡åºœè½° ä¾©. */
 static void SetPreviewItemResultOptionValuesInternal(const FB2Item& InOriginItem, FB2Item& InOutPreviewItem)
-{ // °á°ú ¿É¼Ç°ªµé ¿Ü¿¡ ¿©±â¼­ »ç¿ëÇÏ´Â ±âº»ÀûÀÎ °ªµéÀº Ã¤¿öÁ® ÀÖ¾î¾ß ÇÑ´Ù. 
+{ // æ¬è‹ å¯è®°è”¼ç”¸ å¯‡ä¿Š å’¯æ‰è¾‘ è¤ä¾©çªç»° æ‰å¤¯åˆ©ç‰¢ è”¼ç”¸ç¯® ç›²å†µå»‰ ä¹ç»¢å…· èŒ„ä¿ƒ. 
 
 
 	const float PrimaryPoint = GetPreviewPrimaryPoint(InOutPreviewItem.PrimaryPointType,
@@ -1411,7 +1411,7 @@ static void SetPreviewItemResultOptionValuesInternal(const FB2Item& InOriginItem
 
 	FClientDataStore& CliDataStore = BladeIIGameImpl::GetClientDataStore();
 	int32 LevelDistance = (int32)((InOutPreviewItem.Level - InOriginItem.Level + (InOriginItem.Level % 10) ) / 10);
-	// ±âÅ¸ ¿É¼Ç°ªµé..
+	// æ‰é¸¥ å¯è®°è”¼ç”¸..
 	for (int32 IOI = 0; IOI < InOutPreviewItem.IntrinsicOptions.Num(); ++IOI)
 	{
 		FItemOption& ThisOption = InOutPreviewItem.IntrinsicOptions[IOI];
@@ -1424,10 +1424,10 @@ static void SetPreviewItemResultOptionValuesInternal(const FB2Item& InOriginItem
 	}
 }
 
-/** ÁöÁ¤ÇÑ Àç·áµéÀ» °¡Áö°í ·¹º§¾÷ ½Ã °á°ú µ¥ÀÌÅÍ°¡ ¾î¶»°Ô µÇ´ÂÁö ÇÁ¸®ºä */
+/** ç˜¤æ²¥èŒ„ çŠä¸°ç”¸é˜‘ å•Šç˜¤ç»Š é¥­éª‡è¯€ çŸ« æ¬è‹ å•æç£å•Š ç»¢ç—˜éœ¸ ç™»ç»°ç˜¤ æ©‡åºœè½° */
 void GetCalculateItem_PreviewItemLevelup(const FB2Item& InTargetItem, const TArray<FB2Item>& ItemLevelupIngredients, FB2Item& OutPreviewResult, bool bClampResultToMaxValue)
 {
-	// Note(ÁÖÀÇ!) : ÇöÀç °è»ê °ø½ÄÀº Å¬¶ó¿¡¼­ UI»óÀ¸·Î º¸¿©ÁÖ±âÀ§ÇÑ ¿ëµµ·Î¸¸ »ç¿ëÇÏ°íÀÖ°í, ½ÇÁ¦ °ø°İ·Â °è»êÀº ¼­¹ö¿¡¼­ ÇØ¼­ ³»·ÁÁÖ°íÀÖÀ½. 
+	// Note(æ—ç‹¼!) : æ³…çŠ æ‹Œé­‚ å‚ä¾¥ç¯® åŠªæ‰¼ä¿Šè¾‘ UIæƒ‘æ è‚º ç„Šå’¯æ—æ‰å›°èŒ„ ä¾©æ¡£è‚ºçˆ¶ è¤ä¾©çªç»Šä¹ç»Š, è§’åŠ› å‚æ‹œä»¿ æ‹Œé­‚ç¯® è¾‘æ»šä¿Šè¾‘ ç§¦è¾‘ éƒ´å¦¨æ—ç»Šä¹æ¾œ. 
 	OutPreviewResult = InTargetItem;
 
 	if (ItemLevelupIngredients.Num() == 0)
@@ -1437,15 +1437,15 @@ void GetCalculateItem_PreviewItemLevelup(const FB2Item& InTargetItem, const TArr
 	OutPreviewResult.Level = GetLevel_PreviewItemLevelup(NewExp, InTargetItem, ItemLevelupIngredients, bClampResultToMaxValue);
 	OutPreviewResult.Exp = NewExp;
 
-	SetPreviewItemResultOptionValuesInternal(InTargetItem, OutPreviewResult); // ±âº»ÀûÀÎ µ¥ÀÌÅÍ¸¦ ³ÖÀº ÈÄ °á°ú ¿É¼Ç ¼öÄ¡µéÀ» »êÃâÇØ ³½´Ù.
+	SetPreviewItemResultOptionValuesInternal(InTargetItem, OutPreviewResult); // æ‰å¤¯åˆ©ç‰¢ å•æç£ç”« æŒç¯® é¥¶ æ¬è‹ å¯è®° èæ‘¹ç”¸é˜‘ é­‚å…ç§¦ è¾°ä¿ƒ.
 
-	// °­È­°¡ Àû¿ë ¾ÈµÈ ±âº» °ø¹æ·ÂÀ» »Ì¾Æ³»°í ±× °ªÀ» ±âÁØÀ¸·Î °­È­°ªÀ» Áõ°¡ÇØÁØ´Ù.
+	// ç¢æ‹³å•Š åˆ©ä¾© æ•‘ç­‰ æ‰å¤¯ å‚è§„ä»¿é˜‘ æƒ¶é…’éƒ´ç»Š å¼Š è”¼é˜‘ æ‰éœ–æ è‚º ç¢æ‹³è”¼é˜‘ åˆ˜å•Šç§¦éœ–ä¿ƒ.
 	int32 BasePrimaryPoint = OutPreviewResult.GetPrimaryPoint();
 	int32 EnhanceLevel = InTargetItem.EnhanceLevel;
 
 	switch (OutPreviewResult.PrimaryPointType)
 	{
-		// °ø°İ·Â += °ø°İ·Â * ((µîÂ÷°è¼ö * °­È­·¹º§) + (µîºñ°è¼ö * °­È­·¹º§ * °­È­·¹º§))
+		// å‚æ‹œä»¿ += å‚æ‹œä»¿ * ((æ®¿ç’æ‹Œè * ç¢æ‹³é¥­éª‡) + (æ®¿åšæ‹Œè * ç¢æ‹³é¥­éª‡ * ç¢æ‹³é¥­éª‡))
 		case EItemPrimaryPointType::EIPP_Attack:
 		case EItemPrimaryPointType::EIPP_Defense:
 		{
@@ -1453,7 +1453,7 @@ void GetCalculateItem_PreviewItemLevelup(const FB2Item& InTargetItem, const TArr
 			OutPreviewResult.SetPrimaryPoint(B2ServerRoundDown(BasePrimaryPoint, 1.f));
 		}
 			break;
-		// °ø°İ·Â += (°ø°İ·Â * ((µîÂ÷°è¼ö * °­È­·¹º§) + (µîºñ°è¼ö * °­È­·¹º§ * °­È­·¹º§))) + 1
+		// å‚æ‹œä»¿ += (å‚æ‹œä»¿ * ((æ®¿ç’æ‹Œè * ç¢æ‹³é¥­éª‡) + (æ®¿åšæ‹Œè * ç¢æ‹³é¥­éª‡ * ç¢æ‹³é¥­éª‡))) + 1
 		case EItemPrimaryPointType::EIPP_Health:
 		{
 			BasePrimaryPoint += ((BasePrimaryPoint * ((0.02f * EnhanceLevel) + (0.00065f * FMath::Pow(static_cast<float>(EnhanceLevel), 2)))) + 1);
@@ -1463,14 +1463,14 @@ void GetCalculateItem_PreviewItemLevelup(const FB2Item& InTargetItem, const TArr
 	}
 }
 
-/** Æ¯Á¤ ¼öÄ¡¸¸Å­ ·¹º§¾÷ ½Ã °á°ú µ¥ÀÌÅÍ°¡ ¾î¶»°Ô µÇ´ÂÁö ÇÁ¸®ºä */
+/** æ¼‚æ²¥ èæ‘¹çˆ¶æ€’ é¥­éª‡è¯€ çŸ« æ¬è‹ å•æç£å•Š ç»¢ç—˜éœ¸ ç™»ç»°ç˜¤ æ©‡åºœè½° */
 void GetCalculateItem_PreviewItemLevelup(const FB2Item& InTargetItem, FB2Item& OutPreviewResult, int32 LevelIncreaseAmount /*= 0*/) 
 {
-	// Note(ÁÖÀÇ!) : ÇöÀç °è»ê °ø½ÄÀº Å¬¶ó¿¡¼­ UI»óÀ¸·Î º¸¿©ÁÖ±âÀ§ÇÑ ¿ëµµ·Î¸¸ »ç¿ëÇÏ°íÀÖ°í, ½ÇÁ¦ °ø°İ·Â °è»êÀº ¼­¹ö¿¡¼­ ÇØ¼­ ³»·ÁÁÖ°íÀÖÀ½. 
+	// Note(æ—ç‹¼!) : æ³…çŠ æ‹Œé­‚ å‚ä¾¥ç¯® åŠªæ‰¼ä¿Šè¾‘ UIæƒ‘æ è‚º ç„Šå’¯æ—æ‰å›°èŒ„ ä¾©æ¡£è‚ºçˆ¶ è¤ä¾©çªç»Šä¹ç»Š, è§’åŠ› å‚æ‹œä»¿ æ‹Œé­‚ç¯® è¾‘æ»šä¿Šè¾‘ ç§¦è¾‘ éƒ´å¦¨æ—ç»Šä¹æ¾œ. 
 	OutPreviewResult = InTargetItem;
 	OutPreviewResult.Level += LevelIncreaseAmount;
 
-	SetPreviewItemResultOptionValuesInternal(InTargetItem, OutPreviewResult); // ±âº»ÀûÀÎ µ¥ÀÌÅÍ¸¦ ³ÖÀº ÈÄ °á°ú ¿É¼Ç ¼öÄ¡µéÀ» »êÃâÇØ ³½´Ù.
+	SetPreviewItemResultOptionValuesInternal(InTargetItem, OutPreviewResult); // æ‰å¤¯åˆ©ç‰¢ å•æç£ç”« æŒç¯® é¥¶ æ¬è‹ å¯è®° èæ‘¹ç”¸é˜‘ é­‚å…ç§¦ è¾°ä¿ƒ.
 }
 
 int GetTotalCost_PreviewItemLevelup(const FB2Item& InTargetItem, const TArray<FB2Item>& ItemLevelupIngredients)
@@ -1494,13 +1494,13 @@ void GetCalculateItem_PreviewItemEnhance(const FB2Item& InTargetItem, FB2Item& O
 	FB2Item CalcLevelUpItem;
 	GetCalculateItem_PreviewItemLevelup(OutPreviewResult, CalcLevelUpItem);
 	
-	// °­È­°¡ Àû¿ë ¾ÈµÈ ±âº» °ø¹æ·ÂÀ» »Ì¾Æ³»°í ±× °ªÀ» ±âÁØÀ¸·Î °­È­°ªÀ» Áõ°¡ÇØÁØ´Ù.
+	// ç¢æ‹³å•Š åˆ©ä¾© æ•‘ç­‰ æ‰å¤¯ å‚è§„ä»¿é˜‘ æƒ¶é…’éƒ´ç»Š å¼Š è”¼é˜‘ æ‰éœ–æ è‚º ç¢æ‹³è”¼é˜‘ åˆ˜å•Šç§¦éœ–ä¿ƒ.
 	int32 BasePrimaryPoint = CalcLevelUpItem.GetPrimaryPoint();
 	int32 EnhanceLevel = InTargetItem.EnhanceLevel + IncreaseEnhanceLevel;
 
 	switch (CalcLevelUpItem.PrimaryPointType)
 	{
-		// °ø°İ·Â += °ø°İ·Â * ((µîÂ÷°è¼ö * °­È­·¹º§) + (µîºñ°è¼ö * °­È­·¹º§ * °­È­·¹º§))
+		// å‚æ‹œä»¿ += å‚æ‹œä»¿ * ((æ®¿ç’æ‹Œè * ç¢æ‹³é¥­éª‡) + (æ®¿åšæ‹Œè * ç¢æ‹³é¥­éª‡ * ç¢æ‹³é¥­éª‡))
 	case EItemPrimaryPointType::EIPP_Attack:
 	case EItemPrimaryPointType::EIPP_Defense:
 		{
@@ -1508,7 +1508,7 @@ void GetCalculateItem_PreviewItemEnhance(const FB2Item& InTargetItem, FB2Item& O
 			OutPreviewResult.SetPrimaryPoint(B2ServerRoundDown(BasePrimaryPoint, 1.f));
 		}
 		break;
-		// °ø°İ·Â += (°ø°İ·Â * ((µîÂ÷°è¼ö * °­È­·¹º§) + (µîºñ°è¼ö * °­È­·¹º§ * °­È­·¹º§))) + 1
+		// å‚æ‹œä»¿ += (å‚æ‹œä»¿ * ((æ®¿ç’æ‹Œè * ç¢æ‹³é¥­éª‡) + (æ®¿åšæ‹Œè * ç¢æ‹³é¥­éª‡ * ç¢æ‹³é¥­éª‡))) + 1
 	case EItemPrimaryPointType::EIPP_Health:
 		{
 			BasePrimaryPoint += ((BasePrimaryPoint * ((0.02f * EnhanceLevel) + (0.00065f * FMath::Pow(static_cast<float>(EnhanceLevel), 2)))) + 1);
@@ -1525,20 +1525,20 @@ void GetCalculateCostumeItem_PreviewItemEnhance(const FB2Item& InTargetItem, FB2
 	//FB2Item CalcLevelUpItem;
 	//GetCalculateItem_PreviewItemLevelup(InTargetItem, CalcLevelUpItem);
 
-	//// °­È­°¡ Àû¿ë ¾ÈµÈ ±âº» °ø¹æ·ÂÀ» »Ì¾Æ³»°í ±× °ªÀ» ±âÁØÀ¸·Î °­È­°ªÀ» Áõ°¡ÇØÁØ´Ù.
+	//// ç¢æ‹³å•Š åˆ©ä¾© æ•‘ç­‰ æ‰å¤¯ å‚è§„ä»¿é˜‘ æƒ¶é…’éƒ´ç»Š å¼Š è”¼é˜‘ æ‰éœ–æ è‚º ç¢æ‹³è”¼é˜‘ åˆ˜å•Šç§¦éœ–ä¿ƒ.
 	//int32 BasePrimaryPoint = CalcLevelUpItem.GetPrimaryPoint();
 	//int32 EnhanceLevel = InTargetItem.EnhanceLevel + IncreaseEnhanceLevel;
 
 	//switch (CalcLevelUpItem.PrimaryPointType)
 	//{
-	//// °ø°İ·Â = ¹«±â ±âº» °ø°İ·Â + ¹«±â°­È­°ø°İ·Â(200+0.5*±âº» °ø°İ·Â*°­È­ ·¹º§+50*°­È­ ·¹º§*°­È­ ·¹º§)
+	//// å‚æ‹œä»¿ = å…¬æ‰ æ‰å¤¯ å‚æ‹œä»¿ + å…¬æ‰ç¢æ‹³å‚æ‹œä»¿(200+0.5*æ‰å¤¯ å‚æ‹œä»¿*ç¢æ‹³ é¥­éª‡+50*ç¢æ‹³ é¥­éª‡*ç¢æ‹³ é¥­éª‡)
 	//case EItemPrimaryPointType::EIPP_Attack:
 	//{
 	//	BasePrimaryPoint += (200 + (0.5 * BasePrimaryPoint * EnhanceLevel) + (50*EnhanceLevel*EnhanceLevel));
 	//	OutPreviewResult.SetPrimaryPoint(B2ServerRoundDown(BasePrimaryPoint, 1.f));
 	//}
 	//break;
-	//// ¹æ¾î·Â =  ¹æ¾î±¸ ±âº» ¹æ¾î·Â + ¹æ¾î±¸°­È­¹æ¾î·Â(400+0.5*±âº» ¹æ¾î·Â*°­È­ ·¹º§+100*°­È­ ·¹º§*°­È­ ·¹º§)
+	//// è§„ç»¢ä»¿ =  è§„ç»¢å¤‡ æ‰å¤¯ è§„ç»¢ä»¿ + è§„ç»¢å¤‡ç¢æ‹³è§„ç»¢ä»¿(400+0.5*æ‰å¤¯ è§„ç»¢ä»¿*ç¢æ‹³ é¥­éª‡+100*ç¢æ‹³ é¥­éª‡*ç¢æ‹³ é¥­éª‡)
 	//case EItemPrimaryPointType::EIPP_Defense:
 	//{
 	//	BasePrimaryPoint += (400 + (0.5 * BasePrimaryPoint * EnhanceLevel) + (100 * EnhanceLevel*EnhanceLevel));
@@ -1552,8 +1552,8 @@ void GetCalculateCostumeItem_PreviewItemEnhance(const FB2Item& InTargetItem, FB2
 
 
 /*================================================================================
-	¾ÆÀÌÅÛÀÇ RefID ÀÚ¸´¼ö Á¤º¸Ã³·³ Æ¯Á¤ ¼Ó¼ºÀ» °¡Áö°í ´Ù¸¥ ¼Ó¼ºÀ» À¯ÃßÇÏ´Â ÇÔ¼ö.
-	FItemRefIDHelper ÀÇ Extract** ¾¾¸®ÁîÃ³·³ ²À ÇÊ¿äÇÑ °æ¿ì¸¸.
+	é…’æè¢ç‹¼ RefID ç£Šå¤è æ²¥ç„Šè´¸çƒ¦ æ¼‚æ²¥ åŠ å·±é˜‘ å•Šç˜¤ç»Š ä¿ƒå¼— åŠ å·±é˜‘ èœ¡çœ çªç»° çªƒè.
+	FItemRefIDHelper ç‹¼ Extract** æªåºœä»¤è´¸çƒ¦ æ€– é˜å¤¸èŒ„ ç‰ˆå¿«çˆ¶.
 ================================================================================*/
 
 EItemInvenType GetItemInvenTypeFromClass(EItemClass InItemClass)
@@ -1593,14 +1593,14 @@ EItemInvenType GetItemInvenTypeFromClass(EItemClass InItemClass)
 		return EItemInvenType::EIIVT_CostumeArmor;
 	}
 
-	return EItemInvenType::EIIVT_Consumables; // ³ª¸ÓÁö´Â ¼Ò¸ğÇ°À¸·Î
+	return EItemInvenType::EIIVT_Consumables; // å”±èµ£ç˜¤ç»° å®¶è‘›å‰æ è‚º
 }
 
 EItemEquipPlace GetItemEquipPlaceFromClass(EItemClass InItemClass)
 {
 	switch (InItemClass)
 	{
-		// °ÅÀÇ ÀÏ´ëÀÏ ¸ÊÇÎ
+		// èŠ­ç‹¼ è€æªè€ ç”˜ä¿
 	case EItemClass::EIC_Weapon: return EItemEquipPlace::EIEP_Weapon;
 
 	case EItemClass::EIC_Helmet: return EItemEquipPlace::EIEP_Helmet;
@@ -1613,7 +1613,7 @@ EItemEquipPlace GetItemEquipPlaceFromClass(EItemClass InItemClass)
 	case EItemClass::EIC_Ring: return EItemEquipPlace::EIEP_Ring;
 	}
 
-	return EItemEquipPlace::EIEP_End; // ³ª¸ÓÁö´Â ÀåÂø ºÒ°¡´É
+	return EItemEquipPlace::EIEP_End; // å”±èµ£ç˜¤ç»° å˜é¦’ é˜‚å•Šç“·
 }
 
 ECostumeEquipPlace GetItemCostumeEquipPlaceFromClass(EItemClass InItemClass)
@@ -1630,7 +1630,7 @@ ECostumeEquipPlace GetItemCostumeEquipPlaceFromClass(EItemClass InItemClass)
 
 bool CheckForItemPropertyRule(const FB2Item& InItemToCheck)
 {
-	if (FItemRefIDHelper::IsEquipmentItemByRefID(InItemToCheck.ItemRefID)) // ¾ÕÀÚ¸® 1 ÀÌ ÀÏ¹İÀûÀÎ ÀåÂø ¾ÆÀÌÅÛ. ÇöÀç ·ê Ã¼Å© ´ë»ó
+	if (FItemRefIDHelper::IsEquipmentItemByRefID(InItemToCheck.ItemRefID)) // èŠç£Šåºœ 1 æ è€é¦†åˆ©ç‰¢ å˜é¦’ é…’æè¢. æ³…çŠ é€¢ çœ‰å†œ æªæƒ‘
 	{
 		bool bFoundMisMatch = false;
 		bFoundMisMatch |= (InItemToCheck.ItemClass != FItemRefIDHelper::ExtractItemClassFromRefID(InItemToCheck.ItemRefID));
@@ -1641,7 +1641,7 @@ bool CheckForItemPropertyRule(const FB2Item& InItemToCheck)
 		
 		return !bFoundMisMatch;
 	}
-	else if (FItemRefIDHelper::IsEssenceItemByRefID(InItemToCheck.ItemRefID)) // Á¤¼ö ¾ÆÀÌÅÛµµ ºñ½ÁÇÑ Ã¼Å©
+	else if (FItemRefIDHelper::IsEssenceItemByRefID(InItemToCheck.ItemRefID)) // æ²¥è é…’æè¢æ¡£ åšæ…èŒ„ çœ‰å†œ
 	{
 		bool bFoundMisMatch = false;
 		bFoundMisMatch |= (InItemToCheck.ItemClass != FItemRefIDHelper::ExtractItemClassFromRefID(InItemToCheck.ItemRefID));
@@ -1651,7 +1651,7 @@ bool CheckForItemPropertyRule(const FB2Item& InItemToCheck)
 
 		return !bFoundMisMatch;
 	}
-	else if (FItemRefIDHelper::IsCostumeItemByRefID(InItemToCheck.ItemRefID)) // ¾ÕÀÚ¸® 3ÀÎ ÄÚ½ºÆ¬ ¾ÆÀÌÅÛ
+	else if (FItemRefIDHelper::IsCostumeItemByRefID(InItemToCheck.ItemRefID)) // èŠç£Šåºœ 3ç‰¢ å†…èƒ¶ç‰‡ é…’æè¢
 	{
 		bool bFoundMisMatch = false;
 		bFoundMisMatch |= (InItemToCheck.ItemClass			!= FItemRefIDHelper::ExtractItemClassFromRefID(InItemToCheck.ItemRefID));
@@ -1661,7 +1661,7 @@ bool CheckForItemPropertyRule(const FB2Item& InItemToCheck)
 		bFoundMisMatch |= (InItemToCheck.CostumeEquipPlace	!= GetItemCostumeEquipPlaceFromClass(InItemToCheck.ItemClass));
 		return !bFoundMisMatch;
 	}
-	else if (FItemRefIDHelper::IsAnvilItemByRefID(InItemToCheck.ItemRefID)) // ÃÊ¿ù ¾ÆÀÌÅÛµµ ºñ½ÁÇÑ Ã¼Å©
+	else if (FItemRefIDHelper::IsAnvilItemByRefID(InItemToCheck.ItemRefID)) // æª¬å²¿ é…’æè¢æ¡£ åšæ…èŒ„ çœ‰å†œ
 	{
 		bool bFoundMisMatch = false;
 		bFoundMisMatch |= (InItemToCheck.ItemClass != FItemRefIDHelper::ExtractItemClassFromRefID(InItemToCheck.ItemRefID));
@@ -1726,7 +1726,7 @@ EItemInvenType GetSetOptionInvenType(int32 SetOptionID)
 #if !UE_BUILD_SHIPPING
 void DevOnlyLoadItemClientTestData(FB2Item& InItemToLoad)
 {
-	// RefID ´Â »çÀü¿¡ Á¤ÇØÁ® ÀÖ¾î¾ß ÇÔ.
+	// RefID ç»° è¤å‚ˆä¿Š æ²¥ç§¦å»‰ ä¹ç»¢å…· çªƒ.
 	
 	InItemToLoad.StarGrade = FItemRefIDHelper::ExtractItemStarGradeFromRefID(InItemToLoad.ItemRefID);
 	InItemToLoad.AllowedPCClass = (int32)FItemRefIDHelper::ExtractItemAllowedPCClassFromRefID(InItemToLoad.ItemRefID);
@@ -1734,17 +1734,17 @@ void DevOnlyLoadItemClientTestData(FB2Item& InItemToLoad)
 	if (FItemRefIDHelper::IsEquipmentItemByRefID(InItemToLoad.ItemRefID))
 	{
 		InItemToLoad.ItemClass = FItemRefIDHelper::ExtractItemClassFromRefID(InItemToLoad.ItemRefID);
-		InItemToLoad.MaxLevel = 30; // °Á ÃæºĞÈ÷ ³ô°Ô ÁÜ
+		InItemToLoad.MaxLevel = 30; // å‚² é¢ç›’æ´’ è‡­éœ¸ æ·‹
 		InItemToLoad.InventoryType = GetItemInvenTypeFromClass(InItemToLoad.ItemClass);
 		InItemToLoad.EquipPlace = GetItemEquipPlaceFromClass(InItemToLoad.ItemClass);
 	}
 	else if (FItemRefIDHelper::IsEssenceItemByRefID(InItemToLoad.ItemRefID))
-	{ // Á¤¼ö ¾ÆÀÌÅÛ Class È®Á¤ Àü ÄÚµå. ¾îÂ÷ÇÇ ÀÌ ÇÔ¼ö ÀÚÃ¼°¡ °³¹ß¿ë.
+	{ // æ²¥è é…’æè¢ Class çŠ¬æ²¥ å‚ˆ å†…é›. ç»¢ç’ä¹” æ çªƒè ç£Šçœ‰å•Š ä¿ºæƒ¯ä¾©.
 		InItemToLoad.ItemClass = FItemRefIDHelper::ExtractItemClassFromRefID(InItemToLoad.ItemRefID);
 		InItemToLoad.InventoryType = GetItemInvenTypeFromClass(InItemToLoad.ItemClass); 
 	}
 	else if (FItemRefIDHelper::IsAnvilItemByRefID(InItemToLoad.ItemRefID))
-	{ // Á¤¼ö ¾ÆÀÌÅÛ Class È®Á¤ Àü ÄÚµå. ¾îÂ÷ÇÇ ÀÌ ÇÔ¼ö ÀÚÃ¼°¡ °³¹ß¿ë.
+	{ // æ²¥è é…’æè¢ Class çŠ¬æ²¥ å‚ˆ å†…é›. ç»¢ç’ä¹” æ çªƒè ç£Šçœ‰å•Š ä¿ºæƒ¯ä¾©.
 		InItemToLoad.ItemClass = FItemRefIDHelper::ExtractItemClassFromRefID(InItemToLoad.ItemRefID);
 		InItemToLoad.InventoryType = GetItemInvenTypeFromClass(InItemToLoad.ItemClass);
 	}
@@ -1769,5 +1769,5 @@ int32 UB2Inventory::GetInvenPCIndexFromPCClass(EPCClass InPCClass)
 		return PCClassToInt(InPCClass);
 	}
 
-	return GetMaxPCClassNum(); // ¹°·Ğ ¿¹¿Ü Ã³¸® ÀÇ¹ÌÀÓ. ÀÌ°É ¹Ş°Ô µÇ¸é PCItems ÀÎµ¦½º·Î ¾²¸é ¾ÈµÊ.
+	return GetMaxPCClassNum(); // æ‹±æ²¸ æŠ—å¯‡ è´¸åºœ ç‹¼å›ºçƒ™. æå§ ç½éœ¸ ç™»æ PCItems ç‰¢éƒ¸èƒ¶è‚º é™æ æ•‘å‡³.
 }

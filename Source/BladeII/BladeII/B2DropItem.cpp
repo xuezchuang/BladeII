@@ -1,4 +1,4 @@
-#include "B2DropItem.h"
+ï»¿#include "B2DropItem.h"
 #include "Components/AudioComponent.h"
 #include "BladeIICharacter.h"
 #include "BladeIIPlayer.h"
@@ -72,12 +72,12 @@ void AB2DropBase::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// ÀÌ°Å ÀÌÀü¿¡ OverrideByItemInfo °¡ µÇ¾î ÀÖ¾î¾ß ÇÒ °Çµ¥ ¸¸ÀÏ ¾ÈµÈ´Ù¸é ¾Æ·¡ ºÎºĞÀ» Á» ¶¼¾î¼­ Á÷Á¢ ºÒ·¯ÁÖ°Å³ª ³¥³¥
+	// ì´ê±° ì´ì „ì— OverrideByItemInfo ê°€ ë˜ì–´ ìˆì–´ì•¼ í•  ê±´ë° ë§Œì¼ ì•ˆëœë‹¤ë©´ ì•„ë˜ ë¶€ë¶„ì„ ì¢€ ë–¼ì–´ì„œ ì§ì ‘ ë¶ˆëŸ¬ì£¼ê±°ë‚˜ ë‚„ë‚„
 
 	// It is assumed to be spawned right at the dead character's location. Give an offset to it.
 	SetActorLocation(GetActorLocation() + FVector(0.f, 0.f, SpawnLocationOffsetZ));
 
-	// ½ºÆù ¿¬ÃâÀÌ ³¡³ª±â Àü±îÁö´Â ¸ÔÁö ¸øÇÏ°Ô ÄÃ¸®Á¯ ¸·À½.
+	// ìŠ¤í° ì—°ì¶œì´ ëë‚˜ê¸° ì „ê¹Œì§€ëŠ” ë¨¹ì§€ ëª»í•˜ê²Œ ì»¬ë¦¬ì ¼ ë§‰ìŒ.
 	CollisionComp->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	if (SpawningTime > 0.f)
 		GetWorldTimerManager().SetTimer(TimeToFinishSpawningHandle, this, &AB2DropBase::TimeToFinishSpawning, SpawningTime, false);
@@ -101,7 +101,7 @@ void AB2DropBase::BeginPlay()
 	}
 	else
 	{
-		TimeToGetSuckedCB(); // ¾Æ´Ô ¹Ù·Î »¡¸®±â ½ÃÀÛ.
+		TimeToGetSuckedCB(); // ì•„ë‹˜ ë°”ë¡œ ë¹¨ë¦¬ê¸° ì‹œì‘.
 	}
 
 	if (PlaySoundDelay > 0.0f)
@@ -110,7 +110,7 @@ void AB2DropBase::BeginPlay()
 	}
 	else
 	{
-		PlayDropItemSound(); // ¾Æ´Ô ¹Ù·Î ÇÃ·¹ÀÌ
+		PlayDropItemSound(); // ì•„ë‹˜ ë°”ë¡œ í”Œë ˆì´
 	}
 }
 
@@ -132,7 +132,7 @@ void AB2DropBase::NotifyActorBeginOverlap(AActor* OtherActor)
 	//}
 }
 
-// ¿ø·¡ ·ÎÄÃÇÃ·¹ÀÌ¾î ¦i´Âµ¥ ½áÄ¿µû·Î ¼ÂÆÃÇØÁÖ¸é °³¸¦ ¦iÀ½
+// ì›ë˜ ë¡œì»¬í”Œë ˆì´ì–´ ?ëŠ”ë° ì¨ì»¤ë”°ë¡œ ì…‹íŒ…í•´ì£¼ë©´ ê°œë¥¼ ?ìŒ
 //void AB2DropBase::SetSucker(ABladeIIPlayer* pSucker)
 //{
 //	m_Sucker = pSucker;
@@ -145,7 +145,7 @@ void AB2DropBase::PlayDropItemSound()
 	if (AudioComp)
 	{
 		AudioComp->Play();
-		bSoundPlayedAtLeastOnce = true; // ÇÑ¹ø ÇÃ·¹ÀÌ µÇ¾úÀ½À» Ç¥½Ã
+		bSoundPlayedAtLeastOnce = true; // í•œë²ˆ í”Œë ˆì´ ë˜ì—ˆìŒì„ í‘œì‹œ
 	}
 }
 
@@ -153,8 +153,8 @@ void AB2DropBase::TimeToGetSuckedCB()
 {
 	// Now, let's go get sucked by the wicked player!	
 
-	//// ·ÎÄÃÇÃ·¹ÀÌ¾î°¡ ¾Æ´Ï¾îµµ ¸ÔÀ»¼öÀÖÀ»µí(Á¡·ÉÀü »ù¿¡¼­ ³ª¿À´Â±¸½½)
-	//// +½áÄ¿ ¿ÜºÎ¿¡¼­ ¼³Á¤ÇØÁÙ¼öµµ ÀÖÀ½
+	//// ë¡œì»¬í”Œë ˆì´ì–´ê°€ ì•„ë‹ˆì–´ë„ ë¨¹ì„ìˆ˜ìˆì„ë“¯(ì ë ¹ì „ ìƒ˜ì—ì„œ ë‚˜ì˜¤ëŠ”êµ¬ìŠ¬)
+	//// +ì¨ì»¤ ì™¸ë¶€ì—ì„œ ì„¤ì •í•´ì¤„ìˆ˜ë„ ìˆìŒ
 	//if (!m_Sucker)
 	//{
 	//	ABladeIIPlayer* B2Player = Cast<ABladeIIPlayer>(UGameplayStatics::GetNearestPlayerCharacter(this, GetActorLocation()));
@@ -176,8 +176,8 @@ void AB2DropBase::TimeToFinishSpawning()
 
 //void AB2DropBase::PlayerSucksMe(ABladeIIPlayer* InSucker)
 //{
-//	// µé¾î¿Â°Ô ¸â¹öº¯¼ö ½áÄ¿¶û ´Ù¸£¸é ¸®ÅÏ
-//	// Á¡·ÉÀü¿¡¼­ Å¸ÇÃ·¹ÀÌ¾î¿¡µµ Ãæµ¹ÇÒ¼ö ÀÖ´Ù.
+//	// ë“¤ì–´ì˜¨ê²Œ ë©¤ë²„ë³€ìˆ˜ ì¨ì»¤ë‘ ë‹¤ë¥´ë©´ ë¦¬í„´
+//	// ì ë ¹ì „ì—ì„œ íƒ€í”Œë ˆì´ì–´ì—ë„ ì¶©ëŒí• ìˆ˜ ìˆë‹¤.
 //	if (InSucker == NULL || m_Sucker != InSucker)
 //	{
 //		return;
@@ -187,7 +187,7 @@ void AB2DropBase::TimeToFinishSpawning()
 //	{
 //		CachedSuckingPSComp = UGameplayStatics::SpawnEmitterAttached(SuckingPS, InSucker->GetRootComponent());
 //
-//		// ½½·Î¿ì, ºù°á¶§µµ ½Àµæ ÀÌÆåÆ® ³ª¿À°Ô
+//		// ìŠ¬ë¡œìš°, ë¹™ê²°ë•Œë„ ìŠµë“ ì´í™íŠ¸ ë‚˜ì˜¤ê²Œ
 //		CachedSuckingPSComp->bUseOwnerCustomTimeDilation = false;
 //	}
 //
@@ -197,13 +197,13 @@ void AB2DropBase::TimeToFinishSpawning()
 //
 //	if (AudioComp && bSoundPlayedAtLeastOnce == false && PlaySoundDelay > 0.0f)
 //	{
-//		// ¹º°¡ »ç¿îµå ÇÃ·¹ÀÌ°¡ µÇ¾î¾ß ÇÏ´Âµ¥ ÇÃ·¹ÀÌ¾î¿Í ³Ê¹« ÀÏÂï Á¢ÃËÇÑ °æ¿ìÀÏ °Í. °Á ¹Ù·Î ÇÃ·¹ÀÌ
+//		// ë­”ê°€ ì‚¬ìš´ë“œ í”Œë ˆì´ê°€ ë˜ì–´ì•¼ í•˜ëŠ”ë° í”Œë ˆì´ì–´ì™€ ë„ˆë¬´ ì¼ì° ì ‘ì´‰í•œ ê²½ìš°ì¼ ê²ƒ. ê± ë°”ë¡œ í”Œë ˆì´
 //		PlayDropItemSound();
 //	}
 //
 //	if (PostSuckLifeSpan > 0.0f)
 //	{
-//		// ÀÌ·¸°Ô Àá½Ã »ì·ÁµÎ´Â °Ç ÀÏ´Ü ³¡³ª°íµµ »¡¸®´Â ¿©¿îÀÌ ³²¾Æ¾ß ÇÏ´Â »ç¿îµå ¶§¹®.
+//		// ì´ë ‡ê²Œ ì ì‹œ ì‚´ë ¤ë‘ëŠ” ê±´ ì¼ë‹¨ ëë‚˜ê³ ë„ ë¹¨ë¦¬ëŠ” ì—¬ìš´ì´ ë‚¨ì•„ì•¼ í•˜ëŠ” ì‚¬ìš´ë“œ ë•Œë¬¸.
 //		this->SetActorHiddenInGame(true);
 //		this->GetCollisionComp()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 //		this->SetLifeSpan(PostSuckLifeSpan);
@@ -223,7 +223,7 @@ void AB2DropBase::CheckPlayerSucksMe()
 
 	//if (m_Sucker && this->GetCollisionComp()->GetCollisionEnabled() != ECollisionEnabled::NoCollision)
 	//{
-	//	// ÇÃ·¹ÀÌ¾î Ãâµ¿Ã¼ offÇÏ´Â ÄÉÀÌ½º°¡ ÀÖ¾î¼­ °Å¸®·Îµµ Ã¼Å©
+	//	// í”Œë ˆì´ì–´ ì¶œë™ì²´ offí•˜ëŠ” ì¼€ì´ìŠ¤ê°€ ìˆì–´ì„œ ê±°ë¦¬ë¡œë„ ì²´í¬
 	//	if ((GetActorLocation() - m_Sucker->GetActorLocation()).Size() <= 100.0f)
 	//	{
 	//		PlayerSucksMe(m_Sucker);
@@ -267,14 +267,14 @@ void UB2DropItemMovementComponent::FinishSpawning()
 	GetOwner()->GetWorldTimerManager().ClearTimer(TimeToFinishSpawningTimerHandle); // Not sure if really required.
 }
 
-//void UB2DropItemMovementComponent::StartHommingToSucker(ABladeIIPlayer* Player)
-//{
-//	if (!Player)
-//		return;
-//
-//	HomingTargetComponent = Player->GetRootComponent();
-//	bIsHomingProjectile = true;
-//}
+void UB2DropItemMovementComponent::StartHommingToSucker(ABladeIIPlayer* Player)
+{
+	if (!Player)
+		return;
+
+	HomingTargetComponent = Player->GetRootComponent();
+	bIsHomingProjectile = true;
+}
 
 FVector UB2DropItemMovementComponent::ComputeVelocity(FVector InitialVelocity, float DeltaTime) const
 {
@@ -299,7 +299,7 @@ void UB2DropItemMovementComponent::SetAcceleration(const FVector& InitialVelocit
 }
 
 void UB2DropItemMovementComponent::SetSpawningLocationInfo(float SpawningTime, const FVector& LocationTarget, float HighestHeight, bool bFindFloorLocation)
-{//ÃÊ±â ¼Óµµ¿Í ¸ñÇ¥ À§Ä¡ ¼³Á¤.
+{//ì´ˆê¸° ì†ë„ì™€ ëª©í‘œ ìœ„ì¹˜ ì„¤ì •.
 
 	if (!GetOwner())
 		return;
@@ -318,7 +318,7 @@ void UB2DropItemMovementComponent::SetSpawningLocationInfo(float SpawningTime, c
 		GetWorld()->LineTraceSingleByChannel(Hit, Start, End, ECC_WorldStatic, FCollisionQueryParams(NAME_None, false, LocalB2Player));
 
 		if (!Hit.bBlockingHit)
-		{//¹Ù´ÚÀ» ¸øÃ£¾Ò´Ù¸é ÁöÇü ¹ØÀÏ ¼öµµ ÀÖ´Ù.
+		{//ë°”ë‹¥ì„ ëª»ì°¾ì•˜ë‹¤ë©´ ì§€í˜• ë°‘ì¼ ìˆ˜ë„ ìˆë‹¤.
 			Start.Z += 1200.f;
 			End.Z += 1200.f;
 

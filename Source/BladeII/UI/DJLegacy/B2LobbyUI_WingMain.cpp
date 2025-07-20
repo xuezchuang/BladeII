@@ -61,7 +61,7 @@ void UB2LobbyUI_WingMain::CacheAssets()
 
 void UB2LobbyUI_WingMain::BeginDestroy()
 {
-	//Editor »óÈ²¿¡¼­ ¹®Á¦°¡ Á» ÀÖ¾î¼­ ¿©±â¼­µµ unsubscribe
+	//Editor æƒ‘ç‚”ä¿Šè¾‘ å·©åŠ›å•Š ç²± ä¹ç»¢è¾‘ å’¯æ‰è¾‘æ¡£ unsubscribe
 	if (CachedLobbyGM)
 	{
 		LobbySetHeroMgmtModePCSelectionClass<EPCClass>::GetInstance().Unsubscribe(LobbySetHeroMgmtModePCSelectionTicket);
@@ -104,23 +104,23 @@ void UB2LobbyUI_WingMain::StartFromLobby(class UB2UIManager_Lobby* InUIManager, 
 
 	if (UIP_HeroMgmtBase.IsValid())
 	{
-		UIP_HeroMgmtBase->StartFromLobby(InUIManager, InGM); // ÀÌ°Ç LobbyUISwitcher ¿¡¼­ ¸ğ¸£´Ï Á÷Á¢ ÇØ ÁÖ¾î¾ß..
+		UIP_HeroMgmtBase->StartFromLobby(InUIManager, InGM); // ææ‰’ LobbyUISwitcher ä¿Šè¾‘ è‘›ç¦èª æµç«‹ ç§¦ æ—ç»¢å…·..
 	}
 	if (UIP_WingMenuUpper_MainSymbol.IsValid())
 	{
 		UIP_WingMenuUpper_MainSymbol->StartFromLobby(InUIManager, InGM);
 	}
 
-	// ¿ø·¡ ¼Ò¸ğÇ°Àº Ã³À½¿¡ °¡Á®¿Í¾ß ÇÏ´Âµ¥.. Áß°£¿¡ Á» ¹®Á¦°¡ »ı°Ü¼­ ¿©±âµµ È®ÀÎ Â÷..
-	BladeIIGameImpl::GetClientDataStore().SyncingInventoryData(EPCClass::EPC_End); //EPC_End ·Î ÁÖ¸é °ø¿ë ¾ÆÀÌÅÛÀ» ¿äÃ»ÇÒ °Í.
+	// ç›”è´° å®¶è‘›å‰ç¯® è´¸æ¾œä¿Š å•Šå»‰å®¢å…· çªç»°å•.. ååŸƒä¿Š ç²± å·©åŠ›å•Š ç§¯è´¥è¾‘ å’¯æ‰æ¡£ çŠ¬ç‰¢ ç’..
+	BladeIIGameImpl::GetClientDataStore().SyncingInventoryData(EPCClass::EPC_End); //EPC_End è‚º æ—æ å‚ä¾© é…’æè¢é˜‘ å¤¸æ²¡ä¸” å·´.
 
 	CachedAirport = CachedLobbyGM->GetLobbyAirport();
 	check(CachedAirport);
 		
-	// Wing UI È­¸é¿¡¼­ ÇÊ¿ä·Î ÇÏ´Â Ãß°¡ ³¯°³ µ¥ÀÌÅÍ¸¦ Æ÷ÇÔÇÑ ¿äÃ»..
+	// Wing UI æ‹³æä¿Šè¾‘ é˜å¤¸è‚º çªç»° çœ å•Š æœä¿º å•æç£ç”« å™¨çªƒèŒ„ å¤¸æ²¡..
 	CachedAirport->ConditionalReqForFullWingData(CachedLobbyGM->GetHeroMgmtModePCClass());
 	
-	UB2Airport::ConditionalSetWingVisibleOnWingPageOpen(); // ¸¸ÀÏ ¿ä ÆäÀÌÁö¸¦ Ã³À½ ¿­¾ú´Ù¸é ³¯°³ visibility ¸¦ ¸ğµÎ ÄÑ ÁØ´Ù.
+	UB2Airport::ConditionalSetWingVisibleOnWingPageOpen(); // çˆ¶è€ å¤¸ å…¶æç˜¤ç”« è´¸æ¾œ å‡¯èŒä¿ƒæ æœä¿º visibility ç”« è‘›æ»´ éš¾ éœ–ä¿ƒ.
 	
 	UpdateStaticWidgets();
 	UpdateByCurrentWingData();
@@ -132,9 +132,9 @@ void UB2LobbyUI_WingMain::UpdateByCurrentWingData()
 {
 	EPCClass SelectedPCClass = CachedLobbyGM ? CachedLobbyGM->GetHeroMgmtModePCClass() : EPCClass::EPC_End;
 	FB2Wing CurrentWingData;
-	// ¿©±â¼­ ½ÇÁ¦·Î ¾î¶² ¿É¼ÇÀ» »©¿ÃÁö´Â ´Ş¶óÁú ¼ö ÀÖÀ½. °³¼±ÇØ¾ß ÇÔ.
+	// å’¯æ‰è¾‘ è§’åŠ›è‚º ç»¢æ« å¯è®°é˜‘ å“—æ£µç˜¤ç»° å´”æ‰¼é¾™ è ä¹æ¾œ. ä¿ºæ€¥ç§¦å…· çªƒ.
 	const bool bGotValidWingData = BladeIIGameImpl::GetLocalCharacterData().GetCharacterWing(SelectedPCClass, CurrentWingData);
-	const bool bInSomeAutoTask = CachedAirport ? CachedAirport->IsInAutoEvolOrEnhTask() : false; // True ¸é ¹öÆ°µéÀ» Á» ¼û°Ü¾ß
+	const bool bInSomeAutoTask = CachedAirport ? CachedAirport->IsInAutoEvolOrEnhTask() : false; // True æ æ»šç“¢ç”¸é˜‘ ç²± è§è´¥å…·
 	if (bGotValidWingData)
 	{
 		if (UIP_WingMenuUpper_MainSymbol.IsValid())
@@ -143,11 +143,11 @@ void UB2LobbyUI_WingMain::UpdateByCurrentWingData()
 			UIP_WingMenuUpper_MainSymbol->SetExtraDisableButtons(bInSomeAutoTask);
 		}
 
-		// °­È­¶û ÁøÈ­ ¸Ş´º´Â µÑ Áß ÇÏ³ª¸¸
-		const bool bNeedToShowMaxEvolveMenu = NeedToShowMaxEvolveMenu(); // ÀÌ °æ¿ì´Â °­È­/ÁøÈ­ ¹öÆ° ¸ğµÎ Á¦°Å.
+		// ç¢æ‹³å°” æŸ³æ‹³ çš‹æ˜¥ç»° ç¬› å çªå”±çˆ¶
+		const bool bNeedToShowMaxEvolveMenu = NeedToShowMaxEvolveMenu(); // æ ç‰ˆå¿«ç»° ç¢æ‹³/æŸ³æ‹³ æ»šç“¢ è‘›æ»´ åŠ›èŠ­.
 		const bool bNeedToShowEvolveMenu = NeedToShowEvolveMenu();
 		
-		// °­È­ È¤Àº ÁøÈ­ ¸Ş´º Áß ÇÏ³ª¸¸. On-demand ·Î ·Îµù ¹× »ı¼º.
+		// ç¢æ‹³ è¶£ç¯® æŸ³æ‹³ çš‹æ˜¥ å çªå”±çˆ¶. On-demand è‚º è‚ºçˆ¹ æ£º ç§¯å·±.
 		if (bNeedToShowEvolveMenu)
 		{
 			SetOpenEnhancementPart(false);
@@ -167,7 +167,7 @@ void UB2LobbyUI_WingMain::UpdateByCurrentWingData()
 		
 		if (TB_AttackIncAmount.IsValid())
 		{
-			// ÅØ½ºÆ® ÇÊµå¿¡ µé¾îÀÖ´Â UpgradeÀü ½ºÅİ °ª ÀÌ¹Ì ÀúÀå
+			// å’†èƒ¶é£˜ é˜é›ä¿Š ç”¸ç»¢ä¹ç»° Upgradeå‚ˆ èƒ¶æ³¡ è”¼ æå›º å†å˜
 			BeforeAttPoint = FCString::Atoi(*TB_AttackIncAmount->GetText().ToString());
 			TB_AttackIncAmount->SetText(
 				FText::FromString(FString::Printf(TEXT("%d"), (int32)CurrentWingData.GetAttackPoint()))
@@ -175,7 +175,7 @@ void UB2LobbyUI_WingMain::UpdateByCurrentWingData()
 		}
 		if (TB_DefenseIncAmount.IsValid())
 		{
-			// ÅØ½ºÆ® ÇÊµå¿¡ µé¾îÀÖ´Â UpgradeÀü ½ºÅİ °ª ÀÌ¹Ì ÀúÀå
+			// å’†èƒ¶é£˜ é˜é›ä¿Š ç”¸ç»¢ä¹ç»° Upgradeå‚ˆ èƒ¶æ³¡ è”¼ æå›º å†å˜
 			BeforeDefPoint = FCString::Atoi(*TB_DefenseIncAmount->GetText().ToString());
 			TB_DefenseIncAmount->SetText(
 				FText::FromString(FString::Printf(TEXT("%d"), (int32)CurrentWingData.GetDefensePoint()))
@@ -183,7 +183,7 @@ void UB2LobbyUI_WingMain::UpdateByCurrentWingData()
 		}
 		if (TB_HealthIncAmount.IsValid())
 		{
-			// ÅØ½ºÆ® ÇÊµå¿¡ µé¾îÀÖ´Â UpgradeÀü ½ºÅİ °ª ÀÌ¹Ì ÀúÀå
+			// å’†èƒ¶é£˜ é˜é›ä¿Š ç”¸ç»¢ä¹ç»° Upgradeå‚ˆ èƒ¶æ³¡ è”¼ æå›º å†å˜
 			BeforeHPPoint = FCString::Atoi(*TB_HealthIncAmount->GetText().ToString());
 			TB_HealthIncAmount->SetText(
 				FText::FromString(FString::Printf(TEXT("%d"), (int32)CurrentWingData.GetHealthPoint()))
@@ -202,7 +202,7 @@ void UB2LobbyUI_WingMain::UpdateByCurrentWingData()
 			int32 EnhancePointToAcquire = 0, RequiredEnhancePoint = 0;
 			BladeIIGameImpl::GetClientDataStore().GetWingEnhanceRefData(CurrentWingData, RequiredItemCount, RequiredGoldCost, EnhancePointToAcquire, RequiredEnhancePoint);
 		}
-		// ÃÖ´ë ÁøÈ­°¡ µÈ »óÅÂ¿¡¼­´Â ¹öÆ°µé ¼û±ä´Ù.
+		// å¼¥æª æŸ³æ‹³å•Š ç­‰ æƒ‘æ€•ä¿Šè¾‘ç»° æ»šç“¢ç”¸ è§å˜ä¿ƒ.
 		if (BTN_AutoEnhanceOrEvolve.IsValid())
 		{
 			BTN_AutoEnhanceOrEvolve->SetVisibility(bNeedToShowMaxEvolveMenu ? ESlateVisibility::Collapsed : ESlateVisibility::Visible);
@@ -215,7 +215,7 @@ void UB2LobbyUI_WingMain::UpdateByCurrentWingData()
 
 		if (!bNeedToShowMaxEvolveMenu)
 		{
-			// ¿©±âµµ ¸¶Âù°¡Áö·Î ³¯°³ ¾÷±×·¹ÀÌµå »óÅÂ¿¡ µû¶ó ÁøÈ­ È¤Àº °­È­·Î Ç¥½Ã..
+			// å’¯æ‰æ¡£ ä»˜è›®å•Šç˜¤è‚º æœä¿º è¯€å¼Šé¥­æé› æƒ‘æ€•ä¿Š è¶æ‰¼ æŸ³æ‹³ è¶£ç¯® ç¢æ‹³è‚º é’çŸ«..
 			UpdateAutoEnhanceOrEvolveBtnText();
 
 			if (TB_EnhanceOrEvolveBtn.IsValid())
@@ -227,7 +227,7 @@ void UB2LobbyUI_WingMain::UpdateByCurrentWingData()
 			}
 			if (TB_EnhanceOrEvolveCost.IsValid())
 			{
-				//[@AKI, 170417] À§¿¡¼­ ÇØÁÖ´Ï±î ¿©±â¼­´Â ÀÎÁ¦ ÇÏÁö ¸»ÀÚ
+				//[@AKI, 170417] å›°ä¿Šè¾‘ ç§¦æ—èªé³– å’¯æ‰è¾‘ç»° ç‰¢åŠ› çªç˜¤ å¯Œç£Š
 				/*
 				int32 RequiredGoldCost = 0;
 				if (bNeedToShowEvolveMenu)
@@ -248,7 +248,7 @@ void UB2LobbyUI_WingMain::UpdateByCurrentWingData()
 	}
 	else
 	{
-		// ÁÖ¿ä stat µéÀº ¼û±â´Â ´ë½Å °Á 0 À¸·Î
+		// æ—å¤¸ stat ç”¸ç¯® è§æ‰ç»° æªè„š å‚² 0 æ è‚º
 		if (TB_AttackIncAmount.IsValid()){
 			TB_AttackIncAmount->SetText(FText::AsNumber(0));
 		}
@@ -276,7 +276,7 @@ void UB2LobbyUI_WingMain::UpdateByCurrentWingData()
 	}
 	
 	if (UIP_HeroMgmtBase.IsValid())
-	{ // °øÅë ÆÄÆ®¿¡µµ ¹öÆ°ÀÌ ¸¹À¸´Ï..
+	{ // å‚çƒ¹ é¢‡é£˜ä¿Šæ¡£ æ»šç“¢æ è…¹æ èª..
 		UIP_HeroMgmtBase->SetExtraDisableButtons(bInSomeAutoTask);
 		UIP_HeroMgmtBase->DoMarkRedDot();
 	}
@@ -284,8 +284,8 @@ void UB2LobbyUI_WingMain::UpdateByCurrentWingData()
 
 void UB2LobbyUI_WingMain::PlayOnEnhancedAnim()
 {
-	// EnhancePoint ¾Æ´Ñ EnhanceLevel Áõ°¡½Ã¿¡ ºÒ¸®´Â °Å
-	// ÆÄÆ® ÂÊ¿¡¼­µµ µû·Î ¾Ö´Ï¸ŞÀÌ¼Ç µ¹¸².
+	// EnhancePoint é…’å›± EnhanceLevel åˆ˜å•ŠçŸ«ä¿Š é˜‚åºœç»° èŠ­
+	// é¢‡é£˜ ç‡ä¿Šè¾‘æ¡£ è¶è‚º å±€èªçš‹æè®° å€’è¦†.
 	if (CreatedEnhancementPart && !NeedToShowEvolveMenu())
 	{
 		CreatedEnhancementPart->PlayLevelupAnim();
@@ -313,16 +313,16 @@ void UB2LobbyUI_WingMain::OnFailEndAnimation_BP()
 
 void UB2LobbyUI_WingMain::UpdateOnAutoEnhanceComplete()
 {
-	UpdateByCurrentWingData(); // ¹öÆ° state ¶û ¹®±¸µé º¹±¸..
+	UpdateByCurrentWingData(); // æ»šç“¢ state å°” å·©å¤‡ç”¸ æ±—å¤‡..
 }
 
 void UB2LobbyUI_WingMain::UpdateOnAutoEvolveComplete()
 {
 	if (CreatedEvolutionPart)
-	{ // ÀÚµ¿ ÁøÈ­ µµÁß ½ÇÆĞÇÏ¸é¼­ º¸¿©Áö°í ÀÖ¾úÀ» ¼ö ÀÖ´Ù.
+	{ // ç£Šæ‚¼ æŸ³æ‹³ æ¡£å è§’è©çªæè¾‘ ç„Šå’¯ç˜¤ç»Š ä¹èŒé˜‘ è ä¹ä¿ƒ.
 		CreatedEvolutionPart->ForceStopShowEvolutionFailMessage();
 	}
-	UpdateByCurrentWingData(); // ¹öÆ° state ¶û ¹®±¸µé º¹±¸..
+	UpdateByCurrentWingData(); // æ»šç“¢ state å°” å·©å¤‡ç”¸ æ±—å¤‡..
 }
 
 void UB2LobbyUI_WingMain::CloseWidgetDelegate()
@@ -378,7 +378,7 @@ void UB2LobbyUI_WingMain::UnRegisterUIMarkForRedDot()
 void UB2LobbyUI_WingMain::DoMarkRedDot()
 {
 	/*
-	// ¿µ¿õ°ü¸® °øÅë ºÎºĞÀ¸·Î Ä³¸¯ÅÍ º° Ã¼Å©ÇØ¾ß ÇÏ´Â °Å
+	// åº·æ—·åŒ…åºœ å‚çƒ¹ ä½•ç›’æ è‚º æŸè…ç£ å–Š çœ‰å†œç§¦å…· çªç»° èŠ­
 	if (UIP_HeroMgmtBase.IsValid())
 	{
 		for (int32 PCI = 0; PCI < GetMaxPCClassNum(); ++PCI)
@@ -389,7 +389,7 @@ void UB2LobbyUI_WingMain::DoMarkRedDot()
 	}
 	*/
 
-	// ¼Ó¼º¿É¼Ç ¾ÆÀÌÄÜ ÂÊ¿¡µµ ÇÊ¿ä..
+	// åŠ å·±å¯è®° é…’æèƒ½ ç‡ä¿Šæ¡£ é˜å¤¸..
 }
 
 bool UB2LobbyUI_WingMain::NeedToShowEvolveMenu() const
@@ -398,7 +398,7 @@ bool UB2LobbyUI_WingMain::NeedToShowEvolveMenu() const
 	FB2Wing CurrentWingData;
 	const bool bGotValidWingData = BladeIIGameImpl::GetLocalCharacterData().GetCharacterWing(SelectedPCClass, CurrentWingData);
 	if (bGotValidWingData)
-	{ // NeedToShowMaxEvolveMenu ÀÎ °æ¿ìµµ Æ÷ÇÔ.
+	{ // NeedToShowMaxEvolveMenu ç‰¢ ç‰ˆå¿«æ¡£ å™¨çªƒ.
 		return (IsItTimeToEvolve(CurrentWingData) || IsUltimatelyEvolvedWing(CurrentWingData));
 	}
 	return false;
@@ -417,7 +417,7 @@ bool UB2LobbyUI_WingMain::NeedToShowMaxEvolveMenu() const
 }
 
 void UB2LobbyUI_WingMain::UpdateAutoEnhanceOrEvolveBtnText()
-{ // ÀÚµ¿°­È­ / ÀÚµ¿°­È­ÇØÁ¦ / ÀÚµ¿ÁøÈ­ / ÀÚµ¿ÁøÈ­ÇØÁ¦ »óÈ²¿¡ µû¶ó ÀûÀıÇÑ °É·Î ¼¼ÆÃ
+{ // ç£Šæ‚¼ç¢æ‹³ / ç£Šæ‚¼ç¢æ‹³ç§¦åŠ› / ç£Šæ‚¼æŸ³æ‹³ / ç£Šæ‚¼æŸ³æ‹³ç§¦åŠ› æƒ‘ç‚”ä¿Š è¶æ‰¼ åˆ©ä¾‹èŒ„ å§è‚º æŠ€æ³¼
 	if (CachedAirport && TB_AutoEnhanceOrEvolveBtn.IsValid())
 	{
 		const bool bNeedToShowEvolveMenu = NeedToShowEvolveMenu();
@@ -436,7 +436,7 @@ void UB2LobbyUI_WingMain::OnClickedAutoEnhanceOrEvolveBtn()
 {
 	if (CachedAirport && CachedLobbyGM)
 	{
-		// ÇöÀç ÀÚµ¿°­È­ È¤Àº ÀÚµ¿ÁøÈ­ µµÁßÀÌ¸é Áß´ÜÇÏµµ·Ï ÇØ¾ß.
+		// æ³…çŠ ç£Šæ‚¼ç¢æ‹³ è¶£ç¯® ç£Šæ‚¼æŸ³æ‹³ æ¡£åææ åçªœçªæ¡£åºŸ ç§¦å…·.
 		if (CachedAirport->IsInAutoEvolution())
 		{
 			CachedAirport->CustomEndAutoEvolution();
@@ -449,19 +449,19 @@ void UB2LobbyUI_WingMain::OnClickedAutoEnhanceOrEvolveBtn()
 		{
 			if (NeedToShowEvolveMenu())
 			{
-				if (!NeedToShowMaxEvolveMenu()) // ¾îÂ÷ÇÇ ÀÌ °æ¿ì¸é ¹öÆ° Å¬¸¯ÀÌ µÇÁö ¾Ê¾Æ¾ß ÇÏÁö¸¸..
-				{ // ÀÚµ¿ ÁøÈ­
-					// Å×½ºÆ® °¡´ÉÇØÁö¸é À§¿¡ DevShowNotReadyYetMessage ¾ø¾Ö°í ¾Æ·¡ ºÎºĞ Ç®¾î¼­ Å×½ºÆ®
+				if (!NeedToShowMaxEvolveMenu()) // ç»¢ç’ä¹” æ ç‰ˆå¿«æ æ»šç“¢ åŠªè…æ ç™»ç˜¤ è‡¼é…’å…· çªç˜¤çˆ¶..
+				{ // ç£Šæ‚¼ æŸ³æ‹³
+					// æŠ›èƒ¶é£˜ å•Šç“·ç§¦ç˜¤æ å›°ä¿Š DevShowNotReadyYetMessage ç»å±€ç»Š é…’è´° ä½•ç›’ é’±ç»¢è¾‘ æŠ›èƒ¶é£˜
 					CachedAirport->BeginAutoEvolution(CachedLobbyGM->GetHeroMgmtModePCClass());
 				}
 			}
 			else
-			{ // ÀÚµ¿ °­È­
+			{ // ç£Šæ‚¼ ç¢æ‹³
 				CachedAirport->BeginAutoEnhancement(CachedLobbyGM->GetHeroMgmtModePCClass());
 			}
 		}
 
-		UpdateByCurrentWingData(); // ÀÚµ¿ °­È­/ÁøÈ­ ½ÃÀÛ/Á¾·á¿¡ µû¶ó ¾÷µ¥ÀÌÆ® ÇÒ °Å¸®µéÀÌ ²Ï ÀÖ´Ù.
+		UpdateByCurrentWingData(); // ç£Šæ‚¼ ç¢æ‹³/æŸ³æ‹³ çŸ«ç´¯/è¾†ä¸°ä¿Š è¶æ‰¼ è¯€å•æé£˜ ä¸” èŠ­åºœç”¸æ èš• ä¹ä¿ƒ.
 	}
 }
 
@@ -469,38 +469,38 @@ void UB2LobbyUI_WingMain::OnClickedEnhanceOrEvolveBtn()
 {
 	EPCClass SelectedPCClass = CachedLobbyGM ? CachedLobbyGM->GetHeroMgmtModePCClass() : EPCClass::EPC_End;
 	FB2Wing CurrentWingData;
-	// ¿©±â¼­ ½ÇÁ¦·Î ¾î¶² ¿É¼ÇÀ» »©¿ÃÁö´Â ´Ş¶óÁú ¼ö ÀÖÀ½. °³¼±ÇØ¾ß ÇÔ.
+	// å’¯æ‰è¾‘ è§’åŠ›è‚º ç»¢æ« å¯è®°é˜‘ å“—æ£µç˜¤ç»° å´”æ‰¼é¾™ è ä¹æ¾œ. ä¿ºæ€¥ç§¦å…· çªƒ.
 	const bool bGotValidWingData = BladeIIGameImpl::GetLocalCharacterData().GetCharacterWing(SelectedPCClass, CurrentWingData);
 
 	if (bGotValidWingData && !IsUltimatelyEvolvedWing(CurrentWingData))
 	{
 		int32 SvrOwnerCharType = CliToSvrPCClassType(IntToPCClass(CurrentWingData.OwnerPCClass));
 
-		// °¢°¢ÀÇ °æ¿ì¿¡ »ç¿ëÀÚ º¸À¯ °ñµå³ª Àç·á ¾ÆÀÌÅÛ¿¡ µû¶ó ºÒ°¡´ÉÇÏ¸é ÆË¾÷À» ¶ç¿ö¾ß ÇÑ´Ù.
+		// é˜¿é˜¿ç‹¼ ç‰ˆå¿«ä¿Š è¤ä¾©ç£Š ç„Šèœ¡ æ¦œé›å”± çŠä¸° é…’æè¢ä¿Š è¶æ‰¼ é˜‚å•Šç“·çªæ æ‰‘è¯€é˜‘ å‰å†µå…· èŒ„ä¿ƒ.
 
 		if (IsItTimeToEvolve(CurrentWingData))
-		{ // ÀçÈ­ ºÎÁ·ÀÇ °æ¿ì »ç¿ëÀÚ ÇöÁú À¯µµ.
+		{ // çŠæ‹³ ä½•ç»ƒç‹¼ ç‰ˆå¿« è¤ä¾©ç£Š æ³…é¾™ èœ¡æ¡£.
 			if (!UB2Airport::HasEnoughGoldForWingEvolveLocalPlayer(SelectedPCClass)){
 				ShortageMGR->PopupGoToShopForGoldMessage();
 			}
 			else if (!UB2Airport::HasEnoughIngredForWingEvolveLocalPlayer(SelectedPCClass)){
-				// Àç·á È¹µæ °æ·Î ÆË¾÷.
+				// çŠä¸° è£™å« ç‰ˆè‚º æ‰‘è¯€.
 				OpenWingIngredAcqPathPopup(EWingIngredAcqElemType::WAET_EvolveIngred);
 			}
-			else{ // °¡´ÉÇÏ´Ù°í ÆÇ´ÜµÇ¸é ¼­¹ö·Î req.
+			else{ // å•Šç“·çªä¿ƒç»Š é­„çªœç™»æ è¾‘æ»šè‚º req.
 				data_trader::Retailer::GetInstance().RequestUpgradeWing(SvrOwnerCharType);
 			}
 		}
 		else
-		{// ÀçÈ­ ºÎÁ·ÀÇ °æ¿ì »ç¿ëÀÚ ÇöÁú À¯µµ.
+		{// çŠæ‹³ ä½•ç»ƒç‹¼ ç‰ˆå¿« è¤ä¾©ç£Š æ³…é¾™ èœ¡æ¡£.
 			if (!UB2Airport::HasEnoughGoldForWingEnhanceLocalPlayer(SelectedPCClass)){
 				ShortageMGR->PopupGoToShopForGoldMessage();
 			}
 			else if (!UB2Airport::HasEnoughIngredForWingEnhanceLocalPlayer(SelectedPCClass)){
-				// Àç·á È¹µæ °æ·Î ÆË¾÷.
+				// çŠä¸° è£™å« ç‰ˆè‚º æ‰‘è¯€.
 				OpenWingIngredAcqPathPopup(EWingIngredAcqElemType::WAET_EnhanceIngred);
 			}
-			else{ // °¡´ÉÇÏ´Ù°í ÆÇ´ÜµÇ¸é ¼­¹ö·Î req.
+			else{ // å•Šç“·çªä¿ƒç»Š é­„çªœç™»æ è¾‘æ»šè‚º req.
 				data_trader::Retailer::GetInstance().RequestEnhanceWing(SvrOwnerCharType);
 			}
 		}
@@ -520,7 +520,7 @@ void UB2LobbyUI_WingMain::OnClickedWingBookBtn()
 void UB2LobbyUI_WingMain::SetOpenEnhancementPart(bool bInOpen)
 {
 	if (bInOpen)
-	{ // Ã³À½ ÇÑ¹ø µ¿Àû »ı¼º.
+	{ // è´¸æ¾œ èŒ„é”… æ‚¼åˆ© ç§¯å·±.
 		ConditionalCreateEnhancementPart();
 	}
 	if (CreatedEnhancementPart)
@@ -531,7 +531,7 @@ void UB2LobbyUI_WingMain::SetOpenEnhancementPart(bool bInOpen)
 void UB2LobbyUI_WingMain::SetOpenEvolutionPart(bool bInOpen)
 {
 	if (bInOpen)
-	{ // Ã³À½ ÇÑ¹ø µ¿Àû »ı¼º.
+	{ // è´¸æ¾œ èŒ„é”… æ‚¼åˆ© ç§¯å·±.
 		ConditionalCreateEvolutionPart();
 	}
 	if (CreatedEvolutionPart)
@@ -548,8 +548,8 @@ static WidgetClassT* CreateDynamicWingUIPartCommon(TSoftClassPtr<WidgetClassT>& 
 	//	WidgetClassT* NewCreated = DynLoadAndCreateInCanvasPanelFull<WidgetClassT>(InCreateWidgetClass, InOwnerUserWidget, CreateParentPanel);
 	//	if (NewCreated)
 	//	{
-	//		// SetAutoSize (Size to Content) ÇÏ´Â °Ç ÀÌÂÊÀÇ Æ¯¼öÇÑ »çÁ¤ÀÓ. ¿©±â¼­ »ı¼ºÇÏ·Á´Â UIP ÀÇ ÀÌÀü ¹èÄ¡ »óÈ²°ú ¶È°°ÀÌ ¸ÂÃß·Á´Ù º¸´Ï.
-	//		// Á¤ ¾ÈµÇ¸é CreateParentPanel À§¿¡ SizeBox °°Àº °É µ¡´î ¼öµµ ÀÖ°ÚÁö¸¸.
+	//		// SetAutoSize (Size to Content) çªç»° æ‰’ æç‡ç‹¼ æ¼‚èèŒ„ è¤æ²¥çƒ™. å’¯æ‰è¾‘ ç§¯å·±çªå¦¨ç»° UIP ç‹¼ æå‚ˆ ç¡…æ‘¹ æƒ‘ç‚”è‹ åº¦éæ å˜çœ å¦¨ä¿ƒ ç„Šèª.
+	//		// æ²¥ æ•‘ç™»æ CreateParentPanel å›°ä¿Š SizeBox éç¯® å§ æ€ æ­ èæ¡£ ä¹æ‘†ç˜¤çˆ¶.
 	//		UCanvasPanelSlot* CPSlot = Cast<UCanvasPanelSlot>(NewCreated->Slot);
 	//		if (CPSlot)
 	//		{
@@ -600,7 +600,7 @@ void UB2LobbyUI_WingMain::OnHeroMgmtPCChanged(EPCClass InSelectedPCClass)
 	UpdateByCurrentWingData();
 
 	if (CachedAirport)
-	{// Wing UI È­¸é¿¡¼­ ÇÊ¿ä·Î ÇÏ´Â Ãß°¡ ³¯°³ µ¥ÀÌÅÍ¸¦ Æ÷ÇÔÇÑ ¿äÃ»..
+	{// Wing UI æ‹³æä¿Šè¾‘ é˜å¤¸è‚º çªç»° çœ å•Š æœä¿º å•æç£ç”« å™¨çªƒèŒ„ å¤¸æ²¡..
 		CachedAirport->ConditionalReqForFullWingData(InSelectedPCClass);
 	}
 }
@@ -619,7 +619,7 @@ void UB2LobbyUI_WingMain::ShowUpgradeStatNotify()
 
 		EPCClass SelectedPCClass = CachedLobbyGM ? CachedLobbyGM->GetHeroMgmtModePCClass() : EPCClass::EPC_End;
 		FB2Wing CurrentWingData;
-		// ¿©±â¼­ ½ÇÁ¦·Î ¾î¶² ¿É¼ÇÀ» »©¿ÃÁö´Â ´Ş¶óÁú ¼ö ÀÖÀ½. °³¼±ÇØ¾ß ÇÔ.
+		// å’¯æ‰è¾‘ è§’åŠ›è‚º ç»¢æ« å¯è®°é˜‘ å“—æ£µç˜¤ç»° å´”æ‰¼é¾™ è ä¹æ¾œ. ä¿ºæ€¥ç§¦å…· çªƒ.
 		const bool bValidWingData = BladeIIGameImpl::GetLocalCharacterData().GetCharacterWing(SelectedPCClass, CurrentWingData);
 		if (bValidWingData)
 		{
@@ -644,7 +644,7 @@ void UB2LobbyUI_WingMain::ShowBattleScoreNotify()
 	if (TempBattleScoreBefore != TempBattleScoreAfter && TempBattleScoreBefore >= 0  && TempBattleScoreAfter >= 0)
 	{
 		EPCClass SelectedPCClass = CachedLobbyGM ? CachedLobbyGM->GetHeroMgmtModePCClass() : EPCClass::EPC_End;
-		// ÀüÅõ·Â º¯°æ ÆË¾÷ Ãâ·Â 
+		// å‚ˆæ§ä»¿ å‡½ç‰ˆ æ‰‘è¯€ å…ä»¿ 
 		UB2UIBattleScoreNotify* BattleScoreNotifyUI = UB2UIManager::GetInstance()->OpenUI<UB2UIBattleScoreNotify>(UIFName::BattleScoreNotify);
 		if (BattleScoreNotifyUI != nullptr)
 		{
@@ -657,7 +657,7 @@ void UB2LobbyUI_WingMain::ShowBattleScoreNotify()
 }
 
 void UB2LobbyUI_WingMain::SetBattleScoreNotify()
-{ //ÀÌºÎºĞ ÀÚµ¿°­È­ ¶§¹®¿¡ ShowBattleScoreNotifyClass<EPCClass> ´ë½Å °­Á¦·Î °ªÀ» ÀúÀåÇØµÒ. 
+{ //æä½•ç›’ ç£Šæ‚¼ç¢æ‹³ é”­å·©ä¿Š ShowBattleScoreNotifyClass<EPCClass> æªè„š ç¢åŠ›è‚º è”¼é˜‘ å†å˜ç§¦ç‹„. 
 	UB2UIDocHero* DocHero = UB2UIDocHelper::GetDocHero((int32)CachedLobbyGM->GetHeroMgmtModePCClass());
 
 	if (DocHero)

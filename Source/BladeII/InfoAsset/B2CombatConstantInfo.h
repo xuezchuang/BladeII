@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 //#include "BladeII.h"
@@ -11,7 +11,7 @@ struct FCombatCoefficientContainer
 {
 	GENERATED_BODY()
 
-	//³»ºÎ ÇÁ·ÎÆÛÆ¼ º¯°æ½Ã ¿¡µğÅÍ»ó Ç¥±â ÇÒ ¶§ B2CombatCoefficientContainerDetailµµ º¯°æ ÇØÁà¾ß ÇÔ
+	//éƒ´ä½• æ©‡è‚ºæ¬ºè å‡½ç‰ˆçŸ« ä¿Šå¼ç£æƒ‘ é’æ‰ ä¸” é”­ B2CombatCoefficientContainerDetailæ¡£ å‡½ç‰ˆ ç§¦æ‹å…· çªƒ
 	FCombatCoefficientContainer();
 		
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)

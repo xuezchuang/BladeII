@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "B2UIWidget.h"
 #include "B2UIInvenQuickSlide.generated.h"

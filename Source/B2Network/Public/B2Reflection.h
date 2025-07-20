@@ -26,7 +26,7 @@ namespace reflection
 	public:
 		template <typename _ObjTy, typename _FieldTy>
 		Property(_FieldTy(_ObjTy::*Field), std::string _name)
-			: PropertyName(_name), inf(new InternalImpl<_ObjTy, _FieldTy>(Field))
+			: inf(new InternalImpl<_ObjTy, _FieldTy>(Field)), PropertyName(_name)
 		{
 		}
         
@@ -72,7 +72,7 @@ namespace reflection
 
 		template <typename _Ty>
 		inline ProtoClass(const TypeInfo<_Ty>&, std::string _name)
-			: class_name(_name), inf(new InternalImpl<_Ty>)
+			:  inf(new InternalImpl<_Ty>),class_name(_name)
 		{
 		}
         virtual ~ProtoClass(){};

@@ -43,14 +43,14 @@ void UB2LobbyUI_ItemUpgradeMain::StartFromLobby(class UB2UIManager_Lobby* InUIMa
 {
 	Super::StartFromLobby(InUIManager, InGM);
 
-	// ´Ü¼øÈ÷ ¾ÆÀÌÅÛ Á¤º¸¸¸ ¾ò¾î¿À·Á¸é Inventory ÀÎ½ºÅÏ½º ¾øÀÌ static À¸·Î ¾ò¾î¿Ã ¼ö ÀÖÀ¸³ª °­È­ ±â´ÉÀº ÀÎº¥Åä¸®°¡ ¶° ÀÖ´Â »óÅÂ¿¡¼­ µ¿ÀÛ.
+	// çªœé‰´æ´’ é…’æè¢ æ²¥ç„Šçˆ¶ æ˜ç»¢å·å¦¨æ Inventory ç‰¢èƒ¶ç•”èƒ¶ ç»æ static æ è‚º æ˜ç»¢æ£µ è ä¹æ å”± ç¢æ‹³ æ‰ç“·ç¯® ç‰¢äº¥é…åºœå•Š æ ‹ ä¹ç»° æƒ‘æ€•ä¿Šè¾‘ æ‚¼ç´¯.
 	CachedInventory = CachedLobbyGM->GetLobbyInventory();
 	check(CachedInventory);
 
-	// ÀÌ ½ÃÁ¡¿¡ Inventory ÀÇ TargetItemID ´Â ¼¼ÆÃµÇ¾î ÀÖ¾î¾ß ÇÔ. (UB2LobbyInventory::EnterItemOpMode)
+	// æ çŸ«ç—¢ä¿Š Inventory ç‹¼ TargetItemID ç»° æŠ€æ³¼ç™»ç»¢ ä¹ç»¢å…· çªƒ. (UB2LobbyInventory::EnterItemOpMode)
 	if (!CachedInventory->GetItemOPTargetItemData(NativeUpgradeTargetData) || CachedInventory->GetItemOpMode() != ELobbyInvenItemOpMode::EIVIOP_Upgrade)
 	{
-		CloseAndQuitItemOpMode(); // ¸¸¿¡ ÇÏ³ª ½ÇÆĞÇÑ´Ù¸é.. ¾îÂ¿ ¼ö ¾øÁö.
+		CloseAndQuitItemOpMode(); // çˆ¶ä¿Š çªå”± è§’è©èŒ„ä¿ƒæ.. ç»¢é©´ è ç»ç˜¤.
 		return;
 	}
 
@@ -90,7 +90,7 @@ void UB2LobbyUI_ItemUpgradeMain::UpdateDynamicTexts()
 {
 	UB2ItemInfo* ItemInfoTable = StaticFindItemInfo();
 
-	if (TB_UpgradeCostNum.IsValid()) // ½Â±Ş ºñ¿ëÀº ¾Æ¸¶µµ ÀÏÁ¤ÇÏÁö¸¸ ÀÌ ÆäÀÌÁö¸¦ ¿­°í ³­ ÈÄ ¼­¹ö¿¡¼­ ÀÀ´äÀ» ¹Ş°Ô µÇ¸é Á¦´ë·Î ¼¼ÆÃÇÏ°Ô µÉ °Í.
+	if (TB_UpgradeCostNum.IsValid()) // é“°é­ åšä¾©ç¯® é…’ä»˜æ¡£ è€æ²¥çªç˜¤çˆ¶ æ å…¶æç˜¤ç”« å‡¯ç»Š æŠ„ é¥¶ è¾‘æ»šä¿Šè¾‘ è§ˆç¿ é˜‘ ç½éœ¸ ç™»æ åŠ›æªè‚º æŠ€æ³¼çªéœ¸ çª å·´.
 	{
 		int32 UpgradeGoldCost = CachedInventory ? CachedInventory->GetCurrentItemOpGoldCost() : 0;
 		int32 CurrentGold = BladeIIGameImpl::GetClientDataStore().GetGoldAmount();
@@ -98,7 +98,7 @@ void UB2LobbyUI_ItemUpgradeMain::UpdateDynamicTexts()
 		TB_UpgradeCostNum->SetText(FText::FromString(FString::FromInt(UpgradeGoldCost)));
 		TB_UpgradeCostNum->SetColorAndOpacity(
 			(CurrentGold >= UpgradeGoldCost) ?
-			// ÀÛÀº ÅØ½ºÆ®¶ó ÇÏµåÄÚµù ÇÏ¿´´Âµ¥ ¸¸ÀÏ ¿©±âµµ Æ¯º°ÇÑ »ö»óÀ¸·Î ³Ö°í ½Í´Ù°í ÇÏ¸é property ·Î »©µµ·Ï.
+			// ç´¯ç¯® å’†èƒ¶é£˜æ‰¼ çªé›å†…çˆ¹ çªçœ‹ç»°å• çˆ¶è€ å’¯æ‰æ¡£ æ¼‚å–ŠèŒ„ ç¥¸æƒ‘æ è‚º æŒç»Š é…µä¿ƒç»Š çªæ property è‚º å“—æ¡£åºŸ.
 			FSlateColor(FLinearColor(1.0f, 1.0f, 1.0f)) : FSlateColor(FLinearColor(1.0f, 0.0f, 0.0f))
 		);
 	}
@@ -111,7 +111,7 @@ void UB2LobbyUI_ItemUpgradeMain::UpdateDynamicTexts()
 
 		TB_CurrentUpgradeStone->SetColorAndOpacity(
 			(CurrentUpgradeStoneAmount >= RequiredUpgradeStone) ?
-			// ÀÛÀº ÅØ½ºÆ®¶ó ÇÏµåÄÚµù ÇÏ¿´´Âµ¥ ¸¸ÀÏ ¿©±âµµ Æ¯º°ÇÑ »ö»óÀ¸·Î ³Ö°í ½Í´Ù°í ÇÏ¸é property ·Î »©µµ·Ï.
+			// ç´¯ç¯® å’†èƒ¶é£˜æ‰¼ çªé›å†…çˆ¹ çªçœ‹ç»°å• çˆ¶è€ å’¯æ‰æ¡£ æ¼‚å–ŠèŒ„ ç¥¸æƒ‘æ è‚º æŒç»Š é…µä¿ƒç»Š çªæ property è‚º å“—æ¡£åºŸ.
 			FSlateColor(FLinearColor(1.0f, 1.0f, 1.0f)) : FSlateColor(FLinearColor(1.0f, 0.0f, 0.0f))
 			);
 	}
@@ -142,7 +142,7 @@ void UB2LobbyUI_ItemUpgradeMain::UpdateDynamicTexts()
 		TB_UpgradeNote2->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("LobbyInvenText_UpgradeAddNote")));
 	}
 
-	// ÇöÀç ½Â±Ş °¡´ÉÇÑ Àåºñ°¡ º¸°üÇÔ¿¡ ´õ ÀÌ»ó ¾ø´Ù¸é ¸Ş½ÃÁö¸¦ »Ñ·ÁÁØ´Ù.
+	// æ³…çŠ é“°é­ å•Šç“·èŒ„ å˜åšå•Š ç„ŠåŒ…çªƒä¿Š æ­¹ ææƒ‘ ç»ä¿ƒæ çš‹çŸ«ç˜¤ç”« è°å¦¨éœ–ä¿ƒ.
 	TArray<FB2Item> CurrPCItemList;
 	check(CachedInventory);
 	CachedInventory->GetStoredItemList_ItemOpModeFilter(CurrPCItemList, CachedInventory->GetMainInvenViewCurrentTab(), EPCClass::EPC_End, true);
@@ -160,7 +160,7 @@ void UB2LobbyUI_ItemUpgradeMain::UpdateDynamicTexts()
 
 void UB2LobbyUI_ItemUpgradeMain::UpdatePostUpgradeOptionStatTexts()
 {
-	// °øÅë ÆÄÆ®·Î
+	// å‚çƒ¹ é¢‡é£˜è‚º
 	if (EnhUpgCommonNRef)
 	{
 		EnhUpgCommonNRef->UpdateOptionStatTexts();
@@ -194,7 +194,7 @@ void UB2LobbyUI_ItemUpgradeMain::DestroySelf()
 {
 	Super::DestroySelf();
 
-	// °øÅë ÆÄÆ® Á¦°Å
+	// å‚çƒ¹ é¢‡é£˜ åŠ›èŠ­
 	if (EnhUpgCommonNRef)
 	{
 		EnhUpgCommonNRef->DestroySelf();
@@ -205,17 +205,17 @@ void UB2LobbyUI_ItemUpgradeMain::DestroySelf()
 void UB2LobbyUI_ItemUpgradeMain::OnUpgradeCommit()
 {
 	if (CachedInventory && !CachedInventory->HasEnoughUpgradeStoneForCurrentTarget())
-	{ // ½Â±Ş¼® ºÎÁ·ÀÇ °æ¿ì ¿©±æ Å¬¸¯ÇÒ ¼ö´Â ÀÖÀ¸³ª ½ÇÁ¦ ½ÃÀÛÀº ¾ÈÇÏ°í ¹İ°İ´øÀüÀ¸·ÎÀÇ ÀÔÀåÀ» À¯µµ.
+	{ // é“°é­ç± ä½•ç»ƒç‹¼ ç‰ˆå¿« å’¯è¾¨ åŠªè…ä¸” èç»° ä¹æ å”± è§’åŠ› çŸ«ç´¯ç¯® æ•‘çªç»Š é¦†æ‹œå¸¦å‚ˆæ è‚ºç‹¼ æ¶å˜é˜‘ èœ¡æ¡£.
 		const int32 CurrentUpdgradeStoneID(FItemRefIDHelper::GetUpgradeStoneIDForUpgradeTarget(NativeUpgradeTargetData));
 		ShortageMGR->PopupGoToCounterDungeonForUpgradeStone(CurrentUpdgradeStoneID);
 	}
 	else if (CachedInventory && !CachedInventory->CanAffordCurrentItemOp())
-	{ // °ñµå ºÎÁ·ÀÇ °æ¿ì ¿©±æ Å¬¸¯ÇÒ ¼ö´Â ÀÖÀ¸³ª ½ÇÁ¦ ½ÃÀÛÀº ¾ÈÇÏ°í »ç¿ëÀÚ ÇöÁúÀ» À¯µµ
+	{ // æ¦œé› ä½•ç»ƒç‹¼ ç‰ˆå¿« å’¯è¾¨ åŠªè…ä¸” èç»° ä¹æ å”± è§’åŠ› çŸ«ç´¯ç¯® æ•‘çªç»Š è¤ä¾©ç£Š æ³…é¾™é˜‘ èœ¡æ¡£
 		ShortageMGR->PopupGoToShopForGoldMessage();
 	}
 	else
 	{
-		// ¾Ö´Ï¸ŞÀÌ¼Ç ½ÅÈ£ºÎÅÍ.
+		// å±€èªçš‹æè®° è„šé¾‹ä½•ç£.
 		BeginUpgradeCommitAnim();
 		if (EnhUpgCommonNRef)
 		{
@@ -223,12 +223,12 @@ void UB2LobbyUI_ItemUpgradeMain::OnUpgradeCommit()
 		}
 
 		if (CachedInventory)
-		{// ¿¬ÃâµÇ´Â µ¿¾È ¿©ÀüÈ÷ Àç·á ¼±ÅÃ µîÀ» ÇÏ°Ô µÉ ¼ö ÀÖ¾î¼­ ¸·´Â´Ù.
+		{// æ¥·å…ç™»ç»° æ‚¼æ•‘ å’¯å‚ˆæ´’ çŠä¸° æ€¥ç¶ æ®¿é˜‘ çªéœ¸ çª è ä¹ç»¢è¾‘ é˜œç»°ä¿ƒ.
 			CachedInventory->SetFreezeitemOpModeIngredSelection(true);
 		}
 		if (BTN_UpgradeCommit.IsValid())
 		{
-			BTN_UpgradeCommit->SetIsEnabled(false); // ¾êµµ °è¼Ó Å¬¸¯ÀÌ µÉ ¼ö ÀÖ¾î¼­ ¸·À½.
+			BTN_UpgradeCommit->SetIsEnabled(false); // å¨Ÿæ¡£ æ‹ŒåŠ  åŠªè…æ çª è ä¹ç»¢è¾‘ é˜œæ¾œ.
 		}
 		
 		APlayerController* OwningPC = GetOwningPlayer();
@@ -254,7 +254,7 @@ void UB2LobbyUI_ItemUpgradeMain::OnCloseButtonPressed()
 }
 
 void UB2LobbyUI_ItemUpgradeMain::CloseAndQuitItemOpMode()
-{// ¿©±â¼­ ¹Ù·Î °­È­Ã¢À» ´İ´Â ´ë½Å Inventory ÂÊÀ¸·Î ½ÅÈ£.
+{// å’¯æ‰è¾‘ å®˜è‚º ç¢æ‹³èŠ’é˜‘ æ‘§ç»° æªè„š Inventory ç‡æ è‚º è„šé¾‹.
 	QuitItemOpModeClass<bool>::GetInstance().Signal(false);
 	UpdateLobbyInventoryControlClass<>::GetInstance().Signal();
 }
@@ -267,6 +267,6 @@ void UB2LobbyUI_ItemUpgradeMain::FinalUpgradeCommit()
 		OwningPC->GetWorldTimerManager().ClearTimer(UpgradeCommintTH);
 	}
 
-	// º»°İ µ¿ÀÛ. ÀÌÈÄ ¿¬ÃâÀÌ³ª °á°ú µîÀÇ flow ´Â ¼­¹ö ÀÀ´ä¿¡ µû¶ó º°µµ UI Ã¢¿¡¼­ ÁøÇà.
+	// å¤¯æ‹œ æ‚¼ç´¯. æé¥¶ æ¥·å…æå”± æ¬è‹ æ®¿ç‹¼ flow ç»° è¾‘æ»š è§ˆç¿ ä¿Š è¶æ‰¼ å–Šæ¡£ UI èŠ’ä¿Šè¾‘ æŸ³é’.
 	LobbyReqUpgradeItemClass<>::GetInstance().Signal();
 }

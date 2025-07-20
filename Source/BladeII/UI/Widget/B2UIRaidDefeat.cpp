@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIRaidDefeat.h"
 #include "B2UIManager.h"
 #include "B2UIResurrectBuffIcon.h"
@@ -132,7 +132,7 @@ void UB2UIRaidDefeat::BindDocAuto()
 	UpdateBuffIconContent();
 
 	if (UIP_BuffIcon_Attack.IsValid())
-		UIP_BuffIcon_Attack->SetSelected(true); // ±âº» Attack À¸·Î ¼±ÅÃ. ´Ù¸¥ °ÍµéÀº ±×ÂÊ Äİ¹éÀ» ÅëÇØ Unselect µÊ.
+		UIP_BuffIcon_Attack->SetSelected(true); // æ‰å¤¯ Attack æ è‚º æ€¥ç¶. ä¿ƒå¼— å·´ç”¸ç¯® å¼Šç‡ å¦®å½’é˜‘ çƒ¹ç§¦ Unselect å‡³.
 }
 
 void UB2UIRaidDefeat::UnbindDoc()
@@ -152,7 +152,7 @@ void UB2UIRaidDefeat::UnbindDoc()
 }
 
 bool UB2UIRaidDefeat::IsResurrectPossibleByCost()
-{ // ¿©±â¼± ´ÜÁö ºñ¿ë¸¸ Ã¼Å©ÇÑ´Ù.
+{ // å’¯æ‰æ€¥ çªœç˜¤ åšä¾©çˆ¶ çœ‰å†œèŒ„ä¿ƒ.
 	UB2UIDocBattle* DocBattle = UB2UIDocHelper::GetDocBattle();
 	UB2UIDocUser* DocUser = UB2UIDocHelper::GetDocUser();
 	if (DocBattle && DocUser)
@@ -175,13 +175,13 @@ void UB2UIRaidDefeat::UpdateOnResurrectCost(int32 InValue)
 
 void UB2UIRaidDefeat::SetOnResurrectEnableByRemainingChance(bool InBool)
 {
-	// ¿©±ä ºÎÈ° Âù½º¿¡ µû¸¥ °¡´É ¿©ºÎ. Ä³½¬¿¡ µû¸¥ °¡´É ¿©ºÎ´Â UpdateOnResurrectCost ¿¡¼­.
+	// å’¯å˜ ä½•åŠ è›®èƒ¶ä¿Š è¶å¼— å•Šç“· å’¯ä½•. æŸæµ†ä¿Š è¶å¼— å•Šç“· å’¯ä½•ç»° UpdateOnResurrectCost ä¿Šè¾‘.
 	/*if (STB_BtnQuit.IsValid())
 	{
 		STB_BtnQuit->SetText(InBool ? BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("DefeatMenu_Quit"))) : BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("DefeatMenu_ReturnToLobby"))));
 	}*/
 
-	if (P_RessurectButton.IsValid()) // ¿©±â¼­ BTN_Resurrect ÀÇ Enable À» ¼¼ÆÃÇÏÁö´Â ¾Ê´Â´Ù. ±×°Ç ´Ù¸¥ Á¶°ÇÀ¸·Î..
+	if (P_RessurectButton.IsValid()) // å’¯æ‰è¾‘ BTN_Resurrect ç‹¼ Enable é˜‘ æŠ€æ³¼çªç˜¤ç»° è‡¼ç»°ä¿ƒ. å¼Šæ‰’ ä¿ƒå¼— ç‚¼æ‰’æ è‚º..
 		P_RessurectButton->SetVisibility(InBool ? ESlateVisibility::Visible : ESlateVisibility::Collapsed); 
 	if(P_Buff.IsValid())
 		P_Buff->SetVisibility(InBool ? ESlateVisibility::Visible : ESlateVisibility::Collapsed);
@@ -208,7 +208,7 @@ void UB2UIRaidDefeat::UpdateContentText(int32 InMaxResurrectionChance, int32 InR
 {
 	if (InRemainingResurrectionChance > 0)
 	{
-		// DefeatMenu_Desc ¿¡ ÇØ´çÇÏ´Â ¹®ÀÚ¿­¿¡ {0} Æ÷ÇÔ.
+		// DefeatMenu_Desc ä¿Š ç§¦å¯¸çªç»° å·©ç£Šå‡¯ä¿Š {0} å™¨çªƒ.
 		SetContentText(true,
 			FText::Format(BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("DefeatMenu_Resurrect_Desc"))),
 				FText::AsNumber(InRemainingResurrectionChance), FText::AsNumber(InRemainingResurrectionChance), FText::AsNumber(InMaxResurrectionChance)
@@ -221,7 +221,7 @@ void UB2UIRaidDefeat::UpdateContentText(int32 InMaxResurrectionChance, int32 InR
 }
 
 void UB2UIRaidDefeat::ResurrectImpossibleByCostAction() 
-{ // ºÎÈ°È½¼ö°¡ ÀÖÀ¸³ª, ÀëÀÌ ¾øÀ»°æ¿ì È­¸é Ç¥½Ã
+{ // ä½•åŠå†‰èå•Š ä¹æ å”±, ç¦»æ ç»é˜‘ç‰ˆå¿« æ‹³æ é’çŸ«
 	if (P_RessurectButton.IsValid())
 		P_RessurectButton->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
 	
@@ -250,7 +250,7 @@ bool UB2UIRaidDefeat::IsOnlyVisibleFailCount()
 
 void UB2UIRaidDefeat::SetContentText(bool bTrueForUpper, const FText& InText)
 {
-	// Çö ±¸ÇöÀº Upper / Center µÑ Áß ÇÏ³ª¸¸ »ç¿ëÇÏ´Â °Å.
+	// æ³… å¤‡æ³…ç¯® Upper / Center ç¬› å çªå”±çˆ¶ è¤ä¾©çªç»° èŠ­.
 	if (TB_Content_Upper.IsValid())
 	{
 		TB_Content_Upper->SetVisibility(bTrueForUpper ? ESlateVisibility::Visible : ESlateVisibility::Hidden);
@@ -263,18 +263,18 @@ void UB2UIRaidDefeat::SetContentText(bool bTrueForUpper, const FText& InText)
 
 void UB2UIRaidDefeat::UpdateBuffIconContent()
 {
-	// Ã³À½ BindDoc ¼¼ÆÃ ½Ã¿¡..
+	// è´¸æ¾œ BindDoc æŠ€æ³¼ çŸ«ä¿Š..
 
 	UB2UIDocBattle* DocBattle = UB2UIDocHelper::GetDocBattle();
 
 	if (DocBattle)
 	{
-		// UIDoc ¿¡´Â ÀÏÁ¾ÀÇ raw data ¼º°İÀ¸·Î ³Ö¾î³õ°í ¿©±â¼­ ClientDataStore ÅëÇØ¼­ ÃÖÁ¾ÀûÀ¸·Î Ç¥½ÃÇÒ °ªÀ» ¾ò¾î¿È.
+		// UIDoc ä¿Šç»° è€è¾†ç‹¼ raw data å·±æ‹œæ è‚º æŒç»¢åˆç»Š å’¯æ‰è¾‘ ClientDataStore çƒ¹ç§¦è¾‘ å¼¥è¾†åˆ©æ è‚º é’çŸ«ä¸” è”¼é˜‘ æ˜ç»¢å’³.
 
-		TMap<EResurrectBuffType, int32> SelectedBuffCount; // ¿©±â¿¡´Ù°¡ ¹öÇÁ ¼±ÅÃ »óÅÂ µ¥ÀÌÅÍ¸¦ Àç±¸¼º.
+		TMap<EResurrectBuffType, int32> SelectedBuffCount; // å’¯æ‰ä¿Šä¿ƒå•Š æ»šæ©‡ æ€¥ç¶ æƒ‘æ€• å•æç£ç”« çŠå¤‡å·±.
 
 		int32 SelectedAttack = DocBattle->GetSelectedResurrectBuffAttack();
-		// ¼³·É °ªÀÌ 0ÀÌ´õ¶óµµ ³Ö¾î¾ß ÇÑ´Ù. Ç×¸ñ ÀÚÃ¼´Â ÀÖ¾î¾ß GetAppliedResurrectBuff ¿¡¼­ ´ÙÀ½ ¼±ÅÃ½Ã °ªÀ» °è»êÇØÁÙ °Í.
+		// æ±²é£ è”¼æ 0ææ­¹æ‰¼æ¡£ æŒç»¢å…· èŒ„ä¿ƒ. äº²æ ¼ ç£Šçœ‰ç»° ä¹ç»¢å…· GetAppliedResurrectBuff ä¿Šè¾‘ ä¿ƒæ¾œ æ€¥ç¶çŸ« è”¼é˜‘ æ‹Œé­‚ç§¦ä¸´ å·´.
 		SelectedBuffCount.Add(EResurrectBuffType::RBT_Attack, SelectedAttack);
 
 		int32 SelectedDefense = DocBattle->GetSelectedResurrectBuffDefense();
@@ -283,8 +283,8 @@ void UB2UIRaidDefeat::UpdateBuffIconContent()
 		int32 SelectedHealth = DocBattle->GetSelectedResurrectBuffHealth();
 		SelectedBuffCount.Add(EResurrectBuffType::RBT_Health, SelectedHealth);
 
-		TMap<EResurrectBuffType, int32> NextExpectedBuffValues; // »Ñ¸± °á°ú°ª
-																// Çö »óÅÂ¿¡ µû¶ó Àû¿ëµÇ´Â °ªÀÌ ¾Æ´Ñ ´ÙÀ½ ¼±ÅÃ ÀÌÈÄ Àû¿ëµÉ °ªÀ¸·Î ¾ò¾î¿È.
+		TMap<EResurrectBuffType, int32> NextExpectedBuffValues; // è°å‰¯ æ¬è‹è”¼
+																// æ³… æƒ‘æ€•ä¿Š è¶æ‰¼ åˆ©ä¾©ç™»ç»° è”¼æ é…’å›± ä¿ƒæ¾œ æ€¥ç¶ æé¥¶ åˆ©ä¾©çª è”¼æ è‚º æ˜ç»¢å’³.
 		//BladeIIGameImpl::GetClientDataStore().GetAppliedResurrectBuff(DocBattle->GetResurrectGameModeType(), SelectedBuffCount, NextExpectedBuffValues, true);
 
 		if (UIP_BuffIcon_Attack.IsValid())
@@ -316,7 +316,7 @@ void UB2UIRaidDefeat::OnClickBTN_Quit()
 	if (UB2UIDocRaid* DocRaid = UB2UIDocHelper::GetDocRaid())
 	{
 		if (DocRaid->GetAlreadyExitUser())
-			msg = BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Raid_NonPenaltyNotice")); // ÀÌ¹Ì Å»ÁÖÇÑ »ç¶÷ÀÖÀ½.
+			msg = BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Raid_NonPenaltyNotice")); // æå›º å‘•æ—èŒ„ è¤æ©ä¹æ¾œ.
 
 		DocRaid->SetReturnToPageType(ERaidGotoWhere::RaidMain);
 	}
@@ -341,7 +341,7 @@ void UB2UIRaidDefeat::OnClickBTN_Resurrect()
 {
 	if (SelectedBuffType != EResurrectBuffType::RBT_None && SelectedBuffType != EResurrectBuffType::RBT_End)
 	{
-		UB2UIManager::GetInstance()->CloseUI(UIFName::Defeat); // Resurrect ÀÀ´äÀÌ ¿À¸é ÀÌ ¸Ş´º°¡ ÆÄ±«µÉ °Å±ä ÇÔ..
+		UB2UIManager::GetInstance()->CloseUI(UIFName::Defeat); // Resurrect è§ˆç¿ æ å·æ æ çš‹æ˜¥å•Š é¢‡é²çª èŠ­å˜ çªƒ..
 		RequestResurrectClass<EResurrectBuffType>::GetInstance().Signal(SelectedBuffType);
 	}
 }
@@ -350,7 +350,7 @@ void UB2UIRaidDefeat::OnBuffIconPartClicked(EResurrectBuffType ClickedBuffType)
 {
 	SelectedBuffType = ClickedBuffType;
 
-	// ´Ù¸¥ Å¸ÀÔÀÇ ¾ÆÀÌÄÜµéÀ» ¼±ÅÃ ÇØÁ¦
+	// ä¿ƒå¼— é¸¥æ¶ç‹¼ é…’æèƒ½ç”¸é˜‘ æ€¥ç¶ ç§¦åŠ›
 
 	if (UIP_BuffIcon_Attack.IsValid() && ClickedBuffType != EResurrectBuffType::RBT_Attack)
 	{
@@ -369,7 +369,7 @@ void UB2UIRaidDefeat::OnBuffIconPartClicked(EResurrectBuffType ClickedBuffType)
 }
 
 void UB2UIRaidDefeat::UpdateResurrctBtnEnableState()
-{ // ³²Àº ºÎÈ° È½¼ö°¡ ¾ø´Â °æ¿ì´Â ±×³É collapse µÇ¾î¹ö¸². ¿©±â¼± chance ¿©ºÎ¸¦ Á¦¿ÜÇÑ ³ª¸ÓÁö Á¶°Çµé.
+{ // å·¢ç¯® ä½•åŠ å†‰èå•Š ç»ç»° ç‰ˆå¿«ç»° å¼Šæˆ collapse ç™»ç»¢æ»šè¦†. å’¯æ‰æ€¥ chance å’¯ä½•ç”« åŠ›å¯‡èŒ„ å”±èµ£ç˜¤ ç‚¼æ‰’ç”¸.
 	SetEnableRessurectButton(IsResurrectPossibleByCost() && SelectedBuffType != EResurrectBuffType::RBT_None && SelectedBuffType != EResurrectBuffType::RBT_End);
 }
 

@@ -1,9 +1,7 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2ErrorCodeInfo.h"
 //#include "BladeII.h"
-
-
-
+#include "Misc/ConfigCacheIni.h"
 #include "FB2ErrorMessage.h"
 
 UB2ErrorCodeInfo::UB2ErrorCodeInfo(const FObjectInitializer& ObjectInitializer)
@@ -11,7 +9,7 @@ UB2ErrorCodeInfo::UB2ErrorCodeInfo(const FObjectInitializer& ObjectInitializer)
 {
 	if (HasAnyFlags(RF_ClassDefaultObject) == false)
 	{
-		// Á¤ÇØÁø ÇÏ³ª¸¦ ·Îµù
+		// æ²¥ç§¦æŸ³ çªå”±ç”« è‚ºçˆ¹
 		FString ErrorCodeInfoDataTablePath;
 		GConfig->GetString(TEXT("/Script/BladeII.B2ErrorCodeInfo"), TEXT("ErrorCodeInfoTable"), ErrorCodeInfoDataTablePath, GGameIni);
 
@@ -42,7 +40,7 @@ void UB2ErrorCodeInfo::CheckInfoDataIntegrity()
 		bool bHasRowKeyLessThan0 = false;
 		bool bHasNonSequentialRowKey = false;
 
-		// DataTable ÀÇ ¸ğµç row ¸¦ iterate ÇÏ´Â ¹æ¹ıÀÎµí.
+		// DataTable ç‹¼ è‘›ç”µ row ç”« iterate çªç»° è§„è¿‡ç‰¢æ·€.
 		TArray<FName> RowKeys = TheData->GetRowNames();
 		for (int32 RI = 0; RI < RowKeys.Num(); ++RI)
 		{
@@ -52,17 +50,17 @@ void UB2ErrorCodeInfo::CheckInfoDataIntegrity()
 			{
 				bHasRowKeyLessThan0 = true;
 			}
-			if (RI + 1 != RowKeyNumber) // bHasRowKeyLessThan0 ÀÌ¸é °á±¹ ¿©±âµµ..
+			if (RI + 1 != RowKeyNumber) // bHasRowKeyLessThan0 ææ æ¬æƒ« å’¯æ‰æ¡£..
 			{
 				bHasNonSequentialRowKey = true;
 			}
 		}
 
-		if (bHasRowKeyLessThan0 /*|| bHasNonSequentialRowKey*/) // ¼ø¼­´ë·ÎÀÏ ÇÊ¿ä´Â ¾øÀ» °Í °°´Ù. ÀÏ´Ü ÀÌ°Ç °æ°í¿¡¼­ Á¦°Å.
+		if (bHasRowKeyLessThan0 /*|| bHasNonSequentialRowKey*/) // é‰´è¾‘æªè‚ºè€ é˜å¤¸ç»° ç»é˜‘ å·´ éä¿ƒ. è€çªœ ææ‰’ ç‰ˆç»Šä¿Šè¾‘ åŠ›èŠ­.
 		{
 #if !PLATFORM_MAC
 			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-				FString::Printf(TEXT("[°æ°í] ErrorCodeInfo µ¥ÀÌÅÍÀÇ ÁÙ¹øÈ£¿¡ Ä¡¸íÀûÀÎ ¹®Á¦°¡ ÀÖÀ½. ÄÄÇ»ÅÍ°¡ °ğ Æø¹ßÇÑ´Ù."))
+				FString::Printf(TEXT("[ç‰ˆç»Š] ErrorCodeInfo å•æç£ç‹¼ ä¸´é”…é¾‹ä¿Š æ‘¹ç–™åˆ©ç‰¢ å·©åŠ›å•Š ä¹æ¾œ. å“ªè…”ç£å•Š æ¢† æ°”æƒ¯èŒ„ä¿ƒ."))
 				));
 #endif
 		}
@@ -71,7 +69,7 @@ void UB2ErrorCodeInfo::CheckInfoDataIntegrity()
 	{
 #if !PLATFORM_MAC
 		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-			FString::Printf(TEXT("ErrorCodeInfo µ¥ÀÌÅÍ ¾øÀ½. ÄÄÇ»ÅÍ°¡ °ğ Æø¹ßÇÑ´Ù."))
+			FString::Printf(TEXT("ErrorCodeInfo å•æç£ ç»æ¾œ. å“ªè…”ç£å•Š æ¢† æ°”æƒ¯èŒ„ä¿ƒ."))
 			));
 #endif
 	}

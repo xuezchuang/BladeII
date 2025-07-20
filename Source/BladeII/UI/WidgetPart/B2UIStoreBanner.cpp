@@ -1,5 +1,6 @@
-#include "B2UIStoreBanner.h"
+ï»¿#include "B2UIStoreBanner.h"
 #include "B2UIDocHelper.h"
+#include "Event.h"
 
 void UB2UIStoreBannerButton::Init()
 {
@@ -254,7 +255,7 @@ void UB2UIStoreBanner::OnBeginScroll(float ScrolledDelta)
 			BannerScrollBox->SetScrollOffset(ScrolledDelta - DesiredPosition);
 	}
 
-	if (BannerScrollBox.IsValid()) //¸ð¹ÙÀÏ¿¡¼­ SScrollBox::ScrollBy·Î ÀÎÇØ AnimateScrollÀÌ °è¼Ó ÄÑÁö°Ô µÊ. AnimateScrollÀÌ ÄÑÁö¸é ChangeBanner³ª ShowBannerµî ScrollOffsetÀÌ ¹Ù·Î ¾÷µ¥ÀÌÆ®°¡ µÇÁö ¾Ê´Â´Ù.
+	if (BannerScrollBox.IsValid()) //è‘›å®˜è€ä¿Šè¾‘ SScrollBox::ScrollByè‚º ç‰¢ç§¦ AnimateScrollæž æ‹ŒåŠ  éš¾ç˜¤éœ¸ å‡³. AnimateScrollæž éš¾ç˜¤æ ChangeBannerå”± ShowBanneræ®¿ ScrollOffsetæž å®˜è‚º è¯€å•æžé£˜å•Š ç™»ç˜¤ è‡¼ç»°ä¿ƒ.
 		BannerScrollBox->SetAnimateScroll(false);
 
 	ElapsedNextBannerScrollTime = 0.f;

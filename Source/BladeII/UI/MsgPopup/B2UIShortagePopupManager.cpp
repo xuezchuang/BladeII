@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIShortagePopupManager.h"
 #include "B2UIManager.h"
@@ -62,7 +62,7 @@ void B2UIShortagePopupManager::CheckGetContetnsOpenStatus()
 ///////////////////////////////////////////////////////////////////////////////////////
 void B2UIShortagePopupManager::PopupGoToShopForGemMessage()
 {
-	// »ç¿ëÀÚ ÇöÁú À¯µµÀÇ °ü¹®
+	// è¤ä¾©ç£Š æ³…é¾™ èœ¡æ¡£ç‹¼ åŒ…å·©
 	B2_SCOPED_TRACK_LOG_AUTO();
 	CreateGoodsShortcutTooltipPopup(FItemRefIDHelper::GetGoodsID_Gem());
 }
@@ -180,7 +180,7 @@ void B2UIShortagePopupManager::PopupGoToBossPieceChapterMessage(int32 _id, FText
 			int32 nMapID = (int32)ClientStageID / 10;
 			int32 nStageID = ClientStageID % 10 == 0 ? 10 : ClientStageID % 10;
 
-			FB2UILinkManager::LinkUIScene(EUIScene::Chapter, nMapID, nStageID); //ÀÓ½Ã...
+			FB2UILinkManager::LinkUIScene(EUIScene::Chapter, nMapID, nStageID); //çƒ™çŸ«...
 			//UB2UIManager::GetInstance()->ChangeUIScene(EUIScene::HeroTowerReady);
 			}*/
 		})

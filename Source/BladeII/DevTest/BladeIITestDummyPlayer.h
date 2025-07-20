@@ -1,7 +1,8 @@
-#pragma once
+﻿#pragma once
 
 #include "BladeIIPlayer.h"
 #include "B2Airport.h"
+#include "BladeII.h"
 #include "BladeIITestDummyPlayer.generated.h"
 
 /**

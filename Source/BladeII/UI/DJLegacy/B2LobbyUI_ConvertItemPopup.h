@@ -14,8 +14,8 @@
 DECLARE_DELEGATE(FConvertItemPopupOnClick)
 
 /**
- *  ÇØ´ç UI´Â ÀçÈ­ ¾ÆÀÌÅÛÀ» º¯È¯½ÃÄÑ¼­ ´Ù¸¥ ÀçÈ­·Î ¸¸µé¾î ÁÖ´Â ½Ã½ºÅÛÀÇ UIÀÔ´Ï´Ù.
- *	±âÁ¸ ¼Ò½ºÀÇ È°¿ëÀ¸·Î ÀÎÇØ ½Â±Þ¼® ¿Ü¿£ ´Ù¸¥ ¾ÆÀÌÅÛÀÇ º¯È¯ÀÌ ºÒ°¡´ÉÇÕ´Ï´Ù.
+ *  ç§¦å¯¸ UIç»° çŠæ‹³ é…’æžè¢é˜‘ å‡½åˆ¸çŸ«éš¾è¾‘ ä¿ƒå¼— çŠæ‹³è‚º çˆ¶ç”¸ç»¢ æž—ç»° çŸ«èƒ¶è¢ç‹¼ UIæ¶èªä¿ƒ.
+ *	æ‰ç²® å®¶èƒ¶ç‹¼ åŠä¾©æ è‚º ç‰¢ç§¦ é“°éž­ç± å¯‡æµš ä¿ƒå¼— é…’æžè¢ç‹¼ å‡½åˆ¸æž é˜‚å•Šç“·é’¦èªä¿ƒ.
  */
 UCLASS()
 class BLADEII_API UB2LobbyUI_ConvertItemPopup : public UB2LobbyUserWidget, public IB2UIBackWidget

@@ -1,14 +1,17 @@
+ï»¿//warning C4828: The file contains a character starting at offset 0x6fb7 that is illegal in the current source character set (codepage 65001).#include "B2UIPVPModFindingMatch.h"
 #include "B2UIPVPModFindingMatch.h"
+#include "B2UIDocLobbyMatch.h"
 #include "B2UIPVP1on1MatchInfo.h"
 #include "B2Button.h"
 #include "Retailer.h"
 #include "B2UIManager.h"
 #include "B2UIDocHelper.h"
-#include "B2UIDocLobbyMatch.h"
+
 #include "B2UIMsgPopupUseResources.h"
 #include "B2CombatStatEvaluator.h"
 #include "BladeIIGameImpl.h"
 #include "B2PVPGameMode.h"
+
 
 UB2UIPVPModFindingMatch::UB2UIPVPModFindingMatch(const FObjectInitializer& ObjectInitializer)
 	:	Super(ObjectInitializer)
@@ -113,7 +116,7 @@ void UB2UIPVPModFindingMatch::SetUserData(bool bLeft, const FString& UserNick, i
 		MatchInfo->SetAttackPower(InAttackPower);
 		MatchInfo->SetDefense(InDefense);
 
-		//ÀÏ´Ü ±æµå½Ã½ºÅÛ ¿Ï·áµÇ±âÀü±îÁö ºñ¿ö³õ±â.
+		//ì¼ë‹¨ ê¸¸ë“œì‹œìŠ¤í…œ ì™„ë£Œë˜ê¸°ì „ê¹Œì§€ ë¹„ì›Œë†“ê¸°.
 		MatchInfo->SetGuildNameAndMark(GuildName, Pattern, PatternColor, BG, BGColor);
 
 		bool bShowStarGrade = true;

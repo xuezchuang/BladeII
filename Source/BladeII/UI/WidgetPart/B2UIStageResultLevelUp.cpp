@@ -1,4 +1,4 @@
-#include "B2UIStageResultLevelUp.h"
+ï»¿#include "B2UIStageResultLevelUp.h"
 #include "B2UIManager.h"
 #include "B2UIDocHelper.h"
 #include "B2UIDocBattle.h"
@@ -122,8 +122,8 @@ void UB2UIStageResultLevelUp::Init()
 {
 	Super::Init();
 	
-	ThisPhase = EStageLevelUpUIPhase::SLVUUP_Hidden; // Ã³À½¿¡´Â º¸ÀÌÁö ¾Ê´Â´Ù. StartMe ÀÌÈÄºÎÅÍ..
-	this->SetVisibility(ESlateVisibility::Hidden); // ¹°·Ğ Hidden À¸·Î ¼¼ÆÃµÇ¾î ÀÖ°ÚÁö¸¸..
+	ThisPhase = EStageLevelUpUIPhase::SLVUUP_Hidden; // è´¸æ¾œä¿Šç»° ç„Šæç˜¤ è‡¼ç»°ä¿ƒ. StartMe æé¥¶ä½•ç£..
+	this->SetVisibility(ESlateVisibility::Hidden); // æ‹±æ²¸ Hidden æ è‚º æŠ€æ³¼ç™»ç»¢ ä¹æ‘†ç˜¤çˆ¶..
 
 	ResetAutoAdvanceCounter();
 }
@@ -132,17 +132,17 @@ void UB2UIStageResultLevelUp::NativeTick(const FGeometry& MyGeometry, float InDe
 {
 	Super::NativeTick(MyGeometry, InDeltaTime);
 
-	// ¼û¾îÀÖ´Â µ¿¾È¿¡´Â timer Ä«¿îÆ®¸¦ ÇÏÁö ¾Êµµ·Ï.
+	// è§ç»¢ä¹ç»° æ‚¼æ•‘ä¿Šç»° timer å¢¨æ¬¾é£˜ç”« çªç˜¤ è‡¼æ¡£åºŸ.
 	if (ThisPhase != EStageLevelUpUIPhase::SLVUUP_Hidden)
 	{
 		UWorld* TheWorld = GetWorld();
 		if (TheWorld)
-		{ // Pause »óÅÂ¿¡ ´ëºñÇÏ±â À§ÇÑ ¸Å´º¾ó Å¸ÀÌ¸Ó
+		{ // Pause æƒ‘æ€•ä¿Š æªåšçªæ‰ å›°èŒ„ æ¦‚æ˜¥å€” é¸¥æèµ£
 			AACounterLastRealTimeSec = AACounterThisRealTimeSec;
 			AACounterThisRealTimeSec = TheWorld->GetRealTimeSeconds();
 		}
 
-		UpdateWidgetCustomTimer(); // ¿©±â·Î DeltaTime À» ³Ñ°ÜÁÖ´Â °Ç ÀÇ¹Ì°¡ ¾øÀ» µí. ÀÚÃ¼ Å¸ÀÌ¸Ó ¿î¿ë. ±×³ª¸¶ NativeTick ÀÌ ºÒ¸®´Â °Ô ´ÙÇà
+		UpdateWidgetCustomTimer(); // å’¯æ‰è‚º DeltaTime é˜‘ é€è´¥æ—ç»° æ‰’ ç‹¼å›ºå•Š ç»é˜‘ æ·€. ç£Šçœ‰ é¸¥æèµ£ æ¬¾ä¾©. å¼Šå”±ä»˜ NativeTick æ é˜‚åºœç»° éœ¸ ä¿ƒé’
 	}
 }
 
@@ -177,7 +177,7 @@ void UB2UIStageResultLevelUp::AdvancePhase()
 			{
 				const int32 MainAcquiredSkillID = GetNewAcquiredSkillID(CurrentClass, DocHeroMain);
 		
-				//[@SameLine, 180612] explevelinfo doc, datastore -> datastore °³¼±
+				//[@SameLine, 180612] explevelinfo doc, datastore -> datastore ä¿ºæ€¥
 				//const int32 MainLevel = DocHeroMain ? FMath::Max(DocHeroMain->GetExtraUpgradeLevel(), DocHeroMain->GetBasicUpgradeLevel()) : 0;
 				//const int32 MainLevelOld = DocHeroMain ? DocHeroMain->GetCurrentLevel() : 0;
 				FLocalCharacterData& CharacterDataStore = BladeIIGameImpl::GetClientDataStore().GetLocalCharacterData();
@@ -192,7 +192,7 @@ void UB2UIStageResultLevelUp::AdvancePhase()
 					SetLevelUpContent(CurrentClass, DocHeroMain);
 					OnLevelUpSceneStart(CurrentClass);
 
-					// ·¹º§¾÷ ÆäÀÌÁî´Ü¿¡¼­ ½ºÅ³,Áø±Ş·©Å© °Ë»ç ÈÄ Ãâ·Â
+					// é¥­éª‡è¯€ å…¶æä»¤çªœä¿Šè¾‘ èƒ¶æ‡¦,æŸ³é­çå†œ å…«è¤ é¥¶ å…ä»¿
 					if (MainAcquiredSkillID > 0)
 					{
 						SetNewSkillContent(CurrentClass, DocHeroMain, MainAcquiredSkillID);
@@ -218,7 +218,7 @@ void UB2UIStageResultLevelUp::AdvancePhase()
 		return;
 	}
 
-	AutoAdvanceCounter = 0.0f; // ÀÌ°Ç Advance ¶§¸¶´Ù ¸®¼Â.
+	AutoAdvanceCounter = 0.0f; // ææ‰’ Advance é”­ä»˜ä¿ƒ åºœæ‚¸.
 }
 
 void UB2UIStageResultLevelUp::SetLevelUpContent(EPCClass InClass, class UB2UIDocHero* InDocHero)
@@ -227,13 +227,13 @@ void UB2UIStageResultLevelUp::SetLevelUpContent(EPCClass InClass, class UB2UIDoc
 		return;
 	}
 
-	// ÇöÀç·Î¼± ÀÌ°Ç Ç×»ó º¸ÀÌµµ·Ï.
+	// æ³…çŠè‚ºæ€¥ ææ‰’ äº²æƒ‘ ç„Šææ¡£åºŸ.
 	if (CP_LevelUpTitleSet.IsValid())
 	{
 		CP_LevelUpTitleSet->SetVisibility(ESlateVisibility::HitTestInvisible);
 	}
 
-	// ±âº» ½ºÅÈ ¼ÂÀº º¸ÀÌ°í ½ºÅ³ ¼ÂÀº ¼û±â°í ·©Å©¾÷ ¼Âµµ ¼û±â°í
+	// æ‰å¤¯ èƒ¶æ¹ƒ æ‚¸ç¯® ç„Šæç»Š èƒ¶æ‡¦ æ‚¸ç¯® è§æ‰ç»Š çå†œè¯€ æ‚¸æ¡£ è§æ‰ç»Š
 	if (CP_BasicStatInfoSet.IsValid())
 	{
 		CP_BasicStatInfoSet->SetVisibility(ESlateVisibility::HitTestInvisible);
@@ -247,9 +247,9 @@ void UB2UIStageResultLevelUp::SetLevelUpContent(EPCClass InClass, class UB2UIDoc
 		CP_AllNewBrevetRankSet->SetVisibility(ESlateVisibility::Collapsed);
 	}
 
-	// °¢ widget µéÀ» µé¾î¿Â Doc ¿¡ µû¶ó ¾÷µ¥ÀÌÆ® ÇÑ´Ù.
-	//[@SameLine, 180612] explevelinfo doc, datastore -> datastore °³¼±
-	//const int32 OldLevel = InDocHero->GetCurrentLevel(); // ½ºÅ×ÀÌÁö Á¾·áÇÑ ½ÃÁ¡¿¡¼­´Â Current °¡ ¾Æ´Ñ ÀÌÀü ·¹º§ °ªÀÓ
+	// é˜¿ widget ç”¸é˜‘ ç”¸ç»¢æŸ¯ Doc ä¿Š è¶æ‰¼ è¯€å•æé£˜ èŒ„ä¿ƒ.
+	//[@SameLine, 180612] explevelinfo doc, datastore -> datastore ä¿ºæ€¥
+	//const int32 OldLevel = InDocHero->GetCurrentLevel(); // èƒ¶æŠ›æç˜¤ è¾†ä¸°èŒ„ çŸ«ç—¢ä¿Šè¾‘ç»° Current å•Š é…’å›± æå‚ˆ é¥­éª‡ è”¼çƒ™
 	//const int32 NewLevel = FMath::Max(InDocHero->GetExtraUpgradeLevel(), InDocHero->GetBasicUpgradeLevel());
 	FLocalCharacterData& CharacterDataStore = BladeIIGameImpl::GetClientDataStore().GetLocalCharacterData();
 	const int32 ClearAfterLevel = CharacterDataStore.GetCharacterLevel(InClass);
@@ -273,7 +273,7 @@ void UB2UIStageResultLevelUp::SetLevelUpContent(EPCClass InClass, class UB2UIDoc
 		B2P_LevelTarcking(TRACKING_LEVEL, B2ActionLogType<EPCClass>::GetName(InClass));
 	}
 	if (IMG_CharPortrait.IsValid())
-	{ // ¿ä°Ç ÅØ½ºÃÄ·Î ±×³É µé¾î°¨. ¾ÆÆ²¶ó½º ¾Æ´Ñ º°µµ ÅØ½ºÃÄÀÌ¹Ç·Î ¸ÓÆ¼¸®¾ó ÆÄ¶ó¹ÌÅÍ °°Àº °Å ÇÊ¿ä¾øÀÌ ÅØ½ºÃÄ·Î ±×³É ¼¼ÆÃ °¡´ÉÇÑ °Å. UI ÂÊ¼­µµ ±×°Ô ÆíÇÏ´Ù ±×·¯°í.
+	{ // å¤¸æ‰’ å’†èƒ¶åªšè‚º å¼Šæˆ ç”¸ç»¢çš‘. é…’æ’‡æ‰¼èƒ¶ é…’å›± å–Šæ¡£ å’†èƒ¶åªšæéª¨è‚º èµ£èåºœå€” é¢‡æ‰¼å›ºç£ éç¯® èŠ­ é˜å¤¸ç»æ å’†èƒ¶åªšè‚º å¼Šæˆ æŠ€æ³¼ å•Šç“·èŒ„ èŠ­. UI ç‡è¾‘æ¡£ å¼Šéœ¸ ç¥ˆçªä¿ƒ å¼ŠçŸ¾ç»Š.
 		UTexture2D* LargePortraitTexture = UB2UIDocHero::GetPlayerLargePortraitTexture(InDocHero->GetHeroClass());
 		if (LargePortraitTexture)
 		{
@@ -291,7 +291,7 @@ void UB2UIStageResultLevelUp::SetLevelUpContent(EPCClass InClass, class UB2UIDoc
 			);
 	}
 
-	// È¤ ¼ıÀÚ Ä¿Áö¸é FormatAsNumber »ç¿ë..
+	// è¶£ ç®­ç£Š ç›®ç˜¤æ FormatAsNumber è¤ä¾©..
 	if (TB_StatBefore_Health.IsValid())
 	{
 		TB_StatBefore_Health->SetText(FText::FromString(FString::FromInt(InDocHero->GetHealthPoint())));
@@ -325,13 +325,13 @@ void UB2UIStageResultLevelUp::SetNewSkillContent(EPCClass InClass, class UB2UIDo
 		return;
 	}
 
-	// ÇöÀç·Î¼± ÀÌ°Ç Ç×»ó º¸ÀÌµµ·Ï.
+	// æ³…çŠè‚ºæ€¥ ææ‰’ äº²æƒ‘ ç„Šææ¡£åºŸ.
 	if (CP_LevelUpTitleSet.IsValid())
 	{
 		CP_LevelUpTitleSet->SetVisibility(ESlateVisibility::HitTestInvisible);
 	}
 
-	// ±âº» ½ºÅÈ ¼ÂÀº ¼û±â°í ½ºÅ³ ¼ÂÀº º¸ÀÌ°í ·©Å©¾÷ ¼ÂÀº ¼û±â°í
+	// æ‰å¤¯ èƒ¶æ¹ƒ æ‚¸ç¯® è§æ‰ç»Š èƒ¶æ‡¦ æ‚¸ç¯® ç„Šæç»Š çå†œè¯€ æ‚¸ç¯® è§æ‰ç»Š
 	/*if (CP_BasicStatInfoSet.IsValid())
 	{
 		CP_BasicStatInfoSet->SetVisibility(ESlateVisibility::Collapsed);
@@ -354,11 +354,11 @@ void UB2UIStageResultLevelUp::SetNewSkillContent(EPCClass InClass, class UB2UIDo
 
 	UB2PCClassInfoBox* PCClassInfoBox = StaticFindPCClassInfoBox();
 	UB2SkillInfo* AllSkillInfo = PCClassInfoBox ? PCClassInfoBox->GetAllSkillInfo() : nullptr;
-	// LoadSynchronous ¸¦ ÇØ¾ß ÇØ¼­ const Á¦°Å..
+	// LoadSynchronous ç”« ç§¦å…· ç§¦è¾‘ const åŠ›èŠ­..
 	FSingleSkillInfo* ThisSkillInfo = AllSkillInfo ? const_cast<FSingleSkillInfo*>(AllSkillInfo->GetSingleInfoOfID(NewSkillID)) : nullptr;
 	
 	if (IMG_SkillIcon.IsValid() && ThisSkillInfo)
-	{ // ½ºÅ³ ¹öÆ° ½ºÅ¸ÀÏ¿¡¼­ ´ëÇ¥°İÀÎ Normal ½ºÅ¸ÀÏ material ¸¸ ½ï »©¿Í¼­ »ç¿ë. 
+	{ // èƒ¶æ‡¦ æ»šç“¢ èƒ¶é¸¥è€ä¿Šè¾‘ æªé’æ‹œç‰¢ Normal èƒ¶é¸¥è€ material çˆ¶ æ–¤ å“—å®¢è¾‘ è¤ä¾©. 
 		IMG_SkillIcon->SetBrushFromMaterial(
 			Cast<UMaterialInterface>(ThisSkillInfo->ButtonIcon_Normal.LoadSynchronous())
 			);		
@@ -418,7 +418,7 @@ void UB2UIStageResultLevelUp::SetSkillType(ESkillType InSkillType)
 
 void UB2UIStageResultLevelUp::SetNewBrevetRankContnt(EPCClass InClass, class UB2UIDocHero* InDocHero, int32 BrevetRank)
 {
-	// Áø±Ş °ü·ÃUI¸¸ º¸ÀÌ°ÔÇÏ±¸ ÀÌ°ÍÀú°Í ¼¼ÆÃ
+	// æŸ³é­ åŒ…è®¿UIçˆ¶ ç„Šæéœ¸çªå¤‡ æå·´å†å·´ æŠ€æ³¼
 	/*if (CP_BasicStatInfoSet.IsValid())
 	{
 		CP_BasicStatInfoSet->SetVisibility(ESlateVisibility::Collapsed);
@@ -436,7 +436,7 @@ void UB2UIStageResultLevelUp::SetNewBrevetRankContnt(EPCClass InClass, class UB2
 		P_Bottom->SetVisibility(ESlateVisibility::HitTestInvisible);
 	}
 
-	// ·©Å© ¾ÆÀÌÄÜ ¼ÂÆÃ
+	// çå†œ é…’æèƒ½ æ‚¸æ³¼
 	if (IMG_RankIcon.IsValid())
 	{
 		UMaterialInterface* pMI = BladeIIGameImpl::GetClientDataStore().GetBrevetRankIconMaterial(BrevetRank);
@@ -445,10 +445,10 @@ void UB2UIStageResultLevelUp::SetNewBrevetRankContnt(EPCClass InClass, class UB2
 			IMG_RankIcon->SetBrushFromMaterial(pMI);
 	}
 
-	// ÄÉ¸¯ÅÍ ÃÊ»óÈ­ ¼ÂÆÃ
+	// çº³è…ç£ æª¬æƒ‘æ‹³ æ‚¸æ³¼
 	if (IMG_CharPortraitForBrevetRank.IsValid() && InDocHero)
 	{
-		// ÀÌ°Ç Large ¾Æ´Ï°í ±×³É ÃÊ»óÈ­..?
+		// ææ‰’ Large é…’èªç»Š å¼Šæˆ æª¬æƒ‘æ‹³..?
 		UMaterialInterface* CastedBrushMtrl = UB2UIDocHero::GetPlayerPortraitMaterial(this, InDocHero->GetHeroClass());
 		if (CastedBrushMtrl)
 		{
@@ -456,7 +456,7 @@ void UB2UIStageResultLevelUp::SetNewBrevetRankContnt(EPCClass InClass, class UB2
 		}
 	}
 
-	// ÄÉ¸¯ÅÍ ÀÌ¸§ ¼ÂÆÃ
+	// çº³è…ç£ ææŠš æ‚¸æ³¼
 	if (TB_ClassNameForBrevetRank.IsValid())
 	{
 		int32 CurrentCharBrevetRank = BladeIIGameImpl::GetLocalCharacterData().GetCharBrevetRank(InDocHero->GetHeroClass());
@@ -464,7 +464,7 @@ void UB2UIStageResultLevelUp::SetNewBrevetRankContnt(EPCClass InClass, class UB2
 		TB_ClassNameForBrevetRank->SetText(BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), RankNameKey));
 	}
 
-	// ¼³¸í ¼ÂÆÃ
+	// æ±²ç–™ æ‚¸æ³¼
 	if (TB_RankUpNotice.IsValid())
 	{
 		TB_RankUpNotice->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("StageRankUpNotice")));
@@ -477,7 +477,7 @@ bool UB2UIStageResultLevelUp::SetIfPlayerCharacterGotLevelUp(EPCClass CurrentCla
 
 	if (DocHeroMain)
 	{
-		//[@SameLine, 180612] explevelinfo doc, datastore -> datastore °³¼±
+		//[@SameLine, 180612] explevelinfo doc, datastore -> datastore ä¿ºæ€¥
 		//int32 LevelDelta = FMath::Max(DocHeroMain->GetExtraUpgradeLevel(), DocHeroMain->GetBasicUpgradeLevel()) - DocHeroMain->GetCurrentLevel();
 		FLocalCharacterData& CharacterDataStore = BladeIIGameImpl::GetClientDataStore().GetLocalCharacterData();
 		const int32 ClearAfterLevel = CharacterDataStore.GetCharacterLevel(CurrentClass);
@@ -497,7 +497,7 @@ int32 UB2UIStageResultLevelUp::GetNewAcquiredSkillID(EPCClass InClass, class UB2
 
 	if (InClass != EPCClass::EPC_End && InDocHero)
 	{	
-		//[@SameLine, 180612] explevelinfo doc, datastore -> datastore °³¼±
+		//[@SameLine, 180612] explevelinfo doc, datastore -> datastore ä¿ºæ€¥
 		FLocalCharacterData& CharacterDataStore = BladeIIGameImpl::GetClientDataStore().GetLocalCharacterData();
 		const int32 ClearAfterLevel = CharacterDataStore.GetCharacterLevel(InClass);
 		const int32 ClearBeforeLevel = CharacterDataStore.GetBeforeCharacterLevel(InClass);
@@ -510,17 +510,17 @@ int32 UB2UIStageResultLevelUp::GetNewAcquiredSkillID(EPCClass InClass, class UB2
 
 	if (SkillIDsToLearn.Num() > 0)
 	{
-		//·¹º§º¯È­·®¿¡ µû¶ó ¾ò´Â ½ºÅ³ÀÇ °³¼ö´Â 1ÀÌ»óÀÌ´Ù.
-		//ÀÏ´ÜÀº Á¦ÀÏ ¸¶Áö¸·¿¡ ¾ò´Â ½ºÅ³·Î.
+		//é¥­éª‡å‡½æ‹³æ¨Šä¿Š è¶æ‰¼ æ˜ç»° èƒ¶æ‡¦ç‹¼ ä¿ºèç»° 1ææƒ‘æä¿ƒ.
+		//è€çªœç¯® åŠ›è€ ä»˜ç˜¤é˜œä¿Š æ˜ç»° èƒ¶æ‡¦è‚º.
 		return SkillIDsToLearn.Last();
 	}
 
-	return -1; // ¾òÀº ½ºÅ³ ¾øÀ½.
+	return -1; // æ˜ç¯® èƒ¶æ‡¦ ç»æ¾œ.
 }
 
 void UB2UIStageResultLevelUp::StartMe(TArray<EPCClass> AllPCClass)
 {
-	if (ThisPhase == EStageLevelUpUIPhase::SLVUUP_Hidden) // Hidden ÀÌ ¾Æ´Ï¶ó¸é ÀÌ¹Ì ½ÃÀÛµÈ °Í.
+	if (ThisPhase == EStageLevelUpUIPhase::SLVUUP_Hidden) // Hidden æ é…’èªæ‰¼æ æå›º çŸ«ç´¯ç­‰ å·´.
 	{
 		B2AndroidBackManager::GetInstance()->AddBackWidget(this);
 		SelectedAllPCClass.Empty();
@@ -538,19 +538,19 @@ void UB2UIStageResultLevelUp::SetAutoAdvanceInterval(float InValue)
 
 void UB2UIStageResultLevelUp::OnStart()
 {
-	// º¸¿©Áö±â ½ÃÀÛÇÏ´Â ºÎºĞÀÌ¹Ç·Î Ä¿½ºÅÒ Å¸ÀÌ¸Ó Ä«¿îÆ®µµ ¿©±â¼­ ½ÃÀÛÇÒ ¼ö ÀÖµµ·Ï
+	// ç„Šå’¯ç˜¤æ‰ çŸ«ç´¯çªç»° ä½•ç›’æéª¨è‚º ç›®èƒ¶ä¹“ é¸¥æèµ£ å¢¨æ¬¾é£˜æ¡£ å’¯æ‰è¾‘ çŸ«ç´¯ä¸” è ä¹æ¡£åºŸ
 	if (GetWorld())
-	{// ÀÌ°Ô World pause »óÅÂ¿¡¼­ »ç¿ëÇÏ°Ô µÉ ¼ö ÀÖÀ¸¹Ç·Î GetRealTimeSeconds ¸¦ ÇÑ´Ù.
+	{// æéœ¸ World pause æƒ‘æ€•ä¿Šè¾‘ è¤ä¾©çªéœ¸ çª è ä¹æ éª¨è‚º GetRealTimeSeconds ç”« èŒ„ä¿ƒ.
 		CachedWidgetStartTime = GetWorld()->GetRealTimeSeconds();
 	}
 	//this->SetVisibility(ESlateVisibility::Visible);
 
-	OnOpen(); // ÀÏ¹İ UIWidget ÀÌ¶ó¸é UIManager ¿¡ ÀÇÇØ¼­ ºÒ¸®´Â ºÎºĞ
+	OnOpen(); // è€é¦† UIWidget ææ‰¼æ UIManager ä¿Š ç‹¼ç§¦è¾‘ é˜‚åºœç»° ä½•ç›’
 }
 
 void UB2UIStageResultLevelUp::CloseMe()
 {
-	// ¿©±â¼­ ¾Æ¸¶µµ Destroy ¸¦ ÇÏÁö´Â ¾ÊÀ» °ÍÀÌ´Ù. ÀÌ°Ô ¼ÓÇØ ÀÖ´Â ½ºÅ×ÀÌÁö °á°úÃ¢ ¹ÙÅÁÀÌ º¸ÀÌµµ·Ï ÇØ¼­ °Å±â ¸Ş´º¸¦ ÅëÇØ ´ÙÀ½ ¾×¼ÇÀ» ÃëÇÏµµ·Ï ÇÑ´Ù.
+	// å’¯æ‰è¾‘ é…’ä»˜æ¡£ Destroy ç”« çªç˜¤ç»° è‡¼é˜‘ å·´æä¿ƒ. æéœ¸ åŠ ç§¦ ä¹ç»° èƒ¶æŠ›æç˜¤ æ¬è‹èŠ’ å®˜å¸•æ ç„Šææ¡£åºŸ ç§¦è¾‘ èŠ­æ‰ çš‹æ˜¥ç”« çƒ¹ç§¦ ä¿ƒæ¾œ å’€è®°é˜‘ ç§’çªæ¡£åºŸ èŒ„ä¿ƒ.
 
 	FLocalCharacterData& CharacterDataStore = BladeIIGameImpl::GetClientDataStore().GetLocalCharacterData();
 
@@ -559,7 +559,7 @@ void UB2UIStageResultLevelUp::CloseMe()
 		auto* HeroDoc = UB2UIDocHelper::GetDocHero(PCClassToInt(PCClass));
 		if (HeroDoc)
 		{
-			//[@SameLine, 180612] explevelinfo doc, datastore -> datastore °³¼±
+			//[@SameLine, 180612] explevelinfo doc, datastore -> datastore ä¿ºæ€¥
 			//HeroDoc->InitExp();
 			CharacterDataStore.UpdateBeforeExpLevel(PCClass);
 			const int32 ClearAfterLevel = CharacterDataStore.GetCharacterLevel(PCClass);
@@ -572,7 +572,7 @@ void UB2UIStageResultLevelUp::CloseMe()
 	
 	LevelupFinishDelegate.ExecuteIfBound();
 
-	OnClose(); // ÀÏ¹İ UIWidget ÀÌ¶ó¸é UIManager ¿¡ ÀÇÇØ¼­ ºÒ¸®´Â ºÎºĞ
+	OnClose(); // è€é¦† UIWidget ææ‰¼æ UIManager ä¿Š ç‹¼ç§¦è¾‘ é˜‚åºœç»° ä½•ç›’
 	
 	LevelupFinishDelegate.Unbind();
 
@@ -583,7 +583,7 @@ void UB2UIStageResultLevelUp::CloseMe()
 
 void UB2UIStageResultLevelUp::SetupWidgetCustomTimer()
 {
-	// Pause »óÅÂ¿¡¼­ ¾µ ¼ö ÀÖÀ¸¹Ç·Î ±âº» Å¸ÀÌ¸Ó ¸ø ¾²°í µû·Î ¼¼ÆÃ
+	// Pause æƒ‘æ€•ä¿Šè¾‘ é•œ è ä¹æ éª¨è‚º æ‰å¤¯ é¸¥æèµ£ ç»™ é™ç»Š è¶è‚º æŠ€æ³¼
 
 	for (int32 CTI = 0; CTI < CustomTimedCallBackInfo.Num(); ++CTI)
 	{
@@ -593,7 +593,7 @@ void UB2UIStageResultLevelUp::SetupWidgetCustomTimer()
 		}
 		else
 		{
-			CustomTimedCallBackInfo[CTI].bIsInvoked = true; // ÀÌ¹Ì ¹ßµ¿ÇÑ °É·Î °£ÁÖ.
+			CustomTimedCallBackInfo[CTI].bIsInvoked = true; // æå›º æƒ¯æ‚¼èŒ„ å§è‚º åŸƒæ—.
 		}
 	}
 }
@@ -611,28 +611,28 @@ void UB2UIStageResultLevelUp::SetupWidgetCustomHideTimer()
 			continue;
 		}
 
-		ThisHideInfo.OriginalVisibility = WidgetToHide->GetVisibility(); // Hide ÇÒ ¶§¿¡µµ ¹é¾÷ÇØ ³õÁö¸¸ ¾Æ·¡ ·ÎÁ÷¿¡ µû¶ó HideStop ÀÌ ¸ÕÀú µÉ ¼öµµ ÀÖÀ¸´Ï ¿©±â¼­µµ ÇÑ¹ø.
+		ThisHideInfo.OriginalVisibility = WidgetToHide->GetVisibility(); // Hide ä¸” é”­ä¿Šæ¡£ å½’è¯€ç§¦ åˆç˜¤çˆ¶ é…’è´° è‚ºæµä¿Š è¶æ‰¼ HideStop æ åˆšå† çª èæ¡£ ä¹æ èª å’¯æ‰è¾‘æ¡£ èŒ„é”….
 
-		// HideStopTime ÀÌ HideStartTime º¸´Ù Å«Áö¿¡ ´ëÇÑ È®ÀÎÀº.. ±»ÀÌ ÇÏÁö ¾Ê´Â´Ù.
+		// HideStopTime æ HideStartTime ç„Šä¿ƒ å¥´ç˜¤ä¿Š æªèŒ„ çŠ¬ç‰¢ç¯®.. è¢«æ çªç˜¤ è‡¼ç»°ä¿ƒ.
 
 		if (ThisHideInfo.HideStartTime <= 0.0f)
 		{
-			CustomTimeHideStartCallback(CTI); // ¹Ù·Î Äİ¹é ½ÇÇà
+			CustomTimeHideStartCallback(CTI); // å®˜è‚º å¦®å½’ è§’é’
 		}
 
 		if (ThisHideInfo.HideStopTime <= 0.0f)
 		{
-			CustomTimeHideStopCallback(CTI); // ¹Ù·Î Äİ¹é ½ÇÇà. °á±¹ HideStopTime ÀÌ 0 ÀÌÇÏ¸é ¾È ¼û°ÜÁü
+			CustomTimeHideStopCallback(CTI); // å®˜è‚º å¦®å½’ è§’é’. æ¬æƒ« HideStopTime æ 0 æçªæ æ•‘ è§è´¥å’™
 		}
 	}
 }
 
-void UB2UIStageResultLevelUp::UpdateWidgetCustomTimer() // Pause »óÅÂ¸¦ °¡Á¤ÇÏ¸é DeltaTime ÀÌ ÀÇ¹Ì°¡ ¾øÀ¸¹Ç·Î ¹ŞÁö ¾ÊÀ½.
+void UB2UIStageResultLevelUp::UpdateWidgetCustomTimer() // Pause æƒ‘æ€•ç”« å•Šæ²¥çªæ DeltaTime æ ç‹¼å›ºå•Š ç»æ éª¨è‚º ç½ç˜¤ è‡¼æ¾œ.
 {
 	UWorld* TheWorld = GetWorld();
 	
 	const float TimeSinceStart = (TheWorld ? TheWorld->GetRealTimeSeconds() : 0.0f) - CachedWidgetStartTime;
-	// Pause »óÅÂ¿¡¼­µµ Á÷Á¢ µ¹·Á¾²´Â Å¸ÀÌ¸Ó
+	// Pause æƒ‘æ€•ä¿Šè¾‘æ¡£ æµç«‹ å€’å¦¨é™ç»° é¸¥æèµ£
 	for (int32 CTI = 0; CTI < CustomTimedCallBackInfo.Num(); ++CTI)
 	{
 		FB2UIWidgetCustomTimedCallbackInfo& ThisInfo = CustomTimedCallBackInfo[CTI];
@@ -654,7 +654,7 @@ void UB2UIStageResultLevelUp::UpdateWidgetCustomTimer() // Pause »óÅÂ¸¦ °¡Á¤ÇÏ¸é
 		
 		if (ThisHideInfo.bIsHidden == false)
 		{
-			// ÇÑ¹ø¸¸ HideStart °¡ µÇ°Ô. ¾È ±×·¯¸é ±ô¹ÚÀÏ °Í.
+			// èŒ„é”…çˆ¶ HideStart å•Š ç™»éœ¸. æ•‘ å¼ŠçŸ¾æ æ¿’å† è€ å·´.
 			if (ThisHideInfo.bHiddenDoneOnce == false && ThisHideInfo.HideStartTime <= TimeSinceStart)
 			{
 				CustomTimeHideStartCallback(CTI);
@@ -671,7 +671,7 @@ void UB2UIStageResultLevelUp::UpdateWidgetCustomTimer() // Pause »óÅÂ¸¦ °¡Á¤ÇÏ¸é
 
 	AutoAdvanceCounter += (AACounterThisRealTimeSec - AACounterLastRealTimeSec);
 	if (AutoAdvanceCounter >= AutoAdvanceInterval)
-	{ // À¯Àú ÅÍÄ¡ ¾øÀ» ¶§ÀÇ ÀÚµ¿ ÀüÈ¯.
+	{ // èœ¡å† ç£æ‘¹ ç»é˜‘ é”­ç‹¼ ç£Šæ‚¼ å‚ˆåˆ¸.
 		AdvancePhase();
 	}
 }

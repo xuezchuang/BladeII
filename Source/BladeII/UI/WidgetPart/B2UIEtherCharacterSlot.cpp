@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIEtherCharacterSlot.h"
 #include "B2UIEtherScrollSlot.h"
@@ -353,7 +353,7 @@ void UB2UIEtherCharacterSlot::SetEtherSetEffect(EPCClass InPCClass, int32 InDefe
 	//Ethers.GenerateValueArray(SortEthers);
 	//SortEthers.Sort([](const FB2Ether& A, const FB2Ether& B)
 	//{
-	//	//Æ¼¾î > ÆÄÃ÷ ¼ø
+	//	//èç»¢ > é¢‡æ˜Ž é‰´
 	//	bool Result = false;
 	//	if (A.Tier > B.Tier)
 	//	{

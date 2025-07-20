@@ -1,4 +1,4 @@
-#include "B2UICharacterObserve.h"
+ï»¿#include "B2UICharacterObserve.h"
 #include "B2UIManager.h"
 #include "Event.h"
 #include "B2UIDocHelper.h"
@@ -20,7 +20,7 @@ void UB2UICharacterObserve::CacheAssets()
 	if (UIP_CharNickEditP.IsValid())
 	{
 		UIP_CharNickEditP->Init();
-		UIP_CharNickEditP->SetVisibility(ESlateVisibility::Collapsed); // ÀÏ´Ü ¼û°ÜµĞ´Ù.
+		UIP_CharNickEditP->SetVisibility(ESlateVisibility::Collapsed); // è€çªœ è§è´¥æ•Œä¿ƒ.
 	}
 
 	GET_SLOT(UB2Button, BTN_ToggleCharInfo)
@@ -47,7 +47,7 @@ void UB2UICharacterObserve::CacheAssets()
 void UB2UICharacterObserve::BindDelegates()
 {
 	BIND_CLICK_FUNC_TO_BTN(BTN_Back, &UB2UICharacterObserve::OnClickBtnBack)
-	BIND_CLICK_FUNC_TO_BTN(BTN_BackExtra, &UB2UICharacterObserve::OnClickBtnBack) /* °°Àº Äİ¹é¿¡ ¹ÙÀÎµå */
+	BIND_CLICK_FUNC_TO_BTN(BTN_BackExtra, &UB2UICharacterObserve::OnClickBtnBack) /* éç¯® å¦®å½’ä¿Š å®˜ç‰¢é› */
 	BIND_CLICK_FUNC_TO_BTN(BTN_CharNickEdit, &UB2UICharacterObserve::OnClickBtnCharNickEdit)
 
 	BIND_CLICK_FUNC_TO_BTN(BTN_ToggleCharInfo, &UB2UICharacterObserve::OnClickBtnToggleCharInfo)
@@ -59,7 +59,7 @@ void UB2UICharacterObserve::BindDelegates()
 	}
 
 	BIND_CLICK_FUNC_TO_BTN(BTN_Change, &UB2UICharacterObserve::OnClickBtnChangeScreen)
-	UnsubscribeEvent(); // È¤½Ã ¸ô¶ó¼­ ¿©±âÀú±â¼­..
+	UnsubscribeEvent(); // è¶£çŸ« éš”æ‰¼è¾‘ å’¯æ‰å†æ‰è¾‘..
 	SubscribeEvent();
 }
 
@@ -170,13 +170,13 @@ void UB2UICharacterObserve::OnClickBtnCharNickEdit()
 	EPCClass ObservingClass = EPCClass::EPC_End;
 
 	if (auto* DocBattle = UB2UIDocHelper::GetDocBattle())
-	{ // CharacterObserve UI ¸¦ ¿­±â Àü¿¡ ÀÌ°Ô ¼¼ÆÃÀÌ µÇ¾î ÀÖ¾î¾ß ÇÔ.
+	{ // CharacterObserve UI ç”« å‡¯æ‰ å‚ˆä¿Š æéœ¸ æŠ€æ³¼æ ç™»ç»¢ ä¹ç»¢å…· çªƒ.
 		ObservingClass = IntToPCClass(DocBattle->GetCurPCClass());
 	}
 
 	if (ObservingClass != EPCClass::EPC_End)
 	{
-		// ÀÌ°Ô Ã³À½¿¡´Â ´Ù¸¥ UI ¿¡¼­ È£ÃâÇÏ´Â ½ÄÀÌ¾î¼­ ±»ÀÌ Event signal À» ¸¸µé°Ô µÇ¾ú´Âµ¥ »ç½Ç °°Àº UI page ¿¡¼­ È£ÃâÇÏ´Â ÀÌ»óÀº ÇÊ¿ä°¡ ¾øÁö..
+		// æéœ¸ è´¸æ¾œä¿Šç»° ä¿ƒå¼— UI ä¿Šè¾‘ é¾‹å…çªç»° ä¾¥æç»¢è¾‘ è¢«æ Event signal é˜‘ çˆ¶ç”¸éœ¸ ç™»èŒç»°å• è¤è§’ éç¯® UI page ä¿Šè¾‘ é¾‹å…çªç»° ææƒ‘ç¯® é˜å¤¸å•Š ç»ç˜¤..
 		LobbyCharObservePopupNickEditClass<EPCClass>::GetInstance().Signal(ObservingClass);
 	}
 }

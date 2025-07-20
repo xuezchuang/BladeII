@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -56,7 +56,7 @@ private:
 	void ResponseEnhanceEther(const FB2EnhanceEtherPtr EnhanceEtherPtr);
 
 	const int MAXSUBOPTION = 3;
-	bool IsTouch;//max·¹º§ Ã¼Å©
+	bool IsTouch;//maxé¥­éª‡ çœ‰å†œ
 	bool IsAnimantion;
 	bool IsAutoEnhance;
 	bool IsEnhanceSuccess;

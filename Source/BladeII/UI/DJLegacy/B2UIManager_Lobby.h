@@ -222,7 +222,7 @@ public:
 
 protected:
 
-	// ÀÏÁ¤½Ã°£ ÀÌ»ó ÁøÇà½Ã Flush & SynchronousLoad ÇÏ´Â ºÎºĞÀÌ ÇÊ¿ä
+	// ì¼ì •ì‹œê°„ ì´ìƒ ì§„í–‰ì‹œ Flush & SynchronousLoad í•˜ëŠ” ë¶€ë¶„ì´ í•„ìš”
 
 	void		 ReqAsyncLoadUIPageAssets(const TArray<ELobbyUIPages>& InLoadUIPages, bool bBlocking);
 

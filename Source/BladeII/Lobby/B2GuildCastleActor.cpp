@@ -1,4 +1,4 @@
-
+ï»¿
 #include "B2GuildCastleActor.h"
 //#include "BladeII.h"
 //#include "B2UIManager.h"
@@ -8,7 +8,7 @@
 
 #include "BladeIIGameImpl.h"
 
-//3°³»ÓÀÌ¶ó Å×ÀÌºí¸¸µé±â ±×·¡¼­ ¿ì¼± ÇÏµåÇÏ°Ô ..
+//3ä¿ºæŒ¥ææ‰¼ æŠ›æå–‰çˆ¶ç”¸æ‰ å¼Šè´°è¾‘ å¿«æ€¥ çªé›çªéœ¸ ..
 #define GUILDATTPOINT_LOW	250000
 #define GUILDATTPOINT_MIDDLE 650000
 #define GUILDATTPOINT_HIGH	1200000
@@ -29,7 +29,7 @@ void AB2GuildCastleActor::BeginPlay()
 void AB2GuildCastleActor::OnClickCastleActer()
 {
 
-	//if (this->bHidden == true) //¼û°ÜÁø »óÅÂÀÎ °æ¿ì ¼±ÅÃ x
+	//if (this->bHidden == true) //è§è´¥æŸ³ æƒ‘æ€•ç‰¢ ç‰ˆå¿« æ€¥ç¶ x
 	//	return;
 
 	//ClickPlaySound();
@@ -98,7 +98,7 @@ void AB2GuildCastleActor::NotifyActorOnReleased(FKey ButtonReleased /*= EKeys::L
 	//if (!GuildUI)
 	//	return;
 
-	//if (GuildUI->IsPagePopup())						//ÆË¾÷ÀÌ ¶°ÀÖÀ¸¸é ÆĞ½ºÆĞ½º
+	//if (GuildUI->IsPagePopup())						//æ‰‘è¯€æ æ ‹ä¹æ æ è©èƒ¶è©èƒ¶
 	//	return;
 
 
@@ -115,7 +115,7 @@ void AB2GuildCastleActor::NotifyActorOnInputTouchEnd(const ETouchIndex::Type Fin
 	//if (!GuildUI)
 	//	return;
 
-	//if (GuildUI->IsPagePopup())						//ÆË¾÷ÀÌ ¶°ÀÖÀ¸¸é ÆĞ½ºÆĞ½º
+	//if (GuildUI->IsPagePopup())						//æ‰‘è¯€æ æ ‹ä¹æ æ è©èƒ¶è©èƒ¶
 	//	return;
 
 	OnClickCastleActer();

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UITotemRaffle.h"
 //#include "B2UIManager.h"
@@ -49,7 +49,7 @@
 //
 //void UB2UITotemRaffle::OnClickTotem()
 //{
-//	// ¸ŞÀÎ Ä³¸¯ÅÍ È®ÀÎ
+//	// çš‹ç‰¢ æŸè…ç£ çŠ¬ç‰¢
 //	LobbyEnterHeroMgmtModeClass<EHeroMgmtSubMode>::GetInstance().Signal(EHeroMgmtSubMode::EHMSM_Totem);
 //	//EnterCostumePageClass<ECostumePage>::GetInstance().Signal(ECostumePage::);
 //	CloseMe();
@@ -88,7 +88,7 @@
 //void UB2UITotemRaffle::CloseMe()
 //{
 //	B2AndroidBackManager::GetInstance()->RemoveBackWidget(this);
-//	// TotemRaffle Ãß°¡ ÇÊ¿ä
+//	// TotemRaffle çœ å•Š é˜å¤¸
 //	UB2UIManager::GetInstance()->CloseUI(UIFName::TotemRaffle);
 //}
 //
@@ -175,7 +175,7 @@
 //
 //void UB2UITotemRaffleOp::UpdateItemData(const FB2Totem& InBeforTotem, const FB2Totem& InAfterTotem)
 //{
-//	UpdateSubWidgets(InBeforTotem, InAfterTotem); // º»°İ ¹èÄ¡ÇÑ widget µé ¾÷µ¥ÀÌÆ®
+//	UpdateSubWidgets(InBeforTotem, InAfterTotem); // å¤¯æ‹œ ç¡…æ‘¹èŒ„ widget ç”¸ è¯€å•æé£˜
 //	UpdateItemOptions(InAfterTotem);
 //	UpdateTotemSmeltingBonus(InAfterTotem);
 //	UpdataItemSetEffect();
@@ -278,7 +278,7 @@
 //
 //	const TArray<FB2TotemSubOptionDetail>& ArrayItemOption = InTotem.SubOptionDetails;
 //
-//	// Á¦·Ã ¿Ï·á ½Ã¿Í Á¦·Ã ¹Ì¿Ï·á ½Ã¸¦ ±¸ºĞÇØ¾ßÇÑ´Ù.
+//	// åŠ›è®¿ è‚¯ä¸° çŸ«å®¢ åŠ›è®¿ å›ºè‚¯ä¸° çŸ«ç”« å¤‡ç›’ç§¦å…·èŒ„ä¿ƒ.
 //	for (int32 i = 0; i < iArrayOptionMax; ++i)
 //	{
 //		FText OptionText = (IsItemOptionPerPCClass(ArrayItemOption[i].SubOption.OptionType) ?

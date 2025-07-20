@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIGuildSupportCharacterSlot.h"
 
@@ -34,7 +34,7 @@ void UB2UIGuildSupportCharacterSlot::SetMainHero(bool IsMain)
 		if(TB_CharNumber->GetVisibility() == ESlateVisibility::Hidden)
 			TB_CharNumber->SetVisibility(ESlateVisibility::HitTestInvisible);
 
-		TB_CharNumber->SetText(FText::AsNumber(IsMain ? 1 : 2)); //¸ŞÀÎÀÌ¸é 1¹ø ¼­ºê¸é 2¹ø
+		TB_CharNumber->SetText(FText::AsNumber(IsMain ? 1 : 2)); //çš‹ç‰¢ææ 1é”… è¾‘å®æ 2é”…
 	}
 }
 

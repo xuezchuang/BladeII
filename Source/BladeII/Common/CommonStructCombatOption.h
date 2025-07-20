@@ -1,5 +1,8 @@
-#pragma once
+Ôªø#pragma once
+
 #include "B2MessageInfoCommonStruct.h"
+#include "CommonStructCombatOption.generated.h"
+
 // A part of CommonStruct.h. Do not include this by itself. Include "CommonStruct.h"
 UENUM(BlueprintType)
 enum class ESkillOption : uint8
@@ -49,9 +52,9 @@ enum class ESkillOption : uint8
 	ESO_IncCriticalRateOnBuff,
 	ESO_IncCriticalDamageOnBuff,
 	ESO_DecReceiveDamage,						//=40
-												//
-												// Check GetSkillOptionApplyType for additional Dec** option type
-												//
+	//
+	// Check GetSkillOptionApplyType for additional Dec** option type
+	//
 
 	ESO_End
 };
@@ -114,8 +117,8 @@ enum class EMercenarySkillOption : uint8
 	EMSO_IncCriticalRateOnBuff,
 	EMSO_IncCriticalDamageOnBuff,
 	EMSO_DecReceiveDamage,						//=40
-	//√ﬂ∞°«“∞Õ¿”
-	//Passive Skill¿œ ºˆµµ ¥…∑¬ƒ° ¿œºˆµµ
+	//Áú†Âïä‰∏îÂ∑¥ÁÉô
+	//Passive SkillËÄÅ ËçêÊ°£ Áì∑‰ªøÊëπ ËÄÅËçêÊ°£
 	EMSO_LowHealthRecoveryHP,
 	EMSO_HealHPByAttack,
 	EMSO_ImmunAbnormalState,
@@ -243,9 +246,9 @@ enum class EItemOption : uint8
  * See GetSkillOptionOfUnitedOption and GetItemOptionOfUnitedOption
  */
 enum class EUnitedCombatOptions : uint8
-{	
+{
 	UCO_Offense_IncAttack,	// Increasing one of primary combat stat.
-	
+
 	UCO_Offense_IncDamage,
 	UCO_Offense_IncNormalDamage,
 	UCO_Offense_IncCriticalDamage,
@@ -273,7 +276,7 @@ enum class EUnitedCombatOptions : uint8
 	UCO_Skill_IncSkill2Damage,
 	UCO_Skill_IncSkill3Damage,
 	UCO_Skill_IncSkill5Damage,
-	
+
 
 
 	//
@@ -282,7 +285,7 @@ enum class EUnitedCombatOptions : uint8
 
 	UCO_Health_IncHealth,	// Increasing one of primary combat stat.
 	// Different from IncHealth in applying type.
-	UCO_Health_IncMaxHP, 
+	UCO_Health_IncMaxHP,
 	UCO_Health_ProbableHPAbsorption, // HP absorption on target "hit"
 	UCO_Health_ProbableRecoverHP, // HP recover on target's "death".
 	UCO_Health_PerSecRecoverHP,
@@ -296,7 +299,7 @@ enum class EUnitedCombatOptions : uint8
 
 	UCO_Defense_IncDefense,		// Increasing one of primary combat stat.
 	UCO_Defense_DecAbnormalStateTime,
-	
+
 	UCO_Defense_DecDamage,
 	UCO_Defense_DecBossDamage,
 	UCO_Defense_DecMeleeDamage,
@@ -328,7 +331,7 @@ enum class EUnitedCombatOptions : uint8
 	UCO_Buff_IncCriticalRateOnBuff,
 	UCO_Buff_IncCriticalDamageOnBuff,
 	*/
-	
+
 
 
 	//
@@ -336,8 +339,8 @@ enum class EUnitedCombatOptions : uint8
 	//
 
 	UCO_Misc_LastNormalAttackKnockbackRate,
-	UCO_Misc_AdditionalExp,		// æ»æ∏
-	UCO_Misc_AdditionalGold,	// æ»æ∏
+	UCO_Misc_AdditionalExp,		// ÊïëÈùñ
+	UCO_Misc_AdditionalGold,	// ÊïëÈùñ
 	UCO_Misc_IncMoveSpeed,
 	UCO_Misc_DecTagCooltime,
 
@@ -383,7 +386,8 @@ struct FUCOBoundInfo
 		: UnitedOptionId(InUCO)
 		, MappedItemOption(InMappedItemOption)
 		, MappedSkillOption(InMappedSkillOption)
-	{}
+	{
+	}
 private:
 	const EUnitedCombatOptions UnitedOptionId; // The key ID of this bound info.
 	// Not both of those mapped options are ensured to be valid. One of them might be unused (**_End)
@@ -396,8 +400,8 @@ public:
 };
 
 /* Define it just to place it at this header file.*/
-FORCEINLINE void INITIALIZE_UNITED_OPTION_MAPPING_BLOCK(TMap<EUnitedCombatOptions, FUCOBoundInfo>& InMappingTable, TMap<EItemOption, EUnitedCombatOptions>& InItemOptionMappingTable, 
-		TMap<ESkillOption, EUnitedCombatOptions>& InSkillMappingTable, TMap<EMercenarySkillOption, EUnitedCombatOptions>& InMercenarySkillMappingTable)
+FORCEINLINE void INITIALIZE_UNITED_OPTION_MAPPING_BLOCK(TMap<EUnitedCombatOptions, FUCOBoundInfo>& InMappingTable, TMap<EItemOption, EUnitedCombatOptions>& InItemOptionMappingTable,
+	TMap<ESkillOption, EUnitedCombatOptions>& InSkillMappingTable, TMap<EMercenarySkillOption, EUnitedCombatOptions>& InMercenarySkillMappingTable)
 {
 	InMappingTable.Empty(); // Could be called more than once for mistake..
 	InItemOptionMappingTable.Empty();
@@ -410,51 +414,51 @@ FORCEINLINE void INITIALIZE_UNITED_OPTION_MAPPING_BLOCK(TMap<EUnitedCombatOption
 	InMercenarySkillMappingTable.Add(MercenaryOption, UnitedOption);
 
 	// Any **_End member of BoundInfo means it is not mapped for that option. Implemented for only one option system.
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Offense_IncAttack,					EItemOption::EIO_Offense_IncAttack,				ESkillOption::ESO_End,							EMercenarySkillOption::EMSO_End );
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Offense_IncDamage,					EItemOption::EIO_Offense_IncDamage,				ESkillOption::ESO_IncAttackDamage,				EMercenarySkillOption::EMSO_IncAttackDamage); // ESO_IncAttackDamage can be also applied as active.
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Offense_IncNormalDamage,			EItemOption::EIO_Offense_IncNormalDamage,		ESkillOption::ESO_IncNormalDamage,				EMercenarySkillOption::EMSO_IncNormalDamage);
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Offense_IncCriticalDamage,			EItemOption::EIO_Offense_IncCriticalDamage,		ESkillOption::ESO_IncCriticalDamage,			EMercenarySkillOption::EMSO_IncCriticalDamage); // ESO_IncCriticalDamage can be also applied as active.
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Offense_IncCriticalRate,			EItemOption::EIO_Offense_IncCriticalRate,		ESkillOption::ESO_IncCriticalRate,				EMercenarySkillOption::EMSO_IncCriticalRate); // ESO_IncCriticalRate can be also applied as active.
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Offense_IncBossDamage,				EItemOption::EIO_Offense_IncBossDamage,			ESkillOption::ESO_IncAttackDamageToBoss,		EMercenarySkillOption::EMSO_IncAttackDamageToBoss); // ESO_IncAttackDamageToBoss can be also applied as active.
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Offense_IncAttackSpeed,				EItemOption::EIO_Offense_IncAttackSpeed,		ESkillOption::ESO_End,							EMercenarySkillOption::EMSO_End);
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Offense_IncAdditionalDamage,		EItemOption::EIO_Offense_IncAdditionalDamage,	ESkillOption::ESO_End,							EMercenarySkillOption::EMSO_End);
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Offense_IncAttackDamageToGladiator, EItemOption::EIO_End,							ESkillOption::ESO_IncAttackDamageToGladiator,	EMercenarySkillOption::EMSO_IncAttackDamageToGladiator);
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Offense_IncAttackDamageToAssassin,	EItemOption::EIO_End,							ESkillOption::ESO_IncAttackDamageToAssassin,	EMercenarySkillOption::EMSO_IncAttackDamageToAssassin);
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Offense_IncAttackDamageToWizard,	EItemOption::EIO_End,							ESkillOption::ESO_IncAttackDamageToWizard,		EMercenarySkillOption::EMSO_IncAttackDamageToWizard);
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Offense_IncAttackDamageToFighter,	EItemOption::EIO_End,							ESkillOption::ESO_IncAttackDamageToFighter,		EMercenarySkillOption::EMSO_IncAttackDamageToFighter);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Offense_IncAttack, EItemOption::EIO_Offense_IncAttack, ESkillOption::ESO_End, EMercenarySkillOption::EMSO_End);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Offense_IncDamage, EItemOption::EIO_Offense_IncDamage, ESkillOption::ESO_IncAttackDamage, EMercenarySkillOption::EMSO_IncAttackDamage); // ESO_IncAttackDamage can be also applied as active.
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Offense_IncNormalDamage, EItemOption::EIO_Offense_IncNormalDamage, ESkillOption::ESO_IncNormalDamage, EMercenarySkillOption::EMSO_IncNormalDamage);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Offense_IncCriticalDamage, EItemOption::EIO_Offense_IncCriticalDamage, ESkillOption::ESO_IncCriticalDamage, EMercenarySkillOption::EMSO_IncCriticalDamage); // ESO_IncCriticalDamage can be also applied as active.
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Offense_IncCriticalRate, EItemOption::EIO_Offense_IncCriticalRate, ESkillOption::ESO_IncCriticalRate, EMercenarySkillOption::EMSO_IncCriticalRate); // ESO_IncCriticalRate can be also applied as active.
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Offense_IncBossDamage, EItemOption::EIO_Offense_IncBossDamage, ESkillOption::ESO_IncAttackDamageToBoss, EMercenarySkillOption::EMSO_IncAttackDamageToBoss); // ESO_IncAttackDamageToBoss can be also applied as active.
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Offense_IncAttackSpeed, EItemOption::EIO_Offense_IncAttackSpeed, ESkillOption::ESO_End, EMercenarySkillOption::EMSO_End);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Offense_IncAdditionalDamage, EItemOption::EIO_Offense_IncAdditionalDamage, ESkillOption::ESO_End, EMercenarySkillOption::EMSO_End);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Offense_IncAttackDamageToGladiator, EItemOption::EIO_End, ESkillOption::ESO_IncAttackDamageToGladiator, EMercenarySkillOption::EMSO_IncAttackDamageToGladiator);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Offense_IncAttackDamageToAssassin, EItemOption::EIO_End, ESkillOption::ESO_IncAttackDamageToAssassin, EMercenarySkillOption::EMSO_IncAttackDamageToAssassin);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Offense_IncAttackDamageToWizard, EItemOption::EIO_End, ESkillOption::ESO_IncAttackDamageToWizard, EMercenarySkillOption::EMSO_IncAttackDamageToWizard);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Offense_IncAttackDamageToFighter, EItemOption::EIO_End, ESkillOption::ESO_IncAttackDamageToFighter, EMercenarySkillOption::EMSO_IncAttackDamageToFighter);
 	//ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Offense_IncDamageArea, EItemOption::EIO_End, ESkillOption::ESO_IncArea);
 
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Skill_IncSkillDamage,			EItemOption::EIO_Skill_IncSkillDamage,		ESkillOption::ESO_IncSkillDamage,	EMercenarySkillOption::EMSO_IncSkillDamage);
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Skill_DecSkillCooltime_General, EItemOption::EIO_Skill_DecSkillCooltime,	ESkillOption::ESO_DecCoolTime,		EMercenarySkillOption::EMSO_DecCoolTime); // ESO_DecCoolTime can be also applied as active.
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Skill_IncSkillDamage, EItemOption::EIO_Skill_IncSkillDamage, ESkillOption::ESO_IncSkillDamage, EMercenarySkillOption::EMSO_IncSkillDamage);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Skill_DecSkillCooltime_General, EItemOption::EIO_Skill_DecSkillCooltime, ESkillOption::ESO_DecCoolTime, EMercenarySkillOption::EMSO_DecCoolTime); // ESO_DecCoolTime can be also applied as active.
 	//ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Skill_DecSkillCooltime_Other, EItemOption::EIO_End, ESkillOption::ESO_DecCoolTimeOtherSkills); ESO_DecCoolTimeOtherSkills is purely active I guess..
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Skill_IncSkill1Damage,			EItemOption::EIO_Skill_IncSkill1Damage,		ESkillOption::ESO_End,				EMercenarySkillOption::EMSO_End);
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Skill_IncSkill2Damage,			EItemOption::EIO_Skill_IncSkill2Damage,		ESkillOption::ESO_End,				EMercenarySkillOption::EMSO_End);
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Skill_IncSkill3Damage,			EItemOption::EIO_Skill_IncSkill3Damage,		ESkillOption::ESO_End,				EMercenarySkillOption::EMSO_End);
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Skill_IncSkill5Damage,			EItemOption::EIO_Skill_IncSkill5Damage,		ESkillOption::ESO_End,				EMercenarySkillOption::EMSO_End);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Skill_IncSkill1Damage, EItemOption::EIO_Skill_IncSkill1Damage, ESkillOption::ESO_End, EMercenarySkillOption::EMSO_End);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Skill_IncSkill2Damage, EItemOption::EIO_Skill_IncSkill2Damage, ESkillOption::ESO_End, EMercenarySkillOption::EMSO_End);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Skill_IncSkill3Damage, EItemOption::EIO_Skill_IncSkill3Damage, ESkillOption::ESO_End, EMercenarySkillOption::EMSO_End);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Skill_IncSkill5Damage, EItemOption::EIO_Skill_IncSkill5Damage, ESkillOption::ESO_End, EMercenarySkillOption::EMSO_End);
 
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Health_IncHealth,				EItemOption::EIO_Health_IncHealth,				ESkillOption::ESO_End,		EMercenarySkillOption::EMSO_End);
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Health_IncMaxHP,				EItemOption::EIO_End,							ESkillOption::ESO_IncMaxHP, EMercenarySkillOption::EMSO_IncMaxHP);
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Health_ProbableHPAbsorption,	EItemOption::EIO_Health_ProbableHPAbsorption,	ESkillOption::ESO_End,		EMercenarySkillOption::EMSO_End);
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Health_ProbableRecoverHP,		EItemOption::EIO_Health_ProbableRecoverHP,		ESkillOption::ESO_End,		EMercenarySkillOption::EMSO_End);
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Health_PerSecRecoverHP,			EItemOption::EIO_Health_PerSecRecoverHP,		ESkillOption::ESO_End,		EMercenarySkillOption::EMSO_End);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Health_IncHealth, EItemOption::EIO_Health_IncHealth, ESkillOption::ESO_End, EMercenarySkillOption::EMSO_End);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Health_IncMaxHP, EItemOption::EIO_End, ESkillOption::ESO_IncMaxHP, EMercenarySkillOption::EMSO_IncMaxHP);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Health_ProbableHPAbsorption, EItemOption::EIO_Health_ProbableHPAbsorption, ESkillOption::ESO_End, EMercenarySkillOption::EMSO_End);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Health_ProbableRecoverHP, EItemOption::EIO_Health_ProbableRecoverHP, ESkillOption::ESO_End, EMercenarySkillOption::EMSO_End);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Health_PerSecRecoverHP, EItemOption::EIO_Health_PerSecRecoverHP, ESkillOption::ESO_End, EMercenarySkillOption::EMSO_End);
 	// HealHP could be ProbableRecoverHP or PerSecRecoverHP. Not implemented at this point.
 	//ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Health_HealHP, EItemOption::EIO_End, ESkillOption::ESO_HealHP);
 
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Defense_IncDefense,				EItemOption::EIO_Defense_IncDefense,				ESkillOption::ESO_End,								EMercenarySkillOption::EMSO_End);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Defense_IncDefense, EItemOption::EIO_Defense_IncDefense, ESkillOption::ESO_End, EMercenarySkillOption::EMSO_End);
 	// Here is an odd case. ItemOption DecAbnormalStateTime and SkillOption IncResistAbnormal is the same. While the naming is somewhat different.																		
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Defense_DecAbnormalStateTime,	EItemOption::EIO_Defense_DecAbnormalStateTime,		ESkillOption::ESO_IncResistAbnormal,				EMercenarySkillOption::EMSO_IncResistAbnormal);
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Defense_DecDamage,				EItemOption::EIO_Defense_DecDamage,					ESkillOption::ESO_DecUnderAttackDamage,				EMercenarySkillOption::EMSO_DecUnderAttackDamage);
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Defense_DecBossDamage,			EItemOption::EIO_Defense_DecBossDamage,				ESkillOption::ESO_End,								EMercenarySkillOption::EMSO_End);
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Defense_DecMeleeDamage,			EItemOption::EIO_Defense_DecMeleeDamage,			ESkillOption::ESO_DecUnderAttackMeleeDamage,		EMercenarySkillOption::EMSO_DecUnderAttackMeleeDamage);
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Defense_DecRangedDamage,		EItemOption::EIO_Defense_DecRangedDamage,			ESkillOption::ESO_DecUnderAttackRangeDamage,		EMercenarySkillOption::EMSO_DecUnderAttackRangeDamage);
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Defense_DecDamageByGladiator,	EItemOption::EIO_End,								ESkillOption::ESO_DecReceiveDamageByGladiator,		EMercenarySkillOption::EMSO_DecReceiveDamageByGladiator);
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Defense_DecDamageByAssassin,	EItemOption::EIO_End,								ESkillOption::ESO_DecReceiveDamageByAssassin,		EMercenarySkillOption::EMSO_DecReceiveDamageByAssassin);
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Defense_DecDamageByWizard,		EItemOption::EIO_End,								ESkillOption::ESO_DecReceiveDamageByWizard,			EMercenarySkillOption::EMSO_DecReceiveDamageByWizard);
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Defense_DecDamageByFighter,		EItemOption::EIO_End,								ESkillOption::ESO_DecReceiveDamageByFighter,		EMercenarySkillOption::EMSO_DecReceiveDamageByFighter);
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Defense_ResistCritical,			EItemOption::EIO_Defense_ResistCritical,			ESkillOption::ESO_End,								EMercenarySkillOption::EMSO_End);
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Defense_HealHPByCountAttack,	EItemOption::EIO_End,								ESkillOption::ESO_HealHPByCountAttack,				EMercenarySkillOption::EMSO_HealHPByCountAttack);
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Defense_DecAdditionalDamage,	EItemOption::EIO_Defense_DecAdditionalDamage,		ESkillOption::ESO_End,								EMercenarySkillOption::EMSO_End);
-	
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Defense_DecAbnormalStateTime, EItemOption::EIO_Defense_DecAbnormalStateTime, ESkillOption::ESO_IncResistAbnormal, EMercenarySkillOption::EMSO_IncResistAbnormal);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Defense_DecDamage, EItemOption::EIO_Defense_DecDamage, ESkillOption::ESO_DecUnderAttackDamage, EMercenarySkillOption::EMSO_DecUnderAttackDamage);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Defense_DecBossDamage, EItemOption::EIO_Defense_DecBossDamage, ESkillOption::ESO_End, EMercenarySkillOption::EMSO_End);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Defense_DecMeleeDamage, EItemOption::EIO_Defense_DecMeleeDamage, ESkillOption::ESO_DecUnderAttackMeleeDamage, EMercenarySkillOption::EMSO_DecUnderAttackMeleeDamage);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Defense_DecRangedDamage, EItemOption::EIO_Defense_DecRangedDamage, ESkillOption::ESO_DecUnderAttackRangeDamage, EMercenarySkillOption::EMSO_DecUnderAttackRangeDamage);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Defense_DecDamageByGladiator, EItemOption::EIO_End, ESkillOption::ESO_DecReceiveDamageByGladiator, EMercenarySkillOption::EMSO_DecReceiveDamageByGladiator);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Defense_DecDamageByAssassin, EItemOption::EIO_End, ESkillOption::ESO_DecReceiveDamageByAssassin, EMercenarySkillOption::EMSO_DecReceiveDamageByAssassin);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Defense_DecDamageByWizard, EItemOption::EIO_End, ESkillOption::ESO_DecReceiveDamageByWizard, EMercenarySkillOption::EMSO_DecReceiveDamageByWizard);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Defense_DecDamageByFighter, EItemOption::EIO_End, ESkillOption::ESO_DecReceiveDamageByFighter, EMercenarySkillOption::EMSO_DecReceiveDamageByFighter);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Defense_ResistCritical, EItemOption::EIO_Defense_ResistCritical, ESkillOption::ESO_End, EMercenarySkillOption::EMSO_End);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Defense_HealHPByCountAttack, EItemOption::EIO_End, ESkillOption::ESO_HealHPByCountAttack, EMercenarySkillOption::EMSO_HealHPByCountAttack);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Defense_DecAdditionalDamage, EItemOption::EIO_Defense_DecAdditionalDamage, ESkillOption::ESO_End, EMercenarySkillOption::EMSO_End);
+
 
 	/*
 	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Buff_IncProtectHPRateOnBuff, EItemOption::EIO_End, ESkillOption::ESO_IncProtectHPRateOnBuff);
@@ -471,36 +475,36 @@ FORCEINLINE void INITIALIZE_UNITED_OPTION_MAPPING_BLOCK(TMap<EUnitedCombatOption
 	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Buff_IncCriticalDamageOnBuff, EItemOption::EIO_End, ESkillOption::ESO_IncCriticalDamageOnBuff);
 	*/
 
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Misc_LastNormalAttackKnockbackRate, EItemOption::EIO_Misc_LastNormalAttackKnockbackRate,	ESkillOption::ESO_End,			  EMercenarySkillOption::EMSO_End);
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Misc_AdditionalExp,					EItemOption::EIO_Misc_AdditionalExp,					ESkillOption::ESO_End,			  EMercenarySkillOption::EMSO_End);
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Misc_AdditionalGold,				EItemOption::EIO_Misc_AdditionalGold,					ESkillOption::ESO_End,			  EMercenarySkillOption::EMSO_End);
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Misc_IncMoveSpeed,					EItemOption::EIO_Misc_IncMoveSpeed,						ESkillOption::ESO_IncMoveSpeed,   EMercenarySkillOption::EMSO_IncMoveSpeed);
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Misc_DecTagCooltime,				EItemOption::EIO_Misc_DecTagCooltime,					ESkillOption::ESO_End,			  EMercenarySkillOption::EMSO_End);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Misc_LastNormalAttackKnockbackRate, EItemOption::EIO_Misc_LastNormalAttackKnockbackRate, ESkillOption::ESO_End, EMercenarySkillOption::EMSO_End);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Misc_AdditionalExp, EItemOption::EIO_Misc_AdditionalExp, ESkillOption::ESO_End, EMercenarySkillOption::EMSO_End);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Misc_AdditionalGold, EItemOption::EIO_Misc_AdditionalGold, ESkillOption::ESO_End, EMercenarySkillOption::EMSO_End);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Misc_IncMoveSpeed, EItemOption::EIO_Misc_IncMoveSpeed, ESkillOption::ESO_IncMoveSpeed, EMercenarySkillOption::EMSO_IncMoveSpeed);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Misc_DecTagCooltime, EItemOption::EIO_Misc_DecTagCooltime, ESkillOption::ESO_End, EMercenarySkillOption::EMSO_End);
 
 	//*
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Tag_Offense_IncAttack,			EItemOption::EIO_Tag_Offense_IncAttack,			ESkillOption::ESO_End,  EMercenarySkillOption::EMSO_End);
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Tag_Defense_IncDefense,			EItemOption::EIO_Tag_Defense_IncDefense,		ESkillOption::ESO_End,	EMercenarySkillOption::EMSO_End);
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Tag_Health_IncHealth,			EItemOption::EIO_Tag_Health_IncHealth,			ESkillOption::ESO_End,	EMercenarySkillOption::EMSO_End);
-																																							 							
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_HeroTower_Offense_IncAttack,	EItemOption::EIO_HeroTower_Offense_IncAttack,	ESkillOption::ESO_End,	EMercenarySkillOption::EMSO_End);
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_HeroTower_Defense_IncDefense,	EItemOption::EIO_HeroTower_Defense_IncDefense,	ESkillOption::ESO_End,	EMercenarySkillOption::EMSO_End);
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_HeroTower_Health_IncHealth,		EItemOption::EIO_HeroTower_Health_IncHealth,	ESkillOption::ESO_End,	EMercenarySkillOption::EMSO_End);
-																																							 							
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Assault_Offense_IncAttack,		EItemOption::EIO_Assault_Offense_IncAttack,		ESkillOption::ESO_End,	EMercenarySkillOption::EMSO_End);
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Assault_Defense_IncDefense,		EItemOption::EIO_Assault_Defense_IncDefense,	ESkillOption::ESO_End,	EMercenarySkillOption::EMSO_End);
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Assault_Health_IncHealth,		EItemOption::EIO_Assault_Health_IncHealth,		ESkillOption::ESO_End,	EMercenarySkillOption::EMSO_End);
-																																							 							
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Raid_Offense_IncAttack,			EItemOption::EIO_Raid_Offense_IncAttack,		ESkillOption::ESO_End,	EMercenarySkillOption::EMSO_End);
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Raid_Defense_IncDefense,		EItemOption::EIO_Raid_Defense_IncDefense,		ESkillOption::ESO_End,	EMercenarySkillOption::EMSO_End);
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Raid_Health_IncHealth,			EItemOption::EIO_Raid_Health_IncHealth,			ESkillOption::ESO_End,	EMercenarySkillOption::EMSO_End);
-																																							 							
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_TeamMatch_Offense_IncAttack,	EItemOption::EIO_TeamMatch_Offense_IncAttack,	ESkillOption::ESO_End,	EMercenarySkillOption::EMSO_End);
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_TeamMatch_Defense_IncDefense,	EItemOption::EIO_TeamMatch_Defense_IncDefense,	ESkillOption::ESO_End,	EMercenarySkillOption::EMSO_End);
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_TeamMatch_Health_IncHealth,		EItemOption::EIO_TeamMatch_Health_IncHealth,	ESkillOption::ESO_End,	EMercenarySkillOption::EMSO_End);
-																																							 							
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Guild_Offense_IncAttack,		EItemOption::EIO_Guild_Offense_IncAttack,		ESkillOption::ESO_End,	EMercenarySkillOption::EMSO_End);
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Guild_Defense_IncDefense,		EItemOption::EIO_Guild_Defense_IncDefense,		ESkillOption::ESO_End,	EMercenarySkillOption::EMSO_End);
-	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Guild_Health_IncHealth,			EItemOption::EIO_Guild_Health_IncHealth,		ESkillOption::ESO_End,	EMercenarySkillOption::EMSO_End);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Tag_Offense_IncAttack, EItemOption::EIO_Tag_Offense_IncAttack, ESkillOption::ESO_End, EMercenarySkillOption::EMSO_End);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Tag_Defense_IncDefense, EItemOption::EIO_Tag_Defense_IncDefense, ESkillOption::ESO_End, EMercenarySkillOption::EMSO_End);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Tag_Health_IncHealth, EItemOption::EIO_Tag_Health_IncHealth, ESkillOption::ESO_End, EMercenarySkillOption::EMSO_End);
+
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_HeroTower_Offense_IncAttack, EItemOption::EIO_HeroTower_Offense_IncAttack, ESkillOption::ESO_End, EMercenarySkillOption::EMSO_End);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_HeroTower_Defense_IncDefense, EItemOption::EIO_HeroTower_Defense_IncDefense, ESkillOption::ESO_End, EMercenarySkillOption::EMSO_End);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_HeroTower_Health_IncHealth, EItemOption::EIO_HeroTower_Health_IncHealth, ESkillOption::ESO_End, EMercenarySkillOption::EMSO_End);
+
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Assault_Offense_IncAttack, EItemOption::EIO_Assault_Offense_IncAttack, ESkillOption::ESO_End, EMercenarySkillOption::EMSO_End);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Assault_Defense_IncDefense, EItemOption::EIO_Assault_Defense_IncDefense, ESkillOption::ESO_End, EMercenarySkillOption::EMSO_End);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Assault_Health_IncHealth, EItemOption::EIO_Assault_Health_IncHealth, ESkillOption::ESO_End, EMercenarySkillOption::EMSO_End);
+
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Raid_Offense_IncAttack, EItemOption::EIO_Raid_Offense_IncAttack, ESkillOption::ESO_End, EMercenarySkillOption::EMSO_End);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Raid_Defense_IncDefense, EItemOption::EIO_Raid_Defense_IncDefense, ESkillOption::ESO_End, EMercenarySkillOption::EMSO_End);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Raid_Health_IncHealth, EItemOption::EIO_Raid_Health_IncHealth, ESkillOption::ESO_End, EMercenarySkillOption::EMSO_End);
+
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_TeamMatch_Offense_IncAttack, EItemOption::EIO_TeamMatch_Offense_IncAttack, ESkillOption::ESO_End, EMercenarySkillOption::EMSO_End);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_TeamMatch_Defense_IncDefense, EItemOption::EIO_TeamMatch_Defense_IncDefense, ESkillOption::ESO_End, EMercenarySkillOption::EMSO_End);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_TeamMatch_Health_IncHealth, EItemOption::EIO_TeamMatch_Health_IncHealth, ESkillOption::ESO_End, EMercenarySkillOption::EMSO_End);
+
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Guild_Offense_IncAttack, EItemOption::EIO_Guild_Offense_IncAttack, ESkillOption::ESO_End, EMercenarySkillOption::EMSO_End);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Guild_Defense_IncDefense, EItemOption::EIO_Guild_Defense_IncDefense, ESkillOption::ESO_End, EMercenarySkillOption::EMSO_End);
+	ADD_UNITED_OPTION_MAPPING(EUnitedCombatOptions::UCO_Guild_Health_IncHealth, EItemOption::EIO_Guild_Health_IncHealth, ESkillOption::ESO_End, EMercenarySkillOption::EMSO_End);
 	//*/
 }
 
@@ -536,7 +540,7 @@ struct FItemOption
 
 	EItemOption OptionType;
 
-	/** Default ∞™¿∫  EOptionVariation::EOV_Incerease ¿Ã∏Á, ¥…∑¬ƒ°∞° ∞®º“«œ¥¬ ∆Ø∫∞«— ªÛ»≤ø°º≠∏∏ ¡¢±Ÿ«—¥Ÿ. */
+	/** Default ËîºÁØÆ  EOptionVariation::EOV_Incerease ÊçûÂì•, Áì∑‰ªøÊëπÂïä ÁöëÂÆ∂Á™çÁª∞ ÊºÇÂñäËåÑ ÊÉëÁÇî‰øäËæëÁà∂ Á´ãËæüËåÑ‰øÉ. */
 	EOptionVariation OptionVariationType;
 
 	/** How much effective the option will be. As its name implies, this could be the nominal value for display,
@@ -566,8 +570,8 @@ struct FSealOption
 };
 
 /**
-* ¿Ã ø…º«¿∫ ∞®º“ ¥…∑¬ƒ° ¿˚øÎ¿ª ¿ß«ÿ √ﬂ∞°µ«æ˙¿∏∏Á, ±‚¡∏ø° ¥…∑¬ƒ°µÈ¿∫ «’ªÍ¿ª TArray(float) ∏¶ ∞°¡ˆ∞Ì º¯¬˜¿˚¿∏∑Œ «’ªÍ«ÿ∞°∏Á ∞ËªÍ«ﬂ¿∏≥™
-* ∞®º“«ÿæﬂ «“ ∞ÊøÏø°¥¬ π›¥Î∑Œ ∞ËªÍ«ÿ¡÷±‚ ∞ËªÍøÎ¿∏∑Œ √ﬂ∞°
+* Êçû ÂèØËÆ∞ÁØÆ ÁöëÂÆ∂ Áì∑‰ªøÊëπ Âà©‰æ©Èòë Âõ∞Áß¶ Áú†ÂïäÁôªËèåÊ†èÂì•, ÊâÅÁ≤Æ‰øä Áì∑‰ªøÊëπÁî∏ÁØÆ Èí¶È≠ÇÈòë TArray(float) Áî´ ÂïäÁò§Áªä Èâ¥ÁûíÂà©Ê†èËÇ∫ Èí¶È≠ÇÁß¶ÂïäÂì• ÊãåÈ≠ÇÊ≤ÅÊ†èÂî±
+* ÁöëÂÆ∂Áß¶ÂÖ∑ ‰∏î ÁâàÂø´‰øäÁª∞ È¶ÜÊé™ËÇ∫ ÊãåÈ≠ÇÁß¶ÊûóÊâÅ ÊãåÈ≠Ç‰æ©Ê†èËÇ∫ Áú†Âïä
 */
 struct FOptionValue
 {
@@ -796,7 +800,7 @@ FORCEINLINE ECombatOptionApplyType GetCombatOptionApplyType(ESkillOption InOptio
 	case ESkillOption::ESO_DecCoolTime: // It might be OneMinusMultiply..
 	case ESkillOption::ESO_DecCoolTimeOtherSkills: // It might be OneMinusMultiply..
 		return ECombatOptionApplyType::ECOAT_Subtract_Value;
-	// Currently no Attack/Defense/Health simple Add options with ESkillOption, if so, put them as Add_Value.
+		// Currently no Attack/Defense/Health simple Add options with ESkillOption, if so, put them as Add_Value.
 	}
 	return ECombatOptionApplyType::ECOAT_Add_Percent;
 }
@@ -835,12 +839,12 @@ FORCEINLINE float GetEffectiveValueForOptionApplyType(ECombatOptionApplyType InO
 		{
 			return (1.0f - FMath::Clamp(InRawValue.RawOptionAmount * 0.01f, 0.0f, 1.0f));
 		}
-		else if(InRawValue.OptionVariationType == EOptionVariation::EOV_Decrease)
+		else if (InRawValue.OptionVariationType == EOptionVariation::EOV_Decrease)
 		{
 			return (1.0f + FMath::Clamp(InRawValue.RawOptionAmount * 0.01f, 0.0f, 1.0f));
 		}
 	}
-	else if(InOptionApplyType == ECombatOptionApplyType::ECOAT_Add_Percent)
+	else if (InOptionApplyType == ECombatOptionApplyType::ECOAT_Add_Percent)
 	{
 		// In the case of Add, the return value should be applied by addition.
 		return (InRawValue.RawOptionAmount * 0.01f);
@@ -875,12 +879,12 @@ FORCEINLINE float GetInitialValueOfCombatOptionApplyType(ECombatOptionApplyType 
 	return (InOptionApplyType == ECombatOptionApplyType::ECOAT_OneMinusMultiply) ? 1.0f : 0.0f;
 }
 
-/** Core of GetEffectiveOptionValueTempl - The final core 
+/** Core of GetEffectiveOptionValueTempl - The final core
  * The purpose of this function is to provides proper calculation by ECombatOptionApplyType */
 float GetEffectiveOptionValueInternal(ECombatOptionApplyType InOptionApplyType,
 	TArray<FOptionValue>& InSourceValues, // Raw (displayed) values if bRawValueSource is true, effective scaled values if false
 	bool bRawValueSource = true,// Designate whether InSourceValues are raw values or effective scaled values.
-	bool bClampValue = false // ∞™ø° √÷¥Î √÷º“∞™ ∫∏¡§¿Ã µÈæÓ∞£¥Ÿ.
+	bool bClampValue = false // Ëîº‰øä Âº•Êé™ Âº•ÂÆ∂Ëîº ÁÑäÊ≤•Êçû Áî∏Áª¢ÂüÉ‰øÉ.
 );
 
 

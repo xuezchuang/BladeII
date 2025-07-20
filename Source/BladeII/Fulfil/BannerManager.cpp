@@ -1,4 +1,4 @@
-
+ï»¿
 #include "BannerManager.h"
 
 #include "BladeIIGameImpl.h"
@@ -13,10 +13,10 @@ UBannerManager::UBannerManager(const FObjectInitializer& ObjectInitializer)
 void UBannerManager::SetLobbyBannerImage(UTexture2DDynamic* tex, int32 idx)
 {
 	if (tex)
-	{ // ÀÌ UBannerManager °¡ RootSet ÀÎ ÀÌ»ó ¿©±â¿¡ UPROPERTY ·Î ¿¬°áµÇ°í TransientPackage ¸¦ Outer ·Î ÇÑ tex ¿ÀºêÁ§Æ®´Â GC µÇÁö ¾Ê´Â´Ù.
-		// ±×·¯³ª ÀÇ¹Ì»ó ¸íÈ®È÷ ÇÏ±â À§ÇØ AddToRoot ¸¦ ÄÝÇÔ.
-		// »çÀÌÁî°¡ Å©Áö ¾ÊÀ» °ÍÀÌ°í, ¸Þ¸ð¸®¿¡ º¸Á¸ÇØ µÎÁö ¾ÊÀ¸¸é ¸Å¹ø ·Îºñ ¸ÞÀÎÀ¸·Î °¥ ¶§¸¶´Ù ´Ù½Ã ´Ù¿î·Îµå¸¦ ÇØ¾ß ÇØ¼­ IOS ¿¡¼­µµ RootSet ¿¡ ³ÖÀ» ÇÊ¿ä°¡ ÀÖÀ» °ÍÀÌ´Ù.
-		// ¸¸ÀÏ ¾Æ´Ñ °æ¿ì°¡ ¹ß»ýÇÏ¸é ¿©±â ÅØ½ºÃÄ °ü¸®°¡ Á» µé¾î°¡¾ß.
+	{ // æž UBannerManager å•Š RootSet ç‰¢ æžæƒ‘ å’¯æ‰ä¿Š UPROPERTY è‚º æ¥·æ¬ç™»ç»Š TransientPackage ç”« Outer è‚º èŒ„ tex å·å®ç’ƒé£˜ç»° GC ç™»ç˜¤ è‡¼ç»°ä¿ƒ.
+		// å¼ŠçŸ¾å”± ç‹¼å›ºæƒ‘ ç–™çŠ¬æ´’ çªæ‰ å›°ç§¦ AddToRoot ç”« å¦®çªƒ.
+		// è¤æžä»¤å•Š å†œç˜¤ è‡¼é˜‘ å·´æžç»Š, çš‹è‘›åºœä¿Š ç„Šç²®ç§¦ æ»´ç˜¤ è‡¼æ æ æ¦‚é”… è‚ºåŽš çš‹ç‰¢æ è‚º å“Ž é”­ä»˜ä¿ƒ ä¿ƒçŸ« ä¿ƒæ¬¾è‚ºé›ç”« ç§¦å…· ç§¦è¾‘ IOS ä¿Šè¾‘æ¡£ RootSet ä¿Š æŒé˜‘ éž˜å¤¸å•Š ä¹é˜‘ å·´æžä¿ƒ.
+		// çˆ¶è€ é…’å›± ç‰ˆå¿«å•Š æƒ¯ç§¯çªæ å’¯æ‰ å’†èƒ¶åªš åŒ…åºœå•Š ç²± ç”¸ç»¢å•Šå…·.
 		tex->AddToRoot();
 		LobbyBannerImages.Add(idx, tex);
 	}

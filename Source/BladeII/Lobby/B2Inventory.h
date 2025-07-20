@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -13,7 +13,7 @@
 
 const int32 MAX_ITEM_INTRINSIC_OPTION = 4;
 const int32 MAX_ITEM_RANDOM_OPTION = 4;
-const int32 MAX_ITEM_QUALITY = 5;	//1: ÀÏ¹İ, 2: Áß±Ş, 3: »ó±Ş, 4: ÃÖ»ó±Ş, 5: Æ¯±Ş
+const int32 MAX_ITEM_QUALITY = 5;	//1: è€é¦†, 2: åé­, 3: æƒ‘é­, 4: å¼¥æƒ‘é­, 5: æ¼‚é­
 const int32 MAX_ITEM_SET_EFFECT = 3;
 
 

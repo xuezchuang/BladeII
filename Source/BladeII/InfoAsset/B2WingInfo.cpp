@@ -1,10 +1,12 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2WingInfo.h"
 //#include "B2Airport.h"
 
 #include "FB2ErrorMessage.h"
+#include "Materials/MaterialInterface.h"
+#include "Engine/SkeletalMesh.h"
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -26,8 +28,8 @@ void FSingleWingInfoData::EditorLoadAllTAsset()
 	//	return;
 	//}
 
-	//// TAsset À» ¿¡µğÅÍ¿¡¼­ ·Îµù ¾È ÇØ ³õÀ» ½Ã redirector Ã³¸®°¡ Àß¸øµÉ ¼ö ÀÖ¾î¼­.. DataTable ¾Æ´Ï¸é ±¦ÂúÀ» °Å °°Áö¸¸ ÀÚÀßÇÑ ¸®¼Ò½ºµéÀº ·ÎµùÇØÁØ´Ù.
-	//// ·¹ÆÛ·±½º Ä³½Ìµµ ¾øÀÌ ¾µ¸ğ°¡ ÀÖ´ÂÁö ¸ğ¸£°Ú´Âµ¥ ¿¡µğÅÍ¿¡¼± ¾µ¸ğ ÀÖ¾ú´ø °Å °°À½. 
+	//// TAsset é˜‘ ä¿Šå¼ç£ä¿Šè¾‘ è‚ºçˆ¹ æ•‘ ç§¦ åˆé˜‘ çŸ« redirector è´¸åºœå•Š è‚‹ç»™çª è ä¹ç»¢è¾‘.. DataTable é…’èªæ å®æ»¡é˜‘ èŠ­ éç˜¤çˆ¶ ç£Šè‚‹èŒ„ åºœå®¶èƒ¶ç”¸ç¯® è‚ºçˆ¹ç§¦éœ–ä¿ƒ.
+	//// é¥­æ¬ºç¹èƒ¶ æŸæ•™æ¡£ ç»æ é•œè‘›å•Š ä¹ç»°ç˜¤ è‘›ç¦æ‘†ç»°å• ä¿Šå¼ç£ä¿Šæ€¥ é•œè‘› ä¹èŒå¸¦ èŠ­ éæ¾œ. 
 
 	//WingMesh.LoadSynchronous();
 	//MtrlOverride.LoadSynchronous();
@@ -53,8 +55,8 @@ void FWingPropOptionIconSetup::EditorLoadAllTAsset()
 		return;
 	}
 
-	// TAsset À» ¿¡µğÅÍ¿¡¼­ ·Îµù ¾È ÇØ ³õÀ» ½Ã redirector Ã³¸®°¡ Àß¸øµÉ ¼ö ÀÖ¾î¼­.. DataTable ¾Æ´Ï¸é ±¦ÂúÀ» °Å °°Áö¸¸ ÀÚÀßÇÑ ¸®¼Ò½ºµéÀº ·ÎµùÇØÁØ´Ù.
-	// ·¹ÆÛ·±½º Ä³½Ìµµ ¾øÀÌ ¾µ¸ğ°¡ ÀÖ´ÂÁö ¸ğ¸£°Ú´Âµ¥ ¿¡µğÅÍ¿¡¼± ¾µ¸ğ ÀÖ¾ú´ø °Å °°À½. 
+	// TAsset é˜‘ ä¿Šå¼ç£ä¿Šè¾‘ è‚ºçˆ¹ æ•‘ ç§¦ åˆé˜‘ çŸ« redirector è´¸åºœå•Š è‚‹ç»™çª è ä¹ç»¢è¾‘.. DataTable é…’èªæ å®æ»¡é˜‘ èŠ­ éç˜¤çˆ¶ ç£Šè‚‹èŒ„ åºœå®¶èƒ¶ç”¸ç¯® è‚ºçˆ¹ç§¦éœ–ä¿ƒ.
+	// é¥­æ¬ºç¹èƒ¶ æŸæ•™æ¡£ ç»æ é•œè‘›å•Š ä¹ç»°ç˜¤ è‘›ç¦æ‘†ç»°å• ä¿Šå¼ç£ä¿Šæ€¥ é•œè‘› ä¹èŒå¸¦ èŠ­ éæ¾œ. 
 
 	IconMtrl.LoadSynchronous();
 }
@@ -93,17 +95,17 @@ TArray<FSingleWingInfoData>* UB2WingInfo::GetMainInfoArrayPtrForChar(EPCClass In
 
 FSingleWingInfoData* UB2WingInfo::GetInfoData(const FSingleWingInfoID& InID)
 {
-//	// ¿©±â¼­´Â MAX_WING_EVOLUTION_GRADE_UNOFFICIAL ±îÁö Çã¿ëÀ» ÇÑ´Ù. °ÔÀÓ ½Ã½ºÅÛ »óÀ¸·Î´Â Çã¿ë ¾ÈµÇ´õ¶óµµ ¸®¼Ò½º Â÷¿ø¿¡¼­´Â ¼¼ÆÃ ¹× È®ÀÎÀÌ °¡´ÉÇØ¾ß.
+//	// å’¯æ‰è¾‘ç»° MAX_WING_EVOLUTION_GRADE_UNOFFICIAL é³–ç˜¤ å€¾ä¾©é˜‘ èŒ„ä¿ƒ. éœ¸çƒ™ çŸ«èƒ¶è¢ æƒ‘æ è‚ºç»° å€¾ä¾© æ•‘ç™»æ­¹æ‰¼æ¡£ åºœå®¶èƒ¶ ç’ç›”ä¿Šè¾‘ç»° æŠ€æ³¼ æ£º çŠ¬ç‰¢æ å•Šç“·ç§¦å…·.
 //	if (InID.PCClassEnum != EPCClass::EPC_End && InID.EvolutionGrade >= MIN_WING_EVOLUTION_GRADE && InID.EvolutionGrade <= MAX_WING_EVOLUTION_GRADE_UNOFFICIAL)
 //	{
 //		TArray<FSingleWingInfoData>* MainInfoDataOfClass = GetMainInfoArrayPtrForChar(InID.PCClassEnum);
 //		if (MainInfoDataOfClass && MainInfoDataOfClass->Num() > 0)
 //		{ 
-//			int32 ArrayIndexOfGrade = InID.EvolutionGrade - 1; // ´ë·« ÀÌ·¸°Ô grade ¶û index ¸ÂÃç¼­ ¼¼ÆÃÀ» ÀÇµµ.
+//			int32 ArrayIndexOfGrade = InID.EvolutionGrade - 1; // æªå¸† æçŠ¯éœ¸ grade å°” index å˜è‹—è¾‘ æŠ€æ³¼é˜‘ ç‹¼æ¡£.
 //			if (MainInfoDataOfClass->IsValidIndex(ArrayIndexOfGrade))
 //			{
 //				FSingleWingInfoData& WantedDataSet = (*MainInfoDataOfClass)[ArrayIndexOfGrade];
-//				checkSlow(WantedDataSet.MyID == InID); // Ã³À½ºÎÅÍ iteration ÇÏ¸é¼­ ¸Â´Â ID ³ª¿Ã ¶§ ¸®ÅÏÇÏµµ·Ï ÇÒ ¼öµµ ÀÖ´Ù.
+//				checkSlow(WantedDataSet.MyID == InID); // è´¸æ¾œä½•ç£ iteration çªæè¾‘ å˜ç»° ID å”±æ£µ é”­ åºœç•”çªæ¡£åºŸ ä¸” èæ¡£ ä¹ä¿ƒ.
 //				return &WantedDataSet;
 //			}
 //		}
@@ -111,7 +113,7 @@ FSingleWingInfoData* UB2WingInfo::GetInfoData(const FSingleWingInfoID& InID)
 //
 //#if WITH_EDITOR && !PLATFORM_MAC
 //	FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-//			FString::Printf(TEXT("WingInfo ¿¡¼­ ID PC %d Evol %d ÀÇ Ç×¸ñÀ» Ã£Áö ¸øÇÔ. ÄÄÇ»ÅÍ°¡ °ğ Æø¹ßÇÑ´Ù."), (int32)InID.PCClassEnum, InID.EvolutionGrade)
+//			FString::Printf(TEXT("WingInfo ä¿Šè¾‘ ID PC %d Evol %d ç‹¼ äº²æ ¼é˜‘ èŒ«ç˜¤ ç»™çªƒ. å“ªè…”ç£å•Š æ¢† æ°”æƒ¯èŒ„ä¿ƒ."), (int32)InID.PCClassEnum, InID.EvolutionGrade)
 //			));
 //#endif
 	return NULL;
@@ -180,13 +182,13 @@ void UB2WingInfo::CheckInfoDataIntegrity()
 //	int32 SameIDCount = 0;
 //
 //#if !PLATFORM_MAC
-//	FString WarnMsgDupIDSetting = TEXT("WingInfo ¿¡¼­ Áßº¹µÈ ID ¼¼ÆÃ ¹ß°ß\n\n");
-//	FString RemovedNonAllowedSetupMsg = TEXT("´ÙÀ½ Çã¿ëµÇÁö ¾Ê´Â ¼Â¾÷À» Á¦°Å\n\n");
+//	FString WarnMsgDupIDSetting = TEXT("WingInfo ä¿Šè¾‘ åæ±—ç­‰ ID æŠ€æ³¼ æƒ¯æ–‘\n\n");
+//	FString RemovedNonAllowedSetupMsg = TEXT("ä¿ƒæ¾œ å€¾ä¾©ç™»ç˜¤ è‡¼ç»° æ‚¸è¯€é˜‘ åŠ›èŠ­\n\n");
 //#endif
 //
 //	int32 NonAllowedSetupCount = 0;
 //	
-//	// Ä³¸¯ÅÍ º° MainInfoArray ´Â Áßº¹µÈ ¼¼ÆÃ Ã¼Å© ´ë½Å °Á ID ¸¦ ÀÚµ¿À¸·Î ¸ÂÃçÁÖ´Â °É·Î.
+//	// æŸè…ç£ å–Š MainInfoArray ç»° åæ±—ç­‰ æŠ€æ³¼ çœ‰å†œ æªè„š å‚² ID ç”« ç£Šæ‚¼æ è‚º å˜è‹—æ—ç»° å§è‚º.
 //
 //	for (int32 PCI = 0; PCI < GetMaxPCClassNum(); ++PCI)
 //	{
@@ -202,12 +204,12 @@ void UB2WingInfo::CheckInfoDataIntegrity()
 //
 //				if (ThisMainInfoData.MyID.EvolutionGrade < 7 && ThisMainInfoData.AttachEffectInfoArray.Num() > 0)
 //				{
-//					// 7µî±Ş ¹Ì¸¸¿¡¼­´Â Çã¿ë ¾ÈÇÔ. ½Ç¼ö ¹æÁö Â÷¿ø.
+//					// 7æ®¿é­ å›ºçˆ¶ä¿Šè¾‘ç»° å€¾ä¾© æ•‘çªƒ. è§’è è§„ç˜¤ ç’ç›”.
 //					ThisMainInfoData.AttachEffectInfoArray.Empty();
 //
 //					++NonAllowedSetupCount;
 //#if !PLATFORM_MAC
-//					RemovedNonAllowedSetupMsg += FString::Printf(TEXT("%d. %d µî±Ş¿¡¼­ÀÇ AttachEffectInfo ¼¼ÆÃ\n"), NonAllowedSetupCount, ThisMainInfoData.MyID.EvolutionGrade);
+//					RemovedNonAllowedSetupMsg += FString::Printf(TEXT("%d. %d æ®¿é­ä¿Šè¾‘ç‹¼ AttachEffectInfo æŠ€æ³¼\n"), NonAllowedSetupCount, ThisMainInfoData.MyID.EvolutionGrade);
 //#endif
 //				}
 //			}
@@ -234,7 +236,7 @@ void UB2WingInfo::CheckInfoDataIntegrity()
 //	if (SameIDCount > 0)
 //	{
 //#if !PLATFORM_MAC
-//		WarnMsgDupIDSetting += TEXT("\nÄÄÇ»ÅÍ°¡ °ğ Æø¹ßÇÑ´Ù.");
+//		WarnMsgDupIDSetting += TEXT("\nå“ªè…”ç£å•Š æ¢† æ°”æƒ¯èŒ„ä¿ƒ.");
 //		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(WarnMsgDupIDSetting));
 //#endif
 //	}

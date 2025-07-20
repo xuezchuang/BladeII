@@ -1,4 +1,4 @@
-#include "B2UIChatMessage.h"
+ï»¿#include "B2UIChatMessage.h"
 #include "B2UIManager.h"
 #include "B2Chatting.h"
 #include "B2UIGuildMark.h"
@@ -25,7 +25,7 @@ void UB2UIChatMessage::CacheAssets()
 	GET_SLOT(UB2Button, BTN_UserInfoPopup);
 	if (BTN_UserInfoPopup.IsValid())
 	{
-		BTN_UserInfoPopup->SetVisibility(ESlateVisibility::HitTestInvisible); // Ã¤ÆÃ ÆÐ³Î ½ºÅ©·Ñ¹Ú½º ÇÚµé¸µÀ» À§ÇØ ¹öÆ°Àº HitTestInvisible ·Î
+		BTN_UserInfoPopup->SetVisibility(ESlateVisibility::HitTestInvisible); // ç›²æ³¼ è©æ¾„ èƒ¶å†œè´¹å† èƒ¶ å‹¤ç”¸å‚…é˜‘ å›°ç§¦ æ»šç“¢ç¯® HitTestInvisible è‚º
 	}
 
 	GET_SLOT(UTextBlock, TB_GuildName);
@@ -42,22 +42,22 @@ void UB2UIChatMessage::UpdateStaticText()
 
 void UB2UIChatMessage::BindDelegates()
 {
-	// Ã¤ÆÃ ÆÐ³Î ½ºÅ©·Ñ ÇÚµé¸µÀ» À§ÇØ ¹öÆ° Å¬¸¯ Ã³¸®´Â µû·Î..
+	// ç›²æ³¼ è©æ¾„ èƒ¶å†œè´¹ å‹¤ç”¸å‚…é˜‘ å›°ç§¦ æ»šç“¢ åŠªè… è´¸åºœç»° è¶è‚º..
 	//BIND_CLICK_FUNC_TO_BTN(BTN_UserInfoPopup, &UB2UIChatMessage::OnClickUserInfoPopup);
 }
 
 void UB2UIChatMessage::OnClickedSenderBTNArea()
-{ // ManualScrollBox ±â´ÉÀÇ ÀÏºÎ·Î ºÒ¸®´Â ÀÎÅÍÆäÀÌ½º
+{ // ManualScrollBox æ‰ç“·ç‹¼ è€ä½•è‚º é˜‚åºœç»° ç‰¢ç£å…¶æžèƒ¶
 	Super::OnClickedSenderBTNArea();
 
-	OnClickUserInfoPopup();// ½ÇÁ¦ Å¬¸¯ ÇÚµé¸µ
+	OnClickUserInfoPopup();// è§’åŠ› åŠªè… å‹¤ç”¸å‚…
 }
 void UB2UIChatMessage::OnPressedSenderBTNArea()
-{// ManualScrollBox ±â´ÉÀÇ ÀÏºÎ·Î ºÒ¸®´Â ÀÎÅÍÆäÀÌ½º
+{// ManualScrollBox æ‰ç“·ç‹¼ è€ä½•è‚º é˜‚åºœç»° ç‰¢ç£å…¶æžèƒ¶
 	Super::OnPressedSenderBTNArea();
 }
 void UB2UIChatMessage::OnReleasedSenderBTNArea()
-{// ManualScrollBox ±â´ÉÀÇ ÀÏºÎ·Î ºÒ¸®´Â ÀÎÅÍÆäÀÌ½º
+{// ManualScrollBox æ‰ç“·ç‹¼ è€ä½•è‚º é˜‚åºœç»° ç‰¢ç£å…¶æžèƒ¶
 	Super::OnReleasedSenderBTNArea();
 }
 
@@ -98,7 +98,7 @@ void UB2UIChatMessage::SetChatMessageInfo(const FB2ChatMessage& InMessageInfo)
 	
 	if (TB_UserName.IsValid())
 	{
-		// ChatType ¿¡ µû¶ó¼­ Á¤ÇØÁø ÀÌ¸§À» ³Ö°Å³ª.. ³»Áö´Â SendUserNick ¿¡ ±×°Ô µé¾î°¡°Å³ª..?
+		// ChatType ä¿Š è¶æ‰¼è¾‘ æ²¥ç§¦æŸ³ æžæŠšé˜‘ æŒèŠ­å”±.. éƒ´ç˜¤ç»° SendUserNick ä¿Š å¼Šéœ¸ ç”¸ç»¢å•ŠèŠ­å”±..?
 		if (CachedMessageType == EB2ChatType::Notice || CachedMessageType == EB2ChatType::GuildNotice)
 		{
 			TB_UserName->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Chatting_MessageHeader_PublicNoti")));
@@ -132,7 +132,7 @@ void UB2UIChatMessage::UpdateMessageTime()
 			TB_ElapsedTime->SetText(GetElapsedTime(Span));
 		}
 		else
-		{	// ±æµå ¸Þ¼¼ÁöÀÏ °æ¿ì ½Ã°£ °è»êÀ» ´Ù¸£°Ô ÇÑ´Ù.
+		{	// è¾¨é› çš‹æŠ€ç˜¤è€ ç‰ˆå¿« çŸ«åŸƒ æ‹Œé­‚é˜‘ ä¿ƒç¦éœ¸ èŒ„ä¿ƒ.
 			FTimespan RemainTime = UB2GameInstance::GetUTCNow() - FDateTime::FromUnixTimestamp(CachedMessageTime / 1000);
 			TB_ElapsedTime->SetText(GetElapsedTime(RemainTime));
 		}

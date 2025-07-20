@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -39,7 +39,7 @@ enum B2ClientLogLevel
 #define B2LOGMANAGER_ERROR(Logger, Format, ...)
 #define B2LOGMANAGER_BLANK(Logger)
 #else
-//¿ø·¡ logger·Î Á¤ÀÇ ÇÏ·Á ÇÏ¿´À¸³ª À¯´ÏÆ¼ºôµå Æ¯¼º»ó ÆÄÀÏÀ» ÇÕÄ¡´Â °úÁ¤¿¡¼­ ÀçÁ¤ÀÇ°¡ µÇ´Â ¹®Á¦°¡ ÀÖ¾î µÚ¿¡ ÀÌ¸§À» ºÙÀÓ
+//ç›”è´° loggerè‚º æ²¥ç‹¼ çªå¦¨ çªçœ‹æ å”± èœ¡èªèå‘¼é› æ¼‚å·±æƒ‘ é¢‡è€é˜‘ é’¦æ‘¹ç»° è‹æ²¥ä¿Šè¾‘ çŠæ²¥ç‹¼å•Š ç™»ç»° å·©åŠ›å•Š ä¹ç»¢ ç¬¬ä¿Š ææŠšé˜‘ å˜¿çƒ™
 #define B2GetLogger(NAME) static auto Logger##NAME = B2Logger::B2LogManager::GetLogger(#NAME);
 
 #define B2LOGMANAGER_TRACE(Logger, Format, ...) \

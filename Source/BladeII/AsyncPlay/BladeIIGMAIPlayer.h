@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "BladeIITMAIPlayer.h"
 #include "B2GuildGameMode.h"

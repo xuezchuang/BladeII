@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 // Project BladeII, Action Square
 
 #pragma once
@@ -237,9 +237,9 @@ protected:
 	float ManualScrollBoxSensitivity;
 
 	//================================================================================
-	//[@AKI, 170330] ¹Ù·Î°¡±â ÅøÆÁ °ü·ÃÇÏ¿© ENum°ªÀ¸·Î ¾î¶² Çàµ¿À» ÇÒÁö °áÁ¤ÇÏ±â À§ÇØ ¸¸µë.
-	//¿ø·¡´Â B2ButtonGoodInfoToolTip¿¡ ÀÖ¾úÀ¸³ª ±× ENum°ªÀ» °¡Á®¿À´Âµ¥ ³Ê¹« Depth°¡ ÀÖ¾î ÀÌ À§Ä¡·Î ¹Ù²Ş
-	//ÃßÈÄ ´õ ÁÁÀº °÷ÀÌ ÀÖ´Ù¸é ±×°÷À¸·Î º¸³¾ °Í ÀÓ ¶Ç´Â º¸³»ÁÖ¼¼¿ä.
+	//[@AKI, 170330] ë°”ë¡œê°€ê¸° íˆ´íŒ ê´€ë ¨í•˜ì—¬ ENumê°’ìœ¼ë¡œ ì–´ë–¤ í–‰ë™ì„ í• ì§€ ê²°ì •í•˜ê¸° ìœ„í•´ ë§Œë“¬.
+	//ì›ë˜ëŠ” B2ButtonGoodInfoToolTipì— ìˆì—ˆìœ¼ë‚˜ ê·¸ ENumê°’ì„ ê°€ì ¸ì˜¤ëŠ”ë° ë„ˆë¬´ Depthê°€ ìˆì–´ ì´ ìœ„ì¹˜ë¡œ ë°”ê¿ˆ
+	//ì¶”í›„ ë” ì¢‹ì€ ê³³ì´ ìˆë‹¤ë©´ ê·¸ê³³ìœ¼ë¡œ ë³´ë‚¼ ê²ƒ ì„ ë˜ëŠ” ë³´ë‚´ì£¼ì„¸ìš”.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BladeII Popup Type")
 	EGoodsInfoPopupType GoodsPopupType;
 
@@ -298,7 +298,7 @@ public:
 	TWeakObjectPtr<UWidgetAnimation> GetAnimation(const UObject* OuterObject, const FName& animName);
 	UWidgetAnimation*				 GetAnimation(const FName& animName);
 
-	//[@AKI, 170411] ¹öÆ°¿¡¼­ »ç¿ëÇÏ±â À§ÇØ ¸¸µç ¸Ş¼Òµå
+	//[@AKI, 170411] ë²„íŠ¼ì—ì„œ ì‚¬ìš©í•˜ê¸° ìœ„í•´ ë§Œë“  ë©”ì†Œë“œ
 	//EGoodsInfoPopupType GetGoodsPopupType() const { return GoodsPopupType; };
 
 	UFUNCTION(BlueprintCallable, Category = "BladeIIGame", DisplayName = "GetTimeTextFromSecond")

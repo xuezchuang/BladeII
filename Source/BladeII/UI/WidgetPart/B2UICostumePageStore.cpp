@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UICostumePageStore.h"
 #include "B2UICostumeStoreItemSlot.h"
 #include "B2ScrollBox.h"
@@ -22,7 +22,7 @@ void UB2UICostumePageStore::Init()
 {
 	Super::Init();
 
-	//¿ÀÇÂ¶§¸¶´Ù? init¸¶´Ù?
+	//å·é”¹é”­ä»˜ä¿ƒ? initä»˜ä¿ƒ?
 	data_trader::Retailer::GetInstance().RequestGetGeneralShop(false);
 }
 UMaterialInstance * UB2UICostumePageStore::GetProductIcon(int32 PackageID, int32 OptionalItemId)
@@ -237,7 +237,7 @@ void UB2UICostumePageStore::ProcessPurchase(int32 ProductID)
 //	
 //	StoreProductID = INDEX_NONE;
 //
-//	//ÄÚ½ºÆ¬ ÀÎº¥ °³¼ö Á¦ÇÑ
+//	//å†…èƒ¶ç‰‡ ç‰¢äº¥ ä¿ºè åŠ›èŒ„
 //	AB2LobbyGameMode* LobbyGM = Cast<AB2LobbyGameMode>(UGameplayStatics::GetGameMode(GetOwningPlayer()));
 //	auto* CachedInventory = LobbyGM ? LobbyGM->GetLobbyInventory() : NULL;
 //	if (CachedInventory)
@@ -499,7 +499,7 @@ void UB2UICostumePageStore::RefreshPage()
 		SlotIndex += 1;
 
 	}
-	//±×³É ¾Æ¹«°Å³ª Ã¤¿ö¼­ Ä­¸ÂÃã...
+	//å¼Šæˆ é…’å…¬èŠ­å”± ç›²å†µè¾‘ æ²«å˜å‹‰...
 	while (++count < RowSlotCount)
 	{
 		UB2UIWidget* DummyWidget = CreateWidget<UB2UIWidget>(GetWorld());
@@ -560,7 +560,7 @@ void UB2UICostumePageStore::AddDevSlot(int32 AddCount)
 			UniformGridSlot->SetColumn(CurrentCount % RowSlotCount);
 		}
 	}
-	//±×³É ¾Æ¹«°Å³ª Ã¤¿ö¼­ Ä­¸ÂÃã...
+	//å¼Šæˆ é…’å…¬èŠ­å”± ç›²å†µè¾‘ æ²«å˜å‹‰...
 	while (++CurrentCount < RowSlotCount)
 	{
 		UB2UIWidget* DummyWidget = CreateWidget<UB2UIWidget>(GetWorld());

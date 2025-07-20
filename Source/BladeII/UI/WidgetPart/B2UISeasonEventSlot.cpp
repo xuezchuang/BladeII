@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UISeasonEventSlot.h"
 
@@ -75,7 +75,7 @@ void UB2UISeasonEventSlot::UpdateStaticText()
 	if (TB_GotoLink.IsValid())
 		TB_GotoLink->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Mission_Link")));
 
-	//if (TB_CompleteReward.IsValid())	//ÇÑ±Û, ¿µ¾î ¸ğµÎ completeÀÎµ¥...
+	//if (TB_CompleteReward.IsValid())	//èŒ„è‡‚, åº·ç»¢ è‘›æ»´ completeç‰¢å•...
 	//	TB_CompleteReward->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("")));
 }
 
@@ -100,7 +100,7 @@ void UB2UISeasonEventSlot::OnClickBTN_Link()
 
 bool UB2UISeasonEventSlot::CheckDayMainMission()
 {
-	//Áö±İÀº ÀÎµ¦½º°¡ 1ÀÌ¸é ¸ŞÀÎ¹Ì¼Ç Ãë±Ş
+	//ç˜¤é™›ç¯® ç‰¢éƒ¸èƒ¶å•Š 1ææ çš‹ç‰¢å›ºè®° ç§’é­
 	const int32 iDayMainMission = 1;
 
 	if (fSeasonEventSlotInfo.RewardInfo.index == iDayMainMission)

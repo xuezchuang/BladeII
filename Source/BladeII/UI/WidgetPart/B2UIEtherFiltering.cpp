@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIEtherFiltering.h"
 #include "B2UIEtherFilteringSlot.h"
@@ -22,19 +22,19 @@ void UB2UIEtherFiltering::Init()
 		Types = StaticFindEtherInfoTable()->GetTypes();
 
 		SlotInfos.SetNum(Types.Num() + 1);
-		SlotInfo All; // ¸ğµÎ º¸±â´Â Á÷Á¢ ³Ö¾îÁÜ
+		SlotInfo All; // è‘›æ»´ ç„Šæ‰ç»° æµç«‹ æŒç»¢æ·‹
 		SlotInfos[0] = All;
 		for (int i = 0; i < Types.Num(); ++i)
 		{
 			SlotInfos[i].TypeID = Types[i];
-			b2network::B2mdAetherSetOptionInfoPtr SetOptionPtr = B2EtherManager::GetInstance().GetEtherSetOptionInfoPtrByType(SlotInfos[i].TypeID, 1); //tier´Â 1·Î È°¿ë
+			b2network::B2mdAetherSetOptionInfoPtr SetOptionPtr = B2EtherManager::GetInstance().GetEtherSetOptionInfoPtrByType(SlotInfos[i].TypeID, 1); //tierç»° 1è‚º åŠä¾©
 			if (SetOptionPtr != nullptr)
 			{
-				if (SetOptionPtr->min_apply_count == EtherSetCount::DEFENCE) //¹æ¾î ¼¼Æ®
+				if (SetOptionPtr->min_apply_count == EtherSetCount::DEFENCE) //è§„ç»¢ æŠ€é£˜
 				{
 					SlotInfos[i].SetType = 0;
 				}
-				else if (SetOptionPtr->min_apply_count == EtherSetCount::OFFENCE) // °ø°İ ¼¼Æ®
+				else if (SetOptionPtr->min_apply_count == EtherSetCount::OFFENCE) // å‚æ‹œ æŠ€é£˜
 				{
 					SlotInfos[i].SetType = 1;
 				}

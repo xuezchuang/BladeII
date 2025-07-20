@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2ChapterInfo.h"
@@ -13,7 +13,7 @@ UB2ChapterInfo::UB2ChapterInfo(const FObjectInitializer& ObjectInitializer)
 {
 	if (HasAnyFlags(RF_ClassDefaultObject) == false)
 	{
-		// Á¤ÇØÁø ÇÏ³ª¸¦ ·Îµù
+		// æ²¥ç§¦æŸ³ çªå”±ç”« è‚ºçˆ¹
 		FString ChapterInfoDataTablePath;
 		GConfig->GetString(TEXT("/Script/BladeII.B2StageManager"), TEXT("ChapterInfoDataTable"), ChapterInfoDataTablePath, GGameIni);
 
@@ -28,7 +28,7 @@ UB2ChapterInfo::UB2ChapterInfo(const FObjectInitializer& ObjectInitializer)
 FSingleChapterInfoData* UB2ChapterInfo::GetInfoData(int32 ChapterNum)
 {
 	if (TheData)
-	{ // ChapterNum ±×´ë·Î key ·Î »ç¿ë.
+	{ // ChapterNum å¼Šæªè‚º key è‚º è¤ä¾©.
 		FSingleChapterInfoData* FoundDataRow = TheData->FindRow<FSingleChapterInfoData>(FName(*FString::FromInt(ChapterNum)), TEXT(""));
 		return FoundDataRow;
 	}
@@ -39,7 +39,7 @@ FSingleChapterInfoData* UB2ChapterInfo::GetInfoData(int32 ChapterNum)
 FSingleChapterInfoData* UB2ChapterInfo::GetChapterInfoOfStage(int32 InClientStageId)
 {
 	//UB2StageInfo* StageInfoTable = StaticFindStageInfo();
-	//// InClientStageId ¿¡ ÇØ´çÇÏ´Â StageInfoData ¿¡¼­ Chapter ¹øÈ£¸¦ °¡Á®¿Í¼­ »ç¿ë.
+	//// InClientStageId ä¿Š ç§¦å¯¸çªç»° StageInfoData ä¿Šè¾‘ Chapter é”…é¾‹ç”« å•Šå»‰å®¢è¾‘ è¤ä¾©.
 	//FSingleStageInfoData* StageInfoData = StageInfoTable ? StageInfoTable->GetInfoData(InClientStageId) : NULL;
 	return /*StageInfoData ? GetInfoData(StageInfoData->ChapterNum) :*/ NULL;
 }
@@ -47,7 +47,7 @@ FSingleChapterInfoData* UB2ChapterInfo::GetChapterInfoOfStage(int32 InClientStag
 int32 UB2ChapterInfo::GetAllChapterNum()
 {
 	/*if (ShouldShowCBTVersionContent())
-		return 3;									//CBT¹öÀü Ã©ÅÍ3À¸·Î º¯°æ Å×ÀÌºí °Çµå¸®´Â°Åº¸´Ù ÁÁ´Ù°í »ı°¢ÇØ »ó¼ö·Î ÇÕ´Ï´Ù*/
+		return 3;									//CBTæ»šå‚ˆ èŒ…ç£3æ è‚º å‡½ç‰ˆ æŠ›æå–‰ æ‰’é›åºœç»°èŠ­ç„Šä¿ƒ äº®ä¿ƒç»Š ç§¯é˜¿ç§¦ æƒ‘èè‚º é’¦èªä¿ƒ*/
 
 	return TheData->GetRowNames().Num();
 }
@@ -67,7 +67,7 @@ int32 UB2ChapterInfo::GetStagesNumInChapter(int32 ChapterNum)
 FText UB2ChapterInfo::GetLocalizedChapterName(int32 ChapterNum)
 {
 	FSingleChapterInfoData* ChapterInfoData = GetInfoData(ChapterNum);
-	// WorldNameTextTable À» ºô·Á¾ß°Ú´Ù. ´ë½Å ±¸ºĞÀÌ °¡µµ·Ï prefix ¸¦ ³Ö¾îº¸´Â °Íµµ ÁÁÀ» µí.
+	// WorldNameTextTable é˜‘ å‘¼å¦¨å…·æ‘†ä¿ƒ. æªè„š å¤‡ç›’æ å•Šæ¡£åºŸ prefix ç”« æŒç»¢ç„Šç»° å·´æ¡£ äº®é˜‘ æ·€.
 	return ChapterInfoData ? BladeIIGetLOCText(B2LOC_CAT_WORLDNAME, ChapterInfoData->LocalizedChapterNameKey.ToString()) : FText::FromString(TEXT(""));
 }
 
@@ -96,7 +96,7 @@ void UB2ChapterInfo::CheckInfoDataIntegrity()
 		bool bHasRowKeyLessThan0 = false;
 		bool bHasNonSequentialRowKey = false;
 
-		// DataTable ÀÇ ¸ğµç row ¸¦ iterate ÇÏ´Â ¹æ¹ıÀÎµí.
+		// DataTable ç‹¼ è‘›ç”µ row ç”« iterate çªç»° è§„è¿‡ç‰¢æ·€.
 		TArray<FName> RowKeys = TheData->GetRowNames();
 		for (int32 RI = 0; RI < RowKeys.Num(); ++RI)
 		{
@@ -106,16 +106,16 @@ void UB2ChapterInfo::CheckInfoDataIntegrity()
 			{
 				bHasRowKeyLessThan0 = true;
 			}
-			if (RI + 1 != RowKeyNumber) // bHasRowKeyLessThan0 ÀÌ¸é °á±¹ ¿©±âµµ..
+			if (RI + 1 != RowKeyNumber) // bHasRowKeyLessThan0 ææ æ¬æƒ« å’¯æ‰æ¡£..
 			{
 				bHasNonSequentialRowKey = true;
 			}
 		}
-		if (bHasRowKeyLessThan0 /*|| bHasNonSequentialRowKey*/) // ¼ø¼­´ë·ÎÀÏ ÇÊ¿ä´Â ¾øÀ» °Í °°´Ù. ÀÏ´Ü ÀÌ°Ç °æ°í¿¡¼­ Á¦°Å.
+		if (bHasRowKeyLessThan0 /*|| bHasNonSequentialRowKey*/) // é‰´è¾‘æªè‚ºè€ é˜å¤¸ç»° ç»é˜‘ å·´ éä¿ƒ. è€çªœ ææ‰’ ç‰ˆç»Šä¿Šè¾‘ åŠ›èŠ­.
 		{
 #if !PLATFORM_MAC
 			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-				FString::Printf(TEXT("[°æ°í] ChapterInfo µ¥ÀÌÅÍÀÇ ÁÙ¹øÈ£¿¡ Ä¡¸íÀûÀÎ ¹®Á¦°¡ ÀÖÀ½. ÄÄÇ»ÅÍ°¡ °ğ Æø¹ßÇÑ´Ù."))
+				FString::Printf(TEXT("[ç‰ˆç»Š] ChapterInfo å•æç£ç‹¼ ä¸´é”…é¾‹ä¿Š æ‘¹ç–™åˆ©ç‰¢ å·©åŠ›å•Š ä¹æ¾œ. å“ªè…”ç£å•Š æ¢† æ°”æƒ¯èŒ„ä¿ƒ."))
 			));
 #endif
 		}
@@ -124,7 +124,7 @@ void UB2ChapterInfo::CheckInfoDataIntegrity()
 	{
 #if !PLATFORM_MAC
 		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-			FString::Printf(TEXT("ChapterInfo µ¥ÀÌÅÍ ¾øÀ½. ÄÄÇ»ÅÍ°¡ °ğ Æø¹ßÇÑ´Ù."))
+			FString::Printf(TEXT("ChapterInfo å•æç£ ç»æ¾œ. å“ªè…”ç£å•Š æ¢† æ°”æƒ¯èŒ„ä¿ƒ."))
 			));
 #endif
 	}

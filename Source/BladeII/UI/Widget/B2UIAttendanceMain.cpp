@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIAttendanceMain.h"
 #include "B2UIManager.h"
 #include "B2UIEventAttendance.h"
@@ -178,12 +178,12 @@ void UB2UIAttendanceMain::Init()
 
 	if (auto* EventNewAttendance = Cast<UB2UIEventNewUser>(m_AttendanceParts[GetIndex(EAttendanceTab::EventNewUser)].Get()))
 	{
-		/* ±âÈ¹ ¿äÃ»ÀÌ Ãâ¼®À» ´Ù ¹ŞÀ¸¸é °ÔÀÓÀ» Àç½ÃÀÛ ÇÏ±âÀü±îÁö ÅÇÀ» È°¼ºÈ­ ½ÃÄÑ´Ş¶ó°í Çß±â ¶§¹®¿¡ Áï½Ã ´İ±â À§ÇØ¼­´Â
-		FClientDataStore::SetNewUserAttendanceInfo ¿¡¼­ IsNewUserAttendanceÀ» ¼öÁ¤
+		/* æ‰è£™ å¤¸æ²¡æ å…ç±é˜‘ ä¿ƒ ç½æ æ éœ¸çƒ™é˜‘ çŠçŸ«ç´¯ çªæ‰å‚ˆé³–ç˜¤ å¾˜é˜‘ åŠå·±æ‹³ çŸ«éš¾å´”æ‰¼ç»Š æ²æ‰ é”­å·©ä¿Š æºœçŸ« æ‘§æ‰ å›°ç§¦è¾‘ç»°
+		FClientDataStore::SetNewUserAttendanceInfo ä¿Šè¾‘ IsNewUserAttendanceé˜‘ èæ²¥
 		*/
-		// Á¢¼Ó ÇÒ ¶§ Ãâ¼® °¡´ÉÀÏ¼ö°¡ ÀÖ¾ú´Â°¡(Ãâ¼® Ã¢À» Å°´Â ½ÃÁ¡ÀÌ ¾Æ´Ï¶ó Á¢¼Ó½ÃÁ¡ÀÎ ÀÌÀ¯´Â ±âÈ¹ÀÇµµ)
+		// ç«‹åŠ  ä¸” é”­ å…ç± å•Šç“·è€èå•Š ä¹èŒç»°å•Š(å…ç± èŠ’é˜‘ è™ç»° çŸ«ç—¢æ é…’èªæ‰¼ ç«‹åŠ çŸ«ç—¢ç‰¢ æèœ¡ç»° æ‰è£™ç‹¼æ¡£)
 		bool IsOpen = BladeIIGameImpl::GetClientDataStore().GetEventNewUserStatus().IsNewUserAttendance;
-		// ³¯Â¥°¡ Áö³µ´Â°¡?
+		// æœæ¥¼å•Š ç˜¤è½¦ç»°å•Š?
 		bool IsEndEvent = EventNewAttendance->IsEndEvent();
 
 		SetEnableTab(EAttendanceTab::EventNewUser, IsOpen && !IsEndEvent);
@@ -421,12 +421,12 @@ bool UB2UIAttendanceMain::IsValidTab(EAttendanceTab eIndex) const
 
 EAttendanceTab UB2UIAttendanceMain::GetAutoChangeEnableTab(EAttendanceTab eIndex) const
 {
-	// cbt¿ë Á¶°Ç // CBT & ÀÏ¹İ Ãâ¼®ÀÏ¶§´Â->ÀÌº¥Æ® Ãâ¼®À¸·Î(ÀÌº¥Æ® Ãâ¼®ÀÌ À¯È¿ÇÒ¶§)
+	// cbtä¾© ç‚¼æ‰’ // CBT & è€é¦† å…ç±è€é”­ç»°->æäº¥é£˜ å…ç±æ è‚º(æäº¥é£˜ å…ç±æ èœ¡ç“¤ä¸”é”­)
 	if (ShouldShowCBTVersionContent() && eIndex == EAttendanceTab::Attendance && IsValidTab(EAttendanceTab::EventAttendance))
 	{
 		return EAttendanceTab::EventAttendance;
 	}
-	// eIndexÃ¼Å© ÈÄ À¯È¿ÇÏÁö ¾ÊÀ»¶§ ÇöÀç À¯È¿ÇÑÅÇÀ» GetAvailableTab()¿¡¼­ ¹İÈ¯
+	// eIndexçœ‰å†œ é¥¶ èœ¡ç“¤çªç˜¤ è‡¼é˜‘é”­ æ³…çŠ èœ¡ç“¤èŒ„å¾˜é˜‘ GetAvailableTab()ä¿Šè¾‘ é¦†åˆ¸
 	return IsValidTab(eIndex) ? eIndex : GetAvailableTab();
 }
 

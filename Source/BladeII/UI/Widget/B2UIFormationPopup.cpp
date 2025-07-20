@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIFormationPopup.h"
 #include "B2UIDocHelper.h"
@@ -69,7 +69,7 @@ void UB2UIFormationPopup::UpdateStaticText()
 
 	if (TB_Descrition.IsValid())
 	{
-		TB_Descrition->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Teamformation_UpgradeQuestion"))); //ÁøÇüÀ» °­È­ÇÏ½Ã°Ú½À´Ï±î?
+		TB_Descrition->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Teamformation_UpgradeQuestion"))); //æŸ³å±ˆé˜‘ ç¢æ‹³çªçŸ«æ‘†åš¼èªé³–?
 	}
 
 	if (TB_Confirm.IsValid())
@@ -79,7 +79,7 @@ void UB2UIFormationPopup::UpdateStaticText()
 
 	if (TB_Cancle.IsValid())
 	{
-		TB_Cancle->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Teamformation_Cancel"))); //Ãë¼Ò
+		TB_Cancle->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Teamformation_Cancel"))); //ç§’å®¶
 	}
 }
 

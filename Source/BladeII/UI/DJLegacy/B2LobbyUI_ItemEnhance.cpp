@@ -60,14 +60,14 @@ void UB2LobbyUI_ItemEnhance::StartFromLobby(class UB2UIManager_Lobby* InUIManage
 {
 	Super::StartFromLobby(InUIManager, InGM);
 
-	// ´Ü¼øÈ÷ ¾ÆÀÌÅÛ Á¤º¸¸¸ ¾ò¾î¿À·Á¸é Inventory ÀÎ½ºÅÏ½º ¾øÀÌ static À¸·Î ¾ò¾î¿Ã ¼ö ÀÖÀ¸³ª °­È­ ±â´ÉÀº ÀÎº¥Åä¸®°¡ ¶° ÀÖ´Â »óÅÂ¿¡¼­ µ¿ÀÛ.
+	// çªœé‰´æ´’ é…’æè¢ æ²¥ç„Šçˆ¶ æ˜ç»¢å·å¦¨æ Inventory ç‰¢èƒ¶ç•”èƒ¶ ç»æ static æ è‚º æ˜ç»¢æ£µ è ä¹æ å”± ç¢æ‹³ æ‰ç“·ç¯® ç‰¢äº¥é…åºœå•Š æ ‹ ä¹ç»° æƒ‘æ€•ä¿Šè¾‘ æ‚¼ç´¯.
 	CachedInventory = CachedLobbyGM->GetLobbyInventory();
 	check(CachedInventory);
 
-	// ÀÌ ½ÃÁ¡¿¡ Inventory ÀÇ TargetItemID ´Â ¼¼ÆÃµÇ¾î ÀÖ¾î¾ß ÇÔ. (UB2LobbyInventory::EnterItemOpMode)
+	// æ çŸ«ç—¢ä¿Š Inventory ç‹¼ TargetItemID ç»° æŠ€æ³¼ç™»ç»¢ ä¹ç»¢å…· çªƒ. (UB2LobbyInventory::EnterItemOpMode)
 	if (!CachedInventory->GetItemOPTargetItemData(NativeTargetItem) || CachedInventory->GetItemOpMode() != ELobbyInvenItemOpMode::EIVIOP_Enhancement)
 	{
-		CloseAndQuitItemOpMode(); // ¸¸¿¡ ÇÏ³ª ½ÇÆĞÇÑ´Ù¸é.. ¾îÂ¿ ¼ö ¾øÁö.
+		CloseAndQuitItemOpMode(); // çˆ¶ä¿Š çªå”± è§’è©èŒ„ä¿ƒæ.. ç»¢é©´ è ç»ç˜¤.
 		return;
 	}
 
@@ -106,10 +106,10 @@ void UB2LobbyUI_ItemEnhance::UpdateStaticTexts()
 		TB_NeedIngredItem->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("LobbyInvenText_Upgradescroll")));
 
 	if (TB_ProtectionItemNotice.IsValid())
-		TB_ProtectionItemNotice->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("LobbyInvenText_UpgradescrollDesc4")));  //¼öÈ£ÀÇ °áÁ¤ »ç¿ë½Ã ÇÏ¶ôÀÌ ¹æÁöµË´Ï´Ù
+		TB_ProtectionItemNotice->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("LobbyInvenText_UpgradescrollDesc4")));  //èé¾‹ç‹¼ æ¬æ²¥ è¤ä¾©çŸ« çªéæ è§„ç˜¤é‚“èªä¿ƒ
 
 	if (TB_ProtectionItem.IsValid())
-		TB_ProtectionItem->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("LobbyInvenText_UpgradescrollDesc5")));  //¼öÈ£ÀÇ °áÁ¤ »ç¿ë½Ã ÇÏ¶ôÀÌ ¹æÁöµË´Ï´Ù
+		TB_ProtectionItem->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("LobbyInvenText_UpgradescrollDesc5")));  //èé¾‹ç‹¼ æ¬æ²¥ è¤ä¾©çŸ« çªéæ è§„ç˜¤é‚“èªä¿ƒ
 
 }
 
@@ -134,8 +134,8 @@ void UB2LobbyUI_ItemEnhance::UpdateDynamicTexts()
 		LobbyInvenHideItemOpModeGuideTextClass<>::GetInstance().Signal();
 	}
 	
-	// ·¹º§ÀÌ¶û Exp ´Â ¾Ö´Ï¸ŞÀÌ¼Ç ¶§¹®¿¡ ¿©±â ¸»°í ¸Å Æ½ ¾÷µ¥ÀÌÆ®.
-	if (TB_EnhanceCostNum.IsValid()) // °­È­ Àç·á °³¼ö µû¶ó °­È­ ºñ¿ëÀÌ ¹Ù²ñ.
+	// é¥­éª‡æå°” Exp ç»° å±€èªçš‹æè®° é”­å·©ä¿Š å’¯æ‰ å¯Œç»Š æ¦‚ å¹³ è¯€å•æé£˜.
+	if (TB_EnhanceCostNum.IsValid()) // ç¢æ‹³ çŠä¸° ä¿ºè è¶æ‰¼ ç¢æ‹³ åšä¾©æ å®˜æŸ´.
 		TB_EnhanceCostNum->SetText(FText::FromString(FString::FromInt( CachedInventory ? CachedInventory->GetCurrentItemOpGoldCost() : 0 )));
 
 	if (TB_NeedIngredItemCount.IsValid())
@@ -215,7 +215,7 @@ void UB2LobbyUI_ItemEnhance::UpdateEnhanceIngredientItemIcon()
 	if (CreatedIngredientItemIcon)
 	{
 		CreatedIngredientItemIcon->SetIconUsageType(ELobbyInvenItemIconUsage::EEIIT_ItemEnhanceMenuIngredient);
-		CreatedIngredientItemIcon->UpdateItemData(ThisIngred); // °³º° ¾ÆÀÌÅÛ Á¤º¸¸¦ ³Ñ°ÜÁØ´Ù.
+		CreatedIngredientItemIcon->UpdateItemData(ThisIngred); // ä¿ºå–Š é…’æè¢ æ²¥ç„Šç”« é€è´¥éœ–ä¿ƒ.
 	}
 
 
@@ -244,7 +244,7 @@ void UB2LobbyUI_ItemEnhance::UpdateEnhanceTargetItemIcon()
 	if (CreatedTargetItemIcon)
 	{
 		CreatedTargetItemIcon->SetIconUsageType(ELobbyInvenItemIconUsage::EEIIT_ItemOpModeProgTarget);
-		CreatedTargetItemIcon->UpdateItemData(NativeTargetItem); // °³º° ¾ÆÀÌÅÛ Á¤º¸¸¦ ³Ñ°ÜÁØ´Ù.
+		CreatedTargetItemIcon->UpdateItemData(NativeTargetItem); // ä¿ºå–Š é…’æè¢ æ²¥ç„Šç”« é€è´¥éœ–ä¿ƒ.
 	}
 }
 
@@ -299,7 +299,7 @@ void UB2LobbyUI_ItemEnhance::OnChangeStateIsProtectionItemCheckBox(bool IsCheck)
 		return;
 	}
 
-	int32 ProtectionRefId = IsCheck ? FItemRefIDHelper::GetEnhanceProtectionItemRefId() : 0; // ÀÏ´ÜÀº °­È­ º¸È£ ¾ÆÀÌÅÛ Å¸ÀÔ ÇÏ³ª.. =¤·=
+	int32 ProtectionRefId = IsCheck ? FItemRefIDHelper::GetEnhanceProtectionItemRefId() : 0; // è€çªœç¯® ç¢æ‹³ ç„Šé¾‹ é…’æè¢ é¸¥æ¶ çªå”±.. =ã—=
 	SelectForEnhanceProtectionItemClass<int32>::GetInstance().Signal(ProtectionRefId);
 }
 
@@ -327,21 +327,21 @@ void UB2LobbyUI_ItemEnhance::OnEnhanceCommit()
 		ShortageMGR->PopupGoToControlGameModeMessage(AllIngreds[0].ItemRefID);
 	}
 	else if (CachedInventory && !CachedInventory->CanAffordCurrentItemOp())
-	{ // °ñµå ºÎÁ·ÀÇ °æ¿ì ¿©±æ Å¬¸¯ÇÒ ¼ö´Â ÀÖÀ¸³ª ½ÇÁ¦ ½ÃÀÛÀº ¾ÈÇÏ°í »ç¿ëÀÚ ÇöÁúÀ» À¯µµ
+	{ // æ¦œé› ä½•ç»ƒç‹¼ ç‰ˆå¿« å’¯è¾¨ åŠªè…ä¸” èç»° ä¹æ å”± è§’åŠ› çŸ«ç´¯ç¯® æ•‘çªç»Š è¤ä¾©ç£Š æ³…é¾™é˜‘ èœ¡æ¡£
 		ShortageMGR->PopupGoToShopForGoldMessage();
 	}
 	else
 	{ 
-		// °­È­ °¡´ÉÇÏ´Ù°í ÆÇ´ÜµÈ °æ¿ì
-		// ¾Ö´Ï¸ŞÀÌ¼Ç ½ÅÈ£¸¸ º¸³»°í ¹Ù·Î ½ÃÀÛÇÏÁö´Â ¾Ê´Â´Ù.
+		// ç¢æ‹³ å•Šç“·çªä¿ƒç»Š é­„çªœç­‰ ç‰ˆå¿«
+		// å±€èªçš‹æè®° è„šé¾‹çˆ¶ ç„Šéƒ´ç»Š å®˜è‚º çŸ«ç´¯çªç˜¤ç»° è‡¼ç»°ä¿ƒ.
 		BeginEnhanceCommitAnim();
 
-		// ¿¬ÃâµÇ´Â µ¿¾È ¿©ÀüÈ÷ Àç·á ¼±ÅÃ µîÀ» ÇÏ°Ô µÉ ¼ö ÀÖ¾î¼­ ¸·´Â´Ù.
+		// æ¥·å…ç™»ç»° æ‚¼æ•‘ å’¯å‚ˆæ´’ çŠä¸° æ€¥ç¶ æ®¿é˜‘ çªéœ¸ çª è ä¹ç»¢è¾‘ é˜œç»°ä¿ƒ.
 		if (CachedInventory)		
 			CachedInventory->SetFreezeitemOpModeIngredSelection(true);
 
 		if (BTN_EnhanceCommit.IsValid())
-			BTN_EnhanceCommit->SetIsEnabled(false); // ¾êµµ °è¼Ó Å¬¸¯ÀÌ µÉ ¼ö ÀÖ¾î¼­ ¸·À½.
+			BTN_EnhanceCommit->SetIsEnabled(false); // å¨Ÿæ¡£ æ‹ŒåŠ  åŠªè…æ çª è ä¹ç»¢è¾‘ é˜œæ¾œ.
 
 		APlayerController* OwningPC = GetOwningPlayer();
 		if (OwningPC && EnhanceCommitAnimLength > 0.0f)
@@ -384,7 +384,7 @@ void UB2LobbyUI_ItemEnhance::OnClickEnhanceIngredItem()
 }
 
 void UB2LobbyUI_ItemEnhance::CloseAndQuitItemOpMode()
-{// ¿©±â¼­ ¹Ù·Î °­È­Ã¢À» ´İ´Â ´ë½Å Inventory ÂÊÀ¸·Î ½ÅÈ£.
+{// å’¯æ‰è¾‘ å®˜è‚º ç¢æ‹³èŠ’é˜‘ æ‘§ç»° æªè„š Inventory ç‡æ è‚º è„šé¾‹.
 	QuitItemOpModeClass<bool>::GetInstance().Signal(false);
 	UpdateLobbyInventoryControlClass<>::GetInstance().Signal();
 }
@@ -395,7 +395,7 @@ void UB2LobbyUI_ItemEnhance::FinalItemEnhanceCommit()
 	if (OwningPC)
 		OwningPC->GetWorldTimerManager().ClearTimer(ItemEnhanceCommintTH);
 
-	// º»°İ µ¿ÀÛ. ÀÌÈÄ ¿¬ÃâÀÌ³ª °á°ú µîÀÇ flow ´Â ¼­¹ö ÀÀ´ä¿¡ µû¶ó º°µµ UI Ã¢¿¡¼­ ÁøÇà.
+	// å¤¯æ‹œ æ‚¼ç´¯. æé¥¶ æ¥·å…æå”± æ¬è‹ æ®¿ç‹¼ flow ç»° è¾‘æ»š è§ˆç¿ ä¿Š è¶æ‰¼ å–Šæ¡£ UI èŠ’ä¿Šè¾‘ æŸ³é’.
 	LobbyReqEnhanceItemClass<>::GetInstance().Signal();
 }
 

@@ -1,10 +1,11 @@
-#pragma once
+﻿#pragma once
 //#include "BladeII.h"
 #include "UObject/Object.h"
 #include "Engine/DataTable.h"
 
 #include "Quest.h"
 #include "Sound/SoundCue.h"
+#include "../UI/B2UIEnum.h"
 #include "QuestDataTable.generated.h"
 
 

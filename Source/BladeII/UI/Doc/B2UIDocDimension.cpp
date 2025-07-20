@@ -82,7 +82,7 @@ int32 UB2UIDocDimension::GetWeeklyBestRecordTime()
 
 int32 UB2UIDocDimension::GetMaxClearDiff()
 {
-	// ÀÌ°Å ´©Àû ÃÖ°í ³­ÀÌµµ ·¹º§...
+	// æžèŠ­ ç©¿åˆ© å¼¥ç»Š æŠ„æžæ¡£ é¥­éª‡...
 	if (m_ptrGetDimension)
 	{
 		return m_ptrGetDimension->dimension_status->top_difficulty_level;
@@ -147,7 +147,7 @@ int32 UB2UIDocDimension::GetDailyTryCount()
 
 int64 UB2UIDocDimension::GetSettlement_Time()
 {
-	// Á¤»ê ½Ã°£
+	// æ²¥é­‚ çŸ«åŸƒ
 	if (m_ptrGetDimension)
 	{
 		return m_ptrGetDimension->settlement_time;
@@ -158,7 +158,7 @@ int64 UB2UIDocDimension::GetSettlement_Time()
 
 int32 UB2UIDocDimension::GetSettlement_PeriodHour()
 {
-	// Á¤»ê ÁÖ±â : ¸î½Ã°£¸¶´Ù Á¤»êµÇ´À³Ä...?
+	// æ²¥é­‚ æž—æ‰ : å‰²çŸ«åŸƒä»˜ä¿ƒ æ²¥é­‚ç™»è ¢è¡¬...?
 	if (m_ptrGetDimension)
 	{
 		return m_ptrGetDimension->settlement_period_hour;
@@ -190,7 +190,7 @@ void UB2UIDocDimension::SetMyRank()
 	MyRank.RankingPercentage = m_ptrGetDimension->ranking->total_ranker_count > 0 ? 100.f * m_ptrGetDimension->ranking->ranking / (float)m_ptrGetDimension->ranking->total_ranker_count : 100;
 	
 	
-	// ³» ÁÖ°£ ·©Å· Á¤º¸°¡ ¾øÀ¸¸é diff °¡ 0 ÀÏ°ÍÀÓ.. ÀÌ¶§´Â ÁË´Ù µðÆúÆ®·Î ¼¼ÆÃ
+	// éƒ´ æž—åŸƒ çæ¬§ æ²¥ç„Šå•Š ç»æ æ diff å•Š 0 è€å·´çƒ™.. æžé”­ç»° äº†ä¿ƒ å¼å¼ƒé£˜è‚º æŠ€æ³¼
 	MyRank.TotalCombatPower = GetWeeklyBestRecordDiff() > 0 ? m_ptrGetDimension->dimension_status->best_total_power : 0;
 	MyRank.ClearTimeSec = GetWeeklyBestRecordTime();
 	MyRank.BestFloor = GetWeeklyBestRecordDiff();	
@@ -247,7 +247,7 @@ void UB2UIDocDimension::SetFinishDimensionPtr(FB2ResponseFinishDimensionPtr Resp
 	m_ptrFinishDimension = ResponsePtr;
 
 	if (m_ptrFinishDimension && m_ptrFinishDimension->dimension_status)
-		m_ptrFinishDimension->dimension_status = m_ptrFinishDimension->dimension_status; // °¥¾Æ²¸ÁÜ
+		m_ptrFinishDimension->dimension_status = m_ptrFinishDimension->dimension_status; // å“Žé…’å“ºæ·‹
 }
 
 bool UB2UIDocDimension::GetIsNewRecord()

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UICreateNickname.h"
 #include "Event.h"
 #include "B2UIManager.h"
@@ -221,7 +221,7 @@ void UB2UICreateNickname::OnClickBtn_ChangeOk()
 
 void UB2UICreateNickname::OnClickBtn_ChangeNo()
 {
-	// ÀÌ¸§ º¯°æ±Ç »ç¿ëÇÏÁö ¾ÊÀ½.
+	// æžæŠš å‡½ç‰ˆé¼» è¤ä¾©çªç˜¤ è‡¼æ¾œ.
 	UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
 		BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("SensitiveNoti_Notification"))),
 		BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("NameChange_Cancel"))),
@@ -450,7 +450,7 @@ void UB2UICreateNickname::SettingSame()
 		O_Btn_Confirm->SetVisibility(ESlateVisibility::Visible);
 	}
 
-	//4. ÇöÀç »ç¿ë ÁßÀÎ ÀÌ¸§°ú µ¿ÀÏÇÕ´Ï´Ù.
+	//4. æ³…çŠ è¤ä¾© åç‰¢ æžæŠšè‹ž æ‚¼è€é’¦èªä¿ƒ.
 
 	if (TB_FirstContent.IsValid()) {
 		TB_FirstContent->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("NameChange_Overlap")));
@@ -469,7 +469,7 @@ bool UB2UICreateNickname::IsCheckWrong(const FText& fTxtNick)
 		return false;
 	}
 
-	// ±ÝÄ¢¾î Ãß°¡ÇÏ±â.
+	// é™›è˜‘ç»¢ çœ å•Šçªæ‰.
 
 	return true;
 }
@@ -516,7 +516,7 @@ void UB2UICreateNickname::ResponChangeNickName(const FB2UpdateNicknamePtr& respo
 
 	UB2UIManager::GetInstance()->CloseUI(UIFName::CreateNickName);
 
-	// ÀÌ¸§ º¯°æ±ÇÀÌ ¼º°øÀû
+	// æžæŠš å‡½ç‰ˆé¼»æž å·±å‚åˆ©
 	UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
 		BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("SensitiveNoti_Notification"))),
 		BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), FString(TEXT("NameChange_Success"))),

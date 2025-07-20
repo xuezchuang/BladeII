@@ -1,4 +1,4 @@
-#include "B2UISlotStageBuffItem.h"
+ï»¿#include "B2UISlotStageBuffItem.h"
 #include "B2UIRepeatableElements.h"
 #include "B2UIManager.h"
 #include "B2UIDocHelper.h"
@@ -47,14 +47,14 @@ void UB2UISlotStageBuffItem::SetSelected(bool InbSelected)
 {
 	bSelected = InbSelected;
 
-	// ÇÊ¿äÇÑ ÀÌ¹ÌÁö³ª ÆĞ³Î visibility ¼¼ÆÃ
+	// é˜å¤¸èŒ„ æå›ºç˜¤å”± è©æ¾„ visibility æŠ€æ³¼
 
 	if (IMG_MainIcon.IsValid())
 	{
 		IMG_MainIcon->SetBrushFromMaterial(bSelected ? MainIconImageMat_Selected : MainIconImageMat_UnSelected);
 	}
 
-	// Ãß°¡ ¼±ÅÃ »óÅÂ ÀÌ¹ÌÁö. ÀÌ°Ç ¸®¼Ò½º ÀÛ¾÷ÀÌ ÀÌ·¸°Ô µÈ »óÅÂ¿¡¼­ ¿Í¼­ Á» ÇÏµåÄÚµù »â.
+	// çœ å•Š æ€¥ç¶ æƒ‘æ€• æå›ºç˜¤. ææ‰’ åºœå®¶èƒ¶ ç´¯è¯€æ æçŠ¯éœ¸ ç­‰ æƒ‘æ€•ä¿Šè¾‘ å®¢è¾‘ ç²± çªé›å†…çˆ¹ çƒ©.
 	switch (MyBuffType)
 	{
 	case EStageBuffType::SBT_IncreaseExp:
@@ -142,13 +142,13 @@ void UB2UISlotStageBuffItem::UpdateBuffIconDisplay(int32 GoldCost, bool bHasTick
 		TB_ItemName->SetText(GetLOCTextOfStageBuffItem(MyBuffType));
 	}
 
-	// ÀÌ¿ë±Ç ±¸ÇöÀÌ µé¾î¿À°í ÀÌ¿ë±ÇÀÌ ÀÖ´Ù¸é Gold º¸´Ü ÀÌ°É ¸ÕÀú ¾²°Ô µÈ´Ù.
+	// æä¾©é¼» å¤‡æ³…æ ç”¸ç»¢å·ç»Š æä¾©é¼»æ ä¹ä¿ƒæ Gold ç„Šçªœ æå§ åˆšå† é™éœ¸ ç­‰ä¿ƒ.
 	if (IMG_CostTicketIcon.IsValid())
 	{ 
 		IMG_CostTicketIcon->SetVisibility(bHasTicket ? ESlateVisibility::HitTestInvisible : ESlateVisibility::Collapsed);
 	}
 	if (IMG_CostGoldIcon.IsValid())
-	{ // ÀÌ¿ë±ÇÀÌ ¾ø´Â »óÈ²ÀÌ¶ó¸é Gold °¡ ÄÑÁö°Ô µÉ °Í.
+	{ // æä¾©é¼»æ ç»ç»° æƒ‘ç‚”ææ‰¼æ Gold å•Š éš¾ç˜¤éœ¸ çª å·´.
 		IMG_CostGoldIcon->SetVisibility(bHasTicket ? ESlateVisibility::Collapsed : ESlateVisibility::HitTestInvisible);
 	}
 
@@ -164,7 +164,7 @@ void UB2UISlotStageBuffItem::UpdateBuffIconDisplay(int32 GoldCost, bool bHasTick
 //====================================================================================
 void UB2UISlotStageBuffItem::OnClickBtnArea()
 {
-	// Select, Unselect ¿©ºÎ´Â ¿©±â¼­ ÇÏÁö ¾Ê´Â´Ù.
+	// Select, Unselect å’¯ä½•ç»° å’¯æ‰è¾‘ çªç˜¤ è‡¼ç»°ä¿ƒ.
 
 	if (GetClickable()){
 		OnSlotStageBuffItemClickDelgate.ExecuteIfBound(this);

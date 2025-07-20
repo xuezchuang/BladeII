@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2BTTask_PCAutoAttack.h"
@@ -35,7 +35,7 @@ UB2BTTask_PCAutoAttack::UB2BTTask_PCAutoAttack(const FObjectInitializer& ObjectI
 
 #if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
 	if (HasAnyFlags(RF_ClassDefaultObject) && GConfig)
-	{	// Ã³À½ ÇÑ¹ø ¼³Á¤À» ÀĞ¾îµéÀÓ
+	{	// è´¸æ¾œ èŒ„é”… æ±²æ²¥é˜‘ ä½¬ç»¢ç”¸çƒ™
 		GConfig->GetBool(TEXT("DevCheat"), TEXT("AllowAutoComboOnly"), bDevAllowComboAttackOnly, GGameIni);
 	}
 #endif
@@ -172,7 +172,7 @@ EBTNodeResult::Type UB2BTTask_PCAutoAttack::PerformAttackTask(UBehaviorTreeCompo
 					{
 						if ( B2Player->IsSkillAttacking() == false )
 						{
-							// ÀÚµ¿°ø°İ ÃÖ´ë°Å¸®¿¡ Å¸°ÙÀÌ Æ÷ÇÔµÉ¶§¸¸ °ø°İÃ³¸®
+							// ç£Šæ‚¼å‚æ‹œ å¼¥æªèŠ­åºœä¿Š é¸¥ç™¾æ å™¨çªƒçªé”­çˆ¶ å‚æ‹œè´¸åºœ
 							float TargetDistance = B2Player->GetTargetLocationVectorFromPlayer( BlackboardTargetCharacter ).Size2D();
 							const float MaxDistanceToAllowAutoAttack = B2Player->MaxDistanceToAllowAutoAttack;
 							if ( TargetDistance < MaxDistanceToAllowAutoAttack )
@@ -182,8 +182,8 @@ EBTNodeResult::Type UB2BTTask_PCAutoAttack::PerformAttackTask(UBehaviorTreeCompo
 							}
 							else
 							{
-								// ÀÚµ¿°ø°İ ÃÖ´ë°Å¸®º¸´Ù Å¬°æ¿ì ÅÂ½ºÅ© °á°ú¸¦ [¼º°ø] Ã³¸®¸¦ ÇÏ¿© ¼¿·ºÅÍ¸¦ ºüÁ®³ª°£ÈÄ, ºñÇìÀÌ¹ö Æ®¸®ÀÇ [ÀÌµ¿] ÅÂ½ºÅ©°¡ ½ÇÇàµÉ ¼ö ÀÖµµ·Ï ÇÑ´Ù
-								// [ÁÖÀÇ] ÀÚµ¿°ø°İ ÃÖ´ë°Å¸®´Â Ç×»ó [ÀÌµ¿] ÅÂ½ºÅ©ÀÇ Acceptable Radius º¸´Ù Ä¿¾ßÇÑ´Ù
+								// ç£Šæ‚¼å‚æ‹œ å¼¥æªèŠ­åºœç„Šä¿ƒ åŠªç‰ˆå¿« æ€•èƒ¶å†œ æ¬è‹ç”« [å·±å‚] è´¸åºœç”« çªå’¯ ä¼æ³›ç£ç”« ç‹å»‰å”±åŸƒé¥¶, åšåº†ææ»š é£˜åºœç‹¼ [ææ‚¼] æ€•èƒ¶å†œå•Š è§’é’çª è ä¹æ¡£åºŸ èŒ„ä¿ƒ
+								// [æ—ç‹¼] ç£Šæ‚¼å‚æ‹œ å¼¥æªèŠ­åºœç»° äº²æƒ‘ [ææ‚¼] æ€•èƒ¶å†œç‹¼ Acceptable Radius ç„Šä¿ƒ ç›®å…·èŒ„ä¿ƒ
 								return EBTNodeResult::Succeeded;
 							}
 						}
@@ -228,7 +228,7 @@ EBTNodeResult::Type UB2BTTask_PCAutoAttack::PerformAttackTask(UBehaviorTreeCompo
 		}
 		else
 		{
-			// ÆùÀÌ ¾øÀ»°æ¿ì ·ÎÄÃÇÃ·¹ÀÌ¾î »ç¿ë
+			// è¿„æ ç»é˜‘ç‰ˆå¿« è‚ºæ‹¿æ•²é¥­æç»¢ è¤ä¾©
 			ABladeIIPlayer* B2LocalPlayer = Cast<ABladeIIPlayer>(GetWorld()->GetFirstPlayerController()->GetCharacter());
 
 			if (B2LocalPlayer->IsQTEMounting())
@@ -277,9 +277,9 @@ bool UB2BTTask_PCAutoAttack::CanDoSkillAttack(UBehaviorTreeComponent& OwnerComp,
 		return false;
 
 	/*
-	// Stage Buff »èÁ¦ ¿¹Á¤
+	// Stage Buff æ˜åŠ› æŠ—æ²¥
 	AB2StageGameMode* SGM = Cast<AB2StageGameMode>(UGameplayStatics::GetGameMode(B2Player));
-	if (SGM && !SGM->HasStageBuff(EStageBuffType::SBT_AutoSkill)){ // StageGameMode °¡ ¾Æ´Ò ½Ã ±âº» °¡´ÉÇÏ°Ô ÇÒÁö ¾î¶³Áö´Â..
+	if (SGM && !SGM->HasStageBuff(EStageBuffType::SBT_AutoSkill)){ // StageGameMode å•Š é…’åŒ† çŸ« æ‰å¤¯ å•Šç“·çªéœ¸ ä¸”ç˜¤ ç»¢å†»ç˜¤ç»°..
 		return false;
 	}
 	*/
@@ -324,16 +324,16 @@ bool UB2BTTask_PCAutoAttack::IsWorthDoSkillAttack(UBehaviorTreeComponent& OwnerC
 		MobCombatGaugeTotal += GetCharacterRoughCombatGauge(CurrChar);
 	}
 
-	// Surrounded by mobs strong enough.. ±×¸®°í ¸øÇØµµ ¹üÀ§ ¾È¿¡ ÇÑ¸¶¸®´Â ÀÖ¾î¾ß ½ºÅ³À» ³¯¸®´Â °É·Î. SkillWorthyMonsterLevelScale ÀÌ 0 ÀÌ¶ó°í Çã°ø¿¡ ´ë°í ¹ß»çÇØ ´î ¼ö´Â ¾øÀİ¾Æ?
+	// Surrounded by mobs strong enough.. å¼Šåºœç»Š ç»™ç§¦æ¡£ è£¹å›° æ•‘ä¿Š èŒ„ä»˜åºœç»° ä¹ç»¢å…· èƒ¶æ‡¦é˜‘ æœåºœç»° å§è‚º. SkillWorthyMonsterLevelScale æ 0 ææ‰¼ç»Š å€¾å‚ä¿Š æªç»Š æƒ¯è¤ç§¦ æ­ èç»° ç»å’é…’?
 	return (SkillWorthyWithinMobCount > 0) && (MobCombatGaugeTotal / PlayerCombatGauge >= SkillWorthyMonsterLevelScale);
 }
 
 float UB2BTTask_PCAutoAttack::GetCharacterRoughCombatGauge(class ABladeIICharacter* InCharacter)
 {
 	// Still respect MaxHealth, because it is likely to reflect general level..
-	// ¾îÂ÷ÇÇ »ó´ëÀûÀÎ ºñ±³ÀÌ¹Ç·Î ¿©±â¼­ ¾ÆÁÖ ½É¿ÀÇÑ °è»êÀ» ÇÒ ÇÊ¿ä±îÁø ¾ø°Ú´Ù.
+	// ç»¢ç’ä¹” æƒ‘æªåˆ©ç‰¢ åšèƒŒæéª¨è‚º å’¯æ‰è¾‘ é…’æ— ç¼´å·èŒ„ æ‹Œé­‚é˜‘ ä¸” é˜å¤¸é³–æŸ³ ç»æ‘†ä¿ƒ.
 	float HPSum = InCharacter->GetHealth() + InCharacter->GetMaxHealth();
-	float ADSum = InCharacter->AttackLevel + InCharacter->DefenseLevel; // ABladeIICharacter::InitializeCombatStats ¿¡¼­ ¾÷µ¥ÀÌÆ® µÇ´Â °ªµé
+	float ADSum = InCharacter->AttackLevel + InCharacter->DefenseLevel; // ABladeIICharacter::InitializeCombatStats ä¿Šè¾‘ è¯€å•æé£˜ ç™»ç»° è”¼ç”¸
 
 	if (ABladeIIPlayer* B2Player = Cast<ABladeIIPlayer>(InCharacter))
 	{
@@ -467,7 +467,7 @@ void UB2BTTask_PCAutoAttack::PostAttackSetAttackCooling(class ABladeIIPlayer* In
 	if (!(InPlayer && MinAttackInterval > 0.0f))
 		return;
 
-	// MinAttackInterval µ¿¾È Àá½Ã attack ¸í·ÉÀ» Áß´ÜÇÏµµ·Ï
+	// MinAttackInterval æ‚¼æ•‘ æ³ªçŸ« attack ç–™é£é˜‘ åçªœçªæ¡£åºŸ
 	bInAttackCooling = true;
 	InPlayer->GetWorldTimerManager().SetTimer(AttackIntervalTimer, FTimerDelegate::CreateUObject(this, &UB2BTTask_PCAutoAttack::AttackIntervalTimerCB, InPlayer), MinAttackInterval, false);
 }
@@ -499,5 +499,5 @@ FString UB2BTTask_PCAutoAttack::GetStaticDescription() const
 }
 
 #if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
-bool UB2BTTask_PCAutoAttack::bDevAllowComboAttackOnly = false; // ´ëÃ¼·Î auto µ¹¸®¸é¼­ ¼º´É Å×½ºÆ® ¿ë.
+bool UB2BTTask_PCAutoAttack::bDevAllowComboAttackOnly = false; // æªçœ‰è‚º auto å€’åºœæè¾‘ å·±ç“· æŠ›èƒ¶é£˜ ä¾©.
 #endif

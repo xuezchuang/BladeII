@@ -1,9 +1,10 @@
-
+﻿
 #include "B2BTTask_MobFleeTo.h"
 //#include "BladeII.h"
 #include "AIController.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "BehaviorTree/Blackboard/BlackboardKeyType_Vector.h"
+#include "../BladeII/BladeIICharacter.h"
 
 UB2BTTask_MobFleeTo::UB2BTTask_MobFleeTo(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2DynItemIcon_SealBoxPreview.h"
 ////#include "BladeII.h"
 //#include "B2Button.h"
@@ -89,7 +89,7 @@
 //	}
 //
 //	if (ItemNameText != nullptr)
-//	{ // ¾ÆÀÌÅÛ ÀÌ¸§¿¡¼­ Ç°Áú µû·Î Ç¥½ÃÇÒ °Å. GetLocalizedName ¿¡ ¸Å°³º¯¼ö ¾È³Ñ°ÜÁÜ.
+//	{ // é…’æè¢ ææŠšä¿Šè¾‘ å‰é¾™ è¶è‚º é’çŸ«ä¸” èŠ­. GetLocalizedName ä¿Š æ¦‚ä¿ºå‡½è æ•‘é€è´¥æ·‹.
 //		ItemNameText->SetText(ThisItemInfo ? ThisItemInfo->GetLocalizedName() : FText::FromString(TEXT("Unknown Item")));
 //		if (ItemMiscInfo)
 //		{
@@ -107,7 +107,7 @@
 //	const bool bIsCostumeItem = IsCostumeItem(InItem);
 //	const bool bIsAnvilItem = IsAnvilItem(InItem);
 //
-//	// ÃßÈÄ ÇÁ¸®¼Â¿¡ ÀåÂø ¿©ºÎ È®ÀÎÇÏ¿© ÀåÂø V Ã¼Å© ¹× ´­·¶À» ½Ã ÇØÁ¦ ÆË¾÷À¸·Î ÀÌµ¿ÇÏ°Ô ÇØ¾ß µÊ.
+//	// çœ é¥¶ æ©‡åºœæ‚¸ä¿Š å˜é¦’ å’¯ä½• çŠ¬ç‰¢çªå’¯ å˜é¦’ V çœ‰å†œ æ£º å–˜èŒƒé˜‘ çŸ« ç§¦åŠ› æ‰‘è¯€æ è‚º ææ‚¼çªéœ¸ ç§¦å…· å‡³.
 //
 //	//if (DisabledSlotImage.IsValid())
 //	//	DisabledSlotImage->SetVisibility(GetDisabledSlotImageVisibility());
@@ -190,10 +190,10 @@
 //	}
 //}
 //
-////¼Ò¸ğÇ° ¾ÆÀÌÅÛ Àü¿ë
+////å®¶è‘›å‰ é…’æè¢ å‚ˆä¾©
 //void UB2DynItemIcon_SealBoxPreview::SetItem(int32 RefId, int32 minQuantity, int32 maxQuantity)
 //{
-//	// ÀÌ¸§, ¾ÆÀÌÄÜ, °³¼ö, ÀÌÆåÆ® ÆÇ´ÜÃß°¡ ÇÊ¿ä
+//	// ææŠš, é…’æèƒ½, ä¿ºè, ææ£‹é£˜ é­„çªœçœ å•Š é˜å¤¸
 //	EItemClass TempItemClass = FItemRefIDHelper::ExtractItemClassFromRefIDForItemForge(RefId);
 //	NativeItemData.ItemRefID = RefId;
 //	NativeItemData.InventoryType = GetItemInvenTypeFromClass(TempItemClass);
@@ -210,12 +210,12 @@
 //		ItemNameText->SetText(ItemInfo->GetLocalizedName());
 //	}
 //	int32 StarGrade = FItemRefIDHelper::ExtractItemStarGradeFromRefID(RefId);
-//	//stargrade ¼¼ÆÃ
+//	//stargrade æŠ€æ³¼
 //
 //	if (StarGradePart.IsValid())
 //	{
 //		FB2Item dummyItem;
-//		//StarGradePart->UpdateStar(StarGrade, requiredItemLevel > dummyItem.ItemNormalMaxLevel ? true : false);	//¿µ¿øÀÇ Àå½Å±¸ÀÇ °æ¿ìµµ ±×³É 30 ³Ñ¾î°¡¸é ÃÊ¿ù º°·Î ¶ç¿ì°Ô µÊ.
+//		//StarGradePart->UpdateStar(StarGrade, requiredItemLevel > dummyItem.ItemNormalMaxLevel ? true : false);	//åº·ç›”ç‹¼ å˜è„šå¤‡ç‹¼ ç‰ˆå¿«æ¡£ å¼Šæˆ 30 é€ç»¢å•Šæ æª¬å²¿ å–Šè‚º å‰å¿«éœ¸ å‡³.
 //	}
 //
 //	if (maxQuantity<0)
@@ -269,10 +269,10 @@
 //	}
 //}
 //
-////Àåºñ ¾ÆÀÌÅÛ ¿ë
+////å˜åš é…’æè¢ ä¾©
 //void UB2DynItemIcon_SealBoxPreview::SetItem(int32 groupID, EPCClass equipClass, int32 equipCategory, int32 equipPlace, int32 starGrade, int32 quality, int32 enhancedLevel, int32 surpassLevel)
 //{
-//	// ÀÌ¸§, ¾ÆÀÌÄÜ, °³¼ö, ÀÌÆåÆ® ÆÇ´ÜÃß°¡ ÇÊ¿ä
+//	// ææŠš, é…’æèƒ½, ä¿ºè, ææ£‹é£˜ é­„çªœçœ å•Š é˜å¤¸
 //	int32 RefId = GenerateRefID(groupID, equipClass, equipPlace, equipCategory, starGrade);
 //	ItemAmountText->SetVisibility(ESlateVisibility::Hidden);
 //
@@ -292,12 +292,12 @@
 //		ItemNameText->SetText(ItemInfo->GetLocalizedName());
 //	}
 //	int32 StarGrade = FItemRefIDHelper::ExtractItemStarGradeFromRefID(RefId);
-//	//stargrade ¼¼ÆÃ
+//	//stargrade æŠ€æ³¼
 //
 //	if (StarGradePart.IsValid())
 //	{
 //		FB2Item dummyItem;
-//		StarGradePart->UpdateStar(StarGrade, surpassLevel > 0 ? true : false);	//ÃÊ¿ù Ä«¿îÆ®°¡ ¿Ã¶ó°¡¸é ÃÊ¿ùº°·Î ¶ç¿ò
+//		StarGradePart->UpdateStar(StarGrade, surpassLevel > 0 ? true : false);	//æª¬å²¿ å¢¨æ¬¾é£˜å•Š æ£µæ‰¼å•Šæ æª¬å²¿å–Šè‚º å‰æ¡†
 //	}
 //
 //	UB2ItemInfo* AllItemInfo = StaticFindItemInfo();
@@ -359,7 +359,7 @@
 //
 //void UB2DynItemIcon_SealBoxPreview::SetItem(int32 RefId, bool showQuantity)
 //{
-//	// ÀÌ¸§, ¾ÆÀÌÄÜ, °³¼ö, ÀÌÆåÆ® ÆÇ´ÜÃß°¡ ÇÊ¿ä
+//	// ææŠš, é…’æèƒ½, ä¿ºè, ææ£‹é£˜ é­„çªœçœ å•Š é˜å¤¸
 //	EItemClass TempItemClass = FItemRefIDHelper::ExtractItemClassFromRefIDForItemForge(RefId);
 //	NativeItemData.ItemRefID = RefId;
 //	NativeItemData.InventoryType = GetItemInvenTypeFromClass(TempItemClass);
@@ -376,12 +376,12 @@
 //		ItemNameText->SetText(ItemInfo->GetLocalizedName());
 //	}
 //	int32 StarGrade = FItemRefIDHelper::ExtractItemStarGradeFromRefID(RefId);
-//	//stargrade ¼¼ÆÃ
+//	//stargrade æŠ€æ³¼
 //
 //// 	if (StarGradePart.IsValid())
 //// 	{
 //// 		FB2Item dummyItem;
-//// 		StarGradePart->UpdateStar(StarGrade, surpassLevel > 0 ? true : false);	//ÃÊ¿ù Ä«¿îÆ®°¡ ¿Ã¶ó°¡¸é ÃÊ¿ùº°·Î ¶ç¿ò
+//// 		StarGradePart->UpdateStar(StarGrade, surpassLevel > 0 ? true : false);	//æª¬å²¿ å¢¨æ¬¾é£˜å•Š æ£µæ‰¼å•Šæ æª¬å²¿å–Šè‚º å‰æ¡†
 //// 	}
 //
 //	UB2ItemInfo* AllItemInfo = StaticFindItemInfo();
@@ -449,21 +449,21 @@
 //		fourthDigit = equipPlace % 200;
 //
 //		int32 tempGroupID;
-//		switch (groupID)	//ÄÚ½ºÆ¬ÀÇ ºÎºĞÀº CodeTable°ú RefID °£ÀÇ ±ÔÄ¢ÀÌ ¸ÂÁö ¾Ê¾Æ¼­ º°µµ·Î ÇÏµåÄÚµù ÇØ¾ß ÇÔ.
+//		switch (groupID)	//å†…èƒ¶ç‰‡ç‹¼ ä½•ç›’ç¯® CodeTableè‹ RefID åŸƒç‹¼ ç—¹è˜‘æ å˜ç˜¤ è‡¼é…’è¾‘ å–Šæ¡£è‚º çªé›å†…çˆ¹ ç§¦å…· çªƒ.
 //		{
-//		case (int32)b2network::B2GroupPrefix::COLD:	//È¤ÇÑÀÇ
+//		case (int32)b2network::B2GroupPrefix::COLD:	//è¶£èŒ„ç‹¼
 //			tempGroupID = 1;
 //			break;
-//		case (int32)b2network::B2GroupPrefix::CORRUPT:	//Å¸¶ôÀÇ
+//		case (int32)b2network::B2GroupPrefix::CORRUPT:	//é¸¥éç‹¼
 //			tempGroupID = 2;
 //			break;
-//		case (int32)b2network::B2GroupPrefix::BEACH:	//ÇØº¯ÀÇ
+//		case (int32)b2network::B2GroupPrefix::BEACH:	//ç§¦å‡½ç‹¼
 //			tempGroupID = 3;
 //			break;
-//		case (int32)b2network::B2GroupPrefix::NEW_YEAR:	//»õÇØÀÇ
+//		case (int32)b2network::B2GroupPrefix::NEW_YEAR:	//è´§ç§¦ç‹¼
 //			tempGroupID = 0;
 //			break;
-//		case (int32)b2network::B2GroupPrefix::HALLOWEEN:	//°øÆ÷ÀÇ
+//		case (int32)b2network::B2GroupPrefix::HALLOWEEN:	//å‚å™¨ç‹¼
 //			tempGroupID = 4;
 //			break;
 //		default:
@@ -476,7 +476,7 @@
 //	}
 //	else
 //	{
-//		fourthDigit = equipPlace - 1;	//CodeTable¿¡¼­ ÀåÂø À§Ä¡°¡ 0À¸·Î ½ÃÀÛÇÏ´Â°Ô ¾Æ´Ñ 1·Î ½ÃÀÛÇØ¼­ ¿©±â¼­ 1¾¿ »©¾ß ÇÑ´Ù.
+//		fourthDigit = equipPlace - 1;	//CodeTableä¿Šè¾‘ å˜é¦’ å›°æ‘¹å•Š 0æ è‚º çŸ«ç´¯çªç»°éœ¸ é…’å›± 1è‚º çŸ«ç´¯ç§¦è¾‘ å’¯æ‰è¾‘ 1ç©¶ å“—å…· èŒ„ä¿ƒ.
 //
 //		sixthDigit = (int32)((groupID - 1) / 10);
 //		seventhDigit = (groupID - 1) % 10;
@@ -494,7 +494,7 @@
 //
 //	if (BackgroundImage.IsValid() && ItemMiscInfo)
 //	{
-//		// Á¾·ù¿¡ µû¶ó Simple À» »ç¿ëÇÏ´Â °Ô ÀÖ°í ¾Æ´Ñ °Ô ÀÖÀ½.
+//		// è¾†å¹…ä¿Š è¶æ‰¼ Simple é˜‘ è¤ä¾©çªç»° éœ¸ ä¹ç»Š é…’å›± éœ¸ ä¹æ¾œ.
 //		UMaterialInterface* BGMtrl = ItemMiscInfo->GetItemIconBGMtrl(InItemGrade,
 //			false,
 //			bForConsumables
@@ -508,10 +508,10 @@
 //
 //ESlateVisibility UB2DynItemIcon_SealBoxPreview::GetDisabledSlotImageVisibility() const
 //{
-//	// ¾ÆÀÌÅÛ°­È­ º¸È£¼® Ã¼Å©
+//	// é…’æè¢ç¢æ‹³ ç„Šé¾‹ç± çœ‰å†œ
 //	if (NativeItemData.ItemClass == EItemClass::EIC_ProtectionScroll)
 //	{
-//		// ÇöÀç NativeItemData ¸¦ »ç¿ëÇØ¼­ ¼¼ºÎ Á¤º¸Ã¢ ÆË¾÷... ¸¸ÀÌ ¾Æ´Ï¶ó °­È­ ¸ğµåÀÏ ¶§´Â ¼±ÅÃÀ» ÇØ¾ß.
+//		// æ³…çŠ NativeItemData ç”« è¤ä¾©ç§¦è¾‘ æŠ€ä½• æ²¥ç„ŠèŠ’ æ‰‘è¯€... çˆ¶æ é…’èªæ‰¼ ç¢æ‹³ è‘›é›è€ é”­ç»° æ€¥ç¶é˜‘ ç§¦å…·.
 //		AB2LobbyGameMode* LobbyGM = Cast<AB2LobbyGameMode>(UGameplayStatics::GetGameMode(GetOwningPlayer()));
 //		UB2LobbyInventory* LobbyInven = LobbyGM ? LobbyGM->GetLobbyInventory() : NULL;
 //		if (LobbyInven && LobbyInven->GetItemOpMode() == ELobbyInvenItemOpMode::EIVIOP_Enhancement)
@@ -559,7 +559,7 @@
 //	else
 //	{
 //		DeliverySelectItemForgeClass<FB2Item&>::GetInstance().Signal(NativeItemData);
-//		// ¼±ÅÃ ¹öÆ° È°¼ºÈ­ ºñÈ°¼ºÈ­ ÇÊ¿ä
+//		// æ€¥ç¶ æ»šç“¢ åŠå·±æ‹³ åšåŠå·±æ‹³ é˜å¤¸
 //		if (OV_Selected->GetVisibility() == ESlateVisibility::Visible)
 //		{
 //			OV_Selected->SetVisibility(ESlateVisibility::Hidden);
@@ -575,7 +575,7 @@
 //void UB2DynItemIcon_SealBoxPreview::AskForUnlockItemPopupCommon()
 //{
 //	/*
-//	FString PopupStringKey = TEXT("Chatting_PublicNoti_GetItemFromFactory_Forge");	//´Ü¼øÈ÷ °°Àº ÀÌ¸§À» »ç¿ëÇÑ´Ù´Â ÀÌÀ¯¿¡¼­ È¹µæ ¾Ë¸²¿¡ ÀÖ´Â°É °®´Ù »ç¿ëÇÏ°í ÀÖ´Ù.
+//	FString PopupStringKey = TEXT("Chatting_PublicNoti_GetItemFromFactory_Forge");	//çªœé‰´æ´’ éç¯® ææŠšé˜‘ è¤ä¾©èŒ„ä¿ƒç»° æèœ¡ä¿Šè¾‘ è£™å« èˆ…è¦†ä¿Š ä¹ç»°å§ çˆ±ä¿ƒ è¤ä¾©çªç»Š ä¹ä¿ƒ.
 //
 //	UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
 //		BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_Notification")),
@@ -620,8 +620,8 @@
 //		);
 //		*/
 //
-//	//±×³É ±× ¾ÆÀÌÅÛÀÇ Á¤º¸¸¦ ºÒ·¯¿À´Â ¿ëµµ.
-//	//¾ÆÁ÷ °³¹ßµÇÁö ¾ÊÀ½
+//	//å¼Šæˆ å¼Š é…’æè¢ç‹¼ æ²¥ç„Šç”« é˜‚çŸ¾å·ç»° ä¾©æ¡£.
+//	//é…’æµ ä¿ºæƒ¯ç™»ç˜¤ è‡¼æ¾œ
 //}
 //
 //void UB2DynItemIcon_SealBoxPreview::FinishedResultAnimationThingy()
@@ -634,7 +634,7 @@
 //	if (!IsEssenceItem(NativeItemData) &&
 //		NativeItemData.InventoryType != EItemInvenType::EIIVT_Consumables &&
 //		!IsCostumeItem(NativeItemData) && !IsAnvilItem(NativeItemData))
-//	{	// °­È­ Àç·á ¾ÆÀÌÄÜÀº ¸¹¾Æ¼­ ÀÛÀ¸´Ï±î ·¹º§ Ç¥½Ã¸¦ ÇÏÁö ¾Ê´Â´Ù. Á¤¼ö ¾ÆÀÌÅÛÀº ·¹º§ÀÌ ¾ø´Â °É·Î Ä¡°í..		
+//	{	// ç¢æ‹³ çŠä¸° é…’æèƒ½ç¯® è…¹é…’è¾‘ ç´¯æ èªé³– é¥­éª‡ é’çŸ«ç”« çªç˜¤ è‡¼ç»°ä¿ƒ. æ²¥è é…’æè¢ç¯® é¥­éª‡æ ç»ç»° å§è‚º æ‘¹ç»Š..		
 //		return FText::Format(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("General_Stat_Level_Abbrev")), FText::FromString(FString::FromInt(NativeItemData.Level)));
 //	}
 //
@@ -645,7 +645,7 @@
 //{
 //	if (!IsEssenceItem(NativeItemData) &&
 //		NativeItemData.InventoryType == EItemInvenType::EIIVT_Consumables && !IsAnvilItem(NativeItemData))
-//	{ // °­È­ Àç·á ¾ÆÀÌÄÜÀº ¸¹¾Æ¼­ ÀÛÀ¸´Ï±î ·¹º§ Ç¥½Ã¸¦ ÇÏÁö ¾Ê´Â´Ù. Á¤¼ö ¾ÆÀÌÅÛÀº ·¹º§ÀÌ ¾ø´Â °É·Î Ä¡°í..		
+//	{ // ç¢æ‹³ çŠä¸° é…’æèƒ½ç¯® è…¹é…’è¾‘ ç´¯æ èªé³– é¥­éª‡ é’çŸ«ç”« çªç˜¤ è‡¼ç»°ä¿ƒ. æ²¥è é…’æè¢ç¯® é¥­éª‡æ ç»ç»° å§è‚º æ‘¹ç»Š..		
 //		if (NativeItemData.ConsumingAmount >= 10000)
 //			return FText::FromString(TEXT("9999+"));
 //
@@ -703,7 +703,7 @@
 //	if (!IsEssenceItem(NativeItemData) &&
 //		NativeItemData.InventoryType != EItemInvenType::EIIVT_Consumables &&
 //		!IsCostumeItem(NativeItemData) && !IsAnvilItem(NativeItemData))
-//	{	// °­È­ Àç·á ¾ÆÀÌÄÜÀº ¸¹¾Æ¼­ ÀÛÀ¸´Ï±î ·¹º§ Ç¥½Ã¸¦ ÇÏÁö ¾Ê´Â´Ù. Á¤¼ö ¾ÆÀÌÅÛÀº ·¹º§ÀÌ ¾ø´Â °É·Î Ä¡°í..		
+//	{	// ç¢æ‹³ çŠä¸° é…’æèƒ½ç¯® è…¹é…’è¾‘ ç´¯æ èªé³– é¥­éª‡ é’çŸ«ç”« çªç˜¤ è‡¼ç»°ä¿ƒ. æ²¥è é…’æè¢ç¯® é¥­éª‡æ ç»ç»° å§è‚º æ‘¹ç»Š..		
 //		return FText::Format(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("General_Stat_Level_Abbrev")), FText::FromString(FString::FromInt(itemLevel)));
 //	}
 //

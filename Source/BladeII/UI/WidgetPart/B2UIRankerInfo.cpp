@@ -1,4 +1,4 @@
-#include "B2UIRankerInfo.h"
+ï»¿#include "B2UIRankerInfo.h"
 #include "B2UIDocHelper.h"
 #include "B2UIDocHero.h"
 #include "B2UIGradeRankAndStar.h"
@@ -38,8 +38,8 @@ void UB2UIRankerInfo::CacheAssets()
     GET_SLOT(UB2Button, BTN_PVPReplay);
     GET_SLOT(UTextBlock, TB_PVPReplay);
 
-	//[@AKI, 170420] M16 ÀÏ´ëÀÏ&ÆÀ´ëÀü°³¼± p.27 ¿µ¿õ ·¹º§ »èÁ¦·Î ÀÎÇØ Visibility º¯°æ
-	// TB_PlayerLevelÀ» ´Ù Áö¿ö¹ö·Áµµ µÇ´Âµ¥...È¤½Ã ¸ô¶ó¼­ ³²°Ü ³õÀ½
+	//[@AKI, 170420] M16 è€æŽªè€&è¯„æŽªå‚ˆä¿ºæ€¥ p.27 åº·æ—· é¥­éª‡ æ˜åŠ›è‚º ç‰¢ç§¦ Visibility å‡½ç‰ˆ
+	// TB_PlayerLevelé˜‘ ä¿ƒ ç˜¤å†µæ»šå¦¨æ¡£ ç™»ç»°å•...è¶£çŸ« éš”æ‰¼è¾‘ å·¢è´¥ åˆæ¾œ
 	if (TB_PlayerLevel.IsValid())
 	{
 		TB_PlayerLevel->SetVisibility(ESlateVisibility::Collapsed);
@@ -112,8 +112,8 @@ void UB2UIRankerInfo::SetRankerInfo(const FModRankerInfo& RankerInfo,bool bNotRe
 		TB_Ranking->SetVisibility(RankerInfo.Rank > 3 ? ESlateVisibility::HitTestInvisible : ESlateVisibility::Hidden);
 	}
 
-	//[@AKI, 170420] M16 ÀÏ´ëÀÏ&ÆÀ´ëÀü°³¼± p.27 ¿µ¿õ ·¹º§ »èÁ¦·Î ÀÎÇØ ÁÖ¼® Ã³¸®
-//	if (TB_PlayerLevel.IsValid()) //À¯Àú·¹º§°³³ä.
+	//[@AKI, 170420] M16 è€æŽªè€&è¯„æŽªå‚ˆä¿ºæ€¥ p.27 åº·æ—· é¥­éª‡ æ˜åŠ›è‚º ç‰¢ç§¦ æž—ç± è´¸åºœ
+//	if (TB_PlayerLevel.IsValid()) //èœ¡åŽ†é¥­éª‡ä¿ºå…….
 //		TB_PlayerLevel->SetText(FText::Format(BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), TEXT("PVP1on1_RankerLevel")), FText::AsNumber(RankerInfo.EntryLevels[0])));
 
 	if (TB_PlayerName.IsValid())

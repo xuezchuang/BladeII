@@ -121,7 +121,7 @@ void UB2UIDocRaid::ResetJoinSlotData(int32 SlotIndex)
 
 bool UB2UIDocRaid::IsAllEmptyJoinSlot()
 {
-	// ÀÚ±âÀÚ½ÅÀ» Á¦¿ÜÇÏ°í, ½½·ÔÀÌ ºñ¾îÀÖ´ÂÁö Ã¼Å©
+	// ç£Šæ‰ç£Šè„šé˜‘ åŠ›å¯‡çªç»Š, æµ‡å©æ åšç»¢ä¹ç»°ç˜¤ çœ‰å†œ
 	for (int32 i = 0; i < MAX_RAID_PLAYER_NUM; ++i)
 	{
 		if (GetMySlotIdx() == i)
@@ -160,7 +160,7 @@ void UB2UIDocRaid::SetOpenedInviteUIAndChangeJoinSlotState(bool IsOpen)
 		}
 		else
 		{
-			// ÃÊ´ë¸¦ ¼º°øÇÏÁö ¾Ê¾Ò´Ù¸é »óÅÂ º¯°æ
+			// æª¬æªç”« å·±å‚çªç˜¤ è‡¼ç–½ä¿ƒæ æƒ‘æ€• å‡½ç‰ˆ
 			if (GetJoinSlotStateByIndex(i) == ERaidJoinSlotState::OpenInviteUI)
 				SetJoinSlotStateByIndex(i, GetDefaultSlotState(ERaidJoinType::MakeRoom));
 		}
@@ -192,7 +192,7 @@ bool UB2UIDocRaid::GetRaidRewardInfo(int32 Ranking, EPCClass PcClass, int32& Out
 	{
 		if (EachItem->ranking == Ranking)
 		{
-			if (EachItem->item_template_id > 0) // ÅÛÇÃ¸´ ¾ÆÀÌµğ°¡ ÀÖÀ¸¸é Àåºñ·ù ¶ó´Â ¶æ.
+			if (EachItem->item_template_id > 0) // è¢æ•²å¤ é…’æå¼å•Š ä¹æ æ å˜åšå¹… æ‰¼ç»° èˆµ.
 			{
 				int32 TempID = 1000000 + (PCClassToInt(PcClass)*100000);
 				TempID = TempID + (EachItem->item_template_id % 100000);
@@ -204,9 +204,9 @@ bool UB2UIDocRaid::GetRaidRewardInfo(int32 Ranking, EPCClass PcClass, int32& Out
 		}
 	}
 
-	// À§¿¡¼­ ¸®ÅÏµÇÁö ¾Ê¾Ò´Ù¸é ÀÌ°Ç Àåºñ·ù°¡ ¾Æ´Ñ ÀÏ¹İ º¸»ó.
-	// ±â¿©µµ°¡ ºÎÁ·ÇÏ¸é º¸»ó Á¤º¸°¡ ¾øÀ¸¹Ç·Î, rewardptr °ªÀ» ÂüÁ¶ÇÒ ¼ö ¾øÀ½.
-	// ±×·¡¼­ id´Â ¸¶½ºÅÍ µ¥ÀÌÅÍ¿¡¼­ Ã£¾Æ¿Àµµ·ÏÇÔ. count°ªÀº rewardptr¿¡¼­ ±×´ë·Î
+	// å›°ä¿Šè¾‘ åºœç•”ç™»ç˜¤ è‡¼ç–½ä¿ƒæ ææ‰’ å˜åšå¹…å•Š é…’å›± è€é¦† ç„Šæƒ‘.
+	// æ‰å’¯æ¡£å•Š ä½•ç»ƒçªæ ç„Šæƒ‘ æ²¥ç„Šå•Š ç»æ éª¨è‚º, rewardptr è”¼é˜‘ æ›¼ç‚¼ä¸” è ç»æ¾œ.
+	// å¼Šè´°è¾‘ idç»° ä»˜èƒ¶ç£ å•æç£ä¿Šè¾‘ èŒ«é…’å·æ¡£åºŸçªƒ. countè”¼ç¯® rewardpträ¿Šè¾‘ å¼Šæªè‚º
 	const TArray<FRaidMasterData>* RaidData = BladeIIGameImpl::GetClientDataStore().GetRaidMasterDataList(GetLastRaidType());
 	if (RaidData && RaidData->IsValidIndex(GetLastRaidStep() - 1))
 	{
@@ -239,7 +239,7 @@ bool UB2UIDocRaid::GetRaidBonusRewardInfo(int32 BonusUserRank, EPCClass UserPCCl
 	{
 		if (EachItem->ranking == BonusUserRank)
 		{
-			if (EachItem->item_template_id > 0) // ÅÛÇÃ¸´ ¾ÆÀÌµğ°¡ ÀÖÀ¸¸é Àåºñ·ù ¶ó´Â ¶æ.
+			if (EachItem->item_template_id > 0) // è¢æ•²å¤ é…’æå¼å•Š ä¹æ æ å˜åšå¹… æ‰¼ç»° èˆµ.
 			{
 				int32 TempID = 1000000 + (PCClassToInt(UserPCClass) * 100000);
 				TempID = TempID + (EachItem->item_template_id % 100000);
@@ -251,9 +251,9 @@ bool UB2UIDocRaid::GetRaidBonusRewardInfo(int32 BonusUserRank, EPCClass UserPCCl
 		}
 	}
 
-	// À§¿¡¼­ ¸®ÅÏµÇÁö ¾Ê¾Ò´Ù¸é ÀÌ°Ç Àåºñ·ù°¡ ¾Æ´Ñ ÀÏ¹İ º¸»ó.
-	// ±â¿©µµ°¡ ºÎÁ·ÇÏ°Å³ª, ³»°¡ º¸³Ê½º ´ë»óÀÚ°¡ ¾Æ´Ò°æ¿ì¿¡ º¸»ó Á¤º¸°¡ ¾øÀ¸¹Ç·Î, rewardptr °ªÀ» ÂüÁ¶ÇÒ ¼ö ¾øÀ½.
-	// ±×·¡¼­ id´Â ¸¶½ºÅÍ µ¥ÀÌÅÍ¿¡¼­ Ã£¾Æ¿Àµµ·ÏÇÔ. count°ªÀº rewardptr¿¡¼­ ±×´ë·Î
+	// å›°ä¿Šè¾‘ åºœç•”ç™»ç˜¤ è‡¼ç–½ä¿ƒæ ææ‰’ å˜åšå¹…å•Š é…’å›± è€é¦† ç„Šæƒ‘.
+	// æ‰å’¯æ¡£å•Š ä½•ç»ƒçªèŠ­å”±, éƒ´å•Š ç„Šå‘ˆèƒ¶ æªæƒ‘ç£Šå•Š é…’åŒ†ç‰ˆå¿«ä¿Š ç„Šæƒ‘ æ²¥ç„Šå•Š ç»æ éª¨è‚º, rewardptr è”¼é˜‘ æ›¼ç‚¼ä¸” è ç»æ¾œ.
+	// å¼Šè´°è¾‘ idç»° ä»˜èƒ¶ç£ å•æç£ä¿Šè¾‘ èŒ«é…’å·æ¡£åºŸçªƒ. countè”¼ç¯® rewardpträ¿Šè¾‘ å¼Šæªè‚º
 	const TArray<FRaidMasterData>* RaidData = BladeIIGameImpl::GetClientDataStore().GetRaidMasterDataList(GetLastRaidType());
 	if (RaidData && RaidData->IsValidIndex(GetLastRaidStep() - 1))
 	{
@@ -356,7 +356,7 @@ void UB2UIDocRaid::SetPeriodInfos(TArray<b2network::B2MatchOpenPeriodInfoPtr>& P
 {
 	RaidOpenPeriodInfo = PeriodInfo;
 
-	// ¿ÀÇÂ¿©ºÎ ¼³Á¤
+	// å·é”¹å’¯ä½• æ±²æ²¥
 	TArray<b2network::B2MatchOpenPeriodInfoPtr> CurrentDayOpenTimes;
 	bool bIsNoCheckTypeRaidOpen = BladeIIGameImpl::GetClientDataStore().GetCurrentModeOpenTimes(RaidOpenPeriodInfo, CurrentDayOpenTimes);
 	SetRaidOpen(bIsNoCheckTypeRaidOpen);

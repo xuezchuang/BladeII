@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIUserReport.h"
 #include "B2UIManager.h"
@@ -110,7 +110,7 @@ void UB2UIUserReport::SetReason(int32 InModType)
 	{
 		if (CB_ReasonArr[i].IsValid())
 		{
-			CB_ReasonArr[i]->SetCheckedState(ECheckBoxState::Unchecked);			//üũ�ʱ�ȭ
+			CB_ReasonArr[i]->SetCheckedState(ECheckBoxState::Unchecked);			//眉农檬扁拳
 			CB_ReasonArr[i]->SetVisibility(i > SlotNumber - 1 ? ESlateVisibility::Hidden : ESlateVisibility::Visible);
 		}
 

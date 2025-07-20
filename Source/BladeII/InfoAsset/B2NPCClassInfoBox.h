@@ -1,10 +1,12 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 #include "BladeII.h"
 #include "UObject/Object.h"
 #include "B2NPCClassInfo.h"
 #include "B2AssetLoader.h"
+#include "Engine/World.h"
+
 #include "B2NPCClassInfoBox.generated.h"
 
 

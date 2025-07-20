@@ -1,4 +1,4 @@
-#include "B2UIPlayerSkillInfo.h"
+ï»¿#include "B2UIPlayerSkillInfo.h"
 #include "B2SkillInfo.h"
 #include "B2PCClassInfoBox.h"
 #include "Event.h"
@@ -326,7 +326,7 @@ void UB2UIPlayerSkillInfo::UpdateLock(int32 CharacterLevel)
 	{		
 		if (BladeIIGameImpl::GetLocalCharacterData().IsJustAddedSkill(SkillId))
 		{
-			//¿¬Ãâ
+			//æ¥·å…
 			PlayLearnSkill_BP();
 			BladeIIGameImpl::GetLocalCharacterData().SetPlayedUnlockSkill(SkillId);
 		}
@@ -401,7 +401,7 @@ void UB2UIPlayerSkillInfo::UpdateLock(int32 CharacterLevel)
 
 	auto* ClassInfoBox = StaticFindPCClassInfoBox();
 	auto* AllSkillInfo = ClassInfoBox ? ClassInfoBox->GetAllSkillInfo() : nullptr;
-	// GetButtonIconStyle ¿¡ ·ÎµùÀÌ ÀÖ¾î¼­ const ¸¦ »©¾ß ÇÔ..
+	// GetButtonIconStyle ä¿Š è‚ºçˆ¹æ ä¹ç»¢è¾‘ const ç”« å“—å…· çªƒ..
 	UB2SkillInfo* CastedNonConstSkillInfo = const_cast<UB2SkillInfo*>(AllSkillInfo);
 	if (CastedNonConstSkillInfo)
 		SetButtonStyle(CastedNonConstSkillInfo->GetButtonIconStyle(SkillId));
@@ -420,7 +420,7 @@ void UB2UIPlayerSkillInfo::UpdateEnableLevelUp(bool bEnoughCondition)
 	if (BTN_AddSkillPoint.IsValid())
 	{
 		BTN_AddSkillPoint->SetIsEnabled(bEnableLevelUp);
-		//¿¡µğÅÍÇÃ·¹ÀÌ°¡ ¾Æ´Ò¶§ ¹öÆ°ÀÌ »ç¶óÁö¸é Button IsPressed°¡ ¹Ù²îÁö ¾Ê¾Æ¼­, ºñÁ®ºí Ã³¸®ÇÏÁö¾Ê°í ¾ËÆÄÃ³¸®
+		//ä¿Šå¼ç£æ•²é¥­æå•Š é…’åŒ†é”­ æ»šç“¢æ è¤æ‰¼ç˜¤æ Button IsPressedå•Š å®˜å·®ç˜¤ è‡¼é…’è¾‘, åšå»‰å–‰ è´¸åºœçªç˜¤è‡¼ç»Š èˆ…é¢‡è´¸åºœ
 		BTN_AddSkillPoint->SetBackgroundColor(bEnableLevelUp ? FLinearColor(1.0f,1.0f,1.0f,1.0f) : FLinearColor(1.0f, 1.0f, 1.0f, 0.0f));
 	}		
 	if (IMG_AddSkillPoint.IsValid())

@@ -1,4 +1,4 @@
-#include "BladeIIGMAIPlayer.h"
+ï»¿#include "BladeIIGMAIPlayer.h"
 //#include "BladeII.h"
 
 
@@ -75,20 +75,20 @@ void ABladeIIGMAIPlayer::InitCombateStatsForParam(const FCombatStatParam& Combat
 	// No formula for armor for now
 	Armor = MaxArmor;
 
-	// ±âº» °ø/¹æ/Ã¼ ÀÌ¿ÜÀÇ ÀüÅõ ¿É¼Ç ¼öÄ¡µé Ä³½Ì.
+	// ê¸°ë³¸ ê³µ/ë°©/ì²´ ì´ì™¸ì˜ ì „íˆ¬ ì˜µì…˜ ìˆ˜ì¹˜ë“¤ ìºì‹±.
 	InitializeCombatOptionCacheValues();
 
 	UCharacterMovementComponent* MovementComp = GetCharacterMovement();
 	if (MovementComp)
-	{ // PCClassInfo ¿¡¼­´Â ±âº»°ª¸¸À» ³Ö°í ¾ÆÀÌÅÛÀÌ¶û ½ºÅ³ ¿É¼Ç µîÀÌ ¹İ¿µµÈ walk speed Àû¿ë
+	{ // PCClassInfo ì—ì„œëŠ” ê¸°ë³¸ê°’ë§Œì„ ë„£ê³  ì•„ì´í…œì´ë‘ ìŠ¤í‚¬ ì˜µì…˜ ë“±ì´ ë°˜ì˜ëœ walk speed ì ìš©
 		MovementComp->MaxWalkSpeed = GetStaticOptionAppliedWalkSpeed();
 	}
 
-	//ÁøÇü¿¡ µû¸¥ º¸Á¤
+	//ì§„í˜•ì— ë”°ë¥¸ ë³´ì •
 	BaseDamageDecreaseRate *= (100 - CombatStatParam.ReduceDamageBonusByFormation) * 0.01f;
 	CharacterDamageRate += CombatStatParam.AttackBonusByFormation;
 
-	//GameMode¿¡ µû¸¥ ½ºÅÈº¸Á¤
+	//GameModeì— ë”°ë¥¸ ìŠ¤íƒ¯ë³´ì •
 	CharacterDamageRate *= CombatStatParam.ModeDamageRate;
 	Health *= CombatStatParam.ModeHealthRate;
 	MaxHealth *= CombatStatParam.ModeHealthRate;

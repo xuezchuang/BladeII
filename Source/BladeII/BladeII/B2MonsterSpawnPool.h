@@ -1,4 +1,4 @@
- //Fill out your copyright notice in the Description page of Project Settings.
+ï»¿ //Fill out your copyright notice in the Description page of Project Settings.
  //Project BladeII, Action Square
 
 #pragma once
@@ -644,7 +644,7 @@ struct FMonsterSpawnPoolPerStageSettings
 
 	/** For which difficulty level (defined at StageInfo table) this setting for? */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Wave")
-	int32 TargetDifficultyLevel;	// 	todo : Á¶¸¸°£ EStageDifficulty·Î º¯°æµÉ ¿¹Á¤ -> ¹Ù²Ù·Á¸é ±âÁ¸¿¡ ÀúÀåµÈ °ÍµéÀÌ ÀÇµµµÈ enum °ªÀ¸·Î Àß Serialize µÇ¾î¾ß.. ±âÁ¸¿¡ enum À» ¸ø ¾´°Ç ³­ÀÌµµ°¡ ¾î¶»°Ô È®Á¤µÉ Áö ¸ð¸£´Â »óÈ²¿¡¼­ int °¡ ¹«³­Çß±â ¶§¹®.
+	int32 TargetDifficultyLevel;	// 	todo : ì¡°ë§Œê°„ EStageDifficultyë¡œ ë³€ê²½ë  ì˜ˆì • -> ë°”ê¾¸ë ¤ë©´ ê¸°ì¡´ì— ì €ìž¥ëœ ê²ƒë“¤ì´ ì˜ë„ëœ enum ê°’ìœ¼ë¡œ ìž˜ Serialize ë˜ì–´ì•¼.. ê¸°ì¡´ì— enum ì„ ëª» ì“´ê±´ ë‚œì´ë„ê°€ ì–´ë–»ê²Œ í™•ì •ë  ì§€ ëª¨ë¥´ëŠ” ìƒí™©ì—ì„œ int ê°€ ë¬´ë‚œí–ˆê¸° ë•Œë¬¸.
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Wave")
 	TArray<FMonsterSpawnPoolWaveSettings> WaveSettings;

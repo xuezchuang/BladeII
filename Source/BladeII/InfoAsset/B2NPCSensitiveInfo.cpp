@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2NPCSensitiveInfo.h"
@@ -34,7 +34,7 @@ void UB2NPCSensitiveInfo::SetDataTable(UDataTable* InDataTable)
 FSingleNPCSensitiveData* UB2NPCSensitiveInfo::GetInfoData(ENPCClass InClassEnum, UB2NPCSingleClassInfo* InClassInfo)
 {
 	if (InClassInfo && TheData)
-	{ // ±âº»ÀûÀ¸·Î Ã£´Â µ¥¿¡ InClassEnum ÀÌ »ç¿ëµÇÁö´Â ¾Ê´Â´Ù.. °Ë»ç¿ëÀÓ.
+	{ // æ‰å¤¯åˆ©æ è‚º èŒ«ç»° å•ä¿Š InClassEnum æ è¤ä¾©ç™»ç˜¤ç»° è‡¼ç»°ä¿ƒ.. å…«è¤ä¾©çƒ™.
 		if (InClassInfo->ClassVariation == ENPCClassVariation::ENCV_GuildBattle)
 			return nullptr;
 		FSingleNPCSensitiveData* FoundDataRow = TheData->FindRow<FSingleNPCSensitiveData>(InClassInfo->SensitiveDataRowKey, TEXT(""));
@@ -43,8 +43,8 @@ FSingleNPCSensitiveData* UB2NPCSensitiveInfo::GetInfoData(ENPCClass InClassEnum,
 			FString WarnMessage = FString::Printf(TEXT("Failed to find NPCSensitiveInfo for NPCClassEnum %d:%d, key : %s"),
 				(int32)InClassEnum, (int32)InClassInfo->ClassVariation, *(InClassInfo->SensitiveDataRowKey.ToString()));
 			UE_LOG(LogBladeII, Warning, TEXT("%s"), *WarnMessage);
-#if WITH_EDITOR  && !PLATFORM_MAC// ÀÌÁ¦ NPCSensitiveInfo ¸¦ ¿­¾úÀ¸´Ï Ãß°¡ ¿£Æ®¸® ³õÄ¡Áö ¾Ê°Ô °æ°í ¸Ş½ÃÁö ¶ç¿ìÀÚ. 
-			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(WarnMessage + TEXT("\nÄÄÇ»ÅÍ°¡ °ğ Æø¹ßÇÑ´Ù.")));
+#if WITH_EDITOR  && !PLATFORM_MAC// æåŠ› NPCSensitiveInfo ç”« å‡¯èŒæ èª çœ å•Š æµšé£˜åºœ åˆæ‘¹ç˜¤ è‡¼éœ¸ ç‰ˆç»Š çš‹çŸ«ç˜¤ å‰å¿«ç£Š. 
+			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(WarnMessage + TEXT("\nå“ªè…”ç£å•Š æ¢† æ°”æƒ¯èŒ„ä¿ƒ.")));
 #endif
 			return NULL;
 		}
@@ -52,13 +52,13 @@ FSingleNPCSensitiveData* UB2NPCSensitiveInfo::GetInfoData(ENPCClass InClassEnum,
 		if (FoundDataRow->MatchingNPCClass == ENPCClass::ENC_End || FoundDataRow->MatchingNPCClass != InClassEnum ||
 			FoundDataRow->MatchingNPCClassVari != InClassInfo->ClassVariation)
 		{
-			FString WarnMessage = TEXT("NPCSensitiveInfo µ¥ÀÌÅÍÀÇ NPCClassInfo ¿ÍÀÇ ¸ÊÇÎ¿¡ ¿À·ù°¡ ÀÖ´Ù.\n\n");
+			FString WarnMessage = TEXT("NPCSensitiveInfo å•æç£ç‹¼ NPCClassInfo å®¢ç‹¼ ç”˜ä¿ä¿Š å·å¹…å•Š ä¹ä¿ƒ.\n\n");
 
-			WarnMessage += FString::Printf(TEXT("Row Å° : %s\n"), *(InClassInfo->SensitiveDataRowKey.ToString()));
+			WarnMessage += FString::Printf(TEXT("Row è™ : %s\n"), *(InClassInfo->SensitiveDataRowKey.ToString()));
 			WarnMessage += FString::Printf(TEXT("NPCClassEnum : ClassInfo %d, SensitiveInfo %d\n"), (int32)InClassEnum, (int32)FoundDataRow->MatchingNPCClass);
 			WarnMessage += FString::Printf(TEXT("NPCClassVariaion : ClassInfo %d, SensitiveInfo %d\n"), (int32)InClassInfo->ClassVariation, (int32)FoundDataRow->MatchingNPCClassVari);
 
-			WarnMessage += TEXT("\nÄÄÇ»ÅÍ°¡ °ğ Æø¹ßÇÑ´Ù."); // ÀÌ°Ô Áß¿äÇÏ´Ù.
+			WarnMessage += TEXT("\nå“ªè…”ç£å•Š æ¢† æ°”æƒ¯èŒ„ä¿ƒ."); // æéœ¸ åå¤¸çªä¿ƒ.
 
 			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(WarnMessage));
 		}
@@ -77,7 +77,7 @@ FName UB2NPCSensitiveInfo::SuggestSensitiveInfoDataRowKey(ENPCClass InClassEnum,
 //	{
 //#if WITH_EDITOR && !PLATFORM_MAC
 //		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-//			FString::Printf(TEXT("ENPCClass È¤Àº ENPCClassVariation Enum ÆĞÅ°Áö ¾øÀ½. ÄÄÇ»ÅÍ°¡ °ğ Æø¹ßÇÑ´Ù."))
+//			FString::Printf(TEXT("ENPCClass è¶£ç¯® ENPCClassVariation Enum è©è™ç˜¤ ç»æ¾œ. å“ªè…”ç£å•Š æ¢† æ°”æƒ¯èŒ„ä¿ƒ."))
 //			));
 //#endif
 //		return NAME_None;
@@ -100,7 +100,7 @@ void UB2NPCSensitiveInfo::CheckInfoDataIntegrity()
 //	{
 //#if !PLATFORM_MAC
 //		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-//			FString::Printf(TEXT("NPCSensitiveInfo µ¥ÀÌÅÍ ¾øÀ½. ÄÄÇ»ÅÍ°¡ °ğ Æø¹ßÇÑ´Ù."))
+//			FString::Printf(TEXT("NPCSensitiveInfo å•æç£ ç»æ¾œ. å“ªè…”ç£å•Š æ¢† æ°”æƒ¯èŒ„ä¿ƒ."))
 //			));
 //#endif
 //		return;
@@ -109,9 +109,9 @@ void UB2NPCSensitiveInfo::CheckInfoDataIntegrity()
 //	UB2NPCClassInfoBox* MobInfoBox = StaticFindMobClassInfoBox();
 //	if (this == StaticFindNPCSensitiveInfoTable() && MobInfoBox)
 //	{
-//		// Mob Info ¿ëÀÌ¹Ç·Î MobInfoBox ¶û °Ë»ç. Å°°ª°ú ¸ÅÄªµÇ´Â Ç×¸ñÀÌ ÀÖ´ÂÁö.
+//		// Mob Info ä¾©æéª¨è‚º MobInfoBox å°” å…«è¤. è™è”¼è‹ æ¦‚è«ç™»ç»° äº²æ ¼æ ä¹ç»°ç˜¤.
 //
-//		TArray<FString> WrongRowName; // ¹º°¡ Àß¸øµÈ ÁÙ¹øÈ£ ¸ğÀ½
+//		TArray<FString> WrongRowName; // è´­å•Š è‚‹ç»™ç­‰ ä¸´é”…é¾‹ è‘›æ¾œ
 //		TArray<FName> RowKeys = TheData->GetRowNames();
 //		for (int32 RI = 0; RI < RowKeys.Num(); ++RI)
 //		{
@@ -125,13 +125,13 @@ void UB2NPCSensitiveInfo::CheckInfoDataIntegrity()
 //		if (WrongRowName.Num() > 0)
 //		{
 //#if !PLATFORM_MAC
-//			FString AllMessage = TEXT("NPCSensitiveInfo ¿¡¼­ MobClassInfo ¿¡ Á¸ÀçÇÏÁö ¾Ê´Â ÁÙÀÌ¸§ °¨Áö:\n\n");
+//			FString AllMessage = TEXT("NPCSensitiveInfo ä¿Šè¾‘ MobClassInfo ä¿Š ç²®çŠçªç˜¤ è‡¼ç»° ä¸´ææŠš çš‘ç˜¤:\n\n");
 //
 //			for (FString& ThisName : WrongRowName)
 //			{
 //				AllMessage += ThisName + TEXT(", ");
 //			}
-//			AllMessage += TEXT("\n\nÄÄÇ»ÅÍ°¡ °ğ Æø¹ßÇÑ´Ù."); // ÀÌ°Ô Áß¿äÇÏ´Ù.
+//			AllMessage += TEXT("\n\nå“ªè…”ç£å•Š æ¢† æ°”æƒ¯èŒ„ä¿ƒ."); // æéœ¸ åå¤¸çªä¿ƒ.
 //
 //			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(AllMessage));
 //#endif
@@ -146,14 +146,14 @@ void UB2NPCSensitiveInfo::OnAssetEditorOpen(UObject* InAsset)
 
 	//if (CastedDataTable && CastedDataTable->GetRowStructName() == FName(TEXT("SingleNPCSensitiveData")))
 	//{
-	//	// NPCClassInfo °¡ ·ÎµùµÇÁö ¾ÊÀº »óÈ²ÀÌ¶ó¸é ¿À·¡ °É¸± °Å.
+	//	// NPCClassInfo å•Š è‚ºçˆ¹ç™»ç˜¤ è‡¼ç¯® æƒ‘ç‚”ææ‰¼æ å·è´° å§å‰¯ èŠ­.
 	//	CheckInfoDataIntegrity();
 	//}
 }
 
 bool UB2NPCSensitiveInfo::FirstTimeConstruction_EditorAddInfoData(ENPCClass InClassEnum, ENPCClassVariation InVariationEnum, FSingleNPCSensitiveData* InNewData, FName& OutSuggestedName)
 { 
-	// NPCSensitiveInfo µµÀÔ ÀÌÀü±îÁö NPCClassInfo ¿¡ ³Ö¾î µÎ¾ú´ø µ¥ÀÌÅÍµéÀ» NPCSensitiveInfo ·Î ÀÚµ¿ ÀÌ°üÇÏ±â À§ÇÑ ÀÓ½Ã ±â´É
+	// NPCSensitiveInfo æ¡£æ¶ æå‚ˆé³–ç˜¤ NPCClassInfo ä¿Š æŒç»¢ æ»´èŒå¸¦ å•æç£ç”¸é˜‘ NPCSensitiveInfo è‚º ç£Šæ‚¼ æåŒ…çªæ‰ å›°èŒ„ çƒ™çŸ« æ‰ç“·
 	
 	//FName SuggestedName = SuggestSensitiveInfoDataRowKey(InClassEnum, InVariationEnum);
 	//if (TheData && InNewData && InClassEnum != ENPCClass::ENC_End && SuggestedName != NAME_None)
@@ -162,11 +162,11 @@ bool UB2NPCSensitiveInfo::FirstTimeConstruction_EditorAddInfoData(ENPCClass InCl
 	//	FSingleNPCSensitiveData* FoundDataRow = TheData->FindRow<FSingleNPCSensitiveData>(SuggestedName, TEXT(""));
 	//	if (FoundDataRow && FoundDataRow->MatchingNPCClass == InClassEnum && FoundDataRow->MatchingNPCClassVari == InVariationEnum)
 	//	{
-	//		//*FoundDataRow = *InNewData; ÃÊ±â ±¸ÃàÀº µÇ¾ú°í NPCClassInfo ¿¡¼­ Àü´ŞÇÒ µ¥ÀÌÅÍ´Â ¾øÀ¸¹Ç·Î ¿©±ä ÇÊ¿ä¾ø°í »õ·Î¿î Ç×¸ñ Ãß°¡ÇÏ´Â ¿ëµµ·Î´Â ³²°ÜµÒ.
+	//		//*FoundDataRow = *InNewData; æª¬æ‰ å¤‡ç»µç¯® ç™»èŒç»Š NPCClassInfo ä¿Šè¾‘ å‚ˆå´”ä¸” å•æç£ç»° ç»æ éª¨è‚º å’¯å˜ é˜å¤¸ç»ç»Š è´§è‚ºæ¬¾ äº²æ ¼ çœ å•Šçªç»° ä¾©æ¡£è‚ºç»° å·¢è´¥ç‹„.
 	//	}
 	//	else
 	//	{
-	//		InNewData->MatchingNPCClass = InClassEnum; // ¸ÂÃç¼­ µé¾î¿À±ä Çß°ÚÁö¸¸
+	//		InNewData->MatchingNPCClass = InClassEnum; // å˜è‹—è¾‘ ç”¸ç»¢å·å˜ æ²æ‘†ç˜¤çˆ¶
 	//		InNewData->MatchingNPCClassVari = InVariationEnum;
 
 	//		TheData->RowMap.Add(SuggestedName, reinterpret_cast<uint8*>(InNewData)); // Hope this works..

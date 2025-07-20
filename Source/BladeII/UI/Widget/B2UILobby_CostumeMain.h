@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -8,6 +8,7 @@
 #include "B2UIBackWidget.h"
 #include "../B2RichTextBlock.h"
 #include "../../BladeII/BladeIIGameMode.h"
+#include "EventSubsystem.h"
 #include "B2UILobby_CostumeMain.generated.h"
 
 /**

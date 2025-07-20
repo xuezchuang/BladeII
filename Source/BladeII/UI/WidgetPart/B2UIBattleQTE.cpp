@@ -1,4 +1,4 @@
-#include "B2UIBattleQTE.h"
+ï»¿#include "B2UIBattleQTE.h"
 #include "Event.h"
 #include "B2UIDocHelper.h"
 #include "B2UIChatting.h"
@@ -89,7 +89,7 @@ void UB2UIBattleQTE::UnsubscribeEvents()
 
 void UB2UIBattleQTE::OnPause(bool bPaused)
 {
-	// º°µµÀÇ layer ¿¡ µ¿Àû »ı¼ºµÇ´Â ¾Ö¶ó pause µÇ¾îµµ °¡·ÁÁöÁö ¾Ê¾Æ¼­ µû·Î ¼û±æ ÇÊ¿ä°¡ ÀÖ´Ù.
+	// å–Šæ¡£ç‹¼ layer ä¿Š æ‚¼åˆ© ç§¯å·±ç™»ç»° å±€æ‰¼ pause ç™»ç»¢æ¡£ å•Šå¦¨ç˜¤ç˜¤ è‡¼é…’è¾‘ è¶è‚º è§è¾¨ é˜å¤¸å•Š ä¹ä¿ƒ.
 	bHiddenByPause = bPaused;
 	UpdateOverallVisibility();
 }
@@ -100,10 +100,10 @@ void UB2UIBattleQTE::UpdateByQTEEnableState(EQTEUIAttackEnableTimingState InEnab
 
 	CachedEnableTimingState = InEnableTimingState;
 
-	UpdateOverallVisibility(); // °ª Ä³½ÌÇØ ³õ°í ÅäÅ» ºñÀúºô¸®Æ¼ ¾÷µ¥ÀÌÆ®
+	UpdateOverallVisibility(); // è”¼ æŸæ•™ç§¦ åˆç»Š é…å‘• åšå†å‘¼åºœè è¯€å•æé£˜
 
 	if (CachedEnableTimingState != PrevEnableState && CachedEnableTimingState != EQTEUIAttackEnableTimingState::None)
-	{ // QTE Å¸ÀÌ¹Ö Ç¥½Ã ¾Ö´Ô ÇÃ·¹ÀÌ
+	{ // QTE é¸¥ææ€ª é’çŸ« å±€ä¸› æ•²é¥­æ
 		TurnOffLoopAnims();
 		PlayEnableAnim(CachedEnableTimingState);
 	}
@@ -137,15 +137,15 @@ void UB2UIBattleQTE::UpdateOverallVisibility()
 	}
 	else if (UB2UIManager::GetInstance()->GetUI<UB2UIChatting>(UIFName::Chatting))
 	{	
-		SetVisibility(ESlateVisibility::Hidden); // Ã¤ÆÃ UI°¡ ³ëÃâ µÇ¾úÀ» °æ¿ì È÷µç Ã³¸®.
+		SetVisibility(ESlateVisibility::Hidden); // ç›²æ³¼ UIå•Š ç•´å… ç™»èŒé˜‘ ç‰ˆå¿« æ´’ç”µ è´¸åºœ.
 	}
 	else if (CachedEnableTimingState != EQTEUIAttackEnableTimingState::None || bPressedAnimPlaying)
 	{
-		SetVisibility(ESlateVisibility::SelfHitTestInvisible); // ³»ºÎ ¹öÆ°Àº Visible ÀÌ¾î¾ß ÇÑ´Ù.
+		SetVisibility(ESlateVisibility::SelfHitTestInvisible); // éƒ´ä½• æ»šç“¢ç¯® Visible æç»¢å…· èŒ„ä¿ƒ.
 	}
 	else if (bIsQTEMounted)
 	{
-		SetVisibility(ESlateVisibility::HitTestInvisible); // ¸¶¿îÆ® »óÅÂ¿¡¼­µµ º¸ÀÌ±ä ÇÏ´Âµ¥ Å¬¸¯Àº ¾È µÇµµ·Ï.
+		SetVisibility(ESlateVisibility::HitTestInvisible); // ä»˜æ¬¾é£˜ æƒ‘æ€•ä¿Šè¾‘æ¡£ ç„Šæå˜ çªç»°å• åŠªè…ç¯® æ•‘ ç™»æ¡£åºŸ.
 	}
 	else
 	{
@@ -178,12 +178,12 @@ void UB2UIBattleQTE::UnbindDoc()
 void UB2UIBattleQTE::OnPressedBtnArea()
 {
 	if (bIsQTEMounted) {
-		return; // ¸¶¿îÆ® »óÅÂ¿¡¼­µµ º¸ÀÌ°Ô ÇÒ ²«µ¥ ³²Àº ½Ã°£ÀÌ¶û.. Á¶ÀÛ ¿ëµµ´Â ¾Æ´Ô. Å¬¸¯ ÀÚÃ¼°¡ ¾Æ¸¶ ¾È µÉ °Í.
+		return; // ä»˜æ¬¾é£˜ æƒ‘æ€•ä¿Šè¾‘æ¡£ ç„Šæéœ¸ ä¸” æå• å·¢ç¯® çŸ«åŸƒæå°”.. ç‚¼ç´¯ ä¾©æ¡£ç»° é…’ä¸›. åŠªè… ç£Šçœ‰å•Š é…’ä»˜ æ•‘ çª å·´.
 	}
 
 	QTEAttackClass<>::GetInstance().Signal();
 
-	//QTE¼º°øÇßÀ»¶§¸¸ ÁøÇà(¹öÆ° ¾Ö´Ï¸ŞÀÌ¼Ç)
+	//QTEå·±å‚æ²é˜‘é”­çˆ¶ æŸ³é’(æ»šç“¢ å±€èªçš‹æè®°)
 	UB2UIDocBattle* DocBattle = UB2UIDocHelper::GetDocBattle();
 
 	if (DocBattle && !DocBattle->GetbIsPlayerInQTEState())
@@ -193,7 +193,7 @@ void UB2UIBattleQTE::OnPressedBtnArea()
 	{
 		TurnOffLoopAnims();
 		PlayPressedAnim();
-		SetIsPressedAnimPlaying(true); // Reset Àº ºí·çÇÁ¸°Æ®¼­
+		SetIsPressedAnimPlaying(true); // Reset ç¯® å–‰é£æ©‡èµ´é£˜è¾‘
 	}	
 }
 
@@ -208,7 +208,7 @@ void UB2UIBattleQTE::UpdateMountTimeProgress(float InRemainingTime)
 {
 	if (TB_MountTimeNum.IsValid())
 	{
-		TB_MountTimeNum->SetText(GetAutoFractionalFormattedText(InRemainingTime, 0)); // ÀÏ´ÜÀº ¼Ò¼öÁ¡ ¾øÀÌ..
+		TB_MountTimeNum->SetText(GetAutoFractionalFormattedText(InRemainingTime, 0)); // è€çªœç¯® å®¶èç—¢ ç»æ..
 	}
 
 	if (MountTimeMID)
@@ -235,7 +235,7 @@ void UB2UIBattleQTE::SetQTEMounted(bool bMounted, float InMaxMountTime, bool bVi
 
 	if (bIsQTEMounted)
 	{
-		// QTE mount time Ä«¿îÆ®¸¦ º¸¿©ÁÙ °ÍµéÀ» ¼Â¾÷
+		// QTE mount time å¢¨æ¬¾é£˜ç”« ç„Šå’¯ä¸´ å·´ç”¸é˜‘ æ‚¸è¯€
 		if (IMG_MountTimeProgress.IsValid())
 		{
 			IMG_MountTimeProgress->SetVisibility(ESlateVisibility::HitTestInvisible);
@@ -245,7 +245,7 @@ void UB2UIBattleQTE::SetQTEMounted(bool bMounted, float InMaxMountTime, bool bVi
 		{
 			TB_MountTimeNum->SetVisibility(bVisibleTimeNum ? ESlateVisibility::HitTestInvisible : ESlateVisibility::Collapsed);
 		}
-		UpdateMountTimeProgress(MaxQTEMountTime); // ÀÏ´Ü ¸¸¶¥À¸·Î ÇÁ·Î±×·¹½º ¼¼ÆÃ.		
+		UpdateMountTimeProgress(MaxQTEMountTime); // è€çªœ çˆ¶é¡¶æ è‚º æ©‡è‚ºå¼Šé¥­èƒ¶ æŠ€æ³¼.		
 
 		TurnOffLoopAnims();
 	}

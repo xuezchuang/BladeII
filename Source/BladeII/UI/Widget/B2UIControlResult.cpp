@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIControlResult.h"
 #include "B2ControlGameMode.h"
@@ -91,7 +91,7 @@ void UB2UIControlResult::NativeConstruct()
 		}
 	}
 
-	// µî±Ş ¸¶Å©
+	// æ®¿é­ ä»˜å†œ
 	if (UIP_Grade.IsValid())
 	{
 		int32 nGrade = 10;
@@ -103,7 +103,7 @@ void UB2UIControlResult::NativeConstruct()
 		beforeGrade = UB2UIDocHelper::GetDocControl()->GetBeforeGradeInfo()->battle_grade;
 		beforenStar = UB2UIDocHelper::GetDocControl()->GetBeforeGradeInfo()->battle_star_count;
 
-		//µî±Ş ¹æ¾î
+		//æ®¿é­ è§„ç»¢
 		if (TB_PVPRankPrevent.IsValid())
 		{
 			if (nGrade == beforeGrade && nStar == beforenStar)
@@ -118,13 +118,13 @@ void UB2UIControlResult::NativeConstruct()
 
 		UIP_Grade->SetGradeRank(nGrade, nStar);
 
-		//¿¬½Âº¸³Ê½º
+		//æ¥·é“°ç„Šå‘ˆèƒ¶
 		if (TB_WinningBonus.IsValid())
 		{
 			TB_WinningBonus->SetVisibility(UB2UIDocHelper::GetDocControl()->GetGradeInfo()->continue_win >=
 				BladeIIGameImpl::GetClientDataStore().GetWinCountForBonus() ? ESlateVisibility::Visible : ESlateVisibility::Hidden);
 
-			// 1µî±ŞÀº ¿¬½Âº¸³Ê½º Ç¥±â ¾ÈÇÑ´Ù.
+			// 1æ®¿é­ç¯® æ¥·é“°ç„Šå‘ˆèƒ¶ é’æ‰ æ•‘èŒ„ä¿ƒ.
 			if (beforeGrade == 1)
 			{
 				TB_WinningBonus->SetVisibility(ESlateVisibility::Hidden);
@@ -132,8 +132,8 @@ void UB2UIControlResult::NativeConstruct()
 		}
 	}
 
-	// Àû ¿µ¿õ Ã³Ä¡
-	// n Å³
+	// åˆ© åº·æ—· è´¸æ‘¹
+	// n æ‡¦
 	if (UIP_Control_Record_EnemyKill.IsValid()) 
 	{
 		UIP_Control_Record_EnemyKill->SetTitle(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("ControlRecordKillEnemy")));
@@ -145,7 +145,7 @@ void UB2UIControlResult::NativeConstruct()
 		}
 	}
 
-	// ÇÇÇØ·® ±â¿©µµ
+	// ä¹”ç§¦æ¨Š æ‰å’¯æ¡£
 	// 10,000
 	if (UIP_ControlRecord_TotalDamage.IsValid())
 	{
@@ -155,8 +155,8 @@ void UB2UIControlResult::NativeConstruct()
 		UIP_ControlRecord_TotalDamage->SetAmount(FText::AsNumber(nTotalDamageAmount));
 	}
 
-	// ÀÓ¹« ±â¿© ½Ã°£
-	// n½Ã°£ nºĞ General_Min
+	// çƒ™å…¬ æ‰å’¯ çŸ«åŸƒ
+	// nçŸ«åŸƒ nç›’ General_Min
 	if (UIP_ControlRecord_ContributeTime.IsValid())
 	{
 		UIP_ControlRecord_ContributeTime->SetTitle(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("ControlRecordContributeTime")));
@@ -173,8 +173,8 @@ void UB2UIControlResult::NativeConstruct()
 		UIP_ControlRecord_ContributeTime->SetAmount(FText::FromString(strContributeTime));
 	}
 
-	// °æ±â ³» Á×À½
-	// n È¸
+	// ç‰ˆæ‰ éƒ´ ç£·æ¾œ
+	// n é›€
 	if (UIP_ControlRecord_Dead.IsValid())
 	{
 		UIP_ControlRecord_Dead->SetTitle(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("ControlRecordDead")));
@@ -186,7 +186,7 @@ void UB2UIControlResult::NativeConstruct()
 		}
 	}
 
-	// º¸»óÂÊ
+	// ç„Šæƒ‘ç‡
 	FB2ResponseAssaultResultPtr ptrResult = UB2UIDocHelper::GetDocControl()->GetResultPtr();
 
 	check(ControlRewardClass);
@@ -225,7 +225,7 @@ void UB2UIControlResult::NativeConstruct()
 			List_Reward->AddChild(P_LoseText.Get());
 		}
 
-		// ¹Ú½ºº¸»ó(ºê½Ç°ñ¹Ú½º)
+		// å† èƒ¶ç„Šæƒ‘(å®è§’æ¦œå† èƒ¶)
 		UB2UIDocControl*	ControlDoc = UB2UIDocHelper::GetDocControl();
 		if (!ControlDoc) return;
 		ControlDoc->SetRewardBoxStatus(ptrResult->reward_box_status);
@@ -349,7 +349,7 @@ void UB2UIControlResult::CheckRankChanged()
 	UB2UIDocSome* pDocSome = UB2UIDocHelper::GetDocSome();
 	UB2UIDocControl* pDocControl = UB2UIDocHelper::GetDocControl();
 
-	// ¹Ş¾Æ³í Á¤º¸·Î µ¶¿¡ ¼ÂÆÃ..
+	// ç½é…’ç¨  æ²¥ç„Šè‚º åˆ€ä¿Š æ‚¸æ³¼..
 	if (pDocSome && pDocControl)
 	{
 		FB2ResponseGetAssaultBattleStatusPtr GetAssaultPtr = pDocControl->GetGetAssaultPtr();
@@ -357,7 +357,7 @@ void UB2UIControlResult::CheckRankChanged()
 
 		if (GetAssaultPtr && ResultPtr)
 		{
-			// ³»²¨
+			// éƒ´æ³¢
 			if (ResultPtr->ranking)
 			{
 				int32 PrevRanking = GetAssaultPtr->ranking->ranking;
@@ -380,7 +380,7 @@ void UB2UIControlResult::CheckRankChanged()
 				if (pDocHero)
 				{
 					MyRankerInfo.TotalCombatPower = pDocHero->GetCombatPower();
-					//[@SameLine, 180612] explevelinfo doc, datastore -> datastore °³¼±
+					//[@SameLine, 180612] explevelinfo doc, datastore -> datastore ä¿ºæ€¥
 					//MyRankerInfo.EntryLevels.Add(pDocHero->GetCurrentLevel());
 					FLocalCharacterData& CharacterDataStore = BladeIIGameImpl::GetClientDataStore().GetLocalCharacterData();
 					const int32 SelectedCharLevel = CharacterDataStore.GetCharacterLevel(SelectedPcClass);
@@ -390,7 +390,7 @@ void UB2UIControlResult::CheckRankChanged()
 				//pDocSome->SetMyRankerInfo(MyRankerInfo);
 			}
 
-			// »ó´ë²¨
+			// æƒ‘æªæ³¢
 			if (ResultPtr->ranking && ResultPtr->prev_ranker)
 			{
 				FModRankerInfo OtherRankerInfo;
@@ -411,7 +411,7 @@ void UB2UIControlResult::CheckRankChanged()
 			}
 		}
 	}
-	// ¹Ş¾Æ³í Á¤º¸·Î µ¶¿¡ ¼ÂÆÃ..³¡
+	// ç½é…’ç¨  æ²¥ç„Šè‚º åˆ€ä¿Š æ‚¸æ³¼..åœº
 
 	if (pDocSome && pDocSome->GetRankingChanged() > 0)
 	{
@@ -453,7 +453,7 @@ void UB2UIControlResult::CheckAndOpenLevelUpPart()
 
 	for (auto pcclass : ThisPCClass)
 	{
-		//[@SameLine, 180612] explevelinfo doc, datastore -> datastore °³¼±
+		//[@SameLine, 180612] explevelinfo doc, datastore -> datastore ä¿ºæ€¥
 		//UB2UIDocHero* DocHero = UB2UIDocHelper::GetDocHero(PCClassToInt(pcclass));
 		//bool bCharLevelUp = (FMath::Max(DocHero->GetBasicUpgradeLevel(), DocHero->GetExtraUpgradeLevel()) > DocHero->GetCurrentLevel());
 		const int32 ClearAfterLevel = CharacterDataStore.GetCharacterLevel(pcclass);
@@ -480,7 +480,7 @@ void UB2UIControlResult::SetAssaultBattleStatus(const FB2ResponseGetAssaultBattl
 
 	ControlDoc->SetGetAssaultPtr(MsgPtr);
 
-	// Á¤º¸ ¹Ş¾ÒÀ¸¸é ³ª°¨
+	// æ²¥ç„Š ç½ç–½æ æ å”±çš‘
 	AB2ControlGameMode* pGM = Cast<AB2ControlGameMode>(UGameplayStatics::GetGameMode(this));
 
 	if (pGM)

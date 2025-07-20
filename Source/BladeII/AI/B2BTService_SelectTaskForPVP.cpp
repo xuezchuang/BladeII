@@ -1,4 +1,4 @@
-
+ï»¿
 #include "B2BTService_SelectTaskForPVP.h"
 //#include "BladeII.h"
 #include "BehaviorTree/BlackboardComponent.h"
@@ -23,7 +23,7 @@ void UB2BTService_SelectTaskForPVP::TickNode(UBehaviorTreeComponent& OwnerComp, 
 
 	auto*	Controller = Cast<ABladeIIPlayerAIController>(OwnerComp.GetOwner());
 	BII_CHECK(Controller);
-	//Controller->CurrentTargetMob º¸´Ù À§¿¡ ÀÖ¾î¾ß ÇÔ. ¿©±â¼­ CurrentTargetMobÀ» ¼³Á¤ ÇÔ
+	//Controller->CurrentTargetMob ç„Šä¿ƒ å›°ä¿Š ä¹ç»¢å…· çªƒ. å’¯æ‰è¾‘ CurrentTargetMobé˜‘ æ±²æ²¥ çªƒ
 	auto	Ret = Controller->UpdateTarget();
 
 	auto*	Player = Cast<ABladeIIPlayer>(Controller->GetPawn());
@@ -40,22 +40,22 @@ void UB2BTService_SelectTaskForPVP::TickNode(UBehaviorTreeComponent& OwnerComp, 
 	const FString TargetToBeat(TEXT("TargetToBeat"));
 	//const FString LocationToGo(TEXT("LocationToGo"));
 
-	// Å¸°Ù ¾øÀ¸¸é ¹éÈ¨
+	// é¸¥ç™¾ ç»æ æ å½’æƒ
 	if (!Ret)
 	{
 		//Blackboard->SetValueAsEnum(FName(*EnumKey), static_cast<uint8>(BTTASK_MODE::EBM_RETURNHOME));
 		return;
 	}
 
-	// Å¸°Ù¸÷ ¼³Á¤
+	// é¸¥ç™¾å„ æ±²æ²¥
 	Blackboard->SetValueAsObject(FName(*TargetToBeat), pTarget);
 
-	// Å¸°Ù°úÀÇ °Å¸®
+	// é¸¥ç™¾è‹žç‹¼ èŠ­åºœ
 	float fTargetDistance = (pTarget->GetActorLocation() - Player->GetActorLocation()).Size();
 
 	if (fTargetDistance < AttackTargetDistance)
 	{
-		// °ø°Ý ¹üÀ§ ¾ÈÀÌ¸é °ø°Ý
+		// å‚æ‹œ è£¹å›° æ•‘æžæ å‚æ‹œ
 		Lottery	Lotto;
 
 		Lotto.PushBall(static_cast<uint8>(BTTASK_MODE::EBM_MOVE), 0.3f);
@@ -78,12 +78,12 @@ void UB2BTService_SelectTaskForPVP::TickNode(UBehaviorTreeComponent& OwnerComp, 
 	}
 	else if (fTargetDistance < SearchTargetDistance)
 	{
-		// ÀÎ½Ä ¹üÀ§ ¾ÈÀÌ¸é ÀÌµ¿
+		// ç‰¢ä¾¥ è£¹å›° æ•‘æžæ æžæ‚¼
 		Blackboard->SetValueAsEnum(FName(*EnumKey), static_cast<uint8>(BTTASK_MODE::EBM_MOVE));
 	}
 	else
 	{
-		// ±×¿Ü¿£ ¹éÈ¨
+		// å¼Šå¯‡æµš å½’æƒ
 // 		Blackboard->SetValueAsEnum(FName(*EnumKey), static_cast<uint8>(BTTASK_MODE::EBM_RETURNHOME));
 // 		Blackboard->SetValueAsObject(FName(*TargetToBeat), HomePoint);
 	}

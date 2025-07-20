@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -26,7 +26,7 @@ public:
 	void SetVisibleMoveButton(bool IsMovable = false);
 	void SetVisibleButton(bool IsVisible);
 
-	//ºÎ¸ğ Å¬·¡½º¸¦ °¡Á® ¿Ã ¼ö´Â ÀÖÁö¸¸....±¦È÷ ±í°Ô ºÎ¸ğ¸¦ °¡Á®¿Ô´Ù »ç°í Ä¡Áö ¸»°í...±×³É ³Ñ°Ü ¹ŞÀÚ
+	//ä½•è‘› åŠªè´°èƒ¶ç”« å•Šå»‰ æ£µ èç»° ä¹ç˜¤çˆ¶....å®æ´’ è¡¨éœ¸ ä½•è‘›ç”« å•Šå»‰å­ä¿ƒ è¤ç»Š æ‘¹ç˜¤ å¯Œç»Š...å¼Šæˆ é€è´¥ ç½ç£Š
 	FORCEINLINE void SetParentUI(class UB2UIGoodsShortcutTooltipPopup* const _parentUI) { m_ParentUI = _parentUI; };
 protected:
 	//FSingleGoodsTypeInfoData* GetGoodsInfoStringFromGoodsInfoStringTableObject(int32 _InfoStringID);

@@ -5,7 +5,7 @@
 //#include "UObject/Object.h"
 #include "B2UIEnum.h"
 #include "B2UIDocBase.h"
-//#include "Tickable.h"
+#include "Tickable.h"
 #include "B2UIDocManager.generated.h"
 
 /*

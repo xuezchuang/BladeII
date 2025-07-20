@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2TotemData.h"
@@ -69,7 +69,7 @@ FB2Totem::FB2Totem(const b2network::B2TotemServerInfoPtr ptr)
 		SubOptionDetails.Add(FB2TotemSubOptionDetail(ptr->sub_option_details[i]));
 	}
 
-	// ÅäÅÛÀÇ ·£´ı ¿É¼Ç Áß 3¹øÂ° Ç×¸ñÀº ¹«Á¶°Ç °¨¼Ò ¿É¼ÇÀ¸·Î Àû¿ëµÈ´Ù.
+	// é…è¢ç‹¼ ç½šå¾… å¯è®° å 3é”…æ³ äº²æ ¼ç¯® å…¬ç‚¼æ‰’ çš‘å®¶ å¯è®°æ è‚º åˆ©ä¾©ç­‰ä¿ƒ.
 	if (SubOptionDetails.IsValidIndex(TOTEM_DECREASE_VARIATION_INDEX))
 	{
 		SubOptionDetails[TOTEM_DECREASE_VARIATION_INDEX].SubOption.OptionVariationType = EOptionVariation::EOV_Decrease;
@@ -86,7 +86,7 @@ FB2Totem::FB2Totem(const b2network::B2TotemServerInfoPtr ptr)
 
 float FB2Totem::GetCombat()
 {
-	// ¿É¼Ç °¡Áö°í ÀüÅõ·Â ±¸ÇØ¼­ ¹İÈ¯
+	// å¯è®° å•Šç˜¤ç»Š å‚ˆæ§ä»¿ å¤‡ç§¦è¾‘ é¦†åˆ¸
 	return 0.0f;
 }
 

@@ -105,7 +105,7 @@ bool UB2UIDocHeroTower::CanSweepToday()
 		return m_ptrGetHeroTower->is_sweep;
 	}
 
-	// Á¤º¸ ¾øÀ¸¸é ¼ÒÅÁ Çß´ÙÄ§
+	// æ²¥ç„Š ç»æ æ å®¶å¸• æ²ä¿ƒé­”
 	return true;	
 }
 

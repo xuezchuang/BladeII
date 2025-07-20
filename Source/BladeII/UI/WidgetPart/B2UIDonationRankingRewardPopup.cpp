@@ -1,11 +1,11 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIDonationRankingRewardPopup.h"
 #include "B2UIDocHelper.h"
 #include "B2UIDocDonation.h"
 #include "B2UIRewardEventSet.h"
 #include "B2AndroidBackManager.h"
-
+#include "BladeIILocText.h"
 
 void UB2UIDonationRankingRewardPopup::Init()
 {

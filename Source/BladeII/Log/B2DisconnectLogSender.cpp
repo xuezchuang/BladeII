@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2DisconnectLogSender.h"
 //#include "BladeII.h"
 
@@ -49,7 +49,7 @@ void UB2DisconnectLogSender::DiscconectedLog(EDisconnectType Type, int32 ErrorID
 	if (!CheckSendLog())
 		return;
 
-	//ÇÑ°³¸¸ ³²±è..
+	//èŒ„ä¿ºçˆ¶ å·¢è¾«..
 	if (LocalSaveLog.IsExgistLog())
 		return;
 

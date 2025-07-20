@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UICollectBookWing.h"
 #include "B2UIManager.h"
 #include "B2WingUIP_PropOptionIcon.h"
@@ -85,14 +85,14 @@ void UB2UICollectBookWingOption::SetWingOption(const FWingPropOption* OptionPtr,
 {
 	if (OptionPtr && UIP_WingOptIcon.IsValid())
 	{
-		if (bInitPropOption == false) // Ã³À½¿¡¸¸ º¹»ç
+		if (bInitPropOption == false) // è´¸æ¾œä¿Šçˆ¶ æ±—è¤
 		{
 			PropOption = *OptionPtr;
 			bInitPropOption = true;
 			CharacterClass = InCharacterClass;
 		}
 
-		else // ÀÌÈÄ ÇÊ¿äÇÑ Á¤º¸¸¸ ¼ÂÆÃ
+		else // æé¥¶ é˜å¤¸èŒ„ æ²¥ç„Šçˆ¶ æ‚¸æ³¼
 		{
 			PropOption.bIsOpen = OptionPtr->bIsOpen;
 			PropOption.MaxOptionLevel = OptionPtr->MaxOptionLevel;
@@ -421,7 +421,7 @@ void UB2UICollectBookWing::UpdateStaticText()
 UB2UICollectBookWing::UB2UICollectBookWing(const FObjectInitializer& ObjectInitializer)
 	:Super(ObjectInitializer)
 {
-	CurrentWingGrade = MIN_WING_EVOLUTION_GRADE; // ÃÊ±â PageView ¼ÂÆÃÀ» À§ÇØ 
+	CurrentWingGrade = MIN_WING_EVOLUTION_GRADE; // æª¬æ‰ PageView æ‚¸æ³¼é˜‘ å›°ç§¦ 
 	CurrentEnhanceLevel = MIN_WING_ENHANCE_LEVEL;
 }
 
@@ -454,7 +454,7 @@ void UB2UICollectBookWing::OnClickedWingPage()
 		if (UIP_WingLevelIcons[Idx].IsValid())
 			UIP_WingLevelIcons[Idx]->SetMyEnhanceLevel(Idx + 1);
 	
-	UpdateWingPage(MIN_WING_EVOLUTION_GRADE, true);	// µî±Ş 1 °­È­ 1 »óÅÂ·Î ÃÊ±â»óÅÂ ¼³Á¤
+	UpdateWingPage(MIN_WING_EVOLUTION_GRADE, true);	// æ®¿é­ 1 ç¢æ‹³ 1 æƒ‘æ€•è‚º æª¬æ‰æƒ‘æ€• æ±²æ²¥
 }
 
 void UB2UICollectBookWing::SetClickWingGradeDelegate(FOnClickedCollectionWingGrade& Delegate)
@@ -517,7 +517,7 @@ void UB2UICollectBookWing::UpdateWingPage(int32 WingGrade, bool bForce)
 		}
 
 
-		// Grade°¡ ¹Ù²î¸é LevelÀº ÃÊ±âÈ­ - ±âÈ¹ ¿äÃ»
+		// Gradeå•Š å®˜å·®æ Levelç¯® æª¬æ‰æ‹³ - æ‰è£™ å¤¸æ²¡
 		CurrentEnhanceLevel = 0; 
 		UpdateWingLevelVisible(CurrentEnhanceLevel);
 		UpdateWingAbility(WingGrade, CurrentEnhanceLevel);
@@ -543,7 +543,7 @@ void UB2UICollectBookWing::UpdateWingAbility(int32 WingGrade, int32 WingLevel)
 	WingInfo.EvolutionGrade = WingGrade;
 	WingInfo.EnhanceLevel = WingLevel;
 
-	if (WingInfo.UpdateStats())	// ÇöÀç µî±Ş°ú °­È­Level·Î ³¯°³ µ¥ÀÌÅÍ °»½Å
+	if (WingInfo.UpdateStats())	// æ³…çŠ æ®¿é­è‹ ç¢æ‹³Levelè‚º æœä¿º å•æç£ ç›è„š
 	{
 		UpdatePrimaryAbility(static_cast<int32>(WingInfo.GetAttackPoint()),
 			static_cast<int32>(WingInfo.GetDefensePoint()),
@@ -554,7 +554,7 @@ void UB2UICollectBookWing::UpdateWingAbility(int32 WingGrade, int32 WingLevel)
 		{
 			const FWingPropOption* PropOption = WingInfo.GetPropOptionPtr(PropIdx);
 
-			// 1. UI »ó´ÜÀÇ ³¯°³¿¡ ¹ÚÇôÀÖ´Â OptionIcon ¼³Á¤
+			// 1. UI æƒ‘çªœç‹¼ æœä¿ºä¿Š å† å›šä¹ç»° OptionIcon æ±²æ²¥
 			if (UIP_WingOptionIcons.IsValidIndex(PropIdx) && UIP_WingOptionIcons[PropIdx].IsValid())
 			{
 				TWeakObjectPtr<UB2WingUIP_PropOptionIcon>& OptionIconWidget = UIP_WingOptionIcons[PropIdx];
@@ -565,7 +565,7 @@ void UB2UICollectBookWing::UpdateWingAbility(int32 WingGrade, int32 WingLevel)
 				}
 			}
 
-			// 2. UI ÇÏ´ÜÀÇ Optionº° »ó¼¼ ¼öÄ¡ ¼³Á¤
+			// 2. UI çªçªœç‹¼ Optionå–Š æƒ‘æŠ€ èæ‘¹ æ±²æ²¥
 			if (UIP_WingOptions.IsValidIndex(PropIdx) && UIP_WingOptions[PropIdx].IsValid())
 			{
 				UIP_WingOptions[PropIdx]->SetWingOption(PropOption, CharacterClass);

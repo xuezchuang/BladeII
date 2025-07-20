@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 // Project BladeII, Action Square
 
 #pragma once
@@ -16,7 +16,7 @@ public:
 	UB2NoAnimSkillInfo(const FObjectInitializer& ObjectInitializer);	
 
 public:
-	// NoAnimSkill - Thunderstorm(¿¡Å×¸£ ¼¼Æ® Å¸°Ù µ¥¹ÌÁö + ÀÌÆåÆ® ¿¹¾à)
+	// NoAnimSkill - Thunderstorm(ä¿ŠæŠ›ç¦ æŠ€é£˜ é¸¥ç™¾ å•å›ºç˜¤ + ææ£‹é£˜ æŠ—è·)
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Thunderstorm")
 	float ThunderstormWaitTime;
 
@@ -35,14 +35,14 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Thunderstorm")
 	float ThunderstormImpulseScale;
 
-	// NoAnimSkill - Limitation(¿¡Å×¸£ ¼¼Æ® ¼Ó¹Ú)
+	// NoAnimSkill - Limitation(ä¿ŠæŠ›ç¦ æŠ€é£˜ åŠ å† )
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Limitation")
 	EBuffType LimitationBuffType;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Limitation")
 	float LimitationDuration;
 
-	// NoAnimSkill - Firewall(¿¡Å×¸£ ¼¼Æ® È­¿°º®(?) º»ÀÎ À§Ä¡¿¡ ÀÌÆåÆ® Àç»ı + ÁÖº¯ Àû È­¿°½ºÅ×ÀÌÆ® µ¥¹ÌÁö)
+	// NoAnimSkill - Firewall(ä¿ŠæŠ›ç¦ æŠ€é£˜ æ‹³å ªå¯’(?) å¤¯ç‰¢ å›°æ‘¹ä¿Š ææ£‹é£˜ çŠç§¯ + æ—å‡½ åˆ© æ‹³å ªèƒ¶æŠ›æé£˜ å•å›ºç˜¤)
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Firewall")
 	TSoftObjectPtr<class UParticleSystem> FirewallFx;
 

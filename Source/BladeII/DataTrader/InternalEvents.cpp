@@ -1,4 +1,4 @@
-
+﻿
 #include "InternalEvents.h"
 
 namespace data_trader

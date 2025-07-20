@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIControlRanking.h"
 #include "B2UIManager.h"
@@ -144,13 +144,13 @@ void UB2UIControlRanking::OnClose(bool RightNow /*= false*/)
 
 void UB2UIControlRanking::UpdateStaticText()
 {
-	if (STB_Title.IsValid()) // ¸í¿¹ÀÇ Àü´ç
+	if (STB_Title.IsValid()) // ç–™æŠ—ç‹¼ å‚ˆå¯¸
 		STB_Title->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Control_RankingTitle")));
-	if (STB_AllRank.IsValid()) //ÀüÃ¼ ·©Å·
+	if (STB_AllRank.IsValid()) //å‚ˆçœ‰ çæ¬§
 		STB_AllRank->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("PVP1on1_TotalRanking")));
 	if (STB_AllRank2.IsValid())
 		STB_AllRank2->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("PVP1on1_TotalRanking")));
-	if (STB_FriendRank.IsValid()) // Ä£±¸ ·©Å·
+	if (STB_FriendRank.IsValid()) // æ¨¡å¤‡ çæ¬§
 		STB_FriendRank->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("PVP1on1_FriendRanking")));
 	if (STB_FriendRank2.IsValid())
 		STB_FriendRank2->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("PVP1on1_FriendRanking")));

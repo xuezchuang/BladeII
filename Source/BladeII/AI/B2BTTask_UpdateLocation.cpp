@@ -1,4 +1,4 @@
-
+ï»¿
 #include "B2BTTask_UpdateLocation.h"
 //#include "BladeII.h"
 #include "NavigationSystem.h"
@@ -47,7 +47,7 @@ EBTNodeResult::Type UB2BTTask_UpdateLocation::ExecuteTask(UBehaviorTreeComponent
 	if (EmitNoise <= 0.2f)
 	{
 		auto NoiseLocation	= GetRandomReachablePointInRadiusWithCurrNavSys(GetWorld(), MyLocation, 250.0f);
-		//Blackboard->SetValueAsObject(FName(*TargetToBeat), pTarget);//¿©±â°¡ ¿ø·¡ LocationToGo ÀÚ¸®
+		//Blackboard->SetValueAsObject(FName(*TargetToBeat), pTarget);//å’¯æ‰å•Š ç›”è´° LocationToGo ç£Šåºœ
 	}
 
 	return EBTNodeResult::Succeeded;

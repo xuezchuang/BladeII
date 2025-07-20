@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UISelectAdventureDifficulty.h"
 #include "B2UIManager.h"
@@ -39,7 +39,7 @@ void UB2UISelectAdventureDifficulty::BindDocAuto()
 		// Setting Difficulty Slot 
 		int32 MaxDifficulty = (int32)DocChapter->GetMaxOpenedStageDifficulty();
 		
-		// ÇöÀç ³­ÀÌµµÀÇ ¸¶Áö¸· ½ºÅ×ÀÌÁö¸¦ Å¬¸®¾îÇßÀ¸¸é ´ÙÀ½ ´Ü°è±îÁö ¿ÀÇÂ
+		// æ³…çŠ æŠ„ææ¡£ç‹¼ ä»˜ç˜¤é˜œ èƒ¶æŠ›æç˜¤ç”« åŠªåºœç»¢æ²æ æ ä¿ƒæ¾œ çªœæ‹Œé³–ç˜¤ å·é”¹
 		bool IsAnimation = false;
 		
 		if (BladeIIGameImpl::GetStageDataStore().IsClearedStartAdventureModeClientStageId((EStageDifficulty)MaxDifficulty, true))
@@ -51,7 +51,7 @@ void UB2UISelectAdventureDifficulty::BindDocAuto()
 		SET_ADVENTURE_DIFFICULTY_SLOT(UIP_SlotList[0], EStageDifficulty::ESD_Hard, (EStageDifficulty)MaxDifficulty);
 		SET_ADVENTURE_DIFFICULTY_SLOT(UIP_SlotList[1], EStageDifficulty::ESD_VeryHard, (EStageDifficulty)MaxDifficulty);
 		SET_ADVENTURE_DIFFICULTY_SLOT(UIP_SlotList[2], EStageDifficulty::ESD_Hell, (EStageDifficulty)MaxDifficulty);
-		SET_ADVENTURE_DIFFICULTY_SLOT(UIP_SlotList[3], EStageDifficulty::ESD_End, (EStageDifficulty)MaxDifficulty);	// ¾ø¾îÁü..
+		SET_ADVENTURE_DIFFICULTY_SLOT(UIP_SlotList[3], EStageDifficulty::ESD_End, (EStageDifficulty)MaxDifficulty);	// ç»ç»¢å’™..
 
 		// Bind
 		DocChapter->OnSelectHardStageDifficultyChanged.AddUObject(this, &UB2UISelectAdventureDifficulty::OnChangeDifficulty);
@@ -78,7 +78,7 @@ void UB2UISelectAdventureDifficulty::SetDifficulty(EStageDifficulty InDifficulty
 	if (InDifficulty < EStageDifficulty::ESD_Hard)
 		InDifficulty = EStageDifficulty::ESD_Hard;
 
-	SetDifficulty_BP(FMath::Max((int32)InDifficulty - 2, 0));	// ºí·çÇÁ¸°Æ®¿¡¼­´Â ÀÎµ¦½º°¡ 0ºÎÅÍ ½ÃÀÛÇÏ¹Ç·Î °ªÀ» ÀÓÀÇ·Î º¯°æÇØÁØ´Ù.
+	SetDifficulty_BP(FMath::Max((int32)InDifficulty - 2, 0));	// å–‰é£æ©‡èµ´é£˜ä¿Šè¾‘ç»° ç‰¢éƒ¸èƒ¶å•Š 0ä½•ç£ çŸ«ç´¯çªéª¨è‚º è”¼é˜‘ çƒ™ç‹¼è‚º å‡½ç‰ˆç§¦éœ–ä¿ƒ.
 }
 
 void UB2UISelectAdventureDifficulty::CacheAssets()
@@ -102,7 +102,7 @@ void UB2UISelectAdventureDifficulty::UpdateStaticText()
 
 void UB2UISelectAdventureDifficulty::OnClickBtnConfirm()
 {
-	// DocChapter ¾÷µ¥ÀÌÆ®
+	// DocChapter è¯€å•æé£˜
 	if (auto DocChapter = Cast<UB2UIDocChapter>(GetDoc()))
 		BladeIIGameImpl::GetStageDataStore().RequestGetActInfoAndChangeChapter(DocChapter->GetCurChapterNum(), DocChapter->GetSelectHardStageDifficulty());
 
@@ -121,7 +121,7 @@ void UB2UISelectAdventureDifficulty::OnChangeDifficulty(class UB2UIDocBase* Send
 
 	SetDifficulty(InDifficulty);
 
-	// º¯°æµÈ ³»¿ë ½½·Ô¿¡ ¾Ë·ÁÁÖ±â
+	// å‡½ç‰ˆç­‰ éƒ´ä¾© æµ‡å©ä¿Š èˆ…å¦¨æ—æ‰
 	for (auto ThisSlot : UIP_SlotList)
 	{
 		if (ThisSlot.IsValid())
@@ -134,7 +134,7 @@ void UB2UISelectAdventureDifficulty::UpdateSlot(EStageDifficulty UpdateDifficult
 	if (UpdateDifficulty == EStageDifficulty::ESD_End)
 		return;
 
-	// DocChapter ¾÷µ¥ÀÌÆ®
+	// DocChapter è¯€å•æé£˜
 	if (auto DocChapter = Cast<UB2UIDocChapter>(GetDoc()))
 		DocChapter->SetSelectHardStageDifficulty(UpdateDifficulty);
 }

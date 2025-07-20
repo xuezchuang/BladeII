@@ -1,7 +1,8 @@
-#pragma once
+﻿#pragma once
 
 #include "B2UIWidget.h"
 #include "B2Chatting.h"
+#include "../B2RichTextBlock.h"
 #include "B2UIChatSinglePopup.generated.h"
 
 /*

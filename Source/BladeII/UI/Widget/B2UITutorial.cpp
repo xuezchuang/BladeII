@@ -1,4 +1,4 @@
-#include "B2UITutorial.h"
+ï»¿#include "B2UITutorial.h"
 #include "B2UIManager.h"
 #include "TutorialManager.h"
 #include "B2UIRewardEventSet.h"
@@ -149,8 +149,8 @@ void UB2UITutorial::OnClose(bool RightNow)
 	const int32 CurrentTutorialID = TutorialManager::GetInstance().GetCurrentTutorialID();
 	if (CurrentTutorialID != INDEX_NONE)
 	{
-		// SceneÀüÈ¯ ½Ã Scene¿¡ µî·ÏµÈ Widget ÀÌ¿Ü¿¡´Â Á×¿©¹ö¸®´Â °æ¿ì°¡ ÀÖÀ¸¹Ç·Î (ex - UB2UImanager::CloseAllStandaloneUIs() )
-		// Tutorial µµÁß¿¡´Â CloseÇÏÁö ¸øÇÏ°Ô ¼öÁ¤
+		// Sceneå‚ˆåˆ¸ çŸ« Sceneä¿Š æ®¿åºŸç­‰ Widget æå¯‡ä¿Šç»° ç£·å’¯æ»šåºœç»° ç‰ˆå¿«å•Š ä¹æ éª¨è‚º (ex - UB2UImanager::CloseAllStandaloneUIs() )
+		// Tutorial æ¡£åä¿Šç»° Closeçªç˜¤ ç»™çªéœ¸ èæ²¥
 	}
 
 	else
@@ -192,7 +192,7 @@ void UB2UITutorial::OpenTutorialBeginUI(const FTutorialInfo* TutorialInfo)
 
 		float CloseTime = TutorialOpenCloseTime;
 
-		// ContentOpenÀÌ¸é ±æ°Ô~
+		// ContentOpenææ è¾¨éœ¸~
 		if (TutorialInfo->TutorialType == ETutorialType::ContentOpen)
 		{
 			if (P_TutorialBegin.IsValid())
@@ -202,7 +202,7 @@ void UB2UITutorial::OpenTutorialBeginUI(const FTutorialInfo* TutorialInfo)
 		}
 		else
 		{
-			CloseTime = 0.05f; // UI°¡ ÃÖ¼ÒÇÑ ÇÑ¹ø DrawµÉ ½Ã°£À» ÁÖ¾î¾ß ÇÔ.
+			CloseTime = 0.05f; // UIå•Š å¼¥å®¶èŒ„ èŒ„é”… Drawçª çŸ«åŸƒé˜‘ æ—ç»¢å…· çªƒ.
 		}
 
 		TutorialUICloseTimer(CloseTime);
@@ -247,7 +247,7 @@ void UB2UITutorial::OpenTutorialSkipNoticeUI(const int32 TutorialID)
 	if (TB_TutorialSkipWarning.IsValid())
 		TB_TutorialSkipWarning->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Tutorial_SkipWarning")));
 	
-	//Æ©Åä¸®¾ó º¸»ó ¾ÆÀÌÄÜ Ãâ·Â ±â´É È¤½Ã ¸ô¶ó¼­ ³²°ÜµÒ
+	//è­¬é…åºœå€” ç„Šæƒ‘ é…’æèƒ½ å…ä»¿ æ‰ç“· è¶£çŸ« éš”æ‰¼è¾‘ å·¢è´¥ç‹„
 /*
 	const int32 CurrentTutorialID = TutorialManager::GetInstance().GetCurrentTutorialID();
 	b2network::B2mdTutorialInfoPtr ServerTutorialInfo = TutorialManager::GetInstance().GetServerTutorialInfo(CurrentTutorialID);
@@ -295,7 +295,7 @@ void UB2UITutorial::OpenTutorialSkipNoticeUI(const int32 TutorialID)
 		}
 	}
 */
-	//Æ©Åä¸®¾ó º¸»ó ¾ÆÀÌÄÜ Ãâ·Â ±â´É È¤½Ã ¸ô¶ó¼­ ³²°ÜµÒ
+	//è­¬é…åºœå€” ç„Šæƒ‘ é…’æèƒ½ å…ä»¿ æ‰ç“· è¶£çŸ« éš”æ‰¼è¾‘ å·¢è´¥ç‹„
 
 	OnOpenTutorialSkipReward();
 }
@@ -364,7 +364,7 @@ void UB2UITutorial::SetTutorialDialog(const FTutorialStep* StepInfo, const FVect
 
 		if (bVisibleSkipButton)
 		{
-			//´ÙÀÌ¾ó·Î±×Ã¢ÀÌ È°¼ºÈ­ µÉ¶§ ½ºÅµ¹öÆ° È°¼ºÈ­
+			//ä¿ƒæå€”è‚ºå¼ŠèŠ’æ åŠå·±æ‹³ çªé”­ èƒ¶è¯ºæ»šç“¢ åŠå·±æ‹³
 			UB2UITutorial::OnVisibleAndSetLOCTextSkipBtn();
 		}
 		else
@@ -400,7 +400,7 @@ void UB2UITutorial::ProcessStepHighlight_Material(const struct FTutorialStep* St
 {
 	if (HighlightImage)
 	{
-		//ÇÏÀÌ¶óÀÌÆ® µ¿ÀÛº° ´Ù¸£°Ô ±¸ºĞ(±âÈ¹)
+		//çªææ‰¼æé£˜ æ‚¼ç´¯å–Š ä¿ƒç¦éœ¸ å¤‡ç›’(æ‰è£™)
 		if (StepInfo->Action == ETutorialAction::BlockHilight)
 			SetHighlightMaterial(HighlightImage, ArrayHighlightMaterial[1]);
 		
@@ -473,7 +473,7 @@ void UB2UITutorial::ProcessStepHighlight_Arrow(const struct FTutorialStep* StepI
 			// 3. Visible
 			IMG_Arrow->SetVisibility(ArrowMtrl ? ESlateVisibility::SelfHitTestInvisible : ESlateVisibility::Hidden);
 
-			//ÇÏÀÌ¶óÀÌÆ® À§Á¬ bForceRedraw¿É¼Ç »ç¿ë½Ã È­»ìÇ¥ ¾Ö´Ï¸ŞÀÌ¼Ç Áßº¹ Àç»ı ¹æÁö
+			//çªææ‰¼æé£˜ å›°è¿ bForceRedrawå¯è®° è¤ä¾©çŸ« æ‹³æ··é’ å±€èªçš‹æè®° åæ±— çŠç§¯ è§„ç˜¤
 			if (UWidgetAnimation* ArrowAnim = GetAnimation(TEXT("ANIM_Arrow")))
 			{
 				if (IsAnimationPlaying(ArrowAnim) == false)
@@ -518,7 +518,7 @@ bool UB2UITutorial::GlobalTutorialProcessingCheck_BP()
 	return TutorialManager::GetInstance().HasAnyTutorial();
 }
 
-//¾À ¿ÀÇÂ ¾Ö´Ô Àç»ı½Ã Æ©Åä¸®¾ó ui¼û±â´Â ±â´É ¸¸µé¾î¸¸³ğ...ÇöÀç(17.10.20)´Â ProcessingCheck·Î ¾Æ¿¹ Àç»ı ¾ÈÇÔ
+//çº  å·é”¹ å±€ä¸› çŠç§¯çŸ« è­¬é…åºœå€” uiè§æ‰ç»° æ‰ç“· çˆ¶ç”¸ç»¢çˆ¶ä»‡...æ³…çŠ(17.10.20)ç»° ProcessingCheckè‚º é…’æŠ— çŠç§¯ æ•‘çªƒ
 void UB2UITutorial::GlobalOpenAnimCheckTutorialVisible_BP(bool bOpenAnimPlaying)
 {
 	UB2UITutorial* TutorialUI = UB2UIManager::GetInstance()->GetUI<UB2UITutorial>(UIFName::Tutorial);
@@ -621,7 +621,7 @@ void UB2UITutorial::OpenTutorialRewardUI(const int32 TutorialID, const TArray<b2
 	if (TB_RewardDestination.IsValid())
 		TB_RewardDestination->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Tutorial_RewardDestination")));
 
-	Æ©Åä¸®¾ó º¸»ó ¾ÆÀÌÄÜ Ãâ·Â±â´É È¤½Ã ¸ô¶ó¼­ ³²°Ü³ğ
+	è­¬é…åºœå€” ç„Šæƒ‘ é…’æèƒ½ å…ä»¿æ‰ç“· è¶£çŸ« éš”æ‰¼è¾‘ å·¢è´¥ä»‡
 
 		const int32 iIconMax = 3;
 	for (int32 i = 0; i < iIconMax; ++i)
@@ -642,7 +642,7 @@ void UB2UITutorial::OpenTutorialRewardUI(const int32 TutorialID, const TArray<b2
 		}
 	}
 */
-	//Æ©Åä¸®¾ó º¸»ó ¾ÆÀÌÄÜ Ãâ·Â±â´É È¤½Ã ¸ô¶ó¼­ ³²°Ü³ğ
+	//è­¬é…åºœå€” ç„Šæƒ‘ é…’æèƒ½ å…ä»¿æ‰ç“· è¶£çŸ« éš”æ‰¼è¾‘ å·¢è´¥ä»‡
 
 	OnOpenTutorialReward();
 }
@@ -751,9 +751,9 @@ void UB2UITutorial::OnClickBTN_RewardConfirm()
 
 void UB2UITutorial::OnClickBTN_BlockContentOpen()
 {
-	//[M22]Æ©Åä¸®¾ó º¸¿ÏÀ¸·Î ÅÍÄ¡ ¿µ¿ª È®´ë
-	//[M24]Æ©Åä¸®¾ó º¸¿ÏÀ¸·Î ÅÍÄ¡ ¿µ¿ª Ãà¼Ò...Áö¿ì·Á´Ù ±â´É ³²°ÜµÒ
-	////·Îºñ·Î ÀÌµ¿ ¹öÆ° ¿µ¿ªÀ» È®Àå ½ÃÅ°±â À§ÇØ »ç¿ë
+	//[M22]è­¬é…åºœå€” ç„Šè‚¯æ è‚º ç£æ‘¹ åº·å¼€ çŠ¬æª
+	//[M24]è­¬é…åºœå€” ç„Šè‚¯æ è‚º ç£æ‘¹ åº·å¼€ ç»µå®¶...ç˜¤å¿«å¦¨ä¿ƒ æ‰ç“· å·¢è´¥ç‹„
+	////è‚ºåšè‚º ææ‚¼ æ»šç“¢ åº·å¼€é˜‘ çŠ¬å˜ çŸ«è™æ‰ å›°ç§¦ è¤ä¾©
 	//if (TB_GotoLobby->GetVisibility() != ESlateVisibility::Hidden)
 	//{
 	//	GoToVillageClass<>::GetInstance().Signal();
@@ -777,7 +777,7 @@ void UB2UITutorial::ActiveHighlightRect(const FVector2D& TopLeft, const FVector2
 			ViewportX = CanvasSize.X;
 			ViewportY = CanvasSize.Y;
 
-			//°£È¤ Áö¿À¸ŞÆ®¸® Ä³½ÌÀÌ ¾ÈµÈ °æ¿ì°¡ ÀÖ¾î¼­ ÇÑÆ½ ´Ù½Ã °è»êÇÏµµ·Ï
+			//åŸƒè¶£ ç˜¤å·çš‹é£˜åºœ æŸæ•™æ æ•‘ç­‰ ç‰ˆå¿«å•Š ä¹ç»¢è¾‘ èŒ„å¹³ ä¿ƒçŸ« æ‹Œé­‚çªæ¡£åºŸ
 			if (ViewportX <= 0 && ViewportY <= 0)
 			{
 				bHighlightRedrawCheck = true;
@@ -890,7 +890,7 @@ void UB2UITutorial::ActiveHighlightRect(const FVector2D& TopLeft, const FVector2
 			}
 		}
 
-		//¼³¸í Æ©Åä¸®¾óÀÏ °æ¿ì ÇÏÀÌ¶óÀÌÆ® ÅÍÄ¡½Ã ³Ñ¾î°¡µµ·Ï ¹öÆ° ÆÇ³Ú È°¼ºÈ­ 
+		//æ±²ç–™ è­¬é…åºœå€”è€ ç‰ˆå¿« çªææ‰¼æé£˜ ç£æ‘¹çŸ« é€ç»¢å•Šæ¡£åºŸ æ»šç“¢ é­„å¼› åŠå·±æ‹³ 
 		if (CurrentTutorialStep && (CurrentTutorialStep->Action == ETutorialAction::BlockHilight))
 		{
 			if (UCanvasPanelSlot* PanelSlot = Cast<UCanvasPanelSlot>(CP_HilightMainBtn->Slot))
@@ -947,7 +947,7 @@ float GetIOSPlatformScale()
 
 void UB2UITutorial::TickHighlight(const FVector2D& fv2Position, const FVector2D& fv2Size)
 {
-	//¸Å¿ì Æ¯¼öÇÑ »óÈ² ¿¡Å×¸£ Æ©Åä¸®¾ó Æ¯Á¤ »óÈ²¿¡¼­ Æ©Åä¸®¾ó À§Á¬ ¼û±â°í Åõ¸í ¸·ÀÌ ÀÔ·ÂÀ» ¸·°í ÀÖ´Â »óÅÂ
+	//æ¦‚å¿« æ¼‚èèŒ„ æƒ‘ç‚” ä¿ŠæŠ›ç¦ è­¬é…åºœå€” æ¼‚æ²¥ æƒ‘ç‚”ä¿Šè¾‘ è­¬é…åºœå€” å›°è¿ è§æ‰ç»Š æ§ç–™ é˜œæ æ¶ä»¿é˜‘ é˜œç»Š ä¹ç»° æƒ‘æ€•
 	if (CP_TransparencyBlock.IsValid() && CP_TransparencyBlock->GetVisibility() == ESlateVisibility::Visible)
 	{
 		ClearStepHighlight(CurrentTutorialStep);
@@ -979,7 +979,7 @@ UCanvasPanelSlot* UB2UITutorial::AddHighlightPart(UCanvasPanel* RootCanvasPanel,
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2UITutorial_AddHighlightPart);
 	if (RootCanvasPanel)
 	{
-		static const int32 QuadrantCount = 4;	// 1 ~ 4ºĞ¸é
+		static const int32 QuadrantCount = 4;	// 1 ~ 4ç›’æ
 		static FButtonStyle HighlightRectStyle;
 
 		if (HighlightRects.Num() == 0)

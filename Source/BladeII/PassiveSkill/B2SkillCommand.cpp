@@ -1,4 +1,4 @@
-
+ï»¿
 #include "B2SkillCommand.h"
 #include "B2PassiveSkill.h"
 
@@ -30,7 +30,7 @@ void UB2SkillCommand_AddBuff::Excute(TArray<class ABladeIICharacter*>& ApplyChar
 
 void UB2SkillCommand_AddBuff::AddBonusProperty(ABladeIICharacter * ApplyCharacter, float & OutBonusDuration, float & OutBonusAmount)
 {
-	//EUniqueBuffType Àû¿ëÇÒ ¶§¸¶´Ù ±âÁ¸ Player¿¡¼­ ÇÏ´ø Áş ÇØÁà¾ßÇÔ
+	//EUniqueBuffType åˆ©ä¾©ä¸” é”­ä»˜ä¿ƒ æ‰ç²® Playerä¿Šè¾‘ çªå¸¦ çª¿ ç§¦æ‹å…·çªƒ
 	OutBonusDuration = 0.0f;
 	OutBonusAmount = 0.0f;
 
@@ -47,7 +47,7 @@ void UB2SkillCommand_AddBuff::AddBonusProperty(ABladeIICharacter * ApplyCharacte
 
 void UB2SkillCommand_Transfusion::Excute(TArray<class ABladeIICharacter*>& ApplyCharacters)
 {
-	//pahse change ÈÄ
+	//pahse change é¥¶
 	for (ABladeIICharacter* Chracter : ApplyCharacters)
 	{
 		if (Chracter && Chracter->IsAlive())
@@ -59,6 +59,6 @@ void UB2SkillCommand_Transfusion::Excute(TArray<class ABladeIICharacter*>& Apply
 		}
 	}
 
-	//Èú ¹öÇÁ ½ÇÇà
+	//é³ƒ æ»šæ©‡ è§’é’
 	Super::Excute(ApplyCharacters);
 }

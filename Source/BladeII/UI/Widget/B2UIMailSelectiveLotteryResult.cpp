@@ -1,4 +1,4 @@
-#include "B2UIMailSelectiveLotteryResult.h"
+ï»¿#include "B2UIMailSelectiveLotteryResult.h"
 #include "B2DynItemIcon.h"
 #include "B2DynItemIcon_ItemOpScene.h"
 #include "B2LobbyUI_ItemDetailPostOp.h"
@@ -7,7 +7,7 @@
 #include "B2UIManager.h"
 #include "B2UIMail.h"
 
-//´ëºÎºĞÀÇ ÄÚµå´Â UB2LobbyUI_ItemLevelupProg ·ÎºÎÅÍ Â÷¿ë.
+//æªä½•ç›’ç‹¼ å†…é›ç»° UB2LobbyUI_ItemLevelupProg è‚ºä½•ç£ ç’ä¾©.
 
 void UB2UIMailSelectiveLotteryResult::CacheAssets()
 {
@@ -48,7 +48,7 @@ UMaterialInstanceDynamic* UB2UIMailSelectiveLotteryResult::GetFxMID_ItemIcon(cla
 
 void UB2UIMailSelectiveLotteryResult::OpenPopup(const FB2Item& InItem)
 {
-	//¾ÆÀÌÅÛ °­È­ Ä«¸Ş¶ó·Î ÀÌµ¿
+	//é…’æè¢ ç¢æ‹³ å¢¨çš‹æ‰¼è‚º ææ‚¼
 	LobbyEnterItemOpDirectingViewClass<ELobbyInvenItemOpMode>::GetInstance().Signal(ELobbyInvenItemOpMode::EIVIOP_None);
 
 	auto* UIManager = UB2UIManager::GetInstance();
@@ -76,7 +76,7 @@ void UB2UIMailSelectiveLotteryResult::OpenPopup(const FB2Item& InItem)
 		return;
 	}
 
-	// Anchor ¼³Á¤¿¡ µû¶ó GetSize ´Â ¿øÇÏ´Â °ªÀÌ ¾È ³ª¿Ã °ÍÀÌ¹Ç·Î ÁÖÀÇ.
+	// Anchor æ±²æ²¥ä¿Š è¶æ‰¼ GetSize ç»° ç›”çªç»° è”¼æ æ•‘ å”±æ£µ å·´æéª¨è‚º æ—ç‹¼.
 	UCanvasPanelSlot* MainPanelSlot = Cast<UCanvasPanelSlot>(CP_TargetItemIconSet->Slot);
 	FVector2D AllowedIconSize = MainPanelSlot ? MainPanelSlot->GetSize() : FVector2D(0.0f, 0.0f);
 
@@ -96,7 +96,7 @@ void UB2UIMailSelectiveLotteryResult::OpenPopup(const FB2Item& InItem)
 	if (ItemDetailPopup.IsValid())
 	{
 		ItemDetailPopup->UpdateItemData(InItem, InItem);
-		ItemDetailPopup->SetVisibility(ESlateVisibility::Hidden); // Ã³À½¿¡´Â ¼û°Ü³õÀ½. ¿¬Ãâ ÃÖÁ¾ ´Ü°è·Î¼­ º¸¿©Áø´Ù.
+		ItemDetailPopup->SetVisibility(ESlateVisibility::Hidden); // è´¸æ¾œä¿Šç»° è§è´¥åˆæ¾œ. æ¥·å… å¼¥è¾† çªœæ‹Œè‚ºè¾‘ ç„Šå’¯æŸ³ä¿ƒ.
 	}
 
 	StartDirecting();
@@ -159,7 +159,7 @@ void UB2UIMailSelectiveLotteryResult::ShowOverallBGFx()
 	APlayerController* OwningPC = GetOwningPlayer();
 	if (OwningPC)
 	{
-		OwningPC->GetViewportSize(ViewSizeX, ViewSizeY); // È­¸é Áß¾Ó¿¡ »ı¼º
+		OwningPC->GetViewportSize(ViewSizeX, ViewSizeY); // æ‹³æ åå±…ä¿Š ç§¯å·±
 		CreatedOverallBGFx = OverallBGFxSetup.CreateUnderScreen(OwningPC, FVector2D((float)(ViewSizeX / 2), (float)(ViewSizeY / 2)));
 	}
 }
@@ -173,7 +173,7 @@ void UB2UIMailSelectiveLotteryResult::ShowEnhanceBlowupFx()
 	APlayerController* OwningPC = GetOwningPlayer();
 	if (OwningPC)
 	{
-		OwningPC->GetViewportSize(ViewSizeX, ViewSizeY); // È­¸é Áß¾Ó¿¡ »ı¼º
+		OwningPC->GetViewportSize(ViewSizeX, ViewSizeY); // æ‹³æ åå±…ä¿Š ç§¯å·±
 		CreatedEnhanceBlowupFx = EnhanceBlowupFxSetup.CreateUnderScreen(OwningPC, FVector2D((float)(ViewSizeX / 2), (float)(ViewSizeY / 2)));
 	}
 }
@@ -183,8 +183,8 @@ void UB2UIMailSelectiveLotteryResult::ShowTargetItemBGFx()
 	DestroyTargetItemBGFx();
 	CreatedTargetItemBGFx = TargetItemBGFxSetup.CreateUnderScreen(GetOwningPlayer(), TargetItemIconScreenPos);
 
-	SetupNamedMIDForFxComp(CreatedTargetItemBGFx); // ÇÊ¿äÇÑ MIC µé¿¡¼­ MID ¸¦ ¸¸µé¾î¼­ »ç¿ë °¡´ÉÇÏµµ·Ï ¼¼ÆÃ.
-												   // Fx ÂÊ¿¡ MID ±îÁö ÁØºñ°¡ µÇ¾ú´Ù¸é ÆÄÆ®º°·Î ÆÄ¶ó¹ÌÅÍ °ªÀ» °¡Á®¿Ã UI ÂÊÀÇ MIC ¸¦ °¡Á®¿Í¼­ MID ¿¡ ÆÄ¶ó¹ÌÅÍ¸¦ ¼¼ÆÃ.
+	SetupNamedMIDForFxComp(CreatedTargetItemBGFx); // é˜å¤¸èŒ„ MIC ç”¸ä¿Šè¾‘ MID ç”« çˆ¶ç”¸ç»¢è¾‘ è¤ä¾© å•Šç“·çªæ¡£åºŸ æŠ€æ³¼.
+												   // Fx ç‡ä¿Š MID é³–ç˜¤ éœ–åšå•Š ç™»èŒä¿ƒæ é¢‡é£˜å–Šè‚º é¢‡æ‰¼å›ºç£ è”¼é˜‘ å•Šå»‰æ£µ UI ç‡ç‹¼ MIC ç”« å•Šå»‰å®¢è¾‘ MID ä¿Š é¢‡æ‰¼å›ºç£ç”« æŠ€æ³¼.
 	{
 		UMaterialInstanceDynamic* ItemBGPanelMID = GetFxMID_ItemBGPanel(CreatedTargetItemBGFx);
 		UMaterialInstanceConstant* ItemBGPanelMIC_Ref = CreatedTargetItemIcon ? CreatedTargetItemIcon->GetBGPanelMIC() : NULL;

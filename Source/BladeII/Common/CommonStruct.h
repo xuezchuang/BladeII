@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 
 #include "B2MessageInfo.h"
@@ -6,6 +6,8 @@
 
 #include "CommonStructCombatOption.h" // A part of CommonStruct.h
 #include <variant>
+#include "CommonStruct.generated.h"
+
 
 UENUM(BlueprintType)
 enum class EPCClass : uint8
@@ -25,14 +27,17 @@ enum class EPCClass : uint8
 };
 
 /** Use GetMaxPCClassNum for casting EPCClass::EPC_End for class max number */
-FORCEINLINE int32 PCClassToInt(EPCClass InPCClassEnum) {
+FORCEINLINE int32 PCClassToInt(EPCClass InPCClassEnum)
+{
 	return static_cast<int32>(InPCClassEnum);
 }
-FORCEINLINE EPCClass IntToPCClass(int32 InInt) {
+FORCEINLINE EPCClass IntToPCClass(int32 InInt)
+{
 	return static_cast<EPCClass>(InInt);
 }
 /** It is more important to use GetMaxPCClassNum than PCClassToInt or IntToPCClass.. */
-FORCEINLINE int32 GetMaxPCClassNum() {
+FORCEINLINE int32 GetMaxPCClassNum()
+{
 	return static_cast<int32>(EPCClass::EPC_End);
 }
 /** Supposed to be the same to GetMaxPCClassNum, provided for statically sized array. */
@@ -128,7 +133,7 @@ enum class EItemClass : uint8
 	EIC_ProtectionEssence,
 	EIC_AccessoryEssence,
 
-	// ÃÊ¿ù Àç·á
+	// æª¬å²¿ çŠä¸°
 	EIC_WeaponSurpassAnvil,
 	EIC_ArmorSurpassAnvil,
 	EIC_AccessorySurpassAnvil,
@@ -247,21 +252,21 @@ enum class ECharacterMaterialOverrideType : uint8
 UENUM(BlueprintType)
 enum class ECharStatApplyType : uint8
 {
-	ECSA_NormalPoint,				// ±âº»
-	ECSA_IntrinsicOptions,			// °íÀ¯ ¿É¼Ç
-	ECSA_RandomOptions,			// ·£´ı ¿É¼Ç
-	ECSA_SealOption,				//°¢¼º¿É¼Ç
-	ECSA_WingNormalOption,			// ³¯°³ ±âº»
-	ECSA_WingAdditionalOption,		// ³¯°³ Ãß°¡ ¿É¼Ç
-	ECSA_RankPromotion,			// Áø±Ş
-	ECSA_SkillOption,				// ½ºÅ³¿É¼Ç
-	ECSA_ItemSetEffect,			// ¾ÆÀÌÅÛ ¼¼Æ® È¿°ú	(%)
-	ECSA_EnhanceSetEffect,			// °­È­ ¼¼Æ® È¿°ú	(%)
-	ECSA_RelicOption,			// °í´ëÀ¯¹° ¿É¼Ç
-	ECSA_EtherOption,			// ¿¡Å×¸£ ¿É¼Ç
-	ECSA_GuildOption,			// ±æµå ¿É¼Ç(¹öÇÁ) (%)
-	ECSA_FairyOption,			// Æä¾î¸® ¿É¼Ç
-	ECSA_TotemSmeltOptions,		// Á¦·Ã º¸³Ê½º
+	ECSA_NormalPoint,				// æ‰å¤¯
+	ECSA_IntrinsicOptions,			// ç»Šèœ¡ å¯è®°
+	ECSA_RandomOptions,			// ç½šå¾… å¯è®°
+	ECSA_SealOption,				//é˜¿å·±å¯è®°
+	ECSA_WingNormalOption,			// æœä¿º æ‰å¤¯
+	ECSA_WingAdditionalOption,		// æœä¿º çœ å•Š å¯è®°
+	ECSA_RankPromotion,			// æŸ³é­
+	ECSA_SkillOption,				// èƒ¶æ‡¦å¯è®°
+	ECSA_ItemSetEffect,			// é…’æè¢ æŠ€é£˜ ç“¤è‹	(%)
+	ECSA_EnhanceSetEffect,			// ç¢æ‹³ æŠ€é£˜ ç“¤è‹	(%)
+	ECSA_RelicOption,			// ç»Šæªèœ¡æ‹± å¯è®°
+	ECSA_EtherOption,			// ä¿ŠæŠ›ç¦ å¯è®°
+	ECSA_GuildOption,			// è¾¨é› å¯è®°(æ»šæ©‡) (%)
+	ECSA_FairyOption,			// å…¶ç»¢åºœ å¯è®°
+	ECSA_TotemSmeltOptions,		// åŠ›è®¿ ç„Šå‘ˆèƒ¶
 	ECSA_End
 };
 
@@ -810,7 +815,7 @@ struct FB2Item
 	}
 
 	FB2Item(struct FMD_ItemSingleElem const* ItemElem);
-	//¿¡Å×¸£¸¦ itemÀ¸·Î º¯È¯ (½ºÅ×ÀÌÁö È¹µæ°ü·Ã¿¡¼­¸¸ »ç¿ëÇØ¾ß ÇÑ´Ù!!!)
+	//ä¿ŠæŠ›ç¦ç”« itemæ è‚º å‡½åˆ¸ (èƒ¶æŠ›æç˜¤ è£™å«åŒ…è®¿ä¿Šè¾‘çˆ¶ è¤ä¾©ç§¦å…· èŒ„ä¿ƒ!!!)
 	FB2Item(const b2network::B2AetherServerInfoPtr Ether);
 	FB2Item(const b2network::B2CostumeServerInfo& CostumeItemInfo);
 
@@ -844,7 +849,7 @@ struct FB2Item
 	EItemInvenType InventoryType; // Possible places for inventory container
 	EItemEquipPlace EquipPlace; // Possible places for equipping. It does not designate current equip state. Check bCurrentlyEquipped for that.
 
-	ECostumeEquipPlace CostumeEquipPlace; //ÄÚ½ºÆ¬ Âø¿ë À§Ä¡
+	ECostumeEquipPlace CostumeEquipPlace; //å†…èƒ¶ç‰‡ é¦’ä¾© å›°æ‘¹
 
 	/** Not meaningful for some item type, which uses shared slot. It is supposed to be matching to EPCClass. See ItemAllowedPCClassEnum */
 	int32 AllowedPCClass;
@@ -865,14 +870,16 @@ struct FB2Item
 private:
 	float PrimaryPoint;
 public:
-	FORCEINLINE void SetPrimaryPoint(float InPoint) {
+	FORCEINLINE void SetPrimaryPoint(float InPoint)
+	{
 		PrimaryPoint = InPoint;
 	}
 
 	/** Returns PrimaryPoint, either just the PrimaryPoint,
 	* or including one of PrimaryPoint Increasing option matching its PrimaryPointType (if presents). */
 	float GetPrimaryPoint(bool bCountRelevantOption = false) const;
-	void SetNewItemState() {
+	void SetNewItemState()
+	{
 		IsNew = false;
 	}
 
@@ -1048,7 +1055,8 @@ enum class EHeroMgmtSubMode : uint8
 };
 
 /** Return value excludes EHMSM_RelicManagement_EXTRAPAGE */
-FORCEINLINE int32 GetHeroMgmtSubModeMaxNum() {
+FORCEINLINE int32 GetHeroMgmtSubModeMaxNum()
+{
 	return static_cast<int32>(EHeroMgmtSubMode::EHMSM_End) - 1;
 }
 
@@ -1167,10 +1175,12 @@ struct FWingPropOption // Refer to FItemOption struct, which has similar role fo
 };
 
 // Client wing prop option index starts from 0, while server starts from 1.
-inline int32 CliToSvrWingPropOptionIndex(int32 CliOptionIndex) {
+inline int32 CliToSvrWingPropOptionIndex(int32 CliOptionIndex)
+{
 	return CliOptionIndex + 1;
 }
-inline int32 SvrToCliWingPropOptionIndex(int32 SvrOptionIndex) {
+inline int32 SvrToCliWingPropOptionIndex(int32 SvrOptionIndex)
+{
 	return SvrOptionIndex - 1;
 }
 
@@ -1251,13 +1261,16 @@ private:
 	float DefensePoint;
 	float HealthPoint;
 public:
-	FORCEINLINE void SetAttackPoint(float InPoint) {
+	FORCEINLINE void SetAttackPoint(float InPoint)
+	{
 		AttackPoint = InPoint;
 	}
-	FORCEINLINE void SetDefensePoint(float InPoint) {
+	FORCEINLINE void SetDefensePoint(float InPoint)
+	{
 		DefensePoint = InPoint;
 	}
-	FORCEINLINE void SetHealthPoint(float InPoint) {
+	FORCEINLINE void SetHealthPoint(float InPoint)
+	{
 		HealthPoint = InPoint;
 	}
 
@@ -2866,27 +2879,29 @@ inline ENetMatchResult SvrToCliNetMatchResult(int32 SvrMatchResType)
 
 //================================================================================================================================================
 // Note :	FServerStageID
-//			ClientStageId(int32)¿Í Å¸ÀÔÀ» ¸íÈ®ÇÏ°Ô ÇÏ±âÀ§ÇØ¼­ »õ·Î¿î Å¸ÀÔÀ» Á¤ÀÇ (µÑ´Ù int32·Î µÇ¾îÀÖÀ¸¸é ÄÚµå»ó ½Ç¼ö°¡ ¸¹À»¼ö ÀÖ´Ù)
-//			Å¸ÀÔÀ» ¸íÈ®È÷ ±¸ºĞÇÏ±âÀ§ÇØ explicit »ç¿ë(»©Áö¸»°Í..) / ¿¬»êÀº ÆíÇÏ°Ô »ç¿ëÇÏ±âÀ§ÇØ ¿¬»êÀÚ ÀçÁ¤ÀÇ
+//			ClientStageId(int32)å®¢ é¸¥æ¶é˜‘ ç–™çŠ¬çªéœ¸ çªæ‰å›°ç§¦è¾‘ è´§è‚ºæ¬¾ é¸¥æ¶é˜‘ æ²¥ç‹¼ (ç¬›ä¿ƒ int32è‚º ç™»ç»¢ä¹æ æ å†…é›æƒ‘ è§’èå•Š è…¹é˜‘è ä¹ä¿ƒ)
+//			é¸¥æ¶é˜‘ ç–™çŠ¬æ´’ å¤‡ç›’çªæ‰å›°ç§¦ explicit è¤ä¾©(å“—ç˜¤å¯Œå·´..) / æ¥·é­‚ç¯® ç¥ˆçªéœ¸ è¤ä¾©çªæ‰å›°ç§¦ æ¥·é­‚ç£Š çŠæ²¥ç‹¼
 //================================================================================================================================================
-//			ClientStageId : ½ºÅ×ÀÌÁö ¾ÆÀÌµğ¸¦ ³ªÅ¸³¿ (10 : ½ºÅ×ÀÌÁö 10)
-//			ServerStageId : ClientStageID + (³­ÀÌµµ * 1000) (2010 : ³­ÀÌµµ 2ÀÇ ½ºÅ×ÀÌÁö 10)
+//			ClientStageId : èƒ¶æŠ›æç˜¤ é…’æå¼ç”« å”±é¸¥æ™¨ (10 : èƒ¶æŠ›æç˜¤ 10)
+//			ServerStageId : ClientStageID + (æŠ„ææ¡£ * 1000) (2010 : æŠ„ææ¡£ 2ç‹¼ èƒ¶æŠ›æç˜¤ 10)
 //================================================================================================================================================
-//	ÁÖÀÇ(spivy) :  ServerStageId °è»ê¹ıÀº ¼­¹ö¿¡¼­ ÇÏ´Â °ªÀ¸·Î ÃßÈÄ¿¡ »óÈ²¿¡ µû¶ó º¯°æµÉ ¼öµµ ÀÖÀ¸´Ï Å¬¶ó¿¡¼± µû·Î °è»êÇÏÁö¸»°í, ¼­¹ö¿¡¼­ ÁÖ´Â°ªÀ¸·Î ÆÇ´ÜÇÒ°Í
-//				   explicitÀ» ÇÏ±âÀ§ÇÑ ¿ëµµÀÇ Å¬·¡½ºÀÌ¹Ç·Î Å°¿öµå »©Áö¸»°Í!!
+//	æ—ç‹¼(spivy) :  ServerStageId æ‹Œé­‚è¿‡ç¯® è¾‘æ»šä¿Šè¾‘ çªç»° è”¼æ è‚º çœ é¥¶ä¿Š æƒ‘ç‚”ä¿Š è¶æ‰¼ å‡½ç‰ˆçª èæ¡£ ä¹æ èª åŠªæ‰¼ä¿Šæ€¥ è¶è‚º æ‹Œé­‚çªç˜¤å¯Œç»Š, è¾‘æ»šä¿Šè¾‘ æ—ç»°è”¼æ è‚º é­„çªœä¸”å·´
+//				   explicité˜‘ çªæ‰å›°èŒ„ ä¾©æ¡£ç‹¼ åŠªè´°èƒ¶æéª¨è‚º è™å†µé› å“—ç˜¤å¯Œå·´!!
 //================================================================================================================================================
 struct FServerStageID
 {
-	int32 Id;	// ServerStageId : 2010 (=> 2(³­ÀÌµµ)*1000 + 10(Å¬¶óÀÌ¾ğÆ® ½ºÅ×ÀÌÁö ³Ñ¹ö)) (¸ğµç °è»ê¹ıÀº ¼­¹ö¿¡¼­~)
+	int32 Id;	// ServerStageId : 2010 (=> 2(æŠ„ææ¡£)*1000 + 10(åŠªæ‰¼ææ”«é£˜ èƒ¶æŠ›æç˜¤ é€æ»š)) (è‘›ç”µ æ‹Œé­‚è¿‡ç¯® è¾‘æ»šä¿Šè¾‘~)
 
 	FServerStageID()
 		: Id(0)
-	{}
+	{
+	}
 
-	// ÁÖÀÇ : Àı´ë explicit »©Áö¸»°Í
+	// æ—ç‹¼ : ä¾‹æª explicit å“—ç˜¤å¯Œå·´
 	explicit FServerStageID(int32 InStageId)
 		: Id(InStageId)
-	{}
+	{
+	}
 
 	bool IsEmpty()
 	{
@@ -2895,26 +2910,32 @@ struct FServerStageID
 
 	bool IsEnable()
 	{
-		return (Id > 1000);	// ÀÌ°Ç ÀÓ½Ã¹æÆí¿ë
+		return (Id > 1000);	// ææ‰’ çƒ™çŸ«è§„ç¥ˆä¾©
 	}
 
 	// operator
-	bool operator== (const int32& Other) const {
+	bool operator== (const int32& Other) const
+	{
 		return (Id == Other);
 	}
-	bool operator!= (const int32& Other) const {
+	bool operator!= (const int32& Other) const
+	{
 		return (Id != Other);
 	}
-	bool operator== (const FServerStageID& OtherStageId) const {
+	bool operator== (const FServerStageID& OtherStageId) const
+	{
 		return Id == OtherStageId.Id;
 	}
-	bool operator!= (const FServerStageID& OtherStageId) const {
+	bool operator!= (const FServerStageID& OtherStageId) const
+	{
 		return Id != OtherStageId.Id;
 	}
-	bool operator< (const FServerStageID& OtherStageId) const {
+	bool operator< (const FServerStageID& OtherStageId) const
+	{
 		return Id < OtherStageId.Id;
 	}
-	bool operator> (const FServerStageID& OtherStageId) const {
+	bool operator> (const FServerStageID& OtherStageId) const
+	{
 		return Id > OtherStageId.Id;
 	}
 
@@ -2949,7 +2970,7 @@ enum class EStageClearCondition : int32
 	//MaxCondition = b2::protocol::commondata::StageClearProperty::CLEAR_ALL_SURVIVAL + 1 // end
 	Clear = 0,
 	InTime,
-	AllSurvival ,
+	AllSurvival,
 	MaxCondition,
 };
 
@@ -3109,8 +3130,8 @@ UENUM()
 enum class EInvitationState : uint8
 {
 	None,
-	WaitingAccept,	// ÃÊ´ë ¹ß½ÅÀÚ ( »ó´ë ¼ö¶ô ´ë±â )
-	WaitingDecision,// ÃÊ´ë ¼ö½ÅÀÚ ( ¼ö¶ô/°ÅÀı ¹öÆ° ´ë±â )
+	WaitingAccept,	// æª¬æª æƒ¯è„šç£Š ( æƒ‘æª èé æªæ‰ )
+	WaitingDecision,// æª¬æª èè„šç£Š ( èé/èŠ­ä¾‹ æ»šç“¢ æªæ‰ )
 	Success
 };
 
@@ -3127,7 +3148,9 @@ struct FB2InvitationInfo
 	EInvitationState State;
 
 	FB2InvitationInfo()
-		: InvitationType(0), Inviter(TEXT("")), Invitee(TEXT("")), InvitationInfo(TEXT("")), RoomInfoPtr(nullptr), bMyInvitation(false), State(EInvitationState::None) {}
+		: InvitationType(0), Inviter(TEXT("")), Invitee(TEXT("")), InvitationInfo(TEXT("")), RoomInfoPtr(nullptr), bMyInvitation(false), State(EInvitationState::None)
+	{
+	}
 
 	void Clear()
 	{
@@ -3150,7 +3173,7 @@ FORCEINLINE EB2GameMode InvitationTypeToGameMode(int32 InvitationType)
 {
 	switch (InvitationType)
 	{
-	case 1: return EB2GameMode::PVP_Tag;	// ¾ÆÁ÷ b2network Å¸ÀÔ Á¤ÇØÁöÁö ¾ÊÀ½ - ¼ıÀÚ 1 ¹ÙÀÎµù
+	case 1: return EB2GameMode::PVP_Tag;	// é…’æµ b2network é¸¥æ¶ æ²¥ç§¦ç˜¤ç˜¤ è‡¼æ¾œ - ç®­ç£Š 1 å®˜ç‰¢çˆ¹
 	}
 
 	return EB2GameMode::Unknown;
@@ -3218,8 +3241,8 @@ struct FCombatStatParam
 
 struct CombatStatInfoRawDatas
 {
-	// ECharStatApplyType¿¡ µû¸¥ PrimaryPoint°ªÀ» °¡Áö°íÀÖ´Â´Ù.
-	// ½ÇÁ¦·Î Àû¿ëµÇ´Â ÃÖÁ¾°ªÀº GetEffectiveOptionValueTempl(...)À¸·Î °áÁ¤
+	// ECharStatApplyTypeä¿Š è¶å¼— PrimaryPointè”¼é˜‘ å•Šç˜¤ç»Šä¹ç»°ä¿ƒ.
+	// è§’åŠ›è‚º åˆ©ä¾©ç™»ç»° å¼¥è¾†è”¼ç¯® GetEffectiveOptionValueTempl(...)æ è‚º æ¬æ²¥
 	TMap<ECharStatApplyType, TArray<FOptionValue>> PrimaryPointRawValues;
 
 	CombatStatInfoRawDatas()
@@ -3227,9 +3250,9 @@ struct CombatStatInfoRawDatas
 		PrimaryPointRawValues.Empty();
 	}
 
-	// ±âÁ¸ ½Ã½ºÅÛÀ» ÃÖ´ëÇÑ À¯ÁöÇÑ´Ù.
-	// ¸¸¾à ÅäÅÛ ¿Ü¿¡ Àåºñ¿¡ °¨¼Ò ¿É¼ÇÀ» ³Ö°í ½Í´Ù¸é ÇØ´ç ºÎºĞÀÇ ¿É¼Ç »ğÀÔºÎ¸¦ Ã£¾Æ°¡
-	// AddPrimaryPointValue(ECharStatApplyType InApplyType, float InValue) -> AddPrimaryPointValue(ECharStatApplyType InApplyType, FOptionValue InValue) ·Î ¹Ù²ãÁØ´Ù.
+	// æ‰ç²® çŸ«èƒ¶è¢é˜‘ å¼¥æªèŒ„ èœ¡ç˜¤èŒ„ä¿ƒ.
+	// çˆ¶è· é…è¢ å¯‡ä¿Š å˜åšä¿Š çš‘å®¶ å¯è®°é˜‘ æŒç»Š é…µä¿ƒæ ç§¦å¯¸ ä½•ç›’ç‹¼ å¯è®° ç«æ¶ä½•ç”« èŒ«é…’å•Š
+	// AddPrimaryPointValue(ECharStatApplyType InApplyType, float InValue) -> AddPrimaryPointValue(ECharStatApplyType InApplyType, FOptionValue InValue) è‚º å®˜å±‚éœ–ä¿ƒ.
 	void AddPrimaryPointValue(ECharStatApplyType InApplyType, float InValue)
 	{
 		if (InValue == 0.f)
@@ -3285,8 +3308,8 @@ struct CombatStatInfoRawDatas
 			return false;
 		}
 
-		// GetEffectiveOptionValueTempl ¸¦ ÅëÇØ ¹Ì¸® °è»êµÇ¾î ³ª¿Â °ªÀº Source ·Î µé¾î°£ °ªµéÀÎ RawValue Çü½ÄÀÌ ¾Æ´Ï±â ¶§¹®¿¡
-		// ´Ù½Ã °è»ê ½ÄÀ¸·Î µé¾î°¡±â À§ÇØ RawValue Çü½ÄÀ¸·Î ¹Ù²ãÁÖ´Â ÀıÂ÷¸¦ °¡Áı´Ï´Ù.
+		// GetEffectiveOptionValueTempl ç”« çƒ¹ç§¦ å›ºåºœ æ‹Œé­‚ç™»ç»¢ å”±æŸ¯ è”¼ç¯® Source è‚º ç”¸ç»¢åŸƒ è”¼ç”¸ç‰¢ RawValue å±ˆä¾¥æ é…’èªæ‰ é”­å·©ä¿Š
+		// ä¿ƒçŸ« æ‹Œé­‚ ä¾¥æ è‚º ç”¸ç»¢å•Šæ‰ å›°ç§¦ RawValue å±ˆä¾¥æ è‚º å®˜å±‚æ—ç»° ä¾‹ç’ç”« å•Šç¬¼èªä¿ƒ.
 		float ItemOptionValue = GetEffectiveOptionValueTempl<TOptionTypeEnum>(InOptionType, PrimaryPointRawValues[InApplyType]);
 		ItemOptionValue = GetConvertNotRawValueForOptionApplyType(GetCombatOptionApplyType(InOptionType), ItemOptionValue);
 
@@ -3310,11 +3333,11 @@ struct CombatStatInfoRawDatas
 	}
 };
 
-enum class EUpgradeded : uint8 // ¾î¶² ½Â±Ş¼®À» »ç¿ëÇØ¾ßµÇ´ÂÁö ¿É¼Ç¿ë
+enum class EUpgradeded : uint8 // ç»¢æ« é“°é­ç±é˜‘ è¤ä¾©ç§¦å…·ç™»ç»°ç˜¤ å¯è®°ä¾©
 {
-	UPGRADE_BEFORE = 0,		// ½Â±ŞÀü¿¡ Ã¼Å©ÇÒ °æ¿ì
-	UPGRADE_AFTER,			// ½Â±ŞÈÄ¿¡ Ã¼Å©ÇÒ °æ¿ì
-	UPGRADE_NONE,			// ¿É¼Ç ÇÊ¿ä ¾øÀ» °æ¿ì
+	UPGRADE_BEFORE = 0,		// é“°é­å‚ˆä¿Š çœ‰å†œä¸” ç‰ˆå¿«
+	UPGRADE_AFTER,			// é“°é­é¥¶ä¿Š çœ‰å†œä¸” ç‰ˆå¿«
+	UPGRADE_NONE,			// å¯è®° é˜å¤¸ ç»é˜‘ ç‰ˆå¿«
 };
 /**
 * Provide RefID rule handling, special type ID query, etc..
@@ -3416,52 +3439,68 @@ public:
 
 public:
 
-	static int32 GetGoodsID_Gold() {
+	static int32 GetGoodsID_Gold()
+	{
 		return ITEM_REF_ID_GOLD;
 	}
-	static int32 GetGoodsID_Gem() {
+	static int32 GetGoodsID_Gem()
+	{
 		return ITEM_REF_ID_GEM;
 	}
-	static int32 GetGoodsID_BladePoint() {
+	static int32 GetGoodsID_BladePoint()
+	{
 		return ITEM_REF_ID_BLADEPOINT;
 	}
-	static int32 GetGoodsID_FriendshipPoint() {
+	static int32 GetGoodsID_FriendshipPoint()
+	{
 		return ITEM_REF_ID_FRIENDSHIP_POINT;
 	}
-	static int32 GetGoodsID_DarkCrystal() {
+	static int32 GetGoodsID_DarkCrystal()
+	{
 		return ITEM_REF_ID_DARK_CRYSTAL;
 	}
-	static int32 GetGoodsID_EXP() {
+	static int32 GetGoodsID_EXP()
+	{
 		return ITEM_REF_ID_EXP;
 	}
-	static int32 GetGoodsID_MissionPoint() {
+	static int32 GetGoodsID_MissionPoint()
+	{
 		return ITEM_REF_ID_MISSION_POINT;
 	}
-	static int32 GetGoodsID_ControlMVPPoint() {
+	static int32 GetGoodsID_ControlMVPPoint()
+	{
 		return ITEM_REF_ID_CONTROL_MVPPOINT;
 	}
-	static int32 GetGoodsID_GoldBuffTicket() {
+	static int32 GetGoodsID_GoldBuffTicket()
+	{
 		return ITEM_REF_ID_GOLD_BUFF_TICKET;
 	}
-	static int32 GetGoodsID_ExpBuffTicket() {
+	static int32 GetGoodsID_ExpBuffTicket()
+	{
 		return ITEM_REF_ID_EXP_BUFF_TICKET;
 	}
-	static int32 GetGoodsID_StageBoostTicket() {
+	static int32 GetGoodsID_StageBoostTicket()
+	{
 		return ITEM_REF_ID_STAGE_BOOST;
 	}
-	static int32 GetGoodsID_ShopTenLotteryTicket() {
+	static int32 GetGoodsID_ShopTenLotteryTicket()
+	{
 		return ITEM_REF_ID_SHOPTENLOTTERY_TICKET;
 	}
-	static int32 GetGoodsID_FamePoint() {
+	static int32 GetGoodsID_FamePoint()
+	{
 		return ITEM_REF_ID_HONER_POINT;
 	}
-	static int32 GetGoodsID_Dismantle() {
+	static int32 GetGoodsID_Dismantle()
+	{
 		return ITEM_REF_ID_DISMANTLE_ITEM;
-	} // Æä¾î¸® ·¹º§¾÷ Àç·á
-	static int32 GetGoodsID_StageAutoClearTicket() {
+	} // å…¶ç»¢åºœ é¥­éª‡è¯€ çŠä¸°
+	static int32 GetGoodsID_StageAutoClearTicket()
+	{
 		return ITEM_REF_ID_STAGE_AUTO_CLEAR_TICKET;
 	}
-	static int32 GetGoodsID_NicknameChangeTicket() {
+	static int32 GetGoodsID_NicknameChangeTicket()
+	{
 		return ITEM_REF_ID_NICKNAMECHANGE_TICKET;
 	}
 
@@ -3491,13 +3530,16 @@ public:
 	/** Reverse of GetRelicIDFromBossPieceRefID */
 	static int32 GetBossPieceRefIDFromRelicID(int32 InRelicID);
 
-	static int32 GetWingEnhanceResourceRefID() {
+	static int32 GetWingEnhanceResourceRefID()
+	{
 		return ITEM_REF_ID_WING_ENHANCE_INGREDIENT;
 	}
-	static int32 GetWingEvolveResourceRefID() {
+	static int32 GetWingEvolveResourceRefID()
+	{
 		return ITEM_REF_ID_WING_EVOLVE_INGREDIENT;
 	}
-	static int32 GetWingPropOptionEnhanceResourceRefID() {
+	static int32 GetWingPropOptionEnhanceResourceRefID()
+	{
 		return ITEM_REF_ID_WING_PROP_OPTION_ENHANCE_INGREDIENT;
 	}
 	static int32 GetWingResourceRefIDByAcqElemType(EWingIngredAcqElemType InAcqElemType);
@@ -3522,39 +3564,50 @@ public:
 
 	static int32 GenerateRewardRepresentativeItemID(int32 InRewardGroupID, int32 InType);
 
-	static int32 GetRareWeaponUpgradeStoneID() {
+	static int32 GetRareWeaponUpgradeStoneID()
+	{
 		return ITEM_REF_ID_ADVANCED_UPGRADE_STONE_WEAPON;
 	}
-	static int32 GetRareArmorUpgradeStoneID() {
+	static int32 GetRareArmorUpgradeStoneID()
+	{
 		return ITEM_REF_ID_ADVANCED_UPGRADE_STONE_ARMOR;
 	}
-	static int32 GetRareAccessoryUpgradeStoneID() {
+	static int32 GetRareAccessoryUpgradeStoneID()
+	{
 		return ITEM_REF_ID_ADVANCED_UPGRADE_STONE_ACCESSORY;
 	}
 
-	static int32 GetSteelHammerID() {
+	static int32 GetSteelHammerID()
+	{
 		return ITEM_REF_ID_STEEL_HAMMER;
 	}
-	static int32 GetAdvancedSteelHammerID() {
+	static int32 GetAdvancedSteelHammerID()
+	{
 		return ITEM_REF_ID_ADVANCED_STEEL_HAMMER;
 	}
-	static int32 GetPlatinumHammerID() {
+	static int32 GetPlatinumHammerID()
+	{
 		return ITEM_REF_ID_PLATINUM_HAMMER;
 	}
-	static int32 GetAdvancedPlatinumHammerID() {
+	static int32 GetAdvancedPlatinumHammerID()
+	{
 		return ITEM_REF_ID_ADVANCED_PLATINUM_HAMMER;
 	}
 
-	static int32 GetEquipmentDigit() {
+	static int32 GetEquipmentDigit()
+	{
 		return ITEM_REF_ID_LARGEST_DIGIT_EQUIPMENT;
 	}
-	static int32 GetEssenceDigit() {
+	static int32 GetEssenceDigit()
+	{
 		return ITEM_REF_ID_LARGEST_DIGIT_ESSENCE;
 	}
-	static int32 GetCostumeDigit() {
+	static int32 GetCostumeDigit()
+	{
 		return ITEM_REF_ID_LARGEST_DIGIT_COSTUME;
 	}
-	static int32 GetSurpassAnvilDigit() {
+	static int32 GetSurpassAnvilDigit()
+	{
 		return ITEM_REF_ID_LARGEST_DIGIT_SURPASSANVIL;
 	}
 };
@@ -3620,12 +3673,12 @@ struct FB2KakaoFriendEventInfo
 
 enum class EKakaoInviteResultCode : uint32
 {
-	Success = 200,	// ¼º°ø
-	ExceedMonthlyUsage = 7001, // ¿ù°£ Çã¿ë »ç¿ë·® ÃÊ°ú
-	ExceedDailyUsage = 7002, // ÀÏ°£ Çã¿ë »ç¿ë·® ÃÊ°ú
-	SettingDisabled = 7101, // ¼ö½Å Â÷´Ü »óÅÂ
-	NotKakaoTalkUser = 7202, // Ä«Ä«¿ÀÅå À¯Àú ¾Æ´Ô
-	Error = 9999,	// ¸ğµç ¿¡·¯
+	Success = 200,	// å·±å‚
+	ExceedMonthlyUsage = 7001, // å²¿åŸƒ å€¾ä¾© è¤ä¾©æ¨Š æª¬è‹
+	ExceedDailyUsage = 7002, // è€åŸƒ å€¾ä¾© è¤ä¾©æ¨Š æª¬è‹
+	SettingDisabled = 7101, // èè„š ç’çªœ æƒ‘æ€•
+	NotKakaoTalkUser = 7202, // å¢¨å¢¨å·ä½© èœ¡å† é…’ä¸›
+	Error = 9999,	// è‘›ç”µ ä¿ŠçŸ¾
 };
 
 UENUM(BlueprintType)

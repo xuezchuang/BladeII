@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2TMGameMode.h"
 //#include "BladeII.h"
 
@@ -55,10 +55,10 @@ AB2TMGameMode::AB2TMGameMode(const FObjectInitializer& ObjectInitializer)
 {
 	PrimaryActorTick.bCanEverTick = true;
 
-	DefaultPawnClass = ASpectatorPawn::StaticClass(); // SpectatorPawn À» ±âº»À¸·Î
-	PlayerControllerClass = ABladeIIPlayerController::StaticClass(); // ÇÊ¿ä¿¡ µû¶ó µû·Î extend ÇØ¼­ »ç¿ë..
+	DefaultPawnClass = ASpectatorPawn::StaticClass(); // SpectatorPawn é˜‘ æ‰å¤¯æ è‚º
+	PlayerControllerClass = ABladeIIPlayerController::StaticClass(); // é˜å¤¸ä¿Š è¶æ‰¼ è¶è‚º extend ç§¦è¾‘ è¤ä¾©..
 
-	DefaultPCClassEnum = EPCClass::EPC_End; // ÀÏ´Ü spawn ÇÏÁö ¾Ê´Â´Ù.
+	DefaultPCClassEnum = EPCClass::EPC_End; // è€çªœ spawn çªç˜¤ è‡¼ç»°ä¿ƒ.
 
 	MyTeamInfo.TeamNum = MyTeamNum;
 	OpponentTeamInfo.TeamNum = OpponentTeamNum;
@@ -83,7 +83,7 @@ void AB2TMGameMode::PreBeginPlay()
 void AB2TMGameMode::BeginPlay()
 {
 	Super::BeginPlay();
-	StageBeginClass<>::GetInstance().Signal(); // ÀÌ°Ô ÇöÀç ÇÏ´Â °Ç ÀüÅõ UI ¸¦ ¿©´Â °Çµ¥ Stage ¶õ ÀÌ¸§ÀÌ °Å½½¸®¸é ´Ù¸¥ ÀÌº¥Æ®·Î ¹Ù²ã¼­ ¾µ ¼ö ÀÖ°Ú´Ù. ¾Æ¿¹ ´Ù¸¥ ÀÌº¥Æ®°¡ ÇÊ¿äÇÒ ¼öµµ ÀÖ°í.
+	StageBeginClass<>::GetInstance().Signal(); // æéœ¸ æ³…çŠ çªç»° æ‰’ å‚ˆæ§ UI ç”« å’¯ç»° æ‰’å• Stage é„‚ ææŠšæ èŠ­æµ‡åºœæ ä¿ƒå¼— æäº¥é£˜è‚º å®˜å±‚è¾‘ é•œ è ä¹æ‘†ä¿ƒ. é…’æŠ— ä¿ƒå¼— æäº¥é£˜å•Š é˜å¤¸ä¸” èæ¡£ ä¹ç»Š.
 }
 
 void AB2TMGameMode::BeginDestroy()
@@ -179,7 +179,7 @@ void AB2TMGameMode::SubscribeEvents()
 
 void AB2TMGameMode::RequestRematch()
 {
-	//»õ·Ó°Ô ½ÃÀÛÇÏÀÚ.
+	//è´§é…šéœ¸ çŸ«ç´¯çªç£Š.
 	StartBladeIITeamMatchGame(Cast<AGameMode>(GetWorld()->GetAuthGameMode()));
 }
 
@@ -197,7 +197,7 @@ void AB2TMGameMode::ReturnToFindAccount()
 			DocSome->SetFindUserAccountID(OpponentTeamCharacterDataStore.GetAccountInfoPtr()->account_id);
 
 		FLobbySceneManager::DeferredRegistChangeLobbyScene([]() {
-			// ÀüÃ¼ ¾À ÀüÈ¯À» ÇÏ¸é ½Ç ·Îµù ½Ã°£ÀÌ ´Ã¾î³ª¹Ç·Î ¿øÇÏ´Â È­¸é Á÷Àü±îÁö UI History ¸¸ ¸¸µé¾îÁØ´Ù.
+			// å‚ˆçœ‰ çº  å‚ˆåˆ¸é˜‘ çªæ è§’ è‚ºçˆ¹ çŸ«åŸƒæ ç–µç»¢å”±éª¨è‚º ç›”çªç»° æ‹³æ æµå‚ˆé³–ç˜¤ UI History çˆ¶ çˆ¶ç”¸ç»¢éœ–ä¿ƒ.
 			UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
 			if (UIMgrInst) {
 				UIMgrInst->ArtificialAddUIHistory(EUIScene::LobbyMain);
@@ -222,7 +222,7 @@ void AB2TMGameMode::ReturnToTMMainMenu()
 	if (FLobbySceneManager::IsExistDeferredRegistChangeLobbyScene() == false)
 	{
 		FLobbySceneManager::DeferredRegistChangeLobbyScene([]() {
-			// ÀüÃ¼ ¾À ÀüÈ¯À» ÇÏ¸é ½Ç ·Îµù ½Ã°£ÀÌ ´Ã¾î³ª¹Ç·Î ¿øÇÏ´Â È­¸é Á÷Àü±îÁö UI History ¸¸ ¸¸µé¾îÁØ´Ù. 
+			// å‚ˆçœ‰ çº  å‚ˆåˆ¸é˜‘ çªæ è§’ è‚ºçˆ¹ çŸ«åŸƒæ ç–µç»¢å”±éª¨è‚º ç›”çªç»° æ‹³æ æµå‚ˆé³–ç˜¤ UI History çˆ¶ çˆ¶ç”¸ç»¢éœ–ä¿ƒ. 
 			UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
 			if (UIMgrInst) {
 				UIMgrInst->ArtificialAddUIHistory(EUIScene::LobbyMain);
@@ -232,7 +232,7 @@ void AB2TMGameMode::ReturnToTMMainMenu()
 			data_trader::Retailer::GetInstance().RequestGetTeamBattleStatus();
 		});
 	}	
-	OpenBladeIILobbyCommon(this); // ¾À ÀüÈ¯ ¿¹¾à ÈÄ º»°İ ·Îºñ ¸Ê ·Îµù
+	OpenBladeIILobbyCommon(this); // çº  å‚ˆåˆ¸ æŠ—è· é¥¶ å¤¯æ‹œ è‚ºåš ç”˜ è‚ºçˆ¹
 }
 
 void AB2TMGameMode::OpenPopupGotoTMMainMenu()
@@ -257,7 +257,7 @@ void AB2TMGameMode::EnterShop(int32 nWhereShop)
 	B2_SCOPED_TRACK_LOG(TEXT("AB2TMGameMode::EnterShop"));
 
 	FLobbySceneManager::DeferredRegistChangeLobbyScene([]() {
-		// ÀüÃ¼ ¾À ÀüÈ¯À» ÇÏ¸é ½Ç ·Îµù ½Ã°£ÀÌ ´Ã¾î³ª¹Ç·Î ¿øÇÏ´Â È­¸é Á÷Àü±îÁö UI History ¸¸ ¸¸µé¾îÁØ´Ù.
+		// å‚ˆçœ‰ çº  å‚ˆåˆ¸é˜‘ çªæ è§’ è‚ºçˆ¹ çŸ«åŸƒæ ç–µç»¢å”±éª¨è‚º ç›”çªç»° æ‹³æ æµå‚ˆé³–ç˜¤ UI History çˆ¶ çˆ¶ç”¸ç»¢éœ–ä¿ƒ.
 		UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
 		if (UIMgrInst) {
 			UIMgrInst->ArtificialAddUIHistory(EUIScene::LobbyMain);
@@ -461,7 +461,7 @@ int32 AB2TMGameMode::GetFormationSlotPosition(ETMFormation Formation, int32 Slot
 {
 	int32 FormationSlotNum = INDEX_NONE;
 
-	//Å×ÀÌºíÈ­ÇÏ±â¿¡´Â Á» ±×·¸°í.. ÇÏµåÄÚµåÇÔ.
+	//æŠ›æå–‰æ‹³çªæ‰ä¿Šç»° ç²± å¼ŠçŠ¯ç»Š.. çªé›å†…é›çªƒ.
 	switch (Formation)
 	{	
 	case ETMFormation::ETM_Attack:
@@ -486,7 +486,7 @@ int32 AB2TMGameMode::GetAggroPriority(ETMFormation Formation, int32 SlotIdx)
 {
 	int32 AggroPriority = INDEX_NONE;
 
-	//Å×ÀÌºíÈ­ÇÏ±â¿¡´Â Á» ±×·¸°í.. ÇÏµåÄÚµåÇÔ.
+	//æŠ›æå–‰æ‹³çªæ‰ä¿Šç»° ç²± å¼ŠçŠ¯ç»Š.. çªé›å†…é›çªƒ.
 	switch (Formation)
 	{
 	case ETMFormation::ETM_Attack:
@@ -650,8 +650,8 @@ void FTeamInfo::SpawnTeamCharacters(AB2TMGameMode* GameMode)
 	//	NewAC->Possess(ControlledPawn);
 	//	GameMode->GetWorld()->ManualPostSpawnInitialize(ControlledPawn, SpawnTransform, PawnSpawnInfo);
 
-	//	// ÃÖÃÊ½ºÆùÀº P1B_1 ÀÌµ¿ÇÒ°÷Àº P1_1 ÀÌ·±Çü½ÄÀ¸·Î
-	//	// ÀÌµ¿Àº TeamPlayerMoveToStartPosition ÇÔ¼ö¿¡¼­
+	//	// å¼¥æª¬èƒ¶è¿„ç¯® P1B_1 ææ‚¼ä¸”é•‘ç¯® P1_1 æç¹å±ˆä¾¥æ è‚º
+	//	// ææ‚¼ç¯® TeamPlayerMoveToStartPosition çªƒèä¿Šè¾‘
 	//	FString SpotTagName = FString::Printf(TEXT("P%dB_%d"), TeamNum, Character.DocCharIndex);
 	//	GameMode->RestartEntryPlayer(NewAC, SpotTagName);
 
@@ -771,7 +771,7 @@ void AB2TMGameMode::HandleMatchOtherPlayer()
 {
 	AddOpponentTeamCharacterInfo();
 
-	///////ÀÓ½Ã	
+	///////çƒ™çŸ«	
 	//SceneManager.SetRightEntry();
 
 	//auto* FindingMatchUI = UB2UIManager::GetInstance()->GetUI<UB2UIPVPModFindingMatch>(UIFName::TeamMatchFindMatch);
@@ -804,16 +804,16 @@ void AB2TMGameMode::HandleMatchHasStarted()
 	// Then fire off match started
 	GetWorldSettings()->NotifyMatchStarted();
 
-	// ¿¬Ãâ ½ÃÀÛÀü¿¡ ±âº»Ä«¸Ş¶óÀÖÀ¸¸é Ã£¾Æ¼­ È°¼ºÈ­
-	// ÇÚµåÆù¿¡¼­´Â ÄÁÆ®·Ñ·¯ÀÇ ºÎÀç·Î ¾×Æ¼ºê Ä«¸Ş¶ó ¾×ÅÍÀÇ
-	// BeginPlay()¿¡¼­ È°¼ºÈ­ ¾ÈµÇ´Â°æ¿ì°¡ ÀÖ´Âµí
+	// æ¥·å… çŸ«ç´¯å‚ˆä¿Š æ‰å¤¯å¢¨çš‹æ‰¼ä¹æ æ èŒ«é…’è¾‘ åŠå·±æ‹³
+	// å‹¤é›è¿„ä¿Šè¾‘ç»° ç‰§é£˜è´¹çŸ¾ç‹¼ ä½•çŠè‚º å’€èå® å¢¨çš‹æ‰¼ å’€ç£ç‹¼
+	// BeginPlay()ä¿Šè¾‘ åŠå·±æ‹³ æ•‘ç™»ç»°ç‰ˆå¿«å•Š ä¹ç»°æ·€
 	SetBaseActiveCamera();
 
-#if BII_STATS // PerfStat Àº MatchStart ½ÃÁ¡ºÎÅÍ ¸ğÀ¸±â ½ÃÀÛ.
+#if BII_STATS // PerfStat ç¯® MatchStart çŸ«ç—¢ä½•ç£ è‘›æ æ‰ çŸ«ç´¯.
 	PerfStatCollector.OnBegin(this);
 #endif
 
-	// ¿¬Ãâ½ÃÀÛ
+	// æ¥·å…çŸ«ç´¯
 	StartEventScene_GameBegin();
 
 	PlayTMBGM(ETMBGMPlayContext::TMBGMCTX_Combat);
@@ -837,7 +837,7 @@ void AB2TMGameMode::HandleStartResult()
 	
 	AllPlayerStopAI();
 
-	// °á°ú Á¤º¸¸¦ UI ÂÊ¿¡ ¼¼ÆÃÇÏ´Â ºÎºĞÀº ±¸Çö Á¤¸®µÇ¸é ÇÑ °÷À¸·Î
+	// æ¬è‹ æ²¥ç„Šç”« UI ç‡ä¿Š æŠ€æ³¼çªç»° ä½•ç›’ç¯® å¤‡æ³… æ²¥åºœç™»æ èŒ„ é•‘æ è‚º
 	auto* DocSome = UB2UIDocHelper::GetDocSome();
 	if (DocSome)
 	{
@@ -858,7 +858,7 @@ void AB2TMGameMode::StartMatchResult()
 
 void AB2TMGameMode::HandleFinishBattle()
 {
-	//[@AKI, 170607] ÀüÅõ°¡ ³¡³µÀ¸³ª ¸¶Áö¸· TakeDamageUpdate¸¦ ¾ÈÇØÁÜÀ¸·Î ¿©±â¿¡ Ãß°¡ÇÔ
+	//[@AKI, 170607] å‚ˆæ§å•Š åœºè½¦æ å”± ä»˜ç˜¤é˜œ TakeDamageUpdateç”« æ•‘ç§¦æ·‹æ è‚º å’¯æ‰ä¿Š çœ å•Šçªƒ
 	TakeDamageUpdate();
 
 	SceneManager.SetState(ETeamMatchState::BattleEnd);
@@ -901,7 +901,7 @@ void AB2TMGameMode::TeamPlayerMoveToStartPosition(bool bMyTeam)
 		if (!Character.AIController)
 			continue;
 
-		// ÀÌº¥Æ® µğ·ºÅÍ¿¡¼­ ¼û±ä°Å¶û ÀÌµ¿ Àá±Ù°Å Ç®¾îÁÜ
+		// æäº¥é£˜ å¼æ³›ç£ä¿Šè¾‘ è§å˜èŠ­å°” ææ‚¼ æ³ªè¾ŸèŠ­ é’±ç»¢æ·‹
 		ABladeIICharacter* pCharacter = Cast<ABladeIICharacter>(Character.AIController->GetPawn());
 
 		if (pCharacter)
@@ -910,7 +910,7 @@ void AB2TMGameMode::TeamPlayerMoveToStartPosition(bool bMyTeam)
 			pCharacter->AllowMovementByStageEvent();
 		}
 
-		// Á¤ÇØÁø °÷À¸·Î ÀÌµ¿
+		// æ²¥ç§¦æŸ³ é•‘æ è‚º ææ‚¼
 		FString SpotTagName = FString::Printf(TEXT("P%d_%d"), teamInfo->TeamNum, Character.Spot);
 
 		AActor* StartSpot = FindPlayerStart(Character.AIController, SpotTagName);
@@ -926,7 +926,7 @@ ENetMatchResult AB2TMGameMode::CalcResult()
 	bool bMyTeamWin = true;
 	bool bDraw		= false;
 
-	//ÀÜÁ¸ Ä³¸¯ÅÍ HPÇÕ»ê
+	//å„¡ç²® æŸè…ç£ HPé’¦é­‚
 	auto MyTeamHPTotal			= MyTeamInfo.GetCharacterHPTotal();
 	auto OpponentTeamHPTotal	= OpponentTeamInfo.GetCharacterHPTotal();
 
@@ -957,7 +957,7 @@ void AB2TMGameMode::SetMatchResultInfo(const FB2TeamMatchResult& MatchResult)
 	//		TeamMatchDoc->SetPCPrevTopContinuousWins(TeamMatchDoc->GetPCCurrTopContinuousWins());
 	//		TeamMatchDoc->SetPCCurrTopContinuousWins(matchStatus->continue_win_max);
 
-	//		// ¹Ú½º °á°ú¼¼ÆÃÇÏ±âÀü¿¡. ¿ø·¡²¨¶û ºñ±³
+	//		// å† èƒ¶ æ¬è‹æŠ€æ³¼çªæ‰å‚ˆä¿Š. ç›”è´°æ³¢å°” åšèƒŒ
 	//		if (TeamMatchDoc->GetRewardBoxStatus()
 	//			&& !TeamMatchDoc->GetRewardBoxStatus()->is_reward_state
 	//			&& RewardBoxInfo->is_reward_state)
@@ -995,7 +995,7 @@ void AB2TMGameMode::SetMatchResultInfo(const FB2TeamMatchResult& MatchResult)
 	//			{
 	//				MyRankerInfo.TotalCombatPower = CharDoc1->GetCombatPower() + CharDoc2->GetCombatPower() + CharDoc3->GetCombatPower();
 	//	
-	//				//[@SameLine, 180612] explevelinfo doc, datastore -> datastore °³¼±
+	//				//[@SameLine, 180612] explevelinfo doc, datastore -> datastore ä¿ºæ€¥
 	//				//MyRankerInfo.EntryLevels.Add(CharDoc1->GetCurrentLevel());
 	//				//MyRankerInfo.EntryLevels.Add(CharDoc2->GetCurrentLevel());
 	//				//MyRankerInfo.EntryLevels.Add(CharDoc3->GetCurrentLevel());
@@ -1036,7 +1036,7 @@ void AB2TMGameMode::SetMatchResultInfo(const FB2TeamMatchResult& MatchResult)
 	//	}
 	//	DocSome->SetRewards(MyRewards);
 	//}
-	////[@AKI, 170613] ¾à ³×Æ®¿öÅ©¿¡¼­ °á°ú¸¦ ¼­¹ö¿¡¼­ ¹ŞÁö ¾ÊÀº »óÅÂ¿¡¼­ °á°úÈ­¸é º¸¿©ÁÖÁö ¾Ê°Ô º¯°æ
+	////[@AKI, 170613] è· åŒ™é£˜å†µå†œä¿Šè¾‘ æ¬è‹ç”« è¾‘æ»šä¿Šè¾‘ ç½ç˜¤ è‡¼ç¯® æƒ‘æ€•ä¿Šè¾‘ æ¬è‹æ‹³æ ç„Šå’¯æ—ç˜¤ è‡¼éœ¸ å‡½ç‰ˆ
 	//UB2UIManager::GetInstance()->ChangeUIScene(EUIScene::PVPResult);
 }
 
@@ -1045,8 +1045,8 @@ void AB2TMGameMode::Tick(float DeltaSeconds)
 //	SceneManager.Tick(DeltaSeconds);
 //
 //	if (IsInPreRenderPhase()) {
-//		UpdateForPreRenderObjects(); // ÀÌ°Ô µ¹¾Æ°¡´Â ¿ÍÁß¿¡´Â ¾ÆÁ÷ Á¤½Ä ½ÃÀÛ ¾È ÇÑ °Å..
-//		// Pre-render ¿¡¼­ ¸ŞÀÎ ¸Ê ·Îµù È­¸é ´İ´Â °É Áö¿¬½ÃÅ°°Ô µÇ¹Ç·Î ¿©±â¼­ Ã³¸®. Pre-render ¿ë ·Îµù È­¸éÀº µû·Î ÀÖ°í ÀÌ°Ç ´ÜÁö ·Îµù »±±ÛÀÌ µ¹¾Æ°¡´Â °Å ¿¬ÀåÇÏ±â À§ÇÑ Â÷¿øÀÌ´Ù.
+//		UpdateForPreRenderObjects(); // æéœ¸ å€’é…’å•Šç»° å®¢åä¿Šç»° é…’æµ æ²¥ä¾¥ çŸ«ç´¯ æ•‘ èŒ„ èŠ­..
+//		// Pre-render ä¿Šè¾‘ çš‹ç‰¢ ç”˜ è‚ºçˆ¹ æ‹³æ æ‘§ç»° å§ ç˜¤æ¥·çŸ«è™éœ¸ ç™»éª¨è‚º å’¯æ‰è¾‘ è´¸åºœ. Pre-render ä¾© è‚ºçˆ¹ æ‹³æç¯® è¶è‚º ä¹ç»Š ææ‰’ çªœç˜¤ è‚ºçˆ¹ æ§è‡‚æ å€’é…’å•Šç»° èŠ­ æ¥·å˜çªæ‰ å›°èŒ„ ç’ç›”æä¿ƒ.
 //		ConditionalWaitForLoadingScreen();
 //	}
 //
@@ -1177,8 +1177,8 @@ ABladeIIPlayer* AB2TMGameMode::GetTeamPlayer(bool bAllyTeam, int32 nPlayerIndex,
 	else
 		OpponentTeamInfo.GetCharacterList(CharacterList, bLiveOnly);
 
-	// ÇöÀç GetCharacterList ±¸Çö»ó CharacterList ¿¡ Ã¤¿ö³ÖÁö ¸øÇÏ´Â °æ¿ì ÀÎµ¦½º°¡ Æ²·ÁÁ® ¹ö¸®¹Ç·Î ÀÎµ¦½º·Î º¸´Â °Í ÀÚÃ¼°¡ ¹®Á¦ÀÓ.
-	// °á±¹ ¿©±æ Áö³ª¼­ ¾Æ·¡ SpawnTeamPlayerAsPuppet À¸·Î °¡´Â °Ô ¿©ÀüÈ÷ ¹®Á¦ »óÈ²ÀÌ µÉ ¼ö ÀÖÀ½.
+	// æ³…çŠ GetCharacterList å¤‡æ³…æƒ‘ CharacterList ä¿Š ç›²å†µæŒç˜¤ ç»™çªç»° ç‰ˆå¿« ç‰¢éƒ¸èƒ¶å•Š æ’‡å¦¨å»‰ æ»šåºœéª¨è‚º ç‰¢éƒ¸èƒ¶è‚º ç„Šç»° å·´ ç£Šçœ‰å•Š å·©åŠ›çƒ™.
+	// æ¬æƒ« å’¯è¾¨ ç˜¤å”±è¾‘ é…’è´° SpawnTeamPlayerAsPuppet æ è‚º å•Šç»° éœ¸ å’¯å‚ˆæ´’ å·©åŠ› æƒ‘ç‚”æ çª è ä¹æ¾œ.
 	if (CharacterList.IsValidIndex(nPlayerIndex))
 	{
 		ABladeIIPlayer* pPlayer = Cast<ABladeIIPlayer>(CharacterList[nPlayerIndex]);
@@ -1186,7 +1186,7 @@ ABladeIIPlayer* AB2TMGameMode::GetTeamPlayer(bool bAllyTeam, int32 nPlayerIndex,
 			return pPlayer;
 	}
 
-	// ÀÌ¹Ì Á×¾î¼­ ¸ø °¡Á®¿À´Â °æ¿ì..
+	// æå›º ç£·ç»¢è¾‘ ç»™ å•Šå»‰å·ç»° ç‰ˆå¿«..
 	if (!bLiveOnly && bSpawnPuppetForDead)
 	{
 		return SpawnTeamPlayerAsPuppet(bAllyTeam, nPlayerIndex, false);
@@ -1195,10 +1195,10 @@ ABladeIIPlayer* AB2TMGameMode::GetTeamPlayer(bool bAllyTeam, int32 nPlayerIndex,
 	return nullptr;
 }
 
-// ´ëÃ¼·Î ¿¬Ãâ¿¡ »ç¿ëÇÒ ¸ñÀûÀÓ. ¿¬Ãâ¿¡ »ç¿ëÇÏ±â À§ÇØ spawn.
+// æªçœ‰è‚º æ¥·å…ä¿Š è¤ä¾©ä¸” æ ¼åˆ©çƒ™. æ¥·å…ä¿Š è¤ä¾©çªæ‰ å›°ç§¦ spawn.
 ABladeIIPlayer* AB2TMGameMode::SpawnTeamPlayerAsPuppet(bool bAllyTeam, int32 nPlayerIndex, bool bPossessByAIController /*= true*/)
 {
-	// Å¬·¡½º Á¤º¸°¡ ¿©±â ¸»°í µı µ¥ ¾ø³ª..
+	// åŠªè´°èƒ¶ æ²¥ç„Šå•Š å’¯æ‰ å¯Œç»Š è° å• ç»å”±..
 	auto* TeamMatchDoc		= UB2UIDocHelper::GetDocTeamMatch();
 	auto CharClassToSpawn	= EPCClass::EPC_End;
 
@@ -1228,22 +1228,22 @@ ABladeIIPlayer* AB2TMGameMode::SpawnTeamPlayerAsPuppetbyClass(bool bAllyTeam, EP
 		return nullptr;
 	}
 
-	// ±âÁØÀÌ µÉ ÇÃ·¹ÀÌ¾î°¡ ¾øÀ» ¼ö ÀÖ´Ù.. ÇÃ·¹ÀÌ¾î start ¶óµµ ¾µ±î.. 
+	// æ‰éœ–æ çª æ•²é¥­æç»¢å•Š ç»é˜‘ è ä¹ä¿ƒ.. æ•²é¥­æç»¢ start æ‰¼æ¡£ é•œé³–.. 
 	FTransform NewTransform(
 		FRotator(0.0f, 0.0f, 0.0f),
 		FVector(0.0f, 0.0f, 0.0f),
 		FVector(1.0f, 1.0f, 1.0f)
 	);
 
-	// µüÈ÷ ÀÌÀü °É ¾ø¾Ø´ÙµçÁö ÇÒ ÇÊ¿ä ¾øÀÌ ±×´ë·Î ¸®ÅÏ. ¹ŞÀº ÂÊ¿¡¼­ Àß Ã³¸®. 
-	// PlayerController ¿¡ possess ÇÏÁö´Â ¾ÊÀ¸´Ï GetLocalPlayerCharacter µîÀÌ ÀÇµµ¿Í ´Ş¸® ¿©±â¼­ »ı¼ºÇÑ °ÍÀ» ¸®ÅÏÇÑ´ÙµçÁö ÇÏ´Â ÀÏÀº ¾øÀ» °Í.
+	// è¿­æ´’ æå‚ˆ å§ ç»çŸ©ä¿ƒç”µç˜¤ ä¸” é˜å¤¸ ç»æ å¼Šæªè‚º åºœç•”. ç½ç¯® ç‡ä¿Šè¾‘ è‚‹ è´¸åºœ. 
+	// PlayerController ä¿Š possess çªç˜¤ç»° è‡¼æ èª GetLocalPlayerCharacter æ®¿æ ç‹¼æ¡£å®¢ å´”åºœ å’¯æ‰è¾‘ ç§¯å·±èŒ„ å·´é˜‘ åºœç•”èŒ„ä¿ƒç”µç˜¤ çªç»° è€ç¯® ç»é˜‘ å·´.
 	ABladeIIPlayer* SpawnedPuppet = ABladeIIGameMode::SpawnPlayerCharAsPuppet(this, InCharClass, NewTransform, bPossessByAIController, ABladeIIPlayer::StaticClass());
 
-	// ±âº»ÀûÀ¸·Î´Â ·ÎÄÃ ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ Àåºñ·Î ¸ÂÃçÁ® ÀÖÀ»Å×´Ï Ally °¡ ¾Æ´Ï¶ó¸é Àåºñ µ¥ÀÌÅÍ¸¦ Á÷Á¢ ¼¼ÆÃÇØÁØ´Ù. 
+	// æ‰å¤¯åˆ©æ è‚ºç»° è‚ºæ‹¿ æ•²é¥­æç»¢ æŸè…ç£ å˜åšè‚º å˜è‹—å»‰ ä¹é˜‘æŠ›èª Ally å•Š é…’èªæ‰¼æ å˜åš å•æç£ç”« æµç«‹ æŠ€æ³¼ç§¦éœ–ä¿ƒ. 
 	if (!bAllyTeam)
-	{ // ´Ü, °ÔÀÓ¸ğµå¿¡ Ä³½ÌµÈ °É °¡Á®¿Í¼­ »ç¿ëÇÏ·Á¸é NetID ¸¦ ³Ö¾îÁÖ¾î¾ß ÇÏ´Âµ¥ ÇöÀç SetupComponentsForPartsCustomDataStore ±¸Çö ÀÚÃ¼°¡ Custom ¿¡ °É¸Â°Ô Ä³½ÌÀ» ¹«½ÃÇÏµµ·Ï µÇ¾îÀÖ´Ù.
+	{ // çªœ, éœ¸çƒ™è‘›é›ä¿Š æŸæ•™ç­‰ å§ å•Šå»‰å®¢è¾‘ è¤ä¾©çªå¦¨æ NetID ç”« æŒç»¢æ—ç»¢å…· çªç»°å• æ³…çŠ SetupComponentsForPartsCustomDataStore å¤‡æ³… ç£Šçœ‰å•Š Custom ä¿Š å§å˜éœ¸ æŸæ•™é˜‘ å…¬çŸ«çªæ¡£åºŸ ç™»ç»¢ä¹ä¿ƒ.
 		SpawnedPuppet->SetupComponentsForPartsCustomDataStore(GetRemotePlayerDataStore(GetOpponentTeamNum()), 
-			// ÀÌ°Å °ÅÀÇ ¿¬Ãâ¿ë ±â´ÉÀÌ¶ó SectionMerge ¿©ºÎ¿¡ ¿¬Ãâ¿ë ÆÇº° ÇÔ¼ö ¸®ÅÏ°ª Àü´Ş.
+			// æèŠ­ èŠ­ç‹¼ æ¥·å…ä¾© æ‰ç“·ææ‰¼ SectionMerge å’¯ä½•ä¿Š æ¥·å…ä¾© é­„å–Š çªƒè åºœç•”è”¼ å‚ˆå´”.
 			UB2PCMeshSectionMergeInfo::ShouldUseSectionMergeForStageEvent(this)
 			);
 	}
@@ -1366,8 +1366,8 @@ void FTeamMatchSceneMagnager::SetFinding()
 	//	LobbyMatinee->Pause();
 	//}
 
-	//// ÀÌ°Ç ¾îÂ¼´Ù SetupUIScene ÀÌ ¾Æ´Ñ ¿©±â¼­ ChangeUIScene À»..
-	//B2GMLoadingProgCollector::StepToMax(); // ·Îµù ÁøÇàµµ ÀÌÂë¼­ ²Ë Ã¤¿ö³ÖÀ½.
+	//// ææ‰’ ç»¢å½•ä¿ƒ SetupUIScene æ é…’å›± å’¯æ‰è¾‘ ChangeUIScene é˜‘..
+	//B2GMLoadingProgCollector::StepToMax(); // è‚ºçˆ¹ æŸ³é’æ¡£ æç è¾‘ èœ ç›²å†µæŒæ¾œ.
 	//UB2UIManager::GetInstance()->ChangeUIScene(EUIScene::TeamMatchFindMatch);
 
 	//auto* TeamMatchFindWidget = UB2UIManager::GetInstance()->GetUI<UB2UIPVPModFindingMatch>(UIFName::TeamMatchFindMatch);
@@ -1378,7 +1378,7 @@ void FTeamMatchSceneMagnager::SetFinding()
 	//	
 	//SetLeftEntry();
 
-	////// ÀÓ½Ã
+	////// çƒ™çŸ«
 	//WaitingReadyToMatchTime = 2.f; 
 	//ElapsedWaitingReadyToMatchTime = 0.f;
 	//////
@@ -1400,7 +1400,7 @@ void FTeamMatchSceneMagnager::SetReady()
 		TeamMatchFindWidget->SetReady(WaitingReadyToMatchTime);
 	}
 
-	//À½.. µû·Î »©±â´Â ±ÍÂúÀº ÀÛ¾÷ÀÌ°í º¼·ıµµ ÀÛÀ¸´Ï ±×³É ÇÏµåÄÚµå·Î..
+	//æ¾œ.. è¶è‚º å“—æ‰ç»° è“–æ»¡ç¯® ç´¯è¯€æç»Š æ­ä¿˜æ¡£ ç´¯æ èª å¼Šæˆ çªé›å†…é›è‚º..
 	BII_CHECK(SpawnedActors.Num() == 6 && AnimArray.Num() == 4);
 	if (SpawnedActors.Num() == 6 && AnimArray.Num() == 4)
 	{
@@ -1468,7 +1468,7 @@ void FTeamMatchSceneMagnager::SetGameMode(class AB2TMGameMode* InGameMode)
 	GameMode = InGameMode;
 
 	if (GameMode)
-	{ // ·¹º§ ¸®¼Ò½º ³×ÀÌÆ¼ºê ·¹ÆÛ·±½º Ä³½Ì Å¸ÀÌ¹Ö.
+	{ // é¥­éª‡ åºœå®¶èƒ¶ åŒ™æèå® é¥­æ¬ºç¹èƒ¶ æŸæ•™ é¸¥ææ€ª.
 		GameMode->RecacheLevelResources();
 	}
 }
@@ -1551,7 +1551,7 @@ void FTeamMatchSceneMagnager::SetLeftEntry()
 
 void FTeamMatchSceneMagnager::SetRightEntry()
 {
-	/*/// ÀüºÎ ÀÓ½Ã ¼¼ÆÃ
+	/*/// å‚ˆä½• çƒ™çŸ« æŠ€æ³¼
 	auto* TeamMatch = UB2UIDocHelper::GetDocTeamMatch();
 
 	if (!TeamMatch)
@@ -1604,13 +1604,13 @@ void FTeamMatchSceneMagnager::SetStartTimeCount(bool InStart)
 
 void FTeamMatchSceneMagnager::Tick(float DeltaSeconds)
 {
-	////// ÀÓ½Ã
+	////// çƒ™çŸ«
 	//if (CurrentState == ETeamMatchState::Finding)
 	//{
 	//	ElapsedWaitingReadyToMatchTime += DeltaSeconds;
 	//	if (ElapsedWaitingReadyToMatchTime > WaitingReadyToMatchTime)
 	//	{
-	//		bool bUsedAdditionalPoint = false;// ÆÀ¸ÅÄª Æ¼ÄÏÀÌ 0 °³ÀÏ¶§ Ãß°¡ ÀçÈ­¸¦ »ç¿ëÇÒ °ÍÀÎÁö È®ÀÎ 170421YJ
+	//		bool bUsedAdditionalPoint = false;// è¯„æ¦‚è« èå—æ 0 ä¿ºè€é”­ çœ å•Š çŠæ‹³ç”« è¤ä¾©ä¸” å·´ç‰¢ç˜¤ çŠ¬ç‰¢ 170421YJ
 	//		auto* DocTeam = UB2UIDocHelper::GetDocTeamMatch();
 	//		if (DocTeam)	bUsedAdditionalPoint = DocTeam->GetUsedAdditionalPoint();
 
@@ -1678,15 +1678,15 @@ void AB2TMGameMode::NotifyCharacterDead(ABladeIICharacter* TargetCharacter, clas
 	//if (!B2PAC)
 	//	return;
 
-	//// ÇöÀç ¾×Æ¼ºêÄ«¸Ş¶ó ºäÅ¸°ÙÀÌ Á×¾úÀ»¶§ ±âº» ¾×Æ¼ºêÄ«¸Ş¶ó·Î µ¹¸²
-	//// ÆÀ´ëÀü °ÔÀÓ¸ğµå´Ï ´ç¿¬ ÆÀ´ëÀü¿¡¼­¸¸ ÀÛµ¿ÇÏ°ÚÁö
+	//// æ³…çŠ å’€èå®å¢¨çš‹æ‰¼ è½°é¸¥ç™¾æ ç£·èŒé˜‘é”­ æ‰å¤¯ å’€èå®å¢¨çš‹æ‰¼è‚º å€’è¦†
+	//// è¯„æªå‚ˆ éœ¸çƒ™è‘›é›èª å¯¸æ¥· è¯„æªå‚ˆä¿Šè¾‘çˆ¶ ç´¯æ‚¼çªæ‘†ç˜¤
 	//auto* B2PC = Cast<ABladeIIPlayerController>(UGameplayStatics::GetLocalPlayerController(this));
 	//if (B2PC && TargetCharacter)
 	//{
 	//	if (TargetCharacter == B2PC->GetViewTarget())
 	//	{
-	//		//ºäÅ¸°ÙÀÌ Á×¾ú´Ù!
-	//		//ÃÊ±âÄ«¸Ş¶ó Ã£¾Æ¼­ È°¼ºÈ­
+	//		//è½°é¸¥ç™¾æ ç£·èŒä¿ƒ!
+	//		//æª¬æ‰å¢¨çš‹æ‰¼ èŒ«é…’è¾‘ åŠå·±æ‹³
 	//		SetBaseActiveCamera();
 	//	}
 	//}
@@ -1700,7 +1700,7 @@ void AB2TMGameMode::NotifyCharacterDead(ABladeIICharacter* TargetCharacter, clas
 
 	//ABladeIICharacter* Inflictor;
 
-	//// Åõ»çÃ¼ÀÏ¼öµµ ÀÖ¾î¼­ µÑ´ÙÃ¼Å©
+	//// æ§è¤çœ‰è€èæ¡£ ä¹ç»¢è¾‘ ç¬›ä¿ƒçœ‰å†œ
 	//if (PawnInstigator)
 	//	Inflictor = Cast<ABladeIICharacter>(PawnInstigator);
 	//else			
@@ -1718,7 +1718,7 @@ void AB2TMGameMode::NotifyCharacterDead(ABladeIICharacter* TargetCharacter, clas
 	//	DocSome->SetLocalPlayerMatchResult(CalcResult());
 	//}
 
-	////[@SameLine, 180508] ¿©±â¼­ È£ÃâÇÏ¸é Dead¸¶Æ¼´Ï Áß¿¡ response¸¦ ¹ŞÀ½ Dead¸¶Æ¼´Ï ³¡³ª°í È£Ãâ
+	////[@SameLine, 180508] å’¯æ‰è¾‘ é¾‹å…çªæ Deadä»˜èèª åä¿Š responseç”« ç½æ¾œ Deadä»˜èèª åœºå”±ç»Š é¾‹å…
 	////SetMatchState(AsyncMatchState::FinishBattle);
 }
 
@@ -1739,7 +1739,7 @@ void AB2TMGameMode::ChangeCharacterCamera(bool bMyTeam, int32 SlotIdx)
 		TeamMatchPlayerActiveCameraActor->ChangeCameraOwnerPlayer(pPlayer);
 	}		
 
-	// UI°»½Å
+	// UIç›è„š
 	UpdateUICharSlotCamera();
 }
 
@@ -1749,11 +1749,11 @@ bool AB2TMGameMode::ChangeFixedCamera()
 
 	//if (pCurrentActiveCameraActor == TeamMatchPlayerActiveCameraActor)
 	//{
-	//	// ¿ø·¡ º¸´ø ¸Ö¸®º¸±â Ä«¸Ş¶ó·Î ÀüÈ¯
+	//	// ç›”è´° ç„Šå¸¦ é’¢åºœç„Šæ‰ å¢¨çš‹æ‰¼è‚º å‚ˆåˆ¸
 	//	if (TeamMatchTempActiveCameraActor)
 	//		ActiveTeamMatchActiveCameraActor(TeamMatchTempActiveCameraActor);
 
-	//	// UI°»½Å
+	//	// UIç›è„š
 	//	UpdateUICharSlotCamera();
 
 	//	// timer
@@ -1763,7 +1763,7 @@ bool AB2TMGameMode::ChangeFixedCamera()
 	//}
 	//else
 	//{
-	//	// ÇöÀç º¸´ø ¸Ö¸®º¸±â Ä«¸Ş¶ó¶û ´Ù¸¥°É·Î ÀüÈ¯
+	//	// æ³…çŠ ç„Šå¸¦ é’¢åºœç„Šæ‰ å¢¨çš‹æ‰¼å°” ä¿ƒå¼—å§è‚º å‚ˆåˆ¸
 	//	if (pCurrentActiveCameraActor == TeamMatchFixLongActiveCameraActor)
 	//	{
 	//		ActiveTeamMatchActiveCameraActor(TeamMatchFixShortActiveCameraActor);
@@ -1791,7 +1791,7 @@ void AB2TMGameMode::ActiveTeamMatchActiveCameraActor(AB2ActiveCameraActor* Activ
 	{
 		TArray<ABladeIICharacter*> AllLiveMyPlayers;
 		GetAllMyTeamCharList(AllLiveMyPlayers, GetMyTeamNum(), true);
-		if (AllLiveMyPlayers.Num() > 0) // ¾Æ¹«µµ ¾ø´Âµ¥ NextTarget ÇÏ¸é ¹«ÇÑ¹İº¹À¸·Î stack overflow °É¸².
+		if (AllLiveMyPlayers.Num() > 0) // é…’å…¬æ¡£ ç»ç»°å• NextTarget çªæ å…¬èŒ„é¦†æ±—æ è‚º stack overflow å§è¦†.
 		{
 			ActiveTeamMatchActiveCameraActorNextTarget();
 		}
@@ -1804,7 +1804,7 @@ void AB2TMGameMode::ActiveTeamMatchActiveCameraActor(AB2ActiveCameraActor* Activ
 	}
 }
 
-// ÇöÀç ¼±ÅÃµÈ ÇÃ·¹ÀÌ¾î »©°í ·£´ı
+// æ³…çŠ æ€¥ç¶ç­‰ æ•²é¥­æç»¢ å“—ç»Š ç½šå¾…
 int32 AB2TMGameMode::GetNextCameraPlayer() const
 {
 	TArray<int32> OtherPlayer;
@@ -1837,7 +1837,7 @@ void AB2TMGameMode::SetBaseActiveCamera()
 {
 	//Super::SetBaseActiveCamera();
 
-	//// ÃÊ±â ¼¼ÆÃ
+	//// æª¬æ‰ æŠ€æ³¼
 	//TeamMatchTempActiveCameraActor = GetCurrentActiveActiveCameraActor();
 
 	//// test
@@ -2017,12 +2017,12 @@ TArray<EPCClass> AB2TMGameMode::GetPCClassesToPreLoad()
 	TArray<EPCClass> RetArray;
 
 	UB2UIDocTeamMatch* TeamMatchDoc = UB2UIDocHelper::GetDocTeamMatch();
-	// ÆÀ °ÔÀÓ¿¡¼­´Â ÅÂ±×¸¦ ÇÏÁö ¾Ê±â ¶§¹®¿¡ ¿©±â¼­ Ä³¸¯ÅÍ Á¤º¸¸¦ Á¤È®È÷ ¾ò¾î¿Ã ÇÊ¿ä´Â ¾øÁö¸¸ 
-	// Pre-Render ¿¡±îÁö ¾²·Á¸é ´Ù ÀÖÀ¸¸é ÁÁ±ä ÇÏ´Ù. ´Ü, Pre-render ¸¦ ÇÏ·Á¸é ¸ÅÄª µÈ ÈÄ¿¡ pre-render °¡ µé¾î°¥ ¼ö ÀÖµµ·Ï ¹Ù²î¾î¾ß.. 
+	// è¯„ éœ¸çƒ™ä¿Šè¾‘ç»° æ€•å¼Šç”« çªç˜¤ è‡¼æ‰ é”­å·©ä¿Š å’¯æ‰è¾‘ æŸè…ç£ æ²¥ç„Šç”« æ²¥çŠ¬æ´’ æ˜ç»¢æ£µ é˜å¤¸ç»° ç»ç˜¤çˆ¶ 
+	// Pre-Render ä¿Šé³–ç˜¤ é™å¦¨æ ä¿ƒ ä¹æ æ äº®å˜ çªä¿ƒ. çªœ, Pre-render ç”« çªå¦¨æ æ¦‚è« ç­‰ é¥¶ä¿Š pre-render å•Š ç”¸ç»¢å“ è ä¹æ¡£åºŸ å®˜å·®ç»¢å…·.. 
 	if (TeamMatchDoc)
 	{
 		for (int i = 0; i < GetNumCharactersOfTeam(); ++i)
-		{ // ³» °Í¸¸ ÀÖ´Ù.. »ó´ëÆí Á¤º¸´Â ¸ÅÄª Á¤º¸°¡ Àü´ŞµÇ°í SetOpponentInfo °¡ ºÒ¸° ÈÄ¿¡³ª °¡´É..
+		{ // éƒ´ å·´çˆ¶ ä¹ä¿ƒ.. æƒ‘æªç¥ˆ æ²¥ç„Šç»° æ¦‚è« æ²¥ç„Šå•Š å‚ˆå´”ç™»ç»Š SetOpponentInfo å•Š é˜‚èµ´ é¥¶ä¿Šå”± å•Šç“·..
 			RetArray.AddUnique(TeamMatchDoc->GetCharacterClass(true, i));
 		}
 	}
@@ -2031,14 +2031,14 @@ TArray<EPCClass> AB2TMGameMode::GetPCClassesToPreLoad()
 
 TArray<FCombinedPCSkillAnimID> AB2TMGameMode::GetPCSkillAnimsToPreLoad()
 {
-	return TArray<FCombinedPCSkillAnimID> {};	// Preload ÇÏÁö¾ÊÀ½ Matching State·Î ³Ñ¾î°£ ÀÌÈÄºÎÅÍ AsyncLoading
+	return TArray<FCombinedPCSkillAnimID> {};	// Preload çªç˜¤è‡¼æ¾œ Matching Stateè‚º é€ç»¢åŸƒ æé¥¶ä½•ç£ AsyncLoading
 }
 
 void AB2TMGameMode::PreloadAnyNecessaryInfo(bool bAboutToPlayLoadingMovie)
 {
-	//// TAsset ·ÎµùÇÏ´Â InfoAsset µéÀÌ ´ë»óÀÓ. ¹İ´ë´Â ManualUnloadBeforeNewBeginning
+	//// TAsset è‚ºçˆ¹çªç»° InfoAsset ç”¸æ æªæƒ‘çƒ™. é¦†æªç»° ManualUnloadBeforeNewBeginning
 
-	////Synchronous ·ÎµùÀÇ Async ·Îµù flush ¿©ºÎ¿¡ µû¶ó.. ÀÌ°É ´Ù¸¥ async request º¸´Ù ¸ÕÀú È¤Àº ÀÌÈÄ¿¡..
+	////Synchronous è‚ºçˆ¹ç‹¼ Async è‚ºçˆ¹ flush å’¯ä½•ä¿Š è¶æ‰¼.. æå§ ä¿ƒå¼— async request ç„Šä¿ƒ åˆšå† è¶£ç¯® æé¥¶ä¿Š..
 	//PreloadInGameInfoAsset_SynchronousOnly(bAboutToPlayLoadingMovie);
 
 	//Super::PreloadAnyNecessaryInfo(bAboutToPlayLoadingMovie);

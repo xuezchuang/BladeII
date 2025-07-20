@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIGuildBattleReady.h"
 #include "B2UIManager.h"
 #include "B2UIGuildFormation.h"
@@ -36,7 +36,7 @@ void UB2UIGuildBattleReady::CacheAssets()
 	if (UIP_GuildFormation1.IsValid())
 	{
 		UIP_GuildFormation1->Init();
-		UIP_GuildFormation1->SetTeamNumber(1);	// 1ÆÀ
+		UIP_GuildFormation1->SetTeamNumber(1);	// 1è¯„
 		UIP_GuildFormation1->SetSlotDelegate(SlotDelegate);
 		UIP_GuildFormation1->SetSwapDelegate(SwapDeleate);
 		
@@ -48,7 +48,7 @@ void UB2UIGuildBattleReady::CacheAssets()
 	if (UIP_GuildFormation2.IsValid())
 	{
 		UIP_GuildFormation2->Init();
-		UIP_GuildFormation2->SetTeamNumber(2);	// 2ÆÀ
+		UIP_GuildFormation2->SetTeamNumber(2);	// 2è¯„
 		UIP_GuildFormation2->SetSlotDelegate(SlotDelegate);
 		UIP_GuildFormation2->SetSwapDelegate(SwapDeleate);
 	}
@@ -133,7 +133,7 @@ void UB2UIGuildBattleReady::OnSceneOpen(EUIScene InOpenedScene)
 
 void UB2UIGuildBattleReady::initializationSlot()
 {
-	TMap<int32, int32> LocalMergenaryInfo;					//±æµå¿ëº´ °³¼ö¼¼±âÀ§ÇÑ Map
+	TMap<int32, int32> LocalMergenaryInfo;					//è¾¨é›ä¾©æ ä¿ºèæŠ€æ‰å›°èŒ„ Map
 
 	auto GuildDoc = UB2UIDocHelper::GetDocGuild();
 
@@ -184,7 +184,7 @@ void UB2UIGuildBattleReady::initializationSlot()
 	auto MercenaryDataMap = BladeIIGameImpl::GetGuildDataStore().GetGuildAllMercenaryData();
 
 
-	//¿ª¼øÀ¸·Î ÇÑ¹ø Á¤¸® Á¤·Ä
+	//å¼€é‰´æ è‚º èŒ„é”… æ²¥åºœ æ²¥çºº
 	MercenaryDataMap.KeySort([](int32 El1 ,  int32 El2)->bool {
 		if (El1 < El2)return false; else return true;
 	});
@@ -242,7 +242,7 @@ void UB2UIGuildBattleReady::SwapSlotUpdate(EGuildEntrySlotType InSlotType, EGuil
 	}
 
 
-	//¿ëº´¸®½ºÆ®¿¡¼­ Ãß°¡ÇÏ´Â°Ô ¾Æ´Ï°í ¼­·Î ÁøÇü³¢¸® ±³È¯ÇÒ¶§
+	//ä¾©æåºœèƒ¶é£˜ä¿Šè¾‘ çœ å•Šçªç»°éœ¸ é…’èªç»Š è¾‘è‚º æŸ³å±ˆå°åºœ èƒŒåˆ¸ä¸”é”­
 	if (InSlotType == EGuildEntrySlotType::FormationSlot && SelectGuildSlotInfo.SlotType == EGuildEntrySlotType::FormationSlot)
 	{
 
@@ -292,14 +292,14 @@ void UB2UIGuildBattleReady::SelectSlotUpdata(EGuildEntrySlotType InSlotType, EGu
 	SelectGuildSlotInfo = LocalSlotInfo;
 
 
-	if (InSelectType == EGuildEntrySelectType::Select)				//»õ·Î¿î¼±ÅÃÀ» ÇßÀ»°æ¿ì(È­»ìÇ¥ Ç¥½Ã°¡ ¶°¾ßÇÏ´Â»óÈ²)
+	if (InSelectType == EGuildEntrySelectType::Select)				//è´§è‚ºæ¬¾æ€¥ç¶é˜‘ æ²é˜‘ç‰ˆå¿«(æ‹³æ··é’Ž é’ŽçŸ«å•Š æ ‹å…·çªç»°æƒ‘ç‚”)
 	{
 		for (int32 i = 1; i <= UB2UIGuildFormation::GuildFormationMax; ++i)
 		{
 
-			bool isSameTeam = (i <= UB2UIGuildFormation::GuildFormationOne) == (InSlotNumber <= UB2UIGuildFormation::GuildFormationOne) ? true : false;		//ÇöÀçÆ÷¹®ÇÏ°í ¼±ÅÃµÈ ½½·ÔÇÏ°í °°ÀºÆÀÀÎÁö ¾Æ´ÑÁö
+			bool isSameTeam = (i <= UB2UIGuildFormation::GuildFormationOne) == (InSlotNumber <= UB2UIGuildFormation::GuildFormationOne) ? true : false;		//æ³…çŠå™¨å·©çªç»Š æ€¥ç¶ç­‰ æµ‡å©çªç»Š éžç¯®è¯„ç‰¢ç˜¤ é…’å›±ç˜¤
 
-			if (InSlotNumber == 0)				//slotnumber°¡ 0ÀÌ¸é ¿ëº´¸®½ºÆ®¿¡¼­ ¿À´Â°Å±â¶§¹®¿¡ ¹«Á¶°Ç ´Ù¸¥ÆÀÀ¸·Î ÀÎ½ÄÇÏ°ÔÇØÁÖÀÚ
+			if (InSlotNumber == 0)				//slotnumberå•Š 0æžæ ä¾©æåºœèƒ¶é£˜ä¿Šè¾‘ å·ç»°èŠ­æ‰é”­å·©ä¿Š å…¬ç‚¼æ‰’ ä¿ƒå¼—è¯„æ è‚º ç‰¢ä¾¥çªéœ¸ç§¦æž—ç£Š
 				isSameTeam = false;
 			
 
@@ -311,27 +311,27 @@ void UB2UIGuildBattleReady::SelectSlotUpdata(EGuildEntrySlotType InSlotType, EGu
 
 			if(i == InSlotNumber)
 				Formation->SetSelectType(iSlotNumber, EGuildEntrySelectType::Select);
-			else if (IsEntryMercenary == IsSlotMercenary)										//°°Àº ¿ëº´ÀÌ°Å³ª Ä³¸¯ÅÍ¸é ½º¿Ò°¡´É
+			else if (IsEntryMercenary == IsSlotMercenary)										//éžç¯® ä¾©ææžèŠ­å”± æŸè…ç£æ èƒ¶æ³å•Šç“·
 			{
 				Formation->SetSelectType(iSlotNumber, EGuildEntrySelectType::SelectPossible);
 			}
-			else if (isSameTeam)																//°°ÀºÆÀÀÏ°æ¿ìµµ ½º¿Ò°¡´É
+			else if (isSameTeam)																//éžç¯®è¯„è€ç‰ˆå¿«æ¡£ èƒ¶æ³å•Šç“·
 			{
 				Formation->SetSelectType(iSlotNumber, EGuildEntrySelectType::SelectPossible);
 			}
-			else if (InSlotType == EGuildEntrySlotType::MercenaryList && IsSlotMercenary)		//ÇöÀç µ¹°íÀÖ´Â ½½·Ô°ú ¼±ÅÃµÈ°Ô ¿ëº´ ¸®½ºÆ®¶ó¸é ½º¿Ò°¡´É
+			else if (InSlotType == EGuildEntrySlotType::MercenaryList && IsSlotMercenary)		//æ³…çŠ å€’ç»Šä¹ç»° æµ‡å©è‹ž æ€¥ç¶ç­‰éœ¸ ä¾©æ åºœèƒ¶é£˜æ‰¼æ èƒ¶æ³å•Šç“·
 			{
 				Formation->SetSelectType(iSlotNumber, EGuildEntrySelectType::SelectPossible);
 			}
 			else
-				Formation->SetSelectType(iSlotNumber, EGuildEntrySelectType::SelectImpossible);			//³ª¸ÓÁö´Â ´Ù ¾ÈµÊ
+				Formation->SetSelectType(iSlotNumber, EGuildEntrySelectType::SelectImpossible);			//å”±èµ£ç˜¤ç»° ä¿ƒ æ•‘å‡³
 		}
 
-		//¿ëº´¸®½ºÆ®ºÎºÐ ¾÷µ¥ÀÌÆ®
+		//ä¾©æåºœèƒ¶é£˜ä½•ç›’ è¯€å•æžé£˜
 	
 		for (auto El : MercenaryListSlotArr)
 		{
-			if (El->GetGuildEntryCode() == InEntryCode && InSlotType == EGuildEntrySlotType::MercenaryList)	//¿ëº´¸®½ºÆ®¿¡¼­ ¿À°í ¿ëº´ÄÚµå°¡ °°´Ù¸é
+			if (El->GetGuildEntryCode() == InEntryCode && InSlotType == EGuildEntrySlotType::MercenaryList)	//ä¾©æåºœèƒ¶é£˜ä¿Šè¾‘ å·ç»Š ä¾©æå†…é›å•Š éžä¿ƒæ
 				El->SetSelectType(EGuildEntrySelectType::Select);
 			else if (InSlotType == EGuildEntrySlotType::FormationSlot && InEntryCode > UB2UIGuildFormation::GuildMercenaryBaseID)
 				El->SetSelectType(EGuildEntrySelectType::SelectPossible);

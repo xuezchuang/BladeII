@@ -1,4 +1,4 @@
-
+ï»¿
 #include "B2UIWidget.h"
 #include "MovieScene.h"
 #include "Animation/WidgetAnimation.h"
@@ -30,8 +30,8 @@ void UB2UIWidget::DestroySelf(UB2UIManager* InUIManager)
 {
 	Super::DestroySelf(InUIManager);
 
-	// UB2UIManager::InternalCloseUI ¿¡¼­ ÇÏ´Â ÁşÀÌ±ä ÇÑµ¥ ¸¸¿¡ ÇÏ³ª CloseUI ¸¦ °ÅÄ¡Áö ¾Ê°í Á÷Á¢ ´İ¾ÆÁØ´Ù¸é UIManager ÂÊÀÇ ·¹ÆÛ·±½º°¡ ³²¾ÆÀÖ°Ô µÇ¹Ç·Î ¸Å°³º¯¼ö·Î ³Ñ°ÜÁÖµµ·Ï ÇØ¼­ Á¦°ÅÇØ ÁÜ.
-	// ±×·¯³ª ÀÏºÎ UIWidget ÀÇ °æ¿ì Ãß°¡ Ã³¸®¸¦ ÇÏ´Â °Ô Á» ÀÖ¾î¼­ ¿©±â¼­ UIManager ÂÊ Ã³¸®¸¦ ÇÏ±â °ï¶õÇÑ °Íµµ ÀÖÀ½. NULL ÀÌ¸é ¹«½ÃÇÏµµ·Ï.
+	// UB2UIManager::InternalCloseUI ä¿Šè¾‘ çªç»° çª¿æå˜ èŒ„å• çˆ¶ä¿Š çªå”± CloseUI ç”« èŠ­æ‘¹ç˜¤ è‡¼ç»Š æµç«‹ æ‘§é…’éœ–ä¿ƒæ UIManager ç‡ç‹¼ é¥­æ¬ºç¹èƒ¶å•Š å·¢é…’ä¹éœ¸ ç™»éª¨è‚º æ¦‚ä¿ºå‡½èè‚º é€è´¥æ—æ¡£åºŸ ç§¦è¾‘ åŠ›èŠ­ç§¦ æ·‹.
+	// å¼ŠçŸ¾å”± è€ä½• UIWidget ç‹¼ ç‰ˆå¿« çœ å•Š è´¸åºœç”« çªç»° éœ¸ ç²± ä¹ç»¢è¾‘ å’¯æ‰è¾‘ UIManager ç‡ è´¸åºœç”« çªæ‰ å¸®é„‚èŒ„ å·´æ¡£ ä¹æ¾œ. NULL ææ å…¬çŸ«çªæ¡£åºŸ.
 	FB2UIWidgetData* RelevantWidgetData = InUIManager ? InUIManager->GetWidgetDataByWidget(this) : NULL;
 	if (RelevantWidgetData)
 	{
@@ -43,7 +43,7 @@ void UB2UIWidget::OnOpen(bool RightNow)
 {
 	if (RightNow)
 	{
-		//¿©±â¼­ ¿ÀÇÂ ¾Ö´ÔÀ» ¸¶Áö¸·¿¡¼­ ²÷¾î Àç»ıÇØÁØ´Ù
+		//å’¯æ‰è¾‘ å·é”¹ å±€ä¸›é˜‘ ä»˜ç˜¤é˜œä¿Šè¾‘ è°—ç»¢ çŠç§¯ç§¦éœ–ä¿ƒ
 
 		OnOpenComplete();
 	}
@@ -51,17 +51,17 @@ void UB2UIWidget::OnOpen(bool RightNow)
 	{
 		OpenState = EUIOpenState::OnOpening;
 
-		// GetAnimation Á¦´ë·Î ÀÛµ¿ ¾È ÇÔ.
+		// GetAnimation åŠ›æªè‚º ç´¯æ‚¼ æ•‘ çªƒ.
 		UWidgetAnimation* OpenCloseAnim = GetAnimation(TEXT("ANIM_OpenClose"));
 		if (OpenCloseAnim)
 		{
-			//¿©±â¼­ ¿ÀÇÂ ¾Ö´ÔÀ» Àç»ıÇØÁØ´Ù.
+			//å’¯æ‰è¾‘ å·é”¹ å±€ä¸›é˜‘ çŠç§¯ç§¦éœ–ä¿ƒ.
 
-			//ÇöÀç ¿ÀÇÂ ¾Ö´Ô °ü·Ã ÀÛ¾÷ ¾ÈÇßÀ¸´Ï ¿­¸°°É·Î
+			//æ³…çŠ å·é”¹ å±€ä¸› åŒ…è®¿ ç´¯è¯€ æ•‘æ²æ èª å‡¯èµ´å§è‚º
 			OnOpenComplete();
 		}
 		else
-			//¾Ö´ÔÀÌ ¾øÀ¸¸é ¿­¸°°É·Î
+			//å±€ä¸›æ ç»æ æ å‡¯èµ´å§è‚º
 			OnOpenComplete();
 	}
 
@@ -72,7 +72,7 @@ void UB2UIWidget::OnClose(bool RightNow)
 {
 	if (RightNow)
 	{
-		//¿©±â¼­ Å¬·ÎÁî ¾Ö´ÔÀ» ¸¶Áö¸·¿¡¼­ ²÷¾î Àç»ıÇØÁØ´Ù
+		//å’¯æ‰è¾‘ åŠªè‚ºä»¤ å±€ä¸›é˜‘ ä»˜ç˜¤é˜œä¿Šè¾‘ è°—ç»¢ çŠç§¯ç§¦éœ–ä¿ƒ
 
 		OnCloseComplete();
 	}
@@ -80,13 +80,13 @@ void UB2UIWidget::OnClose(bool RightNow)
 	{
 		OpenState = EUIOpenState::OnClosing;
 
-		 //GetAnimation Á¦´ë·Î ÀÛµ¿ ¾È ÇÔ.
+		 //GetAnimation åŠ›æªè‚º ç´¯æ‚¼ æ•‘ çªƒ.
 		UWidgetAnimation* OpenCloseAnim = GetAnimation(TEXT("ANIM_OpenClose"));
 		if (OpenCloseAnim)
 		{
-			//¿©±â¼­ Å¬·ÎÁî ¾Ö´ÔÀ» Àç»ıÇØÁØ´Ù.
+			//å’¯æ‰è¾‘ åŠªè‚ºä»¤ å±€ä¸›é˜‘ çŠç§¯ç§¦éœ–ä¿ƒ.
 
-			//ÇöÀç Å¬·ÎÁî ¾Ö´Ô °ü·Ã ÀÛ¾÷ ¾ÈÇßÀ¸´Ï ´İÈù°É·Î
+			//æ³…çŠ åŠªè‚ºä»¤ å±€ä¸› åŒ…è®¿ ç´¯è¯€ æ•‘æ²æ èª æ‘§è…®å§è‚º
 			OnCloseComplete();
 		}
 		else
@@ -98,13 +98,13 @@ void UB2UIWidget::OnClose(bool RightNow)
 
 void UB2UIWidget::OnSceneOpen(EUIScene InOpenedScene)
 {
-	// OnOpen ÀÌ³ª Init Àº ÀÚ½ÅÀ» Æ÷ÇÔÇÑ Scene ÀÌ ¿­¸®´Â »óÈ²¿¡¼­ Scene ÀÇ ´Ù¸¥ Widget ÀÌ ¿­·È´ÂÁö ¿©ºÎ¿¡ ´ëÇÑ º¸ÀåÀº ¾ø´Ù.
-	// ÀÌ°ÍÀÌ ºÒ¸®´Â Å¸ÀÌ¹ÖÀº ÀÚ½ÅÀ» Æ÷ÇÔÇÑ Scene ÀüÃ¼°¡ ¿­¸° ÀÌÈÄÀÓ.
+	// OnOpen æå”± Init ç¯® ç£Šè„šé˜‘ å™¨çªƒèŒ„ Scene æ å‡¯åºœç»° æƒ‘ç‚”ä¿Šè¾‘ Scene ç‹¼ ä¿ƒå¼— Widget æ å‡¯å•¡ç»°ç˜¤ å’¯ä½•ä¿Š æªèŒ„ ç„Šå˜ç¯® ç»ä¿ƒ.
+	// æå·´æ é˜‚åºœç»° é¸¥ææ€ªç¯® ç£Šè„šé˜‘ å™¨çªƒèŒ„ Scene å‚ˆçœ‰å•Š å‡¯èµ´ æé¥¶çƒ™.
 }
 
 void UB2UIWidget::OnHistoryOpen(bool IsHistory)
 {
-	//µÚ·Î°¡±â·Î µé¾î¿ÔÀ»°æ¿ì ºÒ·ÁÁø´Ù
+	//ç¬¬è‚ºå•Šæ‰è‚º ç”¸ç»¢å­é˜‘ç‰ˆå¿« é˜‚å¦¨æŸ³ä¿ƒ
 }
 
 void UB2UIWidget::HandlePendingPause()
@@ -130,7 +130,7 @@ void UB2UIWidget::CloseSelf()
 	if (pUIManager)
 		pUIManager->CloseUI(MyUIFName);
 
-	// ¸Å´ÏÁ® ¾ÈÅëÇÏ±¸ ±×³É ¸¸µé¾î ºÙ¿´À»¼öµµ ÀÖÀ½.
+	// æ¦‚èªå»‰ æ•‘çƒ¹çªå¤‡ å¼Šæˆ çˆ¶ç”¸ç»¢ å˜¿çœ‹é˜‘èæ¡£ ä¹æ¾œ.
 	if (MyUIFName == NAME_None)
 	{
 		RemoveFromParent();
@@ -147,7 +147,7 @@ void UB2UIWidget::OnOpenComplete()
 void UB2UIWidget::OnCloseComplete()
 {
 	OpenState = EUIOpenState::Closed;
-	UB2UIManager::GetInstance()->CloseUI(GetMyUIFName()); //³ª ¿¬Ãâ ³¡³µ¾î ´İ¾ÆÁà
+	UB2UIManager::GetInstance()->CloseUI(GetMyUIFName()); //å”± æ¥·å… åœºè½¦ç»¢ æ‘§é…’æ‹
 }
 
 void UB2UIWidget::SetPendingPause()

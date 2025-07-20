@@ -1,4 +1,4 @@
-// Copyright 1998-2014 Epic Games, Inc. All Rights Reserved.
+ï»¿// Copyright 1998-2014 Epic Games, Inc. All Rights Reserved.
 
 
 #include "B2CompositeMeshCache.h"
@@ -13,7 +13,7 @@ FB2GMPCCompositeMeshHash::FB2GMPCCompositeMeshHash(EPCClass InPCClass, const TAr
 {
 	CharacterClass = InPCClass;
 	EquipmentRefIds = InEquipmentId;
-	//TArray operator == ÀÌ ºñ±³ ¹æ½ÄÀÌ ¸Ş¸ğ¸® °í´ë·Î ºñ±³ÇÏ±â ¶§¹®¿¡ Á¤·ÄÇÑ¹ø ¸¸ ÇØÁÜ
+	//TArray operator == æ åšèƒŒ è§„ä¾¥æ çš‹è‘›åºœ ç»Šæªè‚º åšèƒŒçªæ‰ é”­å·©ä¿Š æ²¥çººèŒ„é”… çˆ¶ ç§¦æ·‹
 	EquipmentRefIds.Sort();
 	bWingComposited = bInWingComposited;
 	WingData = InWingData;
@@ -26,7 +26,7 @@ FB2GMPCCompositeMeshHash::FB2GMPCCompositeMeshHash(EPCClass InPCClass, const TAr
 	{
 		EquipmentRefIds.Add(ThisItemData.ItemRefID);
 	}
-	//TArray operator == ÀÌ ºñ±³ ¹æ½ÄÀÌ ¸Ş¸ğ¸® °í´ë·Î ºñ±³ÇÏ±â ¶§¹®¿¡ Á¤·ÄÇÑ¹ø ¸¸ ÇØÁÜ
+	//TArray operator == æ åšèƒŒ è§„ä¾¥æ çš‹è‘›åºœ ç»Šæªè‚º åšèƒŒçªæ‰ é”­å·©ä¿Š æ²¥çººèŒ„é”… çˆ¶ ç§¦æ·‹
 	EquipmentRefIds.Sort();
 	bWingComposited = bInWingComposited;
 	WingData = InWingData;
@@ -38,21 +38,21 @@ bool FB2GMPCCompositeMeshHash::IsEqual(const FB2GMPCCompositeMeshHash& InOther) 
 		return false;
 	}
 
-	// CompositedWing.bShouldBeVisible ´ë½Å¿¡ µû·Î ¾²´Â ÀÌÀ¯´Â Wing À» ¾²Áö ¾Ê´Â »óÈ²¿¡¼­ CompositedWing µ¥ÀÌÅÍ ÀÚÃ¼°¡ Á¦´ë·Î µé¾î¿ÀÁö ¾Ê¾ÒÀ» °¡´É¼ºÀ» »ı°¢ÇØ¼­ÀÓ.
+	// CompositedWing.bShouldBeVisible æªè„šä¿Š è¶è‚º é™ç»° æèœ¡ç»° Wing é˜‘ é™ç˜¤ è‡¼ç»° æƒ‘ç‚”ä¿Šè¾‘ CompositedWing å•æç£ ç£Šçœ‰å•Š åŠ›æªè‚º ç”¸ç»¢å·ç˜¤ è‡¼ç–½é˜‘ å•Šç“·å·±é˜‘ ç§¯é˜¿ç§¦è¾‘çƒ™.
 	if (bWingComposited != InOther.bWingComposited) {
 		return false;
 	}
 
-	// Wing µ¥ÀÌÅÍ ÀÚÃ¼¿¡ ´ëÇÑ ºñ±³´Â µÑ ´Ù º¸¿©Áö´Â °æ¿ì¸¸ ¼öÇà.
+	// Wing å•æç£ ç£Šçœ‰ä¿Š æªèŒ„ åšèƒŒç»° ç¬› ä¿ƒ ç„Šå’¯ç˜¤ç»° ç‰ˆå¿«çˆ¶ èé’.
 	if (bWingComposited && InOther.bWingComposited)
 	{
-		// Wing ÀÌ º¸¿©Áö´Â »óÈ²ÀÌ¶ó¸é ÀÌ µ¥ÀÌÅÍ ÇÊµåµéµµ ¶È°°ÀÌ µé¾î°¡ ÀÖ¾î¾ß ÇÑ´Ù.
+		// Wing æ ç„Šå’¯ç˜¤ç»° æƒ‘ç‚”ææ‰¼æ æ å•æç£ é˜é›ç”¸æ¡£ åº¦éæ ç”¸ç»¢å•Š ä¹ç»¢å…· èŒ„ä¿ƒ.
 		check(WingData.bShouldBeVisible && InOther.WingData.bShouldBeVisible);
 
-		// ½ÇÁ¦ ¿Ü°üÀ» ´Ù¸£°Ô ÇÒ ¼ö ÀÖ´Â ÇÊ¿äÇÑ °Íµé¸¸..
+		// è§’åŠ› å¯‡åŒ…é˜‘ ä¿ƒç¦éœ¸ ä¸” è ä¹ç»° é˜å¤¸èŒ„ å·´ç”¸çˆ¶..
 		if (WingData.OwnerPCClass != InOther.WingData.OwnerPCClass ||
 			WingData.EvolutionGrade != InOther.WingData.EvolutionGrade
-			//CompositedWing.EnhanceLevel != InOther.CompositedWing.EnhanceLevel // EnhanceLevel µµ ¿Ü°ü¿¡ ¿µÇâÀ» ¹ÌÄ¡Áö´Â ¾Ê´Â´Ù. È¤ ³ªÁß¿¡ ¾î¶»°Ô µÉÁö ¸ğ¸£´Ï Àû¾îµÑ ÇÊ¿ä´Â ÀÖ°ÚÁö..
+			//CompositedWing.EnhanceLevel != InOther.CompositedWing.EnhanceLevel // EnhanceLevel æ¡£ å¯‡åŒ…ä¿Š åº·æ°¢é˜‘ å›ºæ‘¹ç˜¤ç»° è‡¼ç»°ä¿ƒ. è¶£ å”±åä¿Š ç»¢ç—˜éœ¸ çªç˜¤ è‘›ç¦èª åˆ©ç»¢ç¬› é˜å¤¸ç»° ä¹æ‘†ç˜¤..
 			)
 		{
 			return false;
@@ -64,7 +64,7 @@ bool FB2GMPCCompositeMeshHash::IsEqual(const FB2GMPCCompositeMeshHash& InOther) 
 
 bool FB2GMPCCompositeMeshCacher::IsOutdated(EPCClass InPCClass, const TArray<FB2Item>& InCompositedEquipment, bool bInWingComposited, const FB2Wing* InWingData, bool bForSectionMerged) const
 {
-	// Wing À» º¸ÀÌÁö ¾Ê´Â »óÈ²¿¡¼­ WingData ptr ÀÌ null ·Î µé¾î¿Ã ¼ö ÀÖ´Ù. ÀÌ °æ¿ì ´õ¹Ì°ªÀ» ³Ö¾îÁÖ¹Ç·Î bWingComposited ÇÃ·¡±×¸¦ µû·Î µÎ´Â °Í.
+	// Wing é˜‘ ç„Šæç˜¤ è‡¼ç»° æƒ‘ç‚”ä¿Šè¾‘ WingData ptr æ null è‚º ç”¸ç»¢æ£µ è ä¹ä¿ƒ. æ ç‰ˆå¿« æ­¹å›ºè”¼é˜‘ æŒç»¢æ—éª¨è‚º bWingComposited æ•²è´°å¼Šç”« è¶è‚º æ»´ç»° å·´.
 	return IsOutdated(InPCClass, InCompositedEquipment, bInWingComposited, (InWingData ? *InWingData : FB2Wing()), bForSectionMerged);
 }
 bool FB2GMPCCompositeMeshCacher::IsOutdated(EPCClass InPCClass, const TArray<FB2Item>& InCompositedEquipment, bool bInWingComposited, const FB2Wing& InWingData, bool bForSectionMerged) const
@@ -92,16 +92,16 @@ void FB2GMPCCompositeMeshCacher::Set(class USkeletalMesh* InNewMesh, EPCClass In
 	}
 
 	if (OldMesh && OldMesh != InNewMesh)
-	{ // OldMesh °¡ ²À RootSet ÀÌ ¾Æ´Ï¾úÀ» ¼öµµ ÀÖ´Ù. ±×·¸Áö¸¸ RooSet ÀÏ ¼ö ÀÖÀ¸´Ï ¿©±â¼­ ³ª°¡´Â °Ç ±âº»ÀûÀ¸·Î RooSet ¿¡¼­ Á¦°Å.
-		// »õ·Î ¼¼ÆÃµÇ´Â °Í¿¡ ´ëÇÑ RootSet Ã³¸®´Â ¿ÜºÎ¿¡¼­ ÇÔ.
+	{ // OldMesh å•Š æ€– RootSet æ é…’èªèŒé˜‘ èæ¡£ ä¹ä¿ƒ. å¼ŠçŠ¯ç˜¤çˆ¶ RooSet è€ è ä¹æ èª å’¯æ‰è¾‘ å”±å•Šç»° æ‰’ æ‰å¤¯åˆ©æ è‚º RooSet ä¿Šè¾‘ åŠ›èŠ­.
+		// è´§è‚º æŠ€æ³¼ç™»ç»° å·´ä¿Š æªèŒ„ RootSet è´¸åºœç»° å¯‡ä½•ä¿Šè¾‘ çªƒ.
 		OldMesh->RemoveFromRoot();
 	}
 }
 
 void FB2GMPCCompositeMeshCacher::DiscardMe()
 {
-	// ¿©±â¼­ µé°í ÀÖ´Â °ÍÀÌ »õ·Î °»½ÅµÉ ¼ö ÀÖµµ·Ï ÇÏ°íÀÚ ÇÒ ¶§ ºÒ·¯ÁÜ. 
-	// ¿©±â¼­ SkeletalMesh ÀÇ ÆÄ±«´Â ÇÏÁö ¾Ê´Â´Ù. ÀÌ°ÍÀ» È£ÃâÇÑ ÈÄ¿¡µµ ¿©ÀüÈ÷ ÀÌ¹ø ·¹º§¿¡¼­´Â ½ÇÁ¦ °»½ÅµÇ±â Àü±îÁö´Â »ç¿ëÇÒ ¼ö ÀÖ¾î¾ß ÇÑ´Ù.
+	// å’¯æ‰è¾‘ ç”¸ç»Š ä¹ç»° å·´æ è´§è‚º ç›è„šçª è ä¹æ¡£åºŸ çªç»Šç£Š ä¸” é”­ é˜‚çŸ¾æ·‹. 
+	// å’¯æ‰è¾‘ SkeletalMesh ç‹¼ é¢‡é²ç»° çªç˜¤ è‡¼ç»°ä¿ƒ. æå·´é˜‘ é¾‹å…èŒ„ é¥¶ä¿Šæ¡£ å’¯å‚ˆæ´’ æé”… é¥­éª‡ä¿Šè¾‘ç»° è§’åŠ› ç›è„šç™»æ‰ å‚ˆé³–ç˜¤ç»° è¤ä¾©ä¸” è ä¹ç»¢å…· èŒ„ä¿ƒ.
 	
 	if (CreatedCompositeMesh) {
 		CreatedCompositeMesh->RemoveFromRoot();
@@ -118,8 +118,8 @@ void FB2GMPCCompositeMeshCacher::DiscardMe()
 
 #if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
 void FB2GMPCCompositeMeshCacher::DevSetMeshesRooSet()
-{ // ±âº»ÀûÀÎ ·çÆ®¿¡¼­´Â RootSet ¿©ºÎ¸¦ ÀÌ·± ½ÄÀ¸·Î ¹Ù²ãÁÖÁö ¾Ê°í ¿ÜºÎ¿¡¼­ RootSet ÀÎ Ã¤·Î ¿È.
-	// ÀÌ°Ç Å×½ºÆ® ¿ë ±â´É
+{ // æ‰å¤¯åˆ©ç‰¢ é£é£˜ä¿Šè¾‘ç»° RootSet å’¯ä½•ç”« æç¹ ä¾¥æ è‚º å®˜å±‚æ—ç˜¤ è‡¼ç»Š å¯‡ä½•ä¿Šè¾‘ RootSet ç‰¢ ç›²è‚º å’³.
+	// ææ‰’ æŠ›èƒ¶é£˜ ä¾© æ‰ç“·
 	if (CreatedCompositeMesh) {
 		CreatedCompositeMesh->AddToRoot();
 	}
@@ -132,9 +132,9 @@ void FB2GMPCCompositeMeshCacher::DevSetMeshesRooSet()
 /**
  * ============================================================================================
  * UB2CompositeMeshCache
- * BladeII ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍÀÇ Àåºñ ÀåÂø »óÅÂ¿¡ µû¶ó µ¿ÀûÀ¸·Î Á¶ÇÕµÈ (SkeletalMeshMerge) ¸Ş½¬¸¦ °ü¸®ÇÏ¿©
- * ±× »ı¼ºÀ» ÃÖ¼ÒÈ­ÇÏ±â À§ÇÑ ¿ëµµ·Î ±¸Çö
- * ¸Å ·¹º§ transition »çÀÌ¿¡µµ »óÅÂ¸¦ À¯ÁöÇÏ¿© Ãß°¡ÀûÀÎ ¸Ê ·Îµù ½Ã°£ Áõ°¡¸¦ ¾ø¾Ö°íÀÚ ÇÏ¿´À¸¹Ç·Î ÀÌ ¿ÀºêÁ§Æ®´Â Rootset ÀÌ¾î¾ß ÇÑ´Ù.
+ * BladeII æ•²é¥­æç»¢ æŸè…ç£ç‹¼ å˜åš å˜é¦’ æƒ‘æ€•ä¿Š è¶æ‰¼ æ‚¼åˆ©æ è‚º ç‚¼é’¦ç­‰ (SkeletalMeshMerge) çš‹æµ†ç”« åŒ…åºœçªå’¯
+ * å¼Š ç§¯å·±é˜‘ å¼¥å®¶æ‹³çªæ‰ å›°èŒ„ ä¾©æ¡£è‚º å¤‡æ³…
+ * æ¦‚ é¥­éª‡ transition è¤æä¿Šæ¡£ æƒ‘æ€•ç”« èœ¡ç˜¤çªå’¯ çœ å•Šåˆ©ç‰¢ ç”˜ è‚ºçˆ¹ çŸ«åŸƒ åˆ˜å•Šç”« ç»å±€ç»Šç£Š çªçœ‹æ éª¨è‚º æ å·å®ç’ƒé£˜ç»° Rootset æç»¢å…· èŒ„ä¿ƒ.
  * ============================================================================================
  */
 
@@ -152,22 +152,22 @@ void UB2CompositeMeshCache::SetCachedCompositeMesh(EPCClass InPCClass, class ABl
 {
 	B2_SCOPED_TRACK_LOG(TEXT("UB2CompositeMeshCache::SetCachedCompositeMesh"));
 
-	// InPCClass, InPlayerCharacter µÑ ´Ù Á¦°øµÇ¸é class enum Àº ÀÏÄ¡ÇÏ°Ô
+	// InPCClass, InPlayerCharacter ç¬› ä¿ƒ åŠ›å‚ç™»æ class enum ç¯® è€æ‘¹çªéœ¸
 	check(InPCClass == EPCClass::EPC_End || !InPlayerCharacter || InPCClass == InPlayerCharacter->GetCurrentPlayerClass());
 
-	if (InPCClass != EPCClass::EPC_End && (!InPlayerCharacter || InPlayerCharacter->HasValidGameEntryID()))  // ³×Æ®¿öÅ© ¸ğµå µî¿¡¼­ Æ¯Á¤ Å¸ÀÌ¹Ö¿¡ GameEntryID °¡ Valid ÇÏÁö ¾ÊÀ» ¼ö ÀÖÀ¸¸ç ±×·² ¶§¿¡´Â ¾²¸é ¾ÈµÊ.
+	if (InPCClass != EPCClass::EPC_End && (!InPlayerCharacter || InPlayerCharacter->HasValidGameEntryID()))  // åŒ™é£˜å†µå†œ è‘›é› æ®¿ä¿Šè¾‘ æ¼‚æ²¥ é¸¥ææ€ªä¿Š GameEntryID å•Š Valid çªç˜¤ è‡¼é˜‘ è ä¹æ å“¥ å¼Šå‡¡ é”­ä¿Šç»° é™æ æ•‘å‡³.
 	{
 		TMap<int32, FB2GMPCCompositeMeshCacher>& RelevantCache = GetRelevantCache(InPlayerCharacter);
 		const int32 MapKey = GetCachedCompositeMeshMapKey(InPCClass, InPlayerCharacter);
 		FB2GMPCCompositeMeshCacher& FoundOrCreatedCache = RelevantCache.FindOrAdd(MapKey);
 
-		// ¿©±ä Outdated Ã¼Å©°¡ ÇÊ¼öÀûÀÎ °Ç ¾Æ´Ò ¼ö ÀÖ´Âµ¥ ÄÚµå ¸íÈ®¼º°ú µğ¹ö±ë ÆíÀÇ¸¦ À§ÇØ¼­¶óµµ Ã¼Å©ÇØ ³õÀ½
+		// å’¯å˜ Outdated çœ‰å†œå•Š é˜èåˆ©ç‰¢ æ‰’ é…’åŒ† è ä¹ç»°å• å†…é› ç–™çŠ¬å·±è‹ å¼æ»šå½ª ç¥ˆç‹¼ç”« å›°ç§¦è¾‘æ‰¼æ¡£ çœ‰å†œç§¦ åˆæ¾œ
 		if (FoundOrCreatedCache.IsOutdated(InPCClass, InCompositedEquipment, bInWingComposited, InWingData, bForSectionMerged))
 		{
 			if (ShouldSearchForLocalPCCache(InPlayerCharacter) && InMeshToSet &&
 				IsLocalPCMeshRootSetAllowed())
 			{
-				// ÀÌ CompositeMeshCache ¸¦ º°µµ·Î ´Ù·ç´Â ÇÙ½ÉÀûÀÎ ÀÌÀ¯.. Ãß°¡µÇ´Â Mesh °¡ ·ÎÄÃ Ä³¸¯ÅÍ ¿ëÀÌ¸é RootSet ¿¡ ³Ö¾î¼­ ·¹º§°£ ÀÌµ¿ Áß¿¡µµ GC ¹æÁö.
+				// æ CompositeMeshCache ç”« å–Šæ¡£è‚º ä¿ƒé£ç»° ç´ç¼´åˆ©ç‰¢ æèœ¡.. çœ å•Šç™»ç»° Mesh å•Š è‚ºæ‹¿ æŸè…ç£ ä¾©ææ RootSet ä¿Š æŒç»¢è¾‘ é¥­éª‡åŸƒ ææ‚¼ åä¿Šæ¡£ GC è§„ç˜¤.
 				InMeshToSet->AddToRoot();
 			}
 
@@ -182,17 +182,17 @@ USkeletalMesh* UB2CompositeMeshCache::GetCachedCompositeMesh(EPCClass InPCClass,
 {
 	B2_SCOPED_TRACK_LOG(TEXT("UB2CompositeMeshCache::GetCachedCompositeMesh"));
 
-	// InPCClass, InPlayerCharacter µÑ ´Ù Á¦°øµÇ¸é class enum Àº ÀÏÄ¡ÇÏ°Ô
+	// InPCClass, InPlayerCharacter ç¬› ä¿ƒ åŠ›å‚ç™»æ class enum ç¯® è€æ‘¹çªéœ¸
 	check(InPCClass == EPCClass::EPC_End || !InPlayerCharacter || InPCClass == InPlayerCharacter->GetCurrentPlayerClass());
 
-	if (InPCClass != EPCClass::EPC_End && (!InPlayerCharacter || InPlayerCharacter->HasValidGameEntryID()))  // ³×Æ®¿öÅ© ¸ğµå µî¿¡¼­ Æ¯Á¤ Å¸ÀÌ¹Ö¿¡ GameEntryID °¡ Valid ÇÏÁö ¾ÊÀ» ¼ö ÀÖÀ¸¸ç ±×·² ¶§¿¡´Â ¾²¸é ¾ÈµÊ.
+	if (InPCClass != EPCClass::EPC_End && (!InPlayerCharacter || InPlayerCharacter->HasValidGameEntryID()))  // åŒ™é£˜å†µå†œ è‘›é› æ®¿ä¿Šè¾‘ æ¼‚æ²¥ é¸¥ææ€ªä¿Š GameEntryID å•Š Valid çªç˜¤ è‡¼é˜‘ è ä¹æ å“¥ å¼Šå‡¡ é”­ä¿Šç»° é™æ æ•‘å‡³.
 	{
 		TMap<int32, FB2GMPCCompositeMeshCacher>& RelevantCache = GetRelevantCache(InPlayerCharacter);
 		const int32 MapKey = GetCachedCompositeMeshMapKey(InPCClass, InPlayerCharacter);
 		FB2GMPCCompositeMeshCacher* FoundCache = RelevantCache.Find(MapKey);
 		
 		if (FoundCache &&
-			// Ãß°¡·Î Outdated ¿©ºÎ¸¦ Ã¼Å©. °°Àº key °ª¿¡¼­¶óµµ ÀåÂø Àåºñ°¡ ´Ù¸£°í ³¯°³ ¿©ºÎ°¡ ´Ù¸£¸é »õ·Î »ı¼ºÇÏµµ·Ï NULL ¸®ÅÏ.
+			// çœ å•Šè‚º Outdated å’¯ä½•ç”« çœ‰å†œ. éç¯® key è”¼ä¿Šè¾‘æ‰¼æ¡£ å˜é¦’ å˜åšå•Š ä¿ƒç¦ç»Š æœä¿º å’¯ä½•å•Š ä¿ƒç¦æ è´§è‚º ç§¯å·±çªæ¡£åºŸ NULL åºœç•”.
 			!FoundCache->IsOutdated(InPCClass, InCompositedEquipment, bInWingComposited, InWingData, bForSectionMerged)
 			)
 		{
@@ -205,18 +205,18 @@ USkeletalMesh* UB2CompositeMeshCache::GetCachedCompositeMesh(EPCClass InPCClass,
 #if !UE_BUILD_SHIPPING
 	UE_LOG(LogBladeII, Log, TEXT("Cannot find cached mesh for PCClass %d and OwnerActor %s. A new mesh will be generated.."), PCClassToInt(InPCClass), InPlayerCharacter ? *InPlayerCharacter->GetName() : TEXT("Unknown"));
 #endif
-	return NULL; // ÀÌ°Ô ²À ¹®Á¦»óÈ²ÀÎ °Ç ¾Æ´Ï´Ù. °Á »õ·Î »ı¼ºÇÏ´À³Ä ÀÌÀü¿¡ »ı¼ºÇÑ °Å ¾²´À³Ä Â÷ÀÌ.
+	return NULL; // æéœ¸ æ€– å·©åŠ›æƒ‘ç‚”ç‰¢ æ‰’ é…’èªä¿ƒ. å‚² è´§è‚º ç§¯å·±çªè ¢è¡¬ æå‚ˆä¿Š ç§¯å·±èŒ„ èŠ­ é™è ¢è¡¬ ç’æ.
 }
 
 bool UB2CompositeMeshCache::ShouldSearchForLocalPCCache(class ABladeIIPlayer* InPlayerCharacter) const
 {
 	//if (!InPlayerCharacter)
 	//{
-	//	// ¾øÀ¸¸é ±âº» ·ÎÄÃ ÇÃ·¹ÀÌ¾î ¿ëÀÎ °É·Î °£ÁÖÇÏ±â À§ÇÔ. ·Îºñ °°Àº °æ¿ì. ¶Ç ÀÖ³ª?
+	//	// ç»æ æ æ‰å¤¯ è‚ºæ‹¿ æ•²é¥­æç»¢ ä¾©ç‰¢ å§è‚º åŸƒæ—çªæ‰ å›°çªƒ. è‚ºåš éç¯® ç‰ˆå¿«. è‚š ä¹å”±?
 
 	//	// !!!!!!!!!!
-	//	// ·Îºñ¿¡¼­ µµ°¨ÀÌ³ª Å¸ °èÁ¤ Ä³¸¯ÅÍ º¸±â µî ÀÓ½ÃÀûÀ¸·Î ¸Ş½¬ Á¶ÇÕÀ» º¸¿©ÁÖ´Â °æ¿ì´Â º¸´Ù À­´Ü¿¡¼­ CompositeMeshCache ¸¦ ¾È ¾²°Ô ÇØ¾ß ÇÑ´Ù.
-	//	// ÀÌ´Â ¸Å¿ì Áß¿äÇÑ »çÇ×À¸·Î¼­ ÀÌ°ÍÀÌ ÁöÄÑÁöÁö ¾ÊÀ¸¸é ¾Ö½á ÀÌ·± ½Ã½ºÅÛÀ» µµÀÔÇØ¼­ ·Îµù ½Ã°£ ÃÖÀûÈ­¸¦ ÇÏ´Â ÀÇ¹Ì°¡ ¾ø¾îÁö°Ô µÈ´Ù.
+	//	// è‚ºåšä¿Šè¾‘ æ¡£çš‘æå”± é¸¥ æ‹Œæ²¥ æŸè…ç£ ç„Šæ‰ æ®¿ çƒ™çŸ«åˆ©æ è‚º çš‹æµ† ç‚¼é’¦é˜‘ ç„Šå’¯æ—ç»° ç‰ˆå¿«ç»° ç„Šä¿ƒ æ‹‰çªœä¿Šè¾‘ CompositeMeshCache ç”« æ•‘ é™éœ¸ ç§¦å…· èŒ„ä¿ƒ.
+	//	// æç»° æ¦‚å¿« åå¤¸èŒ„ è¤äº²æ è‚ºè¾‘ æå·´æ ç˜¤éš¾ç˜¤ç˜¤ è‡¼æ æ å±€ç»“ æç¹ çŸ«èƒ¶è¢é˜‘ æ¡£æ¶ç§¦è¾‘ è‚ºçˆ¹ çŸ«åŸƒ å¼¥åˆ©æ‹³ç”« çªç»° ç‹¼å›ºå•Š ç»ç»¢ç˜¤éœ¸ ç­‰ä¿ƒ.
 	//	// !!!!!!!!!!
 
 	//	return true;
@@ -224,21 +224,21 @@ bool UB2CompositeMeshCache::ShouldSearchForLocalPCCache(class ABladeIIPlayer* In
 
 	//if (Cast<ABladeIITutorialPlayer>(InPlayerCharacter) || Cast<ABladeIITutorialFallbackPuppetPlayer>(InPlayerCharacter))
 	//{
-	//	// FTutorialCharacterData ÀÇ IsLocalCharacterData °¡ false ¶ó.. ±×ÂÊÀ» ¹Ù²ãµµ µÇ±ä ÇÏ°ÚÁö¸¸..
+	//	// FTutorialCharacterData ç‹¼ IsLocalCharacterData å•Š false æ‰¼.. å¼Šç‡é˜‘ å®˜å±‚æ¡£ ç™»å˜ çªæ‘†ç˜¤çˆ¶..
 	//	return true;
 	//}
 
 	//ICharacterDataStore* CDS = InPlayerCharacter->GetCharacterDataStore();
 	//if (CDS)
 	//{
-	//	return CDS->IsLocalCharacterData(); // ÀÏ¹İÀûÀÎ ÀÎ°ÔÀÓ ÀüÅõ¿ë Ä³¸¯ÅÍµéÀº ´ëºÎºĞ ¿©±â¼­ °É·¯Á®¾ßÇÒ µí.
+	//	return CDS->IsLocalCharacterData(); // è€é¦†åˆ©ç‰¢ ç‰¢éœ¸çƒ™ å‚ˆæ§ä¾© æŸè…ç£ç”¸ç¯® æªä½•ç›’ å’¯æ‰è¾‘ å§çŸ¾å»‰å…·ä¸” æ·€.
 	//}
 
-	return InPlayerCharacter->IsLocalPlayer(); // ÀÌ°Í¸¸À¸·Î ÆÇº°ÇÒ ¼ö ¾ø´Â°Ô ÆÀ´ëÀü Ä³¸¯ÅÍ °°Àº °æ¿ì ¿ì¸®ÆíÀÌ¾îµµ ÀÌ°Ô false ÀÏ ²¨¶ó..
+	return InPlayerCharacter->IsLocalPlayer(); // æå·´çˆ¶æ è‚º é­„å–Šä¸” è ç»ç»°éœ¸ è¯„æªå‚ˆ æŸè…ç£ éç¯® ç‰ˆå¿« å¿«åºœç¥ˆæç»¢æ¡£ æéœ¸ false è€ æ³¢æ‰¼..
 }
 
 TMap<int32, FB2GMPCCompositeMeshCacher>& UB2CompositeMeshCache::GetRelevantCache(class ABladeIIPlayer* InPlayerCharacter)
-{ // InPlayerCharacter °¡ null ÀÎ »óÈ²µµ °£ÁÖÇÔ. ´Ü, ±×°Ç Local Ä³¸¯ÅÍ ¿ë.
+{ // InPlayerCharacter å•Š null ç‰¢ æƒ‘ç‚”æ¡£ åŸƒæ—çªƒ. çªœ, å¼Šæ‰’ Local æŸè…ç£ ä¾©.
 	return ShouldSearchForLocalPCCache(InPlayerCharacter) ? LocalPCCache : RemotePCCache;
 }
 TMap<int32, FB2GMPCCompositeMeshCacher>& UB2CompositeMeshCache::GetRelevantCache(ECompositeMeshCacheType InType)
@@ -247,12 +247,12 @@ TMap<int32, FB2GMPCCompositeMeshCacher>& UB2CompositeMeshCache::GetRelevantCache
 }
 
 int32 UB2CompositeMeshCache::GetCachedCompositeMeshMapKey(EPCClass InPCClass, class ABladeIIPlayer* InPlayerCharacter) const
-{ // GameEntryID µµ ±âº»ÀûÀ¸·Î´Â PCClass ¸¦ »ç¿ë.. PlayerCharacter °¡ ÇÊ¿äÇÑ »óÈ²Àº ³×Æ®Ÿp °ÔÀÓµî ¸ğµå¿¡¼­
+{ // GameEntryID æ¡£ æ‰å¤¯åˆ©æ è‚ºç»° PCClass ç”« è¤ä¾©.. PlayerCharacter å•Š é˜å¤¸èŒ„ æƒ‘ç‚”ç¯® åŒ™é£˜ç„¢ éœ¸çƒ™æ®¿ è‘›é›ä¿Šè¾‘
 	checkSlow(!InPlayerCharacter || InPlayerCharacter->HasValidGameEntryID());
 	
 	if (InPlayerCharacter)
 	{
-		// GameEntryID ´Â Local Ä³¸¯ÅÍ°¡ ¾Æ´Ñ °æ¿ì¸¸ »ç¿ë.
+		// GameEntryID ç»° Local æŸè…ç£å•Š é…’å›± ç‰ˆå¿«çˆ¶ è¤ä¾©.
 		return GetCachedCompositeMeshMapKey(InPCClass, 
 			ShouldSearchForLocalPCCache(InPlayerCharacter) ? -1 : InPlayerCharacter->GetGameEntryID());
 	}
@@ -264,13 +264,13 @@ int32 UB2CompositeMeshCache::GetCachedCompositeMeshMapKey(EPCClass InPCClass, cl
 
 int32 UB2CompositeMeshCache::GetCachedCompositeMeshMapKey(EPCClass InPCClass, int32 InGameEntryID /*= -1*/) const
 {
-	// ¸Å¿ì atomic ÇÏÁö¸¸.. ¤»
+	// æ¦‚å¿« atomic çªç˜¤çˆ¶.. ã›
 	return (InGameEntryID >= 0) ? InGameEntryID : PCClassToInt(InPCClass);
 }
 
 bool UB2CompositeMeshCache::IsOneOfCachedCompositeMesh(class USkeletalMesh* InTestMesh) const
 {
-	// Mesh Á¶ÇÕ¿¡ »ç¿ëµÈ Àåºñ³ª ³¯°³ µîÀ» °¡Áö°í ºñ±³ÇÏ·Á´Â °Ô ¾Æ´Ï°í USkeletalMesh ¿ÀºêÁ§Æ® ÀÚÃ¼ Ã¼Å©¿ëÀÓ.
+	// Mesh ç‚¼é’¦ä¿Š è¤ä¾©ç­‰ å˜åšå”± æœä¿º æ®¿é˜‘ å•Šç˜¤ç»Š åšèƒŒçªå¦¨ç»° éœ¸ é…’èªç»Š USkeletalMesh å·å®ç’ƒé£˜ ç£Šçœ‰ çœ‰å†œä¾©çƒ™.
 	if (InTestMesh)
 	{
 		for (TMap<int32, FB2GMPCCompositeMeshCacher>::TConstIterator MeshMapIt(LocalPCCache); MeshMapIt; ++MeshMapIt)
@@ -293,53 +293,53 @@ bool UB2CompositeMeshCache::IsOneOfCachedCompositeMesh(class USkeletalMesh* InTe
 
 void UB2CompositeMeshCache::OnPreLoadMap(ABladeIIGameMode* InGameModeAboutToShutdown)
 {
-	// Remote Ä³¸¯ÅÍµéÀÇ ¸Ş½¬´Â ÀÏ¹İÀûÀ¸·Î ·¹º§ ÀüÈ¯ »çÀÌ¿¡ µé°í ÀÖÀ» ÇÊ¿ä°¡ ¾ø´Âµ¥ È¤½Ã¶óµµ ·Îºñ¿¡¼­ ¸ÅÄªÇØ³õ°í ¸Ş½¬ ºôµåÇÑ ÈÄ¿¡ ÀüÅõ¸Ê ·ÎµùÇØ¼­ ´Ù½Ã ¾´´Ù°Å³ª ÇÏ´Â ÇÊ¿ä°¡ »ı±æ¼öµµ.
-	// ±×·¸°Ô±îÁö´Â ÇÊ¿ä ¾øÀ» °Í °°Áö¸¸.. ÇÏ°Ô µÇ¸é Á¶½ÉÇØ¼­..
+	// Remote æŸè…ç£ç”¸ç‹¼ çš‹æµ†ç»° è€é¦†åˆ©æ è‚º é¥­éª‡ å‚ˆåˆ¸ è¤æä¿Š ç”¸ç»Š ä¹é˜‘ é˜å¤¸å•Š ç»ç»°å• è¶£çŸ«æ‰¼æ¡£ è‚ºåšä¿Šè¾‘ æ¦‚è«ç§¦åˆç»Š çš‹æµ† å‘¼é›èŒ„ é¥¶ä¿Š å‚ˆæ§ç”˜ è‚ºçˆ¹ç§¦è¾‘ ä¿ƒçŸ« æ•¬ä¿ƒèŠ­å”± çªç»° é˜å¤¸å•Š ç§¯è¾¨èæ¡£.
+	// å¼ŠçŠ¯éœ¸é³–ç˜¤ç»° é˜å¤¸ ç»é˜‘ å·´ éç˜¤çˆ¶.. çªéœ¸ ç™»æ ç‚¼ç¼´ç§¦è¾‘..
 	DiscardCaches(ECompositeMeshCacheType::ECMCT_Remote);
 
 	if (!IsLocalPCMeshRootSetAllowed())
 	{
-		// ÀÌ°Ç ±â´É ¿ÏºñµÇ¸é ºñ¿ìÁö ¾Ê´Â °Ô °èÈ¹ÀÓ. IsLocalPCMeshRootSetAllowed °¡ false ÀÎ °Ç Å×½ºÆ®°Å³ª..
+		// ææ‰’ æ‰ç“· è‚¯åšç™»æ åšå¿«ç˜¤ è‡¼ç»° éœ¸ æ‹Œè£™çƒ™. IsLocalPCMeshRootSetAllowed å•Š false ç‰¢ æ‰’ æŠ›èƒ¶é£˜èŠ­å”±..
 		DiscardCaches(ECompositeMeshCacheType::ECMCT_Local);
 	}
 }
 
 void UB2CompositeMeshCache::DiscardCaches(ECompositeMeshCacheType DiscardCacheType)
 {
-	// Ä³½¬¸¦ ºñ¿ö¼­ ´ÙÀ½¿¡ mesh »ı¼º ÀÌº¥Æ®°¡ ÀÖÀ» ¶§ ½ÇÁ¦·Î »õ·Î »ı¼ºÇÏ°íÀÚ ÇÔÀÌ ¸ñÀû.
-	// Ä³½¬ÇÑ SkeletalMesh ¸¦ ¿©±â¼­ Á÷Á¢ ÆÄ±«ÇÏ´Â °Ç ¾Æ´Ô.
-	// °»½ÅµÇ±â Àü±îÁö´Â ¿©ÀüÈ÷ »ç¿ëµÉ °Í.
+	// æŸæµ†ç”« åšå†µè¾‘ ä¿ƒæ¾œä¿Š mesh ç§¯å·± æäº¥é£˜å•Š ä¹é˜‘ é”­ è§’åŠ›è‚º è´§è‚º ç§¯å·±çªç»Šç£Š çªƒæ æ ¼åˆ©.
+	// æŸæµ†èŒ„ SkeletalMesh ç”« å’¯æ‰è¾‘ æµç«‹ é¢‡é²çªç»° æ‰’ é…’ä¸›.
+	// ç›è„šç™»æ‰ å‚ˆé³–ç˜¤ç»° å’¯å‚ˆæ´’ è¤ä¾©çª å·´.
 
 	TMap<int32, FB2GMPCCompositeMeshCacher>& DesiredCache = GetRelevantCache(DiscardCacheType);
 
 	for (TMap<int32, FB2GMPCCompositeMeshCacher>::TIterator MeshMapIt(DesiredCache); MeshMapIt; ++MeshMapIt)
 	{
 		FB2GMPCCompositeMeshCacher& ThisMap = MeshMapIt.Value();
-		ThisMap.DiscardMe(); // RootSet ¿¡¼­ Á¦°ÅµÉ °Í.
+		ThisMap.DiscardMe(); // RootSet ä¿Šè¾‘ åŠ›èŠ­çª å·´.
 	}
 
 	DesiredCache.Empty();
 }
 
 #if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
-void UB2CompositeMeshCache::DevResetCompositMeshCache() // ¸Ş½¬ Á¶ÇÕ »óÅÂ ÀÌ¸®Àú¸® Å×½ºÆ®ÇÏ´Â Ä¡Æ®¿¡¼­ ÇÊ¿ä..
+void UB2CompositeMeshCache::DevResetCompositMeshCache() // çš‹æµ† ç‚¼é’¦ æƒ‘æ€• æåºœå†åºœ æŠ›èƒ¶é£˜çªç»° æ‘¹é£˜ä¿Šè¾‘ é˜å¤¸..
 {
 	DiscardCaches(ECompositeMeshCacheType::ECMCT_Remote);
 	DiscardCaches(ECompositeMeshCacheType::ECMCT_Local);
 }
-// ÀÌÀü ¹æ½Ä°ú ºñ±³ Å×½ºÆ®¸¦ À§ÇØ Á¦°ø
+// æå‚ˆ è§„ä¾¥è‹ åšèƒŒ æŠ›èƒ¶é£˜ç”« å›°ç§¦ åŠ›å‚
 void UB2CompositeMeshCache::SetAllowLocalPCMeshRootSet(bool bSet)
 {
 	bAllowLocalPCMeshRootSet = bSet;
 
 	if (!IsLocalPCMeshRootSetAllowed())
-	{ // ±â´ÉÀ» ²°´Ù¸é ½ÉÇÃÇÏ°Ô Ä³½¬¸¦ ¸®¼Â.
+	{ // æ‰ç“·é˜‘ èˆ¶ä¿ƒæ ç¼´æ•²çªéœ¸ æŸæµ†ç”« åºœæ‚¸.
 		DiscardCaches(ECompositeMeshCacheType::ECMCT_Remote);
 		DiscardCaches(ECompositeMeshCacheType::ECMCT_Local);
 	}
 	else
 	{
-		// ±â´ÉÀ» ÄÑ´Â °æ¿ì ·ÎÄÃ Ä³¸¯ÅÍ Ä³½¬¸¸ ·çÆ®¼Â¿¡ Ãß°¡ÇØ ÁÜ.
+		// æ‰ç“·é˜‘ éš¾ç»° ç‰ˆå¿« è‚ºæ‹¿ æŸè…ç£ æŸæµ†çˆ¶ é£é£˜æ‚¸ä¿Š çœ å•Šç§¦ æ·‹.
 		for (TMap<int32, FB2GMPCCompositeMeshCacher>::TIterator MeshMapIt(LocalPCCache); MeshMapIt; ++MeshMapIt)
 		{
 			FB2GMPCCompositeMeshCacher& ThisMap = MeshMapIt.Value();

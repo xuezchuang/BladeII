@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIMagicStore.h"
 #include "B2UIManager.h"
 #include "Retailer.h"
@@ -262,16 +262,16 @@ void UB2UIMagicStore::ResponseMagicShopData(const T& MagicShopPtr)
 {
 	if (auto* DocStore = UB2UIDocHelper::GetDocStore())
 	{
-		// ´çÀÏ °»½Å È½¼ö
+		// å¯¸è€ ç›è„š å†‰è
 		DocStore->SetRenewalCount(MagicShopPtr->renewal_count);
 
-		// ´ÙÀ½ ÀÚµ¿ °»½Å ½Ã°£
+		// ä¿ƒæ¾œ ç£Šæ‚¼ ç›è„š çŸ«åŸƒ
 		DocStore->SetNextFreeRenewalTime(MagicShopPtr->next_free_renewal_time);
 
-		// ¹«·á °»½Å ¿©ºÎ
+		// å…¬ä¸° ç›è„š å’¯ä½•
 		DocStore->SetIsFreeRenewal(MagicShopPtr->is_free_renewal);
 
-		// ¸¶¹ı »óÁ¡ »óÇ° ¸®½ºÆ®
+		// ä»˜è¿‡ æƒ‘ç—¢ æƒ‘å‰ åºœèƒ¶é£˜
 		DocStore->ResetMagicShopList();
 		for (auto MagicShopItem : MagicShopPtr->magic_shops)
 		{
@@ -282,13 +282,13 @@ void UB2UIMagicStore::ResponseMagicShopData(const T& MagicShopPtr)
 
 void UB2UIMagicStore::ResponseReplaceCurrentGem(const FB2ResponseRenewalMagicShopPtr& MagicShopPtr)
 {
-	// ÇöÀç º¸À¯ÇÑ º¸¼® ¼ö·®
+	// æ³…çŠ ç„Šèœ¡èŒ„ ç„Šç± èæ¨Š
 	BladeIIGameImpl::GetClientDataStore().ReplaceUserDataWithDoc(EDocUserDataType::Gem, MagicShopPtr->current_gem);
 }
 
 void UB2UIMagicStore::ResponseBuyMagicShopProduct(const FB2ResponsePurchaseMagicShopPtr& MagicShopPtr)
 {
-	// »ç¿ëÇÑ ÀçÈ­
+	// è¤ä¾©èŒ„ çŠæ‹³
 	BladeIIGameImpl::GetClientDataStore().ResponseBuyMagicShopProduct(MagicShopPtr);
 }
 

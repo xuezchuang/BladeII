@@ -1,14 +1,17 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 //#include "BladeII.h"
 #include "CoreMinimal.h"
 #include "UI/B2UIWidget.h"
 #include "B2UIBackWidget.h"
+#include "../B2RichTextBlock.h"
+#include "EventSubsystem.h"
+#include "B2TotemData.h"
 #include "B2UI_TotemSmeltingPopup.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class BLADEII_API UB2UI_TotemSmeltingPopup : public UB2UIWidget, public IB2UIBackWidget
@@ -61,11 +64,11 @@ protected:
 
 private:
 	UFUNCTION()
-		void OnClickBTN_Close();
+	void OnClickBTN_Close();
 	UFUNCTION()
-		void OnClickBTN_TabSmeltingByGold();
+	void OnClickBTN_TabSmeltingByGold();
 	UFUNCTION()
-		void OnClickBTN_TabSmeltingByPiece();
+	void OnClickBTN_TabSmeltingByPiece();
 
 private:
 	TWeakObjectPtr<UTextBlock>							TB_SmeltingTitle;

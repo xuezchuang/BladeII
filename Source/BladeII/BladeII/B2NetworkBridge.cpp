@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 // Project BladeII, ACTION SQUARE
 
 
@@ -80,7 +80,7 @@ public:
 //////
 //////	if (credential.m_platformType == 0 && credential.m_platformUserId.empty())
 //////	{	// NOTE temporal handling
-//////		authInfo.SetPlatformUserId(GetUniqueDeviceId()); //ÀÌ°Å Ãß°¡ ÇØµµ µÇ³ª¿ä??
+//////		authInfo.SetPlatformUserId(GetUniqueDeviceId()); //ì´ê±° ì¶”ê°€ í•´ë„ ë˜ë‚˜ìš”??
 //////		UE_LOG(LogBladeII, Display, TEXT("b2.auth PUID(%s) by deviceid"), *GetUniqueDeviceId());
 //////	}
 //////	credential.m_platformUserId = TCHAR_TO_UTF8(*authInfo.GetPlatformUserId());
@@ -96,7 +96,7 @@ public:
 //////	b2network::Endpoint sessionServer(TCHAR_TO_ANSI(*authInfo.GetSesssionAddr()), authInfo.GetSessionPort());
 ///////*
 //////#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV1
-//////	// ¿©±â¼­ ip ÁÖ¼Ò¸¦ ÀÐ¾îµéÀÌ´Â °Ç °³¹ß¹öÀüÀÓ. ÃÖÁ¾ DLC ºôµå¿¡¼­´Â ·Î±×ÀÎ ÀÌÈÄ º°µµ ·çÆ®¸¦ ÅëÇØ ¼­¹ö Á¤º¸¸¦ ¹Þ°Ô µÊ.
+//////	// ì—¬ê¸°ì„œ ip ì£¼ì†Œë¥¼ ì½ì–´ë“¤ì´ëŠ” ê±´ ê°œë°œë²„ì „ìž„. ìµœì¢… DLC ë¹Œë“œì—ì„œëŠ” ë¡œê·¸ì¸ ì´í›„ ë³„ë„ ë£¨íŠ¸ë¥¼ í†µí•´ ì„œë²„ ì •ë³´ë¥¼ ë°›ê²Œ ë¨.
 //////	if (!sessionServer.IsValid() && !IsFinalDLCCookRun())
 //////	{
 //////		LoadSessionServerFromConfig(sessionServer);
@@ -149,10 +149,10 @@ public:
 //////                auto reason = b2MessageInfo->reason;
 //////
 //////                // TODO:
-//////                // ¼­¹ö°¡ Å¬¶óÀÌ¾ðÆ®ÀÇ ¼¼¼ÇÀ» °­Á¦·Î ²÷À» ¶§ ¾Ë·ÁÁÖ´Â Notify ÀÌ´Ù.
-//////                // reasonÀÇ °ª¿¡ µû¶ó¼­ Á¤ÇØÁø ÆË¾÷°ú °ÔÀÓ È­¸é ÀüÈ¯À» ÁøÇàÇÑ´Ù.
-//////                // Áö±Ý ±¸ÇöµÈ reasonÀÇ °ªÀº ¾Æ·¡¿Í °°´Ù.
-//////                // 2: Áßº¹ Á¢¼Ó (°°Àº °èÁ¤À¸·Î ÀÌÁßÀ¸·Î SignIn)
+//////                // ì„œë²„ê°€ í´ë¼ì´ì–¸íŠ¸ì˜ ì„¸ì…˜ì„ ê°•ì œë¡œ ëŠì„ ë•Œ ì•Œë ¤ì£¼ëŠ” Notify ì´ë‹¤.
+//////                // reasonì˜ ê°’ì— ë”°ë¼ì„œ ì •í•´ì§„ íŒì—…ê³¼ ê²Œìž„ í™”ë©´ ì „í™˜ì„ ì§„í–‰í•œë‹¤.
+//////                // ì§€ê¸ˆ êµ¬í˜„ëœ reasonì˜ ê°’ì€ ì•„ëž˜ì™€ ê°™ë‹¤.
+//////                // 2: ì¤‘ë³µ ì ‘ì† (ê°™ì€ ê³„ì •ìœ¼ë¡œ ì´ì¤‘ìœ¼ë¡œ SignIn)
 //////				data_trader::SessionClosedNotifyClass<int32>::GetInstance().Signal(reason);
 //////            });
 //////
@@ -334,9 +334,9 @@ public:
 //////        m_client->AddEventHandler(b2network::Client::Event::ServiceNotAvailable,
 //////            [](int errorCode)
 //////            {
-//////                // NOTE ¼¼¼Ç ¼­¹ö¿Í Á¢¼ÓÀÌ ²÷±è
-//////                // Àç¿¬°á ÇÏ·Á¸é Init() È£ÃâÇØ¾ß ÇÑ´Ù.
-//////                // Ã¤³ÎÀÌ ²÷±âÁö ¾Ê´õ¶óµµ ½Ç½Ã°£ °ÔÀÓ ¸ðµå´Â Áß´Ü ½ÃÄÑ¾ß ÇÏ³ª?
+//////                // NOTE ì„¸ì…˜ ì„œë²„ì™€ ì ‘ì†ì´ ëŠê¹€
+//////                // ìž¬ì—°ê²° í•˜ë ¤ë©´ Init() í˜¸ì¶œí•´ì•¼ í•œë‹¤.
+//////                // ì±„ë„ì´ ëŠê¸°ì§€ ì•Šë”ë¼ë„ ì‹¤ì‹œê°„ ê²Œìž„ ëª¨ë“œëŠ” ì¤‘ë‹¨ ì‹œì¼œì•¼ í•˜ë‚˜?
 //////#if FORCE_LOGGING_IN_ANDROID
 //////                FPlatformMisc::LowLevelOutputDebugStringf(TEXT("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"));
 //////				FPlatformMisc::LowLevelOutputDebugStringf(TEXT("@@@@@@@@@@@@@@@@ Session Disconnected! @@@@@@@@@@@@@@@@"));
@@ -355,8 +355,8 @@ public:
 //////        m_client->AddEventHandler(b2network::Client::Event::ChannelDisconnected,
 //////            [](int errorCode)
 //////            {
-//////                // NOTE Ã¤³Î ¼­¹ö¿Í ¿¬°á ²÷±è
-//////                // ÀÏ´ëÀÏ, ·¹ÀÌµå, Á¡·ÉÀü °°Àº ½Ç½Ã°£ °ÔÀÓ ¸ðµå Áß´Ü ½ÃÄÑ¾ß ÇÔ
+//////                // NOTE ì±„ë„ ì„œë²„ì™€ ì—°ê²° ëŠê¹€
+//////                // ì¼ëŒ€ì¼, ë ˆì´ë“œ, ì ë ¹ì „ ê°™ì€ ì‹¤ì‹œê°„ ê²Œìž„ ëª¨ë“œ ì¤‘ë‹¨ ì‹œì¼œì•¼ í•¨
 //////#if FORCE_LOGGING_IN_ANDROID
 //////				FPlatformMisc::LowLevelOutputDebugStringf(TEXT("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"));
 //////				FPlatformMisc::LowLevelOutputDebugStringf(TEXT("$$$$$$$$$$$$$$$$ Channel Disconnected! $$$$$$$$$$$$$$$$"));
@@ -484,7 +484,7 @@ public:
 //void FB2NetworkDriver::Tick(ELevelTick TickType, float DeltaSeconds)
 //{
 //#if WITH_EDITOR
-//	if (GIsEditor && (!GIsPlayInEditorWorld && GPlayInEditorID == INDEX_NONE)) // Á¤½Ä fix Àü±îÁö ÀÓ½Ã·Î.. ¿¡µðÅÍÀÇ Network Æ½ °¨¼Ò.
+//	if (GIsEditor && (!GIsPlayInEditorWorld && GPlayInEditorID == INDEX_NONE)) // ì •ì‹ fix ì „ê¹Œì§€ ìž„ì‹œë¡œ.. ì—ë””í„°ì˜ Network í‹± ê°ì†Œ.
 //	{
 //		return;
 //	}

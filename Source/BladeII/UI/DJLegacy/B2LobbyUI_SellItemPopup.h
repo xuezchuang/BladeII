@@ -5,6 +5,8 @@
 #include "B2LobbyUserWidget.h"
 #include "CommonStruct.h"
 #include "B2UIBackWidget.h"
+#include "B2DynItemIcon_LobbyEquip.h"
+#include "../../DataStore/B2TotemData.h"
 #include "B2LobbyUI_SellItemPopup.generated.h"
 
 DECLARE_DELEGATE(FSellItemPopupOnClick)

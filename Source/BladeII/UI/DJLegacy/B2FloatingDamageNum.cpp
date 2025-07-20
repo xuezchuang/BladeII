@@ -72,15 +72,15 @@ void UB2FloatingDamageNum::NativeTick(const FGeometry& MyGeometry, float InDelta
 
 void UB2FloatingDamageNum::UpdatePosition()
 {
-	// OwnerCharacter ¸¦ µû¶ó°¡Áö ¾Ê°í NotifyTakeDamage ´ç½Ã Á¤ÇØÁø ½ºÅ©¸° ÁÂÇ¥¸¦ À¯ÁöÇÏµµ·Ï ÇÔ.
-	// -> »ı¼º½Ã °áÁ¤µÈ 3DÁÂÇ¥¿¡ À§Ä¡½ÃÄÑº¸ÀÚ
+	// OwnerCharacter ç”« è¶æ‰¼å•Šç˜¤ è‡¼ç»Š NotifyTakeDamage å¯¸çŸ« æ²¥ç§¦æŸ³ èƒ¶å†œèµ´ è°…é’ç”« èœ¡ç˜¤çªæ¡£åºŸ çªƒ.
+	// -> ç§¯å·±çŸ« æ¬æ²¥ç­‰ 3Dè°…é’ä¿Š å›°æ‘¹çŸ«éš¾ç„Šç£Š
 		
 	APlayerController* OwningPC = GetOwningPlayer();
 	FVector2D vProjectedLocation;
 
 	if (OwningPC && OwningPC->ProjectWorldLocationToScreen(m_vSpawnLocation, vProjectedLocation))
 	{
-		// ÀÌ°Å ÇØ¾ß »çÀÌÁî¸¦ ¾Ë¼öÀÖ³×..
+		// æèŠ­ ç§¦å…· è¤æä»¤ç”« èˆ…èä¹åŒ™..
 		ForceLayoutPrepass();
 
 		vProjectedLocation.X -= GetDesiredSize().X / 2;
@@ -92,12 +92,12 @@ void UB2FloatingDamageNum::UpdatePosition()
 	}
 	else
 	{
-		// ¿À³Ê¾ø°Å³ª ÇÁ·ÎÁ§¼Ç ½ÇÆĞÇÏ¸é ¼û±è.
+		// å·å‘ˆç»èŠ­å”± æ©‡è‚ºç’ƒè®° è§’è©çªæ è§è¾«.
 		SetVisibility(ESlateVisibility::Hidden);
 		return;
 	}
 
-	// ForceHidden ÀÎ °æ¿ì À¯ÁöÇÏ´Â °Í¸¸.
+	// ForceHidden ç‰¢ ç‰ˆå¿« èœ¡ç˜¤çªç»° å·´çˆ¶.
 	SetVisibility((IsForceHidden() || ShouldBeHiddenAsPooledObject()) ? ESlateVisibility::Hidden : ESlateVisibility::HitTestInvisible);
 }
 
@@ -118,7 +118,7 @@ void UB2FloatingDamageNum::NotifyTakeDamage(float Damage, bool bInCritical)
 
 		if (RecentDamageNum != 0.0f) // Let's count for negative damage, assuming that would be healing.
 		{
-			// »õ·Î¿î ¹æ½Ä.. ÇâÈÄ ÀÌ°Í¸¸ ³²±æ °Í.
+			// è´§è‚ºæ¬¾ è§„ä¾¥.. æ°¢é¥¶ æå·´çˆ¶ å·¢è¾¨ å·´.
 			SetupDigitsForNumber(RecentDamageNum,
 				(RecentDamageNum > 0.0f) ? 
 					( bInCritical ? FLinearColor(BaseModulateColor_Critical) :FLinearColor(BaseModulateColor_Damage) )
@@ -129,15 +129,15 @@ void UB2FloatingDamageNum::NotifyTakeDamage(float Damage, bool bInCritical)
 			{
 				OwningPC->GetWorldTimerManager().ClearTimer(VisibilityTimerHandle);
 			}
-			// Set the timer to turn the visibility off. -> ÀÌ°Ç Manager ÂÊ¿¡¼­ °°Àº ½Ã°£À¸·Î Á¦°Å Å¸ÀÌ¸Ó¸¦ ¼³Ä¡ÇÏ´Ï ¾ø¾Ø´Ù. 
+			// Set the timer to turn the visibility off. -> ææ‰’ Manager ç‡ä¿Šè¾‘ éç¯® çŸ«åŸƒæ è‚º åŠ›èŠ­ é¸¥æèµ£ç”« æ±²æ‘¹çªèª ç»çŸ©ä¿ƒ. 
 			//OwningPC->GetWorldTimerManager().SetTimer(VisibilityTimerHandle, this, &UB2FloatingDamageNum::TakeDamageTimerCB, VisibleDuration, false);
 
 			SetupForCriticalDamage(bInCritical);
 		}
 		m_vSpawnLocation = OwnerCharacter->GetTopLocation();
-		m_vSpawnLocation.Z += AdditionalZOffset + OwnerCharacter->GetScaledDamageNumZOffset(); // DamageNumZOffset À» Ãß°¡·Î. Ä³¸¯ÅÍ Á¾·ù º°·Î Á» ´õ Á¶ÀıÀÌ ÇÊ¿äÇÑ ¾ÖµéÀÌ ÀÖ¾î¼­.
+		m_vSpawnLocation.Z += AdditionalZOffset + OwnerCharacter->GetScaledDamageNumZOffset(); // DamageNumZOffset é˜‘ çœ å•Šè‚º. æŸè…ç£ è¾†å¹… å–Šè‚º ç²± æ­¹ ç‚¼ä¾‹æ é˜å¤¸èŒ„ å±€ç”¸æ ä¹ç»¢è¾‘.
 		
-		// ¸Å¹ø ¾à°£¾¿ ´Ù¸¥ À§Ä¡¿¡ »Ñ¸®±â À§ÇØ SpawnLocation À» Á» Á¶Á¤.
+		// æ¦‚é”… è·åŸƒç©¶ ä¿ƒå¼— å›°æ‘¹ä¿Š è°åºœæ‰ å›°ç§¦ SpawnLocation é˜‘ ç²± ç‚¼æ²¥.
 		float RandDirX = FMath::FRandRange(-1.0f, 1.0f);
 		float RandDirY = FMath::FRandRange(-1.0f, 1.0f);
 		FVector2D RandDir(RandDirX, RandDirY);
@@ -155,12 +155,12 @@ void UB2FloatingDamageNum::NotifyTakeDamage(float Damage, bool bInCritical)
 void UB2FloatingDamageNum::SetupDigitsForNumber(int32 InNumberToDisplay, const FLinearColor& InBlendColor)
 {
 	const int32 NumberLimit = GetMaxDisplayableNum();
-	// ¼ıÀÚ Ç¥½Ã´Â Àı´ë°ªÀ¸·Î. Damage ÀÎÁö Heal ÀÎÁö´Â »ö»óÀ¸·Î Ç¥½ÃÇÒ °Å
+	// ç®­ç£Š é’çŸ«ç»° ä¾‹æªè”¼æ è‚º. Damage ç‰¢ç˜¤ Heal ç‰¢ç˜¤ç»° ç¥¸æƒ‘æ è‚º é’çŸ«ä¸” èŠ­
 	const int32 FinalNumber = FMath::Abs( FMath::Clamp(InNumberToDisplay, -1 * NumberLimit, NumberLimit) );
-	// ¸îÀÚ¸®±îÁö Ç¥½Ã °¡´ÉÇÑÁö.
-	const int32 DisplayDigitCount = (int32)FMath::LogX(10.0f, (float)FinalNumber) + 1; // ÀÌ°Å µü ÀÚ¸®¼ö °ÉÃÄ ÀÖ´Â ºÎ±Ù¿¡¼­ ÀÇµµ´ë·Î ³ª¿À·Á³ª.. ³¡ÀÌ 0 À¸·Î ³¡³ª´Â °Ç ÇÏ³ª ´õÇØ¼­ ÇØ ÁÙ¼öµµ..
+	// å‰²ç£Šåºœé³–ç˜¤ é’çŸ« å•Šç“·èŒ„ç˜¤.
+	const int32 DisplayDigitCount = (int32)FMath::LogX(10.0f, (float)FinalNumber) + 1; // æèŠ­ è¿­ ç£Šåºœè å§åªš ä¹ç»° ä½•è¾Ÿä¿Šè¾‘ ç‹¼æ¡£æªè‚º å”±å·å¦¨å”±.. åœºæ 0 æ è‚º åœºå”±ç»° æ‰’ çªå”± æ­¹ç§¦è¾‘ ç§¦ ä¸´èæ¡£..
 
-	// ÀÏ´Ü ¼û°Ü³ù´Ù°¡
+	// è€çªœ è§è´¥èº‡ä¿ƒå•Š
 	for (UImage* ThisDigitImage : AllDigits)
 	{
 		if (ThisDigitImage){
@@ -170,39 +170,39 @@ void UB2FloatingDamageNum::SetupDigitsForNumber(int32 InNumberToDisplay, const F
 
 	for (int32 DI = 0; DI < DisplayDigitCount; ++DI)
 	{
-		// ÀÌ¹ø ÀÚ¸´¼ö.. ExtractNthDigitR ´Â ÅÛÇÃ¸´ »ó¼ö ÀÎÀÚ¸¦ ¹Ş¾Æ¾ß ÇØ¼­.. Dynamic ¹öÀüÀ¸·Î
+		// æé”… ç£Šå¤è.. ExtractNthDigitR ç»° è¢æ•²å¤ æƒ‘è ç‰¢ç£Šç”« ç½é…’å…· ç§¦è¾‘.. Dynamic æ»šå‚ˆæ è‚º
 		const int32 ThisDigitNumber = ExtractNthDigitR_Dynamic(FinalNumber, DI + 1);
 		UImage* ThisDigitImage = AllDigits.IsValidIndex(DI) ? AllDigits[DI] : NULL;
-		if (ThisDigitImage) // ¹°·Ğ ¼³Á¤°ú ¹èÄ¡°¡ Á¦´ë·Î µÇ¾ú´Ù¸é ÀÌ°Ô ¾Æ´Ñ °æ¿ì´Â ¾ø¾î¾ß..
+		if (ThisDigitImage) // æ‹±æ²¸ æ±²æ²¥è‹ ç¡…æ‘¹å•Š åŠ›æªè‚º ç™»èŒä¿ƒæ æéœ¸ é…’å›± ç‰ˆå¿«ç»° ç»ç»¢å…·..
 		{
 			ThisDigitImage->SetVisibility(ESlateVisibility::HitTestInvisible);
 
-			// Image draw batching »ç¿ëÀ» À§ÇØ Material ÀÌ ¾Æ´Ñ PaperSprite ¸¦ »ç¿ëÇÑ´Ù.
+			// Image draw batching è¤ä¾©é˜‘ å›°ç§¦ Material æ é…’å›± PaperSprite ç”« è¤ä¾©èŒ„ä¿ƒ.
 			UPaperSprite* DigitSprite = GetSpriteForDigit(ThisDigitNumber);
 			if (DigitSprite)
 			{
 				SetImageBrushFromPaperSprite(ThisDigitImage, DigitSprite);
-				// ÀÌ °æ¿ì´Â UImage ¿¡¼­ GetDynamicMaterial ·Î °¡Á®¿Íµµ ¼Ò¿ëÀÌ ¾øÀ½.
-				// ´ë½Å ¿©±â¼­´Â UImage ÀÚÃ¼¿¡ ÀÖ´Â ±â´ÉÀ» »ç¿ëÇØ¼­ ÄÃ·¯ ºí·»µù±îÁö´Â Ã³¸®.
+				// æ ç‰ˆå¿«ç»° UImage ä¿Šè¾‘ GetDynamicMaterial è‚º å•Šå»‰å®¢æ¡£ å®¶ä¾©æ ç»æ¾œ.
+				// æªè„š å’¯æ‰è¾‘ç»° UImage ç£Šçœ‰ä¿Š ä¹ç»° æ‰ç“·é˜‘ è¤ä¾©ç§¦è¾‘ æ‹¿çŸ¾ å–‰åŠçˆ¹é³–ç˜¤ç»° è´¸åºœ.
 				SetBlendColorForPaperSpriteBoundImage(ThisDigitImage, InBlendColor);
 			}
 		}
 	}
 
-	// Ç¥½Ã ÀÚ¸´¼ö¿¡ µû¶ó »çÀÌÁî¶û À§Ä¡ Á¶ÀıÇØ¼­ °¡¿îµ¥ Á¤·Ä½ÃÅ´. WrapBox alignment ·Î ÇÏ·Á´Ï ¹º°¡ ¾È¸ÔÇô¼­..
+	// é’çŸ« ç£Šå¤èä¿Š è¶æ‰¼ è¤æä»¤å°” å›°æ‘¹ ç‚¼ä¾‹ç§¦è¾‘ å•Šæ¬¾å• æ²¥çººçŸ«ç³¯. WrapBox alignment è‚º çªå¦¨èª è´­å•Š æ•‘å†ˆå›šè¾‘..
 	UCanvasPanelSlot* BasePanelSlot = WB_AllDisplaySet.IsValid() ? Cast<UCanvasPanelSlot>(WB_AllDisplaySet->Slot) : NULL;
 	if (BasePanelSlot)
 	{
 		float DesiredWholeWidth = (float)DisplayDigitCount * SingleDigitWidth;
 		BasePanelSlot->SetSize(FVector2D(DesiredWholeWidth, BasePanelSlot->GetSize().Y));
-		// Áß¾Ó ¾ŞÄ¿·Î °¡Á¤.
+		// åå±… å·¨ç›®è‚º å•Šæ²¥.
 		BasePanelSlot->SetPosition(FVector2D(DesiredWholeWidth * -0.5f, BasePanelSlot->GetPosition().Y));
 	}
 }
 
 void UB2FloatingDamageNum::SetupForCriticalDamage(bool bIsCritical)
 {
-	// ¾ÆÁ÷Àº ¿©±â¿¡ Å©¸®Æ¼ÄÃ µ¥¹ÌÁö Á¤º¸¸¦ ³Ö¾ú´Ù Á¤µµ..
+	// é…’æµç¯® å’¯æ‰ä¿Š å†œåºœèæ‹¿ å•å›ºç˜¤ æ²¥ç„Šç”« æŒèŒä¿ƒ æ²¥æ¡£..
 
 	if (PN_CriticalDamage.IsValid())
 	{
@@ -210,7 +210,7 @@ void UB2FloatingDamageNum::SetupForCriticalDamage(bool bIsCritical)
 	}
 
 	if (IMG_CriticalDamageText.IsValid())
-	{ // ÀÌ°Ç ÇÊ¿ä¾øÀ» ¼ö ÀÖÀ½. ±âº»ÀûÀ¸·Î´Â ¼ıÀÚ¿¡ È¥ÇÕÇÏ·Á´Â »ö»óÀÓ.
+	{ // ææ‰’ é˜å¤¸ç»é˜‘ è ä¹æ¾œ. æ‰å¤¯åˆ©æ è‚ºç»° ç®­ç£Šä¿Š å»é’¦çªå¦¨ç»° ç¥¸æƒ‘çƒ™.
 		IMG_CriticalDamageText->SetColorAndOpacity(BaseModulateColor_Critical);
 	}
 }

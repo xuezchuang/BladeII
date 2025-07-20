@@ -1,15 +1,17 @@
 #include "B2PreLoadingScreen.h"
-//#include "BladeII.h"
+#include "BladeII.h"
 
 #include "B2LoadingImageInfo.h"
 #include "B2GameInstance.h"
+#include "BladeIILocText.h"
+#include "BladeIIUtil.h"
 
-// ¼³Á¤µé.. ±×¸® Áß¿äÇÑ ¼³Á¤±îÁö´Â ¾Æ´Ï´Ï ÀÏ´Ü ¿©±â ÇÏµåÄÚµùÇÑ °ªÀ¸·Î
+// æ±²æ²¥ç”¸.. å¼Šåºœ åå¤¸èŒ„ æ±²æ²¥é³–ç˜¤ç»° é…’èªèª è€çªœ å’¯æ‰ çªé›å†…çˆ¹èŒ„ è”¼æ è‚º
 float FPreRenderProgressTextState::AnimatePeriod = 0.5f;
 
 void FPreRenderProgressTextState::Tick(float DeltaSecond)
 {
-	TimeSinceLastAnimUpdate += DeltaSecond; // UI ÂÊ¼­ ³Ñ¾î¿À´Â µ¨Å¸Å¸ÀÓÀÌ¸é World Time Scale °°Àº °Å ¾È ¸Ô¾ú°ÚÁö..
+	TimeSinceLastAnimUpdate += DeltaSecond; // UI ç‡è¾‘ é€ç»¢å·ç»° èƒ†é¸¥é¸¥çƒ™ææ World Time Scale éç¯® èŠ­ æ•‘ å†ˆèŒæ‘†ç˜¤..
 
 	if (TimeSinceLastAnimUpdate >= AnimatePeriod)
 	{
@@ -31,13 +33,13 @@ void FPreRenderProgressTextState::ResetAnimState()
 FText FPreRenderProgressTextState::GetCurrentResultText()
 {
 	FString AnimatedTextString;
-	// CurrentAnimateState ¸¸Å­ Á¡ Âï¾îÁÜ.
+	// CurrentAnimateState çˆ¶æ€’ ç—¢ å˜›ç»¢æ·‹.
 	for(int32 AI = 0; AI < CurrentAnimateState; ++AI)
 	{
 		AnimatedTextString += TEXT(".");
 	}
 	
-	if (bDisplayProgressText) // ÁøÇàµµ ÆÛ¼¾Æ®¸¦ ÅØ½ºÆ®·Î ³¡¿¡ ºÙ¿©¼­ Ç¥½Ã. ÀÌ°Å ¸»°í UB2PreLoadingScreen ¿¡ ±¸ºñµÈ ProgressBar ·Î Ç¥½ÃÇÒ ¼öµµ ÀÖ´Ù.
+	if (bDisplayProgressText) // æŸ³é’æ¡£ æ¬ºå­£é£˜ç”« å’†èƒ¶é£˜è‚º åœºä¿Š å˜¿å’¯è¾‘ é’çŸ«. æèŠ­ å¯Œç»Š UB2PreLoadingScreen ä¿Š å¤‡åšç­‰ ProgressBar è‚º é’çŸ«ä¸” èæ¡£ ä¹ä¿ƒ.
 	{
 		FString ProgressValueTextString = FString::Printf(TEXT("%d %%"), (int32)FMath::Clamp(CurrentProgressScale * 100.0f, 0.0f, 100.0f));
 	
@@ -51,11 +53,11 @@ FText FPreRenderProgressTextState::GetCurrentResultText()
 	else
 	{
 		if (bAnimatedTextInSeparatedWidget)
-		{ // ÀÌ °æ¿ì AnimatedTextString À» ¿©±â¼­ Á÷Á¢ »ç¿ëÇÏÁö ¾Ê°í CurrentAnimateState ¿¡ µû¶ó º°µµÀÇ widget À» on/off.
+		{ // æ ç‰ˆå¿« AnimatedTextString é˜‘ å’¯æ‰è¾‘ æµç«‹ è¤ä¾©çªç˜¤ è‡¼ç»Š CurrentAnimateState ä¿Š è¶æ‰¼ å–Šæ¡£ç‹¼ widget é˜‘ on/off.
 			return BasicInfoText;
 		}
 		else
-		{ // ÃÊ±â ±¸ÇöÀÎµ¥ ÀÌ°Ô Áß¾ÓÁ¤·Ä ·¹ÀÌ¾Æ¿ôÀ¸·Î »ç¿ëÇÏ´Â µ¥ ¹®Á¦°¡ ÀÖ¾î¼­ Àß »ç¿ë ¾ÈÇÏ°Ô µÊ.
+		{ // æª¬æ‰ å¤‡æ³…ç‰¢å• æéœ¸ åå±…æ²¥çºº é¥­æé…’çœ¶æ è‚º è¤ä¾©çªç»° å• å·©åŠ›å•Š ä¹ç»¢è¾‘ è‚‹ è¤ä¾© æ•‘çªéœ¸ å‡³.
 			return FText::Format(
 					FText::FromString(TEXT("{0}{1}")),
 					BasicInfoText,
@@ -90,12 +92,12 @@ void UB2PreLoadingScreen::NativeTick(const FGeometry& MyGeometry, float InDeltaT
 
 	if (bShouldDisplayPreRenderText)
 	{
-		PreRenderProgressTextState.Tick(InDeltaTime); // ÁøÇàµµ ¼ıÀÚ¿Í´Â ¹«°üÇÑ ÀÚÃ¼ ÅØ½ºÆ® ¾Ö´Ï¸ŞÀÌ¼Ç
+		PreRenderProgressTextState.Tick(InDeltaTime); // æŸ³é’æ¡£ ç®­ç£Šå®¢ç»° å…¬åŒ…èŒ„ ç£Šçœ‰ å’†èƒ¶é£˜ å±€èªçš‹æè®°
 		ApplyCurrentPreRenderProgressText();
 	}
 
-	// ProgressBar Ã¤¿ì´Â °Íµµ ³ª¸§ÀÇ ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ ÀÖ¾î¼­ ÀÌ°Íµµ ¸Å Æ½.
-	PreRenderPBAnimatedValue.ManualTick(FMath::Min(InDeltaTime, 0.06f)); // DeltaTime À» Àû´çÈ÷ Àß¶ó¼­.. ÇØ º¸°í..
+	// ProgressBar ç›²å¿«ç»° å·´æ¡£ å”±æŠšç‹¼ å±€èªçš‹æè®°æ ä¹ç»¢è¾‘ æå·´æ¡£ æ¦‚ å¹³.
+	PreRenderPBAnimatedValue.ManualTick(FMath::Min(InDeltaTime, 0.06f)); // DeltaTime é˜‘ åˆ©å¯¸æ´’ è‚‹æ‰¼è¾‘.. ç§¦ ç„Šç»Š..
 	ApplyCurrentPreRenderProgressBar();
 }
 
@@ -105,8 +107,8 @@ void UB2PreLoadingScreen::CacheAssets()
 
 	GET_SLOT(UTextBlock, TB_BottomText);
 	GET_SLOT(UTextBlock, TB_PreRenderInfo);
-	for (int32 TAI = 1; TAI < PRE_RENDER_PROGRESS_TEXT_ANIM_MAX_STATE_NUM; ++TAI) // PRE_RENDER_PROGRESS_TEXT_ANIM_MAX_STATE_NUM - 1 °³
-	{ // ¹è¿­¿¡ ¼ıÀÚ ¼ø¼­´ë·Î ³Ö¾î¾ß ÀÇµµ´ë·Î ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ µÉ °Í.
+	for (int32 TAI = 1; TAI < PRE_RENDER_PROGRESS_TEXT_ANIM_MAX_STATE_NUM; ++TAI) // PRE_RENDER_PROGRESS_TEXT_ANIM_MAX_STATE_NUM - 1 ä¿º
+	{ // ç¡…å‡¯ä¿Š ç®­ç£Š é‰´è¾‘æªè‚º æŒç»¢å…· ç‹¼æ¡£æªè‚º å±€èªçš‹æè®°æ çª å·´.
 		UTextBlock* FoundAnimPiece = GetSlot<UTextBlock>(FName(*FString::Printf(TEXT("TB_PreRenderInfo_AnimPiece_%d"), TAI)));
 		if (FoundAnimPiece)
 		{
@@ -132,7 +134,7 @@ void UB2PreLoadingScreen::SetPreLoadingType(EPreLoadingScreenType InType, UTextu
 {
 	PreLoadingType = InType;
 
-	// Å¸ÀÔº°·Î ´Ù¸£°Ô ¼¼ÆÃÇØ¾ß ÇÒ °ÍÀÌ ÀÖ´Ù¸é..
+	// é¸¥æ¶å–Šè‚º ä¿ƒç¦éœ¸ æŠ€æ³¼ç§¦å…· ä¸” å·´æ ä¹ä¿ƒæ..
 
 	if (IsOneOfPreRenderScreenType(PreLoadingType))
 	{		
@@ -140,9 +142,9 @@ void UB2PreLoadingScreen::SetPreLoadingType(EPreLoadingScreenType InType, UTextu
 		{
 			Image_BG->SetVisibility(ESlateVisibility::HitTestInvisible);
 			
-			// ¼³Ä¡ ÈÄ Ã¹ Pre-render ·¹º§ÀÎÁö, ÀÏ¹İ ¸ÊµéÀÇ pre-render ÀÎÁö¿¡ µû¶ó ´Ù¸§
+			// æ±²æ‘¹ é¥¶ éœ‰ Pre-render é¥­éª‡ç‰¢ç˜¤, è€é¦† ç”˜ç”¸ç‹¼ pre-render ç‰¢ç˜¤ä¿Š è¶æ‰¼ ä¿ƒæŠš
 			UTexture2D* FinalPreRenderImage = 
-				InSpecifiedImage ? InSpecifiedImage : // »ç½Ç»ó ÀÏ¹İ ¸ÊµéÀÇ pre-render ´Â ¿ÜºÎ¿¡¼­ °¡ÇÑ ÀÌ¹ÌÁö¸¦ »ç¿ëÇÏ°Ô µÉ °Í. ±âº» ·Îµù È­¸é ¿¬Àå Â÷¿ø¿¡¼­
+				InSpecifiedImage ? InSpecifiedImage : // è¤è§’æƒ‘ è€é¦† ç”˜ç”¸ç‹¼ pre-render ç»° å¯‡ä½•ä¿Šè¾‘ å•ŠèŒ„ æå›ºç˜¤ç”« è¤ä¾©çªéœ¸ çª å·´. æ‰å¤¯ è‚ºçˆ¹ æ‹³æ æ¥·å˜ ç’ç›”ä¿Šè¾‘
 				(
 					(PreLoadingType == EPreLoadingScreenType::PLST_PreRender_First) ? 
 					GetCurrentFirsPreRenderImage() : DefaultPreRenderImagePtr.LoadSynchronous()
@@ -153,14 +155,14 @@ void UB2PreLoadingScreen::SetPreLoadingType(EPreLoadingScreenType InType, UTextu
 			if (PreLoadingType == EPreLoadingScreenType::PLST_PreRender_First)
 			{
 				LastFPRImageRotateTickTime = FPlatformTime::Seconds();
-				TimeSinceFPRImageRotate = 0.0; // ·ÎÅ×ÀÌ¼Ç ÃÊ±âÈ­
+				TimeSinceFPRImageRotate = 0.0; // è‚ºæŠ›æè®° æª¬æ‰æ‹³
 			}
 		}
-		// Á» ±æ¾îÁ®¼­ ¾È³»¹®±¸µµ ½½Â½.. 
+		// ç²± è¾¨ç»¢å»‰è¾‘ æ•‘éƒ´å·©å¤‡æ¡£ æµ‡é™†.. 
 		if (TB_PreRenderInfo.IsValid())
 		{
 			TB_PreRenderInfo->SetVisibility(ESlateVisibility::HitTestInvisible);
-			// ±âº» ¼Â¾÷ º¯°æÇØ¼­ »ç¿ëÇÏ°í ½ÍÀ¸¸é µû·Î Äİ.
+			// æ‰å¤¯ æ‚¸è¯€ å‡½ç‰ˆç§¦è¾‘ è¤ä¾©çªç»Š é…µæ æ è¶è‚º å¦®.
 			SetupPreRenderProgress((PreLoadingType == EPreLoadingScreenType::PLST_PreRender_First), 
 				false, (PreLoadingType == EPreLoadingScreenType::PLST_PreRender_First));
 		}
@@ -176,7 +178,7 @@ void UB2PreLoadingScreen::SetPreLoadingType(EPreLoadingScreenType InType, UTextu
 		}
 	}
 	else
-	//if (PreLoadingType == EPreLoadingScreenType::PLST_StageBegin) ³ª¸ÓÁö Type ¿¡ µû¸¥ ±¸ºĞÀº ¾ÆÁ÷.
+	//if (PreLoadingType == EPreLoadingScreenType::PLST_StageBegin) å”±èµ£ç˜¤ Type ä¿Š è¶å¼— å¤‡ç›’ç¯® é…’æµ.
 	{
 		if (TB_BottomText.IsValid())
 		{
@@ -185,7 +187,7 @@ void UB2PreLoadingScreen::SetPreLoadingType(EPreLoadingScreenType InType, UTextu
 
 		if (Image_BG.IsValid())
 		{
-			// ¿ÜºÎ¿¡¼­ ÁØ °Ô ¾øÀ¸¸é ÀÌÂÊÀÇ ±âº» ÀÌ¹ÌÁö ·Îµù.
+			// å¯‡ä½•ä¿Šè¾‘ éœ– éœ¸ ç»æ æ æç‡ç‹¼ æ‰å¤¯ æå›ºç˜¤ è‚ºçˆ¹.
 			UTexture2D* FinalImage = InSpecifiedImage ? InSpecifiedImage : DefaultLoadingImagePtr.LoadSynchronous();
 			Image_BG->SetBrushFromTexture(FinalImage);
 		}
@@ -221,12 +223,12 @@ void UB2PreLoadingScreen::SetupPreRenderProgress(bool bIsForFistPreRenderGM, boo
 		PreRenderProgressTextState.BasicInfoText = BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("PreLoadingText_PreRender"));
 	}
 
-	// ÁøÇàµµ´Â ÅØ½ºÆ®³ª ÇÁ·Î±×·¹½º¹Ù µÑ ¸ğµÎ È¤Àº ¼±ÅÃÀûÀ¸·Î..
+	// æŸ³é’æ¡£ç»° å’†èƒ¶é£˜å”± æ©‡è‚ºå¼Šé¥­èƒ¶å®˜ ç¬› è‘›æ»´ è¶£ç¯® æ€¥ç¶åˆ©æ è‚º..
 	PreRenderProgressTextState.bDisplayProgressText = bDisplayProgressText;
 	bDisplayPreRenderProgressBar = bDisplayProgressBar;
 	if (bDisplayPreRenderProgressBar && PB_PreRenderProgress.IsValid()) 
 	{		
-		// ¿ë¼öÃ¶ ¼³Á¤Àº Àû´çÇÑ °É Ã£¾Æ¼­..
+		// ä¾©èæš æ±²æ²¥ç¯® åˆ©å¯¸èŒ„ å§ èŒ«é…’è¾‘..
 		PreRenderPBAnimatedValue.AnimType = EProgressAnimType::PRAT_SpringDamp;
 		PreRenderPBAnimatedValue.BaseSpeed = 0.4f;
 		PreRenderPBAnimatedValue.SpringConst = 100.0f;
@@ -236,7 +238,7 @@ void UB2PreLoadingScreen::SetupPreRenderProgress(bool bIsForFistPreRenderGM, boo
 		PB_PreRenderProgress->SetVisibility(ESlateVisibility::HitTestInvisible);
 	}
 
-	// Progress ¼ıÀÚ¸¦ Ç¥½ÃÇÏ°íÀÚ ÇÏ´Â °æ¿ì ÀÌÈÄ¿¡ ÁøÇàµµ Á¤º¸¸¦ Áö¼ÓÀûÀ¸·Î °»½ÅÇØ ÁÖ¾î¾ß ÇÑ´Ù.
+	// Progress ç®­ç£Šç”« é’çŸ«çªç»Šç£Š çªç»° ç‰ˆå¿« æé¥¶ä¿Š æŸ³é’æ¡£ æ²¥ç„Šç”« ç˜¤åŠ åˆ©æ è‚º ç›è„šç§¦ æ—ç»¢å…· èŒ„ä¿ƒ.
 	PreRenderProgressTextState.CurrentProgressScale = 0.0f;
 	PreRenderProgressTextState.ResetAnimState();
 
@@ -266,7 +268,7 @@ void UB2PreLoadingScreen::ApplyCurrentPreRenderProgressText()
 		{
 			ThisAnimPiece->SetVisibility(
 				(PreRenderProgressTextState.bAnimatedTextInSeparatedWidget && TAI < PreRenderProgressTextState.GetCurrentAnimateState()) 
-				// Collapse ¸¦ ½ÃÅ°¸é ±âº» ÅØ½ºÆ®ÀÇ Á¤·Ä »óÅÂ°¡ Èğ¾îÁú ¼ö ÀÖÀ¸´Ï hidden À¸·Î.
+				// Collapse ç”« çŸ«è™æ æ‰å¤¯ å’†èƒ¶é£˜ç‹¼ æ²¥çºº æƒ‘æ€•å•Š ç‘ç»¢é¾™ è ä¹æ èª hidden æ è‚º.
 				? ESlateVisibility::HitTestInvisible : ESlateVisibility::Hidden
 			);
 		}
@@ -276,7 +278,7 @@ void UB2PreLoadingScreen::ApplyCurrentPreRenderProgressText()
 void UB2PreLoadingScreen::ApplyCurrentPreRenderProgressBar()
 {
 	if (bDisplayPreRenderProgressBar && PB_PreRenderProgress.IsValid())
-	{ // ProgressAnimateUtil ¿¡¼­ »ìÂ¦ ¾Ö´Ï¸ŞÀÌÆ® µÈ ÁøÇàµµ °ªÀ¸·Î progress bar ¿¡ ¼¼ÆÃ
+	{ // ProgressAnimateUtil ä¿Šè¾‘ æ··å¨„ å±€èªçš‹æé£˜ ç­‰ æŸ³é’æ¡£ è”¼æ è‚º progress bar ä¿Š æŠ€æ³¼
 		PB_PreRenderProgress->SetPercent(FMath::Clamp(PreRenderPBAnimatedValue.GetCurrentAnimatedPercent(), 0.0f, 1.0f));
 	}
 }
@@ -286,12 +288,12 @@ void UB2PreLoadingScreen::UpdateForFirstPreRenderImage(float InDeltaTime)
 	check(PreLoadingType == EPreLoadingScreenType::PLST_PreRender_First);
 		
 	ABladeIIGameMode* B2GM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(this));
-	check(B2GM && B2GM->GetB2GameModeType() == EB2GameMode::PreRender); // »ç½Ç»ó »ç¿ëÃ³´Â Á¤ÇØÁ® ÀÖÁö·Õ
+	check(B2GM && B2GM->GetB2GameModeType() == EB2GameMode::PreRender); // è¤è§’æƒ‘ è¤ä¾©è´¸ç»° æ²¥ç§¦å»‰ ä¹ç˜¤æ°›
 	UB2GameInstance* B2GI = Cast<UB2GameInstance>(UGameplayStatics::GetGameInstance(this));
 	UB2LoadingImageInfo* LoadingImgInfo = B2GI ? B2GI->GetLoadingImageInfo() : StaticFindLoadingImageInfo();
 	
-	// ¿©±â·Î ³Ñ¾î¿À´Â DeltaTime ÀÌ World time delation Àº ¸ÔÁö ¾Ê´õ¶óµµ ¾Æ¸¶ ÀÏÁ¤ °ªÀ¸·Î Å¬·¥ÇÁ´Â µÉ ²«µ¥..
-	// Ã¹ PreRender ´Â Áß°£Áß°£ Å« ´ÜÀ§ ·ÎµùÀ¸·Î ÀÎÇØ ½ÇÁ¦ Èå¸¥ ½Ã°£°ú DeltaTime °úÀÇ Â÷ÀÌ°¡ Å¬ °ÍÀÌ´Ù. µû¶ó¼­ FPlatformTime À» »ç¿ë.
+	// å’¯æ‰è‚º é€ç»¢å·ç»° DeltaTime æ World time delation ç¯® å†ˆç˜¤ è‡¼æ­¹æ‰¼æ¡£ é…’ä»˜ è€æ²¥ è”¼æ è‚º åŠªä¼æ©‡ç»° çª æå•..
+	// éœ‰ PreRender ç»° ååŸƒååŸƒ å¥´ çªœå›° è‚ºçˆ¹æ è‚º ç‰¢ç§¦ è§’åŠ› å„’å¼— çŸ«åŸƒè‹ DeltaTime è‹ç‹¼ ç’æå•Š åŠª å·´æä¿ƒ. è¶æ‰¼è¾‘ FPlatformTime é˜‘ è¤ä¾©.
 
 	TimeSinceFPRImageRotate += (FPlatformTime::Seconds() - LastFPRImageRotateTickTime);
 	LastFPRImageRotateTickTime = FPlatformTime::Seconds();
@@ -300,7 +302,7 @@ void UB2PreLoadingScreen::UpdateForFirstPreRenderImage(float InDeltaTime)
 	{
 		const int32 TotalImageNum = LoadingImgInfo->GetLoadingImageNum(EB2GameMode::PreRender);
 
-		// ÀÌ¹ÌÁö ·ÎÅ×ÀÌÆ®.
+		// æå›ºç˜¤ è‚ºæŠ›æé£˜.
 		++FirstPreRenderImageIndex;
 		if (FirstPreRenderImageIndex >= TotalImageNum)
 		{
@@ -320,7 +322,7 @@ void UB2PreLoadingScreen::UpdateForFirstPreRenderImage(float InDeltaTime)
 UTexture2D* UB2PreLoadingScreen::GetCurrentFirsPreRenderImage()
 {
 	ABladeIIGameMode* B2GM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(this));
-	check(B2GM && B2GM->GetB2GameModeType() == EB2GameMode::PreRender); // »ç½Ç»ó »ç¿ëÃ³´Â Á¤ÇØÁ® ÀÖÁö·Õ
+	check(B2GM && B2GM->GetB2GameModeType() == EB2GameMode::PreRender); // è¤è§’æƒ‘ è¤ä¾©è´¸ç»° æ²¥ç§¦å»‰ ä¹ç˜¤æ°›
 	UB2GameInstance* B2GI = Cast<UB2GameInstance>(UGameplayStatics::GetGameInstance(this));
 	UB2LoadingImageInfo* LoadingImgInfo = B2GI ? B2GI->GetLoadingImageInfo() : StaticFindLoadingImageInfo();
 
@@ -328,5 +330,5 @@ UTexture2D* UB2PreLoadingScreen::GetCurrentFirsPreRenderImage()
 	{
 		return LoadingImgInfo->GetLoadingImageOfIndex(EB2GameMode::PreRender, FirstPreRenderImageIndex);
 	}
-	return DefaultPreRenderImagePtr.LoadSynchronous(); // ¹®Á¦ ÀÖÀ½ ÀÌ°Å¶óµµ.
+	return DefaultPreRenderImagePtr.LoadSynchronous(); // å·©åŠ› ä¹æ¾œ æèŠ­æ‰¼æ¡£.
 }

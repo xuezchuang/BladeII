@@ -1,9 +1,11 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 // Project BladeII, ACTION SQUARE
 
 #pragma once
 #include "BladeII.h"
 #include "GameFramework/WorldSettings.h"
+#include "Engine/EngineTypes.h"
+#include "Camera/PlayerCameraManager.h"
 #include "BladeIIWorldSettings.generated.h"
 
 /**
@@ -186,7 +188,7 @@ protected:
 	/** Set the stage difficulty level for various editor preview and play-in-editor (for other dev test too).
 	 * MonsterSpawnPool is affected by this setting. */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BladeII")
-	int32 EditorStageDifficulty;	// todo : Á¶¸¸°£ EStageDifficulty·Î º¯°æµÉ ¿¹Á¤ -> ÀÌ°Ç SpawnPool ÀÌ³ª StageEventDirector ¿Í´Â ´Ş¸® EStageDifficulty ·Î ¹Ù²Ù´Â µ¥¿¡ µû¸¥ ºÎ´ãÀº ¾ø´Ù. ¿øÇÑ´Ù¸é.
+	int32 EditorStageDifficulty;	// todo : ç‚¼çˆ¶åŸƒ EStageDifficultyè‚º å‡½ç‰ˆçª æŠ—æ²¥ -> ææ‰’ SpawnPool æå”± StageEventDirector å®¢ç»° å´”åºœ EStageDifficulty è‚º å®˜æ“ç»° å•ä¿Š è¶å¼— ä½•æ·¬ç¯® ç»ä¿ƒ. ç›”èŒ„ä¿ƒæ.
 
 	/** Set the scenario mode (the first try) flag for editor and development fallback.
 	 * StageEventDirector is affected by this setting. */
@@ -242,7 +244,7 @@ public:
 
 	///** To be back to player top-down camera with world default camera setting at any goddamn moment.
 	// * It will use default object value if DefaultPlayerCameraSettings override none. */
-	void ApplyDefaultPlayerCameraSetting(class ABladeIIPlayerController* InB2PC, float BlendTime = 0.0f, enum EViewTargetBlendFunction BlendFunc = VTBlend_Cubic, bool bNoSetViewTarget = false);
+	void ApplyDefaultPlayerCameraSetting(class ABladeIIPlayerController* InB2PC, float BlendTime = 0.0f, EViewTargetBlendFunction BlendFunc = VTBlend_Cubic, bool bNoSetViewTarget = false);
 
 	void ApplyDefaultPlayerCameraSettingForPlayerPawn(class ABladeIIPlayer* targetPlayer);
 

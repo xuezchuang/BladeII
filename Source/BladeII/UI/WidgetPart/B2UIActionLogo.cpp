@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIActionLogo.h"
 
 #include "B2UIManager.h"
@@ -48,7 +48,7 @@ void UB2UIActionLogo::Init()
 #endif
 }
 
-//[@AKI, 170927][FIXME]Main Thread¿¡¼­ È£ÃâµÇ´Â Çö»óÀÌ ÀÖ¾î ÀÓ½Ã ¹æÆíÀ¸·Î º¯°æ ÇÔ.
+//[@AKI, 170927][FIXME]Main Threadä¿Šè¾‘ é¾‹å…ç™»ç»° æ³…æƒ‘æ ä¹ç»¢ çƒ™çŸ« è§„ç¥ˆæ è‚º å‡½ç‰ˆ çªƒ.
 void UB2UIActionLogo::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
 {
 	Super::NativeTick(MyGeometry, InDeltaTime);

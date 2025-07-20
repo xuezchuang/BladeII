@@ -48,14 +48,14 @@ void UB2LobbyUI_ItemLevelupMain::StartFromLobby(class UB2UIManager_Lobby* InUIMa
 {
 	Super::StartFromLobby(InUIManager, InGM);
 	
-	// ´Ü¼øÈ÷ ¾ÆÀÌÅÛ Á¤º¸¸¸ ¾ò¾î¿À·Á¸é Inventory ÀÎ½ºÅÏ½º ¾øÀÌ static À¸·Î ¾ò¾î¿Ã ¼ö ÀÖÀ¸³ª ·¹º§¾÷ ±â´ÉÀº ÀÎº¥Åä¸®°¡ ¶° ÀÖ´Â »óÅÂ¿¡¼­ µ¿ÀÛ.
+	// çªœé‰´æ´’ é…’æè¢ æ²¥ç„Šçˆ¶ æ˜ç»¢å·å¦¨æ Inventory ç‰¢èƒ¶ç•”èƒ¶ ç»æ static æ è‚º æ˜ç»¢æ£µ è ä¹æ å”± é¥­éª‡è¯€ æ‰ç“·ç¯® ç‰¢äº¥é…åºœå•Š æ ‹ ä¹ç»° æƒ‘æ€•ä¿Šè¾‘ æ‚¼ç´¯.
 	CachedInventory = CachedLobbyGM->GetLobbyInventory();
 	check(CachedInventory);
 
-	// ÀÌ ½ÃÁ¡¿¡ Inventory ÀÇ TargetItemID ´Â ¼¼ÆÃµÇ¾î ÀÖ¾î¾ß ÇÔ. (UB2LobbyInventory::EnterItemOpMode)
+	// æ çŸ«ç—¢ä¿Š Inventory ç‹¼ TargetItemID ç»° æŠ€æ³¼ç™»ç»¢ ä¹ç»¢å…· çªƒ. (UB2LobbyInventory::EnterItemOpMode)
 	if (!CachedInventory->GetItemOPTargetItemData(NativeTargetItem) || CachedInventory->GetItemOpMode() != ELobbyInvenItemOpMode::EIVIOP_Levelup)
 	{
-		CloseAndQuitItemOpMode(); // ¸¸¿¡ ÇÏ³ª ½ÇÆĞÇÑ´Ù¸é.. ¾îÂ¿ ¼ö ¾øÁö.
+		CloseAndQuitItemOpMode(); // çˆ¶ä¿Š çªå”± è§’è©èŒ„ä¿ƒæ.. ç»¢é©´ è ç»ç˜¤.
 		return;
 	}
 
@@ -66,12 +66,12 @@ void UB2LobbyUI_ItemLevelupMain::StartFromLobby(class UB2UIManager_Lobby* InUIMa
 	UpdateDynamicTexts();
 	UpdateItemLevelupCommitBtnState();
 
-	LevelExpProgressAnim.SyncToTargetValues(); // Å¸°Ù°ªµéÀº UpdatePostItemLevelupExpValues ¿¡¼­ µé¾î°¡ ÀÖÀ» °Í.
+	LevelExpProgressAnim.SyncToTargetValues(); // é¸¥ç™¾è”¼ç”¸ç¯® UpdatePostItemLevelupExpValues ä¿Šè¾‘ ç”¸ç»¢å•Š ä¹é˜‘ å·´.
 
 	if (EnhUpgCommonNRef)
 	{
 		EnhUpgCommonNRef->StartFromLobby(InUIManager, InGM);
-		EnhUpgCommonNRef->SetItemOpTargetData(NativeTargetItem, true); // Enhancement mode ·Î.
+		EnhUpgCommonNRef->SetItemOpTargetData(NativeTargetItem, true); // Enhancement mode è‚º.
 	}
 
 	LevelExpProgressAnim.OnLevelChanged.AddUObject(this, &UB2LobbyUI_ItemLevelupMain::OnUpdateProgressLevel);
@@ -80,7 +80,7 @@ void UB2LobbyUI_ItemLevelupMain::StartFromLobby(class UB2UIManager_Lobby* InUIMa
 
 void UB2LobbyUI_ItemLevelupMain::UpdateOnLevelupStateChange()
 {
-	UpdateStaticTexts(); // ·¹º§¾÷ ¸Ş´º ¿Ï·á Àü¿¡ ¹Ù·Î °á°ú È®ÀÎ Â÷ StaticText µµ ¾÷µ¥ÀÌÆ® ÇÏ´Â °Çµ¥, ±»ÀÌ ÇÊ¿ä¾ø¾î¾ß ÇÒ ÄÚµåÀÌÁö¸¸ ÀÖ¾î¼­ Å«ÀÏ ³¯ °Íµµ ¾øÀ½.
+	UpdateStaticTexts(); // é¥­éª‡è¯€ çš‹æ˜¥ è‚¯ä¸° å‚ˆä¿Š å®˜è‚º æ¬è‹ çŠ¬ç‰¢ ç’ StaticText æ¡£ è¯€å•æé£˜ çªç»° æ‰’å•, è¢«æ é˜å¤¸ç»ç»¢å…· ä¸” å†…é›æç˜¤çˆ¶ ä¹ç»¢è¾‘ å¥´è€ æœ å·´æ¡£ ç»æ¾œ.
 	UpdatePostItemLevelupExpValues();
 	UpdateDynamicTexts();
 	UpdateLevelupIngredientItemIcons();
@@ -119,8 +119,8 @@ void UB2LobbyUI_ItemLevelupMain::UpdateStaticTexts()
 
 void UB2LobbyUI_ItemLevelupMain::UpdateDynamicTexts()
 {
-	// ·¹º§ÀÌ¶û Exp ´Â ¾Ö´Ï¸ŞÀÌ¼Ç ¶§¹®¿¡ ¿©±â ¸»°í ¸Å Æ½ ¾÷µ¥ÀÌÆ®.
-	if (TB_EnhanceCostNum.IsValid()) // ·¹º§¾÷ Àç·á °³¼ö µû¶ó ·¹º§¾÷ ºñ¿ëÀÌ ¹Ù²ñ.
+	// é¥­éª‡æå°” Exp ç»° å±€èªçš‹æè®° é”­å·©ä¿Š å’¯æ‰ å¯Œç»Š æ¦‚ å¹³ è¯€å•æé£˜.
+	if (TB_EnhanceCostNum.IsValid()) // é¥­éª‡è¯€ çŠä¸° ä¿ºè è¶æ‰¼ é¥­éª‡è¯€ åšä¾©æ å®˜æŸ´.
 	{
 		FText CostText;
 		int32 NeedCost = CachedInventory->GetCurrentItemOpGoldCost();
@@ -161,7 +161,7 @@ void UB2LobbyUI_ItemLevelupMain::UpdateLevelupIngredientItemIcons()
 	if (TB_SelectEnhanceItemText.IsValid())
 		TB_SelectEnhanceItemText->SetVisibility(AllIngredIDs.Num() > 0 ? ESlateVisibility::Collapsed : ESlateVisibility::SelfHitTestInvisible);
 	
-	// ±âÁ¸¿¡ »ı¼ºµÈ°Å´Â Àç»ç¿ë~
+	// æ‰ç²®ä¿Š ç§¯å·±ç­‰èŠ­ç»° çŠè¤ä¾©~
 	for(int32 II = 0; II < CreatedIngredientItemIcons.Num(); ++II)
 	{
 		UB2DynItemIcon_EnhanceIngred* CurrElem = CreatedIngredientItemIcons[II];
@@ -177,7 +177,7 @@ void UB2LobbyUI_ItemLevelupMain::UpdateLevelupIngredientItemIcons()
 			ESlateVisibility Visibilty = CurrElem->GetVisibility();
 			if(Visibilty == ESlateVisibility::Collapsed)
 				CurrElem->SetVisibility(ESlateVisibility::Visible);
-			CurrElem->UpdateItemData(ThisIngred); // °³º° ¾ÆÀÌÅÛ Á¤º¸¸¦ ³Ñ°ÜÁØ´Ù.
+			CurrElem->UpdateItemData(ThisIngred); // ä¿ºå–Š é…’æè¢ æ²¥ç„Šç”« é€è´¥éœ–ä¿ƒ.
 		}
 		else
 		{
@@ -185,7 +185,7 @@ void UB2LobbyUI_ItemLevelupMain::UpdateLevelupIngredientItemIcons()
 		}
 	}
 
-	// »õ·Î Ãß°¡µÈ°Í¸¸ »õ·Î ¸¸µç..
+	// è´§è‚º çœ å•Šç­‰å·´çˆ¶ è´§è‚º çˆ¶ç”µ..
 	for (int32 II = CreatedIngredientItemIcons.Num(); II < AllIngredIDs.Num(); ++II)
 	{
 		FB2Item ThisIngred;
@@ -195,7 +195,7 @@ void UB2LobbyUI_ItemLevelupMain::UpdateLevelupIngredientItemIcons()
 		UB2DynItemIcon_EnhanceIngred* NewItemIcon = CreateItemIcon();
 		if (NewItemIcon)
 		{
-			NewItemIcon->UpdateItemData(ThisIngred); // °³º° ¾ÆÀÌÅÛ Á¤º¸¸¦ ³Ñ°ÜÁØ´Ù.
+			NewItemIcon->UpdateItemData(ThisIngred); // ä¿ºå–Š é…’æè¢ æ²¥ç„Šç”« é€è´¥éœ–ä¿ƒ.
 			//NewItemIcon->SetupManualScrollBoxSender_byReceiver(this, SB_EnhanceIngredIcons.Get());
 			CreatedIngredientItemIcons.Add(NewItemIcon);
 		}
@@ -223,7 +223,7 @@ UB2DynItemIcon_EnhanceIngred* UB2LobbyUI_ItemLevelupMain::CreateItemIcon()
 	UScaleBoxSlot* AddedSBSlot = Cast<UScaleBoxSlot>(OuterSB->AddChild(CreatedWidget));
 	if (AddedSBSlot)
 	{
-		CreatedWidget->SetDynCreatedDummyParent(OuterSB); // CreatedWidget À» Á¦°ÅÇÒ ¶§ OuterSB µµ °°ÀÌ Á¦°ÅµÇµµ·Ï µî·Ï.
+		CreatedWidget->SetDynCreatedDummyParent(OuterSB); // CreatedWidget é˜‘ åŠ›èŠ­ä¸” é”­ OuterSB æ¡£ éæ åŠ›èŠ­ç™»æ¡£åºŸ æ®¿åºŸ.
 	}
 
 	UScrollBoxSlot* AddedCPSlot = Cast<UScrollBoxSlot>(SB_EnhanceIngredIcons->AddChild(OuterSB));
@@ -243,8 +243,8 @@ void UB2LobbyUI_ItemLevelupMain::UpdatePostItemLevelupExpValues()
 		CachedInventory->GetAllSelectedItemOpIngreds(AllIngredsData);
 	}
 	float PostExp = NativeTargetItem.Exp;
-	PostItemLevel = GetLevel_PreviewItemLevelup(PostExp, NativeTargetItem, AllIngredsData, true); // UI ¿¡ º¸¿©ÁÖ·Á¸é clamp µµ ÇØ¾ß°Ú´Ù ¤»
-	PostExp *= 0.01f; // 0 ~ 1 »çÀÌ·Î ½ºÄÉÀÏ¸µ.
+	PostItemLevel = GetLevel_PreviewItemLevelup(PostExp, NativeTargetItem, AllIngredsData, true); // UI ä¿Š ç„Šå’¯æ—å¦¨æ clamp æ¡£ ç§¦å…·æ‘†ä¿ƒ ã›
+	PostExp *= 0.01f; // 0 ~ 1 è¤æè‚º èƒ¶çº³è€å‚….
 
 	LevelExpProgressAnim.ApplyCustomTimerTick(this);
 	LevelExpProgressAnim.SetTargetValues(PostItemLevel, PostExp, false);
@@ -252,7 +252,7 @@ void UB2LobbyUI_ItemLevelupMain::UpdatePostItemLevelupExpValues()
 
 void UB2LobbyUI_ItemLevelupMain::UpdatePostItemLevelupOptionStatTexts()
 {
-	// °øÅë ÆÄÆ®·Î
+	// å‚çƒ¹ é¢‡é£˜è‚º
 	if (EnhUpgCommonNRef)
 	{
 		EnhUpgCommonNRef->UpdateOptionStatTexts();
@@ -265,7 +265,7 @@ void UB2LobbyUI_ItemLevelupMain::UpdateItemLevelupCommitBtnState()
 	{
 		BTN_EnhanceCommit->SetIsEnabled(
 			CachedInventory && CachedInventory->GetCurrentSelectIngredItemNum() > 0
-			// µ·µµ Ã¼Å©ÇØ¾ß ÇÔ. -> Ã¼Å©ÇÏÁö ¾Ê´Â´Ù. Å¬¸¯Àº °¡´ÉÇÏµµ·Ï ÇØ¼­ »ç¿ëÀÚ ÇöÁúÀ» À¯µµÇÑ´Ù.
+			// æ£æ¡£ çœ‰å†œç§¦å…· çªƒ. -> çœ‰å†œçªç˜¤ è‡¼ç»°ä¿ƒ. åŠªè…ç¯® å•Šç“·çªæ¡£åºŸ ç§¦è¾‘ è¤ä¾©ç£Š æ³…é¾™é˜‘ èœ¡æ¡£èŒ„ä¿ƒ.
 			// && CachedInventory->CanAffordCurrentItemOp()
 			);
 	}
@@ -283,7 +283,7 @@ void UB2LobbyUI_ItemLevelupMain::OnUpdateProgressLevel(int32 CurrentLevel)
 
 void UB2LobbyUI_ItemLevelupMain::OnUpdateProgressPercent(float CurrentPercent)
 {
-	// ÃÖ´ë ·¹º§¿¡¼± ¸¸¶¥ Ã¤¿öÁÖ±â
+	// å¼¥æª é¥­éª‡ä¿Šæ€¥ çˆ¶é¡¶ ç›²å†µæ—æ‰
 	const bool bAtMaxLevel = (LevelExpProgressAnim.GetCurrentAnimatedLevel() == NativeTargetItem.MaxLevel);
 	
 	if (PB_EnhanceExpProgress.IsValid())
@@ -303,7 +303,7 @@ void UB2LobbyUI_ItemLevelupMain::DestroySelf()
 {
 	Super::DestroySelf();
 
-	// °øÅë ÆÄÆ® Á¦°Å
+	// å‚çƒ¹ é¢‡é£˜ åŠ›èŠ­
 	if (EnhUpgCommonNRef)
 	{
 		EnhUpgCommonNRef->DestroySelf();
@@ -321,13 +321,13 @@ void UB2LobbyUI_ItemLevelupMain::DestroySelf()
 void UB2LobbyUI_ItemLevelupMain::OnEnhanceCommit()
 {
 	if (CachedInventory && !CachedInventory->CanAffordCurrentItemOp())
-	{ // °ñµå ºÎÁ·ÀÇ °æ¿ì ¿©±æ Å¬¸¯ÇÒ ¼ö´Â ÀÖÀ¸³ª ½ÇÁ¦ ½ÃÀÛÀº ¾ÈÇÏ°í »ç¿ëÀÚ ÇöÁúÀ» À¯µµ
+	{ // æ¦œé› ä½•ç»ƒç‹¼ ç‰ˆå¿« å’¯è¾¨ åŠªè…ä¸” èç»° ä¹æ å”± è§’åŠ› çŸ«ç´¯ç¯® æ•‘çªç»Š è¤ä¾©ç£Š æ³…é¾™é˜‘ èœ¡æ¡£
 		ShortageMGR->PopupGoToShopForGoldMessage();
 	}
 	else
-	{ // ·¹º§¾÷ °¡´ÉÇÏ´Ù°í ÆÇ´ÜµÈ °æ¿ì
+	{ // é¥­éª‡è¯€ å•Šç“·çªä¿ƒç»Š é­„çªœç­‰ ç‰ˆå¿«
 
-		// ¾Ö´Ï¸ŞÀÌ¼Ç ½ÅÈ£¸¸ º¸³»°í ¹Ù·Î ½ÃÀÛÇÏÁö´Â ¾Ê´Â´Ù.
+		// å±€èªçš‹æè®° è„šé¾‹çˆ¶ ç„Šéƒ´ç»Š å®˜è‚º çŸ«ç´¯çªç˜¤ç»° è‡¼ç»°ä¿ƒ.
 		BeginEnhanceCommitAnim();
 		if (EnhUpgCommonNRef)
 		{
@@ -335,12 +335,12 @@ void UB2LobbyUI_ItemLevelupMain::OnEnhanceCommit()
 		}
 
 		if (CachedInventory)
-		{// ¿¬ÃâµÇ´Â µ¿¾È ¿©ÀüÈ÷ Àç·á ¼±ÅÃ µîÀ» ÇÏ°Ô µÉ ¼ö ÀÖ¾î¼­ ¸·´Â´Ù.
+		{// æ¥·å…ç™»ç»° æ‚¼æ•‘ å’¯å‚ˆæ´’ çŠä¸° æ€¥ç¶ æ®¿é˜‘ çªéœ¸ çª è ä¹ç»¢è¾‘ é˜œç»°ä¿ƒ.
 			CachedInventory->SetFreezeitemOpModeIngredSelection(true);
 		}
 		if (BTN_EnhanceCommit.IsValid())
 		{
-			BTN_EnhanceCommit->SetIsEnabled(false); // ¾êµµ °è¼Ó Å¬¸¯ÀÌ µÉ ¼ö ÀÖ¾î¼­ ¸·À½.
+			BTN_EnhanceCommit->SetIsEnabled(false); // å¨Ÿæ¡£ æ‹ŒåŠ  åŠªè…æ çª è ä¹ç»¢è¾‘ é˜œæ¾œ.
 		}
 
 		APlayerController* OwningPC = GetOwningPlayer();
@@ -355,10 +355,10 @@ void UB2LobbyUI_ItemLevelupMain::OnEnhanceCommit()
 	}
 }
 
-// Tutorial 400 ¾ÆÀÌÅÛ ·¹º§¾÷ Àü¿ë ProtocolÀ» »ç¿ëÇÏ´Â 
+// Tutorial 400 é…’æè¢ é¥­éª‡è¯€ å‚ˆä¾© Protocolé˜‘ è¤ä¾©çªç»° 
 TUTORIAL void UB2LobbyUI_ItemLevelupMain::Tutorial_FinalItemLevelUpCommit()
 {
-	// ¼­¹ö¿¡ Æ©Åä¸®¾ó Àü¿ë ProtocolÀ» ¹Ş±â Àü±îÁö´Â ÀÏ¹İ Protocol·Î
+	// è¾‘æ»šä¿Š è­¬é…åºœå€” å‚ˆä¾© Protocolé˜‘ ç½æ‰ å‚ˆé³–ç˜¤ç»° è€é¦† Protocolè‚º
 	LobbyReqItemLevelupWithCurrentSelectionClass<>::GetInstance().Signal();
 }
 
@@ -383,7 +383,7 @@ void UB2LobbyUI_ItemLevelupMain::OnCloseButtonPressed()
 }
 
 void UB2LobbyUI_ItemLevelupMain::CloseAndQuitItemOpMode()
-{// ¿©±â¼­ ¹Ù·Î ·¹º§¾÷Ã¢À» ´İ´Â ´ë½Å Inventory ÂÊÀ¸·Î ½ÅÈ£.
+{// å’¯æ‰è¾‘ å®˜è‚º é¥­éª‡è¯€èŠ’é˜‘ æ‘§ç»° æªè„š Inventory ç‡æ è‚º è„šé¾‹.
 	QuitItemOpModeClass<bool>::GetInstance().Signal(false);
 	UpdateLobbyInventoryControlClass<>::GetInstance().Signal();
 }
@@ -406,7 +406,7 @@ void UB2LobbyUI_ItemLevelupMain::FinalItemLevelupCommit()
 
 	else
 	{
-		// º»°İ µ¿ÀÛ. ÀÌÈÄ ¿¬ÃâÀÌ³ª °á°ú µîÀÇ flow ´Â ¼­¹ö ÀÀ´ä¿¡ µû¶ó º°µµ UI Ã¢¿¡¼­ ÁøÇà.
+		// å¤¯æ‹œ æ‚¼ç´¯. æé¥¶ æ¥·å…æå”± æ¬è‹ æ®¿ç‹¼ flow ç»° è¾‘æ»š è§ˆç¿ ä¿Š è¶æ‰¼ å–Šæ¡£ UI èŠ’ä¿Šè¾‘ æŸ³é’.
 		LobbyReqItemLevelupWithCurrentSelectionClass<>::GetInstance().Signal();
 	}
 }

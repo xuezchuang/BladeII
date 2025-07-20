@@ -1,17 +1,17 @@
-#pragma once
+ï»¿#pragma once
 #include "B2GameEnum.generated.h"
 
 //============================================
-// ¼­ºñ½º
+// è¾‘åšèƒ¶
 //============================================
 enum class EServiceState : uint8
 {
-	Serviced,			//Á¤»ó ¼­ºñ½ºÁß.
-	NotServiced,		//Á¡°Ë Áß.
-	ForcedAppUpdate,	//°­Á¦ ¾Û ¾÷µ¥ÀÌÆ® ÇÊ¿ä.
-	ForcedPatch,		//°­Á¦ ¸®¼Ò½º ¾÷µ¥ÀÌÆ® ÇÊ¿ä.
-	RecommendPatch,		//±ÇÀå ¸®¼Ò½º ¾÷µ¥ÀÌÆ® ÇÊ¿ä.
-	UnknownError,		//¾Ë¼ö¾ø´Â ¿¡·¯(ÁÖ·Î AGW Response ½ÇÆĞ).
+	Serviced,			//æ²¥æƒ‘ è¾‘åšèƒ¶å.
+	NotServiced,		//ç—¢å…« å.
+	ForcedAppUpdate,	//ç¢åŠ› èš è¯€å•æé£˜ é˜å¤¸.
+	ForcedPatch,		//ç¢åŠ› åºœå®¶èƒ¶ è¯€å•æé£˜ é˜å¤¸.
+	RecommendPatch,		//é¼»å˜ åºœå®¶èƒ¶ è¯€å•æé£˜ é˜å¤¸.
+	UnknownError,		//èˆ…èç»ç»° ä¿ŠçŸ¾(æ—è‚º AGW Response è§’è©).
 };
 
 UENUM(BlueprintType)
@@ -36,7 +36,7 @@ enum class EAccountType : uint8
 };
 
 //============================================
-// ¸¶ÄÏ, ÇÃ·¿Æû.
+// ä»˜å—, æ•²æˆ¿æ±½.
 //============================================
 UENUM(BlueprintType)
 enum class EMarketType : uint8

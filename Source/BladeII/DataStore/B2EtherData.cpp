@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2EtherData.h"
 //#include "BladeII.h"
 
@@ -30,31 +30,31 @@ FB2Ether::FB2Ether(const b2network::B2AetherServerInfoPtr ptr)
 	OwnerPCClass = SvrToCliPCClassType(ptr->character_type);
 	EnhanceLevel = ptr->level;
 	Star = ptr->grade;
-	//tier´Â ±âº» °ª ½ÇÁ¦´Â °è»êµÈ Æ¼¾î°ªÀ» »ç¿ëÇÑ´Ù
+	//tierëŠ” ê¸°ë³¸ ê°’ ì‹¤ì œëŠ” ê³„ì‚°ëœ í‹°ì–´ê°’ì„ ì‚¬ìš©í•œë‹¤
 	Tier = ptr->calc_tier;
 	MainOption.OptionType = SvrToCliOptionType(ptr->main_option_id);
 	MainOptionID = ptr->main_option_id;
-	//main_option_value ¾ÆÀÌÅÛÀÇ ±âº» ¸ŞÀÎ °ª »ç¿ë ÇÏÁö ¾Ê´Â´Ù
+	//main_option_value ì•„ì´í…œì˜ ê¸°ë³¸ ë©”ì¸ ê°’ ì‚¬ìš© í•˜ì§€ ì•ŠëŠ”ë‹¤
 	MainOption.RawOptionAmount = ptr->calc_main_option_value;
 
 	EItemOption ThisOptionType = SvrToCliOptionType(ptr->sub_option_id1);
 	if (ThisOptionType != EItemOption::EIO_End)
 	{
-		//sub_option_value1 ¸¶Âù°¡Áö·Î »ç¿ë ¾ÈÇÔ
+		//sub_option_value1 ë§ˆì°¬ê°€ì§€ë¡œ ì‚¬ìš© ì•ˆí•¨
 		SubOption.Add(FItemOption(ThisOptionType, ptr->calc_sub_option_value1));
 	}
 
 	ThisOptionType = SvrToCliOptionType(ptr->sub_option_id2);
 	if (ThisOptionType != EItemOption::EIO_End)
 	{
-		//sub_option_value2 ¸¶Âù°¡Áö·Î »ç¿ë ¾ÈÇÔ
+		//sub_option_value2 ë§ˆì°¬ê°€ì§€ë¡œ ì‚¬ìš© ì•ˆí•¨
 		SubOption.Add(FItemOption(ThisOptionType, ptr->calc_sub_option_value2));
 	}
 
 	ThisOptionType = SvrToCliOptionType(ptr->sub_option_id3);
 	if (ThisOptionType != EItemOption::EIO_End)
 	{
-		//sub_option_value3 ¸¶Âù°¡Áö·Î »ç¿ë ¾ÈÇÔ
+		//sub_option_value3 ë§ˆì°¬ê°€ì§€ë¡œ ì‚¬ìš© ì•ˆí•¨
 		SubOption.Add(FItemOption(ThisOptionType, ptr->calc_sub_option_value3));
 	}
 
@@ -64,11 +64,11 @@ FB2Ether::FB2Ether(const b2network::B2AetherServerInfoPtr ptr)
 	//b2network::B2mdAetherSetOptionInfoPtr SetOptionPtr = B2EtherManager::GetInstance().GetEtherSetOptionInfoPtrByType(Type, Tier);
 	//if (SetOptionPtr != nullptr)
 	//{
-	//	if (SetOptionPtr->min_apply_count == EtherSetCount::DEFENCE) //¹æ¾î ¼¼Æ®
+	//	if (SetOptionPtr->min_apply_count == EtherSetCount::DEFENCE) //ë°©ì–´ ì„¸íŠ¸
 	//	{
 	//		SetType = EtherSetType::DEFENCE;
 	//	}
-	//	else if (SetOptionPtr->min_apply_count == EtherSetCount::OFFENCE) // °ø°İ ¼¼Æ®
+	//	else if (SetOptionPtr->min_apply_count == EtherSetCount::OFFENCE) // ê³µê²© ì„¸íŠ¸
 	//	{
 	//		SetType = EtherSetType::OFFENCE;
 	//	}
@@ -117,10 +117,10 @@ void FB2EtherContainer::EquipEther(const FB2MountEtherPtr EtherPtr, const EPCCla
 	{
 		EquippedEthers.Add(PCClass, TMap<int64, FB2Ether>());
 	}
-	//¹şÀ»°Å ÀÖÀ¸¸é ¹ş°í
+	//ë²—ì„ê±° ìˆìœ¼ë©´ ë²—ê³ 
 	TakeOffEther(EtherPtr->unmounted_aether_ids, PCClass);
 
-	//ÀÔÈù´Ù
+	//ì…íŒë‹¤
 	for (int64 EtherID : EtherPtr->mounted_aether_ids)
 	{
 		if (StoredEthers.Contains(EtherID))
@@ -136,7 +136,7 @@ void FB2EtherContainer::EquipEther(const FB2MountEtherPtr EtherPtr, const EPCCla
 	//BladeIIGameImpl::GetLocalCharacterData().SetEtherSetID(PCClass, EtherPtr->selected_offense_set_option_id, EtherPtr->selected_defense_set_option_id);
 
 	////////////////////////////////////////////////////////////////////
-	////¾×¼Ç ÁöÇ¥ ·Î±× (¿¡Å×¸£ ÀåÂø)
+	////ì•¡ì…˜ ì§€í‘œ ë¡œê·¸ (ì—í…Œë¥´ ì¥ì°©)
 	//B2ActionLogSender Sender;
 	//Sender.setCategory(FString("CHARACTER"))
 	//	.setAction(FString("AEHTER_EQUIP"))
@@ -271,7 +271,7 @@ void FB2EtherContainer::SortStoredEthers()
 	{
 		Elem.Value.Sort([](const FB2Ether& A, const FB2Ether& B)
 		{
-			//´º > Àá±İ >º°µî±Ş > Æ¼¾î > Å¸ÀÔ(°ø°İÀÌ ¿ì¼±) > Æ÷Áö¼Ç > °­È­ ·¹º§ ¼ø
+			//ë‰´ > ì ê¸ˆ >ë³„ë“±ê¸‰ > í‹°ì–´ > íƒ€ì…(ê³µê²©ì´ ìš°ì„ ) > í¬ì§€ì…˜ > ê°•í™” ë ˆë²¨ ìˆœ
 			bool Result = false;
 			if (A.IsNew == true && B.IsNew == false)
 			{
@@ -368,7 +368,7 @@ void FB2EtherContainer::SetLock(int64 ID, bool InIsLock)
 
 void FB2EtherContainer::AllEtherNewFlagOff()
 {
-	//ÀåÂøÁßÀÎ ¿¡Å×¸£´Â ÀåÂø ÇÒ ¶§ new Áö¿ò
+	//ì¥ì°©ì¤‘ì¸ ì—í…Œë¥´ëŠ” ì¥ì°© í•  ë•Œ new ì§€ì›€
 	for (TPair<int64, FB2Ether>& Elem : StoredEthers)
 	{
 		Elem.Value.IsNew = false;
@@ -401,7 +401,7 @@ TArray<FB2Ether*>& FB2EtherContainer::GetScrollEther(int32 SetName)
 
 void FB2EtherContainer::GetFilterEtherID(TArray<int64>& OutFilterEtherID, TArray<int32>& StarFilter, TArray<int32>& TierFilter, bool IsEnhance)
 {
-	// Â÷·Ê´ë·Î ÇÊÅÍ Àû¿ë
+	// ì°¨ë¡€ëŒ€ë¡œ í•„í„° ì ìš©
 	TArray<FB2Ether> Result;
 	StoredEthers.GenerateValueArray(Result);
 

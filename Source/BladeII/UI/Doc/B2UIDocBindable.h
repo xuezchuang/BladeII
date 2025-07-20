@@ -4,6 +4,7 @@
 #pragma once
 #include "UObject/Object.h"
 #include "B2UIDocBase.h"
+#include "UMG.h"
 #include "B2UIDocBindable.generated.h"
 
 /* This interface represents a document that explicitly binds available. 

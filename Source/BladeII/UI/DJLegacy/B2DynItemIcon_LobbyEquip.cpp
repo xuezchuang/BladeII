@@ -5,6 +5,7 @@
 #include "B2ItemInfo.h"
 #include "BladeIIUtil.h"
 #include "B2UIUtil.h"
+#include "Event.h"
 
 UB2DynItemIcon_LobbyEquip::UB2DynItemIcon_LobbyEquip(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
@@ -67,7 +68,7 @@ void UB2DynItemIcon_LobbyEquip::UpdateItemData(const FB2Item& InItem)
 
 void UB2DynItemIcon_LobbyEquip::SetBackgroundImageFromGrade(int32 InItemGrade, bool bForConsumables)
 {
-	ensure(!bForConsumables); // ¸¸ÀÏ ÀÌ°Ô µé¾î¿Ô´Ù¸é ¼Ò¸ğÇ°À» ÀåÂøÇÏ·Á°í Çß´Ù±âº¸´Ü ¾Æ¸¶µµ ¹º°¡ ´õ¹Ì µ¥ÀÌÅÍ·Î Ç¥½ÃÇÏ·Á´Âµ¥ °ªÀÌ Àß¸ø ¼¼ÆÃµÇ¾î ÀÖ´Ù°Å³ª.. °Á ½Å°æ¾²Áö ¾Ê¾Ò´ø °ªÀÏ µí..?
+	ensure(!bForConsumables); // çˆ¶è€ æéœ¸ ç”¸ç»¢å­ä¿ƒæ å®¶è‘›å‰é˜‘ å˜é¦’çªå¦¨ç»Š æ²ä¿ƒæ‰ç„Šçªœ é…’ä»˜æ¡£ è´­å•Š æ­¹å›º å•æç£è‚º é’çŸ«çªå¦¨ç»°å• è”¼æ è‚‹ç»™ æŠ€æ³¼ç™»ç»¢ ä¹ä¿ƒèŠ­å”±.. å‚² è„šç‰ˆé™ç˜¤ è‡¼ç–½å¸¦ è”¼è€ æ·€..?
 
 	UB2ItemMiscInfo* ItemMiscInfo = StaticFindItemMiscInfo();
 	if (IMG_GradeBG.IsValid())
@@ -89,13 +90,13 @@ void UB2DynItemIcon_LobbyEquip::DestroySelf()
 
 void UB2DynItemIcon_LobbyEquip::UpdateStatIncSigns(FB2Item& CurrenEquipToCompare)
 {
-	if (EquipItemIconType == ELobbyEquipItemIconType::EEIIT_AutoEquipSuggest &&  // ÀåÂø±ÇÀå¿ë ¾ÆÀÌÄÜÀÎ °æ¿ì¿¡ ´ëÇØ¼­¸¸ ºñ±³ÇÏ´Â ÀÌ¹ÌÁö ¶ç¿ò.
-		NativeItemData.InstanceUID > 0 && NativeItemData.ItemRefID > 0 // ID µéÀÌ ¼¼ÆÃµÇ¾ú´ÂÁö È®ÀÎ Â÷¿ø¿¡¼­..
-		//CurrenEquipToCompare.EquipPlace == NativeItemData.EquipPlace && CurrenEquipToCompare.bCurrentlyEquipped // ½ÇÁ¦·Î °°Àº À§Ä¡¿¡ ÀåÂøµÇ¾î ÀÖ´Â °ÍÀÎÁö.. ´Â ºó °Í°ú ºñ±³ÇÒ ¼öµµ ÀÖÀ¸¹Ç·Î ±×³É µÎÀÚ.
+	if (EquipItemIconType == ELobbyEquipItemIconType::EEIIT_AutoEquipSuggest &&  // å˜é¦’é¼»å˜ä¾© é…’æèƒ½ç‰¢ ç‰ˆå¿«ä¿Š æªç§¦è¾‘çˆ¶ åšèƒŒçªç»° æå›ºç˜¤ å‰æ¡†.
+		NativeItemData.InstanceUID > 0 && NativeItemData.ItemRefID > 0 // ID ç”¸æ æŠ€æ³¼ç™»èŒç»°ç˜¤ çŠ¬ç‰¢ ç’ç›”ä¿Šè¾‘..
+		//CurrenEquipToCompare.EquipPlace == NativeItemData.EquipPlace && CurrenEquipToCompare.bCurrentlyEquipped // è§’åŠ›è‚º éç¯® å›°æ‘¹ä¿Š å˜é¦’ç™»ç»¢ ä¹ç»° å·´ç‰¢ç˜¤.. ç»° å å·´è‹ åšèƒŒä¸” èæ¡£ ä¹æ éª¨è‚º å¼Šæˆ æ»´ç£Š.
 		) 
 	{
 		int32 PrimPointInc = B2UIUtil::DifferenceItemPrimaryPoint(NativeItemData, CurrenEquipToCompare);
-		if (PrimPointInc > 0) // PrimPointInc °¡ 0 ÀÌÇÏ¶ó¸é ¹º°¡ Àß¸øµÈ °Å
+		if (PrimPointInc > 0) // PrimPointInc å•Š 0 æçªæ‰¼æ è´­å•Š è‚‹ç»™ç­‰ èŠ­
 		{
 			if (IMG_StatInc_NRef){ 
 				IMG_StatInc_NRef->SetVisibility(ESlateVisibility::HitTestInvisible);
@@ -119,7 +120,7 @@ void UB2DynItemIcon_LobbyEquip::SetEquipItemIconType(ELobbyEquipItemIconType InT
 		IMG_SelectFx->SetVisibility(InType == ELobbyEquipItemIconType::EEIIT_AutoEquipCurrent ? ESlateVisibility::Hidden : ESlateVisibility::Visible);
 
 	if (EquipItemIconType != ELobbyEquipItemIconType::EEIIT_AutoEquipSuggest)
-	{ // AutoEquipSuggest ¶ó¸é UpdateStatIncSigns ¸¦ ÅëÇØ ¼¼ÆÃÇØ ÁÖ¾î¾ß ÇÔ.
+	{ // AutoEquipSuggest æ‰¼æ UpdateStatIncSigns ç”« çƒ¹ç§¦ æŠ€æ³¼ç§¦ æ—ç»¢å…· çªƒ.
 		if (IMG_StatInc_NRef){
 			IMG_StatInc_NRef->SetVisibility(ESlateVisibility::Hidden);
 		}
@@ -133,16 +134,16 @@ void UB2DynItemIcon_LobbyEquip::SetEquipItemIconType(ELobbyEquipItemIconType InT
 
 void UB2DynItemIcon_LobbyEquip::OnDetailInfoButtonPressed()
 {
-	// ÇöÀç NativeItemData ¸¦ »ç¿ëÇØ¼­ ¼¼ºÎ Á¤º¸Ã¢ ÆË¾÷.
-	// UB2DynItemIcon_LobbyInven::OnDetailInfoButtonPressed °ú ¸¶Âù°¡Áö·Î..
+	// æ³…çŠ NativeItemData ç”« è¤ä¾©ç§¦è¾‘ æŠ€ä½• æ²¥ç„ŠèŠ’ æ‰‘è¯€.
+	// UB2DynItemIcon_LobbyInven::OnDetailInfoButtonPressed è‹ ä»˜è›®å•Šç˜¤è‚º..
 	OnClickDetailInfo.ExecuteIfBound();
 
 	if (EquipItemIconType != ELobbyEquipItemIconType::EEIIT_LobbyInven)
-	{ // ÀÚµ¿ ÀåÂø Ã¢ÀÌ¸é Ã³À½ºÎÅÍ ´­¸®Áö ¾Êµµ·Ï ÇÏ´Â°Ô ÁÁÀ» °Í.
+	{ // ç£Šæ‚¼ å˜é¦’ èŠ’ææ è´¸æ¾œä½•ç£ å–˜åºœç˜¤ è‡¼æ¡£åºŸ çªç»°éœ¸ äº®é˜‘ å·´.
 		return;
 	}
 
-	CreateLobbyItemDetailPopupCommon(GetOwningPlayer(), NativeItemData, true); // Equip ¿ëÀ¸·Î detail Ã¢ »ı¼º
+	CreateLobbyItemDetailPopupCommon(GetOwningPlayer(), NativeItemData, true); // Equip ä¾©æ è‚º detail èŠ’ ç§¯å·±
 }
 
 void UB2DynItemIcon_LobbyEquip::UpdateItemEquipSlotVisible(const bool& bIsVisibleCostumeSlot)

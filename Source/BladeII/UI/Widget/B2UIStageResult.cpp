@@ -1,4 +1,4 @@
-#include "B2UIStageResult.h"
+ï»¿#include "B2UIStageResult.h"
 #include "B2UIStageResultLevelUp.h"
 #include "B2UIManager.h"
 #include "B2UIDocHelper.h"
@@ -212,20 +212,20 @@ void UB2UIStageResult::Init()
 
 void UB2UIStageResult::BindDocAuto()
 {
-	//°æÇèÄ¡ ¿¬Ãâ
+	//ç‰ˆæ°°æ‘¹ æ¥·å…
 	if (GetWorld())
 	{
-		// ÀÌ°Ô World pause »óÅÂ¿¡¼­ »ç¿ëÇÏ±â À§ÇÑ °ÍÀÌ¹Ç·Î GetRealTimeSeconds ¸¦ ÇØ¾ß ÇÏ±á. ¾Æ·¡ UpdateExpPercent ºÎ¸£±â Àü¿¡ ÀÌ°Å ¸ÕÀú ¼¼ÆÃ.
+		// æéœ¸ World pause æƒ‘æ€•ä¿Šè¾‘ è¤ä¾©çªæ‰ å›°èŒ„ å·´æéª¨è‚º GetRealTimeSeconds ç”« ç§¦å…· çªè´¬. é…’è´° UpdateExpPercent ä½•ç¦æ‰ å‚ˆä¿Š æèŠ­ åˆšå† æŠ€æ³¼.
 		CachedWidgetStartTime = GetWorld()->GetRealTimeSeconds();
 	}
 
-	//µ¶¹èÆ²¿¡¼­ Ä³¸¯ÅÍ µ¥ÀÌÅÍ¸¦ °¡Á®¿Í¼­ Ã³¸®
+	//åˆ€ç¡…æ’‡ä¿Šè¾‘ æŸè…ç£ å•æç£ç”« å•Šå»‰å®¢è¾‘ è´¸åºœ
 	auto DocBattle = UB2UIDocHelper::GetDocBattle();
 	SetDoc(DocBattle);
 	if (DocBattle)
 	{
-		// ½ÇÁ¦ main À¸·Î ¼±ÅÃÇÑ Ä³¸¯ÅÍ°¡ ¾Æ´Ñ stage clear ½ÃÁ¡ÀÇ ÇöÀç Ä³¸¯ÅÍ¸¦ °¡Á®¿È.
-		// Exp bar Áõ°¡ ¾Ö´Ï¸ŞÀÌ¼Ç¿¡ ÇÊ¿äÇÑ º¯¼öµé ¼¼ÆÃ. Main/Sub ¼ø¼­´ë·Î
+		// è§’åŠ› main æ è‚º æ€¥ç¶èŒ„ æŸè…ç£å•Š é…’å›± stage clear çŸ«ç—¢ç‹¼ æ³…çŠ æŸè…ç£ç”« å•Šå»‰å’³.
+		// Exp bar åˆ˜å•Š å±€èªçš‹æè®°ä¿Š é˜å¤¸èŒ„ å‡½èç”¸ æŠ€æ³¼. Main/Sub é‰´è¾‘æªè‚º
 		FLocalCharacterData& CharacterDataStore = BladeIIGameImpl::GetClientDataStore().GetLocalCharacterData();
 
 		auto DocHeroMain = UB2UIDocHelper::GetDocHero(PCClassToInt(CharacterDataStore.GetMainPlayerClass()));
@@ -235,7 +235,7 @@ void UB2UIStageResult::BindDocAuto()
 			InitExpVarSet(EBV_MainPlayer, CharacterDataStore.GetMainPlayerClass());
 		}
 
-		// ½ÇÁ¦ sub ·Î ¼±ÅÃÇÑ Ä³¸¯ÅÍ°¡ ¾Æ´Ñ stage clear ½ÃÁ¡ÀÇ ÅÂ±× Ä³¸¯ÅÍ¸¦ °¡Á®¿È.
+		// è§’åŠ› sub è‚º æ€¥ç¶èŒ„ æŸè…ç£å•Š é…’å›± stage clear çŸ«ç—¢ç‹¼ æ€•å¼Š æŸè…ç£ç”« å•Šå»‰å’³.
 		auto DocHeroSub = UB2UIDocHelper::GetDocHero(PCClassToInt(CharacterDataStore.GetSubPlayerClass()));
 		if (DocHeroSub)
 		{
@@ -246,7 +246,7 @@ void UB2UIStageResult::BindDocAuto()
 		UpdateExpPercent(0.f);
 	}
 	
-	//µ¶¹èÆ²½ºÅ×ÀÌÁö¿¡¼­ Å¬¸®¾îÅ¸ÀÓÀ» Ã³¸®
+	//åˆ€ç¡…æ’‡èƒ¶æŠ›æç˜¤ä¿Šè¾‘ åŠªåºœç»¢é¸¥çƒ™é˜‘ è´¸åºœ
 	auto DocBattleStage = UB2UIDocHelper::GetDocBattleStage();
 	const int32 MultipleValue = DocBattleStage->GetStageClearMultipleValue();
 
@@ -254,13 +254,13 @@ void UB2UIStageResult::BindDocAuto()
 	{
 		SetStageClearGrade(DocBattleStage->GetStageClearConditions(), DocBattleStage->GetServerStageId());
 		SetClearTime(DocBattleStage->GetStagePlayTime());
-		// º¸¿©ÁÖ´Â ¼ø¼­´ë·Î
+		// ç„Šå’¯æ—ç»° é‰´è¾‘æªè‚º
 		SetDropItem(DocBattleStage->GetStageResultBossDropItemsList());
 		SetDropItem(DocBattleStage->GetStageClearEtherItemsList(), MultipleValue);
 		SetDropItem(DocBattleStage->GetStageClearMaterialItemsList(), MultipleValue);
 		SetDropItem(DocBattleStage->GetStageClearRewardItemList(), MultipleValue);
 
-		SetAcquiredGold(DocBattleStage->GetStageTotalGold()); // ½ºÅ×ÀÌÁö °á°úÃ¢ °ñµåÇ¥½Ã
+		SetAcquiredGold(DocBattleStage->GetStageTotalGold()); // èƒ¶æŠ›æç˜¤ æ¬è‹èŠ’ æ¦œé›é’çŸ«
 		SetSoldGold(DocBattleStage->GetStageSoldGold());
 
 		SetHotTimeBuff(DocBattleStage->GetEndGoldBuffRate(), DocBattleStage->GetEndExpBuffRate());
@@ -270,11 +270,11 @@ void UB2UIStageResult::BindDocAuto()
 
 	if (ExpIncreaseStartTime > 0.0f)
 	{
-		bExpIncreaseStarted = false; // ÀÌ°Íµµ ¸¶Âù°¡Áö·Î Å¸ÀÌ¸Ó°¡ ¸ÔÁö ¾ÊÀ¸¹Ç·Î CachedWidgetStartTime »ç¿ëÇØ¼­ µû·Î Ä«¿îÆ®ÇÒ °Í.
+		bExpIncreaseStarted = false; // æå·´æ¡£ ä»˜è›®å•Šç˜¤è‚º é¸¥æèµ£å•Š å†ˆç˜¤ è‡¼æ éª¨è‚º CachedWidgetStartTime è¤ä¾©ç§¦è¾‘ è¶è‚º å¢¨æ¬¾é£˜ä¸” å·´.
 	}
 	else
 	{
-		bExpIncreaseStarted = true; // ¹Ù·Î ½ÃÀÛ.
+		bExpIncreaseStarted = true; // å®˜è‚º çŸ«ç´¯.
 	}
 
 	CheckFinalStageDisableButton();
@@ -311,7 +311,7 @@ void UB2UIStageResult::UnbindDoc()
 		DocBattleStage->OnRepeatBattleCurrentOnChanged.RemoveAll(this);
 	}
 	if (UIP_RepeatBattleInGameInfoP.IsValid())
-	{ // ÀÌ ÆÄÆ®°¡ ¿©·¯ °÷¿¡¼­ »ç¿ëµÇ´Âµ¥ ½ºÅ×ÀÌÁö ¸¶Á÷¸·¿¡ ¾²ÀÏ ¶§¸¸ UnbindDoc À» ÇÑ´Ù.
+	{ // æ é¢‡é£˜å•Š å’¯çŸ¾ é•‘ä¿Šè¾‘ è¤ä¾©ç™»ç»°å• èƒ¶æŠ›æç˜¤ ä»˜æµé˜œä¿Š é™è€ é”­çˆ¶ UnbindDoc é˜‘ èŒ„ä¿ƒ.
 		UIP_RepeatBattleInGameInfoP->UnbindDoc();
 	}
 }
@@ -338,7 +338,7 @@ void UB2UIStageResult::SetStageClearGrade(const TArray<bool>& Grade, FServerStag
 			continue;
 		}
 
-		if (Grade[Index]) // ½ºÅ×ÀÌÁö Á¶°Ç ÃæÁ·ÇÑ´Ù¸é
+		if (Grade[Index]) // èƒ¶æŠ›æç˜¤ ç‚¼æ‰’ é¢ç»ƒèŒ„ä¿ƒæ
 		{
 			WS_ClearResultStar[Index]->SetActiveWidgetIndex(0);
 			++PassCount;
@@ -398,8 +398,8 @@ void UB2UIStageResult::SetDropItem(const TArray<FB2Item> DropItemData, int32 Mul
 	//for (const FB2Item& Elem : DropItemData)
 	//{
 	//	FB2Item RewardItem = Elem;
-	//	// ¿¹Àü¿£ °°Àº Àåºñ´Â °ãÃÄ¼­ º¸¿©ÁáÁö¸¸ ÀÌÁ¦ ºĞ¸®ÇØ¼­ º¸¿©ÁÖ±â¶§¹®¿¡
-	//	// ¾ÆÀÌÅÛ(Àåºñ)´Â Multiple Value(= 1 or 3¹è ¸ğµå)·Î °ñµå, º¸½ºÁ¶°¢, Àç·á¾ÆÀÌÅÛÀº ConsumingAmount·Î º¸¿©ÁØ´Ù
+	//	// æŠ—å‚ˆæµš éç¯® å˜åšç»° èˆ¬åªšè¾‘ ç„Šå’¯ç²ç˜¤çˆ¶ æåŠ› ç›’åºœç§¦è¾‘ ç„Šå’¯æ—æ‰é”­å·©ä¿Š
+	//	// é…’æè¢(å˜åš)ç»° Multiple Value(= 1 or 3ç¡… è‘›é›)è‚º æ¦œé›, ç„Šèƒ¶ç‚¼é˜¿, çŠä¸°é…’æè¢ç¯® ConsumingAmountè‚º ç„Šå’¯éœ–ä¿ƒ
 	//	bool bIsConsuming = IsGoldItem(RewardItem) || IsBossPieceItem(RewardItem) || IsMaterialItem(RewardItem);
 	//	RewardItem.ConsumingAmount = bIsConsuming ? FMath::Max(1, RewardItem.ConsumingAmount) : FMath::Max(1, MultipleValue);
 	//	RewardItemData.Add(RewardItem);
@@ -416,7 +416,7 @@ void UB2UIStageResult::SetDropItem(const TArray<FB2Item> DropItemData, int32 Mul
 	//		bool bInvisibleStar = IsGoldItem(RewardItemData[RI]) || IsBossPieceItem(RewardItemData[RI]) || IsMaterialItem(RewardItemData[RI]);
 	//		NewRewardItem->SetVisibleStar(bInvisibleStar ? ESlateVisibility::Collapsed : ESlateVisibility::HitTestInvisible);
 	//		NewRewardItem->SetVisibleStageInfoItemIcon(ESlateVisibility::Collapsed, false);
-	//		// ÀÌ SlotItem µéÀ» µé°í ÀÖ´Â ScrollBox ¿¡ ÀÔ·ÂÀ» º¸³»±â À§ÇÑ ¼Â¾÷
+	//		// æ SlotItem ç”¸é˜‘ ç”¸ç»Š ä¹ç»° ScrollBox ä¿Š æ¶ä»¿é˜‘ ç„Šéƒ´æ‰ å›°èŒ„ æ‚¸è¯€
 	//		NewRewardItem->SetupManualScrollBoxSender_byReceiver(this, SB_RewardItems.Get());
 	//	}
 	//}
@@ -495,7 +495,7 @@ void UB2UIStageResult::NativeTick(const FGeometry& MyGeometry, float InDeltaTime
 		UpdateExpPercent(InDeltaTime);
 	}
 
-	UpdateWidgetCustomTimer(); // ¿©±â·Î DeltaTime À» ³Ñ°ÜÁÖ´Â °Ç ÀÇ¹Ì°¡ ¾øÀ» µí. ÀÚÃ¼ Å¸ÀÌ¸Ó ¿î¿ë. ±×³ª¸¶ NativeTick ÀÌ ºÒ¸®´Â °Ô ´ÙÇà
+	UpdateWidgetCustomTimer(); // å’¯æ‰è‚º DeltaTime é˜‘ é€è´¥æ—ç»° æ‰’ ç‹¼å›ºå•Š ç»é˜‘ æ·€. ç£Šçœ‰ é¸¥æèµ£ æ¬¾ä¾©. å¼Šå”±ä»˜ NativeTick æ é˜‚åºœç»° éœ¸ ä¿ƒé’
 
 	UpdateMainCharLevel();
 	UpdateSubCharLevel();
@@ -504,15 +504,15 @@ void UB2UIStageResult::NativeTick(const FGeometry& MyGeometry, float InDeltaTime
 void UB2UIStageResult::OnOpenComplete()
 {
 	SetOpenState(EUIOpenState::Opened);
-	// ´ÜÁö UIWidgetOpenCompleteClass ÀÌº¥Æ® ½Ã±×³ÎÀ» ¿©±â¼­ ³¯¸®Áö ¾Ê±â À§ÇØ.
+	// çªœç˜¤ UIWidgetOpenCompleteClass æäº¥é£˜ çŸ«å¼Šæ¾„é˜‘ å’¯æ‰è¾‘ æœåºœç˜¤ è‡¼æ‰ å›°ç§¦.
 
-	//ÆË¾÷´İÀ»¶§ ¹öÆ° ´Ù½Ã È°¼ºÈ­
+	//æ‰‘è¯€æ‘§é˜‘é”­ æ»šç“¢ ä¿ƒçŸ« åŠå·±æ‹³
 	ToolTipCloseTicket = ToolTipCloseClass<>::GetInstance().Subscribe([this]() {
 			this->SetButtonRevitalize();
 	});
 
 	bShowMainQuestReward = IsShowMainQuestReward();
-	//ÀÏ´Ü ¹«Á¶°Ç ¹öÆ°Àº ¸·°í °æÇèÄ¡,Äù½ºÆ® µîµîÀÌ ÁøÇàµÈ ÀÌÈÄ¿¡ Ç®¾îÁØ´Ù.
+	//è€çªœ å…¬ç‚¼æ‰’ æ»šç“¢ç¯® é˜œç»Š ç‰ˆæ°°æ‘¹,æ¶…èƒ¶é£˜ æ®¿æ®¿æ æŸ³é’ç­‰ æé¥¶ä¿Š é’±ç»¢éœ–ä¿ƒ.
 	SetButtonClickable(false);
 }
 
@@ -526,7 +526,7 @@ void UB2UIStageResult::SetButtonClickable(bool bClickable)
 
 void UB2UIStageResult::CheckFinalStageDisableButton()
 {
-//	// ÃÖ´ë ½ºÅ×ÀÌÁö µµ´Ş ½Ã ´õ ¸ø °¡°Ô ¸·À½
+//	// å¼¥æª èƒ¶æŠ›æç˜¤ æ¡£å´” çŸ« æ­¹ ç»™ å•Šéœ¸ é˜œæ¾œ
 //	UB2StageInfo* StageInfoTable = StaticFindStageInfo();
 //	int32 FinalStageNum = StageInfoTable ? StageInfoTable->GetFinalClientStageId() : 0;
 //	int32 CurrStageID = AB2StageManager::GetCacheStageKeepEssentialData().GetCurrentClientStageId();
@@ -594,7 +594,7 @@ bool UB2UIStageResult::IsShowMainQuestReward()
 	return false;
 }
 
-// ·¹º§¾÷, ´ëÈ­, Äù½ºÆ® µîµî ¸ğµç Å¬¸®¾î °ü·Ã ¿¬Ãâ ÁøÇà»çÇ×ÀÌ ³¡³ª°í ÃÖÁ¾ÀûÀ¸·Î È£ÃâµÉ ÇÔ¼ö
+// é¥­éª‡è¯€, æªæ‹³, æ¶…èƒ¶é£˜ æ®¿æ®¿ è‘›ç”µ åŠªåºœç»¢ åŒ…è®¿ æ¥·å… æŸ³é’è¤äº²æ åœºå”±ç»Š å¼¥è¾†åˆ©æ è‚º é¾‹å…çª çªƒè
 void UB2UIStageResult::OnAllProcessEnd()
 {
 	if (TutorialManager::GetInstance().HasContentOpenTutorial())
@@ -646,16 +646,16 @@ void UB2UIStageResult::OnActualOpenComplete()
 
 	if (IsRepeatBattleOn())
 	{ 
-		//if (bShowMainQuestReward)	// ¹İº¹ÀüÅõ ÁßÀÌ¶óµµ MainQuest°¡ ¿ì¼±ÇÑ´Ù.
+		//if (bShowMainQuestReward)	// é¦†æ±—å‚ˆæ§ åææ‰¼æ¡£ MainQuestå•Š å¿«æ€¥èŒ„ä¿ƒ.
 		//{
-		//	CancelOrStopRepeatBattleClass<>::GetInstance().Signal(); // ¹İº¹ÀüÅõ Ãë¼Ò
+		//	CancelOrStopRepeatBattleClass<>::GetInstance().Signal(); // é¦†æ±—å‚ˆæ§ ç§’å®¶
 		//	CheckAndOpenLevelUpPart();
 		//}
 		//else
 		UB2UIDocBattleStage* DocBS = UB2UIDocHelper::GetDocBattleStage();
 		if ( DocBS )
 		{
-			// [¿¬¼ÓÀüÅõ] Áß ÄÁÅÙÃ÷¿ÀÇÂ Æ©Åä¸®¾óÀÌ Á¸ÀçÇÒ °æ¿ì, ¿¬¼ÓÀüÅõ ¸ØÃã
+			// [æ¥·åŠ å‚ˆæ§] å ç‰§åˆ¨æ˜å·é”¹ è­¬é…åºœå€”æ ç²®çŠä¸” ç‰ˆå¿«, æ¥·åŠ å‚ˆæ§ è‚›å‹‰
 			if ( DocBS->GetRepeatBattleLoopAll() && TutorialManager::GetInstance().HasContentOpenTutorial() )
 			{
 				CancelOrStopRepeatBattleClass<>::GetInstance().Signal();
@@ -663,13 +663,13 @@ void UB2UIStageResult::OnActualOpenComplete()
 				return;
 			}
 		
-			// [¹İº¹ÀüÅõ][¿¬¼ÓÀüÅõ] ÀÏ°æ¿ì, ·ÎºñÁøÀÔ(Ä³¸¯ÅÍ ¼±ÅÃ) ¾øÀÌ ÁøÇàÇÏ¹Ç·Î, Ä«¿îÆ®´Ù¿î µğ½ºÇÃ·¹ÀÌ¸¦ È°¼ºÈ­ ÇÑ´Ù
+			// [é¦†æ±—å‚ˆæ§][æ¥·åŠ å‚ˆæ§] è€ç‰ˆå¿«, è‚ºåšæŸ³æ¶(æŸè…ç£ æ€¥ç¶) ç»æ æŸ³é’çªéª¨è‚º, å¢¨æ¬¾é£˜ä¿ƒæ¬¾ å¼èƒ¶æ•²é¥­æç”« åŠå·±æ‹³ èŒ„ä¿ƒ
 			SetupOnRepeatBattleStateChange( true, true );
 		}
 	}
 	else
 	{
-		CheckAndOpenLevelUpPart(); // °á°ú UI ¿ÀÇÁ´×ÀÌ ³¡³­ ÀÌ ½ÃÁ¡¿¡¼­ ·¹º§¾÷ UI ¸¦ Ã¼Å©
+		CheckAndOpenLevelUpPart(); // æ¬è‹ UI å·æ©‡é†‹æ åœºæŠ„ æ çŸ«ç—¢ä¿Šè¾‘ é¥­éª‡è¯€ UI ç”« çœ‰å†œ
 	}
 }
 
@@ -683,7 +683,7 @@ void UB2UIStageResult::CloseWidgetDelegate()
 
 void UB2UIStageResult::InitExpVarSet(FExpProgressVars& ExpVarSet, EPCClass PCClass)
 {
-	//[@SameLine, 180612] explevelinfo doc, datastore -> datastore °³¼±
+	//[@SameLine, 180612] explevelinfo doc, datastore -> datastore ä¿ºæ€¥
 
 	FLocalCharacterData& CharacterDataStore = BladeIIGameImpl::GetClientDataStore().GetLocalCharacterData();
 
@@ -694,8 +694,8 @@ void UB2UIStageResult::InitExpVarSet(FExpProgressVars& ExpVarSet, EPCClass PCCla
 	const float StageClear_BeforeExpPercent = CharacterDataStore.GetBeforeCharacterExpPercent(PCClass);
 
 	ExpVarSet.BasicLevelToIncrease = StageClear_AfterLevel - StageClear_BeforeLevel;
-	ExpVarSet.BasicTargetExpPercent = StageClear_AfterExpPercent * 0.01f; // UI ¿¡¼­´Â 0.0 ~ 1.0 ½ºÄÉÀÏ.
-	ExpVarSet.BasicCurrentExpPercent = StageClear_BeforeExpPercent * 0.01f; // ÀÌ°Ç Á¡Â÷ ExpIncreaseSpeed ¿¡ ÀÇÇØ Áõ°¡ÇÒ °Í.
+	ExpVarSet.BasicTargetExpPercent = StageClear_AfterExpPercent * 0.01f; // UI ä¿Šè¾‘ç»° 0.0 ~ 1.0 èƒ¶çº³è€.
+	ExpVarSet.BasicCurrentExpPercent = StageClear_BeforeExpPercent * 0.01f; // ææ‰’ ç—¢ç’ ExpIncreaseSpeed ä¿Š ç‹¼ç§¦ åˆ˜å•Šä¸” å·´.
 
 	ExpVarSet.bBasicExpIncreaseComplete = false;
 
@@ -703,11 +703,11 @@ void UB2UIStageResult::InitExpVarSet(FExpProgressVars& ExpVarSet, EPCClass PCCla
 	ExpVarSet.ExtraLevelToIncreaseFromBasic = ExpVarSet.ExtraLevelToIncrease - ExpVarSet.BasicLevelToIncrease;
 
 	ExpVarSet.ExtraTargetExpPercent = StageClear_AfterExpPercent * 0.01f;
-	ExpVarSet.ExtraCurrentExpPercent = StageClear_AfterExpPercent * 0.01f; // ÃÊ±â°ªÀº Basic ÀÌ³ª Extra ³ª ¸¶Âù°¡Áö. BasicCurrent ¿Í °°ÀÌ Áõ°¡ÇÏ´Ù°¡ ÀÌ°Ç Á» ´õ Áõ°¡ÇÒ ¼ö ÀÖÀ½.
+	ExpVarSet.ExtraCurrentExpPercent = StageClear_AfterExpPercent * 0.01f; // æª¬æ‰è”¼ç¯® Basic æå”± Extra å”± ä»˜è›®å•Šç˜¤. BasicCurrent å®¢ éæ åˆ˜å•Šçªä¿ƒå•Š ææ‰’ ç²± æ­¹ åˆ˜å•Šä¸” è ä¹æ¾œ.
 
 	ExpVarSet.bExtraExpIncreaseComplete = false;
 
-	ExpVarSet.CurrentIncreasedLevel = StageClear_BeforeLevel; // ÀÌ°Íµµ Á¡Â÷ PostClearLevel ·Î Áõ°¡ÇÒ °Í.
+	ExpVarSet.CurrentIncreasedLevel = StageClear_BeforeLevel; // æå·´æ¡£ ç—¢ç’ PostClearLevel è‚º åˆ˜å•Šä¸” å·´.
 }
 
 /** Most internal functionality for use in UpdateExpPercent. Returns true when current exp is reached to target value. */
@@ -715,14 +715,14 @@ bool UpdateExpPercentCommonInternalFunc(int32& InOutLevelToIncrease, int32& InOu
 {
 	if (InOutLevelToIncrease > 0 || InOutCurrentExpPercent < InTargetExpPercent)
 	{
-		// ÈçÇÑ S = Vt
-		InOutCurrentExpPercent += FMath::Min(ExpIncreaseRate * DeltaSeconds, 0.99f); // ÇÑ ÇÁ·¹ÀÓ¿¡ 1.0 ÀÌ»ó Áõ°¡ÇÏ¸é °ï¶õ
+		// å¦‚èŒ„ S = Vt
+		InOutCurrentExpPercent += FMath::Min(ExpIncreaseRate * DeltaSeconds, 0.99f); // èŒ„ æ©‡é¥­çƒ™ä¿Š 1.0 ææƒ‘ åˆ˜å•Šçªæ å¸®é„‚
 
 		if (InOutLevelToIncrease > 0)
 		{
 			if (InOutCurrentExpPercent >= 1.0f)
 			{
-				// ´ÙÀ½ ·¹º§·Î ³Ñ¾î°£´Ù.
+				// ä¿ƒæ¾œ é¥­éª‡è‚º é€ç»¢åŸƒä¿ƒ.
 				--InOutLevelToIncrease;
 				++InOutCurrentLevel;
 				InOutCurrentExpPercent -= 1.0f;
@@ -731,7 +731,7 @@ bool UpdateExpPercentCommonInternalFunc(int32& InOutLevelToIncrease, int32& InOu
 
 		if (InOutLevelToIncrease == 0 && InOutCurrentExpPercent >= InTargetExpPercent)
 		{
-			// ¸ñÇ¥ ·¹º§±îÁö Ã¤¿ü´Ù¸é ExpPercent ±îÁö¸¸ ¸ÂÃß¸é µÊ.
+			// æ ¼é’ é¥­éª‡é³–ç˜¤ ç›²å¥ä¿ƒæ ExpPercent é³–ç˜¤çˆ¶ å˜çœ æ å‡³.
 			InOutCurrentExpPercent = InTargetExpPercent;
 			return true;
 		}
@@ -744,7 +744,7 @@ bool UpdateExpPercentCommonInternalFunc(int32& InOutLevelToIncrease, int32& InOu
 
 void UB2UIStageResult::UpdateExpPercent(float DeltaSeconds)
 {
-	// Pause »óÅÂ¿¡¼­ »ç¿ëÇÏ´Â °Å¶ó Å¸ÀÌ¸Ó·Î ¸øÇÏ°í Á÷Á¢ Ä«¿îÆ®
+	// Pause æƒ‘æ€•ä¿Šè¾‘ è¤ä¾©çªç»° èŠ­æ‰¼ é¸¥æèµ£è‚º ç»™çªç»Š æµç«‹ å¢¨æ¬¾é£˜
 	if (bExpIncreaseStarted == false)
 	{
 		UWorld* TheWorld = GetWorld();
@@ -757,7 +757,7 @@ void UB2UIStageResult::UpdateExpPercent(float DeltaSeconds)
 
 	if ((DeltaSeconds == 0.f || bExpIncreaseStarted) && !bExpIncreaseFinished) // DeltaSeconds == 0.f <- Force Update
 	{
-		const int32 MainLevelBefore = EBV_MainPlayer.CurrentIncreasedLevel; // ÀÌ¹ø ¾÷µ¥ÀÌÆ®¿¡¼­ ·¹º§ÀÌ Áõ°¡Çß´ÂÁö Ã¼Å©¸¦ À§ÇØ.
+		const int32 MainLevelBefore = EBV_MainPlayer.CurrentIncreasedLevel; // æé”… è¯€å•æé£˜ä¿Šè¾‘ é¥­éª‡æ åˆ˜å•Šæ²ç»°ç˜¤ çœ‰å†œç”« å›°ç§¦.
 		const int32 SubLevelBefore = EBV_SubPlayer.CurrentIncreasedLevel;
 
 		const bool bMainFinished = UpdateExpPercentCommon(EBV_MainPlayer, DeltaSeconds);
@@ -766,7 +766,7 @@ void UB2UIStageResult::UpdateExpPercent(float DeltaSeconds)
 		const bool bMainLevelIncreased = (EBV_MainPlayer.CurrentIncreasedLevel > MainLevelBefore);
 		const bool bSubLevelIncreased = (EBV_SubPlayer.CurrentIncreasedLevel > SubLevelBefore);
 
-		if (bMainLevelIncreased) // ·¹º§¾÷ ³Ñ¾î°£ ¼ø°£¿¡ ÅØ½ºÆ® ¹Ù²ãÁÜ.
+		if (bMainLevelIncreased) // é¥­éª‡è¯€ é€ç»¢åŸƒ é‰´åŸƒä¿Š å’†èƒ¶é£˜ å®˜å±‚æ·‹.
 		{
 			SetLevelUpTextVisible(true);
 		}
@@ -778,44 +778,44 @@ void UB2UIStageResult::UpdateExpPercent(float DeltaSeconds)
 		bExpIncreaseFinished = (bMainFinished && bSubFinished);
 		if (bExpIncreaseFinished)
 		{
-			// »ç½Ç»ó ¿©±â°¡ opening È¿°ú°¡ ³¡³ª´Â ½ÃÁ¡ÀÌ µÉ °ÍÀÌ´Ù. OnOpenComplete ´ë½Å ¿©±â¼­ ÇÊ¿äÇÑ event ¸¦ ³¯¸®µµ·Ï..
+			// è¤è§’æƒ‘ å’¯æ‰å•Š opening ç“¤è‹å•Š åœºå”±ç»° çŸ«ç—¢æ çª å·´æä¿ƒ. OnOpenComplete æªè„š å’¯æ‰è¾‘ é˜å¤¸èŒ„ event ç”« æœåºœæ¡£åºŸ..
 			OnActualOpenComplete();
 		}
 
-		//¸ŞÀÎÄ³¸¯ º£ÀÌÁ÷ Exp
+		//çš‹ç‰¢æŸè… æµ·ææµ Exp
 		if (BasicExpBar_MainPlayer.IsValid())
 		{
 			float Percent = (EBV_MainPlayer.bBasicExpIncreaseComplete && EBV_MainPlayer.ExtraCurrentExpPercent < EBV_MainPlayer.BasicCurrentExpPercent) ? 0.0f : EBV_MainPlayer.BasicCurrentExpPercent;
 			BasicExpBar_MainPlayer->SetPercent(Percent);
 		}
 
-		//¸ŞÀÎÄ³¸¯ ¿¢½ºÆ®¶ó Exp
+		//çš‹ç‰¢æŸè… ç«£èƒ¶é£˜æ‰¼ Exp
 		if (ExtraExpBar_MainPlayer.IsValid())
 		{
 			BasicExpBar_MainPlayer->SetPercent(EBV_MainPlayer.ExtraCurrentExpPercent);
 		}
 
-		//¼­ºêÄ³¸¯ º£ÀÌÁ÷ Exp
+		//è¾‘å®æŸè… æµ·ææµ Exp
 		if (BasicExpBar_SubPlayer.IsValid())
 		{
 			float Percent = (EBV_SubPlayer.bBasicExpIncreaseComplete && EBV_SubPlayer.ExtraCurrentExpPercent < EBV_SubPlayer.BasicCurrentExpPercent) ? 0.0f : EBV_SubPlayer.BasicCurrentExpPercent;
 			BasicExpBar_SubPlayer->SetPercent(Percent);
 		}
 
-		//¼­ºêÄ³¸¯ ¿¢½ºÆ®¶ó Exp
+		//è¾‘å®æŸè… ç«£èƒ¶é£˜æ‰¼ Exp
 		if (ExtraExpBar_SubPlayer.IsValid())
 		{
 			ExtraExpBar_SubPlayer->SetPercent(EBV_SubPlayer.ExtraCurrentExpPercent);
 		}
 
-		//¸ŞÀÎÄ³¸¯ Exp ÆÛ¼¾Æ®±ÛÀÚ
+		//çš‹ç‰¢æŸè… Exp æ¬ºå­£é£˜è‡‚ç£Š
 		if (TB_ExpPercentMainChar.IsValid())
 		{
 			float CurrentMainExpPercent = static_cast<float>(FMath::FloorToInt(EBV_MainPlayer.ExtraCurrentExpPercent * 10000.0f)) / 100.0f;
 			TB_ExpPercentMainChar->SetText(FText::FromString(FString::Printf(TEXT("%.2f%%"), CurrentMainExpPercent)));
 		}
 		
-		//¼­ºêÄ³¸¯ Exp ÆÛ¼¾Æ®±ÛÀÚ
+		//è¾‘å®æŸè… Exp æ¬ºå­£é£˜è‡‚ç£Š
 		if (TB_ExpPercentSubChar.IsValid())
 		{
 			float CurrentSubExpPercent = static_cast<float>(FMath::FloorToInt(EBV_SubPlayer.ExtraCurrentExpPercent * 10000.0f)) / 100.0f;
@@ -831,7 +831,7 @@ bool UB2UIStageResult::UpdateExpPercentCommon(FExpProgressVars& ExpVarSet, float
 		ExpVarSet.bBasicExpIncreaseComplete =
 			UpdateExpPercentCommonInternalFunc(ExpVarSet.BasicLevelToIncrease, ExpVarSet.CurrentIncreasedLevel, ExpVarSet.BasicTargetExpPercent, ExpVarSet.BasicCurrentExpPercent, ExpIncreaseSpeed, DeltaSeconds);
 
-		// ¾ÆÁ÷ Basic ¼öÄ¡°¡ target ¿¡ µµ´ŞÇÏÁö ¸øÇÑ »óÅÂ¿¡¼­´Â Extra ¼öÄ¡¸¦ ¸ÂÃçÁØ´Ù.
+		// é…’æµ Basic èæ‘¹å•Š target ä¿Š æ¡£å´”çªç˜¤ ç»™èŒ„ æƒ‘æ€•ä¿Šè¾‘ç»° Extra èæ‘¹ç”« å˜è‹—éœ–ä¿ƒ.
 		ExpVarSet.ExtraLevelToIncrease = ExpVarSet.BasicLevelToIncrease + ExpVarSet.ExtraLevelToIncreaseFromBasic;
 		ExpVarSet.ExtraCurrentExpPercent = ExpVarSet.BasicCurrentExpPercent;
 	}
@@ -862,7 +862,7 @@ void UB2UIStageResult::UpdateSubCharLevel()
 
 void UB2UIStageResult::SetupWidgetCustomTimer()
 {
-	// Pause »óÅÂ¿¡¼­ ¾µ °ÍÀÌ¹Ç·Î ±âº» Å¸ÀÌ¸Ó ¸ø ¾²°í µû·Î ¼¼ÆÃ
+	// Pause æƒ‘æ€•ä¿Šè¾‘ é•œ å·´æéª¨è‚º æ‰å¤¯ é¸¥æèµ£ ç»™ é™ç»Š è¶è‚º æŠ€æ³¼
 
 	for (int32 CTI = 0; CTI < CustomTimedCallBackInfo.Num(); ++CTI)
 	{
@@ -872,7 +872,7 @@ void UB2UIStageResult::SetupWidgetCustomTimer()
 		}
 		else
 		{
-			CustomTimedCallBackInfo[CTI].bIsInvoked = true; // ÀÌ¹Ì ¹ßµ¿ÇÑ °É·Î °£ÁÖ.
+			CustomTimedCallBackInfo[CTI].bIsInvoked = true; // æå›º æƒ¯æ‚¼èŒ„ å§è‚º åŸƒæ—.
 		}
 	}
 }
@@ -890,18 +890,18 @@ void UB2UIStageResult::SetupWidgetCustomHideTimer()
 			continue;
 		}
 
-		ThisHideInfo.OriginalVisibility = WidgetToHide->GetVisibility(); // Hide ÇÒ ¶§¿¡µµ ¹é¾÷ÇØ ³õÁö¸¸ ¾Æ·¡ ·ÎÁ÷¿¡ µû¶ó HideStop ÀÌ ¸ÕÀú µÉ ¼öµµ ÀÖÀ¸´Ï ¿©±â¼­µµ ÇÑ¹ø.
+		ThisHideInfo.OriginalVisibility = WidgetToHide->GetVisibility(); // Hide ä¸” é”­ä¿Šæ¡£ å½’è¯€ç§¦ åˆç˜¤çˆ¶ é…’è´° è‚ºæµä¿Š è¶æ‰¼ HideStop æ åˆšå† çª èæ¡£ ä¹æ èª å’¯æ‰è¾‘æ¡£ èŒ„é”….
 
-		// HideStopTime ÀÌ HideStartTime º¸´Ù Å«Áö¿¡ ´ëÇÑ È®ÀÎÀº.. ±»ÀÌ ÇÏÁö ¾Ê´Â´Ù.
+		// HideStopTime æ HideStartTime ç„Šä¿ƒ å¥´ç˜¤ä¿Š æªèŒ„ çŠ¬ç‰¢ç¯®.. è¢«æ çªç˜¤ è‡¼ç»°ä¿ƒ.
 
 		if (ThisHideInfo.HideStartTime <= 0.0f)
 		{
-			CustomTimeHideStartCallback(CTI); // ¹Ù·Î Äİ¹é ½ÇÇà
+			CustomTimeHideStartCallback(CTI); // å®˜è‚º å¦®å½’ è§’é’
 		}
 
 		if (ThisHideInfo.HideStopTime <= 0.0f)
 		{
-			CustomTimeHideStopCallback(CTI); // ¹Ù·Î Äİ¹é ½ÇÇà. °á±¹ HideStopTime ÀÌ 0 ÀÌÇÏ¸é ¾È ¼û°ÜÁü
+			CustomTimeHideStopCallback(CTI); // å®˜è‚º å¦®å½’ è§’é’. æ¬æƒ« HideStopTime æ 0 æçªæ æ•‘ è§è´¥å’™
 		}
 	}
 }
@@ -914,9 +914,9 @@ void UB2UIStageResult::UpdateWidgetCustomTimer()
 		return;
 	}
 
-	// bIsSuccessiveLevelUpOpen ÀÌ¶ó¸é ÇÑ¹ø¿¡ ÁË´Ù Ã³¸®µÇµµ·Ï Å« °ªÀ¸·Î ¼¼ÆÃ. ¼³¸¶ ÀÌ°É ³Ñ¾î°¡´Â ÀÏÀº ¾ø°ÚÁö ¤»
+	// bIsSuccessiveLevelUpOpen ææ‰¼æ èŒ„é”…ä¿Š äº†ä¿ƒ è´¸åºœç™»æ¡£åºŸ å¥´ è”¼æ è‚º æŠ€æ³¼. æ±²ä»˜ æå§ é€ç»¢å•Šç»° è€ç¯® ç»æ‘†ç˜¤ ã›
 	const float TimeSinceStart = bIsSuccessiveLevelUpOpen ? 1000000.0f : (TheWorld->GetRealTimeSeconds() - CachedWidgetStartTime);
-	// Pause »óÅÂ¿¡¼­µµ Á÷Á¢ µ¹·Á¾²´Â Å¸ÀÌ¸Ó
+	// Pause æƒ‘æ€•ä¿Šè¾‘æ¡£ æµç«‹ å€’å¦¨é™ç»° é¸¥æèµ£
 	for (int32 CTI = 0; CTI < CustomTimedCallBackInfo.Num(); ++CTI)
 	{
 		FB2UIWidgetCustomTimedCallbackInfo& ThisInfo = CustomTimedCallBackInfo[CTI];
@@ -937,14 +937,14 @@ void UB2UIStageResult::UpdateWidgetCustomTimer()
 		FB2UIWidgetCustomTimedHideInfo& ThisHideInfo = CustomTimedHideInfo[CTI];
 		
 		if (bIsSuccessiveLevelUpOpen)
-		{ // SuccessiveOpen ÀÌ¸é ¹Ù·Î º¸ÀÌµµ·Ï Ã³¸®.
+		{ // SuccessiveOpen ææ å®˜è‚º ç„Šææ¡£åºŸ è´¸åºœ.
 			ThisHideInfo.bIsHidden = true;
 			ThisHideInfo.bHiddenDoneOnce = true;
 		}
 
 		if (ThisHideInfo.bIsHidden == false)
 		{
-			// ÇÑ¹ø¸¸ HideStart °¡ µÇ°Ô. ¾È ±×·¯¸é ±ô¹ÚÀÏ °Í.
+			// èŒ„é”…çˆ¶ HideStart å•Š ç™»éœ¸. æ•‘ å¼ŠçŸ¾æ æ¿’å† è€ å·´.
 			if (ThisHideInfo.bHiddenDoneOnce == false && ThisHideInfo.HideStartTime <= TimeSinceStart)
 			{
 				CustomTimeHideStartCallback(CTI);
@@ -993,7 +993,7 @@ void UB2UIStageResult::SetupOnRepeatBattleStateChange( bool bIsOn, bool Countdow
 		CheckFinalStageDisableButton();
 	}
 	
-	// ¹İº¹ÀüÅõ »óÅÂ¿´´Ù°¡ ÇØÁ¦µÇ¾ú´Ù°í ÇØ¼­ ·¹º§¾÷ ÆË¾÷À» ±»ÀÌ ¿­ ÇÊ¿ä´Â ¾øÀ» µí.
+	// é¦†æ±—å‚ˆæ§ æƒ‘æ€•çœ‹ä¿ƒå•Š ç§¦åŠ›ç™»èŒä¿ƒç»Š ç§¦è¾‘ é¥­éª‡è¯€ æ‰‘è¯€é˜‘ è¢«æ å‡¯ é˜å¤¸ç»° ç»é˜‘ æ·€.
 }
 
 bool UB2UIStageResult::IsRepeatBattleOn()
@@ -1023,7 +1023,7 @@ void UB2UIStageResult::SetLevelUpTextVisible(bool bForMain)
 void UB2UIStageResult::CheckAndOpenLevelUpPart()
 {
 	if (IsRepeatBattleOn()){
-		return; // ¹İº¹ÀüÅõ µµÁß¿¡´Â ·¹º§¾÷ ÆË¾÷ÀÌ ¿­¸®Áö ¾Ê°Ô ÇÔ.
+		return; // é¦†æ±—å‚ˆæ§ æ¡£åä¿Šç»° é¥­éª‡è¯€ æ‰‘è¯€æ å‡¯åºœç˜¤ è‡¼éœ¸ çªƒ.
 	}
 
 	FLocalCharacterData& CharacterDataStore = BladeIIGameImpl::GetClientDataStore().GetLocalCharacterData();
@@ -1051,7 +1051,7 @@ void UB2UIStageResult::CheckAndOpenLevelUpPart()
 
 	if (ShouldShowCBTVersionContent()
 		&& !BladeIIGameImpl::GetStageDataStore().LoadCBTClear()
-		&& StageId.Id == 3030)				//CBT¿ëÀ¸·Î¸¸ ¸¶Áö¸· ¾Ç¸ù3Ã©ÅÍ 3½ºÅ×ÀÌÁö¸¸ °Ë»ç
+		&& StageId.Id == 3030)				//CBTä¾©æ è‚ºçˆ¶ ä»˜ç˜¤é˜œ å©æ ¹3èŒ…ç£ 3èƒ¶æŠ›æç˜¤çˆ¶ å…«è¤
 	{
 		UB2UICBTClear* CBTUI = UB2UIManager::GetInstance()->OpenUI<UB2UICBTClear>(UIFName::CBTClear);
 		if (CBTUI)
@@ -1072,11 +1072,11 @@ void UB2UIStageResult::CheckAndOpenLevelUpPart()
 		SetIsSuccessiveLevelUpOpen(true);
 		
 		
-		// LevelUp WidgetÀÌ ÇÊ¿äÇÏ´Ù¸é AnimationÀÌ Á¾·á ÈÄ Quest°ü·Ã LogicÀ» È£Ãâ ÇÒ OnLevelUpFXFinish ÇÔ¼ö¸¦ Delegate·Î µî·Ï
+		// LevelUp Widgetæ é˜å¤¸çªä¿ƒæ Animationæ è¾†ä¸° é¥¶ QueståŒ…è®¿ Logicé˜‘ é¾‹å… ä¸” OnLevelUpFXFinish çªƒèç”« Delegateè‚º æ®¿åºŸ
 		if (UIP_LevelUp.IsValid())
 			UIP_LevelUp->LevelupFinishDelegate = FOnLevelUpFXFinish::CreateLambda([this](){ this->OnLevelUpFXFinish(); });
 	}
-	else // LevelUp Widget ÇÊ¿ä ¾ø´Ù¸é ¹Ù·Î FinishÈ£ÃâÇÏ¿© ÀÌÈÄ »óÈ² º¸¿©ÁÜ
+	else // LevelUp Widget é˜å¤¸ ç»ä¿ƒæ å®˜è‚º Finishé¾‹å…çªå’¯ æé¥¶ æƒ‘ç‚” ç„Šå’¯æ·‹
 	{
 		OnLevelUpFXFinish();
 	}*/
@@ -1088,27 +1088,27 @@ void UB2UIStageResult::StageFxResult(bool bMain, bool bSub)
 		SetIsSuccessiveLevelUpOpen(true);
 
 
-		// LevelUp WidgetÀÌ ÇÊ¿äÇÏ´Ù¸é AnimationÀÌ Á¾·á ÈÄ Quest°ü·Ã LogicÀ» È£Ãâ ÇÒ OnLevelUpFXFinish ÇÔ¼ö¸¦ Delegate·Î µî·Ï
+		// LevelUp Widgetæ é˜å¤¸çªä¿ƒæ Animationæ è¾†ä¸° é¥¶ QueståŒ…è®¿ Logicé˜‘ é¾‹å… ä¸” OnLevelUpFXFinish çªƒèç”« Delegateè‚º æ®¿åºŸ
 		if (UIP_LevelUp.IsValid())
 			UIP_LevelUp->LevelupFinishDelegate = FOnLevelUpFXFinish::CreateLambda([this]() { this->OnLevelUpFXFinish(); });
 	}
-	else // LevelUp Widget ÇÊ¿ä ¾ø´Ù¸é ¹Ù·Î FinishÈ£ÃâÇÏ¿© ÀÌÈÄ »óÈ² º¸¿©ÁÜ
+	else // LevelUp Widget é˜å¤¸ ç»ä¿ƒæ å®˜è‚º Finishé¾‹å…çªå’¯ æé¥¶ æƒ‘ç‚” ç„Šå’¯æ·‹
 	{
 		OnLevelUpFXFinish();
 	}
 }
 void UB2UIStageResult::SetIsSuccessiveLevelUpOpen(bool bIsSuccessive)
 {
-	// ¿ø·¡´Â LevelUp ¿¬Ãâ ÀÚÃ¼´Â Clear ¿¬Ãâ°ú º°µµ¸é¼­ LevelUp UI ´Â StageResultUI ÀÇ ÀÏºÎ·Î¼­ ÀÛµ¿ÇÏµµ·Ï ¸¸µé¾úÀ» ¶§ ¸¸µé¾ú´ø °Å¶ó
-	// StageResult UI ¿ÀÇÂ°ú ÇÔ²² ¿ÀÇÁ´× ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ¸ğµÎ ½ºÅµÇÏ°í LevelUp ÆÄÆ®¸¦ ¿­µµ·Ï ±â´ÉÀÌ Â¥¿©Á® ÀÖÀ½.
-	// StageResult UI ÀÇ ´Ù¸¥ ºÎºĞÀÌ ÀÚ¿¬½º·´°Ô ³¡³­ ÈÄ LevelUp ÆÄÆ®¸¦ ¿©´Â Çö ¹æ½Ä¿¡¼­´Â ±×·± ÄÚµåµéÀÌ ±»ÀÌ ¾ø¾îµµ µÇ±ä ÇÔ
+	// ç›”è´°ç»° LevelUp æ¥·å… ç£Šçœ‰ç»° Clear æ¥·å…è‹ å–Šæ¡£æè¾‘ LevelUp UI ç»° StageResultUI ç‹¼ è€ä½•è‚ºè¾‘ ç´¯æ‚¼çªæ¡£åºŸ çˆ¶ç”¸èŒé˜‘ é”­ çˆ¶ç”¸èŒå¸¦ èŠ­æ‰¼
+	// StageResult UI å·é”¹è‹ çªƒè†Š å·æ©‡é†‹ å±€èªçš‹æè®°é˜‘ è‘›æ»´ èƒ¶è¯ºçªç»Š LevelUp é¢‡é£˜ç”« å‡¯æ¡£åºŸ æ‰ç“·æ æ¥¼å’¯å»‰ ä¹æ¾œ.
+	// StageResult UI ç‹¼ ä¿ƒå¼— ä½•ç›’æ ç£Šæ¥·èƒ¶åéœ¸ åœºæŠ„ é¥¶ LevelUp é¢‡é£˜ç”« å’¯ç»° æ³… è§„ä¾¥ä¿Šè¾‘ç»° å¼Šç¹ å†…é›ç”¸æ è¢«æ ç»ç»¢æ¡£ ç™»å˜ çªƒ
 
 	bIsSuccessiveLevelUpOpen = bIsSuccessive;
 	if (bIsSuccessiveLevelUpOpen)
-	{ // bIsSuccessiveLevelUpOpen ÀÌ ¼¼ÆÃµÇ¾î ÀÖ´Ù¸é UpdateWidgetCustomTimer ¿¡¼­ ÁË´Ù µ¹·Á¹ö¸± °Í.
+	{ // bIsSuccessiveLevelUpOpen æ æŠ€æ³¼ç™»ç»¢ ä¹ä¿ƒæ UpdateWidgetCustomTimer ä¿Šè¾‘ äº†ä¿ƒ å€’å¦¨æ»šå‰¯ å·´.
 		UpdateWidgetCustomTimer();
 
-		// °æÇèÄ¡¶û ·¹º§µµ ¸¸¶¥À¸·Î ¹Ù·Î.
+		// ç‰ˆæ°°æ‘¹å°” é¥­éª‡æ¡£ çˆ¶é¡¶æ è‚º å®˜è‚º.
 
 		int32 MainPlayerTotalLevelUp = EBV_MainPlayer.BasicLevelToIncrease + EBV_MainPlayer.ExtraLevelToIncreaseFromBasic;
 		if (MainPlayerTotalLevelUp > 0){
@@ -1152,7 +1152,7 @@ void UB2UIStageResult::OnClickBtnVillage()
 	
 	if (IsRepeatBattleOn())
 	{
-		PopUpRepeatBattleStopMsg(GetOwningPlayer()); // ¹İº¹ ÀüÅõ »óÅÂ¿¡¼­´Â Áß´Ü ¹öÆ°ÀÇ ¿ªÇÒÀÌ µÊ.
+		PopUpRepeatBattleStopMsg(GetOwningPlayer()); // é¦†æ±— å‚ˆæ§ æƒ‘æ€•ä¿Šè¾‘ç»° åçªœ æ»šç“¢ç‹¼ å¼€ä¸”æ å‡³.
 	}
 	else
 	{
@@ -1172,7 +1172,7 @@ void UB2UIStageResult::OnClickBtnAreaSelection()
 
 	if (IsRepeatBattleOn())
 	{
-		PopUpRepeatBattleStopMsg(GetOwningPlayer()); // ¹İº¹ ÀüÅõ »óÅÂ¿¡¼­´Â Áß´Ü ¹öÆ°ÀÇ ¿ªÇÒÀÌ µÊ.
+		PopUpRepeatBattleStopMsg(GetOwningPlayer()); // é¦†æ±— å‚ˆæ§ æƒ‘æ€•ä¿Šè¾‘ç»° åçªœ æ»šç“¢ç‹¼ å¼€ä¸”æ å‡³.
 	}
 	else
 	{
@@ -1209,7 +1209,7 @@ void UB2UIStageResult::OnClickBtnRestart()
 
 	if (IsRepeatBattleOn())
 	{
-		PopUpRepeatBattleStopMsg(GetOwningPlayer()); // ¹İº¹ ÀüÅõ »óÅÂ¿¡¼­´Â Áß´Ü ¹öÆ°ÀÇ ¿ªÇÒÀÌ µÊ.
+		PopUpRepeatBattleStopMsg(GetOwningPlayer()); // é¦†æ±— å‚ˆæ§ æƒ‘æ€•ä¿Šè¾‘ç»° åçªœ æ»šç“¢ç‹¼ å¼€ä¸”æ å‡³.
 	}
 	else
 	{
@@ -1226,12 +1226,12 @@ void UB2UIStageResult::OnClickBtnNextArea()
 
 	if (IsRepeatBattleOn())
 	{
-		PopUpRepeatBattleStopMsg(GetOwningPlayer()); // ¹İº¹ ÀüÅõ »óÅÂ¿¡¼­´Â Áß´Ü ¹öÆ°ÀÇ ¿ªÇÒÀÌ µÊ.
+		PopUpRepeatBattleStopMsg(GetOwningPlayer()); // é¦†æ±— å‚ˆæ§ æƒ‘æ€•ä¿Šè¾‘ç»° åçªœ æ»šç“¢ç‹¼ å¼€ä¸”æ å‡³.
 	}
 	else
 	{
 		bButtonClicked = true;
-		GoToDeferredStageClass<int32>::GetInstance().Signal(INDEX_NONE);	// Æ¯Á¤ StageNumÀ» ÀÔ·ÂÇÏÁö ¾ÊÀ¸¸é ´ÙÀ½ Stage·Î
+		GoToDeferredStageClass<int32>::GetInstance().Signal(INDEX_NONE);	// æ¼‚æ²¥ StageNumé˜‘ æ¶ä»¿çªç˜¤ è‡¼æ æ ä¿ƒæ¾œ Stageè‚º
 	}
 }
 

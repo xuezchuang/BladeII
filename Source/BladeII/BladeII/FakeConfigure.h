@@ -1,4 +1,4 @@
-
+﻿
 #ifndef __FAKECONFIGURE_H__
 #define __FAKECONFIGURE_H__
 

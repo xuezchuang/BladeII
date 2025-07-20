@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2TutorialTrigger.h"
 #include "Components/SceneComponent.h"
 #include "Components/TextRenderComponent.h"
@@ -18,7 +18,7 @@ AB2TutorialTrigger::AB2TutorialTrigger(const FObjectInitializer& ObjectInitializ
 		EditorTextComponent->SetHorizontalAlignment(EHTA_Center);
 		EditorTextComponent->SetWorldSize(35.0f);
 		EditorTextComponent->SetWorldScale3D(FVector(1.0f, 1.0f, 1.0f));
-		EditorTextComponent->SetRelativeLocation(FVector(0.0f, 0.0f, 100.0f)); // Á» ³ô¿©¼­
+		EditorTextComponent->SetRelativeLocation(FVector(0.0f, 0.0f, 100.0f)); // ç²± è‡­å’¯è¾‘
 		EditorTextComponent->SetTextRenderColor(FColor(255, 255, 0));
 
 		EditorRefreshTextComponent(this->GetName());

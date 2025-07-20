@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2StageGameMode.h"
 #include "Runtime/Engine/Public/Engine.h"
@@ -52,7 +52,7 @@ AB2StageGameModeBase::AB2StageGameModeBase(const FObjectInitializer& ObjectIniti
 void AB2StageGameModeBase::PreBeginPlay()
 {
 	check(GetStageManager());
-	// StageManager ÀÇ ÇÊ¼ö Á¤º¸µé(CurrentStageId µî)À» ÀÌ ½ÃÁ¡¿¡¼­ °¡Á®¿À¸é µÉ µí.
+	// StageManager ì˜ í•„ìˆ˜ ì •ë³´ë“¤(CurrentStageId ë“±)ì„ ì´ ì‹œì ì—ì„œ ê°€ì ¸ì˜¤ë©´ ë  ë“¯.
 	GetStageManager()->PreBeginPlay();
 
 	auto* GameRule = new StageGameRule;
@@ -80,7 +80,7 @@ void AB2StageGameModeBase::BeginPlay()
 {
 	Super::BeginPlay();
 
-	//if (IsUsingMobileRendering(GetWorld())) { // ¸ğ¹ÙÀÏ ·»´õ·¯ÀÇ dynamic point light °³¼ö Á¦ÇÑÀ» À§ÇØ.
+	//if (IsUsingMobileRendering(GetWorld())) { // ëª¨ë°”ì¼ ë Œë”ëŸ¬ì˜ dynamic point light ê°œìˆ˜ ì œí•œì„ ìœ„í•´.
 	//	DeactivateWorldMovablePointLight();
 	//}
 }
@@ -90,7 +90,7 @@ AB2StageManager* AB2StageGameModeBase::GetStageManager()
 	UWorld* TheWorld = GetWorld();
 	if (StageManager == NULL && TheWorld)
 	{
-		// °Á ±âº» Á¤º¸ ³Ö°í spawn ½ÃÅ´
+		// ê± ê¸°ë³¸ ì •ë³´ ë„£ê³  spawn ì‹œí‚´
 		FActorSpawnParameters SpawnInfo;
 		SpawnInfo.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 		SpawnInfo.ObjectFlags |= RF_Transient;
@@ -133,10 +133,10 @@ void AB2StageGameModeBase::NotifyCharacterDead(class ABladeIICharacter* TargetCh
 
 void AB2StageGameModeBase::NotifyPlayerDeadEnd(class ABladeIIPlayer* DeadPlayer)
 {
-	if (!(StageManager && StageManager->IsStageCleared())) // ÆĞ¹è ¸Ş´º¸¦ ¿­°Ô µÇ´Âµ¥ ½ºÅ×ÀÌÁö Å¬¸®¾î ÀÌÈÄ¿¡´Â ÀÛµ¿ÇÏÁö ¾Ê°Ô..
+	if (!(StageManager && StageManager->IsStageCleared())) // íŒ¨ë°° ë©”ë‰´ë¥¼ ì—´ê²Œ ë˜ëŠ”ë° ìŠ¤í…Œì´ì§€ í´ë¦¬ì–´ ì´í›„ì—ëŠ” ì‘ë™í•˜ì§€ ì•Šê²Œ..
 	{
 		CancelOrStopRepeatBattleClass<>::GetInstance().Signal();
-		// ºÎÈ° ¸Ş´º ½ÃÀÛ. RequestResurrect ¿¡¼­ ºÎÈ°À» ÇÏ°Å³ª, È¤Àº ´Ù½Ã ½ÃÀÛÇÏ¸é ³¡³¯ °Í.
+		// ë¶€í™œ ë©”ë‰´ ì‹œì‘. RequestResurrect ì—ì„œ ë¶€í™œì„ í•˜ê±°ë‚˜, í˜¹ì€ ë‹¤ì‹œ ì‹œì‘í•˜ë©´ ëë‚  ê²ƒ.
 		StartDefeatMenuClass<EB2GameMode>::GetInstance().Signal(EB2GameMode::Scenario);
 	}
 }
@@ -149,7 +149,7 @@ void AB2StageGameModeBase::GetAllWorldEnemyList(TArray<class ABladeIICharacter*>
 
 	for (ABladeIICharacter* pChar : OutList)
 	{
-		// Å¾½ÂµÈ¸÷Àº Á¦°Å
+		// íƒ‘ìŠ¹ëœëª¹ì€ ì œê±°
 		if (pChar->IsControlledByQTEPlayer())
 			RemoveList.Add(pChar);
 	}
@@ -163,7 +163,7 @@ void AB2StageGameModeBase::GetAllWorldEnemyList(TArray<class ABladeIICharacter*>
 float AB2StageGameModeBase::GetCurrentStageDifficultyScale()
 {
 	auto* LocalSM = GetStageManager();
-	// ÇöÀç ¼±ÅÃµÈ DifficultyLevel °ú Info ¼¼ÆÃ (³»Áö´Â ¼­¹ö ¸¶½ºÅÍ µ¥ÀÌÅÍ) ¿¡¼­ ºñ·ÔµÇ´Â ½ÇÁ¦ Àû¿ëµÇ´Â scale °ª ¸®ÅÏ
+	// í˜„ì¬ ì„ íƒëœ DifficultyLevel ê³¼ Info ì„¸íŒ… (ë‚´ì§€ëŠ” ì„œë²„ ë§ˆìŠ¤í„° ë°ì´í„°) ì—ì„œ ë¹„ë¡¯ë˜ëŠ” ì‹¤ì œ ì ìš©ë˜ëŠ” scale ê°’ ë¦¬í„´
 	return LocalSM ? LocalSM->GetStageDifficultyScale() : 0.0f;
 }
 
@@ -232,11 +232,11 @@ void AB2StageGameModeBase::NotifySpawnPoolSingleWaveComplete(AB2MonsterSpawnPool
 void AB2StageGameModeBase::NotifySpawnPoolWaveMobDead(class AB2MonsterSpawnPool* SpawnPool, class ABladeIICharacter* DyingMob, int32 WaveNum, int32 MobIndex)
 {
 	if (StageManager)
-	{ // È¤ ¸ğ¸£´Ï ¸®½ºÆ®¿¡¼­ Á¦°ÅÇÏ±â Àü¿¡ Ã³¸®ÇÏ´Â °Ô ÁÁÀ» µí?
+	{ // í˜¹ ëª¨ë¥´ë‹ˆ ë¦¬ìŠ¤íŠ¸ì—ì„œ ì œê±°í•˜ê¸° ì „ì— ì²˜ë¦¬í•˜ëŠ” ê²Œ ì¢‹ì„ ë“¯?
 		StageManager->NotifySpawnPoolWaveMobDead(SpawnPool, DyingMob, WaveNum, MobIndex);
 	}
 
-	//// º¸½º ¸·Å¸ Áøµ¿
+	//// ë³´ìŠ¤ ë§‰íƒ€ ì§„ë™
 	//if (DyingMob && DyingMob->IsSpawnedAsBossMob()){
 	//	ABladeIIPlayer* B2Player = Cast<ABladeIIPlayer>(UGameplayStatics::GetLocalPlayerCharacter(this));
 	//	if (B2Player)
@@ -366,7 +366,7 @@ bool AB2StageGameModeBase::RequestResurrect(EResurrectBuffType InResurrectBuffTy
 	int32 ServerResurrectBuffType = CliToSvrResurrectBuffType(InResurrectBuffType);
 	if (ServerResurrectBuffType != b2network::B2ResurrectBuffType::BRBT_None)
 	{
-		LastRequestedStageBuffType = InResurrectBuffType; // ºÎÈ° ¼º°ø½Ã¿¡ ±×Àü±îÁö ¼±ÅÃÇÑ ºÎÈ°¹öÇÁµé ¸ğµÎ ¸ğ¿©¼­ ¿Ã °Çµ¥ ÀÌ Å¸ÀÔ¸¸ Àû¿ëÇÒ °Å.
+		LastRequestedStageBuffType = InResurrectBuffType; // ë¶€í™œ ì„±ê³µì‹œì— ê·¸ì „ê¹Œì§€ ì„ íƒí•œ ë¶€í™œë²„í”„ë“¤ ëª¨ë‘ ëª¨ì—¬ì„œ ì˜¬ ê±´ë° ì´ íƒ€ì…ë§Œ ì ìš©í•  ê±°.
 		data_trader::Retailer::GetInstance().RequestResurrection(AB2StageManager::GetCacheStageKeepEssentialData().GetPlayToken(), ServerResurrectBuffType);
 		return true;
 	}
@@ -375,17 +375,17 @@ bool AB2StageGameModeBase::RequestResurrect(EResurrectBuffType InResurrectBuffTy
 
 void AB2StageGameModeBase::DecideAndSetActiveSpawnPool(bool bFallBackToLowerDifficulty)
 {
-	//// ±âº» µ¿ÀÛ°ú´Â ´Ş¸® StageId ¿Í Difficulty ¸¦ °í·ÁÇØ¼­ ¸Â´Â °É °¡Á®¿Â´Ù.
-	//// ½ºÅ×ÀÌÁö ½ÃÀÛ ½ÃÁ¡¿¡ ÇÑ¹ø Á¤ÇÏ¸é ¹Ù²îÁö ¾Ê´Â´Ù.
+	//// ê¸°ë³¸ ë™ì‘ê³¼ëŠ” ë‹¬ë¦¬ StageId ì™€ Difficulty ë¥¼ ê³ ë ¤í•´ì„œ ë§ëŠ” ê±¸ ê°€ì ¸ì˜¨ë‹¤.
+	//// ìŠ¤í…Œì´ì§€ ì‹œì‘ ì‹œì ì— í•œë²ˆ ì •í•˜ë©´ ë°”ë€Œì§€ ì•ŠëŠ”ë‹¤.
 	//if (StageManager)
 	//{
 	//	TheActiveSpawnPool = GetDesiredSpawnPoolOfSettingFromList(SpawnPools, 
-	//		// °ÔÀÓÀÌµç, PlayInEditor µç StageManager ÀÇ PreBeginPlay ÀÌÈÄ¶ó¸é StageId ³ª DifficultyLevel µîÀÌ »ç¿ë °¡´ÉÇØ¾ß.
+	//		// ê²Œì„ì´ë“ , PlayInEditor ë“  StageManager ì˜ PreBeginPlay ì´í›„ë¼ë©´ StageId ë‚˜ DifficultyLevel ë“±ì´ ì‚¬ìš© ê°€ëŠ¥í•´ì•¼.
 	//		StageManager->GetCurrentClientStageId(), StageManager->GetStageDifficultyLevel(), bFallBackToLowerDifficulty);
 	//}
 	//else
 	//{
-	//	Super::DecideAndSetActiveSpawnPool(); // »óÀ§´Ü ±â´ÉÀ¸·Î Æú¹é
+	//	Super::DecideAndSetActiveSpawnPool(); // ìƒìœ„ë‹¨ ê¸°ëŠ¥ìœ¼ë¡œ í´ë°±
 	//}
 }
 
@@ -404,7 +404,7 @@ TArray<FCombinedPCSkillAnimID> AB2StageGameModeBase::GetPCSkillAnimsToPreLoad()
 {
 #if WITH_EDITOR
 	if (GIsEditor)
-	{ // ¿¡µğÅÍ¿¡¼± ¸ğµç skill ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ·ÎµùÇÏµµ·Ï ÇÏ´Â »óÀ§ Å¬·¡½º ±â´ÉÀ» »ç¿ë
+	{ // ì—ë””í„°ì—ì„  ëª¨ë“  skill ì• ë‹ˆë©”ì´ì…˜ì„ ë¡œë”©í•˜ë„ë¡ í•˜ëŠ” ìƒìœ„ í´ë˜ìŠ¤ ê¸°ëŠ¥ì„ ì‚¬ìš©
 		return ABladeIIGameMode::GetPCSkillAnimsToPreLoad();
 	}
 #endif
@@ -413,8 +413,8 @@ TArray<FCombinedPCSkillAnimID> AB2StageGameModeBase::GetPCSkillAnimsToPreLoad()
 
 	//TArray<EPCClass> AllPCClassToPreLoad = GetPCClassesToPreLoad();
 
-	//// °¢ PCClass º°·Î ÀåÂøÇÑ ½ºÅ³ ¾Ö´Ï¸ŞÀÌ¼ÇµéÀ» ³Öµµ·Ï.
-	//// StageGameMode ÀÌ¹Ç·Î LocalCharacterData ¸¸À¸·Î °¡´ÉÇÏ´Ù.
+	//// ê° PCClass ë³„ë¡œ ì¥ì°©í•œ ìŠ¤í‚¬ ì• ë‹ˆë©”ì´ì…˜ë“¤ì„ ë„£ë„ë¡.
+	//// StageGameMode ì´ë¯€ë¡œ LocalCharacterData ë§Œìœ¼ë¡œ ê°€ëŠ¥í•˜ë‹¤.
 
 	//FLocalCharacterData& LocalPlayerCharData = BladeIIGameImpl::GetLocalCharacterData();
 	//
@@ -423,7 +423,7 @@ TArray<FCombinedPCSkillAnimID> AB2StageGameModeBase::GetPCSkillAnimsToPreLoad()
 	//	TArray<ESkillAnimType> SkillAnimsOfThisClass;
 	//	UB2SkillRTManager::GetCharacterRegisteredSkillAnimTypes(this, ThisPCClass, GetB2GameModeType(), SkillAnimsOfThisClass, &LocalPlayerCharData);
 
-	//	// ÀÌ¹ø Ä³¸¯ÅÍ Å¬·¡½º¿¡¼­ ¸ğÀº SkillAnimType µé·Î Combined ID ¸¦ ¸¸µé¾î ³ÖÀ½.
+	//	// ì´ë²ˆ ìºë¦­í„° í´ë˜ìŠ¤ì—ì„œ ëª¨ì€ SkillAnimType ë“¤ë¡œ Combined ID ë¥¼ ë§Œë“¤ì–´ ë„£ìŒ.
 	//	for (ESkillAnimType ThisSkillAnimType : SkillAnimsOfThisClass)
 	//	{
 	//		RetArray.Add(FCombinedPCSkillAnimID(ThisPCClass, ThisSkillAnimType));
@@ -434,14 +434,14 @@ TArray<FCombinedPCSkillAnimID> AB2StageGameModeBase::GetPCSkillAnimsToPreLoad()
 
 void AB2StageGameModeBase::PreloadAnyNecessaryInfo(bool bAboutToPlayLoadingMovie)
 {
-	// TAsset ·ÎµùÇÏ´Â InfoAsset µéÀÌ ´ë»óÀÓ. ¹İ´ë´Â ManualUnloadBeforeNewBeginning
+	// TAsset ë¡œë”©í•˜ëŠ” InfoAsset ë“¤ì´ ëŒ€ìƒì„. ë°˜ëŒ€ëŠ” ManualUnloadBeforeNewBeginning
 
 	//if (GetStageManager())
 	//{
 	//	StageManager->PreloadAdditionalNecessaryInfo();
 	//}
 	//
-	////Synchronous ·ÎµùÀÇ Async ·Îµù flush ¿©ºÎ¿¡ µû¶ó.. ÀÌ°É ´Ù¸¥ async request º¸´Ù ¸ÕÀú È¤Àº ÀÌÈÄ¿¡..
+	////Synchronous ë¡œë”©ì˜ Async ë¡œë”© flush ì—¬ë¶€ì— ë”°ë¼.. ì´ê±¸ ë‹¤ë¥¸ async request ë³´ë‹¤ ë¨¼ì € í˜¹ì€ ì´í›„ì—..
 	//PreloadInGameInfoAsset_SynchronousOnly(bAboutToPlayLoadingMovie);
 
 	//PreloadAllExpectedDialogAssets();
@@ -450,20 +450,20 @@ void AB2StageGameModeBase::PreloadAnyNecessaryInfo(bool bAboutToPlayLoadingMovie
 	//
 	//PreloadInGameInfoAsset_AsyncAllowed(bAboutToPlayLoadingMovie);
 
-	//// ÅÂ±× Ä³¸¯ÅÍ Mesh merge ¸¦ ¹Ì¸® ¼öÇàÇØ ³õÀ½. Preload Â÷¿ø. 
-	//// ±×·¯³ª B2CompositeMeshCache ÀÇ RooSet Ã³¸®¸¦ »ç¿ëÇÏ°Ô µÇ¸é ÀÌ°Ç À¯¸í¹«½Ç.
+	//// íƒœê·¸ ìºë¦­í„° Mesh merge ë¥¼ ë¯¸ë¦¬ ìˆ˜í–‰í•´ ë†“ìŒ. Preload ì°¨ì›. 
+	//// ê·¸ëŸ¬ë‚˜ B2CompositeMeshCache ì˜ RooSet ì²˜ë¦¬ë¥¼ ì‚¬ìš©í•˜ê²Œ ë˜ë©´ ì´ê±´ ìœ ëª…ë¬´ì‹¤.
 	//PreBuildTagCharMesh(); 
 }
 
 void AB2StageGameModeBase::PreBuildTagCharMesh()
 {
-	// B2CompositeMeshCache ÀÇ RooSet Ã³¸®¸¦ »ç¿ëÇÏ°Ô µÇ¸é ÀÌ°Ç À¯¸í¹«½Ç.
+	// B2CompositeMeshCache ì˜ RooSet ì²˜ë¦¬ë¥¼ ì‚¬ìš©í•˜ê²Œ ë˜ë©´ ì´ê±´ ìœ ëª…ë¬´ì‹¤.
 	//PrebuildLocalTagCharMesh();
 }
 
 void AB2StageGameModeBase::GetAllExpectedDialogCodeNames(TArray<FName>& OutAllDlgCode)
 {
-	// ÀÌ¹ø ½ºÅ×ÀÌÁö flow »ó ¹ßµ¿ °¡´ÉÇÑ ½Ã³ª¸®¿À ´ÙÀÌ¾ó·Î±× °ü·ÃÇÑ ÄÚµå³×ÀÓµé ±Ü¾î¸ğÀ¸±â.
+	// ì´ë²ˆ ìŠ¤í…Œì´ì§€ flow ìƒ ë°œë™ ê°€ëŠ¥í•œ ì‹œë‚˜ë¦¬ì˜¤ ë‹¤ì´ì–¼ë¡œê·¸ ê´€ë ¨í•œ ì½”ë“œë„¤ì„ë“¤ ê¸ì–´ëª¨ìœ¼ê¸°.
 
 	B2_SCOPED_TRACK_LOG(TEXT("AB2StageGameModeBase::GetAllExpectedDialogCodeNames"));
 
@@ -490,7 +490,7 @@ void AB2StageGameModeBase::GetAllExpectedDialogCodeNames(TArray<FName>& OutAllDl
 
 void AB2StageGameModeBase::PreloadAllExpectedDialogAssets()
 {
-	// ´ÙÀÌ¾ó·Î±×¿¡ »ç¿ëÇÏ´Â ÅØ½ºÃÄ¶û »ç¿îµåµé.. ÀÌµéÀº ·Îµù ÀÚÃ¼°¡ on-demand ·Î ÇÏ±â ¹«°Ì´Ù±âº¸´Ù ´Ù¸¥ async ·Îµù flush ¹æÁö Â÷¿øÀÌ ´õ Å­.
+	// ë‹¤ì´ì–¼ë¡œê·¸ì— ì‚¬ìš©í•˜ëŠ” í…ìŠ¤ì³ë‘ ì‚¬ìš´ë“œë“¤.. ì´ë“¤ì€ ë¡œë”© ìì²´ê°€ on-demand ë¡œ í•˜ê¸° ë¬´ê²ë‹¤ê¸°ë³´ë‹¤ ë‹¤ë¥¸ async ë¡œë”© flush ë°©ì§€ ì°¨ì›ì´ ë” í¼.
 
 	B2_SCOPED_TRACK_LOG(TEXT("AB2StageGameModeBase::PreloadAllExpectedDialogAssets"));
 
@@ -499,10 +499,10 @@ void AB2StageGameModeBase::PreloadAllExpectedDialogAssets()
 
 	//UB2ScenarioDialogInfo* DlgInfoTable = StaticFindDialogInfoTable();
 	//if (DlgInfoTable)
-	//{ // ÀÏ¹İÀûÀÎ dialog ¿¡ ÇÊ¿äÇÑ °Í¸¸ ·ÎµùÇØ º»´Ù..
+	//{ // ì¼ë°˜ì ì¸ dialog ì— í•„ìš”í•œ ê²ƒë§Œ ë¡œë”©í•´ ë³¸ë‹¤..
 	//	DlgInfoTable->PreloadAssetsForStageGame(AllDlgCodes, this, false);
 
-	//	// Talkdialog ²¨¸®µµ preload ÇÏ·Á¸é Á» ¼ÕÀÌ °¥ µí.. ±×°Ç º¸Åë ½ºÅ×ÀÌÁö ½ÃÀÛÀÌ³ª ³¡³¯ ¶§ ³ª¿À´Â °Å¶ó µüÈ÷ ÇÊ¿äÇÒ±î ½ÍÁö¸¸..
+	//	// Talkdialog êº¼ë¦¬ë„ preload í•˜ë ¤ë©´ ì¢€ ì†ì´ ê°ˆ ë“¯.. ê·¸ê±´ ë³´í†µ ìŠ¤í…Œì´ì§€ ì‹œì‘ì´ë‚˜ ëë‚  ë•Œ ë‚˜ì˜¤ëŠ” ê±°ë¼ ë”±íˆ í•„ìš”í• ê¹Œ ì‹¶ì§€ë§Œ..
 	//}
 }
 
@@ -521,7 +521,7 @@ void AB2StageGameModeBase::OnAsyncLoadComplete(const FString& CompleteRequest, c
 AActor* AB2StageGameModeBase::FindPlayerStartForCurrStage(AController* InController)
 {
 	//FSingleStageInfoData* ThisStageInfo = GetStageManager() ? GetStageManager()->GetCurrentStageInfoData() : NULL;
-	//if (ThisStageInfo && !ThisStageInfo->PlayerStartTag.IsEmpty() && !StageManager->IsPlayingInExtraLevel()) // PlayerStartTag ´Â MainMap ¿ë ¼³Á¤ÀÓ.
+	//if (ThisStageInfo && !ThisStageInfo->PlayerStartTag.IsEmpty() && !StageManager->IsPlayingInExtraLevel()) // PlayerStartTag ëŠ” MainMap ìš© ì„¤ì •ì„.
 	//{
 	//	return FindPlayerStart(InController, ThisStageInfo->PlayerStartTag);
 	//}
@@ -532,50 +532,50 @@ void AB2StageGameModeBase::ResetAssumeNoWorldLoading()
 {
 	B2_SCOPED_TRACK_LOG(TEXT("AB2StageGameModeBase::ResetAssumeNoWorldLoading"));
 	//
-	//	// ¿ùµå ·Îµù ¾øÀÌ °ÔÀÓ ÇÃ·¹ÀÌ¿¡ ÇÊ¿äÇÑ µ¥ÀÌÅÍµé¸¸ ¸®¼ÂÇØ¼­ »õ·Î ½ÃÀÛÇÏ·Á´Â ±â´ÉÀÓ.
-	//	// Á¦ÇÑÀûÀÎ »óÈ²¿¡¼­ »ç¿ëÀ».. ÀÏ¹İÀûÀÎ ½ºÅ×ÀÌÁö °ÔÀÓ¿¡¼­ »ç¿ëÇÏ·Á´Â °Å ¾Æ´Ô.
-	//	// StageNumber ³ª Difficulty ´Â ÇÊ¿äÇÏ´Ù¸é ÀÌ ½ÃÁ¡¿¡ ÀÌ¹Ì »õ·Î¿î °ªÀ¸·Î ¹Ş¾ÆÁ® ÀÖ¾î¾ß ÇÔ. 
+	//	// ì›”ë“œ ë¡œë”© ì—†ì´ ê²Œì„ í”Œë ˆì´ì— í•„ìš”í•œ ë°ì´í„°ë“¤ë§Œ ë¦¬ì…‹í•´ì„œ ìƒˆë¡œ ì‹œì‘í•˜ë ¤ëŠ” ê¸°ëŠ¥ì„.
+	//	// ì œí•œì ì¸ ìƒí™©ì—ì„œ ì‚¬ìš©ì„.. ì¼ë°˜ì ì¸ ìŠ¤í…Œì´ì§€ ê²Œì„ì—ì„œ ì‚¬ìš©í•˜ë ¤ëŠ” ê±° ì•„ë‹˜.
+	//	// StageNumber ë‚˜ Difficulty ëŠ” í•„ìš”í•˜ë‹¤ë©´ ì´ ì‹œì ì— ì´ë¯¸ ìƒˆë¡œìš´ ê°’ìœ¼ë¡œ ë°›ì•„ì ¸ ìˆì–´ì•¼ í•¨. 
 	//
 	//#if !UE_BUILD_SHIPPING
 	//	CheckResetAssumeNoWorldLoadingCondition(this);
 	//#endif
 	//	
-	//	// OnPreLoadMap ¿¡¼­ ÇÏ´ø ·ÎÄÃ »óÅÂ ÀúÀå..
+	//	// OnPreLoadMap ì—ì„œ í•˜ë˜ ë¡œì»¬ ìƒíƒœ ì €ì¥..
 	//	SaveLocalIniStateOnPreLoadMap();
 	//
 	//	UpdateManagedActorList();
 	//
-	//	//UIµ¶¸Å´ÏÀú ÃÊ±âÈ­
+	//	//UIë…ë§¤ë‹ˆì € ì´ˆê¸°í™”
 	//	UB2UIDocManager* UIDocManager = UB2UIDocManager::GetInstance();
 	//	if (UIDocManager) {
 	//		UIDocManager->Init(this);
 	//	}
 	//
-	//	// »ç¿ëµÉ SpawnPool ¼Â¾÷ÀÌ ¹Ù²ğ °¡´É¼ºÀ» »ı°¢ÇÑ´Ù¸é Preload µµ ÇÊ¿äÇÒ¼ö¹Û¿¡.. ¾È ±×·¯¸é Áß°£¿¡ ÅöÅö Æ¢¾î¹ö¸± Å×´Ï..
-	//	// ÀÌÀü ½ºÅ×ÀÌÁö °ÍµéÀ» Unload ÇÏ´Â °Ç ¾îÂîÇÒ±î.. ±×°Í±îÁö µé¾î°¡¸é °á±¹ ·Îµù½Ã°£ÀÌ ¸¹ÀÌ °É¸®°Ô µÉÅÙµ¥..
+	//	// ì‚¬ìš©ë  SpawnPool ì…‹ì—…ì´ ë°”ë€” ê°€ëŠ¥ì„±ì„ ìƒê°í•œë‹¤ë©´ Preload ë„ í•„ìš”í• ìˆ˜ë°–ì—.. ì•ˆ ê·¸ëŸ¬ë©´ ì¤‘ê°„ì— íˆ­íˆ­ íŠ€ì–´ë²„ë¦´ í…Œë‹ˆ..
+	//	// ì´ì „ ìŠ¤í…Œì´ì§€ ê²ƒë“¤ì„ Unload í•˜ëŠ” ê±´ ì–´ì°Œí• ê¹Œ.. ê·¸ê²ƒê¹Œì§€ ë“¤ì–´ê°€ë©´ ê²°êµ­ ë¡œë”©ì‹œê°„ì´ ë§ì´ ê±¸ë¦¬ê²Œ ë í…ë°..
 	//	PreloadAnyNecessaryInfo(false);
 	//	
-	//	// AutoAiController¿¡ ½ºÅ×ÀÌÁö Å¬¸®¾î ¼ÂÆÃµÈ°Å ¸®¼Â
+	//	// AutoAiControllerì— ìŠ¤í…Œì´ì§€ í´ë¦¬ì–´ ì…‹íŒ…ëœê±° ë¦¬ì…‹
 	//	ABladeIIPlayerController* pPC = Cast<ABladeIIPlayerController>(UGameplayStatics::GetLocalPlayerController(this));
 	//	if (pPC)
 	//	{
 	//		pPC->ResetAutoAiController();
 	//
-	//		// ÀÔ·Â ¸·Àº°Å ÇØÁ¦
+	//		// ì…ë ¥ ë§‰ì€ê±° í•´ì œ
 	//		pPC->SetStageEndNonCombatState(false);
 	//	}
 	//
-	//	// »óÅÂ ¸®¼Â Â÷¿ø¿¡¼­ ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍµµ Respawn.
+	//	// ìƒíƒœ ë¦¬ì…‹ ì°¨ì›ì—ì„œ í”Œë ˆì´ì–´ ìºë¦­í„°ë„ Respawn.
 	//	ABladeIIPlayer* LocalPlayerChar = Cast<ABladeIIPlayer>(UGameplayStatics::GetLocalPlayerCharacter(this));
 	//	UB2SkillRTManager* LocalPlayerSkillMgr = LocalPlayerChar->GetSkillRTManager();
 	//	if (LocalPlayerSkillMgr)
 	//		LocalPlayerSkillMgr->SimpleRebirth();
 	//
-	//	// SimpleRebirth ¿¡ ¼º°øÇß´Ù¸é LocalPlayerCharacter °¡ ¹Ù²î¾î ÀÖÀ» °Í.
+	//	// SimpleRebirth ì— ì„±ê³µí–ˆë‹¤ë©´ LocalPlayerCharacter ê°€ ë°”ë€Œì–´ ìˆì„ ê²ƒ.
 	//	LocalPlayerChar = Cast<ABladeIIPlayer>(UGameplayStatics::GetLocalPlayerCharacter(this));
 	//	if (LocalPlayerChar)
 	//	{
-	//		LocalPlayerChar->EnableInput(UGameplayStatics::GetLocalPlayerController(this)); // Rebirth °úÁ¤¿¡¼­ DisableInput ÇÏ´Â °Ô ÀÖ¾î¼­ Enable ÇØÁÜ.
+	//		LocalPlayerChar->EnableInput(UGameplayStatics::GetLocalPlayerController(this)); // Rebirth ê³¼ì •ì—ì„œ DisableInput í•˜ëŠ” ê²Œ ìˆì–´ì„œ Enable í•´ì¤Œ.
 	//		AActor* ThePlayerStart = FindPlayerStartForCurrStage(UGameplayStatics::GetLocalPlayerController(this));
 	//		if (ThePlayerStart)
 	//		{
@@ -608,13 +608,13 @@ void AB2StageGameModeBase::ResetAssumeNoWorldLoading()
 	//
 	//	StartEventScene_GameBegin();
 	//
-	//	// Spawn °ú ÇÔ²² ¿¬ÃâÀÌ ½ÃÀÛµÉ ¼ö ÀÖÀ¸´Ï Player Ä³¸¯ÅÍ¶û ¿¬Ãâ µîÀÇ ¸®¼ÂÃ³¸®¸¦ ÇÑ ÈÄ¿¡ SpawnPool ¸®¼Â.
+	//	// Spawn ê³¼ í•¨ê»˜ ì—°ì¶œì´ ì‹œì‘ë  ìˆ˜ ìˆìœ¼ë‹ˆ Player ìºë¦­í„°ë‘ ì—°ì¶œ ë“±ì˜ ë¦¬ì…‹ì²˜ë¦¬ë¥¼ í•œ í›„ì— SpawnPool ë¦¬ì…‹.
 	//	if (GetActiveSpawnPool())
 	//	{
 	//		GetActiveSpawnPool()->ResetAssumeNoWorldLoading();
 	//	}
 	//	
-	//	if (!bDeferAutoBeginAuto) // ÀÌ°É ¾²´Â »óÈ²¿¡¼­ DeferAutoBeginAuto ¸¦ true ·Î ¾µ °Å °°Áø ¾ÊÁö¸¸..
+	//	if (!bDeferAutoBeginAuto) // ì´ê±¸ ì“°ëŠ” ìƒí™©ì—ì„œ DeferAutoBeginAuto ë¥¼ true ë¡œ ì“¸ ê±° ê°™ì§„ ì•Šì§€ë§Œ..
 	//	{
 	//		TryAutoBeginAutoAtBeginning();
 	//	}
@@ -630,13 +630,13 @@ void AB2StageGameMode::BeginPlay()
 	Super::BeginPlay();
 	//	
 	//	if (IsRepeatBattleOn())
-	//	{ // ¸Å ¹İº¹ÀüÅõ ½ºÅ×ÀÌÁö ½ÃÀÛ½Ã¸¶´Ù..
+	//	{ // ë§¤ ë°˜ë³µì „íˆ¬ ìŠ¤í…Œì´ì§€ ì‹œì‘ì‹œë§ˆë‹¤..
 	//		OnBeginPlayOfRepeatBattle();
 	//	}
 	//	
-	//	if (!IsInPreRenderPhase()) // Pre-render ½Ã¿¡´Â ±×°Ô ³¡³­ ÈÄ RestoreWholeGameTimeScale À» ÇÔ.
+	//	if (!IsInPreRenderPhase()) // Pre-render ì‹œì—ëŠ” ê·¸ê²Œ ëë‚œ í›„ RestoreWholeGameTimeScale ì„ í•¨.
 	//	{
-	//		RestoreWholeGameTimeScale(); // BeginPlay ÀÎµ¥ À¢ Restore ÀÎ°¡ ½ÍÁö¸¸ °Á ÇÊ¿äÇÑ ±âº» ¼³Á¤ ÇÏ´Â °É·Î º¸¸é µÊ.
+	//		RestoreWholeGameTimeScale(); // BeginPlay ì¸ë° ì›¬ Restore ì¸ê°€ ì‹¶ì§€ë§Œ ê± í•„ìš”í•œ ê¸°ë³¸ ì„¤ì • í•˜ëŠ” ê±¸ë¡œ ë³´ë©´ ë¨.
 	//	}
 	//
 	//	DeferredClientStageId = INDEX_NONE;
@@ -653,11 +653,11 @@ void AB2StageGameMode::BeginPlay()
 	//	if (GIsEditor && ThisStageInfo && OutermostPkg)
 	//	{		
 	//		FString CurrLevelName = OutermostPkg->FileName.ToString();
-	//		FString StageInfoMainMapName = ThisStageInfo->MainMap.ToString(); // ¿©±ä ¾Æ¸¶ °æ·Î´Â ¾øÀ» °Í.
+	//		FString StageInfoMainMapName = ThisStageInfo->MainMap.ToString(); // ì—¬ê¸´ ì•„ë§ˆ ê²½ë¡œëŠ” ì—†ì„ ê²ƒ.
 	//		FString StageInfoExtraMapName = ThisStageInfo->ExtraMap.ToString();
-	//		// ±»ÀÌ ¾Æ´Ñ °Å ºñ±³ÇØ¼­ ºÒÇÊ¿äÇÑ ¸Ş½ÃÁö ¹Ú½º ¾È¶ç¿ì·Á°í..
+	//		// êµ³ì´ ì•„ë‹Œ ê±° ë¹„êµí•´ì„œ ë¶ˆí•„ìš”í•œ ë©”ì‹œì§€ ë°•ìŠ¤ ì•ˆë„ìš°ë ¤ê³ ..
 	//		const bool bIsProbablyMatchingMainLevel = (CurrLevelName.Len() >= StageInfoMainMapName.Len() && CurrLevelName.EndsWith(StageInfoMainMapName));
-	//		// ¿¡µğÅÍ¿¡¼­ ´Üµ¶ ÇÃ·¹ÀÌ½Ã ExtraMap ÆÇº°.
+	//		// ì—ë””í„°ì—ì„œ ë‹¨ë… í”Œë ˆì´ì‹œ ExtraMap íŒë³„.
 	//		const bool bEditor_IsExtraMap = (GIsEditor && CurrLevelName.EndsWith(StageInfoExtraMapName));
 	//		if (!ThisStageInfo->PlayerStartTag.IsEmpty() && !StageManager->IsPlayingInExtraLevel() && bIsProbablyMatchingMainLevel && !bEditor_IsExtraMap)
 	//		{
@@ -675,7 +675,7 @@ void AB2StageGameMode::BeginPlay()
 	//			{
 	//#if !PLATFORM_MAC
 	//				FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(FString::Printf(
-	//					TEXT("ÇöÀç ÇÃ·¹ÀÌÇÏ´Â ·¹º§ %s ¿¡¼­ StageInfo %d ¿¡ ¼³Á¤µÈ %s ÅÂ±×¸¦ °¡Áø PlayerStart¸¦ Ã£À» ¼ö ¾ø´Ù. ÄÄÇ»ÅÍ°¡ °ğ Æø¹ßÇÑ´Ù."),
+	//					TEXT("í˜„ì¬ í”Œë ˆì´í•˜ëŠ” ë ˆë²¨ %s ì—ì„œ StageInfo %d ì— ì„¤ì •ëœ %s íƒœê·¸ë¥¼ ê°€ì§„ PlayerStartë¥¼ ì°¾ì„ ìˆ˜ ì—†ë‹¤. ì»´í“¨í„°ê°€ ê³§ í­ë°œí•œë‹¤."),
 	//					*CurrLevelName, StageManager->GetCurrentClientStageId(), *ThisStageInfo->PlayerStartTag
 	//					)));
 	//#endif
@@ -685,7 +685,7 @@ void AB2StageGameMode::BeginPlay()
 	//		for (TActorIterator<APlayerStart> It(GetWorld()); It; ++It)
 	//		{
 	//			APlayerStart* PlayerStart = *It;
-	//			APlayerStartPIE* PlayerStartPIE = Cast<APlayerStartPIE>(PlayerStart); // ´ëÃ¼ ÀÌ°Ç ¹¹³Ä..
+	//			APlayerStartPIE* PlayerStartPIE = Cast<APlayerStartPIE>(PlayerStart); // ëŒ€ì²´ ì´ê±´ ë­ëƒ..
 	//			if (PlayerStart && !PlayerStartPIE)
 	//			{
 	//				++TotalPlayerStart;
@@ -696,7 +696,7 @@ void AB2StageGameMode::BeginPlay()
 	//		{
 	//#if !PLATFORM_MAC
 	//			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(FString::Printf(
-	//				TEXT("ÇöÀç ÇÃ·¹ÀÌÇÏ´Â ·¹º§ %s ÀÇ PlayerStart °¡ %d °³ÀÌ³ª StageInfo %d ¿¡ PlayerStartTag °¡ ¼³Á¤µÇ¾î ÀÖÁö ¾Ê°Å³ª È¤Àº ExtraMap ÀÔ´Ï´Ù."),
+	//				TEXT("í˜„ì¬ í”Œë ˆì´í•˜ëŠ” ë ˆë²¨ %s ì˜ PlayerStart ê°€ %d ê°œì´ë‚˜ StageInfo %d ì— PlayerStartTag ê°€ ì„¤ì •ë˜ì–´ ìˆì§€ ì•Šê±°ë‚˜ í˜¹ì€ ExtraMap ì…ë‹ˆë‹¤."),
 	//				*CurrLevelName, TotalPlayerStart, StageManager->GetCurrentClientStageId()
 	//				)));
 	//#endif
@@ -709,15 +709,15 @@ void AB2StageGameMode::SetDesiredPCClassEnum()
 {
 	Super::SetDesiredPCClassEnum();
 
-	// ExtraMap ·Îµù ½Ã¿¡´Â Á÷Àü¿¡ ÇÃ·¹ÀÌÇß´ø Å¬·¡½º·Î ½ÃÀÛÇØ¾ß ÇÑ´Ù.
-	// PlayInExtraLevel ÀÌ³ª LastPlayedClass ¸ğµÎ extra map ·Îµù ½ÃÀÛ Á÷Àü¿¡ ¸ğµÎ ¼¼ÆÃµÇ¾î ÀÖÀ» °Í.
+	// ExtraMap ë¡œë”© ì‹œì—ëŠ” ì§ì „ì— í”Œë ˆì´í–ˆë˜ í´ë˜ìŠ¤ë¡œ ì‹œì‘í•´ì•¼ í•œë‹¤.
+	// PlayInExtraLevel ì´ë‚˜ LastPlayedClass ëª¨ë‘ extra map ë¡œë”© ì‹œì‘ ì§ì „ì— ëª¨ë‘ ì„¸íŒ…ë˜ì–´ ìˆì„ ê²ƒ.
 	if (AB2StageManager::GetCacheStageKeepEssentialData().IsPlayInExtraLevel())
 	{
 		CurrentPCClassEnum = AB2StageManager::GetCacheStageKeepEssentialData().GetPreExtraLastPlayedClass();
 	}
 #if WITH_EDITOR
 	if (GetStageManager() && GetStageManager()->IsStandalonePIE())
-	{ // StageManager ÀÇ PreBeginPlay °¡ ÀÌ°Íº¸´Ù ¾Õ¼­ ½ÇÇàµÇ¾ú´Ù¸é ·Îºñ¸¦ ÅëÇÏÁö ¾ÊÀº ´Ü¼ø Play-in-Editor ¿¡¼­´Â ¿©±â·Î µé¾î¿Ã °Í.
+	{ // StageManager ì˜ PreBeginPlay ê°€ ì´ê²ƒë³´ë‹¤ ì•ì„œ ì‹¤í–‰ë˜ì—ˆë‹¤ë©´ ë¡œë¹„ë¥¼ í†µí•˜ì§€ ì•Šì€ ë‹¨ìˆœ Play-in-Editor ì—ì„œëŠ” ì—¬ê¸°ë¡œ ë“¤ì–´ì˜¬ ê²ƒ.
 		CurrentPCClassEnum = DefaultPCClassEnum;
 	}
 #endif
@@ -747,7 +747,7 @@ void AB2StageGameMode::PreBeginPlay()
 {
 	Super::PreBeginPlay();
 
-	// [¸ğÇè¸ğµå] ÀÏ°æ¿ì ¿ùµå¹Ù¿îµå¸¦ Ç×»ó Ã¼Å©ÇÏ¸ç, ÀÏÁ¤°Å¸®(-50M) ÀÌÇÏ·Î ¾×ÅÍ°¡ ¶³¾îÁú °æ¿ì, »ç¸Á Ã³¸®
+	// [ëª¨í—˜ëª¨ë“œ] ì¼ê²½ìš° ì›”ë“œë°”ìš´ë“œë¥¼ í•­ìƒ ì²´í¬í•˜ë©°, ì¼ì •ê±°ë¦¬(-50M) ì´í•˜ë¡œ ì•¡í„°ê°€ ë–¨ì–´ì§ˆ ê²½ìš°, ì‚¬ë§ ì²˜ë¦¬
 	AWorldSettings* WorldSettings = GetWorld() ? GetWorld()->GetWorldSettings() : nullptr;
 	if (WorldSettings)
 	{
@@ -762,9 +762,9 @@ void AB2StageGameMode::PreBeginPlay()
 void AB2StageGameMode::RestoreWholeGameTimeScale()
 {
 	if (HasStageBuff(EStageBuffType::SBT_BoostGameSpeed))
-	{ // °ÔÀÓ ¼Óµµ ³ôÀÌ±â.
+	{ // ê²Œì„ ì†ë„ ë†’ì´ê¸°.
 		float BoostScale = BladeIIGameImpl::GetClientDataStore().GetStageBuffIncreaseGamseSpeedRate();
-		//SetWholeGameTimeScale(BoostScale); // SetGlobalTimeDilation À¸·Î µé¾î°¡´Â °ªÀÇ ±â¹İ¿¡ Àû¿ëµÊ.
+		//SetWholeGameTimeScale(BoostScale); // SetGlobalTimeDilation ìœ¼ë¡œ ë“¤ì–´ê°€ëŠ” ê°’ì˜ ê¸°ë°˜ì— ì ìš©ë¨.
 	}
 	else
 	{
@@ -776,7 +776,7 @@ void AB2StageGameMode::SetMatchState(FName NewState)
 {
 	Super::SetMatchState(NewState);
 
-	//// Ã¹ Spawnpool NPCClassInfo ´Â preload·Î, InGame ÁøÀÔÇÏÀÚ¸¶ÀÚ ³ª¸ÓÁö Spawnpool Asyncload
+	//// ì²« Spawnpool NPCClassInfo ëŠ” preloadë¡œ, InGame ì§„ì…í•˜ìë§ˆì ë‚˜ë¨¸ì§€ Spawnpool Asyncload
 	//if (NewState == MatchState::InProgress && TheActiveSpawnPool)
 	//{
 	//	TheActiveSpawnPool->TryAsyncLoadReservedMonsters();
@@ -804,7 +804,7 @@ void AB2StageGameMode::RestartGameNext()
 	   //UB2StageInfo* StageInfo = StaticFindStageInfo();
 	   //if ( !StageInfo ) return;
 
-	   //// [¿¬¼ÓÀüÅõ] 3¹è¸ğÇè¿¡¼­ Æ¼ÄÏÀÌ ºÎÁ·ÇÒ°æ¿ì ÀüÅõ¸¦ ¸ØÃß°í ÆË¾÷À» ¶ç¿öÁØ´Ù
+	   //// [ì—°ì†ì „íˆ¬] 3ë°°ëª¨í—˜ì—ì„œ í‹°ì¼“ì´ ë¶€ì¡±í• ê²½ìš° ì „íˆ¬ë¥¼ ë©ˆì¶”ê³  íŒì—…ì„ ë„ì›Œì¤€ë‹¤
 	   //if ( auto* DocBattleStage = UB2UIDocHelper::GetDocBattleStage() )
 	   //{
 	   //	if ( DocBattleStage->GetRepeatBattleBoostOn() && DocBattleStage->GetRepeatBattleBoostRemainCount() < 1 )
@@ -814,7 +814,7 @@ void AB2StageGameMode::RestartGameNext()
 	   //	}
 	   //}
 	   //
-	   ////¿¬¼ÓÀüÅõ
+	   ////ì—°ì†ì „íˆ¬
 	   //int32 CurrentClientStageID = StageManager->GetCurrentClientStageId();
 	   //bool FinishRepeatBattleLoop = StageManager != nullptr ? StageManager->IsEndStage(CurrentClientStageID) : true;
 	   //FServerStageID NextServerStageId = StageManager->GetNextServerStageID(CurrentClientStageID, AB2StageManager::GetCacheStageKeepEssentialData().GetStageDifficulty());
@@ -883,7 +883,7 @@ void AB2StageGameMode::GoToVillageDefeated()
 	{
 		StageManager->RequestFailStageDefeat();
 	}
-	GoToVillage(); // ³»Áö´Â GoToNextArea ³ª ¹İº¹ÀüÅõ¿¡¼­Ã³·³ ÀüÅõ ´ë±â È­¸éÀ¸·Î °¡¾ßÇÒ ¼öµµ.. ±×·± °æ¿ì AB2StageGameMode::DeferredGoToLobby ÂÊ¿¡¼­ GoGameStageInfoFromLobbyClass ¿¡ Æí½ÂÀ»..
+	GoToVillage(); // ë‚´ì§€ëŠ” GoToNextArea ë‚˜ ë°˜ë³µì „íˆ¬ì—ì„œì²˜ëŸ¼ ì „íˆ¬ ëŒ€ê¸° í™”ë©´ìœ¼ë¡œ ê°€ì•¼í•  ìˆ˜ë„.. ê·¸ëŸ° ê²½ìš° AB2StageGameMode::DeferredGoToLobby ìª½ì—ì„œ GoGameStageInfoFromLobbyClass ì— í¸ìŠ¹ì„..
 }
 
 void AB2StageGameMode::GiveUpGame()
@@ -932,17 +932,17 @@ void AB2StageGameMode::Tick(float DeltaSeconds)
 const FString AB2StageGameMode::GetOpeningMovieName()
 {
 	if (GMinimalDLCFrontMode)
-	{ // DLC Front ¸ğµå ¸®¼Ò½º·Îµù ÃÖ´ëÇÑ Á¦°Å. Á¤¸» ÇÊ¿äÇÑ °÷ÀÎÁö´Â ¸ğ¸£°Ú´Âµ¥ ¿©Æ°..
+	{ // DLC Front ëª¨ë“œ ë¦¬ì†ŒìŠ¤ë¡œë”© ìµœëŒ€í•œ ì œê±°. ì •ë§ í•„ìš”í•œ ê³³ì¸ì§€ëŠ” ëª¨ë¥´ê² ëŠ”ë° ì—¬íŠ¼..
 		FString(TEXT(""));
 	}
 
 	AB2StageManager* StageMgr = GetStageManager();
 	if (StageMgr && StageMgr->IsScenarioMode()
-		// ¼³Á¤ ±¸Á¶ »ó Extra ·¹º§(´ëÃ¼·Î º¸½ºÀü) Àü¿ë µ¿¿µ»ó ¼¼ÆÃÀÌ ¾øÀ½. ÀÌ·± °æ¿ì´Â »ç½Ç»ó ¿¬ÀÌ¾î ÇÃ·¹ÀÌÇÏ´Â °Å´Ï Extra °¡ ¾Æ´Ñ ¸ŞÀÎ ¸Ê ·Îµù½Ã¿¡¸¸ ÇÃ·¹ÀÌ
+		// ì„¤ì • êµ¬ì¡° ìƒ Extra ë ˆë²¨(ëŒ€ì²´ë¡œ ë³´ìŠ¤ì „) ì „ìš© ë™ì˜ìƒ ì„¸íŒ…ì´ ì—†ìŒ. ì´ëŸ° ê²½ìš°ëŠ” ì‚¬ì‹¤ìƒ ì—°ì´ì–´ í”Œë ˆì´í•˜ëŠ” ê±°ë‹ˆ Extra ê°€ ì•„ë‹Œ ë©”ì¸ ë§µ ë¡œë”©ì‹œì—ë§Œ í”Œë ˆì´
 		&& !StageMgr->IsPlayingInExtraLevel()
 		)
 	{
-		// StageGameMode ÇÃ·¹ÀÌ¸¦ À§ÇÑ ¸®Äù½ºÆ®¸¦ ÅëÇØ¼­¸¸ ÀÇ¹ÌÀÖ´Â StageId °¡ µé¾î°¡ ÀÖ¾î¾ß ÇÔ.
+		// StageGameMode í”Œë ˆì´ë¥¼ ìœ„í•œ ë¦¬í€˜ìŠ¤íŠ¸ë¥¼ í†µí•´ì„œë§Œ ì˜ë¯¸ìˆëŠ” StageId ê°€ ë“¤ì–´ê°€ ìˆì–´ì•¼ í•¨.
 		int32 StageId = AB2StageManager::GetCacheStageKeepEssentialData().GetCurrentClientStageId();
 		UB2StageInfo* StageInfoTable = StaticFindStageInfo();
 		FSingleStageInfoData* StageInfoData = StageInfoTable ? StageInfoTable->GetInfoData(StageId) : NULL;
@@ -993,11 +993,11 @@ void AB2StageGameMode::DeferredGoToLobby()
 		if (!bRegistredDeferredUISceneChapter)
 		{
 			FLobbySceneManager::DeferredRegistChangeLobbyScene([ActId, Difficulty](){
-				// ÀüÃ¼ ¾À ÀüÈ¯À» ÇÏ¸é ½Ç ·Îµù ½Ã°£ÀÌ ´Ã¾î³ª¹Ç·Î ¿øÇÏ´Â È­¸é Á÷Àü±îÁö UI History ¸¸ ¸¸µé¾îÁØ´Ù. 
+				// ì „ì²´ ì”¬ ì „í™˜ì„ í•˜ë©´ ì‹¤ ë¡œë”© ì‹œê°„ì´ ëŠ˜ì–´ë‚˜ë¯€ë¡œ ì›í•˜ëŠ” í™”ë©´ ì§ì „ê¹Œì§€ UI History ë§Œ ë§Œë“¤ì–´ì¤€ë‹¤. 
 				UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
 				if (UIMgrInst){
 					UIMgrInst->ArtificialAddUIHistory(EUIScene::LobbyMain);
-					// ¿ø·¡ ¾Æ·¡ RequestGetActInfo ÀÌÈÄ ÀÀ´äÀ¸·Î Chapter Scene ÀÌ ¿­·Á¾ß ÇÏ´Âµ¥ ÀÀ´äÀÌ ¿ÀÁö ¾ÊÀ¸¸é ¸ÁÇÏ¹Ç·Î Àû¾îµµ ¹é¹öÆ°ÀÌ¶óµµ ÀÖ´Â Chapter UIScene ÀÌ¶óµµ ¹Ì¸® ¿­¾îµĞ´Ù.
+					// ì›ë˜ ì•„ë˜ RequestGetActInfo ì´í›„ ì‘ë‹µìœ¼ë¡œ Chapter Scene ì´ ì—´ë ¤ì•¼ í•˜ëŠ”ë° ì‘ë‹µì´ ì˜¤ì§€ ì•Šìœ¼ë©´ ë§í•˜ë¯€ë¡œ ì ì–´ë„ ë°±ë²„íŠ¼ì´ë¼ë„ ìˆëŠ” Chapter UIScene ì´ë¼ë„ ë¯¸ë¦¬ ì—´ì–´ë‘”ë‹¤.
 					UIMgrInst->ChangeUIScene(EUIScene::AdventureEnterBattleMain);
 					UIMgrInst->ChangeUIScene(EUIScene::Chapter); 
 				}
@@ -1019,9 +1019,9 @@ void AB2StageGameMode::DeferredGoToLobby()
 		EStageDifficulty CurStageDifficulty = AB2StageManager::GetCacheStageKeepEssentialData().GetStageDifficulty();
 
 		if (IsRepeatBattleOn() && !IsRepeatBattleLoopAll())
-		{ // ¹İº¹ÀüÅõ¿¡¼­ Stage ¹øÈ£ À¯ÁöÇÑÃ¤ ÀÌ ±â´É¿¡ Æí½Â ²Ü»¡±â. ¾Æ·¡ GoGameStageInfo ÀÌº¥Æ® ³¯¸®´Â °Å¿¡µµ Æí½ÂÇØ¼­ ²Ü»¡±â.
+		{ // ë°˜ë³µì „íˆ¬ì—ì„œ Stage ë²ˆí˜¸ ìœ ì§€í•œì±„ ì´ ê¸°ëŠ¥ì— í¸ìŠ¹ ê¿€ë¹¨ê¸°. ì•„ë˜ GoGameStageInfo ì´ë²¤íŠ¸ ë‚ ë¦¬ëŠ” ê±°ì—ë„ í¸ìŠ¹í•´ì„œ ê¿€ë¹¨ê¸°.
 			NextClientStageId = AB2StageManager::GetCacheStageKeepEssentialData().GetCurrentClientStageId();
-			bRequestedGetStageInfo = true; // ÀÌ¹ø ½ºÅ×ÀÌÁöÀÇ StageInfo ¸¦ °¡Áö°í µ¹¾Æ°¥ °ÍÀÌ¹Ç·Î ¶Ç Request ¾ÈÇØµµ µÊ.
+			bRequestedGetStageInfo = true; // ì´ë²ˆ ìŠ¤í…Œì´ì§€ì˜ StageInfo ë¥¼ ê°€ì§€ê³  ëŒì•„ê°ˆ ê²ƒì´ë¯€ë¡œ ë˜ Request ì•ˆí•´ë„ ë¨.
 		}
 
 		if (DeferredClientStageId != INDEX_NONE)
@@ -1039,7 +1039,7 @@ void AB2StageGameMode::DeferredGoToLobby()
 			bool FinishRepeatBattleLoop = StageManager != nullptr ? StageManager->IsEndStage(CurrentClientStageID) : true;
 			NextServerStageId = StageManager->GetNextServerStageID(CurrentClientStageID, CurStageDifficulty);
 
-			if (NextServerStageId.Id == 0 && FinishRepeatBattleLoop)		//¿¬¼ÓÀüÅõ¿¡¼­ NextServerID°¡ 0ÀÌ¸é ³­ÀÌµµ º¯°æÇØ¾ßÇÏ´Â°É·Î °£ÁÖ ¸ØÃçÁØ´Ù
+			if (NextServerStageId.Id == 0 && FinishRepeatBattleLoop)		//ì—°ì†ì „íˆ¬ì—ì„œ NextServerIDê°€ 0ì´ë©´ ë‚œì´ë„ ë³€ê²½í•´ì•¼í•˜ëŠ”ê±¸ë¡œ ê°„ì£¼ ë©ˆì¶°ì¤€ë‹¤
 			{
 				/*if (UB2UIManager::GetInstance()->GetUI<UB2UIMsgPopupBase>(UIFName::MsgPopupSimple))
 					return;*/
@@ -1071,7 +1071,7 @@ void AB2StageGameMode::DeferredGoToLobby()
 			{
 				if (!StageDataStore.IsPossibleToDoRepeatBattle(StageManager->GetServerStageID()) )
 				{
-					//¿µÈ¥°ËÀÌ ¸ğÀÚ¸¦°æ¿ì ¹Ù·Î°¡±â ÆË¾÷¶ç¿ì±â
+					//ì˜í˜¼ê²€ì´ ëª¨ìë¥¼ê²½ìš° ë°”ë¡œê°€ê¸° íŒì—…ë„ìš°ê¸°
 					CancelOrStopRepeatBattle();
 					bFlagDeferredGoToMap = bFlagDeferredGoToNextArea = false;
 					HandleServerErrorGoodsShortageClass<const uint32, const EGoodsButtonType>::GetInstance().Signal(FItemRefIDHelper::GetGoodsID_BladePoint(), EGoodsButtonType::EGoodsButtonType_ShortageShortcut);
@@ -1086,7 +1086,7 @@ void AB2StageGameMode::DeferredGoToLobby()
 				}
 
 			}
-			// GetRepeatBattleRemainingCount ¿¡¼­´Â ¾ÆÁ÷ ÁÙÁö ¾ÊÀº ¹æ±İ ¿Ï·áÇÑ ½ºÅ×ÀÌÁö ½ÃÀÛ ½ÃÁ¡¿¡¼­ÀÇ °ªÀ» ¸®ÅÏÇÏ¹Ç·Î ´ÙÀ½¹ø ¹İº¹ÀüÅõ¸¦ À§ÇØ¼­´Â 1 °¨¼ÒÇÑ °ªÀ» ÁØ´Ù.
+			// GetRepeatBattleRemainingCount ì—ì„œëŠ” ì•„ì§ ì¤„ì§€ ì•Šì€ ë°©ê¸ˆ ì™„ë£Œí•œ ìŠ¤í…Œì´ì§€ ì‹œì‘ ì‹œì ì—ì„œì˜ ê°’ì„ ë¦¬í„´í•˜ë¯€ë¡œ ë‹¤ìŒë²ˆ ë°˜ë³µì „íˆ¬ë¥¼ ìœ„í•´ì„œëŠ” 1 ê°ì†Œí•œ ê°’ì„ ì¤€ë‹¤.
 			FRepeatBattleStateSet RepeatBattleStateSet = StageManager->GetRepeatBattleState();
 			RepeatBattleStateSet.CurrentRepeatCount += 1;
 			FLobbySceneManager::DeferredRegistChangeLobbyScene([NextServerStageId, RepeatBattleStateSet](){
@@ -1105,7 +1105,7 @@ void AB2StageGameMode::DeferredGoToLobby()
 
 	if (bGoToLobby)
 	{
-		if (bEnterInventory) //ÀÎº¥Åä¸®·Î °¡¾ßÇÑ´Ù¸é
+		if (bEnterInventory) //ì¸ë²¤í† ë¦¬ë¡œ ê°€ì•¼í•œë‹¤ë©´
 		{
 			bFlagDeferredGoToMap = bFlagDeferredGoToNextArea = false;
 			FLobbySceneManager::DeferredRegistChangeLobbyScene([]() {
@@ -1114,15 +1114,15 @@ void AB2StageGameMode::DeferredGoToLobby()
 			LobbyExternalSetInventoryTabClass<EItemInvenType, bool>::GetInstance().Signal(EItemInvenType::EIIVT_Weapon, false);
 		}
 
-		OpenBladeIILobbyCommon(this); // ¾À ÀüÈ¯ ¿¹¾à ÈÄ º»°İ ·Îºñ ¸Ê ·Îµù
+		OpenBladeIILobbyCommon(this); // ì”¬ ì „í™˜ ì˜ˆì•½ í›„ ë³¸ê²© ë¡œë¹„ ë§µ ë¡œë”©
 
-		if (bEnterShop)					//»óÁ¡À¸·Î°¡¾ßÇÑ´Ù¸é
+		if (bEnterShop)					//ìƒì ìœ¼ë¡œê°€ì•¼í•œë‹¤ë©´
 		{
 			auto* DocStore = UB2UIDocHelper::GetDocStore();
 
 			UB2UIManager* UIMgr = UB2UIManager::GetInstance();
 			if (UIMgr)
-			{ // ÀÚÀßÇÑ ÆË¾÷ÀÌ ¶á »óÅÂ¿¡¼­ »óÁ¡ ÁøÀÔÇÏ´Â °æ¿ì°¡ »ı±æ ¼ö ÀÖ¾î¼­ ±×°Å Ã³¸®.
+			{ // ìì˜í•œ íŒì—…ì´ ëœ¬ ìƒíƒœì—ì„œ ìƒì  ì§„ì…í•˜ëŠ” ê²½ìš°ê°€ ìƒê¸¸ ìˆ˜ ìˆì–´ì„œ ê·¸ê±° ì²˜ë¦¬.
 				UIMgr->CloseAllStandaloneUIs();
 			}
 
@@ -1203,7 +1203,7 @@ void AB2StageGameMode::SetupUIScene()
 
 void AB2StageGameMode::OnStageBegin()
 {
-	//B2GMLoadingProgCollector::StepToMax(); // ´ëÃ¼·Î SetupUIScene Á÷Àü¿¡ ·Îµù¹Ù ²Ë Ã¤¿ì¸é ÀûÀıÇÑ µí
+	//B2GMLoadingProgCollector::StepToMax(); // ëŒ€ì²´ë¡œ SetupUIScene ì§ì „ì— ë¡œë”©ë°” ê½‰ ì±„ìš°ë©´ ì ì ˆí•œ ë“¯
 	//SetupUIScene();
 
 	//if (auto* BattleMainUI = UB2UIManager::GetInstance()->GetUI<UB2UIBattleMain>(UIFName::BattleMain))
@@ -1213,7 +1213,7 @@ void AB2StageGameMode::OnStageBegin()
 void AB2StageGameMode::OnBeginPlayOfRepeatBattle()
 {
 
-	// ¹İº¹ÀüÅõ auto ½ÃÀÛÀº TryAutoBeginAutoAtBeginning ¿¡¼­..
+	// ë°˜ë³µì „íˆ¬ auto ì‹œì‘ì€ TryAutoBeginAutoAtBeginning ì—ì„œ..
 
 }
 
@@ -1221,7 +1221,7 @@ void AB2StageGameMode::OnEndPlayOfSingleRepeatBattleStage()
 {
 	//FRepeatBattleStateSet RepeatBattleState = AB2StageManager::GetCacheStageKeepEssentialData().GetRepeatBattleState();
 
-	//// [¹İº¹ÀüÅõ] ÀÏ°æ¿ì, ·Îºñ·Î µ¹¾Æ°¡Áö ¾Ê°í, ÇØ´ç ¸ğÇè¸ÊÀ» ¹Ù·Î ·Îµù Ã³¸® ÇÑ´Ù
+	//// [ë°˜ë³µì „íˆ¬] ì¼ê²½ìš°, ë¡œë¹„ë¡œ ëŒì•„ê°€ì§€ ì•Šê³ , í•´ë‹¹ ëª¨í—˜ë§µì„ ë°”ë¡œ ë¡œë”© ì²˜ë¦¬ í•œë‹¤
 	//if ( RepeatBattleState.bIsOn && RepeatBattleState.bRepeatOne )
 	//{
 	//	RestartGame();
@@ -1271,7 +1271,7 @@ bool AB2StageGameMode::HasStageBuff(EStageBuffType InType)
 
 bool AB2StageGameMode::ShouldStartAutoFromBeginning()
 {
-	if (Super::ShouldStartAutoFromBeginning() || // »óÀ§ Á¶°ÇÀ» Æ÷ÇÔÇØ¾ß ÇÑ´Ù.
+	if (Super::ShouldStartAutoFromBeginning() || // ìƒìœ„ ì¡°ê±´ì„ í¬í•¨í•´ì•¼ í•œë‹¤.
 		IsRepeatBattleOn())
 	{
 		return true;

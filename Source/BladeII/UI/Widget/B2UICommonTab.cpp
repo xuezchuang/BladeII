@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UICommonTab.h"
 #include "B2UIManager.h"
 #include "B2UIDocHelper.h"
@@ -60,7 +60,7 @@ void UB2UICommonTab::SetTabSelected(bool selected)
 
 void UB2UICommonTab::SetTabName(FText TabName)
 {
-	//ÄÚµå¿¡¼­ ¾²°Å³ª, UIÀ§Á¬¿¡¼­ ¾²°Å³ª µÑÁß ÇÏ³ª¸¸ »ç¿ëÇØ¾ßÇÔ.
+	//å†…é›ä¿Šè¾‘ é™èŠ­å”±, UIå›°è¿žä¿Šè¾‘ é™èŠ­å”± ç¬›å çªå”±çˆ¶ è¤ä¾©ç§¦å…·çªƒ.
 	CurrentTabName = TabName;
 	if (TB_Unselected.IsValid())
 		TB_Unselected->SetText(CurrentTabName);

@@ -1,4 +1,4 @@
-
+ï»¿
 #include "B2UIMain.h"
 #include "B2UIManager.h"
 #include "B2UIDocHelper.h"
@@ -35,7 +35,7 @@ void UB2UIMain::CacheAssets()
 //		UIP_NetWorkWaitResponseP->Init();
 //		//UIP_NetWorkWaitResponseP->SetVisibility(ESlateVisibility::Collapsed);
 //#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
-//		if (FBladeIIBlockToSyncNetwork::GetInstance().DevIsStandaloneMode())// ¿µ»ó ´ıÇÁ µî¿¡ ¹æÇØ°¡ µÈ´Ù´Â ¹Î¿øÀ¸·Î ÀÎÇØ Á» Ã¶ÀúÈ÷ ¸·°Ô µÊ.
+//		if (FBladeIIBlockToSyncNetwork::GetInstance().DevIsStandaloneMode())// åº·æƒ‘ å¾…æ©‡ æ®¿ä¿Š è§„ç§¦å•Š ç­‰ä¿ƒç»° åˆ®ç›”æ è‚º ç‰¢ç§¦ ç²± æšå†æ´’ é˜œéœ¸ å‡³.
 //		{
 //			UIP_NetWorkWaitResponseP->SetVisibility(ESlateVisibility::Hidden);
 //		}
@@ -76,7 +76,7 @@ void UB2UIMain::Init()
 
 	for (uint8 LayerCnt = static_cast<uint8>(EUILayer::None); LayerCnt < static_cast<uint8>(EUILayer::Max); ++LayerCnt)
 	{
-		//¿©±â¼­ OverlayÆĞ³ÎÀ» »ı¼ºÇØ¼­ AddToParentÇÑ´Ù. 
+		//å’¯æ‰è¾‘ Overlayè©æ¾„é˜‘ ç§¯å·±ç§¦è¾‘ AddToParentèŒ„ä¿ƒ. 
 		UOverlay* NewChildPanel = NewObject<UOverlay>(this, NAME_None, RF_Transient);
 		UCanvasPanelSlot* AddedSlot = Cast<UCanvasPanelSlot>(CP_TopMost->AddChild(NewChildPanel));
 		if (AddedSlot)
@@ -102,7 +102,7 @@ void UB2UIMain::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
 	if (DefOnTouchImpulseRing.IsCurrentOn())
 	{
 		if (DefOnTouchImpulseRing.Tick(InDeltaTime))
-		{// ÇÑ »çÀÌÅ¬ ´Ù µ¹¸é ´Ù½Ã Ã³À½ºÎÅÍ ÇÃ·¹ÀÌ ÇÏ´øÁö, stop µÇ´øÁö.
+		{// èŒ„ è¤æåŠª ä¿ƒ å€’æ ä¿ƒçŸ« è´¸æ¾œä½•ç£ æ•²é¥­æ çªå¸¦ç˜¤, stop ç™»å¸¦ç˜¤.
 			OnOnTouchImpulseRingAnimTimeCycle();
 		}
 	}
@@ -111,8 +111,8 @@ void UB2UIMain::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
 UPanelWidget* UB2UIMain::GetParentLayer(EUILayer InLayer)
 {
 	if (CP_TopMost.IsValid())
-	{ // Init ¿¡¼­ Layer ÀÎµ¦½º ¸ÂÃç Child Overlay µéÀ» Ãß°¡ÇØ ³õ¾Ò´Ù°í °¡Á¤ÇÏ´Â °ÍÀÌ¹Ç·Î CP_TopMost ¾Æ·¡¿¡´Â ¿©Å¸ ´Ù¸¥ °ÍÀÌ ÀÖÀ¸¸é ¾ÈµÈ´Ù. 
-		// UMG »ó¿¡¼­´Â ºñ¾îÀÖ´Â Ã¤ µş¶û ÀÚ¸®¸¸ Â÷ÁöÇÏ°í ÀÖ´Â Canvas Panel ÀÌ¾î¾ß ÇÔ.
+	{ // Init ä¿Šè¾‘ Layer ç‰¢éƒ¸èƒ¶ å˜è‹— Child Overlay ç”¸é˜‘ çœ å•Šç§¦ åˆç–½ä¿ƒç»Š å•Šæ²¥çªç»° å·´æéª¨è‚º CP_TopMost é…’è´°ä¿Šç»° å’¯é¸¥ ä¿ƒå¼— å·´æ ä¹æ æ æ•‘ç­‰ä¿ƒ. 
+		// UMG æƒ‘ä¿Šè¾‘ç»° åšç»¢ä¹ç»° ç›² å å°” ç£Šåºœçˆ¶ ç’ç˜¤çªç»Š ä¹ç»° Canvas Panel æç»¢å…· çªƒ.
 		auto ChildPanel = Cast<UPanelWidget>(CP_TopMost->GetChildAt(static_cast<int32>(InLayer)));
 		return ChildPanel;
 	}
@@ -122,10 +122,10 @@ UPanelWidget* UB2UIMain::GetParentLayer(EUILayer InLayer)
 void UB2UIMain::OnOnTouchImpulseRingAnimTimeCycle()
 {
 	if (bSignaledMaintainImpulseRing){
-		DefOnTouchImpulseRing.Play(); // ´Ù½Ã Ã³À½ºÎÅÍ ½ÃÀÛ
+		DefOnTouchImpulseRing.Play(); // ä¿ƒçŸ« è´¸æ¾œä½•ç£ çŸ«ç´¯
 	}
 	else{
-		DefOnTouchImpulseRing.Stop(); // ¾Æ´Ï¸é ÀÌÁ¦ ±×¸¸
+		DefOnTouchImpulseRing.Stop(); // é…’èªæ æåŠ› å¼Šçˆ¶
 	}
 }
 
@@ -133,7 +133,7 @@ void UB2UIMain::ConditionalPlayOnTouchImpulseRing(const FVector2D& InPosition)
 {
 	bSignaledMaintainImpulseRing = true;
 
-	// ºü¸¥ ÅÍÄ¡ ½Ã ¸Å¹ø »õ·Î ÇÃ·¹ÀÌ µÇÁö ¾Êµµ·Ï ÄÑÁ® ÀÖ´Â µ¿¾È¿¡´Â Å¸ÀÌ¸Ó¿¡ ÀÇÇØ¼­¸¸ ´Ù½Ã ÇÃ·¹ÀÌ.
+	// ç‹å¼— ç£æ‘¹ çŸ« æ¦‚é”… è´§è‚º æ•²é¥­æ ç™»ç˜¤ è‡¼æ¡£åºŸ éš¾å»‰ ä¹ç»° æ‚¼æ•‘ä¿Šç»° é¸¥æèµ£ä¿Š ç‹¼ç§¦è¾‘çˆ¶ ä¿ƒçŸ« æ•²é¥­æ.
 	if (!DefOnTouchImpulseRing.IsCurrentOn())
 	{
 		DefOnTouchImpulseRing.Play();
@@ -143,23 +143,23 @@ void UB2UIMain::ConditionalPlayOnTouchImpulseRing(const FVector2D& InPosition)
 
 void UB2UIMain::PendingStopOnTouchImpulseRing()
 {
-	bSignaledMaintainImpulseRing = false; // ÇÃ·¹ÀÌ µÇ°í ÀÖ´Â »óÈ²ÀÌ¶ó¸é OnOnTouchImpulseRingAnimTimeCycle ¿¡¼­ ÇÈ¾÷ÇÒ °Í.
+	bSignaledMaintainImpulseRing = false; // æ•²é¥­æ ç™»ç»Š ä¹ç»° æƒ‘ç‚”ææ‰¼æ OnOnTouchImpulseRingAnimTimeCycle ä¿Šè¾‘ ä¾¨è¯€ä¸” å·´.
 }
 
 void UB2UIMain::MoveOnTouchImpulseRing(const FVector2D& InMovedPosition)
 {	
 	FVector2D ResScale = GetDesignToCurrentViewScale(GetOwningPlayer(), true);
-	DefOnTouchImpulseRing.SetImageCenterPosition(InMovedPosition / ResScale); // UMG ±âÁØ ÇØ»óµµ·Î ÀüÈ¯ÇØ¼­ ³Ñ°ÜÁÜ.
+	DefOnTouchImpulseRing.SetImageCenterPosition(InMovedPosition / ResScale); // UMG æ‰éœ– ç§¦æƒ‘æ¡£è‚º å‚ˆåˆ¸ç§¦è¾‘ é€è´¥æ·‹.
 }
 
 void UB2UIMain::ShowNetworkLoadingIcon(bool bInShow)
 {
 //	if (UIP_NetWorkWaitResponseP.IsValid()
 //#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
-//		&& (!FBladeIIBlockToSyncNetwork::GetInstance().DevIsStandaloneMode() || !bInShow) // ¿µ»ó ´ıÇÁ µî¿¡ ¹æÇØ°¡ µÈ´Ù´Â ¹Î¿øÀ¸·Î ÀÎÇØ Á» Ã¶ÀúÈ÷ ¸·°Ô µÊ.
+//		&& (!FBladeIIBlockToSyncNetwork::GetInstance().DevIsStandaloneMode() || !bInShow) // åº·æƒ‘ å¾…æ©‡ æ®¿ä¿Š è§„ç§¦å•Š ç­‰ä¿ƒç»° åˆ®ç›”æ è‚º ç‰¢ç§¦ ç²± æšå†æ´’ é˜œéœ¸ å‡³.
 //#endif		
 //		)
-//	{ // ±âÅ¸ ÀÔ·ÂÀ» ¸·±â À§ÇØ Visible ·Î.
+//	{ // æ‰é¸¥ æ¶ä»¿é˜‘ é˜œæ‰ å›°ç§¦ Visible è‚º.
 //		UIP_NetWorkWaitResponseP->SetVisibility(bInShow ? ESlateVisibility::Visible : ESlateVisibility::Collapsed);
 //		UIP_NetWorkWaitResponseP->SetVisibilityReserve(bInShow);
 //	}
@@ -168,7 +168,7 @@ void UB2UIMain::ShowNetworkLoadingIcon(bool bInShow)
 void UB2UIMain::ShowMiscLoadingIcon(bool bInShow)
 {
 	//if (UIP_MiscLoadingP.IsValid())
-	//{ // NetWorkWaitResponse ¿Í ¸¶Âù°¡Áö.. ±âÅ¸ ÀÔ·ÂÀ» ¸·±â À§ÇØ Visible ·Î. ³»ºÎÀûÀ¸·Î ÀÏºÎ ¼³Á¤Àº ´Ù¸¦ °Í.
+	//{ // NetWorkWaitResponse å®¢ ä»˜è›®å•Šç˜¤.. æ‰é¸¥ æ¶ä»¿é˜‘ é˜œæ‰ å›°ç§¦ Visible è‚º. éƒ´ä½•åˆ©æ è‚º è€ä½• æ±²æ²¥ç¯® ä¿ƒç”« å·´.
 	//	UIP_MiscLoadingP->SetVisibility(bInShow ? ESlateVisibility::Visible : ESlateVisibility::Collapsed);
 	//	UIP_MiscLoadingP->SetVisibilityReserve(bInShow);
 	//}
@@ -178,14 +178,14 @@ void UB2UIMain::OpenChatSinglePopupWithNewMessage(const FB2ChatMessage& InNewMes
 {
 	//if (UIP_ChatSinglePopupP.IsValid())
 	//{
-	//	UIP_ChatSinglePopupP->UpdateWithNewChatMessage(InNewMessage); // Visibility ´Â ¾È¿¡¼­ ¾Ë¾Æ¼­ ¼¼ÆÃµÇ¾ú´Ù°¡ ¸®¼ÂµÉ °Å.
+	//	UIP_ChatSinglePopupP->UpdateWithNewChatMessage(InNewMessage); // Visibility ç»° æ•‘ä¿Šè¾‘ èˆ…é…’è¾‘ æŠ€æ³¼ç™»èŒä¿ƒå•Š åºœæ‚¸çª èŠ­.
 	//}
 }
 void UB2UIMain::ForceCloseChatSinglePopup()
 {
 	//if (UIP_ChatSinglePopupP.IsValid())
 	//{
-	//	UIP_ChatSinglePopupP->CloseMe(); // ´ëÃ¼·Î´Â UpdateWithNewChatMessage ÈÄ¿¡ ÀÌ·¸°Ô ÇÏÁö ¾Ê¾Æµµ ¾Ë¾Æ¼­ ´İÈû. ÀÌ°Ç Æ¯º°ÇÑ °æ¿ì »ç¿ë.
+	//	UIP_ChatSinglePopupP->CloseMe(); // æªçœ‰è‚ºç»° UpdateWithNewChatMessage é¥¶ä¿Š æçŠ¯éœ¸ çªç˜¤ è‡¼é…’æ¡£ èˆ…é…’è¾‘ æ‘§å¡. ææ‰’ æ¼‚å–ŠèŒ„ ç‰ˆå¿« è¤ä¾©.
 	//}
 }
 
@@ -203,7 +203,7 @@ FText GetChangelistInfo()
 	return CLText;
 }
 
-//[@AKI, 180126] ±Û·Î¹ú º¯¼ö´Â ¾²±â ½ÈÁö¸¸.....¹ú½á......
+//[@AKI, 180126] è‡‚è‚ºå›½ å‡½èç»° é™æ‰ é¥ºç˜¤çˆ¶.....å›½ç»“......
 FString g_SessionServerUrl;
 FString g_CDNUrl;
 
@@ -222,12 +222,12 @@ FText GetKakaoServerType()
 	FText KakaoServerType = FText::FromString(TEXT("QA"));
 	int32 gameServerCount = g_SessionServerUrl.Find(TEXT("QA"));
 	int32 cdnCount = g_CDNUrl.Find(TEXT("BETA"));
-	//[@AKI, 180126] CDN ÁÖ¼Ò³ª GameServer ÁÖ¼Ò¿¡ QA¿Í °ü·ÃµÈ°ÍÀÌ ÀÖÀ¸¸é ÀÏºÎ·¯ QA·Î Ç¥±âÇÏ¿©
-	//ÀÌ»óÀÌ ÀÖÀ½À» °¨ÁöÇÏ°Ô ÇÔ
+	//[@AKI, 180126] CDN æ—å®¶å”± GameServer æ—å®¶ä¿Š QAå®¢ åŒ…è®¿ç­‰å·´æ ä¹æ æ è€ä½•çŸ¾ QAè‚º é’æ‰çªå’¯
+	//ææƒ‘æ ä¹æ¾œé˜‘ çš‘ç˜¤çªéœ¸ çªƒ
 	if (gameServerCount == -1 && cdnCount == -1)
 	{
 		KakaoServerType = FText::FromString(TEXT("Li"));
-		//¶óÀÌºê ÀÎÁö ¾Æ´ÑÁö ÆÇº°ÇÏ´Â º¯¼ö´Â ¿©±â¿¡ µé¾î°¡¸é µÊ
+		//æ‰¼æå® ç‰¢ç˜¤ é…’å›±ç˜¤ é­„å–Šçªç»° å‡½èç»° å’¯æ‰ä¿Š ç”¸ç»¢å•Šæ å‡³
 	}
 
 	return KakaoServerType;
@@ -257,7 +257,7 @@ FText GetDebugServerInfo()
 			ResultType = FText::FromString(TEXT("Public"));
 		}
 	}
-	else //kakao ¼­¹ö
+	else //kakao è¾‘æ»š
 	{
 		ResultType = FText::FromString(TEXT("Kakao-") + GetKakaoServerType().ToString());
 	}

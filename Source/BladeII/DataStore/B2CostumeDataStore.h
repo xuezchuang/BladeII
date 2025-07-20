@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -99,9 +99,9 @@ private:
 
 	//visible
 	bool								  bPreview;
-	//Request ÁÙÀÌ´Â ¿ëµµ
+	//Request ì¤„ì´ëŠ” ìš©ë„
 	std::shared_ptr<FCostumeVisibleCache> LocalVisibleCache;
-	//»óÁ¡ ¹Ì¸®º¸±â ¿ëµµ
+	//ìƒì  ë¯¸ë¦¬ë³´ê¸° ìš©ë„
 	std::shared_ptr<FCostumeVisibleCache> PreviewVisibleCache;
 
 	std::shared_ptr<FCostumeVisibleCache> CurrentVisibleCache;

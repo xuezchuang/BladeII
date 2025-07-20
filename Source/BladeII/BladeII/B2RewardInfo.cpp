@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2RewardInfo.h"
@@ -12,7 +12,7 @@ UB2RewardInfo::UB2RewardInfo(const FObjectInitializer& ObjectInitializer)
 {
 	if (HasAnyFlags(RF_ClassDefaultObject) == false)
 	{
-		// Á¤ÇØÁø ÇÏ³ª¸¦ ·Îµù
+		// æ²¥ç§¦æŸ³ çªå”±ç”« è‚ºçˆ¹
 		FString RewardInfoDataTablePath;
 		GConfig->GetString(TEXT("/Script/BladeII.B2RewardInfo"), TEXT("RewardInfoTable"), RewardInfoDataTablePath, GGameIni);
 
@@ -34,7 +34,7 @@ FSingleRewardInfoData* UB2RewardInfo::GetInfoData(int32 RewardIndex)
 {
 	if (TheData)
 	{
-		// RewardIndex ±×´ë·Î key ·Î »ç¿ë
+		// RewardIndex å¼Šæªè‚º key è‚º è¤ä¾©
 		FSingleRewardInfoData* FoundDataRow = TheData->FindRow<FSingleRewardInfoData>(FName(*FString::FromInt(RewardIndex)), TEXT(""));
 
 		return FoundDataRow;
@@ -115,7 +115,7 @@ void UB2RewardInfo::CheckInfoDataIntegrity()
 		bool bHasRowKeyLessThan0 = false;
 		bool bHasNonSequentialRowKey = false;
 
-		// DataTable ÀÇ ¸ğµç row ¸¦ iterate ÇÏ´Â ¹æ¹ıÀÎµí.
+		// DataTable ç‹¼ è‘›ç”µ row ç”« iterate çªç»° è§„è¿‡ç‰¢æ·€.
 		TArray<FName> RowKeys = TheData->GetRowNames();
 		for (int32 RI = 0; RI < RowKeys.Num(); ++RI)
 		{
@@ -125,17 +125,17 @@ void UB2RewardInfo::CheckInfoDataIntegrity()
 			{
 				bHasRowKeyLessThan0 = true;
 			}
-			if (RI + 1 != RowKeyNumber) // bHasRowKeyLessThan0 ÀÌ¸é °á±¹ ¿©±âµµ..
+			if (RI + 1 != RowKeyNumber) // bHasRowKeyLessThan0 ææ æ¬æƒ« å’¯æ‰æ¡£..
 			{
 				bHasNonSequentialRowKey = true;
 			}
 		}
 
-		if (bHasRowKeyLessThan0 /*|| bHasNonSequentialRowKey*/) // ¼ø¼­´ë·ÎÀÏ ÇÊ¿ä´Â ¾øÀ» °Í °°´Ù. ÀÏ´Ü ÀÌ°Ç °æ°í¿¡¼­ Á¦°Å.
+		if (bHasRowKeyLessThan0 /*|| bHasNonSequentialRowKey*/) // é‰´è¾‘æªè‚ºè€ é˜å¤¸ç»° ç»é˜‘ å·´ éä¿ƒ. è€çªœ ææ‰’ ç‰ˆç»Šä¿Šè¾‘ åŠ›èŠ­.
 		{
 #if !PLATFORM_MAC
 			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-				FString::Printf(TEXT("[°æ°í] RewardInfo µ¥ÀÌÅÍÀÇ ÁÙ¹øÈ£¿¡ Ä¡¸íÀûÀÎ ¹®Á¦°¡ ÀÖÀ½. ÄÄÇ»ÅÍ°¡ °ğ Æø¹ßÇÑ´Ù."))
+				FString::Printf(TEXT("[ç‰ˆç»Š] RewardInfo å•æç£ç‹¼ ä¸´é”…é¾‹ä¿Š æ‘¹ç–™åˆ©ç‰¢ å·©åŠ›å•Š ä¹æ¾œ. å“ªè…”ç£å•Š æ¢† æ°”æƒ¯èŒ„ä¿ƒ."))
 				));
 #endif
 		}
@@ -144,7 +144,7 @@ void UB2RewardInfo::CheckInfoDataIntegrity()
 	{
 #if !PLATFORM_MAC
 		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-			FString::Printf(TEXT("RewardInfo µ¥ÀÌÅÍ ¾øÀ½. ÄÄÇ»ÅÍ°¡ °ğ Æø¹ßÇÑ´Ù."))
+			FString::Printf(TEXT("RewardInfo å•æç£ ç»æ¾œ. å“ªè…”ç£å•Š æ¢† æ°”æƒ¯èŒ„ä¿ƒ."))
 			));
 #endif
 	}
@@ -153,7 +153,7 @@ void UB2RewardInfo::CheckInfoDataIntegrity()
 
 void UB2RewardInfo::EditorLoadAll()
 {
-	// DataTable ÀÌ¶ó redirector Ã³¸®¸¦ È®½ÇÈ÷ ÇÏ±â À§ÇØ ¿¡µğÅÍ¿¡¼­ TAsset ÀÇ full load °¡ ÇÊ¿ä.
+	// DataTable ææ‰¼ redirector è´¸åºœç”« çŠ¬è§’æ´’ çªæ‰ å›°ç§¦ ä¿Šå¼ç£ä¿Šè¾‘ TAsset ç‹¼ full load å•Š é˜å¤¸.
 	if (TheData)
 	{
 		EditorAllLoadedTAssetHolder.Empty();
@@ -168,7 +168,7 @@ void UB2RewardInfo::EditorLoadAll()
 				FRewardInfoLoadedRefHolder SingleRefHolder;
 				SingleRefHolder.LoadedIconMaterial = ThisInfo->IconMaterial.LoadSynchronous();
 				if (SingleRefHolder.LoadedIconMaterial)
-				{ // ±×³É ³Ö±â¸¸ ÇÑ´Ù. GC ¾ÈµÇµµ·Ï.
+				{ // å¼Šæˆ æŒæ‰çˆ¶ èŒ„ä¿ƒ. GC æ•‘ç™»æ¡£åºŸ.
 					EditorAllLoadedTAssetHolder.Add(SingleRefHolder);
 				}
 			}

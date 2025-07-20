@@ -3,6 +3,7 @@
 #pragma once
 
 #include "B2DynItemIcon.h"
+#include "EventSubsystem.h"
 #include "B2DynItemIcon_LobbyEquip.generated.h"
 
 DECLARE_DELEGATE(FOnClickDetailInfo);

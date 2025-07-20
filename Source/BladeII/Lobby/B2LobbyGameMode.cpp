@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2LobbyGameMode.h"
 //#include "BladeII.h"
 #include "Engine/SkeletalMesh.h"
@@ -58,13 +58,14 @@
 #include "B2UIMsgPopupReward.h"
 #include "B2UIModRewardBoxGradeInfo.h"
 #include "B2UIModRewardBoxDetailInfo.h"
-#include "B2UISummonItemDisplay.h"
+//#include "B2UISummonItemDisplay.h"
 #include "B2PreRenderer.h"
 #include "B2GameLoadingProgress.h"
 #include "FB2ErrorMessage.h"
 #include "BladeIIGameImpl.h"
 #include "B2PlatformAPI.h"
 #include "B2GameDefine.h"
+#include "../UI/Widget/B2UISummonItemDisplay.h"
 
 
 bool AB2LobbyGameMode::IsFirstLobby = true;
@@ -77,10 +78,10 @@ AB2LobbyGameMode::AB2LobbyGameMode(const FObjectInitializer& ObjectInitializer)
 {
 	//PrimaryActorTick.bCanEverTick = true;
 
-	//DefaultPawnClass = ASpectatorPawn::StaticClass(); // SpectatorPawn À» ±âº»À¸·Î
-	//PlayerControllerClass = APlayerController::StaticClass(); // ÇÊ¿ä¿¡ µû¶ó µû·Î extend ÇØ¼­ »ç¿ë..
+	//DefaultPawnClass = ASpectatorPawn::StaticClass(); // SpectatorPawn é˜‘ æ‰å¤¯æ è‚º
+	//PlayerControllerClass = APlayerController::StaticClass(); // é˜å¤¸ä¿Š è¶æ‰¼ è¶è‚º extend ç§¦è¾‘ è¤ä¾©..
 
-	//DefaultPCClassEnum = EPCClass::EPC_End; // ÀÏ´Ü spawn ÇÏÁö ¾Ê´Â´Ù.
+	//DefaultPCClassEnum = EPCClass::EPC_End; // è€çªœ spawn çªç˜¤ è‡¼ç»°ä¿ƒ.
 
 	//GameModeToPlay = ABladeIIGameMode::StaticClass();
 
@@ -119,45 +120,45 @@ void AB2LobbyGameMode::BeginPlay()
 	//
 	//AB2StageManager::GetCacheStageKeepEssentialData().ClearStageBasisData();
 
-	//// PreRenderGameMode µµÀÔ¿¡ µû¶ó Ã¹ ·Îºñ ·Îµù Á÷ÈÄ º°´Ù¸¥ ÇÏ´Â ÀÏ ¾øÀÌ ¹Ù·Î Pre-render Àü¿ë ¸ÊÀ» ·ÎµùÇÏ´Â »óÈ²ÀÌ ¹ß»ıÇÏ°Ô µÈ´Ù.
-	//const bool bMapTransitionWillBeginSoon = IsFirstTimePreRenderPending(); // ¾Æ¸¶ ÀÌ°Ô true ¸é ±×³É ¿©±â¼­ return ÇÏ´Â °Ô ÀÌµæÀÏÁöµµ ¤»
+	//// PreRenderGameMode æ¡£æ¶ä¿Š è¶æ‰¼ éœ‰ è‚ºåš è‚ºçˆ¹ æµé¥¶ å–Šä¿ƒå¼— çªç»° è€ ç»æ å®˜è‚º Pre-render å‚ˆä¾© ç”˜é˜‘ è‚ºçˆ¹çªç»° æƒ‘ç‚”æ æƒ¯ç§¯çªéœ¸ ç­‰ä¿ƒ.
+	//const bool bMapTransitionWillBeginSoon = IsFirstTimePreRenderPending(); // é…’ä»˜ æéœ¸ true æ å¼Šæˆ å’¯æ‰è¾‘ return çªç»° éœ¸ æå«è€ç˜¤æ¡£ ã›
 
 	//if (IsFirstLobby && !bMapTransitionWillBeginSoon)
 	//{
-	//	// Ãâ¼® UI °¡ Ã³À½ ¶ã ¶§ ·¢ÀÌ °É¸®´Â °ÍÀÌ ¶ß´Â »óÈ² ¶§¹®¿¡ ¾È ÁÁ¾Æ º¸¿©¼­ Ã¹ ·Îµù½Ã°£ Áõ°¡¸¦ °¨¼öÇÏ°í ¹Ì¸® ¿­¾ú´Ù ´İ´Â°Å. ¿©±â¿¡´Â StayInViewport Ã¼Å©°¡ µÇ¾î ÀÖ¾î¼­ CloseUI ÇÏ´Â °Ô ±×³É ¼û±â´Â °ÍÀÓ.
+	//	// å…ç± UI å•Š è´¸æ¾œ èº² é”­ å‘æ å§åºœç»° å·´æ å“†ç»° æƒ‘ç‚” é”­å·©ä¿Š æ•‘ äº®é…’ ç„Šå’¯è¾‘ éœ‰ è‚ºçˆ¹çŸ«åŸƒ åˆ˜å•Šç”« çš‘èçªç»Š å›ºåºœ å‡¯èŒä¿ƒ æ‘§ç»°èŠ­. å’¯æ‰ä¿Šç»° StayInViewport çœ‰å†œå•Š ç™»ç»¢ ä¹ç»¢è¾‘ CloseUI çªç»° éœ¸ å¼Šæˆ è§æ‰ç»° å·´çƒ™.
 	//	UB2UIAttendanceMain* atta = UB2UIManager::GetInstance()->OpenUI<UB2UIAttendanceMain>(UIFName::AttendanceMain);
 	//	UB2UIManager::GetInstance()->CloseUI(UIFName::AttendanceMain);
 	//	B2GMLoadingProgCollector::StepCustom(0.4f);
 	//}
 
-	//// ¾Æ¸¶ BeginPlay ½ÃÁ¡ ÀÌÀü¿¡ ÇÊ¿äÇÏÁö´Â ¾ÊÀ» °Í.
+	//// é…’ä»˜ BeginPlay çŸ«ç—¢ æå‚ˆä¿Š é˜å¤¸çªç˜¤ç»° è‡¼é˜‘ å·´.
 	//LobbyUIManager = NewObject<UB2UIManager_Lobby>(this, *FString::Printf(TEXT("UIManager_Lobby_%s"), *this->GetName()), RF_Transient);
 	//if (LobbyUIManager)
 	//{
-	//	// LobbyUIManager ´Â DJLegacy ÀÇ ÀÏºÎÀÎµ¥ ³»ºÎ¿¡¼­ ½Å UIManager ¸¦ »ç¿ëÇÏ´Â ºÎºĞÀÌ ÀÖ¾î¼­ ¸¸¿¡ ÇÏ³ª ÀÌ°É Á¦°ÅÇÑ´Ù¸é ³»ºÎ¸¦ »ìÆìº¼ °Í. (¾Æ¸¶ Á¦°ÅÇÒ ÀÏÀÌ ¾øÀ» µí)
+	//	// LobbyUIManager ç»° DJLegacy ç‹¼ è€ä½•ç‰¢å• éƒ´ä½•ä¿Šè¾‘ è„š UIManager ç”« è¤ä¾©çªç»° ä½•ç›’æ ä¹ç»¢è¾‘ çˆ¶ä¿Š çªå”± æå§ åŠ›èŠ­èŒ„ä¿ƒæ éƒ´ä½•ç”« æ··æ——æ­ å·´. (é…’ä»˜ åŠ›èŠ­ä¸” è€æ ç»é˜‘ æ·€)
 	//	if (LobbyUIManager->InitUIManager(this) == false)
 	//	{
 	//		LobbyUIManager->ConditionalBeginDestroy();
 	//		LobbyUIManager = NULL;
 	//	}
 	//}
-	//if (IsFirstLobby) // Ã³À½¿¡ UB2UIManager_Lobby ¿¡¼­ LoadOnStartup Ã³¸®ÇÏ¸é¼­ ½Ã°£ °É¸®´Â °Ô Á» ÀÖÀ½.
+	//if (IsFirstLobby) // è´¸æ¾œä¿Š UB2UIManager_Lobby ä¿Šè¾‘ LoadOnStartup è´¸åºœçªæè¾‘ çŸ«åŸƒ å§åºœç»° éœ¸ ç²± ä¹æ¾œ.
 	//{
 	//	B2GMLoadingProgCollector::StepCustom(0.4f);
 	//}
 
-	//// LobbyUIManager »ı¼º ÀÌÈÄ·Î´Â °¡±ŞÀû ÀÌÂÊÀ» Á÷Á¢ access ÇÏ´Â ´ë½Å Event ½Ã½ºÅÛÀ» ÀÌ¿ëÇÏ¿© ¸Ş½ÃÁö¸¦ º¸³½´Ù.
+	//// LobbyUIManager ç§¯å·± æé¥¶è‚ºç»° å•Šé­åˆ© æç‡é˜‘ æµç«‹ access çªç»° æªè„š Event çŸ«èƒ¶è¢é˜‘ æä¾©çªå’¯ çš‹çŸ«ç˜¤ç”« ç„Šè¾°ä¿ƒ.
 	//SetPCSelection(BladeIIGameImpl::GetLocalCharacterData().GetMainPlayerClass(), BladeIIGameImpl::GetLocalCharacterData().GetSubPlayerClass());
 
-	//CreateLobbyInventory(); // ÇÊ¿ä¿¡ µû¶ó ½ÃÁ¡À» Á» Á¶Àı..
+	//CreateLobbyInventory(); // é˜å¤¸ä¿Š è¶æ‰¼ çŸ«ç—¢é˜‘ ç²± ç‚¼ä¾‹..
 	//CreateLobbyAirport();
 
 	//UWorld* World = GetWorld();
 	//if (World)
 	//{
-	//	//Matinee actor¿¡¼­ cinematic mode°¡ on¿¡¼­ offµÉ ¶§, ¹«Á¶°Ç Virtual joystick visibility¸¦ ÄÑ°Ô µÇ¾îÀÖÀ½.
-	//	//¸®¼Ò½º¿¡¼­ ¼³Á¤ÇØ¾ß ÇÒ °Í °°Àºµ¥, ½Ç¼ö°¡ ÀÖÀ» ¼ö ÀÖÀ¸´Ï ¿©±â¼­ °­Á¦·Î cinematic mode·Î ÁøÀÔÇÏÁö ¾Êµµ·Ï ÇÑ´Ù.
-	//	//UWorld::GetMatineeActors() ÀÌ ÇÔ¼ö°¡ ÀÖ´Âµ¥, CurrentLevel¿¡ ´ëÇØ¼­¸¸ Ã£¾Æ¿Í¼­ ¾Æ·¡Ã³·³ ÄÚµù
+	//	//Matinee actorä¿Šè¾‘ cinematic modeå•Š onä¿Šè¾‘ offçª é”­, å…¬ç‚¼æ‰’ Virtual joystick visibilityç”« éš¾éœ¸ ç™»ç»¢ä¹æ¾œ.
+	//	//åºœå®¶èƒ¶ä¿Šè¾‘ æ±²æ²¥ç§¦å…· ä¸” å·´ éç¯®å•, è§’èå•Š ä¹é˜‘ è ä¹æ èª å’¯æ‰è¾‘ ç¢åŠ›è‚º cinematic modeè‚º æŸ³æ¶çªç˜¤ è‡¼æ¡£åºŸ èŒ„ä¿ƒ.
+	//	//UWorld::GetMatineeActors() æ çªƒèå•Š ä¹ç»°å•, CurrentLevelä¿Š æªç§¦è¾‘çˆ¶ èŒ«é…’å®¢è¾‘ é…’è´°è´¸çƒ¦ å†…çˆ¹
 	//	for (FActorIterator It(World); It; ++It)
 	//	{
 	//		auto* MatineeActor = Cast<ALevelSequenceActor >(*It);
@@ -174,14 +175,14 @@ void AB2LobbyGameMode::BeginPlay()
 
 	//LobbySceneManager.SetGameMode(this);
 
-	////[@Woongbok, 171222][TODO] ¿©±â¼­ ¾È¹Ş¾Æµµ µÉµí ÇÏ³ª ·ÎÁ÷ °ËÁõÀÌ ÇÊ¿äÇÔ.
+	////[@Woongbok, 171222][TODO] å’¯æ‰è¾‘ æ•‘ç½é…’æ¡£ çªæ·€ çªå”± è‚ºæµ å…«åˆ˜æ é˜å¤¸çªƒ.
 	//for (int32 PCI = 0; PCI < GetMaxPCClassNum(); ++PCI)
-	//{ // ÁÖ¿ä ÀüÅõ·Â ¼öÄ¡ UI ¾÷µ¥ÀÌÆ®. ·Îºñ¿¡¼­ Á» ³õÄ¡´Â °Å ÀÖ´õ¶óµµ È®½ÇÇÏ°Ô ¾÷µ¥ÀÌÆ® µÇ´Â ½ÃÁ¡ ÇÏ³ª ³Ö¾îÁÖ´Â °É·Î
+	//{ // æ—å¤¸ å‚ˆæ§ä»¿ èæ‘¹ UI è¯€å•æé£˜. è‚ºåšä¿Šè¾‘ ç²± åˆæ‘¹ç»° èŠ­ ä¹æ­¹æ‰¼æ¡£ çŠ¬è§’çªéœ¸ è¯€å•æé£˜ ç™»ç»° çŸ«ç—¢ çªå”± æŒç»¢æ—ç»° å§è‚º
 	//	OnUpdateCombatPower(IntToPCClass(PCI), false);
 	//}
 	//	
 	//if (IsFirstLobby && !bMapTransitionWillBeginSoon)
-	//{ // Ã¹ ·Îºñ ÁøÀÔ ¸¶Å© ¸®¼Â
+	//{ // éœ‰ è‚ºåš æŸ³æ¶ ä»˜å†œ åºœæ‚¸
 	//	IsFirstLobby = false;
 	//}
 	//check(bMapTransitionWillBeginSoon || !IsFirstLobby);
@@ -198,10 +199,10 @@ void AB2LobbyGameMode::StartPlay()
 {
 	B2_SCOPED_TRACK_LOG(TEXT("AB2LobbyGameMode::StartPlay"));
 	
-	SetUseCustomWaitForLoadingScreen(true); // »óÀ§´Ü StartPlay ·çÆ¾¿¡¼­ ´İÈ÷Áö ¾Êµµ·Ï ¸·¾Æ³õ°í.. ¿©±â¼­ ÇÚµé¸µÇÒ °Å.
+	SetUseCustomWaitForLoadingScreen(true); // æƒ‘å›°çªœ StartPlay é£å‡­ä¿Šè¾‘ æ‘§æ´’ç˜¤ è‡¼æ¡£åºŸ é˜œé…’åˆç»Š.. å’¯æ‰è¾‘ å‹¤ç”¸å‚…ä¸” èŠ­.
 
 	if (IsFirstLobby)
-	{ // »óÀ§´Ü ÂÊ¿¡¼­ Scalability override Àû¿ëÇÏ±â Àü¿¡ µé¾î°¡¾ß..
+	{ // æƒ‘å›°çªœ ç‡ä¿Šè¾‘ Scalability override åˆ©ä¾©çªæ‰ å‚ˆä¿Š ç”¸ç»¢å•Šå…·..
 		InitializeAllGameSettingData(this);
 
 		FString Title;
@@ -213,12 +214,12 @@ void AB2LobbyGameMode::StartPlay()
 
 	Super::StartPlay();
 
-	// ·Îºñ °ÔÀÓ¸ğµåÀÇ ÁøÇàµµ´Â ±âº» StartPlay ÀÇ Preload ¿¡¼­´Â º°º¼ÀÏ ¾øÀ» ²¨°í ¿©±â¼­ ³²Àº DeferredChangeLobbyScene Á¤µµ..
+	// è‚ºåš éœ¸çƒ™è‘›é›ç‹¼ æŸ³é’æ¡£ç»° æ‰å¤¯ StartPlay ç‹¼ Preload ä¿Šè¾‘ç»° å–Šæ­è€ ç»é˜‘ æ³¢ç»Š å’¯æ‰è¾‘ å·¢ç¯® DeferredChangeLobbyScene æ²¥æ¡£..
 	if (LobbySceneManager.HasDeferredChangeLobbyScenes())
 	{
 		B2GMLoadingProgCollector::StepCustom(0.5f, 0.5f);
-		// ½ÇÁ¦ ChangeScene À» µ¿¹İÇÏ´Â °æ¿ì.. ±×°Ô ¾ó¸¶³ª µÉÁö¿¡ µû¶ó ´Ù¸¦ ²«µ¥.. ´ëºÎºĞ ÇÏ³ª´Ï±î.. Å« ½ºÅÜÀ» ÁÖÀÚ.
-		// ±×·³ UIScene ÇÏ³ª ¿­°í °ÅÀÇ ²Ë Ã¤¿ì°ÚÁö.
+		// è§’åŠ› ChangeScene é˜‘ æ‚¼é¦†çªç»° ç‰ˆå¿«.. å¼Šéœ¸ å€”ä»˜å”± çªç˜¤ä¿Š è¶æ‰¼ ä¿ƒç”« æå•.. æªä½•ç›’ çªå”±èªé³–.. å¥´ èƒ¶è·‘é˜‘ æ—ç£Š.
+		// å¼Šçƒ¦ UIScene çªå”± å‡¯ç»Š èŠ­ç‹¼ èœ ç›²å¿«æ‘†ç˜¤.
 		B2GMLoadingProgCollector::SetStepRate(0.9f);
 	}
 	else
@@ -226,16 +227,16 @@ void AB2LobbyGameMode::StartPlay()
 		B2GMLoadingProgCollector::StepToMax();
 	}
 
-	// ÀüÅõ¸Ê¼­ µ¹¾Æ¿À°Å³ª ÇÒ ¶§¿¡´Â DeferredChangeLobbyScenes ·Î ¿¹¾àÇØ ³õÀº open ¸®½ºÆ®°¡ ÀÖÀ» °ÍÀÓ. ±×°Ô ¾Æ´Ò °æ¿ì¸¸ Title È­¸éÀ» ¿¬´Ù. 
-	// ¾îÂ÷ÇÇ Title È­¸éÀÌ ¿­¸®´õ¶óµµ ¿¹¾àÇØ ³õÀº Àå¸éÀ¸·Î ¹Ù²î°ÚÁö¸¸ ±×³É ±×·¸°Ô µÎ¸é ·Îºñ·Î µ¹¾Æ¿Ã ¶§ÀÇ ·Îµù½Ã°£ ³¶ºñ°¡ µÊ.
+	// å‚ˆæ§ç”˜è¾‘ å€’é…’å·èŠ­å”± ä¸” é”­ä¿Šç»° DeferredChangeLobbyScenes è‚º æŠ—è·ç§¦ åˆç¯® open åºœèƒ¶é£˜å•Š ä¹é˜‘ å·´çƒ™. å¼Šéœ¸ é…’åŒ† ç‰ˆå¿«çˆ¶ Title æ‹³æé˜‘ æ¥·ä¿ƒ. 
+	// ç»¢ç’ä¹” Title æ‹³ææ å‡¯åºœæ­¹æ‰¼æ¡£ æŠ—è·ç§¦ åˆç¯® å˜ææ è‚º å®˜å·®æ‘†ç˜¤çˆ¶ å¼Šæˆ å¼ŠçŠ¯éœ¸ æ»´æ è‚ºåšè‚º å€’é…’æ£µ é”­ç‹¼ è‚ºçˆ¹çŸ«åŸƒ æ‰¯åšå•Š å‡³.
 	if (!LobbySceneManager.HasDeferredChangeLobbyScenes())
 	{
 		LobbyChangeSceneClass<ELobbyScene>::GetInstance().Signal(ELobbyScene::ELobbyScene_Title);
 	}
 	else
 	{
-		//titleÈ­¸é¿¡¼­´Â º°°³ÀÇ bgm»ç¿ë
-		//titleÈ­¸éÀÌ ¾Æ´Ò½Ã¸¸ ·Îºñ bgm»ç¿ë
+		//titleæ‹³æä¿Šè¾‘ç»° å–Šä¿ºç‹¼ bgmè¤ä¾©
+		//titleæ‹³ææ é…’åŒ†çŸ«çˆ¶ è‚ºåš bgmè¤ä¾©
 		PlayMainLobbyBgm();
 	}
 
@@ -263,17 +264,17 @@ void AB2LobbyGameMode::StartPlay()
 		}
 	}
 
-	// ÀüÅõ¸Ê¿¡¼­ ·Îºñ·Î µ¹¾Æ¿Â ÈÄ¿¡´Â ÀÌ°ÍÀÇ ½ÇÇàÀ¸·Î ½ÇÁ¦ ¿øÇÏ´Â ·Îºñ Àå¸éÀ¸·Î °¡°Ô µÉ °Í. ¸ŞÀÎÈ­¸éÀÌµç, ÀüÅõ¸ÊÀÌµç.
+	// å‚ˆæ§ç”˜ä¿Šè¾‘ è‚ºåšè‚º å€’é…’æŸ¯ é¥¶ä¿Šç»° æå·´ç‹¼ è§’é’æ è‚º è§’åŠ› ç›”çªç»° è‚ºåš å˜ææ è‚º å•Šéœ¸ çª å·´. çš‹ç‰¢æ‹³ææç”µ, å‚ˆæ§ç”˜æç”µ.
 	LobbySceneManager.CallDeferredChangeLobbyScenes();
 
 	if (LobbyInventory)
-	{ // ÀüÅõ ÈÄ ·Îºñ ÁøÀÔ ½ÃÁ¡¿¡¼­ÀÇ ÀÌÀü ½ºÅ×ÀÌÁö ½Àµæ ¾ÆÀÌÅÛÀÇ ÀåÂø ±ÇÀå Ã¼Å©. ¹Ù·Î À§¿¡¼­ ÀåÂø ±ÇÀå ½Ã Âü°íÇÒ µ¥ÀÌÅÍ°¡ µé¾î°¥ ¼ö ÀÖÀ¸¹Ç·Î ÀÌ ½ÃÁ¡¿¡¼­ Ã¼Å©ÇÔ.
+	{ // å‚ˆæ§ é¥¶ è‚ºåš æŸ³æ¶ çŸ«ç—¢ä¿Šè¾‘ç‹¼ æå‚ˆ èƒ¶æŠ›æç˜¤ åš¼å« é…’æè¢ç‹¼ å˜é¦’ é¼»å˜ çœ‰å†œ. å®˜è‚º å›°ä¿Šè¾‘ å˜é¦’ é¼»å˜ çŸ« æ›¼ç»Šä¸” å•æç£å•Š ç”¸ç»¢å“ è ä¹æ éª¨è‚º æ çŸ«ç—¢ä¿Šè¾‘ çœ‰å†œçªƒ.
 		LobbyInventory->ConditionalCheckForBetterEquipSuggest();
 	}
 
 	if (!IsInPreRenderPhase() && !IsFirstTimePreRenderPending()
 		&& UB2UIManager::GetInstance()->GetCurrUIScene() != EUIScene::Title)
-	{ // Pre-render ¿Í ¾ôÈ÷Áö ¾ÊÀº ´ëºÎºĞÀÇ °æ¿ì (¼³Ä¡ ÈÄ ÃÖÃÊ°¡ ¾Æ´Ï¶ó¸é) »óÀ§ StartPlay ÀÇ WaitForLoadingScreen ´ë½Å ¿©±â¼­..
+	{ // Pre-render å®¢ çˆµæ´’ç˜¤ è‡¼ç¯® æªä½•ç›’ç‹¼ ç‰ˆå¿« (æ±²æ‘¹ é¥¶ å¼¥æª¬å•Š é…’èªæ‰¼æ) æƒ‘å›° StartPlay ç‹¼ WaitForLoadingScreen æªè„š å’¯æ‰è¾‘..
 		WaitForLoadingScreen();
 	}
 
@@ -284,7 +285,7 @@ void AB2LobbyGameMode::StartPlay()
 
 void AB2LobbyGameMode::OnLoadingScreenFinished()
 {
-	// Æ¯º°È÷ Ã³¸®ÇÏÁö ¾ÊÀ¸¸é ·Îµù µ¿¿µ»óÀÌ µ¹¾Æ°¡´Â ¿ÍÁß¿¡ ¶ã ¼ö ÀÖ´Â.. ¿ÜºÎ ¸ğµâ¿¡ ÀÇÇÑ ÆË¾÷ÀÌ ÀÖ¾î¼­ ÀÌ Å¸ÀÌ¹ÖÀ» ±â·ÏÇØ µÒ.
+	// æ¼‚å–Šæ´’ è´¸åºœçªç˜¤ è‡¼æ æ è‚ºçˆ¹ æ‚¼åº·æƒ‘æ å€’é…’å•Šç»° å®¢åä¿Š èº² è ä¹ç»°.. å¯‡ä½• è‘›ç¢˜ä¿Š ç‹¼èŒ„ æ‰‘è¯€æ ä¹ç»¢è¾‘ æ é¸¥ææ€ªé˜‘ æ‰åºŸç§¦ ç‹„.
 	bLobbyLoadingScreenCompleted = true;
 }
 
@@ -310,7 +311,7 @@ void AB2LobbyGameMode::SubscribeEvents()
 //	if (bEventsSubscribed)
 //		return;
 //
-//	Super::SubscribeEvents(); // Super ÂÊ¿¡ ÇÊ¿ä¾ø´Â °Íµéµµ ÀÖÁö¸¸ ¾ÈÇÒ °Íµµ ¾øÁö.
+//	Super::SubscribeEvents(); // Super ç‡ä¿Š é˜å¤¸ç»ç»° å·´ç”¸æ¡£ ä¹ç˜¤çˆ¶ æ•‘ä¸” å·´æ¡£ ç»ç˜¤.
 //
 //	Issues.Add(StartGameStageFromLobbyClass<int32, EStageDifficulty, const TArray<EStageBuffType>&, bool>::GetInstance().Subscribe2(
 //		[this](int32 i, EStageDifficulty diff, const TArray<EStageBuffType>& sbt, bool bskipstory)
@@ -749,7 +750,7 @@ void AB2LobbyGameMode::ErrorInventoryIsFull_RoomJoin()
 {
 	EPCClass PCClass = EPCClass::EPC_End;
 	
-	if (BladeIIGameImpl::GetClientDataStore().GetWaitInventorySync()) return; // ½ÌÅ©Áß¿¡ ÀçÂ÷ ¿ÔÀ» °æ¿ì ¸®ÅÏ
+	if (BladeIIGameImpl::GetClientDataStore().GetWaitInventorySync()) return; // æ•™å†œåä¿Š çŠç’ å­é˜‘ ç‰ˆå¿« åºœç•”
 
 	for (int32 i = 0; i < GetMaxPCClassNum(); i++)
 	{
@@ -789,7 +790,7 @@ void AB2LobbyGameMode::ErrorInventoryIsFull_RoomJoin(TArray<b2network::B2Invento
 {
 	EPCClass PCClass = EPCClass::EPC_End;
 
-	if (BladeIIGameImpl::GetClientDataStore().GetWaitInventorySync()) return; // ½ÌÅ©Áß¿¡ ÀçÂ÷ ¿ÔÀ» °æ¿ì ¸®ÅÏ
+	if (BladeIIGameImpl::GetClientDataStore().GetWaitInventorySync()) return; // æ•™å†œåä¿Š çŠç’ å­é˜‘ ç‰ˆå¿« åºœç•”
 
 	if (InInvenInfo.Num() > 0)
 	{
@@ -896,7 +897,7 @@ void AB2LobbyGameMode::ModRewardBoxListInfo(FB2GetDuelRewardBoxInfoPtr BoxInfo)
 	if (UIManager)
 	{
 		auto BoxGradeUI = UIManager->OpenUI<UB2UIModRewardBoxGradeInfo>(UIFName::ModRewardBoxList);
-		int32 WinCount = 0;				//´©ÀûÀ¸·Î °è»ê
+		int32 WinCount = 0;				//ç©¿åˆ©æ è‚º æ‹Œé­‚
 
 		if (BoxGradeUI)
 		{
@@ -942,16 +943,16 @@ void AB2LobbyGameMode::ErrorWrongCharacterNickname()
 
 void AB2LobbyGameMode::CheckAndPopupKakaoPromotion()
 {
-	// ÇÁ·Î¸ğ¼Ç À¥ºä. ÀÌ°Ç ÀÏ¹İÀûÀ¸·Î »ç¿ëÇÏ´Â BeginPlay ·ùÀÇ ¸ŞÀÎ ¾²·¹µå ·Îµù Å¸ÀÌ¹ÖÀÌ ¾Æ´Ï¶ó ºñµ¿±â GMP ·Îµù ¿µ»óÀÌ ³¡³ª±æ ±â´Ù·È´Ù°¡ ¶ç¿î´Ù. 
-	// ¿£Áø¿¡¼­ ¹Ù·Î ¶ç¿ì´Â °Ô ¾Æ´Ï¹Ç·Î ¸ŞÀÎ ¾²·¹µå ºí·ÎÅ·ÀÌ ¾È ¸ÔÈû.
+	// æ©‡è‚ºè‘›è®° æ˜†è½°. ææ‰’ è€é¦†åˆ©æ è‚º è¤ä¾©çªç»° BeginPlay å¹…ç‹¼ çš‹ç‰¢ é™é¥­é› è‚ºçˆ¹ é¸¥ææ€ªæ é…’èªæ‰¼ åšæ‚¼æ‰ GMP è‚ºçˆ¹ åº·æƒ‘æ åœºå”±è¾¨ æ‰ä¿ƒå•¡ä¿ƒå•Š å‰æ¬¾ä¿ƒ. 
+	// æµšæŸ³ä¿Šè¾‘ å®˜è‚º å‰å¿«ç»° éœ¸ é…’èªéª¨è‚º çš‹ç‰¢ é™é¥­é› å–‰è‚ºæ¬§æ æ•‘ å†ˆå¡.
 	if (
 		bLobbyLoadingScreenCompleted && 
-		!IsViewPromotion() && // ÃÖÃÊ ±¸Çö ½Ã ¸¸µé¾îµĞ Á¶°Ç.. ±×³É static Àü¿ª º¯¼ö ÇÃ·¡±Ùµ¥.. 
+		!IsViewPromotion() && // å¼¥æª¬ å¤‡æ³… çŸ« çˆ¶ç”¸ç»¢æ•Œ ç‚¼æ‰’.. å¼Šæˆ static å‚ˆå¼€ å‡½è æ•²è´°è¾Ÿå•.. 
 #if PLATFORM_ANDROID && PLATFORM_IOS
-		IsInitPurchases() &&	// ÀÎ¾Û °áÁ¦ ÃÊ±âÈ­ ÈÄ ÇÁ·Î¸ğ¼Ç ºä ¶ç¿ö ÁÖµµ·Ï
+		IsInitPurchases() &&	// ç‰¢èš æ¬åŠ› æª¬æ‰æ‹³ é¥¶ æ©‡è‚ºè‘›è®° è½° å‰å†µ æ—æ¡£åºŸ
 #endif
-		(UB2UIManager::GetInstance()->GetCurrUIScene() != EUIScene::Title) && // Å¸ÀÌÆ² UI ¸¦ Àá½Ã ½ºÃÆ´Ù°¡ ¹Ù·Î ´Ù¸¥ ¸ÊÀ» ·ÎµùÇÏ°Ô µÇ´Â °æ¿ì°¡ ÀÖ¾î¼­ ÆĞ½º.
-		BladeIIGameImpl::GetClientDataStore().HasValidUserNickName() // ·Î±×ÀÎµÇÁö ¾Ê¾Ò´Ù¸é ¾Æ¸¶ Title UI ¸¦ ³Ñ¾î°¡Áö ¸øÇß°ÚÁö¸¸ Ãß°¡ ¾ÈÀü ÀåÄ¡·Î¼­..
+		(UB2UIManager::GetInstance()->GetCurrUIScene() != EUIScene::Title) && // é¸¥ææ’‡ UI ç”« æ³ªçŸ« èƒ¶é—·ä¿ƒå•Š å®˜è‚º ä¿ƒå¼— ç”˜é˜‘ è‚ºçˆ¹çªéœ¸ ç™»ç»° ç‰ˆå¿«å•Š ä¹ç»¢è¾‘ è©èƒ¶.
+		BladeIIGameImpl::GetClientDataStore().HasValidUserNickName() // è‚ºå¼Šç‰¢ç™»ç˜¤ è‡¼ç–½ä¿ƒæ é…’ä»˜ Title UI ç”« é€ç»¢å•Šç˜¤ ç»™æ²æ‘†ç˜¤çˆ¶ çœ å•Š æ•‘å‚ˆ å˜æ‘¹è‚ºè¾‘..
 		)
 	{
 		B2P_ShowKakaoPromotionView();
@@ -965,7 +966,7 @@ void AB2LobbyGameMode::Tick(float DeltaSeconds)
 	Super::Tick(DeltaSeconds);
 
 //	if (IsInPreRenderPhase() || IsFirstTimePreRenderPending())
-//	{ // Pre-render ¿Í °ü·ÃÇØ¼­ ¸ŞÀÎ ¸Ê ·Îµù È­¸é ´İ´Â °É Áö¿¬½ÃÅ°°Ô µÇ¹Ç·Î ¿©±â¼­ Ã³¸®. ·Îµù »±±ÛÀÌ ¿¬Àå Â÷¿ø
+//	{ // Pre-render å®¢ åŒ…è®¿ç§¦è¾‘ çš‹ç‰¢ ç”˜ è‚ºçˆ¹ æ‹³æ æ‘§ç»° å§ ç˜¤æ¥·çŸ«è™éœ¸ ç™»éª¨è‚º å’¯æ‰è¾‘ è´¸åºœ. è‚ºçˆ¹ æ§è‡‚æ æ¥·å˜ ç’ç›”
 //		ConditionalWaitForLoadingScreen();
 //	}
 //
@@ -1002,9 +1003,9 @@ void AB2LobbyGameMode::RealtimeUpdateUIDoc()
 {
 	Super::RealtimeUpdateUIDoc();
 
-	// ÀÌº¥Æ®¸¦ ¿©·¯ °÷¿¡¼­ Ä³Ä¡ÇØ¾ß ÇÑ´Ù¸é ¿©±â´Ù ³Ö¾î¼­ ¹ö±× ºÎ´ãÀ» ÁÙÀÏ ¼ö ÀÖÁö¸¸ ¿¬»ê·®ÀÌ ¸¹Àº °ÍÀº °¡±ŞÀû ³ÖÁö ¾Êµµ·Ï ÇÑ´Ù.
-	// ¹ö±×°¡ »ı±ä´Ù ÇØµµ UI Ç¥½Ã°¡ Àá½Ã Àß¸øµÇ´Â Á¤µµÀÌ´Ù.
-	//[@SameLine, 180612] explevelinfo doc, datastore -> datastore °³¼±
+	// æäº¥é£˜ç”« å’¯çŸ¾ é•‘ä¿Šè¾‘ æŸæ‘¹ç§¦å…· èŒ„ä¿ƒæ å’¯æ‰ä¿ƒ æŒç»¢è¾‘ æ»šå¼Š ä½•æ·¬é˜‘ ä¸´è€ è ä¹ç˜¤çˆ¶ æ¥·é­‚æ¨Šæ è…¹ç¯® å·´ç¯® å•Šé­åˆ© æŒç˜¤ è‡¼æ¡£åºŸ èŒ„ä¿ƒ.
+	// æ»šå¼Šå•Š ç§¯å˜ä¿ƒ ç§¦æ¡£ UI é’çŸ«å•Š æ³ªçŸ« è‚‹ç»™ç™»ç»° æ²¥æ¡£æä¿ƒ.
+	//[@SameLine, 180612] explevelinfo doc, datastore -> datastore ä¿ºæ€¥
 	//for (int32 PCI = 0; PCI < GetMaxPCClassNum(); ++PCI)
 	//{
 	//	const EPCClass PCClassEnum = IntToPCClass(PCI);
@@ -1036,12 +1037,12 @@ void AB2LobbyGameMode::OnUpdateCombatPower(EPCClass UpdatedClass, bool PopupShow
 	UB2UIDocHero* DocHero = UB2UIDocHelper::GetDocHero(int32(UpdatedClass));
 	if (DocHero)
 	{
-		// ¿©±â¼­ ¾²´Â CombatStat ¾ò¾î¿À´Â ÇÔ¼öµéÀº ¿¬»ê·®ÀÌ ¸¹À¸¹Ç·Î ÀÌº¥Æ® ½ÃÁ¡¿¡¸¸ È£ÃâÇÏµµ·Ï
+		// å’¯æ‰è¾‘ é™ç»° CombatStat æ˜ç»¢å·ç»° çªƒèç”¸ç¯® æ¥·é­‚æ¨Šæ è…¹æ éª¨è‚º æäº¥é£˜ çŸ«ç—¢ä¿Šçˆ¶ é¾‹å…çªæ¡£åºŸ
 		DocHero->SetAttackPower(CombatStatEval::GetPCAttack(UpdatedClass));
 		DocHero->SetDefensePower(CombatStatEval::GetPCDefense(UpdatedClass));
 		DocHero->SetHealthPoint(CombatStatEval::GetPCHealth(UpdatedClass));
 
-		// ÀüÅõ·ÂÀº Ãß°¡ÀûÀÎ ÆË¾÷ ¾Ö´Ï¸ŞÀÌ¼Ç Ã³¸®
+		// å‚ˆæ§ä»¿ç¯® çœ å•Šåˆ©ç‰¢ æ‰‘è¯€ å±€èªçš‹æè®° è´¸åºœ
 		int32 BeforeCP = DocHero->GetCombatPower();
 		int32 AfterCP = CombatStatEval::GetPCCombatPower(UpdatedClass);
 		
@@ -1061,7 +1062,7 @@ void AB2LobbyGameMode::OnUpdateCombatPower(EPCClass UpdatedClass, bool PopupShow
 }
 
 void AB2LobbyGameMode::OnShowBattleScoreNotify(EPCClass EPC)
-{ // UI Ãâ·Â ½ÃÁ¡¶§¹®¿¡ Ãâ·ÂºÎºĞ¸¸ µû·Î ¸¸µé¾úÀ½.
+{ // UI å…ä»¿ çŸ«ç—¢é”­å·©ä¿Š å…ä»¿ä½•ç›’çˆ¶ è¶è‚º çˆ¶ç”¸èŒæ¾œ.
 	if (EPC == EPCClass::EPC_End) return;
 
 	UB2UIDocHero* DocHero = UB2UIDocHelper::GetDocHero(int32(EPC));
@@ -1072,7 +1073,7 @@ void AB2LobbyGameMode::OnShowBattleScoreNotify(EPCClass EPC)
 
 		if (BeforeCP != AfterCP && BeforeCP != 0)
 		{
-			// ÀüÅõ·Â º¯°æ ÆË¾÷ Ãâ·Â
+			// å‚ˆæ§ä»¿ å‡½ç‰ˆ æ‰‘è¯€ å…ä»¿
 			UB2UIBattleScoreNotify* BattleScoreNotifyUI = UB2UIManager::GetInstance()->OpenUI<UB2UIBattleScoreNotify>(UIFName::BattleScoreNotify);
 			if (BattleScoreNotifyUI != nullptr)
 			{
@@ -1084,7 +1085,7 @@ void AB2LobbyGameMode::OnShowBattleScoreNotify(EPCClass EPC)
 
 void AB2LobbyGameMode::NotifyRoomInviteMessage(const FString& Inviter, const FString& InviteKey, const FString& RoomId, int32 MapId, int32 Step)
 {
-	// Âü¿©Á¤º¸¸¦ °»½ÅÇÏ±â À§ÇØ¼­ ¸ÕÀú ¿äÃ»À» ÇÑ´Ù.
+	// æ›¼å’¯æ²¥ç„Šç”« ç›è„šçªæ‰ å›°ç§¦è¾‘ åˆšå† å¤¸æ²¡é˜‘ èŒ„ä¿ƒ.
 	data_trader::Retailer::GetInstance().RequestGetRaid();
 
 	if (CanReceiveGameInvite(Inviter, EB2GameMode::Raid))
@@ -1104,7 +1105,7 @@ void AB2LobbyGameMode::SetPCSelection(EPCClass InMainPCClass, EPCClass InSubPCCl
 	{
 #if WITH_EDITOR && !PLATFORM_MAC
 		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-			FString::Printf(TEXT("¸ŞÀÎÄ³¸¯ÅÍ¿Í ÅÂ±× Ä³¸¯ÅÍ¸¦ µ¿ÀÏÇÏ°Ô ¼³Á¤ÇÒ ¼ö ¾ø½À´Ï´Ù. ÄÄÇ»ÅÍ°¡ °ğ Æø¹ßÇÑ´Ù."))
+			FString::Printf(TEXT("çš‹ç‰¢æŸè…ç£å®¢ æ€•å¼Š æŸè…ç£ç”« æ‚¼è€çªéœ¸ æ±²æ²¥ä¸” è ç»åš¼èªä¿ƒ. å“ªè…”ç£å•Š æ¢† æ°”æƒ¯èŒ„ä¿ƒ."))
 			));
 #endif 
 		return;
@@ -1120,23 +1121,23 @@ void AB2LobbyGameMode::SetPCSelection(EPCClass InMainPCClass, EPCClass InSubPCCl
 	BladeIIGameImpl::GetLocalCharacterData().SetMainPlayerClass(InMainPCClass);
 	BladeIIGameImpl::GetLocalCharacterData().SetSubPlayerClass(InSubPCClass);
 
-	//UIµµÅ¥¸ÕÆ®¿¡ MainChar¿Í SubChar¸¦ ¾Ë·Á¾ßÇÔ
+	//UIæ¡£é’®åˆšé£˜ä¿Š MainCharå®¢ SubCharç”« èˆ…å¦¨å…·çªƒ
 	UB2UIDocBattle* DocBattle = UB2UIDocHelper::GetDocBattle();
 	if (DocBattle)
 	{
-		DocBattle->SetIsCurPCMain(true); // ·Îºñ¿¡¼­ÀÇ ¼±ÅÃÀº ¾ğÁ¦³ª current °¡ main ÀÎ °ÍÀ¸·Î °£ÁÖ. ÀÎ°ÔÀÓ¿¡¼­¸¸ ´Ş¶óÁú ¼ö ÀÖ´Ù.
+		DocBattle->SetIsCurPCMain(true); // è‚ºåšä¿Šè¾‘ç‹¼ æ€¥ç¶ç¯® æ”«åŠ›å”± current å•Š main ç‰¢ å·´æ è‚º åŸƒæ—. ç‰¢éœ¸çƒ™ä¿Šè¾‘çˆ¶ å´”æ‰¼é¾™ è ä¹ä¿ƒ.
 		DocBattle->SetCurPCClass(PCClassToInt(InMainPCClass));
 		DocBattle->SetTagPCClass(PCClassToInt(InSubPCClass));
 	}
 		
 	UB2UIDocBattleStage* DocBS = UB2UIDocHelper::GetDocBattleStage();
 	if (DocBS)
-	{ // ÀüÅõ ÀÔÀå È­¸éÀÏ °æ¿ì ¼¼ÆÃÀÌ ÇÊ¿äÇÑ Á¤º¸
+	{ // å‚ˆæ§ æ¶å˜ æ‹³æè€ ç‰ˆå¿« æŠ€æ³¼æ é˜å¤¸èŒ„ æ²¥ç„Š
 		DocBS->SetBattleDifficulty(BladeIIGameImpl::GetStageDataStore().GetRelativeStageDifficulty(DocBS->GetServerStageId(), InMainPCClass, InSubPCClass)
 			);
 	}
 
-	// ÀÌ°Ô ´ëÃ¼·Î UI ÂÊ¿¡¼­ ºÒ¸®´Â °Å¶ó Á» ¼øÈ¯µÇ´Â »âÀÌ±ä ÇÑµ¥ ¿©ÇÏ°£ ´Ù½Ã UI ÂÊÀ¸·Î º¯°æ ÅëÁö.
+	// æéœ¸ æªçœ‰è‚º UI ç‡ä¿Šè¾‘ é˜‚åºœç»° èŠ­æ‰¼ ç²± é‰´åˆ¸ç™»ç»° çƒ©æå˜ èŒ„å• å’¯çªåŸƒ ä¿ƒçŸ« UI ç‡æ è‚º å‡½ç‰ˆ çƒ¹ç˜¤.
 	LobbyPCSelectionChangedClass<EPCClass>::GetInstance().Signal(InMainPCClass);
 	SetHeroMgmtModePCSelection(InMainPCClass);
 	LobbyStageInfoSelectClass<EPCClass, EPCClass>::GetInstance().Signal(InMainPCClass, InSubPCClass);
@@ -1250,7 +1251,7 @@ void AB2LobbyGameMode::HandleNotifyLeave(uint32 NetId)
 	}
 	else if (MatchState == NetMatchState::PreparePlayers)
 	{
-		// 180213_YJ ·¹ÀÌµå ¸ÅÄª Ä«¿îÆ®ÀÏ¶§ Å»ÁÖ Ãß°¡ Ã³¸®
+		// 180213_YJ é¥­æé› æ¦‚è« å¢¨æ¬¾é£˜è€é”­ å‘•æ— çœ å•Š è´¸åºœ
 		if (auto* UIRaidMain = UB2UIManager::GetInstance()->GetUI<UB2UIRaidMain>(UIFName::Raid))
 		{
 			SendLeavePlayerOnlyRaid(NetId);
@@ -1275,8 +1276,8 @@ void AB2LobbyGameMode::SetRemotePlayerInfoData(uint32 Netid, int64 AccountId, co
 {
 	B2_SCOPED_TRACK_LOG(TEXT("AB2LobbyGameMode::SetRemotePlayerInfoData"));
 
-	// ÆÄÆ¼Àå(È£½ºÆ®)ÀÏ °æ¿ì ÇöÀç Á¢¼ÓÇÑ À¯Àú¿¡°Ô ÇöÀçÀÖ´Â »ç¶÷µéÀÇ ¼±ÅÃµÈ Ä³¸¯ÅÍ¸¦ ³Ñ±ä´Ù.
-	// ÇØ´ç ÆĞÅ¶À» Àü´Ş¹ŞÀº À¯Àú´Â Á¢¼ÓÇÑ À¯ÀúµéÀ» ¼ÂÆÃÇÏ°í, ÀÚ½ÅÀÇ ¼±ÅÃÇÑ Ä³¸¯ÅÍ¸¦ ÀüÃ¼ À¯Àú¿¡°Ô ¾Ë¸°´Ù(ºê·ÎµåÄ³½ºÆÃ)
+	// é¢‡èå˜(é¾‹èƒ¶é£˜)è€ ç‰ˆå¿« æ³…çŠ ç«‹åŠ èŒ„ èœ¡å†ä¿Šéœ¸ æ³…çŠä¹ç»° è¤æ©ç”¸ç‹¼ æ€¥ç¶ç­‰ æŸè…ç£ç”« é€å˜ä¿ƒ.
+	// ç§¦å¯¸ è©å“¦é˜‘ å‚ˆå´”ç½ç¯® èœ¡å†ç»° ç«‹åŠ èŒ„ èœ¡å†ç”¸é˜‘ æ‚¸æ³¼çªç»Š, ç£Šè„šç‹¼ æ€¥ç¶èŒ„ æŸè…ç£ç”« å‚ˆçœ‰ èœ¡å†ä¿Šéœ¸ èˆ…èµ´ä¿ƒ(å®è‚ºé›æŸèƒ¶æ³¼)
 	if (GetPeerType() == PEER_SUPER)
 	{
 		packet::ByteStream	payload;
@@ -1284,7 +1285,7 @@ void AB2LobbyGameMode::SetRemotePlayerInfoData(uint32 Netid, int64 AccountId, co
 		// Host
 		payload << GetMyNetId();
 
-		// Ä³¸¯ÅÍ Á¤º¸
+		// æŸè…ç£ æ²¥ç„Š
 		payload << static_cast<uint8>(RemotePlayerInfoData.Num() + 1) <<
 			GetMyNetId() << (uint8)BladeIIGameImpl::GetLocalCharacterData().GetMainPlayerClass();
 		for (auto& Elem : RemotePlayerInfoData)
@@ -1336,10 +1337,10 @@ void AB2LobbyGameMode::HandleNotifyRoomClose(const FString& RoomToken, int32 Roo
 
 	if (MatchState != MatchState::InProgress)
 	{
-		// ·ë Å¬·ÎÁîÇÏ¸é¼­ ÅäÅ« Àç¼³Á¤Àº ·¹ÀÌµå¿¡¼­¸¸.
+		// å†¯ åŠªè‚ºä»¤çªæè¾‘ é…å¥´ çŠæ±²æ²¥ç¯® é¥­æé›ä¿Šè¾‘çˆ¶.
 		if (RoomType == b2network::B2RoomType::BRT_Raid)
 		{
-			// ÀÚ±âÀÚ½Å ¼ÂÆÃ
+			// ç£Šæ‰ç£Šè„š æ‚¸æ³¼
 			SetToken(RoomToken);
 		}
 
@@ -1359,25 +1360,25 @@ void AB2LobbyGameMode::OnHostChanged(int32 RoomType, int32 NewHostId)
 
 	if (HasMatchStarted() && (GetMyNetId() == NewHostId))
 	{
-		// ³»²¨µµ Ãß°¡ÇØÁà¾ßÇÔ. È£½ºÆ®°¡ ¾Æ´Ï¾úÀ¸¸é
-		// HandleWaitToMeetCondition() ¿ä±â¼­ Ãß°¡ ¸øÇßÀ»µí.
+		// éƒ´æ³¢æ¡£ çœ å•Šç§¦æ‹å…·çªƒ. é¾‹èƒ¶é£˜å•Š é…’èªèŒæ æ
+		// HandleWaitToMeetCondition() å¤¸æ‰è¾‘ çœ å•Š ç»™æ²é˜‘æ·€.
 		IncreasePeerPlayers(GetMyNetId());
 
-		// ¸ÅÄª°úÁ¤¿¡¼­ Host°¡ °¡Á®¾ßÇÏ´Â Á¤º¸¸¦ Àç¼³Á¤ÇØÁØ´Ù.
+		// æ¦‚è«è‹æ²¥ä¿Šè¾‘ Hostå•Š å•Šå»‰å…·çªç»° æ²¥ç„Šç”« çŠæ±²æ²¥ç§¦éœ–ä¿ƒ.
 		for (auto PeerInfo : AllPeerInfos)
 			IncreasePeerPlayers(PeerInfo.Key);
 	}
 
 	if (MatchState == NetMatchState::PreparePlayers)
 	{
-		// 180213_YJ ·¹ÀÌµå ¸ÅÄª Ä«¿îÆ®ÀÏ¶§ Å»ÁÖ Ãß°¡ Ã³¸®
+		// 180213_YJ é¥­æé› æ¦‚è« å¢¨æ¬¾é£˜è€é”­ å‘•æ— çœ å•Š è´¸åºœ
 		if (auto* UIRaidMain = UB2UIManager::GetInstance()->GetUI<UB2UIRaidMain>(UIFName::Raid))
 		{
 			SendLeavePlayerOnlyRaid(BeforeHostId);
 		}
 	}
 
-	// ºñÈ£½ºÆ® À¯Àú ·ëÅ¬·ÎÁîÀÌÈÄ ½ÃÀÛÇÏ±â±îÁö ´ë±âÁßÀÎÁö ÇÃ·¡±×. ÀÌ»çÀÌ È£½ºÆ® ÀÎ°è¹Ş¾ÒÀ¸¸é ¹æ±ü´Ù.
+	// åšé¾‹èƒ¶é£˜ èœ¡å† å†¯åŠªè‚ºä»¤æé¥¶ çŸ«ç´¯çªæ‰é³–ç˜¤ æªæ‰åç‰¢ç˜¤ æ•²è´°å¼Š. æè¤æ é¾‹èƒ¶é£˜ ç‰¢æ‹Œç½ç–½æ æ è§„ç§‰ä¿ƒ.
 	if (bWaitPrerequisiteToStartForNonHost)
 	{
 		NoResponsePrerequisiteToStart();
@@ -1410,7 +1411,7 @@ void AB2LobbyGameMode::LeaveRoomIfJoined()
 
 	LobbySceneManager.LeaveRoomIfJoined();
 
-	// ÁØºñÈ®ÀÎ Å¸ÀÌ¸Ó Á¦°Å
+	// éœ–åšçŠ¬ç‰¢ é¸¥æèµ£ åŠ›èŠ­
 	ClearWaitPrerequisiteToStartTimeHandler();
 
 	bWaitPrerequisiteToStartForNonHost = false;
@@ -1450,7 +1451,7 @@ void AB2LobbyGameMode::HandleFinishLobbyMatch()
 {
 	B2_SCOPED_TRACK_LOG(TEXT("AB2LobbyGameMode::HandleFinishLobbyMatch"));
 
-	// ¸ÅÄª ÈÄ ·¹º§½ºÆ®¸®¹Ö À¸·ÎÀÎÇØ µ¥ÀÌÅÍ°¡ ³¯¶ó°¡°ÔµÇ¹Ç·Î DocLobby¿¡ ¸ÅÄª°ü·Ã Á¤º¸¸¦ ÀúÀå
+	// æ¦‚è« é¥¶ é¥­éª‡èƒ¶é£˜åºœæ€ª æ è‚ºç‰¢ç§¦ å•æç£å•Š æœæ‰¼å•Šéœ¸ç™»éª¨è‚º DocLobbyä¿Š æ¦‚è«åŒ…è®¿ æ²¥ç„Šç”« å†å˜
 	if (auto* UIDocLobbyMatch = UB2UIDocHelper::GetDocLobbyMatch())
 	{
 		UIDocLobbyMatch->SetPeerType(GetPeerType());
@@ -1480,14 +1481,14 @@ void AB2LobbyGameMode::HandleFinishLobbyMatch()
 			UIDocLobbyMatch->SetRemotePlayerInfoData(Elem.Key, Elem.Value.GetAccountId(), Elem.Value.GetAccountInfoPtr(), Elem.Value.GetMainPlayerClass(), StartIndex);
 
 			//////////////////////////////			
-			{ // ¸Ê ·Îµù µµÁß SkillAnim ÀÇ Pre-load ¿¡ ¾²±â À§ÇÑ Á¤º¸. ÇØ´ç Pre-load ½ÃÁ¡¿¡ »õ·Î ·ÎµùµÇ´Â °ÔÀÓ¸ğµå¿¡¼­ ¹ÌÃ³ RemotePlayerInfoData °¡ ¾ø´Â »óÈ²ÀÌ¶ó ¿©±â¿¡ ÀúÀåÇØ µĞ´Ù.
+			{ // ç”˜ è‚ºçˆ¹ æ¡£å SkillAnim ç‹¼ Pre-load ä¿Š é™æ‰ å›°èŒ„ æ²¥ç„Š. ç§¦å¯¸ Pre-load çŸ«ç—¢ä¿Š è´§è‚º è‚ºçˆ¹ç™»ç»° éœ¸çƒ™è‘›é›ä¿Šè¾‘ å›ºè´¸ RemotePlayerInfoData å•Š ç»ç»° æƒ‘ç‚”ææ‰¼ å’¯æ‰ä¿Š å†å˜ç§¦ æ•Œä¿ƒ.
 				TArray<ESkillAnimType> SkillAnimTypesOfThisRemote;
 				UB2SkillRTManager::GetCharacterRegisteredSkillAnimTypes(this, Elem.Value.GetMainPlayerClass(),
-					///// ´ÙÀ½ °ÔÀÓ¸ğµå´Â ¾Æ¸¶µµ Raid ³ª Control ÀÌ µÉÅÙµ¥ ¹ºÁö ¾Ë ¼ö°¡ ¾ø±º. ¾È¿¡ µé¾î°¡º¸¸é »ç½Ç ÀÏºÎ ½ºÅ³À» Æ¯º°ÇÏ°Ô »ç¿ëÇÏ´Â GameMode Å¸ÀÔ¿¡ ÇØ´çÇÏÁö¸¸ ¾ÊÀ¸¸é ¹®Á¦´Â ¾ø´Âµ¥ Á» °Å½½¸®±ä ÇÏÁö.
+					///// ä¿ƒæ¾œ éœ¸çƒ™è‘›é›ç»° é…’ä»˜æ¡£ Raid å”± Control æ çªåˆ¨å• è´­ç˜¤ èˆ… èå•Š ç»ç„™. æ•‘ä¿Š ç”¸ç»¢å•Šç„Šæ è¤è§’ è€ä½• èƒ¶æ‡¦é˜‘ æ¼‚å–Šçªéœ¸ è¤ä¾©çªç»° GameMode é¸¥æ¶ä¿Š ç§¦å¯¸çªç˜¤çˆ¶ è‡¼æ æ å·©åŠ›ç»° ç»ç»°å• ç²± èŠ­æµ‡åºœå˜ çªç˜¤.
 					EB2GameMode::Raid,
 					/////
 					SkillAnimTypesOfThisRemote, &Elem.Value);
-				// ¸ğÀº °É·Î CombinedID ¸¦ ¸¸µé¾î ³Ö´Â´Ù.
+				// è‘›ç¯® å§è‚º CombinedID ç”« çˆ¶ç”¸ç»¢ æŒç»°ä¿ƒ.
 				for (ESkillAnimType ThisSkillAnimType : SkillAnimTypesOfThisRemote)
 				{
 					UIDocLobbyMatch->MatchedRemotePlayerSkillAnims.AddUnique(FCombinedPCSkillAnimID(Elem.Value.GetMainPlayerClass(), ThisSkillAnimType));
@@ -1497,8 +1498,8 @@ void AB2LobbyGameMode::HandleFinishLobbyMatch()
 		}
 	}	
 
-	// ÁÖÀÇ :	ÀÌÈÄ GameMode°¡ º¯°æµÇ¸é NotifyRoomLeave°¡ È£ÃâµÇ´Âµ¥ ÀÌ¶§ RoomId°¡ Á¸ÀçÇÏ¸é ¼­¹ö¿¡ ·ëÀ» ³ª°¡´Â ÆĞÅ¶À» º¸³½´Ù. 
-	//			ÀÌ¸¦ ¹æÁöÇÏ±âÀ§ÇØ ¹İµå½Ã ·ëÀ» ÃÊ±âÈ­ÇØÁà¾ßÇÔ
+	// æ—ç‹¼ :	æé¥¶ GameModeå•Š å‡½ç‰ˆç™»æ NotifyRoomLeaveå•Š é¾‹å…ç™»ç»°å• æé”­ RoomIdå•Š ç²®çŠçªæ è¾‘æ»šä¿Š å†¯é˜‘ å”±å•Šç»° è©å“¦é˜‘ ç„Šè¾°ä¿ƒ. 
+	//			æç”« è§„ç˜¤çªæ‰å›°ç§¦ é¦†é›çŸ« å†¯é˜‘ æª¬æ‰æ‹³ç§¦æ‹å…·çªƒ
 	ClearMatchRoom();
 
 	LobbySceneManager.HandleFinishLobbyMatch();
@@ -1518,7 +1519,7 @@ void AB2LobbyGameMode::CheckFullPeerRoom()
 
 void AB2LobbyGameMode::SendPrerequisiteToStart(int32 RoomType)
 {
-	// È£½ºÆ®¿ë ReservedPlayerClasses ¼³Á¤
+	// é¾‹èƒ¶é£˜ä¾© ReservedPlayerClasses æ±²æ²¥
 	FB2PeerInfo MyPeerInfo;
 	TArray<FB2PeerInfo> PeerInfos;
 	
@@ -1573,7 +1574,7 @@ void AB2LobbyGameMode::SendPrerequisiteToStart(int32 RoomType)
 			GetTutorialControlPlayerInfo(PeerInfos);
 		}
 		else
-		{// ÆÀ, À§Ä¡ ¼¼ÆÃ
+		{// è¯„, å›°æ‘¹ æŠ€æ³¼
 			GetControlPlayerInfo(PeerInfos);
 		}
 	}
@@ -1593,7 +1594,7 @@ void AB2LobbyGameMode::SendPrerequisiteToStart(int32 RoomType)
 		}
 	}
 
-	// ÀÚ½ÅÀ» Á¦¿ÜÇÏ°í ÆÄÆ¼¿ø¿¡°Ô ½ÃÀÛÀ» ¾Ë¸²
+	// ç£Šè„šé˜‘ åŠ›å¯‡çªç»Š é¢‡èç›”ä¿Šéœ¸ çŸ«ç´¯é˜‘ èˆ…è¦†
 	packet::ByteStream	payload;
 	FString	strRoomToken(GetToken());
 
@@ -1619,7 +1620,7 @@ void AB2LobbyGameMode::SendPrerequisiteToStart(int32 RoomType)
 		bStandaloneStart |= IsForceStartMatch(GetCurrentLobbyScene());
 	}
 
-	// Æ©Åä¸®¾ó
+	// è­¬é…åºœå€”
 	if (IsActiveControlTutorial())
 		bStandaloneStart = true;
 
@@ -1648,11 +1649,11 @@ void AB2LobbyGameMode::StartFinishLobbyMatch()
 
 void AB2LobbyGameMode::HandleNotifyNoResponsePrerequisiteToStart()
 {
-	// Ã¤³Î³ª°¡±â
-	// LeaveRoomIfJoined ·Îºñ¾À ¸Å´ÏÀú¿¡¼­ ¸ÅÄªÃ¢ ´İ¾ÆÁØ´Ù.
+	// ç›²æ¾„å”±å•Šæ‰
+	// LeaveRoomIfJoined è‚ºåšçº  æ¦‚èªå†ä¿Šè¾‘ æ¦‚è«èŠ’ æ‘§é…’éœ–ä¿ƒ.
 	LeaveRoomIfJoined();
 
-	// ÆË¾÷¶ç¿ì±â¿ë
+	// æ‰‘è¯€å‰å¿«æ‰ä¾©
 	LobbySceneManager.ReceiveNoResponsePrerequisiteToStart();
 }
 
@@ -1662,16 +1663,16 @@ void AB2LobbyGameMode::BreakRoom(int32 InMapId /*= 1*/, int32 InDifficulty /*= 1
 
 	if (GetMatchState() != NetMatchState::StartResult)
 	{
-		// ¸ÅÄª°úÁ¤¿¡¼­ ¹æÀ» ±ı°ÍÀÎÁö Ã¼Å©
+		// æ¦‚è«è‹æ²¥ä¿Šè¾‘ è§„é˜‘ é¥¼å·´ç‰¢ç˜¤ çœ‰å†œ
 		if (HasMatchStarted())
 		{
 			if (GetPeerType() == PEER_SUPER)
 			{
-				// ¼­¹ö·Î ´õ ÀÌ»ó µé¾î¿ÀÁö ¸øÇÏ°ÔÇÏ´Â ÆĞÅ¶À» Àü¼Û
+				// è¾‘æ»šè‚º æ­¹ ææƒ‘ ç”¸ç»¢å·ç˜¤ ç»™çªéœ¸çªç»° è©å“¦é˜‘ å‚ˆä»·
 				UB2UIDocRaid* DocRaid = UB2UIDocHelper::GetDocRaid();
-				data_trader::Retailer::GetInstance().RequestRoomClose(GetRoomId(), InMapId, GetBreakRoomCloseReason()); // Å¸ÀÔ º¯°æÇØÁÖÀÚ.
+				data_trader::Retailer::GetInstance().RequestRoomClose(GetRoomId(), InMapId, GetBreakRoomCloseReason()); // é¸¥æ¶ å‡½ç‰ˆç§¦æ—ç£Š.
 
-				// ¸ğµç À¯Àú¸¦ °­Åğ½ÃÅ²´Ù.
+				// è‘›ç”µ èœ¡å†ç”« ç¢ç¡¼çŸ«æŒªä¿ƒ.
 				packet::ByteStream	payload;
 				FString encoded_string = packet::FinalizePacket(packet::KICK_USER, GetMyNetId(), 0, packet::ALLBUTME, payload);
 				data_trader::ChannelManager::GetInstance().SendMessage(data_trader::ChannelManager::ROOM_All, encoded_string);				
@@ -1696,13 +1697,13 @@ void AB2LobbyGameMode::IncreasePeerPlayers(uint32 NetId)
 
 	EmplacePeerPlayer(NetId);
 		
-	// ·ëÀÌ ²ËÃ£´ÂÁö Ã¼Å©
+	// å†¯æ èœèŒ«ç»°ç˜¤ çœ‰å†œ
 	CheckFullPeerRoom();
 }
 
 void AB2LobbyGameMode::NetSendBattleGradeInfo(int32 BattleGrade, int32 BattleStarCount)
 {
-	// ³»²¨ Á¡·ÉÀü µî±Ş Ã¤³Î³» ¹æ¼Û
+	// éƒ´æ³¢ ç—¢é£å‚ˆ æ®¿é­ ç›²æ¾„éƒ´ è§„ä»·
 	packet::ByteStream	payload;
 
 	payload << BattleGrade << BattleStarCount;
@@ -1739,7 +1740,7 @@ void AB2LobbyGameMode::NetSendMatchPlayerTeamInfo()
 
 	payload << AllPeerInfos.Num();
 
-	// Ä³¸¯ÅÍ Á¤º¸
+	// æŸè…ç£ æ²¥ç„Š
 	for (TPair<uint32, FLobbyMatchPeerInfo>& peerInfo : AllPeerInfos)
 		payload << peerInfo.Key << (uint8)peerInfo.Value.PlayerTeamType;
 
@@ -1781,7 +1782,7 @@ void AB2LobbyGameMode::OnDeliveryRoomJoin_Raid(FB2ResponseRoomJoinPtr Message)
 	{
 		if (DocRaid && DocRaid->GetIsReceiveInvite())
 		{
-			// ·¹ÀÌµå ÆäÀÌÁö ³»¿¡¼­ ÃÊ´ë¸¦ ¹Ş¾ÒÀ½.
+			// é¥­æé› å…¶æç˜¤ éƒ´ä¿Šè¾‘ æª¬æªç”« ç½ç–½æ¾œ.
 			if (auto* UIRaidMain = UIManager->GetUI<UB2UIRaidMain>(UIFName::Raid))
 			{
 				auto* DocBattle = UB2UIDocHelper::GetDocBattle();
@@ -1835,7 +1836,7 @@ void AB2LobbyGameMode::SetRemotePlayerClass(uint32 NetId, EPCClass PCClass)
 {
 	B2_SCOPED_TRACK_LOG(TEXT("AB2LobbyGameMode::SetRemotePlayerClass"));
 
-	// ¾ÆÁ÷ ¼­¹ö·Î ºÎÅÍ ¸ÅÄªÀÌ µÇÁö ¾Ê¾Ò´Ù¸é PCClass¸¦ ¿¹¾à °É¾îµĞ´Ù. (Reserved PCClass)
+	// é…’æµ è¾‘æ»šè‚º ä½•ç£ æ¦‚è«æ ç™»ç˜¤ è‡¼ç–½ä¿ƒæ PCClassç”« æŠ—è· å§ç»¢æ•Œä¿ƒ. (Reserved PCClass)
 	if (RemotePlayerInfoData.Contains(NetId) == false)
 	{
 		EmplacePeerPlayer(NetId, PCClass);
@@ -1949,7 +1950,7 @@ bool AB2LobbyGameMode::CanStartInGame()
 
 		for (auto PeerInfo : AllPeerInfos)
 		{
-			// ÀÚ±âÀÚ½ÅÀº Á¦¿Ü
+			// ç£Šæ‰ç£Šè„šç¯® åŠ›å¯‡
 			if (PeerInfo.Key == GetMyNetId())
 				continue;
 
@@ -2003,17 +2004,17 @@ bool AB2LobbyGameMode::IsPlayBeginAction()
 }
 void AB2LobbyGameMode::ResetPlayBeginActionState()
 {
-	LobbySceneManager.SetPlayingBeginAnim(true); // ´Ù½Ã ÇÃ·¹ÀÌ °¡´ÉÇÏ°Ô ÇÏ´Â °Å. ·Îºñ Ã· ÁøÀÔÇÒ ¶§ µÎ¹ø ÇÊ¿äÇØ¼­.
+	LobbySceneManager.SetPlayingBeginAnim(true); // ä¿ƒçŸ« æ•²é¥­æ å•Šç“·çªéœ¸ çªç»° èŠ­. è‚ºåš æ¢… æŸ³æ¶ä¸” é”­ æ»´é”… é˜å¤¸ç§¦è¾‘.
 }
 
 void AB2LobbyGameMode::SendLeavePlayerOnlyRaid(uint32 NetId)
 {
-	// 180213_YJ ·¹ÀÌµå ¸ÅÄª Ä«¿îÆ®ÀÏ¶§ Å»ÁÖ Ãß°¡ Ã³¸®
+	// 180213_YJ é¥­æé› æ¦‚è« å¢¨æ¬¾é£˜è€é”­ å‘•æ— çœ å•Š è´¸åºœ
 	if (GetPeerType() == PEER_SUPER)
 	{
 		/*
 		#if !UE_BUILD_SHIPPING
-		if (NetFakeConfigure::GetInstance().GetHateRaidPenalty()) return; // Ä¿¸Çµå Ä¡¸é Å»ÁÖ Á¦Á¦ ¹«½Ã.
+		if (NetFakeConfigure::GetInstance().GetHateRaidPenalty()) return; // ç›®ç›–é› æ‘¹æ å‘•æ— åŠ›åŠ› å…¬çŸ«.
 		#endif*/
 
 		if (UB2UIDocRaid* DocRaid = UB2UIDocHelper::GetDocRaid())
@@ -2104,7 +2105,7 @@ bool AB2LobbyGameMode::RequestStartGameStageWithSelectedPC(int32 ClientStageId, 
 								RepeatBattleRequestState,
 								RepeatBattleRequestState.bIsOn ? true : bSkipStoryCinematic,
 								MainPCPresetId,
-								SubPCPresetId); // Ãß°¡ ¿äÃ» ÀÖ±â Àü¿¡´Â ¹İº¹ÀüÅõ¼± ½Ã³ª¸®¿À ¿¬Ãâ ¾Æ´Ñ ¼ô¹öÀü ¿¬Ãâ·Î. RequestStartRepeatBattleWithSelectedPC ¿¡¼­µµ..
+								SubPCPresetId); // çœ å•Š å¤¸æ²¡ ä¹æ‰ å‚ˆä¿Šç»° é¦†æ±—å‚ˆæ§æ€¥ çŸ«å”±åºœå· æ¥·å… é…’å›± å‰ªæ»šå‚ˆ æ¥·å…è‚º. RequestStartRepeatBattleWithSelectedPC ä¿Šè¾‘æ¡£..
 
 	return true;
 }
@@ -2113,9 +2114,9 @@ bool AB2LobbyGameMode::RequestStartRepeatBattleWithSelectedPC(int32 ClientStageI
 {
 	B2_SCOPED_TRACK_LOG(TEXT("AB2LobbyGameMode::RequestStartRepeatBattleWithSelectedPC"));
 
-	// °¢°¢ÀÇ ¹İº¹ÀüÅõ ½ºÅ×ÀÌÁö ÁøÀÔÀÌ ¾Æ´Ñ ¸Ç Ã³À½ ÁøÀÔÁ¡ÀÓ.
+	// é˜¿é˜¿ç‹¼ é¦†æ±—å‚ˆæ§ èƒ¶æŠ›æç˜¤ æŸ³æ¶æ é…’å›± ç›– è´¸æ¾œ æŸ³æ¶ç—¢çƒ™.
 	UB2UIDocBattleStage* DocBS = UB2UIDocHelper::GetDocBattleStage();
-	// °ªÀ» ¼¼ÆÃÇÑ ´ÙÀ½ ¼­¹ö¿¡¼­ ÀÀ´äÀÌ ¿À¸é ÀÎ°ÔÀÓ ±¸Á¶Ã¼·Î Àü´ŞÇÒ °ÍÀÓ.
+	// è”¼é˜‘ æŠ€æ³¼èŒ„ ä¿ƒæ¾œ è¾‘æ»šä¿Šè¾‘ è§ˆç¿ æ å·æ ç‰¢éœ¸çƒ™ å¤‡ç‚¼çœ‰è‚º å‚ˆå´”ä¸” å·´çƒ™.
 	RepeatBattleRequestState.bIsOn = true;
 	RepeatBattleRequestState.CurrentRepeatCount = 0;
 	if (DocBS)
@@ -2136,18 +2137,18 @@ bool AB2LobbyGameMode::RequestStartRepeatBattleWithSelectedPC(int32 ClientStageI
 #endif
 	SyncRepeatBattleRequestStateToUIDoc();
 
-	TArray<EStageBuffType> SelectedBuffs; // ¹İº¹ÀüÅõ¿¡¼­µµ ¹öÇÁ ¾ÆÀÌÅÛ ¼±ÅÃÀÌ ÀÖ´Ù¸é ¹Ş¾Æ¿Àµµ·Ï..
+	TArray<EStageBuffType> SelectedBuffs; // é¦†æ±—å‚ˆæ§ä¿Šè¾‘æ¡£ æ»šæ©‡ é…’æè¢ æ€¥ç¶æ ä¹ä¿ƒæ ç½é…’å·æ¡£åºŸ..
 	if (DocBS)
 	{
 		SelectedBuffs = DocBS->GetSelectedStageBuffs();
 	}
 
-	return RequestStartGameStageWithSelectedPC(ClientStageId, StageDifficulty, SelectedBuffs, true); // Ãß°¡ ¿äÃ» ÀÖ±â Àü¿¡´Â ¹İº¹ÀüÅõ¼± ½Ã³ª¸®¿À ¿¬Ãâ ¾Æ´Ñ ¼ô¹öÀü ¿¬Ãâ·Î
+	return RequestStartGameStageWithSelectedPC(ClientStageId, StageDifficulty, SelectedBuffs, true); // çœ å•Š å¤¸æ²¡ ä¹æ‰ å‚ˆä¿Šç»° é¦†æ±—å‚ˆæ§æ€¥ çŸ«å”±åºœå· æ¥·å… é…’å›± å‰ªæ»šå‚ˆ æ¥·å…è‚º
 }
 
 void AB2LobbyGameMode::CancelOrStopRepeatBattle()
-{ // ¹İº¹ ÀüÅõ·Î ÀÔÀåÇÏ·Á´Âµ¥ ÀÎº¥Åä¸®°¡ Â÷°Å³ª ¹º°¡ ºÎÁ·ÇÏ°Å³ª µîÀÇ ÀÌÀ¯·Î ¸øÇÏ°Ô µÇ¾úÀ» ¶§..
-	// ³»Áö´Â ½ºÅ×ÀÌÁö ÀÔÀå ¿äÃ»ÇÏ±â Àü¿¡´Â ´Ü¼øÈ÷ ÀÌ°É·Î ¹İº¹ÀüÅõ Áß´ÜÀÌ µÊ.
+{ // é¦†æ±— å‚ˆæ§è‚º æ¶å˜çªå¦¨ç»°å• ç‰¢äº¥é…åºœå•Š ç’èŠ­å”± è´­å•Š ä½•ç»ƒçªèŠ­å”± æ®¿ç‹¼ æèœ¡è‚º ç»™çªéœ¸ ç™»èŒé˜‘ é”­..
+	// éƒ´ç˜¤ç»° èƒ¶æŠ›æç˜¤ æ¶å˜ å¤¸æ²¡çªæ‰ å‚ˆä¿Šç»° çªœé‰´æ´’ æå§è‚º é¦†æ±—å‚ˆæ§ åçªœæ å‡³.
 	RepeatBattleRequestState.bIsOn = false;
 	RepeatBattleRequestState.CurrentRepeatCount = 0;
 	RepeatBattleRequestState.bRepeatAll = false;
@@ -2162,14 +2163,14 @@ void AB2LobbyGameMode::SetupForNextRepeatBattleStage(FServerStageID InServerStag
 
 	auto& StageDataStore = BladeIIGameImpl::GetStageDataStore();
 
-	// °¢°¢ÀÇ ¹İº¹ÀüÅõ ½ºÅ×ÀÌÁö ÁØºñ ¼Â¾÷. ÀÌÀü¿¡µµ ¹İº¹ÀüÅõ¸¦ Ä¡·ç°í ¿Ô°í Ãß°¡ ¹İº¹ÀüÅõµµ ³²¾ÆÀÖ´Â »óÅÂ
-	// ÇÊ¿äÇÑ ´ëºÎºĞÀÇ °ÍµéÀº UI ¿¡¼­ Ã³¸®ÇÏ°í.. ¿©±â¼± ¹İº¹ÀüÅõ¸¦ ´õ ÀÌ»ó ÁøÇàÇÏÁö ¸øÇÏ´Â °æ¿ì¿¡ ´ëÇÑ »çÀü Ã¼Å©¸¦ ÇÏµµ·Ï ÇÏÀÚ..		
+	// é˜¿é˜¿ç‹¼ é¦†æ±—å‚ˆæ§ èƒ¶æŠ›æç˜¤ éœ–åš æ‚¸è¯€. æå‚ˆä¿Šæ¡£ é¦†æ±—å‚ˆæ§ç”« æ‘¹é£ç»Š å­ç»Š çœ å•Š é¦†æ±—å‚ˆæ§æ¡£ å·¢é…’ä¹ç»° æƒ‘æ€•
+	// é˜å¤¸èŒ„ æªä½•ç›’ç‹¼ å·´ç”¸ç¯® UI ä¿Šè¾‘ è´¸åºœçªç»Š.. å’¯æ‰æ€¥ é¦†æ±—å‚ˆæ§ç”« æ­¹ ææƒ‘ æŸ³é’çªç˜¤ ç»™çªç»° ç‰ˆå¿«ä¿Š æªèŒ„ è¤å‚ˆ çœ‰å†œç”« çªæ¡£åºŸ çªç£Š..		
 	const bool bIsRepeatBattlePossible = StageDataStore.IsPossibleToDoRepeatBattle(InServerStageId);
 	if (!bIsRepeatBattlePossible && !(StageDataStore.IsRepeatBattleLocked(InServerStageId) && RepeatBattleRequestState.bRepeatOne))
 	{
-		// ÀÏ´Ü Áß´ÜºÎÅÍ ÇÏ°í..
+		// è€çªœ åçªœä½•ç£ çªç»Š..
 		CancelOrStopRepeatBattle();
-		// ¸Ş½ÃÁö¶óµµ »Ñ·ÁÁà¾ß°ÚÁö..
+		// çš‹çŸ«ç˜¤æ‰¼æ¡£ è°å¦¨æ‹å…·æ‘†ç˜¤..
 		UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
 		if (UIMgrInst)
 		{
@@ -2204,7 +2205,7 @@ void AB2LobbyGameMode::SyncRepeatBattleRequestStateToUIDoc()
 
 void AB2LobbyGameMode::DJLegacy_ChangeLobbyUIPage(ELobbyUIPages InPageEnum)
 {
-	// °á±¹Àº LobbyUISwitcher ÀÇ BeginLobbyUIPage ÄİÀÎµ¥, ÀüÈÄ·Î ÀÌÂÊ¼­ »óÅÂ º¯È­ µî ÇÊ¿äÇÑ °ÍÀÌ ÀÖÀ¸¸é Ã³¸®.
+	// æ¬æƒ«ç¯® LobbyUISwitcher ç‹¼ BeginLobbyUIPage å¦®ç‰¢å•, å‚ˆé¥¶è‚º æç‡è¾‘ æƒ‘æ€• å‡½æ‹³ æ®¿ é˜å¤¸èŒ„ å·´æ ä¹æ æ è´¸åºœ.
 	DJLegacy_ChangeLobbyUIPageClass<ELobbyUIPages>::GetInstance().Signal(InPageEnum);
 }
 
@@ -2244,21 +2245,21 @@ void AB2LobbyGameMode::EnterHeroMgmtMode(EHeroMgmtSubMode InSubMode)
 	bHeroMgmtMode = true;
 
 	//////////////////////////////////////////////////
-	// DJLegacy ¿Í ½Å UI ¿¬µ¿ ÀÓ½Ã Ã³¸®.. ÀÏ°É·Î »ı°¢ÇßÀ¸³ª ¿µ¿õ°ü¸® ¸ğµå´Â °è¼Ó DJLegacy ·Î ³²À» µí.
+	// DJLegacy å®¢ è„š UI æ¥·æ‚¼ çƒ™çŸ« è´¸åºœ.. è€å§è‚º ç§¯é˜¿æ²æ å”± åº·æ—·åŒ…åºœ è‘›é›ç»° æ‹ŒåŠ  DJLegacy è‚º å·¢é˜‘ æ·€.
 	UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
 	const EUIScene CurrentUIScene = UIMgrInst->GetCurrUIScene();
-	if (CurrentUIScene != EUIScene::None && /*!IsDJLegacyUIScene(CurrentUIScene) && */ // UIInvenQuickSlide ¿Í °°Àº °æ¿ì DJLegacyUIScene ÀÌ ¿¬¼ÓµÉ ¼ö ÀÖÀ½. ¾î¶»°Ô º¸¸é ±× °æ¿ì´Â È÷½ºÅä¸® ¹«½ÃÇÏ´Â °Ô ³ªÀ» ¼öµµ ÀÖ±ä ÇÑµ¥.. ¾î¶² °æ¿ì´Â ¿Àµ¿ÀÛÀ» ÇÏ°Ô µÇ´Ï..
+	if (CurrentUIScene != EUIScene::None && /*!IsDJLegacyUIScene(CurrentUIScene) && */ // UIInvenQuickSlide å®¢ éç¯® ç‰ˆå¿« DJLegacyUIScene æ æ¥·åŠ çª è ä¹æ¾œ. ç»¢ç—˜éœ¸ ç„Šæ å¼Š ç‰ˆå¿«ç»° æ´’èƒ¶é…åºœ å…¬çŸ«çªç»° éœ¸ å”±é˜‘ èæ¡£ ä¹å˜ èŒ„å•.. ç»¢æ« ç‰ˆå¿«ç»° å·æ‚¼ç´¯é˜‘ çªéœ¸ ç™»èª..
 		InSubMode != EHeroMgmtSubMode::EHMSM_End && !UIMgrInst->IsOpeningDJLegacyHeroMgmtBySceneHistory())
 	{
-		// Back button Å¬¸¯ ½Ã (UB2UIManager::ChangeUISceneBack) º°µµ UIManager ½Ã½ºÅÛÀÇ ÀÌÀü UIScene À¸·Î µ¹¾Æ°¥ ¼ö ÀÖµµ·Ï µû·Î È÷½ºÅä¸®¸¦ ³Ö¾îÁØ´Ù.
-		// ±×·¯³ª Back button Å¬¸¯À¸·Î ¿©±â¿¡ ¿Â °æ¿ì´Â Á¦¿Ü.
+		// Back button åŠªè… çŸ« (UB2UIManager::ChangeUISceneBack) å–Šæ¡£ UIManager çŸ«èƒ¶è¢ç‹¼ æå‚ˆ UIScene æ è‚º å€’é…’å“ è ä¹æ¡£åºŸ è¶è‚º æ´’èƒ¶é…åºœç”« æŒç»¢éœ–ä¿ƒ.
+		// å¼ŠçŸ¾å”± Back button åŠªè…æ è‚º å’¯æ‰ä¿Š æŸ¯ ç‰ˆå¿«ç»° åŠ›å¯‡.
 		UIMgrInst->ChangeUIScene(DJLegacyHeroMgmtPageToUIScene(InSubMode));
 	}
 	//////////////////////////////////////////////////
 
-	//HeroMgmtModePCSelection = BladeIIGameImpl::GetClientDataStore().GetMainPlayerClass(); // ±âº»ÀûÀ¸·Î ·Îºñ¿¡¼­ ¼±ÅÃµÈ PC ¸¦ ³Ñ°ÜÁÜ.
+	//HeroMgmtModePCSelection = BladeIIGameImpl::GetClientDataStore().GetMainPlayerClass(); // æ‰å¤¯åˆ©æ è‚º è‚ºåšä¿Šè¾‘ æ€¥ç¶ç­‰ PC ç”« é€è´¥æ·‹.
 		
-	OnQuitHeroMgmtSubModeCommon(HeroMgmtSubMode); // ÀÌÀü sub ¸ğµå ´İ´Â Ã³¸®µµ. InSubMode ¿Í °°´õ¶óµµ ¾ÆÁ÷ »õ·Î ¿ÀÇÂ ÀüÀÌ´Ï ´İ´Â Ã³¸®¸¦ ÇØ º½. ¹®Á¦°¡ µÈ´Ù¸é Á» ´õ °Ë»ç¸¦ °­È­.
+	OnQuitHeroMgmtSubModeCommon(HeroMgmtSubMode); // æå‚ˆ sub è‘›é› æ‘§ç»° è´¸åºœæ¡£. InSubMode å®¢ éæ­¹æ‰¼æ¡£ é…’æµ è´§è‚º å·é”¹ å‚ˆæèª æ‘§ç»° è´¸åºœç”« ç§¦ èˆª. å·©åŠ›å•Š ç­‰ä¿ƒæ ç²± æ­¹ å…«è¤ç”« ç¢æ‹³.
 
 	HeroMgmtSubMode = InSubMode;
 	ELobbyUIPages MatchingDjLegacyUIPage = HeroMgmtSubModeToLobbyUIPage(HeroMgmtSubMode);
@@ -2267,11 +2268,11 @@ void AB2LobbyGameMode::EnterHeroMgmtMode(EHeroMgmtSubMode InSubMode)
 		DJLegacy_ChangeLobbyUIPage(MatchingDjLegacyUIPage);
 		LobbyInventoryViewJustOpenClass<>::GetInstance().Signal();
 
-		// È¤¿©³ª °¢ submode º°·Î Æ¯¼öÇÑ µ¿ÀÛÀÌ ÇÊ¿äÇÏ¸é ºÎ²ô·¯¿öÇÏÁö ¸»°í ¿©±â¿¡ if ³ª switch ³Ö¾î¼­ Ã³¸®....
-		// ÀÌÀü¿¡ ½ÇÁ¦·Î ±×·¸°Ô µÇ¾î ÀÖ¾ú´Ù. ³¥³¥
+		// è¶£å’¯å”± é˜¿ submode å–Šè‚º æ¼‚èèŒ„ æ‚¼ç´¯æ é˜å¤¸çªæ ä½•æºçŸ¾å†µçªç˜¤ å¯Œç»Š å’¯æ‰ä¿Š if å”± switch æŒç»¢è¾‘ è´¸åºœ....
+		// æå‚ˆä¿Š è§’åŠ›è‚º å¼ŠçŠ¯éœ¸ ç™»ç»¢ ä¹èŒä¿ƒ. å¿å¿
 	} 
 
-	// ¿µ¿õ °ü¸® ¸ğµå Àü¿ë Ä«¸Ş¶ó¿öÅ©
+	// åº·æ—· åŒ…åºœ è‘›é› å‚ˆä¾© å¢¨çš‹æ‰¼å†µå†œ
 	LobbyChangeSceneClass<ELobbyScene>::GetInstance().Signal(ELobbyScene::ELobbyScene_HeroManagement);
 }
 
@@ -2291,7 +2292,7 @@ void AB2LobbyGameMode::OnChangeUISceneBack()
 
 void AB2LobbyGameMode::QuitHeroMgmtMode()
 {
-	// ÀÌ°Ô DJLegacy °¡ µÇ´Ùº¸´Ï ½ÇÁ¦ ¹Ù²Ù´Â °Ç ´Ù¸¥ °æ·Î¸¦ ÅëÇÏ°í ¿©±â´Â ºÎ°¡ÀûÀÎ Ã³¸®¸¦ ÇÏ°Ô µÇ¾úÀ½.
+	// æéœ¸ DJLegacy å•Š ç™»ä¿ƒç„Šèª è§’åŠ› å®˜æ“ç»° æ‰’ ä¿ƒå¼— ç‰ˆè‚ºç”« çƒ¹çªç»Š å’¯æ‰ç»° ä½•å•Šåˆ©ç‰¢ è´¸åºœç”« çªéœ¸ ç™»èŒæ¾œ.
 
 	B2_SCOPED_TRACK_LOG(TEXT("AB2LobbyGameMode::QuitHeroMgmtMode"));
 
@@ -2323,10 +2324,10 @@ void AB2LobbyGameMode::OnQuitHeroMgmtSubModeCommon(EHeroMgmtSubMode SubModeToClo
 		break;
 	}
 
-	UB2Airport::FlushPendingWingVisibilityReq(); // ³¯°³ visibility on/off ÇÑ °Å ¸ğ¾Æ¼­ ¼­¹ö·Î ¿äÃ»
-	BladeIIGameImpl::GetClientDataStore().RequestSyncToServerShowHead(); //¸Ó¸® Visible °ü·Ã ¼­¹ö µ¿±âÈ­
+	UB2Airport::FlushPendingWingVisibilityReq(); // æœä¿º visibility on/off èŒ„ èŠ­ è‘›é…’è¾‘ è¾‘æ»šè‚º å¤¸æ²¡
+	BladeIIGameImpl::GetClientDataStore().RequestSyncToServerShowHead(); //èµ£åºœ Visible åŒ…è®¿ è¾‘æ»š æ‚¼æ‰æ‹³
 
-	// Àåºñ ÀåÂøÀÌ³ª ½ºÅ³ °­È­ µî¿¡ µû¶ó ¾Æ¸°ÀÇ Á¶¾ğµµ Ã¼Å©
+	// å˜åš å˜é¦’æå”± èƒ¶æ‡¦ ç¢æ‹³ æ®¿ä¿Š è¶æ‰¼ é…’èµ´ç‹¼ ç‚¼æ”«æ¡£ çœ‰å†œ
 	UB2UIDocBattleStage* DocBS = UB2UIDocHelper::GetDocBattleStage();
 	GameStageCheckForArinConsultingClass<FServerStageID>::GetInstance().Signal(DocBS ? DocBS->GetServerStageId() : FServerStageID());
 }
@@ -2378,7 +2379,7 @@ void AB2LobbyGameMode::SetHeroMgmtModePCSelection(EPCClass InPCClass)
 
 class UB2LobbyInventory* AB2LobbyGameMode::GetLobbyInventory()
 {
-	// °¡±ŞÀû CreateLobbyInventory ½ÃÁ¡ ÀÌÀü¿¡ GetLobbyInventory ¸¦ ÇÏ´Â ÀÏÀÌ ¾øµµ·Ï..
+	// å•Šé­åˆ© CreateLobbyInventory çŸ«ç—¢ æå‚ˆä¿Š GetLobbyInventory ç”« çªç»° è€æ ç»æ¡£åºŸ..
 	checkSlow(LobbyInventory);
 	return LobbyInventory;
 }
@@ -2387,7 +2388,7 @@ bool AB2LobbyGameMode::CreateLobbyInventory()
 {
 	B2_SCOPED_TRACK_LOG(TEXT("AB2LobbyGameMode::CreateLobbyInventory"));
 
-	// LobbyInventory ÀÇ ¸¹Àº ÀÎÅÍÆäÀÌ½ºµéÀÌ static ÀÌÁö¸¸ ¿©ÀüÈ÷ °´Ã¼ »ı¼ºÀ» Á» ÇÑ´Ù.
+	// LobbyInventory ç‹¼ è…¹ç¯® ç‰¢ç£å…¶æèƒ¶ç”¸æ static æç˜¤çˆ¶ å’¯å‚ˆæ´’ æŒ‰çœ‰ ç§¯å·±é˜‘ ç²± èŒ„ä¿ƒ.
 	LobbyInventory = NewObject<UB2LobbyInventory>(this, UB2LobbyInventory::StaticClass(), NAME_None);
 
 	if (LobbyInventory)
@@ -2400,7 +2401,7 @@ bool AB2LobbyGameMode::CreateLobbyInventory()
 
 UB2Airport* AB2LobbyGameMode::GetLobbyAirport()
 {
-	// °¡±ŞÀû CreateLobbyAirport ½ÃÁ¡ ÀÌÀü¿¡ GetLobbyAirport ¸¦ ÇÏ´Â ÀÏÀÌ ¾øµµ·Ï..
+	// å•Šé­åˆ© CreateLobbyAirport çŸ«ç—¢ æå‚ˆä¿Š GetLobbyAirport ç”« çªç»° è€æ ç»æ¡£åºŸ..
 	checkSlow(LobbyAirport);
 	return LobbyAirport;
 }
@@ -2428,7 +2429,7 @@ void AB2LobbyGameMode::UpdateChapterData()
 {
 	B2_SCOPED_TRACK_LOG(TEXT("AB2LobbyGameMode::UpdateChapterData"));
 
-	// ¸¸ÀÏ UI Doc ¿¡ ¾ÆÀÌÅÛÀÌ µé¾î°£´Ù¸é ¿©±â¼­ ³ÖÁö´Â ¸» °Í. µ¥ÀÌÅÍ°¡ ¸¹À» °ÍÀÌ¹Ç·Î LobbyInventory °°Àº µ¥¼­ Æ¯¼öÇÏ°Ô Ã³¸®.
+	// çˆ¶è€ UI Doc ä¿Š é…’æè¢æ ç”¸ç»¢åŸƒä¿ƒæ å’¯æ‰è¾‘ æŒç˜¤ç»° å¯Œ å·´. å•æç£å•Š è…¹é˜‘ å·´æéª¨è‚º LobbyInventory éç¯® å•è¾‘ æ¼‚èçªéœ¸ è´¸åºœ.
 	auto& ClientDataStore = BladeIIGameImpl::GetClientDataStore();
 	auto& StageDataStore = BladeIIGameImpl::GetStageDataStore();
 
@@ -2451,7 +2452,7 @@ void AB2LobbyGameMode::UpdateChapterData()
 		int32 ChapterMaxNum = FMath::Min(ChapterInfoTable->GetAllChapterNum(), StageInfoTable->GetChapterNumByClientStageId(StageInfoTable->GetFinalClientStageId()));
 		FText StageDiffText = FText::FromString(FString::Printf(TEXT("Chapter_DiffColor_%d"), (int32)SelectedStageDifficulty));
 
-		DocChapter->SetChapterOpenedNum(ChapterMaxNum); // ÀÚ, ÇöÀç·Î¼± ±×³É ÃÖ´ë Ã©ÅÍ±îÁö ½ºÅ©·ÑÀº ÇÒ ¼ö ÀÖµµ·Ï ÇÔ. ¹°·Ğ °¢ ½ºÅ×ÀÌÁö´Â Àá°Ü ÀÖÀ» °Í.	// ±âÁ¸ : DocChapter->SetChapterOpenedNum(ChapterOpenedNum);
+		DocChapter->SetChapterOpenedNum(ChapterMaxNum); // ç£Š, æ³…çŠè‚ºæ€¥ å¼Šæˆ å¼¥æª èŒ…ç£é³–ç˜¤ èƒ¶å†œè´¹ç¯® ä¸” è ä¹æ¡£åºŸ çªƒ. æ‹±æ²¸ é˜¿ èƒ¶æŠ›æç˜¤ç»° æ³ªè´¥ ä¹é˜‘ å·´.	// æ‰ç²® : DocChapter->SetChapterOpenedNum(ChapterOpenedNum);
 		DocChapter->SetChapterMaxNum(ChapterMaxNum);
 		DocChapter->SetMaxOpenedStageDifficulty(ChapterMaxNum >= SelectedChapterViewNum ? StageDataStore.GetMaxOpenedStageDifficulty() : StageDataStore.GetMaxOpenedNewStageDifficulty(SelectedChapterViewNum));
 		DocChapter->SetCurChapterNum(SelectedChapterViewNum);
@@ -2459,7 +2460,7 @@ void AB2LobbyGameMode::UpdateChapterData()
 		DocChapter->SetCurChapterName(FText::Format(BladeIIGetLOCText(B2LOC_CAT_WORLDNAME, StageDiffText.ToString()),
 			ChapterInfoTable->GetLocalizedChapterName(SelectedChapterViewNum)));
 
-		// UI»óÀ¸·Î ¾Ë·ÁÁÖ±â À§ÇØ Nextµµ Ç¥½Ã
+		// UIæƒ‘æ è‚º èˆ…å¦¨æ—æ‰ å›°ç§¦ Nextæ¡£ é’çŸ«
 		DocChapter->SetNextChapterNum(StageDataStore.GetActIdByClientStageId(StageDataStore.GetNextClearClientId(SelectedStageDifficulty)));
 		DocChapter->SetNextSubChapterNum(StageInfoTable->GetSubChapterNumByClientStageId(StageDataStore.GetNextClearClientId(SelectedStageDifficulty)));
 	}
@@ -2472,7 +2473,7 @@ void AB2LobbyGameMode::SetCombatEntryChapterNum(int32 InChapterNum, EStageDiffic
 
 	UpdateChapterData();
 
-	// Ã©ÅÍ º¯°æ ½Ã °°Àº ½ºÆ®¸®¹Ö ·¹º§¿¡ ¹­´Â ´ÜÀ§¿¡ µû¶ó ·¹º§ ½ºÆ®¸®¹ÖÀ» »õ·Î ÇØ ÁÖ¾î¾ß ÇÒ ¼ö ÀÖ´Ù. 
+	// èŒ…ç£ å‡½ç‰ˆ çŸ« éç¯® èƒ¶é£˜åºœæ€ª é¥­éª‡ä¿Š å¼“ç»° çªœå›°ä¿Š è¶æ‰¼ é¥­éª‡ èƒ¶é£˜åºœæ€ªé˜‘ è´§è‚º ç§¦ æ—ç»¢å…· ä¸” è ä¹ä¿ƒ. 
 	ChangeLobbyScene(ELobbyScene::ELobbyScene_Chapter, SelectedChapterViewNum);
 	LobbySceneManager.ForceUpdate();
 }
@@ -2484,8 +2485,8 @@ void AB2LobbyGameMode::GoGameStageInfo(FServerStageID InServerStageId, FRepeatBa
 	auto& ClientDataStore = BladeIIGameImpl::GetClientDataStore();
 	auto& StageDataStore = BladeIIGameImpl::GetStageDataStore();
 
-	// ¹İº¹ÀüÅõ ½ºÅ×ÀÌÁö ¿Ï·áÇÏ°í ¿©ÀüÈ÷ ³²¾ÒÀ» ¶§ ¿©±â·Î µ¹¾Æ¿Â´Ù. (AB2StageGameMode::OnEndPlayOfSingleRepeatBattleStage)
-	// ¹İº¹ÀüÅõ¸¦ ¿©ÀüÈ÷ ÁøÇàÇØ¾ß ÇÑ´Ù¸é ³²Àº ¹İº¹ Ä«¿îÆ®°¡ ÇÏ³ª´Â ÀÖ¾î¾ß ÇÔ.
+	// é¦†æ±—å‚ˆæ§ èƒ¶æŠ›æç˜¤ è‚¯ä¸°çªç»Š å’¯å‚ˆæ´’ å·¢ç–½é˜‘ é”­ å’¯æ‰è‚º å€’é…’æŸ¯ä¿ƒ. (AB2StageGameMode::OnEndPlayOfSingleRepeatBattleStage)
+	// é¦†æ±—å‚ˆæ§ç”« å’¯å‚ˆæ´’ æŸ³é’ç§¦å…· èŒ„ä¿ƒæ å·¢ç¯® é¦†æ±— å¢¨æ¬¾é£˜å•Š çªå”±ç»° ä¹ç»¢å…· çªƒ.
 	BII_CHECK(!RepeatBattleSet.bIsOn || RepeatBattleSet.CurrentRepeatCount > 0);
 	
 	const bool bIsRepeatBattlePossible = StageDataStore.IsPossibleToDoRepeatBattle(InServerStageId);
@@ -2499,12 +2500,12 @@ void AB2LobbyGameMode::GoGameStageInfo(FServerStageID InServerStageId, FRepeatBa
 	}
 	if(!RepeatBattleRequestState.bIsOn)
 		RepeatBattleRequestState.CurrentRepeatCount = 0;
-	if (RepeatBattleRequestState.bIsOn && RepeatBattleRequestState.CurrentRepeatCount < 0){ // È¤½Ã ¸ô¶ó¼­
+	if (RepeatBattleRequestState.bIsOn && RepeatBattleRequestState.CurrentRepeatCount < 0){ // è¶£çŸ« éš”æ‰¼è¾‘
 		RepeatBattleRequestState.CurrentRepeatCount = 0;
 	}
 	SyncRepeatBattleRequestStateToUIDoc();
 
-	//>>==============¼±ÅÃµÈ ½ºÅ×ÀÌÁö·Î º¸³½´Ù. ÀÏ´Ü Å×½ºÆ®´Ï ¿©±â µÎ¾ú´Âµ¥ ½ÇÁ¦·Î´Â ¼­¹ö·Î RequestÇÏ°í ÀÀ´ä¿ÔÀ»¶§ Ã³¸® ÇØ¾ß µÉµí
+	//>>==============æ€¥ç¶ç­‰ èƒ¶æŠ›æç˜¤è‚º ç„Šè¾°ä¿ƒ. è€çªœ æŠ›èƒ¶é£˜èª å’¯æ‰ æ»´èŒç»°å• è§’åŠ›è‚ºç»° è¾‘æ»šè‚º Requestçªç»Š è§ˆç¿ å­é˜‘é”­ è´¸åºœ ç§¦å…· çªæ·€
 	UB2UIDocBattleStage* DocBS = UB2UIDocHelper::GetDocBattleStage();
 	if (DocBS)
 	{
@@ -2512,10 +2513,10 @@ void AB2LobbyGameMode::GoGameStageInfo(FServerStageID InServerStageId, FRepeatBa
 		DocBS->SetStageDifficulty(StageDataStore.GetStageDifficulty(InServerStageId));
 		DocBS->SetServerStageId(InServerStageId);
 		
-		//todo StageAreaNameÀ» Å×ÀÌºí·Î °ü¸®ÇÏµµ·Ï ¼öÁ¤ÇÏ¿© ¿©±â¼­ ¼¼ÆÃÇÏµµ·Ï - ±× Àü±îÁö´Â ºóÄ­À¸·Î
+		//todo StageAreaNameé˜‘ æŠ›æå–‰è‚º åŒ…åºœçªæ¡£åºŸ èæ²¥çªå’¯ å’¯æ‰è¾‘ æŠ€æ³¼çªæ¡£åºŸ - å¼Š å‚ˆé³–ç˜¤ç»° åæ²«æ è‚º
 		DocBS->SetLocalizedAreaName(FText::FromString(FString(TEXT(""))));
 
-		//todo ÀÎº¥Åä¸®¸¦ µÚÁ®¼­ ³ª¿À¸é ³Öµµ·Ï.
+		//todo ç‰¢äº¥é…åºœç”« ç¬¬å»‰è¾‘ å”±å·æ æŒæ¡£åºŸ.
 		// 			DocBS->SetBuffItemPlayFast(FIntPoint(1000100, 10));
 		// 			DocBS->SetBuffItemExpIncrease(FIntPoint(1000101, 0));
 		// 			DocBS->SetBuffItemGoldIncrease(FIntPoint(1000102, 5));
@@ -2556,12 +2557,12 @@ void AB2LobbyGameMode::GoGameStageInfo(FServerStageID InServerStageId, FRepeatBa
 		DocBS->SetBattleDifficulty(StageDataStore.GetRelativeStageDifficulty(InServerStageId, ClientDataStore.GetLocalCharacterData().GetMainPlayerClass(), ClientDataStore.GetLocalCharacterData().GetSubPlayerClass()));
 	}
 
-	GameStageCheckForArinConsulting(InServerStageId); // BattleStageInfo ÆäÀÌÁö ¿­±â Àü¿¡ ¾Æ¸° Á¶¾ğ Ã¼Å©µµ ¿Ï·á.
+	GameStageCheckForArinConsulting(InServerStageId); // BattleStageInfo å…¶æç˜¤ å‡¯æ‰ å‚ˆä¿Š é…’èµ´ ç‚¼æ”« çœ‰å†œæ¡£ è‚¯ä¸°.
 
 	LobbyChangeSceneByUISceneClass<EUIScene>::GetInstance().Signal(EUIScene::BattleStageInfo);
-	//<<==============¼±ÅÃµÈ ½ºÅ×ÀÌÁö·Î º¸³½´Ù.
+	//<<==============æ€¥ç¶ç­‰ èƒ¶æŠ›æç˜¤è‚º ç„Šè¾°ä¿ƒ.
 
-	if (RepeatBattleRequestState.bIsOn) // RepeatBattle µµÁß ½ºÅ×ÀÌÁö ¿Ï·á ½Ã¿¡µµ ÀÌ ·çÆ®¸¦ ÅëÇØ º¸³¿.
+	if (RepeatBattleRequestState.bIsOn) // RepeatBattle æ¡£å èƒ¶æŠ›æç˜¤ è‚¯ä¸° çŸ«ä¿Šæ¡£ æ é£é£˜ç”« çƒ¹ç§¦ ç„Šæ™¨.
 	{
 		SetupForNextRepeatBattleStage(InServerStageId);
 	}
@@ -2581,7 +2582,7 @@ void AB2LobbyGameMode::GoGameStageInfoLastReached()
 	ChapterNumber = 1;
 	StageDifficulty = EStageDifficulty::ESD_Normal;
 	}*/
-	//ÃÖ±Ù ÇÃ·¹ÀÌÇÑ ½ºÅ×ÀÌÁö Á¤º¸
+	//å¼¥è¾Ÿ æ•²é¥­æèŒ„ èƒ¶æŠ›æç˜¤ æ²¥ç„Š
 	FStageDataStore& StageStore = BladeIIGameImpl::GetStageDataStore();
 	FServerStageID ServerStageID;
 	EStageDifficulty CurDiff = EStageDifficulty::ESD_Normal;
@@ -2602,13 +2603,13 @@ void AB2LobbyGameMode::GoGameStageInfoLastReached()
 
 	if (CurChapter <= MaxChapterNum)
 	{
-		if (StageStore.IsClearedFinalClientStageId(EStageDifficulty::ESD_Normal)) // ³ë¸» ¸ğµå¸¦ ³¡±îÁö ÁøÇàÇÔ
+		if (StageStore.IsClearedFinalClientStageId(EStageDifficulty::ESD_Normal)) // ç•´å¯Œ è‘›é›ç”« åœºé³–ç˜¤ æŸ³é’çªƒ
 		{
-			if (StageStore.IsClearedFinalClientStageId(EStageDifficulty::ESD_Hard)) // ÇÏµå ¸ğµå¸¦ ³¡±îÁö ÁøÇàÇÔ
+			if (StageStore.IsClearedFinalClientStageId(EStageDifficulty::ESD_Hard)) // çªé› è‘›é›ç”« åœºé³–ç˜¤ æŸ³é’çªƒ
 			{
-				if (StageStore.IsClearedFinalClientStageId(EStageDifficulty::ESD_VeryHard)) // ¸Å¿ì ¾î·Á¿òÀ» ³¡±îÁö ÁøÇàÇÔ
+				if (StageStore.IsClearedFinalClientStageId(EStageDifficulty::ESD_VeryHard)) // æ¦‚å¿« ç»¢å¦¨æ¡†é˜‘ åœºé³–ç˜¤ æŸ³é’çªƒ
 				{
-					if (StageStore.IsClearedFinalClientStageId(EStageDifficulty::ESD_Hell)) // ÇïÀ» ³¡±îÁö ÁøÇàÇÔ
+					if (StageStore.IsClearedFinalClientStageId(EStageDifficulty::ESD_Hell)) // ç§‹é˜‘ åœºé³–ç˜¤ æŸ³é’çªƒ
 					{
 						ServerStageID = StageStore.GetLastClearServerStageId(EStageDifficulty::ESD_Hell);
 					}
@@ -2645,7 +2646,7 @@ void AB2LobbyGameMode::GoGameStageInfoLastReached()
 	CurDiff = StageStore.GetStageDifficulty(ServerStageID);
 	CurChapter = StageStore.GetActIdByServerStageId(ServerStageID);
 
-	// µÚ·Î°¡±â·Î µ¹¾Æ¿ÔÀ»¶§ ÇØ´ç Ã©ÅÍ·Î º¸¿©ÁÖ±â À§ÇØ ¹Ì¸® DOC¼¼ÆÃ
+	// ç¬¬è‚ºå•Šæ‰è‚º å€’é…’å­é˜‘é”­ ç§¦å¯¸ èŒ…ç£è‚º ç„Šå’¯æ—æ‰ å›°ç§¦ å›ºåºœ DOCæŠ€æ³¼
 	
 	
 	DocChapter->SetCurChapterNum(CurChapter);
@@ -2685,7 +2686,7 @@ void AB2LobbyGameMode::GameStageCheckForArinConsulting(FServerStageID InServerSt
 	StageDataStore.GetStageSuggestedCombatStats(InServerStageId, StageSuggestedAttack, StageSuggestedDefense);
 
 	EArinConsultPreCombat_MainSubject FinalArinConsultSubject = EArinConsultPreCombat_MainSubject::ARCPCMS_None;
-	// ¾îÂ¼¸é ¸ŞÀÎ/¼­ºê Áß Æ¯È÷ ´©°¡ ¶³¾îÁö´ÂÁö µû·Î ÀúÀåÇØ¾ß ÇÒ ¼öµµ. ¾Æ¸°ÀÇ Á¶¾ğ¿¡¼­ ÀÎº¥Åä¸®·Î ³Ñ¾î°¥ ¶§ Å¬·¡½º ¼±ÅÃ¿¡ ¹İ¿µÇØ¾ß ÇÒ ¼öµµ ÀÖÀ¸´Ï..
+	// ç»¢å½•æ çš‹ç‰¢/è¾‘å® å æ¼‚æ´’ ç©¿å•Š å†»ç»¢ç˜¤ç»°ç˜¤ è¶è‚º å†å˜ç§¦å…· ä¸” èæ¡£. é…’èµ´ç‹¼ ç‚¼æ”«ä¿Šè¾‘ ç‰¢äº¥é…åºœè‚º é€ç»¢å“ é”­ åŠªè´°èƒ¶ æ€¥ç¶ä¿Š é¦†åº·ç§¦å…· ä¸” èæ¡£ ä¹æ èª..
 	if (UnitedAttackPower < StageSuggestedAttack)
 	{
 		FinalArinConsultSubject = EArinConsultPreCombat_MainSubject::ARCPCMS_Attack;
@@ -2694,11 +2695,11 @@ void AB2LobbyGameMode::GameStageCheckForArinConsulting(FServerStageID InServerSt
 	{
 		FinalArinConsultSubject = EArinConsultPreCombat_MainSubject::ARCPCMS_Defense;
 	}
-	else if (UnitedSkillPoint > 5) // ¼öÄ¡¸¦ ¸îÀ¸·Î(?)
+	else if (UnitedSkillPoint > 5) // èæ‘¹ç”« å‰²æ è‚º(?)
 	{
 		FinalArinConsultSubject = EArinConsultPreCombat_MainSubject::ARCPCMS_Skill;
 	}
-	//else if (MainCharSkillPoint > 3 || SubCharSkillPoint > 3) // µÑÀÌ ÇÕÃÄ 3°µÁö µÑ Áß ÇÏ³ª¸¸ 3°µÁö È®ÀÎ..
+	//else if (MainCharSkillPoint > 3 || SubCharSkillPoint > 3) // ç¬›æ é’¦åªš 3æš—ç˜¤ ç¬› å çªå”±çˆ¶ 3æš—ç˜¤ çŠ¬ç‰¢..
 	//{
 	//	FinalArinConsultSubject = EArinConsultPreCombat_MainSubject::ARCPCMS_Skill;
 	//}
@@ -2716,7 +2717,7 @@ void AB2LobbyGameMode::GoRaidGameMode(const FString& InvitedRoomId, EPCClass Cha
 
 	BII_CHECK(!InvitedRoomId.IsEmpty());
 
-	// ¹æÀ» ¸¸µé¾úÀ»¶§³ª, ºü¸¥¸ÅÄª¶§´Â µ¥ÀÌÅÍ¸¦ ³¯·ÁÁÖÁö¸¸ ÃÊ´ë¹Ş¾ÒÀ»°æ¿ì¿£ ³¯·ÁÁÖ´Â ºÎºĞÀÌ ¾ø¾î Ãß°¡.
+	// è§„é˜‘ çˆ¶ç”¸èŒé˜‘é”­å”±, ç‹å¼—æ¦‚è«é”­ç»° å•æç£ç”« æœå¦¨æ—ç˜¤çˆ¶ æª¬æªç½ç–½é˜‘ç‰ˆå¿«æµš æœå¦¨æ—ç»° ä½•ç›’æ ç»ç»¢ çœ å•Š.
 	AllPeerInfos.Empty();
 	if (auto* UIDocLobbyMatch = UB2UIDocHelper::GetDocLobbyMatch())
 		UIDocLobbyMatch->ClearRemotePlayerInfoData();
@@ -2726,7 +2727,7 @@ void AB2LobbyGameMode::GoRaidGameMode(const FString& InvitedRoomId, EPCClass Cha
 		UIDocRaid->ClearRaidJoinData();
 		UIDocRaid->ClearRaidBattleData();
 		
-		// ¼±ÅÃµÈ Á¤º¸ ÀÔ·Â
+		// æ€¥ç¶ç­‰ æ²¥ç„Š æ¶ä»¿
 		UIDocRaid->SetLastRaidType(RaidType);
 		UIDocRaid->SetLastRaidStep(Step);
 		UIDocRaid->SetIsReceiveInvite(true);
@@ -2736,8 +2737,8 @@ void AB2LobbyGameMode::GoRaidGameMode(const FString& InvitedRoomId, EPCClass Cha
 	if (auto* DocBattle = UB2UIDocHelper::GetDocBattle())
 		DocBattle->SetCurPCClass(PCClassToInt(ChangeMainPCClass));
 
-	// µ¥ÀÌÅÍ¸¦ ¸ÕÀú ¼¼ÆÃÇÏ°í Request¸¦ º¸³½ÈÄ¿¡ Response ¹ŞÀº ÀÌÈÄ UIº¯°æ.
-	// (ÁÖÀÇ : ÃÊ´ë ¹Ş¾ÒÀ» °æ¿ì RequestRoomMatchMakingÀ» ÇÏÁö ¾Ê°í RequestJoinRoomÀ¸·Î ¹Ù·Î ·ë¿¡ ÀÔÀå!)
+	// å•æç£ç”« åˆšå† æŠ€æ³¼çªç»Š Requestç”« ç„Šè¾°é¥¶ä¿Š Response ç½ç¯® æé¥¶ UIå‡½ç‰ˆ.
+	// (æ—ç‹¼ : æª¬æª ç½ç–½é˜‘ ç‰ˆå¿« RequestRoomMatchMakingé˜‘ çªç˜¤ è‡¼ç»Š RequestJoinRoomæ è‚º å®˜è‚º å†¯ä¿Š æ¶å˜!)
 	TArray<b2network::B2RoomPropertyPtr> properties;
 	TArray<b2network::B2RoomCharacterPtr> characters;
 	TArray<b2network::B2PresetNumPtr> presetNums;
@@ -2769,14 +2770,14 @@ void AB2LobbyGameMode::EnterItemOpDirectingView(ELobbyInvenItemOpMode InOpMode)
 {
 	B2_SCOPED_TRACK_LOG(TEXT("AB2LobbyGameMode::EnterItemOpDirectingView"));
 
-	LobbySceneManager.EnterItemOpDirectingView(InOpMode); // LobbySceneManager ¸¦ ÅëÇØ ÁØºñÇØ ³õÀº ¿¬Ãâ¿ë Ä«¸Ş¶ó ºä·Î.
+	LobbySceneManager.EnterItemOpDirectingView(InOpMode); // LobbySceneManager ç”« çƒ¹ç§¦ éœ–åšç§¦ åˆç¯® æ¥·å…ä¾© å¢¨çš‹æ‰¼ è½°è‚º.
 }
 
 void AB2LobbyGameMode::QuitItemOpDirectingView()
 {
 	B2_SCOPED_TRACK_LOG(TEXT("AB2LobbyGameMode::QuitItemOpDirectingView"));
 
-	LobbySceneManager.QuitItemOpDirectingView(); // ±âÁ¸ ÀÎº¥Åä¸® Ä«¸Ş¶ó ºä·Î º¹±Í
+	LobbySceneManager.QuitItemOpDirectingView(); // æ‰ç²® ç‰¢äº¥é…åºœ å¢¨çš‹æ‰¼ è½°è‚º æ±—è“–
 }
 
 bool AB2LobbyGameMode::IsInItemOpDirectingView()
@@ -2821,7 +2822,7 @@ void AB2LobbyGameMode::EnterShop(int32 nWhereShop)
 	
 	UB2UIManager* UIMgr = UB2UIManager::GetInstance();
 	if (UIMgr)
-	{ // ÀÚÀßÇÑ ÆË¾÷ÀÌ ¶á »óÅÂ¿¡¼­ »óÁ¡ ÁøÀÔÇÏ´Â °æ¿ì°¡ »ı±æ ¼ö ÀÖ¾î¼­ ±×°Å Ã³¸®.
+	{ // ç£Šè‚‹èŒ„ æ‰‘è¯€æ å¤º æƒ‘æ€•ä¿Šè¾‘ æƒ‘ç—¢ æŸ³æ¶çªç»° ç‰ˆå¿«å•Š ç§¯è¾¨ è ä¹ç»¢è¾‘ å¼ŠèŠ­ è´¸åºœ.
 		UIMgr->CloseAllStandaloneUIs();
 	}
 
@@ -2864,11 +2865,11 @@ void AB2LobbyGameMode::EnterShop(int32 nWhereShop)
 }
 
 //////////////////////////////////////////////////
-// ´ëÃ¼·Î Lobby UI ¿¡¼­ ºÒ¸®°Ô µÇ´Â ¼­¹ö¿ÍÀÇ ¿¬°è ±â´Éµé.
+// æªçœ‰è‚º Lobby UI ä¿Šè¾‘ é˜‚åºœéœ¸ ç™»ç»° è¾‘æ»šå®¢ç‹¼ æ¥·æ‹Œ æ‰ç“·ç”¸.
 
 void AB2LobbyGameMode::LoginAndStartGame(const FString& InUserID, const FString& InUserPW)
 {
-	//DJLegacy_ChangeLobbyUIPage(ELobbyUIPages::ELUP_CharSel); // ¹Ù·Î ´ÙÀ½ ÆäÀÌÁö·Î ÀÌµ¿.
+	//DJLegacy_ChangeLobbyUIPage(ELobbyUIPages::ELUP_CharSel); // å®˜è‚º ä¿ƒæ¾œ å…¶æç˜¤è‚º ææ‚¼.
 }
 
 void AB2LobbyGameMode::CreateAccount(const FString& InUserID, const FString& InUserPW)
@@ -2877,7 +2878,7 @@ void AB2LobbyGameMode::CreateAccount(const FString& InUserID, const FString& InU
 
 	//if (InUserID.IsEmpty())
 	//{
-	//	// TODO : °èÁ¤¸íÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä~ ÆË¾÷ ¸Ş¼¼Áö
+	//	// TODO : æ‹Œæ²¥ç–™é˜‘ æ¶ä»¿ç§¦æ—æŠ€å¤¸~ æ‰‘è¯€ çš‹æŠ€ç˜¤
 	//	UE_LOG(LogBladeII, Log, TEXT("Please enter your nickname!!"));
 	//}
 	//else
@@ -2886,13 +2887,13 @@ void AB2LobbyGameMode::CreateAccount(const FString& InUserID, const FString& InU
 	//	(
 	//		[this, InUserID, InUserPW](FB2MessageInfoPtr messageInfo)
 	//		{
-	//			// °èÁ¤ »ı¼ºÀÌ ¼º°øÇßÀ¸¹Ç·Î ´Ù½Ã Á¢¼Ó ½Ãµµ¸¦ ÇÏÀÚ
+	//			// æ‹Œæ²¥ ç§¯å·±æ å·±å‚æ²æ éª¨è‚º ä¿ƒçŸ« ç«‹åŠ  çŸ«æ¡£ç”« çªç£Š
 	//			LoginAndStartGame(InUserID, InUserPW);
 	//		},
 	//		[this](FB2MessageInfoPtr messageInfo)
 	//		{
 	//			b2network::EB2ResultCode errorCode = messageInfo->GetErrorCode();
-	//			// TODO ¿¡·¯ ÄÚµå Ã³¸®
+	//			// TODO ä¿ŠçŸ¾ å†…é› è´¸åºœ
 	//		}
 	//	);
 	//	B2MessageInfo->name = TCHAR_TO_ANSI(*InUserID);
@@ -2901,7 +2902,7 @@ void AB2LobbyGameMode::CreateAccount(const FString& InUserID, const FString& InU
 }
 
 void AB2LobbyGameMode::ProceedOnCharacterSelection()
-{ // Ä³¸¯ÅÍ ÀÎÆ®·Î Ã¢¿¡¼­ÀÇ ¼±ÅÃ ÀÌÈÄ. ¹» ½ÇÁ¦·Î ¼±ÅÃÇÑ °Ç ¾Æ´Ñµ¥ °Á Ã³À½¿¡ Ä³¸¯ÅÍ ÀÎÆ®·Î°¡ ¹º°¡ ¼±ÅÃÇÏ´Â »âÀÌ¶ó ÀÌ¸§ÀÌ ÀÌ·¸°Ô µÇ¾úÀ½.
+{ // æŸè…ç£ ç‰¢é£˜è‚º èŠ’ä¿Šè¾‘ç‹¼ æ€¥ç¶ æé¥¶. å¤Ÿ è§’åŠ›è‚º æ€¥ç¶èŒ„ æ‰’ é…’å›±å• å‚² è´¸æ¾œä¿Š æŸè…ç£ ç‰¢é£˜è‚ºå•Š è´­å•Š æ€¥ç¶çªç»° çƒ©ææ‰¼ ææŠšæ æçŠ¯éœ¸ ç™»èŒæ¾œ.
 	LobbyChangeSceneByUISceneClass<EUIScene>::GetInstance().Signal(EUIScene::LobbyMain);
 }
 
@@ -2980,14 +2981,14 @@ void AB2LobbyGameMode::RequestDeclineInvitation(EB2GameMode GameModeType)
 	}
 }
 
-// CallOwner = ÃÊ´ë(¼ö½Å)ÀÚ
+// CallOwner = æª¬æª(èè„š)ç£Š
 void AB2LobbyGameMode::PrevAcceptGameInvite(const FString& Inviter, EB2GameMode GameModeType)
 {
-	// InviteGame UI¿¡¼­ ¼ö¶ôÀº ÇßÁö¸¸ Ä³¸¯ÅÍ ¼±ÅÃ ÀÌÈÄ ½ÇÁ¦ ¼ö¶ô Request¸¦ º¸³¿
+	// InviteGame UIä¿Šè¾‘ èéç¯® æ²ç˜¤çˆ¶ æŸè…ç£ æ€¥ç¶ æé¥¶ è§’åŠ› èé Requestç”« ç„Šæ™¨
 	auto* DocPVP = UB2UIDocHelper::GetDocPVP1on1Rival();
 	if (GameModeType == EB2GameMode::PVP_Tag && DocPVP)
 	{
-		// CharacterSelectPage ÀÌµ¿ Àü SettingµÇ¾î ÀÖ¾î¾ß ÇÔ
+		// CharacterSelectPage ææ‚¼ å‚ˆ Settingç™»ç»¢ ä¹ç»¢å…· çªƒ
 		DocPVP->SetIsFriendshipGame(true);
 		DocPVP->SetIsInvitee(true);
 		DocPVP->SetIsInviterReady(true);
@@ -3016,11 +3017,11 @@ void AB2LobbyGameMode::PrevAcceptGameInvite(const FString& Inviter, EB2GameMode 
 				true,
 				EUIMsgPopupButtonGroup::AcceptOrReject);
 
-			// RequestRaidStart ÀÌ¸§Àº ·¹ÀÌµå ½ÃÀÛÀÌÁö¸¸, ¼­¹öÆÀ¿¡¼­ ÇÁ·ÎÅäÄİ Àç»ç¿ëÀ¸·Î
-			// ·¹ÀÌµå ÃÊ´ë½Ã¿¡ ¾î¶² Ä³¸¯ÅÍ¸¦ ¼±ÅÃÇß´ÂÁö ¾Ë¸®°í, ¸®½ºÆù½º¸¦ ¹ŞÀº ÈÄ¿¡ ·ëÁ¶ÀÎ.
+			// RequestRaidStart ææŠšç¯® é¥­æé› çŸ«ç´¯æç˜¤çˆ¶, è¾‘æ»šè¯„ä¿Šè¾‘ æ©‡è‚ºé…å¦® çŠè¤ä¾©æ è‚º
+			// é¥­æé› æª¬æªçŸ«ä¿Š ç»¢æ« æŸè…ç£ç”« æ€¥ç¶æ²ç»°ç˜¤ èˆ…åºœç»Š, åºœèƒ¶è¿„èƒ¶ç”« ç½ç¯® é¥¶ä¿Š å†¯ç‚¼ç‰¢.
 			if (RaidInvitePopupUI != nullptr)
 			{
-				RaidInvitePopupUI->SetAutoCloseOnClick(false); // ¸®½ºÆù½º¸¦ Ã³¸®ÇÑ ÈÄ¿¡ ´İ¾Æ¾ßÇÔ
+				RaidInvitePopupUI->SetAutoCloseOnClick(false); // åºœèƒ¶è¿„èƒ¶ç”« è´¸åºœèŒ„ é¥¶ä¿Š æ‘§é…’å…·çªƒ
 				RaidInvitePopupUI->AddHandler(EUIMsgPopupButton::Positive, FMsgPopupOnClick::CreateLambda([this, RaidInvitePopupUI]() {
 					data_trader::Retailer::GetInstance().RequestRaidStart(CliToSvrPCClassType(RaidInvitePopupUI->GetSelectPCClass()));
 				}));
@@ -3034,7 +3035,7 @@ bool AB2LobbyGameMode::CanReceiveGameInvite(const FString& Inviter, EB2GameMode 
 	if(Super::CanReceiveGameInvite(Inviter, GameModeType))
 	{
 		auto* DocRaid = UB2UIDocHelper::GetDocRaid();
-		// ÀÌ¹Ì ¹æ¿¡ µé¾î°¡ ÀÖ´Ù´Â ÀÇ¹Ì
+		// æå›º è§„ä¿Š ç”¸ç»¢å•Š ä¹ä¿ƒç»° ç‹¼å›º
 		if (DocRaid && DocRaid->HasValidPartyRetryInfo())
 			return false;
 
@@ -3056,7 +3057,7 @@ void AB2LobbyGameMode::OnReceiveInvitation(const FString& Inviter, EB2GameMode G
 		if (UB2UICommonInvite* InviteUI = UIManager->OpenUI<UB2UICommonInvite>(UIFName::InviteGame))
 			InviteUI->OnReceiveInvitation(Inviter, GameModeType);
 
-		// LobbyMainÀÌ Hide »óÅÂ¶ó¸é
+		// LobbyMainæ Hide æƒ‘æ€•æ‰¼æ
 		if (UIManager->GetCurrUIScene() == EUIScene::LobbyMain)
 		{
 			auto* DocUICondition = UB2UIDocHelper::GetDocUICondition();
@@ -3224,7 +3225,7 @@ void AB2LobbyGameMode::UpdateFairyGiftState()
 }
 
 #if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
-// ¸Ê ·Îµù ½Ã°£ ÃøÁ¤ÇÏ´ø °Å ·Îºñ ¾À ÀüÈ¯ ½Ã°£ ÃøÁ¤¿¡µµ »ç¿ë
+// ç”˜ è‚ºçˆ¹ çŸ«åŸƒ èŸæ²¥çªå¸¦ èŠ­ è‚ºåš çº  å‚ˆåˆ¸ çŸ«åŸƒ èŸæ²¥ä¿Šæ¡£ è¤ä¾©
 extern void DevCheckLoadingTimeBegin();
 extern void DevCheckLoadingTimeEnd();
 #endif
@@ -3249,7 +3250,7 @@ void AB2LobbyGameMode::ChangeLobbyScene(ELobbyScene LobbyScene, int32 OptionalCh
 	SetTimeToIgnoreTouchEnd(-1.f);
 	LobbySceneManager.ChangeLobbyScene(LobbyScene, (OptionalChapterNum > 0) ? OptionalChapterNum : SelectedChapterViewNum);	
 
-	LobbyEndOnTouchImpulseRingClass<>::GetInstance().Signal(); // È®ÀÎ »ç»ì Â÷¿ø¿¡¼­
+	LobbyEndOnTouchImpulseRingClass<>::GetInstance().Signal(); // çŠ¬ç‰¢ è¤æ·· ç’ç›”ä¿Šè¾‘
 
 #if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
 	DevCheckLoadingTimeEnd();
@@ -3257,8 +3258,8 @@ void AB2LobbyGameMode::ChangeLobbyScene(ELobbyScene LobbyScene, int32 OptionalCh
 }
 
 /** 
- * ¼º´É¿¡ Áã¾àÀÌ µÉ ¼ö ÀÖ¾î¼­ °­Á¦ ¾÷µ¥ÀÌÆ® ÀÎÀÚ´Â Á¦°øÇÏÁö ¾Ê´Â´Ù.
- * ±âº»ÀûÀ¸·Î °¢ Ä³¸¯ÅÍ Å¬·¡½º º°·Î merge ÇÑ ¸Ş½¬´Â ÀåÂø »óÅÂ, ³¯°³ ¿©ºÎ¿¡ µû¶ó refresh ¸¦ ÇØ¾ßÇÏ´ÂÁö ÆÇº°À» ÇÔ.
+ * å·±ç“·ä¿Š é›¶è·æ çª è ä¹ç»¢è¾‘ ç¢åŠ› è¯€å•æé£˜ ç‰¢ç£Šç»° åŠ›å‚çªç˜¤ è‡¼ç»°ä¿ƒ.
+ * æ‰å¤¯åˆ©æ è‚º é˜¿ æŸè…ç£ åŠªè´°èƒ¶ å–Šè‚º merge èŒ„ çš‹æµ†ç»° å˜é¦’ æƒ‘æ€•, æœä¿º å’¯ä½•ä¿Š è¶æ‰¼ refresh ç”« ç§¦å…·çªç»°ç˜¤ é­„å–Šé˜‘ çªƒ.
  */
 void AB2LobbyGameMode::UpdateCharacterParts(EPCClass InPClass)
 {
@@ -3277,7 +3278,7 @@ void AB2LobbyGameMode::DevForceUpdateCharacterParts(EPCClass InPCClass)
 void AB2LobbyGameMode::AnyOtherUpdateOnSetAccount()
 {
 	LobbySceneManager.ConditionalUpdateLobbyOnHeadDisplayWidget();
-	// ±âÅ¸ ¼­¹ö¿¡¼­ SetAccount ¿ÔÀ» ¶§ ¾÷µ¥ÀÌÆ® ÇÊ¿äÇÑ Àâ´ÙÇÑ °Å ÀÖÀ¸¸é Ãß°¡
+	// æ‰é¸¥ è¾‘æ»šä¿Šè¾‘ SetAccount å­é˜‘ é”­ è¯€å•æé£˜ é˜å¤¸èŒ„ æ£±ä¿ƒèŒ„ èŠ­ ä¹æ æ çœ å•Š
 }
 
 bool AB2LobbyGameMode::SelectLobbyMainCharacter(EPCClass SelectedClass)
@@ -3297,7 +3298,7 @@ bool AB2LobbyGameMode::SelectLobbyMainCharacter(EPCClass SelectedClass)
 //}
 
 void AB2LobbyGameMode::UpdateNativeLobbyMatineeRef()
-{ // ÀÏ¹İÀûÀ¸·Î´Â ½ºÆ®¸®¹Ö ·¹º§ ·Îµå ½Ã BeginPlay ¸¦ ÇÒ ¶§¿¡ Matinee °¡ ¼¼ÆÃµÊ. Æ¯¼öÇÑ °æ¿ì¿¡ Á÷Á¢ ¾÷µ¥ÀÌÆ®ÇÒ ¶§ »ç¿ë.
+{ // è€é¦†åˆ©æ è‚ºç»° èƒ¶é£˜åºœæ€ª é¥­éª‡ è‚ºé› çŸ« BeginPlay ç”« ä¸” é”­ä¿Š Matinee å•Š æŠ€æ³¼å‡³. æ¼‚èèŒ„ ç‰ˆå¿«ä¿Š æµç«‹ è¯€å•æé£˜ä¸” é”­ è¤ä¾©.
 	B2_SCOPED_TRACK_LOG(TEXT("AB2LobbyGameMode::UpdateNativeLobbyMatineeRef"));
 	if (GEngine){
 		GEngine->HandleCeCommand(GetWorld(), UPDATE_NATIVE_LOBBY_MATINEE_REF_EVENT, *GLog);
@@ -3485,9 +3486,9 @@ void AB2LobbyGameMode::ViewportTouchEventStart(bool bInputTypeTouch, const FVect
 	PressedInputPosition = InPressedPosition;
 	SetTimeToIgnoreTouchEnd(GetTimeToDecideInputClickOrTab());
 	
-#if 0 //-> ÇØ°áÇÏÁö ¸øÇÑ ¹®Á¦°¡ ¸¹¾Æ¼­ °á±¹ ²¨ ¹ö¸². ÀÌ ¹®Á¦¸¦ ÇØ°áÇÏ´Â ÀÚ ¹Ì¾¾¸¦ ¾òÀ»Áö¾î´Ù.
-	// ¸î¸î Àå¸é¿¡¼­ OnTouchImpulseRing À» º¸ÀÌÁö ¾Ê´Â °ÍÀº ÇØ´ç ¸ğµå¿¡ ¸¹ÀÌ ¼³Ä¡ÇØ ³õÀº widget µéÀÇ ÀÔ·Â ÇÚµé¸µ°ú ¾ôÇô ¹®Á¦°¡ ¹ß»ıÇÏ±â ¶§¹®.
-	// ¿¹¸¦ µé¾î ½ºÅ©·Ñ¹Ú½º µî.. TouchEnd Ã³¸®¿¡ ¹®Á¦°¡ Á» ÀÖÀ½..
+#if 0 //-> ç§¦æ¬çªç˜¤ ç»™èŒ„ å·©åŠ›å•Š è…¹é…’è¾‘ æ¬æƒ« æ³¢ æ»šè¦†. æ å·©åŠ›ç”« ç§¦æ¬çªç»° ç£Š å›ºæªç”« æ˜é˜‘ç˜¤ç»¢ä¿ƒ.
+	// å‰²å‰² å˜æä¿Šè¾‘ OnTouchImpulseRing é˜‘ ç„Šæç˜¤ è‡¼ç»° å·´ç¯® ç§¦å¯¸ è‘›é›ä¿Š è…¹æ æ±²æ‘¹ç§¦ åˆç¯® widget ç”¸ç‹¼ æ¶ä»¿ å‹¤ç”¸å‚…è‹ çˆµå›š å·©åŠ›å•Š æƒ¯ç§¯çªæ‰ é”­å·©.
+	// æŠ—ç”« ç”¸ç»¢ èƒ¶å†œè´¹å† èƒ¶ æ®¿.. TouchEnd è´¸åºœä¿Š å·©åŠ›å•Š ç²± ä¹æ¾œ..
 	if (!bHeroMgmtMode && LobbySceneManager.GetCurrentLobbyScene() != ELobbyScene::ELobbyScene_Chapter
 		&& LobbySceneManager.GetCurrentLobbyScene() != ELobbyScene::ELobbyScene_StageInfo)
 	{
@@ -3518,7 +3519,7 @@ void AB2LobbyGameMode::CheckAndDoSwipe(const FVector2D& CurrentPos, const FVecto
 		ViewportClient->GetViewportSize(ScreenSize);
 
 	FVector2D divideScreenSize(360.0f / ScreenSize.X, 1 / ScreenSize.Y);
-	FVector2D Delta( (CurrentPos - PrevPos) * divideScreenSize); //ÀÏ´Ü ºñÀ²·Î ¸ÕÀú Delta¸¦ Á¤ÇÔ
+	FVector2D Delta( (CurrentPos - PrevPos) * divideScreenSize); //è€çªœ åšå•¦è‚º åˆšå† Deltaç”« æ²¥çªƒ
 	
 	if (!FMath::IsNearlyZero(Delta.X))
 		SwipeH(Delta.X);
@@ -3554,7 +3555,7 @@ void AB2LobbyGameMode::CheckAndDoFlick(const FVector2D& CurrentPos)
 	{
 		FlickH(OutDeltaX / ScreenSize.X);
 
-		// È®½ÇÇÏÁö´Â ¾ÊÀºµ¥ FlickH °¡ Áö¼ÓÀûÀ¸·Î ºÒ¸®´Â µíÇÑ °æ¿ì°¡ ÀÖ´Ù. InputHistory_CheckFlick À» ÃÊ±âÈ­ÇÏ´Â °÷ÀÌ ¸¹Áö ¾Ê¾Æ ¿©±â¼­ Ãß°¡ Ã³¸®¸¦ ÇØ º½.
+		// çŠ¬è§’çªç˜¤ç»° è‡¼ç¯®å• FlickH å•Š ç˜¤åŠ åˆ©æ è‚º é˜‚åºœç»° æ·€èŒ„ ç‰ˆå¿«å•Š ä¹ä¿ƒ. InputHistory_CheckFlick é˜‘ æª¬æ‰æ‹³çªç»° é•‘æ è…¹ç˜¤ è‡¼é…’ å’¯æ‰è¾‘ çœ å•Š è´¸åºœç”« ç§¦ èˆª.
 		InputHistory_CheckFlick.InitializeHistory(
 #if !UE_BUILD_SHIPPING
 			TEXT("CheckFlick")
@@ -3589,11 +3590,11 @@ void AB2LobbyGameMode::TouchMove(const ETouchIndex::Type FingerIndex, const FVec
 	{
 		if (CurrentTouchData.bIsPressed && FingerIndex == CurrentTouchData.MainFingerIndex)
 		{
-			InputHistory_IgnoreCheck.AddCheckPoint(ElapsedTimeTouchAction, FVector2D(Location.X, Location.Y)); // TouchMove µ¿¾È ÀÔ·ÂÀ» ÀúÀåÇÏ¸é¼­ ¿øÄ¡ ¾Ê´Â ¼öÁØÀÇ ÀÔ·ÂÀÌ µé¾î¿Ô´Ù ÆÇ´ÜµÇ¸é Swipe À» ½ÇÇàÇÏÁö ¾Êµµ·Ï..
+			InputHistory_IgnoreCheck.AddCheckPoint(ElapsedTimeTouchAction, FVector2D(Location.X, Location.Y)); // TouchMove æ‚¼æ•‘ æ¶ä»¿é˜‘ å†å˜çªæè¾‘ ç›”æ‘¹ è‡¼ç»° èéœ–ç‹¼ æ¶ä»¿æ ç”¸ç»¢å­ä¿ƒ é­„çªœç™»æ Swipe é˜‘ è§’é’çªç˜¤ è‡¼æ¡£åºŸ..
 
 			if (InputHistory_IgnoreCheck.IsLastHistoryOdd(OddInputMinTimeInterval, OddInputMinPosDeltaRatio)) {
-				// Á¤»óÀûÀ¸·Î ±â´ëµÇ´Â »óÈ²¿¡¼­ TouchEnd °¡ Àß µé¾î¿À¸é ÀÌ·± Ã³¸®°¡ ÇÊ¿ä¾ø´Âµ¥ ¸ğ¹ÙÀÏ ÀÔ·Â »óÈ²¿¡¼­ ±×·¸Áö ¾ÊÀ» ¶§°¡ Á¾Á¾ ÀÖ´Ù. 
-				// ±Ã¿©ÁöÃ¥ÀÌÁö¸¸ TouchEnd ¾øÀÌ ±ŞÀÛ½º·± ÀÔ·ÂÀÌ µé¾î¿Ô´Ù ½ÍÀ» ¶§¿¡ Swipe À» ÇÏÁö ¾Êµµ·Ï. InputHistory µéÀº ¸ğµÎ ÃÊ±âÈ­.
+				// æ²¥æƒ‘åˆ©æ è‚º æ‰æªç™»ç»° æƒ‘ç‚”ä¿Šè¾‘ TouchEnd å•Š è‚‹ ç”¸ç»¢å·æ æç¹ è´¸åºœå•Š é˜å¤¸ç»ç»°å• è‘›å®˜è€ æ¶ä»¿ æƒ‘ç‚”ä¿Šè¾‘ å¼ŠçŠ¯ç˜¤ è‡¼é˜‘ é”­å•Š è¾†è¾† ä¹ä¿ƒ. 
+				// æ³µå’¯ç˜¤æ°“æç˜¤çˆ¶ TouchEnd ç»æ é­ç´¯èƒ¶ç¹ æ¶ä»¿æ ç”¸ç»¢å­ä¿ƒ é…µé˜‘ é”­ä¿Š Swipe é˜‘ çªç˜¤ è‡¼æ¡£åºŸ. InputHistory ç”¸ç¯® è‘›æ»´ æª¬æ‰æ‹³.
 				UE_LOG(LogBladeII, Log, TEXT("Ignore TouchMove and skip Swipe as Odd input is detected.. InputHistories are being initialized.."));
 				InputHistory_IgnoreCheck.InitializeHistory();
 				InputHistory_CheckFlick.InitializeHistory();
@@ -3901,7 +3902,7 @@ EPCClass AB2LobbyGameMode::GetSuitableFocusPCClass()
 }
 
 bool AB2LobbyGameMode::IsFirstTimePreRenderPending() const
-{ // °ÔÀÓ ¼³Ä¡ ÈÄ Ã¹ ½ÇÇà. ³»Áö´Â ·ÎÄÃ »óÅÂ ¸®¼Â ÈÄ ÇÑ ¹ø ÀÖÀ» ÀÏ..
+{ // éœ¸çƒ™ æ±²æ‘¹ é¥¶ éœ‰ è§’é’. éƒ´ç˜¤ç»° è‚ºæ‹¿ æƒ‘æ€• åºœæ‚¸ é¥¶ èŒ„ é”… ä¹é˜‘ è€..
 	return PreRenderer && PreRenderer->IsPendingForPreRenderGM();
 }
 
@@ -3916,16 +3917,16 @@ void AB2LobbyGameMode::SetPeerTeam()
 	if (GetPeerType() != PEER_SUPER)
 		return;
 
-	//ÆÀÁ¤º¸ ¼¼ÆÃ ¾ÈÇÔ
+	//è¯„æ²¥ç„Š æŠ€æ³¼ æ•‘çªƒ
 
-	// ¹æ¼Û. È£½ºÆ®²¬ ¹Ï¾î¶ó.
+	// è§„ä»·. é¾‹èƒ¶é£˜é“‚ ç“œç»¢æ‰¼.
 	UE_LOG(LogBladeII, Log, TEXT("[SetPeerTeam] RED = %d, Bule = %d"), GetMatchPlayerNum(ETeamType::ETT_Red), GetMatchPlayerNum(ETeamType::ETT_Blue));
 	NetSendMatchPlayerTeamInfo();
 }
 
 uint8 AB2LobbyGameMode::GetPlayerStartIndexByNetId(uint32 NetId, ETeamType PlayerTeamType)
 {
-	// È£½ºÆ®¸¸ ÀÌ°Å ½á¾ßÇÑ´Ù.
+	// é¾‹èƒ¶é£˜çˆ¶ æèŠ­ ç»“å…·èŒ„ä¿ƒ.
 	check(GetPeerType() == PEER_SUPER);
 
 	uint8 nStartIndex = 1;
@@ -3969,7 +3970,7 @@ void AB2LobbyGameMode::GetControlPlayerInfo(TArray<FB2PeerInfo>& InPeerInfos)
 	{
 		if (FMath::RandBool() == true)
 		{
-			//[JH][todo] ´Ù¸¥°÷(AllPeerInfos)¿¡¼­ ÆÀ¼¼ÆÃÀ» ÇÏ´Â ºÎºĞÀÌ ÀÖ¾î¼­ Á¤¸®°¡ ÇÊ¿äÇÔ
+			//[JH][todo] ä¿ƒå¼—é•‘(AllPeerInfos)ä¿Šè¾‘ è¯„æŠ€æ³¼é˜‘ çªç»° ä½•ç›’æ ä¹ç»¢è¾‘ æ²¥åºœå•Š é˜å¤¸çªƒ
 			for (int i = 0; i < InPeerInfos.Num(); i++)
 			{
 				if (InPeerInfos.IsValidIndex(i))
@@ -4060,18 +4061,18 @@ void AB2LobbyGameMode::StartControlTutorial()
 {
 	ClearMatchRoom();
 
-	// °¡Â¥ ÇÃ·¹ÀÌ¾î ¸¸µé±â ³ªÆ÷ÇÔ 101 ~ 108·Î ¼³Á¤µÉµí. ¼ıÀÚ´Â Å«ÀÇ¹Ì ¾øÀ½
+	// å•Šæ¥¼ æ•²é¥­æç»¢ çˆ¶ç”¸æ‰ å”±å™¨çªƒ 101 ~ 108è‚º æ±²æ²¥çªæ·€. ç®­ç£Šç»° å¥´ç‹¼å›º ç»æ¾œ
 	uint32 nFakePlayerNetId = 102;
 	uint32 nCurrentFakePlayerNetId = nFakePlayerNetId;
 
 	SetPeerType(PEER_SUPER);
 
-	// ÈÑÀÌÅ© ³İ¾ÆÀÌµğ ¹Ù·Î¾Õ¼ıÀÚ¸¦ ³»²¬·Î.
+	// å¦Šæå†œ é½¿é…’æå¼ å®˜è‚ºèŠç®­ç£Šç”« éƒ´é“‚è‚º.
 	SetMyNetId(nFakePlayerNetId - 1);
 
 	EmplacePeerPlayer(GetMyNetId());
 
-	// ·¹µå·Î ÇÑ¹ø °­Á¦¼³Á¤
+	// é¥­é›è‚º èŒ„é”… ç¢åŠ›æ±²æ²¥
 	if (AllPeerInfos.Contains(GetMyNetId()))
 	{
 		AllPeerInfos[GetMyNetId()].PlayerTeamType = ETeamType::ETT_Red;
@@ -4081,14 +4082,14 @@ void AB2LobbyGameMode::StartControlTutorial()
 
 	for (FTutorialControlBotInfo TutorialControlBotInfo : *TutorialControlBotInfos)
 	{
-		//7°³ ³ÑÀ¸¸é ¾ÈµÈ´Ù.
+		//7ä¿º é€æ æ æ•‘ç­‰ä¿ƒ.
 		if (nCurrentFakePlayerNetId >= nFakePlayerNetId + 7)
 		{
 			check(0)
 			return;
 		}
 
-		// ¸®¸ğÆ® µ¥ÀÌÅÍ ÇÏ³ª Ãß°¡
+		// åºœè‘›é£˜ å•æç£ çªå”± çœ å•Š
 		RemotePlayerInfoData.Add(nCurrentFakePlayerNetId);
 
 		b2network::B2FindAccountInfoPtr pAccountInfo = std::make_shared<b2network::B2FindAccountInfo>();
@@ -4106,14 +4107,14 @@ void AB2LobbyGameMode::StartControlTutorial()
 
 		pAccountInfo->characters[0]->level = TutorialControlBotInfo.BotLevel;
 
-		//¾ÆÀÌÅÛ Ãß°¡
+		//é…’æè¢ çœ å•Š
 		for (FTutorialControlBotItemInfo TutorialControlBotItemInfo : TutorialControlBotInfo.BotEquipItem)
 		{
 			b2network::B2ItemServerInfoPtr pItemInfo = std::make_shared<b2network::B2ItemServerInfo>();
 			pItemInfo->character_type = pAccountInfo->characters[0]->character_type;
 			pItemInfo->template_id = TutorialControlBotItemInfo.ItemTemplateId;
 
-			// °¡Â¥ ¾ÆÀÌÅÛ ¾ÆÀÌµğ(¼­¹ö)´Â ÅÛÇÃ¸´¾ÆÀÌµğ ±×´ë·Î¾¸ ±×³É(Áßº¹¸¸ ¾ÈµÇ¸é »ó°ü¾ø°ÚÁö)
+			// å•Šæ¥¼ é…’æè¢ é…’æå¼(è¾‘æ»š)ç»° è¢æ•²å¤é…’æå¼ å¼Šæªè‚ºé– å¼Šæˆ(åæ±—çˆ¶ æ•‘ç™»æ æƒ‘åŒ…ç»æ‘†ç˜¤)
 			pItemInfo->id = pItemInfo->template_id;
 
 			pItemInfo->equip_position = TutorialControlBotItemInfo.ItemEquipPos;
@@ -4121,7 +4122,7 @@ void AB2LobbyGameMode::StartControlTutorial()
 			pItemInfo->grade = 1;
 			pItemInfo->quality = 1;
 			pItemInfo->level = 1;
-			// ÀÌ°É·Î °ø¹æÃ¼ ¼³Á¤(¿ø·¡ ¼­¹ö¿¡¼­ ¾ÆÀÌÅÛÁ¤º¸ ¹ŞÀ»¶§ ¹ŞÀ½)
+			// æå§è‚º å‚è§„çœ‰ æ±²æ²¥(ç›”è´° è¾‘æ»šä¿Šè¾‘ é…’æè¢æ²¥ç„Š ç½é˜‘é”­ ç½æ¾œ)
 			pItemInfo->md_main_attribute_value = TutorialControlBotItemInfo.ItemBaseStat;
 
 			pAccountInfo->equip_items.Add(pItemInfo);
@@ -4134,7 +4135,7 @@ void AB2LobbyGameMode::StartControlTutorial()
 			pAccountInfo->item_presets.Add(pItemPreset);
 		}
 
-		// ¸®¸ğÆ® ÇÃ·¹ÀÌ¾îÀÎÆ÷¿¡ Ãß°¡.
+		// åºœè‘›é£˜ æ•²é¥­æç»¢ç‰¢å™¨ä¿Š çœ å•Š.
 		RemotePlayerInfoData[nCurrentFakePlayerNetId].SetModPlayerInfo(pAccountInfo);
 		RemotePlayerInfoData[nCurrentFakePlayerNetId].SetMainPlayerClass(TutorialControlBotInfo.BotPCClass);
 
@@ -4142,12 +4143,12 @@ void AB2LobbyGameMode::StartControlTutorial()
 		AllPeerInfos[nCurrentFakePlayerNetId].ReservedPCClass = TutorialControlBotInfo.BotPCClass;
 		AllPeerInfos[nCurrentFakePlayerNetId].PlayerTeamType = TutorialControlBotInfo.BotTeamType;
 		
-		// ÆäÀÌÅ© ³İ¾ÆÀÌµğ ¿Ã·ÁÁÜ
+		// å…¶æå†œ é½¿é…’æå¼ æ£µå¦¨æ·‹
 		nCurrentFakePlayerNetId++;
 	}
-	// °¡Â¥ ÇÃ·¹ÀÌ¾î ¸¸µé±â Á¾·á
+	// å•Šæ¥¼ æ•²é¥­æç»¢ çˆ¶ç”¸æ‰ è¾†ä¸°
 
-	// ·ëÅ¬·ÎÁî ½ºÅµÇÏ±¸ ±×µÚ·Î ¿¬°á
+	// å†¯åŠªè‚ºä»¤ èƒ¶è¯ºçªå¤‡ å¼Šç¬¬è‚º æ¥·æ¬
 	SendPrerequisiteToStart(b2network::B2RoomType::BRT_Assault);
 }
 
@@ -4246,13 +4247,13 @@ void AB2LobbyGameMode::FlickH(float Value)
 }
 
 void AB2LobbyGameMode::BeginLobbySceneFreeRotate(float InLastSwipeValue)
-{ // ÅÍÄ¡ and swipe ÈÄ °¨¼ÓÀ» µ¿¹İÇÑ ÀÚÀ¯ È¸Àü ½ÃÀÛ.
+{ // ç£æ‘¹ and swipe é¥¶ çš‘åŠ é˜‘ æ‚¼é¦†èŒ„ ç£Šèœ¡ é›€å‚ˆ çŸ«ç´¯.
 	bDeacceleratingCharRotate = true;
-	DeaccelerationCharRotate = (InLastSwipeValue < 0.f ? 1.f : -1.f) * LobbySceneManager.GetCharacterCameraRotateDeaccelerationFactor(); // Á¶ÀÛÇß´ø ¹æÇâ°ú ¹İ´ë·Î deaccelerate
-	RotationSpeedCharRotate = InLastSwipeValue * LobbySceneManager.GetCharacterCameraRotateFactor(); // °¨¼Ó ½ÃÀÛ ½ÃÀÇ ÃÊ±â°ª. FLobbySceneManager::SwipeH Ã³¸®¿¡¼­ µ¿ÀÏÇÑ ¼Óµµ·Î ÀÌ¾îÁöµµ·Ï.
+	DeaccelerationCharRotate = (InLastSwipeValue < 0.f ? 1.f : -1.f) * LobbySceneManager.GetCharacterCameraRotateDeaccelerationFactor(); // ç‚¼ç´¯æ²å¸¦ è§„æ°¢è‹ é¦†æªè‚º deaccelerate
+	RotationSpeedCharRotate = InLastSwipeValue * LobbySceneManager.GetCharacterCameraRotateFactor(); // çš‘åŠ  çŸ«ç´¯ çŸ«ç‹¼ æª¬æ‰è”¼. FLobbySceneManager::SwipeH è´¸åºœä¿Šè¾‘ æ‚¼è€èŒ„ åŠ æ¡£è‚º æç»¢ç˜¤æ¡£åºŸ.
 	RotationSpeedCharRotate = FMath::Clamp(RotationSpeedCharRotate, -1.0f * LobbySceneManager.GetCharacterCameraFreeRotateMaxSpeed(), LobbySceneManager.GetCharacterCameraFreeRotateMaxSpeed());
-	// Ä«¸Ş¶ó µ¹¸®´Â °Å¶û Ä³¸¯ÅÍ µ¹¸®´Â °Å¶û ½ºÄÉÀÏÀÌ Á» ´Ş¶ó¼­ ÀÏºÎ ¾À¿¡¼­´Â Ãß°¡ ½ºÄÉÀÏÀ» ÁÖ´Âµ¥
-	// ÀÌ·¸°Ô ¾À ÀÌ¸§À» Á÷Á¢ ¸í½ÃÇÏ´Â ½ÄÀÌ¸é ±¸Áú±¸ÁúÇØ¼­ ¹Ì½º³ª±â ½±Áö¸¸ ¹Ì½º°¡ ³­´Ù°í ÇØ¼­ Å«ÀÏ ³¯ °Íµµ ¾Æ´Ï°í ÇÏ´Ï ÀÌ·¸°Ô °¡´Â °Å.
+	// å¢¨çš‹æ‰¼ å€’åºœç»° èŠ­å°” æŸè…ç£ å€’åºœç»° èŠ­å°” èƒ¶çº³è€æ ç²± å´”æ‰¼è¾‘ è€ä½• çº ä¿Šè¾‘ç»° çœ å•Š èƒ¶çº³è€é˜‘ æ—ç»°å•
+	// æçŠ¯éœ¸ çº  ææŠšé˜‘ æµç«‹ ç–™çŸ«çªç»° ä¾¥ææ å¤‡é¾™å¤‡é¾™ç§¦è¾‘ å›ºèƒ¶å”±æ‰ å¥–ç˜¤çˆ¶ å›ºèƒ¶å•Š æŠ„ä¿ƒç»Š ç§¦è¾‘ å¥´è€ æœ å·´æ¡£ é…’èªç»Š çªèª æçŠ¯éœ¸ å•Šç»° èŠ­.
 	if (LobbySceneManager.GetCurrentLobbyScene() == ELobbyScene::ELobbyScene_HeroManagement ||
 		LobbySceneManager.GetCurrentLobbyScene() == ELobbyScene::ELobbyScene_CollectBookMain ||
 		LobbySceneManager.GetCurrentLobbyScene() == ELobbyScene::ELobbyScene_FindAccount)
@@ -4346,7 +4347,7 @@ void AB2LobbyGameMode::LeftControlReleased()
 
 FVector GetViewportSpacePostion(const FGeometry& Geometry, const FPointerEvent& Event)
 {
-	//FPointerEventÀÇ ScreenSpacePositionÀº PC ¸ğ´ÏÅÍ °ø°£ÀÇ ÁÂÇ¥ÀÌ±â ¶§¹®¿¡ °ÔÀÓºäÆ÷·ÎÀÇ ÀüÈ¯ÀÌ ÇÊ¿äÇÔ.
+	//FPointerEventç‹¼ ScreenSpacePositionç¯® PC è‘›èªç£ å‚åŸƒç‹¼ è°…é’ææ‰ é”­å·©ä¿Š éœ¸çƒ™è½°å™¨è‚ºç‹¼ å‚ˆåˆ¸æ é˜å¤¸çªƒ.
 	return FVector(Geometry.Position + Geometry.AbsoluteToLocal(Event.GetScreenSpacePosition()), 0.f);
 }
 
@@ -4426,7 +4427,7 @@ void AB2LobbyGameMode::TickTimeTouchAction(float DeltaSeconds)
 		{
 			RotationSpeedCharRotate += DeaccelerationCharRotate * DeltaSeconds;
 
-			if (RotationSpeedCharRotate * DeaccelerationCharRotate >= 0) // °¨¼Ó °á°ú·Î ¹æÇâÀÌ ¹İ´ë°¡ µÇ¸é Áß´Ü.
+			if (RotationSpeedCharRotate * DeaccelerationCharRotate >= 0) // çš‘åŠ  æ¬è‹è‚º è§„æ°¢æ é¦†æªå•Š ç™»æ åçªœ.
 			{
 				UE_LOG(LogBladeII, Log, TEXT("[TickTimeTouchAction] Stopping Deacceleration.. DeaccelerationCharRotate %.3f, RotationSpeedCharRotate %.3f"),
 					DeaccelerationCharRotate, RotationSpeedCharRotate);
@@ -4459,7 +4460,7 @@ void AB2LobbyGameMode::DevOnlyGenerateDummyChat(float DeltaSeconds)
 
 	//	BladeIIGameImpl::GetChatStore().AddChatMessage(EB2ChatType::Channel, NewMsgInfo);
 
-	//	// ÇÑÁÙ Ã¤ÆÃµµ Å×½ºÆ® ÇÒ ¼ö ÀÖ°Ô..
+	//	// èŒ„ä¸´ ç›²æ³¼æ¡£ æŠ›èƒ¶é£˜ ä¸” è ä¹éœ¸..
 	//	NewMsgInfo.MessageType = EB2ChatType::Channel;
 	//	UpdateChatSinglePopupClass<const FB2ChatMessage&>::GetInstance().Signal(NewMsgInfo);
 
@@ -4478,7 +4479,7 @@ void AB2LobbyGameMode::DevOnlyGenerateDummyChat(float DeltaSeconds)
 
 	//	BladeIIGameImpl::GetChatStore().AddChatMessage(EB2ChatType::Notice, NewMsgInfo);
 
-	//	// ÇÑÁÙ Ã¤ÆÃµµ Å×½ºÆ® ÇÒ ¼ö ÀÖ°Ô..
+	//	// èŒ„ä¸´ ç›²æ³¼æ¡£ æŠ›èƒ¶é£˜ ä¸” è ä¹éœ¸..
 	//	NewMsgInfo.MessageType = EB2ChatType::Notice;
 	//	UpdateChatSinglePopupClass<const FB2ChatMessage&>::GetInstance().Signal(NewMsgInfo);
 
@@ -4496,11 +4497,11 @@ void AB2LobbyGameMode::UpdateChatUI(bool bIsScrollEnd)
 void AB2LobbyGameMode::ExtraOnPreLoadMap()
 {
 	if (LobbyUIManager)
-	{ // ¸Ê ³»¸± ½Ã¿¡ DJLegacy UI ¿¡ ·ÎµùµÈ TAsset µé Unload ÇÊ¿ä..
+	{ // ç”˜ éƒ´å‰¯ çŸ«ä¿Š DJLegacy UI ä¿Š è‚ºçˆ¹ç­‰ TAsset ç”¸ Unload é˜å¤¸..
 		LobbyUIManager->OnPreLoadMap();
 	}
 
-	// Ã¹ ÀüÅõ¸Ê ·Îµù ½Ã ½Ã³ª¸®¿À µ¿¿µ»ó ´ë½Å ¾û¶×ÇÏ°Ô Å¸ÀÌÆ² µ¿¿µ»óÀÌ ³ª¿Â´Ù´Â Á¦º¸°¡ ÀÖ¾î¼­.. ÀÌÀ¯¸¦ ¾Ë ¼ö°¡ ¾øÁö¸¸ ¹º°¡ ÇÏ³ªÀÇ °¡´É¼º Á¦°Å
+	// éœ‰ å‚ˆæ§ç”˜ è‚ºçˆ¹ çŸ« çŸ«å”±åºœå· æ‚¼åº·æƒ‘ æªè„š é’§è¹²çªéœ¸ é¸¥ææ’‡ æ‚¼åº·æƒ‘æ å”±æŸ¯ä¿ƒç»° åŠ›ç„Šå•Š ä¹ç»¢è¾‘.. æèœ¡ç”« èˆ… èå•Š ç»ç˜¤çˆ¶ è´­å•Š çªå”±ç‹¼ å•Šç“·å·± åŠ›èŠ­
 	if (!IsFirstLobby)
 	{
 		AB2DLCFrontGameMode::ClearSelectedFrontTitleMovieInfo();
@@ -4509,7 +4510,7 @@ void AB2LobbyGameMode::ExtraOnPreLoadMap()
 
 void AB2LobbyGameMode::OnPlatformPause()
 {
-	// 1. ÃÊ´ë °ÅÀı - ´Ù¸¥ ¾×¼ÇµéÀÌ ÇÊ¿äÇÏ¸é ÇÔ¼ö·Î »©¾ßÇÔ
+	// 1. æª¬æª èŠ­ä¾‹ - ä¿ƒå¼— å’€è®°ç”¸æ é˜å¤¸çªæ çªƒèè‚º å“—å…·çªƒ
 	const TArray<EB2GameMode> InvGameModeList{ EB2GameMode::PVP_Tag, EB2GameMode::Raid };
 
 	for (const auto GameModeType : InvGameModeList)
@@ -4526,7 +4527,7 @@ void AB2LobbyGameMode::FInputHistory::InitializeHistory(
 )
 {
 #if !UE_BUILD_SHIPPING
-	if (OptionalLoggingHistoryName.Len() > 0) // °â»ç°â»ç ·Î±× »Ñ¸±Áö ÁöÁ¤ÇÏ´Â ¸Å°³º¯¼ö·Îµµ.
+	if (OptionalLoggingHistoryName.Len() > 0) // æ‰³è¤æ‰³è¤ è‚ºå¼Š è°å‰¯ç˜¤ ç˜¤æ²¥çªç»° æ¦‚ä¿ºå‡½èè‚ºæ¡£.
 	{
 		UE_LOG(LogBladeII, Log, TEXT("InputHistory %s Initialize.. InputHistoryLastIndex %d"), *OptionalLoggingHistoryName, InputHistoryLastIndex);
 	}
@@ -4576,28 +4577,28 @@ bool AB2LobbyGameMode::FInputHistory::IsSpeedOverDeltaX(float DeltaX, float Time
 bool AB2LobbyGameMode::FInputHistory::IsLastHistoryOdd(float MinOddTimeInterval, float MinOddPosDeltaRatio)
 {
 	if (InputHistoryLastIndex < 0) {
-		return false; // History °¡ ¾øÀ½. ÆÇº° ºÒ°¡
+		return false; // History å•Š ç»æ¾œ. é­„å–Š é˜‚å•Š
 	}
 
 	int32 AddedOldHistoryCount = 0;
 	FVector2D AddedCheckPointDelta = FVector2D(0.0f,0.0f);
-	// ¸¶Áö¸·²¨ Á¦¿ÜÇÏ°í ¼­·Î°£ÀÇ delta ¸¦ ´õÇÔ
+	// ä»˜ç˜¤é˜œæ³¢ åŠ›å¯‡çªç»Š è¾‘è‚ºåŸƒç‹¼ delta ç”« æ­¹çªƒ
 	for (int32 IA = GetPrevHistoryIndexOf(InputHistoryLastIndex); IA != GetNextHistoryIndexOf(InputHistoryLastIndex); IA = GetPrevHistoryIndexOf(IA))
 	{
 		const int32 IB = GetPrevHistoryIndexOf(IA);
 
 		const FInputHistoryElem& InputHistoryA = InputPointHistory[IA];
-		const FInputHistoryElem& InputHistoryB = InputPointHistory[IB]; // A ¿¡¼­ ÇÑ¹ø ´õ ÀÌÀü²¨
+		const FInputHistoryElem& InputHistoryB = InputPointHistory[IB]; // A ä¿Šè¾‘ èŒ„é”… æ­¹ æå‚ˆæ³¢
 
 		if (!InputHistoryA.bInitialized || !InputHistoryB.bInitialized) {
-			continue; // µÑ ´Ù À¯ÀÇ¹ÌÇÑ °ªÀÌ ÀÖ¾î¾ß°Ú´Ù.
+			continue; // ç¬› ä¿ƒ èœ¡ç‹¼å›ºèŒ„ è”¼æ ä¹ç»¢å…·æ‘†ä¿ƒ.
 		}
 		++AddedOldHistoryCount;
 
 		AddedCheckPointDelta = InputHistoryA.CheckPointPosition - InputHistoryB.CheckPointPosition;
 	}
 
-	if (AddedOldHistoryCount >= 2) // ÀÌÀü ÃßÀÌ¿Í ºñ±³ÇÏ·Á´Â °ÍÀÌ´Ï ¾Æ¿¹ ¾ø°Å³ª ÇÏ³ª¸¸ °¡Áö°í¼­´Â ºñ±³ ºÒ°¡ÇÔ.
+	if (AddedOldHistoryCount >= 2) // æå‚ˆ çœ æå®¢ åšèƒŒçªå¦¨ç»° å·´æèª é…’æŠ— ç»èŠ­å”± çªå”±çˆ¶ å•Šç˜¤ç»Šè¾‘ç»° åšèƒŒ é˜‚å•Šçªƒ.
 	{
 		const FInputHistoryElem& LastHistory = InputPointHistory[InputHistoryLastIndex];
 		const FInputHistoryElem& LastLastHistory = InputPointHistory[GetPrevHistoryIndexOf(InputHistoryLastIndex)];
@@ -4607,7 +4608,7 @@ bool AB2LobbyGameMode::FInputHistory::IsLastHistoryOdd(float MinOddTimeInterval,
 		float LastTimeDelta = FMath::Abs(LastHistory.CheckPointTime - LastLastHistory.CheckPointTime);
 
 		if (LastTimeDelta >= MinOddTimeInterval &&
-			// PosDelta ´Â °¢ ¿ä¼Òº°·Î º»´Ù. ¹æÇâÀÌ ¹İ´ë¸é¼­ ÀÏÁ¤ Å©±â ÀÌ»óÀ¸·Î Æ¢¾ú´ÂÁö.
+			// PosDelta ç»° é˜¿ å¤¸å®¶å–Šè‚º å¤¯ä¿ƒ. è§„æ°¢æ é¦†æªæè¾‘ è€æ²¥ å†œæ‰ ææƒ‘æ è‚º è„¾èŒç»°ç˜¤.
 			(
 				(LastPosDelta.X * AddedCheckPointDelta.X < 0.0f && FMath::Abs(LastPosDelta.X) >= FMath::Abs(AddedCheckPointDelta.X * MinOddPosDeltaRatio)) ||
 				(LastPosDelta.Y * AddedCheckPointDelta.Y < 0.0f && FMath::Abs(LastPosDelta.Y) >= FMath::Abs(AddedCheckPointDelta.Y * MinOddPosDeltaRatio))

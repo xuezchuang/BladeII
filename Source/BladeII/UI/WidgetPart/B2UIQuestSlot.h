@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -52,8 +52,8 @@ private:
 	TWeakObjectPtr<UB2RichTextBlock> RTB_QuestProgress;
 	TWeakObjectPtr<UB2RichTextBlock> RTB_LeftTime;
 
-	TWeakObjectPtr<UB2Button> BTN_QuestDetailLink;	// QuestOpen»óÅÂ¿¡ È°¼ºÈ­ & ´©¸£¸é Dialog
-	TWeakObjectPtr<UB2Button> BTN_AreaQuest;		// QuestIcon ´©¸£¸é Ä¿Áö°í ÀÛ¾ÆÁö°í
+	TWeakObjectPtr<UB2Button> BTN_QuestDetailLink;	// QuestOpenæƒ‘æ€•ä¿Š åŠå·±æ‹³ & ç©¿ç¦æ Dialog
+	TWeakObjectPtr<UB2Button> BTN_AreaQuest;		// QuestIcon ç©¿ç¦æ ç›®ç˜¤ç»Š ç´¯é…’ç˜¤ç»Š
 
 	TWeakObjectPtr<UCanvasPanel> CP_QuestState;
 	TWeakObjectPtr<UCanvasPanel> CP_QuestNew;

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIQuestSlot.h"
 #include "Retailer.h"
@@ -110,7 +110,7 @@ void UB2UIQuestSlot::OnClickBtn_AreaQuest()
 		}
 		break;
 	default:
-		// ¹º°¡ ?
+		// è´­å•Š ?
 			break;
 	}
 
@@ -225,12 +225,12 @@ void UB2UIQuestSlot::InitQuestDefault(int32 QuestSlotIndex, bool bDisplayOnly)
 	if (TargetQuest == nullptr)
 		return;
 
-	// DisplayOnly »óÅÂ´Â °­Á¦·Î Progress »óÅÂÀÇ VisualÀ» º¸¿©ÁØ´Ù.
+	// DisplayOnly æƒ‘æ€•ç»° ç¢åŠ›è‚º Progress æƒ‘æ€•ç‹¼ Visualé˜‘ ç„Šå’¯éœ–ä¿ƒ.
 	const int32 QuestState = bDisplayOnly ? EQS_PROGRESS : TargetQuest->GetState();
 	if (QuestState == EQS_REWARDED)
 	{
 		SetVisibility(ESlateVisibility::Collapsed);
-		return;		// º¸»ó ¿Ï·áµÈ »óÅÂ´Â ³ëÃâÇÏÁö ¾ÊÀ½
+		return;		// ç„Šæƒ‘ è‚¯ä¸°ç­‰ æƒ‘æ€•ç»° ç•´å…çªç˜¤ è‡¼æ¾œ
 	}
 	SetVisibility(ESlateVisibility::Visible);
 
@@ -241,23 +241,23 @@ void UB2UIQuestSlot::InitQuestDefault(int32 QuestSlotIndex, bool bDisplayOnly)
 	GetVisualStateFromQuest(QuestState, SlotState, CurrentQuestState);
 	UpdateQuestMaterial(CurrentQuestState);
 
-	// Äù½ºÆ® ¼³¸í Text ¾÷µ¥ÀÌÆ®
+	// æ¶…èƒ¶é£˜ æ±²ç–™ Text è¯€å•æé£˜
 	GenerateQuestInfo(TargetQuest);
 
-	// 1 ¸ŞÀÎ 2 ¼­ºê ect... 10 ÀÏÄù
+	// 1 çš‹ç‰¢ 2 è¾‘å® ect... 10 è€æ¶…
 	if (QuestSlot == 1)
 	{
 		SetMainQuestEffect(TargetQuest);
 		MainQuestActFilter(TargetQuest->GetQuestId());
 	}
 
-	// Daily Quest Àü¿ë Material ¼³Á¤
+	// Daily Quest å‚ˆä¾© Material æ±²æ²¥
 	if (TargetQuest->GetType() == DAILY_QUEST)
 	{
 		SetMaterialDailyQuest();
 		if (RTB_LeftTime.IsValid())
 			RTB_LeftTime->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
-		UpdateQuestDetailLeftTime(10000); // ÀÏ´Ü ÀÓ½Ã·Î - Äù½ºÆ® ½Ã°£ÀÌ ¾÷µ¥ÀÌÆ® µÇ¸é ±×¶§ DynamicÇÏ°Ô ¼öÁ¤
+		UpdateQuestDetailLeftTime(10000); // è€çªœ çƒ™çŸ«è‚º - æ¶…èƒ¶é£˜ çŸ«åŸƒæ è¯€å•æé£˜ ç™»æ å¼Šé”­ Dynamicçªéœ¸ èæ²¥
 	}
 	else
 	{
@@ -388,13 +388,13 @@ void UB2UIQuestSlot::MainQuestActFilter(int32 InQuestID)
 	if (MainQuestMasterData == nullptr)
 		return;
 
-	if (MainQuestMasterData->main_view_condition == 0)  //main_view_condition ==0ÀÏ¶§´Â °Å¸¥´Ù
+	if (MainQuestMasterData->main_view_condition == 0)  //main_view_condition ==0è€é”­ç»° èŠ­å¼—ä¿ƒ
 		return;
 
 	FStageDataStore& StageStore = BladeIIGameImpl::GetStageDataStore();
 	FServerStageID LastServerStageID;
 
-	for (int32 i = 0; i < static_cast<int32>(EStageDifficulty::ESD_End); ++i)								//°¡ÀåÅ« ServerStageID¸¦ Ã£´Â´Ù ³ë¸» Act6Àº 5-10Áö¿Áº¸´Ù StageID°¡ ´õ Å©´Ù
+	for (int32 i = 0; i < static_cast<int32>(EStageDifficulty::ESD_End); ++i)								//å•Šå˜å¥´ ServerStageIDç”« èŒ«ç»°ä¿ƒ ç•´å¯Œ Act6ç¯® 5-10ç˜¤è‹›ç„Šä¿ƒ StageIDå•Š æ­¹ å†œä¿ƒ
 	{
 		FServerStageID DifficultyStageID = StageStore.GetLastClearServerStageId(static_cast<EStageDifficulty>(i));
 

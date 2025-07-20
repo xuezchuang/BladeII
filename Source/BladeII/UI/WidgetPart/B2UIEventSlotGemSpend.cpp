@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIEventSlotGemSpend.h"
 
@@ -42,7 +42,7 @@ void UB2UIEventSlotGemSpend::BindDelegates()
 
 void UB2UIEventSlotGemSpend::UpdateStaticText()
 {
-	//�ؽ�Ʈ �ʱ�ȭ
+	//咆胶飘 檬扁拳
 	SetGemProgressAndGoalCountText(0);
 
 	FText ftEventSlot = FText::Format(BladeIIGetLOCText(B2LOC_CAT_EVENT, TEXT("SpendGemEvent_Desc")), FText::AsNumber(ChachedEventRewardInfo.goal_spend_count));

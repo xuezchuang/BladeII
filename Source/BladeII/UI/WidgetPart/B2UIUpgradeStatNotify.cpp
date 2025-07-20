@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIUpgradeStatNotify.h"
 
 #include "B2UIManager.h"
@@ -63,7 +63,7 @@ void UB2UIUpgradeStatNotify::ClearList()
 
 void UB2UIUpgradeStatNotify::OnDelayViewTimerHandle()
 {
-	// ¹èÆ²½ºÄÚ¾î¿Í ÇÔ²² Ãâ·ÂµÇ´Â ÆË¾÷ÀÇ °æ¿ì ¹Ù·Î²ô±â ÀÛµ¿ÇÏÁö¾Ê°í ¸®ÅÏ. 
+	// ç¡…æ’‡èƒ¶å†…ç»¢å®¢ çªƒè†Š å…ä»¿ç™»ç»° æ‰‘è¯€ç‹¼ ç‰ˆå¿« å®˜è‚ºæŽºæ‰ ç´¯æ‚¼çªç˜¤è‡¼ç»Š åºœç•”. 
 	UB2UIBattleScoreNotify* BattleScoreNotifyUI = UB2UIManager::GetInstance()->GetUI<UB2UIBattleScoreNotify>(UIFName::BattleScoreNotify);
 	if (BattleScoreNotifyUI && BattleScoreNotifyUI->IsVisible()) return;
 	

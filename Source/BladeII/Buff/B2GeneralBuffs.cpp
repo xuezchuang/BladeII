@@ -1,4 +1,4 @@
-#include "B2GeneralBuffs.h"
+ï»¿#include "B2GeneralBuffs.h"
 #include "Event.h"
 #include "BladeIICharacter.h"
 #include "BladeIIPlayer.h"
@@ -26,7 +26,7 @@ void ClearDebuffGroup(EBuffType CurrentBuff, class ABladeIICharacter* Character)
 }
 
 /*
-	¼Ó¹Ú
+	åŠ å† 
 */
 UB2Buff_Restraint::UB2Buff_Restraint()
 {
@@ -47,7 +47,7 @@ void UB2Buff_Restraint::OnTick(const float DeltaSeconds)
 }
 
 /*
-	½¯µå
+	è’‹é›
 */
 UB2Buff_Shield::UB2Buff_Shield()
 {
@@ -59,7 +59,7 @@ void UB2Buff_Shield::OnBeginBuff(const float BuffDuration)
 {
 	bShieldClear = false;
 
-	// UI°»½ÅÀ»À§ÇØ SetShieldAmount¹Ù·Î È£Ãâ¾ÈÇÏ±¸ ÄÉ¸¯ÅÍÅëÇØ¼­ Å½.
+	// UIç›è„šé˜‘å›°ç§¦ SetShieldAmountå®˜è‚º é¾‹å…æ•‘çªå¤‡ çº³è…ç£çƒ¹ç§¦è¾‘ æ²¤.
 	GetOwnerCharacter()->SetShield(BuffAmount);
 }
 
@@ -79,7 +79,7 @@ void UB2Buff_Shield::SetShieldAmount(const float Amount)
 
 
 /*
-	DoT µ¥¹ÌÁö
+	DoT å•å›ºç˜¤
 */
 UB2Buff_DotDamage::UB2Buff_DotDamage()
 {
@@ -90,16 +90,16 @@ UB2Buff_DotDamage::UB2Buff_DotDamage()
 
 	bDebuff = true;
 
-	// <-µ¥¹ÌÁö ÀÎÆ÷
+	// <-å•å›ºç˜¤ ç‰¢å™¨
 	DamageInfo.bCountable = false;
 	DamageInfo.bUseHitSound = false;
 	DamageInfo.ArmorBreakAmount = 0.f;
 	DamageInfo.WeaponType = EDamageWeapon::EDW_Magic;
 	DamageInfo.ElementType = EDamageElement::EDE_Fire;
-	// ÀÌ°Ç ±âº» ³ë¸». ¾Ö´Ï¸ŞÀÌ¼Ç ³ëÆ¼ÆÄÀÌ->TakeDamageÅëÇØ¼­´Â ¼³Á¤ °¡´É(TakeDamageAbnormalState ¾È¿¡¼­ ¹öÇÁ¸Å´ÏÁ® ÀÌ¿ëÇÏ´Â°Ç ¾ÆÁ÷ ¹ÌÀÛ¾÷)
+	// ææ‰’ æ‰å¤¯ ç•´å¯Œ. å±€èªçš‹æè®° ç•´èé¢‡æ->TakeDamageçƒ¹ç§¦è¾‘ç»° æ±²æ²¥ å•Šç“·(TakeDamageAbnormalState æ•‘ä¿Šè¾‘ æ»šæ©‡æ¦‚èªå»‰ æä¾©çªç»°æ‰’ é…’æµ å›ºç´¯è¯€)
 	DamageInfo.DamageLogicType = EDamageLogicType::ELT_Normal;
 
-	// µ¥¹ÌÁö µé¾î°¥¶§ °ø°İÀÚ¿¡°Ô ¾Ë¸®Áö¾ÊÀ½.
+	// å•å›ºç˜¤ ç”¸ç»¢å“é”­ å‚æ‹œç£Šä¿Šéœ¸ èˆ…åºœç˜¤è‡¼æ¾œ.
 	DamageInfo.bIgnoreNotifyToAttacker = true;
 
 	// Dynamic values
@@ -107,7 +107,7 @@ UB2Buff_DotDamage::UB2Buff_DotDamage()
 	DamageInfo.CriticalDamageRateOverride = 1.f;
 	DamageInfo.DamageIncreaseRateOverride = 1.f;
 	DamageInfo.BossDamageIncreaseRateOverride = 1.f;
-	// -> µ¥¹ÌÁö ÀÎÆ÷
+	// -> å•å›ºç˜¤ ç‰¢å™¨
 
 	DamageInfo.bIgnoreIncreaseDamageNum = true;
 
@@ -116,12 +116,12 @@ UB2Buff_DotDamage::UB2Buff_DotDamage()
 
 void UB2Buff_DotDamage::OnBeginBuff(const float BuffDuration)
 {
-	// ÇöÀç´Â DotDamage°¡ È­¿°ÀÌ¶ó °¡Á¤ÇÏ°í
+	// æ³…çŠç»° DotDamageå•Š æ‹³å ªææ‰¼ å•Šæ²¥çªç»Š
 	DotTickTime = 1.0f;
 
 	CurrentDotCount = 1;
 
-	// È­¿° ¸ÓÅÍ¸®¾ó. ´Ù¸¥ µµÆ®µ¥¹ÌÁö µğ¹öÇÁ°¡ Ãß°¡µÇ¸é »ó¼Ó¹Ş¾Æ¼­ È­¿° µû·Î±¸Çö.
+	// æ‹³å ª èµ£ç£åºœå€”. ä¿ƒå¼— æ¡£é£˜å•å›ºç˜¤ å¼æ»šæ©‡å•Š çœ å•Šç™»æ æƒ‘åŠ ç½é…’è¾‘ æ‹³å ª è¶è‚ºå¤‡æ³….
 	if (ABladeIICharacter* OwnerCharacter = GetOwnerCharacter())
 	{
 		if (UB2DamageEffectInfo* DamageEffectInfo = OwnerCharacter->GetDamageEffectInfo())
@@ -161,7 +161,7 @@ void UB2Buff_DotDamage::OnDotActive(const int32 DotTickCount)
 	//{
 	//	DamageInfo.DamageLogicType = DotDamageLogicType;
 	//	
-	//	// Causer( DotDamage¸¦ °Ç ÁÖÀÎ ) ÀÌ GC·Î »ç¶óÁú °æ¿ì Å©·¡½¬ °¡´É¼ºÀÌ ÀÖÀ½ -> TWeakObjectPtr·Î °ü¸® GC¿¡ ÀÇÇØ »èÁ¦µÇ¸é IsValidÇÏÁö ¾Ê°Ô µÊ
+	//	// Causer( DotDamageç”« æ‰’ æ—ç‰¢ ) æ GCè‚º è¤æ‰¼é¾™ ç‰ˆå¿« å†œè´°æµ† å•Šç“·å·±æ ä¹æ¾œ -> TWeakObjectPtrè‚º åŒ…åºœ GCä¿Š ç‹¼ç§¦ æ˜åŠ›ç™»æ IsValidçªç˜¤ è‡¼éœ¸ å‡³
 	//	ABladeIICharacter* DamageCauser = nullptr;
 	//	if (BuffCauser.IsValid())
 	//		DamageCauser = Cast<ABladeIICharacter>(BuffCauser.Get());
@@ -174,14 +174,14 @@ void UB2Buff_DotDamage::PostInitProperties()
 {
 	Super::PostInitProperties();
 
-	// µ¥¹ÌÁö ÀÎÆ÷ µî·Ï
+	// å•å›ºç˜¤ ç‰¢å™¨ æ®¿åºŸ
 	const uint32 DamageInfoHash = DamageInfo.CalculateDamageHash(this);
 	FDamageInfoContainer::GetContainer().RegisterDamageInfo(DamageInfoHash, DamageInfo);
 }
 
 
 /*
-	ºù°á
+	è‘«æ¬
 */
 UB2Buff_Freezing::UB2Buff_Freezing()
 {
@@ -199,7 +199,7 @@ void UB2Buff_Freezing::OnBeginBuff(const float BuffDuration)
 		if (UB2DamageEffectInfo* DamageEffectInfo = OwnerCharacter->GetDamageEffectInfo())
 			DamageEffectInfo->OverrideCharacterMaterial(ECharacterMaterialOverrideType::ECMO_Ice, OwnerCharacter);
 
-		// ¾îÅÂÄ¡µÈ ÀÌÆåÆ® Á¦°Å(·çÇÎ, ÀÓ¸ğÅ»Àº »©±¸)
+		// ç»¢æ€•æ‘¹ç­‰ ææ£‹é£˜ åŠ›èŠ­(é£ä¿, çƒ™è‘›å‘•ç¯® å“—å¤‡)
 		OwnerCharacter->ClearEffectInAbnormalState();
 	}
 }
@@ -215,7 +215,7 @@ void UB2Buff_Freezing::OnClearBuff(bool bTimeOut)
 		OwnerCharacter->RestoreOverrideMaterial(ECharacterMaterialOverrideType::ECMO_Ice);
 		OwnerCharacter->LastStateDamageType = EStateAttackType::EDT_Normal;
 
-		// ½ºÅÏ °É¸°°Å¸é ÇÇ°İ¸ğ¼Ç ½ºÅµ + ÀÌ¹Ì ÇÏ±¸ÀÖ¾îµµ ÆĞ½º(³Ë¹éµîÀ¸·Î ÀÎÇØ ¹öÇÁ ÇØÁ¦µÇ´Â °æ¿ìµµ ÀÖÀ½)
+		// èƒ¶ç•” å§èµ´èŠ­æ ä¹”æ‹œè‘›è®° èƒ¶è¯º + æå›º çªå¤‡ä¹ç»¢æ¡£ è©èƒ¶(ä¹˜å½’æ®¿æ è‚º ç‰¢ç§¦ æ»šæ©‡ ç§¦åŠ›ç™»ç»° ç‰ˆå¿«æ¡£ ä¹æ¾œ)
 		if (BuffManager->IsBuffActive(EBuffType::Debuff_Stun) == false && OwnerCharacter->GetDamagedNum() == 0)
 		{
 			OwnerCharacter->UpdateDamageNum(FDamageInfo::GetDefaultDamage());
@@ -240,14 +240,14 @@ float UB2Buff_Freezing::GetCustomTimeDilation()
 
 UB2Buff_Reflect::UB2Buff_Reflect()
 {
-	// <-µ¥¹ÌÁö ÀÎÆ÷
+	// <-å•å›ºç˜¤ ç‰¢å™¨
 	DamageInfo.bCountable = false;
 	DamageInfo.bUseHitSound = false;
 	DamageInfo.ArmorBreakAmount = 0.f;
 	DamageInfo.WeaponType = EDamageWeapon::EDW_Magic;
 	DamageInfo.ElementType = EDamageElement::EDE_Fire;
 	DamageInfo.bIgnoreNotifyToAttacker = true;
-	// -> µ¥¹ÌÁö ÀÎÆ÷
+	// -> å•å›ºç˜¤ ç‰¢å™¨
 }
 
 void UB2Buff_Reflect::OwnerTakeDamage(float Damage, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, class AActor* DamageCauser)
@@ -267,7 +267,7 @@ void UB2Buff_Reflect::PostInitProperties()
 {
 	Super::PostInitProperties();
 
-	// µ¥¹ÌÁö ÀÎÆ÷ µî·Ï
+	// å•å›ºç˜¤ ç‰¢å™¨ æ®¿åºŸ
 	const uint32 DamageInfoHash = DamageInfo.CalculateDamageHash(this);
 	FDamageInfoContainer::GetContainer().RegisterDamageInfo(DamageInfoHash, DamageInfo);
 }
@@ -305,7 +305,7 @@ void UB2Buff_Stun::OnClearBuff(bool bTimeOut)
 
 	//	OwnerCharacter->SetForceComboEnd();
 
-	//	// HugeDamage Áß¿¡ StunÀÌ Clear µÉ °æ¿ì HugeDamageAnimÀÇ DamageEndNotify¿¡¼­ ComboEnd°¡ È£Ãâ µÉ °Í.
+	//	// HugeDamage åä¿Š Stunæ Clear çª ç‰ˆå¿« HugeDamageAnimç‹¼ DamageEndNotifyä¿Šè¾‘ ComboEndå•Š é¾‹å… çª å·´.
 	//	if (auto* OwnerPlayer = Cast<ABladeIIPlayer>(OwnerCharacter))
 	//	{	
 	//		if (IsHugeDamage(OwnerPlayer->GetDamageAnimType()) == false)
@@ -364,7 +364,7 @@ void UB2Buff_Hide::OnBeginBuff(const float BuffDuration)
 		if (UB2DamageEffectInfo* DamageEffectInfo = OwnerCharacter->GetDamageEffectInfo())
 			DamageEffectInfo->OverrideCharacterMaterial(ECharacterMaterialOverrideType::ECMO_Hide, OwnerCharacter);
 
-		// »ó´ëÆí ÇÃ·¹ÀÌ¾î¸é ¾Èº¸ÀÌ°Ô(ÇÃ·¹ÀÌ¾î ¸»±¸ ÄÉ¸¯ÅÍ°¡ Àº½Å »ç¿ëÇÒ°Ç °í·Á¾ÈÇÔ)
+		// æƒ‘æªç¥ˆ æ•²é¥­æç»¢æ æ•‘ç„Šæéœ¸(æ•²é¥­æç»¢ å¯Œå¤‡ çº³è…ç£å•Š ç¯®è„š è¤ä¾©ä¸”æ‰’ ç»Šå¦¨æ•‘çªƒ)
 		ABladeIIPlayer* pCastedPlayer = Cast<ABladeIIPlayer>(OwnerCharacter);
 
 		if (pCastedPlayer && !pCastedPlayer->GetIsLocalPlayerTeam())
@@ -383,7 +383,7 @@ void UB2Buff_Hide::OnClearBuff(bool bTimeOut)
 	{
 		OwnerCharacter->RestoreOverrideMaterial(ECharacterMaterialOverrideType::ECMO_Hide);
 
-		// »ó´ëÆí ÇÃ·¹ÀÌ¾î¸é ¾Èº¸ÀÌ°ÔÇÑ°Å ÇØÁ¦
+		// æƒ‘æªç¥ˆ æ•²é¥­æç»¢æ æ•‘ç„Šæéœ¸èŒ„èŠ­ ç§¦åŠ›
 		ABladeIIPlayer* pCastedPlayer = Cast<ABladeIIPlayer>(OwnerCharacter);
 
 		if (pCastedPlayer && !pCastedPlayer->GetIsLocalPlayerTeam())
@@ -513,7 +513,7 @@ void UB2Buff_Enhance::OnBeginBuff(const float BuffDuration)
 	//	OwnerCharacter->AddBuff(EBuffType::Buff_DecreaseReceiveDamage, BuffDuration, GetBuffAmount());
 	//	//OwnerCharacter->AddBuff(EBuffType::Buff_IncreaseDefense, BuffDuration, GetBuffAmount());
 	//	
-	//	//Rim shader °°Àº°Å ¾µ¼ö ÀÖÀ¸´Ï ÀÏ´Ü ÁÖ¼®Ã³¸®
+	//	//Rim shader éç¯®èŠ­ é•œè ä¹æ èª è€çªœ æ—ç±è´¸åºœ
 	//	//if (UB2DamageEffectInfo* DamageEffectInfo = OwnerCharacter->GetDamageEffectInfo())
 	//	//	DamageEffectInfo->OverrideCharacterMaterial(ECharacterMaterialOverrideType::ECMO_Enhance, OwnerCharacter);
 
@@ -557,7 +557,7 @@ void UB2Buff_Enhance::OnClearBuff(bool bTimeOut)
 {
 	if (ABladeIICharacter* OwnerCharacter = GetOwnerCharacter())
 	{
-		//Rim shader °°Àº°Å ¾µ¼ö ÀÖÀ¸´Ï ÀÏ´Ü ÁÖ¼®Ã³¸®
+		//Rim shader éç¯®èŠ­ é•œè ä¹æ èª è€çªœ æ—ç±è´¸åºœ
 		//OwnerCharacter->RestoreOverrideMaterial(ECharacterMaterialOverrideType::ECMO_Enhance);
 
 		if (OwnerCharacter->GetMesh())
@@ -574,8 +574,8 @@ void UB2Buff_IncreaseDefense::OnBeginBuff(const float BuffDuration)
 {
 	if (ABladeIICharacter* OwnerCharacter = GetOwnerCharacter())
 	{
-		//¹æ¾î·Â »ó½Â
-		//°ø½ÄÀÌ ³ª¿ÀÁö ¾Ê¾Æ ¹Ì¿Ï¼º
+		//è§„ç»¢ä»¿ æƒ‘é“°
+		//å‚ä¾¥æ å”±å·ç˜¤ è‡¼é…’ å›ºè‚¯å·±
 	}
 }
 
@@ -593,8 +593,8 @@ UB2Buff_Taunt::UB2Buff_Taunt()
 }
 void UB2Buff_Taunt::OnBeginBuff(const float BuffDuration)
 {
-	//aggropriority ¹Ù²Ü·Á Çß´Âµ¥ Player¸¸ °¡Á®¼­ ´Ù¸¥¹æ½ÄÀ¸·Î Ã³¸®..
-	//µµ¹ß ¹öÇÁ½Ã »çÀÏ·±Æ®µµ °°ÀÌ °É¸®µµ·Ï Ãß°¡
+	//aggropriority å®˜æ›¹å¦¨ æ²ç»°å• Playerçˆ¶ å•Šå»‰è¾‘ ä¿ƒå¼—è§„ä¾¥æ è‚º è´¸åºœ..
+	//æ¡£æƒ¯ æ»šæ©‡çŸ« è¤è€ç¹é£˜æ¡£ éæ å§åºœæ¡£åºŸ çœ å•Š
 
 	AActor* Causer = BuffCauser.IsValid() ? BuffCauser.Get() : nullptr;
 
@@ -630,7 +630,7 @@ void UB2Buff_Seal::OnBeginBuff(const float BuffDuration)
 	{
 		ClearDebuffGroup(BuffType, OwnerCharacter);
 
-		// ¾îÅÂÄ¡µÈ ÀÌÆåÆ® Á¦°Å(·çÇÎ, ÀÓ¸ğÅ»Àº »©±¸)
+		// ç»¢æ€•æ‘¹ç­‰ ææ£‹é£˜ åŠ›èŠ­(é£ä¿, çƒ™è‘›å‘•ç¯® å“—å¤‡)
 		OwnerCharacter->ClearEffectInAbnormalState();
 	}
 }

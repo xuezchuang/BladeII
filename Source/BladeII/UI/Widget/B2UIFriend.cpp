@@ -1,4 +1,4 @@
-#include "B2UIFriend.h"
+ï»¿#include "B2UIFriend.h"
 #include "Retailer.h"
 #include "B2UIFriendRow.h"
 
@@ -22,17 +22,17 @@ void UB2UIFriend::Init()
 	Super::Init();
 
 	m_pCurrentMainTab = NULL;
-	// ÃÊ±â 0¸íÀ¸·Î Ç¥½Ã
+	// æª¬æ‰ 0ç–™æ è‚º é’çŸ«
 	RefreshGameFriendCount(0);
 
-	// Ä£±¸¾øÀ½¾Ë¸² ¼û°Ü³õÀ½
+	// æ¨¡å¤‡ç»æ¾œèˆ…è¦† è§è´¥åˆæ¾œ
 	G_NoFriend->SetVisibility(ESlateVisibility::Hidden);
 
 	SetLobbyUIHeaderTitleByGeneralTextTableKey(TEXT("LobbyMain_Friend"));
 
 	SetStsticContents();
 
-	//ÅÇ¼³Á¤
+	//å¾˜æ±²æ²¥
 	OnMyFriendListBtnClick();
 
 	m_nSendFriendRowAccountId = -1;
@@ -47,7 +47,7 @@ void UB2UIFriend::OnSceneOpen(EUIScene InOpenedScene)
 
 	SetTimerLastLogoutTimer();
 
-	// UIHeader ¿Í °°ÀÌ Scene À¸·Î ±¸¼ºÇÏ´Â °æ¿ì Init ½ÃÁ¡¿¡ ÇÏ¸é Scene ¿¡ Æ÷ÇÔµÈ header °¡ »ı¼ºÀÌ ¾ÈµÈ »óÈ²ÀÏ ¼ö ÀÖÀ½.
+	// UIHeader å®¢ éæ Scene æ è‚º å¤‡å·±çªç»° ç‰ˆå¿« Init çŸ«ç—¢ä¿Š çªæ Scene ä¿Š å™¨çªƒç­‰ header å•Š ç§¯å·±æ æ•‘ç­‰ æƒ‘ç‚”è€ è ä¹æ¾œ.
 	SetLobbyUIHeaderTitleByGeneralTextTableKey(TEXT("LobbyMain_Friend"));
 	DoMarkRedDot();
 	if (UIP_FriendSideMenu.IsValid())
@@ -87,11 +87,11 @@ void UB2UIFriend::CacheAssets()
 	GET_SLOT_FOR_FRIEND_TAB(TempFriendTab, MyFriendList);
 	//BTN_MyFriendList = TempFriendTab->Button;
 
-	// ¸ŞÀÎÅÇ1 - ¼­ºêÅÇ1
+	// çš‹ç‰¢å¾˜1 - è¾‘å®å¾˜1
 	m_arMainTabs[0].SubTabs.AddDefaulted(1);
 	TempFriendTab = &m_arMainTabs[0].SubTabs[0];
 	GET_SLOT_FOR_FRIEND_TAB(TempFriendTab, GameFriendList);
-	//¿©±â ¼­ºêÅÇ ¹öÆ°Àº ´­¸±ÀÏÀÌ ¾øÀ½ ÅÇ°¹¼ö Ãß°¡µÇ¸é º¯¼öµµ °°ÀÌ Ãß°¡ÇÏÀÚ
+	//å’¯æ‰ è¾‘å®å¾˜ æ»šç“¢ç¯® å–˜å‰¯è€æ ç»æ¾œ å¾˜è‚®è çœ å•Šç™»æ å‡½èæ¡£ éæ çœ å•Šçªç£Š
 	BTN_GameFriendList = TempFriendTab->Button;
 
 	m_arMainTabs.AddDefaulted(1);
@@ -99,19 +99,19 @@ void UB2UIFriend::CacheAssets()
 	GET_SLOT_FOR_FRIEND_TAB(TempFriendTab, FindFriendMenu);
 	//BTN_FindFriendMenu = TempFriendTab->Button;
 
-	// ¸ŞÀÎÅÇ2 - ¼­ºêÅÇ1
+	// çš‹ç‰¢å¾˜2 - è¾‘å®å¾˜1
 	m_arMainTabs[1].SubTabs.AddDefaulted(1);
 	TempFriendTab = &m_arMainTabs[1].SubTabs[0];
 	GET_SLOT_FOR_FRIEND_TAB(TempFriendTab, RcvList);
 	BTN_RcvList = TempFriendTab->Button;
 
-	// ¸ŞÀÎÅÇ2 - ¼­ºêÅÇ2
+	// çš‹ç‰¢å¾˜2 - è¾‘å®å¾˜2
 	m_arMainTabs[1].SubTabs.AddDefaulted(1);
 	TempFriendTab = &m_arMainTabs[1].SubTabs[1];
 	GET_SLOT_FOR_FRIEND_TAB(TempFriendTab, SndList);
 	BTN_SndList = TempFriendTab->Button;
 
-	// ¸ŞÀÎÅÇ2 - ¼­ºêÅÇ3
+	// çš‹ç‰¢å¾˜2 - è¾‘å®å¾˜3
 	m_arMainTabs[1].SubTabs.AddDefaulted(1);
 	TempFriendTab = &m_arMainTabs[1].SubTabs[2];
 	GET_SLOT_FOR_FRIEND_TAB(TempFriendTab, RcmdList);
@@ -182,7 +182,7 @@ void UB2UIFriend::CacheAssets()
 	UpdateRefreshTimeCount();
 	UpdateFindTimeCount();
 
-	//BTN_GameFriendList¹öÆ°Àº ¹ÙÀÎµù ¾ÈÇÑ´Ù.(Áö±İ ¾ÈÇÊ¿ä)
+	//BTN_GameFriendListæ»šç“¢ç¯® å®˜ç‰¢çˆ¹ æ•‘èŒ„ä¿ƒ.(ç˜¤é™› æ•‘é˜å¤¸)
 	//BIND_CLICK_FUNC_TO_BTN(BTN_FindFriendMenu, &UB2UIFriend::OnFindFriendMenuBtnClick);
 	BIND_CLICK_FUNC_TO_BTN(BTN_RcvList, &UB2UIFriend::OnRcvListBtnClick);
 	BIND_CLICK_FUNC_TO_BTN(BTN_SndList, &UB2UIFriend::OnSndListBtnClick);
@@ -293,15 +293,15 @@ void UB2UIFriend::SetFriendUIState(UB2Button* SelectedSubTab, EFriendUISubState 
 		}
 	}
 
-	// ¼­ºê½ºÅ×ÀÌÆ®¿¡ µû¶ó UI±×·ìº° visivle¼ÂÆÃ, Àû´çÇÑ Ä£±¸¸®½ºÆ® ¼­¹ö¿¡ ¿äÃ»
-	// ±×·ìÀ» Äµ¹ö½º ÆĞ³Î·ÎÇÒÁö ´Ù¸¥°É·Î ÇÒÁöÀß ¸ğ¸£°Ú´Ù. Á¤ÇÏ°í Ã¤¿ò
-	// ±×·ìÀº UPanelWidget ÀÌ°É·Î Ä³½ºÆÃÇØ¼­ ÁøÇàÇØº½
+	// è¾‘å®èƒ¶æŠ›æé£˜ä¿Š è¶æ‰¼ UIå¼Šç¼å–Š visivleæ‚¸æ³¼, åˆ©å¯¸èŒ„ æ¨¡å¤‡åºœèƒ¶é£˜ è¾‘æ»šä¿Š å¤¸æ²¡
+	// å¼Šç¼é˜‘ ç‰¡æ»šèƒ¶ è©æ¾„è‚ºä¸”ç˜¤ ä¿ƒå¼—å§è‚º ä¸”ç˜¤è‚‹ è‘›ç¦æ‘†ä¿ƒ. æ²¥çªç»Š ç›²æ¡†
+	// å¼Šç¼ç¯® UPanelWidget æå§è‚º æŸèƒ¶æ³¼ç§¦è¾‘ æŸ³é’ç§¦èˆª
 
 	if (!G_MyFriendListPart.IsValid() || !G_RcvListPart.IsValid() ||
 		!G_SndListPart.IsValid() || !G_RcmdListPart.IsValid())
 		return;
 
-	// UI½ºÅ×ÀÌÆ® º¯°æ½Ã Ä£±¸»èÁ¦ ¸ğµå´Â ÇØÁ¦
+	// UIèƒ¶æŠ›æé£˜ å‡½ç‰ˆçŸ« æ¨¡å¤‡æ˜åŠ› è‘›é›ç»° ç§¦åŠ›
 	SetFriendDeleteMode(false);
 
 	G_MyFriendListPart->SetVisibility(ESlateVisibility::Hidden);
@@ -333,13 +333,13 @@ void UB2UIFriend::SetFriendUIState(UB2Button* SelectedSubTab, EFriendUISubState 
 	case EFriendUISubState::EFUSS_FF_SendFriendListView:
 		G_SndListPart->SetVisibility(ESlateVisibility::Visible);
 		data_trader::Retailer::GetInstance().RequestGetAllSendAskFriend();
-		// º¸³»¸é¼­ ÅØ½ºÆ® 0¸íÀ¸·Î ÃÊ±âÈ­
+		// ç„Šéƒ´æè¾‘ å’†èƒ¶é£˜ 0ç–™æ è‚º æª¬æ‰æ‹³
 		RefreshSendFriendAskCount();
 		break;
 	case EFriendUISubState::EFUSS_FF_ReceiveFriendListView:
 		G_RcvListPart->SetVisibility(ESlateVisibility::Visible);
 		data_trader::Retailer::GetInstance().RequestGetAllReceiveAskFriend();
-		// º¸³»¸é¼­ ÅØ½ºÆ® 0¸íÀ¸·Î ÃÊ±âÈ­
+		// ç„Šéƒ´æè¾‘ å’†èƒ¶é£˜ 0ç–™æ è‚º æª¬æ‰æ‹³
 		RefreshReceiveFriendAskCount();
 		break;
 	case EFriendUISubState::EFUSS_FF_RecommendFriendListView:
@@ -362,15 +362,15 @@ void UB2UIFriend::SetFriendUIState(UB2Button* SelectedSubTab, EFriendUISubState 
 
 void UB2UIFriend::SetStsticContents()
 {
-	// (ÃÖ´ë {0}¸í)
+	// (å¼¥æª {0}ç–™)
 	int32 nMaxFriendCount = BladeIIGameImpl::GetClientDataStore().GetMaxFriendCount();
 	TB_MaxFriendCount->SetText(FText::Format(BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), TEXT("MaxManCountBracket")), FText::AsNumber(nMaxFriendCount)));
 }
 
 void UB2UIFriend::RefreshGameFriendCount(int32 nNewFriendCount)
 {
-	// ³»°¡ ¼ö¶ôÇßÀ»¶§ ÇÏ³ª ¿Ã·Á¼­ Ç¥½ÃÇØÁÙ·Á°í ÀúÀåÇØ³ğ(Áö¿üÀ»¶© ³»·ÁÁÖ°í)
-	// »ó´ë°¡ ¼ö¶ôÇÏ°Å³ª Áö¿î°Ç ¸®½ºÆ® »õ·Î¹ŞÀ»¶§ °»½ÅÇØµÎ µÉµí
+	// éƒ´å•Š èéæ²é˜‘é”­ çªå”± æ£µå¦¨è¾‘ é’çŸ«ç§¦ä¸´å¦¨ç»Š å†å˜ç§¦ä»‡(ç˜¤å¥é˜‘è®¢ éƒ´å¦¨æ—ç»Š)
+	// æƒ‘æªå•Š èéçªèŠ­å”± ç˜¤æ¬¾æ‰’ åºœèƒ¶é£˜ è´§è‚ºç½é˜‘é”­ ç›è„šç§¦æ»´ çªæ·€
 	m_nFriendCount = nNewFriendCount;
 	TB_CurFriendCount->SetText(FText::Format(BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), TEXT("ManCount")), FText::AsNumber(nNewFriendCount)));
 }
@@ -379,9 +379,9 @@ void UB2UIFriend::RegisterUIMarkForRedDot()
 {
 	if (UIP_FriendSideMenu.IsValid())
 		UIP_FriendSideMenu->RegisterUIMarkForRedDot();
-	// ¿ìÁ¤Æ÷ÀÎÆ® º¸³¾ ¼ö ÀÖÀ» ¶§
+	// å¿«æ²¥å™¨ç‰¢é£˜ ç„Šå°˜ è ä¹é˜‘ é”­
 	REGISTER_REDDOT_CONDITION(GetRedDotWidget(TEXT("BTN_SendPointAll")), &UB2UIFriend::RedDotCondition_SendAbleFriendPoint);
-	// Ä£±¸¿äÃ»ÀÌ ÀÖÀ»¶§
+	// æ¨¡å¤‡å¤¸æ²¡æ ä¹é˜‘é”­
 	REGISTER_REDDOT_CONDITION(GetRedDotWidget(TEXT("BTN_RcvListSet")), &UB2UIFriend::RedDotCondition_RequestFriends);
 }
 
@@ -462,7 +462,7 @@ void UB2UIFriend::OnDelFriendModeBtnClick()
 {
 	SetFriendDeleteMode(!m_bIsFriendDeleteMode);
 
-	// Rowµé ¹öÆ°»óÅÂ °»½Å
+	// Rowç”¸ æ»šç“¢æƒ‘æ€• ç›è„š
 	for (int nCnt = 0; nCnt < m_arFriendRows.Num(); ++nCnt)
 	{
 		if (m_arFriendRows[nCnt])
@@ -664,7 +664,7 @@ void UB2UIFriend::OnDeliveryAcceptAskFriend()
 {
 	RefreshGameFriendCount(m_nFriendCount + 1);
 
-	// Ä£±¸¸®½ºÆ® ¾øÀ»¶§ ÄÚ¸àÆ®Ã¼Å©
+	// æ¨¡å¤‡åºœèƒ¶é£˜ ç»é˜‘é”­ å†…è†é£˜çœ‰å†œ
 	CheckNoFriendListComment();
 
 	RefreshReceiveFriendAskCount();
@@ -681,7 +681,7 @@ void UB2UIFriend::OnDeliveryAcceptAskFriend()
 	DeleteSavedFriendRow();
 	
 	//////////////////////////////////////////////////////////////////
-	//¾×¼Ç ÁöÇ¥ ·Î±× (Ä£±¸ ¸Î±â)
+	//å’€è®° ç˜¤é’ è‚ºå¼Š (æ¨¡å¤‡ è‚æ‰)
 	B2ActionLogSender Sender;
 	Sender.setCategory(FString("FRIEND"))
 		.setAction(FString("ACCEPT"))
@@ -691,7 +691,7 @@ void UB2UIFriend::OnDeliveryAcceptAskFriend()
 
 void UB2UIFriend::OnDeliveryRejectAskFriend()
 {
-	// Ä£±¸¸®½ºÆ® ¾øÀ»¶§ ÄÚ¸àÆ®Ã¼Å©
+	// æ¨¡å¤‡åºœèƒ¶é£˜ ç»é˜‘é”­ å†…è†é£˜çœ‰å†œ
 	CheckNoFriendListComment();
 
 	RefreshReceiveFriendAskCount();
@@ -712,7 +712,7 @@ void UB2UIFriend::OnDeliveryGetFriendList(const FB2FriendList& FriendList)
 
 	//RefreshGameFriendCount(arFriendList.Num());
 
-	//// Ä£±¸¸®½ºÆ® ¾øÀ»¶§ ÄÚ¸àÆ®Ã¼Å©
+	//// æ¨¡å¤‡åºœèƒ¶é£˜ ç»é˜‘é”­ å†…è†é£˜çœ‰å†œ
 	//CheckNoFriendListComment();
 	//DoMarkRedDot();
 	//if (UIP_FriendSideMenu.IsValid())
@@ -737,7 +737,7 @@ void UB2UIFriend::OnDeliveryCancelAskFriend()
 {
 	DeleteSavedFriendRow();
 
-	// Ä£±¸¸®½ºÆ® ¾øÀ»¶§ ÄÚ¸àÆ®Ã¼Å©
+	// æ¨¡å¤‡åºœèƒ¶é£˜ ç»é˜‘é”­ å†…è†é£˜çœ‰å†œ
 	CheckNoFriendListComment();
 
 	RefreshSendFriendAskCount();
@@ -749,7 +749,7 @@ void UB2UIFriend::OnDeliveryDeleteFriend(const FB2DeleteFriend& tuDeleteFriend)
 
 	//RefreshGameFriendCount(m_nFriendCount - 1);
 
-	//// Ä£±¸¸®½ºÆ® ¾øÀ»¶§ ÄÚ¸àÆ®Ã¼Å©
+	//// æ¨¡å¤‡åºœèƒ¶é£˜ ç»é˜‘é”­ å†…è†é£˜çœ‰å†œ
 	//CheckNoFriendListComment();
 
 	//if (auto FriendDoc = UB2UIDocHelper::GetDocFriend())
@@ -769,7 +769,7 @@ void UB2UIFriend::OnDeliveryGetAllSendAskFriend(const FBAllSendAskFriendList& Fr
 
 	//RefreshSendFriendAskCount();
 
-	//// Ä£±¸¸®½ºÆ® ¾øÀ»¶§ ÄÚ¸àÆ®Ã¼Å©
+	//// æ¨¡å¤‡åºœèƒ¶é£˜ ç»é˜‘é”­ å†…è†é£˜çœ‰å†œ
 	//CheckNoFriendListComment();
 }
 
@@ -781,7 +781,7 @@ void UB2UIFriend::OnDeliveryGetAllReceiveAskFriend(const FB2AllReceiveAskFriendL
 
 	//RefreshReceiveFriendAskCount();
 
-	//// Ä£±¸¸®½ºÆ® ¾øÀ»¶§ ÄÚ¸àÆ®Ã¼Å©
+	//// æ¨¡å¤‡åºœèƒ¶é£˜ ç»é˜‘é”­ å†…è†é£˜çœ‰å†œ
 	//CheckNoFriendListComment();
 	//DoMarkRedDot();
 	//if (UIP_FriendSideMenu.IsValid())
@@ -800,7 +800,7 @@ void UB2UIFriend::OnDeliverySendSocialPoint(const FB2SendSocialPoint& SendSocial
 
 	//if (nFailAccountId != 0 && arSuccessIds.Num() == 0)
 	//{
-	//	// ½ÇÆĞÇÑ¾Ö°¡ ÀÖÀ½
+	//	// è§’è©èŒ„å±€å•Š ä¹æ¾œ
 	//	UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
 	//		BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_Notification")),
 	//		BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("FailToSendSocialPoint")),
@@ -824,7 +824,7 @@ void UB2UIFriend::OnDeliverySendSocialPoint(const FB2SendSocialPoint& SendSocial
 	//	);
 
 	//	//////////////////////////////////////////////////////////////////
-	//	//¾×¼Ç ÁöÇ¥ ·Î±× (¿ìÁ¤ Æ÷ÀÎÆ® ¹ß¼Û)
+	//	//å’€è®° ç˜¤é’ è‚ºå¼Š (å¿«æ²¥ å™¨ç‰¢é£˜ æƒ¯ä»·)
 	//	B2ActionLogSender Sender;
 	//	Sender.setCategory(FString("FRIEND"))
 	//		.setAction(FString("SOCIALPOINT_SEND"))
@@ -834,7 +834,7 @@ void UB2UIFriend::OnDeliverySendSocialPoint(const FB2SendSocialPoint& SendSocial
 
 	//auto FriendDoc = UB2UIDocHelper::GetDocFriend();
 
-	//// ¹öÆ° »óÅÂ °»½Å
+	//// æ»šç“¢ æƒ‘æ€• ç›è„š
 	//for (UB2UIFriendRow* row : m_arFriendRows)
 	//{
 	//	for (int64 nAccountId : arSuccessIds)
@@ -904,7 +904,7 @@ void UB2UIFriend::DeleteSavedFriendRow()
 	if (m_nSendFriendRowAccountId == -1)
 		return;
 
-	// Áö¿ìÀÚ
+	// ç˜¤å¿«ç£Š
 	UB2UIFriendRow* pUI = GetFriendRowUI(m_nSendFriendRowAccountId);
 	m_arFriendRows.Remove(pUI);
 	pUI->DestroySelf(NULL);
@@ -944,12 +944,12 @@ void UB2UIFriend::SetFriendTabState(FFriendTab* pFriendTab, EFriendTabState TabS
 
 void UB2UIFriend::ResetFriendRows()
 {
-	// ½ºÅ©·Ñ¹Ú½º ºñ¿öÁÖÀÚ
+	// èƒ¶å†œè´¹å† èƒ¶ åšå†µæ—ç£Š
 	for (int nCnt = 0; nCnt < m_arFriendRows.Num(); ++nCnt)
 	{
 		if (m_arFriendRows[nCnt])
 		{
-			// UI¸Å´ÏÁ®¸¦ ÅëÇØ ¸¸µéÁö ¾Ê¾ÒÀ½
+			// UIæ¦‚èªå»‰ç”« çƒ¹ç§¦ çˆ¶ç”¸ç˜¤ è‡¼ç–½æ¾œ
 			m_arFriendRows[nCnt]->DestroySelf(NULL);
 		}
 	}
@@ -1007,18 +1007,18 @@ void UB2UIFriend::SetFriendDeleteMode(bool bNewDeleteMode)
 {
 	m_bIsFriendDeleteMode = bNewDeleteMode;
 
-	//ºñÈ°¼ºÈ­ ¾îÂîÇÏÁö;
+	//åšåŠå·±æ‹³ ç»¢éª‚çªç˜¤;
 	if (bNewDeleteMode)
 	{
 		BTN_SendPointAll->SetIsEnabled(false);
-		// ¹öÆ°°ú ½ÇÁ¦º¸ÀÌ´Â ÀÌ¹ÌÁö°¡ ´Ù¸§. ºñÈ°¼ºÈ­ ÀÌ¹ÌÁö·Î ½ºÀ§Äª
+		// æ»šç“¢è‹ è§’åŠ›ç„Šæç»° æå›ºç˜¤å•Š ä¿ƒæŠš. åšåŠå·±æ‹³ æå›ºç˜¤è‚º èƒ¶å›°è«
 		IMG_SendPointAllBtn->SetVisibility(ESlateVisibility::Hidden);
 		IMG_SendPointAllBtnDisable->SetVisibility(ESlateVisibility::Visible);
 	}
 	else
 	{
 		BTN_SendPointAll->SetIsEnabled(true);
-		// ¹öÆ°°ú ½ÇÁ¦º¸ÀÌ´Â ÀÌ¹ÌÁö°¡ ´Ù¸§. È°¼ºÈ­ ÀÌ¹ÌÁö·Î ½ºÀ§Äª
+		// æ»šç“¢è‹ è§’åŠ›ç„Šæç»° æå›ºç˜¤å•Š ä¿ƒæŠš. åŠå·±æ‹³ æå›ºç˜¤è‚º èƒ¶å›°è«
 		IMG_SendPointAllBtn->SetVisibility(ESlateVisibility::Visible);
 		IMG_SendPointAllBtnDisable->SetVisibility(ESlateVisibility::Hidden);
 	}

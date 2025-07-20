@@ -1,6 +1,7 @@
-#pragma once
+﻿#pragma once
 //#include "BladeII.h"
 #include "UObject/Object.h"
+#include "Engine/Texture2DDynamic.h"
 #include "BannerManager.generated.h"
 
 UCLASS()

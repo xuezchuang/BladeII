@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2GuildResult.h"
@@ -89,7 +89,7 @@ void UB2GuildResult::BindDocAuto()
 		IMG_Lose->SetVisibility(ESlateVisibility::Visible);
 		IMG_Victory->SetVisibility(ESlateVisibility::Hidden);
 	}
-	// ÃßÈÄ ÇÊ¿ä¿¡ µû¶ó draw Ã³¸®.
+	// çœ é¥¶ é˜å¤¸ä¿Š è¶æ‰¼ draw è´¸åºœ.
 }
 
 void UB2GuildResult::UnbindDoc()

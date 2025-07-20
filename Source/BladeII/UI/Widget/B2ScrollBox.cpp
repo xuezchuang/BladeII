@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2ScrollBox.h"
@@ -34,8 +34,8 @@ void UB2ScrollBox::EndUserScrolling()
 	//CheckScrollAdjustType();
 }
 
-// ScrollAdjustType°ú ½ºÆ®·ÑOrientation¿¡ µû¶ó¼­
-// ½ºÅ©·Ñ ¾ÆÀÌÅÛÀ» ¼³Á¤ÇÑ ±âÁØÁ¡¿¡ ¸ÂÃçÁÜ
+// ScrollAdjustTypeè‹ž èƒ¶é£˜è´¹Orientationä¿Š è¶æ‰¼è¾‘
+// èƒ¶å†œè´¹ é…’æžè¢é˜‘ æ±²æ²¥èŒ„ æ‰éœ–ç—¢ä¿Š å˜Žè‹—æ·‹
 void UB2ScrollBox::CheckScrollAdjustType()
 {
 	//if (ScrollAdjustType == EScrollAdjustType::ESAT_NONE || IsRightClickScrolling() || !MyScrollBox.IsValid())
@@ -46,8 +46,8 @@ void UB2ScrollBox::CheckScrollAdjustType()
 	//if (!CanvasPanelSlot)
 	//	return;
 
-	//// ÀÌ ±â´É »ç¿ëÇÒ¶§´Â ¹«Á¶°Ç °ü¼º½ºÅ©·Ñ ÀÛµ¿ ¾È½ÃÅ´
-	//// ÃßÈÄ ÇÊ¿äÇÏ¸é ÀÏÁ¤ ÀÌÇÏ¼ÓµµÀÏ¶§¸¸ ¹ßµ¿ÇÏ°Ô²û ¼öÁ¤ÇÑ´Ù.
+	//// æž æ‰ç“· è¤ä¾©ä¸”é”­ç»° å…¬ç‚¼æ‰’ åŒ…å·±èƒ¶å†œè´¹ ç´¯æ‚¼ æ•‘çŸ«ç³¯
+	//// çœ é¥¶ éž˜å¤¸çªæ è€æ²¥ æžçªåŠ æ¡£è€é”­çˆ¶ æƒ¯æ‚¼çªéœ¸é˜ èæ²¥èŒ„ä¿ƒ.
 	//MyScrollBox->ClearScrollVelocity();
 
 	//// Check Start

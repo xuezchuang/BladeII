@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2ItemInfo.h"
 #include "Particles/ParticleSystemComponent.h"
@@ -30,7 +30,7 @@ TSubclassOf<class AB2DropItem> FSingleItemInfoData::GetBaseBPClass(UObject* Worl
 	return /*SomeInfo ? SomeInfo->GetDefaultDropItemBaseBPClass() :*/ NULL;
 }
 
-// ´Ü¼ø¹İº¹ ÄÚµå ºí·Ï. ¸â¹ö ÀÌ¸§À» ³Ö¾îÁÖ¾î¾ß ÇØ¼­ ÅÛÇÃ¸´µµ ¾ÈµÇ°í..
+// çªœé‰´é¦†æ±— å†…é› å–‰åºŸ. ç³•æ»š ææŠšé˜‘ æŒç»¢æ—ç»¢å…· ç§¦è¾‘ è¢æ•²å¤æ¡£ æ•‘ç™»ç»Š..
 #define SINGLE_ITEM_INFO_DATA_MEMBER_LOADING_BLOCK(ItemInfoObj, MemberVarName, ItemRefID) \
 	if (ItemInfoObj && !MemberVarName.IsValid() && MemberVarName.ToString().Len() > 0) \
 	{ \
@@ -108,7 +108,7 @@ FText FSingleItemInfoData::GetLocalizedName(bool bAttachQualityPrefix, int32 Ite
 {
 	static FText ItemNameFormatWithPrefix = FText::FromString(TEXT("{0} {1}"));
 
-	// Ã³À½¿¡ ¾ÆÀÌÅÛ ÀÌ¸§¿¡ Ç°Áú Á¢µÎ»ç¸¦ ºÙÀÌ´Â ½ÄÀÌ¾ú´Âµ¥ Ç°Áú Á¢µÎ»ç´Â µû·Î Ç¥½ÃÇÏ°Ô µÊ. È¤½Ã ¾î¶² ½ÄÀ¸·Î ºÎÈ°ÇÒÁö ¸ğ¸£´Ï ¸Å°³º¯¼ö¶û ÄÚµå´Â ³²°ÜµÒ.
+	// è´¸æ¾œä¿Š é…’æè¢ ææŠšä¿Š å‰é¾™ ç«‹æ»´è¤ç”« å˜¿æç»° ä¾¥æèŒç»°å• å‰é¾™ ç«‹æ»´è¤ç»° è¶è‚º é’çŸ«çªéœ¸ å‡³. è¶£çŸ« ç»¢æ« ä¾¥æ è‚º ä½•åŠä¸”ç˜¤ è‘›ç¦èª æ¦‚ä¿ºå‡½èå°” å†…é›ç»° å·¢è´¥ç‹„.
 	FText NameWithoutQuality = BladeIIGetLOCText(B2LOC_CAT_ITEMNAME, LocalizedNameKey.ToString());
 
 	//if (bAttachQualityPrefix && ItemQuality > 0 && ItemQuality <= MAX_ITEM_QUALITY)
@@ -123,15 +123,15 @@ FText FSingleItemInfoData::GetLocalizedName(bool bAttachQualityPrefix, int32 Ite
 
 void FSingleItemInfoData::LoadAllTAssets(FStreamableManager& InLoadManager, int32 MyRefID, TMap<int32, FSingleItemInfoLoadedPtrData>& LoadedPtrMap)
 {
-	// ¸Å FSingleItemInfoData ¸¦ ¾ò¾î¿Ã ¶§¸¶´Ù »ç¿ëÇÏ´Â °Ç ¾Æ´Ï°í ±âº»ÀûÀ¸·Î´Â ¿©±â ¸Å ¸â¹öµéÀº ÇÊ¿äÇÒ ¶§ ±×¶§±×¶§ ·ÎµùÇÑ´Ù.
-	// ¿©±ä GetSomeLazyLoadedAssetCommon ¾È ¾²°í ±×³É °¡´Â °É·Î.
+	// æ¦‚ FSingleItemInfoData ç”« æ˜ç»¢æ£µ é”­ä»˜ä¿ƒ è¤ä¾©çªç»° æ‰’ é…’èªç»Š æ‰å¤¯åˆ©æ è‚ºç»° å’¯æ‰ æ¦‚ ç³•æ»šç”¸ç¯® é˜å¤¸ä¸” é”­ å¼Šé”­å¼Šé”­ è‚ºçˆ¹èŒ„ä¿ƒ.
+	// å’¯å˜ GetSomeLazyLoadedAssetCommon æ•‘ é™ç»Š å¼Šæˆ å•Šç»° å§è‚º.
 
-	int32 CheckTAssets = 0; // TAsset ¸â¹ö Ãß°¡½Ã FSingleItemInfoLoadedPtrData ¿¡µµ Ãß°¡ ±î¸ÔÁö ¾Ê°Ô.
+	int32 CheckTAssets = 0; // TAsset ç³•æ»š çœ å•ŠçŸ« FSingleItemInfoLoadedPtrData ä¿Šæ¡£ çœ å•Š é³–å†ˆç˜¤ è‡¼éœ¸.
 	if (IconMaterial.IsValid() == false && IconMaterial.ToString().Len() > 0)
 	{
 		InLoadManager.LoadSynchronous(IconMaterial);
 	}
-	++CheckTAssets; // º¹ºÙÇÒ ¶§ ÀÌ°Íµµ °°ÀÌ ³¥³¥
+	++CheckTAssets; // æ±—å˜¿ä¸” é”­ æå·´æ¡£ éæ å¿å¿
 	if (PCPartMesh.IsValid() == false && PCPartMesh.ToString().Len() > 0)
 	{
 		InLoadManager.LoadSynchronous(PCPartMesh);
@@ -195,12 +195,12 @@ void FSingleItemInfoData::LoadAllTAssets(FStreamableManager& InLoadManager, int3
 		LoadedPtrMap.Add(MyRefID, NewLoadedEntry);
 		FoundLoadedPtrEntry = LoadedPtrMap.Find(MyRefID);
 	}
-	checkSlow(FoundLoadedPtrEntry); // ¾øÀ¸¸é ¹Ùº¸
+	checkSlow(FoundLoadedPtrEntry); // ç»æ æ å®˜ç„Š
 	if (FoundLoadedPtrEntry)
 	{
 		int32 CheckLoadedPtr = 0;
 		
-		// GC ¹æÁö¿ë ·ÎµùµÈ ·¹ÆÛ·±½º Ä³½Ì. ÀÌÂÊ¿¡ ¼±¾ğµÈ TSoftObjectPtr ¸â¹öµé¿¡ ´ëÇØ FSingleItemInfoLoadedPtrData ¿¡ Ç×¸ñÀ» ³Ö¾îÁÖ¾î¾ß ÇÔ.
+		// GC è§„ç˜¤ä¾© è‚ºçˆ¹ç­‰ é¥­æ¬ºç¹èƒ¶ æŸæ•™. æç‡ä¿Š æ€¥æ”«ç­‰ TSoftObjectPtr ç³•æ»šç”¸ä¿Š æªç§¦ FSingleItemInfoLoadedPtrData ä¿Š äº²æ ¼é˜‘ æŒç»¢æ—ç»¢å…· çªƒ.
 		FoundLoadedPtrEntry->LoadedIconMaterial = IconMaterial.Get();
 		++CheckLoadedPtr;
 		FoundLoadedPtrEntry->LoadedPCPartMesh = PCPartMesh.Get();
@@ -230,7 +230,7 @@ void FSingleItemInfoData::LoadAllTAssets(FStreamableManager& InLoadManager, int3
 		if (CheckTAssets != CheckLoadedPtr)
 		{
 			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-				FString::Printf(TEXT("[Warning] FSingleItemInfoData ÀÇ TAsset ¸â¹ö¿Í FSingleItemInfoLoadedPtrData ÀÇ ·ÎµùµÈ ¿¡¼Â ·¹ÆÛ·±½º Ç×¸ñ ¼ö°¡ ´Ù¸£´Ù. ÄÄÇ»ÅÍ°¡ °ğ Æø¹ßÇÑ´Ù."))
+				FString::Printf(TEXT("[Warning] FSingleItemInfoData ç‹¼ TAsset ç³•æ»šå®¢ FSingleItemInfoLoadedPtrData ç‹¼ è‚ºçˆ¹ç­‰ ä¿Šæ‚¸ é¥­æ¬ºç¹èƒ¶ äº²æ ¼ èå•Š ä¿ƒç¦ä¿ƒ. å“ªè…”ç£å•Š æ¢† æ°”æƒ¯èŒ„ä¿ƒ."))
 				));
 		}
 #endif
@@ -241,10 +241,10 @@ void FSingleItemInfoData::UnloadAllTAssets(FStreamableManager& InLoadManager, in
 {
 	if (bUnloadEvenRootSet)
 	{
-		MarkLoadedEquipPartAtRooSet(false); // È¤¿©³ª RootSet ÀÌ¶ó¸é ±×°Å Á¦°ÅºÎÅÍ ÇØ¾ß.
+		MarkLoadedEquipPartAtRooSet(false); // è¶£å’¯å”± RootSet ææ‰¼æ å¼ŠèŠ­ åŠ›èŠ­ä½•ç£ ç§¦å…·.
 	}
 
-	// bUnloadEvenRootSet ÀÌ ¾Æ´Ï¶óµµ.. ³¯·Áµµ ¾îÂ÷ÇÇ ½ÇÁ¦ unloading ¾È µÉ °ÍÀÓ. ·çÆ®¼ÂÀÌ´Ï.
+	// bUnloadEvenRootSet æ é…’èªæ‰¼æ¡£.. æœå¦¨æ¡£ ç»¢ç’ä¹” è§’åŠ› unloading æ•‘ çª å·´çƒ™. é£é£˜æ‚¸æèª.
 	LoadedPtrMap.Remove(MyRefID);
 
 	if (IconMaterial.IsValid() && (!IconMaterial->IsRooted() || bUnloadEvenRootSet))
@@ -311,11 +311,11 @@ void FSingleItemInfoData::UnloadAllTAssets(FStreamableManager& InLoadManager, in
 
 void FSingleItemInfoData::UnloadAllExceptEquipPart(FStreamableManager& InLoadManager, int32 MyRefID, TMap<int32, FSingleItemInfoLoadedPtrData>& LoadedPtrMap)
 {
-	// PCPart** ¹× ÀÌ¿Í °ü·ÃÇØ¼­ ÇÊ¿äÇÑ SixStar** µîÀº ¿©±â¼­ Á¦¿ÜÇÑ´Ù.
-	// ¸¸ÀÏ ÀÌ·± ¼±ÅÃÀû ¾ğ·ÎµùÀÌ ´Ù¸¥ ½ÄÀ¸·Î ÇÊ¿äÇØÁö¸é °³º° TAsset µé¿¡ ´ëÇÑ ¾ğ·ÎµùÀ» Á¦°øÇÏ´Â °Ô ÁÁÀ» °Í.
+	// PCPart** æ£º æå®¢ åŒ…è®¿ç§¦è¾‘ é˜å¤¸èŒ„ SixStar** æ®¿ç¯® å’¯æ‰è¾‘ åŠ›å¯‡èŒ„ä¿ƒ.
+	// çˆ¶è€ æç¹ æ€¥ç¶åˆ© æ”«è‚ºçˆ¹æ ä¿ƒå¼— ä¾¥æ è‚º é˜å¤¸ç§¦ç˜¤æ ä¿ºå–Š TAsset ç”¸ä¿Š æªèŒ„ æ”«è‚ºçˆ¹é˜‘ åŠ›å‚çªç»° éœ¸ äº®é˜‘ å·´.
 
 	FSingleItemInfoLoadedPtrData* MyCachedRefContainer = LoadedPtrMap.Find(MyRefID);
-	if (MyCachedRefContainer) // ¸ø Ã£À¸¸é ÁøÀÛ¿¡ ·ÎµùÀ» ÇÏÁö ¾ÊÀº °ÅµçÁö, ¹º°¡ Àß¸øµÇ¾úµçÁö.
+	if (MyCachedRefContainer) // ç»™ èŒ«æ æ æŸ³ç´¯ä¿Š è‚ºçˆ¹é˜‘ çªç˜¤ è‡¼ç¯® èŠ­ç”µç˜¤, è´­å•Š è‚‹ç»™ç™»èŒç”µç˜¤.
 	{
 		MyCachedRefContainer->LoadedIconMaterial = NULL;
 		MyCachedRefContainer->LoadedDropMainBodyPST = NULL;
@@ -343,7 +343,7 @@ void FSingleItemInfoData::UnloadAllExceptEquipPart(FStreamableManager& InLoadMan
 
 void FSingleItemInfoData::UnloadOnlyEquipPart(FStreamableManager& InLoadManager, int32 MyRefID, TMap<int32, FSingleItemInfoLoadedPtrData>& LoadedPtrMap, bool bUnloadEvenRootSet)
 {
-	if (bUnloadEvenRootSet)  // È¤¿©³ª RootSet ÀÌ¶ó¸é ±×°Å Á¦°ÅºÎÅÍ ÇÏÁö¸¸ ÇÊ¿äÇÑ °æ¿ì RootSet À¸·Î ÁöÁ¤ÇÑ °Ç ¾ğ·Îµù¿¡¼­ Á¦¿Ü½ÃÅ³ ¼ö ÀÖµµ·Ï.
+	if (bUnloadEvenRootSet)  // è¶£å’¯å”± RootSet ææ‰¼æ å¼ŠèŠ­ åŠ›èŠ­ä½•ç£ çªç˜¤çˆ¶ é˜å¤¸èŒ„ ç‰ˆå¿« RootSet æ è‚º ç˜¤æ²¥èŒ„ æ‰’ æ”«è‚ºçˆ¹ä¿Šè¾‘ åŠ›å¯‡çŸ«æ‡¦ è ä¹æ¡£åºŸ.
 	{
 		MarkLoadedEquipPartAtRooSet(false);
 	}
@@ -353,7 +353,7 @@ void FSingleItemInfoData::UnloadOnlyEquipPart(FStreamableManager& InLoadManager,
 	if (PCPartMesh.IsValid() && (!PCPartMesh->IsRooted() || bUnloadEvenRootSet))
 	{
 		PCPartMesh->RemoveFromRoot();
-		if (MyCachedRefContainer) { // ¸ø Ã£À¸¸é ÁøÀÛ¿¡ ·ÎµùÀ» ÇÏÁö ¾ÊÀº °ÅµçÁö, ¹º°¡ Àß¸øµÇ¾úµçÁö.
+		if (MyCachedRefContainer) { // ç»™ èŒ«æ æ æŸ³ç´¯ä¿Š è‚ºçˆ¹é˜‘ çªç˜¤ è‡¼ç¯® èŠ­ç”µç˜¤, è´­å•Š è‚‹ç»™ç™»èŒç”µç˜¤.
 			MyCachedRefContainer->LoadedPCPartMesh = NULL;
 		}
 		InLoadManager.Unload(PCPartMesh.ToSoftObjectPath());
@@ -417,7 +417,7 @@ void FSingleItemInfoData::UnloadOnlyEquipPart(FStreamableManager& InLoadManager,
 }
 
 void FSingleItemInfoData::UnloadOnlyEquipPart(UB2ItemInfo* OwnerItemInfoTable, bool bUnloadEvenRootSet)
-{ // UnloadOnlyEquipPart À» ¹Û¿¡¼­ µû·Î ºÒ·¯ÁÙ ÀÏÀÌ ÀÖ¾î¼­..
+{ // UnloadOnlyEquipPart é˜‘ è§‚ä¿Šè¾‘ è¶è‚º é˜‚çŸ¾ä¸´ è€æ ä¹ç»¢è¾‘..
 	if (OwnerItemInfoTable)
 	{
 		UnloadOnlyEquipPart(OwnerItemInfoTable->InfoLoadManager, CachedMyRefID, OwnerItemInfoTable->LoadedPtrMap, bUnloadEvenRootSet);
@@ -426,8 +426,8 @@ void FSingleItemInfoData::UnloadOnlyEquipPart(UB2ItemInfo* OwnerItemInfoTable, b
 
 void FSingleItemInfoData::MarkLoadedEquipPartAtRooSet(bool bRootSet)
 {
-	// ¿©±â¼­ µû·Î ·ÎµùÀ» ÇÏÁö´Â ¾Ê´Â´Ù. ·Îµù µÇ¾î ÀÖ´Â °Í¸¸ Ã³¸®..
-	// AddToRoot ¸¦ ÇÏ¸é Unload µµ ¸ÔÈ÷Áö ¾ÊÀ» °Å.
+	// å’¯æ‰è¾‘ è¶è‚º è‚ºçˆ¹é˜‘ çªç˜¤ç»° è‡¼ç»°ä¿ƒ. è‚ºçˆ¹ ç™»ç»¢ ä¹ç»° å·´çˆ¶ è´¸åºœ..
+	// AddToRoot ç”« çªæ Unload æ¡£ å†ˆæ´’ç˜¤ è‡¼é˜‘ èŠ­.
 	if (PCPartMesh.IsValid())
 	{
 		if (bRootSet) {
@@ -504,9 +504,9 @@ void FSingleItemInfoData::MarkLoadedEquipPartAtRooSet(bool bRootSet)
 
 void FSingleItemInfoData::GetEquipPartsAsyncLoadReqInfo(TArray<FB2AsyncRequestInfo>& OutRequestInfoList)
 {
-	// TryAsyncLoad ¿¡ ÇÊ¿äÇÑ Á¤º¸µé ±Ü¾î¿À±â. ¼ø¼­´ë·Î ÇÏ³ª¾¿.
-	// ¿©±â ¸â¹ö TAsset ¸ğµÎ¸¦ ³Ö´Â °Ç ¾Æ´Ï´Ù. Ä³¸¯ÅÍ ¸Ş½¬ Á¶ÇÕ ¹× ºÎ°¡ È¿°ú¿¡ ÇÊ¿äÇÑ Àç·áµé¸¸.
-	// ½ÇÁ¦ Async ¿äÃ»À» º¸³¾ ¶§ ´ÜÀÏ SingleItemInfoData »Ó ¾Æ´Ï¶ó ¿©·¯ RefID ¿¡ ´ëÇØ ±Ü¾î¸ğÀº FB2AsyncRequestInfo ¸®½ºÆ®µéÀ» ÇÕÃÄ¼­ º¸³»°Ô µÉ ¼ÒÁö°¡ ³ô´Ù. Ä³¸¯ÅÍ ÇÏ³ª Á¶ÇÕÇÏ´Âµ¥ ¿©·¯ RefID ÀÇ ¾ÆÀÌÅÛ µ¥ÀÌÅÍ°¡ ÇÊ¿äÇÏ±â ¶§¹®ÀÌ´Ù.
+	// TryAsyncLoad ä¿Š é˜å¤¸èŒ„ æ²¥ç„Šç”¸ é¿ç»¢å·æ‰. é‰´è¾‘æªè‚º çªå”±ç©¶.
+	// å’¯æ‰ ç³•æ»š TAsset è‘›æ»´ç”« æŒç»° æ‰’ é…’èªä¿ƒ. æŸè…ç£ çš‹æµ† ç‚¼é’¦ æ£º ä½•å•Š ç“¤è‹ä¿Š é˜å¤¸èŒ„ çŠä¸°ç”¸çˆ¶.
+	// è§’åŠ› Async å¤¸æ²¡é˜‘ ç„Šå°˜ é”­ çªœè€ SingleItemInfoData æŒ¥ é…’èªæ‰¼ å’¯çŸ¾ RefID ä¿Š æªç§¦ é¿ç»¢è‘›ç¯® FB2AsyncRequestInfo åºœèƒ¶é£˜ç”¸é˜‘ é’¦åªšè¾‘ ç„Šéƒ´éœ¸ çª å®¶ç˜¤å•Š è‡­ä¿ƒ. æŸè…ç£ çªå”± ç‚¼é’¦çªç»°å• å’¯çŸ¾ RefID ç‹¼ é…’æè¢ å•æç£å•Š é˜å¤¸çªæ‰ é”­å·©æä¿ƒ.
 
 	//if (!PCPartMesh.IsNull()) {
 	//	OutRequestInfoList.Add(FB2AsyncRequestInfo(GetAsyncReqKey_PCPartMesh(), PCPartMesh));
@@ -535,8 +535,8 @@ void FSingleItemInfoData::GetEquipPartsAsyncLoadReqInfo(TArray<FB2AsyncRequestIn
 }
 void FSingleItemInfoData::CacheOnEquipPartsAsyncLoadComplete(int32 MyRefID, TMap<int32, FSingleItemInfoLoadedPtrData>& LoadedPtrMap)
 {
-	// ¿©±â¼­ Ä³½¬ÇÏ°íÀÚ ÇÏ´Â ´ë»óÀº ¼¼ÆÃÀÌ µÈ °Å¶ó¸é ·ÎµùÀÌ µÈ »óÅÂ¿©¾ß ÇÑ´Ù. (½ÇÁ¦·Î´Â ¸ğµÎ ¼¼ÆÃµÈ °ÍÀÌ µå¹° °Å¶ó Get ÀÌ null À» ¸®ÅÏÇÏ´Â °Ô ÀÌ»óÇÑ °Ç ¾Æ´Ï´Ù.)
-	// Async ·Îµù°ú °ü·ÃÇØ¼­ ¾²´Â °ÍÀÎ¸¸Å­ flush ¿ä¼Ò ¾øÀÌ ´Ü¼ø Get ¸¸..
+	// å’¯æ‰è¾‘ æŸæµ†çªç»Šç£Š çªç»° æªæƒ‘ç¯® æŠ€æ³¼æ ç­‰ èŠ­æ‰¼æ è‚ºçˆ¹æ ç­‰ æƒ‘æ€•å’¯å…· èŒ„ä¿ƒ. (è§’åŠ›è‚ºç»° è‘›æ»´ æŠ€æ³¼ç­‰ å·´æ é›æ‹± èŠ­æ‰¼ Get æ null é˜‘ åºœç•”çªç»° éœ¸ ææƒ‘èŒ„ æ‰’ é…’èªä¿ƒ.)
+	// Async è‚ºçˆ¹è‹ åŒ…è®¿ç§¦è¾‘ é™ç»° å·´ç‰¢çˆ¶æ€’ flush å¤¸å®¶ ç»æ çªœé‰´ Get çˆ¶..
 
 	FSingleItemInfoLoadedPtrData& FoundOrLoadedPtrEntry = LoadedPtrMap.FindOrAdd(MyRefID);
 
@@ -559,10 +559,10 @@ void AB2DropItem::OverrideByItemInfo(UB2ItemInfo* WholeInfoTable, FSingleItemInf
 
 	//if (WholeInfoTable && InSingleInfoOfID)
 	//{
-	//	// º»°İ ItemInfo Àû¿ë Àü¿¡ BaseBP ¸ÕÀú
+	//	// å¤¯æ‹œ ItemInfo åˆ©ä¾© å‚ˆä¿Š BaseBP åˆšå†
 	//	OverrideByBaseBP(InSingleInfoOfID->GetBaseBPClass(this));
 
-	//	// ¿©±â¼­ ItemInfo ¿¡ ÀÖ´Â ¸ğµç Á¤º¸¸¦ »ç¿ëÇÏÁö´Â ¾ÊÀ» °ÍÀÌ´Ù. ÀÏºÎ´Â UI ¿¡ ¾²ÀÎ´Ù.
+	//	// å’¯æ‰è¾‘ ItemInfo ä¿Š ä¹ç»° è‘›ç”µ æ²¥ç„Šç”« è¤ä¾©çªç˜¤ç»° è‡¼é˜‘ å·´æä¿ƒ. è€ä½•ç»° UI ä¿Š é™ç‰¢ä¿ƒ.
 
 	//	this->SpawnLocationOffsetZ += InSingleInfoOfID->Offset_SpawnLocationZ;
 	//	this->StayTime += InSingleInfoOfID->Offset_StayTime;
@@ -580,8 +580,8 @@ void AB2DropItem::OverrideByItemInfo(UB2ItemInfo* WholeInfoTable, FSingleItemInf
 	//		this->PostSuckLifeSpan = InSingleInfoOfID->PostSuckLifeSpanOverride;
 	//	}
 
-	//	// ¾îÂ° Á» Áß±¸³­¹æÀÎ °Å °°Áö¸¸ ¿©ÇÏ°£ Â÷±ÙÂ÷±Ù ¼¼ÆÃ.
-	//	// ÀÌ°ÍÀÌ ºÒ¸° ÀÌÈÄ AB2DropItem::BeginPlay °¡ ºÒ¸®Áö ¾Ê´Â´Ù¸é ÀÏºÎ Ã³¸®¸¦ ¼öµ¿À¸·Î ÇØ¾ß ÇÒ °Í.
+	//	// ç»¢æ³ ç²± åå¤‡æŠ„è§„ç‰¢ èŠ­ éç˜¤çˆ¶ å’¯çªåŸƒ ç’è¾Ÿç’è¾Ÿ æŠ€æ³¼.
+	//	// æå·´æ é˜‚èµ´ æé¥¶ AB2DropItem::BeginPlay å•Š é˜‚åºœç˜¤ è‡¼ç»°ä¿ƒæ è€ä½• è´¸åºœç”« èæ‚¼æ è‚º ç§¦å…· ä¸” å·´.
 
 	//	UParticleSystem* DropMainBodyPST = InSingleInfoOfID->GetDropMainBodyPST(WholeInfoTable);
 	//	if (this->MainBodyPS && DropMainBodyPST)
@@ -611,25 +611,25 @@ void AB2DropItem::OverrideByBaseBP(TSubclassOf<AB2DropItem> BPClassToOverride)
 	if (!BPCDO)
 		return;
 
-	//// ÀÌ°ÍÀÌ ºÒ¸®´Â ½ÃÁ¡Àº ItemInfo Àû¿ëÀÌ³ª BeginPlay ÀÌÀüÀÓ.
-	//// ¸®¼Ò½º ·¹ÆÛ·±½º ¼¼ÆÃÀÇ °æ¿ì ¼¼ÆÃ ÈÄ ½ÇÁ¦ »ç¿ë ½ÃÁ¡ÀÌ ¾ğÁ¦ÀÎÁö È®ÀÎÇÒ ÇÊ¿ä°¡ ÀÖÀ½.
+	//// æå·´æ é˜‚åºœç»° çŸ«ç—¢ç¯® ItemInfo åˆ©ä¾©æå”± BeginPlay æå‚ˆçƒ™.
+	//// åºœå®¶èƒ¶ é¥­æ¬ºç¹èƒ¶ æŠ€æ³¼ç‹¼ ç‰ˆå¿« æŠ€æ³¼ é¥¶ è§’åŠ› è¤ä¾© çŸ«ç—¢æ æ”«åŠ›ç‰¢ç˜¤ çŠ¬ç‰¢ä¸” é˜å¤¸å•Š ä¹æ¾œ.
 
-	//// ÇÏÀ§ ÄÄÆ÷³ÍÆ®µéÀº µû·Î Ã³¸®ÇØ¾ß ÇÑ´Ù. this ´ë»óÀÇ CopyObjectProperties ¿¡¼­ ÇÏÀ§ ÄÄÆ÷³ÍÆ®µéÀ» º¹»çÇÏ°Ô ÇÏ¸é ÄÄÆ÷³ÍÆ® ÀÚÃ¼¸¦ ±×´ë·Î °¡Á®¿Í »ç¿ëÇÏ¹Ç·Î ¾ÈµÊ.
+	//// çªå›° å“ªå™¨æƒ©é£˜ç”¸ç¯® è¶è‚º è´¸åºœç§¦å…· èŒ„ä¿ƒ. this æªæƒ‘ç‹¼ CopyObjectProperties ä¿Šè¾‘ çªå›° å“ªå™¨æƒ©é£˜ç”¸é˜‘ æ±—è¤çªéœ¸ çªæ å“ªå™¨æƒ©é£˜ ç£Šçœ‰ç”« å¼Šæªè‚º å•Šå»‰å®¢ è¤ä¾©çªéª¨è‚º æ•‘å‡³.
 
 	//CopyObjectProperties(this->AudioComp, BPCDO->AudioComp, true, true);
 	//CopyObjectProperties(this->MainBodyPS, BPCDO->MainBodyPS, true, true);
 	//CopyObjectProperties(this->CollisionComp, BPCDO->CollisionComp, true, true);
 	//CopyObjectProperties(this->DropItemMoveComp, BPCDO->DropItemMoveComp, true, true);
 	//
-	//// ÀÚ±â ÀÚ½ÅÀº ¸Ç ³ªÁß¿¡ Ã³¸®ÇØ º»´Ù.
+	//// ç£Šæ‰ ç£Šè„šç¯® ç›– å”±åä¿Š è´¸åºœç§¦ å¤¯ä¿ƒ.
 	//CopyObjectProperties(this, BPCDO, true, true);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 void FItemInfoEquipPartsAsyncReqCombinedID::SetRefIDs(const TArray<int32>& InRefIDs)
 {
-	// ÀÌ°É »ç¿ëÇÏ·Á´Â È¯°æ¿¡¼­ÀÇ ´ë·«ÀûÀÎ Á¦ÇÑ. ¸Å ¿ä¼Òº°·Î for ¹® µ¹·Á°¡¸ç Ã¼Å©ÇÏ´Â °Ô ÀÖ¾î¼­ ÀÌ°Ô Ä¿Áö¸é ¼º´É ¹®Á¦°¡ ¹ß»ıÇÒ ¼ö ÀÖÀ½.
-	// ´ë·« ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ ÆÄÆ® °³¼ö¸¸Å­ ÇÊ¿äÇÑµ¥ ¸¸¿¡ ÇÏ³ª ¿¹»óÄ¡ ¸øÇÑ °æ¿ì¿¡ ´ëºñÇÏ±â À§ÇØ..
+	// æå§ è¤ä¾©çªå¦¨ç»° åˆ¸ç‰ˆä¿Šè¾‘ç‹¼ æªå¸†åˆ©ç‰¢ åŠ›èŒ„. æ¦‚ å¤¸å®¶å–Šè‚º for å·© å€’å¦¨å•Šå“¥ çœ‰å†œçªç»° éœ¸ ä¹ç»¢è¾‘ æéœ¸ ç›®ç˜¤æ å·±ç“· å·©åŠ›å•Š æƒ¯ç§¯ä¸” è ä¹æ¾œ.
+	// æªå¸† æ•²é¥­æç»¢ æŸè…ç£ é¢‡é£˜ ä¿ºèçˆ¶æ€’ é˜å¤¸èŒ„å• çˆ¶ä¿Š çªå”± æŠ—æƒ‘æ‘¹ ç»™èŒ„ ç‰ˆå¿«ä¿Š æªåšçªæ‰ å›°ç§¦..
 	check(InRefIDs.Num() <= 10);
 
 	RefIDs.Empty();
@@ -644,9 +644,9 @@ const FItemInfoEquipPartsAsyncReqCombinedID& FItemInfoEquipPartsAsyncReqCombined
 }
 bool FItemInfoEquipPartsAsyncReqCombinedID::operator==(const FItemInfoEquipPartsAsyncReqCombinedID& InOther) const
 {
-	// MySerialNumber ¶û MyAsyncRequestName Àº ºñ±³ÇÒ ÇÊ¿ä°¡ ¾ø´Ù. 
-	// Ã³À½ºÎÅÍ ¼­·Î ´Ù¸£°Ô ½Äº°ÇÏ·Á´ø °Ç RefIDs »Ó.. 
-	// RefIDs ±¸¼ºÀÌ ´Ù¸¥µ¥ SerialNumber °¡ °°À¸¸é ¹®Á¦°¡ µÇÁö¸¸, RefIDs ±¸¼ºÀÌ °°°í SerialNumber °¡ ´Ù¸£´Ù°í ÇØ¼­ ¹®Á¦µÉ °Ç ¾ø´Ù.
+	// MySerialNumber å°” MyAsyncRequestName ç¯® åšèƒŒä¸” é˜å¤¸å•Š ç»ä¿ƒ. 
+	// è´¸æ¾œä½•ç£ è¾‘è‚º ä¿ƒç¦éœ¸ ä¾¥å–Šçªå¦¨å¸¦ æ‰’ RefIDs æŒ¥.. 
+	// RefIDs å¤‡å·±æ ä¿ƒå¼—å• SerialNumber å•Š éæ æ å·©åŠ›å•Š ç™»ç˜¤çˆ¶, RefIDs å¤‡å·±æ éç»Š SerialNumber å•Š ä¿ƒç¦ä¿ƒç»Š ç§¦è¾‘ å·©åŠ›çª æ‰’ ç»ä¿ƒ.
 
 	return IsEqualByRefIDs(InOther);
 }
@@ -658,7 +658,7 @@ bool FItemInfoEquipPartsAsyncReqCombinedID::IsEqualByRefIDs(const FItemInfoEquip
 		bool bHasAnyDifference = false;
 		for (int32 IA = 0; IA < RefIDs.Num(); ++IA)
 		{
-			if (!InOther.RefIDs.Contains(RefIDs[IA])) // µÎ ¹è¿­ °³¼ö°¡ °°À¸¹Ç·Î ÇÑÂÊÀÇ ¸ğµç ¿ä¼Ò°¡ ´Ù¸¥ ÂÊ¿¡ Æ÷ÇÔµÇ¾î ÀÖ´Ù¸é ¶È°°Àº °Å.
+			if (!InOther.RefIDs.Contains(RefIDs[IA])) // æ»´ ç¡…å‡¯ ä¿ºèå•Š éæ éª¨è‚º èŒ„ç‡ç‹¼ è‘›ç”µ å¤¸å®¶å•Š ä¿ƒå¼— ç‡ä¿Š å™¨çªƒç™»ç»¢ ä¹ä¿ƒæ åº¦éç¯® èŠ­.
 			{
 				bHasAnyDifference = true;
 				break;
@@ -679,7 +679,7 @@ UB2ItemInfo::UB2ItemInfo(const FObjectInitializer& ObjectInitializer)
 //
 //	if (HasAnyFlags(RF_ClassDefaultObject) == false)
 //	{
-//		// Á¤ÇØÁø ÇÏ³ª¸¦ ·Îµù
+//		// æ²¥ç§¦æŸ³ çªå”±ç”« è‚ºçˆ¹
 //		FString ItemDataTablePath;
 //		GConfig->GetString(TEXT("/Script/BladeII.B2Item"), TEXT("ItemInfoDataTable"), ItemDataTablePath, GGameIni);
 //
@@ -697,14 +697,14 @@ UB2ItemInfo::UB2ItemInfo(const FObjectInitializer& ObjectInitializer)
 //		if (TheData == NULL)
 //		{
 //			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-//				FString::Printf(TEXT("[Warning] ItemInfo µ¥ÀÌÅÍ Å×ÀÌºíÀ» Ã£Áö ¸øÇÔ. ÄÄÇ»ÅÍ°¡ °ğ Æø¹ßÇÑ´Ù."))
+//				FString::Printf(TEXT("[Warning] ItemInfo å•æç£ æŠ›æå–‰é˜‘ èŒ«ç˜¤ ç»™çªƒ. å“ªè…”ç£å•Š æ¢† æ°”æƒ¯èŒ„ä¿ƒ."))
 //				));
 //		}
 //
 //		if (SetInfoData == NULL)
 //		{
 //			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-//				FString::Printf(TEXT("[Warning] ItemSetInfo µ¥ÀÌÅÍ Å×ÀÌºíÀ» Ã£Áö ¸øÇÔ. ÄÄÇ»ÅÍ°¡ °ğ Æø¹ßÇÑ´Ù."))
+//				FString::Printf(TEXT("[Warning] ItemSetInfo å•æç£ æŠ›æå–‰é˜‘ èŒ«ç˜¤ ç»™çªƒ. å“ªè…”ç£å•Š æ¢† æ°”æƒ¯èŒ„ä¿ƒ."))
 //				));
 //		}
 //
@@ -714,19 +714,19 @@ UB2ItemInfo::UB2ItemInfo(const FObjectInitializer& ObjectInitializer)
 
 FSingleItemInfoData* UB2ItemInfo::GetInfoData(int32 ItemRefID, bool bFullyLoad)
 {
-	// ItemRefID ¸¦ key ·Î »ç¿ë.
+	// ItemRefID ç”« key è‚º è¤ä¾©.
 	FSingleItemInfoData* FoundDataRow = TheData ? TheData->FindRow<FSingleItemInfoData>(FName(*FString::FromInt(ItemRefID)), TEXT("")) : NULL;
 	if (FoundDataRow == NULL)
 	{
 #if WITH_EDITOR && !PLATFORM_MAC
 		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-			FString::Printf(TEXT("ItemInfo Å×ÀÌºí¿¡¼­ RefID %d ÀÇ Ç×¸ñÀ» Ã£Áö ¸øÇÔ. ÄÄÇ»ÅÍ°¡ °ğ Æø¹ßÇÑ´Ù."), ItemRefID)
+			FString::Printf(TEXT("ItemInfo æŠ›æå–‰ä¿Šè¾‘ RefID %d ç‹¼ äº²æ ¼é˜‘ èŒ«ç˜¤ ç»™çªƒ. å“ªè…”ç£å•Š æ¢† æ°”æƒ¯èŒ„ä¿ƒ."), ItemRefID)
 			));
 #endif
 		return NULL;
 	}
 
-	FoundDataRow->CachedMyRefID = ItemRefID; // RefID Ä³½ÌÇØ ³õÀ¸¸é SingleInfo ÀÇ °³º° µ¥ÀÌÅÍ ·Îµù ½Ã »ç¿ëÇÏ°Ô µÉ °Å.
+	FoundDataRow->CachedMyRefID = ItemRefID; // RefID æŸæ•™ç§¦ åˆæ æ SingleInfo ç‹¼ ä¿ºå–Š å•æç£ è‚ºçˆ¹ çŸ« è¤ä¾©çªéœ¸ çª èŠ­.
 
 	if (bFullyLoad
 #if WITH_EDITOR
@@ -734,7 +734,7 @@ FSingleItemInfoData* UB2ItemInfo::GetInfoData(int32 ItemRefID, bool bFullyLoad)
 #endif
 		)
 	{
-		// ±»ÀÌ LoadAllTAssets ¸¦ ÇÏÁö ¾Ê´õ¶óµµ ½ÇÁ¦ »ç¿ëÇÒ ¶§¿¡´Â °³º° ·¹ÆÛ·±½ºµéÀ» ·ÎµùÇÏ°Ô µÉ °Í. LoadAllTAssets À¸·Î´Â ¾µµ¥¾ø´Â ¸Ş¸ğ¸® ¼Ò¸ğÀÇ ¼ÒÁö°¡ ÀÖ´Ù.
+		// è¢«æ LoadAllTAssets ç”« çªç˜¤ è‡¼æ­¹æ‰¼æ¡£ è§’åŠ› è¤ä¾©ä¸” é”­ä¿Šç»° ä¿ºå–Š é¥­æ¬ºç¹èƒ¶ç”¸é˜‘ è‚ºçˆ¹çªéœ¸ çª å·´. LoadAllTAssets æ è‚ºç»° é•œå•ç»ç»° çš‹è‘›åºœ å®¶è‘›ç‹¼ å®¶ç˜¤å•Š ä¹ä¿ƒ.
 		FoundDataRow->LoadAllTAssets(InfoLoadManager, ItemRefID, LoadedPtrMap);
 	}
 
@@ -743,13 +743,13 @@ FSingleItemInfoData* UB2ItemInfo::GetInfoData(int32 ItemRefID, bool bFullyLoad)
 
 int32 UB2ItemInfo::GetRandomItemRefID()
 {
-	return 1000100; //¸®¼Ò½º Á¦ÀÛÀÌ µÇ¾î ÀÖÁö ¾Ê±â ¶§¹®¿¡ Ã¹ rowÀÇ ¾ÆÀÌÅÛ¸¸ ³»¹ñ´Â °ÍÀ¸·Î ÀÓ½Ã »ç¿ë
+	return 1000100; //åºœå®¶èƒ¶ åŠ›ç´¯æ ç™»ç»¢ ä¹ç˜¤ è‡¼æ‰ é”­å·©ä¿Š éœ‰ rowç‹¼ é…’æè¢çˆ¶ éƒ´æŸœç»° å·´æ è‚º çƒ™çŸ« è¤ä¾©
 	/*
 	uint32 NumItems = TheData ? TheData->RowMap.Num() : 0;
 
 	if (NumItems > 0)
 	{
-		int32 RandIndex = FMath::FRandRange(0.0f, (float)NumItems - 1.5f); //°ñµå Á¦¿Ü
+		int32 RandIndex = FMath::FRandRange(0.0f, (float)NumItems - 1.5f); //æ¦œé› åŠ›å¯‡
 
 		int32 Idx = 0;
 		for (auto it = TheData->RowMap.CreateConstIterator(); it; ++it, ++Idx)
@@ -805,7 +805,7 @@ void UB2ItemInfo::PreloadClassAssets(const TArray<int32>& InRefIDList)
 {
 //	for (int32 RI = 0; RI < InRefIDList.Num(); ++RI)
 //	{
-//		GetInfoData(InRefIDList[RI], true); // FullyLoad ¸¦ true ·Î ÁÖ°í ºÎ¸£¸é ´Ù ·ÎµåµÊ. ÀÌ°É ´ë·« ¸î°¡Áö ¹üÁÖº°·Î ³ª´²¼­ Preload ÇÏ´Â ¹æ½ÄÀÌ ÇÊ¿äÇÒ ¼öµµ.
+//		GetInfoData(InRefIDList[RI], true); // FullyLoad ç”« true è‚º æ—ç»Š ä½•ç¦æ ä¿ƒ è‚ºé›å‡³. æå§ æªå¸† å‰²å•Šç˜¤ è£¹æ—å–Šè‚º å”±åºŠè¾‘ Preload çªç»° è§„ä¾¥æ é˜å¤¸ä¸” èæ¡£.
 //	}
 //#if !UE_BUILD_SHIPPING
 //	if (InRefIDList.Num() > 0){
@@ -816,9 +816,9 @@ void UB2ItemInfo::PreloadClassAssets(const TArray<int32>& InRefIDList)
 
 void UB2ItemInfo::UnloadAll()
 {
-	check(0); // À½ Àá±ñ.. ÀÌ°Å ÀÏ´Ü ¾²¸é ¾ÈµÉ °Í °°À½. UnloadAllExceptCurrentLocalEquipPartData ·Î ´ë½Å..
+	check(0); // æ¾œ æ³ªç˜ª.. æèŠ­ è€çªœ é™æ æ•‘çª å·´ éæ¾œ. UnloadAllExceptCurrentLocalEquipPartData è‚º æªè„š..
 
-	// DataTable ÀÇ ¸ğµç row ¸¦ iterate ÇÏ´Â ¹æ¹ıÀÎµí.
+	// DataTable ç‹¼ è‘›ç”µ row ç”« iterate çªç»° è§„è¿‡ç‰¢æ·€.
 	if (TheData)
 	{
 		TArray<FName> RowKeys = TheData->GetRowNames();
@@ -831,7 +831,7 @@ void UB2ItemInfo::UnloadAll()
 				FoundDataRow->UnloadAllTAssets(InfoLoadManager, ThisRowNumber, LoadedPtrMap, true);
 			}
 		}
-		LoadedPtrMap.Empty(); // È®ÀÎ »ç»ì
+		LoadedPtrMap.Empty(); // çŠ¬ç‰¢ è¤æ··
 	}	
 
 	ResetAsyncLoadReqInfo();
@@ -841,9 +841,9 @@ void UB2ItemInfo::UnloadAllExceptCurrentLocalEquipPartData()
 {
 	B2_SCOPED_TRACK_LOG(TEXT("UB2ItemInfo::UnloadAllExceptCurrentLocalEquipPartData"));
 
-//	// Æ¯Á¤ ºÎºĞ¿¡¼­ ÇöÀç ·ÎÄÃ Ä³¸¯ÅÍµéÀÇ ÀåÂø Àåºñ ÆÄÆ®¶û °ü·ÃµÈ ÀÏºÎ¿¡ ÇÊ¿äÇÑ µ¥ÀÌÅÍ ÀÌ¿Ü¿¡ ¸ğµç °ÍÀ» ³¯¸®±â À§ÇÔ.
-//	// ¿¹¸¦ µé¾î µµ°¨ÀÌ³ª ÀÎº¥Åä¸® ³ª°¥ ½Ã »ç¿ë.
-//	// .. ±×¸®°í °á±¹Àº ÀÏ¹İÀûÀÎ UnloadAll »óÈ²À» ÀÌ°É·Î ´ëÃ¼ÇØ¾ß ÇÒ µí.. ·ÎÄÃ Ä³¸¯ÅÍ ÀåÂø ÆÄÆ®µéÀ» ³²°ÜµÎ´Â °Ô Á» Áß¿äÇØÁ®¼­.
+//	// æ¼‚æ²¥ ä½•ç›’ä¿Šè¾‘ æ³…çŠ è‚ºæ‹¿ æŸè…ç£ç”¸ç‹¼ å˜é¦’ å˜åš é¢‡é£˜å°” åŒ…è®¿ç­‰ è€ä½•ä¿Š é˜å¤¸èŒ„ å•æç£ æå¯‡ä¿Š è‘›ç”µ å·´é˜‘ æœåºœæ‰ å›°çªƒ.
+//	// æŠ—ç”« ç”¸ç»¢ æ¡£çš‘æå”± ç‰¢äº¥é…åºœ å”±å“ çŸ« è¤ä¾©.
+//	// .. å¼Šåºœç»Š æ¬æƒ«ç¯® è€é¦†åˆ©ç‰¢ UnloadAll æƒ‘ç‚”é˜‘ æå§è‚º æªçœ‰ç§¦å…· ä¸” æ·€.. è‚ºæ‹¿ æŸè…ç£ å˜é¦’ é¢‡é£˜ç”¸é˜‘ å·¢è´¥æ»´ç»° éœ¸ ç²± åå¤¸ç§¦å»‰è¾‘.
 //
 //#if WITH_EDITOR
 //	if (GIsEditor) {
@@ -851,7 +851,7 @@ void UB2ItemInfo::UnloadAllExceptCurrentLocalEquipPartData()
 //	}
 //#endif
 //
-//	TMap<int32, bool> AllEquippedRefIDs; // Value ´Â ÀÇ¹Ì¾ø°í °Á Key °Ë»ö¸¸ ÇÒ °Å.
+//	TMap<int32, bool> AllEquippedRefIDs; // Value ç»° ç‹¼å›ºç»ç»Š å‚² Key å…«ç¥¸çˆ¶ ä¸” èŠ­.
 //
 //	for (int32 PCI = 0; PCI < GetMaxPCClassNum(); ++PCI)
 //	{
@@ -862,16 +862,16 @@ void UB2ItemInfo::UnloadAllExceptCurrentLocalEquipPartData()
 //
 //		for (FB2Item& ThisEquipped : ThisEquippedList)
 //		{
-//			AllEquippedRefIDs.Add(ThisEquipped.ItemRefID, true); // Key °ª¸¸ ÀÖÀ½ µÊ.
+//			AllEquippedRefIDs.Add(ThisEquipped.ItemRefID, true); // Key è”¼çˆ¶ ä¹æ¾œ å‡³.
 //		}
 //	}
 //	
 //	if (TheData)
 //	{
-//		// RefID °£¿¡ Áßº¹ÇØ¼­ »ç¿ëµÇ´Â ÆÄÆ®µéÀÌ ÀÖ¾î¼­ ·çÆ®¼Â Ã³¸®¿¡ ÁÖÀÇ°¡ ÇÊ¿äÇÏ´Ù..
-//		// ÀÌ Á¤µµ¸é ¸®¼Ò½º ·Îµù¿¡ ÇÊÀûÇÏ´Â »ó´çÇÑ ¼öÁØÀÎµ¥.. ¤Ñ¤Ñ
+//		// RefID åŸƒä¿Š åæ±—ç§¦è¾‘ è¤ä¾©ç™»ç»° é¢‡é£˜ç”¸æ ä¹ç»¢è¾‘ é£é£˜æ‚¸ è´¸åºœä¿Š æ—ç‹¼å•Š é˜å¤¸çªä¿ƒ..
+//		// æ æ²¥æ¡£æ åºœå®¶èƒ¶ è‚ºçˆ¹ä¿Š é˜åˆ©çªç»° æƒ‘å¯¸èŒ„ èéœ–ç‰¢å•.. ã±ã±
 //
-//		// 1Â÷ ÆĞ½º¿¡¼­ ¸ğµÎ RootSet ¿¡¼­ Á¦°Å
+//		// 1ç’ è©èƒ¶ä¿Šè¾‘ è‘›æ»´ RootSet ä¿Šè¾‘ åŠ›èŠ­
 //		TArray<FSingleItemInfoData*> AllRows;
 //		TheData->GetAllRows<FSingleItemInfoData>(TEXT(""), AllRows);
 //		for (int32 RI = 0; RI < AllRows.Num(); ++RI)
@@ -882,7 +882,7 @@ void UB2ItemInfo::UnloadAllExceptCurrentLocalEquipPartData()
 //				FoundDataRow->MarkLoadedEquipPartAtRooSet(false);
 //			}
 //		}
-//		// 2Â÷ ÆĞ½º¿¡¼­ ÇöÀç ÀåÂøÀÎ °Í¸¸ RootSet ¿¡ Ãß°¡
+//		// 2ç’ è©èƒ¶ä¿Šè¾‘ æ³…çŠ å˜é¦’ç‰¢ å·´çˆ¶ RootSet ä¿Š çœ å•Š
 //		for (TMap<int32, bool>::TIterator RefIDIt(AllEquippedRefIDs); RefIDIt; ++RefIDIt)
 //		{
 //			int32 ThisRefID = RefIDIt.Key();
@@ -891,14 +891,14 @@ void UB2ItemInfo::UnloadAllExceptCurrentLocalEquipPartData()
 //				FoundDataRow->MarkLoadedEquipPartAtRooSet(true);
 //			}
 //		}
-//		// ¸¶Áö¸·À¸·Î RootSet ÀÎ °Å Á¦¿ÜÇÑ Unload
+//		// ä»˜ç˜¤é˜œæ è‚º RootSet ç‰¢ èŠ­ åŠ›å¯‡èŒ„ Unload
 //		TArray<FName> RowKeys = TheData->GetRowNames();
 //		for (int32 RI = 0; RI < RowKeys.Num(); ++RI)
 //		{
 //			FName& ThisRowKey = RowKeys[RI];
 //			FSingleItemInfoData* FoundDataRow = TheData->FindRow<FSingleItemInfoData>(ThisRowKey, TEXT(""));
 //			if (FoundDataRow)
-//			{ // GetAllRows ·Î ÇÑ°Å¶û ¼ø¼­°¡ ¾È ¸ÂÀ¸·Á³ª...
+//			{ // GetAllRows è‚º èŒ„èŠ­å°” é‰´è¾‘å•Š æ•‘ å˜æ å¦¨å”±...
 //				const int32 ThisRowNumber = FCString::Atoi(*ThisRowKey.ToString());
 //				FoundDataRow->UnloadAllTAssets(InfoLoadManager, ThisRowNumber, LoadedPtrMap, false);
 //			}
@@ -909,7 +909,7 @@ void UB2ItemInfo::UnloadAllExceptCurrentLocalEquipPartData()
 FSingleItemInfoLoadedPtrData* UB2ItemInfo::GetLoadedPtrForID(int32 InItemID)
 {
 	FSingleItemInfoLoadedPtrData* FoundLoadedPtrEntry = LoadedPtrMap.Find(InItemID);
-	if (!FoundLoadedPtrEntry && InItemID > 0) // ¾øÀ¸¸é »õ·Î »ı¼º.
+	if (!FoundLoadedPtrEntry && InItemID > 0) // ç»æ æ è´§è‚º ç§¯å·±.
 	{
 		FSingleItemInfoLoadedPtrData NewLoadedEntry;
 		LoadedPtrMap.Add(InItemID, NewLoadedEntry);
@@ -921,8 +921,8 @@ FSingleItemInfoLoadedPtrData* UB2ItemInfo::GetLoadedPtrForID(int32 InItemID)
 AB2DropItem* UB2ItemInfo::SpawnSingleDropItem(class UWorld* SpawnWorld, int32 ItemRefID, const FTransform& SpawnTransform, const FActorSpawnParameters& SpawnParameters, float StayTime)
 {
 	FActorSpawnParameters FinalSpawnParam = SpawnParameters;
-//	// PostSpawnInitialize ³ª BeginPlay ¸¦ µû·Î ¶¼°í ±× Àü¿¡ ItemInfo ¸¦ Àû¿ëÇÏ±â À§ÇÔ.
-//	// bDeferPostSpawnInitialize ¸¸ ³»ºÎÀûÀ¸·Î ¼¼ÆÃÇÏ´Â PCClassInfo/NPCClassInfo ¿Í´Â ´Ş¸® bDeferConstruction µµ ³»ºÎÀûÀ¸·Î ¼¼ÆÃÇÏ´Âµ¥ FinishSpawning ÀÌÀü¿¡ Æ¯º°È÷ ÇÒ °ÍÀÌ ¾ø´Ù°í ÆÇ´ÜµÇ±â ¶§¹®.
+//	// PostSpawnInitialize å”± BeginPlay ç”« è¶è‚º éƒ½ç»Š å¼Š å‚ˆä¿Š ItemInfo ç”« åˆ©ä¾©çªæ‰ å›°çªƒ.
+//	// bDeferPostSpawnInitialize çˆ¶ éƒ´ä½•åˆ©æ è‚º æŠ€æ³¼çªç»° PCClassInfo/NPCClassInfo å®¢ç»° å´”åºœ bDeferConstruction æ¡£ éƒ´ä½•åˆ©æ è‚º æŠ€æ³¼çªç»°å• FinishSpawning æå‚ˆä¿Š æ¼‚å–Šæ´’ ä¸” å·´æ ç»ä¿ƒç»Š é­„çªœç™»æ‰ é”­å·©.
 //	FinalSpawnParam.bDeferConstruction = true;
 //	FinalSpawnParam.bDeferPostSpawnInitialize = true;
 //
@@ -939,8 +939,8 @@ AB2DropItem* UB2ItemInfo::SpawnSingleDropItem(class UWorld* SpawnWorld, int32 It
 //		return NULL;
 //	}
 //
-//	// PCClassInfo ³ª NPCClassInfo ÀÇ °æ¿ì¿Í ¸¶Âù°¡Áö·Î ÀÌ°Ô Á¦´ë·Î ¸ÔÈ÷·Á¸é SpawnParameters ¿¡¼­ bDeferConstruction ÀÌ ¼¼ÆÃµÇ¾î ÀÖ¾î¾ß ÇÒ °Í. ±×·¡¾ß BeginPlay °¡ ÀÌ ÀÌÈÄ ºÒ¸®°Ô µÊ.
-//	// ±âº» Å¬·¡½º´Â Á¤ÇØ ³õ°í »ç¿ë. (DropItem_DefaultBaseBPClass)
+//	// PCClassInfo å”± NPCClassInfo ç‹¼ ç‰ˆå¿«å®¢ ä»˜è›®å•Šç˜¤è‚º æéœ¸ åŠ›æªè‚º å†ˆæ´’å¦¨æ SpawnParameters ä¿Šè¾‘ bDeferConstruction æ æŠ€æ³¼ç™»ç»¢ ä¹ç»¢å…· ä¸” å·´. å¼Šè´°å…· BeginPlay å•Š æ æé¥¶ é˜‚åºœéœ¸ å‡³.
+//	// æ‰å¤¯ åŠªè´°èƒ¶ç»° æ²¥ç§¦ åˆç»Š è¤ä¾©. (DropItem_DefaultBaseBPClass)
 //	AB2DropItem* SpawnedActor = Cast<AB2DropItem>(SpawnWorld->SpawnActor(AB2DropItem::StaticClass(), &SpawnTransform, FinalSpawnParam));
 //	BII_CHECK(SpawnedActor && SpawnedActor->IsValidObj());
 //	if (SpawnedActor == NULL)
@@ -951,13 +951,13 @@ AB2DropItem* UB2ItemInfo::SpawnSingleDropItem(class UWorld* SpawnWorld, int32 It
 //	SpawnedActor->OverrideByItemInfo(this, ThisInfo);
 //	SpawnedActor->SignificantData.ItemRefID = ItemRefID; 
 //
-//	// SignificantData ÀÇ ±âÅ¸ ³ª¸ÓÁö´Â ItemRefID ¸¦ ±â¹İÀ¸·Î ¼­¹ö¿¡¼­ °¡Á®¿À´Âµ¥ °³¹ß¹öÀü Å¬¶óÀÌ¾ğÆ®¿¡¼­´Â ¾Æ·¡¿Í °°ÀÌ Å×½ºÆ® µ¥ÀÌÅÍ¸¦ ³Ö¾îÁÙ ¼ö ÀÖÀ½.
+//	// SignificantData ç‹¼ æ‰é¸¥ å”±èµ£ç˜¤ç»° ItemRefID ç”« æ‰é¦†æ è‚º è¾‘æ»šä¿Šè¾‘ å•Šå»‰å·ç»°å• ä¿ºæƒ¯æ»šå‚ˆ åŠªæ‰¼ææ”«é£˜ä¿Šè¾‘ç»° é…’è´°å®¢ éæ æŠ›èƒ¶é£˜ å•æç£ç”« æŒç»¢ä¸´ è ä¹æ¾œ.
 ////#if !UE_BUILD_SHIPPING 
 //	//DevOnlyLoadItemClientTestData(SpawnedActor->SignificantData);
 ////#endif
 //	
 //
-//	// ItemInfo Àû¿ë ÈÄ bDeferConstruction ¹× bDeferPostSpawnInitialize ¿¡ µû¸¥ Ã³¸®
+//	// ItemInfo åˆ©ä¾© é¥¶ bDeferConstruction æ£º bDeferPostSpawnInitialize ä¿Š è¶å¼— è´¸åºœ
 //	if (SpawnedActor)
 //	{
 //		if(!FMath::IsNearlyZero(StayTime))
@@ -967,7 +967,7 @@ AB2DropItem* UB2ItemInfo::SpawnSingleDropItem(class UWorld* SpawnWorld, int32 It
 //
 //		SpawnWorld->ManualPostSpawnInitialize(SpawnedActor, SpawnTransform, FinalSpawnParam);
 //
-//		// FinishSpawning ¿¡¼­ BeginPlay °¡ ºÒ¸². ¸¸ÀÏ ¾ÆÀÌÅÛ spawn »óÈ²¿¡ µû¶ó ÀÌ°É ³ªÁß¿¡ Ã³¸®ÇØ¾ß ÇÏ´Â °æ¿ì°¡ »ı±ä´Ù¸é »ó´Ü bDeferConstruction ¼¼ÆÃÇÏ´Â ºÎºĞ°ú ÇÔ²² ÀÌ°É ¹ÛÀ¸·Î »¬ °Í.
+//		// FinishSpawning ä¿Šè¾‘ BeginPlay å•Š é˜‚è¦†. çˆ¶è€ é…’æè¢ spawn æƒ‘ç‚”ä¿Š è¶æ‰¼ æå§ å”±åä¿Š è´¸åºœç§¦å…· çªç»° ç‰ˆå¿«å•Š ç§¯å˜ä¿ƒæ æƒ‘çªœ bDeferConstruction æŠ€æ³¼çªç»° ä½•ç›’è‹ çªƒè†Š æå§ è§‚æ è‚º æ»‘ å·´.
 //		SpawnedActor->FinishSpawning(SpawnTransform);
 //	}
 //
@@ -982,11 +982,11 @@ void UB2ItemInfo::EditorLoadAll(SetB2ContentLoadingProgressSplashFnPtr InSplashP
 	//	return;
 	//}
 
-	//// DataTable ÀÇ ¸ğµç row ¸¦ iterate ÇÏ´Â ¹æ¹ıÀÎµí.
+	//// DataTable ç‹¼ è‘›ç”µ row ç”« iterate çªç»° è§„è¿‡ç‰¢æ·€.
 	//TArray<FName> RowKeys = TheData->GetRowNames();
 	//
 	//const float TotalProgRange = FMath::Max(0.0f, InEndProgress - InStartProgress);
-	//// InfoAsset ¿¡ µî·ÏµÇ´Â ¾ÖµéÀÌ ¾ó¸¶³ª µÇ´ÂÁö¿¡ µû¶ó ÀûÀıÈ÷ Á¤ÇÏ´Â °Å. ¸î¹ø¸¶´Ù ÇÑ¹ø¾¿ ¾÷µ¥ÀÌÆ® ÇÒ Áö.
+	//// InfoAsset ä¿Š æ®¿åºŸç™»ç»° å±€ç”¸æ å€”ä»˜å”± ç™»ç»°ç˜¤ä¿Š è¶æ‰¼ åˆ©ä¾‹æ´’ æ²¥çªç»° èŠ­. å‰²é”…ä»˜ä¿ƒ èŒ„é”…ç©¶ è¯€å•æé£˜ ä¸” ç˜¤.
 	//const int32 ProgUpdateInterval = 10;
 	//const int32 TotalProgUpdateCount = RowKeys.Num() / ProgUpdateInterval;
 	//const float SingleProgIncAmount = TotalProgRange / (float)TotalProgUpdateCount;
@@ -995,9 +995,9 @@ void UB2ItemInfo::EditorLoadAll(SetB2ContentLoadingProgressSplashFnPtr InSplashP
 	//
 	//for (int32 RI = 0; RI < RowKeys.Num(); ++RI)
 	//{
-	//	GetInfoData(FCString::Atoi(*RowKeys[RI].ToString()), true); // ¾È¿¡¼­ ´Ù½Ã FName ÀÌ µÇ´Ï ³¶ºñÀÎµ¥ ¾îÂ÷ÇÇ ¿¡µğÅÍ ±â´ÉÀÌ´Ï..
+	//	GetInfoData(FCString::Atoi(*RowKeys[RI].ToString()), true); // æ•‘ä¿Šè¾‘ ä¿ƒçŸ« FName æ ç™»èª æ‰¯åšç‰¢å• ç»¢ç’ä¹” ä¿Šå¼ç£ æ‰ç“·æèª..
 
-	//	// Splash progress ¾÷µ¥ÀÌÆ®. ¾Æ·¡ SetInfoData ´Â ¾ó¸¶ ¾ÈµÉ °É·Î Ä¡°í..
+	//	// Splash progress è¯€å•æé£˜. é…’è´° SetInfoData ç»° å€”ä»˜ æ•‘çª å§è‚º æ‘¹ç»Š..
 	//	if (InSplashProgFnPtr && (RI % ProgUpdateInterval == ProgUpdateInterval - 1))
 	//	{
 	//		CurrProg = FMath::Min(InEndProgress, CurrProg + SingleProgIncAmount);
@@ -1010,18 +1010,18 @@ void UB2ItemInfo::EditorLoadAll(SetB2ContentLoadingProgressSplashFnPtr InSplashP
 	//	TArray<FName> SetRowKeys = SetInfoData->GetRowNames();
 	//	for (int32 RI = 0; RI < SetRowKeys.Num(); ++RI)
 	//	{
-	//		GetSetInfoData(FCString::Atoi(*SetRowKeys[RI].ToString())); // ¾È¿¡¼­ ´Ù½Ã FName ÀÌ µÇ´Ï ³¶ºñÀÎµ¥ ¾îÂ÷ÇÇ ¿¡µğÅÍ ±â´ÉÀÌ´Ï..
+	//		GetSetInfoData(FCString::Atoi(*SetRowKeys[RI].ToString())); // æ•‘ä¿Šè¾‘ ä¿ƒçŸ« FName æ ç™»èª æ‰¯åšç‰¢å• ç»¢ç’ä¹” ä¿Šå¼ç£ æ‰ç“·æèª..
 	//	}
 	//}
 
 
-	//// ÀÌ°É »ç¿ëÇÏ·Á¸é BladeIIGameImpl::StartupModule ¿¡¼­ ÇÏ°Ô µÉ ÅÙµ¥ ±×·¯¸é ÀÌ°ÍÀÇ ÀÎ½ºÅÏ½º À§Ä¡°¡ ¹Ù²î°Ô µÉ °Í..
+	//// æå§ è¤ä¾©çªå¦¨æ BladeIIGameImpl::StartupModule ä¿Šè¾‘ çªéœ¸ çª åˆ¨å• å¼ŠçŸ¾æ æå·´ç‹¼ ç‰¢èƒ¶ç•”èƒ¶ å›°æ‘¹å•Š å®˜å·®éœ¸ çª å·´..
 }
 
 void UB2ItemInfo::PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent)
 { 
 	//
-	// DataTable ¿¡µğÆ® ½Ã¿¡´Â ÀÌ°Ô ¾È¸ÔÈ÷³ª..
+	// DataTable ä¿Šå¼é£˜ çŸ«ä¿Šç»° æéœ¸ æ•‘å†ˆæ´’å”±..
 	//
 
 	Super::PostEditChangeProperty(PropertyChangedEvent);
@@ -1037,7 +1037,7 @@ void UB2ItemInfo::PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedE
 		for (int32 RI = 0; RI < RowKeys.Num(); ++RI)
 		{
 			FSingleItemInfoData* FoundDataRow = TheData->FindRow<FSingleItemInfoData>(RowKeys[RI], TEXT(""));
-			//FoundDataRow->LoadLocalizedName(); ÀÌÁ¨ Á½µµ ¾µ¸ğ¾ø±º.
+			//FoundDataRow->LoadLocalizedName(); æå“© ä¸¤æ¡£ é•œè‘›ç»ç„™.
 		}
 	}
 }
@@ -1093,7 +1093,7 @@ void UB2ItemInfo::OnAsyncLoadComplete(const FString& CompleteRequest, const TArr
 {
 //	TArray<int32> JustLoadedRefIDs;
 //
-//	// PendingEquipPartsAsyncLoadReqList ¿¡¼­ ¿Ï·áµÈ ¿£Æ®¸®¸¦ ½Äº°ÇÏ°í ¸®½ºÆ®¿¡¼­ Á¦°Å.
+//	// PendingEquipPartsAsyncLoadReqList ä¿Šè¾‘ è‚¯ä¸°ç­‰ æµšé£˜åºœç”« ä¾¥å–Šçªç»Š åºœèƒ¶é£˜ä¿Šè¾‘ åŠ›èŠ­.
 //	bool bFoundMatchingCombinedID = false;
 //	for (int32 RI = 0; RI < PendingEquipPartsAsyncLoadReqList.Num(); ++RI)
 //	{
@@ -1107,12 +1107,12 @@ void UB2ItemInfo::OnAsyncLoadComplete(const FString& CompleteRequest, const TArr
 //		}
 //	}
 //
-//	// ·ÎµùµÈ ¿¡¼ÂµéÀ» Ä³½Ì
+//	// è‚ºçˆ¹ç­‰ ä¿Šæ‚¸ç”¸é˜‘ æŸæ•™
 //	for (int32 LoadedRefID : JustLoadedRefIDs)
 //	{
-//		// ¿©±â¼­ FullyLoad ¸¦ ÁÖ¸é Ä³½ÌÀÌ ¾Ë¾Æ¼­ µÇ±ä ÇÏÁö¸¸
-//		// ÀÌ Async ·ÎµùÀº ´ÜÀÏ Info ¿¡ µî·ÏµÈ ¸ğµç °É ·ÎµùÇÏ·Á´Â °Ô ¾Æ´Ï¹Ç·Î ¿ª½Ã³ª FullyLoad ¾øÀÌ ±×³É.
-//		// °Ô´Ù°¡ °Å±â¼­ FullyLoad ÇÏ´Â °Ç async flush ¿ä¼Ò°¡ ÀÖ¾î¼­ async ·Îµù°ú ¿¬°üÇØ¼­ ¾²±â ÀûÀıÄ¡ ¾Ê´Ù.
+//		// å’¯æ‰è¾‘ FullyLoad ç”« æ—æ æŸæ•™æ èˆ…é…’è¾‘ ç™»å˜ çªç˜¤çˆ¶
+//		// æ Async è‚ºçˆ¹ç¯® çªœè€ Info ä¿Š æ®¿åºŸç­‰ è‘›ç”µ å§ è‚ºçˆ¹çªå¦¨ç»° éœ¸ é…’èªéª¨è‚º å¼€çŸ«å”± FullyLoad ç»æ å¼Šæˆ.
+//		// éœ¸ä¿ƒå•Š èŠ­æ‰è¾‘ FullyLoad çªç»° æ‰’ async flush å¤¸å®¶å•Š ä¹ç»¢è¾‘ async è‚ºçˆ¹è‹ æ¥·åŒ…ç§¦è¾‘ é™æ‰ åˆ©ä¾‹æ‘¹ è‡¼ä¿ƒ.
 //		FSingleItemInfoData* ThisLoadedInfo = GetInfoData(LoadedRefID, false); 
 //		if (ThisLoadedInfo)
 //		{
@@ -1120,7 +1120,7 @@ void UB2ItemInfo::OnAsyncLoadComplete(const FString& CompleteRequest, const TArr
 //		}
 //	}
 //
-//	// ¿Ï·áµÈ Request ÀÌ¸§À» ´ã¾Æ¼­ ÀÌº¥Æ® ³¯¸².
+//	// è‚¯ä¸°ç­‰ Request ææŠšé˜‘ æ·¬é…’è¾‘ æäº¥é£˜ æœè¦†.
 //	if (OnEquipPartsAyncLoadComplete.IsBound())
 //	{
 //		OnEquipPartsAyncLoadComplete.Broadcast(CompleteRequest);
@@ -1129,7 +1129,7 @@ void UB2ItemInfo::OnAsyncLoadComplete(const FString& CompleteRequest, const TArr
 //#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
 //	if (!bFoundMatchingCombinedID)
 //	{
-//		// ÀÌ·± ÀÏÀÌ ÀÖÀ» ¼öµµ? ¶È°°Àº RefID Á¶ÇÕÀ¸·Î ¿¬´Ş¾Æ ·Îµù ¿äÃ»À» º¸³¾ °æ¿ì µÑ ´Ù¿¡ ´ëÇØ °¢°¢ Äİ¹éÀÌ ¿Â´Ù¸é ÀÌ·± ÀÏÀÌ ¹ß»ıÇÒ ÅÙµ¥ ½ÇÁ¦·Î ±×·± °æ¿ì¿¡´Â ÇÑ¹ø¸¸ ¿Â´Ù.
+//		// æç¹ è€æ ä¹é˜‘ èæ¡£? åº¦éç¯® RefID ç‚¼é’¦æ è‚º æ¥·å´”é…’ è‚ºçˆ¹ å¤¸æ²¡é˜‘ ç„Šå°˜ ç‰ˆå¿« ç¬› ä¿ƒä¿Š æªç§¦ é˜¿é˜¿ å¦®å½’æ æŸ¯ä¿ƒæ æç¹ è€æ æƒ¯ç§¯ä¸” åˆ¨å• è§’åŠ›è‚º å¼Šç¹ ç‰ˆå¿«ä¿Šç»° èŒ„é”…çˆ¶ æŸ¯ä¿ƒ.
 //		FString AssetKeyString;
 //		for (const FB2AsyncRequestInfo& ThisReqInfo : CompleteRequestList)
 //		{
@@ -1146,18 +1146,18 @@ bool UB2ItemInfo::TryAsyncLoadOfEquipParts(const TArray<int32>& InRefIDList, FSt
 	//TArray<FB2AsyncRequestInfo> TotalReqInfo;
 
 	//for (int32 ThisRefID : InRefIDList)
-	//{ // ·Îµù ¾øÀÌ ±×³É InfoData ²®µ¥±â¸¸
+	//{ // è‚ºçˆ¹ ç»æ å¼Šæˆ InfoData ä¼¯å•æ‰çˆ¶
 	//	FSingleItemInfoData* ThisInfoData = GetInfoData(ThisRefID, false);
 	//	if (ThisInfoData)
 	//	{
-	//		ThisInfoData->GetEquipPartsAsyncLoadReqInfo(TotalReqInfo); // °¢ InfoData ¿¡¼­ ±Ü¾î¿Â °Å ´©Àû½ÃÅ´. ´Ù ¸ğÀ½
+	//		ThisInfoData->GetEquipPartsAsyncLoadReqInfo(TotalReqInfo); // é˜¿ InfoData ä¿Šè¾‘ é¿ç»¢æŸ¯ èŠ­ ç©¿åˆ©çŸ«ç³¯. ä¿ƒ è‘›æ¾œ
 	//	}
 	//}
 
 
 	////
-	//// GetAsyncReqCombinedIDofPartsList ¸¦ ¸ÕÀú Ã¼Å©ÇØ º¸°í ÀÌ¹Ì pending ÀÌ¸é return false ÇØ º¼±î?
-	//// ¿¬´Ş¾Æ µé¾î¿Â Áßº¹ ¿äÃ» ¹«½Ã Â÷¿ø..
+	//// GetAsyncReqCombinedIDofPartsList ç”« åˆšå† çœ‰å†œç§¦ ç„Šç»Š æå›º pending ææ return false ç§¦ æ­é³–?
+	//// æ¥·å´”é…’ ç”¸ç»¢æŸ¯ åæ±— å¤¸æ²¡ å…¬çŸ« ç’ç›”..
 	////FItemInfoEquipPartsAsyncReqCombinedID AsyncReqCombinedID; 
 	////if (GetAsyncReqCombinedIDofPartsList(InRefIDList, AsyncReqCombinedID, false))
 	////{
@@ -1166,19 +1166,19 @@ bool UB2ItemInfo::TryAsyncLoadOfEquipParts(const TArray<int32>& InRefIDList, FSt
 	////
 
 
-	//FItemInfoEquipPartsAsyncReqCombinedID AsyncReqCombinedID; // Async ·Îµù ¿äÃ»ÀÌ¶û ¿Ï·á ÀÌÈÄ ½Äº°¿¡ ÇÊ¿äÇÑ Á¤º¸.
-	//if (GetAsyncReqCombinedIDofPartsList(InRefIDList, AsyncReqCombinedID, true)) // ¿©±â°¡ À¯ÀÏÇÏ°Ô ±âÁ¸¿¡ ¾øÀ¸¸é »õ·Î ¸¸µé¾î¾ß ÇÒ °÷ÀÌ µÉ µí.
+	//FItemInfoEquipPartsAsyncReqCombinedID AsyncReqCombinedID; // Async è‚ºçˆ¹ å¤¸æ²¡æå°” è‚¯ä¸° æé¥¶ ä¾¥å–Šä¿Š é˜å¤¸èŒ„ æ²¥ç„Š.
+	//if (GetAsyncReqCombinedIDofPartsList(InRefIDList, AsyncReqCombinedID, true)) // å’¯æ‰å•Š èœ¡è€çªéœ¸ æ‰ç²®ä¿Š ç»æ æ è´§è‚º çˆ¶ç”¸ç»¢å…· ä¸” é•‘æ çª æ·€.
 	//{
 	//	check(AsyncReqCombinedID.IsValid());
 	//	TryAsyncLoad(AsyncReqCombinedID.MyAsyncRequestName, TotalReqInfo, bShowBlockingUI);
-	//	OutRequestedName = AsyncReqCombinedID.MyAsyncRequestName; // ¹ŞÀº ÂÊ¿¡¼­ ÇÊ¿äÇÏ¸é ÀÌ°É °¡Áö°í ¿Ï·á ÀÌº¥Æ®°¡ ¿ÔÀ» ¶§ ½Äº° °¡´É.
+	//	OutRequestedName = AsyncReqCombinedID.MyAsyncRequestName; // ç½ç¯® ç‡ä¿Šè¾‘ é˜å¤¸çªæ æå§ å•Šç˜¤ç»Š è‚¯ä¸° æäº¥é£˜å•Š å­é˜‘ é”­ ä¾¥å–Š å•Šç“·.
 	//	return true;
 	//}
 	//
 	return false;
 }
 
-// ´Ü¼ø Get À¸·Î¼­¸¸ ¾²·Á´ø °Ô ¾Æ´Ñ Generate ÀÇ ÀÇ¹Ì°¡ Á» ÀÖ´Ù. const ¼º°İÀÌ¾î¾ß ÇÏ´Â °Ç ¾Æ´Ô. 
+// çªœé‰´ Get æ è‚ºè¾‘çˆ¶ é™å¦¨å¸¦ éœ¸ é…’å›± Generate ç‹¼ ç‹¼å›ºå•Š ç²± ä¹ä¿ƒ. const å·±æ‹œæç»¢å…· çªç»° æ‰’ é…’ä¸›. 
 bool UB2ItemInfo::GetAsyncReqCombinedIDofPartsList(const TArray<int32>& InRefIDList,
 	FItemInfoEquipPartsAsyncReqCombinedID& OutNewOrGeneratedID, bool bGenerateNewOnMiss)
 {
@@ -1187,20 +1187,20 @@ bool UB2ItemInfo::GetAsyncReqCombinedIDofPartsList(const TArray<int32>& InRefIDL
 
 	int32 FoundIndexFromPending = PendingEquipPartsAsyncLoadReqList.Find(LocalTempIDStruct);
 	if (FoundIndexFromPending != INDEX_NONE)
-	{ // ÇöÀç async ·Îµù ÁßÀÎ °Å..
+	{ // æ³…çŠ async è‚ºçˆ¹ åç‰¢ èŠ­..
 		OutNewOrGeneratedID = PendingEquipPartsAsyncLoadReqList[FoundIndexFromPending];
 		return true;
 	}
 
 	if (bGenerateNewOnMiss)
 	{
-		// ÀÇ¹Ì¾øÀÌ °è¼Ó ´Ù¸¥ Á¶ÇÕÀ¸·Î Get ÇÏ´Ù°¡ SerialNumber °¡ ¸¶±¸ Áõ°¡ÇÏ´Â ÀÏÀÌ ¾øµµ·Ï.. (±×¸®°í PendingEquipPartsAsyncLoadReqList µµ Áõ°¡..)
-		// ¾ø´Â °æ¿ì È®½ÇÈ÷ »õ·Î ¸¸µé°íÀÚ ÇÒ ¶§¸¸ bGenerateNewOnMiss ¸¦ ÁöÁ¤.
+		// ç‹¼å›ºç»æ æ‹ŒåŠ  ä¿ƒå¼— ç‚¼é’¦æ è‚º Get çªä¿ƒå•Š SerialNumber å•Š ä»˜å¤‡ åˆ˜å•Šçªç»° è€æ ç»æ¡£åºŸ.. (å¼Šåºœç»Š PendingEquipPartsAsyncLoadReqList æ¡£ åˆ˜å•Š..)
+		// ç»ç»° ç‰ˆå¿« çŠ¬è§’æ´’ è´§è‚º çˆ¶ç”¸ç»Šç£Š ä¸” é”­çˆ¶ bGenerateNewOnMiss ç”« ç˜¤æ²¥.
 
-		// RefID ¸®½ºÆ® Á¶ÇÕÀ¸·Î unique ÇÏ°Ô ½Äº° °¡´ÉÇÑ ¹®ÀÚ¿­À» °ğÀÌ°ğ´ë·Î ¸¸µå·Á¸é ¹º°¡ ½±Áö ¾ÊÀ» Å×´Ï ÀÏ·Ã¹øÈ£¸¦ ºÎ¿©ÇÑ´Ù
+		// RefID åºœèƒ¶é£˜ ç‚¼é’¦æ è‚º unique çªéœ¸ ä¾¥å–Š å•Šç“·èŒ„ å·©ç£Šå‡¯é˜‘ æ¢†ææ¢†æªè‚º çˆ¶é›å¦¨æ è´­å•Š å¥–ç˜¤ è‡¼é˜‘ æŠ›èª è€è®¿é”…é¾‹ç”« ä½•å’¯èŒ„ä¿ƒ
 		LocalTempIDStruct.MySerialNumber = EquipPartsAsyncLoadReqCounter;
-		++EquipPartsAsyncLoadReqCounter; // ¿©±â°¡ Áõ°¡ÇÏ´Â À¯ÀÏÇÑ ÁöÁ¡ÀÌ µÇ¾î¾ß ÇÑ´Ù.
-		// TryAsyncLoad ¿¡ RequestName À¸·Î ¾µ °Å
+		++EquipPartsAsyncLoadReqCounter; // å’¯æ‰å•Š åˆ˜å•Šçªç»° èœ¡è€èŒ„ ç˜¤ç—¢æ ç™»ç»¢å…· èŒ„ä¿ƒ.
+		// TryAsyncLoad ä¿Š RequestName æ è‚º é•œ èŠ­
 		LocalTempIDStruct.MyAsyncRequestName = FString::Printf(TEXT("ItemInfoEquipPartBunch_%d"), LocalTempIDStruct.MySerialNumber);
 		OutNewOrGeneratedID = LocalTempIDStruct;
 		PendingEquipPartsAsyncLoadReqList.Add(LocalTempIDStruct);
@@ -1227,7 +1227,7 @@ UB2ItemMiscInfo::UB2ItemMiscInfo(const FObjectInitializer& ObjectInitializer)
 UMaterialInterface* UB2ItemMiscInfo::GetItemIconBGMtrl(int32 InStarGrade, bool bSimpleBG, bool bForConsumables)
 {
 	if (bForConsumables) {
-		return ConsumablesIconBGMtrl.LoadSynchronous(); // Æ¯º°È÷ ·¹ÆÛ·±½º¸¦ À¯ÁöÇØ¾ß ÇÒ ¸ñÀûÀÌ ÀÖ´Â °Å ¾Æ´Ô ±×³É LoadSynchronous ¾²¸é µÈ´Ù. ÀÌÀü¿¡ ¸Ş¸ğ¸® °ü¸®°¡ Àß ¾ÈµÇ¾î¼­ RefHolder ¶ó´Â °Í¿¡ Ä³½ÌÀ» Çß´ø °ÍÀÓ.
+		return ConsumablesIconBGMtrl.LoadSynchronous(); // æ¼‚å–Šæ´’ é¥­æ¬ºç¹èƒ¶ç”« èœ¡ç˜¤ç§¦å…· ä¸” æ ¼åˆ©æ ä¹ç»° èŠ­ é…’ä¸› å¼Šæˆ LoadSynchronous é™æ ç­‰ä¿ƒ. æå‚ˆä¿Š çš‹è‘›åºœ åŒ…åºœå•Š è‚‹ æ•‘ç™»ç»¢è¾‘ RefHolder æ‰¼ç»° å·´ä¿Š æŸæ•™é˜‘ æ²å¸¦ å·´çƒ™.
 	}
 
 	int32 ElemIndex = InStarGrade - 1;
@@ -1239,7 +1239,7 @@ UMaterialInterface* UB2ItemMiscInfo::GetItemIconBGMtrl(int32 InStarGrade, bool b
 			GetSomeLazyLoadedAssetCommon<UMaterialInterface>(InfoLoadManager, ItemIconBGMtrlPerGrade_Simple[ElemIndex], &LoadedAsset, TEXT("ItemMiscInfo"));
 			if (LoadedAsset)
 			{ 
-				AddOrUpdateMtrlRefHolderCache(ElemIndex, LoadedAsset, AllLoadedRefHolder.LoadedItemIconBGMtrlPerGrade_Simple); // ·ÎµùµÈ ¿¡¼Â Ä³½Ì. ÀÎµ¦½º ¶È°°ÀÌ ¸ÂÃç¼­
+				AddOrUpdateMtrlRefHolderCache(ElemIndex, LoadedAsset, AllLoadedRefHolder.LoadedItemIconBGMtrlPerGrade_Simple); // è‚ºçˆ¹ç­‰ ä¿Šæ‚¸ æŸæ•™. ç‰¢éƒ¸èƒ¶ åº¦éæ å˜è‹—è¾‘
 				return LoadedAsset;
 			}
 		}
@@ -1252,7 +1252,7 @@ UMaterialInterface* UB2ItemMiscInfo::GetItemIconBGMtrl(int32 InStarGrade, bool b
 			GetSomeLazyLoadedAssetCommon<UMaterialInterface>(InfoLoadManager, ItemIconBGMtrlPerGrade[ElemIndex], &LoadedAsset, TEXT("ItemMiscInfo"));
 			if (LoadedAsset)
 			{
-				AddOrUpdateMtrlRefHolderCache(ElemIndex, LoadedAsset, AllLoadedRefHolder.LoadedItemIconBGMtrlPerGrade); // ·ÎµùµÈ ¿¡¼Â Ä³½Ì. ÀÎµ¦½º ¶È°°ÀÌ ¸ÂÃç¼­
+				AddOrUpdateMtrlRefHolderCache(ElemIndex, LoadedAsset, AllLoadedRefHolder.LoadedItemIconBGMtrlPerGrade); // è‚ºçˆ¹ç­‰ ä¿Šæ‚¸ æŸæ•™. ç‰¢éƒ¸èƒ¶ åº¦éæ å˜è‹—è¾‘
 				return LoadedAsset;
 			}
 		}
@@ -1295,7 +1295,7 @@ class UMaterialInterface* UB2ItemMiscInfo::GetEquipCategoryIcon(EEquipCategoryTy
 		GetSomeLazyLoadedAssetCommon<UMaterialInterface>(InfoLoadManager, EquipCategoryIcon[ElemIndex], &LoadedAsset, TEXT("ItemMiscInfo"));
 		if (LoadedAsset)
 		{
-			AddOrUpdateMtrlRefHolderCache(ElemIndex, LoadedAsset, AllLoadedRefHolder.LoadedEquipCategoryIcon); // ·ÎµùµÈ ¿¡¼Â Ä³½Ì. ÀÎµ¦½º ¶È°°ÀÌ ¸ÂÃç¼­
+			AddOrUpdateMtrlRefHolderCache(ElemIndex, LoadedAsset, AllLoadedRefHolder.LoadedEquipCategoryIcon); // è‚ºçˆ¹ç­‰ ä¿Šæ‚¸ æŸæ•™. ç‰¢éƒ¸èƒ¶ åº¦éæ å˜è‹—è¾‘
 			return LoadedAsset;
 		}
 	}
@@ -1341,7 +1341,7 @@ UMaterialInterface* UB2ItemMiscInfo::GetEquipIconBGMtrl(int32 InStarGrade)
 
 		if (LoadedAsset)
 		{
-			AddOrUpdateMtrlRefHolderCache(ElemIndex, LoadedAsset, AllLoadedRefHolder.LoadedEquipIconBGMtrlPerGrade); // ·ÎµùµÈ ¿¡¼Â Ä³½Ì. ÀÎµ¦½º ¶È°°ÀÌ ¸ÂÃç¼­
+			AddOrUpdateMtrlRefHolderCache(ElemIndex, LoadedAsset, AllLoadedRefHolder.LoadedEquipIconBGMtrlPerGrade); // è‚ºçˆ¹ç­‰ ä¿Šæ‚¸ æŸæ•™. ç‰¢éƒ¸èƒ¶ åº¦éæ å˜è‹—è¾‘
 			return LoadedAsset;
 		}
 	}
@@ -1403,7 +1403,7 @@ UMaterialInterface* UB2ItemMiscInfo::GetItemQualityBGMtrl(int32 InQuality)
 
 		if (LoadedAsset)
 		{
-			AddOrUpdateMtrlRefHolderCache(ElemIndex, LoadedAsset, AllLoadedRefHolder.LoadedItemQualityBGMtrl); // ·ÎµùµÈ ¿¡¼Â Ä³½Ì. ÀÎµ¦½º ¶È°°ÀÌ ¸ÂÃç¼­
+			AddOrUpdateMtrlRefHolderCache(ElemIndex, LoadedAsset, AllLoadedRefHolder.LoadedItemQualityBGMtrl); // è‚ºçˆ¹ç­‰ ä¿Šæ‚¸ æŸæ•™. ç‰¢éƒ¸èƒ¶ åº¦éæ å˜è‹—è¾‘
 			return LoadedAsset;
 		}
 	}
@@ -1429,7 +1429,7 @@ class UMaterialInterface* UB2ItemMiscInfo::GetEtherTierBGMtrl(int32 EtherTier)
 
 		if (LoadedAsset)
 		{
-			AddOrUpdateMtrlRefHolderCache(EtherTier, LoadedAsset, AllLoadedRefHolder.LoadedEtherTierBGMtrl); // ·ÎµùµÈ ¿¡¼Â Ä³½Ì. ÀÎµ¦½º ¶È°°ÀÌ ¸ÂÃç¼­
+			AddOrUpdateMtrlRefHolderCache(EtherTier, LoadedAsset, AllLoadedRefHolder.LoadedEtherTierBGMtrl); // è‚ºçˆ¹ç­‰ ä¿Šæ‚¸ æŸæ•™. ç‰¢éƒ¸èƒ¶ åº¦éæ å˜è‹—è¾‘
 			return LoadedAsset;
 		}
 	}
@@ -1455,7 +1455,7 @@ class UMaterialInterface* UB2ItemMiscInfo::GetEtherTierNameBGMtrl(int32 EtherTie
 
 		if (LoadedAsset)
 		{
-			AddOrUpdateMtrlRefHolderCache(EtherTier, LoadedAsset, AllLoadedRefHolder.LoadedEtherTierNameBGMtrl); // ·ÎµùµÈ ¿¡¼Â Ä³½Ì. ÀÎµ¦½º ¶È°°ÀÌ ¸ÂÃç¼­
+			AddOrUpdateMtrlRefHolderCache(EtherTier, LoadedAsset, AllLoadedRefHolder.LoadedEtherTierNameBGMtrl); // è‚ºçˆ¹ç­‰ ä¿Šæ‚¸ æŸæ•™. ç‰¢éƒ¸èƒ¶ åº¦éæ å˜è‹—è¾‘
 			return LoadedAsset;
 		}
 	}
@@ -1491,7 +1491,7 @@ class UMaterialInterface* UB2ItemMiscInfo::GetStarNumberMtrl(int32 ElemIndex)
 
 		if (LoadedAsset)
 		{
-			AddOrUpdateMtrlRefHolderCache(ElemIndex, LoadedAsset, AllLoadedRefHolder.LoadedStarNumberMtrl); // ·ÎµùµÈ ¿¡¼Â Ä³½Ì. ÀÎµ¦½º ¶È°°ÀÌ ¸ÂÃç¼­
+			AddOrUpdateMtrlRefHolderCache(ElemIndex, LoadedAsset, AllLoadedRefHolder.LoadedStarNumberMtrl); // è‚ºçˆ¹ç­‰ ä¿Šæ‚¸ æŸæ•™. ç‰¢éƒ¸èƒ¶ åº¦éæ å˜è‹—è¾‘
 			return LoadedAsset;
 		}
 	}
@@ -1517,7 +1517,7 @@ class UMaterialInterface* UB2ItemMiscInfo::GetEtherPosBGMtrl(int32 ElemIndex)
 
 		if (LoadedAsset)
 		{
-			AddOrUpdateMtrlRefHolderCache(ElemIndex, LoadedAsset, AllLoadedRefHolder.LoadedEtherPosBGMtrl); // ·ÎµùµÈ ¿¡¼Â Ä³½Ì. ÀÎµ¦½º ¶È°°ÀÌ ¸ÂÃç¼­
+			AddOrUpdateMtrlRefHolderCache(ElemIndex, LoadedAsset, AllLoadedRefHolder.LoadedEtherPosBGMtrl); // è‚ºçˆ¹ç­‰ ä¿Šæ‚¸ æŸæ•™. ç‰¢éƒ¸èƒ¶ åº¦éæ å˜è‹—è¾‘
 			return LoadedAsset;
 		}
 	}
@@ -1544,7 +1544,7 @@ UMaterialInterface* UB2ItemMiscInfo::GetCostumeIconBGMtrl(int32 InStarGrade)
 
 		if (LoadedAsset)
 		{
-			AddOrUpdateMtrlRefHolderCache(ElemIndex, LoadedAsset, AllLoadedRefHolder.LoadedCostumeIconBGMtrlPerGrade); // ·ÎµùµÈ ¿¡¼Â Ä³½Ì. ÀÎµ¦½º ¶È°°ÀÌ ¸ÂÃç¼­
+			AddOrUpdateMtrlRefHolderCache(ElemIndex, LoadedAsset, AllLoadedRefHolder.LoadedCostumeIconBGMtrlPerGrade); // è‚ºçˆ¹ç­‰ ä¿Šæ‚¸ æŸæ•™. ç‰¢éƒ¸èƒ¶ åº¦éæ å˜è‹—è¾‘
 			return LoadedAsset;
 		}
 	}
@@ -1584,7 +1584,7 @@ class UMaterialInterface* UB2ItemMiscInfo::GetTotemOptionIndexIcon(int32 InIndex
 
 		if (LoadedAsset)
 		{
-			AddOrUpdateMtrlRefHolderCache(ElemIndex, LoadedAsset, AllLoadedRefHolder.LoadedTotemOptionIndexIcon); // ·ÎµùµÈ ¿¡¼Â Ä³½Ì. ÀÎµ¦½º ¶È°°ÀÌ ¸ÂÃç¼­
+			AddOrUpdateMtrlRefHolderCache(ElemIndex, LoadedAsset, AllLoadedRefHolder.LoadedTotemOptionIndexIcon); // è‚ºçˆ¹ç­‰ ä¿Šæ‚¸ æŸæ•™. ç‰¢éƒ¸èƒ¶ åº¦éæ å˜è‹—è¾‘
 			return LoadedAsset;
 		}
 	}
@@ -1602,7 +1602,7 @@ void UB2ItemMiscInfo::UnloadTotemOptionIndexIcon(int32 InIndex)
 }
 
 void UB2ItemMiscInfo::AddOrUpdateMtrlRefHolderCache(int32 EntryIndex, UMaterialInterface* MtrlToCache, TMap<int32, class UMaterialInterface*>& HolderMap)
-{ // °Á ¿©±â¼­ ¾²ÀÌ´Â ´Ü¼øÇÑ ¹İº¹ ÄÚµå
+{ // å‚² å’¯æ‰è¾‘ é™æç»° çªœé‰´èŒ„ é¦†æ±— å†…é›
 	if (MtrlToCache)
 	{
 		UMaterialInterface** FoundCachedAssetPtr = HolderMap.Find(EntryIndex);
@@ -1696,7 +1696,7 @@ void UB2ItemMiscInfo::CleanupOnPreSave()
 void UB2ItemMiscInfo::PreSave(FObjectPreSaveContext SaveContext)
 {
 	Super::PreSave(SaveContext);
-	// ÀÇµµÄ¡ ¾Ê°Ô ÀúÀåµÈ ·¹ÆÛ·±½º¸¦ ³¯·ÁÁØ´Ù.
+	// ç‹¼æ¡£æ‘¹ è‡¼éœ¸ å†å˜ç­‰ é¥­æ¬ºç¹èƒ¶ç”« æœå¦¨éœ–ä¿ƒ.
 	CleanupOnPreSave();
 }
 #endif

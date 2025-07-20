@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UISummonItemSlotItem.h"
 #include "B2UIManager.h"
 #include "B2UIUtil.h"
@@ -169,7 +169,7 @@ void UB2UISummonItemSlotItem::SetSummonButtonItem(ESummonButtonType InButtonType
 	EStoreItemCost StoreItemCost = EStoreItemCost::End;
 	if (IsTenLotteryTicket)
 	{
-		// 10È¸ »Ì±â±Ç
+		// 10é›€ æƒ¶æ‰é¼»
 		StoreItemCost = EStoreItemCost::TenLotteryTicket;
 	}
 	else
@@ -281,7 +281,7 @@ bool UB2UISummonItemSlotItem::IsFreeSummonableSlot(int32 SlotHashKey)
 	{
 		if (SummonData->IsMultiple() && SummonData->GetCostType() == int32(ESummonItemCost::Gem))
 		{
-			// º¸¼® 10°³Â¥¸®´Â Free°¡ ¾øÀ½
+			// ç„Šç± 10ä¿ºæ¥¼åºœç»° Freeå•Š ç»æ¾œ
 			return false;
 		}
 		else

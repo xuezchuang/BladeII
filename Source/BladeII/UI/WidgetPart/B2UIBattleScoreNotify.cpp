@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIBattleScoreNotify.h"
 #include "B2UIManager.h"
 
@@ -44,7 +44,7 @@ void UB2UIBattleScoreNotify::NativeTick(const FGeometry& MyGeometry, float InDel
 	
 	UpdateValueAmount();
 	
-	//³¡³ª´Â ½Ã°£ ¸ÂÃç¼­ À§Á¬ Á¾·á
+	//åœºå”±ç»° çŸ«åŸƒ å˜è‹—è¾‘ å›°è¿ è¾†ä¸°
 	//if(m_endTime > 0) 
 		ClosePanel(InDeltaTime);
 }
@@ -87,7 +87,7 @@ void UB2UIBattleScoreNotify::SetBattleScore(int32 NewValueAmount)
 
 	if (TB_CombatPower.IsValid())
 	{
-		TB_CombatPower->SetText(FText::AsNumber(NewValueAmount)); // (¸ñÇ¥-ÇöÀç)°ª Ãâ·Â
+		TB_CombatPower->SetText(FText::AsNumber(NewValueAmount)); // (æ ¼é’-æ³…çŠ)è”¼ å…ä»¿
 	}
 }
 
@@ -108,7 +108,7 @@ void UB2UIBattleScoreNotify::UpdateValueAmount()
 		return;
 	}
 
-	// UI ¾Ö´Ï¸ŞÀÌ¼Ç ÀüÅõ·Â ÅØ½ºÆ®
+	// UI å±€èªçš‹æè®° å‚ˆæ§ä»¿ å’†èƒ¶é£˜
 	int32 nAmount = int32(m_nOrgValueAmount + ((m_nGoalValueAmount - m_nOrgValueAmount) * (fElapseTime / fTimeTotalDuration)));
 	SetBattleScore(nAmount);
 

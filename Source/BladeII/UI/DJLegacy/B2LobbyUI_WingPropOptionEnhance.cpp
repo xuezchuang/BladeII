@@ -24,7 +24,7 @@ void UB2LobbyUI_WingPropOptionEnhance::CacheAssets()
 
 	PropOptionDetailSlots.Empty();
 	for (int32 POPI = 1; POPI <= MAX_WING_PROP_OPTION_NUM; ++POPI)
-	{// ¼ø¼­´ë·Î Ã£¾Æ¼­ ³Ö´Â´Ù.
+	{// é‰´è¾‘æŽªè‚º èŒ«é…’è¾‘ æŒç»°ä¿ƒ.
 		const FString& ThisPartName = FString::Printf(TEXT("%s_%d"), *PropOptionDetailSlotPrefix, POPI);
 		UB2WingUIP_PropOptionDetail* ThisFoundElem = GetSlot<UB2WingUIP_PropOptionDetail>(FName(*ThisPartName));
 		if (ThisFoundElem)

@@ -30,18 +30,24 @@ public class B2Network : ModuleRules
             //PublicDefinitions.Add("B2NETWORK_PLATFORM_EXCEPTION=1");
         }
 
-
+        
         var ProtobufIncludePath = Path.GetFullPath(Path.Combine(ModuleDirectory, "..", "ThirdParty", "ProtoBuf", "include"));
         PublicIncludePaths.Add(ProtobufIncludePath);
+        //_SILENCE_CXX17_ITERATOR_BASE_CLASS_DEPRECATION_WARNING
+
+        PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+        PrivatePCHHeaderFile = "B2NetworkPCH.h"; // 或者放在 Private 也可以，只要路径正确
+
 
         if (Target.Platform == UnrealTargetPlatform.Win64)
         {
             PublicDefinitions.Add("B2NETWORK_PLATFORM_WINDOWS=1");
             PublicDefinitions.Add("SODIUM_STATIC=1");
             PublicDefinitions.Add("SODIUM_EXPORT= ");
+            PublicDefinitions.Add("_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS");
+            
 
-
-
+            //PublicAdditionalCompilerOptions.Add("/D_SILENCE_CXX17_ITERATOR_BASE_CLASS_DEPRECATION_WARNING");
             //PublicSystemLibraryPaths.Add(Path.Combine(ThirdPartyPath, "ProtoBuf", "lib", "Windows", "x64"));
             //PublicSystemLibraryPaths.Add(Path.Combine(ThirdPartyPath, "libsodium", "lib", "Windows", "x64"));
 

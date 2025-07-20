@@ -11,6 +11,6 @@ public class DFTarget : TargetRules
 		DefaultBuildSettings = BuildSettingsVersion.V2;
 		IncludeOrderVersion = EngineIncludeOrderVersion.Unreal5_1;
 		ExtraModuleNames.Add("BladeII");
-		//ExtraModuleNames.Add("DF");
-	}
+        ExtraModuleNames.Add("B2Network");
+    }
 }

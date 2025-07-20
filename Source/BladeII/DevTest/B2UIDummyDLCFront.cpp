@@ -1,4 +1,4 @@
-
+ï»¿
 #include "B2UIDummyDLCFront.h"
 
 #include "UnrealEngine.h"
@@ -36,9 +36,9 @@ void UB2UIDummyDLCFront::OnClickBtnFakeUpdate()
 #if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV1
 
 	//
-	// ¿©±ä ½ÇÁ¦ ·Îºñ·Î ÁøÀÔÇÏ±â À§ÇØ (ÈÑÀÌÅ©·Î) DLC ¾÷µ¥ÀÌÆ® Ã¼Å© ¹× ´Ù¿î·Îµå¸¦ ½ÇÇàÇÏ´Â °ÍÀÇ ÀÇ¹Ì¸¦ °¡Áö°í ÀÖ´Ù.
-	// ½ÇÁ¦·Î´Â ·Îºñ°¡ ¶° ÀÖ´Â »óÈ²ÀÌ¹Ç·Î ÄÁÅÙÃ÷ ´Ù¿î·Îµå ¸é¿¡¼­ DLC ÇÁ·ĞÆ®¸¦ ¿ÏÀüÈ÷ ¸ğÀÇÇÒ ¼ö´Â ¾ø´Ù.
-	// DLC Front ¿¡¼­ºÎÅÍ ³×Æ®¿öÅ© ¿¬°á Â÷¿øÀÇ Ã³¸®¿¡ ¿µÇâÀ» ¹ÌÄ¡´Â ºÎºĞÀÌ ÀÖÀ¸¸é ¿©±â¼­ ºñ½ÁÇÏ°Ô µû¶óÇÒ ¼ö ÀÖ´Ù.
+	// ì—¬ê¸´ ì‹¤ì œ ë¡œë¹„ë¡œ ì§„ì…í•˜ê¸° ìœ„í•´ (í›¼ì´í¬ë¡œ) DLC ì—…ë°ì´íŠ¸ ì²´í¬ ë° ë‹¤ìš´ë¡œë“œë¥¼ ì‹¤í–‰í•˜ëŠ” ê²ƒì˜ ì˜ë¯¸ë¥¼ ê°€ì§€ê³  ìˆë‹¤.
+	// ì‹¤ì œë¡œëŠ” ë¡œë¹„ê°€ ë–  ìˆëŠ” ìƒí™©ì´ë¯€ë¡œ ì»¨í…ì¸  ë‹¤ìš´ë¡œë“œ ë©´ì—ì„œ DLC í”„ë¡ íŠ¸ë¥¼ ì™„ì „íˆ ëª¨ì˜í•  ìˆ˜ëŠ” ì—†ë‹¤.
+	// DLC Front ì—ì„œë¶€í„° ë„¤íŠ¸ì›Œí¬ ì—°ê²° ì°¨ì›ì˜ ì²˜ë¦¬ì— ì˜í–¥ì„ ë¯¸ì¹˜ëŠ” ë¶€ë¶„ì´ ìˆìœ¼ë©´ ì—¬ê¸°ì„œ ë¹„ìŠ·í•˜ê²Œ ë”°ë¼í•  ìˆ˜ ìˆë‹¤.
 	//
 
 
@@ -46,8 +46,8 @@ void UB2UIDummyDLCFront::OnClickBtnFakeUpdate()
 	UWorld* TheWorld = GetWorld();
 	if (TheWorld)
 	{
-		// ¸¸¾à ¿©±â¼­ ½ÇÁ¦·Î ÀÇ¹ÌÀÖ´Â ¹«¾ğ°¡¸¦ ÇÑ´Ù¸é OnFakeUpdate ÀÇ Execute ´Â ±×°Ô ¿Ï·áµÉ¶§±îÁö Áö¿¬½ÃÅ²´Ù.
-		// ÀÏ´ÜÀº ½ÇÁúÀûÀ¸·Î ¹Ù·Î UpdateComplete Ã³¸®°¡ µÇµµ·Ï ¸Å¿ì ÂªÀº Å¸ÀÌ¸Ó¸¦ ¼³Ä¡.
+		// ë§Œì•½ ì—¬ê¸°ì„œ ì‹¤ì œë¡œ ì˜ë¯¸ìˆëŠ” ë¬´ì–¸ê°€ë¥¼ í•œë‹¤ë©´ OnFakeUpdate ì˜ Execute ëŠ” ê·¸ê²Œ ì™„ë£Œë ë•Œê¹Œì§€ ì§€ì—°ì‹œí‚¨ë‹¤.
+		// ì¼ë‹¨ì€ ì‹¤ì§ˆì ìœ¼ë¡œ ë°”ë¡œ UpdateComplete ì²˜ë¦¬ê°€ ë˜ë„ë¡ ë§¤ìš° ì§§ì€ íƒ€ì´ë¨¸ë¥¼ ì„¤ì¹˜.
 		TheWorld->GetTimerManager().SetTimer(FakeUpdateCompleteTH, this, &UB2UIDummyDLCFront::OnFakeUpdateComplete, 0.01f, false);
 	}
 #endif
@@ -56,7 +56,7 @@ void UB2UIDummyDLCFront::OnClickBtnFakeUpdate()
 void UB2UIDummyDLCFront::OnClickBtnFakeKakaoConnect()
 {
 #if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV1
-	// Ã¹ Ä«Ä«¿À °èÁ¤ ¿¬°áÀÌ µÇ¾úÀ½. ¸¶Å©.
+	// ì²« ì¹´ì¹´ì˜¤ ê³„ì • ì—°ê²°ì´ ë˜ì—ˆìŒ. ë§ˆí¬.
 	GConfig->SetBool(TEXT("DummyDLCFront"), TEXT("HasFakeKakaoConnection"), true, GB2GeneralSavedStateIni);
 	GConfig->Flush(false, GB2GeneralSavedStateIni);
 	FakeKakaoLoginHandlingCommon();
@@ -68,8 +68,8 @@ void UB2UIDummyDLCFront::FakeKakaoLoginHandlingCommon()
 {
 
 	//
-	// DLCFront ÀÇ ÀÏºÎÀÎ Ä«Ä«¿À ·Î±×ÀÎ. ÀÌ°Ô ³×Æ®¿öÅ© ÃÊ±âÈ­¶û ¹ĞÁ¢ÇÑ ¿¬°üÀÌ ÀÖ¾î¼­ ÀıÂ÷ ¸ğÀÇ Â÷¿ø¿¡¼­ .
-	// Ä«Ä«¿À ·Î±×ÀÎ ½ÃÁ¡¿¡ ¹º°¡ ÀÇ¹ÌÀÖ´Â Á¤º¸¸¦ ¹Ş´Â °Ô ÀÖ´Ù¸é ¿©±â¼­ ±×°É ¸ğÀÇÇØ º¼ ¼öµµ.
+	// DLCFront ì˜ ì¼ë¶€ì¸ ì¹´ì¹´ì˜¤ ë¡œê·¸ì¸. ì´ê²Œ ë„¤íŠ¸ì›Œí¬ ì´ˆê¸°í™”ë‘ ë°€ì ‘í•œ ì—°ê´€ì´ ìˆì–´ì„œ ì ˆì°¨ ëª¨ì˜ ì°¨ì›ì—ì„œ .
+	// ì¹´ì¹´ì˜¤ ë¡œê·¸ì¸ ì‹œì ì— ë­”ê°€ ì˜ë¯¸ìˆëŠ” ì •ë³´ë¥¼ ë°›ëŠ” ê²Œ ìˆë‹¤ë©´ ì—¬ê¸°ì„œ ê·¸ê±¸ ëª¨ì˜í•´ ë³¼ ìˆ˜ë„.
 	//
 
 
@@ -77,13 +77,13 @@ void UB2UIDummyDLCFront::FakeKakaoLoginHandlingCommon()
 	UWorld* TheWorld = GetWorld();
 	if (TheWorld)
 	{
-		// ¿©±â¿¡ µé¾î¿Ã ¼ö ÀÖ´Â ÀÛ¾÷¿¡ µû¶ó OnFakeKakaoLogin ÀÇ Execute ¸¦ Áö¿¬½ÃÅ²´Ù.
-		// ÀÏ´ÜÀº ½ÇÁúÀûÀ¸·Î ¹Ù·Î LoginComplete Ã³¸®°¡ µÇµµ·Ï ¸Å¿ì ÂªÀº Å¸ÀÌ¸Ó¸¦ ¼³Ä¡.
+		// ì—¬ê¸°ì— ë“¤ì–´ì˜¬ ìˆ˜ ìˆëŠ” ì‘ì—…ì— ë”°ë¼ OnFakeKakaoLogin ì˜ Execute ë¥¼ ì§€ì—°ì‹œí‚¨ë‹¤.
+		// ì¼ë‹¨ì€ ì‹¤ì§ˆì ìœ¼ë¡œ ë°”ë¡œ LoginComplete ì²˜ë¦¬ê°€ ë˜ë„ë¡ ë§¤ìš° ì§§ì€ íƒ€ì´ë¨¸ë¥¼ ì„¤ì¹˜.
 		TheWorld->GetTimerManager().SetTimer(FakeKakaoLoginTH, this, &UB2UIDummyDLCFront::OnFakeKakaoLoginComplete, 0.01f, false);
 	}
 }
 
-/** ±âº»ÀûÀ¸·Î IsFinalDLCCookRun À¸·Î Ã¼Å©¸¦ ÇÏ°ÚÁö¸¸ ±×°Ô ¾Æ´Ï¾îµµ DLCFrontMap À» Åë°úÇØ¼­ ¿À´Â »óÈ²ÀÌ ¹ß»ıÇÒ ¼ö ÀÖ¾î¼­ Ãß°¡ Æ®·¢Å·À» ÇÑ´Ù. */
+/** ê¸°ë³¸ì ìœ¼ë¡œ IsFinalDLCCookRun ìœ¼ë¡œ ì²´í¬ë¥¼ í•˜ê² ì§€ë§Œ ê·¸ê²Œ ì•„ë‹ˆì–´ë„ DLCFrontMap ì„ í†µê³¼í•´ì„œ ì˜¤ëŠ” ìƒí™©ì´ ë°œìƒí•  ìˆ˜ ìˆì–´ì„œ ì¶”ê°€ íŠ¸ë™í‚¹ì„ í•œë‹¤. */
 bool UB2UIDummyDLCFront::bWentThroughRealDLCFront = false;
 
 void UB2UIDummyDLCFront::OnFakeUpdateComplete()
@@ -94,8 +94,8 @@ void UB2UIDummyDLCFront::OnFakeUpdateComplete()
 		TheWorld->GetTimerManager().ClearTimer(FakeUpdateCompleteTH);
 	}
 
-	// ¾Æ·¡¿¡ Å¸ÀÌÆ² È­¸éÀÌ µå·¯³ªµµ·Ï DLC Update °ü·ÃÇÑ ÆĞ³ÎÀº ¼û±ä´Ù.
-	ShowFakeDLCUpdate(false); // ¾îÂ÷ÇÇ UIDummyDLCFront ÀÚÃ¼°¡ destroy µÇ°ÚÁö¸¸..
+	// ì•„ë˜ì— íƒ€ì´í‹€ í™”ë©´ì´ ë“œëŸ¬ë‚˜ë„ë¡ DLC Update ê´€ë ¨í•œ íŒ¨ë„ì€ ìˆ¨ê¸´ë‹¤.
+	ShowFakeDLCUpdate(false); // ì–´ì°¨í”¼ UIDummyDLCFront ìì²´ê°€ destroy ë˜ê² ì§€ë§Œ..
 
 	OnFakeUpdate.ExecuteIfBound();
 }
@@ -105,11 +105,11 @@ void UB2UIDummyDLCFront::BeginFakeKakaoLogin()
 	bool bHasKakaoConnection = false;
 	GConfig->GetBool(TEXT("DummyDLCFront"), TEXT("HasFakeKakaoConnection"), bHasKakaoConnection, GB2GeneralSavedStateIni);
 	if (!bHasKakaoConnection && P_FakeKakaoConnect.IsValid() && BTN_FakeKakaoConnect.IsValid())
-	{ // Ã¹ Ä«Ä«¿À ·Î±×ÀÎ. °èÁ¤ ¿¬°á UI ¸¦ º¸ÀÓ.
+	{ // ì²« ì¹´ì¹´ì˜¤ ë¡œê·¸ì¸. ê³„ì • ì—°ê²° UI ë¥¼ ë³´ì„.
 		ShowFakeKakaoLogin(true);	
 	}
 	else
-	{ // ±×°Ô ¾Æ´Ï¸é ¹Ù·Î ·Î±×ÀÎÀ» ½ÇÇàÇÏ´Â °É·Î Ä£´Ù. °Ñº¸±â ÀÛµ¿ º¸°í ±×³É µû¶óÇÏ´Â °Å
+	{ // ê·¸ê²Œ ì•„ë‹ˆë©´ ë°”ë¡œ ë¡œê·¸ì¸ì„ ì‹¤í–‰í•˜ëŠ” ê±¸ë¡œ ì¹œë‹¤. ê²‰ë³´ê¸° ì‘ë™ ë³´ê³  ê·¸ëƒ¥ ë”°ë¼í•˜ëŠ” ê±°
 		FakeKakaoLoginHandlingCommon();
 	}
 }
@@ -127,7 +127,7 @@ void UB2UIDummyDLCFront::OnFakeKakaoLoginComplete()
 
 TSubclassOf<class UB2UIDummyDLCFront> UB2UIDummyDLCFront::GetUniqueClass()
 {
-	// °³¹ß¿ë ±â´ÉÀÌ°í ½±ÇÎ¿¡¼­ ÃÖ´ëÇÑ ¸¹ÀÌ ºüÁöµµ·Ï ±»ÀÌ ini ¿¡¼­ ÀĞ¾îµéÀÌÁö ¾Ê´Â °É·Î.
+	// ê°œë°œìš© ê¸°ëŠ¥ì´ê³  ì‰½í•‘ì—ì„œ ìµœëŒ€í•œ ë§ì´ ë¹ ì§€ë„ë¡ êµ³ì´ ini ì—ì„œ ì½ì–´ë“¤ì´ì§€ ì•ŠëŠ” ê±¸ë¡œ.
 	FString WidgetClassPath = TEXT("/Game/UI/DevOnlyWidget/DummyDLCFrontWidget");
 
 	ConstructorHelpers::StripObjectClass(WidgetClassPath, true);

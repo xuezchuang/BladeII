@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UI_TotemInfoPopup.h"
 
@@ -427,7 +427,7 @@ void UB2UI_TotemInfoPopup::UpdateWidgetVisibleState(const FB2Totem& InTotem)
 
 void UB2UI_TotemInfoPopup::UpdateCombatPower(const FB2Totem& InTotem, const FB2Totem* pEquippedTotemAtSamePlace)
 {
-	// Á¦·Ã ¿Ï·áµÇÁö ¾ÊÀº ÅäÅÛÀÇ °æ¿ì ¼­¹ö¿¡¼­ ÁØ ÅäÅÛ °ªÀÌ ¾Æ´Ï¶ó ¸ŞÀÎOption À» ÅëÇØ °è»êµÈ ÀüÅõ·Â ¸¸À» Ç¥±âÇÑ´Ù.
+	// åŠ›è®¿ è‚¯ä¸°ç™»ç˜¤ è‡¼ç¯® é…è¢ç‹¼ ç‰ˆå¿« è¾‘æ»šä¿Šè¾‘ éœ– é…è¢ è”¼æ é…’èªæ‰¼ çš‹ç‰¢Option é˜‘ çƒ¹ç§¦ æ‹Œé­‚ç­‰ å‚ˆæ§ä»¿ çˆ¶é˜‘ é’æ‰èŒ„ä¿ƒ.
 	const int32 CambatPower = InTotem.IsSmeltingComplete() ? InTotem.Power :
 		(int32)(BladeIIGameImpl::GetClientDataStore().GetOptionWeight(InTotem.MainOptionDetail.OptionType) * InTotem.MainOptionDetail.RawOptionAmount);
 
@@ -536,7 +536,7 @@ void UB2UI_TotemInfoPopup::OnDelaySellCallback()
 	{
 		FDJLegacySubpopupAddPanelInfo SubPopupAddPanelInfo = GetDJLegacySubpopupInfo();
 
-		// ¹Ù·Î ÆÇ¸Å´Â ¾Æ´Ï°í ÆÇ¸Å¿©ºÎ¸¦ ¹¯´Â (Æ¯¼ö) ÆË¾÷. Á» ±¸´Ú´Ù¸® ¹æ½ÄÀ¸·Î ¤»
+		// å®˜è‚º é­„æ¦‚ç»° é…’èªç»Š é­„æ¦‚å’¯ä½•ç”« æ±ç»° (æ¼‚è) æ‰‘è¯€. ç²± å¤‡è¹¿ä¿ƒåºœ è§„ä¾¥æ è‚º ã›
 		DJLegacy_OpenLobbySubPopupClass<ELobbySubPopups, FDJLegacySubpopupAddPanelInfo>::GetInstance().Signal(ELobbySubPopups::ELSPU_SellItemPopup, SubPopupAddPanelInfo);
 
 		AB2LobbyGameMode* LobbyGM = Cast<AB2LobbyGameMode>(UGameplayStatics::GetGameMode(this));
@@ -545,12 +545,12 @@ void UB2UI_TotemInfoPopup::OnDelaySellCallback()
 			UB2LobbyUI_SellItemPopup* SellItemPopup = Cast<UB2LobbyUI_SellItemPopup>(LobbyGM->DJLegacy_FindLobbySubPopup(ELobbySubPopups::ELSPU_SellItemPopup));
 			if (SellItemPopup)
 			{
-				// PopupMain ¿¡ ¾ÆÀÌÅÛÀÌ ¾Æ´Ñ ÅäÅÛÀÌ Ãß°¡µÇ¾úÀ» °æ¿ìµµ Ãß°¡ÇÑ´Ù.
-				// ÅäÅÛ Á¤º¸, ÆÈ±â ´­·¶À»¶§, Ãë¼Ò ´­·¶À»¶§
+				// PopupMain ä¿Š é…’æè¢æ é…’å›± é…è¢æ çœ å•Šç™»èŒé˜‘ ç‰ˆå¿«æ¡£ çœ å•ŠèŒ„ä¿ƒ.
+				// é…è¢ æ²¥ç„Š, è¿«æ‰ å–˜èŒƒé˜‘é”­, ç§’å®¶ å–˜èŒƒé˜‘é”­
 				SellItemPopup->PopupMain(CachedB2TotemInfo,
 					FSellItemPopupOnClick::CreateLambda([this]() {
 					Sell();
-					this->OnClickBTN_Close(); // ÆÈ¾ÆÄ¡¿üÀ¸´Ï ÀÌ Ã¢µµ ´İ´Â´Ù.
+					this->OnClickBTN_Close(); // è¿«é…’æ‘¹å¥æ èª æ èŠ’æ¡£ æ‘§ç»°ä¿ƒ.
 				}),
 					FSellItemPopupOnClick::CreateLambda([this]() {})
 					);

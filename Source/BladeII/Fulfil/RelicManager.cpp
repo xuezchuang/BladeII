@@ -1,4 +1,4 @@
-
+ï»¿
 #include "RelicManager.h"
 #include "Event.h"
 #include "InternalEvents.h"
@@ -61,7 +61,7 @@ void RelicManager::ReceiveRelicMasterData(const FB2MasterDatas& MasterData)
 	//		FItemOption(SvrToCliOptionType(ThisInfo->option_id_3), static_cast<float>(ThisInfo->option_value_3)),
 	//		ThisInfo->promotion_rate, ThisInfo->promotion_gold, ThisInfo->boss_piece_id, ThisInfo->promotion_boss_piece);
 
-	//	//ÀÌ ¼ø¼­´Â ¼­¹ö µ¥ÀÌÅÍ¸¦ ½Å·Ú ÇÏ±â·Î ÇßÀ¸´Ï... È¤½Ã ¾Æ´Ò¶§¸¦ ´ëºñÇÏ¿©
+	//	//æ é‰´è¾‘ç»° è¾‘æ»š å•æç£ç”« è„šæ±¾ çªæ‰è‚º æ²æ èª... è¶£çŸ« é…’åŒ†é”­ç”« æªåšçªå’¯
 	//	BII_CHECK(Data.nOption_Attack.OptionType == EItemOption::EIO_Offense_IncAttack);
 	//	BII_CHECK(Data.nOption_Defence.OptionType == EItemOption::EIO_Defense_IncDefense);
 	//	BII_CHECK(Data.nOption_Health.OptionType == EItemOption::EIO_Health_IncHealth);
@@ -150,9 +150,9 @@ TArray<float> RelicManager::GenerateLevelOptionValue(int32 nRelicID, int32 nGrad
 		float nLevelTempStat2 = 0;
 		float nLevelTempStat3 = 0;
 
-		nLevelTempStat1 = (MaxLevelElem->nModeOption_Attack.RawOptionAmount)*(nGrade - 1); // ÇØ´ç µî±ŞÀ» Á¦¿ÜÇÑ µî±ŞÀÇ ·¹º§ ÃÖ´ë°ªÀ» °¢°¢ ´õÇÏ°í,
-		if (nLevel != 0) // 0ÀÏ¶© ¹«½Ã
-			nLevelTempStat1 += (getRelicLevelInfo(nRelicID, nLevel)->nModeOption_Attack.RawOptionAmount); // ÇØ´ç µî±ŞÀÇ ·¹º§ °ªÀ» ´õÇØÁÜ.
+		nLevelTempStat1 = (MaxLevelElem->nModeOption_Attack.RawOptionAmount)*(nGrade - 1); // ç§¦å¯¸ æ®¿é­é˜‘ åŠ›å¯‡èŒ„ æ®¿é­ç‹¼ é¥­éª‡ å¼¥æªè”¼é˜‘ é˜¿é˜¿ æ­¹çªç»Š,
+		if (nLevel != 0) // 0è€è®¢ å…¬çŸ«
+			nLevelTempStat1 += (getRelicLevelInfo(nRelicID, nLevel)->nModeOption_Attack.RawOptionAmount); // ç§¦å¯¸ æ®¿é­ç‹¼ é¥­éª‡ è”¼é˜‘ æ­¹ç§¦æ·‹.
 		TempStatArray.Add(nLevelTempStat1);
 
 		nLevelTempStat2 = (MaxLevelElem->nModeOption_Defence.RawOptionAmount)*(nGrade - 1);
@@ -190,11 +190,11 @@ bool RelicManager::GetIsReddotRelicByClass(int32 nClass)
 
 	int32 CurrentGold = BladeIIGameImpl::GetClientDataStore().GetGoldAmount();
 
-	for (auto RelicItem : *TotalRelic) // ÇöÀç ¿ÀÇÂµÈ À¯¹°ÀÇ Á¤º¸.
+	for (auto RelicItem : *TotalRelic) // æ³…çŠ å·é”¹ç­‰ èœ¡æ‹±ç‹¼ æ²¥ç„Š.
 	{
-		if (RelicItem.nRelicLevel < MAX_RELIC_LEVEL) // ·¹º§¾÷ °¡´É Ã¼Å©
+		if (RelicItem.nRelicLevel < MAX_RELIC_LEVEL) // é¥­éª‡è¯€ å•Šç“· çœ‰å†œ
 		{
-			const FMD_AncientRelicLevelElem* LevleUpInfo = getRelicLevelInfo(RelicItem.nRelicId, RelicItem.nRelicLevel + 1); //·¹º§¾÷ ÇÊ¿äÁ¶°Ç °Ë»ö
+			const FMD_AncientRelicLevelElem* LevleUpInfo = getRelicLevelInfo(RelicItem.nRelicId, RelicItem.nRelicLevel + 1); //é¥­éª‡è¯€ é˜å¤¸ç‚¼æ‰’ å…«ç¥¸
 
 			if (LevleUpInfo)
 			{
@@ -207,11 +207,11 @@ bool RelicManager::GetIsReddotRelicByClass(int32 nClass)
 					return true;
 			}
 		}
-		else // µî±Ş¾÷ °¡´É Ã¼Å©
+		else // æ®¿é­è¯€ å•Šç“· çœ‰å†œ
 		{
 			if (RelicItem.nRelicGrade < MAX_RELIC_GRADE)
 			{
-				const FMD_AncientRelicGradeElem* GradeUpInfo = getRelicGradeInfo(RelicItem.nRelicId, RelicItem.nRelicGrade + 1); //µî°Ì¾÷ ÇÊ¿äÁ¶°Ç °Ë»ö
+				const FMD_AncientRelicGradeElem* GradeUpInfo = getRelicGradeInfo(RelicItem.nRelicId, RelicItem.nRelicGrade + 1); //æ®¿ç–¤è¯€ é˜å¤¸ç‚¼æ‰’ å…«ç¥¸
 
 				if (GradeUpInfo)
 				{
@@ -240,13 +240,13 @@ bool RelicManager::GetIsReddotByRelicId(EPCClass nClass, int32 nRelicID)
 
 	if (!TotalRelic) return false;
 
-	for (auto RelicItem : *TotalRelic) // ÇöÀç ¿ÀÇÂµÈ À¯¹°ÀÇ Á¤º¸.
+	for (auto RelicItem : *TotalRelic) // æ³…çŠ å·é”¹ç­‰ èœ¡æ‹±ç‹¼ æ²¥ç„Š.
 	{
 		if (nRelicID == RelicItem.nRelicId)
 		{
-			if (RelicItem.nRelicLevel < MAX_RELIC_LEVEL) // ·¹º§¾÷ °¡´É Ã¼Å©
+			if (RelicItem.nRelicLevel < MAX_RELIC_LEVEL) // é¥­éª‡è¯€ å•Šç“· çœ‰å†œ
 			{
-				const FMD_AncientRelicLevelElem* LevleUpInfo = getRelicLevelInfo(RelicItem.nRelicId, RelicItem.nRelicLevel + 1); //·¹º§¾÷ ÇÊ¿äÁ¶°Ç °Ë»ö
+				const FMD_AncientRelicLevelElem* LevleUpInfo = getRelicLevelInfo(RelicItem.nRelicId, RelicItem.nRelicLevel + 1); //é¥­éª‡è¯€ é˜å¤¸ç‚¼æ‰’ å…«ç¥¸
 
 				if (LevleUpInfo)
 				{
@@ -259,11 +259,11 @@ bool RelicManager::GetIsReddotByRelicId(EPCClass nClass, int32 nRelicID)
 						return true;
 				}
 			}
-			else // µî±Ş¾÷ °¡´É Ã¼Å©
+			else // æ®¿é­è¯€ å•Šç“· çœ‰å†œ
 			{
 				if (RelicItem.nRelicGrade < MAX_RELIC_GRADE)
 				{
-					const FMD_AncientRelicGradeElem* GradeUpInfo = getRelicGradeInfo(RelicItem.nRelicId, RelicItem.nRelicGrade + 1); //µî°Ì¾÷ ÇÊ¿äÁ¶°Ç °Ë»ö
+					const FMD_AncientRelicGradeElem* GradeUpInfo = getRelicGradeInfo(RelicItem.nRelicId, RelicItem.nRelicGrade + 1); //æ®¿ç–¤è¯€ é˜å¤¸ç‚¼æ‰’ å…«ç¥¸
 
 					if (GradeUpInfo)
 					{
@@ -285,7 +285,7 @@ bool RelicManager::GetIsReddotByRelicId(EPCClass nClass, int32 nRelicID)
 
 void RelicManager::SetMyActiveRelicsByClass(EPCClass nClass, FB2ResponseGetAccountRelicPtr msgPtr)
 {
-	BladeIIGameImpl::GetLocalCharacterData().SetRelicInfo(nClass, msgPtr);// ÇöÀç ¿ÀÇÂµÈ À¯¹°ÀÇ Á¤º¸.
+	BladeIIGameImpl::GetLocalCharacterData().SetRelicInfo(nClass, msgPtr);// æ³…çŠ å·é”¹ç­‰ èœ¡æ‹±ç‹¼ æ²¥ç„Š.
 }
 
 float RelicManager::GetPCAttackByMode(EPCClass InPCClass, EB2GameMode ModeType, int32 nRelicId, int32 nGrade, int32 nLevel)
@@ -293,10 +293,10 @@ float RelicManager::GetPCAttackByMode(EPCClass InPCClass, EB2GameMode ModeType, 
 	if (InPCClass == EPCClass::EPC_End)
 		return 0.0f;
 
-	//¿©±â¿¡ ¸ğµå¸¦ ¹Ş¾Æ¿Í¼­ Ãß°¡
+	//å’¯æ‰ä¿Š è‘›é›ç”« ç½é…’å®¢è¾‘ çœ å•Š
 	float attack = 0.0f;
 	int32 castMode = ConvertModeNameToEApplyMode(ModeType);
-	if (castMode == 0 || castMode != nRelicId) return attack;//EApplyMode_NoneÀº ÇØÁÙ ÇÊ¿ä ¾øÀ½.
+	if (castMode == 0 || castMode != nRelicId) return attack;//EApplyMode_Noneç¯® ç§¦ä¸´ é˜å¤¸ ç»æ¾œ.
 
 	TArray<float> OptionValues = GenerateLevelOptionValue(nRelicId, nGrade, nLevel);
 
@@ -313,10 +313,10 @@ float RelicManager::GetPCDefenseByMode(EPCClass InPCClass, EB2GameMode ModeType,
 	if (InPCClass == EPCClass::EPC_End)
 		return 0.0f;
 
-	//¿©±â¿¡ ¸ğµå¸¦ ¹Ş¾Æ¿Í¼­ Ãß°¡
+	//å’¯æ‰ä¿Š è‘›é›ç”« ç½é…’å®¢è¾‘ çœ å•Š
 	float defense = 0.0f;
 	int32 castMode = ConvertModeNameToEApplyMode(ModeType);
-	if (castMode == 0 || castMode != nRelicId) return defense;//EApplyMode_NoneÀº ÇØÁÙ ÇÊ¿ä ¾øÀ½.
+	if (castMode == 0 || castMode != nRelicId) return defense;//EApplyMode_Noneç¯® ç§¦ä¸´ é˜å¤¸ ç»æ¾œ.
 
 	TArray<float> OptionValues = GenerateLevelOptionValue(nRelicId, nGrade, nLevel);
 
@@ -333,10 +333,10 @@ float RelicManager::GetPCHealthByMode(EPCClass InPCClass, EB2GameMode ModeType, 
 	if (InPCClass == EPCClass::EPC_End)
 		return 0.0f;
 
-	//¿©±â¿¡ ¸ğµå¸¦ ¹Ş¾Æ¿Í¼­ Ãß°¡
+	//å’¯æ‰ä¿Š è‘›é›ç”« ç½é…’å®¢è¾‘ çœ å•Š
 	float health = 0.0f;
 	int32 castMode = ConvertModeNameToEApplyMode(ModeType);
-	if (castMode == 0 || castMode != nRelicId) return health;//EApplyMode_NoneÀº ÇØÁÙ ÇÊ¿ä ¾øÀ½.
+	if (castMode == 0 || castMode != nRelicId) return health;//EApplyMode_Noneç¯® ç§¦ä¸´ é˜å¤¸ ç»æ¾œ.
 	
 	TArray<float> OptionValues = GenerateLevelOptionValue(nRelicId, nGrade, nLevel);
 
@@ -392,7 +392,7 @@ int32 RelicManager::ConvertModeNameToEApplyMode(EB2GameMode ModeType)
 		mode = EApplyMode_PVP_Team;
 		break;
 		//*/
-		//ÇÊ¿äÇÏ¸é Ãß°¡ ÇØ¼­ ¾²´Â ÂÊÀ¸·Î....
+		//é˜å¤¸çªæ çœ å•Š ç§¦è¾‘ é™ç»° ç‡æ è‚º....
 	case EB2GameMode::Scenario:
 	case EB2GameMode::CounterDungeon:
 	case EB2GameMode::Tutorial:

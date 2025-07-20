@@ -1,4 +1,4 @@
-// Copyright 1998-2014 Epic Games, Inc. All Rights Reserved.
+ï»¿// Copyright 1998-2014 Epic Games, Inc. All Rights Reserved.
 
 
 #include "B2GameLoadingProgress.h"
@@ -13,8 +13,8 @@
 
 namespace B2GMLoadingProgCollector
 {
-	/** ¸Å Step ÄÝ ¸¶´Ù Áö±Ý±îÁö ·ÎµùµÈ °Å Á¦¿ÜÇÑ ³ª¸ÓÁö progress ¿¡¼­ ÀÌ¸¸Å­ÀÇ ºñÀ²ÀÌ Â÷°Ô µÈ´Ù. 
-	 * ±¸°£ º°·Î ÀÌ °ªÀ» ¼³Á¤ÇØ ³õ°í ÀûÀýÈ÷ Step ÄÝÀ» ÇÏ´Â ½Ä */
+	/** ë§¤ Step ì½œ ë§ˆë‹¤ ì§€ê¸ˆê¹Œì§€ ë¡œë”©ëœ ê±° ì œì™¸í•œ ë‚˜ë¨¸ì§€ progress ì—ì„œ ì´ë§Œí¼ì˜ ë¹„ìœ¨ì´ ì°¨ê²Œ ëœë‹¤. 
+	 * êµ¬ê°„ ë³„ë¡œ ì´ ê°’ì„ ì„¤ì •í•´ ë†“ê³  ì ì ˆížˆ Step ì½œì„ í•˜ëŠ” ì‹ */
 	float CurrentGameResLoadingStepRate = 0.1f;
 
 
@@ -30,7 +30,7 @@ namespace B2GMLoadingProgCollector
 	}
 
 	float GetAllPCClassRootSetWeight(UObject* WorldContextObject, float InSinglePCClassInfoWeight)
-	{ // ¾î¶² PCClass ¸¦ ·ÎµùÇØ¾ß ÇÒÁö Á¤º¸¸¦ È®½ÇÈ÷ Àü´ÞÇØ ÁÖ±â ¾î·Á¿î ¸ðµå¿¡¼­ »ç¿ëÇÏ±â À§ÇÔ.
+	{ // ì–´ë–¤ PCClass ë¥¼ ë¡œë”©í•´ì•¼ í• ì§€ ì •ë³´ë¥¼ í™•ì‹¤ížˆ ì „ë‹¬í•´ ì£¼ê¸° ì–´ë ¤ìš´ ëª¨ë“œì—ì„œ ì‚¬ìš©í•˜ê¸° ìœ„í•¨.
 		float PCLoadedWeight = 0.0f;
 		UB2PCClassInfoBox* PCBox = GetPCClassInfoBox(WorldContextObject);
 		if (PCBox)
@@ -51,16 +51,16 @@ namespace B2GMLoadingProgCollector
 	//////////////////////////////////////////////////////////////////////////////////////
 
 	/**
-	 * °¢ °ÔÀÓ¸ðµå Å¸ÀÔ º°·Î InfoAsset ÄÁÅÙÃ÷ ·ÎµùÀÌ ºüÁø ¼ø¼öÇÑ ¸Ê ·Îµù ÁöºÐÀ» ¸®ÅÏÇÏ´Â ÇÔ¼öµéÀ» °³º° ±¸ÇöÇÑ´Ù.
-	 * ¾ÆÁ÷ ·ÎµùÀÎ ¾ÈµÈ °ÔÀÓ¸ðµå¿¡ ´ëÇÑ Á¤º¸°¡ ÇÊ¿äÇØ¼­ GameMode ÂÊ ÀÎÅÍÆäÀÌ½º·Î ÇÒ ¼ö°¡ ¾øÀ½.
-	 * ±×·¸°Ô Çß´õ¶óµµ ±¸ÇöÀº °ü¸®ÇÏ±â ÁÁ°Ô ¿©±â¿¡ ¸ð¾Æ³õ¾ÒÀ» °Í.
-	 * ±î¸ÔÀº °Ô ÀÖ´õ¶óµµ Fallback ÀÌ ÀÖ°í, °ÔÀÓÀÌ ¿Àµ¿ÀÛÀ» ÇÏ°Ô µÇ´Â °Å ¾Æ´Ô.
+	 * ê° ê²Œìž„ëª¨ë“œ íƒ€ìž… ë³„ë¡œ InfoAsset ì»¨í…ì¸  ë¡œë”©ì´ ë¹ ì§„ ìˆœìˆ˜í•œ ë§µ ë¡œë”© ì§€ë¶„ì„ ë¦¬í„´í•˜ëŠ” í•¨ìˆ˜ë“¤ì„ ê°œë³„ êµ¬í˜„í•œë‹¤.
+	 * ì•„ì§ ë¡œë”©ì¸ ì•ˆëœ ê²Œìž„ëª¨ë“œì— ëŒ€í•œ ì •ë³´ê°€ í•„ìš”í•´ì„œ GameMode ìª½ ì¸í„°íŽ˜ì´ìŠ¤ë¡œ í•  ìˆ˜ê°€ ì—†ìŒ.
+	 * ê·¸ë ‡ê²Œ í–ˆë”ë¼ë„ êµ¬í˜„ì€ ê´€ë¦¬í•˜ê¸° ì¢‹ê²Œ ì—¬ê¸°ì— ëª¨ì•„ë†“ì•˜ì„ ê²ƒ.
+	 * ê¹Œë¨¹ì€ ê²Œ ìžˆë”ë¼ë„ Fallback ì´ ìžˆê³ , ê²Œìž„ì´ ì˜¤ë™ìž‘ì„ í•˜ê²Œ ë˜ëŠ” ê±° ì•„ë‹˜.
 	 */
 
 	float GetPureMapLoadShare_Lobby(UObject* WorldContextObject)
 	{
 		AB2DLCFrontGameMode* DLCGM = Cast<AB2DLCFrontGameMode>(UGameplayStatics::GetGameMode(WorldContextObject));
-		if (DLCGM){ // DLCFrontGameMode ¿¡¼­ ·Îºñ·Î ÀÌµ¿ÇÏ´Â °Ç °ÔÀÓ ½ºÅ¸Æ®¾÷ »óÈ².. ¸Ê ÁöºÐÀ» ¸¹ÀÌ ³·Ãß¾î¾ß.
+		if (DLCGM){ // DLCFrontGameMode ì—ì„œ ë¡œë¹„ë¡œ ì´ë™í•˜ëŠ” ê±´ ê²Œìž„ ìŠ¤íƒ€íŠ¸ì—… ìƒí™©.. ë§µ ì§€ë¶„ì„ ë§Žì´ ë‚®ì¶”ì–´ì•¼.
 			return 0.2f;
 		}
 
@@ -68,15 +68,15 @@ namespace B2GMLoadingProgCollector
 	}
 	float GetPureMapLoadShare_Scenario(UObject* WorldContextObject)
 	{
-		// ´ÜÀÏ InfoAsset À¸·Î´Â °¡Àå Å« µ¥ÀÌÅÍÀÎ PCClassInfo °¡ ¾ó¸¶³ª ·ÎµùµÇ¾î ÀÖ´ÂÁö¿¡ µû¶ó ¼ø¼ö ¸Ê ·Îµù¿¡¼­ÀÇ °¡ÁßÄ¡¸¦ ´Ù¸£°Ô ÁÜ.
+		// ë‹¨ì¼ InfoAsset ìœ¼ë¡œëŠ” ê°€ìž¥ í° ë°ì´í„°ì¸ PCClassInfo ê°€ ì–¼ë§ˆë‚˜ ë¡œë”©ë˜ì–´ ìžˆëŠ”ì§€ì— ë”°ë¼ ìˆœìˆ˜ ë§µ ë¡œë”©ì—ì„œì˜ ê°€ì¤‘ì¹˜ë¥¼ ë‹¤ë¥´ê²Œ ì¤Œ.
 		float PCLoadedWeight = 0.0f;
 		UB2PCClassInfoBox* PCBox = GetPCClassInfoBox(WorldContextObject);
 		if (PCBox)
 		{
 			if (PCBox->IsClassDataAtRootSet(BladeIIGameImpl::GetLocalCharacterData().GetMainPlayerClass(), true))
 			{
-				// ÀÌ ´õÇØÁö´Â °ªÀº PC µ¥ÀÌÅÍ ·ÎµùÀÌ »ó´ëÀûÀÎ ¸Ê µ¥ÀÌÅÍ ·Îµù ÁöºÐ¿¡ ¾ó¸¶³ª ¿µÇâÀ» ¹ÌÄ¡´Â°¡ÀÌÁö 
-				// PC µ¥ÀÌÅÍ ÀÚÃ¼ÀÇ ÁöºÐÀ» ¶æÇÏ´Â °Ç ¾Æ´Ô. PC µ¥ÀÌÅÍ ÀÚÃ¼ ÁöºÐÀº Åë»óÀûÀ¸·Î ´õ Å¬ °ÍÀ¸·Î ¿¹»ó.
+				// ì´ ë”í•´ì§€ëŠ” ê°’ì€ PC ë°ì´í„° ë¡œë”©ì´ ìƒëŒ€ì ì¸ ë§µ ë°ì´í„° ë¡œë”© ì§€ë¶„ì— ì–¼ë§ˆë‚˜ ì˜í–¥ì„ ë¯¸ì¹˜ëŠ”ê°€ì´ì§€ 
+				// PC ë°ì´í„° ìžì²´ì˜ ì§€ë¶„ì„ ëœ»í•˜ëŠ” ê±´ ì•„ë‹˜. PC ë°ì´í„° ìžì²´ ì§€ë¶„ì€ í†µìƒì ìœ¼ë¡œ ë” í´ ê²ƒìœ¼ë¡œ ì˜ˆìƒ.
 				PCLoadedWeight += 0.12f; 
 			}
 			if (PCBox->IsClassDataAtRootSet(BladeIIGameImpl::GetLocalCharacterData().GetSubPlayerClass(), true))
@@ -85,15 +85,15 @@ namespace B2GMLoadingProgCollector
 			}
 		}
 		float NPCLoadedWeight = 0.0f;
-		// ÀÌ°Íµµ »ó´çÈ÷ Ä¿¼­ ·Îµù ÁøÇàµµ ÁöºÐ »êÁ¤¿¡ Âü°íÇÒ ÇÊ¿ä. ½ÇÁ¦ ´ÙÀ½ ·Îµù¿¡ ¾ó¸¶³ª »ç¿ëµÇ´ÂÁö±îÁö´Â ¸ð¸£°ÚÁö¸¸.
+		// ì´ê²ƒë„ ìƒë‹¹ížˆ ì»¤ì„œ ë¡œë”© ì§„í–‰ë„ ì§€ë¶„ ì‚°ì •ì— ì°¸ê³ í•  í•„ìš”. ì‹¤ì œ ë‹¤ìŒ ë¡œë”©ì— ì–¼ë§ˆë‚˜ ì‚¬ìš©ë˜ëŠ”ì§€ê¹Œì§€ëŠ” ëª¨ë¥´ê² ì§€ë§Œ.
 		UB2NPCClassInfoBox* NPCBox = GetNPCClassInfoBox(WorldContextObject);
 		if (NPCBox)
 		{
 			NPCLoadedWeight += FMath::Min(((float)NPCBox->GetEstimatedRootedAssetNum() * 0.01f), 0.2f);
 		}
 
-		// PCSkillAnim ·çÆ®¼Â ¿©ºÎ´Â °ÅÀÇ PCClassInfo ¿Í °°ÀÌ °£´Ù°í º½. ±×°É »ý°¢ÇØ¼­¶óµµ PCClassInfo ÀÇ RootSet ¿©ºÎ¿¡ Å« °¡ÁßÄ¡.
-		// ³ª¸ÓÁö´Â »óÈ²¿¡ µû¶ó DamageEffectInfo ³ª BattleMain °°Àº °Ô µÉ ¼ö ÀÖ´Âµ¥.. ±×°Í±îÁö ´Ù µûÁö±â´Â ¾î·Á¿ì´Ï ¹«½Ã
+		// PCSkillAnim ë£¨íŠ¸ì…‹ ì—¬ë¶€ëŠ” ê±°ì˜ PCClassInfo ì™€ ê°™ì´ ê°„ë‹¤ê³  ë´„. ê·¸ê±¸ ìƒê°í•´ì„œë¼ë„ PCClassInfo ì˜ RootSet ì—¬ë¶€ì— í° ê°€ì¤‘ì¹˜.
+		// ë‚˜ë¨¸ì§€ëŠ” ìƒí™©ì— ë”°ë¼ DamageEffectInfo ë‚˜ BattleMain ê°™ì€ ê²Œ ë  ìˆ˜ ìžˆëŠ”ë°.. ê·¸ê²ƒê¹Œì§€ ë‹¤ ë”°ì§€ê¸°ëŠ” ì–´ë ¤ìš°ë‹ˆ ë¬´ì‹œ
 		
 		return 0.3f + PCLoadedWeight + NPCLoadedWeight;
 	}
@@ -102,7 +102,7 @@ namespace B2GMLoadingProgCollector
 		float PCLoadedWeight = 0.0f;
 		UB2PCClassInfoBox* PCBox = GetPCClassInfoBox(WorldContextObject);
 		if (PCBox)
-		{ // ¿©±ä ÇÏ³ª»Ó.
+		{ // ì—¬ê¸´ í•˜ë‚˜ë¿.
 			if (PCBox->IsClassDataAtRootSet(BladeIIGameImpl::GetLocalCharacterData().GetMainPlayerClass(), true))
 			{
 				PCLoadedWeight += 0.25f;
@@ -113,13 +113,13 @@ namespace B2GMLoadingProgCollector
 	}
 	float GetPureMapLoadShare_HeroTower(UObject* WorldContextObject)
 	{
-		// ½Ã³ª¸®¿À ¸Êº¸´Ù ¸Ê ÀÚÃ¼´Â ÀÛ°í NPC µ¥ÀÌÅÍ°¡ ¸¹À½
+		// ì‹œë‚˜ë¦¬ì˜¤ ë§µë³´ë‹¤ ë§µ ìžì²´ëŠ” ìž‘ê³  NPC ë°ì´í„°ê°€ ë§ŽìŒ
 		return GetPureMapLoadShare_Scenario(WorldContextObject) * 0.7;
 	}
-	// ¸®¸ðÆ® Ä³¸¯ÅÍ°¡ ÀÖ´Â ¸ÊµéÀº °øÅëÀûÀ¸·Î PCClassInfo µ¥ÀÌÅÍ ¿Ü¿¡ °¢ Ä³¸¯ÅÍµéÀÇ ÆÄÆ®·ÎµùÀÌ ÀÖ´Ù. ÀÌ°É ´ë·« ÀÏ¹Ý ½Ã³ª¸®¿À ¸ÊÀÇ NPCClassInfo ¸¸Å­À¸·Î °£ÁÖÇÏ¸é µÇ·Á³ª.. 
+	// ë¦¬ëª¨íŠ¸ ìºë¦­í„°ê°€ ìžˆëŠ” ë§µë“¤ì€ ê³µí†µì ìœ¼ë¡œ PCClassInfo ë°ì´í„° ì™¸ì— ê° ìºë¦­í„°ë“¤ì˜ íŒŒíŠ¸ë¡œë”©ì´ ìžˆë‹¤. ì´ê±¸ ëŒ€ëžµ ì¼ë°˜ ì‹œë‚˜ë¦¬ì˜¤ ë§µì˜ NPCClassInfo ë§Œí¼ìœ¼ë¡œ ê°„ì£¼í•˜ë©´ ë˜ë ¤ë‚˜.. 
 	float GetPureMapLoadShare_PVP(UObject* WorldContextObject)
 	{
-		// PVP ´Â Æ¯È÷³ª ÀüÅõ¿ë ½ºÆ®¸®¹Ö ·¹º§Àº ³ªÁß¿¡ ·ÎµùÇØ¼­.. ¸Ê ºñÁßÀÌ ¾Æ¸¶ Á© ÀÛÀ» µí.
+		// PVP ëŠ” íŠ¹ížˆë‚˜ ì „íˆ¬ìš© ìŠ¤íŠ¸ë¦¬ë° ë ˆë²¨ì€ ë‚˜ì¤‘ì— ë¡œë”©í•´ì„œ.. ë§µ ë¹„ì¤‘ì´ ì•„ë§ˆ ì ¤ ìž‘ì„ ë“¯.
 
 		float PCLoadedWeight = GetAllPCClassRootSetWeight(WorldContextObject, 0.1f);
 
@@ -127,18 +127,18 @@ namespace B2GMLoadingProgCollector
 	}
 	float GetPureMapLoadShare_TeamMatch(UObject* WorldContextObject)
 	{
-		// ±Ùµ¥ ´Ù¸¥ ¸ðµåµéµµ.. »ó´ë¹æ ÀåÂø Àåºñ ÆÄÆ® ·ÎµùÇØ¾ß ÇÏ´Â °Å »ý°¢ÇÏ¸é.. ¸Ê ·Îµù ÁöºÐÀ» ¸¹ÀÌ ÁÙ ¼ö°¡ ¾ø±º ¤Ñ¤Ñ
+		// ê·¼ë° ë‹¤ë¥¸ ëª¨ë“œë“¤ë„.. ìƒëŒ€ë°© ìž¥ì°© ìž¥ë¹„ íŒŒíŠ¸ ë¡œë”©í•´ì•¼ í•˜ëŠ” ê±° ìƒê°í•˜ë©´.. ë§µ ë¡œë”© ì§€ë¶„ì„ ë§Žì´ ì¤„ ìˆ˜ê°€ ì—†êµ° ã…¡ã…¡
 
 		float PCLoadedWeight = GetAllPCClassRootSetWeight(WorldContextObject, 0.1f);
 
-		return FMath::Min(0.15f + PCLoadedWeight, 0.9f); // È¤½Ã¶óµµ PCClass ´Ã¾î³µ´Ù°¡ ÀÌ°Ô 1.0 ÀÌ ³Ñ¾î°¡¸é ÁÁÁö ¾ÊÁö..
+		return FMath::Min(0.15f + PCLoadedWeight, 0.9f); // í˜¹ì‹œë¼ë„ PCClass ëŠ˜ì–´ë‚¬ë‹¤ê°€ ì´ê²Œ 1.0 ì´ ë„˜ì–´ê°€ë©´ ì¢‹ì§€ ì•Šì§€..
 	}
 	float GetPureMapLoadShare_Raid(UObject* WorldContextObject)
 	{
-		// Raid ´Â ¸Ê ·Îµù Àü¿¡ ¾î¶² Ä³¸¯ÅÍ Á¤º¸°¡ ÇÊ¿äÇÑÁö ¹Ì¸® ¾Ë ¼ö ÀÖÀ½.
+		// Raid ëŠ” ë§µ ë¡œë”© ì „ì— ì–´ë–¤ ìºë¦­í„° ì •ë³´ê°€ í•„ìš”í•œì§€ ë¯¸ë¦¬ ì•Œ ìˆ˜ ìžˆìŒ.
 		TArray<EPCClass> AllNecessaryPCClasses = AB2NetGameMode::GetAllNetGameMatchedPCClasses();
 		check(AllNecessaryPCClasses.Num() > 0);
-		// ¹º°¡ °è»ê ¹æ½ÄÀÌ ½â Á¤È®ÇÏÁö´Â ¾ÊÀºµ¥ ±×·¸°Ô Á¤È®ÇÒ ÇÊ¿ä±îÁö ÀÖ´Â °Íµµ ¾Æ´Ï°í..
+		// ë­”ê°€ ê³„ì‚° ë°©ì‹ì´ ì© ì •í™•í•˜ì§€ëŠ” ì•Šì€ë° ê·¸ë ‡ê²Œ ì •í™•í•  í•„ìš”ê¹Œì§€ ìžˆëŠ” ê²ƒë„ ì•„ë‹ˆê³ ..
 		float PerPCWeight = 0.4f / AllNecessaryPCClasses.Num();
 		float PCLoadedWeight = 0.0f;
 		UB2PCClassInfoBox* PCBox = GetPCClassInfoBox(WorldContextObject);
@@ -156,12 +156,12 @@ namespace B2GMLoadingProgCollector
 	}
 	float GetPureMapLoadShare_Control(UObject* WorldContextObject)
 	{
-		// Raid Ã³·³ (¹Ì¸® Å¬·¡½º¸¦ ¾Ë°í ÀÖ´Â) ´Ù¼öÀÇ ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ¿Í ÇÏ³ªÀÇ ¸÷ÀÌ ÀÖÀ½. 
+		// Raid ì²˜ëŸ¼ (ë¯¸ë¦¬ í´ëž˜ìŠ¤ë¥¼ ì•Œê³  ìžˆëŠ”) ë‹¤ìˆ˜ì˜ í”Œë ˆì´ì–´ ìºë¦­í„°ì™€ í•˜ë‚˜ì˜ ëª¹ì´ ìžˆìŒ. 
 		return GetPureMapLoadShare_Raid(WorldContextObject);
 	}
 	float GetPureMapLoadShare_Tutorial(UObject* WorldContextObject)
 	{
-		// Ã³À½ ÇÏ³ª »©°í async ·Îµù ÇÔ. ±×¸®°í ¿©±ä ¹è°æ ÂÊÀ» Á» ´õ Å©°Ô Àâ´Â °Ô ÁÁÀ» µí.
+		// ì²˜ìŒ í•˜ë‚˜ ë¹¼ê³  async ë¡œë”© í•¨. ê·¸ë¦¬ê³  ì—¬ê¸´ ë°°ê²½ ìª½ì„ ì¢€ ë” í¬ê²Œ ìž¡ëŠ” ê²Œ ì¢‹ì„ ë“¯.
 		float PCLoadedWeight = 0.0f;
 		UB2PCClassInfoBox* PCBox = GetPCClassInfoBox(WorldContextObject);
 		if (PCBox)
@@ -176,7 +176,7 @@ namespace B2GMLoadingProgCollector
 	}
 	float GetPureMapLoadShare_Guild(UObject* WorldContextObject)
 	{
-		// ÆÀ´ëÀüÇÏ°í ºñ½ÁÇÑ ¼º°ÝÀÎµ¥.. NPC µ¥ÀÌÅÍ°¡ ÀÖ¾î¼­ PureMap ÁöºÐÀ» ¾à°£ ³·Ãá´Ù.
+		// íŒ€ëŒ€ì „í•˜ê³  ë¹„ìŠ·í•œ ì„±ê²©ì¸ë°.. NPC ë°ì´í„°ê°€ ìžˆì–´ì„œ PureMap ì§€ë¶„ì„ ì•½ê°„ ë‚®ì¶˜ë‹¤.
 		return GetPureMapLoadShare_TeamMatch(WorldContextObject) * 0.8f;
 	}
 	float GetPureMapLoadShare_PreRender()
@@ -192,8 +192,8 @@ namespace B2GMLoadingProgCollector
 
 	float GetPureMapLoadShareForGM(UObject* WorldContextObject, EB2GameMode InGameModeToLoad)
 	{
-		// ´ÙÀ½ ¸Ê ·Îµù Á÷Àü¿¡ ºÒ¸®´Â °Å
-		// ´ÙÀ½¿¡ ·Îµù µÉ °ÔÀÓ¸ðµå¿Í ÇöÀç ÁÖ¿ä ¿¡¼Â Rootset »çÁ¤¿¡ µû¶ó¼­ ¼ø¼ö ¸Ê ·Îµù±îÁöÀÇ progress ÁöºÐÀ» "Àû´çÈ÷" ¸®ÅÏÇÑ´Ù.
+		// ë‹¤ìŒ ë§µ ë¡œë”© ì§ì „ì— ë¶ˆë¦¬ëŠ” ê±°
+		// ë‹¤ìŒì— ë¡œë”© ë  ê²Œìž„ëª¨ë“œì™€ í˜„ìž¬ ì£¼ìš” ì—ì…‹ Rootset ì‚¬ì •ì— ë”°ë¼ì„œ ìˆœìˆ˜ ë§µ ë¡œë”©ê¹Œì§€ì˜ progress ì§€ë¶„ì„ "ì ë‹¹ížˆ" ë¦¬í„´í•œë‹¤.
 
 		if (WorldContextObject)
 		{
@@ -231,7 +231,7 @@ namespace B2GMLoadingProgCollector
 	
 	void Step()
 	{
-		//// °ªµéÀÌ ¿¹»óµÇ´Â 0.0 ~ 1.0 ¹üÀ§ ³»¿¡ ÀÖ´Ù¸é ÀÌ°É·Î´Â 100% ±îÁö Ã¤¿ìÁö ¾Ê°Ô µÈ´Ù.
+		//// ê°’ë“¤ì´ ì˜ˆìƒë˜ëŠ” 0.0 ~ 1.0 ë²”ìœ„ ë‚´ì— ìžˆë‹¤ë©´ ì´ê±¸ë¡œëŠ” 100% ê¹Œì§€ ì±„ìš°ì§€ ì•Šê²Œ ëœë‹¤.
 		//float CurrentProgress = GlobalGetMapLoadingProgress();
 		//float AddedValue = (1.0f - CurrentProgress) * CurrentGameResLoadingStepRate;
 
@@ -240,14 +240,14 @@ namespace B2GMLoadingProgCollector
 
 	void StepCustom(float InSpecifiedRate, float DesiredMinGameResourceLoadingProgress /*= -1.0f*/)
 	{
-		//// ÀÌ°É µÑÀÌ µû·Î ¾µ ¸¸ÇÑ °÷ÀÌ ÀÖÀ» °Å °°¾Æ¼­ µû·Î ¾µ ¼ö ÀÖ°Ô Á¦°øÇÏ´Â °Å°í ¸¹Àº °æ¿ì¿£ ÀÌ°É·Î ¶«Áú µÉ µí.
+		//// ì´ê±¸ ë‘˜ì´ ë”°ë¡œ ì“¸ ë§Œí•œ ê³³ì´ ìžˆì„ ê±° ê°™ì•„ì„œ ë”°ë¡œ ì“¸ ìˆ˜ ìžˆê²Œ ì œê³µí•˜ëŠ” ê±°ê³  ë§Žì€ ê²½ìš°ì—” ì´ê±¸ë¡œ ë•œì§ˆ ë  ë“¯.
 		//SetStepRate(InSpecifiedRate);
 		//Step();
 
-		//// Ãß°¡·Î °íÁ¤µÈ ÃÖ¼Ò progress ¸¦ ÁöÁ¤ÇÒ ¼ö ÀÖ´Ù. ¼ø¼ö ¸Ê ·Îµù Á¦¿ÜÇÑ ÀÎ°ÔÀÓ µ¥ÀÌÅÍ ¾È¿¡¼­ÀÇ ºñÀ²·Î.
+		//// ì¶”ê°€ë¡œ ê³ ì •ëœ ìµœì†Œ progress ë¥¼ ì§€ì •í•  ìˆ˜ ìžˆë‹¤. ìˆœìˆ˜ ë§µ ë¡œë”© ì œì™¸í•œ ì¸ê²Œìž„ ë°ì´í„° ì•ˆì—ì„œì˜ ë¹„ìœ¨ë¡œ.
 		//if (DesiredMinGameResourceLoadingProgress > 0.0f)
 		//{
-		//	const float CurrentTotalProgress = GlobalGetMapLoadingProgress(); // ÁøÂ¥ ¿ÏÀü ÀüÃ¼ ÁøÇàµµ
+		//	const float CurrentTotalProgress = GlobalGetMapLoadingProgress(); // ì§„ì§œ ì™„ì „ ì „ì²´ ì§„í–‰ë„
 		//	const float GameResourceShare = GlobalGetGameSpecificContentLoadingShare();
 		//	const float PureMapLoadingShare = 1.0f - GameResourceShare;
 
@@ -261,10 +261,10 @@ namespace B2GMLoadingProgCollector
 
 	void StepToMax()
 	{
-		// Àû´çÇÑ ½ÃÁ¡¿¡ ·Îµù¹Ù¸¦ 100% ·Î Ã¤¿ö³õ±â À§ÇÔ. Àû´çÇÑ ½ÃÁ¡ÀÌ¶ó´Â °Ç..
-		// ·ÎµùÀÌ ½ÇÁ¦·Î´Â ¿ÏÀüÈ÷ ³¡³ªÁö ¾Ê¾Æµµ ºñµ¿±â ·Îµù È­¸é¿¡¼­ À¯Àú°¡ ÀÎÁöÇÏ´Â µ¿¾È ·Îµù ÁøÇàµµ 100% ¸¦ º¼ ¼ö ÀÖ°í, °Å±â¼­ ¾ó¸¶ Áö³ªÁö ¾Ê¾Æ ½ÇÁ¦·Î ·ÎµùÀÌ Á¾·áµÇ´Â.. ¤§¤§
-		// µû¶ó¼­ È¤¿©³ª ÀÇµµÄ¡ ¾Ê°Ô ½Ã°£À» ¸¹ÀÌ ¼Ò¸ðÇÒ ¼ö ÀÖ´Â Async ·Îµù¿¡ ´ëÇØ Flush ¸¦ ÇÑÂ÷·Ê ÇÏ°í.. (¿©±â¼­ ±»ÀÌ ÇÏÁö ¾Ê¾Æµµ °á±¹ ÀÌ¿¡ »óÀÀÇÏ´Â µ¿ÀÛÀº ÀÏ¾î³ª±ä ÇÏ°ÚÁö¸¸)
-		// ÀÌ°É ÄÝ ÇÑ ÀÌÈÄ¿¡´Â ±æÁö´Â ¾ÊÁö¸¸ ³ª¸§ÀÇ ½Ã°£À» Àâ¾Æ¸Ô´Â µ¿ÀÛÀÌ ÀÏ¾î³ª¾ß ÇÑ´Ù. ¿¹¸¦ µé¾î ÀüÅõ UI ¶ç¿ì±â.
+		// ì ë‹¹í•œ ì‹œì ì— ë¡œë”©ë°”ë¥¼ 100% ë¡œ ì±„ì›Œë†“ê¸° ìœ„í•¨. ì ë‹¹í•œ ì‹œì ì´ë¼ëŠ” ê±´..
+		// ë¡œë”©ì´ ì‹¤ì œë¡œëŠ” ì™„ì „ížˆ ëë‚˜ì§€ ì•Šì•„ë„ ë¹„ë™ê¸° ë¡œë”© í™”ë©´ì—ì„œ ìœ ì €ê°€ ì¸ì§€í•˜ëŠ” ë™ì•ˆ ë¡œë”© ì§„í–‰ë„ 100% ë¥¼ ë³¼ ìˆ˜ ìžˆê³ , ê±°ê¸°ì„œ ì–¼ë§ˆ ì§€ë‚˜ì§€ ì•Šì•„ ì‹¤ì œë¡œ ë¡œë”©ì´ ì¢…ë£Œë˜ëŠ”.. ã„·ã„·
+		// ë”°ë¼ì„œ í˜¹ì—¬ë‚˜ ì˜ë„ì¹˜ ì•Šê²Œ ì‹œê°„ì„ ë§Žì´ ì†Œëª¨í•  ìˆ˜ ìžˆëŠ” Async ë¡œë”©ì— ëŒ€í•´ Flush ë¥¼ í•œì°¨ë¡€ í•˜ê³ .. (ì—¬ê¸°ì„œ êµ³ì´ í•˜ì§€ ì•Šì•„ë„ ê²°êµ­ ì´ì— ìƒì‘í•˜ëŠ” ë™ìž‘ì€ ì¼ì–´ë‚˜ê¸´ í•˜ê² ì§€ë§Œ)
+		// ì´ê±¸ ì½œ í•œ ì´í›„ì—ëŠ” ê¸¸ì§€ëŠ” ì•Šì§€ë§Œ ë‚˜ë¦„ì˜ ì‹œê°„ì„ ìž¡ì•„ë¨¹ëŠ” ë™ìž‘ì´ ì¼ì–´ë‚˜ì•¼ í•œë‹¤. ì˜ˆë¥¼ ë“¤ì–´ ì „íˆ¬ UI ë„ìš°ê¸°.
 		FlushAsyncLoading();
 		StepCustom(1.0f, 1.0f);
 	}

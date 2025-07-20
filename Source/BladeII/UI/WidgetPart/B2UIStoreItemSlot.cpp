@@ -1,4 +1,4 @@
-#include "B2UIStoreItemSlot.h"
+﻿#include "B2UIStoreItemSlot.h"
 #include "Event.h"
 
 #include "BladeIILocText.h"

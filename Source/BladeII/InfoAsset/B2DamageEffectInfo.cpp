@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 // Project BladeII, Action Square
 
 #include "B2DamageEffectInfo.h"
@@ -12,22 +12,22 @@
 #include "UObject/ObjectSaveContext.h"
 //#include "B2UIDocHelper.h"
 
-/** ¿©±â ¿¡¼Â ±¸¼º¿¡ ¸ÂÃç¼­.. FStreamableManager ¶óµµ »ç¿ëÇÑ ·ÎµùÄÚµå·Î ¹Ù²Ù±â À§ÇØ ±ŞÁ¶ÇÔ. */
+/** å’¯æ‰ ä¿Šæ‚¸ å¤‡å·±ä¿Š å˜è‹—è¾‘.. FStreamableManager æ‰¼æ¡£ è¤ä¾©èŒ„ è‚ºçˆ¹å†…é›è‚º å®˜æ“æ‰ å›°ç§¦ é­ç‚¼çªƒ. */
 template<class TAssetClass>
 static TAssetClass* LoadAndCacheDamageEffectInfoTAssetArrayCommon(FStreamableManager& InLoadManager, 
 	TSoftObjectPtr<TAssetClass>& InTAsset, int32 AssetArrayIndex, TMap<int32, TAssetClass*>& InLoadedPtrMap)
 {
 	check(AssetArrayIndex >= 0);
 
-	// DamageEffectInfo Àü¿ëÀÓ. Async ·Îµù ¾È ÇÒ °Å. ´ÜÁö ´Ù¸¥ Async ·ÎµùÀ» ¹æÇØÇÏÁö ¾Ê±â À§ÇØ FStreamableManager »ç¿ëÀº ÇÊ¼ö.
+	// DamageEffectInfo å‚ˆä¾©çƒ™. Async è‚ºçˆ¹ æ•‘ ä¸” èŠ­. çªœç˜¤ ä¿ƒå¼— Async è‚ºçˆ¹é˜‘ è§„ç§¦çªç˜¤ è‡¼æ‰ å›°ç§¦ FStreamableManager è¤ä¾©ç¯® é˜è.
 
 	TAssetClass*& LoadedMapElem = InLoadedPtrMap.FindOrAdd(AssetArrayIndex);
 	if (LoadedMapElem && InTAsset.IsValid()) {
-		return LoadedMapElem; // ÀÌ¹Ì ·ÎµùµÇ¾î ÀÖ´Â ÄÉÀÌ½º
+		return LoadedMapElem; // æå›º è‚ºçˆ¹ç™»ç»¢ ä¹ç»° çº³æèƒ¶
 	}
 		
 	if (!InTAsset.IsValid() && !InTAsset.IsNull())
-	{ // TAsset ·Îµù. InTAsset ÀÚÃ¼ÀÇ LoadSynchronous() ·Î ÇÏ¸é ´Ù¸¥ async loading ÀÌ flush °¡ µÇ´Â ¹®Á¦°¡ ÀÖ¾î¼­ ÀÎ°ÔÀÓ ÀüÅõ Áß¿¡ È°¹ßÈ÷ »ç¿ëµÉ ÀÌ°Ç Æ¯È÷³ª FStreamableManager »ç¿ëÀÌ Áß¿äÇÏ´Ù.
+	{ // TAsset è‚ºçˆ¹. InTAsset ç£Šçœ‰ç‹¼ LoadSynchronous() è‚º çªæ ä¿ƒå¼— async loading æ flush å•Š ç™»ç»° å·©åŠ›å•Š ä¹ç»¢è¾‘ ç‰¢éœ¸çƒ™ å‚ˆæ§ åä¿Š åŠæƒ¯æ´’ è¤ä¾©çª ææ‰’ æ¼‚æ´’å”± FStreamableManager è¤ä¾©æ åå¤¸çªä¿ƒ.
 		InLoadManager.LoadSynchronous(InTAsset);
 	}
 
@@ -36,19 +36,19 @@ static TAssetClass* LoadAndCacheDamageEffectInfoTAssetArrayCommon(FStreamableMan
 	
 	return Loaded;
 }
-/** ¿ä°Ç ´Üµ¶À¸·Î Á¸ÀçÇÏ´Â °Å ¿ëµµ */
+/** å¤¸æ‰’ çªœåˆ€æ è‚º ç²®çŠçªç»° èŠ­ ä¾©æ¡£ */
 template<class TAssetClass>
 static TAssetClass* LoadAndCacheDamageEffectInfoTAssetSingleCommon(FStreamableManager& InLoadManager,
 	TSoftObjectPtr<TAssetClass>& InTAsset, TAssetClass*& InLoadedPtr)
 {
-	// DamageEffectInfo Àü¿ëÀÓ. Async ·Îµù ¾È ÇÒ °Å. ´ÜÁö ´Ù¸¥ Async ·ÎµùÀ» ¹æÇØÇÏÁö ¾Ê±â À§ÇØ FStreamableManager »ç¿ëÀº ÇÊ¼ö.
+	// DamageEffectInfo å‚ˆä¾©çƒ™. Async è‚ºçˆ¹ æ•‘ ä¸” èŠ­. çªœç˜¤ ä¿ƒå¼— Async è‚ºçˆ¹é˜‘ è§„ç§¦çªç˜¤ è‡¼æ‰ å›°ç§¦ FStreamableManager è¤ä¾©ç¯® é˜è.
 
 	if (InLoadedPtr && InTAsset.IsValid()) {
-		return InLoadedPtr; // ÀÌ¹Ì ·ÎµùµÇ¾î ÀÖ´Â ÄÉÀÌ½º
+		return InLoadedPtr; // æå›º è‚ºçˆ¹ç™»ç»¢ ä¹ç»° çº³æèƒ¶
 	}
 
 	if (!InTAsset.IsValid() && !InTAsset.IsNull())
-	{ // TAsset ·Îµù. InTAsset ÀÚÃ¼ÀÇ LoadSynchronous() ·Î ÇÏ¸é ´Ù¸¥ async loading ÀÌ flush °¡ µÇ´Â ¹®Á¦°¡ ÀÖ¾î¼­ ÀÎ°ÔÀÓ ÀüÅõ Áß¿¡ È°¹ßÈ÷ »ç¿ëµÉ ÀÌ°Ç Æ¯È÷³ª FStreamableManager »ç¿ëÀÌ Áß¿äÇÏ´Ù.
+	{ // TAsset è‚ºçˆ¹. InTAsset ç£Šçœ‰ç‹¼ LoadSynchronous() è‚º çªæ ä¿ƒå¼— async loading æ flush å•Š ç™»ç»° å·©åŠ›å•Š ä¹ç»¢è¾‘ ç‰¢éœ¸çƒ™ å‚ˆæ§ åä¿Š åŠæƒ¯æ´’ è¤ä¾©çª ææ‰’ æ¼‚æ´’å”± FStreamableManager è¤ä¾©æ åå¤¸çªä¿ƒ.
 		InLoadManager.LoadSynchronous(InTAsset);
 	}
 
@@ -61,16 +61,16 @@ static TAssetClass* LoadAndCacheDamageEffectInfoTAssetSingleCommon(FStreamableMa
 template<class TAssetClass>
 static void PreloadAndCacheTAssetArrayCommon(FStreamableManager& InLoadManager, TArray<TSoftObjectPtr<TAssetClass>>& InAssetArray, TMap<int32, TAssetClass*>& InLoadedPtrMap)
 {
-	InLoadedPtrMap.Empty(); // ½Ó¹ÚÇÏ°Ô Ã·ºÎÅÍ ½ÃÀÛÇÏ´Â °Å..
+	InLoadedPtrMap.Empty(); // æ¥å† çªéœ¸ æ¢…ä½•ç£ çŸ«ç´¯çªç»° èŠ­..
 	for (int32 AssetIndex = 0; AssetIndex < InAssetArray.Num(); ++AssetIndex)
 	{
 		TSoftObjectPtr<TAssetClass>& ThisTAsset = InAssetArray[AssetIndex];
 		LoadAndCacheDamageEffectInfoTAssetArrayCommon<TAssetClass>(InLoadManager, ThisTAsset, AssetIndex, InLoadedPtrMap);
 	}
-	checkSlow(InAssetArray.Num() == InLoadedPtrMap.Num()); // Null ÀÌ¾îµµ Ãß°¡µÇ°ÚÁö..
+	checkSlow(InAssetArray.Num() == InLoadedPtrMap.Num()); // Null æç»¢æ¡£ çœ å•Šç™»æ‘†ç˜¤..
 }
 
-// Á÷Á¢ ÂüÁ¶ÇÏÁö ¸»°í ShouldUnloadAllAssetOnLevelTransition À¸·Î
+// æµç«‹ æ›¼ç‚¼çªç˜¤ å¯Œç»Š ShouldUnloadAllAssetOnLevelTransition æ è‚º
 bool UB2DamageEffectInfo::bRootsetOnLoad = false;
 bool UB2DamageEffectInfo::bAssetsRooted = false;
 UB2DamageEffectInfo::UB2DamageEffectInfo(const FObjectInitializer& ObjectInitializer)
@@ -271,7 +271,7 @@ void UB2DamageEffectInfo::SpawnDamageEffectInner(UParticleSystem* PSTemplate, cl
 //		}
 //	}
 //
-//	// 180µµ µ¹·ÁÁÙ³ğµé
+//	// 180æ¡£ å€’å¦¨ä¸´ä»‡ç”¸
 //	ABladeIIPlayer* PC = Cast<ABladeIIPlayer>(Target);
 //
 //	if (PC && (PC->IsApplyGuarding() || PC->IsBuffActive(EBuffType::Buff_ReflectDamage)))
@@ -340,18 +340,18 @@ void UB2DamageEffectInfo::PlayHitFlash(class ABladeIICharacter* Target)
 static void SpawnPreRenderParticleComponentsCommon(ASkeletalMeshActor* InOutOwnerSKActor, UParticleSystem* InFxTemplate)
 {
 	if (InOutOwnerSKActor && InFxTemplate) {
-		// UGameplayStatics::SpawnEmitterAttached ´ë½Å¿¡ ¿ä°É·Î.
+		// UGameplayStatics::SpawnEmitterAttached æªè„šä¿Š å¤¸å§è‚º.
 		//UB2PreRenderer::SpawnDummyPSCForPreRender(InFxTemplate, InOutOwnerSKActor->GetRootComponent());
 	}
 }
-// BladeIIGameMode ÀÇ PreRender ·çÆ¾ÀÇ ÀÏºÎ·Î.. InfoAsset Áß¿¡¼­ ÀÎ°ÔÀÓ ¼º´É¿¡ ¿µÇâÀ» ¹ÌÄ¡´Â °É °ñ¶ó¼­ °°ÀÌ Ã³¸®.
+// BladeIIGameMode ç‹¼ PreRender é£å‡­ç‹¼ è€ä½•è‚º.. InfoAsset åä¿Šè¾‘ ç‰¢éœ¸çƒ™ å·±ç“·ä¿Š åº·æ°¢é˜‘ å›ºæ‘¹ç»° å§ æ¦œæ‰¼è¾‘ éæ è´¸åºœ.
 void UB2DamageEffectInfo::SetupPreRenderSKMeshActorForFX(ASkeletalMeshActor* InOutSKActorToSetup)
 {
-	if (!InOutSKActorToSetup) { // SkeletalMeshActor ´Â GameMode ÂÊ¿¡¼­ »ı¼ºÇØ¼­ ÁØ´Ù. Pre-render ±âº» À§Ä¡´Â ±×ÂÊ¿¡¼­ °ü¸®ÇÏ¹Ç·Î.
+	if (!InOutSKActorToSetup) { // SkeletalMeshActor ç»° GameMode ç‡ä¿Šè¾‘ ç§¯å·±ç§¦è¾‘ éœ–ä¿ƒ. Pre-render æ‰å¤¯ å›°æ‘¹ç»° å¼Šç‡ä¿Šè¾‘ åŒ…åºœçªéª¨è‚º.
 		return;
 	}
 
-	// ÇÏ³ªµÑ ÇÏ³ªµÑ..
+	// çªå”±ç¬› çªå”±ç¬›..
 	for (int32 AI = 0; AI < BladeWeaponPST.Num(); ++AI)
 	{
 		TSoftObjectPtr<UParticleSystem>& ThisPSTAsset = BladeWeaponPST[AI];
@@ -406,8 +406,8 @@ void UB2DamageEffectInfo::SetupPreRenderMaterialOverride(TArray<class ASkeletalM
 
 		if (ThisLoaded)
 		{
-			// ¿©±â·Î ³Ñ¾î¿Â InOutSkActorsToSetup ÀÇ °³¼ö´Â GetDesiredPreRenderDummyNumForMtrlOverride ¸¸Å­À» ÀÇµµ..
-			if (InOutSkActorsToSetup.IsValidIndex(ActualLoadedMI)) // InOutSkActorsToSetup ÀÖ´Â ´ë·Î CharacterMaterialOverrides ÇÏ³ª¾¿ ¼¼ÆÃÇØ ÁÜ.
+			// å’¯æ‰è‚º é€ç»¢æŸ¯ InOutSkActorsToSetup ç‹¼ ä¿ºèç»° GetDesiredPreRenderDummyNumForMtrlOverride çˆ¶æ€’é˜‘ ç‹¼æ¡£..
+			if (InOutSkActorsToSetup.IsValidIndex(ActualLoadedMI)) // InOutSkActorsToSetup ä¹ç»° æªè‚º CharacterMaterialOverrides çªå”±ç©¶ æŠ€æ³¼ç§¦ æ·‹.
 			{
 				ASkeletalMeshActor* ThisActor = InOutSkActorsToSetup[ActualLoadedMI];
 				if (ThisActor && ThisActor->GetSkeletalMeshComponent())
@@ -424,7 +424,7 @@ int32 UB2DamageEffectInfo::GetDesiredPreRenderDummyNumForMtrlOverride() const
 	int32 MI = 0;
 	for (const TSoftObjectPtr<class UMaterialInterface>& ThisMatOverride : CharacterMaterialOverrides)
 	{
-		if (!ThisMatOverride.ToString().IsEmpty()){ // ½ÇÁ¦ ·Îµù±îÁö ÇÏ´Â °Ç ¿©±â¼­ ¾î¿ï¸®Áö´Â ¾Ê°í..
+		if (!ThisMatOverride.ToString().IsEmpty()){ // è§’åŠ› è‚ºçˆ¹é³–ç˜¤ çªç»° æ‰’ å’¯æ‰è¾‘ ç»¢åŒ¡åºœç˜¤ç»° è‡¼ç»Š..
 			++MI;
 		}
 	}
@@ -435,20 +435,20 @@ int32 UB2DamageEffectInfo::GetDesiredPreRenderDummyNumForMtrlOverride() const
 void UB2DamageEffectInfo::PreloadAndCacheAllTAsset()
 {
 #if !UE_BUILD_SHIPPING
-	extern bool gPreloadCombatEffectResources; // ÀÌ°Ô ¼º´É¿¡ ½ÇÁ¦·Î ¾ó¸¶³ª ±â¿©ÇÏ´ÂÁö Å×½ºÆ®¸¦ À§ÇØ
+	extern bool gPreloadCombatEffectResources; // æéœ¸ å·±ç“·ä¿Š è§’åŠ›è‚º å€”ä»˜å”± æ‰å’¯çªç»°ç˜¤ æŠ›èƒ¶é£˜ç”« å›°ç§¦
 	if (!gPreloadCombatEffectResources) {
 		return;
 	}
 #endif
 
-#if !PLATFORM_IOS // [IOS_SPECIFIC_MEMORY_SAVING] ÀÏ´Ü iOS ´Â Á¦¿ÜÇÏ°í ´Ù¸¥ ÇÃ·§Æûµé¿¡¼­¸¸
+#if !PLATFORM_IOS // [IOS_SPECIFIC_MEMORY_SAVING] è€çªœ iOS ç»° åŠ›å¯‡çªç»Š ä¿ƒå¼— æ•²é˜€æ±½ç”¸ä¿Šè¾‘çˆ¶
 	if (GIsEditor) {
-		return; // ¿¡µğÅÍ¸é ÇØ¼­ ¾ÈµÉ °Å ¾ø±ä ÇÑµ¥ ·Îµù ½Ã°£ Á¶±İÀÌ¶óµµ ´õ °É¸± Å×´Ï ±×³É ¸®ÅÏ. ±×¸®°í ±¦È÷ LoadedPtr ·Î serialize µÉ ¿©Áö¸¦ Á¶±İÀÌ¶óµµ ´õ È®½ÇÈ÷ Â÷´Ü ¤»
+		return; // ä¿Šå¼ç£æ ç§¦è¾‘ æ•‘çª èŠ­ ç»å˜ èŒ„å• è‚ºçˆ¹ çŸ«åŸƒ ç‚¼é™›ææ‰¼æ¡£ æ­¹ å§å‰¯ æŠ›èª å¼Šæˆ åºœç•”. å¼Šåºœç»Š å®æ´’ LoadedPtr è‚º serialize çª å’¯ç˜¤ç”« ç‚¼é™›ææ‰¼æ¡£ æ­¹ çŠ¬è§’æ´’ ç’çªœ ã›
 	}
 
 	B2_SCOPED_TRACK_LOG(TEXT("UB2DamageEffectInfo::PreloadAndCacheAllTAsset"));
 
-	// TAsset ¿¡¼­ ·ÎµùÇØ¼­ Loaded~~ ¿¡ ³Ö¾î¼­ GC ¹æÁö.
+	// TAsset ä¿Šè¾‘ è‚ºçˆ¹ç§¦è¾‘ Loaded~~ ä¿Š æŒç»¢è¾‘ GC è§„ç˜¤.
 	PreloadAndCacheTAssetArrayCommon<UParticleSystem>(InfoLoadManager, BladeWeaponPST, LoadedBladeWeaponPST);
 	PreloadAndCacheTAssetArrayCommon<UParticleSystem>(InfoLoadManager, HammerWeaponPST, LoadedHammerWeaponPST);
 	PreloadAndCacheTAssetArrayCommon<UParticleSystem>(InfoLoadManager, MagicWeaponPST, LoadedMagicWeaponPST);
@@ -465,15 +465,15 @@ void UB2DamageEffectInfo::PreloadAndCacheAllTAsset()
 
 void UB2DamageEffectInfo::ConditionalUnloadAllOrPreserve()
 {
-	// ÀÌ¸§ºÎÅÍ°¡ Á» Áß±¸³­¹æÀÎµ¥ ±âº»ÀûÀ¸·Î´Â Unload °¡ ÀÇµµÇÑ ±â´ÉÀÓ.
-	// ÇÏ´Ùº¸´Ï ÇÊ¿äÇÑ °ÍÀ» RootSet ¿¡ Æ÷ÇÔ½ÃÅ°´Â °Íµµ.. ¾îÂ÷ÇÇ ÇÊ¿äÇÑ °Íµé ÃÖ´ëÇÑ ·ÎµùµÇ¾î ÀÖÀ» ÀÌÂëÀÌ ÀûÀıÇÒ µíÇØ¼­.
+	// ææŠšä½•ç£å•Š ç²± åå¤‡æŠ„è§„ç‰¢å• æ‰å¤¯åˆ©æ è‚ºç»° Unload å•Š ç‹¼æ¡£èŒ„ æ‰ç“·çƒ™.
+	// çªä¿ƒç„Šèª é˜å¤¸èŒ„ å·´é˜‘ RootSet ä¿Š å™¨çªƒçŸ«è™ç»° å·´æ¡£.. ç»¢ç’ä¹” é˜å¤¸èŒ„ å·´ç”¸ å¼¥æªèŒ„ è‚ºçˆ¹ç™»ç»¢ ä¹é˜‘ æç æ åˆ©ä¾‹ä¸” æ·€ç§¦è¾‘.
 
 	if(!ShouldUnloadAllAssetOnLevelTransition())
-	{ // ±×´ÙÁö ¾î¿ï¸®Áö ¾ÊÁö¸¸ Çö ±¸Á¶·Î¼­´Â ÀÌÂëÀÌ ÀûÀıÇÑ Àå¼ÒÀÏ µí..
+	{ // å¼Šä¿ƒç˜¤ ç»¢åŒ¡åºœç˜¤ è‡¼ç˜¤çˆ¶ æ³… å¤‡ç‚¼è‚ºè¾‘ç»° æç æ åˆ©ä¾‹èŒ„ å˜å®¶è€ æ·€..
 		ConditionalMarkLoadedAssetsRootSet();
 	}
 
-	// ±Ùµ¥ Ä³½¬´Â ¿©ÇÏ°£ ºñ¿î´Ù.. ±×°Ô ¾ÈÀüÇÒ µí. ·çÆ®¼ÂÀÌ¸é ¾îÂ÷ÇÇ ´ÙÀ½¿¡ ´Ù½Ã ·Îµù ¾È ÇÒ °ÍÀÓ.
+	// è¾Ÿå• æŸæµ†ç»° å’¯çªåŸƒ åšæ¬¾ä¿ƒ.. å¼Šéœ¸ æ•‘å‚ˆä¸” æ·€. é£é£˜æ‚¸ææ ç»¢ç’ä¹” ä¿ƒæ¾œä¿Š ä¿ƒçŸ« è‚ºçˆ¹ æ•‘ ä¸” å·´çƒ™.
 	UnloadAllTAssetCache();
 }
 
@@ -510,7 +510,7 @@ void UB2DamageEffectInfo::ConditionalMarkLoadedAssetsRootSet()
 {
 	if (!ShouldUnloadAllAssetOnLevelTransition())
 	{
-		// ¿©±â¼­ ·ÎµùÇÏ´Â °Å ¾Æ´Ô. ·ÎµùµÈ °Í¸¸ ¸¶Å©
+		// å’¯æ‰è¾‘ è‚ºçˆ¹çªç»° èŠ­ é…’ä¸›. è‚ºçˆ¹ç­‰ å·´çˆ¶ ä»˜å†œ
 
 		int32 AddedCount = 0;
 		AddedCount += ValidTAssetArrayMarkRootSetCommon<UParticleSystem>(BladeWeaponPST);
@@ -535,7 +535,7 @@ void UB2DamageEffectInfo::ConditionalMarkLoadedAssetsRootSet()
 		}
 
 		if (AddedCount > 0)
-		{// º¯¼ö ÀÇ¹ÌºÎÅÍ "¸ğµÎ"ÀÎÁö "ÀÏºÎ" ÀÎÁö µüÈ÷ ÀÖÁö´Â ¾Ê°í ÇÏ³ª¸¸ AddToRoot µÇ¸é ¼¼ÆÃ. ÇöÀç »ç¿ë¸ñÀûÀÌ ±×¸® Ã¶ÀúÇÑ Ä«¿îÆ®°¡ ÇÊ¿äÇÑ °Ç ¾Æ´Ô.
+		{// å‡½è ç‹¼å›ºä½•ç£ "è‘›æ»´"ç‰¢ç˜¤ "è€ä½•" ç‰¢ç˜¤ è¿­æ´’ ä¹ç˜¤ç»° è‡¼ç»Š çªå”±çˆ¶ AddToRoot ç™»æ æŠ€æ³¼. æ³…çŠ è¤ä¾©æ ¼åˆ©æ å¼Šåºœ æšå†èŒ„ å¢¨æ¬¾é£˜å•Š é˜å¤¸èŒ„ æ‰’ é…’ä¸›.
 			bAssetsRooted = true;
 		}
 	}

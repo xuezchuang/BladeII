@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIItemOptionChange.h"
 #include "B2UIManager.h"
 #include "B2DynItemIcon_LobbyInven.h"
@@ -303,21 +303,21 @@ void UB2UIItemOptionChange::ResponseApplyItemRandomOption(FB2ResponseApplyItemRa
 		bEnableApplyOption = false;
 
 		CachedApplyItemOptionForAnimation = AppliedItem;
-		// UI°»½Å - Original Item Option °»½Å
+		// UIç›è„š - Original Item Option ç›è„š
 		//SetTargetItem(AppliedItem);
 
-		// UI°»½Å - NewOption »èÁ¦
+		// UIç›è„š - NewOption æ˜åŠ›
 		if (UIP_ChangedOption.IsValid())
 			UIP_ChangedOption->ClearOptionTextList();
 
-		bItemOptionApplied = true; // ItemOptionChange UI Close ÈÄ InventoryUI °»½Å
+		bItemOptionApplied = true; // ItemOptionChange UI Close é¥¶ InventoryUI ç›è„š
 
-								   // ApplyµÇ¸é Datastore¿¡ ÀúÀåµÈ °ª »èÁ¦ÇØ¹ö·Á
+								   // Applyç™»æ Datastoreä¿Š å†å˜ç­‰ è”¼ æ˜åŠ›ç§¦æ»šå¦¨
 		BladeIIGameImpl::GetClientDataStore().ClearUnappliedItemOptionInfo();
 
 		OnItemOptionApplied_BP();
 
-		// ÀüÅõ·Â °»½Å
+		// å‚ˆæ§ä»¿ ç›è„š
 		UpdateCombatPowerClass<EPCClass, bool>::GetInstance().Signal(IntToPCClass(AppliedItem.AllowedPCClass), false);
 	}
 }
@@ -340,13 +340,13 @@ void UB2UIItemOptionChange::SetTargetItem(const FB2Item& TargetItem)
 		BTN_ApplyOption->SetIsEnabled(bEnableRequestApply);
 	}
 
-	// ÀçÈ­ ºÎÁ·ÇØµµ È°¼ºÈ­ Ã³¸®ÇÔ.
+	// çŠæ‹³ ä½•ç»ƒç§¦æ¡£ åŠå·±æ‹³ è´¸åºœçªƒ.
 	if (BTN_ChangeOption.IsValid())
 	{
 		BTN_ChangeOption->ClearInfo();
 	}
 
-	// ÀçÈ­ ºÎÁ·ÇØµµ È°¼ºÈ­ Ã³¸®ÇÔ.
+	// çŠæ‹³ ä½•ç»ƒç§¦æ¡£ åŠå·±æ‹³ è´¸åºœçªƒ.
 	if (BTN_ChangeOptionCash.IsValid())
 	{
 		BTN_ChangeOptionCash->ClearInfo();
@@ -384,7 +384,7 @@ void UB2UIItemOptionChange::SetOriginalOptionDetail(const FB2Item& TargetItem)
 	if (UIP_OriginalOption.IsValid())
 	{
 		const int32 OptionCount = TargetItem.RandomOptions.Num();
-		const EPCClass OwnerPCClass = IntToPCClass(TargetItem.AllowedPCClass);	// Server°ª ¾Æ´Ô -> ¹Ù·Î Casting ÇØ¼­ ¾²°íÀÖÀ½
+		const EPCClass OwnerPCClass = IntToPCClass(TargetItem.AllowedPCClass);	// Serverè”¼ é…’ä¸› -> å®˜è‚º Casting ç§¦è¾‘ é™ç»Šä¹æ¾œ
 
 		ItemOwnerPCClass = OwnerPCClass;
 		OriginOption.Empty();
@@ -396,7 +396,7 @@ void UB2UIItemOptionChange::SetOriginalOptionDetail(const FB2Item& TargetItem)
 				const FItemOption& OptionInfo = TargetItem.RandomOptions[OptionIdx];
 
 				OriginOption.Add(OptionInfo);
-				// FItemOption ÃÊ±â°ª EItemOption::EIO_End ·Î ¾ø´Â optionÀÌ µé¾î°¡¸é ¿É¼Ç Text¸¦ ÀÚµ¿ Collapsed Ã³¸®
+				// FItemOption æª¬æ‰è”¼ EItemOption::EIO_End è‚º ç»ç»° optionæ ç”¸ç»¢å•Šæ å¯è®° Textç”« ç£Šæ‚¼ Collapsed è´¸åºœ
 				UIP_OriginalOption->SetOptionText(OptionIdx, OptionInfo.OptionType, OwnerPCClass, OptionInfo.RawOptionAmount);
 			}
 		}
@@ -410,7 +410,7 @@ void UB2UIItemOptionChange::SetApplyOptionDetail(const FB2Item& TargetItem)
 	if (UIP_ResultOptionDetail.IsValid())
 	{
 		const int32 OptionCount = TargetItem.RandomOptions.Num();
-		const EPCClass OwnerPCClass = IntToPCClass(TargetItem.AllowedPCClass);	// Server°ª ¾Æ´Ô -> ¹Ù·Î Casting ÇØ¼­ ¾²°íÀÖÀ½
+		const EPCClass OwnerPCClass = IntToPCClass(TargetItem.AllowedPCClass);	// Serverè”¼ é…’ä¸› -> å®˜è‚º Casting ç§¦è¾‘ é™ç»Šä¹æ¾œ
 
 		ItemOwnerPCClass = OwnerPCClass;
 		OriginOption.Empty();
@@ -422,7 +422,7 @@ void UB2UIItemOptionChange::SetApplyOptionDetail(const FB2Item& TargetItem)
 				const FItemOption& OptionInfo = TargetItem.RandomOptions[OptionIdx];
 
 				OriginOption.Add(OptionInfo);
-				// FItemOption ÃÊ±â°ª EItemOption::EIO_End ·Î ¾ø´Â optionÀÌ µé¾î°¡¸é ¿É¼Ç Text¸¦ ÀÚµ¿ Collapsed Ã³¸®
+				// FItemOption æª¬æ‰è”¼ EItemOption::EIO_End è‚º ç»ç»° optionæ ç”¸ç»¢å•Šæ å¯è®° Textç”« ç£Šæ‚¼ Collapsed è´¸åºœ
 				UIP_ResultOptionDetail->SetOptionText(OptionIdx, OptionInfo.OptionType, OwnerPCClass, OptionInfo.RawOptionAmount);
 			}
 		}
@@ -444,7 +444,7 @@ void UB2UIItemOptionChange::SetNewOptionDetail(const TArray<FItemOption>& NewIte
 			if (TempNewOption.IsValidIndex(OptionIdx))
 			{
 				const FItemOption& OptionInfo = TempNewOption[OptionIdx];
-				// FItemOption ÃÊ±â°ª EItemOption::EIO_End ·Î ¾ø´Â optionÀÌ µé¾î°¡¸é ¿É¼Ç Text¸¦ ÀÚµ¿ Collapsed Ã³¸®
+				// FItemOption æª¬æ‰è”¼ EItemOption::EIO_End è‚º ç»ç»° optionæ ç”¸ç»¢å•Šæ å¯è®° Textç”« ç£Šæ‚¼ Collapsed è´¸åºœ
 				UIP_ChangedOption->SetCompareOptionText(OptionIdx, OptionInfo.OptionType, ItemOwnerPCClass, OptionInfo.RawOptionAmount, OriginOption);
 				if (OptionInfo.OptionType != EItemOption::EIO_End)
 					NewOptionCount++;
@@ -530,7 +530,7 @@ void UB2UIItemOptionChange::OnClickBTN_Close()
 {
 	if (HasRemainUnAppliedOption())
 	{
-		// º¯°æ ÈÄ Àû¿ëÇÏÁö ¾ÊÀº ¿É¼ÇÀÌ ÀÖ´Ù¸é
+		// å‡½ç‰ˆ é¥¶ åˆ©ä¾©çªç˜¤ è‡¼ç¯® å¯è®°æ ä¹ä¿ƒæ
 
 		UB2UIManager::GetInstance()->OpenMsgPopup(EUIMsgPopup::Simple,
 			BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("ItemOptionChange_ApplyCancelNotice")),
@@ -560,7 +560,7 @@ void UB2UIItemOptionChange::OnClickBTN_OptionInfo()
 
 void UB2UIItemOptionChange::OnItemOptionApplyAnimEnd()
 {
-	// ¾Ö´Ï¸ŞÀÌ¼Ç ¿¬Ãâ ÈÄ º¯°æµÈ ¿É¼ÇÀº ResetÇÏ°í ÇöÀç¿É¼ÇÃ¢À» º¯°æµÈ ¿É¼ÇÀ¸·Î ±³Ã¼ÇÏ´Â ÀÛ¾÷
+	// å±€èªçš‹æè®° æ¥·å… é¥¶ å‡½ç‰ˆç­‰ å¯è®°ç¯® Resetçªç»Š æ³…çŠå¯è®°èŠ’é˜‘ å‡½ç‰ˆç­‰ å¯è®°æ è‚º èƒŒçœ‰çªç»° ç´¯è¯€
 	if (UIP_OriginalOption.IsValid())
 		UIP_OriginalOption->OnItemOptionGenerated_BP(OriginalOptionCount);
 
@@ -570,16 +570,16 @@ void UB2UIItemOptionChange::OnItemOptionApplyAnimEnd()
 
 void UB2UIItemOptionChange::CreateLobbyItemAfterOptionPopup(UObject* WorldContextObject, FB2Item& InItemData)
 {
-	// º¸°üÇÔ ¾ÆÀÌÅÛ È¤Àº ÀåÂø ¾ÆÀÌÅÛ
+	// ç„ŠåŒ…çªƒ é…’æè¢ è¶£ç¯® å˜é¦’ é…’æè¢
 	const ELobbySubPopups LobbyPopupEnum = ELobbySubPopups::ELSPU_ItemAfterOpiton;
 
 	AB2LobbyGameMode* LobbyGM = Cast<AB2LobbyGameMode>(UGameplayStatics::GetGameMode(WorldContextObject));
 
-	// ÇØ´ç user widget »ı¼º ½ÅÈ£.
-	// »ı¼ºµÈ Popup widget À» UIP Ã³·³ ¹èÄ¡ÇØ ³ÖÀ» ÆĞ³Î Á¤º¸¸¦ ¸¸µé¾îÁØ´Ù.
+	// ç§¦å¯¸ user widget ç§¯å·± è„šé¾‹.
+	// ç§¯å·±ç­‰ Popup widget é˜‘ UIP è´¸çƒ¦ ç¡…æ‘¹ç§¦ æŒé˜‘ è©æ¾„ æ²¥ç„Šç”« çˆ¶ç”¸ç»¢éœ–ä¿ƒ.
 	DJLegacy_OpenLobbySubPopupClass<ELobbySubPopups, FDJLegacySubpopupAddPanelInfo>::GetInstance().Signal(LobbyPopupEnum, FDJLegacySubpopupAddPanelInfo(this, X_AfterOptionPopup.Get()));
 
-	// »ı¼ºµÈ user widget À» Ã£¾Æ¼­ ItemData ¸¦ ¾÷µ¥ÀÌÆ®
+	// ç§¯å·±ç­‰ user widget é˜‘ èŒ«é…’è¾‘ ItemData ç”« è¯€å•æé£˜
 	UB2LobbyUI_ItemAfterOption* CreatedDetailWindow = LobbyGM ? Cast<UB2LobbyUI_ItemAfterOption>(LobbyGM->DJLegacy_FindLobbySubPopup(LobbyPopupEnum)) : NULL;
 
 	if (CreatedDetailWindow)
@@ -667,7 +667,7 @@ void UB2UIOptionChangeDetail::SetCompareOptionText(int32 OptionIndex, EItemOptio
 		{
 			float CompareValue = CompareOption[OptionType] - RawOptionAmount;
 			CompareValueText = GetItemOptionValueDisplayText(OptionType, CompareValue, true);
-			// »ö±ò
+			// ç¥¸å½¬
 
 		}
 		else

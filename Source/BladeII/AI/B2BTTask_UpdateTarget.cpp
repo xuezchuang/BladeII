@@ -1,8 +1,9 @@
-
+﻿
 #include "B2BTTask_UpdateTarget.h"
 //#include "BladeII.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "BladeIIPlayerAIController.h"
+#include "../BladeII/BladeIIUtil.h"
 
 UB2BTTask_UpdateTarget::UB2BTTask_UpdateTarget(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)

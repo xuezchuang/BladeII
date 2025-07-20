@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2CostumeDataStore.h"
 //#include "BladeII.h"
 
@@ -69,11 +69,11 @@ FCostumeDataStore::FCostumeDataStore()
 	LocalVisibleCache = std::make_shared<FCostumeVisibleCache>();
 	PreviewVisibleCache = std::make_shared<FCostumeVisibleCache>();
 
-	//±âº» ·ÎÄÃ
+	//ê¸°ë³¸ ë¡œì»¬
 	CurrentVisibleCache = LocalVisibleCache;
 	bPreview = false;
 
-	//°°Àº LifeCycle
+	//ê°™ì€ LifeCycle
 	LocalVisibleCache->OnChagneCostumeVisible.AddLambda([this](EPCClass InClass, ECostumeEquipPlace EquipPlcae, bool bVisible)
 	{
 		this->OnChangeCostumeVisible.Broadcast(InClass, EquipPlcae, bVisible);
@@ -227,7 +227,7 @@ void FCostumeDataStore::SetPreviewMode(int32 ProductID)
 
 EItemEquipPlace FCostumeDataStore::GetRandomCostumeAnim()
 {
-	//ÇÏ³ª´Â ½Å¹ßÀÌ¶ó °Á –M
+	//í•˜ë‚˜ëŠ” ì‹ ë°œì´ë¼ ê± Â–M
 	static TArray<EItemEquipPlace> RandomAnim = { EItemEquipPlace::EIEP_Weapon , EItemEquipPlace::EIEP_BodyArmor};
 
 	return RandomAnim[FMath::RandRange(0, RandomAnim.Num() - 1)];

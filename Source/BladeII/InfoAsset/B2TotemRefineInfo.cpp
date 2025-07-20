@@ -1,11 +1,11 @@
-#include "B2TotemRefineInfo.h"
-
+ï»¿#include "B2TotemRefineInfo.h"
+#include "Misc/ConfigCacheIni.h"
 UB2TotemRefineInfo::UB2TotemRefineInfo(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer), DataTable(nullptr)
 {
 	if (HasAnyFlags(RF_ClassDefaultObject) == false)
 	{
-		// Á¤ÇØÁø ÇÏ³ª¸¦ ·Îµù
+		// æ²¥ç§¦æŸ³ çªå”±ç”« è‚ºçˆ¹
 		FString TotemRefineInfoTablePath;
 		GConfig->GetString(TEXT("/Script/BladeII.B2TotemRefineInfo"), TEXT("TotemRefineInfoTable"), TotemRefineInfoTablePath, GGameIni);
 

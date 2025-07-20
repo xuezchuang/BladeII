@@ -1,4 +1,4 @@
-
+ï»¿
 #include "B2ScenarioDialogInfo.h"
 #include "B2PCClassInfo.h"
 #include "BladeIIUtil.h"
@@ -16,7 +16,7 @@ UMaterialInstance* FDialogCharacterInfo::GetPortraitMtrlForType(FStreamableManag
 			UMaterialInstance* DummyLoadedPtr = nullptr;
 			GetSomeLazyLoadedAssetCommon<UMaterialInstance>(InLoadManager, ThisPortraitInfo.Portrait, &DummyLoadedPtr, TEXT("DialogCharacterInfo"));
 			if (DummyLoadedPtr)
-			{ // LoadedPortraitMtrls ¿¡ ³Ö´Â °Í ±îÁö´Â Å° °Ë»çÇÏ°í ÇÏ¸é ³Ñ º¹ÀâÇÏ¹Ç·Î.. ÀÌ°Ç AddUnique ·Î
+			{ // LoadedPortraitMtrls ä¿Š æŒç»° å·´ é³–ç˜¤ç»° è™ å…«è¤çªç»Š çªæ é€ æ±—æ£±çªéª¨è‚º.. ææ‰’ AddUnique è‚º
 				InOutLoadedRefHolder.LoadedPortraitMtrls.AddUnique(DummyLoadedPtr);
 			}
 			return DummyLoadedPtr;
@@ -35,7 +35,7 @@ void FDialogCharacterInfo::UnloadAll(FStreamableManager& InLoadManager, FDialogC
 	for (FDialogPortraitInfo& ThisPortraitInfo : CharacterPortrait)
 	{
 		UMaterialInstance* DummyMtrlPtr = nullptr;
-		UnloadSomeLazyLoadedAssetCommon<UMaterialInstance>(InLoadManager, ThisPortraitInfo.Portrait, &DummyMtrlPtr); // LoadedPtrCache ´Â ¾Æ·¡¼­ µû·Î Ã³¸®.
+		UnloadSomeLazyLoadedAssetCommon<UMaterialInstance>(InLoadManager, ThisPortraitInfo.Portrait, &DummyMtrlPtr); // LoadedPtrCache ç»° é…’è´°è¾‘ è¶è‚º è´¸åºœ.
 	}
 	UnloadSomeLazyLoadedAssetCommon<UTexture2D>(InLoadManager, WholeBodyPortraitPtr, &InOutLoadedRefHolder.LoadedWholeBodyPortrait);
 	InOutLoadedRefHolder.LoadedPortraitMtrls.Empty();
@@ -47,7 +47,7 @@ void FDialogCharacterInfo::EditorLoadAll(FStreamableManager& InLoadManager, FDia
 {
 	for (FDialogPortraitInfo& ThisPortraitInfo : CharacterPortrait)
 	{
-		// ¾È¿¡¼­ ¹Ùº¸°°ÀÌ for ¹®À» ¶Ç µ¹°Ô µÇ´Âµ¥.. ½ÉÇÑ °Ç ¾Æ´Ï°í ¿¡µğÅÍ ±â´ÉÀÌ´Ï ºÁÁÜ.
+		// æ•‘ä¿Šè¾‘ å®˜ç„Šéæ for å·©é˜‘ è‚š å€’éœ¸ ç™»ç»°å•.. ç¼´èŒ„ æ‰’ é…’èªç»Š ä¿Šå¼ç£ æ‰ç“·æèª æ¯«æ·‹.
 		GetPortraitMtrlForType(InLoadManager, ThisPortraitInfo.PortraitType, InOutLoadedRefHolder);
 	}
 	GetSomeLazyLoadedAssetCommon<UTexture2D>(InLoadManager, WholeBodyPortraitPtr, &InOutLoadedRefHolder.LoadedWholeBodyPortrait, TEXT("DialogCharacterInfo"));
@@ -65,8 +65,8 @@ void UB2DialogCharacterInfoSet::PostLoad()
 	Super::PostLoad();
 
 	DialogCharacterMap.Empty(DialogCharacterInfoArray.Num());
-	// ¾à°£ Æ¯ÀÌÇÑ ±¸¼ºÀÎµ¥ DialogCharacterInfoArray ÀÚÃ¼°¡ TMap ÀÌ³ª ±×·± ½ÄÀÇ ½Äº°ÀÚ¿Í °°ÀÌ ¹­¿©ÀÖ´Â Å¸ÀÔÀÌ ¾Æ´Ï°í
-	// PostLoad ½ÃÁ¡¿¡ Array Á¢±Ù index µéÀ» ¹Ì¸® Ä³½ÌÇØ µÒ.
+	// è·åŸƒ æ¼‚æèŒ„ å¤‡å·±ç‰¢å• DialogCharacterInfoArray ç£Šçœ‰å•Š TMap æå”± å¼Šç¹ ä¾¥ç‹¼ ä¾¥å–Šç£Šå®¢ éæ å¼“å’¯ä¹ç»° é¸¥æ¶æ é…’èªç»Š
+	// PostLoad çŸ«ç—¢ä¿Š Array ç«‹è¾Ÿ index ç”¸é˜‘ å›ºåºœ æŸæ•™ç§¦ ç‹„.
 	for (int32 ArrayIndex = 0; ArrayIndex < DialogCharacterInfoArray.Num(); ++ArrayIndex)
 	{
 		FDialogCharacterInfo& ThisInfo = DialogCharacterInfoArray[ArrayIndex];
@@ -88,8 +88,8 @@ static EPCClass LocalGetPlayerCharClass(UObject* WorldContextObject, bool bForMa
 	//		return bForMain ? LocalPlayerCharacter->GetCurrentPlayerClass() : LocalPlayerCharacter->GetTagPlayerClass();
 	//	}
 	//}
-	// ÇöÀç ÇÃ·¹ÀÌÇÏ°í ÀÖ´Â LocalPlayerCharacter °¡ µé°í ÀÖ´Â °ª°ú ´Ù¸¦ ¼ö ÀÖÀ¸¹Ç·Î Ã³À½ºÎÅÍ LocalCharacterData ¿¡ ÀÖ´Â °É ¾²Áö ¾Ê´Â´Ù.
-	// LocalPlayerCharacter ¸¦ ¾ò¾î¿Ã ¼ö ¾ø´Â »óÈ²¿¡¼­¸¸.. ±×·± »óÈ²ÀÌ ÀÖ±ä ÇÔ.
+	// æ³…çŠ æ•²é¥­æçªç»Š ä¹ç»° LocalPlayerCharacter å•Š ç”¸ç»Š ä¹ç»° è”¼è‹ ä¿ƒç”« è ä¹æ éª¨è‚º è´¸æ¾œä½•ç£ LocalCharacterData ä¿Š ä¹ç»° å§ é™ç˜¤ è‡¼ç»°ä¿ƒ.
+	// LocalPlayerCharacter ç”« æ˜ç»¢æ£µ è ç»ç»° æƒ‘ç‚”ä¿Šè¾‘çˆ¶.. å¼Šç¹ æƒ‘ç‚”æ ä¹å˜ çªƒ.
 	//return bForMain ? BladeIIGameImpl::GetLocalCharacterData().GetMainPlayerClass() : BladeIIGameImpl::GetLocalCharacterData().GetSubPlayerClass();
 	return EPCClass::EPC_End;
 }
@@ -102,7 +102,7 @@ int32 UB2DialogCharacterInfoSet::GetInfoArrayIndexOfCharCode(FName CharacterCode
 		return *ArrayIndex;
 	}
 
-	// DialogCharacterMap ¿¡¼­ ¸ø Ã£Àº °æ¿ì DialogPlayerClassMap ¿¡¼­ Ã£´Â´Ù. ÇöÀç ÇÃ·¹ÀÌ Ä³¸¯ÅÍ¿¡ µû¸¥ index
+	// DialogCharacterMap ä¿Šè¾‘ ç»™ èŒ«ç¯® ç‰ˆå¿« DialogPlayerClassMap ä¿Šè¾‘ èŒ«ç»°ä¿ƒ. æ³…çŠ æ•²é¥­æ æŸè…ç£ä¿Š è¶å¼— index
 	if (CharacterCodeName == DIALOG_CHAR_USERMAINCLASS || CharacterCodeName == DIALOG_CHAR_USERSUBCLASS)
 	{
 		if (CharacterCodeName == DIALOG_CHAR_USERMAINCLASS)
@@ -115,7 +115,7 @@ int32 UB2DialogCharacterInfoSet::GetInfoArrayIndexOfCharCode(FName CharacterCode
 
 FDialogCharacterInfo* UB2DialogCharacterInfoSet::GetDialogCharacterInfo(FName CharacterCodeName, UObject* WorldContextObject)
 {
-	// ÀÌ°É·Î FDialogCharacterInfo ¸¦ ¾ò¾î¿À´õ¶óµµ Matrial ÀÌ³ª Texture ´Â FDialogCharacterInfo ¸¦ °¡Áö°í ¸·¹Ù·Î ²¨³»¿À±âº¸´Ù´Â ¿©±â¼­ Á¦°øÇÏ´Â ´Ù¸¥ ¸Ş½îµå¸¦ ½á¾ß ÇÒ °Í.
+	// æå§è‚º FDialogCharacterInfo ç”« æ˜ç»¢å·æ­¹æ‰¼æ¡£ Matrial æå”± Texture ç»° FDialogCharacterInfo ç”« å•Šç˜¤ç»Š é˜œå®˜è‚º æ³¢éƒ´å·æ‰ç„Šä¿ƒç»° å’¯æ‰è¾‘ åŠ›å‚çªç»° ä¿ƒå¼— çš‹ç­‹é›ç”« ç»“å…· ä¸” å·´.
 
 	int32 InfoArrayIndex = GetInfoArrayIndexOfCharCode(CharacterCodeName, WorldContextObject);
 
@@ -124,7 +124,7 @@ FDialogCharacterInfo* UB2DialogCharacterInfoSet::GetDialogCharacterInfo(FName Ch
 	if (GIsEditor && !RetInfo)
 	{
 		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-			FString::Printf(TEXT("Ä³¸¯ÅÍ ÄÚµåÀÌ¸§ %s ¿¡ ÇØ´çÇÏ´Â DialogCharacterInfo ¸¦ Ã£Áö ¸øÇÔ. ÄÄÇ»ÅÍ°¡ °ğ Æø¹ßÇÑ´Ù."), *CharacterCodeName.ToString())
+			FString::Printf(TEXT("æŸè…ç£ å†…é›ææŠš %s ä¿Š ç§¦å¯¸çªç»° DialogCharacterInfo ç”« èŒ«ç˜¤ ç»™çªƒ. å“ªè…”ç£å•Š æ¢† æ°”æƒ¯èŒ„ä¿ƒ."), *CharacterCodeName.ToString())
 			));
 	}
 #endif
@@ -133,7 +133,7 @@ FDialogCharacterInfo* UB2DialogCharacterInfoSet::GetDialogCharacterInfo(FName Ch
 
 UMaterialInstance* UB2DialogCharacterInfoSet::GetDialogCharacterPortraitMtrl(FName CharacterCodeName, EPortraitType InType, UObject* WorldContextObject)
 {
-	// LoadedRefHolder ¸¦ Á¦°øÇØ¾ß ÇÏ¹Ç·Î ¿©±â ¹Û¿¡¼­ FDialogCharacterInfo ¸¦ °¡Áö°í GetPortraitMtrlForType ÇÏÁö´Â ¸øÇÒ ²¨°í ÀÌ°É·Î »ç¿ëÇØ¾ß.
+	// LoadedRefHolder ç”« åŠ›å‚ç§¦å…· çªéª¨è‚º å’¯æ‰ è§‚ä¿Šè¾‘ FDialogCharacterInfo ç”« å•Šç˜¤ç»Š GetPortraitMtrlForType çªç˜¤ç»° ç»™ä¸” æ³¢ç»Š æå§è‚º è¤ä¾©ç§¦å…·.
 	FDialogCharacterInfo* FoundInfo = GetDialogCharacterInfo(CharacterCodeName, WorldContextObject);
 	if (FoundInfo)
 	{
@@ -146,7 +146,7 @@ UMaterialInstance* UB2DialogCharacterInfoSet::GetDialogCharacterPortraitMtrl(FNa
 }
 UTexture2D* UB2DialogCharacterInfoSet::GetWholeBodyPortrait(FName CharacterCodeName, UObject* WorldContextObject)
 {
-	// LoadedRefHolder ¸¦ Á¦°øÇØ¾ß ÇÏ¹Ç·Î ¿©±â ¹Û¿¡¼­ FDialogCharacterInfo ¸¦ °¡Áö°í GetWholeBodyPortrait ÇÏÁö´Â ¸øÇÒ ²¨°í ÀÌ°É·Î »ç¿ëÇØ¾ß.
+	// LoadedRefHolder ç”« åŠ›å‚ç§¦å…· çªéª¨è‚º å’¯æ‰ è§‚ä¿Šè¾‘ FDialogCharacterInfo ç”« å•Šç˜¤ç»Š GetWholeBodyPortrait çªç˜¤ç»° ç»™ä¸” æ³¢ç»Š æå§è‚º è¤ä¾©ç§¦å…·.
 	FDialogCharacterInfo* FoundInfo = GetDialogCharacterInfo(CharacterCodeName, WorldContextObject);
 	if (FoundInfo)
 	{
@@ -163,14 +163,14 @@ void UB2DialogCharacterInfoSet::UnloadAll()
 	for (int32 II = 0; II < DialogCharacterInfoArray.Num(); ++II)
 	{
 		FDialogCharacterInfo& ThisInfoArray = DialogCharacterInfoArray[II];
-		// ¿©±â¼± FindOrAdd ÇÒ ÇÊ¿ä¾øÀÌ ¾øÀ¸¸é ³Ñ¾î°¡¸é µÊ.
+		// å’¯æ‰æ€¥ FindOrAdd ä¸” é˜å¤¸ç»æ ç»æ æ é€ç»¢å•Šæ å‡³.
 		FDialogCharacterInfoLoadedRefHolder* FoundHolder = LoadedResourceHolder.Find(II);
 		if (FoundHolder)
 		{
 			ThisInfoArray.UnloadAll(InfoLoadManager, *FoundHolder);
 		}
 	}
-	LoadedResourceHolder.Empty(); // È®ÀÎ»ç½Ç
+	LoadedResourceHolder.Empty(); // çŠ¬ç‰¢è¤è§’
 }
 
 #if WITH_EDITOR
@@ -192,7 +192,7 @@ void UB2DialogCharacterInfoSet::CleanupOnPreSave()
 void UB2DialogCharacterInfoSet::PreSave(FObjectPreSaveContext SaveContext)
 {
 	Super::PreSave(SaveContext);
-	// ÀÇµµÄ¡ ¾Ê°Ô ÀúÀåµÈ ·¹ÆÛ·±½º¸¦ ³¯·ÁÁØ´Ù.
+	// ç‹¼æ¡£æ‘¹ è‡¼éœ¸ å†å˜ç­‰ é¥­æ¬ºç¹èƒ¶ç”« æœå¦¨éœ–ä¿ƒ.
 	CleanupOnPreSave();
 }
 #endif
@@ -238,10 +238,10 @@ USoundCue* UB2DialogSoundInfoSet::GetInfoSound(FName InCharacterCodeName, FName 
 	}
 
 	FDialogSoundInfo* FoundInfo = NULL;
-	FName FinalDataKey = InRawSoundCode; // GC ¹æÁö¿ë LoadedPtrMap ¿¡¼­ÀÇ Å°°ªÀÎµ¥ °á±¹ DataTable ¿¡¼­ÀÇ Å°°ª°ú ¸¶Âù°¡Áö·Î.
+	FName FinalDataKey = InRawSoundCode; // GC è§„ç˜¤ä¾© LoadedPtrMap ä¿Šè¾‘ç‹¼ è™è”¼ç‰¢å• æ¬æƒ« DataTable ä¿Šè¾‘ç‹¼ è™è”¼è‹ ä»˜è›®å•Šç˜¤è‚º.
 
 	if (InCharacterCodeName == DIALOG_CHAR_USERMAINCLASS || InCharacterCodeName == DIALOG_CHAR_USERSUBCLASS)
-	{ // ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍÀÇ °æ¿ì´Â ÇöÀç Å¬·¡½º Á¤º¸¿¡ µû¶ó ÀûÀıÇÑ suffix ¸¦ ºÙ¿©¼­ find
+	{ // æ•²é¥­æç»¢ æŸè…ç£ç‹¼ ç‰ˆå¿«ç»° æ³…çŠ åŠªè´°èƒ¶ æ²¥ç„Šä¿Š è¶æ‰¼ åˆ©ä¾‹èŒ„ suffix ç”« å˜¿å’¯è¾‘ find
 		FString FinalCodeString = InRawSoundCode.ToString();
 		
 		FString ClassSuffix = UB2PCClassInfo::GetTrimmedNameOfPCClassEnum(
@@ -252,7 +252,7 @@ USoundCue* UB2DialogSoundInfoSet::GetInfoSound(FName InCharacterCodeName, FName 
 		FoundInfo = TheData->FindRow<FDialogSoundInfo>(FinalDataKey, TEXT(""));
 	}
 	else
-	{ // ±âÅ¸ÀÇ °æ¿ì´Â º°´Ù¸¥ ÇÁ·Î¼¼½Ì ¾øÀÌ ±×³É find.
+	{ // æ‰é¸¥ç‹¼ ç‰ˆå¿«ç»° å–Šä¿ƒå¼— æ©‡è‚ºæŠ€æ•™ ç»æ å¼Šæˆ find.
 		FoundInfo = TheData->FindRow<FDialogSoundInfo>(FinalDataKey, TEXT(""));
 	}
 
@@ -265,7 +265,7 @@ USoundCue* UB2DialogSoundInfoSet::GetInfoSound(FName InCharacterCodeName, FName 
 		if (!RetObj)
 		{
 			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-				FString::Printf(TEXT("DialogSoundInfo CharCode %s SoundCode %s ¿¡ ´ëÇÑ Sound Asset ·Îµù ½ÇÆĞ. ÄÄÇ»ÅÍ°¡ °ğ Æø¹ßÇÑ´Ù."), *InCharacterCodeName.ToString(), *InRawSoundCode.ToString())
+				FString::Printf(TEXT("DialogSoundInfo CharCode %s SoundCode %s ä¿Š æªèŒ„ Sound Asset è‚ºçˆ¹ è§’è©. å“ªè…”ç£å•Š æ¢† æ°”æƒ¯èŒ„ä¿ƒ."), *InCharacterCodeName.ToString(), *InRawSoundCode.ToString())
 				));
 		}
 #endif
@@ -289,14 +289,14 @@ void UB2DialogSoundInfoSet::UnloadAll()
 				FoundDataRow->Unload(InfoLoadManager, *FoundLoadedHolder);
 			}
 		}
-		LoadedResourceHolder.Empty(); // È®ÀÎ »ç»ì
+		LoadedResourceHolder.Empty(); // çŠ¬ç‰¢ è¤æ··
 	}
 }
 
 #if WITH_EDITOR
 void UB2DialogSoundInfoSet::EditorLoadAll()
 {
-	// DataTable ±â¹İÀÇ TAsset ÀÌ¶ó EditorLoadAll ÀÌ ¹İµå½Ã ÇÊ¿ä.
+	// DataTable æ‰é¦†ç‹¼ TAsset ææ‰¼ EditorLoadAll æ é¦†é›çŸ« é˜å¤¸.
 	if (TheData)
 	{
 		TArray<FName> RowKeys = TheData->GetRowNames();
@@ -318,12 +318,12 @@ void UB2DialogSoundInfoSet::CheckInfoDataIntegrity()
 	if (!TheData)
 	{
 		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-			FString::Printf(TEXT("DialogSoundInfo µ¥ÀÌÅÍ ¾øÀ½. ÄÄÇ»ÅÍ°¡ °ğ Æø¹ßÇÑ´Ù."))
+			FString::Printf(TEXT("DialogSoundInfo å•æç£ ç»æ¾œ. å“ªè…”ç£å•Š æ¢† æ°”æƒ¯èŒ„ä¿ƒ."))
 			));
 		return;
 	}
 #endif
-	// ±âÅ¸ ÇÊ¿äÇÑ Ã¼Å©µé.. Áßº¹µÈ ID ÀÖ´ÂÁö µî.
+	// æ‰é¸¥ é˜å¤¸èŒ„ çœ‰å†œç”¸.. åæ±—ç­‰ ID ä¹ç»°ç˜¤ æ®¿.
 }
 #endif
 
@@ -402,7 +402,7 @@ void UB2ScenarioDialogInfo::PreloadAssetsForStageGame(const TArray<FName>& InPre
 	//UB2DialogCharacterInfoSet* DlgCharacterInfoSet = B2GI ? B2GI->GetDialogCharacterInfoTable() : StaticFindDialogCharacterInfoTable();
 	//UB2DialogSoundInfoSet* DlgSoundInfoSet = StaticFindDialogSoundInfoTable();
 	//
-	//// ½ºÅ×ÀÌÁö ·Îµù ½ÃÁ¡¿¡ ÇÊ¿äÇÑ dialog ¿¡¼ÂµéÀ» ¹Ì¸® ·ÎµùÇÏ±â À§ÇÔ.
+	//// èƒ¶æŠ›æç˜¤ è‚ºçˆ¹ çŸ«ç—¢ä¿Š é˜å¤¸èŒ„ dialog ä¿Šæ‚¸ç”¸é˜‘ å›ºåºœ è‚ºçˆ¹çªæ‰ å›°çªƒ.
 
 	//if (DlgCharacterInfoSet && DlgSoundInfoSet)
 	//{
@@ -419,7 +419,7 @@ void UB2ScenarioDialogInfo::PreloadAssetsForStageGame(const TArray<FName>& InPre
 	//				}
 	//				DlgSoundInfoSet->GetInfoSound(ThisLineInfo.SpeakerCodeName, ThisLineInfo.DialogSoundCodeName, WorldContextObject);
 	//				
-	//				// ¸ŞÀÎ/ÅÂ±×°¡ ¾ğÁ¦ ¹Ù²ğÁö ¸ğ¸£¹Ç·Î µÑ ´Ù ·ÎµùÇÏµµ·Ï ÇØ¾ß..
+	//				// çš‹ç‰¢/æ€•å¼Šå•Š æ”«åŠ› å®˜æ‹†ç˜¤ è‘›ç¦éª¨è‚º ç¬› ä¿ƒ è‚ºçˆ¹çªæ¡£åºŸ ç§¦å…·..
 	//				FName AdditionalSpeakerCodeName = NAME_None;
 	//				if (ThisLineInfo.SpeakerCodeName == DIALOG_CHAR_USERMAINCLASS)
 	//				{

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UICBTClear.h"
 
@@ -30,7 +30,7 @@ void UB2UICBTClear::OnClickClose()
 {
 	DelegateCBTFinish.ExecuteIfBound(MainLevelUp, SubLevelUp);
 
-	OnClose(); // ÀÏ¹İ UIWidget ÀÌ¶ó¸é UIManager ¿¡ ÀÇÇØ¼­ ºÒ¸®´Â ºÎºĞ
+	OnClose(); // è€é¦† UIWidget ææ‰¼æ UIManager ä¿Š ç‹¼ç§¦è¾‘ é˜‚åºœç»° ä½•ç›’
 
 	DelegateCBTFinish.Unbind();
 }

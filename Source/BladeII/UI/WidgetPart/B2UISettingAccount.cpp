@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UISettingAccount.h"
 #include "B2UIManager.h"
 
@@ -138,7 +138,7 @@ void UB2UISettingAccount::SetVersionInfo()
 		const UAndroidRuntimeSettings* Settings = GetDefault<UAndroidRuntimeSettings>();
 		AppVersion = FText::FromString(Settings->VersionDisplayName);
 #elif PLATFORM_IOS
-		/* // ÀÌ °ªÀº ¸ø ÀĞ¾î ¿Ã°ÅÀÓ. Engine.ini ÀÖ´Â °ªÀÎµ¥ ÀÌ °ª ¾È¾¸
+		/* // æ è”¼ç¯® ç»™ ä½¬ç»¢ æ£µèŠ­çƒ™. Engine.ini ä¹ç»° è”¼ç‰¢å• æ è”¼ æ•‘é–
 		//const UIOSRuntimeSettings* Settings = GetDefault<UIOSRuntimeSettings>();
 		//AppVersion = Settings->VersionInfo;
 		*/
@@ -147,7 +147,7 @@ void UB2UISettingAccount::SetVersionInfo()
 		TextFotmat = FText::FromString(TEXT("{0}.{1}"));
 		DisplayInfo = FText::Format(TextFotmat, AppVersion, CLText);
 #if B2_BUILD_LEVEL < B2_BUILD_LEVEL_LIVE // !B2_BUILD_LEVEL_LIVE
-		//[@AKI, 181004] ÇöÀç´Â BuildNumText°¡ »ç¿ëÇÏÁö ¾Ê´Â °ªÀÌ¶ó ÁÖ¼® Ã³¸® ÇÔ
+		//[@AKI, 181004] æ³…çŠç»° BuildNumTextå•Š è¤ä¾©çªç˜¤ è‡¼ç»° è”¼ææ‰¼ æ—ç± è´¸åºœ çªƒ
 		//FText BuildNumText = FText::FromString(TEXT(PREPROCESSOR_TO_STRING(BUILDNUMBER)));
 		FText ServerVersion = FText::FromString(BladeIIGameImpl::GetClientDataStore().GetServerVersionInfo());
 		if (ServerVersion.IsEmpty())
@@ -179,7 +179,7 @@ void UB2UISettingAccount::Init()
 	bSubscribed = false;
 	m_KakaoLinkDelegateCalled.AtomicSet(false);
 	SubscribeEvent();
-#if PLATFORM_ANDROID // kakao ·Î±×ÀÎ delegate µî·Ï
+#if PLATFORM_ANDROID // kakao è‚ºå¼Šç‰¢ delegate æ®¿åºŸ
 	FJavaWrapper::OnKakaoLinkCompletedDelegate.Remove(OnKakaoLinkHandler);
 	OnKakaoLinkHandler = FJavaWrapper::OnKakaoLinkCompletedDelegate.AddUObject(this, &UB2UISettingAccount::KakaoLinkDelegate);
 #elif PLATFORM_IOS
@@ -240,7 +240,7 @@ void UB2UISettingAccount::OnClickBTN_Logout()
 	{
 		UIMgrInst->OpenMsgPopup<UB2UIMsgPopupSimple>(EUIMsgPopup::Simple,
 			BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_Notification")),
-			FText::FromString(TEXT("[Temporary] Logout delete all locally saved state!")), // ´ë·« ÀÌ·± ³»¿ëÀÇ °æ°í ¹®ÀÚ°¡ µé¾î°¡°ÚÁö..
+			FText::FromString(TEXT("[Temporary] Logout delete all locally saved state!")), // æªå¸† æç¹ éƒ´ä¾©ç‹¼ ç‰ˆç»Š å·©ç£Šå•Š ç”¸ç»¢å•Šæ‘†ç˜¤..
 			0.f,
 			true,
 			true,
@@ -248,12 +248,12 @@ void UB2UISettingAccount::OnClickBTN_Logout()
 			FMsgPopupOnClick::CreateLambda([]()
 		{
 			//
-			// TODO ·Î±×¾Æ¿ô ±â´É
+			// TODO è‚ºå¼Šé…’çœ¶ æ‰ç“·
 			//
 
-			ClearLocalIniSavedState(); // ·Î±×¾Æ¿ôÀº °èÁ¤ »èÁ¦³ª ¾Û Àç¼³Ä¡¿Í µ¿±ŞÀ¸·Î Ä¡°í ·ÎÄÃ ÀúÀå »óÅÂ¸¦ ³¯¸².
+			ClearLocalIniSavedState(); // è‚ºå¼Šé…’çœ¶ç¯® æ‹Œæ²¥ æ˜åŠ›å”± èš çŠæ±²æ‘¹å®¢ æ‚¼é­æ è‚º æ‘¹ç»Š è‚ºæ‹¿ å†å˜ æƒ‘æ€•ç”« æœè¦†.
 #if WITH_EDITOR && !PLATFORM_MAC
-			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(TEXT("°³¹ß¹öÀü ¸Ş½ÃÁö: ·ÎÄÃ °ÔÀÓ »óÅÂ ÀúÀå µ¥ÀÌÅÍ´Â ³¯¾Æ°¬À½.")));
+			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(TEXT("ä¿ºæƒ¯æ»šå‚ˆ çš‹çŸ«ç˜¤: è‚ºæ‹¿ éœ¸çƒ™ æƒ‘æ€• å†å˜ å•æç£ç»° æœé…’è‰¾æ¾œ.")));
 #endif
 		}
 			)
@@ -272,7 +272,7 @@ void UB2UISettingAccount::OnClickBTN_DeleteAccount()
 	{
 	UIMgrInst->OpenMsgPopup<UB2UIMsgPopupSimple>(EUIMsgPopup::Simple,
 	BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_Notification")),
-	FText::FromString(TEXT("[Temporary] Deleting account...")), // ¹º°¡ °æ°í ¹®ÀÚ°¡ µé¾î°¡°ÚÁö..
+	FText::FromString(TEXT("[Temporary] Deleting account...")), // è´­å•Š ç‰ˆç»Š å·©ç£Šå•Š ç”¸ç»¢å•Šæ‘†ç˜¤..
 	0.f,
 	true,
 	true,
@@ -280,12 +280,12 @@ void UB2UISettingAccount::OnClickBTN_DeleteAccount()
 	FMsgPopupOnClick::CreateLambda([]()
 	{
 	//
-	// TODO °èÁ¤ »èÁ¦
+	// TODO æ‹Œæ²¥ æ˜åŠ›
 	//
 
-	ClearLocalIniSavedState(); // ¿©±ä ´ç¿¬È÷ ·ÎÄÃ ÀúÀå »óÅÂ¸¦ ³¯¸².
+	ClearLocalIniSavedState(); // å’¯å˜ å¯¸æ¥·æ´’ è‚ºæ‹¿ å†å˜ æƒ‘æ€•ç”« æœè¦†.
 	#if WITH_EDITOR && !PLATFORM_MAC
-	FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(TEXT("°³¹ß¹öÀü ¸Ş½ÃÁö: ·ÎÄÃ °ÔÀÓ »óÅÂ ÀúÀå µ¥ÀÌÅÍ´Â ³¯¾Æ°¬À½.")));
+	FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(TEXT("ä¿ºæƒ¯æ»šå‚ˆ çš‹çŸ«ç˜¤: è‚ºæ‹¿ éœ¸çƒ™ æƒ‘æ€• å†å˜ å•æç£ç»° æœé…’è‰¾æ¾œ.")));
 	#endif
 	}
 	)
@@ -332,7 +332,7 @@ void UB2UISettingAccount::KakaoGoogleDisConnect()
 void UB2UISettingAccount::GameSecessionBtn()
 {
 	B2P_KakaoUnregister();
-	// ¿©±â ³ªÁß¿¡ Å»ÅğÃ³¸®
+	// å’¯æ‰ å”±åä¿Š å‘•ç¡¼è´¸åºœ
 }
 
 void UB2UISettingAccount::ShowAchievementsView()
@@ -355,14 +355,14 @@ void UB2UISettingAccount::OpenKakaoPopup()
 {
 	FString sIDPCode = TEXT("kakaocapri");
 
-	// ¼­¹ö ÂÊÀ¸·Î ¿ì¼± °ËÁõÀ» À§ÇÏ¿© º¸³¿
+	// è¾‘æ»š ç‡æ è‚º å¿«æ€¥ å…«åˆ˜é˜‘ å›°çªå’¯ ç„Šæ™¨
 	data_trader::Retailer::GetInstance().RequestKakaoAccountConversionPrepare(sIDPCode);
 
 }
 
 void UB2UISettingAccount::OnShowCSView()
 {
-	// °í°´¼¾ÅÍ
+	// ç»ŠæŒ‰å­£ç£
 	B2P_ShowCsView();
 }
 
@@ -454,6 +454,6 @@ void UB2UISettingAccount::OnReceiveKakaoAccountConversionComplete(FB2ReciveKakao
 
 void UB2UISettingAccount::MarkKakaoLink()
 {
-	// PostKakaoLoginInit ¿¡¼­ÀÇ ³×Æ®¿öÅ© ÃÊ±âÈ­¶û AccountInfo ¿äÃ»À» ÇÏ°íÀÚ ÇÏ´Â °Çµ¥ ´ÜÁö ´Ù¸¥ ¾²·¹µå¿¡¼­ ºÒ¸± ¿ì·Á°¡ ÀÖÀ¸¹Ç·Î ÇÑ´Ü°è¸¦ ´õ °ÅÄ£´Ù.
+	// PostKakaoLoginInit ä¿Šè¾‘ç‹¼ åŒ™é£˜å†µå†œ æª¬æ‰æ‹³å°” AccountInfo å¤¸æ²¡é˜‘ çªç»Šç£Š çªç»° æ‰’å• çªœç˜¤ ä¿ƒå¼— é™é¥­é›ä¿Šè¾‘ é˜‚å‰¯ å¿«å¦¨å•Š ä¹æ éª¨è‚º èŒ„çªœæ‹Œç”« æ­¹ èŠ­æ¨¡ä¿ƒ.
 	m_KakaoLinkDelegateCalled.AtomicSet(true);
 }

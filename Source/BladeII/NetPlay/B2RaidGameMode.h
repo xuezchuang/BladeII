@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 //#include "BladeII.h"
 #include "B2NetGameMode.h"
 #include "../DataStore/B2ClientDataStore.h"
@@ -11,12 +11,12 @@ class ALevelSequenceActor ;
 enum class ERaidMatchSceneState : uint8
 {
 	None,
-	Loading,		 // ·ÎµùÁß
-	WaitMatchPlayer, // ¸ÅÄª ÁØºñÁß
-	PreparePlayers,	 // ÇÃ·¹ÀÌ¾î ÁØºñÁß
-	Battle,			 // °ÔÀÓ ½ÃÀÛ
-	EndMatchByTime,	 // °ÔÀÓ ½Ã°£ Á¾·á
-	BattleEnd // °ÔÀÓÁ¾·á
+	Loading,		 // è‚ºçˆ¹å
+	WaitMatchPlayer, // æ¦‚è« éœ–åšå
+	PreparePlayers,	 // æ•²é¥­æç»¢ éœ–åšå
+	Battle,			 // éœ¸çƒ™ çŸ«ç´¯
+	EndMatchByTime,	 // éœ¸çƒ™ çŸ«åŸƒ è¾†ä¸°
+	BattleEnd // éœ¸çƒ™è¾†ä¸°
 };
 
 enum class ERaidBGMPlayContext : uint8
@@ -41,7 +41,7 @@ enum class ERaidPlayerLiveState : uint8
 class FRaidMatchSceneManager
 {
 public:
-	//180122_YJ 180ÃÊ¿¡¼­ 300ÃÊ·Î Àç ¼öÁ¤.
+	//180122_YJ 180æª¬ä¿Šè¾‘ 300æª¬è‚º çŠ èæ²¥.
 	static const int32 BATTLE_TIME = 300;
 	static const int32 FAIL_COUNTDOWN = 5;
 	static const int32 CHECK_READY_TIME = 5;
@@ -111,7 +111,7 @@ struct FRaidPeerInfo
 	bool IsExitMainGame;
 	bool IsDead;
 	float HelpResurrectionTime;
-	EPCClass ReservedPCClass;	// ¼±ÅÃµÈ Ä³¸¯ÅÍ¸¦ µ¿±âÈ­ (ºñµ¿±â·Î Ã³¸®µÇ±â¶§¹®¿¡ ÇÊ¿ä)
+	EPCClass ReservedPCClass;	// æ€¥ç¶ç­‰ æŸè…ç£ç”« æ‚¼æ‰æ‹³ (åšæ‚¼æ‰è‚º è´¸åºœç™»æ‰é”­å·©ä¿Š é˜å¤¸)
 
 	UPROPERTY(Transient)
 	ABladeIINetPlayer* PeerPlayer;

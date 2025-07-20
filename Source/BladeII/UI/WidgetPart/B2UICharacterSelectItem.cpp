@@ -1,4 +1,4 @@
-#include "B2UICharacterSelectItem.h"
+ï»¿#include "B2UICharacterSelectItem.h"
 #include "B2UIManager.h"
 #include "B2UIDocHelper.h"
 #include "B2UIDocHero.h"
@@ -49,7 +49,7 @@ void UB2UICharacterSelectItem::BindDoc(class UB2UIDocHero* DocHero)
 		//SetHeroLevel(DocHero->GetCurrentLevel());
 		SetHeroCombatPower(DocHero->GetCombatPower());
 
-		//[@SameLine, 180612] explevelinfo doc, datastore -> datastore °³¼±
+		//[@SameLine, 180612] explevelinfo doc, datastore -> datastore ä¿ºæ€¥
 		SetHeroLevel(BladeIIGameImpl::GetClientDataStore().GetLocalCharacterData().GetCharacterLevel(DocHero->GetHeroClass()));
 		//DocHero->OnCurrentLevelChanged.AddUObject(this, &UB2UICharacterSelectItem::OnChangedHeroLevel);
 	}

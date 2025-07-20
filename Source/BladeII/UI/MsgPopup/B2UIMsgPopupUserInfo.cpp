@@ -1,4 +1,4 @@
-#include "B2UIMsgPopupUserInfo.h"
+﻿#include "B2UIMsgPopupUserInfo.h"
 
 
 void UB2UIMsgPopupUserInfo::CacheAssets()

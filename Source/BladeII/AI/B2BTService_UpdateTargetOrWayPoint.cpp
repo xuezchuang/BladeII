@@ -1,4 +1,4 @@
-
+ï»¿
 #include "B2BTService_UpdateTargetOrWayPoint.h"
 //#include "BladeII.h"
 #include "BehaviorTree/BlackboardComponent.h"
@@ -21,7 +21,7 @@ void UB2BTService_UpdateTargetOrWayPoint::TickNode(UBehaviorTreeComponent& Owner
 
 	//auto*	Owner = Cast<AB2AutoAIController>(OwnerComp.GetOwner());
 	//
-	//// ¾øÀ¸¸é ·ÎÄÃÇÃ·¹ÀÌ¾î²¨ °®´Ù¾¸
+	//// ç»æ æ è‚ºæ‹¿æ•²é¥­æç»¢æ³¢ çˆ±ä¿ƒé–
 	//if (!Owner)
 	//{
 	//	ABladeIIPlayerController* pPC = Cast<ABladeIIPlayerController>(UGameplayStatics::GetLocalPlayerController(this));

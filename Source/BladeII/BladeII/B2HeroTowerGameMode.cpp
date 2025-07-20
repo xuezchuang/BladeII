@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2HeroTowerGameMode.h"
 #include "BladeII.h"
 
@@ -42,7 +42,7 @@ void AB2HeroTowerGameMode::ReturnToHTMainMenu()
 	//}
 
 	FLobbySceneManager::DeferredRegistChangeLobbyScene([](){
-		// ÀüÃ¼ ¾À ÀüÈ¯À» ÇÏ¸é ½Ç ·Îµù ½Ã°£ÀÌ ´Ã¾î³ª¹Ç·Î ¿øÇÏ´Â È­¸é Á÷Àü±îÁö UI History ¸¸ ¸¸µé¾îÁØ´Ù. 
+		// å‚ˆçœ‰ çº  å‚ˆåˆ¸é˜‘ çªæ è§’ è‚ºçˆ¹ çŸ«åŸƒæž ç–µç»¢å”±éª¨è‚º ç›”çªç»° æ‹³æ æµå‚ˆé³–ç˜¤ UI History çˆ¶ çˆ¶ç”¸ç»¢éœ–ä¿ƒ. 
 		UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
 		if (UIMgrInst) {
 			UIMgrInst->ArtificialAddUIHistory(EUIScene::LobbyMain);
@@ -51,7 +51,7 @@ void AB2HeroTowerGameMode::ReturnToHTMainMenu()
 		LobbyChangeSceneClass<ELobbyScene>::GetInstance().Signal(ELobbyScene::ELobbyScene_HeroTowerReady);
 	});
 
-	OpenBladeIILobbyCommon(this); // ¾À ÀüÈ¯ ¿¹¾à ÈÄ º»°Ý ·Îºñ ¸Ê ·Îµù
+	OpenBladeIILobbyCommon(this); // çº  å‚ˆåˆ¸ æŠ—è· é¥¶ å¤¯æ‹œ è‚ºåŽš ç”˜ è‚ºçˆ¹
 }
 
 void AB2HeroTowerGameMode::GiveUpGame()
@@ -72,9 +72,9 @@ void AB2HeroTowerGameMode::NotifyPlayerDeadEnd(class ABladeIIPlayer* DeadPlayer)
 {
 	bool bTestVar = StageManager->IsStageCleared();
 
-	if (!(StageManager && StageManager->IsStageCleared())) // ÆÐ¹è ¸Þ´º¸¦ ¿­°Ô µÇ´Âµ¥ ½ºÅ×ÀÌÁö Å¬¸®¾î ÀÌÈÄ¿¡´Â ÀÛµ¿ÇÏÁö ¾Ê°Ô..
+	if (!(StageManager && StageManager->IsStageCleared())) // è©ç¡… çš‹æ˜¥ç”« å‡¯éœ¸ ç™»ç»°å• èƒ¶æŠ›æžç˜¤ åŠªåºœç»¢ æžé¥¶ä¿Šç»° ç´¯æ‚¼çªç˜¤ è‡¼éœ¸..
 	{
-		PlayBGMByCommonSoundID(ECommonSoundID::ECSID_BGM_CombatDefeat); // ¸¸ÀÏ Á×´Â ¹Ù·Î ±× ½ÃÁ¡ºÎÅÍ ÇÃ·¹ÀÌ ÇØ¾ß ÇÑ´Ù¸é DeadEnd °¡ ¾Æ´Ñ OnDeath °°Àº °÷¿¡¼­.. 
+		PlayBGMByCommonSoundID(ECommonSoundID::ECSID_BGM_CombatDefeat); // çˆ¶è€ ç£·ç»° å®˜è‚º å¼Š çŸ«ç—¢ä½•ç£ æ•²é¥­æž ç§¦å…· èŒ„ä¿ƒæ DeadEnd å•Š é…’å›± OnDeath éžç¯® é•‘ä¿Šè¾‘.. 
 
 		StageManager->RequestHeroTowerClear(false);
 	}
@@ -102,7 +102,7 @@ void AB2HeroTowerGameMode::BeginPlay()
 
 void AB2HeroTowerGameMode::SetMobLevel()
 {
-	// ¸Ê·¹º§ ÀúÀåÇØ³ð
+	// ç”˜é¥­éª‡ åŽ†åŽ˜ç§¦ä»‡
 	int32 nFloor = GetStageManager()->GetCacheStageKeepEssentialData().GetHeroTowerFloor();
 
 	m_fCachingMobLevel = BladeIIGameImpl::GetClientDataStore().GetHeroTowerLevel(nFloor);

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -6,24 +6,25 @@
 #include "UI/B2UIWidget.h"
 #include "B2UIBackWidget.h"
 #include "../../BladeII/BladeIIGameMode.h"
+#include "EventSubsystem.h"
 #include "B2UIDonationResultPopup.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class BLADEII_API UB2UIDonationResultPopup : public UB2UIWidget, public IB2UIBackWidget
 {
 	GENERATED_BODY()
-	
-public	:
+
+public:
 	virtual void Init() override;
 	virtual void DestroySelf(class UB2UIManager* InUIManager) override;
-	
+
 	UFUNCTION(BlueprintImplementableEvent)
-		void PlayTenOpen();
+	void PlayTenOpen();
 	UFUNCTION(BlueprintImplementableEvent)
-		void PlayOneOpen();
+	void PlayOneOpen();
 protected:
 	virtual void CacheAssets() override;
 	virtual void BindDelegates() override;
@@ -32,13 +33,13 @@ protected:
 
 private:
 	UFUNCTION()
-		void OnClickConfirm();
+	void OnClickConfirm();
 	UFUNCTION()
-		void OnClickOneMore();
+	void OnClickOneMore();
 	UFUNCTION()
-		void OnClickItem(UB2UISlotItem* ClickedItem);
+	void OnClickItem(UB2UISlotItem* ClickedItem);
 	UFUNCTION()
-		void CloseItemDetailPopup();
+	void CloseItemDetailPopup();
 
 	void GetResultItems(OUT TArray<FB2Item>& OutItem);
 	void InitCostIcon();
@@ -51,9 +52,9 @@ private:
 #endif
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DonationPointStepReward")
-		TSoftObjectPtr<class UMaterialInterface> GemIcon;
+	TSoftObjectPtr<class UMaterialInterface> GemIcon;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DonationPointStepReward")
-		TSoftObjectPtr<class UMaterialInterface> GoldIcon;
+	TSoftObjectPtr<class UMaterialInterface> GoldIcon;
 
 private:
 	TArray<TWeakObjectPtr<class UB2UISlotItem>> UIP_TenDonationResultItems;

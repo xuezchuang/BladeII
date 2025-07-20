@@ -1,9 +1,10 @@
-#pragma once
+﻿#pragma once
 
 #include "B2UIWidget.h"
 #include "B2UIDocBindable.h"
 #include "B2UIFriendRow.h"
 #include "B2UIFriendSideMenu.h"
+#include "../B2RichTextBlock.h"
 #include "B2UIFriend.generated.h"
 
 /*

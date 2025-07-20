@@ -40,9 +40,9 @@ void UB2WingUIP_Enhancement::CacheAssets()
 	GET_SLOT(UB2ButtonGoodInfoToolTip, BTN_EnhanceGoodInfo);
 
 	LevelProgElements.Empty();
-	// MIN_WING_ENHANCE_LEVEL Àº ¾Æ¹« °­È­°¡ ¾ÈµÈ 0 ÀÌ¶ó 1ºÎÅÍ..
+	// MIN_WING_ENHANCE_LEVEL ç¯® é…’å…¬ ç¢æ‹³å•Š æ•‘ç­‰ 0 ææ‰¼ 1ä½•ç£..
 	for (int32 SI = MIN_WING_ENHANCE_LEVEL + 1; SI <= MAX_WING_ENHANCE_LEVEL; ++SI)
-	{ // ¼ø¼­´ë·Î Ã£¾Æ¼­ ³Ö´Â´Ù.
+	{ // é‰´è¾‘æªè‚º èŒ«é…’è¾‘ æŒç»°ä¿ƒ.
 		const FString& ThisLevelImageName = FString::Printf(TEXT("%s_%d"), *LevelProgElemPrefix, SI);
 		UB2WingUIP_EnhLevelProgElem* ThisFoundElem = GetSlot<UB2WingUIP_EnhLevelProgElem>(FName(*ThisLevelImageName));
 		if (ThisFoundElem)
@@ -62,13 +62,13 @@ void UB2WingUIP_Enhancement::InitFromWingMain()
 
 	if (IMG_ProgressEffect.IsValid())
 	{
-		IMG_ProgressEffect->SetVisibility(ESlateVisibility::Hidden); // Ã³À½¿¡´Â ¼û°Ü³õ´Â´Ù.
+		IMG_ProgressEffect->SetVisibility(ESlateVisibility::Hidden); // è´¸æ¾œä¿Šç»° è§è´¥åˆç»°ä¿ƒ.
 	}
 }
 
 void UB2WingUIP_Enhancement::PlayLevelupAnim()
 {
-	// LastCachedWingData ¿Í LevelProgElements µéÀÌ »õ·Î¿î °­È­ ·¹º§¿¡ ¸Â°Ô ¾÷µ¥ÀÌÆ® µÈ (UpdateByWingData) ÈÄ¿¡ ºÒ¸®¿ö¾ß µÉ °Í.
+	// LastCachedWingData å®¢ LevelProgElements ç”¸æ è´§è‚ºæ¬¾ ç¢æ‹³ é¥­éª‡ä¿Š å˜éœ¸ è¯€å•æé£˜ ç­‰ (UpdateByWingData) é¥¶ä¿Š é˜‚åºœå†µå…· çª å·´.
 
 	for (int32 FII = 0; FII < LevelProgElements.Num(); ++FII)
 	{
@@ -84,7 +84,7 @@ void UB2WingUIP_Enhancement::UpdateByWingData(const FB2Wing& InWingData)
 {
 	//LastCachedWingData = InWingData;
 
-	//// °­È­·¹º§ ÇÁ·Î±×·¹½º
+	//// ç¢æ‹³é¥­éª‡ æ©‡è‚ºå¼Šé¥­èƒ¶
 	//for (int32 FII = 0; FII < LevelProgElements.Num(); ++FII)
 	//{
 	//	UB2WingUIP_EnhLevelProgElem* ThisProgElem = LevelProgElements[FII];
@@ -95,15 +95,15 @@ void UB2WingUIP_Enhancement::UpdateByWingData(const FB2Wing& InWingData)
 	//}
 
 	//int32 CurrentEnhanceIngredNum = UB2LobbyInventory::GetSharedConsumableAmountOfType(FItemRefIDHelper::GetWingEnhanceResourceRefID());
-	//int32 RequiredEnhanceIngredNum = 0; // ÀÌ°Ç ¼­¹ö¿¡¼­ ¿Â ¸¶½ºÅÍ µ¥ÀÌÅÍ ·è¾÷
+	//int32 RequiredEnhanceIngredNum = 0; // ææ‰’ è¾‘æ»šä¿Šè¾‘ æŸ¯ ä»˜èƒ¶ç£ å•æç£ ç–¯è¯€
 	//int32 RequiredGoldCost = 0;
 	//int32 RequiredEnhancePoint = 0; 
-	//int32 EnhancePointToAcquire = 0; // ´çÀå ¿©±â¼­ ÇÊ¿äÇÑ °Ç ¾Æ´Ñ µí ÇÏÁö¸¸ ´ÜÁö µ¥ÀÌÅÍ ·è¾÷À» À§ÇØ
+	//int32 EnhancePointToAcquire = 0; // å¯¸å˜ å’¯æ‰è¾‘ é˜å¤¸èŒ„ æ‰’ é…’å›± æ·€ çªç˜¤çˆ¶ çªœç˜¤ å•æç£ ç–¯è¯€é˜‘ å›°ç§¦
 	//BladeIIGameImpl::GetClientDataStore().GetWingEnhanceRefData(LastCachedWingData, RequiredEnhanceIngredNum, RequiredGoldCost, EnhancePointToAcquire, RequiredEnhancePoint);
 	//if (TB_CurrentIngredNum.IsValid())
 	//{
 	//	TB_CurrentIngredNum->SetText(FText::AsNumber(CurrentEnhanceIngredNum));
-	//	TB_CurrentIngredNum->SetColorAndOpacity( // ÄÃ·¯°ª °Á ÇÏµåÄÚµù.. ±»ÀÌ..
+	//	TB_CurrentIngredNum->SetColorAndOpacity( // æ‹¿çŸ¾è”¼ å‚² çªé›å†…çˆ¹.. è¢«æ..
 	//		(CurrentEnhanceIngredNum >= RequiredEnhanceIngredNum) ? FSlateColor(FLinearColor(0.0f, 1.0f, 0.0f)) : FSlateColor(FLinearColor(1.0f, 0.0f, 0.0f))
 	//		);
 	//}
@@ -117,7 +117,7 @@ void UB2WingUIP_Enhancement::UpdateByWingData(const FB2Wing& InWingData)
 	//	const float PercentBefore = PB_EnhancePoint->Percent;
 	//	PB_EnhancePoint->SetPercent((float)LastCachedWingData.EnhancePoint / (float)RequiredEnhancePoint);
 
-	//	if (PB_EnhancePoint->Percent > PercentBefore){ // ½ÇÁ¦·Î Progress »ó½Â ½Ã ÀÌÆåÆ® »Ñ¸².
+	//	if (PB_EnhancePoint->Percent > PercentBefore){ // è§’åŠ›è‚º Progress æƒ‘é“° çŸ« ææ£‹é£˜ è°è¦†.
 	//		BeginShowProgressEffect(PB_EnhancePoint->Percent);
 	//	}
 	//}
@@ -147,10 +147,10 @@ void UB2WingUIP_Enhancement::UpdateStaticWidgets()
 	UB2ItemInfo* ItemInfoTable = StaticFindItemInfo();
 	if (ItemInfoTable && IMG_EnhanceIngred.IsValid())
 	{
-		// °­È­Àç·áÀÇ Á¤ÇØÁø ¾ÆÀÌÅÛ ID °¡ ÀÖÀ½.
+		// ç¢æ‹³çŠä¸°ç‹¼ æ²¥ç§¦æŸ³ é…’æè¢ ID å•Š ä¹æ¾œ.
 		FSingleItemInfoData* EnhanceIngredItemInfoData = ItemInfoTable->GetInfoData(FItemRefIDHelper::GetWingEnhanceResourceRefID());
 		if (EnhanceIngredItemInfoData)
-		{ // °íÁ¤µÈ ÀÌ¹ÌÁö ÇÏ³ª±ä ÇÏÁö¸¸ ÀÌ¹ÌÁö ¹Ù²î¸é¼­ ´©¶ôµÉ ¼ö ÀÖÀ¸¹Ç·Î ÀÎÆ÷Å×ÀÌºí¼­ °¡Á®¿Í¼­ ³Ö¾îÁØ´Ù.
+		{ // ç»Šæ²¥ç­‰ æå›ºç˜¤ çªå”±å˜ çªç˜¤çˆ¶ æå›ºç˜¤ å®˜å·®æè¾‘ ç©¿éçª è ä¹æ éª¨è‚º ç‰¢å™¨æŠ›æå–‰è¾‘ å•Šå»‰å®¢è¾‘ æŒç»¢éœ–ä¿ƒ.
 			IMG_EnhanceIngred->SetBrushFromMaterial(EnhanceIngredItemInfoData->GetIconMaterial(ItemInfoTable));
 		}
 	}
@@ -165,14 +165,14 @@ void UB2WingUIP_Enhancement::BeginShowProgressEffect(float InProgress)
 {
 	if (X_CP_ProgressEffectPanel.IsValid() && IMG_ProgressEffect.IsValid())
 	{
-		// ÁÂÇ¥ Á¶ÀıÀ» À§ÇØ µÑ ´Ù CanvasPanel ¾È¿¡ ¹èÄ¡µÇ¾î ÀÖ¾î¾ß ÇÔ.
+		// è°…é’ ç‚¼ä¾‹é˜‘ å›°ç§¦ ç¬› ä¿ƒ CanvasPanel æ•‘ä¿Š ç¡…æ‘¹ç™»ç»¢ ä¹ç»¢å…· çªƒ.
 		UCanvasPanelSlot* ProgressEffectPanelSlot = Cast<UCanvasPanelSlot>(X_CP_ProgressEffectPanel->Slot);
 		UCanvasPanelSlot* ProgressEffectImageSlot = Cast<UCanvasPanelSlot>(IMG_ProgressEffect->Slot);
 		if (ProgressEffectPanelSlot && ProgressEffectImageSlot)
 		{
 			IMG_ProgressEffect->SetVisibility(ESlateVisibility::HitTestInvisible);
 
-			const float TotalLength = ProgressEffectPanelSlot->GetSize().X; // ÀÌ°Ô ¿Ã¶ó°¡ ÀÖ´Â ÇÁ·Î±×·¹½º ¹Ù¿Í °°Àº Å©±â¿©¾ß ÇÔ.
+			const float TotalLength = ProgressEffectPanelSlot->GetSize().X; // æéœ¸ æ£µæ‰¼å•Š ä¹ç»° æ©‡è‚ºå¼Šé¥­èƒ¶ å®˜å®¢ éç¯® å†œæ‰å’¯å…· çªƒ.
 			const float ImageHalfWidth = ProgressEffectImageSlot->GetSize().X * 0.5f;
 
 			const float ProgressPosition = TotalLength * InProgress;
@@ -181,14 +181,14 @@ void UB2WingUIP_Enhancement::BeginShowProgressEffect(float InProgress)
 		}
 	}
 
-	// ÀÚµ¿ ²¨Áü Å¸ÀÌ¸Ó ¼³Ä¡.
+	// ç£Šæ‚¼ æ³¢å’™ é¸¥æèµ£ æ±²æ‘¹.
 	UWorld* TheWorld = GetWorld();
 	if (TheWorld)
 	{
 		TheWorld->GetTimerManager().SetTimer(ProgressEffectFlashTH, this, &UB2WingUIP_Enhancement::FinishShowProgressEffect, ProgressEffectFlashDuration, false);
 	}
 	
-	PlayEnhanceProgressFxAnim(); // IMG_ProgressEffect ÀÚÃ¼¿¡ ´ëÇÑ ÇÃ·¡½¬ È¿°ú ¾Ö´Ï¸ŞÀÌ¼Ç.
+	PlayEnhanceProgressFxAnim(); // IMG_ProgressEffect ç£Šçœ‰ä¿Š æªèŒ„ æ•²è´°æµ† ç“¤è‹ å±€èªçš‹æè®°.
 }
 
 void UB2WingUIP_Enhancement::FinishShowProgressEffect()

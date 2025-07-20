@@ -1,4 +1,4 @@
-
+﻿
 #include "Trigger.h"
 
 DEFINITION_EVENT_CLASS(KillMonsterTrigger)

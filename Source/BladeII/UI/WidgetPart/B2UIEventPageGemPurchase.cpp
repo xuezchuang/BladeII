@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIEventPageGemPurchase.h"
 
@@ -26,7 +26,7 @@ void UB2UIEventPageGemPurchase::UpdateStaticText()
 	if (RTB_AccrueGemPurchase.IsValid())
 		RTB_AccrueGemPurchase->SetText(BladeIIGetLOCText(B2LOC_CAT_EVENT, TEXT("BuyGemEvent_GemCount")));
 
-	//ÃÊ±âÈ­
+	//æª¬æ‰æ‹³
 	UpdateAccrueGemPointText(0);
 }
 
@@ -112,12 +112,12 @@ void UB2UIEventPageGemPurchase::UpdateEventPage(FB2ResponseGetEventPtr ReciveGet
 				EventSlotGemPurchase->SetGemProgressAndGoalCountText(AccureGemCount);
 
 				int32 iRewardBitCheck = 2 << i;
-				//º¸»ó ¿Ï·á //reward_state_value 0000001 Ã¹¹øÂ° º¸»ó ¿Ï·á reward_state_value 0000011 Ã¹¹øÂ°, µÎ¹øÂ° º¸»ó ¿Ï·á
+				//ç„Šæƒ‘ è‚¯ä¸° //reward_state_value 0000001 éœ‰é”…æŽ³ ç„Šæƒ‘ è‚¯ä¸° reward_state_value 0000011 éœ‰é”…æŽ³, æ»´é”…æŽ³ ç„Šæƒ‘ è‚¯ä¸°
 				if (RewardStateValue & iRewardBitCheck)
 				{
 					EventSlotGemPurchase->SetEventState(b2network::B2MissionStateType::REWARDED);
 				}
-				//º¸»ó ¹Ì¿Ï·á
+				//ç„Šæƒ‘ å›ºè‚¯ä¸°
 				else if(AccureGemCount >= EventSlotGemPurchase->GetGoalCount())
 				{
 					EventSlotGemPurchase->SetEventState(b2network::B2MissionStateType::COMPLETED);
@@ -139,7 +139,7 @@ void UB2UIEventPageGemPurchase::SortEventSlotList()
 	ArrayEventSlotList.StableSort(
 		[](const TWeakObjectPtr<class UB2UIEventSlot>& A, const TWeakObjectPtr<class UB2UIEventSlot>& B)
 	{
-		//º¸»ó ¿Ï·á ½½·ÔÀº °¡Àå µÚ·Î Á¤·Ä
+		//ç„Šæƒ‘ è‚¯ä¸° æµ‡å©ç¯® å•ŠåŽ˜ ç¬¬è‚º æ²¥çºº
 		bool Result = false;
 		if (A->GetEventIndex() < B->GetEventIndex())
 		{

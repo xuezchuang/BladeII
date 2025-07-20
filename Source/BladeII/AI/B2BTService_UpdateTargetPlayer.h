@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "BehaviorTree/Services/BTService_BlackboardBase.h"
 #include "B2BTService_UpdateTargetPlayer.generated.h"

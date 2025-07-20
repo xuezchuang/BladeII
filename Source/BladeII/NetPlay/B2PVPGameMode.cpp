@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2PVPGameMode.h"
@@ -55,7 +55,7 @@ AB2PVPGameMode::AB2PVPGameMode(const FObjectInitializer& ObjectInitializer)
 	DefaultRemotePawnClass	= ABladeIINetPlayer::StaticClass();	
 	//PVPAIController			= nullptr;
 
-	bDeferAutoBeginAuto = true; // TryAutoBeginAutoAtBeginning ÄİÀ» BeginPlay ¿¡ ÇÏÁö ¾Ê°í ÀÌÈÄ¿¡ Á÷Á¢ Äİ.
+	bDeferAutoBeginAuto = true; // TryAutoBeginAutoAtBeginning å¦®é˜‘ BeginPlay ä¿Š çªç˜¤ è‡¼ç»Š æé¥¶ä¿Š æµç«‹ å¦®.
 
 	bRequestResult = false;
 }
@@ -68,9 +68,9 @@ void AB2PVPGameMode::BeginPlay()
 
 	Super::BeginPlay();
 
-	PreBuildTagCharMesh(); // PreloadAnyNecessaryInfo ¼º°İÀÎµ¥ ÀÌÂÊ¼­ ÀÌ ±â´ÉÀÌ µû·Î ±¸ÇöµÇ¾î ÀÖ°í PreloadAnyNecessaryInfo °¡ ¿À¹ö¶óÀÌµù µÇ¾î ÀÖÁöµµ ¾Ê°í ÇØ¼­ Àû´çÇÑ ½ÃÁ¡¿¡ µû·Î ¼öÇà.
+	PreBuildTagCharMesh(); // PreloadAnyNecessaryInfo å·±æ‹œç‰¢å• æç‡è¾‘ æ æ‰ç“·æ è¶è‚º å¤‡æ³…ç™»ç»¢ ä¹ç»Š PreloadAnyNecessaryInfo å•Š å·æ»šæ‰¼æçˆ¹ ç™»ç»¢ ä¹ç˜¤æ¡£ è‡¼ç»Š ç§¦è¾‘ åˆ©å¯¸èŒ„ çŸ«ç—¢ä¿Š è¶è‚º èé’.
 
-	StageBeginClass<>::GetInstance().Signal(); // ÀÌ°Ô ÇöÀç ÇÏ´Â °Ç ÀüÅõ UI ¸¦ ¿©´Â °Çµ¥ Stage ¶õ ÀÌ¸§ÀÌ °Å½½¸®¸é ´Ù¸¥ ÀÌº¥Æ®·Î ¹Ù²ã¼­ ¾µ ¼ö ÀÖ°Ú´Ù. ¾Æ¿¹ ´Ù¸¥ ÀÌº¥Æ®°¡ ÇÊ¿äÇÒ ¼öµµ ÀÖ°í.	
+	StageBeginClass<>::GetInstance().Signal(); // æéœ¸ æ³…çŠ çªç»° æ‰’ å‚ˆæ§ UI ç”« å’¯ç»° æ‰’å• Stage é„‚ ææŠšæ èŠ­æµ‡åºœæ ä¿ƒå¼— æäº¥é£˜è‚º å®˜å±‚è¾‘ é•œ è ä¹æ‘†ä¿ƒ. é…’æŠ— ä¿ƒå¼— æäº¥é£˜å•Š é˜å¤¸ä¸” èæ¡£ ä¹ç»Š.	
 }
 
 void AB2PVPGameMode::BeginDestroy()
@@ -150,7 +150,7 @@ void AB2PVPGameMode::HandleMatchHasStarted()
 //	// Then fire off match started
 //	GetWorldSettings()->NotifyMatchStarted();
 //
-//#if BII_STATS // PerfStat Àº MatchStart ½ÃÁ¡ºÎÅÍ ¸ğÀ¸±â ½ÃÀÛ.
+//#if BII_STATS // PerfStat ç¯® MatchStart çŸ«ç—¢ä½•ç£ è‘›æ æ‰ çŸ«ç´¯.
 //	PerfStatCollector.OnBegin(this);
 //#endif
 
@@ -167,7 +167,7 @@ void AB2PVPGameMode::MatchGameStartEventSceneEnd()
 	//	PVPAIController->BeginAutoPlay();
 	//}
 
-	//TryAutoBeginAutoAtBeginning(); // PVP ´Â PostBeginPlay ½ÃÁ¡¿¡ LocalPlayer °¡ ¾øÀ½. ¿©±â¼­ ÇÑ¹ø ´õ ÇØ ÁÖ¾î¾ß ÇÔ.
+	//TryAutoBeginAutoAtBeginning(); // PVP ç»° PostBeginPlay çŸ«ç—¢ä¿Š LocalPlayer å•Š ç»æ¾œ. å’¯æ‰è¾‘ èŒ„é”… æ­¹ ç§¦ æ—ç»¢å…· çªƒ.
 }
 
 void AB2PVPGameMode::NotifyInGameReady(uint32 InNetId, const uint8 ReceiverType)
@@ -182,7 +182,7 @@ void AB2PVPGameMode::CheckInGameReady(float DeltaSeconds)
 {
 	B2_SCOPED_TRACK_LOG(TEXT("AB2PVPGameMode::CheckInGameReady"));
 	
-	//Peer °¡ slave´ø master ´ø InGameReady¸¦ º¸³»¾ß ´ÙÀ½À¸·Î ³Ñ¾î°¡°Ô ¼öÁ¤
+	//Peer å•Š slaveå¸¦ master å¸¦ InGameReadyç”« ç„Šéƒ´å…· ä¿ƒæ¾œæ è‚º é€ç»¢å•Šéœ¸ èæ²¥
 	const float IntervalTime = 5.0f;
 	const int32 LimitSendCount = 4;
 
@@ -190,7 +190,7 @@ void AB2PVPGameMode::CheckInGameReady(float DeltaSeconds)
 
 	if (IntervalTime <= InGameReadyTime)
 	{
-		// ai¸é ±×³É ½ÃÀÛ
+		// aiæ å¼Šæˆ çŸ«ç´¯
 		if (GetPeerType() == PEER_NETSTANDALONE || GetPeerType() == PEER_STANDALONE)
 		{
 			HandleSyncStartGame();
@@ -249,7 +249,7 @@ void AB2PVPGameMode::Tick(float DeltaSeconds)
 	Super::Tick(DeltaSeconds);
 	SceneManager.Tick(DeltaSeconds);
 
-	//RealtimeUpdateUIDoc¿¡¼­ ¿µ¿õ ¾ÆÀÌÄÜÀ» ¹Ù²Ù´Â ºÎºĞÀÌ ÀÖ´Âµ¥ ±×°É ¾È¹Ù²Ù±â À§ÇØ ÀÌ ÁÙÀ» Ãß°¡ÇÔ(ÇØ°ñ ¾ÆÀÌÄÜÀÌ »èÁ¦ µÇ´Â ÀÌ½´°¡ ÀÖÀ½)
+	//RealtimeUpdateUIDocä¿Šè¾‘ åº·æ—· é…’æèƒ½é˜‘ å®˜æ“ç»° ä½•ç›’æ ä¹ç»°å• å¼Šå§ æ•‘å®˜æ“æ‰ å›°ç§¦ æ ä¸´é˜‘ çœ å•Šçªƒ(ç§¦æ¦œ é…’æèƒ½æ æ˜åŠ› ç™»ç»° æé…±å•Š ä¹æ¾œ)
 //	if (GetMatchState() == NetMatchState::FinishBattle || GetMatchState() == NetMatchState::StartResult) return;
 
 	if (SceneManager.GetState() == EPVPMatchState::PreBattle)
@@ -269,9 +269,9 @@ void AB2PVPGameMode::Tick(float DeltaSeconds)
 	ErrorHandlingTimeExchangeInfo += DeltaSeconds;
 	if (ErrorHandlingTimeExchangeInfo > 10.f)
 	{
-		//¼­¹ö¿¡ ÀÌ»óÀÌ ÀÖ°Å³ª
-		//»ó´ë peer°¡ ³ª°¡¼­ Á¤º¸°¡ ¿ÀÁö ¾Ê°Å³ª..
-		//³»°¡ ¾ÛÀ» pause½ÃÄÑ³ù´Ù´øÁö..
+		//è¾‘æ»šä¿Š ææƒ‘æ ä¹èŠ­å”±
+		//æƒ‘æª peerå•Š å”±å•Šè¾‘ æ²¥ç„Šå•Š å·ç˜¤ è‡¼èŠ­å”±..
+		//éƒ´å•Š èšé˜‘ pauseçŸ«éš¾èº‡ä¿ƒå¸¦ç˜¤..
 		bRepeatRequestMatchByError = true;
 #if !UE_BUILD_DEBUG
 		LeaveRoomIfJoined();
@@ -312,7 +312,7 @@ void AB2PVPGameMode::InitializeUpdateUIDoc()
 void AB2PVPGameMode::RealtimeUpdateUIDoc()
 {
 ////	B2_SCOPED_TRACK_LOG(TEXT("AB2PVPGameMode::RealtimeUpdateUIDoc"));
-//	//RealtimeUpdateUIDoc¿¡¼­ ¿µ¿õ ¾ÆÀÌÄÜÀ» ¹Ù²Ù´Â ºÎºĞÀÌ ÀÖ´Âµ¥ ±×°É ¾È¹Ù²Ù±â À§ÇØ ÀÌ ÁÙÀ» Ãß°¡ÇÔ(ÇØ°ñ ¾ÆÀÌÄÜÀÌ »èÁ¦ µÇ´Â ÀÌ½´°¡ ÀÖÀ½)
+//	//RealtimeUpdateUIDocä¿Šè¾‘ åº·æ—· é…’æèƒ½é˜‘ å®˜æ“ç»° ä½•ç›’æ ä¹ç»°å• å¼Šå§ æ•‘å®˜æ“æ‰ å›°ç§¦ æ ä¸´é˜‘ çœ å•Šçªƒ(ç§¦æ¦œ é…’æèƒ½æ æ˜åŠ› ç™»ç»° æé…±å•Š ä¹æ¾œ)
 //	if (GetMatchState() == NetMatchState::FinishBattle || GetMatchState() == NetMatchState::StartResult) return;
 //
 //	Super::RealtimeUpdateUIDoc();
@@ -366,7 +366,7 @@ void AB2PVPGameMode::ReturnToFindAccount()
 	//		BladeIIGameImpl::GetClientDataStore().SetOtherUserInfo(RemoteFindAccountInfoPtr);
 
 	//		FLobbySceneManager::DeferredRegistChangeLobbyScene([]() {
-	//			// ÀüÃ¼ ¾À ÀüÈ¯À» ÇÏ¸é ½Ç ·Îµù ½Ã°£ÀÌ ´Ã¾î³ª¹Ç·Î ¿øÇÏ´Â È­¸é Á÷Àü±îÁö UI History ¸¸ ¸¸µé¾îÁØ´Ù. 
+	//			// å‚ˆçœ‰ çº  å‚ˆåˆ¸é˜‘ çªæ è§’ è‚ºçˆ¹ çŸ«åŸƒæ ç–µç»¢å”±éª¨è‚º ç›”çªç»° æ‹³æ æµå‚ˆé³–ç˜¤ UI History çˆ¶ çˆ¶ç”¸ç»¢éœ–ä¿ƒ. 
 	//			UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
 	//			if (UIMgrInst) {
 	//				UIMgrInst->ArtificialAddUIHistory(EUIScene::LobbyMain);
@@ -379,7 +379,7 @@ void AB2PVPGameMode::ReturnToFindAccount()
 	//	}		
 	//}
 
-	//OpenBladeIILobbyCommon(this); // ¾À ÀüÈ¯ ¿¹¾à ÈÄ º»°İ ·Îºñ ¸Ê ·Îµù
+	//OpenBladeIILobbyCommon(this); // çº  å‚ˆåˆ¸ æŠ—è· é¥¶ å¤¯æ‹œ è‚ºåš ç”˜ è‚ºçˆ¹
 }
 
 void AB2PVPGameMode::RequestRematch()
@@ -398,7 +398,7 @@ void AB2PVPGameMode::ReturnToPVPMainMenu()
 	//	FLobbySceneManager::DeferredRegistChangeLobbyScene(
 	//		[this]()
 	//	{
-	//		// ÀüÃ¼ ¾À ÀüÈ¯À» ÇÏ¸é ½Ç ·Îµù ½Ã°£ÀÌ ´Ã¾î³ª¹Ç·Î ¿øÇÏ´Â È­¸é Á÷Àü±îÁö UI History ¸¸ ¸¸µé¾îÁØ´Ù. 
+	//		// å‚ˆçœ‰ çº  å‚ˆåˆ¸é˜‘ çªæ è§’ è‚ºçˆ¹ çŸ«åŸƒæ ç–µç»¢å”±éª¨è‚º ç›”çªç»° æ‹³æ æµå‚ˆé³–ç˜¤ UI History çˆ¶ çˆ¶ç”¸ç»¢éœ–ä¿ƒ. 
 	//		UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
 	//		if (UIMgrInst) {
 	//			UIMgrInst->ArtificialAddUIHistory(EUIScene::LobbyMain);
@@ -412,23 +412,23 @@ void AB2PVPGameMode::ReturnToPVPMainMenu()
 	//	);
 	//}
 
-	//OpenBladeIILobbyCommon(this); // ¾À ÀüÈ¯ ¿¹¾à ÈÄ º»°İ ·Îºñ ¸Ê ·Îµù
+	//OpenBladeIILobbyCommon(this); // çº  å‚ˆåˆ¸ æŠ—è· é¥¶ å¤¯æ‹œ è‚ºåš ç”˜ è‚ºçˆ¹
 }
 
 void AB2PVPGameMode::SendRequestMatchResult()
 {
 	B2_SCOPED_TRACK_LOG(TEXT("AB2PVPGameMode::SendRequestMatchResult"));
 
-	//// Ä£¼±ÀüÀº match°á°ú º¸³¾ ÇÊ¿ä¾øÀ½
+	//// æ¨¡æ€¥å‚ˆç¯® matchæ¬è‹ ç„Šå°˜ é˜å¤¸ç»æ¾œ
 	//if (IsValidFriendshipGame())
 	//	return;
 
-	//// Á¤»óÀûÀÎ °ÔÀÓ ³¡³ª°í °á°ú·Î °¡Áö¾Ê°í,
-	//// °ÔÀÓ Áß°£¿¡ Ã¤³ÎÀÌ ²÷±â°Å³ª ÀÏ½ÃÁ¤Áö·Î ³ª°¬À»°æ¿ì¿¡ °á°ú Ã³¸®¸¦ º¸³»±â À§ÇØ ¾²´Â ÇÔ¼ö.
+	//// æ²¥æƒ‘åˆ©ç‰¢ éœ¸çƒ™ åœºå”±ç»Š æ¬è‹è‚º å•Šç˜¤è‡¼ç»Š,
+	//// éœ¸çƒ™ ååŸƒä¿Š ç›²æ¾„æ è°—æ‰èŠ­å”± è€çŸ«æ²¥ç˜¤è‚º å”±è‰¾é˜‘ç‰ˆå¿«ä¿Š æ¬è‹ è´¸åºœç”« ç„Šéƒ´æ‰ å›°ç§¦ é™ç»° çªƒè.
 
 	//if (GetMatchState() != NetMatchState::StartResult)
 	//{
-	//	//Todo ³ª ³ª°¡¿ä~ ÆĞÅ¶
+	//	//Todo å”± å”±å•Šå¤¸~ è©å“¦
 	//	if (GetPeerType() == PEER_SUPER || GetPeerType() == PEER_RESTRICTED)
 	//		LeaveRoomIfJoined();
 	//	else if (TokenToPlay.Len())
@@ -507,7 +507,7 @@ void AB2PVPGameMode::EnterShop(int32 nWhereShop)
 	B2_SCOPED_TRACK_LOG(TEXT("AB2PVPGameMode::EnterShop"));
 
 	//FLobbySceneManager::DeferredRegistChangeLobbyScene([]() {
-	//	// ÀüÃ¼ ¾À ÀüÈ¯À» ÇÏ¸é ½Ç ·Îµù ½Ã°£ÀÌ ´Ã¾î³ª¹Ç·Î ¿øÇÏ´Â È­¸é Á÷Àü±îÁö UI History ¸¸ ¸¸µé¾îÁØ´Ù.
+	//	// å‚ˆçœ‰ çº  å‚ˆåˆ¸é˜‘ çªæ è§’ è‚ºçˆ¹ çŸ«åŸƒæ ç–µç»¢å”±éª¨è‚º ç›”çªç»° æ‹³æ æµå‚ˆé³–ç˜¤ UI History çˆ¶ çˆ¶ç”¸ç»¢éœ–ä¿ƒ.
 	//	UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
 	//	if (UIMgrInst) {
 	//		UIMgrInst->ArtificialAddUIHistory(EUIScene::LobbyMain);
@@ -532,7 +532,7 @@ void AB2PVPGameMode::EnterShop(int32 nWhereShop)
 	//	break;
 
 	//}
-	//OpenBladeIILobbyCommon(this); // ¾À ÀüÈ¯ ¿¹¾à ÈÄ º»°İ ·Îºñ ¸Ê ·Îµù
+	//OpenBladeIILobbyCommon(this); // çº  å‚ˆåˆ¸ æŠ—è· é¥¶ å¤¯æ‹œ è‚ºåš ç”˜ è‚ºçˆ¹
 }
 
 void AB2PVPGameMode::PreBeginPlay()
@@ -544,7 +544,7 @@ void AB2PVPGameMode::PreBeginPlay()
 
 	//Super::PreBeginPlay();
 
-	//PlayPVPBGM(EPVPBGMPlayContext::PVPBGMCTX_Standby); // Ã³À½¿¡´Â ´ë±â »óÅÂÀÏ °Í.. PVP ¸ğµå BeginPlay ºÒ¸®´Â Å¸ÀÌ¹ÖÀÌ Á» ´ÊÀ¸¹Ç·Î ¿©±â¼­ ½ÃÀÛ.
+	//PlayPVPBGM(EPVPBGMPlayContext::PVPBGMCTX_Standby); // è´¸æ¾œä¿Šç»° æªæ‰ æƒ‘æ€•è€ å·´.. PVP è‘›é› BeginPlay é˜‚åºœç»° é¸¥ææ€ªæ ç²± è¯æ éª¨è‚º å’¯æ‰è¾‘ çŸ«ç´¯.
 
 	//SetStartTimeCount(false);
 	//bIsTutorial = false;
@@ -571,7 +571,7 @@ void AB2PVPGameMode::SubscribeEvents()
 
 	//Super::SubscribeEvents();
 
-	//// ReceivedOtherNetIdClassÀÇ °æ¿ì ºÎ¸ğ°ÍÀ» »ç¿ëÇÏÁö ¾Ê°í µû·Î ¾´´Ù.
+	//// ReceivedOtherNetIdClassç‹¼ ç‰ˆå¿« ä½•è‘›å·´é˜‘ è¤ä¾©çªç˜¤ è‡¼ç»Š è¶è‚º æ•¬ä¿ƒ.
 	//Issues.Add(ReceivedOtherNetIdClass<uint32, int64, const FB2FindAccountInfoPtr&>::GetInstance().Subscribe2(
 	//	[this](uint32 NetId, int64 AccountId, const FB2FindAccountInfoPtr& AccountInfo)
 	//	{
@@ -751,8 +751,8 @@ ERoomCloseReasonType AB2PVPGameMode::GetStartRoomCloseReason()
 
 void AB2PVPGameMode::OnHostChanged(int32 RoomType, int32 NewHostId)
 {
-	//PVP¿¡¼­´Â Peer¸¦ Super·Î º¯°æÇÏ¸é ¾ÈµÇ´Âµ¥ Parents°¡ ±× ¿ªÇÒÀ» ÇÏ°í ÀÖ±â ¶§¹®¿¡
-	//ºñ¾îÀÖ´Â ¸Ş¼Òµå¸¦ ¸¸µë.
+	//PVPä¿Šè¾‘ç»° Peerç”« Superè‚º å‡½ç‰ˆçªæ æ•‘ç™»ç»°å• Parentså•Š å¼Š å¼€ä¸”é˜‘ çªç»Š ä¹æ‰ é”­å·©ä¿Š
+	//åšç»¢ä¹ç»° çš‹å®¶é›ç”« çˆ¶æƒ¦.
 }
 
 bool AB2PVPGameMode::CanTakeDamage()
@@ -879,15 +879,15 @@ void AB2PVPGameMode::StartPVPGame()
 ENetMatchResult AB2PVPGameMode::GetMatchResult() const
 {
 	//*
-	//[@AKI, 170322] ±×³É ¹Ù·Î ³Ñ°Üµµ µÉ°Í °°¾Æ¼­ ´Ù½Ã ¼öÁ¤ÇÔ
+	//[@AKI, 170322] å¼Šæˆ å®˜è‚º é€è´¥æ¡£ çªå·´ éé…’è¾‘ ä¿ƒçŸ« èæ²¥çªƒ
 	UB2UIDocSome* DocSome = UB2UIDocHelper::GetDocSome();
 	if (DocSome)
 		return DocSome->GetLocalPlayerMatchResult();
 
 	return ENetMatchResult::LocalLose;
 	/*/
-	//[@AKI, 170322] ¿ø·¡ ÄÚµå ±â¹İÀ¸·Î ÀÛ¼ºÇÑ ÄÚµå. À§¿¡ return DocSome->GetLocalPlayerMatchResult(); ÄÚµå·Î Àû¿ë ÇØµµ ¹®Á¦°¡ ¾ø¾î º¸¿©¼­ Legacy·Î ³²°Ü ³õÀ½
-	//È¤½Ã À§¿¡ ÄÚµå°¡ ¹®Á¦°¡ ÀÖ´Ù¸é ¾Æ·¡ ÄÚµå¸¦ »ç¿ë ÇÏ¸é µÊ.
+	//[@AKI, 170322] ç›”è´° å†…é› æ‰é¦†æ è‚º ç´¯å·±èŒ„ å†…é›. å›°ä¿Š return DocSome->GetLocalPlayerMatchResult(); å†…é›è‚º åˆ©ä¾© ç§¦æ¡£ å·©åŠ›å•Š ç»ç»¢ ç„Šå’¯è¾‘ Legacyè‚º å·¢è´¥ åˆæ¾œ
+	//è¶£çŸ« å›°ä¿Š å†…é›å•Š å·©åŠ›å•Š ä¹ä¿ƒæ é…’è´° å†…é›ç”« è¤ä¾© çªæ å‡³.
 	UB2UIDocSome* DocSome = UB2UIDocHelper::GetDocSome();
 	if (DocSome)
 	{
@@ -928,7 +928,7 @@ void AB2PVPGameMode::SettingResultInfo()
 
 	//auto RewardBoxStatus = GET_TUPLE_DATA(FB2ResponseTagMatchResult::reward_box_status_index, Result);
 
-	//// ¹Ú½º °á°ú¼¼ÆÃÇÏ±âÀü¿¡. ¿ø·¡²¨¶û ºñ±³
+	//// å† èƒ¶ æ¬è‹æŠ€æ³¼çªæ‰å‚ˆä¿Š. ç›”è´°æ³¢å°” åšèƒŒ
 	//if (DocPVP->GetRewardBoxStatus()
 	//	&& !DocPVP->GetRewardBoxStatus()->is_reward_state
 	//	&& RewardBoxStatus && RewardBoxStatus->is_reward_state)
@@ -939,7 +939,7 @@ void AB2PVPGameMode::SettingResultInfo()
 	//	DocPVP->SetIsInvitee(false);
 	//}
 
-	//// Ä£¼±Àü¿¡¼­´Â °á°ú °»½ÅÇÏÁö ¾ÊÀ½
+	//// æ¨¡æ€¥å‚ˆä¿Šè¾‘ç»° æ¬è‹ ç›è„šçªç˜¤ è‡¼æ¾œ
 	//if (IsValidFriendshipGame() == false)
 	//{
 	//	DocPVP->SetRewardBoxStatus(RewardBoxStatus);
@@ -961,7 +961,7 @@ void AB2PVPGameMode::SettingResultInfo()
 	//			BattleDoc->SetTagMatchPrevTopContinuousWins(BattleDoc->GetTagMatchCurrTopContinuousWins());
 	//			BattleDoc->SetTagMatchCurrTopContinuousWins(MyTagMatchStatusPtr->continue_win_max);
 
-	//			//Todo ·©Å· º¯µ¿
+	//			//Todo çæ¬§ å‡½æ‚¼
 	//			DocSome->SetRankingChanged((BattleDoc->GetTagMatchRank() != 0 ? BattleDoc->GetTagMatchRank() : MyRanking->total_ranker_count) - MyRanking->ranking);
 
 	//			BattleDoc->SetTagMatchRankPercentage(MyRanking->total_ranker_count > 0 ? 100.f * MyRanking->ranking / (float)MyRanking->total_ranker_count : 100);
@@ -982,7 +982,7 @@ void AB2PVPGameMode::SettingResultInfo()
 	//			{
 	//				MyRankerInfo.TotalCombatPower = MainCharDoc->GetCombatPower() + TagCharDoc->GetCombatPower();
 
-	//				//[@SameLine, 180612] explevelinfo doc, datastore -> datastore °³¼±
+	//				//[@SameLine, 180612] explevelinfo doc, datastore -> datastore ä¿ºæ€¥
 	//				//MyRankerInfo.EntryLevels.Add(MainCharDoc->GetCurrentLevel());
 	//				//MyRankerInfo.EntryLevels.Add(TagCharDoc->GetCurrentLevel());
 	//				FLocalCharacterData& CharacterDataStore = BladeIIGameImpl::GetClientDataStore().GetLocalCharacterData();
@@ -1025,7 +1025,7 @@ void AB2PVPGameMode::SettingResultInfo()
 	//if (AIController)
 	//	AIController->StopAutoPlay();
 	//
-	//StartEventScene_MatchResult(DocSome->GetLocalPlayerMatchResult() == ENetMatchResult::LocalWin); // Match Á¾·á¿¡ µû¸¥ ¿¬ÃâÀ» ¶ç¿î´Ù. GoToVillage µîÀº °á°ú ¿¬Ãâ UI ¹öÆ°¿¡ 
+	//StartEventScene_MatchResult(DocSome->GetLocalPlayerMatchResult() == ENetMatchResult::LocalWin); // Match è¾†ä¸°ä¿Š è¶å¼— æ¥·å…é˜‘ å‰æ¬¾ä¿ƒ. GoToVillage æ®¿ç¯® æ¬è‹ æ¥·å… UI æ»šç“¢ä¿Š 
 }
 
 void AB2PVPGameMode::ResponseGetMatchStatus(const FB2TagMatchStatus& TagMatchStatus)
@@ -1139,22 +1139,22 @@ void AB2PVPGameMode::NotifyCharacterDead(ABladeIICharacter* TargetCharacter, cla
 
 	//ABladeIICharacter* Inflictor;
 
-	//// Åõ»çÃ¼ÀÏ¼öµµ ÀÖ¾î¼­ µÑ´ÙÃ¼Å©
+	//// æ§è¤çœ‰è€èæ¡£ ä¹ç»¢è¾‘ ç¬›ä¿ƒçœ‰å†œ
 	//if (PawnInstigator)
 	//	Inflictor = Cast<ABladeIICharacter>(PawnInstigator);
 	//else
 	//	Inflictor = Cast<ABladeIICharacter>(DamageCauser);
 
-	////Åõ»çÃ¼ÀÏ¶§´Â ±× Owner¸¦ °¡Á®¿È
+	////æ§è¤çœ‰è€é”­ç»° å¼Š Ownerç”« å•Šå»‰å’³
 	//if (DamageCauser && !Inflictor)
 	//	Inflictor = Cast<ABladeIICharacter>(DamageCauser->GetOwner());
 
-	////¸¶¹«¸® °ø°İ(Slow Motion)
+	////ä»˜å…¬åºœ å‚æ‹œ(Slow Motion)
 	//if (Inflictor)
 	//	StartEventScene_FinishAttack(Inflictor);
 
-	//// SetMatchResult¿¡¼­ ÇØÁà¼­ ¿©±â¿¡ ÀÌ°É ³ÖÀ¸¸é ¾ÈµÇ´Âµ¥....
-	//// ÇØ°ñ Ç¥½Ã¸¦ ¸¶¹«¸® °ø°İÇÏ±â ÀüºÎÅÍ º¸¿©ÁÖ·Á¸é...ÀÌ·¸°Ô ³Ö¾îÁà¾ß ÇÔ....
+	//// SetMatchResultä¿Šè¾‘ ç§¦æ‹è¾‘ å’¯æ‰ä¿Š æå§ æŒæ æ æ•‘ç™»ç»°å•....
+	//// ç§¦æ¦œ é’çŸ«ç”« ä»˜å…¬åºœ å‚æ‹œçªæ‰ å‚ˆä½•ç£ ç„Šå’¯æ—å¦¨æ...æçŠ¯éœ¸ æŒç»¢æ‹å…· çªƒ....
 	//UB2UIDocSome* DocSome = UB2UIDocHelper::GetDocSome();
 	//if (DocSome)
 	//{
@@ -1210,8 +1210,8 @@ void AB2PVPGameMode::StopPlayers()
 	//BII_CHECK(NetMyPlayer);
 	//BII_CHECK(NetOppent);
 
-	//// StopPlayers ¿¡ Á¢±ÙÇÏ´Â °æ¿ì´Â »ó´ëÀÇ ¿¬°áÀÌ ²÷¾îÁø °æ¿ì, Å¸ÀÓ¿À¹ö·Î PVP°¡ °­Á¦·Î Á¾·áµÈ °æ¿ì°¡ ÀÖÀ¸¸ç,
-	//// ÇØ´ç »óÅÂ¿¡¼± ¸¶Áö¸· ¿ÀÅä Å¸ÀÔÀ» ·ÎÄÃ¿¡ ÀúÀå ÈÄ ÀÓ½Ã·Î ¿ÀÅä ÇÃ·¹ÀÌ µ¿ÀÛÀ» Á¤Áö½ÃÄÑ ´ÙÀ½ °æ±â¿¡ ¿ÀÅä Å¸ÀÔÀÌ À¯ÁöµÇ°Ô ÇÑ´Ù. 
+	//// StopPlayers ä¿Š ç«‹è¾Ÿçªç»° ç‰ˆå¿«ç»° æƒ‘æªç‹¼ æ¥·æ¬æ è°—ç»¢æŸ³ ç‰ˆå¿«, é¸¥çƒ™å·æ»šè‚º PVPå•Š ç¢åŠ›è‚º è¾†ä¸°ç­‰ ç‰ˆå¿«å•Š ä¹æ å“¥,
+	//// ç§¦å¯¸ æƒ‘æ€•ä¿Šæ€¥ ä»˜ç˜¤é˜œ å·é… é¸¥æ¶é˜‘ è‚ºæ‹¿ä¿Š å†å˜ é¥¶ çƒ™çŸ«è‚º å·é… æ•²é¥­æ æ‚¼ç´¯é˜‘ æ²¥ç˜¤çŸ«éš¾ ä¿ƒæ¾œ ç‰ˆæ‰ä¿Š å·é… é¸¥æ¶æ èœ¡ç˜¤ç™»éœ¸ èŒ„ä¿ƒ. 
 	//SaveLocalSavedAutoType();
 
 	//if (LocalB2Player->IsInAutoPlay())
@@ -1309,7 +1309,7 @@ void AB2PVPGameMode::SetupUIScene()
 
 bool AB2PVPGameMode::IsGlobalTimeDilationEnabled(const AActor* RelativeActor /*= NULL*/)
 {
-	// World Matinee ¸é Timedilation Àû¿ë
+	// World Matinee æ Timedilation åˆ©ä¾©
 	if (RelativeActor && Cast<AB2StageEventDirector>(RelativeActor))
 		return true;
 
@@ -1331,8 +1331,8 @@ void AB2PVPGameMode::SetMatchState(FName NewState)
 #endif
 }
 
-//PVPÂÊ¿¡¼­ AutoAIController¸¦ ·ÎµùÇÏ´Â Çö»óÀÌ ÀÖ¾î °¡»ó¸Ş¼Òµå·Î µ¹·Á¼­ B2PVPGameMode¿¡¼­ ¿À¹ö¶óÀÌµå ÇÔ
-void AB2PVPGameMode::SetPlayerAutoType(int32 InAuto) // ÀÏ½ÃÀûÀÎ On/Off °¡ ¾Æ´Ñ Çö °ÔÀÓ¸ğµå¿¡¼­ À¯ÁöµÇ´Â auto »óÅÂ.
+//PVPç‡ä¿Šè¾‘ AutoAIControllerç”« è‚ºçˆ¹çªç»° æ³…æƒ‘æ ä¹ç»¢ å•Šæƒ‘çš‹å®¶é›è‚º å€’å¦¨è¾‘ B2PVPGameModeä¿Šè¾‘ å·æ»šæ‰¼æé› çªƒ
+void AB2PVPGameMode::SetPlayerAutoType(int32 InAuto) // è€çŸ«åˆ©ç‰¢ On/Off å•Š é…’å›± æ³… éœ¸çƒ™è‘›é›ä¿Šè¾‘ èœ¡ç˜¤ç™»ç»° auto æƒ‘æ€•.
 {
 	//if (PlayerAutoBattleType != InAuto)
 	//{
@@ -1340,7 +1340,7 @@ void AB2PVPGameMode::SetPlayerAutoType(int32 InAuto) // ÀÏ½ÃÀûÀÎ On/Off °¡ ¾Æ´Ñ 
 	//	SaveLocalSavedAutoType();
 	//}
 
-	//// ÀÌ°É Äİ ÇÏ´Â »óÈ²¿¡¼­´Â ¿¬Ãâ µî¿¡ ÀÇÇØ ÀÓ½ÃÀûÀ¸·Î Auto °¡ ²¨Áø´Ù°Å³ª ÇÏ´Â °Ç ¹«½ÃÇÑ´Ù. ±×°Í±îÁö »ı°¢ÇÏ·Á¸é Á» º¹ÀâÇÏ°í ±×·² ÇÊ¿ä±îÁö´Â ¾øÀ» µíÇÔ.
+	//// æå§ å¦® çªç»° æƒ‘ç‚”ä¿Šè¾‘ç»° æ¥·å… æ®¿ä¿Š ç‹¼ç§¦ çƒ™çŸ«åˆ©æ è‚º Auto å•Š æ³¢æŸ³ä¿ƒèŠ­å”± çªç»° æ‰’ å…¬çŸ«èŒ„ä¿ƒ. å¼Šå·´é³–ç˜¤ ç§¯é˜¿çªå¦¨æ ç²± æ±—æ£±çªç»Š å¼Šå‡¡ é˜å¤¸é³–ç˜¤ç»° ç»é˜‘ æ·€çªƒ.
 	//auto* LocalB2Player = Cast<ABladeIINetPlayer>(UGameplayStatics::GetLocalPlayerCharacter(this));
 	//auto* DocBattle		= UB2UIDocHelper::GetDocBattle();
 
@@ -1365,8 +1365,8 @@ void AB2PVPGameMode::SetPlayerAutoType(int32 InAuto) // ÀÏ½ÃÀûÀÎ On/Off °¡ ¾Æ´Ñ 
 TArray<EPCClass> AB2PVPGameMode::GetPCClassesToPreLoad()
 {
 	TArray<EPCClass> RetArray;
-	// ½ÇÁ¦ ³ª¿Í »ó´ë¹æÀÇ ¼±ÅÃÇÑ Å¬·¡½º¸¸ ·ÎµùÇÏµµ·Ï ÇÏ´Â °Ô ÁÁ´Ù. ÃÖ´ë 4 Å¬·¡½º°¡ ³ª¿Ã ¼ö ÀÖÁö¸¸ Àû¾îµµ ÇöÀç ¼±ÅÃ¿¡ µû¶ó ·ÎµùÇÏ°Ô ÇÏ¸é Æò±ÕÀûÀ¸·Î ½Ã°£ÀÌ ÁÙ¾îµé°Ô µÉ °Í.
-	// ´Ü, Áö±İÀ¸·Î¼± PVP ´Â ¸ÅÄªµÈ Á¤º¸¸¦ ÀÌ ½ÃÁ¡ ÀÌÈÄ¿¡³ª ¾Ë ¼ö ÀÖ¾î¼­ ºÒ°¡..
+	// è§’åŠ› å”±å®¢ æƒ‘æªè§„ç‹¼ æ€¥ç¶èŒ„ åŠªè´°èƒ¶çˆ¶ è‚ºçˆ¹çªæ¡£åºŸ çªç»° éœ¸ äº®ä¿ƒ. å¼¥æª 4 åŠªè´°èƒ¶å•Š å”±æ£µ è ä¹ç˜¤çˆ¶ åˆ©ç»¢æ¡£ æ³…çŠ æ€¥ç¶ä¿Š è¶æ‰¼ è‚ºçˆ¹çªéœ¸ çªæ ä¹é—­åˆ©æ è‚º çŸ«åŸƒæ ä¸´ç»¢ç”¸éœ¸ çª å·´.
+	// çªœ, ç˜¤é™›æ è‚ºæ€¥ PVP ç»° æ¦‚è«ç­‰ æ²¥ç„Šç”« æ çŸ«ç—¢ æé¥¶ä¿Šå”± èˆ… è ä¹ç»¢è¾‘ é˜‚å•Š..
 	for (int32 PCI = 0; PCI < GetMaxPCClassNum(); ++PCI)
 	{
 		RetArray.Add(IntToPCClass((PCI)));
@@ -1376,33 +1376,33 @@ TArray<EPCClass> AB2PVPGameMode::GetPCClassesToPreLoad()
 
 TArray<FCombinedPCSkillAnimID> AB2PVPGameMode::GetPCSkillAnimsToPreLoad()
 {
-	return TArray<FCombinedPCSkillAnimID> {};	// ÀÏ¹İÀûÀÎ Preload½ÃÁ¡¿¡ Load½Ã Matching Scene ÀüÈ¯¶§ Flush À¯¹ß
+	return TArray<FCombinedPCSkillAnimID> {};	// è€é¦†åˆ©ç‰¢ PreloadçŸ«ç—¢ä¿Š LoadçŸ« Matching Scene å‚ˆåˆ¸é”­ Flush èœ¡æƒ¯
 }
 
 void AB2PVPGameMode::SetupPreRenderObjects()
 {
-	// ±âº» PreRender Å¸ÀÌ¹Ö¿¡´Â ¾Æ¹«°Íµµ ÇÏÁö ¾Ê´Â´Ù. ¸ÅÄª ÈÄ ¸ŞÀÎ ·¹º§ÀÌ ½ºÆ®¸®¹Ö µÇ¹Ç·Î ±×¶§¼­¾ß ½ÇÇà.
+	// æ‰å¤¯ PreRender é¸¥ææ€ªä¿Šç»° é…’å…¬å·´æ¡£ çªç˜¤ è‡¼ç»°ä¿ƒ. æ¦‚è« é¥¶ çš‹ç‰¢ é¥­éª‡æ èƒ¶é£˜åºœæ€ª ç™»éª¨è‚º å¼Šé”­è¾‘å…· è§’é’.
 }
 
 void AB2PVPGameMode::PreBuildTagCharMesh()
 {
-	// AB2StageGameModeBase::PreBuildTagCharMesh ¿Í Áßº¹µÈ ÄÚµåÀÎµ¥
-	// »ó¼Ó ±¸Á¶ »ó ±×ÂÊÇÏ°í´Â ¶³¾îÁ® ÀÖÀ¸¸é¼­ NetGameMode ¿¡¼­ ÀÌ ±â´ÉÀÌ ÇÊ¿äÇÑ °÷ÀÌ PVP ¹Û¿¡ ¾ø°í ÇØ¼­..
-	// ´ë½Å ÇÙ½É ±â´ÉÀº °øÅëµÇ°Ô »© ³õÀ½.
+	// AB2StageGameModeBase::PreBuildTagCharMesh å®¢ åæ±—ç­‰ å†…é›ç‰¢å•
+	// æƒ‘åŠ  å¤‡ç‚¼ æƒ‘ å¼Šç‡çªç»Šç»° å†»ç»¢å»‰ ä¹æ æè¾‘ NetGameMode ä¿Šè¾‘ æ æ‰ç“·æ é˜å¤¸èŒ„ é•‘æ PVP è§‚ä¿Š ç»ç»Š ç§¦è¾‘..
+	// æªè„š ç´ç¼´ æ‰ç“·ç¯® å‚çƒ¹ç™»éœ¸ å“— åˆæ¾œ.
 
-	// B2CompositeMeshCache ÀÇ RooSet Ã³¸®¸¦ »ç¿ëÇÏ°Ô µÇ¸é Àû¾îµµ ·ÎÄÃ Ä³¸¯ÅÍ¿¡ ´ëÇØ¼­´Â ÀÌ°Ç À¯¸í¹«½ÇÇÑµ¥..
-	// ±×°Íº¸´Ù PVP ´Â »ó´ë¹æ ÅÂ±× Ä³¸¯ÅÍ ¸Ş½¬¸¦ Prebuild ÇÒ ¼ö ÀÖÀ¸¸é ÁÁ´Ù.
+	// B2CompositeMeshCache ç‹¼ RooSet è´¸åºœç”« è¤ä¾©çªéœ¸ ç™»æ åˆ©ç»¢æ¡£ è‚ºæ‹¿ æŸè…ç£ä¿Š æªç§¦è¾‘ç»° ææ‰’ èœ¡ç–™å…¬è§’èŒ„å•..
+	// å¼Šå·´ç„Šä¿ƒ PVP ç»° æƒ‘æªè§„ æ€•å¼Š æŸè…ç£ çš‹æµ†ç”« Prebuild ä¸” è ä¹æ æ äº®ä¿ƒ.
 	//PrebuildLocalTagCharMesh();
 }
 
 #if WITH_EDITOR
 void AB2PVPGameMode::HandleEditorPVPPreviewSetup()
 {
-	if (!GIsEditor){ // ¿¡µğÅÍ ´õºí«n
+	if (!GIsEditor){ // ä¿Šå¼ç£ æ­¹å–‰ç­
 		return;
 	}
 
-	//// ÀÏÂ÷ÀûÀ¸·Î ¿¬Ãâ ¼¼ÆÃÀ» À§ÇØ ÃÖ¼ÒÇÑÀÇ ÀÎ°ÔÀÓ ÇÃ·Î¿ì ¼Â¾÷ÀÌ °¡´ÉÇÏµµ·Ï ÇÔ. ¾î´À Á¤µµÀÇ °ÔÀÓÇÃ·¹ÀÌ°¡ µÇ¸é ÁÁÁö¸¸ ±×°Ô ÁÖ ¸ñÀûÀº ¾Æ´Ô.
+	//// è€ç’åˆ©æ è‚º æ¥·å… æŠ€æ³¼é˜‘ å›°ç§¦ å¼¥å®¶èŒ„ç‹¼ ç‰¢éœ¸çƒ™ æ•²è‚ºå¿« æ‚¸è¯€æ å•Šç“·çªæ¡£åºŸ çªƒ. ç»¢è ¢ æ²¥æ¡£ç‹¼ éœ¸çƒ™æ•²é¥­æå•Š ç™»æ äº®ç˜¤çˆ¶ å¼Šéœ¸ æ— æ ¼åˆ©ç¯® é…’ä¸›.
 	//
 	//APlayerController* CandidatePC = NULL;
 	//for (FConstPlayerControllerIterator Iterator = GetWorld()->GetPlayerControllerIterator(); Iterator; ++Iterator)
@@ -1422,7 +1422,7 @@ void AB2PVPGameMode::HandleEditorPVPPreviewSetup()
 
 	//	CurrentPCClassEnum = GEditorPVPPreviewMyClassMain; 
 	//	BladeIIGameImpl::GetLocalCharacterData().SetMainPlayerClass(CurrentPCClassEnum);
-	//	BladeIIGameImpl::GetLocalCharacterData().SetSubPlayerClass(GEditorPVPPreviewMyClassTag); // ÅÂ±× Ä³¸¯ÅÍ´Â DataStore ¼¼ÆÃµÈ °É·Î µÇ´Â °Ç°¡.
+	//	BladeIIGameImpl::GetLocalCharacterData().SetSubPlayerClass(GEditorPVPPreviewMyClassTag); // æ€•å¼Š æŸè…ç£ç»° DataStore æŠ€æ³¼ç­‰ å§è‚º ç™»ç»° æ‰’å•Š.
 	//			
 	//	RestartNetPlayer(CandidatePC, TEXT("P1"));
 	//	ABladeIINetPlayer* LocalPlayer = Cast<ABladeIINetPlayer>(CandidatePC->GetPawn());
@@ -1430,7 +1430,7 @@ void AB2PVPGameMode::HandleEditorPVPPreviewSetup()
 	//	{
 	//		const uint32 FakeMyNetId		= 3242323;
 	//		const uint32 FakeRemoteNetId	= 0x00FFFF00;
-	//		LocalPlayer->SetNetId(FakeMyNetId); // check ¾È °É¸®°Ô ¾Æ¹«°Å³ª ³Ö¾îÁÜ
+	//		LocalPlayer->SetNetId(FakeMyNetId); // check æ•‘ å§åºœéœ¸ é…’å…¬èŠ­å”± æŒç»¢æ·‹
 	//		SetLocalController(CandidatePC);
 	//		
 	//		FB2ModPlayerInfo& MyInfo = RemotePlayerInfoData.Emplace(FakeRemoteNetId);
@@ -1445,14 +1445,14 @@ void AB2PVPGameMode::HandleEditorPVPPreviewSetup()
 
 	//		SetRoomId(TEXT("EditorPreviewRoom"));
 	//					
-	//		SceneManager.SetState(EPVPMatchState::Battle); // ¾È¿¡¼­ MatchState µµ Á¡ÇÁÇÔ.
+	//		SceneManager.SetState(EPVPMatchState::Battle); // æ•‘ä¿Šè¾‘ MatchState æ¡£ ç—¢æ©‡çªƒ.
 	//	}
 	//}
 }
 
 void AB2PVPGameMode::HandleEditorPVPPreviewRemoteDead()
 {
-	if (!GIsEditor){ // ¿¡µğÅÍ ´õºí«n
+	if (!GIsEditor){ // ä¿Šå¼ç£ æ­¹å–‰ç­
 		return;
 	}
 	UB2UIDocSome* DocSome = UB2UIDocHelper::GetDocSome();
@@ -1493,7 +1493,7 @@ void AB2PVPGameMode::PrepareNetGame(uint32 NetId)
 //		RestartRemotePlayer(TEXT("P2"));
 //	}
 //
-//	//UIÀ§Ä¡ ¼±Á¤
+//	//UIå›°æ‘¹ æ€¥æ²¥
 //	bIsLeftLocalPlayer = true;
 //
 //	GetLocalPlayer()->SetTeamNum(static_cast<int32>(ETeamType::ETT_Red));
@@ -1514,7 +1514,7 @@ void AB2PVPGameMode::PrepareSlaveNetGame(uint32 NetId)
 	RestartNetPlayer(GetLocalController(), TEXT("P2"));
 	RestartRemotePlayer(TEXT("P1"));
 
-	//UIÀ§Ä¡ ¼±Á¤
+	//UIå›°æ‘¹ æ€¥æ²¥
 	bIsLeftLocalPlayer = false;
 
 	GetLocalPlayer()->SetTeamNum(static_cast<int32>(ETeamType::ETT_Blue));
@@ -1554,10 +1554,10 @@ void AB2PVPGameMode::HandleRequestMatchMaking()
 //		
 //	int32 matchType = b2network::B2MatchMakingType::BMMT_PVP_RANK;
 //
-//	// TODO ÇöÀç ¼±ÅÃµÈ Ä³¸¯ÅÍ Å¸ÀÔÀ» ³Ö¾îÁÖ¼¼¿ä
+//	// TODO æ³…çŠ æ€¥ç¶ç­‰ æŸè…ç£ é¸¥æ¶é˜‘ æŒç»¢æ—æŠ€å¤¸
 //	int32 mainCharacterType = CliToSvrPCClassType(BladeIIGameImpl::GetLocalCharacterData().GetMainPlayerClass());
 //	int32 tagCharacterType = CliToSvrPCClassType(BladeIIGameImpl::GetLocalCharacterData().GetSubPlayerClass());
-//	bool bUsedAdditionalPoint = false; // ¸ÅÄª Æ¼ÄÏÀÌ 0 °³ÀÏ¶§ Ãß°¡ ÀçÈ­¸¦ »ç¿ëÇÒ °ÍÀÎÁö È®ÀÎ 170421YJ
+//	bool bUsedAdditionalPoint = false; // æ¦‚è« èå—æ 0 ä¿ºè€é”­ çœ å•Š çŠæ‹³ç”« è¤ä¾©ä¸” å·´ç‰¢ç˜¤ çŠ¬ç‰¢ 170421YJ
 //	auto* DocPvP = UB2UIDocHelper::GetDocPVP1on1Rival();
 //	if (DocPvP)	bUsedAdditionalPoint = DocPvP->GetUsedAdditionalPoint();
 //
@@ -1588,7 +1588,7 @@ void AB2PVPGameMode::HandleRequestMatchMaking()
 //
 //	Super::HandleRequestMatchMaking();
 //
-//	// ¸ÅÄª Scene ÀüÈ¯ ÀÌÈÄ Local Ä³¸¯ÅÍ SkillAnim ·Îµå
+//	// æ¦‚è« Scene å‚ˆåˆ¸ æé¥¶ Local æŸè…ç£ SkillAnim è‚ºé›
 //	TryAsyncLoadSkillAnims(&BladeIIGameImpl::GetLocalCharacterData());
 }
 
@@ -1606,7 +1606,7 @@ void AB2PVPGameMode::HandleMatchOtherPlayer()
 	//auto* PVPSceneFindMatchWidget = UB2UIManager::GetInstance()->GetUI<UB2UIPVPModFindingMatch>(UIFName::PVPOneOnOneFindMatch);
 	//if (PVPSceneFindMatchWidget)
 	//{
-	//	PVPSceneFindMatchWidget->SetEnableCancel(false); //¼­¹ö½ºÅ×ÀÌÆ® ²¿ÀÌÁö ¾Êµµ·Ï Ãë¼Ò¸øÇÏ°Ô
+	//	PVPSceneFindMatchWidget->SetEnableCancel(false); //è¾‘æ»šèƒ¶æŠ›æé£˜ éƒ¨æç˜¤ è‡¼æ¡£åºŸ ç§’å®¶ç»™çªéœ¸
 	//}
 
 	//ErrorHandlingTimeExchangeInfo = 0.f;
@@ -1630,7 +1630,7 @@ void AB2PVPGameMode::HandleExchangeInfos()
 
 	//if (MyTokenToPlay.ImportTextItem(TempCharArray, 0, nullptr, nullptr) == false)
 	//{
-	//	// Ä£¼±ÀüÀº Token ÇÊ¿ä X
+	//	// æ¨¡æ€¥å‚ˆç¯® Token é˜å¤¸ X
 	//	check(IsValidFriendshipGame());
 	//}
 
@@ -1666,8 +1666,8 @@ void AB2PVPGameMode::HandleStartResult()
 	B2_SCOPED_TRACK_LOG(TEXT("AB2PVPGameMode::HandleStartResult"));
 
 	BII_CHECK(GetOpponent());
-	//HandleFinishBattle()°ú HandleStartResult()»çÀÌ¿¡ AI°¡ µ¿ÀÛÇÏ´Â ¹®Á¦°¡ ÀÖ¾î
-	//À§Ä¡¸¦ HandleFinishBattle()·Î º¯°æ
+	//HandleFinishBattle()è‹ HandleStartResult()è¤æä¿Š AIå•Š æ‚¼ç´¯çªç»° å·©åŠ›å•Š ä¹ç»¢
+	//å›°æ‘¹ç”« HandleFinishBattle()è‚º å‡½ç‰ˆ
 	/*
 	auto* AIController = Cast<ABladeIIPlayerAIController>(Opponent->GetController());
 	if (AIController)
@@ -1691,8 +1691,8 @@ void AB2PVPGameMode::HandleFinishBattle()
 
 	BII_CHECK(GetOpponent());
 
-	//HandleFinishBattle()°ú HandleStartResult()»çÀÌ¿¡ AI°¡ µ¿ÀÛÇÏ´Â ¹®Á¦°¡ ÀÖ¾î
-	//À§Ä¡¸¦ HandleFinishBattle()·Î º¯°æ
+	//HandleFinishBattle()è‹ HandleStartResult()è¤æä¿Š AIå•Š æ‚¼ç´¯çªç»° å·©åŠ›å•Š ä¹ç»¢
+	//å›°æ‘¹ç”« HandleFinishBattle()è‚º å‡½ç‰ˆ
 	auto* AIController = Cast<ABladeIIPlayerAIController>(Opponent->GetController());
 	if (AIController)
 		AIController->StopAutoPlay();
@@ -1730,7 +1730,7 @@ void AB2PVPGameMode::HandleNotifyResult(ENetMatchResult Ret, uint8 InState)
 	//if (GetMatchState() != NetMatchState::StartResult)
 	//	SetMatchState(NetMatchState::StartResult);
 
-	//// °á°ú Á¤º¸¸¦ UI ÂÊ¿¡ ¼¼ÆÃÇÏ´Â ºÎºĞÀº ±¸Çö Á¤¸®µÇ¸é ÇÑ °÷À¸·Î
+	//// æ¬è‹ æ²¥ç„Šç”« UI ç‡ä¿Š æŠ€æ³¼çªç»° ä½•ç›’ç¯® å¤‡æ³… æ²¥åºœç™»æ èŒ„ é•‘æ è‚º
 	//UB2UIDocSome* DocSome = UB2UIDocHelper::GetDocSome();
 	//if (DocSome)
 	//	DocSome->SetLocalPlayerMatchResult(Ret);
@@ -1873,7 +1873,7 @@ void AB2PVPGameMode::PlayMatchWithAI(FB2TagMatchMakingPtr InMatchInfo)
 	//auto* PVPSceneFindMatchWidget = UB2UIManager::GetInstance()->GetUI<UB2UIPVPModFindingMatch>(UIFName::PVPOneOnOneFindMatch);
 	//if (PVPSceneFindMatchWidget)
 	//{
-	//	PVPSceneFindMatchWidget->SetEnableCancel(false); //¼­¹ö½ºÅ×ÀÌÆ® ²¿ÀÌÁö ¾Êµµ·Ï Ãë¼Ò¸øÇÏ°Ô
+	//	PVPSceneFindMatchWidget->SetEnableCancel(false); //è¾‘æ»šèƒ¶æŠ›æé£˜ éƒ¨æç˜¤ è‡¼æ¡£åºŸ ç§’å®¶ç»™çªéœ¸
 	//}
 
 	//SetPeerType(PEER_STANDALONE);
@@ -1978,7 +1978,7 @@ void AB2PVPGameMode::SpawnRemotePlayer(uint32 NetId, EPCClass MainClass, EPCClas
 	//	}
 	//}
 
-	//// Matching »ó´ë SkillAnim AsyncLoad
+	//// Matching æƒ‘æª SkillAnim AsyncLoad
 	//TryAsyncLoadSkillAnims(&GetRemotePlayerInfoData(NetId));
 }
 
@@ -2003,7 +2003,7 @@ bool AB2PVPGameMode::RemotePlayerTagToOther(ABladeIINetPlayer* player, int32 Tag
 	//FTransform PrevTransform = OldPlayerBackup->GetTransform();
 	//FTransform NewTransform(
 	//	PrevTransform.GetRotation(),
-	//	PrevTransform.GetTranslation() + FVector(0.0f, 0.0f, 1.0f), // »ìÂ¦ À§¿¡¼­
+	//	PrevTransform.GetTranslation() + FVector(0.0f, 0.0f, 1.0f), // æ··å¨„ å›°ä¿Šè¾‘
 	//	PrevTransform.GetScale3D()
 	//);
 
@@ -2021,7 +2021,7 @@ bool AB2PVPGameMode::RemotePlayerTagToOther(ABladeIINetPlayer* player, int32 Tag
 	//else
 	//	NewPlayer->SetTeamNum(GetPeerType() == PEER_RESTRICTED ? int32(ETeamType::ETT_Red) : int32(ETeamType::ETT_Blue));
 
-	//NewPlayer->FinishSpawning(NewTransform);//¿©±â¼­ Ã¼·ÂÀ» ÀÏ´Ü °¡µæ Ã¼¿ò(ABladeIICharacter::InitializeCombatStats)
+	//NewPlayer->FinishSpawning(NewTransform);//å’¯æ‰è¾‘ çœ‰ä»¿é˜‘ è€çªœ å•Šå« çœ‰æ¡†(ABladeIICharacter::InitializeCombatStats)
 	//NewPlayer->NotifyTagSpawn(OldPlayerBackup);
 
 	//if (bIsTutorial)
@@ -2032,16 +2032,16 @@ bool AB2PVPGameMode::RemotePlayerTagToOther(ABladeIINetPlayer* player, int32 Tag
 	//	}
 	//}
 
-	////[@AKI, 170327] TagÇØ¼­ HP Bar¿¡ HP ²Ë Âù »óÅÂ·Î ³ª¿À´Â Çö»ó ¼öÁ¤ÇÏ±â À§ÇØ µÚ·Î »« ÄÚµå
-	////NotifyTagSpawnÀ» ÇßÀ»¶§ Ã¼·ÂÀ» °¡µæ Ã¤¿î »óÅÂ·Î µ¹·ÁÁÖ´Âµ¥
-	////¿ø·¡ Ã¼·ÂÀ¸·Î µ¹·ÁÁÖ´Â ÄÚµå°¡ OnPlayerChangedByTag()¾È¿¡ FInactivePlayerStateCache::SetToNewCommingPlayer()¿¡¼­ ÇÔ
+	////[@AKI, 170327] Tagç§¦è¾‘ HP Barä¿Š HP èœ è›® æƒ‘æ€•è‚º å”±å·ç»° æ³…æƒ‘ èæ²¥çªæ‰ å›°ç§¦ ç¬¬è‚º çŒ¾ å†…é›
+	////NotifyTagSpawné˜‘ æ²é˜‘é”­ çœ‰ä»¿é˜‘ å•Šå« ç›²æ¬¾ æƒ‘æ€•è‚º å€’å¦¨æ—ç»°å•
+	////ç›”è´° çœ‰ä»¿æ è‚º å€’å¦¨æ—ç»° å†…é›å•Š OnPlayerChangedByTag()æ•‘ä¿Š FInactivePlayerStateCache::SetToNewCommingPlayer()ä¿Šè¾‘ çªƒ
 	//GetRemoteSkillRTManager(NewPlayer->GetNetId())->SetCurrentOwnerPlayer(NewPlayer);
-	//GetRemoteSkillRTManager(NewPlayer->GetNetId())->OnPlayerChangedByTag(OldPlayerBackup, NewPlayer); //¿©±â¼­ CurrentHP¸¦ ¹Ş¾Æ¼­ NewPlayer¿¡ ÇöÀç Ã¼·ÂÀ» µ¹·ÁÁÜ
+	//GetRemoteSkillRTManager(NewPlayer->GetNetId())->OnPlayerChangedByTag(OldPlayerBackup, NewPlayer); //å’¯æ‰è¾‘ CurrentHPç”« ç½é…’è¾‘ NewPlayerä¿Š æ³…çŠ çœ‰ä»¿é˜‘ å€’å¦¨æ·‹
 	//GetRemoteSkillRTManager(NewPlayer->GetNetId())->SetSkillCoolTimeTimer(EAttackState::ECS_TagOtherChar);
 
 	//SwitchOpponent(NewPlayer);
 
-	////PvPAI¿¡¼­ Tag½Ã ¹®Á¦·Î ÀÎÇØ SwitchOpponent(NewPlayer); ´ÙÀ½¿¡ AIController ÄÚµå°¡ ¿Í¾ß µÊ
+	////PvPAIä¿Šè¾‘ TagçŸ« å·©åŠ›è‚º ç‰¢ç§¦ SwitchOpponent(NewPlayer); ä¿ƒæ¾œä¿Š AIController å†…é›å•Š å®¢å…· å‡³
 	//auto* Controller = Cast<ABladeIIPlayerAIController>(OldPlayerBackup->GetController());
 	//if (Controller)
 	//{
@@ -2065,13 +2065,13 @@ ABladeIIPlayer* AB2PVPGameMode::DynamicSpawnNewPlayerForTag(ABladeIINetPlayer* R
 	FTransform PrevTransform = Requester->GetTransform();
 	FTransform NewTransform(
 		PrevTransform.GetRotation(),
-		PrevTransform.GetTranslation() + FVector(0.0f, 0.0f, 50.0f), // »ìÂ¦ À§¿¡¼­
+		PrevTransform.GetTranslation() + FVector(0.0f, 0.0f, 50.0f), // æ··å¨„ å›°ä¿Šè¾‘
 		PrevTransform.GetScale3D()
 	);
 
-	Requester->SetActorEnableCollision(false); // Áö±İ ÀÚ¸®¿¡ spawn ÀÌ µÇ´Ï collision À» ²¨ ÁØ´Ù.
+	Requester->SetActorEnableCollision(false); // ç˜¤é™› ç£Šåºœä¿Š spawn æ ç™»èª collision é˜‘ æ³¢ éœ–ä¿ƒ.
 
-	// ¹İµå½Ã DeferContruction À» ÇÏ°í Possess ÈÄ FinishSpawning À».
+	// é¦†é›çŸ« DeferContruction é˜‘ çªç»Š Possess é¥¶ FinishSpawning é˜‘.
 	ABladeIIPlayer* NewSpawned = SpawnTagPlayer(Requester, ClassToSpawn, NewTransform, ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn, true);
 	
 	if (NewSpawned)
@@ -2093,7 +2093,7 @@ ABladeIIPlayer* AB2PVPGameMode::SpawnTagPlayer(
 
 	FActorSpawnParameters SpawnParam;
 	SpawnParam.Owner							= nullptr;
-	SpawnParam.bDeferConstruction				= bDeferConstruction; // ÀÌ°É true ·Î ÇÏ¸é ÀÌ°Å È£Ãâ ÀÌÈÄ¿¡ FinishSpawning À» µû·Î ºÒ·¯ÁÖ¾î¾ß ÇÏ´Â ¹ø°Å·Î¿òÀÌ ÀÖÁö¸¸ ÀÏ¹İÀûÀÎ °ÔÀÓÇÃ·¹ÀÌ »óÈ²¿¡¼­ÀÇ ·ÎÄÃ ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ¶ó¸é BeginPlay ½ÃÁ¡¿¡ PlayerController ¿¡ ÀÇÇØ Possess µÈ »óÅÂ¿©¾ß ÇÒ °ÍÀÌ¹Ç·Î ÇÊ¿äÇÔ.
+	SpawnParam.bDeferConstruction				= bDeferConstruction; // æå§ true è‚º çªæ æèŠ­ é¾‹å… æé¥¶ä¿Š FinishSpawning é˜‘ è¶è‚º é˜‚çŸ¾æ—ç»¢å…· çªç»° é”…èŠ­è‚ºæ¡†æ ä¹ç˜¤çˆ¶ è€é¦†åˆ©ç‰¢ éœ¸çƒ™æ•²é¥­æ æƒ‘ç‚”ä¿Šè¾‘ç‹¼ è‚ºæ‹¿ æ•²é¥­æç»¢ æŸè…ç£æ‰¼æ BeginPlay çŸ«ç—¢ä¿Š PlayerController ä¿Š ç‹¼ç§¦ Possess ç­‰ æƒ‘æ€•å’¯å…· ä¸” å·´æéª¨è‚º é˜å¤¸çªƒ.
 	SpawnParam.SpawnCollisionHandlingOverride	= CollisionHandlingOverride;
 
 	auto* World			= Requester->GetWorld();
@@ -2113,7 +2113,7 @@ ABladeIIPlayer* AB2PVPGameMode::SpawnRemoteTagAsPuppet(bool bPossessByAIControll
 { 
 	B2_SCOPED_TRACK_LOG(TEXT("AB2PVPGameMode::SpawnRemoteTagAsPuppet"));
 
-	// ABladeIIPlayer::SpawnOtherAsPuppet ¸®¸ğÆ® ÇÃ·¹ÀÌ¾î ¹öÀü
+	// ABladeIIPlayer::SpawnOtherAsPuppet åºœè‘›é£˜ æ•²é¥­æç»¢ æ»šå‚ˆ
 	BII_CHECK(IsValid(Opponent));
 
 	auto* OldOpponent = Opponent;
@@ -2121,7 +2121,7 @@ ABladeIIPlayer* AB2PVPGameMode::SpawnRemoteTagAsPuppet(bool bPossessByAIControll
 	const float AsideDistance = Opponent->GetCapsuleComponent() ? Opponent->GetCapsuleComponent()->GetScaledCapsuleRadius() : 50.0f;
 	FTransform NewTransform(
 		CurrTransform.GetRotation(),
-		CurrTransform.GetTranslation() + FVector(AsideDistance, AsideDistance, 50.0f), // Á» ¿·¿¡¼­ spawn ½ÃÅ²´Ù.
+		CurrTransform.GetTranslation() + FVector(AsideDistance, AsideDistance, 50.0f), // ç²± ç³ ä¿Šè¾‘ spawn çŸ«æŒªä¿ƒ.
 		CurrTransform.GetScale3D()
 	);
 
@@ -2135,8 +2135,8 @@ ABladeIIPlayer* AB2PVPGameMode::SpawnRemoteTagAsPuppet(bool bPossessByAIControll
 
 		auto* RemoteTagActor = Cast<ABladeIINetPlayer>(AB2NetGameMode::SpawnRemotePlayer(GetWorld(), NewSpawnClass, NewTransform, SpawnParam));
 		
-		RemoteTagActor->SetNetId(Opponent->GetNetId()); // ÀÌ°É ³Ö¾îÁÖ¾î¾ß Ä³½ÌµÈ ¸Ş½¬¸¦ (ÀÖ´Ù¸é) ÀûÀıÈ÷ °¡Á®¿À°Ô µÈ´Ù.
-		RemoteTagActor->FinishSpawning(NewTransform); //<- BeginPlay¸¦ È£ÃâÇÏ¿© ÀåºñµîÀ» ¸ÂÃçÀÔ°Ô ÇÑ´Ù.
+		RemoteTagActor->SetNetId(Opponent->GetNetId()); // æå§ æŒç»¢æ—ç»¢å…· æŸæ•™ç­‰ çš‹æµ†ç”« (ä¹ä¿ƒæ) åˆ©ä¾‹æ´’ å•Šå»‰å·éœ¸ ç­‰ä¿ƒ.
+		RemoteTagActor->FinishSpawning(NewTransform); //<- BeginPlayç”« é¾‹å…çªå’¯ å˜åšæ®¿é˜‘ å˜è‹—æ¶éœ¸ èŒ„ä¿ƒ.
 
 		SetOpponent(OldOpponent);
 
@@ -2289,11 +2289,11 @@ void AB2PVPGameMode::StartEventScene_MatchResult(bool HasLocalPlayerWon)
 		PlayPVPBGM(EPVPBGMPlayContext::PVPBGMCTX_Victory, true);
 	}
 	else
-	{ // ¾Æ´Ô Á³À» ¶© °Á Áß´Ü?
+	{ // é…’ä¸› è„¸é˜‘ è®¢ å‚² åçªœ?
 		PlayPVPBGM(EPVPBGMPlayContext::PVPBGMCTX_Lose, true);
 	}
 
-	//[@AKI, 170613] ¾à ³×Æ®¿öÅ©¿¡¼­ °á°ú¸¦ ¼­¹ö¿¡¼­ ¹ŞÁö ¾ÊÀº »óÅÂ¿¡¼­ °á°úÈ­¸é º¸¿©ÁÖÁö ¾Ê°Ô º¯°æ
+	//[@AKI, 170613] è· åŒ™é£˜å†µå†œä¿Šè¾‘ æ¬è‹ç”« è¾‘æ»šä¿Šè¾‘ ç½ç˜¤ è‡¼ç¯® æƒ‘æ€•ä¿Šè¾‘ æ¬è‹æ‹³æ ç„Šå’¯æ—ç˜¤ è‡¼éœ¸ å‡½ç‰ˆ
 	//UB2UIManager::GetInstance()->ChangeUIScene(EUIScene::PVPResult);
 
 	Super::StartEventScene_MatchResult(HasLocalPlayerWon);
@@ -2306,7 +2306,7 @@ void FPVPMatchSceneManager::SetGameMode(class AB2PVPGameMode* InGameMode)
 	GameMode = InGameMode; 	
 
 	if (GameMode)
-	{ // ·¹º§ ¸®¼Ò½º ³×ÀÌÆ¼ºê ·¹ÆÛ·±½º Ä³½Ì Å¸ÀÌ¹Ö.
+	{ // é¥­éª‡ åºœå®¶èƒ¶ åŒ™æèå® é¥­æ¬ºç¹èƒ¶ æŸæ•™ é¸¥ææ€ª.
 		GameMode->RecacheLevelResources();
 	}
 }
@@ -2369,8 +2369,8 @@ void FPVPMatchSceneManager::SetState(EPVPMatchState InState)
 	case EPVPMatchState::Battle:
 		SetBattle();
 		break;
-	//[@AKI, 170418] ¾î´À ÇÑÂÊÀÌ Á×¾î¼­ ³¡³µÀ» °æ¿ì Á×Àº ÄÉ¸¯ÅÍ¸¦ °¡Á®¿Í¼­ ÇØ°ñ Ç¥½Ã¸¦ ±×¸®±â À§ÇØ Ãß°¡
-	// M16 ÀÏ´ëÀÏ&ÆÀ´ëÀü°³¼±(¹Ú±âÅÂ) 5page ÂüÁ¶
+	//[@AKI, 170418] ç»¢è ¢ èŒ„ç‡æ ç£·ç»¢è¾‘ åœºè½¦é˜‘ ç‰ˆå¿« ç£·ç¯® çº³è…ç£ç”« å•Šå»‰å®¢è¾‘ ç§¦æ¦œ é’çŸ«ç”« å¼Šåºœæ‰ å›°ç§¦ çœ å•Š
+	// M16 è€æªè€&è¯„æªå‚ˆä¿ºæ€¥(å† æ‰æ€•) 5page æ›¼ç‚¼
 	case EPVPMatchState::BattleEnd:
 		SetBattleEnd();
 		break;
@@ -2431,7 +2431,7 @@ void FPVPMatchSceneManager::SetFinding()
 	//ChangeScene(false);
 	//BII_CHECK(GameMode);
 
-	//B2GMLoadingProgCollector::StepToMax(); // ·Îµù ÁøÇàµµ. PVP ´Â Á» Æ¯¼öÇÑ »çÁ¤ÀÌ ÀÖ´Âµ¥ ¿ª½Ã³ª ÀÌ Âë¼­ ²Ë Ã¤¿ò.
+	//B2GMLoadingProgCollector::StepToMax(); // è‚ºçˆ¹ æŸ³é’æ¡£. PVP ç»° ç²± æ¼‚èèŒ„ è¤æ²¥æ ä¹ç»°å• å¼€çŸ«å”± æ ç è¾‘ èœ ç›²æ¡†.
 	//GameMode->SetupUIScene();
 	//
 	//if (LobbyMatinee)
@@ -2454,7 +2454,7 @@ void FPVPMatchSceneManager::SetFinding()
 
 	//	LocalController->ClientSetCameraFade_Implementation(true, FColor::Black, FVector2D(1.f, 0.f), 1.f, false);
 	//}
-	//else //ÀÌ»óÀÌ »ı°Ü ´Ù½Ã ¸ÅÄª¸®Äù½ºÆ®¸¦ ³¯¸° °æ¿ì
+	//else //ææƒ‘æ ç§¯è´¥ ä¿ƒçŸ« æ¦‚è«åºœæ¶…èƒ¶é£˜ç”« æœèµ´ ç‰ˆå¿«
 	//{
 	//	for (int32 idx = 2; idx < SpawnedActors.Num(); ++idx)
 	//	{
@@ -2485,7 +2485,7 @@ void FPVPMatchSceneManager::SetReady()
 	//	PVPSceneFindMatchWidget->SetReady(WaitingReadyToMatchTime);
 	//}
 
-	////À½.. µû·Î »©±â´Â ±ÍÂúÀº ÀÛ¾÷ÀÌ°í º¼·ıµµ ÀÛÀ¸´Ï ±×³É ÇÏµåÄÚµå·Î..
+	////æ¾œ.. è¶è‚º å“—æ‰ç»° è“–æ»¡ç¯® ç´¯è¯€æç»Š æ­ä¿˜æ¡£ ç´¯æ èª å¼Šæˆ çªé›å†…é›è‚º..
 	//BII_CHECK(SpawnedActors.Num() == 4 && AnimArray.Num() == 4);
 	//if (SpawnedActors.Num() == 4 && AnimArray.Num() == 4)
 	//{
@@ -2515,7 +2515,7 @@ void FPVPMatchSceneManager::SetInGameReady()
 
 	//ChangeScene(true);
 
-	//// ±âº» °ÔÀÓ¸ğµå ·çÆ¾¿¡¼­ BeginPlay ½ÃÁ¡¿¡ ÇÏ´Â ÀÏºÎ µ¿ÀÛÀ» ½ÇÁ¦ ÇÊ¿äÇÑ ·¹º§ÀÌ ½ºÆ®¸®¹Ö µÇ°í Á¤º¸°¡ Ã¤¿öÁø ´ÙÀ½ ´Ù½Ã ¼öÇà.
+	//// æ‰å¤¯ éœ¸çƒ™è‘›é› é£å‡­ä¿Šè¾‘ BeginPlay çŸ«ç—¢ä¿Š çªç»° è€ä½• æ‚¼ç´¯é˜‘ è§’åŠ› é˜å¤¸èŒ„ é¥­éª‡æ èƒ¶é£˜åºœæ€ª ç™»ç»Š æ²¥ç„Šå•Š ç›²å†µæŸ³ ä¿ƒæ¾œ ä¿ƒçŸ« èé’.
 	//GameMode->B2GamePreloadMatineeRefAssets();
 	//if (GameMode->ShouldSetupPreRender())
 	//{
@@ -2566,13 +2566,13 @@ void FPVPMatchSceneManager::SetBattleEnd()
 
 	//if (auto* PVPSceneWidget = UB2UIManager::GetInstance()->GetUI<UB2UIPVP1on1BattleMain>(UIFName::PVPOneOnOneBattleMain))
 	//{
-	//	//ÇØ°ñ ¾ÆÀÌÄÜÀ¸·Î ¹Ù²ãÁÖ±â
+	//	//ç§¦æ¦œ é…’æèƒ½æ è‚º å®˜å±‚æ—æ‰
 	//	if (CurrentState == EPVPMatchState::BattleEnd)
 	//	{
 	//		PVPSceneWidget->SetDeathPortrait(result);
 	//	}
 	//		
-	//	//[@SameLine, 180508] ¿©±â¼­ È£ÃâÇÏ¸é Dead¸¶Æ¼´Ï Áß¿¡ response¸¦ ¹ŞÀ½ Dead¸¶Æ¼´Ï ³¡³ª°í È£Ãâ
+	//	//[@SameLine, 180508] å’¯æ‰è¾‘ é¾‹å…çªæ Deadä»˜èèª åä¿Š responseç”« ç½æ¾œ Deadä»˜èèª åœºå”±ç»Š é¾‹å…
 	//	//GameMode->EndMatchByDie();
 	//}
 
@@ -2687,9 +2687,9 @@ void FPVPMatchSceneManager::ChangeScene(bool bStateFromReadyToBattle)
 //		}
 //	}
 //
-//	//SimpleDirectionalLight regist ¹®Á¦·Î RemoveFromWorld¸¦ ¸ÕÀú ºÒ·¯¾ßµÊ.
+//	//SimpleDirectionalLight regist å·©åŠ›è‚º RemoveFromWorldç”« åˆšå† é˜‚çŸ¾å…·å‡³.
 //	World->FlushLevelStreaming();
-//	B2GMLoadingProgCollector::StepCustom(0.5f); // ·Îµù ÁøÇàµµ. ¿ä PVP ÀÇ Æ¯º°ÇÑ ±¸¼®ÀÎµ¥.. ´Ù¸¥ ¸ğµåµéÀÌ ´ëÃ¼·Î ÀÌ·± ½ÄÀÎ °Ç ¾Æ´Ï°í..
+//	B2GMLoadingProgCollector::StepCustom(0.5f); // è‚ºçˆ¹ æŸ³é’æ¡£. å¤¸ PVP ç‹¼ æ¼‚å–ŠèŒ„ å¤‡ç±ç‰¢å•.. ä¿ƒå¼— è‘›é›ç”¸æ æªçœ‰è‚º æç¹ ä¾¥ç‰¢ æ‰’ é…’èªç»Š..
 //
 //	{
 //		ULevelStreaming* StreamingLevel = World->GetLevelStreamingForPackageName(ToLoadLevel);
@@ -2713,11 +2713,11 @@ void FPVPMatchSceneManager::ChangeScene(bool bStateFromReadyToBattle)
 //	World->bShouldForceVisibleStreamingLevels = OldForceVisibleStreamingLevels;
 //
 //	if (GameMode)
-//	{ // ·¹º§ ¸®¼Ò½º ³×ÀÌÆ¼ºê ·¹ÆÛ·±½º Ä³½Ì Å¸ÀÌ¹Ö.
+//	{ // é¥­éª‡ åºœå®¶èƒ¶ åŒ™æèå® é¥­æ¬ºç¹èƒ¶ æŸæ•™ é¸¥ææ€ª.
 //		GameMode->RecacheLevelResources();
 //	}
 //
-//	GameMode->UpdateManagedActorList(); // ·¹º§ ½ºÆ®¸®¹ÖÀ¸·Î ÀÎÇØ ¸ÊÀÌ »õ·Î ¿Ã¶ó¿À¸é Actor ¸®½ºÆ®¸¦ ¾÷µ¥ÀÌÆ® ÇØ ÁÖ¾î¾ß ÇÔ.
+//	GameMode->UpdateManagedActorList(); // é¥­éª‡ èƒ¶é£˜åºœæ€ªæ è‚º ç‰¢ç§¦ ç”˜æ è´§è‚º æ£µæ‰¼å·æ Actor åºœèƒ¶é£˜ç”« è¯€å•æé£˜ ç§¦ æ—ç»¢å…· çªƒ.
 //
 //	FlushRenderingCommands();
 }
@@ -2867,7 +2867,7 @@ void AB2PVPGameMode::SetOpponentToken(const FGuid& Token)
 
 void AB2PVPGameMode::DelayedSetupPreRender()
 {
-	ABladeIIGameMode::SetupPreRenderObjects(); // Æ¯º°È÷ ´Ù¸¥ ±â´ÉÀ» ¾²·Á´Â °Ç ¾Æ´Ï°í ¾à°£ Å¸ÀÌ¹Ö ´Ù¸£°Ô ÇØ¼­ ½ÇÇàÇÏ·Á°í.
+	ABladeIIGameMode::SetupPreRenderObjects(); // æ¼‚å–Šæ´’ ä¿ƒå¼— æ‰ç“·é˜‘ é™å¦¨ç»° æ‰’ é…’èªç»Š è·åŸƒ é¸¥ææ€ª ä¿ƒç¦éœ¸ ç§¦è¾‘ è§’é’çªå¦¨ç»Š.
 }
 
 void AB2PVPGameMode::NotifyStageEventDirector_FinishShow(int32 EventType)
@@ -2947,11 +2947,11 @@ void AB2PVPGameMode::RequestGameInvite(const FString& NaickName, EB2GameMode Gam
 
 void AB2PVPGameMode::PrevAcceptGameInvite(const FString& Inviter, EB2GameMode GameModeType)
 {
-	//// PVP¸ğµå¿¡¼­ ¼ö¶ôÀº ¹Ù·Î GameStart¸¦ ÀÇ¹Ì
+	//// PVPè‘›é›ä¿Šè¾‘ èéç¯® å®˜è‚º GameStartç”« ç‹¼å›º
 	//auto* DocPVP = UB2UIDocHelper::GetDocPVP1on1Rival();
 	//if (GameModeType == EB2GameMode::PVP_Tag && DocPVP)
 	//{
-	//	// CharacterSelectPage ÀÌµ¿ Àü SettingµÇ¾î ÀÖ¾î¾ß ÇÔ
+	//	// CharacterSelectPage ææ‚¼ å‚ˆ Settingç™»ç»¢ ä¹ç»¢å…· çªƒ
 	//	DocPVP->SetIsFriendshipGame(true);
 	//	DocPVP->SetIsInvitee(true);
 	//	DocPVP->SetIsInviterReady(true);
@@ -2997,7 +2997,7 @@ void AB2PVPGameMode::OnInvitationDeclined(const FString& Inviter, EB2GameMode Ga
 	//	if (UB2UICommonInvite* InviteUI = UIManager->GetUI<UB2UICommonInvite>(UIFName::InviteGame))
 	//		InviteUI->OnReceiveDecline(Inviter);
 
-	//	// »ó´ë¹æÀÌ °ÅÀıÇÏ¸é Rematch ¸·À½
+	//	// æƒ‘æªè§„æ èŠ­ä¾‹çªæ Rematch é˜œæ¾œ
 	//	if (UB2UIPVPResult* ResultUI = UIManager->GetUI<UB2UIPVPResult>(UIFName::PVPResult))
 	//		ResultUI->PreventRematch();
 	//}

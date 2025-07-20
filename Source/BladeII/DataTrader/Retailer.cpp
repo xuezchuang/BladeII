@@ -1,4 +1,4 @@
-
+ï»¿
 #include "Retailer.h"
 #include "B2PCClassInfo.h"
 #include "Event.h"
@@ -418,7 +418,7 @@ namespace data_trader
 		if (room_reason == ERoomCloseReasonType::NONE)
 			return;
 
-		// Todo : ÇöÀç mapId, difficulty°¡ Raid¿¡ ÇÑÁ¤µÇ¾îÀÖÀ½. (¼­¹ö¿Í ÇÔ²² Å¸ÀÔ°°Àº°Ô Ãß°¡µÇ¾î¾ßÇÒµí)
+		// Todo : í˜„ì¬ mapId, difficultyê°€ Raidì— í•œì •ë˜ì–´ìˆìŒ. (ì„œë²„ì™€ í•¨ê»˜ íƒ€ì…ê°™ì€ê²Œ ì¶”ê°€ë˜ì–´ì•¼í• ë“¯)
 		FBladeIIBlockToSyncNetwork::GetInstance().SetBlockTillResponse(
 		[RoomId, mapId, room_reason]() {
 			RequestRoomCloseClass<const FString&, int32, int32>::GetInstance().Signal(RoomId, mapId, CliToSvrRoomCloseReasonType(room_reason));
@@ -795,7 +795,7 @@ namespace data_trader
 		}
 		else
 		{
-			// ¸ğµÎ¹Ş±â·Î ½ÇÇàµÇ¸ç UI´Ü¿¡¼­ Sync
+			// ëª¨ë‘ë°›ê¸°ë¡œ ì‹¤í–‰ë˜ë©° UIë‹¨ì—ì„œ Sync
 			RequestReceiveMissionRewardClass<int32>::GetInstance().Signal(missionId);
 		}
 	}
@@ -1098,14 +1098,14 @@ namespace data_trader
 	void Retailer::RequestSetGuildBattleEntry(int32 slot1, int32 slot2, int32 slot3, int32 slot4, int32 slot5, int32 slot6, int32 slot7, int32 slot8)
 	{
 		/*// jwyim GuildEntry
-		int32 entry1 = Slot1;		// 1ÆÀ ¾Õ
-		int32 entry2 = Slot2;		// 1ÆÀ Áß°£ À§
-		int32 entry3 = 10001;		// 1ÆÀ Áß°£ ¾Æ·¡
-		int32 entry4 = 10002;		// 1ÆÀ µÚ
-		int32 entry5 = Slot3;		// 2ÆÀ ¾Õ
-		int32 entry6 = Slot4;		// 2ÆÀ Áß°£ À§
-		int32 entry7 = 10002;		// 2ÆÀ Áß°£ ¾Æ·¡
-		int32 entry8 = 10003;		// 2ÆÀ µÚ*/
+		int32 entry1 = Slot1;		// 1íŒ€ ì•
+		int32 entry2 = Slot2;		// 1íŒ€ ì¤‘ê°„ ìœ„
+		int32 entry3 = 10001;		// 1íŒ€ ì¤‘ê°„ ì•„ë˜
+		int32 entry4 = 10002;		// 1íŒ€ ë’¤
+		int32 entry5 = Slot3;		// 2íŒ€ ì•
+		int32 entry6 = Slot4;		// 2íŒ€ ì¤‘ê°„ ìœ„
+		int32 entry7 = 10002;		// 2íŒ€ ì¤‘ê°„ ì•„ë˜
+		int32 entry8 = 10003;		// 2íŒ€ ë’¤*/
 
 		FBladeIIBlockToSyncNetwork::GetInstance().SetBlockTillResponse(
 		[slot1, slot2, slot3, slot4, slot5, slot6, slot7, slot8](){
@@ -1328,7 +1328,7 @@ namespace data_trader
 	{
 		FBladeIIBlockToSyncNetwork::GetInstance().SetBlockTillResponse(
 		[character_type, draw_price_type, continuous_draw, is_draw_again, last_lottery_key, isFreeLottery](){
-			//Å¬¶ó->¼­¹ö µ¥ÀÌÅÍ·Î ÄÁ¹öÆÃ
+			//í´ë¼->ì„œë²„ ë°ì´í„°ë¡œ ì»¨ë²„íŒ…
 			RequestDrawShopLotteryClass<int32, int32, bool, bool, const FString&, bool>::GetInstance().Signal(
 				CliToSvrPCClassType(character_type), 
 				draw_price_type, 

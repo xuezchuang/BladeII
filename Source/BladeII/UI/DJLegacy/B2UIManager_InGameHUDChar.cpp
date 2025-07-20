@@ -16,8 +16,8 @@
 
 //////////////////////////////////////////////////
 //
-// Ä³¸¯ÅÍ ´ÜÀ§·Î ÇÊ¿äÇÑ floating widget ·ù °ü¸® (e.g. HP ¹Ù)
-// ¾Æ¸¶µµ °è¼Ó »ç¿ëµÉ µíÇÑ DJLegacy UI ÀÏºÎ
+// æŸè…ç£ çªœå›°è‚º é˜å¤¸èŒ„ floating widget å¹… åŒ…åºœ (e.g. HP å®˜)
+// é…’ä»˜æ¡£ æ‹ŒåŠ  è¤ä¾©çª æ·€èŒ„ DJLegacy UI è€ä½•
 //
 //////////////////////////////////////////////////
 
@@ -48,7 +48,7 @@ bool UB2UIManager_InGameHUDChar::InitUIManager(class ABladeIICharacter* InOwner,
 //	}
 //	bCachedHUDHidingCinematicMode = CachedPlayerController->IsHUDHidingCinematicMode();
 //
-//	// FloatingHP ¹Ù´Â ¿©ÀüÈ÷ ÀÌÂÊ ¼Ò°ü
+//	// FloatingHP å®˜ç»° å’¯å‚ˆæ´’ æç‡ å®¶åŒ…
 //	if (OwnerCharacter->FloatingHPBarWidgetClass != NULL)
 //	{
 //		FloatingHPBarWidget = CreateWidget<UB2FloatingHPBar>(CachedPlayerController, OwnerCharacter->FloatingHPBarWidgetClass);
@@ -59,17 +59,17 @@ bool UB2UIManager_InGameHUDChar::InitUIManager(class ABladeIICharacter* InOwner,
 //		}
 //	}
 //
-//	// °ÔÀÓ¸ğµåº° Ãß°¡UI
+//	// éœ¸çƒ™è‘›é›å–Š çœ å•ŠUI
 //	AdditionalUIForGameMode();
 //
-//	// Ã³À½ºÎÅÍ Cinematic mode ÀÎ °æ¿ì°¡ ÀÖ´Âµ¥ UpdateManual ¿¡¼­ Ä³Ä¡ÇÏÁö ¸øÇÏ¹Ç·Î ÇÑ¹ø Ã¼Å©
+//	// è´¸æ¾œä½•ç£ Cinematic mode ç‰¢ ç‰ˆå¿«å•Š ä¹ç»°å• UpdateManual ä¿Šè¾‘ æŸæ‘¹çªç˜¤ ç»™çªéª¨è‚º èŒ„é”… çœ‰å†œ
 //	if (bCachedHUDHidingCinematicMode)
 //	{
 //		HideAll();
 //	}
 //#if !UE_BUILD_SHIPPING
 //	extern bool gbHACKInGameUIHiddenByDevCommand;
-//	if (gbHACKInGameUIHiddenByDevCommand) // °³¹ß¿ë Ä¿¸Çµå·Î ¼û±ä °æ¿ì¿¡ ´ëÇØ
+//	if (gbHACKInGameUIHiddenByDevCommand) // ä¿ºæƒ¯ä¾© ç›®ç›–é›è‚º è§å˜ ç‰ˆå¿«ä¿Š æªç§¦
 //	{
 //		HideAll();
 //	}
@@ -101,7 +101,7 @@ void UB2UIManager_InGameHUDChar::UpdateManual(float DeltaSeconds)
 //			ThisWidget->UpdatePosition();
 //		}
 //	}
-//	// ½Ã³×¸¶Æ½¿¡¼­ UI ²ô±â.
+//	// çŸ«åŒ™ä»˜å¹³ä¿Šè¾‘ UI æºæ‰.
 //	if (bCachedHUDHidingCinematicMode != CachedPlayerController->IsHUDHidingCinematicMode())
 //	{
 //		bCachedHUDHidingCinematicMode = CachedPlayerController->IsHUDHidingCinematicMode();
@@ -113,7 +113,7 @@ void UB2UIManager_InGameHUDChar::UpdateManual(float DeltaSeconds)
 //		else
 //		{
 //			RestoreVisibilityAll();
-//#if !UE_BUILD_SHIPPING // InGameUI Ä¡Æ®¸¦ ½è´Ù¸é ´Ù½Ã ¼û±ä´Ù ¤»
+//#if !UE_BUILD_SHIPPING // InGameUI æ‘¹é£˜ç”« å€Ÿä¿ƒæ ä¿ƒçŸ« è§å˜ä¿ƒ ã›
 //			extern bool gbHACKInGameUIHiddenByDevCommand;
 //			if (gbHACKInGameUIHiddenByDevCommand)
 //			{
@@ -144,7 +144,7 @@ void UB2UIManager_InGameHUDChar::DestroyUserWidgets()
 	{
 		UB2FloatingWidget* DamageNumWidget = DamageNumWidgetSetArray[DWI].FloatingWidget;
 		if (DamageNumWidget && MasterUIManager)
-		{ // ¹İ³³
+		{ // é¦†åµ
 			MasterUIManager->TurnInFloatingWidget(MasterUIManager->GetDamageNumWidgetPoolTypeByOwnerChar(OwnerCharacter), DamageNumWidget);
 			OwnerGameMode->GetWorldTimerManager().ClearTimer(DamageNumWidgetSetArray[DWI].WidgetDestroyTimerHandle);
 		}
@@ -155,14 +155,14 @@ void UB2UIManager_InGameHUDChar::DestroyUserWidgets()
 	{
 		UB2FloatingWidget* ThisWidget = AbnormalEffectWidgetSetArray[AWI].FloatingWidget;
 		if (ThisWidget && MasterUIManager)
-		{ // ¹İ³³
+		{ // é¦†åµ
 			MasterUIManager->TurnInFloatingWidget(EFloatingWidgetPoolClassType::EFWPCT_AbnormalEffect, ThisWidget);
 			OwnerGameMode->GetWorldTimerManager().ClearTimer(AbnormalEffectWidgetSetArray[AWI].WidgetDestroyTimerHandle);
 		}
 	}
 	AbnormalEffectWidgetSetArray.Empty();
 
-	// Ãß°¡µÇ´Â °Íµé ³Ö¾îÁÜ
+	// çœ å•Šç™»ç»° å·´ç”¸ æŒç»¢æ·‹
 }
 
 void UB2UIManager_InGameHUDChar::HideFloatingHPBar(bool bInHide)
@@ -202,7 +202,7 @@ void UB2UIManager_InGameHUDChar::HideAll()
 		}
 	}
 
-	// Ãß°¡µÇ´Â °Íµé ³Ö¾îÁÜ
+	// çœ å•Šç™»ç»° å·´ç”¸ æŒç»¢æ·‹
 }
 
 void UB2UIManager_InGameHUDChar::RestoreVisibilityAll()
@@ -229,7 +229,7 @@ void UB2UIManager_InGameHUDChar::RestoreVisibilityAll()
 		}
 	}
 
-	// Ãß°¡µÇ´Â °Íµé ³Ö¾îÁÜ
+	// çœ å•Šç™»ç»° å·´ç”¸ æŒç»¢æ·‹
 }
 
 bool UB2UIManager_InGameHUDChar::IsOwnerPlayer()
@@ -245,7 +245,7 @@ void UB2UIManager_InGameHUDChar::AdditionalUIForGameMode()
 	//AB2ControlGameMode* pControlGamemode = Cast<AB2ControlGameMode>(OwnerGameMode);
 	//if (pControlGamemode && !FloatingHPBarWidget)
 	//{
-	//	// Á¡·ÉÀü °ÔÀÓ¸ğµå¿¡ ¼³Á¤µÈ°É·Î ¸¸µë
+	//	// ç—¢é£å‚ˆ éœ¸çƒ™è‘›é›ä¿Š æ±²æ²¥ç­‰å§è‚º çˆ¶æƒ¦
 	//	FloatingHPBarWidget = CreateWidget<UB2FloatingHPBar>(CachedPlayerController, pControlGamemode->FloatingHPBarWidgetClass);
 	//	if (FloatingHPBarWidget)
 	//	{
@@ -268,7 +268,7 @@ void UB2UIManager_InGameHUDChar::AdditionalUIForGameMode()
 
 void UB2UIManager_InGameHUDChar::NotifyBeginPlay()
 {
-	// ÀÏ´Ü º°º¼ÀÏ ¾ø°í ÇÃ·¹ÀÌ¾î ÂÊ¿¡..
+	// è€çªœ å–Šæ­è€ ç»ç»Š æ•²é¥­æç»¢ ç‡ä¿Š..
 }
 
 void UB2UIManager_InGameHUDChar::NotifyTakeDamage(float Damage, bool bInCritical)
@@ -276,7 +276,7 @@ void UB2UIManager_InGameHUDChar::NotifyTakeDamage(float Damage, bool bInCritical
 
 	// Changed Damage Number to spawn as effect, in TakeDamage directly
 
-	// TakeDamage ÀÌº¥Æ®¸¶´Ù DamageNumWidget »ı¼º
+	// TakeDamage æäº¥é£˜ä»˜ä¿ƒ DamageNumWidget ç§¯å·±
 	CreateSingleDamageNumWidget(Damage, bInCritical);
 }
 
@@ -295,18 +295,18 @@ UB2FloatingDamageNum* UB2UIManager_InGameHUDChar::CreateSingleDamageNumWidget(fl
 
 	if (MasterUIManager && OwnerCharacter && OwnerGameMode)
 	{
-		// ÀÌÁ¦ »ı¼ºÀÌ ¾Æ´Ï¶ó Rent ÀÌ´Ù. »ı¼ºÀÌ µÉ ¼öµµ ÀÖ±ä ÇÏÁö.
+		// æåŠ› ç§¯å·±æ é…’èªæ‰¼ Rent æä¿ƒ. ç§¯å·±æ çª èæ¡£ ä¹å˜ çªç˜¤.
 
 		auto PoolType = MasterUIManager->GetDamageNumWidgetPoolTypeByOwnerChar(OwnerCharacter);
 		auto* FloatingWidget = MasterUIManager->RentFloatingWidget(PoolType, CachedPlayerController, OwnerCharacter);
 
 		if (auto* DamageWidget = Cast<UB2FloatingDamageNum>(FloatingWidget))
 		{
-			// ¿ø·¡ DamageNumWidget ÇÏ³ª¸¸ »ı¼ºÇØ¼­ ¸Å TakeDamage ÀÌº¥Æ®¸¶´Ù »õ·Î ÆÄ¶ó¹ÌÅÍ ¼¼ÆÃÇÏ´ø ÀÌÀü ÄÚµå ÀÜÀçÀÎµ¥ ³öµÖ¼­ ¾ÈµÉ °Íµµ ¾ø¾î º¸¿©¼­ ±×´ë·Î ¾¸.
-			// -> ³öµ×±æ·¡ ´ÙÇà.. °á±¹ FloatWidget Pooling À» ÇÏ¸é¼­ ÀÌÀü ¹æ½ÄÀÌ ÇÊ¿äÇØÁü
+			// ç›”è´° DamageNumWidget çªå”±çˆ¶ ç§¯å·±ç§¦è¾‘ æ¦‚ TakeDamage æäº¥é£˜ä»˜ä¿ƒ è´§è‚º é¢‡æ‰¼å›ºç£ æŠ€æ³¼çªå¸¦ æå‚ˆ å†…é› å„¡çŠç‰¢å• å‡ºæŠµè¾‘ æ•‘çª å·´æ¡£ ç»ç»¢ ç„Šå’¯è¾‘ å¼Šæªè‚º é–.
+			// -> å‡ºåº•è¾¨è´° ä¿ƒé’.. æ¬æƒ« FloatWidget Pooling é˜‘ çªæè¾‘ æå‚ˆ è§„ä¾¥æ é˜å¤¸ç§¦å’™
 			DamageWidget->NotifyTakeDamage(Damage, bInCritical);
 
-			if (bCurrentlyHideAll) // µµÁß¿¡ »ı¼ºÇÑ´Ù¸é ¼û±â´Â °É ±î¸Ô¾î¼± ¾ÈµÇ°Ú´Ù.
+			if (bCurrentlyHideAll) // æ¡£åä¿Š ç§¯å·±èŒ„ä¿ƒæ è§æ‰ç»° å§ é³–å†ˆç»¢æ€¥ æ•‘ç™»æ‘†ä¿ƒ.
 				DamageWidget->ForceHide();
 
 			else
@@ -315,7 +315,7 @@ UB2FloatingDamageNum* UB2UIManager_InGameHUDChar::CreateSingleDamageNumWidget(fl
 			FDynamicFloatingWidgetSet NewWidgetSet;
 			NewWidgetSet.FloatingWidget = DamageWidget;
 
-			// VisibleDuration À¸·Î ÀÛµ¿ÇÏ´Â ÇØÁ¦ Å¸ÀÌ¸Ó ¼³Ä¡
+			// VisibleDuration æ è‚º ç´¯æ‚¼çªç»° ç§¦åŠ› é¸¥æèµ£ æ±²æ‘¹
 			OwnerGameMode->GetWorldTimerManager().SetTimer(NewWidgetSet.WidgetDestroyTimerHandle,
 				FTimerDelegate::CreateUObject(this, &UB2UIManager_InGameHUDChar::DestroySingleDamageNumWidgetTimerCB, DamageWidget),
 				DamageWidget->GetVisibleDuration(), false);
@@ -337,7 +337,7 @@ void UB2UIManager_InGameHUDChar::DestroySingleDamageNumWidgetTimerCB(class UB2Fl
 			UB2FloatingWidget* CurrDW = DamageNumWidgetSetArray[DWI].FloatingWidget;
 			if (CurrDW == WidgetToDestroy)
 			{
-				// ÀÌ¸§ÀÌ ¿¾³¯ ÈçÀûÀÌ¶ó Destroy ÀÎµ¥ ½ÇÁ¦·Î ÀÌÁ¦´Â Destroy °¡ ¾Æ´Ï¶ó pool ¿¡ ¹İ³³ÇÑ´Ù.
+				// ææŠšæ çƒ¤æœ å¦‚åˆ©ææ‰¼ Destroy ç‰¢å• è§’åŠ›è‚º æåŠ›ç»° Destroy å•Š é…’èªæ‰¼ pool ä¿Š é¦†åµèŒ„ä¿ƒ.
 
 				if (WidgetToDestroy->IsForceHidden() && bCurrentlyHideAll == false)
 					WidgetToDestroy->RestoreFromForceHidden();
@@ -362,7 +362,7 @@ UB2FloatingAbnormalEffect* UB2UIManager_InGameHUDChar::CreateAbnormalEffectWidge
 
 	if (MasterUIManager)
 	{
-		// ÀÌÁ¦ »ı¼ºÀÌ ¾Æ´Ï¶ó Rent ÀÌ´Ù. »ı¼ºÀÌ µÉ ¼öµµ ÀÖ±ä ÇÏÁö.
+		// æåŠ› ç§¯å·±æ é…’èªæ‰¼ Rent æä¿ƒ. ç§¯å·±æ çª èæ¡£ ä¹å˜ çªç˜¤.
 		UB2FloatingAbnormalEffect* NewAbnormalEffectWidget = Cast<UB2FloatingAbnormalEffect>(MasterUIManager->RentFloatingWidget(
 			EFloatingWidgetPoolClassType::EFWPCT_AbnormalEffect, CachedPlayerController, OwnerCharacter
 		));
@@ -371,7 +371,7 @@ UB2FloatingAbnormalEffect* UB2UIManager_InGameHUDChar::CreateAbnormalEffectWidge
 		{
 			NewAbnormalEffectWidget->NotifyAbnormalEffect(InEffectSetupInfo);
 
-			if (bCurrentlyHideAll) // µµÁß¿¡ »ı¼ºÇÑ´Ù¸é ¼û±â´Â °É ±î¸Ô¾î¼± ¾ÈµÇ°Ú´Ù.
+			if (bCurrentlyHideAll) // æ¡£åä¿Š ç§¯å·±èŒ„ä¿ƒæ è§æ‰ç»° å§ é³–å†ˆç»¢æ€¥ æ•‘ç™»æ‘†ä¿ƒ.
 			{
 				NewAbnormalEffectWidget->ForceHide();
 			}
@@ -383,7 +383,7 @@ UB2FloatingAbnormalEffect* UB2UIManager_InGameHUDChar::CreateAbnormalEffectWidge
 			FDynamicFloatingWidgetSet NewWidgetSet;
 			NewWidgetSet.FloatingWidget = NewAbnormalEffectWidget;
 
-			// VisibleDuration À¸·Î ÀÛµ¿ÇÏ´Â ÇØÁ¦ Å¸ÀÌ¸Ó ¼³Ä¡
+			// VisibleDuration æ è‚º ç´¯æ‚¼çªç»° ç§¦åŠ› é¸¥æèµ£ æ±²æ‘¹
 			OwnerGameMode->GetWorldTimerManager().SetTimer(NewWidgetSet.WidgetDestroyTimerHandle,
 				FTimerDelegate::CreateUObject(this, &UB2UIManager_InGameHUDChar::DestroySingleAbnormalEffectWidgetTimerCB, NewAbnormalEffectWidget),
 				NewAbnormalEffectWidget->GetVisibleDuration(), false);
@@ -406,7 +406,7 @@ void UB2UIManager_InGameHUDChar::DestroySingleAbnormalEffectWidgetTimerCB(class 
 			UB2FloatingWidget* CurrAbnormalEffect = AbnormalEffectWidgetSetArray[AWI].FloatingWidget;
 			if (CurrAbnormalEffect == WidgetToDestroy)
 			{
-				// ÀÌ¸§ÀÌ ¿¾³¯ ÈçÀûÀÌ¶ó Destroy ÀÎµ¥ ½ÇÁ¦·Î ÀÌÁ¦´Â Destroy °¡ ¾Æ´Ï¶ó pool ¿¡ ¹İ³³ÇÑ´Ù.
+				// ææŠšæ çƒ¤æœ å¦‚åˆ©ææ‰¼ Destroy ç‰¢å• è§’åŠ›è‚º æåŠ›ç»° Destroy å•Š é…’èªæ‰¼ pool ä¿Š é¦†åµèŒ„ä¿ƒ.
 				MasterUIManager->TurnInFloatingWidget(EFloatingWidgetPoolClassType::EFWPCT_AbnormalEffect, WidgetToDestroy);
 				OwnerGameMode->GetWorldTimerManager().ClearTimer(AbnormalEffectWidgetSetArray[AWI].WidgetDestroyTimerHandle);
 				AbnormalEffectWidgetSetArray.RemoveAt(AWI);

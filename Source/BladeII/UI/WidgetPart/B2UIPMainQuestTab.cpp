@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIPMainQuestTab.h"
 #include "BladeIIUtil.h"
@@ -46,11 +46,11 @@ void UB2UIPMainQuestTab::Update(int32 InActID, bool InIsLock, int32 QuestID)
 		{
 			TB_Count->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
 			int32 TotalNum = QuestManager::GetInstance().GetTotalNumberMainQuestByAct(ActID);
-			int32 CurNum = QuestID - 1; //¿Ï·áÇÑ Äù½ºÆ® °¹¼ö
+			int32 CurNum = QuestID - 1; //è‚¯ä¸°èŒ„ æ¶…èƒ¶é£˜ è‚®è
 			for (int i = 1; i < ActID; i++)
 			{
 				CurNum -= QuestManager::GetInstance().GetTotalNumberMainQuestByAct(i); 
-				// ÇöÀç ¾×Æ®¿¡¼­ Äù½ºÆ®¸¦ ¸î°³ ¿Ï·á Çß´ÂÁö ¾Ë±â À§ÇØ ¿Ï·áÇÑ ÀÌÀü ¾×Æ®ÀÇ Äù½ºÆ® °¹¼ö¸¦ »©ÁÜ
+				// æ³…çŠ å’€é£˜ä¿Šè¾‘ æ¶…èƒ¶é£˜ç”« å‰²ä¿º è‚¯ä¸° æ²ç»°ç˜¤ èˆ…æ‰ å›°ç§¦ è‚¯ä¸°èŒ„ æå‚ˆ å’€é£˜ç‹¼ æ¶…èƒ¶é£˜ è‚®èç”« å“—æ·‹
 			}
 
 			CurNum = CurNum > TotalNum || QuestManager::GetInstance().IsEndMainQuest() ? TotalNum : CurNum;

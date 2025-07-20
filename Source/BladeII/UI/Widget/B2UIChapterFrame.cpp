@@ -1,4 +1,4 @@
-#include "B2UIChapterFrame.h"
+ï»¿#include "B2UIChapterFrame.h"
 #include "B2UIManager.h"
 #include "B2UIDocHelper.h"
 #include "B2UIDocChapter.h"
@@ -16,7 +16,7 @@ UB2UIChapterFrame::UB2UIChapterFrame(const FObjectInitializer& ObjectInitializer
 	: Super(ObjectInitializer)
 {
 	m_TempChapter = nullptr;
-	ChapterStagePartClass_Holder = nullptr; // ¿©±â¼­ µüÈ÷ ¿ªÇÒÀÌ ÀÖÁö´Â ¾Ê´Ù.. ±×³É Holder
+	ChapterStagePartClass_Holder = nullptr; // å’¯æ‰è¾‘ è¿­æ´’ å¼€ä¸”æ ä¹ç˜¤ç»° è‡¼ä¿ƒ.. å¼Šæˆ Holder
 	CurChapterNum = INDEX_NONE;
 	CurDifficulty = EStageDifficulty::ESD_None;
 	PrefixChapterStarReward = TEXT("UIP_ChapterStarRewardBox");
@@ -33,7 +33,7 @@ void UB2UIChapterFrame::NativeTick(const FGeometry& MyGeometry, float InDeltaTim
 
 	if (BTN_StarRewardPreviewAllClose.IsValid() && BTN_StarRewardPreviewAllClose->GetVisibility() == ESlateVisibility::Visible
 		&& !IsStarRewardPreviewOpen())
-	{ // È¤½Ã¶óµµ ÆÄÆ® ³»ºÎ ¹öÆ° µî ´Ù¸¥ °æ·Î¸¦ ÅëÇØ ´İÈú ¼öµµ ÀÖ´Âµ¥, Ãß°¡·Î Delegate Áà¼­ Ã³¸®ÇÒ ¼öµµ ÀÖÁö¸¸ Á» ¾µµ¥¾øÀÌ º¹ÀâÇØÁú °Å °°¾Æ¼­ Tick À¸·Î..
+	{ // è¶£çŸ«æ‰¼æ¡£ é¢‡é£˜ éƒ´ä½• æ»šç“¢ æ®¿ ä¿ƒå¼— ç‰ˆè‚ºç”« çƒ¹ç§¦ æ‘§é³ƒ èæ¡£ ä¹ç»°å•, çœ å•Šè‚º Delegate æ‹è¾‘ è´¸åºœä¸” èæ¡£ ä¹ç˜¤çˆ¶ ç²± é•œå•ç»æ æ±—æ£±ç§¦é¾™ èŠ­ éé…’è¾‘ Tick æ è‚º..
 		BTN_StarRewardPreviewAllClose->SetVisibility(ESlateVisibility::Hidden);
 	}
 }
@@ -72,7 +72,7 @@ void UB2UIChapterFrame::CacheAssets()
 	GET_SLOT(UImage, IMG_Hell)
 	GET_SLOT(UImage, IMG_SelectedHell)
 
-	//º¸»óÁ¤º¸ ¾î¼ÂÀ» °¡Á®¿Â´Ù. ÀÏ´Ü ³Ë³ËÇÏ°Ô 6°³·Î Àâ°í
+	//ç„Šæƒ‘æ²¥ç„Š ç»¢æ‚¸é˜‘ å•Šå»‰æŸ¯ä¿ƒ. è€çªœ ä¹˜ä¹˜çªéœ¸ 6ä¿ºè‚º æ£±ç»Š
 	for (int Cnt = 0; Cnt < 6; ++Cnt)
 	{
 		FString StarRewardAssetStr = PrefixChapterStarReward + FString::FormatAsNumber(Cnt);
@@ -81,10 +81,10 @@ void UB2UIChapterFrame::CacheAssets()
 		{
 			StarRewardBoxes.AddUnique(StarRewardBoxAsset);
 			StarRewardBoxAsset->Init();
-			StarRewardBoxAsset->SetRewardIndex(Cnt + 1); // ÁÂÃøºÎÅÍ 1, 2, 3 ÀÌ·¸°Ô ³ª°¨.
+			StarRewardBoxAsset->SetRewardIndex(Cnt + 1); // è°…èŸä½•ç£ 1, 2, 3 æçŠ¯éœ¸ å”±çš‘.
 		}
 	}
-	// ÇÁ¸®ºä ÆÄÆ®´Â ÇÏ³ª¸¸. °¢ º¸»ó º°À» Å¬¸¯½Ã¸¶´Ù ÇØ´ç Á¤º¸°¡ ¼¼ÆÃµÉ °Í.
+	// æ©‡åºœè½° é¢‡é£˜ç»° çªå”±çˆ¶. é˜¿ ç„Šæƒ‘ å–Šé˜‘ åŠªè…çŸ«ä»˜ä¿ƒ ç§¦å¯¸ æ²¥ç„Šå•Š æŠ€æ³¼çª å·´.
 	GET_SLOT(UB2UIChapterStarRewardPreview, UIP_StarRewardPreviewP)
 	if (UIP_StarRewardPreviewP.IsValid())
 	{
@@ -92,7 +92,7 @@ void UB2UIChapterFrame::CacheAssets()
 	}
 
 	GET_SLOT(UB2Button, BTN_StarRewardPreviewAllClose)
-	if (BTN_StarRewardPreviewAllClose.IsValid()) // ÀüÃ¼ ¿µ¿ª¿¡ °ÉÃÄ ÀÖ´Â °Å¶ó ±âº»ÀûÀ¸·Î´Â ÀÔ·ÂÀ» ¹Ş¾Æ¼± ¾ÈµÈ´Ù. ÇÊ¿äÇÒ ¶§¸¸ ÄÔ
+	if (BTN_StarRewardPreviewAllClose.IsValid()) // å‚ˆçœ‰ åº·å¼€ä¿Š å§åªš ä¹ç»° èŠ­æ‰¼ æ‰å¤¯åˆ©æ è‚ºç»° æ¶ä»¿é˜‘ ç½é…’æ€¥ æ•‘ç­‰ä¿ƒ. é˜å¤¸ä¸” é”­çˆ¶ è„‘
 	{
 		BTN_StarRewardPreviewAllClose->SetVisibility(ESlateVisibility::Hidden);
 	}
@@ -197,7 +197,7 @@ void UB2UIChapterFrame::BindDocAuto()
 		DocChapter->OnTutorialFixSwipeChanged.AddUObject(this, &UB2UIChapterFrame::OnChangedTutorialFixSwipe);
 	}
 
-	//ÇöÀç ¼¿·ºÆ®µÈ Chapter¿¡ ´ëÇÑ »óÅÂ´Â ÀúÀåÇÏ°í ÀÖÁö ¾ÊÀºµ¥, ¹º°¡ ±×·±Ã³¸®¸¦ DocChapter¿¡ ³Ö¾î¾ß µÉ°Í.
+	//æ³…çŠ ä¼æ³›é£˜ç­‰ Chapterä¿Š æªèŒ„ æƒ‘æ€•ç»° å†å˜çªç»Š ä¹ç˜¤ è‡¼ç¯®å•, è´­å•Š å¼Šç¹è´¸åºœç”« DocChapterä¿Š æŒç»¢å…· çªå·´.
 }
 
 void UB2UIChapterFrame::UnbindDoc()
@@ -215,9 +215,9 @@ void UB2UIChapterFrame::UnbindDoc()
 
 void UB2UIChapterFrame::ChangeChapterCycle(EUISearchType SearchDir)
 {
-	// ¾Æ·¡ ChangeChapter ¿Í ±Ùº»ÀûÀ¸·Î ´Ù¸£´Ù. 
-	// ¾Æ·¡ ChangeChapter ´Â ¼­¹ö¿¡¼­ ¹ŞÀº µ¥ÀÌÅÍ ÀÖ´Â °Å È®ÀÎ µÈ ÀÌÈÄ¿¡ ½ÇÁ¦ ÃÖÁ¾ÀûÀ¸·Î ºä¸¦ ¹Ù²Ù´Â ±â´ÉÀÓ.
-	// ¿©±ä ÀÏ´Ü ¿äÃ»ºÎÅÍ ÇÏ°í º½.
+	// é…’è´° ChangeChapter å®¢ è¾Ÿå¤¯åˆ©æ è‚º ä¿ƒç¦ä¿ƒ. 
+	// é…’è´° ChangeChapter ç»° è¾‘æ»šä¿Šè¾‘ ç½ç¯® å•æç£ ä¹ç»° èŠ­ çŠ¬ç‰¢ ç­‰ æé¥¶ä¿Š è§’åŠ› å¼¥è¾†åˆ©æ è‚º è½°ç”« å®˜æ“ç»° æ‰ç“·çƒ™.
+	// å’¯å˜ è€çªœ å¤¸æ²¡ä½•ç£ çªç»Š èˆª.
 
 	auto DocChapter = Cast<UB2UIDocChapter>(GetDoc());
 	if (!DocChapter) return;
@@ -231,7 +231,7 @@ void UB2UIChapterFrame::ChangeChapterCycle(EUISearchType SearchDir)
 		break;
 	case EUISearchType::Forward:
 
-		if (ShouldShowCBTVersionContent() && CurChapterNum >= 3)	//CBT 4¸· ¸øµé¾î°¡°Ô ¸·ÀÚ
+		if (ShouldShowCBTVersionContent() && CurChapterNum >= 3)	//CBT 4é˜œ ç»™ç”¸ç»¢å•Šéœ¸ é˜œç£Š
 		{
 			DevShowNotReadyYetMessage(TEXT("CBT_AreaLimit"));
 			break;
@@ -255,7 +255,7 @@ void UB2UIChapterFrame::ChangeChapterCycle(EUISearchType SearchDir)
 		break; 
 	} 
 
-	// ÀÀ´äÀ¸·Î ChangeChapter °¡ ºÒ¸®µçÁö., ¾Æ´Ï¸é ÀÌ¹Ì µ¥ÀÌÅÍ°¡ ÀÖÀ¸¸é ChangeChapter °¡ ºÒ¸®µçÁö.
+	// è§ˆç¿ æ è‚º ChangeChapter å•Š é˜‚åºœç”µç˜¤., é…’èªæ æå›º å•æç£å•Š ä¹æ æ ChangeChapter å•Š é˜‚åºœç”µç˜¤.
 	BladeIIGameImpl::GetRedDotManager().MarkAct(CurDifficulty, CurChapterNum);
 	BladeIIGameImpl::GetStageDataStore().RequestGetActInfoAndChangeChapter(CurChapterNum, CurDifficulty);
 }
@@ -265,17 +265,17 @@ void UB2UIChapterFrame::ChangeChapter(int32 TargetChapterNum, EStageDifficulty T
 	auto DocChapter = Cast<UB2UIDocChapter>(GetDoc());
 	if (!DocChapter) return;
 
-	//º¯°æ ºÒ°¡´É ChapterNumÀÎÁö Ã¼Å©
+	//å‡½ç‰ˆ é˜‚å•Šç“· ChapterNumç‰¢ç˜¤ çœ‰å†œ
 	/*if (TargetChapterNum <= INDEX_NONE || DocChapter->GetChapterMaxNum() < TargetChapterNum) 
 		return;*/
 
 	CurChapterNum = TargetChapterNum;
 	CurDifficulty = TargetDifficulty;
 
-	// È£Ãâ ½ºÅÃÀ» °ÅÄ¡´Ù°¡ ¿©·¯¹ø ºÒ¸± ¼ö ÀÖ¾î¼­ ¾µµ¥¾ø´Â CreateChapter ´Â ¹æÁö
+	// é¾‹å… èƒ¶ç¶é˜‘ èŠ­æ‘¹ä¿ƒå•Š å’¯çŸ¾é”… é˜‚å‰¯ è ä¹ç»¢è¾‘ é•œå•ç»ç»° CreateChapter ç»° è§„ç˜¤
 	if (!m_TempChapter || m_TempChapter->GetChapterNum() != TargetChapterNum || m_TempChapter->GetStageDifficulty() != TargetDifficulty)
 	{	
-		// Ã©ÅÍ°¡ ¹Ù²î´Â °æ¿ìµµ UIChapter WidgetClass ¸¦ °øÀ¯ÇÏ°í °¢ ½ºÅ×ÀÌÁö º°·Î ¸î¸î Á¤º¸¸¸ °»½ÅÇØÁÖ´Â °æ¿ì´Â »ı¼ºÀ» ½ºÅµÇÑ´Ù.
+		// èŒ…ç£å•Š å®˜å·®ç»° ç‰ˆå¿«æ¡£ UIChapter WidgetClass ç”« å‚èœ¡çªç»Š é˜¿ èƒ¶æŠ›æç˜¤ å–Šè‚º å‰²å‰² æ²¥ç„Šçˆ¶ ç›è„šç§¦æ—ç»° ç‰ˆå¿«ç»° ç§¯å·±é˜‘ èƒ¶è¯ºèŒ„ä¿ƒ.
 		bool bNeedCreate = true;
 		if (m_TempChapter && CheckIfTwoChapterUIsShareClass(m_TempChapter->GetChapterNum(), TargetChapterNum))
 		{
@@ -301,16 +301,16 @@ void UB2UIChapterFrame::ChangeChapter(int32 TargetChapterNum, EStageDifficulty T
 		}
 		check(UIChapterToSetup);
 
-		UIChapterToSetup->SetChapterNumOnly(CurChapterNum); // ÀÌ°Ô Á» ÇÊ¿äÇÑ »óÈ²ÀÌ ÀÖÀ½..
+		UIChapterToSetup->SetChapterNumOnly(CurChapterNum); // æéœ¸ ç²± é˜å¤¸èŒ„ æƒ‘ç‚”æ ä¹æ¾œ..
 		UIChapterToSetup->Init();
 
 		UIChapterToSetup->SetChapterNum(TargetChapterNum, TargetDifficulty);
-		UIChapterToSetup->SetStageDatas(/*TArray<FStage¾îÂ¼°í> StageDatas*/);
+		UIChapterToSetup->SetStageDatas(/*TArray<FStageç»¢å½•ç»Š> StageDatas*/);
 
 		m_TempChapter = UIChapterToSetup;
 	}
 
-	//ÁÂ¿ì ÀÌµ¿¹öÆ° EnabledÃ³¸®
+	//è°…å¿« ææ‚¼æ»šç“¢ Enabledè´¸åºœ
 	UpdateSearchBtnEnabled(TargetChapterNum > DocChapter->GetChapterOpenedNum() ? TargetChapterNum : DocChapter->GetChapterOpenedNum());
 	OnSelectBtnStageDifficulty(CurDifficulty);
 
@@ -338,7 +338,7 @@ void UB2UIChapterFrame::ChangeChapter(int32 TargetChapterNum, EStageDifficulty T
 
 bool UB2UIChapterFrame::CheckIfTwoChapterUIsShareClass(int32 CheckChapterNum1, int32 CheckChapterNum2) const
 {
-	// °¢ Ã©ÅÍ ¹øÈ£·Î µî·ÏµÈ ChapterWidgetClasses °¡ ¼­·Î °°ÀºÁö ÆÇº°. °°À¸¸é »õ·Î »ı¼ºÇÏÁö ¾Êµµ·Ï ÇÏ±â À§ÇØ.
+	// é˜¿ èŒ…ç£ é”…é¾‹è‚º æ®¿åºŸç­‰ ChapterWidgetClasses å•Š è¾‘è‚º éç¯®ç˜¤ é­„å–Š. éæ æ è´§è‚º ç§¯å·±çªç˜¤ è‡¼æ¡£åºŸ çªæ‰ å›°ç§¦.
 	const TSoftClassPtr<class UB2UIChapter>* ChapterSetup1 = ChapterWidgetClasses.Find(CheckChapterNum1);
 	const TSoftClassPtr<class UB2UIChapter>* ChapterSetup2 = ChapterWidgetClasses.Find(CheckChapterNum2);
 	if (ChapterSetup1 && ChapterSetup2)
@@ -354,7 +354,7 @@ void UB2UIChapterFrame::SetChapterDynamicSetupReady()
 
 	if (UB2UIDocChapter* DocChapter = UB2UIDocHelper::GetDocChapter())
 	{
-		// Tutorial0-1 »óÈ²¿¡¼­ Swipe¾ÈµÇ°Ô²û
+		// Tutorial0-1 æƒ‘ç‚”ä¿Šè¾‘ Swipeæ•‘ç™»éœ¸é˜
 		if (DocChapter->GetTutorialFixSwipe())
 			m_TempChapter->bExternalDynamicSetupReady = false;
 	}
@@ -391,7 +391,7 @@ UB2UIChapter* UB2UIChapterFrame::GetCurChapter()
 
 TSubclassOf<UB2UIChapter> UB2UIChapterFrame::GetChapterWidgetClass(int32 TargetChaperNum)
 {
-	// KeepLoadedChapterWidgetClasses ·Î È¦µåÇÏ°í ÀÖ´Â °Å¶ó¸é ¿©±â¼­ ½ÇÁ¦ ·ÎµùÀÌ ÀÏ¾î³ªÁö´Â ¾ÊÀ» °Í..
+	// KeepLoadedChapterWidgetClasses è‚º åœˆé›çªç»Š ä¹ç»° èŠ­æ‰¼æ å’¯æ‰è¾‘ è§’åŠ› è‚ºçˆ¹æ è€ç»¢å”±ç˜¤ç»° è‡¼é˜‘ å·´..
 	B2_SCOPED_TRACK_LOG(FString::Printf(TEXT("UB2UIChapterFrame::GetChapterWidgetClass %d"), TargetChaperNum));
 
 	TSoftClassPtr<class UB2UIChapter>* FoundElem = ChapterWidgetClasses.Find(TargetChaperNum);
@@ -414,11 +414,11 @@ void UB2UIChapterFrame::ClearCurChapter()
 
 void UB2UIChapterFrame::SetChapterTitle(const FText& InText)
 {
-	//Å¸ÀÌÆ²ÅØ½ºÆ®Ã³¸®. (DocUIConditionÀº UI³»ºÎ¿¡¼­ À¯ÀÏÇÏ°Ô SetÀ» ÇÒ ¼ö ÀÖ´Â DocÀÌ´Ù. ³ª¸ÓÁö DocµéÀº ViewÀÎ UI°¡ SetÇÏ¸é ¾ÈµÊ)
+	//é¸¥ææ’‡å’†èƒ¶é£˜è´¸åºœ. (DocUIConditionç¯® UIéƒ´ä½•ä¿Šè¾‘ èœ¡è€çªéœ¸ Seté˜‘ ä¸” è ä¹ç»° Docæä¿ƒ. å”±èµ£ç˜¤ Docç”¸ç¯® Viewç‰¢ UIå•Š Setçªæ æ•‘å‡³)
 	auto DocUICondition = UB2UIDocHelper::GetDocUICondition();
 	if (DocUICondition)
 	{
-		DocUICondition->SetHeaderTitle(InText);	//"Á¦ 1 ¸·  Ã©ÅÍÀÌ¸§" °°Àº Æ÷¸ËÀ¸·Î ¹Ù²ãÁÙ°Í
+		DocUICondition->SetHeaderTitle(InText);	//"åŠ› 1 é˜œ  èŒ…ç£ææŠš" éç¯® å™¨æ†æ è‚º å®˜å±‚ä¸´å·´
 	}
 }
 
@@ -462,7 +462,7 @@ void UB2UIChapterFrame::SetStarRewards(const TArray<FUIChapterStarReward>& StarR
 				StarRewardAsset->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
 				auto StarRewardData = StarRewards[AssetCnt];
 				StarRewardAsset->SetRewarded(StarRewardData.bAlreadyRewarded);
-				StarRewardAsset->SetMyPreviousRewarded(AssetCnt == 0 ? true : StarRewards[AssetCnt - 1].bAlreadyRewarded); // 0 ¹øÀº ÀÌÀü °Í ¹ŞÀº ¿©ºÎ ¹«Á¶°Ç true.
+				StarRewardAsset->SetMyPreviousRewarded(AssetCnt == 0 ? true : StarRewards[AssetCnt - 1].bAlreadyRewarded); // 0 é”…ç¯® æå‚ˆ å·´ ç½ç¯® å’¯ä½• å…¬ç‚¼æ‰’ true.
 
 				StartMaxNum = StarRewardData.StarMaxNum;
 				StarCurNum = StarRewardData.StarCurNum;
@@ -492,13 +492,13 @@ void UB2UIChapterFrame::SetStarRewards(const TArray<FUIChapterStarReward>& StarR
 					}
 				}
 
-				//ÇöÀç ÇÁ·Î±×·¹½º °üÁ¡¿¡¼­ÀÇ max°ª ¼¼ÆÃ
+				//æ³…çŠ æ©‡è‚ºå¼Šé¥­èƒ¶ åŒ…ç—¢ä¿Šè¾‘ç‹¼ maxè”¼ æŠ€æ³¼
 				StarRewardAsset->SetStarMaxNum(StartMaxNum);
 
-				//ÇöÀç ÇÁ·Î±×·¹½º °üÁ¡¿¡¼­ÀÇ cur°ª ¼¼ÆÃ
+				//æ³…çŠ æ©‡è‚ºå¼Šé¥­èƒ¶ åŒ…ç—¢ä¿Šè¾‘ç‹¼ curè”¼ æŠ€æ³¼
 				StarRewardAsset->SetStarCurNum(StarCurNum);
 
-				//ÇöÀç ÇÁ·Î±×·¹½º °üÁ¡¿¡¼­ÀÇ cur,max°ªÀ» ¼¼ÆÃÇßÁö¸¸, ±×¿Í´Â º°°³·Î ÅØ½ºÆ® Ç¥½Ã´Â ¸ğµç º¸»óÀÇ °üÁ¡¿¡¼­ÀÇ ÅØ½ºÆ®¸¦ Ç¥½ÃÇØÁÖ¾î¾ß ÇÑ´Ù°í ÇÑ´Ù.
+				//æ³…çŠ æ©‡è‚ºå¼Šé¥­èƒ¶ åŒ…ç—¢ä¿Šè¾‘ç‹¼ cur,maxè”¼é˜‘ æŠ€æ³¼æ²ç˜¤çˆ¶, å¼Šå®¢ç»° å–Šä¿ºè‚º å’†èƒ¶é£˜ é’çŸ«ç»° è‘›ç”µ ç„Šæƒ‘ç‹¼ åŒ…ç—¢ä¿Šè¾‘ç‹¼ å’†èƒ¶é£˜ç”« é’çŸ«ç§¦æ—ç»¢å…· èŒ„ä¿ƒç»Š èŒ„ä¿ƒ.
 				StarRewardAsset->SetForceProgressText(StarRewardData.StarCurNum, StarRewardData.StarMaxNum);
 				
 				PrevGoalStarNum = StarRewardData.StarMaxNum;
@@ -533,7 +533,7 @@ void UB2UIChapterFrame::SetMaxOpendAdventureDifficulty(EStageDifficulty InMaxSta
 	{
 		bool IsVisible = (InMaxStageDifficulty == EStageDifficulty::ESD_Normal) ? false : ((int32)AdventurePanel.Key <= (int32)InMaxStageDifficulty);
 		
-		//[180712_YJ] Æ©Åä¸®¾óÀº °í·ÁÇÏÁö ¾ÊÀ½.
+		//[180712_YJ] è­¬é…åºœå€”ç¯® ç»Šå¦¨çªç˜¤ è‡¼æ¾œ.
 		if ((int32)AdventurePanel.Key > BladeIIGameImpl::GetClientDataStore().GetLimitOpenStageDifficulty())
 			IsVisible = false;
 			
@@ -558,7 +558,7 @@ bool UB2UIChapterFrame::HasTutorialChangeChapter1Check(EStageDifficulty eStageDi
 
 void UB2UIChapterFrame::UpdateSearchBtnEnabled(int32 ChapterOpenedNum)
 {
-	//ÇÏ³ª¹Û¿¡ ¾È¿­·ÈÀ¸¸é ÁÂ¿ì ¸ø°¨
+	//çªå”±è§‚ä¿Š æ•‘å‡¯å•¡æ æ è°…å¿« ç»™çš‘
 	SetVisibilityPrevNextButton(ChapterOpenedNum <= 5 ? true : false);
 
 
@@ -676,7 +676,7 @@ UB2UIChapterStarRewardBox* UB2UIChapterFrame::GetStarRewardBoxOfRewardIndex(int3
 //====================================================================================
 void UB2UIChapterFrame::OnClickBtnAdventureLastReached()
 {
-	//¸¶Áö¸·À¸·Î µµ´ŞÇÑ ´øÀüÀ¸·Î ¹Ù·Î°¡±â
+	//ä»˜ç˜¤é˜œæ è‚º æ¡£å´”èŒ„ å¸¦å‚ˆæ è‚º å®˜è‚ºå•Šæ‰
 	GoGameStageInfoLastReachedFromLobbyClass<>::GetInstance().Signal();
 }
 
@@ -692,8 +692,8 @@ void UB2UIChapterFrame::OnClickBtnPrev()
 }
 
 void UB2UIChapterFrame::OnClickBtnChapterStarRewardBox(UB2UIChapterStarRewardBox* ClickedReward)
-{	//º°º¸»ó ¹Ú½º¸¦ ´­·¶´Ù. 
-	// ¸î¹øÂ° º¸»óÀÎÁö´Â ¼­¹öÂÊ¿¡¼­ Ã³¸®ÇÔ. ÀÌÂÊ¿¡¼± ÀÌ¹ø¿¡ º¸»ó ¿äÃ» º¸³¾ ¹öÆ°¸¸ enable
+{	//å–Šç„Šæƒ‘ å† èƒ¶ç”« å–˜èŒƒä¿ƒ. 
+	// å‰²é”…æ³ ç„Šæƒ‘ç‰¢ç˜¤ç»° è¾‘æ»šç‡ä¿Šè¾‘ è´¸åºœçªƒ. æç‡ä¿Šæ€¥ æé”…ä¿Š ç„Šæƒ‘ å¤¸æ²¡ ç„Šå°˜ æ»šç“¢çˆ¶ enable
 	UB2UIDocChapter* DocChapter = UB2UIDocHelper::GetDocChapter();
 	if (ClickedReward && ClickedReward->GetGoalReachedState() != EUIChapterStarRewardState::Rewarded && UIP_StarRewardPreviewP.IsValid() && DocChapter)
 	{
@@ -706,7 +706,7 @@ void UB2UIChapterFrame::OnClickBtnChapterStarRewardBox(UB2UIChapterStarRewardBox
 
 		//UB2UIChapterStarRewardBox* PrevIndexRewardBox = GetStarRewardBoxOfRewardIndex(ClickedReward->GetRewardIndex() - 1);
 		const bool bCanGetRewardForThisIndex = (ClickedReward->GetGoalReachedState() == EUIChapterStarRewardState::Reached); /* &&
-			// ÀÌÀü ÀÎµ¦½ºÀÇ RewardBox °¡ ÀÖ´Ù¸é º¸»óÀ» ¹ŞÀº »óÅÂ¿¡¼­¸¸ ÀÌ¹ø ÀÎµ¦½ºÀÇ RewardBox º¸»óÀÌ °¡´ÉÇÏµµ·Ï ÇÔ.
+			// æå‚ˆ ç‰¢éƒ¸èƒ¶ç‹¼ RewardBox å•Š ä¹ä¿ƒæ ç„Šæƒ‘é˜‘ ç½ç¯® æƒ‘æ€•ä¿Šè¾‘çˆ¶ æé”… ç‰¢éƒ¸èƒ¶ç‹¼ RewardBox ç„Šæƒ‘æ å•Šç“·çªæ¡£åºŸ çªƒ.
 			(PrevIndexRewardBox || PrevIndexRewardBox->GetGoalReachedState() == EUIChapterStarRewardState::Rewarded));*/
 
 
@@ -714,20 +714,20 @@ void UB2UIChapterFrame::OnClickBtnChapterStarRewardBox(UB2UIChapterStarRewardBox
 			ClickedReward->GetStarMaxNum(), OutRewards);
 	
 		if (BTN_StarRewardPreviewAllClose.IsValid())
-		{ // ÆË¾÷µÇ¸é ÀüÃ¼ ½ºÅ©¸°¿¡ °ÉÃÄ ÀÖ´Â ²ô±â ¹öÆ°À» È°¼ºÈ­ ÇÔ.. ÀÌÀü ³»¿ª ¶«¿¡ ÀÖ´Â °Çµ¥ ¾ÆÁ÷ ÀÖ¾î¼­ ³ª»Ü °Ç ¾øÀ» µí?
+		{ // æ‰‘è¯€ç™»æ å‚ˆçœ‰ èƒ¶å†œèµ´ä¿Š å§åªš ä¹ç»° æºæ‰ æ»šç“¢é˜‘ åŠå·±æ‹³ çªƒ.. æå‚ˆ éƒ´å¼€ ä¸œä¿Š ä¹ç»° æ‰’å• é…’æµ ä¹ç»¢è¾‘ å”±å‰ æ‰’ ç»é˜‘ æ·€?
 			BTN_StarRewardPreviewAllClose->SetVisibility(ESlateVisibility::Visible);
 		}
 	}
 }
 
 void UB2UIChapterFrame::OnClickBtnStarRewardPreviewAllClose()
-{// ÆÄÆ® ¾È¿¡µµ ±â´ÉÀº ÀÖ´Âµ¥.. ÀÏ´Ü ÀÌ°Íµµ ³²°ÜµÎÀÚ.
+{// é¢‡é£˜ æ•‘ä¿Šæ¡£ æ‰ç“·ç¯® ä¹ç»°å•.. è€çªœ æå·´æ¡£ å·¢è´¥æ»´ç£Š.
 	if (UIP_StarRewardPreviewP.IsValid())
 	{
 		UIP_StarRewardPreviewP->CloseMe();
 	}
 	if (BTN_StarRewardPreviewAllClose.IsValid())
-	{ // ÀÌ°Ç »ç¿ëÇÑ ´ÙÀ½¿£ ´Ù½Ã µÚ·Î ¹°·¯³ª¼­ ´Ù¸¥ ¹öÆ°ÀÌ µ¿ÀÛÇÒ ¼ö ÀÖµµ·Ï.
+	{ // ææ‰’ è¤ä¾©èŒ„ ä¿ƒæ¾œæµš ä¿ƒçŸ« ç¬¬è‚º æ‹±çŸ¾å”±è¾‘ ä¿ƒå¼— æ»šç“¢æ æ‚¼ç´¯ä¸” è ä¹æ¡£åºŸ.
 		BTN_StarRewardPreviewAllClose->SetVisibility(ESlateVisibility::Hidden);
 	}
 }

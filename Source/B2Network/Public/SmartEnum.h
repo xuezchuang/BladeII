@@ -48,67 +48,76 @@ struct ignore_assign
 #define STRINGIZE(...) IDENTITY(MAP(STRINGIZE_SINGLE, __VA_ARGS__))
 
 
-#define ENUM(EnumName, ...)																	\
-struct EnumName																				\
-{																							\
-    enum _enumerated { __VA_ARGS__ };														\
-																							\
-    _enumerated     _value;																	\
-																							\
-    EnumName(_enumerated value) : _value(value) { }											\
-	EnumName(uint8 value) : _value(static_cast<_enumerated>(value)) { }						\
-	operator _enumerated() const { return _value; }											\
-																							\
-    const TCHAR* ToString() const															\
-    {																						\
-        for (size_t index = 0; index < _count; ++index)										\
-		{																					\
-            if (_values()[index] == _value)													\
-                return _names()[index];														\
-		}																					\
-																							\
-        return NULL;																		\
-    }																						\
-																							\
-    static const size_t _count = IDENTITY(COUNT(__VA_ARGS__));								\
-																							\
-    static const uint8* _values()															\
-    {																						\
-        static const uint8 values[] =														\
-            { IDENTITY(IGNORE_ASSIGN(__VA_ARGS__)) };										\
-        return values;																		\
-    }																						\
-																							\
-    static const TCHAR* const* _names()														\
-    {																						\
-        static const TCHAR* const    raw_names[] = { IDENTITY(STRINGIZE(__VA_ARGS__)) };	\
-																							\
-        static TCHAR*               processed_names[_count];								\
-        static bool                 initialized = false;									\
-																							\
-        if (!initialized)																	\
-		{																					\
-			for (size_t index = 0; index < _count; ++index)									\
-			{																				\
-                size_t length = std::wcscspn(raw_names[index], TEXT(" =\t\n\r"));			\
-																							\
-                processed_names[index] = new TCHAR[length + 1];								\
-																							\
-                std::wcsncpy(processed_names[index], raw_names[index], length);				\
-                processed_names[index][length] = '\0';										\
-            }																				\
-        }																					\
-																							\
-        return processed_names;																\
-    }																						\
-																							\
-	bool operator==(const EnumName& other)													\
-	{																						\
-		return this->_value == other._value;												\
-	}																						\
-};																							\
-																							\
-inline uint32 GetTypeHash(const EnumName& e)												\
-{																							\
-	return e._value;																		\
+#define ENUM(EnumName, ...)                                                                 \
+struct EnumName                                                                              \
+{                                                                                            \
+    enum _enumerated { __VA_ARGS__ };                                                        \
+                                                                                             \
+    _enumerated _value;                                                                      \
+                                                                                             \
+    EnumName(_enumerated value) : _value(value) {}                                           \
+    EnumName(uint8 value) : _value(static_cast<_enumerated>(value)) {}                       \
+    operator _enumerated() const { return _value; }                                          \
+                                                                                             \
+    const TCHAR* ToString() const                                                            \
+    {                                                                                        \
+        for (size_t index = 0; index < _count; ++index)                                      \
+        {                                                                                    \
+            if (_values()[index] == _value)                                                  \
+                return _names()[index];                                                      \
+        }                                                                                    \
+        return nullptr;                                                                      \
+    }                                                                                        \
+                                                                                             \
+    static const size_t _count = IDENTITY(COUNT(__VA_ARGS__));                               \
+                                                                                             \
+    static const uint8* _values()                                                            \
+    {                                                                                        \
+        static const uint8 values[] = { IDENTITY(IGNORE_ASSIGN(__VA_ARGS__)) };              \
+        return values;                                                                       \
+    }                                                                                        \
+                                                                                             \
+    static const TCHAR* const* _names()                                                      \
+    {                                                                                        \
+        static const TCHAR* const raw_names[] = { IDENTITY(STRINGIZE(__VA_ARGS__)) };        \
+        static TCHAR* processed_names[_count];                                               \
+        static bool initialized = false;                                                     \
+                                                                                             \
+        if (!initialized)                                                                    \
+        {                                                                                    \
+            /* 可选：如果需要线程安全，可改成 std::once_flag + call_once */                \
+            for (size_t index = 0; index < _count; ++index)                                  \
+            {                                                                                \
+                const TCHAR* src = raw_names[index];                                         \
+                size_t length = 0;                                                           \
+                while (src[length]                                                           \
+                    && src[length] != TEXT(' ')                                              \
+                    && src[length] != TEXT('=')                                              \
+                    && src[length] != TEXT('\t')                                             \
+                    && src[length] != TEXT('\n')                                             \
+                    && src[length] != TEXT('\r'))                                            \
+                {                                                                            \
+                    ++length;                                                                \
+                }                                                                            \
+                                                                                             \
+                TCHAR* dst = new TCHAR[length + 1];                                          \
+                if (length > 0)                                                              \
+                {                                                                            \
+                    FMemory::Memcpy(dst, src, length * sizeof(TCHAR));                       \
+                }                                                                            \
+                dst[length] = 0;                                                             \
+                processed_names[index] = dst;                                                \
+            }                                                                                \
+            initialized = true;                                                              \
+        }                                                                                    \
+        return processed_names;                                                              \
+    }                                                                                        \
+                                                                                             \
+    bool operator==(const EnumName& other) const { return _value == other._value; }          \
+    bool operator!=(const EnumName& other) const { return _value != other._value; }          \
+};                                                                                           \
+                                                                                             \
+inline uint32 GetTypeHash(const EnumName& e)                                                 \
+{                                                                                            \
+    return static_cast<uint32>(e._value);                                                    \
 }

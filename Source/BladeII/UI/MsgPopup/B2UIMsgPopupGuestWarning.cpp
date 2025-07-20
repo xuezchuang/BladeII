@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIMsgPopupGuestWarning.h"
 #include "B2UIManager.h"
 #include "B2AndroidBackManager.h"
@@ -67,7 +67,7 @@ void UB2UIMsgPopupGuestWarning::Init()
 
 	SubscribeEvents();
 
-	// kakao ·Î±×ÀÎ delegate µî·Ï
+	// kakao è‚ºå¼Šç‰¢ delegate æ®¿åºŸ
 	m_KakaoLinkDelegateCalled.AtomicSet(false);	
 #if PLATFORM_ANDROID 
 	FJavaWrapper::OnKakaoLinkCompletedDelegate.Remove(OnKakaoLinkHandler);
@@ -159,7 +159,7 @@ void UB2UIMsgPopupGuestWarning::KakaoPopupHidden()
 
 void UB2UIMsgPopupGuestWarning::OnClickBTN_Change()
 {
-	// ¼­¹ö ÂÊÀ¸·Î ¿ì¼± °ËÁõÀ» À§ÇÏ¿© º¸³¿
+	// è¾‘æ»š ç‡æ è‚º å¿«æ€¥ å…«åˆ˜é˜‘ å›°çªå’¯ ç„Šæ™¨
 	FString sIDPCode = TEXT("kakaocapri");
 	data_trader::Retailer::GetInstance().RequestKakaoAccountConversionPrepare(sIDPCode);
 }

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIFilterItemForge.h"
 #include "B2LobbyInventory.h"
 #include "B2LobbyGameMode.h"
@@ -36,14 +36,14 @@ void UB2UIFilterItemForge::CacheAssets()
 	GradeFilters.Empty();
 	GradeFilters.SetNum(FItemGradeInfo::MAX_NORMAL_ITEM_STAR_GRADE + ApplyAllAtStarGrade);
 
-	const int32 GradeFilterCount = VisibleMaxStarGrade - MinGradeFilter + 1+ ApplyAllAtStarGrade; // ex) 1ºÎÅÍ8±îÁö¸é MinGradeFilter = 1, VisibleMaxStarGrade = 8 ( 8 - 1 + 1 +1) 8°³+ ÀüÃ¤
+	const int32 GradeFilterCount = VisibleMaxStarGrade - MinGradeFilter + 1+ ApplyAllAtStarGrade; // ex) 1ä½•ç£8é³–ç˜¤æ MinGradeFilter = 1, VisibleMaxStarGrade = 8 ( 8 - 1 + 1 +1) 8ä¿º+ å‚ˆç›²
 
 	for (int32 i = 0; i < FItemGradeInfo::MAX_NORMAL_ITEM_STAR_GRADE + ApplyAllAtStarGrade; i++)
 	{
 		bool IsVisible = false;
 		auto TempGradeFilter = GetCachedWidget<UB2UIFilterCheckBox>(FName(*FString::Printf(TEXT("UIP_GradeFilterCheckBox_%d"), i)));
 
-		// ÃÖ´ë - ÃÖ¼ÒÇØ¼­ ¿øÇÏ´Â °¹¼ö¸¸ Ä³½Ì
+		// å¼¥æª - å¼¥å®¶ç§¦è¾‘ ç›”çªç»° è‚®èçˆ¶ æŸæ•™
 		if (i < GradeFilterCount)
 		{
 			GradeFilters[i] = TempGradeFilter;
@@ -144,7 +144,7 @@ void UB2UIFilterItemForge::GetSelectedFilters(TArray<EItemInvenType>& OutInvenTy
 			if (UIP_Accessory.IsValid() && UIP_Accessory->IsChecked())
 				OutInvenTypeFilter.Add(EItemInvenType::EIIVT_Accessory);
 
-			//¹«½¼ ¹ö±×ÀÎÁö ¸ô¶óµµ ¾ÆÀÌÅÛÀ» Consumables°¡ ¾Æ´Ñ End·Î ÀÎ½ÄÇØ¼­ End·Î Á¤ÇÔ.
+			//å…¬éƒŠ æ»šå¼Šç‰¢ç˜¤ éš”æ‰¼æ¡£ é…’æè¢é˜‘ Consumableså•Š é…’å›± Endè‚º ç‰¢ä¾¥ç§¦è¾‘ Endè‚º æ²¥çªƒ.
 			if (UIP_Item.IsValid() && UIP_Item->IsChecked())
 				OutInvenTypeFilter.Add(EItemInvenType::EIIVT_End);
 		}
@@ -181,7 +181,7 @@ void UB2UIFilterItemForge::GetSelectedFilters(TArray<EItemInvenType>& OutInvenTy
 		if (UIP_Accessory.IsValid() && UIP_Accessory->IsChecked())
 			OutInvenTypeFilter.Add(EItemInvenType::EIIVT_Accessory);
 
-		//¹«½¼ ¹ö±×ÀÎÁö ¸ô¶óµµ ¾ÆÀÌÅÛÀ» Consumables°¡ ¾Æ´Ñ End·Î ÀÎ½ÄÇØ¼­ End·Î Á¤ÇÔ.
+		//å…¬éƒŠ æ»šå¼Šç‰¢ç˜¤ éš”æ‰¼æ¡£ é…’æè¢é˜‘ Consumableså•Š é…’å›± Endè‚º ç‰¢ä¾¥ç§¦è¾‘ Endè‚º æ²¥çªƒ.
 		if (UIP_Item.IsValid() && UIP_Item->IsChecked())
 			OutInvenTypeFilter.Add(EItemInvenType::EIIVT_End);
 
@@ -400,7 +400,7 @@ void UB2UIFilterItemForge::InitData()
 }
 
 //////////////////////////////////////////////////////////////////////////
-//	Ã¼Å©¹Ú½ºÀÇ »óÅÂ°¡ ¹Ù²î¾úÀ»¶§ È£ÃâÇÏ´Â ÀÌº¥Æ®´Â ºí·çÇÁ¸°Æ®¿¡ ÇÏµåÄÚµù µÇ¾îÀÖÀ½.
+//	çœ‰å†œå† èƒ¶ç‹¼ æƒ‘æ€•å•Š å®˜å·®èŒé˜‘é”­ é¾‹å…çªç»° æäº¥é£˜ç»° å–‰é£æ©‡èµ´é£˜ä¿Š çªé›å†…çˆ¹ ç™»ç»¢ä¹æ¾œ.
 //////////////////////////////////////////////////////////////////////////
 void UB2UIFilterItemForge::AdjustCheckboxes()
 {
@@ -412,7 +412,7 @@ void UB2UIFilterItemForge::AdjustCheckboxes()
 
 	GetSelectedFilters(InvenTypeFilter, StarGradeFilter,true);
 
-	//¹«±â, ¹æ¾î±¸, Àå½Å±¸, ¾ÆÀÌÅÛ ¸ğµÎ ´­·ÈÀ» °æ¿ì
+	//å…¬æ‰, è§„ç»¢å¤‡, å˜è„šå¤‡, é…’æè¢ è‘›æ»´ å–˜å•¡é˜‘ ç‰ˆå¿«
 	if (InvenTypeFilter.Num() == 4)
 	{
 		UIP_All->SetIsChecked(true);
@@ -446,7 +446,7 @@ void UB2UIFilterItemForge::AdjustCheckboxes()
 		}
 	}
 
-	//¸ğµç º°ÀÌ ´­·ÈÀ» °æ¿ì
+	//è‘›ç”µ å–Šæ å–˜å•¡é˜‘ ç‰ˆå¿«
 	if (StarGradeFilter.Num() == VisibleMaxStarGrade)
 	{
 		for (int32 Ccount = 1; Ccount < FItemGradeInfo::MAX_NORMAL_ITEM_STAR_GRADE+ApplyAllAtStarGrade; ++Ccount)

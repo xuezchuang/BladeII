@@ -168,7 +168,7 @@ void UB2LobbyUI_RelicManagement::DestroySelf()
 	{
 		UIP_CommonHeader->UnbindDoc();
 		B2AndroidBackManager::GetInstance()->RemoveBackWidget(this);
-		UIP_CommonHeader->DestroySelf(NULL); // ¿©±â¼± UIManager ¿Í »ó°ü¾øÀÌ »ç¿ëÀ» ÇÏ°Ô µÇ¹Ç·Î NULL À» Àü´Ş.
+		UIP_CommonHeader->DestroySelf(NULL); // å’¯æ‰æ€¥ UIManager å®¢ æƒ‘åŒ…ç»æ è¤ä¾©é˜‘ çªéœ¸ ç™»éª¨è‚º NULL é˜‘ å‚ˆå´”.
 	}
 }
 
@@ -210,7 +210,7 @@ void UB2LobbyUI_RelicManagement::OnCreateRelicBoard()
 
 	X_RelicBoard->ClearChildren();
 
-	// TSoftObjectPtr ÀÇ ´Ü¼ø LoadSynchronous ´Â Async flush ¸¦ ÀÏÀ¸Å³ ¼ö ÀÖÁö¸¸ ÀÌ°É »ç¿ëÇÒ Å¸ÀÌ¹Ö¿¡ async flush ¸¦ °ÆÁ¤ÇÒ ÇÊ¿ä´Â ¾øÀ» °Í °°À¸¹Ç·Î ±×³É »ç¿ë.
+	// TSoftObjectPtr ç‹¼ çªœé‰´ LoadSynchronous ç»° Async flush ç”« è€æ æ‡¦ è ä¹ç˜¤çˆ¶ æå§ è¤ä¾©ä¸” é¸¥ææ€ªä¿Š async flush ç”« æŒæ²¥ä¸” é˜å¤¸ç»° ç»é˜‘ å·´ éæ éª¨è‚º å¼Šæˆ è¤ä¾©.
 	TSubclassOf<UB2UIUpgradeRelicBoard> LoadedWidgetClass = BoardWidgetArray[BoardWidgetIndex].LoadSynchronous();
 	UB2UIUpgradeRelicBoard* pUI = LoadedWidgetClass ? CreateWidget<UB2UIUpgradeRelicBoard>(GetWorld(), LoadedWidgetClass) : nullptr;
 
@@ -254,7 +254,7 @@ void UB2LobbyUI_RelicManagement::RequestEnchanceRelic()
 	{
 		int32 nHaveCount = UB2LobbyInventory::GetSharedConsumableAmountOfType(FItemRefIDHelper::ITEM_REF_ID_HERO_PIECE);
 
-		if (BladeIIGameImpl::GetClientDataStore().GetGoldAmount() < LevelInfo->nEnhance_Gold) // °ñµåºÎÁ·
+		if (BladeIIGameImpl::GetClientDataStore().GetGoldAmount() < LevelInfo->nEnhance_Gold) // æ¦œé›ä½•ç»ƒ
 		{
 			bIsAuto = false;
 			bIsAni = false;
@@ -293,7 +293,7 @@ void UB2LobbyUI_RelicManagement::RequestPromotionRelic()
 			bIsAuto = false;
 			bIsAni = false;
 			CheckButtonEnable();
-			ShortageMGR->PopupGoToShopForGoldMessage(); // °ñµåºÎÁ·
+			ShortageMGR->PopupGoToShopForGoldMessage(); // æ¦œé›ä½•ç»ƒ
 			return;
 		}
 		else if (nHaveCount < GradeInfo->nPromotion_BossPiece)
@@ -440,13 +440,13 @@ void UB2LobbyUI_RelicManagement::UpdateRelicInfo()
 	if (TB_RelicName.IsValid())
 		TB_RelicName->SetText(BladeIIGetLOCText(B2LOC_CAT_ANCIENTRELIC, "Relic_Type" + FString::FromInt(nRelicId)));
 
-	// ÇöÀç µî±ŞÇ¥½Ã
+	// æ³…çŠ æ®¿é­é’çŸ«
 	SetVisibleCurrentGrade(nRelicGrade);
 
 	if (TB_RelicLevel.IsValid())
 		TB_RelicLevel->SetText(FText::FromString("Lv." + FString::FromInt(nRelicLevel)));
 
-	/// ´©Àû Áõ°¡ ´É·ÂÄ¡ ¼¼ÆÃ
+	/// ç©¿åˆ© åˆ˜å•Š ç“·ä»¿æ‘¹ æŠ€æ³¼
 	if (TB_TotalGradeAtt.IsValid())
 		TB_TotalGradeAtt->SetText(FText::FromString("+" + FString::FromInt(GradeOptionValue.IsValidIndex(0) ? GradeOptionValue[0] : 0.0f)));
 	if (TB_TotalGradeDef.IsValid())
@@ -455,7 +455,7 @@ void UB2LobbyUI_RelicManagement::UpdateRelicInfo()
 		TB_TotalGradeHP->SetText(FText::FromString("+" + FString::FromInt(GradeOptionValue.IsValidIndex(2) ? GradeOptionValue[2] : 0.0f)));
 
 
-	// ÃÑ Áõ°¡ ´É·ÂÄ¡ ÅØ½ºÆ®
+	// é†š åˆ˜å•Š ç“·ä»¿æ‘¹ å’†èƒ¶é£˜
 	if (TB_TotalAttText.IsValid())
 		TB_TotalAttText->SetText(BladeIIGetLOCText(B2LOC_CAT_ANCIENTRELIC, FString::Printf(TEXT("Option_%d_%d"), nRelicId, 1)));
 	if (TB_TotalDefText.IsValid())
@@ -471,14 +471,14 @@ void UB2LobbyUI_RelicManagement::UpdateRelicInfo()
 	
 	if (!IsMax)
 	{
-		// µî±Ş¾÷ÆĞ³ÎÀÇ ´ÙÀ½µî±Ş Ç¥½Ã
+		// æ®¿é­è¯€è©æ¾„ç‹¼ ä¿ƒæ¾œæ®¿é­ é’çŸ«
 		if (p_NextGrade.IsValid())
 		{
 			int32 NextGrade = nRelicGrade + 1;
 			p_NextGrade->SetStarGrade(NextGrade);
 		}
 
-		// Áõ°¡ ¿¹»ó ´É·ÂÄ¡ ÅØ½ºÆ®
+		// åˆ˜å•Š æŠ—æƒ‘ ç“·ä»¿æ‘¹ å’†èƒ¶é£˜
 		if (TB_NextAttText.IsValid())
 		{
 			if (IsGradeUp)
@@ -540,7 +540,7 @@ void UB2LobbyUI_RelicManagement::UpdateRelicInfo()
 		}
 
 	
-		// Àç·á¾ÆÀÌÅÛ Á¤º¸ ¼¼ÆÃ
+		// çŠä¸°é…’æè¢ æ²¥ç„Š æŠ€æ³¼
 		int32 nHaveCount = 0;
 		int32 nNeedCount = 0;
 		int32 ItemRefID = 0;
@@ -737,7 +737,7 @@ void UB2LobbyUI_RelicManagement::CheckButtonEnable()
 		BTN_Close->SetIsEnabled(bIsAble);
 	
 	if (bIsAni == true && bIsAuto == false)
-	{//°­È­½Ã ¹é¹öÆ° ¸·À½
+	{//ç¢æ‹³çŸ« å½’æ»šç“¢ é˜œæ¾œ
 		SetClose(false);
 	}
 	else

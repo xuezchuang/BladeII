@@ -1,7 +1,8 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIHallOfFameSkipButton.h"
 #include "B2AndroidBackManager.h"
+#include "Event.h"
 
 void UB2UIHallOfFameSkipButton::SetActive(bool InActive)
 {

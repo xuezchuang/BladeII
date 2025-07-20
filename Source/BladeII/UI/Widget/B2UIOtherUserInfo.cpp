@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIOtherUserInfo.h"
 #include "B2UIManager.h"
 
@@ -234,16 +234,16 @@ void UB2UIOtherUserInfo::ItemSet(FB2ModPlayerInfo& UserInfo, EPCClass PCClass)
 void UB2UIOtherUserInfo::TotalUpdate(EPCClass PCClass)
 {
 	SelectPCClass = PCClass;
-	LobbyHeroFindAccountClass<EPCClass>::GetInstance().Signal(PCClass);			//Ä³¸¯ÅÍ¸Ş½¬ ¹Ù²ãÁÖ±â
+	LobbyHeroFindAccountClass<EPCClass>::GetInstance().Signal(PCClass);			//æŸè…ç£çš‹æµ† å®˜å±‚æ—æ‰
 
-	UpdateCharName(PCClass);								//¹öÆ°¿¡ Á÷¾÷ ÀÌ¸§µé
+	UpdateCharName(PCClass);								//æ»šç“¢ä¿Š æµè¯€ ææŠšç”¸
 	auto& UserInfo = BladeIIGameImpl::GetClientDataStore().GetOtherUserInfo();
 
-	Lobby_CharStatDetailBP->UpdateStats(PCClass, true);	//»ó¼¼Á¤º¸
+	Lobby_CharStatDetailBP->UpdateStats(PCClass, true);	//æƒ‘æŠ€æ²¥ç„Š
 
-	SetBasestats(UserInfo, PCClass);						//±âº»°ø¹æ ·¹º§µî
-	SetUserNickName(FText::FromString(UserInfo.GetUserNickName()));	//´Ğ³×ÀÓ
-	ItemSet(UserInfo, PCClass);								//¾ÆÀÌÅÛ¼¼ÆÃ
+	SetBasestats(UserInfo, PCClass);						//æ‰å¤¯å‚è§„ é¥­éª‡æ®¿
+	SetUserNickName(FText::FromString(UserInfo.GetUserNickName()));	//è‘±åŒ™çƒ™
+	ItemSet(UserInfo, PCClass);								//é…’æè¢æŠ€æ³¼
 
 	SetExp(UserInfo, PCClass);
 	FriendAddState();
@@ -282,7 +282,7 @@ void UB2UIOtherUserInfo::OnDeliveryCloseItemPopup(ELobbySubPopups InPopupEnum)
 
 void UB2UIOtherUserInfo::OnClickGladiator()
 {
-	if (SelectPCClass == EPCClass::EPC_Gladiator) return; //[@AKI, 171122][B2BUG-836]Å¸ À¯ÀúÀÇ Ä³¸¯ÅÍ »ó¼¼º¸±â¿¡¼­ Ä³¸¯ÅÍ µîÀå ÀÌÆåÆ® ¹İº¹ÇØ¼­ ³ª¿À´Â ¿À·ù ¼öÁ¤
+	if (SelectPCClass == EPCClass::EPC_Gladiator) return; //[@AKI, 171122][B2BUG-836]é¸¥ èœ¡å†ç‹¼ æŸè…ç£ æƒ‘æŠ€ç„Šæ‰ä¿Šè¾‘ æŸè…ç£ æ®¿å˜ ææ£‹é£˜ é¦†æ±—ç§¦è¾‘ å”±å·ç»° å·å¹… èæ²¥
 
 	CharSelectUpdateEvent(EPCClass::EPC_Gladiator);
 	TotalUpdate(EPCClass::EPC_Gladiator);
@@ -290,7 +290,7 @@ void UB2UIOtherUserInfo::OnClickGladiator()
 
 void UB2UIOtherUserInfo::OnClickAssassin()
 {
-	if (SelectPCClass == EPCClass::EPC_Assassin) return; //[@AKI, 171122][B2BUG-836]Å¸ À¯ÀúÀÇ Ä³¸¯ÅÍ »ó¼¼º¸±â¿¡¼­ Ä³¸¯ÅÍ µîÀå ÀÌÆåÆ® ¹İº¹ÇØ¼­ ³ª¿À´Â ¿À·ù ¼öÁ¤
+	if (SelectPCClass == EPCClass::EPC_Assassin) return; //[@AKI, 171122][B2BUG-836]é¸¥ èœ¡å†ç‹¼ æŸè…ç£ æƒ‘æŠ€ç„Šæ‰ä¿Šè¾‘ æŸè…ç£ æ®¿å˜ ææ£‹é£˜ é¦†æ±—ç§¦è¾‘ å”±å·ç»° å·å¹… èæ²¥
 
 	CharSelectUpdateEvent(EPCClass::EPC_Assassin);
 	TotalUpdate(EPCClass::EPC_Assassin);
@@ -298,7 +298,7 @@ void UB2UIOtherUserInfo::OnClickAssassin()
 
 void UB2UIOtherUserInfo::OnClickWizard()
 {
-	if (SelectPCClass == EPCClass::EPC_Wizard) return;//[@AKI, 171122][B2BUG-836]Å¸ À¯ÀúÀÇ Ä³¸¯ÅÍ »ó¼¼º¸±â¿¡¼­ Ä³¸¯ÅÍ µîÀå ÀÌÆåÆ® ¹İº¹ÇØ¼­ ³ª¿À´Â ¿À·ù ¼öÁ¤
+	if (SelectPCClass == EPCClass::EPC_Wizard) return;//[@AKI, 171122][B2BUG-836]é¸¥ èœ¡å†ç‹¼ æŸè…ç£ æƒ‘æŠ€ç„Šæ‰ä¿Šè¾‘ æŸè…ç£ æ®¿å˜ ææ£‹é£˜ é¦†æ±—ç§¦è¾‘ å”±å·ç»° å·å¹… èæ²¥
 
 	CharSelectUpdateEvent(EPCClass::EPC_Wizard);
 	TotalUpdate(EPCClass::EPC_Wizard);
@@ -306,7 +306,7 @@ void UB2UIOtherUserInfo::OnClickWizard()
 
 void UB2UIOtherUserInfo::OnClickFightern()
 {
-	if (SelectPCClass == EPCClass::EPC_Fighter) return;//[@AKI, 171122][B2BUG-836]Å¸ À¯ÀúÀÇ Ä³¸¯ÅÍ »ó¼¼º¸±â¿¡¼­ Ä³¸¯ÅÍ µîÀå ÀÌÆåÆ® ¹İº¹ÇØ¼­ ³ª¿À´Â ¿À·ù ¼öÁ¤
+	if (SelectPCClass == EPCClass::EPC_Fighter) return;//[@AKI, 171122][B2BUG-836]é¸¥ èœ¡å†ç‹¼ æŸè…ç£ æƒ‘æŠ€ç„Šæ‰ä¿Šè¾‘ æŸè…ç£ æ®¿å˜ ææ£‹é£˜ é¦†æ±—ç§¦è¾‘ å”±å·ç»° å·å¹… èæ²¥
 
 	CharSelectUpdateEvent(EPCClass::EPC_Fighter);
 	TotalUpdate(EPCClass::EPC_Fighter);
@@ -346,12 +346,12 @@ void UB2UIOtherUserInfo::OnClickFriendAdd()
 
 	if (FriendDoc->GetFriendSendInfo(AccountId))
 	{
-		DevShowError(TEXT("5503"));			//ÀÌ¹ÌÄ£±¸½ÅÃ»À» ÇßÀ»¶§
+		DevShowError(TEXT("5503"));			//æå›ºæ¨¡å¤‡è„šæ²¡é˜‘ æ²é˜‘é”­
 		return;
 	}
 	else if (FriendDoc->GetFriendSendListInfo().Num() >= BladeIIGameImpl::GetClientDataStore().GetMaxSendAskFriend())
 	{
-		DevShowError(TEXT("5504"));			//º¸³½Ä£±¸°¡ ¿À¹ö ÇÒ°æ¿ì
+		DevShowError(TEXT("5504"));			//ç„Šè¾°æ¨¡å¤‡å•Š å·æ»š ä¸”ç‰ˆå¿«
 		return;
 	}
 

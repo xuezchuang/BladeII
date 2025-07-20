@@ -23,12 +23,12 @@ void UB2LobbyUI_ExtendInventory::StartFromLobby(class UB2UIManager_Lobby* InUIMa
 	
 	check(CachedLobbyGM);
 	UB2LobbyInventory* LobbyInven = CachedLobbyGM->GetLobbyInventory();
-	check(LobbyInven); // ¾øÀ¸¸é ¾ÈµÊ ¤»
+	check(LobbyInven); // ç»æ æ æ•‘å‡³ ã›
 	
 	CurrSelectedPCClass = CachedLobbyGM->GetHeroMgmtModePCClass();
 	CurrSelectedInvenType = LobbyInven->GetMainInvenViewCurrentTab();
 
-	//±¸Á¶°¡ ´Ù¸¥ À§Á¬...
+	//å¤‡ç‚¼å•Š ä¿ƒå¼— å›°è¿...
 	CalculateData();
 	BindDelegates();
 	UpdateStaticText();
@@ -138,19 +138,19 @@ void UB2LobbyUI_ExtendInventory::UpdateWidgets(int32 NewExtendCount)
 
 	if (BTN_Extend.IsValid())
 	{
-		BTN_Extend->SetIsEnabled(!SlotSliderLogic.IsAlreadyMaxSlotCount()); // »ç½Ç»ó Disable µÇ´Â »óÈ²¿¡¼­ ÀÌ°Ô ¿­¸®Áö´Â ¾Ê¾Æ¾ß ÇÔ.
+		BTN_Extend->SetIsEnabled(!SlotSliderLogic.IsAlreadyMaxSlotCount()); // è¤è§’æƒ‘ Disable ç™»ç»° æƒ‘ç‚”ä¿Šè¾‘ æéœ¸ å‡¯åºœç˜¤ç»° è‡¼é…’å…· çªƒ.
 	}
 	if (BTN_MaxExtend.IsValid())
 	{
-		BTN_MaxExtend->SetIsEnabled(PostExtendSlotCount < SlotSliderLogic.GetMaxAllowedSlotCount()); // »ç½Ç»ó Disable µÇ´Â »óÈ²¿¡¼­ ÀÌ°Ô ¿­¸®Áö´Â ¾Ê¾Æ¾ß ÇÔ.
+		BTN_MaxExtend->SetIsEnabled(PostExtendSlotCount < SlotSliderLogic.GetMaxAllowedSlotCount()); // è¤è§’æƒ‘ Disable ç™»ç»° æƒ‘ç‚”ä¿Šè¾‘ æéœ¸ å‡¯åºœç˜¤ç»° è‡¼é…’å…· çªƒ.
 	}
 }
 
 void UB2LobbyUI_ExtendInventory::CalculateData()
 {
-	if (CachedLobbyGM && CachedLobbyGM->GetCurrentLobbyScene() == ELobbyScene::ELobbyScene_HeroManagement) // Àåºñ¿¡¼­¸¸ Ã¼Å© ÇÏ¸é µÉµí...?
+	if (CachedLobbyGM && CachedLobbyGM->GetCurrentLobbyScene() == ELobbyScene::ELobbyScene_HeroManagement) // å˜åšä¿Šè¾‘çˆ¶ çœ‰å†œ çªæ çªæ·€...?
 	{
-		if (CurrSelectedPCClass != EPCClass::EPC_End && CurrSelectedInvenType != EItemInvenType::EIIVT_End && CurrSelectedInvenType != EItemInvenType::EIIVT_Consumables) // ¼Ò¸ğÇ° ÅÇ¿¡¼­´Â ÀÌ ¸Ş´º°¡ ¿­·Á¼± ¾ÈµÈ´Ù.
+		if (CurrSelectedPCClass != EPCClass::EPC_End && CurrSelectedInvenType != EItemInvenType::EIIVT_End && CurrSelectedInvenType != EItemInvenType::EIIVT_Consumables) // å®¶è‘›å‰ å¾˜ä¿Šè¾‘ç»° æ çš‹æ˜¥å•Š å‡¯å¦¨æ€¥ æ•‘ç­‰ä¿ƒ.
 		{
 			int32 CurrentSlotCount, SlotCountPerSingleExtend, MaxAllowedSlotCount;
 			CurrentSlotCount = UB2LobbyInventory::GetItemContainerSize(CurrSelectedInvenType, CurrSelectedPCClass);
@@ -214,11 +214,11 @@ void UB2LobbyUI_ExtendInventory::OnClickBtnClose()
 
 void UB2LobbyUI_ExtendInventory::OnClickBtnExtend()
 {
-	UB2LobbyInventory::ReqForExtendInventory(CurrSelectedPCClass, CurrSelectedInvenType, GetRealExtendCount()); // ¾È¿¡¼­ Ãß°¡ ¿¹¿ÜÃ³¸®¸¦ ÇÒ °Í..
+	UB2LobbyInventory::ReqForExtendInventory(CurrSelectedPCClass, CurrSelectedInvenType, GetRealExtendCount()); // æ•‘ä¿Šè¾‘ çœ å•Š æŠ—å¯‡è´¸åºœç”« ä¸” å·´..
 
-	CloseMe(); // À¯ÁöÇÏ´Â °É ¿øÇÑ´Ù¸é ÀÌ°Å ´ë½Å UpdateWidgets ¸¦.
+	CloseMe(); // èœ¡ç˜¤çªç»° å§ ç›”èŒ„ä¿ƒæ æèŠ­ æªè„š UpdateWidgets ç”«.
 
-	//// ¿©±â¼­ ÇÊ¿äÇÑ °Ç ²¿¶ô MaxPossibleExtendNum ¤»
+	//// å’¯æ‰è¾‘ é˜å¤¸èŒ„ æ‰’ éƒ¨é MaxPossibleExtendNum ã›
 	//int32 CurrentSlotNum = 0, PostExtendSlotNum = 0, SingleExtendCost = 0, MaxAllowedSlotNum = 0, MaxPossibleExtendNum = 0, MaxExtendCost = 0;
 	//GetAllNecessaryData(CurrentSlotNum, PostExtendSlotNum, SingleExtendCost, MaxAllowedSlotNum, MaxPossibleExtendNum, MaxExtendCost);
 

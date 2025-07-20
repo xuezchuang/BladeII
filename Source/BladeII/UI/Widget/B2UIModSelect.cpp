@@ -1,4 +1,4 @@
-#include "B2UIModSelect.h"
+ï»¿#include "B2UIModSelect.h"
 #include "B2Button.h"
 
 #include "B2UIChallengePopUp.h"
@@ -10,7 +10,7 @@
 UB2UIModSelect::UB2UIModSelect(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
-	bExternalDynamicSetupReady = false; // ±Ã±ØÀûÀ¸·Î´Â true ·Î µÇ¾î¾ß.
+	bExternalDynamicSetupReady = false; // æ³µå¿…åˆ©æ è‚ºç»° true è‚º ç™»ç»¢å…·.
 }
 
 void UB2UIModSelect::Init()
@@ -27,11 +27,11 @@ void UB2UIModSelect::CacheAssets()
 	GET_SLOT(UImage, IMG_BG);
 	if (bExternalDynamicSetupReady)
 	{
-		IMG_BG->SetVisibility(ESlateVisibility::Collapsed); // ±Ã±ØÀûÀ¸·Î ÀÌ°Ç Á¦°Å°¡ µÇ¾î¾ß ÇÔ.
+		IMG_BG->SetVisibility(ESlateVisibility::Collapsed); // æ³µå¿…åˆ©æ è‚º ææ‰’ åŠ›èŠ­å•Š ç™»ç»¢å…· çªƒ.
 	}
 
 	//
-	// Locked ¿©ºÎ´Â ÃßÈÄ ½Ã½ºÅÛÀûÀ¸·Î µé¾î°¡¾ß ÇÔ.
+	// Locked å’¯ä½•ç»° çœ é¥¶ çŸ«èƒ¶è¢åˆ©æ è‚º ç”¸ç»¢å•Šå…· çªƒ.
 	//
 
 	GET_SLOT(UB2UISingleModSelect, UIP_ModSelect_PVPP);
@@ -182,7 +182,7 @@ void UB2UIModSelect::OnClickBtnDayDungeon()
 
 void UB2UIModSelect::OnClickBtnHeroTop()
 {
-	// ¹Ù·Î¿¬´Ù. ÇÁ·ÎÅäÄİ »ı±â¸é ¿äÃ»ÇÒ¼öµµ..
+	// å®˜è‚ºæ¥·ä¿ƒ. æ©‡è‚ºé…å¦® ç§¯æ‰æ å¤¸æ²¡ä¸”èæ¡£..
 	//UB2UIManager::GetInstance()->ChangeUIScene(EUIScene::HeroTowerMain);
 
 	//data_trader::Retailer::GetInstance().RequestGetHeroTower();
@@ -220,7 +220,7 @@ void UB2UIModSelect::UpdateModUIPosition(const TArray<FVector2D>& Positions2D)
 		return;
 	}
 
-	// Position2D ¹è¿­ ÀÎµ¦½º´Â ELobbyModSceneElem ¼ø¼­¿¡ ¸Âµµ·Ï.
+	// Position2D ç¡…å‡¯ ç‰¢éƒ¸èƒ¶ç»° ELobbyModSceneElem é‰´è¾‘ä¿Š å˜æ¡£åºŸ.
 
 	checkSlow(Positions2D.Num() == (int32)ELobbyModSceneElem::LMODIDX_End);
 
@@ -228,12 +228,12 @@ void UB2UIModSelect::UpdateModUIPosition(const TArray<FVector2D>& Positions2D)
 	{
 		ELobbyModSceneElem ThisModEnum = static_cast<ELobbyModSceneElem>(PosIdx);
 		UB2UISingleModSelect* ThisModWidget = GetModSelectWidget(ThisModEnum);
-		// ÀüÃ¼ È­¸é Å©±âÀÇ CanvasPanel ¾È¿¡ ¹èÄ¡°¡ µÇ¾î ÀÖ¾î¾ß ÇÔ.
+		// å‚ˆçœ‰ æ‹³æ å†œæ‰ç‹¼ CanvasPanel æ•‘ä¿Š ç¡…æ‘¹å•Š ç™»ç»¢ ä¹ç»¢å…· çªƒ.
 		UCanvasPanelSlot* ThisModWidgetSlot = ThisModWidget ? Cast<UCanvasPanelSlot>(ThisModWidget->Slot) : NULL;
 		if (ThisModWidgetSlot)
 		{
 			const FVector2D& ThisPos = Positions2D[PosIdx];
-			// ¼¾ÅÍ ÁÂÇ¥¸¦ »ç¿ëÇÏµµ·Ï offset Àû¿ë
+			// å­£ç£ è°…é’ç”« è¤ä¾©çªæ¡£åºŸ offset åˆ©ä¾©
 			FVector2D PlaceOffset = -1.0f * ThisModWidgetSlot->GetSize();
 			PlaceOffset *= 0.5f;
 			ThisModWidgetSlot->SetPosition(ThisPos + PlaceOffset);
@@ -242,7 +242,7 @@ void UB2UIModSelect::UpdateModUIPosition(const TArray<FVector2D>& Positions2D)
 }
 
 UB2UISingleModSelect* UB2UIModSelect::GetModSelectWidget(ELobbyModSceneElem InModeScene)
-{ // ÃßÈÄ ÀÌ°Ç Button ÀÌ ¾Æ´Ñ WidgetPart ¸¦ ¸®ÅÏÇÏµµ·Ï ¹Ù²ğ °Í.
+{ // çœ é¥¶ ææ‰’ Button æ é…’å›± WidgetPart ç”« åºœç•”çªæ¡£åºŸ å®˜æ‹† å·´.
 	switch (InModeScene)
 	{
 	case ELobbyModSceneElem::LMODIDX_PVP: return UIP_ModSelect_PVPP.Get();

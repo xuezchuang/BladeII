@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIDimensionMain.h"
 #include "B2UIManager.h"
 #include "B2UIChapterStarRewardBox.h"
@@ -93,7 +93,7 @@ void UB2UIDimensionMain::Init()
 	UpdateMyRankDetail();
 	UpdateDailyCount();
 
-	// Á¤»êº¸»ó
+	// æ²¥é­‚ç„Šæƒ‘
 	ShowWeekReward();
 }
 
@@ -208,14 +208,14 @@ void UB2UIDimensionMain::OnClickPrevEnd()
 
 void UB2UIDimensionMain::OnClickBtnStart()
 {
-	// Á¡°Ë Á¤»ê Ã¼Å©
+	// ç—¢å…« æ²¥é­‚ çœ‰å†œ
 	if (CheckContentsModeState(b2network::B2ContentsMode::DIMENSION))
 		return;
 
 	auto DocDimension = UB2UIDocHelper::GetDocDimension();
 	if (DocDimension)
 	{
-		// Æ¼ÄÏºÎÁ·
+		// èå—ä½•ç»ƒ
 		if (DocDimension->GetDimensionTicket() < 1)
 		{
 			UB2UIManager::GetInstance()->OpenMsgPopup<UB2UIMsgPopupSimple>(EUIMsgPopup::Simple,
@@ -230,7 +230,7 @@ void UB2UIDimensionMain::OnClickBtnStart()
 			return;
 		}
 
-		// ÀÎº¥Åä¸® Ç®
+		// ç‰¢äº¥é…åºœ é’±
 		if (BladeIIGameImpl::GetClientDataStore().GetLocalCharacterData().IsFullTotemInventory())
 		{
 			UB2UIManager::GetInstance()->OpenMsgPopup<UB2UIMsgPopupSimple>(EUIMsgPopup::Simple,
@@ -322,7 +322,7 @@ void UB2UIDimensionMain::UpdateDiffReward()
 		FB2DimensionInfo* CurrentInfo = BladeIIGameImpl::GetTotemDataStore().GetDimensionInfo(CurrentDiff);
 		if (CurrentInfo)
 		{
-			// ÇÑ°³´Â °íÁ¤ µå¶ø ±Õ¿­ Á¶°¢
+			// èŒ„ä¿ºç»° ç»Šæ²¥ é›è€Œ é—­å‡¯ ç‚¼é˜¿
 			auto* CreatedWidget = CreateWidget<UB2UIRewardIcon>(GetOwningPlayer(), RewardSlot);
 			if (CreatedWidget != NULL)
 			{
@@ -330,7 +330,7 @@ void UB2UIDimensionMain::UpdateDiffReward()
 				CreatedWidget->UpdateRewardIconByItemIndex(CurrentInfo->Fixed_drop_item_id1, FText::AsNumber(CurrentInfo->Fixed_drop_count1));
 				List_Reward->AddChild(CreatedWidget);
 			}
-			// ´Ù¸¥ÇÑ°³´Â ÅäÅÛ
+			// ä¿ƒå¼—èŒ„ä¿ºç»° é…è¢
 			auto* CreatedWidget2 = CreateWidget<UB2UIRewardIcon>(GetOwningPlayer(), RewardSlot);
 			if (CreatedWidget2 != NULL)
 			{

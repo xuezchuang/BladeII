@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 //#include "BladeII.h"
 #include "BladeIIInteractiveActor.h"
 #include "CommonStruct.h"

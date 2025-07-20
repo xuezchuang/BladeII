@@ -1,4 +1,4 @@
-//#include "BladeII.h"
+ï»¿//#include "BladeII.h"
 #include "B2AsyncGameMode.h"
 
 namespace AsyncMatchState
@@ -6,7 +6,7 @@ namespace AsyncMatchState
 	const FName RequestMatchMaking = FName(TEXT("RequestMatchMaking"));
 	const FName MatchOtherPlayer = FName(TEXT("MatchOtherPlayer"));
 	const FName StartResult = FName(TEXT("StartResult"));
-	const FName FinishBattle = FName(TEXT("FinishBattle"));	//´õÀÌ»ó ÀüÅõ ÇÒ¼ö ¾ø´Â »óÅÂ(°á°ú°¡ ³ª¿Â »óÈ²)¿Í °á°úÃâ·ÂÃ¢ »çÀÌÀÇ State°¡ ¾ø¾î¼­ Ãß°¡
+	const FName FinishBattle = FName(TEXT("FinishBattle"));	//æ­¹ææƒ‘ å‚ˆæ§ ä¸”è ç»ç»° æƒ‘æ€•(æ¬è‹å•Š å”±æŸ¯ æƒ‘ç‚”)å®¢ æ¬è‹å…ä»¿èŠ’ è¤æç‹¼ Stateå•Š ç»ç»¢è¾‘ çœ å•Š
 }
 
 AB2AsyncGameMode::AB2AsyncGameMode(const FObjectInitializer& ObjectInitializer)

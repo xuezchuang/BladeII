@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIGoodsShortcutParts.h"
 #include "B2UIManager.h"
@@ -39,7 +39,7 @@ void UB2UIGoodsShortcutParts::BindDelegates()
 
 void UB2UIGoodsShortcutParts::BindData()
 {
-	//µ¥ÀÌÅÍ Å×ÀÌºí ¸¸µç ÈÄ¿¡ ³ÖÀ» µ¥ÀÌÅÍ
+	//å•æç£ æŠ›æå–‰ çˆ¶ç”µ é¥¶ä¿Š æŒé˜‘ å•æç£
 	if (m_InfoStringID != 0 && TB_AddComment.IsValid())
 		TB_AddComment->SetText(BladeIIGetLOCText(B2LOC_CAT_TOOLTIPTEXT, *(FString::FromInt(m_InfoStringID))));
 }
@@ -83,7 +83,7 @@ void UB2UIGoodsShortcutParts::OnClickBtnMove()
 {
 	//FB2UILinkManager::LinkUIScene(m_LinkScene, m_Optional1, m_Optional2);
 
-	////»õ·Î¿î ¸ŞÀÎ UIÂÊ °ü·Ã ÀÛ¾÷¿¡ ´ëÇÑ ¼÷´Şµµ°¡ ³·¾Æ¼­ ¾ÕÀ¸·Î ¹Ù·Î°¡±â ¾ÀÀ» Ãß°¡ÇÒ¶§ ÀÌ ºÎºĞ¿¡µµ Ãß°¡ÇØ¾ß ÇÑ´Ù.
+	////è´§è‚ºæ¬¾ çš‹ç‰¢ UIç‡ åŒ…è®¿ ç´¯è¯€ä¿Š æªèŒ„ æ§›å´”æ¡£å•Š æ’¤é…’è¾‘ èŠæ è‚º å®˜è‚ºå•Šæ‰ çº é˜‘ çœ å•Šä¸”é”­ æ ä½•ç›’ä¿Šæ¡£ çœ å•Šç§¦å…· èŒ„ä¿ƒ.
 	//if (m_LinkScene == EUIScene::ItemForge)
 	//{
 	//	LobbyChangeSceneByUISceneClass<EUIScene>::GetInstance().Signal(EUIScene::ItemForge);

@@ -1,4 +1,4 @@
-#include "B2UISelectiveLotteryConsumeItemResultPopup.h"
+﻿#include "B2UISelectiveLotteryConsumeItemResultPopup.h"
 #include "B2UISelectiveLotteryPopUp.h"
 
 void UB2UISelectiveLotteryConsumeItemResultPopup::OpenPopup(int32 ItemRefId, int32 Num)

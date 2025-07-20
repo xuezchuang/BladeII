@@ -1,8 +1,9 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Fill out your copyright notice in the Description page of Project Settings.
 #pragma once
 
 #include "B2UIWidgetBase.h"
 #include "B2UIFormationSelectButtonSlot.h"
+#include "../B2RichTextBlock.h"
 #include "B2UIFormationSelectButton.generated.h"
 
 
@@ -23,10 +24,10 @@ public:
 	void SetOffSlotState();
 
 	UFUNCTION(BlueprintImplementableEvent)
-		void OnClickState();
+	void OnClickState();
 
 	UFUNCTION(BlueprintImplementableEvent)
-		void OffClickState();
+	void OffClickState();
 
 private:
 	TWeakObjectPtr<class UB2UIFormationSelectButtonSlot> UIP_FormationSelectButton;
@@ -34,7 +35,7 @@ private:
 
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BladeII")
-		TArray<UMaterialInterface*>		FormationOnIcon;
+	TArray<UMaterialInterface*>		FormationOnIcon;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BladeII")
-		TArray<UMaterialInterface*>		FormationOffIcon;
+	TArray<UMaterialInterface*>		FormationOffIcon;
 };

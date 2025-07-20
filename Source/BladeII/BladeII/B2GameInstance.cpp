@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2GameInstance.h"
 //#include "BladeII.h"
 #include "Event.h"
@@ -57,7 +57,7 @@ void UB2GameInstance::FB2Time::SetUTCNow(const int64& InTimeMillionSec)
 	}
 }
 
-// ¼­¹ö ½Ã°£À» ¸ÅÆ½ ¹Ş´Â°Ô ¾Æ´Ï¶ó ¾à4ÃÊ ÁÖ±â·Î ¹Ş±â ¶§¹®¿¡ ±× »çÀÌÀÇ ½Ã°£Àº Å¬¶ó¿¡¼­ Ã¤¿öÁØ´Ù.
+// è¾‘æ»š çŸ«åŸƒé˜‘ æ¦‚å¹³ ç½ç»°éœ¸ é…’èªæ‰¼ è·4æª¬ æ—æ‰è‚º ç½æ‰ é”­å·©ä¿Š å¼Š è¤æç‹¼ çŸ«åŸƒç¯® åŠªæ‰¼ä¿Šè¾‘ ç›²å†µéœ–ä¿ƒ.
 FDateTime UB2GameInstance::FB2Time::GetUTCNow()
 {
 	if (!RecieveServerTime)
@@ -94,7 +94,7 @@ FDateTime  UB2GameInstance::FB2Time::GetUtcToLocalTime(FDateTime InDateTime)
 
 int32 UB2GameInstance::FB2Time::ConvertToSvrDayOfWeek()
 {
-	FDateTime DateNow = GetKoreaTimeNow();//GetLocalNow();  //[TO-DO][@AKI 180603]ÀÏ´Ü ÇÑ±¹ ºôµå¸¸ »ı°¢ÇØ¼­ KoreaTimeÀ¸·Î º¯°æ. ÃßÈÄ ±Û·Î¹ú ¼­ºñ½º¶§´Â UTC·Î º¯°æÇØ¾ßµÊ.
+	FDateTime DateNow = GetKoreaTimeNow();//GetLocalNow();  //[TO-DO][@AKI 180603]è€çªœ èŒ„æƒ« å‘¼é›çˆ¶ ç§¯é˜¿ç§¦è¾‘ KoreaTimeæ è‚º å‡½ç‰ˆ. çœ é¥¶ è‡‚è‚ºå›½ è¾‘åšèƒ¶é”­ç»° UTCè‚º å‡½ç‰ˆç§¦å…·å‡³.
 	return ConvertToDayOfWeek(DateNow);
 }
 
@@ -102,7 +102,7 @@ int32 UB2GameInstance::FB2Time::ConvertToDayOfWeek(FDateTime InDateTime)
 {
 	int32 nLocalDayofweek = static_cast<int32>(InDateTime.GetDayOfWeek());
 	int32 nConvertDayOfWeek = nLocalDayofweek + 1; // Monday to Sunday
-	int32 nConvertBaseInt = nConvertDayOfWeek % 7 + 1; // ¼­¹ö´Â 1·Î ½ÃÀÛ. Engine EnumÀº 0
+	int32 nConvertBaseInt = nConvertDayOfWeek % 7 + 1; // è¾‘æ»šç»° 1è‚º çŸ«ç´¯. Engine Enumç¯® 0
 
 	return nConvertBaseInt;
 }
@@ -298,18 +298,18 @@ void UB2GameInstance::Init()
 
 	UE_LOG(LogBladeII, Log, TEXT("UB2GameInstance::Init()"));
 //
-//	// Æ½»ı¼º
+//	// å¹³ç§¯å·±
 //	TickDelegateHandle = FTicker::GetCoreTicker().AddTicker(FTickerDelegate::CreateUObject(this, &UB2GameInstance::Tick));
 //	
 //	if (PushManagerClass == nullptr)
 //		PushManagerClass = new LocalPushManager();
 //
 //#if !PLATFORM_MAC
-//	// ÀÎ¾Û ÃÊ±âÈ­
+//	// ç‰¢èš æª¬æ‰æ‹³
 //	B2InAppPurchase::IB2IAPGenericPlatform::GetInstance()->SubscribeEvents();
 //#endif
 //
-//#if PLATFORM_ANDROID // ·ÎÄÃÇª½¬¿ë~
+//#if PLATFORM_ANDROID // è‚ºæ‹¿ä»Ÿæµ†ä¾©~
 //	FJavaWrapper::OnPlatformResumeDelegate.Remove(OnPlatformResumeHandler);
 //	OnPlatformResumeHandler = FJavaWrapper::OnPlatformResumeDelegate.AddUObject(this, &UB2GameInstance::PlatformResumeDelegate);
 //
@@ -341,11 +341,11 @@ void UB2GameInstance::Shutdown()
 {
 	Super::Shutdown();
 //
-//	// ½Ã°£ ´©Àûx
+//	// çŸ«åŸƒ ç©¿åˆ©x
 //	EnableSavePlayTime(false);
 //
 //#if !PLATFORM_MAC
-//	// ÀÎ¾Û ÇØÁ¦
+//	// ç‰¢èš ç§¦åŠ›
 //	B2InAppPurchase::IB2IAPGenericPlatform::GetInstance()->UnsubscribeEvents();
 //#endif
 //
@@ -433,9 +433,9 @@ void UB2GameInstance::SendPlayTimeToServer()
 }
 
 /*
-   m_LastRequestPlayTime : Request°¡ ÀÚÁÖ °¡Áö¾Ê°Ô IntervalÀ» Ã¼Å©ÇÏ´Â ¿ëµµ
-   RequestInterval       : Interval °£°İ
-   GamePlayTimeInfo.GamePlayTimeAfterRequest : Áö³­¹ø¿¡ Request¸¦ º¸³½ ½Ã°¢
+   m_LastRequestPlayTime : Requestå•Š ç£Šæ— å•Šç˜¤è‡¼éœ¸ Intervalé˜‘ çœ‰å†œçªç»° ä¾©æ¡£
+   RequestInterval       : Interval åŸƒæ‹œ
+   GamePlayTimeInfo.GamePlayTimeAfterRequest : ç˜¤æŠ„é”…ä¿Š Requestç”« ç„Šè¾° çŸ«é˜¿
 */
 void UB2GameInstance::RequestUpdateDailyPlayTime(bool IsForce)
 {
@@ -443,14 +443,14 @@ void UB2GameInstance::RequestUpdateDailyPlayTime(bool IsForce)
 	//const auto UTCNow = GetUTCNow();
 	//const auto CurrentRequestInterval = (UTCNow - m_LastRequestPlayTime).GetTotalSeconds();
 
-	//if (m_TimeToServer.IsInitializeServerInfo() // ³×Æ®¿öÅ© ½Ã°£µ¿±âÈ­¸¦ ÇÑ »óÅÂÀÎ°¡? 
-	//	&& (IsForce || CurrentRequestInterval > RequestInterval || m_TimeToServer.GetRequestUpdateDailyPlayStep() == ERequestUpdateDailyPlayStep::NotRequest)) // °­Á¦°¡ ¾Æ´Ï¶ó¸é IntervalÀÌ Áö³µ°Å³ª ÇÑ¹øµµ ¾øµ¥ÀÌÆ® ÇÑÀû ¾ø´Â°¡
+	//if (m_TimeToServer.IsInitializeServerInfo() // åŒ™é£˜å†µå†œ çŸ«åŸƒæ‚¼æ‰æ‹³ç”« èŒ„ æƒ‘æ€•ç‰¢å•Š? 
+	//	&& (IsForce || CurrentRequestInterval > RequestInterval || m_TimeToServer.GetRequestUpdateDailyPlayStep() == ERequestUpdateDailyPlayStep::NotRequest)) // ç¢åŠ›å•Š é…’èªæ‰¼æ Intervalæ ç˜¤è½¦èŠ­å”± èŒ„é”…æ¡£ ç»å•æé£˜ èŒ„åˆ© ç»ç»°å•Š
 	//{
-	//	// ÇöÀç½Ã°£ - ÃÖ±Ù Request¸¦ º¸³½ ½Ã°£ = PendingTime
+	//	// æ³…çŠçŸ«åŸƒ - å¼¥è¾Ÿ Requestç”« ç„Šè¾° çŸ«åŸƒ = PendingTime
 	//	int64 PendingTime = (UTCNow - GamePlayTimeInfo.GamePlayTimeAfterRequest).GetTicks() / 10000000;
-	//	m_LastRequestPlayTime = UTCNow; // Interval ÃÊ±âÈ­
+	//	m_LastRequestPlayTime = UTCNow; // Interval æª¬æ‰æ‹³
 
-	//	// À½¼ö°Å³ª, 10ºĞº¸´Ù Å¬ ¶§ Àß¸øµÈ °ªÀ¸·Î °£ÁÖÇÏ°í ÃÊ±âÈ­
+	//	// æ¾œèèŠ­å”±, 10ç›’ç„Šä¿ƒ åŠª é”­ è‚‹ç»™ç­‰ è”¼æ è‚º åŸƒæ—çªç»Š æª¬æ‰æ‹³
 	//	if (PendingTime < 0 || PendingTime > 600)
 	//	{
 	//		GamePlayTimeInfo.GamePlayTimeAfterRequest = UTCNow;
@@ -458,15 +458,15 @@ void UB2GameInstance::RequestUpdateDailyPlayTime(bool IsForce)
 	//	}
 	//	else
 	//	{
-	//		// °¡Àå Ã¹¹øÂ° ¾÷µ¥ÀÌÆ® ¿äÃ»ÀÇ °æ¿ì PendingTime ÀÌ 0ÃÊÀÏ °æ¿ìµµ ÀÖ´Ù.
-	//		// ÀÌ °æ¿ì 1 ÀÌ»ó °ªÀ» º¸³»±â À§ÇØ º¸Á¤À» °ÅÄ¡´Âµ¥ º¸Á¤µÈ PendingTime À» ´ã¾Æ º¸³»µµ ¼­¹ö¿¡¼­´Â ÀÌ °ªÀ» »ç¿ëÇÏ´Â°Ô ¾Æ´Ï¶ó Á÷Á¢ °è»êÇÑ ½Ã°£À» »ç¿ëÇÏ±â¿¡ ¹®Á¦ ¾ø´Ù.
+	//		// å•Šå˜ éœ‰é”…æ³ è¯€å•æé£˜ å¤¸æ²¡ç‹¼ ç‰ˆå¿« PendingTime æ 0æª¬è€ ç‰ˆå¿«æ¡£ ä¹ä¿ƒ.
+	//		// æ ç‰ˆå¿« 1 ææƒ‘ è”¼é˜‘ ç„Šéƒ´æ‰ å›°ç§¦ ç„Šæ²¥é˜‘ èŠ­æ‘¹ç»°å• ç„Šæ²¥ç­‰ PendingTime é˜‘ æ·¬é…’ ç„Šéƒ´æ¡£ è¾‘æ»šä¿Šè¾‘ç»° æ è”¼é˜‘ è¤ä¾©çªç»°éœ¸ é…’èªæ‰¼ æµç«‹ æ‹Œé­‚èŒ„ çŸ«åŸƒé˜‘ è¤ä¾©çªæ‰ä¿Š å·©åŠ› ç»ä¿ƒ.
 	//		if (m_TimeToServer.GetRequestUpdateDailyPlayStep() == ERequestUpdateDailyPlayStep::NotRequest)
 	//		{
 	//			m_TimeToServer.SetRequestUpdateDailyPlayStep(ERequestUpdateDailyPlayStep::RequestUpdateDailyTime);
 	//			PendingTime = FMath::Max<int64>(1, PendingTime);
 	//		}
 
-	//		// 1 >= ÀÎ °ªÀ» º¸³»´Ş¶ó°íÇØ¼­.
+	//		// 1 >= ç‰¢ è”¼é˜‘ ç„Šéƒ´å´”æ‰¼ç»Šç§¦è¾‘.
 	//		if (PendingTime >= 1)
 	//		{
 	//			data_trader::Retailer::GetInstance().Retailer::RequestUpdateDailyPlayTime(static_cast<int32>(PendingTime));
@@ -483,7 +483,7 @@ void UB2GameInstance::PlatformResumeDelegate()
 {
 	UE_LOG(LogLoad, Log, TEXT("Platform!! PlatformResumeDelegate ~~~~~~~"));
 
-	//// TODO:: ¿©±â´Ù°¡ ~~~
+	//// TODO:: å’¯æ‰ä¿ƒå•Š ~~~
 	//if (PushManagerClass != nullptr)
 	//{
 	//	PushManagerClass->CancelLocalPushSchedule_RestPoint();
@@ -493,21 +493,21 @@ void UB2GameInstance::PlatformResumeDelegate()
 	//ResumeDelegate.Broadcast();
 	//m_TimeToServer.CalcTimezoneOffset();
 
-	//// PlayTime¿¡¼­ Pause µÈ ½Ã°£À» »©ÁÜ
+	//// PlayTimeä¿Šè¾‘ Pause ç­‰ çŸ«åŸƒé˜‘ å“—æ·‹
 	//FTimespan RemainTime = m_ResumeTime - m_PauseTime;
 	//GamePlayTimeInfo.GamePlayTimeAfterRequest += RemainTime;
 
 	//ABladeIIGameMode* B2GM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(GetWorld()));
-	//if (B2GM == nullptr) //ABladeIIGameMode°¡ nullptrÀÎ °æ¿ì´Â B2DLCFrontGameMode¹Û¿¡ ¾ø¾î¾ß ÇÔ
+	//if (B2GM == nullptr) //ABladeIIGameModeå•Š nullptrç‰¢ ç‰ˆå¿«ç»° B2DLCFrontGameModeè§‚ä¿Š ç»ç»¢å…· çªƒ
 	//	return;
 
-	////[@AKI, 180806] NetGameModeÀÏ °æ¿ì Pause½Ã ÀÏ½ÃÁ¤Áö È­¸é ¾È³ª¿À°Ô º¯°æ
+	////[@AKI, 180806] NetGameModeè€ ç‰ˆå¿« PauseçŸ« è€çŸ«æ²¥ç˜¤ æ‹³æ æ•‘å”±å·éœ¸ å‡½ç‰ˆ
 	//if (B2GM->IsNetGameMode() == false)
 	//{
-	//	// ³×Æ®¿öÅ© °ÔÀÓ¸ğµå°¡ ¾Æ´Ñ ½ºÅÄµå¾ó·Ğ °ÔÀÓ¸ğµåµé (·Îºñ / ¸ğÇè¸ğµå / ¿µ¿õÀÇÅ¾ / Ä«¿îÅÍ´øÀü µî)
+	//	// åŒ™é£˜å†µå†œ éœ¸çƒ™è‘›é›å•Š é…’å›± èƒ¶æ‹é›å€”æ²¸ éœ¸çƒ™è‘›é›ç”¸ (è‚ºåš / è‘›æ°°è‘›é› / åº·æ—·ç‹¼å•ª / å¢¨æ¬¾ç£å¸¦å‚ˆ æ®¿)
 	//	FFunctionGraphTask::CreateAndDispatchWhenReady([ B2GM ]()
 	//	{
-	//		// [¸ğÇè¸ğµå] Áß "¹İº¹ÀüÅõ" ¹× "¿¬¼ÓÀüÅõ" ÀÏ °æ¿ì ½Ã½ºÅÛ(FJavaWrapper::OnPlatformResumeDelegate) À» ÅëÇØ µé¾î¿Â ¸ØÃã¸Ş´ºÀÇ °æ¿ì Ã³¸® ÇÏÁö ¾Ê´Â´Ù
+	//		// [è‘›æ°°è‘›é›] å "é¦†æ±—å‚ˆæ§" æ£º "æ¥·åŠ å‚ˆæ§" è€ ç‰ˆå¿« çŸ«èƒ¶è¢(FJavaWrapper::OnPlatformResumeDelegate) é˜‘ çƒ¹ç§¦ ç”¸ç»¢æŸ¯ è‚›å‹‰çš‹æ˜¥ç‹¼ ç‰ˆå¿« è´¸åºœ çªç˜¤ è‡¼ç»°ä¿ƒ
 	//		if ( AB2StageGameMode* StageGameMode = Cast< AB2StageGameMode >( B2GM ) )
 	//		{
 	//			if ( StageGameMode->IsRepeatBattleOn() )
@@ -522,8 +522,8 @@ void UB2GameInstance::PlatformResumeDelegate()
 	//}
 	//else
 	//{
-	//	//PvP, Raid, Control ÀÏ¶§´Â Ã¤³ÎÀÌ ²÷°å´Ù´Â ÆË¾÷À» ¶ç¿ö ÁÜ
-	//	FBladeIIBlockToSyncNetwork::GetInstance().ChannelDisconnect(-1); 	//[@AKI, 180727] [B2CLT-3743] ÀÏ´ëÀÏ ¸ğµå ¾îºäÂ¡ °³¼±À» À§ÇØ Å¬¶ó¿¡¼­ °­Á¦·Î Ã¤³Î ¼­¹ö ²÷´Â ºÎºĞ Á¦°Å
+	//	//PvP, Raid, Control è€é”­ç»° ç›²æ¾„æ è°—æ¿ä¿ƒç»° æ‰‘è¯€é˜‘ å‰å†µ æ·‹
+	//	FBladeIIBlockToSyncNetwork::GetInstance().ChannelDisconnect(-1); 	//[@AKI, 180727] [B2CLT-3743] è€æªè€ è‘›é› ç»¢è½°éš† ä¿ºæ€¥é˜‘ å›°ç§¦ åŠªæ‰¼ä¿Šè¾‘ ç¢åŠ›è‚º ç›²æ¾„ è¾‘æ»š è°—ç»° ä½•ç›’ åŠ›èŠ­
 	//}
 }
 
@@ -535,7 +535,7 @@ void UB2GameInstance::PlatformPauseDelegate()
 {
 	UE_LOG(LogLoad, Log, TEXT("Platform!! PlatformPauseDelegate ~~~~~~~"));
 
-	//// TODO:: ¿©±â´Ù°¡ ~~~
+	//// TODO:: å’¯æ‰ä¿ƒå•Š ~~~
 	//if (PushManagerClass != nullptr)
 	//{
 	//	PushManagerClass->SetLocalPushSchedule_RestPoint();
@@ -543,24 +543,24 @@ void UB2GameInstance::PlatformPauseDelegate()
 	//
 	//m_PauseTime = FDateTime::UtcNow();
 
-	////[@AKI, 180727] [B2CLT-3743] ÀÏ´ëÀÏ ¸ğµå ¾îºäÂ¡ °³¼±À» À§ÇØ Å¬¶ó¿¡¼­ °­Á¦·Î Ã¤³Î ¼­¹ö ²÷´Â ºÎºĞ Á¦°Å
-	////[@AKI, 180806] TD´Ô°ú ³íÀÇ ÈÄ ´Ù½Ã »ì¸²
+	////[@AKI, 180727] [B2CLT-3743] è€æªè€ è‘›é› ç»¢è½°éš† ä¿ºæ€¥é˜‘ å›°ç§¦ åŠªæ‰¼ä¿Šè¾‘ ç¢åŠ›è‚º ç›²æ¾„ è¾‘æ»š è°—ç»° ä½•ç›’ åŠ›èŠ­
+	////[@AKI, 180806] TDä¸›è‹ ç¨ ç‹¼ é¥¶ ä¿ƒçŸ« æ··è¦†
 	//if (GetWorld() == nullptr || UGameplayStatics::GetGameMode(GetWorld()) == nullptr)
 	//	return;
 
 	//ABladeIIGameMode* B2GM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(GetWorld()));
-	//if (B2GM == nullptr) //ABladeIIGameMode°¡ nullptrÀÎ °æ¿ì´Â B2DLCFrontGameMode¹Û¿¡ ¾ø¾î¾ß ÇÔ
+	//if (B2GM == nullptr) //ABladeIIGameModeå•Š nullptrç‰¢ ç‰ˆå¿«ç»° B2DLCFrontGameModeè§‚ä¿Š ç»ç»¢å…· çªƒ
 	//	return;
 
 	//B2GM->OnPlatformPause();
 
 	//if (B2GM->IsNetGameMode() == false)
 	//{
-	//	//Lobby, Stage, HeroTower, CounterAttack, TM, Guild, Tutorial µîµî
+	//	//Lobby, Stage, HeroTower, CounterAttack, TM, Guild, Tutorial æ®¿æ®¿
 	//}
 	//else
 	//{
-	//	//PvP, Raid, Control ÀÏ¶§´Â Ã¤³Î ¼ÒÄ¹ °­Á¦·Î Close ½ÃÅ´
+	//	//PvP, Raid, Control è€é”­ç»° ç›²æ¾„ å®¶å¢“ ç¢åŠ›è‚º Close çŸ«ç³¯
 	//	FB2NetworkBridge::GetInstance()->CloseChannel("ByPause");
 	//}
 }
@@ -607,14 +607,14 @@ void UB2GameInstance::OnSendMessageInboxTimerCB()
 }
 
 /////////////////////////////////////////////////////////////
-// Blueprint ±â¹İ InfoAsset µé °ÔÀÓ¸ğµå Ä³½Ì ¹öÀü
-// StaticFind~~ ¾¾¸®Áîº¸´Ù GetGameMode ÇÑ ´ã¿¡ ÀÌ·¸°Ô ¾ò¾î¿À´Â °Ô ÈÎ ºü¸§
+// Blueprint æ‰é¦† InfoAsset ç”¸ éœ¸çƒ™è‘›é› æŸæ•™ æ»šå‚ˆ
+// StaticFind~~ æªåºœä»¤ç„Šä¿ƒ GetGameMode èŒ„ æ·¬ä¿Š æçŠ¯éœ¸ æ˜ç»¢å·ç»° éœ¸ ä»» ç‹æŠš
 //
 UB2PCClassInfoBox* UB2GameInstance::GetPCClassInfoBox()
 {
 	if (!CachedPCClassInfoBox)
 	{
-		CachedPCClassInfoBox = StaticFindPCClassInfoBox(nullptr); // ¿©±â¼­ this ¸¦ ³Ñ°ÜÁÖ¸é ¹«ÇÑ È£Ãâ ·çÇÁ
+		CachedPCClassInfoBox = StaticFindPCClassInfoBox(nullptr); // å’¯æ‰è¾‘ this ç”« é€è´¥æ—æ å…¬èŒ„ é¾‹å… é£æ©‡
 	}
 	BII_CHECK(CachedPCClassInfoBox);
 	return CachedPCClassInfoBox;
@@ -637,7 +637,7 @@ UB2NPCClassInfoBox* UB2GameInstance::GetMobClassInfoBox()
 {
 	//if (!CachedMobClassInfoBox)
 	//{
-	//	CachedMobClassInfoBox = StaticFindMobClassInfoBox(nullptr); // ¿©±â¼­ this ¸¦ ³Ñ°ÜÁÖ¸é ¹«ÇÑ È£Ãâ ·çÇÁ
+	//	CachedMobClassInfoBox = StaticFindMobClassInfoBox(nullptr); // å’¯æ‰è¾‘ this ç”« é€è´¥æ—æ å…¬èŒ„ é¾‹å… é£æ©‡
 	//}
 	//BII_CHECK(CachedMobClassInfoBox);
 	//return CachedMobClassInfoBox;
@@ -648,10 +648,10 @@ UB2CommonSoundInfo* UB2GameInstance::GetCommonSoundInfo()
 {
 	if (!CachedCommonSoundInfo)
 	{
-		CachedCommonSoundInfo = StaticFindCommonSoundInfo(nullptr); // ¿©±â¼­ this ¸¦ ³Ñ°ÜÁÖ¸é ¹«ÇÑ È£Ãâ ·çÇÁ
+		CachedCommonSoundInfo = StaticFindCommonSoundInfo(nullptr); // å’¯æ‰è¾‘ this ç”« é€è´¥æ—æ å…¬èŒ„ é¾‹å… é£æ©‡
 	}
 	//BII_CHECK(CachedCommonSoundInfo || 
-	//	// DLCFront Apk ¿¡¼­ UI ¹öÆ° »ç¿îµå ¶§¹®¿¡ ÇÊ¿ä·Î ÇÒ ¶§°¡ ÀÖÀ½. ¾ÆÁ÷ DLC ´Ù¿î·Îµå ¹ŞÁö ¾ÊÀº »óÈ²¿¡¼­´Â ·ÎµùÀ» ¸øÇÏ´Ï ¾îÂ¿ ¼ö ¾øÁö.
+	//	// DLCFront Apk ä¿Šè¾‘ UI æ»šç“¢ è¤æ¬¾é› é”­å·©ä¿Š é˜å¤¸è‚º ä¸” é”­å•Š ä¹æ¾œ. é…’æµ DLC ä¿ƒæ¬¾è‚ºé› ç½ç˜¤ è‡¼ç¯® æƒ‘ç‚”ä¿Šè¾‘ç»° è‚ºçˆ¹é˜‘ ç»™çªèª ç»¢é©´ è ç»ç˜¤.
 	//	(WorldContext && Cast<AB2DLCFrontGameMode>(UGameplayStatics::GetGameMode(WorldContext->World())))
 	//);
 	return CachedCommonSoundInfo;
@@ -661,7 +661,7 @@ UB2DialogCharacterInfoSet* UB2GameInstance::GetDialogCharacterInfoTable()
 {
 	if (!CachedDialogCharacterInfoTable)
 	{
-		CachedDialogCharacterInfoTable = StaticFindDialogCharacterInfoTable(nullptr); // ¿©±â¼­ this ¸¦ ³Ñ°ÜÁÖ¸é ¹«ÇÑ È£Ãâ ·çÇÁ
+		CachedDialogCharacterInfoTable = StaticFindDialogCharacterInfoTable(nullptr); // å’¯æ‰è¾‘ this ç”« é€è´¥æ—æ å…¬èŒ„ é¾‹å… é£æ©‡
 	}
 	BII_CHECK(CachedDialogCharacterInfoTable);
 	return CachedDialogCharacterInfoTable;
@@ -671,7 +671,7 @@ UB2WingInfo* UB2GameInstance::GetWingInfo()
 {
 	if (!CachedWingInfo)
 	{
-		CachedWingInfo = StaticFindWingInfo(nullptr); // ¿©±â¼­ this ¸¦ ³Ñ°ÜÁÖ¸é ¹«ÇÑ È£Ãâ ·çÇÁ
+		CachedWingInfo = StaticFindWingInfo(nullptr); // å’¯æ‰è¾‘ this ç”« é€è´¥æ—æ å…¬èŒ„ é¾‹å… é£æ©‡
 	}
 	BII_CHECK(CachedWingInfo);
 	return CachedWingInfo;
@@ -681,7 +681,7 @@ UB2SomeInfo* UB2GameInstance::GetSomeInfo()
 {
 	if (!CachedSomeInfo)
 	{
-		CachedSomeInfo = StaticFindSomeInfo(nullptr); // ¿©±â¼­ this ¸¦ ³Ñ°ÜÁÖ¸é ¹«ÇÑ È£Ãâ ·çÇÁ
+		CachedSomeInfo = StaticFindSomeInfo(nullptr); // å’¯æ‰è¾‘ this ç”« é€è´¥æ—æ å…¬èŒ„ é¾‹å… é£æ©‡
 	}
 	BII_CHECK(CachedSomeInfo);
 	return CachedSomeInfo;
@@ -691,7 +691,7 @@ UB2ItemMiscInfo* UB2GameInstance::GetItemMiscInfo()
 {
 	if (!CachedItemMiscInfo)
 	{
-		CachedItemMiscInfo = StaticFindItemMiscInfo(nullptr); // ¿©±â¼­ this ¸¦ ³Ñ°ÜÁÖ¸é ¹«ÇÑ È£Ãâ ·çÇÁ
+		CachedItemMiscInfo = StaticFindItemMiscInfo(nullptr); // å’¯æ‰è¾‘ this ç”« é€è´¥æ—æ å…¬èŒ„ é¾‹å… é£æ©‡
 	}
 	BII_CHECK(CachedItemMiscInfo);
 	return CachedItemMiscInfo;
@@ -701,7 +701,7 @@ UB2LoadingImageInfo* UB2GameInstance::GetLoadingImageInfo()
 {
 	if (!CachedLoadingImageInfo)
 	{
-		CachedLoadingImageInfo = StaticFindLoadingImageInfo(nullptr); // ¿©±â¼­ this ¸¦ ³Ñ°ÜÁÖ¸é ¹«ÇÑ È£Ãâ ·çÇÁ
+		CachedLoadingImageInfo = StaticFindLoadingImageInfo(nullptr); // å’¯æ‰è¾‘ this ç”« é€è´¥æ—æ å…¬èŒ„ é¾‹å… é£æ©‡
 	}
 	BII_CHECK(CachedLoadingImageInfo);
 	return CachedLoadingImageInfo;
@@ -711,7 +711,7 @@ class UB2NoAnimSkillInfo* UB2GameInstance::GetNoAnimSkillInfo()
 {
 	if (!CachedNoAnimSkillInfo)
 	{
-		CachedNoAnimSkillInfo = StaticFindNoAnimSkillInfo(nullptr); // ¿©±â¼­ this ¸¦ ³Ñ°ÜÁÖ¸é ¹«ÇÑ È£Ãâ ·çÇÁ
+		CachedNoAnimSkillInfo = StaticFindNoAnimSkillInfo(nullptr); // å’¯æ‰è¾‘ this ç”« é€è´¥æ—æ å…¬èŒ„ é¾‹å… é£æ©‡
 	}
 	BII_CHECK(CachedNoAnimSkillInfo);
 	return CachedNoAnimSkillInfo;
@@ -721,7 +721,7 @@ UB2DamageEffectInfo* UB2GameInstance::GetDamageEffectInfo()
 {
 	if (!CachedDamageEffectInfo)
 	{
-		CachedDamageEffectInfo = StaticFindDamageEffectInfo(nullptr); // ¿©±â¼­ this ¸¦ ³Ñ°ÜÁÖ¸é ¹«ÇÑ È£Ãâ ·çÇÁ
+		CachedDamageEffectInfo = StaticFindDamageEffectInfo(nullptr); // å’¯æ‰è¾‘ this ç”« é€è´¥æ—æ å…¬èŒ„ é¾‹å… é£æ©‡
 	}
 	BII_CHECK(CachedDamageEffectInfo);
 	return CachedDamageEffectInfo;
@@ -731,7 +731,7 @@ UB2BuffModeEffectInfo* UB2GameInstance::GetBuffModeEffectInfo()
 {
 	if (!CachedBuffModeEffectInfo)
 	{
-		CachedBuffModeEffectInfo = StaticFindBuffModeEffectInfo(nullptr); // ¿©±â¼­ this ¸¦ ³Ñ°ÜÁÖ¸é ¹«ÇÑ È£Ãâ ·çÇÁ
+		CachedBuffModeEffectInfo = StaticFindBuffModeEffectInfo(nullptr); // å’¯æ‰è¾‘ this ç”« é€è´¥æ—æ å…¬èŒ„ é¾‹å… é£æ©‡
 	}
 	BII_CHECK(CachedBuffModeEffectInfo);
 	return CachedBuffModeEffectInfo;
@@ -741,7 +741,7 @@ UB2SkillAnimInfo* UB2GameInstance::GetSkillAnimInfo()
 {
 	if (!CachedSkillAnimInfo)
 	{
-		CachedSkillAnimInfo = StaticFindSkillAnimInfo(nullptr); // ¿©±â¼­ this ¸¦ ³Ñ°ÜÁÖ¸é ¹«ÇÑ È£Ãâ ·çÇÁ
+		CachedSkillAnimInfo = StaticFindSkillAnimInfo(nullptr); // å’¯æ‰è¾‘ this ç”« é€è´¥æ—æ å…¬èŒ„ é¾‹å… é£æ©‡
 	}
 	BII_CHECK(CachedSkillAnimInfo);
 	return CachedSkillAnimInfo;
@@ -750,7 +750,7 @@ UB2GuildMarkInfo* UB2GameInstance::GetGuildMarkInfo()
 {
 	if (!CachedGuildMarkInfo)
 	{
-		CachedGuildMarkInfo = StaticFindGuildMarkInfo(nullptr);  // ¿©±â¼­ this ¸¦ ³Ñ°ÜÁÖ¸é ¹«ÇÑ È£Ãâ ·çÇÁ 
+		CachedGuildMarkInfo = StaticFindGuildMarkInfo(nullptr);  // å’¯æ‰è¾‘ this ç”« é€è´¥æ—æ å…¬èŒ„ é¾‹å… é£æ©‡ 
 	}
 	BII_CHECK(CachedGuildMarkInfo);
 	return CachedGuildMarkInfo;
@@ -759,7 +759,7 @@ UB2InfluenceSkillInfo* UB2GameInstance::GetInfluenceSkillInfo()
 {
 	if (!CachedInfluenceSkillInfo)
 	{
-		CachedInfluenceSkillInfo = StaticFindInfluenceSkillInfo(nullptr);  // ¿©±â¼­ this ¸¦ ³Ñ°ÜÁÖ¸é ¹«ÇÑ È£Ãâ ·çÇÁ 
+		CachedInfluenceSkillInfo = StaticFindInfluenceSkillInfo(nullptr);  // å’¯æ‰è¾‘ this ç”« é€è´¥æ—æ å…¬èŒ„ é¾‹å… é£æ©‡ 
 	}
 	BII_CHECK(CachedInfluenceSkillInfo);
 	return CachedInfluenceSkillInfo;
@@ -768,7 +768,7 @@ UB2InfluenceSkillInfo* UB2GameInstance::GetInfluenceSkillInfo()
 //{
 //	if (!CachedGuildNPCInfo)
 //	{
-//		CachedGuildNPCInfo = StaticFindGuildNPCInfo(nullptr);  // ¿©±â¼­ this ¸¦ ³Ñ°ÜÁÖ¸é ¹«ÇÑ È£Ãâ ·çÇÁ 
+//		CachedGuildNPCInfo = StaticFindGuildNPCInfo(nullptr);  // å’¯æ‰è¾‘ this ç”« é€è´¥æ—æ å…¬èŒ„ é¾‹å… é£æ©‡ 
 //	}
 //	BII_CHECK(CachedGuildNPCInfo);
 //	return CachedGuildNPCInfo;
@@ -777,7 +777,7 @@ UB2GuildSkillInfo* UB2GameInstance::GetGuildSkillInfo()
 {
 	if (!CachedGuildSkillInfo)
 	{
-		CachedGuildSkillInfo = StaticFindGuildSkillInfo(nullptr);  // ¿©±â¼­ this ¸¦ ³Ñ°ÜÁÖ¸é ¹«ÇÑ È£Ãâ ·çÇÁ 
+		CachedGuildSkillInfo = StaticFindGuildSkillInfo(nullptr);  // å’¯æ‰è¾‘ this ç”« é€è´¥æ—æ å…¬èŒ„ é¾‹å… é£æ©‡ 
 	}
 	BII_CHECK(CachedGuildSkillInfo);
 	return CachedGuildSkillInfo;
@@ -787,7 +787,7 @@ UB2CombatConstantInfo * UB2GameInstance::GetCombatConstantInfo()
 {
 	if (!CachedCombatConstantInfo)
 	{
-		CachedCombatConstantInfo = StaticFindCombatConstantInfo(nullptr);  // ¿©±â¼­ this ¸¦ ³Ñ°ÜÁÖ¸é ¹«ÇÑ È£Ãâ ·çÇÁ 
+		CachedCombatConstantInfo = StaticFindCombatConstantInfo(nullptr);  // å’¯æ‰è¾‘ this ç”« é€è´¥æ—æ å…¬èŒ„ é¾‹å… é£æ©‡ 
 	}
 	BII_CHECK(CachedCombatConstantInfo);
 	return CachedCombatConstantInfo;

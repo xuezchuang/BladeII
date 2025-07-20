@@ -1,4 +1,4 @@
-//// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿//// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2LobbyUI_TotemInventoryMain.h"
 ////#include "BladeII.h"
 //
@@ -38,7 +38,7 @@
 //	
 //	Init();
 //
-//	// HeroMgmtCommon °ªÀÇ °¢Á¾ À§Á¬À» ÅäÅÛ ÀÎº¥Åä¸®¿¡ ¸Â°Ô ¼¼ÆÃ
+//	// HeroMgmtCommon è”¼ç‹¼ é˜¿è¾† å›°è¿žé˜‘ é…è¢ ç‰¢äº¥é…åºœä¿Š å˜Žéœ¸ æŠ€æ³¼
 //	if (HeroMgmtCommonBP.IsValid())
 //	{
 //		HeroMgmtCommonBP->StartFromLobby(InUIManager, InGM);
@@ -217,7 +217,7 @@
 //	BIND_CLICK_FUNC_TO_BTN(BTN_AutoDecomposition,	&UB2LobbyUI_TotemInventoryMain::OnClickBTN_AutoDecomposition);
 //	BIND_CLICK_FUNC_TO_BTN(BTN_SellAll,				&UB2LobbyUI_TotemInventoryMain::OnClickBTN_SellAll);
 //
-//	// ÁØºñµÇ¸é ·¹µå´å Ãß°¡ ÇÊ¿ä
+//	// éœ–åŽšç™»æ é¥­é›æ‘ çœ å•Š éž˜å¤¸
 //	//REGISTER_REDDOT_CONDITION(GetRedDotWidget(BTN_OpenInvenPage.Get()), &UB2UILobby_CostumeMain::RedDotCondition_Inven);
 //}
 //
@@ -288,7 +288,7 @@
 //{
 //	InOutSortingTotems.Sort([](const FB2Totem& A, const FB2Totem& B)
 //	{
-//		// ´º > Àá±Ý > Á¦·Ã ¿Ï·á > µî±Þ > Á¦·ÃÁßÀÎÁö > Á¦·Ã·¹º§
+//		// æ˜¥ > æ³ªé™› > åŠ›è®¿ è‚¯ä¸° > æ®¿éž­ > åŠ›è®¿åç‰¢ç˜¤ > åŠ›è®¿é¥­éª‡
 //		bool Result = false;
 //		if (A.IsNew == true && B.IsNew == false)
 //		{
@@ -381,8 +381,8 @@
 //UCanvasPanel* UB2LobbyUI_TotemInventoryMain::GetItemDetailPopupParentPanel(bool bOfLeftSide) const
 //{
 //	return bOfLeftSide ? X_LeftPopupPanel.Get() :
-//		// ¿ìÃøÆË¾÷Àº HeroMgmt °øÅëÆÄÆ®ÀÇ Çì´õÆÄÆ®¿¡¼­ ³ª¿À´Â ¸ðµå ¾Ë¸²À» °¡¸®Áö ¾Êµµ·Ï HeroMgmt ÂÊ Panel À» »ç¿ëÇÑ´Ù.
-//		// ¿©±â widget µé ¹èÄ¡ ½Ã ¼ø¼­ ¹× z-order ÁÖÀÇÇØ¾ß ÇÔ.
+//		// å¿«èžŸæ‰‘è¯€ç¯® HeroMgmt å‚çƒ¹é¢‡é£˜ç‹¼ åº†æ­¹é¢‡é£˜ä¿Šè¾‘ å”±å·ç»° è‘›é› èˆ…è¦†é˜‘ å•Šåºœç˜¤ è‡¼æ¡£åºŸ HeroMgmt çŽ‡ Panel é˜‘ è¤ä¾©èŒ„ä¿ƒ.
+//		// å’¯æ‰ widget ç”¸ ç¡…æ‘¹ çŸ« é‰´è¾‘ æ£º z-order æž—ç‹¼ç§¦å…· çªƒ.
 //		(HeroMgmtCommonBP.Get() ? HeroMgmtCommonBP->GetInfoPopupParentPanel(bOfLeftSide) : X_RightPopupPanel.Get());
 //}
 //

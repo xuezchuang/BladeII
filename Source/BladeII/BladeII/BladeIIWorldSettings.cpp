@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 // Project BladeII, ACTION SQUARE
 #include "BladeIIWorldSettings.h"
 
@@ -27,27 +27,27 @@ void FWorldDefaultPlayCameraSettings::LoadPresetValues(FWorldDefaultPlayCameraSe
 {
 	float LoadedPitch = 0.0f;
 	GConfig->GetFloat(TEXT("WorldDefaultPlayCameraPreset"), *FString::Printf(TEXT("%s_Pitch"), *UniquePresetIDString), LoadedPitch, GGameIni);
-	OutResult.bOverrideCameraBoomPitch = true; // ÀÌ°Ç ±×³É ÄÑ ÁÜ.
+	OutResult.bOverrideCameraBoomPitch = true; // ææ‰’ å¼Šæˆ éš¾ æ·‹.
 	OutResult.CameraBoomPitch = LoadedPitch;
 
 	float LoadedYaw = 0.0f;
 	GConfig->GetFloat(TEXT("WorldDefaultPlayCameraPreset"), *FString::Printf(TEXT("%s_Yaw"), *UniquePresetIDString), LoadedYaw, GGameIni);
-	OutResult.bOverrideCameraBoomYaw = true; // ÀÌ°Ç ±×³É ÄÑ ÁÜ.
+	OutResult.bOverrideCameraBoomYaw = true; // ææ‰’ å¼Šæˆ éš¾ æ·‹.
 	OutResult.CameraBoomYaw = LoadedYaw;
 
 	float LoadedRoll = 0.0f;
 	GConfig->GetFloat(TEXT("WorldDefaultPlayCameraPreset"), *FString::Printf(TEXT("%s_Roll"), *UniquePresetIDString), LoadedRoll, GGameIni);
-	OutResult.bOverrideCameraBoomRoll = true; // ÀÌ°Ç ±×³É ÄÑ ÁÜ.
+	OutResult.bOverrideCameraBoomRoll = true; // ææ‰’ å¼Šæˆ éš¾ æ·‹.
 	OutResult.CameraBoomRoll = LoadedRoll;
 
 	float LoadedArmLength = 0.0f;
 	GConfig->GetFloat(TEXT("WorldDefaultPlayCameraPreset"), *FString::Printf(TEXT("%s_ArmLength"), *UniquePresetIDString), LoadedArmLength, GGameIni);
-	OutResult.bOverrideCameraBoomArmLength = true; // ÀÌ°Ç ±×³É ÄÑ ÁÜ.
+	OutResult.bOverrideCameraBoomArmLength = true; // ææ‰’ å¼Šæˆ éš¾ æ·‹.
 	OutResult.CameraBoomArmLength = LoadedArmLength;
 }
 void FWorldDefaultPlayCameraSettings::ApplyPresetValues(FWorldDefaultPlayCameraSettings& InPreset)
 {
-	// Preset Àû¿ë½Ã¿¡´Â bOverride** µéÀ» ¸ğµÎ ÄÑÁÜ
+	// Preset åˆ©ä¾©çŸ«ä¿Šç»° bOverride** ç”¸é˜‘ è‘›æ»´ éš¾æ·‹
 	bOverrideCameraBoomPitch = true;
 	CameraBoomPitch = InPreset.CameraBoomPitch;
 	
@@ -69,7 +69,7 @@ void FWorldDefaultPlayCameraSettings::ApplyPresetValues(FWorldDefaultPlayCameraS
 
 FName FCombinedUniqueSPWaveID::WaveInfoToKeyName(int32 InClientStageId, int32 InTargetDifficulty, int32 InTargetWave)
 {
-	// Ã³À½ºÎÅÍ int32 ¼¼ÆÃÀ» Á¦°øÇÏÁö ¾Ê´Â °Ç ¼Â¾÷ÀÌ ³Ñ ¹ø°Å·Ó°í ¼Ó¼ºÃ¢¿¡¼­ È®ÀÎÇÏ±âµµ ¹ø°Å·Î¿ö¼­..
+	// è´¸æ¾œä½•ç£ int32 æŠ€æ³¼é˜‘ åŠ›å‚çªç˜¤ è‡¼ç»° æ‰’ æ‚¸è¯€æ é€ é”…èŠ­é…šç»Š åŠ å·±èŠ’ä¿Šè¾‘ çŠ¬ç‰¢çªæ‰æ¡£ é”…èŠ­è‚ºå†µè¾‘..
 	return FName(
 		*FString::Printf(TEXT("%d_%d_%d"), InClientStageId, InTargetDifficulty, InTargetWave)
 	);
@@ -89,16 +89,16 @@ void ABladeIIWorldSettings::PostLoad()
 	Super::PostLoad();
 #if WITH_EDITOR
 	if (LocalizedAreaNameKey != NAME_None && LocalizedAreaSubNameKey == NAME_None)
-	{ // LocalizedAreaSubName À» µÚ´Ê°Ô ±¸ÇöÇØ¼­ ÀÌ·¸°Ô ±âÁ¸¿¡ ¼³Á¤ÇÑ °Ô ¾ø¾ú´Ù¸é ÀÚµ¿À¸·Î ³Öµµ·Ï ÇÔ.
+	{ // LocalizedAreaSubName é˜‘ ç¬¬è¯éœ¸ å¤‡æ³…ç§¦è¾‘ æçŠ¯éœ¸ æ‰ç²®ä¿Š æ±²æ²¥èŒ„ éœ¸ ç»èŒä¿ƒæ ç£Šæ‚¼æ è‚º æŒæ¡£åºŸ çªƒ.
 		LocalizedAreaSubNameKey = FName(*(LocalizedAreaNameKey.ToString() + TEXT("_Sub")));
 	}
 
 	if (GIsEditor)
-	{ // ³Ñ ÀÚÁÖ ½Ç¼öÇÏ´Â ¼³Á¤. ´õ ÀÌ»ó ÂüÁö ¸øÇÏ°í World PostLoad ¿¡¼­
-		// ¿©·¯ ½ºÆ®¸®¹Ö ·¹º§ ÀÖÀ» °æ¿ì¿£ P ¸Ê¿¡¼­¸¸.
+	{ // é€ ç£Šæ— è§’èçªç»° æ±²æ²¥. æ­¹ ææƒ‘ æ›¼ç˜¤ ç»™çªç»Š World PostLoad ä¿Šè¾‘
+		// å’¯çŸ¾ èƒ¶é£˜åºœæ€ª é¥­éª‡ ä¹é˜‘ ç‰ˆå¿«æµš P ç”˜ä¿Šè¾‘çˆ¶.
 		UWorld* TheWorld = GetWorld();
 		//UPackage* PMapPackage = (TheWorld && TheWorld->PersistentLevel) ? TheWorld->PersistentLevel->GetOutermost() : NULL;
-		//const bool bAmIPMap = (PMapPackage && this->GetOutermost() == PMapPackage); P Map ¿¡¼­¸¸ Ã¼Å©ÇÏ·Á Çß´Âµ¥ ¾È¸ÔÈû.
+		//const bool bAmIPMap = (PMapPackage && this->GetOutermost() == PMapPackage); P Map ä¿Šè¾‘çˆ¶ çœ‰å†œçªå¦¨ æ²ç»°å• æ•‘å†ˆå¡.
 		if (TheWorld && !TheWorld->IsPlayInEditor())
 		{
 			AB2StageEventDirector::CheckAndWarnForComponentTriggerSetup(TheWorld);
@@ -109,7 +109,7 @@ void ABladeIIWorldSettings::PostLoad()
 
 void ABladeIIWorldSettings::NotifyBeginPlay()
 {
-	// BladeIIGameMode ³ª StageManager ÀÇ PreBeginPlay º¸´Ù´Â ³ªÁßÀÌÁö¸¸ ¿©ÇÏ°£ ´Ù¸¥ Actor µéÀÇ ÃÊ¹İ BeginPlay º¸´Ù´Â ¾Õ¼­ ºÒ¸®´Â ÁöÁ¡.
+	// BladeIIGameMode å”± StageManager ç‹¼ PreBeginPlay ç„Šä¿ƒç»° å”±åæç˜¤çˆ¶ å’¯çªåŸƒ ä¿ƒå¼— Actor ç”¸ç‹¼ æª¬é¦† BeginPlay ç„Šä¿ƒç»° èŠè¾‘ é˜‚åºœç»° ç˜¤ç—¢.
 
 	Super::NotifyBeginPlay();
 }
@@ -125,12 +125,12 @@ void ABladeIIWorldSettings::PreSave(FObjectPreSaveContext SaveContext)
 #if WITH_EDITOR
 	if (GIsEditor && !IsRunningCommandlet())
 	{
-		// ÀÚµ¿À¸·Î ºôµåÇØÁÖ·Á°í Çß´Âµ¥ ¾îÂ÷ÇÇ Áö±İ ¾Æ·¡¿Í °°Àº Á¶°ÇÀÌ °¨Áö°¡ ¾ÈµÇ´Â ¹ö±× »óÈ²ÀÌ ÀÖ´Â °Å °°´Ù.
-		// ¸¶°¨ ÀÓ¹ÚÇØ¼­ ºôµå ±úÁö¸é ¸Å¿ì °ï¶õÇÏ´Ï ¹«Á¶°Ç ÀÚµ¿ ºôµå µ¹¸°´Ù.
+		// ç£Šæ‚¼æ è‚º å‘¼é›ç§¦æ—å¦¨ç»Š æ²ç»°å• ç»¢ç’ä¹” ç˜¤é™› é…’è´°å®¢ éç¯® ç‚¼æ‰’æ çš‘ç˜¤å•Š æ•‘ç™»ç»° æ»šå¼Š æƒ‘ç‚”æ ä¹ç»° èŠ­ éä¿ƒ.
+		// ä»˜çš‘ çƒ™å† ç§¦è¾‘ å‘¼é› æŸ„ç˜¤æ æ¦‚å¿« å¸®é„‚çªèª å…¬ç‚¼æ‰’ ç£Šæ‚¼ å‘¼é› å€’èµ´ä¿ƒ.
 		//UWorld* TheWorld = GetWorld();
 		//if (TheWorld && TheWorld->GetNavigationSystem() && TheWorld->GetNavigationSystem()->IsNavigationDirty())
 
-		// ´ë½Å ÀÚµ¿ ÀúÀåµÇ´Â ÆÄÀÏÀÌ¶û ±âÅ¸ ¹®Á¦µÇ´Â ÀÏºÎ ÄÉÀÌ½º Á¤µµ¸¸ °É·¯³»ÀÚ..
+		// æªè„š ç£Šæ‚¼ å†å˜ç™»ç»° é¢‡è€æå°” æ‰é¸¥ å·©åŠ›ç™»ç»° è€ä½• çº³æèƒ¶ æ²¥æ¡£çˆ¶ å§çŸ¾éƒ´ç£Š..
 		UPackage* MapPackage = GetOutermost();
 		UWorld* TheWorld = GetWorld();
 		if (MapPackage && TheWorld && TheWorld->GetLevels().Num() > 0)
@@ -142,7 +142,7 @@ void ABladeIIWorldSettings::PreSave(FObjectPreSaveContext SaveContext)
 			{
 				bool bWasUnattended = FApp::IsUnattended();
 				const TCHAR* CommandLineBackup = FCommandLine::Get();
-				//if (!bWasUnattended){ // ÀúÀåÇÏ·Á°í ÇÏ´Âµ¥ ¿Â°® ¸Ş½ÃÁöµéÀÌ ¶ß°Ô µÇ´Ï ±×°É Á» ¾ø¾Ö·Á°í Çß´Âµ¥ ÀÌ°É·Ğ ¾È¸ÔÈû..
+				//if (!bWasUnattended){ // å†å˜çªå¦¨ç»Š çªç»°å• æŸ¯çˆ± çš‹çŸ«ç˜¤ç”¸æ å“†éœ¸ ç™»èª å¼Šå§ ç²± ç»å±€å¦¨ç»Š æ²ç»°å• æå§æ²¸ æ•‘å†ˆå¡..
 				//	FCommandLine::Append(TEXT(" -UNATTENDED"));
 				//}
 
@@ -161,7 +161,7 @@ void ABladeIIWorldSettings::PreSave(FObjectPreSaveContext SaveContext)
 		}
 	}
 
-	// ÇÃ·¹ÀÌ¾î ½ºÅ¸Æ® ½ºÄÉÀÏÃ¼Å©
+	// æ•²é¥­æç»¢ èƒ¶é¸¥é£˜ èƒ¶çº³è€çœ‰å†œ
 	for (FActorIterator It(GetWorld()); It; ++It)
 	{
 		APlayerStart* pPlayerStart = Cast<APlayerStart>(*It);
@@ -174,14 +174,14 @@ void ABladeIIWorldSettings::PreSave(FObjectPreSaveContext SaveContext)
 		{
 #if !PLATFORM_MAC
 			UE_LOG(LogEngine, Log, TEXT("Check!! PlayerStart Scale!!"));
-			//FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(TEXT("PlayerStartÀÇ ½ºÄÉÀÏ°ªÀÌ º¯°æµÇ¾ú½À´Ï´Ù.\nX Y Z ¸ğµÎ 1.0À¸·Î ¼³Á¤ÇØÁÖ¼¼¿ä.")));
+			//FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(TEXT("PlayerStartç‹¼ èƒ¶çº³è€è”¼æ å‡½ç‰ˆç™»èŒåš¼èªä¿ƒ.\nX Y Z è‘›æ»´ 1.0æ è‚º æ±²æ²¥ç§¦æ—æŠ€å¤¸.")));
 			pPlayerStart->SetActorScale3D(FVector(1.0f, 1.0f, 1.0f));
 #endif
 		}
 	}
 
-	// SkeletalMeshComponent µé¿¡ MID °¡ overriding µÇ¾î ÀÖÀ¸¸é clear ÇÏ´Âµ¥ ¿¬Ãâ°ú °ü·ÃÀÌ ÀÖ´Ù. AB2StageEventDirector::SafetyProcessMatineeSkActors
-	// ±Ùµ¥ º¸´Ï±î StageEventDirector ¸»°íµµ ´Ù¸¥ °æ·Î·Î ¼¼ÆÃµÇ´Â °Ô ÀÖ¾î¼­ °Á ÀüÃ¼.. ÀÌ°É ±×³É µÎ´Â°Ô ÁÁ³ª..
+	// SkeletalMeshComponent ç”¸ä¿Š MID å•Š overriding ç™»ç»¢ ä¹æ æ clear çªç»°å• æ¥·å…è‹ åŒ…è®¿æ ä¹ä¿ƒ. AB2StageEventDirector::SafetyProcessMatineeSkActors
+	// è¾Ÿå• ç„Šèªé³– StageEventDirector å¯Œç»Šæ¡£ ä¿ƒå¼— ç‰ˆè‚ºè‚º æŠ€æ³¼ç™»ç»° éœ¸ ä¹ç»¢è¾‘ å‚² å‚ˆçœ‰.. æå§ å¼Šæˆ æ»´ç»°éœ¸ äº®å”±..
 	for (FActorIterator It(GetWorld()); It; ++It)
 	{
 		ASkeletalMeshActor* CastedSKActor = Cast<ASkeletalMeshActor>(*It);
@@ -204,14 +204,14 @@ void ABladeIIWorldSettings::PreSave(FObjectPreSaveContext SaveContext)
 
 void ABladeIIWorldSettings::InitDefaultPlayerCameraSetting()
 {
-	// ÀÌ¹Ì Àû¿ëµÇ±â ½ÃÀÛÇÑ ActiveCameraActor °¡ ÀÖ´Ù¸é DefaultPlayerCamera ¸¦ Àû¿ëÇØ¼± ¾ÈµÊ.
-	// FActorIterator ¸¦ µµ´Â ´ë½Å GameMode ¸¦ ÅëÇØ °Ë»ç
+	// æå›º åˆ©ä¾©ç™»æ‰ çŸ«ç´¯èŒ„ ActiveCameraActor å•Š ä¹ä¿ƒæ DefaultPlayerCamera ç”« åˆ©ä¾©ç§¦æ€¥ æ•‘å‡³.
+	// FActorIterator ç”« æ¡£ç»° æªè„š GameMode ç”« çƒ¹ç§¦ å…«è¤
 	ABladeIIGameMode* B2GM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(this));
 	const bool bAnyActiveCameraActorActivated = (B2GM && B2GM->GetCurrentActiveActiveCameraActor());
 
 	if (bAnyActiveCameraActorActivated == false)
 	{
-		// ºí·»µù ¾ø´Â ÃÊ±â Àû¿ë.
+		// å–‰åŠçˆ¹ ç»ç»° æª¬æ‰ åˆ©ä¾©.
 		ApplyDefaultPlayerCameraSetting(Cast<ABladeIIPlayerController>(UGameplayStatics::GetPlayerController(this, 0)), 0.0f);
 	}
 }
@@ -222,10 +222,10 @@ void ABladeIIWorldSettings::ApplyDefaultPlayerCameraSetting(class ABladeIIPlayer
 
 	if (InB2PC && B2Player)
 	{
-		// Override °¡ ¾øÀ» °æ¿ì »ç¿ëÇÒ Å¬·¡½º µğÆúÆ® 
+		// Override å•Š ç»é˜‘ ç‰ˆå¿« è¤ä¾©ä¸” åŠªè´°èƒ¶ å¼å¼ƒé£˜ 
 		ABladeIIPlayer* B2PlayerDefault = Cast<ABladeIIPlayer>(B2Player->GetClass()->GetDefaultObject());
 
-		// ¼¼ÆÃÀÇ override µÈ °ªµé Àû¿ë
+		// æŠ€æ³¼ç‹¼ override ç­‰ è”¼ç”¸ åˆ©ä¾©
 		if (DefaultPlayerCameraSettings.bOverrideCameraBoomPitch)
 		{
 			InB2PC->SetCameraBoomPitch(DefaultPlayerCameraSettings.CameraBoomPitch);
@@ -277,10 +277,10 @@ void ABladeIIWorldSettings::ApplyDefaultPlayerCameraSetting(class ABladeIIPlayer
 
 		InB2PC->SetDefaultCameraRotator();
 
-		if (!bNoSetViewTarget) // bNoSetViewTarget À» false ·Î ÁÖ´Â °æ¿ì´Â CameraBoom ¸¸ µ¹·Á³õ°í ½ÇÁ¦·Î Viewtarget ÀÌ ¾î¶»°Ô µÉÁö´Â ¸ğ¸£´Â »óÈ².
+		if (!bNoSetViewTarget) // bNoSetViewTarget é˜‘ false è‚º æ—ç»° ç‰ˆå¿«ç»° CameraBoom çˆ¶ å€’å¦¨åˆç»Š è§’åŠ›è‚º Viewtarget æ ç»¢ç—˜éœ¸ çªç˜¤ç»° è‘›ç¦ç»° æƒ‘ç‚”.
 		{
-			// Override °¡ ¾ø´õ¶óµµ ±âº» ºí·çÇÁ¸°Æ®¿¡ Á¤ÀÇµÈ top-down Ä«¸Ş¶ó·Î µ¹¾Æ°¡µµ·Ï.
-			// ÀÚ ÇÑ¹ø ºí·»µùÀ» ÇØ º¸ÀÚ. ÀÌÀü ViewTarget ÀÌ PlayerCharacter ÀÎ °æ¿ìµµ ºí·»µùÀÌ ÀÛµ¿ÇÏµµ·Ï ÇÏ·Á¸é ForceFromLastView »ç¿ë.
+			// Override å•Š ç»æ­¹æ‰¼æ¡£ æ‰å¤¯ å–‰é£æ©‡èµ´é£˜ä¿Š æ²¥ç‹¼ç­‰ top-down å¢¨çš‹æ‰¼è‚º å€’é…’å•Šæ¡£åºŸ.
+			// ç£Š èŒ„é”… å–‰åŠçˆ¹é˜‘ ç§¦ ç„Šç£Š. æå‚ˆ ViewTarget æ PlayerCharacter ç‰¢ ç‰ˆå¿«æ¡£ å–‰åŠçˆ¹æ ç´¯æ‚¼çªæ¡£åºŸ çªå¦¨æ ForceFromLastView è¤ä¾©.
 			InB2PC->SetViewTargetWithBlend(B2Player, BlendTime, BlendFunc, 0.0f, false);
 		}
 	}
@@ -301,7 +301,7 @@ void ABladeIIWorldSettings::ApplyPlayerLightSettingForPlayerPawn(class ABladeIIP
 	
 	APlayerController* PC = UGameplayStatics::GetPlayerController(this, 0);
 	ABladeIIPlayer* AssumedLocalPlayer = PC ? Cast<ABladeIIPlayer>(PC->GetCharacter()) : nullptr;
-	// ¸®¸ğÆ®³ª ÀÌ·± ¾Öµé ¸»°í Local player character ¸¸. GetLocalPlayerCharacter °¡ NULL À» ¸®ÅÏÇÏ´Â ½ÃÁ¡ÀÌ ³ª¿Ã ¼öµµ ÀÖÀ½.
+	// åºœè‘›é£˜å”± æç¹ å±€ç”¸ å¯Œç»Š Local player character çˆ¶. GetLocalPlayerCharacter å•Š NULL é˜‘ åºœç•”çªç»° çŸ«ç—¢æ å”±æ£µ èæ¡£ ä¹æ¾œ.
 	if (targetPlayer && (!AssumedLocalPlayer || AssumedLocalPlayer == targetPlayer))
 	{
 		UPointLightComponent* PlayerAttachedLight = targetPlayer ? targetPlayer->LightComponent : NULL;
@@ -316,7 +316,7 @@ void ABladeIIWorldSettings::ApplyPlayerLightSettingForPlayerPawn(class ABladeIIP
 				PlayerAttachedLight->SetLightColor(PlayerLightSettings.LightColor);
 			}
 			PlayerAttachedLight->MarkRenderStateDirty();
-			FlushRenderingCommands(); // ÀÌ·± °Ç ÃÖ´ëÇÑ »¡¸® Àû¿ë.
+			FlushRenderingCommands(); // æç¹ æ‰’ å¼¥æªèŒ„ å¼§åºœ åˆ©ä¾©.
 		}
 	}
 }
@@ -333,11 +333,11 @@ FText ABladeIIWorldSettings::GetLocalizedAreaSubNameText()
 
 bool ABladeIIWorldSettings::IsDynamicShadowDisallowedWave(int32 InCurrClientStage, int32 InCurrDifficulty, int32 InCheckWaveNum) const
 {
-	// Static lighting È¯°æ¿¡¼­ dynamic shadow ¸¦ ¾²·Á´Ï ¹®Á¦°¡ µÇ´Â °æ¿ì°¡ ÀÖ¾î¼­ wave º°·Î ²ø ¼ö ÀÖµµ·Ï ÇÏ´Â ¼³Á¤ Á¦°ø..
-	// TurnOffMeshComponentsDyamicShadowForModulated Âü°í.
-	// SpawnPool ÂÊ Difficulty ¼¼ÆÃÀÌ int ¶ó ¿©±âµµ.. ¤Ğ¤Ğ
+	// Static lighting åˆ¸ç‰ˆä¿Šè¾‘ dynamic shadow ç”« é™å¦¨èª å·©åŠ›å•Š ç™»ç»° ç‰ˆå¿«å•Š ä¹ç»¢è¾‘ wave å–Šè‚º ç¼  è ä¹æ¡£åºŸ çªç»° æ±²æ²¥ åŠ›å‚..
+	// TurnOffMeshComponentsDyamicShadowForModulated æ›¼ç»Š.
+	// SpawnPool ç‡ Difficulty æŠ€æ³¼æ int æ‰¼ å’¯æ‰æ¡£.. ã°ã°
 	FCombinedUniqueSPWaveID CheckID(InCurrClientStage, InCurrDifficulty, InCheckWaveNum);
-	// ±×·± Å°°ªÀÌ ÀÖ´ÂÁö¸¸ º»´Ù. bool Value °ªÀº Áß¿äÇÏÁö ¾ÊÀ½.
+	// å¼Šç¹ è™è”¼æ ä¹ç»°ç˜¤çˆ¶ å¤¯ä¿ƒ. bool Value è”¼ç¯® åå¤¸çªç˜¤ è‡¼æ¾œ.
 	return (DynamicShadowExcludeWaveNameKeys.Find(CheckID.GetMyKeyName()) != nullptr);
 }
 
@@ -349,7 +349,7 @@ FString ABladeIIWorldSettings::GetIniKeyStringPrefixOfDefaultPresetEnum(EWorldDe
 	{
 		FString PresetEnumName = EnumPtr->GetNameStringByIndex(EnumPtr->GetIndexByValue((int32)InPresetEnum));
 
-		// ³×ÀÌ¹Ö ·êÀÌ ¸Â¾Æ¾ß µÇ°Ú´Ù. ±×·¸´Ù°í CheckPCClassEnumNamingConvention Ã³·³ ÇÒ ÇÊ¿ä±îÁö´Â..
+		// åŒ™ææ€ª é€¢æ å˜é…’å…· ç™»æ‘†ä¿ƒ. å¼ŠçŠ¯ä¿ƒç»Š CheckPCClassEnumNamingConvention è´¸çƒ¦ ä¸” é˜å¤¸é³–ç˜¤ç»°..
 		if (PresetEnumName.RemoveFromStart(EWORLDDEFAULTCAMERAPRESET_COMMON_PREFIX) == true)
 		{
 			return PresetEnumName;
@@ -386,12 +386,12 @@ void ABladeIIWorldSettings::PostEditChangeProperty(FPropertyChangedEvent& Proper
 	FProperty* PropertyThatChanged = PropertyChangedEvent.Property;
 	FName PropertyName = PropertyThatChanged != NULL ? PropertyThatChanged->GetFName() : NAME_None;
 
-	// TransientDefaultCameraPreset ¼±ÅÃ½Ã Preset °ªµé·Î µ¤¾î¾²±â.
+	// TransientDefaultCameraPreset æ€¥ç¶çŸ« Preset è”¼ç”¸è‚º ä¸¹ç»¢é™æ‰.
 	if(PropertyName == Name_TransientDefaultCameraPreset)
 	{
 		if (TransientDefaultCameraPreset != EWorldDefaultPlayCameraPreset::EWDCP_End)
 		{
-			// Preset µé ·Îµå
+			// Preset ç”¸ è‚ºé›
 			FWorldDefaultPlayCameraSettings::LoadPresetValues(DefaultCameraPreset_StandardTopDown, GetIniKeyStringPrefixOfDefaultPresetEnum(EWorldDefaultPlayCameraPreset::EWDCP_StandardTopDown));
 			FWorldDefaultPlayCameraSettings::LoadPresetValues(DefaultCameraPreset_StandardBackView, GetIniKeyStringPrefixOfDefaultPresetEnum(EWorldDefaultPlayCameraPreset::EWDCP_StandardBackView));
 
@@ -407,7 +407,7 @@ void ABladeIIWorldSettings::PostEditChangeProperty(FPropertyChangedEvent& Proper
 	}
 	else
 	{
-		// ±âÅ¸ÀÇ °æ¿ì ÀÏ´Ü EWDCP_End ·Î µ¹·Á³ö¼­ ´Ù½Ã °£ÆíÇÏ°Ô ÇÁ¸®¼Â ¼¼ÆÃÀÌ °¡´ÉÇÏµµ·Ï ÇÑ´Ù.
+		// æ‰é¸¥ç‹¼ ç‰ˆå¿« è€çªœ EWDCP_End è‚º å€’å¦¨å‡ºè¾‘ ä¿ƒçŸ« åŸƒç¥ˆçªéœ¸ æ©‡åºœæ‚¸ æŠ€æ³¼æ å•Šç“·çªæ¡£åºŸ èŒ„ä¿ƒ.
 		TransientDefaultCameraPreset = EWorldDefaultPlayCameraPreset::EWDCP_End;
 	}
 
@@ -420,7 +420,7 @@ void ABladeIIWorldSettings::PostEditChangeProperty(FPropertyChangedEvent& Proper
 		bool bFoundDifficultySetting = false;
 		EStageDifficulty FallbackDifficultyLevel = EStageDifficulty::ESD_None;
 		
-		// MonsterSpawnPool ÀÌ¶û StageEventDirector ÇÁ¸®ºä ¾÷µ¥ÀÌÆ® ÇØ¾ß ÇÔ.
+		// MonsterSpawnPool æå°” StageEventDirector æ©‡åºœè½° è¯€å•æé£˜ ç§¦å…· çªƒ.
 		for (FActorIterator ActorIt(GEditor->GetEditorWorldContext().World()); ActorIt; ++ActorIt)
 		{
 			AB2MonsterSpawnPool* SpawnPool = Cast<AB2MonsterSpawnPool>(*ActorIt);
@@ -429,7 +429,7 @@ void ABladeIIWorldSettings::PostEditChangeProperty(FPropertyChangedEvent& Proper
 			if (SpawnPool) 
 			{
 				const FMonsterSpawnPoolPerStageSettings* ThisStageSetting = SpawnPool->GetDesiredStageSetting(EditorStageNumber, (EStageDifficulty)EditorStageDifficulty);
-				// ÇöÀç ¼±ÅÃÇÑ ½ºÅ×ÀÌÁö ¹øÈ£¿Í ³­ÀÌµµ ·¹º§¿¡ ¸Â°Ô ÆíÁı Á¤º¸µéÀ» ¾÷µ¥ÀÌÆ®
+				// æ³…çŠ æ€¥ç¶èŒ„ èƒ¶æŠ›æç˜¤ é”…é¾‹å®¢ æŠ„ææ¡£ é¥­éª‡ä¿Š å˜éœ¸ ç¥ˆç¬¼ æ²¥ç„Šç”¸é˜‘ è¯€å•æé£˜
 				SpawnPool->RegenerateEditingActors();
 				SpawnPool->EnsureHaveFixedSpawnTransforms();
 				SpawnPool->RegenerateComponentNameDisplay();
@@ -458,7 +458,7 @@ void ABladeIIWorldSettings::PostEditChangeProperty(FPropertyChangedEvent& Proper
 		{
 #if !PLATFORM_MAC
 			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-				FString::Printf(TEXT("ÇöÀç ¼³Ä¡µÈ SpawnPool ¿¡¼­ ¿¡µğÅÍ¿ë StageNum %d ¿Í(°ú) DifficultyLevel %d ¿¡ ÇØ´çÇÏ´Â Wave ¼¼ÆÃÀ» Ã£À» ¼ö ¾ø½À´Ï´Ù.\n\nÇØ´ç Stage ´Â Çö ·¹º§¿¡¼­ »ç¿ëÇÒ ¼ö ¾ø½À´Ï´Ù."), 
+				FString::Printf(TEXT("æ³…çŠ æ±²æ‘¹ç­‰ SpawnPool ä¿Šè¾‘ ä¿Šå¼ç£ä¾© StageNum %d å®¢(è‹) DifficultyLevel %d ä¿Š ç§¦å¯¸çªç»° Wave æŠ€æ³¼é˜‘ èŒ«é˜‘ è ç»åš¼èªä¿ƒ.\n\nç§¦å¯¸ Stage ç»° æ³… é¥­éª‡ä¿Šè¾‘ è¤ä¾©ä¸” è ç»åš¼èªä¿ƒ."), 
 					EditorStageNumber, EditorStageDifficulty
 				)));
 #endif
@@ -467,7 +467,7 @@ void ABladeIIWorldSettings::PostEditChangeProperty(FPropertyChangedEvent& Proper
 		{
 #if !PLATFORM_MAC
 			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-				FString::Printf(TEXT("ÇöÀç ¼³Ä¡µÈ SpawnPool ¿¡¼­ ¿¡µğÅÍ¿ë StageNum %d ¿¡ ÇØ´çÇÏ´Â ¼³Á¤À» Ã£¾ÒÀ¸³ª DifficultyLevel %d ¿¡ ÇØ´çÇÏ´Â Wave ¼¼ÆÃÀ» Ã£Áö ¸øÇÏ¿© °¡±î¿î DifficultyLevel %d ¼¼ÆÃÀ» ´ë½Å »ç¿ëÇÏ°Ô µË´Ï´Ù."),
+				FString::Printf(TEXT("æ³…çŠ æ±²æ‘¹ç­‰ SpawnPool ä¿Šè¾‘ ä¿Šå¼ç£ä¾© StageNum %d ä¿Š ç§¦å¯¸çªç»° æ±²æ²¥é˜‘ èŒ«ç–½æ å”± DifficultyLevel %d ä¿Š ç§¦å¯¸çªç»° Wave æŠ€æ³¼é˜‘ èŒ«ç˜¤ ç»™çªå’¯ å•Šé³–æ¬¾ DifficultyLevel %d æŠ€æ³¼é˜‘ æªè„š è¤ä¾©çªéœ¸ é‚“èªä¿ƒ."),
 					EditorStageNumber, EditorStageDifficulty, static_cast<int32>(FallbackDifficultyLevel)
 				)));
 #endif
@@ -483,7 +483,7 @@ bool ABladeIIWorldSettings::CanEditChange(const FProperty* InProperty) const
 	{
 		FString PropertyName = InProperty->GetName();
 		if (PropertyName == Name_DevTestScenarioMode.ToString())
-		{ // ½Ã³ª¸®¿À ¸ğµå´Â ÀÏ¹İ ³­ÀÌµµ¿¡¼­¸¸ ÀÛµ¿ÇÔ. ¿¡µğÅÍ ÇÁ¸®ºä È¥¼± ¹æÁö¸¦ À§ÇØ ¼±ÅÃ ¸·¾ÆµÒ.
+		{ // çŸ«å”±åºœå· è‘›é›ç»° è€é¦† æŠ„ææ¡£ä¿Šè¾‘çˆ¶ ç´¯æ‚¼çªƒ. ä¿Šå¼ç£ æ©‡åºœè½° å»æ€¥ è§„ç˜¤ç”« å›°ç§¦ æ€¥ç¶ é˜œé…’ç‹„.
 			return FCacheStageEssentialDataToKeep::IsScenarioModeAllowedDifficulty((EStageDifficulty)EditorStageDifficulty);
 		}
 	}

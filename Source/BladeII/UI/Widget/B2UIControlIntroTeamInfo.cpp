@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIControlIntroTeamInfo.h"
 #include "B2ControlGameMode.h"
@@ -50,7 +50,7 @@ void UB2UIControlIntroTeamInfo::CreateUserInfos()
 
 void UB2UIControlIntroTeamInfo::CreateUserInfo(class ICharacterDataStore* pCharData, ETeamType TeamType, int32 BattleGrade, int32 BattleStarCount)
 {
-	// �ʻ�ȭ
+	// 檬惑拳
 	if (!FaceMaterials.Contains(pCharData->GetMainPlayerClass()))
 		return;
 		
@@ -63,7 +63,7 @@ void UB2UIControlIntroTeamInfo::CreateUserInfo(class ICharacterDataStore* pCharD
 	if (!pCharMI)
 		return;
 		
-	// �̸�
+	// 捞抚
 	FString UserName = pCharData->GetUserNickName();
 
 	AddTeamUserInfo(TeamType, FText::FromString(UserName), pCharMI, BattleGrade, BattleStarCount);

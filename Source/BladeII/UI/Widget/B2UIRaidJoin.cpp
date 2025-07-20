@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIRaidJoin.h"
 #include "B2UIDocHelper.h"
@@ -48,7 +48,7 @@ void UB2UIRaidJoin::OnOpenComplete()
 {
 	if (auto* UIRaidMain = UB2UIManager::GetInstance()->GetUI<UB2UIRaidMain>(UIFName::Raid))
 	{
-		// RaidJoin UI °¡ ¿ÀÇÂµÇ¸é ¹æ¿¡ ÀÔÀåÇßÀ¸¹Ç·Î ·¹ÀÌµå ÆäÀÌÁöÀÇ ¹öÆ°À» È°¼ºÈ­ ½ÃÄÑÁÜ.
+		// RaidJoin UI å•Š å·é”¹ç™»æ è§„ä¿Š æ¶å˜æ²æ éª¨è‚º é¥­æé› å…¶æç˜¤ç‹¼ æ»šç“¢é˜‘ åŠå·±æ‹³ çŸ«éš¾æ·‹.
 		UIRaidMain->ButtonFree();
 	}
 }
@@ -219,7 +219,7 @@ void UB2UIRaidJoin::InitRoomType(ERaidJoinType RoomType)
 
 void UB2UIRaidJoin::ChangeQuickStartRoom()
 {
-	// ¹æ¸¸µé±â ¸ğµå¿¡¼­ -> Äü¼­Ä¡ ¸ğµå·Î º¯°æ 
+	// è§„çˆ¶ç”¸æ‰ è‘›é›ä¿Šè¾‘ -> ç‹è¾‘æ‘¹ è‘›é›è‚º å‡½ç‰ˆ 
 	RaidJoinType = ERaidJoinType::QuickStart;
 	InitRoomType_BP((int32)RaidJoinType);
 
@@ -275,7 +275,7 @@ void UB2UIRaidJoin::StartCountDownAnimation(float InCountDownTime)
 				LobbyGameMode->StartFinishLobbyMatch();
 		}), InCountDownTime);
 
-		// Ä«¿îÆ® ½ÃÀÛÇÏ¸é ³ª°¡±â ¹öÆ° »ç¶óÁöµµ·Ï.
+		// å¢¨æ¬¾é£˜ çŸ«ç´¯çªæ å”±å•Šæ‰ æ»šç“¢ è¤æ‰¼ç˜¤æ¡£åºŸ.
 		if (BTN_Close.IsValid())
 			BTN_Close->SetVisibility(ESlateVisibility::Hidden);
 	}
@@ -283,7 +283,7 @@ void UB2UIRaidJoin::StartCountDownAnimation(float InCountDownTime)
 
 void UB2UIRaidJoin::SetEnableBtnClose(bool IsEnable)
 {
-	// ·¹ÀÌµå ³ª°¡±â ¹öÆ° ºñÈ°¼ºÈ­
+	// é¥­æé› å”±å•Šæ‰ æ»šç“¢ åšåŠå·±æ‹³
 	if (BTN_Close.IsValid())
 		BTN_Close->SetIsEnabled(IsEnable);
 }
@@ -379,7 +379,7 @@ void UB2UIRaidJoin::OnClickQuickMatching()
 		FMsgPopupOnClick::CreateLambda([this](){
 			ChangePublicRoomType_BP();
 
-			// ·ëÀ» °ø°³¹æÀ¸·Î ¿­¾îÁØ´Ù. (ºü¸¥ Ã£±â·Î º¯°æ)
+			// å†¯é˜‘ å‚ä¿ºè§„æ è‚º å‡¯ç»¢éœ–ä¿ƒ. (ç‹å¼— èŒ«æ‰è‚º å‡½ç‰ˆ)
 			if (auto* LobbyGameMode = Cast<AB2LobbyGameMode>(UGameplayStatics::GetGameMode(this)))
 				LobbyGameMode->ChangeRoomPublicAccess();
 		}),

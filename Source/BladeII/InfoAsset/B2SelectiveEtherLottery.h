@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 //#include "BladeII.h"
@@ -15,10 +15,10 @@ struct FSelectiveEtherLotteryData : public FTableRowBase
 		int32 RefID;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-		int32 Grade;												//¿¡Å×¸£ StarÀÓ
+		int32 Grade;												//ä¿ŠæŠ›ç¦ Starçƒ™
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-		int32 Tier;											//¿¡Å×¸£ Æ¼¾î
+		int32 Tier;											//ä¿ŠæŠ›ç¦ èç»¢
 };
 
 UCLASS()

@@ -1,4 +1,4 @@
-
+ï»¿
 #include "MissionManager.h"
 #include "B2MissionInfo.h"
 #include "Event.h"
@@ -19,7 +19,7 @@ int32 ConvertMissionType(EMissionType ClientMissionType)
 
 void FMission::GenerateMission(b2network::B2MissionInfoPtr ReceiveMission)
 {
-	// ÇöÀç ServerÀÇ °ªÀ¸·Î °»½ÅÇØ¾ß ÇÒ ÃÖ½Å Á¤º¸µé
+	// æ³…çŠ Serverç‹¼ è”¼æ è‚º ç›è„šç§¦å…· ä¸” å¼¥è„š æ²¥ç„Šç”¸
 	if (ReceiveMission)
 	{
 		MissionState = static_cast<EMissionState>(ReceiveMission->mission_state_type);
@@ -36,14 +36,14 @@ void FMission::GenerateMission(b2network::B2MissionInfoPtr ReceiveMission)
 			GenerateInfoFromMasterData(SerialMissionMasterInfo);
 			if (SerialMissionMasterInfo)
 			{
-				if (CompleteStep > RewardStep)	// ¹ŞÀ» º¸»óÀÌ ³²¾ÆÀÖ´Ù¸é
+				if (CompleteStep > RewardStep)	// ç½é˜‘ ç„Šæƒ‘æ å·¢é…’ä¹ä¿ƒæ
 				{
 					MissionState = EMissionState::Complete;
 					ProgressCount = SerialMissionMasterInfo->goal_count;
 				}
 			}
 
-			// Serial Mission ¸ğµÎ ¿Ï·á ÈÄ ¼­¹ö¿¡¼­ MissionState¸¦ Rewarded·Î ¹Ù²Ù±â Èûµé´Ù¸é Å¬¶ó ÀÚÃ¼ÆÇ´ÜÀÌ ÇÊ¿ä
+			// Serial Mission è‘›æ»´ è‚¯ä¸° é¥¶ è¾‘æ»šä¿Šè¾‘ MissionStateç”« Rewardedè‚º å®˜æ“æ‰ å¡ç”¸ä¿ƒæ åŠªæ‰¼ ç£Šçœ‰é­„çªœæ é˜å¤¸
 			else if (MissionManager::GetInstance().IsSerialMissionComplete(MissionID))
 			{
 				SerialMissionMasterInfo = MissionManager::GetInstance().GetSerialMissionMasterInfo(MissionID, RewardStep);
@@ -51,7 +51,7 @@ void FMission::GenerateMission(b2network::B2MissionInfoPtr ReceiveMission)
 				if (SerialMissionMasterInfo)
 				{
 					ProgressCount = SerialMissionMasterInfo->goal_count;
-					GoalCount = SerialMissionMasterInfo->goal_count; // ¸ğµÎ ÀÓ¹« ¿Ï·áÀÏ¶§ goalcount¿Í progresscount¸¦ ¸¶Áö¸· ½ºÅÜÀÇ ÇÊ¿ä°³¼ö·Î °íÁ¤.
+					GoalCount = SerialMissionMasterInfo->goal_count; // è‘›æ»´ çƒ™å…¬ è‚¯ä¸°è€é”­ goalcountå®¢ progresscountç”« ä»˜ç˜¤é˜œ èƒ¶è·‘ç‹¼ é˜å¤¸ä¿ºèè‚º ç»Šæ²¥.
 				}
 			}
 		}
@@ -60,18 +60,18 @@ void FMission::GenerateMission(b2network::B2MissionInfoPtr ReceiveMission)
 
 void FMission::GenerateInfoFromMasterData(b2network::B2mdMissionInfoPtr MissionMasterData)
 {
-	// MasterData·Î ¹ÙÀÎµù µÇ¾î¾ß ÇÒ Default Á¤º¸µé
+	// MasterDataè‚º å®˜ç‰¢çˆ¹ ç™»ç»¢å…· ä¸” Default æ²¥ç„Šç”¸
 	if (MissionMasterData)
 	{
 		MissionID = MissionMasterData->mission_id;
 		MissionType = ConvertMissionType(MissionMasterData->mission_type);
-		MissionState = EMissionState::InProgress;	// ±âº»Àº InProgress»óÅÂ
+		MissionState = EMissionState::InProgress;	// æ‰å¤¯ç¯® InProgressæƒ‘æ€•
 
 		GoalCount = MissionMasterData->goal_count;
 
 		CompletePoint = MissionMasterData->complete_point;
 
-		Condition1 = MissionMasterData->condition1;		//1¸¸ ÇÊ¿äÇÏÁö¸¸ È¤½Ã¸ğ¸£´Ï ÁÖ´Â°Å ´Ù¹ŞÀÚ
+		Condition1 = MissionMasterData->condition1;		//1çˆ¶ é˜å¤¸çªç˜¤çˆ¶ è¶£çŸ«è‘›ç¦èª æ—ç»°èŠ­ ä¿ƒç½ç£Š
 		Condition2 = MissionMasterData->condition2;
 		Condition3 = MissionMasterData->condition3;
 		Condition4 = MissionMasterData->condition4;
@@ -88,11 +88,11 @@ void FMission::GenerateInfoFromMasterData(b2network::B2mdSerialMissionInfoPtr Se
 		MissionID = SerialMissionMasterData->mission_id;
 		MissionType = EMissionType::Serial;
 
-		MissionState = EMissionState::InProgress;	// ±âº»Àº InProgress»óÅÂ
+		MissionState = EMissionState::InProgress;	// æ‰å¤¯ç¯® InProgressæƒ‘æ€•
 
 		GoalCount = SerialMissionMasterData->goal_count;
 
-		Condition1 = SerialMissionMasterData->condition1;		//1¸¸ ÇÊ¿äÇÏÁö¸¸ È¤½Ã¸ğ¸£´Ï ÁÖ´Â°Å ´Ù¹ŞÀÚ
+		Condition1 = SerialMissionMasterData->condition1;		//1çˆ¶ é˜å¤¸çªç˜¤çˆ¶ è¶£çŸ«è‘›ç¦èª æ—ç»°èŠ­ ä¿ƒç½ç£Š
 		Condition2 = SerialMissionMasterData->condition2;
 		Condition3 = SerialMissionMasterData->condition3;
 		Condition4 = SerialMissionMasterData->condition4;
@@ -129,7 +129,7 @@ void MissionManager::SubscribeEvents()
 	{
 		this->UpdateMission(data);
 
-		//µ¥ÀÌÅÍ °»½Å ÈÄ UI ÀüÈ¯
+		//å•æç£ ç›è„š é¥¶ UI å‚ˆåˆ¸
 		if (this->IsChangeScene)
 		{
 			this->IsChangeScene = false;
@@ -169,8 +169,8 @@ void MissionManager::ReceiveMissionMasterData(const FB2MasterDatas& MasterData)
 {
 	//PeriodMissions.Empty();
 
-	//// ¸¶½ºÅÍ µ¥ÀÌÅÍ¸¦ ¹ŞÀ½°ú µ¿½Ã¿¡ ProgressMissionList¿¡ ¾Ë¸ÂÀº MissionµéÀÌ µé¾î°¡¾ß ÇÏ°í
-	//// UpdateMissionÀ» ¹ŞÀ¸¸é ÇØ´ç MissionÀ» Ã£¾Æ°¡ Update¸¸ ÇØ ÁÖ´Â ¹æ½ÄÀ¸·Î
+	//// ä»˜èƒ¶ç£ å•æç£ç”« ç½æ¾œè‹ æ‚¼çŸ«ä¿Š ProgressMissionListä¿Š èˆ…å˜ç¯® Missionç”¸æ ç”¸ç»¢å•Šå…· çªç»Š
+	//// UpdateMissioné˜‘ ç½æ æ ç§¦å¯¸ Missioné˜‘ èŒ«é…’å•Š Updateçˆ¶ ç§¦ æ—ç»° è§„ä¾¥æ è‚º
 	//const TArray<b2network::B2mdMissionInfoPtr>& ServerMissions = GET_TUPLE_DATA(FB2ResponseMasterDatas::md_mission_infos_index, MasterData);
 	//for (const b2network::B2mdMissionInfoPtr& Mission : ServerMissions)
 	//{
@@ -184,12 +184,12 @@ void MissionManager::ReceiveMissionMasterData(const FB2MasterDatas& MasterData)
 	//	SerialMissions.AddUnique(SerialMission->mission_id, SerialMission);
 	//}
 
-	//// Serial MissionÀº °¢ MissionÀÇ Ã¹ ¹øÂ° Step Mission Á¤º¸·Î¸¸ Ã¤¿ì°í UpdateMission¿¡¼­ ÁøÇà»óÈ²À» ¹İ¿µÇÑ´Ù.
+	//// Serial Missionç¯® é˜¿ Missionç‹¼ éœ‰ é”…æ³ Step Mission æ²¥ç„Šè‚ºçˆ¶ ç›²å¿«ç»Š UpdateMissionä¿Šè¾‘ æŸ³é’æƒ‘ç‚”é˜‘ é¦†åº·èŒ„ä¿ƒ.
 	//TArray<int32> SerialMissionIDList;
 	//SerialMissions.GetKeys(SerialMissionIDList);
 	//for (auto MissionID : SerialMissionIDList)
 	//{
-	//	auto SerialMissionMasterInfo = GetSerialMissionMasterInfo(MissionID, 1); // Ã¹¹øÂ° StepÀ¸·Î ÃÊ±â ¼³Á¤
+	//	auto SerialMissionMasterInfo = GetSerialMissionMasterInfo(MissionID, 1); // éœ‰é”…æ³ Stepæ è‚º æª¬æ‰ æ±²æ²¥
 	//	if (SerialMissionMasterInfo != nullptr)
 	//	{
 	//		GenerateEmptyMission(SerialMissionMasterInfo);
@@ -216,7 +216,7 @@ void MissionManager::ReceiveMissionMasterData(const FB2MasterDatas& MasterData)
 
 void MissionManager::UpdateMission(const FB2GetMission& MissionData)
 {
-	//// ÇöÀç »óÈ² Upadate
+	//// æ³…çŠ æƒ‘ç‚” Upadate
 	//TArray<b2network::B2MissionInfoPtr>	MissionInfos = GET_TUPLE_DATA(FB2ResponseGetMission::mission_infos_index, MissionData);
 	//for (auto ServerMission : MissionInfos)
 	//{
@@ -253,7 +253,7 @@ void MissionManager::UpdateMission(const FB2GetMission& MissionData)
 	//}
 }
 
-// ¾÷Àû ¿Ï·á º¸»ó
+// è¯€åˆ© è‚¯ä¸° ç„Šæƒ‘
 void MissionManager::ReceiveMissionReward(const FB2ReceiveMissionReward& MissionReward)
 {
 	//b2network::B2MissionInfoPtr MissionInfoPtr = GET_TUPLE_DATA(FB2ResponseReceiveMissionReward::received_mission_info_index, MissionReward);
@@ -270,7 +270,7 @@ void MissionManager::ReceiveMissionReward(const FB2ReceiveMissionReward& Mission
 	//OnChangedMissionReward.Broadcast(MissionReward);
 }
 
-// ¾÷Àû Æ÷ÀÎÆ® ¿Ï·á º¸»ó
+// è¯€åˆ© å™¨ç‰¢é£˜ è‚¯ä¸° ç„Šæƒ‘
 void MissionManager::ReceiveMissionCompletePointReward(const FB2ReceiveCompleteMissionReward& CompleteReward)
 {
 	//int32 ServerMissionType = GET_TUPLE_DATA(FB2ResponseReceiveCompleteMissionReward::received_mission_type_index, CompleteReward);
@@ -298,7 +298,7 @@ void MissionManager::ReceveiMissionCompleteNotify(int32 MissionID, int32 Complet
 	if (CompleteMision != nullptr)
 	{
 		CachedCompleteMissions.Add(CompleteMision);
-		CompleteMision->CurrentStep = CompleteStep; // + 1À» ÇØÁà¾ß ÇÏ´ÂÁö´Â È®ÀÎ ÈÄ
+		CompleteMision->CurrentStep = CompleteStep; // + 1é˜‘ ç§¦æ‹å…· çªç»°ç˜¤ç»° çŠ¬ç‰¢ é¥¶
 
 		LobbyMissionAlarmClass<>::GetInstance().Signal();
 	}
@@ -331,7 +331,7 @@ TArray<int32> MissionManager::GetMissionIDList(EMissionType MissionType)
 
 TArray<int32> MissionManager::GetCompletePeriodMissionIDList(EMissionType MissionType)
 {
-	TArray<int32> Result;													// ÀÏÀÏ ÁÖ°¡ ¿ù°£
+	TArray<int32> Result;													// è€è€ æ—å•Š å²¿åŸƒ
 	int32 ServerMissionType = ConvertMissionType(MissionType);
 
 	for (b2network::B2mdMissionInfoPtr Mission : PeriodMissions)
@@ -491,7 +491,7 @@ bool MissionManager::IsSerialMissionComplete(int32 MissionID)
 		{
 			TArray<b2network::B2mdSerialMissionInfoPtr> FindedSerialMissions;
 			SerialMissions.MultiFind(MissionID, FindedSerialMissions);
-			if (Mission->CurrentStep >= FindedSerialMissions.Num()) // Mission Step ´Ü°è°¡ SerialMission Step¼ö¿Í °°À¸¸é
+			if (Mission->CurrentStep >= FindedSerialMissions.Num()) // Mission Step çªœæ‹Œå•Š SerialMission Stepèå®¢ éæ æ
 				return true;
 		}
 	}
@@ -515,7 +515,7 @@ bool MissionManager::IsReadyforReaward(EMissionType MissionType)
 	{
 		if (RewardPtr && RewardPtr->MissionType == MissionType)
 		{
-			if (RewardPtr->bReached == true && RewardPtr->bRewarded == false)	// µµ´ŞÇßÀ¸³ª º¸»ó¹ŞÁö ¾ÊÀº°æ¿ì
+			if (RewardPtr->bReached == true && RewardPtr->bRewarded == false)	// æ¡£å´”æ²æ å”± ç„Šæƒ‘ç½ç˜¤ è‡¼ç¯®ç‰ˆå¿«
 			{
 				return true;
 			}

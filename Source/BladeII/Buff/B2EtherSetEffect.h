@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -180,7 +180,7 @@ public:
 /*
 	Offense Ethers...
 */
-/* ----- Æø·Ú(°ø°İ) - ¹ø°³°ø°İ [B2AetherSetOptionType::THUNDER_DAMAGE = 1001 ] ----- */
+/* ----- æ°”æ±¾(å‚æ‹œ) - é”…ä¿ºå‚æ‹œ [B2AetherSetOptionType::THUNDER_DAMAGE = 1001 ] ----- */
 UCLASS(Blueprintable)
 class UB2Ether_Thunder : public UB2EtherSetOffense
 {
@@ -212,7 +212,7 @@ protected:
 	UParticleSystem* HitEffectObj;
 };
 
-/* ----- ¼Ó¹Ú(°ø°İ) - ÀÌµ¿ºÒ°¡ [B2AetherSetOptionType::IMMOBILIZE = 1002 ] ----- */
+/* ----- åŠ å† (å‚æ‹œ) - ææ‚¼é˜‚å•Š [B2AetherSetOptionType::IMMOBILIZE = 1002 ] ----- */
 UCLASS(Blueprintable)
 class UB2Ether_Immobilize : public UB2EtherSetOffense
 {
@@ -229,7 +229,7 @@ protected:
 	float Duration;
 };
 
-/* ----- ¼öÈ£(¹æ¾î) - ½¯µå [B2AetherSetOptionType::SHIELD = 1003 ] ----- */
+/* ----- èé¾‹(è§„ç»¢) - è’‹é› [B2AetherSetOptionType::SHIELD = 1003 ] ----- */
 UCLASS(Blueprintable)
 class UB2Ether_Shield : public UB2EtherSetDefense
 {
@@ -251,7 +251,7 @@ protected:
 };
 
 
-/* ----- ¿­Á¤(¹æ¾î) - È­¿° µğ¹öÇÁ [B2AetherSetOptionType::FIRE_RANGE = 1004 ] ----- */
+/* ----- å‡¯æ²¥(è§„ç»¢) - æ‹³å ª å¼æ»šæ©‡ [B2AetherSetOptionType::FIRE_RANGE = 1004 ] ----- */
 UCLASS(Blueprintable)
 class UB2Ether_FireRange : public UB2EtherSetDefense
 {
@@ -269,7 +269,7 @@ public:
 
 
 
-/* ----- ÆÄ¸ê(°ø°İ) - ¿î¼®°ø°İ [B2AetherSetOptionType::METEOR_DAMAGE = 1005 ] ----- */
+/* ----- é¢‡æˆˆ(å‚æ‹œ) - æ¬¾ç±å‚æ‹œ [B2AetherSetOptionType::METEOR_DAMAGE = 1005 ] ----- */
 UCLASS(Blueprintable)
 class UB2Ether_Meteor : public UB2EtherSetOffense
 {
@@ -293,7 +293,7 @@ protected:
 	float MeteorRadius;
 };
 
-/* ----- ÅëÂû(°ø°İ) - ´ë»ó ½ºÅ³ Àç»ç¿ë½Ã°£ max [B2AetherSetOptionType::SKILL_COOLTIME = 1006 ] ----- */
+/* ----- çƒ¹è”“(å‚æ‹œ) - æªæƒ‘ èƒ¶æ‡¦ çŠè¤ä¾©çŸ«åŸƒ max [B2AetherSetOptionType::SKILL_COOLTIME = 1006 ] ----- */
 UCLASS(Blueprintable)
 class UB2Ether_IncreaseCooltime : public UB2EtherSetOffense
 {
@@ -305,7 +305,7 @@ public:
 	virtual void ProcessEffect(ABladeIICharacter* VictimCharacter) override;
 };
 
-/* ----- ºĞ³ë(°ø°İ) - °á¼Ó½ºÅ³ ÄğÅ¸ÀÓ °¨¼Ò [B2AetherSetOptionType::SKILL_GAGE = 1007 ] ----- */
+/* ----- ç›’ç•´(å‚æ‹œ) - æ¬åŠ èƒ¶æ‡¦ é…¿é¸¥çƒ™ çš‘å®¶ [B2AetherSetOptionType::SKILL_GAGE = 1007 ] ----- */
 UCLASS(Blueprintable)
 class UB2Ether_DecreaseCooltime : public UB2EtherSetOffense
 {
@@ -326,7 +326,7 @@ protected:
 	float AddSkillPoint;
 };
 
-/* ----- Àı¸Á(°ø°İ) -  ½ºÅÏ [B2AetherSetOptionType::STUN = 1008 ] ----- */
+/* ----- ä¾‹å™¶(å‚æ‹œ) -  èƒ¶ç•” [B2AetherSetOptionType::STUN = 1008 ] ----- */
 UCLASS(Blueprintable)
 class UB2Ether_Stun : public UB2EtherSetOffense
 {
@@ -339,7 +339,7 @@ public:
 };
 
 
-/* ----- ÀúÇ×(¹æ¾î) - ¹«Àû [B2AetherSetOptionType::SUPER_ARMOR = 1009 ] ----- */
+/* ----- å†äº²(è§„ç»¢) - å…¬åˆ© [B2AetherSetOptionType::SUPER_ARMOR = 1009 ] ----- */
 UCLASS(Blueprintable)
 class UB2Ether_invincible : public UB2EtherSetDefense
 {
@@ -362,7 +362,7 @@ protected:
 };
 
 
-/* ----- º¹¼ö(¹æ¾î) - µ¥¹ÌÁö ¹İ»ç [B2AetherSetOptionType::DAMAGE_REFLECT = 1010 ] ----- */
+/* ----- æ±—è(è§„ç»¢) - å•å›ºç˜¤ é¦†è¤ [B2AetherSetOptionType::DAMAGE_REFLECT = 1010 ] ----- */
 UCLASS(Blueprintable)
 class UB2Ether_Reflect : public UB2EtherSetDefense
 {
@@ -380,7 +380,7 @@ protected:
 	float ReflectAmount;
 };
 
-/* ----- ¸Á°¢(°ø°İ) - NÃÊ°£ ¹æ¾î/¹İ°İ/±¸¸£±â/ÅÂ±× ºÒ´É »óÅÂ [B2AetherSetOptionType::PROHIBIT_BEHAVIOR = 1011] ----- */
+/* ----- å™¶é˜¿(å‚æ‹œ) - Næª¬åŸƒ è§„ç»¢/é¦†æ‹œ/å¤‡ç¦æ‰/æ€•å¼Š é˜‚ç“· æƒ‘æ€• [B2AetherSetOptionType::PROHIBIT_BEHAVIOR = 1011] ----- */
 UCLASS(Blueprintable)
 class UB2Ether_NotTagDefence : public UB2EtherSetOffense
 {
@@ -398,7 +398,7 @@ protected:
 	float Duration;
 };
 
-/* ----- È¤ÇÑ(¹æ¾î) - ºù°á µğ¹öÇÁ [B2AetherSetOptionType::FREEZE_RANGE = 1012] ----- */
+/* ----- è¶£èŒ„(è§„ç»¢) - è‘«æ¬ å¼æ»šæ©‡ [B2AetherSetOptionType::FREEZE_RANGE = 1012] ----- */
 UCLASS(Blueprintable)
 class UB2Ether_FreezeRange : public UB2EtherSetDefense
 {

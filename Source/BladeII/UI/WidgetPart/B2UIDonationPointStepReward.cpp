@@ -1,8 +1,9 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+Ôªø// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIDonationPointStepReward.h"
 #include "B2UIDocHelper.h"
 #include "B2UIDocDonation.h"
+#include "../../Common/Event.h"
 
 
 void UB2UIDonationPointStepReward::Init()
@@ -111,7 +112,7 @@ void UB2UIDonationPointStepReward::OnClickBack()
 
 #if WITH_EDITOR
 void UB2UIDonationPointStepReward::EditorOnPostLoad()
-{//ø°µ≈Õ¿œ∂ß «ÿ¡‹
+{//‰øäÂèºÁ£êËÄÅÈî≠ Áß¶Ê∑ã
 	CompletionIcon.LoadSynchronous();
 	IncompletionIcon.LoadSynchronous();
 }

@@ -1,4 +1,4 @@
-#include "B2UISummonItem.h"
+ï»¿#include "B2UISummonItem.h"
 #include "Event.h"
 #include "Retailer.h"
 
@@ -145,7 +145,7 @@ void UB2UISummonItem::CacheAssets()
 	GET_SLOT(UOverlay, OV_DoumiGirl);
 	GET_SLOT(UTextBlock, TB_DoumiGirl);
 	
-	// µ¿Àû »ı¼ºÇÏ´Â ÆË¾÷µéÀº CanvasPanel ¸¸ ¾ò¾îµÎ°í ½ÇÁ¦ »ı¼ºÀº ÀÌÈÄ on-demand ·Î
+	// æ‚¼åˆ© ç§¯å·±çªç»° æ‰‘è¯€ç”¸ç¯® CanvasPanel çˆ¶ æ˜ç»¢æ»´ç»Š è§’åŠ› ç§¯å·±ç¯® æé¥¶ on-demand è‚º
 	GET_SLOT(UCanvasPanel, X_CP_UIP_CharSelectPopupPanel);
 	GET_SLOT(UCanvasPanel, X_CP_UIP_MileageRewardPopupPanel);
 	GET_SLOT(UCanvasPanel, X_CP_UIP_MileageGuidePopupPanel);
@@ -230,7 +230,7 @@ void UB2UISummonItem::SetTab()
 					// Button
 					ESummonButtonType ButtonType = Data->IsMultiple() ? ESummonButtonType::SummonButtonType_Ten : ESummonButtonType::SummonButtonType_One;
 					
-					// 10È¸ »Ì±â±Ç »ç¿ë°¡´ÉÇÑÁö Check
+					// 10é›€ æƒ¶æ‰é¼» è¤ä¾©å•Šç“·èŒ„ç˜¤ Check
 					bool bIsTenLotteryTicket = (Data->GetCostType() == int32(ESummonItemCost::Gem) && Data->IsMultiple() && BladeIIGameImpl::GetClientDataStore().GetShopTenLotteryTicket() > 0);
 							
 					// Lottery Sale
@@ -380,10 +380,10 @@ void UB2UISummonItem::SelectedFighter()
 
 void UB2UISummonItem::UpdateSelectCharacterPopupWindow()
 {
-	// ÀÌ°Ô »ı¼ºµÈ »óÅÂ¿¡¼­ ºÒ·Á¾ß ÇÏ´Â °Å
+	// æéœ¸ ç§¯å·±ç­‰ æƒ‘æ€•ä¿Šè¾‘ é˜‚å¦¨å…· çªç»° èŠ­
 	checkSlow(CreatedUIP_CharSelectPopup);
 
-	// ¾Æ¸¶µµ Ä³¸¯ÅÍ´ç ÇÏ³ª¾¿ÀÏ °Å °°Àºµ¥.. Áö±İ ÀÌ°Ç ¸ğµÎ µ¿ÀÏÇÑ °¡°İÀÌ¶ó´Â °¡Á¤ÀÎ°Ç°¡
+	// é…’ä»˜æ¡£ æŸè…ç£å¯¸ çªå”±ç©¶è€ èŠ­ éç¯®å•.. ç˜¤é™› ææ‰’ è‘›æ»´ æ‚¼è€èŒ„ å•Šæ‹œææ‰¼ç»° å•Šæ²¥ç‰¢æ‰’å•Š
 	const EStoreItemCost StoreItemCostType = bUsedTenLotteryTicket ? EStoreItemCost::TenLotteryTicket : SummonItemCostToStoreItemCost(CostType);
 	for (int32 PCI = 0; PCI < UIP_CharSelectPopupCosts.Num(); ++PCI)
 	{
@@ -397,7 +397,7 @@ void UB2UISummonItem::UpdateSelectCharacterPopupWindow()
 
 void UB2UISummonItem::UpdateSelectCharacterPopupWindowTitle(const FText& TitleText)
 {	
-	// ÀÌ°Ô »ı¼ºµÈ »óÅÂ¿¡¼­ ºÒ·Á¾ß ÇÏ´Â °Å
+	// æéœ¸ ç§¯å·±ç­‰ æƒ‘æ€•ä¿Šè¾‘ é˜‚å¦¨å…· çªç»° èŠ­
 	checkSlow(CreatedUIP_CharSelectPopup && TB_CharSelectTitle.IsValid());
 	if (TB_CharSelectTitle.IsValid())
 	{
@@ -523,7 +523,7 @@ bool UB2UISummonItem::IsFreeSummonableSlot(int32 SlotHashKey)
 	{
 		if (SummonData->IsMultiple() && SummonData->GetCostType() == int32(ESummonItemCost::Gem))
 		{
-			// º¸¼® 10°³Â¥¸®´Â Free°¡ ¾øÀ½
+			// ç„Šç± 10ä¿ºæ¥¼åºœç»° Freeå•Š ç»æ¾œ
 			return false;
 		}
 		else
@@ -595,7 +595,7 @@ void UB2UISummonItem::CloseMileageGuidePopup()
 
 void UB2UISummonItem::OnClickChance()
 {
-	// °¡Ã­ È®·ü °ø°³
+	// å•Šé“† çŠ¬ä¼ å‚ä¿º
 	B2P_ShowKakaoGachaOddsView();
 	//B2P_ShowOpenURL(BladeIIGetLOCText(B2LOC_CAT_STORE, TEXT("ChanceURL")).ToString());
 }
@@ -627,8 +627,8 @@ void UB2UISummonItem::ConditionalCreateCharSelectPopup()
 	//		CreatedUIP_CharSelectPopup->Init();
 	//		CreatedUIP_CharSelectPopup->SetVisibility(ESlateVisibility::Collapsed);
 
-	//		// ÀÌ Á¤µµ¸é º°µµÀÇ Widget part Å¬·¡½º°¡ µÇ¾î¾ß ÇÒ °Í °°Àºµ¥ ¿ÏÀü ºí·çÇÁ¸°Æ®·Î ÄÚµùÀÌ µÇ¾î ÀÖÀ½.
-	//		// ÆÄÆ®¿¡¼­ °¡Á®¿À´Â°Ô »ó´çÈ÷ ¸¹´Ù.. ¤Ñ¤Ñ
+	//		// æ æ²¥æ¡£æ å–Šæ¡£ç‹¼ Widget part åŠªè´°èƒ¶å•Š ç™»ç»¢å…· ä¸” å·´ éç¯®å• è‚¯å‚ˆ å–‰é£æ©‡èµ´é£˜è‚º å†…çˆ¹æ ç™»ç»¢ ä¹æ¾œ.
+	//		// é¢‡é£˜ä¿Šè¾‘ å•Šå»‰å·ç»°éœ¸ æƒ‘å¯¸æ´’ è…¹ä¿ƒ.. ã±ã±
 
 	//		TB_CharSelectTitle = CreatedUIP_CharSelectPopup->GetSlot<UTextBlock>(FName(TEXT("TB_CharSelectTitle")));
 
@@ -668,7 +668,7 @@ void UB2UISummonItem::ConditionalCreateCharSelectPopup()
 
 	//		UIP_CharSelectPopupCosts.Empty();
 
-	//		// Ä³¸¯ÅÍ enum ¼ø¼­¿Í ÀÏÄ¡..?
+	//		// æŸè…ç£ enum é‰´è¾‘å®¢ è€æ‘¹..?
 	//		TWeakObjectPtr<UB2UIStoreProductCost> UIP_CharSelectPopupCost1 = CreatedUIP_CharSelectPopup->GetSlot<UB2UIStoreProductCost>(FName(TEXT("UIP_Cost1")));
 	//		if (UIP_CharSelectPopupCost1.IsValid())
 	//		{
@@ -706,13 +706,13 @@ void UB2UISummonItem::ConditionalCreateMileageRewardPopup()
 	//	if (CreatedUIP_MileageRewardPopup)
 	//	{
 	//		if (MRP_RewardIconTemplate)
-	//		{ // ¿©±â º°µµ ¼¼ÆÃÀÌ ÇÊ¿äÇÑ °Çµ¥ ÀÌ°Í±îÁø µ¿Àû ·ÎµùÀÌ ¾Æ´Ï°í..
+	//		{ // å’¯æ‰ å–Šæ¡£ æŠ€æ³¼æ é˜å¤¸èŒ„ æ‰’å• æå·´é³–æŸ³ æ‚¼åˆ© è‚ºçˆ¹æ é…’èªç»Š..
 	//			CreatedUIP_MileageRewardPopup->SetRewardTemplateClass(MRP_RewardIconTemplate);
 	//		}
 
 	//		CreatedUIP_MileageRewardPopup->Init();
 
-	//		// ³ª¸ÓÁö´Â OpenRewardPopup ½Ã Á¶°Ç¿¡ µû¶ó ±×¶§±×¶§ ¼¼ÆÃµÊ
+	//		// å”±èµ£ç˜¤ç»° OpenRewardPopup çŸ« ç‚¼æ‰’ä¿Š è¶æ‰¼ å¼Šé”­å¼Šé”­ æŠ€æ³¼å‡³
 	//	}
 	//}
 }

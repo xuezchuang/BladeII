@@ -1,5 +1,5 @@
-// ÃÖÃÊ °³¹ßÀÚ°¡ ¿ø·¡ i, j, k·Î for¹®À» µ¹°í ÀÖ´Ù´Â°É ÆÄ¾ÇÇÏ´Âµ¥, ÄÚµå ¸®ºä·Î ÇØ´ç ¹®±¸¸¦ »ç¿ëÇÏÁö ¸»¶ó´Â ÁöÀûÀ» ¹Ş¾Æ¼­ °³¹ßÀÚ Á¶Â÷ ÀÌÇØ ¸øÇÏ´Â º¯¼ö¸íÀ¸·Î ¹Ù²ñ
-// ¸¸ÀÏ ¿ø·¡ i, j, k·Î ºÁ¾ß ÇÑ´Ù¸é ÆÛÆ÷½ºÀÇ 89041 ¹öÁ¯ÀÌ ¸¶Áö¸· i,j,k¿´À½.
+ï»¿// å¼¥æª¬ ä¿ºæƒ¯ç£Šå•Š ç›”è´° i, j, kè‚º forå·©é˜‘ å€’ç»Š ä¹ä¿ƒç»°å§ é¢‡å©çªç»°å•, å†…é› åºœè½°è‚º ç§¦å¯¸ å·©å¤‡ç”« è¤ä¾©çªç˜¤ å¯Œæ‰¼ç»° ç˜¤åˆ©é˜‘ ç½é…’è¾‘ ä¿ºæƒ¯ç£Š ç‚¼ç’ æç§¦ ç»™çªç»° å‡½èç–™æ è‚º å®˜æŸ´
+// çˆ¶è€ ç›”è´° i, j, kè‚º æ¯«å…· èŒ„ä¿ƒæ æ¬ºå™¨èƒ¶ç‹¼ 89041 æ»šæ€œæ ä»˜ç˜¤é˜œ i,j,kçœ‹æ¾œ.
 
 
 #include "B2UIItemForge.h"
@@ -33,7 +33,7 @@ void UB2UIItemForge::CacheAssets()
 {
 	Super::CacheAssets();
 
-	//±âÈ¹¼­°¡ ³ª¿À±âµµ Àü¿¡ ´ëÃæ ÀÌ·¸°Ô µğÀÚÀÎ µÇ°ÚÁö ÇØ¼­ Á¤ÀÇµÈ º¯¼ö¸íµéÀÌ ¸·»ó ÃÖÁ¾ µğÀÚÀÎ¿¡¼­ ¹èÄ¡¿Í ±¸¼ºÀÌ ¹Ù²î¸é¼­ »ç¿ë ¾ÈÇÏ´Â º¯¼öµéÀÌ µé¾îÀÖÀ½.
+	//æ‰è£™è¾‘å•Š å”±å·æ‰æ¡£ å‚ˆä¿Š æªé¢ æçŠ¯éœ¸ å¼ç£Šç‰¢ ç™»æ‘†ç˜¤ ç§¦è¾‘ æ²¥ç‹¼ç­‰ å‡½èç–™ç”¸æ é˜œæƒ‘ å¼¥è¾† å¼ç£Šç‰¢ä¿Šè¾‘ ç¡…æ‘¹å®¢ å¤‡å·±æ å®˜å·®æè¾‘ è¤ä¾© æ•‘çªç»° å‡½èç”¸æ ç”¸ç»¢ä¹æ¾œ.
 
 	GET_SLOT(UB2Button, BTN_MasterModal);
 
@@ -261,13 +261,13 @@ void UB2UIItemForge::ForgeInit()
 
 static void OpenLobbyLoginLoadingScreen()
 {
-	// AccountInfo ¹Ş¾Æ¼­ ÀÌ°ÍÀú°Í ·ÎµùÇÏ´Â °Ô ³ª¸§ ½Ã°£ÀÌ °É¸®´Âµ¥ DLC ¿¡¼­ ·Îºñ ·ÎµùÇÒ ¶§ÀÇ ·Îµù È­¸éÀ» ÀÌ¾î¼­ Ç¥½Ã.
+	// AccountInfo ç½é…’è¾‘ æå·´å†å·´ è‚ºçˆ¹çªç»° éœ¸ å”±æŠš çŸ«åŸƒæ å§åºœç»°å• DLC ä¿Šè¾‘ è‚ºåš è‚ºçˆ¹ä¸” é”­ç‹¼ è‚ºçˆ¹ æ‹³æé˜‘ æç»¢è¾‘ é’çŸ«.
 	UB2LoadingImageInfo* LoadingImageInfo = StaticFindLoadingImageInfo();
-	// ½ÇÁ¦ °ÔÀÓ¿¡¼­ÀÇ AccountInfo ¹Ş´Â °Ç ·Îºñ ¸ŞÀÎÈ­¸é Ã¹ ÁøÀÔ(·Î±×ÀÎ)¿¡ ÇØ´ç.
+	// è§’åŠ› éœ¸çƒ™ä¿Šè¾‘ç‹¼ AccountInfo ç½ç»° æ‰’ è‚ºåš çš‹ç‰¢æ‹³æ éœ‰ æŸ³æ¶(è‚ºå¼Šç‰¢)ä¿Š ç§¦å¯¸.
 	const TCHAR* LobbyLoginLoadingImageName = LoadingImageInfo ? *(LoadingImageInfo->GetLobbyLoginLoadingImageName()) : nullptr;
 	SetupLoadingScreenImageClass<bool, bool, bool, const TCHAR*, EB2LoadingMessageType>::GetInstance().Signal(
 		false, false, true,
-		LobbyLoginLoadingImageName, // ¸¸ÀÏ null ÀÌ¶ó¸é ¾È¿¡¼­ ´Ù¸¥ ½ÄÀ¸·Î ·Îµù ÀÌ¹ÌÁö¸¦ ²¨³»¾²°Ô µÉ °Í.
+		LobbyLoginLoadingImageName, // çˆ¶è€ null ææ‰¼æ æ•‘ä¿Šè¾‘ ä¿ƒå¼— ä¾¥æ è‚º è‚ºçˆ¹ æå›ºç˜¤ç”« æ³¢éƒ´é™éœ¸ çª å·´.
 		EB2LoadingMessageType::ELMT_LobbyLoginLoading
 	);
 }
@@ -279,7 +279,7 @@ static void CloseLobbyLoginLoadingScreen()
 void UB2UIItemForge::OnOpen(bool RightNow)
 {
 	Super::OnOpen(RightNow);
-	//Á¦ÀÛ¼Ò¸¦ ³ª°¬´Ù°¡ µé¾î°¬À»¶§ ÀúÀåÇÑ µ¥ÀÌÅÍµéÀÌ ¹Ş¾ÆÁöÁö ¾Ê´Â ¹®Á¦¿Í InitÀ» ¿©·¯¹ø µµ´Â ¹®Á¦¸¦ ÇØ°áÇÏ±â À§ÇØ º°µµ·Î »© µÒ
+	//åŠ›ç´¯å®¶ç”« å”±è‰¾ä¿ƒå•Š ç”¸ç»¢è‰¾é˜‘é”­ å†å˜èŒ„ å•æç£ç”¸æ ç½é…’ç˜¤ç˜¤ è‡¼ç»° å·©åŠ›å®¢ Inité˜‘ å’¯çŸ¾é”… æ¡£ç»° å·©åŠ›ç”« ç§¦æ¬çªæ‰ å›°ç§¦ å–Šæ¡£è‚º å“— ç‹„
 	if (forgeListRequest == false)
 	{
 		data_trader::Retailer::GetInstance().RequestItemForgeList();
@@ -740,7 +740,7 @@ void UB2UIItemForge::OnClickedBTNResultItemDetail()
 
 
 			UIP_ItemDetail->SetCollectBookIcon(itemClass, resultID);
-			if (auto* BGMtrl = StaticFindItemMiscInfo()->GetItemIconBGMtrl(FItemRefIDHelper::ExtractItemStarGradeFromRefID(resultID), true, false))	//Á¦°øµÉ ¾ÆÀÌÅÛÀº ÃÊ¿ùÀÌ ¾ÈµÇ¾îÀÖ´Ù°í °¡Á¤ (±âÈ¹°ú ¿¹±âµÇÁö ¾ÊÀ½)
+			if (auto* BGMtrl = StaticFindItemMiscInfo()->GetItemIconBGMtrl(FItemRefIDHelper::ExtractItemStarGradeFromRefID(resultID), true, false))	//åŠ›å‚çª é…’æè¢ç¯® æª¬å²¿æ æ•‘ç™»ç»¢ä¹ä¿ƒç»Š å•Šæ²¥ (æ‰è£™è‹ æŠ—æ‰ç™»ç˜¤ è‡¼æ¾œ)
 			{
 				UIP_ItemDetail->SetItemIconDefaultTemplate(FItemRefIDHelper::ExtractItemStarGradeFromRefID(resultID), BGMtrl, EItemCollectionState::Collected);
 				UIP_ItemDetail->SetItemIconStarGrade(FItemRefIDHelper::ExtractItemStarGradeFromRefID(resultID), false);
@@ -782,7 +782,7 @@ void UB2UIItemForge::SetElementSize(int32 InMaxCount)
 
 void UB2UIItemForge::OnChangeItemCountSliderBar(float fValue)
 {
-	// 0°³¶ó´Â°ÍÀº ¾ø±â¶§¹®¿¡ 0ÀÌÇÏÀÏ °æ¿ì 1°³·Î º¸Á¤ÇØÁØ´Ù.
+	// 0ä¿ºæ‰¼ç»°å·´ç¯® ç»æ‰é”­å·©ä¿Š 0æçªè€ ç‰ˆå¿« 1ä¿ºè‚º ç„Šæ²¥ç§¦éœ–ä¿ƒ.
 	if (fValue <= 0.f)
 	{
 		if (SD_ControlQuantity.IsValid())
@@ -880,8 +880,8 @@ void UB2UIItemForge::OnClickedBTNExecute()
 	if (BTN_MasterModal.IsValid())
 		BTN_MasterModal->SetVisibility(ESlateVisibility::Visible);
 
-	//Á¦ÀÛ ¹öÆ°À» ´©¸£´Â ¼ø°£ºÎÅÍ °á°úÃ¢À» ´İÀ» ¶§ ±îÁö °á°úÃ¢À» Á¦¿ÜÇÑ ¸ğµç ¹öÆ° ÀÔ·ÂÀ» ¸·¾Ò´Ù.
-	//½ÇÁ¦·Î´Â ¼­¹ö¿¡¼­ µ¥ÀÌÅÍ¸¦ ¹Ş´Â Áï½Ã ¸·À» ÇÊ¿ä°¡ ¾øÁö¸¸ ºÒÇÊ¿äÇÑ Á¶ÀÛÀ¸·Î ÀÎÇØ ¿øÄ¡¾Ê´Â ¿À·ù°¡ ³ª´Â°É ¸·±â À§ÇØ ±×¶§ ±îÁö ¸·´Â´Ù.
+	//åŠ›ç´¯ æ»šç“¢é˜‘ ç©¿ç¦ç»° é‰´åŸƒä½•ç£ æ¬è‹èŠ’é˜‘ æ‘§é˜‘ é”­ é³–ç˜¤ æ¬è‹èŠ’é˜‘ åŠ›å¯‡èŒ„ è‘›ç”µ æ»šç“¢ æ¶ä»¿é˜‘ é˜œç–½ä¿ƒ.
+	//è§’åŠ›è‚ºç»° è¾‘æ»šä¿Šè¾‘ å•æç£ç”« ç½ç»° æºœçŸ« é˜œé˜‘ é˜å¤¸å•Š ç»ç˜¤çˆ¶ é˜‚é˜å¤¸èŒ„ ç‚¼ç´¯æ è‚º ç‰¢ç§¦ ç›”æ‘¹è‡¼ç»° å·å¹…å•Š å”±ç»°å§ é˜œæ‰ å›°ç§¦ å¼Šé”­ é³–ç˜¤ é˜œç»°ä¿ƒ.
 	UB2UIManager* pUIManager = UB2UIManager::GetInstance();
 	if (pUIManager)
 	{
@@ -1078,7 +1078,7 @@ void UB2UIItemForge::OnClickedTabButton(class UB2UIItemForgeTabButton* ButtonWid
 {
 	if (ButtonWidget)
 	{
-		//ÅÇ ÀüÈ¯
+		//å¾˜ å‚ˆåˆ¸
 		if (selectedForgeTab != ButtonWidget->GetTabID())
 		{
 			ResetForgeSetting();
@@ -1108,7 +1108,7 @@ void UB2UIItemForge::OnClickedForgeList(class UB2UIItemForgeListButton* ButtonWi
 		if (O_PleaseSelectForgeStuff.IsValid())
 			O_PleaseSelectForgeStuff->SetVisibility(ESlateVisibility::Collapsed);
 
-		// Á¦ÀÛ ÇÒ ¾ÆÀÌÅÛ ¼±ÅÃ
+		// åŠ›ç´¯ ä¸” é…’æè¢ æ€¥ç¶
 		if (selectedForgeID != ButtonWidget->GetListID())
 		{
 			selectedForgeID = ButtonWidget->GetListID();
@@ -1325,7 +1325,7 @@ void UB2UIItemForge::OnSetMaterialID(EItemForgeSlot materialSlot, FB2Item Select
 	if (sub4Ready) findMin.Add(owningSub4Quantity / sub4Quantity);
 
 
-	//¿©±â¼­ TMapÀ» »ç¿ë ¾ÈÇÑ ÀÌÀ¯´Â ¾ø´Ù. ´Ü¼øÈ÷ °³¹ß ´ç½Ã¿¡ TMapÀ» ¾î¶»°Ô »ç¿ëÇØ¾ß ÇÏ´ÂÁö¸¦ ¸ô¶ú°í, Á¤·ÄÀÌ ÇÊ¿äÇß±â ¶§¹®¿¡ ÀÓ½Ã·Î ÀÛ¼ºµÇ¾ú´Ù.
+	//å’¯æ‰è¾‘ TMapé˜‘ è¤ä¾© æ•‘èŒ„ æèœ¡ç»° ç»ä¿ƒ. çªœé‰´æ´’ ä¿ºæƒ¯ å¯¸çŸ«ä¿Š TMapé˜‘ ç»¢ç—˜éœ¸ è¤ä¾©ç§¦å…· çªç»°ç˜¤ç”« éš”è€³ç»Š, æ²¥çººæ é˜å¤¸æ²æ‰ é”­å·©ä¿Š çƒ™çŸ«è‚º ç´¯å·±ç™»èŒä¿ƒ.
 	for (int32 repeatIndex = 0; repeatIndex < findMin.Num(); repeatIndex++)
 	{
 		for (int32 sortingIndex = 1; sortingIndex < findMin.Num(); sortingIndex++)
@@ -1503,8 +1503,8 @@ void UB2UIItemForge::SetAvailableItemList()
 		}
 	}
 
-	//±×·ì Á¤·Ä, ¾ÆÀÌÅÛ Á¤·ÄÀÌ µ¿½Ã¿¡ Àû¿ëµÇ¸é¼­ °á°ú¸¦ È­¸é¿¡ »Ñ·ÁÁà¾ß Çß±â ¶§¹®¿¡ ¸¹ÀÌ ´õ·´°Ô ÄÚµùµÇ¾ú´Ù.
-	//µ¿½Ã¿¡ °³¹ß ´ç½Ã¿¡ TMap¿¡ ´ëÇØ ¾ËÁö ¸øÇß°í, ±ä±ŞÇÏ°Ô ÀÛ¾÷ÇÏ´À¶ó Á¦ÀÏ ¸ÕÀú ÇÒ¼ö ÀÖ´Â°É Àû¿ëÇÏ¿´´Ù.
+	//å¼Šç¼ æ²¥çºº, é…’æè¢ æ²¥çººæ æ‚¼çŸ«ä¿Š åˆ©ä¾©ç™»æè¾‘ æ¬è‹ç”« æ‹³æä¿Š è°å¦¨æ‹å…· æ²æ‰ é”­å·©ä¿Š è…¹æ æ­¹åéœ¸ å†…çˆ¹ç™»èŒä¿ƒ.
+	//æ‚¼çŸ«ä¿Š ä¿ºæƒ¯ å¯¸çŸ«ä¿Š TMapä¿Š æªç§¦ èˆ…ç˜¤ ç»™æ²ç»Š, å˜é­çªéœ¸ ç´¯è¯€çªè ¢æ‰¼ åŠ›è€ åˆšå† ä¸”è ä¹ç»°å§ åˆ©ä¾©çªçœ‹ä¿ƒ.
 	if (tempArray.Num() > 1)
 	{
 		for (int32 repeatIndex = 0; repeatIndex < tempArray.Num(); repeatIndex++)
@@ -1767,7 +1767,7 @@ void UB2UIItemForge::SetLimitation()
 	bool itsUnlimitted = false;
 	switch (MasterLimitTable.limitTimeType)
 	{
-	case EItemForgePeriodLimitType::None:	//¹«Á¦ÇÑ
+	case EItemForgePeriodLimitType::None:	//å…¬åŠ›èŒ„
 		name = BladeIIGetLOCText(B2LOC_CAT_ITEMFORGELSIT, FString::Printf(TEXT("LimitType_Unlimitted")));
 		TB_ForgeLimitNumber->SetText(BladeIIGetLOCText(B2LOC_CAT_ITEMFORGELSIT, FString::Printf(TEXT("LimitType_UnlimittedCount"))));
 		itsUnlimitted = true;
@@ -2149,8 +2149,8 @@ void UB2UIItemForge::ReadytoShowResult()
 		X_BTN_Skip->SetVisibility(ESlateVisibility::Visible);
 
 
-	resultIndex = 0;	//°á°ú ¹è¿­À» ´Ù¸¥ Å¬·¡½º¿¡¼­µµ ¿¬°á½ÃÄÑ¼­ »ç¿ëÇÏ±â À§ÇØ ÁöÁ¤ÇÑ º¯¼ö. Áö±İ ¿©±â ÇÔ¼ö´Â ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ ³¡³ª°í ÇÑ¹ø¸¸ ±¸µ¿ÇÏ±â ‹š¹®¿¡ 0À¸·Î ÃÊ±âÈ­¸¦ ÇÑ´Ù. ±× ÀÌÈÄºÎÅÍ´Â ºí·çÇÁ¸°Æ®¸¦ ÅëÇØ ´Ù¸¥ ÇÔ¼ö¿¡¼­ È£ÃâµÊ
-	refundIndex = 0;	//°á°ú ¹è¿­ ¾È¿¡ È¯ºÒ ¹è¿­ÀÌ ÀÖ¾î¼­ ÇØ´ç ¹İº¹¹® ÃßÀûÀ» À§ÇÑ º¯¼ö. À§¿Í µ¿ÀÏÇÏ°Ô ÀÛµ¿ÇÑ´Ù.
+	resultIndex = 0;	//æ¬è‹ ç¡…å‡¯é˜‘ ä¿ƒå¼— åŠªè´°èƒ¶ä¿Šè¾‘æ¡£ æ¥·æ¬çŸ«éš¾è¾‘ è¤ä¾©çªæ‰ å›°ç§¦ ç˜¤æ²¥èŒ„ å‡½è. ç˜¤é™› å’¯æ‰ çªƒèç»° å±€èªçš‹æè®°æ åœºå”±ç»Š èŒ„é”…çˆ¶ å¤‡æ‚¼çªæ‰ å«å·©ä¿Š 0æ è‚º æª¬æ‰æ‹³ç”« èŒ„ä¿ƒ. å¼Š æé¥¶ä½•ç£ç»° å–‰é£æ©‡èµ´é£˜ç”« çƒ¹ç§¦ ä¿ƒå¼— çªƒèä¿Šè¾‘ é¾‹å…å‡³
+	refundIndex = 0;	//æ¬è‹ ç¡…å‡¯ æ•‘ä¿Š åˆ¸é˜‚ ç¡…å‡¯æ ä¹ç»¢è¾‘ ç§¦å¯¸ é¦†æ±—å·© çœ åˆ©é˜‘ å›°èŒ„ å‡½è. å›°å®¢ æ‚¼è€çªéœ¸ ç´¯æ‚¼èŒ„ä¿ƒ.
 
 	X_BTN_Confirm->SetVisibility(ESlateVisibility::Collapsed);
 

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+Ôªø// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UICostumeDecompositionPopup.h"
 #include "B2UIManager.h"
 
@@ -115,7 +115,7 @@ void UB2UICostumeDecompositionPopup::OnClickBTN_NO()
 void UB2UICostumeDecompositionPopup::OnClickBTN_Yes()
 {
 	TArray<int64> ItemIds;
-	ItemIds.Add(CurrentCostumeIndex); // ¿œ¥‹¿∫ «œ≥™æø∏∏ ∫∏≥ªµµ∑œ ±‚»π¬ ¿∏∑Œ ¡§«ÿ¡Æ¿÷¿Ω...
+	ItemIds.Add(CurrentCostumeIndex); // ËÄÅÁ™úÁØÆ Á™çÂî±Á©∂Áà∂ ÁÑäÈÉ¥Ê°£Â∫ü ÊâÅË£ôÁéáÊ†èËÇ∫ Ê≤•Áß¶Âªâ‰πêÊæú...
 
 	data_trader::Retailer::GetInstance().RequestDismantleCostumes(ItemIds);
 }
@@ -196,7 +196,7 @@ void UB2UICostumeDecompositionPopup::UpdatePopupInfo(const FB2Item& InItem)
 
 void UB2UICostumeDecompositionPopup::UpdateResultPopupInfo(const FB2ResponseDismantleCostumesPtr& msg) 
 {
-	// æÓ¬˜«« æ∆¿Ã≈€ ∏ÆΩ∫∆Æ¥¬ ∂»∞∞¿∏¥œ±Ó ¿ßø°º≠ √≥∏Æ«— ±◊¥Î∑Œ ∫∏ø©¡÷∞Ì, ≈ÿΩ∫∆Æ∏∏ ¡§∏Æ.
+	// Áª¢Áûí‰πî ÈÖíÊçûË¢ç Â∫úËÉ∂È£òÁª∞ Â∫¶ÈûçÊ†èËÅ™È≥ñ Âõ∞‰øäËæë Ë¥∏Â∫úËåÑ ÂºäÊé™ËÇ∫ ÁÑäÂíØÊûóÁªä, ÂíÜËÉ∂È£òÁà∂ Ê≤•Â∫ú.
 
 	if (WS_Buttons.IsValid())
 		WS_Buttons->SetActiveWidgetIndex(1);
@@ -207,7 +207,7 @@ void UB2UICostumeDecompositionPopup::UpdateResultPopupInfo(const FB2ResponseDism
 	if (STB_Title.IsValid())
 		STB_Title->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("LobbyInvenText_DecompostionResult")));
 
-	// æ∆¿Ã≈€ add √≥∏Æ
+	// ÈÖíÊçûË¢ç add Ë¥∏Â∫ú
 	BladeIIGameImpl::GetClientDataStore().DecompositionCostumeItem(msg);
 	UpdateLobbyInventoryControlClass<>::GetInstance().Signal();
 

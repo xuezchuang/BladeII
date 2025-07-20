@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIHeroTowerReady.h"
 #include "B2StageManager.h"
@@ -60,7 +60,7 @@ void UB2UIHeroTowerReady::OnSceneOpen(EUIScene InOpenedScene)
 {
 	Super::OnSceneOpen(InOpenedScene);
 
-	// UIHeader ¿Í °°ÀÌ Scene À¸·Î ±¸¼ºÇÏ´Â °æ¿ì Init ½ÃÁ¡¿¡ ÇÏ¸é Scene ¿¡ Æ÷ÇÔµÈ header °¡ »ı¼ºÀÌ ¾ÈµÈ »óÈ²ÀÏ ¼ö ÀÖÀ½.
+	// UIHeader å®¢ éæ Scene æ è‚º å¤‡å·±çªç»° ç‰ˆå¿« Init çŸ«ç—¢ä¿Š çªæ Scene ä¿Š å™¨çªƒç­‰ header å•Š ç§¯å·±æ æ•‘ç­‰ æƒ‘ç‚”è€ è ä¹æ¾œ.
 	SetLobbyUIHeaderTitleByGeneralTextTableKey(TEXT("ChallengeMod_HeroTop"));
 	data_trader::Retailer::GetInstance().RequestGetHeroTower();
 }
@@ -111,19 +111,19 @@ void UB2UIHeroTowerReady::NativeConstruct()
 	}
 	
 
-	//ºí·ÏUI »ı¼º(¿¬Ãâ Á¾·áÈÄ Á¦°ÅÇÒ°ÅÀÓ)
+	//å–‰åºŸUI ç§¯å·±(æ¥·å… è¾†ä¸°é¥¶ åŠ›èŠ­ä¸”èŠ­çƒ™)
 	UB2UIManager::GetInstance()->OpenUI(UIFName::BlockScreen);
 
-	// ¼ÒÅÁ¹öÆ°
+	// å®¶å¸•æ»šç“¢
 	if (BTN_StartSweep.IsValid())
 	{
-		// ¿À´Ã ÀÔÀåÇÒ¼öÀÖ³ª.
+		// å·ç–µ æ¶å˜ä¸”èä¹å”±.
 		if (UB2UIDocHelper::GetDocHeroTower()->CanSweepToday())
 			BTN_StartSweep->SetIsEnabled(true);
 		else
 			BTN_StartSweep->SetIsEnabled(false);
 
-		// ±â·ÏÃş¾øÀ¸¸é ºñÈ°¼ºÈ­
+		// æ‰åºŸæ‘¸ç»æ æ åšåŠå·±æ‹³
 		if(UB2UIDocHelper::GetDocHeroTower()->GetMaxClearFloor() == 0)
 			BTN_StartSweep->SetIsEnabled(false);
 	}
@@ -208,13 +208,13 @@ void UB2UIHeroTowerReady::BindDelegates()
 
 void UB2UIHeroTowerReady::OnClickBtnStartBattle()
 {
-	// Á¡°Ë Á¤»ê Ã¼Å©
+	// ç—¢å…« æ²¥é­‚ çœ‰å†œ
 	if (TutorialManager::GetInstance().IsFinishTutorial(TutorialID_HeroTower) && CheckContentsModeState(b2network::B2ContentsMode::HERO_TOWER))
 		return;
 
 	if (auto* pDoc = UB2UIDocHelper::GetDocHeroTower())
 	{
-		// ÀÔÀå È½¼ö Ã¼Å©
+		// æ¶å˜ å†‰è çœ‰å†œ
 		if (pDoc->GetDailyLeftFreeTryCount() <= 0)
 		{
 			CreatePopupBuyTryCount();
@@ -245,7 +245,7 @@ void UB2UIHeroTowerReady::CreatePopupBuyTryCount()
 	{
 		pUI->SetSubContent(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("CounterAttack_BuyTicketSubMsg")));
 
-		// °¡°İ. ¸¶½ºÅÍµ¥ÀÌÅÍ¿´´Âµ¥. °ø½ÄÀ¸·Î ¹Ù²ñ. ¼­¹ö¶û °°Àº°ø½Ä»ç¿ë.
+		// å•Šæ‹œ. ä»˜èƒ¶ç£å•æç£çœ‹ç»°å•. å‚ä¾¥æ è‚º å®˜æŸ´. è¾‘æ»šå°” éç¯®å‚ä¾¥è¤ä¾©.
 		int32 nGemCost = GetHerotowerEnterCost();
 
 		pUI->SetCost(nGemCost);
@@ -259,7 +259,7 @@ int32 UB2UIHeroTowerReady::GetHerotowerEnterCost()
 		int32 nTryCount = pDoc->GetDailyTryCount() + 1;
 		int32 nDifferFromFreeCount = nTryCount - BladeIIGameImpl::GetClientDataStore().GetMaxDailyFreeTryCountHeroTower();
 
-		// ¿©±â°É¸®¸é ¾ÈµÊ. ÇÁ¸®Ä«¿îÆ® ´Ù¾´ÈÄºÎÅÍ ÀÌ¿ëÇØ¾ßÇÔ.
+		// å’¯æ‰å§åºœæ æ•‘å‡³. æ©‡åºœå¢¨æ¬¾é£˜ ä¿ƒæ•¬é¥¶ä½•ç£ æä¾©ç§¦å…·çªƒ.
 		if (nDifferFromFreeCount <= 0)
 			return 0;
 
@@ -273,14 +273,14 @@ void UB2UIHeroTowerReady::OnConfirmBuyTryCount()
 {
 	if (auto* pDoc = UB2UIDocHelper::GetDocHeroTower())
 	{
-		// º¸¼®»ç¿ëÇØ¼­ ÀÔÀåÇÒ·¡.
-		// ³²Àºº¸¼® Ã¼Å©´Â ÇØ¾ß°ÚÁö
+		// ç„Šç±è¤ä¾©ç§¦è¾‘ æ¶å˜ä¸”è´°.
+		// å·¢ç¯®ç„Šç± çœ‰å†œç»° ç§¦å…·æ‘†ç˜¤
 		int32 nGemCost = BladeIIGameImpl::GetClientDataStore().GetHeroTowerRetryCost(pDoc->GetDailyTryCount() + 1);
 		int32 nCurGem = BladeIIGameImpl::GetClientDataStore().GetGemAmount();
 
 		if (nGemCost > nCurGem)
 		{
-			// º¸¼® ¾øÀ½
+			// ç„Šç± ç»æ¾œ
 			ShortageMGR->PopupGoToShopForGemMessage();
 			return;
 		}
@@ -309,7 +309,7 @@ void UB2UIHeroTowerReady::ResponseBuyHeroTowerTicket(const FB2ResponseBuyHeroTow
 
 void UB2UIHeroTowerReady::OnClickBtnStartSweep()
 {
-	//// Á¡°Ë Á¤»ê Ã¼Å©
+	//// ç—¢å…« æ²¥é­‚ çœ‰å†œ
 	//if (TutorialManager::GetInstance().IsFinishTutorial(TutorialID_HeroTower) && CheckContentsModeState(b2network::B2ContentsMode::HERO_TOWER))
 	//	return;
 
@@ -320,11 +320,11 @@ void UB2UIHeroTowerReady::OnClickBtnStartSweep()
 	//if (!pSweepPopup)
 	//	return;
 
-	////ÄÚ¸àÆ®¶û ¼ÂÆÃ
+	////å†…è†é£˜å°” æ‚¸æ³¼
 	//int32 nClearFloor = UB2UIDocHelper::GetDocHeroTower()->GetMaxClearFloor();
 	//bIsSweep = true;
 
-	//// GetSweepItems() °¡ ¼­¹ö·Î ºÎÅÍ ¹Ş´Â ¾ÆÀÌÅÛ°ú ÃÑÇÕÀ» ±¸ÇØÁÜ 2°³ ÀÌ»óÀÇ º¸»óÀÏ°æ¿ì ¾Æ·¡ SetAddComment¸¦ Ãß°¡·Î ±¸Çö
+	//// GetSweepItems() å•Š è¾‘æ»šè‚º ä½•ç£ ç½ç»° é…’æè¢è‹ é†šé’¦é˜‘ å¤‡ç§¦æ·‹ 2ä¿º ææƒ‘ç‹¼ ç„Šæƒ‘è€ç‰ˆå¿« é…’è´° SetAddCommentç”« çœ å•Šè‚º å¤‡æ³…
 	//pSweepPopup->SetAddCommentForHeroTower(GetSweepItems());
 
 	//pSweepPopup->SetTitle(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("General_Sweep")));
@@ -387,7 +387,7 @@ const TMap<int, FRewardItem>& UB2UIHeroTowerReady::GetSweepItems()
 
 void UB2UIHeroTowerReady::OnClickBtnRanking()
 {
-	// ·©Å·UI ¿­±â
+	// çæ¬§UI å‡¯æ‰
 	UB2UIManager::GetInstance()->OpenUI(UIFName::HeroTowerRanking);
 }
 
@@ -406,7 +406,7 @@ void UB2UIHeroTowerReady::HiddenFloorInfo()
 {
 	m_bIsSetFloorInfo = false;
 
-	// ¼û±â´Â ¾Ö´Ï¸ŞÀÌ¼Ç Àç»ı
+	// è§æ‰ç»° å±€èªçš‹æè®° çŠç§¯
 	//PlayAnimationEvent_Anim_Invisible();
 }
 
@@ -414,7 +414,7 @@ void UB2UIHeroTowerReady::SetFloorInfo()
 {
 	if (!m_bIsReadyToScroll)
 	{
-		// ¿ì¼± È£Ãâ. ³ªÁß¿¡ ¿¬Ãâ ³ª¿ÂÈÄ·Î ¿Å±â¾ßÇÔ
+		// å¿«æ€¥ é¾‹å…. å”±åä¿Š æ¥·å… å”±æŸ¯é¥¶è‚º é¢—æ‰å…·çªƒ
 		SetReadyToScroll();
 	}	
 
@@ -446,7 +446,7 @@ void UB2UIHeroTowerReady::SetFloorInfo()
 	
 	}
 
-	// ¼û±ä°Å º¸ÀÌ´Â ¾Ö´Ï¸ŞÀÌ¼Ç Àç»ı
+	// è§å˜èŠ­ ç„Šæç»° å±€èªçš‹æè®° çŠç§¯
 	//PlayAnimationEvent_Anim_Visible();
 }
 
@@ -517,7 +517,7 @@ void UB2UIHeroTowerReady::SetFloorInfoValue(int32 nFloor)
 
 	if (HB_Rewards.IsValid())
 	{
-		//Áö¿ì°í
+		//ç˜¤å¿«ç»Š
 		TArray<UPanelSlot*> Slots = HB_Rewards->GetSlots();
 
 		for (UPanelSlot* pSlot : Slots)
@@ -526,7 +526,7 @@ void UB2UIHeroTowerReady::SetFloorInfoValue(int32 nFloor)
 				HB_Rewards->RemoveChild(pSlot->Content);
 		}
 
-		//¸¸µé°í
+		//çˆ¶ç”¸ç»Š
 
 		UB2UIDocHeroTower* pDoc = UB2UIDocHelper::GetDocHeroTower();
 
@@ -558,7 +558,7 @@ void UB2UIHeroTowerReady::ResetTowerScroll()
 	//{
 	//	SB_InputTower->ScrollToEnd();
 	//	SB_InputTower->SetNatualScrollEnd();
-	//	// ½ÃÀÛ½ºÅ©·Ñ Á¶ÀıÇÏ¸é¼­ LastAdjustItemIndexµµ ¸ÂÃçÁØ´Ù. ³¡¿¡ ´õ¹Ì°¡ ÀÖ¾î¼­ ÇÏ³ª ´õ»©ÁÜ
+	//	// çŸ«ç´¯èƒ¶å†œè´¹ ç‚¼ä¾‹çªæè¾‘ LastAdjustItemIndexæ¡£ å˜è‹—éœ–ä¿ƒ. åœºä¿Š æ­¹å›ºå•Š ä¹ç»¢è¾‘ çªå”± æ­¹å“—æ·‹
 	//	SB_InputTower->LastAdjustItemIndex = SB_InputTower->GetSlots().Num() - 2;
 	//}
 }
@@ -580,7 +580,7 @@ void UB2UIHeroTowerReady::CheckUIVisible()
 
 	//	//UE_LOG(LogBladeII, Log, TEXT("LastAdjustIndex = %d"), LastAdjustIndex);
 
-	//	// Ã¼Å©½ÃÀÛ
+	//	// çœ‰å†œçŸ«ç´¯
 	//	if (SB_InputTower->IsRightClickScrolling())
 	//	{
 	//		HiddenFloorInfo();
@@ -609,10 +609,10 @@ void UB2UIHeroTowerReady::CheckTowerInitMove()
 	if (m_eUIState == EHeroTowerReadyUIState::Ready)
 		return;
 
-	// 1 -> ½ÃÀÛÃş ±îÁö ÀÌµ¿ÇÔ
+	// 1 -> çŸ«ç´¯æ‘¸ é³–ç˜¤ ææ‚¼çªƒ
 	int32 nGoalFloor = UB2UIDocHelper::GetDocHeroTower()->GetStartFloor();
 
-	//1ÃşÀÌ¸é ¿¬Ãâ´ë±â¾øÀ½
+	//1æ‘¸ææ æ¥·å…æªæ‰ç»æ¾œ
 	if (fElapseTime > TotalMoveToInitFloorTime || nGoalFloor == 1)
 	{
 		if (m_eUIState != EHeroTowerReadyUIState::Ready)
@@ -629,17 +629,17 @@ void UB2UIHeroTowerReady::CheckTowerInitMove()
 
 	float fAccSpeed = ((1.0f / TotalMoveToInitFloorTime) - MoveToInitFloorBaseSpeed) / TotalMoveToInitFloorTime;
 	
-	// µî°¡¼Ó ¿ªÀç»ıÇÏ´Â°É·Î..
+	// æ®¿å•ŠåŠ  å¼€çŠç§¯çªç»°å§è‚º..
 	float fPositionPercent = 1.0f - ((MoveToInitFloorBaseSpeed + (fAccSpeed * ((TotalMoveToInitFloorTime - fElapseTime) / TotalMoveToInitFloorTime))) * ((TotalMoveToInitFloorTime - fElapseTime) / TotalMoveToInitFloorTime));
 
 	m_fTowerPosForMoveToInitFloor = (fPositionPercent * (nGoalFloor - 1)) + 1.1;
 	
 	if (bIsSweep)
 	{
-		//¼ÒÅÁÀÌ°í ¸ñÇ¥ÃşÀÌ 10Ãş ÃÊ°ú¸é ÇöÀç º¸¸çÁÙÃş Àç¼³Á¤.
+		//å®¶å¸•æç»Š æ ¼é’æ‘¸æ 10æ‘¸ æª¬è‹æ æ³…çŠ ç„Šå“¥ä¸´æ‘¸ çŠæ±²æ²¥.
 		if (nGoalFloor > 10)
 		{
-			// 1 2 3 4 5 ½ºÅµ (nGoalFloor-4) (nGoalFloor-3) (nGoalFloor-2) (nGoalFloor-1) (nGoalFloor)
+			// 1 2 3 4 5 èƒ¶è¯º (nGoalFloor-4) (nGoalFloor-3) (nGoalFloor-2) (nGoalFloor-1) (nGoalFloor)
 			// fPositionPercent 0.0 ~ 1.0
 			int32 nNewGoalFloor = 10;
 
@@ -672,31 +672,31 @@ void UB2UIHeroTowerReady::SendHeroTowerSweep()
 
 void UB2UIHeroTowerReady::AckHeroTowerSweep(const FB2ResponseSweepHeroTowerPtr& MsgPtr)
 {
-	// ½ºÅ©·ÑÀº ½ÃÀÛÃş(±â·ÏÃş)À¸·Î ¸ÂÃç³ğ
+	// èƒ¶å†œè´¹ç¯® çŸ«ç´¯æ‘¸(æ‰åºŸæ‘¸)æ è‚º å˜è‹—ä»‡
 	if (SB_InputTower.IsValid())
 	{
 		SB_InputTower->SetAnimateScroll(false);
 		ResetTowerScroll();
 	}
 
-	// Å¸¿ö 1ÃşºÎÅÍ µµ´ŞÃş±îÁö ¿Ã¸®´Â ¿¬Ãâ
+	// é¸¥å†µ 1æ‘¸ä½•ç£ æ¡£å´”æ‘¸é³–ç˜¤ æ£µåºœç»° æ¥·å…
 	m_fMoveToInitFloorStartTime = GetWorld()->GetTimeSeconds() - MoveToInitFloorWaitTime;
 	m_eUIState = EHeroTowerReadyUIState::MoveTowerSweep;
 
 	UB2UIManager::GetInstance()->OpenUI(UIFName::BlockScreen);
 
-	//TotalMoveToInitFloorTime ÃÊÈÄ¿¡ ÆË¾÷
+	//TotalMoveToInitFloorTime æª¬é¥¶ä¿Š æ‰‘è¯€
 	UGameplayStatics::GetGameMode(this)->GetWorldTimerManager().ClearTimer(TimeSweepPopupWait);
 	UGameplayStatics::GetGameMode(this)->GetWorldTimerManager().SetTimer(TimeSweepPopupWait, this, &UB2UIHeroTowerReady::OpenSweepResultPopup, TotalMoveToInitFloorTime);
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	// colosseum commnet : ¼ÒÅÁº¸»óÀº ¿µ¿õÀÇ Á¶°¢°ú °ñµå·Î ÇÈ½º µÇ¾î ÀÖ½À´Ï´Ù.
-	// ¼ÒÅÁº¸»óÀº ¸®¿öµå Å¸ÀÔ ¸®½ºÆ® ÇüÅÂ·Î Àü´Ş µË´Ï´Ù.
+	// colosseum commnet : å®¶å¸•ç„Šæƒ‘ç¯® åº·æ—·ç‹¼ ç‚¼é˜¿è‹ æ¦œé›è‚º ä¾¨èƒ¶ ç™»ç»¢ ä¹åš¼èªä¿ƒ.
+	// å®¶å¸•ç„Šæƒ‘ç¯® åºœå†µé› é¸¥æ¶ åºœèƒ¶é£˜ å±ˆæ€•è‚º å‚ˆå´” é‚“èªä¿ƒ.
 	for (auto reward : MsgPtr->rewards)
 	{
 		if (reward->item != nullptr)
 		{
-			if (reward->item->template_id == FItemRefIDHelper::ITEM_REF_ID_HERO_PIECE) // ¿µ¿õÀÇÁ¶°¢
+			if (reward->item->template_id == FItemRefIDHelper::ITEM_REF_ID_HERO_PIECE) // åº·æ—·ç‹¼ç‚¼é˜¿
 			{
 				m_nTempHeroPieceAmount = reward->raw_reward->count;
 			}
@@ -764,7 +764,7 @@ float UB2UIHeroTowerReady::GetTowerPosition()
 
 	//UE_LOG(LogBladeII, Log, TEXT("fTowerPos = %3.2"), fTowerPos);
 
-	// BP¿¡¼­ ÇöÀç ÃşÀ» ¾ËÇÊ¿ä°¡ ÀÖ¾î¼­ ´õÇØÁØ´Ù.(´õ¹Ì ¸Ş½¬µéµµ ÀÌµ¿ÀÌ ÇÊ¿äÇØÁü..)
+	// BPä¿Šè¾‘ æ³…çŠ æ‘¸é˜‘ èˆ…é˜å¤¸å•Š ä¹ç»¢è¾‘ æ­¹ç§¦éœ–ä¿ƒ.(æ­¹å›º çš‹æµ†ç”¸æ¡£ ææ‚¼æ é˜å¤¸ç§¦å’™..)
 	int32 nGoalFloor = UB2UIDocHelper::GetDocHeroTower()->GetStartFloor();
 
 	return fTowerPos + float(nGoalFloor);
@@ -816,7 +816,7 @@ void UB2UIHeroTowerReady::SetStaticText()
 
 
 //////////////////////////////////////////////////////////
-// ¿©±â¿¡ LevelUpPart °¡ ½ß¶×¸Â°Ô ÀÖ´Âµ¥.. Result ¿¡ ÀÖ´Â °É·Î µÈ °Í °°Àºµ¥ ½Ç¼öÀÎ °Ç°¡..? ¿©ÇÏ°£ Ã³À½ºÎÅÍ ·ÎµùÇÏÁö´Â ¾Êµµ·Ï ÇÔ.
+// å’¯æ‰ä¿Š LevelUpPart å•Š ç«­è¹²å˜éœ¸ ä¹ç»°å•.. Result ä¿Š ä¹ç»° å§è‚º ç­‰ å·´ éç¯®å• è§’èç‰¢ æ‰’å•Š..? å’¯çªåŸƒ è´¸æ¾œä½•ç£ è‚ºçˆ¹çªç˜¤ç»° è‡¼æ¡£åºŸ çªƒ.
 
 void UB2UIHeroTowerReady::CheckAndOpenLevelUpPart()
 {
@@ -829,7 +829,7 @@ void UB2UIHeroTowerReady::CheckAndOpenLevelUpPart()
 
 	for (auto pcclass : ThisPCClass)
 	{
-		//[@SameLine, 180612] explevelinfo doc, datastore -> datastore °³¼±
+		//[@SameLine, 180612] explevelinfo doc, datastore -> datastore ä¿ºæ€¥
 		//UB2UIDocHero* DocHero = UB2UIDocHelper::GetDocHero(PCClassToInt(pcclass));
 		//bool bCharLevelUp = (FMath::Max(DocHero->GetBasicUpgradeLevel(), DocHero->GetExtraUpgradeLevel()) > DocHero->GetCurrentLevel());
 		const int32 ClearAfterLevel = CharacterDataStore.GetCharacterLevel(pcclass);

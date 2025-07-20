@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -26,8 +26,8 @@ struct FLobbyMatchPeerInfo
 	{}
 
 	bool		IsReady;
-	EPCClass	ReservedPCClass;	// ¼±ÅÃµÈ Ä³¸¯ÅÍ¸¦ µ¿±âÈ­
-	ETeamType	PlayerTeamType;		// ÇÊ¿äÇÏ¸é ÆÀ±¸ºĞ
+	EPCClass	ReservedPCClass;	// æ€¥ç¶ç­‰ æŸè…ç£ç”« æ‚¼æ‰æ‹³
+	ETeamType	PlayerTeamType;		// é˜å¤¸çªæ è¯„å¤‡ç›’
 };
 
 
@@ -438,8 +438,8 @@ bool IsHeroMgmtMode() const;
 	void EnterControlMenu();
 	void EnterTMChageHeroMod();
 	virtual void EnterShop(int32 nWhereShop) override;
-	//[@AKI, 170613] ¾à ³×Æ®¿öÅ©¿¡¼­ ·Îºñ¿¡¼­¸¸ Disconnect¸¦ ÇØ´Ş¶ó°í ¿äÃ»ÇØ¼­ ¸¸µç °¡»ó ¸Ş¼Òµå
-	//ÇÊ¿äÇÑ ¸ğµå¿¡¼­´Â ¿À¹ö¶óÀÌµå ÇØ¼­ »ç¿ëÇÏ¸é µÇ°í ¾Æ´Ï¸é BladeIIGameMode¿¡¼­ false¸¦ return ÇÔ
+	//[@AKI, 170613] è· åŒ™é£˜å†µå†œä¿Šè¾‘ è‚ºåšä¿Šè¾‘çˆ¶ Disconnectç”« ç§¦å´”æ‰¼ç»Š å¤¸æ²¡ç§¦è¾‘ çˆ¶ç”µ å•Šæƒ‘ çš‹å®¶é›
+	//é˜å¤¸èŒ„ è‘›é›ä¿Šè¾‘ç»° å·æ»šæ‰¼æé› ç§¦è¾‘ è¤ä¾©çªæ ç™»ç»Š é…’èªæ BladeIIGameModeä¿Šè¾‘ falseç”« return çªƒ
 
 	// Server-bound functions mainly be called from one of LobbyUserWidgets.
 	void LoginAndStartGame(const FString& InUserID, const FString& InUserPW); // For the very first log-in.

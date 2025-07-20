@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 //#include "BladeII.h"
@@ -49,7 +49,7 @@ enum class ETotemRefineState : uint8
 
 /////////////////////////////////////////////////////////////////////////////////////
 //
-// ¸¶½ºÅÍ µ¥ÀÌÅÍ
+// ä»˜èƒ¶ç£ å•æç£
 //
 /////////////////////////////////////////////////////////////////////////////////////
 
@@ -279,7 +279,7 @@ struct FB2TotemDismantleInfo
 
 /////////////////////////////////////////////////////////////////////////////////////
 //
-// ³×Æ®¿öÅ© µ¥ÀÌÅÍ
+// åŒ™é£˜å†µå†œ å•æç£
 //
 /////////////////////////////////////////////////////////////////////////////////////
 
@@ -311,9 +311,9 @@ struct FB2Totem
 	float GetCombat();
 
 	bool IsEquipped() const;
-	// Á¦·Ã ¿Ï·á
+	// åŠ›è®¿ è‚¯ä¸°
 	bool IsSmeltingComplete() const;
-	// Á¦·Ã Áß
+	// åŠ›è®¿ å
 	bool IsSmelting() const;
 
 	int32 GetMaxSmeltingCount() const;
@@ -334,6 +334,6 @@ struct FB2Totem
 	bool IsLock;
 	bool IsNew;
 
-	// ÅäÅÛÀ» ItemÀ¸·Î º¯È¯ÇÑ´Ù. ¸ğµç Á¤º¸¸¦ ´ãÁø ¸øÇÏ°í, IDµîÀ» °øÀ¯ÇÏ¿© ¸ŞÅ×¸®¾óÀ» ¾ò´Â »óÈ²¿¡¼­ »ç¿ëÇÑ´Ù.
+	// é…è¢é˜‘ Itemæ è‚º å‡½åˆ¸èŒ„ä¿ƒ. è‘›ç”µ æ²¥ç„Šç”« æ·¬æŸ³ ç»™çªç»Š, IDæ®¿é˜‘ å‚èœ¡çªå’¯ çš‹æŠ›åºœå€”é˜‘ æ˜ç»° æƒ‘ç‚”ä¿Šè¾‘ è¤ä¾©èŒ„ä¿ƒ.
 	void GetItemFormat(FB2Item& OutItem);
 };

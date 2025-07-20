@@ -1,4 +1,4 @@
-#include "B2UIHeader.h"
+ï»¿#include "B2UIHeader.h"
 #include "B2UIManager.h"
 #include "B2UIDocHelper.h"
 #include "B2UIDocUser.h"
@@ -78,9 +78,9 @@ void UB2UIHeader::SetIsInDJLegacyHeroMgmt(bool bInDJLegacy, EHeroMgmtSubMode InS
 			DJLegacyHeroMgmtSubMode = EHeroMgmtSubMode::EHMSM_Inventory;
 		}
 
-		ChangeLayoutByUIScene(DJLegacyHeroMgmtPageToUIScene(DJLegacyHeroMgmtSubMode)); // UIManager ½Ã½ºÅÛÀÇ ´õ¹Ì ¸ÊÇÎ ¾À ÀÌ¸§À¸·Î ³Ö¾îÁÜ
+		ChangeLayoutByUIScene(DJLegacyHeroMgmtPageToUIScene(DJLegacyHeroMgmtSubMode)); // UIManager çŸ«èƒ¶è¢ç‹¼ æ­¹å›º ç”˜ä¿ çº  ææŠšæ è‚º æŒç»¢æ·‹
 
-		SetLobbyUIHeaderTitle(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("LobbyHeroMgmt_Title"))); // ÇÏÀ§ ¸ğµåº°·Î ¼¼ÆÃÀÌ ¶Ç µÉ °ÍÀÓ.
+		SetLobbyUIHeaderTitle(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("LobbyHeroMgmt_Title"))); // çªå›° è‘›é›å–Šè‚º æŠ€æ³¼æ è‚š çª å·´çƒ™.
 	}
 	else
 	{
@@ -145,11 +145,11 @@ void UB2UIHeader::CacheAssets()
 		if (ModeOpenNoticeSlot.IsValid())
 		{
 			ModeOpenNoticeSlot->Init();
-			ModeOpenNoticeSlot->SetVisibility(ESlateVisibility::Collapsed); // Ã³À½Àº ¾Èº¸ÀÌ°Ô ¼³Á¤
+			ModeOpenNoticeSlot->SetVisibility(ESlateVisibility::Collapsed); // è´¸æ¾œç¯® æ•‘ç„Šæéœ¸ æ±²æ²¥
 		}
 	}
 	GET_SLOT(UOverlay, Overlay_ModOpenNotice);
-	Overlay_ModOpenNotice->SetVisibility(ESlateVisibility::Collapsed); // Ã³À½Àº ¾Èº¸ÀÌ°Ô ¼³Á¤
+	Overlay_ModOpenNotice->SetVisibility(ESlateVisibility::Collapsed); // è´¸æ¾œç¯® æ•‘ç„Šæéœ¸ æ±²æ²¥
 
 	GET_SLOT(UBorder, X_ForcedBlockHeader);
 
@@ -225,10 +225,10 @@ void UB2UIHeader::BindDocAuto()
 		//if (bIsInDJLegacyHeroMgmt)
 		//{
 		//	EHeroMgmtSubMode SubModeForLayout = (DJLegacyHeroMgmtSubMode != EHeroMgmtSubMode::EHMSM_End) ? DJLegacyHeroMgmtSubMode : EHeroMgmtSubMode::EHMSM_Inventory;
-		//	ChangeLayoutByUIScene(DJLegacyHeroMgmtPageToUIScene(SubModeForLayout)); // UIManager ½Ã½ºÅÛÀÇ ´õ¹Ì ¸ÊÇÎ ¾À ÀÌ¸§À¸·Î ³Ö¾îÁÜ
+		//	ChangeLayoutByUIScene(DJLegacyHeroMgmtPageToUIScene(SubModeForLayout)); // UIManager çŸ«èƒ¶è¢ç‹¼ æ­¹å›º ç”˜ä¿ çº  ææŠšæ è‚º æŒç»¢æ·‹
 		//}
 		//else
-		//{ // DJLegacyHeroMgmt ¿¡¼­µµ ÀÌ°Ô ¿øÇÏ´Â °ªÀ¸·Î ³ª¿Ã ¼öµµ ÀÖÀ½.
+		//{ // DJLegacyHeroMgmt ä¿Šè¾‘æ¡£ æéœ¸ ç›”çªç»° è”¼æ è‚º å”±æ£µ èæ¡£ ä¹æ¾œ.
 		//	ChangeLayoutByUIScene(DocUICondition->GetCurrUIScene());
 		//}
 
@@ -267,7 +267,7 @@ void UB2UIHeader::Init()
 {
 	Super::Init();
 
-	//ÇÖÅ¸ÀÓ 1ÃÊ¿¡ ÇÑ¹ø ¾÷µ¥ÀÌÆ®
+	//ä¾µé¸¥çƒ™ 1æª¬ä¿Š èŒ„é”… è¯€å•æé£˜
 	UWorld* TheWorld = GetWorld();
 	if (TheWorld)
 		TheWorld->GetTimerManager().SetTimer(UpdateHotTimeHandle, this, &UB2UIHeader::SetHotTime, 1.0f, true);
@@ -464,13 +464,13 @@ void UB2UIHeader::SetUserGuild()
 		}
 
 		if (IMG_DefaultMark.IsValid()) {
-			IMG_DefaultMark->SetVisibility(ESlateVisibility::Hidden); // GuildMark ¶û °°Àº À§Ä¡.
+			IMG_DefaultMark->SetVisibility(ESlateVisibility::Hidden); // GuildMark å°” éç¯® å›°æ‘¹.
 		}
 	}
 	else
 	{
 		if (IMG_DefaultMark.IsValid()) {
-			IMG_DefaultMark->SetVisibility(ESlateVisibility::HitTestInvisible); // GuildMark ¶û °°Àº À§Ä¡.
+			IMG_DefaultMark->SetVisibility(ESlateVisibility::HitTestInvisible); // GuildMark å°” éç¯® å›°æ‘¹.
 		}
 		if (UIP_GuildMark.IsValid()) {
 			UIP_GuildMark->SetVisibility(ESlateVisibility::Hidden);
@@ -609,7 +609,7 @@ void UB2UIHeader::SetDimensionPiece(int32 InValue, bool bFromInit /*= false*/)
 
 void UB2UIHeader::RefreshUIInfo()
 {
-	// ¾ÀÀüÈ¯µÉ¶§ Á¤º¸°»½ÅÇØÁØ´Ù. °ñµåº¸¼®µîÀº Æ½¿¡¼­ ÇØÁÖ´Ï±ñ ¾ÈÇØÁàµµ µÇ´Âµ¥. ±×³É ÇÑ¹ø´õ ÇÏÀÚ
+	// çº å‚ˆåˆ¸çªé”­ æ²¥ç„Šç›è„šç§¦éœ–ä¿ƒ. æ¦œé›ç„Šç±æ®¿ç¯® å¹³ä¿Šè¾‘ ç§¦æ—èªç˜ª æ•‘ç§¦æ‹æ¡£ ç™»ç»°å•. å¼Šæˆ èŒ„é”…æ­¹ çªç£Š
 	if (auto* DocUser = UB2UIDocHelper::GetDocUser())
 	{
 		SetSocialPoint(DocUser->GetSocialPoint(), DocUser->GetSocialPointMax(), true);
@@ -639,7 +639,7 @@ void UB2UIHeader::RefreshUIInfo()
 		SetHeroTowerTicket(pDocHeroTower->GetDailyLeftFreeTryCount(), BladeIIGameImpl::GetClientDataStore().GetMaxHeroTowerTicketCount(), true);
 	}
 
-	// ÀÏ´ëÀÏ, ÆÀ¸ÅÄ¡, Á¡·ÉÀü Æ¼ÄÏÁ¤º¸ Ãß°¡µÇ¸é ÀÛ¼º
+	// è€æªè€, è¯„æ¦‚æ‘¹, ç—¢é£å‚ˆ èå—æ²¥ç„Š çœ å•Šç™»æ ç´¯å·±
 
 	if (UB2UIDocPVP1on1Rival* pDocTagMatch = UB2UIDocHelper::GetDocPVP1on1Rival())
 	{
@@ -714,7 +714,7 @@ void UB2UIHeader::UpdateUIVisibleVerticalMode(bool bVerticalMode)
 		P_Header->SetVisibility(bVerticalMode ? ESlateVisibility::Hidden : ESlateVisibility::SelfHitTestInvisible);
 	if (P_User.IsValid())
 	{
-		if (bVerticalMode == false)	// º¸¿©¾ßÇÒ¶§
+		if (bVerticalMode == false)	// ç„Šå’¯å…·ä¸”é”­
 		{
 			if (UB2UIManager* UIManager = UB2UIManager::GetInstance())
 			{
@@ -901,14 +901,14 @@ void UB2UIHeader::ChangeLayoutByUIScene(EUIScene InScene)
 		break;
 	}
 
-	// ¾À¹Ù²ğ¶© ¼û±ä°Å ÇØÁ¦(¼û±â´Â¼ø°£ ¾ÀÀüÈ¯ÀÏ¾î³ª¸é Çì´õ°¡ »ç¶óÁü¤»)
+	// çº å®˜æ‹†è®¢ è§å˜èŠ­ ç§¦åŠ›(è§æ‰ç»°é‰´åŸƒ çº å‚ˆåˆ¸è€ç»¢å”±æ åº†æ­¹å•Š è¤æ‰¼å’™ã›)
 	if (m_bIsHideHeader)
 	{
 		HideHeader(false);
 		m_bIsHideHeader = false;
 	}
 
-	// ¾Àº°·Î º¸¿©ÁÙ ÀçÈ­UI Ã¼Å©
+	// çº å–Šè‚º ç„Šå’¯ä¸´ çŠæ‹³UI çœ‰å†œ
 	CheckResourceParts(InScene);
 	RefreshUIInfo();
 }
@@ -921,20 +921,20 @@ void UB2UIHeader::CheckResourceParts(EUIScene InScene)
 		{
 			if (InScene == CheckScene)
 			{
-				// ¸®¼Ò½ºÀÎÆ÷¿¡ ÀÖ´Â°Íµé·Î ¸¸µë
+				// åºœå®¶èƒ¶ç‰¢å™¨ä¿Š ä¹ç»°å·´ç”¸è‚º çˆ¶æƒ¦
 				CreateResourcePartsUI(ResourceInfo.ToCreateResources);
 				return;
 			}
 		}
 	}
 
-	// ¸øÃ£¾ÒÀ¸¸é º£ÀÌ½ºÀÎÆ÷¿¡ÀÖ´Â°É·Î ¸¸µë
+	// ç»™èŒ«ç–½æ æ æµ·æèƒ¶ç‰¢å™¨ä¿Šä¹ç»°å§è‚º çˆ¶æƒ¦
 	CreateResourcePartsUI(BaseResources);
 }
 
 void UB2UIHeader::CreateResourcePartsUI(TArray<TSubclassOf<class UB2UIHeaderResource>> ResourcePartsUIClasses)
 {
-	// ¸¸µé±âÀü¿¡ ÀÖ´ø°Å Á¦°Å
+	// çˆ¶ç”¸æ‰å‚ˆä¿Š ä¹å¸¦èŠ­ åŠ›èŠ­
 	for (UB2UIHeaderResource* pDeleteUI : m_arResourcePartsUI)
 	{
 		if (pDeleteUI)
@@ -956,7 +956,7 @@ void UB2UIHeader::CreateResourcePartsUI(TArray<TSubclassOf<class UB2UIHeaderReso
 		if (pUIP)
 			pUIP->Init();
 
-		// ¸â¹ö ¾î·¹ÀÌ¾î ÀúÀå
+		// ç³•æ»š ç»¢é¥­æç»¢ å†å˜
 		m_arResourcePartsUI.Add(pUIP);
 	}
 }
@@ -1131,7 +1131,7 @@ void UB2UIHeader::CloseWidgetDelegate()
 void UB2UIHeader::OnClickBtnBack()
 {
 	if (bIgnoreBackBTN)
-		//¹öÆ° ¿¬Å¸½Ã¿¡ ¹öÆ°ÀÌ ¾ø´Â SceneÀÓ¿¡µµ ¹éÈ÷½ºÅä¸®·Î °¡´Â °ÍÀ» ¹æÁö
+		//æ»šç“¢ æ¥·é¸¥çŸ«ä¿Š æ»šç“¢æ ç»ç»° Sceneçƒ™ä¿Šæ¡£ å½’æ´’èƒ¶é…åºœè‚º å•Šç»° å·´é˜‘ è§„ç˜¤
 		return;
 
 	if (UB2UIManager* UIManager = UB2UIManager::GetInstance())
@@ -1140,7 +1140,7 @@ void UB2UIHeader::OnClickBtnBack()
 
 		PlaySoundOnBackBtn(PrevUIScene);
 
-		//UIScene History¿¡ ÀÇÇØ ÀÚµ¿À¸·Î BackµÈ´Ù. DJLegacy HeroMgmt ¸ğµåÀÎ °æ¿ìµµ Ã³¸®µÉ °Í.
+		//UIScene Historyä¿Š ç‹¼ç§¦ ç£Šæ‚¼æ è‚º Backç­‰ä¿ƒ. DJLegacy HeroMgmt è‘›é›ç‰¢ ç‰ˆå¿«æ¡£ è´¸åºœçª å·´.
 		UIManager->ChangeUISceneBack();
 	}
 }
@@ -1148,7 +1148,7 @@ void UB2UIHeader::OnClickBtnBack()
 void UB2UIHeader::OnClickBtnHome()
 {
 	if (bIgnoreBackBTN)
-		//¹öÆ° ¿¬Å¸½Ã¿¡ ¹öÆ°ÀÌ ¾ø´Â SceneÀÓ¿¡µµ ¹éÈ÷½ºÅä¸®·Î °¡´Â °ÍÀ» ¹æÁö
+		//æ»šç“¢ æ¥·é¸¥çŸ«ä¿Š æ»šç“¢æ ç»ç»° Sceneçƒ™ä¿Šæ¡£ å½’æ´’èƒ¶é…åºœè‚º å•Šç»° å·´é˜‘ è§„ç˜¤
 		return;
 
 	if (UB2UIManager* UIManager = UB2UIManager::GetInstance())
@@ -1304,8 +1304,8 @@ void UB2UIHeader::OnChangedFamePoint(class UB2UIDocBase* Sender, int32 FamePoint
 
 void UB2UIHeader::OnChangedStaminaCur(class UB2UIDocBase* Sender, int32 StaminaCur, int32 PrevStaminaCur)
 {
-	// ºí·¹ÀÌµå Æ÷ÀÎÆ®´Â ½Ã°£¸¶´Ù Ãß°¡ µÉ ¶§´Â ¾Ö´Ï¸ŞÀÌ¼ÇÀ» Ãâ·ÂÇÏÁö ¾Ê¾Æ¾ß µÇ¹Ç·Î, 
-	// UIheader¿¡¼­ Ã³¸®ÇÏÁö¾ÊÀ½.
+	// å–‰é¥­æé› å™¨ç‰¢é£˜ç»° çŸ«åŸƒä»˜ä¿ƒ çœ å•Š çª é”­ç»° å±€èªçš‹æè®°é˜‘ å…ä»¿çªç˜¤ è‡¼é…’å…· ç™»éª¨è‚º, 
+	// UIheaderä¿Šè¾‘ è´¸åºœçªç˜¤è‡¼æ¾œ.
 	if (auto* DocUser = UB2UIDocHelper::GetDocUser())
 		SetStamina(StaminaCur, DocUser->GetStaminaMax());
 }
@@ -1387,7 +1387,7 @@ void UB2UIHeader::OnChangedHeaderTitle(class UB2UIDocBase* Sender, FText HeaderT
 
 void UB2UIHeader::OnChangedHideAllLobbyMainUIs(class UB2UIDocBase* Sender, bool HideAllLobbyMainUIs, bool PrevHideAllLobbyMainUIs)
 {
-	//·Îºñ¿¡¼­ 10ÃÊ°£, ¾Æ¹« Çàµ¿µµ ÇÏÁö ¾ÊÀ¸¸é ¸ğµç UI¸¦ ¼û±â¶ó°í ÇÑ´Ù.
+	//è‚ºåšä¿Šè¾‘ 10æª¬åŸƒ, é…’å…¬ é’æ‚¼æ¡£ çªç˜¤ è‡¼æ æ è‘›ç”µ UIç”« è§æ‰æ‰¼ç»Š èŒ„ä¿ƒ.
 	HideHeader(HideAllLobbyMainUIs);
 
 	m_bIsHideHeader = HideAllLobbyMainUIs;

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIEventPagePoint.h"
 
@@ -80,12 +80,12 @@ void UB2UIEventPagePoint::UpdateEventPage(FB2ResponseGetEventPtr ReciveGetEvent)
 
 			int32 iRewardBitCheck = 2 << i;
 
-			//º¸»ó ¿Ï·á //reward_state_value 0000001 Ã¹¹øÂ° º¸»ó ¿Ï·á reward_state_value 0000011 Ã¹¹øÂ°, µÎ¹øÂ° º¸»ó ¿Ï·á
+			//ç„Šæƒ‘ è‚¯ä¸° //reward_state_value 0000001 éœ‰é”…æ³ ç„Šæƒ‘ è‚¯ä¸° reward_state_value 0000011 éœ‰é”…æ³, æ»´é”…æ³ ç„Šæƒ‘ è‚¯ä¸°
 			if (PointEventInfo[0]->reward_state_value & iRewardBitCheck)
 			{
 				EventSlotPoint->SetEventState(b2network::B2MissionStateType::REWARDED);
 			}
-			//º¸»ó ¹Ì¿Ï·á
+			//ç„Šæƒ‘ å›ºè‚¯ä¸°
 			else if (PointEventInfo[0]->point >= EventSlotPoint->GetNeedPoint())
 			{
 				EventSlotPoint->SetEventState(b2network::B2MissionStateType::COMPLETED);
@@ -102,7 +102,7 @@ void UB2UIEventPagePoint::ResponsePointEventReward(FB2ResponseReceivePointEventR
 
 void UB2UIEventPagePoint::InitEventPointInfo()
 {
-	//Æ÷ÀÎÆ® º¸»ó ½½·Ô Á¤Àû °³¼ö 6°³ °íÁ¤
+	//å™¨ç‰¢é£˜ ç„Šæƒ‘ æµ‡å© æ²¥åˆ© ä¿ºè 6ä¿º ç»Šæ²¥
 	if (const TArray<b2network::B2mdPointEventReward>* pArrayEventRewardInfo =
 		RewardEventManager::GetInstance().GetArrayEventRewardInfo_Point(iEventID))
 	{

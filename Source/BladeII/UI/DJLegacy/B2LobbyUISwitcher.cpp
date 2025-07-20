@@ -24,8 +24,8 @@ void UB2LobbyUISwitcher::InitUISwitcher(class AB2LobbyGameMode* InLobbyGM)
 #if WITH_EDITOR
 	if (GIsEditor)
 	{
-		// BladeIIGameImpl::StartupModule ¿¡¼­ ·ÎµùÇÏ´Â °Íµéµµ ÀÖ´Âµ¥ ÀÌ°Ç ¿©±â¼­ ·ÎµùÇØµµ µÉ µí. 
-		// È¤½Ã¶óµµ ¹®Á¦°¡ »ı±â¸é LobbyUISwitcher ÀÚÃ¼¸¦ ´Ù¸¥ °÷¿¡¼­ ¾òÀ» ¼ö ÀÖ°Ô ÇÏ°í BladeIIGameImpl ÂÊ¿¡¼­ EditorLoadAll À» ÇÒ °Í
+		// BladeIIGameImpl::StartupModule ä¿Šè¾‘ è‚ºçˆ¹çªç»° å·´ç”¸æ¡£ ä¹ç»°å• ææ‰’ å’¯æ‰è¾‘ è‚ºçˆ¹ç§¦æ¡£ çª æ·€. 
+		// è¶£çŸ«æ‰¼æ¡£ å·©åŠ›å•Š ç§¯æ‰æ LobbyUISwitcher ç£Šçœ‰ç”« ä¿ƒå¼— é•‘ä¿Šè¾‘ æ˜é˜‘ è ä¹éœ¸ çªç»Š BladeIIGameImpl ç‡ä¿Šè¾‘ EditorLoadAll é˜‘ ä¸” å·´
 		EditorLoadAll();
 	}
 #endif
@@ -33,17 +33,17 @@ void UB2LobbyUISwitcher::InitUISwitcher(class AB2LobbyGameMode* InLobbyGM)
 
 void UB2LobbyUISwitcher::SetupCacheOnLoadList()
 {
-#if !PLATFORM_IOS // [IOS_SPECIFIC_MEMORY_SAVING] iOS ¸Ş¸ğ¸® ¿ì·Á·Î ÀÎÇØ..
+#if !PLATFORM_IOS // [IOS_SPECIFIC_MEMORY_SAVING] iOS çš‹è‘›åºœ å¿«å¦¨è‚º ç‰¢ç§¦..
 #if WITH_EDITOR
 	if (GIsEditor) {
-		return; // ¿¡µğÅÍµµ ÀÌ·± °Å ÇÊ¿ä¾øÀ½.
+		return; // ä¿Šå¼ç£æ¡£ æç¹ èŠ­ é˜å¤¸ç»æ¾œ.
 	}
 #endif
 
 	//TArray<ELobbyUIPages> CacheOnLoadList;
 	//TArray<FString> ParsedCacheOnLoadListStr;
 	//GConfig->GetArray(TEXT("/Script/BladeII.B2UIManager"), TEXT("CacheOnLoadUI_DJLegacy"), ParsedCacheOnLoadListStr, GGameIni);
-	//// ¿ä°Ç Enum À¸·Î º¯È¯À» ÇØ¾ß..
+	//// å¤¸æ‰’ Enum æ è‚º å‡½åˆ¸é˜‘ ç§¦å…·..
 	//const UEnum* EnumPtr = FindObject<UEnum>(ANY_PACKAGE, ELobbyUIPages_ENUM_PACKAGE_NAME, true);
 	//if (EnumPtr)
 	//{
@@ -64,8 +64,8 @@ void UB2LobbyUISwitcher::SetupCacheOnLoadList()
 	//		FLobbyUIPageClassMapping& ThisMapping = LobbyPageClassMapping[CI];
 	//		if (ThisMapping.PageEnum == ThisPageEnum)
 	//		{
-	//			// UIManager ÂÊÀÇ µ¿ÀÏÇÑ ±â´É°ú ¸¶Âù°¡Áö·Î °á±¹ ¿ä°Å ÇÏ³ª ¼¼ÆÃÇÏÀÚ°í ÀÌ ÁşÀ» ÇÔ.
-	//			// UB2UIManager::SetupCacheOnLoadList Âü°í.
+	//			// UIManager ç‡ç‹¼ æ‚¼è€èŒ„ æ‰ç“·è‹ ä»˜è›®å•Šç˜¤è‚º æ¬æƒ« å¤¸èŠ­ çªå”± æŠ€æ³¼çªç£Šç»Š æ çª¿é˜‘ çªƒ.
+	//			// UB2UIManager::SetupCacheOnLoadList æ›¼ç»Š.
 	//			ThisMapping.SetCacheOnLoad(true);
 	//			break;
 	//		}
@@ -92,19 +92,19 @@ static void FromStringToLobbyUIPageEnum(const TArray<FString>& inUIPageStringArr
 
 void UB2LobbyUISwitcher::SetupRoosetPagesList()
 {
-#if !PLATFORM_IOS // [IOS_SPECIFIC_MEMORY_SAVING] iOS ¸Ş¸ğ¸® ¿ì·Á·Î ÀÎÇØ..
+#if !PLATFORM_IOS // [IOS_SPECIFIC_MEMORY_SAVING] iOS çš‹è‘›åºœ å¿«å¦¨è‚º ç‰¢ç§¦..
 	if (RootSetPages.Num() == 0)
 	{
 		TArray<FString> RootsetPageListStr;
 		GConfig->GetArray(TEXT("/Script/BladeII.B2UIManager"), TEXT("RootSetOnLoadUI_DJLegacy"), RootsetPageListStr, GGameIni);
-		// ¿ä°Ç Enum À¸·Î º¯È¯À» ÇØ¾ß..
+		// å¤¸æ‰’ Enum æ è‚º å‡½åˆ¸é˜‘ ç§¦å…·..
 		FromStringToLobbyUIPageEnum(RootsetPageListStr, RootSetPages);
 	}
 #endif
 }
 void UB2LobbyUISwitcher::SetupLoadOnStartupPagesList(UB2UIManager_Lobby* InOwnerUIManager)
 {
-#if	PLATFORM_IOS // [IOS_SPECIFIC_MEMORY_SAVING] iOS ¸Ş¸ğ¸® ¿ì·Á·Î ÀÎÇØ..
+#if	PLATFORM_IOS // [IOS_SPECIFIC_MEMORY_SAVING] iOS çš‹è‘›åºœ å¿«å¦¨è‚º ç‰¢ç§¦..
 	return;
 #endif
 
@@ -119,7 +119,7 @@ void UB2LobbyUISwitcher::SetupLoadOnStartupPagesList(UB2UIManager_Lobby* InOwner
 		GetWidgetClass(PageEnum);
 }
 
-// UB2UIManager::IsRootSetWidgetName ¿¡ ÇØ´ç.
+// UB2UIManager::IsRootSetWidgetName ä¿Š ç§¦å¯¸.
 TArray<ELobbyUIPages> UB2LobbyUISwitcher::RootSetPages;
 TArray<ELobbyUIPages> UB2LobbyUISwitcher::LoadOnStartupPages;
 bool UB2LobbyUISwitcher::IsRootSetPage(ELobbyUIPages InCheckPage)
@@ -218,10 +218,10 @@ void UB2LobbyUISwitcher::UnloadTAssets(bool bUnloadeAllCached, UB2UIManager_Lobb
 	// 3. Cached ClassAsset Unload
 	if (InOwnerUIManager && bUnloadeAllCached)
 	{
-		// UIPage Class Asset ·¹ÆÛ·±½º »èÁ¦
+		// UIPage Class Asset é¥­æ¬ºç¹èƒ¶ æ˜åŠ›
 		InOwnerUIManager->RemoveCachedWidgetClasses();
 
-		// Àâ Class Asset Unlad ¹× ·¹ÆÛ·±½º »èÁ¦
+		// æ£± Class Asset Unlad æ£º é¥­æ¬ºç¹èƒ¶ æ˜åŠ›
 		UnloadAsset(InvenStoredItemIconClass.ToSoftObjectPath());
 		UnloadAsset(InvenEquippedItemIconClass.ToSoftObjectPath());
 		InOwnerUIManager->RemoveCachedSubWidgetClasses();

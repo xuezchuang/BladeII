@@ -1,10 +1,11 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Fill out your copyright notice in the Description page of Project Settings.
 // Project BladeII, Action Square
 
 #pragma once
 
 #include "B2UIWidgetBase.h"
 #include "CommonStruct.h"
+#include "../B2RichTextBlock.h"
 #include "B2UICharacterNickNameEdit.generated.h"
 
 /*

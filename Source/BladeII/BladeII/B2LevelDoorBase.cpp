@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 // Project BladeII, Action Square
 #include "B2LevelDoorBase.h"
 #include "BladeII.h"
@@ -49,8 +49,8 @@ void AB2LevelDoorBase::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// ´ëÃ¼·Î ÀÌ·± Á¾·ù ¾Öµé shadow °¡ modulated shadow Æ¯¼ºÇÏ°í ¸Â¹°·Á¼­ ±×´ÙÁö º¸±â ¾ÈÁÁÀ½.
-	// Modulated shadow ¸¦ ´ëÃ¼ÇÏ´Â ±¦ÂúÀº ¼ö´ÜÀÌ ³ª¿À±â Àü±îÁö´Â ²¨µĞ´Ù.
+	// æªçœ‰è‚º æç¹ è¾†å¹… å±€ç”¸ shadow å•Š modulated shadow æ¼‚å·±çªç»Š å˜æ‹±å¦¨è¾‘ å¼Šä¿ƒç˜¤ ç„Šæ‰ æ•‘äº®æ¾œ.
+	// Modulated shadow ç”« æªçœ‰çªç»° å®æ»¡ç¯® èçªœæ å”±å·æ‰ å‚ˆé³–ç˜¤ç»° æ³¢æ•Œä¿ƒ.
 	TurnOffMeshComponentsDyamicShadowForModulated(this);
 }
 
@@ -58,7 +58,7 @@ void AB2LevelDoorBase::PostLoad()
 {
 	Super::PostLoad();
 #if WITH_EDITOR
-	// Deprecated ¼Ó¼º Àü´Ş.. ÀÌÀü °Å´Â ¹º°¡ ¼³Á¤À» Çß´Âµ¥ ÀÌ¹ø ²¨´Â ¼³Á¤ ¾ÈÇÑ °æ¿ì.
+	// Deprecated åŠ å·± å‚ˆå´”.. æå‚ˆ èŠ­ç»° è´­å•Š æ±²æ²¥é˜‘ æ²ç»°å• æé”… æ³¢ç»° æ±²æ²¥ æ•‘èŒ„ ç‰ˆå¿«.
 	if (DoorEnableType_DEPRECATED != ELevelDoorEnableType::EDET_DoNotChange && NewDoorEnableType == ETriggerEnableType::ETET_DoNotChange)
 	{
 		if (DoorEnableType_DEPRECATED == ELevelDoorEnableType::EDET_EnableByAnyCustomEvent){
@@ -78,7 +78,7 @@ void AB2LevelDoorBase::PostLoad()
 			UMeshComponent* ThisMeshComp = Cast<UMeshComponent>(ThisActorComp);
 			if (ThisMeshComp)
 			{
-				// ÀÌ°Ç ÇÑ½ÃÀûÀ¸·Î °ªÀÌ ´Ù½Ã ¼¼ÆÃµÇµµ·Ï ÇÏ´Â °Å.. »ğÁúÇÑ °Ô ÀÖ¾î¼­.. ´ë·« 2018³â ÂëÀÌ¸é ¾ø¾Öµµ µÉ µí.
+				// ææ‰’ èŒ„çŸ«åˆ©æ è‚º è”¼æ ä¿ƒçŸ« æŠ€æ³¼ç™»æ¡£åºŸ çªç»° èŠ­.. ç«é¾™èŒ„ éœ¸ ä¹ç»¢è¾‘.. æªå¸† 2018æ–¥ ç ææ ç»å±€æ¡£ çª æ·€.
 				ThisMeshComp->bCastDynamicShadow = true;
 			}
 		}
@@ -97,12 +97,12 @@ void AB2LevelDoorBase::NotifyActorCustomEvent(FName OptionalEventName, UObject* 
 {
 	//Super::NotifyActorCustomEvent(OptionalEventName, OptionalNotifyingObject);
 	
-	// DoorEnableType ÀÌ¶û ±âÅ¸ ¼³Á¤¿¡ µû¶ó ÇØ´çÇÏ´Â Event ÀÌ¸é bDoorEnabled ¼¼ÆÃ..
+	// DoorEnableType æå°” æ‰é¸¥ æ±²æ²¥ä¿Š è¶æ‰¼ ç§¦å¯¸çªç»° Event ææ bDoorEnabled æŠ€æ³¼..
 	SetFlagByTriggerEnableTypeCommon(bDoorEnabled, NewDoorEnableType, OptionalEventName, EnableDoorEventName, DisableDoorEventName);
 
 	if (bDoorEnabled && DoorOpenType == ELevelDoorOpenType::EDOT_SomebodyOverlap)
 	{
-		// ¾à°£ Æ¯¼ö ÄÉÀÌ½º·Î ÇÃ·¹ÀÌ¾î°¡ ºÙ¾î ÀÖ´Ù¸é ÇÑ¹ø ¿­¾îÁÖÀÚ.
+		// è·åŸƒ æ¼‚è çº³æèƒ¶è‚º æ•²é¥­æç»¢å•Š å˜¿ç»¢ ä¹ä¿ƒæ èŒ„é”… å‡¯ç»¢æ—ç£Š.
 		APlayerController* PC = UGameplayStatics::GetPlayerController(this, 0);
 		ABladeIIPlayer* B2Player = PC ? Cast<ABladeIIPlayer>(PC->GetCharacter()) : nullptr;
 		if (B2Player && IsOverlappingActor(B2Player))
@@ -147,7 +147,7 @@ void AB2LevelDoorBase::NotifyActorEndOverlap(AActor* OtherActor)
 		// This time, though, we set a timer to handle delayed door close event.
 		
 		bPendingDoorClose = true; // If set to false before the DoorClose is called, DoorClose will be canceled.
-		LastDoorOpenCharacter = NULL; // ¾Ö¸ÅÇÏ±º.
+		LastDoorOpenCharacter = NULL; // å±€æ¦‚çªç„™.
 
 		if (EndOverlapCloseTimeDelay > 0.0f)
 		{
@@ -168,7 +168,7 @@ void AB2LevelDoorBase::NativeDoorOpen(ABladeIICharacter* OpeningCharacter)
 
 	if (bIsDoorCurrentlyOpen == false)
 	{
-		PlayDoorOpenSound(); // ÀÌ°Ç ´İÇû´Ù ¿­¸± ¶§ ÇÑ¹ø¸¸ ÇÃ·¹ÀÌ µÇµµ·Ï.
+		PlayDoorOpenSound(); // ææ‰’ æ‘§èº¯ä¿ƒ å‡¯å‰¯ é”­ èŒ„é”…çˆ¶ æ•²é¥­æ ç™»æ¡£åºŸ.
 	}
 	bIsDoorCurrentlyOpen = true;
 
@@ -178,12 +178,12 @@ void AB2LevelDoorBase::NativeDoorOpen(ABladeIICharacter* OpeningCharacter)
 
 void AB2LevelDoorBase::NativeDoorClose()
 {
-	GetWorldTimerManager().ClearTimer(DoorCloseTimerHandle); // Å¸ÀÌ¸Ó Å¸°í ¿ÔÀ»Áö ¸ğ¸£´Ï ²¨ ³õÀ½.
+	GetWorldTimerManager().ClearTimer(DoorCloseTimerHandle); // é¸¥æèµ£ é¸¥ç»Š å­é˜‘ç˜¤ è‘›ç¦èª æ³¢ åˆæ¾œ.
 
 	if (bPendingDoorClose == true) // Could be set to false while waiting.
 	{
 		bIsDoorCurrentlyOpen = false;
-		PlayDoorCloseSound(); // Ãß°¡ Á¶°ÇÀº ÇÊ¿ä¾øÀ» µí?
+		PlayDoorCloseSound(); // çœ å•Š ç‚¼æ‰’ç¯® é˜å¤¸ç»é˜‘ æ·€?
 
 		// Probably don't have to see any condition here..?
 		DoorClose();

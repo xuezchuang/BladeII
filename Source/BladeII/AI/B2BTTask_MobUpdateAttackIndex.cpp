@@ -1,9 +1,10 @@
-
+﻿
 #include "B2BTTask_MobUpdateAttackIndex.h"
 //#include "BladeII.h"
 #include "AIController.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "BehaviorTree/Blackboard/BlackboardKeyType_Object.h"
+#include "BladeIICharacter.h"
 
 UB2BTTask_MobUpdateAttackIndex::UB2BTTask_MobUpdateAttackIndex(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
@@ -23,7 +24,7 @@ EBTNodeResult::Type UB2BTTask_MobUpdateAttackIndex::PerformUpdateAttackIndexTask
 	AAIController* MyController = OwnerComp.GetAIOwner();
 	auto* ControlledCharacter = MyController ? Cast<ABladeIICharacter>(MyController->GetPawn()) : nullptr;
 
-	if (ControlledCharacter == nullptr)
+	if (!IsValid(ControlledCharacter))
 		return EBTNodeResult::Failed;
 
 	if (ControlledCharacter->GetAttackState() != EAttackState::ECS_None || !ControlledCharacter->GetAbleToControl())

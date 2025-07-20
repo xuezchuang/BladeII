@@ -1,5 +1,6 @@
-#include "B2TargetSelector.h"
+ï»¿#include "B2TargetSelector.h"
 #include "BladeIIGameMode.h"
+#include "../InfoAsset/B2PCClassInfo.h"
 
 
 
@@ -11,10 +12,10 @@ B2TargetSelector & B2TargetSelector::GetInstance()
 
 B2TargetSelector::B2TargetSelector()
 {
-	//containerÀÇ ¸Ş¸ğ¸®°¡ ºÎÁ·ÇØ¼­ ¸Ş¸ğ¸® ´Ã¸±¶§ lambda°¡ ³¯¾Æ°¨ 
+	//containerç‹¼ çš‹è‘›åºœå•Š ä½•ç»ƒç§¦è¾‘ çš‹è‘›åºœ ç–µå‰¯é”­ lambdaå•Š æœé…’çš‘ 
 	TargetFilters.Reserve(10);
 
-	//Add ÇÃ·¡±× ºÎÅÍ ¼ø¼­´ë·Î ³Ö¾îÁà¾ß ÀüºÎ AddÇÏ°í ³ª¼­ Filter·Î °Å¸£°Ô µÊ...
+	//Add æ•²è´°å¼Š ä½•ç£ é‰´è¾‘æªè‚º æŒç»¢æ‹å…· å‚ˆä½• Addçªç»Š å”±è¾‘ Filterè‚º èŠ­ç¦éœ¸ å‡³...
 	AddFilter(ETargetSelectType::ETST_AddAllyTeam,
 		[this](TArray<class ABladeIICharacter*>& OutFoundCharacters, ABladeIICharacter * CurrentChracter)
 	{

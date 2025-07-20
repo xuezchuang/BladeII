@@ -1,4 +1,4 @@
-#include "BladeIIScalabilityControl.h"
+ï»¿#include "BladeIIScalabilityControl.h"
 #include "Global.h"
 
 #include "BladeIIGameMode.h"
@@ -21,49 +21,49 @@
 
 /************************************************************************/
 /* 
-°ÔÀÓ ¼³Á¤¿¡ µû¶ó ¾ğ¸®¾ó Scalability ½Ã½ºÅÛ ÄÁÆ®·Ñ ÇÏ´Â °ü·Ã À¯Æ¿µé ¸ğ¾Æ³õÀ½..
+ê²Œì„ ì„¤ì •ì— ë”°ë¼ ì–¸ë¦¬ì–¼ Scalability ì‹œìŠ¤í…œ ì»¨íŠ¸ë¡¤ í•˜ëŠ” ê´€ë ¨ ìœ í‹¸ë“¤ ëª¨ì•„ë†“ìŒ..
 */
 /************************************************************************/
 //
 /** 
- * EB2ResolutionLevel ¿¡ ¸ÊÇÎµÉ EB2GraphicsRQType À» ¿¬°áÇÏ´Â ¿ªÇÒ. DeviceProfile À» ÅëÇØ ÇÃ·§Æû ¹× ±â±âº°·Î ¼³Á¤ Á¦¾î.
- * r.DefinedMobileFrameLimitQuality_H/M/L °ú ¸¶Âù°¡Áö ½ÄÀÓ. 
- * °ª ÀÚÃ¼´Â int Ä³½ºÆÃ µÈ EB2GraphicsRQType ¿¡ ´ëÀÀµÊ.
- * EB2GraphicsRQType ¿¡ Ãß°¡µÇ´Â °ÍÀÌ ÀÖÀ» ½Ã ¿©±âµµ Á¡°Ë.
+ * EB2ResolutionLevel ì— ë§µí•‘ë  EB2GraphicsRQType ì„ ì—°ê²°í•˜ëŠ” ì—­í• . DeviceProfile ì„ í†µí•´ í”Œë«í¼ ë° ê¸°ê¸°ë³„ë¡œ ì„¤ì • ì œì–´.
+ * r.DefinedMobileFrameLimitQuality_H/M/L ê³¼ ë§ˆì°¬ê°€ì§€ ì‹ì„. 
+ * ê°’ ìì²´ëŠ” int ìºìŠ¤íŒ… ëœ EB2GraphicsRQType ì— ëŒ€ì‘ë¨.
+ * EB2GraphicsRQType ì— ì¶”ê°€ë˜ëŠ” ê²ƒì´ ìˆì„ ì‹œ ì—¬ê¸°ë„ ì ê²€.
  */
 static TAutoConsoleVariable<int32> CVarAllowedGameRQType_H(
 	TEXT("r.AllowedGameRQType_H"),
 #if PLATFORM_WINDOWS
-	7, /* PC ±âº»°ªÀº ±â´É ÇÁ¸®ºä ¸ñÀûÀ¸·Î Àû´çÇÑ °É ¿­¾îµÒ. ¾Æ´Ô [Windows DeviceProfile] ¿¡ ³Ö¾îµÖµµ µÇ±ä ÇÔ. */
+	7, /* PC ê¸°ë³¸ê°’ì€ ê¸°ëŠ¥ í”„ë¦¬ë·° ëª©ì ìœ¼ë¡œ ì ë‹¹í•œ ê±¸ ì—´ì–´ë‘ . ì•„ë‹˜ [Windows DeviceProfile] ì— ë„£ì–´ë‘¬ë„ ë˜ê¸´ í•¨. */
 #else
 	2,
 #endif
 	TEXT("Specifies which type of Resolution-Quality technique is allowed for BladeII game ResolutionLevel High:\n"),
-	ECVF_ReadOnly /* ReadOnly ·Î¼­ DeviceProfile À» ÅëÇØ ¼¼ÆÃÇÏµµ·Ï.. */
+	ECVF_ReadOnly /* ReadOnly ë¡œì„œ DeviceProfile ì„ í†µí•´ ì„¸íŒ…í•˜ë„ë¡.. */
 );
 static TAutoConsoleVariable<int32> CVarAllowedGameRQType_M(
 	TEXT("r.AllowedGameRQType_M"),
 	2,
 	TEXT("Specifies which type of Resolution-Quality technique is allowed for BladeII game ResolutionLevel Mid:\n"),
-	ECVF_ReadOnly /* ReadOnly ·Î¼­ DeviceProfile À» ÅëÇØ ¼¼ÆÃÇÏµµ·Ï.. */
+	ECVF_ReadOnly /* ReadOnly ë¡œì„œ DeviceProfile ì„ í†µí•´ ì„¸íŒ…í•˜ë„ë¡.. */
 );
 static TAutoConsoleVariable<int32> CVarAllowedGameRQType_L(
 	TEXT("r.AllowedGameRQType_L"),
 	1,
 	TEXT("Specifies which type of Resolution-Quality technique is allowed for BladeII game ResolutionLevel Low:\n"),
-	ECVF_ReadOnly /* ReadOnly ·Î¼­ DeviceProfile À» ÅëÇØ ¼¼ÆÃÇÏµµ·Ï.. */
+	ECVF_ReadOnly /* ReadOnly ë¡œì„œ DeviceProfile ì„ í†µí•´ ì„¸íŒ…í•˜ë„ë¡.. */
 );
 
-/** °ª ÀÚÃ¼´Â EB2GraphicsRQType ÀÌ°í DeviceProfile ¿¡ ÀÇÇØ ¼¼ÆÃ. ÀúÀåµÈ B2ResolutionLevel °ª¿¡ µû¶ó ¸ÊÇÎµÈ RQType ÀÌ Àû¿ëµÇ±â Àü±îÁö Àû¿ë. */
+/** ê°’ ìì²´ëŠ” EB2GraphicsRQType ì´ê³  DeviceProfile ì— ì˜í•´ ì„¸íŒ…. ì €ì¥ëœ B2ResolutionLevel ê°’ì— ë”°ë¼ ë§µí•‘ëœ RQType ì´ ì ìš©ë˜ê¸° ì „ê¹Œì§€ ì ìš©. */
 static TAutoConsoleVariable<int32> CVarDefaultB2GraphicsRQType(
 	TEXT("r.DefaultB2GraphicsRQType"),
 	2,
 	TEXT("The default value of B2GraphicsRQType before user selection is loaded and applied. Supposed to be set by DeviceProfile."),
-	ECVF_ReadOnly /* ReadOnly ·Î¼­ DeviceProfile À» ÅëÇØ ¼¼ÆÃÇÏµµ·Ï.. */
+	ECVF_ReadOnly /* ReadOnly ë¡œì„œ DeviceProfile ì„ í†µí•´ ì„¸íŒ…í•˜ë„ë¡.. */
 );
 
 #if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
-// AllowedGameRQType À» ¹«½ÃÇÏ´Â Å×½ºÆ® Ä¿¸Çµå ¿ë.
+// AllowedGameRQType ì„ ë¬´ì‹œí•˜ëŠ” í…ŒìŠ¤íŠ¸ ì»¤ë§¨ë“œ ìš©.
 static TAutoConsoleVariable<int32> CVarB2DevForcedGraphicsRQType(
 	TEXT("r.DevForcedGraphicsRQType"),
 	-1,
@@ -72,12 +72,12 @@ static TAutoConsoleVariable<int32> CVarB2DevForcedGraphicsRQType(
 );
 #endif
 
-/** DeviceProfile À» ÅëÇÑ ¼º´É ¿É¼Ç ±âº»°ª º¯°æ ½Ã ¾÷µ¥ÀÌÆ® ¹èÆ÷ ÈÄ À¯Àú ÀúÀåµÈ °ªÀ» ÇÑ¹ø ¸®¼ÂÇÏ±â À§ÇÑ ±â´É. */ 
+/** DeviceProfile ì„ í†µí•œ ì„±ëŠ¥ ì˜µì…˜ ê¸°ë³¸ê°’ ë³€ê²½ ì‹œ ì—…ë°ì´íŠ¸ ë°°í¬ í›„ ìœ ì € ì €ì¥ëœ ê°’ì„ í•œë²ˆ ë¦¬ì…‹í•˜ê¸° ìœ„í•œ ê¸°ëŠ¥. */ 
 static TAutoConsoleVariable<int32> CVarResetScalabilityChance(
 	TEXT("r.ScalabilityResetChance"),
-	0, // ÀÌ°É 1·Î ¼¼ÆÃÇÏ´Â °Ç ¿À·¡ Áö¼ÓÇÒ ÇÊ¿ä´Â ¾ø´Ù. ÇÑµÎ¹øÀÇ ¾÷µ¥ÀÌÆ® ÅÒ Á¤µµ¿¡¼­¸¸?
+	0, // ì´ê±¸ 1ë¡œ ì„¸íŒ…í•˜ëŠ” ê±´ ì˜¤ë˜ ì§€ì†í•  í•„ìš”ëŠ” ì—†ë‹¤. í•œë‘ë²ˆì˜ ì—…ë°ì´íŠ¸ í…€ ì •ë„ì—ì„œë§Œ?
 	TEXT("It allows all saved BladeII scalability settings to default desired setting, only once by local ini state.\n"),
-	ECVF_ReadOnly /* ReadOnly ·Î¼­ DeviceProfile À» ÅëÇØ ¼¼ÆÃÇÏµµ·Ï.. */
+	ECVF_ReadOnly /* ReadOnly ë¡œì„œ DeviceProfile ì„ í†µí•´ ì„¸íŒ…í•˜ë„ë¡.. */
 );
 bool HasScalabilityResetChance()
 {	
@@ -101,7 +101,7 @@ void MarkScalabilityResetChanceUse()
 }
 
 EB2GraphicsRQType GetDefaultGraphicsRQType()
-{ // ´Ü¼øÈ÷ r.DefaultB2GraphicsRQType º¯¼öÀÇ EB2GraphicsRQType enum ¸ÊÇÎ
+{ // ë‹¨ìˆœíˆ r.DefaultB2GraphicsRQType ë³€ìˆ˜ì˜ EB2GraphicsRQType enum ë§µí•‘
 	return static_cast<EB2GraphicsRQType>(CVarDefaultB2GraphicsRQType.GetValueOnAnyThread());
 }
 
@@ -110,16 +110,16 @@ FORCEINLINE IConsoleVariable* GetMCSFCVar() { return IConsoleManager::Get().Find
 namespace B2Scalability
 {
 #if !UE_BUILD_SHIPPING
-	/** BladeII °ÔÀÓ¸ğµå³ª ¿¬Ãâ µî °ÔÀÓ »óÈ²¿¡ µû¸¥ ¼º´É ¿É¼Ç bias °¡ÇÏ´Â ±â´É On/Off
-	 * ÀÌ º¯¼ö°¡ ºüÁø ±âº» »óÅÂ¿¡¼­´Â true Ãë±ŞÀÎ °Å. */
+	/** BladeII ê²Œì„ëª¨ë“œë‚˜ ì—°ì¶œ ë“± ê²Œì„ ìƒí™©ì— ë”°ë¥¸ ì„±ëŠ¥ ì˜µì…˜ bias ê°€í•˜ëŠ” ê¸°ëŠ¥ On/Off
+	 * ì´ ë³€ìˆ˜ê°€ ë¹ ì§„ ê¸°ë³¸ ìƒíƒœì—ì„œëŠ” true ì·¨ê¸‰ì¸ ê±°. */
 	bool bUseBladeIIScalabilityOverride = true;
 	bool bOnModuleStartupCalled = false;
 #endif
 
-	/** DeviceProfile À» ÅëÇØ ÁöÁ¤µÈ ½ÇÇà ÃÊ±â MobileContentScaleFactor. */
+	/** DeviceProfile ì„ í†µí•´ ì§€ì •ëœ ì‹¤í–‰ ì´ˆê¸° MobileContentScaleFactor. */
 	float CachedBaseMobileContentScaleFactor = 1.0f;
 
-	/** ¾Û ½ÃÀÛ ½ÃÁ¡ÀÇ RQType À» ÀúÀåÇØ ³õ´Â´Ù. Æ¯Á¤ ¹æ½Ä °£ÀÇ switching Àº ÀÌ¹ø ½ÇÇà ±â°£ µ¿¾È ¸·°í ´ÙÀ½¿¡ Àû¿ëÇÏ±â À§ÇØ. */
+	/** ì•± ì‹œì‘ ì‹œì ì˜ RQType ì„ ì €ì¥í•´ ë†“ëŠ”ë‹¤. íŠ¹ì • ë°©ì‹ ê°„ì˜ switching ì€ ì´ë²ˆ ì‹¤í–‰ ê¸°ê°„ ë™ì•ˆ ë§‰ê³  ë‹¤ìŒì— ì ìš©í•˜ê¸° ìœ„í•´. */
 	EB2GraphicsRQType InitialRQTypeOfAppStart = EB2GraphicsRQType::End;
 
 	void OnModuleStartup()
@@ -127,7 +127,7 @@ namespace B2Scalability
 		//#if !UE_BUILD_SHIPPING 
 		//	if (GConfig)
 		//	{
-		//		// Å×½ºÆ® ¸ñÀû µîÀÇ ini ¿É¼Çµé.. ÇÊ¿äÇÒ ¶§°¡ ÀÖÀ½.
+		//		// í…ŒìŠ¤íŠ¸ ëª©ì  ë“±ì˜ ini ì˜µì…˜ë“¤.. í•„ìš”í•  ë•Œê°€ ìˆìŒ.
 		//		GConfig->GetBool(TEXT("B2Scalability"), TEXT("UseBladeIIScalabilityOverride"), bUseBladeIIScalabilityOverride, GScalabilityIni);
 		//	}
 		//#endif
@@ -135,7 +135,7 @@ namespace B2Scalability
 		//	static IConsoleVariable* CVarMCSF = GetMCSFCVar();
 		//	check(CVarMCSF);
 		//	if (CVarMCSF)
-		//	{ // ÀÌ ½ÃÁ¡¿¡¼­ °¡Á®¿À´Â °ªÀº ±×³É ÃÊ±â°ªÀÌ°Å³ª DeviceProfile À» ÅëÇØ ¼¼ÆÃµÈ °ªÀÌ¾î¾ß.
+		//	{ // ì´ ì‹œì ì—ì„œ ê°€ì ¸ì˜¤ëŠ” ê°’ì€ ê·¸ëƒ¥ ì´ˆê¸°ê°’ì´ê±°ë‚˜ DeviceProfile ì„ í†µí•´ ì„¸íŒ…ëœ ê°’ì´ì–´ì•¼.
 		//		CachedBaseMobileContentScaleFactor = CVarMCSF->GetFloat();
 		//		check(CachedBaseMobileContentScaleFactor > 0.0f);
 		//		UE_LOG(LogBladeII, Log, TEXT("Cached MobileContentScaleFactor at OnModuleStartup %.2f"), CachedBaseMobileContentScaleFactor);
@@ -152,11 +152,11 @@ namespace B2Scalability
 		//	check(
 		//		CVarAllowedGameRQType_H.GetValueOnGameThread() >= CVarAllowedGameRQType_M.GetValueOnGameThread() &&
 		//		CVarAllowedGameRQType_M.GetValueOnGameThread() >= CVarAllowedGameRQType_L.GetValueOnGameThread() &&
-		//		/* H == M, M == L ÀÏ¼ö´Â ÀÖÁö¸¸ ¼Â ´Ù ¸ğµÎ °°À» ¼ö´Â ¾ø´Ù. H ´Â L º¸´Ù´Â ³ô¾Æ¾ß. */
+		//		/* H == M, M == L ì¼ìˆ˜ëŠ” ìˆì§€ë§Œ ì…‹ ë‹¤ ëª¨ë‘ ê°™ì„ ìˆ˜ëŠ” ì—†ë‹¤. H ëŠ” L ë³´ë‹¤ëŠ” ë†’ì•„ì•¼. */
 		//		CVarAllowedGameRQType_H.GetValueOnGameThread() > CVarAllowedGameRQType_L.GetValueOnGameThread()
 		//	);
 		//#if PLATFORM_IOS
-		//	// iOS ¿¡¼± MobileContentScaleFactor °Çµå¸®Áö ¾Ê´Â °Ô ÁÁÀ» °Í °°´Ù.
+		//	// iOS ì—ì„  MobileContentScaleFactor ê±´ë“œë¦¬ì§€ ì•ŠëŠ” ê²Œ ì¢‹ì„ ê²ƒ ê°™ë‹¤.
 		//	check(
 		//		!IsRQTypeOneOfExtraContentScale(static_cast<EB2GraphicsRQType>(CVarAllowedGameRQType_H.GetValueOnGameThread())) &&
 		//		!IsRQTypeOneOfExtraContentScale(static_cast<EB2GraphicsRQType>(CVarAllowedGameRQType_M.GetValueOnGameThread())) &&
@@ -165,11 +165,11 @@ namespace B2Scalability
 		//#endif
 		//#endif
 		//
-		//	// ÀÏºÎ RQType °£ÀÇ ·±Å¸ÀÓ switching À» ¾Û Àç½ÃÀÛ ÈÄ·Î ¹Ì·ç±â À§ÇØ Ã³À½ °ªÀ» ÀúÀåÇØ µÒ.
+		//	// ì¼ë¶€ RQType ê°„ì˜ ëŸ°íƒ€ì„ switching ì„ ì•± ì¬ì‹œì‘ í›„ë¡œ ë¯¸ë£¨ê¸° ìœ„í•´ ì²˜ìŒ ê°’ì„ ì €ì¥í•´ ë‘ .
 		//	{
 		//		int32 LoadedResolutionLevelInt = B2ResolutionLevelToInt(EB2ResolutionLevel::Mid);
 		//		LoadGameSetting_Resolution_OrByDefault(LoadedResolutionLevelInt);
-		//		const EB2ResolutionLevel ReservedResLevel = LoadReservedResolutionLevelOfPrevAppRun(); // ÀÌÀü¿¡ ¿¹¾àµÈ ÇØ»óµµ º¯°æÀÌ ÀÖ¾ú´Ù¸é ¾ÆÁ÷ Àû¿ëµÇÁö ¾ÊÀº »óÅÂÀÏ °ÍÀÌ¹Ç·Î ÀÌ°Íµµ °Ë»ç.
+		//		const EB2ResolutionLevel ReservedResLevel = LoadReservedResolutionLevelOfPrevAppRun(); // ì´ì „ì— ì˜ˆì•½ëœ í•´ìƒë„ ë³€ê²½ì´ ìˆì—ˆë‹¤ë©´ ì•„ì§ ì ìš©ë˜ì§€ ì•Šì€ ìƒíƒœì¼ ê²ƒì´ë¯€ë¡œ ì´ê²ƒë„ ê²€ì‚¬.
 		//		const EB2ResolutionLevel InitialResolutionLevel = (ReservedResLevel != EB2ResolutionLevel::End) ? ReservedResLevel : IntToB2ResolutionLevel(LoadedResolutionLevelInt);
 		//		InitialRQTypeOfAppStart = GetSafeMappedRQTypeOfResolutionLevel(InitialResolutionLevel);
 		//		check(InitialRQTypeOfAppStart != EB2GraphicsRQType::End);
@@ -185,14 +185,14 @@ namespace B2Scalability
 #if PLATFORM_ANDROID
 	void AndroidMCSFUpdateHack(bool bForceInvalidateResCache)
 	{
-		//// MobileContentScaleFactor Á¶ÀıÀÌ ¹º°¡ Àß ¾È¸ÔÇô¼­. (B2CLT-3374) ¹®Á¦ Á¤½Ä ÇØ°á ÀÌÀüÀÇ ÀÓ½Ã ¶«Áú. 
+		//// MobileContentScaleFactor ì¡°ì ˆì´ ë­”ê°€ ì˜ ì•ˆë¨¹í˜€ì„œ. (B2CLT-3374) ë¬¸ì œ ì •ì‹ í•´ê²° ì´ì „ì˜ ì„ì‹œ ë•œì§ˆ. 
 		//bool bHasContentScaleRQType = false;
 		//for (int32 RLI = 0; RLI < B2ResolutionLevelToInt(EB2ResolutionLevel::End); ++RLI)
 		//{
 		//	EB2GraphicsRQType ThisMappedRQType = GetSafeMappedRQTypeOfResolutionLevel(IntToB2ResolutionLevel(RLI));
 		//	if (IsRQTypeOneOfExtraContentScale(ThisMappedRQType))
 		//	{
-		//		bHasContentScaleRQType = true; // MCSF ¸¦ Á¶ÀıÇÏ´Â ¼³Á¤ÀÌ ÀÖ´Â °æ¿ì. °ÅÀÇ ¾Èµå·ÎÀÌµå ¿¡¹Ä·¹ÀÌÅÍ¿ëÀÏ °Í.
+		//		bHasContentScaleRQType = true; // MCSF ë¥¼ ì¡°ì ˆí•˜ëŠ” ì„¤ì •ì´ ìˆëŠ” ê²½ìš°. ê±°ì˜ ì•ˆë“œë¡œì´ë“œ ì—ë®¬ë ˆì´í„°ìš©ì¼ ê²ƒ.
 		//		break;
 		//	}
 		//}
@@ -203,13 +203,13 @@ namespace B2Scalability
 		//	{
 		//		const float WantedFactorValue = CVarMCSF->GetFloat();
 
-		//		// Á» È²´çÇÑ ÄÚµå·Î º¸ÀÌ´Âµ¥ ¾îµğ ¾÷µ¥ÀÌÆ®°¡ ¾ÈµÇ´Â °ªÀÌ ÀÖ´ÂÁö DeviceProfile ¿¡ Ã³À½ ¼¼ÆÃÇÑ °ªÇÏ°í ´Ù¸£¸é ·Îµù È­¸é ÈÄ¿¡ È­¸é Å©±â°¡ ¾È¸Â´Â ÀÏÀÌ ¹ß»ıÇØ¼­..
-		//		// ³»ºÎ SceneRenderTarget µîÀÇ Å©±â°¡ ¸Ç Ã³À½ ÁöÁ¤µÈ °ªÀ¸·Î µ¹¾Æ°¡°Ô µÇ´Â °æ¿ì°¡ ÀÖ´Ù.
+		//		// ì¢€ í™©ë‹¹í•œ ì½”ë“œë¡œ ë³´ì´ëŠ”ë° ì–´ë”” ì—…ë°ì´íŠ¸ê°€ ì•ˆë˜ëŠ” ê°’ì´ ìˆëŠ”ì§€ DeviceProfile ì— ì²˜ìŒ ì„¸íŒ…í•œ ê°’í•˜ê³  ë‹¤ë¥´ë©´ ë¡œë”© í™”ë©´ í›„ì— í™”ë©´ í¬ê¸°ê°€ ì•ˆë§ëŠ” ì¼ì´ ë°œìƒí•´ì„œ..
+		//		// ë‚´ë¶€ SceneRenderTarget ë“±ì˜ í¬ê¸°ê°€ ë§¨ ì²˜ìŒ ì§€ì •ëœ ê°’ìœ¼ë¡œ ëŒì•„ê°€ê²Œ ë˜ëŠ” ê²½ìš°ê°€ ìˆë‹¤.
 
 		//		if (bForceInvalidateResCache)
 		//		{ 
-		//			// ±×³É ÀÓÀÇ·Î MCSF °ªÀ» ´Ù¸£°Ô ÁÖ¾î¼­ ³»ºÎ ÇØ»óµµ ½ºÀ§Äª¿¡ µû¸¥ ·»´õÅ¸°Ù µîÀÇ ¾÷µ¥ÀÌÆ®°¡ È®½ÇÈ÷ µÇµµ·Ï ÇÏ±â À§ÇÔ.
-		//			// FAndroidWindow::GetScreenRect Âü°í. MCSF ¸¦ Æ÷ÇÔÇØ¼­ ½ÇÁ¦ »çÀÌÁî µ¥ÀÌÅÍ°¡ À¯ÁöµÇ´Â »óÈ²¿¡¼­´Â Áß°£¿¡ ±×³É ¸®ÅÏÀ» ÇØ ¹ö¸². 
+		//			// ê·¸ëƒ¥ ì„ì˜ë¡œ MCSF ê°’ì„ ë‹¤ë¥´ê²Œ ì£¼ì–´ì„œ ë‚´ë¶€ í•´ìƒë„ ìŠ¤ìœ„ì¹­ì— ë”°ë¥¸ ë Œë”íƒ€ê²Ÿ ë“±ì˜ ì—…ë°ì´íŠ¸ê°€ í™•ì‹¤íˆ ë˜ë„ë¡ í•˜ê¸° ìœ„í•¨.
+		//			// FAndroidWindow::GetScreenRect ì°¸ê³ . MCSF ë¥¼ í¬í•¨í•´ì„œ ì‹¤ì œ ì‚¬ì´ì¦ˆ ë°ì´í„°ê°€ ìœ ì§€ë˜ëŠ” ìƒí™©ì—ì„œëŠ” ì¤‘ê°„ì— ê·¸ëƒ¥ ë¦¬í„´ì„ í•´ ë²„ë¦¼. 
 		//			CVarMCSF->Set(WantedFactorValue * 0.5f);
 		//			FlushRenderingCommands();
 		//		}
@@ -234,11 +234,11 @@ namespace B2Scalability
 //
 //		if (StartingGM)
 //		{
-//			// ÇöÀç ±â·ÏµÈ ¿É¼Ç ¼±ÅÃ°ª¿¡ ±â¹İÇÏ¿© °ÔÀÓ¸ğµå ÀÚÃ¼ÀûÀ¸·Î Æ¯¼öÇÑ Ãß°¡ ¿É¼Ç ¼³Á¤..
+//			// í˜„ì¬ ê¸°ë¡ëœ ì˜µì…˜ ì„ íƒê°’ì— ê¸°ë°˜í•˜ì—¬ ê²Œì„ëª¨ë“œ ìì²´ì ìœ¼ë¡œ íŠ¹ìˆ˜í•œ ì¶”ê°€ ì˜µì…˜ ì„¤ì •..
 //			StartingGM->ApplyGameModeSpecificScalabilitySetting();
 //		}
 //#if PLATFORM_ANDROID
-//		//AndroidMCSFUpdateHack(); ¿©±ä ÀÌÁ¦ ¾È ÇØµµ µÉ °Í °°°í..
+//		//AndroidMCSFUpdateHack(); ì—¬ê¸´ ì´ì œ ì•ˆ í•´ë„ ë  ê²ƒ ê°™ê³ ..
 //#endif
 	}
 	void OnGameModeLoadingScreenEnd()
@@ -255,12 +255,12 @@ namespace B2Scalability
 	}
 
 	/************************************************************************/
-	/* EB2GraphicsLevel °ú Scalability ·¹º§°£ÀÇ ¸ÊÇÎÀº
-	EB2FrameLimitLevel ÀÌ³ª EB2ResolutionLevel ¿¡ ºñÇØ »çÁ¤ÀÌ º¸´Ù º¹ÀâÇÏ´Ù.*/
+	/* EB2GraphicsLevel ê³¼ Scalability ë ˆë²¨ê°„ì˜ ë§µí•‘ì€
+	EB2FrameLimitLevel ì´ë‚˜ EB2ResolutionLevel ì— ë¹„í•´ ì‚¬ì •ì´ ë³´ë‹¤ ë³µì¡í•˜ë‹¤.*/
 	/************************************************************************/
 	int32 GetScalabilityLevelOfGraphicsLevel(EB2GraphicsLevel InGraphicsLevel)
 	{
-		// UI ¼±ÅÃ¿¡ µû¸¥ Scalability ½Ã½ºÅÛ ÀüÃ¼ÀûÀÎ Á¶Àı ·¹º§ °ª.. º°µµ·Î ¼³Á¤ÀÌ ÀÖ´Â Æ¯¼ö Ç×¸ñ ¿Ü¿¡´Â ¿©±â¼­ ³ª¿Â °ªÀ» ¾´´Ù.
+		// UI ì„ íƒì— ë”°ë¥¸ Scalability ì‹œìŠ¤í…œ ì „ì²´ì ì¸ ì¡°ì ˆ ë ˆë²¨ ê°’.. ë³„ë„ë¡œ ì„¤ì •ì´ ìˆëŠ” íŠ¹ìˆ˜ í•­ëª© ì™¸ì—ëŠ” ì—¬ê¸°ì„œ ë‚˜ì˜¨ ê°’ì„ ì“´ë‹¤.
 		int32 RetVal = 0;
 		GConfig->GetInt(TEXT("ScalabilityLevelByUserSelection"), *GetScalabilityKeyNameOfGraphicsLevel(InGraphicsLevel), RetVal, GScalabilityIni);
 		return RetVal;
@@ -268,7 +268,7 @@ namespace B2Scalability
 
 	int32 GetTextureLevelOfGraphicsLevel(EB2GraphicsLevel InGraphicsLevel)
 	{
-		// UI ¼±ÅÃ¿¡ µû¸¥ TextureQuality Á¶Àı ·¹º§ °ª.. º°µµ·Î ¼³Á¤ÀÌ ÀÖ´Â Æ¯¼ö Ç×¸ñ.. ÅØ½ºÃÄ¶û ÇØ»óµµ´Â º¸Åë º°µµ ¼±ÅÃÀÌ °¡´ÉÇÑ °æ¿ì°¡ ¸¹¾Æ¼­ µû·Î ¶¼¾î³¾ ÇÊ¿ä°¡ ÀÖ´Ù.
+		// UI ì„ íƒì— ë”°ë¥¸ TextureQuality ì¡°ì ˆ ë ˆë²¨ ê°’.. ë³„ë„ë¡œ ì„¤ì •ì´ ìˆëŠ” íŠ¹ìˆ˜ í•­ëª©.. í…ìŠ¤ì³ë‘ í•´ìƒë„ëŠ” ë³´í†µ ë³„ë„ ì„ íƒì´ ê°€ëŠ¥í•œ ê²½ìš°ê°€ ë§ì•„ì„œ ë”°ë¡œ ë–¼ì–´ë‚¼ í•„ìš”ê°€ ìˆë‹¤.
 		int32 RetVal = 0;
 		GConfig->GetInt(TEXT("TextureQualityLevelByUserSelection"), *GetScalabilityKeyNameOfGraphicsLevel(InGraphicsLevel), RetVal, GScalabilityIni);
 		return RetVal;
@@ -276,22 +276,22 @@ namespace B2Scalability
 
 	float GetResolutionScaleOfGraphicsLevel(EB2GraphicsLevel InGraphicsLevel)
 	{
-		// UI ¼±ÅÃ¿¡ µû¸¥ ResolutionQuality Á¶Àı ·¹º§ °ª.. º°µµ·Î ¼³Á¤ÀÌ ÀÖ´Â Æ¯¼ö Ç×¸ñ.. ÅØ½ºÃÄ¶û ÇØ»óµµ´Â º¸Åë º°µµ ¼±ÅÃÀÌ °¡´ÉÇÑ °æ¿ì°¡ ¸¹¾Æ¼­ µû·Î ¶¼¾î³¾ ÇÊ¿ä°¡ ÀÖ´Ù.
+		// UI ì„ íƒì— ë”°ë¥¸ ResolutionQuality ì¡°ì ˆ ë ˆë²¨ ê°’.. ë³„ë„ë¡œ ì„¤ì •ì´ ìˆëŠ” íŠ¹ìˆ˜ í•­ëª©.. í…ìŠ¤ì³ë‘ í•´ìƒë„ëŠ” ë³´í†µ ë³„ë„ ì„ íƒì´ ê°€ëŠ¥í•œ ê²½ìš°ê°€ ë§ì•„ì„œ ë”°ë¡œ ë–¼ì–´ë‚¼ í•„ìš”ê°€ ìˆë‹¤.
 		float RetVal = 100.0;
 		GConfig->GetFloat(TEXT("ResolutionQualityByUserSelection"), *GetScalabilityKeyNameOfGraphicsLevel(InGraphicsLevel), RetVal, GScalabilityIni);
 		return RetVal;
 	}
 	int32 GetGameplayOnlyLODQualityOfGraphicsLevel(EB2GraphicsLevel InGraphicsLevel)
 	{
-		// UI ¼±ÅÃ¿¡ µû¸¥ Scalability ½Ã½ºÅÛ ÀüÃ¼ÀûÀÎ Á¶Àı ·¹º§ °ª.. º°µµ·Î ¼³Á¤ÀÌ ÀÖ´Â Æ¯¼ö Ç×¸ñ..
+		// UI ì„ íƒì— ë”°ë¥¸ Scalability ì‹œìŠ¤í…œ ì „ì²´ì ì¸ ì¡°ì ˆ ë ˆë²¨ ê°’.. ë³„ë„ë¡œ ì„¤ì •ì´ ìˆëŠ” íŠ¹ìˆ˜ í•­ëª©..
 		int32 RetVal = 0;
 		GConfig->GetInt(TEXT("GameplayOnlyLODQualityByUserSelection"), *GetScalabilityKeyNameOfGraphicsLevel(InGraphicsLevel), RetVal, GScalabilityIni);
 		return RetVal;
 	}
 
 	/**
-	 * GetScalabilityLevelOfGraphicsLevel ÀÌ¶û ¹İ´ë°İÀÎµ¥, ÇöÀç µé¾î°¡ ÀÖ´Â Scalability °ªµé¿¡ ±â¹İÇØ¼­ ´ëÃ¼·Î ¸ÅÄªµÇ´Â EB2GraphicsLevel À» ¸®ÅÏ
-	 * »ç¿ëÀÚ ¼±ÅÃÀÌ ¾ÆÁ÷ ¾ø´Â »óÈ²¿¡¼­ DeviceProfile ·Î µé¾î°£ Scalability ¿¡ ±â¹İÇØ¼­ »ç¿ëÀÚ ¼±ÅÃ GraphicsLevel À» »êÁ¤ÇÏ·Á´Â °Í.
+	 * GetScalabilityLevelOfGraphicsLevel ì´ë‘ ë°˜ëŒ€ê²©ì¸ë°, í˜„ì¬ ë“¤ì–´ê°€ ìˆëŠ” Scalability ê°’ë“¤ì— ê¸°ë°˜í•´ì„œ ëŒ€ì²´ë¡œ ë§¤ì¹­ë˜ëŠ” EB2GraphicsLevel ì„ ë¦¬í„´
+	 * ì‚¬ìš©ì ì„ íƒì´ ì•„ì§ ì—†ëŠ” ìƒí™©ì—ì„œ DeviceProfile ë¡œ ë“¤ì–´ê°„ Scalability ì— ê¸°ë°˜í•´ì„œ ì‚¬ìš©ì ì„ íƒ GraphicsLevel ì„ ì‚°ì •í•˜ë ¤ëŠ” ê²ƒ.
 	 */
 	EB2GraphicsLevel GetGraphicsLevelByTotalScalability(const Scalability::FQualityLevels& InScalabilityLevel)
 	{
@@ -300,13 +300,13 @@ namespace B2Scalability
 		//	InScalabilityLevel.EffectsQuality +
 		//	InScalabilityLevel.PostProcessQuality +
 		//	InScalabilityLevel.PostProcessExtraQuality +
-		//	//InScalabilityLevel.ResolutionQuality + ÀÌ°Ç ¼öÄ¡°¡ Á» ´Ù¸£´Ï »©¾ß..
+		//	//InScalabilityLevel.ResolutionQuality + ì´ê±´ ìˆ˜ì¹˜ê°€ ì¢€ ë‹¤ë¥´ë‹ˆ ë¹¼ì•¼..
 		//	InScalabilityLevel.TextureQuality +
 		//	InScalabilityLevel.ShadowQuality +
 		//	InScalabilityLevel.ViewDistanceQuality +
 		//	InScalabilityLevel.GameplayOnlyLODQuality;
-		//// È¤¿©³ª Ãß°¡µÉ Scalability Ç×¸ñ¿¡ ´ëÇÑ Ã³¸®°¡ ÇÊ¿äÇÏ±ä ÇÑµ¥ ±×·¸°Ô Á¤±³ÇÏ°Ô±îÁö ÇÒ ÇÊ¿ä´Â ¾øÀ» µí.
-		//// ÀÌ°Ç int Ä³½ºÆÃº¸´Ù´Â Round °¡ ÀûÀıÇÒ µí ÇÏ´Ù. °¡Àå °¡±î¿î °ªÀ» Ã£´Â °Ô ÁÁ´Ù.
+		//// í˜¹ì—¬ë‚˜ ì¶”ê°€ë  Scalability í•­ëª©ì— ëŒ€í•œ ì²˜ë¦¬ê°€ í•„ìš”í•˜ê¸´ í•œë° ê·¸ë ‡ê²Œ ì •êµí•˜ê²Œê¹Œì§€ í•  í•„ìš”ëŠ” ì—†ì„ ë“¯.
+		//// ì´ê±´ int ìºìŠ¤íŒ…ë³´ë‹¤ëŠ” Round ê°€ ì ì ˆí•  ë“¯ í•˜ë‹¤. ê°€ì¥ ê°€ê¹Œìš´ ê°’ì„ ì°¾ëŠ” ê²Œ ì¢‹ë‹¤.
 		//int32 AvergageScalabilityValue = FMath::RoundToInt((float)TotalAdded / 8.0f);
 		//
 		//FString FoundString;
@@ -335,16 +335,16 @@ namespace B2Scalability
 
 	EB2GraphicsLevel GetGraphicsLevelByExpectedScalability()
 	{
-		// ¿£Áø ½Ãµ¿ ½Ã ÇÏ´Â ±â±â °¨Áö ¹× ÀÌ¿¡ µû¸¥ ¼¼ÆÃ..
-		// ÀÌ·± Ã³¸® ¾øÀÌ ´Ü¼øÈ÷ Scalability::GetQualityLevels ¸¦ °¡Á®¿À¸é GameMode ¿¡ µû¸¥ override °¡ Àû¿ëµÈ °É »ç¿ëÇÏ°Ô µÉ ¼ö ÀÖÀ¸¹Ç·Î ÀûÀıÄ¡ ¾Ê´Ù.
+		// ì—”ì§„ ì‹œë™ ì‹œ í•˜ëŠ” ê¸°ê¸° ê°ì§€ ë° ì´ì— ë”°ë¥¸ ì„¸íŒ…..
+		// ì´ëŸ° ì²˜ë¦¬ ì—†ì´ ë‹¨ìˆœíˆ Scalability::GetQualityLevels ë¥¼ ê°€ì ¸ì˜¤ë©´ GameMode ì— ë”°ë¥¸ override ê°€ ì ìš©ëœ ê±¸ ì‚¬ìš©í•˜ê²Œ ë  ìˆ˜ ìˆìœ¼ë¯€ë¡œ ì ì ˆì¹˜ ì•Šë‹¤.
 		UDeviceProfileManager::InitializeCVarsForActiveDeviceProfile();
 
 		return GetGraphicsLevelByTotalScalability(Scalability::GetQualityLevels());
 	}
 
-	/** GameplayOnlyLODQuality º¯°æ Á÷ÈÄ ¹Ù·Î Àû¿ëµÇ·Á¸é Ãß°¡ ÇÚµé¸µÀÌ Á» ÇÊ¿äÇØ¼­.
-	* ¿£Áø Scalability ÂÊ¿¡¼­ ¾î¶»°Ô ÇØ º¸·Á´Ï ¾îÂ÷ÇÇ World °¡ ÇÊ¿äÇØ¼­ ±×³É ¿©±æ ÅëÇØ º¯°æÇÏ´Â °Í¿¡ ´ëÇØ¼­¸¸ Á÷Á¢ ÄİÇÑ´Ù.
-	* sg. ÄÜ¼Ö ¸í·ÉÀ» ÅëÇÑ º¯°æ¸¸ ¹Ù·Î ÇÚµé¸µÀÌ ¾ÈµÉ »Ó Á¤½Ä ¸Ş´º¸¦ ÅëÇÑ º¯°æÀº ¹Ù·Î ÇÚµé¸µ µÉ °Í. */
+	/** GameplayOnlyLODQuality ë³€ê²½ ì§í›„ ë°”ë¡œ ì ìš©ë˜ë ¤ë©´ ì¶”ê°€ í•¸ë“¤ë§ì´ ì¢€ í•„ìš”í•´ì„œ.
+	* ì—”ì§„ Scalability ìª½ì—ì„œ ì–´ë–»ê²Œ í•´ ë³´ë ¤ë‹ˆ ì–´ì°¨í”¼ World ê°€ í•„ìš”í•´ì„œ ê·¸ëƒ¥ ì—¬ê¸¸ í†µí•´ ë³€ê²½í•˜ëŠ” ê²ƒì— ëŒ€í•´ì„œë§Œ ì§ì ‘ ì½œí•œë‹¤.
+	* sg. ì½˜ì†” ëª…ë ¹ì„ í†µí•œ ë³€ê²½ë§Œ ë°”ë¡œ í•¸ë“¤ë§ì´ ì•ˆë  ë¿ ì •ì‹ ë©”ë‰´ë¥¼ í†µí•œ ë³€ê²½ì€ ë°”ë¡œ í•¸ë“¤ë§ ë  ê²ƒ. */
 	//void OnGameplayOnlyLODQualityChanged(UWorld* InWorld, int32 InNewValue)
 	//{
 	//	if (!InWorld) {
@@ -355,7 +355,7 @@ namespace B2Scalability
 	//	{
 	//		ABladeIIPlayer* CastedPlayer = Cast<ABladeIIPlayer>(*ItPlayer);
 	//		if (CastedPlayer)
-	//		{ // È¤¿©³ª ¿µ»ó ÇÃ·¹ÀÌ µµÁßÀÌ¶ó ÇÏ´õ¶óµµ.. ¿¬Ãâ µµÁß¿¡´Â ´ëºÎºĞ BladeIIPlayer °¡ ¾Æ´Ñ SkeletalMeshActor °¡ »ç¿ëµÇ¹Ç·Î ÀÌ°ÍÀ» È£ÃâÇÏ´Â °Ô ¿µÇâÀ» ¹ÌÄ¡Áö ¾Ê´Â´Ù. ¾Æ´Ñ °æ¿ì¶ó ÇÏ´õ¶óµµ ¿¬Ãâ µµÁß¿¡ pause ¸Ş´º°¡ ³ª¿ÀÁöµµ ¾Ê°í..
+	//		{ // í˜¹ì—¬ë‚˜ ì˜ìƒ í”Œë ˆì´ ë„ì¤‘ì´ë¼ í•˜ë”ë¼ë„.. ì—°ì¶œ ë„ì¤‘ì—ëŠ” ëŒ€ë¶€ë¶„ BladeIIPlayer ê°€ ì•„ë‹Œ SkeletalMeshActor ê°€ ì‚¬ìš©ë˜ë¯€ë¡œ ì´ê²ƒì„ í˜¸ì¶œí•˜ëŠ” ê²Œ ì˜í–¥ì„ ë¯¸ì¹˜ì§€ ì•ŠëŠ”ë‹¤. ì•„ë‹Œ ê²½ìš°ë¼ í•˜ë”ë¼ë„ ì—°ì¶œ ë„ì¤‘ì— pause ë©”ë‰´ê°€ ë‚˜ì˜¤ì§€ë„ ì•Šê³ ..
 	//			CastedPlayer->SetupLODInfoForInGame();
 	//		}
 	//		else
@@ -372,7 +372,7 @@ namespace B2Scalability
 
 	float GetScreenScaleRQTypeScaleValue(EB2GraphicsRQType InRQType)
 	{
-		// Extra/LowerScreenScale~~ RQType ¿¡ ¸ÊÇÎµÈ ini ¿¡ Á¤ÀÇµÈ ½ÇÁ¦ ¼öÄ¡ ¾ò¾î¿À±â.
+		// Extra/LowerScreenScale~~ RQType ì— ë§µí•‘ëœ ini ì— ì •ì˜ëœ ì‹¤ì œ ìˆ˜ì¹˜ ì–»ì–´ì˜¤ê¸°.
 		check(IsRQTypeOneOfExtraScreenScale(InRQType) || IsRQTypeOneOfLowerScreenScale(InRQType));
 		float RetScaleValue = 1.0f;
 		FString IniItemString;
@@ -398,7 +398,7 @@ namespace B2Scalability
 #if !UE_BUILD_SHIPPING
 		if (IsRQTypeOneOfExtraScreenScale(InRQType))
 		{
-			check(RetScaleValue >= 1.0f); // ÀÌ°Ô ¾Æ´Ï¸é ÀÇµµ¿Í ´Ù¸£°Ô ¼³Á¤À» ÇÑ °Å.
+			check(RetScaleValue >= 1.0f); // ì´ê²Œ ì•„ë‹ˆë©´ ì˜ë„ì™€ ë‹¤ë¥´ê²Œ ì„¤ì •ì„ í•œ ê±°.
 		}
 		else
 		{
@@ -410,14 +410,14 @@ namespace B2Scalability
 	void AdjustResolutionQualityByRQType(EB2GraphicsRQType InRQType, float& InOutResolutionQuality)
 	{
 #if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
-		// Å×½ºÆ® ¿ë CVar °¡ È°¼ºÈ­ µÈ »óÈ².
+		// í…ŒìŠ¤íŠ¸ ìš© CVar ê°€ í™œì„±í™” ëœ ìƒí™©.
 		if (CVarB2DevForcedGraphicsRQType.GetValueOnGameThread() >= 0)
 		{
 			InRQType = static_cast<EB2GraphicsRQType>(CVarB2DevForcedGraphicsRQType.GetValueOnGameThread());
 		}
 #endif
 
-		// EB2GraphicsRQType::ExtraScreenScale ÀÇ µ¿ÀÛ Á¤ÀÇ
+		// EB2GraphicsRQType::ExtraScreenScale ì˜ ë™ì‘ ì •ì˜
 		if (IsRQTypeOneOfLowerScreenScale(InRQType) || IsRQTypeOneOfExtraScreenScale(InRQType))
 		{
 			float ScaleValue = GetScreenScaleRQTypeScaleValue(InRQType);
@@ -426,7 +426,7 @@ namespace B2Scalability
 	}
 
 	float GetContentScaleRQTypeScaleValue(EB2GraphicsRQType InRQType)
-	{ // ExtraContentScale~~ RQType ¿¡ ¸ÊÇÎµÈ ini ¿¡ Á¤ÀÇµÈ ½ÇÁ¦ ¼öÄ¡ ¾ò¾î¿À±â.
+	{ // ExtraContentScale~~ RQType ì— ë§µí•‘ëœ ini ì— ì •ì˜ëœ ì‹¤ì œ ìˆ˜ì¹˜ ì–»ì–´ì˜¤ê¸°.
 		check(IsRQTypeOneOfExtraContentScale(InRQType));
 
 		float RetScaleValue = 1.0f;
@@ -455,7 +455,7 @@ namespace B2Scalability
 		//		float ScaleValue = 1.0f;
 		//
 		//#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
-		//		// Å×½ºÆ® ¿ë CVar °¡ È°¼ºÈ­ µÈ »óÈ².
+		//		// í…ŒìŠ¤íŠ¸ ìš© CVar ê°€ í™œì„±í™” ëœ ìƒí™©.
 		//		if (CVarB2DevForcedGraphicsRQType.GetValueOnGameThread() >= 0) {
 		//			InRQType = static_cast<EB2GraphicsRQType>(CVarB2DevForcedGraphicsRQType.GetValueOnGameThread());
 		//		}
@@ -466,9 +466,9 @@ namespace B2Scalability
 		//			ScaleValue = GetContentScaleRQTypeScaleValue(InRQType);
 		//		}
 		//
-		//		// Ini ¼³Á¤°ªÀ» ±×³É Àû¿ëÇÏ´Â °Ô ¾Æ´Ï¶ó ¿£Áø ÃÊ±â°ª È¤Àº DeviceProfile À» ÅëÇØ Á¤ÀÇµÈ °ª¿¡ Ãß°¡ ½ºÄÉÀÏÀ» °¡ÇÑ´Ù.
+		//		// Ini ì„¤ì •ê°’ì„ ê·¸ëƒ¥ ì ìš©í•˜ëŠ” ê²Œ ì•„ë‹ˆë¼ ì—”ì§„ ì´ˆê¸°ê°’ í˜¹ì€ DeviceProfile ì„ í†µí•´ ì •ì˜ëœ ê°’ì— ì¶”ê°€ ìŠ¤ì¼€ì¼ì„ ê°€í•œë‹¤.
 		//		const float WantedValue = CachedBaseMobileContentScaleFactor * ScaleValue;
-		//		// °ª ¹Ù²î¾úÀ» ¶§¸¸ Set ÇÏ·Á´Ù º¸´Ï ¹º°¡ ½â ¿øÇÏ´Â ´ë·Î µ¿ÀÛÇÏÁö ¾Ê´Â °Í °°¾Æ ½ÇÁ¦ MCSF ¸¦ Á¶ÀıÇÏ´Â RQType ÀÎ °æ¿ì´Â Ç×»ó
+		//		// ê°’ ë°”ë€Œì—ˆì„ ë•Œë§Œ Set í•˜ë ¤ë‹¤ ë³´ë‹ˆ ë­”ê°€ ì© ì›í•˜ëŠ” ëŒ€ë¡œ ë™ì‘í•˜ì§€ ì•ŠëŠ” ê²ƒ ê°™ì•„ ì‹¤ì œ MCSF ë¥¼ ì¡°ì ˆí•˜ëŠ” RQType ì¸ ê²½ìš°ëŠ” í•­ìƒ
 		//		if (std::abs(WantedValue - CurrValue) > KINDA_SMALL_NUMBER || IsRQTypeOneOfExtraContentScale(InRQType))
 		//		{
 		//			UE_LOG(LogBladeII, Log, TEXT("Setting MobileContentScaleFactor to %.2f by B2GraphicsRQType %d"), WantedValue, (int32)InRQType);
@@ -480,13 +480,13 @@ namespace B2Scalability
 
 	void SetAntiAliasingByB2RQType(EB2GraphicsRQType InRQType)
 	{
-		// ±âº» Scalability ½Ã½ºÅÛÀÇ AntiAliasingQuality ¸¦ ¾Æ¿¹ ¹«½ÃÇÏ´Â °Ç ¾Æ´ÏÁö¸¸ º°µµ ÄÁÆ®·ÑÀÌ Á» ÇÊ¿ä..
+		// ê¸°ë³¸ Scalability ì‹œìŠ¤í…œì˜ AntiAliasingQuality ë¥¼ ì•„ì˜ˆ ë¬´ì‹œí•˜ëŠ” ê±´ ì•„ë‹ˆì§€ë§Œ ë³„ë„ ì»¨íŠ¸ë¡¤ì´ ì¢€ í•„ìš”..
 
 		static IConsoleVariable* _CVarMobileMSAA = IConsoleManager::Get().FindConsoleVariable(TEXT("r.MobileMSAA"));
 		check(_CVarMobileMSAA);
 
 #if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
-		// Å×½ºÆ® ¿ë CVar °¡ È°¼ºÈ­ µÈ »óÈ².
+		// í…ŒìŠ¤íŠ¸ ìš© CVar ê°€ í™œì„±í™” ëœ ìƒí™©.
 		if (CVarB2DevForcedGraphicsRQType.GetValueOnGameThread() >= 0)
 		{
 			InRQType = static_cast<EB2GraphicsRQType>(CVarB2DevForcedGraphicsRQType.GetValueOnGameThread());
@@ -494,7 +494,7 @@ namespace B2Scalability
 #endif
 
 		//
-		// r.MobileMSAA ¸¦ ÀÓÀÇ·Î º¯°æÇØ¼­ Å×½ºÆ®¸¦ ÇÏ°í ½Í´Ù¸é ÀÌÂÊ ÄÚµå¸¦ (ÀÓ½Ã·Î) Á¦°ÅÇÏµçÁö, ¾Æ´Ï¸é ¿©±â¿¡ Ãß°¡ ÄÁÆ®·ÑÀ» ³Ö´øÁö.
+		// r.MobileMSAA ë¥¼ ì„ì˜ë¡œ ë³€ê²½í•´ì„œ í…ŒìŠ¤íŠ¸ë¥¼ í•˜ê³  ì‹¶ë‹¤ë©´ ì´ìª½ ì½”ë“œë¥¼ (ì„ì‹œë¡œ) ì œê±°í•˜ë“ ì§€, ì•„ë‹ˆë©´ ì—¬ê¸°ì— ì¶”ê°€ ì»¨íŠ¸ë¡¤ì„ ë„£ë˜ì§€.
 		//
 
 		if (IsRQTypeOneOfMSAA(InRQType))
@@ -506,8 +506,8 @@ namespace B2Scalability
 		}
 		else
 		{
-			// ¸¸ÀÏ PostProcessAA µîÀÌ Ãß°¡µÇ¸é Ãß°¡ CVar ¸¦ ¼¼ÆÃÇÏ°Ô µÉ °Í.
-			// ±×·³ AntiAliasingQuality ´Â ¹«½ÃÇÏ°Ô µÉ ¼öµµ ÀÖ°í.
+			// ë§Œì¼ PostProcessAA ë“±ì´ ì¶”ê°€ë˜ë©´ ì¶”ê°€ CVar ë¥¼ ì„¸íŒ…í•˜ê²Œ ë  ê²ƒ.
+			// ê·¸ëŸ¼ AntiAliasingQuality ëŠ” ë¬´ì‹œí•˜ê²Œ ë  ìˆ˜ë„ ìˆê³ .
 
 			if (_CVarMobileMSAA)
 			{
@@ -517,9 +517,9 @@ namespace B2Scalability
 	}
 
 	/**
-	* UI ¿¡¼­ ¼±ÅÃÇÑ EB2GraphicsLevel ¿¡ µû¶ó ¿£Áø Scalability ½Ã½ºÅÛ ·¹º§ ¼³Á¤.
-	* Scalability ¿¡ µû¸¥ ¼¼ºÎÀûÀÎ ÄÁÆ®·ÑÀº Scalability.ini ¹× ÀÌÈÄ´Â ¿£Áø±â´ÉÀ¸·Î..
-	* BladeII °ÔÀÓ ³» Scalability Àû¿ë ±â´ÉÀÇ ¸ŞÀÎ ÇÔ¼ö °İ. (100% Ä¿¹ö´Â ¾Æ´Ô)
+	* UI ì—ì„œ ì„ íƒí•œ EB2GraphicsLevel ì— ë”°ë¼ ì—”ì§„ Scalability ì‹œìŠ¤í…œ ë ˆë²¨ ì„¤ì •.
+	* Scalability ì— ë”°ë¥¸ ì„¸ë¶€ì ì¸ ì»¨íŠ¸ë¡¤ì€ Scalability.ini ë° ì´í›„ëŠ” ì—”ì§„ê¸°ëŠ¥ìœ¼ë¡œ..
+	* BladeII ê²Œì„ ë‚´ Scalability ì ìš© ê¸°ëŠ¥ì˜ ë©”ì¸ í•¨ìˆ˜ ê²©. (100% ì»¤ë²„ëŠ” ì•„ë‹˜)
 	*/
 	void AdjustScalabilityBySelectedLevel(UObject* WorldContextObject, EB2GraphicsLevel InOverallGraphicsLevel, EB2ResolutionLevel InResolutionLevel, bool bExtraContentScaleFallback)
 	{
@@ -529,13 +529,13 @@ namespace B2Scalability
 		//
 		//#if !UE_BUILD_SHIPPING
 		//	const Scalability::FQualityLevels ForLevelCountRef = Scalability::GetQualityLevelCounts();
-		//	// ini ¿¡ ¼³Á¤À» ³Ö±ä ÇßÁö¸¸ ¹Ù²î´Â °Å °¨Áö ¸øÇÏ¸é °ï¶õÇÏ´Ï.
+		//	// ini ì— ì„¤ì •ì„ ë„£ê¸´ í–ˆì§€ë§Œ ë°”ë€ŒëŠ” ê±° ê°ì§€ ëª»í•˜ë©´ ê³¤ë€í•˜ë‹ˆ.
 		//	check(ForLevelCountRef.AntiAliasingQuality == 5 && ForLevelCountRef.EffectsQuality == 5 && ForLevelCountRef.PostProcessQuality == 5 && ForLevelCountRef.PostProcessExtraQuality == 5 && ForLevelCountRef.TextureQuality == 5 && ForLevelCountRef.ShadowQuality == 5 && ForLevelCountRef.GameplayOnlyLODQuality == 5);
 		//
-		//	check(bOnModuleStartupCalled); /* ½Ç¼ö·Î ¼ø¼­°¡ ¹Ù²î´Â °Å ¹æÁö Â÷¿ø */
+		//	check(bOnModuleStartupCalled); /* ì‹¤ìˆ˜ë¡œ ìˆœì„œê°€ ë°”ë€ŒëŠ” ê±° ë°©ì§€ ì°¨ì› */
 		//#endif
 		//	
-		//	// ±âº»ÀûÀ¸·Î´Â GetScalabilityLevelOfGraphicsLevel ¿¡ ÀÇÇØ ¸ÊÇÎµÈ °ªÀ» ¾²Áö¸¸ º°µµ ¸ÊÇÎÀ» ¾²´Â Ä«Å×°í¸®µµ ÀÖ´Ù.
+		//	// ê¸°ë³¸ì ìœ¼ë¡œëŠ” GetScalabilityLevelOfGraphicsLevel ì— ì˜í•´ ë§µí•‘ëœ ê°’ì„ ì“°ì§€ë§Œ ë³„ë„ ë§µí•‘ì„ ì“°ëŠ” ì¹´í…Œê³ ë¦¬ë„ ìˆë‹¤.
 		//	int32 DesiredScalabilityLevel = GetScalabilityLevelOfGraphicsLevel(InOverallGraphicsLevel);
 		//	
 		//	QualityLevel.EffectsQuality = DesiredScalabilityLevel;
@@ -546,36 +546,36 @@ namespace B2Scalability
 		//	QualityLevel.GameplayOnlyLODQuality = GetGameplayOnlyLODQualityOfGraphicsLevel(InOverallGraphicsLevel);
 		//	QualityLevel.ViewDistanceQuality = DesiredScalabilityLevel;
 		//
-		//	// UI ¿¡ ¿¬°áµÈ ÀÎÅÍÆäÀÌ½ºÀÎ EB2ResolutionLevel ¿¡ µû¶ó ±â±âº°·Î ¸ÊÇÎµÈ ³»ºÎ ½Äº°ÀÚÀÎ EB2GraphicsRQType À» °¡Á®¿Í¼­ »ç¿ë
+		//	// UI ì— ì—°ê²°ëœ ì¸í„°í˜ì´ìŠ¤ì¸ EB2ResolutionLevel ì— ë”°ë¼ ê¸°ê¸°ë³„ë¡œ ë§µí•‘ëœ ë‚´ë¶€ ì‹ë³„ìì¸ EB2GraphicsRQType ì„ ê°€ì ¸ì™€ì„œ ì‚¬ìš©
 		//	EB2GraphicsRQType MappedRQType = GetSafeMappedRQTypeOfResolutionLevel(InResolutionLevel);
 		//	if (bExtraContentScaleFallback)
-		//	{ // GetSafeMappedRQTypeOfResolutionLevel ¿¡¼­µµ ³ª¸§ÀÇ »óÈ²¿¡ µû¶ó ContentScale À» ScreenScale ·Î ¹Ù²Ù´Â µ¿ÀÛÀ» ÇÏÁö¸¸ Ãß°¡·Î ¿ÜºÎ¿¡¼­ ¾Æ½Î¸® Æú¹éÀ» °­Á¦ÇÏ´Â °æ¿ì°¡ ¶Ç ÀÖÀ½.
+		//	{ // GetSafeMappedRQTypeOfResolutionLevel ì—ì„œë„ ë‚˜ë¦„ì˜ ìƒí™©ì— ë”°ë¼ ContentScale ì„ ScreenScale ë¡œ ë°”ê¾¸ëŠ” ë™ì‘ì„ í•˜ì§€ë§Œ ì¶”ê°€ë¡œ ì™¸ë¶€ì—ì„œ ì•„ì‹¸ë¦¬ í´ë°±ì„ ê°•ì œí•˜ëŠ” ê²½ìš°ê°€ ë˜ ìˆìŒ.
 		//		MappedRQType = GetContentScaleRQTypeFallback(MappedRQType);
 		//	}
 		//
 		//	QualityLevel.AntiAliasingQuality = DesiredScalabilityLevel;
-		//	SetAntiAliasingByB2RQType(MappedRQType); // MSAA ¸¸ ÀÖ´Ù¸é ¿£Áø Scalability ¿Í´Â »ó°ü¾ø´Ù.
+		//	SetAntiAliasingByB2RQType(MappedRQType); // MSAA ë§Œ ìˆë‹¤ë©´ ì—”ì§„ Scalability ì™€ëŠ” ìƒê´€ì—†ë‹¤.
 		//
 		//	QualityLevel.ResolutionQuality = GetResolutionScaleOfGraphicsLevel(InOverallGraphicsLevel);
 		//	AdjustResolutionQualityByRQType(MappedRQType, QualityLevel.ResolutionQuality);
 		//	
-		//	AdjustMobileContentScaleFactorByRQType(MappedRQType); // ½ÇÀº ¿£Áø Scalability ¿Í´Â »ó°ü¾ø´Ù.
+		//	AdjustMobileContentScaleFactorByRQType(MappedRQType); // ì‹¤ì€ ì—”ì§„ Scalability ì™€ëŠ” ìƒê´€ì—†ë‹¤.
 		//
-		//	Scalability::SetQualityLevels(QualityLevel, true /*½ÇÁ¦ º¯°æµÈ °ª¿¡ ´ëÇØ¼­¸¸ Set µ¿ÀÛÀÌ ÀÏ¾î³ªµµ·Ï ÀÎÀÚ¸¦ ³Ö¾îÁÜ*/);
-		//	// Scalability ÀÚÃ¼ÀÇ ini ÀúÀåµµ ÇØ¾ß ÇÏ´Âµ¥ °ÔÀÓÂÊ ¼±ÅÃ°ª ÀúÀå¸¸À¸·Î´Â ¿£Áø ÃÊ±âÈ­ ½ÃÁ¡¿¡ ¼±ÅÃÇÑ °ªÀ» Àû¿ëÇÏÁö ¸øÇÏ±â ¶§¹®ÀÌ´Ù.
-		//	// ÀÌ·¸°Ô ÀúÀåÇØ µÎÁö ¾ÊÀ¸¸é ¸Å¹ø °ÔÀÓ ½ÃÀÛÇÏ¸é¼­ ¾ğÁ¦³ª ¶È°°Àº ÃÊ±â°ª¸¸À» Àû¿ëÇß´Ù°¡ ·Îºñ ¶ß°í ³ª¼­ »ç¿ëÀÚ ¼±ÅÃÀ» Àû¿ëÇÏ°í ÇÏ´Â ÀÏÀÌ ¹İº¹µÉ °Í.
+		//	Scalability::SetQualityLevels(QualityLevel, true /*ì‹¤ì œ ë³€ê²½ëœ ê°’ì— ëŒ€í•´ì„œë§Œ Set ë™ì‘ì´ ì¼ì–´ë‚˜ë„ë¡ ì¸ìë¥¼ ë„£ì–´ì¤Œ*/);
+		//	// Scalability ìì²´ì˜ ini ì €ì¥ë„ í•´ì•¼ í•˜ëŠ”ë° ê²Œì„ìª½ ì„ íƒê°’ ì €ì¥ë§Œìœ¼ë¡œëŠ” ì—”ì§„ ì´ˆê¸°í™” ì‹œì ì— ì„ íƒí•œ ê°’ì„ ì ìš©í•˜ì§€ ëª»í•˜ê¸° ë•Œë¬¸ì´ë‹¤.
+		//	// ì´ë ‡ê²Œ ì €ì¥í•´ ë‘ì§€ ì•Šìœ¼ë©´ ë§¤ë²ˆ ê²Œì„ ì‹œì‘í•˜ë©´ì„œ ì–¸ì œë‚˜ ë˜‘ê°™ì€ ì´ˆê¸°ê°’ë§Œì„ ì ìš©í–ˆë‹¤ê°€ ë¡œë¹„ ëœ¨ê³  ë‚˜ì„œ ì‚¬ìš©ì ì„ íƒì„ ì ìš©í•˜ê³  í•˜ëŠ” ì¼ì´ ë°˜ë³µë  ê²ƒ.
 		//	Scalability::SaveState(GIsEditor ? GEditorSettingsIni : GGameUserSettingsIni);
 		//	
 		//	if (WorldContextObject)
 		//	{
-		//		// °ÔÀÓ¸ğµå º°·Î Æ¯¼öÇÑ ¼³Á¤µé.. ¿¹¸¦ µé¾î ¾î¶² °ÔÀÓ¸ğµå´Â dynamic shadow ¸¦ ¾È ¾´´Ù°Å³ª, LOD ¸¦ º¸´Ù ³·Ãç¼­ ¾´´Ù°Å³ª µî..
-		//		// ÀÌ°É »ç¿ëÇÏ´Â °÷Àº ´ëÃ¼·Î ·Îºñ°ÚÁö¸¸ ´Ù¸¥ °ÔÀÓ¸ğµå¿¡¼­µµ ¼³Á¤ ¸Ş´º¿¡ Á¢±ÙÇÒ ¼ö°¡ ÀÖ´Ù.
+		//		// ê²Œì„ëª¨ë“œ ë³„ë¡œ íŠ¹ìˆ˜í•œ ì„¤ì •ë“¤.. ì˜ˆë¥¼ ë“¤ì–´ ì–´ë–¤ ê²Œì„ëª¨ë“œëŠ” dynamic shadow ë¥¼ ì•ˆ ì“´ë‹¤ê±°ë‚˜, LOD ë¥¼ ë³´ë‹¤ ë‚®ì¶°ì„œ ì“´ë‹¤ê±°ë‚˜ ë“±..
+		//		// ì´ê±¸ ì‚¬ìš©í•˜ëŠ” ê³³ì€ ëŒ€ì²´ë¡œ ë¡œë¹„ê² ì§€ë§Œ ë‹¤ë¥¸ ê²Œì„ëª¨ë“œì—ì„œë„ ì„¤ì • ë©”ë‰´ì— ì ‘ê·¼í•  ìˆ˜ê°€ ìˆë‹¤.
 		//		ABladeIIGameMode* B2GM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(WorldContextObject));
 		//		if (B2GM) 
 		//		{
 		//			B2GM->ApplyGameModeSpecificScalabilitySetting(InOverallGraphicsLevel, InResolutionLevel);
 		//
-		//			// GameplayOnlyLODQuality ¹Ù²ï °Í¿¡ ´ëÇØ¼­´Â µû·Î ÇÚµé¸µÀ» Á».. ¿©±â¼­¶óµµ
+		//			// GameplayOnlyLODQuality ë°”ë€ ê²ƒì— ëŒ€í•´ì„œëŠ” ë”°ë¡œ í•¸ë“¤ë§ì„ ì¢€.. ì—¬ê¸°ì„œë¼ë„
 		//			const int32 CurrGameplayOnlyLODQuality = Scalability::GetQualityLevels_GameplayOnlyLOD();
 		//			if (CurrGameplayOnlyLODQuality != PrevGameplayOnlyLODQuality)
 		//			{
@@ -585,7 +585,7 @@ namespace B2Scalability
 		//	}
 	}
 
-	void AdjustScalabilityBySavedUserSelection(UObject* WorldContextObject) // µû·Î ÇÊ¿äÇÑ°¡..?
+	void AdjustScalabilityBySavedUserSelection(UObject* WorldContextObject) // ë”°ë¡œ í•„ìš”í•œê°€..?
 	{
 		/*int32 SavedGraphicsLevel = B2GraphicsLevelToInt(EB2GraphicsLevel::GraphicsLevel_HIGH);
 		LoadGameSetting_Graphics_OrByDefault(SavedGraphicsLevel);
@@ -594,23 +594,23 @@ namespace B2Scalability
 		AdjustScalabilityBySelectedLevel(WorldContextObject, SavedGraphicsLevel, SavedResolutionLevel);*/
 	}
 
-	/** °ÔÀÓ¸ğµå ¹× ¿¬Ãâ »óÈ² µî BladeII °ÔÀÓ ½Ã½ºÅÛ¿¡ ÀÇÇÑ scalability ´ëºĞ·ù Áß shadow override */
+	/** ê²Œì„ëª¨ë“œ ë° ì—°ì¶œ ìƒí™© ë“± BladeII ê²Œì„ ì‹œìŠ¤í…œì— ì˜í•œ scalability ëŒ€ë¶„ë¥˜ ì¤‘ shadow override */
 	void ApplyBladeIIBiasedScalability_Shadow(EB2GraphicsLevel InBasicUserSelection, const FString& InIniSectionName)
 	{
 		//const Scalability::FQualityLevels QualityLevelCountRef = Scalability::GetQualityLevelCounts();
 
-		//const int32 DesiredScalabilityLevel = GetScalabilityLevelOfGraphicsLevel(InBasicUserSelection); // ´ëÃ¼·Î GetScalabilityLevelOfGraphicsLevel À» ¾²°ÚÁö¸¸ Á¾·ù¿¡ µû¶ó ¾Æ´Ò ¼ö ÀÖ¾î¼­ ÀÎÀÚ·Î EB2GraphicsLevel À» ¹Ş´Â °Å.
+		//const int32 DesiredScalabilityLevel = GetScalabilityLevelOfGraphicsLevel(InBasicUserSelection); // ëŒ€ì²´ë¡œ GetScalabilityLevelOfGraphicsLevel ì„ ì“°ê² ì§€ë§Œ ì¢…ë¥˜ì— ë”°ë¼ ì•„ë‹ ìˆ˜ ìˆì–´ì„œ ì¸ìë¡œ EB2GraphicsLevel ì„ ë°›ëŠ” ê±°.
 		//int32 ShadowQualityBias = 0;
 		//GConfig->GetInt(*InIniSectionName, TEXT("ShadowQualityBias"), ShadowQualityBias, GScalabilityIni);
 
-		//// ±âº»ÀûÀÎ ¼¼ÆÃ UI ¸¦ ÅëÇÑ ¼±ÅÃ¿¡ ÁöÁ¤µÈ Bias ¸¸Å­ Â÷°¨ÇÑ´Ù.
-		//// ¸¸ÀÏ ini ¿¡¼­ ÇØ´ç Ç×¸ñÀ» ¸ø ÀĞ¾îµé¿´´Ù°í ÇÏ´õ¶óµµ 0 °ªÀ¸·Î ¾Æ·¡ ÄÚµå¸¦ ½ÇÇàÇØ¼­ DesiredScalabilityLevel ÀÌ Àû¿ëµÇµµ·Ï ÇÑ´Ù.
+		//// ê¸°ë³¸ì ì¸ ì„¸íŒ… UI ë¥¼ í†µí•œ ì„ íƒì— ì§€ì •ëœ Bias ë§Œí¼ ì°¨ê°í•œë‹¤.
+		//// ë§Œì¼ ini ì—ì„œ í•´ë‹¹ í•­ëª©ì„ ëª» ì½ì–´ë“¤ì˜€ë‹¤ê³  í•˜ë”ë¼ë„ 0 ê°’ìœ¼ë¡œ ì•„ë˜ ì½”ë“œë¥¼ ì‹¤í–‰í•´ì„œ DesiredScalabilityLevel ì´ ì ìš©ë˜ë„ë¡ í•œë‹¤.
 		//int32 BiasedNewLevel = FMath::Clamp(DesiredScalabilityLevel - ShadowQualityBias, 0, QualityLevelCountRef.ShadowQuality - MaxPossibleQualityLevelSubtract);
 		//if (Scalability::GetQualityLevels_Shadow() != BiasedNewLevel) {
 		//	Scalability::SetQualityLevels_Shadow(BiasedNewLevel);
 		//}
 	}
-	/** °ÔÀÓ¸ğµå ¹× ¿¬Ãâ »óÈ² µî BladeII °ÔÀÓ ½Ã½ºÅÛ¿¡ ÀÇÇÑ scalability ´ëºĞ·ù Áß effect override */
+	/** ê²Œì„ëª¨ë“œ ë° ì—°ì¶œ ìƒí™© ë“± BladeII ê²Œì„ ì‹œìŠ¤í…œì— ì˜í•œ scalability ëŒ€ë¶„ë¥˜ ì¤‘ effect override */
 	void ApplyBladeIIBiasedScalability_Effect(EB2GraphicsLevel InBasicUserSelection, const FString& InIniSectionName)
 	{
 		/*const Scalability::FQualityLevels QualityLevelCountRef = Scalability::GetQualityLevelCounts();
@@ -624,9 +624,9 @@ namespace B2Scalability
 			Scalability::SetQualityLevels_Effects(BiasedNewLevel);
 		}*/
 	}
-	/** °ÔÀÓ¸ğµå ¹× ¿¬Ãâ »óÈ² µî BladeII °ÔÀÓ ½Ã½ºÅÛ¿¡ ÀÇÇÑ scalability ´ëºĞ·ù Áß ViewDistance override */
+	/** ê²Œì„ëª¨ë“œ ë° ì—°ì¶œ ìƒí™© ë“± BladeII ê²Œì„ ì‹œìŠ¤í…œì— ì˜í•œ scalability ëŒ€ë¶„ë¥˜ ì¤‘ ViewDistance override */
 	void ApplyBladeIIBiasedScalability_ViewDist(EB2GraphicsLevel InBasicUserSelection, const FString& InIniSectionName,
-		bool bApplyHigherOnly = false /* Æ¯Á¤ÇÑ override »óÈ²¿¡¼­¸¸ »ç¿ë. */
+		bool bApplyHigherOnly = false /* íŠ¹ì •í•œ override ìƒí™©ì—ì„œë§Œ ì‚¬ìš©. */
 	)
 	{
 		//const Scalability::FQualityLevels QualityLevelCountRef = Scalability::GetQualityLevelCounts();
@@ -638,14 +638,14 @@ namespace B2Scalability
 		//int32 BiasedNewLevel = FMath::Clamp(DesiredScalabilityLevel - ViewDistanceQualityBias, 0, QualityLevelCountRef.ViewDistanceQuality - MaxPossibleQualityLevelSubtract);
 		//if (Scalability::GetQualityLevels_ViewDistance() != BiasedNewLevel
 		//	&&
-		//	(!bApplyHigherOnly || Scalability::GetQualityLevels_ViewDistance() < BiasedNewLevel) // ApplyHigherOnly ¿¡¼­´Â ³·Àº scalability ·¹º§·Î °¡Áö ¾Ê´Â´Ù.
+		//	(!bApplyHigherOnly || Scalability::GetQualityLevels_ViewDistance() < BiasedNewLevel) // ApplyHigherOnly ì—ì„œëŠ” ë‚®ì€ scalability ë ˆë²¨ë¡œ ê°€ì§€ ì•ŠëŠ”ë‹¤.
 		//	) {
 		//	Scalability::SetQualityLevels_ViewDistance(BiasedNewLevel);
 		//}
 	}
-	/** °ÔÀÓ¸ğµå ¹× ¿¬Ãâ »óÈ² µî BladeII °ÔÀÓ ½Ã½ºÅÛ¿¡ ÀÇÇÑ scalability ´ëºĞ·ù Áß PostProcess override */
+	/** ê²Œì„ëª¨ë“œ ë° ì—°ì¶œ ìƒí™© ë“± BladeII ê²Œì„ ì‹œìŠ¤í…œì— ì˜í•œ scalability ëŒ€ë¶„ë¥˜ ì¤‘ PostProcess override */
 	void ApplyBladeIIBiasedScalability_PostProcess(EB2GraphicsLevel InBasicUserSelection, const FString& InIniSectionName,
-		bool bApplyHigherOnly = false /* Æ¯Á¤ÇÑ override »óÈ²¿¡¼­¸¸ »ç¿ë. */
+		bool bApplyHigherOnly = false /* íŠ¹ì •í•œ override ìƒí™©ì—ì„œë§Œ ì‚¬ìš©. */
 	)
 	{
 		//const Scalability::FQualityLevels QualityLevelCountRef = Scalability::GetQualityLevelCounts();
@@ -657,13 +657,13 @@ namespace B2Scalability
 		//int32 BiasedNewLevel = FMath::Clamp(DesiredScalabilityLevel - PostProcessQualityBias, 0, QualityLevelCountRef.PostProcessQuality - MaxPossibleQualityLevelSubtract);
 		//if (Scalability::GetQualityLevels_PostProcess() != BiasedNewLevel
 		//	&&
-		//	(!bApplyHigherOnly || Scalability::GetQualityLevels_PostProcess() < BiasedNewLevel) // ApplyHigherOnly ¿¡¼­´Â ³·Àº scalability ·¹º§·Î °¡Áö ¾Ê´Â´Ù.
+		//	(!bApplyHigherOnly || Scalability::GetQualityLevels_PostProcess() < BiasedNewLevel) // ApplyHigherOnly ì—ì„œëŠ” ë‚®ì€ scalability ë ˆë²¨ë¡œ ê°€ì§€ ì•ŠëŠ”ë‹¤.
 		//	) {
 		//	Scalability::SetQualityLevels_PostProcess(BiasedNewLevel);
 		//}
 	}
 	void ApplyBladeIIBiasedScalability_PostProcessExtra(EB2GraphicsLevel InBasicUserSelection, const FString& InIniSectionName,
-		bool bApplyHigherOnly = false /* Æ¯Á¤ÇÑ override »óÈ²¿¡¼­¸¸ »ç¿ë. */
+		bool bApplyHigherOnly = false /* íŠ¹ì •í•œ override ìƒí™©ì—ì„œë§Œ ì‚¬ìš©. */
 	)
 	{
 		//const Scalability::FQualityLevels QualityLevelCountRef = Scalability::GetQualityLevelCounts();
@@ -675,17 +675,17 @@ namespace B2Scalability
 		//int32 BiasedNewLevel = FMath::Clamp(DesiredScalabilityLevel - PostProcessExtraQualityBias, 0, QualityLevelCountRef.PostProcessExtraQuality - MaxPossibleQualityLevelSubtract);
 		//if (Scalability::GetQualityLevels_PostProcessExtra() != BiasedNewLevel
 		//	&&
-		//	(!bApplyHigherOnly || Scalability::GetQualityLevels_PostProcessExtra() < BiasedNewLevel) // ApplyHigherOnly ¿¡¼­´Â ³·Àº scalability ·¹º§·Î °¡Áö ¾Ê´Â´Ù.
+		//	(!bApplyHigherOnly || Scalability::GetQualityLevels_PostProcessExtra() < BiasedNewLevel) // ApplyHigherOnly ì—ì„œëŠ” ë‚®ì€ scalability ë ˆë²¨ë¡œ ê°€ì§€ ì•ŠëŠ”ë‹¤.
 		//	) {
 		//	Scalability::SetQualityLevels_PostProcessExtra(BiasedNewLevel);
 		//}
 	}
-	/** °ÔÀÓ¸ğµå ¹× ¿¬Ãâ »óÈ² µî BladeII °ÔÀÓ ½Ã½ºÅÛ¿¡ ÀÇÇÑ scalability ´ëºĞ·ù Áß Texture override */
+	/** ê²Œì„ëª¨ë“œ ë° ì—°ì¶œ ìƒí™© ë“± BladeII ê²Œì„ ì‹œìŠ¤í…œì— ì˜í•œ scalability ëŒ€ë¶„ë¥˜ ì¤‘ Texture override */
 	void ApplyBladeIIBiasedScalability_Texture(EB2GraphicsLevel InBasicUserSelection, const FString& InIniSectionName)
 	{
 		//const Scalability::FQualityLevels QualityLevelCountRef = Scalability::GetQualityLevelCounts();
 
-		//const int32 DesiredScalabilityLevel = GetTextureLevelOfGraphicsLevel(InBasicUserSelection); // GetScalabilityLevelOfGraphicsLevel ÀÌ ¾Æ´Ñ º°µµ ¸ÊÇÎÀ¸·Î
+		//const int32 DesiredScalabilityLevel = GetTextureLevelOfGraphicsLevel(InBasicUserSelection); // GetScalabilityLevelOfGraphicsLevel ì´ ì•„ë‹Œ ë³„ë„ ë§µí•‘ìœ¼ë¡œ
 		//int32 TextureQualityBias = 0;
 		//GConfig->GetInt(*InIniSectionName, TEXT("TextureQualityBias"), TextureQualityBias, GScalabilityIni);
 
@@ -694,29 +694,29 @@ namespace B2Scalability
 		//	Scalability::SetQualityLevels_Texture(BiasedNewLevel);
 		//}
 	}
-	/** °ÔÀÓ¸ğµå ¹× ¿¬Ãâ »óÈ² µî BladeII °ÔÀÓ ½Ã½ºÅÛ¿¡ ÀÇÇÑ scalability ´ëºĞ·ù Áß ResolutionQuality override */
+	/** ê²Œì„ëª¨ë“œ ë° ì—°ì¶œ ìƒí™© ë“± BladeII ê²Œì„ ì‹œìŠ¤í…œì— ì˜í•œ scalability ëŒ€ë¶„ë¥˜ ì¤‘ ResolutionQuality override */
 	void ApplyBladeIIBiasedScalability_Resolution(EB2GraphicsLevel InBasicUserSelection, EB2GraphicsRQType InRQType, const FString& InIniSectionName)
 	{
 		//const Scalability::FQualityLevels QualityLevelCountRef = Scalability::GetQualityLevelCounts();
 
 		//const float DesiredDefaultResolutionQuality = GetResolutionScaleOfGraphicsLevel(InBasicUserSelection);
-		//float ResolutionQualityBias = 0; // ¿©±ä int ´Â ¾Æ´Ô
+		//float ResolutionQualityBias = 0; // ì—¬ê¸´ int ëŠ” ì•„ë‹˜
 		//GConfig->GetFloat(*InIniSectionName, TEXT("ResolutionQualityBias"), ResolutionQualityBias, GScalabilityIni);
 
 		//float BiasedNewQuality = FMath::Clamp(DesiredDefaultResolutionQuality - ResolutionQualityBias, 10.0f, 100.0f);
-		//// ¸¸ÀÏ ExtraScreenScale À» °¡ÇÑ´Ù¸é Bias Àû¿ë ÀÌÈÄ°¡ µÇ¾î¾ß.
+		//// ë§Œì¼ ExtraScreenScale ì„ ê°€í•œë‹¤ë©´ Bias ì ìš© ì´í›„ê°€ ë˜ì–´ì•¼.
 		//AdjustResolutionQualityByRQType(InRQType, BiasedNewQuality);
 
 		//if (Scalability::GetQualityLevels_Resolution() != BiasedNewQuality) {
 		//	Scalability::SetQualityLevels_Resolution(BiasedNewQuality);
 		//}
 	}
-	/** °ÔÀÓ¸ğµå ¹× ¿¬Ãâ »óÈ² µî BladeII °ÔÀÓ ½Ã½ºÅÛ¿¡ ÀÇÇÑ scalability ´ëºĞ·ù Áß GameplayOnlyLOD override */
+	/** ê²Œì„ëª¨ë“œ ë° ì—°ì¶œ ìƒí™© ë“± BladeII ê²Œì„ ì‹œìŠ¤í…œì— ì˜í•œ scalability ëŒ€ë¶„ë¥˜ ì¤‘ GameplayOnlyLOD override */
 	void ApplyBladeIIBiasedScalability_GameplayOnlyLOD(EB2GraphicsLevel InBasicUserSelection, const FString& InIniSectionName)
 	{
 		//const Scalability::FQualityLevels QualityLevelCountRef = Scalability::GetQualityLevelCounts();
 
-		//const int32 DesiredScalabilityLevel = GetGameplayOnlyLODQualityOfGraphicsLevel(InBasicUserSelection); // GetScalabilityLevelOfGraphicsLevel ÀÌ ¾Æ´Ô.
+		//const int32 DesiredScalabilityLevel = GetGameplayOnlyLODQualityOfGraphicsLevel(InBasicUserSelection); // GetScalabilityLevelOfGraphicsLevel ì´ ì•„ë‹˜.
 		//int32 GameplayOnlyLODQualityBias = 0;
 		//GConfig->GetInt(*InIniSectionName, TEXT("GameplayOnlyLODQualityBias"), GameplayOnlyLODQualityBias, GScalabilityIni);
 
@@ -726,21 +726,21 @@ namespace B2Scalability
 		//}
 	}
 
-	///** StageEventDirector ÀÇ BeginShow/FinishShow È¤Àº ±×¿¡ ÇØ´çÇÏ´Â ÀÌº¥Æ®¿¡¼­.. */
+	///** StageEventDirector ì˜ BeginShow/FinishShow í˜¹ì€ ê·¸ì— í•´ë‹¹í•˜ëŠ” ì´ë²¤íŠ¸ì—ì„œ.. */
 	//void ApplyStageEventSpecificScalabilitySetting(UObject* WorldContextObject, bool bIsShowOn)
 	//{
 	//	B2_SCOPED_TRACK_LOG(FString::Printf(TEXT("ApplyStageEventSpecificScalabilitySetting %d"), (int32)bIsShowOn));
 	////
 	////#if !UE_BUILD_SHIPPING
-	////	if (!bUseBladeIIScalabilityOverride) { // Å×½ºÆ® ¿ëÀ¸·Î ¿¬Ãâ »óÈ²¿¡ µû¸¥ override ²ø ¼ö ÀÖµµ·Ï. ´ë½Å LOD Á¦¾î´Â µû·ÎÀÓ.
+	////	if (!bUseBladeIIScalabilityOverride) { // í…ŒìŠ¤íŠ¸ ìš©ìœ¼ë¡œ ì—°ì¶œ ìƒí™©ì— ë”°ë¥¸ override ëŒ ìˆ˜ ìˆë„ë¡. ëŒ€ì‹  LOD ì œì–´ëŠ” ë”°ë¡œì„.
 	////		AdjustScalabilityBySavedUserSelection(WorldContextObject);
 	////		return;
 	////	}
 	////#endif
 	////
-	////	// ¿©±â¼­ WorldContextObject ´Â StageEventDirector °¡ µÉ °¡´É¼ºÀÌ Å©°ÚÁö.. ÇÊ¿äÇÏ¸é Ä³½ºÆÃÇØ¼­ ½á º¸µçÁö..?
-	////	// ÇöÀç ±¸ÇöÀ¸·Î´Â °ÔÀÓ¸ğµå¿¡ µû¸¥ ±¸ºĞÀÌ ¾ø¾î¼­ »ç½Ç»ó Ãß°¡ÀûÀÎ PerGMSetting À¸·Î ºÁµµ µÉ µí.
-	////	// °ÔÀÓ¸ğµå º°·Î ¿¬Ãâ¿ë scalability ¼¼ÆÃ µû·Î ÀÖÀ¸¸é ´õ À¯¿¬ÇÏ±ä ÇÏ°ÚÁö¸¸ ±×°Ô ÇÊ¿äÇÒ±î ½Í±âµµ ÇÏ°í.
+	////	// ì—¬ê¸°ì„œ WorldContextObject ëŠ” StageEventDirector ê°€ ë  ê°€ëŠ¥ì„±ì´ í¬ê² ì§€.. í•„ìš”í•˜ë©´ ìºìŠ¤íŒ…í•´ì„œ ì¨ ë³´ë“ ì§€..?
+	////	// í˜„ì¬ êµ¬í˜„ìœ¼ë¡œëŠ” ê²Œì„ëª¨ë“œì— ë”°ë¥¸ êµ¬ë¶„ì´ ì—†ì–´ì„œ ì‚¬ì‹¤ìƒ ì¶”ê°€ì ì¸ PerGMSetting ìœ¼ë¡œ ë´ë„ ë  ë“¯.
+	////	// ê²Œì„ëª¨ë“œ ë³„ë¡œ ì—°ì¶œìš© scalability ì„¸íŒ… ë”°ë¡œ ìˆìœ¼ë©´ ë” ìœ ì—°í•˜ê¸´ í•˜ê² ì§€ë§Œ ê·¸ê²Œ í•„ìš”í• ê¹Œ ì‹¶ê¸°ë„ í•˜ê³ .
 	////
 	////	if (bIsShowOn)
 	////	{
@@ -751,22 +751,22 @@ namespace B2Scalability
 	////		const FString StageEventSettingSection(TEXT("StageEventCinematicsSetting"));
 	////		
 	////		//
-	////		// ¿©±â¼­ Ãß°¡·Î ÄÁÆ®·ÑÇÏ´Â Ç×¸ñµéÀº ´ç¿¬È÷ ·±Å¸ÀÓ Àû¿ëÀÌ °¡´ÉÇÑ °ÍÀÌ¾î¾ß ÇÑ´Ù.
+	////		// ì—¬ê¸°ì„œ ì¶”ê°€ë¡œ ì»¨íŠ¸ë¡¤í•˜ëŠ” í•­ëª©ë“¤ì€ ë‹¹ì—°íˆ ëŸ°íƒ€ì„ ì ìš©ì´ ê°€ëŠ¥í•œ ê²ƒì´ì–´ì•¼ í•œë‹¤.
 	////		//
 	////
-	////		// Æ¯È÷ ¿¬Ãâ »óÈ²¿¡¼­´Â Á» ³ôÀÌ´Â °É °í·ÁÇÒ ¼ö ÀÖ´Â ViewDistance ¶û PostProcess..?
-	////		// GameMode override º¸´Ù ³·°Ô °¡Áö´Â ¾Êµµ·Ï ÇÔ.
+	////		// íŠ¹íˆ ì—°ì¶œ ìƒí™©ì—ì„œëŠ” ì¢€ ë†’ì´ëŠ” ê±¸ ê³ ë ¤í•  ìˆ˜ ìˆëŠ” ViewDistance ë‘ PostProcess..?
+	////		// GameMode override ë³´ë‹¤ ë‚®ê²Œ ê°€ì§€ëŠ” ì•Šë„ë¡ í•¨.
 	////		ApplyBladeIIBiasedScalability_ViewDist(UserSelectedLevel, StageEventSettingSection, true);
 	////		ApplyBladeIIBiasedScalability_PostProcess(UserSelectedLevel, StageEventSettingSection, true);
 	////		ApplyBladeIIBiasedScalability_PostProcessExtra(UserSelectedLevel, StageEventSettingSection, true);
 	////
 	////		//
-	////		// GameplayOnlyLODQuality ´Â ¿©±â¼­ Ãß°¡ override ¸¦ ÇÏÁö ¾Ê°í ¾Æ¿¹ ±×°Í ÀÚÃ¼°¡ ¿¬Ãâ¿ë ¼¼ºÎ Ç×¸ñÀÌ ÀÖ´Ù.
-	////		// LOD ·¹º§Àº °ÔÀÓ ±¸Çö ±¸Á¶ »ó ´õ ´Ù¾çÇÑ ÀÌº¥Æ®¸¦ ÅëÇØ µé¾î°¡¾ß ÇØ¼­.
+	////		// GameplayOnlyLODQuality ëŠ” ì—¬ê¸°ì„œ ì¶”ê°€ override ë¥¼ í•˜ì§€ ì•Šê³  ì•„ì˜ˆ ê·¸ê²ƒ ìì²´ê°€ ì—°ì¶œìš© ì„¸ë¶€ í•­ëª©ì´ ìˆë‹¤.
+	////		// LOD ë ˆë²¨ì€ ê²Œì„ êµ¬í˜„ êµ¬ì¡° ìƒ ë” ë‹¤ì–‘í•œ ì´ë²¤íŠ¸ë¥¼ í†µí•´ ë“¤ì–´ê°€ì•¼ í•´ì„œ.
 	////		//
 	////	}
 	////	else
-	////	{ // À¯Àú ¼±ÅÃÀÇ ±âº» »óÈ²À¸·Î µÇµ¹¸². ¸¸ÀÏ ÀÌ·¸°Ô Æ¯º°È÷ scalability ¸¦ Á¶ÀıÇÏ´Â °æ¿ì°¡ ¶Ç »ı±â¸é ÀÌ°É·Î ¾È µÇ°ÚÁö.
+	////	{ // ìœ ì € ì„ íƒì˜ ê¸°ë³¸ ìƒí™©ìœ¼ë¡œ ë˜ëŒë¦¼. ë§Œì¼ ì´ë ‡ê²Œ íŠ¹ë³„íˆ scalability ë¥¼ ì¡°ì ˆí•˜ëŠ” ê²½ìš°ê°€ ë˜ ìƒê¸°ë©´ ì´ê±¸ë¡œ ì•ˆ ë˜ê² ì§€.
 	////		AdjustScalabilityBySavedUserSelection(WorldContextObject);
 	////	}
 	//}
@@ -779,15 +779,15 @@ namespace B2Scalability
 	//	return TEXT("");
 	//}
 	//
-	/** ApplyGameModeSpecificScalabilitySetting ¿À¹ö¶óÀÌµå ÇÑ ÇÔ¼öµéÀº °á±¹ ¸ğµÎ ÀÌ°É ÄİÇÑ´Ù.. ini ¿¡ ÀÚ½Å¿¡ ÇØ´çÇÏ´Â Ç×¸ñ°ú ÇÔ²² */
+	/** ApplyGameModeSpecificScalabilitySetting ì˜¤ë²„ë¼ì´ë“œ í•œ í•¨ìˆ˜ë“¤ì€ ê²°êµ­ ëª¨ë‘ ì´ê±¸ ì½œí•œë‹¤.. ini ì— ìì‹ ì— í•´ë‹¹í•˜ëŠ” í•­ëª©ê³¼ í•¨ê»˜ */
 
 	/************************************************************************/
-	/* EB2GraphicsLevel °ú Scalability °£ÀÇ ¸ÊÇÎÀº Á» º¹ÀâÇÏÁö¸¸
-	EB2FrameLimitLevel ÀÌ³ª EB2ResolutionLevel ÀÇ ¸ÊÇÎÀº º¸´Ù ´Ü¼ø.*/
+	/* EB2GraphicsLevel ê³¼ Scalability ê°„ì˜ ë§µí•‘ì€ ì¢€ ë³µì¡í•˜ì§€ë§Œ
+	EB2FrameLimitLevel ì´ë‚˜ EB2ResolutionLevel ì˜ ë§µí•‘ì€ ë³´ë‹¤ ë‹¨ìˆœ.*/
 	/************************************************************************/
 	IConsoleVariable* GetMappedCVarOfFrameLimitLevel(EB2FrameLimitLevel InRelativeLevel)
 	{
-		// EB2FrameLimitLevel ¿¡ ÇØ´çÇÏ´Â CVar ¸¦ ¿¬°áÇØÁÜ.
+		// EB2FrameLimitLevel ì— í•´ë‹¹í•˜ëŠ” CVar ë¥¼ ì—°ê²°í•´ì¤Œ.
 		IConsoleVariable* FoundCVar = IConsoleManager::Get().FindConsoleVariable
 		(
 			(InRelativeLevel == EB2FrameLimitLevel::High) ? TEXT("r.DefinedMobileFrameLimitQuality_H") : (
@@ -795,22 +795,22 @@ namespace B2Scalability
 				TEXT("r.DefinedMobileFrameLimitQuality_M")
 				)
 		);
-		check(FoundCVar); // ¾øÀ½ ÀÌ¸§ÀÌ ¹Ù²î¾úµçÁö..
+		check(FoundCVar); // ì—†ìŒ ì´ë¦„ì´ ë°”ë€Œì—ˆë“ ì§€..
 		return FoundCVar;
 	}
 
-	/** ÇÁ·¹ÀÓ·ü Á¦ÇÑÀº ±â±â ¼º´É ·¹º§¿¡ µû¶ó Â÷µîÀ» µĞ´Ù.
-	 * DeviceProfile ·Î µé¾î°¡´Â ±âÁØ ¼öÄ¡ ´ëºñÇØ¼­ º¯°æ °¡´ÉÇÑ ÀÎÅÍÆäÀÌ½º¸¦ Á¦°ø.
-	 * ¿¹¸¦ µé¾î °¶·°½ÃS6 °ú S8 µÎ ±â±â¿¡¼­ ¼³Á¤µÈ EB2FrameLimitLevel º¯¼ö°¡ °°´õ¶óµµ ½ÇÁ¦ ÇÁ·¹ÀÓ Á¦ÇÑ ¼öÄ¡´Â ´Ş¶óÁö°Ô µÇ´Â °Í. */
+	/** í”„ë ˆì„ë¥  ì œí•œì€ ê¸°ê¸° ì„±ëŠ¥ ë ˆë²¨ì— ë”°ë¼ ì°¨ë“±ì„ ë‘”ë‹¤.
+	 * DeviceProfile ë¡œ ë“¤ì–´ê°€ëŠ” ê¸°ì¤€ ìˆ˜ì¹˜ ëŒ€ë¹„í•´ì„œ ë³€ê²½ ê°€ëŠ¥í•œ ì¸í„°í˜ì´ìŠ¤ë¥¼ ì œê³µ.
+	 * ì˜ˆë¥¼ ë“¤ì–´ ê°¤ëŸ­ì‹œS6 ê³¼ S8 ë‘ ê¸°ê¸°ì—ì„œ ì„¤ì •ëœ EB2FrameLimitLevel ë³€ìˆ˜ê°€ ê°™ë”ë¼ë„ ì‹¤ì œ í”„ë ˆì„ ì œí•œ ìˆ˜ì¹˜ëŠ” ë‹¬ë¼ì§€ê²Œ ë˜ëŠ” ê²ƒ. */
 	void SetRelativeFrameLimitLevel(EB2FrameLimitLevel InRelativeLevel)
 	{
 		IConsoleVariable* CVarDefinedLevel = GetMappedCVarOfFrameLimitLevel(InRelativeLevel);
 		IConsoleVariable* CVarCurrentLevel = IConsoleManager::Get().FindConsoleVariable(TEXT("r.CurrentMobileFrameLimitLevel"));
 
-		check(CVarDefinedLevel && CVarCurrentLevel); // µÑ Áß ÇÏ³ª°¡ ¾øÀ½ ÀÌ¸§ÀÌ ¹Ù²î¾úµçÁö..
+		check(CVarDefinedLevel && CVarCurrentLevel); // ë‘˜ ì¤‘ í•˜ë‚˜ê°€ ì—†ìŒ ì´ë¦„ì´ ë°”ë€Œì—ˆë“ ì§€..
 		if (CVarDefinedLevel && CVarCurrentLevel)
 		{
-			// DeviceProfile ¿¡ ÀÇÇØ Á¤ÇØÁö´Â ±âÁØ ¼öÄ¡¸¦ ½ÇÁ¦ FrameLimit ¿¡ »ç¿ëµÇ´Â ÄÜ¼Ö º¯¼ö¿¡ Àü´Ş
+			// DeviceProfile ì— ì˜í•´ ì •í•´ì§€ëŠ” ê¸°ì¤€ ìˆ˜ì¹˜ë¥¼ ì‹¤ì œ FrameLimit ì— ì‚¬ìš©ë˜ëŠ” ì½˜ì†” ë³€ìˆ˜ì— ì „ë‹¬
 			CVarCurrentLevel->Set(CVarDefinedLevel->GetInt());
 		}
 
@@ -818,14 +818,14 @@ namespace B2Scalability
 
 	EB2FrameLimitLevel GetRelativeFrameLimitLevelInternal(int32 CheckFrameLimitLevel)
 	{
-		IConsoleVariable* CVarDefinedLevel = GetMappedCVarOfFrameLimitLevel(EB2FrameLimitLevel::Mid); // Mid ¸¦ ±âÁØÀ¸·Î.
+		IConsoleVariable* CVarDefinedLevel = GetMappedCVarOfFrameLimitLevel(EB2FrameLimitLevel::Mid); // Mid ë¥¼ ê¸°ì¤€ìœ¼ë¡œ.
 		check(CVarDefinedLevel);
 		if (CVarDefinedLevel)
 		{
 			const int32 DefinedLevelInt = CVarDefinedLevel->GetInt();
 
-			// ¼³Á¤¿¡ µû¶ó DefinedMobileFrameLimitQuality ÀÇ L ÀÌ³ª H ¸¦ M °ú µ¿ÀÏÇÑ °ªÀ¸·Î ³õ°Ô µÉ ¼öµµ ÀÖ´Âµ¥ ¿©ÇÏ°£ Mid ·Î ºÁ¾ß ÇÒ °Í.
-			// ±×·± °æ¿ì´Â ¾Ö½Ã´çÃÊ ÇØ´ç ·¹º§¿¡ ´ëÇÑ ¼±ÅÃÀÌ Á¦°øµÇÁö ¾Ê¾Æ¾ß..
+			// ì„¤ì •ì— ë”°ë¼ DefinedMobileFrameLimitQuality ì˜ L ì´ë‚˜ H ë¥¼ M ê³¼ ë™ì¼í•œ ê°’ìœ¼ë¡œ ë†“ê²Œ ë  ìˆ˜ë„ ìˆëŠ”ë° ì—¬í•˜ê°„ Mid ë¡œ ë´ì•¼ í•  ê²ƒ.
+			// ê·¸ëŸ° ê²½ìš°ëŠ” ì• ì‹œë‹¹ì´ˆ í•´ë‹¹ ë ˆë²¨ì— ëŒ€í•œ ì„ íƒì´ ì œê³µë˜ì§€ ì•Šì•„ì•¼..
 			return (CheckFrameLimitLevel > DefinedLevelInt) ? EB2FrameLimitLevel::High
 				: ((CheckFrameLimitLevel < DefinedLevelInt) ? EB2FrameLimitLevel::Low : EB2FrameLimitLevel::Mid);
 
@@ -835,7 +835,7 @@ namespace B2Scalability
 	EB2FrameLimitLevel GetCurrentRelativeFrameLimitLevel()
 	{
 		IConsoleVariable* CVarCurrentLevel = IConsoleManager::Get().FindConsoleVariable(TEXT("r.CurrentMobileFrameLimitLevel"));
-		check(CVarCurrentLevel); // ¾øÀ½ ÀÌ¸§ÀÌ ¹Ù²î¾úµçÁö..
+		check(CVarCurrentLevel); // ì—†ìŒ ì´ë¦„ì´ ë°”ë€Œì—ˆë“ ì§€..
 		if (CVarCurrentLevel)
 		{
 			return GetRelativeFrameLimitLevelInternal(CVarCurrentLevel->GetInt());
@@ -845,7 +845,7 @@ namespace B2Scalability
 	EB2FrameLimitLevel GetDefaultRelativeFrameLimitLevel()
 	{
 		IConsoleVariable* CVarDefaultLevel = IConsoleManager::Get().FindConsoleVariable(TEXT("r.DefinedMobileFrameLimitQuality_Default"));
-		check(CVarDefaultLevel); // ¾øÀ½ ÀÌ¸§ÀÌ ¹Ù²î¾úµçÁö..
+		check(CVarDefaultLevel); // ì—†ìŒ ì´ë¦„ì´ ë°”ë€Œì—ˆë“ ì§€..
 		if (CVarDefaultLevel)
 		{
 			return GetRelativeFrameLimitLevelInternal(CVarDefaultLevel->GetInt());
@@ -855,30 +855,30 @@ namespace B2Scalability
 
 	bool IsRelativeFrameLimitLevelAvailable(EB2FrameLimitLevel InCheckLevel)
 	{
-		// ÇöÀç ¼³Á¤À¸·Î º¼ ¶§¿¡ EB2FrameLimitLevel ÀÇ Æ¯Á¤ °ªÀ¸·ÎÀÇ ¼¼ÆÃÀÌ °¡´ÉÇÑÁö Ã¼Å©ÇÏ´Â °Å.
-		// ºÒ°¡´ÉÇÏ´Ù¸é ±× °ª¿¡ ´ëÇÑ SetRelativeFrameLimitLevel ÀÌ »ç½Ç»ó ¾È ¸ÔÈ÷°ÚÁö..
+		// í˜„ì¬ ì„¤ì •ìœ¼ë¡œ ë³¼ ë•Œì— EB2FrameLimitLevel ì˜ íŠ¹ì • ê°’ìœ¼ë¡œì˜ ì„¸íŒ…ì´ ê°€ëŠ¥í•œì§€ ì²´í¬í•˜ëŠ” ê±°.
+		// ë¶ˆê°€ëŠ¥í•˜ë‹¤ë©´ ê·¸ ê°’ì— ëŒ€í•œ SetRelativeFrameLimitLevel ì´ ì‚¬ì‹¤ìƒ ì•ˆ ë¨¹íˆê² ì§€..
 
 		if (InCheckLevel == EB2FrameLimitLevel::Mid)
 		{
-			return true; // ¿øÄ¢ÀûÀ¸·Î Mid ´Â ¿©±â¼­ Ã¼Å©ÇÏ´Â ±âÁØÀÌ µÇ°í µû¶ó¼­ ¹«Á¶°Ç true.
+			return true; // ì›ì¹™ì ìœ¼ë¡œ Mid ëŠ” ì—¬ê¸°ì„œ ì²´í¬í•˜ëŠ” ê¸°ì¤€ì´ ë˜ê³  ë”°ë¼ì„œ ë¬´ì¡°ê±´ true.
 		}
 
 		IConsoleVariable* CVarMidLevel = GetMappedCVarOfFrameLimitLevel(EB2FrameLimitLevel::Mid);
 		IConsoleVariable* CVarCheckLevel = GetMappedCVarOfFrameLimitLevel(InCheckLevel);
-		check(CVarMidLevel && CVarCheckLevel); // ¾øÀ½ ÀÌ¸§ÀÌ ¹Ù²î¾úµçÁö..
+		check(CVarMidLevel && CVarCheckLevel); // ì—†ìŒ ì´ë¦„ì´ ë°”ë€Œì—ˆë“ ì§€..
 		if (CVarMidLevel && CVarCheckLevel)
 		{
 			if (
 				InCheckLevel == EB2FrameLimitLevel::High &&
-				CVarCheckLevel->GetInt() > CVarMidLevel->GetInt() // High ¿¡ ´ëÇÑ ¼¼ÆÃÀÌ Mid º¸´Ù ³ô¾Æ¾ß ±×ÂÊÀ¸·ÎÀÇ ¼¼ÆÃÀÌ Áö¿øµÇ´Â °ÍÀ¸·Î º»´Ù.
+				CVarCheckLevel->GetInt() > CVarMidLevel->GetInt() // High ì— ëŒ€í•œ ì„¸íŒ…ì´ Mid ë³´ë‹¤ ë†’ì•„ì•¼ ê·¸ìª½ìœ¼ë¡œì˜ ì„¸íŒ…ì´ ì§€ì›ë˜ëŠ” ê²ƒìœ¼ë¡œ ë³¸ë‹¤.
 				)
 			{
 				return true;
 			}
 			else if (
 				InCheckLevel == EB2FrameLimitLevel::Low &&
-				CVarCheckLevel->GetInt() < CVarMidLevel->GetInt() && // Low ¿¡ ´ëÇÑ ¼¼ÆÃÀÌ Mid º¸´Ù ³·¾Æ¾ß ±×ÂÊÀ¸·ÎÀÇ ¼¼ÆÃÀÌ Áö¿øµÇ´Â °ÍÀ¸·Î º»´Ù.
-				CVarCheckLevel->GetInt() >= 0 // ´Ü, ¿©±â¼­´Â Á¶°ÇÀÌ ÇÏ³ª ´õ ÀÖ´Âµ¥ 0 º¸´Ù ³·¾Æ¼­´Â ¾È µÇ°ÚÁö.
+				CVarCheckLevel->GetInt() < CVarMidLevel->GetInt() && // Low ì— ëŒ€í•œ ì„¸íŒ…ì´ Mid ë³´ë‹¤ ë‚®ì•„ì•¼ ê·¸ìª½ìœ¼ë¡œì˜ ì„¸íŒ…ì´ ì§€ì›ë˜ëŠ” ê²ƒìœ¼ë¡œ ë³¸ë‹¤.
+				CVarCheckLevel->GetInt() >= 0 // ë‹¨, ì—¬ê¸°ì„œëŠ” ì¡°ê±´ì´ í•˜ë‚˜ ë” ìˆëŠ”ë° 0 ë³´ë‹¤ ë‚®ì•„ì„œëŠ” ì•ˆ ë˜ê² ì§€.
 				)
 			{
 				return true;
@@ -889,7 +889,7 @@ namespace B2Scalability
 
 	IConsoleVariable* GetMappedCVarOfResolutionLevel(EB2ResolutionLevel InLevel)
 	{
-		// EB2FrameLimitLevel ¿¡ ÇØ´çÇÏ´Â CVar ¸¦ ¿¬°áÇØÁÜ.
+		// EB2FrameLimitLevel ì— í•´ë‹¹í•˜ëŠ” CVar ë¥¼ ì—°ê²°í•´ì¤Œ.
 		IConsoleVariable* FoundCVar = IConsoleManager::Get().FindConsoleVariable
 		(
 			(InLevel == EB2ResolutionLevel::High) ? TEXT("r.AllowedGameRQType_H") : (
@@ -897,7 +897,7 @@ namespace B2Scalability
 				TEXT("r.AllowedGameRQType_M")
 				)
 		);
-		check(FoundCVar); // ¾øÀ½ ÀÌ¸§ÀÌ ¹Ù²î¾úµçÁö..
+		check(FoundCVar); // ì—†ìŒ ì´ë¦„ì´ ë°”ë€Œì—ˆë“ ì§€..
 		return FoundCVar;
 	}
 	EB2GraphicsRQType GetMappedRQTypeOfResolutionLevel(EB2ResolutionLevel InLevel)
@@ -914,7 +914,7 @@ namespace B2Scalability
 		EB2GraphicsRQType SimpleMappedRQType = GetMappedRQTypeOfResolutionLevel(InLevel);
 
 #if PLATFORM_ANDROID
-		// µğ¹ÙÀÌ½º È¯°æ ¼³Á¤¿¡ µû¶ó Á» ´Ù¸£°Ô ¾²·Á´Â °Ô ÀÖ¾î¼­.. Safe ¶ó±âº¸´Ù´Â ¾µµ¥¾ø´Â °Å ´ëÃ¼ Â÷¿ø.
+		// ë””ë°”ì´ìŠ¤ í™˜ê²½ ì„¤ì •ì— ë”°ë¼ ì¢€ ë‹¤ë¥´ê²Œ ì“°ë ¤ëŠ” ê²Œ ìˆì–´ì„œ.. Safe ë¼ê¸°ë³´ë‹¤ëŠ” ì“¸ë°ì—†ëŠ” ê±° ëŒ€ì²´ ì°¨ì›.
 		IConsoleVariable* AndroidWindowSizeXCvar = IConsoleManager::Get().FindConsoleVariable(TEXT("r.DetectedAndroidDeviceWindowSizeX"));
 		IConsoleVariable* AndroidWindowSizeYCvar = IConsoleManager::Get().FindConsoleVariable(TEXT("r.DetectedAndroidDeviceWindowSizeY"));
 		check(AndroidWindowSizeXCvar && AndroidWindowSizeYCvar);
@@ -922,13 +922,13 @@ namespace B2Scalability
 			AndroidWindowSizeXCvar && AndroidWindowSizeYCvar &&
 			AndroidWindowSizeXCvar->GetInt() > 0 && AndroidWindowSizeYCvar->GetInt() > 0)
 		{
-			// Ç¥ÁØ ÇØ»óµµ¸¦ ³ÑÁö ¸øÇÏ´Â È­¸éÀÌ¸é MobileContentScaleFactor ¸¦ ½á¼­ ÀÌµæÀÌ µÉ °Ô ¾ø´Ù.
-			// Ç¥ÁØ ÇØ»óµµ¸¦ ³Ñ´Â´Ù°í ÇØµµ ½â ³ôÁö ¾ÊÀ¸¸é ¿ª½Ã³ª ±×´ÙÁö..
+			// í‘œì¤€ í•´ìƒë„ë¥¼ ë„˜ì§€ ëª»í•˜ëŠ” í™”ë©´ì´ë©´ MobileContentScaleFactor ë¥¼ ì¨ì„œ ì´ë“ì´ ë  ê²Œ ì—†ë‹¤.
+			// í‘œì¤€ í•´ìƒë„ë¥¼ ë„˜ëŠ”ë‹¤ê³  í•´ë„ ì© ë†’ì§€ ì•Šìœ¼ë©´ ì—­ì‹œë‚˜ ê·¸ë‹¤ì§€..
 
-			// ¿ø·¡ Á¤ÀÇµÈ ½ºÄÉÀÏ °ª.. ÀÌ °ªÀ¸·Î ÀÌµæÀ» º¼ ¸¸ÇÑ ÇØ»óµµÀÎÁö Ã¼Å©
-			// IOS ¸é ¾Æ´Ò ¼ö ÀÖÁö¸¸ Android ¸é ÀÌ °ªÀÌ ±×´ë·Î MCSF ¿¡ µé¾î°£´Ù°í ºÁµµ ¹«¹æÇÒ µí.
+			// ì›ë˜ ì •ì˜ëœ ìŠ¤ì¼€ì¼ ê°’.. ì´ ê°’ìœ¼ë¡œ ì´ë“ì„ ë³¼ ë§Œí•œ í•´ìƒë„ì¸ì§€ ì²´í¬
+			// IOS ë©´ ì•„ë‹ ìˆ˜ ìˆì§€ë§Œ Android ë©´ ì´ ê°’ì´ ê·¸ëŒ€ë¡œ MCSF ì— ë“¤ì–´ê°„ë‹¤ê³  ë´ë„ ë¬´ë°©í•  ë“¯.
 			const float DefinedContentScaleValue = GetContentScaleRQTypeScaleValue(SimpleMappedRQType);
-			// ±âÁØ ÇØ»óµµ¿¡¼­ ÀÌ ¹è¼ö¸¸Å­ Å©¸é ContentScale À» Àû¿ëÇÏ±â ÃæºĞÇÑ »çÀÌÁî¶ó°í ÆÇ´ÜÇÏ´Â °Å.
+			// ê¸°ì¤€ í•´ìƒë„ì—ì„œ ì´ ë°°ìˆ˜ë§Œí¼ í¬ë©´ ContentScale ì„ ì ìš©í•˜ê¸° ì¶©ë¶„í•œ ì‚¬ì´ì¦ˆë¼ê³  íŒë‹¨í•˜ëŠ” ê±°.
 			const float BigEnoughScreenSizeScale = 1.0f + ((DefinedContentScaleValue - 1.0f) * 0.5f);
 			const int32 BigEnoughScreenSizeX = (int32)(1280.0f * BigEnoughScreenSizeScale);
 			const int32 BigEnoughScreenSizeY = (int32)(720.0f * BigEnoughScreenSizeScale);
@@ -956,8 +956,8 @@ namespace B2Scalability
 	}
 	EB2ResolutionLevel GetResolutionLevelOfRQType(EB2GraphicsRQType InRQType)
 	{
-		// Á¤È®È÷ EB2ResolutionLevel Áß ÇÏ³ª¿¡ ¸ÊÇÎµÇÁö ¾Ê´Â RQType ÀÌ µé¾î¿Ã °¡´É¼ºÀ» »ı°¢ÇØ¼­.. 
-		// ¿©±âµµ FrameLimitLevel Ã³·³ enum Ç×¸ñ ¼ıÀÚ Å©±â·Î º¸´Ù ³ôÀº ¼³Á¤¿ëÀÎÁö¸¦ ÆÇ´ÜÇÑ´Ù.
+		// ì •í™•íˆ EB2ResolutionLevel ì¤‘ í•˜ë‚˜ì— ë§µí•‘ë˜ì§€ ì•ŠëŠ” RQType ì´ ë“¤ì–´ì˜¬ ê°€ëŠ¥ì„±ì„ ìƒê°í•´ì„œ.. 
+		// ì—¬ê¸°ë„ FrameLimitLevel ì²˜ëŸ¼ enum í•­ëª© ìˆ«ì í¬ê¸°ë¡œ ë³´ë‹¤ ë†’ì€ ì„¤ì •ìš©ì¸ì§€ë¥¼ íŒë‹¨í•œë‹¤.
 
 		IConsoleVariable* CVarDefinedHighLevelRQ = GetMappedCVarOfResolutionLevel(EB2ResolutionLevel::High);
 		IConsoleVariable* CVarDefinedMidLevelRQ = GetMappedCVarOfResolutionLevel(EB2ResolutionLevel::Mid);
@@ -968,18 +968,18 @@ namespace B2Scalability
 			const int32 DefinedHighLevelRQInt = CVarDefinedHighLevelRQ->GetInt();
 			const int32 DefinedMidLevelRQInt = CVarDefinedMidLevelRQ->GetInt();
 			const int32 DefinedLowLevelRQInt = CVarDefinedLowLevelRQ->GetInt();
-			// High == Mid, Mid == Low ÀÏ ¼ö´Â ÀÖÁö¸¸ Àû¾îµµ High > Low ¿©¾ß.
+			// High == Mid, Mid == Low ì¼ ìˆ˜ëŠ” ìˆì§€ë§Œ ì ì–´ë„ High > Low ì—¬ì•¼.
 			check(DefinedHighLevelRQInt > DefinedLowLevelRQInt);
 
 			const int32 CheckRQTypeInt = static_cast<int32>(InRQType);
 
-			// High == Mid °Å³ª Mid == Low ÀÎ °æ¿ì Mid °¡ ¿ì¼±¼øÀ§ÀÌ¹Ç·Î Mid °ª°ú °°ÀºÁö ¸ÕÀú °Ë»ç
+			// High == Mid ê±°ë‚˜ Mid == Low ì¸ ê²½ìš° Mid ê°€ ìš°ì„ ìˆœìœ„ì´ë¯€ë¡œ Mid ê°’ê³¼ ê°™ì€ì§€ ë¨¼ì € ê²€ì‚¬
 			if (CheckRQTypeInt == DefinedMidLevelRQInt)
 			{
 				return EB2ResolutionLevel::Mid;
 			}
 
-			// High ÀÌ»óÀÇ ¼öÄ¡´Â High ·Î, Low ÀÌÇÏÀÇ ¼öÄ¡´Â Low ·Î, ±× ¿Ü¿¡´Â Mid ·Î °£ÁÖ
+			// High ì´ìƒì˜ ìˆ˜ì¹˜ëŠ” High ë¡œ, Low ì´í•˜ì˜ ìˆ˜ì¹˜ëŠ” Low ë¡œ, ê·¸ ì™¸ì—ëŠ” Mid ë¡œ ê°„ì£¼
 			return (CheckRQTypeInt >= DefinedHighLevelRQInt) ? EB2ResolutionLevel::High
 				: ((CheckRQTypeInt <= DefinedLowLevelRQInt) ? EB2ResolutionLevel::Low : EB2ResolutionLevel::Mid);
 		}
@@ -989,13 +989,13 @@ namespace B2Scalability
 	{
 		if (InCheckLevel == EB2ResolutionLevel::Mid)
 		{
-			return true; // ±âÁØ°ª. ¹«Á¶°Ç true.
+			return true; // ê¸°ì¤€ê°’. ë¬´ì¡°ê±´ true.
 		}
 
 		const int32 MidRQLevelInt = static_cast<int32>(GetMappedRQTypeOfResolutionLevel(EB2ResolutionLevel::Mid));
 		const int32 CheckRQLevelInt = static_cast<int32>(GetMappedRQTypeOfResolutionLevel(InCheckLevel));
 
-		// ¿©±âµµ RQType ÀÇ ¼ıÀÚ Å©±â¿¡ µû¶ó ³ôÀº ¼³Á¤ È¤Àº ³·Àº ¼³Á¤À¸·Î °£ÁÖÇÏ´Â °Í.
+		// ì—¬ê¸°ë„ RQType ì˜ ìˆ«ì í¬ê¸°ì— ë”°ë¼ ë†’ì€ ì„¤ì • í˜¹ì€ ë‚®ì€ ì„¤ì •ìœ¼ë¡œ ê°„ì£¼í•˜ëŠ” ê²ƒ.
 		if (InCheckLevel == EB2ResolutionLevel::High)
 		{
 			return (CheckRQLevelInt > MidRQLevelInt);
@@ -1005,21 +1005,21 @@ namespace B2Scalability
 			return (CheckRQLevelInt < MidRQLevelInt);
 		}
 
-		check(0); // ÀÌ¿Ü¿¡ EB2ResolutionLevel ¿¡ Ãß°¡µÈ °Ô ÀÖ´Âµ¥ ´ëÃ³¸¦ ¾ÈÇß´Ù¸é °É¸®°ÚÁö.
+		check(0); // ì´ì™¸ì— EB2ResolutionLevel ì— ì¶”ê°€ëœ ê²Œ ìˆëŠ”ë° ëŒ€ì²˜ë¥¼ ì•ˆí–ˆë‹¤ë©´ ê±¸ë¦¬ê² ì§€.
 		return false;
 	}
 
 	bool DoesRQTypeRequiresAppRestart(EB2GraphicsRQType InCheckRQType)
 	{
-		check(InitialRQTypeOfAppStart != EB2GraphicsRQType::End); // ¾Æ´Ï¸é ¾ÆÁ÷ ÃÊ±âÈ­ ¾È µÈ »óÅÂ¿¡¼­ ºÒ¸° °Å.
+		check(InitialRQTypeOfAppStart != EB2GraphicsRQType::End); // ì•„ë‹ˆë©´ ì•„ì§ ì´ˆê¸°í™” ì•ˆ ëœ ìƒíƒœì—ì„œ ë¶ˆë¦° ê±°.
 		if (InitialRQTypeOfAppStart != EB2GraphicsRQType::End)
 		{
 			const bool bInitialRQTypeMCSF = IsRQTypeOneOfExtraContentScale(InitialRQTypeOfAppStart);
 			const bool bCheckRQTypeMCSF = IsRQTypeOneOfExtraContentScale(InCheckRQType);
-			// ¾Û ½ÃÀÛÇÒ ¶§ÀÇ Ã¹ °ª°ú ºñ±³½Ã..
+			// ì•± ì‹œì‘í•  ë•Œì˜ ì²« ê°’ê³¼ ë¹„êµì‹œ..
 			if (
-				(bInitialRQTypeMCSF != bCheckRQTypeMCSF) || // MCSF ¸¦ Á¶ÀıÇÏ´Â °Í°ú ¾Æ´Ñ °Í »çÀÌÀÇ º¯È¯ÀÌ°Å³ª
-				(bInitialRQTypeMCSF && bCheckRQTypeMCSF && InitialRQTypeOfAppStart != InCheckRQType) // µÑ ´Ù MCSF Á¶ÀıÀÎµ¥ ´Ù¸£°Å³ª
+				(bInitialRQTypeMCSF != bCheckRQTypeMCSF) || // MCSF ë¥¼ ì¡°ì ˆí•˜ëŠ” ê²ƒê³¼ ì•„ë‹Œ ê²ƒ ì‚¬ì´ì˜ ë³€í™˜ì´ê±°ë‚˜
+				(bInitialRQTypeMCSF && bCheckRQTypeMCSF && InitialRQTypeOfAppStart != InCheckRQType) // ë‘˜ ë‹¤ MCSF ì¡°ì ˆì¸ë° ë‹¤ë¥´ê±°ë‚˜
 				)
 			{
 				return true;
@@ -1039,7 +1039,7 @@ namespace B2Scalability
 void ApplyGameModeSpecificScalabilitySetting_OverrideCommon(ABladeIIGameMode* InB2GM, EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
 {
 	//#if !UE_BUILD_SHIPPING
-	//	if (!B2Scalability::bUseBladeIIScalabilityOverride) { // Å×½ºÆ® ¿ëÀ¸·Î °ÔÀÓ¸ğµå¿¡ µû¸¥ override ²ø ¼ö ÀÖµµ·Ï
+	//	if (!B2Scalability::bUseBladeIIScalabilityOverride) { // í…ŒìŠ¤íŠ¸ ìš©ìœ¼ë¡œ ê²Œì„ëª¨ë“œì— ë”°ë¥¸ override ëŒ ìˆ˜ ìˆë„ë¡
 	//		return;
 	//	}
 	//#endif
@@ -1049,16 +1049,16 @@ void ApplyGameModeSpecificScalabilitySetting_OverrideCommon(ABladeIIGameMode* In
 	//	}
 	//
 	//	EB2GraphicsLevel UsedGraphicsLevel = InSelectedGraphicsLevel;
-	//	if (UsedGraphicsLevel == EB2GraphicsLevel::GraphicsLevel_End) // ÁöÁ¤ÇÏÁö ¾ÊÀº °æ¿ì UI ¼³Á¤¿¡ µû¶ó ini ÀúÀåµÈ °ª »ç¿ë.
+	//	if (UsedGraphicsLevel == EB2GraphicsLevel::GraphicsLevel_End) // ì§€ì •í•˜ì§€ ì•Šì€ ê²½ìš° UI ì„¤ì •ì— ë”°ë¼ ini ì €ì¥ëœ ê°’ ì‚¬ìš©.
 	//	{
 	//		int32 SavedGraphicsLevel = B2GraphicsLevelToInt(EB2GraphicsLevel::GraphicsLevel_HIGH);
-	//		// ÀÌ ÀÌÀü¿¡ GameSetting °ª ÃÊ±âÈ­°¡ ¾È µÇ¾î ÀÖÀ¸¸é ¿©±â¼­ override ÇÑ scalability °¡ ¾Æ´Ñ DeviceProfile ¿¡ ÀÇÇØ Á¤ÇØÁø scalability ·Î GraphicsLevel À» ¼¼ÆÃÇÏ°Ô µÉ °Í.
+	//		// ì´ ì´ì „ì— GameSetting ê°’ ì´ˆê¸°í™”ê°€ ì•ˆ ë˜ì–´ ìˆìœ¼ë©´ ì—¬ê¸°ì„œ override í•œ scalability ê°€ ì•„ë‹Œ DeviceProfile ì— ì˜í•´ ì •í•´ì§„ scalability ë¡œ GraphicsLevel ì„ ì„¸íŒ…í•˜ê²Œ ë  ê²ƒ.
 	//		LoadGameSetting_Graphics_OrByDefault(SavedGraphicsLevel);		
 	//		UsedGraphicsLevel = IntToB2GraphicsLevel(SavedGraphicsLevel);
 	//	}
 	//
 	//	EB2ResolutionLevel UsedResLevel = InSelectedResLevel;
-	//	if (UsedResLevel == EB2ResolutionLevel::End) // ¸¶Âù°¡Áö·Î ÁöÁ¤ÇÏÁö ¾ÊÀº °æ¿ì.. ini ÀúÀåµÈ °ªÀ¸·Î
+	//	if (UsedResLevel == EB2ResolutionLevel::End) // ë§ˆì°¬ê°€ì§€ë¡œ ì§€ì •í•˜ì§€ ì•Šì€ ê²½ìš°.. ini ì €ì¥ëœ ê°’ìœ¼ë¡œ
 	//	{
 	//		int32 SavedResLevel = B2ResolutionLevelToInt(EB2ResolutionLevel::Mid);
 	//		LoadGameSetting_Resolution_OrByDefault(SavedResLevel);
@@ -1066,7 +1066,7 @@ void ApplyGameModeSpecificScalabilitySetting_OverrideCommon(ABladeIIGameMode* In
 	//	}
 	//	
 	//	//
-	//	// ¿©±â¼­ Ãß°¡·Î ÄÁÆ®·ÑÇÏ´Â Ç×¸ñµéÀº ´ç¿¬È÷ ·±Å¸ÀÓ Àû¿ëÀÌ °¡´ÉÇÑ °ÍÀÌ¾î¾ß ÇÑ´Ù.
+	//	// ì—¬ê¸°ì„œ ì¶”ê°€ë¡œ ì»¨íŠ¸ë¡¤í•˜ëŠ” í•­ëª©ë“¤ì€ ë‹¹ì—°íˆ ëŸ°íƒ€ì„ ì ìš©ì´ ê°€ëŠ¥í•œ ê²ƒì´ì–´ì•¼ í•œë‹¤.
 	//	//
 	//		
 	//	const FString& DesiredSectionName = GetScalabilitySectionNamePerGM(InB2GM);
@@ -1082,23 +1082,23 @@ void ApplyGameModeSpecificScalabilitySetting_OverrideCommon(ABladeIIGameMode* In
 }
 
 /************************************************************************
-°ÔÀÓ ¸ğµå º° Scalability ¼³Á¤ ÀÎÅÍÆäÀÌ½º ±¸ÇöÀ» °ü¸®ÇÏ±â ÁÁ°Ô ¿©±â¿¡ ¸ô¾Æ³ÖÀ½.
+ê²Œì„ ëª¨ë“œ ë³„ Scalability ì„¤ì • ì¸í„°í˜ì´ìŠ¤ êµ¬í˜„ì„ ê´€ë¦¬í•˜ê¸° ì¢‹ê²Œ ì—¬ê¸°ì— ëª°ì•„ë„£ìŒ.
 ************************************************************************/
 
 void ABladeIIGameMode::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
 {
 	
-	// ¿©±ä Override ¸¦ ÇÏÁö ¾Ê¾ÒÀ» ¶§ÀÇ ±âº» ±¸ÇöÀ¸·Î °¡Àå ±âº»°ªÀ¸·Î µ¹¾Æ°¥ ¼ö ÀÖµµ·Ï ÇÑ´Ù. 
+	// ì—¬ê¸´ Override ë¥¼ í•˜ì§€ ì•Šì•˜ì„ ë•Œì˜ ê¸°ë³¸ êµ¬í˜„ìœ¼ë¡œ ê°€ì¥ ê¸°ë³¸ê°’ìœ¼ë¡œ ëŒì•„ê°ˆ ìˆ˜ ìˆë„ë¡ í•œë‹¤. 
 	//
 
-	// ApplyGameModeSpecificScalabilitySetting À» µû·Î Override ÇÏÁö ¾ÊÀ¸¸é AdjustScalabilityBySelectedLevel ¸¦ ±×´ë·Î »ç¿ëÇÑ °Í°ú ¸¶Âù°¡Áö°¡ µÇµµ·Ï.
+	// ApplyGameModeSpecificScalabilitySetting ì„ ë”°ë¡œ Override í•˜ì§€ ì•Šìœ¼ë©´ AdjustScalabilityBySelectedLevel ë¥¼ ê·¸ëŒ€ë¡œ ì‚¬ìš©í•œ ê²ƒê³¼ ë§ˆì°¬ê°€ì§€ê°€ ë˜ë„ë¡.
 
 	//EB2GraphicsLevel UsedGraphicsLevel = InSelectedGraphicsLevel;
-	//if (UsedGraphicsLevel == EB2GraphicsLevel::GraphicsLevel_End) // ÁöÁ¤ÇÏÁö ¾ÊÀº °æ¿ì UI ¼³Á¤¿¡ µû¶ó ini ÀúÀåµÈ °ª »ç¿ë.
+	//if (UsedGraphicsLevel == EB2GraphicsLevel::GraphicsLevel_End) // ì§€ì •í•˜ì§€ ì•Šì€ ê²½ìš° UI ì„¤ì •ì— ë”°ë¼ ini ì €ì¥ëœ ê°’ ì‚¬ìš©.
 	//{
 	//	int32 SavedGraphicsLevel = B2GraphicsLevelToInt(EB2GraphicsLevel::GraphicsLevel_HIGH);
 	//	bool bSettingLoaded = LoadGameSetting_Graphics_OrByDefault(SavedGraphicsLevel);
-	//	// ÀÌ ÀÌÀü¿¡ GameSetting °ª ÃÊ±âÈ­°¡ ¾È µÇ¾î ÀÖ´Ù°í ÇØµµ ¿©±â¼± ±âº» scalability ·Î µ¹·Á³õÀ¸´Ï ¹®Á¦´Â ¾ø°ÚÁö¸¸ ±×·¡µµ ¹Ù¶÷Á÷ÇÑ »óÈ²Àº ¾Æ´ÏÁö.
+	//	// ì´ ì´ì „ì— GameSetting ê°’ ì´ˆê¸°í™”ê°€ ì•ˆ ë˜ì–´ ìˆë‹¤ê³  í•´ë„ ì—¬ê¸°ì„  ê¸°ë³¸ scalability ë¡œ ëŒë ¤ë†“ìœ¼ë‹ˆ ë¬¸ì œëŠ” ì—†ê² ì§€ë§Œ ê·¸ë˜ë„ ë°”ëŒì§í•œ ìƒí™©ì€ ì•„ë‹ˆì§€.
 	//	check(bSettingLoaded);
 	//	UsedGraphicsLevel = IntToB2GraphicsLevel(SavedGraphicsLevel);
 	//}
@@ -1135,7 +1135,7 @@ void ABladeIIGameMode::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel 
 	//}
 	//{
 	//	float DesiredScalabilityLevel = B2Scalability::GetResolutionScaleOfGraphicsLevel(UsedGraphicsLevel);
-	//	// ¸ğµåº° override °¡ ¾Æ´Ï´õ¶óµµ RQType ¿¡ µû¸¥ Ãß°¡ Á¶ÀıÀº ÇÊ¿ä.
+	//	// ëª¨ë“œë³„ override ê°€ ì•„ë‹ˆë”ë¼ë„ RQType ì— ë”°ë¥¸ ì¶”ê°€ ì¡°ì ˆì€ í•„ìš”.
 	//	B2Scalability::AdjustResolutionQualityByRQType(B2Scalability::GetSafeMappedRQTypeOfResolutionLevel(InSelectedResLevel), DesiredScalabilityLevel);
 	//	if (Scalability::GetQualityLevels_Resolution() != DesiredScalabilityLevel) {
 	//		Scalability::SetQualityLevels_Resolution(DesiredScalabilityLevel);
@@ -1156,7 +1156,7 @@ void ABladeIIGameMode::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel 
 }
 FString ABladeIIGameMode::GetGameModeScalabilitySettingSectionPostfix() const
 {
-	return FString(TEXT("ABladeIIGameMode")); // °ÔÀÓ¸ğµå ÀÌ¸§ ±×´ë·Î ¸®ÅÏÇÏ´Âµ¥ Class GetName ÇÏ´Ï±î °á±¹ Blueprint Å¬·¡½º ÀÌ¸§ÀÌ ³ª¿Í¼­ ÀÌ·¸°Ô.. ¤Ñ¤Ñ
+	return FString(TEXT("ABladeIIGameMode")); // ê²Œì„ëª¨ë“œ ì´ë¦„ ê·¸ëŒ€ë¡œ ë¦¬í„´í•˜ëŠ”ë° Class GetName í•˜ë‹ˆê¹Œ ê²°êµ­ Blueprint í´ë˜ìŠ¤ ì´ë¦„ì´ ë‚˜ì™€ì„œ ì´ë ‡ê²Œ.. ã…¡ã…¡
 }
 
 void AB2LobbyGameMode::ApplyGameModeSpecificScalabilitySetting(EB2GraphicsLevel InSelectedGraphicsLevel, EB2ResolutionLevel InSelectedResLevel)
@@ -1251,25 +1251,25 @@ FString AB2PreRenderGameMode::GetGameModeScalabilitySettingSectionPostfix() cons
 
 
 /************************************************************************
-±âÅ¸ Scalability ¿Í °ü·ÃÀÖ´Â º¯¼ö³ª À¯Æ¿µé..
+ê¸°íƒ€ Scalability ì™€ ê´€ë ¨ìˆëŠ” ë³€ìˆ˜ë‚˜ ìœ í‹¸ë“¤..
 ************************************************************************/
 
 static TAutoConsoleVariable<float> CVarB2CameraDistanceAlpha(
 	TEXT("r.B2CameraDistanceAlpha"),
 	1.0f,
 	TEXT("Expected to be in 0.0 ~ 1.0 range, it adjusts the amount of extra camera distance being applied to CameraBoomArmLength.\n"),
-	ECVF_Scalability /* ²À Scalability ÄÁÆ®·ÑÀ» ÇÏÁö ¾Ê´õ¶óµµ ±×·² ¿©Áö¸¦ ³²°ÜµÒ. */
+	ECVF_Scalability /* ê¼­ Scalability ì»¨íŠ¸ë¡¤ì„ í•˜ì§€ ì•Šë”ë¼ë„ ê·¸ëŸ´ ì—¬ì§€ë¥¼ ë‚¨ê²¨ë‘ . */
 );
 #if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
 float GDevTestCameraDistanceScale = -1.0f;
 #endif
 float GetExtraAppliedCameraDistance(float InBaseLength, float InExtraLength)
-{ // °£´ÜÇÑ ÄÚµåÀÌÁö¸¸ ºĞ»êµÇ¾î ÀÖ´Â ¼¼ÆÃµéÀ» Àû¿ëÇÒ ¶§ ¿©±æ Åë°úÇÏ°Ô ÇÔÀ¸·Î½á ±â´ÉÀÇ ÀÏ°ü¼ºÀ» º¸ÀåÇÑ´Ù.
-	float ScaledDistance = (InBaseLength >= InExtraLength) ? InBaseLength : // ExtraLength ´Â BaseLength º¸´Ù Ä¿¾ß¸¸ µ¿ÀÛÇÑ´Ù.
+{ // ê°„ë‹¨í•œ ì½”ë“œì´ì§€ë§Œ ë¶„ì‚°ë˜ì–´ ìˆëŠ” ì„¸íŒ…ë“¤ì„ ì ìš©í•  ë•Œ ì—¬ê¸¸ í†µê³¼í•˜ê²Œ í•¨ìœ¼ë¡œì¨ ê¸°ëŠ¥ì˜ ì¼ê´€ì„±ì„ ë³´ì¥í•œë‹¤.
+	float ScaledDistance = (InBaseLength >= InExtraLength) ? InBaseLength : // ExtraLength ëŠ” BaseLength ë³´ë‹¤ ì»¤ì•¼ë§Œ ë™ì‘í•œë‹¤.
 		FMath::Lerp(InBaseLength, InExtraLength, CVarB2CameraDistanceAlpha.GetValueOnGameThread());
 #if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
 	if (GDevTestCameraDistanceScale > 0.0f)
-	{ // ¼øÀüÈ÷ Å×½ºÆ® ¿ë Ãß°¡ ½ºÄÉÀÏ. ExtraLength °¡ ¼¼ÆÃ ¾ÈµÈ »óÈ²¿¡¼­´Â B2CameraDistanceAlpha ¸¸ °¡Áö°í´Â Å×½ºÆ®°¡ ¾ÈµÇ¹Ç·Î.
+	{ // ìˆœì „íˆ í…ŒìŠ¤íŠ¸ ìš© ì¶”ê°€ ìŠ¤ì¼€ì¼. ExtraLength ê°€ ì„¸íŒ… ì•ˆëœ ìƒí™©ì—ì„œëŠ” B2CameraDistanceAlpha ë§Œ ê°€ì§€ê³ ëŠ” í…ŒìŠ¤íŠ¸ê°€ ì•ˆë˜ë¯€ë¡œ.
 		ScaledDistance *= GDevTestCameraDistanceScale;
 	}
 #endif

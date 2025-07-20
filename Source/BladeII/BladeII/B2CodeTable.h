@@ -1,4 +1,4 @@
- //Fill out your copyright notice in the Description page of Project Settings.
+ï»¿ //Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -8,7 +8,7 @@
 /**
  *
  */
- //[@AKI, 180716] ´õ ÁÁÀº À§Ä¡°¡ ÀÖ´Ù¸é º¯°æÇØµµ µÊ
+ //[@AKI, 180716] æ­¹ äº®ç¯® å›°æ‘¹å•Š ä¹ä¿ƒæ å‡½ç‰ˆç§¦æ¡£ å‡³
 namespace eLogSendToFlag
 {
 	const int32 LOG_SENDTO_NONE = 0;
@@ -34,7 +34,7 @@ protected:
 private:
 };
 
-// KakaoÁß½ÉÀ¸·Î Àâ¾Æ¼­ Base°¡ 4°³ÀÇ ÇÊµå¸¦ °¡Áö°í ÀÖÀ½
+// Kakaoåç¼´æ è‚º æ£±é…’è¾‘ Baseå•Š 4ä¿ºç‹¼ é˜é›ç”« å•Šç˜¤ç»Š ä¹æ¾œ
 class B2ActionLogSender
 {
 	//Function

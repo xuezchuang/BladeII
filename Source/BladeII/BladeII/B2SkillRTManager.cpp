@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 // Project BladeII, Action Square
 
 
@@ -64,8 +64,8 @@ float FInputBoundSkillState_Base::GetMaxCooltime(const UB2SkillRTManager* SkillR
 	BLADE2_SCOPE_CYCLE_COUNTER(FInputBoundSkillState_GetMaxCooltime);
 	check(SkillRTManager);
 
-	// ActiveSkill ¿¡ ¹ÙÀÎµù µÇ´Â ÄğÅ¸ÀÓ °¨¼Ò.
-	// ÇöÀç ECombatOptionApplyType ÀÌ Subtract_Value ÀÎ ±¸ÇöÀ¸·Î OneMinusMultiply ·Î ¹Ù²ğ ¼ö ÀÖ´Ù.
+	// ActiveSkill ì— ë°”ì¸ë”© ë˜ëŠ” ì¿¨íƒ€ì„ ê°ì†Œ.
+	// í˜„ì¬ ECombatOptionApplyType ì´ Subtract_Value ì¸ êµ¬í˜„ìœ¼ë¡œ OneMinusMultiply ë¡œ ë°”ë€” ìˆ˜ ìˆë‹¤.
 	return FMath::Clamp(MaxCooltime - SkillRTManager->GetSkillOptionValue(SkillID, ESkillOption::ESO_DecCoolTime), 0.f, MaxCooltime);
 }
 
@@ -89,7 +89,7 @@ void FInputBoundSkillState_Skill::ResetSkillState(UB2SkillRTManager* SkillRTMana
 }
 
 
-//added by hsh from 20200410 ½ºÅ³ Àç»ç¿ë ÃÖÀú °è¼ö Ãß°¡
+//added by hsh from 20200410 ìŠ¤í‚¬ ì¬ì‚¬ìš© ìµœì € ê³„ìˆ˜ ì¶”ê°€
 #define MIN_COOLTIME_CAL_VALUE 0.2f  
 float FInputBoundSkillState_Skill::GetMaxCooltime(const UB2SkillRTManager* SkillRTManager)
 {
@@ -103,8 +103,8 @@ float FInputBoundSkillState_Skill::GetMaxCooltime(const UB2SkillRTManager* Skill
 
 	if (SkillRTManager)
 	{
-		// Active Skill ¿¡ ¹ÙÀÎµù µÈ ÄğÅ¸ÀÓ °¨¼Ò ¿É¼Ç°ú Passive ·Î Àû¿ëµÇ´Â ÄğÅ¸ÀÓ °¨¼Ò ¿É¼Ç µû·Î ÀÖÀ½. ±×¸®°í ¶ÇÇÑ ¾Æ¿¹ º°µµ·Î Æ¯Á¤ ½ºÅ³¿¡¸¸ Àû¿ëµÇ´Â ÄğÅ¸ÀÓ °¨¼Ò ¿É¼ÇÀÌ ¶Ç ÀÖ´Âµ¥ µı µ¥¼­ Ã³¸®.
-		// ÇöÀç ECombatOptionApplyType ÀÌ Subtract_Value ÀÎ ±¸ÇöÀ¸·Î OneMinusMultiply ·Î ¹Ù²ğ ¼ö ÀÖ´Ù.
+		// Active Skill ì— ë°”ì¸ë”© ëœ ì¿¨íƒ€ì„ ê°ì†Œ ì˜µì…˜ê³¼ Passive ë¡œ ì ìš©ë˜ëŠ” ì¿¨íƒ€ì„ ê°ì†Œ ì˜µì…˜ ë”°ë¡œ ìˆìŒ. ê·¸ë¦¬ê³  ë˜í•œ ì•„ì˜ˆ ë³„ë„ë¡œ íŠ¹ì • ìŠ¤í‚¬ì—ë§Œ ì ìš©ë˜ëŠ” ì¿¨íƒ€ì„ ê°ì†Œ ì˜µì…˜ì´ ë˜ ìˆëŠ”ë° ë”´ ë°ì„œ ì²˜ë¦¬.
+		// í˜„ì¬ ECombatOptionApplyType ì´ Subtract_Value ì¸ êµ¬í˜„ìœ¼ë¡œ OneMinusMultiply ë¡œ ë°”ë€” ìˆ˜ ìˆë‹¤.
 
 		float ActiveCoolDecAppliedCooltime = FInputBoundSkillState_Base::GetMaxCooltime(SkillRTManager);
 		float fMinCooltime = MaxCooltime * MIN_COOLTIME_CAL_VALUE;
@@ -127,8 +127,8 @@ float FInputBoundSkillState_Tag::GetMaxCooltime(const UB2SkillRTManager* SkillRT
 
 	if (SkillRTManager)
 	{
-		// Active Skill ¿¡ ¹ÙÀÎµù µÈ ÄğÅ¸ÀÓ °¨¼Ò ¿É¼Ç°ú Passive ·Î Àû¿ëµÇ´Â ÄğÅ¸ÀÓ °¨¼Ò ¿É¼Ç µû·Î ÀÖÀ½.
-		// ÇöÀç ECombatOptionApplyType ÀÌ Subtract_Value ÀÎ ±¸ÇöÀ¸·Î OneMinusMultiply ·Î ¹Ù²ğ ¼ö ÀÖ´Ù.
+		// Active Skill ì— ë°”ì¸ë”© ëœ ì¿¨íƒ€ì„ ê°ì†Œ ì˜µì…˜ê³¼ Passive ë¡œ ì ìš©ë˜ëŠ” ì¿¨íƒ€ì„ ê°ì†Œ ì˜µì…˜ ë”°ë¡œ ìˆìŒ.
+		// í˜„ì¬ ECombatOptionApplyType ì´ Subtract_Value ì¸ êµ¬í˜„ìœ¼ë¡œ OneMinusMultiply ë¡œ ë°”ë€” ìˆ˜ ìˆë‹¤.
 		float ActiveCoolDecAppliedCooltime = FInputBoundSkillState_Base::GetMaxCooltime(SkillRTManager);
 		return FMath::Clamp(ActiveCoolDecAppliedCooltime - SkillRTManager->GetTagCooltimeDecbyPassive(), 0.0f, ActiveCoolDecAppliedCooltime);
 	}
@@ -373,7 +373,7 @@ void FInactivePlayerStateCache::SetVariablesByRetiringPlayer(class ABladeIIPlaye
 	if (RetiringPlayer)
 	{
 		LastHealth = RetiringPlayer->Health;
-		CurrentHealth = RetiringPlayer->Health; // ¹Ù²ï ¼ø°£¿¡´Â LastHealth ¿Í CurrentHealth °¡ °°°í, ½¬´Â µµÁß¿¡´Â HP °¡ È¸º¹.
+		CurrentHealth = RetiringPlayer->Health; // ë°”ë€ ìˆœê°„ì—ëŠ” LastHealth ì™€ CurrentHealth ê°€ ê°™ê³ , ì‰¬ëŠ” ë„ì¤‘ì—ëŠ” HP ê°€ íšŒë³µ.
 		MaxHealth = RetiringPlayer->GetMaxHealth();
 		LastArmor = RetiringPlayer->Armor;
 		WeaponSkillPoint = RetiringPlayer->GetWeaponSkillPoint();
@@ -388,14 +388,14 @@ void FInactivePlayerStateCache::SetToNewCommingPlayer(class ABladeIIPlayer* NewC
 	BLADE2_SCOPE_CYCLE_COUNTER(FInactivePlayerStateCache_SetToNewCommingPlayer);
 	if (NewCommingPlayer)
 	{
-		NewCommingPlayer->Health = CurrentHealth; // ½¬´Â µµÁß º¹±¸µÈ CurrentHealth °ªÀ» »ç¿ë.
+		NewCommingPlayer->Health = CurrentHealth; // ì‰¬ëŠ” ë„ì¤‘ ë³µêµ¬ëœ CurrentHealth ê°’ì„ ì‚¬ìš©.
 		NewCommingPlayer->Armor = LastArmor;
 		NewCommingPlayer->SetWeaponSkillPoint(WeaponSkillPoint);
 		NewCommingPlayer->SetUnityTick(IsUnityTick);
 		NewCommingPlayer->SetGuardCoolTime(GuardCoolTime);
 		NewCommingPlayer->SetHasNotTagDefence(HasNotTagDefence);
-		// MaxHealth ´Â Player spawn ½Ã °è»êÀÌ µÇ¸ç InactivePlayerStateCache ¿¡¼­ °¡Á®¿Ã ÇÊ¿ä ¾øÀ½ (½ÇÀº °¡Á®¿Í¼± ¾ÈµÉ °Í..). 
-		// InactivePlayerStateCache ÀÇ MaxHealth ´Â ´ÜÁö ¼û¾îÀÖ´Â Ä³¸¯ÅÍÀÇ UI ÂÊ HP ¹Ù Ç¥½Ã¸¦ À§ÇÑ °Í
+		// MaxHealth ëŠ” Player spawn ì‹œ ê³„ì‚°ì´ ë˜ë©° InactivePlayerStateCache ì—ì„œ ê°€ì ¸ì˜¬ í•„ìš” ì—†ìŒ (ì‹¤ì€ ê°€ì ¸ì™€ì„  ì•ˆë  ê²ƒ..). 
+		// InactivePlayerStateCache ì˜ MaxHealth ëŠ” ë‹¨ì§€ ìˆ¨ì–´ìˆëŠ” ìºë¦­í„°ì˜ UI ìª½ HP ë°” í‘œì‹œë¥¼ ìœ„í•œ ê²ƒ
 	}
 }
 
@@ -470,14 +470,14 @@ void UB2SkillRTManager::InitSkillRTManager(ABladeIIPlayer* InOwnerPlayer)
 
 void UB2SkillRTManager::InitSkillRTManagerInner(ABladeIIPlayer* InOwnerPlayer)
 {
-	SetCurrentOwnerPlayer(InOwnerPlayer); // CurrentOwnerPlayer ´Â °ÔÀÓ ÇÃ·¹ÀÌ¸¦ °ÅÄ¡¸é¼­ ¹Ù²ğ ¼ö ÀÖ´Ù.
+	SetCurrentOwnerPlayer(InOwnerPlayer); // CurrentOwnerPlayer ëŠ” ê²Œì„ í”Œë ˆì´ë¥¼ ê±°ì¹˜ë©´ì„œ ë°”ë€” ìˆ˜ ìˆë‹¤.
 	
 	if (CurrentOwnerPlayer)
 	{
 		CachedSkillInfo = GetSkillInfoOfPlayer(CurrentOwnerPlayer);
 
-		// RTManager ÀÚÃ¼°¡ ¼³°è¹æ½ÄÀÌ ÅÂ±×¸¸ °í·ÁÇÑµí..
-		// ¹«Á¶°Ç MainÀ¸·Î ¼±ÅÃÇÑ Ä³¸¯ÅÍ¸¸ CacheÇÏ´Â ¹æ½ÄÀÌ¶ó ÆÀ´ëÀü, ±æµåÀü °°Àº °ÔÀÓ¸ğµå¿¡¼­´Â Á¦´ë·Î µ¿ÀÛ ¾ÈÇÔ
+		// RTManager ìì²´ê°€ ì„¤ê³„ë°©ì‹ì´ íƒœê·¸ë§Œ ê³ ë ¤í•œë“¯..
+		// ë¬´ì¡°ê±´ Mainìœ¼ë¡œ ì„ íƒí•œ ìºë¦­í„°ë§Œ Cacheí•˜ëŠ” ë°©ì‹ì´ë¼ íŒ€ëŒ€ì „, ê¸¸ë“œì „ ê°™ì€ ê²Œì„ëª¨ë“œì—ì„œëŠ” ì œëŒ€ë¡œ ë™ì‘ ì•ˆí•¨
 		EB2GameMode CurrentGameMode = GetB2GameModeType(CurrentOwnerPlayer);
 		if (CurrentGameMode == EB2GameMode::Guild || CurrentGameMode == EB2GameMode::PVP_Team)
 		{
@@ -504,17 +504,17 @@ void UB2SkillRTManager::InitSkillRTManagerInner(ABladeIIPlayer* InOwnerPlayer)
 		if (NeedsRebindSkillDoc(CurrentOwnerPlayer))
 			BindSkillDoc(CurrentOwnerPlayer, IBSkillStates);
 
-		// ÀÌ°É Ã³À½¿¡ ÇöÀç ÇÃ·¹ÀÌ¾î °ÍÀ¸·Î ¼¼ÆÃÇÏ´Â °Ç ´ÜÁö UI ´Ü¿¡ ¹º°¡ º¸¿©ÁÖ±â À§ÇÔ. ÇÑ¹ø ÅÂ±× ÈÄ¿¡´Â Á¦´ë·Î ¼¼ÆÃÇÔ.
-		// ÀÌ ½ÃÁ¡¿¡¼­ OwnerPlayer ÀÇ MaxHealth ´Â ¾ÆÁ÷ Á¤½Ä ¼¼ÆÃÀÌ ¾ÈµÇ¾î ÀÖÀ» ¼ö ÀÖÀ½ (InitializeCombatStats °¡ ¾È ºÒ¸° »óÅÂ¶ó¸é). Ã¹ ÅÂ±× ÀÌÀü¿¡µµ Á¤È®ÇÑ °ªÀÌ ÇÊ¿äÇÏ´Ù¸é ´Ù¸¥ ¹æ½ÄÀ¸·Î ¼¼ÆÃ ÇÊ¿ä (CombatStatEval::GetEquipAppliedLocalPCHealth Âü°í)
-		InactivePlayerStateCache.SetVariablesByRetiringPlayer(CurrentOwnerPlayer); // ½ÇÁ¦·Î ¿©±â¼± RetiringPlayer ÀÇ ÀÇ¹Ì´Â ¾Æ´Ï´Ù.
+		// ì´ê±¸ ì²˜ìŒì— í˜„ì¬ í”Œë ˆì´ì–´ ê²ƒìœ¼ë¡œ ì„¸íŒ…í•˜ëŠ” ê±´ ë‹¨ì§€ UI ë‹¨ì— ë­”ê°€ ë³´ì—¬ì£¼ê¸° ìœ„í•¨. í•œë²ˆ íƒœê·¸ í›„ì—ëŠ” ì œëŒ€ë¡œ ì„¸íŒ…í•¨.
+		// ì´ ì‹œì ì—ì„œ OwnerPlayer ì˜ MaxHealth ëŠ” ì•„ì§ ì •ì‹ ì„¸íŒ…ì´ ì•ˆë˜ì–´ ìˆì„ ìˆ˜ ìˆìŒ (InitializeCombatStats ê°€ ì•ˆ ë¶ˆë¦° ìƒíƒœë¼ë©´). ì²« íƒœê·¸ ì´ì „ì—ë„ ì •í™•í•œ ê°’ì´ í•„ìš”í•˜ë‹¤ë©´ ë‹¤ë¥¸ ë°©ì‹ìœ¼ë¡œ ì„¸íŒ… í•„ìš” (CombatStatEval::GetEquipAppliedLocalPCHealth ì°¸ê³ )
+		InactivePlayerStateCache.SetVariablesByRetiringPlayer(CurrentOwnerPlayer); // ì‹¤ì œë¡œ ì—¬ê¸°ì„  RetiringPlayer ì˜ ì˜ë¯¸ëŠ” ì•„ë‹ˆë‹¤.
 		InactivePlayerStateCache.LastHealth = InactivePlayerStateCache.MaxHealth;
 		InactivePlayerStateCache.CurrentHealth = InactivePlayerStateCache.MaxHealth;
 
-		// ´Ü, ExtraLevel ·Î ³Ñ¾î¿Â »óÅÂ¶ó¸é HP µîÀ» Á» Á¦´ë·Î ¼¼ÆÃ ÇØ¾ßÇÔ. ÇöÀç È°¼º Ä³¸¯ÅÍÀÇ °æ¿ì ABladeIIPlayer::InitializeCombatStats ¿¡¼­
+		// ë‹¨, ExtraLevel ë¡œ ë„˜ì–´ì˜¨ ìƒíƒœë¼ë©´ HP ë“±ì„ ì¢€ ì œëŒ€ë¡œ ì„¸íŒ… í•´ì•¼í•¨. í˜„ì¬ í™œì„± ìºë¦­í„°ì˜ ê²½ìš° ABladeIIPlayer::InitializeCombatStats ì—ì„œ
 		if (AB2StageManager::GetCacheStageKeepEssentialData().IsPlayInExtraLevel())
 		{
 			AB2StageManager::GetCacheStageKeepEssentialData().SetPostExtraMapLoadSkillRTManager(CurrentOwnerPlayer, &InactivePlayerStateCache);
-			InactivePlayerStateCache.bNotCachedYet = false; // ÀÌ °æ¿ì´Â Ã³À½ºÎÅÍ caching ÀÌ µÈ °Å´Ï bNotCachedYet À» false ¼¼ÆÃÇØ ÁÜ.
+			InactivePlayerStateCache.bNotCachedYet = false; // ì´ ê²½ìš°ëŠ” ì²˜ìŒë¶€í„° caching ì´ ëœ ê±°ë‹ˆ bNotCachedYet ì„ false ì„¸íŒ…í•´ ì¤Œ.
 		}
 	}
 
@@ -525,7 +525,7 @@ void UB2SkillRTManager::InitSkillRTManagerInner(ABladeIIPlayer* InOwnerPlayer)
 
 	if (IsMyOwnerLocalPlayer())
 	{
-		// UIDoc ÀÇ ºÎÈ°¹öÇÁ °ªµéÀÌ ³²¾ÆÀÖÀ¸´Ï Ã³À½¿¡´Â ¸®¼Â. ·ÎÄÃÇÃ·¹ÀÌ¾îÀÇ °æ¿ì¸¸.
+		// UIDoc ì˜ ë¶€í™œë²„í”„ ê°’ë“¤ì´ ë‚¨ì•„ìˆìœ¼ë‹ˆ ì²˜ìŒì—ëŠ” ë¦¬ì…‹. ë¡œì»¬í”Œë ˆì´ì–´ì˜ ê²½ìš°ë§Œ.
 		UB2UIDocBattle* DocBattle = UB2UIDocHelper::GetDocBattle();
 		if (DocBattle)
 		{
@@ -537,7 +537,7 @@ void UB2SkillRTManager::InitSkillRTManagerInner(ABladeIIPlayer* InOwnerPlayer)
 			DocBattle->SetCurResurrectBuffDefenseCountByIndex(UB2UIDocBattle::MySlotIndex, 0);
 			DocBattle->SetCurResurrectBuffHealthCountByIndex(UB2UIDocBattle::MySlotIndex, 0);
 
-			// °á¼Ó ½ºÅ³ °ªµé ¸®¼Â
+			// ê²°ì† ìŠ¤í‚¬ ê°’ë“¤ ë¦¬ì…‹
 			DocBattle->SetOffenseEtherCoolTime(0.0f);
 			DocBattle->SetDefenseEtherCoolTime(0.0f);
 
@@ -579,7 +579,7 @@ void UB2SkillRTManager::SetPlayerCharacterSkill(class ABladeIIPlayer* PlayerChar
 
 	TArray<int32> RegisteredSkills;
 	GetCharacterRegisteredSkillIDs(PlayerClass, GetB2GameModeType(PlayerCharacter), RegisteredSkills, PlayerCharacter->GetCharacterDataStore());
-	//[@AKI, 170815] PlayerÀÇ SkillÀ» ±¸¼ºÇÏ´Â ºÎºĞ. °á¼Ó ½ºÅ³¿¡¼­ º¯°æ µÇ´Â °ÍÀÌ ÀÖ´Ù¸é ÀÌÂÊÀ» ºÁ¾ß ÇÔ
+	//[@AKI, 170815] Playerì˜ Skillì„ êµ¬ì„±í•˜ëŠ” ë¶€ë¶„. ê²°ì† ìŠ¤í‚¬ì—ì„œ ë³€ê²½ ë˜ëŠ” ê²ƒì´ ìˆë‹¤ë©´ ì´ìª½ì„ ë´ì•¼ í•¨
 	for (int32 SkillInputIdx = 0; SkillInputIdx < RegisteredSkills.Num(); ++SkillInputIdx)
 	{
 		auto* SkillBaseObj = OutIBSkillStates[SkillInputIdx];
@@ -609,7 +609,7 @@ void UB2SkillRTManager::SetPlayerCharacterSkill(class ABladeIIPlayer* PlayerChar
 				if (IsLocalPlayer)
 				{
 					auto* DocBattle = UB2UIDocHelper::GetDocBattle();
-					TagSkillObj->SetDoc(DocBattle); // ÅÂ±×¶û ±âÅ¸ ½ºÅ³ÀÇ UI Doc Àº µû·Î ¾´´Ù.	
+					TagSkillObj->SetDoc(DocBattle); // íƒœê·¸ë‘ ê¸°íƒ€ ìŠ¤í‚¬ì˜ UI Doc ì€ ë”°ë¡œ ì“´ë‹¤.	
 				}
 			}
 		}
@@ -630,12 +630,12 @@ void UB2SkillRTManager::SetPlayerCharacterSkill_ExtraMode(class ABladeIIPlayer* 
 {
 	const auto PlayerClass = PlayerCharacter->GetCurrentPlayerClass();
 
-	// 1. Tutorial Mode Ã³¸®
+	// 1. Tutorial Mode ì²˜ë¦¬
 	const bool IsTutorialMode = GetB2GameModeType(PlayerCharacter) == EB2GameMode::Tutorial;
 	const bool IsTutorialTargetClass = (PlayerClass == EPCClass::EPC_Wizard || PlayerClass == EPCClass::EPC_Fighter);
 	const bool IsTutorialSepcific = IsTutorialMode && IsTutorialTargetClass;
 
-	// Æ©Åä¸®¾ó¿¡¼­ ´Ù¸¥ ½ºÅ³¸ğ¼Ç (¸¶¹ı»ç ¹İ°İ, °İÅõ°¡ ½ºÅ³)
+	// íŠœí† ë¦¬ì–¼ì—ì„œ ë‹¤ë¥¸ ìŠ¤í‚¬ëª¨ì…˜ (ë§ˆë²•ì‚¬ ë°˜ê²©, ê²©íˆ¬ê°€ ìŠ¤í‚¬)
 	if (IsTutorialSepcific)
 	{
 		for (int32 SkillInputIdx = 0; SkillInputIdx < MAX_ACTIVE_SKILL_INPUT; SkillInputIdx++)
@@ -646,14 +646,14 @@ void UB2SkillRTManager::SetPlayerCharacterSkill_ExtraMode(class ABladeIIPlayer* 
 		}
 	}
 
-	// Æ©Åä¸®¾ó ¸¶¹ı»ç ¹İ°İ ¸ğ¼ÇÀº ÀüºÎ ´Ù ³ª°¡°Ô ÃÖ´ë·Î
+	// íŠœí† ë¦¬ì–¼ ë§ˆë²•ì‚¬ ë°˜ê²© ëª¨ì…˜ì€ ì „ë¶€ ë‹¤ ë‚˜ê°€ê²Œ ìµœëŒ€ë¡œ
 	if (IsTutorialMode)
 	{
 		if (auto* CounterSkillObj = OutIBSkillStates[COUNTER_SKILL_INDEX])
 			CounterSkillObj->IncreaseMotion = TUTORIAL_INCREASE_MOTION;
 	}
 
-	// 2. ¹İ°İ´øÀüÀº Ã¹¹øÂ° ¸ğ¼Ç¸¸ ³ª¿À°Ô °íÁ¤
+	// 2. ë°˜ê²©ë˜ì „ì€ ì²«ë²ˆì§¸ ëª¨ì…˜ë§Œ ë‚˜ì˜¤ê²Œ ê³ ì •
 	else if (GetB2GameModeType(PlayerCharacter) == EB2GameMode::CounterDungeon)
 	{
 		if (auto* CounterSkillObj = OutIBSkillStates[COUNTER_SKILL_INDEX])
@@ -726,14 +726,14 @@ bool UB2SkillRTManager::NeedsRebindSkillDoc(class ABladeIIPlayer* PlayerCharacte
 UB2SkillInfo* UB2SkillRTManager::GetSkillInfoOfPlayer(ABladeIIPlayer* InPlayerChar)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2SkillRTManager_GetSkillInfoOfPlayer);
-	// SkillInfo °¡ ÃÊ±â ±¸Çö¿¡¼­´Â ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ º°·Î µû·Î¶ó CurrentOwnerPlayer ¿¡¼­ °¡Á®¿ÔÀ¸³ª ÇöÀç´Â ÀüÃ¼ SkillInfoObject ·Î ±¸¼ºµÊ.
+	// SkillInfo ê°€ ì´ˆê¸° êµ¬í˜„ì—ì„œëŠ” í”Œë ˆì´ì–´ ìºë¦­í„° ë³„ë¡œ ë”°ë¡œë¼ CurrentOwnerPlayer ì—ì„œ ê°€ì ¸ì™”ìœ¼ë‚˜ í˜„ì¬ëŠ” ì „ì²´ SkillInfoObject ë¡œ êµ¬ì„±ë¨.
 	UB2GameInstance* B2GI = Cast<UB2GameInstance>(UGameplayStatics::GetGameInstance(InPlayerChar));
 	UB2PCClassInfoBox* PCInfoBox = B2GI ? B2GI->GetPCClassInfoBox() : NULL;
 	return PCInfoBox ? PCInfoBox->GetAllSkillInfo() : NULL;
 }
 
 void UB2SkillRTManager::UpdateSkillDocDataOnPCSwap()
-{ // ÃÊ±âÈ­, È¤Àº ÅÂ±× ½ÃÁ¡¿¡ ÇÃ·¹ÀÌ¾î ¹Ù²ñ¿¡ µû¶ó CachedSkillInfo ¶û IBSkillState ½ºÀ§Äª µÈ ÀÌÈÄ.
+{ // ì´ˆê¸°í™”, í˜¹ì€ íƒœê·¸ ì‹œì ì— í”Œë ˆì´ì–´ ë°”ë€œì— ë”°ë¼ CachedSkillInfo ë‘ IBSkillState ìŠ¤ìœ„ì¹­ ëœ ì´í›„.
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2SkillRTManager_UpdateSkillDocDataOnPCSwap);
 	for (auto* SkillState : IBSkillStates)
 	{
@@ -777,14 +777,14 @@ ESkillAnimType UB2SkillRTManager::GetSkillAnimIndexInternal(int32 InSkillID, int
 
 	EAttackState MappedSkillAttackState = InSkillInfo->GetAttackState(InSkillID);
 
-	// IncMotion ÀÌ Àû¿ëµÇ´Â ½ºÅ³ÀÌ ÀÖ°í ¾Æ´Ñ ½ºÅ³ÀÌ ÀÖ´Ù.
+	// IncMotion ì´ ì ìš©ë˜ëŠ” ìŠ¤í‚¬ì´ ìˆê³  ì•„ë‹Œ ìŠ¤í‚¬ì´ ìˆë‹¤.
 	switch (MappedSkillAttackState)
 	{
 	case EAttackState::ECS_Skill01:
 		return (ESkillAnimType)(InIncMotionValue + (int32)ESkillAnimType::ESA_Skill01_01);
 	case EAttackState::ECS_Skill02:
 	{
-		if (InIncMotionValue != 0) // ¸ğ¼Ç µü ÇÏ³ª ÀÖ´Â ½ºÅ³
+		if (InIncMotionValue != 0) // ëª¨ì…˜ ë”± í•˜ë‚˜ ìˆëŠ” ìŠ¤í‚¬
 		{
 			UE_LOG(LogB2SkillRTManager, Warning, TEXT("Invalid Skill Increase Motion Option data"));
 		}
@@ -925,7 +925,7 @@ void UB2SkillRTManager::SetSkillCoolTimeTimer(EAttackState FinishedAttackState)
 		{
 			const float CoolTime = SkillState->GetMaxCooltime(this);
 			
-			//BII_CHECK(!SkillState->IsCountingCooltime());// ³×Æ®¿öÅ© ´ëÀü¿¡¼­ ´Ù¸¥ °æ·Î¸¦ ÅëÇØ Ä«¿îÆ® ½ÃÀÛÇß´Ù°¡ ´Ù½Ã µé¾î¿À´Â °æ¿ì°¡ ÀÖ´Â °Å °°´Ù. °æ°í ·Î±×·Î ´ëÃ¼
+			//BII_CHECK(!SkillState->IsCountingCooltime());// ë„¤íŠ¸ì›Œí¬ ëŒ€ì „ì—ì„œ ë‹¤ë¥¸ ê²½ë¡œë¥¼ í†µí•´ ì¹´ìš´íŠ¸ ì‹œì‘í–ˆë‹¤ê°€ ë‹¤ì‹œ ë“¤ì–´ì˜¤ëŠ” ê²½ìš°ê°€ ìˆëŠ” ê±° ê°™ë‹¤. ê²½ê³  ë¡œê·¸ë¡œ ëŒ€ì²´
 			if (SkillState->IsCountingCooltime())
 			{
 				UE_LOG(LogBladeII, Warning, TEXT("Begin Count SkillCoolTime again.. %.1fs, while already counted %.1fs, SkillIndex %d, AttackState %d"), CoolTime, SkillState->GetRemainingCooltime(), SI, (int32)FinishedAttackState);
@@ -933,13 +933,13 @@ void UB2SkillRTManager::SetSkillCoolTimeTimer(EAttackState FinishedAttackState)
 
 			if (CoolTime <= 0.0f)
 			{
-				SkillState->ResetSkillState(this); // Cooltime Àº ¹Ì¸® ¾ò¾î³õ°í ±»ÀÌ ¿©±â±îÁö ¿Í¼­ Reset ÇÏ°í °¡´Â °Ô Á» ÀÌ»óÇÏ±ä ÇÏÁö¸¸ ¿©Æ°.
+				SkillState->ResetSkillState(this); // Cooltime ì€ ë¯¸ë¦¬ ì–»ì–´ë†“ê³  êµ³ì´ ì—¬ê¸°ê¹Œì§€ ì™€ì„œ Reset í•˜ê³  ê°€ëŠ” ê²Œ ì¢€ ì´ìƒí•˜ê¸´ í•˜ì§€ë§Œ ì—¬íŠ¼.
 
 				break;
 			}
 
 			SkillState->SetRemainingCooltime(CoolTime); // Reset the remaining time too.
-			SkillState->SetSkillDisabledByCooltime(true); // ÀÏ¹İ ½ºÅ³ÀÌ¶ó¸é ÀÌ¹Ì ¼¼ÆÃµÇ¾î ÀÖ¾î¾ß ÇÔ.
+			SkillState->SetSkillDisabledByCooltime(true); // ì¼ë°˜ ìŠ¤í‚¬ì´ë¼ë©´ ì´ë¯¸ ì„¸íŒ…ë˜ì–´ ìˆì–´ì•¼ í•¨.
 			SkillState->SetIsCountingCooltime(true);
 
 			break;
@@ -960,7 +960,7 @@ void UB2SkillRTManager::OnEnterPlayerSkillState(EAttackState ReservedSkill)
 
 			SkillState->SetSkillDisabledByCooltime(true); // True until cooltime timer is set and completed.
 			SkillState->SetSkillPoint(GetActiveCharacterWeaponSkillPoint());
-			// CountRemainingCoolTime »Ó¸¸ÀÌ ¾Æ´Ï¶ó ½ºÅ³ ¹ßµ¿ ½ÃÁ¡¿¡µµ ¾÷µ¥ÀÌÆ®¸¦ ÇØ ÁÖ¾î¾ß Ä«¿îÆ® ´ë±â »óÅÂ¿¡¼­µµ ¿øÇÏ´Â °ªÀ» »Ñ·ÁÁÙ °Í.
+			// CountRemainingCoolTime ë¿ë§Œì´ ì•„ë‹ˆë¼ ìŠ¤í‚¬ ë°œë™ ì‹œì ì—ë„ ì—…ë°ì´íŠ¸ë¥¼ í•´ ì£¼ì–´ì•¼ ì¹´ìš´íŠ¸ ëŒ€ê¸° ìƒíƒœì—ì„œë„ ì›í•˜ëŠ” ê°’ì„ ë¿Œë ¤ì¤„ ê²ƒ.
 			SkillState->SetRemainingCooltime(SkillState->GetMaxCooltime(this));
 		}
 	}
@@ -973,22 +973,22 @@ void UB2SkillRTManager::CountRemainingCoolTime(float DeltaSeconds)
 
 	for (auto* SkillState : IBSkillStates)
 	{
-		// ¸¸ÀÏ ¿©±â¼­ CachedSkillInfo °¡ ÇÊ¿äÇÑ »óÈ²ÀÌ¶ó¸é InactivePlayer ¿ë¿¡ ´ëÇØ ¶È°°ÀÌ Ã³¸®ÇÏ¸é ¾È µÈ´Ù.
+		// ë§Œì¼ ì—¬ê¸°ì„œ CachedSkillInfo ê°€ í•„ìš”í•œ ìƒí™©ì´ë¼ë©´ InactivePlayer ìš©ì— ëŒ€í•´ ë˜‘ê°™ì´ ì²˜ë¦¬í•˜ë©´ ì•ˆ ëœë‹¤.
 		// The skill must not be usable when it needs to count. Timer should be set also.
 		if (!SkillState->IsCountingCooltime())
 		{
 
 			if (CurrentOwnerPlayer->GetAttackState() != SkillState->GetAttackState() && SkillState->GetRemainingCooltime() != 0.f)
 			{
-				//¿©±â¿¡ °É¸®¸é Player SkillState°¡ ²¿¿©ÀÖ´Â »óÅÂ
-				//±âº»ÀûÀ¸·Î ABladeIIPlayerÀÇ SetSkillState¸¦ ÅëÇØ ÀÓÀÇÀûÀ¸·Î State¸¦ ¹Ù²Ù·ÁÇÒ °æ¿ì ÀÚÁÖ ÀÏ¾î³ª´Â °ÍÀ¸·Î º¸ÀÓ.
-				SkillState->SetIsCountingCooltime(true); //SkillState°¡ ²¿¿´´Â °æ¿ì °­Á¦·Î Ç®¾îÁØ´Ù.
+				//ì—¬ê¸°ì— ê±¸ë¦¬ë©´ Player SkillStateê°€ ê¼¬ì—¬ìˆëŠ” ìƒíƒœ
+				//ê¸°ë³¸ì ìœ¼ë¡œ ABladeIIPlayerì˜ SetSkillStateë¥¼ í†µí•´ ì„ì˜ì ìœ¼ë¡œ Stateë¥¼ ë°”ê¾¸ë ¤í•  ê²½ìš° ìì£¼ ì¼ì–´ë‚˜ëŠ” ê²ƒìœ¼ë¡œ ë³´ì„.
+				SkillState->SetIsCountingCooltime(true); //SkillStateê°€ ê¼¬ì˜€ëŠ” ê²½ìš° ê°•ì œë¡œ í’€ì–´ì¤€ë‹¤.
 			}
 				
 			continue;
 		}			
 
-		// Need to check CustomTimeDilation. ¸¸ÀÏ TimeDilation Ã³¸®·Î ÀÎÇØ ¹º°¡ Àß ¾È ¸ÂÀ¸¸é ¾ğ¸®¾ó timer ¶óµµ µ¹·Áº¸µçÁö. ±×·¸Áö¸¸ ½ºÅ³ÄğÅ¸ÀÓÀº ÀÌ·¸°Ô Á÷Á¢ Ä«¿îÆ®ÇÏ´Â °Ô ¿©·¯¸ğ·Î ÄÁÆ®·ÑÇÏ±â ÁÁÀ» µí.
+		// Need to check CustomTimeDilation. ë§Œì¼ TimeDilation ì²˜ë¦¬ë¡œ ì¸í•´ ë­”ê°€ ì˜ ì•ˆ ë§ìœ¼ë©´ ì–¸ë¦¬ì–¼ timer ë¼ë„ ëŒë ¤ë³´ë“ ì§€. ê·¸ë ‡ì§€ë§Œ ìŠ¤í‚¬ì¿¨íƒ€ì„ì€ ì´ë ‡ê²Œ ì§ì ‘ ì¹´ìš´íŠ¸í•˜ëŠ” ê²Œ ì—¬ëŸ¬ëª¨ë¡œ ì»¨íŠ¸ë¡¤í•˜ê¸° ì¢‹ì„ ë“¯.
 		float RemainingCooltime = SkillState->GetRemainingCooltime() - NonCustomDelatedDeltaSec;
 		SkillState->SetRemainingCooltime(FMath::Max(RemainingCooltime, 0.0f));
 
@@ -1013,17 +1013,17 @@ void UB2SkillRTManager::CountRemainingCoolTime(float DeltaSeconds)
 }
 
 void UB2SkillRTManager::RealtimeUpdateUIDoc()
-{ // ÀÌ°Ç ¸Å Æ½ ºÒ¸®´Â °ÍÀÌ¹Ç·Î °¡´ÉÇÑ ÃÖ¼ÒÇÑÀÇ µ¥ÀÌÅÍ¸¸ ¿©±æ ÅëÇØ ¾÷µ¥ÀÌÆ® ÇØ¾ß ÇÔ.
+{ // ì´ê±´ ë§¤ í‹± ë¶ˆë¦¬ëŠ” ê²ƒì´ë¯€ë¡œ ê°€ëŠ¥í•œ ìµœì†Œí•œì˜ ë°ì´í„°ë§Œ ì—¬ê¸¸ í†µí•´ ì—…ë°ì´íŠ¸ í•´ì•¼ í•¨.
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2SkillRTManager_RealtimeUpdateUIDoc);
 	UB2UIDocBattle* DocBattle = UB2UIDocHelper::GetDocBattle();
 	if (DocBattle)
-	{ // ÅÂ±× Ä³¸¯ÅÍ Å¬·¡½º µîÀº BladeIIPlayer ÂÊ¼­ ¾÷µ¥ÀÌÆ®
+	{ // íƒœê·¸ ìºë¦­í„° í´ë˜ìŠ¤ ë“±ì€ BladeIIPlayer ìª½ì„œ ì—…ë°ì´íŠ¸
 		DocBattle->SetTagPCHealth(InactivePlayerStateCache.CurrentHealth);
 		DocBattle->SetTagPCMaxHealth(InactivePlayerStateCache.MaxHealth);
 
-		// ¾ê³×µéÀ» ÀÌº¥Æ® ¶§¸¸ ¾÷µ¥ÀÌÆ® ÇÏ·Á¸é Á» »ÀºüÁú µí 
+		// ì–˜ë„¤ë“¤ì„ ì´ë²¤íŠ¸ ë•Œë§Œ ì—…ë°ì´íŠ¸ í•˜ë ¤ë©´ ì¢€ ë¼ˆë¹ ì§ˆ ë“¯ 
 		DocBattle->SetIsTagPossible(IsTagPossible());
-		DocBattle->SetIsTagAttackSuggested(IsTagAttackSuggested()); // TagAttackSuggested ¸¦ TagSuggested º¸´Ù ¸ÕÀú ¼¼ÆÃÇØ¼­ TagSuggested º¯°æ ÇÈ¾÷½Ã TagAttackSuggested µµ °°ÀÌ ÂüÁ¶ÇÒ ¼ö ÀÖµµ·Ï.
+		DocBattle->SetIsTagAttackSuggested(IsTagAttackSuggested()); // TagAttackSuggested ë¥¼ TagSuggested ë³´ë‹¤ ë¨¼ì € ì„¸íŒ…í•´ì„œ TagSuggested ë³€ê²½ í”½ì—…ì‹œ TagAttackSuggested ë„ ê°™ì´ ì°¸ì¡°í•  ìˆ˜ ìˆë„ë¡.
 		DocBattle->SetIsTagSuggested(IsTagAttackSuggested() || IsTagSuggestedPlayerCondition());
 	}
 }
@@ -1090,7 +1090,7 @@ bool UB2SkillRTManager::DoesSkillExist(int32 SkillInputIndex) const
 bool UB2SkillRTManager::IsSkillCurrentlyUsable(int32 SkillInputIndex, bool IsPlayerInput) const
 {
 	//bool IsSkill = (AutoBattle & AutoBattleType::Skill) && AutoBattleType::Skill;
-	//Ä§¹¬
+	//ì¹¨ë¬µ
 	if (CurrentOwnerPlayer && CurrentOwnerPlayer->IsAlive() && CurrentOwnerPlayer->IsBuffActive(EBuffType::DeBuff_Silent))
 		return false;
 	
@@ -1181,9 +1181,9 @@ bool UB2SkillRTManager::TagToOther(int32 TagAttackType, EAttackState CurrentAtta
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2SkillRTManager_TagToOther);
 	B2_SCOPED_TRACK_LOG(TEXT("UB2SkillRTManager::TagToOther"));
-	// ÅÂ±× ÀÔ·Â½Ã ABladeIIPlayer::StartTag ¿¡¼­ ½ÃÀÛÇÏ¿© TagNotify ¸¦ °ÅÃÄ ¿©±â¼­ º»°İ µ¿ÀÛ
+	// íƒœê·¸ ì…ë ¥ì‹œ ABladeIIPlayer::StartTag ì—ì„œ ì‹œì‘í•˜ì—¬ TagNotify ë¥¼ ê±°ì³ ì—¬ê¸°ì„œ ë³¸ê²© ë™ì‘
 
-	if (CurrentOwnerPlayer == NULL /*|| CurrentOwnerPlayer->IsAlive() == false*/) // Á×Àº ½ÃÁ¡¿¡ Tag °¡ ÇÊ¿äÇÒ ¼öµµ ÀÖ´Ù.
+	if (CurrentOwnerPlayer == NULL /*|| CurrentOwnerPlayer->IsAlive() == false*/) // ì£½ì€ ì‹œì ì— Tag ê°€ í•„ìš”í•  ìˆ˜ë„ ìˆë‹¤.
 	{
 		return false;
 	}
@@ -1195,20 +1195,20 @@ bool UB2SkillRTManager::TagToOther(int32 TagAttackType, EAttackState CurrentAtta
 	EPCClass NewSpawnClass = GetTagPlayerClass();
 	if (NewSpawnClass != EPCClass::EPC_End)
 	{
-		// Spawn Àü¿¡ player controller ÂÊ¿¡ SpawnMotionState ¸¦ ¸ÕÀú ¼¼ÆÃÇÑ´Ù. 
-		// Player character spawn µµÁß AnimBP overriding ¿¡ ÀÇÇØ Anim tick ÀÌ ÇÑ¹ø Ã³¸®µÇ´Âµ¥ ±× Àü¿¡ »óÅÂ¸¦ ³Ö¾îµÑ ÇÊ¿ä°¡ ÀÖ¾î¼­ Player controller ¸¦ ÅëÇÏµµ·Ï ÇÔ.
+		// Spawn ì „ì— player controller ìª½ì— SpawnMotionState ë¥¼ ë¨¼ì € ì„¸íŒ…í•œë‹¤. 
+		// Player character spawn ë„ì¤‘ AnimBP overriding ì— ì˜í•´ Anim tick ì´ í•œë²ˆ ì²˜ë¦¬ë˜ëŠ”ë° ê·¸ ì „ì— ìƒíƒœë¥¼ ë„£ì–´ë‘˜ í•„ìš”ê°€ ìˆì–´ì„œ Player controller ë¥¼ í†µí•˜ë„ë¡ í•¨.
 		ABladeIIPlayerController* B2PC = Cast<ABladeIIPlayerController>(CurrentOwnerPlayer->Controller);
 		if (B2PC)
 		{
 			B2PC->SetPCSpawnMotionState((EPCSpawnMotionState)(TagAttackType + int32(EPCSpawnMotionState::EPST_Tag)));
 		}
 
-		if (CurrentAttackState != EAttackState::ECS_None) // TagAttack ½Ã ÇöÀç »ç¿ëÇÏ°í ÀÖ´Â skill state °¡ µé¾î¿Ã °Í. ´Ù¸¥ °æ·Î·Î noti °¡ ¿ÀÁö ¾ÊÀ» °ÍÀÌ¹Ç·Î ÄğÅ¸ÀÓ Ä«¿îÆ®¸¦ ½ÃÀÛ.
+		if (CurrentAttackState != EAttackState::ECS_None) // TagAttack ì‹œ í˜„ì¬ ì‚¬ìš©í•˜ê³  ìˆëŠ” skill state ê°€ ë“¤ì–´ì˜¬ ê²ƒ. ë‹¤ë¥¸ ê²½ë¡œë¡œ noti ê°€ ì˜¤ì§€ ì•Šì„ ê²ƒì´ë¯€ë¡œ ì¿¨íƒ€ì„ ì¹´ìš´íŠ¸ë¥¼ ì‹œì‘.
 		{
 			SetSkillCoolTimeTimer(CurrentAttackState);
 		}
 
-		// ÅÂ±× ÄğÅ¸ÀÓ »Ó ¾Æ´Ï¶ó ½ºÅ³ »ç¿ë µµÁß ÅÂ±× ¿¹¾àÀ¸·Î ÀÎÇØ ½ºÅ³ ÄğÅ¸ÀÓ Ä«¿îÆ® ½ÃÀÛÀÌ ¾ÈµÈ Ã¤·Î ÁøÇàÀÌ µÉ ¼ö ÀÖ¾î¼­ È¤½Ã¶óµµ ±×·± °Ô ÀÖ´Ù¸é ¹Ù²ãÄ¡±â Àü¿¡ ½ÃÀÛÇØ ÁØ´Ù.
+		// íƒœê·¸ ì¿¨íƒ€ì„ ë¿ ì•„ë‹ˆë¼ ìŠ¤í‚¬ ì‚¬ìš© ë„ì¤‘ íƒœê·¸ ì˜ˆì•½ìœ¼ë¡œ ì¸í•´ ìŠ¤í‚¬ ì¿¨íƒ€ì„ ì¹´ìš´íŠ¸ ì‹œì‘ì´ ì•ˆëœ ì±„ë¡œ ì§„í–‰ì´ ë  ìˆ˜ ìˆì–´ì„œ í˜¹ì‹œë¼ë„ ê·¸ëŸ° ê²Œ ìˆë‹¤ë©´ ë°”ê¿”ì¹˜ê¸° ì „ì— ì‹œì‘í•´ ì¤€ë‹¤.
 		check(CachedSkillInfo);
 		for (int32 SI = 0; SI < MAX_ACTIVE_SKILL_INPUT; ++SI)
 		{
@@ -1220,7 +1220,7 @@ bool UB2SkillRTManager::TagToOther(int32 TagAttackType, EAttackState CurrentAtta
 		
 		ABladeIIPlayer* OldPlayerBackup = CurrentOwnerPlayer;
 
-		// ·ÎÄÃÇÃ·¹ÀÌ¾î°¡ ¹Ù²î±âÀü¿¡ ¹öÇÁÅ¬¸®¾îÇÑ¹ø ÇØÁØ´Ù.
+		// ë¡œì»¬í”Œë ˆì´ì–´ê°€ ë°”ë€Œê¸°ì „ì— ë²„í”„í´ë¦¬ì–´í•œë²ˆ í•´ì¤€ë‹¤.
 		if (OldPlayerBackup)
 		{
 			OldPlayerBackup->ClearAllBuffs();
@@ -1228,22 +1228,22 @@ bool UB2SkillRTManager::TagToOther(int32 TagAttackType, EAttackState CurrentAtta
 
 		if (DynSpawnNewPlayerCommon(NewSpawnClass) != NULL)
 		{
-			// À§¿¡¼­ ¼º°øÀûÀÌ¾úÀ¸¸é CurrentOwnerPlayer °¡ »õ·Î »ı¼ºÇÑ °ÍÀ¸·Î ¹Ù²î¾î ÀÖÀ» °Í.
-			// ¼­·Î¿¡°Ô °¢ÀÚÀÇ tag »óÈ²À» notify. Auto ÀÎ¼öÀÎ°è µî Ãß°¡ÀûÀÎ µÚÄ¡´Ú²¨¸®
+			// ìœ„ì—ì„œ ì„±ê³µì ì´ì—ˆìœ¼ë©´ CurrentOwnerPlayer ê°€ ìƒˆë¡œ ìƒì„±í•œ ê²ƒìœ¼ë¡œ ë°”ë€Œì–´ ìˆì„ ê²ƒ.
+			// ì„œë¡œì—ê²Œ ê°ìì˜ tag ìƒí™©ì„ notify. Auto ì¸ìˆ˜ì¸ê³„ ë“± ì¶”ê°€ì ì¸ ë’¤ì¹˜ë‹¥êº¼ë¦¬
 			OldPlayerBackup->NotifyTagRetire(CurrentOwnerPlayer);
 			CurrentOwnerPlayer->NotifyTagSpawn(OldPlayerBackup);
 
 			OnPlayerChanged_Tag(OldPlayerBackup, CurrentOwnerPlayer);
 
-			if (IsTagPossibleAtDeadMoment()) // È¥ÀÚ ³²°ÜÁø °æ¿ì¶ó¸é ÅÂ±× ÄğÅ¸ÀÓÀ» ´õ Ä«¿îÆ®ÇÒ ÇÊ¿ä°¡ ¾ø´Ù.
+			if (IsTagPossibleAtDeadMoment()) // í˜¼ì ë‚¨ê²¨ì§„ ê²½ìš°ë¼ë©´ íƒœê·¸ ì¿¨íƒ€ì„ì„ ë” ì¹´ìš´íŠ¸í•  í•„ìš”ê°€ ì—†ë‹¤.
 			{
-				// ÅÂ±× Cooltime ¼Â¾÷. ÅÂ±×¿Í ÀÏ¹İ ½ºÅ³ °£¿¡ ½ÇÁúÀûÀ¸·Î °øÀ¯ÇÏ´Â ±â´É.
-				// ¿©±â¼­ Ã³¸®ÇÏ°Ô µÇ¸é ¹Ù²ï ÈÄ Ä³¸¯ÅÍ ¼³Á¤À¸·Î ÅÂ±× Å¸ÀÌ¸Ó°¡ µ¹¾Æ°¡°Ô µÉ °Í. ¾îÂ÷ÇÇ Å¬·¡½º µû¶ó ´Ş¶óÁú °ÍÀ¸·Î »ı°¢µÇÁö´Â ¾ÊÁö¸¸..
-				// ¾îÂ÷ÇÇ ÅÂ±× ½Ã ÀÏ¹İ ½ºÅ³ ÄğÅ¸ÀÓ Ã³¸®µµ °³¼±À» ÇØ¾ß ÇÒ °ÍÀÌ¹Ç·Î ±× ¶§ °°ÀÌ »ı°¢ÇØ º¼ °Í.
+				// íƒœê·¸ Cooltime ì…‹ì—…. íƒœê·¸ì™€ ì¼ë°˜ ìŠ¤í‚¬ ê°„ì— ì‹¤ì§ˆì ìœ¼ë¡œ ê³µìœ í•˜ëŠ” ê¸°ëŠ¥.
+				// ì—¬ê¸°ì„œ ì²˜ë¦¬í•˜ê²Œ ë˜ë©´ ë°”ë€ í›„ ìºë¦­í„° ì„¤ì •ìœ¼ë¡œ íƒœê·¸ íƒ€ì´ë¨¸ê°€ ëŒì•„ê°€ê²Œ ë  ê²ƒ. ì–´ì°¨í”¼ í´ë˜ìŠ¤ ë”°ë¼ ë‹¬ë¼ì§ˆ ê²ƒìœ¼ë¡œ ìƒê°ë˜ì§€ëŠ” ì•Šì§€ë§Œ..
+				// ì–´ì°¨í”¼ íƒœê·¸ ì‹œ ì¼ë°˜ ìŠ¤í‚¬ ì¿¨íƒ€ì„ ì²˜ë¦¬ë„ ê°œì„ ì„ í•´ì•¼ í•  ê²ƒì´ë¯€ë¡œ ê·¸ ë•Œ ê°™ì´ ìƒê°í•´ ë³¼ ê²ƒ.
 				SetSkillCoolTimeTimer(EAttackState::ECS_TagOtherChar);
 			}
 
-			// ¹Ù²ï ÄÉ¸¯ÅÍÇÑÅ× ¾îÅÃ½ºÅ×ÀÌÆ® ÀÎ°è
+			// ë°”ë€ ì¼€ë¦­í„°í•œí…Œ ì–´íƒìŠ¤í…Œì´íŠ¸ ì¸ê³„
 			CurrentOwnerPlayer->SetAttackState(CurrentAttackState);
 
 			CurrentOwnerPlayer->GetWorld()->DestroyActor(OldPlayerBackup);
@@ -1252,7 +1252,7 @@ bool UB2SkillRTManager::TagToOther(int32 TagAttackType, EAttackState CurrentAtta
 		}
 		else
 		{
-			// ½ÇÆĞÇß´Ù¸é ¹º°¡ ¸·ÀåÀÌÁö¸¸ ¿©Æ° PlayerController ÂÊ¿¡ ¼¼ÆÃÇØ µĞ »óÅÂ¸¦ Ãë¼ÒÇÏÀÚ.
+			// ì‹¤íŒ¨í–ˆë‹¤ë©´ ë­”ê°€ ë§‰ì¥ì´ì§€ë§Œ ì—¬íŠ¼ PlayerController ìª½ì— ì„¸íŒ…í•´ ë‘” ìƒíƒœë¥¼ ì·¨ì†Œí•˜ì.
 			if (B2PC)
 			{
 				B2PC->SetPCSpawnMotionState(EPCSpawnMotionState::EPST_Normal);
@@ -1284,7 +1284,7 @@ int32 UB2SkillRTManager::GetResurrectionCost(EResurrectGameModeType ModeType)
 void UB2SkillRTManager::GetAppliedResurrectionBuffValues(TMap<EResurrectBuffType, int32>& OutBuffValues)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2SkillRTManager_GetAppliedResurrectionBuffValues);
-	// ¼­¹ö¿¡¼­´Â Áö±İ±îÁö ¿©·¯¹øÀÇ ºÎÈ°À» ÅëÇØ ¼±ÅÃÇß´ø ºÎÈ° ¹öÇÁ°¡ ¸ğµÎ ¿Ã ²«µ¥ ¿©±â¼­´Â ¸¶Áö¸·¿¡ ¼±ÅÃÇÑ Å¸ÀÔ¸¸ »ç¿ëÇÏ´Â °É·Î..
+	// ì„œë²„ì—ì„œëŠ” ì§€ê¸ˆê¹Œì§€ ì—¬ëŸ¬ë²ˆì˜ ë¶€í™œì„ í†µí•´ ì„ íƒí–ˆë˜ ë¶€í™œ ë²„í”„ê°€ ëª¨ë‘ ì˜¬ ê»€ë° ì—¬ê¸°ì„œëŠ” ë§ˆì§€ë§‰ì— ì„ íƒí•œ íƒ€ì…ë§Œ ì‚¬ìš©í•˜ëŠ” ê±¸ë¡œ..
 	EResurrectBuffType LastRequestedBuffType = EResurrectBuffType::RBT_End;
 	if (auto* GMMode = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(CurrentOwnerPlayer)))
 		LastRequestedBuffType = GMMode->GetLastRequestedStageBuffType();
@@ -1293,7 +1293,7 @@ void UB2SkillRTManager::GetAppliedResurrectionBuffValues(TMap<EResurrectBuffType
 	TMap<EResurrectBuffType, int32> FinalFilteredBuffMap;
 	for (auto ThisBuff : SelectedResurrectionBuffMap)
 	{ 
-		// µüÈ÷ ¸¶Áö¸· ¼±ÅÃÇÑ Á¤º¸¸¦ Ã£À» ¼ö ¾ø´Ù¸é ¸ğµÎ..
+		// ë”±íˆ ë§ˆì§€ë§‰ ì„ íƒí•œ ì •ë³´ë¥¼ ì°¾ì„ ìˆ˜ ì—†ë‹¤ë©´ ëª¨ë‘..
 		if (!bLastRequestedSpecificBuffType || ThisBuff.Key == LastRequestedBuffType)
 			FinalFilteredBuffMap.Add(ThisBuff.Key, ThisBuff.Value);
 	}
@@ -1313,8 +1313,8 @@ EResurrectGameModeType UB2SkillRTManager::GetCurResurrectGameModeType()
 void UB2SkillRTManager::UpdateResurrectionBuffOnResponse(int32 AttackBuffCount, int32 DefenseBuffCount, int32 HealthBuffCount)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2SkillRTManager_UpdateResurrectionBuffOnResponse);
-	// ¿©±â¿¡¼­´Â ¼­¹ö¿¡¼­ ÁØ °ªµé ¸ğµÎ ³Ö¾î³õ´Â´Ù. ¼­¹ö¿¡¼± Áö±İ±îÁö ¿©·¯¹øÀÇ ºÎÈ°¿¡¼­ ¼±ÅÃÇÑ ¸ğµç Å¸ÀÔÀÌ º¸³»Áú °Í.
-	// ½ÇÁ¦·Î ÀüÅõ¿¡ Àû¿ëµÇ´Â °ÍÀº °¡Àå ÃÖ±Ù ¼±ÅÃÇÑ Å¸ÀÔ¸¸ÀÌ Àû¿ëµÇ¾î¾ß ÇÔ.
+	// ì—¬ê¸°ì—ì„œëŠ” ì„œë²„ì—ì„œ ì¤€ ê°’ë“¤ ëª¨ë‘ ë„£ì–´ë†“ëŠ”ë‹¤. ì„œë²„ì—ì„  ì§€ê¸ˆê¹Œì§€ ì—¬ëŸ¬ë²ˆì˜ ë¶€í™œì—ì„œ ì„ íƒí•œ ëª¨ë“  íƒ€ì…ì´ ë³´ë‚´ì§ˆ ê²ƒ.
+	// ì‹¤ì œë¡œ ì „íˆ¬ì— ì ìš©ë˜ëŠ” ê²ƒì€ ê°€ì¥ ìµœê·¼ ì„ íƒí•œ íƒ€ì…ë§Œì´ ì ìš©ë˜ì–´ì•¼ í•¨.
 	SelectedResurrectionBuffMap.Empty();
 	if (AttackBuffCount > 0){
 		SelectedResurrectionBuffMap.Add(EResurrectBuffType::RBT_Attack, AttackBuffCount);
@@ -1326,13 +1326,13 @@ void UB2SkillRTManager::UpdateResurrectionBuffOnResponse(int32 AttackBuffCount, 
 		SelectedResurrectionBuffMap.Add(EResurrectBuffType::RBT_Health, HealthBuffCount);
 	}
 		
-	// UIDocBattle ¿¡ ¼¼ÆÃÇÏ´Â °Ç »ç½Ç»ó ½ºÅ×ÀÌÁö ¸ğµåÀÇ ·ÎÄÃ ÇÃ·¹ÀÌ¾î ¿ëÀÌ¶õ °¡Á¤ÀÓ. 		
-	TMap<EResurrectBuffType, int32> AppliedResurrectBuff;	// ÀÎ°ÔÀÓ ÀüÅõ UI ¿¡¼­ Ç¥½ÃÇÏ´Â ½ÇÁ¦ Àû¿ëµÇ´Â °ªµé
+	// UIDocBattle ì— ì„¸íŒ…í•˜ëŠ” ê±´ ì‚¬ì‹¤ìƒ ìŠ¤í…Œì´ì§€ ëª¨ë“œì˜ ë¡œì»¬ í”Œë ˆì´ì–´ ìš©ì´ë€ ê°€ì •ì„. 		
+	TMap<EResurrectBuffType, int32> AppliedResurrectBuff;	// ì¸ê²Œì„ ì „íˆ¬ UI ì—ì„œ í‘œì‹œí•˜ëŠ” ì‹¤ì œ ì ìš©ë˜ëŠ” ê°’ë“¤
 	GetAppliedResurrectionBuffValues(AppliedResurrectBuff);
 
 	if (UB2UIDocBattle* DocBattle = UB2UIDocHelper::GetDocBattle())
 	{
-		// ¿©±â¼­ ¼¼ÆÃÇÑ °ÍÀº ½ºÅ×ÀÌÁö ¸ğµåÀÇ ÆĞ¹è ¸Ş´º¿¡¼­ ¾´´Ù.
+		// ì—¬ê¸°ì„œ ì„¸íŒ…í•œ ê²ƒì€ ìŠ¤í…Œì´ì§€ ëª¨ë“œì˜ íŒ¨ë°° ë©”ë‰´ì—ì„œ ì“´ë‹¤.
 		DocBattle->SetSelectedResurrectBuffAttack(0);
 		DocBattle->SetSelectedResurrectBuffDefense(0);
 		DocBattle->SetSelectedResurrectBuffHealth(0);
@@ -1367,13 +1367,12 @@ void UB2SkillRTManager::SetResurrectionPlayerPosition()
 bool UB2SkillRTManager::ResurrectOnResponse(const FB2Resurrection& ResurrectionResult)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2SkillRTManager_ResurrectOnResponse);
-	//int32 SelectedBuffAmount_1 = GET_TUPLE_DATA(FB2ResponseResurrection::selected_count_resurrection_buff1_index, ResurrectionResult);
-	//int32 SelectedBuffAmount_2 = GET_TUPLE_DATA(FB2ResponseResurrection::selected_count_resurrection_buff2_index, ResurrectionResult);
-	//int32 SelectedBuffAmount_3 = GET_TUPLE_DATA(FB2ResponseResurrection::selected_count_resurrection_buff3_index, ResurrectionResult);
-	//int32 UsedGem = GET_TUPLE_DATA(FB2ResponseResurrection::used_cash_index, ResurrectionResult);
+	int32 SelectedBuffAmount_1 = GET_TUPLE_DATA(FB2ResponseResurrection::selected_count_resurrection_buff1_index, ResurrectionResult);
+	int32 SelectedBuffAmount_2 = GET_TUPLE_DATA(FB2ResponseResurrection::selected_count_resurrection_buff2_index, ResurrectionResult);
+	int32 SelectedBuffAmount_3 = GET_TUPLE_DATA(FB2ResponseResurrection::selected_count_resurrection_buff3_index, ResurrectionResult);
+	int32 UsedGem = GET_TUPLE_DATA(FB2ResponseResurrection::used_cash_index, ResurrectionResult);
 
-	//return ResurrectPlayer(EResurrectGameModeType::EResurrectType_Stage, UsedGem, SelectedBuffAmount_1, SelectedBuffAmount_2, SelectedBuffAmount_3);
-	return false;
+	return ResurrectPlayer(EResurrectGameModeType::EResurrectType_Stage, UsedGem, SelectedBuffAmount_1, SelectedBuffAmount_2, SelectedBuffAmount_3);
 }
 
 bool UB2SkillRTManager::RaidResurrectOnResponse(const FB2RaidResurrection& ResurrectionResult)
@@ -1391,16 +1390,16 @@ bool UB2SkillRTManager::RaidResurrectOnResponse(const FB2RaidResurrection& Resur
 bool UB2SkillRTManager::ResurrectPlayer(EResurrectGameModeType ModeType, int32 UsedGem/*= -1*/, int32 AttackBuffCount/*= -1*/, int32 DefenseBuffCount/*= -1*/, int32 HealthBuffCount /*= -1*/)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2SkillRTManager_ResurrectPlayer);
-	// ·ÎÄÃ ÇÃ·¹ÀÌ¾îÀÇ °æ¿ì ¼­¹ö·Î º¸³½ ºÎÈ° ¿äÃ»¿¡ ´ëÇÑ ÀÀ´äÀÓ. ±âÅ¸ ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ Å¸ÀÔÀÌ³ª ID ¿¡ µû¸¥ ±¸ºĞÀÌ ÇÊ¿äÇØ Áú ¼öµµ ÀÖÀ½.
+	// ë¡œì»¬ í”Œë ˆì´ì–´ì˜ ê²½ìš° ì„œë²„ë¡œ ë³´ë‚¸ ë¶€í™œ ìš”ì²­ì— ëŒ€í•œ ì‘ë‹µì„. ê¸°íƒ€ í”Œë ˆì´ì–´ ìºë¦­í„° íƒ€ì…ì´ë‚˜ ID ì— ë”°ë¥¸ êµ¬ë¶„ì´ í•„ìš”í•´ ì§ˆ ìˆ˜ë„ ìˆìŒ.
 	if (!IsMyOwnerLocalPlayer()){
 		return false;
 	}
 
-	// ¹öÇÁ ¼±ÅÃÇÑ °ÍÀº ¿©±â¿¡ ÀúÀåÇØ µĞ´Ù. InitializeCombatStats ¿¡¼­ Àû¿ëµÇµµ·Ï !!! (ÁÖÀÇ : BornAgain ÀÌÀü¿¡ È£Ãâ)
+	// ë²„í”„ ì„ íƒí•œ ê²ƒì€ ì—¬ê¸°ì— ì €ì¥í•´ ë‘”ë‹¤. InitializeCombatStats ì—ì„œ ì ìš©ë˜ë„ë¡ !!! (ì£¼ì˜ : BornAgain ì´ì „ì— í˜¸ì¶œ)
 	if (AttackBuffCount != -1 && DefenseBuffCount != -1 && HealthBuffCount != -1)
 		UpdateResurrectionBuffOnResponse(AttackBuffCount, DefenseBuffCount, HealthBuffCount);
 
-	// ºÎÈ°ÇÒ À§Ä¡¸¦ ÀçÁ¶Á¤ÇØÁØ´Ù. (ÁÖÀÇ : BornAgain ÀÌÀü¿¡ È£Ãâ)
+	// ë¶€í™œí•  ìœ„ì¹˜ë¥¼ ì¬ì¡°ì •í•´ì¤€ë‹¤. (ì£¼ì˜ : BornAgain ì´ì „ì— í˜¸ì¶œ)
 	SetResurrectionPlayerPosition();
 
 	if (BornAgain(false))
@@ -1429,14 +1428,14 @@ bool UB2SkillRTManager::BornAgain(bool bForceSpawnAsMain)
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2SkillRTManager_BornAgain);
 	B2_SCOPED_TRACK_LOG(TEXT("UB2SkillRTManager::BornAgain"));
 	
-	if (CurrentOwnerPlayer == NULL) // ÀÌ°Ç °ÅÀÇ resurrect ¿ëÀ» ÀÇµµÇÑ °ÍÀÌ¹Ç·Î ´ç¿¬È÷ IsAlive Ã¼Å©¸¦ ÇÏÁö ¾Ê´Â´Ù. ¿ÀÈ÷·Á ¹İ´ë·Î IsAlive false ÀÎ °É Ã¼Å©ÇØ¾ß ÇÒ ¼öµµ.
+	if (CurrentOwnerPlayer == NULL) // ì´ê±´ ê±°ì˜ resurrect ìš©ì„ ì˜ë„í•œ ê²ƒì´ë¯€ë¡œ ë‹¹ì—°íˆ IsAlive ì²´í¬ë¥¼ í•˜ì§€ ì•ŠëŠ”ë‹¤. ì˜¤íˆë ¤ ë°˜ëŒ€ë¡œ IsAlive false ì¸ ê±¸ ì²´í¬í•´ì•¼ í•  ìˆ˜ë„.
 	{
 		return false;
 	}
 
 	ABladeIIGameMode* pGM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(CurrentOwnerPlayer));
 
-	// °ÔÀÓ¸ğµå°¡ ¾øÀ»¸®´Â ¾ø°ÚÁö.
+	// ê²Œì„ëª¨ë“œê°€ ì—†ì„ë¦¬ëŠ” ì—†ê² ì§€.
 	if (!pGM)
 		return false;
 
@@ -1446,8 +1445,8 @@ bool UB2SkillRTManager::BornAgain(bool bForceSpawnAsMain)
 		return false;
 	}
 	
-	// Spawn Àü¿¡ player Controller ÂÊ¿¡ SpawnMotionState ¸¦ ¸ÕÀú ¼¼ÆÃÇÑ´Ù. 
-	// Player character spawn µµÁß AnimBP overriding ¿¡ ÀÇÇØ Anim tick ÀÌ ÇÑ¹ø Ã³¸®µÇ´Âµ¥ ±× Àü¿¡ »óÅÂ¸¦ ³Ö¾îµÑ ÇÊ¿ä°¡ ÀÖ¾î¼­ Player controller ¸¦ ÅëÇÏµµ·Ï ÇÔ.
+	// Spawn ì „ì— player Controller ìª½ì— SpawnMotionState ë¥¼ ë¨¼ì € ì„¸íŒ…í•œë‹¤. 
+	// Player character spawn ë„ì¤‘ AnimBP overriding ì— ì˜í•´ Anim tick ì´ í•œë²ˆ ì²˜ë¦¬ë˜ëŠ”ë° ê·¸ ì „ì— ìƒíƒœë¥¼ ë„£ì–´ë‘˜ í•„ìš”ê°€ ìˆì–´ì„œ Player controller ë¥¼ í†µí•˜ë„ë¡ í•¨.
 	ABladeIIPlayerController* B2PC = Cast<ABladeIIPlayerController>(CurrentOwnerPlayer->Controller);
 	if (B2PC)
 	{
@@ -1462,9 +1461,9 @@ bool UB2SkillRTManager::BornAgain(bool bForceSpawnAsMain)
 
 	if (DynSpawnNewPlayerCommon(NewSpawnClass) != NULL)
 	{
-		// À§¿¡¼­ ¼º°øÀûÀÌ¾úÀ¸¸é CurrentOwnerPlayer °¡ »õ·Î »ı¼ºÇÑ °ÍÀ¸·Î ¹Ù²î¾î ÀÖÀ» °Í.
+		// ìœ„ì—ì„œ ì„±ê³µì ì´ì—ˆìœ¼ë©´ CurrentOwnerPlayer ê°€ ìƒˆë¡œ ìƒì„±í•œ ê²ƒìœ¼ë¡œ ë°”ë€Œì–´ ìˆì„ ê²ƒ.
 		CurrentOwnerPlayer->NotifyBornAgain(OldPlayerBackup);
-		OnPlayerchanged_BornAgain(); // ÀÌÂÊ Ã³¸®µµ
+		OnPlayerchanged_BornAgain(); // ì´ìª½ ì²˜ë¦¬ë„
 		
 		OldPlayerBackup->SetRole(ROLE_Authority);
 		CurrentOwnerPlayer->GetWorld()->DestroyActor(OldPlayerBackup);
@@ -1472,7 +1471,7 @@ bool UB2SkillRTManager::BornAgain(bool bForceSpawnAsMain)
 	}
 	else
 	{
-		// ½ÇÆĞÇß´Ù¸é ¹º°¡ ¸·ÀåÀÌÁö¸¸ ¿©Æ° PlayerController ÂÊ¿¡ ¼¼ÆÃÇØ µĞ »óÅÂ¸¦ Ãë¼ÒÇÏÀÚ.
+		// ì‹¤íŒ¨í–ˆë‹¤ë©´ ë­”ê°€ ë§‰ì¥ì´ì§€ë§Œ ì—¬íŠ¼ PlayerController ìª½ì— ì„¸íŒ…í•´ ë‘” ìƒíƒœë¥¼ ì·¨ì†Œí•˜ì.
 		if (B2PC)
 		{
 			B2PC->SetPCSpawnMotionState(EPCSpawnMotionState::EPST_Normal);
@@ -1486,10 +1485,10 @@ bool UB2SkillRTManager::BornAgain(bool bForceSpawnAsMain)
 bool UB2SkillRTManager::SimpleRebirth(bool bKeepCurrentClass/* = false*/)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2SkillRTManager_SimpleRebirth);
-	// ´Ü¼øÈ÷ ÇöÀç ÇÃ·¹ÀÌ¾î Ä³¸¯À¸·Î Àç½ÃÀÛÇÏ´Â°Å. »óÅÂ ¸®¼Â Â÷¿øÀÎµ¥ Æ¯¼öÇÑ ¿ëµµ·Î »ç¿ëÇÒ ÀÏÀÌ ÀÖ´Ù.
+	// ë‹¨ìˆœíˆ í˜„ì¬ í”Œë ˆì´ì–´ ìºë¦­ìœ¼ë¡œ ì¬ì‹œì‘í•˜ëŠ”ê±°. ìƒíƒœ ë¦¬ì…‹ ì°¨ì›ì¸ë° íŠ¹ìˆ˜í•œ ìš©ë„ë¡œ ì‚¬ìš©í•  ì¼ì´ ìˆë‹¤.
 	if (!CurrentOwnerPlayer || !CurrentOwnerPlayer->IsLocalPlayer()) 
 	{ 
-		// ½ºÅ×ÀÌÁö ¸ğµå º£ÀÌ½º¿¡¼­ ·ÎÄÃ ÇÃ·¹ÀÌ¾î Ä³¸¯ ¿ëÀ¸·Î¸¸.
+		// ìŠ¤í…Œì´ì§€ ëª¨ë“œ ë² ì´ìŠ¤ì—ì„œ ë¡œì»¬ í”Œë ˆì´ì–´ ìºë¦­ ìš©ìœ¼ë¡œë§Œ.
 		return false;
 	}
 
@@ -1497,8 +1496,8 @@ bool UB2SkillRTManager::SimpleRebirth(bool bKeepCurrentClass/* = false*/)
 	
 	if (DynSpawnNewPlayerCommon(bKeepCurrentClass ? GetCurrentPlayerClass() : GetMainPlayerClass()) != NULL)
 	{
-		// À§¿¡¼­ ¼º°øÀûÀÌ¾úÀ¸¸é CurrentOwnerPlayer °¡ »õ·Î »ı¼ºÇÑ °ÍÀ¸·Î ¹Ù²î¾î ÀÖÀ» °Í.
-		// »çÈÄ Ã³¸®´Â ºÎÈ°°ú ¸¶Âù°¡Áö·Î.. È¤½Ã ´Ù¸¥ °æ¿ì°¡ »ı±â¸é.. µû·Î Ã³¸®ÇØ¾ßÁö ¹¹.
+		// ìœ„ì—ì„œ ì„±ê³µì ì´ì—ˆìœ¼ë©´ CurrentOwnerPlayer ê°€ ìƒˆë¡œ ìƒì„±í•œ ê²ƒìœ¼ë¡œ ë°”ë€Œì–´ ìˆì„ ê²ƒ.
+		// ì‚¬í›„ ì²˜ë¦¬ëŠ” ë¶€í™œê³¼ ë§ˆì°¬ê°€ì§€ë¡œ.. í˜¹ì‹œ ë‹¤ë¥¸ ê²½ìš°ê°€ ìƒê¸°ë©´.. ë”°ë¡œ ì²˜ë¦¬í•´ì•¼ì§€ ë­.
 		CurrentOwnerPlayer->NotifyBornAgain(OldPlayerBackup);
 		OnPlayerchanged_BornAgain();
 		CurrentOwnerPlayer->GetWorld()->DestroyActor(OldPlayerBackup);
@@ -1512,7 +1511,7 @@ bool UB2SkillRTManager::LocalPlayerSwitching(EPCClass NewClass)
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2SkillRTManager_LocalPlayerSwitching);
 	if (!CurrentOwnerPlayer || !CurrentOwnerPlayer->IsLocalPlayer())
 	{
-		// ½ºÅ×ÀÌÁö ¸ğµå º£ÀÌ½º¿¡¼­ ·ÎÄÃ ÇÃ·¹ÀÌ¾î Ä³¸¯ ¿ëÀ¸·Î¸¸.
+		// ìŠ¤í…Œì´ì§€ ëª¨ë“œ ë² ì´ìŠ¤ì—ì„œ ë¡œì»¬ í”Œë ˆì´ì–´ ìºë¦­ ìš©ìœ¼ë¡œë§Œ.
 		return false;
 	}
 
@@ -1537,22 +1536,22 @@ ABladeIIPlayer* UB2SkillRTManager::DynSpawnNewPlayerCommon(EPCClass ClassToSpawn
 
 	ABladeIIPlayerController* B2PC = Cast<ABladeIIPlayerController>(CurrentOwnerPlayer->GetController());
 	ABladeIIPlayerAIController* B2AC = Cast<ABladeIIPlayerAIController>(CurrentOwnerPlayer->GetController());
-	// ·ÎÄÃÇÃ·¹ÀÌ¾î°¡ ¾Æ´Ï¾îµÎ ºÎÈ°ÇÑ´Ù. ÄÁÆ®·Ñ·¯´Â ½ÇÁ¦ »ç¿ëÇÏ´Â°÷¿¡¼­ ³ÎÃ¼Å©
+	// ë¡œì»¬í”Œë ˆì´ì–´ê°€ ì•„ë‹ˆì–´ë‘ ë¶€í™œí•œë‹¤. ì»¨íŠ¸ë¡¤ëŸ¬ëŠ” ì‹¤ì œ ì‚¬ìš©í•˜ëŠ”ê³³ì—ì„œ ë„ì²´í¬
 	//BII_CHECK(B2PC && B2PC->IsLocalPlayerController());
 
 	FTransform PrevTransform = CurrentOwnerPlayer->GetTransform();
 	FTransform NewTransform(
 		PrevTransform.GetRotation(),
-		PrevTransform.GetTranslation() + FVector(0.0f, 0.0f, 1.0f), // »ìÂ¦ À§¿¡¼­
+		PrevTransform.GetTranslation() + FVector(0.0f, 0.0f, 1.0f), // ì‚´ì§ ìœ„ì—ì„œ
 		PrevTransform.GetScale3D()
 	);
 
-	CurrentOwnerPlayer->SetActorEnableCollision(false); // Áö±İ ÀÚ¸®¿¡ spawn ÀÌ µÇ´Ï collision À» ²¨ ÁØ´Ù.
-	// ¹İµå½Ã DeferContruction À» ÇÏ°í Possess ÈÄ FinishSpawning À».
+	CurrentOwnerPlayer->SetActorEnableCollision(false); // ì§€ê¸ˆ ìë¦¬ì— spawn ì´ ë˜ë‹ˆ collision ì„ êº¼ ì¤€ë‹¤.
+	// ë°˜ë“œì‹œ DeferContruction ì„ í•˜ê³  Possess í›„ FinishSpawning ì„.
 	ABladeIIPlayer* NewSpawned = ABladeIIGameMode::StaticSpawnPCClassInfoPlayer(CurrentOwnerPlayer, ClassToSpawn, NewTransform, ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn, true);
 	BII_CHECK(NewSpawned);
 
-	// NetPlayer Á¤º¸ ¼¼ÆÃ ½ÃÀÛ
+	// NetPlayer ì •ë³´ ì„¸íŒ… ì‹œì‘
 	ABladeIINetPlayer* pNewNetPlayer = Cast<ABladeIINetPlayer>(NewSpawned);
 	ABladeIINetPlayer* pOldNetPlayer = Cast<ABladeIINetPlayer>(CurrentOwnerPlayer);
 	if (pNewNetPlayer && pOldNetPlayer)
@@ -1565,12 +1564,12 @@ ABladeIIPlayer* UB2SkillRTManager::DynSpawnNewPlayerCommon(EPCClass ClassToSpawn
 		pNewNetPlayer->SetSpawnMotionState(pOldNetPlayer->GetSpawnMotionState());
 	}
 
-	NewSpawned->BeginSpawningNoDamageGuard();  // ÇÁ·ÎÁ§Å¸ÀÏÀÌ ±× ÀÚ¸®¿¡ ÀÖ´Ù°Å³ª ÇÏ¸é FinishSpawning µµÁß¿¡ ¸Â¾Æ¼­ Á×À» ¼ö ÀÖ°í ±×·¸°Ô µÇ¸é ¹«ÇÑ ¹İº¹ Tag ¸¦ ÇÏ´Â µî ¹®Á¦°¡ ¹ß»ıÇÒ ¼ö ÀÖÀ¸´Ï ¸·À½
+	NewSpawned->BeginSpawningNoDamageGuard();  // í”„ë¡œì íƒ€ì¼ì´ ê·¸ ìë¦¬ì— ìˆë‹¤ê±°ë‚˜ í•˜ë©´ FinishSpawning ë„ì¤‘ì— ë§ì•„ì„œ ì£½ì„ ìˆ˜ ìˆê³  ê·¸ë ‡ê²Œ ë˜ë©´ ë¬´í•œ ë°˜ë³µ Tag ë¥¼ í•˜ëŠ” ë“± ë¬¸ì œê°€ ë°œìƒí•  ìˆ˜ ìˆìœ¼ë‹ˆ ë§‰ìŒ
 	NewSpawned->SetTeamNum(CurrentOwnerPlayer->GetTeamNum());
 
 	NewSpawned->SetUnityTick(CurrentOwnerPlayer->GetUnityTick());
 
-	// NetPlayer Á¤º¸ ¼¼ÆÃ ³¡
+	// NetPlayer ì •ë³´ ì„¸íŒ… ë
 	TagPlayerSpawnedClass<ABladeIIPlayer*>::GetInstance().Signal(NewSpawned);
 
 	if (B2PC)
@@ -1586,15 +1585,15 @@ ABladeIIPlayer* UB2SkillRTManager::DynSpawnNewPlayerCommon(EPCClass ClassToSpawn
 
 	SetCurrentOwnerPlayer(NewSpawned);
 
-	// Possess ÀÌÈÄ¿¡ BeginPlay Ã³¸®°¡ µÇµµ·Ï
+	// Possess ì´í›„ì— BeginPlay ì²˜ë¦¬ê°€ ë˜ë„ë¡
 	NewSpawned->FinishSpawning(NewTransform);
 
-	NewSpawned->EndSpawningNoDamageGuard(); // ÀÌ°Ç FinishSpawning ±îÁöÀÇ ³»ºÎÀû º¸È£¿´°í ÀÌÈÄ NoDamageNotifyState ¿¡ ÀÇÇÑ spawn Á÷ÈÄ º¸È£°¡ ¶Ç ÀÖ±ä ÇÒ °Í..
+	NewSpawned->EndSpawningNoDamageGuard(); // ì´ê±´ FinishSpawning ê¹Œì§€ì˜ ë‚´ë¶€ì  ë³´í˜¸ì˜€ê³  ì´í›„ NoDamageNotifyState ì— ì˜í•œ spawn ì§í›„ ë³´í˜¸ê°€ ë˜ ìˆê¸´ í•  ê²ƒ..
 	
 // 	if (B2PC)
 // 		CurrentOwnerPlayer->DisableInput(B2PC);
 
-	// ºÎÈ°/ÅÂ±× »óÈ²¿¡ »ó°ü¾ø´Â °øÅë Ã³¸®
+	// ë¶€í™œ/íƒœê·¸ ìƒí™©ì— ìƒê´€ì—†ëŠ” ê³µí†µ ì²˜ë¦¬
 	OnPlayerChanged_Common();
 
 	PlayerChangedClass<ABladeIIPlayer*>::GetInstance().Signal(CurrentOwnerPlayer);
@@ -1602,7 +1601,7 @@ ABladeIIPlayer* UB2SkillRTManager::DynSpawnNewPlayerCommon(EPCClass ClassToSpawn
 	return NewSpawned;
 }
 
-ABladeIIPlayer* UB2SkillRTManager::DynSpawnLocalPlayerCommon(EPCClass ClassToSpawn)		// New Tutorial ¿¡¼­ »ç¿ë. ÇÃ·¹ÀÌ¾î¸¦ »ç¿ëÇÏÁö ¾Ê´Â´Ù
+ABladeIIPlayer* UB2SkillRTManager::DynSpawnLocalPlayerCommon(EPCClass ClassToSpawn)		// New Tutorial ì—ì„œ ì‚¬ìš©. í”Œë ˆì´ì–´ë¥¼ ì‚¬ìš©í•˜ì§€ ì•ŠëŠ”ë‹¤
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2SkillRTManager_DynSpawnLocalPlayerCommon);
 	B2_SCOPED_TRACK_LOG(TEXT("UB2SkillRTManager::DynSpawnLocalPlayerCommon"));
@@ -1614,16 +1613,16 @@ ABladeIIPlayer* UB2SkillRTManager::DynSpawnLocalPlayerCommon(EPCClass ClassToSpa
 	FTransform PrevTransform = CurrentOwnerPlayer->GetTransform();
 	FTransform NewTransform(
 		PrevTransform.GetRotation(),
-		PrevTransform.GetTranslation() + FVector(0.0f, 0.0f, 1.0f), // »ìÂ¦ À§¿¡¼­
+		PrevTransform.GetTranslation() + FVector(0.0f, 0.0f, 1.0f), // ì‚´ì§ ìœ„ì—ì„œ
 		PrevTransform.GetScale3D()
 	);
 
-	CurrentOwnerPlayer->SetActorEnableCollision(false); // Áö±İ ÀÚ¸®¿¡ spawn ÀÌ µÇ´Ï collision À» ²¨ ÁØ´Ù.
-														// ¹İµå½Ã DeferContruction À» ÇÏ°í Possess ÈÄ FinishSpawning À».
+	CurrentOwnerPlayer->SetActorEnableCollision(false); // ì§€ê¸ˆ ìë¦¬ì— spawn ì´ ë˜ë‹ˆ collision ì„ êº¼ ì¤€ë‹¤.
+														// ë°˜ë“œì‹œ DeferContruction ì„ í•˜ê³  Possess í›„ FinishSpawning ì„.
 	ABladeIIPlayer* NewSpawned = ABladeIIGameMode::StaticSpawnPCClassInfoPlayer(CurrentOwnerPlayer, ClassToSpawn, NewTransform, ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn, true);
 	BII_CHECK(NewSpawned);
 
-	NewSpawned->BeginSpawningNoDamageGuard();  // ÇÁ·ÎÁ§Å¸ÀÏÀÌ ±× ÀÚ¸®¿¡ ÀÖ´Ù°Å³ª ÇÏ¸é FinishSpawning µµÁß¿¡ ¸Â¾Æ¼­ Á×À» ¼ö ÀÖ°í ±×·¸°Ô µÇ¸é ¹«ÇÑ ¹İº¹ Tag ¸¦ ÇÏ´Â µî ¹®Á¦°¡ ¹ß»ıÇÒ ¼ö ÀÖÀ¸´Ï ¸·À½
+	NewSpawned->BeginSpawningNoDamageGuard();  // í”„ë¡œì íƒ€ì¼ì´ ê·¸ ìë¦¬ì— ìˆë‹¤ê±°ë‚˜ í•˜ë©´ FinishSpawning ë„ì¤‘ì— ë§ì•„ì„œ ì£½ì„ ìˆ˜ ìˆê³  ê·¸ë ‡ê²Œ ë˜ë©´ ë¬´í•œ ë°˜ë³µ Tag ë¥¼ í•˜ëŠ” ë“± ë¬¸ì œê°€ ë°œìƒí•  ìˆ˜ ìˆìœ¼ë‹ˆ ë§‰ìŒ
 
 	if (B2PC)
 	{
@@ -1633,12 +1632,12 @@ ABladeIIPlayer* UB2SkillRTManager::DynSpawnLocalPlayerCommon(EPCClass ClassToSpa
 
 	SetCurrentOwnerPlayer(NewSpawned);
 
-	// Possess ÀÌÈÄ¿¡ BeginPlay Ã³¸®°¡ µÇµµ·Ï
+	// Possess ì´í›„ì— BeginPlay ì²˜ë¦¬ê°€ ë˜ë„ë¡
 	NewSpawned->FinishSpawning(NewTransform);
 
-	NewSpawned->EndSpawningNoDamageGuard(); // ÀÌ°Ç FinishSpawning ±îÁöÀÇ ³»ºÎÀû º¸È£¿´°í ÀÌÈÄ NoDamageNotifyState ¿¡ ÀÇÇÑ spawn Á÷ÈÄ º¸È£°¡ ¶Ç ÀÖ±ä ÇÒ °Í..
+	NewSpawned->EndSpawningNoDamageGuard(); // ì´ê±´ FinishSpawning ê¹Œì§€ì˜ ë‚´ë¶€ì  ë³´í˜¸ì˜€ê³  ì´í›„ NoDamageNotifyState ì— ì˜í•œ spawn ì§í›„ ë³´í˜¸ê°€ ë˜ ìˆê¸´ í•  ê²ƒ..
 
-	// ºÎÈ°/ÅÂ±× »óÈ²¿¡ »ó°ü¾ø´Â °øÅë Ã³¸®
+	// ë¶€í™œ/íƒœê·¸ ìƒí™©ì— ìƒê´€ì—†ëŠ” ê³µí†µ ì²˜ë¦¬
 	OnPlayerChanged_Common();
 
 	PlayerChangedClass<ABladeIIPlayer*>::GetInstance().Signal(CurrentOwnerPlayer);
@@ -1649,8 +1648,8 @@ ABladeIIPlayer* UB2SkillRTManager::DynSpawnLocalPlayerCommon(EPCClass ClassToSpa
 void UB2SkillRTManager::OnPlayerChanged_Common()
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2SkillRTManager_OnPlayerChanged_Common);
-	// CurentOwnerPlayer °¡ ¹Ù²ñ¿¡ µû¶ó CachedSkillInfo ´Â »õ·Î »Ì¾ÆÁÜ. ÃßÈÄ ¿ä±¸¿¡ µû¶ó ÀÌ°Íµµ ÀÌÁßÀ¸·Î ÇÊ¿äÇÏ°Ô µÇ¸é ´Ş¶óÁú ¼ö ÀÖ´Ù.
-	// SkillInfo °¡ ÃÊ±â ±¸Çö¿¡¼­´Â ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ º°·Î µû·Î¶ó CurrentOwnerPlayer ¿¡¼­ °¡Á®¿ÔÀ¸³ª ÇöÀç´Â ÀüÃ¼ SkillInfoObject ·Î ±¸¼ºµÊ.
+	// CurentOwnerPlayer ê°€ ë°”ë€œì— ë”°ë¼ CachedSkillInfo ëŠ” ìƒˆë¡œ ë½‘ì•„ì¤Œ. ì¶”í›„ ìš”êµ¬ì— ë”°ë¼ ì´ê²ƒë„ ì´ì¤‘ìœ¼ë¡œ í•„ìš”í•˜ê²Œ ë˜ë©´ ë‹¬ë¼ì§ˆ ìˆ˜ ìˆë‹¤.
+	// SkillInfo ê°€ ì´ˆê¸° êµ¬í˜„ì—ì„œëŠ” í”Œë ˆì´ì–´ ìºë¦­í„° ë³„ë¡œ ë”°ë¡œë¼ CurrentOwnerPlayer ì—ì„œ ê°€ì ¸ì™”ìœ¼ë‚˜ í˜„ì¬ëŠ” ì „ì²´ SkillInfoObject ë¡œ êµ¬ì„±ë¨.
 	UB2GameInstance* B2GI = Cast<UB2GameInstance>(UGameplayStatics::GetGameInstance(this));
 	UB2PCClassInfoBox* PCClassInfoBox = B2GI ? B2GI->GetPCClassInfoBox() : StaticFindPCClassInfoBox(this);
 	CachedSkillInfo = PCClassInfoBox ? PCClassInfoBox->GetAllSkillInfo() : NULL;
@@ -1662,7 +1661,7 @@ void UB2SkillRTManager::OnPlayerChanged_Tag(class ABladeIIPlayer* OldPlayer, cla
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2SkillRTManager_OnPlayerChanged_Tag);
 	B2_SCOPED_TRACK_LOG(TEXT("UB2SkillRTManager::OnPlayerChanged_Tag"));
 
-	// NewPlayer ´Â ÀÌ ½ÃÁ¡¿¡¼­´Â CurrentOwnerPlayer ÀÌ¾î¾ß
+	// NewPlayer ëŠ” ì´ ì‹œì ì—ì„œëŠ” CurrentOwnerPlayer ì´ì–´ì•¼
 
 	TArray<FInputBoundSkillState_Base*>& SkillStates = InactivePlayerStateCache.IBSkillStates;
 	if (AllocateSkillState(SkillStates))
@@ -1674,27 +1673,27 @@ void UB2SkillRTManager::OnPlayerChanged_Tag(class ABladeIIPlayer* OldPlayer, cla
 	FInputBoundSkillState_Base* TempCurrentState;
 	for (int32 SI = 0; SI < MAX_SKILL_INPUT; ++SI)
 	{
-		// ÀÏ´Ü Áß°£ ÀÓ½Ã °ø°£¿¡ ¹é¾÷ÇÑ ÈÄ IBSkillState º¹±¸
+		// ì¼ë‹¨ ì¤‘ê°„ ì„ì‹œ ê³µê°„ì— ë°±ì—…í•œ í›„ IBSkillState ë³µêµ¬
 		TempCurrentState = IBSkillStates[SI];
 		IBSkillStates[SI] = InactivePlayerStateCache.IBSkillStates[SI];
 		InactivePlayerStateCache.IBSkillStates[SI] = TempCurrentState;
 	}
 
-	// ÇÑ¹ø ÀÌ»ó Ä³½ÌÀÌ µÈ °æ¿ì¿¡¸¸ Health µîÀ» º¹±¸. ±×°Ô ¾Æ´Ï¶ó¸é °Á ÃÊ±â°ªÀÏ Å×´Ï.
+	// í•œë²ˆ ì´ìƒ ìºì‹±ì´ ëœ ê²½ìš°ì—ë§Œ Health ë“±ì„ ë³µêµ¬. ê·¸ê²Œ ì•„ë‹ˆë¼ë©´ ê± ì´ˆê¸°ê°’ì¼ í…Œë‹ˆ.
 	if (InactivePlayerStateCache.bNotCachedYet == false)
 	{
 		InactivePlayerStateCache.SetToNewCommingPlayer(NewPlayer);
 	}
 	
-	InactivePlayerStateCache.SetVariablesByRetiringPlayer(OldPlayer); // ÅğÀåÇÏ´Â ÇÃ·¹ÀÌ¾î »óÅÂ°ªµé ¹é¾÷
-	InactivePlayerStateCache.bNotCachedYet = false; // ÃÖ¼ÒÇÑ ÇÑ¹ø Ä³½Ì µÇ¾úÀ½À» Ç¥½Ã
+	InactivePlayerStateCache.SetVariablesByRetiringPlayer(OldPlayer); // í‡´ì¥í•˜ëŠ” í”Œë ˆì´ì–´ ìƒíƒœê°’ë“¤ ë°±ì—…
+	InactivePlayerStateCache.bNotCachedYet = false; // ìµœì†Œí•œ í•œë²ˆ ìºì‹± ë˜ì—ˆìŒì„ í‘œì‹œ
 
 	if (OldPlayer->IsAlive())
-	{// ¾ÆÁ÷ »ì¾ÆÀÖ´Ù¸é HP È¸º¹ Å¸ÀÌ¸Ó¸¦ ÀÏ´Ü ¼¼ÆÃÇÏ°í, ¸¸ÀÏ È¸º¹ ÇÑµµ°¡ Â÷ ÀÖ´Â »óÅÂ¶ó¸é ¸ØÃß°Ô µÉ °Í
+	{// ì•„ì§ ì‚´ì•„ìˆë‹¤ë©´ HP íšŒë³µ íƒ€ì´ë¨¸ë¥¼ ì¼ë‹¨ ì„¸íŒ…í•˜ê³ , ë§Œì¼ íšŒë³µ í•œë„ê°€ ì°¨ ìˆëŠ” ìƒíƒœë¼ë©´ ë©ˆì¶”ê²Œ ë  ê²ƒ
 		InactivePlayerStateCache.StartTick();
 	}
 
-	UpdateSkillDocDataOnPCSwap(); // UI Doc ¾÷µ¥ÀÌÆ®.
+	UpdateSkillDocDataOnPCSwap(); // UI Doc ì—…ë°ì´íŠ¸.
 		
 /*
 	if (AB2NetGameMode* NGMB = Cast<AB2NetGameMode>(UGameplayStatics::GetGameMode(NewPlayer)))
@@ -1704,7 +1703,7 @@ void UB2SkillRTManager::OnPlayerChanged_Tag(class ABladeIIPlayer* OldPlayer, cla
 	}
 */
 
-	NewPlayer->SetActorRotation(FRotator(0.0f, NewPlayer->GetActorRotation().Yaw, 0.0f)); // °¡²û Ä³¸¯ÅÍ È¸ÀüÀÌ ²¿ÀÌ´Â ÀÏÀÌ ÀÖ´Â °Å °°´Ù(°í ÇÑ´Ù). ±×·¡¼­ ÀÌÂë¼­ ÇÑ¹ø roll °ú pitch ¸¦ 0 À¸·Î.
+	NewPlayer->SetActorRotation(FRotator(0.0f, NewPlayer->GetActorRotation().Yaw, 0.0f)); // ê°€ë” ìºë¦­í„° íšŒì „ì´ ê¼¬ì´ëŠ” ì¼ì´ ìˆëŠ” ê±° ê°™ë‹¤(ê³  í•œë‹¤). ê·¸ë˜ì„œ ì´ì¯¤ì„œ í•œë²ˆ roll ê³¼ pitch ë¥¼ 0 ìœ¼ë¡œ.
 }
 
 void UB2SkillRTManager::OnPlayerChangedByTag(class ABladeIIPlayer* OldPlayer, class ABladeIIPlayer* NewPlayer)
@@ -1712,7 +1711,7 @@ void UB2SkillRTManager::OnPlayerChangedByTag(class ABladeIIPlayer* OldPlayer, cl
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2SkillRTManager_OnPlayerChangedByTag);
 	B2_SCOPED_TRACK_LOG(TEXT("UB2SkillRTManager::OnPlayerChangedByTag"));
 
-	// NewPlayer ´Â ÀÌ ½ÃÁ¡¿¡¼­´Â CurrentOwnerPlayer ÀÌ¾î¾ß
+	// NewPlayer ëŠ” ì´ ì‹œì ì—ì„œëŠ” CurrentOwnerPlayer ì´ì–´ì•¼
 
 	if (AllocateSkillState(InactivePlayerStateCache.IBSkillStates))
 		SetPlayerCharacterSkill(NewPlayer, InactivePlayerStateCache.IBSkillStates, CachedSkillOption[1]);
@@ -1723,23 +1722,23 @@ void UB2SkillRTManager::OnPlayerChangedByTag(class ABladeIIPlayer* OldPlayer, cl
 	FInputBoundSkillState_Base* TempCurrentState;
 	for (int32 SI = 0; SI < MAX_SKILL_INPUT; ++SI)
 	{
-		// ÀÏ´Ü Áß°£ ÀÓ½Ã °ø°£¿¡ ¹é¾÷ÇÑ ÈÄ IBSkillState º¹±¸
+		// ì¼ë‹¨ ì¤‘ê°„ ì„ì‹œ ê³µê°„ì— ë°±ì—…í•œ í›„ IBSkillState ë³µêµ¬
 		TempCurrentState = IBSkillStates[SI];
 		IBSkillStates[SI] = InactivePlayerStateCache.IBSkillStates[SI];
 		InactivePlayerStateCache.IBSkillStates[SI] = TempCurrentState;
 	}
 
-	// ÇÑ¹ø ÀÌ»ó Ä³½ÌÀÌ µÈ °æ¿ì¿¡¸¸ Health ¸¦ º¹±¸. ±×°Ô ¾Æ´Ï¶ó¸é °Á ÃÊ±â°ªÀÏ Å×´Ï.
+	// í•œë²ˆ ì´ìƒ ìºì‹±ì´ ëœ ê²½ìš°ì—ë§Œ Health ë¥¼ ë³µêµ¬. ê·¸ê²Œ ì•„ë‹ˆë¼ë©´ ê± ì´ˆê¸°ê°’ì¼ í…Œë‹ˆ.
 	if (InactivePlayerStateCache.bNotCachedYet == false)
 	{
 		InactivePlayerStateCache.SetToNewCommingPlayer(NewPlayer);
 	}
 
-	InactivePlayerStateCache.SetVariablesByRetiringPlayer(OldPlayer); // ÅğÀåÇÏ´Â ÇÃ·¹ÀÌ¾î »óÅÂ°ªµé ¹é¾÷
-	InactivePlayerStateCache.bNotCachedYet = false; // ÃÖ¼ÒÇÑ ÇÑ¹ø Ä³½Ì µÇ¾úÀ½À» Ç¥½Ã
+	InactivePlayerStateCache.SetVariablesByRetiringPlayer(OldPlayer); // í‡´ì¥í•˜ëŠ” í”Œë ˆì´ì–´ ìƒíƒœê°’ë“¤ ë°±ì—…
+	InactivePlayerStateCache.bNotCachedYet = false; // ìµœì†Œí•œ í•œë²ˆ ìºì‹± ë˜ì—ˆìŒì„ í‘œì‹œ
 
 	if (OldPlayer->IsAlive())
-	{// ¾ÆÁ÷ »ì¾ÆÀÖ´Ù¸é HP È¸º¹ Å¸ÀÌ¸Ó¸¦ ÀÏ´Ü ¼¼ÆÃÇÏ°í, ¸¸ÀÏ È¸º¹ ÇÑµµ°¡ Â÷ ÀÖ´Â »óÅÂ¶ó¸é ¸ØÃß°Ô µÉ °Í
+	{// ì•„ì§ ì‚´ì•„ìˆë‹¤ë©´ HP íšŒë³µ íƒ€ì´ë¨¸ë¥¼ ì¼ë‹¨ ì„¸íŒ…í•˜ê³ , ë§Œì¼ íšŒë³µ í•œë„ê°€ ì°¨ ìˆëŠ” ìƒíƒœë¼ë©´ ë©ˆì¶”ê²Œ ë  ê²ƒ
 		InactivePlayerStateCache.StartTick();
 	}
 /*
@@ -1754,7 +1753,7 @@ void UB2SkillRTManager::OnPlayerChangedByTag(class ABladeIIPlayer* OldPlayer, cl
 void UB2SkillRTManager::OnPlayerchanged_BornAgain()
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2SkillRTManager_OnPlayerchanged_BornAgain);
-	// ºÎÈ°ÀÎ °æ¿ì ÇöÀç ÇÃ·¹ÀÌ¾î Å¬·¡½º ±×´ë·Î °¡°Ô µÇ¸ç, µÑ ´Ù Á×¾î¾ß ºÎÈ°ÇÏµµ·Ï ÇßÀ¸¹Ç·Î ÅÂ±× Ä³¸¯ »óÅÂµµ ¸®¼Â.
+	// ë¶€í™œì¸ ê²½ìš° í˜„ì¬ í”Œë ˆì´ì–´ í´ë˜ìŠ¤ ê·¸ëŒ€ë¡œ ê°€ê²Œ ë˜ë©°, ë‘˜ ë‹¤ ì£½ì–´ì•¼ ë¶€í™œí•˜ë„ë¡ í–ˆìœ¼ë¯€ë¡œ íƒœê·¸ ìºë¦­ ìƒíƒœë„ ë¦¬ì…‹.
 	for (FInputBoundSkillState_Base* ThisSkillState : IBSkillStates)
 	{
 		if (ThisSkillState)
@@ -1774,9 +1773,9 @@ void UB2SkillRTManager::OnPlayerchanged_BornAgain()
 	InactivePlayerStateCache.CurrentHealth = InactivePlayerStateCache.MaxHealth;
 	InactivePlayerStateCache.LastHealth = InactivePlayerStateCache.MaxHealth;
 
-	PlayStageBGMClass<>::GetInstance().Signal(); // ÆĞ¹è À½¾ÇÀÌ ³ª¿ÔÀ» Å×´Ï ´Ù½Ã ½ºÅ×ÀÌÁö ÀüÅõ ¹è°æÀ½¾ÇÀ¸·Î
+	PlayStageBGMClass<>::GetInstance().Signal(); // íŒ¨ë°° ìŒì•…ì´ ë‚˜ì™”ì„ í…Œë‹ˆ ë‹¤ì‹œ ìŠ¤í…Œì´ì§€ ì „íˆ¬ ë°°ê²½ìŒì•…ìœ¼ë¡œ
 
-	UpdateSkillDocDataOnPCSwap(); // ÇÊ¿ä ¾øÀ»Áö ¸ğ¸£°Ú´Âµ¥ ¿©±âµµ..
+	UpdateSkillDocDataOnPCSwap(); // í•„ìš” ì—†ì„ì§€ ëª¨ë¥´ê² ëŠ”ë° ì—¬ê¸°ë„..
 }
 
 void UB2SkillRTManager::OverrideTagClass(EPCClass NewClass)
@@ -1793,7 +1792,7 @@ void UB2SkillRTManager::OverrideTagClass(EPCClass NewClass)
 	}
 
 	UB2UIDocBattle* DocBattle = UB2UIDocHelper::GetDocBattle();
-	if (DocBattle) // Ä¡Æ®¿ë ±â´ÉÀÌ°ÚÁö¸¸ °¡´ÉÇÏ¸é ¹Ù²ãÁÖ´Â °Ô ÁÁ°ÚÁö ¤»
+	if (DocBattle) // ì¹˜íŠ¸ìš© ê¸°ëŠ¥ì´ê² ì§€ë§Œ ê°€ëŠ¥í•˜ë©´ ë°”ê¿”ì£¼ëŠ” ê²Œ ì¢‹ê² ì§€ ã…‹
 	{
 		DocBattle->SetTagPCClass((int32)GetTagPlayerClass());
 	}
@@ -1817,7 +1816,7 @@ EPCClass UB2SkillRTManager::GetTagPlayerClass()
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2SkillRTManager_GetTagPlayerClass);
 	EPCClass TagPlayer = GetCurrentPlayerClass() == MainPlayerClass ? SubPlayerClass : MainPlayerClass;
 
-	// Note : Æ¯Á¤ ¸ğµâÀÏ°æ¿ì ÅÂ±× Ä³¸¯ÅÍ°¡ ¾ø´Â °æ¿ìµµ Á¸ÀçÇÔ.
+	// Note : íŠ¹ì • ëª¨ë“ˆì¼ê²½ìš° íƒœê·¸ ìºë¦­í„°ê°€ ì—†ëŠ” ê²½ìš°ë„ ì¡´ì¬í•¨.
 	//BII_CHECK(SubPlayerClass != EPCClass::EPC_End);
 
 	return TagPlayer;
@@ -1826,22 +1825,22 @@ EPCClass UB2SkillRTManager::GetTagPlayerClass()
 EPCClass UB2SkillRTManager::GetCurrentPlayerClass() const
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2SkillRTManager_GetCurrentPlayerClass);
-	// CurrentOwnerPlayer °¡ ¹Ù²î´Â ÅÂ±× µ¿ÀÛ µµÁß¿¡ ÀÌ°Ô ºÒ¸®¸é Å¸ÀÌ¹Ö¿¡ µû¶ó ÀÇµµÇÑ ¸®ÅÏ°ªÀÌ ³ª¿ÀÁö ¾ÊÀ» ¼ö ÀÖ´Ù.
+	// CurrentOwnerPlayer ê°€ ë°”ë€ŒëŠ” íƒœê·¸ ë™ì‘ ë„ì¤‘ì— ì´ê²Œ ë¶ˆë¦¬ë©´ íƒ€ì´ë°ì— ë”°ë¼ ì˜ë„í•œ ë¦¬í„´ê°’ì´ ë‚˜ì˜¤ì§€ ì•Šì„ ìˆ˜ ìˆë‹¤.
 	BII_CHECK(CurrentOwnerPlayer);
 
 	return UB2PCClassInfo::FromCharacterTypeToPCClass(CurrentOwnerPlayer->CharacterType);
 }
 
 bool UB2SkillRTManager::IsTagPossibleAtDeadMoment() const
-{ // ÇÃ·¹ÀÌ¾î ÇÏ³ª°¡ Á×À» ¶§¿¡ µé¾îÁÖ¾î¾ß ÇÒ ¼Ò¿øÀÌ¹Ç·Î °¡Àå ¿øÃÊÀûÀÎ Á¶°ÇµéÀÓ. AttackState ³ª Å¸ÀÌ¹Ö¿¡ ´ëÇÑ °í·Á°¡ µé¾î°¡Áö ¾Êµµ·Ï
+{ // í”Œë ˆì´ì–´ í•˜ë‚˜ê°€ ì£½ì„ ë•Œì— ë“¤ì–´ì£¼ì–´ì•¼ í•  ì†Œì›ì´ë¯€ë¡œ ê°€ì¥ ì›ì´ˆì ì¸ ì¡°ê±´ë“¤ì„. AttackState ë‚˜ íƒ€ì´ë°ì— ëŒ€í•œ ê³ ë ¤ê°€ ë“¤ì–´ê°€ì§€ ì•Šë„ë¡
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2SkillRTManager_IsTagPossibleAtDeadMoment);
-	return (CurrentOwnerPlayer && InactivePlayerStateCache.CurrentHealth > 0.0f); // InactivePlayerStateCache ÀÇ Health °¡ 0 ÀÌ¸é È¦·Î ³²°ÜÁø ±ØÇÑ »óÈ² µÇ°Ú´Ù.
+	return (CurrentOwnerPlayer && InactivePlayerStateCache.CurrentHealth > 0.0f); // InactivePlayerStateCache ì˜ Health ê°€ 0 ì´ë©´ í™€ë¡œ ë‚¨ê²¨ì§„ ê·¹í•œ ìƒí™© ë˜ê² ë‹¤.
 }
 
 bool UB2SkillRTManager::IsTagPossible() const
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2SkillRTManager_IsTagPossible);
-	return IsTagPossibleAtDeadMoment() // Á×À» ¶§ ¼Ò¿øµµ ¸øµé¾îÁØ´Ù¸é Æò½Ã¿¡µµ µé¾îÁÙ ¼ö ¾øÁö.
+	return IsTagPossibleAtDeadMoment() // ì£½ì„ ë•Œ ì†Œì›ë„ ëª»ë“¤ì–´ì¤€ë‹¤ë©´ í‰ì‹œì—ë„ ë“¤ì–´ì¤„ ìˆ˜ ì—†ì§€.
 			&& IsSkillCurrentlyUsable(TAG_SKILL_INDEX, false)
 			// Prevent tag during KnockBack and BigBounce
 			&& !CurrentOwnerPlayer->HadTagDisabledDamage();
@@ -1857,25 +1856,25 @@ bool UB2SkillRTManager::IsTagPossibleRightNow() const
 bool UB2SkillRTManager::IsTagPossibleButDeferred() const
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2SkillRTManager_IsTagPossibleButDeferred);
-	if (!IsTagPossible()){ // ±âº»ÀûÀÎ °¡´É ¿©ºÎ
+	if (!IsTagPossible()){ // ê¸°ë³¸ì ì¸ ê°€ëŠ¥ ì—¬ë¶€
 		return false;
 	}
 
-	// ¿¬°è ÅÂ±×°¡ ¾Æ´Ñ °ø°İ »óÅÂ¶ó¸é °¡´ÉÀº ÇÏÁö¸¸ pending µÉ °Í. Áï ¿©±â¼­ return true ÇÏ´Â °æ¿ì.
+	// ì—°ê³„ íƒœê·¸ê°€ ì•„ë‹Œ ê³µê²© ìƒíƒœë¼ë©´ ê°€ëŠ¥ì€ í•˜ì§€ë§Œ pending ë  ê²ƒ. ì¦‰ ì—¬ê¸°ì„œ return true í•˜ëŠ” ê²½ìš°.
 	return (CurrentOwnerPlayer->GetAttackState() != EAttackState::ECS_None && CurrentOwnerPlayer->TagAttackMode == ETagAttackMode::EAM_DownAttack);
 }
 
 bool UB2SkillRTManager::IsTagSuggestedPlayerCondition() const
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2SkillRTManager_IsTagSuggestedPlayerCondition);
-	return ( IsTagPossible() && // ±âº»ÀûÀ¸·Î °¡´ÉÇØ¾ß
+	return ( IsTagPossible() && // ê¸°ë³¸ì ìœ¼ë¡œ ê°€ëŠ¥í•´ì•¼
 		(CurrentOwnerPlayer->IsInCriticalCondition()) );
 }
 
 bool UB2SkillRTManager::IsTagAttackSuggested() const
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2SkillRTManager_IsTagAttackSuggested);
-	return ( IsTagPossible() && // ±âº»ÀûÀ¸·Î °¡´ÉÇØ¾ß 
+	return ( IsTagPossible() && // ê¸°ë³¸ì ìœ¼ë¡œ ê°€ëŠ¥í•´ì•¼ 
 		CurrentOwnerPlayer->TagAttackMode == ETagAttackMode::EAM_DashAttack );
 }
 
@@ -2013,21 +2012,21 @@ void UB2SkillRTManager::UpdatePlayerBuffChanged(const TArray<UB2Buff_Base*>& Buf
 
 void UB2SkillRTManager::GetCharacterRegisteredSkillIDs(EPCClass InCharClass, EB2GameMode InGMType, TArray<int32>& OutSkillIDs, ICharacterDataStore* InSpecifiedCharDataStore)
 {
-	// °ÔÀÓ¸ğµå¿¡ µû¶ó¼­ ´Ù¸£°Ô °¡Á®¿Ã ¼ö ÀÖ´Â Ä³¸¯ÅÍ º° µî·ÏµÈ SkillID °¡Á®¿À´Â ºÎºĞ
-	// ±âº»ÀûÀ¸·Î´Â CharacterDataStore °¡ ¼Ò½ºÀÓ.
+	// ê²Œì„ëª¨ë“œì— ë”°ë¼ì„œ ë‹¤ë¥´ê²Œ ê°€ì ¸ì˜¬ ìˆ˜ ìˆëŠ” ìºë¦­í„° ë³„ ë“±ë¡ëœ SkillID ê°€ì ¸ì˜¤ëŠ” ë¶€ë¶„
+	// ê¸°ë³¸ì ìœ¼ë¡œëŠ” CharacterDataStore ê°€ ì†ŒìŠ¤ì„.
 
 	if (InGMType == EB2GameMode::CounterDungeon)
 	{
 		AB2CounterAttackGameMode::GetFullStackSkillId(InCharClass, OutSkillIDs);
-		checkSlow(OutSkillIDs.Num() == 1); /* ¹İ°İ ´øÀü¿¡¼­´Â ½ºÅ³ ÇÏ³ª Á¤ÇØ³õ°í »ç¿ë. */
+		checkSlow(OutSkillIDs.Num() == 1); /* ë°˜ê²© ë˜ì „ì—ì„œëŠ” ìŠ¤í‚¬ í•˜ë‚˜ ì •í•´ë†“ê³  ì‚¬ìš©. */
 	}
 	else if (InGMType == EB2GameMode::Tutorial)
 	{
-		AB2TutorialGameMode::GetFullStackSkillId(InCharClass, OutSkillIDs); // Æ©Åä¸®¾óµµ Á¤ÇØ³õ°í ¾²°ÚÁö..
+		AB2TutorialGameMode::GetFullStackSkillId(InCharClass, OutSkillIDs); // íŠœí† ë¦¬ì–¼ë„ ì •í•´ë†“ê³  ì“°ê² ì§€..
 	}
 	else
 	{
-		// InSpecifiedCharDataStore ¸¦ Á¦°øÇÏÁö ¾ÊÀ¸¸é ·ÎÄÃ Ä³¸¯ÅÍ µ¥ÀÌÅÍ·Î
+		// InSpecifiedCharDataStore ë¥¼ ì œê³µí•˜ì§€ ì•Šìœ¼ë©´ ë¡œì»¬ ìºë¦­í„° ë°ì´í„°ë¡œ
 		ICharacterDataStore* FinalUsedCDS = InSpecifiedCharDataStore ? InSpecifiedCharDataStore : &BladeIIGameImpl::GetLocalCharacterData();
 		FinalUsedCDS->GetCharacterRegistredSkills(InCharClass, OutSkillIDs);
 		checkSlow(OutSkillIDs.Num() == MAX_ACTIVE_SKILL_INPUT);
@@ -2036,10 +2035,10 @@ void UB2SkillRTManager::GetCharacterRegisteredSkillIDs(EPCClass InCharClass, EB2
 
 void UB2SkillRTManager::GetCharacterRegisteredSkillAnimTypes(UObject* WorldContextObject, EPCClass InCharClass, EB2GameMode InGMType, TArray<ESkillAnimType>& OutSkillAnimTypes, ICharacterDataStore* InSpecifiedCharDataStore)
 {
-	// Æ¯Á¤ Ä³¸¯ÅÍ(DataStore)¿¡ ´ëÇØ µî·ÏµÈ ½ÇÁ¦ ÇÃ·¹ÀÌ µÉ SkillAnimType µéÀ» ±Ü¾î¿Â´Ù.
-	// ÀÏ¹İÀûÀÎ ÀüÅõ »óÈ²¿¡¼­ »ç¿ëµÉ ÀÏÀº ¾Æ¸¶µµ ¾øÀ» °ÍÀÌ°í ´ëÃ¼·Î »çÀü¿¡ pre-load µîÀÇ ¸ñÀûÀ¸·Î ÇÑ¹ø¿¡ ±Ü¾î¿À±â À§ÇÔ.
+	// íŠ¹ì • ìºë¦­í„°(DataStore)ì— ëŒ€í•´ ë“±ë¡ëœ ì‹¤ì œ í”Œë ˆì´ ë  SkillAnimType ë“¤ì„ ê¸ì–´ì˜¨ë‹¤.
+	// ì¼ë°˜ì ì¸ ì „íˆ¬ ìƒí™©ì—ì„œ ì‚¬ìš©ë  ì¼ì€ ì•„ë§ˆë„ ì—†ì„ ê²ƒì´ê³  ëŒ€ì²´ë¡œ ì‚¬ì „ì— pre-load ë“±ì˜ ëª©ì ìœ¼ë¡œ í•œë²ˆì— ê¸ì–´ì˜¤ê¸° ìœ„í•¨.
 
-	// InSpecifiedCharDataStore ¸¦ Á¦°øÇÏÁö ¾ÊÀ¸¸é ·ÎÄÃ Ä³¸¯ÅÍ µ¥ÀÌÅÍ·Î
+	// InSpecifiedCharDataStore ë¥¼ ì œê³µí•˜ì§€ ì•Šìœ¼ë©´ ë¡œì»¬ ìºë¦­í„° ë°ì´í„°ë¡œ
 	ICharacterDataStore* FinalUsedCDS = InSpecifiedCharDataStore ? InSpecifiedCharDataStore : &BladeIIGameImpl::GetLocalCharacterData();
 
 	TArray<int32> RegistredSkillIDs;
@@ -2053,7 +2052,7 @@ void UB2SkillRTManager::GetCharacterRegisteredSkillAnimTypes(UObject* WorldConte
 	{
 		int32 ThisSkillID = RegistredSkillIDs[SI];
 
-		// ÀÌ°Ô ½ÇÁ¦ SkillAnim Á¤ÇÏ´Â µ¥¿¡ ÇÊ¿ä.. ÇÏ´Ù º¸´Ï »¹ÁşÀÌ ¸¹ÀÌ µé¾î°¨.
+		// ì´ê²Œ ì‹¤ì œ SkillAnim ì •í•˜ëŠ” ë°ì— í•„ìš”.. í•˜ë‹¤ ë³´ë‹ˆ ë»˜ì§“ì´ ë§ì´ ë“¤ì–´ê°.
 		int32 LocalIncMotionValue = GetCharacterSkillIncMotionValue(InCharClass, InGMType, ThisSkillID, FinalUsedCDS);
 		ESkillAnimType SkillAnimTypeOfThisSkill = GetSkillAnimIndexInternal(ThisSkillID, LocalIncMotionValue, AllSkillInfo);
 		OutSkillAnimTypes.AddUnique(SkillAnimTypeOfThisSkill);
@@ -2062,10 +2061,10 @@ void UB2SkillRTManager::GetCharacterRegisteredSkillAnimTypes(UObject* WorldConte
 
 float UB2SkillRTManager::GetCharacterSkillOptionValue(int32 InSkillId, ESkillOption InSkillOption, ICharacterDataStore* InSpecifiedCharDataStore)
 {
-	// ´ëÃ¼·Î SkillRTManager ¼º°İ¿¡ ¸Â´Â Æ¯Á¤ SkillId ¿¡ °áºÎµÈ Active Skill Option À§ÁÖ°¡ µÉ µí..?
-	// CombatStatEval ÂÊÀº Passive Skill Option µéÀÓ.
+	// ëŒ€ì²´ë¡œ SkillRTManager ì„±ê²©ì— ë§ëŠ” íŠ¹ì • SkillId ì— ê²°ë¶€ëœ Active Skill Option ìœ„ì£¼ê°€ ë  ë“¯..?
+	// CombatStatEval ìª½ì€ Passive Skill Option ë“¤ì„.
 
-	// InSpecifiedCharDataStore ¸¦ Á¦°øÇÏÁö ¾ÊÀ¸¸é ·ÎÄÃ Ä³¸¯ÅÍ µ¥ÀÌÅÍ·Î
+	// InSpecifiedCharDataStore ë¥¼ ì œê³µí•˜ì§€ ì•Šìœ¼ë©´ ë¡œì»¬ ìºë¦­í„° ë°ì´í„°ë¡œ
 	ICharacterDataStore* FinalUsedCDS = InSpecifiedCharDataStore ? InSpecifiedCharDataStore : &BladeIIGameImpl::GetLocalCharacterData();
 	
 	const FSkillMasterData* SkillMasterData = BladeIIGameImpl::GetClientDataStore().GetSkillMasterData(InSkillId);
@@ -2092,12 +2091,12 @@ float UB2SkillRTManager::GetCharacterSkillOptionValue(int32 InSkillId, ESkillOpt
 
 int32 UB2SkillRTManager::GetCharacterSkillIncMotionValue(EPCClass InCharClass, EB2GameMode InGMType, int32 InSkillId, ICharacterDataStore* InSpecifiedCharDataStore)
 {
-	// InSpecifiedCharDataStore ¸¦ Á¦°øÇÏÁö ¾ÊÀ¸¸é ·ÎÄÃ Ä³¸¯ÅÍ µ¥aÀÌÅÍ·Î
+	// InSpecifiedCharDataStore ë¥¼ ì œê³µí•˜ì§€ ì•Šìœ¼ë©´ ë¡œì»¬ ìºë¦­í„° ë°aì´í„°ë¡œ
 	ICharacterDataStore* FinalUsedCDS = InSpecifiedCharDataStore ? InSpecifiedCharDataStore : &BladeIIGameImpl::GetLocalCharacterData();
 
-	// È¤½Ã °ÔÀÓ¸ğµå µî¿¡ µû¸¥ ±¸ºĞÀÌ ÇÊ¿äÇÏ¸é ³Öµµ·Ï.
-	// ÇöÀç ±¸Çö¿¡¼­.. Æ©Åä¸®¾óÀº IncMotion ÀÇ Æ¯º°Ã³¸®°¡ ¾øÀ¸¹Ç·Î ¹®Á¦°¡ µÉ ¼öµµ ÀÖ´Ù.. ´Ü, ÀÌ°Ô ¾îµğ±îÁö³ª µ¿ÀÏ skill ¾È¿¡¼­ÀÇ Á¶±İ¾¿ÀÇ variation ÀÌ°í Æ©Åä¸®¾óÀº Ä³¸¯ÅÍ ·¹º§¾÷ °°Àº °Ô ¾È µÈ ÃÊ¹İ¿¡ ÇÃ·¹ÀÌÇÏ´Â °ÍÀÌ¹Ç·Î ¹®Á¦°¡ µå·¯³ªÁö ¾ÊÀ» °Í.
-	// ¹İ°İ ´øÀüÀº AnimBP ÀÇ state °¡ µû·Î ±¸¼ºµÈ »óÅÂ¿¡¼­´Â ¿ª½Ã³ª ¹®Á¦°¡ ¾ÈµÉ °Í.
+	// í˜¹ì‹œ ê²Œì„ëª¨ë“œ ë“±ì— ë”°ë¥¸ êµ¬ë¶„ì´ í•„ìš”í•˜ë©´ ë„£ë„ë¡.
+	// í˜„ì¬ êµ¬í˜„ì—ì„œ.. íŠœí† ë¦¬ì–¼ì€ IncMotion ì˜ íŠ¹ë³„ì²˜ë¦¬ê°€ ì—†ìœ¼ë¯€ë¡œ ë¬¸ì œê°€ ë  ìˆ˜ë„ ìˆë‹¤.. ë‹¨, ì´ê²Œ ì–´ë””ê¹Œì§€ë‚˜ ë™ì¼ skill ì•ˆì—ì„œì˜ ì¡°ê¸ˆì”©ì˜ variation ì´ê³  íŠœí† ë¦¬ì–¼ì€ ìºë¦­í„° ë ˆë²¨ì—… ê°™ì€ ê²Œ ì•ˆ ëœ ì´ˆë°˜ì— í”Œë ˆì´í•˜ëŠ” ê²ƒì´ë¯€ë¡œ ë¬¸ì œê°€ ë“œëŸ¬ë‚˜ì§€ ì•Šì„ ê²ƒ.
+	// ë°˜ê²© ë˜ì „ì€ AnimBP ì˜ state ê°€ ë”°ë¡œ êµ¬ì„±ëœ ìƒíƒœì—ì„œëŠ” ì—­ì‹œë‚˜ ë¬¸ì œê°€ ì•ˆë  ê²ƒ.
 	return (int32)GetCharacterSkillOptionValue(InSkillId, ESkillOption::ESO_IncMotion, FinalUsedCDS);
 }
 
@@ -2137,14 +2136,14 @@ void UB2SkillRTManager::Cheat_ForceSetCooltime(bool bIsForTag, float NewCooltime
 }
 #endif
 
-// ´ëÃ¼·Î SkillRTManager ¼º°İ¿¡ ¸Â´Â Æ¯Á¤ SkillId ¿¡ °áºÎµÈ Active Skill Option À§ÁÖ°¡ µÉ µí..?
+// ëŒ€ì²´ë¡œ SkillRTManager ì„±ê²©ì— ë§ëŠ” íŠ¹ì • SkillId ì— ê²°ë¶€ëœ Active Skill Option ìœ„ì£¼ê°€ ë  ë“¯..?
 float UB2SkillRTManager::GetSkillOptionValue(int32 InSkillId, ESkillOption InSkillOption) const
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2SkillRTManager_GetSkillOptionValue);
 	BII_CHECK(CurrentOwnerPlayer);
 
 	if (CurrentOwnerPlayer)
-	{ // ´Ù¸¥ µ¥¼­µµ ºñ½ÁÇÑ ±â´ÉÀ» »ç¿ëÇÒ ÀÏÀÌ ÀÖÀ¸¹Ç·Î À¢¸¸ÇØ¼­´Â ¿©±â·Î ³ÖÀ» °Í..
+	{ // ë‹¤ë¥¸ ë°ì„œë„ ë¹„ìŠ·í•œ ê¸°ëŠ¥ì„ ì‚¬ìš©í•  ì¼ì´ ìˆìœ¼ë¯€ë¡œ ì›¬ë§Œí•´ì„œëŠ” ì—¬ê¸°ë¡œ ë„£ì„ ê²ƒ..
 		return GetCharacterSkillOptionValue(InSkillId, InSkillOption, CurrentOwnerPlayer->GetCharacterDataStore());
 	}
 
@@ -2177,17 +2176,17 @@ void UB2SkillRTManager::GetAllSkillOptionValuesForUnitySkill(TArray<FSkillOption
 		const FUnitySkillOption UnityOption = GLOBALUNITYSKILLMANAGER.GetUnitySkillOptionInfo(UnityItem.MainClass, UnityItem.SubClass);
 		if (UnityOption.OptionId != 0)
 		{
-			// CacheSkillOption¿¡¼­ ¼­¹öÅ¸ÀÔ ¿É¼ÇÀ» ¿øÇÏ¹Ç·Î. ¹Ù²ãÁÜ FUnitySkillOption::OptionId´Â Å¬¶ó²¨ ESkillOptionÀÎµí
+			// CacheSkillOptionì—ì„œ ì„œë²„íƒ€ì… ì˜µì…˜ì„ ì›í•˜ë¯€ë¡œ. ë°”ê¿”ì¤Œ FUnitySkillOption::OptionIdëŠ” í´ë¼êº¼ ESkillOptionì¸ë“¯
 			InOutSkillOption.Add(FSkillOptionData(UnityOption.OptionId, UnityOption.OptionValue));
 		}
 	}
 }
 
-// ÀÌ°Å CombatStatEval ¿¡ ÀÖ´Â ÇÔ¼ö·Î ´ëÃ¼ ¾ÈµÊ??
+// ì´ê±° CombatStatEval ì— ìˆëŠ” í•¨ìˆ˜ë¡œ ëŒ€ì²´ ì•ˆë¨??
 float UB2SkillRTManager::GetPassiveSkillOptionValue(EPCClass CurrentClass, EPassiveType PassiveType, ESkillOption InSkillOption)
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2SkillRTManager_GetPassiveSkillOptionValue);
-	// ¿©±â¼­ EPassiveType ¿¡ µû¸¥ ÇÊÅÍ¸µÀÌ ¸Â´Â °ÇÁö È®½ÇÈ÷ ¸ğ¸£°ÚÀ½. PassiveType ÀÌ ´Ù¸¥ ¼º°İÀÇ SkillOption À» º¸À¯ÇÑ ½ºÅ³µéÀÌ ÀÖÀ½.
+	// ì—¬ê¸°ì„œ EPassiveType ì— ë”°ë¥¸ í•„í„°ë§ì´ ë§ëŠ” ê±´ì§€ í™•ì‹¤íˆ ëª¨ë¥´ê² ìŒ. PassiveType ì´ ë‹¤ë¥¸ ì„±ê²©ì˜ SkillOption ì„ ë³´ìœ í•œ ìŠ¤í‚¬ë“¤ì´ ìˆìŒ.
 
 	BII_CHECK(CurrentOwnerPlayer);
 	
@@ -2207,10 +2206,10 @@ float UB2SkillRTManager::GetPassiveSkillOptionValue(EPCClass CurrentClass, EPass
 			AllFoundRawValues.Add(OptionValue);
 		}
 	}
-	// AllFoundRawValues ¿¡ µé¾î°£ °ªµéÀº 0 ~ 100 ½ºÄÉÀÏÀÇ ÆÛ¼¾Æ® ´ÜÀ§ÀÌ°í ¿É¼Ç Àû¿ë Å¸ÀÔ¿¡ µû¶ó 0.0 ~ 1.0 ½ºÄÉÀÏÀÇ ½ÇÁ¦ ÀÎ°ÔÀÓ Àû¿ë °ªÀ¸·Î ¹Ù²Ş.
+	// AllFoundRawValues ì— ë“¤ì–´ê°„ ê°’ë“¤ì€ 0 ~ 100 ìŠ¤ì¼€ì¼ì˜ í¼ì„¼íŠ¸ ë‹¨ìœ„ì´ê³  ì˜µì…˜ ì ìš© íƒ€ì…ì— ë”°ë¼ 0.0 ~ 1.0 ìŠ¤ì¼€ì¼ì˜ ì‹¤ì œ ì¸ê²Œì„ ì ìš© ê°’ìœ¼ë¡œ ë°”ê¿ˆ.
 	return GetEffectivePassiveSkillOptionValue(InSkillOption, AllFoundRawValues);
 }
-// ÀÌ°Å CombatStatEval ¿¡ ÀÖ´Â ÇÔ¼ö·Î ´ëÃ¼ ¾ÈµÊ??
+// ì´ê±° CombatStatEval ì— ìˆëŠ” í•¨ìˆ˜ë¡œ ëŒ€ì²´ ì•ˆë¨??
 float UB2SkillRTManager::GetPassiveSkillOptionValue(EPCClass CurrentClass, ESkillOption InSkillOption) const
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2SkillRTManager_GetPassiveSkillOptionValue_2);
@@ -2226,7 +2225,7 @@ float UB2SkillRTManager::GetPassiveSkillOptionValue(EPCClass CurrentClass, ESkil
 		FOptionValue OptionValue = FOptionValue(GetSkillOptionValue(SkillId, InSkillOption));
 		AllFoundRawValues.Add(OptionValue);
 	}
-	// AllFoundRawValues ¿¡ µé¾î°£ °ªµéÀº 0 ~ 100 ½ºÄÉÀÏÀÇ ÆÛ¼¾Æ® ´ÜÀ§ÀÌ°í ¿É¼Ç Àû¿ë Å¸ÀÔ¿¡ µû¶ó 0.0 ~ 1.0 ½ºÄÉÀÏÀÇ ½ÇÁ¦ ÀÎ°ÔÀÓ Àû¿ë °ªÀ¸·Î ¹Ù²Ş.
+	// AllFoundRawValues ì— ë“¤ì–´ê°„ ê°’ë“¤ì€ 0 ~ 100 ìŠ¤ì¼€ì¼ì˜ í¼ì„¼íŠ¸ ë‹¨ìœ„ì´ê³  ì˜µì…˜ ì ìš© íƒ€ì…ì— ë”°ë¼ 0.0 ~ 1.0 ìŠ¤ì¼€ì¼ì˜ ì‹¤ì œ ì¸ê²Œì„ ì ìš© ê°’ìœ¼ë¡œ ë°”ê¿ˆ.
 	return GetEffectivePassiveSkillOptionValue(InSkillOption, AllFoundRawValues);
 }
 
@@ -2244,25 +2243,25 @@ bool UB2SkillRTManager::IsPercentValue(ESkillOption InSkillOption)
 	); 
 }
 
-float UB2SkillRTManager::GetSkillDamageIncreaseRateByActive(EAttackState InAttackState) const // GetUnitedOptionStatusValue ¿¡ ÀÇÇØ ¾ò¾î¿À´Â ¼öÄ¡¿¡ Ãß°¡·Î Àû¿ë
+float UB2SkillRTManager::GetSkillDamageIncreaseRateByActive(EAttackState InAttackState) const // GetUnitedOptionStatusValue ì— ì˜í•´ ì–»ì–´ì˜¤ëŠ” ìˆ˜ì¹˜ì— ì¶”ê°€ë¡œ ì ìš©
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2SkillRTManager_GetSkillDamageIncreaseRateByActive);
 	return GetCachedSkillOption().GetActiveSkillOptionData(InAttackState, ESkillOption::ESO_IncAttackDamage);
 }
 
-float UB2SkillRTManager::GetBossDamageIncreaseRateByActive(EAttackState InAttackState) const // GetUnitedOptionStatusValue ¿¡ ÀÇÇØ ¾ò¾î¿À´Â ¼öÄ¡¿¡ Ãß°¡·Î Àû¿ë
+float UB2SkillRTManager::GetBossDamageIncreaseRateByActive(EAttackState InAttackState) const // GetUnitedOptionStatusValue ì— ì˜í•´ ì–»ì–´ì˜¤ëŠ” ìˆ˜ì¹˜ì— ì¶”ê°€ë¡œ ì ìš©
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2SkillRTManager_GetBossDamageIncreaseRateByActive);
 	return GetCachedSkillOption().GetActiveSkillOptionData(InAttackState, ESkillOption::ESO_IncAttackDamageToBoss);
 }
 
-float UB2SkillRTManager::GetCriticalRateByActive(EAttackState InAttackState) const // GetUnitedOptionStatusValue ¿¡ ÀÇÇØ ¾ò¾î¿À´Â ¼öÄ¡¿¡ Ãß°¡·Î Àû¿ë
+float UB2SkillRTManager::GetCriticalRateByActive(EAttackState InAttackState) const // GetUnitedOptionStatusValue ì— ì˜í•´ ì–»ì–´ì˜¤ëŠ” ìˆ˜ì¹˜ì— ì¶”ê°€ë¡œ ì ìš©
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2SkillRTManager_GetCriticalRateByActive);
 	return GetCachedSkillOption().GetActiveSkillOptionData(InAttackState, ESkillOption::ESO_IncCriticalRate);
 }
 
-float UB2SkillRTManager::GetCriticalDamageRateByActive(EAttackState InAttackState) const // GetUnitedOptionStatusValue ¿¡ ÀÇÇØ ¾ò¾î¿À´Â ¼öÄ¡¿¡ Ãß°¡·Î Àû¿ë
+float UB2SkillRTManager::GetCriticalDamageRateByActive(EAttackState InAttackState) const // GetUnitedOptionStatusValue ì— ì˜í•´ ì–»ì–´ì˜¤ëŠ” ìˆ˜ì¹˜ì— ì¶”ê°€ë¡œ ì ìš©
 {
 	BLADE2_SCOPE_CYCLE_COUNTER(UB2SkillRTManager_GetCriticalDamageRateByActive);
 	return GetCachedSkillOption().GetActiveSkillOptionData(InAttackState, ESkillOption::ESO_IncCriticalDamage);
@@ -2294,11 +2293,11 @@ void UB2SkillRTManager::FCachedSkillOption::CacheSkillOption(UB2SkillRTManager* 
 	BII_CHECK(SkillRTManager);
 
 	ICharacterDataStore* OwnerCDS = (SkillRTManager->CurrentOwnerPlayer) ? SkillRTManager->CurrentOwnerPlayer->GetCharacterDataStore() : NULL;
-	// Passive ½ºÅ³ ¿É¼Ç °ªµéÀº ´ëºÎºĞ ´Ù¸¥ °÷¿¡ Ä³½ÌµÇ´Âµ¥ ½ºÅ³°ú Á÷Á¢ÀûÀ¸·Î ¿¬°üµÇ´Â °ÍµéÀº ¿©±â¿¡.
+	// Passive ìŠ¤í‚¬ ì˜µì…˜ ê°’ë“¤ì€ ëŒ€ë¶€ë¶„ ë‹¤ë¥¸ ê³³ì— ìºì‹±ë˜ëŠ”ë° ìŠ¤í‚¬ê³¼ ì§ì ‘ì ìœ¼ë¡œ ì—°ê´€ë˜ëŠ” ê²ƒë“¤ì€ ì—¬ê¸°ì—.
 	SkillCooltimeDecbyPassive = CombatStatEval::GetUnitedOptionStatusValue(CharClass, EUnitedCombatOptions::UCO_Skill_DecSkillCooltime_General, OwnerCDS);
 	TagCooltimeDecbyPassive = CombatStatEval::GetUnitedOptionStatusValue(CharClass, EUnitedCombatOptions::UCO_Misc_DecTagCooltime, OwnerCDS);
 
-	// Æ¯Á¤ ActiveSkill ¿¡ ¹ÙÀÎµù µÇ´Â ¿É¼Ç°ªµé Ä³½Ì. 
+	// íŠ¹ì • ActiveSkill ì— ë°”ì¸ë”© ë˜ëŠ” ì˜µì…˜ê°’ë“¤ ìºì‹±. 
 	for (auto* IBSkillState : InIBSkillStates)
 	{
 		// Cache all skill options related to this 

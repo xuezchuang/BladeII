@@ -43,7 +43,7 @@ void UB2WingUIP_Evolution::CacheAssets()
 		GET_SLOT(UB2ButtonGoodInfoToolTip, BTN_EvolutionGoodInfo);
 
 		if (TB_EvolveFailMessage.IsValid())
-		{ // ÀÌ°Ç ÀÏ´Ü ¼û±â°í ÀÌº¥Æ® »óÈ²¿¡¼­ Ç¥½Ã
+		{ // æžæ‰’ è€çªœ è§æ‰ç»Š æžäº¥é£˜ æƒ‘ç‚”ä¿Šè¾‘ é’ŽçŸ«
 			TB_EvolveFailMessage->SetVisibility(ESlateVisibility::Collapsed);
 		}
 
@@ -61,7 +61,7 @@ void UB2WingUIP_Evolution::UpdateByWingData(const FB2Wing& InWingData)
 {
 	const bool bShouldShowMaxEvolveSet = IsUltimatelyEvolvedWing(InWingData);
 
-	// ÃÖ´ë ÁøÈ­·¹º§ µµ´Þ ¿©ºÎ¿¡ µû¶ó Å©°Ô º¸¿©Áö´Â ¼¼Æ®°¡ ´Þ¶óÁü.
+	// å¼¥æŽª æŸ³æ‹³é¥­éª‡ æ¡£å´” å’¯ä½•ä¿Š è¶æ‰¼ å†œéœ¸ ç„Šå’¯ç˜¤ç»° æŠ€é£˜å•Š å´”æ‰¼å’™.
 	if (OV_NormalEvolveMenuSet.IsValid())
 	{
 		OV_NormalEvolveMenuSet->SetVisibility(bShouldShowMaxEvolveSet ? ESlateVisibility::Collapsed : ESlateVisibility::Visible);
@@ -71,7 +71,7 @@ void UB2WingUIP_Evolution::UpdateByWingData(const FB2Wing& InWingData)
 		OV_MaxEvolvedSet->SetVisibility(bShouldShowMaxEvolveSet ? ESlateVisibility::Visible : ESlateVisibility::Collapsed);
 	}
 
-	// ÀÏ¹ÝÁøÈ­¸Þ´º / ÃÖ´ëÁøÈ­¸Þ´º °¢°¢¿¡ µû¸¥ ¼¼ºÎ ¾÷µ¥ÀÌÆ®
+	// è€é¦†æŸ³æ‹³çš‹æ˜¥ / å¼¥æŽªæŸ³æ‹³çš‹æ˜¥ é˜¿é˜¿ä¿Š è¶å¼— æŠ€ä½• è¯€å•æžé£˜
 	if (bShouldShowMaxEvolveSet)
 	{
 		if (UIP_EvolveGradeStarAtMax.IsValid())
@@ -91,7 +91,7 @@ void UB2WingUIP_Evolution::UpdateByWingData(const FB2Wing& InWingData)
 		if (TB_CurrentIngredNum.IsValid())
 		{
 			TB_CurrentIngredNum->SetText(FText::AsNumber(CurrentEvolveIngredNum));
-			TB_CurrentIngredNum->SetColorAndOpacity( // ÄÃ·¯°ª °Á ÇÏµåÄÚµù.. ±»ÀÌ..
+			TB_CurrentIngredNum->SetColorAndOpacity( // æ‹¿çŸ¾è”¼ å‚² çªé›å†…çˆ¹.. è¢«æž..
 				(CurrentEvolveIngredNum >= RequiredItemCount) ? FSlateColor(FLinearColor(0.0f, 1.0f, 0.0f)) : FSlateColor(FLinearColor(1.0f, 0.0f, 0.0f))
 				);
 		}
@@ -101,11 +101,11 @@ void UB2WingUIP_Evolution::UpdateByWingData(const FB2Wing& InWingData)
 		}
 
 		if (UIP_EvolveGradeStar.IsValid())
-		{ // Çö ÁøÈ­µî±Þ°ú ÇÔ²² ´ÙÀ½ °¡´ÉÇÑ ÁøÈ­µî±ÞÀ» °°ÀÌ º¸¿©ÁØ´Ù.
+		{ // æ³… æŸ³æ‹³æ®¿éž­è‹ž çªƒè†Š ä¿ƒæ¾œ å•Šç“·èŒ„ æŸ³æ‹³æ®¿éž­é˜‘ éžæž ç„Šå’¯éœ–ä¿ƒ.
 			UIP_EvolveGradeStar->SetCurrentGrade(InWingData.EvolutionGrade, true);
 		}
 		if (TB_EvolveSuccessRate.IsValid())
-		{ // ¸¸ºÐÀ²·Î µé¾î¿À´Â ¸¸Å­ ÀÏ´Ü ¼Ò¼ö µÑÂ°ÀÚ¸®·Î Ç¥½ÃÇØ º¸°í.. ¾Æ´Ï¶ó ÇÏ¸é int ·Î ¹Ù²Ù°í..
+		{ // çˆ¶ç›’å•¦è‚º ç”¸ç»¢å·ç»° çˆ¶æ€’ è€çªœ å®¶è ç¬›æŽ³ç£Šåºœè‚º é’ŽçŸ«ç§¦ ç„Šç»Š.. é…’èªæ‰¼ çªæ int è‚º å®˜æ“ç»Š..
 			TB_EvolveSuccessRate->SetText(FText::FromString(FString::Printf(TEXT("%.2f %%"), SuccessRate * 100.0f)));
 		}
 		if (PB_EvolvePoint.IsValid())
@@ -128,7 +128,7 @@ void UB2WingUIP_Evolution::BeginShowEvolutionFailMessage()
 		TheWorld->GetTimerManager().SetTimer(EvolutionFailMessageShowTH, this, &UB2WingUIP_Evolution::StopShowEvolutionFailMessage, EvolutionFailMessageShowTime, false);
 	}
 
-	// ÀÌ Å¸ÀÌ¹Ö¿¡ ¾Ö´Ï¸ÞÀÌ¼Ç ÇÃ·¹ÀÌ¸¦.
+	// æž é¸¥æžæ€ªä¿Š å±€èªçš‹æžè®° æ•²é¥­æžç”«.
 	BeginShowEvolutionFailMessage_BP();
 }
 
@@ -141,7 +141,7 @@ void UB2WingUIP_Evolution::StopShowEvolutionFailMessage()
 	}
 
 	if (TB_EvolveFailMessage.IsValid())
-	{ // ÀÌ°Ç ÀÏ´Ü ¼û±â°í ÀÌº¥Æ® »óÈ²¿¡¼­ Ç¥½Ã
+	{ // æžæ‰’ è€çªœ è§æ‰ç»Š æžäº¥é£˜ æƒ‘ç‚”ä¿Šè¾‘ é’ŽçŸ«
 		TB_EvolveFailMessage->SetVisibility(ESlateVisibility::Collapsed);
 	}
 }
@@ -158,7 +158,7 @@ void UB2WingUIP_Evolution::UpdateStaticWidgets()
 		TB_EvolutionTitle->SetText(BladeIIGetLOCText(B2LOC_CAT_WINGTEXT, TEXT("Wing_Evolution")));
 	}
 
-	// ÃÖ´ë ÁøÈ­·¹º§ µµ´Þ ¿©ºÎ¿¡ µû¶ó ½ÇÁ¦ º¸¿©Áö´Â °Ô Á» ´Ù¸¥µ¥ ¿©ÇÏ°£ ÀÏ´Ü ´Ù ¾÷µ¥ÀÌÆ®¸¦..
+	// å¼¥æŽª æŸ³æ‹³é¥­éª‡ æ¡£å´” å’¯ä½•ä¿Š è¶æ‰¼ è§’åŠ› ç„Šå’¯ç˜¤ç»° éœ¸ ç²± ä¿ƒå¼—å• å’¯çªåŸƒ è€çªœ ä¿ƒ è¯€å•æžé£˜ç”«..
 
 	if (TB_EvolveSuccessRateLabel.IsValid())
 	{
@@ -184,10 +184,10 @@ void UB2WingUIP_Evolution::UpdateStaticWidgets()
 	UB2ItemInfo* ItemInfoTable = StaticFindItemInfo();
 	if (ItemInfoTable && IMG_EvolveIngred.IsValid())
 	{
-		// ÁøÈ­Àç·áÀÇ Á¤ÇØÁø ¾ÆÀÌÅÛ ID °¡ ÀÖÀ½.
+		// æŸ³æ‹³çŠä¸°ç‹¼ æ²¥ç§¦æŸ³ é…’æžè¢ ID å•Š ä¹æ¾œ.
 		FSingleItemInfoData* EvolveIngredItemInfoData = ItemInfoTable->GetInfoData(FItemRefIDHelper::GetWingEvolveResourceRefID());
 		if (EvolveIngredItemInfoData)
-		{ // °íÁ¤µÈ ÀÌ¹ÌÁö ÇÏ³ª±ä ÇÏÁö¸¸ ÀÌ¹ÌÁö ¹Ù²î¸é¼­ ´©¶ôµÉ ¼ö ÀÖÀ¸¹Ç·Î ÀÎÆ÷Å×ÀÌºí¼­ °¡Á®¿Í¼­ ³Ö¾îÁØ´Ù.
+		{ // ç»Šæ²¥ç­‰ æžå›ºç˜¤ çªå”±å˜ çªç˜¤çˆ¶ æžå›ºç˜¤ å®˜å·®æè¾‘ ç©¿éçžª è ä¹æ éª¨è‚º ç‰¢å™¨æŠ›æžå–‰è¾‘ å•Šå»‰å®¢è¾‘ æŒç»¢éœ–ä¿ƒ.
 			IMG_EvolveIngred->SetBrushFromMaterial(EvolveIngredItemInfoData->GetIconMaterial(ItemInfoTable));
 		}
 	}

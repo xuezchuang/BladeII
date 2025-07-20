@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2NPCClassInfoBox.h"
@@ -39,8 +39,8 @@ TMap<ENPCClass, bool> UB2NPCClassInfoBox::SpawnPoolAsyncBlacklists;
 
 void UB2NPCClassInfoBox::SetupSpawnPoolAsyncBlacklist()
 {
-	// ¿ä ºí·¢¸®½ºÆ®´Â SpawnPool ¿¡¼­ °ÔÀÓ ½ÃÀÛ ÀÌÈÄ async ·Îµù¿¡¼­ Æ¯º°È÷ Á¦¿Ü½ÃÅ³ Å¬·¡½ºµé.
-	// Ã¹ ¿¬Ãâ ³¡³ª±â Àü¿¡ async ·ÎµùÀÌ ¿Ï·áµÉ ÇÊ¿ä°¡ ÀÖ´Âµ¥ ¸î¸î.. BossMob Master AnimBP ¾²´Â °Íµé ÇÏ³ªµÑ ³¢¾î ÀÖÀ¸¸é Å©°Ô ´À·ÁÁö¹Ç·Î ±×°ÍµéÀº Á¦¿Ü½ÃÅ°·Á´Â °Å.
+	// å¤¸ å–‰å‘åºœèƒ¶é£˜ç»° SpawnPool ä¿Šè¾‘ éœ¸çƒ™ çŸ«ç´¯ æé¥¶ async è‚ºçˆ¹ä¿Šè¾‘ æ¼‚å–Šæ´’ åŠ›å¯‡çŸ«æ‡¦ åŠªè´°èƒ¶ç”¸.
+	// éœ‰ æ¥·å… åœºå”±æ‰ å‚ˆä¿Š async è‚ºçˆ¹æ è‚¯ä¸°çª é˜å¤¸å•Š ä¹ç»°å• å‰²å‰².. BossMob Master AnimBP é™ç»° å·´ç”¸ çªå”±ç¬› å°ç»¢ ä¹æ æ å†œéœ¸ è ¢å¦¨ç˜¤éª¨è‚º å¼Šå·´ç”¸ç¯® åŠ›å¯‡çŸ«è™å¦¨ç»° èŠ­.
 	//if (SpawnPoolAsyncBlacklists.Num() == 0)
 	//{
 	//	TArray<FString> ListStr;
@@ -54,7 +54,7 @@ void UB2NPCClassInfoBox::SetupSpawnPoolAsyncBlacklist()
 	//			ENPCClass CastedNPCClassEnum = (ENPCClass)(EnumPtr->GetValueByName(FName(*ThisNPCName)));
 	//			if (CastedNPCClassEnum != ENPCClass::ENC_End)
 	//			{
-	//				SpawnPoolAsyncBlacklists.Add(CastedNPCClassEnum, true); // bool Value ´Â µüÈ÷ ÀÇ¹Ì´Â ¾øÀ½.
+	//				SpawnPoolAsyncBlacklists.Add(CastedNPCClassEnum, true); // bool Value ç»° è¿­æ´’ ç‹¼å›ºç»° ç»æ¾œ.
 	//			}
 	//		}
 	//	}
@@ -62,7 +62,7 @@ void UB2NPCClassInfoBox::SetupSpawnPoolAsyncBlacklist()
 }
 
 void UB2NPCClassInfoBox::GetAsyncRequestInfoFromNPCIds(const TArray<FCombinedNPCClassID>& NPCIDs, TArray<FB2AsyncRequestInfo>& OutRequestInfoList)
-{ // FCombinedNPCClassID ¿¡ ÇØ´çÇÏ´Â AssetReference ¸¦ °¡Á®¿È. ÀÌ°É NPCClassInfo ¿¡¼Â ·Îµù¿¡ ¾µ ¼ö ÀÖ´Ù.
+{ // FCombinedNPCClassID ä¿Š ç§¦å¯¸çªç»° AssetReference ç”« å•Šå»‰å’³. æå§ NPCClassInfo ä¿Šæ‚¸ è‚ºçˆ¹ä¿Š é•œ è ä¹ä¿ƒ.
 	for (const auto& ClassID : NPCIDs)
 	{
 		auto NPCSingleClassAsset = GetNPCSingleClassAsset(ClassID);
@@ -78,7 +78,7 @@ void UB2NPCClassInfoBox::GetAsyncRequestInfoFromNPCIds(const TArray<FCombinedNPC
 
 TSoftClassPtr<UB2NPCSingleClassInfo> UB2NPCClassInfoBox::GetNPCSingleClassAsset(const FCombinedNPCClassID& ClassID)
 {
-	// ¿©±â¼± ·ÎµùÀ» ÇÏÁö ¾Ê´Â´Ù. ·ÎµùÀÌ µÇ¾î ÀÖÀ» ¼öµµ ÀÖ°í ¾Æ´Ò ¼öµµ ÀÖ´Ù.
+	// å’¯æ‰æ€¥ è‚ºçˆ¹é˜‘ çªç˜¤ è‡¼ç»°ä¿ƒ. è‚ºçˆ¹æ ç™»ç»¢ ä¹é˜‘ èæ¡£ ä¹ç»Š é…’åŒ† èæ¡£ ä¹ä¿ƒ.
 
 	if (const FNPCClassInfoSearchMap* SearchMapPtr = NewInfoMap.Find(ClassID.GetNPCClassEnum()))
 	{
@@ -102,7 +102,7 @@ void UB2NPCClassInfoBox::Unload(const FCombinedNPCClassID& NPCClassID)
 	if (const auto& InfoAsset = GetNPCSingleClassAsset(NPCClassID))
 	{
 		if (InfoAsset.IsValid())
-		{ // RootSet Ã³¸®¸¦ ÇÏ°Ô µÉ ¼ö ÀÖÀ¸¹Ç·Î unload Àü¿¡ ¶¼¾î³õ´Â´Ù.
+		{ // RootSet è´¸åºœç”« çªéœ¸ çª è ä¹æ éª¨è‚º unload å‚ˆä¿Š éƒ½ç»¢åˆç»°ä¿ƒ.
 			InfoAsset->RemoveFromRoot();
 		}
 		UnloadAsset(InfoAsset.ToSoftObjectPath());
@@ -111,9 +111,9 @@ void UB2NPCClassInfoBox::Unload(const FCombinedNPCClassID& NPCClassID)
 
 void UB2NPCClassInfoBox::OnAsyncLoadComplete(const FString& CompleteRequest, const TArray<FB2AsyncRequestInfo>& CompleteRequestList)
 {
-	TArray<FCombinedNPCClassID> SuccessivePhaseClasses; // ·ÎµùÇØ ³õ°í ³ª¼­¾ß ¾Ë ¼ö ÀÖ´Â Phase Å¬·¡½º°¡ ÀÖ´Ù. ÀÚÁÖ Á¢ÇÏ´Â »óÈ²Àº ¾Æ´Ï°ÚÁö¸¸..
+	TArray<FCombinedNPCClassID> SuccessivePhaseClasses; // è‚ºçˆ¹ç§¦ åˆç»Š å”±è¾‘å…· èˆ… è ä¹ç»° Phase åŠªè´°èƒ¶å•Š ä¹ä¿ƒ. ç£Šæ— ç«‹çªç»° æƒ‘ç‚”ç¯® é…’èªæ‘†ç˜¤çˆ¶..
 	for (const auto& RequestInfo : CompleteRequestList)
-	{ // ´Ù¸¥ °æ·Î·Î ÀÎÇØ ÀÌ¹Ì ·ÎµùÀÌ µÇ¾î ÀÖÀ» ¼ö ÀÖÀ½.
+	{ // ä¿ƒå¼— ç‰ˆè‚ºè‚º ç‰¢ç§¦ æå›º è‚ºçˆ¹æ ç™»ç»¢ ä¹é˜‘ è ä¹æ¾œ.
 		UObject*& FoundOrAddCache = LoadedPtrMap.FindOrAdd(RequestInfo.AssetKey);
 		FoundOrAddCache = RequestInfo.StringAsset.ResolveObject();
 		
@@ -130,7 +130,7 @@ void UB2NPCClassInfoBox::OnAsyncLoadComplete(const FString& CompleteRequest, con
 	
 	if(SuccessivePhaseClasses.Num() > 0)
 	{
-		// Phase Å¬·¡½º Ãß°¡ ·ÎµùÀÌ ÇÊ¿äÇÑ °æ¿ì. ÇÃ·¹ÀÌ ½ÃÀÛ ÀÌÈÄ Async ·ÎµùÀÌ ¿¬´Ş¾Æ µÇ´Â »óÈ²ÀÌ¸é flush ¿¡ Ãë¾àÇÑ È¯°æ¿¡ ³õÀÌ°ÚÁö¸¸.. ¾îÂ¿ ¼ö ¾øÁö.. ÂÁ ¤Ñ¤Ñ;
+		// Phase åŠªè´°èƒ¶ çœ å•Š è‚ºçˆ¹æ é˜å¤¸èŒ„ ç‰ˆå¿«. æ•²é¥­æ çŸ«ç´¯ æé¥¶ Async è‚ºçˆ¹æ æ¥·å´”é…’ ç™»ç»° æƒ‘ç‚”ææ flush ä¿Š ç§’è·èŒ„ åˆ¸ç‰ˆä¿Š åˆææ‘†ç˜¤çˆ¶.. ç»¢é©´ è ç»ç˜¤.. é“ ã±ã±;
 		TArray<FB2AsyncRequestInfo> SuccessivePhaseClassAssets;
 		GetAsyncRequestInfoFromNPCIds(SuccessivePhaseClasses, SuccessivePhaseClassAssets);
 		TryAsyncLoad(FString::Printf(TEXT("Successive PhaseClass from %s"), *CompleteRequest), SuccessivePhaseClassAssets);
@@ -189,7 +189,7 @@ void UB2NPCClassInfoBox::PostLoad()
 //#endif
 }
 
-// TAsset lazy-loading À» »ç¿ëÇÏ´Â Blueprint InfoAsset ÀÇ ¿Àµ¿ÀÛ ¹®Á¦¸¦ Á¤½ÄÀ¸·Î ÇØ°áÇÏ±â Àü±îÁöÀÇ ÀÓ½Ã ¶«Áú. -> ÀÓ½Ã°¡ ¾Æ´Ñ µí
+// TAsset lazy-loading é˜‘ è¤ä¾©çªç»° Blueprint InfoAsset ç‹¼ å·æ‚¼ç´¯ å·©åŠ›ç”« æ²¥ä¾¥æ è‚º ç§¦æ¬çªæ‰ å‚ˆé³–ç˜¤ç‹¼ çƒ™çŸ« ä¸œé¾™. -> çƒ™çŸ«å•Š é…’å›± æ·€
 #if TEMP_LAZYLOADING_MISHANDLING_CLEANUP
 void UB2NPCClassInfoBox::CleanupOnPreSave()
 {
@@ -199,13 +199,13 @@ void UB2NPCClassInfoBox::PreSave(FObjectPreSaveContext SaveContext)
 {
 	Super::PreSave(SaveContext);
 
-	// ÀÇµµÄ¡ ¾Ê°Ô ÀúÀåµÈ ·¹ÆÛ·±½º¸¦ ³¯·ÁÁØ´Ù.
+	// ç‹¼æ¡£æ‘¹ è‡¼éœ¸ å†å˜ç­‰ é¥­æ¬ºç¹èƒ¶ç”« æœå¦¨éœ–ä¿ƒ.
 	CleanupOnPreSave();
 }
 #endif
 
 /**
- * ÀÏ¹İÀûÀÎ NPCSingleClassInfo Á¢±Ù ÀÎÅÍÆäÀÌ½º. ·ÎµùÀÌ ¾È µÇ¾î ÀÖ´Ù¸é ¿©±â¼­ Synchronous ·ÎµùÀÌ µÉ °Í. (async ¿äÃ»À» Çß´Ù¸é ¿Ï·á±îÁö ´ë±â)
+ * è€é¦†åˆ©ç‰¢ NPCSingleClassInfo ç«‹è¾Ÿ ç‰¢ç£å…¶æèƒ¶. è‚ºçˆ¹æ æ•‘ ç™»ç»¢ ä¹ä¿ƒæ å’¯æ‰è¾‘ Synchronous è‚ºçˆ¹æ çª å·´. (async å¤¸æ²¡é˜‘ æ²ä¿ƒæ è‚¯ä¸°é³–ç˜¤ æªæ‰)
  */
 UB2NPCSingleClassInfo* UB2NPCClassInfoBox::GetNPCSingleClassInfo(ENPCClass InClass, ENPCClassVariation InVariation)
 {
@@ -222,7 +222,7 @@ UB2NPCSingleClassInfo* UB2NPCClassInfoBox::GetNPCSingleClassInfo(ENPCClass InCla
 	{
 		const FCombinedNPCClassID ClassID(InClass, InVariation);
 		auto AssetClass = GetNPCSingleClassAsset(ClassID);
-		if (AssetClass.IsNull() == false) // ¿©±â IsNull Àº ·ÎµùÀÌ ¾ÈµÇ¾î ÀÖÀ½À» ¶æÇÏ´Â °Ô ¾Æ´Ï¶ó ¿¡¼Â ÇÒ´çÀÌ ¾ÈµÇ¾î ÀÖÀ½À» ¶æÇÔ
+		if (AssetClass.IsNull() == false) // å’¯æ‰ IsNull ç¯® è‚ºçˆ¹æ æ•‘ç™»ç»¢ ä¹æ¾œé˜‘ èˆµçªç»° éœ¸ é…’èªæ‰¼ ä¿Šæ‚¸ ä¸”å¯¸æ æ•‘ç™»ç»¢ ä¹æ¾œé˜‘ èˆµçªƒ
 		{
 			const FSoftObjectPath& StringAsset = AssetClass.ToSoftObjectPath();
 			UClass* SingleClassInfo = Cast<UClass>(LoadSynchronous(StringAsset, GENERAL_TASSET_ASYNC_LOAD_TIMEOUT));
@@ -238,7 +238,7 @@ UB2NPCSingleClassInfo* UB2NPCClassInfoBox::GetNPCSingleClassInfo(ENPCClass InCla
 	return nullptr;
 }
 
-// ·Îµù µÇ¾î ÀÖ´Â °Å Ã£´Â °Å.
+// è‚ºçˆ¹ ç™»ç»¢ ä¹ç»° èŠ­ èŒ«ç»° èŠ­.
 UB2NPCSingleClassInfo* UB2NPCClassInfoBox::FindSingleClassInfo(const FCombinedNPCClassID& ClassID)
 {
 	const int32 NPCKey = GetNPCClassKey(ClassID.GetNPCClassEnum(), ClassID.GetNPCVariationEnum());
@@ -261,19 +261,19 @@ ABladeIICharacter* SpawnCharacter(UB2NPCClassInfoBox* InfoBox, UWorld* SpawnWorl
 	//	BII_CHECK(ClassInfo);
 	//	if (ClassInfo)
 	//	{
-	//		// Æ¯È÷ OverrideByBaseBP ¸¦ À§ÇØ¼± bDeferPostSpawnInitialize ¸¦ ÇÏ´Â °ÍÀÌ ÁÁ´Ù. 
-	//		// PCClassInfo spawn ÀÇ °æ¿ì´Â ÀÌ°Ô ÇÊ¼öÀÎµ¥ NPCClassInfo ÀÇ °æ¿ì´Â ÇÊ¿ä¾ø¾î º¸ÀÌ±âµµ..
+	//		// æ¼‚æ´’ OverrideByBaseBP ç”« å›°ç§¦æ€¥ bDeferPostSpawnInitialize ç”« çªç»° å·´æ äº®ä¿ƒ. 
+	//		// PCClassInfo spawn ç‹¼ ç‰ˆå¿«ç»° æéœ¸ é˜èç‰¢å• NPCClassInfo ç‹¼ ç‰ˆå¿«ç»° é˜å¤¸ç»ç»¢ ç„Šææ‰æ¡£..
 	//		FActorSpawnParameters FinalSpawnParameter = SpawnParameters;
 	//		FinalSpawnParameter.bDeferPostSpawnInitialize = true;
-	//		// ÀÌ NPCClassInfo °¡ Á¦´ë·Î ¸ÔÈ÷·Á¸é SpawnParameters ¿¡¼­ bDeferConstruction ÀÌ ¼¼ÆÃµÇ¾î ÀÖ¾î¾ß ÇÔ. ±×·¡¾ß BeginPlay °¡ ÀÌ ÀÌÈÄ ºÒ¸®°Ô µÊ. ÀÌ°É »ç¿ëÇÏ´Â ºÎºĞ(AB2MonsterSpawnPool::SpawnSingleMonsterCommon µî).
-	//		BII_CHECK(FinalSpawnParameter.bDeferConstruction); // È¤½Ã¶óµµ bDeferConstruction À» »ç¿ëÇÏÁö ¾Ê´Â °æ¿ì°¡ »ı±â¸é Å×½ºÆ® ÈÄ ÀÌ°É Á¦°ÅÇÏµµ·Ï. ÀÏ¹İÀûÀÎ ÀÎ°ÔÀÓ Ä³¸¯ÅÍ´Â ¾Æ´Ò °ÍÀÌ´Ù.
+	//		// æ NPCClassInfo å•Š åŠ›æªè‚º å†ˆæ´’å¦¨æ SpawnParameters ä¿Šè¾‘ bDeferConstruction æ æŠ€æ³¼ç™»ç»¢ ä¹ç»¢å…· çªƒ. å¼Šè´°å…· BeginPlay å•Š æ æé¥¶ é˜‚åºœéœ¸ å‡³. æå§ è¤ä¾©çªç»° ä½•ç›’(AB2MonsterSpawnPool::SpawnSingleMonsterCommon æ®¿).
+	//		BII_CHECK(FinalSpawnParameter.bDeferConstruction); // è¶£çŸ«æ‰¼æ¡£ bDeferConstruction é˜‘ è¤ä¾©çªç˜¤ è‡¼ç»° ç‰ˆå¿«å•Š ç§¯æ‰æ æŠ›èƒ¶é£˜ é¥¶ æå§ åŠ›èŠ­çªæ¡£åºŸ. è€é¦†åˆ©ç‰¢ ç‰¢éœ¸çƒ™ æŸè…ç£ç»° é…’åŒ† å·´æä¿ƒ.
 
 	//		ABladeIICharacter* SpawnedActor = Cast<ABladeIICharacter>(SpawnWorld->SpawnActor(T::StaticClass(), &SpawnTransform, FinalSpawnParameter));
 	//		BII_CHECK(SpawnedActor && SpawnedActor->IsValidObj());
 	//		if (SpawnedActor)
 	//		{
-	//			SpawnedActor->OverrideByNPCClassInfo(InClass, ClassInfo); // ½ÇÁúÀûÀÎ ClassInfo Àû¿ë °úÁ¤.
-	//			SpawnWorld->ManualPostSpawnInitialize(SpawnedActor, SpawnTransform, FinalSpawnParameter); // bDeferPostSpawnInitialize ¿¡ µû¸¥ Ãß°¡ Ã³¸®. 
+	//			SpawnedActor->OverrideByNPCClassInfo(InClass, ClassInfo); // è§’é¾™åˆ©ç‰¢ ClassInfo åˆ©ä¾© è‹æ²¥.
+	//			SpawnWorld->ManualPostSpawnInitialize(SpawnedActor, SpawnTransform, FinalSpawnParameter); // bDeferPostSpawnInitialize ä¿Š è¶å¼— çœ å•Š è´¸åºœ. 
 	//			// Added Initial Buff handling
 	//			if (ClassInfo->InfluenceType != EInfluenceType::EIT_End)
 	//			{
@@ -382,7 +382,7 @@ void UB2NPCClassInfoBox::UnloadAll()
 			Unload(NPCClassID);
 		}		
 	}
-	LoadedPtrMap.Empty(); // È®ÀÎ»ç»ì
+	LoadedPtrMap.Empty(); // çŠ¬ç‰¢è¤æ··
 }
 void UB2NPCClassInfoBox::UnloadExcept(const TMap<FCombinedNPCClassID, bool>& InExceptIDs)
 {
@@ -398,14 +398,14 @@ void UB2NPCClassInfoBox::UnloadExcept(const TMap<FCombinedNPCClassID, bool>& InE
 			}
 		}
 	}
-	// LoadedPtrMap À» ¿©±â¼­ ºñ¿ìÁö´Â ¾Ê´Â´Ù.
+	// LoadedPtrMap é˜‘ å’¯æ‰è¾‘ åšå¿«ç˜¤ç»° è‡¼ç»°ä¿ƒ.
 }
 void UB2NPCClassInfoBox::UnloadExceptCurrentExplicit(ABladeIIGameMode* CurrGameMode)
 { 
 	//if (CurrGameMode && CurrGameMode->GetB2GameModeType() == EB2GameMode::Lobby)
 	//{
-	//	// ¾ğÁ¨°¡ ·Îºñ¿¡¼­ NPCClassInfo ¸¦ »ç¿ëÇÏ°Ô µÇ¸é ÀÌ °¡Á¤ÀÌ Æ²¸®°Ô µÇ·Á³ª.
-	//	// LoadedPtrMap ¿¡ ¸í½ÃÀûÀ¸·Î ÀÖ´Â °Ç ¾ø´õ¶óµµ ÀÌÀü ·¹º§¼­ RootSet Ã³¸®¸¦ ÇÑ °Ô ÀÖ´Ù¸é ±×°É °Çµå¸®Áö´Â ¾Ê´Â´Ù.
+	//	// æ”«å“©å•Š è‚ºåšä¿Šè¾‘ NPCClassInfo ç”« è¤ä¾©çªéœ¸ ç™»æ æ å•Šæ²¥æ æ’‡åºœéœ¸ ç™»å¦¨å”±.
+	//	// LoadedPtrMap ä¿Š ç–™çŸ«åˆ©æ è‚º ä¹ç»° æ‰’ ç»æ­¹æ‰¼æ¡£ æå‚ˆ é¥­éª‡è¾‘ RootSet è´¸åºœç”« èŒ„ éœ¸ ä¹ä¿ƒæ å¼Šå§ æ‰’é›åºœç˜¤ç»° è‡¼ç»°ä¿ƒ.
 	//	check(LoadedPtrMap.Num() == 0); 
 	//}
 	//else if (ShouldUnloadAllOnLevelTransition())
@@ -414,43 +414,43 @@ void UB2NPCClassInfoBox::UnloadExceptCurrentExplicit(ABladeIIGameMode* CurrGameM
 	//}
 	//else
 	//{
-	//	// ÇöÀç LoadedPtrMap ¿¡ Ä³½ÌµÈ °ÍµéÀº RootSet Ã³¸®¸¦ ÇÏ°í
-	//	// ±×°Ô ¾Æ´Ñ °ÍµéÀº RemoveFromRoot Ã³¸®¸¦ ÇØ¼­ È®½ÇÈ÷ ³»·Á°¡°Ô ÇÑ´Ù.
+	//	// æ³…çŠ LoadedPtrMap ä¿Š æŸæ•™ç­‰ å·´ç”¸ç¯® RootSet è´¸åºœç”« çªç»Š
+	//	// å¼Šéœ¸ é…’å›± å·´ç”¸ç¯® RemoveFromRoot è´¸åºœç”« ç§¦è¾‘ çŠ¬è§’æ´’ éƒ´å¦¨å•Šéœ¸ èŒ„ä¿ƒ.
 
-	//	// ÇöÀç ¸í½ÃÀûÀ¸·Î ·ÎµùµÈ °ÍÀÌ ¾ø´Â »óÅÂ´Â.. ½ÇÁ¦·Î NPC °¡ ¾ø´Â °ÔÀÓ¸ğµå°Å³ª (¿¹¸¦ µé¾î PVP), ¾Æ´Ï¸é °ÔÀÓ¸ğµå ¶°³ª±â Àü ¿©±æ µÎ¹ø ÀÌ»ó ÁøÀÔÇÒ ¶§.
-	//	// ¾î¶² °æ¿ìµç Unload ¸¦ ½ÇÇàÇÏÁö ¾Ê´Â´Ù. ¸¶Áö¸·À¸·Î RootSet ¿¡ ³Ö¾î³õÀº °ÍµéÀÌ ÀÖ´Ù¸é À¯ÁöµÉ °Í.
+	//	// æ³…çŠ ç–™çŸ«åˆ©æ è‚º è‚ºçˆ¹ç­‰ å·´æ ç»ç»° æƒ‘æ€•ç»°.. è§’åŠ›è‚º NPC å•Š ç»ç»° éœ¸çƒ™è‘›é›èŠ­å”± (æŠ—ç”« ç”¸ç»¢ PVP), é…’èªæ éœ¸çƒ™è‘›é› æ ‹å”±æ‰ å‚ˆ å’¯è¾¨ æ»´é”… ææƒ‘ æŸ³æ¶ä¸” é”­.
+	//	// ç»¢æ« ç‰ˆå¿«ç”µ Unload ç”« è§’é’çªç˜¤ è‡¼ç»°ä¿ƒ. ä»˜ç˜¤é˜œæ è‚º RootSet ä¿Š æŒç»¢åˆç¯® å·´ç”¸æ ä¹ä¿ƒæ èœ¡ç˜¤çª å·´.
 	//	if (LoadedPtrMap.Num() > 0)
 	//	{
-	//		EstimatedRootedAssetNum = 0; // ´Ù½Ã Áı°è..
+	//		EstimatedRootedAssetNum = 0; // ä¿ƒçŸ« ç¬¼æ‹Œ..
 
 	//		TMap<FCombinedNPCClassID, bool> AllExceptIDs;
-	//		// ÇöÀç LoadedPtrMap ¿¡ ÀÖ´Ù´Â °Ç ÀÌ¹ø ·¹º§¿¡¼­ ¸í½ÃÀûÀ¸·Î ·ÎµùÇß´Ù´Â °É·Î °£ÁÖÇÏ°í ·çÆ®¼Â¿¡ ³²°ÜµÎ·Á´Â °Å.
-	//		// ´ÙÀ½ ·¹º§¿¡¼­ ¸í½ÃÀûÀ¸·Î ·ÎµùµÇÁö ¾Ê´õ¶óµµ ·ÎµùµÈ »óÅÂ°ÚÁö¸¸ LoadedPtrMap ¿¡ Æ÷ÇÔµÇÁö´Â ¾ÊÀ» °ÍÀÌ´Ù. ±×·¸°Ô ³²¾ÆÀÖ°Ô µÇ¸é ´ÙÀ½ ·¹º§ÀÌ ³»·Á°¥ ¶§ unload µÉ °Í.
+	//		// æ³…çŠ LoadedPtrMap ä¿Š ä¹ä¿ƒç»° æ‰’ æé”… é¥­éª‡ä¿Šè¾‘ ç–™çŸ«åˆ©æ è‚º è‚ºçˆ¹æ²ä¿ƒç»° å§è‚º åŸƒæ—çªç»Š é£é£˜æ‚¸ä¿Š å·¢è´¥æ»´å¦¨ç»° èŠ­.
+	//		// ä¿ƒæ¾œ é¥­éª‡ä¿Šè¾‘ ç–™çŸ«åˆ©æ è‚º è‚ºçˆ¹ç™»ç˜¤ è‡¼æ­¹æ‰¼æ¡£ è‚ºçˆ¹ç­‰ æƒ‘æ€•æ‘†ç˜¤çˆ¶ LoadedPtrMap ä¿Š å™¨çªƒç™»ç˜¤ç»° è‡¼é˜‘ å·´æä¿ƒ. å¼ŠçŠ¯éœ¸ å·¢é…’ä¹éœ¸ ç™»æ ä¿ƒæ¾œ é¥­éª‡æ éƒ´å¦¨å“ é”­ unload çª å·´.
 	//		for (TMap<uint32, UObject*>::TIterator LoadedIt(LoadedPtrMap); LoadedIt; ++LoadedIt)
 	//		{
 	//			FCombinedNPCClassID ThisLoadedId;
 
 	//			FromNPCClassKey(LoadedIt.Key(), ThisLoadedId);
-	//			AllExceptIDs.Add(ThisLoadedId, true); // bool value ´Â ÀÇ¹Ì´Â ¾ø´Ù.
+	//			AllExceptIDs.Add(ThisLoadedId, true); // bool value ç»° ç‹¼å›ºç»° ç»ä¿ƒ.
 
-	//			// ·çÆ®¼Â Ã³¸®¸¦ ¿©±â¼­ ÇÔ, ·Îµù µÇ¾úÀ» ¶§ ÇÏ·Á´Ï ÇÑ°÷ÀÌ ¾Æ´Ï±âµµ ÇÏ°í ÇØ¼­..
+	//			// é£é£˜æ‚¸ è´¸åºœç”« å’¯æ‰è¾‘ çªƒ, è‚ºçˆ¹ ç™»èŒé˜‘ é”­ çªå¦¨èª èŒ„é•‘æ é…’èªæ‰æ¡£ çªç»Š ç§¦è¾‘..
 	//			const TSoftClassPtr<UB2NPCSingleClassInfo>& LoadedAssetClass = GetNPCSingleClassAsset(ThisLoadedId);
 	//			check(LoadedAssetClass.IsValid());
 	//			if (LoadedAssetClass.IsValid())
 	//			{
-	//				LoadedAssetClass->AddToRoot(); // ´ÙÀ½ ·¹º§¿¡¼­ ¸í½ÃÀûÀ¸·Î ·ÎµùµÇÁö ¾Ê´Â´Ù¸é ´ÙÀ½¹ø¿¡ ¿©±æ °ÅÄ¡¸é¼­ RootSet ¿¡¼­ Á¦°ÅµÇ°í ¾ğ·Îµù µÉ °ÍÀÌ´Ù.
+	//				LoadedAssetClass->AddToRoot(); // ä¿ƒæ¾œ é¥­éª‡ä¿Šè¾‘ ç–™çŸ«åˆ©æ è‚º è‚ºçˆ¹ç™»ç˜¤ è‡¼ç»°ä¿ƒæ ä¿ƒæ¾œé”…ä¿Š å’¯è¾¨ èŠ­æ‘¹æè¾‘ RootSet ä¿Šè¾‘ åŠ›èŠ­ç™»ç»Š æ”«è‚ºçˆ¹ çª å·´æä¿ƒ.
 	//				++EstimatedRootedAssetNum;
 	//			}
 	//		}
 	//		UnloadExcept(AllExceptIDs);
 	//	}
 	//}
-	LoadedPtrMap.Empty(); // ¾îÂîµÇ¾ú°Ç ºñ¿ìÁö¸¸ RootSet ¿¡ µé¾î°£ °ÍµéÀº ·ÎµùµÈ »óÅÂ¸¦ À¯ÁöÇÒ °Í.
+	LoadedPtrMap.Empty(); // ç»¢éª‚ç™»èŒæ‰’ åšå¿«ç˜¤çˆ¶ RootSet ä¿Š ç”¸ç»¢åŸƒ å·´ç”¸ç¯® è‚ºçˆ¹ç­‰ æƒ‘æ€•ç”« èœ¡ç˜¤ä¸” å·´.
 }
 
 bool UB2NPCClassInfoBox::ShouldUnloadAllOnLevelTransition()
 {
-#if PLATFORM_IOS // [IOS_SPECIFIC_MEMORY_SAVING] iOS ´Â ¸Ş¸ğ¸® ³ÑÄ¥ °ÍÀÌ ¹«¼­¿ö¼­..
+#if PLATFORM_IOS // [IOS_SPECIFIC_MEMORY_SAVING] iOS ç»° çš‹è‘›åºœ é€ç£¨ å·´æ å…¬è¾‘å†µè¾‘..
 	return true;
 #else
 	return !bManagedNPCClassUnload;
@@ -464,8 +464,8 @@ bool UB2NPCClassInfoBox::IsInSpawnPoolAsyncBlacklist(ENPCClass InCheckClass)
 
 #if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
 void UB2NPCClassInfoBox::DevTestMarkLastAsyncReqTime(const FString& InReqName)
-{ // UB2AssetLoader::bEnableDevLog ·Î Async ·Î±× »Ñ¸± ¶§ ¼Ò¸ğ ½Ã°£µµ °°ÀÌ »Ñ¸®°í ½ÍÀ¸¸é Äİ
-	// ¿©·¯°³ ¿äÃ»ÀÌ ÁßÃ¸µÇ¾úÀ» ¶§ ÀÏÀÏÀÌ Ã¼Å©ÇÏÁö´Â ¸øÇÔ. ¾Ë¾Æ¼­ Àß »ç¿ë ¤»
+{ // UB2AssetLoader::bEnableDevLog è‚º Async è‚ºå¼Š è°å‰¯ é”­ å®¶è‘› çŸ«åŸƒæ¡£ éæ è°åºœç»Š é…µæ æ å¦®
+	// å’¯çŸ¾ä¿º å¤¸æ²¡æ åé…¶ç™»èŒé˜‘ é”­ è€è€æ çœ‰å†œçªç˜¤ç»° ç»™çªƒ. èˆ…é…’è¾‘ è‚‹ è¤ä¾© ã›
 	bDevTestLastAsyncReqTimeMarked = true;
 	DevTestLastAsyncReqTimeName = InReqName;
 	DevTestLastAsyncReqTime = FPlatformTime::Seconds();
@@ -489,7 +489,7 @@ UB2NPCClassInfoBox::NPCClassPreviewAssetInfo UB2NPCClassInfoBox::GetPreviewAsset
 	//	else
 	//	{
 	//		// If not overridden, then get it from the Blueprint class.
-	//		// GetBaseBPClass ¿¡ null À» ³Ñ°ÜÁØ´Ù°í ÇØ¼­ ´çÀå ÀÛµ¿ ¾ÈÇÏ´Â °Ç ¾Æ´Ï°í asyn ·Îµù flush °¡ ÀÏ¾î³ª´Â °É °æ°èÇÏ´Â °Çµ¥ ¿¡µğÅÍ¿¡¼­ ±×·¯´Â °Å¾ß ¹®Á¦µÉ °Å ¾ø°í.
+	//		// GetBaseBPClass ä¿Š null é˜‘ é€è´¥éœ–ä¿ƒç»Š ç§¦è¾‘ å¯¸å˜ ç´¯æ‚¼ æ•‘çªç»° æ‰’ é…’èªç»Š asyn è‚ºçˆ¹ flush å•Š è€ç»¢å”±ç»° å§ ç‰ˆæ‹Œçªç»° æ‰’å• ä¿Šå¼ç£ä¿Šè¾‘ å¼ŠçŸ¾ç»° èŠ­å…· å·©åŠ›çª èŠ­ ç»ç»Š.
 	//		TSubclassOf<class ABladeIICharacter> NPCInfoBaseBPClass = NPCInfo->GetBaseBPClass(nullptr);
 	//		if (NPCInfoBaseBPClass)
 	//		{
@@ -510,11 +510,11 @@ void UB2NPCClassInfoBox::OnAssetEditorOpen(UObject* InAsset)
 {
 	UBlueprint* CastedBPObj = Cast<UBlueprint>(InAsset);
 
-	// this ¿Í ¸ÂÃß°í ½ÍÀºµ¥ ½±Áö°¡ ¾Ê´Ù.. ¤Ğ¤Ğ
+	// this å®¢ å˜çœ ç»Š é…µç¯®å• å¥–ç˜¤å•Š è‡¼ä¿ƒ.. ã°ã°
 	if (CastedBPObj && CastedBPObj->ParentClass && CastedBPObj->ParentClass->GetName() == TEXT("B2NPCClassInfoBox"))
-	{ // ±âº» EditorLoadAll À» ÇÏÁö ¾Ê°Ô µÇ¸é¼­ ¿¡¼Â ¿¡µğÅÍ ¿­ ¶§ ·ÎµùÇÏµµ·Ï ÇÔ.
+	{ // æ‰å¤¯ EditorLoadAll é˜‘ çªç˜¤ è‡¼éœ¸ ç™»æè¾‘ ä¿Šæ‚¸ ä¿Šå¼ç£ å‡¯ é”­ è‚ºçˆ¹çªæ¡£åºŸ çªƒ.
 
-		// ÀÌ°Å ¾È ÇØµµ ÀÌ¹Ì ¿­ ¶§ µ¹¾Æ°¡´Â Áß..
+		// æèŠ­ æ•‘ ç§¦æ¡£ æå›º å‡¯ é”­ å€’é…’å•Šç»° å..
 		//FScopedSlowTask SlowTask(100.0f, FText::FromString(FString::Printf(TEXT("It might fully load all NPCClassInfo. Please wait..."))));
 
 		EditorLoadAll(nullptr, 0.0f, 0.0f);
@@ -530,7 +530,7 @@ void UB2NPCClassInfoBox::EditorLoadAll(SetB2ContentLoadingProgressSplashFnPtr In
 	}
 
 	const float TotalProgRange = FMath::Max(0.0f, InEndProgress - InStartProgress);
-	// InfoAsset ¿¡ µî·ÏµÇ´Â ¾ÖµéÀÌ ¾ó¸¶³ª µÇ´ÂÁö¿¡ µû¶ó ÀûÀıÈ÷ Á¤ÇÏ´Â °Å. ¸î°³ element ·Îµù¸¶´Ù ÇÑ¹ø¾¿ ¾÷µ¥ÀÌÆ® ÇÒ Áö.
+	// InfoAsset ä¿Š æ®¿åºŸç™»ç»° å±€ç”¸æ å€”ä»˜å”± ç™»ç»°ç˜¤ä¿Š è¶æ‰¼ åˆ©ä¾‹æ´’ æ²¥çªç»° èŠ­. å‰²ä¿º element è‚ºçˆ¹ä»˜ä¿ƒ èŒ„é”…ç©¶ è¯€å•æé£˜ ä¸” ç˜¤.
 	const int32 ProgUpdateInterval = 2;
 	const int32 TotalProgUpdateCount = NewInfoMap.Num() / ProgUpdateInterval;
 	const float SingleProgIncAmount = TotalProgRange / (float)TotalProgUpdateCount;
@@ -538,7 +538,7 @@ void UB2NPCClassInfoBox::EditorLoadAll(SetB2ContentLoadingProgressSplashFnPtr In
 	float CurrProg = InStartProgress;
 
 	int32 InfoLoadCount = 0;
-	// ÇÑ¹ø ¹Ì¸® ºÒ·¯ÁÖ¸é TAsset µéÀÌ valid ÇØ Áú °Í. ¹°·Ğ ÀÌ ¿ÍÁß¿¡ ¸Ş¸ğ¸®´Â ¿ÕÃ¢ ¸Ô°ÚÁö.
+	// èŒ„é”… å›ºåºœ é˜‚çŸ¾æ—æ TAsset ç”¸æ valid ç§¦ é¾™ å·´. æ‹±æ²¸ æ å®¢åä¿Š çš‹è‘›åºœç»° ç©ºèŠ’ å†ˆæ‘†ç˜¤.
 	for (TMap<ENPCClass, FNPCClassInfoSearchMap>::TIterator InfoMapIt(NewInfoMap); InfoMapIt; ++InfoMapIt)
 	{
 		FNPCClassInfoSearchMap& ThisInfoMap = InfoMapIt.Value();
@@ -546,7 +546,7 @@ void UB2NPCClassInfoBox::EditorLoadAll(SetB2ContentLoadingProgressSplashFnPtr In
 		for (TMap<ENPCClassVariation, TSoftClassPtr<UB2NPCSingleClassInfo>>::TIterator VariationIt(ThisInfoMap.VariationAssets); VariationIt; ++VariationIt)
 		{
 			ENPCClassVariation ThisVariation = VariationIt.Key();
-			// ÇÙ½ÉÀº ¿ä°Å°í ³ª¸ÓÁö progress °è»êÀº »çÁ·.
+			// ç´ç¼´ç¯® å¤¸èŠ­ç»Š å”±èµ£ç˜¤ progress æ‹Œé­‚ç¯® è¤ç»ƒ.
 			GetNPCSingleClassInfo(ThisInfoMap.NPCClassEnum, ThisVariation);
 		}
 				
@@ -556,7 +556,7 @@ void UB2NPCClassInfoBox::EditorLoadAll(SetB2ContentLoadingProgressSplashFnPtr In
 			InSplashProgFnPtr(CurrProg);
 		}
 
-		++InfoLoadCount; // Variation ´ÜÀ§°¡ ¾Æ´Ï¶ó Class ´ÜÀ§·Î Ä«¿îÆ® ÇÑ´Ù. Variation ´ÜÀ§±îÁö´Â Ã³À½ºÎÅÍ ·ÎµùÇØ¾ß ÇÒ ¾çÀ» ¾ËÁö ¸øÇØ¼­.
+		++InfoLoadCount; // Variation çªœå›°å•Š é…’èªæ‰¼ Class çªœå›°è‚º å¢¨æ¬¾é£˜ èŒ„ä¿ƒ. Variation çªœå›°é³–ç˜¤ç»° è´¸æ¾œä½•ç£ è‚ºçˆ¹ç§¦å…· ä¸” å‰§é˜‘ èˆ…ç˜¤ ç»™ç§¦è¾‘.
 	}
 
 	CheckInfoDataIntegrity();
@@ -571,10 +571,10 @@ void UB2NPCClassInfoBox::CheckInfoDataIntegrity()
 //	if (NPCSensitiveInfo && NPCClassEnumPtr && NPCVaryEnumPtr)
 //	{
 //#if !PLATFORM_MAC
-//		FString WarnMessage = TEXT("´ÙÀ½ NPCClassInfo Ç×¸ñ¿¡ ´ëÇÑ SensitiveInfo Ç×¸ñÀÌ ´©¶ôµÇ¾ú°Å³ª SensitiveDataRowKey °¡ ¸ÂÁö ¾ÊÀ½.\n\n");
+//		FString WarnMessage = TEXT("ä¿ƒæ¾œ NPCClassInfo äº²æ ¼ä¿Š æªèŒ„ SensitiveInfo äº²æ ¼æ ç©¿éç™»èŒèŠ­å”± SensitiveDataRowKey å•Š å˜ç˜¤ è‡¼æ¾œ.\n\n");
 //#endif
 //
-//		// »ç½Ç SensitiveInfo ¿ÍÀÇ ÀÏÄ¡ Ã¼Å©´Â ÀÌÁ¦ ±×¸® Áß¿äÇÑ °Ç ¾Æ´Ô. ÀÌÁ¨ °³¹ß¹öÀü¿¡¼­³ª ¾²ÀÌ´Â °Å¶ó..
+//		// è¤è§’ SensitiveInfo å®¢ç‹¼ è€æ‘¹ çœ‰å†œç»° æåŠ› å¼Šåºœ åå¤¸èŒ„ æ‰’ é…’ä¸›. æå“© ä¿ºæƒ¯æ»šå‚ˆä¿Šè¾‘å”± é™æç»° èŠ­æ‰¼..
 //
 //		int32 FoundNullEntryNum = 0;
 //		for (TMap<ENPCClass, FNPCClassInfoSearchMap>::TIterator InfoMapIt(NewInfoMap); InfoMapIt; ++InfoMapIt)
@@ -603,7 +603,7 @@ void UB2NPCClassInfoBox::CheckInfoDataIntegrity()
 //#if !PLATFORM_MAC
 //		if (FoundNullEntryNum > 0)
 //		{
-//			WarnMessage += TEXT("\nÄÄÇ»ÅÍ°¡ Æø¹ßÇÏÁö´Â ¾ÊÀ» °ÍÀÌ´Ï °ü·ÃÀÚ ÀÌ¿Ü¿¡´Â ¾È½ÉÇÏ°í ÀÛ¾÷À» ÁøÇàÇÏ¼¼¿ä.");
+//			WarnMessage += TEXT("\nå“ªè…”ç£å•Š æ°”æƒ¯çªç˜¤ç»° è‡¼é˜‘ å·´æèª åŒ…è®¿ç£Š æå¯‡ä¿Šç»° æ•‘ç¼´çªç»Š ç´¯è¯€é˜‘ æŸ³é’çªæŠ€å¤¸.");
 //			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(WarnMessage));
 //		}
 //#endif
@@ -620,7 +620,7 @@ void UB2NPCClassInfoBox::CheckAllNPCClassEnumSettingValid()
 //	{
 //#if !PLATFORM_MAC
 //		const UEnum* NPCClassEnumPtr = FindObject<UEnum>(ANY_PACKAGE, ENPCCLASS_ENUM_PACKAGE_NAME, true);
-//		FString ErrorMsg(TEXT("[Warning] NPCClassInfoBox ¿Í °³º° ClassInfo ÀÇ NPCClassEnum ¼³Á¤ °£¿¡ ºÒÀÏÄ¡°¡ ÀÖÀ½. ÄÄÇ»ÅÍ°¡ °ğ Æø¹ßÇÑ´Ù.\r\n\r\n"));
+//		FString ErrorMsg(TEXT("[Warning] NPCClassInfoBox å®¢ ä¿ºå–Š ClassInfo ç‹¼ NPCClassEnum æ±²æ²¥ åŸƒä¿Š é˜‚è€æ‘¹å•Š ä¹æ¾œ. å“ªè…”ç£å•Š æ¢† æ°”æƒ¯èŒ„ä¿ƒ.\r\n\r\n"));
 //		for (int32 EI = 0; EI < InvalidSettings.Num(); ++EI)
 //		{
 //			ErrorMsg += FString::Printf(TEXT("%d. %s\r\n"), EI + 1, NPCClassEnumPtr ? *(NPCClassEnumPtr->GetNameStringByValue((int32)InvalidSettings[EI].GetNPCClassEnum())) : TEXT("SomeClass"));
@@ -632,8 +632,8 @@ void UB2NPCClassInfoBox::CheckAllNPCClassEnumSettingValid()
 
 UB2NPCSingleClassInfo* UB2NPCClassInfoBox::TryGetMatchingClassInfo(FName InSensitiveDataKey)
 {
-	// ½ÇÁ¦ »ç¿ë¿¡¼­´Â ¹İ´ë·Î ClassInfo ÂÊ¿¡¼­ SensitiveInfo ÂÊÀ¸·Î SensitiveDataRowKey ¸¦ »ç¿ëÇØ¼­ Äõ¸®.
-	// ÀÌ°Ç ¿¡µğÅÍ ±â´ÉÀ¸·Î¼­ ´Ü¼ø ¹«½Ä search
+	// è§’åŠ› è¤ä¾©ä¿Šè¾‘ç»° é¦†æªè‚º ClassInfo ç‡ä¿Šè¾‘ SensitiveInfo ç‡æ è‚º SensitiveDataRowKey ç”« è¤ä¾©ç§¦è¾‘ å­½åºœ.
+	// ææ‰’ ä¿Šå¼ç£ æ‰ç“·æ è‚ºè¾‘ çªœé‰´ å…¬ä¾¥ search
 	for (TMap<ENPCClass, FNPCClassInfoSearchMap>::TIterator InfoMapIt(NewInfoMap); InfoMapIt; ++InfoMapIt)
 	{
 		FNPCClassInfoSearchMap& ThisInfoMap = InfoMapIt.Value();
@@ -658,13 +658,13 @@ void UB2NPCClassInfoBox::PostEditChangeProperty(FPropertyChangedEvent& PropertyC
 	FProperty* PropertyThatChanged = PropertyChangedEvent.Property;
 	FName PropertyName = PropertyThatChanged != NULL ? PropertyThatChanged->GetFName() : NAME_None;
 
-	// µî·ÏµÈ ¿¡¼ÂµéÀÌ ·Îµù ¾È µÈ »óÅÂ¿¡¼­´Â ¿À·¡ °É¸®´Âµ¥.. ¹Ì¸® ÇÑ ¹ø ·ÎµùÇÒ ÇÊ¿ä´Â ÀÖÀ½..
+	// æ®¿åºŸç­‰ ä¿Šæ‚¸ç”¸æ è‚ºçˆ¹ æ•‘ ç­‰ æƒ‘æ€•ä¿Šè¾‘ç»° å·è´° å§åºœç»°å•.. å›ºåºœ èŒ„ é”… è‚ºçˆ¹ä¸” é˜å¤¸ç»° ä¹æ¾œ..
 	CheckInfoDataIntegrity();
 }
 
 void UB2NPCClassInfoBox::FirstTimeNPCSensitiveInfoConstruction()
 { 
-	//// NPCSensitiveInfo µµÀÔ ÀÌÀü±îÁö NPCClassInfo ¿¡ ³Ö¾î µÎ¾ú´ø µ¥ÀÌÅÍµéÀ» NPCSensitiveInfo ·Î ÀÚµ¿ ÀÌ°üÇÏ±â À§ÇÑ ÀÓ½Ã ±â´É
+	//// NPCSensitiveInfo æ¡£æ¶ æå‚ˆé³–ç˜¤ NPCClassInfo ä¿Š æŒç»¢ æ»´èŒå¸¦ å•æç£ç”¸é˜‘ NPCSensitiveInfo è‚º ç£Šæ‚¼ æåŒ…çªæ‰ å›°èŒ„ çƒ™çŸ« æ‰ç“·
 
 	//UB2NPCSensitiveInfo* NPCSensitiveInfo = StaticFindNPCSensitiveInfoTable();
 
@@ -685,8 +685,8 @@ void UB2NPCClassInfoBox::FirstTimeNPCSensitiveInfoConstruction()
 	//			FName SuggestedSensitiveDataKeyName;
 	//			if (NPCSensitiveInfo->FirstTimeConstruction_EditorAddInfoData(NPCClassInfo->NPCClassEnum, NPCClassInfo->ClassVariation, SensitiveData, SuggestedSensitiveDataKeyName))
 	//			{
-	//				// SensitiveDataRowKey °¡ ±×µ¿¾È ±×³É ³ëÃâÀÌ µÇ¾î ÀÖ´Ù º¸´Ï °ªÀÌ ¾û¶×ÇÏ°Ô µÇ¾î ÀÖ´Ù°Å³ª ½ÉÁö¾î Áßº¹ÀÌ µÇ¾î ÀÖ´Â °Íµµ ÀÖÀ½.
-	//				// Å×ÀÌºíÀ» Ã³À½ ±¸ÃàÇÏ±â À§ÇÑ ±â´ÉÀÌ´Ï ±âº» ±ÇÀå °ªÀ¸·Î ¼¼ÆÃÇØ ÁØ´Ù.
+	//				// SensitiveDataRowKey å•Š å¼Šæ‚¼æ•‘ å¼Šæˆ ç•´å…æ ç™»ç»¢ ä¹ä¿ƒ ç„Šèª è”¼æ é’§è¹²çªéœ¸ ç™»ç»¢ ä¹ä¿ƒèŠ­å”± ç¼´ç˜¤ç»¢ åæ±—æ ç™»ç»¢ ä¹ç»° å·´æ¡£ ä¹æ¾œ.
+	//				// æŠ›æå–‰é˜‘ è´¸æ¾œ å¤‡ç»µçªæ‰ å›°èŒ„ æ‰ç“·æèª æ‰å¤¯ é¼»å˜ è”¼æ è‚º æŠ€æ³¼ç§¦ éœ–ä¿ƒ.
 	//				if (NPCClassInfo->SensitiveDataRowKey != SuggestedSensitiveDataKeyName)
 	//				{
 	//					NPCClassInfo->SensitiveDataRowKey = SuggestedSensitiveDataKeyName;
@@ -727,16 +727,16 @@ bool UB2NPCClassInfoBox::GatherInvalidSetting(TArray<FCombinedNPCClassID>& OutIn
 
 
 int32 GetNPCClassKey(ENPCClass InClassEnum, ENPCClassVariation InClassVariation)
-{ // ·ÎµùµÈ UB2NPCSingleClassInfo ·¹ÆÛ·±½º Ä³½ÌÇÒ ¸Ê Å°. ¼öÁ¤ÇÏ°Ô µÇ¸é ¾Æ·¡ FromNPCClassKey µµ.
+{ // è‚ºçˆ¹ç­‰ UB2NPCSingleClassInfo é¥­æ¬ºç¹èƒ¶ æŸæ•™ä¸” ç”˜ è™. èæ²¥çªéœ¸ ç™»æ é…’è´° FromNPCClassKey æ¡£.
 	return (static_cast<int32>(InClassEnum) * 100 + static_cast<int32>(InClassVariation));
 }
 void FromNPCClassKey(int32 InKeyValue, ENPCClass& OutClassEnum, ENPCClassVariation& OutClassVariation)
-{ // GetNPCClassKey ÀÇ ¹İ´ë
+{ // GetNPCClassKey ç‹¼ é¦†æª
 	OutClassEnum = static_cast<ENPCClass>(InKeyValue / 100);
 	OutClassVariation = static_cast<ENPCClassVariation>(InKeyValue % 100);
 }
 int32 GetNPCClassKey(const FCombinedNPCClassID& NPCClassID)
-{ // ·ÎµùµÈ UB2NPCSingleClassInfo ·¹ÆÛ·±½º Ä³½ÌÇÒ ¸Ê Å°.
+{ // è‚ºçˆ¹ç­‰ UB2NPCSingleClassInfo é¥­æ¬ºç¹èƒ¶ æŸæ•™ä¸” ç”˜ è™.
 	return GetNPCClassKey(NPCClassID.GetNPCClassEnum(), NPCClassID.GetNPCVariationEnum());
 }
 void FromNPCClassKey(int32 InKeyValue, FCombinedNPCClassID& OutNPCClassID)

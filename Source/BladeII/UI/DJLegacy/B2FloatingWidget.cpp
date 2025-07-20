@@ -39,7 +39,7 @@ void UB2FloatingWidget::UpdatePosition()
 	//		}
 	//	}
 
-	//	// ForceHidden ÀÎ °æ¿ì À¯Áö. ¿©±â¼­ SetVisibility ¸¦ Á÷Á¢ »ç¿ëÇÏ´Â ´ë½Å °¢ widget º°·Î visibility ¹ÙÀÎµùÀ» ÇÏ´Â °Ô ÁÁÀ» °Íµµ °°´Ù. 
+	//	// ForceHidden ç‰¢ ç‰ˆå¿« èœ¡ç˜¤. å’¯æ‰è¾‘ SetVisibility ç”« æµç«‹ è¤ä¾©çªç»° æŽªè„š é˜¿ widget å–Šè‚º visibility å®˜ç‰¢çˆ¹é˜‘ çªç»° éœ¸ äº®é˜‘ å·´æ¡£ éžä¿ƒ. 
 	//	const bool bHideFloating = IsForceHidden() || ShouldBeHiddenAsPooledObject() || OwnerCharacter->bHidden;
 	//	SetVisibility(bHideFloating ? ESlateVisibility::Hidden : SelfVisibility);
 	//}
@@ -58,7 +58,7 @@ void UB2FloatingWidget::SetCurrentlyRent(bool bInRent, UObject* InRenter)
 	if (IsPooledObject())
 	{
 		ABladeIICharacter* RenterChar = Cast<ABladeIICharacter>(InRenter);
-		check(!IsCurrentlyRent() || RenterChar); // Renter ÁöÁ¤Àº BladeIICharacter ·Î ÇØ¾ß ÇÔ.
+		check(!IsCurrentlyRent() || RenterChar); // Renter ç˜¤æ²¥ç¯® BladeIICharacter è‚º ç§¦å…· çªƒ.
 		SetOwnerCharacter(IsCurrentlyRent() ? RenterChar : nullptr);
 	}
 }

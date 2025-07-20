@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIDailyNoticePopup.h"
 #include "B2UIManager.h"
 #include "B2AndroidBackManager.h"
@@ -62,7 +62,7 @@ void UB2UIDailyNoticePopup::SetDailyNoticeList()
 
 	if (UB2UIDocStore* DocStore = UB2UIDocHelper::GetDocStore())
 	{
-		// »óÇ°¿¡¼­´Â ºüÁ³À¸³ª, ÀÌÀü¿¡ ±¸¸ÅÇÑ°ÍÀÌ ¾ÆÁ÷ ±â°£ÀÌ ³²Àº°ÍÀ» Ç¥½ÃÇÏ±â À§ÇØ ¼öÁ¤
+		// æƒ‘å‰ä¿Šè¾‘ç»° ç‹è„¸æ å”±, æå‚ˆä¿Š å¤‡æ¦‚èŒ„å·´æ é…’æµ æ‰åŸƒæ å·¢ç¯®å·´é˜‘ é’çŸ«çªæ‰ å›°ç§¦ èæ²¥
 		TArray<int32> ReceivedProducts = DocStore->GetReceivedPeriodicPackageProductIDs();
 
 		for (auto& Elem : ReceivedProducts)

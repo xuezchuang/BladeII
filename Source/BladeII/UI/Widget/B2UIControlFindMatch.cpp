@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIControlFindMatch.h"
 #include "B2ControlGameMode.h"
@@ -6,12 +6,13 @@
 
 
 #include "BladeIIGameImpl.h"
+#include "../../BladeII/BladeIILocText.h"
 
 
 void UB2UIControlFindMatch::NativeConstruct()
 {
-	// ³ªÁß¿¡ ÅØ½ºÆ®Å×ÀÌºí·Î ÀÌµ¿!
-	// %s(%dÀ§)
+	// å”±åä¿Š å’†èƒ¶é£˜æŠ›æå–‰è‚º ææ‚¼!
+	// %s(%då›°)
 	FString strNameRank = FString::Printf(TEXT("%s(%dRank)"), *BladeIIGameImpl::GetLocalCharacterData().GetUserNickName(), 100);
 
 	if (TB_NameRank.IsValid())
@@ -30,7 +31,7 @@ void UB2UIControlFindMatch::NativeConstruct()
 void UB2UIControlFindMatch::SetAllyPlayerCount(int32 nPlayerCount)
 {
 	UE_LOG(LogBladeII, Log, TEXT("nPlayerCount = %d"), nPlayerCount);
-	// ÆÀ¿ø °¹¼öUI ºÒÄÑÁÖ´Â°Å ¿©±â¼­
+	// è¯„ç›” è‚®èUI é˜‚éš¾æ—ç»°èŠ­ å’¯æ‰è¾‘
 }
 
 void UB2UIControlFindMatch::SetFindingEnd()

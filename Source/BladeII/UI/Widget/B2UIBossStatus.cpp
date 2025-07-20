@@ -1,4 +1,4 @@
-#include "B2UIBossStatus.h"
+ï»¿#include "B2UIBossStatus.h"
 #include "B2UIProgressBarDivided.h"
 #include "B2UIManager.h"
 #include "B2UIDocHelper.h"
@@ -33,10 +33,10 @@ void UB2UIBossStatus::Init()
 void UB2UIBossStatus::BindDocAuto()
 {
 	auto DocBattle = UB2UIDocHelper::GetDocBattle();
-	SetDoc(DocBattle); //ÇöÀç º¸½º Á¤º¸°¡ º°µµÀÇ DocÀ¸·Î ¾ø°í Battle¿¡ ÀÖÀ½.
+	SetDoc(DocBattle); //æ³…çŠ ç„Šèƒ¶ æ²¥ç„Šå•Š å–Šæ¡£ç‹¼ Docæ è‚º ç»ç»Š Battleä¿Š ä¹æ¾œ.
 	if (DocBattle)
 	{
-		//ÃÖÃÊ ÀÏÈ¸ ¼¼ÆÃ
+		//å¼¥æª¬ è€é›€ æŠ€æ³¼
 		SetHP(DocBattle->GetBossHPCurrent(), DocBattle->GetBossHPMax());
 		UpdateBossInfo(DocBattle->GetBossMobClass(), DocBattle->GetBossMobClassVariation());
 
@@ -130,7 +130,7 @@ void UB2UIBossStatus::HideInfluence()
 //====================================================================================
 void UB2UIBossStatus::OnChangedBossHPCurrent(class UB2UIDocBase* Sender, float BossHPCurrent, float PrevBossHPCurrent)
 {
-	if (BossHPCurrent != PrevBossHPCurrent)	//Áßº¹ ¿¬Ãâ ¹æÁö
+	if (BossHPCurrent != PrevBossHPCurrent)	//åæ±— æ¥·å… è§„ç˜¤
 	{
 		auto DocBattle = Cast<UB2UIDocBattle>(Sender);
 		if (!DocBattle)return;
@@ -144,7 +144,7 @@ void UB2UIBossStatus::OnChangedBossHPCurrent(class UB2UIDocBase* Sender, float B
 
 void UB2UIBossStatus::OnChangedBossHPMax(class UB2UIDocBase* Sender, float BossHPMax, float PrevBossHPMax)
 {
-	if (BossHPMax != PrevBossHPMax)	//Áßº¹ ¿¬Ãâ ¹æÁö
+	if (BossHPMax != PrevBossHPMax)	//åæ±— æ¥·å… è§„ç˜¤
 	{
 		auto DocBattle = Cast<UB2UIDocBattle>(Sender);
 		if (!DocBattle)return;
@@ -155,7 +155,7 @@ void UB2UIBossStatus::OnChangedBossHPMax(class UB2UIDocBase* Sender, float BossH
 
 void UB2UIBossStatus::OnChangedBossMobClass(class UB2UIDocBase* Sender, ENPCClass BossMobClass, ENPCClass PrevBossMobClass)
 {
-	// ¿©±â¼­ UpdateBossInfo ¸¦ ÄİÇÏÁö ¾Ê´Â´Ù. MobClass ¿Í Variation µÑÀÌ µ¿½Ã¿¡ µé¾î¿Í¾ß ÇÏ´Âµ¥ ÇÏ³ª¸¸ °ªÀÌ ÀÇµµ´ë·Î µé¾î¿Â »óÅÂ¿¡¼­ ÄİÇÏ°Ô µÇ¸é ·Îµù ¾ÈµÈ Å¬·¡½º µ¥ÀÌÅÍ°¡ ·ÎµùµÇ¸é¼­ ²÷±èÀ» À¯¹ßÇÒ ¼ö ÀÖ´Ù.
+	// å’¯æ‰è¾‘ UpdateBossInfo ç”« å¦®çªç˜¤ è‡¼ç»°ä¿ƒ. MobClass å®¢ Variation ç¬›æ æ‚¼çŸ«ä¿Š ç”¸ç»¢å®¢å…· çªç»°å• çªå”±çˆ¶ è”¼æ ç‹¼æ¡£æªè‚º ç”¸ç»¢æŸ¯ æƒ‘æ€•ä¿Šè¾‘ å¦®çªéœ¸ ç™»æ è‚ºçˆ¹ æ•‘ç­‰ åŠªè´°èƒ¶ å•æç£å•Š è‚ºçˆ¹ç™»æè¾‘ è°—è¾«é˜‘ èœ¡æƒ¯ä¸” è ä¹ä¿ƒ.
 	//if (BossMobClass != PrevBossMobClass)
 	//{
 	//	auto DocBattle = Cast<UB2UIDocBattle>(Sender);
@@ -167,7 +167,7 @@ void UB2UIBossStatus::OnChangedBossMobClass(class UB2UIDocBase* Sender, ENPCClas
 
 void UB2UIBossStatus::OnChangedBossMobClassVariation(class UB2UIDocBase* Sender, ENPCClassVariation BossMobClassVariation, ENPCClassVariation PrevBossMobClassVariation)
 {
-	// ¿©±â¼­ UpdateBossInfo ¸¦ ÄİÇÏÁö ¾Ê´Â´Ù. MobClass ¿Í Variation µÑÀÌ µ¿½Ã¿¡ µé¾î¿Í¾ß ÇÏ´Âµ¥ ÇÏ³ª¸¸ °ªÀÌ ÀÇµµ´ë·Î µé¾î¿Â »óÅÂ¿¡¼­ ÄİÇÏ°Ô µÇ¸é ·Îµù ¾ÈµÈ Å¬·¡½º µ¥ÀÌÅÍ°¡ ·ÎµùµÇ¸é¼­ ²÷±èÀ» À¯¹ßÇÒ ¼ö ÀÖ´Ù.
+	// å’¯æ‰è¾‘ UpdateBossInfo ç”« å¦®çªç˜¤ è‡¼ç»°ä¿ƒ. MobClass å®¢ Variation ç¬›æ æ‚¼çŸ«ä¿Š ç”¸ç»¢å®¢å…· çªç»°å• çªå”±çˆ¶ è”¼æ ç‹¼æ¡£æªè‚º ç”¸ç»¢æŸ¯ æƒ‘æ€•ä¿Šè¾‘ å¦®çªéœ¸ ç™»æ è‚ºçˆ¹ æ•‘ç­‰ åŠªè´°èƒ¶ å•æç£å•Š è‚ºçˆ¹ç™»æè¾‘ è°—è¾«é˜‘ èœ¡æƒ¯ä¸” è ä¹ä¿ƒ.
 	//if (BossMobClassVariation != PrevBossMobClassVariation)
 	//{
 	//	auto DocBattle = Cast<UB2UIDocBattle>(Sender);
@@ -186,7 +186,7 @@ void UB2UIBossStatus::OnChangedBossQTEBreakPointCurrent(class UB2UIDocBase* Send
 		{
 			UIP_ProgressBar_Boss->SetProgressOfSecond(PointCurrent, DocBattle->GetBossQTEBreakPointMax());
 
-			// Point ´Ù½Ã Â÷´Â °Å Á¶°ÇÀ» ¿©±â¼­ °¨ÁöÇÏµµ·Ï. ¸Ç Ã³À½¿¡µµ ¿©±â·Î °¡±ä ÇÏ´Â±º ¤»
+			// Point ä¿ƒçŸ« ç’ç»° èŠ­ ç‚¼æ‰’é˜‘ å’¯æ‰è¾‘ çš‘ç˜¤çªæ¡£åºŸ. ç›– è´¸æ¾œä¿Šæ¡£ å’¯æ‰è‚º å•Šå˜ çªç»°ç„™ ã›
 			if (PointCurrent > PrevPointCurrent && PointCurrent == DocBattle->GetBossQTEBreakPointMax())
 			{
 				PlayQTEBreakPointRefreshAnim();
@@ -208,6 +208,6 @@ void UB2UIBossStatus::OnChangedBossIsQTEBreakable(class UB2UIDocBase* Sender, bo
 {
 	if (UIP_ProgressBar_Boss.IsValid())
 	{
-		UIP_ProgressBar_Boss->SetShowSecond(bBreakable); // Second PB °¡ Break point Ç¥½Ã¿¡ ¾²ÀÓ.
+		UIP_ProgressBar_Boss->SetShowSecond(bBreakable); // Second PB å•Š Break point é’çŸ«ä¿Š é™çƒ™.
 	}
 }

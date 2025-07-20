@@ -23,7 +23,7 @@ UB2LobbyUI_ItemLevelupProg::UB2LobbyUI_ItemLevelupProg(const FObjectInitializer&
 	IngredientIconMaxSize = FVector2D(176.0f, 220.0f);
 
 	OverallPlayRate = 1.0f;
-	ItemSuckingTrailDepth = 5.0f; // ÀÌ°Ô Å©¸é Á» °ï¶õ. 2D ¶û 3D ÀÇ ¸ÊÇÎ°ú °ü·ÃÀÌ µÇ´Ùº¸´Ï.
+	ItemSuckingTrailDepth = 5.0f; // æéœ¸ å†œæ ç²± å¸®é„‚. 2D å°” 3D ç‹¼ ç”˜ä¿è‹ åŒ…è®¿æ ç™»ä¿ƒç„Šèª.
 	ItemSuckingStartTime = 0.5f;
 	ItemSuckingInterval = 0.2f;
 	ItemSuckingAccAcc = 100.0f;
@@ -63,36 +63,36 @@ void UB2LobbyUI_ItemLevelupProg::StartFromLobby(class UB2UIManager_Lobby* InUIMa
 {
 	Super::StartFromLobby(InUIManager, InGM);
 
-	// ´Ü¼øÈ÷ ¾ÆÀÌÅÛ Á¤º¸¸¸ ¾ò¾î¿À·Á¸é Inventory ÀÎ½ºÅÏ½º ¾øÀÌ static À¸·Î ¾ò¾î¿Ã ¼ö ÀÖÀ¸³ª °­È­ ±â´ÉÀº ÀÎº¥Åä¸®°¡ ¶° ÀÖ´Â »óÅÂ¿¡¼­ µ¿ÀÛ.
+	// çªœé‰´æ´’ é…’æè¢ æ²¥ç„Šçˆ¶ æ˜ç»¢å·å¦¨æ Inventory ç‰¢èƒ¶ç•”èƒ¶ ç»æ static æ è‚º æ˜ç»¢æ£µ è ä¹æ å”± ç¢æ‹³ æ‰ç“·ç¯® ç‰¢äº¥é…åºœå•Š æ ‹ ä¹ç»° æƒ‘æ€•ä¿Šè¾‘ æ‚¼ç´¯.
 	CachedInventory = CachedLobbyGM->GetLobbyInventory();
 	check(CachedInventory);
 	
-	EffectiveItemSuckingAcc = ItemSuckingBaseAcc; // µî°¡¼Óµµ(ItemSuckingAccAcc 0)¿¡¼­´Â ÃÊ±â°ªÀÌ À¯ÁöµÊ
+	EffectiveItemSuckingAcc = ItemSuckingBaseAcc; // æ®¿å•ŠåŠ æ¡£(ItemSuckingAccAcc 0)ä¿Šè¾‘ç»° æª¬æ‰è”¼æ èœ¡ç˜¤å‡³
 
-	// ¾÷µ¥ÀÌÆ® µÇ±â Àü/ÈÄ Å¸°Ù ¾ÆÀÌÅÛ µ¥ÀÌÅÍ°¡ ÇÊ¿ä (UB2LobbyInventory::OnReqForItemOpCommon ¿¡¼­ ¹é¾÷) 
+	// è¯€å•æé£˜ ç™»æ‰ å‚ˆ/é¥¶ é¸¥ç™¾ é…’æè¢ å•æç£å•Š é˜å¤¸ (UB2LobbyInventory::OnReqForItemOpCommon ä¿Šè¾‘ å½’è¯€) 
 	bool bFailedToFindResultData = !CachedInventory->GetItemOPTargetItemData(NativeTargetLevelupItem_Before, true);
 	if (bFailedToFindResultData || !IsSupportedOpMode(CachedInventory->GetItemOpMode()))
 	{
-		FinishAndProceedToResult(); // ¸¸¿¡ ÇÏ³ª ½ÇÆĞÇÑ´Ù¸é.. ¾îÂ¿ ¼ö ¾øÁö.
+		FinishAndProceedToResult(); // çˆ¶ä¿Š çªå”± è§’è©èŒ„ä¿ƒæ.. ç»¢é©´ è ç»ç˜¤.
 		return;
 	}
 
-	// ÀÌ ½ÃÁ¡¿¡ °á°ú µ¥ÀÌÅÍ¸¦ °¡Á®¿ÀÁö ¸øÇÒ ¼öµµ ÀÖÀ½. Å×½ºÆ® Ä¿¸Çµå »ç¿ëÀÌ°Å³ª ¿¬Ãâ ½ÃÀÛ ½ÃÁ¡ÀÌ Á» ´Ù¸£°Ô µÇ¾ú´Ù°Å³ª..
+	// æ çŸ«ç—¢ä¿Š æ¬è‹ å•æç£ç”« å•Šå»‰å·ç˜¤ ç»™ä¸” èæ¡£ ä¹æ¾œ. æŠ›èƒ¶é£˜ ç›®ç›–é› è¤ä¾©æèŠ­å”± æ¥·å… çŸ«ç´¯ çŸ«ç—¢æ ç²± ä¿ƒç¦éœ¸ ç™»èŒä¿ƒèŠ­å”±..
 	if (!CachedInventory->GetItemOPTargetItemData(NativeTargetLevelupItem_After, false))
-		NativeTargetLevelupItem_After = NativeTargetLevelupItem_Before; // ½ÇÆĞÇÑ °æ¿ì ÀÏ´ÜÀº ÀÌÀü µ¥ÀÌÅÍ¸¦ ³Ö¾îÁØ´Ù.
+		NativeTargetLevelupItem_After = NativeTargetLevelupItem_Before; // è§’è©èŒ„ ç‰ˆå¿« è€çªœç¯® æå‚ˆ å•æç£ç”« æŒç»¢éœ–ä¿ƒ.
 
-	if (FinalResultPageNRef) // ÀÌ°Ç µ¿Àû »ı¼ºÀº ¾Æ´Ï´Ù. ´Ü, ¸î°¡Áö´Â Á÷Á¢ ÇØ ÁÖ¾î¾ß.
+	if (FinalResultPageNRef) // ææ‰’ æ‚¼åˆ© ç§¯å·±ç¯® é…’èªä¿ƒ. çªœ, å‰²å•Šç˜¤ç»° æµç«‹ ç§¦ æ—ç»¢å…·.
 	{
 		FinalResultPageNRef->StartFromLobby(InUIManager, InGM);
 		FinalResultPageNRef->UpdateItemData(NativeTargetLevelupItem_Before, NativeTargetLevelupItem_After);
-		FinalResultPageNRef->ClosePopup(); // Ã³À½¿¡´Â ¼û°Ü³õÀ½. ¿¬Ãâ ÃÖÁ¾ ´Ü°è·Î¼­ º¸¿©Áø´Ù.
+		FinalResultPageNRef->ClosePopup(); // è´¸æ¾œä¿Šç»° è§è´¥åˆæ¾œ. æ¥·å… å¼¥è¾† çªœæ‹Œè‚ºè¾‘ ç„Šå’¯æŸ³ä¿ƒ.
 	}
 		
 	UGameplayStatics::SetGlobalTimeDilation(CachedLobbyGM, OverallPlayRate);
 
 	ApplyCameraAdaptiveFOV();
 
-	SetTargetItemIconData(NativeTargetLevelupItem_Before); // Before ·Î ½ÃÀÛ.
+	SetTargetItemIconData(NativeTargetLevelupItem_Before); // Before è‚º çŸ«ç´¯.
 
 	DestroyItemLevelupIngredientItemIcon();
 	DestroySuckingFXComps();
@@ -103,18 +103,18 @@ void UB2LobbyUI_ItemLevelupProg::NativeTick(const FGeometry& MyGeometry, float I
 {
 	Super::NativeTick(MyGeometry, InDeltaTime);
 	
-	// Sucking Fx µéÀÇ ¿òÁ÷ÀÓ ¾÷µ¥ÀÌÆ®.
+	// Sucking Fx ç”¸ç‹¼ æ¡†æµçƒ™ è¯€å•æé£˜.
 	bool bAtLeastOneSuckingFxPresent = false;
 	for (int32 FI = 0; FI < CreatedSuckingFxSet.Num(); ++FI)
 	{
-		if (CreatedSuckingFxSet[FI].FXComp){ // µµÂø ÈÄ¿¡´Â FXComp °¡ Á¦°ÅµÇ°í NULL ÀÌ µÉ °Í.
+		if (CreatedSuckingFxSet[FI].FXComp){ // æ¡£é¦’ é¥¶ä¿Šç»° FXComp å•Š åŠ›èŠ­ç™»ç»Š NULL æ çª å·´.
 			bAtLeastOneSuckingFxPresent = true;
 			UpdateSingleSuckingFxComp(FI, InDeltaTime);
 		}
 	}
 	if (bAtLeastOneSuckingFxPresent)
 	{
-		EffectiveItemSuckingAcc += (ItemSuckingAccAcc * InDeltaTime); // ÇÏ³ª¶óµµ ÀÖ¾î¾ß °¡¼Óµµ Áõ°¡.
+		EffectiveItemSuckingAcc += (ItemSuckingAccAcc * InDeltaTime); // çªå”±æ‰¼æ¡£ ä¹ç»¢å…· å•ŠåŠ æ¡£ åˆ˜å•Š.
 	}
 }
 
@@ -154,13 +154,13 @@ void UB2LobbyUI_ItemLevelupProg::ApplyCameraAdaptiveFOV()
 	checkSlow(CachedLobbyGM && CachedLobbyGM->IsInItemOpDirectingView());
 
 	APlayerController* OwningPC = GetOwningPlayer();
-	// ÀÌ Àå¸é ¼Â¾÷¿¡¼­ Àü¿ë Ä«¸Ş¶ó ¾×ÅÍ°¡ ViewTarget À¸·Î ¼¼ÆÃµÇ¾î ÀÖ¾î¾ß ÇÔ.
+	// æ å˜æ æ‚¸è¯€ä¿Šè¾‘ å‚ˆä¾© å¢¨çš‹æ‰¼ å’€ç£å•Š ViewTarget æ è‚º æŠ€æ³¼ç™»ç»¢ ä¹ç»¢å…· çªƒ.
 	ACameraActor* ViewTargetCam = OwningPC ? Cast<ACameraActor>(OwningPC->GetViewTarget()) : nullptr;
 	checkSlow(ViewTargetCam);
 	if (ViewTargetCam && ViewTargetCam->GetCameraComponent())
-	{ // AspectRatioAdaptiveFOV ¸¦ »ç¿ëÇÏ¸é ±âÁØ ÇØ»óµµ ºñÀ²º¸´Ù Å« È­¸é ºñÀ²¿¡¼­ Àå¸éÀÌ Àß¸®´Â °É ÇÇÇÒ ¼ö ÀÖÁö¸¸
-		// ´ë½Å ³Ğ¾îÁø ½Ã¾ß·Î ÀÎÇØ °¨Ãß¾ú´ø °Ô ³ëÃâµÇ´Â ÀÏÀÌ ¹ß»ıÇÒ ¼ö ÀÖ´Ù. »óÈ²¿¡ µû¶ó ÀûÀıÇÏ°Ô..
-		// ¶ÇÇÑ 2D-3D ¿ä¼Ò°£ Á¤·ÄÀÌ ¾î±ß³ª°Ô µÉ ¼öµµ ÀÖ´Ù. ÀÌ°Ç Æ¯È÷ ´Ù¾çÇÑ ÇØ»óµµ ºñÀ²¿¡¼­ Å×½ºÆ® ÇÊ¿ä.
+	{ // AspectRatioAdaptiveFOV ç”« è¤ä¾©çªæ æ‰éœ– ç§¦æƒ‘æ¡£ åšå•¦ç„Šä¿ƒ å¥´ æ‹³æ åšå•¦ä¿Šè¾‘ å˜ææ è‚‹åºœç»° å§ ä¹”ä¸” è ä¹ç˜¤çˆ¶
+		// æªè„š æ‰¿ç»¢æŸ³ çŸ«å…·è‚º ç‰¢ç§¦ çš‘çœ èŒå¸¦ éœ¸ ç•´å…ç™»ç»° è€æ æƒ¯ç§¯ä¸” è ä¹ä¿ƒ. æƒ‘ç‚”ä¿Š è¶æ‰¼ åˆ©ä¾‹çªéœ¸..
+		// è‚šèŒ„ 2D-3D å¤¸å®¶åŸƒ æ²¥çººæ ç»¢è¾¹å”±éœ¸ çª èæ¡£ ä¹ä¿ƒ. ææ‰’ æ¼‚æ´’ ä¿ƒå‰§èŒ„ ç§¦æƒ‘æ¡£ åšå•¦ä¿Šè¾‘ æŠ›èƒ¶é£˜ é˜å¤¸.
 		//ViewTargetCam->GetCameraComponent()->SetAspectRatioAdaptiveFOV(bUseCameraAdaptiveFOV);
 		//ViewTargetCam->GetCameraComponent()->SetAdaptiveFOVScale(AdaptiveFOVScale);
 	}
@@ -176,13 +176,13 @@ void UB2LobbyUI_ItemLevelupProg::SetTargetItemIconData(FB2Item& InItem)
 
 	if (CreatedTargetItemIcon == nullptr)
 	{
-		// Anchor ¼³Á¤¿¡ µû¶ó GetSize ´Â ¿øÇÏ´Â °ªÀÌ ¾È ³ª¿Ã °ÍÀÌ¹Ç·Î ÁÖÀÇ.
+		// Anchor æ±²æ²¥ä¿Š è¶æ‰¼ GetSize ç»° ç›”çªç»° è”¼æ æ•‘ å”±æ£µ å·´æéª¨è‚º æ—ç‹¼.
 		UCanvasPanelSlot* MainPanelSlot = Cast<UCanvasPanelSlot>(X_CP_TargetItemIconSet->Slot);
 		FVector2D AllowedIconSize = MainPanelSlot ? MainPanelSlot->GetSize() : FVector2D(0.0f, 0.0f);
 
 		UB2DynItemIcon* DynIconCDO = Cast<UB2DynItemIcon>(ItemIconWidgetClass->GetDefaultObject());
 
-		// ItemIconPanelNRef À§¿¡ ÃÖÁ¾ÀûÀÎ ¾ÆÀÌÅÛ ¾ÆÀÌÄÜ widget »ı¼º
+		// ItemIconPanelNRef å›°ä¿Š å¼¥è¾†åˆ©ç‰¢ é…’æè¢ é…’æèƒ½ widget ç§¯å·±
 		CreatedTargetItemIcon = Cast<UB2DynItemIcon_ItemOpScene>(DynCreateInCanvasPanel(
 			ItemIconWidgetClass,
 			this,
@@ -196,8 +196,8 @@ void UB2LobbyUI_ItemLevelupProg::SetTargetItemIconData(FB2Item& InItem)
 
 	if (CreatedTargetItemIcon)
 	{
-		// ¾ÆÀÌÄÜ Áß½É ±âÁØ ½ºÅ©¸° °ø°£ ÁÂÇ¥¸¦ ¾ò¾î¿Â´Ù.
-		// X_CP_TargetItemIconSet ÀÇ ¹èÄ¡ Á¶°ÇÀº HACKGetWidgetScreenCoord ¸¦ Âü°í		
+		// é…’æèƒ½ åç¼´ æ‰éœ– èƒ¶å†œèµ´ å‚åŸƒ è°…é’ç”« æ˜ç»¢æŸ¯ä¿ƒ.
+		// X_CP_TargetItemIconSet ç‹¼ ç¡…æ‘¹ ç‚¼æ‰’ç¯® HACKGetWidgetScreenCoord ç”« æ›¼ç»Š		
 		HACKGetWidgetScreenCoord(X_CP_TargetItemIconSet.Get(), GetOwningPlayer(), TargetItemIconScreenPos, true);
 		CreatedTargetItemIcon->SetIconUsageType(ELobbyInvenItemIconUsage::EEIIT_ItemOpModeProgTarget);
 		CreatedTargetItemIcon->UpdateItemData(InItem);
@@ -213,7 +213,7 @@ void UB2LobbyUI_ItemLevelupProg::SetIngredItemData(const TArray<FB2Item>& AllIng
 		return;
 	}
 
-	const FVector2D AllowedSingleSlotSize = GetAllowedSingleIngredientIconSize(); // Main panel ±¸¼º¿¡ µû¸¥ Çã¿ë »çÀÌÁî
+	const FVector2D AllowedSingleSlotSize = GetAllowedSingleIngredientIconSize(); // Main panel å¤‡å·±ä¿Š è¶å¼— å€¾ä¾© è¤æä»¤
 	const FVector2D CenterPos = GetIngredIconPanelCenterPos();
 		
 	const int32 MaxRowIndex = (AllIngreds.Num() - 1) / LOBBY_EQUIPMENT_LEVELUP_MENU_INGREDIENT_ICON_PER_ROW;
@@ -222,25 +222,25 @@ void UB2LobbyUI_ItemLevelupProg::SetIngredItemData(const TArray<FB2Item>& AllIng
 	{
 		const FB2Item& ThisIngred = AllIngreds[II];
 
-		////////////////////////////// ÁÂÇ¥ °è»ê BEGIN
+		////////////////////////////// è°…é’ æ‹Œé­‚ BEGIN
 		const int32 RowIndex = II / LOBBY_EQUIPMENT_LEVELUP_MENU_INGREDIENT_ICON_PER_ROW;
-		// ÀÌ¹ø ÁÙ¿¡¼­ ³ªÀÇ ¼ø¼­. Ã¹ ÁÙÀº ÀÌ ¼ø¼­´ë·Î °¡·Î ¹æÇâ Áß°£¿¡ °¡±õ°Ô ¹èÄ¡
+		// æé”… ä¸´ä¿Šè¾‘ å”±ç‹¼ é‰´è¾‘. éœ‰ ä¸´ç¯® æ é‰´è¾‘æªè‚º å•Šè‚º è§„æ°¢ ååŸƒä¿Š å•Šæ»¨éœ¸ ç¡…æ‘¹
 		const int32 HPlacementIndex = II % LOBBY_EQUIPMENT_LEVELUP_MENU_INGREDIENT_ICON_PER_ROW;
 
 		float PosX = CenterPos.X;
 		float PosY = CenterPos.Y;
 
-		if (RowIndex == 0) // Ã¹¹øÂ° ÁÙÀº ¼¾ÅÍ¿¡¼­ ½ÃÀÛÇØ¼­ È¦/Â¦ ¿©ºÎ µî¿¡ µû¶ó ÁÂÇ¥ Á¤ÇØ¼­ ÁÂ¿ì·Î ÆÛÁ®³ª°¨.
+		if (RowIndex == 0) // éœ‰é”…æ³ ä¸´ç¯® å­£ç£ä¿Šè¾‘ çŸ«ç´¯ç§¦è¾‘ åœˆ/å¨„ å’¯ä½• æ®¿ä¿Š è¶æ‰¼ è°…é’ æ²¥ç§¦è¾‘ è°…å¿«è‚º æ¬ºå»‰å”±çš‘.
 		{
-			// ÀÌ¹ø row ÀÇ Ã¹¹øÂ° ¿ä¼Ò ÀÎµ¦½º
+			// æé”… row ç‹¼ éœ‰é”…æ³ å¤¸å®¶ ç‰¢éƒ¸èƒ¶
 			const int32 MyRowStartIndex = RowIndex * LOBBY_EQUIPMENT_LEVELUP_MENU_INGREDIENT_ICON_PER_ROW;
-			// ÀÌ°Ç ÀÌ¹ø ÁÙÀÌ ´Ù Â÷Áö ¾Ê´Â´Ù¸é ¹è¿­ Å©±â°¡ µÊ.
+			// ææ‰’ æé”… ä¸´æ ä¿ƒ ç’ç˜¤ è‡¼ç»°ä¿ƒæ ç¡…å‡¯ å†œæ‰å•Š å‡³.
 			const int32 NextRowStartIndex = FMath::Min(AllIngreds.Num(), MyRowStartIndex + LOBBY_EQUIPMENT_LEVELUP_MENU_INGREDIENT_ICON_PER_ROW);
-			// ÀÌ¹ø ÁÙ¿¡ Ã¤¿öÁú ÀüÃ¼ ¾ÆÀÌÄÜ °³¼ö
+			// æé”… ä¸´ä¿Š ç›²å†µé¾™ å‚ˆçœ‰ é…’æèƒ½ ä¿ºè
 			const int32 TotalNumOfThisRow = NextRowStartIndex - MyRowStartIndex;
-			const bool bRowHasEvenElem = (TotalNumOfThisRow % 2 == 0); // È¦¼ö/Â¦¼ö ÀÎÁö¿¡ µû¶ó ¹èÄ¡ ÁÂÇ¥°¡ ¹Ù²ñ.
+			const bool bRowHasEvenElem = (TotalNumOfThisRow % 2 == 0); // åœˆè/å¨„è ç‰¢ç˜¤ä¿Š è¶æ‰¼ ç¡…æ‘¹ è°…é’å•Š å®˜æŸ´.
 			const bool bAmIEvenIndex = (HPlacementIndex % 2 == 0);
-			const bool bIsAtLeft = (bRowHasEvenElem == bAmIEvenIndex); // È¦¼öÀÏ¶§ 0¹øÂ° ¿ä¼Ò´Â ½ÇÁ¦·Î´Â Áß¾Ó
+			const bool bIsAtLeft = (bRowHasEvenElem == bAmIEvenIndex); // åœˆèè€é”­ 0é”…æ³ å¤¸å®¶ç»° è§’åŠ›è‚ºç»° åå±…
 
 			if (bRowHasEvenElem)
 			{
@@ -249,7 +249,7 @@ void UB2LobbyUI_ItemLevelupProg::SetIngredItemData(const TArray<FB2Item>& AllIng
 			}
 			else
 			{
-				if (HPlacementIndex != 0) // È¦¼ö°³ ¹èÄ¡¿¡¼­ Ã³À½ ÀÎµ¦½º´Â ¼¾ÅÍ¿¡ ¹Ù·Î
+				if (HPlacementIndex != 0) // åœˆèä¿º ç¡…æ‘¹ä¿Šè¾‘ è´¸æ¾œ ç‰¢éƒ¸èƒ¶ç»° å­£ç£ä¿Š å®˜è‚º
 				{
 					float AbsDisplacement = ((float)((HPlacementIndex + 1) / 2) * (IngredientIconPlacementMargin + AllowedSingleSlotSize.X));
 					PosX += (bAmIEvenIndex ? 1.0f : -1.0f) * AbsDisplacement;
@@ -257,27 +257,27 @@ void UB2LobbyUI_ItemLevelupProg::SetIngredItemData(const TArray<FB2Item>& AllIng
 			}
 		}
 		else
-		{ // ÀÌ¹ø ÁÙÀÌ È¦Â¦ÀÎÁö ¿©ºÎ¿¡ »ó°ü¾øÀÌ Ã¹¹øÂ° ÁÙ¿¡ ¹èÄ¡ÇÑ °ÍÀ» µû¶ó°¡¾ß ÇÒ °Í. CreatedIngredIconsSet Á¤·ÄµÈ Ã¹Â°ÁÙ ¼ø¼­´ë·Î
+		{ // æé”… ä¸´æ åœˆå¨„ç‰¢ç˜¤ å’¯ä½•ä¿Š æƒ‘åŒ…ç»æ éœ‰é”…æ³ ä¸´ä¿Š ç¡…æ‘¹èŒ„ å·´é˜‘ è¶æ‰¼å•Šå…· ä¸” å·´. CreatedIngredIconsSet æ²¥çººç­‰ éœ‰æ³ä¸´ é‰´è¾‘æªè‚º
 			if (HPlacementIndex < CreatedIngredIconsSet.Num())
 			{
 				PosX = CreatedIngredIconsSet[HPlacementIndex].RelativeCoord.X;
 				PosY = CreatedIngredIconsSet[HPlacementIndex].RelativeCoord.Y;
 			}
 
-			PosX += (float)RowIndex * IngredientIconNextRowOffset.X; // ÁÙ¸¶´Ù offset
+			PosX += (float)RowIndex * IngredientIconNextRowOffset.X; // ä¸´ä»˜ä¿ƒ offset
 			PosY += (float)RowIndex * IngredientIconNextRowOffset.Y;
 		}
 
 		FItemLevelupProgIngredItemIconSet NewIconSet;
-		NewIconSet.RelativeCoord = FVector2D(PosX, PosY); // ÁÂ»ó´Ü ±âÁØÀ¸·Î ÃÖÁ¾ Á¶ÀıµÇ±â Àü¿¡ µû·Î ÀúÀåÇØ ³õÀ½. ÆÄÆ¼Å¬ »ı¼º½Ã¿¡ »ç¿ëµÉ¼öµµ.
+		NewIconSet.RelativeCoord = FVector2D(PosX, PosY); // è°…æƒ‘çªœ æ‰éœ–æ è‚º å¼¥è¾† ç‚¼ä¾‹ç™»æ‰ å‚ˆä¿Š è¶è‚º å†å˜ç§¦ åˆæ¾œ. é¢‡èåŠª ç§¯å·±çŸ«ä¿Š è¤ä¾©çªèæ¡£.
 
-		PosX -= (AllowedSingleSlotSize.X * 0.5f); // ÃÖÁ¾ÀûÀ¸·Î ÁÂ»ó´Ü ±âÁØ ÁÂÇ¥·Î.
+		PosX -= (AllowedSingleSlotSize.X * 0.5f); // å¼¥è¾†åˆ©æ è‚º è°…æƒ‘çªœ æ‰éœ– è°…é’è‚º.
 		PosY -= (AllowedSingleSlotSize.Y * 0.5f);
-		////////////////////////////// ÁÂÇ¥ °è»ê END
+		////////////////////////////// è°…é’ æ‹Œé­‚ END
 
 		UB2DynItemIcon* DynIconCDO = Cast<UB2DynItemIcon>(ItemIconWidgetClass->GetDefaultObject());
 
-		// MainPanelNativeRef À§¿¡ ÃÖÁ¾ÀûÀÎ ¾ÆÀÌÅÛ ¾ÆÀÌÄÜ widget »ı¼º. RowIndex ¸¶´Ù °¨¼ÒÇÏ´Â Z-order ¸¦ ÁØ´Ù. ¾Õ¿¡²¨ºÎÅÍ ³¯¶ó°¡¸é¼­ È¿°ú°¡ º¸ÀÌµµ·Ï ÇÏ±â À§ÇÔ.
+		// MainPanelNativeRef å›°ä¿Š å¼¥è¾†åˆ©ç‰¢ é…’æè¢ é…’æèƒ½ widget ç§¯å·±. RowIndex ä»˜ä¿ƒ çš‘å®¶çªç»° Z-order ç”« éœ–ä¿ƒ. èŠä¿Šæ³¢ä½•ç£ æœæ‰¼å•Šæè¾‘ ç“¤è‹å•Š ç„Šææ¡£åºŸ çªæ‰ å›°çªƒ.
 		UB2DynItemIcon_ItemOpScene* NewItemIcon = Cast<UB2DynItemIcon_ItemOpScene>(DynCreateInCanvasPanel(
 			ItemIconWidgetClass, this, X_CP_EnhanceIngredIconPanel.Get(), DynIconCDO ? DynIconCDO->GetNonScaledSize() : FVector2D(100.0f, 100.0f), AllowedSingleSlotSize,
 			FVector2D(PosX, PosY), MaxRowIndex - RowIndex, false
@@ -285,14 +285,14 @@ void UB2LobbyUI_ItemLevelupProg::SetIngredItemData(const TArray<FB2Item>& AllIng
 		if (NewItemIcon)
 		{
 			NewItemIcon->SetIconUsageType(ELobbyInvenItemIconUsage::EEIIT_ItemLevelupMenuIngredient);
-			NewItemIcon->UpdateItemData(ThisIngred); // °³º° ¾ÆÀÌÅÛ Á¤º¸¸¦ ³Ñ°ÜÁØ´Ù.
+			NewItemIcon->UpdateItemData(ThisIngred); // ä¿ºå–Š é…’æè¢ æ²¥ç„Šç”« é€è´¥éœ–ä¿ƒ.
 						
 			NewIconSet.DynIcon = NewItemIcon;
 			CreatedIngredIconsSet.Add(NewIconSet);
 			
 			if (RowIndex == 0)
 			{
-				// Ã¹ ÁÙ¿¡ ÇÑÇØ¼­ ÀúÀåµÈ ÁÂÇ¥ ¹è¿­Àº RowIndex °¡ ¾Æ´Ñ X ÁÂÇ¥ Å©±â´ë·Î Á¤·ÄÇÑ´Ù. µÑÂ° ÁÙ ÀÌÈÄºÎÅÍ´Â ÀÌ ¼ø¼­´ë·Î Â÷°Ô µÉ °Í. (³»Áö´Â µÑÂ° ÁÙ ÀÌÈÄµµ Á¤·ÄÀ» ÇÒ ¼öµµ)
+				// éœ‰ ä¸´ä¿Š èŒ„ç§¦è¾‘ å†å˜ç­‰ è°…é’ ç¡…å‡¯ç¯® RowIndex å•Š é…’å›± X è°…é’ å†œæ‰æªè‚º æ²¥çººèŒ„ä¿ƒ. ç¬›æ³ ä¸´ æé¥¶ä½•ç£ç»° æ é‰´è¾‘æªè‚º ç’éœ¸ çª å·´. (éƒ´ç˜¤ç»° ç¬›æ³ ä¸´ æé¥¶æ¡£ æ²¥çººé˜‘ ä¸” èæ¡£)
 				struct FFirstRowIngredIconPosSorter
 				{
 					bool operator()(const FItemLevelupProgIngredItemIconSet& A, const FItemLevelupProgIngredItemIconSet& B) const { return A.RelativeCoord.X < B.RelativeCoord.X; }
@@ -302,7 +302,7 @@ void UB2LobbyUI_ItemLevelupProg::SetIngredItemData(const TArray<FB2Item>& AllIng
 		}
 	}
 
-	// ÀÌ ½ÃÁ¡¿¡ CreatedTargetItemIcon ÀÌ »ı¼ºµÇ¾î ÀÖ¾î¾ß ÇÔ.
+	// æ çŸ«ç—¢ä¿Š CreatedTargetItemIcon æ ç§¯å·±ç™»ç»¢ ä¹ç»¢å…· çªƒ.
 	BII_CHECK(CreatedTargetItemIcon);
 	if (CreatedTargetItemIcon)
 	{
@@ -311,7 +311,7 @@ void UB2LobbyUI_ItemLevelupProg::SetIngredItemData(const TArray<FB2Item>& AllIng
 
 	if (GetOwningPlayer() && CreatedIngredIconsSet.Num() > 0)
 	{
-		// ¼ø¼­´ë·Î sucking È¿°ú ½ÃÀÛ..
+		// é‰´è¾‘æªè‚º sucking ç“¤è‹ çŸ«ç´¯..
 		if (ItemSuckingStartTime > 0.0f)
 		{
 			GetOwningPlayer()->GetWorldTimerManager().SetTimer(ItemSuckingIntervalTimer, FTimerDelegate::CreateUObject(this, &UB2LobbyUI_ItemLevelupProg::BeginIngredItemSucking, 0), ItemSuckingStartTime, false);
@@ -409,7 +409,7 @@ void UB2LobbyUI_ItemLevelupProg::BeginIngredItemSucking(int32 IngredIndex)
 {
 	if (CreatedIngredIconsSet.IsValidIndex(IngredIndex) && ItemSuckingTrailPS)
 	{
-		FVector FXCreateWorldPos = GetIngredIconDesiredWorldPos(IngredIndex); // °¢ ¾ÆÀÌÄÜ ½ºÅ©¸° ÁÂÇ¥¿¡ ÇØ´çÇÏ´Â ¿ùµå ÁÂÇ¥ ¾ò¾î¿È. (FxCreatingDepth ¸¸Å­ ¾Æ·¡)
+		FVector FXCreateWorldPos = GetIngredIconDesiredWorldPos(IngredIndex); // é˜¿ é…’æèƒ½ èƒ¶å†œèµ´ è°…é’ä¿Š ç§¦å¯¸çªç»° å²¿é› è°…é’ æ˜ç»¢å’³. (FxCreatingDepth çˆ¶æ€’ é…’è´°)
 
 		FTransform FXCreateTransform(FXCreateWorldPos);
 		UParticleSystemComponent* CreatedSuckingFX = UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), ItemSuckingTrailPS, FXCreateTransform);
@@ -421,15 +421,15 @@ void UB2LobbyUI_ItemLevelupProg::BeginIngredItemSucking(int32 IngredIndex)
 			FItemLevelupProgIngredSuckingFxSet NewFxSet;
 			NewFxSet.FXComp = CreatedSuckingFX;
 
-			// Å¸°Ù±îÁö ÀÌµ¿À» À§ÇØ ¸ñÇ¥ °Å¸®¸¦ ³Ö¾î³õÀ½. ÀÌ ÀÌ»ó ÀÌµ¿ÇÏ¸é ³¡ÀÎ °É·Î ÇØ¼­ ¼Óµµ°¡ ºü¸£´Ù°í ³õÄ¥ ÀÏ ¾øµµ·Ï.
+			// é¸¥ç™¾é³–ç˜¤ ææ‚¼é˜‘ å›°ç§¦ æ ¼é’ èŠ­åºœç”« æŒç»¢åˆæ¾œ. æ ææƒ‘ ææ‚¼çªæ åœºç‰¢ å§è‚º ç§¦è¾‘ åŠ æ¡£å•Š ç‹ç¦ä¿ƒç»Š åˆç£¨ è€ ç»æ¡£åºŸ.
 			NewFxSet.CurrentSpeed = 0.0f;
 			NewFxSet.FlightDistSoFar = 0.0f;
 			NewFxSet.FlightTimeSoFar = 0.0f;
 			NewFxSet.TotalDistance = (GetTargetIconDesiredWorldPos(ItemSuckingTrailDepth) - CreatedSuckingFX->GetComponentLocation()).Size();
 
 			UB2DynItemIcon_ItemOpScene* ThisIngredIcon = CreatedIngredIconsSet[IngredIndex].DynIcon;
-			SetupNamedMIDForFxComp(NewFxSet.FXComp); // ÇÊ¿äÇÑ MIC µé¿¡¼­ MID ¸¦ ¸¸µé¾î¼­ »ç¿ë °¡´ÉÇÏµµ·Ï ¼¼ÆÃ.
-			// Fx ÂÊ¿¡ MID ±îÁö ÁØºñ°¡ µÇ¾ú´Ù¸é ÆÄÆ®º°·Î ÆÄ¶ó¹ÌÅÍ °ªÀ» °¡Á®¿Ã UI ÂÊÀÇ MIC ¸¦ °¡Á®¿Í¼­ MID ¿¡ ÆÄ¶ó¹ÌÅÍ¸¦ ¼¼ÆÃ.
+			SetupNamedMIDForFxComp(NewFxSet.FXComp); // é˜å¤¸èŒ„ MIC ç”¸ä¿Šè¾‘ MID ç”« çˆ¶ç”¸ç»¢è¾‘ è¤ä¾© å•Šç“·çªæ¡£åºŸ æŠ€æ³¼.
+			// Fx ç‡ä¿Š MID é³–ç˜¤ éœ–åšå•Š ç™»èŒä¿ƒæ é¢‡é£˜å–Šè‚º é¢‡æ‰¼å›ºç£ è”¼é˜‘ å•Šå»‰æ£µ UI ç‡ç‹¼ MIC ç”« å•Šå»‰å®¢è¾‘ MID ä¿Š é¢‡æ‰¼å›ºç£ç”« æŠ€æ³¼.
 			{
 				UMaterialInstanceDynamic* ItemBGPanelMID = GetFxMID_ItemBGPanel(NewFxSet.FXComp);
 				UMaterialInstanceConstant* ItemBGPanelMIC_Ref = ThisIngredIcon ? ThisIngredIcon->GetBGPanelMIC() : NULL;
@@ -446,13 +446,13 @@ void UB2LobbyUI_ItemLevelupProg::BeginIngredItemSucking(int32 IngredIndex)
 		}
 
 		if (IngredIndex == 0)
-		{ // Ã¹¹øÂ° Àç·á ½ÃÀÛ¿¡ ´ëÇÑ ÀÌº¥Æ®.
+		{ // éœ‰é”…æ³ çŠä¸° çŸ«ç´¯ä¿Š æªèŒ„ æäº¥é£˜.
 			StartSfx_Phase2_FirstIngredient();
 			OnFirstIngredBeginSucking_BP();
 		}
 	}	
 
-	// ´ÙÀ½ °ÍÀ» »ı¼ºÇÏ±â À§ÇÑ Å¸ÀÌ¸Ó
+	// ä¿ƒæ¾œ å·´é˜‘ ç§¯å·±çªæ‰ å›°èŒ„ é¸¥æèµ£
 	APlayerController* LocalOwningPlayer = GetOwningPlayer();
 	//if (LocalOwningPlayer && LocalOwningPlayer->IsValidObj())
 	{
@@ -462,7 +462,7 @@ void UB2LobbyUI_ItemLevelupProg::BeginIngredItemSucking(int32 IngredIndex)
 			LocalOwningPlayer->GetWorldTimerManager().SetTimer(ItemSuckingIntervalTimer, FTimerDelegate::CreateUObject(this, &UB2LobbyUI_ItemLevelupProg::BeginIngredItemSucking, IngredIndex + 1), FMath::Max(ItemSuckingInterval, 0.01f), false);
 		}
 		else
-		{ // ¸ğµÎ »ı¼ºÇÑ °Å. ÀÌÁ¦ Á¾·á Ã¼Å©°¡ °¡´ÉÇÏµµ·Ï Ç¥½Ã
+		{ // è‘›æ»´ ç§¯å·±èŒ„ èŠ­. æåŠ› è¾†ä¸° çœ‰å†œå•Š å•Šç“·çªæ¡£åºŸ é’çŸ«
 			bAllIngredSuckingFxCreated = true;
 		}
 	}
@@ -472,7 +472,7 @@ void UB2LobbyUI_ItemLevelupProg::UpdateSingleSuckingFxComp(int32 IngredIndex, fl
 {
 	if (CreatedSuckingFxSet.IsValidIndex(IngredIndex))
 	{
-		// ´Ü¼øÇÑ ÀÌ·± °¡¼Óµµ, ¼Óµµ Àû¿ëÀ¸·Î ¸¸Á· ¾ÈµÇ¸é projectile ÀÌ¶óµµ.
+		// çªœé‰´èŒ„ æç¹ å•ŠåŠ æ¡£, åŠ æ¡£ åˆ©ä¾©æ è‚º çˆ¶ç»ƒ æ•‘ç™»æ projectile ææ‰¼æ¡£.
 
 		FItemLevelupProgIngredSuckingFxSet& CurrFxSet = CreatedSuckingFxSet[IngredIndex];
 		if (CurrFxSet.FXComp)
@@ -481,30 +481,30 @@ void UB2LobbyUI_ItemLevelupProg::UpdateSingleSuckingFxComp(int32 IngredIndex, fl
 			FVector ToTargetDir = (GetTargetIconDesiredWorldPos(ItemSuckingTrailDepth) - FXCompCurrPos);
 			ToTargetDir.Normalize();
 
-			// ÈçÇÑ dV = At, dS = Vt
+			// å¦‚èŒ„ dV = At, dS = Vt
 			CurrFxSet.CurrentSpeed += (EffectiveItemSuckingAcc * InDeltaSec);
 			CurrFxSet.CurrentSpeed = FMath::Min(ItemSuckingMaxSpeed, CurrFxSet.CurrentSpeed);
 			FVector ThisMoveAmount = ToTargetDir * ((CurrFxSet.CurrentSpeed) * InDeltaSec);
 
 			CurrFxSet.FXComp->SetWorldLocation(FXCompCurrPos + ThisMoveAmount);
 
-			// ¾ó¸¶³ª °¡±î¿öÁ³´ÂÁö Ã¼Å©ÇÏ´Â ´ë½Å ÀÌµ¿ °Å¸®¸¦ ´õÇØ¼­ Ã³À½¿¡ »êÁ¤ÇÑ °Å¸®¸¦ ³Ñ¾ú´ÂÁö ºñ±³. ³Ê¹« »¡¸® ÀÌµ¿ÇØµµ ¾È ³õÄ§.
+			// å€”ä»˜å”± å•Šé³–å†µè„¸ç»°ç˜¤ çœ‰å†œçªç»° æªè„š ææ‚¼ èŠ­åºœç”« æ­¹ç§¦è¾‘ è´¸æ¾œä¿Š é­‚æ²¥èŒ„ èŠ­åºœç”« é€èŒç»°ç˜¤ åšèƒŒ. å‘ˆå…¬ å¼§åºœ ææ‚¼ç§¦æ¡£ æ•‘ åˆé­”.
 			CurrFxSet.FlightDistSoFar += ThisMoveAmount.Size();
 			CurrFxSet.FlightTimeSoFar += InDeltaSec;
 
 			const bool bDestroyThisOne = (
 				(ItemSuckingTrailLifeTime > 0.0f && CurrFxSet.FlightTimeSoFar >= ItemSuckingTrailLifeTime) ||
-				(CurrFxSet.FlightDistSoFar >= CurrFxSet.TotalDistance) // ½Ã°£À» ÁöÁ¤ÇÏÁö ¾Ê¾Ò´Ù¸é µµÂøÇßÀ»¶§ ÆÄ±«.
+				(CurrFxSet.FlightDistSoFar >= CurrFxSet.TotalDistance) // çŸ«åŸƒé˜‘ ç˜¤æ²¥çªç˜¤ è‡¼ç–½ä¿ƒæ æ¡£é¦’æ²é˜‘é”­ é¢‡é².
 				); 
 
 			if (bDestroyThisOne)
 			{
-				OnSingleIngredEndSucking(IngredIndex); // ÇÏ³ª »¡¾ÆµéÀÎ °Í¿¡ ´ëÇÑ ÀÌº¥Æ® ¤»
+				OnSingleIngredEndSucking(IngredIndex); // çªå”± å¼§é…’ç”¸ç‰¢ å·´ä¿Š æªèŒ„ æäº¥é£˜ ã›
 
-				CurrFxSet.FXComp->ConditionalBeginDestroy(); // ¸ñÇ¥ ÁöÁ¡ µµÂø ½Ã FXComp Á¦°Å. CurrFxSet ÀüÃ¼¸¦ CreatedSuckingFxSet ¿¡¼­ Á¦°ÅÇÏÁö´Â ¾Ê´Â´Ù. Ã¼Å©°¡ Á» ÇÊ¿äÇØ¼­.
+				CurrFxSet.FXComp->ConditionalBeginDestroy(); // æ ¼é’ ç˜¤ç—¢ æ¡£é¦’ çŸ« FXComp åŠ›èŠ­. CurrFxSet å‚ˆçœ‰ç”« CreatedSuckingFxSet ä¿Šè¾‘ åŠ›èŠ­çªç˜¤ç»° è‡¼ç»°ä¿ƒ. çœ‰å†œå•Š ç²± é˜å¤¸ç§¦è¾‘.
 				CurrFxSet.FXComp = NULL;
 
-				CheckForAllFxSucked(); // ¸ğµÎ »¡¾Æµé¿´´ÂÁö °Ë»ç.
+				CheckForAllFxSucked(); // è‘›æ»´ å¼§é…’ç”¸çœ‹ç»°ç˜¤ å…«è¤.
 			}
 		}
 	}
@@ -512,8 +512,8 @@ void UB2LobbyUI_ItemLevelupProg::UpdateSingleSuckingFxComp(int32 IngredIndex, fl
 
 void UB2LobbyUI_ItemLevelupProg::CheckForAllFxSucked()
 {
-	// ¸ğµÎ ½áÅ· µÇ¾ú´ÂÁö °Ë»çÇØ¼­ ÀÌº¥Æ®¸¦ ³¯¸®´Âµ¥ 
-	// ´Ü¼øÈ÷ IngredIndex == GetAllIngredNum() - 1 ÀÌ·± ½ÄÀ¸·Î ºñ±³ÇØ¼­ ¸¶Áö¸· ½áÅ·ÀÎÁö °Ë»çÇØµµ Å« ¹®Á¦ ¾øÀ» °Å °°Áö¸¸ ¸¸¿¡ ÇÏ³ª ¾Õ ÀÎµ¦½º °ÍÀÌ µÚ´Ê°Ô µµÂøÇÏ´Â »çÅÂ°¡ ¹ú¾îÁú ¼öµµ ÀÖÀ½.
+	// è‘›æ»´ ç»“æ¬§ ç™»èŒç»°ç˜¤ å…«è¤ç§¦è¾‘ æäº¥é£˜ç”« æœåºœç»°å• 
+	// çªœé‰´æ´’ IngredIndex == GetAllIngredNum() - 1 æç¹ ä¾¥æ è‚º åšèƒŒç§¦è¾‘ ä»˜ç˜¤é˜œ ç»“æ¬§ç‰¢ç˜¤ å…«è¤ç§¦æ¡£ å¥´ å·©åŠ› ç»é˜‘ èŠ­ éç˜¤çˆ¶ çˆ¶ä¿Š çªå”± èŠ ç‰¢éƒ¸èƒ¶ å·´æ ç¬¬è¯éœ¸ æ¡£é¦’çªç»° è¤æ€•å•Š å›½ç»¢é¾™ èæ¡£ ä¹æ¾œ.
 	if (bAllIngredSuckingFxCreated)
 	{
 		bool bAllSucked = true;
@@ -532,7 +532,7 @@ void UB2LobbyUI_ItemLevelupProg::CheckForAllFxSucked()
 
 void UB2LobbyUI_ItemLevelupProg::OnFinalIngredJustSucked()
 {
-	// ¸¶Áö¸· Àç·á°¡ ÈíÀÔµÈ ¼ø°£ºÎÅÍ´Â °íÁ¤µÈ Å¸ÀÓÀÌ¹Ç·Î Àü¿ª È¿°ú Å¸ÀÌ¹Ö¿¡ ÁÁÀ» °Í.
+	// ä»˜ç˜¤é˜œ çŠä¸°å•Š è½¯æ¶ç­‰ é‰´åŸƒä½•ç£ç»° ç»Šæ²¥ç­‰ é¸¥çƒ™æéª¨è‚º å‚ˆå¼€ ç“¤è‹ é¸¥ææ€ªä¿Š äº®é˜‘ å·´.
 	if (CreatedTargetItemIcon)
 	{
 		CreatedTargetItemIcon->OnTargetItemLastSucking();
@@ -547,11 +547,11 @@ void UB2LobbyUI_ItemLevelupProg::UpdateTargetItemToNewData()
 
 	if (CachedInventory)
 	{ 
-		// ¾Õ¼­ ½ÇÆĞÇßÀ» ¼öµµ ÀÖÀ¸¹Ç·Î ¾÷µ¥ÀÌÆ® µÈ µ¥ÀÌÅÍ ´Ù½Ã ¾ò¾î¿È. ½ÇÆĞÇÑ °æ¿ì¸¸ ´Ù½Ã ¾ò¾î¿À°Ô ÇÒ±î..
+		// èŠè¾‘ è§’è©æ²é˜‘ èæ¡£ ä¹æ éª¨è‚º è¯€å•æé£˜ ç­‰ å•æç£ ä¿ƒçŸ« æ˜ç»¢å’³. è§’è©èŒ„ ç‰ˆå¿«çˆ¶ ä¿ƒçŸ« æ˜ç»¢å·éœ¸ ä¸”é³–..
 		if (FinalResultPageNRef && CachedInventory->GetItemOPTargetItemData(NativeTargetLevelupItem_After, false))
 			FinalResultPageNRef->UpdateItemData(NativeTargetLevelupItem_Before, NativeTargetLevelupItem_After);
 
-		// ÀèÆÌÀÎ°æ¿ì ±â´ë°ªÀ¸·Î ¸ÕÀú º¸¿©ÁÖ°í ÀÌÈÄ¿¡ ½ÇÁ¦ µ¥ÀÌÅÍ·Î º¯°æÇØ¼­ º¸¿©ÁÜ
+		// é»é“ºç‰¢ç‰ˆå¿« æ‰æªè”¼æ è‚º åˆšå† ç„Šå’¯æ—ç»Š æé¥¶ä¿Š è§’åŠ› å•æç£è‚º å‡½ç‰ˆç§¦è¾‘ ç„Šå’¯æ·‹
 		if (CachedInventory->IsItemLevelupJackpot())
 		{
 			int32 OutLevel = 0;
@@ -566,7 +566,7 @@ void UB2LobbyUI_ItemLevelupProg::UpdateTargetItemToNewData()
 		}
 	}
 	
-	SetTargetItemIconData(PreviewItem); // ¹Ì¸® ¾ò¾î³õÀº ¾÷µ¥ÀÌÆ® µÈ ¾ÆÀÌÅÛ µ¥ÀÌÅÍ·Î ¼¼ÆÃ.
+	SetTargetItemIconData(PreviewItem); // å›ºåºœ æ˜ç»¢åˆç¯® è¯€å•æé£˜ ç­‰ é…’æè¢ å•æç£è‚º æŠ€æ³¼.
 }
 
 void UB2LobbyUI_ItemLevelupProg::ShowOverallBGFx()
@@ -577,7 +577,7 @@ void UB2LobbyUI_ItemLevelupProg::ShowOverallBGFx()
 	APlayerController* OwningPC = GetOwningPlayer();
 	if (OwningPC)
 	{
-		OwningPC->GetViewportSize(ViewSizeX, ViewSizeY); // È­¸é Áß¾Ó¿¡ »ı¼º
+		OwningPC->GetViewportSize(ViewSizeX, ViewSizeY); // æ‹³æ åå±…ä¿Š ç§¯å·±
 		CreatedOverallBGFx = OverallBGFxSetup.CreateUnderScreen(OwningPC, FVector2D((float)(ViewSizeX / 2), (float)(ViewSizeY / 2)));
 	}	
 }
@@ -590,13 +590,13 @@ void UB2LobbyUI_ItemLevelupProg::ShowEnhanceBlowupFx()
 	APlayerController* OwningPC = GetOwningPlayer();
 	if (OwningPC)
 	{
-		OwningPC->GetViewportSize(ViewSizeX, ViewSizeY); // È­¸é Áß¾Ó¿¡ »ı¼º
+		OwningPC->GetViewportSize(ViewSizeX, ViewSizeY); // æ‹³æ åå±…ä¿Š ç§¯å·±
 		CreatedEnhanceBlowupFx = EnhanceBlowupFxSetup.CreateUnderScreen(OwningPC, FVector2D((float)(ViewSizeX / 2), (float)(ViewSizeY / 2)));
 
 		if (CreatedEnhanceBlowupFx && CreatedTargetItemIcon)
 		{
-			SetupNamedMIDForFxComp(CreatedEnhanceBlowupFx); // ÇÊ¿äÇÑ MIC µé¿¡¼­ MID ¸¦ ¸¸µé¾î¼­ »ç¿ë °¡´ÉÇÏµµ·Ï ¼¼ÆÃ.
-			// Fx ÂÊ¿¡ MID ±îÁö ÁØºñ°¡ µÇ¾ú´Ù¸é ÆÄÆ®º°·Î ÆÄ¶ó¹ÌÅÍ °ªÀ» °¡Á®¿Ã UI ÂÊÀÇ MIC ¸¦ °¡Á®¿Í¼­ MID ¿¡ ÆÄ¶ó¹ÌÅÍ¸¦ ¼¼ÆÃ.
+			SetupNamedMIDForFxComp(CreatedEnhanceBlowupFx); // é˜å¤¸èŒ„ MIC ç”¸ä¿Šè¾‘ MID ç”« çˆ¶ç”¸ç»¢è¾‘ è¤ä¾© å•Šç“·çªæ¡£åºŸ æŠ€æ³¼.
+			// Fx ç‡ä¿Š MID é³–ç˜¤ éœ–åšå•Š ç™»èŒä¿ƒæ é¢‡é£˜å–Šè‚º é¢‡æ‰¼å›ºç£ è”¼é˜‘ å•Šå»‰æ£µ UI ç‡ç‹¼ MIC ç”« å•Šå»‰å®¢è¾‘ MID ä¿Š é¢‡æ‰¼å›ºç£ç”« æŠ€æ³¼.
 			{
 				UMaterialInstanceDynamic* ItemBGPanelMID = GetFxMID_ItemBGPanel(CreatedEnhanceBlowupFx);
 				UMaterialInstanceConstant* ItemBGPanelMIC_Ref = CreatedTargetItemIcon ? CreatedTargetItemIcon->GetBGPanelMIC() : NULL;
@@ -615,8 +615,8 @@ void UB2LobbyUI_ItemLevelupProg::ShowTargetItemBGFx()
 	DestroyTargetItemBGFx();
 	CreatedTargetItemBGFx = TargetItemBGFxSetup.CreateUnderScreen(GetOwningPlayer(), TargetItemIconScreenPos);
 
-	SetupNamedMIDForFxComp(CreatedTargetItemBGFx); // ÇÊ¿äÇÑ MIC µé¿¡¼­ MID ¸¦ ¸¸µé¾î¼­ »ç¿ë °¡´ÉÇÏµµ·Ï ¼¼ÆÃ.
-	// Fx ÂÊ¿¡ MID ±îÁö ÁØºñ°¡ µÇ¾ú´Ù¸é ÆÄÆ®º°·Î ÆÄ¶ó¹ÌÅÍ °ªÀ» °¡Á®¿Ã UI ÂÊÀÇ MIC ¸¦ °¡Á®¿Í¼­ MID ¿¡ ÆÄ¶ó¹ÌÅÍ¸¦ ¼¼ÆÃ.
+	SetupNamedMIDForFxComp(CreatedTargetItemBGFx); // é˜å¤¸èŒ„ MIC ç”¸ä¿Šè¾‘ MID ç”« çˆ¶ç”¸ç»¢è¾‘ è¤ä¾© å•Šç“·çªæ¡£åºŸ æŠ€æ³¼.
+	// Fx ç‡ä¿Š MID é³–ç˜¤ éœ–åšå•Š ç™»èŒä¿ƒæ é¢‡é£˜å–Šè‚º é¢‡æ‰¼å›ºç£ è”¼é˜‘ å•Šå»‰æ£µ UI ç‡ç‹¼ MIC ç”« å•Šå»‰å®¢è¾‘ MID ä¿Š é¢‡æ‰¼å›ºç£ç”« æŠ€æ³¼.
 	{
 		UMaterialInstanceDynamic* ItemBGPanelMID = GetFxMID_ItemBGPanel(CreatedTargetItemBGFx);
 		UMaterialInstanceConstant* ItemBGPanelMIC_Ref = CreatedTargetItemIcon ? CreatedTargetItemIcon->GetBGPanelMIC() : NULL;
@@ -662,7 +662,7 @@ void UB2LobbyUI_ItemLevelupProg::ShowFinalResultPage()
 }
 
 void UB2LobbyUI_ItemLevelupProg::ShowBattleScorePopup()
-{  // ¾Ö´Ï¸ŞÀÌ¼Ç ¿¬Ãâ Á¾·á½Ã È£ÃâµÇ´Â ÀüÅõ·Â °ü·Ã ÆË¾÷ 
+{  // å±€èªçš‹æè®° æ¥·å… è¾†ä¸°çŸ« é¾‹å…ç™»ç»° å‚ˆæ§ä»¿ åŒ…è®¿ æ‰‘è¯€ 
 	ShowBattleScoreNotifyClass<EPCClass>::GetInstance().Signal(IntToPCClass(NativeTargetLevelupItem_After.AllowedPCClass));
 }
 
@@ -681,12 +681,12 @@ void UB2LobbyUI_ItemLevelupProg::OnSingleIngredBeginSucking(int32 IngredIndex)
 		FItemLevelupProgIngredItemIconSet& ThisSet = CreatedIngredIconsSet[IngredIndex];
 		if (ThisSet.DynIcon)
 		{
-			ThisSet.DynIcon->OnIngredItemBeginSucking(IngredIndex); // Àç·á ¾ÆÀÌÅÛ ¾ÆÀÌÄÜ¿¡ º¸³»´Â ÀÌº¥Æ®
+			ThisSet.DynIcon->OnIngredItemBeginSucking(IngredIndex); // çŠä¸° é…’æè¢ é…’æèƒ½ä¿Š ç„Šéƒ´ç»° æäº¥é£˜
 		}
 	}
 	if (CreatedTargetItemIcon)
 	{
-		CreatedTargetItemIcon->OnTargetItemBeginSucking(IngredIndex); // Å¸°Ù ¾ÆÀÌÅÛ ¾ÆÀÌÄÜ¿¡ º¸³»´Â ÀÌº¥Æ®
+		CreatedTargetItemIcon->OnTargetItemBeginSucking(IngredIndex); // é¸¥ç™¾ é…’æè¢ é…’æèƒ½ä¿Š ç„Šéƒ´ç»° æäº¥é£˜
 	}
 
 	StartSfx_Phase2N_EachIngredient();
@@ -696,7 +696,7 @@ void UB2LobbyUI_ItemLevelupProg::OnSingleIngredEndSucking(int32 IngredIndex)
 {
 	if (CreatedTargetItemIcon)
 	{
-		CreatedTargetItemIcon->OnTargetItemSuckedIngred(IngredIndex); // Å¸°Ù ¾ÆÀÌÅÛ ¾ÆÀÌÄÜ¿¡ º¸³»´Â ÀÌº¥Æ®.
+		CreatedTargetItemIcon->OnTargetItemSuckedIngred(IngredIndex); // é¸¥ç™¾ é…’æè¢ é…’æèƒ½ä¿Š ç„Šéƒ´ç»° æäº¥é£˜.
 	}
 }
 
@@ -704,13 +704,13 @@ FVector2D UB2LobbyUI_ItemLevelupProg::GetAllowedSingleIngredientIconSize()
 {
 	FVector2D ReturnSize(0.0f, 0.0f);
 
-	// Anchor ¼³Á¤¿¡ µû¶ó GetSize ´Â ¿øÇÏ´Â °ªÀÌ ¾È ³ª¿Ã °ÍÀÌ¹Ç·Î ÁÖÀÇ.
+	// Anchor æ±²æ²¥ä¿Š è¶æ‰¼ GetSize ç»° ç›”çªç»° è”¼æ æ•‘ å”±æ£µ å·´æéª¨è‚º æ—ç‹¼.
 	UCanvasPanelSlot* MainPanelSlot = X_CP_EnhanceIngredIconPanel.IsValid() ? Cast<UCanvasPanelSlot>(X_CP_EnhanceIngredIconPanel->Slot) : NULL;
 	if (MainPanelSlot)
 	{
 		FVector2D MainPanelSize = MainPanelSlot->GetSize();
 
-		// MainPanelSize ¿Í Margin ¿¡ µû¶ó..
+		// MainPanelSize å®¢ Margin ä¿Š è¶æ‰¼..
 		ReturnSize.X = ((MainPanelSize.X / (float)LOBBY_EQUIPMENT_LEVELUP_MENU_INGREDIENT_ICON_PER_ROW) - IngredientIconPlacementMargin);
 		ReturnSize.Y = MainPanelSize.Y;
 
@@ -723,7 +723,7 @@ FVector2D UB2LobbyUI_ItemLevelupProg::GetAllowedSingleIngredientIconSize()
 
 FVector2D UB2LobbyUI_ItemLevelupProg::GetIngredIconPanelCenterPos()
 {
-	// Anchor ¼³Á¤¿¡ µû¶ó GetSize ´Â ¿øÇÏ´Â °ªÀÌ ¾È ³ª¿Ã °ÍÀÌ¹Ç·Î ÁÖÀÇ.
+	// Anchor æ±²æ²¥ä¿Š è¶æ‰¼ GetSize ç»° ç›”çªç»° è”¼æ æ•‘ å”±æ£µ å·´æéª¨è‚º æ—ç‹¼.
 	UCanvasPanelSlot* MainPanelSlot = X_CP_EnhanceIngredIconPanel.IsValid() ? Cast<UCanvasPanelSlot>(X_CP_EnhanceIngredIconPanel->Slot) : NULL;
 	return MainPanelSlot ? (MainPanelSlot->GetSize() * FVector2D(0.5f, 0.5f)) : FVector2D(0.0f, 0.0f);
 }
@@ -734,10 +734,10 @@ FVector2D UB2LobbyUI_ItemLevelupProg::GetIngredIconScreenPos(int32 IconIndex)
 	{
 		FVector2D IngredPanelScreenCoord;
 		
-		// X_CP_EnhanceIngredIconPanel ÀÇ ¹èÄ¡ Á¶°ÇÀº HACKGetWidgetScreenCoord ¸¦ Âü°í
+		// X_CP_EnhanceIngredIconPanel ç‹¼ ç¡…æ‘¹ ç‚¼æ‰’ç¯® HACKGetWidgetScreenCoord ç”« æ›¼ç»Š
 		if (HACKGetWidgetScreenCoord(X_CP_EnhanceIngredIconPanel.Get(), GetOwningPlayer(), IngredPanelScreenCoord, false, true))
 		{			
-			return ( // ÆĞ³Î ÁÂÇ¥¿¡ Ingredient icon µéÀÌ »ı¼ºµÈ »ó´ë ÁÂÇ¥¸¦ ´õÇÔ. 
+			return ( // è©æ¾„ è°…é’ä¿Š Ingredient icon ç”¸æ ç§¯å·±ç­‰ æƒ‘æª è°…é’ç”« æ­¹çªƒ. 
 				IngredPanelScreenCoord +
 				(CreatedIngredIconsSet[IconIndex].RelativeCoord * GetDesignToCurrentViewScale(GetOwningPlayer(), true)) 
 				);
@@ -759,7 +759,7 @@ FVector UB2LobbyUI_ItemLevelupProg::GetTargetIconDesiredWorldPos(float Depth)
 
 void UB2LobbyUI_ItemLevelupProg::FinishAndProceedToResult()
 {
-	UGameplayStatics::SetGlobalTimeDilation(CachedLobbyGM, 1.0f); // OverallPlayRate ¿¡ µû¶ó º¯°æÇß´ø °Å º¹±¸.
+	UGameplayStatics::SetGlobalTimeDilation(CachedLobbyGM, 1.0f); // OverallPlayRate ä¿Š è¶æ‰¼ å‡½ç‰ˆæ²å¸¦ èŠ­ æ±—å¤‡.
 
-	QuitItemOpModeClass<bool>::GetInstance().Signal(true); // ½ÇÁ¦·Î´Â °á°úÃ¢ÀÌ ³ª¿Í¾ß ÇÔ. °Å±â¼­ Quit À» ÇÏ°Ô µÉ °Í.
+	QuitItemOpModeClass<bool>::GetInstance().Signal(true); // è§’åŠ›è‚ºç»° æ¬è‹èŠ’æ å”±å®¢å…· çªƒ. èŠ­æ‰è¾‘ Quit é˜‘ çªéœ¸ çª å·´.
 }

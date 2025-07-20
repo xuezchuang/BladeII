@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIEventAttendance.h"
 #include "B2UIManager.h"
 #include "B2UIEventAttendacnePart.h"
@@ -153,7 +153,7 @@ void UB2UIEventAttendance::UpdateEventAttendanceParts()
 	//{
 	//	int32 iPartsIndex = i;
 
-	//	if (i == CachedEventInfo.total_attendance_days - 1)	//4ÀÏ ÀÌº¥Æ®ÀÏ °æ¿ì UIP_EventAttendancePart6°¡ 4ÀÏÂ° º¸»óÀ¸·Î ¼¼ÆÃÀÌ µÇ¾î¾ß ÇÏ¹Ç·Î
+	//	if (i == CachedEventInfo.total_attendance_days - 1)	//4è€ æäº¥é£˜è€ ç‰ˆå¿« UIP_EventAttendancePart6å•Š 4è€æ³ ç„Šæƒ‘æ è‚º æŠ€æ³¼æ ç™»ç»¢å…· çªéª¨è‚º
 	//		iPartsIndex = EventAttendanceParts.Num() - 1;
 
 	//	SetEventAttendanceParts(iPartsIndex, i, RewardStatus.attendance_day, AttendanceRewards);

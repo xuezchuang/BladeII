@@ -45,11 +45,11 @@ void UB2LobbyUI_AutoReinforce::OnClickAutoReinforceCommit()
 
 	LobbyReqAutoItemLevelupClass<const TArray<FB2Item>&, bool>::GetInstance().Signal(AllTargetItems, false);
 
-	// ÀÌ ½ÃÁ¡¿¡¼­ Ã¢À» ´İÀ¸¸é °ï¶õÇÒ °Å °°´Ù. ÀÚµ¿ °­È­´Â ¼­¹ö¿Í ÆĞÅ¶À» ¿©·¯Â÷·Ê ±³È¯ÇÏ¹Ç·Î ÃÖÁ¾ ÀÀ´äÀÌ ¿Â ÈÄ¿¡ ÀÌ°É ´İ°í °á°úÃ¢À¸·Î ÀüÈ¯ÇÏµµ·Ï. 
+	// æ çŸ«ç—¢ä¿Šè¾‘ èŠ’é˜‘ æ‘§æ æ å¸®é„‚ä¸” èŠ­ éä¿ƒ. ç£Šæ‚¼ ç¢æ‹³ç»° è¾‘æ»šå®¢ è©å“¦é˜‘ å’¯çŸ¾ç’è‚¥ èƒŒåˆ¸çªéª¨è‚º å¼¥è¾† è§ˆç¿ æ æŸ¯ é¥¶ä¿Š æå§ æ‘§ç»Š æ¬è‹èŠ’æ è‚º å‚ˆåˆ¸çªæ¡£åºŸ. 
 
 	if (Btn_AutoReinforceCommit.IsValid())
 	{
-		Btn_AutoReinforceCommit->SetIsEnabled(false); // È¤½Ã ¸ğ¸£´Ï ½ÇÇà ¹öÆ°Àº ºñÈ°¼ºÈ­..
+		Btn_AutoReinforceCommit->SetIsEnabled(false); // è¶£çŸ« è‘›ç¦èª è§’é’ æ»šç“¢ç¯® åšåŠå·±æ‹³..
 	}
 }
 
@@ -73,13 +73,13 @@ ESlateVisibility UB2LobbyUI_AutoReinforce::GetAccessoryVisibility() const
 
 void UB2LobbyUI_AutoReinforce::OnAnyItemFilterCBChanged()
 {
-	// ¸®½ºÆ®°¡ ¹Ù²î¾úÀ» ¶§ ÇöÀç ¸®½ºÆ®¿¡ ´ëÇÑ ÀÚµ¿ °­È­ ¿¹»ó ºñ¿ëÀ» ¿äÃ»ÇØ¾ß ÇÏ´Âµ¥ ¿©±â¼­ ¹Ù·Î ºí·ÎÅ·À¸·Î´Â ¾ÈµÇ´Ï 
-	// ¹öÆ° µîÀÇ UI ¸¦ disable ½ÃÅ² Ã¤ ¿äÃ»¸¸ ³¯¸®°í ÀÀ´äÀº µû·Î Ã³¸®.
-	// ³»Áö´Â ±İ¾× °è»êÀ» Å¬¶óÀÌ¾ğÆ®¿¡¼­ Ã³¸®ÇÏ°Ô µÉ ¼öµµ ÀÖÀ½.
+	// åºœèƒ¶é£˜å•Š å®˜å·®èŒé˜‘ é”­ æ³…çŠ åºœèƒ¶é£˜ä¿Š æªèŒ„ ç£Šæ‚¼ ç¢æ‹³ æŠ—æƒ‘ åšä¾©é˜‘ å¤¸æ²¡ç§¦å…· çªç»°å• å’¯æ‰è¾‘ å®˜è‚º å–‰è‚ºæ¬§æ è‚ºç»° æ•‘ç™»èª 
+	// æ»šç“¢ æ®¿ç‹¼ UI ç”« disable çŸ«æŒª ç›² å¤¸æ²¡çˆ¶ æœåºœç»Š è§ˆç¿ ç¯® è¶è‚º è´¸åºœ.
+	// éƒ´ç˜¤ç»° é™›å’€ æ‹Œé­‚é˜‘ åŠªæ‰¼ææ”«é£˜ä¿Šè¾‘ è´¸åºœçªéœ¸ çª èæ¡£ ä¹æ¾œ.
 	TArray<FB2Item> AllTargetItems;
 	GetItemListByFilter(AllTargetItems);
 
-	// ºñ¿ë °è»êÇØ¼­ °ü·Ã UI µé ¼¼ÆÃ.
+	// åšä¾© æ‹Œé­‚ç§¦è¾‘ åŒ…è®¿ UI ç”¸ æŠ€æ³¼.
 	CachedLastPreviewAutoEnhanceCost = 0;
 	int32 LvUpItemCount = 0;
 	int32 IngredItemCount = 0;
@@ -95,7 +95,7 @@ void UB2LobbyUI_AutoReinforce::OnAnyItemFilterCBChanged()
 
 	UpdateAutoReinforceCommitBtnEnable(CachedLastPreviewAutoEnhanceCost, false);
 
-	// Å¬¶óÀÌ¾ğÆ® °è»êÀ» ÇÏ±â Àü¿¡´Â ¸Å ÇÊÅÍ º¯°æ¸¶´Ù ¼­¹ö·Î ¿äÃ»À» º¸³»¼­ ºñ¿ëÀ» ¾Ë¾Æ³Â´Âµ¥ ÀÌÁ¦´Â ±×·² ÇÊ¿ä´Â ¾øÁö¸¸ °³¹ß¹öÀü¿¡¼­´Â ÀÏÄ¡ÇÏ´ÂÁö Ã¼Å© Á¤µµ¸¸ ÇÏ±â À§ÇØ ±×´ë·Î ¿äÃ»À» ÇÔ.
+	// åŠªæ‰¼ææ”«é£˜ æ‹Œé­‚é˜‘ çªæ‰ å‚ˆä¿Šç»° æ¦‚ é˜ç£ å‡½ç‰ˆä»˜ä¿ƒ è¾‘æ»šè‚º å¤¸æ²¡é˜‘ ç„Šéƒ´è¾‘ åšä¾©é˜‘ èˆ…é…’é™ˆç»°å• æåŠ›ç»° å¼Šå‡¡ é˜å¤¸ç»° ç»ç˜¤çˆ¶ ä¿ºæƒ¯æ»šå‚ˆä¿Šè¾‘ç»° è€æ‘¹çªç»°ç˜¤ çœ‰å†œ æ²¥æ¡£çˆ¶ çªæ‰ å›°ç§¦ å¼Šæªè‚º å¤¸æ²¡é˜‘ çªƒ.
 #if WITH_EDITOR	
 	if (AllTargetItems.Num() > 0)
 	{
@@ -107,13 +107,13 @@ void UB2LobbyUI_AutoReinforce::OnAnyItemFilterCBChanged()
 
 void UB2LobbyUI_AutoReinforce::UpdateOnAutoItemLevelupCostDelivered(int32 DeliveredCost)
 {
-	// OnAnyItemFilterCBChanged ¿¡¼­ º¸³»´Â ¿äÃ»¿¡ µû¶ó °³¹ß ¹öÀüÀÌ ¾Æ´Ï¸é ÀÌ ÀÀ´äÀÌ ¿ÀÁö ¾ÊÀ» °Í.
+	// OnAnyItemFilterCBChanged ä¿Šè¾‘ ç„Šéƒ´ç»° å¤¸æ²¡ä¿Š è¶æ‰¼ ä¿ºæƒ¯ æ»šå‚ˆæ é…’èªæ æ è§ˆç¿ æ å·ç˜¤ è‡¼é˜‘ å·´.
 
-	// OnAnyItemFilterCBChanged ¿¡¼­ Cost ¸®Äù½ºÆ® ³¯¸®¸é¼­ Freeze Çß´ø °Å ÇØÁ¦.
+	// OnAnyItemFilterCBChanged ä¿Šè¾‘ Cost åºœæ¶…èƒ¶é£˜ æœåºœæè¾‘ Freeze æ²å¸¦ èŠ­ ç§¦åŠ›.
 	FreezeSelectionInterface(false);
 
 #if WITH_EDITOR
-	// Å¬¶ó °è»ê°ú ÀÏÄ¡ÇÏ´ÂÁö Ã¼Å©¸¸ ÇÏµµ·Ï..
+	// åŠªæ‰¼ æ‹Œé­‚è‹ è€æ‘¹çªç»°ç˜¤ çœ‰å†œçˆ¶ çªæ¡£åºŸ..
 	checkSlow(CachedLastPreviewAutoEnhanceCost == DeliveredCost);
 #endif
 }
@@ -141,7 +141,7 @@ void UB2LobbyUI_AutoReinforce::GetItemListByFilter(TArray<FB2Item>& OutFilteredL
 	TArray<int32> StarGradeFilter;
 	GetSelectedFilters(InvenTypeFilter, StarGradeFilter);
 
-	// ÀåÂø ¹× Àá°Ü ÀÖ´Â°Å Á¦¿Ü. ÇÁ¸®¼ÂÀº Æ÷ÇÔ.
+	// å˜é¦’ æ£º æ³ªè´¥ ä¹ç»°èŠ­ åŠ›å¯‡. æ©‡åºœæ‚¸ç¯® å™¨çªƒ.
 	UB2LobbyInventory::GetFilteredItemList(OutFilteredList, false, false, true, InvenTypeFilter, StarGradeFilter);
 }
 
@@ -151,7 +151,7 @@ void UB2LobbyUI_AutoReinforce::GetSelectedFilters(TArray<EItemInvenType>& OutInv
 
 	for (int32 CGI = 0; CGI < AutoReinfALLITEMS_STARGRADE_NUM; ++CGI){
 		if (CB_ItemGrade[CGI] && CB_ItemGrade[CGI]->IsChecked()){
-			OutStarGradeFilter.Add(CGI + 1); // StarGrade ´Â 1ºÎÅÍ ½ÃÀÛ.
+			OutStarGradeFilter.Add(CGI + 1); // StarGrade ç»° 1ä½•ç£ çŸ«ç´¯.
 		}
 	}
 }
@@ -219,7 +219,7 @@ void UB2LobbyUI_AutoReinforce::StartFromLobby(class UB2UIManager_Lobby* InUIMana
 {
 	Super::StartFromLobby(InUIManager, InGM);
 
-	// Ã³À½¿¡ ÇöÀç ÀÎº¥Åä¸® ÅÇÀ¸·Î ¼±ÅÃÇØ ÁØ´Ù.
+	// è´¸æ¾œä¿Š æ³…çŠ ç‰¢äº¥é…åºœ å¾˜æ è‚º æ€¥ç¶ç§¦ éœ–ä¿ƒ.
 	UB2LobbyInventory* LobbyInvenObj = CachedLobbyGM ? CachedLobbyGM->GetLobbyInventory() : NULL;
 	if (LobbyInvenObj && SelectedAutoReinfTab == EItemInvenType::EIIVT_End)
 	{
@@ -231,7 +231,7 @@ void UB2LobbyUI_AutoReinforce::StartFromLobby(class UB2UIManager_Lobby* InUIMana
 }
 
 void UB2LobbyUI_AutoReinforce::CloseMe()
-{ // ÀÌ°Ç ´Ü¼øÈ÷ ÆË¾÷Ã¢¸¸À» ´İÀ¸¹Ç·Î ¾î¶² ½ÄÀ¸·Îµç ÀÚµ¿ °­È­°¡ ÁøÇàÁßÀÎ »óÅÂ¿¡¼­´Â ÀÌ·± ½ÄÀ¸·Î ´İÀ¸¸é ¾È µÊ. ±×·± °æ¿ì°¡ ÇÊ¿äÇÏ¸é UB2LobbyInventory::EndAutoItemEnhance ¸¦ »ç¿ëÇØ¾ß.
+{ // ææ‰’ çªœé‰´æ´’ æ‰‘è¯€èŠ’çˆ¶é˜‘ æ‘§æ éª¨è‚º ç»¢æ« ä¾¥æ è‚ºç”µ ç£Šæ‚¼ ç¢æ‹³å•Š æŸ³é’åç‰¢ æƒ‘æ€•ä¿Šè¾‘ç»° æç¹ ä¾¥æ è‚º æ‘§æ æ æ•‘ å‡³. å¼Šç¹ ç‰ˆå¿«å•Š é˜å¤¸çªæ UB2LobbyInventory::EndAutoItemEnhance ç”« è¤ä¾©ç§¦å…·.
 	DJLegacy_CloseLobbySubPopupClass<ELobbySubPopups>::GetInstance().Signal(ELobbySubPopups::ELSPU_AutoItemLevelup);
 }
 
@@ -295,7 +295,7 @@ void UB2LobbyUI_AutoReinforce::UpdateAutoReinforceCommitBtnEnable(int32 AutoRein
 	{
 		Btn_AutoReinforceCommit->SetIsEnabled(
 			!bSelectionFreezed
-			// ºñ¿ë¿¡ µû¶ó disable ½ÃÅ°·Á¸é ¾Æ·¡Ã³·³. Çö ¿ä±¸»çÇ×Àº ºñ¿ëÀÌ ºÎÁ·ÇÑ »óÅÂ¿¡¼­ ½Ãµµ ½Ã ¸Ş½ÃÁö ¹Ú½º ¶ç¿ò. UB2LobbyInventory::OnAllAutoItemLevelupCostDelivered ·Î..
+			// åšä¾©ä¿Š è¶æ‰¼ disable çŸ«è™å¦¨æ é…’è´°è´¸çƒ¦. æ³… å¤¸å¤‡è¤äº²ç¯® åšä¾©æ ä½•ç»ƒèŒ„ æƒ‘æ€•ä¿Šè¾‘ çŸ«æ¡£ çŸ« çš‹çŸ«ç˜¤ å† èƒ¶ å‰æ¡†. UB2LobbyInventory::OnAllAutoItemLevelupCostDelivered è‚º..
 			//(AutoReinforceCost > 0 && BladeIIGameImpl::GetClientDataStore().GetGoldAmount() >= AutoReinforceCost && !bSelectionFreezed)
 			);
 	}

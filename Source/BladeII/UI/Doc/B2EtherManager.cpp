@@ -113,7 +113,7 @@ void B2EtherManager::GetEquipEther(IN int32 EtherSetId, IN const TMap<int64, FB2
 
 		EquippedEthers.GenerateValueArray(Ethers);
 
-		//Å¸ÀÔÀ¸·Î ÇÊÅÍ¸µ
+		//é¸¥æ¶æ è‚º éž˜ç£å‚…
 		Ethers = Ethers.FilterByPredicate
 		(
 			[EtherType](FB2Ether CurrEther)
@@ -126,7 +126,7 @@ void B2EtherManager::GetEquipEther(IN int32 EtherSetId, IN const TMap<int64, FB2
 		}
 		);
 
-		//Æ¼¾î¼øÀ¸·Î Á¤·Ä
+		//èç»¢é‰´æ è‚º æ²¥çºº
 		Ethers.Sort([](const FB2Ether& A, const FB2Ether& B)
 		{
 			if (A.Tier > B.Tier)
@@ -155,7 +155,7 @@ float B2EtherManager::GetEtherSetOptionCoolDown(int32 EtherSetId, TMap<int64, FB
 	{
 		for (int i = 0; i < MinCount; ++i)
 		{
-			// ÀÎÀÚ·Î¹ÞÀº ¼¼Æ®¾ÆÀÌµð¶û ÀåÂø¾ÆÀÌÅÛ Æ¼¾î·Î ¼¼Æ®Á¤º¸ Ã£À½.
+			// ç‰¢ç£Šè‚ºç½ç¯® æŠ€é£˜é…’æžå¼å°” åŽ˜é¦’é…’æžè¢ èç»¢è‚º æŠ€é£˜æ²¥ç„Š èŒ«æ¾œ.
 			b2network::B2mdAetherSetOptionInfoPtr EtherSetOptionInfoPtr = GetEtherSetOptionInfoPtrBySetId(EtherSetId, Ethers[i].Tier);
 			CoolDown += EtherSetOptionInfoPtr->cooldown_second;
 		}
@@ -169,7 +169,7 @@ float B2EtherManager::GetEtherSetOptionTriggerRate(int32 EtherSetId, TMap<int64,
 	{
 		return 0;
 	}
-	// ¸¸ºÐÀ²
+	// çˆ¶ç›’å•¦
 	TArray<FB2Ether> Ethers;
 	int32 nRate = 0;
 	int MinCount = GetMinApplyCount(EtherSetId);
@@ -180,7 +180,7 @@ float B2EtherManager::GetEtherSetOptionTriggerRate(int32 EtherSetId, TMap<int64,
 	{
 		for (int i = 0; i < MinCount; ++i)
 		{
-			// ÀÎÀÚ·Î¹ÞÀº ¼¼Æ®¾ÆÀÌµð¶û ÀåÂø¾ÆÀÌÅÛ Æ¼¾î·Î ¼¼Æ®Á¤º¸ Ã£À½.
+			// ç‰¢ç£Šè‚ºç½ç¯® æŠ€é£˜é…’æžå¼å°” åŽ˜é¦’é…’æžè¢ èç»¢è‚º æŠ€é£˜æ²¥ç„Š èŒ«æ¾œ.
 			b2network::B2mdAetherSetOptionInfoPtr EtherSetOptionInfoPtr = GetEtherSetOptionInfoPtrBySetId(EtherSetId, Ethers[i].Tier);
 			nRate += EtherSetOptionInfoPtr->trigger_rate;
 		}
@@ -314,7 +314,7 @@ FText B2EtherManager::GetEtherSetOptionText(int32 EtherSetId, TMap<int64, FB2Eth
 	FText Result = FText::GetEmpty();;
 
 	float Rate = GetEtherSetOptionTriggerRate(EtherSetId, EquippedEthers);
-	//Rate *= 100; // %ÀÌ¹Ç·Î º¯È¯
+	//Rate *= 100; // %æžéª¨è‚º å‡½åˆ¸
 	//if (StaticFindEtherSetOptionInfoTable() != NULL)
 	//{
 	//	Result = FText::Format(BladeIIGetLOCText(FString(B2LOC_CAT_ETHER), FString(TEXT("Ether_OptionApply"))),

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIHeroTowerRankerInfo.h"
 #include "B2UIDocHelper.h"
@@ -47,7 +47,7 @@ void UB2UIHeroTowerRankerInfo::SetRankerInfo(const FModRankerInfo& RankerInfo)
 		TB_Ranking->SetVisibility(RankerInfo.Rank > 3 ? ESlateVisibility::HitTestInvisible : ESlateVisibility::Hidden);
 	}
 
-	if (TB_PlayerLevel.IsValid()) //À¯Àú·¹º§°³³ä.
+	if (TB_PlayerLevel.IsValid()) //èœ¡åŽ†é¥­éª‡ä¿ºå…….
 		TB_PlayerLevel->SetText(FText::Format(BladeIIGetLOCText(FString(B2LOC_CAT_GENERAL), TEXT("PVP1on1_RankerLevel")), FText::AsNumber(RankerInfo.EntryLevels[0])));
 
 	if (TB_PlayerName.IsValid())
@@ -119,8 +119,8 @@ void UB2UIHeroTowerRankerInfo::OnClickSelect()
 
 void UB2UIHeroTowerRankerInfo::UpdateStaticText()
 {
-	if (STB_CombatPower.IsValid()) // ÀüÅõ·Â
+	if (STB_CombatPower.IsValid()) // å‚ˆæ§ä»¿
 		STB_CombatPower->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Raking_CombatPower")));
-	if (STB_HighScore.IsValid()) // ÃÖ°í±â·Ï
+	if (STB_HighScore.IsValid()) // å¼¥ç»Šæ‰åºŸ
 		STB_HighScore->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("Raking_HighRecord")));
 }

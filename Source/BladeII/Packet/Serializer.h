@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 //#include "Base64.h"
 //#include "Array.h"

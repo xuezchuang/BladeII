@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -32,21 +32,21 @@ public:
 	ItemForgeSettingDatas(EItemForgeSlot SType, int32 FID):
 		FactoryID(FID),SlotType(SType){}
 
-	EPCClass CharacterType;				// Ä³¸¯ÅÍ Å¸ÀÔ
-	int32 FactoryID;					// ´ëÃ¼ Å×ÀÌºí À¯´ÏÅ© ÄÚµå
-	int32 MakeCount;					// Á¦ÀÛ È½¼ö
-	int32 MainItemRefID;				// ¼±ÅÃ °¡´ÉÇÑ ¸ŞÀÎ ¾ÆÀÌÅÛ
-	int32 MainItemCount;				// ¼±ÅÃ °¡´ÉÇÑ ¸ŞÀÎ ¾ÆÀÌÅÛÀÇ ÇÊ¿ä °³¼ö
-	EItemForgeSlot SlotType;			// Å×ÀÌºí ÄÃ·³ ¼±ÅÃ
-	TArray<TargetData> ResourceItem;	// ´ëÃ¼ Å×ÀÌºí µ¥ÀÌÅÍ
-	TArray<FB2Item> HoldList;			// À¯Àú º¸À¯ ¾ÆÀÌÅÛ ¸®½ºÆ®
+	EPCClass CharacterType;				// æŸè…ç£ é¸¥æ¶
+	int32 FactoryID;					// æªçœ‰ æŠ›æå–‰ èœ¡èªå†œ å†…é›
+	int32 MakeCount;					// åŠ›ç´¯ å†‰è
+	int32 MainItemRefID;				// æ€¥ç¶ å•Šç“·èŒ„ çš‹ç‰¢ é…’æè¢
+	int32 MainItemCount;				// æ€¥ç¶ å•Šç“·èŒ„ çš‹ç‰¢ é…’æè¢ç‹¼ é˜å¤¸ ä¿ºè
+	EItemForgeSlot SlotType;			// æŠ›æå–‰ æ‹¿çƒ¦ æ€¥ç¶
+	TArray<TargetData> ResourceItem;	// æªçœ‰ æŠ›æå–‰ å•æç£
+	TArray<FB2Item> HoldList;			// èœ¡å† ç„Šèœ¡ é…’æè¢ åºœèƒ¶é£˜
 
 public:
 
 	void SetDataSet(EItemForgeSlot SType) {
 		SlotType = SType;
 	}
-	// µ¥ÀÌÅÍ ¼¼ÆÃ
+	// å•æç£ æŠ€æ³¼
 	void SetDataSet(EPCClass CharType,int32 FID, EItemForgeSlot SType,
 		int32 Makecount, int32 MainItem, int32 MainItemcount) {
 		CharacterType = CharType;
@@ -76,7 +76,7 @@ public:
 
 	TWeakObjectPtr<class UB2Button>	BTN_Cancel;
 
-	ItemForgeSettingDatas ItemForgeDataSet;		// Á¦ÀÛ¼Ò °ü·Ã µ¥ÀÌÅÍ ¼Â
+	ItemForgeSettingDatas ItemForgeDataSet;		// åŠ›ç´¯å®¶ åŒ…è®¿ å•æç£ æ‚¸
 
 	UPROPERTY(EditAnywhere)
 		TSubclassOf<class UB2DynItemIcon_ItemForge> result;
@@ -85,21 +85,21 @@ public:
 	TWeakObjectPtr<class UScrollBox> SB_ItemTargets;
 	TWeakObjectPtr<class UB2Button>				BTN_Select;
 	TWeakObjectPtr<UTextBlock>					TB_Confirm;
-	class FLocalCharacterData*					CachedCharacterStore;	// ÀÓ½Ã ÀúÀåµÈ Ä³¸¯ÅÍ µ¥ÀÌÅÍ ÀúÀå¼Ò
+	class FLocalCharacterData*					CachedCharacterStore;	// çƒ™çŸ« å†å˜ç­‰ æŸè…ç£ å•æç£ å†å˜å®¶
 private:
-	FB2Item										SelectedItem;			// ¼±ÅÃµÈ ¾ÆÀÌÅÛ
-	int32										Itemforge_SelectTicket;	// SelectedItem ¼¼ÆÃÀ» À§ÇÑ Event System
+	FB2Item										SelectedItem;			// æ€¥ç¶ç­‰ é…’æè¢
+	int32										Itemforge_SelectTicket;	// SelectedItem æŠ€æ³¼é˜‘ å›°èŒ„ Event System
 
-	bool										bSubscribed;			// Event System ¼¼ÆÃ ¿©ºÎ
-	//TArray<std::shared_ptr<issue>>				Issues;					// Event System ÇÔ¼ö ÆãÅÍ
+	bool										bSubscribed;			// Event System æŠ€æ³¼ å’¯ä½•
+	//TArray<std::shared_ptr<issue>>				Issues;					// Event System çªƒè æ²ç£
 
-	class UB2UIItemForgeIngredientList* ItemForgeIngredientUI;			// »óÀ§ UI Å¬·¡½º
+	class UB2UIItemForgeIngredientList* ItemForgeIngredientUI;			// æƒ‘å›° UI åŠªè´°èƒ¶
 
 	int32 requiredItemEnhanceLevel;
 	int32 requiredItemLevel;
 public:
-	virtual void Init() override;		// B2UI ±âº» Init
-	// ItemForgePopup¿¡ ÇÊ¿äÇÑ ¸ğµç µ¥ÀÌÅÍ ¼¼ÆÃ
+	virtual void Init() override;		// B2UI æ‰å¤¯ Init
+	// ItemForgePopupä¿Š é˜å¤¸èŒ„ è‘›ç”µ å•æç£ æŠ€æ³¼
 	void InitializeForgePopup(EPCClass CharType, int32 FID, EItemForgeSlot SType,int32 Makecount,int32 MainItem ,int32 MainItemCount ,class UB2UIItemForgeIngredientList* MainUI, int32 enhanceLevel=0, int32 itemLevel=0);
 	// EventSystem Sub,UnSub
 	void SubscribeEvent();
@@ -110,7 +110,7 @@ public:
 	UFUNCTION()
 	void OnClickBTNSelect();
 protected:
-	// B2UI ±âº» ±â´É
+	// B2UI æ‰å¤¯ æ‰ç“·
 	virtual void CacheAssets()override;
 	virtual void BindDelegates() override;
 	virtual void UpdateStaticText() override;

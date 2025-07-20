@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2UIToolTipTextBox.h"
@@ -47,7 +47,7 @@ void UB2UIToolTipTextBox::SetTargetInfo(UB2UIWidgetBase* TargetUB2UIWidget, UWid
 	m_fLifeTime = InLifeTime;
 }
 
-// ¿£ÁøÅ¬·¡½º °Çµå·Á¾ßÇØ¼­ º¸·ù ²ÀÇÊ¿äÇÏ¸é Ãß°¡ÇÏÀÚ.
+// æµšæŸ³åŠªè´°èƒ¶ æ‰’é›å¦¨å…·ç§¦è¾‘ ç„Šå¹… æ€–éž˜å¤¸çªæ çœ å•Šçªç£Š.
 //void UB2UIToolTipTextBox::SetContentTextFontSize(uint16 FontSize)
 //{
 //	if (TB_Content.IsValid())
@@ -72,7 +72,7 @@ void UB2UIToolTipTextBox::UpdateTooltipBox()
 
 		FVector2D BGNewSize = OverRay_Text->GetDesiredSize();
 
-		// ¹è°æÀÌ¹ÌÁö ¿Ü°ûºÎºÐÀ¸·Î ¾´ Å©±â µÎ¹è¸¸Å­ Å©°Ô Àâ¾ÆÁÜ.
+		// ç¡…ç‰ˆæžå›ºç˜¤ å¯‡èƒžä½•ç›’æ è‚º æ•¬ å†œæ‰ æ»´ç¡…çˆ¶æ€’ å†œéœ¸ æ£±é…’æ·‹.
 		BGNewSize.X += (IMG_BG->GetBrush().ImageSize.X * IMG_BG->GetBrush().Margin.Left
 			+ IMG_BG->GetBrush().ImageSize.X * IMG_BG->GetBrush().Margin.Right)
 			* 2;
@@ -83,11 +83,11 @@ void UB2UIToolTipTextBox::UpdateTooltipBox()
 
 		pBGSlot->SetSize(BGNewSize);
 
-		// À§Ä¡¼³Á¤. Å¸°Ù ÁßÁ¡ - ³»ÁßÁ¡ = ¸ÞÀÎ Äµ¹ö½ºÆÐ³Î À§Ä¡
-		// ³»ÁßÁ¡ = Å¸°Ù ÁßÁ¡ + Á¶Á¤ °ª
-		// Á¶Á¤ °ª = À½.. ÀÔ·Â¹ÞÀº ¹æÇâÀ¸·Î º¤ÅÍ2µð¸¦ ¸¸µé¾î¼­ ±×º¤ÅÍ¸¦ Å¸°Ù °¡·Î¶û ¼¼·Î¶û 
-		// °¢°¢ X Y ºñÀ² ºñ±³ÇØ¼­ ºñÀ² ´õ ÂªÀºÂÊ ºñÀ²¸¸Å­ Å©±â¸¦ °öÇØÁÖ°í, ³»Å©±âµµ °°Àº ÀÛ¾÷ÇØÁÜ.
-		// ¾Æ ºñÀ² °öÇØÁÙ¶© »çÀÌÁî Àý¸¸¹ÝÅ­¸¸ °öÇØÁà¾ßÇÒµí.
+		// å›°æ‘¹æ±²æ²¥. é¸¥ç™¾ åç—¢ - éƒ´åç—¢ = çš‹ç‰¢ ç‰¡æ»šèƒ¶è©æ¾„ å›°æ‘¹
+		// éƒ´åç—¢ = é¸¥ç™¾ åç—¢ + ç‚¼æ²¥ è”¼
+		// ç‚¼æ²¥ è”¼ = æ¾œ.. æ¶ä»¿ç½ç¯® è§„æ°¢æ è‚º æ°¦ç£2å¼ç”« çˆ¶ç”¸ç»¢è¾‘ å¼Šæ°¦ç£ç”« é¸¥ç™¾ å•Šè‚ºå°” æŠ€è‚ºå°” 
+		// é˜¿é˜¿ X Y åŽšå•¦ åŽšèƒŒç§¦è¾‘ åŽšå•¦ æ­¹ é™‹ç¯®çŽ‡ åŽšå•¦çˆ¶æ€’ å†œæ‰ç”« èšŒç§¦æž—ç»Š, éƒ´å†œæ‰æ¡£ éžç¯® ç´¯è¯€ç§¦æ·‹.
+		// é…’ åŽšå•¦ èšŒç§¦ä¸´è®¢ è¤æžä»¤ ä¾‹çˆ¶é¦†æ€’çˆ¶ èšŒç§¦æ‹Žå…·ä¸”æ·€.
 		
 		if (m_pTargetUB2UIWidget && m_pTargetWidget)
 		{
@@ -101,7 +101,7 @@ void UB2UIToolTipTextBox::UpdateTooltipBox()
 			{
 				vTargetPos = vTargetPos + (pTargetWidgetSlot->GetSize() / 2);
 
-				// Å¸°Ù ¹Ú½ºÁ» Å©°ÔÀâ´Â´Ù. ³Ê¹« µüºÙÀ½
+				// é¸¥ç™¾ å† èƒ¶ç²± å†œéœ¸æ£±ç»°ä¿ƒ. å‘ˆå…¬ è¿­å˜¿æ¾œ
 				vTotalRect += pTargetWidgetSlot->GetSize() * 1.2;
 			}			
 
@@ -111,7 +111,7 @@ void UB2UIToolTipTextBox::UpdateTooltipBox()
 			
 			vTotalRect += Cast<UCanvasPanelSlot>(IMG_BG->Slot)->GetSize();
 
-			// À§Ä¡ º¸Á¤
+			// å›°æ‘¹ ç„Šæ²¥
 			FVector2D vDirection = FVector2D(0, -1);
 			vDirection = vDirection.GetRotated((m_fClockDirectionFromTarget / 12) * 360);
 

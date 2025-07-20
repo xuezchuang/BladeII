@@ -1,7 +1,8 @@
-#pragma once
+﻿#pragma once
 
 #include "B2UIWidget.h"
 #include "B2UIDocBindable.h"
+#include "../B2RichTextBlock.h"
 #include "B2UIGuildMemberSlot.generated.h"
 DECLARE_DELEGATE_FourParams(FGuildMemberChangeList,int32, int32, int32, int32)
 UCLASS(BlueprintType, Blueprintable)

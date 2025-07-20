@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIRaidBattle.h"
 #include "B2UIDocHelper.h"
@@ -20,7 +20,7 @@ void UB2UIRaidBattle::BindDocAuto()
 {
 	Super::BindDocAuto();
 
-	// UIBattleMain ¿¡¼­ »ç¿ë¾ÈÇÏ´Â °ÍµéÀº ²¨ÁÖÀÚ.
+	// UIBattleMain ä¿Šè¾‘ è¤ä¾©æ•‘çªç»° å·´ç”¸ç¯® æ³¢æ—ç£Š.
 	SetWidgetForRaidBattle();
 
 	uint8 SlotIndex = 1;
@@ -305,15 +305,15 @@ void UB2UIRaidBattle::OnChangedMainPCContribution(class UB2UIDocBase* Sender, in
 
 void UB2UIRaidBattle::OnPressedRaidPauseBtn()
 {
-	// RaidÀÇ °æ¿ì PauseButton Å¬¸¯½Ã °ÔÀÓÀÌ ¸ØÃßÁö ¾Ê´Â´Ù.
+	// Raidç‹¼ ç‰ˆå¿« PauseButton åŠªè…çŸ« éœ¸çƒ™æ è‚›çœ ç˜¤ è‡¼ç»°ä¿ƒ.
 	if (UGameplayStatics::IsGamePaused(GetOwningPlayer()) == false)
 	{
-		// Pause ¸Ş´º widget »ı¼º. ¿©±â¼­ post process DOF ¼³Á¤À» ÇÏ¹Ç·Î ÀÌ°ÍÀÌ Àû¿ëµÇµµ·Ï ÇÏ±â À§ÇØ ½ÇÁ¦ pause ´Â ÇÑ Æ½ ´ÊÃá´Ù.
-		StartPauseMenuClass<EB2GameMode>::GetInstance().Signal(GetB2GameModeType(this)); // UIManager_InGameMenu ÂÊ¿¡ µî·ÏÇÑ StartPauseMenu ¸¦ ÄİÇÏ°Ô µÉ °Í.
+		// Pause çš‹æ˜¥ widget ç§¯å·±. å’¯æ‰è¾‘ post process DOF æ±²æ²¥é˜‘ çªéª¨è‚º æå·´æ åˆ©ä¾©ç™»æ¡£åºŸ çªæ‰ å›°ç§¦ è§’åŠ› pause ç»° èŒ„ å¹³ è¯å†•ä¿ƒ.
+		StartPauseMenuClass<EB2GameMode>::GetInstance().Signal(GetB2GameModeType(this)); // UIManager_InGameMenu ç‡ä¿Š æ®¿åºŸèŒ„ StartPauseMenu ç”« å¦®çªéœ¸ çª å·´.
 	}
 	else
 	{
-		// »ç½Ç Pause »óÅÂ¿¡¼­´Â ´Ù½Ã ¿©±âÀÇ PuaseButton À» ´©¸£´Â °ÍÀÌ ¾Æ´Ï¶ó Pause ¸Ş´º¿¡¼­ Continue ¹öÆ°À» ´­·¯¾ß µ¹¾Æ°¡°Ô µÉ °Í.
+		// è¤è§’ Pause æƒ‘æ€•ä¿Šè¾‘ç»° ä¿ƒçŸ« å’¯æ‰ç‹¼ PuaseButton é˜‘ ç©¿ç¦ç»° å·´æ é…’èªæ‰¼ Pause çš‹æ˜¥ä¿Šè¾‘ Continue æ»šç“¢é˜‘ å–˜çŸ¾å…· å€’é…’å•Šéœ¸ çª å·´.
 		UGameplayStatics::SetGamePaused(GetOwningPlayer(), false);
 	}
 }
@@ -358,6 +358,6 @@ void UB2UIRaidBattle::SetResurrectHelperNotice(FText userName)
 
 void UB2UIRaidBattle::ShowResultImage(const ENetMatchResult& result)
 {
-	//[@AKI, 170821] [B2CLT-1888] ¸ğµåº° ½ÂÆĞ ¿¬Ãâ ÅëÀÏ °³¼±
+	//[@AKI, 170821] [B2CLT-1888] è‘›é›å–Š é“°è© æ¥·å… çƒ¹è€ ä¿ºæ€¥
 	PlayAnimationEvent_AnimResultAction(result);
 }

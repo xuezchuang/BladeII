@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2UI_TotemInvenFilter.h"
@@ -242,7 +242,7 @@ bool UB2UI_TotemInvenFilter::GetAllTargetTotems(TArray<FB2Totem> &OutList)
 
 	GetSelectedFilters(TotemBasePrefixFilter, TotemGradeFilter, IsSmelting);
 
-	// ÀåÂø ¹× Àá±İ, ÇÁ¸®¼Â¿¡ ÀåÂøµÇ¾î ÀÖ´Â°Å Á¦¿Ü.
+	// å˜é¦’ æ£º æ³ªé™›, æ©‡åºœæ‚¸ä¿Š å˜é¦’ç™»ç»¢ ä¹ç»°èŠ­ åŠ›å¯‡.
 	GetFilteredItemList(OutList, IsSmelting, TotemBasePrefixFilter, TotemGradeFilter);
 
 	return (OutList.Num() > 0);
@@ -366,15 +366,15 @@ void UB2UI_TotemInvenFilter::GetFilteredItemList(TArray<FB2Totem>& OutResult, bo
 		LobbyInven->GetUnEquippedTotemList(MergedList);
 	}
 																   
-	//TArray ¾²¸é Resize ÀÏ¾î³¯¶§ Lambda ¹ŞÀº std::functionÀÌ ¸Ş¸ğ¸® ±úÁü
+	//TArray é™æ Resize è€ç»¢æœé”­ Lambda ç½ç¯® std::functionæ çš‹è‘›åºœ æŸ„å’™
 	std::list<std::function<bool(FB2Totem)>> FIlters;
-	// Â÷·Ê´ë·Î ÇÊÅÍ Ãß°¡
+	// ç’è‚¥æªè‚º é˜ç£ çœ å•Š
 	FIlters.emplace_back(
 		[&CateogryFilter](FB2Totem CurrItem)
 	{
 		int CurrentGroupID = BladeIIGameImpl::GetTotemDataStore().GetTotemGroupID(CurrItem);
 
-		for (ETotemBasePrefix CurrInvenType : CateogryFilter) // InvenTypeFilter ¿¡ ÀÖ´Â element Áß ¾î´À ÇÏ³ª¿Í ÀÏÄ¡ÇÏ¸é Æ÷ÇÔ.
+		for (ETotemBasePrefix CurrInvenType : CateogryFilter) // InvenTypeFilter ä¿Š ä¹ç»° element å ç»¢è ¢ çªå”±å®¢ è€æ‘¹çªæ å™¨çªƒ.
 		{
 			if (CurrentGroupID == static_cast<int32>(CurrInvenType) + 1)
 			{
@@ -387,7 +387,7 @@ void UB2UI_TotemInvenFilter::GetFilteredItemList(TArray<FB2Totem>& OutResult, bo
 	FIlters.emplace_back(
 		[&StarGradeFilter](FB2Totem CurrItem)
 	{
-		for (ETotemGrade CurrStarGrade : StarGradeFilter) // StarGradeFilter ¿¡ ÀÖ´Â element Áß ¾î´À ÇÏ³ª¿Í ÀÏÄ¡ÇÏ¸é Æ÷ÇÔ.
+		for (ETotemGrade CurrStarGrade : StarGradeFilter) // StarGradeFilter ä¿Š ä¹ç»° element å ç»¢è ¢ çªå”±å®¢ è€æ‘¹çªæ å™¨çªƒ.
 		{
 			if (CurrItem.Grade == CurrStarGrade)
 			{
@@ -397,7 +397,7 @@ void UB2UI_TotemInvenFilter::GetFilteredItemList(TArray<FB2Totem>& OutResult, bo
 		return false;
 	});
 
-	// Lock µÈ °ÍÀ» °É·¯³»´Â °ÍÀº ÀÚµ¿ÆÇ¸Å³ª ÀÚµ¿°­È­ °°Àº ±â´É¿¡¼­ »ç¿ë.
+	// Lock ç­‰ å·´é˜‘ å§çŸ¾éƒ´ç»° å·´ç¯® ç£Šæ‚¼é­„æ¦‚å”± ç£Šæ‚¼ç¢æ‹³ éç¯® æ‰ç“·ä¿Šè¾‘ è¤ä¾©.
 	FIlters.emplace_back(
 		[](FB2Totem CurrItem)
 	{
@@ -428,5 +428,5 @@ void UB2UI_TotemInvenFilter::GetFilteredItemList(TArray<FB2Totem>& OutResult, bo
 		MergedList = MergedList.FilterByPredicate(Filter);
 	}
 
-	OutResult = MergedList; // °á°ú ¸®½ºÆ®·Î Àü´Ş.
+	OutResult = MergedList; // æ¬è‹ åºœèƒ¶é£˜è‚º å‚ˆå´”.
 }

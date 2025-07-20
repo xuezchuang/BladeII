@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UIEnterDungeonMain.h"
 #include "B2UIManager.h"
 #include "B2UIHeader.h"
@@ -159,7 +159,7 @@ void UB2UIEnterDungeonMain::OnSceneOpen(EUIScene InOpenedScene)
 {
 	Super::OnSceneOpen(InOpenedScene);
 
-	// UIHeader ¿Í °°ÀÌ Scene À¸·Î ±¸¼ºÇÏ´Â °æ¿ì Init ½ÃÁ¡¿¡ ÇÏ¸é Scene ¿¡ Æ÷ÇÔµÈ header °¡ »ý¼ºÀÌ ¾ÈµÈ »óÈ²ÀÏ ¼ö ÀÖÀ½.
+	// UIHeader å®¢ éžæž Scene æ è‚º å¤‡å·±çªç»° ç‰ˆå¿« Init çŸ«ç—¢ä¿Š çªæ Scene ä¿Š å™¨çªƒç­‰ header å•Š ç§¯å·±æž æ•‘ç­‰ æƒ‘ç‚”è€ è ä¹æ¾œ.
 	SetLobbyUIHeaderTitleByGeneralTextTableKey(TEXT("LobbyMain_Dungeon"));
 	
 	UpdateDungeonSlot();
@@ -196,7 +196,7 @@ void UB2UIEnterDungeonMain::UpdateDungeonSlot()
 		{
 			UIP_Counter->SetCountInfo(DocCounter->GetLeftTicket(), BladeIIGameImpl::GetClientDataStore().GetMaxCounterDungeonTicketCount());
 
-			// Á¡°Ë Á¤»ê ºí·ÏUI ÇØ´ç¸ðµå Æ©Åä¸®¾ó ³¡³ÂÀ»¶§¸¸ Ç¥½Ã
+			// ç—¢å…« æ²¥é­‚ å–‰åºŸUI ç§¦å¯¸è‘›é› è­¬é…åºœå€” åœºé™ˆé˜‘é”­çˆ¶ é’ŽçŸ«
 			if (TutorialMgr.IsFinishTutorial(TutorialID_CounterDungeon))
 				UIP_Counter->SetModeState(DocMode->GetContentsModeState(b2network::B2ContentsMode::COUNTER));
 			else
@@ -208,7 +208,7 @@ void UB2UIEnterDungeonMain::UpdateDungeonSlot()
 		{
 			UIP_HeroTower->SetCountInfo(DocHerotower->GetDailyLeftFreeTryCount(), BladeIIGameImpl::GetClientDataStore().GetMaxHeroTowerTicketCount());
 
-			// Á¡°Ë Á¤»ê ºí·ÏUI ÇØ´ç¸ðµå Æ©Åä¸®¾ó ³¡³ÂÀ»¶§¸¸ Ç¥½Ã
+			// ç—¢å…« æ²¥é­‚ å–‰åºŸUI ç§¦å¯¸è‘›é› è­¬é…åºœå€” åœºé™ˆé˜‘é”­çˆ¶ é’ŽçŸ«
 			if (TutorialMgr.IsFinishTutorial(TutorialID_HeroTower))
 				UIP_HeroTower->SetModeState(DocMode->GetContentsModeState(b2network::B2ContentsMode::HERO_TOWER));
 			else
@@ -220,16 +220,16 @@ void UB2UIEnterDungeonMain::UpdateDungeonSlot()
 		{
 			UIP_Raid->SetCountInfo(0, 0);
 
-			// Á¡°Ë Á¤»ê ºí·ÏUI ÇØ´ç¸ðµå Æ©Åä¸®¾ó ³¡³ÂÀ»¶§¸¸ Ç¥½Ã
+			// ç—¢å…« æ²¥é­‚ å–‰åºŸUI ç§¦å¯¸è‘›é› è­¬é…åºœå€” åœºé™ˆé˜‘é”­çˆ¶ é’ŽçŸ«
 			if (TutorialMgr.IsFinishTutorial(TutorialID_Raid))
 				UIP_Raid->SetModeState(DocMode->GetContentsModeState(b2network::B2ContentsMode::RAID));
 			else
 				UIP_Raid->SetModeState(b2network::B2ContentsModeState::RUN);
 
-			// ÀÔÀå°¡´É ½Ã°£´ë Ã¼Å©´Â ¸ðµå ¿­·ÁÀÖÀ»¶§¸¸ÇÑ´Ù.
+			// æ¶åŽ˜å•Šç“· çŸ«åŸƒæŽª çœ‰å†œç»° è‘›é› å‡¯å¦¨ä¹é˜‘é”­çˆ¶èŒ„ä¿ƒ.
 			if (UIP_Raid->IsModeStateCurrentOpen())
 			{
-				//ÇöÀç ½ºÅÜ ÁøÇà ÁßÀÎ Æ©Åä¸®¾óÀÌ ·¹ÀÌµåÀÏ °æ¿ì ¹«Á¶°Ç ÀÔÀå °¡´É
+				//æ³…çŠ èƒ¶è·‘ æŸ³é’ åç‰¢ è­¬é…åºœå€”æž é¥­æžé›è€ ç‰ˆå¿« å…¬ç‚¼æ‰’ æ¶åŽ˜ å•Šç“·
 				if (TutorialMgr.IsCurrentTutorial(TutorialID_Raid))
 				{
 					UIP_Raid->SetButtonEnable(true);
@@ -252,7 +252,7 @@ void UB2UIEnterDungeonMain::UpdateDungeonSlot()
 
 			UIP_Dimension->SetCountInfo(PossibleCount, MaxCount);
 			
-			// µð¸à¼ÇÀº ¾Ç¸ù 5´Ü Å¬¸®¾î½Ã ¿ÀÇÂÀÓ..	
+			// å¼è†è®°ç¯® åŽ©æ ¹ 5çªœ åŠªåºœç»¢çŸ« å·é”¹çƒ™..	
 			if (DocDimension->GetDimensionOpen())
 				UIP_Dimension->SetModeState(DocMode->GetContentsModeState(b2network::B2ContentsMode::DIMENSION));
 			else

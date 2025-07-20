@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "BehaviorTree/BTService.h"
 #include "B2BTService_SelectTaskForPVP.generated.h"

@@ -1,4 +1,4 @@
-
+ï»¿
 #include "B2RedDotManager.h"
 #include "B2UIManager.h"
 #include "Event.h"
@@ -566,7 +566,7 @@ bool FB2RedDotManager::HasLobbyReddot_HeroMgmt_UnitySkill(EPCClass PCClass, EPCC
 
 bool FB2RedDotManager::HasLobbyReddot_HeroMgmt_UnitySkillAwakenAble(EPCClass PCClass)
 {
-	// °¢¼º °¡´É
+	// é˜¿å·± å•Šç“·
 	FLocalCharacterData& CharData = BladeIIGameImpl::GetLocalCharacterData();
 	if (CharData.GetIsUnityAwaken(PCClass))
 		return false;
@@ -580,7 +580,7 @@ bool FB2RedDotManager::HasLobbyReddot_HeroMgmt_UnitySkillAwakenAble(EPCClass PCC
 
 bool FB2RedDotManager::HasLobbyReddot_HeroMgmt_UnitySkillAwakenMission(EPCClass PCClass)
 {
-	// °¢¼º ¹Ì¼Ç °¡´É
+	// é˜¿å·± å›ºè®° å•Šç“·
 	bool Result = false;
 	FLocalCharacterData& CharData = BladeIIGameImpl::GetLocalCharacterData();
 	if (CharData.GetIsUnityAwaken(PCClass))
@@ -600,7 +600,7 @@ bool FB2RedDotManager::HasLobbyReddot_HeroMgmt_UnitySkillAwakenMission(EPCClass 
 		if (MissionItem.bCompleted)
 			continue;
 
-		// ÇÊ¿äÀçÈ­°¡ °ñµåÀÓ
+		// éž˜å¤¸çŠæ‹³å•Š æ¦œé›çƒ™
 		if (MissionInfo->req_gold > 0)
 		{
 			HaveCount = BladeIIGameImpl::GetClientDataStore().GetGoldAmount();
@@ -647,11 +647,11 @@ bool FB2RedDotManager::HasLobbyRedDot_HeroMgmt_Brevet(EPCClass PCClass)
 
 	if (const FBrevetNodeInfo* BrevetInfo = ClientDataStore.GetBrevetNodeInfo(BrevetRank, BrevetNodeIndex))
 	{
-		//Áø±Þ ÃÖ°í·¹º§ µµ´Þ
+		//æŸ³éž­ å¼¥ç»Šé¥­éª‡ æ¡£å´”
 		int32 BrevetNodeMaxCount = BladeIIGameImpl::GetClientDataStore().GetBrevetNodeCount(BrevetRank);
 		if (StaticFindBrevetInfo()->GetMaxBrevetRank() <= BrevetRank && BrevetNodeMaxCount <= BrevetNodeIndex)
 			return false;
-		// ÀÏ´Ü µ· ¾øÀ¸¸é ³ª°¡¸®
+		// è€çªœ æ£ ç»æ æ å”±å•Šåºœ
 		const int32 CurrentGold = ClientDataStore.GetGoldAmount();
 		if (CurrentGold >= BrevetInfo->NeedActiveGold)
 		{
@@ -783,7 +783,7 @@ bool FB2RedDotManager::HasLobbyRedDot_Dungeon_Counter()
 	//if (TutorialLockRedDotVisibleCheck(TutorialID_CounterDungeon) == false)
 	//	return false;
 
-	// °èÁ¤ »ý¼º½Ã -1·Î (RequestGetCounterDungeon) ¿äÃ» Àü±îÁö µé¾î¿À¸ç ¶óÀÌºê ¼­ºñ½º ½Ã ¹Ù·Î ¹Ý°Ý´øÀüÀÌ ¿ÀÇÂµÇÁö ¾ÊÀ» °Í °°À¸´Ï ÀÌ´Â TutorialÀÌ¶û ¿¬°è °¡´É¼ºÀ» »ý°¢ÇØ¾ßÇÔ
+	// æ‹Œæ²¥ ç§¯å·±çŸ« -1è‚º (RequestGetCounterDungeon) å¤¸æ²¡ å‚ˆé³–ç˜¤ ç”¸ç»¢å·å“¥ æ‰¼æžå® è¾‘åŽšèƒ¶ çŸ« å®˜è‚º é¦†æ‹œå¸¦å‚ˆæž å·é”¹ç™»ç˜¤ è‡¼é˜‘ å·´ éžæ èª æžç»° Tutorialæžå°” æ¥·æ‹Œ å•Šç“·å·±é˜‘ ç§¯é˜¿ç§¦å…·çªƒ
 	const int32 TicketCount = CurrentRedDotState.get() != nullptr ? CurrentRedDotState->tickets_for_counter_dungeon : 0;
 	bool TicketResult = TicketCount != INDEX_NONE ? TicketCount > 0 : true;
 	
@@ -1009,7 +1009,7 @@ bool FB2RedDotManager::HasLobbyRedDot_Friend_FriendPoint()
 
 bool FB2RedDotManager::HasLobbyRedDot_Mail()
 {
-	// ÇØ´ç mail count·Î ÃßÈÄ Header¿¡ Unread Mail Count Ç¥½Ã ÇØÁà¾ß ÇÔ
+	// ç§¦å¯¸ mail countè‚º çœ é¥¶ Headerä¿Š Unread Mail Count é’ŽçŸ« ç§¦æ‹Žå…· çªƒ
 	if (CurrentRedDotState.get() != nullptr)
 	{
 		return CurrentRedDotState->unread_mail_count > 0 ? true : false;

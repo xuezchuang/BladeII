@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIHotTimeBuffPart.h"
 #include "CommonStruct.h"
@@ -206,8 +206,8 @@ FText UB2UIHotTimeBuffPart::GetHotTimeHourMinText(const FHotTimeEventDetailInfo 
 	FNumberFormattingOptions Options;
 	Options.MinimumIntegralDigits = 2;
 
-	////ÃßÈÄ Local Timezone¿¡ ÀÇÇØ º¯È¯ÇØ¼­ Ç¥±â ÇØ¾ßµÉ ¼öµµ ÀÖÀ½
-	////-°¡ ³ª¿Ã¼öµµ ÀÖÀ¸¹Ç·Î 2ÀÏ
+	////çœ é¥¶ Local Timezoneä¿Š ç‹¼ç§¦ å‡½åˆ¸ç§¦è¾‘ é’æ‰ ç§¦å…·çª èæ¡£ ä¹æ¾œ
+	////-å•Š å”±æ£µèæ¡£ ä¹æ éª¨è‚º 2è€
 	//FDateTime CompareTime = FDateTime(1, 1, 2);
 	//FDateTime BeginTime = InEventDetailInfo.GetBeginTime(CompareTime);
 	//FDateTime EndTime = InEventDetailInfo.GetEndTime(CompareTime);

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2UILobbySelectCharacter.h"
 #include "B2UIManager.h"
 #include "B2UIDocHelper.h"
@@ -53,7 +53,7 @@ void UB2UILobbySelectCharacterSlot::SetInfo(EPCClass HeroClass, int32 Lv, int32 
 
 	if (PB_Exp.IsValid() && PB_ExpMax.IsValid())
 	{
-		// ¸¸·¦ÀÌ¸é ¶ç¿ìÁÜ.
+		// çˆ¶ä¹ææ å‰å¿«æ·‹.
 		bool IsMax = MaxLevel <= Lv;
 		PB_Exp->SetPercent(IsMax ? 0.0f : ExpPercent);
 		PB_Exp->SetVisibility(IsMax ? ESlateVisibility::Collapsed : ESlateVisibility::SelfHitTestInvisible);

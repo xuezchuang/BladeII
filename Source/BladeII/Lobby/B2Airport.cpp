@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 #include "B2Airport.h"
 //#include "BladeII.h"
 
@@ -28,7 +28,7 @@
 
 void FPCWingContainer::SetHasWingByWingData()
 {
-	// ³¯°³¸¦ °¡Áö°í ÀÖ´ÂÁö ¿©ºÎ°¡ µû·Î ÇÁ·ÎÅäÄİ¿¡ Æ÷ÇÔµÉ ¼öµµ ÀÖ±ä ÇÑµ¥.. ÀÏ´Ü ÀÌ·¸°Ô.
+	// æœä¿ºç”« å•Šç˜¤ç»Š ä¹ç»°ç˜¤ å’¯ä½•å•Š è¶è‚º æ©‡è‚ºé…å¦®ä¿Š å™¨çªƒçª èæ¡£ ä¹å˜ èŒ„å•.. è€çªœ æçŠ¯éœ¸.
 	bHasWing = (WingData.EvolutionGrade >= MIN_WING_EVOLUTION_GRADE && WingData.EnhanceLevel >= MIN_WING_ENHANCE_LEVEL);
 }
 
@@ -39,16 +39,16 @@ FWingMD_EnhanceSingleElem& FWingMD_EnhanceSingleElem:: operator=(const b2network
 		this->TargetGrade = ServerStruct->grade;
 		this->TargetLevel = ServerStruct->level;
 
-		// ÀÌÀü¿¡ ÀÌ¹Ì ³Ö¾î³ùÀ¸´Ï È®ÀÎ Â÷¿ø¿¡¼­.. ¹º°¡ ÀÇ¹ÌÀÖ¾î º¸ÀÌ´Â °ªÀÎµ¥ ´Ù¸£¸é ¹Ù²ï°Å°í ¾Æ´Ï¸é Àá½Ã Àß¸øµÈ °Å
+		// æå‚ˆä¿Š æå›º æŒç»¢èº‡æ èª çŠ¬ç‰¢ ç’ç›”ä¿Šè¾‘.. è´­å•Š ç‹¼å›ºä¹ç»¢ ç„Šæç»° è”¼ç‰¢å• ä¿ƒç¦æ å®˜è¯§èŠ­ç»Š é…’èªæ æ³ªçŸ« è‚‹ç»™ç­‰ èŠ­
 		ensure(ServerStruct->need_item_template_id <= 0 || ServerStruct->need_item_template_id == FItemRefIDHelper::GetWingEnhanceResourceRefID());
-		this->RequiredItemRefID = FItemRefIDHelper::GetWingEnhanceResourceRefID();	// °Á ÀÌ°É·Î ¾´´Ù.. ¤§¤§
+		this->RequiredItemRefID = FItemRefIDHelper::GetWingEnhanceResourceRefID();	// å‚² æå§è‚º æ•¬ä¿ƒ.. ã‡ã‡
 
 		this->RequiredItemCount = ServerStruct->need_item_count;
 		this->EnhancePointToAcquirePerTrial = ServerStruct->enhance_point;
 		this->RequiredEnhancePoint = ServerStruct->need_enhance_point;
 		this->RequiredGoldCost = ServerStruct->gold_cost;
 
-		// option_type Àº ÀÏ´Ü ¾È º¸´Â °É·Î..
+		// option_type ç¯® è€çªœ æ•‘ ç„Šç»° å§è‚º..
 		this->AttackPoint = ServerStruct->option_value1;
 		this->DefensePoint = ServerStruct->option_value2;
 		this->HealthPoint = ServerStruct->option_value3;
@@ -63,16 +63,16 @@ FWingMD_EvolveSingleElem& FWingMD_EvolveSingleElem::operator = (const b2network:
 	{
 		this->TargetGrade = ServerStruct->grade;
 
-		// ÀÌÀü¿¡ ÀÌ¹Ì ³Ö¾î³ùÀ¸´Ï È®ÀÎ Â÷¿ø¿¡¼­. ¹º°¡ ÀÇ¹ÌÀÖ¾î º¸ÀÌ´Â °ªÀÎµ¥ ´Ù¸£¸é ¹Ù²ï°Å°í ¾Æ´Ï¸é Àá½Ã Àß¸øµÈ °Å
+		// æå‚ˆä¿Š æå›º æŒç»¢èº‡æ èª çŠ¬ç‰¢ ç’ç›”ä¿Šè¾‘. è´­å•Š ç‹¼å›ºä¹ç»¢ ç„Šæç»° è”¼ç‰¢å• ä¿ƒç¦æ å®˜è¯§èŠ­ç»Š é…’èªæ æ³ªçŸ« è‚‹ç»™ç­‰ èŠ­
 		ensure(ServerStruct->need_item_template_id <= 0 || ServerStruct->need_item_template_id == FItemRefIDHelper::GetWingEvolveResourceRefID());
-		this->RequiredItemRefID = FItemRefIDHelper::GetWingEvolveResourceRefID(); // °Á ÀÌ°É·Î ¾´´Ù ¤§¤§
+		this->RequiredItemRefID = FItemRefIDHelper::GetWingEvolveResourceRefID(); // å‚² æå§è‚º æ•¬ä¿ƒ ã‡ã‡
 
 		this->RequiredItemCount = ServerStruct->need_item_count;
 		this->RequiredGoldCost = ServerStruct->gold_cost;
-		this->SuccessRate = (float)ServerStruct->rate * 0.0001f; // ¼­¹ö¿¡¼­ ¿Â rate ´Â ¸¸ºĞÀ²ÀÌ¶ó ÄÁ¹öÆÃÇØ ÁÜ.
+		this->SuccessRate = (float)ServerStruct->rate * 0.0001f; // è¾‘æ»šä¿Šè¾‘ æŸ¯ rate ç»° çˆ¶ç›’å•¦ææ‰¼ ç‰§æ»šæ³¼ç§¦ æ·‹.
 		this->MaxFailPoint = ServerStruct->fail_point_max;
 
-		// option_type Àº ÀÏ´Ü ¾È º¸´Â °É·Î..
+		// option_type ç¯® è€çªœ æ•‘ ç„Šç»° å§è‚º..
 		this->AttackPoint = ServerStruct->option_value1;
 		this->DefensePoint = ServerStruct->option_value2;
 		this->HealthPoint = ServerStruct->option_value3;
@@ -86,14 +86,14 @@ FWingMD_PropOptionSingleElem& FWingMD_PropOptionSingleElem::operator = (const b2
 	if (ServerStruct)
 	{
 		this->TargetPCClass = SvrToCliPCClassType(ServerStruct->character_type);
-		this->TargetOptionIndex = SvrToCliWingPropOptionIndex(ServerStruct->option_index); // ¼­¹ö¿¡¼± 1ºÎÅÍ ½ÃÀÛÇÏ´Â °ªÀÌ ¿È 
+		this->TargetOptionIndex = SvrToCliWingPropOptionIndex(ServerStruct->option_index); // è¾‘æ»šä¿Šæ€¥ 1ä½•ç£ çŸ«ç´¯çªç»° è”¼æ å’³ 
 		this->TargetOptionLevel = ServerStruct->level;
 		this->OptionType = SvrToCliOptionType(ServerStruct->option_type);
 		this->OptionValue = ServerStruct->option_value;
 
-		// ÀÌÀü¿¡ ÀÌ¹Ì ³Ö¾î³ùÀ¸´Ï È®ÀÎ Â÷¿ø¿¡¼­.. ¹º°¡ ÀÇ¹ÌÀÖ¾î º¸ÀÌ´Â °ªÀÎµ¥ ´Ù¸£¸é ¹Ù²ï°Å°í ¾Æ´Ï¸é Àá½Ã Àß¸øµÈ °Å
+		// æå‚ˆä¿Š æå›º æŒç»¢èº‡æ èª çŠ¬ç‰¢ ç’ç›”ä¿Šè¾‘.. è´­å•Š ç‹¼å›ºä¹ç»¢ ç„Šæç»° è”¼ç‰¢å• ä¿ƒç¦æ å®˜è¯§èŠ­ç»Š é…’èªæ æ³ªçŸ« è‚‹ç»™ç­‰ èŠ­
 		ensure(ServerStruct->need_item_template_id <= 0 || ServerStruct->need_item_template_id == FItemRefIDHelper::GetWingPropOptionEnhanceResourceRefID());
-		this->RequiredItemRefID = FItemRefIDHelper::GetWingPropOptionEnhanceResourceRefID(); // °Á ÀÌ°É·Î ¾´´Ù.. ¤§¤§
+		this->RequiredItemRefID = FItemRefIDHelper::GetWingPropOptionEnhanceResourceRefID(); // å‚² æå§è‚º æ•¬ä¿ƒ.. ã‡ã‡
 
 		this->RequiredItemCount = ServerStruct->need_item_count;
 	}
@@ -106,7 +106,7 @@ FWingMD_PropOptionOpenSingleElem& FWingMD_PropOptionOpenSingleElem::operator = (
 	if (ServerStruct)
 	{
 		this->TargetPCClass = SvrToCliPCClassType(ServerStruct->character_type);
-		this->TargetOptionIndex = SvrToCliWingPropOptionIndex(ServerStruct->option_index); // ¼­¹ö¿¡¼± 1ºÎÅÍ ½ÃÀÛÇÏ´Â °ªÀÌ ¿È
+		this->TargetOptionIndex = SvrToCliWingPropOptionIndex(ServerStruct->option_index); // è¾‘æ»šä¿Šæ€¥ 1ä½•ç£ çŸ«ç´¯çªç»° è”¼æ å’³
 		this->RequiredWingGrade = ServerStruct->need_grade;
 	}
 	return *this;
@@ -117,7 +117,7 @@ FWingMD_PropOptionMaxLevelSingleElem& FWingMD_PropOptionMaxLevelSingleElem::oper
 	if (ServerStruct)
 	{
 		this->TargetPCClass = SvrToCliPCClassType(ServerStruct->character_type);
-		this->TargetOptionIndex = SvrToCliWingPropOptionIndex(ServerStruct->option_index); // ¼­¹ö¿¡¼± 1ºÎÅÍ ½ÃÀÛÇÏ´Â °ªÀÌ ¿È
+		this->TargetOptionIndex = SvrToCliWingPropOptionIndex(ServerStruct->option_index); // è¾‘æ»šä¿Šæ€¥ 1ä½•ç£ çŸ«ç´¯çªç»° è”¼æ å’³
 		this->TargetWingGrade = ServerStruct->wing_grade;
 		this->MaxPossibleLevel = ServerStruct->max_level;
 	}
@@ -168,10 +168,10 @@ FMD_HeroTowerFloorSingleElem& FMD_HeroTowerFloorSingleElem::operator=(const b2ne
 
 float FB2Wing::GetEffectivePropOptionValue(EItemOption InOptionType) const
 {
-	// ÀåÂø ¾ÆÀÌÅÛ ÂÊ ¼öÄ¡ ¾ò¾î¿À´Â ÇÔ¼ö¿¡¼­ Wing µµ °°ÀÌ Ã³¸®ÇÒ °Í. (UB2LobbyInventory::GetEquippedOptionPoint)
-	// ÀÌ°É µû·Î »ç¿ëÇØ¼­ ´Ù¸¥ µ¥¼­ ¾òÀº ¼öÄ¡¿Í ÇÕÄ¡·Á¸é ECombatOptionApplyType ¿¡ µû¶ó °öÇÏ°Å³ª ´õÇÏ°Å³ª¸¦ °°ÀÌ µûÁ®º¸¾Æ¾ß ÇÔ.
+	// å˜é¦’ é…’æè¢ ç‡ èæ‘¹ æ˜ç»¢å·ç»° çªƒèä¿Šè¾‘ Wing æ¡£ éæ è´¸åºœä¸” å·´. (UB2LobbyInventory::GetEquippedOptionPoint)
+	// æå§ è¶è‚º è¤ä¾©ç§¦è¾‘ ä¿ƒå¼— å•è¾‘ æ˜ç¯® èæ‘¹å®¢ é’¦æ‘¹å¦¨æ ECombatOptionApplyType ä¿Š è¶æ‰¼ èšŒçªèŠ­å”± æ­¹çªèŠ­å”±ç”« éæ è¶å»‰ç„Šé…’å…· çªƒ.
 
-	TArray<FOptionValue> GatheredOptionRawValue; // ½ÇÁ¦·Î´Â ÇÏ³ª¸¸ µé¾î°¡ ÀÖ¾î¾ß ÇÒ °Í.
+	TArray<FOptionValue> GatheredOptionRawValue; // è§’åŠ›è‚ºç»° çªå”±çˆ¶ ç”¸ç»¢å•Š ä¹ç»¢å…· ä¸” å·´.
 
 	for (const FWingPropOption& ThisOption : PropOptions)
 	{
@@ -181,7 +181,7 @@ float FB2Wing::GetEffectivePropOptionValue(EItemOption InOptionType) const
 			GatheredOptionRawValue.Add(OptionValue);
 		}
 	}
-	// ±âÁ¸ Item °ú °°Àº ¿É¼Ç Ã¼°è¸¦ »ç¿ë..
+	// æ‰ç²® Item è‹ éç¯® å¯è®° çœ‰æ‹Œç”« è¤ä¾©..
 	return GetEffectiveItemOptionValue(InOptionType, GatheredOptionRawValue);
 }
 
@@ -234,7 +234,7 @@ void FB2Wing::UpdateByServerGetWingResponse(const b2network::FB2MessageInfoRespo
 {
 	B2_SCOPED_TRACK_LOG(TEXT("FB2Wing::UpdateByServerGetWingResponse"));
 
-	// °¡Àå ±âº»ÀûÀÎ ¼­¹ö¿¡¼­ÀÇ ³¯°³ Á¤º¸ ¹Ş´Â ÇÔ¼ö. ¿ø°İ Ä³¸¯ÅÍ ÇÃ·¹ÀÌ¾îÀÇ °æ¿ì´Â ÀÌ°É·Î ¹ŞÁö ¾Ê°Ô µÉ °Í.
+	// å•Šå˜ æ‰å¤¯åˆ©ç‰¢ è¾‘æ»šä¿Šè¾‘ç‹¼ æœä¿º æ²¥ç„Š ç½ç»° çªƒè. ç›”æ‹œ æŸè…ç£ æ•²é¥­æç»¢ç‹¼ ç‰ˆå¿«ç»° æå§è‚º ç½ç˜¤ è‡¼éœ¸ çª å·´.
 
 	if (InResponseGetWingPtr)
 	{
@@ -244,9 +244,9 @@ void FB2Wing::UpdateByServerGetWingResponse(const b2network::FB2MessageInfoRespo
 		EnhanceLevel = InResponseGetWingPtr->level;
 		EnhancePoint = InResponseGetWingPtr->enhance_point;
 
-		// bShouldBeVisible Àº ¿©±â¼­ ¼¼ÆÃÇÏÁö ¾Ê´Â´Ù.
+		// bShouldBeVisible ç¯® å’¯æ‰è¾‘ æŠ€æ³¼çªç˜¤ è‡¼ç»°ä¿ƒ.
 
-		// ¿©±â¼± ¿É¼Ç µ¥ÀÌÅÍ°¡ ´Ù ¿Í¾ß µÉ °Í.. ¿­·Á ÀÖµç ¿­·Á ÀÖÁö ¾Ê´ø °£¿¡.
+		// å’¯æ‰æ€¥ å¯è®° å•æç£å•Š ä¿ƒ å®¢å…· çª å·´.. å‡¯å¦¨ ä¹ç”µ å‡¯å¦¨ ä¹ç˜¤ è‡¼å¸¦ åŸƒä¿Š.
 		ensure(InResponseGetWingPtr->wing_option_infos.Num() == PropOptions.Num());
 		for (int32 POI = 0; POI < InResponseGetWingPtr->wing_option_infos.Num(); ++POI)
 		{
@@ -255,7 +255,7 @@ void FB2Wing::UpdateByServerGetWingResponse(const b2network::FB2MessageInfoRespo
 		}
 	}
 
-	// ±âÅ¸ ´Ù¸¥ µ¥ÀÌÅÍµéÀº Áö±İ±îÁö ¼¼ÆÃµÈ °Å ±â¹İÀ¸·Î ¸¶½ºÅÍ Å×ÀÌºí¼­ °¡Á®¿È.
+	// æ‰é¸¥ ä¿ƒå¼— å•æç£ç”¸ç¯® ç˜¤é™›é³–ç˜¤ æŠ€æ³¼ç­‰ èŠ­ æ‰é¦†æ è‚º ä»˜èƒ¶ç£ æŠ›æå–‰è¾‘ å•Šå»‰å’³.
 	UpdateStats();
 }
 
@@ -263,8 +263,8 @@ void FB2Wing::UpdateByPartialServerInfo(const b2network::B2CharacterServerInfoPt
 {
 	B2_SCOPED_TRACK_LOG(TEXT("FB2Wing::UpdateByPartialServerInfo"));
 
-	// ·ÎÄÃ Ä³¸¯ÅÍÀÇ ³¯°³ ÁøÈ­/°­È­ µîÀÇ µ¿ÀÛÀ» Á¦¿ÜÇÑ ¿Ü°ü Ç¥½Ã³ª ÀüÅõ ¼öÄ¡ »êÁ¤ µî¿¡ ÇÊ¿äÇÑ Á¤º¸µéÀº ¸ğµÎ ÀÌ°É·Î ¹ŞÀ» ¼ö ÀÖÀ½.
-	// ÃÊ±â AccountInfo ¿¡ Æ÷ÇÔµÈ ³¯°³ µ¥ÀÌÅÍ ¹× ¿ø°İ Ä³¸¯ÅÍ ³¯°³ Á¤º¸¸¦ ÀÌ°É·Î ¾÷µ¥ÀÌÆ®.
+	// è‚ºæ‹¿ æŸè…ç£ç‹¼ æœä¿º æŸ³æ‹³/ç¢æ‹³ æ®¿ç‹¼ æ‚¼ç´¯é˜‘ åŠ›å¯‡èŒ„ å¯‡åŒ… é’çŸ«å”± å‚ˆæ§ èæ‘¹ é­‚æ²¥ æ®¿ä¿Š é˜å¤¸èŒ„ æ²¥ç„Šç”¸ç¯® è‘›æ»´ æå§è‚º ç½é˜‘ è ä¹æ¾œ.
+	// æª¬æ‰ AccountInfo ä¿Š å™¨çªƒç­‰ æœä¿º å•æç£ æ£º ç›”æ‹œ æŸè…ç£ æœä¿º æ²¥ç„Šç”« æå§è‚º è¯€å•æé£˜.
 
 	if (InCharServerInfo)
 	{
@@ -273,9 +273,9 @@ void FB2Wing::UpdateByPartialServerInfo(const b2network::B2CharacterServerInfoPt
 		EnhanceLevel = InCharServerInfo->wing_level;
 		bShouldBeVisible = InCharServerInfo->wing_visible;
 
-		// EvolutionFailedCount ¶û EnhancePoint ´Â ¿©±â¼­ ¼¼ÆÃÇÏÁö ¾Ê´Â´Ù. µÎ °ªÀº ÀüÅõ¿¡¼­´Â ÇÊ¿ä¾ø´Â °ªÀÓ.
+		// EvolutionFailedCount å°” EnhancePoint ç»° å’¯æ‰è¾‘ æŠ€æ³¼çªç˜¤ è‡¼ç»°ä¿ƒ. æ»´ è”¼ç¯® å‚ˆæ§ä¿Šè¾‘ç»° é˜å¤¸ç»ç»° è”¼çƒ™.
 	}
-	//  ¾ÆÁ÷ ÇÑ¹øµµ GetWing À» ÇÏÁö ¾ÊÀº Ä³¸¯ÅÍ¶ó¸é ¿É¼Ç µ¥ÀÌÅÍ°¡ ¾È ¿Ã ¼ö ÀÖ´Ù. ±×°Ô ¾Æ´Ï¶ó¸é ±âº» °¹¼ö¿¡ ¸ÂÃç¼­ ¿À´Â °É·Î..
+	//  é…’æµ èŒ„é”…æ¡£ GetWing é˜‘ çªç˜¤ è‡¼ç¯® æŸè…ç£æ‰¼æ å¯è®° å•æç£å•Š æ•‘ æ£µ è ä¹ä¿ƒ. å¼Šéœ¸ é…’èªæ‰¼æ æ‰å¤¯ è‚®èä¿Š å˜è‹—è¾‘ å·ç»° å§è‚º..
 	ensure(InWingOptionInfo.Num() == 0 || InWingOptionInfo.Num() == PropOptions.Num());
 	for (int32 POI = 0; POI < InWingOptionInfo.Num(); ++POI)
 	{
@@ -292,13 +292,13 @@ void FB2Wing::UpdateSinglePropOptionByServerInfo(const b2network::B2WingOptionIn
 	{
 		int32 CliOptionIndex = SvrToCliWingPropOptionIndex(InServerInfoPtr->option_index);
 		if (PropOptions.IsValidIndex(CliOptionIndex))
-		{ // ¼­¹ö¿¡¼± ÀÎµ¦½º¸¦ º¸³»ÁÖ°í type Àº ¸¶½ºÅÍµ¥ÀÌÅÍ ·è¾÷À¸·Î.
+		{ // è¾‘æ»šä¿Šæ€¥ ç‰¢éƒ¸èƒ¶ç”« ç„Šéƒ´æ—ç»Š type ç¯® ä»˜èƒ¶ç£å•æç£ ç–¯è¯€æ è‚º.
 			FWingPropOption& MyOptionInfo = PropOptions[CliOptionIndex];
 			MyOptionInfo.OptionLevel = InServerInfoPtr->level;
 		}
 	}
 	if (bUpdateAllImmediate)
-	{ // ±âÅ¸ ³ª¸ÓÁö µ¥ÀÌÅÍ´Â UpdateStats ¸¦ °ÅÄ¡¸é¼­ ¸¶½ºÅÍµ¥ÀÌÅÍ·è¾÷À¸·Î Ã¤¿öÁü. ÀÌ°Ç µû·Î ºÎ¸£°Ô ÇÒ ¼öµµ.
+	{ // æ‰é¸¥ å”±èµ£ç˜¤ å•æç£ç»° UpdateStats ç”« èŠ­æ‘¹æè¾‘ ä»˜èƒ¶ç£å•æç£ç–¯è¯€æ è‚º ç›²å†µå’™. ææ‰’ è¶è‚º ä½•ç¦éœ¸ ä¸” èæ¡£.
 		UpdateStats();
 	}
 }
@@ -309,7 +309,7 @@ bool FB2Wing::UpdateStats()
 
 	bool bRetVal = true;
 
-	//// EvolveGrade, EnhanceLevel µî ±âº» µ¥ÀÌÅÍ°¡ Â÷ ÀÖ´Ù´Â °¡Á¤À¸·Î ±âÅ¸ ³ª¸ÓÁö ´É·ÂÄ¡ µîÀ» ¸¶½ºÅÍ µ¥ÀÌÅÍ¿¡¼­ ·è¾÷ÇØ¼­ Ã¤¿ö³Ö´Â °Í.
+	//// EvolveGrade, EnhanceLevel æ®¿ æ‰å¤¯ å•æç£å•Š ç’ ä¹ä¿ƒç»° å•Šæ²¥æ è‚º æ‰é¸¥ å”±èµ£ç˜¤ ç“·ä»¿æ‘¹ æ®¿é˜‘ ä»˜èƒ¶ç£ å•æç£ä¿Šè¾‘ ç–¯è¯€ç§¦è¾‘ ç›²å†µæŒç»° å·´.
 
 	//AttackPoint = 0.0f;
 	//DefensePoint = 0.0f;
@@ -363,8 +363,8 @@ bool FB2Wing::UpdateStats()
 	//	const FWingMD_PropOptionMaxLevelSingleElem* PropOptionMaxLvMD = CDS.GetWingMD_PropOptionMaxLevel(*this, POI);
 	//	if (PropOptionMaxLvMD){
 	//		ThisPropOption.MaxOptionLevel = PropOptionMaxLvMD->MaxPossibleLevel;
-	//		// ¾Æ¸¶µµ Å×½ºÆ® ±â´É¿¡¼­³ª ÀÌ°Ô ÇÊ¿äÇÑ »óÈ²ÀÌ ³ª¿Ã °Å °°±ä ÇÏÁö¸¸..
-	//		if (ThisPropOption.MaxOptionLevel > 0){ // ±×¸®°í ÇØ´ç ¿É¼ÇÀÌ ´İÇô ÀÖ´Â µî±Ş¿¡¼­´Â ÀÌ°Ô 0 ÀÏ ¼ö ÀÖ´Âµ¥ 0À¸·Î Å¬·¥ÇÁ µÇ¸é ¹®Á¦°¡ µÇ´Ï ±×°Ç ³öµÒ. 
+	//		// é…’ä»˜æ¡£ æŠ›èƒ¶é£˜ æ‰ç“·ä¿Šè¾‘å”± æéœ¸ é˜å¤¸èŒ„ æƒ‘ç‚”æ å”±æ£µ èŠ­ éå˜ çªç˜¤çˆ¶..
+	//		if (ThisPropOption.MaxOptionLevel > 0){ // å¼Šåºœç»Š ç§¦å¯¸ å¯è®°æ æ‘§å›š ä¹ç»° æ®¿é­ä¿Šè¾‘ç»° æéœ¸ 0 è€ è ä¹ç»°å• 0æ è‚º åŠªä¼æ©‡ ç™»æ å·©åŠ›å•Š ç™»èª å¼Šæ‰’ å‡ºç‹„. 
 	//			ThisPropOption.OptionLevel = FMath::Min(ThisPropOption.OptionLevel, ThisPropOption.MaxOptionLevel);
 	//		}
 	//	}
@@ -403,17 +403,17 @@ FText GetLOCTextOfWingPropOption(EItemOption InOption, EPCClass InPCClass)
 #if !UE_BUILD_SHIPPING
 void TempSetupWingDataByLimitedData(FPCWingContainer& OutWingContainder, EPCClass InPCClass, int32 InGrade)
 {
-	// Á¤½ÄÀ¸·Î ÇÁ·ÎÅäÄİ µé¾î¿À±â Àü±îÁö »ç¿ëÇÒ °Å..
+	// æ²¥ä¾¥æ è‚º æ©‡è‚ºé…å¦® ç”¸ç»¢å·æ‰ å‚ˆé³–ç˜¤ è¤ä¾©ä¸” èŠ­..
 
 	if (InGrade >= MIN_WING_EVOLUTION_GRADE)
 	{
 		OutWingContainder.WingData.OwnerPCClass = PCClassToInt(InPCClass);
 		OutWingContainder.WingData.EvolutionGrade = FMath::Min(InGrade, MAX_WING_EVOLUTION_GRADE_UNOFFICIAL);
 
-		// ³ª¸ÓÁö µ¥ÀÌÅÍ´Â Àû´çÈ÷ Ã¤¿ö³Ö´Âµ¥.. µüÈ÷ ´õ ¼Õ´î °Íµµ ¾øÀ» µí.
+		// å”±èµ£ç˜¤ å•æç£ç»° åˆ©å¯¸æ´’ ç›²å†µæŒç»°å•.. è¿­æ´’ æ­¹ é¢Šæ­ å·´æ¡£ ç»é˜‘ æ·€.
 		OutWingContainder.WingData.EnhanceLevel = MIN_WING_ENHANCE_LEVEL;
 		
-		// ¿©ÇÏ°£ ¿©±â¼­ ¸¶½ºÅÍµ¥ÀÌÅÍ·Î ¸¹Àº °ÍµéÀ» Ã¤¿ö³ÖÀ» °Å´Ï ±×³ª¸¶ Grade ¶óµµ ÀÖÀ¸¸é ½á¸ÔÀ»¸¸ ÇÒ µí.
+		// å’¯çªåŸƒ å’¯æ‰è¾‘ ä»˜èƒ¶ç£å•æç£è‚º è…¹ç¯® å·´ç”¸é˜‘ ç›²å†µæŒé˜‘ èŠ­èª å¼Šå”±ä»˜ Grade æ‰¼æ¡£ ä¹æ æ ç»“å†ˆé˜‘çˆ¶ ä¸” æ·€.
 		OutWingContainder.WingData.UpdateStats(); 
 
 		OutWingContainder.bHasWing = true;
@@ -457,7 +457,7 @@ void UB2Airport::BeginDestroy()
 }
 
 void UB2Airport::StaticInit()
-{ // ini ·ÎµùÀÌ ÀÖ¾ú´Âµ¥ º°µµ À§Ä¡·Î ¿Å°ÜÁü..
+{ // ini è‚ºçˆ¹æ ä¹èŒç»°å• å–Šæ¡£ å›°æ‘¹è‚º é¢—è´¥å’™..
 }
 
 void UB2Airport::StaticOnModuleShutdown()
@@ -469,7 +469,7 @@ void UB2Airport::InitAirportLobby(class AB2LobbyGameMode* InLobbyGM)
 	B2_SCOPED_TRACK_LOG(TEXT("UB2Airport::InitAirportLobby"));
 
 	TransientLobbyGM = InLobbyGM;
-	//check(TransientLobbyGM && TransientLobbyGM->IsValidObj()); // °´Ã¼ »ı¼ºÀº LobbyGameMode ¿¡¼­¸¸
+	//check(TransientLobbyGM && TransientLobbyGM->IsValidObj()); // æŒ‰çœ‰ ç§¯å·±ç¯® LobbyGameMode ä¿Šè¾‘çˆ¶
 
 	SubscribeEvents();
 }
@@ -478,21 +478,21 @@ void UB2Airport::ConditionalReqForFullWingData(EPCClass InWingPCClass)
 {
 	int32 WingPCClassIdx = PCClassToInt(InWingPCClass);
 	if (WingPCClassIdx < GetMaxPCClassNum() && !FullWingDataReqState[WingPCClassIdx])
-	{ // ÀÌ °æ·Î¸¦ ÅëÇÑ ¿äÃ»Àº Ä³¸¯ÅÍ´ç ÇÑ¹ø¸¸ ÇÏ¸é µÊ.
-		// ÀÀ´äÀº OnReceiveGetWing À¸·Î ¹Ş°Ô µÉ °Çµ¥ FullWingData ¶ó°í ÇÏ±â¿¡´Â ÀÌ°É·Î ¼¼ÆÃÇÏÁö ¾Ê´Â µ¥ÀÌÅÍµµ ÀÖ±ä ÇÏÁö¸¸ AccountInfo ¸¦ ÅëÇØ ¿À´Â °Í¿¡ ºñÇØ¼­´Â full data ¿¡ °¡±õ´Ù°í ÇÒ ¼ö ÀÖ°Ú´Ù..
+	{ // æ ç‰ˆè‚ºç”« çƒ¹èŒ„ å¤¸æ²¡ç¯® æŸè…ç£å¯¸ èŒ„é”…çˆ¶ çªæ å‡³.
+		// è§ˆç¿ ç¯® OnReceiveGetWing æ è‚º ç½éœ¸ çª æ‰’å• FullWingData æ‰¼ç»Š çªæ‰ä¿Šç»° æå§è‚º æŠ€æ³¼çªç˜¤ è‡¼ç»° å•æç£æ¡£ ä¹å˜ çªç˜¤çˆ¶ AccountInfo ç”« çƒ¹ç§¦ å·ç»° å·´ä¿Š åšç§¦è¾‘ç»° full data ä¿Š å•Šæ»¨ä¿ƒç»Š ä¸” è ä¹æ‘†ä¿ƒ..
 		data_trader::Retailer::GetInstance().RequestGetWing(CliToSvrPCClassType(InWingPCClass));
 	}
 }
 
 void UB2Airport::SetWingDataByAccountInfo(const TArray<b2network::B2CharacterServerInfoPtr>& InAllCharInfoArray, const TArray<b2network::B2WingOptionInfoPtr>& InAllWingOptionInfoArray)
 {
-	// Ã³À½¿¡ AccountInfo ¹ŞÀ¸¸é¼­ ºÒ¸®°Ô µÊ. EnhancePoint, EvolutionFailedCount °°ÀÌ Wing UI ÆäÀÌÁö¿¡¼­¸¸ ÇÊ¿äÇÑ µ¥ÀÌÅÍ´Â ¿©±â¼­ ¹ŞÁö ¾Ê°Ô µÉ °Í.
+	// è´¸æ¾œä¿Š AccountInfo ç½æ æè¾‘ é˜‚åºœéœ¸ å‡³. EnhancePoint, EvolutionFailedCount éæ Wing UI å…¶æç˜¤ä¿Šè¾‘çˆ¶ é˜å¤¸èŒ„ å•æç£ç»° å’¯æ‰è¾‘ ç½ç˜¤ è‡¼éœ¸ çª å·´.
 
 	for (int32 CI = 0; CI < InAllCharInfoArray.Num(); ++CI)
 	{
 		const b2network::B2CharacterServerInfoPtr& ThisCharInfo = InAllCharInfoArray[CI];
 
-		// ÀüÃ¼ WingOptionInfoArry Áß¿¡¼­ ÀÌ¹ø Ä³¸¯ÅÍ °Í¸¸ »©¿È. ¾ÆÁ÷ ÇÑ¹øµµ GetWing À» ÇÏÁö ¾ÊÀº Ä³¸¯ÅÍ¶ó¸é ¿É¼Ç µ¥ÀÌÅÍ°¡ ¾È ¿Ã ¼ö ÀÖ´Ù.
+		// å‚ˆçœ‰ WingOptionInfoArry åä¿Šè¾‘ æé”… æŸè…ç£ å·´çˆ¶ å“—å’³. é…’æµ èŒ„é”…æ¡£ GetWing é˜‘ çªç˜¤ è‡¼ç¯® æŸè…ç£æ‰¼æ å¯è®° å•æç£å•Š æ•‘ æ£µ è ä¹ä¿ƒ.
 		TArray<b2network::B2WingOptionInfoPtr> WingOptionsForThisChar;
 		for (int32 AllInfoIndex = 0; AllInfoIndex < InAllWingOptionInfoArray.Num(); ++AllInfoIndex)
 		{
@@ -508,16 +508,16 @@ void UB2Airport::SetWingDataByAccountInfo(const TArray<b2network::B2CharacterSer
 		if (ThisWingContainder)
 		{
 			ThisWingContainder->WingData.UpdateByPartialServerInfo(ThisCharInfo, WingOptionsForThisChar);
-			ThisWingContainder->SetHasWingByWingData(); // bHasWing À» µû·Î ¼­¹ö¿¡¼­ ¹Ş¾Æ¾ß ÇÒ °Å´Â °°Àºµ¥ ÀÏ´Ü ¾øÀ¸´Ï..
+			ThisWingContainder->SetHasWingByWingData(); // bHasWing é˜‘ è¶è‚º è¾‘æ»šä¿Šè¾‘ ç½é…’å…· ä¸” èŠ­ç»° éç¯®å• è€çªœ ç»æ èª..
 
-			// ÀÌ ½ÃÁ¡¿¡¼­´Â ¾Æ¸¶ ÇÊ¼ö ¸¶½ºÅÍµ¥ÀÌÅÍ°¡ ¾øÀ» °Å¶ó ¸¶½ºÅÍµ¥ÀÌÅÍ ¹ŞÀº ÈÄ¿¡ UpdateStats ¸¦ ´Ù½Ã ºÒ·¯ÁÖ¾î¾ß ÇÒ °Í.
+			// æ çŸ«ç—¢ä¿Šè¾‘ç»° é…’ä»˜ é˜è ä»˜èƒ¶ç£å•æç£å•Š ç»é˜‘ èŠ­æ‰¼ ä»˜èƒ¶ç£å•æç£ ç½ç¯® é¥¶ä¿Š UpdateStats ç”« ä¿ƒçŸ« é˜‚çŸ¾æ—ç»¢å…· ä¸” å·´.
 		}
 	}
 }
 
 void UB2Airport::UpdateWingCombatStatsOnMD()
 {
-	// UB2Airport::SetWingDataByAccountInfo °¡ ºÒ¸° ½ÃÁ¡¿¡´Â ³¯°³ ¸¶½ºÅÍµ¥ÀÌÅÍ°¡ ¾øÀ» °ÍÀÌ¹Ç·Î µû·Î ÀÌ·¸°Ô UpdateStats À» ºÒ·¯ÁØ´Ù.
+	// UB2Airport::SetWingDataByAccountInfo å•Š é˜‚èµ´ çŸ«ç—¢ä¿Šç»° æœä¿º ä»˜èƒ¶ç£å•æç£å•Š ç»é˜‘ å·´æéª¨è‚º è¶è‚º æçŠ¯éœ¸ UpdateStats é˜‘ é˜‚çŸ¾éœ–ä¿ƒ.
 	for (int32 PCI = 0; PCI < GetMaxPCClassNum(); ++PCI)
 	{
 		EPCClass ThisPCClass = IntToPCClass(PCI);
@@ -531,14 +531,14 @@ void UB2Airport::UpdateWingCombatStatsOnMD()
 
 void UB2Airport::BeginInitReqForWingData()
 {
-	// AccountInfo ¿¡ ÇÊ¼öÀûÀÎ ³¯°³ µ¥ÀÌÅÍ°¡ ¾ø´Â »óÈ²¿¡¼­ AccountInfo ¶û MasterData ¹Ş°í ³ª¼­ ÃÊ±â¿¡ ³¯°³ µ¥ÀÌÅÍ ÀÏ°ı ¿äÃ» ¿ë.
-	// Áö±İÀº ±×³É for ¹® µ¹·Á¼­ ¸ğµç Å¬·¡½º¿¡ ´ëÇØ RequestGetWing ³¯¸®¸é µÉ °Çµ¥ ÀÌ°Å ¸¸µé ¶§¿¡´Â ¿äÃ»À» ÇÑ¹ø¿¡ ÇÑ¹ø¸¸ ³¯·Á¾ß ÇÏ´Â Á¦ÇÑÀÌ ÀÖ¾úÀ½.
+	// AccountInfo ä¿Š é˜èåˆ©ç‰¢ æœä¿º å•æç£å•Š ç»ç»° æƒ‘ç‚”ä¿Šè¾‘ AccountInfo å°” MasterData ç½ç»Š å”±è¾‘ æª¬æ‰ä¿Š æœä¿º å•æç£ è€è¤’ å¤¸æ²¡ ä¾©.
+	// ç˜¤é™›ç¯® å¼Šæˆ for å·© å€’å¦¨è¾‘ è‘›ç”µ åŠªè´°èƒ¶ä¿Š æªç§¦ RequestGetWing æœåºœæ çª æ‰’å• æèŠ­ çˆ¶ç”¸ é”­ä¿Šç»° å¤¸æ²¡é˜‘ èŒ„é”…ä¿Š èŒ„é”…çˆ¶ æœå¦¨å…· çªç»° åŠ›èŒ„æ ä¹èŒæ¾œ.
 
 	B2_SCOPED_TRACK_LOG(TEXT("UB2Airport::BeginInitReqForWingData"));
 
 	bIsRequestingWingDataForInit = true;
 
-	// ±Û·¡µğ¿¡ÀÌÅÍºÎÅÍ ÇØ¼­ ½ÃÀÛ
+	// è‡‚è´°å¼ä¿Šæç£ä½•ç£ ç§¦è¾‘ çŸ«ç´¯
 	checkSlow((int32)EPCClass::EPC_Gladiator == 0);
 	data_trader::Retailer::GetInstance().RequestGetWing(CliToSvrPCClassType(EPCClass::EPC_Gladiator));
 }
@@ -551,11 +551,11 @@ void UB2Airport::OnReceiveGetWingCheckForContinueReq(const FB2Wing& ReceivedWing
 	EPCClass NextPCClass = IntToPCClass(ReceivedWingData.OwnerPCClass + 1);
 		
 	if (ThisWingPCClass == EPCClass::EPC_End || NextPCClass == EPCClass::EPC_End)
-	{ // ¹º°¡ Àß¸øµÇ¾ú°Å³ª ´Ù ¹Ş¾ÒÀ¸´Ï ¿©±â¼­ ³¡³¿
+	{ // è´­å•Š è‚‹ç»™ç™»èŒèŠ­å”± ä¿ƒ ç½ç–½æ èª å’¯æ‰è¾‘ åœºæ™¨
 		bIsRequestingWingDataForInit = false;
 	}
 	else if (NextPCClass != EPCClass::EPC_End)
-	{ // ±× ´ÙÀ½ req
+	{ // å¼Š ä¿ƒæ¾œ req
 		data_trader::Retailer::GetInstance().RequestGetWing(CliToSvrPCClassType(NextPCClass));
 	}
 }
@@ -631,7 +631,7 @@ void UB2Airport::UnsubscribeEvents()
 }
 
 void UB2Airport::OnReceiveGetWing(const FB2Wing& GetWingData)
-{ // ¿©±â¿£ Response µ¥ÀÌÅÍ¸¦ FB2Wing À¸·Î ¹Ù²ã¼­ ³Ñ°ÜÁÜ.
+{ // å’¯æ‰æµš Response å•æç£ç”« FB2Wing æ è‚º å®˜å±‚è¾‘ é€è´¥æ·‹.
 
 	B2_SCOPED_TRACK_LOG(TEXT("UB2Airport::OnReceiveGetWing"));
 
@@ -640,23 +640,23 @@ void UB2Airport::OnReceiveGetWing(const FB2Wing& GetWingData)
 	FPCWingContainer* WingContainder = BladeIIGameImpl::GetLocalCharacterData().GetCharacterWingDataPtr(WingPCClass);
 	if (WingContainder)
 	{
-		// ¿ä ÇÁ·ÎÅäÄİ·Î´Â Visible ¿©ºÎ°¡ ¿ÀÁö ¾Ê°í ´ë½Å ÀÌÀü¿¡ SetWingDataByAccountInfo ¿¡ ÀÇÇØ Visible ÀÌ ¸ÕÀú ¼¼ÆÃµÇ¾ú´Ù Ä¡°í ±×°É »ç¿ëÇÏ±â À§ÇØ ¹é¾÷.
+		// å¤¸ æ©‡è‚ºé…å¦®è‚ºç»° Visible å’¯ä½•å•Š å·ç˜¤ è‡¼ç»Š æªè„š æå‚ˆä¿Š SetWingDataByAccountInfo ä¿Š ç‹¼ç§¦ Visible æ åˆšå† æŠ€æ³¼ç™»èŒä¿ƒ æ‘¹ç»Š å¼Šå§ è¤ä¾©çªæ‰ å›°ç§¦ å½’è¯€.
 		const bool bPrevVisible = WingContainder->WingData.bShouldBeVisible; 
 
 		WingContainder->WingData = GetWingData;
-		// bHasWing À» µû·Î ¼­¹ö¿¡¼­ ¹Ş¾Æ¾ß ÇÒ °Å´Â °°Àºµ¥ ÀÏ´Ü ¾øÀ¸´Ï..
+		// bHasWing é˜‘ è¶è‚º è¾‘æ»šä¿Šè¾‘ ç½é…’å…· ä¸” èŠ­ç»° éç¯®å• è€çªœ ç»æ èª..
 		WingContainder->SetHasWingByWingData();
 
-		// ÀÌÀü¿¡ ¹Ş¾Æ³õÀº Visible ¿©ºÎ·Î º¹±¸.
+		// æå‚ˆä¿Š ç½é…’åˆç¯® Visible å’¯ä½•è‚º æ±—å¤‡.
 		WingContainder->WingData.bShouldBeVisible = bPrevVisible;
 
 		int32 WingPCClassIdx = PCClassToInt(WingPCClass);
-		FullWingDataReqState[WingPCClassIdx] = true; // ¾î¶² °æ·Î¸¦ ÅëÇØ ¿Â ÀÀ´äÀÌ°Ç ÇÑ¹ø ¹Ş°í ³ª¸é ´õ ÀÌ»ó ÀÌ °æ·Î·Î ¹ŞÁö ¾Ê¾Æµµ µÇ¹Ç·Î Ç¥½Ã.
+		FullWingDataReqState[WingPCClassIdx] = true; // ç»¢æ« ç‰ˆè‚ºç”« çƒ¹ç§¦ æŸ¯ è§ˆç¿ ææ‰’ èŒ„é”… ç½ç»Š å”±æ æ­¹ ææƒ‘ æ ç‰ˆè‚ºè‚º ç½ç˜¤ è‡¼é…’æ¡£ ç™»éª¨è‚º é’çŸ«.
 
 		UpdateOnWingDataChange(WingPCClass, true);
 	}
 
-	if (bIsRequestingWingDataForInit) // ÃÊ±â ÀÏ°ı ¿äÃ»ÀÇ °æ¿ì
+	if (bIsRequestingWingDataForInit) // æª¬æ‰ è€è¤’ å¤¸æ²¡ç‹¼ ç‰ˆå¿«
 	{
 		OnReceiveGetWingCheckForContinueReq(GetWingData);
 	}
@@ -676,16 +676,16 @@ void UB2Airport::OnReceiveEnhanceWing(const FB2EnhanceWing& EnhanceWingData)
 	//	WingContainder->WingData.EnhanceLevel = GET_TUPLE_DATA(FB2ResponseEnhanceWing::level_index, EnhanceWingData);
 	//	WingContainder->WingData.EnhancePoint = GET_TUPLE_DATA(FB2ResponseEnhanceWing::enhance_point_index, EnhanceWingData);
 
-	//	WingContainder->WingData.UpdateStats(); // ¸¶½ºÅÍ µ¥ÀÌÅÍ¿¡ ±â¹İÇÑ ÀüÅõ·Â ¼öÄ¡ µî ¾÷µ¥ÀÌÆ®.
+	//	WingContainder->WingData.UpdateStats(); // ä»˜èƒ¶ç£ å•æç£ä¿Š æ‰é¦†èŒ„ å‚ˆæ§ä»¿ èæ‘¹ æ®¿ è¯€å•æé£˜.
 
-	//	BladeIIGameImpl::GetClientDataStore().OnReceiveEnhanceWing(EnhanceWingData); // ClientDataStore ÀÇ Ãß°¡ Ã³¸®. °ñµå¶û Àç·á¾ÆÀÌÅÛ ¾÷µ¥ÀÌÆ® µî
+	//	BladeIIGameImpl::GetClientDataStore().OnReceiveEnhanceWing(EnhanceWingData); // ClientDataStore ç‹¼ çœ å•Š è´¸åºœ. æ¦œé›å°” çŠä¸°é…’æè¢ è¯€å•æé£˜ æ®¿
 
-	//	UpdateOnWingDataChange(WingPCClass, !bIsInAutoEnhancement); // UI ¹× ¸Ş½¬ ¾÷µ¥ÀÌÆ® µî. ÀÚµ¿°­È­ µµÁß¿¡´Â UI ¸¸ ¾÷µ¥ÀÌÆ® µÇ°Ô.
+	//	UpdateOnWingDataChange(WingPCClass, !bIsInAutoEnhancement); // UI æ£º çš‹æµ† è¯€å•æé£˜ æ®¿. ç£Šæ‚¼ç¢æ‹³ æ¡£åä¿Šç»° UI çˆ¶ è¯€å•æé£˜ ç™»éœ¸.
 	//			
-	//	// UI ÂÊ¿¡ ¾Ö´Ï¸ŞÀÌ¼Ç ÇÃ·¹ÀÌ¸¦ Á» ÇÏ´Âµ¥ ÀÌ°Í±îÁö Event ¸¸µé¾î¼­ ³¯¸®±ä Á» ¹¹ÇÏ°í ±¸½Ä UI ½Ã½ºÅÛÀÌ´Ï °Á ÀÌ·¸°Ô ¤»
-	//	// ÀÚµ¿°­È­¿¡¼­µµ ÀÏ´Ü ÇØ º¸ÀÚ.
+	//	// UI ç‡ä¿Š å±€èªçš‹æè®° æ•²é¥­æç”« ç²± çªç»°å• æå·´é³–ç˜¤ Event çˆ¶ç”¸ç»¢è¾‘ æœåºœå˜ ç²± æ„çªç»Š å¤‡ä¾¥ UI çŸ«èƒ¶è¢æèª å‚² æçŠ¯éœ¸ ã›
+	//	// ç£Šæ‚¼ç¢æ‹³ä¿Šè¾‘æ¡£ è€çªœ ç§¦ ç„Šç£Š.
 	//	if (WingContainder->WingData.EnhanceLevel > PrevEnhanceLevel)
-	//	{ // WingEnhancedAnim Àº EnhancePoint °¡ ¾Æ´Ñ ½ÇÁ¦ ´É·ÂÄ¡°¡ º¯°æµÇ´Â EnhanceLevel º¯°æ ½Ã¿¡ ÇÃ·¹ÀÌ. 
+	//	{ // WingEnhancedAnim ç¯® EnhancePoint å•Š é…’å›± è§’åŠ› ç“·ä»¿æ‘¹å•Š å‡½ç‰ˆç™»ç»° EnhanceLevel å‡½ç‰ˆ çŸ«ä¿Š æ•²é¥­æ. 
 	//		UB2UIManager_Lobby* DJLegacyLobbyUIMgr = (TransientLobbyGM && TransientLobbyGM->IsValidObj()) ? TransientLobbyGM->DJLegacy_GetLobbyUIManager() : NULL;
 	//		if (DJLegacyLobbyUIMgr)
 	//		{
@@ -695,20 +695,20 @@ void UB2Airport::OnReceiveEnhanceWing(const FB2EnhanceWing& EnhanceWingData)
 	//	}
 
 	//	if (bIsInAutoEnhancement)
-	//	{ // ÀÚµ¿°­È­ÀÇ °æ¿ì¿¡ ´ëÇÑ Ã³¸®.
-	//		ensure(AutoEnhancementPCClass == WingPCClass); // ÀÚµ¿°­È­ µµÁß¿¡ ºü¸¥ Å¬¸¯À¸·Î µû·Î ¿äÃ» º¸³½´Ù¸é °É¸± ¼öµµ.. ÀÚµ¿°­È­ ¶§ µû·Î Å¬¸¯ ¸øÇÏ°Ô ÇØ¾ß ÇÒ µí.
+	//	{ // ç£Šæ‚¼ç¢æ‹³ç‹¼ ç‰ˆå¿«ä¿Š æªèŒ„ è´¸åºœ.
+	//		ensure(AutoEnhancementPCClass == WingPCClass); // ç£Šæ‚¼ç¢æ‹³ æ¡£åä¿Š ç‹å¼— åŠªè…æ è‚º è¶è‚º å¤¸æ²¡ ç„Šè¾°ä¿ƒæ å§å‰¯ èæ¡£.. ç£Šæ‚¼ç¢æ‹³ é”­ è¶è‚º åŠªè… ç»™çªéœ¸ ç§¦å…· ä¸” æ·€.
 
-	//		// ÀÏ´ÜÀº ÀÚµ¿ °­È­ µµÁß ´Ù¸¥ Å¬·¡½º ³¯°³ÀÇ °­È­ ÀÀ´äÀÌ ¿Ô´Ù¸é ÀÚµ¿ °­È­¸¦ Áß´Ü½ÃÅ°´Â °É·Î ÇÏÀÚ. 
+	//		// è€çªœç¯® ç£Šæ‚¼ ç¢æ‹³ æ¡£å ä¿ƒå¼— åŠªè´°èƒ¶ æœä¿ºç‹¼ ç¢æ‹³ è§ˆç¿ æ å­ä¿ƒæ ç£Šæ‚¼ ç¢æ‹³ç”« åçªœçŸ«è™ç»° å§è‚º çªç£Š. 
 	//		if (AutoEnhancementPCClass == WingPCClass){
-	//			ReserveOrExecSingleAutoEnhancementTask(); // SingleAutoEnhancementTask ¿¡¼­´Â Á¶°ÇÀÌ µÇ¸é Á¤»óÀûÀ¸·Î ÀÚµ¿ °­È­°¡ Á¾·áµÊ. È¤Àº Áö¼Ó ¿äÃ»
+	//			ReserveOrExecSingleAutoEnhancementTask(); // SingleAutoEnhancementTask ä¿Šè¾‘ç»° ç‚¼æ‰’æ ç™»æ æ²¥æƒ‘åˆ©æ è‚º ç£Šæ‚¼ ç¢æ‹³å•Š è¾†ä¸°å‡³. è¶£ç¯® ç˜¤åŠ  å¤¸æ²¡
 	//		}
 	//		else{
-	//			EndAutoItemEnhance(EWingAutoOpEndReason::WAEER_Abnormal); // ¿©±â·Î ¿À¸é ºñÁ¤»óÀûÀÎ ÀÚµ¿°­È­ Á¾·áÀÓ.
+	//			EndAutoItemEnhance(EWingAutoOpEndReason::WAEER_Abnormal); // å’¯æ‰è‚º å·æ åšæ²¥æƒ‘åˆ©ç‰¢ ç£Šæ‚¼ç¢æ‹³ è¾†ä¸°çƒ™.
 	//		}
 	//	}
 
 	//	//////////////////////////////////////////////////////////////////
-	//	//¾×¼Ç ÁöÇ¥ ·Î±× (Ä³¸¯ÅÍ ³¯°³ °­È­)
+	//	//å’€è®° ç˜¤é’ è‚ºå¼Š (æŸè…ç£ æœä¿º ç¢æ‹³)
 	//	B2ActionLogSender Sender;
 	//	Sender.setCategory(FString("CHARACTER"))
 	//		  .setAction(FString("WING_ENHANCE"))
@@ -735,14 +735,14 @@ void UB2Airport::OnReceiveUpgradeWing(const FB2UpgradeWing& UpgradeWingData)
 //		const int32 EvolGradeBefore = WingContainder->WingData.EvolutionGrade;
 //		const int32 FailCountBefore = WingContainder->WingData.EvolutionFailedCount;
 //#endif
-//		// ¼º°øÇÑ °æ¿ì ÁøÈ­ ¿¬Ãâ °á°ú UI Ã¢¿¡ ºñ±³ stat À» »Ñ¸®±â À§ÇØ ¾÷µ¥ÀÌÆ® µÇ±â Àü µ¥ÀÌÅÍ¸¦ ¹é¾÷ÇÑ´Ù.
+//		// å·±å‚èŒ„ ç‰ˆå¿« æŸ³æ‹³ æ¥·å… æ¬è‹ UI èŠ’ä¿Š åšèƒŒ stat é˜‘ è°åºœæ‰ å›°ç§¦ è¯€å•æé£˜ ç™»æ‰ å‚ˆ å•æç£ç”« å½’è¯€èŒ„ä¿ƒ.
 //		if (bEvolutionSucceeded)
 //		{
 //			TemporaryPreEvolveData = WingContainder->WingData;
-//			bPreEvolveDataValid = true; // ÁøÈ­ ¿¬Ãâ ³ª°¥ ¶§ ¸®¼ÂµÉ °Í.
+//			bPreEvolveDataValid = true; // æŸ³æ‹³ æ¥·å… å”±å“ é”­ åºœæ‚¸çª å·´.
 //			
 //			//////////////////////////////////////////////////////////////////
-//			//¾×¼Ç ÁöÇ¥ ·Î±× (Ä³¸¯ÅÍ ³¯°³ ½Â±Ş(ÁøÈ­))
+//			//å’€è®° ç˜¤é’ è‚ºå¼Š (æŸè…ç£ æœä¿º é“°é­(æŸ³æ‹³))
 //			B2ActionLogSender Sender;
 //			Sender.setCategory(FString("CHARACTER"))
 //				  .setAction(FString("WING_UPGRADE"))
@@ -756,21 +756,21 @@ void UB2Airport::OnReceiveUpgradeWing(const FB2UpgradeWing& UpgradeWingData)
 //		WingContainder->WingData.EvolutionFailedCount = GET_TUPLE_DATA(FB2ResponseUpgradeWing::fail_point_index, UpgradeWingData);
 //	
 //#if !UE_BUILD_SHIPPING
-//		checkSlow( // ¿¹»óÇÑ °Í°ú ÀÏÄ¡ÇÏ´ÂÁö..
+//		checkSlow( // æŠ—æƒ‘èŒ„ å·´è‹ è€æ‘¹çªç»°ç˜¤..
 //			(bEvolutionSucceeded && (EvolGradeBefore + 1) == WingContainder->WingData.EvolutionGrade) ||
 //			(!bEvolutionSucceeded && (FailCountBefore + 1) == WingContainder->WingData.EvolutionFailedCount)
 //			);
 //#endif
 //
-//		WingContainder->WingData.UpdateStats(); // ¸¶½ºÅÍ µ¥ÀÌÅÍ¿¡ ±â¹İÇÑ ÀüÅõ·Â ¼öÄ¡ µî ¾÷µ¥ÀÌÆ®.
+//		WingContainder->WingData.UpdateStats(); // ä»˜èƒ¶ç£ å•æç£ä¿Š æ‰é¦†èŒ„ å‚ˆæ§ä»¿ èæ‘¹ æ®¿ è¯€å•æé£˜.
 //
-//		BladeIIGameImpl::GetClientDataStore().OnReceiveUpgradeWing(UpgradeWingData); // ClientDataStore ÀÇ Ãß°¡ Ã³¸®. °ñµå¶û Àç·á¾ÆÀÌÅÛ ¾÷µ¥ÀÌÆ® µî
+//		BladeIIGameImpl::GetClientDataStore().OnReceiveUpgradeWing(UpgradeWingData); // ClientDataStore ç‹¼ çœ å•Š è´¸åºœ. æ¦œé›å°” çŠä¸°é…’æè¢ è¯€å•æé£˜ æ®¿
 //
-//		UpdateOnWingDataChange(WingPCClass, bEvolutionSucceeded); // UI ¹× ¸Ş½¬ ¾÷µ¥ÀÌÆ® µî. ¸Ş½¬ ¾÷µ¥ÀÌÆ®´Â ¼º°ø ½Ã¿¡¸¸
+//		UpdateOnWingDataChange(WingPCClass, bEvolutionSucceeded); // UI æ£º çš‹æµ† è¯€å•æé£˜ æ®¿. çš‹æµ† è¯€å•æé£˜ç»° å·±å‚ çŸ«ä¿Šçˆ¶
 //
 //		UB2UIManager_Lobby* DJLegacyLobbyUIMgr = (TransientLobbyGM && TransientLobbyGM->IsValidObj()) ? TransientLobbyGM->DJLegacy_GetLobbyUIManager() : NULL;
 //		if (!bEvolutionSucceeded)
-//		{ // ÁøÈ­ ½ÇÆĞ ¸Ş½ÃÁö¸¦ º¸ÀÌ´Âµ¥ ÀÌ°Í±îÁö Event ¸¸µé¾î¼­ ³¯¸®±ä Á» ¹¹ÇÏ°í ±¸½Ä UI ½Ã½ºÅÛÀÌ´Ï °Á ÀÌ·¸°Ô ¤»
+//		{ // æŸ³æ‹³ è§’è© çš‹çŸ«ç˜¤ç”« ç„Šæç»°å• æå·´é³–ç˜¤ Event çˆ¶ç”¸ç»¢è¾‘ æœåºœå˜ ç²± æ„çªç»Š å¤‡ä¾¥ UI çŸ«èƒ¶è¢æèª å‚² æçŠ¯éœ¸ ã›
 //			if (DJLegacyLobbyUIMgr)
 //			{
 //				DJLegacyLobbyUIMgr->BeginShowWingEvolutionFailMessage();
@@ -782,20 +782,20 @@ void UB2Airport::OnReceiveUpgradeWing(const FB2UpgradeWing& UpgradeWingData)
 //			{
 //				DJLegacyLobbyUIMgr->BeginShowWingEvolutionSuccessMessage();
 //			}
-//			// ÁøÈ­ ¼º°ø¿¡ µû¸¥ ¿¬Ãâ ÇÃ·¹ÀÌ
+//			// æŸ³æ‹³ å·±å‚ä¿Š è¶å¼— æ¥·å… æ•²é¥­æ
 //			BeginWingEvolutionSceneClass<EPCClass>::GetInstance().Signal(WingPCClass);
 //		}
 //
 //		if (bIsInAutoEvolution)
-//		{ // ÀÚµ¿ÁøÈ­ÀÇ °æ¿ì¿¡ ´ëÇÑ Ã³¸®.
-//			ensure(AutoEvolutionPCClass == WingPCClass); // ÀÚµ¿ÁøÈ­ µµÁß¿¡ ºü¸¥ Å¬¸¯À¸·Î µû·Î ¿äÃ» º¸³½´Ù¸é °É¸± ¼öµµ.. ÀÚµ¿ÁøÈ­ ¶§ µû·Î Å¬¸¯ ¸øÇÏ°Ô ÇØ¾ß ÇÒ µí.
+//		{ // ç£Šæ‚¼æŸ³æ‹³ç‹¼ ç‰ˆå¿«ä¿Š æªèŒ„ è´¸åºœ.
+//			ensure(AutoEvolutionPCClass == WingPCClass); // ç£Šæ‚¼æŸ³æ‹³ æ¡£åä¿Š ç‹å¼— åŠªè…æ è‚º è¶è‚º å¤¸æ²¡ ç„Šè¾°ä¿ƒæ å§å‰¯ èæ¡£.. ç£Šæ‚¼æŸ³æ‹³ é”­ è¶è‚º åŠªè… ç»™çªéœ¸ ç§¦å…· ä¸” æ·€.
 //
-//			// ÀÏ´ÜÀº ÀÚµ¿ ÁøÈ­ µµÁß ´Ù¸¥ Å¬·¡½º ³¯°³ÀÇ ÁøÈ­ ÀÀ´äÀÌ ¿Ô´Ù¸é ÀÚµ¿ ÁøÈ­¸¦ Áß´Ü½ÃÅ°´Â °É·Î ÇÏÀÚ. 
+//			// è€çªœç¯® ç£Šæ‚¼ æŸ³æ‹³ æ¡£å ä¿ƒå¼— åŠªè´°èƒ¶ æœä¿ºç‹¼ æŸ³æ‹³ è§ˆç¿ æ å­ä¿ƒæ ç£Šæ‚¼ æŸ³æ‹³ç”« åçªœçŸ«è™ç»° å§è‚º çªç£Š. 
 //			if (AutoEvolutionPCClass == WingPCClass){
-//				ReserveOrExecSingleAutoEvolutionTask(bEvolutionSucceeded); // SingleAutoEvolutionTask ¿¡¼­´Â Á¶°ÇÀÌ µÇ¸é Á¤»óÀûÀ¸·Î ÀÚµ¿ ÁøÈ­°¡ Á¾·áµÊ. È¤Àº Áö¼Ó ¿äÃ»
+//				ReserveOrExecSingleAutoEvolutionTask(bEvolutionSucceeded); // SingleAutoEvolutionTask ä¿Šè¾‘ç»° ç‚¼æ‰’æ ç™»æ æ²¥æƒ‘åˆ©æ è‚º ç£Šæ‚¼ æŸ³æ‹³å•Š è¾†ä¸°å‡³. è¶£ç¯® ç˜¤åŠ  å¤¸æ²¡
 //			}
 //			else{
-//				EndAutoEvolution(EWingAutoOpEndReason::WAEER_Abnormal); // ¿©±â·Î ¿À¸é ºñÁ¤»óÀûÀÎ ÀÚµ¿ÁøÈ­ Á¾·áÀÓ.
+//				EndAutoEvolution(EWingAutoOpEndReason::WAEER_Abnormal); // å’¯æ‰è‚º å·æ åšæ²¥æƒ‘åˆ©ç‰¢ ç£Šæ‚¼æŸ³æ‹³ è¾†ä¸°çƒ™.
 //			}
 //		}
 //	}
@@ -814,21 +814,21 @@ void UB2Airport::OnReceiveEnhanceWingOption(const FB2EnhanceWingOption& EnhanceW
 	//	WingContainder->WingData.UpdateSinglePropOptionByServerInfo(InServerInfoPtr, false);
 	//	
 	//	const FWingPropOption* EnhancedPropOptionPtr = WingContainder->WingData.GetPropOptionPtr(SvrToCliWingPropOptionIndex(InServerInfoPtr->option_index));
-	//	FWingPropOption OptionDataBackupBeforeEnhance; // ÀÌÀü¿¡ °¡Áö°íÀÖ´Â ¿É¼Ç µ¥ÀÌÅ¸
-	//	FWingPropOption OptionDataBackupAfterEnhance; // º¯°æµÈ ¿É¼Çµ¥ÀÌÅ¸
+	//	FWingPropOption OptionDataBackupBeforeEnhance; // æå‚ˆä¿Š å•Šç˜¤ç»Šä¹ç»° å¯è®° å•æé¸¥
+	//	FWingPropOption OptionDataBackupAfterEnhance; // å‡½ç‰ˆç­‰ å¯è®°å•æé¸¥
 
 	//	if (EnhancedPropOptionPtr)
 	//		OptionDataBackupBeforeEnhance = *EnhancedPropOptionPtr;
 	//	
-	//	WingContainder->WingData.UpdateStats(); // ¸¶½ºÅÍ µ¥ÀÌÅÍ¿¡ ±â¹İÇÑ ÀüÅõ·Â ¼öÄ¡ µî ¾÷µ¥ÀÌÆ®.
+	//	WingContainder->WingData.UpdateStats(); // ä»˜èƒ¶ç£ å•æç£ä¿Š æ‰é¦†èŒ„ å‚ˆæ§ä»¿ èæ‘¹ æ®¿ è¯€å•æé£˜.
 
 	//	if (EnhancedPropOptionPtr)
 	//		OptionDataBackupAfterEnhance = *EnhancedPropOptionPtr;
 
-	//	// È¤½Ã¸ô¶ó¼­ ÇÑ¹ø ´õ Ã¼Å©
+	//	// è¶£çŸ«éš”æ‰¼è¾‘ èŒ„é”… æ­¹ çœ‰å†œ
 	//	if (OptionDataBackupAfterEnhance.MyOptionType == OptionDataBackupBeforeEnhance.MyOptionType)
 	//	{
-	//		// ÀÌÀü°ª°ú º¯°æµÈ°ªÀÇ Â÷ÀÌ¸¸Å­ ÆË¾÷À¸·Î Ãâ·Â
+	//		// æå‚ˆè”¼è‹ å‡½ç‰ˆç­‰è”¼ç‹¼ ç’æçˆ¶æ€’ æ‰‘è¯€æ è‚º å…ä»¿
 	//		float DiffAmount = OptionDataBackupAfterEnhance.RawOptionAmount - OptionDataBackupBeforeEnhance.RawOptionAmount;
 	//		
 	//		UB2UIUpgradeStatNotify* UpgradeStatNotifyUI = UB2UIManager::GetInstance()->OpenUI<UB2UIUpgradeStatNotify>(UIFName::UpgradeStatNotify);
@@ -841,7 +841,7 @@ void UB2Airport::OnReceiveEnhanceWingOption(const FB2EnhanceWingOption& EnhanceW
 	//		}
 
 	//		//////////////////////////////////////////////////////////////////
-	//		//¾×¼Ç ÁöÇ¥ ·Î±× (Ä³¸¯ÅÍ ³¯°³ ¿É¼Ç °­È­)
+	//		//å’€è®° ç˜¤é’ è‚ºå¼Š (æŸè…ç£ æœä¿º å¯è®° ç¢æ‹³)
 	//		B2ActionLogSender Sender;
 	//		Sender.setCategory(FString("CHARACTER"))
 	//			  .setAction(FString("WING_OPTION"))
@@ -851,9 +851,9 @@ void UB2Airport::OnReceiveEnhanceWingOption(const FB2EnhanceWingOption& EnhanceW
 	//		//////////////////////////////////////////////////////////////////
 	//	}
 
-	//	BladeIIGameImpl::GetClientDataStore().OnReceiveEnhanceWingOption(EnhanceWingOptionData); // ClientDataStore ÀÇ Ãß°¡ Ã³¸®. 
+	//	BladeIIGameImpl::GetClientDataStore().OnReceiveEnhanceWingOption(EnhanceWingOptionData); // ClientDataStore ç‹¼ çœ å•Š è´¸åºœ. 
 
-	//	UpdateOnWingDataChange(WingPCClass, false); // ¼Ó¼º ¿É¼Ç¿¡ µû¶ó ¸Ş½¬¸¦ ´Ù½Ã Á¶ÇÕÇÒ ÇÊ¿ä´Â ¾øÀ» µí..?
+	//	UpdateOnWingDataChange(WingPCClass, false); // åŠ å·± å¯è®°ä¿Š è¶æ‰¼ çš‹æµ†ç”« ä¿ƒçŸ« ç‚¼é’¦ä¸” é˜å¤¸ç»° ç»é˜‘ æ·€..?
 
 	//	ShowBattleScoreNotifyClass<EPCClass>::GetInstance().Signal(WingPCClass);
 	//}
@@ -876,20 +876,20 @@ void UB2Airport::UpdateOnWingDataChange(EPCClass InChangedWingPCClass, bool bUpd
 	if (bUpdateMeshToo)
 	{
 		if (InChangedWingPCClass == EPCClass::EPC_End)
-		{ // ¸ğµç Å¬·¡½º ¾÷µ¥ÀÌÆ®
+		{ // è‘›ç”µ åŠªè´°èƒ¶ è¯€å•æé£˜
 			for (int32 PCI = 0; PCI < GetMaxPCClassNum(); ++PCI)
 			{
 				LobbyUpdateCharacterPartClass<EPCClass>::GetInstance().Signal(IntToPCClass(PCI));
 			}
 		}
-		// CharacterIntro ¿¡¼­´Â Àåºñ ÀçÁ¶ÇÕÀ» ¸·´Âµ¥ ÀÏ´Ü ±× È­¸é¿¡¼­´Â Á¤ÇØÁø Àåºñ¸¦ °¡Áö°í º¸¿©ÁÙ °Å¶ó ³¯°³°¡ ÇÊ¿ä¾øÀ» °Íµµ °°°í (FLobbySceneManager::SetupLobbyCharCompForParts Âü°í)
-		// °Ô´Ù°¡ ÃÊÀå¿¡ ¿ä ½Ã±×³ÎÀÌ ½Ã°£Â÷¸¦ µÎ°í ¿À¸é¼­ ÇÃ·¹ÀÌµÇ´ø ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ ²÷±â´Â ¹®Á¦°¡ ÀÖ±â ¶§¹®.
+		// CharacterIntro ä¿Šè¾‘ç»° å˜åš çŠç‚¼é’¦é˜‘ é˜œç»°å• è€çªœ å¼Š æ‹³æä¿Šè¾‘ç»° æ²¥ç§¦æŸ³ å˜åšç”« å•Šç˜¤ç»Š ç„Šå’¯ä¸´ èŠ­æ‰¼ æœä¿ºå•Š é˜å¤¸ç»é˜‘ å·´æ¡£ éç»Š (FLobbySceneManager::SetupLobbyCharCompForParts æ›¼ç»Š)
+		// éœ¸ä¿ƒå•Š æª¬å˜ä¿Š å¤¸ çŸ«å¼Šæ¾„æ çŸ«åŸƒç’ç”« æ»´ç»Š å·æè¾‘ æ•²é¥­æç™»å¸¦ å±€èªçš‹æè®°æ è°—æ‰ç»° å·©åŠ›å•Š ä¹æ‰ é”­å·©.
 		else if (TransientLobbyGM && TransientLobbyGM->GetCurrentLobbyScene() != ELobbyScene::ELobbyScene_CharacterIntro)
 		{
 			LobbyUpdateCharacterPartClass<EPCClass>::GetInstance().Signal(InChangedWingPCClass);
 		}
 	}
-	LobbyUpdateWingMainUIClass<>::GetInstance().Signal(); // Wing Main UI ÆäÀÌÁö ¾÷µ¥ÀÌÆ®
+	LobbyUpdateWingMainUIClass<>::GetInstance().Signal(); // Wing Main UI å…¶æç˜¤ è¯€å•æé£˜
 	UpdateCombatPowerClass<EPCClass, bool>::GetInstance().Signal(InChangedWingPCClass, false);
 }
 
@@ -906,21 +906,21 @@ void UB2Airport::BeginAutoEnhancement(EPCClass EnhanceWingPCClass)
 
 void UB2Airport::CustomEndAutoItemEnhancement()
 {
-	EndAutoItemEnhance(EWingAutoOpEndReason::WAEER_Custom); // Req ¸¦ º¸³½ »óÈ²ÀÌµç ¾Æ´Ïµç ÀÌ°É·Î Ã³¸®°¡ µÉ °ÍÀ¸·Î ±â´ë..
+	EndAutoItemEnhance(EWingAutoOpEndReason::WAEER_Custom); // Req ç”« ç„Šè¾° æƒ‘ç‚”æç”µ é…’èªç”µ æå§è‚º è´¸åºœå•Š çª å·´æ è‚º æ‰æª..
 }
 
 void UB2Airport::EndAutoItemEnhance(EWingAutoOpEndReason InEndReason)
 {
 	bIsInAutoEnhancement = false;
 	
-	UpdateOnWingDataChange(AutoEnhancementPCClass, true); // ÀÏ¹İ °­È­ ÀÀ´äÀÌ ¿ÔÀ» ¶§µµ º¸³»´Â UI µî ¾÷µ¥ÀÌÆ® ½ÅÈ£
+	UpdateOnWingDataChange(AutoEnhancementPCClass, true); // è€é¦† ç¢æ‹³ è§ˆç¿ æ å­é˜‘ é”­æ¡£ ç„Šéƒ´ç»° UI æ®¿ è¯€å•æé£˜ è„šé¾‹
 		
 	if (IsValid(TransientLobbyGM))
 	{
 		TransientLobbyGM->GetWorldTimerManager().ClearTimer(AutoEnhanceResponseWaitTH);
 		TransientLobbyGM->GetWorldTimerManager().ClearTimer(DelayedAutoEnhEvolExecTH);
 
-		// ÀÚµ¿ °­È­ ³¡³ª´Â °Í¿¡ ´ëÇÑ Ãß°¡ÀûÀÎ UI ¾÷µ¥ÀÌÆ®
+		// ç£Šæ‚¼ ç¢æ‹³ åœºå”±ç»° å·´ä¿Š æªèŒ„ çœ å•Šåˆ©ç‰¢ UI è¯€å•æé£˜
 		UB2UIManager_Lobby* DJLegacyLobbyUIMgr = TransientLobbyGM->DJLegacy_GetLobbyUIManager();
 		if (DJLegacyLobbyUIMgr)
 		{
@@ -930,8 +930,8 @@ void UB2Airport::EndAutoItemEnhance(EWingAutoOpEndReason InEndReason)
 
 	if (InEndReason != EWingAutoOpEndReason::WAEER_Abnormal)
 	{
-		// NormalEnd ¿´´Ù°í ÇÏ´õ¶óµµ µ·ÀÌ³ª Àç·á°¡ ¾ø¾î¼­ Á¾·áµÈ °ÍÀÎÁö, °­È­°¡ Á¾·áµÇ¾î ÀÌÁ¦ ÁøÈ­¸¦ ÇÒ ´Ü°è°¡ µÇ¾î Á¾·áµÈ °ÍÀÎÁö¿¡ µû¶ó ´Ù¸£°Ô ¹İÀÀ.
-		// NormalEnd °¡ ¾Æ´Ñ °Ç ½Ã½ºÅÛ ÀûÀ¸·Î ÀÌ»óÇÑ »óÈ²¿¡¼­ Á¾·áµÈ °Í.
+		// NormalEnd çœ‹ä¿ƒç»Š çªæ­¹æ‰¼æ¡£ æ£æå”± çŠä¸°å•Š ç»ç»¢è¾‘ è¾†ä¸°ç­‰ å·´ç‰¢ç˜¤, ç¢æ‹³å•Š è¾†ä¸°ç™»ç»¢ æåŠ› æŸ³æ‹³ç”« ä¸” çªœæ‹Œå•Š ç™»ç»¢ è¾†ä¸°ç­‰ å·´ç‰¢ç˜¤ä¿Š è¶æ‰¼ ä¿ƒç¦éœ¸ é¦†è§ˆ.
+		// NormalEnd å•Š é…’å›± æ‰’ çŸ«èƒ¶è¢ åˆ©æ è‚º ææƒ‘èŒ„ æƒ‘ç‚”ä¿Šè¾‘ è¾†ä¸°ç­‰ å·´.
 
 		if (InEndReason == EWingAutoOpEndReason::WAEER_NormalButCannotAffordGold)
 		{
@@ -942,13 +942,13 @@ void UB2Airport::EndAutoItemEnhance(EWingAutoOpEndReason InEndReason)
 			OpenWingIngredAcqPathPopup(EWingIngredAcqElemType::WAET_EnhanceIngred);
 		}
 		else
-		{ // °¡Àå Á¤»óÀûÀÎ Á¾·á. ÀÚµ¿ °­È­ÀÇ °æ¿ì´Â Graceful, Custom ¸ğµÎ ÀÌ°É·Î.
+		{ // å•Šå˜ æ²¥æƒ‘åˆ©ç‰¢ è¾†ä¸°. ç£Šæ‚¼ ç¢æ‹³ç‹¼ ç‰ˆå¿«ç»° Graceful, Custom è‘›æ»´ æå§è‚º.
 			UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
 			if (UIMgrInst)
 			{
 				UIMgrInst->OpenMsgPopup(EUIMsgPopup::Simple,
 					BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_Notification")),
-					BladeIIGetLOCText(B2LOC_CAT_WINGTEXT, TEXT("Wing_AutoEnhance_Ended")), // ¹®±¸¿¡´Â Ãß°¡ Á¤º¸°¡ ÇÊ¿äÇØÁú ¼öµµ..?
+					BladeIIGetLOCText(B2LOC_CAT_WINGTEXT, TEXT("Wing_AutoEnhance_Ended")), // å·©å¤‡ä¿Šç»° çœ å•Š æ²¥ç„Šå•Š é˜å¤¸ç§¦é¾™ èæ¡£..?
 					0.f,
 					true,
 					true,
@@ -969,15 +969,15 @@ void UB2Airport::SingleAutoEnhancementTask()
 		TransientLobbyGM->GetWorldTimerManager().ClearTimer(DelayedAutoEnhEvolExecTH);
 	}
 
-	// ÇöÀç »óÅÂ¸¦ Ã¼Å©ÇØ¼­ °è¼Ó ´ÜÀÏ °­È­ ¿äÃ»À» º¸³»°Å³ª È¤Àº Áß´Ü.
-	// AutoEnhancement µµÁß¿¡ ´ÜÀÏ °­È­ ¿äÃ»¿¡ ´ëÇÑ ÀÀ´äÀÌ ¿ÔÀ» ¶§¿¡µµ ÀÌ°É·Î
+	// æ³…çŠ æƒ‘æ€•ç”« çœ‰å†œç§¦è¾‘ æ‹ŒåŠ  çªœè€ ç¢æ‹³ å¤¸æ²¡é˜‘ ç„Šéƒ´èŠ­å”± è¶£ç¯® åçªœ.
+	// AutoEnhancement æ¡£åä¿Š çªœè€ ç¢æ‹³ å¤¸æ²¡ä¿Š æªèŒ„ è§ˆç¿ æ å­é˜‘ é”­ä¿Šæ¡£ æå§è‚º
 
 	FB2Wing CurrentAutoEnhanceWingData;
 	const bool bGotValidWingData = BladeIIGameImpl::GetLocalCharacterData().GetCharacterWing(AutoEnhancementPCClass, CurrentAutoEnhanceWingData);
 
 	const bool bCanAffordGold = HasEnoughGoldForWingEnhanceLocalPlayer(AutoEnhancementPCClass);
 	const bool bCanAffordIngred = HasEnoughIngredForWingEnhanceLocalPlayer(AutoEnhancementPCClass);
-	// Ãß°¡·Î ÀÌÁ¦ ÁøÈ­ÇÒ ¶§°¡ µÈ °Ç ¾Æ´ÑÁöµµ Ã¼Å©..
+	// çœ å•Šè‚º æåŠ› æŸ³æ‹³ä¸” é”­å•Š ç­‰ æ‰’ é…’å›±ç˜¤æ¡£ çœ‰å†œ..
 	const bool bEnhanceDoneForNow = bGotValidWingData && (IsItTimeToEvolve(CurrentAutoEnhanceWingData) || IsUltimatelyEvolvedWing(CurrentAutoEnhanceWingData));
 
 	if (bGotValidWingData && bCanAffordGold && bCanAffordIngred && !bEnhanceDoneForNow)
@@ -985,7 +985,7 @@ void UB2Airport::SingleAutoEnhancementTask()
 		data_trader::Retailer::GetInstance().RequestEnhanceWing(CliToSvrPCClassType(AutoEnhancementPCClass));
 		CachedLastAutoEnhEvolExecTime = (float)FPlatformTime::Seconds();
 
-		// ¹İµå½Ã Response °¡ ¿Â´Ù´Â º¸ÀåÀº ¾øÀ¸´Ï, ÃÖÈÄÀÇ Å¸ÀÌ¸Ó¸¦ ¼³Ä¡
+		// é¦†é›çŸ« Response å•Š æŸ¯ä¿ƒç»° ç„Šå˜ç¯® ç»æ èª, å¼¥é¥¶ç‹¼ é¸¥æèµ£ç”« æ±²æ‘¹
 		if (TransientLobbyGM)
 		{
 			TransientLobbyGM->GetWorldTimerManager().SetTimer(AutoEnhanceResponseWaitTH, this, &UB2Airport::ForceEndAutoItemEnhanceTimerCB, 7.0f, false);
@@ -1007,7 +1007,7 @@ void UB2Airport::ReserveOrExecSingleAutoEnhancementTask()
 {
 	if (IsValid(TransientLobbyGM))
 	{
-		// ¼­¹ö¿¡¼­ ÀÀ´äÀÌ ¿Â ÈÄ¿¡ ´ÙÀ½ ¿äÃ»À» ÇÏ°Ô µÇ¹Ç·Î ÀÀ´äÀÌ ¿Ã ¶§±îÁö °É¸° ½Ã°£Àº °¨¾ÈÇØ¼­ delay ¸¦ Á¤ÇÏµµ·Ï ÇÔ.
+		// è¾‘æ»šä¿Šè¾‘ è§ˆç¿ æ æŸ¯ é¥¶ä¿Š ä¿ƒæ¾œ å¤¸æ²¡é˜‘ çªéœ¸ ç™»éª¨è‚º è§ˆç¿ æ æ£µ é”­é³–ç˜¤ å§èµ´ çŸ«åŸƒç¯® çš‘æ•‘ç§¦è¾‘ delay ç”« æ²¥çªæ¡£åºŸ çªƒ.
 		const float TimeSinceLastExec = (float)FPlatformTime::Seconds() - CachedLastAutoEnhEvolExecTime;
 		const float AdditionalTimeToDelay = AutoEnhEvolMinInterval - TimeSinceLastExec;
 		if (AdditionalTimeToDelay > KINDA_SMALL_NUMBER){
@@ -1018,14 +1018,14 @@ void UB2Airport::ReserveOrExecSingleAutoEnhancementTask()
 		}
 	}
 	else
-	{ // ÀÌ·± °æ¿ì°¡ ÀÖ¾î¼± ¾ÈµÇ°ÚÁö¸¸..
+	{ // æç¹ ç‰ˆå¿«å•Š ä¹ç»¢æ€¥ æ•‘ç™»æ‘†ç˜¤çˆ¶..
 		SingleAutoEnhancementTask();
 	}
 }
 
 void UB2Airport::ForceEndAutoItemEnhanceTimerCB()
 {
-	EndAutoItemEnhance(EWingAutoOpEndReason::WAEER_Abnormal); // ¹°·Ğ Á¤»óÀûÀÎ Á¾·á°¡ ¾Æ´Ô.
+	EndAutoItemEnhance(EWingAutoOpEndReason::WAEER_Abnormal); // æ‹±æ²¸ æ²¥æƒ‘åˆ©ç‰¢ è¾†ä¸°å•Š é…’ä¸›.
 }
 
 void UB2Airport::BeginAutoEvolution(EPCClass EvolveWingPCClass)
@@ -1041,21 +1041,21 @@ void UB2Airport::BeginAutoEvolution(EPCClass EvolveWingPCClass)
 
 void UB2Airport::CustomEndAutoEvolution()
 {
-	EndAutoEvolution(EWingAutoOpEndReason::WAEER_Custom); // Req ¸¦ º¸³½ »óÈ²ÀÌµç ¾Æ´Ïµç ÀÌ°É·Î Ã³¸®°¡ µÉ °ÍÀ¸·Î ±â´ë..
+	EndAutoEvolution(EWingAutoOpEndReason::WAEER_Custom); // Req ç”« ç„Šè¾° æƒ‘ç‚”æç”µ é…’èªç”µ æå§è‚º è´¸åºœå•Š çª å·´æ è‚º æ‰æª..
 }
 
 void UB2Airport::EndAutoEvolution(EWingAutoOpEndReason InEndReason)
 {
 	bIsInAutoEvolution = false;
 
-	UpdateOnWingDataChange(AutoEvolutionPCClass, true); // ÀÏ¹İ °­È­ ÀÀ´äÀÌ ¿ÔÀ» ¶§µµ º¸³»´Â UI µî ¾÷µ¥ÀÌÆ® ½ÅÈ£
+	UpdateOnWingDataChange(AutoEvolutionPCClass, true); // è€é¦† ç¢æ‹³ è§ˆç¿ æ å­é˜‘ é”­æ¡£ ç„Šéƒ´ç»° UI æ®¿ è¯€å•æé£˜ è„šé¾‹
 
 	if (IsValid(TransientLobbyGM))
 	{
 		TransientLobbyGM->GetWorldTimerManager().ClearTimer(AutoEvolutionResponseWaitTH);
 		TransientLobbyGM->GetWorldTimerManager().ClearTimer(DelayedAutoEnhEvolExecTH);
 
-		// ÀÚµ¿ ÁøÈ­ ³¡³ª´Â °Í¿¡ ´ëÇÑ Ãß°¡ÀûÀÎ UI ¾÷µ¥ÀÌÆ®
+		// ç£Šæ‚¼ æŸ³æ‹³ åœºå”±ç»° å·´ä¿Š æªèŒ„ çœ å•Šåˆ©ç‰¢ UI è¯€å•æé£˜
 		UB2UIManager_Lobby* DJLegacyLobbyUIMgr = TransientLobbyGM->DJLegacy_GetLobbyUIManager();
 		if (DJLegacyLobbyUIMgr)
 		{
@@ -1065,7 +1065,7 @@ void UB2Airport::EndAutoEvolution(EWingAutoOpEndReason InEndReason)
 
 	if (InEndReason != EWingAutoOpEndReason::WAEER_Abnormal)
 	{
-		// µ·ÀÌ³ª Àç·á°¡ ¾ø¾î¼­ Á¾·áµÈ °ÍÀÎÁö, ¾î¶² ½ÄÀ¸·Îµç ÁøÈ­°¡ ¿Ï·áµÈ °ÍÀÎÁö¿¡ µû¶ó ´Ù¸£°Ô ¹İÀÀ.
+		// æ£æå”± çŠä¸°å•Š ç»ç»¢è¾‘ è¾†ä¸°ç­‰ å·´ç‰¢ç˜¤, ç»¢æ« ä¾¥æ è‚ºç”µ æŸ³æ‹³å•Š è‚¯ä¸°ç­‰ å·´ç‰¢ç˜¤ä¿Š è¶æ‰¼ ä¿ƒç¦éœ¸ é¦†è§ˆ.
 
 		if (InEndReason == EWingAutoOpEndReason::WAEER_NormalButCannotAffordGold)
 		{
@@ -1082,7 +1082,7 @@ void UB2Airport::EndAutoEvolution(EWingAutoOpEndReason InEndReason)
 			{
 				UIMgrInst->OpenMsgPopup(EUIMsgPopup::Simple,
 					BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("SensitiveNoti_Notification")),
-					BladeIIGetLOCText(B2LOC_CAT_WINGTEXT, TEXT("Wing_AutoEvolve_Ended")), // ¹®±¸¿¡´Â Ãß°¡ Á¤º¸°¡ ÇÊ¿äÇØÁú ¼öµµ..?
+					BladeIIGetLOCText(B2LOC_CAT_WINGTEXT, TEXT("Wing_AutoEvolve_Ended")), // å·©å¤‡ä¿Šç»° çœ å•Š æ²¥ç„Šå•Š é˜å¤¸ç§¦é¾™ èæ¡£..?
 					0.f,
 					true,
 					true,
@@ -1092,7 +1092,7 @@ void UB2Airport::EndAutoEvolution(EWingAutoOpEndReason InEndReason)
 		}
 		else
 		{
-			// ¿©±â¼± ¹«¾ğ°¡ ÇÒ ÇÊ¿ä°¡ ¾ø¾î¾ß.. ÁøÈ­°¡ ¼º°øÇß´Ù´Â ¾ê±âÀÌ¹Ç·Î ÁøÈ­ ¿¬Ãâ ½ÃÀÛ ½ÅÈ£°¡ ÀÌ¹Ì º¸³»Á³µçÁö, °ğ ´Ù¸¥ °÷¿¡¼­ º¸³»µçÁö.
+			// å’¯æ‰æ€¥ å…¬æ”«å•Š ä¸” é˜å¤¸å•Š ç»ç»¢å…·.. æŸ³æ‹³å•Š å·±å‚æ²ä¿ƒç»° å¨Ÿæ‰æéª¨è‚º æŸ³æ‹³ æ¥·å… çŸ«ç´¯ è„šé¾‹å•Š æå›º ç„Šéƒ´è„¸ç”µç˜¤, æ¢† ä¿ƒå¼— é•‘ä¿Šè¾‘ ç„Šéƒ´ç”µç˜¤.
 		}
 	}
 
@@ -1108,24 +1108,24 @@ void UB2Airport::SingleAutoEvolutionTask(bool bInLastEvolutionSucceeded)
 
 	if (bInLastEvolutionSucceeded)
 	{		
-		EndAutoEvolution(EWingAutoOpEndReason::WAEER_Graceful); // ÀÌ°Ç °Á ¼º°øÇßÀ¸´Ï Áß´ÜÇØ¾ß.
+		EndAutoEvolution(EWingAutoOpEndReason::WAEER_Graceful); // ææ‰’ å‚² å·±å‚æ²æ èª åçªœç§¦å…·.
 	}
 	else
 	{
-		// Ãß°¡·Î ÁøÈ­ ¿äÃ» º¸³»´Â °Ô °¡´ÉÇÑÁö Ã¼Å©..
+		// çœ å•Šè‚º æŸ³æ‹³ å¤¸æ²¡ ç„Šéƒ´ç»° éœ¸ å•Šç“·èŒ„ç˜¤ çœ‰å†œ..
 		FB2Wing CurrentAutoEvolveWingData;
 		const bool bGotValidWingData = BladeIIGameImpl::GetLocalCharacterData().GetCharacterWing(AutoEvolutionPCClass, CurrentAutoEvolveWingData);
 		
 		const bool bCanAffordGold = HasEnoughGoldForWingEvolveLocalPlayer(AutoEvolutionPCClass);
 		const bool bCanAffordIngred = HasEnoughIngredForWingEvolveLocalPlayer(AutoEvolutionPCClass);
-		// ÁøÈ­ Å¸ÀÌ¹ÖÀÌ ¸Â´ÂÁöµµ ´Ù½Ã ÇÑ¹ø Ã¼Å©¸¦
+		// æŸ³æ‹³ é¸¥ææ€ªæ å˜ç»°ç˜¤æ¡£ ä¿ƒçŸ« èŒ„é”… çœ‰å†œç”«
 		const bool bIsTimeForEvolution = bGotValidWingData && (IsItTimeToEvolve(CurrentAutoEvolveWingData) && !IsUltimatelyEvolvedWing(CurrentAutoEvolveWingData));
 		
 		if (bGotValidWingData && bCanAffordGold && bCanAffordIngred && bIsTimeForEvolution)
 		{
 			data_trader::Retailer::GetInstance().RequestUpgradeWing(CliToSvrPCClassType(AutoEvolutionPCClass));
 			CachedLastAutoEnhEvolExecTime = (float)FPlatformTime::Seconds();
-			// ¹İµå½Ã Response °¡ ¿Â´Ù´Â º¸ÀåÀº ¾øÀ¸´Ï, ÃÖÈÄÀÇ Å¸ÀÌ¸Ó¸¦ ¼³Ä¡
+			// é¦†é›çŸ« Response å•Š æŸ¯ä¿ƒç»° ç„Šå˜ç¯® ç»æ èª, å¼¥é¥¶ç‹¼ é¸¥æèµ£ç”« æ±²æ‘¹
 			if (TransientLobbyGM)
 			{
 				TransientLobbyGM->GetWorldTimerManager().SetTimer(AutoEvolutionResponseWaitTH, this, &UB2Airport::ForceEndAutoEvolutionTimerCB, 7.0f, false);
@@ -1136,7 +1136,7 @@ void UB2Airport::SingleAutoEvolutionTask(bool bInLastEvolutionSucceeded)
 			EndAutoEvolution(
 				!bGotValidWingData ? EWingAutoOpEndReason::WAEER_Abnormal : 
 					(
-					// ¾Æ·¡ ·çÆ®¿¡¼­´Â WAEER_Graceful ÀÌ ÀÖÁö¸¸ ½ÇÁúÀûÀ¸·Î ±×·± °æ¿ì¶ó¸é bInLastEvolutionSucceeded ÀÌ true ¿©¾ß ÇÒ °ÍÀÌ´Ù..
+					// é…’è´° é£é£˜ä¿Šè¾‘ç»° WAEER_Graceful æ ä¹ç˜¤çˆ¶ è§’é¾™åˆ©æ è‚º å¼Šç¹ ç‰ˆå¿«æ‰¼æ bInLastEvolutionSucceeded æ true å’¯å…· ä¸” å·´æä¿ƒ..
 						(bIsTimeForEvolution && !bCanAffordGold) ? EWingAutoOpEndReason::WAEER_NormalButCannotAffordGold : 
 							((bIsTimeForEvolution && !bCanAffordIngred) ? EWingAutoOpEndReason::WAEER_NormalButCannotAffordIngredient :
 								EWingAutoOpEndReason::WAEER_Graceful)
@@ -1150,7 +1150,7 @@ void UB2Airport::ReserveOrExecSingleAutoEvolutionTask(bool bInLastEvolutionSucce
 {
 	if (IsValid(TransientLobbyGM))
 	{
-		// ¼­¹ö¿¡¼­ ÀÀ´äÀÌ ¿Â ÈÄ¿¡ ´ÙÀ½ ¿äÃ»À» ÇÏ°Ô µÇ¹Ç·Î ÀÀ´äÀÌ ¿Ã ¶§±îÁö °É¸° ½Ã°£Àº °¨¾ÈÇØ¼­ delay ¸¦ Á¤ÇÏµµ·Ï ÇÔ.
+		// è¾‘æ»šä¿Šè¾‘ è§ˆç¿ æ æŸ¯ é¥¶ä¿Š ä¿ƒæ¾œ å¤¸æ²¡é˜‘ çªéœ¸ ç™»éª¨è‚º è§ˆç¿ æ æ£µ é”­é³–ç˜¤ å§èµ´ çŸ«åŸƒç¯® çš‘æ•‘ç§¦è¾‘ delay ç”« æ²¥çªæ¡£åºŸ çªƒ.
 		const float TimeSinceLastExec = (float)FPlatformTime::Seconds() - CachedLastAutoEnhEvolExecTime;
 		const float AdditionalTimeToDelay = AutoProEvolMinInterval - TimeSinceLastExec;
 		if (AdditionalTimeToDelay > KINDA_SMALL_NUMBER){
@@ -1163,14 +1163,14 @@ void UB2Airport::ReserveOrExecSingleAutoEvolutionTask(bool bInLastEvolutionSucce
 
 	}
 	else
-	{// ÀÌ·± °æ¿ì°¡ ÀÖ¾î¼± ¾ÈµÇ°ÚÁö¸¸..
+	{// æç¹ ç‰ˆå¿«å•Š ä¹ç»¢æ€¥ æ•‘ç™»æ‘†ç˜¤çˆ¶..
 		SingleAutoEvolutionTask(bInLastEvolutionSucceeded);
 	}
 }
 
 void UB2Airport::ForceEndAutoEvolutionTimerCB()
 {
-	EndAutoEvolution(EWingAutoOpEndReason::WAEER_Abnormal); // ¹°·Ğ Á¤»óÀûÀÎ Á¾·á°¡ ¾Æ´Ô.
+	EndAutoEvolution(EWingAutoOpEndReason::WAEER_Abnormal); // æ‹±æ²¸ æ²¥æƒ‘åˆ©ç‰¢ è¾†ä¸°å•Š é…’ä¸›.
 }
 
 float UB2Airport::GetWingAttackPointLocalPlayer(EPCClass InPCClass)
@@ -1250,7 +1250,7 @@ bool UB2Airport::HasEnoughIngredForWingEvolveLocalPlayer(EPCClass InPCClass)
 	return false;
 }
 bool UB2Airport::HasEnoughGoldForWingOptionEnhanceLocalPlayer(EPCClass InPCClass, int32 InOptionIndex)
-{ // ¼Ó¼º¿É¼Ç °­È­¿¡´Â µ·ÀÌ ¾È µé¾î°¨
+{ // åŠ å·±å¯è®° ç¢æ‹³ä¿Šç»° æ£æ æ•‘ ç”¸ç»¢çš‘
 	return true;
 }
 bool UB2Airport::HasEnoughIngredForWingOptionEnhanceLocalPlayer(EPCClass InPCClass, int32 InOptionIndex)
@@ -1294,13 +1294,13 @@ void UB2Airport::SetWingVisibility(EPCClass InPCClass, bool bInShow, bool bReqTo
 //	FPCWingContainer* ThisCharWingContainer = BladeIIGameImpl::GetLocalCharacterData().GetCharacterWingDataPtr(InPCClass);
 //	if (ThisCharWingContainer && ThisCharWingContainer->bHasWing)
 //	{
-//		// ÀÏ´Ü ·ÎÄÃ µ¥ÀÌÅÍ °ª ¼¼ÆÃºÎÅÍ ¸ÕÀú ÇÔ. ÀÌ°Å visibility ¸¦ º¯°æÇÏ´Â UI ¿¡¼­ ³Ê¹« ÀæÀº º¯°æÀ¸·Î ÆĞÅ¶ÀÌ ¿Ô´Ù°¬´Ù ÇÏ´Â »óÈ²À» ÇÇÇÏ±â À§ÇØ request ¸¦ µû·Î ³¯¸± ¼ö ÀÖµµ·Ï ÇÏ¿´À½.
-//		// ¹°·Ğ FlushPendingWingVisibilityReq ¸¦ ÀûÀıÇÑ ½ÃÁ¡¿¡ ³¯¸®Áö ¾ÊÀ¸¸é ´Ù½Ã ½ÇÇàÇÒ ¶§¿¡ º¯°æÇÑ °ÍÀÌ ¹«¿ëÁö¹°ÀÌ µÉ °ÍÀÌ´Ù.
+//		// è€çªœ è‚ºæ‹¿ å•æç£ è”¼ æŠ€æ³¼ä½•ç£ åˆšå† çªƒ. æèŠ­ visibility ç”« å‡½ç‰ˆçªç»° UI ä¿Šè¾‘ å‘ˆå…¬ æ¢¨ç¯® å‡½ç‰ˆæ è‚º è©å“¦æ å­ä¿ƒè‰¾ä¿ƒ çªç»° æƒ‘ç‚”é˜‘ ä¹”çªæ‰ å›°ç§¦ request ç”« è¶è‚º æœå‰¯ è ä¹æ¡£åºŸ çªçœ‹æ¾œ.
+//		// æ‹±æ²¸ FlushPendingWingVisibilityReq ç”« åˆ©ä¾‹èŒ„ çŸ«ç—¢ä¿Š æœåºœç˜¤ è‡¼æ æ ä¿ƒçŸ« è§’é’ä¸” é”­ä¿Š å‡½ç‰ˆèŒ„ å·´æ å…¬ä¾©ç˜¤æ‹±æ çª å·´æä¿ƒ.
 //		const bool bChanged = (ThisCharWingContainer->WingData.bShouldBeVisible != bInShow);
 //		ThisCharWingContainer->WingData.bShouldBeVisible = bInShow;
 //
 //		if (bChanged)
-//		{// ·Îºñ ¸Ş½¬ µ¥ÀÌÅÍ ¾÷µ¥ÀÌÆ®
+//		{// è‚ºåš çš‹æµ† å•æç£ è¯€å•æé£˜
 //			LobbyUpdateCharacterPartClass<EPCClass>::GetInstance().Signal(InPCClass);
 //		}
 //
@@ -1308,14 +1308,14 @@ void UB2Airport::SetWingVisibility(EPCClass InPCClass, bool bInShow, bool bReqTo
 //
 //		if (bReqToServerImmediately)
 //		{
-//			// ¹Ù·Î ¼­¹ö·Î ¿äÃ»ÇÏ°í ÇØ´ç Å¬·¡½º ¿äÃ» ½×ÀÎ °Ô ÀÖ´Ù¸é Á¦°Å
+//			// å®˜è‚º è¾‘æ»šè‚º å¤¸æ²¡çªç»Š ç§¦å¯¸ åŠªè´°èƒ¶ å¤¸æ²¡ é˜¶ç‰¢ éœ¸ ä¹ä¿ƒæ åŠ›èŠ­
 //			data_trader::Retailer::GetInstance().RequestSetWingVisible(CliToSvrPCClassType(InPCClass), bInShow);
 //
 //			PendingWingVisibilityReq.Remove(InPCClass);
 //		}
 //		else
 //		{
-//			// µû·Î ¿äÃ»À» À§ÇØ pending Ç¥½Ã¸¦ ÇØ µĞ´Ù.
+//			// è¶è‚º å¤¸æ²¡é˜‘ å›°ç§¦ pending é’çŸ«ç”« ç§¦ æ•Œä¿ƒ.
 //
 //			bool* ExistingPending = PendingWingVisibilityReq.Find(InPCClass);
 //			if (ExistingPending){
@@ -1330,7 +1330,7 @@ void UB2Airport::SetWingVisibility(EPCClass InPCClass, bool bInShow, bool bReqTo
 
 void UB2Airport::FlushPendingWingVisibilityReq()
 {
-	// SetWingVisibility ¸¦ ÅëÇØ ½×ÀÎ ³¯°³ visibility on/off ¿äÃ» ¼­¹ö·Î.. ÇÏ°í ºñ¿ò.
+	// SetWingVisibility ç”« çƒ¹ç§¦ é˜¶ç‰¢ æœä¿º visibility on/off å¤¸æ²¡ è¾‘æ»šè‚º.. çªç»Š åšæ¡†.
 	for (auto& ThisPending : PendingWingVisibilityReq)
 	{
 		data_trader::Retailer::GetInstance().RequestSetWingVisible(CliToSvrPCClassType(ThisPending.Key), ThisPending.Value);
@@ -1342,7 +1342,7 @@ void UB2Airport::ConditionalSetWingVisibleOnWingPageOpen()
 {
 	if (!bWingUIPageOpenedOnce)
 	{
-		// ³¯°³ ÆäÀÌÁö¸¦ ÃÖÃÊ·Î ¿­¾úÀ» ¶§ ±âº»°ªÀ¸·Î ³¯°³¸¦ ÄÑµµ·Ï ¼­¹ö¿¡ ¿äÃ». ÀÌÈÄ·Î´Â »ç¿ëÀÚ ¼³Á¤¿¡ µû¶ó.
+		// æœä¿º å…¶æç˜¤ç”« å¼¥æª¬è‚º å‡¯èŒé˜‘ é”­ æ‰å¤¯è”¼æ è‚º æœä¿ºç”« éš¾æ¡£åºŸ è¾‘æ»šä¿Š å¤¸æ²¡. æé¥¶è‚ºç»° è¤ä¾©ç£Š æ±²æ²¥ä¿Š è¶æ‰¼.
 		for (int32 PCI = 0; PCI < GetMaxPCClassNum(); ++PCI)
 		{
 			SetWingVisibility(IntToPCClass(PCI), true, true);
@@ -1355,7 +1355,7 @@ void UB2Airport::ConditionalSetWingVisibleOnWingPageOpen()
 
 bool UB2Airport::HasAnyNewStuff_Char(EPCClass InCheckChar)
 {
-	// ³¯°³ ¸Ş´º¿¡¼­ ¿µ¿õ°ü¸® °øÅë Ä³¸¯ÅÍ ÃÊ»óÈ­ À§¿¡ New ¸¶Å© ¶ç¿ì´Â Á¶°Ç
+	// æœä¿º çš‹æ˜¥ä¿Šè¾‘ åº·æ—·åŒ…åºœ å‚çƒ¹ æŸè…ç£ æª¬æƒ‘æ‹³ å›°ä¿Š New ä»˜å†œ å‰å¿«ç»° ç‚¼æ‰’
 
 	FB2Wing CheckWingData;
 	const bool bGotValidWingData = BladeIIGameImpl::GetLocalCharacterData().GetCharacterWing(InCheckChar, CheckWingData);
@@ -1363,16 +1363,16 @@ bool UB2Airport::HasAnyNewStuff_Char(EPCClass InCheckChar)
 	if (bGotValidWingData)
 	{
 		if (
-			// °­È­°¡ °¡´ÉÇÏ°Å³ª
+			// ç¢æ‹³å•Š å•Šç“·çªèŠ­å”±
 			(HasEnoughGoldForWingEnhanceLocalPlayer(InCheckChar) && HasEnoughIngredForWingEnhanceLocalPlayer(InCheckChar)) ||
-			// ÁøÈ­°¡ °¡´ÉÇÏ°Å³ª
+			// æŸ³æ‹³å•Š å•Šç“·çªèŠ­å”±
 			(IsItTimeToEvolve(CheckWingData) && HasEnoughGoldForWingEvolveLocalPlayer(InCheckChar) && HasEnoughIngredForWingEvolveLocalPlayer(InCheckChar))
 			)
 		{
 			return true;
 		}
 
-		// ¾Æ´Ï¸é ¼Ó¼º¿É¼Ç °­È­¶óµµ °¡´ÉÇÏ°Å³ª
+		// é…’èªæ åŠ å·±å¯è®° ç¢æ‹³æ‰¼æ¡£ å•Šç“·çªèŠ­å”±
 		for (int32 POI = 0; POI < MAX_WING_PROP_OPTION_NUM; ++POI)
 		{
 			if (HasAnyNewStuff_WingPropOption(InCheckChar, POI))
@@ -1387,7 +1387,7 @@ bool UB2Airport::HasAnyNewStuff_Char(EPCClass InCheckChar)
 
 bool UB2Airport::HasAnyNewStuff_WingPropOption(EPCClass InCheckChar, int32 InPropOptionIndex)
 {
-	// ³¯°³ ¸Ş´º¿¡¼­ ¼Ó¼º ¿É¼Ç ¾ÆÀÌÄÜ À§¿¡ New ¸¶Å© ¶ç¿ì´Â Á¶°Ç
+	// æœä¿º çš‹æ˜¥ä¿Šè¾‘ åŠ å·± å¯è®° é…’æèƒ½ å›°ä¿Š New ä»˜å†œ å‰å¿«ç»° ç‚¼æ‰’
 
 	FB2Wing CheckWingData;
 	const bool bGotValidWingData = BladeIIGameImpl::GetLocalCharacterData().GetCharacterWing(InCheckChar, CheckWingData);
@@ -1395,7 +1395,7 @@ bool UB2Airport::HasAnyNewStuff_WingPropOption(EPCClass InCheckChar, int32 InPro
 
 	if (bGotValidWingData && CheckOptionPtr)
 	{
-		// ´õ °­È­°¡ °¡´ÉÇÑ ¿­·ÁÀÖ´Â ¿É¼ÇÀÌ ÀÖ°í ÀçÈ­µµ ÃæºĞÇÑÁö
+		// æ­¹ ç¢æ‹³å•Š å•Šç“·èŒ„ å‡¯å¦¨ä¹ç»° å¯è®°æ ä¹ç»Š çŠæ‹³æ¡£ é¢ç›’èŒ„ç˜¤
 		if (CheckOptionPtr->bIsOpen && CheckOptionPtr->OptionLevel < CheckOptionPtr->MaxOptionLevel &&
 			HasEnoughGoldForWingOptionEnhanceLocalPlayer(InCheckChar, InPropOptionIndex) &&
 			HasEnoughIngredForWingOptionEnhanceLocalPlayer(InCheckChar, InPropOptionIndex))
@@ -1422,7 +1422,7 @@ void UB2Airport::DevOnlyGenerateDummyWingData(int32 InEvolveGrade, bool bRequest
 {
 	if (bRequestToServer)
 	{
-		UE_LOG(LogBladeII, Log, TEXT("Request dummy wing data to server is NOT implemented yet!")); // ÀÎº¥Åä¸®ÀÇ °æ¿ì Âü°í..
+		UE_LOG(LogBladeII, Log, TEXT("Request dummy wing data to server is NOT implemented yet!")); // ç‰¢äº¥é…åºœç‹¼ ç‰ˆå¿« æ›¼ç»Š..
 	}
 	else
 	{
@@ -1436,14 +1436,14 @@ void UB2Airport::DevOnlyGenerateDummyWingData(int32 InEvolveGrade, bool bRequest
 				NewWing.OwnerPCClass = PCI;
 				NewWing.EvolutionGrade = FMath::Clamp(InEvolveGrade, MIN_WING_EVOLUTION_GRADE, MAX_WING_EVOLUTION_GRADE_UNOFFICIAL);
 				
-				// ÁøÈ­ ¸Ş´º¸¦ Å×½ºÆ®ÇØ¾ß°Ú¾î¼­ ¿ø·¡º¸´Ù ³ôÀº È®·ü·Î ÃÖ´ë °­È­·¹º§À» Ã¤¿öÁØ´Ù..
+				// æŸ³æ‹³ çš‹æ˜¥ç”« æŠ›èƒ¶é£˜ç§¦å…·æ‘†ç»¢è¾‘ ç›”è´°ç„Šä¿ƒ è‡­ç¯® çŠ¬ä¼è‚º å¼¥æª ç¢æ‹³é¥­éª‡é˜‘ ç›²å†µéœ–ä¿ƒ..
 				if (FMath::RandRange(1, 4) == 1){
 					NewWing.EnhanceLevel = MAX_WING_ENHANCE_LEVEL;
-					NewWing.EvolutionFailedCount = FMath::RandRange(0, 99); // ½ÇÆĞ È½¼öµµ ´ë·« Ã¤¿öÁÜ.
+					NewWing.EvolutionFailedCount = FMath::RandRange(0, 99); // è§’è© å†‰èæ¡£ æªå¸† ç›²å†µæ·‹.
 				}
 				else{
 					NewWing.EnhanceLevel = FMath::RandRange(MIN_WING_ENHANCE_LEVEL, MAX_WING_ENHANCE_LEVEL - 1);
-					NewWing.EnhancePoint = FMath::RandRange(0, 99); // ´ë·« ÀÌ »çÀÌÀÏ µí..
+					NewWing.EnhancePoint = FMath::RandRange(0, 99); // æªå¸† æ è¤æè€ æ·€..
 				}
 								
 				for (int32 POI = 0; POI < MAX_WING_PROP_OPTION_NUM; ++POI)
@@ -1451,9 +1451,9 @@ void UB2Airport::DevOnlyGenerateDummyWingData(int32 InEvolveGrade, bool bRequest
 					if (NewWing.PropOptions.IsValidIndex(POI))
 					{
 						FWingPropOption& ThisOption = NewWing.PropOptions[POI];
-						ThisOption.MaxOptionLevel = 30; // ´ë·« ÀÌÂëÀÏ °Í.
+						ThisOption.MaxOptionLevel = 30; // æªå¸† æç è€ å·´.
 						ThisOption.OptionLevel = FMath::RandRange(1, ThisOption.MaxOptionLevel);
-						// ¿©±âµµ ¾î´À Á¤µµ ³ôÀº È®·ü·Î ÃÖ´ë °­È­·¹º§À» Ã¤¿öÁØ´Ù..
+						// å’¯æ‰æ¡£ ç»¢è ¢ æ²¥æ¡£ è‡­ç¯® çŠ¬ä¼è‚º å¼¥æª ç¢æ‹³é¥­éª‡é˜‘ ç›²å†µéœ–ä¿ƒ..
 						if (FMath::RandRange(1, 6) == 1){
 							ThisOption.OptionLevel = ThisOption.MaxOptionLevel;
 						}
@@ -1462,7 +1462,7 @@ void UB2Airport::DevOnlyGenerateDummyWingData(int32 InEvolveGrade, bool bRequest
 
 				if (!NewWing.UpdateStats()) 
 				{
-					// UpdateStats ´Â ¸¶½ºÅÍ µ¥ÀÌÅÍ°¡ ÀÖÀ» ¶§¸¸ Á¦´ë·Î ÀÛµ¿ÇÏ¹Ç·Î ½ÇÆĞÇÏ¸é ±âÅ¸ ´É·ÂÄ¡µµ °¡¶ó·Î ¸ÂÃçÁÜ.
+					// UpdateStats ç»° ä»˜èƒ¶ç£ å•æç£å•Š ä¹é˜‘ é”­çˆ¶ åŠ›æªè‚º ç´¯æ‚¼çªéª¨è‚º è§’è©çªæ æ‰é¸¥ ç“·ä»¿æ‘¹æ¡£ å•Šæ‰¼è‚º å˜è‹—æ·‹.
 					float BasePointGrade = NewWing.EvolutionGrade * 100.0f;
 					NewWing.SetAttackPoint(FMath::RandRange(BasePointGrade * 0.5f, BasePointGrade * 2.0f));
 					NewWing.SetDefensePoint(FMath::RandRange(BasePointGrade * 0.5f, BasePointGrade * 2.0f));
@@ -1471,7 +1471,7 @@ void UB2Airport::DevOnlyGenerateDummyWingData(int32 InEvolveGrade, bool bRequest
 					for (int32 POI = 0; POI < MAX_WING_PROP_OPTION_NUM; ++POI)
 					{
 						EItemOption MostLikeWingOption = EItemOption::EIO_Defense_DecAbnormalStateTime;
-						// °Á ¿©±ä ÃÊ±â ±âÈ¹¿¡ µû¶ó ´ëÃ¼·Î »ç¿ëÇÒ °Å °°Àº ¿É¼Ç ³Ö¾îÁÖ´Â °ÍÀÓ.
+						// å‚² å’¯å˜ æª¬æ‰ æ‰è£™ä¿Š è¶æ‰¼ æªçœ‰è‚º è¤ä¾©ä¸” èŠ­ éç¯® å¯è®° æŒç»¢æ—ç»° å·´çƒ™.
 						switch (POI)
 						{
 						case 1: MostLikeWingOption = EItemOption::EIO_Defense_ResistCritical; break;
@@ -1484,7 +1484,7 @@ void UB2Airport::DevOnlyGenerateDummyWingData(int32 InEvolveGrade, bool bRequest
 						{
 							FWingPropOption& ThisOption = NewWing.PropOptions[POI];
 							ThisOption.MyOptionType = MostLikeWingOption;
-							// ÁøÈ­·¹º§¿¡ µû¶ó ¼Ó¼º¿É¼ÇÀÌ ¿­¸®´Â ½ÄÀÓ.
+							// æŸ³æ‹³é¥­éª‡ä¿Š è¶æ‰¼ åŠ å·±å¯è®°æ å‡¯åºœç»° ä¾¥çƒ™.
 							ThisOption.RequiredWingEvolveGrade = POI + 1;
 							ThisOption.bIsOpen = (NewWing.EvolutionGrade >= ThisOption.RequiredWingEvolveGrade);
 							ThisOption.RawOptionAmount = ((float)ThisOption.OptionLevel * 100.0f) / (float)ThisOption.MaxOptionLevel;

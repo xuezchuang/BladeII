@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2StageInfo.h"
@@ -9,6 +9,9 @@
 #include "Kismet/GameplayStatics.h"
 #include "Engine/LevelStreamingDynamic.h"
 //#include "BladeIIUtil.h"
+#include "Misc/ConfigCacheIni.h"
+#include "Engine/World.h"
+#include "Engine/Texture2D.h"
 
 UB2StageInfo::UB2StageInfo(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
@@ -17,7 +20,7 @@ UB2StageInfo::UB2StageInfo(const FObjectInitializer& ObjectInitializer)
 	StartAdventureModeChapterNum = 0;
 	if (HasAnyFlags(RF_ClassDefaultObject) == false)
 	{
-		// Á¤ÇØÁø ÇÏ³ª¸¦ ·Îµù
+		// æ²¥ç§¦æŸ³ çªå”±ç”« è‚ºçˆ¹
 		FString StageInfoDataTablePath;
 		GConfig->GetString(TEXT("/Script/BladeII.B2StageManager"), TEXT("StageInfoDataTable"), StageInfoDataTablePath, GGameIni);
 
@@ -27,7 +30,7 @@ UB2StageInfo::UB2StageInfo(const FObjectInitializer& ObjectInitializer)
 		GConfig->GetInt(TEXT("/Script/BladeII.B2StageManager"), TEXT("StartAdventureModeChapterNum"), StartAdventureModeChapterNum, GGameIni);
 		GConfig->GetInt(TEXT("/Script/BladeII.B2StageManager"), TEXT("EndAdventureModChapterNum"), EndAdventureModeChapterNum, GGameIni);
 
-		SetDataByCBTVersionContent(); // Á¾±¹¿¡´Â Á¦°ÅµÇ¾î¾ß ÇÒ µí.
+		SetDataByCBTVersionContent(); // è¾†æƒ«ä¿Šç»° åŠ›èŠ­ç™»ç»¢å…· ä¸” æ·€.
 
 #if WITH_EDITOR
 		CheckInfoDataIntegrity();
@@ -35,9 +38,9 @@ UB2StageInfo::UB2StageInfo(const FObjectInitializer& ObjectInitializer)
 	}
 }
 
-void UB2StageInfo::SetDataByCBTVersionContent() // ÀÌ°É »ı¼ºÀÚ¿¡¼­¸¸ ÇÏ¸é Ä¡Æ®·Î CBTVersionContent ¿©ºÎ¸¦ ¹Ù²Ü ¶§ Àû¿ëÀÌ ¾ÈµÊ.
+void UB2StageInfo::SetDataByCBTVersionContent() // æå§ ç§¯å·±ç£Šä¿Šè¾‘çˆ¶ çªæ æ‘¹é£˜è‚º CBTVersionContent å’¯ä½•ç”« å®˜æ›¹ é”­ åˆ©ä¾©æ æ•‘å‡³.
 {
-	//if (ShouldShowCBTVersionContent()) //GameiniÁ÷Á¢ °Çµå¸®±â ±×·¡¼­ CBT¹öÀüÀÏ °æ¿ì ¿©±â °­Á¦ ¼¼ÆÃÇØÁØ´Ù
+	//if (ShouldShowCBTVersionContent()) //Gameiniæµç«‹ æ‰’é›åºœæ‰ å¼Šè´°è¾‘ CBTæ»šå‚ˆè€ ç‰ˆå¿« å’¯æ‰ ç¢åŠ› æŠ€æ³¼ç§¦éœ–ä¿ƒ
 	//{
 	//	FinalClientStageId = 30;
 	//	StartAdventureModeChapterNum = 3;
@@ -53,7 +56,7 @@ FSingleStageInfoData* UB2StageInfo::GetInfoData(int32 InClientStageId)
 {
 	if (TheData)
 	{
-		// StageNum ±×´ë·Î key ·Î »ç¿ë
+		// StageNum å¼Šæªè‚º key è‚º è¤ä¾©
 		FSingleStageInfoData* FoundDataRow = TheData->FindRow<FSingleStageInfoData>(FName(*FString::FromInt(InClientStageId)), TEXT(""));
 
 		return FoundDataRow;
@@ -67,7 +70,7 @@ FSingleStageInfoData* UB2StageInfo::GetInfoData(int32 InClientStageId, EStageDif
 
 	if (TheData)
 	{
-		// StageNum ±×´ë·Î key ·Î »ç¿ë
+		// StageNum å¼Šæªè‚º key è‚º è¤ä¾©
 		FSingleStageInfoData* FoundDataRow = TheData->FindRow<FSingleStageInfoData>(FName(*FString::FromInt(ClientStageID)), TEXT(""));
 
 		return FoundDataRow;
@@ -78,7 +81,7 @@ FSingleStageInfoData* UB2StageInfo::GetInfoData(int32 InClientStageId, EStageDif
 int32 UB2StageInfo::GetClientStageIdOfChapterNums(int32 InChapterNum, int32 InSubChapterNum)
 {
 	TArray<FName> RowKeys = TheData->GetRowNames();
-	for (FName& ThisRowKey : RowKeys) // GetInfoData Ã³·³ ¹Ù·Î ²ôÁı¾î³»´Â °Ô ¾Æ´Ï¶ó iteration À» ÇÏ´Ùº¸´Ï Á» ´À¸± ¼ö ÀÖ°Ú´Ù.
+	for (FName& ThisRowKey : RowKeys) // GetInfoData è´¸çƒ¦ å®˜è‚º æºç¬¼ç»¢éƒ´ç»° éœ¸ é…’èªæ‰¼ iteration é˜‘ çªä¿ƒç„Šèª ç²± è ¢å‰¯ è ä¹æ‘†ä¿ƒ.
 	{
 		FSingleStageInfoData* FoundDataRow = TheData->FindRow<FSingleStageInfoData>(ThisRowKey, TEXT(""));
 		if (FoundDataRow && FoundDataRow->ChapterNum == InChapterNum && FoundDataRow->SubChapterNum == InSubChapterNum)
@@ -170,7 +173,7 @@ void UB2StageInfo::CheckInfoDataIntegrity()
 		bool bHasRowKeyLessThan0 = false;
 		bool bHasNonSequentialRowKey = false;
 
-		// DataTable ÀÇ ¸ğµç row ¸¦ iterate ÇÏ´Â ¹æ¹ıÀÎµí.
+		// DataTable ç‹¼ è‘›ç”µ row ç”« iterate çªç»° è§„è¿‡ç‰¢æ·€.
 		TArray<FName> RowKeys = TheData->GetRowNames();
 		for (int32 RI = 0; RI < RowKeys.Num(); ++RI)
 		{
@@ -180,22 +183,22 @@ void UB2StageInfo::CheckInfoDataIntegrity()
 			{
 				bHasRowKeyLessThan0 = true;
 			}
-			if (RI + 1 != RowKeyNumber) // bHasRowKeyLessThan0 ÀÌ¸é °á±¹ ¿©±âµµ..
+			if (RI + 1 != RowKeyNumber) // bHasRowKeyLessThan0 ææ æ¬æƒ« å’¯æ‰æ¡£..
 			{
 				bHasNonSequentialRowKey = true;
 			}
 		}
 
-		if (bHasRowKeyLessThan0 /*|| bHasNonSequentialRowKey*/) // ¼ø¼­´ë·ÎÀÏ ÇÊ¿ä´Â ¾øÀ» °Í °°´Ù. ÀÏ´Ü ÀÌ°Ç °æ°í¿¡¼­ Á¦°Å.
+		if (bHasRowKeyLessThan0 /*|| bHasNonSequentialRowKey*/) // é‰´è¾‘æªè‚ºè€ é˜å¤¸ç»° ç»é˜‘ å·´ éä¿ƒ. è€çªœ ææ‰’ ç‰ˆç»Šä¿Šè¾‘ åŠ›èŠ­.
 		{
 #if !PLATFORM_MAC
 			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-				FString::Printf(TEXT("[°æ°í] StageInfo µ¥ÀÌÅÍÀÇ ÁÙ¹øÈ£¿¡ Ä¡¸íÀûÀÎ ¹®Á¦°¡ ÀÖÀ½. ÄÄÇ»ÅÍ°¡ °ğ Æø¹ßÇÑ´Ù."))
+				FString::Printf(TEXT("[ç‰ˆç»Š] StageInfo å•æç£ç‹¼ ä¸´é”…é¾‹ä¿Š æ‘¹ç–™åˆ©ç‰¢ å·©åŠ›å•Š ä¹æ¾œ. å“ªè…”ç£å•Š æ¢† æ°”æƒ¯èŒ„ä¿ƒ."))
 			));
 #endif
 		}
 
-		// ChapterNum °ú SubChapterNum Áßº¹ ¾ÈµÇµµ·Ï °Ë»ç
+		// ChapterNum è‹ SubChapterNum åæ±— æ•‘ç™»æ¡£åºŸ å…«è¤
 		int32 FoundDuplicatedChapterNumCombinationNum = 0;
 		for (int32 RIA = 0; RIA < RowKeys.Num(); ++RIA)
 		{
@@ -214,7 +217,7 @@ void UB2StageInfo::CheckInfoDataIntegrity()
 		{
 #if !PLATFORM_MAC
 			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-				FString::Printf(TEXT("[°æ°í] StageInfo ÀÇ Chapter/SubChapterNum ¼³Á¤ Áßº¹ÀÌ %d °³ ¹ß°ßµÇ¾úÀ½. ÄÄÇ»ÅÍ°¡ °ğ Æø¹ßÇÑ´Ù."), FoundDuplicatedChapterNumCombinationNum)
+				FString::Printf(TEXT("[ç‰ˆç»Š] StageInfo ç‹¼ Chapter/SubChapterNum æ±²æ²¥ åæ±—æ %d ä¿º æƒ¯æ–‘ç™»èŒæ¾œ. å“ªè…”ç£å•Š æ¢† æ°”æƒ¯èŒ„ä¿ƒ."), FoundDuplicatedChapterNumCombinationNum)
 			));
 #endif
 		}
@@ -223,7 +226,7 @@ void UB2StageInfo::CheckInfoDataIntegrity()
 	{
 #if !PLATFORM_MAC
 		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-			FString::Printf(TEXT("StageInfo µ¥ÀÌÅÍ ¾øÀ½. ÄÄÇ»ÅÍ°¡ °ğ Æø¹ßÇÑ´Ù."))
+			FString::Printf(TEXT("StageInfo å•æç£ ç»æ¾œ. å“ªè…”ç£å•Š æ¢† æ°”æƒ¯èŒ„ä¿ƒ."))
 		));
 #endif
 	}
@@ -231,7 +234,7 @@ void UB2StageInfo::CheckInfoDataIntegrity()
 
 void UB2StageInfo::EditorLoadAll()
 {
-	// DataTable ÀÌ¶ó redirector Ã³¸®¸¦ È®½ÇÈ÷ ÇÏ±â À§ÇØ ¿¡µğÅÍ¿¡¼­ TAsset ÀÇ full load °¡ ÇÊ¿ä.
+	// DataTable ææ‰¼ redirector è´¸åºœç”« çŠ¬è§’æ´’ çªæ‰ å›°ç§¦ ä¿Šå¼ç£ä¿Šè¾‘ TAsset ç‹¼ full load å•Š é˜å¤¸.
 	EditorAllLoadedTAssetHolder.Empty();
 
 	TArray<FName> RowKeys = TheData->GetRowNames();
@@ -245,7 +248,7 @@ void UB2StageInfo::EditorLoadAll()
 			SingleRefHolder.LoadedStageTexture = ThisInfoData->GetStageTexture();
 			SingleRefHolder.LoadedNPCTexture = ThisInfoData->GetNPCTexture();
 			if (SingleRefHolder.LoadedStageTexture && SingleRefHolder.LoadedNPCTexture)
-			{ // ±×³É ³Ö±â¸¸ ÇÑ´Ù. GC ¾ÈµÇµµ·Ï.
+			{ // å¼Šæˆ æŒæ‰çˆ¶ èŒ„ä¿ƒ. GC æ•‘ç™»æ¡£åºŸ.
 				EditorAllLoadedTAssetHolder.Add(SingleRefHolder);
 			}
 
@@ -256,13 +259,13 @@ void UB2StageInfo::EditorLoadAll()
 #endif
 
 void FB2StageStreamingSettings::ExecuteStreaming(UWorld* InWorld,
-	// LoadLimitTime ¼³Á¤ÀÌ ÀÖÀ» ½Ã ÇØ´ç ½Ã°£ ÀÌÈÄ È£ÃâµÉ Flush Å¸ÀÌ¸Ó Á¤º¸¸¦ ³Ö¾îÁÖ¾î¾ß ÇÑ´Ù. ½Ç»ó LoadLimitTime ¼³Á¤À» ¾È ¾´´Ù ÇØµµ ³Ö¾îÁÖ¾î¾ß ÇÏ´Â °Ç º¯ÇÔ ¾øÀ½ ¤»
+	// LoadLimitTime æ±²æ²¥æ ä¹é˜‘ çŸ« ç§¦å¯¸ çŸ«åŸƒ æé¥¶ é¾‹å…çª Flush é¸¥æèµ£ æ²¥ç„Šç”« æŒç»¢æ—ç»¢å…· èŒ„ä¿ƒ. è§’æƒ‘ LoadLimitTime æ±²æ²¥é˜‘ æ•‘ æ•¬ä¿ƒ ç§¦æ¡£ æŒç»¢æ—ç»¢å…· çªç»° æ‰’ å‡½çªƒ ç»æ¾œ ã›
 	FTimerHandle& InTimerHandle,
 	FTimerDelegate const& InFlushStreamingTimerDelegate)
 {
 	//B2_SCOPED_TRACK_LOG(FString::Printf(TEXT("FB2StageStreamingSettings::ExecuteStreaming %d Unload, %d Load, LoadLimitTime %.2f"), LevelToUnload.Num(), LevelToLoad.Num(), LoadLimitTime));
 
-	// ±âºĞ»óÀÌ±ä ÇÒ ²«µ¥ Unload ºÎÅÍ ÇÏÀÚ ¤»
+	// æ‰ç›’æƒ‘æå˜ ä¸” æå• Unload ä½•ç£ çªç£Š ã›
 	int32 StreamedCount = 0;
 	for (const FName& ThisToUnload : LevelToUnload)
 	{
@@ -270,7 +273,7 @@ void FB2StageStreamingSettings::ExecuteStreaming(UWorld* InWorld,
 		UGameplayStatics::UnloadStreamLevel(InWorld, ThisToUnload, FLatentActionInfo(),false);
 	}
 
-	// ShouldBlockOnLoad ½Ã FlushAsyncLoading ÀÌ µÉ °Í.. Å« ·¹º§ÀÏ¼ö·Ï ÀÌ°Í ÀÚÃ¼ÀÇ ·Îµù ·¢µµ Å¬ ²¨°í. Æ¯È÷ ½ºÅ×ÀÌÁö ½ÃÀÛ ÃÊ¹İ¿¡´Â ¹é±×¶ó¿îµå async ·ÎµùÀÌ Á» ÀÖ¾î¼­ ÀÌ°Ô µé¾î°¡¸é °ï¶õÇÒ °Í.
+	// ShouldBlockOnLoad çŸ« FlushAsyncLoading æ çª å·´.. å¥´ é¥­éª‡è€èåºŸ æå·´ ç£Šçœ‰ç‹¼ è‚ºçˆ¹ å‘æ¡£ åŠª æ³¢ç»Š. æ¼‚æ´’ èƒ¶æŠ›æç˜¤ çŸ«ç´¯ æª¬é¦†ä¿Šç»° å½’å¼Šæ‰¼æ¬¾é› async è‚ºçˆ¹æ ç²± ä¹ç»¢è¾‘ æéœ¸ ç”¸ç»¢å•Šæ å¸®é„‚ä¸” å·´.
 	const bool bShouldBlockOnLoad = (LoadLimitTime <= 0.0f);
 
 	TArray<ULevelStreaming*> AllLSObjToLoad;
@@ -283,7 +286,7 @@ void FB2StageStreamingSettings::ExecuteStreaming(UWorld* InWorld,
 	{
 		if (!bShouldBlockOnLoad && InWorld)
 		{
-			// ÁöÁ¤ÇÑ Äİ¹é¿¡¼­ UGameplayStatics::FlushLevelStreaming ÀÌ¶û TimerHandle Å¬¸®¾î¸¦ ÇØ¾ß ÇÑ´Ù. ¾Ë¾Æ¼­ Àß.. ;;
+			// ç˜¤æ²¥èŒ„ å¦®å½’ä¿Šè¾‘ UGameplayStatics::FlushLevelStreaming æå°” TimerHandle åŠªåºœç»¢ç”« ç§¦å…· èŒ„ä¿ƒ. èˆ…é…’è¾‘ è‚‹.. ;;
 			InWorld->GetTimerManager().SetTimer(InTimerHandle, InFlushStreamingTimerDelegate, LoadLimitTime, false);
 		}
 	}
@@ -296,7 +299,7 @@ void FB2StageStreamingSettings::EditorCheckForProperSetting(class UWorld* InWorl
 	TArray<FString> WrongStreamingMethodNames;
 	for (const FName& ThisToUnload : LevelToUnload)
 	{
-		// NAME_None ÀÌ¸é ¾ÆÁ÷ ¼¼ÆÃ ¾ÈµÈ °É·Î Ä¡ÀÚ.
+		// NAME_None ææ é…’æµ æŠ€æ³¼ æ•‘ç­‰ å§è‚º æ‘¹ç£Š.
 		if (ThisToUnload != NAME_None && !EditorCheckLevelNameInWorld(InWorld, ThisToUnload))
 		{
 			NotFoundNames.Add(ThisToUnload.ToString());
@@ -305,13 +308,13 @@ void FB2StageStreamingSettings::EditorCheckForProperSetting(class UWorld* InWorl
 	for (const FName& ThisToLoad : LevelToLoad)
 	{
 		const bool bExistNameCheck = EditorCheckLevelNameInWorld(InWorld, ThisToLoad);
-		// NAME_None ÀÌ¸é ¾ÆÁ÷ ¼¼ÆÃ ¾ÈµÈ °É·Î Ä¡ÀÚ.
+		// NAME_None ææ é…’æµ æŠ€æ³¼ æ•‘ç­‰ å§è‚º æ‘¹ç£Š.
 		if (ThisToLoad != NAME_None && !bExistNameCheck)
 		{
 			NotFoundNames.Add(ThisToLoad.ToString());
 		}
 		if (bExistNameCheck && !EditorCheckLevelStreamingMethodInWorld(InWorld, ThisToLoad))
-		{ // µµÁß¿¡ ·ÎµùÇÒ ·¹º§ÀÌ¸é AlwaysLoad ¿©¼­´Â ¾ÈµÇÁö.
+		{ // æ¡£åä¿Š è‚ºçˆ¹ä¸” é¥­éª‡ææ AlwaysLoad å’¯è¾‘ç»° æ•‘ç™»ç˜¤.
 			WrongStreamingMethodNames.Add(ThisToLoad.ToString());
 		}
 	}
@@ -319,7 +322,7 @@ void FB2StageStreamingSettings::EditorCheckForProperSetting(class UWorld* InWorl
 	if (NotFoundNames.Num() > 0)
 	{
 #if !PLATFORM_MAC
-		FString NotFoundNameWarnMessage = TEXT("´ÙÀ½ ÀÌ¸§À» ÇöÀç ¿¬°áµÈ ½ºÆ®¸®¹Ö ·¹º§¿¡¼­ Ã£À» ¼ö ¾ø½À´Ï´Ù.\n\n");
+		FString NotFoundNameWarnMessage = TEXT("ä¿ƒæ¾œ ææŠšé˜‘ æ³…çŠ æ¥·æ¬ç­‰ èƒ¶é£˜åºœæ€ª é¥­éª‡ä¿Šè¾‘ èŒ«é˜‘ è ç»åš¼èªä¿ƒ.\n\n");
 		for (const FString& ThisWrongLevel : NotFoundNames)
 		{
 			NotFoundNameWarnMessage += (ThisWrongLevel + TEXT("\n"));
@@ -330,7 +333,7 @@ void FB2StageStreamingSettings::EditorCheckForProperSetting(class UWorld* InWorl
 	if (WrongStreamingMethodNames.Num() > 0)
 	{
 #if !PLATFORM_MAC
-		FString WrongStreamingWarnMessage = TEXT("´ÙÀ½ ÀÌ¸§Àº ÇöÀç ¿¬°áµÈ ½ºÆ®¸®¹Ö ·¹º§¿¡¼­ Ã£¾ÒÀ¸³ª Streaming Method °¡ Àß¸øµÇ¾ú½À´Ï´Ù.\n\n");
+		FString WrongStreamingWarnMessage = TEXT("ä¿ƒæ¾œ ææŠšç¯® æ³…çŠ æ¥·æ¬ç­‰ èƒ¶é£˜åºœæ€ª é¥­éª‡ä¿Šè¾‘ èŒ«ç–½æ å”± Streaming Method å•Š è‚‹ç»™ç™»èŒåš¼èªä¿ƒ.\n\n");
 		for (const FString& ThisWrongLevel : WrongStreamingMethodNames)
 		{
 			WrongStreamingWarnMessage += (ThisWrongLevel + TEXT("\n"));
@@ -347,7 +350,7 @@ bool CheckForStreamingLevelName(ULevelStreaming* InSL, const FString& InNameToCh
 	{
 		FString SLShortName = FPackageName::GetShortName(InSL->GetWorldAssetPackageName());
 
-		// Play-in-Editor ¿ë ÀÌ¸§ Á¢µÎ¾î´Â »©°í ºñ±³.. ÇÏ·Á°í Çß´õ´Ï ¹º ¼ıÀÚ±îÁö µé¾î°¡¼­ ¾ÈµÇ°Ú´Ù.. ±×·± °æ¿ì´Â µŞºÎºĞ¸¸ ºñ±³.
+		// Play-in-Editor ä¾© ææŠš ç«‹æ»´ç»¢ç»° å“—ç»Š åšèƒŒ.. çªå¦¨ç»Š æ²æ­¹èª è´­ ç®­ç£Šé³–ç˜¤ ç”¸ç»¢å•Šè¾‘ æ•‘ç™»æ‘†ä¿ƒ.. å¼Šç¹ ç‰ˆå¿«ç»° ç¼”ä½•ç›’çˆ¶ åšèƒŒ.
 		if (
 			(SLShortName.StartsWith(PLAYWORLD_PACKAGE_PREFIX) && SLShortName.EndsWith(InNameToCheck)) ||
 			(InNameToCheck == SLShortName)
@@ -384,7 +387,7 @@ bool FB2StageStreamingSettings::EditorCheckLevelStreamingMethodInWorld(class UWo
 		for (ULevelStreaming* ThisSL : InWorld->GetStreamingLevels())
 		{
 			ULevelStreamingDynamic* ThisSLKismet = Cast<ULevelStreamingDynamic>(ThisSL);
-			// »ç½Ç»ó EditorCheckLevelNameInWorld µµ Æ÷ÇÔ
+			// è¤è§’æƒ‘ EditorCheckLevelNameInWorld æ¡£ å™¨çªƒ
 			if (ThisSLKismet && CheckForStreamingLevelName(ThisSLKismet, NameToCheckStr))
 			{
 				return true;
@@ -421,14 +424,14 @@ FText FSingleStageInfoData::GetLocalizedStageName()
 	return FText::GetEmpty();
 }
 FText FSingleStageInfoData::GetLocalizedStageStory()
-{ // µ¿ÀÏÇÑ Å°°ª¿¡ category ¸¸ ´Ù¸£´Ù.
+{ // æ‚¼è€èŒ„ è™è”¼ä¿Š category çˆ¶ ä¿ƒç¦ä¿ƒ.
 	//return BladeIIGetLOCText(B2LOC_CAT_STAGESTORY, LocalizationStageNameKey.ToString());
 	return FText::GetEmpty();
 }
 
 /* ===========================================================================
- * ¿©±â¿¡ ÀÖ´Â GMP µ¿¿µ»ó »ç¿îµå ´Ù±¹¾î Ã¼Å© ±â´ÉµéÀº ³Î¸® ÇÊ¿äÇØÁö¸é º¸´Ù »óÀ§¿¡ °øÅë ±â´ÉÀ¸·Î ÀÌÀü.
- * Stage ½Ã³ª¸®¿À µ¿¿µ»ó¸¸ ÀÌ·± ´Ù±¹¾î Ã³¸®°¡ ÇÊ¿äÇÑ »óÈ²¿¡¼­ ¿©±â¿¡ ±¸ÇöÇÑ °Í.
+ * å’¯æ‰ä¿Š ä¹ç»° GMP æ‚¼åº·æƒ‘ è¤æ¬¾é› ä¿ƒæƒ«ç»¢ çœ‰å†œ æ‰ç“·ç”¸ç¯® æ¾„åºœ é˜å¤¸ç§¦ç˜¤æ ç„Šä¿ƒ æƒ‘å›°ä¿Š å‚çƒ¹ æ‰ç“·æ è‚º æå‚ˆ.
+ * Stage çŸ«å”±åºœå· æ‚¼åº·æƒ‘çˆ¶ æç¹ ä¿ƒæƒ«ç»¢ è´¸åºœå•Š é˜å¤¸èŒ„ æƒ‘ç‚”ä¿Šè¾‘ å’¯æ‰ä¿Š å¤‡æ³…èŒ„ å·´.
  * =========================================================================== */
 FORCEINLINE FString CombineLocalizedMovieNameCommon(const FString& InRawMovieName, const FString& InLocNaming)
 {
@@ -440,7 +443,7 @@ bool DoesLocalizedMovieFileExist(const FString& InRawMovieName, int32 CheckSound
 	//if (GMPObj)
 	//{
 	//	const FString& CheckLocTypeMovieName = CombineLocalizedMovieNameCommon(InRawMovieName, B2SoundLocalizeType::GetNamingConvention(CheckSoundLocType));
-	//	// FPaths ÂÊ ÇÔ¼ö ´ë½Å Á» °ÅÃ¢ÇÑ ±â´ÉÀ¸·Î ÆÄÀÏ ÀÖ´ÂÁö¸¦ Ã¼Å©ÇÏ´Âµ¥ ½ÇÁ¦ À§Ä¡ÇÏ´Â °æ·Î°¡ ÇÃ·§ÆûÀÌ³ª ¼³Ä¡ Å¸ÀÔ¿¡ µû¶ó ´Ş¶óÁö±â ¶§¹®.
+	//	// FPaths ç‡ çªƒè æªè„š ç²± èŠ­èŠ’èŒ„ æ‰ç“·æ è‚º é¢‡è€ ä¹ç»°ç˜¤ç”« çœ‰å†œçªç»°å• è§’åŠ› å›°æ‘¹çªç»° ç‰ˆè‚ºå•Š æ•²é˜€æ±½æå”± æ±²æ‘¹ é¸¥æ¶ä¿Š è¶æ‰¼ å´”æ‰¼ç˜¤æ‰ é”­å·©.
 	//	if (GMPObj->DoesMovieFileExistAutoDLCCheck(CheckLocTypeMovieName))
 	//	{
 	//		return true;
@@ -450,11 +453,11 @@ bool DoesLocalizedMovieFileExist(const FString& InRawMovieName, int32 CheckSound
 }
 const FString ConvertToSafeLocalizedMovieName(const FString& InRawMovieName)
 {
-	// ½ÇÁ¦ ÇØ´ç ÆÄÀÏ Á¸Àç ¿©ºÎ±îÁö µûÁ®¼­ ¸®ÅÏ.
-	// ´Ù¸¥ °÷¿¡¼­µµ »ç¿ë ÇÊ¿ä°¡ ÀÖÀ½. 
+	// è§’åŠ› ç§¦å¯¸ é¢‡è€ ç²®çŠ å’¯ä½•é³–ç˜¤ è¶å»‰è¾‘ åºœç•”.
+	// ä¿ƒå¼— é•‘ä¿Šè¾‘æ¡£ è¤ä¾© é˜å¤¸å•Š ä¹æ¾œ. 
 	if (InRawMovieName.Len() > 0)
 	{
-		//{ // ÇöÀç ´Ù±¹¾î ¼³Á¤¿¡ ±×´ë·Î ¸ÅÄªÇÏ´Â ÀÌ¸§À» °¡Áø ÆÄÀÏÀ» ¸ÕÀú Ã£À½.
+		//{ // æ³…çŠ ä¿ƒæƒ«ç»¢ æ±²æ²¥ä¿Š å¼Šæªè‚º æ¦‚è«çªç»° ææŠšé˜‘ å•ŠæŸ³ é¢‡è€é˜‘ åˆšå† èŒ«æ¾œ.
 		//	const int32 FirstTryType = FGenericPlatformMisc::GetSoundLocType();
 		//	if (DoesLocalizedMovieFileExist(InRawMovieName, FirstTryType))
 		//	{
@@ -463,9 +466,9 @@ const FString ConvertToSafeLocalizedMovieName(const FString& InRawMovieName)
 		//		return ResultMovieFileName;
 		//	}
 		//}
-		//{ // ÇöÀç LocType ¿¡ ¸ÅÄªÇÏ´Â ÀÌ¸§À» °¡Áø ÆÄÀÏÀÌ ¾øÀ» °æ¿ì ´Ù¸¥ °Å¶óµµ Ã£¾Æº»´Ù.  
+		//{ // æ³…çŠ LocType ä¿Š æ¦‚è«çªç»° ææŠšé˜‘ å•ŠæŸ³ é¢‡è€æ ç»é˜‘ ç‰ˆå¿« ä¿ƒå¼— èŠ­æ‰¼æ¡£ èŒ«é…’å¤¯ä¿ƒ.  
 		//	const int32 AltTryType = (FGenericPlatformMisc::GetSoundLocType() == B2SoundLocalizeType::English()) ?
-		//		B2SoundLocalizeType::Korea() : B2SoundLocalizeType::English(); // ¼³·É ÀÌ°Í ¿Ü¿¡ ´Ù¸¥ ´Ù±¹¾î°¡ ÀÖ´õ¶óµµ.. 2Â÷ ½Ãµµ´Â ÇÑ±¹¾î ¾Æ´Ô ¿µ¾î°¡ µÉ µí.
+		//		B2SoundLocalizeType::Korea() : B2SoundLocalizeType::English(); // æ±²é£ æå·´ å¯‡ä¿Š ä¿ƒå¼— ä¿ƒæƒ«ç»¢å•Š ä¹æ­¹æ‰¼æ¡£.. 2ç’ çŸ«æ¡£ç»° èŒ„æƒ«ç»¢ é…’ä¸› åº·ç»¢å•Š çª æ·€.
 		//	if (DoesLocalizedMovieFileExist(InRawMovieName, AltTryType))
 		//	{
 		//		const FString& ResultMovieFileName = CombineLocalizedMovieNameCommon(InRawMovieName, B2SoundLocalizeType::GetNamingConvention(AltTryType));
@@ -474,7 +477,7 @@ const FString ConvertToSafeLocalizedMovieName(const FString& InRawMovieName)
 		//	}
 		//}
 	}
-	// ÀÌµµÀúµµ ¾øÀ¸¸é suffix ¾È ºÙÀº raw ÀÌ¸§À¸·Î. ½ÇÁ¦·Î ´Ù±¹¾î Ã³¸®°¡ ÇÊ¿ä¾ø´Â ¿µ»óÀº ÀÌ·¸°Ô µÉ ¼ö ÀÖÀ½.
+	// ææ¡£å†æ¡£ ç»æ æ suffix æ•‘ å˜¿ç¯® raw ææŠšæ è‚º. è§’åŠ›è‚º ä¿ƒæƒ«ç»¢ è´¸åºœå•Š é˜å¤¸ç»ç»° åº·æƒ‘ç¯® æçŠ¯éœ¸ çª è ä¹æ¾œ.
 	//UE_LOG(LogBladeII, Log, TEXT("ConvertToSafeLocalizedMovieName %s, by non-locaized raw name."), *InRawMovieName);
 	return InRawMovieName;
 }
@@ -489,7 +492,7 @@ bool FSingleStageInfoData::DoesCurrLocTypeMovieFileExist() const
 	return true;
 }
 bool FSingleStageInfoData::HasScenarioMovie() const
-{ // ½ÇÁ¦ ÆÄÀÏ Á¸Àç À¯¹«º¸´Ù´Â ¼³Á¤ÀÌ ±×·¸°Ô µÇ¾î ÀÖ´ÂÁö Ã¼Å© ÀÇ¹Ì. µû¶ó¼­ LocalizedMovieName ±îÁö º¼ ²¨ ¾øÀÌ MovieName ¸¸ Ã¼Å©.
+{ // è§’åŠ› é¢‡è€ ç²®çŠ èœ¡å…¬ç„Šä¿ƒç»° æ±²æ²¥æ å¼ŠçŠ¯éœ¸ ç™»ç»¢ ä¹ç»°ç˜¤ çœ‰å†œ ç‹¼å›º. è¶æ‰¼è¾‘ LocalizedMovieName é³–ç˜¤ æ­ æ³¢ ç»æ MovieName çˆ¶ çœ‰å†œ.
 	return (MovieName.Len() > 0);
 }
 

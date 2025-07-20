@@ -1,4 +1,4 @@
-#include "B2UICharacterNickNameEdit.h"
+ï»¿#include "B2UICharacterNickNameEdit.h"
 #include "B2UIManager.h"
 #include "BladeIIGameMode.h"
 #include "Retailer.h"
@@ -23,7 +23,7 @@ void UB2UICharacterNickNameEdit::NativeTick(const FGeometry& MyGeometry, float I
 {
 	Super::NativeTick(MyGeometry, InDeltaTime);
 
-	// ±æÀÌ Á¦ÇÑ ³Ñ¾î°¡¼­ Àß¸° ÅØ½ºÆ® ¿©±â¼­ ¼¼ÆÃ.
+	// è¾¨æ åŠ›èŒ„ é€ç»¢å•Šè¾‘ è‚‹èµ´ å’†èƒ¶é£˜ å’¯æ‰è¾‘ æŠ€æ³¼.
 	if (bClampedEditNickNamePending && ETB_NickName.IsValid())
 	{
 		ETB_NickName->SetText(PendingClampedEditNickName);
@@ -39,7 +39,7 @@ void UB2UICharacterNickNameEdit::BeginEditPopup(EPCClass InEditClass)
 
 	if (ETB_NickName.IsValid())
 	{
-		ETB_NickName->SetText(FText::FromString(TEXT(""))); // ºñ¿î´Ù.
+		ETB_NickName->SetText(FText::FromString(TEXT(""))); // åšæ¬¾ä¿ƒ.
 	}
 }
 
@@ -87,7 +87,7 @@ void UB2UICharacterNickNameEdit::BindDelegates()
 
 bool UB2UICharacterNickNameEdit::CheckForProhibitedNickName(const FText& InNickName)
 {
-	// TODO : ±İÄ¢¾î ±â´É Ã¤ÆÃ°ú ÇÔ²² ÃßÈÄ ±¸Çö..
+	// TODO : é™›è˜‘ç»¢ æ‰ç“· ç›²æ³¼è‹ çªƒè†Š çœ é¥¶ å¤‡æ³…..
 
 	return true;
 }
@@ -95,22 +95,22 @@ bool UB2UICharacterNickNameEdit::CheckForProhibitedNickName(const FText& InNickN
 bool UB2UICharacterNickNameEdit::CheckForWrongNickName(const FText& InNickName)
 {
 	FString TextString = InNickName.ToString();
-	if (TextString.Len() < B2_CHAR_NICKNAME_MIN_LENGTH || TextString.Len() > B2_CHAR_NICKNAME_MAX_LENGTH) // ±æÀÌ ³Ñ¾î°¡´Â °Ç ¹°·Ğ ±âº»ÀûÀ¸·Î ¿¡µğÆ® ½Ã Ã³¸®¸¦ ÇÏ±ä ÇÔ.
+	if (TextString.Len() < B2_CHAR_NICKNAME_MIN_LENGTH || TextString.Len() > B2_CHAR_NICKNAME_MAX_LENGTH) // è¾¨æ é€ç»¢å•Šç»° æ‰’ æ‹±æ²¸ æ‰å¤¯åˆ©æ è‚º ä¿Šå¼é£˜ çŸ« è´¸åºœç”« çªå˜ çªƒ.
 	{
 		return false;
 	}
 
-	// ±âÅ¸?
+	// æ‰é¸¥?
 
 	return true;
 }
 
 bool UB2UICharacterNickNameEdit::CheckForDuplicatedNickName(const FText& InNickName)
 {
-	// ºñ±³´Â ÀÏ´Ü ±ò²ûÇÏ°Ô FString À¸·Î ÇØ º¸ÀÚ.. FText ·Î ºñ±³ÇÏ´Ù°¡ ÀÚÄ© ´Ù±¹¾î °ü·ÃÇØ¼­ Àß¸ø ²¿ÀÏÁöµµ ¸ğ¸£°Ú´Ù.
+	// åšèƒŒç»° è€çªœ å½¬é˜çªéœ¸ FString æ è‚º ç§¦ ç„Šç£Š.. FText è‚º åšèƒŒçªä¿ƒå•Š ç£Šæœ« ä¿ƒæƒ«ç»¢ åŒ…è®¿ç§¦è¾‘ è‚‹ç»™ éƒ¨è€ç˜¤æ¡£ è‘›ç¦æ‘†ä¿ƒ.
 	const FString InNickNameStr = InNickName.ToString();
 
-	// CharacterDataStore ¿¡ Á¢±ÙÇØ¼­ ´Ù¸¥ Ä³¸¯ÅÍµéÀÇ NickName À» °¡Á®¿Í¼­ ºñ±³
+	// CharacterDataStore ä¿Š ç«‹è¾Ÿç§¦è¾‘ ä¿ƒå¼— æŸè…ç£ç”¸ç‹¼ NickName é˜‘ å•Šå»‰å®¢è¾‘ åšèƒŒ
 	FClientDataStore& CliDS = BladeIIGameImpl::GetClientDataStore();
 	for (int8 PCI = 0; PCI < GetMaxPCClassNum(); ++PCI)
 	{
@@ -118,9 +118,9 @@ bool UB2UICharacterNickNameEdit::CheckForDuplicatedNickName(const FText& InNickN
 		if (ThisPCClass == EditingPCClass){
 			continue;
 		}
-		// Nick ÀÌ ¾Æ´Ñ ClassName À» °¡Á®¿Ã ¼öµµ ÀÖ´Âµ¥ ¿©ÇÏ°£ ±×°Å¶û Ãæµ¹ÀÌ ³ªµµ °ï¶õÇÏÁö.
+		// Nick æ é…’å›± ClassName é˜‘ å•Šå»‰æ£µ èæ¡£ ä¹ç»°å• å’¯çªåŸƒ å¼ŠèŠ­å°” é¢å€’æ å”±æ¡£ å¸®é„‚çªç˜¤.
 		const FString ThisClassOrNickName = CliDS.GetLocalCharClassOrNickName(ThisPCClass).ToString();
-		const FString ThisClassName = CliDS.GetLocalCharClassName(ThisPCClass).ToString(); // Å¬·¡½ºÀÌ¸§µµ °Á ºñ±³ÇØ ¹ö¸®ÀÚ.
+		const FString ThisClassName = CliDS.GetLocalCharClassName(ThisPCClass).ToString(); // åŠªè´°èƒ¶ææŠšæ¡£ å‚² åšèƒŒç§¦ æ»šåºœç£Š.
 		if (InNickNameStr == ThisClassOrNickName || InNickNameStr == ThisClassName){
 			return false;
 		}
@@ -133,8 +133,8 @@ void UB2UICharacterNickNameEdit::OnNickNameEditChanged(const FText& InText)
 {
 	if (InText.ToString().Len() > B2_CHAR_NICKNAME_MAX_LENGTH)
 	{
-		// ±æÀÌ Á¦ÇÑ ³Ñ¾î°¡¸é ÀÚ¸£´Âµ¥ ÀÚ¸¥ °É ¹Ù·Î ¼¼ÆÃÇÏ¸é ÇÑ±Û¿¡¼­ Å©·¡½¬°¡ ³ª°í ÀÌ·¸°Ô ÀÚ¸¥ °É ÀúÀåÇØ µÎ¾ú´Ù°¡ Tick ¿¡¼­ ¼¼ÆÃ
-		// ±×¸®°í ¿©±â¼± ÀÏ´Ü ºñ¿öµÖ¾ß ÇÔ.
+		// è¾¨æ åŠ›èŒ„ é€ç»¢å•Šæ ç£Šç¦ç»°å• ç£Šå¼— å§ å®˜è‚º æŠ€æ³¼çªæ èŒ„è‡‚ä¿Šè¾‘ å†œè´°æµ†å•Š å”±ç»Š æçŠ¯éœ¸ ç£Šå¼— å§ å†å˜ç§¦ æ»´èŒä¿ƒå•Š Tick ä¿Šè¾‘ æŠ€æ³¼
+		// å¼Šåºœç»Š å’¯æ‰æ€¥ è€çªœ åšå†µæŠµå…· çªƒ.
 
 		PendingClampedEditNickName = ClampTextLength(InText, B2_CHAR_NICKNAME_MAX_LENGTH);
 		bClampedEditNickNamePending = true;
@@ -148,11 +148,11 @@ void UB2UICharacterNickNameEdit::OnNickNameEditChanged(const FText& InText)
 
 void UB2UICharacterNickNameEdit::OnClickEditConfirmBtn()
 {
-	const FText EdittedNickName = ETB_NickName.IsValid() ? ETB_NickName->GetText() : FText::FromString(TEXT("")); // ºó ¹®ÀÚ¿­ÀÌ¸é WrongNickName ¿¡ °É¸®°ÚÁö..
+	const FText EdittedNickName = ETB_NickName.IsValid() ? ETB_NickName->GetText() : FText::FromString(TEXT("")); // å å·©ç£Šå‡¯ææ WrongNickName ä¿Š å§åºœæ‘†ç˜¤..
 	bool bPopupWarnMsg = false;
 	FText WarnMsgText;
 
-	// ±ÔÄ¢¿¡ ¾î±ß³­Áö, ´Ù¸¥ ´Ğ³×ÀÓ°ú Áßº¹µÇÁö ¾Ê´ÂÁö Ã¼Å©ÇØ¼­ ÆË¾÷.
+	// ç—¹è˜‘ä¿Š ç»¢è¾¹æŠ„ç˜¤, ä¿ƒå¼— è‘±åŒ™çƒ™è‹ åæ±—ç™»ç˜¤ è‡¼ç»°ç˜¤ çœ‰å†œç§¦è¾‘ æ‰‘è¯€.
 	if (!CheckForProhibitedNickName(EdittedNickName))
 	{
 		bPopupWarnMsg = true;
@@ -174,7 +174,7 @@ void UB2UICharacterNickNameEdit::OnClickEditConfirmBtn()
 		{
 			BladeIIGameImpl::GetClientDataStore().RequestSetCharNickName(EditingPCClass, EdittedNickName);
 		}
-		//CloseMe(); ¿©±â¼­ ¾È ´İ°í ÀÀ´äÀÌ ¿À¸é ´İ´Â´Ù. ¼­¹ö¿¡¼­ µû·Î ´õ Á¤±³ÇÏ°Ô Àß¸øµÈ ÀÌ¸§À» °¨ÁöÇÏ¹Ç·Î. (HandleServerError1012)
+		//CloseMe(); å’¯æ‰è¾‘ æ•‘ æ‘§ç»Š è§ˆç¿ æ å·æ æ‘§ç»°ä¿ƒ. è¾‘æ»šä¿Šè¾‘ è¶è‚º æ­¹ æ²¥èƒŒçªéœ¸ è‚‹ç»™ç­‰ ææŠšé˜‘ çš‘ç˜¤çªéª¨è‚º. (HandleServerError1012)
 	}
 	
 	UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
@@ -200,7 +200,7 @@ void UB2UICharacterNickNameEdit::CloseMe()
 {
 	if (ETB_NickName.IsValid())
 	{
-		ETB_NickName->SetText(FText::FromString(TEXT(""))); // ºñ¿î´Ù.
+		ETB_NickName->SetText(FText::FromString(TEXT(""))); // åšæ¬¾ä¿ƒ.
 	}
 
 	this->SetVisibility(ESlateVisibility::Collapsed);

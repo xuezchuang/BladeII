@@ -1,4 +1,4 @@
-
+ï»¿
 #include "B2UITeamMatchBattleSlot.h"
 #include "B2UIDocHelper.h"
 #include "Event.h"
@@ -179,7 +179,7 @@ void UB2UITeamMatchBattleSlot::SetContributionValue(int32 Value)
 
 void UB2UITeamMatchBattleSlot::CreateResurrectBuffIcon(EResurrectBuffType InResurrectBuffType, int32 InTeamIndex)
 {
-	// ºÎÈ° ¹öÇÁ´Â ÇÏ³ª¸¸ Ç¥½ÃµÉ °Å±â ¶«¿¡ ±âÁ¸¿¡ ÀÖ´Â °É Ã£¾Æ¼­ ¾÷µ¥ÀÌÆ® ÇÏµçÁö »õ·Î »ı¼º
+	// ä½•åŠ æ»šæ©‡ç»° çªå”±çˆ¶ é’çŸ«çª èŠ­æ‰ ä¸œä¿Š æ‰ç²®ä¿Š ä¹ç»° å§ èŒ«é…’è¾‘ è¯€å•æé£˜ çªç”µç˜¤ è´§è‚º ç§¯å·±
 	UB2UIInGameBuffIcon_Resurrect* CreatedOrFound = NULL;
 
 	for (UB2UIInGameBuffIcon* ThisBuffIcon : AllBuffIcons_SoR)

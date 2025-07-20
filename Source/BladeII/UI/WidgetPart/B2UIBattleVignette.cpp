@@ -1,4 +1,4 @@
-#include "B2UIBattleVignette.h"
+﻿#include "B2UIBattleVignette.h"
 #include "B2UIManager.h"
 #include "B2UIDocHelper.h"
 #include "B2UIDocBattle.h"

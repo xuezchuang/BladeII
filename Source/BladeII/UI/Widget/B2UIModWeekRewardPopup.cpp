@@ -1,4 +1,4 @@
-#include "B2UIModWeekRewardPopup.h"
+﻿#include "B2UIModWeekRewardPopup.h"
 #include "B2UIGradeRankAndStar.h"
 #include "B2UIDocHelper.h"
 #include "B2UIManager.h"

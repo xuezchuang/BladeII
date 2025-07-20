@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 //#include "BladeII.h"
 #include "EventSubsystem.h"
 #include "B2MessageInfoCommonStruct.h"

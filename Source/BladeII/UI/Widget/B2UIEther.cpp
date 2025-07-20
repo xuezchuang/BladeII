@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIEther.h"
 #include "B2UIEtherDetailPopup.h"
@@ -520,7 +520,7 @@ void UB2UIEther::OnClickAutoTakeOff()
 
 	if (EtherIDs.Num() > 0)
 	{
-		//colosseum comment : characterType ÆÄ¶ó¹ÌÅÍ Ãß°¡
+		//colosseum comment : characterType é¢‡æ‰¼å›ºç£ çœ å•Š
 		data_trader::Retailer::GetInstance().RequestUnmountAethers(EtherIDs, CliToSvrPCClassType(CurrentTabType));
 	}
 	else
@@ -641,7 +641,7 @@ void UB2UIEther::EnhanceEther(const FB2EnhanceEtherPtr EtherPtr)
 	if (EtherPtr->is_success)
 	{
 		//////////////////////////////////////////////////////////////////
-		//¾×¼Ç ÁöÇ¥ ·Î±× (Ä³¸¯ÅÍ ¿¡Å×¸£ °­È­)
+		//å’€è®° ç˜¤é’ è‚ºå¼Š (æŸè…ç£ ä¿ŠæŠ›ç¦ ç¢æ‹³)
 		B2ActionLogSender Sender;
 		Sender.setCategory(FString("CHARACTER"))
 			  .setAction(FString("AEHTER_ENHANCE"))

@@ -1,4 +1,4 @@
-
+ï»¿
 
 #include "QuestDataTable.h"
 #include "QuestManager.h"
@@ -80,7 +80,7 @@ void UB2QuestInfoTable::CheckInfoDataIntegrity(UDataTable* DataTable)
 		bool bHasRowKeyLessThan0 = false;
 		bool bHasNonSequentialRowKey = false;
 
-		// DataTable ÀÇ ¸ğµç row ¸¦ iterate ÇÏ´Â ¹æ¹ıÀÎµí.
+		// DataTable ç‹¼ è‘›ç”µ row ç”« iterate çªç»° è§„è¿‡ç‰¢æ·€.
 		TArray<FName> RowKeys = DataTable->GetRowNames();
 		for (int32 RI = 0; RI < RowKeys.Num(); ++RI)
 		{
@@ -90,16 +90,16 @@ void UB2QuestInfoTable::CheckInfoDataIntegrity(UDataTable* DataTable)
 			{
 				bHasRowKeyLessThan0 = true;
 			}
-			if (RI + 1 != RowKeyNumber) // bHasRowKeyLessThan0 ÀÌ¸é °á±¹ ¿©±âµµ..
+			if (RI + 1 != RowKeyNumber) // bHasRowKeyLessThan0 ææ æ¬æƒ« å’¯æ‰æ¡£..
 			{
 				bHasNonSequentialRowKey = true;
 			}
 		}
-		if (bHasRowKeyLessThan0 /*|| bHasNonSequentialRowKey*/) // ¼ø¼­´ë·ÎÀÏ ÇÊ¿ä´Â ¾øÀ» °Í °°´Ù. ÀÏ´Ü ÀÌ°Ç °æ°í¿¡¼­ Á¦°Å.
+		if (bHasRowKeyLessThan0 /*|| bHasNonSequentialRowKey*/) // é‰´è¾‘æªè‚ºè€ é˜å¤¸ç»° ç»é˜‘ å·´ éä¿ƒ. è€çªœ ææ‰’ ç‰ˆç»Šä¿Šè¾‘ åŠ›èŠ­.
 		{
 #if !PLATFORM_MAC
 			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-				FString::Printf(TEXT("[°æ°í] DataTable µ¥ÀÌÅÍÀÇ ÁÙ¹øÈ£¿¡ Ä¡¸íÀûÀÎ ¹®Á¦°¡ ÀÖÀ½. ÄÄÇ»ÅÍ°¡ °ğ Æø¹ßÇÑ´Ù."))
+				FString::Printf(TEXT("[ç‰ˆç»Š] DataTable å•æç£ç‹¼ ä¸´é”…é¾‹ä¿Š æ‘¹ç–™åˆ©ç‰¢ å·©åŠ›å•Š ä¹æ¾œ. å“ªè…”ç£å•Š æ¢† æ°”æƒ¯èŒ„ä¿ƒ."))
 				));
 #endif
 		}
@@ -108,7 +108,7 @@ void UB2QuestInfoTable::CheckInfoDataIntegrity(UDataTable* DataTable)
 	{
 #if !PLATFORM_MAC
 		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-			FString::Printf(TEXT("DataTable µ¥ÀÌÅÍ ¾øÀ½. ÄÄÇ»ÅÍ°¡ °ğ Æø¹ßÇÑ´Ù."))
+			FString::Printf(TEXT("DataTable å•æç£ ç»æ¾œ. å“ªè…”ç£å•Š æ¢† æ°”æƒ¯èŒ„ä¿ƒ."))
 			));
 #endif
 	}
@@ -175,10 +175,10 @@ FText GetCompressedText(const FText& OrgText, int32 LimitTextCount)
 	{
 		int32 LastTagBegin = OrgString.Find(TagEnd, ESearchCase::IgnoreCase, ESearchDir::FromEnd);
 
-		const int32 ColorTagEndIdx = 22; // <span color="#20ff20"> length - Á¤ÇØÁø Çü½ÄÀÌ¹Ç·Î Code¿¡ ¹Ú´Â´Ù
+		const int32 ColorTagEndIdx = 22; // <span color="#20ff20"> length - æ²¥ç§¦æŸ³ å±ˆä¾¥æéª¨è‚º Codeä¿Š å† ç»°ä¿ƒ
 		StringTagBegin = OrgString.Left(ColorTagEndIdx);
-		OrgString = OrgString.Mid(ColorTagEndIdx, LastTagBegin - ColorTagEndIdx); // Color Tag¸¦ Á¦¿ÜÇÑ ¼ø¼ö ¹®ÀÚ¿­
-		// </> ¸¶Áö¸· Tag´Â ±æÀÌ·Î Â©¶ó¼­ ¹ö¸²
+		OrgString = OrgString.Mid(ColorTagEndIdx, LastTagBegin - ColorTagEndIdx); // Color Tagç”« åŠ›å¯‡èŒ„ é‰´è å·©ç£Šå‡¯
+		// </> ä»˜ç˜¤é˜œ Tagç»° è¾¨æè‚º æ¼æ‰¼è¾‘ æ»šè¦†
 	}
 
 	const int32 StringLength = OrgString.Len();
@@ -227,7 +227,7 @@ UB2QuestNPCSoundInfo::UB2QuestNPCSoundInfo(const FObjectInitializer& ObjectIniti
 {
 	if (HasAnyFlags(RF_ClassDefaultObject) == false)
 	{
-		// Á¤ÇØÁø ÇÏ³ª¸¦ ·Îµù
+		// æ²¥ç§¦æŸ³ çªå”±ç”« è‚ºçˆ¹
 		FString QuestNPCSoundInfoTablePath;
 		GConfig->GetString(TEXT("/Script/BladeII.B2QuestInfo"), TEXT("QuestNPCSoundInfoTable"), QuestNPCSoundInfoTablePath, GGameIni);
 
@@ -246,7 +246,7 @@ void UB2QuestNPCSoundInfo::CheckInfoDataIntegrity()
 		bool bHasRowKeyLessThan0 = false;
 		bool bHasNonSequentialRowKey = false;
 
-		// DataTable ÀÇ ¸ğµç row ¸¦ iterate ÇÏ´Â ¹æ¹ıÀÎµí.
+		// DataTable ç‹¼ è‘›ç”µ row ç”« iterate çªç»° è§„è¿‡ç‰¢æ·€.
 		TArray<FName> RowKeys = NPCSoundInfoTable->GetRowNames();
 		for (int32 RI = 0; RI < RowKeys.Num(); ++RI)
 		{
@@ -256,17 +256,17 @@ void UB2QuestNPCSoundInfo::CheckInfoDataIntegrity()
 			{
 				bHasRowKeyLessThan0 = true;
 			}
-			if (RI + 1 != RowKeyNumber) // bHasRowKeyLessThan0 ÀÌ¸é °á±¹ ¿©±âµµ..
+			if (RI + 1 != RowKeyNumber) // bHasRowKeyLessThan0 ææ æ¬æƒ« å’¯æ‰æ¡£..
 			{
 				bHasNonSequentialRowKey = true;
 			}
 		}
 
-		if (bHasRowKeyLessThan0 /*|| bHasNonSequentialRowKey*/) // ¼ø¼­´ë·ÎÀÏ ÇÊ¿ä´Â ¾øÀ» °Í °°´Ù. ÀÏ´Ü ÀÌ°Ç °æ°í¿¡¼­ Á¦°Å.
+		if (bHasRowKeyLessThan0 /*|| bHasNonSequentialRowKey*/) // é‰´è¾‘æªè‚ºè€ é˜å¤¸ç»° ç»é˜‘ å·´ éä¿ƒ. è€çªœ ææ‰’ ç‰ˆç»Šä¿Šè¾‘ åŠ›èŠ­.
 		{
 #if !PLATFORM_MAC
 			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-				FString::Printf(TEXT("[°æ°í] UB2QuestNPCSoundInfo µ¥ÀÌÅÍÀÇ ÁÙ¹øÈ£¿¡ Ä¡¸íÀûÀÎ ¹®Á¦°¡ ÀÖÀ½. ÄÄÇ»ÅÍ°¡ °ğ Æø¹ßÇÑ´Ù."))
+				FString::Printf(TEXT("[ç‰ˆç»Š] UB2QuestNPCSoundInfo å•æç£ç‹¼ ä¸´é”…é¾‹ä¿Š æ‘¹ç–™åˆ©ç‰¢ å·©åŠ›å•Š ä¹æ¾œ. å“ªè…”ç£å•Š æ¢† æ°”æƒ¯èŒ„ä¿ƒ."))
 			));
 #endif
 		}
@@ -275,7 +275,7 @@ void UB2QuestNPCSoundInfo::CheckInfoDataIntegrity()
 	{
 #if !PLATFORM_MAC
 		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-			FString::Printf(TEXT("UB2QuestNPCSoundInfo µ¥ÀÌÅÍ ¾øÀ½. ÄÄÇ»ÅÍ°¡ °ğ Æø¹ßÇÑ´Ù."))
+			FString::Printf(TEXT("UB2QuestNPCSoundInfo å•æç£ ç»æ¾œ. å“ªè…”ç£å•Š æ¢† æ°”æƒ¯èŒ„ä¿ƒ."))
 		));
 #endif
 	}
@@ -345,7 +345,7 @@ USoundCue* UB2QuestNPCSoundInfo::GetNPCSound(const FName InRawSoundCode, const i
 		if (!RetObj)
 		{
 			FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-				FString::Printf(TEXT("UB2QuestNPCSoundInfo SoundCode %s ¿¡ ´ëÇÑ Sound Asset ·Îµù ½ÇÆĞ. ÄÄÇ»ÅÍ°¡ °ğ Æø¹ßÇÑ´Ù."), *InRawSoundCode.ToString())
+				FString::Printf(TEXT("UB2QuestNPCSoundInfo SoundCode %s ä¿Š æªèŒ„ Sound Asset è‚ºçˆ¹ è§’è©. å“ªè…”ç£å•Š æ¢† æ°”æƒ¯èŒ„ä¿ƒ."), *InRawSoundCode.ToString())
 			));
 		}
 #endif

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "B2UIControlBattleSub.h"
 #include "BladeIINetControlObject.h"
@@ -48,14 +48,14 @@ void UB2UIControlBattleSub::NativeConstruct()
 
 	SetTeamKillCount(0, 0);
 
-	// ÃÊ±âÈ­
-	// UI°¡ ÄÁÆ®·Ñ ¿ÀºêÁ§Æ®º¸´Ù ³ªÁß¿¡ »ı¼ºµÊ. Á¤º¸ ¿äÃ»
+	// æª¬æ‰æ‹³
+	// UIå•Š ç‰§é£˜è´¹ å·å®ç’ƒé£˜ç„Šä¿ƒ å”±åä¿Š ç§¯å·±å‡³. æ²¥ç„Š å¤¸æ²¡
 	AB2ControlGameMode* pGM = Cast<AB2ControlGameMode>(UGameplayStatics::GetGameMode(this));
 
 	if (pGM)
 		pGM->ApplyCurrentStateToUI();
 
-	// ¹èÆ² ¸ŞÀÎ¿¡ ÄŞº¸UIÀ§Ä¡ º¸Á¤
+	// ç¡…æ’‡ çš‹ç‰¢ä¿Š éœ“ç„ŠUIå›°æ‘¹ ç„Šæ²¥
 	UB2UIManager* pUIManager = UB2UIManager::GetInstance();
 	if (pUIManager)
 	{
@@ -124,7 +124,7 @@ void UB2UIControlBattleSub::SetControlObjectState(uint8 ControlObjectState, floa
 	{
 	case CONTROL_STATE_NEUTRAL:
 		pMarkMI = ControlAreaMarkNeutral.LoadSynchronous();
-		// ÀÏ´Ü ÃÊ±âÈ­ÇÏ°í
+		// è€çªœ æª¬æ‰æ‹³çªç»Š
 		SetProgressGage(0.0f);		
 		break;
 	case CONTROL_STATE_RED:
@@ -139,7 +139,7 @@ void UB2UIControlBattleSub::SetControlObjectState(uint8 ControlObjectState, floa
 	
 	BII_CHECK(fConquestGageRed == 0.0f || fConquestGageBlue == 0.0f)
 
-	// µÑ´Ù ¼¼ÆÃÇÑ´Ù. µÑÁßÇÏ³ª´Â 0ÀÌ¾î¾ß Á¤»ó
+	// ç¬›ä¿ƒ æŠ€æ³¼èŒ„ä¿ƒ. ç¬›åçªå”±ç»° 0æç»¢å…· æ²¥æƒ‘
 	if (fConquestGageRed > 0.0f)
 		SetConquestGageInfo(true, fConquestGageRed);
 
@@ -149,11 +149,11 @@ void UB2UIControlBattleSub::SetControlObjectState(uint8 ControlObjectState, floa
 	SetControlStateImage(pMarkMI);
 	SetProgressBackImage(pGageBGMI);
 
-	// BG¿ë °ÔÀÌÁö Áß¸³ÀÏ¶© ¾Èº¸ÀÌ°Ô
+	// BGä¾© éœ¸æç˜¤ åèµ‹è€è®¢ æ•‘ç„Šæéœ¸
 	if (IMG_PrograssBG.IsValid())
 		IMG_PrograssBG->SetVisibility(ControlObjectState == CONTROL_STATE_NEUTRAL ? ESlateVisibility::Hidden : ESlateVisibility::Visible);
 
-	// Áö±İ¸· Á¡·ÉÁö¸¦ »¯°Å³ª »¯±ä °æ¿ì
+	// ç˜¤é™›é˜œ ç—¢é£ç˜¤ç”« åŒ–èŠ­å”± åŒ–å˜ ç‰ˆå¿«
 	if (ControlObjectState != CONTROL_STATE_NEUTRAL &&
 		orgControlObjectState != m_ControlObjectState &&
 		fConquestGageRed == 0.0f &&
@@ -167,12 +167,12 @@ void UB2UIControlBattleSub::SetControlObjectState(uint8 ControlObjectState, floa
 			if ((MyTeamType == ETeamType::ETT_Red &&  ControlObjectState == CONTROL_STATE_RED)
 				|| (MyTeamType == ETeamType::ETT_Blue &&  ControlObjectState == CONTROL_STATE_BLUE))
 			{
-				//¼º°ø
+				//å·±å‚
 				ViewControlGameNotice(true);
 			}
 			else
 			{
-				//½ÇÆĞ
+				//è§’è©
 				ViewControlGameNotice(false);
 			}
 		}
@@ -275,13 +275,13 @@ void UB2UIControlBattleSub::CacheAssets()
 	GET_SLOT(UTextBlock, TB_SubmersionTime);
 	GET_SLOT(UPanelWidget, O_Msg_Submersion);
 
-	// Ã¤ÆÃÄğÅ¸ÀÓÀÌ¹ÌÁö º¸ÀÌ´Â°É·Î ÃÊ±âÈ­
+	// ç›²æ³¼é…¿é¸¥çƒ™æå›ºç˜¤ ç„Šæç»°å§è‚º æª¬æ‰æ‹³
 	SetChatImageCoolTimeProgress(1.0f);
 
-	// Ã¤ÆÃ ÆĞ³Î ÃÊ±âÈ­
+	// ç›²æ³¼ è©æ¾„ æª¬æ‰æ‹³
 	InitControlChatPanel();
 	
-	// Á¡·É»óÅÂ °ÔÀÌÁö ÃÊ±âÈ­
+	// ç—¢é£æƒ‘æ€• éœ¸æç˜¤ æª¬æ‰æ‹³
 	SetProgressGage(0.0f);
 }
 
@@ -317,7 +317,7 @@ void UB2UIControlBattleSub::SetProgressBackImage(UMaterialInterface* pMI)
 
 		UMaterialInstanceDynamic* DynamicMI = IMG_PrograssBG->GetDynamicMaterial();
 
-		// ¹è°æÀº Ç×½Ã ²ËÂ÷ÀÖ´Ù.
+		// ç¡…ç‰ˆç¯® äº²çŸ« èœç’ä¹ä¿ƒ.
 		if (DynamicMI)
 			DynamicMI->SetScalarParameterValue(MtrlParamName_CoolTimeRingProgress, 1.0f);
 	}
@@ -370,7 +370,7 @@ void UB2UIControlBattleSub::UpdateMyAssultNotice()
 	{
 		ETeamType myTeamType = ETeamType(Cast<ABladeIICharacter>(pGM->GetLocalController()->GetPawn())->GetTeamNum());
 		
-		// ÀÌ¹Ì ¿ì¸®ÆíÀÌ Á¡·ÉÇßÀ»¶© ¾È¶á´Ù.
+		// æå›º å¿«åºœç¥ˆæ ç—¢é£æ²é˜‘è®¢ æ•‘å¤ºä¿ƒ.
 		if (
 			(myTeamType == ETeamType::ETT_Red && m_ControlObjectState == CONTROL_STATE_RED)
 			|| (myTeamType == ETeamType::ETT_Blue && m_ControlObjectState == CONTROL_STATE_BLUE)
@@ -391,7 +391,7 @@ void UB2UIControlBattleSub::UpdateMyAssultNotice()
 	}
 }
 
-// °İµ¹ÁßÀÎÁö ±×³É Á¡·É»óÅÂÀÎÁö
+// æ‹œå€’åç‰¢ç˜¤ å¼Šæˆ ç—¢é£æƒ‘æ€•ç‰¢ç˜¤
 void UB2UIControlBattleSub::UpdateAssultState()
 {
 	if (!O_Inside_Conlict.IsValid() || !O_Inside_B.IsValid() || !O_Inside_R.IsValid())
@@ -403,7 +403,7 @@ void UB2UIControlBattleSub::UpdateAssultState()
 	O_Inside_B->SetVisibility(ESlateVisibility::Hidden);
 	O_Inside_R->SetVisibility(ESlateVisibility::Hidden);
 
-	// °İµ¹Áß
+	// æ‹œå€’å
 	if (pGM && pGM->IsAssaultState())
 	{
 		O_Inside_Conlict->SetVisibility(ESlateVisibility::Visible);
@@ -428,15 +428,15 @@ void UB2UIControlBattleSub::UpdateControlChatCoolTime()
 	{
 		float ElapseTime = GetWorld()->GetTimeSeconds() - ControlChatSendTimeSec;
 
-		// ¹öÆ° ÀÌ¹ÌÁö ÇÁ·Î±×·¡½º ¼³Á¤.
+		// æ»šç“¢ æå›ºç˜¤ æ©‡è‚ºå¼Šè´°èƒ¶ æ±²æ²¥.
 		float ProgressRate = ElapseTime / ControlChatCoolTime;
 		SetChatImageCoolTimeProgress(ProgressRate);
 
-		// Äğ ´Ùµ¹¾ÒÀ»¶§
+		// é…¿ ä¿ƒå€’ç–½é˜‘é”­
 		if (ElapseTime >= ControlChatCoolTime)
 		{
 			ControlChatSendTimeSec = -1.0f;
-			// ¹öÆ° ÀÌ¹ÌÁö ÇÁ·Î±×·¡½º ¼³Á¤. 1·Î ¼³Á¤.
+			// æ»šç“¢ æå›ºç˜¤ æ©‡è‚ºå¼Šè´°èƒ¶ æ±²æ²¥. 1è‚º æ±²æ²¥.
 			SetChatImageCoolTimeProgress(1.0f);
 
 			if (BTN_Chat.IsValid())
@@ -473,7 +473,7 @@ void UB2UIControlBattleSub::OnClickBtnChat()
 			UI_Control_Chat->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
 			UI_Control_Chat->SetChatTab(EControlChatType::Emoticon);
 
-			// ¹öÆ°¼ÂÀº ¼û±è
+			// æ»šç“¢æ‚¸ç¯® è§è¾«
 			SetVisibilityChatButton(ESlateVisibility::Hidden);
 		}
 	}
@@ -487,14 +487,14 @@ void UB2UIControlBattleSub::InitControlChatPanel()
 
 	UI_Control_Chat->Init();
 
-	// ¸Ş¼¼Áö Ç×¸ñ Ã¤¿ò
+	// çš‹æŠ€ç˜¤ äº²æ ¼ ç›²æ¡†
 	for (TPair<int32, FControlChatMsgInfo> ChatMsgInfo : MessageInfos)
 	{
 		UMaterialInterface* pMI = ChatMsgInfo.Value.MessageIconMaterial.LoadSynchronous();
 		UI_Control_Chat->AddControlChatPanelMessageItem(EControlChatType::Message, ChatMsgInfo.Key, ChatMsgInfo.Value.MessageLocTextKey, pMI);
 	}
 
-	// ÀÌ¸ğÆ¼ÄÜ Ç×¸ñ Ã¤¿ò
+	// æè‘›èèƒ½ äº²æ ¼ ç›²æ¡†
 	for (TPair<int32, FControlChatMsgInfo> ChatMsgInfo : EmoticonInfos)
 	{
 		UMaterialInterface* pMI = ChatMsgInfo.Value.MessageIconMaterial.LoadSynchronous();
@@ -528,7 +528,7 @@ class UTexture2D* UB2UIControlBattleSub::GetSerialKillTexture(int32 nKillCount)
 				return pTexture;
 		}
 
-		// ÀÌÅÍ·¹ÀÌÆÃÇÑ°ÅÁß¿¡ Å³Á©³ôÀº°Å ÀúÀå.
+		// æç£é¥­ææ³¼èŒ„èŠ­åä¿Š æ‡¦ä¿©è‡­ç¯®èŠ­ å†å˜.
 		if (nMaxKillCount < KillTextureInfo.KillCount)
 		{
 			nMaxKillCount = KillTextureInfo.KillCount;
@@ -597,7 +597,7 @@ void UB2UIControlBattleSub::AddTeamPlayerInfoUI(ABladeIINetPlayer* pPlayer)
 			pUI->Init();
 			pUI->SetPlayer(pPlayer);
 
-			// ÀÏ¹İ »óÅÂ ¾Ö´Ï¸ŞÀÌ¼Ç Àç»ı
+			// è€é¦† æƒ‘æ€• å±€èªçš‹æè®° çŠç§¯
 			pUI->PlayAnimationEvent_NormalState();
 
 			if (pPlayer->IsLocalPlayer())
@@ -612,10 +612,10 @@ void UB2UIControlBattleSub::AddTeamPlayerInfoUI(ABladeIINetPlayer* pPlayer)
 
 void UB2UIControlBattleSub::UpdateKillInfo(class ABladeIINetPlayer* pKillerPlayer, class ABladeIINetPlayer* pDeadPlayer)
 {
-	// ¿ì¸®Æí²¨ UI¿¡ Å³ ¾÷µ¥ÀÌÆ®
+	// å¿«åºœç¥ˆæ³¢ UIä¿Š æ‡¦ è¯€å•æé£˜
 	//SetUserKillCountToPlayerInfoUI(pKillerPlayer->GetNetId(), pKillerPlayer->GetKillCount());
 			
-	// ¿ìÃø¿¡ Å³¾Ë¸² Ãß°¡
+	// å¿«èŸä¿Š æ‡¦èˆ…è¦† çœ å•Š
 	if (VB_Kill_Infos.IsValid())
 	{
 		UB2UIControlKillInfo* pUI = CreateWidget<UB2UIControlKillInfo>(GetWorld(), KillInfoClass);
@@ -644,7 +644,7 @@ void UB2UIControlBattleSub::SetUserKillInfos(TMap<uint32, int32> KillInfos)
 	}
 }
 
-// UI¿¡ Å³Ä«¿îÆ® ÀÔ·Â. ³­ÀÔÀÚ´Â ¿©±âÅëÇØ¼­ ÃÊ±âÈ­
+// UIä¿Š æ‡¦å¢¨æ¬¾é£˜ æ¶ä»¿. æŠ„æ¶ç£Šç»° å’¯æ‰çƒ¹ç§¦è¾‘ æª¬æ‰æ‹³
 void UB2UIControlBattleSub::SetUserKillCountToPlayerInfoUI(uint32 NetId, int32 KillCount)
 {
 	for (UB2UIControlTeamPlayerInfo* pUI : m_arTeamPlayerInfoUI)
@@ -706,18 +706,18 @@ void UB2UIControlBattleSub::PlayResultAction(ETeamType WinTeam, ETeamType MyTeam
 {
 	if (WinTeam == ETeamType::ETT_End)
 	{
-		// ¹«½ÂºÎ
+		// å…¬é“°ä½•
 		//TB_ResultNotice->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("MatchResult_Draw")));
 	}
 	else if (WinTeam == MyTeam)
 	{
-		// ½Â¸®
+		// é“°åºœ
 		//TB_ResultNotice->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("MatchResult_Win")));
 		PlayAnimationEvent_AnimResultAction(true);
 	}
 	else
 	{
-		// ÆĞ¹è
+		// è©ç¡…
 		//TB_ResultNotice->SetText(BladeIIGetLOCText(B2LOC_CAT_GENERAL, TEXT("MatchResult_Lose")));
 		PlayAnimationEvent_AnimResultAction(false);
 	}
@@ -735,15 +735,15 @@ void UB2UIControlBattleSub::NativeTick(const FGeometry& MyGeometry, float InDelt
 
 void UB2UIControlBattleSub::SetHiddneTimerUI(bool bHiddne)
 {
-	// ¿¡µğÅÍ ÃÊ±â°ªÀº ESlateVisibility::HiddenÀ¸·Î ¼³Á¤
+	// ä¿Šå¼ç£ æª¬æ‰è”¼ç¯® ESlateVisibility::Hiddenæ è‚º æ±²æ²¥
 
-	// º¸ÀÌ´Â »óÅÂ¸é ¼û±è
+	// ç„Šæç»° æƒ‘æ€•æ è§è¾«
 	if (bHiddne && O_Msg_Time->GetVisibility() == ESlateVisibility::SelfHitTestInvisible)
 	{
 		O_Msg_Time->SetVisibility(ESlateVisibility::Hidden);
 	}
 
-	// ¾Èº¸ÀÌ´Â »óÅÂ¸é ¼û±èÇØÁ¦
+	// æ•‘ç„Šæç»° æƒ‘æ€•æ è§è¾«ç§¦åŠ›
 	if (!bHiddne && O_Msg_Time->GetVisibility() == ESlateVisibility::Hidden)
 	{
 		O_Msg_Time->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
@@ -752,7 +752,7 @@ void UB2UIControlBattleSub::SetHiddneTimerUI(bool bHiddne)
 
 void UB2UIControlBattleSub::UpdateTimerUI(FText& TextContent)
 {
-	// °æ°ú ½Ã°£ ÅØ½ºÆ® ¼ÂÆÃ
+	// ç‰ˆè‹ çŸ«åŸƒ å’†èƒ¶é£˜ æ‚¸æ³¼
 	if (TB_RemainGameTime.IsValid())
 	{
 		TB_RemainGameTime->SetText(TextContent);
@@ -780,7 +780,7 @@ void UB2UIControlBattleSub::NotifySendControlChat()
 	{
 		BTN_Chat->SetIsEnabled(false);
 
-		// º¸³½ ½Ã°£ ÀúÀå.
+		// ç„Šè¾° çŸ«åŸƒ å†å˜.
 		ControlChatSendTimeSec = GetWorld()->GetTimeSeconds();
 	}
 }
@@ -811,7 +811,7 @@ void UB2UIControlBattleSub::NotifyReceiveControlChat(uint32 NetId, EControlChatT
 		break;
 	}
 
-	// ´ë»óÇÃ·¹ÀÌ¾î Ã£¾Æ¿È
+	// æªæƒ‘æ•²é¥­æç»¢ èŒ«é…’å’³
 	AB2ControlGameMode* pGM = Cast<AB2ControlGameMode>(UGameplayStatics::GetGameMode(this));
 	ABladeIIPlayer* pPlayer = NULL;
 
@@ -821,7 +821,7 @@ void UB2UIControlBattleSub::NotifyReceiveControlChat(uint32 NetId, EControlChatT
 	if (!pPlayer)
 		return;
 
-	// ¸Ş¼¼ÁöÇüÅÂ Ã¤ÆÃÀº ¾Æ±º²¨¸¸
+	// çš‹æŠ€ç˜¤å±ˆæ€• ç›²æ³¼ç¯® é…’ç„™æ³¢çˆ¶
 	if (ChatType == EControlChatType::Message && !pPlayer->GetIsLocalPlayerTeam())
 	{
 		return;

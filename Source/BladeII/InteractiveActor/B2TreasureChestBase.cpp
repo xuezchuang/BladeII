@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2TreasureChestBase.h"
@@ -28,7 +28,7 @@ void AB2TreasureChestBase::BeginDestroy()
 	//}
 }
 
-//½ÇÁ¦ ÇÃ·¹ÀÌ¾î¿¡°Ô ÁÖ´Â È¿°ú - °ñµå ½ºÆù
+//è§’åŠ› æ•²é¥­æç»¢ä¿Šéœ¸ æ—ç»° ç“¤è‹ - æ¦œé› èƒ¶è¿„
 void AB2TreasureChestBase::InteractAction()
 {
 	SetPhase(EInteractivePhaseType::InteractingPhase);
@@ -37,14 +37,14 @@ void AB2TreasureChestBase::InteractAction()
 	//
 	//ABladeIIGameMode* B2GM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(this));
 	//if (B2GM){
-	//	B2GM->RemoveTreasureChest(this); //ÀÌ ½ÃÁ¡¿¡¼­ CachedStageManager´Â nullptrÀÌ µÈ´Ù.
+	//	B2GM->RemoveTreasureChest(this); //æ çŸ«ç—¢ä¿Šè¾‘ CachedStageManagerç»° nullptræ ç­‰ä¿ƒ.
 	//}
 	//
 	//if (StageManagerBkup)
 	//{
 	//	FDropItemInfo GoldCoinDropInfo;
 	//	GoldCoinDropInfo.RewardGoldWeight = RewardGoldWeight;
-	//	StageManagerBkup->RequestSpawnDropItem(GoldCoinDropInfo, NULL, GetActorLocation()); // SpawnDelay °¡ ÇÊ¿ä¾øµçÁö ÀÌ TreasureChest °¡ ¿òÁ÷ÀÌÁö ¾Ê´øÁö ¿©ÇÏ°£ DelaySpawnRefActor ´Â ÇÊ¿ä¾øÀ½.
+	//	StageManagerBkup->RequestSpawnDropItem(GoldCoinDropInfo, NULL, GetActorLocation()); // SpawnDelay å•Š é˜å¤¸ç»ç”µç˜¤ æ TreasureChest å•Š æ¡†æµæç˜¤ è‡¼å¸¦ç˜¤ å’¯çªåŸƒ DelaySpawnRefActor ç»° é˜å¤¸ç»æ¾œ.
 	//}
 
 	EndInteract();

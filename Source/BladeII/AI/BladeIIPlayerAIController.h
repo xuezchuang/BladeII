@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "AIController.h"
 #include "Knowledge.h"

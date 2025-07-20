@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "B2PCClassInfo.h"
@@ -65,11 +65,11 @@ void ABladeIIPlayer::OverrideByPCClassInfo(class ABladeIIGameMode* InGameMode, U
 	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIPlayer::OverrideByPCClassInfo"));
 
 	check(InGameMode);
-//	// ÀÏ¹İÀûÀÎ Player spawn ½Ã¿¡´Â GameMode ¿¡¼­ °¡Á®¿È. CustomPCClassInfo ÁöÁ¤Àº Æ¯¼öÇÑ °æ¿ì
+//	// è€é¦†åˆ©ç‰¢ Player spawn çŸ«ä¿Šç»° GameMode ä¿Šè¾‘ å•Šå»‰å’³. CustomPCClassInfo ç˜¤æ²¥ç¯® æ¼‚èèŒ„ ç‰ˆå¿«
 //	UB2PCClassInfo* FinalUseClassInfo = CustomPCClassInfo ? CustomPCClassInfo : InGameMode->GetCurrentPCClassInfo();
 //
 //#if !WITH_EDITOR
-//	check(FinalUseClassInfo); // ºí·çÇÁ¸°Æ® Å¬·¡½º·Î Å×½ºÆ®ÇÏ´Â »óÈ²¿¡¼­´Â ¾øÀ» ¼ö ÀÖÀ½..
+//	check(FinalUseClassInfo); // å–‰é£æ©‡èµ´é£˜ åŠªè´°èƒ¶è‚º æŠ›èƒ¶é£˜çªç»° æƒ‘ç‚”ä¿Šè¾‘ç»° ç»é˜‘ è ä¹æ¾œ..
 //#endif
 //	if (!FinalUseClassInfo) {
 //		return;
@@ -90,12 +90,12 @@ void ABladeIIPlayer::OverrideByPCClassInfo(class ABladeIIGameMode* InGameMode, U
 //		break;
 //	}
 //
-//	// ·Îºñ¿¡¼± ·Îµù ¾ÈµÉ ¾Öµé. ¸î¸î ÀÎ°ÔÀÓ¿¡¼­¸¸ ·ÎµùÇÏ¸é µÇ´Â ¾ÖµéÀº ¿©±â¼­ µ¥ÀÌÅÍ¸¦ ¾ò¾î¿Â´Ù.
-//	// ÀÎ°ÔÀÓÀÌ¶óµµ ¿¬Ãâ¿¡¸¸ »ç¿ëµÉ ¿ëµµÀÇ dummy puppet Àº bNoOverrideByInGameInfo ÀÎÀÚ¸¦ ÁÖ¸é InGameOnlyInfo ¸¦ »ç¿ëÇÏÁö ¾ÊÀ» °ÍÀÌ´Ù.
-//	// Æ¯È÷ °ÔÀÓ Å¬¸®¾î ½ÃÁ¡¿¡ º¹ÀâÇÑ ¿¬ÃâÀÌ ³ª¿À±â Àü ¸Ş¸ğ¸®¸¦ ÃÖ´ëÇÑ clear ÇÏ´Â µ¥¿¡ ÇÊ¿äÇÒ ¼ö ÀÖ´Ù.
+//	// è‚ºåšä¿Šæ€¥ è‚ºçˆ¹ æ•‘çª å±€ç”¸. å‰²å‰² ç‰¢éœ¸çƒ™ä¿Šè¾‘çˆ¶ è‚ºçˆ¹çªæ ç™»ç»° å±€ç”¸ç¯® å’¯æ‰è¾‘ å•æç£ç”« æ˜ç»¢æŸ¯ä¿ƒ.
+//	// ç‰¢éœ¸çƒ™ææ‰¼æ¡£ æ¥·å…ä¿Šçˆ¶ è¤ä¾©çª ä¾©æ¡£ç‹¼ dummy puppet ç¯® bNoOverrideByInGameInfo ç‰¢ç£Šç”« æ—æ InGameOnlyInfo ç”« è¤ä¾©çªç˜¤ è‡¼é˜‘ å·´æä¿ƒ.
+//	// æ¼‚æ´’ éœ¸çƒ™ åŠªåºœç»¢ çŸ«ç—¢ä¿Š æ±—æ£±èŒ„ æ¥·å…æ å”±å·æ‰ å‚ˆ çš‹è‘›åºœç”« å¼¥æªèŒ„ clear çªç»° å•ä¿Š é˜å¤¸ä¸” è ä¹ä¿ƒ.
 //	UB2InGameOnlyPCClassInfo* InGameOnlyInfo = bNoOverrideByInGameInfo ? nullptr : FinalUseClassInfo->GetInGameOnlyInfo(this);
 //
-//	// PCClassInfo ·Î override ÇÏ±â Àü BaseBP override ºÎÅÍ
+//	// PCClassInfo è‚º override çªæ‰ å‚ˆ BaseBP override ä½•ç£
 //	if (InGameOnlyInfo)
 //	{
 //		this->OverrideByBaseBP(InGameOnlyInfo->GetBaseBPClass(this));
@@ -125,7 +125,7 @@ void ABladeIIPlayer::OverrideByPCClassInfo(class ABladeIIGameMode* InGameMode, U
 //		}
 //	}
 //
-//	if (FinalUseClassInfo->DamageNumZOffsetOverride != 0.0f) // - °ªµµ µé¾î°¥ ¼ö ÀÖ°Ô..
+//	if (FinalUseClassInfo->DamageNumZOffsetOverride != 0.0f) // - è”¼æ¡£ ç”¸ç»¢å“ è ä¹éœ¸..
 //	{
 //		this->DamageNumZOffset = FinalUseClassInfo->DamageNumZOffsetOverride;
 //	}
@@ -136,10 +136,10 @@ void ABladeIIPlayer::OverrideByPCClassInfo(class ABladeIIGameMode* InGameMode, U
 //	{
 //		if (FinalUseClassInfo->BaseMeshAsset)
 //		{
-//			// AnimBP ¹Ù²ãÄ¡±â Àü¿¡ SetSkeletalMesh ºÎÅÍ
-//			MeshComp->SetSkeletalMesh(FinalUseClassInfo->BaseMeshAsset); // DefaultPart µéÀÌ ÀÖÀ¸¹Ç·Î BaseMeshAsset ÀÌ ±×´ë·Î À¯ÁöµÇ´Â °æ¿ì´Â ÆÄÆ®µéÀ» merge ÇÏ´Â ´ë½Å component ·Î ±¸¼ºÇÏ´Â °æ¿ì°¡ µÉ °Í.
+//			// AnimBP å®˜å±‚æ‘¹æ‰ å‚ˆä¿Š SetSkeletalMesh ä½•ç£
+//			MeshComp->SetSkeletalMesh(FinalUseClassInfo->BaseMeshAsset); // DefaultPart ç”¸æ ä¹æ éª¨è‚º BaseMeshAsset æ å¼Šæªè‚º èœ¡ç˜¤ç™»ç»° ç‰ˆå¿«ç»° é¢‡é£˜ç”¸é˜‘ merge çªç»° æªè„š component è‚º å¤‡å·±çªç»° ç‰ˆå¿«å•Š çª å·´.
 //			if (InGameOnlyInfo && InGameOnlyInfo->AnimBPOverride)
-//			{// ÀÌ°Ç °á±¹ MeshComp->SetAnimInstanceClass ÀÓ. ¸ğ¹ÙÀÏ µğ¹ö±ë °úÁ¤ÀÇ À¯»ê
+//			{// ææ‰’ æ¬æƒ« MeshComp->SetAnimInstanceClass çƒ™. è‘›å®˜è€ å¼æ»šå½ª è‹æ²¥ç‹¼ èœ¡é­‚
 //				this->SafeSetAnimBPClass(InGameOnlyInfo->AnimBPOverride);
 //			}
 //		}
@@ -155,7 +155,7 @@ void ABladeIIPlayer::OverrideByPCClassInfo(class ABladeIIGameMode* InGameMode, U
 //			MeshComp->SetRelativeLocation(FVector(0.0f, 0.0f, -1.0f * CollisionCapsule->GetScaledCapsuleHalfHeight()));
 //		}
 //
-//		// SkeletalMeshComponent ¿¡ ºÙÀÏ Ãß°¡ ÄÄÆ÷³ÍÆ®µé. ¿©±â¼­ ºÙÀÌ´Â ¾ÖµéÀº ±âº»ÀûÀÎ °ÍµéÀÎµ¥ PC ÀÇ °æ¿ì ÀÌ·± °Ô ÀÖÀ»Áö ¸ğ¸£°Ú´Ù. ÀåÂø ¾ÆÀÌÅÛ µîÀº µû·Î µé¾î°¥ °Í (SetupComponentsForParts).
+//		// SkeletalMeshComponent ä¿Š å˜¿è€ çœ å•Š å“ªå™¨æƒ©é£˜ç”¸. å’¯æ‰è¾‘ å˜¿æç»° å±€ç”¸ç¯® æ‰å¤¯åˆ©ç‰¢ å·´ç”¸ç‰¢å• PC ç‹¼ ç‰ˆå¿« æç¹ éœ¸ ä¹é˜‘ç˜¤ è‘›ç¦æ‘†ä¿ƒ. å˜é¦’ é…’æè¢ æ®¿ç¯® è¶è‚º ç”¸ç»¢å“ å·´ (SetupComponentsForParts).
 //		for (int32 STI = 0; STI < FinalUseClassInfo->AttachStaticMeshes.Num(); ++STI)
 //		{
 //			FCHSKCompAttachStaticMeshInfo& ThisInfo = FinalUseClassInfo->AttachStaticMeshes[STI];
@@ -167,7 +167,7 @@ void ABladeIIPlayer::OverrideByPCClassInfo(class ABladeIIGameMode* InGameMode, U
 //					NewAttachComp->bReceivesDecals = false;
 //					NewAttachComp->SetStaticMesh(ThisInfo.StaticMeshAsset);
 //					NewAttachComp->SetRelativeScale3D(FVector(ThisInfo.AttachScale, ThisInfo.AttachScale, ThisInfo.AttachScale));
-//					NewAttachComp->SetMobility(EComponentMobility::Movable); // StaticMesh ¸¦ Character ¿¡ ºÙÀÌ´Ï Movable ·Î
+//					NewAttachComp->SetMobility(EComponentMobility::Movable); // StaticMesh ç”« Character ä¿Š å˜¿æèª Movable è‚º
 //					NewAttachComp->AttachToComponent(MeshComp, FAttachmentTransformRules(EAttachmentRule::KeepRelative, true), ThisInfo.AttachSocketName);
 //					NewAttachComp->RegisterComponent();
 //				}
@@ -212,11 +212,11 @@ void ABladeIIPlayer::OverrideByPCClassInfo(class ABladeIIGameMode* InGameMode, U
 //		{
 //			MovementComp->MaxAcceleration = FinalUseClassInfo->CharMovementEssentialSettings.MaxAccelerationOverride;
 //		}
-//		// InitializeCombatStats µî¿¡¼­ ÃÖÁ¾ÀûÀ¸·Î ¿É¼Ç µîÀÌ °¡¹ÌµÈ WalkSpeed ¸¦ ´Ù½Ã ¼¼ÆÃÇÒ °ÍÀÓ. µû¶ó¼­ ÃÊ±â°ª ¹é¾÷ÇØ µÒ.
+//		// InitializeCombatStats æ®¿ä¿Šè¾‘ å¼¥è¾†åˆ©æ è‚º å¯è®° æ®¿æ å•Šå›ºç­‰ WalkSpeed ç”« ä¿ƒçŸ« æŠ€æ³¼ä¸” å·´çƒ™. è¶æ‰¼è¾‘ æª¬æ‰è”¼ å½’è¯€ç§¦ ç‹„.
 //		this->CachedBaseMaxWalkSpeed = MovementComp->MaxWalkSpeed;
 //	}
 //
-//	// ÀüÅõ ´É·Â °ü·Ã µ¥ÀÌÅÍ Áß InfoAsset ¼¼ÆÃ¿¡ ÀÇÇØ ¹Ş´Â °Íµé
+//	// å‚ˆæ§ ç“·ä»¿ åŒ…è®¿ å•æç£ å InfoAsset æŠ€æ³¼ä¿Š ç‹¼ç§¦ ç½ç»° å·´ç”¸
 //	if (FinalUseClassInfo->CombatAbilityEssentialSettings.MaxArmorOverride > 0.0f)
 //	{
 //		this->MaxArmor = FinalUseClassInfo->CombatAbilityEssentialSettings.MaxArmorOverride;
@@ -240,7 +240,7 @@ void ABladeIIPlayer::OverrideByPCClassInfo(class ABladeIIGameMode* InGameMode, U
 //		this->MoveToMobAcceptableRadius = FinalUseClassInfo->MoveToMobAcceptableRadiusOverride;
 //	}
 //
-//	// ETM_End ¸¦ override condition À¸·Î ÇÒ ¼öµµ ÀÖÁö¸¸ editcondition À» È°¿ëÇØ º¸ÀÚ..
+//	// ETM_End ç”« override condition æ è‚º ä¸” èæ¡£ ä¹ç˜¤çˆ¶ editcondition é˜‘ åŠä¾©ç§¦ ç„Šç£Š..
 //	if (FinalUseClassInfo->bOverride_TargetingMode && FinalUseClassInfo->TargetingModeOverride != ETargetingMode::ETM_End)
 //	{
 //		this->TargetingMode = FinalUseClassInfo->TargetingModeOverride;
@@ -303,27 +303,27 @@ void ABladeIIPlayer::OverrideByPCClassInfo(class ABladeIIGameMode* InGameMode, U
 
 void ABladeIIPlayer::SetUseSectionMergedMesh(bool bUseSectionMerged)
 {
-	//// AnimNotify ¸¦ ÅëÇØ ÀÌ°Ô ¹ßµ¿ÀÌ µÇ´Â ·çÆ®°¡ ÀÖÀ¸¸é check ¿¡ °É¸± °Í. ±×·² ¶© DeferredSetUseSectionMergedMesh ¸¦ »ç¿ë.
+	//// AnimNotify ç”« çƒ¹ç§¦ æéœ¸ æƒ¯æ‚¼æ ç™»ç»° é£é£˜å•Š ä¹æ æ check ä¿Š å§å‰¯ å·´. å¼Šå‡¡ è®¢ DeferredSetUseSectionMergedMesh ç”« è¤ä¾©.
 
-	//// ÀÌÀü¿¡ ºôµåÇØ ³õÀº °Ô ÀÖ´Ù¸é ±×°É °¡Á®¿Í¼­ ¾µ °ÍÀÌ°í ¾Æ´Ï¸é »õ·Î ºôµå
+	//// æå‚ˆä¿Š å‘¼é›ç§¦ åˆç¯® éœ¸ ä¹ä¿ƒæ å¼Šå§ å•Šå»‰å®¢è¾‘ é•œ å·´æç»Š é…’èªæ è´§è‚º å‘¼é›
 	//SetupComponentsForParts(bUseSectionMerged); 
 
-	//// Ãß°¡ »óÅÂ º¯¼ö°¡ ¾ÆÁ÷ ¾ø´Âµ¥ ¾ÆÁ÷ µüÈ÷ ÇÊ¿äµµ ¾øÁö¸¸ È®½ÇÈ÷ »óÅÂ Æ®·¢Å·À» ÇÒ ¼ö ÀÖÀ»Áö ¸ğ¸£°Ú±âµµ ÇØ¼­
+	//// çœ å•Š æƒ‘æ€• å‡½èå•Š é…’æµ ç»ç»°å• é…’æµ è¿­æ´’ é˜å¤¸æ¡£ ç»ç˜¤çˆ¶ çŠ¬è§’æ´’ æƒ‘æ€• é£˜å‘æ¬§é˜‘ ä¸” è ä¹é˜‘ç˜¤ è‘›ç¦æ‘†æ‰æ¡£ ç§¦è¾‘
 
-	//GetWorldTimerManager().ClearTimer(DeferredSetUseSectionMergedMeshTH); // Deferred ·Î È£ÃâÇßÀ» ¼ö ÀÖ´Ù.
+	//GetWorldTimerManager().ClearTimer(DeferredSetUseSectionMergedMeshTH); // Deferred è‚º é¾‹å…æ²é˜‘ è ä¹ä¿ƒ.
 }
 void ABladeIIPlayer::DeferredSetUseSectionMergedMesh(bool bUseSectionMerged)
 {
 	//FTimerManager& TheTM = GetWorldTimerManager();
 	//TheTM.ClearTimer(DeferredSetUseSectionMergedMeshTH);
-	//// ½Ã°£Àº ¿©±â¼± Àû´çÈ÷ ÁØ´Ù. ¸¸ÀÏ Áï°¢ Àû¿ëµÇ¾î¾ß µÈ´Ù°Å³ª ÃÖ¼ÒÇÑ ¹Ù·Î ´ÙÀ½ Æ½¿¡ Àû¿ëµÇ¾î¾ß ÇÏ´Â °æ¿ì¶ó¸é ´Ù¸¥ ¹æ¹ıÀ» Ã£¾Æº¸µµ·Ï.
+	//// çŸ«åŸƒç¯® å’¯æ‰æ€¥ åˆ©å¯¸æ´’ éœ–ä¿ƒ. çˆ¶è€ æºœé˜¿ åˆ©ä¾©ç™»ç»¢å…· ç­‰ä¿ƒèŠ­å”± å¼¥å®¶èŒ„ å®˜è‚º ä¿ƒæ¾œ å¹³ä¿Š åˆ©ä¾©ç™»ç»¢å…· çªç»° ç‰ˆå¿«æ‰¼æ ä¿ƒå¼— è§„è¿‡é˜‘ èŒ«é…’ç„Šæ¡£åºŸ.
 	//TheTM.SetTimer(DeferredSetUseSectionMergedMeshTH, FTimerDelegate::CreateUObject(this, &ABladeIIPlayer::SetUseSectionMergedMesh, bUseSectionMerged), 0.1f, false);
 }
 
 USkeletalMesh* ABladeIIPlayer::GetMergedMesh(bool bUseSectionMerged)
 {
 	USkeletalMesh* ResultMesh = nullptr;
-	//SetupComponentsForParts(bUseSectionMerged, &ResultMesh); // Component ¼¼ÆÃ ¾øÀÌ °á°ú¹°¸¸ ¾³ »©¿Â´Ù.
+	//SetupComponentsForParts(bUseSectionMerged, &ResultMesh); // Component æŠ€æ³¼ ç»æ æ¬è‹æ‹±çˆ¶ å¢ƒ å“—æŸ¯ä¿ƒ.
 	return ResultMesh;
 }
 
@@ -331,7 +331,7 @@ void ABladeIIPlayer::SetupMeshesMain()
 {
 //#if WITH_EDITOR
 //	ABladeIIGameMode* B2GM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(this));
-//	// ÆÄÆ® Á¶ÇÕ ½Ã ´Ù½Ã PCClassInfo ¸¦ ÇÊ¿ä·Î ÇÏ¹Ç·Î PCClassEnum ÁöÁ¤ ¾øÀÌ ºí·çÇÁ¸°Æ® Å¬·¡½º·Î Å×½ºÆ®ÇÏ´Â °æ¿ì SetupComponentsForParts ¸¦ »ı·«ÇØ¾ß ÇÔ.
+//	// é¢‡é£˜ ç‚¼é’¦ çŸ« ä¿ƒçŸ« PCClassInfo ç”« é˜å¤¸è‚º çªéª¨è‚º PCClassEnum ç˜¤æ²¥ ç»æ å–‰é£æ©‡èµ´é£˜ åŠªè´°èƒ¶è‚º æŠ›èƒ¶é£˜çªç»° ç‰ˆå¿« SetupComponentsForParts ç”« ç§¯å¸†ç§¦å…· çªƒ.
 //	const bool bDoSetupComponentsForParts = !(B2GM && B2GM->IsDefaultPawnTestBP());
 //#else
 //	const bool bDoSetupComponentsForParts = true;
@@ -341,8 +341,8 @@ void ABladeIIPlayer::SetupMeshesMain()
 //#if !UE_BUILD_SHIPPING
 //		int32 SetupComponentsCount = 0;
 //#endif
-//		// ¼½¼Ç ³ª´²Áø ÀÏ¹İ ¸ğµ¨À» »ç¿ëÇÏ´Â ÄÉÀÌ½ºÀÎµ¥ ´ëºÎºĞÀÇ °æ¿ì´Â ÀÌ°Ô ÇÊ¿äÇÒ °ÍÀÌ´Ù.
-//		// ¸¸ÀÏ ¼½¼Ç º´ÇÕ µÈ ¸ğµ¨À» »ç¿ëÇÏ´Â ¸ğµå¿¡¼­ ¿¬Ãâ±îÁö ±×°É »ç¿ëÇÏ´Â °Ô Çã¿ëÀÌ µÇ¸é ÀÌ ±âº» ¸ğµ¨ÀÌ ÇÊ¿ä¾ø¾îÁú ¼ö ÀÖÀ½.
+//		// å†€è®° å”±åºŠæŸ³ è€é¦† è‘›èƒ†é˜‘ è¤ä¾©çªç»° çº³æèƒ¶ç‰¢å• æªä½•ç›’ç‹¼ ç‰ˆå¿«ç»° æéœ¸ é˜å¤¸ä¸” å·´æä¿ƒ.
+//		// çˆ¶è€ å†€è®° æé’¦ ç­‰ è‘›èƒ†é˜‘ è¤ä¾©çªç»° è‘›é›ä¿Šè¾‘ æ¥·å…é³–ç˜¤ å¼Šå§ è¤ä¾©çªç»° éœ¸ å€¾ä¾©æ ç™»æ æ æ‰å¤¯ è‘›èƒ†æ é˜å¤¸ç»ç»¢é¾™ è ä¹æ¾œ.
 //		if (!UB2PCMeshSectionMergeInfo::ShouldUseSectionMergeForStageEvent(this))
 //		{
 //#if !UE_BUILD_SHIPPING
@@ -350,8 +350,8 @@ void ABladeIIPlayer::SetupMeshesMain()
 //#endif
 //			this->SetupComponentsForParts(false);
 //		}
-//		// ¼½¼Ç º´ÇÕ µÈ ¸ğµ¨À» »ç¿ëÇÏ´Â ÄÉÀÌ½º. Ä³¸¯ÅÍ ¸¹ÀÌ µîÀåÇÏ´Â ¸ğµå ¿ë.
-//		// ÀÌ°É µÚ¿¡ ºÒ·¯¼­ ¼½¼Ç º´ÇÕ µÈ ¸ğµ¨À» »ç¿ëÇÏ·Á¸é ÀÌ°Ô ±âº» ¼¼ÆÃµÇµµ·Ï ÇÔ.
+//		// å†€è®° æé’¦ ç­‰ è‘›èƒ†é˜‘ è¤ä¾©çªç»° çº³æèƒ¶. æŸè…ç£ è…¹æ æ®¿å˜çªç»° è‘›é› ä¾©.
+//		// æå§ ç¬¬ä¿Š é˜‚çŸ¾è¾‘ å†€è®° æé’¦ ç­‰ è‘›èƒ†é˜‘ è¤ä¾©çªå¦¨æ æéœ¸ æ‰å¤¯ æŠ€æ³¼ç™»æ¡£åºŸ çªƒ.
 //		if (UB2PCMeshSectionMergeInfo::ShouldUseSectionMergeByGameContext(this))
 //		{
 //#if !UE_BUILD_SHIPPING
@@ -360,14 +360,14 @@ void ABladeIIPlayer::SetupMeshesMain()
 //			this->SetupComponentsForParts(true);
 //		}
 //#if !UE_BUILD_SHIPPING
-//		check(SetupComponentsCount > 0); /* ´ç¿¬È÷ ÇÏ³ª´Â ÀÖ¾î¾ß. */
+//		check(SetupComponentsCount > 0); /* å¯¸æ¥·æ´’ çªå”±ç»° ä¹ç»¢å…·. */
 //#endif
 //	}
 }
 
 void ABladeIIPlayer::SetupComponentsForParts(bool bMergeSections, USkeletalMesh** OutGetBuiltResultOnly)
 {
-	//// ABladeIIPlayer::OverrideByPCClassInfo ÀÌÈÄ..
+	//// ABladeIIPlayer::OverrideByPCClassInfo æé¥¶..
 	//if (GetCharacterDataStore())
 	//{
 	//	EPCClass PCClassEnum = GetCurrentPlayerClass();
@@ -380,26 +380,26 @@ void ABladeIIPlayer::SetupComponentsForParts(bool bMergeSections, USkeletalMesh*
 	//	{
 	//		UB2UIDocUICondition* DocCon = UB2UIDocHelper::GetDocUICondition();
 
-	//		// ÀÏ¹İ´øÀü¿¡ ½ºÅä¸® ½ºÅµ ¾Æ´Ò¶§! ³¯°³ °­Á¦·Î ²ö´Ù.
-	//		// CachedWingData º¸¸é ±¸Á¶Ã¼ º¹»çÇØ¼­ ¾²¹Ç·Î °ª º¯Á¶ÇØµµ ¾Æ¿ô°ÔÀÓ¿¡ ¿µÇâ ¾È¹ÌÄ§.
+	//		// è€é¦†å¸¦å‚ˆä¿Š èƒ¶é…åºœ èƒ¶è¯º é…’åŒ†é”­! æœä¿º ç¢åŠ›è‚º é¦‹ä¿ƒ.
+	//		// CachedWingData ç„Šæ å¤‡ç‚¼çœ‰ æ±—è¤ç§¦è¾‘ é™éª¨è‚º è”¼ å‡½ç‚¼ç§¦æ¡£ é…’çœ¶éœ¸çƒ™ä¿Š åº·æ°¢ æ•‘å›ºé­”.
 	//		if(!DocCon->GetbUserSelectedSkipStory())
 	//			CachedWingData.bShouldBeVisible = false;
 	//	}
 
-	//	// ¹İ°İ´øÀüÀº ³¯°³ ¾Èº¸ÀÓ
+	//	// é¦†æ‹œå¸¦å‚ˆç¯® æœä¿º æ•‘ç„Šçƒ™
 	//	if (GetGameMode()->GetB2GameModeType() == EB2GameMode::CounterDungeon)
 	//		CachedWingData.bShouldBeVisible = false;
 	//}
 
-	//// OutGetBuiltResultOnly ¸¦ valid ÇÑ Æ÷ÀÎÅÍ·Î ³Ö´Â °æ¿ì ½ÇÁ¦·Î Component ±îÁö ¼¼ÆÃµÇÁö ¾Ê°í ±×³É °á°ú¹°¸¸ »© ÁØ´Ù.
+	//// OutGetBuiltResultOnly ç”« valid èŒ„ å™¨ç‰¢ç£è‚º æŒç»° ç‰ˆå¿« è§’åŠ›è‚º Component é³–ç˜¤ æŠ€æ³¼ç™»ç˜¤ è‡¼ç»Š å¼Šæˆ æ¬è‹æ‹±çˆ¶ å“— éœ–ä¿ƒ.
 	//SetupComponentsForPartsCommon(CachedEquippedItem, GetWingDataPtrIfValid(), bMergeSections, false, OutGetBuiltResultOnly);
 }
 
 void ABladeIIPlayer::SetupComponentsForPartsCustomDataStore(ICharacterDataStore* InCustomDataStore, bool bMergeSections)
-{ // ÀÏ¹İÀûÀ¸·Î´Â GetCharacterDataStore ¸¦ ÅëÇØ ¾ò¾îÁø DataStore ¸¦ »ç¿ë.. ÀÌ°Ç Æ¯¼öÇÑ °æ¿ì¸¦ À§ÇÔ.
+{ // è€é¦†åˆ©æ è‚ºç»° GetCharacterDataStore ç”« çƒ¹ç§¦ æ˜ç»¢æŸ³ DataStore ç”« è¤ä¾©.. ææ‰’ æ¼‚èèŒ„ ç‰ˆå¿«ç”« å›°çªƒ.
 	//if (InCustomDataStore)
 	//{
-	//	EPCClass PCClassEnum = GetCurrentPlayerClass(); // ±âº» Å¬·¡½º¸¸Àº Á¤Ã¼¼ºÀ» ÀÒÁö ¾Ê°í..
+	//	EPCClass PCClassEnum = GetCurrentPlayerClass(); // æ‰å¤¯ åŠªè´°èƒ¶çˆ¶ç¯® æ²¥çœ‰å·±é˜‘ é…ªç˜¤ è‡¼ç»Š..
 	//	TArray<FB2Item> FoundEquipment;
 	//	InCustomDataStore->GetEquippedItems(PCClassEnum, FoundEquipment);
 	//	InCustomDataStore->GetEquippedCostumeItems(PCClassEnum, FoundEquipment);
@@ -407,9 +407,9 @@ void ABladeIIPlayer::SetupComponentsForPartsCustomDataStore(ICharacterDataStore*
 	//	bool bLocalHasWing = InCustomDataStore->GetCharacterWing(PCClassEnum, FoundWingData);
 	//	ICharacterDataStore::GetRenderItem(InCustomDataStore, PCClassEnum, FoundEquipment);
 
-	//	// ÀÌ°É »ç¿ëÇÏ´Â ½ÃÁ¡¿¡¼­ GameEntryID °¡ ÀÇµµ¿Í´Â ´Ù¸¦ ¼ö ÀÖÀ¸¹Ç·Î Ä³½ÌÇØ ³õÀº °Å »ç¿ëÇÏÁö ¸»°í ForceUpdate ÇØ¼­ »ç¿ë.
-	//	// ´Ü composite mesh Ä³½ÌÀÌ Àåºñ Á¶ÇÕ±îÁö Ã¼Å©´Â ÇÏ¹Ç·Î ²¿ÀÎ °á°ú¹°ÀÌ ³ª¿ÀÁö´Â ¾ÊÀ» ²¨°í ¼º´É¿¡¸¸ ¾È ÁÁÀº ¿µÇâÀ» ¹ÌÄ¡´Â °Å.
-	//	// ¿©±â °á°úµµ Ä³½ÌÇÏ·Á¸é ÀÌÂÊÀ¸·Î ÇöÀç Á¶ÇÕ ´ë»óÀÇ GameEntryID ¸¦ ³Ñ°ÜÁÙ ¼ö ÀÖ¾î¾ß ÇÔ.
+	//	// æå§ è¤ä¾©çªç»° çŸ«ç—¢ä¿Šè¾‘ GameEntryID å•Š ç‹¼æ¡£å®¢ç»° ä¿ƒç”« è ä¹æ éª¨è‚º æŸæ•™ç§¦ åˆç¯® èŠ­ è¤ä¾©çªç˜¤ å¯Œç»Š ForceUpdate ç§¦è¾‘ è¤ä¾©.
+	//	// çªœ composite mesh æŸæ•™æ å˜åš ç‚¼é’¦é³–ç˜¤ çœ‰å†œç»° çªéª¨è‚º éƒ¨ç‰¢ æ¬è‹æ‹±æ å”±å·ç˜¤ç»° è‡¼é˜‘ æ³¢ç»Š å·±ç“·ä¿Šçˆ¶ æ•‘ äº®ç¯® åº·æ°¢é˜‘ å›ºæ‘¹ç»° èŠ­.
+	//	// å’¯æ‰ æ¬è‹æ¡£ æŸæ•™çªå¦¨æ æç‡æ è‚º æ³…çŠ ç‚¼é’¦ æªæƒ‘ç‹¼ GameEntryID ç”« é€è´¥ä¸´ è ä¹ç»¢å…· çªƒ.
 	//	SetupComponentsForPartsCommon(FoundEquipment, bLocalHasWing ? &FoundWingData : NULL, bMergeSections, true);
 	//}
 }
@@ -418,7 +418,7 @@ void ABladeIIPlayer::SetupComponentsForPartsCommon(const TArray<FB2Item>& Equipp
 {
 	B2_SCOPED_TRACK_LOG(TEXT("ABladeIIPlayer::SetupComponentsForPartsCommon"));
 
-	//// ABladeIIPlayer::OverrideByPCClassInfo ÀÌÈÄ..
+	//// ABladeIIPlayer::OverrideByPCClassInfo æé¥¶..
 
 	//UB2GameInstance* B2GI = Cast<UB2GameInstance>(UGameplayStatics::GetGameInstance(this));
 	//BII_CHECK(B2GI);
@@ -431,37 +431,37 @@ void ABladeIIPlayer::SetupComponentsForPartsCommon(const TArray<FB2Item>& Equipp
 	//BII_CHECK(BaseMeshComp);
 
 	//if (MyInfo && BaseMeshComp)
-	//{ // BaseMeshComp °¡ ±âº» ¼¼ÆÃÀÌ µÈ °ÍÀÌ¶ó¸é MyInfo->BaseMeshAsset ¿Í BaseMeshComp->SkeletalMesh °¡ ¾Æ¸¶µµ °°¾Æ¾ß..
+	//{ // BaseMeshComp å•Š æ‰å¤¯ æŠ€æ³¼æ ç­‰ å·´ææ‰¼æ MyInfo->BaseMeshAsset å®¢ BaseMeshComp->SkeletalMesh å•Š é…’ä»˜æ¡£ éé…’å…·..
 	//	
 	//	USkeletalMesh* PrebuiltMeshOrResult = NULL;
 	//	UB2CompositeMeshCache* MeshCacheManager = StaticFindCompositeMeshCacher();
 	//	if (!bForceUpdate)
-	//	{ // ÀÌÀü¿¡ ÀÌ¹Ì ºôµåÇØ ³õÀº ¸Ş½¬°¡ ÀÖ´Ù¸é ±×°É ²¨³» ¾´´Ù.
+	//	{ // æå‚ˆä¿Š æå›º å‘¼é›ç§¦ åˆç¯® çš‹æµ†å•Š ä¹ä¿ƒæ å¼Šå§ æ³¢éƒ´ æ•¬ä¿ƒ.
 	//		PrebuiltMeshOrResult = MeshCacheManager ?
 	//			MeshCacheManager->GetCachedCompositeMesh(GetCurrentPlayerClass(), this, EquippedItems, (InWingData && InWingData->bShouldBeVisible), InWingData, bMergeSections)
 	//			: NULL;
 	//	}
 
-	//	// Dummy ¿ëµµ·Î spawn ÇÏ´Â °æ¿ì.. InGameOnlyInfo ¸¦ ·ÎµùÇÏÁö ¾Ê¾Æµµ µÇ´Â °æ¿ì°¡ ÀÖÀ½. ÀÌ°Ô µ¢Ä¡°¡ Å©¹Ç·Î ÃÖÀûÈ­ Â÷¿ø¿¡¼­.
+	//	// Dummy ä¾©æ¡£è‚º spawn çªç»° ç‰ˆå¿«.. InGameOnlyInfo ç”« è‚ºçˆ¹çªç˜¤ è‡¼é…’æ¡£ ç™»ç»° ç‰ˆå¿«å•Š ä¹æ¾œ. æéœ¸ è€½æ‘¹å•Š å†œéª¨è‚º å¼¥åˆ©æ‹³ ç’ç›”ä¿Šè¾‘.
 	//	UB2InGameOnlyPCClassInfo* InGameOnlyInfo = ShouldLoadInGameOnlyInfoForPartSetup() ? MyInfo->GetInGameOnlyInfo(this) : nullptr;
 
 	//	if (UB2PCClassInfo::SetupSKCompForParts(GetCurrentPlayerClass(), this, BaseMeshComp, PrebuiltMeshOrResult, MyInfo->BaseMeshAsset, MyInfo->DefaultPartsInfo,
 	//		EquippedItems, InWingData, (InGameOnlyInfo ? InGameOnlyInfo->AnimBPOverride : NULL), false,
 	//		bMergeSections,
-	//		(OutGetBuiltResultOnly != nullptr) // ÀÌ °æ¿ì ºôµå °á°ú ¸Ş½¬¸¦ ¹ÛÀ¸·Î »©ÁÖ±â¸¸ ÇÏ°í, ½ÇÁ¦ ÄÄÆ÷³ÍÆ®¿¡ ¼¼ÆÃÀº ¾È ÇÏ´Â ¸ğµå·Î ÀÎ½Ä.
+	//		(OutGetBuiltResultOnly != nullptr) // æ ç‰ˆå¿« å‘¼é› æ¬è‹ çš‹æµ†ç”« è§‚æ è‚º å“—æ—æ‰çˆ¶ çªç»Š, è§’åŠ› å“ªå™¨æƒ©é£˜ä¿Š æŠ€æ³¼ç¯® æ•‘ çªç»° è‘›é›è‚º ç‰¢ä¾¥.
 	//		))
 	//	{
-	//		if (MeshCacheManager && !bForceUpdate) // bForceUpdate ÀÎ °æ¿ì »ç¿ë ¸ñÀû »ó ÇöÀç ÀÌ Ä³¸¯ÅÍ°¡ °¡Áø EntryID ·Î´Â Ä³½ÌÇØ¼­´Â ¾ÈµÇ´Â °ÍÀÏ ¼ö ÀÖ´Ù. Ä³½Ìµµ ¹æÁö.
-	//		{ // MeshMerging ÀÌ ½ÇÇàµÇ´Â ¸ğµå¿¡¼­ÀÇ °á°ú°¡ ¼º°øÀûÀÌ¶ó¸é CompositeMeshCache ÂÊ¿¡ Ä³½ÌÇØ ³õÀ½. ³»ºÎÀûÀ¸·Î´Â ½ÇÁ¦ ¾÷µ¥ÀÌÆ®°¡ µÇ¾úÀ» ¶§¿¡¸¸ Ä³½ÌÀÌ µÉ °ÍÀÓ.
+	//		if (MeshCacheManager && !bForceUpdate) // bForceUpdate ç‰¢ ç‰ˆå¿« è¤ä¾© æ ¼åˆ© æƒ‘ æ³…çŠ æ æŸè…ç£å•Š å•ŠæŸ³ EntryID è‚ºç»° æŸæ•™ç§¦è¾‘ç»° æ•‘ç™»ç»° å·´è€ è ä¹ä¿ƒ. æŸæ•™æ¡£ è§„ç˜¤.
+	//		{ // MeshMerging æ è§’é’ç™»ç»° è‘›é›ä¿Šè¾‘ç‹¼ æ¬è‹å•Š å·±å‚åˆ©ææ‰¼æ CompositeMeshCache ç‡ä¿Š æŸæ•™ç§¦ åˆæ¾œ. éƒ´ä½•åˆ©æ è‚ºç»° è§’åŠ› è¯€å•æé£˜å•Š ç™»èŒé˜‘ é”­ä¿Šçˆ¶ æŸæ•™æ çª å·´çƒ™.
 	//			MeshCacheManager->SetCachedCompositeMesh(GetCurrentPlayerClass(), this, PrebuiltMeshOrResult, EquippedItems, (InWingData && InWingData->bShouldBeVisible), InWingData, bMergeSections);
 	//		}
 
 	//		if (OutGetBuiltResultOnly)
-	//		{ // Æ¯º°ÇÑ ÇÊ¿ä¿¡ ÀÇÇØ ºôµåµÈ ¸Ş½¬¸¦ ¿ÜºÎ·Î »© ÁÖ´Â °æ¿ì.
+	//		{ // æ¼‚å–ŠèŒ„ é˜å¤¸ä¿Š ç‹¼ç§¦ å‘¼é›ç­‰ çš‹æµ†ç”« å¯‡ä½•è‚º å“— æ—ç»° ç‰ˆå¿«.
 	//			*OutGetBuiltResultOnly = PrebuiltMeshOrResult;
 	//		}
 	//	}
-	//	SetupLODInfoForInGame(); // ¿¬Ãâ Àå¸éÀÌ¸é LODInfo °¡ ´Ù½Ã ¼¼ÆÃµÉ °Í.
+	//	SetupLODInfoForInGame(); // æ¥·å… å˜æææ LODInfo å•Š ä¿ƒçŸ« æŠ€æ³¼çª å·´.
 	//}
 }
 
@@ -470,7 +470,7 @@ void ABladeIIPlayer::OverrideByBaseBP(TSubclassOf<class ABladeIICharacter> BPCla
 	//ABladeIIPlayer* BPCDO = BPClassToOverride ? Cast<ABladeIIPlayer>(BPClassToOverride->GetDefaultObject()) : NULL;
 	//if (BPCDO)
 	//{
-	//	// BladeIICharacter ÂÊ¿¡ ¾ø´ø ÇÏÀ§ ÄÄÆ÷³ÍÆ®µé.
+	//	// BladeIICharacter ç‡ä¿Š ç»å¸¦ çªå›° å“ªå™¨æƒ©é£˜ç”¸.
 	//	
 	//	//CopyObjectProperties(this->RightFootShadow, BPCDO->RightFootShadow, true, true);
 	//	//CopyObjectProperties(this->LeftFootShadow, BPCDO->LeftFootShadow, true, true);
@@ -487,7 +487,7 @@ void ABladeIIPlayer::OverrideByBaseBP(TSubclassOf<class ABladeIICharacter> BPCla
 
 FString ABladeIIPlayer::GetTrimmedNameFromPCClassEnum()
 {
-	// ±×³É CharacterType À¸·Î »ç¿ëÇØµµ °á±¹ °°Àº °á°ú°ÚÁö¸¸ PCClassInfo °¡ ´õ ³ªÀ» °Å °°´Ù.
+	// å¼Šæˆ CharacterType æ è‚º è¤ä¾©ç§¦æ¡£ æ¬æƒ« éç¯® æ¬è‹æ‘†ç˜¤çˆ¶ PCClassInfo å•Š æ­¹ å”±é˜‘ èŠ­ éä¿ƒ.
 	//EPCClass PCClassEnum = UB2PCClassInfo::FromCharacterTypeToPCClass(this->CharacterType);
 	//
 	//return UB2PCClassInfo::GetTrimmedNameOfPCClassEnum(PCClassEnum);
@@ -505,7 +505,7 @@ void ABladeIIPlayer::GetAllTrimmedNameFromPCClassEnum(TArray<FString>& OutResult
 	//	{
 	//		FString ClassEnumName = EnumPtr->GetNameStringByIndex(EI);
 
-	//		// ³×ÀÌ¹Ö ·êÀÌ ¸Â¾Æ¾ß µÇ´Âµ¥ ÀÌ°Ô Æ²¾îÁöÁö ¾Êµµ·Ï È®ÀÎÇÏ´Â °Ô CheckPCClassEnumNamingConvention
+	//		// åŒ™ææ€ª é€¢æ å˜é…’å…· ç™»ç»°å• æéœ¸ æ’‡ç»¢ç˜¤ç˜¤ è‡¼æ¡£åºŸ çŠ¬ç‰¢çªç»° éœ¸ CheckPCClassEnumNamingConvention
 	//		if (ClassEnumName.RemoveFromStart(EPCCLASSENUM_COMMON_PREFIX) == true)
 	//		{
 	//			OutResult.Add(ClassEnumName);
@@ -525,7 +525,7 @@ FString UB2PCClassInfo::GetTrimmedNameOfPCClassEnum(EPCClass InPCClassEnum)
 	//	{
 	//		FString ClassEnumName = EnumPtr->GetNameStringByIndex(EnumPtr->GetIndexByValue((int32)InPCClassEnum));
 
-	//		// ³×ÀÌ¹Ö ·êÀÌ ¸Â¾Æ¾ß µÇ´Âµ¥ ÀÌ°Ô Æ²¾îÁöÁö ¾Êµµ·Ï È®ÀÎÇÏ´Â °Ô CheckPCClassEnumNamingConvention
+	//		// åŒ™ææ€ª é€¢æ å˜é…’å…· ç™»ç»°å• æéœ¸ æ’‡ç»¢ç˜¤ç˜¤ è‡¼æ¡£åºŸ çŠ¬ç‰¢çªç»° éœ¸ CheckPCClassEnumNamingConvention
 	//		if (ClassEnumName.RemoveFromStart(EPCCLASSENUM_COMMON_PREFIX) == true)
 	//		{
 	//			return ClassEnumName;
@@ -533,7 +533,7 @@ FString UB2PCClassInfo::GetTrimmedNameOfPCClassEnum(EPCClass InPCClassEnum)
 	//	}
 	//}
 
-	return TEXT("UnknownPC");  // ECharacterType ÂÊ°ú ±»ÀÌ ¸ÂÃâ ÇÊ¿ä°¡ ÀÖ´Â °Ç ¾Æ´Ô.
+	return TEXT("UnknownPC");  // ECharacterType ç‡è‹ è¢«æ å˜å… é˜å¤¸å•Š ä¹ç»° æ‰’ é…’ä¸›.
 }
 
 FText UB2PCClassInfo::GetLocalizedName()
@@ -542,7 +542,7 @@ FText UB2PCClassInfo::GetLocalizedName()
 }
 
 #if WITH_EDITOR
-/** PC Part ÀÇ mesh merge ½Ã ±âº» skeleton °ú ¼Ò½ºµéÀÇ skeleton °£¿¡ ref pose °¡ ¾ó¸¶³ª ´Ù¸¥Áö Ã¼Å©ÇØ¼­ °æ°í ¶ç¿ò. */
+/** PC Part ç‹¼ mesh merge çŸ« æ‰å¤¯ skeleton è‹ å®¶èƒ¶ç”¸ç‹¼ skeleton åŸƒä¿Š ref pose å•Š å€”ä»˜å”± ä¿ƒå¼—ç˜¤ çœ‰å†œç§¦è¾‘ ç‰ˆç»Š å‰æ¡†. */
 void CheckAndWarnForDifferentRefPose(USkeletalMesh* InBaseSKMesh, const TArray<USkeletalMesh*>& CheckMeshes)
 {
 	if (!InBaseSKMesh){
@@ -553,10 +553,10 @@ void CheckAndWarnForDifferentRefPose(USkeletalMesh* InBaseSKMesh, const TArray<U
 	const TArray<FTransform>& BaseRefBonePose = BaseRefSkeleton.GetRefBonePose();
 		
 	int32 FoundQuestionableCount = 0;
-	const float WarnDifferenceStandard = 0.1f; // ÀÌ°Íº¸´Ù ºÒÀÏÄ¡°¡ Å©¸é °æ°í ´ë»ó
+	const float WarnDifferenceStandard = 0.1f; // æå·´ç„Šä¿ƒ é˜‚è€æ‘¹å•Š å†œæ ç‰ˆç»Š æªæƒ‘
 
 #if !PLATFORM_MAC
-	//FString WarnMessageString = FString::Printf(TEXT("SkeletalMesh Á¶ÇÕ½Ã ´ÙÀ½°ú °°ÀÌ ±âÁØ ¼öÄ¡ %.2f (À»)¸¦ ³Ñ¾î°¡´Â º£ÀÌ½º¿Í ÆÄÆ® °£ ·¹ÆÛ·±½º Æ÷Áî ºÒÀÏÄ¡ ¹ß°ß"), WarnDifferenceStandard);
+	//FString WarnMessageString = FString::Printf(TEXT("SkeletalMesh ç‚¼é’¦çŸ« ä¿ƒæ¾œè‹ éæ æ‰éœ– èæ‘¹ %.2f (é˜‘)ç”« é€ç»¢å•Šç»° æµ·æèƒ¶å®¢ é¢‡é£˜ åŸƒ é¥­æ¬ºç¹èƒ¶ å™¨ä»¤ é˜‚è€æ‘¹ æƒ¯æ–‘"), WarnDifferenceStandard);
 	FString WarnMessageString = FString::Printf(TEXT("SkeletalMesh  %.2f"), WarnDifferenceStandard);
 #endif
 
@@ -570,12 +570,12 @@ void CheckAndWarnForDifferentRefPose(USkeletalMesh* InBaseSKMesh, const TArray<U
 		const FReferenceSkeleton& CheckRefSkeleton = CurrCheckMesh->GetRefSkeleton();
 		const TArray<FTransform>& CheckRefBonePose = CheckRefSkeleton.GetRefBonePose();
 
-		float TotalDifferenceABS = 0.0f; // ÀÌ¹ø Check mesh ¿¡ ´ëÇØ ref pose ¿Í ´Ù¸¥ Àı´ë°ª ´õÇÑ °Å
+		float TotalDifferenceABS = 0.0f; // æé”… Check mesh ä¿Š æªç§¦ ref pose å®¢ ä¿ƒå¼— ä¾‹æªè”¼ æ­¹èŒ„ èŠ­
 		int TotalCheckCount = 0;
 
 		for (int32 CBPI = 0; CBPI < CheckRefBonePose.Num(); ++CBPI)
 		{
-			// Çö CheckMesh ÀÇ ¸Å bone ¸¶´Ù BaseMesh ¿¡¼­ ÇØ´çÇÏ´Â bone ÀÇ ref pose ¸¦ Ã£¾Æ ¾ó¸¶³ª ÀÏÄ¡ÇÏ´ÂÁö Ã¼Å©
+			// æ³… CheckMesh ç‹¼ æ¦‚ bone ä»˜ä¿ƒ BaseMesh ä¿Šè¾‘ ç§¦å¯¸çªç»° bone ç‹¼ ref pose ç”« èŒ«é…’ å€”ä»˜å”± è€æ‘¹çªç»°ç˜¤ çœ‰å†œ
 
 			const FTransform& CurrCheckPose = CheckRefBonePose[CBPI];
 			FName CurrCheckBoneName = CheckRefSkeleton.GetBoneName(CBPI);
@@ -584,24 +584,24 @@ void CheckAndWarnForDifferentRefPose(USkeletalMesh* InBaseSKMesh, const TArray<U
 			if (BaseBoneIndex >= 0 && BaseBoneIndex < BaseRefBonePose.Num())
 			{
 				const FTransform& CurrRefBonePose = BaseRefBonePose[BaseBoneIndex];
-				TotalDifferenceABS += (CurrCheckPose.GetTranslation() - CurrRefBonePose.GetTranslation()).Size(); // ÀÏ´Ü translation Â÷ÀÌ¸¸ º»´Ù.
+				TotalDifferenceABS += (CurrCheckPose.GetTranslation() - CurrRefBonePose.GetTranslation()).Size(); // è€çªœ translation ç’æçˆ¶ å¤¯ä¿ƒ.
 				++TotalCheckCount;
 			}
 		}
 
-		// ÀÌ¹ø CheckMesh ¿¡ ´ëÇÑ ¼ºÀû
+		// æé”… CheckMesh ä¿Š æªèŒ„ å·±åˆ©
 		if (TotalCheckCount > 0)
 		{
 			float AvgDifferenceABS = TotalDifferenceABS / (float)TotalCheckCount;
-			// ÀÌ°Ç ±×³É ¶ç¿ì´Â ·Î±×.
+			// ææ‰’ å¼Šæˆ å‰å¿«ç»° è‚ºå¼Š.
 			UE_LOG(LogBladeII, Log, TEXT("Reference pose difference of %s : %f"), *(CurrCheckMesh->GetName()), AvgDifferenceABS);
 
-			if (AvgDifferenceABS > 0.1f) // Æ¯Á¤ ±âÁØ ÀÌ»óÀÌ¸é ¸Ş½ÃÁö ¹Ú½º ´ë»ó
+			if (AvgDifferenceABS > 0.1f) // æ¼‚æ²¥ æ‰éœ– ææƒ‘ææ çš‹çŸ«ç˜¤ å† èƒ¶ æªæƒ‘
 			{
 				++FoundQuestionableCount;
 
 #if !PLATFORM_MAC
-				WarnMessageString += FString::Printf(TEXT("%d : %s, ºÒÀÏÄ¡ Á¤µµ : %.4f\n"), FoundQuestionableCount, *CurrCheckMesh->GetName(), AvgDifferenceABS);
+				WarnMessageString += FString::Printf(TEXT("%d : %s, é˜‚è€æ‘¹ æ²¥æ¡£ : %.4f\n"), FoundQuestionableCount, *CurrCheckMesh->GetName(), AvgDifferenceABS);
 #endif
 
 			}
@@ -613,10 +613,10 @@ void CheckAndWarnForDifferentRefPose(USkeletalMesh* InBaseSKMesh, const TArray<U
 	{
 		if (FoundQuestionableCount > 0)
 		{
-			WarnMessageString += TEXT("\nÀ§ ¸ñ·Ï¿¡ ÀÖ´õ¶óµµ ÀÇµµÇÑ ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ ³ª¿Â´Ù¸é ¹«½ÃÇØµµ µÊ¤»");
+			WarnMessageString += TEXT("\nå›° æ ¼åºŸä¿Š ä¹æ­¹æ‰¼æ¡£ ç‹¼æ¡£èŒ„ å±€èªçš‹æè®°æ å”±æŸ¯ä¿ƒæ å…¬çŸ«ç§¦æ¡£ å‡³ã›");
 
 			//FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(WarnMessageString));
-			// ¹º°¡ ÃëÇÕ ¹æ½Ä¿¡ ¹®Á¦°¡ ÀÖ´Â µí.. ÀÏ´Ü °Å½½·Á¼­ ·Î±×·Î ´ëÃ¼.
+			// è´­å•Š ç§’é’¦ è§„ä¾¥ä¿Š å·©åŠ›å•Š ä¹ç»° æ·€.. è€çªœ èŠ­æµ‡å¦¨è¾‘ è‚ºå¼Šè‚º æªçœ‰.
 			UE_LOG(LogBladeII, Log, TEXT("%s"), *WarnMessageString);
 		}
 	}
@@ -626,22 +626,22 @@ void CheckAndWarnForDifferentRefPose(USkeletalMesh* InBaseSKMesh, const TArray<U
 
 int32 GetPCCompositeMtrlID(EPCPart InPartID)
 {
-	return (InPartID == EPCPart::EPCPT_End) ? INDEX_NONE : (int32)(InPartID); // UB2PCClassInfo::SetupSKCompForParts ¿¡¼­ merge ½Ã °¢ Àç·áµéÀ» PartEnum ¿¡ µû¶ó Á¤·ÄÇÏ¹Ç·Î ±×´ë·Î int Ä³½ºÆÃ
+	return (InPartID == EPCPart::EPCPT_End) ? INDEX_NONE : (int32)(InPartID); // UB2PCClassInfo::SetupSKCompForParts ä¿Šè¾‘ merge çŸ« é˜¿ çŠä¸°ç”¸é˜‘ PartEnum ä¿Š è¶æ‰¼ æ²¥çººçªéª¨è‚º å¼Šæªè‚º int æŸèƒ¶æ³¼
 }
 
 EItemEquipPlace GetItemEquipPlaceForPCPart(EPCPart InPCPart)
 {
-	check((int32)EPCPart::EPCPT_Wing + 1 == (int32)EPCPart::EPCPT_End); // Ãß°¡ ¿£Æ®¸® ³õÄ¡Áö ¾Ê°Ô
+	check((int32)EPCPart::EPCPT_Wing + 1 == (int32)EPCPart::EPCPT_End); // çœ å•Š æµšé£˜åºœ åˆæ‘¹ç˜¤ è‡¼éœ¸
 
 	switch (InPCPart)
 	{
-	case EPCPart::EPCPT_Face: return EItemEquipPlace::EIEP_End; // Face ´Â PCPart ·Î¸¸ Á¸ÀçÇÏ´Â °ÍÀÓ. ÇØ´çÇÏ´Â EquipPlace ´Â ¾øÀ½.
+	case EPCPart::EPCPT_Face: return EItemEquipPlace::EIEP_End; // Face ç»° PCPart è‚ºçˆ¶ ç²®çŠçªç»° å·´çƒ™. ç§¦å¯¸çªç»° EquipPlace ç»° ç»æ¾œ.
 	case EPCPart::EPCPT_Head: return EItemEquipPlace::EIEP_Helmet;
 	case EPCPart::EPCPT_Body: return EItemEquipPlace::EIEP_BodyArmor;
 	case EPCPart::EPCPT_Leg: return EItemEquipPlace::EIEP_Shoes;
 	case EPCPart::EPCPT_Arm: return EItemEquipPlace::EIEP_Glove;
 	case EPCPart::EPCPT_Weapon: return EItemEquipPlace::EIEP_Weapon;
-	case EPCPart::EPCPT_Robe: return EItemEquipPlace::EIEP_End; // ÀÌ°Íµµ PCPart ·Î¸¸. ³»Áö´Â ¹º°¡ ºÙ¾úÀ» ¶§ ÀÌ°Ç ¶³¾îÁú ¼öµµ ÀÖÀ½.
+	case EPCPart::EPCPT_Robe: return EItemEquipPlace::EIEP_End; // æå·´æ¡£ PCPart è‚ºçˆ¶. éƒ´ç˜¤ç»° è´­å•Š å˜¿èŒé˜‘ é”­ ææ‰’ å†»ç»¢é¾™ èæ¡£ ä¹æ¾œ.
 	case EPCPart::EPCPT_Wing: return EItemEquipPlace::EIEP_End;
 	}
 	return EItemEquipPlace::EIEP_End;
@@ -649,7 +649,7 @@ EItemEquipPlace GetItemEquipPlaceForPCPart(EPCPart InPCPart)
 
 EPCPart GetPCPartForItemEquipPlace(EItemEquipPlace InEquipPlace)
 {
-	check((int32)EPCPart::EPCPT_Wing + 1 == (int32)EPCPart::EPCPT_End); // Ãß°¡ ¿£Æ®¸® ³õÄ¡Áö ¾Ê°Ô
+	check((int32)EPCPart::EPCPT_Wing + 1 == (int32)EPCPart::EPCPT_End); // çœ å•Š æµšé£˜åºœ åˆæ‘¹ç˜¤ è‡¼éœ¸
 	check((int32)EItemEquipPlace::EIEP_Ring + 1 == (int32)EItemEquipPlace::EIEP_End);
 
 	switch (InEquipPlace)
@@ -660,7 +660,7 @@ EPCPart GetPCPartForItemEquipPlace(EItemEquipPlace InEquipPlace)
 	case EItemEquipPlace::EIEP_Glove: return EPCPart::EPCPT_Arm;
 	case EItemEquipPlace::EIEP_Shoes: return EPCPart::EPCPT_Leg;
 	}
-	return EPCPart::EPCPT_End; // ³ª¸ÓÁö´Â ÀÎ°ÔÀÓ¿¡¼­ pc ¿¡ Á¶ÇÕµÈ 3D ¸ğµ¨·Î Ç¥ÇöµÇÁö´Â ¾Ê´Â °Íµé.
+	return EPCPart::EPCPT_End; // å”±èµ£ç˜¤ç»° ç‰¢éœ¸çƒ™ä¿Šè¾‘ pc ä¿Š ç‚¼é’¦ç­‰ 3D è‘›èƒ†è‚º é’æ³…ç™»ç˜¤ç»° è‡¼ç»° å·´ç”¸.
 }
 
 bool IsCostumeEquipPlace(const ECostumeEquipPlace& InCostumeEquipPlace)
@@ -685,18 +685,18 @@ bool IsCostumeEquipPlace(const ECostumeEquipPlace& InCostumeEquipPlace)
 EPCPart GetExtraAttachPartEnum(EPCPart InMainPart)
 {
 	if (InMainPart == EPCPart::EPCPT_Body){
-		return EPCPart::EPCPT_Robe; // Æ¯¼ö ÄÉÀÌ½ºÀÓ. º°µµ ÀåÂø ½½·ÔÀÌ ÀÖ´Â °Ç ¾Æ´ÏÁö¸¸ µû·Î ºÙ¿´´Ù ¶Ã´Ùµµ °¡´ÉÇØ¾ß ÇÏ´Â.
+		return EPCPart::EPCPT_Robe; // æ¼‚è çº³æèƒ¶çƒ™. å–Šæ¡£ å˜é¦’ æµ‡å©æ ä¹ç»° æ‰’ é…’èªç˜¤çˆ¶ è¶è‚º å˜¿çœ‹ä¿ƒ ç¹ä¿ƒæ¡£ å•Šç“·ç§¦å…· çªç»°.
 	}
 	return EPCPart::EPCPT_End;
 }
 
 bool ShouldRemoveOtherPart(EPCClass InPCClass, EPCPart PartToAdd, EPCPart OtherPartToTest)
-{ // PartToAdd °¡ ÀÖÀ» ¶§ OtherPartToTest ¸¦ Á¦°ÅÇØ¾ß ÇÏ´Â °æ¿ì true ¸®ÅÏ
-	// ±âÅ¸ ´Ù¸¥ °æ¿ì »ı±â¸é Ãß°¡ÇÑ´Ù.
-	// Fighter ´Â Robe °¡ »ç½Ç»ó ´Ù¸¥ ¿ëµµ¶ó Wing À» ºÙÀÎ´Ù°í ÇØ¼­ ¾ø¾ÖÁö ¾Ê´Â´Ù.
+{ // PartToAdd å•Š ä¹é˜‘ é”­ OtherPartToTest ç”« åŠ›èŠ­ç§¦å…· çªç»° ç‰ˆå¿« true åºœç•”
+	// æ‰é¸¥ ä¿ƒå¼— ç‰ˆå¿« ç§¯æ‰æ çœ å•ŠèŒ„ä¿ƒ.
+	// Fighter ç»° Robe å•Š è¤è§’æƒ‘ ä¿ƒå¼— ä¾©æ¡£æ‰¼ Wing é˜‘ å˜¿ç‰¢ä¿ƒç»Š ç§¦è¾‘ ç»å±€ç˜¤ è‡¼ç»°ä¿ƒ.
 	//return (InPCClass != EPCClass::EPC_Fighter && PartToAdd == EPCPart::EPCPT_Wing && OtherPartToTest == EPCPart::EPCPT_Robe);
 
-	return PartToAdd == EPCPart::EPCPT_Wing && OtherPartToTest == EPCPart::EPCPT_Robe;	// µÑÀº µ¿½Ã¿¡ ¸ÓÁö ºÒ°¡´É
+	return PartToAdd == EPCPart::EPCPT_Wing && OtherPartToTest == EPCPart::EPCPT_Robe;	// ç¬›ç¯® æ‚¼çŸ«ä¿Š èµ£ç˜¤ é˜‚å•Šç“·
 }
 
 FName GetWingEmissiveParamName()
@@ -705,7 +705,7 @@ FName GetWingEmissiveParamName()
 }
 
 bool HasWingAuraEmissiveTexture(UMaterialInterface* OrgMaterial)
-{ // Æ¯Á¤ µî±Ş ÀÌ»ó ³¯°³ material ¿¡ ÀÖ´Â Emissive ÅØ½ºÃÄ ÆÄ¶ó¹ÌÅÍ.. ³×ÀÌ¹Ö¿¡ ´ëÇÑ Ã¼Å©°¡ ÇÊ¿äÇÔ.
+{ // æ¼‚æ²¥ æ®¿é­ ææƒ‘ æœä¿º material ä¿Š ä¹ç»° Emissive å’†èƒ¶åªš é¢‡æ‰¼å›ºç£.. åŒ™ææ€ªä¿Š æªèŒ„ çœ‰å†œå•Š é˜å¤¸çªƒ.
 	UTexture* Dummy = nullptr;
 	if (OrgMaterial && OrgMaterial->GetTextureParameterValue(FName(TEXT("1_auraMask")), Dummy))
 		return true;
@@ -739,7 +739,7 @@ void CombineCostumePart(UB2PCMeshSectionMergeInfo* SectionMergeInfo, TArray<FLoc
 	for (const FLocalPartMeshMtrlInfo& Part : InParts)
 	{
 		SectionMergeInfo->GetReplaceCostumeEquipPlace(Part.CostumeEquipPlace, CurrCombineParts);
-		//ÀÚ±â ÀÚ½ÅÀ» Á¦¿ÜÇÑ ³ª¸ÓÁö ÇÕÄ¥ÆÄÆ® PCPart¿Í 1:1 ´ëÀÀÀÌ¸é »¬ ÇÊ¿ä°¡ ¾øÀ½
+		//ç£Šæ‰ ç£Šè„šé˜‘ åŠ›å¯‡èŒ„ å”±èµ£ç˜¤ é’¦ç£¨é¢‡é£˜ PCPartå®¢ 1:1 æªè§ˆææ æ»‘ é˜å¤¸å•Š ç»æ¾œ
 		if (CurrCombineParts.Num() > 0)
 			CurrCombineParts.RemoveAt(0);
 
@@ -753,11 +753,11 @@ void CombineCostumePart(UB2PCMeshSectionMergeInfo* SectionMergeInfo, TArray<FLoc
 	});
 }
 
-// ÀÌ¸§ °¡Áö°í ÀÌ°É·Î »ı¼ºÇÑ ÄÄÆ÷³ÍÆ®ÀÎÁö ÆÇº°ÇÒ °Å¶ó °¡´ÉÇÑ À¯´ÏÅ©ÇÏ°Ô
+// ææŠš å•Šç˜¤ç»Š æå§è‚º ç§¯å·±èŒ„ å“ªå™¨æƒ©é£˜ç‰¢ç˜¤ é­„å–Šä¸” èŠ­æ‰¼ å•Šç“·èŒ„ èœ¡èªå†œçªéœ¸
 #define PCPART_EXTRA_ATTACH_FXCOMP_COMMON_PREFIX TEXT("B2ActPCPartXATCHFx")
 
-/** ÀåÂø Àåºñ merge ÇÒ ¶§¿¡ Ãß°¡·Î PSC »ı¼ºÇØ¼­ attach ÇÏ´Âµ¥¿¡ »ç¿ëÇÏ±â À§ÇØ µ¥ÀÌÅÍµéÀ» ¸ğ¾Æ³õÀ» struct. 
- * FCHSKCompAttachParticleSystemInfo ±âº» ±â´É¿¡ Á» Æ¯¼öÇÑ °Å µ¡ºÙ¿©¼­ InfoAsset ÀÌ ¾Æ´Ñ ³»ºÎ Ã³¸® ¿ëµµ·Î »ç¿ëÇÑ´Ù. */
+/** å˜é¦’ å˜åš merge ä¸” é”­ä¿Š çœ å•Šè‚º PSC ç§¯å·±ç§¦è¾‘ attach çªç»°å•ä¿Š è¤ä¾©çªæ‰ å›°ç§¦ å•æç£ç”¸é˜‘ è‘›é…’åˆé˜‘ struct. 
+ * FCHSKCompAttachParticleSystemInfo æ‰å¤¯ æ‰ç“·ä¿Š ç²± æ¼‚èèŒ„ èŠ­ æ€ å˜¿å’¯è¾‘ InfoAsset æ é…’å›± éƒ´ä½• è´¸åºœ ä¾©æ¡£è‚º è¤ä¾©èŒ„ä¿ƒ. */
 USTRUCT()
 struct FPCPartExtraAttachFxSet : public FCHSKCompAttachParticleSystemInfo
 {
@@ -770,13 +770,13 @@ struct FPCPartExtraAttachFxSet : public FCHSKCompAttachParticleSystemInfo
 
 	FPCPartExtraAttachFxSet& operator = (FCHSKCompAttachParticleSystemInfo& OtherSuperStruct)
 	{
-		// FCHSKCompAttachParticleSystemInfo ÂÊ¿¡ ¼±¾ğµÈ °Í¸¸ °¡Áö°í ¿©±â²¨ ¼¼ÆÃ
+		// FCHSKCompAttachParticleSystemInfo ç‡ä¿Š æ€¥æ”«ç­‰ å·´çˆ¶ å•Šç˜¤ç»Š å’¯æ‰æ³¢ æŠ€æ³¼
 		this->AttachSocketName = OtherSuperStruct.AttachSocketName;
 		this->AttachScale3D = OtherSuperStruct.AttachScale3D;
 		this->LocationOffset = OtherSuperStruct.LocationOffset;
 		this->RotationOffset = OtherSuperStruct.RotationOffset;
 		this->bIgnoreBoneRotation = OtherSuperStruct.bIgnoreBoneRotation;
-		this->LoadedAttachPS = OtherSuperStruct.GetParticleSystemAsset(); // ÀÌ°Ç »óÀ§´Ü ±¸Á¶Ã¼¿¡ ¼³Á¤µÈ TAsset À» ·ÎµùÇØ¼­ ÀÌÂÊ¿¡ ¼¼ÆÃ.
+		this->LoadedAttachPS = OtherSuperStruct.GetParticleSystemAsset(); // ææ‰’ æƒ‘å›°çªœ å¤‡ç‚¼çœ‰ä¿Š æ±²æ²¥ç­‰ TAsset é˜‘ è‚ºçˆ¹ç§¦è¾‘ æç‡ä¿Š æŠ€æ³¼.
 		this->ChangeColor = FLinearColor::Transparent;
 
 		return *this;
@@ -790,16 +790,16 @@ struct FPCPartExtraAttachFxSet : public FCHSKCompAttachParticleSystemInfo
 	UPROPERTY(Transient)
 	UParticleSystem* LoadedAttachPS; // Here we just set already loaded ParticleSystem resource, not the TAsset reference of Super class.
 
-	// GetCompCreateName ´Â »óÀ§ Å¬·¡½ºº¸´Ù´Â ÁÖ·Î ¿©±â¼­ÀÇ ÇÊ¿ä¿¡ ÀÇÇØ ³ª¿Â °Å. µ¿ÀÏ ¼ÒÄÏ¿¡ ¿©·µ ºÙ´Â´Ù°Å³ª ÇÏ¸é Ãß°¡ ½Äº°ÀÚ¸¦ ³Ö¾î¾ß..
+	// GetCompCreateName ç»° æƒ‘å›° åŠªè´°èƒ¶ç„Šä¿ƒç»° æ—è‚º å’¯æ‰è¾‘ç‹¼ é˜å¤¸ä¿Š ç‹¼ç§¦ å”±æŸ¯ èŠ­. æ‚¼è€ å®¶å—ä¿Š å’¯è¿” å˜¿ç»°ä¿ƒèŠ­å”± çªæ çœ å•Š ä¾¥å–Šç£Šç”« æŒç»¢å…·..
 	virtual FString GetCompCreateName(AActor* InOwner) const override { return LoadedAttachPS ? FString::Printf(TEXT("%s_%s_%s"), PCPART_EXTRA_ATTACH_FXCOMP_COMMON_PREFIX, (InOwner ? *InOwner->GetName() : TEXT("_")), *AttachSocketName.ToString()) : TEXT(""); }
 	FORCEINLINE static bool IsPossibleCreatedCompName(const FString& InNameToCheck) { return InNameToCheck.StartsWith(PCPART_EXTRA_ATTACH_FXCOMP_COMMON_PREFIX); }
 
-	// »óÀ§ Å¬·¡½ºÀÇ TAsset ·Îµù ´ë½Å ¿©±â ²¬ »ç¿ë.
+	// æƒ‘å›° åŠªè´°èƒ¶ç‹¼ TAsset è‚ºçˆ¹ æªè„š å’¯æ‰ é“‚ è¤ä¾©.
 	virtual UParticleSystem* GetParticleSystemAsset() override { return LoadedAttachPS; }
 };
 // Just a simple code block to reduce duplicated code. 
 void PCPartExtraAttachFxSetInfoExtractHelper(TArray<FPCPartExtraAttachFxSet>& OutAddedArray, UParticleSystem* InPS, const FString& InAttachSocketName, FLinearColor InChangeColor = FLinearColor::Transparent)
-{ // ÀÌ°Ç ¿ÏÀü ±âº»Á¤º¸¸¸ ¼¼ÆÃÇÏ´Â °Å. FCHSKCompAttachParticleSystemInfo ¼¼ÆÃ¿¡¼­ À¯·¡µÈ °Ç ÀÌ·± ½ÄÀ¸·Î ÇÏÁö ¾Ê´Â´Ù.
+{ // ææ‰’ è‚¯å‚ˆ æ‰å¤¯æ²¥ç„Šçˆ¶ æŠ€æ³¼çªç»° èŠ­. FCHSKCompAttachParticleSystemInfo æŠ€æ³¼ä¿Šè¾‘ èœ¡è´°ç­‰ æ‰’ æç¹ ä¾¥æ è‚º çªç˜¤ è‡¼ç»°ä¿ƒ.
 	if (InPS)
 	{
 		FPCPartExtraAttachFxSet NewSet;
@@ -811,13 +811,13 @@ void PCPartExtraAttachFxSetInfoExtractHelper(TArray<FPCPartExtraAttachFxSet>& Ou
 }
 
 #if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
-/** Æ¯Á¤ º° ¼º ¼öÀÇ Àåºñ¸¦ ÀÏ°ı Âø¿ëÇÒ ¼ö ÀÖµµ·Ï ÇÏ´Â Ä¡Æ®. ¿Ü°ü¸¸.. */
-int32 gForcedPlayerDummyPartGrade = -1; // 1 ~ 6 À» ÁÖ¸é »ç¿ëµÉ °Í.
+/** æ¼‚æ²¥ å–Š å·± èç‹¼ å˜åšç”« è€è¤’ é¦’ä¾©ä¸” è ä¹æ¡£åºŸ çªç»° æ‘¹é£˜. å¯‡åŒ…çˆ¶.. */
+int32 gForcedPlayerDummyPartGrade = -1; // 1 ~ 6 é˜‘ æ—æ è¤ä¾©çª å·´.
 
 TArray<FB2Item> gCheatCostumeItem;
 #endif
 
-// ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ ÆÄÆ® ±¸ºĞ¿¡ µû¶ó skeletal mesh ¸¦ ±¸¼ºÇÏ´Â ¸ŞÀÎ ÇÔ¼öÀÓ. BladeIIPlayer È¤Àº ·Îºñ¿¡ ¹Ú¾Æ³ÖÀº SkeletalMeshActor µÑ ´Ù »ç¿ëÇÏ´Â °ÍÀ» ÀÇµµ.
+// æ•²é¥­æç»¢ æŸè…ç£ é¢‡é£˜ å¤‡ç›’ä¿Š è¶æ‰¼ skeletal mesh ç”« å¤‡å·±çªç»° çš‹ç‰¢ çªƒèçƒ™. BladeIIPlayer è¶£ç¯® è‚ºåšä¿Š å† é…’æŒç¯® SkeletalMeshActor ç¬› ä¿ƒ è¤ä¾©çªç»° å·´é˜‘ ç‹¼æ¡£.
 bool UB2PCClassInfo::SetupSKCompForParts(EPCClass InPCClass, AActor* SKCompOwner, USkeletalMeshComponent* SKCompToSetup,
 	USkeletalMesh*& InOutPrebuiltCompositeMesh,
 	USkeletalMesh* InBaseMesh,
@@ -827,13 +827,13 @@ bool UB2PCClassInfo::SetupSKCompForParts(EPCClass InPCClass, AActor* SKCompOwner
 	UAnimBlueprintGeneratedClass* AnimBPForInGameChar,
 	bool bForceUnloadPartResourceAfterMerge,
 	bool bInMergeSections,
-	bool bBuildAndGetResultMeshOnly // ÄÄÆ÷³ÍÆ®¿¡ ¼¼ÆÃ ¾ÈÇÏ°í °á°ú ¸Ş½¬¸¸ »© ÁÖ´Â ¸ğµå.
+	bool bBuildAndGetResultMeshOnly // å“ªå™¨æƒ©é£˜ä¿Š æŠ€æ³¼ æ•‘çªç»Š æ¬è‹ çš‹æµ†çˆ¶ å“— æ—ç»° è‘›é›.
 )
 {
 	B2_SCOPED_TRACK_LOG(TEXT("UB2PCClassInfo::SetupSKCompForParts"));
 	B2_SCOPED_TIME_LOG(FString::Printf(TEXT("UB2PCClassInfo::SetupSKCompForParts Owner %s, PCClass %d"), SKCompOwner ? *SKCompOwner->GetName() : TEXT("Unknown"), PCClassToInt(InPCClass)));
 	
-#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2 // ¼½¼Ç º´ÇÕ Å×½ºÆ® ÇÃ·¡±×
+#if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2 // å†€è®° æé’¦ æŠ›èƒ¶é£˜ æ•²è´°å¼Š
 	if (UB2PCMeshSectionMergeInfo::ShouldForceUseSectionMerge()) {
 		bInMergeSections = true;
 	}
@@ -845,8 +845,8 @@ bool UB2PCClassInfo::SetupSKCompForParts(EPCClass InPCClass, AActor* SKCompOwner
 	check(SKCompOwner && SKCompToSetup && InBaseMesh);
 	ABladeIIPlayer* CastedB2Player = Cast<ABladeIIPlayer>(SKCompOwner);
 	ASkeletalMeshActor* CastedSKActor = Cast<ASkeletalMeshActor>(SKCompOwner);
-	check(CastedB2Player || CastedSKActor); // ÀÎ°ÔÀÓ Ä³¸¯ÅÍ°Å³ª ·Îºñ¿¡ ¹Ú¾Æ³ÖÀº ¾×ÅÍ°Å³ª.
-	// SKCompToSetup °ú SKCompOwner ¿ÍÀÇ °ü°è
+	check(CastedB2Player || CastedSKActor); // ç‰¢éœ¸çƒ™ æŸè…ç£èŠ­å”± è‚ºåšä¿Š å† é…’æŒç¯® å’€ç£èŠ­å”±.
+	// SKCompToSetup è‹ SKCompOwner å®¢ç‹¼ åŒ…æ‹Œ
 	check((CastedB2Player && CastedB2Player->GetBaseMesh() == SKCompToSetup) || (CastedSKActor && CastedSKActor->GetSkeletalMeshComponent() == SKCompToSetup));
 
 	UB2ItemInfo* IteminfoTable = StaticFindItemInfo();
@@ -859,12 +859,12 @@ bool UB2PCClassInfo::SetupSKCompForParts(EPCClass InPCClass, AActor* SKCompOwner
 	UB2WingInfo* WingInfoTable = B2GI ? B2GI->GetWingInfo() : StaticFindWingInfo();
 	FClientDataStore& ClientDataStore = BladeIIGameImpl::GetClientDataStore();
 
-	// ÀÌ°ÍµéÀº Á¶ÇÕ ÈÄ¿¡ Á¦°ÅÇÏ·Á°í.
+	// æå·´ç”¸ç¯® ç‚¼é’¦ é¥¶ä¿Š åŠ›èŠ­çªå¦¨ç»Š.
 	TArray<FSingleItemInfoData*> AllLoadedItemInfo;
-	FSingleWingInfoData* LoadedWingInfo = NULL; // ³¡±îÁö NULL ÀÏ ¼ö ÀÖ´Ù.
+	FSingleWingInfoData* LoadedWingInfo = NULL; // åœºé³–ç˜¤ NULL è€ è ä¹ä¿ƒ.
 
 	UB2PCClassInfoBox* PCInfoBox = B2GI ? B2GI->GetPCClassInfoBox() : StaticFindPCClassInfoBox(SKCompOwner);
-	// Æ¯¼ö ¸ğµå¿¡¼­ ¼º´É È®º¸¸¦ À§ÇØ section merge ¸¦ ½ÇÇàÇÏ´Â µ¥¿¡ ÇÊ¿äÇÑ Á¤º¸¸¦ ´ã°í ÀÖ´Â info asset.
+	// æ¼‚è è‘›é›ä¿Šè¾‘ å·±ç“· çŠ¬ç„Šç”« å›°ç§¦ section merge ç”« è§’é’çªç»° å•ä¿Š é˜å¤¸èŒ„ æ²¥ç„Šç”« æ·¬ç»Š ä¹ç»° info asset.
 	UB2PCMeshSectionMergeInfo* SectionMergeInfo = PCInfoBox ? PCInfoBox->GetMeshSectionMergeInfo() : nullptr;
 	if (bInMergeSections)
 	{
@@ -873,29 +873,29 @@ bool UB2PCClassInfo::SetupSKCompForParts(EPCClass InPCClass, AActor* SKCompOwner
 			return false;
 		}
 	}
-	// SectionMerge ½Ã¿¡ ÇÑ ¼½¼Ç ¾È¿¡¼­ UV ¿µ¿ªÀ» ´Ù¸£°Ô »ç¿ëÇÏ±â À§ÇÑ Á¤º¸. Section merge ¸¦ ¾È ÇÒ °Å¸é ÇÊ¿ä¾ø°ÚÁö.
+	// SectionMerge çŸ«ä¿Š èŒ„ å†€è®° æ•‘ä¿Šè¾‘ UV åº·å¼€é˜‘ ä¿ƒç¦éœ¸ è¤ä¾©çªæ‰ å›°èŒ„ æ²¥ç„Š. Section merge ç”« æ•‘ ä¸” èŠ­æ é˜å¤¸ç»æ‘†ç˜¤.
 	FSkelMeshMergeMeshUVTransforms SectionMergeUVTransform;
 	
-	// ÀÌÀü¿¡ merge µÈ ¸Ş½¬°¡ ÁÖ¾îÁ³´Ù¸é ¿©±â¼­ ÇÏ´Â ÀÏÀº ¸¹Áö ¾Ê¾Æ¾ß ÇÑ´Ù. ´ÜÁö ÀÌÀü¿¡ ¸¸µé¾ú´ø ±¸Á¶ µîÀ¸·Î ÀÎÇØ Àü °úÁ¤À» ½ºÅµ±îÁö´Â ¸øÇÏ°í.
+	// æå‚ˆä¿Š merge ç­‰ çš‹æµ†å•Š æ—ç»¢è„¸ä¿ƒæ å’¯æ‰è¾‘ çªç»° è€ç¯® è…¹ç˜¤ è‡¼é…’å…· èŒ„ä¿ƒ. çªœç˜¤ æå‚ˆä¿Š çˆ¶ç”¸èŒå¸¦ å¤‡ç‚¼ æ®¿æ è‚º ç‰¢ç§¦ å‚ˆ è‹æ²¥é˜‘ èƒ¶è¯ºé³–ç˜¤ç»° ç»™çªç»Š.
 	const bool bPrebuiltMeshProvided = (InOutPrebuiltCompositeMesh != nullptr);
 
 #if !UE_BUILD_SHIPPING
 	extern bool GTest_UseNonCompositedRawPCMesh;
 	if (GTest_UseNonCompositedRawPCMesh)
-	{ // ±âº» ¸Ş½¬ »ç¿ëÇÏ´Â Å×½ºÆ® ¸ğµå
+	{ // æ‰å¤¯ çš‹æµ† è¤ä¾©çªç»° æŠ›èƒ¶é£˜ è‘›é›
 		SKCompToSetup->SetSkeletalMesh(InBaseMesh);
 		return false;
 	}
 #endif
 #if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
-	/** Æ¯Á¤ º° ¼º ¼öÀÇ Àåºñ¸¦ ÀÏ°ı Âø¿ëÇÒ ¼ö ÀÖµµ·Ï ÇÏ´Â Ä¡Æ®..  
-	 Ä¡Æ®¶ó¼­ ±×³É ÀÌ ¾È¿¡ ³Ö´Â °ÍÀÎµ¥, ½ÇÁ¦ ±â´É¿¡¼­´Â ÀÌ ¾È¿¡¼­ EquippedItems ¸¦ º°´Ù¸¥ ÁÖÀÇ ¾øÀÌ ¹«ÀÛÁ¤ override ÇØ¼­´Â ¾ÈµÈ´Ù. 
-	 ÀÏ´Ü FB2GMPCCompositeMeshCacher ¿¡¼­ ÀåÂø Àåºñ¿¡ µû¶ó »ı¼ºµÈ mesh ¸¦ Ä³½ÌÇØ¼­ ¾²±â ¶§¹®¿¡ ±×°ÍºÎÅÍ ¾î±ß³¯ °ÍÀÓ. */
+	/** æ¼‚æ²¥ å–Š å·± èç‹¼ å˜åšç”« è€è¤’ é¦’ä¾©ä¸” è ä¹æ¡£åºŸ çªç»° æ‘¹é£˜..  
+	 æ‘¹é£˜æ‰¼è¾‘ å¼Šæˆ æ æ•‘ä¿Š æŒç»° å·´ç‰¢å•, è§’åŠ› æ‰ç“·ä¿Šè¾‘ç»° æ æ•‘ä¿Šè¾‘ EquippedItems ç”« å–Šä¿ƒå¼— æ—ç‹¼ ç»æ å…¬ç´¯æ²¥ override ç§¦è¾‘ç»° æ•‘ç­‰ä¿ƒ. 
+	 è€çªœ FB2GMPCCompositeMeshCacher ä¿Šè¾‘ å˜é¦’ å˜åšä¿Š è¶æ‰¼ ç§¯å·±ç­‰ mesh ç”« æŸæ•™ç§¦è¾‘ é™æ‰ é”­å·©ä¿Š å¼Šå·´ä½•ç£ ç»¢è¾¹æœ å·´çƒ™. */
 	if (gForcedPlayerDummyPartGrade >= 1 && gForcedPlayerDummyPartGrade <= FItemGradeInfo::MAX_NORMAL_ITEM_STAR_GRADE)
 	{
 		TArray<FB2Item> NewDummyPart;
 		GetStandardDummyPCPartItemData(InPCClass, gForcedPlayerDummyPartGrade, NewDummyPart);
-		TArray<FB2Item>* EquipitemPtrToModify = const_cast<TArray<FB2Item>*>(&InEquippedItems); // °³¹ß Âü°í¿ë Ä¡Æ®ÀÌ¹Ç·Î ´Ù¼Ò°£ °ú°İÇÑ ¹æ¹ıÀ¸·Î..
+		TArray<FB2Item>* EquipitemPtrToModify = const_cast<TArray<FB2Item>*>(&InEquippedItems); // ä¿ºæƒ¯ æ›¼ç»Šä¾© æ‘¹é£˜æéª¨è‚º ä¿ƒå®¶åŸƒ è‹æ‹œèŒ„ è§„è¿‡æ è‚º..
 		if (EquipitemPtrToModify)
 		{
 			EquipitemPtrToModify->Empty();
@@ -905,15 +905,15 @@ bool UB2PCClassInfo::SetupSKCompForParts(EPCClass InPCClass, AActor* SKCompOwner
 
 	if (gCheatCostumeItem.Num() > 0)
 	{
-		TArray<FB2Item>* EquipitemPtrToModify = const_cast<TArray<FB2Item>*>(&InEquippedItems); // °³¹ß Âü°í¿ë Ä¡Æ®ÀÌ¹Ç·Î ´Ù¼Ò°£ °ú°İÇÑ ¹æ¹ıÀ¸·Î..
+		TArray<FB2Item>* EquipitemPtrToModify = const_cast<TArray<FB2Item>*>(&InEquippedItems); // ä¿ºæƒ¯ æ›¼ç»Šä¾© æ‘¹é£˜æéª¨è‚º ä¿ƒå®¶åŸƒ è‹æ‹œèŒ„ è§„è¿‡æ è‚º..
 		if (EquipitemPtrToModify)
 			EquipitemPtrToModify->Append(gCheatCostumeItem);
 	}
 #endif
 
-	TArray<FPCPartsAssetInfo> DefaultPartsCopy = InDefaultParts; // ÀÏºÎ ¿ä¼Ò°¡ µµÁß¿¡ Á¦°ÅµÉ ¼öµµ ÀÖ¾î¼­ º¹»çÇØ¼­ ¾´´Ù.
-	TArray<FLocalPartMeshMtrlInfo> AllPartAssets; // ±âº»ÆÄÆ®¿¡ ÇöÀçÀåÂø ¾ÆÀÌÅÛ °í·ÁÇØ¼­ ÃÖÁ¾ ¸®¼Ò½º Á¤º¸ ¸ğÀº °Í. ¿©±â¿¡ ¸ğÀº °ÍµéÀÌ ÃÖÁ¾ ¸Ş½¬ Á¶ÇÕ Àç·á·Î »ç¿ëµÉ °Í.
-	TArray<FPCPartExtraAttachFxSet> AllExtraAttachFx; // Ãß°¡·Î ÀÌ°Íµµ ¸ğÀ¸°Ô µÉ °Í.
+	TArray<FPCPartsAssetInfo> DefaultPartsCopy = InDefaultParts; // è€ä½• å¤¸å®¶å•Š æ¡£åä¿Š åŠ›èŠ­çª èæ¡£ ä¹ç»¢è¾‘ æ±—è¤ç§¦è¾‘ æ•¬ä¿ƒ.
+	TArray<FLocalPartMeshMtrlInfo> AllPartAssets; // æ‰å¤¯é¢‡é£˜ä¿Š æ³…çŠå˜é¦’ é…’æè¢ ç»Šå¦¨ç§¦è¾‘ å¼¥è¾† åºœå®¶èƒ¶ æ²¥ç„Š è‘›ç¯® å·´. å’¯æ‰ä¿Š è‘›ç¯® å·´ç”¸æ å¼¥è¾† çš‹æµ† ç‚¼é’¦ çŠä¸°è‚º è¤ä¾©çª å·´.
+	TArray<FPCPartExtraAttachFxSet> AllExtraAttachFx; // çœ å•Šè‚º æå·´æ¡£ è‘›æ éœ¸ çª å·´.
 
 	TMap< EPCPart, const FB2Item* > ReplaceCostumeItems;
 	bool HaveCombineCostume = false;
@@ -924,7 +924,7 @@ bool UB2PCClassInfo::SetupSKCompForParts(EPCClass InPCClass, AActor* SKCompOwner
 		{
 			TArray<EPCPart> ReplaceParts;
 			SectionMergeInfo->GetReplaceCostumeEquipPlace(CurrentItem.CostumeEquipPlace, ReplaceParts);
-			//ÄÚ½ºÆ¬ ÇÑ°³·Î ¿©·¯ ºÎÀ§ ÇÕÄ¡¸é Combine ÄÚ½ºÆ¬ µé¾î°¡ ÀÖ´Ù°í °£ÁÖ
+			//å†…èƒ¶ç‰‡ èŒ„ä¿ºè‚º å’¯çŸ¾ ä½•å›° é’¦æ‘¹æ Combine å†…èƒ¶ç‰‡ ç”¸ç»¢å•Š ä¹ä¿ƒç»Š åŸƒæ—
 			if (ReplaceParts.Num() > 1)
 				HaveCombineCostume = true;
 
@@ -933,7 +933,7 @@ bool UB2PCClassInfo::SetupSKCompForParts(EPCClass InPCClass, AActor* SKCompOwner
 		}
 	}
 
-	check(((int32)EPCPart::EPCPT_Face == 0) && ((int32)EPCPart::EPCPT_Wing + 1 == (int32)(EPCPart::EPCPT_End))); // Enum ¹øÈ£°¡ ¸ğ¸£°Ô ¹Ù²î°Å³ª Ãß°¡ Ç×¸ñ »ı±æ °æ¿ì ³õÄ¡Áö ¾Êµµ·Ï.
+	check(((int32)EPCPart::EPCPT_Face == 0) && ((int32)EPCPart::EPCPT_Wing + 1 == (int32)(EPCPart::EPCPT_End))); // Enum é”…é¾‹å•Š è‘›ç¦éœ¸ å®˜å·®èŠ­å”± çœ å•Š äº²æ ¼ ç§¯è¾¨ ç‰ˆå¿« åˆæ‘¹ç˜¤ è‡¼æ¡£åºŸ.
 //	{
 //		B2_SCOPED_TRACK_LOG_L2(TEXT("UB2PCClassInfo::SetupSKCompForParts -- Part Resource Loading"));
 //		for (int32 PartIdx = 0; PartIdx < (int32)EPCPart::EPCPT_End; ++PartIdx)
@@ -949,17 +949,17 @@ bool UB2PCClassInfo::SetupSKCompForParts(EPCClass InPCClass, AActor* SKCompOwner
 //				}
 //			}
 //
-//			// CurrPartDefaultInfo °¡ NULL ÀÌ°Å³ª MeshAsset ÀÌ NULL ÀÌ¾îµµ ÁøÇàÇÑ´Ù.
+//			// CurrPartDefaultInfo å•Š NULL æèŠ­å”± MeshAsset æ NULL æç»¢æ¡£ æŸ³é’èŒ„ä¿ƒ.
 //			check(!CurrPartDefaultInfo || CurrPartDefaultInfo->PartEnum != EPCPart::EPCPT_End);
 //
-//			// ¾Æ·¡ µÑÀº Equip ÀÌ µÈ °æ¿ì¸¸ °ªÀÌ µé¾î°¥ °ÍÀÓ. ¾Æ´Ï¶ó¸é DefaultPartsCopy ¿¡¼­ »ç¿ë.
+//			// é…’è´° ç¬›ç¯® Equip æ ç­‰ ç‰ˆå¿«çˆ¶ è”¼æ ç”¸ç»¢å“ å·´çƒ™. é…’èªæ‰¼æ DefaultPartsCopy ä¿Šè¾‘ è¤ä¾©.
 //			USkeletalMesh* EquippedPartMesh = NULL;
-//			UMaterialInterface* EquippedPartMaterial = NULL; // ÀÌ°Ç equip ÀÎ °æ¿ì¶óµµ ¾øÀ» ¼ö ÀÖÀ½. °°Àº ¸Ş½¬¸¦ »ç¿ëÇÏ´Â Àåºñ¸¦ Material ·Î vary Ä¡±â À§ÇÔ.
+//			UMaterialInterface* EquippedPartMaterial = NULL; // ææ‰’ equip ç‰¢ ç‰ˆå¿«æ‰¼æ¡£ ç»é˜‘ è ä¹æ¾œ. éç¯® çš‹æµ†ç”« è¤ä¾©çªç»° å˜åšç”« Material è‚º vary æ‘¹æ‰ å›°çªƒ.
 //
-//			FLocalPartMeshMtrlInfo ExtraAttachInfo; // ÀÌ¹ø EquippedPart ¿¡¼­ ¹°°í °¡´Â Ãß°¡ ÆÄÆ®°¡ ÀÖÀ» °æ¿ì »ç¿ëµÉ °Í.
+//			FLocalPartMeshMtrlInfo ExtraAttachInfo; // æé”… EquippedPart ä¿Šè¾‘ æ‹±ç»Š å•Šç»° çœ å•Š é¢‡é£˜å•Š ä¹é˜‘ ç‰ˆå¿« è¤ä¾©çª å·´.
 //			bool IsCostumeOverride = false;
 //
-//			// CurrPartEnum ¿¡ ÇØ´çÇÏ´Â ÀåÂø À§Ä¡ ItemInfo ¿¡ µî·ÏµÈ °ÍÀÌ ÀÖ´Ù¸é ±×°É °¡Á®¿Â´Ù.
+//			// CurrPartEnum ä¿Š ç§¦å¯¸çªç»° å˜é¦’ å›°æ‘¹ ItemInfo ä¿Š æ®¿åºŸç­‰ å·´æ ä¹ä¿ƒæ å¼Šå§ å•Šå»‰æŸ¯ä¿ƒ.
 //			EItemEquipPlace RelevantEquipPlace = GetItemEquipPlaceForPCPart(CurrPartEnum);
 //			ECostumeEquipPlace CurrCostumeEquipPlace = ECostumeEquipPlace::ECEP_None;
 //			
@@ -982,21 +982,21 @@ bool UB2PCClassInfo::SetupSKCompForParts(EPCClass InPCClass, AActor* SKCompOwner
 //				if (ViewItem != nullptr)
 //				{
 //					FSingleItemInfoData* RelevantInfoData = IteminfoTable->GetInfoData(ViewItem->ItemRefID);
-//					AllLoadedItemInfo.Add(RelevantInfoData); // ¾²°í ³­ ´ã¿¡ ¾ğ·Îµù ÇÏ·Á°í µû·Î ¹è¿­¿¡ ³Ö¾î³õÀ½.
+//					AllLoadedItemInfo.Add(RelevantInfoData); // é™ç»Š æŠ„ æ·¬ä¿Š æ”«è‚ºçˆ¹ çªå¦¨ç»Š è¶è‚º ç¡…å‡¯ä¿Š æŒç»¢åˆæ¾œ.
 //
-//					// ÆÄÆ® ¸®¼Ò½º ·ÎµùÀº ½ÇÁ¦ mesh merge ¸¦ ÇØ¾ß ÇÏ´Â °æ¿ì¿¡¸¸ ½ÇÇà
+//					// é¢‡é£˜ åºœå®¶èƒ¶ è‚ºçˆ¹ç¯® è§’åŠ› mesh merge ç”« ç§¦å…· çªç»° ç‰ˆå¿«ä¿Šçˆ¶ è§’é’
 //					EquippedPartMesh = (RelevantInfoData && !bPrebuiltMeshProvided) ? RelevantInfoData->GetPCPartMesh(IteminfoTable) : NULL;
 //					EquippedPartMaterial = (RelevantInfoData && !bPrebuiltMeshProvided) ? RelevantInfoData->GetPCPartMaterial(IteminfoTable) : NULL;
 //
-//					//ÄÚ½ºÆ¬ÀÏ¶© È®ÀåÀ» ¾ÈºÙÀÎ´Ù...
+//					//å†…èƒ¶ç‰‡è€è®¢ çŠ¬å˜é˜‘ æ•‘å˜¿ç‰¢ä¿ƒ...
 //					if (IsCostumeOverride == false)
 //					{
-//						// º°µµÀÇ ÀåÂø ½½·ÔÀº ¾ø°í ´Ù¸¥ ÆÄÆ®¿Í °°ÀÌ ºÙ°ÔµÇ´Â ÆÄÆ®.
+//						// å–Šæ¡£ç‹¼ å˜é¦’ æµ‡å©ç¯® ç»ç»Š ä¿ƒå¼— é¢‡é£˜å®¢ éæ å˜¿éœ¸ç™»ç»° é¢‡é£˜.
 //						EPCPart ExtraAttachPartEnum = GetExtraAttachPartEnum(CurrPartEnum);
 //						if (ExtraAttachPartEnum != EPCPart::EPCPT_End && RelevantInfoData)
 //						{
 //							ExtraAttachInfo.PartEnum = ExtraAttachPartEnum;
-//							if (!bPrebuiltMeshProvided) // ÆÄÆ® ¸®¼Ò½º ·ÎµùÀº ½ÇÁ¦ mesh merge ¸¦ ÇØ¾ß ÇÏ´Â °æ¿ì¿¡¸¸ ½ÇÇà
+//							if (!bPrebuiltMeshProvided) // é¢‡é£˜ åºœå®¶èƒ¶ è‚ºçˆ¹ç¯® è§’åŠ› mesh merge ç”« ç§¦å…· çªç»° ç‰ˆå¿«ä¿Šçˆ¶ è§’é’
 //							{
 //								ExtraAttachInfo.MeshAsset = RelevantInfoData->GetPCPartExtraMesh(IteminfoTable);
 //								ExtraAttachInfo.MaterialAsset = RelevantInfoData->GetPCPartExtraMaterial(IteminfoTable);
@@ -1004,28 +1004,28 @@ bool UB2PCClassInfo::SetupSKCompForParts(EPCClass InPCClass, AActor* SKCompOwner
 //						}
 //					}
 //
-//					// ÄÚ½ºÆ¬ ¹«±â ÀÌÆåÆ®
+//					// å†…èƒ¶ç‰‡ å…¬æ‰ ææ£‹é£˜
 //					if (IsCostumeOverride && CurrCostumeInfo != nullptr)
 //					{
-//						// Æ¯Á¤ Á¶°ÇÀ» ¸¸Á·ÇÑ ¹«±â¿¡ ºÙ´Â Ãß°¡ ÆÄÆ¼Å¬ È¿°ú. Çö ±¸Á¶»ó.. ¿©±â´Â »õ·Î merge ÇÏ´Â °æ¿ì°¡ ¾Æ´Ï´õ¶óµµ ·ÎµùÀ» ÇÑ´Ù.
+//						// æ¼‚æ²¥ ç‚¼æ‰’é˜‘ çˆ¶ç»ƒèŒ„ å…¬æ‰ä¿Š å˜¿ç»° çœ å•Š é¢‡èåŠª ç“¤è‹. æ³… å¤‡ç‚¼æƒ‘.. å’¯æ‰ç»° è´§è‚º merge çªç»° ç‰ˆå¿«å•Š é…’èªæ­¹æ‰¼æ¡£ è‚ºçˆ¹é˜‘ èŒ„ä¿ƒ.
 //						if (CurrCostumeInfo->ItemClass == EItemClass::EIC_CostumeWeapon ||
-//							// È²´çÇÏ°Ôµµ ¾ÆÀÌÅÛ ¸¶½ºÅÍ µ¥ÀÌÅÍ¸¦ ¹ŞÁö ¾ÊÀº »óÈ²¿¡¼­´Â ItemClass °¡ ¼¼ÆÃÀÌ ¾ÈµÇ¾î ÀÖ´Ù. µû¶ó¼­ Ã³À½¿¡ 6¼º¹«±â ÀÌÆåÆ®°¡ ¾È³ª¿À´Â ÀÏÀÌ ÀÖÀ½.
-//							// InventoryType °ú RefID Ã¼Å©·Î ´ëÃ¼ °¡´ÉÇÏµµ·Ï.
+//							// ç‚”å¯¸çªéœ¸æ¡£ é…’æè¢ ä»˜èƒ¶ç£ å•æç£ç”« ç½ç˜¤ è‡¼ç¯® æƒ‘ç‚”ä¿Šè¾‘ç»° ItemClass å•Š æŠ€æ³¼æ æ•‘ç™»ç»¢ ä¹ä¿ƒ. è¶æ‰¼è¾‘ è´¸æ¾œä¿Š 6å·±å…¬æ‰ ææ£‹é£˜å•Š æ•‘å”±å·ç»° è€æ ä¹æ¾œ.
+//							// InventoryType è‹ RefID çœ‰å†œè‚º æªçœ‰ å•Šç“·çªæ¡£åºŸ.
 //							(CurrCostumeInfo->InventoryType == EItemInvenType::EIIVT_CostumeWeapon && FItemRefIDHelper::ExtractItemClassFromRefID(CurrCostumeInfo->ItemRefID) == EItemClass::EIC_CostumeWeapon)
 //							)
 //						{
 //
-//							AllLoadedItemInfo.Add(RelevantInfoData); // ¾²°í ³­ ´ã¿¡ ¾ğ·Îµù ÇÏ·Á°í µû·Î ¹è¿­¿¡ ³Ö¾î³õÀ½.
+//							AllLoadedItemInfo.Add(RelevantInfoData); // é™ç»Š æŠ„ æ·¬ä¿Š æ”«è‚ºçˆ¹ çªå¦¨ç»Š è¶è‚º ç¡…å‡¯ä¿Š æŒç»¢åˆæ¾œ.
 //
 //							UParticleSystem* SixStarWeaponEffectPS_L = RelevantInfoData->GetSixStarWeaponEffect(IteminfoTable);
 //							UParticleSystem* SixStarWeaponEffectPS_R = RelevantInfoData->GetSixStarWeaponEffect_R(IteminfoTable);
 //							if (!SixStarWeaponEffectPS_R) {
-//								// _R ¹öÀüÀÌ Á¦°øµÇÁö ¾ÊÀ» ½Ã ±âº» ¼³Á¤µÈ °É·Î ÁÂÃø, ¿ìÃø ¸ğµÎ ¼¼ÆÃ. ÁÂ¿ì µ¿ÀÏÇÑ ÇüÅÂ¸é ÀÌ·¸°Ô µÊ.
+//								// _R æ»šå‚ˆæ åŠ›å‚ç™»ç˜¤ è‡¼é˜‘ çŸ« æ‰å¤¯ æ±²æ²¥ç­‰ å§è‚º è°…èŸ, å¿«èŸ è‘›æ»´ æŠ€æ³¼. è°…å¿« æ‚¼è€èŒ„ å±ˆæ€•æ æçŠ¯éœ¸ å‡³.
 //								SixStarWeaponEffectPS_R = SixStarWeaponEffectPS_L;
 //							}
 //							if (SixStarWeaponEffectPS_L)
 //							{
-//								// ¿ä ¼Â¾÷¿¡¼­´Â ±âº»ÀûÀÎ Á¤º¸¸¸ °¡Áö°í ±¸¼ºÇÏ´Âµ¥.. È¤ Ãß°¡µÉÁöµµ ¸ğ¸£°Ú´Ù.
+//								// å¤¸ æ‚¸è¯€ä¿Šè¾‘ç»° æ‰å¤¯åˆ©ç‰¢ æ²¥ç„Šçˆ¶ å•Šç˜¤ç»Š å¤‡å·±çªç»°å•.. è¶£ çœ å•Šçªç˜¤æ¡£ è‘›ç¦æ‘†ä¿ƒ.
 //								PCPartExtraAttachFxSetInfoExtractHelper(AllExtraAttachFx, SixStarWeaponEffectPS_L, SIXSTAR_WEAPON_EFFECT_SOCKET_L_01);
 //							}
 //							if (SixStarWeaponEffectPS_R)
@@ -1036,7 +1036,7 @@ bool UB2PCClassInfo::SetupSKCompForParts(EPCClass InPCClass, AActor* SKCompOwner
 //							UParticleSystem* SixStarWeaponEffect2PS_L = RelevantInfoData->GetSixStarWeaponEffect2(IteminfoTable);
 //							UParticleSystem* SixStarWeaponEffect2PS_R = RelevantInfoData->GetSixStarWeaponEffect2_R(IteminfoTable);
 //							if (!SixStarWeaponEffect2PS_R) {
-//								// _R ¹öÀüÀÌ Á¦°øµÇÁö ¾ÊÀ» ½Ã ±âº» ¼³Á¤µÈ °É·Î ÁÂÃø, ¿ìÃø ¸ğµÎ ¼¼ÆÃ. ÁÂ¿ì µ¿ÀÏÇÑ ÇüÅÂ¸é ÀÌ·¸°Ô µÊ.
+//								// _R æ»šå‚ˆæ åŠ›å‚ç™»ç˜¤ è‡¼é˜‘ çŸ« æ‰å¤¯ æ±²æ²¥ç­‰ å§è‚º è°…èŸ, å¿«èŸ è‘›æ»´ æŠ€æ³¼. è°…å¿« æ‚¼è€èŒ„ å±ˆæ€•æ æçŠ¯éœ¸ å‡³.
 //								SixStarWeaponEffect2PS_R = SixStarWeaponEffect2PS_L;
 //							}
 //
@@ -1052,20 +1052,20 @@ bool UB2PCClassInfo::SetupSKCompForParts(EPCClass InPCClass, AActor* SKCompOwner
 //					}
 //				}
 //
-//				//½ÇÁ¦ ÀåÂøµÈ Á¤º¸°¡ ÀÖÀ»¶§¸¸ µ¿ÀÛ..
+//				//è§’åŠ› å˜é¦’ç­‰ æ²¥ç„Šå•Š ä¹é˜‘é”­çˆ¶ æ‚¼ç´¯..
 //				if (CurrEquipInfo != nullptr)
 //				{
-//					// Æ¯Á¤ Á¶°ÇÀ» ¸¸Á·ÇÑ ¹«±â¿¡ ºÙ´Â Ãß°¡ ÆÄÆ¼Å¬ È¿°ú. Çö ±¸Á¶»ó.. ¿©±â´Â »õ·Î merge ÇÏ´Â °æ¿ì°¡ ¾Æ´Ï´õ¶óµµ ·ÎµùÀ» ÇÑ´Ù.
+//					// æ¼‚æ²¥ ç‚¼æ‰’é˜‘ çˆ¶ç»ƒèŒ„ å…¬æ‰ä¿Š å˜¿ç»° çœ å•Š é¢‡èåŠª ç“¤è‹. æ³… å¤‡ç‚¼æƒ‘.. å’¯æ‰ç»° è´§è‚º merge çªç»° ç‰ˆå¿«å•Š é…’èªæ­¹æ‰¼æ¡£ è‚ºçˆ¹é˜‘ èŒ„ä¿ƒ.
 //					if (CurrEquipInfo->ItemClass == EItemClass::EIC_Weapon ||
-//						// È²´çÇÏ°Ôµµ ¾ÆÀÌÅÛ ¸¶½ºÅÍ µ¥ÀÌÅÍ¸¦ ¹ŞÁö ¾ÊÀº »óÈ²¿¡¼­´Â ItemClass °¡ ¼¼ÆÃÀÌ ¾ÈµÇ¾î ÀÖ´Ù. µû¶ó¼­ Ã³À½¿¡ 6¼º¹«±â ÀÌÆåÆ®°¡ ¾È³ª¿À´Â ÀÏÀÌ ÀÖÀ½.
-//						// InventoryType °ú RefID Ã¼Å©·Î ´ëÃ¼ °¡´ÉÇÏµµ·Ï.
+//						// ç‚”å¯¸çªéœ¸æ¡£ é…’æè¢ ä»˜èƒ¶ç£ å•æç£ç”« ç½ç˜¤ è‡¼ç¯® æƒ‘ç‚”ä¿Šè¾‘ç»° ItemClass å•Š æŠ€æ³¼æ æ•‘ç™»ç»¢ ä¹ä¿ƒ. è¶æ‰¼è¾‘ è´¸æ¾œä¿Š 6å·±å…¬æ‰ ææ£‹é£˜å•Š æ•‘å”±å·ç»° è€æ ä¹æ¾œ.
+//						// InventoryType è‹ RefID çœ‰å†œè‚º æªçœ‰ å•Šç“·çªæ¡£åºŸ.
 //						(CurrEquipInfo->InventoryType == EItemInvenType::EIIVT_Weapon && FItemRefIDHelper::ExtractItemClassFromRefID(CurrEquipInfo->ItemRefID) == EItemClass::EIC_Weapon)
 //						)
 //					{
 //						if (CurrEquipInfo->StarGrade >= FB2Item::MinimumSurpassStarGrade)
-//						{ // 6¼º ¹«±â
+//						{ // 6å·± å…¬æ‰
 //							FSingleItemInfoData* RelevantInfoData = IteminfoTable->GetInfoData(CurrEquipInfo->ItemRefID);
-//							AllLoadedItemInfo.Add(RelevantInfoData); // ¾²°í ³­ ´ã¿¡ ¾ğ·Îµù ÇÏ·Á°í µû·Î ¹è¿­¿¡ ³Ö¾î³õÀ½.
+//							AllLoadedItemInfo.Add(RelevantInfoData); // é™ç»Š æŠ„ æ·¬ä¿Š æ”«è‚ºçˆ¹ çªå¦¨ç»Š è¶è‚º ç¡…å‡¯ä¿Š æŒç»¢åˆæ¾œ.
 //
 //							if (RelevantInfoData && !IsCostumeOverride)
 //							{
@@ -1073,12 +1073,12 @@ bool UB2PCClassInfo::SetupSKCompForParts(EPCClass InPCClass, AActor* SKCompOwner
 //									UParticleSystem* SixStarWeaponEffectPS_L = RelevantInfoData->GetSixStarWeaponEffect(IteminfoTable);
 //									UParticleSystem* SixStarWeaponEffectPS_R = RelevantInfoData->GetSixStarWeaponEffect_R(IteminfoTable);
 //									if (!SixStarWeaponEffectPS_R) {
-//										// _R ¹öÀüÀÌ Á¦°øµÇÁö ¾ÊÀ» ½Ã ±âº» ¼³Á¤µÈ °É·Î ÁÂÃø, ¿ìÃø ¸ğµÎ ¼¼ÆÃ. ÁÂ¿ì µ¿ÀÏÇÑ ÇüÅÂ¸é ÀÌ·¸°Ô µÊ.
+//										// _R æ»šå‚ˆæ åŠ›å‚ç™»ç˜¤ è‡¼é˜‘ çŸ« æ‰å¤¯ æ±²æ²¥ç­‰ å§è‚º è°…èŸ, å¿«èŸ è‘›æ»´ æŠ€æ³¼. è°…å¿« æ‚¼è€èŒ„ å±ˆæ€•æ æçŠ¯éœ¸ å‡³.
 //										SixStarWeaponEffectPS_R = SixStarWeaponEffectPS_L;
 //									}
 //									if (SixStarWeaponEffectPS_L)
 //									{
-//										// ¿ä ¼Â¾÷¿¡¼­´Â ±âº»ÀûÀÎ Á¤º¸¸¸ °¡Áö°í ±¸¼ºÇÏ´Âµ¥.. È¤ Ãß°¡µÉÁöµµ ¸ğ¸£°Ú´Ù.
+//										// å¤¸ æ‚¸è¯€ä¿Šè¾‘ç»° æ‰å¤¯åˆ©ç‰¢ æ²¥ç„Šçˆ¶ å•Šç˜¤ç»Š å¤‡å·±çªç»°å•.. è¶£ çœ å•Šçªç˜¤æ¡£ è‘›ç¦æ‘†ä¿ƒ.
 //										PCPartExtraAttachFxSetInfoExtractHelper(AllExtraAttachFx, SixStarWeaponEffectPS_L, SIXSTAR_WEAPON_EFFECT_SOCKET_L_01);
 //									}
 //									if (SixStarWeaponEffectPS_R)
@@ -1090,7 +1090,7 @@ bool UB2PCClassInfo::SetupSKCompForParts(EPCClass InPCClass, AActor* SKCompOwner
 //									UParticleSystem* SixStarWeaponEffect2PS_L = RelevantInfoData->GetSixStarWeaponEffect2(IteminfoTable);
 //									UParticleSystem* SixStarWeaponEffect2PS_R = RelevantInfoData->GetSixStarWeaponEffect2_R(IteminfoTable);
 //									if (!SixStarWeaponEffect2PS_R) {
-//										// _R ¹öÀüÀÌ Á¦°øµÇÁö ¾ÊÀ» ½Ã ±âº» ¼³Á¤µÈ °É·Î ÁÂÃø, ¿ìÃø ¸ğµÎ ¼¼ÆÃ. ÁÂ¿ì µ¿ÀÏÇÑ ÇüÅÂ¸é ÀÌ·¸°Ô µÊ.
+//										// _R æ»šå‚ˆæ åŠ›å‚ç™»ç˜¤ è‡¼é˜‘ çŸ« æ‰å¤¯ æ±²æ²¥ç­‰ å§è‚º è°…èŸ, å¿«èŸ è‘›æ»´ æŠ€æ³¼. è°…å¿« æ‚¼è€èŒ„ å±ˆæ€•æ æçŠ¯éœ¸ å‡³.
 //										SixStarWeaponEffect2PS_R = SixStarWeaponEffect2PS_L;
 //									}
 //
@@ -1106,8 +1106,8 @@ bool UB2PCClassInfo::SetupSKCompForParts(EPCClass InPCClass, AActor* SKCompOwner
 //							}
 //						}
 //
-//						//ÄÚ½ºÆ¬°ú »ó°ü¾øÀÌ N°­ ÀÌÆåÆ®´Â ÀåÂøµÈ ¹«±â¿¡ µû¶ó¼­ Ãß°¡ÇØÁØ´Ù.
-//						// °­È­¿¡ µû¸¥ ¹«±â ÆÄÆ¼Å¬ ÀÌÆåÆ® Ç¥½Ã
+//						//å†…èƒ¶ç‰‡è‹ æƒ‘åŒ…ç»æ Nç¢ ææ£‹é£˜ç»° å˜é¦’ç­‰ å…¬æ‰ä¿Š è¶æ‰¼è¾‘ çœ å•Šç§¦éœ–ä¿ƒ.
+//						// ç¢æ‹³ä¿Š è¶å¼— å…¬æ‰ é¢‡èåŠª ææ£‹é£˜ é’çŸ«
 //						if (ClientDataStore.HasEnhanceEffectAuraColor(CurrEquipInfo->EnhanceLevel))
 //						{
 //							if (SomeInfo)
@@ -1118,7 +1118,7 @@ bool UB2PCClassInfo::SetupSKCompForParts(EPCClass InPCClass, AActor* SKCompOwner
 //									AttachPS = SomeInfo->GetWeaponExtraEffect_Level30();
 //								else if(CurrEquipInfo->EnhanceLevel > SomeInfo->GetUseWeaponExtraEffect_Level40() && CurrEquipInfo->EnhanceLevel <= SomeInfo->GetUseWeaponExtraEffect_Level50())
 //								{
-//									//Ä³¸¯ÅÍ¸¶´Ù ÀÌÆåÆ® ´Ù¸§
+//									//æŸè…ç£ä»˜ä¿ƒ ææ£‹é£˜ ä¿ƒæŠš
 //									if(InPCClass == EPCClass::EPC_Gladiator)
 //										AttachPS = SomeInfo->GetWeaponExtraEffect_Level40_Gl();
 //									else if (InPCClass == EPCClass::EPC_Assassin)
@@ -1130,7 +1130,7 @@ bool UB2PCClassInfo::SetupSKCompForParts(EPCClass InPCClass, AActor* SKCompOwner
 //								}
 //								else
 //								{
-//									//Ä³¸¯ÅÍ¸¶´Ù ÀÌÆåÆ® ´Ù¸§
+//									//æŸè…ç£ä»˜ä¿ƒ ææ£‹é£˜ ä¿ƒæŠš
 //									if (InPCClass == EPCClass::EPC_Gladiator)
 //										AttachPS = SomeInfo->GetWeaponExtraEffect_Level50_Gl();
 //									else if (InPCClass == EPCClass::EPC_Assassin)
@@ -1155,11 +1155,11 @@ bool UB2PCClassInfo::SetupSKCompForParts(EPCClass InPCClass, AActor* SKCompOwner
 //					else if (CurrEquipInfo->ItemClass == EItemClass::EIC_BodyArmor
 //						|| CurrEquipInfo->ItemClass == EItemClass::EIC_Helmet)
 //					{
-//						if (CurrEquipInfo->ItemRefID % 10 == 6 ||	// Ãµ»ó
-//							CurrEquipInfo->ItemRefID % 10 == 7)		// ¿µ¿ø
+//						if (CurrEquipInfo->ItemRefID % 10 == 6 ||	// ç«æƒ‘
+//							CurrEquipInfo->ItemRefID % 10 == 7)		// åº·ç›”
 //						{
 //							FSingleItemInfoData* RelevantInfoData = IteminfoTable->GetInfoData(CurrEquipInfo->ItemRefID);
-//							AllLoadedItemInfo.Add(RelevantInfoData); // ¾²°í ³­ ´ã¿¡ ¾ğ·Îµù ÇÏ·Á°í µû·Î ¹è¿­¿¡ ³Ö¾î³õÀ½.
+//							AllLoadedItemInfo.Add(RelevantInfoData); // é™ç»Š æŠ„ æ·¬ä¿Š æ”«è‚ºçˆ¹ çªå¦¨ç»Š è¶è‚º ç¡…å‡¯ä¿Š æŒç»¢åˆæ¾œ.
 //
 //							if (RelevantInfoData && !IsCostumeOverride)
 //							{
@@ -1177,11 +1177,11 @@ bool UB2PCClassInfo::SetupSKCompForParts(EPCClass InPCClass, AActor* SKCompOwner
 //					else if (CurrEquipInfo->ItemClass == EItemClass::EIC_Glove
 //						|| CurrEquipInfo->ItemClass == EItemClass::EIC_Shoes)
 //					{
-//						if (CurrEquipInfo->ItemRefID % 10 == 6 || // Ãµ»ó
-//							CurrEquipInfo->ItemRefID % 10 == 7)	  // ¿µ¿ø
+//						if (CurrEquipInfo->ItemRefID % 10 == 6 || // ç«æƒ‘
+//							CurrEquipInfo->ItemRefID % 10 == 7)	  // åº·ç›”
 //						{
 //							FSingleItemInfoData* RelevantInfoData = IteminfoTable->GetInfoData(CurrEquipInfo->ItemRefID);
-//							AllLoadedItemInfo.Add(RelevantInfoData); // ¾²°í ³­ ´ã¿¡ ¾ğ·Îµù ÇÏ·Á°í µû·Î ¹è¿­¿¡ ³Ö¾î³õÀ½.
+//							AllLoadedItemInfo.Add(RelevantInfoData); // é™ç»Š æŠ„ æ·¬ä¿Š æ”«è‚ºçˆ¹ çªå¦¨ç»Š è¶è‚º ç¡…å‡¯ä¿Š æŒç»¢åˆæ¾œ.
 //
 //							if (RelevantInfoData && !IsCostumeOverride)
 //							{
@@ -1212,22 +1212,22 @@ bool UB2PCClassInfo::SetupSKCompForParts(EPCClass InPCClass, AActor* SKCompOwner
 //				}
 //			}
 //			else if (CurrPartEnum == EPCPart::EPCPT_Wing && InWingData && InWingData->bShouldBeVisible)
-//			{// ³¯°³´Â ´Ù¸¥ Àåºñ¿Í´Â º°µµ·Î
+//			{// æœä¿ºç»° ä¿ƒå¼— å˜åšå®¢ç»° å–Šæ¡£è‚º
 //				LoadedWingInfo = WingInfoTable ? WingInfoTable->GetInfoData(*InWingData) : NULL;
 //				if (LoadedWingInfo)
 //				{
-//					if (!bPrebuiltMeshProvided) // ÆÄÆ® ¸®¼Ò½º ·ÎµùÀº ½ÇÁ¦ mesh merge ¸¦ ÇØ¾ß ÇÏ´Â °æ¿ì¿¡¸¸ ½ÇÇà
+//					if (!bPrebuiltMeshProvided) // é¢‡é£˜ åºœå®¶èƒ¶ è‚ºçˆ¹ç¯® è§’åŠ› mesh merge ç”« ç§¦å…· çªç»° ç‰ˆå¿«ä¿Šçˆ¶ è§’é’
 //					{
 //						EquippedPartMesh = LoadedWingInfo->GetWingMesh();
 //						EquippedPartMaterial = LoadedWingInfo->GetMtrlOverride();
 //
 //#if !UE_BUILD_SHIPPING
-//						// ³¯°³ ¸ÓÆ¼¸®¾ó¿¡ µé¾î°£ Æ¯Á¤ ÅØ½ºÃÄ ÆÄ¶ó¹ÌÅÍ ³×ÀÌ¹Ö ·êÀ» Ã¼Å©ÇÏ´Âµ¥ ÀÌ°Ô 6¼ººÎÅÍ ÀÖ´Ù..
+//						// æœä¿º èµ£èåºœå€”ä¿Š ç”¸ç»¢åŸƒ æ¼‚æ²¥ å’†èƒ¶åªš é¢‡æ‰¼å›ºç£ åŒ™ææ€ª é€¢é˜‘ çœ‰å†œçªç»°å• æéœ¸ 6å·±ä½•ç£ ä¹ä¿ƒ..
 //						if (InWingData->EvolutionGrade >= 6)
 //						{
 //							UMaterialInterface* WingMtrlCheck = EquippedPartMaterial;
 //							if (!WingMtrlCheck && EquippedPartMesh && EquippedPartMesh->Materials.Num() > 0)
-//							{// »ç½Ç ÀÌ 6¼º ÀÌ»ó ³¯°³ ¿ëÀÇ Æ¯¼ö ¸ÓÆ¼¸®¾óÀº ±âº» ¼¼ÆÃÀÌ ¾Æ´Ñ Override ¶ó ¿©±â·Î ¿ÀÁö ¾Ê°ÚÁö..
+//							{// è¤è§’ æ 6å·± ææƒ‘ æœä¿º ä¾©ç‹¼ æ¼‚è èµ£èåºœå€”ç¯® æ‰å¤¯ æŠ€æ³¼æ é…’å›± Override æ‰¼ å’¯æ‰è‚º å·ç˜¤ è‡¼æ‘†ç˜¤..
 //								WingMtrlCheck = EquippedPartMesh->Materials[0].MaterialInterface;
 //							}
 //							if (WingMtrlCheck)
@@ -1236,11 +1236,11 @@ bool UB2PCClassInfo::SetupSKCompForParts(EPCClass InPCClass, AActor* SKCompOwner
 //							}
 //						}
 //#endif
-//#if !UE_BUILD_SHIPPING // ÈñÇÑÇÏ°Ô ³¯°³°¡ ¾È ¸¸µé¾îÁö´Â °æ¿ì°¡ °£È¤ ÀÖ´Â °Å °°¾Æ ·Î±×¸¦ »Ñ·Áº»´Ù.
+//#if !UE_BUILD_SHIPPING // é”èŒ„çªéœ¸ æœä¿ºå•Š æ•‘ çˆ¶ç”¸ç»¢ç˜¤ç»° ç‰ˆå¿«å•Š åŸƒè¶£ ä¹ç»° èŠ­ éé…’ è‚ºå¼Šç”« è°å¦¨å¤¯ä¿ƒ.
 //						UE_LOG(LogBladeII, Log, TEXT("WingMesh %s has been added as one of equip part for PCClass %d"), EquippedPartMesh ? *EquippedPartMesh->GetName() : TEXT("InvalidMesh"), PCClassToInt(InPCClass));
 //#endif
 //					}
-//					// ¿ä°Ç ¾Æ¸¶ 7¼º ÀÌ»ó¿¡¼­¸¸ ¼¼ÆÃÀÌ µÉ °Í. ¼¼ÆÃÀÌ µÇ¾îÀÖ´Â °æ¿ì¸¸
+//					// å¤¸æ‰’ é…’ä»˜ 7å·± ææƒ‘ä¿Šè¾‘çˆ¶ æŠ€æ³¼æ çª å·´. æŠ€æ³¼æ ç™»ç»¢ä¹ç»° ç‰ˆå¿«çˆ¶
 //					for (int32 AEI = 0; AEI < LoadedWingInfo->AttachEffectInfoArray.Num(); ++AEI)
 //					{
 //						FCHSKCompAttachParticleSystemInfo& ThisAttachEffectInfo = LoadedWingInfo->AttachEffectInfoArray[AEI];
@@ -1248,28 +1248,28 @@ bool UB2PCClassInfo::SetupSKCompForParts(EPCClass InPCClass, AActor* SKCompOwner
 //						if (WingPS)
 //						{
 //							FPCPartExtraAttachFxSet WingAttachPSInfo;
-//							WingAttachPSInfo = ThisAttachEffectInfo; // ¿©±â °ÅÄ¡¸é¼­ WingAttachPSInfo.LoadedAttachPS ¿¡ WingPS °¡ ¼¼ÆÃµÉ °Í.
+//							WingAttachPSInfo = ThisAttachEffectInfo; // å’¯æ‰ èŠ­æ‘¹æè¾‘ WingAttachPSInfo.LoadedAttachPS ä¿Š WingPS å•Š æŠ€æ³¼çª å·´.
 //							AllExtraAttachFx.Add(WingAttachPSInfo);
 //						}
 //					}
 //				}
 //			}
 //
-//			// ÀÌ¹ø ÆÄÆ®¿¡¼­ÀÇ ÃÖÁ¾ÀûÀ¸·Î »ç¿ëÇÒ ¸®¼Ò½º Á¤º¸. bPrebuiltMeshProvided ÀÇ °æ¿ì ½ÇÁ¦·Î´Â ¸ğµÎ null ÀÎ »óÅÂÀÏ °Í.
+//			// æé”… é¢‡é£˜ä¿Šè¾‘ç‹¼ å¼¥è¾†åˆ©æ è‚º è¤ä¾©ä¸” åºœå®¶èƒ¶ æ²¥ç„Š. bPrebuiltMeshProvided ç‹¼ ç‰ˆå¿« è§’åŠ›è‚ºç»° è‘›æ»´ null ç‰¢ æƒ‘æ€•è€ å·´.
 //			FLocalPartMeshMtrlInfo ThisPartAssetInfo;
 //			ThisPartAssetInfo.PartEnum = CurrPartEnum;
 //			ThisPartAssetInfo.MeshAsset = EquippedPartMesh ? EquippedPartMesh : (CurrPartDefaultInfo ? CurrPartDefaultInfo->MeshAsset : NULL);
-//			ThisPartAssetInfo.MaterialAsset = EquippedPartMaterial; // Material Àº µğÆúÆ®·Î Á¤ÀÇµÈ °ÍÀº ¾øÀ½.
+//			ThisPartAssetInfo.MaterialAsset = EquippedPartMaterial; // Material ç¯® å¼å¼ƒé£˜è‚º æ²¥ç‹¼ç­‰ å·´ç¯® ç»æ¾œ.
 //			ThisPartAssetInfo.CostumeEquipPlace = CurrCostumeEquipPlace;
 //
-//			if (ThisPartAssetInfo.MeshAsset) { // ±âº» ¸®½ºÆ®¿¡µµ ¾ø°í ÀåÂø ¸®½ºÆ®¿¡µµ ¾øÀ¸¸é NULL ÀÏ ¼ö ÀÖ´Ù. ±×·± °æ¿ì ÃÖÁ¾ Á¶ÇÕ ¸®½ºÆ®¿¡ Æ÷ÇÔ½ÃÅ°Áö ¾Ê´Â´Ù.
+//			if (ThisPartAssetInfo.MeshAsset) { // æ‰å¤¯ åºœèƒ¶é£˜ä¿Šæ¡£ ç»ç»Š å˜é¦’ åºœèƒ¶é£˜ä¿Šæ¡£ ç»æ æ NULL è€ è ä¹ä¿ƒ. å¼Šç¹ ç‰ˆå¿« å¼¥è¾† ç‚¼é’¦ åºœèƒ¶é£˜ä¿Š å™¨çªƒçŸ«è™ç˜¤ è‡¼ç»°ä¿ƒ.
 //				AllPartAssets.Add(ThisPartAssetInfo);
 //			}
-//			// ¹°·Ğ ¿©±â¿¡ extra attach °¡ Ãß°¡µÉ ¼öµµ ÀÖ´Ù.
+//			// æ‹±æ²¸ å’¯æ‰ä¿Š extra attach å•Š çœ å•Šçª èæ¡£ ä¹ä¿ƒ.
 //			if (ExtraAttachInfo.MeshAsset)
 //			{
-//				// AllPartAssets ¿¡ ³Ö±â Àü¿¡, µ¿ÀÏ PartEnum ÀÇ ±âº» ¸®½ºÆ®°¡ ÀÖ´Ù¸é ¸¶Âù°¡Áö·Î ±×°Ç »©¾ßÁö.
-//				// DefaultParts ¿¡¼­µµ »©°í, ÀÌ¹Ì AllPartAssets ¿¡ µé¾î°¡ ÀÖÀ» ¼öµµ ÀÖÀ¸¹Ç·Î °Å±â¼­µµ »©°í.
+//				// AllPartAssets ä¿Š æŒæ‰ å‚ˆä¿Š, æ‚¼è€ PartEnum ç‹¼ æ‰å¤¯ åºœèƒ¶é£˜å•Š ä¹ä¿ƒæ ä»˜è›®å•Šç˜¤è‚º å¼Šæ‰’ å“—å…·ç˜¤.
+//				// DefaultParts ä¿Šè¾‘æ¡£ å“—ç»Š, æå›º AllPartAssets ä¿Š ç”¸ç»¢å•Š ä¹é˜‘ èæ¡£ ä¹æ éª¨è‚º èŠ­æ‰è¾‘æ¡£ å“—ç»Š.
 //				for (int32 DPI = 0; DPI < DefaultPartsCopy.Num(); ++DPI)
 //				{
 //					if (DefaultPartsCopy[DPI].PartEnum == ExtraAttachInfo.PartEnum)
@@ -1291,19 +1291,19 @@ bool UB2PCClassInfo::SetupSKCompForParts(EPCClass InPCClass, AActor* SKCompOwner
 //		}
 //	}
 
-	// °°ÀÌ Á¸ÀçÇÏ¸é ¾ÈµÇ´Â ÆÄÆ®µéÀ» °É·¯³¿
+	// éæ ç²®çŠçªæ æ•‘ç™»ç»° é¢‡é£˜ç”¸é˜‘ å§çŸ¾æ™¨
 	TArray<int32> ToRemovePartIndices;
 	for (int32 PIA = 0; PIA < AllPartAssets.Num(); ++PIA)
 	{
 		const EPCPart PartToAdd = AllPartAssets[PIA].PartEnum;
 
 		for (int32 PIB = 0; PIB < AllPartAssets.Num(); ++PIB)
-		{ // ºñ±³ ¼ø¼­°¡ ÀÖ¾î¼­ PIB ¸¦ PIA+1 ºÎÅÍ ½ÃÀÛÇÏÁö´Â ¸øÇÏ°í °°Àº °æ¿ì¸¸ °É·¯³½´Ù.
+		{ // åšèƒŒ é‰´è¾‘å•Š ä¹ç»¢è¾‘ PIB ç”« PIA+1 ä½•ç£ çŸ«ç´¯çªç˜¤ç»° ç»™çªç»Š éç¯® ç‰ˆå¿«çˆ¶ å§çŸ¾è¾°ä¿ƒ.
 			if (PIA == PIB){
 				continue;
 			}
 			const EPCPart PartToRemoveTest = AllPartAssets[PIB].PartEnum;
-			if (ShouldRemoveOtherPart(InPCClass, PartToAdd, PartToRemoveTest)) // ¸¸¿¡ ÇÏ³ª.. ShouldRemove °ü°è°¡ ¸ÔÀÌ»ç½½Ã³·³ ¹°°í¹°¸®´Â ½ÄÀÌ µÇ¾î¼± ¾ÈµÇ°Ú´Ù..
+			if (ShouldRemoveOtherPart(InPCClass, PartToAdd, PartToRemoveTest)) // çˆ¶ä¿Š çªå”±.. ShouldRemove åŒ…æ‹Œå•Š å†ˆæè¤æµ‡è´¸çƒ¦ æ‹±ç»Šæ‹±åºœç»° ä¾¥æ ç™»ç»¢æ€¥ æ•‘ç™»æ‘†ä¿ƒ..
 			{
 				ToRemovePartIndices.AddUnique(PIB);
 			}
@@ -1312,20 +1312,20 @@ bool UB2PCClassInfo::SetupSKCompForParts(EPCClass InPCClass, AActor* SKCompOwner
 	if (ToRemovePartIndices.Num() > 0)
 	{
 		ToRemovePartIndices.Sort([](const int32& A, const int32& B) { return A > B; });
-		for (int32 ThisRemoveIdx : ToRemovePartIndices) // µÚÂÊ ÀÎµ¦½ººÎÅÍ ÇØ¼­ Á¦°Å
+		for (int32 ThisRemoveIdx : ToRemovePartIndices) // ç¬¬ç‡ ç‰¢éƒ¸èƒ¶ä½•ç£ ç§¦è¾‘ åŠ›èŠ­
 		{
 			AllPartAssets.RemoveAt(ThisRemoveIdx);
 		}
 	}
 
-	//ÄÚ½ºÆ¬¿¡¼­ °°ÀÌ ¾²´Â ºÎÀ§ °É·¯³¿
+	//å†…èƒ¶ç‰‡ä¿Šè¾‘ éæ é™ç»° ä½•å›° å§çŸ¾æ™¨
 	CombineCostumePart(SectionMergeInfo, AllPartAssets);
 
-	if (AllPartAssets.Num() == 0){ // ±âº»ÆÄÆ®µç ÀåÂø¾ÆÀÌÅÛÀÌµç ¾Æ¹« ¼¼ÆÃ ¾øÀ½. ±×´ë·Î ÁøÇàÇÏ¸é MeshMerge ¿¡¼­ ½ÇÆĞ ·Î±×.
+	if (AllPartAssets.Num() == 0){ // æ‰å¤¯é¢‡é£˜ç”µ å˜é¦’é…’æè¢æç”µ é…’å…¬ æŠ€æ³¼ ç»æ¾œ. å¼Šæªè‚º æŸ³é’çªæ MeshMerge ä¿Šè¾‘ è§’è© è‚ºå¼Š.
 		return false;
 	}
 
-	// º»°İ MeshMerge ·Î ³Ñ¾î°¡±â Àü material ¼½¼Ç ID ¸¦ È®½ÇÈ÷ ÇÏ±â À§ÇØ ¸®½ºÆ®¸¦ PartEnum µû¶ó Á¤·Ä. (GetPCCompositeMtrlID)
+	// å¤¯æ‹œ MeshMerge è‚º é€ç»¢å•Šæ‰ å‚ˆ material å†€è®° ID ç”« çŠ¬è§’æ´’ çªæ‰ å›°ç§¦ åºœèƒ¶é£˜ç”« PartEnum è¶æ‰¼ æ²¥çºº. (GetPCCompositeMtrlID)
 	struct FLocalPartMeshMtrlInfoSorter
 	{
 		bool operator()(const FLocalPartMeshMtrlInfo& A, const FLocalPartMeshMtrlInfo& B) const
@@ -1336,9 +1336,9 @@ bool UB2PCClassInfo::SetupSKCompForParts(EPCClass InPCClass, AActor* SKCompOwner
 	AllPartAssets.Sort(FLocalPartMeshMtrlInfoSorter());
 
 //#if WITH_EDITOR && !PLATFORM_MAC
-//	// ÆÄÆ® ´ç ´ÙÁß material ¼½¼Ç¿¡ ´ëÇÑ °æ°í. MeshMerge °°Àº °÷¿¡¼­´Â ±â´ÉÀûÀ¸·Î °¡´ÉÇÏÁö¸¸ Çö½ÇÀûÀ¸·Î ÀÎ°ÔÀÓ¿¡¼­ Material ID ¸¦ °ü¸®ÇÏ±â À§ÇØ¼­´Â ¾î·Á¿ò.
+//	// é¢‡é£˜ å¯¸ ä¿ƒå material å†€è®°ä¿Š æªèŒ„ ç‰ˆç»Š. MeshMerge éç¯® é•‘ä¿Šè¾‘ç»° æ‰ç“·åˆ©æ è‚º å•Šç“·çªç˜¤çˆ¶ æ³…è§’åˆ©æ è‚º ç‰¢éœ¸çƒ™ä¿Šè¾‘ Material ID ç”« åŒ…åºœçªæ‰ å›°ç§¦è¾‘ç»° ç»¢å¦¨æ¡†.
 //	int32 MultiSectionFoundNum = 0;
-//	FString MultiSectionPartWarnMsg = TEXT("°³º° ÆÄÆ®ÀÇ ´ÙÁß ¼½¼ÇÀº Çö ½Ã½ºÅÛ¿¡¼­ Çã¿ëµÇÁö ¾Ê½À´Ï´Ù. ´ÙÀ½ ÆÄÆ® ¿¡¼Â(µé)À» È®ÀÎÇØ ÁÖ¼¼¿ä.\n\n");
+//	FString MultiSectionPartWarnMsg = TEXT("ä¿ºå–Š é¢‡é£˜ç‹¼ ä¿ƒå å†€è®°ç¯® æ³… çŸ«èƒ¶è¢ä¿Šè¾‘ å€¾ä¾©ç™»ç˜¤ è‡¼åš¼èªä¿ƒ. ä¿ƒæ¾œ é¢‡é£˜ ä¿Šæ‚¸(ç”¸)é˜‘ çŠ¬ç‰¢ç§¦ æ—æŠ€å¤¸.\n\n");
 //	for (const FLocalPartMeshMtrlInfo& ThisAssetInfo : AllPartAssets)
 //	{
 //		if (ThisAssetInfo.MeshAsset)
@@ -1361,36 +1361,36 @@ bool UB2PCClassInfo::SetupSKCompForParts(EPCClass InPCClass, AActor* SKCompOwner
 
 	USkeletalMesh* CompositeMesh = InOutPrebuiltCompositeMesh ? InOutPrebuiltCompositeMesh : NewObject<USkeletalMesh>(GetTransientPackage(), NAME_None, RF_Transient);
 			
-	// ÀÌ°Ç Section º´ÇÕÀ» ÇÏ´Â °æ¿ì ¿ø·¡ ¸ÓÆ¼¸®¾óÀÇ ÆÄ¶ó¹ÌÅÍ¸¦ Âü°íÇÏ±â À§ÇØ ¸ğ¾ÆµÎ´Â °Å
+	// ææ‰’ Section æé’¦é˜‘ çªç»° ç‰ˆå¿« ç›”è´° èµ£èåºœå€”ç‹¼ é¢‡æ‰¼å›ºç£ç”« æ›¼ç»Šçªæ‰ å›°ç§¦ è‘›é…’æ»´ç»° èŠ­
 	TMap<EPCPart, UMaterialInterface*> NonMergedMaterialsBackup;
 
 //	if (!bPrebuiltMeshProvided)
 //	{
-//		// º»°İ FSkeletalMeshMerge ±â´ÉÀ» »ç¿ëÇÏ±â À§ÇÑ ½ºÅÜ. ½ÇÁ¦ mesh merge ¸¦ ÇÏÁö ¾Ê´Â »óÈ²¿¡¼± ÇÊ¿ä¾ø´Ù. (bPrebuiltMeshProvided)
+//		// å¤¯æ‹œ FSkeletalMeshMerge æ‰ç“·é˜‘ è¤ä¾©çªæ‰ å›°èŒ„ èƒ¶è·‘. è§’åŠ› mesh merge ç”« çªç˜¤ è‡¼ç»° æƒ‘ç‚”ä¿Šæ€¥ é˜å¤¸ç»ä¿ƒ. (bPrebuiltMeshProvided)
 //
 //		TArray<USkeletalMesh*> SourcePartMeshes;
 //		TArray<FSkelMeshMergeSectionMapping> ForceSectionMapping;
 //		TArray<FSkelMeshMergeMtrlOverrideMapping> SrcMtrlOverrides;
 //		
-//		// FSkeletalMeshMerge ¿¡¼­ »ç¿ëÇÏ±â À§ÇØ AllPartAssets ¿¡ ¸ğ¾Æ³õÀº Á¤º¸µéÀ» ÇÑ¹ø ´õ Àç±¸¼ºÇÑ´Ù.
+//		// FSkeletalMeshMerge ä¿Šè¾‘ è¤ä¾©çªæ‰ å›°ç§¦ AllPartAssets ä¿Š è‘›é…’åˆç¯® æ²¥ç„Šç”¸é˜‘ èŒ„é”… æ­¹ çŠå¤‡å·±èŒ„ä¿ƒ.
 //		int32 ForceSectionID = 0;
 //		for (int32 PAI = 0; PAI < AllPartAssets.Num(); ++PAI)
 //		{
 //			const FLocalPartMeshMtrlInfo& ThisAssetInfo = AllPartAssets[PAI];
-//			check(ThisAssetInfo.MeshAsset); // ¹Ù·Î »ó´ÜÀ» º¸¸é ÀÌ°Ô NULL ÀÎ °æ¿ì´Â ¾ø¾î¾ß ÇÔ. ¶ÇÇÑ ¾Æ·¡¿¡ material overriding ¿¡µµ ¿µÇâÀÌ ÀÖÀ½.
+//			check(ThisAssetInfo.MeshAsset); // å®˜è‚º æƒ‘çªœé˜‘ ç„Šæ æéœ¸ NULL ç‰¢ ç‰ˆå¿«ç»° ç»ç»¢å…· çªƒ. è‚šèŒ„ é…’è´°ä¿Š material overriding ä¿Šæ¡£ åº·æ°¢æ ä¹æ¾œ.
 //			SourcePartMeshes.Add(ThisAssetInfo.MeshAsset);
 //
 //			if (bInMergeSections)
-//			{ // ¼½¼Ç º´ÇÕ ½Ã¿¡´Â ForceSectionID ¶û ÀûÀıÇÑ material ÀÌ¶û ¸Ô¿©ÁÖ¸é MeshMerge ÂÊ¿¡¼­ ¾Ë¾Æ¼­ ÇÕÃÄÁú °ÍÀÓ.
-//				// ¾Æ´Ñ °æ¿ì´Â ForceSectionID ´Â ¼øÂ÷ÀûÀ¸·Î Áõ°¡.
+//			{ // å†€è®° æé’¦ çŸ«ä¿Šç»° ForceSectionID å°” åˆ©ä¾‹èŒ„ material æå°” å†ˆå’¯æ—æ MeshMerge ç‡ä¿Šè¾‘ èˆ…é…’è¾‘ é’¦åªšé¾™ å·´çƒ™.
+//				// é…’å›± ç‰ˆå¿«ç»° ForceSectionID ç»° é‰´ç’åˆ©æ è‚º åˆ˜å•Š.
 //				ForceSectionID = SectionMergeInfo->GetMergedSectionID(HaveCombineCostume, ThisAssetInfo.PartEnum);
 //
-//				// ±×¸®°í ¿©·¯ ¼½¼ÇÀ» ÇÏ³ªÀÇ material ¾È¿¡ ³ÖÀ¸¸é¼­ ÇÊ¿äÇØÁö´Â UV ÁÂÇ¥ offset Á¤º¸µµ »ı¼º.
+//				// å¼Šåºœç»Š å’¯çŸ¾ å†€è®°é˜‘ çªå”±ç‹¼ material æ•‘ä¿Š æŒæ æè¾‘ é˜å¤¸ç§¦ç˜¤ç»° UV è°…é’ offset æ²¥ç„Šæ¡£ ç§¯å·±.
 //				TArray<FTransform> ThisPartUVTranform;
 //				SectionMergeUVTransform.UVTransformsPerMesh.Add(ThisPartUVTranform);
 //				check(SectionMergeUVTransform.UVTransformsPerMesh.Num() == PAI + 1);
 //
-//				// Merge ÇÑ ÈÄÀÇ material parameter ¼¼ÆÃ¿¡ Âü°íÇÏ±â À§ÇÑ ¿øº» material Ä³½Ì. ¸¸ÀÏ null ÀÌ µé¾î°¡¸é ½ÇÁ¦·Î ¹º°¡ Àß¸øµÈ °Å°ÚÁö.
+//				// Merge èŒ„ é¥¶ç‹¼ material parameter æŠ€æ³¼ä¿Š æ›¼ç»Šçªæ‰ å›°èŒ„ ç›”å¤¯ material æŸæ•™. çˆ¶è€ null æ ç”¸ç»¢å•Šæ è§’åŠ›è‚º è´­å•Š è‚‹ç»™ç­‰ èŠ­æ‘†ç˜¤.
 //				NonMergedMaterialsBackup.Add(ThisAssetInfo.PartEnum,
 //					ThisAssetInfo.MaterialAsset ? ThisAssetInfo.MaterialAsset :
 //					(ThisAssetInfo.MeshAsset->Materials.Num() > 0 ? ThisAssetInfo.MeshAsset->Materials[0].MaterialInterface : nullptr));
@@ -1400,13 +1400,13 @@ bool UB2PCClassInfo::SetupSKCompForParts(EPCClass InPCClass, AActor* SKCompOwner
 //			if (ThisMeshResource && ThisMeshResource->LODModels.Num() > 0)
 //			{
 //				FSkelMeshMergeSectionMapping NewSectionMap;
-//				FSkelMeshMergeMtrlOverrideMapping NewMtrlMap; // ¹°·Ğ ³ªÁß¿¡ section ID Á¢±ÙÇÒ ÇÊ¿ä ¾øÀÌ Çö ½ÃÁ¡¿¡¼­ ¹Ù·Î material override ¸¦..
-//				for (int32 SI = 0; SI < ThisMeshResource->LODModels[0].Sections.Num(); ++SI) // ForceSectionMapping Àº LODModel 0 ¹ø ±âÁØÀ¸·Î ÇÏ¸é µÊ.
+//				FSkelMeshMergeMtrlOverrideMapping NewMtrlMap; // æ‹±æ²¸ å”±åä¿Š section ID ç«‹è¾Ÿä¸” é˜å¤¸ ç»æ æ³… çŸ«ç—¢ä¿Šè¾‘ å®˜è‚º material override ç”«..
+//				for (int32 SI = 0; SI < ThisMeshResource->LODModels[0].Sections.Num(); ++SI) // ForceSectionMapping ç¯® LODModel 0 é”… æ‰éœ–æ è‚º çªæ å‡³.
 //				{
 //					NewSectionMap.SectionIDs.Add(ForceSectionID);
 //
-//					// ¼½¼ÇÀ» ÇÕÄ¡°Ô µÇ¸é ÆÄÆ®º° ¼½¼ÇÀ» ÇÕÃÄ¼­ »ç¿ëÇÏ±â À§ÇØ ÁØºñµÈ º°µµÀÇ material À» »ç¿ëÇÑ´Ù. °°Àº ¼½¼ÇÀÌ¸é µ¿ÀÏÇÑ material À» »ç¿ëÇØ¾ß ÇÔ.
-//					// MergeSections ¿¡¼­µµ ¿©ÀüÈ÷ null ÀÏ ¼ö ÀÖ´Ù. ±×·± °æ¿ì´Â ¿ø·¡ material À» ¾²´Â °Çµ¥ ¿©ÀüÈ÷ ¸í½ÃÀûÀ¸·Î ´ÜÀÏ ¼½¼ÇÀ» ±¸¼ºÇÏ´Â ÆÄÆ®°¡ ÀÖÀ¸¸é ±×·¸°Ô µÉ µí
+//					// å†€è®°é˜‘ é’¦æ‘¹éœ¸ ç™»æ é¢‡é£˜å–Š å†€è®°é˜‘ é’¦åªšè¾‘ è¤ä¾©çªæ‰ å›°ç§¦ éœ–åšç­‰ å–Šæ¡£ç‹¼ material é˜‘ è¤ä¾©èŒ„ä¿ƒ. éç¯® å†€è®°ææ æ‚¼è€èŒ„ material é˜‘ è¤ä¾©ç§¦å…· çªƒ.
+//					// MergeSections ä¿Šè¾‘æ¡£ å’¯å‚ˆæ´’ null è€ è ä¹ä¿ƒ. å¼Šç¹ ç‰ˆå¿«ç»° ç›”è´° material é˜‘ é™ç»° æ‰’å• å’¯å‚ˆæ´’ ç–™çŸ«åˆ©æ è‚º çªœè€ å†€è®°é˜‘ å¤‡å·±çªç»° é¢‡é£˜å•Š ä¹æ æ å¼ŠçŠ¯éœ¸ çª æ·€
 //					UMaterialInterface* MergedSectionMaterial = bInMergeSections ? SectionMergeInfo->GetMergedSectionMaterial(HaveCombineCostume, ThisAssetInfo.PartEnum) : nullptr;
 //
 //					if (bInMergeSections && SectionMergeUVTransform.UVTransformsPerMesh.IsValidIndex(PAI))
@@ -1417,19 +1417,19 @@ bool UB2PCClassInfo::SetupSKCompForParts(EPCClass InPCClass, AActor* SKCompOwner
 //						FTransform PartUVTransform(
 //							FRotator(0.0f, 0.0f, 0.0f),
 //							FVector(PartUVOffset.X, PartUVOffset.Y, 0.0f),
-//							FVector(0.5f, 0.5f, 1.0f) // ½ºÄÉÀÏÀº µû·Î ¼³Á¤ ¾È ÇÏ°í ±âº» °¡Á¤À¸·Î ¿©±â¼­ ³Ö´Â´Ù.
+//							FVector(0.5f, 0.5f, 1.0f) // èƒ¶çº³è€ç¯® è¶è‚º æ±²æ²¥ æ•‘ çªç»Š æ‰å¤¯ å•Šæ²¥æ è‚º å’¯æ‰è¾‘ æŒç»°ä¿ƒ.
 //						);
-//						// ÀÌ ¹è¿­Àº °¢ ¿ä¼Ò°¡ Texture ÁÂÇ¥ ÀÎµ¦½º¿¡ ÇØ´çÇÏ´Â °ÍÀÎµ¥ ¿©±â¿¡ ³Ö¾îÁØ °³¼ö ÀÌ»óÀÇ ÅØ½ºÃÄ ÁÂÇ¥¸¦ ¾²°Ô µÇ¸é ¹º°¡ ÀÌ»óÇØÁú²«µ¥ ¼½¼Ç merge µÇ´Â ¸ğµå¸¦ º» ÈÄ¿¡³ª ¾Ë°Ô ³­´Ù¸é.. Èì..
+//						// æ ç¡…å‡¯ç¯® é˜¿ å¤¸å®¶å•Š Texture è°…é’ ç‰¢éƒ¸èƒ¶ä¿Š ç§¦å¯¸çªç»° å·´ç‰¢å• å’¯æ‰ä¿Š æŒç»¢éœ– ä¿ºè ææƒ‘ç‹¼ å’†èƒ¶åªš è°…é’ç”« é™éœ¸ ç™»æ è´­å•Š ææƒ‘ç§¦é¾™æå• å†€è®° merge ç™»ç»° è‘›é›ç”« å¤¯ é¥¶ä¿Šå”± èˆ…éœ¸ æŠ„ä¿ƒæ.. è¤¥..
 //						ThisPartUVTransformInfo.Add(PartUVTransform);
-//						ThisPartUVTransformInfo.Add(PartUVTransform); // ±×·¡¼­ È¤ ¸ğ¸£´Ï ÇÏ³ª ´õ ³Ö¾îÁÖÀÚ. ÀÌ ÀÌ»ó °É¸± ÀÏÀº ¾ø°ÚÁö..
+//						ThisPartUVTransformInfo.Add(PartUVTransform); // å¼Šè´°è¾‘ è¶£ è‘›ç¦èª çªå”± æ­¹ æŒç»¢æ—ç£Š. æ ææƒ‘ å§å‰¯ è€ç¯® ç»æ‘†ç˜¤..
 //					}
 //
 //					NewMtrlMap.SectionMatOverrides.Add(
 //						(bInMergeSections && MergedSectionMaterial) ? MergedSectionMaterial :
-//						ThisAssetInfo.MaterialAsset // ÆÄÆ®ÀÇ ±âº» material override. ÀÌ°Ç NULL ÀÏ ¼öµµ ÀÖ´Ù.
+//						ThisAssetInfo.MaterialAsset // é¢‡é£˜ç‹¼ æ‰å¤¯ material override. ææ‰’ NULL è€ èæ¡£ ä¹ä¿ƒ.
 //					);
 //
-//					if (!bInMergeSections) // ¼½¼Ç ÇÕÄ¡´Â °ÍÀÌ ¾Æ´Ñ °æ¿ìÀÇ ¼øÂ÷ÀûÀÎ Section ID.
+//					if (!bInMergeSections) // å†€è®° é’¦æ‘¹ç»° å·´æ é…’å›± ç‰ˆå¿«ç‹¼ é‰´ç’åˆ©ç‰¢ Section ID.
 //					{
 //						++ForceSectionID;
 //					}
@@ -1444,7 +1444,7 @@ bool UB2PCClassInfo::SetupSKCompForParts(EPCClass InPCClass, AActor* SKCompOwner
 //
 //#if WITH_EDITOR
 //		if (GIsEditor)
-//		{/** PC Part ÀÇ mesh merge ½Ã ±âº» skeleton °ú ¼Ò½ºµéÀÇ skeleton °£¿¡ ref pose °¡ ¾ó¸¶³ª ´Ù¸¥Áö Ã¼Å©ÇØ¼­ °æ°í ¶ç¿ò. */
+//		{/** PC Part ç‹¼ mesh merge çŸ« æ‰å¤¯ skeleton è‹ å®¶èƒ¶ç”¸ç‹¼ skeleton åŸƒä¿Š ref pose å•Š å€”ä»˜å”± ä¿ƒå¼—ç˜¤ çœ‰å†œç§¦è¾‘ ç‰ˆç»Š å‰æ¡†. */
 //			CheckAndWarnForDifferentRefPose(InBaseMesh, SourcePartMeshes);
 //		}
 //#endif
@@ -1456,7 +1456,7 @@ bool UB2PCClassInfo::SetupSKCompForParts(EPCClass InPCClass, AActor* SKCompOwner
 //#endif
 //
 //			//create an instance of the FSkeletalMeshMerge utility
-//			// EPCPTCM_SeparateMergedComponent ÀÎ °æ¿ì InBaseMesh ÀÇ ½ºÄÌ·¹Åæ À» »ç¿ëÇÏÁö ¾Ê´Âµ¥ ÀÌ °æ¿ì ÃÖÁ¾ÀûÀ¸·Î BaseMesh ÄÄÆ÷³ÍÆ®ÀÇ ¾Ö´Ï¸ŞÀÌ¼ÇÀ» »ç¿ëÇÒ °ÍÀÌ±â ¶§¹®.
+//			// EPCPTCM_SeparateMergedComponent ç‰¢ ç‰ˆå¿« InBaseMesh ç‹¼ èƒ¶å¥¶é¥­æ²› é˜‘ è¤ä¾©çªç˜¤ è‡¼ç»°å• æ ç‰ˆå¿« å¼¥è¾†åˆ©æ è‚º BaseMesh å“ªå™¨æƒ©é£˜ç‹¼ å±€èªçš‹æè®°é˜‘ è¤ä¾©ä¸” å·´ææ‰ é”­å·©.
 //			FSkeletalMeshMerge MeshMergeUtil(CompositeMesh, SourcePartMeshes, ForceSectionMapping, 0, EMeshBufferAccess::Default
 //				, bInMergeSections ? &SectionMergeUVTransform : nullptr
 //				, InBaseMesh
@@ -1468,7 +1468,7 @@ bool UB2PCClassInfo::SetupSKCompForParts(EPCClass InPCClass, AActor* SKCompOwner
 //#endif
 //				);
 //
-//			if (!MeshMergeUtil.DoMerge()) // ½ÇÁ¦ mesh merge µ¿ÀÛ. Áö±İ±îÁö´Â ´ÜÁö ¼Â¾÷ÀÌ¾úÀ» »Ó ¤»
+//			if (!MeshMergeUtil.DoMerge()) // è§’åŠ› mesh merge æ‚¼ç´¯. ç˜¤é™›é³–ç˜¤ç»° çªœç˜¤ æ‚¸è¯€æèŒé˜‘ æŒ¥ ã›
 //			{
 //				if (CompositeMesh){
 //					CompositeMesh->ConditionalBeginDestroy();
@@ -1478,50 +1478,50 @@ bool UB2PCClassInfo::SetupSKCompForParts(EPCClass InPCClass, AActor* SKCompOwner
 //		}
 //	}
 
-	//if (CompositeMesh) // Ä³½ÌµÈ °ÍÀÌ ÁÖ¾îÁ³µç, Merge °¡ ¼º°øÇßµç
+	//if (CompositeMesh) // æŸæ•™ç­‰ å·´æ æ—ç»¢è„¸ç”µ, Merge å•Š å·±å‚æ²ç”µ
 	//{
 	//	B2_SCOPED_TRACK_LOG_L2(TEXT("UB2PCClassInfo::SetupSKCompForParts -- Post Merge Setup"));
 
 	//	CompositeMesh->PhysicsAsset = InBaseMesh->PhysicsAsset;
-	//	InOutPrebuiltCompositeMesh = CompositeMesh; // »õ·Î »ı¼ºÀÌ µÇ¾ú´ø °æ¿ì¶ó¸é InOutPrebuiltCompositeMesh À» ÅëÇØ °á°ú°¡ ¹ÛÀ¸·Îµµ Àü´ŞµÉ °Í.
+	//	InOutPrebuiltCompositeMesh = CompositeMesh; // è´§è‚º ç§¯å·±æ ç™»èŒå¸¦ ç‰ˆå¿«æ‰¼æ InOutPrebuiltCompositeMesh é˜‘ çƒ¹ç§¦ æ¬è‹å•Š è§‚æ è‚ºæ¡£ å‚ˆå´”çª å·´.
 	//			
-	//	// djsong UE4 MERGE 4.14. 4.14 ÀÌÈÄºÎÅÍ ¹ß»ıÇÑ ÀÏÀÎµ¥ merge ÇÏ±â ÀüÀÇ ¿øº» ¸Ş½¬ »óÅÂ¿¡¼­ MID °¡ ¸¸µé¾îÁ® ÄÄÆ÷³ÍÆ®¿¡ override µÈ »óÅÂ·Î ¿©±â¿¡ ¿À´Â °æ¿ì°¡ »ı±è.
-	//	// ÀÌ·¸°Ô Å¬¸®¾î¸¦ ¸ÕÀú ÇØ ÁÖ´øÁö, ¾Æ´Ï¸é CompositeMesh->Materials °¡Áö°í ¶È°°ÀÌ override ÇØ ÁÖ´øÁö.
+	//	// djsong UE4 MERGE 4.14. 4.14 æé¥¶ä½•ç£ æƒ¯ç§¯èŒ„ è€ç‰¢å• merge çªæ‰ å‚ˆç‹¼ ç›”å¤¯ çš‹æµ† æƒ‘æ€•ä¿Šè¾‘ MID å•Š çˆ¶ç”¸ç»¢å»‰ å“ªå™¨æƒ©é£˜ä¿Š override ç­‰ æƒ‘æ€•è‚º å’¯æ‰ä¿Š å·ç»° ç‰ˆå¿«å•Š ç§¯è¾«.
+	//	// æçŠ¯éœ¸ åŠªåºœç»¢ç”« åˆšå† ç§¦ æ—å¸¦ç˜¤, é…’èªæ CompositeMesh->Materials å•Šç˜¤ç»Š åº¦éæ override ç§¦ æ—å¸¦ç˜¤.
 	//	if (!bBuildAndGetResultMeshOnly)
 	//	{
 	//		for (int32 MI = 0; MI < SKCompToSetup->GetNumMaterials(); ++MI)
 	//		{
 	//			SKCompToSetup->SetMaterial(MI, nullptr);
 	//		}
-	//		SKCompToSetup->B2ScalarMatParameter.Empty(); // À§¿¡¼­ Material Å¬¸®¾î ÇÏ´Â °Å¶û ºñ½ÁÇÑ ÀÌÀ¯·Î ÀÌ°Íµµ Å¬¸®¾î ÇÔ.
+	//		SKCompToSetup->B2ScalarMatParameter.Empty(); // å›°ä¿Šè¾‘ Material åŠªåºœç»¢ çªç»° èŠ­å°” åšæ…èŒ„ æèœ¡è‚º æå·´æ¡£ åŠªåºœç»¢ çªƒ.
 	//	}
 
 	//	USkeletalMesh* OldSKMeshBackup = SKCompToSetup->SkeletalMesh;
-	//	if (!bBuildAndGetResultMeshOnly) // ÄÄÆ÷³ÍÆ®¿¡ ¸Ş½¬ ¼¼ÆÃÀ» ÇÏÁö ¾Ê°í °á°ú¸¸ »©¿À´Â ÀÎÀÚ.
+	//	if (!bBuildAndGetResultMeshOnly) // å“ªå™¨æƒ©é£˜ä¿Š çš‹æµ† æŠ€æ³¼é˜‘ çªç˜¤ è‡¼ç»Š æ¬è‹çˆ¶ å“—å·ç»° ç‰¢ç£Š.
 	//	{
 	//		SKCompToSetup->SetSkeletalMesh(CompositeMesh);
 	//	}
 
-	//	// ±×¸®°í ¼½¼ÇÀ» º´ÇÕÇÑ °æ¿ì´Â ¸ÓÆ¼¸®¾óÀ» ´Ù¸£°Ô »ç¿ëÇÏ¹Ç·Î ÆÄ¶ó¹ÌÅÍ ¼Â¾÷À» ÇØ¾ß ÇÑ´Ù.
-	//	if (bInMergeSections && SectionMergeInfo && !bPrebuiltMeshProvided) // ½ÇÁ¦ mesh merge ¸¦ ÇÑ °æ¿ì¸¸
+	//	// å¼Šåºœç»Š å†€è®°é˜‘ æé’¦èŒ„ ç‰ˆå¿«ç»° èµ£èåºœå€”é˜‘ ä¿ƒç¦éœ¸ è¤ä¾©çªéª¨è‚º é¢‡æ‰¼å›ºç£ æ‚¸è¯€é˜‘ ç§¦å…· èŒ„ä¿ƒ.
+	//	if (bInMergeSections && SectionMergeInfo && !bPrebuiltMeshProvided) // è§’åŠ› mesh merge ç”« èŒ„ ç‰ˆå¿«çˆ¶
 	//	{
 	//		SectionMergeInfo->SetupMergedSectionMaterialParams(HaveCombineCostume, CompositeMesh, NonMergedMaterialsBackup);
 	//	}
 
 	//	UB2CompositeMeshCache* MeshCacheManager = StaticFindCompositeMeshCacher();
-	//	// È¤½Ã ¸ğ¸£°Ú¾î¼­ ÀÌÀü¿¡ »ı¼ºÇß´ø °Å È®½ÇÈ÷ Á¦°Å. (´Ù¸¥ °Å¶ó¸é)
+	//	// è¶£çŸ« è‘›ç¦æ‘†ç»¢è¾‘ æå‚ˆä¿Š ç§¯å·±æ²å¸¦ èŠ­ çŠ¬è§’æ´’ åŠ›èŠ­. (ä¿ƒå¼— èŠ­æ‰¼æ)
 	//	if (OldSKMeshBackup && OldSKMeshBackup != InBaseMesh && OldSKMeshBackup != CompositeMesh 
-	//		&& OldSKMeshBackup->HasAnyFlags(RF_Transient) // »ı¼º ½Ã RF_Transient ¸¦ ÁØ´Ù.
-	//		&& !(MeshCacheManager && MeshCacheManager->IsOneOfCachedCompositeMesh(OldSKMeshBackup))) // Á¤½ÄÀ¸·Î »ı¼ºÇØ¼­ Ä³½ÌµÇ¾î ÀÖ´ø °Å¶ó¸é Ä³½Ã°¡ ¾ÆÁ÷ °»½ÅÀÌ ¾ÈµÇ¾úÀ» Å×´Ï ¿©±æ Åë°úÇÏÁö ¸øÇÒ ¼öµµ ÀÖ´Âµ¥ ±×·¡µµ ·Îºñ¿¡¼­ ±×·¸Áö ¾ÊÀº °æ¿ìµµ ²Ï µÈ´Ù.
+	//		&& OldSKMeshBackup->HasAnyFlags(RF_Transient) // ç§¯å·± çŸ« RF_Transient ç”« éœ–ä¿ƒ.
+	//		&& !(MeshCacheManager && MeshCacheManager->IsOneOfCachedCompositeMesh(OldSKMeshBackup))) // æ²¥ä¾¥æ è‚º ç§¯å·±ç§¦è¾‘ æŸæ•™ç™»ç»¢ ä¹å¸¦ èŠ­æ‰¼æ æŸçŸ«å•Š é…’æµ ç›è„šæ æ•‘ç™»èŒé˜‘ æŠ›èª å’¯è¾¨ çƒ¹è‹çªç˜¤ ç»™ä¸” èæ¡£ ä¹ç»°å• å¼Šè´°æ¡£ è‚ºåšä¿Šè¾‘ å¼ŠçŠ¯ç˜¤ è‡¼ç¯® ç‰ˆå¿«æ¡£ èš• ç­‰ä¿ƒ.
 	//	{ 
-	//		// ¿©±â¼­ Á¶ÇÕÇÑ ¸Ş½¬ ¸®¼Ò½º¸¦ ¿©·¯ ¾×ÅÍ°¡ µ¿½Ã¿¡ ·»´õ¸µ¿¡ »ç¿ëÇÏ¸é ÀÌ·¸°Ô ¸í½ÃÀûÀ¸·Î Destroy ÇÏ´Â °Ç ¹®Á¦¸¦ ÀÏÀ¸Å³ ¼ö ÀÖ´Ù.
-	//		// ±×·± °æ¿ì°¡ ¹ß»ıÇÑ´Ù¸é ¸Ş½¬ ¸®¼Ò½º »õ·Î Á¶ÇÕ ½Ã¿¡ ±×°É »ç¿ëÇÒ ¾×ÅÍµé¿¡ ¸ğµÎ ¾÷µ¥ÀÌÆ®¸¦ ÇØ ÁÖ´Â µî Ãß°¡ÀûÀÎ Ã³¸® ¶ÇÇÑ ÇÊ¿äÇÏ´Ù.
+	//		// å’¯æ‰è¾‘ ç‚¼é’¦èŒ„ çš‹æµ† åºœå®¶èƒ¶ç”« å’¯çŸ¾ å’€ç£å•Š æ‚¼çŸ«ä¿Š åŠæ­¹å‚…ä¿Š è¤ä¾©çªæ æçŠ¯éœ¸ ç–™çŸ«åˆ©æ è‚º Destroy çªç»° æ‰’ å·©åŠ›ç”« è€æ æ‡¦ è ä¹ä¿ƒ.
+	//		// å¼Šç¹ ç‰ˆå¿«å•Š æƒ¯ç§¯èŒ„ä¿ƒæ çš‹æµ† åºœå®¶èƒ¶ è´§è‚º ç‚¼é’¦ çŸ«ä¿Š å¼Šå§ è¤ä¾©ä¸” å’€ç£ç”¸ä¿Š è‘›æ»´ è¯€å•æé£˜ç”« ç§¦ æ—ç»° æ®¿ çœ å•Šåˆ©ç‰¢ è´¸åºœ è‚šèŒ„ é˜å¤¸çªä¿ƒ.
 	//		
-	//		// ¸¸ÀÏ ¹®Á¦°¡ µÈ´Ù¸é ¿©±â¼­ ConditionalBeginDestroy ³¯¸®´Â ÄÚµå´Â Á¦°ÅÇÏ´Â °Ô ÁÁÀ» ²¨´Ù. ½ÇÁ¦·Î »ç¿ëµÇÁö ¾Ê´Â mesh ¿ÀºêÁ§Æ®¶ó¸é ¾ğ¸®¾ó GC ½Ã½ºÅÛ¿¡ ÀÇÇØ ¾Ë¾Æ¼­ Á¦°ÅµÉ °ÍÀÓ.
-	//		//OldSKMeshBackup->ConditionalBeginDestroy(); ¾Æ¹«·¡µµ ±×´Ú ÁÁ¾Æ º¸ÀÌÁö ¾ÊÀ½.. ±»ÀÌ ÀÌ·² ÇÊ¿ä ¾øÀ» °Í °°°í..
+	//		// çˆ¶è€ å·©åŠ›å•Š ç­‰ä¿ƒæ å’¯æ‰è¾‘ ConditionalBeginDestroy æœåºœç»° å†…é›ç»° åŠ›èŠ­çªç»° éœ¸ äº®é˜‘ æ³¢ä¿ƒ. è§’åŠ›è‚º è¤ä¾©ç™»ç˜¤ è‡¼ç»° mesh å·å®ç’ƒé£˜æ‰¼æ æ”«åºœå€” GC çŸ«èƒ¶è¢ä¿Š ç‹¼ç§¦ èˆ…é…’è¾‘ åŠ›èŠ­çª å·´çƒ™.
+	//		//OldSKMeshBackup->ConditionalBeginDestroy(); é…’å…¬è´°æ¡£ å¼Šè¹¿ äº®é…’ ç„Šæç˜¤ è‡¼æ¾œ.. è¢«æ æå‡¡ é˜å¤¸ ç»é˜‘ å·´ éç»Š..
 	//	}
 	//	
-	//	// ·Îºñ SkeletalMeshActor ¸¦ À§ÇÑ °ÍÀÌ¶ó¸é ÀÌ°Ç NULL ÀÌ¾î¾ß.
+	//	// è‚ºåš SkeletalMeshActor ç”« å›°èŒ„ å·´ææ‰¼æ ææ‰’ NULL æç»¢å…·.
 	//	if (AnimBPForInGameChar && !bBuildAndGetResultMeshOnly)
 	//	{
 	//		SKCompToSetup->SetAnimInstanceClass(AnimBPForInGameChar);
@@ -1532,7 +1532,7 @@ bool UB2PCClassInfo::SetupSKCompForParts(EPCClass InPCClass, AActor* SKCompOwner
 
 	if (!bBuildAndGetResultMeshOnly)
 	{
-		// ÀÌÁ¦ Ãß°¡ ÄÄÆ÷³ÍÆ®µéÀ» ºÙÀÏ °Çµ¥ »õ·Î ºÙÀÌ±â Àü¿¡ ÀÌÀü¿¡ ºÙÀÎ °Ô ÀÖ´Ù¸é Á¦°Å. ÀÌ°Íµµ SkeletalMesh ¸¸ ¸Å¹ø »õ·Î »ı¼ºÇÏ´Â ·Îºñ¿¡¼­³ª Àû¿ëµÉ µí..
+		// æåŠ› çœ å•Š å“ªå™¨æƒ©é£˜ç”¸é˜‘ å˜¿è€ æ‰’å• è´§è‚º å˜¿ææ‰ å‚ˆä¿Š æå‚ˆä¿Š å˜¿ç‰¢ éœ¸ ä¹ä¿ƒæ åŠ›èŠ­. æå·´æ¡£ SkeletalMesh çˆ¶ æ¦‚é”… è´§è‚º ç§¯å·±çªç»° è‚ºåšä¿Šè¾‘å”± åˆ©ä¾©çª æ·€..
 		DestroyExtraAttachPartComponents(SKCompOwner, SKCompToSetup);
 
 		for (FPCPartExtraAttachFxSet ExtraAttachFx : AllExtraAttachFx)
@@ -1541,29 +1541,29 @@ bool UB2PCClassInfo::SetupSKCompForParts(EPCClass InPCClass, AActor* SKCompOwner
 
 			if (AttachFx)
 			{
-				// Note : Ãß°¡ ÄÄÆ÷³ÍÆ®ÀÇ »ö»ó°ªÀ» º¯°æÇØÁà¾ßÇÑ´Ù¸é MtrlParamName_Color(TEXT("ColorVariControl")) ÀÌÆåÆ®¿¡ ÅÂ±×·Î Ã³¸®ÇÒ°Í
-				//		: SetColorParameter´Â »ç¿ëÇÏÁö¾Ê°í SetVectorParameter¸¦ Á÷Á¢»ç¿ëÇÑ´Ù.  SetColorParameterÀÇ °æ¿ì RGB¸¦ (255,255,255,0)±îÁö¹Û¿¡ ÁöÁ¤ÇÏÁö ¸øÇÏ¹Ç·Î ´õ Å«°ªÀ» ¿øÇÒ °æ¿ì FLinearColor¸¦ FVector·Î º¯È¯ÇØ¼­ ³Ö¾îÁÖ¾î¾ßÇÔ.
+				// Note : çœ å•Š å“ªå™¨æƒ©é£˜ç‹¼ ç¥¸æƒ‘è”¼é˜‘ å‡½ç‰ˆç§¦æ‹å…·èŒ„ä¿ƒæ MtrlParamName_Color(TEXT("ColorVariControl")) ææ£‹é£˜ä¿Š æ€•å¼Šè‚º è´¸åºœä¸”å·´
+				//		: SetColorParameterç»° è¤ä¾©çªç˜¤è‡¼ç»Š SetVectorParameterç”« æµç«‹è¤ä¾©èŒ„ä¿ƒ.  SetColorParameterç‹¼ ç‰ˆå¿« RGBç”« (255,255,255,0)é³–ç˜¤è§‚ä¿Š ç˜¤æ²¥çªç˜¤ ç»™çªéª¨è‚º æ­¹ å¥´è”¼é˜‘ ç›”ä¸” ç‰ˆå¿« FLinearColorç”« FVectorè‚º å‡½åˆ¸ç§¦è¾‘ æŒç»¢æ—ç»¢å…·çªƒ.
 				if (ExtraAttachFx.ChangeColor != FLinearColor::Transparent)
 					AttachFx->SetVectorParameter(MtrlParamName_Color, FVector(ExtraAttachFx.ChangeColor));
 			}
 		}
 	}
 
-	// MeshMerge ¸¦ ÇÏ°Ô µÇ¸é ¿øº» ÆÄÆ®¿Í´Â º°µµÀÇ ¸®¼Ò½ºÀÌ¹Ç·Î ¿øº» ÆÄÆ®´Â ³¯¸± ¼ö ÀÖ´Ù. 
-	// ´Ü, ·ÎÄÃ Ä³¸¯ÅÍ ÀåÂø ÆÄÆ®ÀÇ °æ¿ì ¿©·¯ »óÈ²¿¡¼­ ¶Ç ÇÊ¿äÇÒ ¼ö ÀÖ¾î¼­ ¾ğÁ¦³ª ³¯¸®Áö´Â ¾Ê°í.. ¿©±â·Î ³Ñ¾î¿À´Â ÀÎÀÚ¿¡ µû¶ó. ´ëÃ¼·Î ÀÏ½ÃÀû merge ¸é ForceUnload ·Î ³Ñ¾î¿Ã °Í.
+	// MeshMerge ç”« çªéœ¸ ç™»æ ç›”å¤¯ é¢‡é£˜å®¢ç»° å–Šæ¡£ç‹¼ åºœå®¶èƒ¶æéª¨è‚º ç›”å¤¯ é¢‡é£˜ç»° æœå‰¯ è ä¹ä¿ƒ. 
+	// çªœ, è‚ºæ‹¿ æŸè…ç£ å˜é¦’ é¢‡é£˜ç‹¼ ç‰ˆå¿« å’¯çŸ¾ æƒ‘ç‚”ä¿Šè¾‘ è‚š é˜å¤¸ä¸” è ä¹ç»¢è¾‘ æ”«åŠ›å”± æœåºœç˜¤ç»° è‡¼ç»Š.. å’¯æ‰è‚º é€ç»¢å·ç»° ç‰¢ç£Šä¿Š è¶æ‰¼. æªçœ‰è‚º è€çŸ«åˆ© merge æ ForceUnload è‚º é€ç»¢æ£µ å·´.
 	if (bForceUnloadPartResourceAfterMerge)
 	{
 		for (FSingleItemInfoData* ThisLoadedItemInfo : AllLoadedItemInfo)
 		{
 			if (ThisLoadedItemInfo) {
-				// ´Ü, RootSet À¸·Î ÁöÁ¤ÇÑ °Ç ¿©±â¼­´Â ³Ñ¾î°¡µµ·Ï ÇÑ´Ù. (bRemoveFromRoot false)
-				// ÇöÀç ·ÎÄÃ Ä³¸¯ÅÍ°¡ ÀåÂøÇÑ ÆÄÆ®ÀÏ ¼ö ÀÖÀ¸¹Ç·Î.
+				// çªœ, RootSet æ è‚º ç˜¤æ²¥èŒ„ æ‰’ å’¯æ‰è¾‘ç»° é€ç»¢å•Šæ¡£åºŸ èŒ„ä¿ƒ. (bRemoveFromRoot false)
+				// æ³…çŠ è‚ºæ‹¿ æŸè…ç£å•Š å˜é¦’èŒ„ é¢‡é£˜è€ è ä¹æ éª¨è‚º.
 				ThisLoadedItemInfo->UnloadOnlyEquipPart(IteminfoTable, false);
 			}
 		}
 	}
 
-	/*if (LoadedWingInfo) { ¾êµµ º°µµ·Î Unload ¸¦ ºÒ·¯ÁÖ´Â ±¸Á¶·Î °¥±î...
+	/*if (LoadedWingInfo) { å¨Ÿæ¡£ å–Šæ¡£è‚º Unload ç”« é˜‚çŸ¾æ—ç»° å¤‡ç‚¼è‚º å“é³–...
 	LoadedWingInfo->UnloadTAssets(WingInfoTable);
 	}*/
 
@@ -1575,12 +1575,12 @@ void UB2PCClassInfo::DestroyExtraAttachPartComponents(AActor* SKCompOwner, USkel
 {	
 	//if (SKCompOwner && SKCompToSetup)
 	//{
-	//	// ÀÏ´Ü ÇöÀç´Â FPCPartExtraAttachFxSet ¿¡ ÀÇÇÑ ParticleSystemComponent µé »Ó. Ãß°¡µÇ¸é ºñ½ÁÇÏ°Ô È®Àå
+	//	// è€çªœ æ³…çŠç»° FPCPartExtraAttachFxSet ä¿Š ç‹¼èŒ„ ParticleSystemComponent ç”¸ æŒ¥. çœ å•Šç™»æ åšæ…çªéœ¸ çŠ¬å˜
 	//	TArray<UActorComponent*> AllPSC = SKCompOwner->GetComponentsByClass(UParticleSystemComponent::StaticClass());
 	//	for (int32 PSCI = 0; PSCI < AllPSC.Num(); ++PSCI)
 	//	{
 	//		UParticleSystemComponent* ThisPSC = Cast<UParticleSystemComponent>(AllPSC[PSCI]);
-	//		// ¸®¼Ò½º ÅÛÇÃ¸´ÀÌ¶û Attach µÈ ¼ÒÄÏµµ Ã¼Å©ÇÒ ¼ö ÀÖ´Âµ¥ ±»ÀÌ ±×·² ÇÊ¿ä¾ø°Ô ÀÌ¸§À» ¸Å¿ì À¯´ÏÅ©ÇÏ°Ô ÁÖ´Â °É·Î..
+	//		// åºœå®¶èƒ¶ è¢æ•²å¤æå°” Attach ç­‰ å®¶å—æ¡£ çœ‰å†œä¸” è ä¹ç»°å• è¢«æ å¼Šå‡¡ é˜å¤¸ç»éœ¸ ææŠšé˜‘ æ¦‚å¿« èœ¡èªå†œçªéœ¸ æ—ç»° å§è‚º..
 	//		if (ThisPSC	&& ThisPSC->GetAttachParent() == SKCompToSetup && FPCPartExtraAttachFxSet::IsPossibleCreatedCompName(ThisPSC->GetName()))
 	//		{
 	//			ThisPSC->DetachFromComponent(FDetachmentTransformRules(EDetachmentRule::KeepRelative, true));
@@ -1592,8 +1592,8 @@ void UB2PCClassInfo::DestroyExtraAttachPartComponents(AActor* SKCompOwner, USkel
 
 void UB2PCClassInfo::SyncLoadInGameOnlyAssets()
 {
-	// ¿©±â¼­ ·ÎµùÇÏÁö ¾Ê´Â ¿©Å¸ ÀÏ¹İ hard ptr µéÀº PCClassInfoBox ¿¡¼­ ÀÌ°Ô ·ÎµùµÉ ¶§ °°ÀÌ ±âº»À¸·Î ·ÎµùµÈ´Ù.
-	// ÀÎ°ÔÀÓ(ÀüÅõ)¿¡¼­¸¸ »ç¿ëÇÏ´Â ¾Öµé(Áß °¡´ÉÇÑ ¾Öµé)¸¸ ÀÌ·± ½ÄÀ¸·Î µû·Î ±¸¼ºÇØ¼­ ·Îºñ¿¡¼­ÀÇ ¸Ş¸ğ¸®¸¦ Àı¾à.
+	// å’¯æ‰è¾‘ è‚ºçˆ¹çªç˜¤ è‡¼ç»° å’¯é¸¥ è€é¦† hard ptr ç”¸ç¯® PCClassInfoBox ä¿Šè¾‘ æéœ¸ è‚ºçˆ¹çª é”­ éæ æ‰å¤¯æ è‚º è‚ºçˆ¹ç­‰ä¿ƒ.
+	// ç‰¢éœ¸çƒ™(å‚ˆæ§)ä¿Šè¾‘çˆ¶ è¤ä¾©çªç»° å±€ç”¸(å å•Šç“·èŒ„ å±€ç”¸)çˆ¶ æç¹ ä¾¥æ è‚º è¶è‚º å¤‡å·±ç§¦è¾‘ è‚ºåšä¿Šè¾‘ç‹¼ çš‹è‘›åºœç”« ä¾‹è·.
 
 	//GetSomeLazyLoadedClassAssetCommon<UB2InGameOnlyPCClassInfo>(InfoLoadManager, InGameOnlyAssetPtr, &LoadedInGameOnlyAssetPtr, TEXT("PCClassInfo"));
 
@@ -1602,7 +1602,7 @@ void UB2PCClassInfo::SyncLoadInGameOnlyAssets()
 
 void UB2PCClassInfo::UnloadInGameOnlyAssets()
 {
-	//// ManagedPCClassUnload ¿¡ µû¶ó RootSet ÀÏ ¼ö ÀÖ´Ù.
+	//// ManagedPCClassUnload ä¿Š è¶æ‰¼ RootSet è€ è ä¹ä¿ƒ.
 	//if (InGameOnlyAssetPtr.IsValid()){
 	//	InGameOnlyAssetPtr->RemoveFromRoot();
 	//}
@@ -1645,29 +1645,29 @@ UB2PCClassInfo::UB2PCClassInfo(const FObjectInitializer& ObjectInitializer)
 UB2InGameOnlyPCClassInfo* UB2PCClassInfo::GetInGameOnlyInfo(UObject* WorldContextObject)
 {
 //#if !UE_BUILD_SHIPPING
-//	// ¿©±â¼­ WorldContextObject ´Â °ÔÀÓ¸ğµå Ã¼Å©¿ëÀÌ´Ù. NULL À» º¸³»Áàµµ ÀÛµ¿Àº ÇÏ°ÚÁö¸¸ °¡±ŞÀû ±×·¯Áö ¸»ÀÚ.
+//	// å’¯æ‰è¾‘ WorldContextObject ç»° éœ¸çƒ™è‘›é› çœ‰å†œä¾©æä¿ƒ. NULL é˜‘ ç„Šéƒ´æ‹æ¡£ ç´¯æ‚¼ç¯® çªæ‘†ç˜¤çˆ¶ å•Šé­åˆ© å¼ŠçŸ¾ç˜¤ å¯Œç£Š.
 //	AB2LobbyGameMode* LobbyGM = Cast<AB2LobbyGameMode>(UGameplayStatics::GetGameMode(WorldContextObject));
-//	// ·Îºñ¿¡¼­ ¾´´Ù°í ÇØ¼­ ÀÛµ¿ ¾ÈÇÏ´Â °Ç ¾Æ´Ï´Ù. °ÅÀÇ ¾µ¸ğ¾ø´Â »ó´çÇÑ ¾çÀÇ ¸Ş¸ğ¸®¿Í ·Îµù ½Ã°£ µîÀ» °¨¼öÇØ¾ß ÇÑ´Ù.
-//	// ¸¸ÀÏ ·Îºñ¿¡¼­ ÀÌ°É »ç¿ëÇØ¾ß ÇÏ´Â ¿ä±¸»çÇ×ÀÌ ¿À¸é Á¤¸» ÁøÁöÇÏ°Ô °í¹ÎÇØ ºÁ¾ß ÇÑ´Ù. ¸Å¿ì ¸¹Àº °ÍµéÀ» Æ÷±âÇØ¾ß ÇÒ ¼ö ÀÖ´Ù.
-//	// ³»Áö´Â Á¤¸» Á¶½ÉÁ¶½É ÇØ °¡¸é¼­ ÇÑ¹ø¿¡ Å¬·¡½º ÇÏ³ª¾¿ ºñµ¿±â ·ÎµùÇØ°¡¸ç »ç¿ëÇÒ ¼ö ÀÖ´Ù¸é ÇØ º¼ ¼öµµ.
+//	// è‚ºåšä¿Šè¾‘ æ•¬ä¿ƒç»Š ç§¦è¾‘ ç´¯æ‚¼ æ•‘çªç»° æ‰’ é…’èªä¿ƒ. èŠ­ç‹¼ é•œè‘›ç»ç»° æƒ‘å¯¸èŒ„ å‰§ç‹¼ çš‹è‘›åºœå®¢ è‚ºçˆ¹ çŸ«åŸƒ æ®¿é˜‘ çš‘èç§¦å…· èŒ„ä¿ƒ.
+//	// çˆ¶è€ è‚ºåšä¿Šè¾‘ æå§ è¤ä¾©ç§¦å…· çªç»° å¤¸å¤‡è¤äº²æ å·æ æ²¥å¯Œ æŸ³ç˜¤çªéœ¸ ç»Šåˆ®ç§¦ æ¯«å…· èŒ„ä¿ƒ. æ¦‚å¿« è…¹ç¯® å·´ç”¸é˜‘ å™¨æ‰ç§¦å…· ä¸” è ä¹ä¿ƒ.
+//	// éƒ´ç˜¤ç»° æ²¥å¯Œ ç‚¼ç¼´ç‚¼ç¼´ ç§¦ å•Šæè¾‘ èŒ„é”…ä¿Š åŠªè´°èƒ¶ çªå”±ç©¶ åšæ‚¼æ‰ è‚ºçˆ¹ç§¦å•Šå“¥ è¤ä¾©ä¸” è ä¹ä¿ƒæ ç§¦ æ­ èæ¡£.
 //	checkSlow(!LobbyGM);
 //#endif
 //
-//	// ÀÌÀü¿¡ AsyncLoad ¿äÃ»À» ³¯·È´Âµ¥ ¾ÆÁ÷ ¿Ï·á ¾È µÈ »óÈ².
+//	// æå‚ˆä¿Š AsyncLoad å¤¸æ²¡é˜‘ æœå•¡ç»°å• é…’æµ è‚¯ä¸° æ•‘ ç­‰ æƒ‘ç‚”.
 //	if (InGameOnlyAssetAsyncLoadHandle.IsValid() && !InGameOnlyAssetPtr.IsValid())
 //	{
-//		InGameOnlyAssetAsyncLoadHandle->WaitUntilComplete(GENERAL_TASSET_ASYNC_LOAD_TIMEOUT); // Timeout Àº Àû´çÈ÷.. ³Ñ¾î°¡´Â »óÈ²Àº ¸·ÀåÀÌ·Á³ª
+//		InGameOnlyAssetAsyncLoadHandle->WaitUntilComplete(GENERAL_TASSET_ASYNC_LOAD_TIMEOUT); // Timeout ç¯® åˆ©å¯¸æ´’.. é€ç»¢å•Šç»° æƒ‘ç‚”ç¯® é˜œå˜æå¦¨å”±
 //	}	
 //	if(!InGameOnlyAssetPtr.IsValid())
 //	{
 //		SyncLoadInGameOnlyAssets();
 //	}
-//	BII_CHECK(InGameOnlyAssetPtr.IsValid()); /* ¿©±â±îÁö ¿Í¼­µµ invalid ¸é ¸·Àå */
+//	BII_CHECK(InGameOnlyAssetPtr.IsValid()); /* å’¯æ‰é³–ç˜¤ å®¢è¾‘æ¡£ invalid æ é˜œå˜ */
 //	if (InGameOnlyAssetPtr.IsValid())
 //	{
 //		ConditionalSetLoadedInGameOnlyInfoRootSet();
 //
-//		LoadedInGameOnlyAssetPtr = InGameOnlyAssetPtr.Get(); // SyncLoadInGameOnlyAssets ¿¡¼± ±âº» Ä³½ÌÇØÁÖ´Âµ¥ Async ·ÎµùÀÌ ÀÖ¾î¼­.. ³õÄ¡¸é ¾ÈµÊ.
+//		LoadedInGameOnlyAssetPtr = InGameOnlyAssetPtr.Get(); // SyncLoadInGameOnlyAssets ä¿Šæ€¥ æ‰å¤¯ æŸæ•™ç§¦æ—ç»°å• Async è‚ºçˆ¹æ ä¹ç»¢è¾‘.. åˆæ‘¹æ æ•‘å‡³.
 //		return Cast<UB2InGameOnlyPCClassInfo>(LoadedInGameOnlyAssetPtr->GetDefaultObject());
 //	}
 	return NULL;
@@ -1681,25 +1681,25 @@ bool UB2PCClassInfo::IsInGameOnlyInfoAtRootSet()
 
 void UB2PCClassInfo::ReqAsyncLoad(UObject* WorldContextObject, TAsyncLoadPriority InPriority)
 {
-	// AsyncLoad ·Î ÀÎÇÑ ½ÇÁ¦ ·Îµù ½Ã°£ ´ÜÃà Ã¼Å©, ³»Áö´Â ÀÌ»ó µ¿ÀÛ ½Ã Å×½ºÆ®. ½±ÇÎºôµå¼­µµ Å×½ºÆ®°¡ ÇÊ¿äÇÒ ¼ö ÀÖ¾î¼­ !UE_BUILD_SHIPPING À¸·Î ¾È ÇÔ.
+	// AsyncLoad è‚º ç‰¢èŒ„ è§’åŠ› è‚ºçˆ¹ çŸ«åŸƒ çªœç»µ çœ‰å†œ, éƒ´ç˜¤ç»° ææƒ‘ æ‚¼ç´¯ çŸ« æŠ›èƒ¶é£˜. å¥–ä¿å‘¼é›è¾‘æ¡£ æŠ›èƒ¶é£˜å•Š é˜å¤¸ä¸” è ä¹ç»¢è¾‘ !UE_BUILD_SHIPPING æ è‚º æ•‘ çªƒ.
 	if (!BladeIIGameImpl::bAllowInfoAssetAsyncLoading) { 
 		SyncLoadInGameOnlyAssets();
 		return;
 	}
 
-	if (!InGameOnlyAssetPtr.IsValid()) // ManagedPCClassUnload ¿¡ µû¶ó RootSet ÀÏ ¼ö ÀÖ´Âµ¥ ¿©Æ° ·ÎµùÀÌ µÇ¾î ÀÖ´Ù¸é ¿äÃ» »ı·«
+	if (!InGameOnlyAssetPtr.IsValid()) // ManagedPCClassUnload ä¿Š è¶æ‰¼ RootSet è€ è ä¹ç»°å• å’¯ç“¢ è‚ºçˆ¹æ ç™»ç»¢ ä¹ä¿ƒæ å¤¸æ²¡ ç§¯å¸†
 	{
 		TArray<FSoftObjectPath> ThisReqList;
 		ThisReqList.Add(InGameOnlyAssetPtr.ToSoftObjectPath());
-		// ¿©±â¼­ this ¸¦ WorldContextObject ·Î ³Ö¾îÁÖ°í ½Í±âµµ ÇÑµ¥ ¿ÜºÎ¿¡¼­ ÀûÀıÇÑ Async Callback À» ¸ÔÀÌ±â°¡ ½½Â½ ±î´Ù·Î¿ö º¸ÀÌ±âµµ..
+		// å’¯æ‰è¾‘ this ç”« WorldContextObject è‚º æŒç»¢æ—ç»Š é…µæ‰æ¡£ èŒ„å• å¯‡ä½•ä¿Šè¾‘ åˆ©ä¾‹èŒ„ Async Callback é˜‘ å†ˆææ‰å•Š æµ‡é™† é³–ä¿ƒè‚ºå†µ ç„Šææ‰æ¡£..
 		InGameOnlyAssetAsyncLoadHandle = InfoLoadManager.RequestAsyncLoad(ThisReqList, FStreamableDelegate::CreateUObject(this, &UB2PCClassInfo::InGameOnlyAssetAsyncLoadCB), InPriority);
-		bInGameOnlyAssetAsyncLoadRequestPending = true; // ¿ä ÇÃ·¡±×´Â µüÈ÷ ¾µ¸ğ°¡ ¾øÀ» ¼ö ÀÖ´Ù.. ¾ÆÁ÷ Àß ¸ô¶ó¼­
+		bInGameOnlyAssetAsyncLoadRequestPending = true; // å¤¸ æ•²è´°å¼Šç»° è¿­æ´’ é•œè‘›å•Š ç»é˜‘ è ä¹ä¿ƒ.. é…’æµ è‚‹ éš”æ‰¼è¾‘
 	}
 }
 
-void UB2PCClassInfo::InGameOnlyAssetAsyncLoadCB() // ¸ŞÀÎ¾²·¹µå¿¡¼­ ºÒ¸². °ÅÀÇ È®ÀÎ Â÷¿øÀ¸·Î¸¸. ½ÇÁ¦ ·Îµù¿¡ ´ëÇÑ waiting °°Àº °Ç FStreamableHandle ·Î.
+void UB2PCClassInfo::InGameOnlyAssetAsyncLoadCB() // çš‹ç‰¢é™é¥­é›ä¿Šè¾‘ é˜‚è¦†. èŠ­ç‹¼ çŠ¬ç‰¢ ç’ç›”æ è‚ºçˆ¶. è§’åŠ› è‚ºçˆ¹ä¿Š æªèŒ„ waiting éç¯® æ‰’ FStreamableHandle è‚º.
 {
-	// ÀÌ ±âº» °¡Á¤ÀÌ Æ²¸®¸é ¾ğ¸®¾ó StreamableManager µ¿ÀÛÀ» Àß¸ø ÆÄ¾ÇÇÑ °ÍÀÌ°Å³ª ¾ğ¸®¾ó ³»ºÎ ¹ö±×°Å³ª
+	// æ æ‰å¤¯ å•Šæ²¥æ æ’‡åºœæ æ”«åºœå€” StreamableManager æ‚¼ç´¯é˜‘ è‚‹ç»™ é¢‡å©èŒ„ å·´æèŠ­å”± æ”«åºœå€” éƒ´ä½• æ»šå¼ŠèŠ­å”±
 	/*checkf(InGameOnlyAssetPtr.IsValid() && InGameOnlyAssetAsyncLoadHandle.IsValid() && InGameOnlyAssetAsyncLoadHandle->HasLoadCompleted(),
 		TEXT("Wrong assumption or abnormal behavior of PCClassInfo async loading. Call DJSong."));
 	bInGameOnlyAssetAsyncLoadRequestPending = false;
@@ -1722,7 +1722,7 @@ void UB2PCClassInfo::InGameOnlyAssetAsyncLoadCB() // ¸ŞÀÎ¾²·¹µå¿¡¼­ ºÒ¸². °ÅÀÇ È
 
 void UB2PCClassInfo::ConditionalSetLoadedInGameOnlyInfoRootSet()
 {
-	//// ·¹º§ ³»¸± ¶§ unload ¾È ÇÒ ²¨¸é È®½ÇÈ÷ RootSet ¿¡ ¹Ú¾ÆµÒ.
+	//// é¥­éª‡ éƒ´å‰¯ é”­ unload æ•‘ ä¸” æ³¢æ çŠ¬è§’æ´’ RootSet ä¿Š å† é…’ç‹„.
 	//if (LoadedInGameOnlyAssetPtr && !UB2PCClassInfoBox::ShouldUnloadAllPCClassInfoOnLevelTransition())
 	//{
 	//	LoadedInGameOnlyAssetPtr->AddToRoot();
@@ -1731,7 +1731,7 @@ void UB2PCClassInfo::ConditionalSetLoadedInGameOnlyInfoRootSet()
 
 TSubclassOf<ABladeIIPlayer> UB2PCClassInfo::GetBaseBPClass(UObject* WorldContextObject)
 {
-	//// ¿©±â¼± InGameOnlyAsset À» ·ÎµùÇÏÁö ¾Ê´Â´Ù. ·ÎµùµÇÁö ¾ÊÀº »óÈ²¿¡¼­ ÀÌ°É »ç¿ëÇÒ °æ¿ì°¡ »ı±â¸é Àç°í..
+	//// å’¯æ‰æ€¥ InGameOnlyAsset é˜‘ è‚ºçˆ¹çªç˜¤ è‡¼ç»°ä¿ƒ. è‚ºçˆ¹ç™»ç˜¤ è‡¼ç¯® æƒ‘ç‚”ä¿Šè¾‘ æå§ è¤ä¾©ä¸” ç‰ˆå¿«å•Š ç§¯æ‰æ çŠç»Š..
 	//if (InGameOnlyAssetPtr.IsValid())
 	//{
 	//	UB2InGameOnlyPCClassInfo* InGameOnlyAssetObj = Cast<UB2InGameOnlyPCClassInfo>(InGameOnlyAssetPtr.Get()->GetDefaultObject());
@@ -1748,7 +1748,7 @@ void UB2PCClassInfo::PostLoad()
 
 ECharacterType UB2PCClassInfo::FromPCClassToCharacterType(EPCClass InPCClassEnum)
 {
-	// ÀÌ·¸°Ô ¸ÊÇÎÇØ¼­ CharacterType À» ¼¼ÆÃÇÏ´Â ´ë½Å BladeIIPlayer ÂÊ¿¡ EPCClass ¸â¹ö¸¦ ³Ö¾î³õÀ» ¼öµµ..
+	// æçŠ¯éœ¸ ç”˜ä¿ç§¦è¾‘ CharacterType é˜‘ æŠ€æ³¼çªç»° æªè„š BladeIIPlayer ç‡ä¿Š EPCClass ç³•æ»šç”« æŒç»¢åˆé˜‘ èæ¡£..
 	switch (InPCClassEnum)
 	{
 	case EPCClass::EPC_Assassin: return ECharacterType::ECT_Assassin;
@@ -1801,7 +1801,7 @@ bool UB2PCClassInfo::CheckPCClassEnumNamingConvention()
 	//{
 	//	FString ClassEnumName = EnumPtr->GetNameStringByIndex(EI);
 
-	//	// Prefix È®ÀÎ. °ÅÀÇ ABladeIIPlayer::GetTrimmedNameFromPCClassEnum µ¿ÀÛÀ» À§ÇØ..
+	//	// Prefix çŠ¬ç‰¢. èŠ­ç‹¼ ABladeIIPlayer::GetTrimmedNameFromPCClassEnum æ‚¼ç´¯é˜‘ å›°ç§¦..
 	//	if(ClassEnumName.StartsWith(EPCCLASSENUM_COMMON_PREFIX) == false)
 	//	{
 	//		return false;
@@ -1813,7 +1813,7 @@ bool UB2PCClassInfo::CheckPCClassEnumNamingConvention()
 
 #endif
 
-// TAsset lazy-loading À» »ç¿ëÇÏ´Â Blueprint InfoAsset ÀÇ ¿Àµ¿ÀÛ ¹®Á¦¸¦ Á¤½ÄÀ¸·Î ÇØ°áÇÏ±â Àü±îÁöÀÇ ÀÓ½Ã ¶«Áú.
+// TAsset lazy-loading é˜‘ è¤ä¾©çªç»° Blueprint InfoAsset ç‹¼ å·æ‚¼ç´¯ å·©åŠ›ç”« æ²¥ä¾¥æ è‚º ç§¦æ¬çªæ‰ å‚ˆé³–ç˜¤ç‹¼ çƒ™çŸ« ä¸œé¾™.
 #if TEMP_LAZYLOADING_MISHANDLING_CLEANUP
 void UB2PCClassInfo::CleanupOnPreSave()
 {
@@ -1823,7 +1823,7 @@ void UB2PCClassInfo::PreSave(FObjectPreSaveContext SaveContext)
 {
 	Super::PreSave(SaveContext);
 
-	// ÀÇµµÄ¡ ¾Ê°Ô ÀúÀåµÈ ·¹ÆÛ·±½º¸¦ ³¯·ÁÁØ´Ù.
+	// ç‹¼æ¡£æ‘¹ è‡¼éœ¸ å†å˜ç­‰ é¥­æ¬ºç¹èƒ¶ç”« æœå¦¨éœ–ä¿ƒ.
 	CleanupOnPreSave();
 }
 #endif
@@ -1832,12 +1832,12 @@ void UB2PCClassInfo::PreSave(FObjectPreSaveContext SaveContext)
 /**
  * ======================================================================================================
  * For dynamically merge player character mesh sections
- * Æ¯¼ö ¸ğµå ¼º´É È®º¸¸¦ À§ÇÑ ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ mesh section º´ÇÕ ¿ë InfoAsset
+ * æ¼‚è è‘›é› å·±ç“· çŠ¬ç„Šç”« å›°èŒ„ æ•²é¥­æç»¢ æŸè…ç£ mesh section æé’¦ ä¾© InfoAsset
  * ======================================================================================================
  */
 
 #if BII_SHIPPING_ALLOWED_DEV_FEATURE_LV2
-int32 UB2PCMeshSectionMergeInfo::SectionMergeTestFlag = 0; // 1ÀÌ¸é ¹«Á¶°Ç »ç¿ë 2¸é ¹«Á¶°Ç ²ô±â, ³ª¸ÓÁö´Â °ÔÀÓ ±â´É¿¡ µû¶ó
+int32 UB2PCMeshSectionMergeInfo::SectionMergeTestFlag = 0; // 1ææ å…¬ç‚¼æ‰’ è¤ä¾© 2æ å…¬ç‚¼æ‰’ æºæ‰, å”±èµ£ç˜¤ç»° éœ¸çƒ™ æ‰ç“·ä¿Š è¶æ‰¼
 bool UB2PCMeshSectionMergeInfo::ShouldForceUseSectionMerge()
 {
 	return SectionMergeTestFlag == 1;
@@ -1848,8 +1848,8 @@ bool UB2PCMeshSectionMergeInfo::ShouldForceUnuseSectionMerge()
 }
 #endif
 
-/** ¼½¼Ç º´ÇÕ ¸Ş½¬ ¸ğµ¨ »ç¿ë °ü·ÃÇÑ scalability º¯¼ö. ÀÏºÎ °ÔÀÓ¸ğµå¿¡¼­¸¸ »ç¿ëµÇ°í, ÀÌ°Í°ú °ü°è¾øÀÌ ¹«Á¶°Ç ¼½¼Ç º´ÇÕ ¸ğµ¨À» »ç¿ëÇÏ´Â ¸ğµåµµ ÀÖ´Ù.
- * °¡±ŞÀû 1 ÀÌ ³ôÀº »ç¾ç ¿ëÀÌ µÇµµ·Ï SectionMergedMeshUse ¿Í ¹İ´ë ÀÇ¹Ì·Î. */
+/** å†€è®° æé’¦ çš‹æµ† è‘›èƒ† è¤ä¾© åŒ…è®¿èŒ„ scalability å‡½è. è€ä½• éœ¸çƒ™è‘›é›ä¿Šè¾‘çˆ¶ è¤ä¾©ç™»ç»Š, æå·´è‹ åŒ…æ‹Œç»æ å…¬ç‚¼æ‰’ å†€è®° æé’¦ è‘›èƒ†é˜‘ è¤ä¾©çªç»° è‘›é›æ¡£ ä¹ä¿ƒ.
+ * å•Šé­åˆ© 1 æ è‡­ç¯® è¤å‰§ ä¾©æ ç™»æ¡£åºŸ SectionMergedMeshUse å®¢ é¦†æª ç‹¼å›ºè‚º. */
 static TAutoConsoleVariable<int32> CVarB2GameSectionPreservedMeshUse(
 	TEXT("r.B2GameSectionPreservedMeshUse"),
 	1,
@@ -1862,18 +1862,18 @@ bool UB2PCMeshSectionMergeInfo::ShouldUseSectionMergeByGameContext(UObject* Worl
 	//ABladeIIGameMode* B2GM = Cast<ABladeIIGameMode>(UGameplayStatics::GetGameMode(WorldContextObject));
 	//IGameRule* GameRuleObj = B2GM ? B2GM->GetGameRule() : nullptr;
 	//return GameRuleObj ? 
-	//	// °ÔÀÓ¸ğµå Â÷¿ø¿¡¼­ ¼½¼Ç º´ÇÕ ¸ğµ¨À» °­Á¦ÇÏ´Â °æ¿ìµµ ÀÖ°í, ¿É¼Ç¿¡ µû¶ó »ç¿ëÇÏ´Â °æ¿ìµµ ÀÖÀ½.
+	//	// éœ¸çƒ™è‘›é› ç’ç›”ä¿Šè¾‘ å†€è®° æé’¦ è‘›èƒ†é˜‘ ç¢åŠ›çªç»° ç‰ˆå¿«æ¡£ ä¹ç»Š, å¯è®°ä¿Š è¶æ‰¼ è¤ä¾©çªç»° ç‰ˆå¿«æ¡£ ä¹æ¾œ.
 	//	(GameRuleObj->UseSectionMergedPCModel() || (GameRuleObj->ConditionalUseSectionMergedPCModel() && (CVarB2GameSectionPreservedMeshUse.GetValueOnGameThread() == 0)))
 	//	: false;
 	return false;
 }
 bool UB2PCMeshSectionMergeInfo::ShouldUseSectionMergeForStageEvent(UObject* WorldContextObject)
 {
-	// ¿¬Ãâ¿¡¼­ ¼½¼Ç º´ÇÕµÈ °É »ç¿ëÇÒÁö ¿©ºÎÀÎµ¥ ´çÀå »ç¿ëÇÏÁö´Â ¾Ê´õ¶óµµ È¤½Ã¶óµµ ³ªÁß¿¡ ±â´ÉÀ» ³Ö°Ô µÉ ¶§ °íÃÄ¾ß ÇÏ´Â ºÎºĞµé Ã£±â ½±µµ·Ï
+	// æ¥·å…ä¿Šè¾‘ å†€è®° æé’¦ç­‰ å§ è¤ä¾©ä¸”ç˜¤ å’¯ä½•ç‰¢å• å¯¸å˜ è¤ä¾©çªç˜¤ç»° è‡¼æ­¹æ‰¼æ¡£ è¶£çŸ«æ‰¼æ¡£ å”±åä¿Š æ‰ç“·é˜‘ æŒéœ¸ çª é”­ ç»Šåªšå…· çªç»° ä½•ç›’ç”¸ èŒ«æ‰ å¥–æ¡£åºŸ
 //	return (
-//		false // ±¸ÇöÀ» ÇÏ°Ô µÇ¸é ¾Æ¸¶µµ »ç¿ëÀÚ°¡ ¼±ÅÃÇÑ ¿É¼Ç ¼³Á¤ÀÌ µÉ µí..
+//		false // å¤‡æ³…é˜‘ çªéœ¸ ç™»æ é…’ä»˜æ¡£ è¤ä¾©ç£Šå•Š æ€¥ç¶èŒ„ å¯è®° æ±²æ²¥æ çª æ·€..
 //#if 0
-//		&& ShouldUseSectionMergeByGameContext(WorldContextObject) // ±¸Çö µé¾î°¬À» ½Ã ÀÌ Á¶°ÇÀº ±âº»À¸·Î Ã¼Å© ÇÊ¿ä.
+//		&& ShouldUseSectionMergeByGameContext(WorldContextObject) // å¤‡æ³… ç”¸ç»¢è‰¾é˜‘ çŸ« æ ç‚¼æ‰’ç¯® æ‰å¤¯æ è‚º çœ‰å†œ é˜å¤¸.
 //#endif
 //		);
 	return false;
@@ -1943,7 +1943,7 @@ int32 UB2PCMeshSectionMergeInfo::GetMergedSectionID(bool InHaveCombineCostume, E
 }
 
 FVector2D UB2PCMeshSectionMergeInfo::GetPartUVOffset(bool InHaveCombineCostume, EPCPart InPartEnum) const
-{ // »õ·Î º´ÇÕµÈ ¼½¼Ç ¾È¿¡¼­ÀÇ ÀÚ±â ¿µ¿ª Ã£±â
+{ // è´§è‚º æé’¦ç­‰ å†€è®° æ•‘ä¿Šè¾‘ç‹¼ ç£Šæ‰ åº·å¼€ èŒ«æ‰
 	if(const FMergeSectionParameter* Parameter = GetParamterReplaceInfo(InHaveCombineCostume, InPartEnum))
 	{
 		return Parameter->UVOffset;
@@ -1958,30 +1958,30 @@ void UB2PCMeshSectionMergeInfo::SetupMergedSectionMaterialParams(bool InHaveComb
 	//	return;
 	//}
 	//
-	//// SkeletalMesh ÀÇ Material À» µ¿ÀûÀ¸·Î »ı¼ºÇÑ MIC ·Î ¹Ù²ãÄ£´Ù.
-	//// ¿©±â µé¾î¿Â SkeletalMesh µµ µ¿ÀûÀ¸·Î »ı¼ºÇÑ ¿ÀºêÁ§Æ®¿©¾ß ÇØ¼­ ¹Ù²ãÃÄµµ µÊ.
+	//// SkeletalMesh ç‹¼ Material é˜‘ æ‚¼åˆ©æ è‚º ç§¯å·±èŒ„ MIC è‚º å®˜å±‚æ¨¡ä¿ƒ.
+	//// å’¯æ‰ ç”¸ç»¢æŸ¯ SkeletalMesh æ¡£ æ‚¼åˆ©æ è‚º ç§¯å·±èŒ„ å·å®ç’ƒé£˜å’¯å…· ç§¦è¾‘ å®˜å±‚åªšæ¡£ å‡³.
 	//check(InSectionMergedMesh->HasAnyFlags(RF_Transient));
 
-	//// ±âº»ÀûÀ¸·Î merge µÈ ¼½¼ÇÀ» ÇÚµé¸µÇÏ±â À§ÇØ Æ¯º°È÷ Á¦ÀÛµÈ material ÀÌ ¼¼ÆÃµÇ¾î ÀÖ¾î¾ß ÇÏ´Âµ¥
-	//// µ¿ÀÏÇÑ ±¸¼ºÀÇ material À» °¡Áö°í ¸Å ÀÎ½ºÅÏ½º¸¶´Ù parameter ¸¦ ´Ù¸£°Ô ¾µ °ÍÀÌ¹Ç·Î MIC ¸¦ »õ·Î »ı¼ºÇÑ´Ù.
+	//// æ‰å¤¯åˆ©æ è‚º merge ç­‰ å†€è®°é˜‘ å‹¤ç”¸å‚…çªæ‰ å›°ç§¦ æ¼‚å–Šæ´’ åŠ›ç´¯ç­‰ material æ æŠ€æ³¼ç™»ç»¢ ä¹ç»¢å…· çªç»°å•
+	//// æ‚¼è€èŒ„ å¤‡å·±ç‹¼ material é˜‘ å•Šç˜¤ç»Š æ¦‚ ç‰¢èƒ¶ç•”èƒ¶ä»˜ä¿ƒ parameter ç”« ä¿ƒç¦éœ¸ é•œ å·´æéª¨è‚º MIC ç”« è´§è‚º ç§¯å·±èŒ„ä¿ƒ.
 	//for (int32 MI = 0; MI < InSectionMergedMesh->Materials.Num(); ++MI)
 	//{
 	//	UMaterialInterface* ParentMaterial = InSectionMergedMesh->Materials[MI].MaterialInterface;
 	//	UMaterialInstanceConstant* ParentMIC = Cast<UMaterialInstanceConstant>(ParentMaterial);
 	//	if (ParentMIC && ParentMIC->HasAnyFlags(RF_Transient)) 
 	//	{
-	//		// ÀÌ °æ¿ì ÀÌ¹Ì ÀÌÀü¿¡ ¿©±â¼­ transient ·Î »ı¼ºÇØ¼­ ¼¼ÆÃÇÑ MIC ÀÎ °ÍÀÓ. µ¿ÀÏ Á¶°Ç¿¡¼­ merge µÈ ¸Ş½¬´Â GameMode ¿¡ Ä³½ÌÇØ ³õ°í ¾²¹Ç·Î ¿©±â·Î ¿À°Ô µÉ ¼ö ÀÖ´Ù.
-	//		// ÀÌÂÊ ÃÖÀûÈ­¸¦ °ÅÄ¡°Ô µÇ¸é.. ÀÌ¹Ì ÇÑ¹ø »ı¼ºÇØ ³õÀº °Ô ÀÖÀ¸¸é ÀÌ°÷À¸·Î ÀçÂ÷ ¿À°Å³ª ÇÒ ÇÊ¿ä ¾øÀÌ ±×´ë·Î »ç¿ëÇÒ ¼ö ÀÖµµ·Ï ÇÏ´Â °Ô ÁÁÀ» °Í.
+	//		// æ ç‰ˆå¿« æå›º æå‚ˆä¿Š å’¯æ‰è¾‘ transient è‚º ç§¯å·±ç§¦è¾‘ æŠ€æ³¼èŒ„ MIC ç‰¢ å·´çƒ™. æ‚¼è€ ç‚¼æ‰’ä¿Šè¾‘ merge ç­‰ çš‹æµ†ç»° GameMode ä¿Š æŸæ•™ç§¦ åˆç»Š é™éª¨è‚º å’¯æ‰è‚º å·éœ¸ çª è ä¹ä¿ƒ.
+	//		// æç‡ å¼¥åˆ©æ‹³ç”« èŠ­æ‘¹éœ¸ ç™»æ.. æå›º èŒ„é”… ç§¯å·±ç§¦ åˆç¯® éœ¸ ä¹æ æ æé•‘æ è‚º çŠç’ å·èŠ­å”± ä¸” é˜å¤¸ ç»æ å¼Šæªè‚º è¤ä¾©ä¸” è ä¹æ¡£åºŸ çªç»° éœ¸ äº®é˜‘ å·´.
 	//	}
 	//	else
 	//	{
-	//		// MIC ¸¦ dynamic create ·Î »ç¿ë.. RF_Transient ¸¦ ³Ö¾îÁØ´Ù. MaterialInstanceConstant ÂÊÀÇ Set~~TransientObjOnly ¸¦ Âü°í.
-	//		// Æ¯º°ÇÑ »ç¿ëÀÎ ¼ÀÀÎµ¥ MIC ´Â ±âº»ÀûÀ¸·Î Editor ¿¡¼­ »ı¼ºÇØ¼­ »ç¿ëÇÏ´Â °ÍÀÌ´Ù. ±×·¯³ª SkeletalMeshMerge ºÎÅÍ°¡ ÀÌ¹Ì ±×·± ·êÀ» ±ú´Â °Çµ¥ ¸øÇÒ °Å ¹¹ ÀÖÀ½?
+	//		// MIC ç”« dynamic create è‚º è¤ä¾©.. RF_Transient ç”« æŒç»¢éœ–ä¿ƒ. MaterialInstanceConstant ç‡ç‹¼ Set~~TransientObjOnly ç”« æ›¼ç»Š.
+	//		// æ¼‚å–ŠèŒ„ è¤ä¾©ç‰¢ ç¥­ç‰¢å• MIC ç»° æ‰å¤¯åˆ©æ è‚º Editor ä¿Šè¾‘ ç§¯å·±ç§¦è¾‘ è¤ä¾©çªç»° å·´æä¿ƒ. å¼ŠçŸ¾å”± SkeletalMeshMerge ä½•ç£å•Š æå›º å¼Šç¹ é€¢é˜‘ æŸ„ç»° æ‰’å• ç»™ä¸” èŠ­ æ„ ä¹æ¾œ?
 	//		UMaterialInstanceConstant* NewMIC = NewObject<UMaterialInstanceConstant>(InSectionMergedMesh, NAME_None, RF_Transient);
 	//		if (NewMIC)
 	//		{
-	//			// ±âÁ¸¿¡ ¼¼ÆÃµÇ¾î ÀÖ´ø material À» parent ·Î ÇÑ MIC ¸¦ »ı¼ºÇØ¼­ »ç¿ë.
-	//			NewMIC->SetParentTransientObjOnly(ParentMaterial, false); // MIC ¸¦ dynamic ÇÏ°Ô ¾²¸é¼­ ¿ø·¡ MIC ¿¡´Â ¾ø´ø ÀÎÅÍÆäÀÌ½º ¶Õ¾î³õÀ½
+	//			// æ‰ç²®ä¿Š æŠ€æ³¼ç™»ç»¢ ä¹å¸¦ material é˜‘ parent è‚º èŒ„ MIC ç”« ç§¯å·±ç§¦è¾‘ è¤ä¾©.
+	//			NewMIC->SetParentTransientObjOnly(ParentMaterial, false); // MIC ç”« dynamic çªéœ¸ é™æè¾‘ ç›”è´° MIC ä¿Šç»° ç»å¸¦ ç‰¢ç£å…¶æèƒ¶ å¢©ç»¢åˆæ¾œ
 	//			FSkeletalMaterial& OldMaterialSetup = InSectionMergedMesh->Materials[MI];
 	//			FSkeletalMaterial NewMaterialSetup(NewMIC, true);
 	//			NewMaterialSetup.UVChannelData = OldMaterialSetup.UVChannelData;
@@ -1990,17 +1990,17 @@ void UB2PCMeshSectionMergeInfo::SetupMergedSectionMaterialParams(bool InHaveComb
 	//	}
 	//}
 
-	//// Merge ¾ÈµÈ ¿øº» material ´ÜÀ§·Î µ¹¸é¼­ ÀÚ½Å¿¡ ÇØ´çÇÏ´Â merge µÈ ÆÄÆ®ÀÇ section ¿¡ ¼¼ÆÃµÈ MIC ¸¦ Ã£¾Æ material parameter ¸¦ Àü´Ş
+	//// Merge æ•‘ç­‰ ç›”å¤¯ material çªœå›°è‚º å€’æè¾‘ ç£Šè„šä¿Š ç§¦å¯¸çªç»° merge ç­‰ é¢‡é£˜ç‹¼ section ä¿Š æŠ€æ³¼ç­‰ MIC ç”« èŒ«é…’ material parameter ç”« å‚ˆå´”
 	//for(TMap<EPCPart, UMaterialInterface*>::TIterator OriginalMtrlIt(OriginalNonMergedMaterials); OriginalMtrlIt; ++OriginalMtrlIt)
 	//{
 	//	const EPCPart ThisPartEnum = OriginalMtrlIt.Key();
 	//	UMaterialInstance* ThisPartOriginalMI = Cast<UMaterialInstance>(OriginalMtrlIt.Value());
 
-	//	// ÇöÀç MeshMerge ±â´ÉÀÌ ¿øÇÏ´Â SectionID ´ë·Î ¸ÊÇÎÀÌ Á¦´ë·Î ¾ÈµÇ°í ÀÖ¾î¼­ Mesh ÀÇ Materials ¿¡ ÀÎµ¦½º ³Ö¾î¼­ °¡Á®¿À¸é ¿øÇÏ´Â material À» ÄÛ Âó¾î¼­ °¡Á®¿Ã ¼ö ¾øÀ½
-	//	// ±×°É °íÄ¡±â Àü±îÁö´Â ºÎ¸ğ ¸ÓÆ¼¸®¾óÀ» Ã¼Å©ÇÏ´Â ½ÄÀ¸·Î ÇØ¼­ ¿øÇÏ´Â ÇöÀç ÆÄÆ®ÀÇ MIC ¸¦ °¡Á®¿Â´Ù.		
+	//	// æ³…çŠ MeshMerge æ‰ç“·æ ç›”çªç»° SectionID æªè‚º ç”˜ä¿æ åŠ›æªè‚º æ•‘ç™»ç»Š ä¹ç»¢è¾‘ Mesh ç‹¼ Materials ä¿Š ç‰¢éƒ¸èƒ¶ æŒç»¢è¾‘ å•Šå»‰å·æ ç›”çªç»° material é˜‘ å«© éº¦ç»¢è¾‘ å•Šå»‰æ£µ è ç»æ¾œ
+	//	// å¼Šå§ ç»Šæ‘¹æ‰ å‚ˆé³–ç˜¤ç»° ä½•è‘› èµ£èåºœå€”é˜‘ çœ‰å†œçªç»° ä¾¥æ è‚º ç§¦è¾‘ ç›”çªç»° æ³…çŠ é¢‡é£˜ç‹¼ MIC ç”« å•Šå»‰æŸ¯ä¿ƒ.		
 	//	UMaterialInterface* SupposedParentMtrl = GetMergedSectionMaterial(InHaveCombineCostume, ThisPartEnum);
 	//	UMaterialInstanceConstant* MergedMIC = nullptr;
-	//	// ÀÌ°Ô ÇöÀç·Î¼­´Â ¾È¸ÔÈù´Ù´Â °Å. MeshMerge ±â´ÉÀÌ Á» ²¿¿´À½.
+	//	// æéœ¸ æ³…çŠè‚ºè¾‘ç»° æ•‘å†ˆè…®ä¿ƒç»° èŠ­. MeshMerge æ‰ç“·æ ç²± éƒ¨çœ‹æ¾œ.
 	//	//const int32 MergedSectionID = GetMergedSectionID(ThisPartEnum);
 	//	//UMaterialInstanceConstant* MergedMIC = Cast<UMaterialInstanceConstant>(InSectionMergedMesh->Materials[MergedSectionID].MaterialInterface);
 	//	for (int32 MI = 0; MI < InSectionMergedMesh->Materials.Num(); ++MI)
@@ -2099,7 +2099,7 @@ void UB2PCMeshSectionMergeInfo::PostEditChangeProperty(FPropertyChangedEvent& Pr
 
 void UB2PCMeshSectionMergeInfo::CheckDataIntegrity()
 {
-	// MergedSectionData ÆíÁı ½Ã Àß¸øµÉ ¼ö ÀÖ´Â ºÎºĞµé Ã¼Å©.
+	// MergedSectionData ç¥ˆç¬¼ çŸ« è‚‹ç»™çª è ä¹ç»° ä½•ç›’ç”¸ çœ‰å†œ.
 	int32 ContainingPartConflictFound = 0;
 	int32 ExistParts = 0;
 
@@ -2133,7 +2133,7 @@ void UB2PCMeshSectionMergeInfo::CheckDataIntegrity()
 	{
 #if !PLATFORM_MAC
 		FB2ErrorMessage::Open(EAppMsgType::Ok, FText::FromString(
-			FString::Printf(TEXT("[PCMeshSectionMergeInfo] Àß¸øµÈ ¼¼ÆÃÀÌ ¹ß°ßµÇ¾ú½À´Ï´Ù.\r\n¼­·Î ´Ù¸¥ ±×·ì °£¿¡ ContainingParts Áßº¹ : %d °³\r\n±×·ì ³»¿¡¼­ ContainingParts ·Î ¼³Á¤µÇÁö ¾ÊÀº Part ¿¡ ´ëÇÑ ¼¼ÆÃ : %d °³"),
+			FString::Printf(TEXT("[PCMeshSectionMergeInfo] è‚‹ç»™ç­‰ æŠ€æ³¼æ æƒ¯æ–‘ç™»èŒåš¼èªä¿ƒ.\r\nè¾‘è‚º ä¿ƒå¼— å¼Šç¼ åŸƒä¿Š ContainingParts åæ±— : %d ä¿º\r\nå¼Šç¼ éƒ´ä¿Šè¾‘ ContainingParts è‚º æ±²æ²¥ç™»ç˜¤ è‡¼ç¯® Part ä¿Š æªèŒ„ æŠ€æ³¼ : %d ä¿º"),
 				ContainingPartConflictFound, NonExistParts)
 		));
 #endif

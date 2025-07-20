@@ -1,4 +1,4 @@
-#include "B2UIGuildCreate.h"
+﻿#include "B2UIGuildCreate.h"
 #include "B2UIGuildMark.h"
 #include "B2GuildMarkInfo.h"
 #include "B2UIManager.h"
