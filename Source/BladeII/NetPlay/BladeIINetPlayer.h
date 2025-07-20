@@ -225,7 +225,7 @@ protected:
 	virtual void UpdateUIDocOnTargetDamaged() override;
 	virtual bool IsVisibleFloorRing();
 
-	void SendMessage2(FString const&);
+	void SendGameMessage(FString const&);
 	bool IsAllyPlayer();
 	void SpawnHelpResurrectionZone();
 	FVector GetNetAdjustGoalLocation();

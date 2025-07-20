@@ -22,16 +22,27 @@
 #include "Components/TextRenderComponent.h"
 #endif
 #include "BladeIIUtil.h"
-#include "../UI/B2UIEnum.h"
-#include "../InfoAsset/B2StageInfo.h"
+#include "B2UIEnum.h"
 #include "B2StageManager.h"
+
+
+#include "LevelSequenceActor.h"
+#include "LevelSequence.h"
+#include "LevelSequencePlayer.h"
+
+#include "MovieScene.h"
+#include "MovieSceneBinding.h"
+#include "IMovieScenePlayer.h"      // IMovieScenePlayer::FindBoundObjects
+#include "MovieSceneSequenceID.h"
+
 
 //#include "B2StageManager.h"
 ////#include "B2MonsterSpawnPool.h"
 //#include "BladeIIGameMode.h"
 //#include "B2StageGameMode.h"
-////#include "B2NetGameMode.h"
-////#include "B2PVPGameMode.h"
+#include "B2NetGameMode.h"
+#include "B2PVPGameMode.h"
+#include "MovieSceneObjectBindingID.h"
 ////#include "B2TMGameMode.h"
 ////#include "B2RaidGameMode.h"
 //#include "BladeIIPlayer.h"
@@ -1753,265 +1764,294 @@ void AB2StageEventDirector::ActivateMatineePuppetPSCs(ASkeletalMeshActor* InPupp
 
 AActor* AB2StageEventDirector::GetGroupActorOfGroupName(const FName& InGroupName)
 {
-	if (!MatineeActor || !MatineeActor->MatineeData){
-		return NULL;
+	if (!MatineeActor)
+	{
+		return nullptr;
 	}
 
-	for (int32 GI = 0; GI < MatineeActor->MatineeData->InterpGroups.Num(); ++GI)
+	ULevelSequence* LevelSequence = Cast<ULevelSequence>(MatineeActor->GetSequence());
+	if (!LevelSequence)
 	{
-		UInterpGroup* CurrGroup = MatineeActor->MatineeData->InterpGroups[GI];
+		return nullptr;
+	}
 
-		if (CurrGroup->GroupName == InGroupName)
+	UMovieScene* MovieScene = LevelSequence->GetMovieScene();
+	if (!MovieScene)
+	{
+		return nullptr;
+	}
+
+	ULevelSequencePlayer* SequencePlayer = MatineeActor->GetSequencePlayer();
+	if (!SequencePlayer)
+	{
+		return nullptr;
+	}
+
+	IMovieScenePlayer& PlayerInterface = *SequencePlayer;
+
+	const FString TargetName = InGroupName.ToString();
+
+	// 遍历所有绑定 (旧 Matinee 的 InterpGroups -> 现在的 MovieScene Bindings)
+	for (const FMovieSceneBinding& Binding : MovieScene->GetBindings())
+	{
+		if (Binding.GetName() == TargetName)
 		{
-			// 汲沥茄 捞抚苞 老摹窍绰 弊缝阑 茫篮 饶俊绰 弊缝 牢胶畔胶甫..
-			UInterpGroupInst* FoundGI = NULL;
-			for (int32 GII = 0; GII < MatineeActor->GroupInst.Num(); ++GII)
+			const FGuid& ObjectGuid = Binding.GetObjectGuid();
+
+			// Root 序列（如果是嵌套子序列再处理 SequenceID，这里简单假设都是根）
+			TArrayView<TWeakObjectPtr<UObject>> Found = PlayerInterface.FindBoundObjects(ObjectGuid, FMovieSceneSequenceID());
+
+			for (const TWeakObjectPtr<UObject>& WeakObj : Found)
 			{
-				if (MatineeActor->GroupInst[GII]->Group == CurrGroup) // 搬惫 牢郸胶啊 鞍栏妨唱?
+				if (AActor* Actor = Cast<AActor>(WeakObj.Get()))
 				{
-					FoundGI = MatineeActor->GroupInst[GII];
-					return FoundGI ? FoundGI->GroupActor : NULL;
+					return Actor;
 				}
 			}
+
+			// 找到了名字但没有 Actor（可能绑定的是 Component），直接返回 nullptr
+			return nullptr;
 		}
 	}
-	return NULL;
+
+	return nullptr;
 }
+
 
 void AB2StageEventDirector::SelectFinalDirectorTrack()
 {
-	if (OverallMode != EStageEventDirectorOverallMode::ESEDOM_ControlledMatinee || MatineeActor == NULL || MatineeActor->MatineeData == NULL)
-	{
-		return;
-	}
+	//if (OverallMode != EStageEventDirectorOverallMode::ESEDOM_ControlledMatinee || MatineeActor == NULL || MatineeActor->MatineeData == NULL)
+	//{
+	//	return;
+	//}
 
-	UInterpGroupDirector* TheDirGroup = MatineeActor->MatineeData->FindDirectorGroup(); // Director Group 篮 漂喊窍聪 官肺 掘绢棵 荐 乐焙 せ
-	if (TheDirGroup == NULL)
-	{
-		return;
-	}
+	//UInterpGroupDirector* TheDirGroup = MatineeActor->MatineeData->FindDirectorGroup(); // Director Group 篮 漂喊窍聪 官肺 掘绢棵 荐 乐焙 せ
+	//if (TheDirGroup == NULL)
+	//{
+	//	return;
+	//}
 
-	if (TheDirGroup->InterpTracks.Num() <= 1 || (bPCDependentDirectorTrack == false && !IsValidRandomMatineeGroupNumSet()))
-	{
-		// 捞 版快, 傲 贸澜 吧肺促啊 Enable 秦 滚副 荐档 乐摆瘤父, Director Track 阑 酒轿府 静瘤 臼绰 版快档 积阿秦 杭 荐 乐摆栏聪 弊成 府畔.
-		return;
-	}
+	//if (TheDirGroup->InterpTracks.Num() <= 1 || (bPCDependentDirectorTrack == false && !IsValidRandomMatineeGroupNumSet()))
+	//{
+	//	// 捞 版快, 傲 贸澜 吧肺促啊 Enable 秦 滚副 荐档 乐摆瘤父, Director Track 阑 酒轿府 静瘤 臼绰 版快档 积阿秦 杭 荐 乐摆栏聪 弊成 府畔.
+	//	return;
+	//}
 
-	// 漂沥 ShowSetting 俊 官牢爹 等 PlayActor 啊 酒囱 泅犁 林楷拜栏肺 唱坷绰 Player Character 俊 蝶扼辑烙.
-	ABladeIIPlayer* PossibleHighlightedPlayer = GetShowHeroPlayerIfAny();
-	if (bPCDependentDirectorTrack && !PossibleHighlightedPlayer)
-	{ // 措眉肺 捞 event 啊 捞繁 己拜俊 嘎瘤 臼绰 版快老 巴. 拱沸 酒匆 荐档 乐绰单 弊繁 版快啊 积扁搁 GetShowHeroPlayerIfAny 甫 颊龙.
-		return;
-	}
-	BII_CHECK(!PossibleHighlightedPlayer || PossibleHighlightedPlayer->IsValidObj());
+	//// 漂沥 ShowSetting 俊 官牢爹 等 PlayActor 啊 酒囱 泅犁 林楷拜栏肺 唱坷绰 Player Character 俊 蝶扼辑烙.
+	//ABladeIIPlayer* PossibleHighlightedPlayer = GetShowHeroPlayerIfAny();
+	//if (bPCDependentDirectorTrack && !PossibleHighlightedPlayer)
+	//{ // 措眉肺 捞 event 啊 捞繁 己拜俊 嘎瘤 臼绰 版快老 巴. 拱沸 酒匆 荐档 乐绰单 弊繁 版快啊 积扁搁 GetShowHeroPlayerIfAny 甫 颊龙.
+	//	return;
+	//}
+	//BII_CHECK(!PossibleHighlightedPlayer || PossibleHighlightedPlayer->IsValidObj());
 
-	FString DesiredPostFix;
-	if (bPCDependentDirectorTrack && PossibleHighlightedPlayer)
-	{ // FinalMatchingInterpGroupName 捞扼绰 狼固客绰 距埃 促福绊 付蛮啊瘤 痹距阑 利侩茄 postfix 父 啊廉坷妨绰 芭
-		DesiredPostFix = GetFinalMatchingInterpGroupNamePC(TEXT(""), PossibleHighlightedPlayer->GetTrimmedNameFromPCClassEnum(), EPCInterpGroupNetType::PCIGNT_Local, false);
-	}
-	else if (IsValidRandomMatineeGroupNumSet())
-	{// FinalMatchingInterpGroupName 捞扼绰 狼固客绰 距埃 促福绊 付蛮啊瘤 痹距阑 利侩茄 postfix 父 啊廉坷妨绰 芭
-		DesiredPostFix = GetFinalMatchingInterpGroupNameRandom(TEXT(""), RandomlySetMatineeGroupNum, false);
-	}
-	
-	// 泅犁 PlayerCharacter 俊 嘎绰 postfix 甫 啊柳 巴栏肺 急琶.
-	for (int32 DI = 0; DI < TheDirGroup->InterpTracks.Num(); ++DI)
-	{
-		UInterpTrackDirector* CurrDirTrack = Cast<UInterpTrackDirector>(TheDirGroup->InterpTracks[DI]);
-		if (CurrDirTrack == NULL)
-		{
-			continue;
-		}
+	//FString DesiredPostFix;
+	//if (bPCDependentDirectorTrack && PossibleHighlightedPlayer)
+	//{ // FinalMatchingInterpGroupName 捞扼绰 狼固客绰 距埃 促福绊 付蛮啊瘤 痹距阑 利侩茄 postfix 父 啊廉坷妨绰 芭
+	//	DesiredPostFix = GetFinalMatchingInterpGroupNamePC(TEXT(""), PossibleHighlightedPlayer->GetTrimmedNameFromPCClassEnum(), EPCInterpGroupNetType::PCIGNT_Local, false);
+	//}
+	//else if (IsValidRandomMatineeGroupNumSet())
+	//{// FinalMatchingInterpGroupName 捞扼绰 狼固客绰 距埃 促福绊 付蛮啊瘤 痹距阑 利侩茄 postfix 父 啊廉坷妨绰 芭
+	//	DesiredPostFix = GetFinalMatchingInterpGroupNameRandom(TEXT(""), RandomlySetMatineeGroupNum, false);
+	//}
+	//
+	//// 泅犁 PlayerCharacter 俊 嘎绰 postfix 甫 啊柳 巴栏肺 急琶.
+	//for (int32 DI = 0; DI < TheDirGroup->InterpTracks.Num(); ++DI)
+	//{
+	//	UInterpTrackDirector* CurrDirTrack = Cast<UInterpTrackDirector>(TheDirGroup->InterpTracks[DI]);
+	//	if (CurrDirTrack == NULL)
+	//	{
+	//		continue;
+	//	}
 
-		if (CurrDirTrack->TrackTitle.EndsWith(DesiredPostFix)) // Postfix 父 嘎眠搁 凳. 傍烹 prefix 鞍篮 芭 绝澜.
-		{
-			CurrDirTrack->EnableTrack(true);
-		}
-		else
-		{
-			CurrDirTrack->EnableTrack(false); // 咯鸥 唱赣瘤绰 馋促. 绢瞒乔 DirectorTrack 篮 窍唱观俊 给 靖.
-		}
-	}
+	//	if (CurrDirTrack->TrackTitle.EndsWith(DesiredPostFix)) // Postfix 父 嘎眠搁 凳. 傍烹 prefix 鞍篮 芭 绝澜.
+	//	{
+	//		CurrDirTrack->EnableTrack(true);
+	//	}
+	//	else
+	//	{
+	//		CurrDirTrack->EnableTrack(false); // 咯鸥 唱赣瘤绰 馋促. 绢瞒乔 DirectorTrack 篮 窍唱观俊 给 靖.
+	//	}
+	//}
 
-	// 趣矫扼档 困俊辑 Enable 等 巴捞 绝菌促搁 傲 霉锅掳 巴栏肺.. 且 荐档 乐摆瘤父 弊成 滴磊.
+	//// 趣矫扼档 困俊辑 Enable 等 巴捞 绝菌促搁 傲 霉锅掳 巴栏肺.. 且 荐档 乐摆瘤父 弊成 滴磊.
 }
 
 void AB2StageEventDirector::RuntimeRemoveNonDesiredGroup()
 {
 	B2_SCOPED_TRACK_LOG(TEXT("AB2StageEventDirector::RuntimeRemoveNonDesiredGroup"));
 
-	TArray<FString> AllTrimmedPCClassEnumName;
-	ABladeIIPlayer::GetAllTrimmedNameFromPCClassEnum(AllTrimmedPCClassEnumName);
+	//TArray<FString> AllTrimmedPCClassEnumName;
+	//ABladeIIPlayer::GetAllTrimmedNameFromPCClassEnum(AllTrimmedPCClassEnumName);
 
-	for (int32 GI = 0; GI < MatineeActor->MatineeData->InterpGroups.Num(); ++GI)
-	{
-		UInterpGroup* CurrGroup = MatineeActor->MatineeData->InterpGroups[GI];
+	//for (int32 GI = 0; GI < MatineeActor->MatineeData->InterpGroups.Num(); ++GI)
+	//{
+	//	UInterpGroup* CurrGroup = MatineeActor->MatineeData->InterpGroups[GI];
 
-		bool bFoundMatchingOne = false;
-		for (int32 EI = 0; EI < ShowSettings.Num(); ++EI)
-		{
-			FPlayActorShowSettings& CurrShowSetting = ShowSettings[EI];
-			FPlayActorShowRuntimeState& CurrShowState = ShowStates[EI];
+	//	bool bFoundMatchingOne = false;
+	//	for (int32 EI = 0; EI < ShowSettings.Num(); ++EI)
+	//	{
+	//		FPlayActorShowSettings& CurrShowSetting = ShowSettings[EI];
+	//		FPlayActorShowRuntimeState& CurrShowState = ShowStates[EI];
 
-			// 泅犁 ShowSetting 苞 楷搬等 Matinee InterpGroup 趣篮 Folder 捞抚
-			const FName FinalMatchingGroupName(*GetFinalMatchingInterpGroupName(CurrShowState.GetPlayActor(this), CurrShowSetting.MatchingInterpGroupName.ToString(), false));
-			const FName FinalMatchingGroupNameForFolder(*GetFinalMatchingInterpGroupName(CurrShowState.GetPlayActor(this), CurrShowSetting.MatchingInterpGroupName.ToString(), true));
+	//		// 泅犁 ShowSetting 苞 楷搬等 Matinee InterpGroup 趣篮 Folder 捞抚
+	//		const FName FinalMatchingGroupName(*GetFinalMatchingInterpGroupName(CurrShowState.GetPlayActor(this), CurrShowSetting.MatchingInterpGroupName.ToString(), false));
+	//		const FName FinalMatchingGroupNameForFolder(*GetFinalMatchingInterpGroupName(CurrShowState.GetPlayActor(this), CurrShowSetting.MatchingInterpGroupName.ToString(), true));
 
-			if (CurrGroup->GroupName == FinalMatchingGroupName || 
-				CurrGroup->GroupName == FinalMatchingGroupNameForFolder)
-			{
-				bFoundMatchingOne = true; // 官肺 嘎绰 霸 乐栏骨肺 捞扒 烹苞窃.
-				break;
-			}
-		}
+	//		if (CurrGroup->GroupName == FinalMatchingGroupName || 
+	//			CurrGroup->GroupName == FinalMatchingGroupNameForFolder)
+	//		{
+	//			bFoundMatchingOne = true; // 官肺 嘎绰 霸 乐栏骨肺 捞扒 烹苞窃.
+	//			break;
+	//		}
+	//	}
 
-		if (bFoundMatchingOne){
-			continue;
-		}
+	//	if (bFoundMatchingOne){
+	//		continue;
+	//	}
 
-		bool bNotDesiredGroup = false;
+	//	bool bNotDesiredGroup = false;
 
-		// 咯扁肺 吭栏搁 ShowSetting 阑 烹秦 弊缝 捞抚阑 持瘤 臼疽芭唱, 泅犁 霸烙 惑炔俊 嘎瘤 臼芭唱 茄 版快 殿. 
-		// 沥秦柳 匙捞怪 痹距俊 狼秦 犬角洒 唱坷瘤 富酒具 窍绰 版快牢瘤 茄锅 歹 眉农秦辑 厚劝己拳 窜拌肺 (RuntimeDisableInterpGroup)
-		// 弊缝 捞抚捞 沥秦柳 匙捞怪 痹蘑苞 酒抗 包访捞 绝促搁 咯扁辑 厚劝己拳 且 措惑捞 酒聪促.
+	//	// 咯扁肺 吭栏搁 ShowSetting 阑 烹秦 弊缝 捞抚阑 持瘤 臼疽芭唱, 泅犁 霸烙 惑炔俊 嘎瘤 臼芭唱 茄 版快 殿. 
+	//	// 沥秦柳 匙捞怪 痹距俊 狼秦 犬角洒 唱坷瘤 富酒具 窍绰 版快牢瘤 茄锅 歹 眉农秦辑 厚劝己拳 窜拌肺 (RuntimeDisableInterpGroup)
+	//	// 弊缝 捞抚捞 沥秦柳 匙捞怪 痹蘑苞 酒抗 包访捞 绝促搁 咯扁辑 厚劝己拳 且 措惑捞 酒聪促.
 
-		for (int32 EI = 0; EI < ShowSettings.Num(); ++EI)
-		{
-			FPlayActorShowSettings& CurrShowSetting = ShowSettings[EI];
-			FPlayActorShowRuntimeState& CurrShowState = ShowStates[EI];
+	//	for (int32 EI = 0; EI < ShowSettings.Num(); ++EI)
+	//	{
+	//		FPlayActorShowSettings& CurrShowSetting = ShowSettings[EI];
+	//		FPlayActorShowRuntimeState& CurrShowState = ShowStates[EI];
 
-			// 咯扁辑 ThePlayActor 甫 八荤窍绰 扒 窜瘤 捞 技泼捞 BladeIIPlayer 侩牢瘤 焊扁 困窃. 角力肺 八荤窍绰 ThePlayActor 客 楷包等 弊缝捞扼搁 力芭秦急 救凳.
-			if (Cast<ABladeIIPlayer>(CurrShowState.GetPlayActor(this))) 
-			{
-				for (int32 PCI = 0; PCI < AllTrimmedPCClassEnumName.Num(); ++PCI)
-				{
-					for (int32 NTI = 0; NTI < (int32)EPCInterpGroupNetType::PCIGNT_End; ++NTI)
-					{
-						// 捞 ShowSetting 苞 PCClass 俊 蝶扼 痹距俊 甸绢啊绰 Group 趣篮 弃歹 捞抚
-						// Iteration 档吝俊 角力肺 荤侩瞪 捞抚档 唱坷摆瘤父.. 芭扁俊 概莫登绰 InterpGroup 篮 捞固 咯扁肺 坷瘤 臼绊 咯扁肺 柯 巴甸篮 厚劝己拳 饶焊.
-						const FName PossiblePCGroupName(*GetFinalMatchingInterpGroupNamePC(CurrShowSetting.MatchingInterpGroupName.ToString(), AllTrimmedPCClassEnumName[PCI], static_cast<EPCInterpGroupNetType>(NTI), false));
-						const FName PossiblePCGroupNameForFolder(*GetFinalMatchingInterpGroupNamePC(CurrShowSetting.MatchingInterpGroupName.ToString(), AllTrimmedPCClassEnumName[PCI], static_cast<EPCInterpGroupNetType>(NTI), true));
+	//		// 咯扁辑 ThePlayActor 甫 八荤窍绰 扒 窜瘤 捞 技泼捞 BladeIIPlayer 侩牢瘤 焊扁 困窃. 角力肺 八荤窍绰 ThePlayActor 客 楷包等 弊缝捞扼搁 力芭秦急 救凳.
+	//		if (Cast<ABladeIIPlayer>(CurrShowState.GetPlayActor(this))) 
+	//		{
+	//			for (int32 PCI = 0; PCI < AllTrimmedPCClassEnumName.Num(); ++PCI)
+	//			{
+	//				for (int32 NTI = 0; NTI < (int32)EPCInterpGroupNetType::PCIGNT_End; ++NTI)
+	//				{
+	//					// 捞 ShowSetting 苞 PCClass 俊 蝶扼 痹距俊 甸绢啊绰 Group 趣篮 弃歹 捞抚
+	//					// Iteration 档吝俊 角力肺 荤侩瞪 捞抚档 唱坷摆瘤父.. 芭扁俊 概莫登绰 InterpGroup 篮 捞固 咯扁肺 坷瘤 臼绊 咯扁肺 柯 巴甸篮 厚劝己拳 饶焊.
+	//					const FName PossiblePCGroupName(*GetFinalMatchingInterpGroupNamePC(CurrShowSetting.MatchingInterpGroupName.ToString(), AllTrimmedPCClassEnumName[PCI], static_cast<EPCInterpGroupNetType>(NTI), false));
+	//					const FName PossiblePCGroupNameForFolder(*GetFinalMatchingInterpGroupNamePC(CurrShowSetting.MatchingInterpGroupName.ToString(), AllTrimmedPCClassEnumName[PCI], static_cast<EPCInterpGroupNetType>(NTI), true));
 
-						// 泅犁 ShowSetting 俊辑狼 MatchingInterpGroupName 阑 海捞胶肺 窍绊 乐瘤父 泅犁 霸烙俊辑 急琶登绢 乐瘤绰 臼促.
-						if (CurrGroup->GroupName == PossiblePCGroupName ||
-							CurrGroup->GroupName == PossiblePCGroupNameForFolder)
-						{
-							bNotDesiredGroup = true;
-							break;
-						}
-					}
-				}
-			}
-			else if (IsValidRandomMatineeGroupNumSet())
-			{ // 罚待 弊缝 急琶捞 乐绰 版快, 急琶登瘤 给茄 罚待 弊缝阑 力芭. 捞扒 Player 绰 酒聪绊 各 楷免.
-				for (int32 RNI = 1; RNI <= RandomMatineeGroupNum; ++RNI)
-				{ 
-					if (RNI == RandomlySetMatineeGroupNum){
-						continue; // 捞锅 罚待 急琶等 芭烙. 绢瞒乔 酒贰俊辑 bNotDesiredGroup 急琶捞 登瘤 臼摆瘤父 固府 吧矾晨.
-					}
-					// 阿 罚待 喊肺 弃歹 备己沁促 摹绊 弊巴父 贸府窍磊. 拱沸 捞巴苞 喊俺肺 窍困 弊缝甸档 匙捞怪阑 嘎苗林变 秦具 窃.
-					const FName PossibleRandFolderName(*GetFinalMatchingInterpGroupNameRandom(CurrShowSetting.MatchingInterpGroupName.ToString(), RNI, true));
-					if (CurrGroup->GroupName == PossibleRandFolderName)
-					{
-						bNotDesiredGroup = true;
-						break;
-					}
-				}
-			}
+	//					// 泅犁 ShowSetting 俊辑狼 MatchingInterpGroupName 阑 海捞胶肺 窍绊 乐瘤父 泅犁 霸烙俊辑 急琶登绢 乐瘤绰 臼促.
+	//					if (CurrGroup->GroupName == PossiblePCGroupName ||
+	//						CurrGroup->GroupName == PossiblePCGroupNameForFolder)
+	//					{
+	//						bNotDesiredGroup = true;
+	//						break;
+	//					}
+	//				}
+	//			}
+	//		}
+	//		else if (IsValidRandomMatineeGroupNumSet())
+	//		{ // 罚待 弊缝 急琶捞 乐绰 版快, 急琶登瘤 给茄 罚待 弊缝阑 力芭. 捞扒 Player 绰 酒聪绊 各 楷免.
+	//			for (int32 RNI = 1; RNI <= RandomMatineeGroupNum; ++RNI)
+	//			{ 
+	//				if (RNI == RandomlySetMatineeGroupNum){
+	//					continue; // 捞锅 罚待 急琶等 芭烙. 绢瞒乔 酒贰俊辑 bNotDesiredGroup 急琶捞 登瘤 臼摆瘤父 固府 吧矾晨.
+	//				}
+	//				// 阿 罚待 喊肺 弃歹 备己沁促 摹绊 弊巴父 贸府窍磊. 拱沸 捞巴苞 喊俺肺 窍困 弊缝甸档 匙捞怪阑 嘎苗林变 秦具 窃.
+	//				const FName PossibleRandFolderName(*GetFinalMatchingInterpGroupNameRandom(CurrShowSetting.MatchingInterpGroupName.ToString(), RNI, true));
+	//				if (CurrGroup->GroupName == PossibleRandFolderName)
+	//				{
+	//					bNotDesiredGroup = true;
+	//					break;
+	//				}
+	//			}
+	//		}
 
-			if (bNotDesiredGroup)
-			{
-				break;
-			}
-		}
+	//		if (bNotDesiredGroup)
+	//		{
+	//			break;
+	//		}
+	//	}
 
-		// 扁鸥 促弗 版快 眠啊登搁..
+	//	// 扁鸥 促弗 版快 眠啊登搁..
 
-		if (bNotDesiredGroup)
-		{// 秦寸 弊缝阑 厚劝己拳
-			RuntimeDisableInterpGroup(CurrGroup, MatineeActor);
-		}
-	}
+	//	if (bNotDesiredGroup)
+	//	{// 秦寸 弊缝阑 厚劝己拳
+	//		RuntimeDisableInterpGroup(CurrGroup, MatineeActor);
+	//	}
+	//}
 }
 
 void AB2StageEventDirector::RuntimeDisableInterpGroup(class UInterpGroup* GroupToDisable, class ALevelSequenceActor * OwnerMatinee)
 {
 	B2_SCOPED_TRACK_LOG(TEXT("AB2StageEventDirector::RuntimeRemoveGroupActorFromInterpGroup"));
 
-	if (GroupToDisable && OwnerMatinee)
-	{
-		TArray<UInterpGroupInst*> arMatchingGI;
-		// 弊缝苞 老摹窍绰 弊缝 牢胶畔胶甫 茫绰促.
-		for (int32 GII = 0; GII < OwnerMatinee->GroupInst.Num(); ++GII)
-		{
-			// Disable 窍绊磊 窍绰 巴捞 磊扁 磊脚捞电瘤 酒聪搁 磊脚阑 器窃窍绰 弃歹 弊缝捞电瘤
-			UInterpGroup* ParentFolder = FindParentGroupFolder(OwnerMatinee->GroupInst[GII]->Group, OwnerMatinee);
-
-			if ( (ParentFolder && ParentFolder == GroupToDisable)
-				 || (OwnerMatinee->GroupInst[GII]->Group == GroupToDisable) )
-			{
-				arMatchingGI.Add(OwnerMatinee->GroupInst[GII]);
-			}
-		}
-
-		for (int32 GII = 0; GII < arMatchingGI.Num(); ++GII)
-		{
-			UInterpGroupInst* ThisGI = arMatchingGI[GII];
-			if (ThisGI) 
-			{
-				// 捞芭 粱 扯厚捞变 茄单.. 俊叼磐 甘 历厘 矫 ShowSetting 俊 殿废登瘤 臼篮 局甸档 visibility 甫 波林妨促 焊聪 Matinee InitInterp 矫 SkeletalMeshActor 甸阑 难林绰 内靛啊 眠啊登菌绊.. 辟单 咯扁辑 镜葛绝促绊 埃林登绰 局甸篮 促矫 波林绢具 せ
-				ASkeletalMeshActor* ThisGroupSKActor = Cast<ASkeletalMeshActor>(ThisGI->GetGroupActor());
-				if (ThisGroupSKActor)
-				{
-					ThisGroupSKActor->SetActorHiddenInGame(true);
-				}
-				// PC 喊肺 扼捞飘 飘发甸 父甸绢 初篮 版快档 喊档 贸府啊 鞘夸. SetAllPointLightGroupAffectWorld 肺绰 贸府 给窃.
-				ALight* ThisGroupLightActor = Cast<ALight>(ThisGI->GetGroupActor());
-				UPointLightComponent* PLComp = ThisGroupLightActor ? Cast<UPointLightComponent>(ThisGroupLightActor->GetLightComponent()) : nullptr;
-				if (PLComp
-#if 0
-					// 狼档窍瘤 臼篮 肋给等 扁瓷 窍俊辑 悸诀 登菌带 扼捞泼阑 皋操扁 困秦 持菌带 烙矫 敲贰弊..
-					// 悸诀 荐沥捞 肯丰登搁 bHackMyPerPCClassLightingSetupDone 阑 眉农窍绰 侥捞菌澜.
-					// 悸诀 肯丰登菌促绊 窍咯 DEPRECATED 付农窍绊 扁瓷篮 力芭.. 趣 葛福聪 肯傈洒 力芭窍瘤绰 臼澜.
-					&& bHackMyPerPCClassLightingSetupDone_DEPRECATED 
-#endif				
-					)
-				{
-					PLComp->bAffectsWorld = false;
-					PLComp->MarkRenderStateDirty();
-				}
-
-				// 抗傈俊 GroupActor 甫 力芭窍绊 沁菌绰单 傲 窍困 飘发 Disable 肺 登瘤 臼唱 酵促. 老窜 康旷狼 啪 肺爹绝绰 犁矫累阑 窍妨搁 GroupActor 绰 力芭秦急 救凳.
-				for (UInterpTrack* CurrTrack : ThisGI->Group->InterpTracks)
-				{
-					if (CurrTrack)
-					{
-						CurrTrack->EnableTrack(false);
-					}
-				}
-			}
-		}
-
-		// 购啊 Folder 甸绢啊搁辑何磐牢瘤.. 困 内靛啊 救冈鳃 锭啊 乐促. 促矫 捞吧肺档..
-		for (UInterpTrack* CurrTrack : GroupToDisable->InterpTracks)
-		{
-			if (CurrTrack)
-			{
-				CurrTrack->EnableTrack(false);
-			}
-		}
-	}
+//	if (GroupToDisable && OwnerMatinee)
+//	{
+//		TArray<UInterpGroupInst*> arMatchingGI;
+//		// 弊缝苞 老摹窍绰 弊缝 牢胶畔胶甫 茫绰促.
+//		for (int32 GII = 0; GII < OwnerMatinee->GroupInst.Num(); ++GII)
+//		{
+//			// Disable 窍绊磊 窍绰 巴捞 磊扁 磊脚捞电瘤 酒聪搁 磊脚阑 器窃窍绰 弃歹 弊缝捞电瘤
+//			UInterpGroup* ParentFolder = FindParentGroupFolder(OwnerMatinee->GroupInst[GII]->Group, OwnerMatinee);
+//
+//			if ( (ParentFolder && ParentFolder == GroupToDisable)
+//				 || (OwnerMatinee->GroupInst[GII]->Group == GroupToDisable) )
+//			{
+//				arMatchingGI.Add(OwnerMatinee->GroupInst[GII]);
+//			}
+//		}
+//
+//		for (int32 GII = 0; GII < arMatchingGI.Num(); ++GII)
+//		{
+//			UInterpGroupInst* ThisGI = arMatchingGI[GII];
+//			if (ThisGI) 
+//			{
+//				// 捞芭 粱 扯厚捞变 茄单.. 俊叼磐 甘 历厘 矫 ShowSetting 俊 殿废登瘤 臼篮 局甸档 visibility 甫 波林妨促 焊聪 Matinee InitInterp 矫 SkeletalMeshActor 甸阑 难林绰 内靛啊 眠啊登菌绊.. 辟单 咯扁辑 镜葛绝促绊 埃林登绰 局甸篮 促矫 波林绢具 せ
+//				ASkeletalMeshActor* ThisGroupSKActor = Cast<ASkeletalMeshActor>(ThisGI->GetGroupActor());
+//				if (ThisGroupSKActor)
+//				{
+//					ThisGroupSKActor->SetActorHiddenInGame(true);
+//				}
+//				// PC 喊肺 扼捞飘 飘发甸 父甸绢 初篮 版快档 喊档 贸府啊 鞘夸. SetAllPointLightGroupAffectWorld 肺绰 贸府 给窃.
+//				ALight* ThisGroupLightActor = Cast<ALight>(ThisGI->GetGroupActor());
+//				UPointLightComponent* PLComp = ThisGroupLightActor ? Cast<UPointLightComponent>(ThisGroupLightActor->GetLightComponent()) : nullptr;
+//				if (PLComp
+//#if 0
+//					// 狼档窍瘤 臼篮 肋给等 扁瓷 窍俊辑 悸诀 登菌带 扼捞泼阑 皋操扁 困秦 持菌带 烙矫 敲贰弊..
+//					// 悸诀 荐沥捞 肯丰登搁 bHackMyPerPCClassLightingSetupDone 阑 眉农窍绰 侥捞菌澜.
+//					// 悸诀 肯丰登菌促绊 窍咯 DEPRECATED 付农窍绊 扁瓷篮 力芭.. 趣 葛福聪 肯傈洒 力芭窍瘤绰 臼澜.
+//					&& bHackMyPerPCClassLightingSetupDone_DEPRECATED 
+//#endif				
+//					)
+//				{
+//					PLComp->bAffectsWorld = false;
+//					PLComp->MarkRenderStateDirty();
+//				}
+//
+//				// 抗傈俊 GroupActor 甫 力芭窍绊 沁菌绰单 傲 窍困 飘发 Disable 肺 登瘤 臼唱 酵促. 老窜 康旷狼 啪 肺爹绝绰 犁矫累阑 窍妨搁 GroupActor 绰 力芭秦急 救凳.
+//				for (UInterpTrack* CurrTrack : ThisGI->Group->InterpTracks)
+//				{
+//					if (CurrTrack)
+//					{
+//						CurrTrack->EnableTrack(false);
+//					}
+//				}
+//			}
+//		}
+//
+//		// 购啊 Folder 甸绢啊搁辑何磐牢瘤.. 困 内靛啊 救冈鳃 锭啊 乐促. 促矫 捞吧肺档..
+//		for (UInterpTrack* CurrTrack : GroupToDisable->InterpTracks)
+//		{
+//			if (CurrTrack)
+//			{
+//				CurrTrack->EnableTrack(false);
+//			}
+//		}
+//	}
 }
 
-UInterpGroup* AB2StageEventDirector::FindParentGroupFolder(UInterpGroup* ChildGroup, class ALevelSequenceActor * OwnerMatinee) const
-{ // 角 备泅何甫 MatineeActor 率栏肺 颗败初澜.
-	if (OwnerMatinee)
-	{
-		return OwnerMatinee->FindParentGroupFolder(ChildGroup);
-	}
-	return NULL;
-}
+//UInterpGroup* AB2StageEventDirector::FindParentGroupFolder(UInterpGroup* ChildGroup, class ALevelSequenceActor * OwnerMatinee) const
+//{ // 角 备泅何甫 MatineeActor 率栏肺 颗败初澜.
+//	if (OwnerMatinee)
+//	{
+//		return OwnerMatinee->FindParentGroupFolder(ChildGroup);
+//	}
+//	return NULL;
+//}
 
 FString AB2StageEventDirector::GetFinalMatchingInterpGroupName(class ABladeIICharacter* InPlayActor, FString RawInterpGroupName, bool bForFolderGroup)
 {
@@ -2028,13 +2068,13 @@ FString AB2StageEventDirector::GetFinalMatchingInterpGroupName(class ABladeIICha
 			NetType = (
 				((NetGM->GetPeerType() != PEER_RESTRICTED && CastedNetPlayer->GetNetStatus() == ABladeIINetPlayer::NET_MASTER) || (NetGM->GetPeerType() == PEER_RESTRICTED && CastedNetPlayer->GetNetStatus() == ABladeIINetPlayer::NET_SLAVE)) ?
 				EPCInterpGroupNetType::PCIGNT_SuperPeer : EPCInterpGroupNetType::PCIGNT_CommonPeer
-			);
+				);
 		}
 
 		// PC 绰 努贰胶 急琶, Net 霸烙 peer 鸥涝 殿俊 蝶扼 崔扼咙.
 		return GetFinalMatchingInterpGroupNamePC(RawInterpGroupName, CastedPlayer->GetTrimmedNameFromPCClassEnum(), NetType, bForFolderGroup);
 	}
-	else if (IsValidRandomMatineeGroupNumSet()) 
+	else if (IsValidRandomMatineeGroupNumSet())
 	{// 泅犁 flow 肺绰 Player 侩 飘发篮 Random selection 捞 救 瞪 巴.
 		// Player 弊缝篮 捞固 喊档狼 suffix 啊 嘿绰单促啊 角力 夸备荤亲档 各捞 唱坷绰 楷免阑 罚待窍霸 窍磊绰 巴烙.
 		return GetFinalMatchingInterpGroupNameRandom(RawInterpGroupName, RandomlySetMatineeGroupNum, bForFolderGroup);
@@ -2103,36 +2143,39 @@ bool AB2StageEventDirector::IsPossibleInterpGroupNameForPC(const FString& InChec
 
 void AB2StageEventDirector::SetAllPointLightGroupAffectWorld(bool bAffectWorld)
 {
-	if (!MatineeActor)
-		return;
-	
-	const int32 AllowedMatineeTrackPointLightNum = GetAllowedMatineeTrackPointLightNum();
+	//if (!MatineeActor)
+	//	return;
 
-	// 葛官老 坊歹矾 俺荐 力茄 绊妨秦具 窍绰单.. 咯扁辑 窍瘤 给窃.
-	// 恐衬窍搁 Group 喊肺 急琶利栏肺 荤侩秦具 窍绰 版快啊 乐扁 锭巩俊
-	// 咯扁辑绰 老褒利栏肺 On/Off 窍绊 俺喊 弊缝喊 鞘夸绝绰 芭 掺绰 扒 RuntimeDisableInterpGroup 俊辑
-	int32 UsedLightCount = 0;
-	for (int32 GII = 0; GII < MatineeActor->GroupInst.Num(); ++GII)
-	{
-		ALight* pLight = Cast<ALight>(MatineeActor->GroupInst[GII]->GroupActor);		
-		ULightComponent* TheLightComp = pLight ? pLight->GetLightComponent() : nullptr;
-		if (TheLightComp)
-		{
-			const bool bPrevAffectsWorld = TheLightComp->bAffectsWorld;
-			if (UsedLightCount < AllowedMatineeTrackPointLightNum) {
-				TheLightComp->bAffectsWorld = bAffectWorld;
-			}
-			else { // 力茄 逞绢啊搁 倾侩 救.. 窍绊 酵菌绰单 弊缝喊肺 瘤沥秦 初篮 霸 乐绢辑 阂啊窃. ぱぱ
-				TheLightComp->bAffectsWorld = bAffectWorld;
-			}
+	//const int32 AllowedMatineeTrackPointLightNum = GetAllowedMatineeTrackPointLightNum();
 
-			if (bPrevAffectsWorld != TheLightComp->bAffectsWorld){
-				TheLightComp->MarkRenderStateDirty();
-			}
+	//// 葛官老 坊歹矾 俺荐 力茄 绊妨秦具 窍绰单.. 咯扁辑 窍瘤 给窃.
+	//// 恐衬窍搁 Group 喊肺 急琶利栏肺 荤侩秦具 窍绰 版快啊 乐扁 锭巩俊
+	//// 咯扁辑绰 老褒利栏肺 On/Off 窍绊 俺喊 弊缝喊 鞘夸绝绰 芭 掺绰 扒 RuntimeDisableInterpGroup 俊辑
+	//int32 UsedLightCount = 0;
+	//for (int32 GII = 0; GII < MatineeActor->GroupInst.Num(); ++GII)
+	//{
+	//	ALight* pLight = Cast<ALight>(MatineeActor->GroupInst[GII]->GroupActor);
+	//	ULightComponent* TheLightComp = pLight ? pLight->GetLightComponent() : nullptr;
+	//	if (TheLightComp)
+	//	{
+	//		const bool bPrevAffectsWorld = TheLightComp->bAffectsWorld;
+	//		if (UsedLightCount < AllowedMatineeTrackPointLightNum)
+	//		{
+	//			TheLightComp->bAffectsWorld = bAffectWorld;
+	//		}
+	//		else
+	//		{ // 力茄 逞绢啊搁 倾侩 救.. 窍绊 酵菌绰单 弊缝喊肺 瘤沥秦 初篮 霸 乐绢辑 阂啊窃. ぱぱ
+	//			TheLightComp->bAffectsWorld = bAffectWorld;
+	//		}
 
-			++UsedLightCount;
-		}
-	}
+	//		if (bPrevAffectsWorld != TheLightComp->bAffectsWorld)
+	//		{
+	//			TheLightComp->MarkRenderStateDirty();
+	//		}
+
+	//		++UsedLightCount;
+	//	}
+	//}
 }
 
 void AB2StageEventDirector::HackSpareLeastPointLight()

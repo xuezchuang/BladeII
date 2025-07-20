@@ -323,9 +323,9 @@ void UB2UITeamMatchBattle::CloseWidgetDelegate()
 
 void UB2UITeamMatchBattle::OnClickPauseButton()
 {
-	//StartPauseMenuClass<EB2GameMode>::GetInstance().Signal(GetB2GameModeType(this));
+	StartPauseMenuClass<EB2GameMode>::GetInstance().Signal(GetB2GameModeType(this));
 
-	//SetPendingPause();
+	SetPendingPause();
 }
 
 void UB2UITeamMatchBattle::SetDamagePercent(bool IsMyTeam, const TArray<float>& TotalDamages)
@@ -398,6 +398,6 @@ void UB2UITeamMatchBattle::ShowResultImage(const ENetMatchResult& result)
 
 void UB2UITeamMatchBattle::OnPressedSkillBtn(UB2UIBattleSkill* ClickedSkill)
 {
-	//int32 SkillIndex = ClickedSkill->GetIndex();
-	//PlayerStartWeaponSkillByIndexClass<int32>::GetInstance().Signal(SkillIndex);
+	int32 SkillIndex = ClickedSkill->GetIndex();
+	PlayerStartWeaponSkillByIndexClass<int32>::GetInstance().Signal(SkillIndex);
 }

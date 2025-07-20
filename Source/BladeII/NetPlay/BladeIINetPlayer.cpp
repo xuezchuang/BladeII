@@ -4,29 +4,29 @@
 #include "BladeIINetPlayer.h"
 
 #include "BladeIIGameMode.h"
-//#include "BehaviorTree/BehaviorTree.h"
+#include "BehaviorTree/BehaviorTree.h"
 //#include "ChannelManager.h"
 #include "Serializer.h"
 #include "Event.h"
 #include "Packet.h"
 #include "PacketMaker.h"
-//#include "B2SkillRTManager.h"
+#include "B2SkillRTManager.h"
 #include "BladeIIPlayerAIController.h"
 #include "B2NetGameMode.h"
 #include "BladeIIUtil.h"
 #include "B2PVPGameMode.h"
 #include "B2RaidGameMode.h"
 #include "BladeIINetCharacter.h"
-//#include "B2UIManager_InGameCombat.h"
+#include "B2UIManager_InGameCombat.h"
 #include "B2ResurrectionZone.h"
 #include "B2UIDocHelper.h"
 #include "B2UIDocBattle.h"
-//#include "ToMessage.h"
+#include "ToMessage.h"
 #include "B2EtherContainer.h"
 #include "B2EtherSetEffect.h"
 #include "B2BuffModeEffectInfo.h"
-//#include "B2AnimInstance.h"
-//#include "B2CodeTable.h"
+#include "B2AnimInstance.h"
+#include "B2CodeTable.h"
 #include "B2GameDefine.h"
 #include "FakeConfigure.h"
 
@@ -168,7 +168,7 @@ void ABladeIINetPlayer::CheckSendMove()
 		if (GetNetStatus() != NET_SLAVE && !bTemporarilyNetOff)
 		{
 			FString encoded_string = ToMessageHelper::MoveMessage(this, GetNetId(), 0, packet::ALLBUTME);
-			SendMessage(encoded_string);
+			SendGameMessage(encoded_string);
 		}
 
 		NetTimer = 0;
@@ -183,7 +183,7 @@ void ABladeIINetPlayer::CheckSendMove()
 		if(GetNetStatus() != NET_SLAVE && !bTemporarilyNetOff)
 		{
 			FString encoded_string = ToMessageHelper::MoveMessage(this, GetNetId(), 0, packet::ALLBUTME);
-			SendMessage(encoded_string);
+			SendGameMessage(encoded_string);
 		}
 
 		NetTimer = 0;
@@ -207,7 +207,7 @@ void ABladeIINetPlayer::CheckOldVelocity()
 //			|| (fVelocity.Size() != 0 && OldVelocity.Size() == 0))
 //		{
 //			FString encoded_string = ToMessageHelper::MoveMessage(this, GetNetId(), 0, packet::ALLBUTME);
-//			SendMessage(encoded_string);
+//			SendGameMessage(encoded_string);
 //
 //			NetTimer = 0;
 //		}
@@ -248,7 +248,7 @@ float ABladeIINetPlayer::TakeDamage(float Damage, struct FDamageEvent const& Dam
 	//	payload << FinalHealth;
 
 	//	FString encoded_string = packet::FinalizePacket(packet::TAKEDAMAGE, GetNetId(), 0, packet::ALLBUTME, payload);
-	//	SendMessage(encoded_string);
+	//	SendGameMessage(encoded_string);
 	//	UE_LOG(LogBladeII, Log, TEXT("NetPlayer %d - Send [TakeDamage] DamageHash : %f"), GetNetId(), DamageHash);
 
 	//	// Damage 0老锭 犬牢侩 Log - (痢飞傈 公利)
@@ -339,7 +339,7 @@ bool ABladeIINetPlayer::Die(float KillingDamage, FDamageEvent const& DamageEvent
 		payload << KilledClass;
 		
 		FString encoded_string = packet::FinalizePacket(packet::DIE, GetNetId(), 0, packet::ALLBUTME, payload);
-		SendMessage(encoded_string);
+		SendGameMessage(encoded_string);
 		UE_LOG(LogBladeII, Log, TEXT("NetPlayer %d - Send [Die] KillerNetId : %d KilledClass : %d"), GetNetId(), KillerNetId, KilledClass);
 		return true;
 	}*/
@@ -429,7 +429,7 @@ void ABladeIINetPlayer::HealingHPByAmount(float InHealAmount, bool bUseEffect, b
 	//	payload << GetNetId();
 
 	//	FString encoded_string = packet::FinalizePacket(packet::HEALTH, NetId, 0, packet::ALLBUTME, payload);
-	//	SendMessage(encoded_string);
+	//	SendGameMessage(encoded_string);
 	//}
 }
 
@@ -458,7 +458,7 @@ bool ABladeIINetPlayer::RequestDamage(const float Damage, const FDamageInfo* Dam
 		payload << DamageHash;
 
 		FString encoded_string = packet::FinalizePacket(packet::REQUESTDAMAGE, GetNetId(), 0, packet::ALLBUTME, payload);
-		//SendMessage(encoded_string);
+		//SendGameMessage(encoded_string);
 		UE_LOG(LogBladeII, Log, TEXT("NetPlayer %d - Send [RequestDamage] DamageHash : %f"), GetNetId(), DamageHash);
 
 		// 咯扁坷绰霸 坷洒妨 false 府畔烙 ( 乔拜 林眉啊 Local捞 酒聪扼 Damage handling捞 救等促绰 舵 )
@@ -481,7 +481,7 @@ bool ABladeIINetPlayer::ProcessEtherSetEffect(EEtherSetType EtherSetType, ABlade
 	//		payload << EtherObject->GetEtherSetID();
 
 	//		FString encoded_string = packet::FinalizePacket(packet::ACTIVATE_ETHER, GetNetId(), 0, packet::ALLBUTME, payload);
-	//		SendMessage(encoded_string);
+	//		SendGameMessage(encoded_string);
 
 	//		UE_LOG(LogBladeII, Log, TEXT("NetPlayer %d - Send [ACTIVATE_ETHER] EtherSetID : %d"), GetNetId(), EtherObject->GetEtherSetID());
 	//		return true;
@@ -499,7 +499,7 @@ void ABladeIINetPlayer::RequestEtherSetEffect(uint32 InEtherCauserNetId, int32 I
 	payload << InEtherSetID;
 
 	FString encoded_string = packet::FinalizePacket(packet::ACTIVATE_ETHER, GetNetId(), 0, packet::ALLBUTME, payload);
-	//SendMessage(encoded_string);
+	//SendGameMessage(encoded_string);
 
 	UE_LOG(LogBladeII, Log, TEXT("NetPlayer %d - Send [ACTIVATE_ETHER] EtherSetID : %d"), GetNetId(), InEtherSetID);
 }
@@ -533,7 +533,7 @@ void ABladeIINetPlayer::RequestEtherSetEffect(uint32 InEtherCauserNetId, int32 I
 //		}
 //
 //		FString encoded_string = packet::FinalizePacket(packet::ACTIVATE_BUFF, GetNetId(), 0, packet::ALLBUTME, payload);
-//		SendMessage(encoded_string);
+//		SendGameMessage(encoded_string);
 //
 //		return Super::AddBuff(BuffType, fDuration, Amount, BuffCauser, bUseEffect, bUseTextEffect, PtrAdditionalParams);
 //	}
@@ -827,7 +827,7 @@ void ABladeIINetPlayer::StartAttack()
 	//}
 
 	//FString encoded_string = ToMessageHelper::AttackMessage(this, GetNetId(), 0, packet::ALLBUTME);
-	//SendMessage(encoded_string);
+	//SendGameMessage(encoded_string);
 	////UE_LOG(LogBladeII, Log, TEXT("NetPlayer %d - Send [ATTACK]"), GetNetId());
 
 	//Super::StartAttack();
@@ -842,7 +842,7 @@ void ABladeIINetPlayer::StopAttack()
 	}
 
 	//FString encoded_string = ToMessageHelper::StopAttackMessage(this, GetNetId(), 0, packet::ALLBUTME);
-	//SendMessage(encoded_string);
+	//SendGameMessage(encoded_string);
 	////UE_LOG(LogBladeII, Log, TEXT("NetPlayer %d - Send [STOPATTACK]"), GetNetId());
 	//
 	//Super::StopAttack();
@@ -857,7 +857,7 @@ EAttackState ABladeIINetPlayer::StartSkillInner(int32 index, bool IsPlayerInput)
 	//if (ResultAttackState != EAttackState::ECS_None && GetLocalRole() == ROLE_Authority)
 	//{
 	//	FString encoded_string = ToMessageHelper::StartSkillMessage(this, GetNetId(), 0, packet::ALLBUTME, ResultAttackState, CurrentSkillAnimIdx);
-	//	SendMessage(encoded_string);
+	//	SendGameMessage(encoded_string);
 	//	//UE_LOG(LogBladeII, Log, TEXT("NetPlayer %d - Send [STARTSKILL]"), GetNetId());
 	//}
 
@@ -903,7 +903,7 @@ void ABladeIINetPlayer::StopDash()
 // 		return;
 // 
 // // 	FString encoded_string = ToMessageHelper::CounterAttackMessage(this, GetNetId(), 0, packet::ALLBUTME);
-// // 	SendMessage(encoded_string);
+// // 	SendGameMessage(encoded_string);
 // 
 // 	Super::OnCounterStart();
 // }
@@ -940,7 +940,7 @@ float ABladeIINetPlayer::UpdateTarget(bool bInputGuided, bool bOnlyQTEEnabled)
 	//	auto Id = GetNetIdFrom(TargetActor);
 
 	//	FString encoded_string = ToMessageHelper::UpdateTargetMessage(this, GetNetId(), 0, packet::ALLBUTME, Id, TargetDist);
-	//	SendMessage(encoded_string);
+	//	SendGameMessage(encoded_string);
 
 	//	OldTargetActor = TargetActor;
 	//}
@@ -955,7 +955,7 @@ void ABladeIINetPlayer::ReceiveComboEnd(EAttackState InLastAttackState, bool IsA
 	//if (GetNetStatus() == NET_MASTER || GetNetStatus() == NET_AIMASTER)
 	//{
 	//	FString encoded_string = ToMessageHelper::ComboEndMessage(this, GetNetId(), 0, packet::ALLBUTME, static_cast<uint8>(InLastAttackState), IsAttackCanceled);
-	//	SendMessage(encoded_string);
+	//	SendGameMessage(encoded_string);
 	//	//UE_LOG(LogBladeII, Log, TEXT("NetPlayer %d - Send [COMBOEND]"), GetNetId());
 
 	//	Super::ReceiveComboEnd(InLastAttackState);
@@ -967,7 +967,7 @@ void ABladeIINetPlayer::OnQTENext()
 	//if (GetNetStatus() == NET_MASTER || GetNetStatus() == NET_AIMASTER)
 	//{
 	//	FString encoded_string = ToMessageHelper::QteNextMessage(this, GetNetId(), 0, packet::ALLBUTME);
-	//	SendMessage(encoded_string);
+	//	SendGameMessage(encoded_string);
 	//	//UE_LOG(LogBladeII, Log, TEXT("NetPlayer %d - Send [COMBOEND]"), GetNetId());
 
 	//	Super::OnQTENext();
@@ -1067,7 +1067,7 @@ void ABladeIINetPlayer::OnEnterAnimState(const FName& NewState)
 	//	payload << CurrAnimState;
 
 	//	FString encoded_string = packet::FinalizePacket(packet::SET_ANIMSTATE, GetNetId(), 0, packet::ALLBUTME, payload);
-	//	SendMessage(encoded_string);
+	//	SendGameMessage(encoded_string);
 	//	*/
 
 	//	FString CurrAnimState = NewState.ToString();
@@ -1082,7 +1082,7 @@ void ABladeIINetPlayer::OnEnterSkillState_Tag(EPCClass TagClass)
 	//if (Role == ROLE_Authority)
 	//{
 	//	FString encoded_string = ToMessageHelper::TagPlayerMessage(this, GetNetId(), 0, packet::ALLBUTME, TagAttackMode, TagClass);
-	//	SendMessage(encoded_string);
+	//	SendGameMessage(encoded_string);
 	//}
 }
 
@@ -1153,7 +1153,7 @@ void ABladeIINetPlayer::SendAnimStateIndex(int32 NewStateIndex)
 	//	UE_LOG(LogTemp, Log, TEXT("ABladeIINetPlayer::SendAnimStateIndex(), Name = %s, NetID = %d, Class = %d, AttackState = %d, PCSpawnMotionState = %d"), 
 	//		*GetName(), GetNetId(), PCClassToInt(GetCurrentPlayerClass()), eAttackState, ePCSpawnMotionState);
 	//	FString encoded_string = packet::FinalizePacket(packet::SYNC_ANIMSTATEINDEX, GetNetId(), 0, packet::ALLBUTME, payload);
-	//	SendMessage(encoded_string);
+	//	SendGameMessage(encoded_string);
 	//}
 }
 
@@ -1563,27 +1563,27 @@ float ABladeIINetPlayer::GetResurrectionTimerRate()
 
 void ABladeIINetPlayer::NotifyTagSpawn(class ABladeIIPlayer* OldRetiringPlayer)
 {
-	//auto  Asset = GetInjectedGameRule()->GetBehaviorTreeAsset();
-	//if (!Asset.IsEmpty())
-	//{
-	//	BehaviorTree = LoadObject<UBehaviorTree>(NULL, *Asset);
-	//}	
+	auto  Asset = GetInjectedGameRule()->GetBehaviorTreeAsset();
+	if (!Asset.IsEmpty())
+	{
+		BehaviorTree = LoadObject<UBehaviorTree>(NULL, *Asset);
+	}
 
-	//bTemporarilyNetOff = true;
+	bTemporarilyNetOff = true;
 
-	//Super::NotifyTagSpawn(OldRetiringPlayer);
+	Super::NotifyTagSpawn(OldRetiringPlayer);
 }
 
 void ABladeIINetPlayer::OnSpawnEnd()
 {
-	//// 府葛飘 某腐磐绰 畴萍颇捞啊 犬伏肺 甸绢柯促. 肺拿捞 盲澄烹秦辑 舅妨林磊.
-	//if (GetNetStatus() == NET_MASTER || GetNetStatus() == NET_AIMASTER)
-	//{
-	//	FString encoded_string = ToMessageHelper::SpawnEndMessage(this, GetNetId(), 0, packet::ALLBUTME);
-	//	SendMessage(encoded_string);
+	// 府葛飘 某腐磐绰 畴萍颇捞啊 犬伏肺 甸绢柯促. 肺拿捞 盲澄烹秦辑 舅妨林磊.
+	if (GetNetStatus() == NET_MASTER || GetNetStatus() == NET_AIMASTER)
+	{
+		FString encoded_string = ToMessageHelper::SpawnEndMessage(this, GetNetId(), 0, packet::ALLBUTME);
+		SendGameMessage(encoded_string);
 
-	//	bTemporarilyNetOff = false;
-	//}
+		bTemporarilyNetOff = false;
+	}
 }
 
 void ABladeIINetPlayer::RemoteOnSpawnEnd()
@@ -1596,36 +1596,36 @@ void ABladeIINetPlayer::NotifyBornAgain(class ABladeIIPlayer* PrevLife)
 	if (ABladeIINetPlayer* PrevNetPlayer = Cast<ABladeIINetPlayer>(PrevLife))
 		ResurrectionCount = PrevNetPlayer->GetResurrectionCount() + 1;
 
-	//// NetGameMode 葛靛付促 ABladeIIPlayer*甫 啊瘤绊乐阑 版快 捞 捞亥飘肺 函版阑 舅妨霖促.
-	//BornAgainChangedPlayerClass<int32, ABladeIIPlayer*, ABladeIIPlayer*>::GetInstance().Signal(GetNetId(), PrevLife, this);
+	// NetGameMode 葛靛付促 ABladeIIPlayer*甫 啊瘤绊乐阑 版快 捞 捞亥飘肺 函版阑 舅妨霖促.
+	BornAgainChangedPlayerClass<int32, ABladeIIPlayer*, ABladeIIPlayer*>::GetInstance().Signal(GetNetId(), PrevLife, this);
 
-	//if (SpawnResurrectionZoneTimer.IsValid())
-	//	GetWorldTimerManager().ClearTimer(SpawnResurrectionZoneTimer);
+	if (SpawnResurrectionZoneTimer.IsValid())
+		GetWorldTimerManager().ClearTimer(SpawnResurrectionZoneTimer);
 
-	//DestroyResurrectionZoneActor();
+	DestroyResurrectionZoneActor();
 
-	//if (GetNetStatus() == NET_SLAVE)
-	//	return;
+	if (GetNetStatus() == NET_SLAVE)
+		return;
 
-	//BII_CHECK(CachedSkillRTManager);
+	BII_CHECK(CachedSkillRTManager);
 
-	//FString encoded_string = ToMessageHelper::ResurrectMessage(this, GetNetId(), 0, packet::ALLBUTME);
-	//SendMessage(encoded_string);
+	FString encoded_string = ToMessageHelper::ResurrectMessage(this, GetNetId(), 0, packet::ALLBUTME);
+	SendGameMessage(encoded_string);
 
-	////AI搁 难霖促.
-	//if (GetNetStatus() == NET_AIMASTER)
-	//{
-	//	auto* MyController = Cast<ABladeIIPlayerAIController>(GetController());
+	//AI搁 难霖促.
+	if (GetNetStatus() == NET_AIMASTER)
+	{
+		auto* MyController = Cast<ABladeIIPlayerAIController>(GetController());
 
-	//	if (MyController)
-	//		MyController->BeginAutoPlay();
-	//}
-	//else
-	//{ // 酒囱 版快档 Auto 甫 淖阑 荐 乐栏骨肺 拱妨淋.
-	//	TakeOverAutoFromPredecessor(PrevLife);
-	//}
+		if (MyController)
+			MyController->BeginAutoPlay();
+	}
+	else
+	{ // 酒囱 版快档 Auto 甫 淖阑 荐 乐栏骨肺 拱妨淋.
+		TakeOverAutoFromPredecessor(PrevLife);
+	}
 
-	//SetTeamNum(PrevLife->GetTeamNum());
+	SetTeamNum(PrevLife->GetTeamNum());
 
 	//// RAID AspectRatioAdaptiveFOV, 20180716
 	//// 漂沥 葛靛俊辑狼 傈捧甘 叼磊牢 荤沥栏肺 AspectRatioAdaptiveFOV 甫 荤侩窍绰 版快啊 乐澜.
@@ -1637,7 +1637,7 @@ void ABladeIINetPlayer::NotifyBornAgain(class ABladeIIPlayer* PrevLife)
 	//	}
 	//}
 
-	////UE_LOG(LogBladeII, Log, TEXT("NetPlayer %d - Send [RESURRECT]"), GetNetId());
+	UE_LOG(LogBladeII, Log, TEXT("NetPlayer %d - Send [RESURRECT]"), GetNetId());
 }
 
 int64 ABladeIINetPlayer::GetAccountId()
@@ -1659,7 +1659,7 @@ void ABladeIINetPlayer::SetDamagedNum(int32 NewDamageNum)
 		payload << GetDamagedNum();
 
 		FString encoded_string = packet::FinalizePacket(packet::CHANGE_DAMAGENUM, GetNetId(), 0, packet::ALLBUTME, payload);
-		SendMessage(encoded_string);
+		SendGameMessage(encoded_string);
 		UE_LOG(LogBladeII, Log, TEXT("NetPlayer %d - Send [SetDamagedNum] DamageNum : %d"), GetNetId(), NewDamageNum);
 
 		OldDamagedNum = NewDamageNum;
@@ -1686,7 +1686,7 @@ void ABladeIINetPlayer::SetDamagedNum(int32 NewDamageNum)
 // 	if (GetAttackState() == EAttackState::ECS_Evade || GetAttackState() == EAttackState::ECS_GuardStart || bSkillCancel)
 // 	{
 // 		FString encoded_string = ToMessageHelper::GuardMessage(this, GetNetId(), 0, packet::ALLBUTME, bSkillCancel, bNeedUpdateTarget, static_cast<uint8>(LastGuardBreakType), static_cast<uint8>(GetAttackState()));
-// 		SendMessage(encoded_string);
+// 		SendGameMessage(encoded_string);
 // 
 // 		bSentGuardPacket = true;
 // 	}
@@ -1699,7 +1699,7 @@ void ABladeIINetPlayer::SetDamagedNum(int32 NewDamageNum)
 // 	if (bSentGuardPacket)
 // 	{
 // 		FString encoded_string = ToMessageHelper::StopGuardMessage(this, GetNetId(), 0, packet::ALLBUTME);
-// 		SendMessage(encoded_string);
+// 		SendGameMessage(encoded_string);
 // 
 // 		bSentGuardPacket = false;
 // 	}
@@ -1720,22 +1720,22 @@ void ABladeIINetPlayer::NetSendUpdateLocation(bool bForceSkip /*= false*/)
 	if (GetNetStatus() == NET_SLAVE)
 		return;
 
-	////  	if (bForceSkip || (ClientRootMotionParams.bHasRootMotion && NetMessageLOD == 1))
-	////  	{
-	//// 		FString encoded_string = ToMessageHelper::RotationMessage(this, GetNetId(), 0, packet::ALLBUTME);
-	//// 		SendMessage(encoded_string);
-	////  		return;
-	////  	}
+	//  	if (bForceSkip || (ClientRootMotionParams.bHasRootMotion && NetMessageLOD == 1))
+	//  	{
+	// 		FString encoded_string = ToMessageHelper::RotationMessage(this, GetNetId(), 0, packet::ALLBUTME);
+	// 		SendGameMessage(encoded_string);
+	//  		return;
+	//  	}
 
-	//auto velocity = GetVelocity();
-	//auto location = GetLocation();
-	//auto rotation = GetActorRotation();
+	auto velocity = GetVelocity();
+	auto location = GetLocation();
+	auto rotation = GetActorRotation();
 
-	//if ((Utilities::IsNearlyEqual(OldLocation, location) && Utilities::IsNearlyEqual(OldRotation, rotation) && Utilities::IsNearlyEqual(OldVelocity, velocity)) && NetMessageLOD >= 2)
-	//	return;
+	if ((Utilities::IsNearlyEqual(OldLocation, location) && Utilities::IsNearlyEqual(OldRotation, rotation) && Utilities::IsNearlyEqual(OldVelocity, velocity)) && NetMessageLOD >= 2)
+		return;
 
-	//FString encoded_string = ToMessageHelper::MoveMessage(this, GetNetId(), 0, packet::ALLBUTME);
-	//SendMessage(encoded_string);
+	FString encoded_string = ToMessageHelper::MoveMessage(this, GetNetId(), 0, packet::ALLBUTME);
+	SendGameMessage(encoded_string);
 }
 
 /*
@@ -1747,14 +1747,14 @@ void ABladeIINetPlayer::NetSendUpdateAnimation(bool bForce // = false)
 	if (auto* AnimInst = GetAnimInstance())
 	{
 		FString encoded_string = ToMessageHelper::AnimationMessage(this, GetNetId(), 0, packet::ALLBUTME, AnimInst);
-		SendMessage(encoded_string);
+		SendGameMessage(encoded_string);
 	}
 }
 */
 
-void ABladeIINetPlayer::SendMessage2(FString const& message)
+void ABladeIINetPlayer::SendGameMessage(FString const& message)
 {
-	//GetNetGameMode()->SendMessage(message);
+	GetNetGameMode()->SendGameMessage(message);
 }
 
 bool ABladeIINetPlayer::IsVisibleFloorRing()
@@ -1764,21 +1764,21 @@ bool ABladeIINetPlayer::IsVisibleFloorRing()
 
 bool ABladeIINetPlayer::IsAllyPlayer()
 {
-	//AB2NetGameMode* GameMode = GetNetGameMode();
+	AB2NetGameMode* GameMode = GetNetGameMode();
 
-	//auto LocalPlayerTeamNum = -1;
+	auto LocalPlayerTeamNum = -1;
 
-	//if (GetB2GameModeType(this) == EB2GameMode::Raid)
-	//{
+	if (GetB2GameModeType(this) == EB2GameMode::Raid)
+	{
 		return true;
-	//}
-	//else
-	//{
-	//	if (GameMode)
-	//		LocalPlayerTeamNum = GameMode->GetLocalPlayerTeamNum();
-	//}
+	}
+	else
+	{
+		if (GameMode)
+			LocalPlayerTeamNum = GameMode->GetLocalPlayerTeamNum();
+	}
 
-	//return (LocalPlayerTeamNum != -1 && LocalPlayerTeamNum == GetTeamNum());
+	return (LocalPlayerTeamNum != -1 && LocalPlayerTeamNum == GetTeamNum());
 
 }
 
@@ -1789,7 +1789,7 @@ void ABladeIINetPlayer::SpawnHelpResurrectionZone()
 
 	DestroyResurrectionZoneActor();
 
-	//ResurrectionZoneActor = AB2ResurrectionZone::SpawnHelpAreaActor(ResurrectionZoneClass, this);
+	ResurrectionZoneActor = AB2ResurrectionZone::SpawnHelpAreaActor(ResurrectionZoneClass, this);
 }
 
 FVector ABladeIINetPlayer::GetNetAdjustGoalLocation()
@@ -1904,59 +1904,59 @@ bool ABladeIINetPlayer::IsAIControlled()
 
 void ABladeIINetPlayer::AdjustRootMotionBlock()
 {
-	//EAttackState CurrentAttackState = GetAnimInstance()->GetAnimAttackState();
+	EAttackState CurrentAttackState = GetAnimInstance()->GetAnimAttackState();
 
-	//// 眉农纳捞胶 - 馆拜捞 巩力聪 馆拜甸父 眉农窃
-	//bool bNeedCheck = CurrentAttackState == EAttackState::ECS_Counter01
-	//	|| CurrentAttackState == EAttackState::ECS_Counter01Dash
-	//	|| CurrentAttackState == EAttackState::ECS_Counter02
-	//	|| CurrentAttackState == EAttackState::ECS_Counter02Dash
-	//	|| CurrentAttackState == EAttackState::ECS_Counter03
-	//	|| CurrentAttackState == EAttackState::ECS_Counter03Dash
-	//	|| CurrentAttackState == EAttackState::ECS_Counter04
-	//	|| CurrentAttackState == EAttackState::ECS_Counter04Dash
-	//	|| CurrentAttackState == EAttackState::ECS_Counter05
-	//	|| CurrentAttackState == EAttackState::ECS_Counter05Dash;
+	// 眉农纳捞胶 - 馆拜捞 巩力聪 馆拜甸父 眉农窃
+	bool bNeedCheck = CurrentAttackState == EAttackState::ECS_Counter01
+		|| CurrentAttackState == EAttackState::ECS_Counter01Dash
+		|| CurrentAttackState == EAttackState::ECS_Counter02
+		|| CurrentAttackState == EAttackState::ECS_Counter02Dash
+		|| CurrentAttackState == EAttackState::ECS_Counter03
+		|| CurrentAttackState == EAttackState::ECS_Counter03Dash
+		|| CurrentAttackState == EAttackState::ECS_Counter04
+		|| CurrentAttackState == EAttackState::ECS_Counter04Dash
+		|| CurrentAttackState == EAttackState::ECS_Counter05
+		|| CurrentAttackState == EAttackState::ECS_Counter05Dash;
 
-	//if (!bNeedCheck)
-	//{
-	//	m_vCachedLocationForRootMotionBlock = GetActorLocation();
-	//	return;
-	//}
+	if (!bNeedCheck)
+	{
+		m_vCachedLocationForRootMotionBlock = GetActorLocation();
+		return;
+	}
 
-	//TArray<FHitResult> HitResults;
+	TArray<FHitResult> HitResults;
 
-	//FVector vDir = GetActorForwardVector();//GetActorLocation() - m_vCachedLocationForRootMotionBlock;
+	FVector vDir = GetActorForwardVector();//GetActorLocation() - m_vCachedLocationForRootMotionBlock;
 
-	//vDir = vDir.GetSafeNormal() * 10;
+	vDir = vDir.GetSafeNormal() * 10;
 
-	//FComponentQueryParams Params(SCENE_QUERY_STAT(MoveComponent), this);
+	FComponentQueryParams Params(SCENE_QUERY_STAT(MoveComponent), this);
 
-	//GetWorld()->ComponentSweepMulti(HitResults, GetCapsuleComponent(), m_vCachedLocationForRootMotionBlock, m_vCachedLocationForRootMotionBlock + vDir, GetActorRotation(), Params);
+	GetWorld()->ComponentSweepMulti(HitResults, GetCapsuleComponent(), m_vCachedLocationForRootMotionBlock, m_vCachedLocationForRootMotionBlock + vDir, GetActorRotation(), Params);
 
-	//bool bHadBlockingHit = false;
+	bool bHadBlockingHit = false;
 
-	//// 某腐磐茄抛 阜腮版快父 贸府
-	//for (int nCnt = 0; nCnt < HitResults.Num(); ++nCnt)
-	//{
-	//	if (HitResults[nCnt].bBlockingHit && HitResults[nCnt].GetActor())
-	//	{
-	//		ABladeIICharacter* pChar = Cast<ABladeIICharacter>(HitResults[nCnt].GetActor());
-	//		if (pChar)
-	//		{
-	//			bHadBlockingHit = true;
-	//		}
-	//	}
-	//}
+	// 某腐磐茄抛 阜腮版快父 贸府
+	for (int nCnt = 0; nCnt < HitResults.Num(); ++nCnt)
+	{
+		if (HitResults[nCnt].bBlockingHit && HitResults[nCnt].GetActor())
+		{
+			ABladeIICharacter* pChar = Cast<ABladeIICharacter>(HitResults[nCnt].GetActor());
+			if (pChar)
+			{
+				bHadBlockingHit = true;
+			}
+		}
+	}
 
-	//if (HasRootMotion() && bHadBlockingHit)
-	//{
-	//	SetActorLocation(m_vCachedLocationForRootMotionBlock);
-	//}
-	//else
-	//{
-	//	m_vCachedLocationForRootMotionBlock = GetActorLocation();
-	//}
+	if (HasRootMotion() && bHadBlockingHit)
+	{
+		SetActorLocation(m_vCachedLocationForRootMotionBlock);
+	}
+	else
+	{
+		m_vCachedLocationForRootMotionBlock = GetActorLocation();
+	}
 }
 
 void ABladeIINetPlayer::UpdateVelocity(const FVector& vel)

@@ -43,11 +43,11 @@
 //#include "BladeIIScalabilityControl.h"
 //#include "B2EtherSetEffect.h"
 //#include "B2EtherContainer.h"
-//#include "B2UIManager.h"
+#include "B2UIManager.h"
 //#include "B2UIBattleQTE.h"
 //#include "B2CodeTable.h"
-//#include "B2NetGameMode.h"
-//#include "B2AnimInstance.h"
+#include "B2NetGameMode.h"
+#include "B2AnimInstance.h"
 //#include "FB2ErrorMessage.h"
 //#include "B2TargetSelector.h"
 //#include "B2CharacterMovementComponent.h"
@@ -4195,15 +4195,15 @@ float ABladeIIPlayer::GetDurationDecreaseRate() const
 	return StateDurationDecreaseRate;
 }
 
-//class UB2AnimInstance* ABladeIIPlayer::GetAnimInstance() const
-//{
-//	if (GetMesh() != nullptr)
-//	{
-//		return Cast<UB2AnimInstance>(GetMesh()->GetAnimInstance());
-//	}
-//
-//	return nullptr;
-//}
+class UB2AnimInstance* ABladeIIPlayer::GetAnimInstance() const
+{
+	if (GetMesh() != nullptr)
+	{
+		return Cast<UB2AnimInstance>(GetMesh()->GetAnimInstance());
+	}
+
+	return nullptr;
+}
 
 const EAttackState ABladeIIPlayer::GetAnimAttackState() const
 {

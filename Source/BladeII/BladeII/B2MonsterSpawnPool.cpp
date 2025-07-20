@@ -1119,8 +1119,8 @@ ABladeIICharacter* AB2MonsterSpawnPool::SpawnSingleMonsterCommon(FSpawnClassFrom
 		NewMonster->FinishSpawning(InSpawnTransform);
 
 		if (InClassParam.bOutBossMob && InClassParam.OutClassEnum != ENPCClass::ENC_End)
-		{// BossMob 세팅인 경우는 UI Doc 에도 업데이트 해 줄 것이 좀 있음.
-
+		{
+			// BossMob 세팅인 경우는 UI Doc 에도 업데이트 해 줄 것이 좀 있음.
 			UB2UIDocBattle* DocBattle = UB2UIDocHelper::GetDocBattle();
 			if (DocBattle)
 			{

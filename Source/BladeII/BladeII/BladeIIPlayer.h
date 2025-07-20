@@ -360,8 +360,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = DecoFX)
 	class UParticleSystem* ReadyWeaponSkillFX;
 
-	//UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Resurrection)
-	//TSubclassOf<class AB2ResurrectionZone>	ResurrectionZoneClass;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Resurrection)
+	TSubclassOf<class AB2ResurrectionZone>	ResurrectionZoneClass;
 
 	virtual float GetShield() const override;
 	virtual void SetShield(const float NewShieldAmount) override;
@@ -1271,7 +1271,7 @@ protected:
 	//////////////////////////////////////////////////
 public:	
 
-	//class UB2AnimInstance* GetAnimInstance() const;
+	class UB2AnimInstance* GetAnimInstance() const;
 	const EAttackState GetAnimAttackState() const;
 	const EAttackType GetDamageAnimType() const;
 

@@ -40,14 +40,14 @@ int8 AB2TMGameMode::MyTeamNum = 1;
 int8 AB2TMGameMode::OpponentTeamNum = 2;
 
 int32 AB2TMGameMode::NumCharactersOfTeam = 3;
-int8 AB2TMGameMode::GetMyTeamNum() 
-{ 
-	return MyTeamNum; 
+int8 AB2TMGameMode::GetMyTeamNum()
+{
+	return MyTeamNum;
 }
 
 int8 AB2TMGameMode::GetOpponentTeamNum()
-{ 
-	return OpponentTeamNum; 
+{
+	return OpponentTeamNum;
 }
 
 AB2TMGameMode::AB2TMGameMode(const FObjectInitializer& ObjectInitializer)
@@ -73,7 +73,7 @@ void AB2TMGameMode::PreBeginPlay()
 	auto* GameRule = new TMGameModeRule;
 	SetGameRule(GameRule);
 
-	Super::PreBeginPlay();	
+	Super::PreBeginPlay();
 
 	PlayTMBGM(ETMBGMPlayContext::TMBGMCTX_Standby);
 
@@ -93,7 +93,7 @@ void AB2TMGameMode::BeginDestroy()
 
 void AB2TMGameMode::SubscribeEvents()
 {
-	if(bEventsSubscribed)
+	if (bEventsSubscribed)
 		return;
 
 	Super::SubscribeEvents();
@@ -186,7 +186,7 @@ void AB2TMGameMode::RequestRematch()
 void AB2TMGameMode::ReturnToFindAccount()
 {
 	B2_SCOPED_TRACK_LOG(TEXT("AB2TMGameMode::ReturnToFindAccount"));
-	
+
 	if (OpponentTeamCharacterDataStore.GetAccountInfoPtr())
 	{
 		BladeIIGameImpl::GetClientDataStore().SetOtherUserInfo(OpponentTeamCharacterDataStore.GetAccountInfoPtr());
@@ -196,17 +196,19 @@ void AB2TMGameMode::ReturnToFindAccount()
 		if (DocSome)
 			DocSome->SetFindUserAccountID(OpponentTeamCharacterDataStore.GetAccountInfoPtr()->account_id);
 
-		FLobbySceneManager::DeferredRegistChangeLobbyScene([]() {
-			// 傈眉 纠 傈券阑 窍搁 角 肺爹 矫埃捞 疵绢唱骨肺 盔窍绰 拳搁 流傈鳖瘤 UI History 父 父甸绢霖促.
-			UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
-			if (UIMgrInst) {
-				UIMgrInst->ArtificialAddUIHistory(EUIScene::LobbyMain);
-				UIMgrInst->ArtificialAddUIHistory(EUIScene::EnterBattleMain);
-				UIMgrInst->ArtificialAddUIHistory(EUIScene::TeamMatchUI);
-			}
-			LobbyChangeSceneClass<ELobbyScene>::GetInstance().Signal(ELobbyScene::ELobbyScene_FindAccount);
-			data_trader::Retailer::GetInstance().RequestGetTeamBattleStatus();
-		});
+		FLobbySceneManager::DeferredRegistChangeLobbyScene([]()
+			{
+				// 傈眉 纠 傈券阑 窍搁 角 肺爹 矫埃捞 疵绢唱骨肺 盔窍绰 拳搁 流傈鳖瘤 UI History 父 父甸绢霖促.
+				UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
+				if (UIMgrInst)
+				{
+					UIMgrInst->ArtificialAddUIHistory(EUIScene::LobbyMain);
+					UIMgrInst->ArtificialAddUIHistory(EUIScene::EnterBattleMain);
+					UIMgrInst->ArtificialAddUIHistory(EUIScene::TeamMatchUI);
+				}
+				LobbyChangeSceneClass<ELobbyScene>::GetInstance().Signal(ELobbyScene::ELobbyScene_FindAccount);
+				data_trader::Retailer::GetInstance().RequestGetTeamBattleStatus();
+			});
 
 		ReturnToTMMainMenu();
 	}
@@ -218,20 +220,22 @@ void AB2TMGameMode::ReturnToTMMainMenu()
 	{
 		data_trader::Retailer::GetInstance().RequestTeamMatchResult(PlayToken, false, true);
 	}
-		
+
 	if (FLobbySceneManager::IsExistDeferredRegistChangeLobbyScene() == false)
 	{
-		FLobbySceneManager::DeferredRegistChangeLobbyScene([]() {
-			// 傈眉 纠 傈券阑 窍搁 角 肺爹 矫埃捞 疵绢唱骨肺 盔窍绰 拳搁 流傈鳖瘤 UI History 父 父甸绢霖促. 
-			UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
-			if (UIMgrInst) {
-				UIMgrInst->ArtificialAddUIHistory(EUIScene::LobbyMain);
-				UIMgrInst->ArtificialAddUIHistory(EUIScene::EnterBattleMain);
-			}
-			LobbyChangeSceneClass<ELobbyScene>::GetInstance().Signal(ELobbyScene::ElobbyScene_TeamMatchMain);
-			data_trader::Retailer::GetInstance().RequestGetTeamBattleStatus();
-		});
-	}	
+		FLobbySceneManager::DeferredRegistChangeLobbyScene([]()
+			{
+				// 傈眉 纠 傈券阑 窍搁 角 肺爹 矫埃捞 疵绢唱骨肺 盔窍绰 拳搁 流傈鳖瘤 UI History 父 父甸绢霖促. 
+				UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
+				if (UIMgrInst)
+				{
+					UIMgrInst->ArtificialAddUIHistory(EUIScene::LobbyMain);
+					UIMgrInst->ArtificialAddUIHistory(EUIScene::EnterBattleMain);
+				}
+				LobbyChangeSceneClass<ELobbyScene>::GetInstance().Signal(ELobbyScene::ElobbyScene_TeamMatchMain);
+				data_trader::Retailer::GetInstance().RequestGetTeamBattleStatus();
+			});
+	}
 	OpenBladeIILobbyCommon(this); // 纠 傈券 抗距 饶 夯拜 肺厚 甘 肺爹
 }
 
@@ -246,9 +250,10 @@ void AB2TMGameMode::OpenPopupGotoTMMainMenu()
 		true,
 		true,
 		EUIMsgPopupButtonGroup::Confirm,
-		FMsgPopupOnClick::CreateLambda([this]() {
-		ReturnToTMMainMenu();
-	})
+		FMsgPopupOnClick::CreateLambda([this]()
+			{
+				ReturnToTMMainMenu();
+			})
 	);
 }
 
@@ -256,19 +261,21 @@ void AB2TMGameMode::EnterShop(int32 nWhereShop)
 {
 	B2_SCOPED_TRACK_LOG(TEXT("AB2TMGameMode::EnterShop"));
 
-	FLobbySceneManager::DeferredRegistChangeLobbyScene([]() {
-		// 傈眉 纠 傈券阑 窍搁 角 肺爹 矫埃捞 疵绢唱骨肺 盔窍绰 拳搁 流傈鳖瘤 UI History 父 父甸绢霖促.
-		UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
-		if (UIMgrInst) {
-			UIMgrInst->ArtificialAddUIHistory(EUIScene::LobbyMain);
-			UIMgrInst->ArtificialAddUIHistory(EUIScene::EnterBattleMain);
-			UIMgrInst->ArtificialAddUIHistory(EUIScene::TeamMatchUI);
-		}
-	});
+	FLobbySceneManager::DeferredRegistChangeLobbyScene([]()
+		{
+			// 傈眉 纠 傈券阑 窍搁 角 肺爹 矫埃捞 疵绢唱骨肺 盔窍绰 拳搁 流傈鳖瘤 UI History 父 父甸绢霖促.
+			UB2UIManager* UIMgrInst = UB2UIManager::GetInstance();
+			if (UIMgrInst)
+			{
+				UIMgrInst->ArtificialAddUIHistory(EUIScene::LobbyMain);
+				UIMgrInst->ArtificialAddUIHistory(EUIScene::EnterBattleMain);
+				UIMgrInst->ArtificialAddUIHistory(EUIScene::TeamMatchUI);
+			}
+		});
 
 	switch (static_cast<EStorePageWhere>(nWhereShop))
 	{
-	case EStorePageWhere::Store: 
+	case EStorePageWhere::Store:
 		data_trader::Retailer::GetInstance().RequestGetGeneralShop();
 		break;
 	case EStorePageWhere::EquipStore:
@@ -346,7 +353,7 @@ void AB2TMGameMode::OnOtherPlayerUnityPointClear(ABladeIITMAIPlayer* player)
 {
 	TArray<ABladeIICharacter*> AllLivePlayers;
 
-	if(player->GetTeamNum() == GetMyTeamNum())
+	if (player->GetTeamNum() == GetMyTeamNum())
 		GetAllMyTeamCharList(AllLivePlayers, GetMyTeamNum(), false);
 	else
 		GetAllMyTeamCharList(AllLivePlayers, GetOpponentTeamNum(), false);
@@ -355,7 +362,7 @@ void AB2TMGameMode::OnOtherPlayerUnityPointClear(ABladeIITMAIPlayer* player)
 	for (auto thisplayer : AllLivePlayers)
 	{
 		ABladeIIPlayer* pPlayer = Cast<ABladeIIPlayer>(thisplayer);
-		if(pPlayer)
+		if (pPlayer)
 			pPlayer->SetWeaponSkillPoint(0.0f);
 	}
 }
@@ -398,10 +405,10 @@ APlayerController* AB2TMGameMode::GetSpectatorController()
 }
 
 ICharacterDataStore* AB2TMGameMode::GetRemotePlayerDataStore(uint32 InTeamNum)
-{	
+{
 	if (InTeamNum == GetMyTeamNum())
 		return &BladeIIGameImpl::GetLocalCharacterData();
-	else 
+	else
 		return &OpponentTeamCharacterDataStore;
 }
 
@@ -424,7 +431,7 @@ void AB2TMGameMode::SetCharacterDoc()
 
 	if (!TeamMatchDoc || !TeamMatchBattle)
 		return;
-	
+
 	TeamMatchBattle->SetLeftPlayerInfo(BladeIIGameImpl::GetLocalCharacterData().GetUserNickName(), BladeIIGameImpl::GetLocalCharacterData().GetUserLevel(),
 										TeamMatchDoc->GetPCGrade(), TeamMatchDoc->GetPCGradeStar());
 
@@ -463,7 +470,7 @@ int32 AB2TMGameMode::GetFormationSlotPosition(ETMFormation Formation, int32 Slot
 
 	//抛捞喉拳窍扁俊绰 粱 弊犯绊.. 窍靛内靛窃.
 	switch (Formation)
-	{	
+	{
 	case ETMFormation::ETM_Attack:
 		if (SlotIdx == 0)		FormationSlotNum = 2;
 		else if (SlotIdx == 1)	FormationSlotNum = 4;
@@ -473,7 +480,7 @@ int32 AB2TMGameMode::GetFormationSlotPosition(ETMFormation Formation, int32 Slot
 		if (SlotIdx == 0)		FormationSlotNum = 7;
 		else if (SlotIdx == 1)	FormationSlotNum = 6;
 		else if (SlotIdx == 2)	FormationSlotNum = 2;
-		break;	
+		break;
 	default:
 		FormationSlotNum = SlotIdx + 1;
 		break;
@@ -549,13 +556,13 @@ void AB2TMGameMode::AddMyTeamCharacterInfo()
 	auto* TeamMatchDoc = UB2UIDocHelper::GetDocTeamMatch();
 
 	if (!TeamMatchDoc)
-		return;	
+		return;
 
 	for (int i = 0; i < AB2TMGameMode::GetNumCharactersOfTeam(); ++i)
 	{
-		AddEntryCharacterInfo(MyTeamNum, 
-			GetFormationSlotPosition(TeamMatchDoc->GetTMFormation(), i), 
-			TeamMatchDoc->GetCharacterClass(true, i), 
+		AddEntryCharacterInfo(MyTeamNum,
+			GetFormationSlotPosition(TeamMatchDoc->GetTMFormation(), i),
+			TeamMatchDoc->GetCharacterClass(true, i),
 			i,
 			GetAggroPriority(TeamMatchDoc->GetTMFormation(), i),
 			TeamMatchDoc->GetCharacterFormationNum(i)
@@ -572,9 +579,9 @@ void AB2TMGameMode::AddOpponentTeamCharacterInfo()
 
 	for (int i = 0; i < AB2TMGameMode::GetNumCharactersOfTeam(); ++i)
 	{
-		AddEntryCharacterInfo(OpponentTeamNum, 
-			GetFormationSlotPosition(TeamMatchDoc->GetOpponentTMFormation(), i), 
-			TeamMatchDoc->GetCharacterClass(false, i), 
+		AddEntryCharacterInfo(OpponentTeamNum,
+			GetFormationSlotPosition(TeamMatchDoc->GetOpponentTMFormation(), i),
+			TeamMatchDoc->GetCharacterClass(false, i),
 			i,
 			GetAggroPriority(TeamMatchDoc->GetOpponentTMFormation(), i));
 	}
@@ -718,7 +725,7 @@ void AB2TMGameMode::HandleRequestMatchMaking()
 	AddMyTeamCharacterInfo();
 
 	SceneManager.SetGameMode(this);
-	SceneManager.SetState(ETeamMatchState::Finding);	
+	SceneManager.SetState(ETeamMatchState::Finding);
 }
 
 void AB2TMGameMode::SetOpponentInfo(FB2OpponentTeamMatchInfoDataPtr OpponentServerInfo)
@@ -743,7 +750,7 @@ void AB2TMGameMode::SetOpponentInfo(FB2OpponentTeamMatchInfoDataPtr OpponentServ
 			TeamMatchDoc->SetCharacterClass(false, 2, SvrToCliPCClassType(OpponentServerInfo->entry->character_slot_3));
 
 			ReduceOpponentStatForTutorial = OpponentServerInfo->debuff_value > 0 ? OpponentServerInfo->debuff_value * 0.01f : 1.f;
-			
+
 			auto IsSameTeam = OpponentServerInfo->account->account_id == BladeIIGameImpl::GetClientDataStore().GetAccountId();
 			TeamMatchDoc->SetIsAIMe(IsSameTeam);
 		}
@@ -834,7 +841,7 @@ void AB2TMGameMode::MatchGameStartEventSceneEnd()
 void AB2TMGameMode::HandleStartResult()
 {
 	ENetMatchResult result(CalcResult());
-	
+
 	AllPlayerStopAI();
 
 	// 搬苞 沥焊甫 UI 率俊 技泼窍绰 何盒篮 备泅 沥府登搁 茄 镑栏肺
@@ -924,11 +931,11 @@ ENetMatchResult AB2TMGameMode::CalcResult()
 	ENetMatchResult result(ENetMatchResult::LocalLose);
 
 	bool bMyTeamWin = true;
-	bool bDraw		= false;
+	bool bDraw = false;
 
 	//儡粮 某腐磐 HP钦魂
-	auto MyTeamHPTotal			= MyTeamInfo.GetCharacterHPTotal();
-	auto OpponentTeamHPTotal	= OpponentTeamInfo.GetCharacterHPTotal();
+	auto MyTeamHPTotal = MyTeamInfo.GetCharacterHPTotal();
+	auto OpponentTeamHPTotal = OpponentTeamInfo.GetCharacterHPTotal();
 
 	if (MyTeamHPTotal > OpponentTeamHPTotal)
 		result = ENetMatchResult::LocalWin;
@@ -1042,19 +1049,19 @@ void AB2TMGameMode::SetMatchResultInfo(const FB2TeamMatchResult& MatchResult)
 
 void AB2TMGameMode::Tick(float DeltaSeconds)
 {
-//	SceneManager.Tick(DeltaSeconds);
-//
-//	if (IsInPreRenderPhase()) {
-//		UpdateForPreRenderObjects(); // 捞霸 倒酒啊绰 客吝俊绰 酒流 沥侥 矫累 救 茄 芭..
-//		// Pre-render 俊辑 皋牢 甘 肺爹 拳搁 摧绰 吧 瘤楷矫虐霸 登骨肺 咯扁辑 贸府. Pre-render 侩 肺爹 拳搁篮 蝶肺 乐绊 捞扒 窜瘤 肺爹 槐臂捞 倒酒啊绰 芭 楷厘窍扁 困茄 瞒盔捞促.
-//		ConditionalWaitForLoadingScreen();
-//	}
-//
-//#if BII_STATS
-//	if (FStatisticalPerfStatCollector::bDoStatCollecting) {
-//		PerfStatCollector.OnTick(this, DeltaSeconds);
-//	}
-//#endif
+	//	SceneManager.Tick(DeltaSeconds);
+	//
+	//	if (IsInPreRenderPhase()) {
+	//		UpdateForPreRenderObjects(); // 捞霸 倒酒啊绰 客吝俊绰 酒流 沥侥 矫累 救 茄 芭..
+	//		// Pre-render 俊辑 皋牢 甘 肺爹 拳搁 摧绰 吧 瘤楷矫虐霸 登骨肺 咯扁辑 贸府. Pre-render 侩 肺爹 拳搁篮 蝶肺 乐绊 捞扒 窜瘤 肺爹 槐臂捞 倒酒啊绰 芭 楷厘窍扁 困茄 瞒盔捞促.
+	//		ConditionalWaitForLoadingScreen();
+	//	}
+	//
+	//#if BII_STATS
+	//	if (FStatisticalPerfStatCollector::bDoStatCollecting) {
+	//		PerfStatCollector.OnTick(this, DeltaSeconds);
+	//	}
+	//#endif
 }
 
 void AB2TMGameMode::SetMatchLobbyResources(
@@ -1074,7 +1081,7 @@ void AB2TMGameMode::SetMatchLobbyCharacterLocationZ(float GladiatorZ, float Assa
 }
 
 void AB2TMGameMode::StartPlay()
-{	
+{
 	Super::StartPlay();
 }
 
@@ -1087,7 +1094,7 @@ APawn* AB2TMGameMode::RestartEntryPlayer(class AController* NewPlayer, FString c
 
 	if (NewPlayer == NULL)
 	{
-		auto*	Pawn = SpawnDefaultPawnFor(NULL, StartSpot);
+		auto* Pawn = SpawnDefaultPawnFor(NULL, StartSpot);
 		BII_CHECK(Pawn);
 
 		Pawn->FaceRotation(Pawn->GetActorRotation(), 0.f);
@@ -1096,7 +1103,7 @@ APawn* AB2TMGameMode::RestartEntryPlayer(class AController* NewPlayer, FString c
 		return Pawn;
 	}
 
-	APawn*	created = NULL;
+	APawn* created = NULL;
 	// try to create a pawn to use of the default class for this player
 	if (NewPlayer->GetPawn() == NULL && DefaultPawnClass != NULL)
 	{
@@ -1199,20 +1206,20 @@ ABladeIIPlayer* AB2TMGameMode::GetTeamPlayer(bool bAllyTeam, int32 nPlayerIndex,
 ABladeIIPlayer* AB2TMGameMode::SpawnTeamPlayerAsPuppet(bool bAllyTeam, int32 nPlayerIndex, bool bPossessByAIController /*= true*/)
 {
 	// 努贰胶 沥焊啊 咯扁 富绊 谍 单 绝唱..
-	auto* TeamMatchDoc		= UB2UIDocHelper::GetDocTeamMatch();
-	auto CharClassToSpawn	= EPCClass::EPC_End;
+	auto* TeamMatchDoc = UB2UIDocHelper::GetDocTeamMatch();
+	auto CharClassToSpawn = EPCClass::EPC_End;
 
 	if (TeamMatchDoc)
 	{
-		if (nPlayerIndex == 0) 
+		if (nPlayerIndex == 0)
 		{
 			CharClassToSpawn = TeamMatchDoc->GetPCCharacterClass1();
 		}
-		else if (nPlayerIndex == 1) 
+		else if (nPlayerIndex == 1)
 		{
 			CharClassToSpawn = TeamMatchDoc->GetPCCharacterClass2();
 		}
-		else if (nPlayerIndex == 2) 
+		else if (nPlayerIndex == 2)
 		{
 			CharClassToSpawn = TeamMatchDoc->GetPCCharacterClass3();
 		}
@@ -1242,10 +1249,10 @@ ABladeIIPlayer* AB2TMGameMode::SpawnTeamPlayerAsPuppetbyClass(bool bAllyTeam, EP
 	// 扁夯利栏肺绰 肺拿 敲饭捞绢 某腐磐 厘厚肺 嘎苗廉 乐阑抛聪 Ally 啊 酒聪扼搁 厘厚 单捞磐甫 流立 技泼秦霖促. 
 	if (!bAllyTeam)
 	{ // 窜, 霸烙葛靛俊 某教等 吧 啊廉客辑 荤侩窍妨搁 NetID 甫 持绢林绢具 窍绰单 泅犁 SetupComponentsForPartsCustomDataStore 备泅 磊眉啊 Custom 俊 吧嘎霸 某教阑 公矫窍档废 登绢乐促.
-		SpawnedPuppet->SetupComponentsForPartsCustomDataStore(GetRemotePlayerDataStore(GetOpponentTeamNum()), 
+		SpawnedPuppet->SetupComponentsForPartsCustomDataStore(GetRemotePlayerDataStore(GetOpponentTeamNum()),
 			// 捞芭 芭狼 楷免侩 扁瓷捞扼 SectionMerge 咯何俊 楷免侩 魄喊 窃荐 府畔蔼 傈崔.
 			UB2PCMeshSectionMergeInfo::ShouldUseSectionMergeForStageEvent(this)
-			);
+		);
 	}
 
 	return SpawnedPuppet;
@@ -1308,7 +1315,7 @@ int32 FTeamInfo::GetCharacterCount()
 
 		if (B2Player->GetHealth() <= 0)
 			continue;
-			
+
 		++CharacterCount;
 	}
 
@@ -1474,7 +1481,7 @@ void FTeamMatchSceneMagnager::SetGameMode(class AB2TMGameMode* InGameMode)
 }
 
 void FTeamMatchSceneMagnager::SetMatchLobbyResources(
-	class ALevelSequenceActor * InMatinee, 
+	class ALevelSequenceActor* InMatinee,
 	const FMatchingAnims& Gladiator,
 	const FMatchingAnims& Assassin,
 	const FMatchingAnims& Wizard,
@@ -1564,7 +1571,7 @@ void FTeamMatchSceneMagnager::SetRightEntry()
 	for (int32 idx = 0; idx < GameMode->GetNumCharactersOfTeam(); ++idx)
 	{
 		EPCClass PCClass = TeamMatch->GetCharacterClass(false, idx);
-		
+
 		FString PositionName(TEXT("Right_"));
 
 		if (idx == 0)
@@ -1737,7 +1744,7 @@ void AB2TMGameMode::ChangeCharacterCamera(bool bMyTeam, int32 SlotIdx)
 	if (pPlayer && TeamMatchPlayerActiveCameraActor)
 	{
 		TeamMatchPlayerActiveCameraActor->ChangeCameraOwnerPlayer(pPlayer);
-	}		
+	}
 
 	// UI盎脚
 	UpdateUICharSlotCamera();
@@ -1775,7 +1782,7 @@ bool AB2TMGameMode::ChangeFixedCamera()
 	//		TeamMatchTempActiveCameraActor = TeamMatchFixLongActiveCameraActor;
 	//	}
 
-		return true;
+	return true;
 	//}
 
 }
@@ -1817,7 +1824,7 @@ int32 AB2TMGameMode::GetNextCameraPlayer() const
 		}
 	}
 
-	auto NextPlayerIndex =  FMath::RandRange(0, OtherPlayer.Num() - 1);
+	auto NextPlayerIndex = FMath::RandRange(0, OtherPlayer.Num() - 1);
 	return OtherPlayer.IsValidIndex(NextPlayerIndex) ? OtherPlayer[NextPlayerIndex] : 0;
 }
 
@@ -1854,7 +1861,7 @@ void AB2TMGameMode::UpdateUICharSlotCamera()
 
 	auto* LocalController = UGameplayStatics::GetLocalPlayerController(this);
 	auto* ViewTarget = LocalController ? LocalController->GetViewTarget() : nullptr;
-		
+
 	for (auto& Character : MyTeamInfo.Characters)
 	{
 		BII_CHECK(Character.AIController);
@@ -1863,7 +1870,7 @@ void AB2TMGameMode::UpdateUICharSlotCamera()
 		else
 			TeamMatchBattle->SetSlotCamera(false, true, Character.DocCharIndex);
 	}
-	
+
 	for (auto& Character : OpponentTeamInfo.Characters)
 	{
 		BII_CHECK(Character.AIController);
@@ -2026,7 +2033,7 @@ TArray<EPCClass> AB2TMGameMode::GetPCClassesToPreLoad()
 			RetArray.AddUnique(TeamMatchDoc->GetCharacterClass(true, i));
 		}
 	}
-	return RetArray; 
+	return RetArray;
 }
 
 TArray<FCombinedPCSkillAnimID> AB2TMGameMode::GetPCSkillAnimsToPreLoad()

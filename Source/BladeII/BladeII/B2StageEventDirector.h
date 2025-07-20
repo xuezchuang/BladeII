@@ -10,8 +10,8 @@
 #include "CommonStruct.h"
 #include "BladeIICharacter.h"
 //#include "B2UIEnum.h"
-//#include "B2StageInfo.h"
-//#include "BladeII.h"
+#include "B2StageInfo.h"
+#include "BladeII.h"
 #include "B2StageEventDirector.generated.h"
 
 /** Overall behavior of stage event director actor, regarding not just camera. */
@@ -635,8 +635,8 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "StageEvent", meta = (EditCondition = "bOverallMode_ExportedCamera"))
 	float CameraAnimInitialBlendingTime;
 
-	//UPROPERTY( EditAnywhere, BlueprintReadOnly, Category = "StageEvent", meta = ( EditCondition = "bOverallMode_ControlledMatinee" ) )
-	//class AB2AutoWayPoint* ForcedMarkPassedWaypoint;
+	UPROPERTY( EditAnywhere, BlueprintReadOnly, Category = "StageEvent", meta = ( EditCondition = "bOverallMode_ControlledMatinee" ) )
+	class AB2AutoWayPoint* ForcedMarkPassedWaypoint;
 
 	/** For controlled matinee mode, the matinee actor created by Add Matinee menu, or deployed from Matinee Data (InterpData) */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "StageEvent", meta = (EditCondition = "bOverallMode_ControlledMatinee"))
@@ -726,8 +726,8 @@ protected:
 	
 	/** If set, the game-play camera defined by this ActiveCameraActor is applied after the show is over,
 	 * regardless of the overlap condition */
-	//UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "StageEvent_Misc")
-	//class AB2ActiveCameraActor* ActiveCameraForceOnFinish;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "StageEvent_Misc")
+	class AB2ActiveCameraActor* ActiveCameraForceOnFinish;
 
 	/** If current player character is not one of the play actors of ShowSettings, 
 	 * this will enforce the player character to stop attack motion, which can cause various undesired behavior. */
@@ -744,13 +744,13 @@ protected:
 
 	///** You may specify level to load/unload at the beginning of this event.
 	// * Better not include any level that this actor or referenced matinee is placed. */
-	//UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "StageEvent_Misc")
-	//FB2StageStreamingSettings LevelStreamingOnBegin;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "StageEvent_Misc")
+	FB2StageStreamingSettings LevelStreamingOnBegin;
 
 	///** You may specify level to load/unload at the end of this event.
 	// * Better not include any level that this actor or referenced matinee is placed. */
-	//UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "StageEvent_Misc")
-	//FB2StageStreamingSettings LevelStreamingOnEnd;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "StageEvent_Misc")
+	FB2StageStreamingSettings LevelStreamingOnEnd;
 
 	/** Set it to some small value like 1 ~ 2 can reduce some noticeable frame skip when the scene is to be started at level beginning. */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "StageEvent_Misc", meta = (EditCondition = "bOverallMode_ControlledMatinee"))
@@ -827,13 +827,13 @@ private:
 	
 	uint32 bCurrentlyPlaying : 1;
 
-//#if ENABLE_LOCAL_CUTSCENE_SAVED_STATE
-//	/** Cached flag at local config file, per-stage basis. It could be used for some purpose like preventing play it more than twice depend on user setting. */
-//	bool bPlayedAtLeastOnce;
-//	/** Requires to be in different package file name, to be uniquely identified. */
-//	FORCEINLINE FString GetPlayedAtLeastOnceSectionString() { return FString::Printf(TEXT("/Script/BladeII.%s"), *GetFullName()); }
-//	FORCEINLINE FString GetPlayedAtLeastOnceKeyString(int32 PlayStageNum) { return FString::Printf(TEXT("PlayedAtLeastOnce_%d"), PlayStageNum); }
-//#endif
+#if ENABLE_LOCAL_CUTSCENE_SAVED_STATE
+	/** Cached flag at local config file, per-stage basis. It could be used for some purpose like preventing play it more than twice depend on user setting. */
+	bool bPlayedAtLeastOnce;
+	/** Requires to be in different package file name, to be uniquely identified. */
+	FORCEINLINE FString GetPlayedAtLeastOnceSectionString() { return FString::Printf(TEXT("/Script/BladeII.%s"), *GetFullName()); }
+	FORCEINLINE FString GetPlayedAtLeastOnceKeyString(int32 PlayStageNum) { return FString::Printf(TEXT("PlayedAtLeastOnce_%d"), PlayStageNum); }
+#endif
 	/** A little bit different from bPlayedAtLeastOnce. To prevent re-entrance once it is played through for this stage. Gotta be loaded once more.. */
 	uint32 bPlayedOnceForThisStage : 1;
 
@@ -960,9 +960,9 @@ public:
 	bool IsStageSupportedForGameMode(class ABladeIIGameMode* InB2GM) const;
 private:
 	bool IsStageSupported(int32 InStageId, EStageDifficulty InDifficulty) const;
-		/** Subsets of IsStageSupported */
-		bool IsStageNumSupported(int32 InStageId) const;
-		bool IsStageDifficultySupported(EStageDifficulty InDifficulty) const;
+	/** Subsets of IsStageSupported */
+	bool IsStageNumSupported(int32 InStageId) const;
+	bool IsStageDifficultySupported(EStageDifficulty InDifficulty) const;
 	/** It's so stupid that I have no freaking idea why there's mixed use of EStageDifficulty and int everywhere. */
 	FORCEINLINE bool IsStageSupported(int32 InStageId, int32 InDifficulty) const { return IsStageSupported(InStageId, static_cast<EStageDifficulty>(InDifficulty)); }
 
@@ -1023,7 +1023,7 @@ private:
 	*
 	* @return Returns the parent group pointer or NULL if one wasn't found	
 	*/
-	UInterpGroup* FindParentGroupFolder(UInterpGroup* ChildGroup, class ALevelSequenceActor * OwnerMatinee) const;
+	//UInterpGroup* FindParentGroupFolder(UInterpGroup* ChildGroup, class ALevelSequenceActor * OwnerMatinee) const;
 
 	/** Returns final matinee interp group name to search. Could be the same as RawInterpGroupName or might have some postfix attached. */
 	FString GetFinalMatchingInterpGroupName(class ABladeIICharacter* InPlayActor, FString RawInterpGroupName, bool bForFolderGroup = false);
@@ -1288,7 +1288,7 @@ public:
 	virtual void PostEditMove(bool bFinished) override;
 	
 	void CheckAndWarnForLightSetup();
-	//UInterpGroup* GetInterpGroupOfObjectName(FName InFindGroupObjectName);
+	UInterpGroup* GetInterpGroupOfObjectName(FName InFindGroupObjectName);
 
 	static void CheckAndWarnForComponentTriggerSetup(UWorld* InWorld);
 	static bool HasAnyDirectedFromBeginningTrackInCurrentWorld(UWorld* InWorld);

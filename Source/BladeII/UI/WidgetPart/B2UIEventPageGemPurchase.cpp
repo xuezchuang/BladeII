@@ -7,7 +7,7 @@
 #include "BladeIIGameImpl.h"
 #include "BladeIIUtil.h"
 #include "RewardEventManager.h"
-#include "../Common/Event.h"
+#include "Event.h"
 
 void UB2UIEventPageGemPurchase::CacheAssets()
 {

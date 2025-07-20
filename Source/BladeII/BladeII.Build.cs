@@ -35,6 +35,8 @@ public class BladeII : ModuleRules
 			"B2Network",
 			"PakFile",
             "LevelSequence",
+            "MovieScene",
+            "LevelSequence",
             "RenderCore",
             "NavigationSystem"
         });

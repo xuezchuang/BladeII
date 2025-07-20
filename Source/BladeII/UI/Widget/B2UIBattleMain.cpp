@@ -1287,20 +1287,20 @@ void UB2UIBattleMain::OnChangedRemainingTagCooltime(class UB2UIDocBase* Sender, 
 
 void UB2UIBattleMain::OnChangedIsDefenseEther(class UB2UIDocBase* Sender, bool IsDefenseEther, bool PrevIsDefenseEther)
 {
-	/*if (UIP_DefenseEtherIcon.IsValid())
+	if (UIP_DefenseEtherIcon.IsValid())
 	{
 		if (IsDefenseEther)
 		{
-			if(UIP_DefenseEtherIcon->GetVisibility() == ESlateVisibility::Collapsed)
+			if (UIP_DefenseEtherIcon->GetVisibility() == ESlateVisibility::Collapsed)
 				UIP_DefenseEtherIcon->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
 			UIP_DefenseEtherIcon->Init();
 		}
 		else
 		{
-			if(UIP_DefenseEtherIcon->GetVisibility() == ESlateVisibility::SelfHitTestInvisible)
+			if (UIP_DefenseEtherIcon->GetVisibility() == ESlateVisibility::SelfHitTestInvisible)
 				UIP_DefenseEtherIcon->SetVisibility(ESlateVisibility::Collapsed);
 		}
-	}*/
+	}
 }
 void UB2UIBattleMain::OnChangedIsOffenseEther(class UB2UIDocBase* Sender, bool IsOffenseEther, bool PrevIsOffenseEther)
 {
