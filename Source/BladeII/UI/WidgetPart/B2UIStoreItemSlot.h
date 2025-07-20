@@ -36,7 +36,7 @@ public:
 	void SetSalePeriodData(bool bIsLimited, int64 EndTime);
 
 	UFUNCTION()
-		void OnClickedSlotButton();
+	void OnClickedSlotButton();
 
 private:
 
@@ -45,19 +45,19 @@ private:
 protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BladeII")
-		int32 StoreProductId;
+	int32 StoreProductId;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BladeII")
-		EStoreItemCost CostType;
+	EStoreItemCost CostType;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BladeII")
-		int32 Cost;
+	int32 Cost;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BladeII")
-		int32 Count;
+	int32 Count;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BladeII")
-		TArray<TSoftClassPtr<class UB2UIStoreItemSlotIcon>>	StoreSlotWidgetArray;
+	TArray<TSoftClassPtr<class UB2UIStoreItemSlotIcon>>	StoreSlotWidgetArray;
 
 private:
 
@@ -70,7 +70,7 @@ private:
 	TWeakObjectPtr<UB2Button> BTN_GetReward;
 	TWeakObjectPtr<UB2UIStoreProductCost> UIP_Cost;
 	TWeakObjectPtr<UTextBlock> TB_ItemNameAndCount;
-	
+
 	// Bonus
 	TWeakObjectPtr<UOverlay> OV_Bonus;
 	TWeakObjectPtr<UImage> IMG_BonusItemIcon;

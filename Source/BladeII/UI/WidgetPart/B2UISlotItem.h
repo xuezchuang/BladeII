@@ -98,16 +98,16 @@ public:
 	void SetBTNArea(bool InValue);
 public:
 	UFUNCTION(BlueprintImplementableEvent, Category = "BladeII SlotItem")
-		void SetPrimaryPointType_BP(EItemPrimaryPointType InType);
+	void SetPrimaryPointType_BP(EItemPrimaryPointType InType);
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "BladeII SlotItem")
-		void SetSelected_BP(bool InSelected);
+	void SetSelected_BP(bool InSelected);
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "BladeII SlotItem")
-		void SetStarGrade_BP(int32 InValue);
+	void SetStarGrade_BP(int32 InValue);
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "BladeII SlotItem")
-		void SetQuality_BP(int32 InQuality);
+	void SetQuality_BP(int32 InQuality);
 
 	struct FB2Item& GetDocStruct() { return BindedStruct; }
 protected:
@@ -126,14 +126,14 @@ protected:
 
 	//=================================================== Btn
 	//UFUNCTION()
-		virtual void OnClickBtnArea() override;
+	virtual void OnClickBtnArea() override;
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "Bladeii")
-		void OnClickedBtnAreaBP();
+	void OnClickedBtnAreaBP();
 	UFUNCTION(BlueprintImplementableEvent, Category = "Bladeii")
-		void OnPressedBtnAreaBP();
+	void OnPressedBtnAreaBP();
 	UFUNCTION(BlueprintImplementableEvent, Category = "Bladeii")
-		void OnReleasedBtnAreaBP();
+	void OnReleasedBtnAreaBP();
 
 	//==================================================== Doc Delegate
 
@@ -143,23 +143,23 @@ public:
 
 	/* Number of items. */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BladeII SlotItem")
-		int32 Count;
+	int32 Count;
 
 	/*Whether or not put an x in front of the number counted. Ex) x100 */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BladeII SlotItem")
-		bool bUseCountPrefix = false;
+	bool bUseCountPrefix = false;
 
 	/*If the count is zero whether to hide the count text. */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BladeII SlotItem")
-		bool bCount_0_Text_Invisible;
+	bool bCount_0_Text_Invisible;
 
 	/*If the count is zero whether to hide the icon image. */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BladeII SlotItem")
-		bool bCount_0_Icon_Invisible;
+	bool bCount_0_Icon_Invisible;
 
 	/** See UB2ItemMiscInfo::GetItemIconBGMtrl, about bSimpleBG argument */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BladeII SlotItem")
-		bool bUseSimpleBGImage;
+	bool bUseSimpleBGImage;
 
 protected:
 	TWeakObjectPtr<UImage>						    IMG_Reading_Glasses;
@@ -171,7 +171,7 @@ protected:
 	TWeakObjectPtr<UTextBlock>						TB_EnhanceLevel;
 	TWeakObjectPtr<UTextBlock>						TB_PrimaryPoint;
 	TWeakObjectPtr<UPanelWidget>					O_Selected;
-	
+
 	TWeakObjectPtr<class UB2UIStarGradePart>	UIP_Stars;
 	// Stage Info 俊辑 荤侩
 	TWeakObjectPtr<UImage>							IMG_StarIcon;
@@ -191,7 +191,7 @@ protected:
 
 private:
 	struct FB2Item BindedStruct;
-	
+
 	bool bSelected;
 	bool bShowCount;
 

@@ -23,18 +23,18 @@ public:
 	~UB2UIWidget();
 	virtual void Init() override;
 	virtual void NativeConstruct() override;
-	/** Before you use DestroySelf directly, consider CloseUI or UIManager first. 
+	/** Before you use DestroySelf directly, consider CloseUI or UIManager first.
 	 * InUIManager is for least safety, but it could be null in some special circumstance. */
 	virtual void DestroySelf(class UB2UIManager* InUIManager) override;
 
-	/** Events occurring in the open. 
-    * @param RightNow : When you open immediately without Anim. */
+	/** Events occurring in the open.
+	* @param RightNow : When you open immediately without Anim. */
 	virtual void OnOpen(bool RightNow = false);
 
-	/** Events occurring in the close. 
+	/** Events occurring in the close.
 	* @param RightNow : When you close immediately without Anim. */
 	virtual void OnClose(bool RightNow = false);
-	
+
 	/** Called when a UIScene containing this UIWidget is open, not just this UIWidget, but all UIWidgets in the UIScene. */
 	virtual void OnSceneOpen(EUIScene InOpenedScene);
 
@@ -53,14 +53,14 @@ public:
 public:
 	/** BP event that passed in the open. */
 	UFUNCTION(BlueprintImplementableEvent, Category = "BladeII")
-		void OnOpen_BP();
+	void OnOpen_BP();
 
 	/** BP event that passed in the close. */
 	UFUNCTION(BlueprintImplementableEvent, Category = "BladeII")
-		void OnClose_BP();
+	void OnClose_BP();
 
 	UFUNCTION(BlueprintCallable, Category = "BladeII")
-		void CloseSelf();
+	void CloseSelf();
 
 protected:
 	/* Events that occur when finished completely open. */
@@ -69,8 +69,8 @@ protected:
 	virtual void OnCloseComplete();
 
 private:
-	
-	/** From UIManager WidgetData setting. 
+
+	/** From UIManager WidgetData setting.
 	 * My registered identifier to the UIManager as one of WidgetData which can be opened solely. */
 	FName MyUIFName;
 
@@ -78,7 +78,7 @@ private:
 protected:
 	/** For some case that sub-class need to modify OpenState setting timing. */
 	FORCEINLINE void SetOpenState(EUIOpenState InState) { OpenState = InState; }
-	
+
 	void SetPendingPause();
 private:
 

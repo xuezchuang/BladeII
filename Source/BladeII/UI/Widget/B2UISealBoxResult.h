@@ -17,7 +17,7 @@
 
 const int32 MAX_CARD_FX_PART_NUM = 5; // Max reward number itself might be different.
 /**
- * 
+ *
  */
 
 UCLASS(BlueprintType, Blueprintable)
@@ -28,19 +28,19 @@ class BLADEII_API UB2UISealBoxResult : public UB2UIWidget, public IB2UIDocBindab
 protected:
 
 	UPROPERTY(Transient)
-		FCardFXSetupLoadedRefHolder LoadedRewardPSHolder;
+	FCardFXSetupLoadedRefHolder LoadedRewardPSHolder;
 
 	/** Particle system set-up for reward Fx, per item star-grade */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BladeII")
-		FCardFXSetup RewardPSSetup;
+	FCardFXSetup RewardPSSetup;
 
 	/** Main stage of reward item Fx play. Only one will be loaded and instanced by total reward item number. */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BladeII")
-		TArray<TSoftClassPtr<class UB2SealCardFx>> RewardFxPartWidgetClasses;
+	TArray<TSoftClassPtr<class UB2SealCardFx>> RewardFxPartWidgetClasses;
 
 	/** Created widget part instance, by one among RewardFxPartWidgetClasses */
 	UPROPERTY(Transient)
-		class UB2SealCardFx* CreatedRewardFxPart;
+	class UB2SealCardFx* CreatedRewardFxPart;
 
 	TArray<FB2Item> RewardItemData; // Gathered for displaying here.
 
@@ -64,13 +64,13 @@ public:
 	void SetRewardDataManually(const FB2ResponseUnsealBoxPtr& UnsealBoxPtr, int32 pcClass);
 
 	UFUNCTION(BlueprintCallable, Category = "BladeII StageClear")
-		void BeginRewardItemFx();
+	void BeginRewardItemFx();
 
 	/* 3d effects at this point are to be played. */
 	UFUNCTION(BlueprintCallable, Category = "BladeII StageClear")
-		void Show3DWingEffect();
+	void Show3DWingEffect();
 	UFUNCTION(BlueprintCallable, Category = "BladeII StageClear")
-		void Show3DGemEffect();
+	void Show3DGemEffect();
 
 
 private:
@@ -93,14 +93,14 @@ private:
 
 	//===================================================Click
 	UFUNCTION()
-		void OnClickBtnOpenAgain();
+	void OnClickBtnOpenAgain();
 	UFUNCTION()
-		void OnClickBtnCloseThis();
+	void OnClickBtnCloseThis();
 
 	//====================================================Doc Delegate
 
 	UFUNCTION()
-		void OnChangedRepeatBattleCurrentOn(class UB2UIDocBase* Sender, bool bCurrentOn, bool bPrevOn);
+	void OnChangedRepeatBattleCurrentOn(class UB2UIDocBase* Sender, bool bCurrentOn, bool bPrevOn);
 
 protected:
 	TWeakObjectPtr<UCanvasPanel>			CP_OpenAgain;
